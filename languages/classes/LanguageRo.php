@@ -7,7 +7,7 @@ class LanguageRo extends Language {
 	function convertPlural( $count, $forms ) {
 		// Plural rules per
 		// http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#ro
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 
 		$forms = $this->preConvertPlural( $forms, 3 );
 

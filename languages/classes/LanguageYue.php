@@ -17,7 +17,7 @@ class LanguageYue extends Language {
 		$s = self::insertSpace( $string, $reg );
 		return $s;
 	}
-	
+
 	function normalizeForSearch( $string ) {
 		wfProfileIn( __METHOD__ );
 

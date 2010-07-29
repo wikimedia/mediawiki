@@ -5,4 +5,4 @@
 // changed on a subsequent page view.
 // see http://mail.wikipedia.org/pipermail/wikitech-l/2006-January/033660.html
 
-require_once( dirname(__FILE__).'/LanguageSr_ec.php' );
+require_once( dirname( __FILE__ ) . '/LanguageSr_ec.php' );

@@ -22,7 +22,7 @@ class LanguageKsh extends Language {
 	 * Handle cases of (1, other, 0) or (1, other)
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ( $count == 1 ) {

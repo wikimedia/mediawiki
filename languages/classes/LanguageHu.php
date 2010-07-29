@@ -7,7 +7,7 @@
 class LanguageHu extends Language {
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms[$this->getCode()][$case][$word]) ) {
+		if ( isset( $wgGrammarForms[$this->getCode()][$case][$word] ) ) {
 			return $wgGrammarForms[$this->getCode()][$case][$word];
 		}
 

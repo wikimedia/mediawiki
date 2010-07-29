@@ -1,35 +1,35 @@
 <?php
 
-require_once( dirname(__FILE__).'/../LanguageConverter.php' );
-require_once( dirname(__FILE__).'/LanguageZh.php' );
+require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
+require_once( dirname( __FILE__ ) . '/LanguageZh.php' );
 
 /**
  * @ingroup Language
  */
 class GanConverter extends LanguageConverter {
 
-	function __construct($langobj, $maincode,
-								$variants=array(),
-								$variantfallbacks=array(),
+	function __construct( $langobj, $maincode,
+								$variants = array(),
+								$variantfallbacks = array(),
 								$flags = array(),
 								$manualLevel = array() ) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
-		parent::__construct($langobj, $maincode,
+		parent::__construct( $langobj, $maincode,
 									$variants,
 									$variantfallbacks,
 									$flags,
-									$manualLevel);
+									$manualLevel );
 		$names = array(
 			'gan'      => '原文',
 			'gan-hans' => '简体',
 			'gan-hant' => '繁體',
 		);
-		$this->mVariantNames = array_merge($this->mVariantNames,$names);
+		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
 	}
 
 	function loadDefaultTables() {
-		require( dirname(__FILE__)."/../../includes/ZhConversion.php" );
+		require( dirname( __FILE__ ) . "/../../includes/ZhConversion.php" );
 		$this->mTables = array(
 			'gan-hans' => new ReplacementArray( $zh2Hans ),
 			'gan-hant' => new ReplacementArray( $zh2Hant ),
@@ -41,7 +41,7 @@ class GanConverter extends LanguageConverter {
 	   to mark anything.
 	   $noParse is there for compatibility with LanguageConvert::markNoConversion
 	 */
-	function markNoConversion($text, $noParse = false) {
+	function markNoConversion( $text, $noParse = false ) {
 		return $text;
 	}
 
@@ -62,20 +62,20 @@ class LanguageGan extends LanguageZh {
 		global $wgHooks;
 		parent::__construct();
 
-		$variants = array('gan','gan-hans','gan-hant');
+		$variants = array( 'gan', 'gan-hans', 'gan-hant' );
 		$variantfallbacks = array(
-			'gan'      => array('gan-hans','gan-hant'),
-			'gan-hans' => array('gan'),
-			'gan-hant' => array('gan'),
+			'gan'      => array( 'gan-hans', 'gan-hant' ),
+			'gan-hans' => array( 'gan' ),
+			'gan-hant' => array( 'gan' ),
 		);
-		$ml=array(
+		$ml = array(
 			'gan'      => 'disable',
 		);
 
 		$this->mConverter = new GanConverter( $this, 'gan',
 								$variants, $variantfallbacks,
 								array(),
-								$ml);
+								$ml );
 
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
@@ -84,13 +84,13 @@ class LanguageGan extends LanguageZh {
 	function segmentForDiff( $text ) {
 		return preg_replace(
 			"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-			"' ' .\"$1\"", $text);
+			"' ' .\"$1\"", $text );
 	}
 
 	function unsegmentForDiff( $text ) {
 		return preg_replace(
 			"/ ([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-			"\"$1\"", $text);
+			"\"$1\"", $text );
 	}
 
 	// word segmentation
@@ -103,7 +103,7 @@ class LanguageGan extends LanguageZh {
 		$terms = implode( '|', $termsArray );
 		$terms = self::convertDoubleWidth( $terms );
 		$terms = implode( '|', $this->mConverter->autoConvertToAllVariants( $terms ) );
-		$ret = array_unique( explode('|', $terms) );
+		$ret = array_unique( explode( '|', $terms ) );
 		return $ret;
 	}
 }

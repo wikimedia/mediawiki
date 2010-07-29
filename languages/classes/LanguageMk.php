@@ -9,7 +9,7 @@ class LanguageMk extends Language {
 	 * http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#mk
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 2 );
 
 		if ( $count % 10 === 1 && $count % 100 !== 11 ) {

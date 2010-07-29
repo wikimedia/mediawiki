@@ -8,7 +8,7 @@
  */
 
 class LanguageMy extends Language {
-	function commafy($_) {
+	function commafy( $_ ) {
 		/* NO-op. Cannot use
 		 * $separatorTransformTable = array( ',' => '' )
 		 * That would break when parsing and doing strstr '' => 'foo';

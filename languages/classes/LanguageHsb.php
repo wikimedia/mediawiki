@@ -28,7 +28,7 @@ class LanguageHsb extends Language {
 	}
 
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 4 );
 
 		switch ( abs( $count ) % 100 ) {
