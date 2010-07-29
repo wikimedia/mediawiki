@@ -3767,7 +3767,7 @@ class User {
 			if ( !$template
 					|| $template->getNamespace() !== NS_TEMPLATE
 					|| !$template->exists() ) {
-				$text = "== $subject ==\n\n$text\n\n-- $signature";
+				$text = "\n== $subject ==\n\n$text\n\n-- $signature";
 			} else {
 				$text = '{{'. $template->getText()
 					. " | subject=$subject | body=$text | signature=$signature }}";
@@ -3812,7 +3812,7 @@ class User {
 		$flags = $article->checkFlags( $flags );
 
 		if ( $flags & EDIT_UPDATE ) {
-			$text .= $article->getContent();
+			$text = $article->getContent() . $text;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );

@@ -59,12 +59,6 @@ class ApiUpload extends ApiBase {
 		
 		// First check permission to upload
 		$this->checkPermissions( $wgUser );
-		// Check permission to upload this file
-		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
-		if ( $permErrors !== true ) {
-			// Todo: more specific error message
-			$this->dieUsageMsg( array( 'badaccess-groups' ) );
-		}
 		
 		// Fetch the file
 		$status = $this->mUpload->fetchFile();
@@ -76,6 +70,13 @@ class ApiUpload extends ApiBase {
 
 		// Check if the uploaded file is sane
 		$this->verifyUpload();
+		
+		// Check permission to upload this file
+		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
+		if ( $permErrors !== true ) {
+			// Todo: stash the upload and allow choosing a new name
+			$this->dieUsageMsg( array( 'badaccess-groups' ) );
+		}
 
 		// Check warnings if necessary
 		$warnings = $this->checkForWarnings();
@@ -198,9 +199,6 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( 'The filename is not allowed', 'illegal-filename',
 						0, array( 'filename' => $verification['filtered'] ) );
 				break;
-			case UploadBase::OVERWRITE_EXISTING_FILE:
-				$this->dieUsage( 'Overwriting an existing file is not allowed', 'overwrite' );
-				break;
 			case UploadBase::VERIFICATION_ERROR:
 				$this->getResult()->setIndexedTagName( $verification['details'], 'detail' );
 				$this->dieUsage( 'This file did not pass file verification', 'verification-error',
@@ -286,9 +284,19 @@ class ApiUpload extends ApiBase {
 
 		if ( !$status->isGood() ) {
 			$error = $status->getErrorsArray();
-			$this->getResult()->setIndexedTagName( $error, 'error' );
+			
+			if ( count( $error ) == 1 && $error[0][0] == 'async' ) {
+				// The upload can not be performed right now, because the user
+				// requested so
+				return array(
+					'result' => 'Queued',
+					'sessionkey' => $error[0][1],
+				);
+			} else {
+				$this->getResult()->setIndexedTagName( $error, 'error' );
 
-			$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
+				$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
+			}
 		}
 
 		$file = $this->mUpload->getLocalFile();
@@ -331,15 +339,22 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => false,
 			'file' => null,
 			'url' => null,
-			'asyncdownload' => false,
-			'leavemessage' => false,
+
 			'sessionkey' => null,
 		);
+		
+		global $wgAllowAsyncCopyUploads;
+		if ( $wgAllowAsyncCopyUploads ) {
+			$params += array(
+				'asyncdownload' => false,
+				'leavemessage' => false,			
+			);
+		}
 		return $params;
 	}
 
 	public function getParamDescription() {
-		return array(
+		$params = array(
 			'filename' => 'Target filename',
 			'token' => 'Edit token. You can get one of these through prop=info',
 			'comment' => 'Upload comment. Also used as the initial page text for new files if "text" is not specified',
@@ -349,10 +364,19 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => 'Ignore any warnings',
 			'file' => 'File contents',
 			'url' => 'Url to fetch the file from',
-			'asyncdownload' => 'Make fetching a URL asyncronous',
-			'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
 			'sessionkey' => 'Session key returned by a previous upload that failed due to warnings',
 		);
+
+		global $wgAllowAsyncCopyUploads;
+		if ( $wgAllowAsyncCopyUploads ) {
+			$params += array(
+				'asyncdownload' => 'Make fetching a URL asynchronous',
+				'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',			
+			);
+		}
+		
+		return $params;
+		
 	}
 
 	public function getDescription() {

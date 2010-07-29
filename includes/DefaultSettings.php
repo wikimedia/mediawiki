@@ -425,6 +425,11 @@ $wgCacheSharedUploads = true;
 * The timeout for copy uploads is set by $wgHTTPTimeout.
 */
 $wgAllowCopyUploads = false;
+/**
+ * Allow asynchronous copy uploads.
+ * This feature is experimental.
+ */
+$wgAllowAsyncCopyUploads = false;
 
 /**
  * Max size for uploads, in bytes. Applies to all uploads.
