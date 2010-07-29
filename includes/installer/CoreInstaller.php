@@ -168,6 +168,14 @@ abstract class CoreInstaller extends Installer {
 	);
 
 	/**
+	 * TODO: doucment
+	 * 
+	 * @param Status $status
+	 */
+	public abstract function showStatusMessage( Status $status );	
+	
+	
+	/**
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {

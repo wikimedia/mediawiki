@@ -653,6 +653,8 @@ class WebInstaller extends CoreInstaller {
 	/**
 	 * Show a short informational message.
 	 * Output looks like a list.
+	 * 
+	 * @param srting $msg
 	 */
 	public function showMessage( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -661,6 +663,18 @@ class WebInstaller extends CoreInstaller {
 			$this->parse( wfMsgReal( $msg, $args, false, false, false ) ) .
 			"</div>\n";
 		$this->output->addHTML( $html );
+	}
+	
+	/**
+	 * @param Status $status
+	 */
+	public function showStatusMessage( Status $status ) {
+		$text = $status->getWikiText();
+		$this->output->addWikiText(
+			"<div class=\"config-message\">\n" .
+			$text .
+			"</div>"
+		);
 	}
 
 	/**
