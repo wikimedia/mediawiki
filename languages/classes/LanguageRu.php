@@ -11,45 +11,45 @@ class LanguageRu extends Language {
 	# Invoked with {{grammar:case|word}}
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms['ru'][$case][$word]) ) {
+		if ( isset( $wgGrammarForms['ru'][$case][$word] ) ) {
 			return $wgGrammarForms['ru'][$case][$word];
 		}
 
 		# These rules are not perfect, but they are currently only used for site names so it doesn't
 		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
 
-		#join and array_slice instead mb_substr
+		# join and array_slice instead mb_substr
 		$ar = array();
 		preg_match_all( '/./us', $word, $ar );
-		if (!preg_match("/[a-zA-Z_]/us", $word))
+		if ( !preg_match( "/[a-zA-Z_]/us", $word ) )
 			switch ( $case ) {
-				case 'genitive': #родительный падеж
-					if ((join('',array_slice($ar[0],-4))=='вики') || (join('',array_slice($ar[0],-4))=='Вики'))
-						{}
-					elseif (join('',array_slice($ar[0],-1))=='ь')
-						$word = join('',array_slice($ar[0],0,-1)).'я';
-					elseif (join('',array_slice($ar[0],-2))=='ия')
-						$word=join('',array_slice($ar[0],0,-2)).'ии';
-					elseif (join('',array_slice($ar[0],-2))=='ка')
-						$word=join('',array_slice($ar[0],0,-2)).'ки';
-					elseif (join('',array_slice($ar[0],-2))=='ти')
-						$word=join('',array_slice($ar[0],0,-2)).'тей';
-					elseif (join('',array_slice($ar[0],-2))=='ды')
-						$word=join('',array_slice($ar[0],0,-2)).'дов';
-					elseif (join('',array_slice($ar[0],-3))=='ник')
-						$word=join('',array_slice($ar[0],0,-3)).'ника';
+				case 'genitive': # родительный падеж
+					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вики' ) || ( join( '', array_slice( $ar[0], -4 ) ) == 'Вики' ) )
+						{ }
+					elseif ( join( '', array_slice( $ar[0], -1 ) ) == 'ь' )
+						$word = join( '', array_slice( $ar[0], 0, -1 ) ) . 'я';
+					elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ия' )
+						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ии';
+					elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ка' )
+						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ки';
+					elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ти' )
+						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'тей';
+					elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ды' )
+						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'дов';
+					elseif ( join( '', array_slice( $ar[0], -3 ) ) == 'ник' )
+						$word = join( '', array_slice( $ar[0], 0, -3 ) ) . 'ника';
 					break;
-				case 'dative':  #дательный падеж
-					#stub
+				case 'dative':  # дательный падеж
+					# stub
 					break;
-				case 'accusative': #винительный падеж
-					#stub
+				case 'accusative': # винительный падеж
+					# stub
 					break;
-				case 'instrumental':  #творительный падеж
-					#stub
+				case 'instrumental':  # творительный падеж
+					# stub
 					break;
-				case 'prepositional': #предложный падеж
-					#stub
+				case 'prepositional': # предложный падеж
+					# stub
 					break;
 			}
 		return $word;
@@ -71,19 +71,19 @@ class LanguageRu extends Language {
 	 */
 
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 
-		//if no number with word, then use $form[0] for singular and $form[1] for plural or zero
-		if( count($forms) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
+		// if no number with word, then use $form[0] for singular and $form[1] for plural or zero
+		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
 
 		// FIXME: CLDR defines 4 plural forms. Form with decimals missing.
 		// See http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#ru
 		$forms = $this->preConvertPlural( $forms, 3 );
 
-		if ($count > 10 && floor(($count % 100) / 10) == 1) {
+		if ( $count > 10 && floor( ( $count % 100 ) / 10 ) == 1 ) {
 			return $forms[2];
 		} else {
-			switch ($count % 10) {
+			switch ( $count % 10 ) {
 				case 1:  return $forms[0];
 				case 2:
 				case 3:
@@ -98,11 +98,11 @@ class LanguageRu extends Language {
 	 * See manual of style at http://ru.wikipedia.org/wiki/Википедия:Оформление_статей
 	 * So "1 234 567", "12 345" but "1234"
 	 */
-	function commafy($_) {
-		if (preg_match('/^-?\d{1,4}(\.\d*)?$/',$_)) {
+	function commafy( $_ ) {
+		if ( preg_match( '/^-?\d{1,4}(\.\d*)?$/', $_ ) ) {
 			return $_;
 		} else {
-			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 		}
 	}
 }

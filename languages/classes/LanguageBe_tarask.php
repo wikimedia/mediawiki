@@ -19,19 +19,19 @@ class LanguageBe_tarask extends Language {
 	*/
 
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 
-		//if no number with word, then use $form[0] for singular and $form[1] for plural or zero
-		if( count($forms) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
+		// if no number with word, then use $form[0] for singular and $form[1] for plural or zero
+		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
 
 		// FIXME: CLDR defines 4 plural forms instead of 3
 		//        http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
 		$forms = $this->preConvertPlural( $forms, 3 );
 
-		if ($count > 10 && floor(($count % 100) / 10) == 1) {
+		if ( $count > 10 && floor( ( $count % 100 ) / 10 ) == 1 ) {
 			return $forms[2];
 		} else {
-			switch ($count % 10) {
+			switch ( $count % 10 ) {
 				case 1:  return $forms[0];
 				case 2:
 				case 3:
@@ -40,9 +40,9 @@ class LanguageBe_tarask extends Language {
 			}
 		}
 	}
-	
+
 	/*
-	 * The Belarusian language uses apostrophe sign, 
+	 * The Belarusian language uses apostrophe sign,
 	 * but the characters used for this could be both U+0027 and U+2019.
 	 * This function unifies apostrophe sign in search index values
 	 * to enable seach using both apostrophe signs.
@@ -61,16 +61,16 @@ class LanguageBe_tarask extends Language {
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
-	
+
 	/*
 	 * Four-digit number should be without group commas (spaces)
 	 * So "1 234 567", "12 345" but "1234"
 	 */
-	function commafy($_) {
-		if (preg_match('/^-?\d{1,4}(\.\d*)?$/',$_)) {
+	function commafy( $_ ) {
+		if ( preg_match( '/^-?\d{1,4}(\.\d*)?$/', $_ ) ) {
 			return $_;
 		} else {
-			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 		}
 	}
 }

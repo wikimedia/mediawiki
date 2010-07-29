@@ -8,7 +8,7 @@ class LanguageEo extends Language {
 	function iconv( $in, $out, $string ) {
 		# Por multaj lingvoj, ĉi tiu nur voku la sisteman funkcion iconv()
 		# Ni ankaŭ konvertu X-sistemajn surogotajn
-		if( strcasecmp( $in, 'x' ) == 0 and strcasecmp( $out, 'utf-8' ) == 0) {
+		if ( strcasecmp( $in, 'x' ) == 0 and strcasecmp( $out, 'utf-8' ) == 0 ) {
 			$xu = array (
 				'xx' => 'x' , 'xX' => 'x' ,
 				'Xx' => 'X' , 'XX' => 'X' ,
@@ -27,7 +27,7 @@ class LanguageEo extends Language {
 				) ;
 			return preg_replace ( '/([cghjsu]x?)((?:xx)*)(?!x)/ei',
 			  'strtr( "$1", $xu ) . strtr( "$2", $xu )', $string );
-		} else if( strcasecmp( $in, 'UTF-8' ) == 0 and strcasecmp( $out, 'x' ) == 0 ) {
+		} else if ( strcasecmp( $in, 'UTF-8' ) == 0 and strcasecmp( $out, 'x' ) == 0 ) {
 			$ux = array (
 				'x' => 'xx' , 'X' => 'Xx' ,
 				"\xc4\x88" => "Cx" , "\xc4\x89" => "cx" ,
@@ -38,7 +38,7 @@ class LanguageEo extends Language {
 				"\xc5\xac" => "Ux" , "\xc5\xad" => "ux"
 			) ;
 			# Double Xs only if they follow cxapelutaj literoj.
-			return preg_replace( '/((?:[cghjsu]|\xc4[\x88\x89\x9c\x9d\xa4\xa5\xb4\xb5]'.
+			return preg_replace( '/((?:[cghjsu]|\xc4[\x88\x89\x9c\x9d\xa4\xa5\xb4\xb5]' .
 			  '|\xc5[\x9c\x9d\xac\xad])x*)/ei', 'strtr( "$1", $ux )', $string );
 		}
 		return parent::iconv( $in, $out, $string );
@@ -46,20 +46,20 @@ class LanguageEo extends Language {
 
 	function checkTitleEncoding( $s ) {
 		# Check for X-system backwards-compatibility URLs
-		$ishigh = preg_match( '/[\x80-\xff]/', $s);
+		$ishigh = preg_match( '/[\x80-\xff]/', $s );
 		$isutf = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
 			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 
-		if($ishigh and !$isutf) {
+		if ( $ishigh and !$isutf ) {
 			# Assume Latin1
 			$s = utf8_encode( $s );
 		} else {
-			if( preg_match( '/(\xc4[\x88\x89\x9c\x9d\xa4\xa5\xb4\xb5]'.
+			if ( preg_match( '/(\xc4[\x88\x89\x9c\x9d\xa4\xa5\xb4\xb5]' .
 				'|\xc5[\x9c\x9d\xac\xad])/', $s ) )
 			return $s;
 		}
 
-		//if( preg_match( '/[cghjsu]x/i', $s ) )
+		// if( preg_match( '/[cghjsu]x/i', $s ) )
 		//	return $this->iconv( 'x', 'utf-8', $s );
 		return $s;
 	}

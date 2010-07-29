@@ -6,7 +6,7 @@
  * @ingroup Language
  */
 
-if( !defined( 'MEDIAWIKI' ) ) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	echo "This file is part of MediaWiki, it is not a valid entry point.\n";
 	exit( 1 );
 }
@@ -23,7 +23,7 @@ global $wgInputEncoding, $wgOutputEncoding;
 $wgInputEncoding    = 'UTF-8';
 $wgOutputEncoding	= 'UTF-8';
 
-if( function_exists( 'mb_strtoupper' ) ) {
+if ( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding( 'UTF-8' );
 }
 
@@ -41,7 +41,7 @@ class FakeConverter {
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() { return $this->mLang->getCode(); }
 	function getConvRuleTitle() { return false; }
-	function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) {}
+	function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) { }
 	function getExtraHashOptions() { return ''; }
 	function getParsedTitle() { return ''; }
 	function markNoConversion( $text, $noParse = false ) { return $text; }
@@ -129,7 +129,7 @@ class Language {
 	 */
 	static function factory( $code ) {
 		if ( !isset( self::$mLangObjCache[$code] ) ) {
-			if( count( self::$mLangObjCache ) > 10 ) {
+			if ( count( self::$mLangObjCache ) > 10 ) {
 				// Don't keep a billion objects around, that's stupid.
 				self::$mLangObjCache = array();
 			}
@@ -161,7 +161,7 @@ class Language {
 			throw new MWException( "Language fallback loop detected when creating class $class\n" );
 		}
 
-		if( !class_exists( $class ) ) {
+		if ( !class_exists( $class ) ) {
 			$fallback = Language::getFallbackFor( $code );
 			++$recursionLevel;
 			$lang = Language::newFromCode( $fallback );
@@ -209,7 +209,7 @@ class Language {
 	 * Hook which will be called if this is the content language.
 	 * Descendants can use this to register hook functions or modify globals
 	 */
-	function initContLang() {}
+	function initContLang() { }
 
 	/**
 	 * @deprecated Use User::getDefaultOptions()
@@ -274,7 +274,7 @@ class Language {
 	 */
 	function getFormattedNamespaces() {
 		$ns = $this->getNamespaces();
-		foreach( $ns as $k => $v ) {
+		foreach ( $ns as $k => $v ) {
 			$ns[$k] = strtr( $v, '_', ' ' );
 		}
 		return $ns;
@@ -464,7 +464,7 @@ class Language {
 		global $IP;
 		$names = array();
 		$dir = opendir( "$IP/languages/messages" );
-		while( false !== ( $file = readdir( $dir ) ) ) {
+		while ( false !== ( $file = readdir( $dir ) ) ) {
 			$code = self::getCodeFromFileName( $file, 'Messages' );
 			if ( $code && isset( $allNames[$code] ) ) {
 				$names[$code] = $allNames[$code];
@@ -558,15 +558,15 @@ class Language {
 
 		$minDiff = 0;
 		if ( $data[0] == 'System' || $tz == '' ) {
-			# Global offset in minutes.
-			if( isset( $wgLocalTZoffset ) ) {
+			#  Global offset in minutes.
+			if ( isset( $wgLocalTZoffset ) ) {
 				$minDiff = $wgLocalTZoffset;
 			}
 		} else if ( $data[0] == 'Offset' ) {
 			$minDiff = intval( $data[1] );
 		} else {
 			$data = explode( ':', $tz );
-			if( count( $data ) == 2 ) {
+			if ( count( $data ) == 2 ) {
 				$data[0] = intval( $data[0] );
 				$data[1] = intval( $data[1] );
 				$minDiff = abs( $data[0] ) * 60 + $data[1];
@@ -588,12 +588,12 @@ class Language {
 		# will normalize out-of-range values so we don't have to split $minDiff
 		# into hours and minutes.
 		$t = mktime( (
-		  (int)substr( $ts, 8, 2) ), # Hours
+		  (int)substr( $ts, 8, 2 ) ), # Hours
 		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
 		  (int)substr( $ts, 12, 2 ), # Seconds
 		  (int)substr( $ts, 4, 2 ), # Month
 		  (int)substr( $ts, 6, 2 ), # Day
-		  (int)substr( $ts, 0, 4 ) ); #Year
+		  (int)substr( $ts, 0, 4 ) ); # Year
 
 		$date = date( 'YmdHis', $t );
 		wfRestoreWarnings();
@@ -967,7 +967,7 @@ class Language {
 				} elseif ( $roman ) {
 					$s .= self::romanNumeral( $num );
 					$roman = false;
-				} elseif( $hebrewNum ) {
+				} elseif ( $hebrewNum ) {
 					$s .= self::hebrewNumeral( $num );
 					$hebrewNum = false;
 				} else {
@@ -1002,12 +1002,12 @@ class Language {
 
 
 		// Add days of the past months of this year
-		for( $i = 0; $i < $gm; $i++ ) {
+		for ( $i = 0; $i < $gm; $i++ ) {
 			$gDayNo += self::$GREG_DAYS[$i];
 		}
 
 		// Leap years
-		if ( $gm > 1 && ( ( $gy%4 === 0 && $gy%100 !== 0 || ( $gy%400 == 0 ) ) ) ) {
+		if ( $gm > 1 && ( ( $gy % 4 === 0 && $gy % 100 !== 0 || ( $gy % 400 == 0 ) ) ) ) {
 			$gDayNo++;
 		}
 
@@ -1068,11 +1068,11 @@ class Language {
 								(int)( ( 275 * $zm ) / 9 ) + $zd + 1729777;
 		}
 
-		$zl = $zjd-1948440 + 10632;
+		$zl = $zjd -1948440 + 10632;
 		$zn = (int)( ( $zl - 1 ) / 10631 );
 		$zl = $zl - 10631 * $zn + 354;
-		$zj = ( (int)( ( 10985 - $zl ) / 5316 ) ) * ((int)( ( 50 * $zl ) / 17719 ) ) + ( (int)( $zl / 5670 ) ) * ( (int)( ( 43 * $zl ) / 15238 ) );
-		$zl = $zl - ( (int)( ( 30 - $zj ) / 15 ) ) * ((int)( ( 17719 * $zj ) / 50 ) ) - ( (int)( $zj / 16 ) ) * ( (int)( ( 15238 * $zj ) / 43 ) ) + 29;
+		$zj = ( (int)( ( 10985 - $zl ) / 5316 ) ) * ( (int)( ( 50 * $zl ) / 17719 ) ) + ( (int)( $zl / 5670 ) ) * ( (int)( ( 43 * $zl ) / 15238 ) );
+		$zl = $zl - ( (int)( ( 30 - $zj ) / 15 ) ) * ( (int)( ( 17719 * $zj ) / 50 ) ) - ( (int)( $zj / 16 ) ) * ( (int)( ( 15238 * $zj ) / 43 ) ) + 29;
 		$zm = (int)( ( 24 * $zl ) / 709 );
 		$zd = $zl - (int)( ( 709 * $zm ) / 24 );
 		$zy = 30 * $zn + $zj - 30;
@@ -1102,7 +1102,7 @@ class Language {
 
 		# Month number when September = 1, August = 12
 		$month += 4;
-		if( $month > 12 ) {
+		if ( $month > 12 ) {
 			# Next year
 			$month -= 12;
 			$year++;
@@ -1111,15 +1111,15 @@ class Language {
 
 		# Calculate day of year from 1 September
 		$dayOfYear = $day;
-		for( $i = 1; $i < $month; $i++ ) {
-			if( $i == 6 ) {
+		for ( $i = 1; $i < $month; $i++ ) {
+			if ( $i == 6 ) {
 				# February
 				$dayOfYear += 28;
 				# Check if the year is leap
-				if( $year % 400 == 0 || ( $year % 4 == 0 && $year % 100 > 0 ) ) {
+				if ( $year % 400 == 0 || ( $year % 4 == 0 && $year % 100 > 0 ) ) {
 					$dayOfYear++;
 				}
-			} elseif( $i == 8 || $i == 10 || $i == 1 || $i == 3 ) {
+			} elseif ( $i == 8 || $i == 10 || $i == 1 || $i == 3 ) {
 				$dayOfYear += 30;
 			} else {
 				$dayOfYear += 31;
@@ -1130,7 +1130,7 @@ class Language {
 		$start = self::hebrewYearStart( $hebrewYear );
 
 		# Calculate next year's start
-		if( $dayOfYear <= $start ) {
+		if ( $dayOfYear <= $start ) {
 			# Day is before the start of the year - it is the previous year
 			# Next year's start
 			$nextStart = $start;
@@ -1139,7 +1139,7 @@ class Language {
 			$hebrewYear--;
 			# Add days since previous year's 1 September
 			$dayOfYear += 365;
-			if( ( $year % 400 == 0 ) || ( $year % 100 != 0 && $year % 4 == 0 ) ) {
+			if ( ( $year % 400 == 0 ) || ( $year % 100 != 0 && $year % 4 == 0 ) ) {
 				# Leap year
 				$dayOfYear++;
 			}
@@ -1158,7 +1158,7 @@ class Language {
 		# Add 12 (or 13 for leap years) days to ignore the difference between
 		# Hebrew and Gregorian year (353 at least vs. 365/6) - now the
 		# difference is only about the year type
-		if( ( $year % 400 == 0 ) || ( $year % 100 != 0 && $year % 4 == 0 ) ) {
+		if ( ( $year % 400 == 0 ) || ( $year % 100 != 0 && $year % 4 == 0 ) ) {
 			$diff += 13;
 		} else {
 			$diff += 12;
@@ -1178,14 +1178,14 @@ class Language {
 		$hebrewDay = $hebrewDayOfYear;
 		$hebrewMonth = 1;
 		$days = 0;
-		while( $hebrewMonth <= 12 ) {
+		while ( $hebrewMonth <= 12 ) {
 			# Calculate days in this month
-			if( $isLeap && $hebrewMonth == 6 ) {
+			if ( $isLeap && $hebrewMonth == 6 ) {
 				# Adar in a leap year
-				if( $isLeap ) {
+				if ( $isLeap ) {
 					# Leap year - has Adar I, with 30 days, and Adar II, with 29 days
 					$days = 30;
-					if( $hebrewDay <= $days ) {
+					if ( $hebrewDay <= $days ) {
 						# Day in Adar I
 						$hebrewMonth = 13;
 					} else {
@@ -1193,23 +1193,23 @@ class Language {
 						$hebrewDay -= $days;
 						# Try Adar II
 						$days = 29;
-						if( $hebrewDay <= $days ) {
+						if ( $hebrewDay <= $days ) {
 							# Day in Adar II
 							$hebrewMonth = 14;
 						}
 					}
 				}
-			} elseif( $hebrewMonth == 2 && $yearPattern == 2 ) {
+			} elseif ( $hebrewMonth == 2 && $yearPattern == 2 ) {
 				# Cheshvan in a complete year (otherwise as the rule below)
 				$days = 30;
-			} elseif( $hebrewMonth == 3 && $yearPattern == 0 ) {
+			} elseif ( $hebrewMonth == 3 && $yearPattern == 0 ) {
 				# Kislev in an incomplete year (otherwise as the rule below)
 				$days = 29;
 			} else {
 				# Odd months have 30 days, even have 29
 				$days = 30 - ( $hebrewMonth - 1 ) % 2;
 			}
-			if( $hebrewDay <= $days ) {
+			if ( $hebrewDay <= $days ) {
 				# In the current month
 				break;
 			} else {
@@ -1232,21 +1232,21 @@ class Language {
 		$a = intval( ( 12 * ( $year - 1 ) + 17 ) % 19 );
 		$b = intval( ( $year - 1 ) % 4 );
 		$m = 32.044093161144 + 1.5542417966212 * $a +  $b / 4.0 - 0.0031777940220923 * ( $year - 1 );
-		if( $m < 0 ) {
+		if ( $m < 0 ) {
 			$m--;
 		}
 		$Mar = intval( $m );
-		if( $m < 0 ) {
+		if ( $m < 0 ) {
 			$m++;
 		}
 		$m -= $Mar;
 
-		$c = intval( ( $Mar + 3 * ( $year - 1 ) + 5 * $b + 5 ) % 7);
-		if( $c == 0 && $a > 11 && $m >= 0.89772376543210 ) {
+		$c = intval( ( $Mar + 3 * ( $year - 1 ) + 5 * $b + 5 ) % 7 );
+		if ( $c == 0 && $a > 11 && $m >= 0.89772376543210 ) {
 			$Mar++;
-		} else if( $c == 1 && $a > 6 && $m >= 0.63287037037037 ) {
+		} else if ( $c == 1 && $a > 6 && $m >= 0.63287037037037 ) {
 			$Mar += 2;
-		} else if( $c == 2 || $c == 4 || $c == 6 ) {
+		} else if ( $c == 2 || $c == 4 || $c == 6 ) {
 			$Mar++;
 		}
 
@@ -1388,14 +1388,14 @@ class Language {
 					$num = 0;
 				} else {
 					$s .= $table[$i][intval( ( $num / $pow10 ) )];
-					if( $pow10 == 1000 ) {
+					if ( $pow10 == 1000 ) {
 						$s .= "'";
 					}
 				}
 			}
 			$num = $num % $pow10;
 		}
-		if( strlen( $s ) == 2 ) {
+		if ( strlen( $s ) == 2 ) {
 			$str = $s . "'";
 		} else  {
 			$str = substr( $s, 0, strlen( $s ) - 2 ) . '"';
@@ -1443,8 +1443,8 @@ class Language {
 	function dateFormat( $usePrefs = true ) {
 		global $wgUser;
 
-		if( is_bool( $usePrefs ) ) {
-			if( $usePrefs ) {
+		if ( is_bool( $usePrefs ) ) {
+			if ( $usePrefs ) {
 				$datePreference = $wgUser->getDatePreference();
 			} else {
 				$datePreference = (string)User::getDefaultOption( 'date' );
@@ -1454,7 +1454,7 @@ class Language {
 		}
 
 		// return int
-		if( $datePreference == '' ) {
+		if ( $datePreference == '' ) {
 			return 'default';
 		}
 
@@ -1530,7 +1530,7 @@ class Language {
 	 *                        validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
-	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
+	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		$ts = wfTimestamp( TS_MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
@@ -1746,18 +1746,18 @@ class Language {
 	}
 
 	function checkTitleEncoding( $s ) {
-		if( is_array( $s ) ) {
+		if ( is_array( $s ) ) {
 			wfDebugDieBacktrace( 'Given array to checkTitleEncoding.' );
 		}
 		# Check for non-UTF-8 URLs
-		$ishigh = preg_match( '/[\x80-\xff]/', $s);
-		if( !$ishigh ) {
+		$ishigh = preg_match( '/[\x80-\xff]/', $s );
+		if ( !$ishigh ) {
 			return $s;
 		}
 
 		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
                 '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
-		if( $isutf8 ) {
+		if ( $isutf8 ) {
 			return $s;
 		}
 
@@ -1797,7 +1797,7 @@ class Language {
 	 * @return String
 	 */
 	function normalizeForSearch( $string ) {
-		return self::convertDoubleWidth($string);
+		return self::convertDoubleWidth( $string );
 	}
 
 	/**
@@ -1808,7 +1808,7 @@ class Language {
 		static $full = null;
 		static $half = null;
 
-		if( $full === null ) {
+		if ( $full === null ) {
 			$fullWidth = "０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ";
 			$halfWidth = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 			$full = str_split( $fullWidth, 3 );
@@ -1904,7 +1904,7 @@ class Language {
 		# wgInputEncoding, this text will be further converted
 		# to wgOutputEncoding.
 		global $wgEditEncoding;
-		if( $wgEditEncoding == '' || $wgEditEncoding == 'UTF-8' ) {
+		if ( $wgEditEncoding == '' || $wgEditEncoding == 'UTF-8' ) {
 			return $s;
 		} else {
 			return $this->iconv( 'UTF-8', $wgEditEncoding, $s );
@@ -1914,12 +1914,12 @@ class Language {
 	function recodeInput( $s ) {
 		# Take the previous into account.
 		global $wgEditEncoding;
-		if( $wgEditEncoding != '' ) {
+		if ( $wgEditEncoding != '' ) {
 			$enc = $wgEditEncoding;
 		} else {
 			$enc = 'UTF-8';
 		}
-		if( $enc == 'UTF-8' ) {
+		if ( $enc == 'UTF-8' ) {
 			return $s;
 		} else {
 			return $this->iconv( $enc, 'UTF-8', $s );
@@ -2058,7 +2058,7 @@ class Language {
 			}
 		}
 
-		if( !is_array( $rawEntry ) ) {
+		if ( !is_array( $rawEntry ) ) {
 			error_log( "\"$rawEntry\" is not a valid magic thingie for \"$mw->mId\"" );
 		} else {
 			$mw->mCaseSensitive = $rawEntry[0];
@@ -2179,7 +2179,7 @@ class Language {
 	 * @param $_ mixed
 	 * @return string
 	 */
-	function commafy($_) {
+	function commafy( $_ ) {
 		return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 	}
 
@@ -2202,13 +2202,13 @@ class Language {
 	function listToText( $l ) {
 		$s = '';
 		$m = count( $l ) - 1;
-		if( $m == 1 ) {
+		if ( $m == 1 ) {
 			return $l[0] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $l[1];
 		} else {
 			for ( $i = $m; $i >= 0; $i-- ) {
 				if ( $i == $m ) {
 					$s = $l[$i];
-				} else if( $i == $m - 1 ) {
+				} else if ( $i == $m - 1 ) {
 					$s = $l[$i] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $s;
 				} else {
 					$s = $l[$i] . $this->getMessageFromDB( 'comma-separator' ) . $s;
@@ -2381,8 +2381,8 @@ class Language {
 		$entityState = 0; // 0-not entity, 1-entity
 		$tag = $ret = $ch = '';
 		$openTags = array();
-		$textLen = strlen($text);
-		for( $pos = 0; $pos < $textLen; ++$pos ) {
+		$textLen = strlen( $text );
+		for ( $pos = 0; $pos < $textLen; ++$pos ) {
 			$ch = $text[$pos];
 			$lastCh = $pos ? $text[$pos - 1] : '';
 			$ret .= $ch; // add to result string
@@ -2460,7 +2460,7 @@ class Language {
 	// like strcspn() but adds the skipped chars to $ret
 	private function truncate_skip( &$ret, $text, $search, $start, $len = -1 ) {
 		$skipCount = 0;
-		if( $start < strlen( $text ) ) {
+		if ( $start < strlen( $text ) ) {
 			$skipCount = strcspn( $text, $search, $start, $len );
 			$ret .= substr( $text, $start, $skipCount );
 		}
@@ -2472,11 +2472,11 @@ class Language {
 	// (b) clear $tag value
 	private function truncate_endBracket( &$tag, $tagType, $lastCh, &$openTags ) {
 		$tag = ltrim( $tag );
-		if( $tag != '' ) {
-			if( $tagType == 0 && $lastCh != '/' ) {
+		if ( $tag != '' ) {
+			if ( $tagType == 0 && $lastCh != '/' ) {
 				$openTags[] = $tag; // tag opened (didn't close itself)
-			} else if( $tagType == 1 ) {
-				if( $openTags && $tag == $openTags[count( $openTags ) - 1] ) {
+			} else if ( $tagType == 1 ) {
+				if ( $openTags && $tag == $openTags[count( $openTags ) - 1] ) {
 					array_pop( $openTags ); // tag closed
 				}
 			}
@@ -2574,7 +2574,7 @@ class Language {
 			return $str;
 		}
 
-		foreach ( explode( ',', $scBlockExpiryOptions) as $option ) {
+		foreach ( explode( ',', $scBlockExpiryOptions ) as $option ) {
 			if ( strpos( $option, ':' ) === false ) {
 				continue;
 			}
@@ -2905,13 +2905,13 @@ class Language {
 	function formatSize( $size ) {
 		// For small sizes no decimal places necessary
 		$round = 0;
-		if( $size > 1024 ) {
+		if ( $size > 1024 ) {
 			$size = $size / 1024;
-			if( $size > 1024 ) {
+			if ( $size > 1024 ) {
 				$size = $size / 1024;
 				// For MB and bigger two decimal places are smarter
 				$round = 2;
-				if( $size > 1024 ) {
+				if ( $size > 1024 ) {
 					$size = $size / 1024;
 					$msg = 'size-gigabytes';
 				} else {

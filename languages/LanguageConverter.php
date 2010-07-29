@@ -447,7 +447,7 @@ class LanguageConverter {
 
 	/**
 	 * Apply manual conversion rules.
-	 * 
+	 *
 	 * @param $convRule Object: Object of ConverterRule
 	 */
 	protected function applyManualConv( $convRule ) {
@@ -456,7 +456,7 @@ class LanguageConverter {
 		// Bug 24072: $mConvRuleTitle was overwritten by other manual
 		// rule(s) not for title, this breaks the title conversion.
 		$newConvRuleTitle = $convRule->getTitle();
-		if( $newConvRuleTitle ) {
+		if ( $newConvRuleTitle ) {
 			// So I add an empty check for getTitle()
 			$this->mConvRuleTitle = $newConvRuleTitle;
 		}
@@ -532,7 +532,7 @@ class LanguageConverter {
 		$variant = $this->getPreferredVariant();
 		return $this->convertTo( $text, $variant );
 	}
-	
+
 	/**
 	 * Same as convert() except a extra parameter to custom variant.
 	 *
@@ -562,7 +562,7 @@ class LanguageConverter {
 		while ( $startPos < $length ) {
 			$m = false;
 			$pos = strpos( $text, '-{', $startPos );
-			
+
 			if ( $pos === false ) {
 				// No more markup, append final segment
 				$out .= $this->autoConvert( substr( $text, $startPos ), $variant );
@@ -595,7 +595,7 @@ class LanguageConverter {
 	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
 		// Quick sanity check (no function calls)
 		if ( $text[$startPos] !== '-' || $text[$startPos + 1] !== '{' ) {
-			throw new MWException( __METHOD__.': invalid input string' );
+			throw new MWException( __METHOD__ . ': invalid input string' );
 		}
 
 		$startPos += 2;
@@ -628,7 +628,7 @@ class LanguageConverter {
 						$inner .= '-{';
 						if ( !$warningDone ) {
 							$inner .= '<span class="error">' .
-								wfMsgForContent( 'language-converter-depth-warning', 
+								wfMsgForContent( 'language-converter-depth-warning',
 									$this->mMaxDepth ) .
 								'</span>';
 							$warningDone = true;
@@ -647,7 +647,7 @@ class LanguageConverter {
 					$this->applyManualConv( $rule );
 					return $rule->getDisplay();
 				default:
-					throw new MWException( __METHOD__.': invalid regex match' );
+					throw new MWException( __METHOD__ . ': invalid regex match' );
 			}
 		}
 
@@ -841,7 +841,7 @@ class LanguageConverter {
 
 		if ( strpos( $code, '/' ) === false ) {
 			$txt = $wgMessageCache->get( 'Conversiontable', true, $code );
-			if( $txt === false ){
+			if ( $txt === false ) {
 				# FIXME: this method doesn't seem to be expecting
 				# this possible outcome...
 				$txt = '&lt;Conversiontable&gt;';
@@ -1277,7 +1277,7 @@ class ConverterRule {
 			}
 			/*for unidirectional array fill to convert tables */
 			if ( ( $manLevel[$v] == 'bidirectional' || $manLevel[$v] == 'unidirectional' )
-				&& isset( $unidtable[$v] ) ) 
+				&& isset( $unidtable[$v] ) )
 			{
 				if ( isset( $this->mConvTable[$v] ) ) {
 					$this->mConvTable[$v] = array_merge( $this->mConvTable[$v], $unidtable[$v] );

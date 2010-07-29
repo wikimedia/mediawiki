@@ -1,8 +1,8 @@
 <?php
 
-require_once( dirname(__FILE__).'/../LanguageConverter.php' );
-require_once( dirname(__FILE__).'/LanguageSr_ec.php' );
-require_once( dirname(__FILE__).'/LanguageSr_el.php' );
+require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
+require_once( dirname( __FILE__ ) . '/LanguageSr_ec.php' );
+require_once( dirname( __FILE__ ) . '/LanguageSr_el.php' );
 
 /**
  * There are two levels of conversion for Serbian: the script level
@@ -45,15 +45,15 @@ class SrConverter extends LanguageConverter {
 		'O' => 'О', 'P'  => 'П', 'R' => 'Р', 'S' => 'С', 'Š'  => 'Ш',
 		'T' => 'Т', 'U'  => 'У', 'V' => 'В', 'Z' => 'З', 'Ž'  => 'Ж',
 
-		'DŽ' => 'Џ', 'd!ž' => 'дж', 'D!ž'=> 'Дж', 'D!Ž'=> 'ДЖ',
-		'Lj' => 'Љ', 'l!j' => 'лј', 'L!j'=> 'Лј', 'L!J'=> 'ЛЈ',
-		'Nj' => 'Њ', 'n!j' => 'нј', 'N!j'=> 'Нј', 'N!J'=> 'НЈ'
+		'DŽ' => 'Џ', 'd!ž' => 'дж', 'D!ž' => 'Дж', 'D!Ž' => 'ДЖ',
+		'Lj' => 'Љ', 'l!j' => 'лј', 'L!j' => 'Лј', 'L!J' => 'ЛЈ',
+		'Nj' => 'Њ', 'n!j' => 'нј', 'N!j' => 'Нј', 'N!J' => 'НЈ'
 	);
 
 	function loadDefaultTables() {
 		$this->mTables = array(
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
-			'sr-el' => new ReplacementArray( $this->mToLatin),
+			'sr-el' => new ReplacementArray( $this->mToLatin ),
 			'sr'    => new ReplacementArray()
 		);
 	}
@@ -63,13 +63,13 @@ class SrConverter extends LanguageConverter {
 		update: delete all rule parsing because it's not used
 		        currently, and just produces a couple of bugs
 	*/
-	function parseManualRule($rule, $flags=array()) {
-		if(in_array('T',$flags)){
-			return parent::parseManualRule($rule, $flags);
+	function parseManualRule( $rule, $flags = array() ) {
+		if ( in_array( 'T', $flags ) ) {
+			return parent::parseManualRule( $rule, $flags );
 		}
 
 		// otherwise ignore all formatting
-		foreach($this->mVariants as $v) {
+		foreach ( $this->mVariants as $v ) {
 			$carray[$v] = $rule;
 		}
 
@@ -84,25 +84,25 @@ class SrConverter extends LanguageConverter {
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
-		if(is_object($nt)){
+		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
-			if($ns==NS_USER || $ns==NS_USER_TALK)
+			if ( $ns == NS_USER || $ns == NS_USER_TALK )
 				return;
 		}
 
-		$oldlink=$link;
+		$oldlink = $link;
 		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if($this->getPreferredVariant()==$this->mMainLanguageCode)
-			$link=$oldlink;
+		if ( $this->getPreferredVariant() == $this->mMainLanguageCode )
+			$link = $oldlink;
 	}
 
 	/*
 	 * We want our external link captions to be converted in variants,
 	 * so we return the original text instead -{$text}-, except for URLs
 	 */
-	function markNoConversion($text, $noParse=false) {
-		if($noParse || preg_match("/^https?:\/\/|ftp:\/\/|irc:\/\//",$text))
-			return parent::markNoConversion($text);
+	function markNoConversion( $text, $noParse = false ) {
+		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
+			return parent::markNoConversion( $text );
 		return $text;
 	}
 
@@ -110,39 +110,39 @@ class SrConverter extends LanguageConverter {
 	 * An ugly function wrapper for parsing Image titles
 	 * (to prevent image name conversion)
 	 */
-	function autoConvert($text, $toVariant=false) {
+	function autoConvert( $text, $toVariant = false ) {
 		global $wgTitle;
-		if(is_object($wgTitle) && $wgTitle->getNameSpace()==NS_FILE){
+		if ( is_object( $wgTitle ) && $wgTitle->getNameSpace() == NS_FILE ) {
 			$imagename = $wgTitle->getNsText();
-			if(preg_match("/^$imagename:/",$text)) return $text;
+			if ( preg_match( "/^$imagename:/", $text ) ) return $text;
 		}
-		return parent::autoConvert($text,$toVariant);
+		return parent::autoConvert( $text, $toVariant );
 	}
 
 	/**
 	 *  It translates text into variant, specials:
 	 *    - ommiting roman numbers
 	 */
-	function translate($text, $toVariant){
+	function translate( $text, $toVariant ) {
 		$breaks = '[^\w\x80-\xff]';
 
 		// regexp for roman numbers
 		$roman = 'M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})';
 
-		$reg = '/^'.$roman.'$|^'.$roman.$breaks.'|'.$breaks.$roman.'$|'.$breaks.$roman.$breaks.'/';
+		$reg = '/^' . $roman . '$|^' . $roman . $breaks . '|' . $breaks . $roman . '$|' . $breaks . $roman . $breaks . '/';
 
-		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
+		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 
-		$m = array_shift($matches);
-		if( !isset( $this->mTables[$toVariant] ) ) {
+		$m = array_shift( $matches );
+		if ( !isset( $this->mTables[$toVariant] ) ) {
 			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
 		}
 		$ret = $this->mTables[$toVariant]->replace( $m[0] );
-		$mstart = $m[1]+strlen($m[0]);
-		foreach($matches as $m) {
-			$ret .= substr($text, $mstart, $m[1]-$mstart);
-			$ret .= parent::translate($m[0], $toVariant);
-			$mstart = $m[1] + strlen($m[0]);
+		$mstart = $m[1] + strlen( $m[0] );
+		foreach ( $matches as $m ) {
+			$ret .= substr( $text, $mstart, $m[1] -$mstart );
+			$ret .= parent::translate( $m[0], $toVariant );
+			$mstart = $m[1] + strlen( $m[0] );
 		}
 
 		return $ret;
@@ -158,7 +158,7 @@ class LanguageSr extends LanguageSr_ec {
 
 		parent::__construct();
 
-		$variants = array('sr', 'sr-ec', 'sr-el');
+		$variants = array( 'sr', 'sr-ec', 'sr-el' );
 		$variantfallbacks = array(
 			'sr'    => 'sr-ec',
 			'sr-ec' => 'sr',
@@ -169,24 +169,24 @@ class LanguageSr extends LanguageSr_ec {
 			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
 			'W' => 'W', 'реч'   => 'W', 'reč'   => 'W', 'ријеч' => 'W', 'riječ' => 'W'
 		);
-		$this->mConverter = new SrConverter($this, 'sr', $variants, $variantfallbacks, $flags);
+		$this->mConverter = new SrConverter( $this, 'sr', $variants, $variantfallbacks, $flags );
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
 
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 
-		//if no number with word, then use $form[0] for singular and $form[1] for plural or zero
-		if( count($forms) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
+		// if no number with word, then use $form[0] for singular and $form[1] for plural or zero
+		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
 
 		// FIXME: CLDR defines 4 plural forms. Form with decimals missing.
 		// See http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#ru
 		$forms = $this->preConvertPlural( $forms, 3 );
 
-		if ($count > 10 && floor(($count % 100) / 10) == 1) {
+		if ( $count > 10 && floor( ( $count % 100 ) / 10 ) == 1 ) {
 			return $forms[2];
 		} else {
-			switch ($count % 10) {
+			switch ( $count % 10 ) {
 				case 1:  return $forms[0];
 				case 2:
 				case 3:

@@ -6,7 +6,7 @@
  */
 class LanguageSk extends Language {
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ( $count == 1 ) {

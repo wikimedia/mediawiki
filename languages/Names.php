@@ -178,7 +178,7 @@
 	'kri' => 'Krio', # Krio
 	'krj' => 'Kinaray-a', # Kinaray-a
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
-	'ksh' => 'Ripoarisch',	# Ripuarian 
+	'ksh' => 'Ripoarisch',	# Ripuarian
 	'ku'  => 'Kurdî',	# Kurdish
 	'ku-latn' => "\xE2\x80\xAAKurdî (latînî)\xE2\x80\xAC",	# Northern Kurdish Latin script
 	'ku-arab' => "\xE2\x80\xABكوردي (عەرەبی)\xE2\x80\xAC",	# Northern Kurdish Arabic script
@@ -204,7 +204,7 @@
 	'lzh' => '文言',	# Literary Chinese -- (bug 8217) lzh instead of zh-classical, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=l
 	'lzz' => 'Lazuri',	# Laz
 	'mai' => 'मैथिली', # Maithili
-	'map-bms' => 'Basa Banyumasan', # Banyumasan 
+	'map-bms' => 'Basa Banyumasan', # Banyumasan
 	'mdf' => 'Мокшень',		# Moksha
 	'mg' => 'Malagasy',		# Malagasy
 	'mh' => 'Ebon',			# Marshallese
@@ -278,7 +278,7 @@
 	'rue' => 'русиньскый язык',	# Rusyn
 	'ruq' => 'Vlăheşte',	# Megleno-Romanian (falls back to ruq-latn)
 	'ruq-cyrl' => 'Влахесте',	# Megleno-Romanian (Cyrillic script)
-	#'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
+	# 'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
 	'ruq-latn' => 'Vlăheşte',	# Megleno-Romanian (Latin script)
 	'rw' => 'Kinyarwanda',	# Kinyarwanda, should possibly be Kinyarwandi
 	'sa' => 'संस्कृत',	# Sanskrit

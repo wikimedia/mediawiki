@@ -12,7 +12,7 @@ class LanguageCs extends Language {
 	#   {{plural:count|form1|form0,2+}} for single form plurals
 	# in a message
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		switch ( $count ) {

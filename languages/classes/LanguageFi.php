@@ -12,7 +12,7 @@ class LanguageFi extends Language {
 	# Invoked with {{GRAMMAR:case|word}}
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset($wgGrammarForms['fi'][$case][$word]) ) {
+		if ( isset( $wgGrammarForms['fi'][$case][$word] ) ) {
 			return $wgGrammarForms['fi'][$case][$word];
 		}
 
@@ -38,18 +38,18 @@ class LanguageFi extends Language {
 				$word .= 'n';
 				break;
 			case 'elative':
-				$word .= ($aou ? 'sta' : 'stä');
+				$word .= ( $aou ? 'sta' : 'stä' );
 				break;
 			case 'partitive':
-				$word .= ($aou ? 'a' : 'ä');
+				$word .= ( $aou ? 'a' : 'ä' );
 				break;
 			case 'illative':
 				# Double the last letter and add 'n'
 				# mb_substr has a compatibility function in GlobalFunctions.php
-				$word = $word . mb_substr($word, -1) . 'n';
+				$word = $word . mb_substr( $word, -1 ) . 'n';
 				break;
 			case 'inessive':
-				$word .= ($aou ? 'ssa' : 'ssä');
+				$word .= ( $aou ? 'ssa' : 'ssä' );
 				break;
 		}
 		return $word;
@@ -113,15 +113,15 @@ class LanguageFi extends Language {
 		);
 
 		$final = '';
-		$tokens = explode ( ' ', $str);
-		foreach( $tokens as $item ) {
-			if ( !is_numeric($item) ) {
-				if ( count ( explode( '-', $item ) ) == 3 && strlen($item) == 10 ) {
+		$tokens = explode ( ' ', $str );
+		foreach ( $tokens as $item ) {
+			if ( !is_numeric( $item ) ) {
+				if ( count ( explode( '-', $item ) ) == 3 && strlen( $item ) == 10 ) {
 					list( $yyyy, $mm, $dd ) = explode( '-', $item );
-					$final .= ' ' . $this->date( "{$yyyy}{$mm}{$dd}00000000");
+					$final .= ' ' . $this->date( "{$yyyy}{$mm}{$dd}00000000" );
 					continue;
 				}
-				if( isset( $weekds[$item] ) ) {
+				if ( isset( $weekds[$item] ) ) {
 					$final .= ' ' . $weekds[$item];
 					continue;
 				}

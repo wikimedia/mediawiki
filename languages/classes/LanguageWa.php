@@ -13,17 +13,17 @@ class LanguageWa extends Language {
 	 * Use singular form for zero
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count($forms) ) { return ''; }
+		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 2 );
 
-		return ($count <= 1) ? $forms[0] : $forms[1];
+		return ( $count <= 1 ) ? $forms[0] : $forms[1];
 	}
 
-	###
-	### Dates in Walloon are "1î d' <monthname>" for 1st of the month,
-	### "<day> di <monthname>" for months starting by a consoun, and
-	### "<day> d' <monthname>" for months starting with a vowel
-	###
+	## #
+	## # Dates in Walloon are "1î d' <monthname>" for 1st of the month,
+	## # "<day> di <monthname>" for months starting by a consoun, and
+	## # "<day> d' <monthname>" for months starting with a vowel
+	## #
 	function date( $ts, $adj = false, $format = true, $tc = false ) {
 		if ( $adj ) { $ts = $this->userAdjust( $ts, $tc ); }
 		$datePreference = $this->dateFormat( $format );
@@ -32,13 +32,13 @@ class LanguageWa extends Language {
 		#
 		# we also output this format for YMD (eg: 2001 January 15)
 		if ( $datePreference == 'ISO 8601' ) {
-		       $d = substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
+		       $d = substr( $ts, 0, 4 ) . '-' . substr( $ts, 4, 2 ) . '-' . substr( $ts, 6, 2 );
 		       return $d;
 		}
 
 		# dd/mm/YYYY format
 		if ( $datePreference == 'walloon short' ) {
-		       $d = substr($ts, 6, 2). '/' . substr($ts, 4, 2). '/' .substr($ts, 0, 4);
+		       $d = substr( $ts, 6, 2 ) . '/' . substr( $ts, 4, 2 ) . '/' . substr( $ts, 0, 4 );
 		       return $d;
 		}
 
@@ -47,17 +47,17 @@ class LanguageWa extends Language {
 		# we output this in all other cases
 		$m = substr( $ts, 4, 2 );
 		$n = substr( $ts, 6, 2 );
-		if ($n == 1) {
+		if ( $n == 1 ) {
 		    $d = "1î d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
-		} else if ($n == 2 || $n == 3 || $n == 20 || $n == 22 || $n == 23) {
-		    $d = (0 + $n) . " d' " . $this->getMonthName( $m ) .
+		} else if ( $n == 2 || $n == 3 || $n == 20 || $n == 22 || $n == 23 ) {
+		    $d = ( 0 + $n ) . " d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
-		} else if ($m == 4 || $m == 8 || $m == 10) {
-		    $d = (0 + $n) . " d' " . $this->getMonthName( $m ) .
+		} else if ( $m == 4 || $m == 8 || $m == 10 ) {
+		    $d = ( 0 + $n ) . " d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		} else {
-		    $d = (0 + $n) . " di " . $this->getMonthName( $m ) .
+		    $d = ( 0 + $n ) . " di " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		}
 		return $d;
