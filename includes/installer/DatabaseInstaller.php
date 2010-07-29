@@ -2,6 +2,9 @@
 
 /**
  * Base class for DBMS-specific installation helper classes.
+ * 
+ * @ingroup Deployment
+ * @since 1.17
  */
 abstract class DatabaseInstaller {
 	

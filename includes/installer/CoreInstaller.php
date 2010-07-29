@@ -4,6 +4,7 @@
  * Base core installer class.
  * Handles everything that is independent of user interface.
  * 
+ * @ingroup Deployment
  * @since 1.17
  */
 abstract class CoreInstaller extends Installer {

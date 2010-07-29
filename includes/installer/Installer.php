@@ -1,11 +1,18 @@
 <?php
 
 /**
+ * This documentation group collects source code files with deployment functionality.
+ *
+ * @defgroup Deployment Deployment
+ */
+
+/**
  * Base installer class.
  *
  * This class provides the base for installation and update functionality
  * for both MediaWiki core and extensions.
  *
+ * @ingroup Deployment
  * @since 1.17
  */
 abstract class Installer {

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Class for manipulating LocalSettings.
+ *
+ * @ingroup Deployment
+ * @since 1.17
+ */
 class LocalSettingsGenerator {
 	
 	private $extensions = array();

@@ -1,9 +1,13 @@
 <?php
 
 /**
- * Mysql update list and mysql-specific update functions
+ * Mysql update list and mysql-specific update functions.
+ * 
+ * @ingroup Deployment
+ * @since 1.17
  */
 class MysqlUpdater extends DatabaseUpdater {
+	
 	protected function getCoreUpdateList() {
 		return array(
 			'1.2' => array(

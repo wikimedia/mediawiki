@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Class for setting up the MediaWiki database using Postgres.
+ * 
+ * @ingroup Deployment
+ * @since 1.17
+ */
 class PostgresInstaller extends DatabaseInstaller {
 
 	protected $globalNames = array(

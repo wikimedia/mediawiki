@@ -3,6 +3,7 @@
 /**
  * Class for the core installer command line interface.
  * 
+ * @ingroup Deployment
  * @since 1.17
  */
 class CliInstaller extends CoreInstaller {

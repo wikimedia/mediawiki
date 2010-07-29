@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Class for setting up the MediaWiki database using MySQL.
+ * 
+ * @ingroup Deployment
+ * @since 1.17
+ */
 class MysqlInstaller extends DatabaseInstaller {
 	
 	protected $globalNames = array(
@@ -60,10 +66,10 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	public function submitConnectForm() {
-		// Get variables from the request
+		// Get variables from the request.
 		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBname', 'wgDBprefix' ) );
 
-		// Validate them
+		// Validate them.
 		$status = Status::newGood();
 		if ( !strlen( $newValues['wgDBname'] ) ) {
 			$status->fatal( 'config-missing-db-name' );

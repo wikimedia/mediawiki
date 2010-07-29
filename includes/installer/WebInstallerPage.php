@@ -2,6 +2,9 @@
 
 /**
  * Abstract class to define pages for the web installer.
+ * 
+ * @ingroup Deployment
+ * @since 1.17
  */
 abstract class WebInstallerPage {
 	
