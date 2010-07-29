@@ -942,7 +942,7 @@ class PPFrame_Hash implements PPFrame {
 				if ( $contextNode->name == 'template' ) {
 					# Double-brace expansion
 					$bits = $contextNode->splitTemplate();
-					if ( $flags & self::NO_TEMPLATES ) {
+					if ( $flags & PPFrame::NO_TEMPLATES ) {
 						$newIterator = $this->virtualBracketedImplode( '{{', '|', '}}', $bits['title'], $bits['parts'] );
 					} else {
 						$ret = $this->parser->braceSubstitution( $bits, $this );
@@ -955,7 +955,7 @@ class PPFrame_Hash implements PPFrame {
 				} elseif ( $contextNode->name == 'tplarg' ) {
 					# Triple-brace expansion
 					$bits = $contextNode->splitTemplate();
-					if ( $flags & self::NO_ARGS ) {
+					if ( $flags & PPFrame::NO_ARGS ) {
 						$newIterator = $this->virtualBracketedImplode( '{{{', '|', '}}}', $bits['title'], $bits['parts'] );
 					} else {
 						$ret = $this->parser->argSubstitution( $bits, $this );
@@ -970,13 +970,13 @@ class PPFrame_Hash implements PPFrame {
 					# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
 					if ( $this->parser->ot['html']
 						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() )
-						|| ( $flags & self::STRIP_COMMENTS ) )
+						|| ( $flags & PPFrame::STRIP_COMMENTS ) )
 					{
 						$out .= '';
 					}
 					# Add a strip marker in PST mode so that pstPass2() can run some old-fashioned regexes on the result
 					# Not in RECOVER_COMMENTS mode (extractSections) though
-					elseif ( $this->parser->ot['wiki'] && ! ( $flags & self::RECOVER_COMMENTS ) ) {
+					elseif ( $this->parser->ot['wiki'] && ! ( $flags & PPFrame::RECOVER_COMMENTS ) ) {
 						$out .= $this->parser->insertStripItem( $contextNode->firstChild->value );
 					}
 					# Recover the literal comment in RECOVER_COMMENTS and pre+no-remove
@@ -988,7 +988,7 @@ class PPFrame_Hash implements PPFrame {
 					# OT_WIKI will only respect <ignore> in substed templates.
 					# The other output types respect it unless NO_IGNORE is set.
 					# extractSections() sets NO_IGNORE and so never respects it.
-					if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] ) || ( $flags & self::NO_IGNORE ) ) {
+					if ( ( !isset( $this->parent ) && $this->parser->ot['wiki'] ) || ( $flags & PPFrame::NO_IGNORE ) ) {
 						$out .= $contextNode->firstChild->value;
 					} else {
 						//$out .= '';
@@ -1285,7 +1285,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		}
 		if ( !isset( $this->numberedExpansionCache[$index] ) ) {
 			# No trimming for unnamed arguments
-			$this->numberedExpansionCache[$index] = $this->parent->expand( $this->numberedArgs[$index], self::STRIP_COMMENTS );
+			$this->numberedExpansionCache[$index] = $this->parent->expand( $this->numberedArgs[$index], PPFrame::STRIP_COMMENTS );
 		}
 		return $this->numberedExpansionCache[$index];
 	}
@@ -1297,7 +1297,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		if ( !isset( $this->namedExpansionCache[$name] ) ) {
 			# Trim named arguments post-expand, for backwards compatibility
 			$this->namedExpansionCache[$name] = trim(
-				$this->parent->expand( $this->namedArgs[$name], self::STRIP_COMMENTS ) );
+				$this->parent->expand( $this->namedArgs[$name], PPFrame::STRIP_COMMENTS ) );
 		}
 		return $this->namedExpansionCache[$name];
 	}
