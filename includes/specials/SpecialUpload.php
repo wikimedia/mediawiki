@@ -193,6 +193,7 @@ class SpecialUpload extends SpecialPage {
 				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
 				return;
 			}
+			
 
 			$this->showUploadForm( $this->getUploadForm() );
 		}
@@ -415,13 +416,6 @@ class SpecialUpload extends SpecialPage {
 	protected function processUpload() {
 		global $wgUser, $wgOut;
 
-		// Verify permissions
-		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
-		if( $permErrors !== true ) {
-			$wgOut->showPermissionsErrorPage( $permErrors );
-			return;
-		}
-
 		// Fetch the file if required
 		$status = $this->mUpload->fetchFile();
 		if( !$status->isOK() ) {
@@ -443,6 +437,15 @@ class SpecialUpload extends SpecialPage {
 		$details = $this->mUpload->verifyUpload();
 		if ( $details['status'] != UploadBase::OK ) {
 			$this->processVerificationError( $details );
+			return;
+		}
+		
+		// Verify permissions for this title
+		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
+		if( $permErrors !== true ) {
+			$code = array_shift( $permErrors[0] );
+			$this->showRecoverableUploadError( wfMsgExt( $code,
+					'parseinline', $permErrors[0] ) );
 			return;
 		}
 
@@ -548,10 +551,6 @@ class SpecialUpload extends SpecialPage {
 			case UploadBase::ILLEGAL_FILENAME:
 				$this->showRecoverableUploadError( wfMsgExt( 'illegalfilename',
 					'parseinline', $details['filtered'] ) );
-				break;
-			case UploadBase::OVERWRITE_EXISTING_FILE:
-				$this->showRecoverableUploadError( wfMsgExt( $details['overwrite'],
-					'parseinline' ) );
 				break;
 			case UploadBase::FILETYPE_MISSING:
 				$this->showRecoverableUploadError( wfMsgExt( 'filetype-missing',

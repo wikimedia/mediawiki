@@ -255,6 +255,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   throw fatal errors
 * (bug 23380) Uploaded files that are larger than allowed by PHP now show a
   useful error message.
+* Uploading to a protected title will allow the user to choose a new name 
+  instead of showing an error page
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
