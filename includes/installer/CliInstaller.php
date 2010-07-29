@@ -96,7 +96,7 @@ class CliInstaller extends CoreInstaller {
 		flush();
 	}
 
-	public function showStatusMessage( $status ) {
+	public function showStatusMessage( Status $status ) {
 		$this->showMessage( $status->getWikiText() );
 	}
 
