@@ -573,7 +573,6 @@ to upload files.',
 * ਅੱਪਲੋਡ ਕੀਤੀ ਫਾਇਲ ਦਾ ਨਾਂ: '''<tt>[[:$1]]</tt>'''
 * ਮੌਜੂਦ ਫਾਇਲ ਦਾ ਨਾਂ: '''<tt>[[:$2]]</tt>'''
 ਇੱਕ ਵੱਖਰਾ ਨਾਂ ਚੁਣੋ ਜੀ",
-'upload-success-subj'     => 'ਠੀਕ ਤਰ੍ਹਾਂ ਅੱਪਲੋਡ',
 'uploadwarning'        => 'ਅੱਪਲੋਡ ਚੇਤਾਵਨੀ',
 'savefile'             => 'ਫਾਇਲ ਸੰਭਾਲੋ',
 'uploadedimage'        => '"[[$1]]" ਅੱਪਲੋਡ',
@@ -581,6 +580,7 @@ to upload files.',
 'uploadvirus'          => 'ਇਹ ਫਾਇਲ ਵਿੱਚ ਵਾਇਰਸ ਹੈ! ਵੇਰਵੇ ਲਈ ਵੇਖੋ: $1',
 'sourcefilename'       => 'ਸੋਰਸ ਫਾਇਲ ਨਾਂ:',
 'watchthisupload'      => 'ਇਸ ਫਾਇਲ ਨੂੰ ਵਾਚ ਕਰੋ',
+'upload-success-subj'  => 'ਠੀਕ ਤਰ੍ਹਾਂ ਅੱਪਲੋਡ',
 
 'upload-file-error' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ',
 'upload-misc-error' => 'ਅਣਜਾਣ ਅੱਪਲੋਡ ਗਲਤੀ',

@@ -1683,7 +1683,6 @@ Ako i dalje želite da postavite ovu datoteku, molimo Vas da se vratite i pošal
 'fileexists-shared-forbidden' => 'Datoteka sa ovim imenom već postoji u zajedničkoj ostavi; molimo Vas da se vratite i pošaljete ovu datoteku pod novim imenom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ova datoteka je dvojnik {{PLURAL:$1|slijedećoj datoteci|slijedećim datotekama}}:',
 'file-deleted-duplicate'      => 'Datoteka koje je identična ovoj datoteci ([[$1]]) je ranije bila obrisana. Trebate provjeriti historiju brisanja te datoteke prije nego što nastavite sa njenim ponovnim postavljanjem.',
-'upload-success-subj'            => 'Uspješno slanje',
 'uploadwarning'               => 'Upozorenje pri slanju',
 'uploadwarning-text'          => 'Molimo izmijeniti opis datoteke ispod i pokušajte kasnije.',
 'savefile'                    => 'Sačuvaj datoteku',
@@ -1726,7 +1725,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # razni
  #</pre> <!-- ostavite ovu liniju onakvom kakva jeste -->',
-'upload-success-msg'       => 'Vaša datoteka je dostupna ovdje: $1',
+'upload-success-subj'         => 'Uspješno slanje',
+'upload-success-msg'          => 'Vaša datoteka je dostupna ovdje: $1',
 'upload-failure-subj'         => 'Problem pri postavljanju',
 'upload-failure-msg'          => 'Nastao je problem s Vašim postavljanjem:
 

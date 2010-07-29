@@ -268,7 +268,7 @@ Ila ma kanṫċ, imken ikon ċi bog fe l-program.
 'preview'                          => 'L-Prévizualizasyon',
 'showpreview'                      => 'Werri l-prévizualizasyon',
 'showdiff'                         => 'Werri ṫ-ṫeġyiraṫ',
-'anoneditwarning'                  => "'''Ĝendak:''' Ma mkonéktéċ. 
+'anoneditwarning'                  => "'''Ĝendak:''' Ma mkonéktéċ.
 Ġayṫċejjel l-ĝonwan IP dyalek fe ṫariĥ had ṣ-ṣefḫa.",
 'summary-preview'                  => 'Prévizualizasyon dyal l-moleĥĥaṣ:',
 'loginreqlink'                     => 'Ṫkonékta',
@@ -536,7 +536,7 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 'protect-text'                => "Hnaya ṫeqḍer tċof o ṫbeddel l-mostawa de l-ḫimaya dyal ṣ-ṣefḫa '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Ḫsabek ma ĝendoċ l-ḫaqq baċ ibeddel l-mosṫawa de l-ḫimaya dyal ṣ-ṣefḫa.
 Hnaya ġadi ṫelqa lé-ééglaj l-leĥĥrin dyal ṣ-ṣefḫa '''$1''':",
-'protect-cascadeon'           => 'Had ṣ-ṣefḫa raha meḫmiya ḫiṫ hiya daĥel {{PLURAL:$1|had ṣ-ṣefḫa, li ṫṫeḫmaṫ|had ṣ-ṣefḫaṫ, li ṫṫeḫmaw}} be l-opsyon "ḫimaya moḍmana" ĥeddama. 
+'protect-cascadeon'           => 'Had ṣ-ṣefḫa raha meḫmiya ḫiṫ hiya daĥel {{PLURAL:$1|had ṣ-ṣefḫa, li ṫṫeḫmaṫ|had ṣ-ṣefḫaṫ, li ṫṫeḫmaw}} be l-opsyon "ḫimaya moḍmana" ĥeddama.
 Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'eṫṫer hadċi l-ḫimaya l-moḍmana.',
 'protect-default'             => 'Ĥelli l-mosṫeĥdimin kolhom',
 'protect-fallback'            => "Tleb l-'idn $1",
@@ -605,7 +605,7 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 # Move page
 'movepagetext'     => "Ila sṫeĝmelṫi l-formulér li l-ṫeḫṫ, ċi ṣefḫa ġadi ṫĝawed ṫṫsemma o ġadi ṫneqqel ṫ-ṫariĥ kollo le s-smiya j-jdida.
 L-Ĝonwan l-qdim ġadi iwelli ṣefḫa jdida li ġadi ṫḫowwlek le l-ĝonwan j-jdid.
-Imken lek ṫjedded otomaṫikiyan ṫ-ṫeḫwilaṫ li kayddiw le l-ĝonwan l-'aṣli. 
+Imken lek ṫjedded otomaṫikiyan ṫ-ṫeḫwilaṫ li kayddiw le l-ĝonwan l-'aṣli.
 Ila ma bġiṫiċ, ṫ'ekked ma ṫeḫḍi kolla [[Special:DoubleRedirects|dobl-ṫeḫwila]] ola koll [[Special:BrokenRedirects|ṫ-ṫeḫwilaṫ l-mherrsin]].
 Rak mes'ol baċ ṫraqeb ila l-lyanaṫ baqyin kayddiw le l-maḫel fin ĥaṣṣhom iddiwek.
 
@@ -613,7 +613,7 @@ Laḫed belli ṣ-ṣefḫa '''ma ġadiċ''' ṫṫneqqel ila fayeṫ kayna ċi 
 Meĝniyṫha imken lek ṫĝawed ṫrejjeĝ l-ĝonwan l-'aṣli ila konṫi ġletṫi, o ma imken lekċ ṫekṫeb ĝla ṣefḫa mojoda.
 
 '''Ĝendak!'''
-Imken hadċi y'eddi ṫeġyiraṫ hammin ila kaneṫ ċi ṣefḫa kayqrawha n-nas bezzaf; 
+Imken hadċi y'eddi ṫeġyiraṫ hammin ila kaneṫ ċi ṣefḫa kayqrawha n-nas bezzaf;
 Ĝafak kon mṫ'ekked belli nṫa ĝaref ċno kaṫdir qbel ma ṫebda ay ḫaja.",
 'movepagetalktext' => "Ila kaneṫ ċi ṣefḫa dyal n-niqaċ mĝaha, ġadi ṫĝawed ṫṫsemma otomaṫikiyan '''illa ila:'''
 * neqqelṫi ṣ-ṣefḫa le maḫel de s-smiyaṫ weḫdaĥor, ola
@@ -713,8 +713,8 @@ Imken lek ṫċof l-ĝin dyalha.',
 # Bad image list
 'bad_image_list' => "L-forma howa ṫ-ṫali :
 
-L-lisṫaṫ dyal ṫ-ṫiĝdad (ṣ-ṣtor li badyin be *) homa l-li nĝṫabro.   
-L-lyan l-owwel dyal ċi ṣter ĥaṣṣo walabedda ikon dyal ċi ṫeṣwira ĥat'a. 
+L-lisṫaṫ dyal ṫ-ṫiĝdad (ṣ-ṣtor li badyin be *) homa l-li nĝṫabro.
+L-lyan l-owwel dyal ċi ṣter ĥaṣṣo walabedda ikon dyal ċi ṫeṣwira ĥat'a.
 L-lyanaṫ l-ĥrin l-li fe nefs ṣ-ṣter ka-nĝṫabrohom bḫal sṫiṫna'aṫ, maṫalan bḫal ċi ṣefḫaṫ l-li imken ṫban fihom ṫ-ṫeṣwira.",
 
 # Metadata

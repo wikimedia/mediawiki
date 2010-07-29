@@ -1606,7 +1606,6 @@ Om du framleis ynskjer å laste opp fila, lyt du gå attende og nytte eit anna n
 Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit anna namn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne fila er ein duplikat av følgjande {{PLURAL:$1|fil|filer}}:',
 'file-deleted-duplicate'      => 'Ei identisk fil ([[$1]]) har tidlegare blitt sletta. Du bør sjekka slettehistorikken til denne før du held fram med å lasta ho opp på nytt.',
-'upload-success-subj'            => 'Opplastinga er ferdig',
 'uploadwarning'               => 'Opplastingsåtvaring',
 'uploadwarning-text'          => 'Ver venleg og endra filskildringa nedanfor og prøv på nytt',
 'savefile'                    => 'Lagre fil',
@@ -1645,7 +1644,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # div.
   #</pre> <!-- leave this line exactly as it is -->',
-'upload-success-msg'       => 'Opplastinga di er tilgjengeleg her: $1',
+'upload-success-subj'         => 'Opplastinga er ferdig',
+'upload-success-msg'          => 'Opplastinga di er tilgjengeleg her: $1',
 'upload-failure-subj'         => 'Opplastingsproblem',
 'upload-failure-msg'          => 'Det oppstod eit problem med opplastinga di:
 

@@ -1666,7 +1666,6 @@ Jika Anda masih ingin memuat berkas Anda, silakan kembali dan gunakan nama baru.
 Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Berkas ini berduplikasi dengan {{PLURAL:$1|berkas|berkas-berkas}} berikut:',
 'file-deleted-duplicate'      => 'Sebuah berkas yang identik dengan berkas ini ([[$1]]) sudah pernah dihapuskan sebelumnya. Anda harus memeriksa sejarah penghapusan berkas tersebut sebelum melanjutkan memuat ulang berkas ini.',
-'upload-success-subj'            => 'Berhasil dimuat',
 'uploadwarning'               => 'Peringatan pemuatan',
 'uploadwarning-text'          => 'Mohon perbaiki keterangan berkas di bawah dan coba lagi.',
 'savefile'                    => 'Simpan berkas',
@@ -1693,7 +1692,8 @@ Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain
 Anda harus mempertimbangkan apakah perlu untuk melanjutkan pemuatan berkas ini.
 Log penghapusan berkas adalah sebagai berikut:",
 'filename-bad-prefix'         => "Nama berkas yang Anda muat diawali dengan '''\"\$1\"''', yang merupakan nama non-deskriptif yang biasanya diberikan secara otomatis oleh kamera digital. Harap pilih nama lain yang lebih deskriptif untuk berkas Anda.",
-'upload-success-msg'       => 'Unggahan Anda tersedia di sini: $1',
+'upload-success-subj'         => 'Berhasil dimuat',
+'upload-success-msg'          => 'Unggahan Anda tersedia di sini: $1',
 'upload-failure-subj'         => 'Masalah pengunggahan',
 'upload-failure-msg'          => 'Ada masalah pada unggahan Anda:
 

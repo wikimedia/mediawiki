@@ -58,9 +58,9 @@ $namespaceNames = array(
 # definixha del cogne po les limeros
 # (number format definition)
 # en: 12,345.67 -> wa: 12 345,67
-$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
-#$linkTrail = '/^([a-zåâêîôûçéèA-ZÅÂÊÎÔÛÇÉÈ]+)(.*)$/sDu';
+# $linkTrail = '/^([a-zåâêîôûçéèA-ZÅÂÊÎÔÛÇÉÈ]+)(.*)$/sDu';
 $linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';
 
 #
@@ -783,7 +783,6 @@ ou co po les sons
 [[$1|thumb]]",
 'fileexists-forbidden'        => "I gn a ddja on fitchî avou ç' no la; rivnoz s' i vs plait en erî et s' reberwetez l' fitchî dizo èn ôte no. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "I gn a ddja on fitchî avou ç' no la e ridant des fitchîs pårtaedjîs; rivnoz s' i vs plait en erî et s' reberwetez l' fitchî dizo èn ôte no. [[File:$1|thumb|center|$1]]",
-'upload-success-subj'            => "L' eberwetaedje a stî comifåt",
 'uploadwarning'               => "Adviertixhmint so l' eberwetaedje",
 'savefile'                    => "Schaper l' fitchî",
 'uploadedimage'               => 'eberwetaedje di «[[$1]]»',
@@ -794,6 +793,7 @@ ou co po les sons
 'sourcefilename'              => "No d' fitchî so vosse copiutrece:",
 'destfilename'                => "No d' fitchî a eployî so {{SITENAME}}:",
 'filewasdeleted'              => "On fitchî avou ç' no la a ddja stî disfacé. Vos dvrîz loukî å $1 divant d' continouwer.",
+'upload-success-subj'         => "L' eberwetaedje a stî comifåt",
 
 'upload-file-error' => 'Divintrinne aroke',
 
@@ -1061,7 +1061,7 @@ djivêye des dierins disfaçaedjes.',
 
 # Rollback
 'cantrollback'  => "Dji n' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.",
-'alreadyrolled' => "Dji n' sai disfé li dierin candjmint di [[$1]] fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]); 
+'alreadyrolled' => "Dji n' sai disfé li dierin candjmint di [[$1]] fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]);
 ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant.
 
 Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",

@@ -194,10 +194,10 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'recentchangeslinked-toolbox' => 'Izinguquko ezilandiweyo',
 
 # Upload
-'upload'           => 'Layisha ifayili',
-'uploadbtn'        => 'Layisha ifayili',
-'filesource'       => 'Umthombo:',
-'ignorewarnings'   => 'Duba imiyalo',
+'upload'              => 'Layisha ifayili',
+'uploadbtn'           => 'Layisha ifayili',
+'filesource'          => 'Umthombo:',
+'ignorewarnings'      => 'Duba imiyalo',
 'upload-success-subj' => 'Ukulayisha okuchumile',
 
 'nolicense' => 'Ubekhetha lutho',

@@ -60,7 +60,7 @@ $namespaceAliases = array(
 	"用戶對話" => NS_USER_TALK,
 	"用戶討論" => NS_USER_TALK,
 	# This has never worked so it's unlikely to annoy anyone if I disable it -- TS
-	#"{{SITENAME}}_對話" => NS_PROJECT_TALK
+	# "{{SITENAME}}_對話" => NS_PROJECT_TALK
 	"圖像" => NS_FILE,
 	"檔案" => NS_FILE,
 	"文件" => NS_FILE,
@@ -1559,7 +1559,6 @@ $1",
 如果{{GENDER:|你|妳|你}}仍然想去上載它的話，請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '這個檔案是跟以下的{{PLURAL:$1|一|多}}個檔案重覆:',
 'file-deleted-duplicate'      => '一個相同名稱的檔案 （[[$1]]） 在先前刪除過。您應該在重新上傳之前檢查一下該檔案之刪除紀錄。',
-'upload-success-subj'            => '上傳成功',
 'uploadwarning'               => '上載警告',
 'uploadwarning-text'          => '請修改以下的檔案描述並重試。',
 'savefile'                    => '保存檔案',
@@ -1587,7 +1586,8 @@ $1",
 您應該要考慮一下繼續上傳一個檔案頁面是否合適。
 為方便起見，這一個檔案的刪除記錄已經在下面提供:",
 'filename-bad-prefix'         => "您上傳的檔案名稱是以'''「$1」'''作為開頭，通常這種沒有含意的檔案名稱是由數碼相機中自動編排。請在您的檔案中重新選擇一個更加有意義的檔案名稱。",
-'upload-success-msg'       => '你可以在這裡找到你的上傳：$1',
+'upload-success-subj'         => '上傳成功',
+'upload-success-msg'          => '你可以在這裡找到你的上傳：$1',
 'upload-failure-subj'         => '上傳問題',
 'upload-failure-msg'          => '有一個問題與您的上傳有關：
 

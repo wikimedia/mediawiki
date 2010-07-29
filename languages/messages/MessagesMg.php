@@ -1497,7 +1497,6 @@ Raha mbola te-hampiditra io rakitra io foana ianao, miverena any aoriana ary mam
 . [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Ity rakitra ity dia mitovy amin'ny rakitra {{PLURAL:$1|||}} :",
 'file-deleted-duplicate'      => "Efa voafafa ny rakitra mitovy amin'ity rakitra ity ([[$1]]). Tokony jerena any amin'ny tantaran'asan'ny famafana io pejy io alohan'ny mampiditra azy indray.",
-'upload-success-subj'            => 'Voaray soa aman-tsara ny rakitra',
 'uploadwarning'               => 'Fampitandremana',
 'uploadwarning-text'          => "Ovay ny fanoritan' ilay rakitra ary andrao fanindroany.",
 'savefile'                    => 'Tehirizo ny rakitra',
@@ -1527,7 +1526,8 @@ Tokony marina ny $1 aloha ny manao fampidirana vaovao.',
 Marino raha tsara tohizana ny fanovana eto amin'ity pejy ity. Ny tantaran'asan'ny famafana pejy sy ny fanovan-toerana dia eo ambany :",
 'filename-bad-prefix'         => "Ny anaran-drakitra ho ampidirinareo dia manomboka amin'ny '''« $1 »''', anarana omena an'ny fakan-tsary elektirônika.
 Misafidia anaran-drakitra mambangovango.",
-'upload-success-msg'       => 'Eto ny rakitra nalefanao : $1',
+'upload-success-subj'         => 'Voaray soa aman-tsara ny rakitra',
+'upload-success-msg'          => 'Eto ny rakitra nalefanao : $1',
 'upload-failure-subj'         => 'Olana nitranga teo am-pandefasana',
 
 'upload-proto-error'        => 'Protokolina diso',

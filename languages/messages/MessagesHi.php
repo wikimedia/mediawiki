@@ -1391,7 +1391,6 @@ $1",
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'यह संचिका निम्नलिखित {{PLURAL:$1|संचिका|संचिकाओं}} की प्रति है:',
 'file-deleted-duplicate'      => 'इसी संचिका ([[$1]]) के समान एक और संचिका पहले मिटाई गई थी। इसे फिर से चढ़ाने के पहले आपको इस संचिका के मिटाने के इतिहास को देख लेना चाहिए।',
-'upload-success-subj'            => 'अपलोड हो गईं',
 'uploadwarning'               => 'अपलोड वार्निंग',
 'savefile'                    => 'फ़ाईल संजोयें',
 'uploadedimage'               => '"[[$1]]" को चढाया गया हैं',
@@ -1428,6 +1427,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
+'upload-success-subj'         => 'अपलोड हो गईं',
 
 'upload-proto-error'        => 'गलत प्रोटोकोल',
 'upload-proto-error-text'   => 'रिमोट अपलोड के लिये URL का नाम <code>http://</code> या <code>ftp://</code> से शुरु होना आवश्यक हैं।',

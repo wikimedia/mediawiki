@@ -427,7 +427,7 @@ Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam softwa
 'nosuchuser'              => 'Hana ureuëng nguy ngön nan "$1".
 Nan ureuëng nguy jipeubida harah rayek.
 Tulông neuparéksa keulayi neuija Droëneuh, atawa [[Special:UserLogin/signup|neudapeuta barô]].',
-'nosuchusershort'         => 'Hana ureuëng nguy ngön nan "<nowiki>$1</nowiki>". 
+'nosuchusershort'         => 'Hana ureuëng nguy ngön nan "<nowiki>$1</nowiki>".
 Préksa keulayi neu’ija Droëneuh.',
 'nouserspecified'         => 'Neupasoë nan Droëneuh.',
 'wrongpassword'           => 'Lageuëm nyang neupasoë salah. Neubaci lom.',
@@ -435,8 +435,8 @@ Préksa keulayi neu’ija Droëneuh.',
 'passwordtooshort'        => "Lageuëm paléng h'an haroh na {{PLURAL:$1|1 karakter|$1 karakter}}.",
 'mailmypassword'          => 'Kirém lageuëm barô',
 'passwordremindertitle'   => 'Lageuëm seumeuntara barô keu {{SITENAME}}',
-'passwordremindertext'    => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë kamoë keu meukirém lageuëm rahsia nyang barô keu {{SITENAME}} ($4). 
-Lageuëm rahsia keu ureuëng nguy "$2" jinoë nakeuh "$3". 
+'passwordremindertext'    => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë kamoë keu meukirém lageuëm rahsia nyang barô keu {{SITENAME}} ($4).
+Lageuëm rahsia keu ureuëng nguy "$2" jinoë nakeuh "$3".
 Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahsia.',
 'noemail'                 => 'Hana alamat surat-e nyang teucatat keu ureuëng nguy "$1".',
 'passwordsent'            => 'Lageuëm barô ka geupeu\'ét u surat-e nyang geupeudapeuta keu "$1". Neutamong teuma lheuëh neuteurimong surat-e nyan.',
@@ -476,13 +476,13 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'showdiff'                         => 'Peuleumah neu’ubah',
 'anoneditwarning'                  => 'Droëneuh   hana teudapeuta tamong. Alamat IP Droëneuh   teucatat lam tarèh (riwayat away) ôn nyoë.',
 'summary-preview'                  => 'Eu dilèë reuningkah:',
-'blockedtext'                      => "'''Nan ureuëng nguy atawa alamat IP Droëneuh  ka geutheun.''' 
+'blockedtext'                      => "'''Nan ureuëng nguy atawa alamat IP Droëneuh  ka geutheun.'''
 
-Geutheun lé $1. Dalèh jih nakeuh ''$2''. 
+Geutheun lé $1. Dalèh jih nakeuh ''$2''.
 
-* Geutheun yôh: $8 
-* Neutheun maté tanggay bak: $6 
-* Nyang geutheun: $7 
+* Geutheun yôh: $8
+* Neutheun maté tanggay bak: $6
+* Nyang geutheun: $7
 
 Droëneuh   jeuët neutanyong bak $1 atawa [[{{MediaWiki:Grouppage-sysop}}|nyang urôh nyang la’én]] keu peugah haba bhah nyoë.
 
@@ -925,7 +925,7 @@ Lam masalah nyoë, meunyo neuhawa, Droëneuh jeuët neupeupinah atawa neupeugab�
 'tooltip-ca-talk'                 => 'Peugah haba ôn asoë',
 'tooltip-ca-edit'                 => 'Andam ôn nyoë. Nguy tumbôy euë dilèë yôh goh lom keumeubah.',
 'tooltip-ca-addsection'           => 'Puphôn beunagi barô',
-'tooltip-ca-viewsource'           => 'Ôn nyoë geupeulindông. 
+'tooltip-ca-viewsource'           => 'Ôn nyoë geupeulindông.
 Droëneuh cit jeuët neu’eu nèjih.',
 'tooltip-ca-history'              => 'Seunalén-seunalén sigohlomjih nibak ôn nyoë',
 'tooltip-ca-protect'              => 'Peulindông ôn nyoë',

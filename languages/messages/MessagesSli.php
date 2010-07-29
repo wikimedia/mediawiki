@@ -1025,7 +1025,6 @@ Bitte priefe '''<tt>[[:$1]]</tt>''', wenn du dir ne secher biest, ob du se ände
 Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade dieses under damm Originalnoama huch.",
 'file-exists-duplicate'      => 'Diese Datei ies a Duplikat dar fulgenda {{PLURAL:$1|Datei|$1 Dateien}}:',
 'file-deleted-duplicate'     => 'Anne identische Datei dieser Datei ([[$1]]) wurde frieher geläscht. Ieberpriefe doas Läsch-Logbuch, bevor du se huchlädst.',
-'upload-success-subj'           => 'Erfolgreich huchgeloada',
 'uploadedimage'              => 'hoot „[[$1]]“ huchgeloada',
 'overwroteimage'             => 'hoot anne neue Version vu „[[$1]]“ huchgeloada',
 'uploaddisabled'             => 'Huchlada deaktiviert',
@@ -1043,6 +1042,7 @@ Bitte priefe sorgfältig, ob doas erneute Huchloada dann Richtlinien entspricht.
 Zu denner Information folgt doas Läsch-Logbuch miet dar Begrindung fier de vorhergehende Läschung:",
 'filename-bad-prefix'        => "Dar Dateinoame beginnt miet '''„$1“'''. Dies ies eim allgemeena dar vu a'r Digitalkamera vorgegebene Dateinoame und daher ne sehr aussagekräftig.
 Bitte gieb dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
+'upload-success-subj'        => 'Erfolgreich huchgeloada',
 
 'upload-proto-error'        => 'Foalsches Protokoll',
 'upload-proto-error-text'   => 'De URL muuß miet <code>http://</code> oder <code>ftp://</code> beginna.',

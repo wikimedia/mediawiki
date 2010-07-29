@@ -385,7 +385,7 @@ Ye can continue to uise {{SITENAME}} namelessly, or ye can log in again as the s
 Mynd that some pages micht continue tae be displayed as if ye war aye loggit in, till ye clear yer brouser cache.",
 'welcomecreation'            => '== Guid tae see ye, $1! ==
 
-Yer accoont haes been creatit. 
+Yer accoont haes been creatit.
 Mynd an chynge yer [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname'                   => 'Yer uiser name',
 'yourpassword'               => 'Passwaird:',
@@ -450,7 +450,7 @@ Sae veesitors uisin this IP address canna mak ony mair accoonts juist noo.',
 will be sent for ony o the followin featurs.',
 'noemailprefs'               => "Nae email address haes been specifee'd, the follaein featurs willna wirk.",
 'emailconfirmlink'           => 'Check yer e-mail address',
-'invalidemailaddress'        => 'The email address canna be acceptit syne it seems tae be formattit wrang. 
+'invalidemailaddress'        => 'The email address canna be acceptit syne it seems tae be formattit wrang.
 Please enter a weel-formattit address or mak that field tuim.',
 'accountcreated'             => 'Accoont creatit',
 'accountcreatedtext'         => 'The uiser accoont for $1 haes bin creatit.',
@@ -593,7 +593,7 @@ YYe'r promisin us forbye that ye wrat this yersel, or copied it frae a
 public domain or siclike free resoorce (see $1 for details).
 '''DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!'''",
 'longpagewarning'                  => "WARNIN: This page is $1 kilobytes lang; some brousers micht hae trouble editin pages approachin or langer nor 32 kb. Please conseider brakkin the page intae smaa'er sections.",
-'longpageerror'                    => "'''ERROR: The text ye hae submitted is $1 kilobytes 
+'longpageerror'                    => "'''ERROR: The text ye hae submitted is $1 kilobytes
 lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.'''",
 'readonlywarning'                  => "WARNIN: The database haes been lockit for maintenance, sae ye'll no can hain yer edits richt nou. Ye micht wish tae cut-n-paste the text intil a text file an hain it for later.",
 'protectedpagewarning'             => "'''WARNIN: This page haes been lockit sae that juist uisers wi administrator privileges can edit it.'''",

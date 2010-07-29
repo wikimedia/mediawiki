@@ -1684,7 +1684,6 @@ Jangk zeröck un lad Ding Datei unger enem andere Name huh,
 wann De se noch han wells.',
 'file-exists-duplicate'       => 'Di Dattei hät dersellve Enhallt wi hee di {{PLURAL:$1|Datei|Dateie|}}:',
 'file-deleted-duplicate'      => 'En Datei mem sellve Enhallt wi „[[$1]]“ es ens fottjeschmeße woode. Donn dä Zosammehang em „{{int:dellogpage}}“ nokike, ih dat De se widder huhläds.',
-'upload-success-subj'            => 'Et Huhlade hät jeflupp',
 'uploadwarning'               => 'Warnung beim Huhlade',
 'uploadwarning-text'          => 'Donn onge dä Täx övver di Dattei ändere, un versöhg_et norr_ens.',
 'savefile'                    => 'Datei avspeichere',
@@ -1730,7 +1729,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # - diverse -
  #</pre> <!-- Lohß di Reih jenou esu wie se es! -->',
-'upload-success-msg'       => 'Ding huhjelaade Dattei es jäz hee: $1',
+'upload-success-subj'         => 'Et Huhlade hät jeflupp',
+'upload-success-msg'          => 'Ding huhjelaade Dattei es jäz hee: $1',
 'upload-failure-subj'         => 'Probleem bem Huhlaade',
 'upload-failure-msg'          => 'Mer hatte e Probleem met Dinge huhjelaade Dattei:
 

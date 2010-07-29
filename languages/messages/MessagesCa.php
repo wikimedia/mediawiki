@@ -1558,7 +1558,6 @@ Si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[File:$1
 Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carregueu-ne una còpia amb un altre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Aquest fitxer és un duplicat {{PLURAL:$1|del fitxer |dels següents fitxers:}}',
 'file-deleted-duplicate'      => "Un fitxer idèntic a aquest ([[$1]]) ha estat esborrat amb anterioritat. Hauríeu de comprovar el registre d'esborrat del fitxer abans de tornar-lo a carregar.",
-'upload-success-subj'            => "El fitxer s'ha carregat amb èxit",
 'uploadwarning'               => 'Avís de càrrega',
 'uploadwarning-text'          => 'Modifiqueu la descripció de la imatge i torneu a intentar-ho.',
 'savefile'                    => 'Desa el fitxer',
@@ -1585,7 +1584,8 @@ Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carreg
 Hauríeu de considerar si és realment adequat continuar carregant aquest fitxer, perquè potser també acaba eliminat.
 A continuació teniu el registre d'eliminació per a que pugueu comprovar els motius que van portar a la seua eliminació:",
 'filename-bad-prefix'         => "El nom del fitxer que esteu penjant comença amb '''«$1»''', que és un nom no descriptiu que les càmeres digitals normalment assignen de forma automàtica. Trieu un de més descriptiu per al vostre fitxer.",
-'upload-success-msg'       => 'El material carregat està disponible ací: $1',
+'upload-success-subj'         => "El fitxer s'ha carregat amb èxit",
+'upload-success-msg'          => 'El material carregat està disponible ací: $1',
 'upload-failure-subj'         => 'Problema en la càrrega',
 'upload-failure-msg'          => 'Hi ha hagut un problema amb la vostra càrrega:
 

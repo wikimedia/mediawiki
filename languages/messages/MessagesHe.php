@@ -1720,7 +1720,6 @@ $1",
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'קובץ זה כפול ל{{PLURAL:$1|קובץ הבא|קבצים הבאים}}:',
 'file-deleted-duplicate'      => 'קובץ זהה לקובץ זה ([[$1]]) נמחק בעבר. אנא בדקו את היסטוריית המחיקה של הקובץ לפני שתעלו אותו מחדש.',
-'upload-success-subj'            => 'העלאת הקובץ הושלמה בהצלחה',
 'uploadwarning'               => 'אזהרת העלאת קבצים',
 'uploadwarning-text'          => 'אנא שנו את תיאור הקובץ שלמטה ונסו שוב.',
 'savefile'                    => 'שמירת קובץ',
@@ -1761,7 +1760,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # שונות
  #</pre> <!-- נא להשאיר שורה זו בדיוק כפי שהיא -->',
-'upload-success-msg'       => 'הקובץ שהעלית זמין כאן: $1',
+'upload-success-subj'         => 'העלאת הקובץ הושלמה בהצלחה',
+'upload-success-msg'          => 'הקובץ שהעלית זמין כאן: $1',
 'upload-failure-subj'         => 'בעיה בהעלאה',
 'upload-failure-msg'          => 'הייתה בעיה עם הקובץ שהעלית:
 

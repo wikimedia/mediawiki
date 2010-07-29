@@ -423,7 +423,7 @@ Andmusiden baz pördi petusen "$3: $4"',
 
 Mugoi situacii sündub tobjimalaz, konz kävutai ladib lähtta lehtpolen toižetuzistorijaha vanhtunut i čutud kosketustme.
 
-Ku azj ei ole neciš, ka tö, nägub, olet löudnuded vigan programmas. Olgat hüväd, kirjutagat necen polhe [[Special:ListUsers/sysop|administratorale]]. 
+Ku azj ei ole neciš, ka tö, nägub, olet löudnuded vigan programmas. Olgat hüväd, kirjutagat necen polhe [[Special:ListUsers/sysop|administratorale]].
 Ližakat URL.',
 'missingarticle-rev'   => '(versii № $1)',
 'missingarticle-diff'  => '(Ero: $1, $2)',
@@ -618,7 +618,7 @@ Sü: ''$2''.
 * Blokiruindan lopaig: $6
 * Blokiruidud kävutai: $7
 
-Otkat sil'mnägubale, miše teile ei sa oigeta kirješt administratorale, ku tö et olgoi sanuded registracijad i et olgoi vahvištoitnuded ičetoi e-počtan adresad 
+Otkat sil'mnägubale, miše teile ei sa oigeta kirješt administratorale, ku tö et olgoi sanuded registracijad i et olgoi vahvištoitnuded ičetoi e-počtan adresad
 [[Special:Preferences|teiden järgendusiden lehtpolel]], vai teile oma kel'tnuded kirjeižid oigendamha blokiruindan aigan.
 Teiden IP-adres om $3, teiden blokiruindan ID om #$5.
 Olgat hüväd, kirjutagat nened andmused kaikiš kirjeižiš administratorile.",
@@ -630,7 +630,7 @@ Sü: ''$2''.
 * Blokiruindan lopaig: $6
 * Blokiruidud kävutai: $7
 
-Otkat sil'mnägubale, miše teile ei sa oigeta kirješt administratorale, ku tö et olgoi sanuded registracijad i et olgoi vahvištoitnuded ičetoi e-počtan adresad 
+Otkat sil'mnägubale, miše teile ei sa oigeta kirješt administratorale, ku tö et olgoi sanuded registracijad i et olgoi vahvištoitnuded ičetoi e-počtan adresad
 [[Special:Preferences|teiden järgendusiden lehtpolel]], vai teile oma kel'tnuded kirjeižid oigendamha blokiruindan aigan.
 Teiden IP-adres om $3, teiden blokiruindan ID om #$5.
 Olgat hüväd, kirjutagat nened andmused kaikiš kirjeižiš administratorile.",
@@ -649,11 +649,11 @@ Voib olda, se om sirtud vai čutud poiš lugemižen aigan.',
 'loginreqpagetext'                 => 'Teile pidab $1, miše lugeda toižid lehtpolid.',
 'accmailtitle'                     => 'Peitsana om oigetud.',
 'newarticle'                       => '(Uz’)',
-'newarticletext'                   => "Tö tulit kosketustme lehtpolele, kudamb ei olend tehtud völ. 
+'newarticletext'                   => "Tö tulit kosketustme lehtpolele, kudamb ei olend tehtud völ.
 Miše säta lehtpol', kirjutaškakat alemba sijatud iknas (kc. [[{{MediaWiki:Helppage}}|abun lehtpol']], miše sada ližainformacijad).
 Ku tö olet petnus tänna tuldes, pingat teiden kaclimen '''tagaze'''-kingitimele.",
 'noarticletext'                    => 'Necil lehtpolel ei ole nügüd\' tekstad.
-Tö voit [[Special:Search/{{PAGENAME}}|ectä nece nimi]] toižil lehtpolil, 
+Tö voit [[Special:Search/{{PAGENAME}}|ectä nece nimi]] toižil lehtpolil,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ectä pojavid aigkirjoiden kirjutesid],
 vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktiruida nece lehtpol\']</span>.',
 'userpage-userdoesnotexist'        => "Kävutajan nimed «$1» ei ole. Todeks-ik tahtoit säta vai toižetada nece lehtpol'?",
@@ -696,8 +696,8 @@ Ei voi kirjutada muštho.",
 Alemba om anttud jäl'gmäine aiglehtesen kirjutez:",
 'semiprotectedpagewarning'         => "'''Tedotuz:''' Nece lehtpol' om kaitud redaktiruindaspäi; vaiše registriruidud kävutajad voidas redaktiruida sidä.
 Alemba om anttud jäl'gmäine aiglehtesen kirjutez:",
-'cascadeprotectedwarning'          => "'''Homaikat:''' Nece lehtpol' om luklostadud muga, miše vaiše kävutajad administratoriden privilegijoidenke voidas 
-redaktiruida sidä, sikš miše se oli mülütadud {{PLURAL:$1|neche lehtpol'he, kudamban|nenihe lehtpolihe, kudambiden}} 
+'cascadeprotectedwarning'          => "'''Homaikat:''' Nece lehtpol' om luklostadud muga, miše vaiše kävutajad administratoriden privilegijoidenke voidas
+redaktiruida sidä, sikš miše se oli mülütadud {{PLURAL:$1|neche lehtpol'he, kudamban|nenihe lehtpolihe, kudambiden}}
 täht oli sätud kaskadkaičend:",
 'titleprotectedwarning'            => "'''Homaikat: Nece lehtpol' om luklostadud, sikš pidab sada [[Special:ListGroupRights|specialižed oiktused]], miše säta se.'''
 Alemba om anttud jäl'gmäine aiglehtesen kirjutez:",
@@ -1291,7 +1291,6 @@ Lasktud {{PLURAL:\$3|failan tip om|failoiden tipad oma}} \$2.",
 Voib olda, necen sü om vär failannimen kirjutamine.
 Olgat hüväd, kodvgat, todeks-ik tö tahtoit jügutoitta nece fail.",
 'file-exists-duplicate'      => 'Nece fail om {{PLURAL:$1|necen failan|neniden failoiden}} dublikat:',
-'upload-success-subj'           => 'Jügutoitand lopihe satusekahas',
 'uploadwarning'              => 'Varutuz jügutoitmižes',
 'savefile'                   => 'Kirjutada fail',
 'uploadedimage'              => 'om jügutoitnu "[[$1]]"',
@@ -1308,6 +1307,7 @@ Olgat hüväd, kodvgat, todeks-ik tö tahtoit jügutoitta nece fail.",
 'upload-maxfilesize'         => 'Failan maksimaline suruz: $1',
 'upload-description'         => 'failan ümbrikirjutand',
 'watchthisupload'            => 'Kacelta necidä failad',
+'upload-success-subj'        => 'Jügutoitand lopihe satusekahas',
 
 'upload-proto-error'        => 'Vär protokol',
 'upload-proto-error-text'   => 'Miše jügutoitta edahanpäi, kävutagat URL, kudamb augotase <code>http://</code> vai <code>ftp://</code>.',
@@ -1743,13 +1743,13 @@ Kc. $2, miše lugeda tantoižiden čudandoiden nimikirjutez.',
 'deletereasonotherlist'  => 'Toinejitte sü',
 'deletereason-dropdown'  => '*Tipižed čudandan süd:
 ** Avtoran pakičend
-** Avtoran oiktusen murenduz 
+** Avtoran oiktusen murenduz
 ** Vandalizm',
 'delete-edit-reasonlist' => 'Redaktiruida čudandan süiden nimikirjutez',
 'delete-toobig'          => "Necil lehtpolel om avar redaktiruinadan istorii - enamba {{PLURAL:$1|versii|versijad}}.
 Mugoižiden lehtpoliden čudand om kel'tud, miše sait radaiži normaližikš.",
-'delete-warning-toobig'  => 'Necil lehtpolel om avar redaktiruinadan istorii - enamba $1 {{PLURAL:$1|versii|versijad}}. 
-Mugoižiden lehtpoliden čudand voiži telustada {{SITENAME}}-saitan andmuzbazan normaližele radole. 
+'delete-warning-toobig'  => 'Necil lehtpolel om avar redaktiruinadan istorii - enamba $1 {{PLURAL:$1|versii|versijad}}.
+Mugoižiden lehtpoliden čudand voiži telustada {{SITENAME}}-saitan andmuzbazan normaližele radole.
 Tehkat kaik varumujandanke!',
 
 # Rollback

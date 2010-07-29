@@ -34,7 +34,7 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'Turkum',
 	NS_CATEGORY_TALK    => 'Turkum_munozarasi',
 );
-	
+
 $namespaceAliases = array(
 	'Mediya'                => NS_MEDIA,
 	'MediyaViki'            => NS_MEDIAWIKI,

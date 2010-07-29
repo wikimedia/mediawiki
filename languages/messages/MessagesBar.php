@@ -566,26 +566,26 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'recentchangeslinked-page'    => 'Seitn:',
 
 # Upload
-'upload'            => 'Aufelådn',
-'uploadnologin'     => 'Net ogmeidt',
-'uploadnologintext' => "Sie miassn [[Special:UserLogin|ogmeidt sei]], wenn S' Dateien hoachladn wolln.",
-'uploadlog'         => 'Datei-Logbuach',
-'uploadlogpage'     => 'Datei-Logbuach',
-'uploadlogpagetext' => 'Des is des Logbuach vo de hoachgladna Dateien, schaug aa unta [[Special:NewFiles|neie Dateien]].',
-'uploadedfiles'     => 'Hoachgladene Dateien',
-'badfilename'       => "Da Dateinam is in „$1“ g'ändat won.",
-'large-file'        => 'De Dateigreß sollat nach Möglichkeit $1 net überschreitn. De Datei is $2 groaß.',
-'emptyfile'         => "De hochgladene Datei is laar. Da Grund konn a Tippfehler im Dateinam sei. Bitte kontrollieren'S, ob Sie de Datei wirklich hochladn woin.",
-'upload-success-subj'  => 'Erfolgreich hoachgladn',
-'uploadwarning'     => 'Obacht',
-'uploadedimage'     => 'håd „[[$1]]“ aufeglådn',
-'uploaddisabled'    => "'tschuldigung, as Hochladn is deaktiviert.",
-'uploadscripted'    => 'De Datei enthalt HTML- oda Scriptcode, der irrtümlichaweis von am Webbrowser ausgführt wern kinnat.',
-'watchthisupload'   => 'De Seitn beobachtn',
-'filewasdeleted'    => 'A Datei mit dem Nama is scho oamoi hochgladn worn und zwischenzeitlich wieda glöscht worn. Bitte schaug erscht den Eintrag im $1 oo, bevor du de Datei wirklich speicherst.',
-'upload-wasdeleted' => "'''Obacht: Du ladst aa Datei hoach, de scho friara glöscht worn is.'''
+'upload'              => 'Aufelådn',
+'uploadnologin'       => 'Net ogmeidt',
+'uploadnologintext'   => "Sie miassn [[Special:UserLogin|ogmeidt sei]], wenn S' Dateien hoachladn wolln.",
+'uploadlog'           => 'Datei-Logbuach',
+'uploadlogpage'       => 'Datei-Logbuach',
+'uploadlogpagetext'   => 'Des is des Logbuach vo de hoachgladna Dateien, schaug aa unta [[Special:NewFiles|neie Dateien]].',
+'uploadedfiles'       => 'Hoachgladene Dateien',
+'badfilename'         => "Da Dateinam is in „$1“ g'ändat won.",
+'large-file'          => 'De Dateigreß sollat nach Möglichkeit $1 net überschreitn. De Datei is $2 groaß.',
+'emptyfile'           => "De hochgladene Datei is laar. Da Grund konn a Tippfehler im Dateinam sei. Bitte kontrollieren'S, ob Sie de Datei wirklich hochladn woin.",
+'uploadwarning'       => 'Obacht',
+'uploadedimage'       => 'håd „[[$1]]“ aufeglådn',
+'uploaddisabled'      => "'tschuldigung, as Hochladn is deaktiviert.",
+'uploadscripted'      => 'De Datei enthalt HTML- oda Scriptcode, der irrtümlichaweis von am Webbrowser ausgführt wern kinnat.',
+'watchthisupload'     => 'De Seitn beobachtn',
+'filewasdeleted'      => 'A Datei mit dem Nama is scho oamoi hochgladn worn und zwischenzeitlich wieda glöscht worn. Bitte schaug erscht den Eintrag im $1 oo, bevor du de Datei wirklich speicherst.',
+'upload-wasdeleted'   => "'''Obacht: Du ladst aa Datei hoach, de scho friara glöscht worn is.'''
 Bittschee prüf gnau, ob as erneite Hoachladn de Richtlinien entspricht.
 Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorherige Löschung:",
+'upload-success-subj' => 'Erfolgreich hoachgladn',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL is net erreichbar',
@@ -724,7 +724,7 @@ Links aus Namensräume wern da net aufglistet.',
 'addedwatch'        => 'Zua Beobachtungslistn dazuado',
 'addedwatchtext'    => 'De Seitn „[[:$1]]“ is zua deina [[Special:Watchlist|Beobachtungslistn]] dazuado worn.
 Änderunga an dera Seitn und vo da Diskussionsseitn wern da glistet und
-in da Übasicht vo de [[Special:RecentChanges|letztn Änderungen]] in Fettschrift ozoagt. 
+in da Übasicht vo de [[Special:RecentChanges|letztn Änderungen]] in Fettschrift ozoagt.
 Wennst de Seitn wieder vo deina Beobachtungslistn wegdoa mechtn, klickst auf da jeweiligen Seitn auf „nimma beobachten“.',
 'removedwatch'      => 'vu da Beobåchtungslistn weg nemma',
 'removedwatchtext'  => "D'Seitn „[[:$1]]“ is vu deina [[Special:Watchlist|Beobåchtungslistn]] weg gnumma woan.",
@@ -751,7 +751,7 @@ de {{SITENAME}} Seitn "$PAGETITLE" is vo $PAGEEDITOR am $PAGEEDITDATE $CHANGEDOR
 Zusammenfassung vom Bearbeiter: $PAGESUMMARY $PAGEMINOREDIT
 Es wern solang koae weitern Benachrichtigungsmails gsendt, bis Sie de Seitn wieder besuacht ham. Auf Eanana Beobachtungsseitn kinnans S\' alle Benachrichtigungsmarker zsamm zrucksetzen.
              Eana {{SITENAME}} Benachrichtigungssystem
--- 
+--
 Um die Einstellungen Ihrer Beobachtungslistn anzupassen bsuachans bitte: {{fullurl:Special:Watchlist/edit}}',
 
 # Delete

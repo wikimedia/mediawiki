@@ -383,12 +383,12 @@ Bidde ōðer brūcendnama ċēosan.',
 'createaccounterror'         => 'Ne cūðe macian reccend: $1',
 'nocookiesnew'               => 'Se brūcendreccend wæs gemacod, ac þū neart inmedlod.
 {{SITENAME}} brȳcþ tācninclu tō inmeldienne brūcendas.
-Þū hafast forwierned tācninclu. 
+Þū hafast forwierned tācninclu.
 Bidde þē, lǣt hīe tō twyrcenne, and þǣræfter inmelda þurh þīnne nīwan brūcendnaman and gelēafnessword.',
 'loginsuccesstitle'          => 'Inmeldung gesǣlde',
 'loginsuccess'               => "'''Þu eart nū inmeldod tō {{SITENAME}} swā \"\$1\".'''",
 'nosuchuser'                 => 'Þǣr nis nān brūcere þe hæfþ þone naman "$1".
-Stafena micelnesse sind hefige and ānlica on brūcendnamum. 
+Stafena micelnesse sind hefige and ānlica on brūcendnamum.
 Scēawa þīne wrītunge eft, oþþe brūc þā cartan þe is hērunder tō [[Special:UserLogin/signup|settene nīwne brūcendreccend]].',
 'nosuchusershort'            => 'Þǣr is nān brūcend mid þǣm naman "<nowiki>$1</nowiki>".  Edscēawa on þīne wrītunge.',
 'passwordtooshort'           => 'Gelēafword sculon habban læst {{PLURAL:$1|1 stafan|$1 stafan}}.',
@@ -809,7 +809,7 @@ Swenge wiþ sweorhēafod andwendeþ þā endebyrdnessa.',
 'booksources'               => 'Bōcfruman',
 'booksources-search-legend' => 'Sēcan bōcfruman',
 'booksources-go'            => 'Gān',
-'booksources-text'          => 'Under is getalu benda tō ōðrum webstedum þe bebycgaþ nīwa and gebrocena bēc, and hæbben 
+'booksources-text'          => 'Under is getalu benda tō ōðrum webstedum þe bebycgaþ nīwa and gebrocena bēc, and hæbben
 ēac mā āscunga ymbe bēc þe þu sēcst:',
 
 # Special:Log

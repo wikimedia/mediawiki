@@ -663,7 +663,7 @@ Wybierz inną nazwę użytkownika.',
 'createaccounterror'         => 'Nie można utworzyć konta $1',
 'nocookiesnew'               => 'Konto użytkownika zostało utworzone, ale nie jesteś zalogowany.
 {{SITENAME}} używa ciasteczek do przechowywania informacji o zalogowaniu się.
-Masz obecnie w przeglądarce wyłączoną obsługę ciasteczek. 
+Masz obecnie w przeglądarce wyłączoną obsługę ciasteczek.
 Żeby się zalogować, włącz obsługę ciasteczek, następnie podaj nazwę użytkownika i hasło dostępu do swojego konta.',
 'nocookieslogin'             => '{{SITENAME}} wykorzystuje ciasteczka do przechowywania informacji o zalogowaniu się przez użytkownika.
 Masz obecnie w przeglądarce wyłączoną obsługę ciasteczek.
@@ -738,7 +738,7 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass-no-info'         => 'Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.',
 'resetpass-submit-loggedin' => 'Zmień hasło',
 'resetpass-submit-cancel'   => 'Anuluj',
-'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
+'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło.
 Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub poprosił{{GENDER:|eś|aś|eś(‐aś)}} o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
 
@@ -832,7 +832,7 @@ Mogła zostać przeniesiona lub usunięta podczas przeglądania tej strony.',
 Hasło dla tego nowego konta po zalogowaniu można zmienić na stronie ''[[Special:ChangePassword|zmiana hasła]]''.",
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => "Brak strony o tym tytule.
-Jeśli chcesz ją utworzyć, wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [[{{MediaWiki:Helppage}}|na stronie pomocy]]). 
+Jeśli chcesz ją utworzyć, wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [[{{MediaWiki:Helppage}}|na stronie pomocy]]).
 Jeśli utworzenie nowej strony nie było Twoim zamiarem, wciśnij ''Wstecz'' w swojej przeglądarce.",
 'anontalkpagetext'                 => "---- ''To jest strona dyskusji anonimowego użytkownika – takiego, który nie ma jeszcze swojego konta lub nie chce go w tej chwili używać.
 By go identyfikować, używamy adresów IP.
@@ -1138,7 +1138,7 @@ Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji stro
 'mergehistory-into'                => 'Strona docelowa:',
 'mergehistory-list'                => 'Historia zmian możliwa do scalenia',
 'mergehistory-merge'               => 'Następujące zmiany strony [[:$1]] mogą zostać scalone z [[:$2]].
-Oznacz w kolumnie kropeczką, która zmiana, łącznie z wcześniejszymi, ma zostać scalona. 
+Oznacz w kolumnie kropeczką, która zmiana, łącznie z wcześniejszymi, ma zostać scalona.
 Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'mergehistory-go'                  => 'Pokaż możliwe do scalenia zmiany',
 'mergehistory-submit'              => 'Scal historię zmian',
@@ -1643,7 +1643,6 @@ Jeśli chcesz przesłać plik cofnij się i prześlij go pod inną nazwą. [[Fil
 Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ten plik jest kopią {{PLURAL:$1|pliku|następujących plików:}}',
 'file-deleted-duplicate'      => 'Identyczny do tego plik ([[$1]]) został wcześniej usunięty. Sprawdź historię usunięć tamtego pliku zanim prześlesz go ponownie.',
-'upload-success-subj'            => 'Przesłanie pliku powiodło się',
 'uploadwarning'               => 'Ostrzeżenie o przesyłaniu',
 'uploadwarning-text'          => 'Zmień poniższy opis pliku i spróbuj ponownie.',
 'savefile'                    => 'Zapisz plik',
@@ -1686,7 +1685,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # wiele różnych
   #</pre> <!-- nie modyfikuj tej linii -->',
-'upload-success-msg'       => 'Przesłany plik jest dostępny tutaj – $1',
+'upload-success-subj'         => 'Przesłanie pliku powiodło się',
+'upload-success-msg'          => 'Przesłany plik jest dostępny tutaj – $1',
 'upload-failure-subj'         => 'Problem z przesłaniem pliku',
 'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu Twojego pliku:
 
@@ -1950,7 +1950,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'ancientpages'            => 'Najstarsze strony',
 'move'                    => 'Przenieś',
 'movethispage'            => 'Przenieś tę stronę',
-'unusedimagestext'        => 'W serwisie istnieją następujące pliki, lecz nie są wykorzystane na żadnej ze stron. 
+'unusedimagestext'        => 'W serwisie istnieją następujące pliki, lecz nie są wykorzystane na żadnej ze stron.
 Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich adresów URL. Oznacza to, że niektóre z plików mogą się znajdować na tej liście pomimo tego, że są wykorzystywane.',
 'unusedcategoriestext'    => 'Poniższe kategorie istnieją, choć nie korzysta z nich żadna strona ani kategoria.',
 'notargettitle'           => 'Wskazywana strona nie istnieje',
@@ -2509,7 +2509,7 @@ Nie możesz utworzyć konta',
 # Developer tools
 'lockdb'              => 'Zablokuj bazę danych',
 'unlockdb'            => 'Odblokuj bazę danych',
-'lockdbtext'          => 'Zablokowanie bazy danych uniemożliwi wszystkim użytkownikom edycję stron, zmianę preferencji, edycję list obserwowanych stron oraz inne czynności wymagające dostępu do bazy danych. 
+'lockdbtext'          => 'Zablokowanie bazy danych uniemożliwi wszystkim użytkownikom edycję stron, zmianę preferencji, edycję list obserwowanych stron oraz inne czynności wymagające dostępu do bazy danych.
 Potwierdź, że to jest zgodne z Twoimi zamiarami, i że odblokujesz bazę danych, gdy tylko zakończysz zadania administracyjne.',
 'unlockdbtext'        => 'Odblokowanie bazy danych umożliwi wszystkim użytkownikom edycję stron, zmianę preferencji, edycję list obserwowanych stron oraz inne czynności związane ze zmianami w bazie danych. Potwierdź, że to jest zgodne z Twoimi zamiarami.',
 'lockconfirm'         => 'Tak, naprawdę chcę zablokować bazę danych.',
@@ -2940,7 +2940,7 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'bad_image_list' => 'Dane należy wprowadzić w formacie:
 
 Jedynie elementy listy (linie zaczynające się od znaku gwiazdki *) brane są pod uwagę.
-Pierwszy link w linii musi być linkiem do zabronionego pliku. 
+Pierwszy link w linii musi być linkiem do zabronionego pliku.
 Następne linki w linii są traktowane jako wyjątki – są to nazwy stron, na których plik o zabronionej nazwie może być użyty.',
 
 # Metadata

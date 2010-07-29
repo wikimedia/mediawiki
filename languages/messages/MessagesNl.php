@@ -1774,7 +1774,6 @@ Als u het bestand alsnog wilt uploaden, ga dan terug en kies een andere naam.
 'file-exists-duplicate'       => 'Dit bestand is indentiek aan {{PLURAL:$1|het volgende bestand|de volgende bestanden}}:',
 'file-deleted-duplicate'      => 'Een bestand dat identiek is aan dit bestand ([[$1]]) is voorheen verwijderd.
 Raadpleeg het verwijderingslogboek voordat u verder gaat.',
-'upload-success-subj'            => 'Het bestand is toegevoegd',
 'uploadwarning'               => 'Uploadwaarschuwing',
 'uploadwarning-text'          => 'Pas de onderstaande bestandsbeschrijving aan en probeer het daarna opnieuw.',
 'savefile'                    => 'Bestand opslaan',
@@ -1817,7 +1816,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # overig
  #</pre> <!-- leave this line exactly as it is -->',
-'upload-success-msg'       => 'Uw upload is hier beschikbaar: $1',
+'upload-success-subj'         => 'Het bestand is toegevoegd',
+'upload-success-msg'          => 'Uw upload is hier beschikbaar: $1',
 'upload-failure-subj'         => 'Uploadprobleem',
 'upload-failure-msg'          => 'Er was een probleem met uw upload:
 

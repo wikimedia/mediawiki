@@ -402,16 +402,16 @@ $messages = array(
 'recentchangeslinked-page'    => 'страни́цѧ и́мѧ :',
 
 # Upload
-'upload'            => 'положє́ниѥ дѣ́ла',
-'uploadbtn'         => 'положє́ниѥ дѣ́ла',
-'uploadlog'         => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'uploadlogpage'     => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'filename'          => 'дѣ́ла и́мѧ',
-'filedesc'          => 'опьса́ниѥ',
-'fileuploadsummary' => 'опьса́ниѥ:',
-'upload-success-subj'  => 'дѣ́ло положєно ѥ́стъ',
-'uploadedimage'     => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
-'watchthisupload'   => 'си дѣ́ла блюдє́ниѥ',
+'upload'              => 'положє́ниѥ дѣ́ла',
+'uploadbtn'           => 'положє́ниѥ дѣ́ла',
+'uploadlog'           => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
+'uploadlogpage'       => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
+'filename'            => 'дѣ́ла и́мѧ',
+'filedesc'            => 'опьса́ниѥ',
+'fileuploadsummary'   => 'опьса́ниѥ:',
+'uploadedimage'       => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
+'watchthisupload'     => 'си дѣ́ла блюдє́ниѥ',
+'upload-success-subj' => 'дѣ́ло положєно ѥ́стъ',
 
 # Special:ListFiles
 'imgfile'        => 'дѣ́ло',

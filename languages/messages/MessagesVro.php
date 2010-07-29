@@ -428,7 +428,7 @@ $2',
 # Login and logout pages
 'logouttext'                 => "'''Olõt nime alt vällä lännüq.'''
 
-Võit {{SITENAME}}t ilma nimeldä edesi toimõndaq vai [[Special:UserLogin|vahtsõst sama vai tõõsõ nimega sisse minnäq]]. 
+Võit {{SITENAME}}t ilma nimeldä edesi toimõndaq vai [[Special:UserLogin|vahtsõst sama vai tõõsõ nimega sisse minnäq]].
 Tähelepandmisõs: niikavva, ku sa olõ-i tühäs tennüq uma võrgokaeja vaihõmällo, võivaq mõnõq leheküleq iks viil näüdädäq, nigu sa olõsi nimega seen.",
 'welcomecreation'            => '<h2>Tereq, $1!</h2><p>Su konto om valmis. Võit taa hindä perrä sisse säädäq.',
 'yourname'                   => 'Pruukjanimi',
@@ -451,7 +451,7 @@ Tähelepandmisõs: niikavva, ku sa olõ-i tühäs tennüq uma võrgokaeja vaihõ
 'gotaccountlink'             => 'võit nimega sisse minnäq',
 'createaccountmail'          => 'e-postiga',
 'badretype'                  => 'Kirotõduq salasõnaq ei klapiq kokko.',
-'userexists'                 => 'Taad pruukjanimme jo pruugitas. 
+'userexists'                 => 'Taad pruukjanimme jo pruugitas.
 Valiq tõõnõ nimi.',
 'loginerror'                 => 'Sisseminemise viga',
 'nocookiesnew'               => 'Pruukjakonto om valmis, a sa päse-s sisse, selle et {{SITENAME}} tarvitas pruukjidõ kimmästegemises valmistuisi. Suq võrgokaejan ommaq valmistusõq ärq keeledüq. Säeq valmistusõq lubatus ja mineq sis uma vahtsõ pruukjanime ja salasõnaga sisse.',
@@ -459,7 +459,7 @@ Valiq tõõnõ nimi.',
 'noname'                     => 'Võlssi kirotõt pruukjanimi.',
 'loginsuccesstitle'          => "Sisseminek läts' kõrda",
 'loginsuccess'               => 'Olõt nimega sisse lännüq. Suq pruukjanimi om "$1".',
-'nosuchuser'                 => '"$1" nimelist pruukjat olõ-i olõman. 
+'nosuchuser'                 => '"$1" nimelist pruukjat olõ-i olõman.
 Kaeq kiräpilt üle vai [[Special:UserLogin/signup|luuq vahtsõnõ pruukjanimi]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" nimelist pruukjat olõ-i olõman. Kas kirotit iks nime õigõhe?',
 'nouserspecified'            => 'Olõ-i kirotõt pruukjanimme.',
@@ -473,7 +473,7 @@ pallõl\' vahtsõt sisseminegi salasõnna {{SITENAME}} ($4) jaos.
 Pruukja "$2" salasõna om noq "$3". Ku olõt nimega sisse lännüq, võit taa aotlidsõ salasõna ärq muutaq.
 Aotlinõ salasõna lätt vanas {{PLURAL:$5|üte päävä|$5 päävä}} peräst.
 
-Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tulõtanuq ja taha-i taad inämb muutaq, 
+Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tulõtanuq ja taha-i taad inämb muutaq,
 sis teku-i seost sõnomist vällä ja pruugiq umma vanna salasõnna edesi.',
 'noemail'                    => 'Kah\'os olõ-i meil pruukja "$1" e-postiaadrõssit.',
 'passwordsent'               => 'Vahtsõnõ salasõna om saadõt pruukja "$1" kirotõdu e-postiaadrõsi pääle. Ku olõt salasõna kätte saanuq, mineq nimega sisse.',
@@ -486,7 +486,7 @@ sis teku-i seost sõnomist vällä ja pruugiq umma vanna salasõnna edesi.',
 'emailnotauthenticated'      => "Su e-postiaadrõssit olõ-i viil kinnütet. Alanolõvi as'on e-kirjo ei saadõtaq.",
 'noemailprefs'               => 'Olõ-i ant e-postiaadrõssit.',
 'emailconfirmlink'           => 'Kinnüdäq uma e-postiaadrõs.',
-'invalidemailaddress'        => 'Olõ-i kõrralik e-postiaadrõs, taa om võlss moodun. 
+'invalidemailaddress'        => 'Olõ-i kõrralik e-postiaadrõs, taa om võlss moodun.
 Kirodaq õigõ e-postiaadrõs vai jätäq rivi rühäs.',
 'accountcreated'             => 'Pruukjanimi luudi',
 'accountcreatedtext'         => 'Luudi pruukjanimi pruukjalõ $1.',
@@ -512,7 +512,7 @@ Oodaq vähä inne ku proovit vahtsõst.",
 'resetpass_forbidden'       => 'Salasõnno saa-i muutaq.',
 'resetpass-no-info'         => 'Taa lehe pääle päsemises piät olõma nimega sisse lännüq.',
 'resetpass-submit-loggedin' => 'Muudaq salasõnna',
-'resetpass-wrong-oldpass'   => 'Viganõ aotlinõ vai parhillanõ salasõna. 
+'resetpass-wrong-oldpass'   => 'Viganõ aotlinõ vai parhillanõ salasõna.
 Või-ollaq olõt jo uma salasõna ärq muutnuq vai küsünüq vahtsõ aotlidsõ salasõna.',
 'resetpass-temp-password'   => 'Aotlinõ salasõna:',
 
@@ -557,7 +557,7 @@ Või-ollaq olõt jo uma salasõna ärq muutnuq vai küsünüq vahtsõ aotlidsõ 
 'blockedtitle'                     => 'Pruukja om kinniq peet',
 'blockedtext'                      => "'''Su pruukjanimi vai puutri võrgoaadrõs om kinniq pant.'''
 
-Kinniqpandja om $1. 
+Kinniqpandja om $1.
 Timä põhjõndus om sääne: ''$2''.
 
 * Kinniqpandmisõ algus: $8
@@ -1035,7 +1035,6 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'file-thumbnail-no'           => "Teedüstü nimi nakkas pääle '''<tt>$1</tt>'''. Taa paistus ollõv vähändet pilt ''(thumbnail)''. Ku sul om olõman taa pilt tävven suurusõn, sis laadiq üles tuu, ku olõ-i, sis muudaq teedüstü nimi ärq.",
 'fileexists-forbidden'        => 'Sääntse nimega teedüstü om jo olõman. Pästäq teedüstü tõõsõ nimega. Parhillanõ teedüstü: [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Sama nimega teedüstü om jo olõman jaetuidõ teedüstüide hulgan. Pästäq teedüstü mõnõ tõõsõ nime ala. Parhillanõ teedüstü: [[File:$1|thumb|center|$1]]',
-'upload-success-subj'            => "Üleslaatminõ läts' kõrda",
 'uploadwarning'               => 'Üleslaatmishoiatus',
 'savefile'                    => 'Pästäq teedüstü ärq',
 'uploadedimage'               => 'laadõ üles "$1"',
@@ -1051,6 +1050,7 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'upload-wasdeleted'           => "'''Hoiatus: Sa proovit üles laatiq teedüstüt, miä om innemb ärq kistutõt.'''
 
 Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüstü ärqkistutamisõ kotsilõ:",
+'upload-success-subj'         => "Üleslaatminõ läts' kõrda",
 
 'upload-proto-error'      => 'Viganõ protokoll',
 'upload-proto-error-text' => 'Üles saa laatiq õnnõ aadrõssidõ päält, mink alostusõn om <code>http://</code> vai <code>ftp://</code>.',
@@ -1788,7 +1788,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-recreate'                => 'Tuuq taa leht kisutõduist tagasi',
 'tooltip-upload'                  => 'Nakkaq üles laatma',
 'tooltip-rollback'                => 'Tagasivõtminõ tege üte klõpsiga tühäs perämädse toimõndaja tettü(q) muutmisõ(q)',
-'tooltip-undo'                    => '"Võtaq tagasi" tege seo muutmisõ tühäs ja tege lehe kaemisaknõn vallalõ.  
+'tooltip-undo'                    => '"Võtaq tagasi" tege seo muutmisõ tühäs ja tege lehe kaemisaknõn vallalõ.
 Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 
 # Stylesheets

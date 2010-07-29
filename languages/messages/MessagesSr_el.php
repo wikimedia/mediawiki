@@ -1525,7 +1525,6 @@ Molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|cente
 'file-exists-duplicate'       => 'Ovaj fajl je duplikat {{PLURAL:$1|sledećeg fajla|sledeđih fajlova}}:',
 'file-deleted-duplicate'      => 'Fajl identičan ovom ([[$1]]) je već bio obrisan.
 Trebalo bi da proverite istoriju brisanja fajla pre ponovnog slanja.',
-'upload-success-subj'            => 'Uspešno slanje',
 'uploadwarning'               => 'Upozorenje pri slanju',
 'uploadwarning-text'          => 'Molimo Vas da izmenite opis fajla ispod i pokušate ponovo.',
 'savefile'                    => 'Snimi fajl',
@@ -1551,6 +1550,7 @@ Molimo, proverite podešavanja file_uploads.',
 Proverite da li ste sigurno da želite poslati ovaj fajl.
 Razlog brisanja ovog fajla ranije je:",
 'filename-bad-prefix'         => "Ime ovog fajla počinje sa '''\"\$1\"''', što nije opisno ime, najčešće je nazvan automatski sa digitalnim fotoaparatom. Molimo izaberite opisnije ime za vaš fajl.",
+'upload-success-subj'         => 'Uspešno slanje',
 
 'upload-proto-error'        => 'Nekorektni protokol',
 'upload-proto-error-text'   => 'Slanje eksternih fajlova zahteva URLove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',

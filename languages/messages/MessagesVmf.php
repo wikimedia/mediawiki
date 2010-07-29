@@ -308,7 +308,7 @@ $1",
 
 # Main script and global functions
 'nosuchaction'      => 'Des schded ned dsur auswaal',
-'nosuchactiontext'  => "Di agdsjoon, dii in dr URL schdäd, ged ned. 
+'nosuchactiontext'  => "Di agdsjoon, dii in dr URL schdäd, ged ned.
 Filajchd is di URL falsch gschriiwn, odr duu bisch âm falschn lingg nôôch.
 S'ghend aa â brogramiirfäälâr in dr sofdwäâr sâj, dii baj {{SITENAME}} lefd.",
 'nosuchspecialpage' => "Dii sôndâr-sajdn gajd's ned",
@@ -337,7 +337,7 @@ aus dr fungdsjoon "<tt>$2</tt>". Un dôôdruf had dan di daadnbangg den feelâr 
 Gschbärd is se desdâweechn: $1",
 'missing-article'    => "Di daadnbangh had dii sajdn „$1“ $2 ned gfundn.
 
-Wen des basiird, dan massdn`s, wemma â dsu alde bearbajdung ôôschaua wil odâ ane fonra gleschdn sajdn.  
+Wen des basiird, dan massdn`s, wemma â dsu alde bearbajdung ôôschaua wil odâ ane fonra gleschdn sajdn.
 
 Wen's des ned is, bisd womeeglich iwa ân feela in dr sofdwäâr gschdolbäd. In dämm Fall melds´däs, bidde mid där URL, am [[Special:ListUsers/sysop|Administrator]].",
 'missingarticle-rev' => '(wärsjoonsnumâr: $1)',
@@ -413,7 +413,7 @@ Schrajb des bide als dâdsu, wen De Dich meldsd.",
 Um dii sajdn ôôdsleechn, schrajb Dajn dhägsd in deen rôôma dô undn naj (fir aandslhajdn, schau af dâr [[{{MediaWiki:Helppage}}|hilfesajdn]] nôôch).
 Wen'D dich awâr hiirhäär bloos fârlaafn hasd, glig ââfach af '''Zurück''' in Dajm brausâr, dan geedâr dôôhi dsrig, wos'D häärghumma bisd.",
 'noarticletext'                    => 'Dii sajdn gibd\'s bis eds no ned.
-Duu ghâusch nach däm ausdrug aa [[Special:Search/{{PAGENAME}}|in alle sajdn suchng]], 
+Duu ghâusch nach däm ausdrug aa [[Special:Search/{{PAGENAME}}|in alle sajdn suchng]],
 <span class="plainlinks"> [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} in di dsugheerichng log-biichâr suchng] odâr dii sajdn [{{fullurl:{{FULLPAGENAME}}|action=edit}} ôôleeng un najschrajm]</span>.',
 'previewnote'                      => "'''Hiir siggsd bloos, wii's wärn dääd, dii sajdn is ôbâr no ned gschbaichärd!'''",
 'editing'                          => 'Beärbâdn fon $1',
@@ -915,10 +915,10 @@ Bidde gug's mi´m foorschau-gnobf ôô fôrm schbajchan",
 'modern.css'      => "/* CSS hiir beâjflusd nôr dii Modern-schelfn. Wen'd ale uf ôômôôl beâjflusn wilsch, muâsch an MediaWiki:Common.css was ändârn. */
 
 /* Dii glôôschrajwung im nawigadsjoonsberajch fârhindârd des: */
-.portlet h5,  
-.portlet h6,  
-#p-personal ul,  
-#p-cactions li a,  
+.portlet h5,
+.portlet h6,
+#p-personal ul,
+#p-cactions li a,
 #preftoc a {
      text-transform: none;
 }",

@@ -1365,7 +1365,6 @@ As jo de triem dochs noch oanbiede wolle, gean dan werom en kies in oare namme.
 'file-exists-duplicate'       => 'Dizze triem is idintyk oan {{PLURAL:$1|de folgjende triem|de folgjende triemmen}}:',
 'file-deleted-duplicate'      => "In bestân idintyk oan dit bestân ([[$1]]) is foarhinne fuorthelle.
 Rieplachtsje it fuorthel-logboek foar't jo fierder geane.",
-'upload-success-subj'            => 'Oanbieden slagge.',
 'uploadwarning'               => 'Oanbied-warskôging',
 'savefile'                    => 'Lis triem fêst',
 'uploadedimage'               => ' "[[$1]]" oanbean',
@@ -1400,6 +1399,7 @@ JD # Jenoptik
 MGP # Pentax
 PICT # ferskaat
  #</pre> <!-- lit dizze line exakt sa't er is -->",
+'upload-success-subj'         => 'Oanbieden slagge.',
 
 'upload-proto-error'      => 'Ferkeard protokol',
 'upload-proto-error-text' => "Oanbieden mei dizze metoade freget URL's dy't begjinne mei <code>http://</code> of <code>ftp://</code>.",

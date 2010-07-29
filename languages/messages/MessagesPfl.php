@@ -217,7 +217,7 @@ S kann sai, dass es ää orrer meh Zaiche drin hot, wu in Sairetitel nid därfe 
 'anoneditwarning'                  => "'''Warnung:''' Du bischt nit aagemeldt. Dai IP-Adress werd in de Gschicht vun dem Artikel gspaichert.",
 'summary-preview'                  => 'Zammefassung:',
 'newarticle'                       => '(Nai)',
-'newarticletext'                   => "Du bisch eme Link nogange zu re Said, wu s no gar nit gebbt.  
+'newarticletext'                   => "Du bisch eme Link nogange zu re Said, wu s no gar nit gebbt.
 Zum die Said aaleche, kannscht do in dem Käschtel unne aafange mid schraiwe (guck[[{{MediaWiki:Helppage}}|Hilfe]] fer meh Informatione).
 Wenn do nid hin hoscht welle, no druck in Daim Browser uff '''Zrick'''.",
 'noarticletext'                    => 'Uff derre Said gebbt s noch ken Text. Du kannscht uff annere Saire [[Special:Search/{{PAGENAME}}|den Aitrach suche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de Logbuchaidrach suche, wu dezu ghert],
@@ -567,7 +567,7 @@ Des isch e wichdiche Ännerung fer e Said un kann ziehmlich unerwartet sai fer w
 bitte mach des numme, wenn Du die Folche vun derre Aktion kannsch abschätze.",
 'movepagetalktext' => "D Dischbediersaid werd ach mid verschowe, '''ausser:'''
 *Du verschiebsch die Saire in e annere Nasmensraum, orrer
-*s gebbt schun e Dischbediersaid mi dem Name, orrer 
+*s gebbt schun e Dischbediersaid mi dem Name, orrer
 *Du wählsch unne d Option, se nid z verschiewe.
 
 In denne Fäll misst mer d Dischbediersaid vun Hand kopiere.",

@@ -93,7 +93,7 @@ $messages = array(
 'viewsource' => 'Videts-u fãntãnã',
 
 # Login and logout pages
-'welcomecreation'    => '== Ghine vinish, $1 == 
+'welcomecreation'    => '== Ghine vinish, $1 ==
 
 Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {{SITENAME}}.',
 'yourname'           => 'Numa di ufilizitor:',

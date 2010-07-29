@@ -445,7 +445,7 @@ Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'gotaccountlink'             => 'Dogluyara',
 'createaccountmail'          => 'kan e-mail',
 'badretype'                  => 'Toloy suteyen remravlem tid menuxaf.',
-'userexists'                 => 'Favesikyolt rinon suteyen ixam zo faver. 
+'userexists'                 => 'Favesikyolt rinon suteyen ixam zo faver.
 Va amidaf yolt gokiblal.',
 'loginerror'                 => 'Pilkomodajara',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n'êtes pas connecté. {{SITENAME}} utilise des cookies pour la connexion mais vous avez les cookies désactives. Merci de les activer et de vous reconnecter.",
@@ -540,7 +540,7 @@ Ta da wan zo pilkomodal, va warzaf remravlem batlize gobazel :",
 'blockedtitle'                     => 'Elekan favesik',
 'blockedtext'                      => '\'\'\'Rinafa favesikpata oku IP mane tid elekayane.\'\'\'
 
-Elekara skuyuna gan $1. 
+Elekara skuyuna gan $1.
 Lazava tir \'\'$2\'\'.
 
 * Elekaratoza : $8
@@ -1048,7 +1048,7 @@ Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 'illegalfilename'             => '« $1 » iyeltakyolt va biuna staa koe buvergumvelt ruldar. Vay, vaon tolyoltal aze tolksudal.',
 'badfilename'                 => 'Tolyoltayana ewava « $1 ».',
 'filetype-badmime'            => 'Iyeltak ton "$1" MIME ord tir merokalvajan.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' tir iyeltakordaj. 
+'filetype-unwanted-type'      => "'''\".\$1\"''' tir iyeltakordaj.
 {{PLURAL:\$3|iyeltakord tir|iyeltakord tid}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' tir merictan iyeltakord. Rictan iyeltakord {{PLURAL:\$3|tir|tid}} \$2.",
 'filetype-missing'            => 'Iyeltak tir oxiaciskaf (tulon ".jpg").',
@@ -1072,7 +1072,6 @@ Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel.
 'fileexists-shared-forbidden' => 'Koe pakano iyeltakxo milyoltaf iyeltak ixam tir.
 Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bat iyeltak tir jontolaca ke {{PLURAL:$1|iyeltak|iyeltak}}:',
-'upload-success-subj'            => 'Ksudanhara',
 'uploadwarning'               => 'Obral !',
 'savefile'                    => 'Giwara va iyeltak',
 'uploadedimage'               => '« [[$1]] » ksudayan mo zanisiko',
@@ -1089,6 +1088,7 @@ Ede va man iyeltak soe co-djukalvajal, vay dimpil ise va warzaf yolt favel. [[Fi
 
 Gokrafial ede tolkalvajara va bat iyeltak tir vodanhafa.
 Sulara \"log\" va batu bu krafiason batlize zo nedir :",
+'upload-success-subj'         => 'Ksudanhara',
 
 'upload-proto-error'     => 'Kitsendaj',
 'upload-file-error'      => 'Koefa rokla',

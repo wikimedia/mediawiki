@@ -412,7 +412,7 @@ Prašuom pasėrėnktė kėtuoki varda.',
 'nocookieslogin'             => "Vikipedėjė nauduo pakavukus (''cookies''), kū prijongtu nauduotuojus. Tamsta esat ėšjongės anūs. Prašuom ijongtė pakavukus ė pamiegītė viel.",
 'loginsuccesstitle'          => 'Siekmingā prisėjongiet.',
 'loginsuccess'               => "'''Nūnā Tamsta esot prisėjongės pri {{SITENAME}} kāp „$1“.'''",
-'nosuchuser'                 => 'Nier anėjuokė nauduotuojė pavadėnta „$1“. 
+'nosuchuser'                 => 'Nier anėjuokė nauduotuojė pavadėnta „$1“.
 Patikrėnkėt rašība, aba [[Special:UserLogin/signup|sokorkėt naujė paskīra]].',
 'nosuchusershort'            => 'Nier juokė nauduotuojė, pavadėnta „$1“. Patėkrinkėt rašība.',
 'nouserspecified'            => 'Tamstā rēk nuruodītė nauduotuojė varda.',
@@ -499,7 +499,7 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'blockedtitle'                     => 'Nauduotuos īr ožblokouts',
 'blockedtext'                      => "'''Tamstas nauduotuojė vards a IP adresos īr ožblokouts.'''
 
-Ožbluokava $1. 
+Ožbluokava $1.
 Nuruodīta prižastis īr ''$2''.
 
 * Bluokavėma pradžia: $8
@@ -545,7 +545,7 @@ Tas IP adresos gal būtė dalinams keletō nauduotuoju.
 Jēgo Tamsta esat anonimėnis nauduotuos ėr veizėt, kū kuomentarā nier skėrtė Tamstā, [[Special:UserLogin/signup|sokorkėt paskīra]] aba [[Special:UserLogin|prisėjonkėt]], ė nebūsėt maišuoms so kėtās anonimėnēs nauduotuojās.''",
 'noarticletext'                    => 'Tuo čiesu tamė poslapī nier juokė teksta.
 Tamsta galėt [[Special:Search/{{PAGENAME}}|ėiškuotė šėta poslapė pavadėnėma]] kėtūs poslapiūs,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ėiškuotė sosėjosiu regėstru], 
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ėiškuotė sosėjosiu regėstru],
 aba [{{fullurl:{{FULLPAGENAME}}|action=edit}} keistė ta poslapi].',
 'userpage-userdoesnotexist'        => 'Nauduotuojė paskīra „$1“ nier ožregėstrouta. Prašuom patikrėntė, a Tamsta nuorėt kortė/keistė ta poslapi.',
 'clearyourcache'                   => "'''Diemesė:''' ėšsauguojus Tamstā gal prireiktė ėšvalītė Tamstas naršīklės rėnktovė, kū paveizėtomėt pakeitėmus. '''Mozilla / Safari / Konqueror:''' laikīdami ''Shift'' pasėrinkėt ''Atsiōstė ėš nauja'', a paspauskėt ''Ctrl-Shift-R'' (sėstemuo Apple Mac ''Cmd-Shift-R''); '''IE:''' laikīdamė ''Ctrl'' paspauskėt ''Atnaujėntė'', o paspauskėt ''Ctrl-F5''; '''Konqueror:''' paprastiausē paspauskėt ''Perkrautė'' mīgtoka, o paspauskėt ''F5''; '''Opera''' nauduotuojam gal prireiktė pėlnā ėšvalītė anū rėnktovė ''Rakondā→Nustatīmā''.",
@@ -942,7 +942,6 @@ Nuoriedamė panauduotė ikelta faila poslapī, nauduokėt tuokės nūoruodas:
 * Jau esontė faila pavadinėms: '''<tt>[[:$2]]</tt>'''
 Prašuom ėšsėrėnktė kėta varda.",
 'file-exists-duplicate'      => 'Tas fails īr {{PLURAL:$1|šėta faila|šėtū failu}} doblėkats:',
-'upload-success-subj'           => 'Ikelt siekmėngā',
 'uploadwarning'              => 'Diemesė',
 'savefile'                   => 'Ėšsauguotė faila',
 'uploadedimage'              => 'ikielė „[[$1]]“',
@@ -958,6 +957,7 @@ Prašuom ėšsėrėnktė kėta varda.",
 
 Tamsta torietomiet nusprēstė, a īr naudėnga tuoliau ikeldinietė ta faila.
 Tuo faila pašalinėma istuorėjė īr pateikta dielē patuogoma:",
+'upload-success-subj'        => 'Ikelt siekmėngā',
 
 'upload-proto-error'      => 'Nateisėngs protuokols',
 'upload-proto-error-text' => 'Nutuolinē ikielims raikalaun, kū URL prasėdietu <code>http://</code> o <code>ftp://</code>.',

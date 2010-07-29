@@ -485,7 +485,7 @@ Mitta n'otra vota.",
 'password-name-match'        => "'A password toje adda essere diverse da 'u nome utende tue.",
 'mailmypassword'             => 'Passuord nova pe e-mail',
 'passwordremindertitle'      => 'Passuord temboranea nova pe {{SITENAME}}',
-'passwordremindertext'       => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova password pe {{SITENAME}} (\$4). 
+'passwordremindertext'       => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova password pe {{SITENAME}} (\$4).
 'Na password temboranea pe l'utende \"\$2\" ha state ccrejete e ha state 'mbostete a \"\$3\".
 Ce quiste ere quidde ca vulive, mo vide ce te colleghe e te scacchie 'na password nova.
 'A password temboranea adda murè 'mbrà {{PLURAL:\$5|'nu giurne|\$5 giurne}}.
@@ -595,7 +595,7 @@ Ce tu cazze \"{{int:savearticle}}\" 'n'otra vote, 'u cangiamende tune avène mem
 * Tipe de blocche: $7
 
 Tu puè condatta $1 o n'otre [[{{MediaWiki:Grouppage-sysop}}|amministratore]] pe 'ngazzarte sus a 'u blocche.
-Tu non ge puè ausà 'u strumende 'manne 'na mail a stu utende' senza ca mitte n'indirizze e-mail valide jndr'à le 
+Tu non ge puè ausà 'u strumende 'manne 'na mail a stu utende' senza ca mitte n'indirizze e-mail valide jndr'à le
 [[Special:Preferences|preferenze tue]] e ce è state blocchete sus 'a l'use sue.
 L'IP ca tine mò jè $3 e 'u codece d'u blocche jè #$5.
 Pe piacere mitte ste doje 'mbormaziune ce manne 'na richieste de sblocche.",
@@ -1427,7 +1427,6 @@ ce tu vuè angore carecà stu file, pe piacere tuèrne rrete e ause 'nu nome nu�
 'file-exists-duplicate'       => "Stu file jè 'na copie {{PLURAL:$1|d'u seguende file|de le seguende file}}:",
 'file-deleted-duplicate'      => "'Nu file uguale a stu file ([[$1]]) ha state scangellate precedendemende.<br />
 Avissa verificà 'a storie d'a scangellazzione d'u file apprime de condinuà a carecarle.",
-'upload-success-subj'            => 'Carecamende sciute apposte',
 'uploadwarning'               => 'Avvise de carecamende',
 'uploadwarning-text'          => "Pe piacere cange 'a descrizione d'u file sotte e pruève 'notra vote.",
 'savefile'                    => "Reggistre 'u file",
@@ -1455,6 +1454,7 @@ Tu avissa considerà ce è  proprie utile carecà stu file.
 L'archivije de le scangellaminde pe stu file 'u iacchije aqquà pe convenienze:",
 'filename-bad-prefix'         => "'U nome d'u file ca tu ste careche accumenze pe '''\"\$1\"''', ca normalmende jè 'u nome ca assegne a machena fotografeche e non 'nu nome descrittive d'u file ca vuè ccu careche.
 Pe piacere scacchie 'n'otre nome ca jè cchiù descrittive.",
+'upload-success-subj'         => 'Carecamende sciute apposte',
 'upload-failure-subj'         => 'Careche le probbleme',
 
 'upload-proto-error'        => 'Protocolle scorrette',

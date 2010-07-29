@@ -35,7 +35,7 @@ $namespaceNames = array(
 
 $linkTrail = '/^([a-zа-яёӝӟӥӧӵ“»]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1251';
-$separatorTransformTable = array(',' => ' ', '.' => ',' );
+$separatorTransformTable = array( ',' => ' ', '.' => ',' );
 
 $messages = array(
 'linkprefix' => '/^(.*?)(„|«)$/sDu',

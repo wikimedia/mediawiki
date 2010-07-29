@@ -513,7 +513,7 @@ $1 na oras.',
 'resetpass_success'         => 'Naribayan na an saimong sekretong panlaog! Pigpapadagos ka na...',
 'resetpass_forbidden'       => 'Dai pwedeng ribayan an mga sekretong panlaog sa ining wiki',
 'resetpass-submit-loggedin' => 'Ribayan an sekretong panlaog',
-'resetpass-wrong-oldpass'   => 'Saláng temporaryo o presenteng sekretong panlaog. 
+'resetpass-wrong-oldpass'   => 'Saláng temporaryo o presenteng sekretong panlaog.
 Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong sekretong panlaog.',
 'resetpass-temp-password'   => 'Temporaryong sekretong panlaog:',
 
@@ -967,7 +967,6 @@ Kun an sinosog na ''file'' iyo an parehong ladawan na nasa dating sokol, dai na 
 Kun igwa ka nin ladawan na may resolusyón na maximo ikarga tabî ini, kun dai, bâgohon tabî an pangaran nin ''file''.",
 'fileexists-forbidden'        => "Igwa nang ''file'' na may parehong pangaran; bumalik tabi asin ikarga an ''file'' sa bâgong pangaran [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Igwa nang ''file'' na may parehong pangaran sa repositoryo nin mga bakas na ''file''; bumalik tabî asin ikarga an ''file'' sa bâgong pangaran. [[File:$1|thumb|center|$1]]",
-'upload-success-subj'            => 'Nakarga na',
 'uploadwarning'               => 'Patanid sa pagkarga',
 'savefile'                    => "Itagama an ''file''",
 'uploadedimage'               => 'Ikinarga "[[$1]]"',
@@ -985,6 +984,7 @@ Kun igwa ka nin ladawan na may resolusyón na maximo ikarga tabî ini, kun dai, 
 Isipon tabi kun maninigo an pagkarga giraray kaini.
 An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'filename-bad-prefix'         => "An pangaran nin ''file'' na pigkakarga mo nagpopoon sa '''\"\$1\"''', sarong pangaran na dai makapaladawan na normalmente enseguidang pigtatao kan mga kamerang digital. Magpili tabî nin pangaran nin ''file'' na mas makapaladawan.",
+'upload-success-subj'         => 'Nakarga na',
 
 'upload-proto-error'      => 'Salang protocolo',
 'upload-proto-error-text' => 'An pagkargang panharayo kaipuhan nin mga URLs na nagpopoon sa  <code>http://</code> o <code>ftp://</code>.',
@@ -2012,7 +2012,7 @@ Tangarig maghalì nin titulo, markahan an kahon sa gilid kaini, dangan pindotón
 'watchlistedit-normal-done'    => 'Pigtangkas an {{PLURAL:$1|1 an titulo|$1 mga titulo}} sa saimong pigbabantayan:',
 'watchlistedit-raw-title'      => 'Hirahón an bàgong pigbabantayan',
 'watchlistedit-raw-legend'     => 'Hirahón an bàgong pigbabantayan',
-'watchlistedit-raw-explain'    => 'Mahihiling sa babâ an mga titulo na nasa pigbabantayan mo, asin pwede ining hirahón sa paagi nin pagdugang sagkod paghalì sa lista; 
+'watchlistedit-raw-explain'    => 'Mahihiling sa babâ an mga titulo na nasa pigbabantayan mo, asin pwede ining hirahón sa paagi nin pagdugang sagkod paghalì sa lista;
 sarong titulo kada linya.
 Pag tapos na, lagatikón an Bàgohón an Pigbabantayan.
 Pwede mo man [[Special:Watchlist/edit|gamiton an standard editor]].',

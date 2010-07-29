@@ -1494,7 +1494,6 @@ Jeli maš tutón wobraz z połnym rozeznaćom, nahraj tutón, hewak změń proš
 'fileexists-shared-forbidden' => 'Dataja z tutym mjenom hižo eksistuje w zhromadnej chowarni. Jeli hišće chceš swoju dataju nahrać,  dźi prošu wróćo a wužij nowe mjeno. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tuta dataja je duplikat {{PLURAL:$1|slědowaceje dataje|slědowaceju datajow|slědowacych datajow|slědowacych datajow}}:',
 'file-deleted-duplicate'      => 'Dataja, kotraž je identiska z tutej dataju ([[$1]]), je so prjedy zničiła. Ty měł stawizny zničenja tuteje dataje přepruwować, prjedy pokročuješ z jeje zasonahrawanjom.',
-'upload-success-subj'            => 'Dataja bu wuspěšnje nahrata',
 'uploadwarning'               => 'Warnowanje',
 'uploadwarning-text'          => 'Prošu změń slědowace datajowe wopisanje a spytaj hišće raz.',
 'savefile'                    => 'Dataju składować',
@@ -1536,7 +1535,8 @@ JD # Jenoptik
 MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń tutu linku! -->',
-'upload-success-msg'       => 'Twoje nahraće steji tu k dispoziciji: $1',
+'upload-success-subj'         => 'Dataja bu wuspěšnje nahrata',
+'upload-success-msg'          => 'Twoje nahraće steji tu k dispoziciji: $1',
 'upload-failure-subj'         => 'Nahrawanski problem',
 'upload-failure-msg'          => 'Bě problem z twojim nahraćom:
 

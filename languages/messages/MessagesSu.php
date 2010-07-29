@@ -1342,7 +1342,6 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'fileexists-forbidden'        => 'Koropak nu ngaranna ieu geus aya; mangga balik deui sarta muatkeun koropakna maké ngaran nu béda. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Koropak nu ngaranna ieu geus aya dina gudang koropak babagi (''shared file repository''); mangga balik deui sarta muatkeun koropak ieu maké ngaran nu béda. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Gambar ieu duplikat sareng {{PLURAL:$1|gambar|gambar}}:',
-'upload-success-subj'            => 'Ngamuat geus hasil',
 'uploadwarning'               => 'Pépéling ngamuat',
 'savefile'                    => 'Simpen koropak',
 'uploadedimage'               => 'ngamuat "[[$1]]"',
@@ -1360,6 +1359,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'upload-options'              => 'Pilihan muat',
 'watchthisupload'             => 'Awaskeun ieu kaca',
 'filewasdeleted'              => 'Ngaran koropak ieu geus di hapus. Anjeun kudu ningali ka $1 sa acan muatkeun koropak deui',
+'upload-success-subj'         => 'Ngamuat geus hasil',
 
 'upload-proto-error'  => 'Salah protokol',
 'upload-file-error'   => 'Kasalahan internal',

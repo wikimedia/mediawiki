@@ -1356,7 +1356,6 @@ Nëse keni këtë figurë me madhësi të plotë ju lutem të ngarkoni atë, pë
 'fileexists-forbidden'        => 'Ekziston një skedë me të njëjtin emër. Ju lutemi kthehuni mbrapsh dhe ngarkoni këtë skedë me një emër të ri. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ekziston një skedë me të njëjtin emër në magazinën e përbashkët. Ju lutem kthehuni mbrapsh dhe ngarkojeni këtë skedë me një emër të ri. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Kjo skedë është dyfish i {{PLURAL:$1|skedës|skedave}} në vijim:',
-'upload-success-subj'            => 'Dhënie e sukseshme',
 'uploadwarning'               => 'Kujdes dhënie',
 'savefile'                    => 'Ruaj skedën',
 'uploadedimage'               => 'dha "[[$1]]"',
@@ -1376,6 +1375,7 @@ Duhet të mendoheni nëse është e pranueshme ngarkimi i kësaj skede.
 Regjistri i grisjes së skedës jepet më poshtë:",
 'filename-bad-prefix'         => "Emri i skedës që po ngarkoni fillon me '''\"\$1\"''' dhe nuk është veçantisht përshkrues pasi përdoret nga shumë kamera.
 Ju lutem zgjidhni një emër më përshkrues për skedën tuaj.",
+'upload-success-subj'         => 'Dhënie e sukseshme',
 
 'upload-proto-error'      => 'Protokoll i gabuar',
 'upload-proto-error-text' => 'Ngarkimet nga rrjeti kërkojnë që adresa URL të fillojë me <code>http://</code> ose <code>ftp://</code>.',

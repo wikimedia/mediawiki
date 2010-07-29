@@ -1119,7 +1119,6 @@ Si entovia quieris empuntal el archivu, pol favol, güervi atrás i empuntalu co
 Si acontinas queriendu empuntal el archivu, vai alatrás i escambia el nombri el archivu.
  [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Esti archivu es un dupricau {{PLURAL:$1|el siguienti archivu|los siguientis archivus}}:',
-'upload-success-subj'            => 'Empuntu satisfatoriu',
 'uploadwarning'               => 'Avisu d´empuntu',
 'savefile'                    => 'Emburacal archivu',
 'uploadedimage'               => 'emputau "[[$1]]"',
@@ -1138,6 +1137,7 @@ Si acontinas queriendu empuntal el archivu, vai alatrás i escambia el nombri el
 Eberias arreparal en si es convenienti acontinal empuntandu el archivu u nu.
 Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'filename-bad-prefix'         => "El nombri del archivu qu'estás empuntandu esmiença pol '''\"\$1\"''', es izil, es un nombri nu descritivu (típicu nombri dau autumaticamenti pol cámaras dehitalis). Pol favol, chamba el nombri del tu archivu.",
+'upload-success-subj'         => 'Empuntu satisfatoriu',
 
 'upload-proto-error'      => 'Protocolu encorretu',
 'upload-proto-error-text' => 'El empuntu remotu prehisa e "URLs" qu´esmiencin pol <code>http://</code> u <code>ftp://</code>.',

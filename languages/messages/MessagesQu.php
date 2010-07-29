@@ -748,7 +748,7 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'resetpass-no-info'         => "Yaykunaykim tiyan kay p'anqata chiqalla aypanaykipaq.",
 'resetpass-submit-loggedin' => 'Yaykuna rimata hukchay',
 'resetpass-submit-cancel'   => 'Tatiy',
-'resetpass-wrong-oldpass'   => "Mit'alla icha kunan yaykuna rimaqa manam allinchu. 
+'resetpass-wrong-oldpass'   => "Mit'alla icha kunan yaykuna rimaqa manam allinchu.
 Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata mañakurqunkiñachá.",
 'resetpass-temp-password'   => "Mit'alla yaykuna rima:",
 
@@ -1609,7 +1609,6 @@ Kay churkunayki rikcha hunt'a chhikan kayniyuq kaptinqa, chay hunt'atam churkuy,
 'fileexists-shared-forbidden' => "Kay sutiyuq willañiqiqa kachkañam rakinakusqa willañiqi qullqapi. Ama hina kaspa, churkuyta munaspaykiraq, ñawpaq p'anqaman kutispa willañiqiykita huk sutiwan churkuy. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Kay willañiqiqa kay qatiq {{PLURAL:$1|willañiqip|willañiqikunap}} iskaychasqanmi:',
 'file-deleted-duplicate'      => 'Kay hinalla ([[$1]]) willañiqiña qullusqam karqa. Qhawariy imarayku qullusqa karqa, manaraq musuqmanta churkuykachaspa.',
-'upload-success-subj'            => 'Aypalla churkusqañam',
 'uploadwarning'               => 'Willañiqi churkuymanta paqtataq niy',
 'uploadwarning-text'          => 'Ama hina kaspa, kay qatiqpi kaq willañiqimanta willaykunata hukchaspa musuqmanta ruraykachay.',
 'savefile'                    => 'Willañiqita waqaychay',
@@ -1636,7 +1635,8 @@ Kay churkunayki rikcha hunt'a chhikan kayniyuq kaptinqa, chay hunt'atam churkuy,
 Hamut'arinaykim tiyanman, kay willañiqita musuqmanta churkuyqa allinchu mana allinchu chaylla.
 Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'filename-bad-prefix'         => "Churkunayasqayki willañiqip sutinqa '''\"\$1\"''' nisqawanmi qallarin. Chay sutinqa iliktruniku rikcha hap'inap kamasqanmanmi rikch'akun. Ama hina kaspa, willañiqiykita astawan t'iktuq sutinta akllay.",
-'upload-success-msg'       => 'Churkusqaykiqa kaypim tarinalla: $1',
+'upload-success-subj'         => 'Aypalla churkusqañam',
+'upload-success-msg'          => 'Churkusqaykiqa kaypim tarinalla: $1',
 'upload-failure-subj'         => 'Churkuy sasachakuy',
 'upload-failure-msg'          => 'Churkuyniykiwanqa sasachakuymi karqan:
 

@@ -390,7 +390,7 @@ Tšüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on
 'watchlistfor'      => '$1',
 'addedwatch'        => 'Lisättü kattsospiizgallõ',
 'addedwatchtext'    => "Tšültši \"[[:\$1]]\" on lisättü Teďďee [[Special:Watchlist|kattsospiizgallõ]].
-Tšültšese ja sene juttutšültšese tehäväd tulõvaizõd muutuhsõd leeväd tšisloitõtud siäll. 
+Tšültšese ja sene juttutšültšese tehäväd tulõvaizõd muutuhsõd leeväd tšisloitõtud siäll.
 Tšültši leeb tširjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall viimeizije muutuhsijõ]].",
 'removedwatch'      => 'Pantu kattsõspiizgalt poiz',
 'removedwatchtext'  => 'Tšültši "[[:$1]]" on pantu [[Special:Watchlist|teďďee kattsõspiizgalt]] poiz.',
@@ -586,7 +586,7 @@ Että või muuttaa tšültšia, mutta võittõ kattsoa sene lähtekoodi.',
 'tooltip-compareselectedversions' => 'Näütää vahõd 2 valitsõttuďďõ verzijoďďõ väliz',
 'tooltip-watch'                   => 'Lissä kase tšültši kattsõspiizgallõ',
 'tooltip-rollback'                => 'Vääntega tšüľľee teksti vanõmpi verzijalõõ',
-'tooltip-undo'                    => '"Kummut" väänteeb kasene muutusõõ ja avab artikkelii prestavleńńaa. 
+'tooltip-undo'                    => '"Kummut" väänteeb kasene muutusõõ ja avab artikkelii prestavleńńaa.
 Toož, võittõ tširjutta väänteüssee süü.',
 
 # Browsing diffs
