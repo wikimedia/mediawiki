@@ -370,6 +370,21 @@ Regression with preformatted in <center>
 
 !! end
 
+# Expected output in the following test is not really expected (there should be
+# <pre> in the output) -- it's only testing for well-formedness.
+!! test
+Bug 6200: Preformatted in <blockquote>
+!! input
+<blockquote>
+ Blah
+</blockquote>
+!! result
+<blockquote>
+ Blah
+</blockquote>
+
+!! end
+
 !! test
 <pre> with attributes (bug 3202)
 !! input
@@ -7042,6 +7057,29 @@ __NOEDITSECTION__
 <h3> <span class="mw-headline" id=".2B:.3A.253A.26.26.5D.5D"> _ +:.3A%3A&amp;&amp;]] </span></h3>
 <p>.2B:.3A.253A.26.26.5D.5D
 </p>
+!! end
+
+# Expected output in the following test is not necessarily expected (there
+# should probably be <p> tags inside the <blockquote> in the output) -- it's
+# only testing for well-formedness.
+!! test
+Bug 6200: blockquotes and paragraph formatting
+!! input
+<blockquote>
+foo
+</blockquote>
+
+bar
+
+ baz
+!! result
+<blockquote>
+foo
+</blockquote>
+<p>bar
+</p>
+<pre>baz
+</pre>
 !! end
 
 !! test
