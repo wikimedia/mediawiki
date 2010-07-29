@@ -98,13 +98,6 @@ abstract class Installer {
 	 * output format such as HTML or text before being sent to the user.
 	 */
 	public abstract function showMessage( $msg /*, ... */ );
-
-	/**
-	 * TODO: doucment
-	 * 
-	 * @param $status
-	 */
-	public abstract function showStatusMessage( $status );	
 	
 	/**
 	 * Constructor, always call this from child classes.

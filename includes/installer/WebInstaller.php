@@ -884,15 +884,6 @@ class WebInstaller extends CoreInstaller {
 		}
 	}
 
-	public function showStatusMessage( $status ) {
-		$text = $status->getWikiText();
-		$this->output->addWikiText(
-			"<div class=\"config-message\">\n" .
-			$text .
-			"</div>"
-		);
-	}
-
 	/**
 	 * Convenience function to set variables based on form data.
 	 * Assumes that variables containing "password" in the name are (potentially
