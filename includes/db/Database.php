@@ -1530,6 +1530,7 @@ abstract class DatabaseBase {
 	 * for subpages of 'My page title'.
 	 * Alternatively: $pattern = array( 'My_page_title/', $dbr->anyString() ); $query .= $dbr->buildLike( $pattern );
 	 *
+	 * @since 1.16
 	 * @return String: fully built LIKE statement
 	 */
 	function buildLike() {
