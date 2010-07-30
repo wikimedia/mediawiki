@@ -1686,11 +1686,13 @@ MGP # Pentax
 PICT # wiele różnych
   #</pre> <!-- nie modyfikuj tej linii -->',
 'upload-success-subj'         => 'Przesłanie pliku powiodło się',
-'upload-success-msg'          => 'Przesłany plik jest dostępny tutaj – [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Przesłano plik z [$2]. Jest dostępny tutaj – [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem z przesłaniem pliku',
 'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu Twojego pliku:
 
 $1',
+'upload-warning-subj'         => 'Ostrzeżenie dotyczące przesyłania',
+'upload-warning-msg'          => 'Wystąpił problem z przesyłaniem z [$2]. Możesz wrócić do [[Special:Upload/stash/$1|formularza przesłania]] w celu rozwiązania tego problemu.',
 
 'upload-proto-error'        => 'Nieprawidłowy protokół',
 'upload-proto-error-text'   => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się od <code>http://</code> lub <code>ftp://</code>.',

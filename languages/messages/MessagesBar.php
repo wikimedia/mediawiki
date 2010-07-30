@@ -367,9 +367,9 @@ Du kãnnst in Titl vu dea Seitn auf de ãndan Seitn [[Special:Search/{{PAGENAME}
 'updated'                          => '(Gändat)',
 'previewnote'                      => "'''Des is netta a Voaschau, d'Seitn is nu ned gspeichat woan!'''",
 'previewconflict'                  => "De Vorschau gibt an Inhalt vom obern Textfeld wieda; so werd de Seite ausschaun, wenn S' iatzat speichern.",
-'session_fail_preview'             => '<strong>Dei Bearbeitung is net gspeichert worn, wei deine Sitzungsdaten valorn ganga san.
+'session_fail_preview'             => 'Dei Bearbeitung is net gspeichert worn, wei deine Sitzungsdaten valorn ganga san.
 Bitte versuachs no amoi, indem du unta da foigendn Textvorschau nochmois auf „Seitn speichern“ klickst.
-Sollt des Problem bestehn bleim, meld di ab und danach wieda oo.</strong>',
+Sollt des Problem bestehn bleim, [[Special:UserLogout|meld di ab]] und danach wieda oo.',
 'editing'                          => 'Bearbatn vo $1',
 'editingsection'                   => 'Werkln bei $1 (Åbschnitt)',
 'editconflict'                     => 'Konflikt beim Bearbatn: $1',
@@ -381,8 +381,8 @@ Bitte füg deine Änderungen in des obere Textfeld ei.
 'yourtext'                         => 'Eana Text',
 'editingold'                       => "'''Achtung: Sie arbatn an a oidn Version vo dera Seit.'''
 Wenn S' speichern, wern alle neiern Versionen übaschriem.",
-'longpagewarning'                  => "<strong>WARNUNG: De Seitn is $1 kB groaß; net jeda Browser konn Seitn bearbatn, di größer als 32 kB san.
-Überlegen S' bitte, ob a Aufteilung vo da Seitn in kloanere Abschnitte möglich is.</strong>",
+'longpagewarning'                  => "'''Warnung:''' De Seitn is $1 kB groaß; net jeda Browser konn Seitn bearbatn, di größer als 32 kB san.
+Überlegen S' bitte, ob a Aufteilung vo da Seitn in kloanere Abschnitte möglich is.",
 'semiprotectedpagewarning'         => "'''Hoibsperrung:''' De Seitn is so gsperrt worn, daß nur registrierte Benutzer de ändern kinnan.",
 'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur bestimmte Benutzergruppen können die Seite erstellen.'''",
 'templatesused'                    => "{{PLURAL:$1|D'foignde Voalåg wiad|D'foigndn Voalång wean}} auf dea Seitn vawendt:",

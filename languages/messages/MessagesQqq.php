@@ -2296,10 +2296,10 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 'changed'        => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
 'created'        => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'enotif_subject' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
+'enotif_subject' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
 'enotif_body'    => 'Text of a notification e-mail sent when a watched page has been edited or deleted.
 
-* <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}.',
+* <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
 
 # Delete
 'confirm'                => 'Submit button text for protection confirmation

@@ -16,6 +16,7 @@
  * @author Remember the dot
  * @author Spacebirdy
  * @author Strommops
+ * @author The Evil IP address
  * @author Urhixidur
  * @author לערי ריינהארט
  * @author 80686
@@ -767,7 +768,7 @@ Hiemit gisch du zue, das du dä Tekscht '''sälber gschribe''' hesch, das der Te
 Si verspräche uns usserdäm, dass Si des alles selber gschribe oder vo nere Quälle kopiert hen, wo Public Domain odr sunscht frei isch (lueg $1 für Details).
 '''SETZE SI DO OHNI ERLAUBNIS KEINI URHEBERRÄCHTLICH GSCHÜTZTI WÄRK INE!'''",
 'longpagewarning'                  => '<span style="color:#ff0000">WARNIG:</span> Die Syten isch $1 kB gross; elteri Browser chönnte Problem ha, Sytene z bearbeite wo grösser sy als 32 kB. Überleg bitte, öb du Abschnitt vo dere Syte zu eigete Sytene chönntsch usboue.',
-'longpageerror'                    => "'''FÄHLER: Dä Täxt, wu Du spichere wit, isch $1 KB gross. Des isch gresser wie s erlaubt Maximum vu $2 KB – s Spichere isch nid megli.'''",
+'longpageerror'                    => "'''Fähler: Dä Täxt, wu Du spichere wit, isch $1 KB gross. Des isch gresser wie s erlaubt Maximum vu $2 KB – s Spichere isch nid megli.'''",
 'readonlywarning'                  => "'''ACHTUNG: Die Datebank isch fir Wartigsarbete gesperrt. Wäge däm chenne Dyyni Änderige im Momänt nid gspicheret wäre.
 Sichere de Täxt bitte lokal uf Dyynem Computer un versuech speter nomol, d Änderige z ibertrage.'''
 
@@ -1531,6 +1532,8 @@ Bitte gib dr Datei e Name, wu dr Inhalt besser bschryybt.",
 'upload-failure-msg'          => 'S het e Probläm gee mit Dyyre uffegladene Datei:
 
 $1',
+'upload-warning-subj'         => 'Warnig bim Uffelade',
+'upload-warning-msg'          => 'S het e Probläm gee bim Uffelade vu [$2]. Du chasch zruckgoh zum [[Special:Upload/stash/$1|Ufffeladformular]] go des Probläm lese.',
 
 'upload-proto-error'        => 'Falschs Protokoll',
 'upload-proto-error-text'   => 'D URL muess mit <code>http://</code> oder <code>ftp://</code> aafange.',

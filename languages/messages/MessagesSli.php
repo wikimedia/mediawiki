@@ -531,9 +531,9 @@ Reiche hier kenne Texte a, falls du ne wielst, doß diese ohne Einschränkung ge
 
 Du bestätigst hiermit au, doß du diese Texte selbst geschrieba host oder diese vu a'r gemeinfreien Quelle kopiert host
 (siehe $1 fier wettere Details). '''IEBERTRAGE OHNE GENEHMIGUNG KENNE URHEBERRECHTLICH GESCHIETZTEN INHALTE!'''",
-'longpagewarning'                  => "'''WARNUNG: Diese Seyte ies $1 KB gruß; einige Browser kinnta Probleme hoan, Seyta zu beoarbeeta, de grießer ols 32 KB sein.
-Ieberlege bitte, ob anne Uffteilung dar Seyte ei klennere Obschnitte meeglich ies.'''",
-'longpageerror'                    => "'''FAHLER: Dar Text, dann du zu speichern versuchst, ies $1 KB gruß. Doas ies grießer ols doas erlaubte Maximum vu $2 KB – Speicherung ne meeglich.'''",
+'longpagewarning'                  => "'''Warnung:''' Diese Seyte ies $1 KB gruß; einige Browser kinnta Probleme hoan, Seyta zu beoarbeeta, de grießer ols 32 KB sein.
+Ieberlege bitte, ob anne Uffteilung dar Seyte ei klennere Obschnitte meeglich ies.",
+'longpageerror'                    => "'''Fahler: Dar Text, dann du zu speichern versuchst, ies $1 KB gruß. Doas ies grießer ols doas erlaubte Maximum vu $2 KB – Speicherung ne meeglich.'''",
 'readonlywarning'                  => "'''OCHTICHE: De Datenbank wurde fier Wartungsoarbeeta gesperrt, su doaß denne Änderunga derzeit ne gespeichert waan kinna.
 Sechere dann Text bitte lokal uff demm Computer und versiche zu a'm späteren Zeitpunkt, de Änderunga zu iebertraga.'''
 

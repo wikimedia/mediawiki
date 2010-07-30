@@ -1536,11 +1536,13 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń tutu linku! -->',
 'upload-success-subj'         => 'Dataja bu wuspěšnje nahrata',
-'upload-success-msg'          => 'Twoje nahraće steji tu k dispoziciji: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Twoje nahraće z [$2] je wuspěšne było: Steji tu k dispoziciji: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Nahrawanski problem',
 'upload-failure-msg'          => 'Bě problem z twojim nahraćom:
 
 $1',
+'upload-warning-subj'         => 'Nahraćowe warnowanje',
+'upload-warning-msg'          => 'Bě problem z twojim nahraćom [$2]. Wróć so k [[Special:Upload/stash/$1|nahrawanskemu formularej]], zo by tutón problem wotstronił.',
 
 'upload-proto-error'        => 'Wopačny protokol',
 'upload-proto-error-text'   => 'URL dyrbi so z <code>http://</code> abo <code>ftp://</code> započeć.',

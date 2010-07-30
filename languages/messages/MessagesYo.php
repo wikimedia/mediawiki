@@ -500,7 +500,7 @@ Kí á tó fi e-mail mìíràn ránṣẹ́ sí àkópamọ́ yìí, ẹ gbọ́
 'headline_tip'    => 'Àkọlé onípele 2',
 'math_sample'     => "Ẹ fi àgbékalẹ̀ s'íhín",
 'math_tip'        => 'Àgbékalẹ̀ ìsirò (LaTeX)',
-'nowiki_sample'   => "Ẹ fi ìkọ tí kò létò s'íhín",
+'nowiki_sample'   => 'Ìkìbọ̀ ìkọ àìjẹ́ síṣèdá síbí',
 'nowiki_tip'      => 'Kí á fojú fo bí wiki ṣe rí',
 'image_tip'       => 'Fáìlì tí a kìbọ̀',
 'media_tip'       => 'Ìjápọ̀ fáìlì',
