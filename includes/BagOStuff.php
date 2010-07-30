@@ -307,8 +307,9 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		try {
 			$db->begin();
-			$db->delete( 'objectcache', array( 'keyname' => $key ), __METHOD__ );
-			$db->insert( 'objectcache',
+			// (bug 24425) use a replace if the db supports it instead of
+			// delete/insert to avoid clashes with conflicting keynames
+			$db->replace( 'objectcache', array( 'keyname' ),
 				array(
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $this->serialize( $value ) ),
