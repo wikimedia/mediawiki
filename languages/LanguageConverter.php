@@ -20,7 +20,6 @@ class LanguageConverter {
 	var $mVariants, $mVariantFallbacks, $mVariantNames;
 	var $mTablesLoaded = false;
 	var $mTables;
-	var $mNamespaceTables;
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
 	var $mManualLevel;
 	var $mCacheKey;
@@ -87,7 +86,6 @@ class LanguageConverter {
 			} else {
 				$this->mManualLevel[$v] = 'bidirectional';
 			}
-			$this->mNamespaceTables[$v] = array();
 			$this->mFlags[$v] = $v;
 		}
 	}
@@ -492,9 +490,14 @@ class LanguageConverter {
 	 * @private
 	 */
 	function applyManualConv( $convRule ) {
-		// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom
-		// conversion in title
-		$this->mConvRuleTitle = $convRule->getTitle();
+		// Use syntax -{T|zh-cn:TitleCN; zh-tw:TitleTw}- to custom
+		// title conversion.
+		// Bug 24072: mConvRuleTitle won't work if the title conversion
+		// rule was followed by other manual conversion rule(s).
+		$newConvRuleTitle = $convRule->getTitle();
+		if( $newConvRuleTitle ) {
+			$this->mConvRuleTitle = $newConvRuleTitle;
+		}
 
 		// apply manual conversion table to global table
 		$convTable = $convRule->getConvTable();
@@ -547,12 +550,19 @@ class LanguageConverter {
 	 */
 	public function convertTitle( $title ) {
 		$variant = $this->getPreferredVariant();
-		if ( $title->getNamespace() === NS_MAIN ) {
+		$index = $title->getNamespace();
+		if ( $index === NS_MAIN ) {
 			$text = '';
 		} else {
-			$text = $title->getNsText();
-			if ( isset( $this->mNamespaceTables[$variant][$text] ) ) {
-				$text = $this->mNamespaceTables[$variant][$text];
+			// first let's check if a message has given us a converted name
+			$nsConvKey = 'conversion-ns' . $index;
+			if ( !wfEmptyMsg( $nsConvKey ) ) {
+				$text = wfMsgForContentNoTrans( $nsConvKey );
+			} else {
+				// the message does not exist, try retrieve it from the current
+				// variant's namespace names.
+				$langObj = $this->mLangObj->factory( $variant );
+				$text = $langObj->getFormattedNsText( $index );
 			}
 			$text .= ':';
 		}

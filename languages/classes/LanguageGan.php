@@ -26,47 +26,6 @@ class GanConverter extends LanguageConverter {
 			'gan-hant' => '繁體',
 		);
 		$this->mVariantNames = array_merge($this->mVariantNames,$names);
-		$this->loadNamespaceTables();
-	}
-	
-	function loadNamespaceTables() {
-		global $wgMetaNamespace;
-		$nsproject     = $wgMetaNamespace;
-		$projecttable  = array(
-			'Wikipedia'       => '维基百科',
-			'Wikisource'      => '维基文库',
-			'Wikinews'        => '维基新闻',
-			'Wiktionary'      => '维基词典',
-			'Wikibooks'       => '维基教科书',
-			'Wikiquote'       => '维基语录',
-		);
-		$this->mNamespaceTables['gan-hans'] = array(
-			'Media'          => '媒体',
-			'Special'        => '特殊',
-			'Talk'           => '談詑',
-			'User'           => '用户',
-			'User talk'      => '用户談詑',
-			$nsproject
-					=> isset($projecttable[$nsproject]) ? 
-						$projecttable[$nsproject] : $nsproject,
-			$nsproject . ' talk'
-					=> isset($projecttable[$nsproject]) ?
-						$projecttable[$nsproject] . '談詑' : $nsproject . '談詑',
-			'File'           => '文件',
-			'File talk'      => '文件談詑',
-			'MediaWiki'      => 'MediaWiki',
-			'MediaWiki talk' => 'MediaWiki談詑',
-			'Template'       => '模板',
-			'Template talk'  => '模板談詑',
-			'Help'           => '帮助',
-			'Help talk'      => '帮助談詑',
-			'Category'       => '分类',
-			'Category talk'  => '分类談詑',
-		);
-		$this->mNamespaceTables['gan-hant'] = array_merge($this->mNamespaceTables['gan-hans']);
-		$this->mNamespaceTables['gan-hant']['File'] = '檔案';
-		$this->mNamespaceTables['gan-hant']['File talk'] = '檔案談詑';
-		$this->mNamespaceTables['gan'] = array_merge($this->mNamespaceTables['gan-hans']);
 	}
 
 	function loadDefaultTables() {

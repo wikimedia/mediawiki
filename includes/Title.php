@@ -2606,9 +2606,8 @@ class Title {
 		// purge variant urls as well
 		if($wgContLang->hasVariants()){
 			$variants = $wgContLang->getVariants();
-			foreach($variants as $vCode){
-				if($vCode==$wgContLang->getCode()) continue; // we don't want default variant
-				$urls[] = $this->getInternalURL('',$vCode);
+			foreach ( $variants as $vCode ) {
+				$urls[] = $this->getInternalURL( '', $vCode );
 			}
 		}
 
