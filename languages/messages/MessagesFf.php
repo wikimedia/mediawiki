@@ -10,7 +10,7 @@
  * @author Amkoullel
  */
 
-$fallback='fr';
+$fallback = 'fr';
 
 $messages = array(
 'mytalk' => 'kaldigal am',

@@ -1725,7 +1725,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 ** Ob textum remotum
 ** Ob nexus externos multiplicatos
 ** Ob scripta sensu sive et Latinitate carentia
-** Ob scripta inurbana 
+** Ob scripta inurbana
 ** Ob rationes perniciose multiplicatas
 ** Ob nomen inurbanum sive inconveniens',
 'ipbanononly'                  => 'Solum usores anonymi obstruere',

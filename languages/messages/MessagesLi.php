@@ -736,9 +736,9 @@ Meugelikerwies is t'r verplaats of gewösj gewaore wiel se de paasj 'nt bekieke 
 'newarticletext'                   => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit.
 Type in de box hiejónger óm de pazjena te beginne (zuug de [[{{MediaWiki:Helppage}}|helppazjena]] veur mie informatie).
 Es te hie per óngelök terech bis gekómme, klik dan op de '''trök'''-knóp van diene browser.",
-'anontalkpagetext'                 => "----''Dit is de euverlèkpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemaak of dae 't neet gebroek. 
-Daoveur gebroeke v'r 't IP-adres óm de gebroeker te identificere. 
-Det adres kan waere gedeild door mierdere gebroekers. 
+'anontalkpagetext'                 => "----''Dit is de euverlèkpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemaak of dae 't neet gebroek.
+Daoveur gebroeke v'r 't IP-adres óm de gebroeker te identificere.
+Det adres kan waere gedeild door mierdere gebroekers.
 Es te 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r ónrelevante commentare aan dich gerich zeen, kèns te 't bèste [[Special:UserLogin/signup|'n account crëere]] of [[Special:UserLogin|inlogge]] óm toekomstige verwarring mit anger anoniem gebroekers te veurkomme.''",
 'noarticletext'                    => 'Dees pagina bevat gein teks.
 De kèns [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pagina\'s, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logbeuk doorzeuke] of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} dees pagina bewirke]</span>.',
@@ -1409,7 +1409,7 @@ De lètste link is bedoeld veur mediabesjtande die gein plaetje zeen.",
 'badfilename'                 => 'De naom van \'t besjtand is verangerd in "$1".',
 'filetype-badmime'            => '\'t Is neet toegestaon om bestenj van MIME type "$1" te uploade.',
 'filetype-bad-ie-mime'        => 'Dit bestandj kan neet toegevoeg waere omdet Internet Explorer t zów indentificere es "$1", \'n neet toegelaote bestandjstype det potentieel sjadelik is.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' is 'n ongewunsj bestandstype.  
+'filetype-unwanted-type'      => "'''\".\$1\"''' is 'n ongewunsj bestandstype.
 Aangeweze {{PLURAL:\$3|bestandjstype|bestandjstypes}}zeen \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' is gein toegelaote bestandstype.  Toegelaote {{PLURAL:\$3|bestandjtype|bestandjtypes}} zeen \$2.",
 'filetype-missing'            => 'Dit bestandj haet gein extensie (wie ".jpg").',
@@ -1427,12 +1427,12 @@ Lèver 'ne angere naam te keze.",
 'fileexists-thumbnail-yes'    => "'t Liek 'n afbeilding van 'n verkleinde grootte te zeen ''(thumbnail)''. [[$1|thumb]]
 Lèver 't bestand '''<tt>[[:$1]]</tt>''' te controlere.
 Es 't gecontroleerde bestand dezelfde afbeilding van oorspronkelike grootte is, is 't neet noodzakelik 'ne extra thumbnail te uploade.",
-'file-thumbnail-no'           => "De bestandsnaam begint met '''<tt>$1</tt>'''. 
-'t Liek 'n verkleinde afbeelding te zeen ''(thumbnail)''. 
+'file-thumbnail-no'           => "De bestandsnaam begint met '''<tt>$1</tt>'''.
+'t Liek 'n verkleinde afbeelding te zeen ''(thumbnail)''.
 Esse deze afbeelding in volledige resolutie höbs, upload dae afbeelding den. Wiezig anges estebleef de bestandsnaam.",
 'fileexists-forbidden'        => "d'r Besteit al 'n bestand met deze naam det neet kin waere euevergesjreve. Upload dien bestand onger 'ne angere naam.
 [[File:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "d'r Besteit al 'n bestand met deze naam bie de gedeilde bestenj. Upload 't bestand onger  'ne angere naam. 
+'fileexists-shared-forbidden' => "d'r Besteit al 'n bestand met deze naam bie de gedeilde bestenj. Upload 't bestand onger  'ne angere naam.
 [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dit besjtandj is identiek aon {{PLURAL:$1|'t volgende besjtandj|de volgende besjtande}}:",
 'file-deleted-duplicate'      => 'n Bestandj det identiek is aan dit bestandj ([[$1]]) is veurhaer verwiederd.
@@ -1983,11 +1983,11 @@ Dit zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
 'viewdeletedpage'              => "Betrach eweggesjafde pagina's",
 'undeletepagetext'             => "De ongersjtaande {{PLURAL:$1|paasj is|pazjena's zint}} verwiederd, meh {{PLURAL:$1|bevindj|bevinge}} zich nog sjteeds in 't archief, en {{PLURAL:$1|kin|kinne}} weure truukgeplaatsj.",
 'undelete-fieldset-title'      => 'Versies trukplaatse',
-'undeleteextrahelp'            => "Om de algehele pagina inclusief alle ierder versies trök te zètte: laot alle hökskes ónaafgevink en klik op '''''Trökzètte'''''. 
-Om slechs bepaalde versies trök te zètte: vink de trök te plaatse versies aan en klik op '''''Trökzètte'''''. 
+'undeleteextrahelp'            => "Om de algehele pagina inclusief alle ierder versies trök te zètte: laot alle hökskes ónaafgevink en klik op '''''Trökzètte'''''.
+Om slechs bepaalde versies trök te zètte: vink de trök te plaatse versies aan en klik op '''''Trökzètte'''''.
 Es te op '''''Reset''''' kliks weurt 't toelichtingsveld laeggemaak en waere alle versies gedeselecteerd.",
 'undeleterevisions'            => "$1 {{PLURAL:$1|versie|versies}} in 't archief",
-'undeletehistory'              => "Es te 'n pagina trökzèts, waere alle versies es auw versies trökgezat. 
+'undeletehistory'              => "Es te 'n pagina trökzèts, waere alle versies es auw versies trökgezat.
 Es d'r 'ne nuuj pagina mit dezelfde naam is aangemaak sins de pagina is eweggesjaf, waere de eweggesjafde versies es auw versies trökgezat en blief de hujige versie intact.",
 'undeleterevdel'               => 'Hersjtelle is neet meugelik es dao door de meist recènte versie van de pagina gedeiltelik eweggesjaf waert. Sjaf in die gevalle de meist recènt eweggesjafde versies oet de selectie eweg.',
 'undeletehistorynoadmin'       => 'Deze pazjena is gewis. De reje hiej veur stuit hiej onger, same mit de details van de gebroekers die deze pazjena höbbe bewerk véur de verwiedering. De verwiederde inhoud van de pazjena is allein zichbaar veur beheerders.',
@@ -2414,7 +2414,7 @@ Doe kans in de bewirkingssamevatting \'n reej opgaeve.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spamfilter',
-'spamprotectiontext'  => "De pagina daese wildes opslaon is geblokkeerd door de spamfilter. 
+'spamprotectiontext'  => "De pagina daese wildes opslaon is geblokkeerd door de spamfilter.
 Meistal wörd dit door 'ne zwarte externe link veroorzaak.",
 'spamprotectionmatch' => "De volgende teks veroorzaakte 'n alarm van de spamfilter: $1",
 'spambot_username'    => 'MediaWiki spam opruming',
@@ -2816,7 +2816,7 @@ browser óm te bevestege dat dien e-mailadres werk.",
 'confirmemail_send'        => "Sjik 'n bevèstegingcode",
 'confirmemail_sent'        => 'Bevèstegingsberich versjik.',
 'confirmemail_oncreate'    => "D'r is 'n bevestigingscode nao dien e-mailadres versjik. Dees code is neet nudig óm aan te melje, meh doe mós dees waal bevestige veurdets te de e-mailmäögelikheite van deze wiki kèns nótse.",
-'confirmemail_sendfailed'  => "{{SITENAME}} kós 't bevèstegingsberich neet versjikke. 
+'confirmemail_sendfailed'  => "{{SITENAME}} kós 't bevèstegingsberich neet versjikke.
 Zuug dien e-mailadres nao op óngeljige karakters.
 
 't E-mailprogramma goof: $1",

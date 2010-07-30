@@ -354,7 +354,7 @@ Hueliz quimpiya tlahtōl tlein ahmo mohuelītih motequitiltia tōcāpan.',
 # Login and logout pages
 'welcomecreation'         => '== ¡Ximopanōlti, $1! ==
 
-Mocuentah ōmochīuh. 
+Mocuentah ōmochīuh.
 
 Ye tihuelīti titēchihtoa [[Special:Preferences|motlaēlēhuiliz]].',
 'yourname'                => 'Motlatequitiltilīltōca:',
@@ -384,7 +384,7 @@ Timitztlātlauhtiah xitlahcuiloa occē.',
 'loginsuccess'            => "'''Ōticalac {{SITENAME}} quemeh \"\$1\".'''",
 'nosuchuser'              => 'Ahmo ia tlatequitiltilīlli ītōca "$1".
 Xiquimpiya motlahtōl, nozo [[Special:UserLogin/signup|xicchīhua yancuīc cuentah]].',
-'nosuchusershort'         => 'Ahmo cah tlatequitiltilīlli ītōcā "<nowiki>$1</nowiki>". 
+'nosuchusershort'         => 'Ahmo cah tlatequitiltilīlli ītōcā "<nowiki>$1</nowiki>".
 Xiquimpiya motlahtōl.',
 'nouserspecified'         => 'Mohuīquilia tiquihtoa cualli tlatequitiltilīltōcāitl.',
 'wrongpassword'           => 'Ahcualli motlahtōlichtacāyo.
@@ -1347,7 +1347,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 # E-mail address confirmation
 'confirmemail'           => 'Ticchicāhuāz e-mail',
 'confirmemail_needlogin' => 'Tihuīquilia $1 ic ticchicāhua mo e-mail.',
-'confirmemail_success'   => 'Mo e-mailcān ōmochicāuh. 
+'confirmemail_success'   => 'Mo e-mailcān ōmochicāuh.
 Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'confirmemail_loggedin'  => 'Mo e-mailcān ōmochicāuh.',
 'confirmemail_error'     => 'Achi ōcatcah ahcualli mochicāhualiztechcopa.',

@@ -482,7 +482,7 @@ Soraw: $2',
 Birneshe minuttan keyin qaytadan ha'reket qılıp ko'rin'.",
 'protectedpagetext'    => "Bul bet o'zgertiwdin' aldın alıw ushın qulplang'an.",
 'viewsourcetext'       => "Bul bettin' deregin qarawın'ızg'a ha'mde ko'shirip alıwın'ızg'a boladı:",
-'editinginterface'     => "'''Esletpe:''' Siz ishinde MediaWiki sistema xabarı bar bolg'an betti o'zgertip atırsız. 
+'editinginterface'     => "'''Esletpe:''' Siz ishinde MediaWiki sistema xabarı bar bolg'an betti o'zgertip atırsız.
 Bul bettin' o'zgeriwi basqa paydalanıwshılardın' sırtqı interfeisine ta'sir etedi.
 Audarıw ushın,  MediaWiki programmasın jersindiriw [http://translatewiki.net/wiki/Main_Page?setlang=kaa translatewiki.net proyektisin] qarap shıg'ın'ız.",
 'sqlhidden'            => "(SQL sorawı jasırılg'an)",
@@ -503,7 +503,7 @@ Yamasa siz ja'ne ha'zirgi yaki basqa paydalanıwshı atı menen [[Special:UserLo
 Sonı este saqlan', ayrım betler sizin' brauzerin'izdin' keshi tazalanbag'anlıg'ı sebebli sistemada kirgenin'izdey ko'riniste dawam ettire beriwi mu'mkin.",
 'welcomecreation'            => "== Xosh keldin'iz, $1! ==
 
-Akkauntın'ız jaratıldı. 
+Akkauntın'ız jaratıldı.
 [[Special:Preferences|{{SITENAME}} sazlawların'ızdı]] o'zgertiwdi umıtpan'.",
 'yourname'                   => 'Paydalanıwshı atı:',
 'yourpassword'               => 'Parol:',
@@ -530,25 +530,25 @@ Akkauntın'ız jaratıldı.
 Paydalanıwshılar kiriwi ushın {{SITENAME}} kukilerden paydalanadı.
 Sizde kukiler o'shirilgen.
 Kukilerdi qosıp, jan'a paydalanıwshı atın'ız ha'm parolin'iz arqalı kirin'.",
-'nocookieslogin'             => "Paydalanıwshılar kiriwi ushın {{SITENAME}} kukilerden paydalanadı. 
-Sizde kukiler o'shirilgen. 
+'nocookieslogin'             => "Paydalanıwshılar kiriwi ushın {{SITENAME}} kukilerden paydalanadı.
+Sizde kukiler o'shirilgen.
 Kukilerdi qosıp, qaytadan ko'rin'.",
 'noname'                     => 'Siz kiritken paydalanıwshı atı qate.',
 'loginsuccesstitle'          => "Kiriw tabıslı a'melge asırıldı",
 'loginsuccess'               => "'''{{SITENAME}} saytına \"\$1\" paydalanıwshı atı menen kirdin'iz.'''",
-'nosuchuser'                 => "\"\$1\" atlı paydalanıwshı joq. 
+'nosuchuser'                 => "\"\$1\" atlı paydalanıwshı joq.
 Tuwrı jazılg'anlıg'ın tekserin' yamasa [[Special:UserLogin/signup|taza akkaunt jaratın']].",
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" atlı paydalanıwshı joq. Tuwrı jazılg\'anlıg\'ın tekserin\'.',
 'nouserspecified'            => "Siz paydalanıwshı atın ko'rsetpedin'iz.",
 'wrongpassword'              => "Qate parol kiritlgen. Qaytadan kiritin'.",
 'wrongpasswordempty'         => "Parol kiritilmegen. Qaytadan ha'reket etin'.",
-'passwordtooshort'           => "Parolin'iz jaramsız yamasa dım qısqa. 
+'passwordtooshort'           => "Parolin'iz jaramsız yamasa dım qısqa.
 En' keminde {{PLURAL:$1|1 ha'rip|$1 ha'rip}} ha'mde paydalanıwshı atın'ızdan o'zgeshe bolıwı kerek.",
 'mailmypassword'             => "Paroldi e-mailg'a jiberiw",
 'passwordremindertitle'      => '{{SITENAME}} ushın taza waqtınsha parol',
 'passwordremindertext'       => "Kimdir (IP adresi: $1, ba'lkim o'zin'iz shıg'ar)
 {{SITENAME}} ushın bizden taza parol jiberiwimizdi sorag'an ($4).
-Endi «$2» paydalanıwshının' paroli «$3». Eger bul sizin' maqsetin'iz bolg'an bolsa, 
+Endi «$2» paydalanıwshının' paroli «$3». Eger bul sizin' maqsetin'iz bolg'an bolsa,
 ha'zir kirip parolin'izdi almastırıwın'ız kerek.
 
 Eger basqa birew bunı sorag'an bolsa yamasa parolin'izdi eslegen bolsan'ız,
@@ -565,7 +565,7 @@ tastıyıqlaw ushın xattag'ı ko'rsetpelerdi bejerin'.",
 'throttled-mailpassword'     => "Aqırg'ı {{PLURAL:$1|saat|$1 saat}} ishinde parol eskertiw xatı jiberildi.
 Jaman jolda paydalanıwdın' aldın alıw ushın, ha'r {{PLURAL:$1|saat|$1 saat}} sayın tek g'ana bir parol eskertiw xatı jiberiledi.",
 'mailerror'                  => 'Xat jiberiwde qatelik juz berdi: $1',
-'acct_creation_throttle_hit' => "Keshirersiz, siz aldın {{PLURAL:$1|1 akkaunt|$1 akkaunt}} jaratqansız. 
+'acct_creation_throttle_hit' => "Keshirersiz, siz aldın {{PLURAL:$1|1 akkaunt|$1 akkaunt}} jaratqansız.
 Bunnan artıq jaratıw mu'mkinshiligin'iz joq.",
 'emailauthenticated'         => "Sizin' e-mail adresin'iz tastıyqlang'an waqtı: $2, $3.",
 'emailnotauthenticated'      => "E-mail adresin'iz ele tastıyıqlanbag'an.
@@ -638,7 +638,7 @@ Eger ja'ne \"Saqlaw\"dı bassan'ız, o'zgerislerin'iz olsız saqlanadı.",
 'blockedtitle'                     => "Paydalanıwshı bloklang'an",
 'blockedtext'                      => "'''Paydalaniwshı atın'ız yamasa IP adresin'iz bloklang'an.'''
 
-Bloklawdı \$1 a'melge asırg'an. 
+Bloklawdı \$1 a'melge asırg'an.
 Keltirilgen sebebi: ''\$2''.
 
 * Bloklaw baslang'an: \$8
@@ -647,7 +647,7 @@ Keltirilgen sebebi: ''\$2''.
 
 Usı bloklawdı diskussiya qılıw ushın \$1 yamasa basqa [[{{MediaWiki:Grouppage-sysop}}|administratorlar]] menen baylanısqa shıg'ıwın'ızg'a boladı.
 Siz [[Special:Preferences|akkaunt sazlawların'ızda]] haqıyqıy e-mailin'izdı ko'rsetpegenin'izshe ha'mde onı paydalanıwdan bloklang'an bolg'anısha \"Usı paydalanıwshıg'a xat jazıw\" qa'siyetinen qollana almaysız.
-Sizin' ha'zirgi IP adresin'iz: \$3, bloklaw IDı: #\$5. 
+Sizin' ha'zirgi IP adresin'iz: \$3, bloklaw IDı: #\$5.
 Usılardın' birewin yamasa ekewinde ha'r bir sorawın'ızg'a qosın'.",
 'blockednoreason'                  => 'hesh sebep keltirilmegen',
 'blockedoriginalsource'            => "'''$1''' degennin' deregi
@@ -668,7 +668,7 @@ E-pochta adresin'izdi [[Special:Preferences|paydalanıwshı sazlawları bo'limi]
 'newarticletext'                   => "Siz ele jaratılmag'an betke siltew arqalı o'ttin'iz.
 Betti jaratıw ushın to'mendegi aynada tekstin'izdi kiritin' (qosımsha mag'lıwmat ushın [[{{MediaWiki:Helppage}}|anıqlama betin]] qaran').
 Eger bul jerge aljasıp o'tken bolsan'ız, brauzerin'izdin' «Arqag'a» knopkasın basın'.",
-'noarticletext'                    => "Ha'zirgi waqıtta bul bette hesh qanday mag'lıwmat joq. 
+'noarticletext'                    => "Ha'zirgi waqıtta bul bette hesh qanday mag'lıwmat joq.
 Basqa betlerden usı bet atamasın [[Special:Search/{{PAGENAME}}|izlep ko'riwin'izge]],
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tiyisli jurnallardı izlewin'izge],
 yamasa usı betti [{{fullurl:{{FULLPAGENAME}}|action=edit}} jaratıwin'ızga'] boladi.",
@@ -864,7 +864,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'searchall'                        => 'barlıq',
 'showingresults'                   => "To'mende '''$2''' ornınan baslap {{PLURAL:$1|'''1''' na'tiyje|'''$1''' shekemgi na'tiyjeler}} ko'rsetilgen.",
 'showingresultsnum'                => "To'mende '''$2''' ornınan baslap {{PLURAL:$3|'''1''' na'tiyje|'''$3''' na'tiyje}} ko'rsetilgen.",
-'nonefound'                        => "'''Esletpe''': Defolt boyınsha tek g'ana sheklengen isimler ko'pliginen izlenedi. 
+'nonefound'                        => "'''Esletpe''': Defolt boyınsha tek g'ana sheklengen isimler ko'pliginen izlenedi.
 Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.b.) izlew ushın izlewin'izdi ''all:'' prefiksi menen baslan', yamasa qa'legen isimler ko'pligin prefiks esabında qollanın'.",
 'search-nonefound'                 => "Sorawg'a sa'ykes na'tiyje tabılmadı.",
 'powersearch'                      => "Ken'eytilgen izlew",
@@ -936,7 +936,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'yourvariant'               => "Tu'ri",
 'yournick'                  => "Laqabın'ız:",
 'badsig'                    => "Shala imzalar nadurıs; HTML teglerin tekserip ko'rin'.",
-'badsiglength'              => "İmzan'ız dım uzın. 
+'badsiglength'              => "İmzan'ız dım uzın.
 {{PLURAL:$1|simvoldan|simvoldan}} aspawı kerek.",
 'email'                     => 'E-mail',
 'prefs-help-realname'       => "Haqıyqıy atın'ız (ma'jbu'riy emes): eger onı ko'rsetsen'iz, bet kim ta'repinen o'zgertilgenin ko'rsetiwde qollanıladı.",
@@ -1847,7 +1847,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Bad image list
 'bad_image_list' => "Formatı to'mendegishe:
 
-Tek dizim elementleri (* menen baslanatug'ın qatarlar) esaplanadi. 
+Tek dizim elementleri (* menen baslanatug'ın qatarlar) esaplanadi.
 Qatardın' birinshi siltewi natuwrı faylg'a siltewi sha'rt.
 Sol qatardag'ı keyingi ha'r bir siltewler tısqarı qabıl etiledi, mısalı qatar ishindegi ushırasatug'ın faylı bar betler.",
 

@@ -561,7 +561,7 @@ Tafadhali, ondoa kizuizi hicho, halafu jaribu tena.',
 'noname'                     => 'Hauja dhihilisha jina la mtumiaji.',
 'loginsuccesstitle'          => 'Umefaulu kuingia',
 'loginsuccess'               => "'''Umeingia {{SITENAME}} kama \"\$1\".'''",
-'nosuchuser'                 => 'Hakuna mtumiaji mwenye jina "$1". 
+'nosuchuser'                 => 'Hakuna mtumiaji mwenye jina "$1".
 Kumbuka kwamba programu inatofautishana kati ya herufi kubwa na ndogo.
 Labda umeandika vibaya, au [[Special:UserLogin/signup|sajili akaunti mpya]].',
 'nosuchusershort'            => 'Hakuna mtumiaji mwenye jina "<nowiki>$1</nowiki>". Labda umeandika vibaya.',
@@ -675,7 +675,7 @@ Iwapo utabonyeza tena Hifadhi, haririo lako litahifadhiwa bila kichwa cha habari
 'blockedtitle'                     => 'Mtumiaji amezuiwa',
 'blockedtext'                      => "'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''
 
-Umezuiwa na $1. 
+Umezuiwa na $1.
 Sababu aliyetambua ni ''$2''
 
 * Mwanzo wa uzuio: $8
@@ -1102,7 +1102,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'recentchangescount'            => 'Idadi ya masahihisho yatakayoonyeshwa kwa kawaida:',
 'prefs-help-recentchangescount' => 'Kwenye kurasa za mabadiliko ya karibuni, za historia ya ukurasa, na za kumbukumbu.',
 'prefs-help-watchlist-token'    => 'Ukiandika ufunguo wa siri kwenye kisanduku hiki, programu itaanzisha tawanyiko la RSS kwa ajili ya maangalizi yako.
-Mtu wowote anayejua ufunguo wa siri huu ataweza kusoma orodha yako ya maangalizi, kwa hiyo chagua ufunguo salama. 
+Mtu wowote anayejua ufunguo wa siri huu ataweza kusoma orodha yako ya maangalizi, kwa hiyo chagua ufunguo salama.
 Hapo kuna ufunguo uliotolewa na programu kwa kubahatisha, ambao unaweza kuutumia: $1',
 'savedprefs'                    => 'Mapendekezo yako yamehifadhiwa.',
 'timezonelegend'                => 'Ukanda saa:',
@@ -1384,13 +1384,13 @@ Maelezo mengine: $1',
 'upload-description'      => 'Elezo la faili',
 'upload-options'          => 'Machaguo ya kupakia',
 'watchthisupload'         => 'Kufuatilia faili hili',
-'filewasdeleted'          => 'Faili lenye jina hili limeshapakiwa halafu limefutwa. 
+'filewasdeleted'          => 'Faili lenye jina hili limeshapakiwa halafu limefutwa.
 Unapaswa kuangalia $1 kabla hujapakia tena.',
 'upload-wasdeleted'       => "'''Ilani: Unapakia upya faili lililofutwa tayari.'''
 
 Fikiria kama inafaa kuendelea kupakia faili hili.
 Kumbukumbu ya kufuta faili hili inapatikana hapa kukusaidia:",
-'filename-bad-prefix'     => "Jina la faili unalolipakia huanza na '''\"\$1\"''', ambalo ni jina lisilo na maana yanayoeleweka kirahisi, ya aina inayotolewa huwa na kamera dijiti. 
+'filename-bad-prefix'     => "Jina la faili unalolipakia huanza na '''\"\$1\"''', ambalo ni jina lisilo na maana yanayoeleweka kirahisi, ya aina inayotolewa huwa na kamera dijiti.
 Tafadhali chagua jina linaloeleweka kirahisi kwa ajili ya faili lako.",
 'upload-success-subj'     => 'Upakiaji ulifaulu',
 'upload-success-msg'      => 'Faili ulilolipakia linapatikana hapa: [[:{{ns:file}}:$1]]',
@@ -1414,8 +1414,8 @@ $1',
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'KISARA (URL) haikupatikana',
 'upload-curl-error28'      => 'Muda wa upakiaji umeisha',
-'upload-curl-error28-text' => 'Tovuti imechelewa mno kuitikia. 
-Tafadhali uhakikishe kwamba tovuti inafanya kazi, subiri kidogo halafu jaribu tena. 
+'upload-curl-error28-text' => 'Tovuti imechelewa mno kuitikia.
+Tafadhali uhakikishe kwamba tovuti inafanya kazi, subiri kidogo halafu jaribu tena.
 Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 
 'license'            => 'Hatimiliki:',
@@ -1758,7 +1758,7 @@ Uwasiliane na mhariri kwa njia hizi:
 barua pepe: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Hutapata taarifa za mabadiliko mengine yatakayotokea kwenye ukurasa huu hadi utakapotazama ukurasa. 
+Hutapata taarifa za mabadiliko mengine yatakayotokea kwenye ukurasa huu hadi utakapotazama ukurasa.
 Au unaweza kuweka upya maombi ya kupewa taarifa kwa ajili ya kurasa zote zilizopo kwenye orodha yako ya maangalizi.
 
              Kutoka kwa {{SITENAME}}
@@ -2174,13 +2174,13 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 # Bad image list
 'bad_image_list' => 'Fomati ni hii:
 
-Tunazingatia madondoo katika orodha (mistari inayoanza na *) tu.  
+Tunazingatia madondoo katika orodha (mistari inayoanza na *) tu.
 Inabidi kiungo cha kwanza katika mstari kiunge na faili baya.
 Viungo vinavyofuata katika mstari ule ule vitaelewa kuwa mambo ya pekee, yaani kurasa zinazoruhusiwa kuonyesha faili hilo.',
 
 # Metadata
 'metadata'          => 'Data juu',
-'metadata-help'     => 'Faili hili lina maarifa mengine, yamkini kutoka kemra au skana iliyotumiwa kulitengeneza au kuliandaa kwa tarakilishi.  
+'metadata-help'     => 'Faili hili lina maarifa mengine, yamkini kutoka kemra au skana iliyotumiwa kulitengeneza au kuliandaa kwa tarakilishi.
 Kama faili limebadilishwa kutoka hali yake ya awali, inawezekana kwamba vipengele kadhaa vitakuwa tofauti kuliko hali ya picha ilivyo sasa.',
 'metadata-expand'   => 'Onyesha maarifa vinaganaga',
 'metadata-collapse' => 'Ficha maarifa vinaganaga',
@@ -2356,8 +2356,8 @@ Jaribu hakikisho la kawaida.',
 'watchlistedit-noitems'        => 'Orodha ya maangalizi yako haina kitu.',
 'watchlistedit-normal-title'   => 'Kuhariri orodha ya maangalizi',
 'watchlistedit-normal-legend'  => 'Kuondoa majina kwenye orodha ya maangalizi',
-'watchlistedit-normal-explain' => 'Majina kwenye orodha ya maangalizi yako yapo chini. 
-Ili kuondoa jina, weka alama katika kisanduku chake, na bonyeza "{{int:Watchlistedit-normal-submit}}". 
+'watchlistedit-normal-explain' => 'Majina kwenye orodha ya maangalizi yako yapo chini.
+Ili kuondoa jina, weka alama katika kisanduku chake, na bonyeza "{{int:Watchlistedit-normal-submit}}".
 Unaweza pia [[Special:Watchlist/raw|kuhariri orodha ya ghafi]].',
 'watchlistedit-normal-submit'  => 'Ondoa majina',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Jina 1 iliondolewa|Majina $1 yaliondolewa}} kutoka kwa orodha yako ya maangalizi:',

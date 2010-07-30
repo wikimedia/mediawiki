@@ -484,7 +484,7 @@ daripada fungsi "<tt>$2</tt>".
 Pangkalan data memulangkan ralat "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Terdapat ralat sintaks pertanyaan pangkalan data.
 Pertanyaan terakhir ialah:
-"$1" 
+"$1"
 daripada fungsi "$2".
 Pangkalan data memulangkan ralat "$3: $4".',
 'laggedslavemode'      => 'Amaran: Laman ini mungkin bukan yang terkini.',
@@ -832,7 +832,7 @@ Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogi
 
 Anda harus mempertimbangkan perlunya menyunting laman ini.
 Untuk rujukan, yang berikut ialah log penghapusan bagi laman ini:",
-'moveddeleted-notice'              => 'Laman ini telah dihapuskan. 
+'moveddeleted-notice'              => 'Laman ini telah dihapuskan.
 Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 'log-fulllog'                      => 'Lihat log lengkap',
 'edit-hook-aborted'                => 'Suntingan anda telah dibatalkan oleh penyangkuk. Tiada sebab diberikan.',
@@ -1714,7 +1714,7 @@ Masukan yang <del>dipotong</del> telah diselesaikan.',
 'ancientpages'            => 'Laman lapuk',
 'move'                    => 'Alih',
 'movethispage'            => 'Pindahkan laman ini',
-'unusedimagestext'        => 'Fail-fail berikut wujud tetapi tidak digunakan dalam mana-mana laman. 
+'unusedimagestext'        => 'Fail-fail berikut wujud tetapi tidak digunakan dalam mana-mana laman.
 Sila ambil perhatian bahawa mungkin terdapat tapak web lain yang memaut ke fail ini menggunakan URL langsung, dan masih disenaraikan di sini walapun berada dalam kegunaan aktif.',
 'unusedcategoriestext'    => 'Laman-laman kategori berikut wujud walaupun tiada laman atau kategori lain menggunakannya.',
 'notargettitle'           => 'Tiada sasaran',

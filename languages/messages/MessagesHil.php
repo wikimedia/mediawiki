@@ -199,8 +199,8 @@ Siguro may-ara ini sang isa ukon madamo nga karakter nga indi ginabaton kag gina
 'viewsource'         => 'Lantawon ang ginhalinan',
 
 # Login and logout pages
-'welcomecreation'         => '== Pagtamyaw, $1! == 
-Ang imo account nahimo na. 
+'welcomecreation'         => '== Pagtamyaw, $1! ==
+Ang imo account nahimo na.
 Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'yourname'                => 'Ngalan sang Manog-gamit:',
 'yourpassword'            => 'Kontra-senyas:',

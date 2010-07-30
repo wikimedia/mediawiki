@@ -218,7 +218,7 @@ Muşeni? Çunki am butʼkʼa, jileri na ren a butʼkʼaşi golaxteri versiyoni r
 Eger sebebi aya na va renna, pʼrogramis ar çilata z*irit.
 Mu iqʼven! Aya, a [[Special:ListUsers/sysop|adminis]], URL-ti çʼareli şekʼilite rapʼortʼi doçʼarit.',
 'missingarticle-rev' => '(revizyoni#: $1)',
-'badtitletext'       => 'Na içʼaren butʼkʼaşi coxo ya çilatoni ren ya boşi ren varna inter-nena do inter-vikʼişi kʼontʼaktʼis na uğutʼu şeni mtini varen. 
+'badtitletext'       => 'Na içʼaren butʼkʼaşi coxo ya çilatoni ren ya boşi ren varna inter-nena do inter-vikʼişi kʼontʼaktʼis na uğutʼu şeni mtini varen.
 Dudicoxopes oxmaruşi yasaği na ren ar, varna daha dido kʼarakʼtʼeri uğun.',
 'viewsource'         => 'Odudes o3ʼkʼedi',
 
@@ -280,7 +280,7 @@ varna am butʼkʼa [{{fullurl:{{FULLPAGENAME}}|action=edit}} gaktirinen]</span>.
 'previewnote'                      => "'''Aya, xvala, \"Evvelişen i3ʼkʼedi\" fonkʼsioni ren do oktirobape-skani kʼayitʼi var ixvenu çkva!'''",
 'editing'                          => '"$1" butʼkʼa iktirinen a3ʼi',
 'editingsection'                   => '"$1" butʼkʼas burme iktirinen',
-'copyrightwarning'                 => "'''Mu iqʼven kʼun3xi:''' {{SITENAME}} sitʼeşa na ixvenu mteli meşvelape <i>$2</i> 
+'copyrightwarning'                 => "'''Mu iqʼven kʼun3xi:''' {{SITENAME}} sitʼeşa na ixvenu mteli meşvelape <i>$2</i>
 paktʼiş doloxe ren (detayepe şeni $1's o3ʼkʼedi).
 Na qʼvi meşvelaşa başka makʼaturepeşkʼelen pʼatʼi mutxanepe ixvenen varna xemoşletinerot do uoçodinurot başka svapeşa niçinen, aya kʼabuli qʼvi varna am sitʼe şeni mutu mo ikip!<br />
 Edo amuş metʼi, ak mxuciş meçamu ginonna, meşvelape ti-skani kʼala oçʼaruşi re, varna ofi3ialurişa gon3ʼkʼimeri na ren ar kʼaynağişen (odudeşen) varna başka oxoşkveri kʼaynağepeşen (odudepeşen) na ezdi kʼabuli oxvenuşi re.<br />
@@ -606,9 +606,9 @@ Am butʼkʼaşi oçvuşi sinori gaktirinen; ama am oktiroba, kʼademoni oçvalu�
 'block-log-flags-nocreate' => 'hesabi okʼidu geinkʼilu',
 
 # Move page
-'movepagetext'     => "Tude na ren formi oxmarute butʼkʼaşi coxo iktirinen. Edo xolo mteli golaxteri kʼayitʼepeti ağani coxos itiren. 
-Mcveşi coxo, ağani coxoşa redirektʼi xali aqʼven. 
-Otomatikurot mcveşi stʼatʼiaşa na ixvenen redirektʼepe gaktirinen. 
+'movepagetext'     => "Tude na ren formi oxmarute butʼkʼaşi coxo iktirinen. Edo xolo mteli golaxteri kʼayitʼepeti ağani coxos itiren.
+Mcveşi coxo, ağani coxoşa redirektʼi xali aqʼven.
+Otomatikurot mcveşi stʼatʼiaşa na ixvenen redirektʼepe gaktirinen.
 Am dulya otomatikurot oxvenu va ginonna [[Special:DoubleRedirects|tʼkʼubi]] varna [[Special:BrokenRedirects|tʼaxeri]] na renan redirektʼepe ti-skani kʼala oktiruşi re. Na qʼvare am oktirobate mteli kʼontʼaktʼepe dido kʼai oçalişu ren, amuşen si sorumli re.
 
 Eger ağani coxos ar butʼkʼa zate korenna coxoşi oktiroba '''var ixvenasen'''. Amuş metʼi, coxoşi oktirobaşen pişmani qʼvi na, am oktiroba ipʼtʼali gaxvenen, aşoten başka butʼkʼapeşati zarari meçameri va gaqʼven.

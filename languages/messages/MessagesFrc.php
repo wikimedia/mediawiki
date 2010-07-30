@@ -277,7 +277,7 @@ MySQL a retourné l\'erreur "$3: $4".',
 'readonly'             => "La base d'information est barrée.",
 'enterlockreason'      => "Écrire une raison pour le barrage avec un temps estimé
 d'équand le barrage va être ôté.",
-'readonlytext'         => "À présent, la base d'information est barrée aux nouveaux changements, peut-être pour le soutien habituel de la base d'information, et ça va retourner à normal t'à l'heure.  
+'readonlytext'         => "À présent, la base d'information est barrée aux nouveaux changements, peut-être pour le soutien habituel de la base d'information, et ça va retourner à normal t'à l'heure.
 
 L'administrateur qui l'a barrée a donné cette explication: $1",
 'readonly_lag'         => "La base d'information s'a barré pendant que les serveurs de la base d'information rapprochont le maître.",
@@ -426,19 +426,19 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'blockedtitle'               => "L'useur est bloqué",
 'blockedtext'                => "'''Votre compte d'useur (ou votre adresse IP) est bloqué.'''
 
-Le blocage a été fait par $1.  La raison donnée est ''$2''.  
+Le blocage a été fait par $1.  La raison donnée est ''$2''.
 
 * La date du blocage: $8
 * Le blocage va être ôté: $6
-* L'useur bloqué: $7  
+* L'useur bloqué: $7
 
 Vous pouvez contacter $1 ou un autre [[{{MediaWiki:Grouppage-sysop}}|administrateur]] pour discuter le blocage.  Vous pouvez pas user la fonction 'envoyer un e-mail à cet useur' hormis que vous avez une adresse e-mail confirmée dans votre [[Special:Preferences|réglage de compte]] et vous avez la permission de l'user.  Votre adresse IP est $3, et le numéro du blocage est #$5.  Mettez donc cette information dans toutes vos demandes.",
-'autoblockedtext'            => "Le système a bloqué votre adresse IP parce qu'alle a été usée par un autre useur qu'était bloqué par $1.  
+'autoblockedtext'            => "Le système a bloqué votre adresse IP parce qu'alle a été usée par un autre useur qu'était bloqué par $1.
 
-La raison donnée est: ''$2''  
+La raison donnée est: ''$2''
 
 * La date du blocage: $8
-* Le blocage va être ôté: $6  
+* Le blocage va être ôté: $6
 
 Vous pouvez contacter $1 ou un autre [[{{MediaWiki:Grouppage-sysop}}|administrateur]] pour discuter le blocage.
 
@@ -458,8 +458,8 @@ Votre numéro de blocage est #$5.  Mettez donc cette information dans toutes vos
 'accmailtitle'               => 'Mot de passe envoyé.',
 'accmailtext'                => 'Le mot de passe pour "$1" a été envoyé à $2.',
 'newarticle'                 => '(Nouveau)',
-'newarticletext'             => "Vous avez suit un lien à une page qu'existe pas encore. 
-Pour créer la page, mettez des mots dans la boëte en bas (voyez la [[{{MediaWiki:Helppage}}|page d'aide]] pour plus d'information). 
+'newarticletext'             => "Vous avez suit un lien à une page qu'existe pas encore.
+Pour créer la page, mettez des mots dans la boëte en bas (voyez la [[{{MediaWiki:Helppage}}|page d'aide]] pour plus d'information).
 Si vous êtes ici par erreur, cliquez le bouton \"back\" sus votre navigateur.",
 'anontalkpagetext'           => "----''Ça ici, c'est la page de discussion pour un useur sans nom qu'a pas encore créé un compte ou qui l'use pas.  Ça fait, il faut user l'adresse IP numérique pour l'identifier.  Une adresse comme ça pourrait être usée par plusieurs useurs.  Si vous êtes un useur sans nom et vous croyez que des messages sans rapport ont été envoyés à vous, [[Special:UserLogin|créer un compte ou connecter]] pour empêcher la confusion avec des autres useurs sans nom dans l'avenir.''",
 'noarticletext'              => 'À présent, y a pas de texte sus cette page.
@@ -476,7 +476,7 @@ Exemple:  {{ns:user}}:Foo/monobook.css (bon)  {{ns:user}}:Foo/Monobook.css (mauv
 'previewnote'                => "'''Ça ici, c'est juste une vue d'avance; les changements ont pas encore été sauvés!'''",
 'previewconflict'            => "Cette vue d'avance montre le texte qu'est dans la boëte de changements en haut comme ça serait si vous choisirait de le sauver.",
 'session_fail_preview'       => "'''Ça fait de la peine!  Votre changement pouvait pas être sauvé à cause d'une perte d'information de la session.  Assayez donc encore.  Si ça travaille pas toujours, assayez de déconnecter et reconnecter.'''",
-'session_fail_preview_html'  => "'''Ça fait de la peine!  Votre changement pouvait pas être sauvé à cause d'une perte d'information de votre session.''' 
+'session_fail_preview_html'  => "'''Ça fait de la peine!  Votre changement pouvait pas être sauvé à cause d'une perte d'information de votre session.'''
 
 ''La vue d'avance est cachée pour empêcher les attaques JavaScript parce que ce wiki use le HTML brute.''
 
@@ -515,9 +515,9 @@ Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
 'nocreate-loggedin'          => 'Vous avez pas la permission de créer des nouvelles pages.',
 'permissionserrors'          => 'Erreur de permissions',
 'permissionserrorstext'      => 'Vous avez pas la permission de faire ça pour {{PLURAL:$1|cette raison|ces raisons}}:',
-'recreate-moveddeleted-warn' => "'''Attention: Vous êtes après recréer une page qu'a déjà été ôtée.'''  
+'recreate-moveddeleted-warn' => "'''Attention: Vous êtes après recréer une page qu'a déjà été ôtée.'''
 
-Vous devrait considérer si c'est à propos de continuer à changer cette page.  
+Vous devrait considérer si c'est à propos de continuer à changer cette page.
 Les notes d'ôtage pour cette page sont données ici pour vous aider:",
 
 # "Undo" feature

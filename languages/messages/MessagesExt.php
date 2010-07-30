@@ -2345,7 +2345,7 @@ El correu degorvió: $1',
 'confirmemail_subject'     => 'Confirmaeru de direción de correu de {{SITENAME}}',
 'confirmemail_body'        => 'Yeu!
 
-Alguien, siguramenti tú, á rustriu la cuenta "$2" dendi la direción 
+Alguien, siguramenti tú, á rustriu la cuenta "$2" dendi la direción
 IP $1 con esta direción d\'email en {{SITENAME}}.
 
 Pa confirmal qu\'esta cuenta es tuya i atival

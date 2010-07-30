@@ -30,14 +30,14 @@ $datePreferences = array(
 	'my long',
 	'ISO 8601',
 );
- 
+
 $defaultDateFormat = 'my normal';
- 
+
 $dateFormats = array(
 	'my normal time' => 'H:i',
 	'my normal date' => 'j F Y',
 	'my normal both' => ' H:i"၊" j F Y',
- 
+
 	'my long time' => 'H:i',
 	'my long date' => 'Y "ဇန်နဝါရီ" F"လ" j "ရက်"',
 	'my long both' => 'H:i"၊" Y "ဇန်နဝါရီ" F"လ" j "ရက်"',

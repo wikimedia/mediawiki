@@ -1184,7 +1184,7 @@ iwakken ad tesmimḍeḍ asebter.',
 'move-watch'              => 'Ɛass asebter-agi',
 'movepagebtn'             => 'Smimeḍ asebter',
 'pagemovedsub'            => 'Asemmimeḍ yekfa',
-'articleexists'           => 'Yella yagi yisem am wagi, neɣ 
+'articleexists'           => 'Yella yagi yisem am wagi, neɣ
 isem ayen textareḍ mačči d ṣaḥiḥ.
 Xtar yiwen nniḍen.',
 'talkexists'              => "'''Asemmimeḍ n usebter yekfa, meɛna asebter n umyannan ines ur yettusemmimeḍ ara axaṭer yella yagi yiwen s yisem kif-kif. G leɛnayek, xdem-it weḥd-ek.'''",

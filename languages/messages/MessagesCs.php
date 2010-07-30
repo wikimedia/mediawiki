@@ -72,7 +72,7 @@ $datePreferences =  array(
 );
 
 /**
- * Default date format to be used 
+ * Default date format to be used
  */
 $defaultDateFormat = 'ČSN basic dt';
 
@@ -250,7 +250,7 @@ $magicWords = array(
 # Písmena, která se mají objevit jako část odkazu ve formě '[[jazyk]]y' atd:
 $linkTrail = '/^([a-záčďéěíňóřšťúůýž]+)(.*)$/sDu';
 
-$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Dvojitá přesměrování', 'Dvojita presmerovani' ),

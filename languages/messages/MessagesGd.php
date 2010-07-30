@@ -483,19 +483,19 @@ Cha deach na mùthaidhean agad a shàbhaladh fhathast!",
 'editconflict'           => 'Mì-chòrdadh deasachaidh: $1',
 'explainconflict'        => 'Tha cuideigin eile air an duilleag seo a mhùthadh on a thòisich thu fhèin air a dheasachadh.
 Tha am bogsa teacsa gu h-àrd a\' nochdadh na duilleige mar a tha i an-dràsta.
-Tha na mùthaidhean agadsa sa bhogsa gu h-ìosal. 
-Bidh agad ris na mùthaidhean agad fhilleadh a-steach san teacsa làithreach. 
+Tha na mùthaidhean agadsa sa bhogsa gu h-ìosal.
+Bidh agad ris na mùthaidhean agad fhilleadh a-steach san teacsa làithreach.
 Cha dèid <b>ach an teacsa gu h-àrd</b> a shàbhaladh nuair a bhriogas tu air "Sàbhail an duilleag".<p>',
 'yourtext'               => 'An teacsa agad',
 'storedversion'          => 'Lethbhreac taisgte',
-'editingold'             => "'''RABHADH: Tha thu a' deasachadh lethbhreac seann-aimsireil na duilleige seo. 
+'editingold'             => "'''RABHADH: Tha thu a' deasachadh lethbhreac seann-aimsireil na duilleige seo.
 Ma shàbhalas tu seo, thèid gach mùthadh air chall a rinneadh a-mach on mhùthadh seo.'''",
 'yourdiff'               => 'Caochlaidhean',
 'copyrightwarning'       => "Thoir an aire gu bheilear a' tuigsinn gu bheil gach rud a chuireas tu ri {{SITENAME}} air a leigeil mu sgaoil fo $2 (see $1 airson mion-fhiosrachadh).
 Mura bi thu toilichte 's daoine eile a' deasachadh gun tròcair na sgrìobh tu 's 'ga sgaoileadh mar a thogras iad, na cuir an-seo e.<br />
 Tha thu a' toirt geall cuideachd gun do sgrìobh thu fhèin seo no gun do rinn thu lethbhreac dheth o àrainn phoblach no tùs saor coltach ris.
 '''Na cuir ann rudan fo chòir lethbhric gun chead!'''",
-'copyrightwarning2'      => "Ged a thatar gur moladh {{SITENAME}} a chruthachadh, a mheudachadh, is a leasachadh, thèid droch dheasaicheidhean a chur air imrich gu luath. 
+'copyrightwarning2'      => "Ged a thatar gur moladh {{SITENAME}} a chruthachadh, a mheudachadh, is a leasachadh, thèid droch dheasaicheidhean a chur air imrich gu luath.
 Mur eil thu ag iarraidh an sgrìobhaidh agad a dheasaichear is a sgaoilear le càch, na cuir e.<br />
 Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu fhèin e, no gur ann às an raon phòballach a thàinig e; thoir aire '''nach eil''' sin a' gabhail a-staigh duilleagan-lìn mar as àbhaist (seall $1 airson barrachd fiosrachaidh). <br />
 '''NA CLEACHDAIBH SAOTHAIR FO DHLIGHE-SGRÌOBHAIDH GUN CHEAD!'''",

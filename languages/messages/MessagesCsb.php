@@ -336,7 +336,7 @@ Mòżesz prôcowac z {{SITENAME}} jakno anonimòwi brëkòwnik abò wlogòwac s�
 'loginerror'                 => 'Fela logòwaniô',
 'loginsuccesstitle'          => 'ùdałé logòwanié',
 'loginsuccess'               => 'Të jes wlogòwóny do {{SITENAME}} jakno "$1".',
-'nosuchuser'                 => 'Nie dô brëkòwnika ò mionie "$1". 
+'nosuchuser'                 => 'Nie dô brëkòwnika ò mionie "$1".
 Sprôwdzë pisënk abò [[Special:UserLogin/signup|ùsôdzë nowé kònto]].',
 'nouserspecified'            => 'Mùszisz pòdac miono brëkòwnika.',
 'wrongpassword'              => 'Lëchô parola.
@@ -347,16 +347,16 @@ Spróbùjë znowa.',
 Mùszi zamëkac w se co nômni $1 {{PLURAL:$1|céch|céchë|céchów}} ë bëc jinszô jakno Twòje miono brëkòwnika.',
 'mailmypassword'             => 'Wëslë nową parolã e-mailą',
 'passwordremindertitle'      => 'Nowô doczasnô parola dlô {{SITENAME}}',
-'passwordremindertext'       => 'Chtos (gwës Të, z adresë $1) pòprosëł ò wësłanié nowi 
-parolë dlô {{SITENAME}} ($4). Aktualnô parola dlô brëkòwnika 
-"$2" òsta ùsôdzonô ë nastôwionô jakno "$3". Jeżlë to bëło twòją 
-jintencëją, mùszisz sã terô wlogòwac ë zmienic swòją parolã. 
-Nowô parola je wôznô {{PLURAL:$5|dzéń|$5 dni}}. 
-Jeżlë chto jinszi wësłôł to zapëtanié, abò pamiãtôsz swòją parolã 
-ë chcesz jã dali bez zmianë brëkòwac, zjignorëje to wiadło ë 
+'passwordremindertext'       => 'Chtos (gwës Të, z adresë $1) pòprosëł ò wësłanié nowi
+parolë dlô {{SITENAME}} ($4). Aktualnô parola dlô brëkòwnika
+"$2" òsta ùsôdzonô ë nastôwionô jakno "$3". Jeżlë to bëło twòją
+jintencëją, mùszisz sã terô wlogòwac ë zmienic swòją parolã.
+Nowô parola je wôznô {{PLURAL:$5|dzéń|$5 dni}}.
+Jeżlë chto jinszi wësłôł to zapëtanié, abò pamiãtôsz swòją parolã
+ë chcesz jã dali bez zmianë brëkòwac, zjignorëje to wiadło ë
 robi dali ze starną parolą.',
 'noemail'                    => 'W baze ni ma email-adresë dlô brëkòwnika "$1".',
-'acct_creation_throttle_hit' => 'Môsz ùsôdzoné ju {{PLURAL:$1|1 kònto|$1 kontów}}. 
+'acct_creation_throttle_hit' => 'Môsz ùsôdzoné ju {{PLURAL:$1|1 kònto|$1 kontów}}.
 Ni mòżesz miec ju wicy.',
 'emailauthenticated'         => 'Twòjô adresa e-mail òsta pòcwierdzonô $2 ò $3.',
 'accountcreated'             => 'Konto założone',
@@ -407,7 +407,7 @@ Ni mòżesz miec ju wicy.',
 'blockedtitle'           => 'Brëkòwnik je zascëgóny',
 'blockedtext'            => "'''Twòje kònto abò ë IP-adresa òstałë zablokòwóné.'''
 
-Zablokòwôł je $1. 
+Zablokòwôł je $1.
 Pòdónô przëczëna to:''$2''.
 
  * Zôczątk blokadë: $8
@@ -417,7 +417,7 @@ Pòdónô przëczëna to:''$2''.
 
 Bë zgwësnic sprawã zablokòwaniô mòżesz skòntaktowac sã z $1 abò jińszim [[{{MediaWiki:Grouppage-sysop}}|administratorã]].
 Boczë, że të ni mòżesz stądka sélac e-mailów, jeżlë nié môsz jesz zaregisterowóné e-mailowé adresë w [[Special:Preferences|nastôwach]].
-Twòjô aktualnô adresa IP to $3, a zablokòwónô adresa ID to #$5. 
+Twòjô aktualnô adresa IP to $3, a zablokòwónô adresa ID to #$5.
 Proszëmë pòdac wëższé pòdôłczi przë wszëtczich pëtaniach.",
 'blockedoriginalsource'  => "Zdrój '''$1''' je niżi:",
 'blockededitsource'      => "Tekst '''Twòjëch edicëji''' do '''$1''' je niżi:",
@@ -433,10 +433,10 @@ Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '
 Abë gò rozpòznac, ùżëwómë adresów IP.
 Takô adresa IP, mòże bëc brëkòwónô òb wiele lëdzy.
 Jeżlë jes anonimòwim brëkòwnikã ë ùwôżôsz, że te wiadła nie są do ce sczerowóne, tedë [[Special:UserLogin|ùsôdzë nowé kònto]] abò zalogùje sã, bë niechac niezrozmeiniô z jinëma anonimòwima brëkòwnikama.''",
-'clearyourcache'         => "'''Bôczë: Pò zapisanim, mòże bãdzesz mùszôł òminąc pamiãc przezérnika bë òbaczëc zmianë.''' 
-'''Mozilla / Firefox / Safari:''' przëtrzëmôj ''Shift'' òbczas klëkaniô na ''Zladëjë znowa'', abò wcësni ''Ctrl-F5'' abò ''Ctrl-R'' (''Command-R'' na kòmpùtrach Mac); 
-'''Konqueror:''': klëkni na knąpã ''Zladëjë znowa'', abò wcësni ''F5''; 
-'''Opera:''' wëczëszczë pòdrãczną pamiãc w ''Tools→Preferences''; 
+'clearyourcache'         => "'''Bôczë: Pò zapisanim, mòże bãdzesz mùszôł òminąc pamiãc przezérnika bë òbaczëc zmianë.'''
+'''Mozilla / Firefox / Safari:''' przëtrzëmôj ''Shift'' òbczas klëkaniô na ''Zladëjë znowa'', abò wcësni ''Ctrl-F5'' abò ''Ctrl-R'' (''Command-R'' na kòmpùtrach Mac);
+'''Konqueror:''': klëkni na knąpã ''Zladëjë znowa'', abò wcësni ''F5'';
+'''Opera:''' wëczëszczë pòdrãczną pamiãc w ''Tools→Preferences'';
 '''Internet Explorer:'''przëtrzëmôj ''Ctrl'' òbczas klëkaniô na ''Zladëjë znowa'', abò wcësni ''Ctrl-F5''.",
 'updated'                => '(Zaktualnioné)',
 'previewnote'            => "'''To je blós pòdzérk - artikel jesz nie je zapisóny!'''",
@@ -446,11 +446,11 @@ Jeżlë jes anonimòwim brëkòwnikã ë ùwôżôsz, że te wiadła nie są do 
 'yourtext'               => 'Twój tekst',
 'yourdiff'               => 'Zjinaczi',
 'copyrightwarning'       => "Bôczë, że wszëtczé edicëje w {{SITENAME}} są wprowadzané pòd zastrzégą $2 (òb. $1 dlô detalów). Jeżlë nie chcesz bë to co napiszesz bëło editowóné czë kòpijowóné, tedë nie zacwierdzôj nëch edicëjów.<br />Zacwierdzając zmianë dôwôsz parolã, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów. '''NIE DODÔWÔJ CËZËCH TEKSTÓW BEZ ZEZWÒLENIÔ!'''",
-'copyrightwarning2'      => "Bôczë, że wszëtczé edicëje w {{SITENAME}} mògą bëc editowóné, zmienióné abò rëmniãté bez jinëch brëkòwników. 
+'copyrightwarning2'      => "Bôczë, że wszëtczé edicëje w {{SITENAME}} mògą bëc editowóné, zmienióné abò rëmniãté bez jinëch brëkòwników.
 Jeżlë nie chcesz bë Twòja robòta bëła editowónô, tedë nie dodôwôj ji tuwò.<br />
-Zacwierdzając zmianë dôwôsz zgòdã na to, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów (zdrzë za detalama na $1). 
+Zacwierdzając zmianë dôwôsz zgòdã na to, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów (zdrzë za detalama na $1).
 '''NIE DODÔWÔJ ROBÒTË CHRONIONY ÙSÔDZKÒWIMA PRAWAMA BEZ ZEZWÒLENIÔ!'''",
-'readonlywarning'        => "'''BÔCZËNK: Pòdôwkòwô baza òsta sztërkòwô zablokòwónô dlô administracjowich célów. Ni mòże tej timczasã zapisac nowi wersëji artikla. 
+'readonlywarning'        => "'''BÔCZËNK: Pòdôwkòwô baza òsta sztërkòwô zablokòwónô dlô administracjowich célów. Ni mòże tej timczasã zapisac nowi wersëji artikla.
 Bédëjemë przeniesc ji tekst do priwatnégò lopka (wëtnij/wstôw) ë ùchòwac na pózni.'''
 
 Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
@@ -563,7 +563,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'yourvariant'           => 'Wariant:',
 'yournick'              => 'Pòdpisënk:',
 'badsig'                => 'Òchëbny pòdpisënk, sprôwdzë tadżi HTML.',
-'badsiglength'          => 'Pòdpisënk je za dłudżi. 
+'badsiglength'          => 'Pòdpisënk je za dłudżi.
 Mô bëc mni jakno $1 {{PLURAL:$1|znak|znaczi/znaków}}.',
 'gender-male'           => 'Chłop',
 'gender-female'         => 'Białka',
@@ -761,7 +761,7 @@ Mòżesz zawãżëc wëszłosc przez wëbranié ôrtu registru, miona brëkòwni
 'watchnologin'         => 'Felënk logòwóniô',
 'addedwatch'           => 'Dodónô do lëstë ùzérónëch',
 'addedwatchtext'       => "Starna \"[[:\$1]]\" òsta dodónô do twòji [[Special:Watchlist|lëstë ùzérónëch artiklów]].
-Na ti lësce są registre przińdnëch zjinak ti starne ë na ji starnie dyskùsëji, a samò miono starnë mdze '''wëtłëszczone''' na [[Special:RecentChanges|lësce slédnich edicëji]], bë të mògł to òbaczëc. 
+Na ti lësce są registre przińdnëch zjinak ti starne ë na ji starnie dyskùsëji, a samò miono starnë mdze '''wëtłëszczone''' na [[Special:RecentChanges|lësce slédnich edicëji]], bë të mògł to òbaczëc.
 
 Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj ùzérac''.",
 'removedwatch'         => 'Rëmóné z lëstë ùzérónëch',
@@ -1006,7 +1006,7 @@ Mòżesz òbaczëc ji zdrój.',
 'bad_image_list' => 'Fòrmat do wpisaniô je jakno niżi:
 
 Blós elementë lëstë (réżczi naczynającé sã òd *) bãdą ùwzglãdniwóné.
-Pierszi lënk w réżczi mùãzi bëc lënkã do zakazónegò lopka. 
+Pierszi lënk w réżczi mùãzi bëc lënkã do zakazónegò lopka.
 Nôslédné lënczi w réżce bãdą ùwzglãdniwóné jakno wëjimczi – są to miona starnów, na chtërnëch lopk ò zakazónym mionie mòze bëc brëkòwóny.',
 
 # Metadata

@@ -926,7 +926,7 @@ Si puede ser, escoge otro nombre.',
 'tooltip-pt-login'                => 'Se le aconseja a entrar, ma no es obligado.',
 'tooltip-pt-logout'               => 'Salir de la sessión',
 'tooltip-ca-talk'                 => 'Diskusyón encima del artícůlo',
-'tooltip-ca-edit'                 => 'Puedes trocar esta hoja 
+'tooltip-ca-edit'                 => 'Puedes trocar esta hoja
 Si puede ser, usa el botón de prēviźualiźasyón antes de enrejjistrarla.',
 'tooltip-ca-addsection'           => 'Empeça una nueva sección',
 'tooltip-ca-viewsource'           => 'Esta hoja está guardada; sólo puedes ver su codd fuente',

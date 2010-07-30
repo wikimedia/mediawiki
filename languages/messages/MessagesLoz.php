@@ -886,7 +886,7 @@ Petulo sa '''no''' nyanganyisize di nca nom e nca nom sa xete, xete a sa petulo 
 Petulo populari sa drastiki bufosi e nyanganyisize;
 a sa gukilize di nyanganyisize.",
 'movepagetalktext' => "Bulelezi sa nyanganyisize '''teri:'''
-*Bulelezi e selt sa kwa nca nom, 
+*Bulelezi e selt sa kwa nca nom,
 *Okižekilize sisebelisoni.
 
 Teri yaki, a nyanganyisize.",

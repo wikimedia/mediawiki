@@ -599,9 +599,9 @@ $2',
 'previewnote'                      => "'''請記到箇光係預覽，內容哈冇保存！'''",
 'previewconflict'                  => '箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。',
 'session_fail_preview'             => "'''對伓住！箇隻段落嗰資料跌吥嘞，偶個俚處理伓正倷嗰編輯。請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
-'session_fail_preview_html'        => "'''對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。''' 
+'session_fail_preview_html'        => "'''對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。'''
 
-''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。'' 
+''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。''
 
 '''要係佢係合法編輯嗰，請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
 'token_suffix_mismatch'            => "'''倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
@@ -2181,11 +2181,11 @@ $1',
 'confirmemail_loggedin'   => '倷嗰email地址已得到確認。',
 'confirmemail_error'      => '確認過程出錯。',
 'confirmemail_subject'    => '{{SITENAME}}電子郵件地址確認',
-'confirmemail_body'       => 'IP地址$1嗰用戶（可能係倷）到{{SITENAME}}註冊嘞帳戶"$2"，並一同用嘞倷嗰email地址。 
+'confirmemail_body'       => 'IP地址$1嗰用戶（可能係倷）到{{SITENAME}}註冊嘞帳戶"$2"，並一同用嘞倷嗰email地址。
 
-請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結: 
+請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結:
 
-$3 
+$3
 
 如果箇*伓係*倷，就冇必要打開箇隻連結。確認碼會到$4時間過期。',
 
