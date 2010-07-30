@@ -2,12 +2,12 @@
 
 /**
  * Class for the core installer command line interface.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
 class CliInstaller extends CoreInstaller {
-	
+
 	private $optionMap = array(
 		'dbtype' => 'wgDBtype',
 		'dbserver' => 'wgDBserver',
@@ -78,6 +78,9 @@ class CliInstaller extends CoreInstaller {
 			array( $this, 'startStage' ),
 			array( $this, 'endStage' )
 		);
+
+		$ls = new LocalSettingsGenerator( $this );
+		file_put_contents( "LocalSettings.php", $ls->getText() );
 	}
 
 	public function startStage( $step ) {
