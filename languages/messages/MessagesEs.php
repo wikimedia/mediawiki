@@ -1741,6 +1741,8 @@ Por favor, elige un nombre más descriptivo.",
 'upload-failure-msg'          => 'Hubo un problema con tu carga:
 
 $1',
+'upload-warning-subj'         => 'Alerta de carga',
+'upload-warning-msg'          => 'Hubo un problema con tu carga de [$2]. Puedes regresar al [[Special:Upload/stash/$1|formulario de carga]] para corregir este problema.',
 
 'upload-proto-error'        => 'Protocolo incorrecto',
 'upload-proto-error-text'   => 'Para subir archivos desde otra página la URL debe comenzar por <code>http://</code> o <code>ftp://</code>.',

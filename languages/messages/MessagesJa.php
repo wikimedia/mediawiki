@@ -1644,11 +1644,13 @@ MGP # ペンタックス
 PICT # その他
  #</pre> <!-- この行はそのままにしておいてください -->',
 'upload-success-subj'         => 'アップロード成功',
-'upload-success-msg'          => 'あなたのアップロードが利用可能です: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => '[$2] からのアップロードに成功しました。アップロードしたページはこちらです: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'アップロードで発生した問題',
 'upload-failure-msg'          => 'ファイルのアップロード中に問題が発生しました:
 
 $1',
+'upload-warning-subj'         => 'アップロードの警告',
+'upload-warning-msg'          => '[$2] からアップロードしようとしたデータに問題があります。 [[Special:Upload/stash/$1|アップロードのフォーム]]に戻って問題を修正してください。',
 
 'upload-proto-error'        => '不正なプロトコル',
 'upload-proto-error-text'   => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
@@ -2589,7 +2591,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Import log
 'importlogpage'                    => 'インポート記録',
-'importlogpagetext'                => '以下は管理者による他ウィキからのページデータの取り込み記録です。',
+'importlogpagetext'                => '以下は他ウィキからのページデータの取り込み記録です。',
 'import-logentry-upload'           => 'ファイルのアップロードにより [[$1]] をインポートしました',
 'import-logentry-upload-detail'    => '$1{{PLURAL:$1|版}}',
 'import-logentry-interwiki'        => '$1 をtranswikiしました',

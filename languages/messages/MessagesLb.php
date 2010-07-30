@@ -1581,6 +1581,7 @@ Zu Ärer Informatioun steet an der Läsch-Lëscht de Grond vum virege Läschen:"
 'upload-failure-msg'          => 'Et gouf e Problem mat dem Fichier deen Dir eropgelueden hutt:
 
 $1',
+'upload-warning-subj'         => 'Warnung beim Eroplueden',
 
 'upload-proto-error'        => 'Falsche Protokoll',
 'upload-proto-error-text'   => "D'URL muss mat <code>http://</code> oder <code>ftp://</code> ufänken.",

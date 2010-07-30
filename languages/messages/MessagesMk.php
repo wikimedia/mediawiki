@@ -1731,11 +1731,13 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Не менувај ја содржината на оваа редица, остави ја како што е -->',
 'upload-success-subj'         => 'Подигањето е успешно',
-'upload-success-msg'          => 'Подигнатото е достапно овде: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Подигањето од [$2] заврши успешно. Подигнатото можете да го видите тука: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Проблем при подигањето',
 'upload-failure-msg'          => 'Се појави проблем со вашето подигање:
 
 $1',
+'upload-warning-subj'         => 'Предупредување за подигањето',
+'upload-warning-msg'          => 'Се јави проблем при подигањето од [$2]. Можете да се вратите на [[Special:Upload/stash/$1|образецот]] за да го поправите проблемот.',
 
 'upload-proto-error'        => 'Погрешен протокол',
 'upload-proto-error-text'   => 'За далечинско подигнување потребно е URL-то да почнува со <code>http://</code> или <code>ftp://</code>.',
@@ -2278,7 +2280,7 @@ $UNWATCHURL
 'protectlogpage'              => 'Дневник на заштитувања',
 'protectlogtext'              => 'Подолу е наведен список на отклучувања/заклучувања на страницата.
 Погледете го [[Special:ProtectedPages|списокот на заштитени страници]].',
-'protectedarticle'            => 'ја заштити „[[$1]]“',
+'protectedarticle'            => 'заштена страницата „[[$1]]“',
 'modifiedarticleprotection'   => 'сменето ниво на заштита за „[[$1]]“',
 'unprotectedarticle'          => 'отстранета заштита на "[[$1]]"',
 'movedarticleprotection'      => 'преместени нагодувања за заштита од „[[$2]]“ во „[[$1]]“',
@@ -2311,7 +2313,7 @@ $UNWATCHURL
 'protect-othertime'           => 'Друго време:',
 'protect-othertime-op'        => 'друго време',
 'protect-existing-expiry'     => 'Постоечки рок на истекување: $3, $2',
-'protect-otherreason'         => 'Друга/дополнителна причини:',
+'protect-otherreason'         => 'Друга/дополнителна причина:',
 'protect-otherreason-op'      => 'Друга причина',
 'protect-dropdown'            => '*Вообичаени причини за заштита
 ** Зачестен вандализам

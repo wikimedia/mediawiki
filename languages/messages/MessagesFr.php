@@ -993,10 +993,10 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’
 'longpagewarning'                  => "'''AVERTISSEMENT : cette page a une longueur de $1 Kio ;
 certains navigateurs Web gèrent mal la modification des pages approchant ou dépassant 32 Kio. Peut-être devriez-vous diviser la page en sections plus petites.'''",
 'longpageerror'                    => "'''ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.'''",
-'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l’instant.''' Vous pouvez copier le texte dans un fichier texte et le conserver pour plus tard.
+'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l’instant.'''
+Vous pouvez copier le texte dans un fichier texte et le conserver pour plus tard.
 
-L’administrateur ayant verrouillé la base de données a donné l’explication suivante :<br
-/>$1",
+L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1",
 'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
 'cascadeprotectedwarning'          => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l’éditer. Cette protection est héritée par son inclusion par {{PLURAL:$1|la page protégée suivante, qui a|les pages protégées suivantes, qui ont}} la « protection en cascade » activée :",
@@ -1767,11 +1767,13 @@ MGP # Pentax
 PICT # divers
  #</pre><!-- laisser cette ligne telle quelle -->',
 'upload-success-subj'         => 'Téléversement effectué avec succès',
-'upload-success-msg'          => 'Votre téléversement est disponible ici : [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Votre téléversement depuis [$2] a réussi. Il est disponible ici : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problème de téléversement',
 'upload-failure-msg'          => 'Il y a eu un problème avec votre téléversement :
 
 $1',
+'upload-warning-subj'         => 'Avertissement lors du téléversement',
+'upload-warning-msg'          => 'Un problème est survenu lors de votre téléversement depuis [$2]. Vous pouvez revenir au [[Special:Upload/stash/$1|formulaire de téléversement]] pour le résoudre.',
 
 'upload-proto-error'        => 'Protocole incorrect',
 'upload-proto-error-text'   => 'Le téléversement requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.',

@@ -1617,11 +1617,13 @@ MGP # Pentax
 PICT # mešano
  #</pre> <!-- pustite to vrstico takšno, kot je -->',
 'upload-success-subj'         => 'Datoteka je bila uspešno naložena',
-'upload-success-msg'          => 'Vaša naložena datoteka je na voljo tukaj: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Vaša datoteka iz [$2] je bila uspešno naložena. Na voljo je tukaj: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Težava pri nalaganju',
 'upload-failure-msg'          => 'Prišlo je do težave z vašo naloženo datoteko:
 
 $1',
+'upload-warning-subj'         => 'Opozorilo pri nalaganju',
+'upload-warning-msg'          => 'Prišlo je do težave pri nalaganju datoteke iz [$2]. Lahko se vrnete na [[Special:Upload/stash/$1|obrazec za nalaganje]], da odpravite težavo.',
 
 'upload-proto-error'        => 'Nepravilni protokol',
 'upload-proto-error-text'   => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
@@ -2464,20 +2466,22 @@ Za zaklepanje in odklepanje zbirke podatkov mora biti ta datoteka zapisljiva s s
 # Move page
 'move-page'                    => 'Prestavi $1',
 'move-page-legend'             => 'Prestavitev strani',
-'movepagetext'                 => "Z naslednjim obrazcem lahko stran preimenujete in hkrati prestavite tudi vso njeno zgodovino. Dosedanja stran se bo spremenila v preusmeritev na prihodnje mesto.
+'movepagetext'                 => "Z naslednjim obrazcem lahko stran preimenujete in hkrati prestavite tudi vso njeno zgodovino.
+Dosedanja stran se bo spremenila v preusmeritev na prihodnje mesto.
+Samodejno lahko posodobite preusmeritve, ki kažejo na dosedanji naslov.
+Če se za to ne odločite, ne pozabite preveriti vseh [[Special:DoubleRedirects|dvojnih]] ali [[Special:BrokenRedirects|pretrganih preusmeritev]].
+Odgovorni ste, da bodo povezave še naprej kazale na prava mesta.
 
-'''Povezave na dosedanji naslov strani se ne bodo spremenile, zato vas prosimo, da po prestavitvi strani z uporabo pripomočka »Kaj se povezuje sem« popravite vse dvojne preusmeritve, ki bodo morda nastale.''' Odgovorni ste, da bodo povezave še naprej kazale na prava mesta.
+Kjer stran z izbranim novim imenom že obstaja, dejanje '''ne''' bo izvedeno, razen če je sedanja stran prazna ali preusmeritvena in brez zgodovine urejanj.
+To pomeni, da lahko, če se zmotite, strani vrnete prvotno ime, ne morete pa prepisati že obstoječe strani.
 
-Kjer stran z izbranim novim imenom že obstaja, dejanje '''ne''' bo izvedeno, razen če je sedanja stran prazna ali preusmeritvena in brez zgodovine urejanj. To pomeni, da lahko, če se zmotite, strani vrnete prvotno ime, ne morete pa prepisati že obstoječe strani.
-
-<b>OPOZORILO!</b>
+'''Opozorilo!'''
 Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprememba, zato pred izbiro ukaza dobro premislite.",
 'movepagetalktext'             => "Če obstaja, bo samodejno prestavljena tudi pripadajoča pogovorna stran, '''razen kadar'''
-*stran prestavljate prek imenskih prostorov,
 *pod novim imenom že obstaja neprazna pogovorna stran ali
 *ste odkljukali spodnji okvirček.
 
-Če je tako, boste morali pogovorno stran, če želite, prestaviti ali povezati ročno. Če tega ne morete storiti, predlagajte prestavitev na strani [[Project:Želene prestavitve]], vsekakor pa tega '''''ne''''' počnite s preprostim izrezanjem in prilepljenjem vsebine, saj bi tako pokvarili zgodovino urejanja strani.",
+Če je tako, boste morali pogovorno stran, če želite, prestaviti ali povezati ročno.",
 'movearticle'                  => 'Prestavi stran:',
 'moveuserpage-warning'         => "'''Opozorilo:''' Premikate uporabniško stran. To pomeni, da bo premaknjena samo stran in uporabnik ''ne'' bo preimenovan.",
 'movenologin'                  => 'Niste prijavljeni',

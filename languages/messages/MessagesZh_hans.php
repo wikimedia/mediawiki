@@ -28,6 +28,7 @@
  * @author Shizhao
  * @author Wmr89502270
  * @author Wong128hk
+ * @author Xiaomingyan
  * @author Yfdyh000
  */
 
@@ -207,12 +208,12 @@ $bookstoreList = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '链接下划线：',
-'tog-highlightbroken'         => '无效链接显示为<a href="" class="new">这样</a>（否则：显示为<a href="" class="internal">?</a>）',
+'tog-highlightbroken'         => '无效链接显示为<a href="" class="new">这样</a>（否则显示为<a href="" class="internal">?</a>）',
 'tog-justify'                 => '段落对齐',
 'tog-hideminor'               => '在最近更改中隐藏小修改',
 'tog-hidepatrolled'           => '在最近更改中隐藏已巡查编辑',
 'tog-newpageshidepatrolled'   => '在新页面列表中隐藏已巡查页面',
-'tog-extendwatchlist'         => '增强监视列表以显示所有更改，而不仅是最近的',
+'tog-extendwatchlist'         => '增强监视列表以显示包括最近更改的所有更改',
 'tog-usenewrc'                => '启用增强最近更改（JavaScript）',
 'tog-numberheadings'          => '标题自动编号',
 'tog-showtoolbar'             => '显示编辑工具条（JavaScript）',
@@ -228,12 +229,12 @@ $messages = array(
 'tog-previewontop'            => '在编辑框上方显示预览',
 'tog-previewonfirst'          => '在首次编辑时显示预览',
 'tog-nocache'                 => '禁用页面缓存',
-'tog-enotifwatchlistpages'    => '在我的监视列表中的页面改变时发电子邮件通知我',
-'tog-enotifusertalkpages'     => '在我的讨论页更改时发邮件通知我',
-'tog-enotifminoredits'        => '在页面有小修改时也发邮件通知我',
+'tog-enotifwatchlistpages'    => '当我的监视列表中的页面改变时发送电子邮件通知我',
+'tog-enotifusertalkpages'     => '当我的讨论页更改时发送电子邮件通知我',
+'tog-enotifminoredits'        => '当页面有小修改时也发送电子邮件通知我',
 'tog-enotifrevealaddr'        => '在通知电子邮件列表中显示我的电子邮件地址',
 'tog-shownumberswatching'     => '显示监视此页的用户数',
-'tog-oldsig'                  => '原有签名的预览：',
+'tog-oldsig'                  => '原签名预览：',
 'tog-fancysig'                => '将签名以wiki文本对待（不产生自动链接）',
 'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置）',
 'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置）',
@@ -247,8 +248,8 @@ $messages = array(
 'tog-watchlisthideanons'      => '在监视列表中隐藏匿名用户',
 'tog-watchlisthidepatrolled'  => '在监视列表中隐藏已巡查的编辑',
 'tog-nolangconversion'        => '不进行字词转换',
-'tog-ccmeonemails'            => '把我发送给其他用户的邮件同时发送副本给我自己',
-'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
+'tog-ccmeonemails'            => '给我发送我给其他用户发送的电子邮件的副本',
+'tog-diffonly'                => '比较差异时不显示页面内容',
 'tog-showhiddencats'          => '显示隐藏分类',
 'tog-noconvertlink'           => '不进行标题／链接转换',
 'tog-norollbackdiff'          => '执行回退后不显示差异',
@@ -320,28 +321,27 @@ $messages = array(
 'pagecategories'                 => '$1个分类',
 'category_header'                => '分类“$1”的页面',
 'subcategories'                  => '子分类',
-'category-media-header'          => '分类“$1”的媒体',
-'category-empty'                 => "''这个分类中尚未包含任何页面或媒体。''",
+'category-media-header'          => '分类“$1”的媒体文件',
+'category-empty'                 => "''本分类尚未包含任何页面或媒体文件。''",
 'hidden-categories'              => '$1个隐藏分类',
 'hidden-category-category'       => '隐藏分类',
-'category-subcat-count'          => '{{PLURAL:$2|此分类只有下列一个子分类。|此分类包含下列$1个子分类，共有$2个子分类。}}',
-'category-subcat-count-limited'  => '此分类包含下列$1个子分类。',
-'category-article-count'         => '{{PLURAL:$2|此分类只有下列一个页面。|此分类包含下列$1个页面，共有$2个页面。}}',
-'category-article-count-limited' => '此分类包含下列$1个页面。',
-'category-file-count'            => '{{PLURAL:$2|此分类只有下列一个文件。|此分类包含下列$1个文件，共有$2个文件。}}',
-'category-file-count-limited'    => '此分类包含下列$1个文件。',
+'category-subcat-count'          => '{{PLURAL:$2|本分类只有下列一个子分类。|本分类包含下列$1个子分类，共有$2个子分类。}}',
+'category-subcat-count-limited'  => '本分类包含下列$1个子分类。',
+'category-article-count'         => '{{PLURAL:$2|本分类只有下列一个页面。|本分类包含下列$1个页面，共有$2个页面。}}',
+'category-article-count-limited' => '本分类包含下列$1个页面。',
+'category-file-count'            => '{{PLURAL:$2|本分类只有下列一个文件。|本分类包含下列$1个文件，共有$2个文件。}}',
+'category-file-count-limited'    => '本分类包含下列$1个文件。',
 'listingcontinuesabbrev'         => '续',
 'index-category'                 => '已做索引的页面',
 'noindex-category'               => '未做索引的页面',
 
-'mainpagetext'      => "'''已成功安装 MediaWiki。'''",
-'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
+'mainpagetext'      => "'''已成功安装MediaWiki。'''",
+'mainpagedocfooter' => '请查阅[http://meta.wikimedia.org/wiki/Help:Contents 用户指南]以获取使用本wiki软件的信息！
 
 == 入门 ==
-
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设置列表]
-* [http://www.mediawiki.org/wiki/Manual:FAQ/zh-hans MediaWiki 常见问题解答]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ/zh-hans MediaWiki常见问题]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki发布邮件列表]',
 
 'about'         => '关于',
 'article'       => '内容页面',
@@ -350,7 +350,7 @@ $messages = array(
 'moredotdotdot' => '更多……',
 'mypage'        => '我的页面',
 'mytalk'        => '讨论页',
-'anontalk'      => '该IP的对话页',
+'anontalk'      => '该IP的讨论页',
 'navigation'    => '导航',
 'and'           => '和',
 
@@ -362,11 +362,11 @@ $messages = array(
 'qbpageinfo'     => '页面信息',
 'qbmyoptions'    => '我的选项',
 'qbspecialpages' => '特殊页面',
-'faq'            => '常见问题解答',
-'faqpage'        => 'Project:常见问题解答',
+'faq'            => '常见问题',
+'faqpage'        => 'Project:常见问题',
 
 # Vector skin
-'vector-action-addsection'       => '加入主题',
+'vector-action-addsection'       => '添加话题',
 'vector-action-delete'           => '删除',
 'vector-action-move'             => '移动',
 'vector-action-protect'          => '保护',
@@ -447,14 +447,16 @@ $messages = array(
 'jumpto'            => '跳转到：',
 'jumptonavigation'  => '导航',
 'jumptosearch'      => '搜索',
-'view-pool-error'   => '抱歉，服务器在此时已超出负荷；这是由于过多用户试图查看该页面引起的。请在再次尝试访问前稍待片刻。
+'view-pool-error'   => '抱歉，服务器超负荷运转。
+过多用户正尝试查看本页面。
+请在再次尝试访问本页面之前稍等片刻。
 
 $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '关于{{SITENAME}}',
 'aboutpage'            => 'Project:关于',
-'copyright'            => '本站的全部文本内容在$1之条款下提供。',
+'copyright'            => '本站全部文字内容使用$1授权。',
 'copyrightpage'        => '{{ns:project}}:版权信息',
 'currentevents'        => '当前事件',
 'currentevents-url'    => 'Project:当前事件',
@@ -472,11 +474,11 @@ $1',
 'privacypage'          => 'Project:隐私政策',
 
 'badaccess'        => '权限错误',
-'badaccess-group0' => '你所请求执行的操作被禁止。',
-'badaccess-groups' => '您刚才的请求只有{{PLURAL:$2|这个|这些}}用户组的用户才能使用：$1',
+'badaccess-group0' => '你被禁止执行你刚才请求的操作。',
+'badaccess-groups' => '您刚才请求的操作只有以下用户组的用户才能使用：$1',
 
 'versionrequired'     => '需要版本为$1的MediaWiki',
-'versionrequiredtext' => '需要版本为$1的MediaWiki才能使用此页。参见[[Special:Version|版本页]]。',
+'versionrequiredtext' => '需要版本为$1的MediaWiki才能使用本页。请见[[Special:Version|版本页面]]。',
 
 'ok'                      => '确定',
 'retrievedfrom'           => '取自“$1”',
@@ -498,7 +500,7 @@ $1',
 'restorelink'             => '$1个被删除的版本',
 'feedlinks'               => '订阅：',
 'feed-invalid'            => '无效的订阅类型。',
-'feed-unavailable'        => '联合订阅并无提供',
+'feed-unavailable'        => '不提供联合订阅源',
 'site-rss-feed'           => '$1的RSS订阅',
 'site-atom-feed'          => '$1的Atom订阅',
 'page-rss-feed'           => '“$1”的RSS订阅',
@@ -519,7 +521,7 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => '这个命令不存在',
-'nosuchactiontext'  => 'URL指定的命令无效。你可能错误输入了URL地址，或者点击了错误的链接。这一错误亦有可能是由{{SITENAME}}所使用软件自身的错误导致的。',
+'nosuchactiontext'  => 'URL指定的命令无效。你可能误输入了URL地址，或者点击了错误的链接。这一错误亦有可能是由{{SITENAME}}所使用软件自身的错误导致的。',
 'nosuchspecialpage' => '此特殊页面不存在',
 'nospecialpagetext' => '<strong>您请求的特殊页面无效。</strong>
 
@@ -1595,6 +1597,7 @@ $1",
 'upload-failure-msg'          => '有一个问题与您的上传有关：
 
 $1',
+'upload-warning-subj'         => '上传警告',
 
 'upload-proto-error'        => '协议错误',
 'upload-proto-error-text'   => '远程上传要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 开头。',

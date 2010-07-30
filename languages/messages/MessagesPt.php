@@ -1771,6 +1771,8 @@ PICT # misc.
 'upload-failure-msg'          => 'Ocorreu um problema com o seu upload:
 
 $1',
+'upload-warning-subj'         => 'Aviso de upload',
+'upload-warning-msg'          => 'Ocorreu um problema no seu upload de [$2]. Pode voltar ao [[Special:Upload/stash/$1|formulário de upload]] para resolver o problema.',
 
 'upload-proto-error'        => 'Protocolo incorrecto',
 'upload-proto-error-text'   => 'O carregamento remoto de ficheiros requer endereços URL começados por <code>http://</code> ou <code>ftp://</code>.',

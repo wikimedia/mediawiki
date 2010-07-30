@@ -1644,11 +1644,13 @@ MGP # Pentax
 PICT # div.
  #</pre> <!-- leave this line exactly as it is -->',
 'upload-success-subj'         => 'Opplastingen er gjennomført',
-'upload-success-msg'          => 'Din opplasting er tilgjengelig her: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Din opplasting fra [$2] var vellykket. Den er tilgjengelig her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Opplastingsproblem',
 'upload-failure-msg'          => 'Det oppsto et problem med opplastingen din:
 
 $1',
+'upload-warning-subj'         => 'Opplastingsadvarsel',
+'upload-warning-msg'          => 'Det oppsto et problem med opplastingen din fra [$2]. Du kan gå tilbake til [[Special:Upload/stash/$1|opplastingsskjemaet]] for å løse dette problemet.',
 
 'upload-proto-error'        => 'Gal protokoll',
 'upload-proto-error-text'   => 'Fjernopplasting behøver adresser som begynner med <code>http://</code> eller <code>ftp://</code>.',

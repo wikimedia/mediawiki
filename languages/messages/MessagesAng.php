@@ -29,7 +29,7 @@ $namespaceNames = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Hlenċa undermearcian:',
+'tog-underline'               => 'Mearcian under hlencum:',
 'tog-highlightbroken'         => 'Settan unfulfylede hlencan <a href="" class="new">swā þis</a> (þīn ōðer cyre is tō habbenne hīe swā þis:<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Macian cwidfloccas riht',
 'tog-hideminor'               => 'Lytla ādihtunga hȳdan in getæle nīwlicra hweorfunga',
@@ -52,6 +52,9 @@ $messages = array(
 'tog-previewonfirst'          => 'Forescēawunge sēon on formestum ādihte',
 'tog-nocache'                 => 'Ne þafian tramenta settunge',
 'tog-enotifwatchlistpages'    => 'Sendan mē spearccræftig ǣrend þǣr tramet on mīnum wæccgetæle wierþ andwended',
+'tog-enotifusertalkpages'     => 'Sendan mē spearccræftig ǣrend þǣr mīn brūcendtramet is andwended',
+'tog-enotifminoredits'        => 'Sendan mē spearccræftig ǣrend þǣr tramets sind efne lytellīce andwended',
+'tog-enotifrevealaddr'        => 'Ēowian mīn spearccræftigra ǣrenda naman on sprearccræftigum gecȳðendum ǣrendum',
 'tog-shownumberswatching'     => 'Hū mæniȝ ƿæccende brūcendas sēon',
 'tog-uselivepreview'          => 'Līfe forescēaƿe brūcan (þearf JavaScript) (oferfundenisc)',
 'tog-watchlisthideown'        => 'Mīna ādihtunga hȳdan ƿiþ þā ƿæccȝetale',

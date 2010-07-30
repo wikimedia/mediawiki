@@ -1339,11 +1339,11 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'minoreditletter'                   => 'c',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 't',
-'number_of_watching_users_pageview' => "[tnùa sot euj da {{PLURAL:$1|n'utent|$1 utent}}]",
-'rc_categories'                     => 'Limité a le categorìe (che a jë scriva separand-je antra lor con un "|")',
+'number_of_watching_users_pageview' => "[tnùa sot-euj da {{PLURAL:$1|n'utent|$1 utent}}]",
+'rc_categories'                     => 'Limité a le categorìe (che a jë scriva separand-je antra \'d lor con un "|")',
 'rc_categories_any'                 => 'Qualsëssìa',
 'newsectionsummary'                 => '/* $1 */ session neuva',
-'rc-enhanced-expand'                => 'Mosta le minussie (a veul JavaScript)',
+'rc-enhanced-expand'                => 'Mostré ij detaj (a-i é da manca ëd JavaScript)',
 'rc-enhanced-hide'                  => 'Stërma le minussie',
 
 # Recent changes linked
@@ -1485,12 +1485,14 @@ JD # Jenoptik
 MGP # Pentax
 PICT # vàire marche diferente
  #</pre> <!-- ch'a lassa sta riga-sì tanme ch'a l'é -->",
-'upload-success-subj'         => 'Carià complet',
-'upload-success-msg'          => "Lòn ch'a l'ha carià a l'é disponìbil ambelessì: [[:{{ns:file}}:$1]]",
+'upload-success-subj'         => 'Carià con sucess',
+'upload-success-msg'          => "A l'ha carià da [$2] për da bin. Lòn ch'a l'ha carià a l'é disponìbil ambelessì: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => 'Problema a carié',
 'upload-failure-msg'          => "A-i é staje un problema con lòn ch'a l'ha carià:
 
 $1",
+'upload-warning-subj'         => 'Avis che i soma dapress a carié',
+'upload-warning-msg'          => 'A-i era un problem con tò cariagi da [$2]. It peule artorné a la [[Special:Upload/stash/$1|forma ëd cariagi]] për coregi sto problem-sì.',
 
 'upload-proto-error'        => 'Protocòl cioch',
 'upload-proto-error-text'   => "Për carié da dij servent lontan a venta buté dj'anliure ch'as anandio për <code>http://</code> ò pura <code>ftp://</code>.",

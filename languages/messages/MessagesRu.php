@@ -16,6 +16,7 @@
  * @author Chilin
  * @author Claymore
  * @author Don Alessandro
+ * @author Eleferen
  * @author EugeneZelenko
  * @author Ferrer
  * @author Flrn
@@ -37,6 +38,7 @@
  * @author Sk
  * @author Temuri rajavi
  * @author VasilievVV
+ * @author Ytsukeng Fyvaprol
  * @author Александр Сигачёв
  * @author לערי ריינהארט
  * @author გიორგიმელა
@@ -688,7 +690,7 @@ $2',
 'userlogout'                 => 'Завершение сеанса',
 'notloggedin'                => 'Вы не представились системе',
 'nologin'                    => "Нет учётной записи? '''$1'''.",
-'nologinlink'                => 'Создайте учётную запись',
+'nologinlink'                => 'Создать учётную запись',
 'createaccount'              => 'Зарегистрировать нового участника',
 'gotaccount'                 => "Вы уже зарегистрированы? '''$1'''.",
 'gotaccountlink'             => 'Представьтесь',
@@ -1703,11 +1705,13 @@ MGP # Pentax
 PICT # различные
  #</pre> <!-- оставьте эту строчку как есть -->',
 'upload-success-subj'         => 'Загрузка успешно завершена',
-'upload-success-msg'          => 'Ваша загрузка доступна здесь: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Ваша загрузка [$2] прошла успешно. Вы можете посмотреть результат здесь: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Проблема загрузки',
 'upload-failure-msg'          => 'Обнаружена проблема с вашей загрузкой:
 
 $1',
+'upload-warning-subj'         => 'Предупреждение при загрузке',
+'upload-warning-msg'          => 'При загрузке с [$2] произошла ошибка. Для исправления ошибки вернитесь на [[Special:Upload/stash/$1|upload form]].',
 
 'upload-proto-error'        => 'Неправильный протокол',
 'upload-proto-error-text'   => 'Для удалённой загрузки требуется адрес, начинающийся с <code>http://</code> или <code>ftp://</code>.',

@@ -295,18 +295,25 @@ $messages = array(
 'sig_tip'        => 'твои аѵто́графъ и нꙑ́нѣшьна врѣ́мѧ и дьнь',
 
 # Edit pages
-'summary'            => 'опьса́ниѥ :',
-'minoredit'          => 'ма́лаꙗ мѣ́на',
-'watchthis'          => 'си страни́цѧ блюдє́ниѥ',
-'savearticle'        => 'съхранѥ́ниѥ',
-'loginreqlink'       => 'Въниди',
-'newarticle'         => '(но́въ)',
-'clearyourcache'     => 'НАРОЧИ́ТО: По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
-'note'               => "'''НАРОЧИ́ТО:'''",
-'editing'            => 'исправлѥ́ниѥ: $1',
-'editingsection'     => 'исправлѥ́ниѥ ⁖ $1 ⁖ (чѧ́сть)',
-'templatesused'      => 'сѥѩ страни́цѧ {{PLURAL:$1|сь обраꙁь́ць по́льꙃоуѥтъ сѧ ѥ́стъ|с҄и обраꙁьца́ по́льꙃоуѭтъ сѧ ѥстє́|с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ}} :',
-'template-protected' => '(ꙁабранєно ѥ́стъ)',
+'summary'                    => 'опьса́ниѥ :',
+'minoredit'                  => 'ма́лаꙗ мѣ́на',
+'watchthis'                  => 'си страни́цѧ блюдє́ниѥ',
+'savearticle'                => 'съхранѥ́ниѥ',
+'loginreqlink'               => 'Въниди',
+'newarticle'                 => '(но́въ)',
+'noarticletext'              => 'нꙑнѣ с̑ьдє́ ничєсожє нє напьсано ѥ́стъ ⁙
+[[Special:Search/{{PAGENAME}}|си страни́цѧ имѧ искати]] дроугы страни́цѧ ·
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} съвѧ́ꙁанꙑ їсторі́ѩ видѣти] ·
+или [{{fullurl:{{FULLPAGENAME}}|action=edit}} ѭ́жє исправити]</span> можєши',
+'noarticletext-nopermission' => 'нꙑнѣ с̑ьдє́ ничєсожє нє напьсано ѥ́стъ ⁙
+[[Special:Search/{{PAGENAME}}|си страни́цѧ имѧ искати]] дроугы страни́цѧ или
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} съвѧ́ꙁанꙑ їсторі́ѩ видѣти]</span> можєши',
+'clearyourcache'             => 'НАРОЧИ́ТО: По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
+'note'                       => "'''НАРОЧИ́ТО:'''",
+'editing'                    => 'исправлѥ́ниѥ: $1',
+'editingsection'             => 'исправлѥ́ниѥ ⁖ $1 ⁖ (чѧ́сть)',
+'templatesused'              => 'сѥѩ страни́цѧ {{PLURAL:$1|сь обраꙁь́ць по́льꙃоуѥтъ сѧ ѥ́стъ|с҄и обраꙁьца́ по́льꙃоуѭтъ сѧ ѥстє́|с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ}} :',
+'template-protected'         => '(ꙁабранєно ѥ́стъ)',
 
 # History pages
 'viewpagelogs' => 'си страни́цѧ їсторі́ѩ',
@@ -412,6 +419,8 @@ $messages = array(
 'uploadedimage'       => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
 'watchthisupload'     => 'си дѣ́ла блюдє́ниѥ',
 'upload-success-subj' => 'дѣ́ло положєно ѥ́стъ',
+
+'license' => 'прощєниѥ :',
 
 # Special:ListFiles
 'imgfile'        => 'дѣ́ло',
