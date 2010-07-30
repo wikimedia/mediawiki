@@ -513,7 +513,7 @@ $messages = array(
 'jumptosearch'      => 'søk',
 'view-pool-error'   => 'Diverre er filtenarane nett no opptekne.
 For mange brukarar prøver å sjå denne sida.
-Vent ei lita stund, før du prøver å sjå på sida.  
+Vent ei lita stund, før du prøver å sjå på sida.
 
 $1',
 
@@ -595,7 +595,7 @@ Dette kan òg skuldast ein feil i programvara som er nytta av {{SITENAME}}.',
 'error'                => 'Feil',
 'databaseerror'        => 'Databasefeil',
 'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå innan funksjonen «<tt>$2</tt>». Databasen returnerte feilen «<tt>$3: $4</tt>».',
-'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. 
+'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden.
 Den sist prøvde førespurnaden var: «$1» frå funksjonen «$2».
 Databasen returnerte feilen «$3: $4».',
 'laggedslavemode'      => 'Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.',
@@ -606,9 +606,9 @@ Databasen returnerte feilen «$3: $4».',
 $1',
 'missing-article'      => 'Databasen burde ha funne sida «$1» $2, men det gjorde han ikkje.
 
-Dei vanlegaste årsakene til denne feilen er ei lenkje til ein skilnad mellom forskjellige versjonar eller lenkjer til ein gammal versjon av ei side som har vorte sletta. 
+Dei vanlegaste årsakene til denne feilen er ei lenkje til ein skilnad mellom forskjellige versjonar eller lenkjer til ein gammal versjon av ei side som har vorte sletta.
 
-Om det ikkje er tilfellet kan du ha funne ein feil i programvara. 
+Om det ikkje er tilfellet kan du ha funne ein feil i programvara.
 Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgje då adressa til sida.',
 'missingarticle-rev'   => '(versjon $1)',
 'missingarticle-diff'  => '(jamføring av versjon $1 og $2)',
@@ -658,7 +658,7 @@ Grunnen som er gjeven er: ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''Du er no utlogga.'''
 
-Du kan no halde fram og bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn. 
+Du kan no halde fram og bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn.
 Ver merksam på at nokre sider kan halde fram med å verte viste som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.",
 'welcomecreation'            => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
 Brukarkontoen din er vorten oppretta.
@@ -707,7 +707,7 @@ Brukarnamn skil mellom stor og liten bokstav. Sjekk at du har skrive brukarnamet
 'passwordremindertitle'      => 'Nytt passord til {{SITENAME}}',
 'passwordremindertext'       => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4). Eit mellombels passord for «$2» er oppretta, og er sett til «$3». Om det var det du ville, må du logge inn
 og velje eit nytt passord no.
-Mellombelspassordet ditt vil slutte å fungere om {{PLURAL:$5|éin dag|$5 dagar}}. 
+Mellombelspassordet ditt vil slutte å fungere om {{PLURAL:$5|éin dag|$5 dagar}}.
 
 Dersom denne førespurnaden blei utført av nokon andre, eller om du kom på passordet og ikkje lenger ønsker å endre det, kan du ignorere denne meldinga og halde fram med å bruke det gamle passordet.',
 'noemail'                    => 'Det er ikkje registrert noka e-postadresse åt brukaren «$1».',
@@ -795,16 +795,16 @@ Dersom du trykkjer «{{int:savearticle}}» ein gong til, vert endringa di lagra 
 'blockedtitle'                     => 'Brukaren er blokkert',
 'blockedtext'                      => "'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''
 
-Blokkeringa vart gjort av $1. 
+Blokkeringa vart gjort av $1.
 Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
 * Blokkeringa endar: $6
 * Blokkeringa var meint for: $7
 
-Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. 
-Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post. 
-IP-adressa di er $3, og blokkeringsnummeret er $5. 
+Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa.
+Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post.
+IP-adressa di er $3, og blokkeringsnummeret er $5.
 Ver venleg og opplys om dette ved eventuelle førespurnader.",
 'autoblockedtext'                  => "IP-adressa di er automatisk blokkert fordi ho vart brukt av ein annan brukar som vart blokkert av $1. Grunne til dette vart gjeve som: ''$2''.
 
@@ -812,7 +812,7 @@ Ver venleg og opplys om dette ved eventuelle førespurnader.",
 * Blokkeringa går ut: $6
 * Blokkeringa er meint for: $7
 
-Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. 
+Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]].
 
 IP-adressa di er $3, og blokkeringnummeret ditt er #$5.
 Ver venleg og opplyse dette ved eventuelle førespurnader.",
@@ -823,7 +823,7 @@ Ver venleg og opplyse dette ved eventuelle førespurnader.",
 'whitelistedittext'                => 'Du lyt $1 for å endre sider.',
 'confirmedittext'                  => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
 'nosuchsectiontitle'               => 'Kan ikkje finna bolk',
-'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst. 
+'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst.
 Han kan ha vorten flytta eller sletta medan du såg på sida.',
 'loginreqtitle'                    => 'Innlogging trengst',
 'loginreqlink'                     => 'logga inn',
@@ -922,7 +922,7 @@ Sletteloggen for sida finn du her:",
 'moveddeleted-notice'              => 'Denne sida har blitt sletta. Sletteloggen og flytteloggen er vist nedanfor for referanse.',
 'log-fulllog'                      => 'Sjå full loggføring',
 'edit-hook-aborted'                => 'Endring avbroten av ein funksjon, utan forklaring.',
-'edit-gone-missing'                => 'Kunne ikkje oppdatere sida. 
+'edit-gone-missing'                => 'Kunne ikkje oppdatere sida.
 Det ser ut til at ho er sletta.',
 'edit-conflict'                    => 'Endringskonflikt.',
 'edit-no-change'                   => 'Redigeringa di vart ignorert fordi det ikkje vart gjort endringar i teksten.',
@@ -936,7 +936,7 @@ Det burde vere færre enn {{PLURAL:$2|$2|$2}}, men er no {{PLURAL:$1|$1|$1}}.',
 'post-expand-template-inclusion-warning'  => 'Åtvaring: Storleiken på malar som er inkluderte er for stor.
 Nokre malar vert ikkje inkluderte.',
 'post-expand-template-inclusion-category' => 'Sider som inneheld for store malar',
-'post-expand-template-argument-warning'   => 'Åtvaring: Sida inneheld ein eller fleire malparameterar som vert for lange når dei utvidast. 
+'post-expand-template-argument-warning'   => 'Åtvaring: Sida inneheld ein eller fleire malparameterar som vert for lange når dei utvidast.
 Desse parameterane har vorte utelatne.',
 'post-expand-template-argument-category'  => 'Sider med utelatne malparameterar',
 'parser-template-loop-warning'            => 'Malløkka oppdaga: [[$1]]',
@@ -988,7 +988,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'rev-deleted-user'            => '(brukarnamnet er fjerna)',
 'rev-deleted-event'           => '(fjerna loggoppføring)',
 'rev-deleted-user-contribs'   => 'brukarnamn eller IP-adresse er fjerna - endringa er skjult i bidraga',
-'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''.  
+'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''.
 Det kan vere detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen er vorten '''sletta'''.
 Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
@@ -1000,7 +1000,7 @@ Som administrator kan du framleis [$1 sjå versjonen] om du ynskjer å halde fra
 Som administrator kan du sjå han. Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-suppressed-text-view'    => "Denne sideversjonen har vorten '''utelatt'''.
 Som administrator kan du sjå han. Det finst kanskje meir informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} utelatingsloggen].",
-'rev-deleted-no-diff'         => "Du kan ikkje vise denne skilnaden fordi ein av versjonane er vorten '''sletta'''. 
+'rev-deleted-no-diff'         => "Du kan ikkje vise denne skilnaden fordi ein av versjonane er vorten '''sletta'''.
 Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-suppressed-no-diff'      => "Du kan ikkje sjå denne skilnaden av di ein av versjonane er vorten '''sletta'''.",
 'rev-deleted-unhide-diff'     => "Éin av versjonane i denne skilnaden er vorten '''sletta'''.
@@ -1081,7 +1081,7 @@ Du har ikkje tilgang til henne.',
 Sjekk gjerne loggføringa.',
 'revdelete-only-restricted'   => 'Feil under gøyming av objektet datert $2 $1: du kan ikkje gøyma objekt for administratorar utan å i tillegg velja eit av dei andre visingsvala.',
 'revdelete-reason-dropdown'   => '*Vanlege grunnar til sletting
-** Brot på opphavsrettar 
+** Brot på opphavsrettar
 ** Ikkje høveleg personleg informasjon
 ** Mogleg falskt sladder',
 'revdelete-otherreason'       => 'Annan årsak, eller tilleggsårsak:',
@@ -1195,7 +1195,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'showingresults'                   => "Nedanfor er opp til {{PLURAL:$1|'''eitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist{{PLURAL:$1||e}}.",
 'showingresultsnum'                => "Nedanfor er {{PLURAL:$3|'''eitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
 'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1''' av '''$3'''|Resultat '''$1 - $2''' av '''$3'''}} for '''$4'''",
-'nonefound'                        => "'''Merk:''' Som standard blir det berre søkt i enkelte namnerom. 
+'nonefound'                        => "'''Merk:''' Som standard blir det berre søkt i enkelte namnerom.
 For å søkja i alle, bruk prefikset ''all:'' (det inkluderer diskusjonssider, malar etc.), eller bruk det ønskte namnerommet som prefiks.",
 'search-nonefound'                 => 'Ingen resultat svarte til førespurnaden.',
 'powersearch'                      => 'Søk',
@@ -1259,8 +1259,8 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'recentchangesdays-max'         => '(høgst $1 {{PLURAL:$1|dag|dagar}})',
 'recentchangescount'            => 'Tal på endringar som viser som standard:',
 'prefs-help-recentchangescount' => 'Dette inkluderer nylege endringar, sidehistorikk og loggar.',
-'prefs-help-watchlist-token'    => 'Om du fyller ut dette feltet med eit hemmeleg tal, vil det opprettast ei RSS opplisting for overvakingslista di.  
-Alle som veit det rette talet vil vera i stand til å lesa overvakingslista di, så vél gjerne ein trygg verdi. 
+'prefs-help-watchlist-token'    => 'Om du fyller ut dette feltet med eit hemmeleg tal, vil det opprettast ei RSS opplisting for overvakingslista di.
+Alle som veit det rette talet vil vera i stand til å lesa overvakingslista di, så vél gjerne ein trygg verdi.
 Her er det framlegg til eit tal som kan nyttast, tilfelleleg henta fram: $1',
 'savedprefs'                    => 'Brukarinnstillingane er lagra.',
 'timezonelegend'                => 'Tidssone:',
@@ -1312,7 +1312,7 @@ Dette kan ikke tilbakestillast.',
 'prefs-help-gender'             => 'Valfritt: nytta for kjønnskorrekt referering frå mjukvara. Denne informasjonen vil vera offentleg.',
 'email'                         => 'E-post',
 'prefs-help-realname'           => '* Namn (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.',
-'prefs-help-email'              => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle. 
+'prefs-help-email'              => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle.
 Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di utan å røpe identiteten din.',
 'prefs-help-email-required'     => 'E-postadresse må oppgjevast.',
 'prefs-info'                    => 'Grunnleggjande informasjon',
@@ -1588,7 +1588,7 @@ For å bruke ei fil på ei side, bruk ei slik lenkje:
 'emptyfile'                   => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
 'fileexists'                  => "Ei fil med dette namnet finst allereie, sjekk '''<tt>[[:$1]]</tt>''' om du ikkje er sikker på om du vil endre namnet.
 [[$1|thumb]]",
-'filepageexists'              => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila. 
+'filepageexists'              => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.
 [[$1|thumb]]",
 'fileexists-extension'        => "Ei fil med eit liknande namn finst allereie: [[$2|thumb]]
 * Namnet på fila du lastar opp: '''<tt>[[:$1]]</tt>'''
@@ -1944,7 +1944,7 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 # Special:Categories
 'categories'                    => 'Kategoriar',
 'categoriespagetext'            => 'Følgjande {{PLURAL:$1|category contains|kategoriar inneheld}} sider eller media.
-[[Special:UnusedCategories|Unytta kategoriar]] vert ikkje vist her. 
+[[Special:UnusedCategories|Unytta kategoriar]] vert ikkje vist her.
 Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'categoriesfrom'                => 'Vis kategoriar frå og med:',
 'special-categories-sort-count' => 'sorter etter storleik',
@@ -2381,7 +2381,7 @@ Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'blocklogpage'                    => 'Blokkeringslogg',
 'blocklog-showlog'                => 'Denne brukaren har tidlegare vorte blokkert.
 Blokkeringsloggen er sett opp nedanfor, som referanse.',
-'blocklog-showsuppresslog'        => 'Denne brukaren har tidlegare vorte blokkert og skjult. 
+'blocklog-showsuppresslog'        => 'Denne brukaren har tidlegare vorte blokkert og skjult.
 Loggføringa er synt nedanfor som referanse:',
 'blocklogentry'                   => 'Blokkerte «[[$1]]» med opphøyrstid $2 $3',
 'reblock-logentry'                => 'endra blokkeringsinnstillingar for [[$1]] med tida $2 $3',
@@ -3127,7 +3127,7 @@ gjer vel å vente nokre minutt før du ber om ny kode om du nett har oppretta ko
 'confirmemail_sent'        => 'Stadfestingsmelding er sendt.',
 'confirmemail_oncreate'    => 'Ein stadfestingskode er no send til e-postadressa di.
 Koden trengst ikkje for å få logga seg inn, men er naudsynd om ein skal aktivere e-postbaserte tenester på denne wikien.',
-'confirmemail_sendfailed'  => '{{SITENAME}} klarte ikkje å sende stadfestingsmelding. 
+'confirmemail_sendfailed'  => '{{SITENAME}} klarte ikkje å sende stadfestingsmelding.
 Sjekk e-postadressa for ugyldige teikn.
 
 E-postsendaren gav denne meldinga: $1',

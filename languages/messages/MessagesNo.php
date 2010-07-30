@@ -66,7 +66,7 @@ $namespaceAliases = array(
 	'Bildediskusjon' => NS_FILE_TALK,
 );
 
-$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
 
 $dateFormats = array(
@@ -899,9 +899,9 @@ Det siste loggelementet er oppgitt under som referanse:",
 'permissionserrorstext-withaction' => 'Du har ikke tillatelse til å $2 {{PLURAL:$1|på grunn av|av følgende grunner}}:',
 'recreate-moveddeleted-warn'       => "Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
 
-Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. 
+Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden.
 Slette- og flytteloggen for denne siden gjengis her:",
-'moveddeleted-notice'              => 'Denne siden har blitt slettet. 
+'moveddeleted-notice'              => 'Denne siden har blitt slettet.
 Slette- og flytteloggen vises nedenfor.',
 'log-fulllog'                      => 'Vis fullstendig logg',
 'edit-hook-aborted'                => 'Redigering avbrutt av en funksjon, uten forklaring.',
@@ -972,7 +972,7 @@ Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:
 'rev-deleted-user'            => '(brukernavn fjernet)',
 'rev-deleted-event'           => '(fjernet loggoppføring)',
 'rev-deleted-user-contribs'   => '[brukernavn eller IP-adresse fjernet – redigeringen vises ikke blant bidragene]',
-'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''. 
+'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen har blitt '''slettet'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].

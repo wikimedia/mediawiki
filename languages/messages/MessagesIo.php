@@ -395,7 +395,7 @@ On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:s
 'error'               => 'Eroro',
 'databaseerror'       => 'Datumarala eroro',
 'readonly'            => 'Datumaro esas blokusita',
-'enterlockreason'     => 'Explikez la motivo por la blokuso, inkluzante 
+'enterlockreason'     => 'Explikez la motivo por la blokuso, inkluzante
 evaluo pri kande eventos la desblokuso',
 'missingarticle-rev'  => '(versiono#: $1)',
 'missingarticle-diff' => '(Difero: $1, $2)',
@@ -608,9 +608,9 @@ La efaco-registraro e movo-registraro dil pagino provizesar sequante por refero.
 'last'                => 'lasta',
 'page_first'          => 'unesma',
 'page_last'           => 'finala',
-'histlegend'          => "Selektado por diferi: markizez la versioni por komparar e lore presez 'Enter' o la butono infre.<br /> 
-Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono, 
-'''({{int:last}})''' = diferi kun l'antea versiono, 
+'histlegend'          => "Selektado por diferi: markizez la versioni por komparar e lore presez 'Enter' o la butono infre.<br />
+Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
+'''({{int:last}})''' = diferi kun l'antea versiono,
 '''{{int:minoreditletter}}''' = mikra redakto.",
 'histfirst'           => 'Maxim anciena',
 'histlast'            => 'Maxim nova',

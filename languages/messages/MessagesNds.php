@@ -111,7 +111,7 @@ $namespaceNames = array(
 );
 
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
 
 $dateFormats = array(
 	'mdy time' => 'H:i',

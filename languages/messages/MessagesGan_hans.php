@@ -573,9 +573,9 @@ $2',
 'previewnote'                      => "'''请记到个光系预览，内容哈冇保存！'''",
 'previewconflict'                  => '个只预览系上首文字编辑区𠮶内容。倷选择保存𠮶话佢才会保存到。',
 'session_fail_preview'             => "'''对伓住！个只段落𠮶资料跌吥嘞，偶个俚处理伓正倷𠮶编辑。请试过吖。哈系扤伓正𠮶话，试吖退出后登入过。'''",
-'session_fail_preview_html'        => "'''对伓住！相关𠮶程式资料跌吥嘞，偶个俚处理伓正倷𠮶编辑。''' 
+'session_fail_preview_html'        => "'''对伓住！相关𠮶程式资料跌吥嘞，偶个俚处理伓正倷𠮶编辑。'''
 
-''个只wiki开放正嘞原HTML码，预览弆到嘞以防止JavaScript𠮶攻击。'' 
+''个只wiki开放正嘞原HTML码，预览弆到嘞以防止JavaScript𠮶攻击。''
 
 '''要系佢系合法编辑𠮶，请试过吖。哈系扤伓正𠮶话，试吖退出后登入过。'''",
 'token_suffix_mismatch'            => "'''倷𠮶用户端𠮶编辑信毁吥嘞嚸标点符号字符，啖𠮶话倷𠮶编辑就拖拒绝嘞。
@@ -2155,11 +2155,11 @@ $1',
 'confirmemail_loggedin'   => '倷𠮶email地址已得到确认。',
 'confirmemail_error'      => '确认过程出错。',
 'confirmemail_subject'    => '{{SITENAME}}电子邮件地址确认',
-'confirmemail_body'       => 'IP地址$1𠮶用户（可能系倷）到{{SITENAME}}注册嘞帐户"$2"，并一同用嘞倷𠮶email地址。 
+'confirmemail_body'       => 'IP地址$1𠮶用户（可能系倷）到{{SITENAME}}注册嘞帐户"$2"，并一同用嘞倷𠮶email地址。
 
-请确认个只帐户系归倷𠮶，接到启动{{SITENAME}}里头𠮶email功能。请到浏览器开到下底𠮶链接: 
+请确认个只帐户系归倷𠮶，接到启动{{SITENAME}}里头𠮶email功能。请到浏览器开到下底𠮶链接:
 
-$3 
+$3
 
 如果个*伓系*倷，就冇必要打开个只链接。确认码会到$4时间过期。',
 

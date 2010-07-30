@@ -527,7 +527,7 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'summary-preview'                  => "Pröva de l'uget:",
 'blockedtext'                      => "'''El to nom del druvadur o el to indirizz IP l'è stat blucaa.'''
 
-El bloch l'è stat fat da $1. 
+El bloch l'è stat fat da $1.
 El mutiv per el bloch l'è: ''$2''
 
 * Principi del bloch: $8
@@ -545,8 +545,8 @@ Fee el piasè d'inclüd tüt i detaj chì de sura in qualsessìa dumanda che a d
 'newarticletext'                   => 'Te seet andaa adree a un ligam a una pagina che la esista gnamò.
 Per creà la pagina, a l\'è assee che te tachet a scriv in del box desota (varda la [[{{MediaWiki:Helppage}}|pagina de vüt]] per savèn püssee).
 Se te seet chì per erur, schiscia "indree" in sül tò browser.',
-'anontalkpagetext'                 => "''Questa chí a l'é la pagina da ciciarada d'un druvadur che l'ha nonanmò registraa un cünt, o che 'l le dröva mia. 
-Per 'sta reson chí, el pò vess identificaa dumà cunt el sò indirizz nümereg de IP. 
+'anontalkpagetext'                 => "''Questa chí a l'é la pagina da ciciarada d'un druvadur che l'ha nonanmò registraa un cünt, o che 'l le dröva mia.
+Per 'sta reson chí, el pò vess identificaa dumà cunt el sò indirizz nümereg de IP.
 'Stu indirizz IP el pö vess druvaa da püssee d'un druvadur. Se te seet un druvadur anònim e ve someja che un quaj messagg ch'al ga par ch'al gh'a nagòt à vidé con lu, ch'al prœuva a [[Special:UserLogin|creà el sò cunt]].''",
 'noarticletext'                    => "Per 'l mument quela pagina chì l'è vöja. Te pòdet [[Special:Search/{{PAGENAME}}|cercà quel articul chì]] int i alter paginn, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercà int i register imparentaa], o sedenò [{{fullurl:{{FULLPAGENAME}}|action=edit}} mudifichè 'sta pagina chì adess-adess].",
 'clearyourcache'                   => "'''Nòta:''' dòpu che avii salvaa, pudaría véss neçessari de scancelá la memòria \"cache\" dal vòst prugráma də navigazziún in reet par vidé i mudifich faa. '''Mozilla / Firefox / Safari:''' tegní schiscjaa al butún ''Shift'' intaant che sə clica ''Reload'', upüür schiscjá ''Ctrl-Shift-R'' (''Cmd-Shift-R'' sül Apple Mac); '''IE:''' schiscjá ''Ctrl'' intaant che sə clica ''Refresh'', upüür schiscjá ''Ctrl-F5''; '''Konqueror:''': semplicemeent clicá al butún ''Reload'', upüür schiscjá ''F5''; '''Opera''' i üteent pudarían vech büsögn da scancelá cumpletameent la memòria \"cache\" in ''Tools&rarr;Preferences''.",
@@ -562,7 +562,7 @@ Cunt el test che te mandet tì te deciaret anca che, sota la tò respunsabilità
 '''MANDA MINGA DEL MATERIAL CHE L'E' CUERT D'UN DIRIT D'AUTUR SENZA UTURIZAZIUN'''",
 'longpagewarning'                  => "'''Feegh da ment''': Quela pagina chì l'è longa $1 kilobyte; gh'è di browser ch'i pudarissen vegh di fastidi a mudifegà paginn ch'i riven arent o ch'i gh'hann püssee de 32kb. Per piasè vardee se l'è pussibil fà giò la pagina in tuchet püssee piscinin.",
 'protectedpagewarning'             => "'''Ocio: quela pagina chì l'è stada blucaa in manéra che dumá i dupradur cunt i privilegg de sysop i pören mudificàla.'''",
-'semiprotectedpagewarning'         => "'''Nota:''' Quela pagina chì l'è stada blucada in manera che dumà i druvadur registraa i pören mudifegàla. 
+'semiprotectedpagewarning'         => "'''Nota:''' Quela pagina chì l'è stada blucada in manera che dumà i druvadur registraa i pören mudifegàla.
 L'ültima vus del register l'è mustrada chì de suta per riferiment:",
 'templatesused'                    => '{{PLURAL:$1|Mudel|Mudej}} dopraa in quela pagina chì:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mudel|Mudej}} dopraa in quela pröva chì:',
@@ -595,7 +595,7 @@ Spiegazzion di símbul: (cur) = diferenza cun la version curenta, (ültima) = di
 'histlast'               => 'Püssee növ',
 
 # Revision deletion
-'rev-deleted-text-permission' => "Questa version de la pagina l'è stada '''scancelada'''. 
+'rev-deleted-text-permission' => "Questa version de la pagina l'è stada '''scancelada'''.
 Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} register di scancelament].",
 'rev-delundel'                => 'fa vidè/scund',
 'revdel-restore'              => 'Cambia la visibilità',
@@ -834,7 +834,7 @@ I paginn dent in [[Special:Watchlist|la lista ch'it ten-e sot euj]] i resten mar
 'imagelinks'                => 'Ligamm al file',
 'linkstoimage'              => "{{PLURAL:$1|Quela pagina chì la gh'ha |$1 Quij paginn chì i gh'hann}} ligam al file:",
 'sharedupload'              => "Quel archivi chì al vegn de $1 e'l pö vess dupraa da alter pruget",
-'sharedupload-desc-here'    => "Quel ''file'' chì al vegn de $1 e 'l pö vess druvaa da alter pruget. 
+'sharedupload-desc-here'    => "Quel ''file'' chì al vegn de $1 e 'l pö vess druvaa da alter pruget.
 La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada chì suta.",
 'uploadnewversion-linktext' => 'Carga una versión növa de quel file chì',
 
@@ -1155,7 +1155,7 @@ Quest chì a hinn i regulazión curent per la pagina '''$1''':",
 'blockip'                  => 'Bloca el dovrat',
 'blockip-title'            => "Bloca 'l druvadur",
 'blockip-legend'           => "Bloca 'l druvadur",
-'blockiptext'              => "Druvee 'l mòdul chì de suta per blucà l'acess cun dirit de scritüra a un indirizz IP specifegh o a un druvadur registraa. 
+'blockiptext'              => "Druvee 'l mòdul chì de suta per blucà l'acess cun dirit de scritüra a un indirizz IP specifegh o a un druvadur registraa.
 El bloch gh'è de druvàl dumà per evità el vandalism e in acord cun i [[{{MediaWiki:Policy-url}}|regulament de {{SITENAME}}]].
 Scrivee chì de suta 'l mutiv specifegh per el bloch (presempi, a pudii scriv i titul di paginn che i henn stat suget a vandalism).",
 'ipaddress'                => 'Indirizz IP:',
@@ -1213,7 +1213,7 @@ Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
 'contribslink'             => 'cuntribüzión',
 'blocklogpage'             => 'Log di blocch',
 'blocklogentry'            => "l'ha blucaa [[$1]] per un temp de $2 $3",
-'blocklogtext'             => "Quel chì l'è el register di bloch e desbloch di druvadur. 
+'blocklogtext'             => "Quel chì l'è el register di bloch e desbloch di druvadur.
 I indirizz IP che i henn staa blucaa utumaticament i henn mía cumpres int la lista.
 Varda el [[Special:IPBlockList|register di IP blucaa]] per la lista de tüt i bloch uperaziunaj ativ.",
 'unblocklogentry'          => "l'ha desblucaa $1",
@@ -1358,7 +1358,7 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 # Bad image list
 'bad_image_list' => "El furmaa a l'è quest chì:
 
-Se tegnen bón dumà i list póntaa (i righ che scumincen per *). 
+Se tegnen bón dumà i list póntaa (i righ che scumincen per *).
 El prim ligam de ogni riga la gh'ha de vess un ligam a un file minga desideraa.
 I ligam che i vegnen dopu, in sü l'istessa riga, i vegnen cónsideraa di ecezión (che'l vör dì paginn induè che 'l file se'l pö riciamà in manera nurmala).",
 

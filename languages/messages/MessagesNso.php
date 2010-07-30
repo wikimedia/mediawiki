@@ -310,14 +310,14 @@ Tšhupaleloko (''account'') ya gago e tlhodilwe. O seke wa lebala go fetola [[Sp
 'noname'                     => 'Gawa fana ka leina la mošomiši la go loka.',
 'loginsuccesstitle'          => 'O tsene ka katlego',
 'loginsuccess'               => "'''Bjale o tsene go {{SITENAME}} bjalo ka \"\$1\".'''",
-'nosuchuser'                 => 'Ga gona mošomiši wa leina la "$1". 
+'nosuchuser'                 => 'Ga gona mošomiši wa leina la "$1".
 Maina a huduetša ke ditlhaka.
 Lebele mopeleto wa gago goba [[Special:UserLogin/signup|o tlhome mošomiši yo mophsa]].',
 'nosuchusershort'            => 'Ga gona mošomiši wa leina la "<nowiki>$1</nowiki>". Hlokomela mopeleto wa gago.',
 'nouserspecified'            => 'O swanela ke go fana ka leina la mošomiši.',
 'wrongpassword'              => 'O loketše ditlhaka-tša-siphiri tšeo e sego tšona. Ka kgopelo, leka gape.',
 'wrongpasswordempty'         => 'Ga wa lokela ditlhaka-tša-siphiri. Ka kgopelo, leka gape.',
-'passwordtooshort'           => "Ditlhaka-tša-siphiri tša gago ga tša dumelega goba di kopana. 
+'passwordtooshort'           => "Ditlhaka-tša-siphiri tša gago ga tša dumelega goba di kopana.
 Go nyakega gore e be le {{PLURAL:$1|tlhaka ye tee|$1 ya ditlhaka}} gape  e seke ya swana le leina la gago (''username'').",
 'mailmypassword'             => 'Romela ditlhaka-tša-siphiri tše mpšha ka e-mail',
 'passwordremindertitle'      => "''Password'' ye mphsa ya nakonyana go {{SITENAME}}",
@@ -327,7 +327,7 @@ kgopetše gore re moromele Ditlhaka-tša-siphiri tše mfsa tša {{SITENAME}} ($4
 Ditlhaka-tša-siphiri tša  mošomiši "$2" go tloga bjale ke  "$3".
 Eya go {{SITENAME}} o e fetole.
 
-Ga eba motho yo mongwe esego wena o dirile kgopelo ye, goba o gopola Ditlhaka-tša-siphiri gomme ga o sa 
+Ga eba motho yo mongwe esego wena o dirile kgopelo ye, goba o gopola Ditlhaka-tša-siphiri gomme ga o sa
 hloka gore e fetolwe, hlokomologa molaetša wo, o tšwele pele o šumiše Ditlhaka-tša-siphiri tša kgale.',
 'noemail'                    => 'Ga gona e-mail atrese ya mošomiši "$1".',
 'passwordsent'               => "
@@ -338,7 +338,7 @@ go šomiša thulusu ya go hwetša Ditlhaka-tša-siphiri go thibela go hlapanya.'
 'eauthentsent'               => 'Molaetša wa go tiišetša o  rometšwe go e-mail atrese.
 
 Pele re romela melaetša ye mengwe go atrese ye, o kgopelwa go latela ditaelo tšeo dilego molaetšeng go tiišetša gore atrese ke ya gago.',
-'throttled-mailpassword'     => 'Kgopotšo ya ditlhaka-tša-siphiri e rometšwe {{PLURAL:$1|iring|diiring tše $1}} tša gofeta. 
+'throttled-mailpassword'     => 'Kgopotšo ya ditlhaka-tša-siphiri e rometšwe {{PLURAL:$1|iring|diiring tše $1}} tša gofeta.
 Go thibela go hlapanya/kgobošo, kgopotšo e tee ka {{PLURAL:$1|iri|diiri tše $1}} e tla romellwa.',
 'mailerror'                  => 'Gobile le phošo go romeleng molaetša  : $1',
 'acct_creation_throttle_hit' => 'Ka maswabi, o tlhomile {{PLURAL:$1|tšhupaleloko|$1 tša ditšhupaleloko}}.
@@ -583,7 +583,7 @@ Le swanela goba fase ga $1 {{PLURAL:$1|ya tlhaka|ya ditlhaka}}',
 'recentchangeslinked-toolbox'  => 'Diphetogo tša go tswalana',
 'recentchangeslinked-title'    => 'Diphetogo tša go tswalana le "$1"',
 'recentchangeslinked-noresult' => 'Gago na diphetogo go matlakala a hlomaganya ka sebaka/sekga seo o se kgethilego.',
-'recentchangeslinked-summary'  => "Letlakala le le laetša diphetogo tša bjale matlakaleng a go hlomaganya. 
+'recentchangeslinked-summary'  => "Letlakala le le laetša diphetogo tša bjale matlakaleng a go hlomaganya.
 Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]]  a '''ngwadilwe ka bogolo'''.",
 
 # Upload
@@ -814,7 +814,7 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'protect_expiry_invalid'      => 'Fetatšatši, nako ye ga ya dumelwa.',
 'protect_expiry_old'          => 'Fetatšatši ke ya nako yeo e fetilego.',
 'protect-text'                => "O ka lebelela lego fetola seemo sa go lota sa letlakala '''<nowiki>$1</nowiki>'''.",
-'protect-locked-access'       => "Tšhupaleloko ya gago ga ena tumello ya go fetola seemo sago lota ga letlakala. 
+'protect-locked-access'       => "Tšhupaleloko ya gago ga ena tumello ya go fetola seemo sago lota ga letlakala.
 Seemo sa go lota ga letlakala '''$1''':",
 'protect-cascadeon'           => 'Letlakala le lotegile ka ge le akeretšwa ke {{PLURAL:$1|letlakala, leo lenalego|matlakala, analego}} golotega ga kakaretšo. O ka fetola go lotega ga letlakala le.',
 'protect-default'             => '(default)',
@@ -1038,7 +1038,7 @@ $1',
 # Bad image list
 'bad_image_list' => "''Format'' e ka mokgwa wo o latelago:
 
-Ke fela tšeo dilego lenano (methalo ya go thoma ka *) yeo e dumeletšwego. 
+Ke fela tšeo dilego lenano (methalo ya go thoma ka *) yeo e dumeletšwego.
 Hlomaganyo ya mathomo mothalong e swanetše go hlomaganya le seswantšho sa go senyega.
 Dihlomaganyo tše dilatelago mothalong o tee di tšewa bjalo ka maarogi, ka mantšwe a mangwe, matlakala a we seswantšsho se ka bago gona mothalong.",
 

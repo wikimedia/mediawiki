@@ -268,7 +268,7 @@ $magicWords = array(
 	'safesubst'              => array( 0,    'SAFESUBST:'             ),
 	'msgnw'                  => array( 0,    'MSGNW:'                 ),
 	'img_thumbnail'          => array( 1,    'thumbnail', 'thumb'     ),
-	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1'),
+	'img_manualthumb'        => array( 1,    'thumbnail=$1', 'thumb=$1' ),
 	'img_right'              => array( 1,    'right'                  ),
 	'img_left'               => array( 1,    'left'                   ),
 	'img_none'               => array( 1,    'none'                   ),
@@ -301,8 +301,8 @@ $magicWords = array(
 	'stylepath'              => array( 0,    'STYLEPATH'              ),
 	'grammar'                => array( 0,    'GRAMMAR:'               ),
 	'gender'                 => array( 0,    'GENDER:'                ),
-	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__', '__NOTC__'),
-	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'),
+	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__', '__NOTC__' ),
+	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__' ),
 	'currentweek'            => array( 1,    'CURRENTWEEK'            ),
 	'currentdow'             => array( 1,    'CURRENTDOW'             ),
 	'localweek'              => array( 1,    'LOCALWEEK'              ),
@@ -589,9 +589,9 @@ $preloadedMessages = array(
 	'whatlinkshere',
 );
 
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Default messages
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex

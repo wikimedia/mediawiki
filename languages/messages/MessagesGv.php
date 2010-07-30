@@ -419,8 +419,8 @@ She $3 dt'enmys IP roie, as she dt'enney ghlass na #$5. Cur ad lesh dagh ooilley
 
 Foddee oo ceaghley yn fockle arrey noa da'n choontys noa shoh er duillag ''[[Special:ChangePassword|cheaghley fockle yn arrey]]'' lurg loggal stiagh.",
 'newarticle'                       => '(Noa)',
-'newarticletext'                   => 'T’ou er jeet trooid kiangley dys duillag nagh vel ayn foast.  
-Son dy chroo y duillag, gow toshiaght screeuyn ‘sy chishtey çheu heese jeh shoh (jeeagh er [[{{MediaWiki:Helppage}}|duillag y chooney]] son ny smoo fys).  
+'newarticletext'                   => 'T’ou er jeet trooid kiangley dys duillag nagh vel ayn foast.
+Son dy chroo y duillag, gow toshiaght screeuyn ‘sy chishtey çheu heese jeh shoh (jeeagh er [[{{MediaWiki:Helppage}}|duillag y chooney]] son ny smoo fys).
 My haink oo dys shoh trooid marranys, crig er cramman ‘erash’ yn jeeagheyder ayd.',
 'noarticletext'                    => "Cha nel teks 'sy duillag shoh ec y traa t'ayn.
 Foddee oo [[Special:Search/{{PAGENAME}}|ronsaghey enmys ny duillag shoh]] ayns duillagyn elley,

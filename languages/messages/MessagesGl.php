@@ -197,7 +197,7 @@ $magicWords = array(
 	'pagesize'              => array( '1', 'TAMAÑODAPÁXINA', 'TAMANHODAPAGINA', 'TAMANHODAPÁGINA', 'PAGESIZE' ),
 );
 
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
 
 $messages = array(
 # User preference toggles
@@ -713,7 +713,7 @@ Por favor, agarde antes de probar outra vez.',
 'resetpass-no-info'         => 'Debe acceder ao sistema para acceder directamente a esta páxina.',
 'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
 'resetpass-submit-cancel'   => 'Cancelar',
-'resetpass-wrong-oldpass'   => 'Contrasinal temporal ou actual inválido. 
+'resetpass-wrong-oldpass'   => 'Contrasinal temporal ou actual inválido.
 Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
 'resetpass-temp-password'   => 'Contrasinal temporal:',
 
@@ -780,7 +780,7 @@ A razón que deu foi a seguinte:
 
 * Inicio do bloqueo: $8
 * Caducidade do bloqueo: $6
-* Pretendeuse bloquear: $7 
+* Pretendeuse bloquear: $7
 
 Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
 
@@ -3274,7 +3274,7 @@ $1',
 # Delete conflict
 'deletedwhileediting' => "'''Aviso:''' esta páxina foi borrada despois de que comezase a editala!",
 'confirmrecreate'     => "O usuario [[User:$1|$1]] ([[User talk:$1|conversa]]) borrou este artigo despois de que vostede comezara a editalo, dando o seguinte motivo:
-: ''$2'' 
+: ''$2''
 Por favor, confirme que realmente quere recrear esta páxina.",
 'recreate'            => 'Recrear',
 

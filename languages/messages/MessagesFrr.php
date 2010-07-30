@@ -403,7 +403,7 @@ Ouffrååch: $2',
 Änringe wirke jam aw jü brükerouerfläche üt.
 For ouerseetinge tånk deeram, jü önj di  [http://translatewiki.net/wiki/Main_Page?setlang=frr Translatewiki], dåt MediaWiki lokalisiiringsprojekt, döörtufäären.",
 'sqlhidden'            => 'SCL-ouffrååg ferstäägen',
-'cascadeprotected'     => 'Jüdeer sid as for beårbing spärd. Jü as önj {{PLURAL:$1|e füliende sid|da füliende side}} 
+'cascadeprotected'     => 'Jüdeer sid as for beårbing spärd. Jü as önj {{PLURAL:$1|e füliende sid|da füliende side}}
 önjbünen, {{PLURAL:$1|jü|da}} madels e kaskaadespäropsjoon önj febading hüüljen {{PLURAL:$1|as|san}}:
 $2',
 'namespaceprotected'   => "Dü hääst niinj beruchtiging, jü sid önj di '''$1'''-noomerüm tu beårben.",
@@ -452,7 +452,7 @@ Ferjeet ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'createaccounterror'      => 'Brükerkonto köö ai mååged wårde: $1',
 'nocookiesnew'            => 'Di benjütertugung wörd mååged, ouers dü bast ai önjmälded. {{SITENAME}} brükt for jüdeer funksjoon cookies.
 Wees sü gödj än aktiwiir da än mäld de dan ma dan naien benjüternoome än dåt tuhiirend pååsuurd önj.',
-'nocookieslogin'          => '{{SITENAME}} benjütet cookies tu e önjmälding foon da benjütere. Dü heest Cookis deaktiwiird. 
+'nocookieslogin'          => '{{SITENAME}} benjütet cookies tu e önjmälding foon da benjütere. Dü heest Cookis deaktiwiird.
 Wees sü gödj än aktiwiir da än fersäk dåt wider.',
 'noname'                  => 'Dü möist en gültigen brükernooem önjjeewe.',
 'loginsuccesstitle'       => 'Önjmälding erfolchrik',
@@ -484,7 +484,7 @@ Iir en E-mail foon oudere brükere ouer jü E-mail-funksjoon emfångd wårde koo
 'emailnotauthenticated'   => 'Din E-mail-adräs as nuch ai bestääsied. Da füliende E-mail-funksjoone stönje jarst eefter erfolchrike bestääsiing tu ferfäiging.',
 'noemailprefs'            => 'Jeew en E-mail-adräs önj da önjstalinge önj, deerma da füliende funksjoone tu ferfäiging stönje.',
 'emailconfirmlink'        => 'E-mail-adräs bestääsie (autäntifisiire).',
-'invalidemailaddress'     => 'Jü e-mail adräs wörd ai aksäptiird, ouerdåt jü en üngülti formoot (ewentuäl üngültie tiikne) tu heewen scheent. 
+'invalidemailaddress'     => 'Jü e-mail adräs wörd ai aksäptiird, ouerdåt jü en üngülti formoot (ewentuäl üngültie tiikne) tu heewen scheent.
 Wees sü gödj än jeef en koräkt adräs önj unti mäág dåt fäalj lääsi.',
 'accountcreated'          => 'Benjüterkonto mååged',
 'accountcreatedtext'      => 'Dåt benjüteraccount for $1 as mååged wörden.',
@@ -552,7 +552,7 @@ Möölikerwise heest dü din pååsuurd ål ma erfolch änred heest unti en nai 
 'missingsummary'                   => "'''Haanewising:\"' Dü heest niinj tuhuupefooting önjjääwen.
 Wan dü wider aw \"Sid spiikre\" klikst, wårt din änring suner tuhuupefooting ouernümen.",
 'missingcommenttext'               => 'Jeew en tuhuupefooting önj.',
-'missingcommentheader'             => "'''PÅÅS AW:''' dü heest niinj keer/ouerschraft önjjääwen. 
+'missingcommentheader'             => "'''PÅÅS AW:''' dü heest niinj keer/ouerschraft önjjääwen.
 Wan dü wider aw \"{{int:savearticle}}\" klakst, wårt din beårbing suner ouerschaft spiikerd.",
 'summary-preview'                  => 'Forlök foon jü tuhuupfootingssid:',
 'subject-preview'                  => 'Forkiik foon dåt subjäkt:',
@@ -719,7 +719,7 @@ Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{
 Administratoore koone da önjkiike; ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
 'rev-deleted-no-diff'         => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''sleeked'''. Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
 'rev-suppressed-no-diff'      => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''sleeked'''.",
-'rev-deleted-unhide-diff'     => "Iinj foon da änringe doon jüdeer ferschääl wörd '''sleeked'''. 
+'rev-deleted-unhide-diff'     => "Iinj foon da änringe doon jüdeer ferschääl wörd '''sleeked'''.
 Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].
 Ås en administraator koost dü nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
 'rev-suppressed-unhide-diff'  => "Iinj foon da färsjoone foon dåtdeer ferschääl wörd '''unerdruked'''.
@@ -942,7 +942,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'addedwatch'        => 'Tu eefterkiiksid tubaifäiged',
 'addedwatchtext'    => 'Jü sid „[[:$1]]“ wörd tu din [[Special:Watchlist|eefterkiiklist]] tubaifäiged.
 
-Lääsere änringe bai jüdeer sid än jü deertuhiirende diskusjoonssid wårde deer listed än 
+Lääsere änringe bai jüdeer sid än jü deertuhiirende diskusjoonssid wårde deer listed än
 önj e ouersicht foon da [[Special:RecentChanges|leeste änringe]] önj fåtschraft deerstald.
 
 Wan dü jü sid wider foon din eefterkiikliste wächhååle mååst, klik aw jüdeer sid aw „{{int:Unwatch}}“.',
@@ -1073,17 +1073,17 @@ Dü bast deerfor feroontuurdlik, dåt links fortönj ap dåt koräkt muul wise.
 
 Jü sid wårt '''ai''' ferschääwen, wan dåt ål en sid ma di seelew noome jeeft,
 süwid jüdeer ai lääsi unti en widerliidjing suner färsjoonshistoori as. Dåtdeer bedjüset,
-dåt dü jü sid tubääg ferschüwe koost, wan dü en fäägel mååged heest. Dü koost 
+dåt dü jü sid tubääg ferschüwe koost, wan dü en fäägel mååged heest. Dü koost
 deeriinj niinj sid ouerschriwe.
 
 '''Woorschouing!'''
-Jü ferschüwing koon widlingende än ünfermousene fülie for beliifte side heewe. 
+Jü ferschüwing koon widlingende än ünfermousene fülie for beliifte side heewe.
 Dü schöist deerfor da konsekwänse ferstönjen heewe, iir dü baiblafst.",
 'movepagetalktext' => "Jü deertu hiirende diskusjoonssid wård, süwid deer, maferschääwen, '''unti dåt moost weese:'''
 *Deer bestoont ål en diskusjoonssid ma dideere noome, unti
 *dü wäälst jü uner stönjene opsjoon ouf.
 
-Önj dadeere fåle möist dü, wan wansched, di önjhålt foon jü sid foon hönj ferschüwe unti tuhuupefääre. 
+Önj dadeere fåle möist dü, wan wansched, di önjhålt foon jü sid foon hönj ferschüwe unti tuhuupefääre.
 
 Hål di '''naie''' tiitel uner '''muul''' önjdreege, deeruner jü ambenååming hål '''begrüne.'''",
 'movearticle'      => 'Sid ferschüwe:',

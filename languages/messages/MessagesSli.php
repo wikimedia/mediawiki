@@ -316,7 +316,7 @@ Du koast {{SITENAME}} jitz anonym wetter nutzen, oder diech erneut under damm se
 Beachte, doas einige Seyta noo oazeiga kinna, doas du oagemeldet best, sulange du ne denn Browsercache gelaart host.",
 'welcomecreation'            => '== Willkumma, $1! ==
 
-Dei Benutzerkonto wurde eigerichtet. 
+Dei Benutzerkonto wurde eigerichtet.
 Vergiss nä, denne [[Special:Preferences|{{SITENAME}}-Eistellunga]] oazupoassa.',
 'yourname'                   => 'Benutzernoame:',
 'yourpasswordagain'          => 'Passwort wiederhola:',

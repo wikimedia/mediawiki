@@ -520,7 +520,7 @@ Pikeun alihbasa, mangga sumping ka [http://translatewiki.net/wiki/Main_Page?setl
 Anjeun bisa tetep migunakeun {{SITENAME}} bari anonim, atawa bisa [[Special:UserLogin|asup log deui]] salaku pamaké nu sarua atawa nu séjén deui.
 Mangkahadé, sababaraha kaca bakal tetep némbongkeun saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun ''cache'' panyungsi anjeun.",
 'welcomecreation'            => '==Wilujeng sumping, $1!==
-Rekening anjeun geus dijieun. 
+Rekening anjeun geus dijieun.
 Tong hilap ngarobih [[Special:Preferences|{{SITENAME}} préferénsi]] anjeun.',
 'yourname'                   => 'Ngaran pamaké anjeun',
 'yourpassword'               => 'Sandi anjeun',
@@ -543,7 +543,7 @@ Tong hilap ngarobih [[Special:Preferences|{{SITENAME}} préferénsi]] anjeun.',
 'gotaccountlink'             => 'Asup log',
 'createaccountmail'          => 'ku surélék',
 'badretype'                  => 'Sandi nu diasupkeun teu cocog.',
-'userexists'                 => 'Ngaran pamaké nu diasupkeun ku anjeun geus aya nu maké. 
+'userexists'                 => 'Ngaran pamaké nu diasupkeun ku anjeun geus aya nu maké.
 Mangga pilih ngaran nu séjén.',
 'loginerror'                 => 'Kasalahan asup log',
 'createaccounterror'         => 'Teu bisa nyieun rekening: $1',
@@ -573,7 +573,7 @@ Mun pamundut ieu datang ti nu séjén, atawa mun anjeun geus inget sandi anu tad
 'blocked-mailpassword'       => 'Alamat IP anjeun dipeungpeuk, moal bisa ngédit, and so
 is not allowed to use the password recovery function to prevent abuse.',
 'eauthentsent'               => 'Surélék konfirmasi geus dikirim ka alamat bieu. Méméh aya surat séjén asup ka rekeningna, anjeun kudu nuturkeun pituduh na surélékna pikeun ngonfirmasi yén rekening éta téh bener nu anjeun.',
-'throttled-mailpassword'     => 'Hiji panginget kecap sandi geus dikirimkeun dina {{PLURAL:$1|jam|$1 jam}} pamungkas. 
+'throttled-mailpassword'     => 'Hiji panginget kecap sandi geus dikirimkeun dina {{PLURAL:$1|jam|$1 jam}} pamungkas.
 Pikeun ngahindar disalahgunakeun, ngan hiji kecap sandi anu baris dikirimkeun saban {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Kasalahan ngirim surat: $1',
 'acct_creation_throttle_hit' => 'Punten,pamaké alamat IP anjeun geus nyieun {{PLURAL:$1|1 rekening|$1 rekening}} dina sapoé ieu. mangrupa jumlah nu di idinan dina sapoé.
@@ -654,7 +654,7 @@ Bisa jadi anjeun geus ngaganti sandina atawa ménta sandi saheulaanan anu anyar.
 'blockedtitle'                     => 'Pamaké dipeungpeuk',
 'blockedtext'                      => "'''Ngaran pamaké atawa alamat IP anjeun dipeungpeuk.'''
 
-Dipeungpeuk ku \$1. 
+Dipeungpeuk ku \$1.
 Alesanana ''\$2''.
 
 * Mimiti dipeungpeuk : \$8
@@ -678,7 +678,7 @@ Anjeun bisa nepungan $1 atawa [[{{MediaWiki:Grouppage-sysop}}|kuncé]] lianna pi
 
 Catet yén anjeun moal bisa migunakeun fitur "surélékan ieu pamaké" mun alamat surélék anu didaptarkeun dina [[Special:Preferences|préferénsi pamaké]]na teu sah, sarta teu dipeungpeuk tina migunakeun ieu fitur.
 
-Alamat IP Anjeun ayeuna nyaéta $3, sarta ID peungpeukan anjeun #$5. 
+Alamat IP Anjeun ayeuna nyaéta $3, sarta ID peungpeukan anjeun #$5.
 Mangga sebatkeun éta ID dina pamundut-pamundut anjeun.',
 'blockednoreason'                  => 'taya alesan',
 'blockedoriginalsource'            => "Sumber '''$1''' dipidangkeun di handap ieu:",
@@ -1329,7 +1329,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'badfilename'                 => 'Ngaran gambar geus dirobah jadi "$1".',
 'filetype-badmime'            => 'Koropak tipeu MIME "$1" teu meunang dimuatkeun.',
 'filetype-bad-ie-mime'        => 'Ieu berkas teu bisa dimuat sabab ku Internet Explorer dianggap "$1" anu dipahing sarta tipeu berkas anu pibahyaeun.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' kaasup tipeu koropak nu teu dipiharep. 
+'filetype-unwanted-type'      => "'''\".\$1\"''' kaasup tipeu koropak nu teu dipiharep.
 {{PLURAL:\$3|Nu dianjurkeun nyaéta|Nu dianjurkeun nyaéta}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' kaasup tipeu koropak nu teu dicaram.
 {{PLURAL:\$3|Nu diwidian nyaéta|Nu diwidian nyaéta}} \$2.",

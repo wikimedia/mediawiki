@@ -113,7 +113,7 @@ $dateFormats = array(
 	'dmy both' => 'j "di" M Y "a lis" H:i',
 );
 
-$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $messages = array(
 # User preference toggles
@@ -1511,7 +1511,7 @@ Sielç par plasê un altri non.',
 # Bad image list
 'bad_image_list' => 'Il formât al è cussi:
 
-a vegnin considerâts dome i elements des listis (riis che a scomencin cul catatar *). 
+a vegnin considerâts dome i elements des listis (riis che a scomencin cul catatar *).
 Il prin leam intune rie al à di jessi un leam aun file indesiderâtI.
 I leams sucessîfs, su la stesse rie, a son considerâts come ecezions (ven a stâi pagjinis dulà che il file al pues jessi inserît normalmentri).',
 

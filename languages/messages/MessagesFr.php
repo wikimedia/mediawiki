@@ -995,7 +995,7 @@ certains navigateurs Web gèrent mal la modification des pages approchant ou dé
 'longpageerror'                    => "'''ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.'''",
 'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l’instant.''' Vous pouvez copier le texte dans un fichier texte et le conserver pour plus tard.
 
-L’administrateur ayant verrouillé la base de données a donné l’explication suivante :<br 
+L’administrateur ayant verrouillé la base de données a donné l’explication suivante :<br
 />$1",
 'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée. Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''' La dernière entrée du journal est affichée ci-dessous pour référence :",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier. La dernière entrée du journal est affichée ci-dessous pour référence :",
@@ -1184,7 +1184,7 @@ Vous n’y avez pas accès.',
 'revdelete-concurrent-change' => 'Erreur lors de la modification de l’élément daté du $1 à $2 : son statut a été changé par quelqu’un d’autre pendant que vous le modifiez.
 Vérifiez les journaux.',
 'revdelete-only-restricted'   => 'Erreur lors de la suppression de l’entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.',
-'revdelete-reason-dropdown'   => '* Raisons courantes de suppression 
+'revdelete-reason-dropdown'   => '* Raisons courantes de suppression
 ** Violation des droits d’auteurs
 ** Renseignements personnels inappropriés',
 'revdelete-otherreason'       => 'Autre raison / raison supplémentaire :',

@@ -275,13 +275,13 @@ $messages = array(
 'databaseerror'        => 'Databasefejl',
 'dberrortext'          => 'Der er åpstået en syntaksfejl i en databaseførespørgsel.
 Dette ken være på grund åf en ugyldeg førespørgsel,
-æller det ken betyde en fejl i\'n softwær. 
+æller det ken betyde en fejl i\'n softwær.
 Den seneste førsøĝte databaseførespørgsel var:
 <blockquote><tt>$1</tt></blockquote>
-frå\'n funksje "<tt>$2</tt>". 
+frå\'n funksje "<tt>$2</tt>".
 MySQL æ returnerede fejl "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Der er åpstået en syntaksfejl i en databaseførespørgsel. 
-Den seneste førsøĝte databaseførespørgsel var: "$1" frå\'n funksje "$2". 
+'dberrortextcl'        => 'Der er åpstået en syntaksfejl i en databaseførespørgsel.
+Den seneste førsøĝte databaseførespørgsel var: "$1" frå\'n funksje "$2".
 MySQL æ returnerede fejl "$3: $4".',
 'laggedslavemode'      => 'Bemærk: Den veste side endholter mulegves ekke de nyeste ændrenger.',
 'readonly'             => 'Æ database er skrevebeskyttet',
@@ -339,7 +339,7 @@ har bedt at vi sender dig en ny adgangskode til at loĝge på {{SITENAME}} ($4)\
 Æ adgangskode før bruger "$2" er nu "$3".
 Du bør loĝge på nu og ændre din adgangskode.,
 
-Hves en anden har bestilt den nye adgangskode æller hves du er kåmet i tanke dit gamle password og ekke mære vil ændre det\'m, 
+Hves en anden har bestilt den nye adgangskode æller hves du er kåmet i tanke dit gamle password og ekke mære vil ændre det\'m,
 kenst du bare ignorere denne mail og førtsætte ve at bruge dit gamle password.',
 'noemail'                 => 'Der er ekke åplyst en e-mail-adresse før bruger "$1".',
 'passwordsent'            => 'En ny adgangskode er sendt til æ e-mail-adresse,
@@ -396,10 +396,10 @@ Du ken ekke bruge æ funksje 'e-mail til denne bruger' vemendre der er ångevet 
 [[Special:Preferences|kontoendstellenger]]. Din nuværende IP-addresse er $3, og blokerengs-ID er #$5. Ångev venlegst en æller begge i åle henvendelser.",
 'newarticle'                 => '(Ny)',
 'newarticletext'             => "'''{{SITENAME}} har endnu ekke nogen {{NAMESPACE}}-side ve nav {{PAGENAME}}.'''<br /> Du ken begynde en side ve at skreve i'n boks herunder. (se'n [[{{MediaWiki:Helppage}}|hjælp]] før yderligere åplysnenger).<br /> Æller du ken [[Special:Search/{{PAGENAME}}|søĝe æfter {{PAGENAME}} i {{SITENAME}}]].<br /> Ves det ekke var din meneng, så tryk på æ '''Tilbage'''- æller æ '''Back'''-knåp.",
-'noarticletext'              => "'''{{SITENAME}} har ekke nogen side ve prånt dette nav.''' 
-* Du ken '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} starte æ side {{PAGENAME}}]''' 
-* Æller [[Special:Search/{{PAGENAME}}|søĝe æfter {{PAGENAME}}]] i andre ertikler 
----- 
+'noarticletext'              => "'''{{SITENAME}} har ekke nogen side ve prånt dette nav.'''
+* Du ken '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} starte æ side {{PAGENAME}}]'''
+* Æller [[Special:Search/{{PAGENAME}}|søĝe æfter {{PAGENAME}}]] i andre ertikler
+----
 * Ves du har åprettet denne ertikel endenfør de sedste få minutter, så ken de skyldes at der er ledt førsenkelse i'n åpdaterenge åf {{SITENAME}}s cache. Vent venligst og tjek igen senere'n ertikel'm dukker åp, enden du førsøĝer at åprette'n ertikel igen.",
 'previewnote'                => "'''Husk at dette er kun en førhåndsvesnenge, æ side er ekke gemt endnu!'''",
 'editing'                    => 'Redigærer $1',
@@ -407,7 +407,7 @@ Du ken ekke bruge æ funksje 'e-mail til denne bruger' vemendre der er ångevet 
 'copyrightwarning'           => "'''Husk: åpskrev engen websider, søm ekke tilhører dig selv, brug engen åphavsretsligt beskyttede værker uden tilladelse frå'n ejer!'''<br />
 Du lover os hermed, at du selv '''har skrevet skrevselenger''', at skrevselenger tilhører ålmenheden, er ('''åpværer hus'''), æller at æ '''åphavsrets-endehaver''' har gevet sen '''tilladelse'''. Ves denne skrevselenger ålerede er åfentliggkort andre steder, skrev det venligst på æ diskusjesside.
 <i>Bemærk venligst, at ål {{SITENAME}}-ertikler åtomatisk står under „$2“ (se $1 før lileskrevselenger). Ves du ekke vel, at dit arbejde her ændres og udbredes åf andre, så tryk ekke på „Gem“.</i>",
-'longpagewarning'            => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere ken have pårblæmer ve at redigære sider der nærmer sig æller er større end 32 kb. 
+'longpagewarning'            => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere ken have pårblæmer ve at redigære sider der nærmer sig æller er større end 32 kb.
 Åvervej æ side'm ken åpdeles i mendre dæle.'''",
 'templatesused'              => 'Skablåner der er brugt på denne side:',
 'templatesusedpreview'       => 'Følgende skablåner bruges åf denne ertikelførhåndsvesnenge:',
@@ -415,8 +415,8 @@ Du lover os hermed, at du selv '''har skrevet skrevselenger''', at skrevselenger
 'template-semiprotected'     => '(skrevebeskyttet før ekke ånmeldte og nye brugere)',
 'nocreatetext'               => "Æ'n åpdiin har begrænset åprettelse åf nye sider. Bestående sider ken ændres æller [[Special:UserLogin|loĝge på]].",
 'recreate-moveddeleted-warn' => "'''Advarsel: Du er ve at genskabe en tidligere slettet side.'''
- 
-Åvervej det'm er passende at genåprette'n side. De slettede hersenenger før 
+
+Åvervej det'm er passende at genåprette'n side. De slettede hersenenger før
 denne side er vest nedenfør:",
 
 # History pages
@@ -737,7 +737,7 @@ Det betyder at du kenst flytte en side tilbåge hvår den kåm frå, hves du kå
 
 '''ADVARSEL!'''
 Dette ken være en drastisk og uventet ændrenge før en populær side; vær sekker på, at du førstår konsekvenserne åf dette før du førtsætter.",
-'movepagetalktext' => "Den tilhørende diskusjeside, hves der er en, hvil åtåmatisk bleve flyttet ve'n side '''medmendre:''' 
+'movepagetalktext' => "Den tilhørende diskusjeside, hves der er en, hvil åtåmatisk bleve flyttet ve'n side '''medmendre:'''
 *Du flytter æ side til et andet navnerum,
 *En ekke-tøm diskusjeside ålrede eksisterer under det nye navn, æller
 *Du fjerner æ markærenge i'n boks nedenunder.
@@ -838,7 +838,7 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 'metadata-help'     => "Denne gøret endeholder yderligere informasje, der søm regel stammer frå lysnåmer æller den brugte skænner. Ve'n æfterføgende bearbejdnenge ken nogle data være ændret.",
 'metadata-expand'   => 'Ves udvedede data',
 'metadata-collapse' => 'Skjul udvedede data',
-'metadata-fields'   => 'Æ følgende felter frå EXIF-metadata i denne MediaWiki-beskedskrevselenger veses på billetbeskrevelsessider; yderligere lileskrevselenger ken veses. 
+'metadata-fields'   => 'Æ følgende felter frå EXIF-metadata i denne MediaWiki-beskedskrevselenger veses på billetbeskrevelsessider; yderligere lileskrevselenger ken veses.
 * make
 * model
 * datetimeoriginal

@@ -492,7 +492,7 @@ Ang {{SITENAME}} migamit og mga koki aron ma-log in ang mga gumagamit.
 Naka-disable ang imong mga koki.
 Palihog i-enable kini, unya pag-log-in gamit ang imong bag-ong username ug pasword.',
 'nocookieslogin'          => "Ang {{SITENAME}} migamit og mga koki aron ma-log in ang mga gumagamit.
-Naka-disable ang imong mga koki. 
+Naka-disable ang imong mga koki.
 Palihog i-enable kini, ug sulayi'g balik.",
 'noname'                  => 'Wala ikaw mag-specify og valid nga user name.',
 'loginsuccesstitle'       => 'Malamposon ang pagpaila',
@@ -500,7 +500,7 @@ Palihog i-enable kini, ug sulayi'g balik.",
 'nosuchuser'              => 'Walay gumagamit nga may pangalang "$1".
 Case sensitive ang mga user name.
 I-tsek ang imong espeling, o [[Special:UserLogin/signup|paghimo og bag-ong akawnt]].',
-'nosuchusershort'         => 'Walay gumagamit nga may pangalang "<nowiki>$1</nowiki>". 
+'nosuchusershort'         => 'Walay gumagamit nga may pangalang "<nowiki>$1</nowiki>".
 I-tsek ang imong espeling.',
 'nouserspecified'         => 'Kinahanglan mag-specify ka og username.',
 'wrongpassword'           => "Sayop nga pasword ang naentra.
@@ -644,7 +644,7 @@ Isip tagdumala, puyde nimo kini tan-awon; puyde nga may mga detalye sa [{{fullur
 Isip tagdumala, puyde nimo kini tan-awon; puyde nga may mga detalye sa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log sa supresyon].",
 'rev-deleted-no-diff'         => "Dili ka puyde motan-aw niining diff tungod kay usa sa mga rebisyon '''napapas'''.
 Puyde nga may mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sa pagpapas].",
-'rev-deleted-unhide-diff'     => "Usa sa mga rebisyon niining diff '''napapas'''. 
+'rev-deleted-unhide-diff'     => "Usa sa mga rebisyon niining diff '''napapas'''.
 Puyde nga may mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sa pagpapas].
 Isip tagdumala, puyde nimo [$1 tan-awon ang diff] kon gusto ka magpadayon.",
 'rev-delundel'                => 'ipakita/tagoa',
@@ -698,7 +698,7 @@ $1",
 Dili puyde kini tagoon.',
 'revdelete-show-no-access'    => 'Sayop sa pagtago sa item sa petsa sa $2, $1: namarkahan kini isip "restricted".
 Wala kay akses niini.',
-'revdelete-modify-no-access'  => 'Sayop sa pagmodipikar sa item sa petsa sa $2, $1: namarkahan kini isip "restricted". 
+'revdelete-modify-no-access'  => 'Sayop sa pagmodipikar sa item sa petsa sa $2, $1: namarkahan kini isip "restricted".
 Wala kay akses niini.',
 'revdelete-modify-missing'    => 'Sayop sa pagmodipikar sa item ID $1: nawala kini sa database!',
 'revdelete-no-change'         => "'''Pahibalo:''' ang item sa petsa sa $2, $1 anaa nay mga setting sa bisibilidad nga gihangyo.",

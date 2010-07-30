@@ -1727,7 +1727,7 @@ Por cen fâre vos devréd changiér la pâge a la man.
 [[$1|thumb]]",
 'fileexists-extension'        => "Un fichiér avouéc un nom d’ense ègziste ja : [[$2|thumb]]
 * Nom du fichiér a tèlèchargiér : '''<tt>[[:$1]]</tt>'''
-* Nom du fichiér ègzistent : '''<tt>[[:$2]]</tt>'''  
+* Nom du fichiér ègzistent : '''<tt>[[:$2]]</tt>'''
 Volyéd chouèsir un ôtro nom.",
 'fileexists-thumbnail-yes'    => "Lo fichiér semble étre una émâge en talye rèduita ''(figura)''.
 [[$1|thumb]]

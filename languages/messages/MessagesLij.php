@@ -372,7 +372,7 @@ A dêve contegnî mìnimo $1 caratteri e esse diverza da-o teu nómme utente.",
 'mailmypassword'             => "Inviâ paròlla d'ordine (password) via e-mail",
 'passwordremindertitle'      => "Servissio Password Reminder (nêuva paròlla d'ordine temporannia) de {{SITENAME}}",
 'passwordremindertext'       => "Quarchedûn (probabilmente ti, con indirisso IP \$1) o g'ha domandòu l'invîo de 'na nêuva paròlla d'ordine pe l'accesso a {{SITENAME}} (\$4).
-A paròlla d'ordine pe l'ûtente \"\$2\" a l'è stæta impostâa a \"\$3\". 
+A paròlla d'ordine pe l'ûtente \"\$2\" a l'è stæta impostâa a \"\$3\".
 O se conseggia de fâ l'accesso quanto primma e cangiâ a paròlla d'ordine immediatamente.
 Se no ti è stæto ti a fâ 'sta domanda, oppûre se ti g'hæ ritrovòu a têu paròlla d'ordine e no ti vêu cangiâla ciû, ti pêu ignorâ 'sto messaggio e andâ avanti ûsando a vegia paròlla d'ordine.",
 'noemail'                    => 'No gh\'è nisciûn indirisso e-mail registròu pe l\'ûtente "$1".',
@@ -448,7 +448,7 @@ A raxon dæta a l'è stæta:
 * Inissio do blòcco: \$8
 * Fin do blòcco: \$6
 
-Ti pêu contattâ \$1 ou 'n âtro 
+Ti pêu contattâ \$1 ou 'n âtro
 [[{{MediaWiki:Grouppage-sysop}}|amministratô]] pe parlâ inscio blòcco.
 
 Dagghe a mente a che no ti pêu ûsâ o comando \"manda na littia elettronega a sto utente\" se non ti g'hæ 'n indirisso de posta elettronega registroö in te têu [[Special:Preferences|preferense]] e se o no l'è stæto bloccòu ascì.
@@ -812,7 +812,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'rollbacklink'  => 'rollback',
 'cantrollback'  => "O no se pêu tornâ inderê; l'ûtente ch'à fæto quelle modiffiche o l'è stæto l'ûnico contribûente.",
 'alreadyrolled' => "O no se peû tornâ inderê a-i ûrtimi cangiamenti da pagina [[:$1]]
-da [[User:$2|$2]] ([[User talk:$2|Ciæti]]); quarche âtro 
+da [[User:$2|$2]] ([[User talk:$2|Ciæti]]); quarche âtro
 o l'à cangiâ ò o l'è zà tornòu inderê.
 L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
 'revertpage'    => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]',

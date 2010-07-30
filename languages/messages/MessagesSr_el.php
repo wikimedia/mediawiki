@@ -35,7 +35,7 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );
 
-# Aliases to cyrillic namespaces 
+# Aliases to cyrillic namespaces
 $namespaceAliases = array(
 	"Медија"                  => NS_MEDIA,
 	"Посебно"                 => NS_SPECIAL,
@@ -110,7 +110,7 @@ $dateFormats = array(
 	'6:12, 5. јан 2001.',
 	'6:12, 5 јан 2001',
 	 */
-	
+
 	'hh:mm d. month y. time'    => 'H:i',
 	'hh:mm d month y time'      => 'H:i',
 	'hh:mm dd.mm.yyyy time'     => 'H:i',
@@ -125,30 +125,30 @@ $dateFormats = array(
 	'h:mm d mon y time'         => 'G:i',
 
 	'hh:mm d. month y. date'    => 'j. F Y.',
-	'hh:mm d month y date'      => 'j F Y',  
-	'hh:mm dd.mm.yyyy date'     => 'd.m.Y',  
-	'hh:mm d.m.yyyy date'       => 'j.n.Y',  
+	'hh:mm d month y date'      => 'j F Y',
+	'hh:mm dd.mm.yyyy date'     => 'd.m.Y',
+	'hh:mm d.m.yyyy date'       => 'j.n.Y',
 	'hh:mm d. mon y. date'      => 'j. M Y.',
-	'hh:mm d mon y date'        => 'j M Y',  
+	'hh:mm d mon y date'        => 'j M Y',
 	'h:mm d. month y. date'     => 'j. F Y.',
-	'h:mm d month y date'       => 'j F Y',  
-	'h:mm dd.mm.yyyy date'      => 'd.m.Y',  
-	'h:mm d.m.yyyy date'        => 'j.n.Y',  
+	'h:mm d month y date'       => 'j F Y',
+	'h:mm dd.mm.yyyy date'      => 'd.m.Y',
+	'h:mm d.m.yyyy date'        => 'j.n.Y',
 	'h:mm d. mon y. date'       => 'j. M Y.',
-	'h:mm d mon y date'         => 'j M Y',  
+	'h:mm d mon y date'         => 'j M Y',
 
-	'hh:mm d. month y. both'    =>'H:i, j. F Y.', 
-	'hh:mm d month y both'      =>'H:i, j F Y',   
-	'hh:mm dd.mm.yyyy both'     =>'H:i, d.m.Y',   
-	'hh:mm d.m.yyyy both'       =>'H:i, j.n.Y',   
-	'hh:mm d. mon y. both'      =>'H:i, j. M Y.', 
-	'hh:mm d mon y both'        =>'H:i, j M Y',   
-	'h:mm d. month y. both'     =>'G:i, j. F Y.', 
-	'h:mm d month y both'       =>'G:i, j F Y',   
-	'h:mm dd.mm.yyyy both'      =>'G:i, d.m.Y',   
-	'h:mm d.m.yyyy both'        =>'G:i, j.n.Y',   
-	'h:mm d. mon y. both'       =>'G:i, j. M Y.', 
-	'h:mm d mon y both'         =>'G:i, j M Y',   
+	'hh:mm d. month y. both'    => 'H:i, j. F Y.',
+	'hh:mm d month y both'      => 'H:i, j F Y',
+	'hh:mm dd.mm.yyyy both'     => 'H:i, d.m.Y',
+	'hh:mm d.m.yyyy both'       => 'H:i, j.n.Y',
+	'hh:mm d. mon y. both'      => 'H:i, j. M Y.',
+	'hh:mm d mon y both'        => 'H:i, j M Y',
+	'h:mm d. month y. both'     => 'G:i, j. F Y.',
+	'h:mm d month y both'       => 'G:i, j F Y',
+	'h:mm dd.mm.yyyy both'      => 'G:i, d.m.Y',
+	'h:mm d.m.yyyy both'        => 'G:i, j.n.Y',
+	'h:mm d. mon y. both'       => 'G:i, j. M Y.',
+	'h:mm d mon y both'         => 'G:i, j M Y',
 );
 
 
@@ -205,7 +205,7 @@ $magicWords = array(
 	'ucfirst'               => array( '0', 'UCPRVI:', 'UCFIRST:' ),
 );
 
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
 
 $messages = array(
 # User preference toggles
@@ -556,7 +556,7 @@ Administrator koji ju je zaključao dao je ovo objašnjenje: $1',
 
 Uzrok za ovu grešku je obično zastareli diff ili veza ka obrisanoj verziji članka.
 
-Ako to nije slučaj, možda ste pronašli bag u softveru. 
+Ako to nije slučaj, možda ste pronašli bag u softveru.
 U tom slučaju, prijavite grešku [[Special:ListUsers/sysop|administratoru]] uz odgovarajući link.',
 'missingarticle-rev'   => '(revizija#: $1)',
 'missingarticle-diff'  => '(Raz: $1, $2)',
@@ -592,7 +592,7 @@ Pretraga: $2',
 'protectedpagetext'    => 'Ova stranica je zaključana kako se ne bi vršile izmene na njoj.',
 'viewsourcetext'       => 'Možete da pregledate i kopirate sadržaj ove strane:',
 'protectedinterface'   => "'''Upozorenje:''' Menjate stranu koja se koristi da pruži tekst interfejsa za softver. Izmene na ovoj strani će uticati na izgled korisničkog interfejsa za ostale korisnike.",
-'editinginterface'     => "'''Upozorenje:''' Uređujete stranu koja se koristi da pruži tekst za interfejs ovog softvera. 
+'editinginterface'     => "'''Upozorenje:''' Uređujete stranu koja se koristi da pruži tekst za interfejs ovog softvera.
 Izmene na ovoj strani će uticati na prikaz izgleda korisničkog interfejsa za sve korisnike.
 Za prevode, posetite [http://translatewiki.net/wiki/Main_Page?setlang=sr_ec translatewiki.net], projekat lokalizacije MedijaViki softvera.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
@@ -639,7 +639,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'gotaccountlink'             => 'Prijavi se',
 'createaccountmail'          => 'e-poštom',
 'badretype'                  => 'Lozinke koje ste uneli se ne poklapaju.',
-'userexists'                 => 'Korisničko ime koje ste uneli već je u upotrebi. 
+'userexists'                 => 'Korisničko ime koje ste uneli već je u upotrebi.
 Molimo izaberite drugo ime.',
 'loginerror'                 => 'Greška pri prijavljivanju',
 'createaccounterror'         => 'Nije moguće napraviti nalog: $1',
@@ -662,12 +662,12 @@ Mora imati najmanje {{PLURAL:$1|1 karakter|$1 karaktera}}.',
 'mailmypassword'             => 'Pošalji mi novu lozinku',
 'passwordremindertitle'      => '{{SITENAME}} podsetnik za šifru',
 'passwordremindertext'       => 'Neko (verovatno vi, sa IP adrese $1) je zahtevao da vam pošaljemo novu
-šifru za prijavljivanje na {{SITENAME}} ($4). Privremena šifra za korisnika 
+šifru za prijavljivanje na {{SITENAME}} ($4). Privremena šifra za korisnika
 „$2“ je generisana i sada je „$3“. Ukoliko je ovo
 Vaš zahtev, sada se prijavite i izaberite novu šifu.
 Vaša privremena šifra ističe za {{PLURAL:$5|jedna dan|$5 dana}}.
 
-Ukoliko je neko drugi zahtevao promenu šifre, ili ste vi zaboravili vašu 
+Ukoliko je neko drugi zahtevao promenu šifre, ili ste vi zaboravili vašu
 šifru i više ne želite da je menjate, možete ignorisati ovu poruku i
 nastaviti koristiti vašu staru.',
 'noemail'                    => 'Ne postoji adresa e-pošte za korisnika "$1".',
@@ -685,7 +685,7 @@ Za posledicu, posetioci koji koriste ovu IP adresu trenutno ne mogu da otvore jo
 'emailnotauthenticated'      => 'Vaša adresa e-pošte još uvek nije potvrđena. E-pošta neće biti poslata ni za jednu od sledećih mogućnosti.',
 'noemailprefs'               => 'Naznačite adresu e-pošte kako bi ove mogućnosti radile.',
 'emailconfirmlink'           => 'Potvrdite vašu adresu e-pošte',
-'invalidemailaddress'        => 'Adresa e-pošte ne može biti primljena jer izgleda nije pravilnog formata. 
+'invalidemailaddress'        => 'Adresa e-pošte ne može biti primljena jer izgleda nije pravilnog formata.
 Molimo unesite dobro-formatiranu adresu ili ispraznite to polje.',
 'accountcreated'             => 'Nalog je napravljen',
 'accountcreatedtext'         => 'Korisnički nalog za $1 je napravljen.',
@@ -762,14 +762,14 @@ Ako opet kliknete \"{{int:savearticle}}\", Vaš komentar će biti snimljen bez n
 'blockedtitle'                     => 'Korisnik je blokiran',
 'blockedtext'                      => '\'\'\'Vaše korisničko ime ili IP adresa je blokirano.\'\'\'
 
-Blokirao vas je korisnik $1. 
+Blokirao vas je korisnik $1.
 Razlog za blokiranje je \'\'$2\'\'.
 
 * Početak bloka: $8
 * Ističe: $6
 * Namenjen: $7
 
-Možete kontaktirati korisnika $1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] kako biste razgovarali o blokadi. Ne možete da koristite opciju "Pošalji e-poštu ovom korisniku" ukoliko nemate valjanu adresu e-pošte navedenu u vašim [[Special:Preferences|podešavanjima]]. Vaša trenutna IP adresa je $3 i ID bloka je #$5. 
+Možete kontaktirati korisnika $1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] kako biste razgovarali o blokadi. Ne možete da koristite opciju "Pošalji e-poštu ovom korisniku" ukoliko nemate valjanu adresu e-pošte navedenu u vašim [[Special:Preferences|podešavanjima]]. Vaša trenutna IP adresa je $3 i ID bloka je #$5.
 Molimo uključite gornje detalje u svaki vaš zahtev.',
 'autoblockedtext'                  => 'Vaša IP adresa je automatski blokirana jer ju je upotrebljavao drugi korisnik, koga je blokirao $1.
 Dat razlog je:
@@ -786,7 +786,7 @@ Možete kontaktirati $1 ili nekog drugog
 Imajte u vidu da ne možete da koristite opciju "pošalji e-poštu ovom korisniku" ukoliko niste priložili ispravnu adresu elektronske pošte
 u vašim [[Special:Preferences|korisničkim podešavanjima]] i ukoliko vam blokadom nije onemogućena upotreba ove opcije.
 
-IP adresa koja je blokirana je $3, a ID vaše blokade je $5. 
+IP adresa koja je blokirana je $3, a ID vaše blokade je $5.
 Molimo vas navedite ovaj ID broj prilikom pravljenja bilo kakvih upita.',
 'blockednoreason'                  => 'nije dat razlog',
 'blockedoriginalsource'            => "Izvor '''$1''' je prikazan ispod:",
@@ -809,9 +809,9 @@ Lozinka za ovaj novi nalog može biti promenjena na ''[[Special:ChangePassword|c
 'newarticletext'                   => "Pratili ste vezu ka stranici koja još ne postoji.
 Da biste je napravili, počnite da kucate u polju ispod (pogledajte [[{{ns:help}}:Sadržaj|pomoć]] za više informacija).
 Ako ste ovde došli greškom, samo kliknite na '''back''' dugme vašeg brauzera.",
-'anontalkpagetext'                 => '---- Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog, ili ga ne koristi. 
-Zbog toga moramo da koristimo brojčanu IP adresu kako bismo identifikovali njega ili nju. 
-Takvu adresu može deliti više korisnika. 
+'anontalkpagetext'                 => '---- Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog, ili ga ne koristi.
+Zbog toga moramo da koristimo brojčanu IP adresu kako bismo identifikovali njega ili nju.
+Takvu adresu može deliti više korisnika.
 Ako ste anonimni korisnik i mislite da su vam upućene nebitne primedbe, molimo vas da [[Special:UserLogin/signup|napravite nalog]] ili [[Special:UserLogin|se prijavite]] da biste izbegli buduću zabunu sa ostalim anonimnim korisnicima.',
 'noarticletext'                    => 'Trenutno ne postoji članak pod tim imenom.
 Možete [[Special:Search/{{PAGENAME}}|tražiti ovu stranicu]] u drugim člancima,
@@ -1240,7 +1240,7 @@ Mora biti ispod $1 {{PLURAL:$1|karakter|karaktera}}.',
 Ova informacija će biti javna.',
 'email'                       => 'E-pošta',
 'prefs-help-realname'         => '* Pravo ime (opciono): ako izaberete da date ime, ovo će biti korišćeno za pripisivanje za vaš rad.',
-'prefs-help-email'            => 'Adresa e-pošte je opciona, ali vam omogućava da zatražite novu lozinku u slučaju da je zaboravite. 
+'prefs-help-email'            => 'Adresa e-pošte je opciona, ali vam omogućava da zatražite novu lozinku u slučaju da je zaboravite.
 Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisničke strane ili strane za razgovor, bez potrebe da odajete svoj identitet.',
 'prefs-help-email-required'   => 'Neophodna je adresa e-pošte.',
 'prefs-info'                  => 'Osnovne informacije',
@@ -1449,7 +1449,7 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'recentchangeslinked-toolbox'  => 'Srodne promene',
 'recentchangeslinked-title'    => 'Srodne promene za "$1"',
 'recentchangeslinked-noresult' => 'Nema izmena na povezanim stranicama za odabrani period.',
-'recentchangeslinked-summary'  => "Ova posebna stranica pokazuje spisak poselenjih promena na stranicama koje su povezane (ili članovi određene kategorije). 
+'recentchangeslinked-summary'  => "Ova posebna stranica pokazuje spisak poselenjih promena na stranicama koje su povezane (ili članovi određene kategorije).
 Stranice sa [[Special:Watchlist|vašeg spiska nadgledanja]] su '''podebljane'''.",
 'recentchangeslinked-page'     => 'Ime stranice:',
 'recentchangeslinked-to'       => 'prikazivanje izmena prema stranama povezanih sa datom stranom',
@@ -1492,9 +1492,9 @@ Sliku dodajete u pogodne članke koristeći sintaksu:
 'filetype-mime-mismatch'      => 'Ekstenzija fajla ne odgovara MIME tipu.',
 'filetype-badmime'            => 'Nije dozvoljeno slati fajlove MIME tipa &quot;$1&quot;.',
 'filetype-bad-ie-mime'        => 'Ovaj fajl ne može biti poslat zato što bi Internet Eksplorer mogao da ga detektuje "$1", što je onemogućen i potencijalno opasan tip fajla.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' nije poželjan tip fajla. 
+'filetype-unwanted-type'      => "'''\".\$1\"''' nije poželjan tip fajla.
 Poželjni {{PLURAL:\$3|tip fajla je|tipovi fajlova su}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' je zabranjen tip fajla. 
+'filetype-banned-type'        => "'''\".\$1\"''' je zabranjen tip fajla.
 Poželjni {{PLURAL:\$3|tip fajla je|tipovi fajlova su}} \$2.",
 'filetype-missing'            => 'Ovaj fajl nema ekstenziju (npr ".jpg").',
 'filename-tooshort'           => 'Ime fajla je prekratko.',
@@ -1515,12 +1515,12 @@ Molimo izaberite drugo ime.",
 'fileexists-thumbnail-yes'    => "Ovaj fajl je najverovatnije umanjena verzija slike. [[$1|thumb]]
 Molimo vas proverite fajl '''<tt>[[:$1]]</tt>'''.
 Ukoliko je dati fajl ista slika ili originalna slika, nije potrebno da šaljete dodatno umanjenu verziju iste.",
-'file-thumbnail-no'           => "Fajl počinje sa '''<tt>$1</tt>'''. 
+'file-thumbnail-no'           => "Fajl počinje sa '''<tt>$1</tt>'''.
 Pretpostavlja se da je ovo umanjena verzija slike.
 Ukoliko imate ovu sliku u punoj rezolicuji, pošaljite je, a ukoliko nemate, promenite ime fajla.",
 'fileexists-forbidden'        => 'Fajl sa ovim imenom već postoji, i preko njega se ne može pisati.
 Ako ipak želite da pošaljete Vaš fajl, molimo Vas da se vratite nazad i upotrebite drugo ime. [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Fajl sa ovim imenom već postoji u zajedničkoj ostavi. 
+'fileexists-shared-forbidden' => 'Fajl sa ovim imenom već postoji u zajedničkoj ostavi.
 Molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ovaj fajl je duplikat {{PLURAL:$1|sledećeg fajla|sledeđih fajlova}}:',
 'file-deleted-duplicate'      => 'Fajl identičan ovom ([[$1]]) je već bio obrisan.
@@ -2119,11 +2119,11 @@ Protect pages included in this page (cascading protection)',
 'undeletepagetitle'            => "'''Sledeće sadrži obrisane izmene članka: [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Pogledaj obrisane strane',
 'undeletepagetext'             => '{{PLURAL:$1|Sledeća strana je obrisana ali je|Sledeće $1 strane su obrisane ali su|Sledećih $1 strana je obrisano ali su}} još uvek u arhivi i
-mogu biti vraćene. 
+mogu biti vraćene.
 Arhiva može biti periodično čišćena.',
 'undelete-fieldset-title'      => 'vraćanje verzija',
-'undeleteextrahelp'            => "Da biste vratili istoriju cele strane, ostavite sve kućice neotkačenim i kliknite na '''''Vrati'''''. 
-Da izvršite selektivno vraćanje, otkačite kućice koje odgovaraju reviziji koja treba da se vrati i kliknite na '''''Vrati'''''. 
+'undeleteextrahelp'            => "Da biste vratili istoriju cele strane, ostavite sve kućice neotkačenim i kliknite na '''''Vrati'''''.
+Da izvršite selektivno vraćanje, otkačite kućice koje odgovaraju reviziji koja treba da se vrati i kliknite na '''''Vrati'''''.
 Klikom na '''''Poništi''''' ćete obrisati polje za komentar i sve kućice.",
 'undeleterevisions'            => '$1 revizija arhivirano',
 'undeletehistory'              => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj istoriji.
@@ -2720,8 +2720,8 @@ Njegovim izvršavanjem biste mogli da oštetite Vaš sistem.",
 # Bad image list
 'bad_image_list' => 'Format je sledeći:
 
-Razmatraju se samo stavke u spisku (linije koje počinju sa *). 
-Prva veza u liniji mora biti veza na visoko rizičnu sliku. 
+Razmatraju se samo stavke u spisku (linije koje počinju sa *).
+Prva veza u liniji mora biti veza na visoko rizičnu sliku.
 Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slika može prikazati.',
 
 # Variants for Serbian language
@@ -3031,7 +3031,7 @@ Ako ste skoro napravili Vaš nalog, verovatno bi trebalo da odčekate nekoliko m
 'confirmemail_sent'        => 'E-pošta za potvrđivanje poslata.',
 'confirmemail_oncreate'    => 'Kod za potvrdu je poslat na vašu imejl adresu.
 Ovaj kod nije potreban da biste se ulogovali, ali će od Vas biti traženo da ga priložite da bi omogućili pogodnosti Vikija vezane za korišćenje mejlova.',
-'confirmemail_sendfailed'  => '{{SITENAME}} nije uspela da pošanje e-poštu. 
+'confirmemail_sendfailed'  => '{{SITENAME}} nije uspela da pošanje e-poštu.
 Proverita adresu zbog nepravilnih karaktera.
 
 Vraćeno: $1',
@@ -3041,17 +3041,17 @@ Vraćeno: $1',
 'confirmemail_loggedin'    => 'Adresa vaše e-pošte je sada potvrđena.',
 'confirmemail_error'       => 'Nešto je pošlo po zlu prilikom snimanja vaše potvrde.',
 'confirmemail_subject'     => '{{SITENAME}} adresa e-pošte za potvrđivanje',
-'confirmemail_body'        => 'Neko, verovatno vi, sa IP adrese $1 
+'confirmemail_body'        => 'Neko, verovatno vi, sa IP adrese $1
 je registrovao nalog „$2” sa ovom adresom e-pošte na sajtu {{SITENAME}}.
 
-Da potvrdite da ovaj nalog stvarno pripada vama i da aktivirate 
+Da potvrdite da ovaj nalog stvarno pripada vama i da aktivirate
 mogućnost e-pošte na sajtu {{SITENAME}}, otvorite ovu vezu u vašem brauzeru:
 
 $3
 
 Ako ovo *niste* vi, pratite ovu vezu kako biste prekinuli registraciju:
 
-$5 
+$5
 
 Ovaj kod za potvrdu će isteći u $4.',
 'confirmemail_invalidated' => 'Overa elektronske adrese je poništena.',

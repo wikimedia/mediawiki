@@ -261,12 +261,12 @@ Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]
 'passwordtooshort'           => 'Eraysirkaaga waa mid aanan jirin ama aad u gaaban. Waa in uu ugu yaraan ahaadaa  {{PLURAL:$1|1 xaraf|$1 xarfood}} kana duwanaadaa magaca gudagalkaaga.',
 'mailmypassword'             => 'E-boosto ku dir ereysir cusub',
 'passwordremindertitle'      => 'Eraysir ku meelgaar ah oo loogu talagalay {{SITENAME}}',
-'passwordremindertext'       => 'Qof (laga yaabo in aad adiga tahay, kana soo galay cinwaanka-IP $1) ayaa u codsaday {{SITENAME}} eraysir cusub ($4). 
-Eraysir cusub oo ku meelgaar ah ee uu leeyahay "$2" ayaa la sameeyay waxaana loo diray "$3". 
+'passwordremindertext'       => 'Qof (laga yaabo in aad adiga tahay, kana soo galay cinwaanka-IP $1) ayaa u codsaday {{SITENAME}} eraysir cusub ($4).
+Eraysir cusub oo ku meelgaar ah ee uu leeyahay "$2" ayaa la sameeyay waxaana loo diray "$3".
 Hadii uu ahaa fikirkaaga, waxaad u baahantahay in aad gudaha u gashid dalbatidna eraysir cusub.
 Eraysirka ku meelgaarka ah wuxuu dhacaayaa {{PLURAL:$5|maalin|$5 maalmood}}.
 
-Hadii u qofkale sameeyay codsigaan, ama aad soo xasuusatay eraysirkaagii, 
+Hadii u qofkale sameeyay codsigaan, ama aad soo xasuusatay eraysirkaagii,
 oo aadan u baahnayn in aad bedeshid, iska ilow farriintaan siina wado isticmaalista eraysirkaagi hore.',
 'noemail'                    => 'E-boosto lagama haayo isticmaalaha "$1".',
 'passwordsent'               => 'Eraysir cusub ayaa lagu diray e-boostada uu xaraystay isticmaalaha "$1".

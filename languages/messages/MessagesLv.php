@@ -42,7 +42,7 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'Kategorija',
 	NS_CATEGORY_TALK    => 'Kategorijas_diskusija',
 );
-$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+$separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 $messages = array(
 # User preference toggles
@@ -1079,8 +1079,8 @@ Spied pogu '''Augšuplādēt''', lai pabeigtu augšupielādi.
 Tas var ieilgt, ja tavs interneta pieslēgums ir lēns.
 
 Ieteicamie formāti ir:
-* JPEG - ja tā ir fotogrāfija, 
-* PNG - ja tas ir zīmējums vai kāda ikona, un 
+* JPEG - ja tā ir fotogrāfija,
+* PNG - ja tas ir zīmējums vai kāda ikona, un
 * OGG - ja tas ir skaņas fails.
 
 Lūdzu, pārliecinies, ka faila nosaukums ir pietiekami aprakstošs, lai izvairītos no neskaidrībām. Lai attēlu pēc tam ievietotu kādā lapā, izmanto šādi noformētu linkus:
@@ -1566,8 +1566,8 @@ Lai atjaunotu tikai noteiktas versijas, ieķeksē vajadzīgās versijas un spied
 Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta.',
 'undeleterevdel'           => 'Atjaunošana nenotiks, ja tas izraisīs jaunākās versijas izdzēšanu.
 Šādos gadījumos ir vai nu jāizņem ķeksis no jaunākās versijas, vai arī jāatslēpj jaunākā versija.',
-'undeletehistorynoadmin'   => 'Šī lapa ir tikusi izdzēsta. 
-Dzēšanas iemesls ir redzams apakšā, kopsavilkumā, kopā ar informāciju par lietotājiem, kas bija rediģējuši šo lapu pirs tās izdzēšanas. 
+'undeletehistorynoadmin'   => 'Šī lapa ir tikusi izdzēsta.
+Dzēšanas iemesls ir redzams apakšā, kopsavilkumā, kopā ar informāciju par lietotājiem, kas bija rediģējuši šo lapu pirs tās izdzēšanas.
 Šo izdzēsto versiju teksts ir pieejams tikai administratoriem.',
 'undelete-revision'        => 'Lapas $1 izdzēstā versija (kāda tā bija $4, $5) (autors $3):',
 'undeleterevision-missing' => 'Nederīga vai neeksistējoša versija.
@@ -1952,10 +1952,10 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'sp-newimages-showfrom' => 'Rādīt jaunos attēlus sākot no $1, $2',
 
 # Bad image list
-'bad_image_list' => 'Formāts: 
+'bad_image_list' => 'Formāts:
 
-Tiek ņemti vērā tikai ieraksti rindiņā kas sākas ar * 
-Pirmajai saitei rindiņā ir jābūt uz attiecīgo failu 
+Tiek ņemti vērā tikai ieraksti rindiņā kas sākas ar *
+Pirmajai saitei rindiņā ir jābūt uz attiecīgo failu
 Jebkuras sekojošas saites tiks uzskatītas par izņēmumiem t.i. lapām kurās fails drīkt tikt izmantots',
 
 # Metadata
@@ -2034,9 +2034,9 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 # E-mail address confirmation
 'confirmemail'             => 'Apstiprini e-pasta adresi',
 'confirmemail_noemail'     => '[[Special:Preferences|Tavās izvēlēs]] nav norādīta derīga e-pasta adrese.',
-'confirmemail_text'        => 'Šajā wiki ir nepieciešams apstiprināt savu e-pasta adresi, lai izmantotu e-pasta funkcijas. 
-Spied uz zemāk esošās pogas, lai uz tavu e-pasta adresi nosūtītu apstiprināšanas e-pastu. 
-Tajā būs saite ar kodu; spied uz tās saites vai atver to savā interneta pārlūkā, 
+'confirmemail_text'        => 'Šajā wiki ir nepieciešams apstiprināt savu e-pasta adresi, lai izmantotu e-pasta funkcijas.
+Spied uz zemāk esošās pogas, lai uz tavu e-pasta adresi nosūtītu apstiprināšanas e-pastu.
+Tajā būs saite ar kodu; spied uz tās saites vai atver to savā interneta pārlūkā,
 lai apstiprinātu tavas e-pasta adreses derīgumu.',
 'confirmemail_pending'     => 'Apstiprināšanas kods jau tev tika nosūtīts pa e-pastu;
 ja tu nupat izveidoji savu kontu, varētu drusku pagaidīt, kamēr tas kods pienāk, pirms mēģināt dabūt jaunu.',

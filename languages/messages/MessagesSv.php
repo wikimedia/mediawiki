@@ -756,7 +756,7 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1) har begärt ett nytt lösenord till {{SITENAME}} ($4). Ett tillfälligt lösenordet för användaren "$2" har skapats och det blev "$3". Om detta var vad du önskade, så behöver du nu logga in och välja ett nytt lösenord. Ditt tillfälliga lösenord går ut om {{PLURAL:$5|en dag|$5 dagar}}.
 
 Om denna begäran gjordes av någon annan, eller om du har kommit på ditt lösenord,
-och inte längre önskar ändra det, så kan du ignorera detta meddelande och 
+och inte längre önskar ändra det, så kan du ignorera detta meddelande och
 fortsätta använda ditt gamla lösenord.',
 'noemail'                    => 'Användaren "$1" har inte registrerat någon e-postadress.',
 'noemailcreate'              => 'Du måste ange en giltig e-postadress',
@@ -840,7 +840,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'anoneditwarning'                  => "'''Varning:''' Du är inte inloggad.
 Din IP-adress kommer att sparas i historiken för den här sidan.",
 'anonpreviewwarning'               => "''Du är inte inloggad. Vid spara kommer att din IP-adress registreras på denna sidas redigeringshistorik.''",
-'missingsummary'                   => "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar. 
+'missingsummary'                   => "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar.
 Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'missingcommenttext'               => 'Var god och skriv in en kommentar nedan.',
 'missingcommentheader'             => "'''Påminnelse:''' Du har inte skrivit något ämne/rubrik för den här kommentaren.
@@ -956,7 +956,7 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 vissa webbläsare kan ha problem att redigera sidor som närmar sig eller är större än 32 kB.
 Överväg att bryta upp sidan i mindre delar.'''",
 'longpageerror'                    => "'''FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.'''",
-'readonlywarning'                  => "'''VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu. 
+'readonlywarning'                  => "'''VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu.
 Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.'''
 
 Administratören som låste databasen gav följande förklaring: $1",
@@ -1159,7 +1159,7 @@ Du har inte behörighet till det.',
 Vänligen kontrollera loggarna.',
 'revdelete-only-restricted'   => 'Fel vid döljning av objekt daterat $2, $1: du kan inte undanhålla objekt från att visas för administratörer utan att också välja en av de övriga visningsalternativen.',
 'revdelete-reason-dropdown'   => '*Vanliga orsaker till radering
-** Brott mot copyright 
+** Brott mot copyright
 ** Opassande personupplysningar
 ** Möjligt ärekränkande uppgifter',
 'revdelete-otherreason'       => 'Annan/ytterligare anledning:',
@@ -2973,7 +2973,7 @@ Om du kör den kan din dator skadas.",
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:
 
-Listan tar enbart hänsyn till rader som börjar med asterisk (*). 
+Listan tar enbart hänsyn till rader som börjar med asterisk (*).
 Den första länken på en rad måste vara en länk till en otillåten fil.
 Övriga länkar på samma rad kommer att hanteras som undantag, det vill säga sidor där filen tillåts användas.',
 
@@ -3281,7 +3281,7 @@ Kontrollera om e-postadressen innehåller ogiltiga tecken.
 Mailservern svarade: $1',
 'confirmemail_invalid'      => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
 'confirmemail_needlogin'    => 'Du behöver $1 för att bekräfta din e-postadress',
-'confirmemail_success'      => 'Din e-postadress har bekräftats. 
+'confirmemail_success'      => 'Din e-postadress har bekräftats.
 Du kan nu [[Special:UserLogin|logga in]] och använda wikin.',
 'confirmemail_loggedin'     => 'Din e-postadress är nu bekräftad.',
 'confirmemail_error'        => 'Någonting gick fel när din bekräftelse skulle sparas.',

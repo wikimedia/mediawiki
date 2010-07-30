@@ -395,9 +395,9 @@ Bei cumo screbiste, ó [[Special:UserLogin/signup|cria ua nuoba cuonta]].',
 'nosuchusershort'         => 'Nun eisiste nanhun outelizador cul nome "<nowiki>$1</nowiki>".
 Bei se l screbiste bien.',
 'nouserspecified'         => 'Tenes que dezir un nome de outelizador.',
-'wrongpassword'           => 'La palabra chabe ye ambálida. 
+'wrongpassword'           => 'La palabra chabe ye ambálida.
 Por fabor, spurmenta outra beç.',
-'wrongpasswordempty'      => 'Tenes que poner la palabra chabe. 
+'wrongpasswordempty'      => 'Tenes que poner la palabra chabe.
 Por fabor, spurmenta outra beç.',
 'passwordtooshort'        => 'La tue palabra chabe ye ambálida ó mui pequeinha.
 Debe de tener pul menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
@@ -475,7 +475,7 @@ La tue morada de IP atual ye $3 i l ID de l bloqueio ye $5. Por fabor, anclui un
 
 La palabra-chabe para esta nuoba cuonta puode ser demudada na páigina pa ''[[Special:ChangePassword|demudar palabra-chabe]]'' apuis de la outenticaçon.",
 'newarticle'                       => '(Nuoba)',
-'newarticletext'                   => "Tu bejiteste ua lhigaçon para ua páigina que inda nun eisiste. 
+'newarticletext'                   => "Tu bejiteste ua lhigaçon para ua páigina que inda nun eisiste.
 Para criar la páigina, ampeça a screbir an la caixa ambaixo (bei la [[{{MediaWiki:Helppage}}|páigina de ajuda]] pa mais detailhes).
 Se stás eiqui por anganho, carrega ne l boton '''retornar''' de l tou nabegador de la Anternete.",
 'noarticletext'                    => 'Nun hai neste sfergante testo nesta páigina.
@@ -506,7 +506,7 @@ Pode boltar atrás i editar unha página yá eisistente, o [[Special:UserLogin|a
 
 Bei bien se ye própio cuntinar a eiditar esta páigina.
 L registro de la eileminaçon i de l arrastrar ye amostrado eiqui por cumbeniéncia:",
-'moveddeleted-notice'              => 'Esta páigina fui apagada. 
+'moveddeleted-notice'              => 'Esta páigina fui apagada.
 L registro de la eileminaçon i de l arrastrar stá ambaixo pa refréncia.',
 
 # History pages

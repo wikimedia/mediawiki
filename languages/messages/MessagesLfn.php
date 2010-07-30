@@ -376,7 +376,7 @@ La razon donada es ''$2''.
 * Ci algun intende impedi: $7
 
 Tu pote contata $1 o un otra [[{{MediaWiki:Grouppage-sysop}}|dirijor]] per discute esta impedi.
-Tu no pote usa la 'envia un eposta a esta usor' sin un adirije de eposta legal es indicada en tu 
+Tu no pote usa la 'envia un eposta a esta usor' sin un adirije de eposta legal es indicada en tu
 [[Special:Preferences|preferis de conta]] e tu no es impedida de usa el.
 Tu adirije de IP es aora $3, e la identia de la impedi es #$5.
 Per favore inclui tota esta detales en tu demandas.",

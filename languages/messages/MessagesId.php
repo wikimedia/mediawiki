@@ -23,7 +23,7 @@
  * @author לערי ריינהארט
  */
 
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -620,16 +620,16 @@ Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:s
 # General errors
 'error'                => 'Kesalahan',
 'databaseerror'        => 'Kesalahan basis data',
-'dberrortext'          => 'Ada kesalahan sintaks pada permintaan basis data. 
-Kesalahan ini mungkin menandakan adanya sebuah \'\'bug\'\' dalam perangkat lunak. 
-Permintaan basis data yang terakhir adalah: 
-<blockquote><tt>$1</tt></blockquote> 
-dari dalam fungsi "<tt>$2</tt>". 
+'dberrortext'          => 'Ada kesalahan sintaks pada permintaan basis data.
+Kesalahan ini mungkin menandakan adanya sebuah \'\'bug\'\' dalam perangkat lunak.
+Permintaan basis data yang terakhir adalah:
+<blockquote><tt>$1</tt></blockquote>
+dari dalam fungsi "<tt>$2</tt>".
 Basis data menghasilkan kesalahan "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ada kesalahan sintaks pada permintaan basis data. 
-Permintaan basis data yang terakhir adalah: 
-"$1" 
-dari dalam fungsi "$2". 
+'dberrortextcl'        => 'Ada kesalahan sintaks pada permintaan basis data.
+Permintaan basis data yang terakhir adalah:
+"$1"
+dari dalam fungsi "$2".
 Basis data menghasilkan kesalahan "$3: $4".',
 'laggedslavemode'      => 'Peringatan: Halaman mungkin tidak berisi perubahan terbaru.',
 'readonly'             => 'Basis data dikunci',
@@ -749,7 +749,7 @@ Silakan masuk log kembali setelah menerima surel tersebut.',
 'blocked-mailpassword'       => 'Alamat IP Anda diblokir dari penyuntingan dan karenanya tidak diizinkan menggunakan fungsi pengingat kata sandi untuk mencegah penyalahgunaan.',
 'eauthentsent'               => 'Sebuah surel untuk konfirmasi telah dikirim ke alamat surel.
 Anda harus mengikuti instruksi di dalam surel tersebut untuk melakukan konfirmasi bahwa alamat tersebut adalah benar kepunyaan Anda. {{SITENAME}} tidak akan mengaktifkan fitur surel jika langkah ini belum dilakukan.',
-'throttled-mailpassword'     => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|jam|$1 jam}} terakhir. 
+'throttled-mailpassword'     => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|jam|$1 jam}} terakhir.
 Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Kesalahan dalam mengirimkan surel: $1',
 'acct_creation_throttle_hit' => 'Pengunjung wiki ini dengan alamat IP yang sama dengan Anda telah membuat {{PLURAL:$1|1 akun|$1 akun}} dalam satu hari terakhir, hingga jumlah maksimum yang diijinkan.
@@ -767,7 +767,7 @@ Harap masukkan alamat surel dalam format yang benar atau kosongkan isian tersebu
 
 Anda dapat mengabaikan pesan ini jika akun ini dibuat karena suatu kesalahan.',
 'usernamehasherror'          => 'Nama pengguna tidak bisa mengandung tanda pagar',
-'login-throttled'            => 'Anda telah berkali-kali mencoba masuk log. 
+'login-throttled'            => 'Anda telah berkali-kali mencoba masuk log.
 Silakan menunggu sebelum mencoba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Permintaan Anda untuk keluar log ditolak karena tampaknya dikirim oleh penjelajah yang rusak atau proksi penyinggah.',
@@ -1363,7 +1363,7 @@ Jangan lebih dari $1 {{PLURAL:$1|karakter|karakter}}.',
 'gender-female'                 => 'Perempuan',
 'prefs-help-gender'             => 'Opsional: digunakan untuk perbaikan penyebutan gender oleh perangkat lunak. Informasi ini akan terbuka untuk umum.',
 'email'                         => 'Surel',
-'prefs-help-realname'           => 'Nama asli bersifat opsional. 
+'prefs-help-realname'           => 'Nama asli bersifat opsional.
 Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
 'prefs-help-email'              => 'Alamat surel bersifat opsional, namun bila sewaktu-waktu Anda lupa akan kata sandi Anda, kami dapat mengirimkannya melalui surel tersebut.
 Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui halaman pengguna atau halaman pembicaraan pengguna Anda tanpa perlu membuka identitas Anda.',
@@ -1702,7 +1702,7 @@ $1',
 'upload-proto-error'        => 'Protokol tak tepat',
 'upload-proto-error-text'   => 'Pemuatan jarak jauh membutuhkan URL yang diawali dengan <code>http://</code> atau <code>ftp://</code>.',
 'upload-file-error'         => 'Kesalahan internal',
-'upload-file-error-text'    => 'Suatu kesalahan internal terjadi sewaktu mencoba membuat berkas sementara di peladen. 
+'upload-file-error-text'    => 'Suatu kesalahan internal terjadi sewaktu mencoba membuat berkas sementara di peladen.
 Silakan hubungi salah seorang [[Special:ListUsers/sysop|pengurus]].',
 'upload-misc-error'         => 'Kesalahan pemuatan yang tak dikenal',
 'upload-misc-error-text'    => 'Suatu kesalahan yang tak dikenal terjadi sewaktu pemuatan. Harap pastikan bahwa URL tersebut valid dan dapat diakses dan silakan coba lagi. Jika masalah ini tetap terjadi, kontak administrator sistem.',
@@ -1884,7 +1884,7 @@ Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
 Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut menggunakan templat yang terhubung ke [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Pengalihan ganda',
-'doubleredirectstext'        => 'Halaman ini memuat daftar halaman yang dialihkan ke halaman pengalihan yang lain. 
+'doubleredirectstext'        => 'Halaman ini memuat daftar halaman yang dialihkan ke halaman pengalihan yang lain.
 Setiap baris memuat pranala ke pengalihan pertama dan pengalihan kedua serta target dari pengalihan kedua yang umumnya adalah halaman yang "sebenarnya". Halaman peralihan pertama seharusnya dialihkan ke halaman yang bukan merupakan halaman peralihan.
 Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'double-redirect-fixed-move' => '[[$1]] telah dipindahkan menjadi halaman peralihan ke [[$2]]',
@@ -2447,7 +2447,7 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'unblocklink'                     => 'hilangkan blokir',
 'change-blocklink'                => 'ubah blokir',
 'contribslink'                    => 'kontrib',
-'autoblocker'                     => 'Diblokir secara otomatis karena alamat IP Anda digunakan oleh "[[User:$1|$1]]". 
+'autoblocker'                     => 'Diblokir secara otomatis karena alamat IP Anda digunakan oleh "[[User:$1|$1]]".
 Alasan yang diberikan untuk pemblokiran $1 adalah: "$2"',
 'blocklogpage'                    => 'Log pemblokiran',
 'blocklog-showlog'                => 'Pengguna ini telah diblokir sebelumnya. Log pemblokiran di sediakan dibawah untuk referensi:',
@@ -3228,7 +3228,7 @@ $5
 
 Kode konfirmasi ini akan kadaluwarsa pada $4.',
 'confirmemail_body_changed' => 'Seseorang, mungkin anda, dari alamat IP $1,
-telah merubah surel dari akun "$2" pada alamat ini di {{SITENAME}}. 
+telah merubah surel dari akun "$2" pada alamat ini di {{SITENAME}}.
 
 Untuk mengkonfirmasi bahwa akun ini adalah benar milik anda sekaligus mengaktifkan
 kembali fitur surel pada {{SITENAME}}, ikuti pranala berikut pada browser Anda:

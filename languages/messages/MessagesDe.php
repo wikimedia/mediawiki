@@ -83,7 +83,7 @@ $bookstoreList = array(
 	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
 );
 
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 
 $specialPageAliases = array(
@@ -2841,10 +2841,10 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'modern.css'      => '/* CSS an dieser Stelle wirkt sich auf den Modern-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */
 
 /* Kleinschreibung in Navigationsbereichen verhindern */
-.portlet h5, 
-.portlet h6, 
-#p-personal ul, 
-#p-cactions li a, 
+.portlet h5,
+.portlet h6,
+#p-personal ul,
+#p-cactions li a,
 #preftoc a {
     text-transform: none;
 }',

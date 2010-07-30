@@ -211,7 +211,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'Rangt netfang' ),
 );
 
-$separatorTransformTable = array(',' => '.', '.' => ',' );
+$separatorTransformTable = array( ',' => '.', '.' => ',' );
 $linkPrefixExtension = true;
 $linkTrail = '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu';
 

@@ -59,9 +59,9 @@ $digitTransformTable = array(
 	',' => '',
 );
 
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Default messages
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Allowed characters in keys are: A-Z, a-z, 0-9, underscore (_) and
 # hyphen (-). If you need more characters, you may be able to change
 # the regex in MagicWord::initRegex

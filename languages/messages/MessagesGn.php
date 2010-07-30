@@ -305,7 +305,7 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.'''",
 # Upload
 'upload'     => "Tojehupi jehai'aty",
 'uploadtext' => "Eipuru pe tembipuru oĩva iguýpe ehupi hag̃ua jehai'aty, rehecha térã reheka hag̃ua ta'ãnga ojehupipyrémava eike jehai'aty jehupipyre rysýipe, umi ihupipyréva ha oñemboguémava avei oñemboguapy [[Special:Log/upload|jehai'aty jehupipyrépe]].
-Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju: 
+Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 '''<nowiki>[[</nowiki>Imagen<nowiki>:Archivo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>Imagen<nowiki>:Archivo.png|texto alternativo]]</nowiki>''' o
 '''<nowiki>[[</nowiki>Media<nowiki>:Archivo.ogg]]</nowiki>''' ojoaju hag̃ua hekopete pe jehai'atýre.",
 'filename'   => "Téra jehai'aty",
