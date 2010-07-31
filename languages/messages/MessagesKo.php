@@ -1451,7 +1451,7 @@ $1",
 'right-blockemail'            => '다른 사용자가 이메일을 보내지 못하도록 차단',
 'right-hideuser'              => '사용자 이름을 차단하고 숨김',
 'right-ipblock-exempt'        => 'IP 차단, 자동 차단, 광역 차단을 무시',
-'right-proxyunbannable'       => '프록시 자동 차단을 우회',
+'right-proxyunbannable'       => '프록시 자동 차단을 적용하지 않음',
 'right-unblockself'           => '자기 자신을 차단 해제하기',
 'right-protect'               => '보호 수준 변경 및 보호된 문서 편집',
 'right-editprotected'         => '보호된 문서 편집 (연쇄적 보호 제외)',
@@ -1699,11 +1699,13 @@ MGP # 펜탁스
 PICT # 기타
  #</pre> <!-- 이 줄은 그대로 두십시오. -->',
 'upload-success-subj'         => '올리기 성공',
-'upload-success-msg'          => '당신이 올린 파일이 여기 있습니다: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => '파일을 [$2]에서 성공적으로 올렸습니다. 당신이 올린 파일이 여기 있습니다: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '올리기 실패',
 'upload-failure-msg'          => '파일을 올리는 중 문제가 발생했습니다:
 
 $1',
+'upload-warning-subj'         => '파일 올리기 경고',
+'upload-warning-msg'          => '[$2]에서 파일을 올리는 데 문제가 있습니다. 이 문제를 해결하려면 [[Special:Upload/stash/$1|올리기 양식]]으로 되돌아가십시오.',
 
 'upload-proto-error'        => '잘못된 프로토콜',
 'upload-proto-error-text'   => '파일을 URL로 올리려면 <code>http://</code>이나 <code>ftp://</code>로 시작해야 합니다.',
@@ -2274,7 +2276,7 @@ $UNWATCHURL
 # Restrictions (nouns)
 'restriction-edit'   => '편집',
 'restriction-move'   => '이동',
-'restriction-create' => '만들기',
+'restriction-create' => '생성',
 'restriction-upload' => '올리기',
 
 # Restriction levels
@@ -2857,7 +2859,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'patrol-log-header'    => '이 기록은 검토된 문서에 대한 기록입니다.',
 'patrol-log-line'      => '$2 문서의 $1을 검토함 $3',
 'patrol-log-auto'      => '(자동)',
-'patrol-log-diff'      => '$1판',
+'patrol-log-diff'      => '제 $1번 판',
 'log-show-hide-patrol' => '검토 기록을 $1',
 
 # Image deletion
