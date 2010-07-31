@@ -740,7 +740,6 @@ abstract class Maintenance {
 
 		putenv( 'wikilang=' . $lang );
 
-		$DP = $IP;
 		ini_set( 'include_path', ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
 
 		if ( $lang == 'test' && $site == 'wikipedia' ) {
@@ -753,7 +752,7 @@ abstract class Maintenance {
 	 * @return String
 	 */
 	public function loadSettings() {
-		global $wgWikiFarm, $wgCommandLineMode, $IP, $DP;
+		global $wgWikiFarm, $wgCommandLineMode, $IP;
 
 		$wgWikiFarm = false;
 		if ( isset( $this->mOptions['conf'] ) ) {
@@ -775,7 +774,6 @@ abstract class Maintenance {
 			  			"must exist and be readable in the source directory.", true );
 		}
 		$wgCommandLineMode = true;
-		$DP = $IP;
 		return $settingsFile;
 	}
 
