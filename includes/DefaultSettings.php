@@ -3749,9 +3749,9 @@ $wgParserTestRemote = false;
  */
 $wgEnableSelenium = false;
 
-/** List of Selenium test classes. These must be registered with the autoloader. */
-$wgSeleniumTests = array(
-	'SimpleSeleniumTest'
+/** List of Selenium test suites. These must be registered with the autoloader. */
+$wgSeleniumTestSuites = array(
+	'SimpleSeleniumTestSuite'
 );
 
 
