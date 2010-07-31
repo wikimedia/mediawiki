@@ -674,7 +674,7 @@ $wgAutoloadLocalClasses = array(
 	'UploadFromUrlTest' => 'maintenance/tests/UploadFromUrlTest.php',
 
 	# maintenance/tests/selenium
-	'SimpleSeleniumTest' => 'maintenance/tests/selenium/SimpleSeleniumTest.php',
+	'SimpleSeleniumTestSuite' => 'maintenance/tests/selenium/SimpleSeleniumTestSuite.php',
 	'Selenium' => 'maintenance/tests/selenium/Selenium.php',
 	'SeleniumLoader' => 'maintenance/tests/selenium/SeleniumLoader.php',
 	'SeleniumTestCase' => 'maintenance/tests/selenium/SeleniumTestCase.php',
@@ -682,7 +682,6 @@ $wgAutoloadLocalClasses = array(
 	'SeleniumTestHTMLLogger' => 'maintenance/tests/selenium/SeleniumTestHTMLLogger.php',
 	'SeleniumTestListener' => 'maintenance/tests/selenium/SeleniumTestListener.php',
 	'SeleniumTestSuite' => 'maintenance/tests/selenium/SeleniumTestSuite.php',
-	'SimpleSeleniumTest' => 'maintenance/tests/selenium/SimpleSeleniumTest.php',
 
 	# maintenance/language
 	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
