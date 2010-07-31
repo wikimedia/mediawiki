@@ -38,7 +38,7 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser, $wgAllowCopyUploads;
+		global $wgUser;
 
 		// Check whether upload is enabled
 		if ( !UploadBase::isEnabled() ) {
