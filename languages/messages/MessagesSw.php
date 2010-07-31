@@ -1192,19 +1192,25 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'userrights-unchangeable-col'  => 'Makundi usiyoweza kuyabadilisha',
 
 # Groups
-'group'       => 'Kundi:',
-'group-user'  => 'Watumiaji',
-'group-bot'   => 'Boti',
-'group-sysop' => 'Wakabidhi',
-'group-all'   => '(vyote)',
+'group'               => 'Kundi:',
+'group-user'          => 'Watumiaji',
+'group-autoconfirmed' => 'Watumiaji waliothibitishwa na tarakilishi',
+'group-bot'           => 'Boti',
+'group-sysop'         => 'Wakabidhi',
+'group-bureaucrat'    => 'Warasimu',
+'group-all'           => '(vyote)',
 
-'group-user-member'  => 'Mtumiaji',
-'group-bot-member'   => 'Bot',
-'group-sysop-member' => 'Mkabidhi',
+'group-user-member'          => 'Mtumiaji',
+'group-autoconfirmed-member' => 'Mtumiaji aliyethibitishwa na tarakilishi',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Mkabidhi',
+'group-bureaucrat-member'    => 'mrasimu',
 
-'grouppage-user'  => '{{ns:project}}:Watumiaji',
-'grouppage-bot'   => '{{ns:project}}:Boti',
-'grouppage-sysop' => '{{ns:project}}:Wakabidhi',
+'grouppage-user'          => '{{ns:project}}:Watumiaji',
+'grouppage-autoconfirmed' => '{{ns:project}}:Watumiaji waliothibitishwa na tarakilishi',
+'grouppage-bot'           => '{{ns:project}}:Boti',
+'grouppage-sysop'         => '{{ns:project}}:Wakabidhi',
+'grouppage-bureaucrat'    => '{{ns:project}}:Warasimu',
 
 # Rights
 'right-read'                 => 'Kusoma kurasa',
@@ -1370,6 +1376,7 @@ Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'tmp-write-error'         => 'Hitilafu ya kuandika faili la muda.',
 'large-file'              => 'Tunashauri mafaili yasizidi $1;
 faili hili lina $2.',
+'file-exists-duplicate'   => 'Faili hili ni nakili ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
 'uploadwarning'           => 'Ilani kuhusu kupakia',
 'savefile'                => 'Hifadhi faili',
 'uploadedimage'           => 'ameipakia "[[$1]]"',
@@ -1393,12 +1400,15 @@ Kumbukumbu ya kufuta faili hili inapatikana hapa kukusaidia:",
 'filename-bad-prefix'     => "Jina la faili unalolipakia huanza na '''\"\$1\"''', ambalo ni jina lisilo na maana yanayoeleweka kirahisi, ya aina inayotolewa huwa na kamera dijiti.
 Tafadhali chagua jina linaloeleweka kirahisi kwa ajili ya faili lako.",
 'upload-success-subj'     => 'Upakiaji ulifaulu',
-'upload-success-msg'      => 'Faili ulilolipakia linapatikana hapa: [[:{{ns:file}}:$1]]',
+'upload-success-msg'      => 'Umefaulu kupakia faili kutoka kwa [$2]. Faili linapatikana hapa: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'     => 'Hitilafu ya kupakia',
 'upload-failure-msg'      => 'Kulikuwa na tatizo ulipopakia faili yako:
 
 $1',
+'upload-warning-subj'     => 'Ilani ya kupakia',
+'upload-warning-msg'      => 'Kulitokea tatizo wakati wa kupakia kutoka kwa [$2]. Unaweza kurudi katika [[Special:Upload/stash/$1|fomu ya kupakia]] ili kurekebisha tatizo.',
 
+'upload-proto-error'  => 'Itifaki isio sahihi',
 'upload-file-error'   => 'Hitilafu ya ndani',
 'upload-misc-error'   => 'Hitilafu ya kupakia isiyojulikana',
 'upload-unknown-size' => 'Ukubwa haujulikani',
@@ -1636,9 +1646,12 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'sp-deletedcontributions-contribs' => 'michango',
 
 # Special:LinkSearch
-'linksearch'    => 'Viungo vya nje',
-'linksearch-ns' => 'Eneo la wiki:',
-'linksearch-ok' => 'Tafuta',
+'linksearch'      => 'Viungo vya nje',
+'linksearch-pat'  => 'Herufi zitakazotafutwa:',
+'linksearch-ns'   => 'Eneo la wiki:',
+'linksearch-ok'   => 'Tafuta',
+'linksearch-text' => 'Alama maalum za kutafuta kama "*.wikipedia.org" zinaweza kutumika.<br />
+Itifaki zinazoungwa mkono: <tt>$1</tt>',
 
 # Special:ListUsers
 'listusersfrom'      => 'Onyesha watumiaji kuanzia:',
@@ -1733,6 +1746,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'notanarticle'      => 'Ukurasa nje ya kusudi ya wiki',
 'notvisiblerev'     => 'Haririo ya mwisho, iliotendwa na mtumiaji mwingine, imefutwa',
 'watchlist-details' => 'Unafuatilia {{PLURAL:$1|ukurasa $1|kurasa $1}} bila kuzingatia kurasa za majadiliano.',
+'watchlistcontains' => 'Orodha ya maangalizi yako ina {{PLURAL:$1|kitu|vitu}} $1.',
 'wlshowlast'        => 'Onyesha kutoka masaa $1 siku $2 $3',
 'watchlist-options' => 'Hitiari za maangalizi',
 
@@ -1775,6 +1789,7 @@ Kutoa maoni yako au kupata msaada mwingine:
 
 # Delete
 'deletepage'             => 'Futa ukurasa',
+'confirm'                => 'Yakinisha',
 'excontent'              => "iliyokuwemo: '$1'",
 'exblank'                => 'ukurasa ulikuwa tupu',
 'delete-confirm'         => 'Futa "$1"',
@@ -1843,6 +1858,8 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-expiry-options'      => 'saa 1:1 hour,siku 1:1 day,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
 'restriction-type'            => 'Ruhusa:',
 'restriction-level'           => 'Kiwango cha kizuia:',
+'minimum-size'                => 'Saizi ndogo mno',
+'maximum-size'                => 'Saizi kubwa mno:',
 'pagesize'                    => '(baiti)',
 
 # Restrictions (nouns)

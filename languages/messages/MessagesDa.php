@@ -1588,6 +1588,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload-failure-msg'          => 'Der var et problem med din upload:
 
 $1',
+'upload-warning-subj'         => 'Uploadadvarsel',
 
 'upload-proto-error'        => 'Forkert protokol',
 'upload-proto-error-text'   => 'Adressen skal begynde med <code>http://</code> eller <code>ftp://</code>.',

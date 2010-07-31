@@ -1681,11 +1681,13 @@ MGP # Pentax
 PICT # khác
  #</pre> <!-- xin để nguyên hàng này -->',
 'upload-success-subj'         => 'Đã tải xong',
-'upload-success-msg'          => 'Tập tin tải lên có sẵn tại: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Bạn đã tải lên tập tin thành công từ [$2]. Nó có sẵn tại [[:{{ns:file}}:$1]].',
 'upload-failure-subj'         => 'Vấn đề tải lên',
 'upload-failure-msg'          => 'Tập tin bạn tải lên có một vấn đề:
 
 $1',
+'upload-warning-subj'         => 'Cảnh báo tải lên',
+'upload-warning-msg'          => 'Tập tin tải lên từ [$2] đã gặp vấn đề. Xin hãy trở về [[Special:Upload/stash/$1|biểu mẫu tải lên]] để giải quyết vấn đề này.',
 
 'upload-proto-error'        => 'Giao thức sai',
 'upload-proto-error-text'   => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để tải lên tập tin từ trang web khác.',

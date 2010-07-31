@@ -1553,11 +1553,13 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń nic na toś tej rědce! -->',
 'upload-success-subj'         => 'Nagraśe jo było wuspěšne.',
-'upload-success-msg'          => 'Twójo nagraśe stoj how k dispoziciji: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Twójo nagraśe z [$2] jo wuspěšne było. Stoj how k dispoziciji: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Nagrawański problem',
 'upload-failure-msg'          => 'Jo był problem z twójim nagraśim:
 
 $1',
+'upload-warning-subj'         => 'Nagrawańske warnowanje',
+'upload-warning-msg'          => 'Jo był problem z twójim nagraśim z [$2]. Wroś k [[Special:Upload/stash/$1|nagrawańskemu formularoju]], aby wótpórał toś ten problem.',
 
 'upload-proto-error'        => 'Njekorektny protokol',
 'upload-proto-error-text'   => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
