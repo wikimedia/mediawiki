@@ -49,6 +49,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
+	'സം' => NS_TALK,
 	'അംഗം' => NS_USER,
 	'ഉ' => NS_USER,
 	'അംഗങ്ങളുടെ സംവാദം' => NS_USER_TALK,
@@ -57,10 +58,17 @@ $namespaceAliases = array(
 	'ചിസം' => NS_FILE_TALK,
 	'ചിത്രം' => NS_FILE,
 	'ചിത്രത്തിന്റെ_സംവാദം' => NS_FILE_TALK,
+	'പ്ര' => NS_FILE,
+	'പ്രസം' => NS_FILE_TALK,
 	'ഫ' => NS_TEMPLATE,
 	'ഫസം' => NS_TEMPLATE_TALK,
 	'വി' => NS_CATEGORY,
+	'വ' => NS_CATEGORY,
 	'വിസം' => NS_CATEGORY_TALK,
+	'വസം' => NS_CATEGORY_TALK,
+	'മീ' => NS_MEDIAWIKI,
+	'മീസം' => NS_MEDIAWIKI_TALK,
+	'പ്രത്യേ' => NS_SPECIAL,
 	'വിഭാഗം' => NS_CATEGORY,
 	'വിഭാഗത്തിന്റെ_സംവാദം' => NS_CATEGORY_TALK,
 	'വർഗ്ഗം' => NS_CATEGORY,
