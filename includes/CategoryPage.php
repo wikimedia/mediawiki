@@ -456,8 +456,8 @@ class CategoryViewer {
 	 * Get the paging links for a section (subcats/pages/files), to go at the top and bottom
 	 * of the output.
 	 *
-	 * @param string $type 'page', 'subcat', or 'file'
-	 * @return string HTML output, possibly empty if there are no other pages
+	 * @param $type String: 'page', 'subcat', or 'file'
+	 * @return String: HTML output, possibly empty if there are no other pages
 	 */
 	private function getSectionPagingLinks( $type ) {
 		global $wgExperimentalCategorySort;
@@ -594,8 +594,8 @@ class CategoryViewer {
 	/**
 	 * Create paging links, as a helper method to getSectionPagingLinks().
 	 *
-	 * @param $until String The 'until' parameter for the generated URL
-	 * @param $from String The 'from' parameter for the genererated URL
+	 * @param $first String The 'until' parameter for the generated URL
+	 * @param $last String The 'from' parameter for the genererated URL
 	 * @param $type String A prefix for parameters, 'page' or 'subcat' or
 	 *     'file'
 	 * @return String HTML
