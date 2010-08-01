@@ -1078,8 +1078,19 @@ abstract class File {
 
 	/**
 	 * Get the HTML text of the description page, if available
+	 * For local files ImagePage does not use it, because it skips the parser cache.
 	 */
 	function getDescriptionText() {
+		if( $this->isLocal() ) {
+			global $wgParser;
+			$revision = Revision::newFromTitle( $this->title );
+			if ( !$revision ) return false;
+			$text = $revision->getText();
+			if ( !$text ) return false;
+			$pout = $wgParser->parse( $text, $this->title, new ParserOptions() );
+			return $pout->getText();
+		}
+
 		global $wgMemc, $wgLang;
 		if ( !$this->repo->fetchDescription ) {
 			return false;

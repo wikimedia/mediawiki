@@ -1121,27 +1121,8 @@ class LocalFile extends File {
 	/** scaleHeight inherited */
 	/** getImageSize inherited */
 
-	/**
-	 * Get the URL of the file description page.
-	 */
-	function getDescriptionUrl() {
-		return $this->title->getLocalUrl();
-	}
-
-	/**
-	 * Get the HTML text of the description page
-	 * This is not used by ImagePage for local files, since (among other things)
-	 * it skips the parser cache.
-	 */
-	function getDescriptionText() {
-		global $wgParser;
-		$revision = Revision::newFromTitle( $this->title );
-		if ( !$revision ) return false;
-		$text = $revision->getText();
-		if ( !$text ) return false;
-		$pout = $wgParser->parse( $text, $this->title, new ParserOptions() );
-		return $pout->getText();
-	}
+	/** getDescriptionUrl inherited */
+	/** getDescriptionText inherited */
 
 	function getDescription() {
 		$this->load();
