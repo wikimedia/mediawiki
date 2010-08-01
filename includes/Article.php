@@ -1316,6 +1316,7 @@ class Article {
 		}
 
 		$sk = $wgUser->getSkin();
+		$token = $wgUser->editToken( $rcid );
 
 		$wgOut->addHTML(
 			"<div class='patrollink'>" .
@@ -1327,7 +1328,8 @@ class Article {
 						array(),
 						array(
 							'action' => 'markpatrolled',
-							'rcid' => $rcid
+							'rcid' => $rcid,
+							'token' => $token,
 						),
 						array( 'known', 'noclasses' )
 					)
@@ -2358,12 +2360,18 @@ class Article {
 	 * Mark this particular edit/page as patrolled
 	 */
 	public function markpatrolled() {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest;
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		# If we haven't been given an rc_id value, we can't do anything
 		$rcid = (int) $wgRequest->getVal( 'rcid' );
+
+		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'token' ), $rcid ) ) {
+			$wgOut->showErrorPage( 'sessionfailure-title', 'sessionfailure' );
+			return;
+		}
+
 		$rc = RecentChange::newFromId( $rcid );
 
 		if ( is_null( $rc ) ) {
