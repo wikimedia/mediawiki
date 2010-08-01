@@ -36,14 +36,4 @@ class ForeignDBFile extends LocalFile {
 	function move( $target ) {
 		$this->readOnlyError();
 	}
-	
-	function getDescriptionUrl() {
-		// Restore remote behaviour
-		return parent::getDescriptionUrl();
-	}
-
-	function getDescriptionText() {
-		// Restore remote behaviour
-		return parent::getDescriptionText();
-	}
 }
