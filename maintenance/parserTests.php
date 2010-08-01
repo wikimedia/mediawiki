@@ -70,7 +70,7 @@ if ( $wgDBtype == 'sqlite' ) {
 # refer to $wgTitle directly, but instead use the title
 # passed to it.
 $wgTitle = Title::newFromText( 'Parser test script do not use' );
-$tester = new ParserTest();
+$tester = new ParserTest($options);
 
 if ( isset( $options['file'] ) ) {
 	$files = array( $options['file'] );

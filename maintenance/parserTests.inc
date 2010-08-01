@@ -61,9 +61,7 @@ class ParserTest {
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
 	 */
-	public function ParserTest() {
-		global $options;
-
+	public function ParserTest( $options = array() ) {
 		# Only colorize output if stdout is a terminal.
 		$this->color = !wfIsWindows() && posix_isatty( 1 );
 
@@ -103,7 +101,7 @@ class ParserTest {
 			$this->regex = '';
 		}
 
-		$this->setupRecorder();
+		$this->setupRecorder( $options );
 		$this->keepUploads = isset( $options['keep-uploads'] );
 
 		if ( isset( $options['seed'] ) ) {
@@ -116,10 +114,11 @@ class ParserTest {
 		$this->functionHooks = array();
 	}
 
-	public function setupRecorder() {
-		global $options;
+	public function setupRecorder ( $options ) {
 		if ( isset( $options['record'] ) ) {
 			$this->recorder = new DbTestRecorder( $this );
+			$this->recorder->version = isset( $options['setversion'] ) ?	
+					$options['setversion'] : SpecialVersion::getVersion();
 		} elseif ( isset( $options['compare'] ) ) {
 			$this->recorder = new DbTestPreviewer( $this );
 		} elseif ( isset( $options['upload'] ) ) {
@@ -1438,12 +1437,14 @@ class DbTestPreviewer extends TestRecorder  {
 }
 
 class DbTestRecorder extends DbTestPreviewer  {
+	var $version;
+
 	/**
 	 * Set up result recording; insert a record for the run with the date
 	 * and all that fun stuff
 	 */
 	function start() {
-		global $wgDBtype, $options;
+		global $wgDBtype;
 		$this->db->begin();
 
 		if ( ! $this->db->tableExists( 'testrun' )
@@ -1464,8 +1465,7 @@ class DbTestRecorder extends DbTestPreviewer  {
 		$this->db->insert( 'testrun',
 			array(
 				'tr_date'        => $this->db->timestamp(),
-				'tr_mw_version'  => isset( $options['setversion'] ) ?
-					$options['setversion'] : SpecialVersion::getVersion(),
+				'tr_mw_version'  => $this->version,
 				'tr_php_version' => phpversion(),
 				'tr_db_version'  => $this->db->getServerVersion(),
 				'tr_uname'       => php_uname()
