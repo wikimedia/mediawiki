@@ -73,7 +73,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			return;
 		}
 
-		$this->selfTitle = SpecialPage::getTitleFor( 'Whatlinkshere', $this->target->getPrefixedDBkey() );
+		$this->selfTitle = $this->getTitle( $this->target->getPrefixedDBkey() );
 
 		$wgOut->setPageTitle( wfMsg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsg( 'whatlinkshere-backlink', $this->skin->link( $this->target, $this->target->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
@@ -316,7 +316,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 	protected function wlhLink( Title $target, $text ) {
 		static $title = null;
 		if ( $title === null )
-			$title = SpecialPage::getTitleFor( 'Whatlinkshere' );
+			$title = $this->getTitle();
 
 		return $this->skin->linkKnown(
 			$title,
@@ -381,7 +381,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$f = Xml::openElement( 'form', array( 'action' => $wgScript ) );
 		
 		# Values that should not be forgotten
-		$f .= Xml::hidden( 'title', SpecialPage::getTitleFor( 'Whatlinkshere' )->getPrefixedText() );
+		$f .= Xml::hidden( 'title', $this->getTitle()->getPrefixedText() );
 		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
 			$f .= Xml::hidden( $name, $value );
 		}
