@@ -420,6 +420,7 @@ $wgMessageStructure = array(
 		'gotaccount',
 		'gotaccountlink',
 		'createaccountmail',
+		'createaccountreason',
 		'badretype',
 		'userexists',
 		'loginerror',
