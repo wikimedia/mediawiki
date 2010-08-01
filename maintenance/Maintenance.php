@@ -11,11 +11,10 @@ $maintClass = false;
 
 // Make sure we're on PHP5 or better
 if ( version_compare( PHP_VERSION, '5.0.0' ) < 0 ) {
-	echo( "Sorry! This version of MediaWiki requires PHP 5; you are running " .
+	die ( "Sorry! This version of MediaWiki requires PHP 5; you are running " .
 		PHP_VERSION . ".\n\n" .
 		"If you are sure you already have PHP 5 installed, it may be installed\n" .
 		"in a different path from PHP 4. Check with your system administrator.\n" );
-	die();
 }
 
 /**
