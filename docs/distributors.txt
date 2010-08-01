@@ -58,10 +58,9 @@ If you really must mess around with the directory structure, note that the
 following files *must* all be web-accessible for MediaWiki to function
 correctly:
 
-  * api.php, img_auth.php, index.php, mwScriptLoader.php, opensearch_desc.php,
-  profileinfo.php, redirect.php, thumb.php, trackback.php.  These are the entry
-  points for normal usage.  This list may be incomplete and is subject to
-  change.
+  * api.php, img_auth.php, index.php,opensearch_desc.php, profileinfo.php,
+  redirect.php, thumb.php, trackback.php.  These are the entry points for
+  normal usage.  This list may be incomplete and is subject to change.
   * config/index.php: Used for web-based installation (sets up the database,
   prompts for the name of the wiki, etc.).  No command-line installation is
   currently available.
