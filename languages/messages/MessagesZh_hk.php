@@ -36,8 +36,6 @@ $messages = array(
 'november'  => '十一月',
 'december'  => '十二月',
 
-'mytalk' => '↓  我的討論頁',
-
 'tagline'          => '從 {{SITENAME}}',
 'search'           => '搜尋',
 'printableversion' => '可打印版',

@@ -1807,6 +1807,9 @@ $1',
 'exif-lightsource-9'  => 'ښه هوا',
 'exif-lightsource-11' => 'سيوری',
 
+# Flash modes
+'exif-flash-fired-0' => 'فلش و نه ځلېده',
+
 'exif-focalplaneresolutionunit-2' => 'انچه',
 
 'exif-sensingmethod-1' => 'ناڅرګنده',
@@ -1917,6 +1920,7 @@ $5
 'watchlistedit-raw-titles'    => 'سرليکونه:',
 'watchlistedit-raw-submit'    => 'کتنلړليک اوسمهاله کول',
 'watchlistedit-raw-done'      => 'ستاسې کتنلړليک اوسمهاله شو.',
+'watchlistedit-raw-added'     => '{{PLURAL:$1|1 سرليک ورګډ شو|$1 سرليکونه ورګډ شوه}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'اړونده بدلونونه کتل',

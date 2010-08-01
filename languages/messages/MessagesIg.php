@@ -192,6 +192,7 @@ $messages = array(
 'searcharticle'     => 'Gá',
 'history'           => 'Akíkó mbu nke ihü',
 'history_short'     => 'Akiko mbú',
+'updatedmarker'     => 'ihe gáráníru ké mgbe m byàrà nga mbu',
 'info_short'        => 'Ómárí',
 'printableversion'  => 'Nkè I nweríkí dotié',
 'permalink'         => 'Jikodo ekechịrị',
@@ -309,6 +310,7 @@ $1',
 # General errors
 'error'                => 'Nsogbú',
 'databaseerror'        => 'Nsogbu nọr na njikota ómárí',
+'laggedslavemode'      => "'''Gé ntị:''' Ihüá nwèríkí bu na o nwéghị ihe gáránirú na ógè nso.",
 'readonly'             => 'Njikota ómárí gbachịrị',
 'missingarticle-rev'   => '(nlèwáriá#: $1)',
 'missingarticle-diff'  => '(Íchè: $1, $2)',
@@ -367,6 +369,7 @@ E chefụkwạlạ I gbanwere [[Special:Preferences|{{SITENAME}} iheichọrọ]]
 'gotaccount'              => 'I nwerecha buwa? $1.',
 'gotaccountlink'          => 'Banyé',
 'createaccountmail'       => 'na e-mail',
+'createaccountreason'     => 'Mgbaghaputa:',
 'badretype'               => 'Mkpurụ okwu ejị a gafẹ é jëghị.',
 'loginerror'              => 'Nsogbu ngbe I choro I bata',
 'createaccounterror'      => 'O nweriki ké buwa: $1',
@@ -436,6 +439,8 @@ I na á banye...',
 'loginreqpagetext'                 => 'I keshiri $1 I cho ki hü ihü ndi ozor.',
 'accmailtitle'                     => 'mkpurụ okwu ejị a gafẹ a sipuole.',
 'newarticle'                       => '(Nke ohúrù)',
+'blocked-notice-logextract'        => "Ha gbàchìrì ọ'bànifé nke.
+Ndetu nchèta mbgàchì ǹkè ógè nso di na àlà màkà ádià má àmá:",
 'updated'                          => '(Kuwariala)',
 'note'                             => "'''Ndetụrụ:'''",
 'editing'                          => 'I rüwa $1',
@@ -448,6 +453,7 @@ I na á banye...',
 'semiprotectedpagewarning'         => "'''Lè kwá:''' Ha gbachịrị Ihü nke ka nání ndi íshí bu ndi nwéríkí rü na élú ya.
 Ndetu banyéré nkè ogẹ nso di na okpúrụ màkà ádịamámá:",
 'templatesused'                    => '{{PLURAL:$1|Àtụ|Àtụ}} hé jịrị rü ihüá:',
+'templatesusedpreview'             => '↓ {{PLURAL:$1|Àtụ|Àtụ}} hé jịrị na nlétú nke:',
 'template-protected'               => '(cẹdoluecẹdo)',
 'template-semiprotected'           => '(cẹdolu-ntakiri)',
 'nocreate-loggedin'                => 'Í nwéghi ọdà Í ké ihü ohụrụ.',
@@ -456,6 +462,7 @@ Ndetu banyéré nkè ogẹ nso di na okpúrụ màkà ádịamámá:",
 'edit-conflict'                    => 'Orü ná lüogù.',
 
 # History pages
+'viewpagelogs'           => 'Zi ndet ncheta màkà ihü a',
 'currentrev'             => 'Kuwaria nke ubüwạ',
 'currentrev-asof'        => 'Kuwaria shi mgbe $1',
 'revisionasof'           => 'Gbanwere nà ógè $1',
@@ -518,6 +525,7 @@ Ndetu banyéré nkè ogẹ nso di na okpúrụ màkà ádịamámá:",
 'searchsubtitleinvalid'          => "Í tùrù '''$1'''",
 'notitlematches'                 => 'Ọ díghì íshí ihü dí kà nke á hù',
 'notextmatches'                  => 'Mkpụrụ édémédé enwéghị ihü ȯ dị na',
+'prevn'                          => '{{PLURAL:$1|$1}} nke àzú',
 'nextn'                          => '{{PLURAL:$1|$1}} nke ozor',
 'viewprevnext'                   => 'Lé ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'                 => 'Help:Ihe di ime',
@@ -606,8 +614,10 @@ Ndetu banyéré nkè ogẹ nso di na okpúrụ màkà ádịamámá:",
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|gbanwere|gbanwere}}',
 'recentchanges'                  => 'Gbanwere mere ogẹ di nso',
+'recentchanges-legend'           => 'Nràlụ màkà Ihe gbanwere ubwá',
 'recentchanges-feed-description' => 'Chóputà ihe ógẹ ǹsò na wiki ímé órírí nke á.',
 'recentchanges-label-legend'     => 'Edemede ndetu: $1',
+'rclistfrom'                     => 'Zìrí ihe gbanwere ọhúrù shí $1',
 'rcshowhideminor'                => 'orü ntákírí $1',
 'rcshowhidebots'                 => '$1 bot',
 'rcshowhideliu'                  => 'Ndi né ké dị $1 di íme',
@@ -643,6 +653,7 @@ Ndetu banyéré nkè ogẹ nso di na okpúrụ màkà ádịamámá:",
 
 # File description page
 'filehist'                  => 'Akikó mbu nke akwukwu orúnotu',
+'filehist-help'             => 'Kpàtá na úbochi/ógè Í zí ákwúkwó orunotu ọtụ ȯ dị mgbe áhù.',
 'filehist-deleteone'        => 'gbakashia',
 'filehist-current'          => 'nka',
 'filehist-datetime'         => 'Afọ/Ogẹ',
@@ -747,6 +758,7 @@ Ubwa, o na ga [[$2]].',
 'watchlist'         => 'Ndetu ihem ne lé',
 'mywatchlist'       => 'Ndetu ihem ne lé',
 'watchlistfor'      => "(maka '''$1''')",
+'addedwatch'        => 'Tìrì na ndétu nlé',
 'watch'             => 'Hü',
 'watchthispage'     => 'Lé ihüá',
 'unwatch'           => 'A hükwàlà',
@@ -772,18 +784,21 @@ Lé $2 màkà okwu gbásárá ihe ọ gbakashiri màkà.',
 'rollbacklink' => 'fifie àzú',
 
 # Protect
-'protectlogpage'          => 'Ntínyé nke ncẹdolu',
-'protectedarticle'        => 'chédòlù "[[$1]]"',
-'protectcomment'          => 'Mgbaghaputa:',
-'protectexpiry'           => 'Na gba okạ:',
-'protect_expiry_invalid'  => 'Ógẹ mgbe ó gị gbá ùkà adíghị ómá.',
-'protect_expiry_old'      => 'Ógẹ mgbe ȯ gbàrà úkà à gafele.',
-'protect-default'         => "Kwèré ọ'bànifé nílé",
-'protect-fallback'        => 'Gí jí ọdà "$1"',
-'protect-summary-cascade' => 'mgbàwéré',
-'protect-expiring'        => 'nà gbá ókà na $1 (UTC)',
-'restriction-type'        => 'Ọdà:',
-'restriction-level'       => 'Nke mgbáchí rùrù:',
+'protectlogpage'            => 'Ntínyé nke ncẹdolu',
+'protectedarticle'          => 'chédòlù "[[$1]]"',
+'modifiedarticleprotection' => 'gbánwèrè íshí ncẹdolu màkà "[[$1]]"',
+'protectcomment'            => 'Mgbaghaputa:',
+'protectexpiry'             => 'Na gba okạ:',
+'protect_expiry_invalid'    => 'Ógẹ mgbe ó gị gbá ùkà adíghị ómá.',
+'protect_expiry_old'        => 'Ógẹ mgbe ȯ gbàrà úkà à gafele.',
+'protect-default'           => "Kwèré ọ'bànifé nílé",
+'protect-fallback'          => 'Gí jí ọdà "$1"',
+'protect-level-sysop'       => 'Ndi íshí nani',
+'protect-summary-cascade'   => 'mgbàwéré',
+'protect-expiring'          => 'nà gbá ókà na $1 (UTC)',
+'protect-cascade'           => 'Ihü ha cẹdolu di na ime ihüá (ncẹdolu mgbàwéré)',
+'restriction-type'          => 'Ọdà:',
+'restriction-level'         => 'Nke mgbáchí rùrù:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Rüwa',
@@ -846,11 +861,27 @@ Lé $2 màkà okwu gbásárá ihe ọ gbakashiri màkà.',
 'block-log-flags-nocreate' => "Í ké ọ'bànifé bàchìrì",
 
 # Move page
+'movepagetext'            => " Í jí ákwúkwó òchá nke di na àlà gi gȯwá ótù ihü áhà ozor, na ȯ gi kwáfu ákíkó mbu ya na áhà nke ohürù.
+Íshí ihü nke ichié gi bu zi nkúfù gi gá áhà ohürù nke áhụ.
+Í nwèríkí kúwárí nkúfù nke na ga áhà nke mbu na áká ya.
+Ȯ bu na Í chȯgị, kpàchákwá ánya Í lé má màkà nkúfù na gbá [[Special:DoubleRedirects|abụọ]] ma [[Special:BrokenRedirects|nkúfù gbájírí]].
+Ȯ dị na áká gi Í kpáchá ánya na jikodo na gá ébé o kwèshírí ga.
+
+Chètákwá na ihü nke áhù '''ágághị''' a pú ȯ bu na ȯ dị ihü nwéré áhà áhù, bèelụ mà ȯ díghị ihe nọr ya na ímé ma ȯ bu nkúfù na onwé ya nke enweghị orürü nke mbu.
+Ihe á fùtàrà na Í nwèríkí gọwáríá áhà ihü na nke mbu ya ȯ bu na Í gọrọ ọghọm, na Ì nwéghíkí dé na élú ihü di kwa.
+
+'''Kpàchákwá Ntị!'''
+Ihe á nwèríkí bu ngbanwe ukwu mákà ihü ne wu;
+Biko kpàchá kwa ánya Í mà na ihe í ne mé na ógè gbárá mbu mgbè Í gí mé ya.",
 'movearticle'             => 'Shifu ihü:',
 'newtitle'                => 'Gá íshí édémédé nke:',
+'move-watch'              => 'Lèmá ihü ó shị na ihü ȯ na gá',
 'movepagebtn'             => 'Puzié ihüá',
 'pagemovedsub'            => 'Mpúzié ẹ meelá',
+'movepage-moved'          => '\'\'\'"$1" páfùrù Í gá "$2"\'\'\'',
 'movedto'                 => 'ó shifụrụ gá',
+'movetalk'                => 'Páfù ihü okwu nke ya',
+'1movedto2'               => 'páfùrù [[$1]] gá [[$2]]',
 '1movedto2_redir'         => 'páfùrù [[$1]] gá [[$2]] na élú nkúfù',
 'movelogpage'             => 'Páfù ntínyé',
 'movereason'              => 'Mgbaghaputa:',
@@ -921,6 +952,8 @@ Biko meríáríá ozor.',
 'tooltip-t-recentchangeslinked'  => 'Ihe gbanwere na ihü jikodọrọ na ihü nke nà ógè nso',
 'tooltip-feed-rss'               => 'Ntá RSS maka ihüá',
 'tooltip-feed-atom'              => 'Nta Atom maka ihüá',
+'tooltip-t-contributions'        => "Zí ndétu ihe ọ'bànifé nke rürü",
+'tooltip-t-emailuser'            => "Zìrí ọ'bànifé nkeá ozi e-mail",
 'tooltip-t-upload'               => 'Tịnyé ihe na orunotu',
 'tooltip-t-specialpages'         => 'Ndetu ihü mkpà níle',
 'tooltip-t-print'                => 'Ihü nka nke Í nweríkí dótù',
@@ -951,9 +984,10 @@ Biko meríáríá ozor.',
 'nextdiff'     => 'Orü nke ohúrù →',
 
 # Media information
-'file-info-size' => '($1 × $2 pixel, ívù akwukwo orunótu: $3, MIME nke: $4)',
-'file-nohires'   => '<small>Nke káchá mmá na ányá àdíghị.</small>',
-'show-big-image' => 'Hü ya ka o di',
+'file-info-size'       => '($1 × $2 pixel, ívù akwukwo orunótu: $3, MIME nke: $4)',
+'file-nohires'         => '<small>Nke káchá mmá na ányá àdíghị.</small>',
+'show-big-image'       => 'Hü ya ka o di',
+'show-big-image-thumb' => '<small>Ívù nlétú nke: pixel $1 × $2</small>',
 
 # Special:NewFiles
 'ilsubmit' => 'Chöwá',
@@ -968,7 +1002,17 @@ Jikodo nke gị byá àzú na áhìrì nke òfu á bu nke nwéríkí gáfè, dí
 
 # Metadata
 'metadata'          => 'Ómárí nso',
+'metadata-expand'   => 'Zi nkówá di ógólógó',
 'metadata-collapse' => 'Zonari nkówá di ógólógó',
+'metadata-fields'   => ' Ómárí nso nke nkeji nke EXIF détùrù na ozi nká gí banyé na nlé ihü nhuunuche mgbè ómárí nso mgbe àgàdà gi dátù.
+Nke ozor gí zonari na áká onwe ha.
+* okíké
+* àtụ
+* úbochịógèmbuyá
+* háfùrù na anwü
+* onúf
+* nkówá íjè ISO
+* ógólógó focal',
 
 # EXIF tags
 'exif-imagewidth'  => 'Asá',
