@@ -262,11 +262,13 @@ class SpecialWhatLinksHere extends SpecialPage {
 	}
 
 	protected function listItem( $row, $nt, $notClose = false ) {
+		global $wgLang;
+
 		# local message cache
 		static $msgcache = null;
 		if ( $msgcache === null ) {
 			static $msgs = array( 'isredirect', 'istemplate', 'semicolon-separator',
-				'whatlinkshere-links', 'isimage' );
+				'whatlinkshere-links', 'isimage', 'hist' );
 			$msgcache = array();
 			foreach ( $msgs as $msg ) {
 				$msgcache[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
@@ -301,8 +303,10 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 
 		# Space for utilities links, with a what-links-here link provided
-		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
-		$wlh = Xml::wrapClass( "($wlhLink)", 'mw-whatlinkshere-tools' );
+		$tools = array();
+		$tools[] = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
+		$tools[] = $this->skin->linkKnown( $nt, $msgcache['hist'], array(), array( 'action' => 'history' ) );
+		$wlh = Xml::wrapClass( '(' . $wgLang->pipeList( $tools ) . ')', 'mw-whatlinkshere-tools' );
 
 		return $notClose ?
 			Xml::openElement( 'li' ) . "$link $propsText $wlh\n" :
