@@ -12,7 +12,7 @@
  * @author Marmzok
  */
 
-$fallback = 'ckb-arab';
+$fallback = 'ckb';
 
 $digitTransformTable = array(
 	'0' => '٠', # &#x0660;
