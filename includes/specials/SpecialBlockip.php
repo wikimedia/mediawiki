@@ -18,57 +18,55 @@
  */
 
 /**
- * Constructor for Special:Blockip page
- *
- * @file
- * @ingroup SpecialPage
- */
-function wfSpecialBlockip( $par ) {
-	global $wgUser, $wgOut, $wgRequest;
-
-	# Can't block when the database is locked
-	if( wfReadOnly() ) {
-		$wgOut->readOnlyPage();
-		return;
-	}
-	# Permission check
-	if( !$wgUser->isAllowed( 'block' ) ) {
-		$wgOut->permissionRequired( 'block' );
-		return;
-	}
-
-	$ipb = new IPBlockForm( $par );
-	
-	# bug 15810: blocked admins should have limited access here
-	if ( $wgUser->isBlocked() ) {
-		$status = IPBlockForm::checkUnblockSelf( $ipb->BlockAddress );
-		if ( $status !== true ) {
-			throw new ErrorPageError( 'badaccess', $status );
-		}
-	}
-
-	$action = $wgRequest->getVal( 'action' );
-	if( 'success' == $action ) {
-		$ipb->showSuccess();
-	} elseif( $wgRequest->wasPosted() && 'submit' == $action &&
-		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-		$ipb->doSubmit();
-	} else {
-		$ipb->showForm( '' );
-	}
-}
-
-/**
- * Form object for the Special:Blockip page.
+ * Implements Special:Blockip
  *
  * @ingroup SpecialPage
  */
-class IPBlockForm {
+class IPBlockForm extends SpecialPage {
 	var $BlockAddress, $BlockExpiry, $BlockReason;
 	// The maximum number of edits a user can have and still be hidden
 	const HIDEUSER_CONTRIBLIMIT = 1000;
 
-	public function __construct( $par ) {
+	public function __construct() {
+		parent::__construct( 'Blockip', 'block' );
+	}
+
+	public function execute( $par ) {
+		global $wgUser, $wgOut, $wgRequest;
+
+		# Can't block when the database is locked
+		if( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+		# Permission check
+		if( !$this->userCanExecute( $wgUser ) ) {
+			$wgOut->permissionRequired( 'block' );
+			return;
+		}
+
+		$this->setup( $par );
+	
+		# bug 15810: blocked admins should have limited access here
+		if ( $wgUser->isBlocked() ) {
+			$status = IPBlockForm::checkUnblockSelf( $ipb->BlockAddress );
+			if ( $status !== true ) {
+				throw new ErrorPageError( 'badaccess', $status );
+			}
+		}
+
+		$action = $wgRequest->getVal( 'action' );
+		if( 'success' == $action ) {
+			$this->showSuccess();
+		} elseif( $wgRequest->wasPosted() && 'submit' == $action &&
+			$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+			$this->doSubmit();
+		} else {
+			$this->showForm( '' );
+		}
+	}
+
+	private function setup( $par ) {
 		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit;
 
 		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
