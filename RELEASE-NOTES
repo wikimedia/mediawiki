@@ -322,6 +322,7 @@ changes to languages because of MediaZilla reports.
   (Taraškievica)
 * (bug 23283) Native name for Old English -> Ænglisc
 * (bug 23364) Native name for Azerbaijani -> Azərbaycanca
+* (bug 24593) Native name for Sorani now uses only Arabic script
 
 == Compatibility ==
 
