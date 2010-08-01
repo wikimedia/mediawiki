@@ -275,8 +275,8 @@ $messages = array(
 'postcomment'       => 'নতুন অনুচ্ছেদ',
 'articlepage'       => 'নিবন্ধ দেখুন',
 'talk'              => 'আলোচনা',
-'views'             => 'দৃষ্টিকোনসমূহ',
-'toolbox'           => 'প্রয়োজনীয় সংযোগসমূহ',
+'views'             => 'দৃষ্টিকোণমূহ',
+'toolbox'           => 'সরঞ্জাম',
 'userpage'          => 'ব্যাবহারকারীর পাতা দেখুন',
 'projectpage'       => 'মেটা-পাতা দেখুন',
 'imagepage'         => 'ফাইল পাতা দেখুন',
@@ -1592,6 +1592,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 
 # Special:ActiveUsers
 'activeusers'            => 'সক্রিয় ব্যবহারকারী তালিকা',
+'activeusers-count'      => 'গত {{PLURAL:$3|দিনে|$3 দিনে}} সর্বমোট {{PLURAL:$1|সম্পাদনার|সম্পাদনার}} সংখ্যা $1',
 'activeusers-hidebots'   => 'বট লুকাও',
 'activeusers-hidesysops' => 'প্রশাসক লুকাও',
 'activeusers-noresult'   => 'কোনো ব্যবহারকারী পাওয়া যায়নি।',

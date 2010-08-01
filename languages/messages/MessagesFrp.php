@@ -731,6 +731,7 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'gotaccount'                 => "Vos avéd ja un compto ? '''$1'''.",
 'gotaccountlink'             => 'Branchiéd-vos',
 'createaccountmail'          => 'per mèssageria èlèctronica',
+'createaccountreason'        => 'Rêson :',
 'badretype'                  => 'Los mots de pâssa que vos éd buchiês sont pas pariérs.',
 'userexists'                 => 'Lo nom d’utilisator que vos éd buchiê est ja utilisâ.
 Nen volyéd chouèsir un ôtro.',
@@ -1789,11 +1790,13 @@ MGP # Pentax
 PICT # de totes sôrtes
   #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 'upload-success-subj'         => 'Tèlèchargement fêt avouéc reusséta',
-'upload-success-msg'          => 'Voutron tèlèchargement est disponiblo ique : [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Voutron tèlèchargement dês [$2] at reussi. Il est disponiblo ique : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèmo de tèlèchargement',
 'upload-failure-msg'          => 'Y at avu un problèmo avouéc voutron tèlèchargement :
 
 $1',
+'upload-warning-subj'         => 'Avèrtissement pendent lo tèlèchargement',
+'upload-warning-msg'          => 'Un problèmo est arrevâ pendent voutron tèlèchargement dês [$2]. Vos pouede tornar u [[Special:Upload/stash/$1|formulèro de tèlèchargement]] por trovar la solucion.',
 
 'upload-proto-error'        => 'Protocolo fôx',
 'upload-proto-error-text'   => 'Lo tèlèchargement a distance at fôta des URLs que començont per <code>http://</code> ou ben <code>ftp://</code>.',
@@ -2520,7 +2523,7 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 ** Entrebetâ rèpètâ de lims de defôr publicitèros (spame)
 ** Entrebetâ de contegnu sen gins de significacion et d’ècovelyes dens les pâges
 ** Tentativa d’entimidacion ou ben de torment
-** Abus d’usâjo de comptos multiplos
+** Abus d’usâjo d’un mouél de comptos
 ** Nom d’utilisator pas accèptâblo, ofensent ou ben difament',
 'ipbanononly'                     => 'Blocar ren que los utilisators pas encartâs',
 'ipbcreateaccount'                => 'Empachiér la crèacion de compto',
