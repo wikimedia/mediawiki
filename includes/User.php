@@ -3571,28 +3571,34 @@ class User {
 
 	/**
 	 * Add a newuser log entry for this user
+	 *
 	 * @param $byEmail Boolean: account made by email?
+	 * @param $reason String: user supplied reason
 	 */
-	public function addNewUserLogEntry( $byEmail = false ) {
-		global $wgUser, $wgNewUserLog;
+	public function addNewUserLogEntry( $byEmail = false, $reason = '' ) {
+		global $wgUser, $wgContLang, $wgNewUserLog;
 		if( empty( $wgNewUserLog ) ) {
 			return true; // disabled
 		}
 
 		if( $this->getName() == $wgUser->getName() ) {
 			$action = 'create';
-			$message = '';
 		} else {
 			$action = 'create2';
-			$message = $byEmail
-				? wfMsgForContent( 'newuserlog-byemail' )
-				: '';
+			if ( $byEmail ) {
+				if ( $reason === '' ) {
+					$reason = wfMsgForContent( 'newuserlog-byemail' );
+				} else {
+					$reason = $wgContLang->commaList( array(
+						$reason, wfMsgForContent( 'newuserlog-byemail' ) ) );
+				}
+			}
 		}
 		$log = new LogPage( 'newusers' );
 		$log->addEntry(
 			$action,
 			$this->getUserPage(),
-			$message,
+			$reason,
 			array( $this->getId() )
 		);
 		return true;

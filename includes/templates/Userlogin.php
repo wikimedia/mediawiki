@@ -243,6 +243,16 @@ class UsercreateTemplate extends QuickTemplate {
 						</div>
 					</td>
 			<?php } ?>
+			<?php if( $this->data['usereason'] ) { ?>
+				</tr>
+				<tr>
+					<td class="mw-label"><label for='wpReason'><?php $this->msg('createaccountreason') ?></label></td>
+					<td class="mw-input">
+						<input type='text' class='loginText' name="wpReason" id="wpReason"
+							tabindex="7"
+							value="<?php $this->text('reason') ?>" size='20' />
+					</td>
+			<?php } ?>
 		</tr>
 		<?php if( $this->data['canremember'] ) { ?>
 		<tr>
@@ -255,14 +265,14 @@ class UsercreateTemplate extends QuickTemplate {
 					'wpRemember',
 					'wpRemember',
 					$this->data['remember'],
-					array( 'tabindex' => '7' )
+					array( 'tabindex' => '8' )
 				)
 				?>
 			</td>
 		</tr>
 <?php   }
 
-		$tabIndex = 8;
+		$tabIndex = 9;
 		if ( isset( $this->data['extraInput'] ) && is_array( $this->data['extraInput'] ) ) {
 			foreach ( $this->data['extraInput'] as $inputItem ) { ?>
 		<tr>

@@ -121,6 +121,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Non-file pages can no longer be moved to the file namespace, nor vice versa.
 * (bug 671) The <dfn> element has been whitelisted in user input.
 * (bug 24563) Entries on Special:WhatLinksHere now have a link to their history
+* (bug 21503) There's now a "reason" field when creating account for other users
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

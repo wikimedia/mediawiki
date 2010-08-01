@@ -76,6 +76,7 @@ class LoginForm {
 		$this->mPassword = $request->getText( 'wpPassword' );
 		$this->mRetype = $request->getText( 'wpRetype' );
 		$this->mDomain = $request->getText( 'wpDomain' );
+		$this->mReason = $request->getText( 'wpReason' );
 		$this->mReturnTo = $request->getVal( 'returnto' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery' );
 		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
@@ -162,7 +163,7 @@ class LoginForm {
 		$result = $this->mailPasswordInternal( $u, false, 'createaccount-title', 'createaccount-text' );
 
 		wfRunHooks( 'AddNewAccount', array( $u, true ) );
-		$u->addNewUserLogEntry();
+		$u->addNewUserLogEntry( true, $this->mReason );
 
 		$wgOut->setPageTitle( wfMsg( 'accmailtitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -230,7 +231,7 @@ class LoginForm {
 			$wgOut->addHTML( wfMsgWikiHtml( 'accountcreatedtext', $u->getName() ) );
 			$wgOut->returnToMain( false, $self );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
-			$u->addNewUserLogEntry();
+			$u->addNewUserLogEntry( false, $this->mReason );
 			return true;
 		}
 	}
@@ -1008,6 +1009,7 @@ class LoginForm {
 		$template->set( 'email', $this->mEmail );
 		$template->set( 'realname', $this->mRealName );
 		$template->set( 'domain', $this->mDomain );
+		$template->set( 'reason', $this->mReason );
 
 		$template->set( 'action', $titleObj->getLocalUrl( $q ) );
 		$template->set( 'message', $msg );
@@ -1018,6 +1020,7 @@ class LoginForm {
 		$template->set( 'emailrequired', $wgEmailConfirmToEdit );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
+		$template->set( 'usereason', $wgUser->isLoggedIn() );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
 
 		if ( $this->mType == 'signup' ) {
