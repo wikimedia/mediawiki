@@ -1,10 +1,10 @@
 <?php
 /**
- * This script is the SQLite database abstraction layer
- *
+ * This is the SQLite database abstraction layer.
  * See maintenance/sqlite/README for development notes and other specific information
- * @ingroup Database
+ *
  * @file
+ * @ingroup Database
  */
 
 /**

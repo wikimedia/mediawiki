@@ -1,11 +1,12 @@
 <?php
 /**
- * @ingroup Database
+ * This is the Oracle database abstraction layer.
+ *
  * @file
+ * @ingroup Database
  */
 
 /**
- * This is the Oracle database abstraction layer.
  * @ingroup Database
  */
 class ORABlob {

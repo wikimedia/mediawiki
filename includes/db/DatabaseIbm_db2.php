@@ -1,10 +1,10 @@
 <?php
 /**
- * This script is the IBM DB2 database abstraction layer
- *
+ * This is the IBM DB2 database abstraction layer.
  * See maintenance/ibm_db2/README for development notes and other specific information
- * @ingroup Database
+ *
  * @file
+ * @ingroup Database
  * @author leo.petr+mediawiki@gmail.com
  */
 
