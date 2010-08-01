@@ -1,5 +1,12 @@
 <?php
 /**
+ * This is the MySQL database abstraction layer.
+ *
+ * @file
+ * @ingroup Database
+ */
+
+/**
  * Database abstraction object for mySQL
  * Inherit all methods and properties of Database::Database()
  *

@@ -1,10 +1,11 @@
 <?php
 /**
- * @ingroup Database
- * @file
  * This is the Postgres database abstraction layer.
  *
+ * @file
+ * @ingroup Database
  */
+
 class PostgresField {
 	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname;
 
