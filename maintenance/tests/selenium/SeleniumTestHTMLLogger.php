@@ -3,7 +3,7 @@
 class SeleniumTestHTMLLogger {
 	public function setHeaders() {
 		global $wgOut;
-		$wgOut->addHeadItem( 'selenium', '<style>
+		$wgOut->addHeadItem( 'selenium', '<style type="text/css">
 		.selenium pre {
 			overflow-x: auto; /* Use horizontal scroller if needed; for Firefox 2, not needed in Firefox 3 */
 			white-space: pre-wrap; /* css-3 */
@@ -13,6 +13,7 @@ class SeleniumTestHTMLLogger {
 			/* width: 99%; */
 			word-wrap: break-word; /* Internet Explorer 5.5+ */
 		}
+		.selenium-success { color: green }
 		</style>' );
 	}
 
@@ -20,11 +21,11 @@ class SeleniumTestHTMLLogger {
 		global $wgOut;
 		$out = '';
 		if ( $mode == SeleniumTestSuite::RESULT_OK ) {
-			$out .= '<font color="green">';
+			$out .= '<span class="selenium-success">';
 		}
 		$out .= htmlspecialchars( $message );
 		if ( $mode == SeleniumTestSuite::RESULT_OK ) {
-			$out .= '</font>';
+			$out .= '</span>';
 		}
 		if ( $mode != SeleniumTestSuite::CONTINUE_LINE ) {
 			$out .= '<br />';
