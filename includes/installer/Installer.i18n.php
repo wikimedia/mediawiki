@@ -468,7 +468,7 @@ It contains all your configuration.
 You will need to [$1 download] it and put it in the base of your wiki installation (the same directory as index.php).
 '''Note''': If you do not do this now, this generated configuration file will not be available to you later if you exit the installation without downloading it.
 
-When that has been done, you can [$2 '''enter your wiki'''].", // $1 is the URL to LocalSettings download, $2 is link to wiki
+When that has been done, you can '''[$2 enter your wiki]'''.", // $1 is the URL to LocalSettings download, $2 is link to wiki
 );
 
 /** Message documentation (Message documentation)
