@@ -418,7 +418,7 @@ For more information on this feature, including instructions on how to set it up
 	'config-instantcommons-good'      => 'The installer was able to detect internet connectivity during the environment checks.
 You can enable this feature if you want to.',
 	'config-instantcommons-bad'       => '\'\'Unfortunately, the installer was unable to detect internet connectivity during the environment checks, so you might be unable to use this feature.
-If your server is behind a proxy, you may need to do some [http://www.mediawiki.org/wiki/Manual:$wgHTTPProxy additional configuration]\'\'',
+If your server is behind a proxy, you may need to do some [http://www.mediawiki.org/wiki/Manual:$wgHTTPProxy additional configuration].\'\'',
 	'config-cc-error'                 => 'The Creative Commons license chooser gave no result.
 Enter the license name manually.',
 	'config-cc-again'                 => 'Pick again...',
