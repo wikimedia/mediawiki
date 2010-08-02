@@ -1,4 +1,9 @@
 <?php
+/**
+ * New version of MediaWiki web-based config/installation
+ *
+ * @file
+ */
 
 define( 'MW_CONFIG_CALLBACK', 'CoreInstaller::overrideConfig' );
 
