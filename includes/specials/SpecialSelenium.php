@@ -42,21 +42,24 @@ class SpecialSelenium extends SpecialPage {
 	}
 
 	function runTests() {
-		global $wgSeleniumTests, $wgOut;
+		global $wgSeleniumTestSuites, $wgOut, $wgSeleniumLogger;
 		SeleniumLoader::load();
 
 		$result = new PHPUnit_Framework_TestResult;
-		$logger = new SeleniumTestHTMLLogger;
-		$result->addListener( new SeleniumTestListener( $logger ) );
-		$logger->setHeaders();
+		$wgSeleniumLogger = new SeleniumTestHTMLLogger;
+		$result->addListener( new SeleniumTestListener( $wgSeleniumLogger ) );
+		//$wgSeleniumLogger->setHeaders();
 
 		// run tests
-		$suite = new SeleniumTestSuite;
-		foreach ( $wgSeleniumTests as $testClass ) {
-			$suite->addTest( new $testClass );
-		}
 		$wgOut->addHTML( '<div class="selenium">' );
-		$suite->run( $result );
+		
+		// for some really strange reason, foreach doesn't work here. It produces an infinite loop,
+		// executing only the first test suite.
+		for ( $i = 0; $i < count( $wgSeleniumTestSuites ); $i++ ) {
+			$suite = new $wgSeleniumTestSuites[$i];
+			$suite->addTests();
+			$suite->run( $result );
+		}
 		$wgOut->addHTML( '</div>' );
 	}
 }
