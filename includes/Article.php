@@ -1093,19 +1093,6 @@ class Article {
 	}
 
 	/**
-	 * Get the robot policy to be used for the current action=view request.
-	 * @return String the policy that should be set
-	 * @deprecated use getRobotPolicy() instead, which returns an associative
-	 *    array
-	 */
-	public function getRobotPolicyForView() {
-		wfDeprecated( __METHOD__ );
-		$policy = $this->getRobotPolicy( 'view' );
-
-		return $policy['index'] . ',' . $policy['follow'];
-	}
-
-	/**
 	 * Get the robot policy to be used for the current view
 	 * @param $action String the action= GET parameter
 	 * @return Array the policy that should be set
