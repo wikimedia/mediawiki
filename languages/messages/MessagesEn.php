@@ -1015,9 +1015,9 @@ Query: $2',
 'actionthrottled'      => 'Action throttled',
 'actionthrottledtext'  => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
 Please try again in a few minutes.',
-'protectedpagetext'    => 'This page has been locked to prevent editing.',
+'protectedpagetext'    => 'This page has been protected to prevent editing.',
 'viewsourcetext'       => 'You can view and copy the source of this page:',
-'protectedinterface'   => 'This page provides interface text for the software, and is locked to prevent abuse.',
+'protectedinterface'   => 'This page provides interface text for the software, and is protected to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
@@ -1340,12 +1340,12 @@ It cannot be saved.",
 You may wish to cut-n-paste the text into a text file and save it for later.
 
 The administrator who locked it offered this explanation: $1",
-'protectedpagewarning'             => "'''Warning: This page has been locked so that only users with administrator privileges can edit it.'''
+'protectedpagewarning'             => "'''Warning: This page has been protected so that only users with administrator privileges can edit it.'''
 The latest log entry is provided below for reference:",
-'semiprotectedpagewarning'         => "'''Note:''' This page has been locked so that only registered users can edit it.
+'semiprotectedpagewarning'         => "'''Note:''' This page has been protected so that only registered users can edit it.
 The latest log entry is provided below for reference:",
-'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with administrator privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
-'titleprotectedwarning'            => "'''Warning: This page has been locked so that [[Special:ListGroupRights|specific rights]] are needed to create it.'''
+'cascadeprotectedwarning'          => "'''Warning:''' This page has been protected so that only users with administrator privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
+'titleprotectedwarning'            => "'''Warning: This page has been protected so that [[Special:ListGroupRights|specific rights]] are needed to create it.'''
 The latest log entry is provided below for reference:",
 'templatesused'                    => '{{PLURAL:$1|Template|Templates}} used on this page:',
 'templatesusedpreview'             => '{{PLURAL:$1|Template|Templates}} used in this preview:',
@@ -2782,7 +2782,7 @@ Go back to the previous page, reload that page and then try again.',
 
 # Protect
 'protectlogpage'              => 'Protection log',
-'protectlogtext'              => 'Below is a list of page locks and unlocks.
+'protectlogtext'              => 'Below is a list of page protections and page unprotections.
 See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'            => 'protected "[[$1]]"',
 'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
@@ -3177,9 +3177,9 @@ cannot move a page over itself.',
 'imageinvalidfilename'         => 'The target file name is invalid',
 'fix-double-redirects'         => 'Update any redirects that point to the original title',
 'move-leave-redirect'          => 'Leave a redirect behind',
-'protectedpagemovewarning'     => "'''Warning:''' This page has been locked so that only users with administrator privileges can move it.
+'protectedpagemovewarning'     => "'''Warning:''' This page has been protected so that only users with administrator privileges can move it.
 The latest log entry is provided below for reference:",
-'semiprotectedpagemovewarning' => "'''Note:''' This page has been locked so that only registered users can move it.
+'semiprotectedpagemovewarning' => "'''Note:''' This page has been protected so that only registered users can move it.
 The latest log entry is provided below for reference:",
 'move-over-sharedrepo'         => '== File exists ==
 [[:$1]] exists on a shared repository. Moving a file to this title will override the shared file.',
@@ -3467,7 +3467,7 @@ You can view its source',
 
 # Spam protection
 'spamprotectiontitle' => 'Spam protection filter',
-'spamprotectiontext'  => 'The page you wanted to save was blocked by the spam filter.
+'spamprotectiontext'  => 'The text you wanted to save was blocked by the spam filter.
 This is probably caused by a link to a blacklisted external site.',
 'spamprotectionmatch' => 'The following text is what triggered our spam filter: $1',
 'spambot_username'    => 'MediaWiki spam cleanup',
