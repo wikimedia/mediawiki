@@ -32,8 +32,8 @@ $namespaceNames = array(
 	NS_MEDIA            => 'Aŭdvidaĵo',
 	NS_SPECIAL          => 'Speciala',
 	NS_TALK             => 'Diskuto',
-	NS_USER             => 'Vikipediisto',
-	NS_USER_TALK        => 'Vikipediista_diskuto',
+	NS_USER             => 'Uzanto',
+	NS_USER_TALK        => 'Uzanta_diskuto',
 	NS_PROJECT_TALK     => '$1_diskuto',
 	NS_FILE             => 'Dosiero',
 	NS_FILE_TALK        => 'Dosiera_diskuto',
@@ -45,6 +45,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Helpa_diskuto',
 	NS_CATEGORY         => 'Kategorio',
 	NS_CATEGORY_TALK    => 'Kategoria_diskuto',
+);
+
+$namespaceAliases = array(
+	'Vikipediisto' => NS_USER,
+	'Vikipediista_diskuto' => NS_USER_TALK,
 );
 
 $specialPageAliases = array(
