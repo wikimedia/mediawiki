@@ -437,7 +437,7 @@ Should be separated with commas and specify the port to be used (for example: 12
 	'config-extensions-help'          => 'The extensions listed above were detected in your <code>./extensions</code> directory.
 
 They may require additional configuration, but you can enable them now',
-	'config-install-alreadydone'      => "'''Warning: You seem to have already installed MediaWiki and are trying to install it again.
+	'config-install-alreadydone'      => "'''Warning:''' You seem to have already installed MediaWiki and are trying to install it again.
 Please proceed to the next page.",
 	'config-install-step-done'        => 'done',
 	'config-install-step-failed'      => 'failed',
