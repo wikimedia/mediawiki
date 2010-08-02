@@ -11,12 +11,15 @@ $messages = array();
  * English
  */
 $messages['en'] = array(
+	'config-desc'                     => 'The installer for MediaWiki',
 	'config-title'                    => 'MediaWiki $1 installation',
 	'config-information'              => 'Information',
-	'config-localsettings-upgrade'    => "'''Warning''': Your <code>LocalSettings.php</code> file has been detected.
-Your software is able to upgrade. Please move LocalSettings.php to somewhere safe in then run the installer again.",
-	'config-localsettings-noupgrade'  => "'''Error''': Your <code>LocalSettings.php</code> file has been detected.
-Your software is not able to upgrade at this time. The installer has been disabled for security reasons.",
+	'config-localsettings-upgrade'    => "'''Warning''': A <code>LocalSettings.php</code> file has been detected.
+Your software is able to upgrade.
+Please move <code>LocalSettings.php</code> to somewhere safe in then run the installer again.",
+	'config-localsettings-noupgrade'  => "'''Error''': A <code>LocalSettings.php</code> file has been detected.
+Your software is not able to upgrade at this time.
+The installer has been disabled for security reasons.",
 	'config-session-error'            => 'Error starting session: $1',
 	'config-session-expired'          => 'Your session data seems to have expired.
 Sessions are configured for a lifetime of $1.
@@ -36,7 +39,7 @@ Check your php.ini and make sure <code>session.save_path</code> is set to an app
 	'config-page-language'            => 'Language',
 	'config-page-welcome'             => 'Welcome to MediaWiki!',
 	'config-page-dbconnect'           => 'Connect to database',
-	'config-page-upgrade'             => 'Upgrade existing',
+	'config-page-upgrade'             => 'Upgrade existing installation',
 	'config-page-dbsettings'          => 'Database settings',
 	'config-page-name'                => 'Name',
 	'config-page-options'             => 'Options',
@@ -50,8 +53,8 @@ Check your php.ini and make sure <code>session.save_path</code> is set to an app
 	'config-help-restart'             => 'Do you want to clear all saved data that you have entered and restart the installation process?',
 	'config-restart'                  => 'Yes, restart it',
 	'config-welcome'                  => "=== Environmental checks ===
-We're doing basic checks to see if this environment is suitable for MediaWiki installation. You
-should provide this information if you need help during installation.",
+Basic checks are performed to see if this environment is suitable for MediaWiki installation.
+You should provide the results of these checks if you need help during installation.",
 	'config-copyright'                => "=== Copyright and Terms ===
 
 $1
@@ -62,7 +65,7 @@ This program is distributed in the hope that it will be useful, but '''without a
 See the GNU General Public License for more details.
 
 You should have received <doclink href=Copying>a copy of the GNU General Public License</doclink> along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. or [http://www.gnu.org/copyleft/gpl.html read it online].",
-	'config-authors'                  => 'MediaWiki is Copyright © 2001-2010 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe and others.',
+	'config-authors'                  => 'MediaWiki is Copyright © 2001-2010 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe and others.', // TODO: move this to core strings and use it in Special:Version, too?
 	'config-sidebar'                  => "* [http://www.mediawiki.org MediaWiki home]
 * [http://www.mediawiki.org/wiki/Help:Contents User's Guide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administrator's Guide]
@@ -74,15 +77,14 @@ You cannot install MediaWiki.',
 	'config-env-php'                  => 'PHP $1 installed.',
 	'config-env-latest-ok'            => 'You are installing the latest version of Mediawiki.',
 	'config-env-latest-new'           => "'''Note:''' You are installing a development version of Mediawiki.",
-	'config-env-latest-can-not-check' => "'''Note:''' We were unable to retrieve information about the latest MediaWiki release (from [$1]).",
-	'config-env-latest-data-invalid'  => "'''Warning:''' When trying to check if this version was outdated we got invalid data from [$1].",
+	'config-env-latest-can-not-check' => "'''Note:''' The installer was unable to retrieve information about the latest MediaWiki release from [$1].",
+	'config-env-latest-data-invalid'  => "'''Warning:''' When trying to check if this version was outdated invalid data was retrieved from [$1].",
 	'config-env-latest-old'           => "'''Warning:''' You are installing an outdated version of Mediawiki.",
 	'config-env-latest-help'          => 'You are installing version $1, but the latest version is $2.
 You are advised to use the latest release, which can be downloaded from [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-php'              => "the slow PHP implementation",
-	'config-unicode-utf8'             => "Brion Vibber's utf8_normalize.so",
-	'config-unicode-intl'             => "the [http://pecl.php.net/intl intl PECL extension]",
-	'config-unicode-using'            => 'Using $1 for Unicode normalization.',
+	'config-unicode-using-php'            => 'Using the slow PHP implementation for Unicode normalization.',
+	'config-unicode-using-utf8'            => 'Using Brion Vibber\'s utf8_normalize.so for Unicode normalization.',
+	'config-unicode-using-intl'            => 'Using the [http://pecl.php.net/intl intl PECL extension] for Unicode normalization.',
 	'config-unicode-pure-php-warning' => "'''Warning''': The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization.  If you run a high-traffic site, you should read a little on [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
 	'config-unicode-update-warning'   => "'''Warning''': The installed version of the Unicode normalization wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.  You should [http://www.mediawiki.org/wiki/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
 	'config-no-db'                    => 'Could not find a suitable database driver!',
@@ -117,7 +119,8 @@ If you're running Mandrake, install the php-xml package.",
 	'config-pcre'                     => 'The PCRE support module appears to be missing.
 MediaWiki requires the Perl-compatible regular expression functions to work.',
 	'config-memory-none'              => 'PHP is configured with no <code>memory_limit</code>',
-	'config-memory-ok'                => "PHP's <code>memory_limit</code> is $1, ok.",
+	'config-memory-ok'                => "PHP's <code>memory_limit</code> is $1.
+OK.",
 	'config-memory-raised'            => "PHP's <code>memory_limit</code> is $1, raised to $2.",
 	'config-memory-bad'               => "'''Warning:''' PHP's <code>memory_limit</code> is $1.
 This is probably too low.
@@ -143,8 +146,9 @@ Installation aborted.",
 	'config-dir-not-writable-group'   => "'''Error:''' Cannot write config file.
 Installation aborted.
 
-We have determined the user your webserver is running as. Make the
-<code><nowiki>config</nowiki></code> directory writable by it to continue. On a Unix/Linux system:
+The installer has determined the user your webserver is running as.
+Make the <code><nowiki>config</nowiki></code> directory writable by it to continue.
+On a Unix/Linux system:
 
 <pre>cd $1
 chgrp $2 config
@@ -152,17 +156,17 @@ chmod g+w config</pre>",
 	'config-dir-not-writable-nogroup'   => "'''Error:''' Cannot write config file.
 Installation aborted.
 
-We couldn't determine the user your webserver is running as. Make the
-<code><nowiki>config</nowiki></code> directory globally writable by it (and others!) to continue. On
-a Unix/Linux system do:
+The user your webserver is running as could not be determined.
+Make the <code><nowiki>config</nowiki></code> directory globally writable by it (and others!) to continue.
+On a Unix/Linux system do:
 
 <pre>cd $1
 chmod a+w config</pre>",
 	'config-file-extension'           => 'Installing MediaWiki with <code>$1</code> file extensions.',
 	'config-shell-locale'             => 'Detected shell locale "$1"',
-	'config-uploads-safe'             => 'Default uploads directory is safe from arbitrary scripts execution.',
-	'config-uploads-not-safe'         => "'''Warning:''' Your default uploads directory <code>$1</code> is vulnerable to arbitrary scripts execution.
-Although MediaWiki checks all uploaded files for security threats, it is highly recommended to [http://www.mediawiki.org/wiki/Manual:Security#Upload_security close this hole] before enabling uploads.",
+	'config-uploads-safe'             => 'The default directory for uploads is safe from arbitrary scripts execution.',
+	'config-uploads-not-safe'         => "'''Warning:''' Your default directory for uploads <code>$1</code> is vulnerable to arbitrary scripts execution.
+Although MediaWiki checks all uploaded files for security threats, it is highly recommended to [http://www.mediawiki.org/wiki/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
 	'config-db-type'                  => 'Database type:',
 	'config-db-host'                  => 'Database host:',
 	'config-db-host-help'             => 'If your database server is on different server, enter the host name or IP address here.
@@ -173,7 +177,7 @@ If you are using shared web hosting, your hosting provider should give you the c
 	'config-db-name-help'             => 'Choose a name that identifies your wiki.
 It should not contain spaces or hyphens.
 
-If you are using shared web hosting, your hosting provider will either give you a specific database name to use, or let you create databases via a control panel.',
+If you are using shared web hosting, your hosting provider will either give you a specific database name to use, or lets you create databases via a control panel.',
 	'config-db-install-account'       => 'User account for installation',
 	'config-db-username'              => 'Database username:',
 	'config-db-password'              => 'Database password:',
@@ -191,7 +195,7 @@ This field is usually left empty.',
 	'config-charset-mysql5-binary'    => 'MySQL 4.1/5.0 binary',
 	'config-charset-mysql5'           => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4'           => 'MySQL 4.0 backwards-compatible UTF-8',
-	'config-charset-help'             => "'''WARNING:''' If you use '''backwards-compatible UTF-8''' on MySQL 4.1+, and subsequently back up the database with <code>mysqldump</code>, it may destroy all non-ASCII characters, irreversibly corrupting your backups!.
+	'config-charset-help'             => "'''WARNING:''' If you use '''backwards-compatible UTF-8''' on MySQL 4.1+, and subsequently back up the database with <code>mysqldump</code>, it may destroy all non-ASCII characters, irreversibly corrupting your backups!
 
 In '''binary mode''', MediaWiki stores UTF-8 text to the database in binary fields.
 This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters.
@@ -208,14 +212,12 @@ Only change them if you know you need to.',
 
 The directory you provide must be writable by the webserver during installation.
 
-It should '''not''' be accessible via the web, this is why we're not putting it where your PHP files
-are.
+It should '''not''' be accessible via the web, this is why we're not putting it where your PHP files are.
 
-We'll write out a <code>.htaccess</code> file along with it, but if that fails someone can gain
-access to your raw database. That includes raw user data (E-Mails, hashed passwords) as well as
-deleted revisions and other restricted data on the wiki.
+The installer will write a <code>.htaccess</code> file along with it, but if that fails someone can gain access to your raw database.
+That includes raw user data (E-Mails, hashed passwords) as well as deleted revisions and other restricted data on the wiki.
 
-Consider putting the database somewhere altogether, for example <code>/var/lib/mediawiki/yourwiki</code>.",
+Consider putting the database somewhere altogether, for example in <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-type-mysql'               => 'MySQL',
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
@@ -243,8 +245,9 @@ Do not use spaces or hyphens.
 This will be used for the SQLite data file name.',
 	'config-sqlite-parent-unwritable-group' => 'Cannot create the data directory <code><nowiki>$1</nowiki></code>, because the parent directory <code><nowiki>$2</nowiki></code> is not writable by the webserver.
 
-We have determined the user your webserver is running as. Make the <code><nowiki>$3</nowiki></code>
-directory writable by it to continue. On a Unix/Linux system do:
+The installer has determined the user your webserver is running as.
+Make the <code><nowiki>$3</nowiki></code> directory writable by it to continue.
+On a Unix/Linux system do:
 
 <pre>cd $2
 mkdir $3
@@ -252,8 +255,9 @@ chgrp $4 $3
 chmod g+w $3</pre>',
 	'config-sqlite-parent-unwritable-nogroup' => 'Cannot create the data directory <code><nowiki>$1</nowiki></code>, because the parent directory <code><nowiki>$2</nowiki></code> is not writable by the webserver.
 
-We couldn\'t determine the user your webserver is running as. Make the <code><nowiki>$3</nowiki></code>
-directory globally writable by it (and others!) to continue. On a Unix/Linux system do:
+The installer could not determine the user your webserver is running as.
+Make the <code><nowiki>$3</nowiki></code> directory globally writable by it (and others!) to continue.
+On a Unix/Linux system do:
 
 <pre>cd $2
 mkdir $3
@@ -265,11 +269,11 @@ Change its permissions so that the webserver can write to it, and try again.',
 	'config-sqlite-connection-error'  => '$1.
 
 Check the data directory and database name below and try again.',
-	'config-sqlite-readonly'          => 'File <code>$1</code> is not writeable.',
+	'config-sqlite-readonly'          => 'The file <code>$1</code> is not writeable.',
 	'config-sqlite-cant-create-db'    => 'Could not create database file <code>$1</code>.',
 	'config-sqlite-fts3-downgrade'    => 'PHP is missing FTS3 support, downgrading tables',
 	'config-sqlite-fts3-add'          => 'Adding FTS3 search capabilities',
-	'config-sqlite-fts3-ok'           => 'Fulltext search table appears to be in order',
+	'config-sqlite-fts3-ok'           => 'Full text search table appears to be in order',
 	'config-can-upgrade'              => "There are MediaWiki tables in this database.
 To upgrade them to MediaWiki $1, click '''Continue'''.",
 	'config-upgrade-done'             => "Upgrade complete.
@@ -302,7 +306,7 @@ This is more efficient than MySQL's UTF-8 mode, and allows you to use the full r
 
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 	'config-site-name'                => 'Name of wiki:',
-	'config-site-name-help'           => "This will appear in the browser's title bar and various other places.",
+	'config-site-name-help'           => "This will appear in the title bar of the browser and in various other places.",
 	'config-site-name-blank'          => 'Enter a site name.',
 	'config-project-namespace'        => 'Project namespace:',
 	'config-ns-generic'               => 'Project',
@@ -313,7 +317,7 @@ In '''UTF-8 mode''', MySQL will know what character set your data is in, and can
 All page titles in this namespace start with a certain prefix, which you can specify here.
 Traditionally, this prefix is derived from the name of the wiki, but it cannot contain punctuation characters such as "#" or ":".',
 	'config-ns-invalid'               => 'The specified namespace "<nowiki>$1</nowiki>" is invalid.
-Specify a different project namespace',
+Specify a different project namespace.',
 	'config-admin-box'                => 'Administrator account',
 	'config-admin-name'               => 'Your name:',
 	'config-admin-password'           => 'Password:',
@@ -369,17 +373,18 @@ It is not generally necessary for a private or corporate wiki.
 
 If you want to be able to use text from Wikipedia, and you want Wikipedia to be able to accept text copied from your wiki, you should choose '''Creative Commons Attribution Share Alike'''.
 
-The GNU Free Documentation License was the old license Wikipedia was under. It is still a valid license, however, this license has some features which make reuse and interpretation difficult.",
+The GNU Free Documentation License was the old license Wikipedia was under.
+It is still a valid license, however, this license has some features which make reuse and interpretation difficult.",
 	'config-email-settings'           => 'E-mail settings',
 	'config-enable-email'             => 'Enable outbound e-mail',
 	'config-enable-email-help'        => "If you want e-mail to work, [http://www.php.net/manual/en/mail.configuration.php PHP's mail settings] need to be configured correctly.
 If you do not want any e-mail features, you can disable them here.",
 	'config-email-user'               => 'Enable user-to-user e-mail',
-	'config-email-user-help'          => 'All users to send each other e-mail, if they have enabled it in their preferences',
+	'config-email-user-help'          => 'Allow all users to send each other e-mail if they have enabled it in their preferences.',
 	'config-email-usertalk'           => 'Enable user talk page notification',
-	'config-email-usertalk-help'      => 'Allow users to receive notifications on user talk page changes, if they have enabled it in their preferences',
+	'config-email-usertalk-help'      => 'Allow users to receive notifications on user talk page changes, if they have enabled it in their preferences.',
 	'config-email-watchlist'          => 'Enable watchlist notification',
-	'config-email-watchlist-help'     => 'Allow users to receive notifications to their watched pages, if they have enabled it in their preferences',
+	'config-email-watchlist-help'     => 'Allow users to receive notifications about their watched pages if they have enabled it in their preferences.',
 	'config-email-auth'               => 'Enable e-mail authentication',
 	'config-email-auth-help'          => "If this option is enabled, users have to confirm their e-mail address using a link sent to them whenever they set or change it.
 Only authenticated e-mail addresses can receive e-mails from other users or change notification e-mails.
@@ -404,14 +409,14 @@ Upload an image of the appropriate size, and enter the URL here.
 
 If you do not want a logo, leave this box blank.",
 	'config-instantcommons'           => 'Enable Instant Commons',
-	'config-instantcommons-help'      => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis
-to use images, sounds and other media found on the [http://commons.wikimedia.org/ Wikimedia Commons] site. In order to do this, MediaWiki requires
-access to the Internet. $1
+	'config-instantcommons-help'      => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [http://commons.wikimedia.org/ Wikimedia Commons] site.
+In order to do this, MediaWiki requires access to the Internet. $1
 
-For more information on this feature, including instructions on how to set it up for
-wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual].', // $1 is for indicating whether or not we should be able to use the feature
-	'config-instantcommons-good'      => 'We were able to detect internet connectivity during the environment checks. You can enable this feature if you want to.',
-	'config-instantcommons-bad'       => '\'\'Unfortunately, we were unable to detect internet connectivity during the environment checks, so you might be unable to use this feature. If your server is behind a proxy, you may need to do some [http://www.mediawiki.org/wiki/Manual:$wgHTTPProxy additional configuration]\'\'',
+For more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual].', // $1 is for indicating whether or not we should be able to use the feature
+	'config-instantcommons-good'      => 'The installer was able to detect internet connectivity during the environment checks.
+You can enable this feature if you want to.',
+	'config-instantcommons-bad'       => '\'\'Unfortunately, the installer was unable to detect internet connectivity during the environment checks, so you might be unable to use this feature.
+If your server is behind a proxy, you may need to do some [http://www.mediawiki.org/wiki/Manual:$wgHTTPProxy additional configuration]\'\'',
 	'config-cc-error'                 => 'The Creative Commons license chooser gave no result.
 Enter the license name manually.',
 	'config-cc-again'                 => 'Pick again...',
@@ -430,7 +435,8 @@ Should be separated with commas and specify the port to be used (for example: 12
 	'config-extensions-help'          => 'The extensions listed above were detected in your <code>./extensions</code> directory.
 
 They may require additional configuration, but you can enable them now',
-	'config-install-alreadydone'      => "'''Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
+	'config-install-alreadydone'      => "'''Warning: You seem to have already installed MediaWiki and are trying to install it again.
+Please proceed to the next page.",
 	'config-install-step-done'        => 'done',
 	'config-install-step-failed'      => 'failed',
 	'config-install-extensions'       => 'Including extensions',
@@ -440,11 +446,13 @@ Make sure that the user "$1" can write to the schema "$2".',
 	'config-install-user'             => 'Creating database user',
 	'config-install-user-failed'      => 'Granting permission to user "$1" failed: $2',
 	'config-install-tables'           => 'Creating tables',
-	'config-install-tables-exist'     => "'''Warning''': MediaWiki tables seem to already exist. Skipping creation",
-	'config-install-tables-failed'    => "'''Error''': Table creation failed with the following error $1",
+	'config-install-tables-exist'     => "'''Warning''': MediaWiki tables seem to already exist.
+Skipping creation.",
+	'config-install-tables-failed'    => "'''Error''': Table creation failed with the following error: $1",
 	'config-install-interwiki'        => 'Populating default interwiki table',
-	'config-install-interwiki-sql'    => 'Could not find file <code>interwiki.sql</code>',
-	'config-install-interwiki-exists' => "'''Warning''': Interwiki table seems to already have entires. Skipping default list",
+	'config-install-interwiki-sql'    => 'Could not find file <code>interwiki.sql</code>.',
+	'config-install-interwiki-exists' => "'''Warning''': Interwiki table seems to already have entires.
+Skipping default list.",
 	'config-install-secretkey'        => 'Generating secret key',
 	'config-insecure-secretkey'       => "'''Warning:''' Unable to create secure <code>\$wgSecretKey</code>.
 Consider changing it manually.",
@@ -452,12 +460,60 @@ Consider changing it manually.",
 	'config-install-done'             => "'''Congratulations!'''
 You have successfully installed MediaWiki.
 
-We have generated a <code>LocalSettings.php</code> file for you. It contains all your configuration.
+The installer has generated a <code>LocalSettings.php</code> file.
+It contains all your configuration.
 
-You will need to [$1 download] it and put it in the base of your wiki installation (the same directory as index.php). '''Note''': If you do not do this now,
-this generated configuration file will not be available to you later if you exit the installation without downloading it.
+You will need to [$1 download] it and put it in the base of your wiki installation (the same directory as index.php).
+'''Note''': If you do not do this now, this generated configuration file will not be available to you later if you exit the installation without downloading it.
 
-When that's done, you can [$2 '''enter your wiki''']", // $1 is the URL to LocalSettings download, $2 is link to wiki
+When that has been done, you can [$2 '''enter your wiki'''].", // $1 is the URL to LocalSettings download, $2 is link to wiki
+);
+
+/** Message documentation
+ * @author Siebrand
+ */
+$messages['qqq'] = array(
+	'config-title'                    => 'Parameters:
+* $1 is the version of MediaWiki that is being installed.',
+	'config-session-error'            => 'Parameters:
+* $1 is the error that was encountered with the session.',
+	'config-session-expired'          => 'Parameters:
+* $1 is the configured session lifetime.',
+	'config-session-path-bad'         => 'Parameters:
+* $1 is the configured <code>session.save_path</code>.',
+	'config-restart'                  => 'Button text to confirm the installation procedure has to be restarted.',
+	'config-env-php'                  => 'Parameters:
+* $1 is the version of PHP that has been installed.',
+	'config-env-latest-data-invalid'  => 'Parameters:
+* $1 is the URL from which invalid data was retrieved.',
+	'config-env-latest-old'           => 'Parameters:
+* $1 is the version of MediaWiki being installed.
+* $2 is the latest available stable MediaWiki version.',
+	'config-no-db-help'               => 'Parameters:
+* $1 is comma separated list of supported database types by MediaWiki.',
+	'config-have-db'                => 'Parameters:
+* $1 is comma separated list of database drivers found in the application environment.',
+	'config-memory-ok'                => 'Parameters:
+* $1 is the configured <code>memory_limit</code>.',
+	'config-memory-raised'            => 'Parameters:
+* $1 is the configured <code>memory_limit</code>.
+* $2 is the value to which <code>memory_limit</code> was raised.',
+	'config-memory-bad'               => 'Parameters:
+* $1 is the configured <code>memory_limit</code>.',
+	'config-diff3-good'               => 'Parameters:
+* $1 is the path to diff3.',
+	'config-dir'                      => 'Parameters:
+* $1 is the path of the installation directory.',
+	'config-dir'                      => 'Parameters:
+* $1 is script URI path.',
+	'config-shell-locale'             => 'Parameters:
+* $1 is the detected shell locale.',
+	'config-show-table-status'        => '{{doc-important|"SHOW TABLE STATUS" is a MySQL command. Do not translate this.}}',
+	'config-install-done'             => 'Parameters:
+* $1 is the URL to LocalSettings download
+* $2 is a link to the wiki.',
+	'config-instantcommons-help'      => 'Parameters:
+$1 is for indicating whether or not we should be able to use the feature.',
 );
 
 /** Dutch (Nederlands)

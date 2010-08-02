@@ -853,7 +853,7 @@ abstract class Installer {
 		$not_normal_c = $this->unicodeChar("FA6C");
 		$normal_c = $this->unicodeChar("242EE");
 
-		$useNormalizer = 'config-unicode-php';
+		$useNormalizer = 'php';
 		$needsUpdate = false;
 
 		/**
@@ -861,18 +861,19 @@ abstract class Installer {
 		 * utf8_normalize is more up to date.
 		 */
 		if( $utf8 ) {
-			$useNormalizer = 'config-unicode-utf8';
+			$useNormalizer = 'utf8';
 			$utf8 = utf8_normalize( $not_normal_c, UNORM_NFC );
 			if ( $utf8 !== $normal_c ) $needsUpdate = true;
 		}
 		if( $intl ) {
-			$useNormalizer = 'config-unicode-intl';
+			$useNormalizer = 'intl';
 			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
 			if ( $intl !== $normal_c ) $needsUpdate = true;
 		}
 
-		$this->showMessage( 'config-unicode-using', wfMsg( $useNormalizer ) );
-		if( $useNormalizer === 'config-unicode-php' ) {
+		// Uses messages 'config-unicode-using-php', 'config-unicode-using-utf8', 'config-unicode-using-intl'
+		$this->showMessage( 'config-unicode-using-' . $useNormalizer );
+		if( $useNormalizer === 'php' ) {
 			$this->showMessage( 'config-unicode-pure-php-warning' );
 		} elseif( $needsUpdate ) {
 			$this->showMessage( 'config-unicode-update-warning' );
