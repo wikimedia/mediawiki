@@ -16,7 +16,7 @@ $messages['en'] = array(
 	'config-information'              => 'Information',
 	'config-localsettings-upgrade'    => "'''Warning''': A <code>LocalSettings.php</code> file has been detected.
 Your software is able to upgrade.
-Please move <code>LocalSettings.php</code> to somewhere safe in then run the installer again.",
+Please move <code>LocalSettings.php</code> to somewhere safe and then run the installer again.",
 	'config-localsettings-noupgrade'  => "'''Error''': A <code>LocalSettings.php</code> file has been detected.
 Your software is not able to upgrade at this time.
 The installer has been disabled for security reasons.",
