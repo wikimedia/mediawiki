@@ -228,7 +228,7 @@ $messages = array(
 'tog-watchdeletion'           => '将我删除的页面添加到我的监视列表',
 'tog-previewontop'            => '在编辑框上方显示预览',
 'tog-previewonfirst'          => '在首次编辑时显示预览',
-'tog-nocache'                 => '禁用页面缓存',
+'tog-nocache'                 => '禁止浏览器页面缓存',
 'tog-enotifwatchlistpages'    => '当我的监视列表中的页面改变时发送电子邮件通知我',
 'tog-enotifusertalkpages'     => '当我的讨论页更改时发送电子邮件通知我',
 'tog-enotifminoredits'        => '当页面有小修改时也发送电子邮件通知我',
@@ -578,9 +578,9 @@ $1',
 'viewsourcefor'        => '对$1的源代码',
 'actionthrottled'      => '操作被限制',
 'actionthrottledtext'  => '基于反垃圾链接的考量，您被限制在短时间内多次重复该操作，但您已超过此上限。请在数分钟后再尝试。',
-'protectedpagetext'    => '该页面已被锁定以防止编辑。',
+'protectedpagetext'    => '该页面已被保护以防止编辑。',
 'viewsourcetext'       => '您可以查看并复制此页面的源代码：',
-'protectedinterface'   => '该页提供了软件的界面文本，它已被锁定以防止随意的修改。',
+'protectedinterface'   => '该页提供了软件的界面文本，它已被保护以防止随意的修改。',
 'editinginterface'     => "'''警告：''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。如要翻译，请考虑使用[http://translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用来为MediaWiki软件本地化的计划。",
 'sqlhidden'            => '（SQL查询已隐藏）',
 'cascadeprotected'     => '此页面已被保护，因为这个页面被以下已标注“联锁保护”的{{PLURAL:$1|一个|多个}}被保护页面包含：
@@ -841,10 +841,10 @@ $2',
 锁定数据库的管理员有如下解释：$1",
 'protectedpagewarning'             => "'''警告：此页已经被保护，只有拥有管理员权限的用户才可修改。'''
 最近的日志在下面提供以便参考：",
-'semiprotectedpagewarning'         => "'''注意：''' 本页面被锁定，仅限注册用户编辑。
+'semiprotectedpagewarning'         => "'''注意：''' 本页面被保护，仅限注册用户编辑。
 最近的日志在下面提供以便参考：",
-'cascadeprotectedwarning'          => '警告：本页已经被保护，只有拥有管理员权限的用户才可修改，因为本页已被以下连锁保护的{{PLURAL:$1|一个|多个}}页面所包含：',
-'titleprotectedwarning'            => "'''警告：本页面已被锁上，需要[[Special:ListGroupRights|指定权限]]方可创建。'''
+'cascadeprotectedwarning'          => "'''警告：'''本页已经被保护，只有拥有管理员权限的用户才可修改，因为本页已被以下连锁保护的{{PLURAL:$1|一个|多个}}页面所包含：",
+'titleprotectedwarning'            => "'''警告：本页面已被保护，需要[[Special:ListGroupRights|指定权限]]方可创建。'''
 最近的日志在下面提供以便参考：",
 'templatesused'                    => '在这个页面上使用的{{PLURAL:$1|模板|模板}}有：',
 'templatesusedpreview'             => '此次预览中使用的{{PLURAL:$1|模板|模板}}有：',
@@ -2120,7 +2120,7 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => '保护日志',
-'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:ProtectedPages|保护页面列表]]以查看当前进行的页面保护。',
+'protectlogtext'              => '下面是页面保护和取消保护的列表。请参考[[Special:ProtectedPages|保护页面列表]]以查看当前进行的页面保护。',
 'protectedarticle'            => '已保护“[[$1]]”',
 'modifiedarticleprotection'   => '已更改“[[$1]]”的保护等级',
 'unprotectedarticle'          => '已取消“[[$1]]”的保护',
@@ -2488,9 +2488,9 @@ $1已经被封锁。您是否想更改这个设置？',
 'imageinvalidfilename'         => '目标文件名称无效',
 'fix-double-redirects'         => '更新所有指向原始标题的重定向',
 'move-leave-redirect'          => '保留重定向',
-'protectedpagemovewarning'     => "'''警告：'''这个页面已经被锁上，只有拥有管理员权限的用户才可以移动它。
+'protectedpagemovewarning'     => "'''警告：'''这个页面已经被保护，只有拥有管理员权限的用户才可以移动它。
 最近的日志在下面提供以便参考：",
-'semiprotectedpagemovewarning' => "'''注意：'''这个页面已经被锁上，只有已经注册的用户才可以移动它。
+'semiprotectedpagemovewarning' => "'''注意：'''这个页面已经被保护，只有已经注册的用户才可以移动它。
 最近的日志在下面提供以便参考：",
 'move-over-sharedrepo'         => '== 文件已存在 ==
 [[:$1]]已于共享资源存在，将文件移动到此标题会覆盖共享资源中的文件。',
@@ -2706,7 +2706,8 @@ $1已经被封锁。您是否想更改这个设置？',
 
 # Spam protection
 'spamprotectiontitle' => '垃圾链接过滤器',
-'spamprotectiontext'  => '您要保存的页面被垃圾链接过滤器阻止。这可能是由于某个链往外部站点的链接匹配黑名单引起的。',
+'spamprotectiontext'  => '您要保存的文本被垃圾过滤器阻止。
+这可能是由于一个链往匹配黑名单的外部站点的链接引起的。',
 'spamprotectionmatch' => '以下文本触发了我们的垃圾链接过滤器：$1',
 'spambot_username'    => 'MediaWiki垃圾链接清理器',
 'spam_reverting'      => '恢复到不包含链接的最近修订版本$1',

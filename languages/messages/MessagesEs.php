@@ -2450,7 +2450,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 ** Eliminar contenido de las páginas
 ** Publicitar enlaces a otras páginas web
 ** Añadir basura a las páginas
-** Comportamiento intimidatorio/acoso sexual
+** Comportamiento intimidatorio u hostil
 ** Abusar de múltiples cuentas
 ** Nombre de usuario inaceptable',
 'ipbanononly'                     => 'Bloquear usuarios anónimos solamente',
@@ -2614,7 +2614,7 @@ Por favor, elige otro nombre.',
 'movepage-max-pages'           => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
 '1movedto2'                    => '[[$1]] trasladada a [[$2]]',
 '1movedto2_redir'              => '[[$1]] trasladada a [[$2]] sobre una redirección',
-'move-redirect-suppressed'     => 'redireccionamiento suprimido',
+'move-redirect-suppressed'     => 'redirección suprimida',
 'movelogpage'                  => 'Registro de traslados',
 'movelogpagetext'              => 'Abajo se encuentra una lista de páginas trasladadas.',
 'movesubpage'                  => '{{PLURAL:$1|Subpágina|Subpáginas}}',
