@@ -1930,7 +1930,7 @@ class Linker {
 	 * @param $prefix String: Optional prefix
 	 */
 	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__ );
+		//wfDeprecated( __METHOD__ );
 		return $this->makeColouredLinkObj( $nt, 'stub', $text, $query, $trail, $prefix );
 	}
 
