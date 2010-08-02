@@ -236,7 +236,7 @@ class CategoryViewer {
 					array(),
 					array( 'known', 'noclasses' )
 				) . '</span>'
-			: $this->getSkin()->makeSizeLinkObj( $pageLength, $title );
+			: $this->getSkin()->link( $title );
 
 		if ( $wgExperimentalCategorySort ) {
 			$this->articles_start_char[] = $wgContLang->convert( $wgContLang->firstLetterForLists( $sortkey ) );
