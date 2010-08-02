@@ -425,6 +425,8 @@ Nomi digareroro intixob kuned.',
 'noname'                  => 'Nomi korbari durustero şumo peşnihod nakarded.',
 'loginsuccesstitle'       => 'Vurud bo muvaffaqijat',
 'loginsuccess'            => "'''Şumo aknun ba Vikipedia hamcun \"\$1\". vurud karded'''",
+'nosuchuser'              => 'Korbare bo nomi "$1" vuçud nadorad.
+Amali nomro barrasi kuned, jo [[Special:UserLogin/signup|hisobi çadidero eçod kuned]].',
 'nosuchusershort'         => 'Jagon korbare bo nomi "<nowiki>$1</nowiki>" vuçud nadorad. Tarzi navişti nomro sançed.',
 'nouserspecified'         => 'Şumo bojad jak nomi korbarī muşaxxas kuned.',
 'wrongpassword'           => 'Kalimai uburi nodurust doxil karda şud. Bori digar sançed.',
@@ -595,6 +597,10 @@ Lutfan dar baroi ba qismathoi xurd çudo kardani in sahifa fikr kuned.'''",
 'permissionserrors'                => 'Xatohoi sathi dastrasī',
 'permissionserrorstext'            => 'Şumo ruxsati ançomi in korro ba {{PLURAL:$1|sababi|sababhoi}} zerin nadored:',
 'permissionserrorstext-withaction' => 'Şumo ba $2 az {{PLURAL:$1|sababi|sababhoi}} zerin içozate nadored:',
+'recreate-moveddeleted-warn'       => "'''Diqqat: Şumo sahifaero barqaror karda istodaed, ki peştar hazf şudaast.'''
+
+Şumo zarurijati viroişi in sahifaro dida baromadanaton lozim.
+Sabti hazfşaviji in sahifa baroi faroham ovardani imkonijathoi qulaj ovarda şudaast:",
 
 # "Undo" feature
 'undo-success' => "In viroiş metavonad botil şavad. Lutfan muqoisai zerinro baroi ta'jid kardani amalī xud, barrasī kuned, va ba'dan baroi ançom dodani botilkuniji viroiş taƣjiroti zerinro zaxira kuned.",
@@ -822,6 +828,8 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 'yourlanguage'              => 'Zabon:',
 'yournick'                  => 'Niki şumo:',
 'badsig'                    => 'Imzoi xom nodurust ast; barçasbhoi HTML-ro barrasī kuned.',
+'badsiglength'              => 'Taxallus xele daroz ast.
+On bojad kamtar az $1 {{PLURAL:$1|alomat|alomatho}} boşad.',
 'yourgender'                => 'Çins:',
 'gender-unknown'            => 'Muşaxxasnaşuda',
 'gender-male'               => 'Mard',

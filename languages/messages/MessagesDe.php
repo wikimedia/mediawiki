@@ -364,7 +364,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Selbst gelöschte Seiten automatisch beobachten',
 'tog-previewontop'            => 'Vorschau oberhalb des Bearbeitungsfensters anzeigen',
 'tog-previewonfirst'          => 'Beim ersten Bearbeiten immer die Vorschau anzeigen',
-'tog-nocache'                 => 'Seitencache deaktivieren',
+'tog-nocache'                 => 'Seitencache des Browsers deaktivieren',
 'tog-enotifwatchlistpages'    => 'Bei Änderungen an beobachteten Seiten E-Mails senden',
 'tog-enotifusertalkpages'     => 'Bei Änderungen an meiner Benutzer-Diskussionsseite E-Mails senden',
 'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden',
@@ -722,9 +722,9 @@ Abfrage: $2',
 'actionthrottled'      => 'Aktionsanzahl limitiert',
 'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',
-'protectedpagetext'    => 'Diese Seite wurde gesperrt, um Bearbeitungen zu verhindern.',
+'protectedpagetext'    => 'Diese Seite wurde geschützt, um Bearbeitungen zu verhindern.',
 'viewsourcetext'       => 'Du kannst den Quelltext dieser Seite betrachten und kopieren:',
-'protectedinterface'   => 'Diese Seite enthält Text für die Benutzeroberfläche der Software und ist gesperrt, um Missbrauch vorzubeugen.',
+'protectedinterface'   => 'Diese Seite enthält Text für die Benutzeroberfläche der Software und ist geschützt, um Missbrauch vorzubeugen.',
 'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text.
 Änderungen wirken sich auf die Benutzeroberfläche aus.
 Für Übersetzungen ziehe bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
@@ -1000,10 +1000,13 @@ Er kann nicht gespeichert werden.",
 Sichere den Text bitte lokal auf deinem Computer und versuche zu einem späteren Zeitpunkt, die Änderungen zu übertragen.'''
 
 Grund für die Sperre: $1",
-'protectedpagewarning'             => "'''Achtung: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.''' Zur Information folgt der aktuelle Logbucheintrag:",
-'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können. Zur Information folgt der aktuelle Logbucheintrag:",
-'cascadeprotectedwarning'          => "'''Achtung:''' Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:",
-'titleprotectedwarning'            => "'''Achtung: Die Seitenerstellung wurde gesperrt. Nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] können die Seite erstellen.''' Zur Information folgt der aktuelle Logbucheintrag:",
+'protectedpagewarning'             => "'''Achtung: Diese Seite wurde geschützt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.'''
+Zur Information folgt der aktuelle Logbucheintrag:",
+'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so geschützt, dass nur registrierte Benutzer diese ändern können.
+Zur Information folgt der aktuelle Logbucheintrag:",
+'cascadeprotectedwarning'          => "'''Achtung:''' Diese Seite wurde so geschützt, dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:",
+'titleprotectedwarning'            => "'''Achtung: Die Seitenerstellung wurde so geschützt, dass nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] diese Seite erstellen können.'''
+Zur Information folgt der aktuelle Logbucheintrag:",
 'templatesused'                    => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seite verwendet:',
 'templatesusedpreview'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seitenvorschau verwendet:',
 'templatesusedsection'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von diesem Abschnitt verwendet:',
@@ -2019,7 +2022,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'protectedpages-cascade'  => 'Nur Seiten mit Kaskadenschutz',
 'protectedpagestext'      => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
 'protectedpagesempty'     => 'Aktuell sind keine Seiten mit diesen Parametern geschützt.',
-'protectedtitles'         => 'Gesperrte Titel',
+'protectedtitles'         => 'Geschützte Titel',
 'protectedtitlestext'     => 'Die folgenden Titel wurden zur Neuerstellung gesperrt.',
 'protectedtitlesempty'    => 'Zurzeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',
 'listusers'               => 'Benutzerverzeichnis',
@@ -2662,8 +2665,10 @@ Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die S
 'imageinvalidfilename'         => 'Der Ziel-Dateiname ist ungültig',
 'fix-double-redirects'         => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
 'move-leave-redirect'          => 'Weiterleitung erstellen',
-'protectedpagemovewarning'     => "'''Warnung:''' Diese Seite wurde gesperrt, so dass sie nur von Benutzern mit Administratorenrechten verschoben werden kann. Zur Information folgt der aktuelle Logbucheintrag:",
-'semiprotectedpagemovewarning' => "'''Hinweis:''' Diese Seite wurde gesperrt, so dass sie nur von angemeldeten Benutzern verschoben werden kann. Zur Information folgt der aktuelle Logbucheintrag:",
+'protectedpagemovewarning'     => "'''Warnung:''' Diese Seite wurde so geschützt, dass sie nur von Benutzern mit Administratorenrechten verschoben werden kann.
+Zur Information folgt der aktuelle Logbucheintrag:",
+'semiprotectedpagemovewarning' => "'''Hinweis:''' Diese Seite wurde so geschützt, dass sie nur von angemeldeten Benutzern verschoben werden kann.
+Zur Information folgt der aktuelle Logbucheintrag:",
 'move-over-sharedrepo'         => '==Datei existiert==
 [[:$1]] existiert in einem gemeinsam genutzten Repositorium. Das Verschieben einer Datei zu diesem Titel überschreibt die gemeinsam genutzte Datei.',
 'file-exists-sharedrepo'       => 'Der gewählte Dateiname wird bereits in einem gemeinsam genutzten Repositorium verwendet.
@@ -2885,7 +2890,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 
 # Spam protection
 'spamprotectiontitle' => 'Spamschutzfilter',
-'spamprotectiontext'  => 'Die Seite, die du speichern willst, wurde vom Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
+'spamprotectiontext'  => 'Der Text, die du speichern willst, wurde vom Spamschutzfilter blockiert.
+Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'spamprotectionmatch' => "'''Der folgende Text wurde vom Spamfilter gefunden: ''$1'''''",
 'spambot_username'    => 'MediaWiki-Spam-Säuberung',
 'spam_reverting'      => 'Letzte Version ohne Links zu $1 wiederhergestellt.',

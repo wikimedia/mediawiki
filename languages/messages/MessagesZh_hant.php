@@ -207,7 +207,7 @@ $messages = array(
 'tog-watchdeletion'           => '將我刪除的頁面加入我的監視列表',
 'tog-previewontop'            => '在編輯框上方顯示預覽',
 'tog-previewonfirst'          => '第一次編輯時顯示原文內容的預覽',
-'tog-nocache'                 => '停用頁面快取',
+'tog-nocache'                 => '禁止瀏覽器頁面快取',
 'tog-enotifwatchlistpages'    => '當在我的監視列表中的頁面改變時發電子郵件給我',
 'tog-enotifusertalkpages'     => '當我的對話頁發生改變時發電子郵件給我',
 'tog-enotifminoredits'        => '即使是頁面的小修改也向我發電子郵件',
@@ -565,9 +565,9 @@ $1',
 'viewsourcefor'        => '$1的原始碼',
 'actionthrottled'      => '動作已壓制',
 'actionthrottledtext'  => '基於反垃圾的考量，您現在於這段短時間之中限制去作這一個動作，而您已經超過這個上限。請在數分鐘後再嘗試。',
-'protectedpagetext'    => '該頁面已被鎖定以防止編輯。',
+'protectedpagetext'    => '該頁面已被保護以防止編輯。',
 'viewsourcetext'       => '{{GENDER:|你|妳|你}}可以檢視並複製本頁面的原始碼。',
-'protectedinterface'   => '該頁提供了軟體的介面文字，它已被鎖定以防止隨意的修改。',
+'protectedinterface'   => '該頁提供了軟體的介面文字，它已被保護以防止隨意的修改。',
 'editinginterface'     => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。如要翻譯，請考慮使用[http://translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]，一個用來為MediaWiki軟件本地化的計劃。",
 'sqlhidden'            => '（隱藏SQL查詢）',
 'cascadeprotected'     => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:
@@ -833,12 +833,12 @@ $2',
 'readonlywarning'                  => "'''警告: 資料庫被鎖定以進行維護，所以您目前將無法保存您的修改。'''您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。
 
 鎖定資料庫的管理員有如下解釋：$1",
-'protectedpagewarning'             => "'''警告: 本頁已經被保護，只有擁有管理員許可權的用戶才可修改。'''
+'protectedpagewarning'             => "'''警告：本頁已經被保護，只有擁有管理員許可權的用戶才可修改。'''
 最近的日誌在下面提供以便參考：",
-'semiprotectedpagewarning'         => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。
+'semiprotectedpagewarning'         => "'''注意：'''本頁面被保護，僅限註冊用戶編輯。
 最近的日誌在下面提供以便參考：",
-'cascadeprotectedwarning'          => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
-'titleprotectedwarning'            => "'''警告: 本頁面已被鎖上，需要[[Special:ListGroupRights|指定權限]]方可創建。'''
+'cascadeprotectedwarning'          => "'''警告：'''本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:",
+'titleprotectedwarning'            => "'''警告：本頁面已被保護，需要[[Special:ListGroupRights|指定權限]]方可創建。'''
 最近的日誌在下面提供以便參考：",
 'templatesused'                    => '此頁面包含以下{{PLURAL:$1|模板|模板}}:',
 'templatesusedpreview'             => '此次預覽中使用的{{PLURAL:$1|模板|模板}}有:',
@@ -1592,6 +1592,7 @@ $1",
 'upload-failure-msg'          => '有一個問題與您的上傳有關：
 
 $1',
+'upload-warning-subj'         => '上傳警告',
 
 'upload-proto-error'        => '協議錯誤',
 'upload-proto-error-text'   => '遠程上傳要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 開頭。',
@@ -2121,7 +2122,7 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => '保護日誌',
-'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:ProtectedPages|保護頁面清單]]以檢視目前進行的頁面保護。',
+'protectlogtext'              => '下面是頁面保護和取消保護的列表。請參考[[Special:ProtectedPages|保護頁面清單]]以檢視目前進行的頁面保護。',
 'protectedarticle'            => '已保護"[[$1]]"',
 'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',
@@ -2489,9 +2490,9 @@ $1已經被封鎖。您是否想更改這個設定？',
 'imageinvalidfilename'         => '目標檔案名稱是無效的',
 'fix-double-redirects'         => '更新指到原先標題的任何重新定向',
 'move-leave-redirect'          => '留下重新定向',
-'protectedpagemovewarning'     => "'''警告：'''這個頁面已經被鎖上，只有擁有管理員權限的用戶才可以移動它。
+'protectedpagemovewarning'     => "'''警告：'''這個頁面已經被保護，只有擁有管理員權限的用戶才可以移動它。
 最近的日誌在下面提供以便參考：",
-'semiprotectedpagemovewarning' => "'''注意：'''這個頁面已經被鎖上，只有已經註冊的用戶才可以移動它。
+'semiprotectedpagemovewarning' => "'''注意：'''這個頁面已經被保護，只有已經註冊的用戶才可以移動它。
 最近的日誌在下面提供以便參考：",
 'move-over-sharedrepo'         => '== 檔案已存在 ==
 [[:$1]]已於共享資源存在，將檔案移動到此標題會覆蓋共享資源中的檔案。',
@@ -2707,8 +2708,8 @@ $1已經被封鎖。您是否想更改這個設定？',
 
 # Spam protection
 'spamprotectiontitle' => '垃圾過濾器',
-'spamprotectiontext'  => '您要儲存的頁面被垃圾過濾器阻止。
-這可能是由於一個到外部站點的鏈接引起的。',
+'spamprotectiontext'  => '您要保存的文本被垃圾過濾器阻止。
+這可能是由於一個鏈往匹配黑名單的外部站點的鏈接引起的。',
 'spamprotectionmatch' => '觸發了我們的垃圾過濾器的文本如下：$1',
 'spambot_username'    => 'MediaWiki 廣告清除',
 'spam_reverting'      => '恢復到不包含連結至$1的最近修訂版本',

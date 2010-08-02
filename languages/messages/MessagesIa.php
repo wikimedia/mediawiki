@@ -152,7 +152,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Adder le paginas que io dele a mi observatorio',
 'tog-previewontop'            => 'Monstrar previsualisation ante le quadro de modification',
 'tog-previewonfirst'          => 'Monstrar previsualisation al prime modification',
-'tog-nocache'                 => "Disactivar le ''cache'' de paginas",
+'tog-nocache'                 => "Disactivar le ''cache'' de paginas in le navigator",
 'tog-enotifwatchlistpages'    => 'Notificar me via e-mail quando un pagina in mi observatorio es modificate',
 'tog-enotifusertalkpages'     => 'Notificar me via e-mail quando mi pagina de discussion es modificate',
 'tog-enotifminoredits'        => 'Notificar me etiam de modificationes minor de paginas',
@@ -560,6 +560,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'gotaccount'                 => "Tu jam ha un conto? '''$1'''.",
 'gotaccountlink'             => 'Aperi un session',
 'createaccountmail'          => 'per e-mail',
+'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Le duo contrasignos que tu scribeva non es identic.',
 'userexists'                 => 'Le nomine de usator que tu entrava es ja in uso.
 Selige un altere nomine.',
@@ -1607,11 +1608,13 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- non modificar de alcun modo iste linea -->',
 'upload-success-subj'         => 'Incargamento succedite',
-'upload-success-msg'          => 'Tu file incargate es disponibile a: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Le incargamento de [$2] ha succedite. Illo es disponibile hic: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema de incargamento',
 'upload-failure-msg'          => 'Il ha occurrite un problema con tu incargamento:
 
 $1',
+'upload-warning-subj'         => 'Advertimento de incargamento',
+'upload-warning-msg'          => 'Occurreva un problema con le incargamento de [$2]. Tu pote retornar al [[Special:Upload/stash/$1|formulario de incargamento]] pro corriger iste problema.',
 
 'upload-proto-error'        => 'Protocollo incorrecte',
 'upload-proto-error-text'   => 'Le incargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',

@@ -683,6 +683,7 @@ Ikkje gløym å endre på [[Special:Preferences|innstillingane]] dine.',
 'gotaccount'                 => "Har du ein brukarkonto? '''$1'''.",
 'gotaccountlink'             => 'Logg inn',
 'createaccountmail'          => 'over e-post',
+'createaccountreason'        => 'Årsak:',
 'badretype'                  => 'Passorda du skreiv inn er ikkje like.',
 'userexists'                 => 'Brukarnamnet er alt i bruk. Vel eit anna.',
 'loginerror'                 => 'Innloggingsfeil',
@@ -1435,6 +1436,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-override-export-depth' => 'Eksporter sider inkludert lenkte sider til ei djupn på 5',
 'right-sendemail'             => 'Senda e-post til andre brukarar',
 'right-revisionmove'          => 'Flytta versjonar',
+'right-selenium'              => 'Køyra Selenium-testar',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1543,12 +1545,12 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 
 Slette- og flytteloggen til sida er gjeven opp her:",
 'uploadtext'                  => "Bruk skjemaet under for å laste opp filer.
-For å sjå eller søkje i eksisterande filer, gå til [[Special:FileList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]].
+For å sjå eller søkje i eksisterande filer, gå til [[Special:FileList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]], og slettingar i [[Special:Log/delete|sletteloggen]].
 
-For å bruke ei fil på ei side, bruk ei slik lenkje:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke bilete med ei breidde på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>''' for å lenkje direkte til fila utan å vise ho",
+For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnamn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnamn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke biletet med ei breidd på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnamn.ogg<nowiki>]]</nowiki></tt>''' for å lenkje direkte til fila utan å vise ho",
 'upload-permitted'            => 'Godtekne filtypar: $1.',
 'upload-preferred'            => 'Føretrekte filtypar: $1.',
 'upload-prohibited'           => 'Ikkje godtekne filtypar: $1.',
@@ -1650,6 +1652,8 @@ PICT # div.
 'upload-failure-msg'          => 'Det oppstod eit problem med opplastinga di:
 
 $1',
+'upload-warning-subj'         => 'Opplastingsåtvaring',
+'upload-warning-msg'          => 'Det oppstod eit problem med opplastinga di frå [$2]. Du kan gå attende til [[Special:Upload/stash/$1|opplastingsskjemaet]] for å løysa dette problemet.',
 
 'upload-proto-error'        => 'Feil protokoll',
 'upload-proto-error-text'   => 'Fjernopplasting krev nettadresser som byrjar med <code>http://</code> eller <code>ftp://</code>.',
@@ -2668,6 +2672,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-rollback'                => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar',
 'tooltip-undo'                    => '«Gjer om» attenderullar endringar og opnar endringsvindauga med førehandsvising. Gjer at ein kan leggje til ei årsak samandragsboksen.',
 'tooltip-preferences-save'        => 'Lagra innstillingar',
+'tooltip-summary'                 => 'Skriv inn eit kort samandrag',
 
 # Stylesheets
 'common.css'      => '/* CSS plassert i denne fila vil gjelde for alle utsjånader. */',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jarmanj Turtash
  * @author Khazar II
  * @author Kranch
  * @author Numulunj pilgae
