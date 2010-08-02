@@ -56,7 +56,7 @@ class SpecialVersion extends SpecialPage {
 		$text = 
 			$this->getMediaWikiCredits() .
 			$this->softwareInformation() .
-			$this->extensionCredits();
+			$this->getExtensionCredits();
 		if ( $wgSpecialVersionShowHooks ) {
 			$text .= $this->getWgHooks();
 		}
@@ -204,11 +204,12 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return String: Wikitext
 	 */
-	function extensionCredits() {
+	function getExtensionCredits() {
 		global $wgExtensionCredits, $wgExtensionFunctions, $wgParser, $wgSkinExtensionFunctions;
 
-		if ( ! count( $wgExtensionCredits ) && ! count( $wgExtensionFunctions ) && ! count( $wgSkinExtensionFunctions ) )
+		if ( !count( $wgExtensionCredits ) && !count( $wgExtensionFunctions ) && !count( $wgSkinExtensionFunctions ) ) {
 			return '';
+		}
 
 		$extensionTypes = array(
 			'specialpage' => wfMsg( 'version-specialpages' ),
@@ -217,6 +218,7 @@ class SpecialVersion extends SpecialPage {
 			'media' => wfMsg( 'version-mediahandlers' ),
 			'other' => wfMsg( 'version-other' ),
 		);
+		
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), wfMsg( 'version-extensions' ) ) .
@@ -229,7 +231,7 @@ class SpecialVersion extends SpecialPage {
 				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
 
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
-					$out .= $this->formatCredits( $extension );
+					$out .= $this->getCreditsForExtension( $extension );
 				}
 			}
 		}
@@ -275,7 +277,14 @@ class SpecialVersion extends SpecialPage {
 		}
 	}
 
-	function formatCredits( $extension ) {
+	/**
+	 * Creates and formats the creidts for a single extension and returns this.
+	 * 
+	 * @param $extension String
+	 * 
+	 * @return string
+	 */
+	function getCreditsForExtension( $extension ) {
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
 		
 		if ( isset( $extension['path'] ) ) {
