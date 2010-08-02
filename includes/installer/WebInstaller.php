@@ -444,28 +444,14 @@ class WebInstaller extends CoreInstaller {
 	 * @return string
 	 */
 	public function getAcceptLanguage() {
-		global $wgLanguageCode;
+		global $wgLanguageCode, $wgRequest;
 
 		$mwLanguages = Language::getLanguageNames();
-		$langs = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+		$headerLanguages = array_keys( $wgRequest->getAcceptLang() );
 		
-		foreach ( explode( ';', $langs ) as $splitted ) {
-			foreach ( explode( ',', $splitted ) as $lang ) {
-				$lang = trim( strtolower( $lang ) );
-				
-				if ( $lang == '' || $lang[0] == 'q' ) {
-					continue;
-				}
-				
-				if ( isset( $mwLanguages[$lang] ) ) {
-					return $lang;
-				}
-				
-				$lang = preg_replace( '/^(.*?)(?=-[^-]*)$/', '\\1', $lang );
-				
-				if ( $lang != '' && isset( $mwLanguages[$lang] ) ) {
-					return $lang;
-				}
+		foreach ( $headerLanguages as $lang ) {
+			if ( isset( $mwLanguages[$lang] ) ) {
+				return $lang;
 			}
 		}
 		

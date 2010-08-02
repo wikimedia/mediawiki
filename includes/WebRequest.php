@@ -733,14 +733,15 @@ class WebRequest {
 	 */
 	public function getAcceptLang() {
 		// Modified version of code found at http://www.thefutureoftheweb.com/blog/use-accept-language-header
-		if ( !isset( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ) {
+		$acceptLang = $this->getHeader( 'Accept-Language' );
+		if ( !$acceptLang ) {
 			return array();
 		}
 		
 		// Break up string into pieces (languages and q factors)
 		$lang_parse = null;
 		preg_match_all( '/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0(\.[0-9]+))?)?/i',
-			$_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse );
+			$acceptLang, $lang_parse );
 		
 		if ( !count( $lang_parse[1] ) ) {
 			return array();

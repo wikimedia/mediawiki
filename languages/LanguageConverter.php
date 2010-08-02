@@ -233,29 +233,13 @@ class LanguageConverter {
 
 		// see if some supported language variant is set in the
 		// http header.
-		$acceptLanguage = $wgRequest->getHeader( 'Accept-Language' );
-		if ( !$acceptLanguage ) {
+		$languages = array_keys( $wgRequest->getAcceptLang() );
+		if ( empty( $languages ) ) {
 			return null;
-		}
-
-		// explode by comma
-		$result = StringUtils::explode( ',', strtolower( $acceptLanguage ) );
-		$languages = array();
-
-		foreach ( $result as $elem ) {
-			// if $elem likes 'zh-cn;q=0.9'
-			if ( ( $posi = strpos( $elem, ';' ) ) !== false ) {
-				// get the real language code likes 'zh-cn'
-				$languages[] = substr( $elem, 0, $posi );
-			} else {
-				$languages[] = $elem;
-			}
 		}
 
 		$fallback_languages = array();
 		foreach ( $languages as $language ) {
-			// strip whitespace
-			$language = trim( $language );
 			$this->mHeaderVariant = $this->validateVariant( $language );
 			if ( $this->mHeaderVariant ) {
 				break;
