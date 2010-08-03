@@ -1302,8 +1302,6 @@ class RevDel_LogList extends RevDel_List {
 	var $authorNameField = 'log_user_text';
 
 	public function doQuery( $db ) {
-		global $wgMessageCache;
-		$wgMessageCache->loadAllMessages();
 		$ids = array_map( 'intval', $this->ids );
 		return $db->select( 'logging', '*',
 			array( 'log_id' => $ids ),

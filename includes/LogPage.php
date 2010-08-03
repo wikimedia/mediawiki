@@ -147,10 +147,9 @@ class LogPage {
 	 * @return String: log name
 	 */
 	public static function logName( $type ) {
-		global $wgLogNames, $wgMessageCache;
+		global $wgLogNames;
 
 		if( isset( $wgLogNames[$type] ) ) {
-			$wgMessageCache->loadAllMessages();
 			return str_replace( '_', ' ', wfMsg( $wgLogNames[$type] ) );
 		} else {
 			// Bogus log types? Perhaps an extension was removed.
@@ -166,8 +165,7 @@ class LogPage {
 	 * @return String: headertext of this logtype
 	 */
 	public static function logHeader( $type ) {
-		global $wgLogHeaders, $wgMessageCache;
-		$wgMessageCache->loadAllMessages();
+		global $wgLogHeaders;
 		return wfMsgExt($wgLogHeaders[$type], array( 'parseinline' ) );
 	}
 
@@ -186,9 +184,8 @@ class LogPage {
 	public static function actionText( $type, $action, $title = null, $skin = null,
 		$params = array(), $filterWikilinks = false ) 
 	{
-		global $wgLang, $wgContLang, $wgLogActions, $wgMessageCache;
+		global $wgLang, $wgContLang, $wgLogActions;
 
-		$wgMessageCache->loadAllMessages();
 		$key = "$type/$action";
 		# Defer patrol log to PatrolLog class
 		if( $key == 'patrol/patrol' ) {
