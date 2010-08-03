@@ -120,7 +120,7 @@ $dateFormats = array(
  * Hledání knihy podle ISBN
  */
 $bookstoreList = array(
-	'Národní knihovna'          => 'http://sigma.nkp.cz/F/?func=find-a&find_code=ISN&request=$1',
+	'Národní knihovna'          => 'http://aleph.nkp.cz/F/?func=find-a&find_code=ISN&request=$1',
 	'Státní technická knihovna' => 'http://www.stk.cz/cgi-bin/dflex/CZE/STK/BROWSE?A=01&V=$1',
 	'inherit' => true,
 );
