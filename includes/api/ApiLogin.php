@@ -68,9 +68,12 @@ class ApiLogin extends ApiBase {
 		}
 
 		$loginForm = new LoginForm( $req );
+
+		global $wgCookiePrefix;
+
 		switch ( $authRes = $loginForm->authenticateUserData() ) {
 			case LoginForm::SUCCESS:
-				global $wgUser, $wgCookiePrefix;
+				global $wgUser;
 
 				$wgUser->setOption( 'rememberpassword', 1 );
 				$wgUser->setCookies();
