@@ -1095,6 +1095,7 @@ function do_collation_update() {
 		__FUNCTION__
 	) == 0 ) {
 		wfOut( "...collations up-to-date.\n" );
+		return;
 	}
 	require_once( 'updateCollation.php' );
 	$task = new UpdateCollation();
