@@ -247,18 +247,6 @@ class CategoryViewer {
 
 		$dbr = wfGetDB( DB_SLAVE, 'category' );
 
-		$tables = array( 'page', 'categorylinks', 'category' );
-		$fields = array( 'page_title', 'page_namespace', 'page_len',
-			'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
-			'cat_subcats', 'cat_pages', 'cat_files' );
-		$conds = array( 'cl_to' => $this->title->getDBkey() );
-		$opts = array(
-			'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
-			'LIMIT' => $this->limit + 1,
-		);
-		$joins = array( 'categorylinks'  => array( 'INNER JOIN', 'cl_from = page_id' ),
-			'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY ) );
-
 		$this->nextPage = array(
 			'page' => null,
 			'subcat' => null,
@@ -281,12 +269,21 @@ class CategoryViewer {
 			}
 
 			$res = $dbr->select(
-				$tables,
-				array_merge( $fields, array( 'cl_sortkey_prefix' ) ),
-				$conds + $extraConds,
+				array( 'page', 'categorylinks', 'category' ),
+				array( 'page_title', 'page_namespace', 'page_len',
+					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
+					'cat_subcats', 'cat_pages', 'cat_files', 'cl_sortkey_prefix' ),
+				array( 'cl_to' => $this->title->getDBkey() ) + $extraConds,
 				__METHOD__,
-				$opts + array( 'ORDER BY' => $this->flip[$type] ? 'cl_sortkey DESC' : 'cl_sortkey' ),
-				$joins
+				array(
+					'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
+					'LIMIT' => $this->limit + 1,
+					'ORDER BY' => $this->flip[$type] ? 'cl_sortkey DESC' : 'cl_sortkey',
+				),
+				array(
+					'categorylinks'  => array( 'INNER JOIN', 'cl_from = page_id' ),
+					'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY )
+				)
 			);
 
 			$count = 0;
