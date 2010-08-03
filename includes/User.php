@@ -2079,6 +2079,20 @@ class User {
 	}
 
 	/**
+	 * Get the user preferred stub threshold
+	 */
+	function getStubThreshold() {
+		global $wgMaxArticleSize; # Maximum article size, in Kb
+		$threshold = intval( $this->getOption( 'stubthreshold' ) );
+		if ( $threshold > $wgMaxArticleSize * 1024 ) {
+			# If they have set an impossible value, disable the preference 
+			# so we can use the parser cache again.
+			$threshold = 0;
+		}
+		return $threshold;
+	}
+
+	/**
 	 * Get the permissions this user has.
 	 * @return \type{\arrayof{\string}} Array of permission names
 	 */
@@ -2686,10 +2700,11 @@ class User {
 		}
 
 		// stubthreshold is only included below for completeness,
-		// it will always be 0 when this function is called by parsercache.
+		// since it disables the parser cache, its value will always 
+		// be 0 when this function is called by parsercache.
 
 		$confstr =        $this->getOption( 'math' );
-		$confstr .= '!' . $this->getOption( 'stubthreshold' );
+		$confstr .= '!' . $this->getStubThreshold();
 		if ( $wgUseDynamicDates ) {
 			$confstr .= '!' . $this->getDatePreference();
 		}
@@ -2699,6 +2714,9 @@ class User {
 		// add in language specific options, if any
 		$extra = $wgContLang->getExtraHashOptions();
 		$confstr .= $extra;
+
+		// Since the skin could be overloading link(), it should be
+		// included here but in practice, none of our skins do that.
 
 		$confstr .= $wgRenderHashAppend;
 

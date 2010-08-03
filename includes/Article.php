@@ -891,7 +891,7 @@ class Article {
 		# Should the parser cache be used?
 		$useParserCache = $this->useParserCache( $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
-		if ( $wgUser->getOption( 'stubthreshold' ) ) {
+		if ( $wgUser->getStubThreshold() ) {
 			wfIncrStats( 'pcache_miss_stub' );
 		}
 
@@ -1450,7 +1450,7 @@ class Article {
 		global $wgUser, $wgEnableParserCache;
 
 		return $wgEnableParserCache
-			&& intval( $wgUser->getOption( 'stubthreshold' ) ) == 0
+			&& $wgUser->getStubThreshold() == 0
 			&& $this->exists()
 			&& empty( $oldid )
 			&& !$this->mTitle->isCssOrJsPage()
@@ -4589,13 +4589,13 @@ class Article {
 
 		// Should the parser cache be used?
 		$useParserCache = $wgEnableParserCache &&
-			intval( $wgUser->getOption( 'stubthreshold' ) ) == 0 &&
+			$wgUser->getStubThreshold() == 0 &&
 			$this->exists() &&
 			$oldid === null;
 
 		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 
-		if ( $wgUser->getOption( 'stubthreshold' ) ) {
+		if ( $wgUser->getStubThreshold() ) {
 			wfIncrStats( 'pcache_miss_stub' );
 		}
 
