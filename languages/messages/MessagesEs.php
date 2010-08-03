@@ -737,6 +737,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'gotaccount'                 => '¿Ya tiene una cuenta de usuario? $1.',
 'gotaccountlink'             => 'Autenticarse',
 'createaccountmail'          => 'por correo electrónico',
+'createaccountreason'        => 'Razón:',
 'badretype'                  => 'Las contraseñas no coinciden.',
 'userexists'                 => 'El nombre indicado ya está en uso.
 Por favor, indica un nombre diferente.',

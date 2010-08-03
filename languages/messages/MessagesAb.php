@@ -107,6 +107,7 @@ $messages = array(
 'qbspecialpages' => 'Цастәи адаҟьақәа',
 
 # Vector skin
+'vector-action-move'        => 'Ахьӡ аҧсахра',
 'vector-namespace-category' => 'Акатегориа',
 'vector-namespace-help'     => 'Ацхыраара адаҟьа',
 'vector-namespace-image'    => 'Афаил',
@@ -115,7 +116,7 @@ $messages = array(
 'vector-namespace-special'  => 'Цастәи адаҟьа',
 'vector-namespace-talk'     => 'Ахцәажәара',
 'vector-namespace-template' => 'Ашаблон',
-'vector-namespace-user'     => 'Иалахә Адаҟьа',
+'vector-namespace-user'     => 'Алахәыла Адаҟьа',
 'vector-view-create'        => 'Арҿиара',
 'vector-view-edit'          => 'Ариашамҭа',
 'vector-view-history'       => 'Аҭоурых',
@@ -160,7 +161,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Адаҟьа',
-'nstab-user'     => 'Иалахә',
+'nstab-user'     => 'Алахәыла',
 'nstab-special'  => 'Цастәи адаҟьа',
 'nstab-image'    => 'Афаил',
 'nstab-template' => 'Ашаблон',
@@ -190,13 +191,13 @@ $messages = array(
 'preferences'       => 'Архиарақәа',
 'mypreferences'     => 'Архиарақәа',
 'searchresultshead' => 'Аҧшаара',
-'uid'               => 'Иалоу ID:',
+'uid'               => 'Алахәыла ID:',
 'yourlanguage'      => 'Абызшәа:',
 
 # Groups
-'group-user' => 'Иалоуқәа',
+'group-user' => 'Алахәылацәа',
 
-'group-user-member' => 'Иалахә',
+'group-user-member' => 'алахәыла',
 
 'grouppage-sysop' => '{{ns:project}}:Администраторцәа',
 
@@ -214,7 +215,7 @@ $messages = array(
 'upload' => 'Афаил аҭагалара',
 
 # File description page
-'filehist-user' => 'Иалоу',
+'filehist-user' => 'Алахәыла',
 
 # Random page
 'randompage' => 'Машәырлатәи аҩымҭа',
@@ -222,10 +223,12 @@ $messages = array(
 'brokenredirects-edit' => 'ариашамҭа',
 
 # Miscellaneous special pages
-'newpages-username' => 'Иалахә:',
+'newpages-username' => 'Алахәыла:',
+'move'              => 'Ахьӡ аҧсахра',
+'movethispage'      => 'Ахьӡ аҧсахра ари адаҟьа',
 
 # Special:Log
-'specialloguserlabel' => 'Иалахә:',
+'specialloguserlabel' => 'Алахәыла:',
 
 # Special:AllPages
 'alphaindexline' => '$1 ... $2',
@@ -253,6 +256,9 @@ $messages = array(
 
 # Block/unblock
 'contribslink' => 'алагала',
+
+# Move page
+'movearticle' => 'Ахьӡ аҧсахра:',
 
 # Namespace 8 related
 'allmessages-language' => 'Абызшәа:',

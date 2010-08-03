@@ -540,6 +540,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'gotaccount'                 => "Ur gont zo ganeoc'h dija ? '''$1'''.",
 'gotaccountlink'             => 'Kevreañ',
 'createaccountmail'          => 'dre bostel',
+'createaccountreason'        => 'Abeg :',
 'badretype'                  => "N'eo ket peurheñvel an eil ouzh egile an daou c'her-tremen bet lakaet ganeoc'h.",
 'userexists'                 => "Implijet eo an anv implijer lakaet ganeoc'h dija.
 Dibabit un anv all mar plij.",
@@ -1543,11 +1544,12 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->",
 'upload-success-subj'         => 'Eiladenn kaset da benn vat',
-'upload-success-msg'          => "Ho kargadenn a c'heller kavout amañ : [[:{{ns:file}}:$1]]",
+'upload-success-msg'          => 'Ho kargadenn eus [$2] a zo bet graet. Gellout a rit kavout anezhi amañ : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Kudenn kargañ',
 'upload-failure-msg'          => "Ur gudenn 'zo bet e-pad ho kargadenn :
 
 $1",
+'upload-warning-subj'         => "Kemmen diwall e-pad ar c'hargañ",
 
 'upload-proto-error'        => 'Protokol direizh',
 'upload-proto-error-text'   => 'Rekis eo an URLoù a grog gant <code>http://</code> pe <code>ftp://</code> evit enporzhiañ.',

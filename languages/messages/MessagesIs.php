@@ -9,6 +9,7 @@
  *
  * @author Cessator
  * @author Friðrik Bragi Dýrfjörð
+ * @author Gott wisst
  * @author Jóna Þórunn
  * @author Krun
  * @author Maxí
@@ -375,6 +376,7 @@ $messages = array(
 'vector-namespace-help'      => 'Hjálparsíða',
 'vector-namespace-image'     => 'Skrá',
 'vector-namespace-main'      => 'Síða',
+'vector-namespace-media'     => 'Margmiðlunarsíða',
 'vector-namespace-mediawiki' => 'Melding',
 'vector-namespace-project'   => 'Verkefnissíða',
 'vector-namespace-special'   => 'Kerfissíða',
