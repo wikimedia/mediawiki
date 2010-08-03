@@ -730,6 +730,8 @@ class WebRequest {
 	/**
 	 * Parse the Accept-Language header sent by the client into an array
 	 * @return array( languageCode => q-value ) sorted by q-value in descending order
+	 * May contain the "language" '*', which applies to languages other than those explicitly listed.
+	 * This is aligned with rfc2616 section 14.4
 	 */
 	public function getAcceptLang() {
 		// Modified version of code found at http://www.thefutureoftheweb.com/blog/use-accept-language-header
@@ -738,22 +740,29 @@ class WebRequest {
 			return array();
 		}
 		
+		// Return the language codes in lower case
+		$acceptLang = strtolower( $acceptLang );
+		
 		// Break up string into pieces (languages and q factors)
 		$lang_parse = null;
-		preg_match_all( '/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0(\.[0-9]+))?)?/i',
+		preg_match_all( '/([a-z]{1,8}(-[a-z]{1,8})?|\*)\s*(;\s*q\s*=\s*(1|0(\.[0-9]+)?)?)?/',
 			$acceptLang, $lang_parse );
 		
 		if ( !count( $lang_parse[1] ) ) {
 			return array();
 		}
+
 		// Create a list like "en" => 0.8
 		$langs = array_combine( $lang_parse[1], $lang_parse[4] );
 		// Set default q factor to 1
 		foreach ( $langs as $lang => $val ) {
 			if ( $val === '' ) {
 				$langs[$lang] = 1;
+			} else if ( $val == 0 ) {
+				unset($langs[$lang]);
 			}
 		}
+
 		// Sort list
 		arsort( $langs, SORT_NUMERIC );
 		return $langs;
