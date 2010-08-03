@@ -585,7 +585,7 @@ function wfUILang() {
  *    defined in languages/Language.php
  *
  * This function also takes extra optional parameters (not
- * shown in the function definition), which can by used to
+ * shown in the function definition), which can be used to
  * insert variable text into the predefined message.
  */
 function wfMsg( $key ) {
