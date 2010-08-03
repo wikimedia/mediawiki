@@ -44,10 +44,8 @@ class SpecialVersion extends SpecialPage {
 	 * main()
 	 */
 	function execute( $par ) {
-		global $wgOut, $wgMessageCache, $wgSpecialVersionShowHooks, $wgContLang;
+		global $wgOut, $wgSpecialVersionShowHooks, $wgContLang;
 		
-		$wgMessageCache->loadAllMessages();
-
 		$this->setHeaders();
 		$this->outputHeader();
 

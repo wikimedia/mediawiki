@@ -41,10 +41,9 @@ class SpecialListGroupRights extends SpecialPage {
 	 * Show the special page
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgImplicitGroups, $wgMessageCache;
+		global $wgOut, $wgImplicitGroups;
 		global $wgGroupPermissions, $wgRevokePermissions, $wgAddGroups, $wgRemoveGroups;
 		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
-		$wgMessageCache->loadAllMessages();
 
 		$this->setHeaders();
 		$this->outputHeader();
