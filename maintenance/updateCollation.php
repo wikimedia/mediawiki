@@ -60,7 +60,8 @@ TEXT;
 				if ( $row->cl_collation == 0 ) {
 					# This is an old-style row, so the sortkey needs to be
 					# converted.
-					if ( $row->cl_sortkey == $title->getCategorySortkey() ) {
+					if ( $row->cl_sortkey == $title->getText()
+					|| $row->cl_sortkey == $title->getPrefixedText() ) {
 						$prefix = '';
 					} else {
 						# Custom sortkey, use it as a prefix

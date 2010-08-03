@@ -4149,13 +4149,7 @@ class Title {
 	 * @return string
 	 */
 	public function getCategorySortkey( $prefix = '' ) {
-		global $wgCategoryPrefixedDefaultSortkey;
-		if ( $this->getNamespace() == NS_CATEGORY
-		|| !$wgCategoryPrefixedDefaultSortkey ) {
-			$unprefixed = $this->getText();
-		} else {
-			$unprefixed = $this->getPrefixedText();
-		}
+		$unprefixed = $this->getText();
 		if ( $prefix !== '' ) {
 			# Separate with a null byte, so the unprefixed part is only used as
 			# a tiebreaker when two pages have the exact same prefix -- null
