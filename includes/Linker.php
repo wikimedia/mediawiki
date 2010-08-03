@@ -267,7 +267,7 @@ class Linker {
 			}
 
 			if ( !in_array( 'broken', $options ) ) { # Avoid useless calls to LinkCache (see r50387)
-				$colour = $this->getLinkColour( $target, $wgUser->getOption( 'stubthreshold' ) );
+				$colour = $this->getLinkColour( $target, $wgUser->getStubThreshold() );
 				if ( $colour !== '' ) {
 					$classes[] = $colour; # mw-redirect or stub
 				}
@@ -337,7 +337,7 @@ class Linker {
 		global $wgUser;
 		wfDeprecated( __METHOD__ );
 		
-		$threshold = intval( $wgUser->getOption( 'stubthreshold' ) );
+		$threshold = $wgUser->getStubThreshold();
 		$colour = ( $size < $threshold ) ? 'stub' : '';
 		// FIXME: replace deprecated makeColouredLinkObj by link()
 		return $this->makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
