@@ -125,6 +125,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24563) Entries on Special:WhatLinksHere now have a link to their history
 * (bug 21503) There's now a "reason" field when creating account for other users
 * (bug 24418) action=markpatrolled now requires a token
+* A variety of category sort-related fixes, including:
+** (bug 164) In English, lowercase and uppercase letters now sort the same.
+   (This should be expanded to proper sorting for other languages before the
+   1.17 release.)
+** (bug 1211) Subcategories, ordinary pages, and files now page separately.
+** When several pages are given the same sort key, they sort by their names
+   instead of randomly.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
