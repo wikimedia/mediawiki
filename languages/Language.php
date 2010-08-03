@@ -2991,6 +2991,6 @@ class Language {
 		if ( $string[0] == "\0" ) {
 			$string = substr( $string, 1 );
 		}
-		return strtoupper( mb_substr( $string, 0, 1 ) );
+		return strtoupper( $this->firstChar( $string ) );
 	}
 }
