@@ -563,6 +563,13 @@ function wfGetLangObj( $langcode = false ) {
 	return $wgContLang;
 }
 
+/**
+ * Use this instead of $wgContLang, when working with user interface.
+ * User interface is currently hard coded according to wiki content language
+ * in many ways, especially regarding to text direction. There is lots stuff
+ * to fix, hence this function to keep the old behaviour unless the global
+ * $wgBetterDirectionality is enabled (or removed when everything works).
+ */
 function wfUILang() {
 	global $wgBetterDirectionality;
 	return wfGetLangObj( $wgBetterDirectionality ? false: true );
