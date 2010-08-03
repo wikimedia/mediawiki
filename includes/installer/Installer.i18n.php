@@ -354,11 +354,11 @@ In MediaWiki, it is easy to review the recent changes, and to revert any damage 
 However, many have found MediaWiki to be useful in a wide variety of roles, and sometimes it is not easy to convince everyone of the benefits of the wiki way.
 So you have the the choice.
 
-A '''traditional wiki''' allows anyone to edit, without even logging in.
-A wiki with '''account creation required''' provides extra accountability, but may deter casual contributors.
+A '''{{int:config-profile-wiki}}''' allows anyone to edit, without even logging in.
+A wiki with '''{{int:config-profile-no-anon}}''' provides extra accountability, but may deter casual contributors.
 
-The '''authorized editors only''' scenario allows approved users to edit, but the public can view the pages, including history.
-A '''private wiki''' only allows approved users to view pages, with the same group allowed to edit.
+The '''{{int:config-profile-fishbowl}}''' scenario allows approved users to edit, but the public can view the pages, including history.
+A '''{{int:config-profile-private}}''' only allows approved users to view pages, with the same group allowed to edit.
 
 More complex user rights configurations are available after installation, see the [http://www.mediawiki.org/wiki/Manual:User_rights relevant manual entry].",
 	'config-license'                  => 'Copyright and license:',
