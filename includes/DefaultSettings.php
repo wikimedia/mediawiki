@@ -4467,12 +4467,6 @@ $wgCategoryMagicGallery = true;
 $wgCategoryPagingLimit = 200;
 
 /**
- * Should the default category sortkey be the prefixed title?
- * Run maintenance/refreshLinks.php after changing this.
- */
-$wgCategoryPrefixedDefaultSortkey = true;
-
-/**
  * A version indicator for collations that will be stored in cl_collation for
  * all new rows.  Used when the collation algorithm changes: a script checks
  * for all rows where cl_collation != $wgCollationVersion and regenerates
