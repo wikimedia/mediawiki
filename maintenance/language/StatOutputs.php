@@ -52,6 +52,10 @@ class wikiStatsOutput extends statsOutput {
 	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		$v = @round( 255 * $subset / $total );
 		if ( $revert ) {
+			# Weigh reverse with factor 20 so coloring takes effect more quickly as
+			# this option is used solely for reporting 'bad' percentages.
+			$v = $v * 20;
+			if ( $v > 255 ) $v = 255;
 			$v = 255 - $v;
 		}
 		if ( $v < 128 ) {
