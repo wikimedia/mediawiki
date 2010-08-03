@@ -21,9 +21,8 @@ require_once( 'writeMessagesArray.inc' );
  * @param $removeDupes Remove the duplicated messages?
  * @param $dupeMsgSource The source file intended to remove from the array.
  */
-function rebuildLanguage( $code, $write, $listUnknown, $removeUnknown, $removeDupes, $dupeMsgSource ) {
-	global $wgLanguages;
-	$messages = $wgLanguages->getMessages( $code );
+function rebuildLanguage( $languages, $code, $write, $listUnknown, $removeUnknown, $removeDupes, $dupeMsgSource ) {
+	$messages = $languages->getMessages( $code );
 	$messages = $messages['all'];
 	if ( $removeDupes ) {
 		$messages = removeDupes( $messages, $dupeMsgSource );
@@ -96,13 +95,13 @@ $wgRemoveUnknownMessages = isset( $options['remove-unknown'] );
 $wgRemoveDuplicateMessages = isset( $options['remove-duplicates'] );
 
 # Get language objects
-$wgLanguages = new languages();
+$languages = new languages();
 
 # Write all the language
 if ( $wgCode == 'all' ) {
-	foreach ( $wgLanguages->getLanguages() as $language ) {
-		rebuildLanguage( $language, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource );
+	foreach ( $languages->getLanguages() as $languageCode ) {
+		rebuildLanguage( $languages, $languageCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource );
 	}
 } else {
-	rebuildLanguage( $wgCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource );
+	rebuildLanguage( $languages, $wgCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource );
 }
