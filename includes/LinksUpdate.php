@@ -426,57 +426,48 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getCategoryInsertions( $existing = array() ) {
-		global $wgContLang, $wgExperimentalCategorySort, $wgCollationVersion;
+		global $wgContLang, $wgCollationVersion;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = array();
 		foreach ( $diffs as $name => $sortkey ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$wgContLang->findVariantLink( $name, $nt, true );
 
-			if ( $wgExperimentalCategorySort ) {
-				if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
-					$type = 'subcat';
-				} elseif ( $this->mTitle->getNamespace() == NS_FILE ) {
-					$type = 'file';
-				} else {
-					$type = 'page';
-				}
-
-				# TODO: This is kind of wrong, because someone might set a sort
-				# key prefix that's the same as the default sortkey for the
-				# title.  This should be fixed by refactoring code to replace
-				# $sortkey in this array by a prefix, but it's basically harmless
-				# (Title::moveTo() has had the same issue for a long time).
-				if ( $this->mTitle->getCategorySortkey() == $sortkey ) {
-					$prefix = '';
-					$sortkey = $wgContLang->convertToSortkey( $sortkey );
-				} else {
-					# Treat custom sortkeys as a prefix, so that if multiple
-					# things are forced to sort as '*' or something, they'll
-					# sort properly in the category rather than in page_id
-					# order or such.
-					$prefix = $sortkey;
-					$sortkey = $wgContLang->convertToSortkey(
-						$this->mTitle->getCategorySortkey( $prefix ) );
-				}
-
-				$arr[] = array(
-					'cl_from'    => $this->mId,
-					'cl_to'      => $name,
-					'cl_sortkey' => $sortkey,
-					'cl_timestamp' => $this->mDb->timestamp(),
-					'cl_sortkey_prefix' => $prefix,
-					'cl_collation' => $wgCollationVersion,
-					'cl_type' => $type,
-				);
+			if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+				$type = 'subcat';
+			} elseif ( $this->mTitle->getNamespace() == NS_FILE ) {
+				$type = 'file';
 			} else {
-				$arr[] = array(
-					'cl_from'    => $this->mId,
-					'cl_to'      => $name,
-					'cl_sortkey' => $sortkey,
-					'cl_timestamp' => $this->mDb->timestamp()
-				);
+				$type = 'page';
 			}
+
+			# TODO: This is kind of wrong, because someone might set a sort
+			# key prefix that's the same as the default sortkey for the
+			# title.  This should be fixed by refactoring code to replace
+			# $sortkey in this array by a prefix, but it's basically harmless
+			# (Title::moveTo() has had the same issue for a long time).
+			if ( $this->mTitle->getCategorySortkey() == $sortkey ) {
+				$prefix = '';
+				$sortkey = $wgContLang->convertToSortkey( $sortkey );
+			} else {
+				# Treat custom sortkeys as a prefix, so that if multiple
+				# things are forced to sort as '*' or something, they'll
+				# sort properly in the category rather than in page_id
+				# order or such.
+				$prefix = $sortkey;
+				$sortkey = $wgContLang->convertToSortkey(
+					$this->mTitle->getCategorySortkey( $prefix ) );
+			}
+
+			$arr[] = array(
+				'cl_from'    => $this->mId,
+				'cl_to'      => $name,
+				'cl_sortkey' => $sortkey,
+				'cl_timestamp' => $this->mDb->timestamp(),
+				'cl_sortkey_prefix' => $prefix,
+				'cl_collation' => $wgCollationVersion,
+				'cl_type' => $type,
+			);
 		}
 		return $arr;
 	}

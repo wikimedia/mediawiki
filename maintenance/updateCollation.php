@@ -37,7 +37,7 @@ TEXT;
 			__METHOD__
 		);
 
-		$this->output( "Fixing around $count rows (estimate might be wrong).\n" );
+		$this->output( "Fixing collation for around $count rows (estimate might be wrong).\n" );
 
 		$count = 0;
 		do {

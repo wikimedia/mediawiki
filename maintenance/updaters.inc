@@ -1086,6 +1086,21 @@ function do_populate_rev_len() {
 	$task->execute();
 }
 
+function do_collation_update() {
+	global $wgDatabase, $wgCollationVersion;
+	if ( $wgDatabase->selectField(
+		'categorylinks',
+		'COUNT(*)',
+		'cl_collation != ' . $wgDatabase->addQuotes( $wgCollationVersion ),
+		__FUNCTION__
+	) == 0 ) {
+		wfOut( "...collations up-to-date.\n" );
+	}
+	require_once( 'updateCollation.php' );
+	$task = new UpdateCollation();
+	$task->execute();
+}
+
 function sqlite_initial_indexes() {
 	global $wgDatabase;
 	// initial-indexes.sql fails if the indexes are already present, so we perform a quick check if our database is newer.

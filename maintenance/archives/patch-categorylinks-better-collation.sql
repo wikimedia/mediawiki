@@ -1,12 +1,7 @@
 --
 -- patch-categorylinks-better-collation.sql
 --
--- Bugs 164, 1211, 23682.  This is currently experimental and subject to
--- change.  You need to set $wgExperimentalCategorySort = true; to use this.
--- You also need to manually apply any changes that are made to this file,
--- since they will not be automatically applied.  This patch is only intended
--- to work for MySQL for now, without table prefixes, possibly other random
--- limitations.
+-- Bugs 164, 1211, 23682.
 ALTER TABLE categorylinks
 	ADD COLUMN cl_sortkey_prefix varchar(255) binary NOT NULL default '',
 	ADD COLUMN cl_collation tinyint NOT NULL default 0,
