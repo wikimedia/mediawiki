@@ -147,7 +147,7 @@ function wfRunHooks($event, $args = array()) {
 		 * problem here.
 		 */
 		$retval = null;
-		$handler = set_error_handler( 'hookErrorHandler' );
+		set_error_handler( 'hookErrorHandler' );
 		wfProfileIn( $func );
 		try {
 			$retval = call_user_func_array( $callback, $hook_args );
@@ -155,11 +155,9 @@ function wfRunHooks($event, $args = array()) {
 			$badhookmsg = $e->getMessage();
 		}
 		wfProfileOut( $func );
-		// Need to check for null, because set_error_handler borks on it... sigh
-		if ( $handler !== null ) set_error_handler( $handler );
+		restore_error_handler();
 
 		/* String return is an error; false return means stop processing. */
-
 		if ( is_string( $retval ) ) {
 			global $wgOut;
 			$wgOut->showFatalError( $retval );
