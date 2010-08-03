@@ -30,14 +30,18 @@ TEXT;
 		global $wgCollationVersion, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
-		$count = $dbw->estimateRowCount(
+		$count = $dbw->selectField(
 			'categorylinks',
-			array( 'cl_from', 'cl_to', 'cl_sortkey_prefix' ),
+			'COUNT(*)',
 			'cl_collation != ' . $dbw->addQuotes( $wgCollationVersion ),
 			__METHOD__
 		);
 
-		$this->output( "Fixing collation for around $count rows (estimate might be wrong).\n" );
+		if ( $count == 0 ) {
+			$this->output( "Collations up-to-date.\n" );
+			return;
+		}
+		$this->output( "Fixing collation for $count rows.\n" );
 
 		$count = 0;
 		do {
