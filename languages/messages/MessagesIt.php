@@ -8,6 +8,7 @@
  * @file
  *
  * @author .anaconda
+ * @author Airon90
  * @author Andria
  * @author Beta16
  * @author Broc
@@ -258,7 +259,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Aggiungi le pagine cancellate agli osservati speciali',
 'tog-previewontop'            => "Mostra l'anteprima sopra la casella di modifica e non sotto",
 'tog-previewonfirst'          => "Mostra l'anteprima per la prima modifica",
-'tog-nocache'                 => "Disattiva la ''cache'' per le pagine",
+'tog-nocache'                 => 'Disabilitare la cache delle pagine del browser',
 'tog-enotifwatchlistpages'    => 'Segnalami via e-mail le modifiche alle pagine osservate',
 'tog-enotifusertalkpages'     => 'Segnalami via e-mail le modifiche alla mia pagina di discussione',
 'tog-enotifminoredits'        => 'Segnalami via e-mail anche le modifiche minori',
@@ -664,6 +665,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'gotaccount'                 => "Hai già un accesso? '''$1'''.",
 'gotaccountlink'             => 'Entra',
 'createaccountmail'          => 'via e-mail',
+'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Le password inserite non coincidono tra loro.',
 'userexists'                 => 'Il nome utente inserito è già utilizzato.
 Scegliere un nome utente diverso.',
@@ -1631,11 +1633,13 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- lascia questa riga esattamente com\'è -->',
 'upload-success-subj'         => 'Caricamento completato',
-'upload-success-msg'          => 'Il tuo upload è disponibile qui: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => "L'upload da [$ 2] è riuscito. Il file è disponibile qui: [[:{{ns:file)):$1]]",
 'upload-failure-subj'         => "Problema nell'upload",
 'upload-failure-msg'          => 'Si è verificato un problema con il caricamento:
 
 $1',
+'upload-warning-subj'         => 'Avviso di caricamento',
+'upload-warning-msg'          => "C'è stato un problema con il caricamento da [$2]. Si può tornare al [[Special:Upload/stash/$1|form di upload]] per correggere questo problema.",
 
 'upload-proto-error'        => 'Protocollo errato',
 'upload-proto-error-text'   => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",
@@ -2502,6 +2506,7 @@ La pagina specificata come destinazione "[[:$1]]" esiste già. Vuoi cancellarla 
 'immobile-source-page'         => 'Questa pagina non può essere spostata.',
 'immobile-target-page'         => 'Non è possibile spostare sul titolo indicato.',
 'imagenocrossnamespace'        => 'Non è possibile spostare un file fuori dal relativo namespace.',
+'nonfile-cannot-move-to-file'  => 'Non è possibile spostare un file fuori dal relativo namespace.',
 'imagetypemismatch'            => 'La nuova estensione del file non corrisponde al tipo dello stesso',
 'imageinvalidfilename'         => "Il nome dell'immagine non è valido",
 'fix-double-redirects'         => 'Aggiorna tutti i redirect che puntano al titolo originale',

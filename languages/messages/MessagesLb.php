@@ -581,6 +581,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'gotaccount'                 => "Dir hutt schonn e Benotzerkont? '''$1'''.",
 'gotaccountlink'             => 'Umellen',
 'createaccountmail'          => 'Via E-Mail',
+'createaccountreason'        => 'Grond:',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
 'userexists'                 => 'Dëse Benotzernumm gëtt scho benotzt.
 Sicht iech een anere Benotzernumm.',

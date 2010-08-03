@@ -547,6 +547,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 'gotaccount'                 => "Baduzu erabiltzaile kontua? '''$1'''.",
 'gotaccountlink'             => 'Saioa hasi',
 'createaccountmail'          => 'e-postaz',
+'createaccountreason'        => 'Arrazoia:',
 'badretype'                  => 'Idatzitako pasahitzak ez dira berdinak.',
 'userexists'                 => 'Aukeratutako erabiltzaile izena hartuta dago.
 Mesedez, beste bat aukeratu.',
@@ -1505,11 +1506,12 @@ Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'filename-bad-prefix'         => "Igotzen ari zaren fitxategiaren izena '''\"\$1\"'''ekin hasten da, normalki kamera digitalek automatikoki ezartzen duten izen ez deskriptibo bat.
 Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'upload-success-subj'         => 'Igoera arrakastatsua',
-'upload-success-msg'          => 'Igotakoa hemen duzu eskuragarri: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Zure [$2] igoera arrakastatsua izan da. Hemen duzu eskuragarri: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Igoera-arazoa',
 'upload-failure-msg'          => 'Hurrengo arazoa egon da zure igoerarekin:
 
 $1',
+'upload-warning-subj'         => 'Igoera oharra',
 
 'upload-proto-error'        => 'Protokolo ezegokia',
 'upload-proto-error-text'   => 'Kanpo igoerak <code>http://</code> edo <code>ftp://</code> hasiera duen URLa izan behar du.',
@@ -2657,6 +2659,7 @@ Zure sisteman exekutatzea arriskutsua izan liteke.",
 'file-info-gif-looped' => 'kiribildua',
 'file-info-gif-frames' => '{{PLURAL:$1|Irudi $1|$1 irudi}}',
 'file-info-png-looped' => 'begiztatua',
+'file-info-png-frames' => '{{PLURAL:$1|Frame bat|$1 frame}}',
 
 # Special:NewFiles
 'newimages'             => 'Fitxategi berrien galeria',

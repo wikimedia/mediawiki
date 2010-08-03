@@ -262,7 +262,7 @@ $messages = array(
 'editfont-style'     => '编辑区字体样式：',
 'editfont-default'   => '浏览器默认',
 'editfont-monospace' => '等宽字体',
-'editfont-sansserif' => '非衬线字体',
+'editfont-sansserif' => '无衬线字体',
 'editfont-serif'     => '衬线字体',
 
 # Dates
@@ -347,7 +347,7 @@ $messages = array(
 'article'       => '内容页面',
 'newwindow'     => '（在新窗口中打开）',
 'cancel'        => '取消',
-'moredotdotdot' => '更多……',
+'moredotdotdot' => '更多',
 'mypage'        => '我的页面',
 'mytalk'        => '讨论页',
 'anontalk'      => '该IP的讨论页',
@@ -2549,7 +2549,7 @@ $1已经被封锁。您是否想更改这个设置？',
 
 # Special:Import
 'import'                     => '导入页面',
-'importinterwiki'            => '跨 wiki 导入',
+'importinterwiki'            => '跨wiki导入',
 'import-interwiki-text'      => '选择一个 wiki 和页面标题以进行导入。
 修订日期和编辑者名字将同时被保存。
 所有的跨 wiki 导入操作被记录在[[Special:Log/import|导入日志]]。',
@@ -2607,7 +2607,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-pt-logout'               => '退出',
 'tooltip-ca-talk'                 => '关于页面正文的讨论',
 'tooltip-ca-edit'                 => '你可编辑此页，请在保存前先预览一下。',
-'tooltip-ca-addsection'           => '开始一个新小节',
+'tooltip-ca-addsection'           => '开始新段落',
 'tooltip-ca-viewsource'           => '该页面已被保护。你可以查看该页源码。',
 'tooltip-ca-history'              => '此页面的早前修订版本',
 'tooltip-ca-protect'              => '保护此页',
@@ -3124,7 +3124,7 @@ Variants for Chinese language
 
 # E-mail address confirmation
 'confirmemail'              => '确认邮箱地址',
-'confirmemail_noemail'      => '您还没有在您的[[Special:Preferences|参数设置]]中设定一个有效的email地址。',
+'confirmemail_noemail'      => '您还没有在您的[[Special:Preferences|参数设置]]中设定一个有效的电子邮件地址。',
 'confirmemail_text'         => '{{SITENAME}}要求您在使用邮件功能之前验证您的邮箱地址。
 点击以下按钮可向您的邮箱发送一封确认邮件。该邮件包含有一行代码链接；
 请在您的浏览器中加载此链接以确认您的邮箱地址是有效的。',
@@ -3174,7 +3174,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[跨网站的编码转换不可用]',
 'scarytranscludefailed'   => '[提取$1失败]',
-'scarytranscludetoolong'  => '[URL 过长]',
+'scarytranscludetoolong'  => '[URL过长]',
 
 # Trackbacks
 'trackbackbox'      => '此页面的引用:<br />
@@ -3315,7 +3315,7 @@ $1',
 * <strong class="mw-specialpagerestricted">有限制的特殊页面。</strong>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other'       => '其它特殊页面',
-'specialpages-group-login'       => '登录／创建',
+'specialpages-group-login'       => '登录／注册',
 'specialpages-group-changes'     => '最近更改和日志',
 'specialpages-group-media'       => '媒体报告和上传',
 'specialpages-group-users'       => '用户和权限',
@@ -3363,9 +3363,9 @@ $1',
 'compare-submit'   => '比较',
 
 # Database error messages
-'dberr-header'      => '此wiki出现了问题',
+'dberr-header'      => '本wiki出现了问题',
 'dberr-problems'    => '抱歉！
-这个网站出现了一些技术问题。',
+本网站出现了一些技术问题。',
 'dberr-again'       => '请尝试等待数分钟后，然后再试。',
 'dberr-info'        => '（无法连接到数据库服务器：$1）',
 'dberr-usegoogle'   => '在此时您可以尝试通过Google搜索。',
@@ -3379,7 +3379,7 @@ $1',
 'htmlform-float-invalid'       => '您所指定的值不是一个数字。',
 'htmlform-int-toolow'          => '您所指定的值低于最小值$1',
 'htmlform-int-toohigh'         => '您所指定的值高于最大值$1',
-'htmlform-required'            => '此值是必填项',
+'htmlform-required'            => '本值必填',
 'htmlform-submit'              => '提交',
 'htmlform-reset'               => '撤销更改',
 'htmlform-selectorother-other' => '其他',

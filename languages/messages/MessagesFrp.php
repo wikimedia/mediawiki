@@ -322,7 +322,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Apondre les pâges que suprimo a ma lista de survelyence',
 'tog-previewontop'            => 'Montrar la prèvisualisacion en-dessus de la bouèta d’èdicion',
 'tog-previewonfirst'          => 'Montrar la prèvisualisacion pendent la premiére èdicion',
-'tog-nocache'                 => 'Dèsactivar lo cache de les pâges du navigator',
+'tog-nocache'                 => 'Dèsactivar lo cache de les pâges per lo navigator',
 'tog-enotifwatchlistpages'    => 'M’avèrtir per mèssageria èlèctronica quand una pâge de ma lista de survelyence est changiê',
 'tog-enotifusertalkpages'     => 'M’avèrtir per mèssageria èlèctronica quand ma pâge de discussion est changiê',
 'tog-enotifminoredits'        => 'M’avèrtir per mèssageria èlèctronica mémo en câs de petiôts changements',
@@ -2033,7 +2033,7 @@ Les entrâs <del>barrâs</del> ont étâ solucionâs.',
 'mostlinked'              => 'Pâges les ples liyês',
 'mostlinkedcategories'    => 'Catègories les ples utilisâs',
 'mostlinkedtemplates'     => 'Modèlos los ples utilisâs',
-'mostcategories'          => 'Pâges utilisent lo més de catègories',
+'mostcategories'          => 'Pâges qu’utilisont lo més de catègories',
 'mostimages'              => 'Fichiérs los ples utilisâs',
 'mostrevisions'           => 'Pâges les ples changiês',
 'prefixindex'             => 'Totes les pâges que començont per...',
@@ -2102,7 +2102,7 @@ Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’uti
 'allpagesnext'      => 'Aprés',
 'allpagessubmit'    => 'Listar',
 'allpagesprefix'    => 'Fâre vêre les pâges que començont per lo prèfixo :',
-'allpagesbadtitle'  => 'Lo titro de la pâge balyê est fôx ou ben at un prèfixo entèrlengoua ou entèrvouiqui resèrvâ.
+'allpagesbadtitle'  => 'Lo titro de la pâge balyê est fôx ou ben il at un prèfixo entèrlengoua ou entèrvouiqui resèrvâ.
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
 'allpages-bad-ns'   => '{{SITENAME}} at gins d’èspâço de noms « $1 ».',
 
