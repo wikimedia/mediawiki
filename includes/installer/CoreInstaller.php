@@ -3,7 +3,7 @@
 /**
  * Base core installer class.
  * Handles everything that is independent of user interface.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
@@ -13,7 +13,7 @@ abstract class CoreInstaller extends Installer {
 	 * MediaWiki configuration globals that will eventually be passed through
 	 * to LocalSettings.php. The names only are given here, the defaults
 	 * typically come from DefaultSettings.php.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $defaultVarNames = array(
@@ -48,7 +48,7 @@ abstract class CoreInstaller extends Installer {
 	 * Variables that are stored alongside globals, and are used for any
 	 * configuration of the installation process aside from the MediaWiki
 	 * configuration. Map of names to defaults.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $internalDefaults = array(
@@ -81,7 +81,7 @@ abstract class CoreInstaller extends Installer {
 
 	/**
 	 * Steps for installation.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $installSteps = array(
@@ -94,7 +94,7 @@ abstract class CoreInstaller extends Installer {
 
 	/**
 	 * Known object cache types and the functions used to test for their existence.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $objectCaches = array(
@@ -106,7 +106,7 @@ abstract class CoreInstaller extends Installer {
 
 	/**
 	 * User rights profiles.
-	 * 
+	 *
 	 * @var array
 	 */
 	public $rightsProfiles = array(
@@ -131,7 +131,7 @@ abstract class CoreInstaller extends Installer {
 
 	/**
 	 * License types.
-	 * 
+	 *
 	 * @var array
 	 */
 	public $licenses = array(
@@ -169,19 +169,19 @@ abstract class CoreInstaller extends Installer {
 	);
 
 	/**
-	 * TODO: doucment
-	 * 
+	 * TODO: document
+	 *
 	 * @param Status $status
 	 */
-	public abstract function showStatusMessage( Status $status );	
-	
-	
+	public abstract function showStatusMessage( Status $status );
+
+
 	/**
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
 		parent::__construct();
-		
+
 		global $wgExtensionMessagesFiles, $wgUser, $wgHooks;
 
 		// Load the installer's i18n file.
@@ -195,20 +195,20 @@ abstract class CoreInstaller extends Installer {
 		$wgHooks['ParserFirstCallInit'][] = array( $this, 'registerDocLink' );
 
 		$this->settings = $this->internalDefaults;
-		
+
 		foreach ( $this->defaultVarNames as $var ) {
 			$this->settings[$var] = $GLOBALS[$var];
 		}
-		
+
 		foreach ( $this->dbTypes as $type ) {
 			$installer = $this->getDBInstaller( $type );
-			
+
 			if ( !$installer->isCompiled() ) {
 				continue;
 			}
-			
+
 			$defaults = $installer->getGlobalDefaults();
-			
+
 			foreach ( $installer->getGlobalNames() as $var ) {
 				if ( isset( $defaults[$var] ) ) {
 					$this->settings[$var] = $defaults[$var];
@@ -225,7 +225,7 @@ abstract class CoreInstaller extends Installer {
 
 	/**
 	 * Register tag hook below.
-	 * 
+	 *
 	 * @param $parser Parser
 	 */
 	public function registerDocLink( Parser &$parser ) {
@@ -253,71 +253,71 @@ abstract class CoreInstaller extends Installer {
 	/**
 	 * Finds extensions that follow the format /extensions/Name/Name.php,
 	 * and returns an array containing the value for 'Name' for each found extension.
-	 * 
+	 *
 	 * @return array
 	 */
 	public function findExtensions() {
 		if( $this->getVar( 'IP' ) === null ) {
 			return false;
 		}
-		
+
 		$exts = array();
 		$dir = $this->getVar( 'IP' ) . '/extensions';
 		$dh = opendir( $dir );
-		
+
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			if( file_exists( "$dir/$file/$file.php" ) ) {
 				$exts[] = $file;
 			}
 		}
-		
+
 		$this->setVar( '_Extensions', $exts );
-		
+
 		return $exts;
 	}
-	
+
 	/**
 	 * Installs the auto-detected extensions.
-	 * 
+	 *
 	 * TODO: this only requires them?
-	 * 
+	 *
 	 * @return Status
 	 */
 	public function installExtensions() {
 		$exts = $this->getVar( '_Extensions' );
 		$path = $this->getVar( 'IP' ) . '/extensions';
-		
+
 		foreach( $exts as $e ) {
 			require( "$path/$e/$e.php" );
 		}
-		
+
 		return Status::newGood();
-	}	
+	}
 
 	public function getInstallSteps() {
 		if( $this->getVar( '_UpgradeDone' ) ) {
 			$this->installSteps = array( 'localsettings' );
 		}
-		
+
 		if( count( $this->getVar( '_Extensions' ) ) ) {
 			array_unshift( $this->installSteps, 'extensions' );
 		}
-		
+
 		return $this->installSteps;
 	}
 
 	/**
 	 * Actually perform the installation.
-	 * 
+	 *
 	 * @param Array $startCB A callback array for the beginning of each step
 	 * @param Array $endCB A callback array for the end of each step
-	 * 
+	 *
 	 * @return Array of Status objects
 	 */
 	public function performInstallation( $startCB, $endCB ) {
 		$installResults = array();
 		$installer = $this->getDBInstaller();
-		
+
 		foreach( $this->getInstallSteps() as $stepObj ) {
 			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
 			call_user_func_array( $startCB, array( $step ) );
@@ -333,30 +333,30 @@ abstract class CoreInstaller extends Installer {
 				$func = 'install' . ucfirst( $step );
 				$status = $this->{$func}( $installer );
 			}
-			
+
 			call_user_func_array( $endCB, array( $step, $status ) );
 			$installResults[$step] = $status;
 
-			// If we've hit some sort of fatal, we need to bail. 
+			// If we've hit some sort of fatal, we need to bail.
 			// Callback already had a chance to do output above.
 			if( !$status->isOk() ) {
 				break;
 			}
-				
+
 		}
-		
+
 		if( $status->isOk() ) {
 			$this->setVar( '_InstallDone', true );
 		}
-		
+
 		return $installResults;
 	}
 
 	/**
 	 * TODO: document
-	 * 
+	 *
 	 * @return Status
-	 */	
+	 */
 	public function installSecretKey() {
 		if ( wfIsWindows() ) {
 			$file = null;
@@ -373,14 +373,14 @@ abstract class CoreInstaller extends Installer {
 			fclose( $file );
 		} else {
 			$secretKey = '';
-			
+
 			for ( $i=0; $i<8; $i++ ) {
 				$secretKey .= dechex( mt_rand( 0, 0x7fffffff ) );
 			}
-			
+
 			$status->warning( 'config-insecure-secretkey' );
 		}
-		
+
 		$this->setVar( 'wgSecretKey', $secretKey );
 
 		return $status;
@@ -388,32 +388,32 @@ abstract class CoreInstaller extends Installer {
 
 	/**
 	 * TODO: document
-	 * 
+	 *
 	 * @return Status
 	 */
 	public function installSysop() {
 		$name = $this->getVar( '_AdminName' );
 		$user = User::newFromName( $name );
-		
+
 		if ( !$user ) {
 			// We should've validated this earlier anyway!
 			return Status::newFatal( 'config-admin-error-user', $name );
 		}
-		
+
 		if ( $user->idForName() == 0 ) {
 			$user->addToDatabase();
-			
+
 			try {
 				$user->setPassword( $this->getVar( '_AdminPassword' ) );
 			} catch( PasswordError $pwe ) {
 				return Status::newFatal( 'config-admin-error-password', $name, $pwe->getMessage() );
 			}
-			
+
 			$user->addGroup( 'sysop' );
 			$user->addGroup( 'bureaucrat' );
 			$user->saveSettings();
 		}
-		
+
 		return Status::newGood();
 	}
 
@@ -437,13 +437,13 @@ abstract class CoreInstaller extends Installer {
 
 	/**
 	 * Add an installation step following the given step.
-	 * 
+	 *
 	 * @param $findStep String the step to find.  Use NULL to put the step at the beginning.
 	 * @param $callback array
 	 */
 	public function addInstallStepFollowing( $findStep, $callback ) {
 		$where = 0;
-		
+
 		if( $findStep !== null ) {
 			$where = array_search( $findStep, $this->installSteps );
 		}
