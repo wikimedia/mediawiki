@@ -583,8 +583,8 @@ class Preferences {
 			);
 		}
 
-		$stubThresholdValues = array( 0, 50, 100, 500, 1000, 2000, 5000, 10000 );
-		$stubThresholdOptions = array();
+		$stubThresholdValues = array( 50, 100, 500, 1000, 2000, 5000, 10000 );
+		$stubThresholdOptions = array( wfMsg( 'stub-threshold-disabled' ) => 0 );
 		foreach ( $stubThresholdValues as $value ) {
 			$stubThresholdOptions[wfMsg( 'size-bytes', $value )] = $value;
 		}
