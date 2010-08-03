@@ -86,6 +86,7 @@ class CategoryViewer {
 		$this->limit = $wgCategoryPagingLimit;
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
+		unset( $this->query['title'] );
 	}
 
 	/**
