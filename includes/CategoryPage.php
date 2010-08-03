@@ -55,11 +55,14 @@ class CategoryPage extends Article {
 
 		$from = $until = array();
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
-			$from[$type] = $wgRequest->getVal( "{$type}from" );
-			$until[$type] = $wgRequest->getVal( "{$type}until" );
+			# Use $_GET instead of $wgRequest, because the latter helpfully
+			# normalizes Unicode, which removes nulls.  TODO: do something
+			# smarter than passing nulls in URLs.  :/
+			$from[$type] = isset( $_GET["{$type}from"] ) ? $_GET["{$type}from"] : null;
+			$until[$type] = isset( $_GET["{$type}until"] ) ? $_GET["{$type}until"] : null;
 		}
 
-		$viewer = new CategoryViewer( $this->mTitle, $from, $until, $wgRequest->getValues() );
+		$viewer = new CategoryViewer( $this->mTitle, $from, $until, $_GET );
 		$wgOut->addHTML( $viewer->getHTML() );
 	}
 }
