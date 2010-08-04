@@ -50,6 +50,7 @@ abstract class ApiBase {
 	const PARAM_MIN = 5; // Lowest value allowed for a parameter. Only applies if TYPE='integer'
 	const PARAM_ALLOW_DUPLICATES = 6; // Boolean, do we allow the same value to be set more than once when ISMULTI=true
 	const PARAM_DEPRECATED = 7; // Boolean, is the parameter deprecated (will show a warning)
+	const PARAM_REQUIRED = 8; // Boolean, is the parameter required?
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -306,6 +307,12 @@ abstract class ApiBase {
 				if ( $deprecated ) {
 					$desc = "DEPRECATED! $desc";
 				}
+				
+				$required = isset( $paramSettings[self::PARAM_REQUIRED] ) ?
+					$paramSettings[self::PARAM_REQUIRED] : false;
+				if ( $required ) {
+					$desc .= $paramPrefix . "This parameter is required";
+				}
 
 				$type = isset( $paramSettings[self::PARAM_TYPE] ) ? $paramSettings[self::PARAM_TYPE] : null;
 				if ( isset( $type ) ) {
@@ -493,6 +500,14 @@ abstract class ApiBase {
 			}
 			$this->mParamCache[$parseLimit] = $results;
 		}
+		
+		$allparams = $this->getAllowedParams();
+		foreach( $this->mParamCache[$parseLimit] as $param => $val ) {
+			if( !isset( $allparams[$param][ApiBase::PARAM_REQUIRED] ) ) {
+				$this->dieUsageMsg( array( 'missingparam', $param ) );
+			}
+		}
+		
 		return $this->mParamCache[$parseLimit];
 	}
 
