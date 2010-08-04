@@ -1075,6 +1075,7 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'contextlines'                  => 'Righe ëd test për minca arzultà:',
 'contextchars'                  => 'Caràter për riga:',
 'stub-threshold'                => 'Valor mìnim për j\'<a href="#" class="stub">anliure a jë sbòss</a>:',
+'stub-threshold-disabled'       => 'Disabilità',
 'recentchangesdays'             => "Vàire dì smon-e ant j'ùltime modìfiche:",
 'recentchangesdays-max'         => '(al pì $1 {{PLURAL:$1|di|di}})',
 'recentchangescount'            => 'Nùmer ëd modìfiche da smon-e për stàndard:',
@@ -1356,10 +1357,10 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'recentchangeslinked-summary'  => "Costa a l'é na lista ëd modìfiche fàite da pòch a pàgine colegà a cola spessificà (o a mèmber ëd na categorìa spessificà).
 Le pàgine dzora a [[Special:Watchlist|la lista ëd lòn ch'as ten sot-euj]] a resto marcà an '''grassèt'''.",
 'recentchangeslinked-page'     => 'Nòm ëd la pàgina:',
-'recentchangeslinked-to'       => 'Mosta mach jë modìfiche a le pàgine colegà a cola dàita',
+'recentchangeslinked-to'       => 'Mostré nopà le modìfiche a le pàgine colegà a cola dàita',
 
 # Upload
-'upload'                      => 'Carié',
+'upload'                      => "Carié n'archivi",
 'uploadbtn'                   => 'Carié',
 'reuploaddesc'                => 'Torné al mòdulo ëd domanda për carié archivi',
 'upload-tryagain'             => 'Anseriss la descrission dël file modificà',

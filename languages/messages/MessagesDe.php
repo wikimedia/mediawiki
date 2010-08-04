@@ -561,7 +561,7 @@ $messages = array(
 'talkpage'          => 'Diese Seite diskutieren',
 'talkpagelinktext'  => 'Diskussion',
 'specialpage'       => 'Spezialseite',
-'personaltools'     => 'Persönliche Werkzeuge',
+'personaltools'     => 'Meine Werkzeuge',
 'postcomment'       => 'Neuer Abschnitt',
 'articlepage'       => 'Inhaltsseite anzeigen',
 'talk'              => 'Diskussion',
@@ -725,9 +725,9 @@ Bitte versuche es in ein paar Minuten erneut.',
 'protectedpagetext'    => 'Diese Seite wurde geschützt, um Bearbeitungen zu verhindern.',
 'viewsourcetext'       => 'Du kannst den Quelltext dieser Seite betrachten und kopieren:',
 'protectedinterface'   => 'Diese Seite enthält Text für die Benutzeroberfläche der Software und ist geschützt, um Missbrauch vorzubeugen.',
-'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text.
-Änderungen wirken sich auf die Benutzeroberfläche aus.
-Für Übersetzungen ziehe bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
+'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.
+Änderungen auf dieser Seite wirken sich auf die Benutzeroberfläche aus.
+Ziehe bitte im Fall von Übersetzungen in Betracht, diese bei [http://translatewiki.net/wiki/Main_Page?setlang=de translatewiki.net], der Lokalisierungsplattform für MediaWiki, durchzuführen.",
 'sqlhidden'            => '(SQL-Abfrage versteckt)',
 'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
@@ -1368,6 +1368,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'contextlines'                  => 'Zeilen pro Treffer:',
 'contextchars'                  => 'Zeichen pro Zeile:',
 'stub-threshold'                => 'Linkformatierung <a href="#" class="stub">kleiner Seiten</a> (in Byte):',
+'stub-threshold-disabled'       => 'Deaktiviert',
 'recentchangesdays'             => 'Anzahl der Tage, die die Liste der „Letzten Änderungen“ standardmäßig umfassen soll:',
 'recentchangesdays-max'         => 'Maximal $1 {{PLURAL:$1|Tag|Tage}}',
 'recentchangescount'            => 'Anzahl der standardmäßig angezeigten Bearbeitungen:',
@@ -1454,7 +1455,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'userrights-editusergroup'     => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
 'saveusergroups'               => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember'      => 'Mitglied von:',
-'userrights-groupsmember-auto' => 'Einschließlich Mitglied von:',
+'userrights-groupsmember-auto' => 'Automatisch Mitglied von:',
 'userrights-groups-help'       => 'Du kannst die Gruppenzugehörigkeit für diesen Benutzer ändern:
 * Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist
 * Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
@@ -1697,7 +1698,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'file-too-large'              => 'Die übertragene Datei ist zu groß',
 'filename-tooshort'           => 'Der Dateiname ist zu kurz',
 'filetype-banned'             => 'Dieser Dateityp ist gesperrt',
-'verification-error'          => 'Diese Datei durchlief keine Dateiprüfung',
+'verification-error'          => 'Diese Datei hat die Dateiprüfung nicht bestanden.',
 'hookaborted'                 => 'Der Versuch, die Änderung durchzuführen, ist aufgrund eines Extension-Hooks fehlgeschlagen',
 'illegal-filename'            => 'Der Dateiname ist nicht erlaubt',
 'overwrite'                   => 'Das Überschreiben einer existierenden Datei ist nicht erlaubt',

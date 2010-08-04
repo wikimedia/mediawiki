@@ -591,10 +591,13 @@ Muhun mamastiakan amun Pian handak manggawi ini, bahwasa Pian paham akibatnya, w
 'protect_expiry_invalid'      => 'Waktu kadaluwarsa kada sah.',
 'protect_expiry_old'          => 'Waktu kadaluwarsa adalah pada masa bahari.',
 'protect-text'                => "Pian kawa maniring atawa mangganti tingkatan parlindungan gasan tungkaran '''<nowiki>$1</nowiki>''' di sia.",
+'protect-cascadeon'           => 'Tungkaran ini lagi dilindungi {{PLURAL:$1|tungkaran|tungkaran-tungkaran}} barikut nang sudah dilindungi baruntun aktip.
+Pian kawa maubah tingkatan palindungan tungkaran ini, tapi ini kada mangaruhi palindungan baruntun.',
 'protect-default'             => 'Bulihakan samua pamuruk',
 'protect-fallback'            => 'Mamarluakan hak masuk "$1"',
 'protect-level-autoconfirmed' => 'Blukir pamuruk hanyar wan kada tadaptar',
 'protect-level-sysop'         => 'Hanya pambakal',
+'protect-summary-cascade'     => 'baruntun',
 'protect-expiring'            => 'kadaluwarsa $1 (UTC)',
 'protect-cantedit'            => 'Pian kada kawa maubah tingkatan parlindungan tungkaran ini karana Pian kada baisi hak gasan itu.',
 'restriction-type'            => 'Parlindungan',

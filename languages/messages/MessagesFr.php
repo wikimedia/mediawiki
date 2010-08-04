@@ -1363,6 +1363,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'contextlines'                  => 'Nombre de lignes par réponse :',
 'contextchars'                  => 'Nombre de caractères de contexte par ligne :',
 'stub-threshold'                => 'Limite supérieure pour les <a href="#" class="stub">liens vers les ébauches</a> (octets) :',
+'stub-threshold-disabled'       => 'Désactivé',
 'recentchangesdays'             => 'Nombre de jours à afficher dans les modifications récentes :',
 'recentchangesdays-max'         => '(maximum $1 jour{{PLURAL:$1||s}})',
 'recentchangescount'            => 'Nombre de modifications à afficher par défaut :',

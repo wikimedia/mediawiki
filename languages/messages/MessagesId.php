@@ -319,7 +319,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Tambahkan halaman yang saya hapus ke daftar pantauan',
 'tog-previewontop'            => 'Perlihatkan pratayang sebelum kotak sunting dan tidak sesudahnya',
 'tog-previewonfirst'          => 'Perlihatkan pratayang pada suntingan pertama',
-'tog-nocache'                 => 'Matikan <em>cache</em> halaman',
+'tog-nocache'                 => 'Nonaktifkan pembuatan tembolok halaman ini',
 'tog-enotifwatchlistpages'    => 'Kirimkan saya surel jika suatu halaman yang saya pantau berubah',
 'tog-enotifusertalkpages'     => 'Kirimkan saya surel jika halaman pembicaraan saya berubah',
 'tog-enotifminoredits'        => 'Kirimkan saya surel juga pada perubahan kecil',
@@ -716,6 +716,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|p
 'gotaccount'                 => "Sudah terdaftar sebagai pengguna? '''$1'''.",
 'gotaccountlink'             => 'Masuk log',
 'createaccountmail'          => 'melalui surel',
+'createaccountreason'        => 'Alasan:',
 'badretype'                  => 'Kata sandi yang Anda masukkan salah.',
 'userexists'                 => 'Nama pengguna yang Anda masukkan sudah dipakai.
 Silakan pilih nama yang lain.',
@@ -1307,6 +1308,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'contextlines'                  => 'Baris ditampilkan per hasil:',
 'contextchars'                  => 'Karakter untuk konteks per baris:',
 'stub-threshold'                => 'Ambang batas untuk format <a href="#" class="stub">pranala rintisan</a>:',
+'stub-threshold-disabled'       => 'Dinonaktifkan',
 'recentchangesdays'             => 'Jumlah hari yang ditampilkan di perubahan terbaru:',
 'recentchangesdays-max'         => '(maksimum $1 {{PLURAL:$1|hari|hari}})',
 'recentchangescount'            => 'Standar jumlah suntingan yang ditampilkan:',
@@ -1698,6 +1700,7 @@ Log penghapusan berkas adalah sebagai berikut:",
 'upload-failure-msg'          => 'Ada masalah pada unggahan Anda:
 
 $1',
+'upload-warning-subj'         => 'Peringatan pemuatan',
 
 'upload-proto-error'        => 'Protokol tak tepat',
 'upload-proto-error-text'   => 'Pemuatan jarak jauh membutuhkan URL yang diawali dengan <code>http://</code> atau <code>ftp://</code>.',

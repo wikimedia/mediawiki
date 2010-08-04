@@ -1349,6 +1349,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'contextlines'                  => 'Número de líneas de contexto por resultado',
 'contextchars'                  => 'Caracteres de contexto por línea',
 'stub-threshold'                => 'Límite para formato de <a href="#" class="stub">enlace a esbozo</a> (bytes):',
+'stub-threshold-disabled'       => 'Desactivado',
 'recentchangesdays'             => 'Días a mostrar en cambios recientes:',
 'recentchangesdays-max'         => '(máximo {{PLURAL:$1|un día|$1 días}})',
 'recentchangescount'            => 'Número de ediciones a mostrar por defecto:',
