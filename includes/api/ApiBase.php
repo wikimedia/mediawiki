@@ -1126,6 +1126,15 @@ abstract class ApiBase {
 	public function getPossibleErrors() {
 		$ret = array();
 
+		$params = $this->getFinalParams();
+		if ( $params ) {
+			foreach ( $params as $paramName => $paramSettings ) {
+				if( isset( $paramSettings[ApiBase::PARAM_REQUIRED] ) ) {
+					$ret[] = array( 'missingparam', $paramName );
+				}
+			}
+		}
+
 		if ( $this->mustBePosted() ) {
 			$ret[] = array( 'mustbeposted', $this->getModuleName() );
 		}

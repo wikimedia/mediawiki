@@ -102,7 +102,6 @@ class ApiPurge extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'cantpurge' ),
-			array( 'missingparam', 'titles' ),
 		) );
 	}
 

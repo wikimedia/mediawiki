@@ -85,7 +85,6 @@ class ApiPatrol extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'rcid' ),
 			array( 'nosuchrcid', 'rcid' ),
 		) );
 	}

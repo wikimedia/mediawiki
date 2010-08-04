@@ -138,7 +138,6 @@ class ApiUndelete extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'title' ),
 			array( 'permdenied-undelete' ),
 			array( 'blockedtext' ),
 			array( 'invalidtitle', 'title' ),
