@@ -572,7 +572,7 @@ function wfGetLangObj( $langcode = false ) {
  */
 function wfUILang() {
 	global $wgBetterDirectionality;
-	return wfGetLangObj( $wgBetterDirectionality ? false: true );
+	return wfGetLangObj( !$wgBetterDirectionality );
 }
 
 /**
