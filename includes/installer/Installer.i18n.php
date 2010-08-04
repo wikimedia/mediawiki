@@ -74,7 +74,7 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 You can install MediaWiki.</span>', // FIXME: take span out of message.
 	'config-env-bad'                  => 'The environment has been checked.
 You cannot install MediaWiki.',
-	'config-env-php'                  => 'PHP $1 installed.',
+	'config-env-php'                  => 'PHP $1 is installed.',
 	'config-env-latest-ok'            => 'You are installing the latest version of Mediawiki.',
 	'config-env-latest-new'           => "'''Note:''' You are installing a development version of Mediawiki.",
 	'config-env-latest-can-not-check' => "'''Note:''' The installer was unable to retrieve information about the latest MediaWiki release from [$1].",
@@ -127,10 +127,10 @@ OK.",
 	'config-memory-bad'               => "'''Warning:''' PHP's <code>memory_limit</code> is $1.
 This is probably too low.
 The installation may fail!",
-	'config-xcache'                   => '[http://trac.lighttpd.net/xcache/ XCache] installed',
-	'config-apc'                      => '[http://www.php.net/apc APC] installed',
-	'config-eaccel'                   => '[http://eaccelerator.sourceforge.net/ eAccelerator] installed',
-	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] installed',
+	'config-xcache'                   => '[http://trac.lighttpd.net/xcache/ XCache] is installed',
+	'config-apc'                      => '[http://www.php.net/apc APC] is installed',
+	'config-eaccel'                   => '[http://eaccelerator.sourceforge.net/ eAccelerator] is installed',
+	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] is installed',
 	'config-no-cache'                 => "'''Warning:''' Could not find [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].
 Object caching is not enabled.",
 	'config-diff3-good'               => 'Found GNU diff3: <code>$1</code>.',
