@@ -496,10 +496,6 @@ abstract class ApiBase {
 				foreach ( $params as $paramName => $paramSettings ) {
 					$results[$paramName] = $this->getParameterFromSettings( 
 						$paramName, $paramSettings, $parseLimit );
-
-					if( isset( $paramSettings[self::PARAM_REQUIRED] ) && !isset( $results[$paramName] ) ) {
-						$this->dieUsageMsg( array( 'missingparam', $paramName ) );
-					}
 				}
 			}
 			$this->mParamCache[$parseLimit] = $results;
@@ -627,6 +623,7 @@ abstract class ApiBase {
 			$type = isset( $paramSettings[self::PARAM_TYPE] ) ? $paramSettings[self::PARAM_TYPE] : null;
 			$dupes = isset( $paramSettings[self::PARAM_ALLOW_DUPLICATES] ) ? $paramSettings[self::PARAM_ALLOW_DUPLICATES] : false;
 			$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] ) ? $paramSettings[self::PARAM_DEPRECATED] : false;
+			$required = isset( $paramSettings[self::PARAM_REQUIRED] ) ? $paramSettings[self::PARAM_REQUIRED] : false;
 
 			// When type is not given, and no choices, the type is the same as $default
 			if ( !isset( $type ) ) {
@@ -745,6 +742,8 @@ abstract class ApiBase {
 			if ( $deprecated && $value !== false ) {
 				$this->setWarning( "The $encParamName parameter has been deprecated." );
 			}
+		} else if ( $required ) {
+			$this->dieUsageMsg( array( 'missingparam', $paramName ) );
 		}
 
 		return $value;
