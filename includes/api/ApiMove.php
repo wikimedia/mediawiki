@@ -45,9 +45,6 @@ class ApiMove extends ApiBase {
 		}
 
 		$this->requireOnlyOneParameter( $params, 'from', 'fromid' );
-		if ( !isset( $params['to'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'to' ) );
-		}
 
 		if ( isset( $params['from'] ) ) {
 			$fromTitle = Title::newFromText( $params['from'] );
@@ -172,7 +169,10 @@ class ApiMove extends ApiBase {
 			'fromid' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
-			'to' => null,
+			'to' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => 1
+			),
 			'token' => null,
 			'reason' => null,
 			'movetalk' => false,

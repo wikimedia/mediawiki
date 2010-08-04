@@ -61,9 +61,6 @@ class ApiUserrights extends ApiBase {
 		}
 
 		$params = $this->extractRequestParams();
-		if ( is_null( $params['user'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
-		}
 
 		$form = new UserrightsPage;
 		$status = $form->fetchUser( $params['user'] );
@@ -88,7 +85,10 @@ class ApiUserrights extends ApiBase {
 
 	public function getAllowedParams() {
 		return array (
-			'user' => null,
+			'user' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => 1
+			),
 			'add' => array(
 				ApiBase::PARAM_TYPE => User::getAllGroups(),
 				ApiBase::PARAM_ISMULTI => true

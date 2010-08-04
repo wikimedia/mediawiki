@@ -503,7 +503,7 @@ abstract class ApiBase {
 		
 		$allparams = $this->getAllowedParams();
 		foreach( $this->mParamCache[$parseLimit] as $param => $val ) {
-			if( !isset( $allparams[$param][ApiBase::PARAM_REQUIRED] ) ) {
+			if( isset( $allparams[$param][ApiBase::PARAM_REQUIRED] ) && !isset( $val ) ) {
 				$this->dieUsageMsg( array( 'missingparam', $param ) );
 			}
 		}

@@ -46,9 +46,6 @@ class ApiPurge extends ApiBase {
 		if ( !$wgUser->isAllowed( 'purge' ) ) {
 			$this->dieUsageMsg( array( 'cantpurge' ) );
 		}
-		if ( !isset( $params['titles'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'titles' ) );
-		}
 		$result = array();
 		foreach ( $params['titles'] as $t ) {
 			$r = array();
@@ -86,7 +83,8 @@ class ApiPurge extends ApiBase {
 	public function getAllowedParams() {
 		return array(
 			'titles' => array(
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_REQUIRED => 1
 			)
 		);
 	}

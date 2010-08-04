@@ -41,12 +41,6 @@ class ApiProtect extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$titleObj = null;
-		if ( !isset( $params['title'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'title' ) );
-		}
-		if ( empty( $params['protections'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'protections' ) );
-		}
 
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj ) {
@@ -149,10 +143,14 @@ class ApiProtect extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'title' => null,
+			'title' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => 1
+			),
 			'token' => null,
 			'protections' => array(
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_REQUIRED => 1,
 			),
 			'expiry' => array(
 				ApiBase::PARAM_ISMULTI => true,

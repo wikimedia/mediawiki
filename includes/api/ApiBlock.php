@@ -58,9 +58,6 @@ class ApiBlock extends ApiBase {
 			return;
 		}
 
-		if ( is_null( $params['user'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'user' ) );
-		}
 		if ( !$wgUser->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( array( 'cantblock' ) );
 		}
@@ -135,7 +132,10 @@ class ApiBlock extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'user' => null,
+			'user' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => 1
+			),
 			'token' => null,
 			'gettoken' => false,
 			'expiry' => 'never',
