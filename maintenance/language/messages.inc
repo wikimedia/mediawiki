@@ -922,6 +922,7 @@ $wgMessageStructure = array(
 		'contextlines',
 		'contextchars',
 		'stub-threshold',
+		'stub-threshold-disabled',
 		'recentchangesdays',
 		'recentchangesdays-max',
 		'recentchangescount',
