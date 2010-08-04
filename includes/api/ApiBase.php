@@ -662,6 +662,10 @@ abstract class ApiBase {
 					case 'NULL': // nothing to do
 						break;
 					case 'string': // nothing to do
+						if ( $value === '' ) {
+							$this->dieUsageMsg( array( 'missingparam', $paramName ) );
+						}
+					
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
 
