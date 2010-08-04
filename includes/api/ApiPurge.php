@@ -84,7 +84,7 @@ class ApiPurge extends ApiBase {
 		return array(
 			'titles' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			)
 		);
 	}

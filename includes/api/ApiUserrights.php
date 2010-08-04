@@ -87,7 +87,7 @@ class ApiUserrights extends ApiBase {
 		return array (
 			'user' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'add' => array(
 				ApiBase::PARAM_TYPE => User::getAllGroups(),

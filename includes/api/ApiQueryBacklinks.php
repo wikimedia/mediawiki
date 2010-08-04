@@ -404,7 +404,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$retval = array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'continue' => null,
 			'namespace' => array(

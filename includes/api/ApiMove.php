@@ -171,7 +171,7 @@ class ApiMove extends ApiBase {
 			),
 			'to' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'token' => null,
 			'reason' => null,
