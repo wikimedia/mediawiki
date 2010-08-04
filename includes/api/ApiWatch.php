@@ -76,7 +76,11 @@ class ApiWatch extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'title' => null,
+			'title' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
+
 			'unwatch' => false,
 		);
 	}
