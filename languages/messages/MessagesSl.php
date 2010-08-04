@@ -1204,6 +1204,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'contextlines'                  => 'Vrstic na zadetek:',
 'contextchars'                  => 'Znakov na vrstico:',
 'stub-threshold'                => 'Prag označevanja <a href="#" class="stub">škrbin</a> (v bajtih):',
+'stub-threshold-disabled'       => 'Onemogočeno',
 'recentchangesdays'             => 'Število dni prikazanih v zadnjih spremembah:',
 'recentchangesdays-max'         => 'Največ $1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
 'recentchangescount'            => 'Privzeto število prikazanih urejanj:',

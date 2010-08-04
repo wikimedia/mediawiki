@@ -919,6 +919,9 @@ Please report at [[Support]] if you are unable to properly translate this messag
 {{Identical|Last}}",
 'histlegend'             => 'Text in history page. Refers to {{msg-mw|cur}}, {{msg-mw|last}}, and {{msg-mw|minoreditletter}}.',
 'history-fieldset-title' => 'Fieldset label in the edit history pages.',
+'history-show-deleted'   => 'CheckBox to show only per [[mw:Manual:RevisionDelete|RevisonDelete]] deleted versions.
+
+Used in History and [[Special:Contributions]].',
 'histfirst'              => 'Used in page history.',
 'histlast'               => 'Used in page history.',
 'historyempty'           => 'Text in page history for empty page revisions
@@ -1300,6 +1303,7 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 'contextlines'                  => "Option on the 'Search options' tab of [[Special:Preferences]]",
 'contextchars'                  => 'Used in Preferences/Search tab',
 'stub-threshold'                => 'Used in [[Special:Preferences]], tab "Misc".',
+'stub-threshold-disabled'       => 'Used in [[Special:Preferences]].',
 'recentchangesdays'             => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'recentchangesdays-max'         => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount'            => 'Used in [[Special:Preferences]], tab "Recent changes".',
