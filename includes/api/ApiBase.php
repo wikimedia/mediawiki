@@ -496,18 +496,14 @@ abstract class ApiBase {
 				foreach ( $params as $paramName => $paramSettings ) {
 					$results[$paramName] = $this->getParameterFromSettings( 
 						$paramName, $paramSettings, $parseLimit );
+
+					if( isset( $paramSettings[self::PARAM_REQUIRED] ) && !isset( $results[$paramName] ) ) {
+						$this->dieUsageMsg( array( 'missingparam', $paramName ) );
+					}
 				}
 			}
 			$this->mParamCache[$parseLimit] = $results;
 		}
-		
-		$allparams = $this->getAllowedParams();
-		foreach( $this->mParamCache[$parseLimit] as $param => $val ) {
-			if( isset( $allparams[$param][ApiBase::PARAM_REQUIRED] ) && !isset( $val ) ) {
-				$this->dieUsageMsg( array( 'missingparam', $param ) );
-			}
-		}
-		
 		return $this->mParamCache[$parseLimit];
 	}
 
