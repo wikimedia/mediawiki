@@ -316,6 +316,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24564) Fix fatal errors when using list=deletedrevs, prop=revisions or 
   one of the backlinks generators with limit=max.
 * (bug 24656) API's parse module needs option to disable PP report
+* PARAM_REQUIRED parameter flag added. If this flag is set, and the end user does not set 
+  the parameter, the API will automatically throw an error.
 
 === Languages updated in 1.17 ===
 
