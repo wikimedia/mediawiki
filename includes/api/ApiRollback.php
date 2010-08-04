@@ -120,8 +120,6 @@ class ApiRollback extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'title' ),
-			array( 'missingparam', 'user' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'notanarticle' ),
 			array( 'invaliduser', 'user' ),

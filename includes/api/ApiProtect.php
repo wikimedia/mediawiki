@@ -196,8 +196,6 @@ class ApiProtect extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'title' ),
-			array( 'missingparam', 'protections' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'toofewexpiries', 'noofexpiries', 'noofprotections' ),
 			array( 'create-titleexists' ),

@@ -397,7 +397,6 @@ class ApiUpload extends ApiBase {
 			array( 'invalid-session-key' ),
 			array( 'uploaddisabled' ),
 			array( 'badaccess-groups' ),
-			array( 'missingparam', 'filename' ),
 			array( 'mustbeloggedin', 'upload' ),
 			array( 'badaccess-groups' ),
 			array( 'badaccess-groups' ),

@@ -223,7 +223,6 @@ class ApiMove extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'to' ),
 			array( 'invalidtitle', 'from' ),
 			array( 'nosuchpageid', 'fromid' ),
 			array( 'notanarticle' ),

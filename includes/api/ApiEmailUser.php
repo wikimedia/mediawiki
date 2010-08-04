@@ -114,8 +114,6 @@ class ApiEmailUser extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'usermaildisabled' ),
-			array( 'missingparam', 'target' ),
-			array( 'missingparam', 'text' ),
 		) );
 	}
 
