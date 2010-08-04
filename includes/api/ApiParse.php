@@ -73,7 +73,7 @@ class ApiParse extends ApiBase {
 
 		$popts = new ParserOptions();
 		$popts->setTidy( true );
-		$popts->enableLimitReport();
+		$popts->enableLimitReport( !$params['disablepp'] );
 		$redirValues = null;
 		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
 			if ( !is_null( $oldid ) ) {
@@ -401,6 +401,7 @@ class ApiParse extends ApiBase {
 			'onlypst' => false,
 			'uselang' => null,
 			'section' => null,
+			'disablepp' => false,
 		);
 	}
 
@@ -441,6 +442,7 @@ class ApiParse extends ApiBase {
 			),
 			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
+			'disablepp' => 'Disable the PP Report from the parser output',
 		);
 	}
 
