@@ -91,6 +91,7 @@ TEXT;
 						'cl_sortkey_prefix' => $prefix,
 						'cl_collation' => $wgCollationVersion,
 						'cl_type' => $type,
+						'cl_timestamp = cl_timestamp',
 					),
 					array( 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ),
 					__METHOD__
