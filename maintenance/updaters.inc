@@ -1512,13 +1512,14 @@ function do_postgres_updates() {
 	);
 
 	$newindexes = array(
-		array( "archive",       "archive_user_text",  "(ar_user_text)" ),
-		array( "image",         "img_sha1",           "(img_sha1)" ),
-		array( "oldimage",      "oi_sha1",            "(oi_sha1)" ),
-		array( "revision",      "rev_text_id_idx",    "(rev_text_id)" ),
-		array( "recentchanges", "rc_timestamp_bot",   "(rc_timestamp) WHERE rc_bot = 0" ),
-		array( "templatelinks", "templatelinks_from", "(tl_from)" ),
-		array( "watchlist",     "wl_user",            "(wl_user)" ),
+		array( "archive",       "archive_user_text",      "(ar_user_text)" ),
+		array( "image",         "img_sha1",               "(img_sha1)" ),
+		array( "oldimage",      "oi_sha1",                "(oi_sha1)" ),
+		array( "page",          "page_mediawiki_title",   "(page_title) WHERE page_namespace = 8" ),
+		array( "revision",      "rev_text_id_idx",        "(rev_text_id)" ),
+		array( "recentchanges", "rc_timestamp_bot",       "(rc_timestamp) WHERE rc_bot = 0" ),
+		array( "templatelinks", "templatelinks_from",     "(tl_from)" ),
+		array( "watchlist",     "wl_user",                "(wl_user)" ),
 		array( "logging",       "logging_user_type_time", "(log_user, log_type, log_timestamp)" ),
 		array( "logging",       "logging_page_id_time",   "(log_page,log_timestamp)" ),
 		array( "iwlinks",       "iwl_prefix_title_from",  "(iwl_prefix, iwl_title, iwl_from)" ),

@@ -68,6 +68,7 @@ CREATE INDEX page_talk_title         ON page (page_title) WHERE page_namespace =
 CREATE INDEX page_user_title         ON page (page_title) WHERE page_namespace = 2;
 CREATE INDEX page_utalk_title        ON page (page_title) WHERE page_namespace = 3;
 CREATE INDEX page_project_title      ON page (page_title) WHERE page_namespace = 4;
+CREATE INDEX page_mediawiki_title    ON page (page_title) WHERE page_namespace = 8;
 CREATE INDEX page_random_idx         ON page (page_random);
 CREATE INDEX page_len_idx            ON page (page_len);
 
