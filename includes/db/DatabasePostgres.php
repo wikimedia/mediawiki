@@ -556,12 +556,12 @@ class DatabasePostgres extends DatabaseBase {
 
 
 	function setup_plpgsql() {
-		print "<li>Checking for Pl/Pgsql ...";
+		print "<li>Checking for PL/pgSQL ...";
 		$SQL = "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'";
 		$rows = $this->numRows($this->doQuery($SQL));
 		if ($rows < 1) {
 			// plpgsql is not installed, but if we have a pg_pltemplate table, we should be able to create it
-			print "not installed. Attempting to install Pl/Pgsql ...";
+			print "not installed. Attempting to install PL/pgSQL ...";
 			$SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
 				"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
 			$rows = $this->numRows($this->doQuery($SQL));
@@ -572,13 +572,13 @@ class DatabasePostgres extends DatabaseBase {
 				$result = $this->doQuery("CREATE LANGUAGE plpgsql");
 				error_reporting($olde);
 				if (!$result) {
-					print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>" . 
+					print "<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>" . 
 						htmlspecialchars( $wgDBname ) . "</tt></li>";
 					dieout("</ul>");
 				}
 			}
 			else {
-				print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>" . 
+				print "<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>" . 
 					htmlspecialchars( $wgDBname ) . "</tt></li>";
 				dieout("</ul>");
 			}
