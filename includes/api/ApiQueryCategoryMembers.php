@@ -54,9 +54,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
-		if ( !isset( $params['title'] ) || is_null( $params['title'] ) ) {
-			$this->dieUsage( 'The cmtitle parameter is required', 'notitle' );
-		}
 		$categoryTitle = Title::newFromText( $params['title'] );
 
 		if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY ) {
@@ -208,7 +205,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		return array(
-			'title' => null,
+			'title' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true
+			),
+
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'ids|title',
 				ApiBase::PARAM_ISMULTI => true,
