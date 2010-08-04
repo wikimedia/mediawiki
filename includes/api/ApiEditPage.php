@@ -386,7 +386,7 @@ class ApiEditPage extends ApiBase {
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'section' => null,
 			'text' => null,

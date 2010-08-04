@@ -316,7 +316,7 @@ class ApiUpload extends ApiBase {
 		$params = array(
 			'filename' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'comment' => array(
 				ApiBase::PARAM_DFLT => ''

@@ -85,12 +85,12 @@ class ApiEmailUser extends ApiBase {
 		return array(
 			'target' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'subject' => null,
 			'text' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'token' => null,
 			'ccme' => false,

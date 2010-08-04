@@ -145,12 +145,12 @@ class ApiProtect extends ApiBase {
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 			'token' => null,
 			'protections' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_REQUIRED => 1,
+				ApiBase::PARAM_REQUIRED => true,
 			),
 			'expiry' => array(
 				ApiBase::PARAM_ISMULTI => true,

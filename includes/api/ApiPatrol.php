@@ -67,7 +67,7 @@ class ApiPatrol extends ApiBase {
 			'token' => null,
 			'rcid' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_REQUIRED => 1
+				ApiBase::PARAM_REQUIRED => true
 			),
 		);
 	}
