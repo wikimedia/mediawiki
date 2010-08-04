@@ -338,9 +338,9 @@
 	'ty' => 'Reo Mā`ohi',	# Tahitian
 	'tyv' => 'Тыва дыл',	# Tyvan
 	'udm' => 'Удмурт',	# Udmurt
-	'ug' => 'Uyghurche‎ / ئۇيغۇرچە',	# Uyghur (multiple scripts - defaults to Latin)
-	'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script)
-	'ug-latn' => 'Uyghurche‎', # Uyghur (Latin script - default)
+	'ug' => 'ئۇيغۇرچە / Uyghurche‎',	# Uyghur (multiple scripts - defaults to Arabic)
+	'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script - default)
+	'ug-latn' => 'Uyghurche‎', # Uyghur (Latin script)
 	'uk' => 'Українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
 	'uz' => 'O\'zbek',	# Uzbek
