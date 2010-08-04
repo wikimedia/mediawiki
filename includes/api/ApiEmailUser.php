@@ -41,13 +41,6 @@ class ApiEmailUser extends ApiBase {
 		global $wgUser;
 
 		$params = $this->extractRequestParams();
-		// Check required parameters
-		if ( !isset( $params['target'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'target' ) );
-		}
-		if ( !isset( $params['text'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'text' ) );
-		}
 
 		// Validate target
 		$targetUser = SpecialEmailUser::getTarget( $params['target'] );
@@ -90,9 +83,15 @@ class ApiEmailUser extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'target' => null,
+			'target' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => 1
+			),
 			'subject' => null,
-			'text' => null,
+			'text' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => 1
+			),
 			'token' => null,
 			'ccme' => false,
 		);

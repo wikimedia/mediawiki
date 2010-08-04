@@ -345,8 +345,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				} else {
 					$this->rootTitle = $title;
 				}
-			} else {
-				$this->dieUsageMsg( array( 'missingparam', 'title' ) );
 			}
 		}
 
@@ -404,7 +402,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		$retval = array(
-			'title' => null,
+			'title' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => 1
+			),
 			'continue' => null,
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,

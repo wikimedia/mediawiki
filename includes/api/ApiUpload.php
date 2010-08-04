@@ -101,10 +101,6 @@ class ApiUpload extends ApiBase {
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
 			'sessionkey', 'file', 'url' );
-		// And this one is needed
-		if ( !isset( $this->mParams['filename'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
-		}
 
 		if ( $this->mParams['sessionkey'] ) {
 			// Upload stashed in a previous request
@@ -318,7 +314,10 @@ class ApiUpload extends ApiBase {
 
 	public function getAllowedParams() {
 		$params = array(
-			'filename' => null,
+			'filename' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => 1
+			),
 			'comment' => array(
 				ApiBase::PARAM_DFLT => ''
 			),

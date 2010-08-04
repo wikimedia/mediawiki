@@ -43,10 +43,6 @@ class ApiPatrol extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		if ( !isset( $params['rcid'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'rcid' ) );
-		}
-
 		$rc = RecentChange::newFromID( $params['rcid'] );
 		if ( !$rc instanceof RecentChange ) {
 			$this->dieUsageMsg( array( 'nosuchrcid', $params['rcid'] ) );
@@ -70,7 +66,8 @@ class ApiPatrol extends ApiBase {
 		return array(
 			'token' => null,
 			'rcid' => array(
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_REQUIRED => 1
 			),
 		);
 	}
