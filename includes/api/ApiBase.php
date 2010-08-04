@@ -617,6 +617,7 @@ abstract class ApiBase {
 			$type = gettype( $paramSettings );
 			$dupes = false;
 			$deprecated = false;
+			$required = false;
 		} else {
 			$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
 			$multi = isset( $paramSettings[self::PARAM_ISMULTI] ) ? $paramSettings[self::PARAM_ISMULTI] : false;
