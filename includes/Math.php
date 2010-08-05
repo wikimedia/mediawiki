@@ -324,10 +324,10 @@ class MathRenderer {
 					.'/'. substr($this->hash, 2, 1);
 	}
 
-	public static function renderMath( $tex, $params=array() ) {
-		global $wgUser;
+	public static function renderMath( $tex, $params=array(), ParserOptions $parserOptions = null ) {
 		$math = new MathRenderer( $tex, $params );
-		$math->setOutputMode( $wgUser->getOption('math'));
+		if ( $parserOptions )
+			$math->setOutputMode( $parserOptions->getMath() );
 		return $math->render();
 	}
 }
