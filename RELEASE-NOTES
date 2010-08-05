@@ -135,6 +135,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23848) Add {{ARTICLEPATH}} Magic Word.
 * JavaScript-based password complexity checker on account creation and 
   password change.
+* The HTML ID's generated for sections are now much prettier when they contain
+  punctuation or non-English letters, so a section named "Hello?" will now
+  result in a URL ending in "#Hello?" rather than "#Hello.3F".
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

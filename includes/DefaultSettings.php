@@ -2256,7 +2256,7 @@ $wgDisableOutputCompression = false;
  * and 8, and Opera 10.50, but it fails in Opera 10.10: Unicode IDs don't seem
  * to work as anchors.  So not quite ready for general use yet.
  */
-$wgExperimentalHtmlIds = false;
+$wgExperimentalHtmlIds = true;
 
 /**
  * Search form behavior for Vector skin only
