@@ -466,6 +466,13 @@ $wgMessageStructure = array(
 		'loginlanguagelabel',
 		'loginlanguagelinks',
 		'suspicious-userlogout',
+		'password-strength',
+		'password-strength-bad',
+		'password-strength-mediocre',
+		'password-strength-acceptable',
+		'password-strength-good',
+		'password-retype',	
+		'password-retype-mismatch',
 	),
 	'resetpass' => array(
 		'resetpass',

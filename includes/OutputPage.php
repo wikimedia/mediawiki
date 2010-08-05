@@ -1955,6 +1955,22 @@ class OutputPage {
 		}
 	}
 
+	public function addPasswordSecurity( $passwordId, $retypeId ) {
+		$data = array(
+			'password' => '#' . $passwordId,
+			'retype' => '#' . $retypeId,
+			'messages' => array(),
+		);
+		foreach ( array( 'password-strength', 'password-strength-bad', 'password-strength-mediocre',
+				'password-strength-acceptable', 'password-strength-good', 'password-retype', 'password-retype-mismatch'
+			) as $message ) {
+			$data['messages'][$message] = wfMsg( $message );
+		}
+		$this->addScript( Html::inlineScript( 'var passwordSecurity=' . FormatJSON::encode( $data ) ) );
+		$this->addScriptFile( 'password.js' );
+		$this->addStyle( 'common/password.css' );
+	}
+
 	/** @deprecated */
 	public function errorpage( $title, $msg ) {
 		wfDeprecated( __METHOD__ );

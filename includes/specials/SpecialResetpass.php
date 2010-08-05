@@ -106,8 +106,11 @@ class SpecialResetpass extends SpecialPage {
 	}
 
 	function showForm() {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest, $wgLivePasswordStrengthChecks;
 
+		if ( $wgLivePasswordStrengthChecks ) {
+			$wgOut->addPasswordSecurity( 'wpNewPassword', 'wpRetype' );
+		}
 		$self = $this->getTitle();
 		if ( !$this->mUserName ) {
 			$this->mUserName = $wgUser->getName();
@@ -143,10 +146,10 @@ class SpecialResetpass extends SpecialPage {
 			wfMsgExt( 'resetpass_text', array( 'parse' ) ) . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
 			$this->pretty( array(
-				array( 'wpName', 'username', 'text', $this->mUserName ),
-				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
-				array( 'wpNewPassword', 'newpassword', 'password', null ),
-				array( 'wpRetype', 'retypenew', 'password', null ),
+				array( 'wpName', 'username', 'text', $this->mUserName, '' ),
+				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass, '' ),
+				array( 'wpNewPassword', 'newpassword', 'password', null, '<div id="password-strength"></div>' ),
+				array( 'wpRetype', 'retypenew', 'password', null, '<div id="password-retype"></div>' ),
 			) ) . "\n" .
 			$rememberMe .
 			"<tr>\n" .
@@ -165,7 +168,7 @@ class SpecialResetpass extends SpecialPage {
 	function pretty( $fields ) {
 		$out = '';
 		foreach ( $fields as $list ) {
-			list( $name, $label, $type, $value ) = $list;
+			list( $name, $label, $type, $value, $extra ) = $list;
 			if( $type == 'text' ) {
 				$field = htmlspecialchars( $value );
 			} else {
@@ -186,9 +189,8 @@ class SpecialResetpass extends SpecialPage {
 			else 
 				$out .=  wfMsgHtml( $label );
 			$out .= "</td>\n";
-			$out .= "\t<td class='mw-input'>";
-			$out .= $field;
-			$out .= "</td>\n";
+			$out .= "\t<td class='mw-input'>$field</td>\n";
+			$out .= "\t<td>$extra</td>\n";
 			$out .= "</tr>";
 		}
 		return $out;
