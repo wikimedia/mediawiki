@@ -499,6 +499,10 @@ class MessageCache {
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLanguageCode, $wgContLang;
 
+		if ( !is_string( $key ) ) {
+			throw new MWException( "Non-string key given" );
+		}
+
 		if ( strval( $key ) === '' ) {
 			# Shortcut: the empty key is always missing
 			return false;
