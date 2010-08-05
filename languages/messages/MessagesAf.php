@@ -2244,9 +2244,9 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 'undeletepagetitle'            => "'''Hier onder is die verwyderde weergawes van [[:$1]]'''.",
 'viewdeletedpage'              => 'Bekyk geskrapte bladsye',
 'undeletepagetext'             => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} is geskrap, maar is nog in die argief en kan teruggeplaas word. Die argief van geskrapte blaaie kan periodiek skoongemaak word.',
-'undelete-fieldset-title'      => 'Weergawes terugplaas',
-'undeleteextrahelp'            => "Om die hele bladsy, inklusief alle vroeër weergawes, terug te plaas: laat alle blokkies ongekies en kliek op '''''Terugplaas'''''.
-Om slegs bepaalde weergawes terug te sit: kies die weergawes om terug te plaas en kliek op '''''Terugplaas'''''.
+'undelete-fieldset-title'      => 'Plaas weergawes terug',
+'undeleteextrahelp'            => "Om die hele bladsy, inklusief alle vroeër weergawes, terug te plaas: laat alle blokkies gedeselekteer en kliek op '''''Plaas terug'''''.
+Om slegs bepaalde weergawes terug te sit: kies die weergawes om terug te plaas en kliek op '''''Plaas terug'''''.
 As u op '''''Herinstel''''' kliek word die kommentaarveld leeggemaak en word alle weergawes gedeselekteer.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|weergawe|weergawes}} in argief',
 'undeletehistory'              => "As u die bladsy herstel, sal alle weergawes herstel word.
@@ -2260,7 +2260,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 'undeleterevision-missing'     => "Ongeldige of vermiste weergawe.
 U mag moontlik 'n foutiewe skakel hê, of die weergawe is reeds herstel of uit die argief verwyder.",
 'undelete-nodiff'              => 'Geen vorige wysigings gevind.',
-'undeletebtn'                  => 'Terugplaas',
+'undeletebtn'                  => 'Plaas terug',
 'undeletelink'                 => 'bekyk/herstel',
 'undeleteviewlink'             => 'bekyk',
 'undeletereset'                => 'Herinstel',

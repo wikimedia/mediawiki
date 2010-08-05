@@ -1361,8 +1361,8 @@ Le pàgine dzora a [[Special:Watchlist|la lista ëd lòn ch'as ten sot-euj]] a r
 
 # Upload
 'upload'                      => "Carié n'archivi",
-'uploadbtn'                   => 'Carié',
-'reuploaddesc'                => 'Torné al mòdulo ëd domanda për carié archivi',
+'uploadbtn'                   => "Carié l'archivi",
+'reuploaddesc'                => "Chité e torné al formolari për carié dj'archivi",
 'upload-tryagain'             => 'Anseriss la descrission dël file modificà',
 'uploadnologin'               => 'Pa an drinta al sistema',
 'uploadnologintext'           => "A dev [[Special:UserLogin|rintré ant ël sistema]]

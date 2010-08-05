@@ -940,9 +940,9 @@ Caso continue a não funcionar, tente [[Special:UserLogout|sair]] e voltar a ent
 'token_suffix_mismatch'            => "'''A edição foi rejeitada porque o seu browser alterou os sinais de pontuação no editor.'''
 A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
-'editing'                          => 'Editando $1',
-'editingsection'                   => 'Editando $1 (secção)',
-'editingcomment'                   => 'Editando $1 (nova secção)',
+'editing'                          => 'A editar $1',
+'editingsection'                   => 'A editar $1 (secção)',
+'editingcomment'                   => 'A editar $1 (nova secção)',
 'editconflict'                     => 'Conflito de edição: $1',
 'explainconflict'                  => "Alguém mudou a página enquanto você a editava.
 A caixa de texto acima mostra o texto existente, na forma como está neste momento.
@@ -953,7 +953,7 @@ Terá de reintegrar as suas mudanças no texto da caixa acima.
 'storedversion'                    => 'Versão guardada',
 'nonunicodebrowser'                => "'''Aviso: O seu browser não é compatível com as especificações Unicode.
 Foi activado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
-'editingold'                       => "'''Aviso: Está editando uma revisão desactualizada desta página.'''
+'editingold'                       => "'''Aviso: Está a editar uma revisão desactualizada desta página.'''
 Se gravar, todas as mudanças feitas a partir desta revisão serão perdidas.",
 'yourdiff'                         => 'Diferenças',
 'copyrightwarning'                 => "Por favor, note que todas as suas contribuições na {{SITENAME}} são consideradas publicadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto possa ser inexoravelmente editado e redistribuído desta forma, não o envie.

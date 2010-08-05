@@ -1131,6 +1131,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'contextlines'                  => 'Rjadki na wuslědk:',
 'contextchars'                  => 'Kontekst na rjadku:',
 'stub-threshold'                => 'Wotkazowe formatowanje <a href="#" class="stub">małych stronow</a> (w bajtach):',
+'stub-threshold-disabled'       => 'Znjemóžnjeny',
 'recentchangesdays'             => 'Ličba dnjow w lisćinje aktualnych změnow:',
 'recentchangesdays-max'         => '(Maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'recentchangescount'            => 'Ličba stronow, kotraž ma so po standardźe pokazać:',

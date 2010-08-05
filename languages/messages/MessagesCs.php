@@ -1361,6 +1361,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'contextlines'                  => 'Počet řádek zobrazených z každé nalezené stránky',
 'contextchars'                  => 'Počet znaků kontextu na každé řádce',
 'stub-threshold'                => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
+'stub-threshold-disabled'       => 'Vypnuto',
 'recentchangesdays'             => 'Počet dní zobrazených v posledních změnách:',
 'recentchangesdays-max'         => '(maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'recentchangescount'            => 'Počet implicitně zobrazovaných záznamů:',

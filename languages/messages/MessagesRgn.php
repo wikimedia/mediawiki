@@ -50,6 +50,7 @@ $messages = array(
 'tog-forceeditsummary'        => "Dam la vos quènd l'ugèt dla mudèfica l'è vut",
 'tog-watchlisthideown'        => "Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
 'tog-watchlisthidebots'       => "↓ Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
+'tog-watchlisthideminor'      => "↓ Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
 
 # Dates
 'january'       => 'Znèr',

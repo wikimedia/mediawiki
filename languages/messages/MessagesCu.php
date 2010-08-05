@@ -302,7 +302,7 @@ $messages = array(
 'loginreqlink'               => 'Въниди',
 'newarticle'                 => '(но́въ)',
 'noarticletext'              => 'нꙑнѣ с̑ьдє́ ничєсожє нє напьсано ѥ́стъ ⁙
-[[Special:Search/{{PAGENAME}}|си страни́цѧ имѧ искати]] дроугы страни́цѧ ·
+[[Special:Search/{{PAGENAME}}|си страни́цѧ имѧ искати]] дроугꙑ страни́цѧ ·
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} съвѧ́ꙁанꙑ їсторі́ѩ видѣти] ·
 или [{{fullurl:{{FULLPAGENAME}}|action=edit}} ѭ́жє исправити]</span> можєши',
 'noarticletext-nopermission' => 'нꙑнѣ с̑ьдє́ ничєсожє нє напьсано ѥ́стъ ⁙
