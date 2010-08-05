@@ -50,6 +50,7 @@ class ParserOptions {
 	function getTargetLanguage()                { return $this->mTargetLanguage; }
 	function getMaxIncludeSize()                { return $this->mMaxIncludeSize; }
 	function getMaxPPNodeCount()                { return $this->mMaxPPNodeCount; }
+	function getMaxPPExpandDepth()              { return $this->mMaxPPExpandDepth; }
 	function getMaxTemplateDepth()              { return $this->mMaxTemplateDepth; }
 	function getRemoveComments()                { return $this->mRemoveComments; }
 	function getTemplateCallback()              { return $this->mTemplateCallback; }

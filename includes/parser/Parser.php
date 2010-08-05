@@ -369,7 +369,7 @@ class Parser {
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
-		if ( ( $wgUseTidy && $this->mOptions->mTidy ) || $wgAlwaysUseTidy ) {
+		if ( ( $wgUseTidy && $this->mOptions->getTidy() ) || $wgAlwaysUseTidy ) {
 			$text = MWTidy::tidy( $text );
 		} else {
 			# attempt to sanitize at least some nesting problems
@@ -411,7 +411,7 @@ class Parser {
 			$PFreport = "Expensive parser function count: {$this->mExpensiveFunctionCount}/$wgExpensiveParserFunctionLimit\n";
 			$limitReport =
 				"NewPP limit report\n" .
-				"Preprocessor node count: {$this->mPPNodeCount}/{$this->mOptions->mMaxPPNodeCount}\n" .
+				"Preprocessor node count: {$this->mPPNodeCount}/{$this->mOptions->getMaxPPNodeCount()}\n" .
 				"Post-expand include size: {$this->mIncludeSizes['post-expand']}/$max bytes\n" .
 				"Template argument size: {$this->mIncludeSizes['arg']}/$max bytes\n".
 				$PFreport;
