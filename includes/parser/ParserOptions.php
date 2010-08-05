@@ -54,6 +54,8 @@ class ParserOptions {
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
+	function getMath()                          { return $this->mMath; }
+	
 	function getIsPreview()                     { return $this->mIsPreview; }
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
 	function getIsPrintable()                   { return $this->mIsPrintable; }
@@ -66,6 +68,10 @@ class ParserOptions {
 	}
 
 	function getDateFormat() {
+		if ( !$this->getUseDynamicDates() ) {
+			throw new MWException( 'Getting DateFormat option without UseDynamicDates.' );
+		}
+		
 		if ( !isset( $this->mDateFormat ) ) {
 			$this->mDateFormat = $this->mUser->getDatePreference();
 		}
@@ -101,6 +107,8 @@ class ParserOptions {
 	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
 	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
+	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
+	
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
 	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
 	function setIsPrintable( $x )               { return wfSetVar( $this->mIsPrintable, $x ); }
@@ -163,6 +171,8 @@ class ParserOptions {
 		$this->mEnableLimitReport = false;
 		$this->mCleanSignatures = $wgCleanSignatures;
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
+		$this->mMath = $user->getOption( 'math' );
+		
 		$this->mIsPreview = false;
 		$this->mIsSectionPreview = false;
 		$this->mIsPrintable = false;
