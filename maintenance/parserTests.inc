@@ -759,7 +759,7 @@ class ParserTest {
 
 		# Make a new message cache
 		global $wgMessageCache, $wgMemc;
-		$wgMessageCache = new MessageCache( $wgMemc, true, 3600, '' );
+		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
 	}
 
 	/**

@@ -54,7 +54,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 
 		$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
 										  array( $messageMemc, $wgUseDatabaseMessages,
-												 $wgMsgCacheExpiry, wfWikiID() ) );
+												 $wgMsgCacheExpiry ) );
 		if ( $wgStyleDirectory === false ) $wgStyleDirectory   = "$IP/skins";
 
 	}
