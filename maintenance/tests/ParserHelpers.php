@@ -12,10 +12,10 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 	function count() { return 1; }
 
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
-        PHPUnit_Framework_Assert::resetCount();
-        if ( $result === NULL ) {
-            $result = new PHPUnit_Framework_TestResult;
-        }
+		PHPUnit_Framework_Assert::resetCount();
+		if ( $result === NULL ) {
+			$result = new PHPUnit_Framework_TestResult;
+		}
 
 		$backend = $this->suite->getBackend();
 		$result->startTest( $this );
@@ -24,12 +24,12 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 		$r = false;
 		try {
 			# Run the test.
-			# On failure, the subclassed backend will throw an exception with 
+			# On failure, the subclassed backend will throw an exception with
 			# the details.
 			$r = $backend->runTest(
 				$this->test['test'],
-				$this->test['input'], 
-				$this->test['result'], 
+				$this->test['input'],
+				$this->test['result'],
 				$this->test['options'],
 				$this->test['config']
 			);
@@ -71,7 +71,7 @@ class ParserTestSuiteBackend extends ParserTest {
 		PHPUnit_Framework_Assert::assertEquals( $expected, $got, $desc );
 	}
 
-	public function setupRecorder() {
+	public function setupRecorder( $options ) {
 		$this->recorder = new PHPUnitTestRecorder( $this );
 	}
 }
