@@ -307,7 +307,7 @@ abstract class ApiBase {
 				if ( $deprecated ) {
 					$desc = "DEPRECATED! $desc";
 				}
-				
+
 				$required = isset( $paramSettings[self::PARAM_REQUIRED] ) ?
 					$paramSettings[self::PARAM_REQUIRED] : false;
 				if ( $required ) {
@@ -494,7 +494,7 @@ abstract class ApiBase {
 
 			if ( $params ) { // getFinalParams() can return false
 				foreach ( $params as $paramName => $paramSettings ) {
-					$results[$paramName] = $this->getParameterFromSettings( 
+					$results[$paramName] = $this->getParameterFromSettings(
 						$paramName, $paramSettings, $parseLimit );
 				}
 			}
@@ -666,7 +666,7 @@ abstract class ApiBase {
 						if ( $value === '' ) {
 							$this->dieUsageMsg( array( 'missingparam', $paramName ) );
 						}
-					
+
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
 
@@ -1129,7 +1129,7 @@ abstract class ApiBase {
 		$params = $this->getFinalParams();
 		if ( $params ) {
 			foreach ( $params as $paramName => $paramSettings ) {
-				if( isset( $paramSettings[ApiBase::PARAM_REQUIRED] ) ) {
+				if ( isset( $paramSettings[ApiBase::PARAM_REQUIRED] ) ) {
 					$ret[] = array( 'missingparam', $paramName );
 				}
 			}

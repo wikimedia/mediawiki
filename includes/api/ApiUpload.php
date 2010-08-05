@@ -56,10 +56,10 @@ class ApiUpload extends ApiBase {
 		if ( !isset( $this->mUpload ) ) {
 			$this->dieUsage( 'No upload module set', 'nomodule' );
 		}
-		
+
 		// First check permission to upload
 		$this->checkPermissions( $wgUser );
-		
+
 		// Fetch the file
 		$status = $this->mUpload->fetchFile();
 		if ( !$status->isGood() ) {
@@ -70,7 +70,7 @@ class ApiUpload extends ApiBase {
 
 		// Check if the uploaded file is sane
 		$this->verifyUpload();
-		
+
 		// Check permission to upload this file
 		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
 		if ( $permErrors !== true ) {
@@ -91,13 +91,13 @@ class ApiUpload extends ApiBase {
 		// Cleanup any temporary mess
 		$this->mUpload->cleanupTempFile();
 	}
-	
+
 	/**
 	 * Select an upload module and set it to mUpload. Dies on failure.
 	 */
 	protected function selectUploadModule() {
 		$request = $this->getMain()->getRequest();
-		
+
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
 			'sessionkey', 'file', 'url' );
@@ -113,20 +113,20 @@ class ApiUpload extends ApiBase {
 			$this->mUpload->initialize( $this->mParams['filename'],
 				$this->mParams['sessionkey'],
 				$sessionData[$this->mParams['sessionkey']] );
-			
-			
+
+
 		} elseif ( isset( $this->mParams['file'] ) ) {
 			$this->mUpload = new UploadFromFile();
 			$this->mUpload->initialize(
 				$this->mParams['filename'],
 				$request->getUpload( 'file' )
-			);	
+			);
 		} elseif ( isset( $this->mParams['url'] ) ) {
 			// Make sure upload by URL is enabled:
 			if ( !UploadFromUrl::isEnabled() ) {
 				$this->dieUsageMsg( array( 'copyuploaddisabled' ) );
 			}
-			
+
 			$async = false;
 			if ( $this->mParams['asyncdownload'] ) {
 				if ( $this->mParams['leavemessage'] ) {
@@ -166,7 +166,7 @@ class ApiUpload extends ApiBase {
 	protected function verifyUpload( ) {
 		$verification = $this->mUpload->verifyUpload( );
 		if ( $verification['status'] === UploadBase::OK ) {
-			return;		
+			return;
 		}
 
 		// TODO: Move them to ApiBase's message map
@@ -212,7 +212,7 @@ class ApiUpload extends ApiBase {
 	}
 
 	/**
-	 * Check warnings if ignorewarnings is not set. 
+	 * Check warnings if ignorewarnings is not set.
 	 * Returns a suitable result array if there were warnings
 	 */
 	protected function checkForWarnings() {
@@ -260,7 +260,7 @@ class ApiUpload extends ApiBase {
 	 */
 	protected function performUpload() {
 		global $wgUser;
-		
+
 		// Use comment as initial page text by default
 		if ( is_null( $this->mParams['text'] ) ) {
 			$this->mParams['text'] = $this->mParams['comment'];
@@ -280,7 +280,7 @@ class ApiUpload extends ApiBase {
 
 		if ( !$status->isGood() ) {
 			$error = $status->getErrorsArray();
-			
+
 			if ( count( $error ) == 1 && $error[0][0] == 'async' ) {
 				// The upload can not be performed right now, because the user
 				// requested so
@@ -341,12 +341,12 @@ class ApiUpload extends ApiBase {
 
 			'sessionkey' => null,
 		);
-		
+
 		global $wgAllowAsyncCopyUploads;
 		if ( $wgAllowAsyncCopyUploads ) {
 			$params += array(
 				'asyncdownload' => false,
-				'leavemessage' => false,			
+				'leavemessage' => false,
 			);
 		}
 		return $params;
@@ -370,12 +370,12 @@ class ApiUpload extends ApiBase {
 		if ( $wgAllowAsyncCopyUploads ) {
 			$params += array(
 				'asyncdownload' => 'Make fetching a URL asynchronous',
-				'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',			
+				'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
 			);
 		}
-		
+
 		return $params;
-		
+
 	}
 
 	public function getDescription() {

@@ -285,12 +285,12 @@ class ApiResult extends ApiBase {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Add a parsed limit=max to the result.
-	 * 
+	 *
 	 * @param $moduleName string
-	 * @param $limit int 
+	 * @param $limit int
 	 */
 	public function setParsedLimit( $moduleName, $limit ) {
 		// Add value, allowing overwriting
