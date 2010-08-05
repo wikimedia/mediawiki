@@ -718,8 +718,8 @@ abstract class ApiBase {
 						break;
 					case 'user':
 						if ( !is_array( $value ) ) {
-                            $value = array( $value );
-                        }
+							$value = array( $value );
+						}
 
 						foreach ( $value as $key => $val ) {
 							$title = Title::makeTitleSafe( NS_USER, $val );
@@ -730,9 +730,9 @@ abstract class ApiBase {
 						}
 
 						if ( !$multi ) {
-                            $value = $value[0];
-                        }
-                        break;
+							$value = $value[0];
+						}
+						break;
 					default:
 						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
 				}
