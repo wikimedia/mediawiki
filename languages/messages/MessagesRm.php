@@ -46,12 +46,12 @@ $messages = array(
 'tog-editsection'             => 'Activar links per [editar] secziuns',
 'tog-editsectiononrightclick' => "Activar la pussaivladad d'editar secziuns cun in clic dretg (basegna JavaScript)",
 'tog-showtoc'                 => 'Mussar ina tabla da cuntegn sin paginas cun dapli che trais tetels',
-'tog-rememberpassword'        => "S'annunziar permanantamain (be sch'il pled-clav n'è batg vegnì generà da la software da MediaWiki)",
+'tog-rememberpassword'        => "S'annunziar permanantamain sin quest computer (per maximalmain $1 {{PLURAL:$1|di|dis}})",
 'tog-watchcreations'          => "Observar paginas ch'jau hai creà",
 'tog-watchdefault'            => "Observar paginas ch'jau hai edità",
 'tog-watchmoves'              => "Observar paginas ch'jau hai spustà",
 'tog-watchdeletion'           => "Observar paginas ch'jau hai stizzà",
-'tog-nocache'                 => 'deactivar il caching da la pagina',
+'tog-nocache'                 => 'Impedir che tes navigatur memorisescha las paginas en il cache',
 'tog-enotifwatchlistpages'    => "Trametta in e-mail sch'ina pagina sin mia glista d'observaziun vegn midada",
 'tog-enotifusertalkpages'     => "Trametta in e-mail sch'i ha dà midadas sin mia pagina da discussiun.",
 'tog-enotifminoredits'        => 'Trametta era in e-mail tar pitschnas midadas da las paginas',
@@ -360,7 +360,7 @@ Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].'
 'yourname'                   => "Num d'utilisader",
 'yourpassword'               => 'pled-clav',
 'yourpasswordagain'          => 'repeter pled-clav',
-'remembermypassword'         => 'Memorisar il pled-clav',
+'remembermypassword'         => "S'annunziar permanantamain sin quest computer (per maximalmain $1 {{PLURAL:$1|di|dis}})",
 'yourdomainname'             => 'Vossa domain',
 'login'                      => "T'annunziar",
 'nav-login-createaccount'    => "T'annunziar / registrar",
@@ -415,17 +415,24 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'emailconfirmlink'           => "Confirmar l'adressa dad email",
 'accountcreated'             => "Creà il conto d'utilisader",
 'accountcreatedtext'         => "Il conto d'utilisader per $1 è vegnì creà.",
+'createaccount-title'        => 'Crear in conto per {{SITENAME}}',
+'createaccount-text'         => "Insatgi ha creà in conto d'utilisader per tia adressa d'e-mail sin {{SITENAME}} ($4). Il pled-clav generà automaticamain per l'utilisader «$2» è «$3». Ti ta duessas t'annunzar uss e midar tes pled-clav. 
+
+Sche ti na levas betg crear quest conto d'utilisader pos ti ignorar quest e-mail.",
+'usernamehasherror'          => "Il num d'utilisader na po betg cuntegnair il segn da rauta (#)",
 'login-throttled'            => "Ti has empruvà memia savens da t'annunziar.
 Spetga per plaschair avant ch'empruvar anc ina giada.",
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
-'resetpass'               => 'Midar il pled-clav',
-'resetpass_header'        => 'Midar il pled-clav dal conto',
-'oldpassword'             => 'pled-clav vegl:',
-'newpassword'             => 'pled-clav nov:',
-'retypenew'               => 'repeter pled-clav nov:',
-'resetpass-temp-password' => 'Pled-clav temporar:',
+'resetpass'                 => 'Midar il pled-clav',
+'resetpass_header'          => 'Midar il pled-clav dal conto',
+'oldpassword'               => 'pled-clav vegl:',
+'newpassword'               => 'pled-clav nov:',
+'retypenew'                 => 'repeter pled-clav nov:',
+'resetpass-submit-loggedin' => 'Midar il pled-clav',
+'resetpass-submit-cancel'   => 'Interrumper',
+'resetpass-temp-password'   => 'Pled-clav temporar:',
 
 # Edit page toolbar
 'bold_sample'     => 'Text grass',
@@ -1560,7 +1567,7 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 # Special:FilePath
 'filepath'        => 'Percurs da la datoteca',
 'filepath-page'   => 'Datoteca:',
-'filepath-submit' => 'Percurs',
+'filepath-submit' => 'Dai',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Num da datoteca:',

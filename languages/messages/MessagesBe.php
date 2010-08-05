@@ -13,6 +13,7 @@
  * @author Prima klasy4na
  * @author Urhixidur
  * @author Yury Tarasievich
+ * @author Тест
  * @author לערי ריינהארט
  */
 
@@ -1413,7 +1414,7 @@ $2',
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт|байта|байтаў}}',
 'ncategories'             => '$1 {{PLURAL:$1|катэгорыя|катэгорыі|катэгорый}}',
-'nlinks'                  => '$1 {{PLURAL:$1|спасылка|спасылак}}',
+'nlinks'                  => '$1 {{PLURAL:$1|спасылка|спасылкі|спасылак}}',
 'nmembers'                => '$1 {{PLURAL:$1|складнік|складнікі|складнікаў}}',
 'nrevisions'              => '$1 {{PLURAL:$1|версія|версіі|версій}}',
 'nviews'                  => '$1 {{PLURAL:$1|паказ|паказаў}}',

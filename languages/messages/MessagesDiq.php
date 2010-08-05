@@ -1435,7 +1435,7 @@ kerem kerê [[Special:ListUsers/sysop|serkari]]de irtibat kewe.',
 konrol bıkeri şıma besteyi? Ya zi şıma karo raşt keni?
 Eke problem dewam kerd [[Special:ListUsers/sysop|serkari]] de irtibat kewe.',
 'upload-too-many-redirects' => 'Eno URL de zaf redireksiyonî esto.',
-'upload-unknown-size'       => 'ebat nizanyeno',
+'upload-unknown-size'       => 'Ebat nizanyeno',
 'upload-http-error'         => 'Yew ğeletê HTTPî biyo: $1',
 
 # img_auth script messages

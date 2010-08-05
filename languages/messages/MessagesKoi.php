@@ -185,7 +185,7 @@ $messages = array(
 'italic_sample'   => 'Курсивöн гижан',
 'italic_tip'      => 'Курсивöн гижан',
 'link_sample'     => 'Ыстöтлöн юрним',
-'link_tip'        => 'Пытшкас ыстöт',
+'link_tip'        => 'Вики пытшкся ыстöт',
 'extlink_sample'  => 'http://www.example.com ыстöтлöн ним',
 'extlink_tip'     => 'Вики сайö ыстöт (эн вунöт содтыны http:// )',
 'headline_sample' => 'Юрнимлöн текст',
@@ -197,7 +197,7 @@ $messages = array(
 'image_tip'       => 'Пыртöм файл',
 'media_tip'       => 'Медиа-файл дынö ыстöт',
 'sig_tip'         => 'Тэнат кырымпас да кад пас',
-'hr_tip'          => 'Водса визь (пыртö шочыника)',
+'hr_tip'          => 'Водса визь (видз сiйö шочыника)',
 
 # Edit pages
 'summary'                          => 'Мый вежöм:',
@@ -248,7 +248,7 @@ $messages = array(
 
 # Diffs
 'history-title'           => '$1 мöдкодьсьöтан история',
-'difference'              => '(Неöткоддез версияэз коласын)',
+'difference'              => '(Неöткодьыс версияэз коласын)',
 'lineno'                  => 'Визёк $1:',
 'compareselectedversions' => 'Ордчаöтны бöрйöм версияэз',
 'editundo'                => 'керны важмоз',
@@ -342,7 +342,7 @@ $messages = array(
 'filehist-comment'          => 'Пасйöт',
 'imagelinks'                => 'Файл дынö ыстöттэз',
 'linkstoimage'              => '{{PLURAL:$1|Сэтшöм листбок|$1 Сэтшöм листбоккез}} ыстiсьö(ны) этiя файл вылö:',
-'sharedupload'              => 'Этiя файл $1-ись да вермас овны и модiк проекттэзын.',
+'sharedupload'              => 'Этiя файл $1-ись да вермас овны и мöдiк проекттэзын',
 'uploadnewversion-linktext' => 'Тöбавны этiя файллiсь виль версия',
 
 # Statistics
@@ -585,7 +585,7 @@ $messages = array(
 'tooltip-undo'                    => '"Бöр вежны" чышкö öннясö да пыртö бöр одзжыкся редакция. Позьö висьтавны,  мыля сiйö вежин бöр.',
 
 # Browsing diffs
-'previousdiff' => '← Одзжыкся мöдкодьсьöтöм',
+'previousdiff' => '← Одзжыкся вильмöтöм',
 'nextdiff'     => 'Одзланься мöдкодьсьöтöм →',
 
 # Media information
