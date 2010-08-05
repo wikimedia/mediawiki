@@ -464,7 +464,7 @@ class EmailNotification {
 			 * revision.
 			 */
 			$keys['$NEWPAGE'] = wfMsgForContent('enotif_lastdiff',
-					$this->title->getFullURL("oldid={$this->oldid}&diff=prev"));
+					$this->title->getFullURL("oldid={$this->oldid}&diff=next"));
 
 		$body = strtr( $body, $keys );
 		$pagetitle = $this->title->getPrefixedText();
