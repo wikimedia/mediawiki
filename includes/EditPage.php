@@ -1025,7 +1025,7 @@ class EditPage {
 				return self::AS_TEXTBOX_EMPTY;
 			}
 			if ( $this->summary != '' ) {
-				$sectionanchor = $wgParser->guessSectionNameFromWikiText( $this->summary );
+				$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 				# This is a new section, so create a link to the new section
 				# in the revision summary.
 				$cleanSummary = $wgParser->stripSectionName( $this->summary );
@@ -1039,7 +1039,7 @@ class EditPage {
 			# we can't deal with anchors, includes, html etc in the header for now,
 			# headline would need to be parsed to improve this
 			if ( $hasmatch and strlen( $matches[2] ) > 0 ) {
-				$sectionanchor = $wgParser->guessSectionNameFromWikiText( $matches[2] );
+				$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $matches[2] );
 			}
 		}
 		wfProfileOut( __METHOD__ . '-sectionanchor' );

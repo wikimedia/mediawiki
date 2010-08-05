@@ -5081,6 +5081,21 @@ class Parser {
 	}
 
 	/**
+	 * Same as guessSectionNameFromWikiText(), but produces legacy anchors
+	 * instead.  For use in redirects, since IE6 interprets Redirect: headers
+	 * as something other than UTF-8 (apparently?), resulting in breakage.
+	 *
+	 * @param $text String: The section name
+	 * @return string An anchor
+	 */
+	public function guessLegacySectionNameFromWikiText( $text ) {
+		# Strip out wikitext links(they break the anchor)
+		$text = $this->stripSectionName( $text );
+		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
+		return '#' . Sanitizer::escapeId( $text, array( 'noninitial', 'legacy' ) );
+	}
+
+	/**
 	 * Strips a text string of wikitext for use in a section anchor
 	 *
 	 * Accepts a text string and then removes all wikitext from the
