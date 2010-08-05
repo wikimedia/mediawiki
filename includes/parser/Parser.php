@@ -3701,12 +3701,6 @@ class Parser {
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		
-
-		# Do not call quickUserCan unless necessary
-		if ( $showEditLink && !$this->mTitle->quickUserCan( 'edit' ) ) {
-			$showEditLink = 0;
-		}
-
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
 			$showEditLink = 0;
