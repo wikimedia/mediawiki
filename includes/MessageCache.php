@@ -18,14 +18,29 @@ define( 'MSG_CACHE_VERSION', 1 );
  * @ingroup Cache
  */
 class MessageCache {
-	// Holds loaded messages that are defined in MediaWiki namespace.
-	var $mCache;
+	/**
+	 * Process local cache of loaded messages that are defined in
+	 * MediaWiki namespace. First array level is a language code,
+	 * second level is message key and the values are either message
+	 * content prefixed with space, or !NONEXISTENT for negative
+	 * caching.
+	 */
+	protected $mCache;
 
-	var $mDisable, $mExpiry;
-	var $mKeys, $mParserOptions, $mParser;
+	// Should  mean that database cannot be used, but check
+	protected $mDisable;
 
-	// Variable for tracking which variables are loaded
-	var $mLoadedLanguages = array();
+	/// Lifetime for cache, used by object caching
+	protected $mExpiry;
+
+	/**
+	 * Message cache has it's own parser which it uses to transform
+	 * messages.
+	 */
+	protected $mParserOptions, $mParser;
+
+	/// Variable for tracking which variables are already loaded
+	protected $mLoadedLanguages = array();
 
 	function __construct( $memCached, $useDB, $expiry ) {
 		if ( !$memCached ) {
@@ -35,9 +50,6 @@ class MessageCache {
 		$this->mMemc = $memCached;
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
-		$this->mDisableTransform = false;
-		$this->mKeys = false; # initialised on demand
-		$this->mParser = null;
 	}
 
 
