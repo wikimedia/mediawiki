@@ -21,15 +21,18 @@ class MessageCache {
 	// Holds loaded messages that are defined in MediaWiki namespace.
 	var $mCache;
 
-	var $mUseCache, $mDisable, $mExpiry;
+	var $mDisable, $mExpiry;
 	var $mKeys, $mParserOptions, $mParser;
 
 	// Variable for tracking which variables are loaded
 	var $mLoadedLanguages = array();
 
-	function __construct( &$memCached, $useDB, $expiry, /*ignored*/ $memcPrefix ) {
-		$this->mUseCache = !is_null( $memCached );
-		$this->mMemc = &$memCached;
+	function __construct( $memCached, $useDB, $expiry, /*ignored*/ $memcPrefix ) {
+		if ( !$memCached ) {
+			$memCached = wfGetCache( CACHE_NONE );
+		}
+
+		$this->mMemc = $memCached;
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
 		$this->mDisableTransform = false;
@@ -188,10 +191,6 @@ class MessageCache {
 	 */
 	function load( $code = false ) {
 		global $wgUseLocalMessageCache;
-
-		if ( !$this->mUseCache ) {
-			return true;
-		}
 
 		if( !is_string( $code ) ) {
 			# This isn't really nice, so at least make a note about it and try to
@@ -458,10 +457,6 @@ class MessageCache {
 	 * @return Boolean: success
 	 */
 	function lock($key) {
-		if ( !$this->mUseCache ) {
-			return true;
-		}
-
 		$lockKey = $key . ':lock';
 		for ($i=0; $i < MSG_WAIT_TIMEOUT && !$this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT ); $i++ ) {
 			sleep(1);
@@ -471,10 +466,6 @@ class MessageCache {
 	}
 
 	function unlock($key) {
-		if ( !$this->mUseCache ) {
-			return;
-		}
-
 		$lockKey = $key . ':lock';
 		$this->mMemc->delete( $lockKey );
 	}
@@ -590,14 +581,12 @@ class MessageCache {
 		$type = false;
 		$message = false;
 
-		if ( $this->mUseCache ) {
-			$this->load( $code );
-			if (isset( $this->mCache[$code][$title] ) ) {
-				$entry = $this->mCache[$code][$title];
-				$type = substr( $entry, 0, 1 );
-				if ( $type == ' ' ) {
-					return substr( $entry, 1 );
-				}
+		$this->load( $code );
+		if (isset( $this->mCache[$code][$title] ) ) {
+			$entry = $this->mCache[$code][$title];
+			$type = substr( $entry, 0, 1 );
+			if ( $type == ' ' ) {
+				return substr( $entry, 1 );
 			}
 		}
 
@@ -615,23 +604,20 @@ class MessageCache {
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
 
 		# Try the individual message cache
-		if ( $this->mUseCache ) {
-			$entry = $this->mMemc->get( $titleKey );
-			if ( $entry ) {
-				$type = substr( $entry, 0, 1 );
+		$entry = $this->mMemc->get( $titleKey );
+		if ( $entry ) {
+			$type = substr( $entry, 0, 1 );
 
-				if ( $type === ' ' ) {
-					# Ok!
-					$message = substr( $entry, 1 );
-					$this->mCache[$code][$title] = $entry;
-					return $message;
-				} elseif ( $entry === '!NONEXISTENT' ) {
-					return false;
-				} else {
-					# Corrupt/obsolete entry, delete it
-					$this->mMemc->delete( $titleKey );
-				}
-
+			if ( $type === ' ' ) {
+				# Ok!
+				$message = substr( $entry, 1 );
+				$this->mCache[$code][$title] = $entry;
+				return $message;
+			} elseif ( $entry === '!NONEXISTENT' ) {
+				return false;
+			} else {
+				# Corrupt/obsolete entry, delete it
+				$this->mMemc->delete( $titleKey );
 			}
 		}
 
@@ -639,10 +625,8 @@ class MessageCache {
 		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 		if( $revision ) {
 			$message = $revision->getText();
-			if ($this->mUseCache) {
-				$this->mCache[$code][$title] = ' ' . $message;
-				$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
-			}
+			$this->mCache[$code][$title] = ' ' . $message;
+			$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
 		} else {
 			# Negative caching
 			# Use some special text instead of false, because false gets converted to '' somewhere
@@ -703,14 +687,12 @@ class MessageCache {
 	 * Clear all stored messages. Mainly used after a mass rebuild.
 	 */
 	function clear() {
-		if( $this->mUseCache ) {
-			$langs = Language::getLanguageNames( false );
-			foreach ( array_keys($langs) as $code ) {
-				# Global cache
-				$this->mMemc->delete( wfMemcKey( 'messages', $code ) );
-				# Invalidate all local caches
-				$this->mMemc->delete( wfMemcKey( 'messages', $code, 'hash' ) );
-			}
+		$langs = Language::getLanguageNames( false );
+		foreach ( array_keys($langs) as $code ) {
+			# Global cache
+			$this->mMemc->delete( wfMemcKey( 'messages', $code ) );
+			# Invalidate all local caches
+			$this->mMemc->delete( wfMemcKey( 'messages', $code, 'hash' ) );
 		}
 	}
 
