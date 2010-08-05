@@ -2497,7 +2497,7 @@ class Parser {
 	 */
 	function getVariableValue( $index, $frame=false ) {
 		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
-		global $wgScriptPath, $wgStylePath;
+		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
 		/**
 		 * Some of these require message or data lookups and can be
@@ -2771,6 +2771,8 @@ class Parser {
 			case 'currentversion':
 				$value = SpecialVersion::getVersion();
 				break;
+			case 'articlepath':
+				return $wgArticlePath;
 			case 'sitename':
 				return $wgSitename;
 			case 'server':

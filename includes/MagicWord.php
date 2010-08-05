@@ -60,6 +60,7 @@ class MagicWord {
 		'numberofarticles',
 		'numberoffiles',
 		'numberofedits',
+		'articlepath',
 		'sitename',
 		'server',
 		'servername',
