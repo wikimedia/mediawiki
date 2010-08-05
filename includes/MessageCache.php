@@ -27,7 +27,7 @@ class MessageCache {
 	// Variable for tracking which variables are loaded
 	var $mLoadedLanguages = array();
 
-	function __construct( $memCached, $useDB, $expiry, /*ignored*/ $memcPrefix ) {
+	function __construct( $memCached, $useDB, $expiry ) {
 		if ( !$memCached ) {
 			$memCached = wfGetCache( CACHE_NONE );
 		}
