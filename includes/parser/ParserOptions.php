@@ -165,6 +165,7 @@ class ParserOptions {
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 		$this->mIsPreview = false;
 		$this->mIsSectionPreview = false;
+		$this->mIsPrintable = false;
 
 		wfProfileOut( __METHOD__ );
 	}

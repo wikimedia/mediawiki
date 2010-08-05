@@ -3700,7 +3700,7 @@ class Parser {
 		global $wgMaxTocLevel, $wgContLang, $wgHtml5, $wgExperimentalHtmlIds;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
-		$showEditLink = $this->mOptions->getEditSection();
+		
 
 		# Do not call quickUserCan unless necessary
 		if ( $showEditLink && !$this->mTitle->quickUserCan( 'edit' ) ) {
@@ -3708,8 +3708,10 @@ class Parser {
 		}
 
 		# Inhibit editsection links if requested in the page
-		if ( isset( $this->mDoubleUnderscores['noeditsection'] )  || $this->mOptions->getIsPrintable() ) {
+		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
 			$showEditLink = 0;
+		} else {
+			$showEditLink = $this->mOptions->getEditSection();
 		}
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
