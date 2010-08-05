@@ -132,7 +132,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 ** (bug 1211) Subcategories, ordinary pages, and files now page separately.
 ** When several pages are given the same sort key, they sort by their names
    instead of randomly.
-* (bug 23848) Add {{ARTICLEPATH}} Magic Word
+* JavaScript-based password complexity checker on account creation and 
+  password change.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

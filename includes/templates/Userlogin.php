@@ -169,6 +169,7 @@ class UsercreateTemplate extends QuickTemplate {
 				'autofocus'
 			) ); ?>
 			</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td class="mw-label"><label for='wpPassword2'><?php $this->msg('yourpassword') ?></label></td>
@@ -181,6 +182,7 @@ class UsercreateTemplate extends QuickTemplate {
 				'size' => '20'
 			) + User::passwordChangeInputAttribs() ); ?>
 			</td>
+			<td><div id="password-strength"></div></td>
 		</tr>
 	<?php if( $this->data['usedomain'] ) {
 		$doms = "";
@@ -196,6 +198,7 @@ class UsercreateTemplate extends QuickTemplate {
 					<?php echo $doms ?>
 				</select>
 			</td>
+			<td></td>
 		</tr>
 	<?php } ?>
 		<tr>
@@ -209,6 +212,7 @@ class UsercreateTemplate extends QuickTemplate {
 			'size' => '20'
 		) + User::passwordChangeInputAttribs() ); ?>
 			</td>
+			<td><div id="password-retype"></div></td>
 		</tr>
 		<tr>
 			<?php if( $this->data['useemail'] ) { ?>
@@ -229,12 +233,13 @@ class UsercreateTemplate extends QuickTemplate {
 						      } ?>
 					</div>
 				</td>
+				<td></td>
 			<?php } ?>
 			<?php if( $this->data['userealname'] ) { ?>
 				</tr>
 				<tr>
 					<td class="mw-label"><label for='wpRealName'><?php $this->msg('yourrealname') ?></label></td>
-					<td class="mw-input">
+					<td class="mw-input" colspan="2">
 						<input type='text' class='loginText' name="wpRealName" id="wpRealName"
 							tabindex="6"
 							value="<?php $this->text('realname') ?>" size='20' />
@@ -242,12 +247,13 @@ class UsercreateTemplate extends QuickTemplate {
 							<?php $this->msgWiki('prefs-help-realname'); ?>
 						</div>
 					</td>
+				<td></td>
 			<?php } ?>
 			<?php if( $this->data['usereason'] ) { ?>
 				</tr>
 				<tr>
 					<td class="mw-label"><label for='wpReason'><?php $this->msg('createaccountreason') ?></label></td>
-					<td class="mw-input">
+					<td class="mw-input" colspan="2">
 						<input type='text' class='loginText' name="wpReason" id="wpReason"
 							tabindex="7"
 							value="<?php $this->text('reason') ?>" size='20' />
@@ -257,7 +263,7 @@ class UsercreateTemplate extends QuickTemplate {
 		<?php if( $this->data['canremember'] ) { ?>
 		<tr>
 			<td></td>
-			<td class="mw-input">
+			<td class="mw-input" colspan="2">
 				<?php
 				global $wgCookieExpiration, $wgLang;
 				echo Xml::checkLabel(
@@ -285,7 +291,7 @@ class UsercreateTemplate extends QuickTemplate {
 					?><td><?php
 				}
 			?></td>
-			<td class="mw-input">
+			<td class="mw-input" colspan="2">
 				<input type="<?php echo htmlspecialchars( $inputItem['type'] ) ?>" name="<?php
 				echo htmlspecialchars( $inputItem['name'] ); ?>"
 					tabindex="<?php echo $tabIndex++; ?>"
@@ -320,7 +326,7 @@ class UsercreateTemplate extends QuickTemplate {
 ?>
 		<tr>
 			<td></td>
-			<td class="mw-submit">
+			<td class="mw-submit" colspan="2">
 				<input type='submit' name="wpCreateaccount" id="wpCreateaccount"
 					tabindex="<?php echo $tabIndex++; ?>"
 					value="<?php $this->msg('createaccount') ?>" />

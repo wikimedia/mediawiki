@@ -1556,7 +1556,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches do not keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '299';
+$wgStyleVersion = '300';
 
 /**
  * This will cache static pages for non-logged-in users to reduce
@@ -5114,6 +5114,11 @@ $wgPoolCounterConf = null;
  */
 $wgUploadMaintenance = false;
 
+/**
+ * Enabes or disables JavaScript-based suggestions of password strength
+ */
+$wgLivePasswordStrengthChecks = true;
+ 
 /**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
