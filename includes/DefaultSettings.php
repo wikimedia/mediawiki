@@ -2051,10 +2051,9 @@ $wgDTD = 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
 
 /**
- * Should we output an HTML5 doctype?  This mode is still experimental, but
- * all indications are that it should be usable, so it's enabled by default.
- * If all goes well, it will be removed and become always true before the 1.16
- * release.
+ * Should we output an HTML5 doctype?  If false, use XHTML 1.0 Transitional
+ * instead, and disable HTML5 features.  This may eventually be removed and set
+ * to always true.
  */
 $wgHtml5 = true;
 
