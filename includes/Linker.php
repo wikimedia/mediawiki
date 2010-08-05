@@ -1628,13 +1628,16 @@ class Linker {
 	public function titleAttrib( $name, $options = null ) {
 		wfProfileIn( __METHOD__ );
 
-		$tooltip = wfMsg( "tooltip-$name" );
-		# Compatibility: formerly some tooltips had [alt-.] hardcoded
-		$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
-
-		# Message equal to '-' means suppress it.
-		if ( wfEmptyMsg( "tooltip-$name", $tooltip ) || $tooltip == '-' ) {
+		if ( wfEmptyMsg( "tooltip-$name" ) ) {
 			$tooltip = false;
+		} else {
+			$tooltip = wfMsg( "tooltip-$name" );
+			# Compatibility: formerly some tooltips had [alt-.] hardcoded
+			$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
+			# Message equal to '-' means suppress it.
+			if (  $tooltip == '-' ) {
+				$tooltip = false;
+			}
 		}
 
 		if ( $options == 'withaccess' ) {
@@ -1665,18 +1668,20 @@ class Linker {
 	public function accesskey( $name ) {
 		wfProfileIn( __METHOD__ );
 
-		$accesskey = wfMsg( "accesskey-$name" );
-
-		# FIXME: Per standard MW behavior, a value of '-' means to suppress the
-		# attribute, but this is broken for accesskey: that might be a useful
-		# value.
-		if( $accesskey != '' && $accesskey != '-' && !wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
-			wfProfileOut( __METHOD__ );
-			return $accesskey;
+		if ( wfEmptyMsg( "accesskey-$name" ) ) {
+			$accesskey = false;
+		} else {
+			$accesskey = wfMsg( "accesskey-$name" );
+			if ( $accesskey === '' || $accesskey === '-' ) {
+				# FIXME: Per standard MW behavior, a value of '-' means to suppress the
+				# attribute, but this is broken for accesskey: that might be a useful
+				# value.
+				$accesskey = false;
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
-		return false;
+		return $accesskey;
 	}
 
 	/**
@@ -2038,7 +2043,7 @@ class Linker {
 	}
 
 	/**
-	 * Returns the attributes for the tooltip and access key
+	 * Returns the attributes for the tooltip and access key.
 	 */
 	public function tooltipAndAccesskeyAttribs( $name ) {
 		global $wgEnableTooltipsAndAccesskeys;
