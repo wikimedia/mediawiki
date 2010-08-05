@@ -662,7 +662,7 @@ abstract class ApiBase {
 				switch ( $type ) {
 					case 'NULL': // nothing to do
 						break;
-					case 'string': // nothing to do
+					case 'string':
 						if ( $value === '' ) {
 							$this->dieUsageMsg( array( 'missingparam', $paramName ) );
 						}
