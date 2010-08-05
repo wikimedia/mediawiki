@@ -41,8 +41,9 @@ class ParserCache {
 		$user = $popts->mUser;
 		$printable = ( $popts->getIsPrintable() ) ? '!printable=1' : '';
 		$hash = $user->getPageRenderingHash();
-		if( !$article->mTitle->quickUserCan( 'edit' ) ) {
-			// section edit links are suppressed even if the user has them on
+		
+		if( ! $popts->getEditSection() ) {
+			// section edit links have been suppressed
 			$edit = '!edit=0';
 		} else {
 			$edit = '';

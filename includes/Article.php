@@ -826,7 +826,7 @@ class Article {
 	 */
 	public function view() {
 		global $wgUser, $wgOut, $wgRequest, $wgParser;
-		global $wgUseFileCache;
+		global $wgUseFileCache, $wgUseETag;
 
 		wfProfileIn( __METHOD__ );
 
@@ -838,12 +838,13 @@ class Article {
 		# Render printable version, use printable version cache
 		if ( $wgOut->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
+			$parserOptions->setEditSection( false );
+		} else if ( $wgUseETag && !$this->mTitle->quickUserCan( 'edit' ) ) {
+			$parserOptions->setEditSection( false );
 		}
 
 		# Try client and file cache
 		if ( $oldid === 0 && $this->checkTouched() ) {
-			global $wgUseETag;
-
 			if ( $wgUseETag ) {
 				$wgOut->setETag( $parserCache->getETag( $this, $parserOptions ) );
 			}
@@ -886,6 +887,10 @@ class Article {
 			wfProfileOut( __METHOD__ );
 
 			return;
+		}
+
+		if ( !$wgUseETag && !$this->mTitle->quickUserCan( 'edit' ) ) {
+			$parserOptions->setEditSection( false );
 		}
 
 		# Should the parser cache be used?
@@ -1471,7 +1476,10 @@ class Article {
 		$parserOptions->setIsPrintable( $wgOut->isPrintable() );
 
 		# Don't show section-edit links on old revisions... this way lies madness.
-		$parserOptions->setEditSection( $this->isCurrent() );
+		if ( !$this->isCurrent() || $wgOut->isPrintable() ) {
+			$parserOptions->setEditSection( false );
+		}
+		
 		$useParserCache = $this->useParserCache( $oldid );
 		$this->outputWikiText( $this->getContent(), $useParserCache, $parserOptions );
 	}
@@ -1489,7 +1497,12 @@ class Article {
 		global $wgOut;
 		$parserCache = ParserCache::singleton();
 		$options = $this->getParserOptions();
-		$options->setIsPrintable( $wgOut->isPrintable() );
+		
+		if ( $wgOut->isPrintable() ) {
+			$options->setIsPrintable( true );
+			$parserOptions->setEditSection( false );
+		}
+		
 		$output = $parserCache->getDirty( $this, $options );
 
 		if ( $output ) {
