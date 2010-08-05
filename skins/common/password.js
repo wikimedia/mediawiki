@@ -31,15 +31,9 @@ function bruteForceComplexity( pwd ) {
 	if ( matches ) {
 		charClasses++;
 		
+		var s = matches.join( '' );
 		// poor man's isUpper() and isLower()
-		var i, lower = false, upper = false;
-		for ( i in matches ) {
-			var ch = matches[i];
-			upper |= ch != ch.toLowerCase();
-			lower |= ch != ch.toUpperCase();
-			if ( upper && lower ) break;
-		}
-		if ( upper && lower ) {
+		if ( s != s.toLowerCase() && s != s.toUpperCase() ) {
 			charClasses++;
 		}
 	}
