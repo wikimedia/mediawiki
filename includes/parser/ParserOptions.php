@@ -29,6 +29,8 @@ class ParserOptions {
 	var $mEnableLimitReport;         # Enable limit report in an HTML comment on output
 	var $mTimestamp;                 # Timestamp used for {{CURRENTDAY}} etc.
 	var $mExternalLinkTarget;        # Target attribute for external links
+	var $mMath;                      # User math preference (as integer)
+	var $mUserLang;                  # Language code of the User language.
 
 	var $mUser;                      # Stored user object, just used to initialise the skin
 	var $mIsPreview;                 # Parsing the page for a "preview" operation
@@ -85,6 +87,13 @@ class ParserOptions {
 		return $this->mTimestamp;
 	}
 
+	# You shouldn't use this. Really. $parser->getFunctionLang() is all you need.
+	# Using this fragments the cache and is discouraged. Yes, {{int: }} uses this,
+	# producing inconsistent tables (Bug 14404).
+	function getUserLang() {
+		return $this->mUserLang;
+	}
+
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
 	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
 	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
@@ -108,6 +117,7 @@ class ParserOptions {
 	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
 	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
+	function setUserLang( $x )                  { return wfSetVar( $this->mUserLang, $x ); }
 	
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
 	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
@@ -132,7 +142,7 @@ class ParserOptions {
 		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion, $wgMaxArticleSize;
 		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures;
-		global $wgExternalLinkTarget;
+		global $wgExternalLinkTarget, $wgLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -172,6 +182,7 @@ class ParserOptions {
 		$this->mCleanSignatures = $wgCleanSignatures;
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 		$this->mMath = $user->getOption( 'math' );
+		$this->mUserLang = $wgLang->getCode();
 		
 		$this->mIsPreview = false;
 		$this->mIsSectionPreview = false;
