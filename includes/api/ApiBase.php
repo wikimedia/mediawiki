@@ -736,8 +736,10 @@ abstract class ApiBase {
 					default:
 						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
 				}
-			} else if ( !$dupes ) {
-				// Throw out duplicates if requested
+			}
+
+			// Throw out duplicates if requested
+			if ( is_array( $value ) && !$dupes ) {
 				$value = array_unique( $value );
 			}
 
