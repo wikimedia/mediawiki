@@ -262,7 +262,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( $row->iw_local == '1' ) {
 				$val['local'] = '';
 			}
-			//$val['trans'] = intval( $row->iw_trans ); // should this be exposed?
+			// $val['trans'] = intval( $row->iw_trans ); // should this be exposed?
 			if ( isset( $langNames[$row->iw_prefix] ) ) {
 				$val['language'] = $langNames[$row->iw_prefix];
 			}
