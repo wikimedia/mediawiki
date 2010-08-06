@@ -151,6 +151,7 @@ $magicWords = array(
 	'nse'                   => array( '0', 'מרחב שם מקודד:', 'NSE:' ),
 	'localurl'              => array( '0', 'כתובת יחסית:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'כתובת יחסית מקודד:', 'LOCALURLE:' ),
+	'articlepath'           => array( '0', 'נתיב הדפים', 'ARTICLEPATH' ),
 	'server'                => array( '0', 'כתובת השרת', 'שרת', 'SERVER' ),
 	'servername'            => array( '0', 'שם השרת', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'נתיב הקבצים', 'SCRIPTPATH' ),
@@ -814,6 +815,15 @@ $2',
 אנא המתינו לפני שתנסו שוב.',
 'loginlanguagelabel'         => 'שפה: $1',
 'suspicious-userlogout'      => 'בקשתכם לצאת מהחשבון נדחתה כיוון שנראה שהיא נשלחה על ידי דפדפן שבור או שרת פרוקסי עם זיכרון מטמון.',
+
+# JavaScript password checks
+'password-strength'            => 'חוזק סיסמה מוארך: $1',
+'password-strength-bad'        => 'רע',
+'password-strength-mediocre'   => 'בינוני',
+'password-strength-acceptable' => 'סביר',
+'password-strength-good'       => 'טוב',
+'password-retype'              => 'הקלידו מחדש את סיסמתכם כאן',
+'password-retype-mismatch'     => 'הסיסמאות אינן מתאימות',
 
 # Password reset dialog
 'resetpass'                 => 'שינוי סיסמה',
