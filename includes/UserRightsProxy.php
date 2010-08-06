@@ -193,11 +193,7 @@ class UserRightsProxy {
 			__METHOD__ );
 
 		global $wgMemc;
-		if ( function_exists( 'wfForeignMemcKey' ) ) {
-			$key = wfForeignMemcKey( $this->database, false, 'user', 'id', $this->id );
-		} else {
-			$key = "$this->database:user:id:" . $this->id;
-		}
+		$key = wfForeignMemcKey( $this->database, false, 'user', 'id', $this->id );
 		$wgMemc->delete( $key );
 	}
 }
