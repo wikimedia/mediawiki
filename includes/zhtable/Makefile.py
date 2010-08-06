@@ -1,25 +1,33 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 # @author Philip
-import tarfile, zipfile
+import tarfile as tf
+import zipfile as zf
 import os, re, shutil, sys, platform
 
 pyversion = platform.python_version()
 islinux = platform.system().lower() == 'linux'
 
-if pyversion[:3] in ['2.5', '2.6', '2.7']:
+if pyversion[:3] in ['2.6', '2.7']:
     import urllib as urllib_request
     import codecs
-    uniopen = codecs.open
-    def unichr2(i):
-        if sys.maxunicode >= 0x10000 or i < 0x10000:
-            return unichr(i)
-        else:
-            return unichr(0xD7C0+(i>>10)) + unichr(0xDC00+(i&0x3FF))
+    open = codecs.open
+    _unichr = unichr
+    if sys.maxunicode < 0x10000:
+        def unichr(i):
+            if i < 0x10000:
+                return _unichr(i)
+            else:
+                return _unichr( 0xD7C0 + ( i>>10 ) ) + _unichr( 0xDC00 + ( i & 0x3FF ) )
 elif pyversion[:2] == '3.':
     import urllib.request as urllib_request
-    uniopen = open
-    unichr2 = chr
+    unichr = chr
+
+def unichr2( *args ):
+    return [unichr( int( i.split('<')[0][2:], 16 ) ) for i in args]
+
+def unichr3( *args ):
+    return [unichr( int( i[2:7], 16 ) ) for i in args if i[2:7]]
 
 # DEFINE
 SF_MIRROR = 'easynews'
@@ -28,14 +36,14 @@ SCIM_PINYIN_VER = '0.5.91'
 LIBTABE_VER = '0.2.3'
 # END OF DEFINE
 
-def GetFileFromURL( url, dest ):
-    if os.path.isfile(dest):
+def download( url, dest ):
+    if os.path.isfile( dest ):
         print( 'File %s up to date.' % dest )
         return
     global islinux
     if islinux:
         # we use wget instead urlretrieve under Linux, 
-        # because wget will display details like download progress
+        # because wget could display details like download progress
         os.system('wget %s' % url)
     else:
         print( 'Downloading from [%s] ...' % url )
@@ -43,191 +51,200 @@ def GetFileFromURL( url, dest ):
         print( 'Download complete.\n' )
     return
 
-def GetFileFromUnihan( path ):
-    print( 'Extracting files from %s ...' % path )
-    text = zipfile.ZipFile(path).read('Unihan_Variants.txt')
-    uhfile = uniopen('Unihan_Variants.txt', 'w')
-    uhfile.write(text)
-    uhfile.close()
-    return
+def uncompress( fp, member, encoding = 'U8' ):
+    name = member.rsplit( '/', 1 )[-1]
+    print( 'Extracting %s ...' % name )
+    fp.extract( member )
+    shutil.move( member, name )
+    if '/' in member:
+        shutil.rmtree( member.split( '/', 1 )[0] )
+    return open( name, 'rb', encoding, 'ignore' )
 
-def GetFileFromTar( path, member, rename ):
-    print( 'Extracting %s from %s ...' % (rename, path) )
-    tarfile.open(path, 'r:gz').extract(member)
-    shutil.move(member, rename)
-    tree_rmv = member.split('/')[0]
-    shutil.rmtree(tree_rmv)
-    return
+unzip = lambda path, member, encoding = 'U8': \
+        uncompress( zf.ZipFile( path ), member, encoding )
 
-def ReadBIG5File( dest ):
-    print( 'Reading and decoding %s ...' % dest )
-    f1 = uniopen( dest, 'r', encoding='big5hkscs', errors='replace' )
-    text = f1.read()
-    text = text.replace( '\ufffd', '\n' )
-    f1.close()
-    f2 = uniopen( dest, 'w', encoding='utf8' )
-    f2.write(text)
-    f2.close()
-    return text
+untargz = lambda path, member, encoding = 'U8': \
+        uncompress( tf.open( path, 'r:gz' ), member, encoding )
 
-def ReadFile( dest ):
-    print( 'Reading and decoding %s ...' % dest )
-    f = uniopen( dest, 'r', encoding='utf8' )
-    ret = f.read()
-    f.close()
-    return ret
-
-def ReadUnihanFile( dest ):
-    print( 'Reading and decoding %s ...' % dest )
-    f = uniopen( dest, 'r', encoding='utf8' )
-    t2s_code = []
-    s2t_code = []
-    while True:
-        line = f.readline()
-        if line:
-            if line.startswith('#'):
-                continue
-            elif not line.find('kSimplifiedVariant') == -1:
-                temp = line.split('kSimplifiedVariant')
-                t2s_code.append( ( temp[0].strip(), temp[1].strip() ) )
-            elif not line.find('kTraditionalVariant') == -1:
-                temp = line.split('kTraditionalVariant')
-                s2t_code.append( ( temp[0].strip(), temp[1].strip() ) )
-        else:
+def parserCore( fp, pos, beginmark = None, endmark = None ):
+    if beginmark and endmark:
+        start = False
+    else: start = True
+    mlist = set()
+    for line in fp:
+        if beginmark and line.startswith( beginmark ):
+            start = True
+            continue
+        elif endmark and line.startswith( endmark ):
             break
-    f.close()
-    return ( t2s_code, s2t_code )
+        if start and not line.startswith( '#' ):
+            elems = line.split()
+            if len( elems ) < 2:
+                continue
+            elif len( elems[0] ) > 1:
+                mlist.add( elems[pos] )
+    return mlist
 
-def RemoveRows( text, num ):
-    text = re.sub( '.*\s*', '', text, num)
-    return text
+def tablesParser( path, name ):
+    """ Read file from scim-tables and parse it. """
+    global SCIM_TABLES_VER
+    src = 'scim-tables-%s/tables/zh/%s' % ( SCIM_TABLES_VER, name )
+    fp = untargz( path, src, 'U8' )
+    return parserCore( fp, 1, 'BEGIN_TABLE', 'END_TABLE' )
 
-def RemoveOneCharConv( text ):
-    preg = re.compile('^.\s*$', re.MULTILINE)
-    text = preg.sub( '', text )
-    return text
+ezbigParser = lambda path: tablesParser( path, 'EZ-Big.txt.in' )
+wubiParser = lambda path: tablesParser( path, 'Wubi.txt.in' )
+zrmParser = lambda path: tablesParser( path, 'Ziranma.txt.in' )
 
-def ConvertToChar( code ):
-    code = code.split('<')[0]
-    return unichr2( int( code[2:], 16 ) )
+def phraseParser( path ):
+    """ Read phrase_lib.txt and parse it. """
+    global SCIM_PINYIN_VER
+    src = 'scim-pinyin-%s/data/phrase_lib.txt' % SCIM_PINYIN_VER
+    dst = 'phrase_lib.txt'
+    fp = untargz( path, src, 'U8' )
+    return parserCore( fp, 0 )
 
-def GetDefaultTable( code_table ):
-    char_table = {}
-    for ( f, t ) in code_table:
-        if f and t:
-            from_char = ConvertToChar( f )
-            to_chars = [ConvertToChar( code ) for code in t.split()]
-            char_table[from_char] = to_chars
-    return char_table
+def tsiParser( path ):
+    """ Read tsi.src and parse it. """
+    src = 'libtabe/tsi-src/tsi.src'
+    dst = 'tsi.src'
+    fp = untargz( path, src, 'big5hkscs' )
+    return parserCore( fp, 0 )
 
-def GetManualTable( dest ):
-    text = ReadFile( dest )
-    temp1 = text.split()
-    char_table = {}
-    for elem in temp1:
-        elem = elem.strip('|')
-        if elem:
-            temp2 = elem.split( '|', 1 )
-            from_char = unichr2( int( temp2[0][2:7], 16 ) )
-            to_chars = [unichr2( int( code[2:7], 16 ) ) for code in temp2[1].split('|')]
-            char_table[from_char] = to_chars
-    return char_table
-
-def GetValidTable( src_table ):
-    valid_table = {}
-    for f, t in src_table.items():
-        valid_table[f] = t[0]
-    return valid_table
-
-def GetToManyRules( src_table ):
-    tomany_table = {}
-    for f, t in src_table.items():
-        for i in range(1, len(t)):
-            tomany_table[t[i]] = True
-    return tomany_table
-
-def RemoveRules( dest, table ):
-    text = ReadFile( dest )
-    temp1 = text.split()
-    for elem in temp1:
-        f = ''
-        t = ''
-        elem = elem.strip().replace( '"', '' ).replace( '\'', '' )
-        if '=>' in elem:
-            if elem.startswith( '=>' ):
-                t = elem.replace( '=>', '' ).strip()
-            elif elem.endswith( '=>' ):
-                f = elem.replace( '=>', '' ).strip()
-            else:
-                temp2 = elem.split( '=>' )
-                f = temp2[0].strip()
-                t = temp2[1].strip()
-                try:
-                    table.pop(f, t)
-                    continue
-                except:
-                    continue
+def unihanParser( path ):
+    """ Read Unihan_Variants.txt and parse it. """
+    fp = unzip( path, 'Unihan_Variants.txt', 'U8' )
+    t2s = dict()
+    s2t = dict()
+    for line in fp:
+        if line.startswith( '#' ):
+            continue
         else:
-            f = t = elem
+            elems = line.split()
+            if len( elems ) < 3:
+                continue
+            type = elems.pop( 1 )
+            elems = unichr2( *elems )
+            if type == 'kTraditionalVariant':
+                s2t[elems[0]] = elems[1:]
+            elif type == 'kSimplifiedVariant':
+                t2s[elems[0]] = elems[1:]
+    fp.close()
+    return ( t2s, s2t )
+
+def applyExcludes( mlist, path ):
+    """ Apply exclude rules from path to mlist. """
+    excludes = open( path, 'rb', 'U8' ).read().split()
+    excludes = [word.split( '#' )[0].strip() for word in excludes]
+    excludes = '|'.join( excludes )
+    excptn = re.compile( '.*(?:%s).*' % excludes )
+    diff = [mword for mword in mlist if excptn.search( mword )]
+    mlist.difference_update( diff )
+    return mlist
+
+def charManualTable( path ):
+    fp = open( path, 'rb', 'U8' )
+    ret = {}
+    for line in fp:
+        elems = line.split( '#' )[0].split( '|' )
+        elems = unichr3( *elems )
+        if len( elems ) > 1:
+            ret[elems[0]] = elems[1:]
+    return ret
+        
+def toManyRules( src_table ):
+    tomany = set()
+    for ( f, t ) in src_table.iteritems():
+        for i in range( 1, len( t ) ):
+            tomany.add( t[i] )
+    return tomany
+
+def removeRules( path, table ):
+    fp = open( path, 'rb', 'U8' )
+    texc = list()
+    for line in fp:
+        elems = line.split( '=>' )
+        f = t = elems[0].strip()
+        if len( elems ) == 2:
+            t = elems[1].strip()
+        f = f.strip('"').strip("'")
+        t = t.strip('"').strip("'")
         if f:
             try:
-                table.pop(f)
+                table.pop( f )
             except:
-                x = 1
+                pass
         if t:
-            for temp_f, temp_t in table.copy().items():
-                if temp_t == t:
-                    table.pop(temp_f)
+            texc.append( t )
+    texcptn = re.compile( '^(?:%s)$' % '|'.join( texc ) )
+    for (tmp_f, tmp_t) in table.copy().iteritems():
+        if texcptn.match( tmp_t ):
+            table.pop( tmp_f )
     return table
 
-def DictToSortedList1( src_table ):
-    return sorted( src_table.items(), key = lambda m: m[0] ) #sorted( temp_table, key = lambda m: len( m[0] ) )
+def customRules( path ):
+    fp = open( path, 'rb', 'U8' )
+    ret = dict()
+    for line in fp:
+        elems = line.split( '#' )[0].split()
+        if len( elems ) > 1:
+            ret[elems[0]] = elems[1]
+    return ret
 
-def DictToSortedList2( src_table ):
-    return sorted( src_table.items(), key = lambda m: m[1] )
+def dictToSortedList( src_table, pos ):
+    return sorted( src_table.items(), key = lambda m: m[pos] )
 
-def Converter( string, conv_table ):
+def translate( text, conv_table ):
     i = 0
-    while i < len(string):
-        for j in range(len(string) - i, 0, -1):
-            f = string[i:][:j]
+    while i < len( text ):
+        for j in range( len( text ) - i, 0, -1 ):
+            f = text[i:][:j]
             t = conv_table.get( f )
             if t:
-                string = string[:i] + t + string[i:][j:]
+                text = text[:i] + t + text[i:][j:]
                 i += len(t) - 1
                 break
         i += 1
-    return string
+    return text
 
-def GetDefaultWordsTable( src_wordlist, src_tomany, char_conv_table, char_reconv_table ):
-    wordlist = list( set( src_wordlist ) )
+def manualWordsTable( path, conv_table, reconv_table ):
+    fp = open( path, 'rb', 'U8' )
+    reconv_table = {}
+    wordlist = [line.split( '#' )[0].strip() for line in fp]
+    wordlist = list( set( wordlist ) )
+    wordlist.sort( key = len, reverse = True )
+    while wordlist:
+        word = wordlist.pop()
+        new_word = translate( word, conv_table )
+        rcv_word = translate( word, reconv_table )
+        if word != rcv_word:
+            reconv_table[word] = word
+        reconv_table[new_word] = word
+    return reconv_table
+
+def defaultWordsTable( src_wordlist, src_tomany, char_conv_table, char_reconv_table ):
+    wordlist = list( src_wordlist )
     wordlist.sort( key = len, reverse = True )
     word_conv_table = {}
     word_reconv_table = {}
+    conv_table = char_conv_table.copy()
+    reconv_table = char_reconv_table.copy()
+    tomanyptn = re.compile( '(?:%s)' % '|'.join( src_tomany ) )
     while wordlist:
-        conv_table = {}
-        reconv_table = {}
         conv_table.update( word_conv_table )
-        conv_table.update( char_conv_table )
         reconv_table.update( word_reconv_table )
-        reconv_table.update( char_reconv_table )
         word = wordlist.pop()
-        new_word_len = word_len = len(word)
+        new_word_len = word_len = len( word )
         while new_word_len == word_len:
-            rvt_test = False
-            for char in word:
-                rvt_test = rvt_test or src_tomany.get(char)
-            test_word = Converter( word, reconv_table )
-            new_word = Converter( word, conv_table )
-            if not reconv_table.get( new_word ):
-                if not test_word == word:
-                    word_conv_table[word] = new_word
-                    word_reconv_table[new_word] = word
-                elif rvt_test:
-                    rvt_word = Converter( new_word, reconv_table )
-                    if not rvt_word == word:
-                        word_conv_table[word] = new_word
-                        word_reconv_table[new_word] = word
+            add = False
+            test_word = translate( word, reconv_table )
+            new_word = translate( word, conv_table )
+            if not reconv_table.get( new_word ) \
+               and ( test_word != word \
+               or ( tomanyptn.search( word ) \
+               and word != translate( new_word, reconv_table ) ) ):
+                word_conv_table[word] = new_word
+                word_reconv_table[new_word] = word
             try:
                 word = wordlist.pop()
             except IndexError:
@@ -235,205 +252,98 @@ def GetDefaultWordsTable( src_wordlist, src_tomany, char_conv_table, char_reconv
             new_word_len = len(word)
     return word_reconv_table
 
-def GetManualWordsTable( src_wordlist, conv_table ):
-    src_wordlist = [items.split('#')[0].strip() for items in src_wordlist]
-    wordlist = list( set( src_wordlist ) )
-    wordlist.sort( key = len, reverse = True )
-    reconv_table = {}
-    while wordlist:
-        word = wordlist.pop()
-        new_word = Converter( word, conv_table )
-        reconv_table[new_word] = word
-    return reconv_table
-
-def CustomRules( dest ):
-    text = ReadFile( dest )
-    temp = text.split()
-    ret = dict()
-    for i in range( 0, len( temp ), 2 ):
-        ret[temp[i]] = temp[i + 1]
-    return ret
-
-def GetPHPArray( table ):
+def PHPArray( table ):
     lines = ['\'%s\' => \'%s\',' % (f, t) for (f, t) in table if f and t]
-    #lines = ['"%s"=>"%s",' % (f, t) for (f, t) in table]
     return '\n'.join(lines)
-
-def RemoveSameChar( src_table ):
-    dst_table = {}
-    for f, t in src_table.items():
-        if f != t:
-            dst_table[f] = t
-    return dst_table
 
 def main():
     #Get Unihan.zip:
     url  = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
     han_dest = 'Unihan.zip'
-    GetFileFromURL( url, han_dest )
+    download( url, han_dest )
     
     # Get scim-tables-$(SCIM_TABLES_VER).tar.gz:
     url  = 'http://%s.dl.sourceforge.net/sourceforge/scim/scim-tables-%s.tar.gz' % ( SF_MIRROR, SCIM_TABLES_VER )
     tbe_dest = 'scim-tables-%s.tar.gz' % SCIM_TABLES_VER
-    GetFileFromURL( url, tbe_dest )
+    download( url, tbe_dest )
     
     # Get scim-pinyin-$(SCIM_PINYIN_VER).tar.gz:
     url  = 'http://%s.dl.sourceforge.net/sourceforge/scim/scim-pinyin-%s.tar.gz' % ( SF_MIRROR, SCIM_PINYIN_VER )
     pyn_dest = 'scim-pinyin-%s.tar.gz' % SCIM_PINYIN_VER
-    GetFileFromURL( url, pyn_dest )
+    download( url, pyn_dest )
     
     # Get libtabe-$(LIBTABE_VER).tgz:
     url  = 'http://%s.dl.sourceforge.net/sourceforge/libtabe/libtabe-%s.tgz' % ( SF_MIRROR, LIBTABE_VER )
     lbt_dest = 'libtabe-%s.tgz' % LIBTABE_VER
-    GetFileFromURL( url, lbt_dest )
+    download( url, lbt_dest )
     
-    # Extract the file from a comressed files
+    # Unihan.txt
+    ( t2s_1tomany, s2t_1tomany ) = unihanParser( han_dest )
+
+    t2s_1tomany.update( charManualTable( 'trad2simp.manual' ) )
+    s2t_1tomany.update( charManualTable( 'simp2trad.manual' ) )
     
-    # Unihan.txt Simp. & Trad
-    GetFileFromUnihan( han_dest )
+    t2s_1to1 = dict( [( f, t[0] ) for ( f, t ) in t2s_1tomany.iteritems()] )
+    s2t_1to1 = dict( [( f, t[0] ) for ( f, t ) in s2t_1tomany.iteritems()] )
     
-    # Make word lists
-    t_wordlist = []
-    s_wordlist = []
+    s_tomany = toManyRules( t2s_1tomany )
+    t_tomany = toManyRules( s2t_1tomany )
+
+    # noconvert rules
+    t2s_1to1 = removeRules( 'trad2simp_noconvert.manual', t2s_1to1 )
+    s2t_1to1 = removeRules( 'simp2trad_noconvert.manual', s2t_1to1 )
     
-    # EZ.txt.in Trad
-    src = 'scim-tables-%s/tables/zh/EZ-Big.txt.in' % SCIM_TABLES_VER
-    dst = 'EZ.txt.in'
-    GetFileFromTar( tbe_dest, src, dst )
-    text = ReadFile( dst )
-    text = text.split( 'BEGIN_TABLE' )[1].strip()
-    text = text.split( 'END_TABLE' )[0].strip()
-    text = re.sub( '.*\t', '', text )
-    text = RemoveOneCharConv( text )
-    t_wordlist.extend( text.split() )
-    
-    # Wubi.txt.in Simp
-    src = 'scim-tables-%s/tables/zh/Wubi.txt.in' % SCIM_TABLES_VER
-    dst = 'Wubi.txt.in'
-    GetFileFromTar( tbe_dest, src, dst )
-    text = ReadFile( dst )
-    text = text.split( 'BEGIN_TABLE' )[1].strip()
-    text = text.split( 'END_TABLE' )[0].strip()
-    text = re.sub( '.*\t(.*?)\t\d*', '\g<1>', text )
-    text = RemoveOneCharConv( text )
-    s_wordlist.extend( text.split() )
-    
-    # Ziranma.txt.in Simp
-    src = 'scim-tables-%s/tables/zh/Ziranma.txt.in' % SCIM_TABLES_VER
-    dst = 'Ziranma.txt.in'
-    GetFileFromTar( tbe_dest, src, dst )
-    text = ReadFile( dst )
-    text = text.split( 'BEGIN_TABLE' )[1].strip()
-    text = text.split( 'END_TABLE' )[0].strip()
-    text = re.sub( '.*\t(.*?)\t\d*', '\g<1>', text )
-    text = RemoveOneCharConv( text )
-    s_wordlist.extend( text.split() )
-    
-    # phrase_lib.txt Simp
-    src = 'scim-pinyin-%s/data/phrase_lib.txt' % SCIM_PINYIN_VER
-    dst = 'phrase_lib.txt'
-    GetFileFromTar( pyn_dest, src, dst )
-    text = ReadFile( 'phrase_lib.txt' )
-    text = re.sub( '(.*)\t\d\d*.*', '\g<1>', text)
-    text = RemoveRows( text, 5 )
-    text = RemoveOneCharConv( text )
-    s_wordlist.extend( text.split() )
-    
-    # tsi.src Trad
-    src = 'libtabe/tsi-src/tsi.src'
-    dst = 'tsi.src'
-    GetFileFromTar( lbt_dest, src, dst )
-    text = ReadBIG5File( 'tsi.src' )
-    text = re.sub( ' \d.*', '', text.replace('# ', ''))
-    text = RemoveOneCharConv( text )
-    t_wordlist.extend( text.split() )
-    
-    # remove duplicate elements
-    t_wordlist = list( set( t_wordlist ) )
-    s_wordlist = list( set( s_wordlist ) )
-    
-    # simpphrases_exclude.manual Simp
-    text = ReadFile( 'simpphrases_exclude.manual' )
-    temp = text.split()
-    s_string = '\n'.join( s_wordlist )
-    for elem in temp:
-        s_string = re.sub( '.*%s.*\n' % elem, '', s_string )
-    s_wordlist = s_string.split('\n')
-    
-    # tradphrases_exclude.manual Trad
-    text = ReadFile( 'tradphrases_exclude.manual' )
-    temp = text.split()
-    t_string = '\n'.join( t_wordlist )
-    for elem in temp:
-        t_string = re.sub( '.*%s.*\n' % elem, '', t_string )
-    t_wordlist = t_string.split('\n')
-    
-    # Make char to char convertion table
-    # Unihan.txt, dict t2s_code, s2t_code = { 'U+XXXX': 'U+YYYY( U+ZZZZ) ... ', ... }
-    ( t2s_code, s2t_code ) = ReadUnihanFile( 'Unihan_Variants.txt' )
-    # dict t2s_1tomany = { '\uXXXX': '\uYYYY\uZZZZ ... ', ... }
-    t2s_1tomany = {}
-    t2s_1tomany.update( GetDefaultTable( t2s_code ) )
-    t2s_1tomany.update( GetManualTable( 'trad2simp.manual' ) )
-    # dict s2t_1tomany
-    s2t_1tomany = {}
-    s2t_1tomany.update( GetDefaultTable( s2t_code ) )
-    s2t_1tomany.update( GetManualTable( 'simp2trad.manual' ) )
-    # dict t2s_1to1 = { '\uXXXX': '\uYYYY', ... }; t2s_trans = { 'ddddd': '', ... }
-    t2s_1to1 = GetValidTable( t2s_1tomany )
-    s_tomany = GetToManyRules( t2s_1tomany )
-    # dict s2t_1to1; s2t_trans
-    s2t_1to1 = GetValidTable( s2t_1tomany )
-    t_tomany = GetToManyRules( s2t_1tomany )
-    # remove noconvert rules
-    t2s_1to1 = RemoveRules( 'trad2simp_noconvert.manual', t2s_1to1 )
-    s2t_1to1 = RemoveRules( 'simp2trad_noconvert.manual', s2t_1to1 )
-    
-    # Make word to word convertion table
+    # the supper set for word to word conversion
     t2s_1to1_supp = t2s_1to1.copy()
     s2t_1to1_supp = s2t_1to1.copy()
-    # trad2simp_supp_set.manual
-    t2s_1to1_supp.update( CustomRules( 'trad2simp_supp_set.manual' ) )
-    # simp2trad_supp_set.manual
-    s2t_1to1_supp.update( CustomRules( 'simp2trad_supp_set.manual' ) )
-    # simpphrases.manual
-    text = ReadFile( 'simpphrases.manual' )
-    s_wordlist_manual = text.split('\n')
-    t2s_word2word_manual = GetManualWordsTable(s_wordlist_manual, s2t_1to1_supp)
-    t2s_word2word_manual.update( CustomRules( 'toSimp.manual' ) )
-    # tradphrases.manual
-    text = ReadFile( 'tradphrases.manual' )
-    t_wordlist_manual = text.split('\n')
-    s2t_word2word_manual = GetManualWordsTable(t_wordlist_manual, t2s_1to1_supp)
-    s2t_word2word_manual.update( CustomRules( 'toTrad.manual' ) )
-    # t2s_word2word
+    t2s_1to1_supp.update( customRules( 'trad2simp_supp_set.manual' ) )
+    s2t_1to1_supp.update( customRules( 'simp2trad_supp_set.manual' ) )
+    
+    # word to word manual rules
+    t2s_word2word_manual = manualWordsTable( 'simpphrases.manual', s2t_1to1_supp, t2s_1to1_supp )
+    t2s_word2word_manual.update( customRules( 'toSimp.manual' ) )
+    s2t_word2word_manual = manualWordsTable( 'tradphrases.manual', t2s_1to1_supp, s2t_1to1_supp )
+    s2t_word2word_manual.update( customRules( 'toTrad.manual' ) )
+
+    # word to word rules from input methods
+    t_wordlist = set()
+    s_wordlist = set()
+    t_wordlist.update( ezbigParser( tbe_dest ),
+                       tsiParser( lbt_dest ) )
+    s_wordlist.update( wubiParser( tbe_dest ),
+                       zrmParser( tbe_dest ),
+                       phraseParser( pyn_dest ) )
+
+    # exclude
+    s_wordlist = applyExcludes( s_wordlist, 'simpphrases_exclude.manual' )
+    t_wordlist = applyExcludes( t_wordlist, 'tradphrases_exclude.manual' )
+
     s2t_supp = s2t_1to1_supp.copy()
     s2t_supp.update( s2t_word2word_manual )
     t2s_supp = t2s_1to1_supp.copy()
     t2s_supp.update( t2s_word2word_manual )
-    t2s_word2word = GetDefaultWordsTable( s_wordlist, s_tomany, s2t_1to1_supp, t2s_supp )
-    ## toSimp.manual
+
+    # parse list to dict
+    t2s_word2word = defaultWordsTable( s_wordlist, s_tomany, s2t_1to1_supp, t2s_supp )
     t2s_word2word.update( t2s_word2word_manual )
-    # s2t_word2word
-    s2t_word2word = GetDefaultWordsTable( t_wordlist, t_tomany, t2s_1to1_supp, s2t_supp )
-    ## toTrad.manual
+    s2t_word2word = defaultWordsTable( t_wordlist, t_tomany, t2s_1to1_supp, s2t_supp )
     s2t_word2word.update( s2t_word2word_manual )
     
     # Final tables
     # sorted list toHans
-    t2s_1to1 = RemoveSameChar( t2s_1to1 )
-    s2t_1to1 = RemoveSameChar( s2t_1to1 )
-    toHans = DictToSortedList1( t2s_1to1 ) + DictToSortedList2( t2s_word2word )
+    t2s_1to1 = dict( [( f, t ) for ( f, t ) in t2s_1to1.iteritems() if f != t] )
+    toHans = dictToSortedList( t2s_1to1, 0 ) + dictToSortedList( t2s_word2word, 1 )
     # sorted list toHant
-    toHant = DictToSortedList1( s2t_1to1 ) + DictToSortedList2( s2t_word2word )
+    s2t_1to1 = dict( [( f, t ) for ( f, t ) in s2t_1to1.iteritems() if f != t] )
+    toHant = dictToSortedList( s2t_1to1, 0 ) + dictToSortedList( s2t_word2word, 1 )
     # sorted list toCN
-    toCN = DictToSortedList2( CustomRules( 'toCN.manual' ) )
+    toCN = dictToSortedList( customRules( 'toCN.manual' ), 1 )
     # sorted list toHK
-    toHK = DictToSortedList2( CustomRules( 'toHK.manual' ) )
+    toHK = dictToSortedList( customRules( 'toHK.manual' ), 1 )
     # sorted list toSG
-    toSG = DictToSortedList2( CustomRules( 'toSG.manual' ) )
+    toSG = dictToSortedList( customRules( 'toSG.manual' ), 1 )
     # sorted list toTW
-    toTW = DictToSortedList2( CustomRules( 'toTW.manual' ) )
+    toTW = dictToSortedList( customRules( 'toTW.manual' ), 1 )
     
     # Get PHP Array
     php = '''<?php
@@ -445,27 +355,27 @@ def main():
  */
 
 $zh2Hant = array(\n'''
-    php += GetPHPArray( toHant )
-    php += '\n);\n\n$zh2Hans = array(\n'
-    php += GetPHPArray( toHans )
-    php += '\n);\n\n$zh2TW = array(\n'
-    php += GetPHPArray( toTW )
-    php += '\n);\n\n$zh2HK = array(\n'
-    php += GetPHPArray( toHK )
-    php += '\n);\n\n$zh2CN = array(\n'
-    php += GetPHPArray( toCN )
-    php += '\n);\n\n$zh2SG = array(\n'
-    php += GetPHPArray( toSG )
-    php += '\n);'
+    php += PHPArray( toHant ) \
+        +  '\n);\n\n$zh2Hans = array(\n' \
+        +  PHPArray( toHans ) \
+        +  '\n);\n\n$zh2TW = array(\n' \
+        +  PHPArray( toTW ) \
+        +  '\n);\n\n$zh2HK = array(\n' \
+        +  PHPArray( toHK ) \
+        +  '\n);\n\n$zh2CN = array(\n' \
+        +  PHPArray( toCN ) \
+        +  '\n);\n\n$zh2SG = array(\n' \
+        +  PHPArray( toSG ) \
+        +  '\n);'
     
-    f = uniopen( 'ZhConversion.php', 'w', encoding = 'utf8' )
+    f = open( 'ZhConversion.php', 'wb', encoding = 'utf8' )
     print ('Writing ZhConversion.php ... ')
     f.write( php )
     f.close()
     
     #Remove temp files
     print ('Deleting temp files ... ')
-    os.remove('EZ.txt.in')
+    os.remove('EZ-Big.txt.in')
     os.remove('phrase_lib.txt')
     os.remove('tsi.src')
     os.remove('Unihan_Variants.txt')
