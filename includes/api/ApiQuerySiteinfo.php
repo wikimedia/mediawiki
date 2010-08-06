@@ -322,7 +322,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendUserGroups( $property, $numberInGroup ) {
-		global $wgGroupPermissions;
+		global $wgGroupPermissions, $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
+		
 		$data = array();
 		foreach ( $wgGroupPermissions as $group => $permissions ) {
 			$arr = array(
@@ -332,11 +333,25 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( $numberInGroup ) {
 				$arr['number'] = SiteStats::numberInGroup( $group );
 			}
-
+			
+			$groupArr = array(
+				'add' => &$wgAddGroups,
+				'remove' => &$wgRemoveGroups,
+				'add-self' => &$wgGroupsAddToSelf,
+				'remove-self' => &$wgGroupsRemoveFromSelf
+			);
+			
+			foreach( $groupArr as $type => $rights ) {
+				if( isset( $rights[$group] ) ) {
+					$arr[$type] = $rights[$group];
+					$this->getResult()->setIndexedTagName( $arr[$type], 'group' );
+				}
+			}
+			
 			$this->getResult()->setIndexedTagName( $arr['rights'], 'permission' );
 			$data[] = $arr;
 		}
-
+		
 		$this->getResult()->setIndexedTagName( $data, 'group' );
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
