@@ -51,6 +51,7 @@ $messages = array(
 'tog-watchlisthideown'        => "Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
 'tog-watchlisthidebots'       => "↓ Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
 'tog-watchlisthideminor'      => "↓ Nascond al mi mudèfic dala lèsta dal pàgin da tnì d'occ",
+'tog-watchlisthideliu'        => "↓ In tla lèsta da tnì d'occ, nascond al mudèfic d'j utent registrè",
 
 # Dates
 'january'       => 'Znèr',

@@ -651,6 +651,15 @@ Prosimo počakajte, preden poskusite znova.',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaša zahteva za odjavo je bila zavrnjena, saj kaže, da je bila poslana iz pokvarjenega brskalnika ali proxyja s predpomnilnikom.',
 
+# JavaScript password checks
+'password-strength'            => 'Ocenjena moč gesla: $1',
+'password-strength-bad'        => 'SLABO',
+'password-strength-mediocre'   => 'povprečno',
+'password-strength-acceptable' => 'sprejemljivo',
+'password-strength-good'       => 'dobro',
+'password-retype'              => 'Ponovno vpišite geslo tukaj',
+'password-retype-mismatch'     => 'Gesli se ne ujemata',
+
 # Password reset dialog
 'resetpass'                 => 'Spremeni geslo',
 'resetpass_announce'        => 'Trenutno ste prijavljeni z začasno e-poštno kodo.

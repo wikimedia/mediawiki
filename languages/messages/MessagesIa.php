@@ -631,6 +631,15 @@ Per favor attende ante de probar lo novemente.',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'Le requesta de clauder le session ha essite refusate proque illo pare haber essite inviate per un navigator o proxy de cache defectuose.',
 
+# JavaScript password checks
+'password-strength'            => 'Estimation del securitate del contrasigno: $1',
+'password-strength-bad'        => 'MAL',
+'password-strength-mediocre'   => 'mediocre',
+'password-strength-acceptable' => 'acceptabile',
+'password-strength-good'       => 'bon',
+'password-retype'              => 'Repete contrasigno hic',
+'password-retype-mismatch'     => 'Le contrasignos non es identic',
+
 # Password reset dialog
 'resetpass'                 => 'Cambiar contrasigno',
 'resetpass_announce'        => 'Tu ha aperite un session con un codice temporari que tu recipeva in e-mail.

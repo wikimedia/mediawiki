@@ -680,7 +680,7 @@ Sinu konto on loodud.
 'yourpassword'               => 'Parool:',
 'yourpasswordagain'          => 'Sisesta parool uuesti:',
 'remembermypassword'         => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
-'yourdomainname'             => 'Teie domeen:',
+'yourdomainname'             => 'Sinu domeen:',
 'login'                      => 'Logi sisse',
 'nav-login-createaccount'    => 'Logi sisse või registreeru kasutajaks',
 'loginprompt'                => 'Sisselogimiseks peavad küpsised lubatud olema.',
@@ -877,8 +877,8 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'clearyourcache'                   => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
 'usercssyoucanpreview'             => "'''Vihje:''' Enne salvestamist kasuta oma uue CSSi proovimiseks nuppu \"{{int:showpreview}}\".",
 'userjsyoucanpreview'              => "'''Vihje:''' Enne salvestamist kasuta oma uue JavaScripti proovimiseks nuppu \"{{int:showpreview}}\".",
-'usercsspreview'                   => "'''Ärge unustage, et seda versiooni teie isiklikust stiililehest pole veel salvestatud!'''",
-'userjspreview'                    => "'''Ärge unustage, et see versioon teie isiklikust javascriptist on alles salvestamata!'''",
+'usercsspreview'                   => "'''Ära unusta, et seda versiooni sinu isiklikust stiililehest pole veel salvestatud!'''",
+'userjspreview'                    => "'''Ära unusta, et see versioon sinu isiklikust JavaScriptist on alles salvestamata!'''",
 'userinvalidcssjstitle'            => "'''Hoiatus:''' Kujundust nimega \"\$1\" ei ole.
 Ära unusta, et kasutaja isiklikud .css- ja .js-lehed kasutavad väiketähega algavaid nimesid, näiteks  {{ns:user}}:Juhan Julm/monobook.css ja mitte {{ns:user}}:Juhan Julm/Monobook.css.",
 'updated'                          => '(Värskendatud)',
@@ -898,13 +898,12 @@ Kui see ikka ei tööta, proovi [[Special:UserLogout|välja]] ja tagasi sisse lo
 'editingsection'                   => 'Redigeerimisel on osa leheküljest $1',
 'editingcomment'                   => 'Muutmisel on $1 (uus alaosa)',
 'editconflict'                     => 'Redigeerimiskonflikt: $1',
-'explainconflict'                  => 'Keegi teine on muutnud seda lehekülge pärast seda, kui Teie seda redigeerima hakkasite.
-Ülemine toimetuskast sisaldab teksti viimast versiooni.
-Teie muudatused on alumises kastis.
-Teil tuleb need viimasesse versiooni üle viia.
-Kui Te klõpsate nupule
- "Salvesta", siis salvestub <b>ainult</b> ülemises toimetuskastis olev tekst.<br />',
-'yourtext'                         => 'Teie tekst',
+'explainconflict'                  => "Keegi teine on muutnud seda lehekülge pärast seda, kui sina seda redigeerima hakkasid.
+Ülemine toimetamiskast sisaldab teksti viimast versiooni.
+Sinu muudatused on alumises kastis.
+Sul tuleb need viimasesse versiooni üle viia.
+Kui klõpsad nupule \"Salvesta\", salvestub '''ainult''' ülemises toimetamiskastis olev tekst.",
+'yourtext'                         => 'Sinu tekst',
 'storedversion'                    => 'Salvestatud redaktsioon',
 'nonunicodebrowser'                => "'''HOIATUS: Sinu brauser ei toeta unikoodi.'''
 Probleemist möödahiilimiseks, selleks et saaksid lehekülgi turvaliselt redigeerida, näidatakse mitte-ASCII sümboleid toimetuskastis kuueteistkümnendsüsteemi koodidena.",
@@ -1292,7 +1291,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'prefs-help-watchlist-token'    => 'Selle välja täitmine tekitab sinu jälgimisloendile RSS-toite.
 Igaüks, kes teab sellel väljal olevat võtit, saab lugeda sinu jälgimisloendit, seega vali turvaline väärtus.
 Siin on juhuslik väärtus, mida saad kasutada: $1',
-'savedprefs'                    => 'Teie eelistused on salvestatud.',
+'savedprefs'                    => 'Sinu eelistused on salvestatud.',
 'timezonelegend'                => 'Ajavöönd:',
 'localtime'                     => 'Kohalik aeg:',
 'timezoneuseserverdefault'      => 'Kasuta serveri vaikesätet',
@@ -1342,7 +1341,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'gender-female'                 => 'Naine',
 'prefs-help-gender'             => 'Vabatahtlik: kasutatakse mõnedes keeltes sooliselt korrektse väljendumise otstarbel. Info on avalik.',
 'email'                         => 'E-post',
-'prefs-help-realname'           => 'Vabatahtlik: Kui otsustate selle avaldada, kasutatakse seda teie kaastöö seostamiseks teiega.',
+'prefs-help-realname'           => 'Vabatahtlik. Kui otsustad päris nime avaldada, kasutatakse seda sinu kaastöö seostamiseks sinuga.',
 'prefs-help-email'              => 'Elektronpostiaadressi sisestamine ei ole kohustuslik, kuid võimaldab sul tellida parooli meeldetuletuse, kui peaksid oma parooli unustama. Samuti saad aadressi märkides anda oma identiteeti avaldamata teistele kasutajatele võimaluse enesele sõnumeid saata.',
 'prefs-help-email-required'     => 'E-posti aadress on vajalik.',
 'prefs-info'                    => 'Põhiteave',
@@ -2056,7 +2055,7 @@ Toetatud protokollid: <tt>$1</tt>',
 'mailnologintext'      => 'Te peate olema [[Special:UserLogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
 'emailuser'            => 'Saada sellele kasutajale e-kiri',
 'emailpage'            => 'Saada kasutajale e-kiri',
-'emailpagetext'        => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud [[Special:Preferences|oma eelistuste lehel]].',
+'emailpagetext'        => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, saad alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "Kellelt" e-posti aadressiga, mille olete sisestanud [[Special:Preferences|oma eelistuste lehel]].',
 'usermailererror'      => 'Saatmise viga:',
 'defemailsubject'      => 'E-kiri {{GRAMMAR:elative|{{SITENAME}}}}',
 'usermaildisabled'     => 'Kasutajatele e-kirjade saatmine keelatud',
@@ -2074,14 +2073,14 @@ Toetatud protokollid: <tt>$1</tt>',
 'emailccme'            => 'Saada mulle koopia.',
 'emailccsubject'       => 'Koopia sinu sõnumist kasutajale $1: $2',
 'emailsent'            => 'E-post saadetud',
-'emailsenttext'        => 'Teie sõnum on saadetud.',
+'emailsenttext'        => 'Sinu teade on e-kirjaga saadetud.',
 'emailuserfooter'      => 'Selle e-kirja saatis $1 {{GRAMMAR:elative|{{SITENAME}}}} kasutajale $2 toimingu "Saada sellele kasutajale e-kiri" abil.',
 
 # Watchlist
 'watchlist'            => 'Jälgimisloend',
 'mywatchlist'          => 'Jälgimisloend',
 'watchlistfor'         => "(kasutajale '''$1''')",
-'nowatchlist'          => 'Teie jälgimisloend on tühi.',
+'nowatchlist'          => 'Sinu jälgimisloend on tühi.',
 'watchlistanontext'    => 'Et näha ja muuta oma jälgimisloendit, peate $1.',
 'watchnologin'         => 'Ei ole sisse logitud',
 'watchnologintext'     => 'Jälgimisloendi muutmiseks peate [[Special:UserLogin|sisse logima]].',
@@ -2226,7 +2225,7 @@ Mine tagasi eelmisele leheküljele ja taaslaadi see, seejärel proovi uuesti.',
 Allpool on toodud lehekülje '''$1''' hetkel kehtivad seaded:",
 'protect-locked-dblock'       => "Kaitstuse taset ei saa muuta, sest andmebaas on lukustatud.
 Allpool on toodud lehekülje '''$1''' hetkel kehtivad seaded:",
-'protect-locked-access'       => "Teie konto ei oma õiguseid muuta lehekülje kaitstuse taset.
+'protect-locked-access'       => "Sinu kontol pole õigust muuta lehekülje kaitsetaset.
 Allpool on toodud lehekülje '''$1''' hetkel kehtivad seaded:",
 'protect-cascadeon'           => 'See lehekülg on kaitstud, kuna ta on kasutusel {{PLURAL:$1|järgmisel leheküljel|järgmistel lehekülgedel}}, mis on omakorda kaskaadkaitse all.
 Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaitset.',
@@ -2272,7 +2271,7 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'undelete'                     => 'Kustutatud lehekülgede vaatamine',
 'undeletepage'                 => 'Kustutatud lehekülgede vaatamine ja taastamine',
 'undeletepagetitle'            => "'''Kustutatud redaktsioonid leheküljest [[:$1|$1]]'''.",
-'viewdeletedpage'              => 'Vaata kustutatud lehekülgi',
+'viewdeletedpage'              => 'Kustutatud lehekülgede vaatamine',
 'undeletepagetext'             => '{{PLURAL:$1|Järgnev lehekülg on kustutatud|Järgnevad leheküljed on kustutatud}}, kuid arhiivis veel olemas ja taastatavad. Arhiivi sisu kustutatakse perioodiliselt.',
 'undelete-fieldset-title'      => 'Redaktsioonide taastamine',
 'undeleteextrahelp'            => "Kogu lehe ja selle ajaloo taastamiseks jätke kõik linnukesed tühjaks ja vajutage '''''Taasta'''''.
@@ -2441,7 +2440,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'unblocklink'                  => 'lõpeta blokeerimine',
 'change-blocklink'             => 'muuda blokeeringut',
 'contribslink'                 => 'kaastöö',
-'autoblocker'                  => 'Automaatselt blokeeritud, kuna [[User:$1|$1]] on hiljuti teie IP-aadressi kasutanud. Põhjus: $2',
+'autoblocker'                  => 'Automaatselt blokeeritud, kuna [[User:$1|$1]] on hiljuti sinu IP-aadressi kasutanud. Põhjus: $2',
 'blocklogpage'                 => 'Blokeerimislogi',
 'blocklog-showlog'             => 'See kasutaja on varem blokeeritud. Allpool on toodud blokeerimislogi sissekanne:',
 'blocklog-showsuppresslog'     => 'See kasutaja on varem blokeeritud ja peidetud. Allpool on toodud varjamislogi:',
@@ -2472,7 +2471,7 @@ See kuulub aga blokeeritud IP-vahemikku $2, mille blokeeringut saab eemaldada.',
 'blockme'                      => 'Blokeeri mind',
 'proxyblocker'                 => 'Proksiblokeerija',
 'proxyblocker-disabled'        => 'See funktsioon ei toimi.',
-'proxyblockreason'             => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
+'proxyblockreason'             => 'Sinu IP-aadress on blokeeritud, sest see on avatud proksi. Palun võta ühendust oma internetiteenuse pakkujaga või tehnilise toega ja teata neile sellest probleemist.',
 'proxyblocksuccess'            => 'Tehtud.',
 'sorbsreason'                  => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi.',
 'sorbs_create_account_reason'  => 'Sinu IP-aadress on {{GRAMMAR:genitive|{{SITENAME}}}} kasutatavas DNS-põhises mustas nimekirjas märgitud kui avatud proksi.
@@ -2496,8 +2495,8 @@ Palun kinnita, et sa tahad seda teha.',
 'locknoconfirm'       => 'Sa ei märkinud kinnituskastikesse linnukest.',
 'lockdbsuccesssub'    => 'Andmebaas kirjutuskaitse all',
 'unlockdbsuccesssub'  => 'Kirjutuspääs taastatud',
-'lockdbsuccesstext'   => 'Andmebaas on nüüd kirjutuskaitse all.
-<br />Kui Teie hooldustöö on läbi, ärge unustage kirjutuspääsu taastada!',
+'lockdbsuccesstext'   => 'Andmebaas on nüüd lukustatud.<br />
+Kui sinu hooldustöö on läbi, ära unusta [[Special:UnlockDB|kirjutuspääsu taastada]]!',
 'unlockdbsuccesstext' => 'Andmebaasi kirjutuspääs on taastatud.',
 'databasenotlocked'   => 'Andmebaas ei ole lukustatud.',
 
@@ -2709,7 +2708,7 @@ Palun ürita uuesti.',
 'tooltip-p-logo'                  => 'Esileht',
 'tooltip-n-mainpage'              => 'Mine esilehele',
 'tooltip-n-mainpage-description'  => 'Mine esilehele',
-'tooltip-n-portal'                => 'Projekti kohta, mida te saate teha, kuidas leida informatsiooni jne',
+'tooltip-n-portal'                => 'Projekti kohta, mida teha saad, kuidas asju leida',
 'tooltip-n-currentevents'         => 'Leia informatsiooni sündmuste kohta maailmas',
 'tooltip-n-recentchanges'         => 'Vikis tehtud viimaste muudatuste loend',
 'tooltip-n-randompage'            => 'Mine juhuslikule leheküljele',
@@ -3228,14 +3227,14 @@ Proovi tavalist eelvaadet.',
 'lag-warn-high'   => 'Andmebaasiserveri töö viivituste tõttu ei pruugi viimase {{PLURAL:$1|ühe sekundi|$1 sekundi}} jooksul tehtud muudatused selles loendis näha olla.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Teie jälgimisloendis on ilma arutelulehtedeta {{PLURAL:$1|1 leht|$1 lehte}}.',
-'watchlistedit-noitems'        => 'Teie jälgimisloend ei sisalda ühtegi lehekülge.',
+'watchlistedit-numitems'       => 'Sinu jälgimisloendis on {{PLURAL:$1|üks lehekülg|$1 lehekülge}}, aruteluleheküljed välja arvatud.',
+'watchlistedit-noitems'        => 'Sinu jälgimisloend ei sisalda ühtegi lehekülge.',
 'watchlistedit-normal-title'   => 'Jälgimisloendi redigeerimine',
 'watchlistedit-normal-legend'  => 'Jälgimisloendist lehtede eemaldamine',
 'watchlistedit-normal-explain' => 'Need lehed on sinu jälgimisloendis.
 Jälgimisloendist lehtekülgede eemaldamiseks tee vastava lehekülje ees olevasse kastikesse linnuke ja klõpsa nuppu "{{int:Watchlistedit-normal-submit}}". Saad ka jälgimisloendi [[Special:Watchlist/raw|algandmeid muuta]].',
 'watchlistedit-normal-submit'  => 'Eemalda valitud lehed',
-'watchlistedit-normal-done'    => 'Teie jälgimisloendist eemaldati {{PLURAL:$1|1 leht|$1 lehte}}:',
+'watchlistedit-normal-done'    => 'Jälgimisloendist eemaldati {{PLURAL:$1|üks lehekülg|$1 lehekülge}}:',
 'watchlistedit-raw-title'      => 'Jälgimisloendi algandmed',
 'watchlistedit-raw-legend'     => 'Redigeeritavad jälgimisloendi algandmed',
 'watchlistedit-raw-explain'    => 'Sinu jälgimisloendis olevad leheküljed on kuvatud allpool asuvas tekstikastis, kus sa saad neid lisada või eemaldada;
@@ -3244,7 +3243,7 @@ Kui sa oled lõpetanud, kliki nuppu "{{int:Watchlistedit-raw-submit}}".
 Sa võid [[Special:Watchlist/edit|kasutada ka harilikku tekstiredaktorit]].',
 'watchlistedit-raw-titles'     => 'Pealkirjad:',
 'watchlistedit-raw-submit'     => 'Uuenda jälgimisloendit',
-'watchlistedit-raw-done'       => 'Teie jälgimisloend on uuendatud.',
+'watchlistedit-raw-done'       => 'Sinu jälgimisloend on uuendatud.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 lehekülg|$1 lehekülge}} lisatud:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 pealkiri|$1 pealkirja}} eemaldati:',
 

@@ -592,6 +592,15 @@ Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
 'suspicious-userlogout'      => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
 
+# JavaScript password checks
+'password-strength'            => 'Amcangyfrif o gryfder y cyfrinair: $1',
+'password-strength-bad'        => 'GWAEL',
+'password-strength-mediocre'   => 'tila',
+'password-strength-acceptable' => 'derbyniol',
+'password-strength-good'       => 'da',
+'password-retype'              => 'Ail-deipiwch y cyfrinair fan hyn',
+'password-retype-mismatch'     => 'Y cyfrineiriau yn wahanol',
+
 # Password reset dialog
 'resetpass'                 => 'Newid cyfrinair y cyfrif',
 'resetpass_announce'        => "Fe wnaethoch fewngofnodi gyda chôd dros dro oddi ar e-bost.

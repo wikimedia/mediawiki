@@ -824,6 +824,15 @@ Wacht even voordat u het opnieuw probeert.',
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => 'Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
 
+# JavaScript password checks
+'password-strength'            => 'Geschatte wachtwoordsterkte: $1',
+'password-strength-bad'        => 'LAAG',
+'password-strength-mediocre'   => 'middelmatig',
+'password-strength-acceptable' => 'aanvaardbaar',
+'password-strength-good'       => 'goed',
+'password-retype'              => 'Geef uw wachtwoord opnieuw in',
+'password-retype-mismatch'     => 'De wachtwoorden komen niet overeen',
+
 # Password reset dialog
 'resetpass'                 => 'Wachtwoord wijzigen',
 'resetpass_announce'        => 'U bent aangemeld met een tijdelijke code die u per e-mail is toegezonden.

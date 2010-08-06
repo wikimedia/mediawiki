@@ -11,6 +11,7 @@
  * @author Ashok modhvadia
  * @author Dineshjk
  * @author Dsvyas
+ * @author RaviC
  * @author לערי ריינהארט
  */
 
@@ -750,18 +751,21 @@ Please log in again after you receive it.
 'history-feed-item-nocomment' => '$1, $2 સમયે',
 
 # Revision deletion
-'rev-delundel'              => 'બતાવો/છુપાવો',
-'revdel-restore'            => 'વિઝિબિલિટિ બદલો',
-'pagehist'                  => 'પાનાનો ઇતિહાસ',
-'deletedhist'               => 'રદ કરેલનો ઇતિહાસ',
-'revdelete-content'         => 'સામગ્રી',
-'revdelete-summary'         => 'સંપાદનનો સંક્ષિપ્ત અહેવાલ',
-'revdelete-uname'           => 'સભ્યનામ',
-'revdelete-hid'             => 'છુપાવો $1',
-'revdelete-unhid'           => 'દર્શાવો $1',
-'revdelete-otherreason'     => 'અન્ય/વધારાનું કારણ:',
-'revdelete-reasonotherlist' => 'અન્ય કારણ',
-'revdelete-edit-reasonlist' => 'ભુંસવાનું કારણ બદલો.',
+'rev-delundel'               => 'બતાવો/છુપાવો',
+'revdelete-show-file-submit' => 'હા',
+'revdelete-radio-set'        => 'હા',
+'revdelete-radio-unset'      => 'ના',
+'revdel-restore'             => 'વિઝિબિલિટિ બદલો',
+'pagehist'                   => 'પાનાનો ઇતિહાસ',
+'deletedhist'                => 'રદ કરેલનો ઇતિહાસ',
+'revdelete-content'          => 'સામગ્રી',
+'revdelete-summary'          => 'સંપાદનનો સંક્ષિપ્ત અહેવાલ',
+'revdelete-uname'            => 'સભ્યનામ',
+'revdelete-hid'              => 'છુપાવો $1',
+'revdelete-unhid'            => 'દર્શાવો $1',
+'revdelete-otherreason'      => 'અન્ય/વધારાનું કારણ:',
+'revdelete-reasonotherlist'  => 'અન્ય કારણ',
+'revdelete-edit-reasonlist'  => 'ભુંસવાનું કારણ બદલો.',
 
 # Suppression log
 'suppressionlog' => 'દાબ નોંધ',
@@ -1280,9 +1284,10 @@ Please log in again after you receive it.
 'export-addcat' => 'ઉમેરો',
 
 # Namespace 8 related
-'allmessages'        => 'તંત્ર સંદેશાઓ',
-'allmessagesname'    => 'નામ',
-'allmessagescurrent' => 'વર્તમાન દસ્તાવેજ',
+'allmessages'          => 'તંત્ર સંદેશાઓ',
+'allmessagesname'      => 'નામ',
+'allmessagescurrent'   => 'વર્તમાન દસ્તાવેજ',
+'allmessages-language' => 'ભાષા:',
 
 # Thumbnails
 'thumbnail-more'  => 'વિસ્તૃત કરો',

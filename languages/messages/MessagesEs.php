@@ -797,6 +797,15 @@ Puedes ignorar este mensaje si esta cuenta fue creada erróneamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => 'Su solicitud de desconexión ha sido denegada debido a que parece que ésta ha sido envidada desde un navegador defectuoso o un proxy caché.',
 
+# JavaScript password checks
+'password-strength'            => 'Dificultad estimada de la contraseña: $1',
+'password-strength-bad'        => 'MALA',
+'password-strength-mediocre'   => 'mediocre',
+'password-strength-acceptable' => 'aceptable',
+'password-strength-good'       => 'buena',
+'password-retype'              => 'Vuelve a escribir la contraseña aquí',
+'password-retype-mismatch'     => 'Las contraseñas no coinciden',
+
 # Password reset dialog
 'resetpass'                 => 'Cambiar la contraseña',
 'resetpass_announce'        => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico.

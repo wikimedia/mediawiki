@@ -830,6 +830,15 @@ Bitte warte, bevor du es erneut probierst.',
 'loginlanguagelabel'         => 'Sprache: $1',
 'suspicious-userlogout'      => 'Deine Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.',
 
+# JavaScript password checks
+'password-strength'            => 'Geschätzte Passwortstärke: $1',
+'password-strength-bad'        => 'SCHLECHT',
+'password-strength-mediocre'   => 'mittelmäßig',
+'password-strength-acceptable' => 'akzeptabel',
+'password-strength-good'       => 'gut',
+'password-retype'              => 'Passwort wiederholen',
+'password-retype-mismatch'     => 'Passwörter stimmen nicht überein',
+
 # Password reset dialog
 'resetpass'                 => 'Passwort ändern',
 'resetpass_announce'        => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort wählen.',

@@ -374,6 +374,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'yourgender'               => 'Geschlecht:',
 'gender-female'            => 'Weiblich',
 'email'                    => 'E-Poschde',
+'prefs-signature'          => 'Unnerschrift',
 'prefs-diffs'              => 'Unnerschidd vun Versione',
 
 # User rights

@@ -757,6 +757,15 @@ $2',
 'loginlanguagelabel'         => 'Язык: $1',
 'suspicious-userlogout'      => 'Ваш запрос на завершение сеанса отклонён, так как он похож на запрос, отправленный некорректным браузером или кэширующим прокси.',
 
+# JavaScript password checks
+'password-strength'            => 'Оценка стойкости пароля: $1',
+'password-strength-bad'        => 'ПЛОХАЯ',
+'password-strength-mediocre'   => 'посредственная',
+'password-strength-acceptable' => 'приемлемая',
+'password-strength-good'       => 'хорошая',
+'password-retype'              => 'Повторите набор пароля',
+'password-retype-mismatch'     => 'Пароли не совпадают',
+
 # Password reset dialog
 'resetpass'                 => 'Изменение пароля',
 'resetpass_announce'        => 'Вы представились с помощью временного пароля, полученного по электронной почте. Для завершения входа в систему, вы должны установить новый пароль.',

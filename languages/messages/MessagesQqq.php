@@ -48,6 +48,7 @@
  * @author Li-sung
  * @author Lloffiwr
  * @author Malafaya
+ * @author MaxSem
  * @author McDutchie
  * @author Meno25
  * @author MichaelFrey
@@ -705,6 +706,12 @@ Parameters:
 *Parameter $3 is a password (randomly generated).
 *Parameter $4 is a URL to the wiki',
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
+
+# JavaScript password checks
+'password-strength-bad'        => 'See {{msg-mw|password-strength}} for context',
+'password-strength-mediocre'   => 'See {{msg-mw|password-strength}} for context',
+'password-strength-acceptable' => 'See {{msg-mw|password-strength}} for context',
+'password-strength-good'       => 'See {{msg-mw|password-strength}} for context',
 
 # Password reset dialog
 'resetpass'                 => 'The caption of [[Special:Resetpass]]

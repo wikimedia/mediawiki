@@ -897,6 +897,15 @@ $2',
 'loginlanguagelabel'         => 'زبان: $1',
 'suspicious-userlogout'      => 'درخواست شما برای خروج از سامانه رد شد زیرا به نظر می‌رسد که این درخواست توسط یک مرورگر معیوب یا پروکسی میانگیر ارسال شده باشد.',
 
+# JavaScript password checks
+'password-strength'            => 'تخمین قدرت گذرواژه: $1',
+'password-strength-bad'        => 'بد',
+'password-strength-mediocre'   => 'متوسط',
+'password-strength-acceptable' => 'قابل قبول',
+'password-strength-good'       => 'خوب',
+'password-retype'              => 'گذرواژه را دوباره وارد کنید',
+'password-retype-mismatch'     => 'گذرواژه‌ها مطابقت ندارند.',
+
 # Password reset dialog
 'resetpass'                 => 'تغییر گذرواژه',
 'resetpass_announce'        => 'شما با کد موقتی ارسال شده وارد شده‌اید.
@@ -2110,7 +2119,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'listusers-creationsort'  => 'مرتب کردن بر اساس تاریخ ایجاد',
 'usereditcount'           => '$1 {{PLURAL:$1|ویرایش|ویرایش}}',
 'usercreated'             => 'ایجاد شده در $1 ساعت $2',
-'newpages'                => 'صفحه‌های جدید',
+'newpages'                => 'صفحه‌های تازه',
 'newpages-username'       => 'نام کاربری:',
 'ancientpages'            => 'قدیمی‌ترین صفحه‌ها',
 'move'                    => 'انتقال',
@@ -2346,7 +2355,7 @@ $NEWPAGE
 'confirmdeletetext'      => 'شما در حال حذف کردن یک صفحه یا تصویر از پایگاه‌ داده همراه با تمام تاریخچهٔ آن هستید. لطفاً این عمل را تأیید کنید و اطمینان حاصل کنید که عواقب این کار را می‌دانید و این عمل را مطابق با [[{{MediaWiki:Policy-url}}|سیاست‌ها]] انجام می‌دهید.',
 'actioncomplete'         => 'عمل انجام شد.',
 'actionfailed'           => 'عمل ناموفق',
-'deletedtext'            => '«<nowiki>$1</nowiki>» حذف شده است.
+'deletedtext'            => '«<nowiki>$1</nowiki>» حذف شد.
 برای سابقهٔ حذف‌های اخیر به $2 مراجعه کنید.',
 'deletedarticle'         => '«$1» حذف شد',
 'suppressedarticle'      => '«[[$1]]» را فرونشاند',
