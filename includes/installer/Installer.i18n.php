@@ -197,7 +197,7 @@ This field is usually left empty.',
 	'config-charset-mysql5-binary'    => 'MySQL 4.1/5.0 binary',
 	'config-charset-mysql5'           => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4'           => 'MySQL 4.0 backwards-compatible UTF-8',
-	'config-charset-help'             => "'''WARNING:''' If you use '''backwards-compatible UTF-8''' on MySQL 4.1+, and subsequently back up the database with <code>mysqldump</code>, it may destroy all non-ASCII characters, irreversibly corrupting your backups!
+	'config-charset-help'             => "'''Warning:''' If you use '''backwards-compatible UTF-8''' on MySQL 4.1+, and subsequently back up the database with <code>mysqldump</code>, it may destroy all non-ASCII characters, irreversibly corrupting your backups!
 
 In '''binary mode''', MediaWiki stores UTF-8 text to the database in binary fields.
 This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters.
@@ -219,7 +219,7 @@ It should '''not''' be accessible via the web, this is why we're not putting it 
 The installer will write a <code>.htaccess</code> file along with it, but if that fails someone can gain access to your raw database.
 That includes raw user data (e-mail addresses, hashed passwords) as well as deleted revisions and other restricted data on the wiki.
 
-Consider putting the database somewhere altogether, for example in <code>/var/lib/mediawiki/yourwiki</code>.",
+Consider putting the database somewhere else altogether, for example in <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-type-mysql'               => 'MySQL',
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
@@ -286,7 +286,7 @@ If you want to regenerate your <code>LocalSettings.php</code> file, click the bu
 This is '''not recommended''' unless you are having problems with your wiki.",
 	'config-regenerate'               => 'Regenerate LocalSettings.php →',
 	'config-show-table-status'        => 'SHOW TABLE STATUS query failed!',
-	'config-unknown-collation'        => "'''Warning:''' Datbase is using unrecognised collation.",
+	'config-unknown-collation'        => "'''Warning:''' Database is using unrecognised collation.",
 	'config-db-web-account'           => 'Database account for web access',
 	'config-db-web-help'              => 'Select the username and password that the web server will use to connect to the database server, during ordinary operation of the wiki.',
 	'config-db-web-account-same'      => 'Use the same account as for installation',
