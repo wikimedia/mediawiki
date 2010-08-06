@@ -36,6 +36,7 @@ div#content {
 	background-repeat: repeat-y;
 	background-color: white;
 	color: black;
+	direction: rtl;
 }
 /* Head */
 #mw-page-base {
@@ -406,6 +407,7 @@ div#mw-panel {
 }
 	div#mw-panel div.portal {
 		padding-bottom: 1.5em;
+		direction: rtl;
 	}
 	div#mw-panel div.portal h5 {
 		font-weight: normal;
@@ -454,6 +456,7 @@ div#footer {
 	background-image: url(images/border.png?1);
 	background-position: top right;
 	background-repeat: repeat-x;
+	direction: rtl;
 }
 div#footer ul {
 	list-style: none;
