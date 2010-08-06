@@ -708,6 +708,7 @@ h5 { font-size: 100%; }
 h5 .editsection { font-weight: normal; }
 h6 { font-size: 80%;  }
 h6 .editsection { font-size: 125%; font-weight: normal; }
+.editsection { float: left; }
 p {
 	margin: .4em 0 .5em 0;
 	line-height: 1.5em;
