@@ -141,19 +141,15 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $p[ApiBase::PARAM_DFLT] ) ) {
 				$a['default'] = $p[ApiBase::PARAM_DFLT];
 			}
-			if ( isset( $p[ApiBase::PARAM_ISMULTI] ) ) {
-				if ( $p[ApiBase::PARAM_ISMULTI] ) {
-					$a['multi'] = '';
-					$a['limit'] = $this->getMain()->canApiHighLimits() ?
-							ApiBase::LIMIT_SML2 :
-							ApiBase::LIMIT_SML1;
-				}
+			if ( isset( $p[ApiBase::PARAM_ISMULTI] ) && $p[ApiBase::PARAM_ISMULTI] ) {
+				$a['multi'] = '';
+				$a['limit'] = $this->getMain()->canApiHighLimits() ?
+						ApiBase::LIMIT_SML2 :
+						ApiBase::LIMIT_SML1;
 			}
 
-			if ( isset( $p[ApiBase::PARAM_ALLOW_DUPLICATES] ) ) {
-				if ( $p[ApiBase::PARAM_ALLOW_DUPLICATES] ) {
-					$a['allowsduplicates'] = '';
-				}
+			if ( isset( $p[ApiBase::PARAM_ALLOW_DUPLICATES] ) && $p[ApiBase::PARAM_ALLOW_DUPLICATES] ) {
+				$a['allowsduplicates'] = '';
 			}
 
 			if ( isset( $p[ApiBase::PARAM_TYPE] ) ) {
