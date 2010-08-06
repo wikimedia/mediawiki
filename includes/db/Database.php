@@ -1878,11 +1878,11 @@ abstract class DatabaseBase {
 		} while( $this->wasDeadlock() && --$tries > 0 );
 		$this->ignoreErrors( $oldIgnore );
 		if ( $tries <= 0 ) {
-			$this->query( 'ROLLBACK', $myFname );
+			$this->rollback( $myFname );
 			$this->reportQueryError( $error, $errno, $sql, $fname );
 			return false;
 		} else {
-			$this->query( 'COMMIT', $myFname );
+			$this->commit( $myFname );
 			return $retVal;
 		}
 	}

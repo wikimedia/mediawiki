@@ -54,6 +54,9 @@ class AncientPagesPage extends QueryPage {
 			case 'sqlite':
 				$epoch = 'rev_timestamp';
 				break;
+			case 'mssql':
+				$epoch = 'DATEDIFF(s,CONVERT(datetime,\'1/1/1970\'),rev_timestamp)';
+				break;
 			default:
 				$epoch = 'EXTRACT(epoch FROM rev_timestamp)';
 		}

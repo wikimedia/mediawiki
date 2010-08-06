@@ -119,7 +119,41 @@ class SpecialSearch {
 		wfProfileIn( __METHOD__ );
 
 		$sk = $wgUser->getSkin();
-
+		
+		$beginSearchForm = Xml::openElement(
+			'form',
+			array(
+				'id' => ( $this->searchAdvanced ? 'powersearch' : 'search' ),
+				'method' => 'get',
+				'action' => $wgScript
+			)
+		);
+		$mwSearchTopTable =
+			Xml::openElement( 'table', array( 'id' => 'mw-search-top-table', 'border' => 0, 'cellpadding' => 0, 'cellspacing' => 0 ) ) .
+			Xml::openElement( 'tr' ) .
+			Xml::openElement( 'td' ) . "\n"	.
+			$this->shortDialog( $term ) .
+			Xml::closeElement( 'td' ) .
+			Xml::closeElement( 'tr' ) .
+			Xml::closeElement( 'table' );
+		
+		// moved to check for empty or null search string before running query
+		// to prevent NULL fulltext search error in SQL Server
+		$filePrefix = $wgContLang->getFormattedNsText( NS_FILE ) . ':';
+		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
+			$wgOut->addHTML( $beginSearchForm );
+			$wgOut->addHTML( $mwSearchTopTable );
+			$wgOut->addHTML( $this->searchFocus() );
+			$wgOut->addHTML( $this->formHeader( $term, 0, 0 ) );
+			if ( $this->searchAdvanced ) {
+				$wgOut->addHTML( $this->powerSearchBox( $term ) );
+			}
+			$wgOut->addHTML( Xml::closeElement( 'form' ) );
+			// Empty query -- straight view of search form
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+		
 		$this->searchEngine = SearchEngine::create();
 		$search =& $this->searchEngine;
 		$search->setLimitOffset( $this->limit, $this->offset );
@@ -194,41 +228,15 @@ class SpecialSearch {
 		}
 		// start rendering the page
 		$wgOut->addHtml(
-			Xml::openElement(
-				'form',
-				array(
-					'id' => ( $this->searchAdvanced ? 'powersearch' : 'search' ),
-					'method' => 'get',
-					'action' => $wgScript
-				)
-			)
+			$beginSearchForm
 		);
 		$wgOut->addHtml(
-			Xml::openElement( 'table', array( 'id'=>'mw-search-top-table', 'border'=>0, 'cellpadding'=>0, 'cellspacing'=>0 ) ) .
-			Xml::openElement( 'tr' ) .
-			Xml::openElement( 'td' ) . "\n"	.
-			$this->shortDialog( $term ) .
-			Xml::closeElement('td') .
-			Xml::closeElement('tr') .
-			Xml::closeElement('table')
+			$mwSearchTopTable
 		);
 
 		// Sometimes the search engine knows there are too many hits
 		if( $titleMatches instanceof SearchResultTooMany ) {
 			$wgOut->addWikiText( '==' . wfMsg( 'toomanymatches' ) . "==\n" );
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
-		if( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
-			$wgOut->addHTML( $this->searchFocus() );
-			$wgOut->addHTML( $this->formHeader($term, 0, 0));
-			if( $this->searchAdvanced ) {
-				$wgOut->addHTML( $this->powerSearchBox( $term ) );
-			} 
-			$wgOut->addHTML( '</form>' );
-			// Empty query -- straight view of search form
 			wfProfileOut( __METHOD__ );
 			return;
 		}

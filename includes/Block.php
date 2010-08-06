@@ -857,6 +857,16 @@ class Block {
 	public static function infinity() {
 		# This is a special keyword for timestamps in PostgreSQL, and
 		# works with CHAR(14) as well because "i" sorts after all numbers.
+
+			# BEGIN DatabaseMssql hack
+			# Since MSSQL doesn't recognize the infinity keyword, set date manually.
+			# TO-DO: Refactor for better DB portability and remove magic date
+			$dbw = wfGetDB( DB_MASTER );
+			if ( $dbw instanceof DatabaseMssql ) {
+				return '3000-01-31 00:00:00.000';
+			}
+			# End DatabaseMssql hack
+
 		return 'infinity';
 	}
 
