@@ -109,8 +109,8 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 				$query_options, $opts['tagfilter'] );
 		}
 
-		// XXX: parent class does this, should we too?
-		// wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
+		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options ) ) )
+			return false;
 
 		if( $ns == NS_CATEGORY && !$showlinkedto ) {
 			// special handling for categories

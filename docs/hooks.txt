@@ -1554,7 +1554,7 @@ SpecialRecentChanges
 $opts: FormOptions for this request
 
 'SpecialRecentChangesQuery': called when building sql query for
-SpecialRecentChanges
+SpecialRecentChanges and SpecialRecentChangesLinked
 &$conds: array of WHERE conditionals for query
 &$tables: array of tables to be queried
 &$join_conds: join conditions for the tables
