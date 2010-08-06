@@ -117,7 +117,7 @@ class ParserTest {
 	public function setupRecorder ( $options ) {
 		if ( isset( $options['record'] ) ) {
 			$this->recorder = new DbTestRecorder( $this );
-			$this->recorder->version = isset( $options['setversion'] ) ?	
+			$this->recorder->version = isset( $options['setversion'] ) ?
 					$options['setversion'] : SpecialVersion::getVersion();
 		} elseif ( isset( $options['compare'] ) ) {
 			$this->recorder = new DbTestPreviewer( $this );
@@ -1015,7 +1015,7 @@ class ParserTest {
 		return preg_replace(
 			array( '/^(-.*)$/m', '/^(\+.*)$/m' ),
 			array( $this->term->color( 34 ) . '$1' . $this->term->reset(),
-			       $this->term->color( 31 ) . '$1' . $this->term->reset() ),
+				   $this->term->color( 31 ) . '$1' . $this->term->reset() ),
 			$text );
 	}
 
@@ -1376,8 +1376,8 @@ class DbTestPreviewer extends TestRecorder  {
 											 array( 'tr_id' => $changedRun ),
 											 __METHOD__ );
 			return "First recorded appearance: "
-			       . date( "d-M-Y H:i:s",  strtotime ( $appear->tr_date ) )
-			       .  ", " . $appear->tr_mw_version;
+				   . date( "d-M-Y H:i:s",  strtotime ( $appear->tr_date ) )
+				   .  ", " . $appear->tr_mw_version;
 		}
 
 		// Otherwise, this test has previous recorded results.
@@ -1582,11 +1582,11 @@ class RemoteTestRecorder extends TestRecorder {
 }
 
 class TestFileIterator implements Iterator {
-    private $file;
-    private $fh;
-    private $parser;
-    private $index = 0;
-    private $test;
+	private $file;
+	private $fh;
+	private $parser;
+	private $index = 0;
+	private $test;
 	private $lineNum;
 	private $eof;
 
@@ -1594,8 +1594,8 @@ class TestFileIterator implements Iterator {
 		global $IP;
 
 		$this->file = $file;
-    	$this->fh = fopen( $this->file, "rt" );
-        if ( !$this->fh ) {
+		$this->fh = fopen( $this->file, "rt" );
+		if ( !$this->fh ) {
 			wfDie( "Couldn't open file '$file'\n" );
 		}
 
@@ -1619,28 +1619,28 @@ class TestFileIterator implements Iterator {
 		$this->next();
 
 		return true;
-    }
+	}
 
-    function current() {
+	function current() {
 		return $this->test;
-    }
+	}
 
-    function key() {
+	function key() {
 		return $this->index;
-    }
+	}
 
-    function next() {
-        if ( $this->readNextTest() ) {
+	function next() {
+		if ( $this->readNextTest() ) {
 			$this->index++;
 			return true;
 		} else {
 			$this->eof = true;
 		}
-    }
+	}
 
-    function valid() {
+	function valid() {
 		return $this->eof != true;
-    }
+	}
 
 	function readNextTest() {
 		$data = array();
