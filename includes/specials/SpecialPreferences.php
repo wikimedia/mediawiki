@@ -45,7 +45,7 @@ class SpecialPreferences extends SpecialPage {
 		
 		$wgOut->addScriptFile( 'prefs.js' );
 
-		if ( $wgRequest->getCheck( 'success' ) ) {
+		if ( $wgRequest->getCheck( 'success' ) && $wgRequest->wasPosted()) {
 			$wgOut->wrapWikiMsg(
 				"<div class=\"successbox\"><strong>\n$1\n</strong></div><div id=\"mw-pref-clear\"></div>",
 				'savedprefs'
