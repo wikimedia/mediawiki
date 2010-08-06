@@ -1282,16 +1282,6 @@ SQL;
 		return pg_field_type( $res, $index );
 	}
 
-	function begin( $fname = 'DatabasePostgres::begin' ) {
-		$this->query( 'BEGIN', $fname );
-		$this->mTrxLevel = 1;
-	}
-
-	function commit( $fname = 'DatabasePostgres::commit' ) {
-		$this->query( 'COMMIT', $fname );
-		$this->mTrxLevel = 0;
-	}
-
 	/* Not even sure why this is used in the main codebase... */
 	function limitResultForUpdate( $sql, $num ) {
 		return $sql;

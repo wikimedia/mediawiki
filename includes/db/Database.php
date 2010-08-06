@@ -1982,8 +1982,10 @@ abstract class DatabaseBase {
 	 * End a transaction
 	 */
 	function commit( $fname = 'Database::commit' ) {
-		$this->query( 'COMMIT', $fname );
-		$this->mTrxLevel = 0;
+		if( $this->mTrxLevel ) {
+			$this->query( 'COMMIT', $fname );
+			$this->mTrxLevel = 0;
+		}
 	}
 
 	/**
@@ -1991,8 +1993,10 @@ abstract class DatabaseBase {
 	 * No-op on non-transactional databases.
 	 */
 	function rollback( $fname = 'Database::rollback' ) {
-		$this->query( 'ROLLBACK', $fname, true );
-		$this->mTrxLevel = 0;
+		if( $this->mTrxLevel ) {
+			$this->query( 'ROLLBACK', $fname, true );
+			$this->mTrxLevel = 0;
+		}
 	}
 
 	/**
