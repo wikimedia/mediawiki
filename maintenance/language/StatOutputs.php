@@ -70,7 +70,7 @@ class wikiStatsOutput extends statsOutput {
 		$blue = '00';
 		$color = $red . $green . $blue;
 
-		$percent = statsOutput::formatPercent( $subset, $total, $revert, $accuracy );
+		$percent = parent::formatPercent( $subset, $total, $revert, $accuracy );
 		return 'bgcolor="#' . $color . '"|' . $percent;
 	}
 }
