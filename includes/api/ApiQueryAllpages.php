@@ -70,9 +70,12 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		}
 
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
-		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$fromdir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$todir = ( $params['dir'] != 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
-		$this->addWhereRange( 'page_title', $dir, $from, null );
+		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$this->addWhereRange( 'page_title', $fromdir, $from, null );
+		$this->addWhereRange( 'page_title', $todir, $to, null );
 
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( 'page_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
@@ -189,6 +192,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 		return array(
 			'from' => null,
+			'to' => null,
 			'prefix' => null,
 			'namespace' => array(
 				ApiBase::PARAM_DFLT => 0,
@@ -253,6 +257,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$p = $this->getModulePrefix();
 		return array(
 			'from' => 'The page title to start enumerating from',
+			'to' => 'The page title to stop enumerating at',
 			'prefix' => 'Search for all page titles that begin with this value',
 			'namespace' => 'The namespace to enumerate',
 			'filterredir' => 'Which pages to list',

@@ -61,6 +61,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		if ( !is_null( $params['from'] ) ) {
 			$this->addWhere( 'u1.user_name >= ' . $db->addQuotes( $this->keyToTitle( $params['from'] ) ) );
 		}
+		if ( !is_null( $params['to'] ) ) {
+			$this->addWhere( 'u1.user_name <= ' . $db->addQuotes( $this->keyToTitle( $params['to'] ) ) );
+		}
 
 		if ( !is_null( $params['prefix'] ) ) {
 			$this->addWhere( 'u1.user_name' . $db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
@@ -191,6 +194,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array(
 			'from' => null,
+			'to' => null,
 			'prefix' => null,
 			'group' => array(
 				ApiBase::PARAM_TYPE => User::getAllGroups()
@@ -218,6 +222,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	public function getParamDescription() {
 		return array(
 			'from' => 'The user name to start enumerating from',
+			'to' => 'The user name to stop enumerating at',
 			'prefix' => 'Search for all page titles that begin with this value',
 			'group' => 'Limit users to a given group name',
 			'prop' => array(

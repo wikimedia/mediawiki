@@ -59,9 +59,13 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$this->addTables( 'category' );
 		$this->addFields( 'cat_title' );
 
-		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$fromdir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$todir = ( $params['dir'] != 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
-		$this->addWhereRange( 'cat_title', $dir, $from, null );
+		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$this->addWhereRange( 'cat_title', $fromdir, $from, null );
+		$this->addWhereRange( 'cat_title', $todir, $to, null );
+
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( 'cat_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 		}
@@ -132,6 +136,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		return array(
 			'from' => null,
+			'to' => null,
 			'prefix' => null,
 			'dir' => array(
 				ApiBase::PARAM_DFLT => 'ascending',
@@ -158,6 +163,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	public function getParamDescription() {
 		return array(
 			'from' => 'The category to start enumerating from',
+			'to' => 'The category to stop enumerating at',
 			'prefix' => 'Search for all category titles that begin with this value',
 			'dir' => 'Direction to sort in',
 			'limit' => 'How many categories to return',
