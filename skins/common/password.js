@@ -21,7 +21,7 @@ function bruteForceComplexity( pwd ) {
 		/[-_;:\.,'"`~!@#$%\^&\*\(\)\[\]\{\} ]/ ];
 
 	var charClasses = 0;
-	for ( var i in regexes ) {
+	for ( var i=0; i< regexes.length; i++ ) {
 		if ( pwd.match( regexes[i] ) ) {
 			charClasses++;
 		}
@@ -44,7 +44,7 @@ function bruteForceComplexity( pwd ) {
 
 function repetitionScore( pwd ) {
 	var unique = '';
-	for ( var i in pwd ) {
+	for ( var i=0; i< pwd.length; i++ ) {
 		if ( unique.indexOf( pwd[i] ) < 0 ) {
 			unique += pwd[i];
 		}
