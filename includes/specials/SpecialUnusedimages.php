@@ -53,6 +53,9 @@ class UnusedimagesPage extends ImageQueryPage {
 			case 'sqlite':
 				$epoch = 'img_timestamp';
 				break;
+			case 'mssql':
+				$epoch = 'DATEDIFF(s,CONVERT(datetime,\'1/1/1970\'),img_timestamp)';
+				break;
 			default:
 				$epoch = 'EXTRACT(epoch FROM img_timestamp)';
 		}
