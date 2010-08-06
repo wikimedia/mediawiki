@@ -1153,3 +1153,9 @@ div.vectorTabs ul {
 	background-position:left bottom;
 	background-repeat:no-repeat;
 }
+
+/* Convenience links to edit block, delete and protect reasons */
+p.mw-ipb-conveniencelinks, p.mw-protect-editreasons,
+p.mw-filedelete-editreasons, p.mw-delete-editreasons {
+	float: left;
+}
