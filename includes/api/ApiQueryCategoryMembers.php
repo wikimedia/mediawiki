@@ -209,7 +209,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
 			),
-
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'ids|title',
 				ApiBase::PARAM_ISMULTI => true,
