@@ -166,7 +166,6 @@ require_once( "$IP/includes/Namespace.php" );
 require_once( "$IP/includes/ProxyTools.php" );
 require_once( "$IP/includes/ObjectCache.php" );
 require_once( "$IP/includes/ImageFunctions.php" );
-require_once( "$IP/includes/StubObject.php" );
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
 
