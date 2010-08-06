@@ -76,11 +76,16 @@ class ApiQueryAllmessages extends ApiQueryBase {
 
 		// Get all requested messages and print the result
 		$skip = !is_null( $params['from'] );
+		$useto = !is_null( $params['to'] );
 		$result = $this->getResult();
 		foreach ( $messages_target as $message ) {
 			// Skip all messages up to $params['from']
 			if ( $skip && $message === $params['from'] ) {
 				$skip = false;
+			}
+			
+			if( $useto && $message > $params['to'] ) {
+				break;
 			}
 
 			if ( !$skip ) {
@@ -160,6 +165,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'filter' => array(),
 			'lang' => null,
 			'from' => null,
+			'to' => null,
 		);
 	}
 
@@ -173,6 +179,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'filter' => 'Return only messages that contain this string',
 			'lang' => 'Return messages in this language',
 			'from' => 'Return messages starting at this message',
+			'to' => 'Return messages ending at this message',
 		);
 	}
 

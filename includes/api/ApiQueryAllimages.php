@@ -78,9 +78,13 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		// Image filters
-		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$fromdir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
+		$todir = ( $params['dir'] != 'descending' ? 'older' : 'newer' );
 		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
-		$this->addWhereRange( 'img_name', $dir, $from, null );
+		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+		$this->addWhereRange( 'img_name', $fromdir, $from, null );
+		$this->addWhereRange( 'img_name', $todir, $to, null );
+
 		if ( isset( $params['prefix'] ) )
 			$this->addWhere( 'img_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
 
@@ -149,6 +153,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		return array (
 			'from' => null,
+			'to' => null,
 			'prefix' => null,
 			'minsize' => array(
 				ApiBase::PARAM_TYPE => 'integer',
@@ -183,6 +188,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	public function getParamDescription() {
 		return array(
 			'from' => 'The image title to start enumerating from',
+			'to' => 'The image title to stop enumerating at',
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
 			'minsize' => 'Limit to images with at least this many bytes',

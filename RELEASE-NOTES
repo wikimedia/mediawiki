@@ -326,6 +326,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the parameter, the API will automatically throw an error.
 * (bug 24665) When starttimestamp is not specified, fake it by setting it to NOW, not to 
   the timestamp of the last edit
+* (bug 24677) axto= parameters added to allcategories, allimages, alllinks, allmessages, 
+  allpages, and allusers
 
 === Languages updated in 1.17 ===
 
