@@ -7792,6 +7792,8 @@ wgUseDynamicDates=1
 
 !!test
 formatdate parser function
+!! config
+wgUseDynamicDates=1
 !!input
 {{#formatdate:2009-03-24}}
 !! result
@@ -7801,6 +7803,8 @@ formatdate parser function
 
 !!test
 formatdate parser function, with default format
+!! config
+wgUseDynamicDates=1
 !!input
 {{#formatdate:2009-03-24|mdy}}
 !! result
@@ -7821,6 +7825,8 @@ wgUseDynamicDates=false
 
 !! test
 Spacing of numbers in formatted dates
+!! config
+wgUseDynamicDates=1
 !! input
 {{#formatdate:January 15}}
 !! result
