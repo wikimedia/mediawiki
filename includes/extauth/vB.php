@@ -50,13 +50,13 @@ class ExternalUser_vB extends ExternalUser {
 		# Try using the session table.  It will only have a row if the user has
 		# an active session, so it might not always work, but it's a lot easier
 		# than trying to convince PHP to give us vB's $_SESSION.
-		global $wgExternalAuthConf;
+		global $wgExternalAuthConf, $wgRequest;
 		if ( !isset( $wgExternalAuthConf['cookieprefix'] ) ) {
 			$prefix = 'bb';
 		} else {
 			$prefix = $wgExternalAuthConf['cookieprefix'];
 		}
-		if ( !isset( $_COOKIE["{$prefix}sessionhash"] ) ) {
+		if ( !$wgRequest->getCookie( 'sessionhash', $prefix ) ) {
 			return false;
 		}
 
@@ -67,7 +67,7 @@ class ExternalUser_vB extends ExternalUser {
 			$this->getFields(),
 			array(
 				'session.userid = user.userid',
-				'sessionhash' => $_COOKIE["{$prefix}sessionhash"]
+				'sessionhash' => $wgRequest->getCookie( 'sessionhash', $prefix ),
 			),
 			__METHOD__
 		);

@@ -427,19 +427,19 @@ class WebRequest {
 	 * @return Boolean
 	 */
 	public function checkSessionCookie() {
-		return isset( $_COOKIE[session_name()] );
+		return isset( $_COOKIE[ session_name() ] );
 	}
 
 	/**
 	 * Get a cookie from the $_COOKIE jar
 	 *
 	 * @param $key String: the name of the cookie
-	 * @param $default Mixed: what to return if the value isn't found
 	 * @param $prefix String: a prefix to use for the cookie name, if not $wgCookiePrefix
+	 * @param $default Mixed: what to return if the value isn't found
 	 * @return Mixed: cookie value or $default if the cookie not set
 	 */
-	public function getCookie( $key, $default = null, $prefix = '' ) {
-		if( !$prefix ) {
+	public function getCookie( $key, $prefix = null, $default = null ) {
+		if( $prefix === null ) {
 			global $wgCookiePrefix;
 			$prefix = $wgCookiePrefix;
 		}
