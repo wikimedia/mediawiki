@@ -760,6 +760,7 @@ $2',
 'gotaccount'                 => "Έχετε ήδη έναν λογαριασμό; '''$1'''.",
 'gotaccountlink'             => 'Συνδεθείτε',
 'createaccountmail'          => 'Με ηλεκτρονικό ταχυδρομείο',
+'createaccountreason'        => 'Αιτία:',
 'badretype'                  => 'Οι κωδικοί που έχετε δηλώσει δεν συμφωνούν μεταξύ τους.',
 'userexists'                 => 'Το όνομα χρήστη που εισαγάγατε ήδη χρησιμοποιείται. Παρακαλούμε, διαλέξτε διαφορετικό.',
 'loginerror'                 => 'Σφάλμα σύνδεσης',
@@ -813,6 +814,11 @@ $2',
 Παρακαλούμε περιμένετε προτού ξαναδοκιμάσετε.',
 'loginlanguagelabel'         => 'Γλώσσα: $1',
 'suspicious-userlogout'      => 'Το αίτημα αποσύνδεσής σας απερρίφθη επειδή φαίνεται ότι στάλθηκε από ένα λανθασμένο φυλλομετρητή (browser) ή διακομιστή προσωρινής αποθήκευσης.',
+
+# JavaScript password checks
+'password-strength-mediocre'   => 'μέτριος',
+'password-strength-acceptable' => 'αποδεκτή',
+'password-strength-good'       => 'καλός',
 
 # Password reset dialog
 'resetpass'                 => 'Αλλαγή κωδικού πρόσβασης',
@@ -1345,6 +1351,7 @@ $1",
 'contextlines'                  => 'Σειρές που θα εμφανίζονται ανά αποτέλεσμα',
 'contextchars'                  => 'Αριθμός χαρακτήρων στο εμφανιζόμενο κείμενο',
 'stub-threshold'                => 'Κατώφλι για μορφοποίηση <span class="mw-stub-example">συνδέσμου επεκτάσιμου</span>:',
+'stub-threshold-disabled'       => 'Απενεργοποιημένο',
 'recentchangesdays'             => 'Ημέρες προς εμφάνιση στις πρόσφατες αλλαγές:',
 'recentchangesdays-max'         => '($1 {{PLURAL:$1|ημέρα|ημέρες}} το μέγιστο)',
 'recentchangescount'            => 'Αριθμός επεξεργασιών που να εμφανίζονται για προεπιλογή.',
@@ -3451,6 +3458,8 @@ $1',
 # Special:ComparePages
 'compare-page1' => 'Σελίδα 1',
 'compare-page2' => 'Σελίδα 2',
+'compare-rev1'  => 'Αναθεώρηση 1',
+'compare-rev2'  => 'Αναθεώρηση 2',
 
 # Database error messages
 'dberr-header'      => 'Αυτό το βίκι έχει ένα πρόβλημα',

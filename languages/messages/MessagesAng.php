@@ -355,12 +355,12 @@ Getæl gengra ānlicra trameta cann mann findand be [[Special:SpecialPages|{{int
 # General errors
 'error'               => 'Ƿōh',
 'databaseerror'       => 'Cȳþþuhordes ƿōh',
-'dberrortext'         => 'Gewitnesshordes bēnes endebyrdnesse unrihtness hæfþ gelumpen.
-Þis mæg gelimpan unrihtnesse on þǣre sōftware.
-Sēo nīwoste gesōhte sōftware bēn wæs:
+'dberrortext'         => 'Cȳþþuhordes bēnes endebyrdnesse fremmode ƿōh.
+Þis mæȝe mǣnan regolƿōh on þǣre sōftƿare.
+Sēo nīƿoste ȝesōhte sōftƿare bēn ƿæs:
 <blockquote><tt>$1</tt></blockquote>
-fram innan weorce "<tt>$2</tt>".
-Gewitnesshord edwende unrihtnesse "<tt>$3: $4</tt>"',
+fram innan ƿeorce "<tt>$2</tt>".
+Cȳþþuhord edƿende ƿōh "<tt>$3: $4</tt>"',
 'laggedslavemode'     => "'''Ƿarnung:''' Sīde ne mihteliċ ne hæfþ nīƿa nīƿunga.",
 'enterlockreason'     => 'Wrīt race þǣre forwiernunge and apunsunge be þǣm tīman on þǣm bēo sēo forwiernung forlǣten',
 'missingarticle-rev'  => '(nīƿung#: $1)',

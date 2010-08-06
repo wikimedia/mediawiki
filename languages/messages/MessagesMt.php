@@ -1409,7 +1409,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 # User rights log
 'rightslog'      => 'Drittijiet tal-utenti',
 'rightslogtext'  => "Dan huwa r-reġistru tal-modifiki ta' drittijiet tal-utenti.",
-'rightslogentry' => "ġie modifikat is-sħubija tal-grupp ta' $1 mill-grupp $2 għal grupp $3",
+'rightslogentry' => "biddel is-sħubija ta' $1 mill-grupp $2 għall-grupp $3",
 'rightsnone'     => '(xejn)',
 
 # Associated actions - in the sentence "You do not have permission to X"

@@ -783,6 +783,15 @@ Aguarde antes de tentar novamente, por favor.',
 'loginlanguagelabel'         => 'Língua: $1',
 'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com cache.',
 
+# JavaScript password checks
+'password-strength'            => 'Estimativa da segurança da palavra-chave: $1',
+'password-strength-bad'        => 'MÁ',
+'password-strength-mediocre'   => 'medíocre',
+'password-strength-acceptable' => 'aceitável',
+'password-strength-good'       => 'boa',
+'password-retype'              => 'Repita a palavra-chave aqui',
+'password-retype-mismatch'     => 'As palavras-chave não coincidem',
+
 # Password reset dialog
 'resetpass'                 => 'Alterar palavra-chave',
 'resetpass_announce'        => 'Autenticou-se usando uma palavra-chave temporária enviada por correio electrónico.

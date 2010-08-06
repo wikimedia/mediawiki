@@ -627,6 +627,15 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'loginlanguagelabel'         => 'Rěc: $1',
 'suspicious-userlogout'      => 'Twójo póžedanje za wótzjawjenim jo se wótpokazało, dokulaž zda se, až jo se pósłało pśez wobškóźony wobglědowak abo pufrowański proksy',
 
+# JavaScript password checks
+'password-strength'            => 'Pówoblicona gronidłowa wjelikosć: $1',
+'password-strength-bad'        => 'ŠPATNA',
+'password-strength-mediocre'   => 'wósrědna',
+'password-strength-acceptable' => 'akceptabelny',
+'password-strength-good'       => 'dobra',
+'password-retype'              => 'Šćitne gronidło wóspjetowaś:',
+'password-retype-mismatch'     => 'Gronidle se njemakatej',
+
 # Password reset dialog
 'resetpass'                 => 'Gronidło změniś',
 'resetpass_announce'        => 'Sy z nachylnym e-mailowym šćitnym gronidłom pśizjawjony. Aby pśizjawjenje zakóńcył, zapódaj how nowe šćitne gronidło:',

@@ -610,6 +610,15 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'loginlanguagelabel'         => 'Rěč: $1',
 'suspicious-userlogout'      => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
 
+# JavaScript password checks
+'password-strength'            => 'Trochowana hesłowa sylnosć: $1',
+'password-strength-bad'        => 'ŠPATNA',
+'password-strength-mediocre'   => 'SRĚNJA',
+'password-strength-acceptable' => 'akceptabelna',
+'password-strength-good'       => 'dobra',
+'password-retype'              => 'Hesło wospjetować',
+'password-retype-mismatch'     => 'Hesle so njekryjetej',
+
 # Password reset dialog
 'resetpass'                 => 'Hesło změnić',
 'resetpass_announce'        => 'Sy so z nachwilnym e-mejlowanym hesłom přizjewił. Zo by přizjewjenje zakónčił, dyrbiš nětko nowe hesło postajić.',

@@ -527,6 +527,15 @@ Për piasì speta prima ëd prové torna.",
 'loginlanguagelabel'         => 'Lenga: $1',
 'suspicious-userlogout'      => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
 
+# JavaScript password checks
+'password-strength'            => 'Fòrsa stimà dla ciav: $1',
+'password-strength-bad'        => 'GRAMA',
+'password-strength-mediocre'   => 'mediòcr',
+'password-strength-acceptable' => 'a peul andé',
+'password-strength-good'       => 'bon-a',
+'password-retype'              => 'Bat torna la ciav ambelessì',
+'password-retype-mismatch'     => 'Le ciav a son pa mideme',
+
 # Password reset dialog
 'resetpass'                 => 'Cambia la ciav',
 'resetpass_announce'        => "A l'é rintrà ant ël sistema con na ciav provisòria mandà via për pòsta eletrònica. Për podèj finì la procedura a l'ha da butesse na ciav neuva ambelessì:",

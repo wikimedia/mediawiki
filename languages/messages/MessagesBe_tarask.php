@@ -735,6 +735,15 @@ $2',
 'loginlanguagelabel'         => 'Мова: $1',
 'suspicious-userlogout'      => 'Ваш запыт на выхад з сыстэмы быў адхілены, таму што выглядае, што ён быў дасланы пашкоджаным браўзэрам альбо кэшаваным проксі-сэрвэрам.',
 
+# JavaScript password checks
+'password-strength'            => 'Устойлівасьць паролю: $1',
+'password-strength-bad'        => 'КЕПСКАЯ',
+'password-strength-mediocre'   => 'пасрэдная',
+'password-strength-acceptable' => 'прымальная',
+'password-strength-good'       => 'добрая',
+'password-retype'              => 'Паўтарыце пароль',
+'password-retype-mismatch'     => 'Паролі не супадаюць',
+
 # Password reset dialog
 'resetpass'                 => 'Зьмяніць пароль',
 'resetpass_announce'        => 'Вы ўвайшлі з дапамогай часовага паролю, дасланага праз электронную пошту.
@@ -1278,6 +1287,7 @@ $1",
 'contextlines'                  => 'Колькасьць радкоў для паказу:',
 'contextchars'                  => 'Колькасьць сымбаляў на радок:',
 'stub-threshold'                => 'Максымальны памер старонкі для паказу спасылак <a href="#" class="stub">як на накід</a> (у байтах):',
+'stub-threshold-disabled'       => 'Выключаны',
 'recentchangesdays'             => 'Колькасьць дзён для паказу ў апошніх зьменах:',
 'recentchangesdays-max'         => '(максымальна $1 {{PLURAL:$1|дзень|дні|дзён}})',
 'recentchangescount'            => 'Колькасьць рэдагаваньняў для паказу па змоўчваньні:',

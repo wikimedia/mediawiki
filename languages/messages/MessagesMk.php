@@ -761,6 +761,15 @@ $2',
 'loginlanguagelabel'         => 'Јазик: $1',
 'suspicious-userlogout'      => 'Вашето барање за одјава е одбиено бидејќи се чини дека е испратено од расипан прелистувач или кеширачки застапник (proxy).',
 
+# JavaScript password checks
+'password-strength'            => 'Проценета отпорност на лозинката: $1',
+'password-strength-bad'        => 'ЛОША',
+'password-strength-mediocre'   => 'преодна',
+'password-strength-acceptable' => 'прифатлива',
+'password-strength-good'       => 'добра',
+'password-retype'              => 'Тука повторете ја лозинката',
+'password-retype-mismatch'     => 'Лозинките не се исти',
+
 # Password reset dialog
 'resetpass'                 => 'Промена на лозинка',
 'resetpass_announce'        => 'Најавени сте со привремена лозинка пратена по е-пошта.
