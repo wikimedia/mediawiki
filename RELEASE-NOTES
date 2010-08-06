@@ -324,6 +324,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24656) API's parse module needs option to disable PP report
 * PARAM_REQUIRED parameter flag added. If this flag is set, and the end user does not set 
   the parameter, the API will automatically throw an error.
+* (bug 24665) When starttimestamp is not specified, fake it by setting it to NOW, not to 
+  the timestamp of the last edit
 
 === Languages updated in 1.17 ===
 
