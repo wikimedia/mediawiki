@@ -513,7 +513,6 @@ $wgAutoloadLocalClasses = array(
 	'SearchHighlighter' => 'includes/search/SearchEngine.php',
 	'SearchIBM_DB2' => 'includes/search/SearchIBM_DB2.php',
 	'SearchMssql' => 'includes/search/SearchMssql.php',
-	'SearchMySQL4' => 'includes/search/SearchMySQL4.php',
 	'SearchMySQL' => 'includes/search/SearchMySQL.php',
 	'SearchOracle' => 'includes/search/SearchOracle.php',
 	'SearchPostgres' => 'includes/search/SearchPostgres.php',
