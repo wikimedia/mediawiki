@@ -23,8 +23,6 @@ foreach ( $res as $row ) {
 	...
 }
 
-Note the assignment operator in the while condition.
-
 For a write query, use something like:
 
 $dbw = wfGetDB( DB_MASTER );
