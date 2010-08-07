@@ -682,6 +682,14 @@ Wag asseblief alvorens u weer probeer.",
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => "U versoek om af te teken is geïgnoreer omdat dit lyk asof dit deur 'n gebreekte webleser of instaanbediener gestuur is.",
 
+# JavaScript password checks
+'password-strength-bad'        => 'SLEG',
+'password-strength-mediocre'   => 'middelmatig',
+'password-strength-acceptable' => 'aanvaarbaar',
+'password-strength-good'       => 'goed',
+'password-retype'              => 'Verskaf die wagwoord weer hier',
+'password-retype-mismatch'     => 'Die wagwoorde kom nie ooreen nie',
+
 # Password reset dialog
 'resetpass'                 => 'Verander wagwoord',
 'resetpass_announce'        => "U het aangeteken met 'n tydelike e-poskode.
@@ -1228,6 +1236,7 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'contextlines'                  => 'Aantal lyne per resultaat',
 'contextchars'                  => 'Karakters konteks per lyn',
 'stub-threshold'                => 'Drempel vir merk as <a href="#" class="stub">saadjie</a> (grepe):',
+'stub-threshold-disabled'       => 'Afgeskakel',
 'recentchangesdays'             => 'Aantal dae wat in onlangse wysigings vertoon word:',
 'recentchangesdays-max'         => 'Maksimum $1 {{PLURAL:$1|dag|dae}}',
 'recentchangescount'            => 'Aantal wysigings om by verstek te vertoon:',

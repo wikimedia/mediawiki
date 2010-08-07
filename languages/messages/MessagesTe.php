@@ -624,6 +624,15 @@ $2',
 'loginlanguagelabel'         => 'భాష: $1',
 'suspicious-userlogout'      => 'సరిగా పనిచేయని విహారిణి లేదా కాషింగ్ ప్రాక్సీ వల్ల పంపబడడం చేత, నిష్క్రమించాలనే మీ అభ్యర్థనని నిరాకరించారు.',
 
+# JavaScript password checks
+'password-strength'            => 'అంచనావేసిన సంకేతపదపు  బలం: $1',
+'password-strength-bad'        => 'బలహీనం',
+'password-strength-mediocre'   => 'పర్లేదు',
+'password-strength-acceptable' => 'ఆమోదయోగ్యం',
+'password-strength-good'       => 'పటిష్ఠం',
+'password-retype'              => 'సంకేతపదాన్ని మళ్ళీ ఇక్కడ ఇవ్వండి',
+'password-retype-mismatch'     => 'సంకేతపదాలు సరిపోలలేదు',
+
 # Password reset dialog
 'resetpass'                 => 'సంకేతపదాన్ని మార్చండి',
 'resetpass_announce'        => 'మీకు పంపిన తాత్కాలిక సంకేతంతో ప్రవేశించివున్నారు.

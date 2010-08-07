@@ -1793,7 +1793,7 @@ Dröm es <code lang="en">img_auth.php</code> zor Sisherheit heh affjeschalldt.',
 'upload-curl-error6'       => 'Keij Antwoot vun dä URL',
 'upload-curl-error6-text'  => 'Dä ßööver för di URL hät zo lang nit jeantwoot. Bes esu joot un fingk eruß, ov däövverhoup aam Laufe es, un don_ens jenou pröfe, ov di URL stemmp.',
 'upload-curl-error28'      => "Dat Huhlade hät zo lang jedooert, do ha'mer't jestopp",
-'upload-curl-error28-text' => 'Dä ßööver för di URL hät zo lang nit jeantwoot.
+'upload-curl-error28-text' => 'Dä ẞööver för di URL hät zo lang nit jeantwoot.
 Bes esu joot un fingk eruß, ov dä övverhoup aam Laufe es.
 Waat ene Moment un versök et nor_ens.
 Velleich probees De et och zo en Zick, wo winnijer loss es.',

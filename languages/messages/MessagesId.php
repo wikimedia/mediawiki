@@ -773,6 +773,15 @@ Silakan menunggu sebelum mencoba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Permintaan Anda untuk keluar log ditolak karena tampaknya dikirim oleh penjelajah yang rusak atau proksi penyinggah.',
 
+# JavaScript password checks
+'password-strength'            => 'Kekuatan sandi: $1',
+'password-strength-bad'        => 'BURUK',
+'password-strength-mediocre'   => 'sedang',
+'password-strength-acceptable' => 'cukup',
+'password-strength-good'       => 'baik',
+'password-retype'              => 'Ulangi kata sandi di sini',
+'password-retype-mismatch'     => 'Sandi tidak cocok',
+
 # Password reset dialog
 'resetpass'                 => 'Ganti kata sandi',
 'resetpass_announce'        => 'Anda telah masuk log dengan kode sementara yang dikirim melalui surel. Untuk melanjutkan, Anda harus memasukkan kata sandi baru di sini:',

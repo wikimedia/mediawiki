@@ -1798,8 +1798,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'redirectstofile'                   => '다음 파일 $1개가 이 파일로 넘겨주고 있습니다:',
 'duplicatesoffile'                  => '다음 파일 $1개가 이 파일과 중복됩니다 ([[Special:FileDuplicateSearch/$2|자세한 정보]]):',
 'sharedupload'                      => '이 파일은 $1으로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
-'sharedupload-desc-there'           => '이 파일은 $1(으)로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다. [$2 해당 파일 문서]에서 자세한 정보를 확인해주세요.',
-'sharedupload-desc-here'            => '이 파일은 $1(으)로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.
+'sharedupload-desc-there'           => '이 파일은 $1에 있으며, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.
+[$2 해당 파일]에 대한 자세한 정보를 확인해주세요.',
+'sharedupload-desc-here'            => '이 파일은 $1에 있으며, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.
 [$2 해당 파일]에 대한 설명이 아래에 나와 있습니다.',
 'filepage-nofile'                   => '해당 이름으로 된 파일이 없습니다.',
 'filepage-nofile-link'              => '해당 이름으로 된 파일이 없습니다. [$1 파일을 올릴 수] 있습니다.',
@@ -1880,7 +1881,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-views-total'       => '총 방문 수',
 'statistics-views-peredit'     => '편집당 방문 횟수',
 'statistics-users'             => '등록된 [[Special:ListUsers|사용자]]',
-'statistics-users-active'      => '활동 중인 사용자',
+'statistics-users-active'      => '활동적인 사용자',
 'statistics-users-active-desc' => '최근 $1일 동안 활동한 사용자',
 'statistics-mostpopular'       => '가장 많이 읽힌 문서',
 
@@ -2036,7 +2037,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-blocked'  => '(차단됨)',
 
 # Special:ActiveUsers
-'activeusers'            => '활동 중인 사용자 목록',
+'activeusers'            => '활동적인 사용자 목록',
 'activeusers-intro'      => '다음은 최근 $1일 동안 활동한 사용자의 목록입니다.',
 'activeusers-count'      => '최근 $3일 사이의 편집 $1개',
 'activeusers-from'       => '다음으로 시작하는 사용자를 보기:',

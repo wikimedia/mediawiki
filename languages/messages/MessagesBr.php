@@ -3330,7 +3330,7 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'compare-submit'   => 'Keñveriañ',
 
 # Database error messages
-'dberr-header'      => 'ur gudenn zo gant ar viki-mañ',
+'dberr-header'      => 'Ur gudenn zo gant ar wiki-mañ',
 'dberr-problems'    => "Ho tigarez ! Kudennoù teknikel zo gant al lec'hienn-mañ.",
 'dberr-again'       => 'Gortozit un nebeud munutennoù a-raok adkargañ.',
 'dberr-info'        => '(Dibosupl kevreañ ouzh servijer an diaz roadennoù: $1)',
