@@ -1,16 +1,16 @@
 <?php
-
 /**
  * This is the MS SQL Server Native database abstraction layer.
  *
- * @addtogroup Database
+ * @file
+ * @ingroup Database
  * @author Joel Penner <a-joelpe at microsoft dot com>
  * @author Chris Pucci <a-cpucci at microsoft dot com>
  * @author Ryan Biesemeyer <v-ryanbi at microsoft dot com>
  */
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class DatabaseMssql extends DatabaseBase {
 	var $mInsertId = NULL;
@@ -1030,7 +1030,8 @@ class DatabaseMssql extends DatabaseBase {
 
 /**
  * Utility class.
- * @addtogroup Database
+ *
+ * @ingroup Database
  */
 class MssqlField {
 	private $name, $tablename, $default, $max_length, $nullable, $type;
@@ -1071,7 +1072,7 @@ class MssqlField {
  * The MSSQL PHP driver doesn't support sqlsrv_num_rows, so we recall all rows into an array and maintain our 
  * own cursor index into that array...This is similar to the way the Oracle driver handles this same issue
  *
- * @addtogroup Database
+ * @ingroup Database
  */
 class MssqlResult {
 
