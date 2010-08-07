@@ -192,7 +192,7 @@ class MessageCache {
 	 * When succesfully loading from (2) or (3), all higher level caches are
 	 * updated for the newest version.
 	 *
-	 * Nothing is loaded if  member variable mDisabled is true, either manually
+	 * Nothing is loaded if member variable mDisable is true, either manually
 	 * set by calling code or if message loading fails (is this possible?).
 	 *
 	 * Returns true if cache is already populated or it was succesfully populated,
