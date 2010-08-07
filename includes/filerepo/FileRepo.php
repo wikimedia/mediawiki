@@ -307,7 +307,7 @@ abstract class FileRepo {
 	 */
 	function makeUrl( $query = '', $entry = 'index' ) {
 		$ext = isset( $this->scriptExtension ) ? $this->scriptExtension : '.php';
-		return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}?", $query ); 
+		return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}", $query ); 
 	} 
 
 	/**
