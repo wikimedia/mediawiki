@@ -1011,30 +1011,6 @@ class DatabaseMssql extends DatabaseBase {
 		return array( $startOpts, '' , $tailOpts, '' );
 	}
 
-	public function setTimeout( $timeout ) {
-		// couldn't find any timeout functions
-	}
-
-	function ping() {
-		wfDebug( "Function ping() not written for MSSQL Native yet" );
-		return true;
-	}
-	
-	/**
-	 * How lagged is this slave?
-	 *
-	 */
-	public function getLag() {
-		# Not implemented for MSSQL
-		return false;
-	}
-
-	/**
-	 * FIXME: Add lag support
-	 */
-	function setFakeSlaveLag( $lag ) { }
-	function setFakeMaster( $enabled = false ) { }
-	
 	/**
 	 * Get the type of the DBMS, as it appears in $wgDBtype.
 	 */
