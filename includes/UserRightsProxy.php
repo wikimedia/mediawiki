@@ -21,6 +21,7 @@ class UserRightsProxy {
 		$this->database = $database;
 		$this->name = $name;
 		$this->id = intval( $id );
+		$this->newOptions = array();
 	}
 
 	/**
@@ -48,10 +49,11 @@ class UserRightsProxy {
 	 *
 	 * @param $database String: database name
 	 * @param $id Integer: user ID
+	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return String: user name or false if the user doesn't exist
 	 */
-	public static function whoIs( $database, $id ) {
-		$user = self::newFromId( $database, $id );
+	public static function whoIs( $database, $id, $ignoreInvalidDB = false ) {
+		$user = self::newFromId( $database, $id, $ignoreInvalidDB );
 		if( $user ) {
 			return $user->name;
 		} else {
@@ -64,10 +66,11 @@ class UserRightsProxy {
 	 *
 	 * @param $database String: database name
 	 * @param $id Integer: user ID
+	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return UserRightsProxy or null if doesn't exist
 	 */
-	public static function newFromId( $database, $id ) {
-		return self::newFromLookup( $database, 'user_id', intval( $id ) );
+	public static function newFromId( $database, $id, $ignoreInvalidDB = false ) {
+		return self::newFromLookup( $database, 'user_id', intval( $id ), $ignoreInvalidDB );
 	}
 
 	/**
@@ -75,14 +78,15 @@ class UserRightsProxy {
 	 *
 	 * @param $database String: database name
 	 * @param $name String: user name
+	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return UserRightsProxy or null if doesn't exist
 	 */
-	public static function newFromName( $database, $name ) {
-		return self::newFromLookup( $database, 'user_name', $name );
+	public static function newFromName( $database, $name, $ignoreInvalidDB = false ) {
+		return self::newFromLookup( $database, 'user_name', $name, $ignoreInvalidDB );
 	}
 
-	private static function newFromLookup( $database, $field, $value ) {
-		$db = self::getDB( $database );
+	private static function newFromLookup( $database, $field, $value, $ignoreInvalidDB = false ) {
+		$db = self::getDB( $database, $ignoreInvalidDB );
 		if( $db ) {
 			$row = $db->selectRow( 'user',
 				array( 'user_id', 'user_name' ),
@@ -102,9 +106,10 @@ class UserRightsProxy {
 	 * This may be a new connection to another database for remote users.
 	 *
 	 * @param $database String
+	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return DatabaseBase or null if invalid selection
 	 */
-	public static function getDB( $database ) {
+	public static function getDB( $database, $ignoreInvalidDB = false ) {
 		global $wgDBname;
 		if( self::validDatabase( $database ) ) {
 			if( $database == $wgDBname ) {
@@ -181,6 +186,29 @@ class UserRightsProxy {
 				'ug_group' => $group,
 			),
 			__METHOD__ );
+	}
+	
+	/**
+	 * Replaces User::setOption()
+	 */
+	public function setOption( $option, $value ) {
+		$this->newOptions[$option] = $value;
+	}
+	
+	public function saveSettings() {
+		$rows = array();
+		foreach ( $this->newOptions as $option => $value ) {
+			$rows[] = array(
+				'up_user' => $this->id,
+				'up_property' => $option,
+				'up_value' => $value,
+			);
+		}
+		$this->db->replace( 'user_properties',
+			array( array( 'up_user', 'up_property' ) ),
+			$rows, __METHOD__
+		);
+		$this->invalidateCache();
 	}
 
 	/**
