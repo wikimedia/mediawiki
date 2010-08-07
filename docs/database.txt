@@ -19,10 +19,9 @@ To make a read query, something like this usually suffices:
 
 $dbr = wfGetDB( DB_SLAVE );
 $res = $dbr->select( /* ...see docs... */ );
-while ( $row = $dbr->fetchObject( $res ) ) {
+foreach ( $res as $row ) {
 	...
 }
-$dbr->freeResult( $res );
 
 Note the assignment operator in the while condition.
 
