@@ -1080,7 +1080,7 @@ class Article {
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 */
-	public function showCssOrJsPage() {
+	protected function showCssOrJsPage() {
 		global $wgOut;
 
 		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache'>\n$1\n</div>", 'clearyourcache' );
@@ -4595,6 +4595,8 @@ class Article {
 	 * and so on. Doesn't consider most of the stuff that Article::view is forced to
 	 * consider, so it's not appropriate to use there.
 	 *
+	 * @since 1.16 (r52326) for LiquidThreads
+	 * 
 	 * @param $oldid mixed integer Revision ID or null
 	 */
 	public function getParserOutput( $oldid = null ) {
