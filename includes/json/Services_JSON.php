@@ -45,6 +45,7 @@
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 * DAMAGE.
 *
+* @file
 * @ingroup API
 * @author Michal Migurski <mike-json@teczno.com>
 * @author Matt Knapp <mdknapp[at]gmail[dot]com>
