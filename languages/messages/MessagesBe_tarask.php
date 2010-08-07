@@ -741,7 +741,7 @@ $2',
 'password-strength-mediocre'   => 'пасрэдная',
 'password-strength-acceptable' => 'прымальная',
 'password-strength-good'       => 'добрая',
-'password-retype'              => 'Паўтарыце пароль',
+'password-retype'              => 'Паўтарыце пароль тут',
 'password-retype-mismatch'     => 'Паролі не супадаюць',
 
 # Password reset dialog

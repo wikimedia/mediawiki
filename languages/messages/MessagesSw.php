@@ -970,6 +970,7 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 # Revision move
 'moverevlogentry'              => 'alisogeza {{PLURAL:$3|pitio moja|mapitio $3}} kutoka $1 kwenda $2',
 'revisionmove'                 => 'Hamisha mapitio kutoka kwa "$1"',
+'revmove-legend'               => 'Weka ukurasa unaolengwa pamoja na muhtasari',
 'revmove-submit'               => 'Hamisha mapitio kwenda ukurasa ulioteuliwa',
 'revisionmoveselectedversions' => 'Hamisha mapitio yaliyochaguliwa',
 'revmove-reasonfield'          => 'Sababu:',
@@ -1119,6 +1120,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'contextlines'                  => 'Mistari kwa kila tokeo:',
 'contextchars'                  => 'Herufi za muktadha kwa kila mstari:',
 'stub-threshold'                => 'Kiwango cha juu cha kuonyesha kiungo kama <a href="#" class="stub">kiungo kinachoelekea mbegu</a> (baiti):',
+'stub-threshold-disabled'       => 'Imelemazwa',
 'recentchangesdays'             => 'Ionyeshwe siku ngapi kwenye orodha ya mabadiliko ya karibuni?',
 'recentchangesdays-max'         => 'Isizidi {{PLURAL:$1|siku}} $1',
 'recentchangescount'            => 'Idadi ya masahihisho yatakayoonyeshwa kwa kawaida:',
@@ -1261,6 +1263,8 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-suppressionlog'       => 'Kutazama kumbukumbu za faragha',
 'right-block'                => 'Kuwazuia watumiaji wengine wasihariri',
 'right-blockemail'           => 'Kumzuia mtumiaji asitume barua-pepe',
+'right-hideuser'             => 'Zuia mtumiaji, jina lake lisionekana wazi',
+'right-editinterface'        => 'Kuhariri kusano ya mtumiaji',
 'right-import'               => 'Kuleta kurasa kutoka kwa wiki zingine',
 'right-mergehistory'         => 'Kuunganisha historia ya kurasa zingine',
 'right-userrights'           => 'Kubadilisha wezo zote za watumiaji',
@@ -1488,6 +1492,7 @@ Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu umeunganishwa|Kurasa hizi $1 zimeunganishwa}} na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
+'morelinkstoimage'          => 'Tazama [[Special:WhatLinksHere/$1|viungo vingine]] vinavyoelekeza faili hili.',
 'sharedupload'              => 'Faili hili linatoka $1 na linaweza kushirikiwa na miradi mingine.',
 'filepage-nofile'           => 'Hakuna faili yenye jina hili.',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
@@ -1562,7 +1567,9 @@ Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 
 'disambiguations' => 'Kurasa za kuainisha maneno',
 
-'doubleredirects' => 'Maelekezo mawilimawili',
+'doubleredirects'            => 'Maelekezo mawilimawili',
+'double-redirect-fixed-move' => '[[$1]] umehamishwa.
+Sasa unaelekeza [[$2]].',
 
 'brokenredirects'        => 'Maelekezo yenye hitilafu',
 'brokenredirects-edit'   => 'hariri',
@@ -2503,6 +2510,7 @@ Tovuti hii inapata matatatizo wakati huu.',
 'dberr-again'     => 'Jaribu tena baada ya kusubiri dakika chache.',
 'dberr-info'      => '(Hamna mawasiliano na seva ya hifadhidata: $1)',
 'dberr-usegoogle' => 'Unaposubiri unaweza kujaribu kutafuta kwa kutumia Google.',
+'dberr-outofdate' => 'Elewa kwamba fahirisi yao ya yaliyomo katika tovuti hii inaweza kuwa imepitwa na wakati.',
 
 # HTML forms
 'htmlform-reset'               => 'Tengua mabadiliko',

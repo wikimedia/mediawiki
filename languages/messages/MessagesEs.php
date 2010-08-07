@@ -3502,10 +3502,10 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'compare-submit'   => 'Comparar',
 
 # Database error messages
-'dberr-header'      => 'Este wiki tiene un problema',
+'dberr-header'      => 'Esta wiki tiene un problema',
 'dberr-problems'    => 'Lo sentimos. Este sitio está experimentando dificultades técnicas.',
 'dberr-again'       => 'Prueba a recargar dentro de unos minutos.',
-'dberr-info'        => '(No e puede contactar con la base de datos del servidor: $1)',
+'dberr-info'        => '(No se puede contactar con la base de datos del servidor: $1)',
 'dberr-usegoogle'   => 'Mientras tanto puede probar buscando a través de Google.',
 'dberr-outofdate'   => 'Ten en cuenta que su índice de nuestro contenido puede estar desactualizado.',
 'dberr-cachederror' => 'La siguiente es una página guardada de la página solicitada, y puede no estar actualizada.',

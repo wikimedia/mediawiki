@@ -712,6 +712,7 @@ Parameters:
 'password-strength-mediocre'   => 'See {{msg-mw|password-strength}} for context',
 'password-strength-acceptable' => 'See {{msg-mw|password-strength}} for context',
 'password-strength-good'       => 'See {{msg-mw|password-strength}} for context',
+'password-retype-mismatch'     => '{{Identical|Passwords do not match}}',
 
 # Password reset dialog
 'resetpass'                 => 'The caption of [[Special:Resetpass]]

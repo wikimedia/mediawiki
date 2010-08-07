@@ -624,8 +624,8 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 	'config-env-latest-ok' => 'Вы ўсталёўваеце апошнюю вэрсію MediaWiki.',
 	'config-env-latest-new' => "'''Заўвага:''' Вы ўсталёўваеце вэрсію MediaWiki для распрацоўшчыкаў.",
 	'config-env-latest-can-not-check' => "'''Заўвага:''' праграма ўсталяваньня ня здолела атрымаць зьвесткі пра апошні выпуск MediaWiki з [$1].",
-	'config-env-latest-data-invalid' => "'''Увага:''' падчас праверкі на актуальнасьць вэрсіі з [$1] прыйшлі няслушныя зьвесткі.",
-	'config-env-latest-old' => "'''Увага:''' вы ўсталёўваеце састарэлую вэрсію MediaWiki.",
+	'config-env-latest-data-invalid' => "'''Папярэджаньне:''' падчас праверкі на актуальнасьць вэрсіі з [$1] прыйшлі няслушныя зьвесткі.",
+	'config-env-latest-old' => "'''Папярэджаньне:''' вы ўсталёўваеце састарэлую вэрсію MediaWiki.",
 	'config-env-latest-help' => 'Вы ўсталёўваеце вэрсію $1, у той час як актуальнай зьяўляецца $2.
 Пажадана ўсталяваць апошні выпуск, які можна загрузіць з [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-php' => 'Выкарыстоўваецца марудная рэалізацыя Unicode-нармалізацыі для PHP',
@@ -642,24 +642,52 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 Калі вы выкарыстоўваеце shared-хостынг, запытайцеся ў свайго хостынг-правайдэра наконт усталяваньня патрабуемых бібліятэк.
 Калі вы кампілявалі PHP уласнаруч, пераканфігуруйце і сабярыце яго з уключаным кліентам БЗ, напрыклад, <code>./configure --with-mysql</code>.
 Калі вы ўсталёўвалі PHP з Debian/Ubuntu-рэпазытарыя, то вам трэба ўсталяваць дадаткова пакет <code>php5-mysql</code>',
-	'config-have-db' => 'Знойдзеный драйвэры БЗ: $1.',
+	'config-have-db' => 'Знойдзеныя драйвэры базаў зьвестак: $1.',
 	'config-register-globals' => "'''Увага: опцыя PHP <code>[http://php.net/register_globals register_globals]</code> уключаная.'''
 '''Адключыце яе, калі можаце.'''
 MediaWiki будзе працаваць, але будзе адкрытым для некаторых уразьлівасьцяў.",
 	'config-magic-quotes-runtime' => "'''Перасьцярога: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] уключаны!'''
 Гэтая опцыя шкодзіць уводны паток зьвестак непрадказальным чынам.
 Працягненьне інсталяцыі немагчымае, пакуль опцыя ня будзе адключаная.",
-	'config-magic-quotes-sybase' => "'''Перасьцярога: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] уключаны!'''
-Гэтая опцыя шкодзіць уводны паток зьвестак непрадказальным чынам.
-Працягненьне інсталяцыі немагчымае, пакуль опцыя ня будзе адключаная.",
-	'config-mbstring' => "'''Перасьцярога: [http://www.php.net/manual/en/ref.info.php#mbstring.overload mbstring.func_overload] уключаны!'''
-Гэтая опцыя шкодзіць уводны паток зьвестак непрадказальным чынам.
-Працягненьне інсталяцыі немагчымае, пакуль опцыя ня будзе адключаная.",
-	'config-ze1' => "'''Перасьцярога: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] уключаны!'''
-Гэтая опцыя стварае вялікія хібы ў працы MediaWiki.
-Працягненьне інсталяцыі немагчымае, пакуль опцыя ня будзе адключаная.",
-	'config-safe-mode' => "'''Увага:''' опцыя PHP [http://www.php.net/features.safe-mode safe mode] уключаная.
-Яна можа выклікаць праблемы, галоўным чынам падчас загрузак файлаў і ў працы модулю <code>math</code>",
+	'config-magic-quotes-sybase' => "'''Фатальная памылка: рэжым [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] уключаны!'''
+Гэты рэжым шкодзіць уваходныя зьвесткі непрадказальным чынам.
+Працяг усталяваньня альбо выкарыстаньне MediaWiki немагчымыя, пакуль рэжым ня будзе выключаны.",
+	'config-mbstring' => "'''Фатальная памылка: рэжым [http://www.php.net/manual/en/ref.info.php#mbstring.overload mbstring.func_overload] уключаны!'''
+Гэты рэжым выклікае памылкі і можа шкодзіць зьвесткі непрадказальным чынам.
+Працяг усталяваньня альбо выкарыстаньне MediaWiki немагчымыя, пакуль рэжым ня будзе выключаны.",
+	'config-ze1' => "'''Фатальная памылка: рэжым [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] уключаны!'''
+Гэтая рэжым стварае вялікія праблемы ў працы MediaWiki.
+Працяг усталяваньня альбо выкарыстаньне MediaWiki немагчымыя, пакуль рэжым ня будзе выключаны.",
+	'config-safe-mode' => "'''Папярэджаньне:''' [http://www.php.net/features.safe-mode бясьпечны рэжым] PHP уключаны.
+Гэта можа выклікаць праблемы, галоўным чынам падчас загрузак файлаў і ў падтрымцы <code>math</code>.",
+	'config-xml-good' => 'Ёсьць падтрымка канвэртацыі XML / Latin1-UTF-8.',
+	'config-xml-bad' => 'Ня знойдзены модуль XML для PHP.
+MediaWiki патрэбныя функцыі з гэтага модулю, таму ня будзе працаваць у гэтай канфігурацыі.
+Калі ў вам Mandrake, усталюйце пакет php-xml.',
+	'config-pcre' => 'Ня знойдзен модуль для PCRE.
+MediaWiki для працы патрабуюцца функцыі рэгулярных выразаў у стылі Perl.',
+	'config-memory-none' => 'У PHP не сканфігураваная опцыя <code>memory_limit</code>',
+	'config-memory-ok' => 'Опцыя <code>memory_limit</code> роўная $1.
+Усё добра.',
+	'config-memory-raised' => 'Опцыя <code>memory_limit</code> роўная $1, падвышаем да $2.',
+	'config-memory-bad' => "'''Увага:''' опцыя PHP <code>memory_limit</code> складае $1.
+Верагодна, гэта вельмі замала.
+Інсталяцыя можа абарвацца.",
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] усталяваны',
+	'config-apc' => '[http://www.php.net/apc APC] усталяваны',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] усталяваны',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] усталяваны',
+	'config-no-cache' => "'''Увага:''' немагчыма знайсьці [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] ці [http://www.iis.net/download/WinCacheForPhp WinCache].
+Аб’ектнае кэшаваньне ня ўключанае.",
+	'config-diff3-good' => 'Знойдзены GNU diff3: <code>$1</code>.',
+	'config-diff3-bad' => 'GNU diff3 ня знойдзены.',
+	'config-imagemagick' => 'Знойдзены ImageMagick: <code>$1</code>.
+Пасьля ўключэньня загрузак будзе ўключанае стварэньне маштабаваных выяваў.',
+	'config-gd' => 'GD падтрымліваецца натыўна.
+Пасьля ўключэньня загрузак будзе ўключанае маштабаваньне выяваў.',
+	'config-no-scaling' => 'Ні GD, ні ImageMagick ня знойдзеныя.
+Маштабаваньне выяваў будзе недасяжнае.',
+	'config-dir' => 'Каталёг усталёўкі: <code>$1</code>',
 	'config-db-type' => 'Тып базы зьвестак:',
 	'config-db-name' => 'Назва базы зьвестак:',
 	'config-type-mysql' => 'MySQL',
@@ -848,8 +876,8 @@ Der Installationsvorgang wurde daher abgebrochen.",
 	'config-dir-not-writable-group' => "'''Fehler:''' Kein Schreibzugriff auf die Config-Datei möglich.
 Der Installationsvorgang wurde abgebrochen.
 
-Das Installationsprogramm hat den Benutzer bestimmt, unter dem der Webserver ausgeführt wird.
-Schreibzugriff auf das <code><nowiki>./config</nowiki></code>-Verzeichnis muss für diesen ermöglicht werden, um mit dem Installationsvorgang fortfahren zu können.
+Das Installationsprogramm konnte den Benutzer bestimmen, mit dem Webserver ausgeführt wird.
+Schreibzugriff auf das <code><nowiki>./config</nowiki></code>-Verzeichnis muss für diesen ermöglicht werden, um den Installationsvorgang fortsetzen zu können..
 
 Auf einem Unix- oder Linux-System:
 <pre>cd $1
@@ -858,8 +886,8 @@ chmod g+w config</pre>",
 	'config-dir-not-writable-nogroup' => "'''Fehler:''' Kein Schreibzugriff auf die Config-Datei möglich.
 Der Installationsvorgang wurde abgebrochen.
 
-Das Installationsprogramm konnte nicht Benutzer bestimmen, unter dem der Webserver ausgeführt wird.
-Schreibzugriff auf das <code><nowiki>./config</nowiki></code>-Verzeichnis muss global für diesen und andere ermöglicht werden, um mit dem Installationsvorgang fortfahren zu können.
+Das Installationsprogramm konnte nicht den Benutzer bestimmen, mit dem Webserver ausgeführt wird.
+Schreibzugriff auf das <code><nowiki>./config</nowiki></code>-Verzeichnis muss global für diesen und andere Benutzer ermöglicht werden, um den Installationsvorgang fortsetzen zu können.
 
 Auf einem Unix- oder Linux-System:
 <pre>cd $1
@@ -904,6 +932,16 @@ Gewöhnlich bleibt dieses Datenfeld leer.',
 	'config-db-schema-help' => 'Die obigen Datenschemata sind in der Regel richtig.
 Nur Änderungen vornehmen, sofern es Gründe dafür gibt.',
 	'config-sqlite-dir' => 'SQLite-Datenverzeichnis:',
+	'config-sqlite-dir-help' => "SQLite speichert alle Daten in einer einzigen Datei.
+
+Das für sie vorgesehene Verzeichnis muss während des Installationsvorgangs beschreibbar sein.
+
+Es sollte '''nicht'' über das Web zugänglich sein, was der Grund ist, warum die Datei nicht dort abgelegt wird, wo sich die PHP-Dateien befinden.
+
+Das Installationsprogramm wird mit der Datei zusammen eine zusätzliche <code>.htaccess</code>-Datei erstellen. Sofern dies scheitert, können Dritte auf die Datendatei zugreifen.
+Dies umfasst die Nutzerdaten (E-Mail-Adressen, Passwörter, etc.) wie auch gelöschte Seitenversionen und andere vertrauliche Daten, die im Wiki gespeichert sind.
+
+Es ist daher zu erwägen die Datendatei an gänzlich anderer Stelle abzulegen, beispielsweise im Verzeichnis <code>./var/lib/mediawiki/yourwiki</code>.",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -929,11 +967,30 @@ Es darf nur Zahlen, Buchstaben und Unterstriche enthalten.',
 	'config-sqlite-name-help' => 'Bitten einen Namen angeben, mit dem das Wiki identifiziert werden kann.
 Dabei bitte keine Leerzeichen oder Bindestriche verwenden.
 Dieser Name wird für die SQLite-Datendateinamen genutzt.',
+	'config-sqlite-parent-unwritable-group' => 'Das Datenverzeichnis <code><nowiki>$1</nowiki></code> kann nicht erzeugt werden, da das übergeordnete Verzeichnis <code><nowiki>$2</nowiki></code> nicht für den Webserver beschreibbar ist.
+
+Das Installationsprogramm konnte den Benutzer bestimmen, mit dem Webserver ausgeführt wird.
+Schreibzugriff auf das <code><nowiki>$3</nowiki></code>-Verzeichnis muss für diesen ermöglicht werden, um den Installationsvorgang fortsetzen zu können.
+
+Auf einem Unix- oder Linux-System:
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'Das Datenverzeichnis <code><nowiki>$1</nowiki></code> kann nicht erzeugt werden, da das übergeordnete Verzeichnis <code><nowiki>$2</nowiki></code> nicht für den Webserver beschreibbar ist.
+
+Das Installationsprogramm konnte den Benutzer bestimmen, mit dem Webserver ausgeführt wird.
+Schreibzugriff auf das <code><nowiki>$3</nowiki></code>-Verzeichnis muss global für diesen und andere Benutzer ermöglicht werden, um den Installationsvorgang fortsetzen zu können.
+
+Auf einem Unix- oder Linux-System:
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Fehler beim Erstellen des Datenverzeichnisses „$1“.
 
 Bitte den Speicherort überprüfen und es danach erneut versuchen.',
 	'config-sqlite-dir-unwritable' => 'Das Verzeichnis „$1“  ist nicht beschreibbar.
-Bitte die Berechtigungen so ändern, dass dieses Verzeichnis auf dem Webserver beschreibbar ist und es danach erneut versuchen.',
+Bitte die Zugriffsberechtigungen so ändern, dass dieses Verzeichnis für den Webserver beschreibbar ist und es danach erneut versuchen.',
 	'config-sqlite-connection-error' => '$1.
 
 Bitte unten angegebenes Datenverzeichnis sowie den Datenbanknamen überprüfen und es danach erneut versuchen.',
@@ -1006,10 +1063,19 @@ Die verbliebenen Konfigurationseinstellungen können übersprungen und das Wiki 
 	'config-optional-continue' => 'Sollen weitere Konfigurationseinstellungen vorgenommen werden?',
 	'config-optional-skip' => 'Nein, das Wiki soll nun installiert werden.',
 	'config-profile' => 'Profil der Benutzerberechtigungen:',
-	'config-profile-wiki' => 'Offenes Wiki',
-	'config-profile-no-anon' => 'Die Erstellung eines Benutzerkontos ist erforderlich.',
-	'config-profile-fishbowl' => 'Ausschließlich berechtigte Bearbeiter',
-	'config-profile-private' => 'Geschlossenes Wiki',
+	'config-profile-wiki' => 'offenes Wiki',
+	'config-profile-no-anon' => 'Erstellung eines Benutzerkontos erforderlich',
+	'config-profile-fishbowl' => 'ausschließlich berechtigten Bearbeitern',
+	'config-profile-private' => 'geschlossenes Wiki',
+	'config-profile-help' => "Wikis sind am nützlichsten, wenn so viele Menschen als möglich Bearbeitungen vornehmen können.
+Mit MediaWiki ist es einfach die letzten Änderungen nachzuvollziehen und unbrauchbare Bearbeitungen, beispielsweise von unbedarften oder böswilligen Benutzern, rückgängig zu machen.
+
+Allerdings finden etliche Menschen Wikis auch mit anderen Bearbeitungskonzepten sinnvoll. Manchmal ist es auch nicht einfach alle Beteiligten vollständig von den Vorteilen des „Wiki-Prinzips” zu überzeugen. Darum ist eine Auswahl möglich.
+
+Ein '''{{int:config-profile-wiki}}''' ermöglicht es jedermann, sogar ohne über ein Benutzerkonto zu verfügen, Bearbeitungen vorzunehmen.
+Ein Wiki bei dem die '''{{int:config-profile-no-anon}}''' ist, bietet höhere Verantwortlichkeit des Einzelnen für seine Bearbeitungen, könnte allerdings Personen mit gelegentlichen Bearbeitungen abschrecken. Ein Wiki mit '''{{int:config-profile-fishbowl}}''' gestattet es nur ausgewählten Benutzern Bearbeitungen vorzunehmen. Allerdings kann dabei die Allgemeinheit die Seiten immer noch betrachten und Änderungen nachvollziehen. Ein '''{{int:config-profile-private}}''' gestattet es nur ausgewählten Benutzern, Seiten zu betrachten sowie zu bearbeiten.
+
+Komplexere Konzepte zur Zugriffssteuerung können erst nach abgeschlossenem Installationsvorgang eingerichtet werden. Hierzu gibt es weitere Informationen auf der Website mit der [http://www.mediawiki.org/wiki/Manual:User_rights entsprechenden Anleitung].",
 	'config-license' => 'Copyright und Lizenz:',
 	'config-license-none' => 'Keine Lizenzangabe in der Fußzeile',
 	'config-license-cc-by-sa' => 'Creative Commons „Namensnennung, Weitergabe unter gleichen Bedingungen“ (kompatibel mit Wikipedia)',
@@ -1038,6 +1104,11 @@ Rücklaufende E-Mails werden an diese E-Mail-Adresse gesandt.
 Bei viele E-Mail-Servern muss der Teil der E-Mail-Adresse mit der Domainangabe korrekt sein.',
 	'config-upload-settings' => 'Hochladen von Bildern und Dateien',
 	'config-upload-enable' => 'Das Hochladen von Dateien ermöglichen',
+	'config-upload-help' => 'Das Hochladen von Dateien macht den Server für potentielle Sicherheitsprobleme anfällig.
+Weitere Informationen hierzu sollen im [http://www.mediawiki.org/wiki/Manual:Security Abschnitt Sicherheit] der Anleitung gelesen werden.
+
+Um das Hochladen von Dateien zu ermöglichen, muss der Zugriff auf das Unterverzeichnis <code>./images</code> so geändert werden, das es für den Webserver beschreibbar ist.
+Hernach kann diese Option aktiviert werden.',
 	'config-upload-deleted' => 'Das Verzeichnis für gelöschte Dateien:',
 	'config-upload-deleted-help' => 'Bitte ein Verzeichnis auswählen, in dem gelöschte Dateien archiviert werden sollen.
 Idealerweise sollte es nicht über das Internet zugänglich sein.',
@@ -1095,6 +1166,15 @@ Die Standardliste wird übersprungen.",
 	'config-insecure-secretkey' => "'''Warnung:''' Die Erstellung des Geheimschlüssels <code>\$wgSecretKey</code> ist gescheitert.
 Die muss manuell nachgeholt werden.",
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
+	'config-install-done' => "'''Herzlichen Glückwunsch!'''
+MediaWiki wurde erfolgreich installiert.
+
+Das Installationsprogramm hat die Datei <code>LocalSettings.php</code> erzeugt.
+Sie enthält alle Konfigurationseinstellungen.
+
+Diese Datei muss [$1 heruntergeladen] und in das Stammverzeichnis der MediaWiki-Installation hochgeladen werden. Dieses ist dasselbe Verzeichnis, in dem sich die Datei <code>index.php</code> befindet.
+
+Sobald dies erledigt ist, kann auf das '''[$2 Wiki zugegriffen werden]'''.",
 );
 
 /** Spanish (Español)
@@ -1510,6 +1590,7 @@ W porjadku.',
 	'config-db-install-account' => 'Wužiwarske konto za instalaciju',
 	'config-db-username' => 'Wužiwarske mjeno datoweje banki:',
 	'config-db-password' => 'Hesło datoweje banki:',
+	'config-db-install-help' => 'Zapodaj wužiwarske mjeno a hesło, kotrejž měłoj so za zwisk z datowej banku za instalaciski proces wužiwać.',
 	'config-db-account-lock' => 'Samsne wužiwarske mjeno a hesło za normalnu operaciju wužiwać',
 	'config-db-wiki-account' => 'Wužiwarske konto za normalnu operaciju',
 	'config-db-prefix' => 'Tabelowy prefiks datoweje banki:',
@@ -1600,6 +1681,7 @@ Podaj druhe wužiwarske mjeno.',
 	'config-enable-email' => 'Wuchadźace e-mejlki zmóžnić',
 	'config-email-user' => 'E-mejl mjez wužiwarjemi zmóžnić',
 	'config-email-auth' => 'E-mejlowu awtentifikaciju zmóžnić',
+	'config-email-sender' => 'E-mejlowa adresa za wotmołwy:',
 	'config-upload-settings' => 'Wobrazy a nahraća datajow',
 	'config-upload-enable' => 'Nahraće datajow zmóžnić',
 	'config-upload-deleted' => 'Zapis za zhašane dataje:',
@@ -1618,8 +1700,11 @@ Podaj druhe wužiwarske mjeno.',
 	'config-install-database' => 'Datowa banka so připrawja',
 	'config-install-user' => 'Tworjenje wužiwarja datoweje banki',
 	'config-install-tables' => 'Tworjenje tabelow',
+	'config-install-tables-failed' => "'''Zmylk''': Wutworjenje tabele je so slědowaceho zmylka dla njeporadźiło: $1",
 	'config-install-interwiki-sql' => '<code>interwiki.sql</code> njeda so namakać.',
 	'config-install-secretkey' => 'Tworjenje tajneho kluča',
+	'config-insecure-secretkey' => "'''Warnowanje:'''Wěsty kluč <code>\$wgSecretKey</code> njeda so wutworić.
+Móžeš to manuelnje činić.",
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
 );
 
@@ -1633,6 +1718,52 @@ $messages['ia'] = array(
 	'config-localsettings-upgrade' => "'''Attention''': Un file <code>LocalSettings.php</code> ha essite detegite.
 Es possibile actualisar le software.
 Per favor displacia <code>LocalSettings.php</code> a un loco secur e postea re-executa le installator.",
+);
+
+/** Indonesian (Bahasa Indonesia)
+ * @author Farras
+ */
+$messages['id'] = array(
+	'config-desc' => 'Penginstal untuk MediaWiki',
+	'config-title' => 'Instalasi MediaWiki $1',
+	'config-information' => 'Informasi',
+	'config-session-error' => 'Kesalahan sesi mulai: $1',
+	'config-show-help' => 'Bantuan',
+	'config-hide-help' => 'Sembunyikan bantuan',
+	'config-your-language' => 'Bahasa Anda:',
+	'config-your-language-help' => 'Pilih bahasa yang akan digunakan selama proses instalasi.',
+	'config-wiki-language' => 'Bahasa wiki:',
+	'config-wiki-language-help' => 'Pilih bahasa yang akan digunakan tulisan-tulisan wiki.',
+	'config-back' => '← Kembali',
+	'config-continue' => 'Lanjut →',
+	'config-page-language' => 'Bahasa',
+	'config-page-welcome' => 'Selamat datang di MediaWiki',
+	'config-page-dbconnect' => 'Hubungkan ke pusat data',
+	'config-page-upgrade' => 'Perbarui instalasi yang ada',
+	'config-page-dbsettings' => 'Pengaturan pusat data',
+	'config-page-name' => 'Nama',
+	'config-page-options' => 'Pilihan',
+	'config-page-install' => 'Instal',
+	'config-page-complete' => 'Selesai!',
+	'config-page-restart' => 'Ulangi instalasi',
+	'config-page-readme' => 'Baca saya',
+	'config-page-releasenotes' => 'Catatan pelepasan',
+	'config-page-copying' => 'Menyalin',
+	'config-page-upgradedoc' => 'Memerbarui',
+	'config-restart' => 'Ya, nyalakan ulang',
+	'config-authors' => 'MediaWiki adalah Hak Cipta © 2001-2010 oleh Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe dan lainnya.',
+	'config-sidebar' => '* [http://www.mediawiki.org Halaman utama MediaWiki]
+* [http://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna]
+* [http://www.mediawiki.org/wiki/Manual:Contents Panduan Pengurus]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Pertanyaan yang Sering Diajukan]',
+	'config-env-good' => '<span class="success-message">Kondisi telah diperiksa.
+Anda dapat menginstal MediaWiki.</span>',
+	'config-env-bad' => 'Kondisi telah diperiksa.
+Anda tidak dapat menginstal MediaWiki.',
+	'config-env-php' => 'PHP $1 diinstal.',
+	'config-env-latest-ok' => 'Anda menginstal versi terbaru Mediawiki.',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 biner',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 );
 
 /** Igbo (Igbo)
@@ -3115,10 +3246,52 @@ mas não lhe permitirá armazenar caracteres acima do [http://en.wikipedia.org/w
 	'config-project-namespace-help' => 'Seguindo o exemplo da Wikipedia, muitas wikis mantêm as páginas das suas normas e políticas, separadas das páginas de conteúdo, num "\'\'\'espaço nominal do projecto\'\'\'".
 Todos os nomes das páginas neste espaço nominal começam com um determinado prefixo, que pode especificar aqui.
 Tradicionalmente, este prefixo deriva do nome da wiki, mas não pode conter caracteres de pontuação, como "#" ou ":".',
+	'config-ns-invalid' => 'O espaço nominal especificado "<nowiki>$1</nowiki>" é inválido.
+Introduza um espaço nominal de projecto diferente.',
+	'config-admin-box' => 'Conta de administrador',
 	'config-admin-name' => 'O seu nome:',
 	'config-admin-password' => 'Palavra-chave:',
-	'config-admin-password-confirm' => 'Senha novamente:',
-	'config-install-step-done' => 'finalizado',
+	'config-admin-password-confirm' => 'Repita a palavra-chave:',
+	'config-admin-help' => 'Introduza aqui o seu nome de utilizador preferido, por exemplo, "João Beltrão".
+Este é o nome que irá utilizar para entrar na wiki.',
+	'config-admin-name-blank' => 'Introduza um nome de utilizador para administrador.',
+	'config-admin-name-invalid' => 'O nome de utilizador especificado "<nowiki>$1</nowiki>" é inválido.
+Introduza um nome de utilizador diferente.',
+	'config-admin-password-blank' => 'Introduza uma palavra-chave para a conta de administrador.',
+	'config-admin-password-same' => 'A palavra-chave tem de ser diferente do nome de utilizador.',
+	'config-admin-password-mismatch' => 'As duas palavras-chave que introduziu não coincidem.',
+	'config-admin-email' => 'Correio electrónico:',
+	'config-admin-email-help' => 'Introduza aqui um correio electrónico que lhe permita receber mensagens de outros utilizadores da wiki, reiniciar a sua palavra-chave e receber notificações de alterações às suas páginas vigiadas.',
+	'config-admin-error-user' => 'Ocorreu um erro interno ao criar um administrador com o nome "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Ocorreu um erro interno ao definir uma palavra-chave para o administrador "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-subscribe' => 'Subscreva a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de divulgação de anúncios de lançamento].',
+	'config-subscribe-help' => 'Esta é uma lista de divulgação de baixo volume para anúncios de lançamento de versões novas, incluindo anúncios de segurança importantes.
+Deve subscrevê-la e actualizar a sua instalação MediaWiki quando são lançadas versões novas.',
+	'config-almost-done' => 'Está quase a terminar!
+Agora pode saltar as configurações restantes e instalar já a wiki.',
+	'config-optional-continue' => 'Faz-me mais perguntas.',
+	'config-optional-skip' => 'Já estou aborrecido, instala lá a wiki.',
+	'config-profile' => 'Perfil de permissões:',
+	'config-profile-wiki' => 'Wiki tradicional',
+	'config-profile-no-anon' => 'Criação de conta exigida',
+	'config-profile-fishbowl' => 'Somente utilizadores autorizados',
+	'config-profile-private' => 'Wiki privada',
+	'config-profile-help' => "As wikis funcionam melhor quando se deixa tantas pessoas editá-las quanto possível.
+No MediaWiki, é fácil rever as alterações recentes e reverter quaisquer estragos causados por utilizadores novatos ou maliciosos.
+
+No entanto, muitas pessoas consideram o MediaWiki útil de variadas formas e nem sempre é fácil convencer todas as pessoas dos benefícios desta filosofia wiki.
+Por isso pode optar.
+
+Uma '''{{int:config-profile-wiki}}''' permite que todos a editem, sem sequer necessitar de autenticação.
+Uma wiki com '''{{int:config-profile-no-anon}}''' atribui mais responsabilidade, mas pode afastar os colaboradores ocasionais.
+
+Um cenário '''{{int:config-profile-fishbowl}}''' permite que os utilizadores aprovados editem, mas que o público visione as páginas, incluindo o historial das mesmas.
+Uma '''{{int:config-profile-private}}''' só permite que os utilizadores aprovados visionem as páginas e as editem.
+
+Após a instalação, estarão disponíveis mais configurações de privilégios. Consulte [http://www.mediawiki.org/wiki/Manual:User_rights a entrada relevante no Manual].",
+	'config-license' => 'Direitos de autor e licença:',
+	'config-license-none' => 'Sem licença no rodapé',
+	'config-install-step-done' => 'terminado',
 );
 
 /** Russian (Русский)

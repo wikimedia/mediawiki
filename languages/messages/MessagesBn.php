@@ -476,6 +476,7 @@ $2',
 'gotaccount'                 => "আপনার কি ইতিমধ্যে একটি অ্যাকাউন্ট তৈরি করা আছে? '''$1''' করুন।",
 'gotaccountlink'             => 'প্রবেশ',
 'createaccountmail'          => 'ই-মেইলের মাধ্যমে',
+'createaccountreason'        => 'কারণ:',
 'badretype'                  => 'শব্দচাবি (password) দুটি মিলছেনা।',
 'userexists'                 => 'এই ব্যবহারকারী নামটি অন্য কেঊ আগেই ব্যবহার করেছে। দয়া করে অন্য নাম বেছে নিন।',
 'loginerror'                 => 'লগ-ইন করতে সমস্যা হয়েছে',
@@ -837,6 +838,10 @@ $3-এর দেয়া কারণ হল ''$2''",
 # Suppression log
 'suppressionlog' => 'দমন লগ',
 
+# Revision move
+'revmove-reasonfield'    => 'কারণ:',
+'revmove-nullmove-title' => 'শিরোনামটি গ্রহনযোগ্য নয়।',
+
 # History merging
 'mergehistory'                     => 'পাতার ইতিহাসগুলি একত্র করা হোক',
 'mergehistory-header'              => 'এই পাতাটির মাধ্যমে আপনি একটি উৎস পাতার ইতিহাস একটি নতুনতর পাতার সাথে একত্র করতে পারবেন।
@@ -981,6 +986,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'contextlines'                => 'লাইন প্রতি হিটে:',
 'contextchars'                => 'প্রতি লাইনে কন্‌টেক্সট সংখ্যা:',
 'stub-threshold'              => '<a href="#" class="stub">অসম্পূর্ণ নিবন্ধের সংযোগগুলির</a> বিশেষ ফরম্যাটিঙের সীমা (বাইটে):',
+'stub-threshold-disabled'     => 'নিস্ক্রিয়',
 'recentchangesdays'           => 'সাম্প্রতিক পরিবর্তনে দিনসমূহ দেখানোর জন্য:',
 'recentchangesdays-max'       => 'সর্বোচ্চ $1 {{PLURAL:$1|দিন|দিন}}',
 'recentchangescount'          => 'সাম্প্রতিক পরিবর্তনে প্রদর্শিত সম্পাদনার সংখ্যা:',
@@ -2726,7 +2732,7 @@ $1',
 # Special:FilePath
 'filepath'        => 'ফাইলের পাথ',
 'filepath-page'   => 'ফাইল:',
-'filepath-submit' => 'পথ',
+'filepath-submit' => 'চলো',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-legend'   => 'অনুলিপির জন্য অনুসন্ধান',
