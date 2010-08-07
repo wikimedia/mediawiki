@@ -31,6 +31,7 @@ class ParserOptions {
 	var $mExternalLinkTarget;        # Target attribute for external links
 	var $mMath;                      # User math preference (as integer)
 	var $mUserLang;                  # Language code of the User language.
+	var $mThumbSize;                 # Thumb size preferred by the user.
 
 	var $mUser;                      # Stored user object, just used to initialise the skin
 	var $mIsPreview;                 # Parsing the page for a "preview" operation
@@ -58,6 +59,7 @@ class ParserOptions {
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
 	function getMath()                          { return $this->mMath; }
+	function getThumbSize()                     { return $this->mThumbSize; }
 	
 	function getIsPreview()                     { return $this->mIsPreview; }
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
@@ -115,6 +117,7 @@ class ParserOptions {
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
 	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
 	function setUserLang( $x )                  { return wfSetVar( $this->mUserLang, $x ); }
+	function setThumbSize()                     { return wfSetVar( $this->mThumbSize, $x ); }
 	
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
 	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
