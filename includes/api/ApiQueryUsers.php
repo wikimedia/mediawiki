@@ -1,9 +1,8 @@
 <?php
-
 /**
- * Created on July 30, 2007
- *
  * API for MediaWiki 1.8+
+ *
+ * Created on July 30, 2007
  *
  * Copyright © 2007 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
@@ -21,6 +20,8 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {

@@ -1,9 +1,8 @@
 <?php
-
 /**
- * Created on Sep 4, 2006
- *
  * API for MediaWiki 1.8+
+ *
+ * Created on Sep 4, 2006
  *
  * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
@@ -21,16 +20,15 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @defgroup API API
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
 	require_once( 'ApiBase.php' );
 }
-
-/**
- * @defgroup API API
- */
 
 /**
  * This is the main API class, used for both external and internal processing.
