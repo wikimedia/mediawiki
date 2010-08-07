@@ -2705,7 +2705,7 @@ class User {
 
 		$confstr =        $this->getOption( 'math' );
 		$confstr .= '!' . $this->getStubThreshold();
-		if ( $wgUseDynamicDates ) {
+		if ( $wgUseDynamicDates ) { # This is wrong (bug 24714)
 			$confstr .= '!' . $this->getDatePreference();
 		}
 		$confstr .= '!' . ( $this->getOption( 'numberheadings' ) ? '1' : '' );

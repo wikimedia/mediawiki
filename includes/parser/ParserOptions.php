@@ -71,10 +71,6 @@ class ParserOptions {
 	}
 
 	function getDateFormat() {
-		if ( !$this->getUseDynamicDates() ) {
-			throw new MWException( 'Getting DateFormat option without UseDynamicDates.' );
-		}
-		
 		if ( !isset( $this->mDateFormat ) ) {
 			$this->mDateFormat = $this->mUser->getDatePreference();
 		}
