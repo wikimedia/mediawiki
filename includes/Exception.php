@@ -283,6 +283,8 @@ function wfInstallExceptionHandler() {
  * Report an exception to the user
  */
 function wfReportException( Exception $e ) {
+	global $wgShowExceptionDetails;
+
 	$cmdLine = MWException::isCommandLine();
 	if ( $e instanceof MWException ) {
 		try {
@@ -292,11 +294,14 @@ function wfReportException( Exception $e ) {
 			// Show a simpler error message for the original exception,
 			// don't try to invoke report()
 			$message = "MediaWiki internal error.\n\n";
-			if ( $GLOBALS['wgShowExceptionDetails'] )
-				$message .= "Original exception: " . $e->__toString();
-			$message .= "\n\nException caught inside exception handler";
-			if ( $GLOBALS['wgShowExceptionDetails'] )
-				$message .= ": " . $e2->__toString();
+			if ( $wgShowExceptionDetails ) {
+				$message .= 'Original exception: ' . $e->__toString() . "\n\n" .
+					'Exception caught inside exception handler: ' . $e2->__toString();
+			} else {
+				$message .= "Exception caught inside exception handler.\n\n" .
+					"Set \$wgShowExceptionDetails = true; at the bottom of LocalSettings.php " .
+					"to show detailed debugging information.";
+			}
 			$message .= "\n";
 			if ( $cmdLine ) {
 				wfPrintError( $message );
@@ -307,7 +312,7 @@ function wfReportException( Exception $e ) {
 	} else {
 		$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"\n" .
 			$e->__toString() . "\n";
-		if ( $GLOBALS['wgShowExceptionDetails'] ) {
+		if ( $wgShowExceptionDetails ) {
 			$message .= "\n" . $e->getTraceAsString() ."\n";
 		}
 		if ( $cmdLine ) {
