@@ -352,7 +352,7 @@ You can now skip the remaining configuration and install the wiki right now.',
 In MediaWiki, it is easy to review the recent changes, and to revert any damage that is done by naive or malicious users.
 
 However, many have found MediaWiki to be useful in a wide variety of roles, and sometimes it is not easy to convince everyone of the benefits of the wiki way.
-So you have the the choice.
+So you have the choice.
 
 A '''{{int:config-profile-wiki}}''' allows anyone to edit, without even logging in.
 A wiki with '''{{int:config-profile-no-anon}}''' provides extra accountability, but may deter casual contributors.
