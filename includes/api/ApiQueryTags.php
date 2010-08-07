@@ -1,9 +1,8 @@
 <?php
-
 /**
- * Created on Jul 9, 2009
- *
  * API for MediaWiki 1.8+
+ *
+ * Created on Jul 9, 2009
  *
  * Copyright © 2009
  *
@@ -21,6 +20,8 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {

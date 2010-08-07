@@ -1,9 +1,8 @@
 <?php
-
 /**
- * Created on May 14, 2010
- *
  * API for MediaWiki 1.17+
+ *
+ * Created on May 14, 2010
  *
  * Copyright © 2010 Sam Reed
  * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
@@ -22,6 +21,8 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
