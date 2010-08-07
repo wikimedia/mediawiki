@@ -343,10 +343,9 @@ class MessageCache {
 
 		# Load titles for all oversized pages in the MediaWiki namespace
 		$res = $dbr->select( 'page', 'page_title', $bigConds, __METHOD__ . "($code)-big" );
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$cache[$row->page_title] = '!TOO BIG';
 		}
-		$dbr->freeResult( $res );
 
 		# Conditions to load the remaining pages with their contents
 		$smallConds = $conds;
@@ -358,10 +357,9 @@ class MessageCache {
 			array( 'page_title', 'old_text', 'old_flags' ),
 			$smallConds, __METHOD__ . "($code)-small" );
 
-		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$cache[$row->page_title] = ' ' . Revision::getRevisionText( $row );
 		}
-		$dbr->freeResult( $res );
 
 		$cache['VERSION'] = MSG_CACHE_VERSION;
 		wfProfileOut( __METHOD__ );
