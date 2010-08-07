@@ -335,10 +335,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 			
 			$groupArr = array(
-				'add' => &$wgAddGroups,
-				'remove' => &$wgRemoveGroups,
-				'add-self' => &$wgGroupsAddToSelf,
-				'remove-self' => &$wgGroupsRemoveFromSelf
+				'add' => $wgAddGroups,
+				'remove' => $wgRemoveGroups,
+				'add-self' => $wgGroupsAddToSelf,
+				'remove-self' => $wgGroupsRemoveFromSelf
 			);
 			
 			foreach( $groupArr as $type => $rights ) {
