@@ -4432,6 +4432,15 @@ $wgSpecialPageCacheUpdates = array(
 $wgExceptionHooks = array();
 
 /**
+ * List of page property names and descriptions of what they are. 
+ * This is used for the API prop=pageprops module to know which 
+ * page props to search for.
+ */
+$wgPageProps = array( 
+	'hiddencat' => 'Whether or not the page has a category with the __HIDDENCAT__ magic word',
+);
+
+/**
  * Page property link table invalidation lists. When a page property
  * changes, this may require other link tables to be updated (eg
  * adding __HIDDENCAT__ means the hiddencat tracking category will

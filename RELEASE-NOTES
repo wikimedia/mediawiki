@@ -330,7 +330,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the timestamp of the last edit
 * (bug 24677) axto= parameters added to allcategories, allimages, alllinks, allmessages, 
   allpages, and allusers
-* (bug 24236) Add add, remove, add-self, remove-self tags to meta=siteinfo&siprop=usergroups   
+* (bug 24236) Add add, remove, add-self, remove-self tags to meta=siteinfo&siprop=usergroups
+* (bug 24484) Add prop=pageprops module   
 
 === Languages updated in 1.17 ===
 
