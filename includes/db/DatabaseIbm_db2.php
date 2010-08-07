@@ -1497,13 +1497,11 @@ EOF;
 	/**
 	 * Not implemented
 	 * @return string ''
-	 * @deprecated
 	 */
 	public function getStatus( $which="%" ) { $this->installPrint('Not implemented for DB2: getStatus()'); return ''; }
 	/**
 	 * Not implemented
 	 * @return string $sql
-	 * @deprecated
 	 */ 
 	public function limitResultForUpdate($sql, $num) { $this->installPrint('Not implemented for DB2: limitResultForUpdate()'); return $sql; }
 	
