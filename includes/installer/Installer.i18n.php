@@ -453,7 +453,7 @@ Skipping creation.",
 	'config-install-tables-failed'    => "'''Error''': Table creation failed with the following error: $1",
 	'config-install-interwiki'        => 'Populating default interwiki table',
 	'config-install-interwiki-sql'    => 'Could not find file <code>interwiki.sql</code>.',
-	'config-install-interwiki-exists' => "'''Warning''': Interwiki table seems to already have entires.
+	'config-install-interwiki-exists' => "'''Warning''': The interwiki table seems to already have entries.
 Skipping default list.",
 	'config-install-secretkey'        => 'Generating secret key',
 	'config-insecure-secretkey'       => "'''Warning:''' Unable to create secure <code>\$wgSecretKey</code>.
