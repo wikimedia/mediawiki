@@ -1,25 +1,28 @@
 <?php
-# Copyright (C) 2004 Brion Vibber <brion@pobox.com>
-# http://www.mediawiki.org/
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-# http://www.gnu.org/copyleft/gpl.html
+/**
+ * Mssql search engine
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
 /**
  * Search engine hook base class for Mssql (ConText).
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchMssql extends SearchEngine {
 
@@ -30,7 +33,7 @@ class SearchMssql extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: raw search term
 	 * @return MssqlSearchResultSet
 	 * @access public
 	 */
@@ -42,7 +45,7 @@ class SearchMssql extends SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: raw search term
 	 * @return MssqlSearchResultSet
 	 * @access public
 	 */
@@ -54,7 +57,8 @@ class SearchMssql extends SearchEngine {
 
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return string
+	 *
+	 * @return String
 	 * @private
 	 */
 	function queryRedirect() {
@@ -67,7 +71,8 @@ class SearchMssql extends SearchEngine {
 
 	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
-	 * @return string
+	 *
+	 * @return String
 	 * @private                           
 	 */
 	function queryNamespaces() {
@@ -80,7 +85,8 @@ class SearchMssql extends SearchEngine {
 
 	/**
 	 * Return a LIMIT clause to limit results on the query.
-	 * @return string
+	 *
+	 * @return String
 	 * @private
 	 */
 	function queryLimit( $sql ) {
@@ -90,7 +96,8 @@ class SearchMssql extends SearchEngine {
 	/**
 	 * Does not do anything for generic search engine
 	 * subclasses may define this though
-	 * @return string
+	 *
+	 * @return String
 	 * @private
 	 */
 	function queryRanking( $filteredTerm, $fulltext ) {
@@ -100,8 +107,9 @@ class SearchMssql extends SearchEngine {
 	/**
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
-	 * @param string $filteredTerm
-	 * @param bool $fulltext
+	 *
+	 * @param $filteredTerm String
+	 * @param $fulltext Boolean
 	 * @private
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
@@ -114,7 +122,8 @@ class SearchMssql extends SearchEngine {
 
 	/**
 	 * Picks which field to index on, depending on what type of query.
-	 * @param bool $fulltext
+	 *
+	 * @param $fulltext Boolean
 	 * @return string
 	 */
 	function getIndexField( $fulltext ) {
@@ -124,9 +133,9 @@ class SearchMssql extends SearchEngine {
 	/**
 	 * Get the base part of the search query.
 	 *
-	 * @param string $filteredTerm
-	 * @param bool $fulltext
-	 * @return string
+	 * @param $filteredTerm String
+	 * @param $fulltext Boolean
+	 * @return String
 	 * @private
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
@@ -174,9 +183,9 @@ class SearchMssql extends SearchEngine {
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
 	 *
-	 * @param int $id
-	 * @param string $title
-	 * @param string $text
+	 * @param $id Integer
+	 * @param $title String
+	 * @param $text String
 	 */
 	function update( $id, $title, $text ) {
 		// We store the column data as UTF-8 byte order marked binary stream
@@ -197,8 +206,8 @@ class SearchMssql extends SearchEngine {
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
 	 *
-	 * @param int $id
-	 * @param string $title
+	 * @param $id Integer
+	 * @param $title String
 	 */
 	function updateTitle( $id, $title ) {
 		$table = $this->db->tableName( 'searchindex' );
@@ -213,7 +222,7 @@ class SearchMssql extends SearchEngine {
 }
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class MssqlSearchResultSet extends SearchResultSet {
 	function __construct( $resultSet, $terms ) {
