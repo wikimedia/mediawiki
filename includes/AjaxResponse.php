@@ -1,5 +1,7 @@
 <?php
 /**
+ * Response handler for Ajax requests
+ *
  * @file
  * @ingroup Ajax
  */

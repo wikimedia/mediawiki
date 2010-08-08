@@ -1,7 +1,10 @@
 <?php
-/*
- * @Author "Ashar Voultoiz" <hashar@altern.org>
- * @License GPL v2 or later
+/**
+ * Functions and constants to play with IP addresses and ranges
+ *
+ * @file
+ * @author "Ashar Voultoiz" <hashar@altern.org>
+ * @license GPL v2 or later
  */
 
 // Some regex definition to "play" with IP address and IP address blocks

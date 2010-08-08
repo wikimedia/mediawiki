@@ -1,6 +1,7 @@
 <?php
 /**
- * Metadata.php -- provides DublinCore and CreativeCommons metadata
+ * Provides DublinCore and CreativeCommons metadata
+ *
  * Copyright 2004, Evan Prodromou <evan@wikitravel.org>.
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -18,6 +19,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @author Evan Prodromou <evan@wikitravel.org>
+ * @file
  */
 
 abstract class RdfMetaData {

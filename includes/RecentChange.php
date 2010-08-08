@@ -2,6 +2,7 @@
 
 /**
  * Utility class for creating new RC entries
+ *
  * mAttribs:
  *  rc_id           id of the row in the recentchanges table
  *  rc_timestamp    time the entry was made

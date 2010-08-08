@@ -1,7 +1,8 @@
 <?php
 /**
  * MediaWiki page data importer
- * Copyright (C) 2003,2005 Brion Vibber <brion@pobox.com>
+ *
+ * Copyright © 2003,2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,7 +25,7 @@
  */
 
 /**
- *
+ * @todo document (e.g. one-sentence class description).
  * @ingroup SpecialPage
  */
 class WikiRevision {

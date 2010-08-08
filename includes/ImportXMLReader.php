@@ -1,5 +1,11 @@
 <?php
 /**
+ * XML file reader for the page data importer
+ *
+ * @file
+ */
+
+/**
  * implements Special:Import
  * @ingroup SpecialPage
  */

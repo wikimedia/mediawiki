@@ -1,6 +1,8 @@
 <?php
 /**
  * Command line script to check for an open proxy at a specified location
+ *
+ * @file
  */
 
 if( php_sapi_name() != 'cli' ) {
