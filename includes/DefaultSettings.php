@@ -1899,20 +1899,6 @@ $wgMsgCacheExpiry	= 86400;
  */
 $wgMaxMsgCacheEntrySize = 10000;
 
-/**
- * If true, serialized versions of the messages arrays will be
- * read from the 'serialized' subdirectory if they are present.
- * Set to false to always use the Messages files, regardless of
- * whether they are up to date or not.
- */
-$wgEnableSerializedMessages = true;
-
-/**
- * Set to false if you are thorough system admin who always remembers to keep
- * serialized files up to date to save few mtime calls.
- */
-$wgCheckSerialized = true;
-
 /** Whether to enable language variant conversion. */
 $wgDisableLangConversion = false;
 
