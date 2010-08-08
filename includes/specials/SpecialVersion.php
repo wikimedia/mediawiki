@@ -278,11 +278,11 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Creates and formats the creidts for a single extension and returns this.
 	 * 
-	 * @param $extension String
+	 * @param $extension Array
 	 * 
 	 * @return string
 	 */
-	function getCreditsForExtension( $extension ) {
+	function getCreditsForExtension( array $extension ) {
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
 		
 		if ( isset( $extension['path'] ) ) {
