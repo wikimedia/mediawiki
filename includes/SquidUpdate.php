@@ -46,7 +46,6 @@ class SquidUpdate {
 				$blurlArr[] = $tobj->getInternalURL();
 			}
 		}
-		$dbr->freeResult ( $res ) ;
 
 		wfProfileOut( __METHOD__ );
 		return new SquidUpdate( $blurlArr );

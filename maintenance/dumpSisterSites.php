@@ -48,7 +48,6 @@ class DumpSisterSites extends Maintenance {
 			$text = $title->getPrefixedText();
 			$this->output( "$url $text\n" );
 		}
-		$dbr->freeResult( $result );
 	}
 }
 

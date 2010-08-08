@@ -67,7 +67,6 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	} else {
 		$ts = false;
 	}
-	$dbr->freeResult( $res );
 	$sql = '';
 
 	# If we were clever, we'd use this to cache.
@@ -125,7 +124,6 @@ function wfSpecialNewimages( $par, $specialPage ) {
 			array_push( $images, $s );
 		}
 	}
-	$dbr->freeResult( $res );
 
 	$gallery = new ImageGallery();
 	$firstTimestamp = null;

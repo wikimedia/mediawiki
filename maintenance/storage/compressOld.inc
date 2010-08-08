@@ -23,7 +23,6 @@ function compressOldPages( $start = 0, $extdb = '' ) {
 			compressPage( $row, $extdb );
 			$last = $row->old_id;
 		}
-		$dbw->freeResult( $res );
 		$start = $last + 1; # Deletion may leave long empty stretches
 		print "$start...\n";
 	} while( true );

@@ -112,7 +112,6 @@ class ImageBuilder extends FiveUpgrade {
 			}
 		}
 		$this->log( "Finished $table... $this->updated of $this->processed rows updated" );
-		$this->dbr->freeResult( $result );
 	}
 
 	function buildImage() {

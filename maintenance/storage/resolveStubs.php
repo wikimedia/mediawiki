@@ -40,10 +40,7 @@ function resolveStubs() {
 			$fname );
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			resolveStub( $row->old_id, $row->old_text, $row->old_flags );
-		}
-		$dbr->freeResult( $res );
-
-		
+		}		
 	}
 	print "100%\n";
 }

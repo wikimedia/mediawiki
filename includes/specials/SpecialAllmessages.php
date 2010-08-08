@@ -241,7 +241,6 @@ class AllmessagesTablePager extends TablePager {
 				$talkFlags[$s->page_title] = true;
 			}
 		}
-		$dbr->freeResult( $res );
 
 		wfProfileOut( __METHOD__ . '-db' );
 

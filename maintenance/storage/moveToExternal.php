@@ -111,7 +111,6 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 				array( 'old_id' => $id ), $fname );
 			$numMoved++;
 		}
-		$dbr->freeResult( $res );
 	}
 }
 

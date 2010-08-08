@@ -319,9 +319,6 @@ class SpecialExport extends SpecialPage {
 
 			$pages[] = $n;
 		}
-		
-		$dbr->freeResult($res);
-
 		return $pages;
 	}
 
@@ -349,9 +346,6 @@ class SpecialExport extends SpecialPage {
 
 			$pages[] = $n;
 		}
-		
-		$dbr->freeResult( $res );
-
 		return $pages;
 	}
 

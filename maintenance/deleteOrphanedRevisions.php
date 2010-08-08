@@ -51,7 +51,6 @@ class DeleteOrphanedRevisions extends Maintenance {
 		$revisions = array();
 		foreach ( $res as $row )
 			$revisions[] = $row->rev_id;
-		$dbw->freeResult( $res );
 		$count = count( $revisions );
 		$this->output( "found {$count}.\n" );
 	

@@ -654,7 +654,6 @@ class DatabaseOracle extends DatabaseBase {
 		$res = $this->query( "SELECT $seqName.nextval FROM dual" );
 		$row = $this->fetchRow( $res );
 		$this->mInsertId = $row[0];
-		$this->freeResult( $res );
 		return $this->mInsertId;
 	}
 

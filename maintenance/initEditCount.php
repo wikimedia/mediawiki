@@ -80,7 +80,6 @@ in $wgDBservers, usually indicating a replication environment.' );
 						__METHOD__ );
 					++$migrated;
 				}
-				$dbr->freeResult( $result );
 
 				$delta = microtime( true ) - $start;
 				$rate = ( $delta == 0.0 ) ? 0.0 : $migrated / $delta;

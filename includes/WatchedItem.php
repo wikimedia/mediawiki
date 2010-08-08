@@ -150,7 +150,6 @@ class WatchedItem {
 				'wl_title' => $newtitle
 			);
 		}
-		$dbw->freeResult( $res );
 
 		if( empty( $values ) ) {
 			// Nothing to do

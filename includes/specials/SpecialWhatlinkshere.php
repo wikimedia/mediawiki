@@ -189,8 +189,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
-			$dbr->freeResult( $plRes );
-
 		}
 		if( !$hidetrans ) {
 			while ( $row = $dbr->fetchObject( $tlRes ) ) {
@@ -198,7 +196,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
-			$dbr->freeResult( $tlRes );
 		}
 		if( !$hideimages ) {
 			while ( $row = $dbr->fetchObject( $ilRes ) ) {
@@ -206,7 +203,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 				$row->is_image = 1;
 				$rows[$row->page_id] = $row;
 			}
-			$dbr->freeResult( $ilRes );
 		}
 
 		// Sort by key and then change the keys to 0-based indices

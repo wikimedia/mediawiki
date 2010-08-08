@@ -386,7 +386,6 @@ function wfSpecialWatchlist( $par ) {
 	}
 	$s .= $list->endRecentChangesList();
 
-	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );
 }
 
@@ -478,7 +477,6 @@ function wlCountItems( &$user, $talk = true ) {
 		array( 'wl_user' => $user->mId ), 'wlCountItems' );
 	$row = $dbr->fetchObject( $res );
 	$count = $row->count;
-	$dbr->freeResult( $res );
 
 	# Halve to remove talk pages if needed
 	if( !$talk )

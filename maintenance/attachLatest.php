@@ -69,7 +69,6 @@ class AttachLatest extends Maintenance {
 			}
 			$n++;
 		}
-		$dbw->freeResult( $result );
 		$this->output( "Done! Processed $n pages.\n" );
 		if ( !$this->hasOption( 'fix' ) ) {
 			$this->output( "This was a dry run; rerun with --fix to update page_latest.\n" );

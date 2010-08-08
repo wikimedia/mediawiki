@@ -2804,7 +2804,6 @@ class Title {
 				}
 			}
 		}
-		$db->freeResult( $res );
 		return $retVal;
 	}
 
@@ -3553,7 +3552,6 @@ class Title {
 			foreach ( $res as $row )
 				// $data[] = Title::newFromText($wgContLang->getNSText ( NS_CATEGORY ).':'.$row->cl_to);
 				$data[$wgContLang->getNSText( NS_CATEGORY ) . ':' . $row->cl_to] = $this->getFullText();
-			$dbr->freeResult( $res );
 		} else {
 			$data = array();
 		}

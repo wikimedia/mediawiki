@@ -786,7 +786,6 @@ abstract class DatabaseBase {
 		}
 		$row = $this->fetchRow( $res );
 		if ( $row !== false ) {
-			$this->freeResult( $res );
 			return reset( $row );
 		} else {
 			return false;
@@ -947,13 +946,10 @@ abstract class DatabaseBase {
 		if ( $res === false )
 			return false;
 		if ( !$this->numRows($res) ) {
-			$this->freeResult($res);
 			return false;
 		}
 		$obj = $this->fetchObject( $res );
-		$this->freeResult( $res );
 		return $obj;
-
 	}
 
 	/**
@@ -976,7 +972,6 @@ abstract class DatabaseBase {
 			$row = $this->fetchRow( $res );
 			$rows = ( isset( $row['rowcount'] ) ) ? $row['rowcount'] : 0;
 		}
-		$this->freeResult( $res );
 		return $rows;
 	}
 
@@ -1056,7 +1051,6 @@ abstract class DatabaseBase {
 				$result[] = $row;
 			}
 		}
-		$this->freeResult($res);
 
 		return empty($result) ? false : $result;
 	}
@@ -1069,12 +1063,7 @@ abstract class DatabaseBase {
 		$old = $this->ignoreErrors( true );
 		$res = $this->query( "SELECT 1 FROM $table LIMIT 1" );
 		$this->ignoreErrors( $old );
-		if( $res ) {
-			$this->freeResult( $res );
-			return true;
-		} else {
-			return false;
-		}
+		return (bool)$res;
 	}
 
 	/**
@@ -1658,7 +1647,6 @@ abstract class DatabaseBase {
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
 		$res = $this->query( $sql, 'Database::textFieldSize' );
 		$row = $this->fetchObject( $res );
-		$this->freeResult( $res );
 
 		$m = array();
 		if ( preg_match( '/\((.*)\)/', $row->Type, $m ) ) {
@@ -1926,7 +1914,6 @@ abstract class DatabaseBase {
 		$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
 		$res = $this->doQuery( $sql );
 		if ( $res && $row = $this->fetchRow( $res ) ) {
-			$this->freeResult( $res );
 			wfProfileOut( $fname );
 			return $row[0];
 		} else {

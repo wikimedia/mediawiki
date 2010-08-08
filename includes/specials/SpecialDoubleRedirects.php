@@ -85,7 +85,6 @@ class DoubleRedirectsPage extends PageQueryPage {
 			$res = $dbr->query( $sql, $fname );
 			if ( $res ) {
 				$result = $dbr->fetchObject( $res );
-				$dbr->freeResult( $res );
 			}
 		}
 		if ( !$result ) {
