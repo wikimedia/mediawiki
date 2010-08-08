@@ -1,6 +1,6 @@
 <?php
 /**
- * Database load balancing
+ * Generator of database load balancing objects
  *
  * @file
  * @ingroup Database
