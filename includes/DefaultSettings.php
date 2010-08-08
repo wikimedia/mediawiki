@@ -1478,9 +1478,6 @@ $wgSessionsInMemcached = false;
  */
 $wgSessionHandler = 'files';
 
-/** @deprecated Does nothing */
-$wgUseMemCached     = false;
-
 /** If enabled, will send MemCached debugging information to $wgDebugLogFile */
 $wgMemCachedDebug   = false;
 
