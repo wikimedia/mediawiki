@@ -18,87 +18,74 @@
  */
 
 /**
- * @file
+ * Implements Special:Movepage
  * @ingroup SpecialPage
  */
-
-/**
- * Constructor
- */
-function wfSpecialMovepage( $par = null ) {
-	global $wgUser, $wgOut, $wgRequest;
-
-	# Check for database lock
-	if ( wfReadOnly() ) {
-		$wgOut->readOnlyPage();
-		return;
-	}
-
-	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
-
-	// Yes, the use of getVal() and getText() is wanted, see bug 20365
-	$oldTitleText = $wgRequest->getVal( 'wpOldTitle', $target );
-	$newTitleText = $wgRequest->getText( 'wpNewTitle' );
-
-	$oldTitle = Title::newFromText( $oldTitleText );
-	$newTitle = Title::newFromText( $newTitleText );
-
-	if( is_null( $oldTitle ) ) {
-		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
-		return;
-	}
-	if( !$oldTitle->exists() ) {
-		$wgOut->showErrorPage( 'nopagetitle', 'nopagetext' );
-		return;
-	}
-
-	# Check rights
-	$permErrors = $oldTitle->getUserPermissionsErrors( 'move', $wgUser );
-	if( !empty( $permErrors ) ) {
-		$wgOut->showPermissionsErrorPage( $permErrors );
-		return;
-	}
-
-	$form = new MovePageForm( $oldTitle, $newTitle );
-
-	if ( 'submit' == $wgRequest->getVal( 'action' ) && $wgRequest->wasPosted()
-		&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-		$form->doSubmit();
-	} else {
-		$form->showForm( '' );
-	}
-}
-
-/**
- * HTML form for Special:Movepage
- * @ingroup SpecialPage
- */
-class MovePageForm {
+class MovePageForm extends UnlistedSpecialPage {
 	var $oldTitle, $newTitle; # Objects
 	var $reason; # Text input
 	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects, $leaveRedirect, $moveOverShared; # Checks
 
 	private $watch = false;
 
-	function __construct( $oldTitle, $newTitle ) {
-		global $wgRequest, $wgUser;
+	public function __construct() {
+		parent::__construct( 'Movepage' );
+	}
 
-		$this->oldTitle = $oldTitle;
-		$this->newTitle = $newTitle;
-		$this->reason = $wgRequest->getText( 'wpReason' );
-		if ( $wgRequest->wasPosted() ) {
-			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', false );
-			$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', false );
-			$this->leaveRedirect = $wgRequest->getBool( 'wpLeaveRedirect', false );
-		} else {
-			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
-			$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', true );
-			$this->leaveRedirect = $wgRequest->getBool( 'wpLeaveRedirect', true );
+	public function execute( $par ) {
+		global $wgUser, $wgOut, $wgRequest;
+
+		# Check for database lock
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
 		}
+
+		$this->setHeaders();
+		$this->outputHeader();
+
+		$target = !is_null( $par ) ? $par : $wgRequest->getVal( 'target' );
+
+		// Yes, the use of getVal() and getText() is wanted, see bug 20365
+		$oldTitleText = $wgRequest->getVal( 'wpOldTitle', $target );
+		$newTitleText = $wgRequest->getText( 'wpNewTitle' );
+
+		$this->oldTitle = Title::newFromText( $oldTitleText );
+		$this->newTitle = Title::newFromText( $newTitleText );
+
+		if( is_null( $this->oldTitle ) ) {
+			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+			return;
+		}
+		if( !$this->oldTitle->exists() ) {
+			$wgOut->showErrorPage( 'nopagetitle', 'nopagetext' );
+			return;
+		}
+
+		# Check rights
+		$permErrors = $this->oldTitle->getUserPermissionsErrors( 'move', $wgUser );
+		if( !empty( $permErrors ) ) {
+			$wgOut->showPermissionsErrorPage( $permErrors );
+			return;
+		}
+
+		$def = !$wgRequest->wasPosted();
+
+		$this->reason = $wgRequest->getText( 'wpReason' );
+		$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', $def );
+		$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', $def );
+		$this->leaveRedirect = $wgRequest->getBool( 'wpLeaveRedirect', $def );
 		$this->moveSubpages = $wgRequest->getBool( 'wpMovesubpages', false );
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
 		$this->moveOverShared = $wgRequest->getBool( 'wpMoveOverSharedFile', false );
 		$this->watch = $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn();
+
+		if ( 'submit' == $wgRequest->getVal( 'action' ) && $wgRequest->wasPosted()
+			&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
+			$this->doSubmit();
+		} else {
+			$this->showForm( '' );
+		}
 	}
 
 	/**
@@ -183,7 +170,6 @@ class MovePageForm {
 			$wgOut->addWikiMsg( 'movepagetalktext' );
 		}
 
-		$titleObj = SpecialPage::getTitleFor( 'Movepage' );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
 		if ( !empty($err) ) {
@@ -214,7 +200,7 @@ class MovePageForm {
 		}
 
 		$wgOut->addHTML(
-			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
+			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
 			 Xml::element( 'legend', null, wfMsg( 'move-page-legend' ) ) .
 			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-movepage-table' ) ) .
