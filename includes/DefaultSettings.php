@@ -3782,12 +3782,6 @@ $wgSeleniumTestsUseBrowser = 'firefox';
 $wgDisableTextSearch = false;
 
 /**
- * Set this to true to disable the context which appears on search result pages. 
- * Search context can cause a high DB load.
- */
-$wgDisableSearchContext = false;
-
-/**
  * Set to true to have nicer highligted text in search results,
  * by default off due to execution overhead
  */
