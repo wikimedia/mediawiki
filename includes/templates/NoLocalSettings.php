@@ -7,32 +7,9 @@
 if ( !isset( $wgVersion ) ) {
 	$wgVersion = 'VERSION';
 }
-
-$scriptName = $_SERVER['SCRIPT_NAME'];
-$ext = substr( $scriptName, strrpos( $scriptName, "." ) + 1 );
-$path = '';
-# Add any directories in the main folder that could contain an entrypoint (even possibly).
-# We cannot just do a dir listing here, as we do not know where it is yet
-# These must not also be the names of subfolders that may contain an entrypoint
-$topdirs = array( 'extensions', 'includes' );
-foreach( $topdirs as $dir ){
-	# Check whether a directory by this name is in the path
-	if( strrpos( $scriptName, "/" . $dir . "/" ) ){
-		# If so, check whether it is the right folder
-		# First, get the number of directories up it is (to generate path)
-		$numToGoUp = substr_count( substr( $scriptName, strrpos( $scriptName, "/" . $dir . "/" ) + 1 ), "/" );
-		# And generate the path using ..'s
-		for( $i = 0; $i < $numToGoUp; $i++ ){
-			$realPath = "../" . $realPath;
-		}
-		# Checking existance (using the image here as it is something not likely to change, and to always be here)
-		if( file_exists( $realPath . "skins/common/images/mediawiki.png" ) ) {
-			# If so, get the path that we can use in this file, and stop looking
-			$path = substr( $scriptName, 0, strrpos( $scriptName, "/" . $dir . "/" ) + 1 );
-			break;
-		}
-	}
-}
+$script = $_SERVER['SCRIPT_NAME'];
+$path = pathinfo( $script, PATHINFO_DIRNAME ) . '/';
+$ext = pathinfo( $script, PATHINFO_EXTENSION );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns='http://www.w3.org/1999/xhtml' lang='en'>
