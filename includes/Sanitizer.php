@@ -2,7 +2,7 @@
 /**
  * XHTML sanitizer for MediaWiki
  *
- * Copyright (C) 2002-2005 Brion Vibber <brion@pobox.com> et al
+ * Copyright © 2002-2005 Brion Vibber <brion@pobox.com> et al
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify

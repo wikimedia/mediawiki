@@ -1,8 +1,8 @@
 <?php
-
 /**
+ * DjVu image handler
  *
- * Copyright (C) 2006 Brion Vibber <brion@pobox.com>
+ * Copyright © 2006 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,6 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  */
 
 /**

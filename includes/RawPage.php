@@ -1,7 +1,10 @@
 <?php
 /**
- * Copyright (C) 2004 Gabriel Wicke <wicke@wikidev.net>
+ * Raw page text accessor
+ *
+ * Copyright © 2004 Gabriel Wicke <wicke@wikidev.net>
  * http://wikidev.net/
+ *
  * Based on HistoryPage and SpecialExport
  *
  * License: GPL (http://www.gnu.org/copyleft/gpl.html)

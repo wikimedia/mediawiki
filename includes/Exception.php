@@ -1,10 +1,17 @@
 <?php
 /**
+ * Exception class and handler
+ *
+ * @file
+ */
+
+/**
  * @defgroup Exception Exception
  */
 
 /**
  * MediaWiki exception
+ *
  * @ingroup Exception
  */
 class MWException extends Exception {

@@ -1,5 +1,11 @@
 <?php
 /**
+ * Revision/log/file deletion backend
+ *
+ * @file
+ */
+
+/**
  * Temporary b/c interface, collection of static functions.
  * @ingroup SpecialPage
  */

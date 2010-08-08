@@ -1,9 +1,15 @@
 <?php
-/* This defines autoloading handler for whole MediaWiki framework */
+/**
+ * This defines autoloading handler for whole MediaWiki framework
+ *
+ * @file
+ */
 
-# Locations of core classes
-# Extension classes are specified with $wgAutoloadClasses
-# This array is a global instead of a static member of AutoLoader to work around a bug in APC
+/**
+ * Locations of core classes
+ * Extension classes are specified with $wgAutoloadClasses
+ * This array is a global instead of a static member of AutoLoader to work around a bug in APC
+ */
 global $wgAutoloadLocalClasses;
 
 $wgAutoloadLocalClasses = array(

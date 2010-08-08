@@ -1,6 +1,7 @@
 <?php
 /**
- * Hooks.php -- a tool for running hook functions
+ * A tool for running hook functions.
+ *
  * Copyright 2004, 2005 Evan Prodromou <evan@wikitravel.org>.
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -24,9 +25,15 @@
 
 
 /**
+ * Call hook functions defined in $wgHooks
+ *
  * Because programmers assign to $wgHooks, we need to be very
  * careful about its contents. So, there's a lot more error-checking
  * in here than would normally be necessary.
+ *
+ * @param $event String: event name
+ * @param $args Array: parameters passed to hook functions
+ * @return Boolean
  */
 function wfRunHooks($event, $args = array()) {
 

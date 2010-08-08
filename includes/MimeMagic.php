@@ -1,9 +1,12 @@
 <?php
-/** Module defining helper functions for detecting and dealing with mime types.
+/**
+ * Module defining helper functions for detecting and dealing with mime types.
  *
+ * @file
  */
 
- /** Defines a set of well known mime types
+/**
+ * Defines a set of well known mime types
  * This is used as a fallback to mime.types files.
  * An extensive list of well known mime types is provided by
  * the file mime.types in the includes directory.
@@ -50,7 +53,8 @@ video/mpeg mpg mpeg
 END_STRING
 );
 
- /** Defines a set of well known mime info entries
+/**
+ * Defines a set of well known mime info entries
  * This is used as a fallback to mime.info files.
  * An extensive list of well known mime types is provided by
  * the file mime.info in the includes directory.
