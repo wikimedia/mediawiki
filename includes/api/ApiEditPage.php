@@ -57,16 +57,14 @@ class ApiEditPage extends ApiBase {
 		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
-		
+
 		if( $params['redirect'] && $titleObj->isRedirect() ) {
-			
 			$pageSet = new ApiPageSet( $this->getQuery(), true ); // Or true, true to also do variant conversion of titles
 			$pageSet->populateFromTitles( array( $titleObj ) );
 			foreach ( $pageSet->getRedirectTitles() as $from => $to ) {
-			    $redirsValues[] = array( 'from' => $from, 'to' => $to );
+				$redirsValues[] = array( 'from' => $from, 'to' => $to );
 			}
 
-	
 			$this->getResult()->setIndexedTagName( $redirValues, 'r' );
 			$this->getResult()->addValue( null, 'redirects', $redirValues );
 		}
