@@ -27,7 +27,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 class SpecialVersion extends SpecialPage {
-	private $firstExtOpened = true;
+	private $firstExtOpened = false;
 
 	static $viewvcUrls = array(
 		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
@@ -391,12 +391,12 @@ class SpecialVersion extends SpecialPage {
 		$opt = array( 'colspan' => 4 );
 		$out = '';
 
-		if( !$this->firstExtOpened ) {
+		if( $this->firstExtOpened ) {
 			// Insert a spacing line
 			$out .= '<tr class="sv-space">' . Html::element( 'td', $opt ) . "</tr>\n";
-			$this->firstExtOpened = true;
 		}
-
+		$this->firstExtOpened = true;
+		
 		if( $name ) {
 			$opt['id'] = "sv-$name";
 		}
