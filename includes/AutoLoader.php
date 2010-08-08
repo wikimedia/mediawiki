@@ -159,7 +159,6 @@ $wgAutoloadLocalClasses = array(
 	'MWException' => 'includes/Exception.php',
 	'MWMemcached' => 'includes/memcached-client.php',
 	'MWNamespace' => 'includes/Namespace.php',
-	'Namespace' => 'includes/NamespaceCompat.php', // Compat
 	'OldChangesList' => 'includes/ChangesList.php',
 	'OutputPage' => 'includes/OutputPage.php',
 	'PageQueryPage' => 'includes/PageQueryPage.php',
