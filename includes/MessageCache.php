@@ -376,38 +376,38 @@ class MessageCache {
 		global $wgMaxMsgCacheEntrySize;
 		wfProfileIn( __METHOD__ );
 
+		if ( $this->mDisable ) {
+			return;
+		}
 
 		list( , $code ) = $this->figureMessage( $title );
 
 		$cacheKey = wfMemcKey( 'messages', $code );
-		$this->load($code);
-		$this->lock($cacheKey);
+		$this->load( $code );
+		$this->lock( $cacheKey );
 
-		if ( is_array($this->mCache[$code]) ) {
-			$titleKey = wfMemcKey( 'messages', 'individual', $title );
+		$titleKey = wfMemcKey( 'messages', 'individual', $title );
 
-			if ( $text === false ) {
-				# Article was deleted
-				unset( $this->mCache[$code][$title] );
-				$this->mMemc->delete( $titleKey );
+		if ( $text === false ) {
+			# Article was deleted
+			$this->mCache[$code][$title] = '!NONEXISTENT';
+			$this->mMemc->delete( $titleKey );
 
-			} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
-				# Check for size
-				$this->mCache[$code][$title] = '!TOO BIG';
-				$this->mMemc->set( $titleKey, ' ' . $text, $this->mExpiry );
+		} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
+			# Check for size
+			$this->mCache[$code][$title] = '!TOO BIG';
+			$this->mMemc->set( $titleKey, ' ' . $text, $this->mExpiry );
 
-			} else {
-				$this->mCache[$code][$title] = ' ' . $text;
-				$this->mMemc->delete( $titleKey );
-			}
-
-			# Update caches
-			$this->saveToCaches( $this->mCache[$code], true, $code );
+		} else {
+			$this->mCache[$code][$title] = ' ' . $text;
+			$this->mMemc->delete( $titleKey );
 		}
-		$this->unlock($cacheKey);
+
+		# Update caches
+		$this->saveToCaches( $this->mCache[$code], true, $code );
+		$this->unlock( $cacheKey );
 
 		// Also delete cached sidebar... just in case it is affected
-		global $parserMemc;
 		$codes = array( $code );
 		if ( $code === 'en'  ) {
 			// Delete all sidebars, like for example on action=purge on the
@@ -415,6 +415,7 @@ class MessageCache {
 			$codes = array_keys( Language::getLanguageNames() );
 		}
 
+		global $parserMemc;
 		foreach ( $codes as $code ) {
 			$sidebarKey = wfMemcKey( 'sidebar', $code );
 			$parserMemc->delete( $sidebarKey );
@@ -592,11 +593,12 @@ class MessageCache {
 		$message = false;
 
 		$this->load( $code );
-		if (isset( $this->mCache[$code][$title] ) ) {
+		if ( isset( $this->mCache[$code][$title] ) ) {
 			$entry = $this->mCache[$code][$title];
-			$type = substr( $entry, 0, 1 );
-			if ( $type == ' ' ) {
+			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				return substr( $entry, 1 );
+			} elseif ( $entry === '!NONEXISTENT' ) {
+				return false;
 			}
 		}
 
@@ -606,24 +608,15 @@ class MessageCache {
 			return $message;
 		}
 
-		# If there is no cache entry and no placeholder, it doesn't exist
-		if ( $type !== '!' ) {
-			return false;
-		}
-
-		$titleKey = wfMemcKey( 'messages', 'individual', $title );
-
 		# Try the individual message cache
+		$titleKey = wfMemcKey( 'messages', 'individual', $title );
 		$entry = $this->mMemc->get( $titleKey );
 		if ( $entry ) {
-			$type = substr( $entry, 0, 1 );
-
-			if ( $type === ' ' ) {
-				# Ok!
-				$message = substr( $entry, 1 );
+			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				$this->mCache[$code][$title] = $entry;
-				return $message;
+				return substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
+				$this->mCache[$code][$title] = '!NONEXISTENT';
 				return false;
 			} else {
 				# Corrupt/obsolete entry, delete it
@@ -631,18 +624,17 @@ class MessageCache {
 			}
 		}
 
-		# Try loading it from the DB
+		# Try loading it from the database
 		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
-		if( $revision ) {
+		if ( $revision ) {
 			$message = $revision->getText();
 			$this->mCache[$code][$title] = ' ' . $message;
 			$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
 		} else {
-			# Negative caching
-			# Use some special text instead of false, because false gets converted to '' somewhere
+			$this->mCache[$code][$title] = '!NONEXISTENT';
 			$this->mMemc->set( $titleKey, '!NONEXISTENT', $this->mExpiry );
-			$this->mCache[$code][$title] = false;
 		}
+
 		return $message;
 	}
 
