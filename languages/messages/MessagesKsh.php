@@ -551,7 +551,7 @@ un doht em och de URL vun dä Sigg heh sage.',
 'missingarticle-diff'  => '(Ongerscheed zwesche de Versione $1 un $2)',
 'readonly_lag'         => 'De Daatebank es för en koote Zigg jesperrt, för de Daate avzejliche.',
 'internalerror'        => 'De Wiki-Soffwär hät ene Fähler jefunge',
-'internalerror_info'   => 'Enne ennere Fäähler en de ßofwäer es opjetrodde: $1',
+'internalerror_info'   => 'Enne ennere Fäähler en de ẞoffwäer es opjetrodde: $1',
 'fileappenderror'      => 'Mer kunnte „$1“ nit aan „$2“ aanhange.',
 'filecopyerror'        => 'Kunnt de Datei „$1“ nit noh „$2“ kopeere.',
 'filerenameerror'      => 'Kunnt de Datei „$1“ nit op „$2“ ömdäufe.',
@@ -994,7 +994,7 @@ Heh kütt der neuste Enndrach em Logbooch doh drövver:",
 Bes förseschtesch un övverlääsch Der, of dat en joode Idee es, di Sigg widder opzemaache. Domet De Bescheid weiß, hee de Endrääsh em Logboch vum Sigge-Ömnänne, un em Logboch vum Sigge-Fottschmieße mem Jrond, woröm di Sigg dohmohls fottjeschmesse woode es:",
 'moveddeleted-notice'              => 'Heh di Sigg es fottjeschmeße. E Shtöck uß dä Logböösher fum Sigge-Fottschmieße un fum Sigge-Ömnänne för di Sigg kütt jetz, en dä Hoffnung, dat dat Der hellef.',
 'log-fulllog'                      => 'Donn dat janze Logboch aanloore',
-'edit-hook-aborted'                => 'Et Ändere wood affjebroche övver ene sujenannte „Hoke“ en de ßoffwäer.
+'edit-hook-aborted'                => 'Et Ändere wood affjebroche övver ene sujenannte „Hoke“ en de ẞoffwäer.
 Ene Jrond weße mer nit.',
 'edit-gone-missing'                => 'Kunnt di Sigg nit änndere. Se schingk verschwunde un weed fottjeschemeße woode sin.',
 'edit-conflict'                    => 'Dubbelt beärbeit.',
@@ -1791,7 +1791,7 @@ Dröm es <code lang="en">img_auth.php</code> zor Sisherheit heh affjeschalldt.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Keij Antwoot vun dä URL',
-'upload-curl-error6-text'  => 'Dä ßööver för di URL hät zo lang nit jeantwoot. Bes esu joot un fingk eruß, ov däövverhoup aam Laufe es, un don_ens jenou pröfe, ov di URL stemmp.',
+'upload-curl-error6-text'  => 'Dä ẞööver för dä <i lang="en">URL</i> hät zo lang nit jeantwoot. Bes esu joot un fingk eruß, ov dä övverhoup aam Laufe es, un don_ens jenou pröfe, ov dä <i lang="en">URL</i> stemmp.',
 'upload-curl-error28'      => "Dat Huhlade hät zo lang jedooert, do ha'mer't jestopp",
 'upload-curl-error28-text' => 'Dä ẞööver för di URL hät zo lang nit jeantwoot.
 Bes esu joot un fingk eruß, ov dä övverhoup aam Laufe es.
@@ -2285,7 +2285,7 @@ Do kanns hee noh Hölp luure:
 ** wohr jäje et Urhävverrääsch
 ** et wohd jet kapott jemaat',
 'delete-edit-reasonlist' => 'De Jrönde för et Fottschmieße beärbeide',
-'delete-toobig'          => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Domet unsere ßööver do nit draan en de Kneen jeit, dom_mer esu en Sigg nit fottschmieße.',
+'delete-toobig'          => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jaa kein Version}}. Dat sinn_er ärsch fill. Domet unsere ẞööver do nit draan en de Kneen jeit, dom_mer esu en Sigg nit fottschmieße.',
 'delete-warning-toobig'  => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Wann De die all fottschmieße wells, dat kann dem Wiki sing Datenbangk schwer ußbremse.',
 
 # Rollback
@@ -2485,7 +2485,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 * Op der Name betrocke Jrönd
 ** esu ene Metmaacher-Name wolle mer nit
 * Op en IP-Adräß betrocke Jrönd
-** dat es en Proxy ßööver övver dänn de Lück zo vill Driß aanjestellt han',
+** dat es en Proxy-ẞööver övver dänn de Lück zo vill Driß aanjestellt han',
 'ipbanononly'                     => 'Nor de namelose Metmaacher sperre',
 'ipbcreateaccount'                => 'Et Neu-Aanmelde verbeede',
 'ipbemailban'                     => 'Et <i lang="en">e-mail</i>-Verschecke ongerbenge',
@@ -3051,7 +3051,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-imagedescription'            => 'Dem Beld singe Tittel',
 'exif-make'                        => 'Dä Kammera ier Heershtäller',
 'exif-model'                       => 'Dat Kammerra-Modäll',
-'exif-software'                    => 'De enjesatz ßoffwär',
+'exif-software'                    => 'De enjesatz ẞoffwär',
 'exif-artist'                      => 'Fotojraf odder Maacher',
 'exif-copyright'                   => 'Wä et Urhävverrääsch hät',
 'exif-exifversion'                 => 'Exif-Version',

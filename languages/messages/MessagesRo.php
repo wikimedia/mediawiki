@@ -774,6 +774,12 @@ Vă rugăm să așteptați până să mai încercați.',
 'loginlanguagelabel'         => 'Limba: $1',
 'suspicious-userlogout'      => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
 
+# JavaScript password checks
+'password-strength-acceptable' => 'acceptabil',
+'password-strength-good'       => 'bun',
+'password-retype'              => 'Repetă parola',
+'password-retype-mismatch'     => 'Parolele nu sunt identice',
+
 # Password reset dialog
 'resetpass'                 => 'Modifică parola',
 'resetpass_announce'        => 'Sunteți autentificat cu un cod temporar trimis pe mail. Pentru a termina acțiunea de autentificare, trebuie să setați o parolă nouă aici:',

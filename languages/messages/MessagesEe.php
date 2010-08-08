@@ -242,7 +242,7 @@ Wo ŋlɔe xoxo.',
 'last'                 => 'mamlea',
 'page_first'           => 'gbãtɔ',
 'page_last'            => 'mamlea',
-'histlegend'           => "Vovo tatia: de dzesi tata siwo ƒe vovototowo wò di be yea kpɔ ɖa eye na tia 'enter' alo kpe si le eɖome.<br/>
+'histlegend'           => "Vovo tatia: de dzesi tata siwo ƒe vovototowo wò di be yea kpɔ ɖa eye na tia 'enter' alo kpe si le eɖome.<br />
 Gɔmeɖeɖe: '''({{int:cur}})''' = vovototo tso tata mamlea gbɔ, '''({{int:last}})''' = vovototo tso tata si do ŋgɔ gbɔ, '''{{int:minoreditletter}}''' = tɔtrɔ sue.",
 'history-show-deleted' => 'Esiwo wotutu ko',
 'histfirst'            => 'Xoxoɔwu',

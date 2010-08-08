@@ -439,6 +439,10 @@ Biko meríáríá ya.',
 'usernamehasherror'       => "Áhè ọ'bànifé ènwéghịkị nwé nkárí",
 'loginlanguagelabel'      => 'Asụsụ: $1',
 
+# JavaScript password checks
+'password-strength-good' => 'Ómá',
+'password-retype'        => 'Detuari mkpurụ okwu ejị a gafẹ',
+
 # Password reset dialog
 'resetpass'                 => 'Gbanwe okwu éjị à gáfe',
 'resetpass_header'          => 'Gbanwe okwúngáfè nke bùwá',
@@ -570,7 +574,7 @@ Ndetu banyéré nkè ogẹ nso di na okpúrụ màkà ádịamámá:",
 'cantcreateaccounttitle' => 'Enwéghịkị ke buwá',
 
 # History pages
-'viewpagelogs'           => 'Zi ndet ncheta màkà ihü a',
+'viewpagelogs'           => 'Zi ndetu ncheta màkà ihü a',
 'nohistory'              => 'Ákíkó mbu màkà orü àdíghị màkà ihüá.',
 'currentrev'             => 'Kuwaria nke ubüwạ',
 'currentrev-asof'        => 'Kuwaria shi mgbe $1',
