@@ -282,7 +282,7 @@ $messages = array(
 'tog-watchdeletion'           => "Qullusqay p'anqakunata watiqay",
 'tog-previewontop'            => "Rikch'ay qhawana ñawpaqman, ama qhipanpi kachunchu",
 'tog-previewonfirst'          => "Manaraq llamk'apuspa rikch'ayta qhaway",
-'tog-nocache'                 => "P'anqakunap ''cache'' nisqa paki hallch'anman ama niy",
+'tog-nocache'                 => "Llika wamp'unap ''cache'' nisqa paki hallch'anman ama niy",
 'tog-enotifwatchlistpages'    => "Watiqasqay p'anqa hukchasqa kaptinqa, e-chaskita kachamuway",
 'tog-enotifusertalkpages'     => "Rimachinay p'anqa hukchasqa kaptinqa, e-chaskita kachamuway",
 'tog-enotifminoredits'        => "P'anqapi uchuy hukchasqamantapas willawaspa e-chaskita kachamuway",
@@ -682,6 +682,7 @@ Ama qunqaychu [[Special:Preferences|{{SITENAME}} allinkachinaykikunata]] kikinch
 'gotaccount'                 => "Rakiqunaykiñachu kachkan? '''$1'''.",
 'gotaccountlink'             => 'Rakiqunaykita willaway',
 'createaccountmail'          => 'chaskipaq',
+'createaccountreason'        => 'Kayrayku:',
 'badretype'                  => 'Qusqayki yaykuna rimakunaqa manam kaqllachu.',
 'userexists'                 => 'Munasqayki ruraqpa sutiykiqa kachkanñam. Ama hina kaspa, huk ruraqpa sutiykita qillqamuy.',
 'loginerror'                 => "Pantasqa llamk'apuy tiyaypa qallarisqan",
@@ -733,6 +734,15 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'login-throttled'            => 'Nisyu kutitachá kay rakiqunapaq yaykuna rimawan ñaqha yaykuykachanki. Ama hina kaspa, suyariy manaraq musuqmanta yaykuykachaspa.',
 'loginlanguagelabel'         => 'Rimay: $1',
 'suspicious-userlogout'      => "Lluqsiy mañakuyniykiqa mananchasqam karqan, waqllisqa wamp'unamanta icha pakaq proksimanta kachasqa kaspanchá.",
+
+# JavaScript password checks
+'password-strength'            => 'Yaykuna rimap chhikaynasqa kallpan: $1',
+'password-strength-bad'        => 'MANAM ALLINCHU',
+'password-strength-mediocre'   => 'taksa kallpayuq',
+'password-strength-acceptable' => 'chaskina kallpayuq',
+'password-strength-good'       => 'allin',
+'password-retype'              => 'Yaykuna rimaykita kaypi musuqmanta yaykuchiy',
+'password-retype-mismatch'     => 'Yaykuna rimaykunaqa manam paqtanakunkuchu',
 
 # Password reset dialog
 'resetpass'                 => 'Ruraqpa yaykuna rimanta hukchay',
@@ -840,7 +850,7 @@ icha payman kapuq <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{
 'userpage-userdoesnotexist'        => '"$1" sutiyuq ruraqpa rakiqunanqa manam kanchu. Ama hina kaspa, llanchikuy kay p\'anqata kamarinaykimanta.',
 'userpage-userdoesnotexist-view'   => '"$1" sutiyuq rakiqunaqa manam hallch\'asqachu.',
 'blocked-notice-logextract'        => "Kay ruraqqa hark'asqam kachkan.
-Hark'ay hallch'api qhipaq hak'asqataqa kaypim rikunki willasunaykipaq:",
+Hark'ay hallch'api qhipaq hark'asqataqa kaypim rikunki willasunaykipaq:",
 'clearyourcache'                   => "'''Paqtataq''': Willañiqita waqaycharquspaykiqa, wamp'unaykip ''cache'' nisqa pakasqa waqaychananta ch'usaqchanaykichá tiyanman hukchasqaykikunata rikunaykipaq:
 '''Mozilla / Firefox / Safari:''' ''Shift'' yatachkaspa ''Reload'' ñit'iy, ichataq ''Ctrl-F5'' icha ''Ctrl-R'' yatay (''Command-R'' Macintosh nisqapi); '''Konqueror: '''''Reload'' ñit'iy icha ''F5'' yatay; '''Opera:''' ''cache'' nisqata ch'usaqchay kaypi: ''Tools → Preferences;'' '''Internet Explorer:''' ''Ctrl'' yatachkaspa ''Refresh'' ñit'iy, icha ''Ctrl-F5'' yatay.",
 'usercssyoucanpreview'             => "'''Kunay:''' \"{{int:showpreview}}\" nisqa ñit'inata llamk'achiy musuq css nisqata qhawanaykipaq, manaraq waqaychaspa.",
@@ -1259,6 +1269,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'contextlines'                  => "Siq'ikuna taripasqaman:",
 'contextchars'                  => "Ukhunpuray sananchakuna siq'iman:",
 'stub-threshold'                => 'Kay hatun kaykamam <a href="#" class="stub">t\'una qillqasqa t\'inki</a> nisqa kachun (byte):',
+'stub-threshold-disabled'       => 'Ama nisqa',
 'recentchangesdays'             => "Ñaqha hukchasqakunapi rikuchina p'unchawkuna:",
 'recentchangesdays-max'         => "(ama $1-manta aswan {{PLURAL:$1|p'unchaw|p'unchaw}} kachunchu)",
 'recentchangescount'            => 'Rikuchina hukchasqakunap yupaynin, kikinmanta:',
@@ -2290,7 +2301,7 @@ $1',
 'sp-contributions-logs'                => "hallch'akuna",
 'sp-contributions-talk'                => 'rimanakuy',
 'sp-contributions-userrights'          => 'ruraqkunata saqillanap allinkachinan',
-'sp-contributions-blocked-notice'      => "Kay ruraqqa hark'asqam kachkan. Hark'ay hallch'api qhipaq hak'asqataqa kaypim rikunki willasunaykipaq:",
+'sp-contributions-blocked-notice'      => "Kay ruraqqa hark'asqam kachkan. Hark'ay hallch'api qhipaq hark'asqataqa kaypim rikunki willasunaykipaq:",
 'sp-contributions-blocked-notice-anon' => "Kay IP tiyayqa hark'asqam kachkan.
 Qhipaq hark'ay hallch'a yaykuchisqatam kay qatiqpi rikunki:",
 'sp-contributions-search'              => "Llamk'apusqakunata maskay",

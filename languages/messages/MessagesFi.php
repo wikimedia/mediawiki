@@ -764,6 +764,9 @@ Odota ennen kuin yrität uudelleen.',
 'loginlanguagelabel'         => 'Kieli: $1',
 'suspicious-userlogout'      => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
 
+# JavaScript password checks
+'password-strength-good' => 'hyvä',
+
 # Password reset dialog
 'resetpass'                 => 'Muuta salasana',
 'resetpass_announce'        => 'Kirjauduit sisään sähköpostitse lähetetyllä väliaikaissalasanalla. Päätä sisäänkirjautuminen asettamalla uusi salasana.',

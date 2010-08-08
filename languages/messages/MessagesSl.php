@@ -2586,7 +2586,7 @@ stran »[[{{MediaWiki:Mainpage}}]]«.',
 'allmessagesdefault'            => 'Prednastavljeno besedilo',
 'allmessagescurrent'            => 'Trenutno besedilo',
 'allmessagestext'               => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila.
-Za lokalizacijo in prevajanje obiščite [http://www.mediawiki.org/wiki/Localisation MediaWiki] in [http://translatewiki.net translatewiki.net] in tako prispevajte k splošnemu prevodu programja.',
+Za lokalizacijo in prevajanje obiščite [http://www.mediawiki.org/wiki/Localisation MediaWiki] in [http://translatewiki.net translatewiki.net] ter tako prispevajte k splošnemu prevodu programja.',
 'allmessagesnotsupportedDB'     => "Te strani ni mogoče uporabljati, ker je bilo '''\$wgUseDatabaseMessages''' izključeno.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtriraj po prilagoditvenem stanju:',

@@ -185,7 +185,8 @@ $messages = array(
 'underline-default' => 'બ્રાઉઝરના સેટીંગ્સ પ્રમાણે',
 
 # Font style option in Special:Preferences
-'editfont-style' => 'ક્ષેત્ર લિપિ શૈલીનું સંપાદન:',
+'editfont-style'   => 'ક્ષેત્ર લિપિ શૈલીનું સંપાદન:',
+'editfont-default' => 'બ્રાઉઝરના સેટીંગ્સ પ્રમાણે',
 
 # Dates
 'sunday'        => 'રવિવાર',
@@ -533,6 +534,7 @@ $1',
 'nav-login-createaccount' => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
 'loginprompt'             => '{{SITENAME}}માં પ્રવેશ કરવા માટે તમારા બ્રાઉઝરમાં કુકીઝ એનેબલ કરેલી હોવી જોઇશે.',
 'userlogin'               => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
+'userloginnocreate'       => 'પ્રવેશ કરો (લૉગ ઇન કરીને)',
 'logout'                  => 'બહાર નીકળો',
 'userlogout'              => 'બહાર નીકળો/લૉગ આઉટ',
 'notloggedin'             => 'પ્રવેશ કરેલ નથી',
@@ -542,6 +544,7 @@ $1',
 'gotaccount'              => "પહેલેથી ખાતું ખોલેલું છે? '''$1'''.",
 'gotaccountlink'          => 'પ્રવેશો (લૉગ ઇન કરો)',
 'createaccountmail'       => 'ઇ-મેઇલ દ્વારા',
+'createaccountreason'     => 'કારણ:',
 'badretype'               => 'તમે દાખલ કરેલ ગુપ્તસંજ્ઞા મળતી આવતી નથી.',
 'userexists'              => 'દાખલ કરેલું સભ્ય નામ વપરાશમાં છે.</br>
 કૃપયા અન્ય નામ પસંદ કરો.',
@@ -606,6 +609,9 @@ Please log in again after you receive it.
 કૃપા કરી ફરી પ્રયાસ પહેલાં થોડી રાહ જુઓ.',
 'loginlanguagelabel'      => 'ભાષા: $1',
 
+# JavaScript password checks
+'password-retype' => 'ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો',
+
 # Password reset dialog
 'resetpass'                 => 'ગુપ્તસંજ્ઞા બદલો',
 'resetpass_announce'        => 'તમે હંગામી ઇમેઇલ કોડ સાથે લોગ ઇન કર્યું.
@@ -619,6 +625,7 @@ Please log in again after you receive it.
 'resetpass_success'         => 'તમારી ગુપ્તસંજ્ઞા સફળતાપૂર્વક બદલાઇ ગઇ! હવે તમે ...માં પ્રવેશ કરી શકો છો',
 'resetpass_forbidden'       => 'ગુપ્તસંજ્ઞા બદલી શકાશે નહીં',
 'resetpass-submit-loggedin' => 'ગુપ્તસંજ્ઞા બદલો',
+'resetpass-submit-cancel'   => 'રદ કરો',
 'resetpass-temp-password'   => 'કામચલાવ ગુપ્તસંજ્ઞા:',
 
 # Edit page toolbar

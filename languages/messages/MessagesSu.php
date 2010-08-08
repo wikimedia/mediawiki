@@ -542,6 +542,7 @@ Tong hilap ngarobih [[Special:Preferences|{{SITENAME}} préferénsi]] anjeun.',
 'gotaccount'                 => "Geus boga rekening? '''$1'''.",
 'gotaccountlink'             => 'Asup log',
 'createaccountmail'          => 'ku surélék',
+'createaccountreason'        => 'Alesan:',
 'badretype'                  => 'Sandi nu diasupkeun teu cocog.',
 'userexists'                 => 'Ngaran pamaké nu diasupkeun ku anjeun geus aya nu maké.
 Mangga pilih ngaran nu séjén.',
@@ -594,6 +595,11 @@ Mun ieu rekening balukar ayana éror, teu kudu diwaro.',
 'login-throttled'            => 'Anjeun geus loba teuing nyobaan asup log.
 Tungguan heula sakeudeung, laju cobaan deui.',
 'loginlanguagelabel'         => 'Basa: $1',
+
+# JavaScript password checks
+'password-strength-acceptable' => 'meueusan',
+'password-strength-good'       => 'alus',
+'password-retype'              => 'Ketik deui sandi anjeun',
 
 # Password reset dialog
 'resetpass'                 => 'Ganti kecap sandi rekening',
@@ -712,6 +718,8 @@ Anjeun bisa [[Special:Search/{{PAGENAME}}|milari judul ieu kaca]] di kaca séjé
 atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pilari log nu tumali]</span>.',
 'userpage-userdoesnotexist'        => 'Rekening pamaké "$1" tacan kadaptar. Mangga tilikan lamun anjeun hoyong ngadamel/ngédit kaca ieu.',
 'userpage-userdoesnotexist-view'   => 'Rekening pamaké "$1" teu aya dina daptar.',
+'blocked-notice-logextract'        => 'Ieu pamaké keur dipeungpeuk.
+Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'clearyourcache'                   => "'''Catetan:''' Sanggeus nyimpen, anjeun perlu ngosongkeun sindangan panyungsi anjeun pikeun nempo parobahanana:
 '''Mozilla/Safari/Konqueror:''' pencét & tahan ''Shift'' bari ngaklik ''Reload'' (atawa pencét ''Ctrl-Shift-R''), '''IE:''' pencét ''Ctrl-F5'', '''Opera:''' pencét ''F5''.",
 'usercssyoucanpreview'             => "'''Tip:''' Paké tombol 'Témbongkeun pramidang' pikeun nyoba css/js anyar anjeun méméh nyimpen.",
@@ -930,6 +938,11 @@ Anjeun teu diwenangkeun asup.',
 'suppressionlogtext' => 'Katut, nyaéta daptar hapusan sarta dipeungpeuk kaasup eusi anu disumputkeun ti para kuncén.
 Tempo [[Special:IPBlockList|daptar IP anu dipeungpeuk]] pikeun daptar larangan sarta dipeungpeuk ayeuna.',
 
+# Revision move
+'revmove-reasonfield'       => 'Alesan:',
+'revmove-norevisions-title' => 'Udagan révisi salah',
+'revmove-nullmove-title'    => 'Judul goréng',
+
 # History merging
 'mergehistory'                     => 'Gabungkeun jujutan kaca',
 'mergehistory-header'              => 'Di dieu anjeun bisa ngagabungkeun révisi tina jujutan hiji kaca ka kaca séjén nu leuwih anyar.
@@ -1023,7 +1036,9 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'powersearch-ns'                   => 'Téangan di ngaranspasi:',
 'powersearch-redir'                => 'Daptar alihan',
 'powersearch-field'                => 'Téangan keur',
+'powersearch-togglelabel'          => 'Pariksa:',
 'powersearch-toggleall'            => 'Kabéh',
+'powersearch-togglenone'           => 'Henteu aya',
 'search-external'                  => 'Panéangan luar',
 'searchdisabled'                   => 'Punten! Néangan téks lengkep di {{SITENAME}} kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu. Catet yén indéxna ngeunaan eusi {{SITENAME}} bisa jadi teu mutahir.',
 

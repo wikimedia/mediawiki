@@ -469,6 +469,7 @@ $2',
 'nav-login-createaccount'    => 'सत्रारंभ / खाता खोलें',
 'loginprompt'                => 'विकिपीडिया पर लॉग इन करने लिए आपने ब्राउज़र पर कुकी (cookies) को समर्थ करें।',
 'userlogin'                  => 'लॉग इन / खाता बनाइए',
+'userloginnocreate'          => 'लॉग इन',
 'logout'                     => 'सत्रांत',
 'userlogout'                 => 'सत्रांत',
 'notloggedin'                => 'लॉग इन नहीं किया हैं',
@@ -478,6 +479,7 @@ $2',
 'gotaccount'                 => "पहलेसे आपका खाता हैं? '''$1'''.",
 'gotaccountlink'             => 'लॉग इन',
 'createaccountmail'          => 'ई-मेल द्वारा',
+'createaccountreason'        => 'कारण:',
 'badretype'                  => 'आपने जो पासवर्ड दिये हैं वे एक दूसरे से नहीं मिलते। फिर से लिखें।',
 'userexists'                 => 'आपने दिया हुआ सदस्यनाम पहले से इस्तेमालमें हैं ।
 कृपया अन्य सदस्यनाम चुनियें ।',
@@ -538,6 +540,12 @@ $2',
 पुनः प्रयास करने के पहले थोड़ी प्रतीक्षा करें।',
 'loginlanguagelabel'         => 'भाषा: $1',
 
+# JavaScript password checks
+'password-strength-acceptable' => 'इस्तेमाल करने लायक',
+'password-strength-good'       => 'अच्छा',
+'password-retype'              => 'पासवर्ड दुबारा लिखें',
+'password-retype-mismatch'     => 'कूटशब्द मिलते नहीं',
+
 # Password reset dialog
 'resetpass'                 => 'कूटशब्द बदलें',
 'resetpass_announce'        => 'आप इ-मेल से प्राप्त अस्थायी कोडसे लॉग इन हैं ।
@@ -552,6 +560,7 @@ $2',
 'resetpass_forbidden'       => 'कूटशब्द बदले नहीं जा सकते।',
 'resetpass-no-info'         => 'इस पन्ने तक सीधे पहुँचने के लिए आपको सत्रारंभ करना होगा।',
 'resetpass-submit-loggedin' => 'कूटशब्द बदलें',
+'resetpass-submit-cancel'   => 'रद्द करें',
 'resetpass-wrong-oldpass'   => 'अवैध अस्थायी कूटशब्द, या अवैध कूटशब्द।
 संभव है कि या तो आपने पहले ही सफलतापूर्वक अपना कूटशब्द बदल लिया हो, या आपने एक नए अस्थायी कूटशब्द का अनुरोध किया हो।',
 'resetpass-temp-password'   => 'अस्थायी कूटशब्द:',
@@ -658,6 +667,7 @@ $2',
 या <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} संबंधित चिट्ठों में खोज कर सकते हैं] </span>।',
 'userpage-userdoesnotexist'        => 'सदस्य खाता "$1" पंजिकृत नहीं हैं । कृपया यह लेख आप संपादित अथवा निर्मित करना चाहते हैं इसकी जाँच करें ।',
 'userpage-userdoesnotexist-view'   => 'सदस्य "$1" पंजीकृत नहीं है',
+'blocked-notice-logextract'        => 'यह सदस्य फ़िलहाल अवरोधित हैं। सदंर्भ के लिए ताज़ातरीन अवरोध चिट्ठा प्रविष्टि नीचे है:',
 'clearyourcache'                   => "'''ध्यान दें - सँजोने के बाद बदलाव देखने के लिए आपको अपने विचरक की संचिका खाली करने पड़ सकती है।'''
 '''मोज़िला / फ़ायरफ़ॉक्स / सफ़ारी:''' \"वर्तमान पृष्ठ फिर लोड करें\" पर चटका लगाते समय \"शिफ़्ट\" कुंजी दबा के रखें या \"कंट्रोल-एफ़५\" या \"कंट्रोल-शिफ़्ट-R\" (मैकिंटॉश में \"कमांड-शिफ़्ट-R\") दबाएँ;
 '''कांक्वरर:''' \"रिलोड\" पर चटका लगाएँ या \"एफ़५\" दबाएँ;
@@ -833,6 +843,7 @@ $2',
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} मिटाने के चिट्ठे] में और जानकारी हो सकती है।
 बतौर प्रबंधक यदि आप चाहें तो फिर भी [$1 इस अंतर को देख सकते हैं]।",
 'rev-delundel'                => 'दिखायें/छुपायें',
+'rev-showdeleted'             => 'दिखाएँ',
 'revisiondelete'              => 'अवतरण हटायें/पुनर्स्थापित करें',
 'revdelete-nooldid-title'     => 'लक्ष्य अवतरण गलत',
 'revdelete-nooldid-text'      => 'इस क्रिया को करने के लिये आपने लक्ष्य अवतरण नहीं दियें हैं, या फिर आपने दिया हुआ अवतरण अस्तित्वमें नहीं हैं या फिर आप सद्य अवतरणको छुपा रहें हैं।',
@@ -857,6 +868,8 @@ $2',
 'revdelete-hide-comment'      => 'संपादन टिप्पणी छुपायें',
 'revdelete-hide-user'         => 'संपादक का सदस्यनाम/आईपी छुपायें',
 'revdelete-hide-restricted'   => 'प्रबंधक सहित सभी सदस्योंसे डाटा छुपायें',
+'revdelete-radio-set'         => 'हाँ',
+'revdelete-radio-unset'       => 'नहीं',
 'revdelete-suppress'          => 'प्रबंधक सहित सभी सदस्योंसे डाटा छुपायें',
 'revdelete-unsuppress'        => 'पुनर्स्थापित अवतरणोंपरसे प्रबंधन हटायें',
 'revdelete-log'               => 'कारण:',
@@ -903,6 +916,11 @@ $1",
 # Suppression log
 'suppressionlog'     => 'सप्रेशन सूची',
 'suppressionlogtext' => 'नीचे प्रबंधकोंसे छुपायें गयें ब्लॉक और हटाये गये पन्नों की सूची हैं। अभी अस्तित्वमें होने वाले ब्लॉक देखने के लिये [[Special:IPBlockList|आइपी ब्लॉक सूची]] देखें।',
+
+# Revision move
+'revmove-reasonfield'       => 'कारण:',
+'revmove-norevisions-title' => 'लक्ष्य अवतरण गलत',
+'revmove-nullmove-title'    => 'खराब शीर्षक',
 
 # History merging
 'mergehistory'                     => 'पन्ने के इतिहास एकत्रित करें',
@@ -1124,6 +1142,8 @@ $1",
 'prefs-advancedsearchoptions'   => 'उन्नत विकल्प',
 'prefs-advancedwatchlist'       => 'उन्नत विकल्प',
 'prefs-displayrc'               => 'प्रदर्शन विकल्प',
+'prefs-displaysearchoptions'    => 'प्रदर्शन विकल्प',
+'prefs-displaywatchlist'        => 'प्रदर्शन विकल्प',
 'prefs-diffs'                   => 'अंतर',
 
 # User rights
@@ -1428,6 +1448,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
 'upload-success-subj'         => 'अपलोड हो गईं',
+'upload-warning-subj'         => 'अपलोड वार्निंग',
 
 'upload-proto-error'        => 'गलत प्रोटोकोल',
 'upload-proto-error-text'   => 'रिमोट अपलोड के लिये URL का नाम <code>http://</code> या <code>ftp://</code> से शुरु होना आवश्यक हैं।',

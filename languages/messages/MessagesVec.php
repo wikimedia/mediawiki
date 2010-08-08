@@ -773,7 +773,7 @@ Te dovarè inserire, se te vołi, le to modifiche nel testo esistente, e perciò
 'nonunicodebrowser'                => "'''OCIO: Te stè doparando un browser mìa conpatibile coi caràteri Unicode. Par consentir la modifica de le pagine senza crear inconvenienti, i caràteri non ASCII i vien mostrà ne la casela de modifica soto forma de codici esadecimali.'''",
 'editingold'                       => "'''Ocio: Te stè modificando na version de ła voxe non agiornà. Se te la salvi cussì, tuti i canbiamenti apportai dopo sta version i vegnarà persi.'''",
 'yourdiff'                         => 'Difarense',
-'copyrightwarning'                 => "Nota: tuti i contribui a {{SITENAME}} se considera riłassai ne i termini de ła licensa d'uso $2 (varda $1 par majori detaji). Se no te desidari che i to testi i posa esare modifegai e redistribuii da chiunque sensa alcuna limitasion, no sta inviarli a {{SITENAME}}.<br/>
+'copyrightwarning'                 => "Nota: tuti i contribui a {{SITENAME}} se considera riłassai ne i termini de ła licensa d'uso $2 (varda $1 par majori detaji). Se no te desidari che i to testi i posa esare modifegai e redistribuii da chiunque sensa alcuna limitasion, no sta inviarli a {{SITENAME}}.<br />
 Con l'invio del testo te dichiari inoltre, soto ła to responsabiłità, che el testo xè sta scrito da ti parsonalmente opure che xè sta copià da na fonte de publico dominio o anałogamente libara.
 '''NO STA INVIARE MATERIAŁE COPERTO DA DIRITO D'AUTORE SENSA AUTORIZASION!'''",
 'copyrightwarning2'                => "Ocio che tuti i contributi a {{SITENAME}} i pode èssar editai, alterai, o rimossi da altri contributori.

@@ -724,6 +724,15 @@ Odczekaj chwilę zanim ponowisz próbę.',
 'loginlanguagelabel'         => 'Język: $1',
 'suspicious-userlogout'      => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
 
+# JavaScript password checks
+'password-strength'            => 'Szacowane bezpieczeństwo hasła – $1',
+'password-strength-bad'        => 'ZŁE',
+'password-strength-mediocre'   => 'mierne',
+'password-strength-acceptable' => 'akceptowalne',
+'password-strength-good'       => 'dobre',
+'password-retype'              => 'Powtórz hasło',
+'password-retype-mismatch'     => 'Hasła nie są identyczne',
+
 # Password reset dialog
 'resetpass'                 => 'Zmień hasło',
 'resetpass_announce'        => '{{GENDER:|Zalogowałeś|Zalogowałaś}} się, wykorzystując tymczasowe hasło otrzymane poprzez e‐mail.

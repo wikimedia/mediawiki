@@ -676,6 +676,7 @@ $2',
 'gotaccount'                 => "Имате налог? '''$1'''.",
 'gotaccountlink'             => 'Пријавите се',
 'createaccountmail'          => 'е-поштом',
+'createaccountreason'        => 'Reason:',
 'badretype'                  => 'Лозинке које сте унели се не поклапају.',
 'userexists'                 => 'Корисничко име које сте унели већ је у употреби.
 Молимо изаберите друго име.',
@@ -737,6 +738,10 @@ $2',
 Молимо вас да сачекате пар минута и покушате опет.',
 'loginlanguagelabel'         => 'Језик: $1',
 'suspicious-userlogout'      => 'Ваш захтев за излоговање није извршен зато што изгледа да је послат из неисправног браузера или преко кешираног проксија.',
+
+# JavaScript password checks
+'password-retype'          => 'Поновите лозинку',
+'password-retype-mismatch' => 'Лозинке се не поклапају',
 
 # Password reset dialog
 'resetpass'                 => 'Промените корисничку лозинку',
@@ -1085,6 +1090,11 @@ $1",
 'suppressionlog'     => 'Лог сакривања',
 'suppressionlogtext' => 'Испод се налази списак блокова и обрисаних страна који су сакривени од сисопа. Погледај [[Special:IPBlockList|списак блокираних ИП адреса]] за списак тренутно важећих банова и блокова.',
 
+# Revision move
+'revmove-reasonfield'       => 'Разлог:',
+'revmove-norevisions-title' => 'Нема одабране ревизије',
+'revmove-nullmove-title'    => 'Лош наслов',
+
 # History merging
 'mergehistory'                     => 'Уједини историје страна.',
 'mergehistory-header'              => 'Ова страна омогућава спајање верзија једне стране у другу. Уверите се претходно да ће ова измена одржати континуитет историје стране.',
@@ -1229,6 +1239,7 @@ $1",
 'contextlines'                => 'Линија по поготку:',
 'contextchars'                => 'Карактера контекста по линији:',
 'stub-threshold'              => 'Праг за форматирање <a href="#" class="stub">линка као клице</a> (у бајтовима):',
+'stub-threshold-disabled'     => 'Онемогућено',
 'recentchangesdays'           => 'Број дана за приказ у скорашњим изменема:',
 'recentchangesdays-max'       => '(mмаксимум $1 {{PLURAL:$1|дан|дана}})',
 'recentchangescount'          => 'Подразумевани број измена, који ће бити приказан:',
@@ -1293,6 +1304,8 @@ $1",
 'prefs-advancedsearchoptions' => 'Напредне опције',
 'prefs-advancedwatchlist'     => 'Напредне опције',
 'prefs-displayrc'             => 'Опције приказа',
+'prefs-displaysearchoptions'  => 'Опције приказа',
+'prefs-displaywatchlist'      => 'Опције приказа',
 'prefs-diffs'                 => 'Ревизије',
 
 # User rights
@@ -1591,6 +1604,7 @@ $1",
 Разлог брисања овог фајла раније је:",
 'filename-bad-prefix'         => "Име овог фајла почиње са '''\"\$1\"''', што није описно име, најчешће је назван аутоматски са дигиталним фотоапаратом. Молимо изаберите описније име за ваш фајл.",
 'upload-success-subj'         => 'Успешно слање',
+'upload-warning-subj'         => 'Упозорење при слању',
 
 'upload-proto-error'        => 'Некоректни протокол',
 'upload-proto-error-text'   => 'Слање екстерних фајлова захтева УРЛове који почињу са <code>http://</code> или <code>ftp://</code>.',

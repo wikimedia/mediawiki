@@ -720,6 +720,7 @@ $2',
 'gotaccount'                 => "عندك حساب؟ '''$1'''.",
 'gotaccountlink'             => 'دخول',
 'createaccountmail'          => 'بـ الايميل',
+'createaccountreason'        => 'السبب:',
 'badretype'                  => 'كلمتين السر اللى  كتبتهم مش  زى بعضهم',
 'userexists'                 => 'اسم اليوزر اللى دخلته بيستعمله يوزر غيرك.
 دخل اسم تانى.',
@@ -785,6 +786,12 @@ $2',
 'login-throttled'            => 'انت عملت  محاولات لوجين كتيره حديثة على الحساب ده.
 من فضلك استنى قبل المحاولة مرة تانيه.',
 'loginlanguagelabel'         => 'اللغة: $1',
+
+# JavaScript password checks
+'password-strength-acceptable' => 'مقبول',
+'password-strength-good'       => 'جيدة',
+'password-retype'              => 'اكتب الباسورد تاني',
+'password-retype-mismatch'     => 'كلمات السر لا تتطابق',
 
 # Password reset dialog
 'resetpass'                 => 'غيّر الباسورد',
@@ -1166,8 +1173,10 @@ $1",
 شوف [[Special:IPBlockList|للستة المنع]] علشان تشوف عمليات المنع الشغالة دلوقتى .',
 
 # Revision move
-'revisionmove'        => ' انقل المراجعات من "$1"',
-'revmove-reasonfield' => 'السبب:',
+'revisionmove'              => ' انقل المراجعات من "$1"',
+'revmove-reasonfield'       => 'السبب:',
+'revmove-norevisions-title' => 'مراجعة هدف مش صح',
+'revmove-nullmove-title'    => 'عنوان غلط',
 
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',
@@ -1319,6 +1328,7 @@ $1",
 'contextlines'                  => 'عدد  السطور فى كل نتيجة:',
 'contextchars'                  => 'عدد  الحروف فى كل سطر',
 'stub-threshold'                => 'الحد لتنسيق <a href="#" class="stub">لينك البذرة</a>:',
+'stub-threshold-disabled'       => 'معطل',
 'recentchangesdays'             => 'عدد الأيام المعروضة فى اخرالتغييرات:',
 'recentchangesdays-max'         => '(الحد الاقصى $1 {{PLURAL:$1|يوم|ايام}})',
 'recentchangescount'            => 'عدد التعديلات اللى بتظهر اوتوماتيكى فى اخر التغييرات, تواريخ الصفحه, و فى السجلات, :',
@@ -1392,6 +1402,8 @@ $1",
 'prefs-advancedsearchoptions'   => 'اختيارات متقدمه',
 'prefs-advancedwatchlist'       => 'اختيارات متقدمه',
 'prefs-displayrc'               => 'اختيارات العرض',
+'prefs-displaysearchoptions'    => 'اختيارات العرض',
+'prefs-displaywatchlist'        => 'اختيارات العرض',
 'prefs-diffs'                   => 'التغيير',
 
 # User rights
@@ -1707,6 +1719,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- سيب السطر ده زى ما هوه -->',
 'upload-success-subj'         => 'التحميل ناجح',
+'upload-warning-subj'         => 'تحذير التحميل',
 
 'upload-proto-error'        => 'بروتوكول مش صحيح',
 'upload-proto-error-text'   => 'االتحميل عن بعد لازمله يوأرإل بيبتدى بـ <code>http://</code> أو <code>ftp://</code>.',

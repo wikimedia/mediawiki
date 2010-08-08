@@ -400,6 +400,7 @@ Cnāw þæt sume sīdan cunnon gelǣstende ēowod wesan swā þū wǣre gīet in
 'createaccount'              => 'Hordcleofan scieppan',
 'gotaccountlink'             => 'Inmeldian',
 'createaccountmail'          => 'Þurh spearcenaǣrend',
+'createaccountreason'        => 'Racu:',
 'badretype'                  => 'Þā þafungƿord þe ƿrite þū, bēoþ unȝemæcca.',
 'userexists'                 => 'Hƿā hæfþ þæt brūcendnama.
 Bidde ōðer brūcendnama ċēosan.',
@@ -421,11 +422,16 @@ Scēawa þīne wrītunge eft, oþþe brūc þā cartan þe is hērunder tō [[Sp
 'accountcreated'             => 'Hordcleofan ȝescapen',
 'loginlanguagelabel'         => 'Sprǣċ: $1',
 
+# JavaScript password checks
+'password-retype' => 'Þafungƿord edƿrītan',
+
 # Password reset dialog
+'resetpass'                 => 'Þafungƿord hƿeorfan',
 'oldpassword'               => 'Eald þafungƿord:',
 'newpassword'               => 'Nīƿu þafungƿord:',
 'retypenew'                 => 'Nīƿe þafungƿord edƿrītan',
 'resetpass-submit-loggedin' => 'Þafungƿord hƿeorfan',
+'resetpass-submit-cancel'   => 'Undō',
 
 # Edit page toolbar
 'bold_sample'     => 'Þicce traht',

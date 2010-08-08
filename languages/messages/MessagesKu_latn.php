@@ -81,6 +81,9 @@ $messages = array(
 'underline-never'   => 'Ne carekê',
 'underline-default' => "Tercihên browser'ê da",
 
+# Font style option in Special:Preferences
+'editfont-default' => "Tercihên browser'ê da",
+
 # Dates
 'sunday'        => 'yekşem',
 'monday'        => 'duşem',
@@ -179,6 +182,27 @@ $messages = array(
 'qbspecialpages' => 'Rûpelên taybet',
 'faq'            => 'Pirs û Bersîv (FAQ)',
 'faqpage'        => 'Project:Pirs û Bersîv',
+
+# Vector skin
+'vector-action-delete'       => 'Jê bibe',
+'vector-action-move'         => 'Nav biguherîne',
+'vector-action-protect'      => 'Biparêze',
+'vector-action-unprotect'    => 'Parastinê rake',
+'vector-namespace-category'  => 'Kategorî',
+'vector-namespace-help'      => 'Alîkarî',
+'vector-namespace-image'     => 'Wêne',
+'vector-namespace-main'      => 'Gotar',
+'vector-namespace-media'     => 'Medya',
+'vector-namespace-mediawiki' => 'Peyam',
+'vector-namespace-project'   => 'Rûpela projeyê',
+'vector-namespace-special'   => 'Rûpela taybet',
+'vector-namespace-talk'      => 'Guftûgo',
+'vector-namespace-template'  => 'Şablon',
+'vector-namespace-user'      => 'Bikarhêner',
+'vector-view-create'         => 'Çêke',
+'vector-view-edit'           => 'Biguherîne',
+'vector-view-viewsource'     => 'Çavkanî bibîne',
+'variants'                   => 'Variyant',
 
 'errorpagetitle'    => 'Çewtî (Error)',
 'returnto'          => 'Bizivire $1.',
@@ -378,10 +402,11 @@ Hesaba te hat afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe di
 'remembermypassword'         => 'Şifreya min di her rûniştdemê de bîne bîra xwe.',
 'yourdomainname'             => 'Domaînê te',
 'externaldberror'            => "Ya şaşbûnek di naskirinê derva heye, ya tu nikarî account'î xwe yê derva bikarwînê.",
-'login'                      => 'Têkeve (login)',
+'login'                      => 'Têkeve',
 'nav-login-createaccount'    => 'Têkeve an hesabeke nû çêke',
 'loginprompt'                => "<b>Eger tu xwe nû qeyd bikî, nav û şîfreya xwe hilbijêre.</b> Ji bo xwe qeyd kirinê di {{SITENAME}} de divê ku ''cookies'' gengaz be.",
 'userlogin'                  => 'Têkeve an hesabeke nû çêke',
+'userloginnocreate'          => 'Têkeve',
 'logout'                     => 'Derkeve (log out)',
 'userlogout'                 => 'Derkeve',
 'notloggedin'                => 'Xwe qeyd nekir (not logged in)',
@@ -389,8 +414,9 @@ Hesaba te hat afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe di
 'nologinlink'                => 'Bibe endam',
 'createaccount'              => 'Hesabê nû çêke',
 'gotaccount'                 => "Hesabê te heye? '''$1'''.",
-'gotaccountlink'             => 'Têkeve (login)',
+'gotaccountlink'             => 'Têkeve',
 'createaccountmail'          => 'bi e-name',
+'createaccountreason'        => 'Sedem',
 'badretype'                  => 'Herdu şîfreyên ku te nivîsîn hevûdin nagirin.',
 'userexists'                 => 'Ev navî bikarhênerî berê tê bikaranîn. Xêra xwe navekî din bibe.',
 'loginerror'                 => 'Çewtî (Login error)',
@@ -431,17 +457,22 @@ Niha ê baş be eger tu xwe qeyd bikê û tu şîfreya xwe biguherînê.
 Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.',
 'loginlanguagelabel'         => 'Ziman: $1',
 
+# JavaScript password checks
+'password-retype' => 'Şîfreya xwe careke din binîvîse',
+
 # Password reset dialog
-'resetpass'           => "Şîfreya account'î bikarhêneran şondabibe",
-'resetpass_announce'  => 'Te xwe bi şîfreyekê qeydkir, yê bi e-nameyekê ji te ra hate şandin. Ji bo xelaskirinê qeydkirinê, tu niha gireke şîfreyeka nuh binivisînê.',
-'resetpass_text'      => '<!-- Nivîsê xwe li vir binivisîne -->',
-'resetpass_header'    => 'Şîfreya xwe betalbike',
-'oldpassword'         => 'Şîfreya kevn',
-'newpassword'         => 'Şîfreya nû',
-'retypenew'           => 'Şîfreya nû careke din binîvîse',
-'resetpass_submit'    => 'Şîfrê bişîne û xwe qedybike',
-'resetpass_success'   => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
-'resetpass_forbidden' => 'Şîfre nikanin werin guhartin',
+'resetpass'                 => 'Şîfre biguherîne',
+'resetpass_announce'        => 'Te xwe bi şîfreyekê qeydkir, yê bi e-nameyekê ji te ra hate şandin. Ji bo xelaskirinê qeydkirinê, tu niha gireke şîfreyeka nuh binivisînê.',
+'resetpass_text'            => '<!-- Nivîsê xwe li vir binivisîne -->',
+'resetpass_header'          => 'Şîfreya xwe betalbike',
+'oldpassword'               => 'Şîfreya kevn',
+'newpassword'               => 'Şîfreya nû',
+'retypenew'                 => 'Şîfreya nû careke din binîvîse',
+'resetpass_submit'          => 'Şîfrê bişîne û xwe qedybike',
+'resetpass_success'         => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
+'resetpass_forbidden'       => 'Şîfre nikanin werin guhartin',
+'resetpass-submit-loggedin' => 'Şîfre biguherîne',
+'resetpass-submit-cancel'   => 'Betal',
 
 # Edit page toolbar
 'bold_sample'     => 'Nivîsa estûr',
@@ -572,6 +603,7 @@ baş nikarin rûpelên ku ji 32 kB drêjtir in biguherînin. Eger tu vê rûpel�
 
 Zanibe ku nuhçêkirinê vê rûpelê hêja ye ya na.
 Înformasyon li ser jêbirinê vê rûpelê li vir e:",
+'edit-conflict'                    => 'Têkçûna guherandinan.',
 'edit-no-change'                   => 'Guherandina te hate nehate hesibandin, ji ber ku guherandinên nivîsê tune bûn.',
 'edit-already-exists'              => 'Nikarî rûpeleka nuh çêke.
 Ew berê heye.',
@@ -665,6 +697,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'showingresults'                 => "{{PLURAL:$1|Encamek|'''$1''' encam}}, bi #'''$2''' dest pê dike.",
 'showingresultsnum'              => "{{PLURAL:$3|'''1'''|'''$3'''}} encam, bi #<b>$2</b> dest pê dike.",
 'powersearch'                    => 'Lê bigere',
+'powersearch-legend'             => 'Lê bigere',
 'powersearch-ns'                 => "Di namespace'an da lêbigere:",
 'powersearch-field'              => 'Bigere li',
 'searchdisabled'                 => '<p>Tu dikarî li {{SITENAME}} bi Google an Yahoo! bigere. Têbînî: Dibe ku encamen lêgerîne ne yên herî nû ne.
@@ -921,7 +954,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'filedelete-intro'            => "Tu kê '''[[Media:$1|$1]]''' jêbibê.",
 'filedelete-intro-old'        => "Tu niha verzyona '''[[Media:$1|$1]]''' [$4 verzyon, ji $2, saet $3] jêdibê.",
 'filedelete-comment'          => 'Sedem',
-'filedelete-submit'           => 'Jêbibe',
+'filedelete-submit'           => 'Jê bibe',
 'filedelete-success'          => "'''$1''' hate jêbirin.",
 'filedelete-success-old'      => "<span class=\"plainlinks\">Verzyona \$2 ji data'ya '''[[Media:\$1|\$1]]''' di saet \$3 da hate jêbirin.</span>",
 'filedelete-nofile'           => "'''$1''' li vê rûpelê tune.",
@@ -1067,7 +1100,7 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'emailfrom'       => 'Ji',
 'emailto'         => 'Bo',
 'emailsubject'    => 'Mijar',
-'emailmessage'    => 'Name',
+'emailmessage'    => 'Peyam:',
 'emailsend'       => 'Bişîne',
 'emailccme'       => "Kopîyekê ji min ra ji vê E-Mail'ê ra bişîne.",
 'emailsent'       => 'E-name hat şandin',
@@ -1446,8 +1479,9 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'tooltip-ca-watch'                => 'Vê rûpelê têke nav lîsteya te ya şopandinê',
 'tooltip-ca-unwatch'              => 'Vê rûpelê ji lîsteya te ya şopandinê rake',
 'tooltip-search'                  => 'Li vê wikiyê bigêre',
-'tooltip-p-logo'                  => 'Destpêk',
+'tooltip-p-logo'                  => 'Biçe Destpêkê',
 'tooltip-n-mainpage'              => 'Biçe Destpêkê',
+'tooltip-n-mainpage-description'  => 'Biçe Destpêkê',
 'tooltip-n-portal'                => 'Înformasyon li ser {{SITENAME}}, tu çi dikarê bikê, tu çi li ku dikarê bîbînê',
 'tooltip-n-recentchanges'         => "Lîsteya guherandinên dawî di vê Wîkî'yê da.",
 'tooltip-n-randompage'            => 'Rûpelekî helkeft biwêşîne',
@@ -1460,9 +1494,12 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'tooltip-ca-nstab-main'           => 'Li rûpela naverokê binêre',
 'tooltip-ca-nstab-user'           => 'Rûpela bikarhênerê/î temaşe bike',
 'tooltip-ca-nstab-special'        => 'This is a special page, you can',
+'tooltip-ca-nstab-project'        => 'Li rûpelê projektê seke',
 'tooltip-ca-nstab-template'       => 'Şablonê nîşanbide',
+'tooltip-ca-nstab-category'       => 'Li rûpelê kategorîyê seke',
 'tooltip-save'                    => 'Guherandinên xwe tomarbike',
 'tooltip-compareselectedversions' => 'Cudatiyên guhartoyên hilbijartî yên vê rûpelê bibîne.',
+'tooltip-watch'                   => 'Vê rûpelê têke nav lîsteya te ya şopandinê',
 'tooltip-upload'                  => 'Barkirinê destpêke',
 
 # Stylesheets
@@ -1593,6 +1630,9 @@ if (wgUserLanguage == "ku-arab")
 'variantname-ku-arab' => 'tîpên erebî',
 'variantname-ku-latn' => 'tîpên latînî',
 'variantname-ku'      => 'disable',
+
+# Metadata
+'metadata' => "Data'yên meta",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Panbûn',

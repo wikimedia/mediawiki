@@ -135,10 +135,14 @@ $messages = array(
 'navigation' => 'Shawagi',
 
 # Cologne Blue skin
-'qbfind' => 'Nemo',
+'qbfind'         => 'Nemo',
+'qbedit'         => 'Gyarawa',
+'qbspecialpages' => 'Shafuna na musamman',
 
 # Vector skin
 'vector-action-delete'      => 'Soke',
+'vector-action-move'        => 'Gusarwa',
+'vector-action-protect'     => 'A kare',
 'vector-namespace-category' => 'Rukuni',
 'vector-namespace-main'     => 'Shafi',
 'vector-view-create'        => 'Ƙirƙira',

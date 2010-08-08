@@ -192,6 +192,7 @@ $messages = array(
 'vector-action-delete'       => 'حذف کرو',
 'vector-action-move'         => 'منتقل کرو',
 'vector-action-protect'      => 'محفوظ کرو',
+'vector-action-unprotect'    => 'غیر محفوظ',
 'vector-namespace-category'  => 'زمرہ',
 'vector-namespace-help'      => 'صفحۂ مدد',
 'vector-namespace-image'     => 'ملف',
@@ -208,6 +209,8 @@ $messages = array(
 'vector-view-history'        => 'تاریخچہ',
 'vector-view-view'           => 'پڑھیں',
 'vector-view-viewsource'     => 'مسودہ',
+'actions'                    => 'ایکشنز',
+'namespaces'                 => 'جائے نام',
 
 'errorpagetitle'    => 'خطاء',
 'returnto'          => 'واپس $1۔',
@@ -447,6 +450,7 @@ Warning: Page may not contain recent updates.',
 'gotaccount'                 => "پہلے سے کھاتہ بنا ہوا ہے? '''$1'''.",
 'gotaccountlink'             => 'داخل ہوجائیے',
 'createaccountmail'          => 'بذریعۂ برقی ڈاک',
+'createaccountreason'        => 'وجہ:',
 'badretype'                  => 'درج شدہ کلمۂ شناخت اصل سے مطابقت نہیں رکھتا۔',
 'userexists'                 => 'درج شدہ اسمِ صارف پہلے سے زیرِاستعمال ہے.
 براہِ کرم، کوئی دوسرا اسمِ صارف استعمال کریں.',
@@ -515,6 +519,10 @@ Warning: Page may not contain recent updates.',
 دوبارہ کوشش کرنے سے پہلے انتظار فرمائیے.',
 'loginlanguagelabel'         => 'زبان: $1',
 
+# JavaScript password checks
+'password-retype'          => 'کلمۂ شناخت دوبارہ لکھیں',
+'password-retype-mismatch' => 'پارالفاظ ایک دوسرے سے مطابقت نہیں رکھتے',
+
 # Password reset dialog
 'resetpass'                 => 'پارلفظ تبدیل کریں',
 'resetpass_announce'        => 'آپ ایک برقی ارسال کردہ عارضی رمز کے ساتھ داخل ہوئے ہیں.
@@ -529,6 +537,7 @@ Warning: Page may not contain recent updates.',
 'resetpass_forbidden'       => 'پارلفظ تبدیل نہیں ہوسکتا',
 'resetpass-no-info'         => 'اِس صفحہ تک براہِ راست رسائی کیلئے آپ کو داخلِ نوشتہ ہونا پڑے گا.',
 'resetpass-submit-loggedin' => 'پارلفظ کی تبدیلی',
+'resetpass-submit-cancel'   => 'منسوخ',
 'resetpass-wrong-oldpass'   => 'عارضی یا موجودہ پارلفظ ناقص ہے.
 آپ یا تو پہلے ہی سے آپنا پارلفظ کامیابی سے تبدیل کرچکے ہیں اور یا آپ نے نئے عارضی پارلفظ کی درخواست کی ہے.',
 'resetpass-temp-password'   => 'عارضی پارلفظ:',
@@ -610,6 +619,7 @@ $1 نے پابندی لگائی تھی.
 'noarticletext'                    => 'اِس صفحہ میں فی الحال کوئی متن موجود نہیں ہے.
 آپ دیگں صفحات میں [[Special:Search/{{PAGENAME}}|اِس صفحہ کے عنوان کیلئے تلاش کرسکتے ہیں]]، <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} متعلقہ نوشتہ جات تلاش کرسکتے ہیں],
 یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} اِس صفحہ میں ترمیم کرسکتے ہیں]</span',
+'updated'                          => '(اپ ڈیٹڈ)',
 'note'                             => "'''نوٹ:'''",
 'previewnote'                      => "'''یاد رکھیں، یہ صرف نمائش ہے ۔آپ کی ترامیم ابھی محفوظ نہیں کی گئیں۔'''",
 'session_fail_preview'             => 'معاف کیجئے! نشست کے مواد میں خامی کی وجہ سے آپکی  ترمیم پر عمل نہیں کیا جاسکا.
@@ -727,6 +737,9 @@ $1",
 'revdelete-reasonotherlist'  => 'کوئی اَور وجہ',
 'revdelete-edit-reasonlist'  => 'تحذیفی وجوہات کی تدوین',
 'revdelete-offender'         => 'نظرثانی مصنف:',
+
+# Revision move
+'revmove-reasonfield' => 'وجہ:',
 
 # History merging
 'mergehistory'                     => 'تواریخِ صفحہ کا انضمام',
@@ -1101,7 +1114,7 @@ HTML tags جانچئے.',
 'defemailsubject' => '{{SITENAME}} سے برقی خط',
 'noemailtext'     => 'اس صارف نے برقی خط کے لیے کوئی پتہ فراہم نہیں کیا، یا یہ چاہتا ہے کا اس سے کوئی صارف رابطہ نہ کرے۔',
 'emailsubject'    => 'عنوان',
-'emailmessage'    => 'پیغام',
+'emailmessage'    => 'پیغام:',
 
 # Watchlist
 'watchlist'         => 'میری زیرنظرفہرست',
@@ -1164,7 +1177,7 @@ HTML tags جانچئے.',
 'viewdeletedpage'  => 'حذف شدہ صفحات دیکھیے',
 'undeletebtn'      => 'بحال',
 'undeletelink'     => 'دیکھو/بحال کرو',
-'undeletecomment'  => 'تبصرہ:',
+'undeletecomment'  => 'وجہ:',
 'undeletedarticle' => 'بحال "[[$1]]"',
 
 # Namespace form on various pages
@@ -1185,15 +1198,17 @@ HTML tags جانچئے.',
 'sp-contributions-submit'     => 'تلاش',
 
 # What links here
-'whatlinkshere'      => 'ادھر کس کا جوڑ ہے',
-'whatlinkshere-page' => 'صفحہ:',
-'linkshere'          => "'''[[:$1]]''' سے درج ذیل صفحات مربوط ہیں:",
-'nolinkshere'        => 'یہاں کسی صفحہ کا ربط نہیں۔',
-'isimage'            => 'ربطِ تصویر',
+'whatlinkshere'         => 'ادھر کس کا جوڑ ہے',
+'whatlinkshere-page'    => 'صفحہ:',
+'linkshere'             => "'''[[:$1]]''' سے درج ذیل صفحات مربوط ہیں:",
+'nolinkshere'           => 'یہاں کسی صفحہ کا ربط نہیں۔',
+'isredirect'            => 'لوٹایا گیا صفحہ',
+'isimage'               => 'ربطِ تصویر',
+'whatlinkshere-filters' => 'فلٹرذ',
 
 # Block/unblock
 'blockip'           => 'داخلہ ممنوع براۓ صارف',
-'ipbreason'         => 'وجہ',
+'ipbreason'         => 'وجہ:',
 'ipbsubmit'         => 'اس صارف کا داخلہ ممنوع کریں',
 'ipblocklist'       => 'ممنوع آئی.پی پتے اور اسم ہائے صارفین',
 'blocklink'         => 'پابندی لگائیں',
@@ -1222,7 +1237,7 @@ HTML tags جانچئے.',
 'articleexists'           => 'اس عنوان سے کوئی صفحہ پہلے ہی موجود ہے، یا آپکا منتخب کردہ نام مستعمل نہیں۔ براۓ مہربانی دوسرا نام منتخب کیجیۓ۔',
 '1movedto2'               => '[[$1]] بجانب [[$2]] منتقل',
 'movelogpage'             => 'نوشتۂ منتقلی',
-'movereason'              => 'وجہ',
+'movereason'              => 'وجہ:',
 'delete_and_move'         => 'حذف اور منتقل',
 'delete_and_move_text'    => '==حذف شدگی لازم==
 
@@ -1292,6 +1307,7 @@ HTML tags جانچئے.',
 'tooltip-ca-nstab-special'       => 'یہ ایک خاص صفحہ ہے، آپ اِس میں ترمیم نہیں کرسکتے',
 'tooltip-ca-nstab-project'       => 'صفحۂ صارف دیکھئے',
 'tooltip-ca-nstab-image'         => 'صفحۂ ملف دیکھئے',
+'tooltip-ca-nstab-category'      => 'زمرہ‌جاتی صفحہ دیکھئے',
 'tooltip-minoredit'              => 'اِس تدوین کو بطورِ معمولی ترمیم نشانزد کیجئے',
 'tooltip-save'                   => 'تبدیلیاں محفوظ کیجئے',
 'tooltip-preview'                => 'برائے مہربانی! محفوظ کرنے سے پہلے تبدیلیوں کا پیشمنظر دیکھئے',

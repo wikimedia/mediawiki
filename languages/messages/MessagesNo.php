@@ -706,6 +706,15 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',
 
+# JavaScript password checks
+'password-strength'            => 'Passordstyrke: $1',
+'password-strength-bad'        => 'DÅRLIG',
+'password-strength-mediocre'   => 'middels',
+'password-strength-acceptable' => 'akseptabel',
+'password-strength-good'       => 'god',
+'password-retype'              => 'Gjenta passord',
+'password-retype-mismatch'     => 'Passordene er ikke like',
+
 # Password reset dialog
 'resetpass'                 => 'Endre passord',
 'resetpass_announce'        => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen må du oppgi et nytt passord her:',

@@ -209,6 +209,7 @@ $messages = array(
 'vector-action-delete'       => 'நீக்கவும்',
 'vector-action-move'         => 'நகர்த்தவும்',
 'vector-action-protect'      => 'காக்கவும்',
+'vector-action-unprotect'    => 'காப்பைநீக்கு',
 'vector-namespace-category'  => 'பகுப்பு',
 'vector-namespace-help'      => 'உதவிப் பக்கம்',
 'vector-namespace-image'     => 'கோப்பு',
@@ -450,6 +451,7 @@ MySQL returned error "$3: $4".',
 'gotaccount'                 => "ஏற்கனவே பயனர் கணக்கு உள்ளதா? '''$1'''.",
 'gotaccountlink'             => 'புகுபதிகை செய்யவும்',
 'createaccountmail'          => 'மின்னஞ்சல் மூலம்',
+'createaccountreason'        => 'காரணம்:',
 'badretype'                  => 'நீங்கள் பதிந்த கடவுச்சொல் பொருத்தமாக இல்லை.',
 'userexists'                 => 'நீர் பதிந்த பயனர் பெயர் ஏற்கெனவே பாயன்பாட்டில் உள்ளது. அருள் கூர்ந்து வேறு பயனர் பெயரைத் தெரிவுச் செய்க.',
 'loginerror'                 => 'புகுபதிகைத் தவறு',
@@ -495,6 +497,11 @@ MySQL returned error "$3: $4".',
 இக்கணக்கு தவறுதலாக தொடங்கப்பட்டிருந்தால், இத்தகவலைப் புறக்கணிக்கலாம்.',
 'login-throttled'            => 'இக் கணக்கின் கடவுச்சொல்லை அளவுக்கு மீறிய தடவைகள் முயற்சித்துள்ளீர்கள். மீண்டும் முயற்சிக்குமுன் சற்றுத் தாமதியுங்கள்.',
 'loginlanguagelabel'         => 'மொழி: $1',
+
+# JavaScript password checks
+'password-strength-acceptable' => 'ஏற்றுக்கொள்ளக்கூடியது',
+'password-strength-good'       => 'நன்று',
+'password-retype'              => 'கடவுச்சொல்லைத் திரும்ப தட்டச்சிடுக',
 
 # Password reset dialog
 'resetpass'                 => 'கடவுச்சொல்லை மாற்றியமை',
@@ -729,11 +736,13 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'rev-deleted-text-view'       => 'இந்த பக்கத்திருத்தம் பொது பரணிலிருந்து நீக்கப்பட்டுள்ளது.
 {{SITENAME}} தளத்தின் நிர்வாகி என்ற வகையில் நீங்கள் அதைப் பார்க்கலாம் மேலும் இது தொடர்பான பதிவு [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.',
 'rev-delundel'                => 'காட்டு/மறை',
+'rev-showdeleted'             => 'காட்டு',
 'revisiondelete'              => 'திருத்தங்களை நீக்கு/மீட்டெடு',
 'revdelete-nooldid-title'     => 'செல்லுபடியற்ற இலக்குத் திருத்தம்',
 'revdelete-nooldid-text'      => 'நீங்கள் இச்செயற்பாட்டை மேற்கொள்ள வேண்டிய இலக்குத் திருத்தம் ஒன்றையாவது குறிப்பிடவில்லை அல்லது குறித்தவாரான திருத்தமொன்று இல்லை அல்லது நடைமுறையிலுள்ள திருத்தமொன்ற மறைக்க எத்தனிக்கிறீர்கள்.',
 'revdelete-nologtype-title'   => 'பதிகை வகை தரப்படவில்லை',
 'revdelete-nologid-title'     => 'செல்லுபடியற்ற பதிகைப் பதிவு',
+'revdelete-show-file-submit'  => 'ஆம்',
 'revdelete-selected'          => "'''[[:$1]] பக்கத்தின் தெரிவுச் செய்யப்பட்ட {{PLURAL:$2|திருத்தம்|திருத்தங்கள்}}:'''",
 'logdelete-selected'          => "'''தெரிவு செய்யப்பட்ட பதிகை {{PLURAL:$1|நிகழ்வு|நிகழ்வுகள்}}:'''",
 'revdelete-text'              => "'''நீக்கப்பட்ட நிகழ்வுகள் மற்றும் திருத்தங்கள் பக்க வரலாற்றுப் பக்கத்தில் காணப்படும் எனினும் அவற்றின் உள்ளடக்கம் பயனர்களுக்கு காட்டப்படமாட்டது.'''
@@ -746,6 +755,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'revdelete-hide-comment'      => 'தொகுப்புச் சுருக்கத்தை மறை',
 'revdelete-hide-user'         => 'தொகுப்பவரின் ஐ.பி./பயனர்பெயரை மறை',
 'revdelete-hide-restricted'   => 'இக்கட்டுப்பாடுகளை அதிகாரிகள் உட்பட எல்லோருக்கும் விதித்து இந்த இடைமுகத்தை முடக்குக',
+'revdelete-radio-set'         => 'ஆம்',
+'revdelete-radio-unset'       => 'இல்லை',
 'revdelete-suppress'          => 'நிர்வாகிகள் உட்பட இனவரிடமிருந்தாக தரவுகளை அடக்கு',
 'revdelete-unsuppress'        => 'மீட்கப்பட்ட திருத்தங்கள் மீதான கட்டுப்பாடுகளை நீக்கு',
 'revdelete-log'               => 'காரணம்:',
@@ -766,12 +777,17 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'revdelete-unhid'             => '$1 காட்டுக',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|திருத்தத்திற்கு|திருத்தங்களிற்கு}} $1',
 'logdelete-log-message'       => '$2 {{PLURAL:$2|நிகழ்விற்கு|நிகழ்வுகளிற்கு}} $1',
+'revdelete-otherreason'       => 'வேறு மேலதிக காரணம்:',
+'revdelete-reasonotherlist'   => 'வேறு காரணம்',
 'revdelete-edit-reasonlist'   => 'நீக்கல் காரணங்களைத் தொகு',
 
 # Suppression log
 'suppressionlog'     => 'அடக்கல் பதிகை',
 'suppressionlogtext' => 'பின்வருவது நிர்வாகிகளிடமிருந்து மறைக்கப்பட்ட நீக்கல்களதும் தடுப்புகளதும் பட்டியலாகும்.
 நடைமுறையிலுள்ள தடுப்புகளைக் காண [[Special:IPBlockList|ஐ.பி. தடைப் பட்டியலைப்]] பார்க்க',
+
+# Revision move
+'revmove-reasonfield' => 'காரணம்:',
 
 # History merging
 'mergehistory'                     => 'பக்க வரலாறுகளை இணை',

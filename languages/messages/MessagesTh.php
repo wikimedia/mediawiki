@@ -653,6 +653,12 @@ $1',
 กรุณารอสักครู่แล้วลองใหม่อีกครั้ง',
 'loginlanguagelabel'         => 'ภาษา: $1',
 
+# JavaScript password checks
+'password-strength-acceptable' => 'ยอมรับได้',
+'password-strength-good'       => 'ดี',
+'password-retype'              => 'พิมพ์รหัสผ่านอีกครั้ง',
+'password-retype-mismatch'     => 'รหัสผ่านไม่ตรงกัน',
+
 # Password reset dialog
 'resetpass'                 => 'เปลี่ยนรหัสผ่าน',
 'resetpass_announce'        => 'คุณล็อกอินผ่านรหัสอีเมลชั่วคราว คุณต้องใส่ค่ารหัสผ่านใหม่เพื่อเสร็จสิ้นขั้นตอนการล็อกอิน:',
@@ -1020,6 +1026,11 @@ $1",
 'suppressionlogtext' => 'ด้านล่างนี้คือรายการลบและระงับ รวมไปถึงเนื้อหาที่ถูกซ่อนโดยผู้ดูแลระบบ
 ดู [[Special:IPBlockList|รายการหมายเลขไอพีที่ถูกระงับ]] สำหรับรายการระงับและห้ามใช้ที่ยังมีผลอยู่',
 
+# Revision move
+'revmove-reasonfield'       => 'เหตุผล:',
+'revmove-norevisions-title' => 'ไม่มีรุ่นการปรับปรุงที่ต้องการ',
+'revmove-nullmove-title'    => 'ชื่อหน้าไม่เหมาะสม',
+
 # History merging
 'mergehistory'                     => 'ประวัติการรวมหน้า',
 'mergehistory-header'              => 'หน้านี้ไว้ให้คุณใช้รวมรุ่นต่างๆ ในประวัติการแก้ไขของหน้าต้นทาง ไปยังหน้าใหม่.
@@ -1236,6 +1247,8 @@ $1",
 'prefs-advancedsearchoptions'   => 'การตั้งค่าขั้นสูง',
 'prefs-advancedwatchlist'       => 'การตั้งค่าขั้นสูง',
 'prefs-displayrc'               => 'ค่าการแสดงผล',
+'prefs-displaysearchoptions'    => 'ค่าการแสดงผล',
+'prefs-displaywatchlist'        => 'ค่าการแสดงผล',
 'prefs-diffs'                   => 'ส่วนต่างการแก้ไข',
 
 # User rights
@@ -1529,6 +1542,7 @@ $1",
 นี่คือปูมการลบของไฟล์เพื่อประกอบการตัดสินใจ:",
 'filename-bad-prefix'         => "ไฟล์ที่คุณกำลังจะอัปโหลดเข้ามานี้มีชื่อที่ขึ้นต้นด้วย '''\"\$1\"''' ซึ่งเป็นชื่อที่ไม่สื่อความหมายใดๆ (โดยปกติแล้วชื่อนี้จะถูกตั้งมาโดยกล้องถ่ายรูปดิจิทัล).  กรุณาตั้งชื่อไฟล์ใหม่ที่สื่อความหมายมากกว่าเดิม",
 'upload-success-subj'         => 'อัปโหลดสำเร็จ',
+'upload-warning-subj'         => 'คำเตือนการอัปโหลด',
 
 'upload-proto-error'        => 'โพรโทคอลไม่ถูกต้อง',
 'upload-proto-error-text'   => 'การอัปโหลดโดยตรงจากเว็บต้องการยูอาร์แอลที่ขึ้นต้นด้วย <code>http://</code> หรือ <code>ftp://</code>',

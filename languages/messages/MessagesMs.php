@@ -574,6 +574,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'gotaccount'                 => "Sudah mempunyai akaun? '''$1'''.",
 'gotaccountlink'             => 'Log masuk',
 'createaccountmail'          => 'melalui e-mel',
+'createaccountreason'        => 'Sebab:',
 'badretype'                  => 'Sila ulangi kata laluan dengan betul.',
 'userexists'                 => 'Nama pengguna yang anda masukkan telah pun digunakan. Sila pilih nama yang lain.',
 'loginerror'                 => 'Ralat log masuk',
@@ -631,6 +632,12 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
+
+# JavaScript password checks
+'password-strength-acceptable' => 'memuaskan',
+'password-strength-good'       => 'baik',
+'password-retype'              => 'Ulangi kata laluan',
+'password-retype-mismatch'     => 'Kata laluan tidak sama',
 
 # Password reset dialog
 'resetpass'                 => 'Tukar kata laluan',
@@ -1003,6 +1010,11 @@ Anda tidak memiliki capaian padanya.',
 'suppressionlogtext' => 'Yang berikut ialah senarai penghapusan dan sekatan yang membabitkan kandungan yang terselindung daripada penyelia.
 Sila lihat juga [[Special:IPBlockList|senarai sekatan IP]] yang sedang berkuatkuasa.',
 
+# Revision move
+'revmove-reasonfield'       => 'Sebab:',
+'revmove-norevisions-title' => 'Tiada semakan sasaran',
+'revmove-nullmove-title'    => 'Tajuk tidak sah',
+
 # History merging
 'mergehistory'                     => 'Gabungkan sejarah laman',
 'mergehistory-header'              => "Anda boleh menggabungkan semua semakan dalam sejarah bagi sesebuah laman sumber ke dalam laman lain.
@@ -1219,6 +1231,8 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'prefs-advancedsearchoptions'   => 'Pilihan maju',
 'prefs-advancedwatchlist'       => 'Pilihan maju',
 'prefs-displayrc'               => 'Papar pilihan',
+'prefs-displaysearchoptions'    => 'Papar pilihan',
+'prefs-displaywatchlist'        => 'Papar pilihan',
 'prefs-diffs'                   => 'Beza',
 
 # User rights
@@ -1497,6 +1511,7 @@ Anda harus mempertimbangkan perlunya memuat naik fail ini.
 Untuk rujukan, yang berikut ialah log penghapusan bagi fail ini:",
 'filename-bad-prefix'         => "Nama bagi fail yang dimuat naik bermula dengan '''\"\$1\"''', yang mana merupakan nama yang tidak deskriptif yang biasanya ditetapkan oleh kamera digital secara automatik. Sila berikan nama yang lebih deskriptif bagi fail tersebut.",
 'upload-success-subj'         => 'Muat naik berjaya',
+'upload-warning-subj'         => 'Amaran muat naik',
 
 'upload-proto-error'      => 'Protokol salah',
 'upload-proto-error-text' => 'Muat naik jauh memerlukan URL yang dimulakan dengan <code>http://</code> atau <code>ftp://</code>.',

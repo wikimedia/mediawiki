@@ -216,7 +216,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Voeg bladsye wat ek verwyder by my dophoulys',
 'tog-previewontop'            => 'Wys voorskou bo wysigingsboks.',
 'tog-previewonfirst'          => 'Wys voorskou met eerste wysiging',
-'tog-nocache'                 => 'Deaktiveer bladsykasstelsel (Engels: caching)',
+'tog-nocache'                 => 'Deaktiveer blaaier se bladsykas',
 'tog-enotifwatchlistpages'    => 'Stuur vir my e-pos met bladsyveranderings',
 'tog-enotifusertalkpages'     => 'Stuur vir my e-pos as my eie besprekingsblad verander word',
 'tog-enotifminoredits'        => 'Stuur ook e-pos vir klein bladsywysigings',
@@ -683,6 +683,7 @@ Wag asseblief alvorens u weer probeer.",
 'suspicious-userlogout'      => "U versoek om af te teken is geïgnoreer omdat dit lyk asof dit deur 'n gebreekte webleser of instaanbediener gestuur is.",
 
 # JavaScript password checks
+'password-strength'            => 'Geskatte wagwoordsterkte: $1',
 'password-strength-bad'        => 'SLEG',
 'password-strength-mediocre'   => 'middelmatig',
 'password-strength-acceptable' => 'aanvaarbaar',

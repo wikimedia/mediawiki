@@ -81,7 +81,9 @@ $messages = array(
 'ipblocklist-submit' => 'ସନ୍ଧାନ',
 
 # Tooltip help for the actions
-'tooltip-p-logo' => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
+'tooltip-p-logo'                 => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
+'tooltip-n-mainpage'             => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
+'tooltip-n-mainpage-description' => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
 
 # Special:NewFiles
 'ilsubmit' => 'ସନ୍ଧାନ',

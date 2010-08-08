@@ -86,6 +86,7 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
+'subcategories'          => 'Subkataguri',
 'listingcontinuesabbrev' => 'samb.',
 
 'article'       => 'Tulisan',
@@ -561,6 +562,7 @@ Parubahan-parubahan salanjutnya pada tungkaran ini dan tungkaran pamandiran tara
 'watchthispage'     => 'Itihi tungkaran ini',
 'unwatch'           => 'walang maitihi',
 'watchlist-details' => '{{PLURAL:$1|$1 tungkaran|$1 tungkaran}} dalam daptar itihan Pian, kada mahitung tungkaran pamandiran.',
+'wlshowlast'        => 'Tampaiakan $1 jam $2 hari pahabisan $3',
 'watchlist-options' => 'Pilihan daptar itihan',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -591,8 +593,8 @@ Muhun mamastiakan amun Pian handak manggawi ini, bahwasa Pian paham akibatnya, w
 'protect_expiry_invalid'      => 'Waktu kadaluwarsa kada sah.',
 'protect_expiry_old'          => 'Waktu kadaluwarsa adalah pada masa bahari.',
 'protect-text'                => "Pian kawa maniring atawa mangganti tingkatan parlindungan gasan tungkaran '''<nowiki>$1</nowiki>''' di sia.",
-'protect-cascadeon'           => 'Tungkaran ini lagi dilindungi {{PLURAL:$1|tungkaran|tungkaran-tungkaran}} barikut nang sudah aktip palindungan barentengnya.
-Pian kawa maubah tingkatan palindungan tungkaran ini, tapi ini kada mangaruhi palindungan barenteng.',
+'protect-cascadeon'           => 'Tungkaran ini rahatan dilindungi lantaran diumpatakan dalam {{PLURAL:$1|tungkaran|tungkaran-tungkaran}} barikut nang sudah aktip palindungan barentengnya.
+Pian kawa maubah tingkatan palindungan gasan tungkaran ini, tagal ini kada pacang mangaruhi palindungan barenteng.',
 'protect-default'             => 'Bulihakan samua pamuruk',
 'protect-fallback'            => 'Mamarluakan hak masuk "$1"',
 'protect-level-autoconfirmed' => 'Blukir pamuruk hanyar wan kada tadaptar',
@@ -723,6 +725,7 @@ Pian kawa maubah tingkatan palindungan tungkaran ini, tapi ini kada mangaruhi pa
 'tooltip-feed-rss'                => 'Kitihan RSS gasan tungkaran ini',
 'tooltip-feed-atom'               => 'Kitihan Atum gasan tungkaran ini',
 'tooltip-t-contributions'         => 'Tampaiakan daptar sumbangan pamuruk ini',
+'tooltip-t-emailuser'             => 'Kirimi surel ka pamuruk ini',
 'tooltip-t-upload'                => 'Buati gambar atawa barakas média',
 'tooltip-t-specialpages'          => 'Daptar samunyaan tungkaran istimiwa',
 'tooltip-t-print'                 => 'Nang kawa dicitaknya tungkaran ini',

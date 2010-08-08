@@ -565,6 +565,7 @@ $1',
 'gotaccount'                 => '已經有戶口？ $1。',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '用電郵',
+'createaccountreason'        => '原因:',
 'badretype'                  => '你入嘅密碼唔一致。',
 'userexists'                 => '你入嘅用戶名已經有人用咗，唔該揀過個名啦。',
 'loginerror'                 => '登入錯誤',
@@ -619,6 +620,12 @@ $1',
 'login-throttled'            => '你已經試咗太多次登入動作。請等多一陣再試過。',
 'loginlanguagelabel'         => '語言：$1',
 'suspicious-userlogout'      => '你去登出嘅要求已經拒絕咗，因為佢可能由壞咗嘅瀏覽器或者快取代理傳送。',
+
+# JavaScript password checks
+'password-strength-acceptable' => '可接受',
+'password-strength-good'       => '好',
+'password-retype'              => '再輸入密碼',
+'password-retype-mismatch'     => '密碼唔對',
 
 # Password reset dialog
 'resetpass'                 => '改密碼',
@@ -1160,6 +1167,7 @@ $1",
 'contextlines'                  => '每一擊顯示嘅行數：',
 'contextchars'                  => '每一行嘅字數：',
 'stub-threshold'                => '<a href="#" class="stub">楔位連結</a>格式門檻 (bytes):',
+'stub-threshold-disabled'       => '閂咗',
 'recentchangesdays'             => '最近更改中嘅顯示日數：',
 'recentchangesdays-max'         => '最多 $1 日',
 'recentchangescount'            => '預設顯示嘅編輯數：',
@@ -1231,6 +1239,8 @@ $1",
 'prefs-advancedsearchoptions'   => '進階選項',
 'prefs-advancedwatchlist'       => '進階選項',
 'prefs-displayrc'               => '顯示選項',
+'prefs-displaysearchoptions'    => '顯示選項',
+'prefs-displaywatchlist'        => '顯示選項',
 'prefs-diffs'                   => '差異',
 
 # User rights
@@ -1547,6 +1557,7 @@ $1",
 'upload-failure-msg'          => '你嘅上載出現咗問題：
 
 $1',
+'upload-warning-subj'         => '上載警告',
 
 'upload-proto-error'        => '唔正確嘅協議',
 'upload-proto-error-text'   => '遙遠上載需要一個以 <code>http://</code> 或者 <code>ftp://</code> 作為開頭嘅URL。',

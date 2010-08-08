@@ -677,7 +677,10 @@ $2',
 'suspicious-userlogout'      => '您登出的要求已经被拒绝，因为它可能是由已损坏的浏览器或者缓存代理传送。',
 
 # JavaScript password checks
-'password-retype' => '再次输入密码',
+'password-strength-acceptable' => '可接受',
+'password-strength-good'       => '好',
+'password-retype'              => '再次输入密码',
+'password-retype-mismatch'     => '密码不匹配',
 
 # Password reset dialog
 'resetpass'                 => '更改密码',

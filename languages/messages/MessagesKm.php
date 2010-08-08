@@ -674,6 +674,7 @@ $2',
 'gotaccount'                 => "បើលោកអ្នកមានគណនីសម្រាប់ប្រើហើយ  សូម'''$1'''។",
 'gotaccountlink'             => 'កត់ឈ្មោះចូល',
 'createaccountmail'          => 'តាមរយៈអ៊ីមែល',
+'createaccountreason'        => 'មូលហេតុ៖',
 'badretype'                  => 'ពាក្យសំងាត់ដែលអ្នកបានបញ្ចូលនោះ គឺមិនស៊ីគ្នាទេ។',
 'userexists'                 => 'ឈ្មោះអ្នកប្រើដែលអ្នកបានវាយបញ្ចូលមានគេប្រើហើយ។
 សូមជ្រើសរើសឈ្មោះផ្សេងពីនេះ។',
@@ -754,6 +755,12 @@ $2',
 
 សូមរងចាំមួយរយៈ មុនពេលសាកល្បងម្ដងទៀត។',
 'loginlanguagelabel'         => 'ភាសា៖ $1',
+
+# JavaScript password checks
+'password-strength-acceptable' => 'អាចទទួលយកបាន',
+'password-strength-good'       => 'ល្អ',
+'password-retype'              => 'វាយពាក្យសំងាត់ម្តងទៀត',
+'password-retype-mismatch'     => 'ពាក់សំងាត់​មិន​ត្រឹមត្រូវ​ទេ',
 
 # Password reset dialog
 'resetpass'                 => '​ប្តូរ​ពាក្យសំងាត់​',
@@ -1137,6 +1144,11 @@ $1",
 
 សូមមើលបំរាមនិងការរាំងខ្ទប់អនុវត្តបច្ចុប្បន្ននៅក្នុង [[Special:IPBlockList|បញ្ជីរាំងខ្ទប់IP]]។',
 
+# Revision move
+'revmove-reasonfield'       => 'មូលហេតុ៖',
+'revmove-norevisions-title' => 'កំណែគោលដៅមិនត្រឹមត្រូវ',
+'revmove-nullmove-title'    => 'ចំណងជើង​មិនល្អ',
+
 # History merging
 'mergehistory'                     => 'ច្របាច់ប្រវត្តិទាំងឡាយរបស់ទំព័របញ្ចូលគ្នា',
 'mergehistory-header'              => 'ទំព័រនេះអាចអោយអ្នកច្របាច់កំណែរបស់ប្រវត្តិទំព័រប្រភពមួយបញ្ចូលគ្នាចូលទៅក្នុងទំព័រថ្មីមួយ។
@@ -1355,6 +1367,8 @@ $1",
 'prefs-advancedsearchoptions'   => 'ជំរើសថ្នាក់ខ្ពស់',
 'prefs-advancedwatchlist'       => 'ជំរើសថ្នាក់ខ្ពស់',
 'prefs-displayrc'               => 'ជំរើសការបង្ហាញ',
+'prefs-displaysearchoptions'    => 'ជំរើសការបង្ហាញ',
+'prefs-displaywatchlist'        => 'ជំរើសការបង្ហាញ',
 'prefs-diffs'                   => 'ភាពខុសគ្នា',
 
 # User rights

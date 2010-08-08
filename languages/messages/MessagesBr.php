@@ -10,6 +10,7 @@
  * @author Als-Holder
  * @author Fohanno
  * @author Fulup
+ * @author Gwendal
  * @author Malafaya
  * @author Y-M D
  * @author לערי ריינהארט
@@ -136,7 +137,7 @@ $messages = array(
 'tog-watchdeletion'           => "Ouzhpennañ da'm roll evezhiañ ar pajennoù diverket ganin",
 'tog-previewontop'            => 'Rakwelet tres ar bajenn a-us ar prenestr skridaozañ',
 'tog-previewonfirst'          => 'Rakwelet tres ar bajenn kerkent hag an aozadenn gentañ',
-'tog-nocache'                 => 'Diweredekaat krubuilh ar pajennoù',
+'tog-nocache'                 => 'Diweredekaat krubuilh ar pajennoù gant ar merdeer',
 'tog-enotifwatchlistpages'    => 'Kas ur postel din pa vez degaset kemmoù war ur bajenn evezhiet ganin',
 'tog-enotifusertalkpages'     => 'Kas ur postel din pa vez degaset kemmoù war ma fajenn gaozeal',
 'tog-enotifminoredits'        => 'Kas ur postel din, ha pa vije evit kemenn kemmoù dister',
@@ -601,9 +602,12 @@ Gortozit a-raok klask en-dro.",
 'suspicious-userlogout'      => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
 
 # JavaScript password checks
-'password-strength-good'   => 'mat',
-'password-retype'          => 'Skrivit ho ker-tremen en-dro amañ',
-'password-retype-mismatch' => 'Ne glot ket ar gerioù-tremen',
+'password-strength-bad'        => 'FALL',
+'password-strength-mediocre'   => 'dister',
+'password-strength-acceptable' => 'Degemeradus',
+'password-strength-good'       => 'mat',
+'password-retype'              => 'Skrivit ho ker-tremen en-dro amañ',
+'password-retype-mismatch'     => 'Ne glot ket ar gerioù-tremen',
 
 # Password reset dialog
 'resetpass'                 => 'Cheñch ar ger-tremen',

@@ -11,6 +11,7 @@
  * @author Airon90
  * @author Andria
  * @author Beta16
+ * @author Blaisorblade
  * @author Broc
  * @author BrokenArrow
  * @author Brownout
@@ -722,7 +723,13 @@ Riprovare più tardi.',
 'suspicious-userlogout'      => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
 
 # JavaScript password checks
-'password-retype' => 'Ripeti la password',
+'password-strength'            => 'Robustezza stimata della password: $1',
+'password-strength-bad'        => 'DEBOLE',
+'password-strength-mediocre'   => 'mediocre',
+'password-strength-acceptable' => 'accettabile',
+'password-strength-good'       => 'buono',
+'password-retype'              => 'Ripeti la password',
+'password-retype-mismatch'     => 'Le password non corrispondono',
 
 # Password reset dialog
 'resetpass'                 => 'Cambia la password',
@@ -1637,7 +1644,7 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- lascia questa riga esattamente com\'è -->',
 'upload-success-subj'         => 'Caricamento completato',
-'upload-success-msg'          => "L'upload da [$ 2] è riuscito. Il file è disponibile qui: [[:{{ns:file)):$1]]",
+'upload-success-msg'          => "L'upload da [$2] è riuscito. Il file è disponibile qui: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => "Problema nell'upload",
 'upload-failure-msg'          => 'Si è verificato un problema con il caricamento:
 
