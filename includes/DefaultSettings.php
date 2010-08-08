@@ -3605,13 +3605,6 @@ $wgSpecialVersionShowHooks =  false;
 $wgShowSQLErrors        = false;
 
 /**
- * If true, some error messages will be colorized when running scripts on the
- * command line; this can aid picking important things out when debugging.
- * Ignored when running on Windows or when output is redirected to a file.
- */
-$wgColorErrors          = true;
-
-/**
  * If set to true, uncaught exceptions will print a complete stack trace
  * to output. This should only be used for debugging, as it may reveal
  * private information in function parameters due to PHP's backtrace
