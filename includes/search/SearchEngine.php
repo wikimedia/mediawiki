@@ -1,9 +1,13 @@
 <?php
 /**
- * @defgroup Search Search
+ * Basic search engine
  *
  * @file
  * @ingroup Search
+ */
+
+/**
+ * @defgroup Search Search
  */
 
 /**
