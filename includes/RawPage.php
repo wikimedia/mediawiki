@@ -23,15 +23,15 @@ class RawPage {
 	var $mSmaxage, $mMaxage;
 	var $mContentType, $mExpandTemplates;
 
-	function __construct( &$article, $request = false ) {
+	function __construct( Article $article, $request = false ) {
 		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType, $wgGroupPermissions;
 
 		$allowedCTypes = array('text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit');
-		$this->mArticle =& $article;
-		$this->mTitle =& $article->mTitle;
+		$this->mArticle = $article;
+		$this->mTitle = $article->mTitle;
 
 		if( $request === false ) {
-			$this->mRequest =& $wgRequest;
+			$this->mRequest = $wgRequest;
 		} else {
 			$this->mRequest = $request;
 		}
