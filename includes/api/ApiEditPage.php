@@ -57,6 +57,37 @@ class ApiEditPage extends ApiBase {
 		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
+		
+		if( $params['redirect'] ) {
+			if( $titleObj->isRedirect() ) {
+				$oldTitle = $titleObj;
+				
+				$titles = Title::newFromRedirectArray( Revision::newFromTitle( $oldTitle )->getText( Revision::FOR_THIS_USER ) );
+				//array_shift( $titles );
+				
+				$this->getResult()->addValue( null, 'foo', $titles );
+				
+				
+				$redirValues = array();
+				foreach ( $titles as $id => $newTitle ) {
+					
+					if( !isset( $titles[ $id - 1 ] ) ) {
+						$titles[ $id - 1 ] = $oldTitle;
+					}
+					
+					$redirValues[] = array(
+						'from' => $titles[ $id - 1 ]->getPrefixedText(),
+						'to' => $newTitle->getPrefixedText()
+					);
+					
+					$titleObj = $newTitle;
+				}
+		
+				$this->getResult()->setIndexedTagName( $redirValues, 'r' );
+				$this->getResult()->addValue( null, 'redirects', $redirValues );
+
+			}
+		}
 
 		// Some functions depend on $wgTitle == $ep->mTitle
 		global $wgTitle;
@@ -428,6 +459,10 @@ class ApiEditPage extends ApiBase {
 			'undoafter' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
+			'redirect' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+			),
 		);
 	}
 
@@ -462,6 +497,7 @@ class ApiEditPage extends ApiBase {
 			'appendtext' => "Add this text to the end of the page. Overrides {$p}text",
 			'undo' => "Undo this revision. Overrides {$p}text, {$p}prependtext and {$p}appendtext",
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
+			'redirect' => 'Automatically resolve redirects',
 		);
 	}
 
