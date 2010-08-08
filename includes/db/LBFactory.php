@@ -1,5 +1,7 @@
 <?php
 /**
+ * Database load balancing
+ *
  * @file
  * @ingroup Database
  */
