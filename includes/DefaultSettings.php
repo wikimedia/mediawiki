@@ -1944,15 +1944,6 @@ $wgVariantArticlePath = false;
 $wgLoginLanguageSelector = false;
 
 /**
- * Whether to use zhdaemon to perform Chinese text processing
- * zhdaemon is under developement, so normally you don't want to
- * use it unless for testing.
- */
-$wgUseZhdaemon = false;
-$wgZhdaemonHost="localhost";
-$wgZhdaemonPort=2004;
-
-/**
  * When translating messages with wfMsg(), it is not always clear what should
  * be considered UI messages and what should be content messages.
  *
