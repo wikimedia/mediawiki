@@ -490,29 +490,53 @@ CREATE TABLE /*_*/categorylinks (
   -- all such pages are in namespace 14 (NS_CATEGORY).
   cl_to varchar(255) binary NOT NULL default '',
   
-  -- The title of the linking page, or an optional override
-  -- to determine sort order. Sorting is by binary order, which
-  -- isn't always ideal, but collations seem to be an exciting
-  -- and dangerous new world in MySQL... The sortkey is updated
-  -- if no override exists and cl_from is renamed.
+  -- A binary string obtained by applying a sortkey generation algorithm
+  -- (Language::convertToSortkey()) to page_title, or cl_sortkey_prefix . "\0"
+  -- . page_title if cl_sortkey_prefix is nonempty.
   --
-  -- Truncate so that the cl_sortkey key fits in 1000 bytes 
-  -- (MyISAM 5 with server_character_set=utf8)
+  -- Truncate so that the cl_sortkey key fits in 1000 bytes (MyISAM 5 with
+  -- server_character_set=utf8).  FIXME: this truncation probably makes no
+  -- sense anymore; we should be using varbinary for this, utf8 will break
+  -- everything.
   cl_sortkey varchar(70) binary NOT NULL default '',
+
+  -- A prefix for the raw sortkey manually specified by the user, either via
+  -- [[Category:Foo|prefix]] or {{defaultsort:prefix}}.  If nonempty, it's
+  -- concatenated with a null followed by the page title before the sortkey
+  -- conversion algorithm is run.  We store this so that we can update
+  -- collations without reparsing all pages.
+  cl_sortkey_prefix varchar(255) binary NOT NULL default '',
   
   -- This isn't really used at present. Provided for an optional
   -- sorting method by approximate addition time.
-  cl_timestamp timestamp NOT NULL
+  cl_timestamp timestamp NOT NULL,
+
+  -- Stores $wgCollationVersion at the time cl_sortkey was generated.  This can
+  -- be used to install new collation versions, tracking which rows are not yet
+  -- updated.  0 means no collation, this is a legacy row that needs to be
+  -- updated by updateCollation.php.  In the future, it might be possible to
+  -- specify different collations per category.
+  cl_collation tinyint NOT NULL default 0,
+
+  -- Stores whether cl_from is a category, file, or other page, so we can
+  -- paginate the three categories separately.  This never has to be updated
+  -- after the page is created, since none of these page types can be moved to
+  -- any other.
+  cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page'
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
 
--- We always sort within a given category...
-CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_sortkey,cl_from);
+-- We always sort within a given category, and within a given type.  FIXME:
+-- Formerly this index didn't cover cl_type (since that didn't exist), so old
+-- callers won't be using an index: fix this?
+CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_sortkey,cl_from);
 
 -- Not really used?
 CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);
 
+-- For finding rows with outdated collation
+CREATE INDEX /*i*/cl_collation ON /*_*/categorylinks (cl_collation);
 
 -- 
 -- Track all existing categories.  Something is a category if 1) it has an en-
