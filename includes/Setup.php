@@ -329,7 +329,7 @@ $wgOut = new StubObject( 'wgOut', 'OutputPage' );
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
 $wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
-	array( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, wfWikiID() ) );
+	array( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry ) );
 
 wfProfileOut( $fname.'-globals' );
 wfProfileIn( $fname.'-User' );
