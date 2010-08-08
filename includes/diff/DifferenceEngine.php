@@ -1,13 +1,14 @@
 <?php
 /**
+ * A PHP diff engine for phpwiki. (Taken from phpwiki-1.3.3)
+ *
+ * Copyright © 2000, 2001 Geoffrey T. Dairiki <dairiki@dairiki.org>
+ * You may copy this code freely under the conditions of the GPL.
+ *
+ * @file
+ * @ingroup DifferenceEngine
  * @defgroup DifferenceEngine DifferenceEngine
  */
-
-// A PHP diff engine for phpwiki. (Taken from phpwiki-1.3.3)
-//
-// Copyright (C) 2000, 2001 Geoffrey T. Dairiki <dairiki@dairiki.org>
-// You may copy this code freely under the conditions of the GPL.
-//
 
 /**
  * @todo document

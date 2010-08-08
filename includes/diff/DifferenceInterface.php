@@ -1,6 +1,9 @@
 <?php
 /**
- * @defgroup DifferenceEngine DifferenceEngine
+ * User interface for the difference engine
+ *
+ * @file
+ * @ingroup DifferenceEngine
  */
  
 /**
