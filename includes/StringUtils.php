@@ -115,7 +115,7 @@ class StringUtils {
 		return $output;
 	}
 
-	/*
+	/**
 	 * Perform an operation equivalent to
 	 *
 	 *   preg_replace( "!$startDelim(.*)$endDelim!$flags", $replace, $subject )
