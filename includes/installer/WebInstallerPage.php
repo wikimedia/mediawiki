@@ -832,14 +832,13 @@ class WebInstaller_Install extends WebInstallerPage {
 	}
 
 	public function endStage( $step, $status ) {
-		$success = $status->isGood();
-		$msg = $success ? 'config-install-step-done' : 'config-install-step-failed';
+		$msg = $status->isOk() ? 'config-install-step-done' : 'config-install-step-failed';
 		$html = wfMsgHtml( 'word-separator' ) . wfMsgHtml( $msg );
-		if ( !$success ) {
+		if ( !$status->isOk() ) {
 			$html = "<span class=\"error\">$html</span>";
 		}
 		$this->addHTML( $html . "</li>\n" );
-		if( !$success ) {
+		if( !$status->isGood() ) {
 			$this->parent->showStatusBox( $status );
 		}
 	}
