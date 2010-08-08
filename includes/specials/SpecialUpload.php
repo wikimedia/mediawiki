@@ -1056,6 +1056,7 @@ class UploadForm extends HTMLForm {
 				$this->mDestFile === '',
 			'wgUploadSourceIds' => $this->mSourceIds,
 			'wgStrictFileExtensions' => $wgStrictFileExtensions,
+			'wgCapitalizeUploads' => MWNamespace::isCapitalized( NS_FILE ),
 		);
 
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );

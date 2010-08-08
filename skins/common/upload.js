@@ -271,9 +271,12 @@ function fillDestFilename(id) {
 		}
 	}
 
-	// Capitalise first letter and replace spaces by underscores
-	// FIXME: $wgCapitalizedNamespaces
-	fname = fname.charAt(0).toUpperCase().concat(fname.substring(1,10000)).replace(/ /g, '_');
+	// Replace spaces by underscores
+	fname = fname.replace( / /g, '_' );
+	// Capitalise first letter if needed
+	if ( wgCapitalizeUploads ) {
+		fname = fname.charAt( 0 ).toUpperCase().concat( fname.substring( 1, 10000 ) );
+	}
 
 	// Output result
 	var destFile = document.getElementById('wpDestFile');

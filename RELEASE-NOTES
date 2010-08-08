@@ -280,6 +280,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to avoid query errors about duplicate keynames.
 * (bug 24700) Update dialog shown when clicking on the special page tab after
   saving preferences
+* (bug 15470) First letters of filenames are always capitalized by upload JS.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
