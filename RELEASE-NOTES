@@ -53,6 +53,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed unused globals: $wgEnableSerializedMessages, $wgCheckSerialized,
   $wgUseMemCached, $wgDisableSearchContext, $wgColorErrors,
   $wgUseZhdaemon, $wgZhdaemonHost and $wgZhdaemonPort.
+* (bug 24408) The include_path is not modified in the default LocalSettings.php
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
