@@ -72,7 +72,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		
 
 		foreach ( $this->everything as $pageid => $title ) {
-			$pageInfo = $this->extractPageInfo( $pageid, $title );
+			$pageInfo = $this->extractPageInfo( $pageid, $title, $prop );
 			$fit = $result->addValue( array(
 				'query',
 				'pages'
@@ -92,7 +92,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	 * @param $title Title object
 	 * @return array
 	 */
-	private function extractPageInfo( $pageid, $title ) {
+	private function extractPageInfo( $pageid, $title, $prop ) {
 		global $wgPageProps;
 		
 		$pageInfo = array();
@@ -121,7 +121,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		return $pageInfo;
 	}
 
-	public function getCacheMode( $params ) {
+	public function getCacheMode() {
 		return 'public';
 	}
 
@@ -148,6 +148,9 @@ class ApiQueryPageProps extends ApiQueryBase {
 			'continue' => 'When more results are available, use this to continue',
 		);
 		
+		//This mess of code first gets the length of the biggest propname, and adds two onto it to make 
+		//the number of characters should be used before the dash. If the biggest propname is shorter than 12 characters, 
+		//the number of characters before the dash become 14. 
 		$maxLen = max( array_map( 'strlen', array_keys( $wgPageProps ) ) );
 		$matchLen = $maxLen + 2;
 		if( $maxLen < 12 ) {
