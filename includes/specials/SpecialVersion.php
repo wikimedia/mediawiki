@@ -394,13 +394,15 @@ class SpecialVersion extends SpecialPage {
 		if( !$this->firstExtOpened ) {
 			// Insert a spacing line
 			$out .= '<tr class="sv-space">' . Html::element( 'td', $opt ) . "</tr>\n";
+			$this->firstExtOpened = true;
 		}
-		$this->firstExtOpened = false;
 
-		if( $name )
+		if( $name ) {
 			$opt['id'] = "sv-$name";
+		}
 
 		$out .= "<tr>" . Xml::element( 'th', $opt, $text ) . "</tr>\n";
+		
 		return $out;
 	}
 
