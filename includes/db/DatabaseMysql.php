@@ -256,7 +256,6 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $res === false )
 			return false;
 		if ( !$this->numRows( $res ) ) {
-			$this->freeResult($res);
 			return 0;
 		}
 
@@ -264,8 +263,6 @@ class DatabaseMysql extends DatabaseBase {
 		while( $plan = $this->fetchObject( $res ) ) {
 			$rows *= $plan->rows > 0 ? $plan->rows : 1; // avoid resetting to zero
 		}
-
-		$this->freeResult($res);
 		return $rows;
 	}
 
@@ -382,7 +379,6 @@ class DatabaseMysql extends DatabaseBase {
 		$lockName = $this->addQuotes( $lockName );
 		$result = $this->query( "SELECT GET_LOCK($lockName, $timeout) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
-		$this->freeResult( $result );
 
 		if( $row->lockstatus == 1 ) {
 			return true;

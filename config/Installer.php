@@ -1256,7 +1256,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						break;
 					}
 				}
-				$wgDatabase->freeResult( $res );
 				if ( !$found && $conf->DBengine != 'MyISAM' ) {
 					echo "<li><strong>Warning:</strong> " . htmlspecialchars( $conf->DBengine ) .
 						" storage engine not available, " .

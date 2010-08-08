@@ -264,12 +264,8 @@ class QueryPage {
 			if ( count( $vals ) ) {
 				if ( !$dbw->insert( 'querycache', $vals, __METHOD__ ) ) {
 					// Set result to false to indicate error
-					$dbr->freeResult( $res );
 					$res = false;
 				}
-			}
-			if ( $res ) {
-				$dbr->freeResult( $res );
 			}
 			if ( $ignoreErrors ) {
 				$dbw->ignoreErrors( $ignoreW );
@@ -492,7 +488,6 @@ class QueryPage {
 				$item = $this->feedResult( $obj );
 				if( $item ) $feed->outItem( $item );
 			}
-			$dbr->freeResult( $res );
 
 			$feed->outFooter();
 			return true;

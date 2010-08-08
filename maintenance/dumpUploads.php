@@ -82,7 +82,6 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 		foreach ( $result as $row ) {
 			$this->outputItem( $row->il_to, $shared );
 		}
-		$dbr->freeResult( $result );
 	}
 
 	/**
@@ -100,7 +99,6 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 		foreach ( $result as $row ) {
 			$this->outputItem( $row->img_name, $shared );
 		}
-		$dbr->freeResult( $result );
 	}
 	
 	function outputItem( $name, $shared ) {

@@ -336,7 +336,6 @@ class FiveUpgrade {
 			$this->addChunk( $add );
 		}
 		$this->lastChunk( $add );
-		$this->dbr->freeResult( $result );
 
 		$this->log( "Done converting $name." );
 		$this->cleanupSwaps[] = $name;
@@ -444,7 +443,6 @@ class FiveUpgrade {
 			$this->addChunk( $add, $row->cur_id );
 		}
 		$this->lastChunk( $add );
-		$this->dbr->freeResult( $result );
 
 		/**
 		 * Copy revision metadata from old into revision.
@@ -477,7 +475,6 @@ class FiveUpgrade {
 			$this->addChunk( $add );
 		}
 		$this->lastChunk( $add );
-		$this->dbr->freeResult( $result );
 
 
 		/**
@@ -510,7 +507,6 @@ class FiveUpgrade {
 			$this->addChunk( $add );
 		}
 		$this->lastChunk( $add );
-		$this->dbr->freeResult( $result );
 
 		$this->log( "...done with cur/old -> page/revision." );
 	}
@@ -902,7 +898,6 @@ END;
 			$this->addChunk( $add );
 		}
 		$this->lastChunk( $add );
-		$this->dbr->freeResult( $result );
 
 		$this->log( 'Done converting watchlist.' );
 		$this->cleanupSwaps[] = 'watchlist';

@@ -327,7 +327,6 @@ function check_bin( $table, $field, $patchFile ) {
 	$tableName = $wgDatabase->tableName( $table );
 	$res = $wgDatabase->query( "SELECT $field FROM $tableName LIMIT 0" );
 	$flags = explode( ' ', mysql_field_flags( $res->result, 0 ) );
-	$wgDatabase->freeResult( $res );
 
 	if ( in_array( 'binary', $flags ) ) {
 		wfOut( "...$table table has correct $field encoding.\n" );
@@ -550,7 +549,6 @@ function do_namespace_size_on( $table, $prefix ) {
 	$tablename = $wgDatabase->tableName( $table );
 	$result = $wgDatabase->query( "SHOW COLUMNS FROM $tablename LIKE '$field'" );
 	$info = $wgDatabase->fetchObject( $result );
-	$wgDatabase->freeResult( $result );
 
 	if ( substr( $info->Type, 0, 3 ) == 'int' ) {
 		wfOut( "...$field is already a full int ($info->Type).\n" );
@@ -698,7 +696,6 @@ function do_user_groups_update() {
 				$fname );
 		}
 	}
-	$wgDatabase->freeResult( $result );
 	wfOut( "ok\n" );
 }
 
@@ -793,7 +790,6 @@ function do_templatelinks_update() {
 			);
 
 		}
-		$wgDatabase->freeResult( $res );
 	} else {
 		// Fast update
 		$wgDatabase->insertSelect( 'templatelinks', 'pagelinks',
@@ -1241,14 +1237,12 @@ END;
 		return null;
 	}
 	if ( !( $r = $wgDatabase->fetchRow( $res ) ) ) {
-		$wgDatabase->freeResult( $res );
 		return null;
 	}
 
 	$indkey = $r[0];
 	$relid = intval( $r[1] );
 	$indkeys = explode( " ", $indkey );
-	$wgDatabase->freeResult( $res );
 
 	$colnames = array();
 	foreach ( $indkeys as $rid ) {
@@ -1263,11 +1257,9 @@ END;
 			return null;
 		}
 		if ( !( $row2 = $wgDatabase->fetchRow( $r2 ) ) ) {
-			$wgDatabase->freeResult( $r2 );
 			return null;
 		}
 		$colnames[] = $row2[0];
-		$wgDatabase->freeResult( $r2 );
 	}
 
 	return $colnames;
@@ -1316,7 +1308,6 @@ END;
 		return null;
 	}
 	$d = $row[0];
-	$wgDatabase->freeResult( $r );
 	return $d;
 }
 

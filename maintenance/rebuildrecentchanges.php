@@ -129,7 +129,6 @@ class RebuildRecentchanges extends Maintenance {
 					$lastSize = 'NULL';
 					$new = 1; // probably true
 				}
-				$dbw->freeResult( $res2 );
 			}
 			if ( $lastCurId == 0 ) {
 				$this->output( "Uhhh, something wrong? No curid\n" );
@@ -147,7 +146,6 @@ class RebuildRecentchanges extends Maintenance {
 				$lastSize = $size;
 			}
 		}
-		$dbw->freeResult( $res );
 	}
 
 	/**
@@ -272,8 +270,6 @@ class RebuildRecentchanges extends Maintenance {
 				$dbw->query( $sql2 );
 			}
 		}
-	
-		$dbw->freeResult( $res );
 	}
 
 	/**

@@ -142,7 +142,6 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach ( $result as $row ) {
 			$prefixes[] = $row->iw_prefix;
 		}
-		$this->db->freeResult( $result );
 		return $prefixes;
 	}
 
@@ -214,8 +213,6 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach ( $result as $row ) {
 			$set[] = $row;
 		}
-		$this->db->freeResult( $result );
-
 		return $set;
 	}
 

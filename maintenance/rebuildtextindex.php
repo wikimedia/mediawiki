@@ -87,7 +87,6 @@ class RebuildTextIndex extends Maintenance {
 				$u = new SearchUpdate( $s->page_id, $s->page_title, $revtext );
 				$u->doUpdate();
 			}
-			$this->db->freeResult( $res );
 			$n += self::RTI_CHUNK_SIZE;
 		}
 	}

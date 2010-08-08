@@ -184,7 +184,6 @@ class Orphans extends Maintenance {
 				WHERE rev_page=$row->page_id
 			" );
 			$row2 = $dbw->fetchObject( $result2 );
-			$dbw->freeResult( $result2 );
 			if ( $row2 ) {
 				if ( $row->rev_timestamp != $row2->max_timestamp ) {
 					if ( $found == 0 ) {

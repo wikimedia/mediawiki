@@ -92,7 +92,6 @@ class UpdateArticleCount extends Maintenance {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->query( $this->makeSql( $dbr ), __METHOD__ );
 		$row = $dbr->fetchObject( $res );
-		$dbr->freeResult( $res );
 		return $row ? $row->pagecount : false;
 	}
 }

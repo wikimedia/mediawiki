@@ -193,8 +193,6 @@ class UserDupes {
 		while ( $row = $this->db->fetchObject( $result ) ) {
 			$list[] = $row->user_name;
 		}
-		$this->db->freeResult( $result );
-
 		return $list;
 	}
 
@@ -246,7 +244,6 @@ class UserDupes {
 			}
 			wfOut( "\n" );
 		}
-		$this->db->freeResult( $result );
 	}
 
 	/**

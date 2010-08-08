@@ -100,7 +100,6 @@ function wfSpecialFileDuplicateSearch( $par = null ) {
 		if( $row !== false ) {
 			$hash = $row[0];
 		}
-		$dbr->freeResult( $res );
 	}
 
 	# Create the input form

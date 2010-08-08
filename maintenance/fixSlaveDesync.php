@@ -66,7 +66,6 @@ class FixSlaveDesync extends Maintenance {
 			}
 		}
 		$this->output( "\n" );
-		$dbw->freeResult( $res );
 
 		global $slaveIndexes;
 		foreach ( $slaveIndexes as $i ) {
@@ -78,7 +77,6 @@ class FixSlaveDesync extends Maintenance {
 					$this->output( $row->page_id . "\t" );
 				}
 			}
-			$db->freeResult( $res );
 		}
 		$this->output( "\n" );
 		return $desync;
@@ -128,14 +126,12 @@ class FixSlaveDesync extends Maintenance {
 		foreach ( $res as $row ) {
 			$masterIDs[] = $row->rev_id;
 		}
-		$dbw->freeResult( $res );
 
 		$res = $db->select( 'revision', array( 'rev_id' ), array( 'rev_page' => $pageID ), __METHOD__ );
 		$slaveIDs = array();
 		foreach ( $res as $row ) {
 			$slaveIDs[] = $row->rev_id;
 		}
-		$db->freeResult( $res );
 		if ( count( $masterIDs ) < count( $slaveIDs ) ) {
 			$missingIDs = array_diff( $slaveIDs, $masterIDs );
 			if ( count( $missingIDs ) ) {

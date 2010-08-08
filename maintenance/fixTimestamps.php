@@ -89,7 +89,6 @@ class FixTimestamps extends Maintenance {
 				$badRevs[] = $row->rev_id;
 			}
 		}
-		$dbw->freeResult( $res );
 	
 		$numBadRevs = count( $badRevs );
 		if ( $numBadRevs > $numGoodRevs ) {

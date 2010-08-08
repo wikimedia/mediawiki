@@ -893,7 +893,6 @@ abstract class File {
 				}
 			}
 		}
-		$db->freeResult( $res );
 		wfProfileOut( __METHOD__ );
 		return $retVal;
 	}

@@ -2788,8 +2788,6 @@ class Article {
 			$onlyAuthor = false;
 		}
 
-		$dbw->freeResult( $res );
-
 		// Generate the summary with a '$1' placeholder
 		if ( $blank ) {
 			// The current revision is blank and the one before is also
@@ -4311,8 +4309,6 @@ class Article {
 			}
 		}
 
-		$dbr->freeResult( $res );
-
 		return $result;
 	}
 
@@ -4342,8 +4338,6 @@ class Article {
 				$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
 			}
 		}
-
-		$dbr->freeResult( $res );
 
 		return $result;
 	}

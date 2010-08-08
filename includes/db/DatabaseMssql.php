@@ -327,7 +327,6 @@ class DatabaseMssql extends DatabaseBase {
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
 			if ( isset( $row['EstimateRows'] ) ) $rows = $row['EstimateRows'];
-			$this->freeResult( $res );
 		}
 		return $rows;
 	}
@@ -666,7 +665,6 @@ class DatabaseMssql extends DatabaseBase {
 		$row = $this->fetchRow( $res );
 		$size = -1;
 		if ( strtolower( $row['DATA_TYPE'] ) != 'text' ) $size = $row['CHARACTER_MAXIMUM_LENGTH'];
-		$this->freeResult( $res );
 		return $size;
 	}
 

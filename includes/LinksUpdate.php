@@ -640,7 +640,6 @@ class LinksUpdate {
 			}
 			$arr[$row->pl_namespace][$row->pl_title] = 1;
 		}
-		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -658,7 +657,6 @@ class LinksUpdate {
 			}
 			$arr[$row->tl_namespace][$row->tl_title] = 1;
 		}
-		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -673,7 +671,6 @@ class LinksUpdate {
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
 			$arr[$row->il_to] = 1;
 		}
-		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -688,7 +685,6 @@ class LinksUpdate {
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
 			$arr[$row->el_to] = 1;
 		}
-		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -703,7 +699,6 @@ class LinksUpdate {
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
 			$arr[$row->cl_to] = $row->cl_sortkey;
 		}
-		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -736,7 +731,6 @@ class LinksUpdate {
 			}
 			$arr[$row->iwl_prefix][$row->iwl_title] = 1;
 		}
-		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 
@@ -751,7 +745,6 @@ class LinksUpdate {
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
 			$arr[$row->pp_propname] = $row->pp_value;
 		}
-		$this->mDb->freeResult( $res );
 		return $arr;
 	}
 

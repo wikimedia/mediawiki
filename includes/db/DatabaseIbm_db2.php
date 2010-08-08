@@ -1005,7 +1005,6 @@ EOF;
 		$res = $this->query( "VALUES NEXTVAL FOR $safeseq" );
 		$row = $this->fetchRow( $res );
 		$this->mInsertId = $row[0];
-		$this->freeResult( $res );
 		return $this->mInsertId;
 		*/
 		return null;
@@ -1604,7 +1603,6 @@ SQL;
 		$res = $this->query($sql);
 		$row = $this->fetchObject($res);
 		$size = $row->size;
-		$this->freeResult( $res );
 		return $size;
 	}
 	

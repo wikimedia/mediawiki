@@ -67,8 +67,6 @@ class DisambiguationsPage extends PageQueryPage {
 				while ( $row = $dbr->fetchObject( $res ) ) {
 					$linkBatch->addObj( Title::makeTitle( NS_TEMPLATE, $row->pl_title ));
 				}
-
-				$dbr->freeResult( $res );
 		}
 
 		$set = $linkBatch->constructSet( 'lb.tl', $dbr );
