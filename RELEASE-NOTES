@@ -336,7 +336,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   allpages, and allusers
 * (bug 24236) Add add, remove, add-self, remove-self tags to meta=siteinfo&siprop=usergroups
 * (bug 24484) Add prop=pageprops module 
-* (bug 24330) Add &redirect parameter to ?action=edit  
+* (bug 24330) Add &redirect parameter to ?action=edit 
+* (bug 24722) For list=allusers&auprop=blockinfo, only show blockedby and blockreason if 
+  the user is actually blocked.
 
 === Languages updated in 1.17 ===
 
