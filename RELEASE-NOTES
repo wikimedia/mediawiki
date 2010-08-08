@@ -50,6 +50,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   navigation link with $wgUploadMissingFileUrl.
 * $wgCategoryPrefixedDefaultSortkey was removed and is now always false.  This
   provides more sensible sorting behavior for categories.
+* Removed unused globals: $wgEnableSerializedMessages, $wgCheckSerialized,
+  $wgUseMemCached, $wgDisableSearchContext, $wgColorErrors,
+  $wgUseZhdaemon, $wgZhdaemonHost and $wgZhdaemonPort.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
