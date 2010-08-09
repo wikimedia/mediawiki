@@ -2413,6 +2413,10 @@ class Title {
 	 * This clears some fields in this object, and clears any associated
 	 * keys in the "bad links" section of the link cache.
 	 *
+	 * - This is called from Article::insertNewArticle() to allow
+	 * loading of the new page_id. It's also called from
+	 * Article::doDeleteArticle()
+	 *
 	 * @param $newid \type{\int} the new Article ID
 	 */
 	public function resetArticleID( $newid ) {

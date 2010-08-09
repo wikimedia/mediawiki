@@ -660,7 +660,7 @@ pages
 $editPage: EditPage	object
 
 'EditPage::attemptSave': called before an article is
-saved, that is before Article::doEdit() is called
+saved, that is before insertNewArticle() is called
 $editpage_Obj: the current EditPage object
 
 'EditPage::importFormData': allow extensions to read additional data
