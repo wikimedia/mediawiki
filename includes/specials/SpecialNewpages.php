@@ -298,8 +298,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->skin->userToolLinks( $result->rc_user, $result->rc_user_text );
 		$comment = $this->skin->commentBlock( $result->rc_comment );
 		
-		if ( $this->patrollable( $result ) )
+		if ( $this->patrollable( $result ) ) {
 			$classes[] = 'not-patrolled';
+		}
+
+		# Add a class for zero byte pages
+		if ( $result->length == 0 ) {
+			$classes[] = 'mw-newpages-zero-byte-page';
+		}
 
 		# Tags, if any. check for including due to bug 23293
 		if ( !$this->including() ) {
