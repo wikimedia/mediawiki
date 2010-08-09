@@ -280,7 +280,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$title,
 			null,
 			array( 'class' => 'mw-newpages-pagename' ),
-			$query
+			$query,
+			array( 'known' ) // Set explicitly to avoid the default of 'known','noclasses'. This breaks the colouration for stubs
 		);
 		$histLink = $this->skin->linkKnown(
 			$title,
