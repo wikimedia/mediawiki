@@ -142,6 +142,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The HTML ID's generated for sections are now much prettier when they contain
   punctuation or non-English letters, so a section named "Hello?" will now
   result in a URL ending in "#Hello?" rather than "#Hello.3F".
+* (bug 8140) Add dedicated CSS classes to Special:Newpages elements
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

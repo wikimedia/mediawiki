@@ -267,7 +267,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$dm = $wgContLang->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
-		$time = htmlspecialchars( $wgLang->timeAndDate( $result->rc_timestamp, true ) );
+		$time = Html::rawElement( 'span', array( 'class' => 'mw-newpages-time' ),
+			htmlspecialchars( $wgLang->timeAndDate( $result->rc_timestamp, true ) )
+		);
 
 		$query = array( 'redirect' => 'no' );
 
@@ -277,17 +279,21 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$plink = $this->skin->linkKnown(
 			$title,
 			null,
-			array(),
+			array( 'class' => 'mw-newpages-pagename' ),
 			$query
 		);
-		$hist = $this->skin->linkKnown(
+		$histLink = $this->skin->linkKnown(
 			$title,
 			wfMsgHtml( 'hist' ),
 			array(),
 			array( 'action' => 'history' )
 		);
-		$length = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $result->length ) );
+		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ), wfMsg( 'parentheses', $histLink ) );
+
+		$length = Html::rawElement( 'span', array( 'class' => 'mw-newpages-length' ),
+				'[' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ), $wgLang->formatNum( $result->length ) ) .
+				']'
+		);
 		$ulink = $this->skin->userLink( $result->rc_user, $result->rc_user_text ) . ' ' .
 			$this->skin->userToolLinks( $result->rc_user, $result->rc_user_text );
 		$comment = $this->skin->commentBlock( $result->rc_comment );
@@ -305,7 +311,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$css = count($classes) ? ' class="'.implode( " ", $classes).'"' : '';
 
-		return "<li{$css}>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment} {$tagDisplay}</li>\n";
+		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay}</li>\n";
 	}
 
 	/**
