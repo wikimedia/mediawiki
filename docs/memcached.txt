@@ -153,16 +153,20 @@ Newtalk:
 Parser Cache:
 	stored in: $parserMemc
 	controlled by: $wgEnableParserCache
-	key: $wgDBname:pcache:idhash:$pageid-$renderkey!$hash$edit
+	key: $wgDBname:pcache:idhash:$pageid-$renderkey!$hash
 		$pageid: id of the page
 		$renderkey: 1 if action=render, 0 otherwise
-		$hash: hash of user options, see User::getPageRenderingHash()
-		$edit: '!edit=0' if the user can't edit the page, '' otherwise
+		$hash: hash of user options applied to the page, see ParserOptions::optionsHash()
 	ex: wikidb:pcache:idhash:1-0!1!0!!en!2
 	stores: ParserOutput object
-	modified by: Article::editUpdates()
-	expriy: $wgParserCacheExpireTime or one hour if it contains specific magic
-		words
+	modified by: Article::editUpdates() or Article::getOutputFromWikitext()
+	expiry: $wgParserCacheExpireTime or less if it contains short lived functions
+
+	key: $wgDBname:pcache:idoptions:$pageid
+	stores: CacheTime object with an additional list of used options for the hash,
+    serves as ParserCache pointer.
+	modified by: ParserCache::save()
+	expiry: The same as the ParserCache entry it points to.
 
 Ping limiter:
 	controlled by: $wgRateLimits
