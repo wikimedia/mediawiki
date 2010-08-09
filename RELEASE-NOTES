@@ -341,6 +341,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24330) Add &redirect parameter to ?action=edit 
 * (bug 24722) For list=allusers&auprop=blockinfo, only show blockedby and blockreason if 
   the user is actually blocked.
+* Add format=dump and format=dumpfm, outputs results in PHP's var_dump() format. 
 
 === Languages updated in 1.17 ===
 

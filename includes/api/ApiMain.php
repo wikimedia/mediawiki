@@ -100,7 +100,9 @@ class ApiMain extends ApiBase {
 		'txt' => 'ApiFormatTxt',
 		'txtfm' => 'ApiFormatTxt',
 		'dbg' => 'ApiFormatDbg',
-		'dbgfm' => 'ApiFormatDbg'
+		'dbgfm' => 'ApiFormatDbg',
+		'dump' => 'ApiFormatDump',
+		'dumpfm' => 'ApiFormatDump',
 	);
 
 	/**

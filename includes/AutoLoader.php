@@ -260,6 +260,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',
 	'ApiFormatBase' => 'includes/api/ApiFormatBase.php',
 	'ApiFormatDbg' => 'includes/api/ApiFormatDbg.php',
+	'ApiFormatDump' => 'includes/api/ApiFormatDump.php',
 	'ApiFormatFeedWrapper' => 'includes/api/ApiFormatBase.php',
 	'ApiFormatJson' => 'includes/api/ApiFormatJson.php',
 	'ApiFormatPhp' => 'includes/api/ApiFormatPhp.php',
