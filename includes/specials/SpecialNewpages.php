@@ -267,8 +267,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$dm = $wgContLang->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
-		$time = Html::rawElement( 'span', array( 'class' => 'mw-newpages-time' ),
-			htmlspecialchars( $wgLang->timeAndDate( $result->rc_timestamp, true ) )
+		$time = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
+			$wgLang->timeAndDate( $result->rc_timestamp, true )
 		);
 
 		$query = array( 'redirect' => 'no' );
