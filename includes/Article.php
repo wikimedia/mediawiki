@@ -996,6 +996,8 @@ class Article {
 				case 4:
 					# Run the parse, protected by a pool counter
 					wfDebug( __METHOD__ . ": doing uncached parse\n" );
+
+					$this->checkTouched();
 					$key = $parserCache->getKey( $this, $parserOptions );
 					$poolCounter = PoolCounter::factory( 'Article::view', $key );
 					$dirtyCallback = $useParserCache ? array( $this, 'tryDirtyCache' ) : false;
@@ -1493,10 +1495,9 @@ class Article {
 	 * @return boolean
 	 */
 	public function tryDirtyCache() {
-
 		global $wgOut;
 		$parserCache = ParserCache::singleton();
-		$options = $this->getParserOptions();
+		$options = clone $this->getParserOptions();
 		
 		if ( $wgOut->isPrintable() ) {
 			$options->setIsPrintable( true );
@@ -3609,8 +3610,8 @@ class Article {
 		$edit->revid = $revid;
 		$edit->newText = $text;
 		$edit->pst = $this->preSaveTransform( $text );
-		$options = $this->getParserOptions();
-		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $options, true, true, $revid );
+		$edit->popts = clone $this->getParserOptions();
+		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getContent();
 
 		$this->mPreparedEdit = $edit;
@@ -3649,9 +3650,8 @@ class Article {
 
 		# Save it to the parser cache
 		if ( $wgEnableParserCache ) {
-			$popts = $this->getParserOptions();
 			$parserCache = ParserCache::singleton();
-			$parserCache->save( $editInfo->output, $this, $popts );
+			$parserCache->save( $editInfo->output, $this, $editInfo->popts );
 		}
 
 		# Update the links tables
@@ -4418,7 +4418,7 @@ class Article {
 		global $wgParser, $wgEnableParserCache, $wgUseFileCache;
 
 		if ( !$parserOptions ) {
-			$parserOptions = $this->getParserOptions();
+			$parserOptions = clone $this->getParserOptions();
 		}
 
 		$time = - wfTime();

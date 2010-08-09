@@ -266,6 +266,7 @@ class Parser {
 			$this->clearState();
 		}
 
+		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setTitle( $title ); # Page title has to be set for the pre-processor
 
@@ -454,6 +455,7 @@ class Parser {
 		wfProfileIn( __METHOD__ );
 		$this->clearState();
 		$this->setOutputType( self::OT_PREPROCESS );
+		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setTitle( $title );
 		if ( $revid !== null ) {
@@ -477,6 +479,7 @@ class Parser {
 		# Parser (re)initialisation
 		$this->clearState();
 		$this->setOutputType( self::OT_PLAIN );
+		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setTitle( $title );
 
@@ -4041,6 +4044,7 @@ class Parser {
 	 * @return String: the altered wiki markup
 	 */
 	public function preSaveTransform( $text, Title $title, $user, $options, $clearState = true ) {
+		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setTitle( $title );
 		$this->setOutputType( self::OT_WIKI );
@@ -4265,6 +4269,7 @@ class Parser {
 	 */
 	public function startExternalParse( &$title, $options, $outputType, $clearState = true ) {
 		$this->setTitle( $title );
+		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
 		if ( $clearState ) {
@@ -5140,6 +5145,7 @@ class Parser {
 			$title = Title::newFromText( $title );
 		}
 		$this->mTitle = $title;
+		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
 		$text = $this->replaceVariables( $text );

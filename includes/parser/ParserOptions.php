@@ -38,13 +38,18 @@ class ParserOptions {
 	var $mIsSectionPreview;          # Parsing the page for a "preview" operation on a single section
 	var $mIsPrintable;               # Parsing the printable version of the page
 	
+	
+	protected $accessedOptions;
+	
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
 	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
-	function getEditSection()                   { return $this->mEditSection; }
-	function getNumberHeadings()                { return $this->mNumberHeadings; }
+	function getEditSection()                   { $this->accessedOptions['editsection'] = true;
+	                                              return $this->mEditSection; }
+	function getNumberHeadings()                { $this->accessedOptions['numberheadings'] = true;
+	                                              return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
 	function getInterfaceMessage()              { return $this->mInterfaceMessage; }
@@ -58,12 +63,15 @@ class ParserOptions {
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
-	function getMath()                          { return $this->mMath; }
-	function getThumbSize()                     { return $this->mThumbSize; }
+	function getMath()                          { $this->accessedOptions['math'] = true;
+	                                              return $this->mMath; }
+	function getThumbSize()                     { $this->accessedOptions['thumbsize'] = true;
+	                                              return $this->mThumbSize; }
 	
 	function getIsPreview()                     { return $this->mIsPreview; }
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
-	function getIsPrintable()                   { return $this->mIsPrintable; }
+	function getIsPrintable()                   { $this->accessedOptions['printable'] = true;
+	                                              return $this->mIsPrintable; }
 
 	function getSkin() {
 		if ( !isset( $this->mSkin ) ) {
@@ -73,6 +81,7 @@ class ParserOptions {
 	}
 
 	function getDateFormat() {
+		$this->accessedOptions['dateformat'] = true;
 		if ( !isset( $this->mDateFormat ) ) {
 			$this->mDateFormat = $this->mUser->getDatePreference();
 		}
@@ -90,6 +99,7 @@ class ParserOptions {
 	# Using this fragments the cache and is discouraged. Yes, {{int: }} uses this,
 	# producing inconsistent tables (Bug 14404).
 	function getUserLang() {
+		$this->accessedOptions['userlang'] = true;
 		return $this->mUserLang;
 	}
 
@@ -190,5 +200,112 @@ class ParserOptions {
 		$this->mIsPrintable = false;
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Returns the options from this ParserOptions which have been used.
+	 */
+	public function usedOptions() {
+		return array_keys( $this->accessedOptions );
+	}
+	
+	/**
+	 * Resets the memory of options usage.
+	 */
+	public function resetUsage() {
+		$this->accessedOptions = array();
+	}
+	
+	/**
+	 * Returns the full array of options that would have been used by 
+	 * in 1.16.
+	 * Used to get the old parser cache entries when available.
+	 */
+	public static function legacyOptions() {
+		global $wgUseDynamicDates;
+		$legacyOpts = array( 'math', 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'editsection', 'printable' );
+		if ( $wgUseDynamicDates ) {
+			$legacyOpts[] = 'dateformat';
+		}
+		return $legacyOpts;
+	}
+	
+	/**
+	 * Generate a hash string with the values set on these ParserOptions
+	 * for the keys given in the array.
+	 * This will be used as part of the hash key for the parser cache,
+	 * so users sharign the options with vary for the same page share 
+	 * the same cached data safely.
+	 * 
+	 * Replaces User::getPageRenderingHash()
+	 *
+	 * Extensions which require it should install 'PageRenderingHash' hook,
+	 * which will give them a chance to modify this key based on their own
+	 * settings.
+	 *
+	 * @since 1.17
+	 * @return \string Page rendering hash
+	 */
+	public function optionsHash( $forOptions ) {
+		global $wgContLang, $wgRenderHashAppend;
+
+		$confstr = '';
+		
+		if ( in_array( 'math', $forOptions ) )
+			$confstr .= $this->mMath;
+		else
+			$confstr .= '*';
+			
+
+		// Space assigned for the stubthreshold but unused
+		// since it disables the parser cache, its value will always 
+		// be 0 when this function is called by parsercache.
+		// The conditional is here to avoid a confusing 0
+		if ( in_array( 'stubthreshold', $forOptions ) )
+			$confstr .= '!0' ;
+		else
+			$confstr .= '!*' ;
+
+		if ( in_array( 'dateformat', $forOptions ) )
+			$confstr .= '!' . $this->mDateFormat;
+		
+		if ( in_array( 'numberheadings', $forOptions ) )
+			$confstr .= '!' . ( $this->mNumberHeadings ? '1' : '' );
+		else
+			$confstr .= '!*';
+		
+		if ( in_array( 'userlang', $forOptions ) )
+			$confstr .= '!' . $this->mUserLang;
+		else
+			$confstr .= '!*';
+
+		if ( in_array( 'thumbsize', $forOptions ) )
+			$confstr .= '!' . $this->mThumbSize;
+		else
+			$confstr .= '!*';
+
+		// add in language specific options, if any
+		// FIXME: This is just a way of retrieving the url/user preferred variant
+		$confstr .= $wgContLang->getExtraHashOptions();
+
+		// Since the skin could be overloading link(), it should be
+		// included here but in practice, none of our skins do that.
+		// $confstr .= "!" . $this->mSkin->getSkinName();
+		
+		$confstr .= $wgRenderHashAppend;
+
+		if ( !$this->mEditSection && in_array( 'editsection', $forOptions ) )
+			$confstr .= '!edit=0';
+		if (  $this->mIsPrintable && in_array( 'printable', $forOptions ) )
+			$confstr .= '!printable=1';
+		
+		// Give a chance for extensions to modify the hash, if they have
+		// extra options or other effects on the parser cache.
+		wfRunHooks( 'PageRenderingHash', array( &$confstr ) );
+
+		// Make it a valid memcached key fragment
+		$confstr = str_replace( ' ', '_', $confstr );
+		
+		return $confstr;
 	}
 }
