@@ -72,7 +72,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		
 
 		foreach ( $this->everything as $pageid => $title ) {
-			$pageInfo = $this->extractPageInfo( $pageid, $title, $prop );
+			$pageInfo = $this->extractPageInfo( $pageid, $title, $params['prop'] );
 			$fit = $result->addValue( array(
 				'query',
 				'pages'
@@ -121,7 +121,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		return $pageInfo;
 	}
 
-	public function getCacheMode() {
+	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
