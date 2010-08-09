@@ -1061,7 +1061,7 @@ class OutputPage {
 			$popts, true, true, $this->mRevisionId
 		);
 		$popts->setTidy( false );
-		if ( $cache && $article && !$parserOutput->isCacheable() ) {
+		if ( $cache && $article && $parserOutput->isCacheable() ) {
 			$parserCache = ParserCache::singleton();
 			$parserCache->save( $parserOutput, $article, $popts );
 		}
