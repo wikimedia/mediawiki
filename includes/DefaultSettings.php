@@ -5086,7 +5086,7 @@ $wgUploadMaintenance = false;
 /**
  * Enabes or disables JavaScript-based suggestions of password strength
  */
-$wgLivePasswordStrengthChecks = true;
+$wgLivePasswordStrengthChecks = false;
  
 /**
  * For really cool vim folding this needs to be at the end:

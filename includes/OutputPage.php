@@ -1955,7 +1955,14 @@ class OutputPage {
 		}
 	}
 
+	/**
+	 * Adds JS-based password security checker
+	 * @param $passwordId String ID of input box containing password
+	 * @param $retypeId String ID of input box containing retyped password
+	 * @return none
+	 */
 	public function addPasswordSecurity( $passwordId, $retypeId ) {
+		$this->includeJQuery();
 		$data = array(
 			'password' => '#' . $passwordId,
 			'retype' => '#' . $retypeId,
