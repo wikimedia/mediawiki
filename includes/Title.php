@@ -3809,7 +3809,7 @@ class Title {
 	 * @return \type{\bool}
 	 */
 	public function isKnown() {
-		return $this->exists() || $this->isAlwaysKnown();
+		return $this->isAlwaysKnown() || $this->exists();
 	}
 
 	/**
