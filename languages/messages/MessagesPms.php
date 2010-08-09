@@ -1372,8 +1372,8 @@ Le pàgine dzora a [[Special:Watchlist|la lista ëd lòn ch'as ten sot-euj]] a r
 'upload'                      => "Carié n'archivi",
 'uploadbtn'                   => "Carié l'archivi",
 'reuploaddesc'                => "Chité e torné al formolari për carié dj'archivi",
-'upload-tryagain'             => 'Anseriss la descrission dël file modificà',
-'uploadnologin'               => 'Pa an drinta al sistema',
+'upload-tryagain'             => "Mandé la descrission ëd l'archivi modificà",
+'uploadnologin'               => 'Nen rintrà ant ël sistema',
 'uploadnologintext'           => "A dev [[Special:UserLogin|rintré ant ël sistema]]
 për podej carié dj'archivi.",
 'upload_directory_missing'    => 'La directory ëd caria ($1) a-i é pa e a peul pa esse creà dal webserver.',

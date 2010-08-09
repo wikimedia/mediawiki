@@ -777,7 +777,7 @@ Vă rugăm să așteptați până să mai încercați.',
 # JavaScript password checks
 'password-strength-acceptable' => 'acceptabil',
 'password-strength-good'       => 'bun',
-'password-retype'              => 'Repetă parola',
+'password-retype'              => 'Reintroduceți parola',
 'password-retype-mismatch'     => 'Parolele nu sunt identice',
 
 # Password reset dialog

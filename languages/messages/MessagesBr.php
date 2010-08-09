@@ -602,9 +602,10 @@ Gortozit a-raok klask en-dro.",
 'suspicious-userlogout'      => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
 
 # JavaScript password checks
+'password-strength'            => 'Live surentez ar ger-tremen : $1',
 'password-strength-bad'        => 'FALL',
 'password-strength-mediocre'   => 'dister',
-'password-strength-acceptable' => 'Degemeradus',
+'password-strength-acceptable' => 'degemeradus',
 'password-strength-good'       => 'mat',
 'password-retype'              => 'Skrivit ho ker-tremen en-dro amañ',
 'password-retype-mismatch'     => 'Ne glot ket ar gerioù-tremen',

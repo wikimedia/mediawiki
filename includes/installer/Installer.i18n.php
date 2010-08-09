@@ -612,7 +612,7 @@ This program is distributed in the hope that it will be useful, but '''without a
 See the GNU General Public License for more details.
 
 You should have received <doclink href=Copying>a copy of the GNU General Public License</doclink> along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. or [http://www.gnu.org/copyleft/gpl.html read it online].",
-	'config-authors' => 'MediaWiki is Copyright © 2001-2010 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe and others.',
+	'config-authors' => 'Аўтарскія правы на MediaWiki © 2001-2010 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe і іншыя.',
 	'config-sidebar' => '* [http://www.mediawiki.org Сайт MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Дапамога карыстальнікам]
 * [http://www.mediawiki.org/wiki/Manual:Contents Дапамога адміністратарам]
@@ -632,24 +632,24 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 	'config-unicode-using-php' => 'Выкарыстоўваецца марудная рэалізацыя Unicode-нармалізацыі для PHP',
 	'config-unicode-using-utf8' => 'Выкарыстоўваецца бібліятэка Unicode-нармалізацыі Браяна Вібэра',
 	'config-unicode-using-intl' => 'Выкарыстоўваецца [http://pecl.php.net/intl intl пашырэньне з PECL] для Unicode-нармалізацыі',
-	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl Пашырэньне intl з PECL] ня слушнае для Unicode-нармалізацыі.
+	'config-unicode-pure-php-warning' => "'''Папярэджаньне''': [http://pecl.php.net/intl Пашырэньне intl з PECL] ня слушнае для Unicode-нармалізацыі.
 Калі ў вас сайт з высокай наведваемасьцю, раім пачытаць пра [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-нармалізацыю].",
-	'config-unicode-update-warning' => "'''Увага''': усталяваная вэрсія бібліятэкі для Unicode-нармалізацыі выкарыстоўвае састарэлую вэрсію бібліятэкі з [http://site.icu-project.org/ праекту ICU].
-Раім [http://www.mediawiki.org/wiki/Unicode_normalization_considerations абнавіцца], калі ваш сайт будзе працаваць зь Юнікодам.",
+	'config-unicode-update-warning' => "'''Папярэджаньне''': усталяваная вэрсія бібліятэкі для Unicode-нармалізацыі выкарыстоўвае састарэлую вэрсію бібліятэкі з [http://site.icu-project.org/ праекту ICU].
+Раім [http://www.mediawiki.org/wiki/Unicode_normalization_considerations абнавіць], калі ваш сайт будзе працаваць зь Unicode.",
 	'config-no-db' => 'Немагчыма знайсьці слушны драйвэр базы зьвестак!',
 	'config-no-db-help' => 'Вам трэба ўсталяваць драйвэр базы зьвестак для PHP.
-На бягучы момант падтрымліваюцца наступныя тыпы БЗ: $1.
+Падтрымліваюцца наступныя тыпы базаў зьвестак: $1.
 
-Калі вы выкарыстоўваеце shared-хостынг, запытайцеся ў свайго хостынг-правайдэра наконт усталяваньня патрабуемых бібліятэк.
-Калі вы кампілявалі PHP уласнаруч, пераканфігуруйце і сабярыце яго з уключаным кліентам БЗ, напрыклад, <code>./configure --with-mysql</code>.
-Калі вы ўсталёўвалі PHP з Debian/Ubuntu-рэпазытарыя, то вам трэба ўсталяваць дадаткова пакет <code>php5-mysql</code>',
+Калі вы выкарыстоўваеце агульны хостынг, запытайцеся ў свайго хостынг-правайдэра наконт усталяваньня патрабуемага драйвэр базы зьвестак.
+Калі Вы кампілявалі PHP самастойна, пераканфігуруйце і сабярыце яго з уключаным кліентам базаў зьвестак, напрыклад, <code>./configure --with-mysql</code>.
+Калі Вы ўсталёўвалі PHP з Debian/Ubuntu-рэпазытарыя, то вам трэба ўсталяваць дадаткова пакет <code>php5-mysql</code>',
 	'config-have-db' => 'Знойдзеныя драйвэры базаў зьвестак: $1.',
-	'config-register-globals' => "'''Увага: опцыя PHP <code>[http://php.net/register_globals register_globals]</code> уключаная.'''
+	'config-register-globals' => "'''Папярэджаньне: устаноўка PHP <code>[http://php.net/register_globals register_globals]</code> уключаная.'''
 '''Адключыце яе, калі можаце.'''
-MediaWiki будзе працаваць, але будзе адкрытым для некаторых уразьлівасьцяў.",
-	'config-magic-quotes-runtime' => "'''Перасьцярога: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] уключаны!'''
-Гэтая опцыя шкодзіць уводны паток зьвестак непрадказальным чынам.
-Працягненьне інсталяцыі немагчымае, пакуль опцыя ня будзе адключаная.",
+MediaWiki будзе працаваць, але сэрвэр будзе ўтрымліваць прабалемы з бясьпекай.",
+	'config-magic-quotes-runtime' => "'''Фатальная памылка: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] уключаны!'''
+Гэтая устаноўка шкодзіць уводны паток зьвестак непрадказальным чынам.
+Працяг усталяваньня альбо выкарыстаньне MediaWiki немагчымыя, пакуль устаноўка ня будзе выключаная.",
 	'config-magic-quotes-sybase' => "'''Фатальная памылка: рэжым [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] уключаны!'''
 Гэты рэжым шкодзіць уваходныя зьвесткі непрадказальным чынам.
 Працяг усталяваньня альбо выкарыстаньне MediaWiki немагчымыя, пакуль рэжым ня будзе выключаны.",
@@ -663,32 +663,34 @@ MediaWiki будзе працаваць, але будзе адкрытым дл
 Гэта можа выклікаць праблемы, галоўным чынам падчас загрузак файлаў і ў падтрымцы <code>math</code>.",
 	'config-xml-good' => 'Ёсьць падтрымка канвэртацыі XML / Latin1-UTF-8.',
 	'config-xml-bad' => 'Ня знойдзены модуль XML для PHP.
-MediaWiki патрэбныя функцыі з гэтага модулю, таму ня будзе працаваць у гэтай канфігурацыі.
-Калі ў вам Mandrake, усталюйце пакет php-xml.',
-	'config-pcre' => 'Ня знойдзен модуль для PCRE.
+MediaWiki патрэбныя функцыі з гэтага модулю, таму MediaWiki ня будзе працаваць у гэтай канфігурацыі.
+Калі Вы выкарыстоўваеце Mandrake, усталюйце пакет php-xml.',
+	'config-pcre' => 'Ня знойдзены модуль падтрымкі PCRE.
 MediaWiki для працы патрабуюцца функцыі рэгулярных выразаў у стылі Perl.',
-	'config-memory-none' => 'У PHP не сканфігураваная опцыя <code>memory_limit</code>',
-	'config-memory-ok' => 'Опцыя <code>memory_limit</code> роўная $1.
+	'config-memory-none' => 'PHP сканфігураваны з устаноўкай <code>memory_limit</code>',
+	'config-memory-ok' => 'Устаноўка <code>memory_limit</code> роўная $1.
 Усё добра.',
-	'config-memory-raised' => 'Опцыя <code>memory_limit</code> роўная $1, падвышаем да $2.',
-	'config-memory-bad' => "'''Увага:''' опцыя PHP <code>memory_limit</code> складае $1.
+	'config-memory-raised' => 'Устаноўка PHP <code>memory_limit</code> роўная $1, падвышаная да $2.',
+	'config-memory-bad' => "'''Папярэджаньне:''' устаноўка PHP <code>memory_limit</code> роўная $1.
 Верагодна, гэта вельмі замала.
-Інсталяцыя можа абарвацца.",
+Усталяваньне можа быць няўдалым!",
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] усталяваны',
 	'config-apc' => '[http://www.php.net/apc APC] усталяваны',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] усталяваны',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] усталяваны',
-	'config-no-cache' => "'''Увага:''' немагчыма знайсьці [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] ці [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Папярэджаньне:''' немагчыма знайсьці [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] ці [http://www.iis.net/download/WinCacheForPhp WinCache].
 Аб’ектнае кэшаваньне ня ўключанае.",
 	'config-diff3-good' => 'Знойдзены GNU diff3: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 ня знойдзены.',
 	'config-imagemagick' => 'Знойдзены ImageMagick: <code>$1</code>.
-Пасьля ўключэньня загрузак будзе ўключанае стварэньне маштабаваных выяваў.',
-	'config-gd' => 'GD падтрымліваецца натыўна.
+Пасьля ўключэньня загрузак будзе ўключанае маштабаваньне выяваў.',
+	'config-gd' => 'GD падтрымліваецца ўбудавана.
 Пасьля ўключэньня загрузак будзе ўключанае маштабаваньне выяваў.',
 	'config-no-scaling' => 'Ні GD, ні ImageMagick ня знойдзеныя.
-Маштабаваньне выяваў будзе недасяжнае.',
-	'config-dir' => 'Каталёг усталёўкі: <code>$1</code>',
+Маштабаваньне выяваў будзе адключанае.',
+	'config-dir' => 'Дырэкторыя для усталяваньня: <code>$1</code>',
+	'config-no-uri' => "'''Памылка:''' Не магчыма вызначыць цяперашні URI.
+Усталяваньне спыненае.",
 	'config-db-type' => 'Тып базы зьвестак:',
 	'config-db-name' => 'Назва базы зьвестак:',
 	'config-type-mysql' => 'MySQL',
@@ -1250,7 +1252,20 @@ Verifica tu php.ini and asegúrate que <code>session.save_path</code> está esta
 	'config-page-upgradedoc' => 'Actualizando',
 	'config-help-restart' => 'Deseas borrar todos los datos gravados que has ingresado y reiniciar el proceso de instalación?',
 	'config-restart' => 'Sí, reiniciarlo',
+	'config-env-latest-ok' => 'Estás instalando la última versión de MediaWiki',
+	'config-env-latest-new' => "'''Nota:''' Estás instalando una versión en desarrollo de MediaWiki.",
+	'config-env-latest-can-not-check' => "'''Nota:''' El instalador no ha podido recuperar información sobre la última versión de MediaWiki de [$1].",
+	'config-env-latest-data-invalid' => "'''Advertencia:''' Cuando se trató de comprobar si esta versión era obsoleta datos no válidos fueron recuperados de [$1].",
+	'config-env-latest-old' => "'''Advertencia:''' Estás instalando una versión antigua de MediaWiki.",
+	'config-db-type' => 'Tipo de base de datos',
 	'config-db-name' => 'Nombre de base de datos:',
+	'config-db-install-account' => 'Cuenta de usuario para instalación',
+	'config-db-username' => 'Nombre de usuario de base de datos:',
+	'config-db-password' => 'contraseña de base de datos:',
+	'config-db-install-help' => 'Ingresar el nombre de usuario y la contraseña que será usada para conectar a la base de datos durante el proceso de instalación.',
+	'config-db-account-lock' => 'Usar el mismo nombre de usuario y contraseña durante operación normal',
+	'config-db-wiki-account' => 'Usar cuenta para operación normal',
+	'config-db-schema' => 'Esquema para MediaWiki',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -1469,6 +1484,7 @@ Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoitta
 
 /** French (Français)
  * @author Peter17
+ * @author Yumeki
  */
 $messages['fr'] = array(
 	'config-desc' => 'Le programme d’installation de MediaWiki',
@@ -1480,6 +1496,11 @@ Veuillez déplacer <code>LocalSettings.php</code> en lieu sûr puis relancer le 
 	'config-localsettings-noupgrade' => "'''Erreur''': Un fichier <code>LocalSettings.php</code> a été détecté.
 Votre logiciel ne peut pas se mettre à jour actuellement.
 Le programme d’installation a été désactivé pour des raisons de sécurité.",
+	'config-session-error' => 'Erreur lors du démarrage de la session : $1',
+	'config-session-expired' => "↓Les données de votre session semblent avoir expiré.
+Les sessions sont configurées pour une durée de $1.
+Vous pouvez l'augmenter en configurant <code>session.gc_maxlifetime</code> dans le fichier php.ini.
+Redémarrer le processus d'installation.",
 	'config-show-help' => 'Aide',
 	'config-hide-help' => 'Masquer l’aide',
 	'config-your-language' => 'Votre langue :',
@@ -1595,6 +1616,8 @@ $messages['hsb'] = array(
 Twoja softwara da so aktualizować.
 Prošu přesuń <code>LocalSettings.php</code> do wěsteho městna a startuj instalciski program znowa.",
 	'config-session-error' => 'Zmylk při startowanju posedźenja: $1',
+	'config-no-session' => 'Twoje posedźenske daty su so zhubili!
+Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na prawy zapis nastajeny.',
 	'config-session-path-bad' => 'Zda so, zo twój parameter <code>session.save_path</code> (<code>$1</code>) je njepłaćiwy abo njepopisujomny.',
 	'config-show-help' => 'Pomoc',
 	'config-hide-help' => 'Pomoc schować',
@@ -1636,12 +1659,16 @@ Njemóžeš MediaWiki instalować.',
 	'config-env-latest-old' => "'''Warnowanje:''' Instaluješ zestarjenu wersiju MediaWiki.",
 	'config-env-latest-help' => 'Instaluješ wersiju $1, ale najnowša wersija je $2.
 Doporuča so, najnowšu wersiju wužiwać, kotruž móžeš wot [http://www.mediawiki.org/wiki/Download mediawiki.org] sćahnyć.',
+	'config-unicode-using-php' => 'Za normalizaciju Unicode so pomała PHP-implementacija wužiwa.',
+	'config-unicode-using-utf8' => 'Za normalizaciju Unicode so utf8_normalize.so Briona Vibbera wužiwa.',
+	'config-unicode-using-intl' => 'Za normalizaciju Unicode so [http://pecl.php.net/intl PECL-rozšěrjenje intl] wužiwa.',
 	'config-no-db' => 'Njeda so přihódny ćěrjak datoweje banki namakać!',
 	'config-have-db' => 'Namakane ćěrjaki datoweje banki: $1.',
 	'config-xml-good' => 'Konwersija XML/Latin1-UTF-8 steji k dispoziciji.',
 	'config-memory-none' => 'PHP je bjez <code>memory_limit</code> skonfigurowany',
 	'config-memory-ok' => 'PHP-parameter <code>memory_limit</code> ma hódnotu $1.
 W porjadku.',
+	'config-memory-raised' => 'PHP-parameter <code>memory_limit</code> je $1, je so na hódnotu $2 zwyšił.',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je instalowany',
 	'config-apc' => '[http://www.php.net/apc APC] je instalowany',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] je instalowany',
@@ -1752,11 +1779,16 @@ Podaj druhe wužiwarske mjeno.',
 	'config-email-settings' => 'E-mejlowe nastajenja',
 	'config-enable-email' => 'Wuchadźace e-mejlki zmóžnić',
 	'config-email-user' => 'E-mejl mjez wužiwarjemi zmóžnić',
+	'config-email-user-help' => 'Wšěm wužiwarjam dowolić, jednomu druhemu e-mejlki pósłać, jeli su tutu funkciju w swojich nastajenjach zmóžnili.',
+	'config-email-usertalk' => 'Zdźělenja za wužiwarske diskusijne strony zmóžnić',
+	'config-email-watchlist' => 'Zdźělenja za wobkedźbowanki zmóžnić',
 	'config-email-auth' => 'E-mejlowu awtentifikaciju zmóžnić',
 	'config-email-sender' => 'E-mejlowa adresa za wotmołwy:',
 	'config-upload-settings' => 'Wobrazy a nahraća datajow',
 	'config-upload-enable' => 'Nahraće datajow zmóžnić',
 	'config-upload-deleted' => 'Zapis za zhašane dataje:',
+	'config-upload-deleted-help' => 'Wubjer zapis, w kotrymž zhašene dataje maja so archiwować.
+Idealnje tón njeměł z weba přistupny być.',
 	'config-logo' => 'URL loga:',
 	'config-instantcommons' => 'Instant commons zmóžnić',
 	'config-cc-again' => 'Zaso wubrać...',
@@ -1790,6 +1822,9 @@ $messages['ia'] = array(
 	'config-localsettings-upgrade' => "'''Attention''': Un file <code>LocalSettings.php</code> ha essite detegite.
 Es possibile actualisar le software.
 Per favor displacia <code>LocalSettings.php</code> a un loco secur e postea re-executa le installator.",
+	'config-localsettings-noupgrade' => "'''Error''': Un file <code>LocalSettings.php</code> ha essite detegite.
+Non es possibile actualisar tu software a iste momento.
+Le installator ha essite disactivate pro motivos de securitate.",
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -3566,6 +3601,8 @@ MediaWiki будет работать, но это снизит безопасн
 Возможно отображение миниатюр изображений, если Вы разрешите закачки файлов.',
 	'config-gd' => 'Найдено графическая библиотека GD встроены. 
  Изображение миниатюр будет активирована, если Вы разрешите закачки.',
+	'config-no-scaling' => 'Не удалось найти встроенную библиотеку GD или ImageMagick.
+Возможность использования миниатюр изображений будет отключена.',
 	'config-dir' => 'Каталог установки: <code>$1</code>.',
 	'config-uri' => 'Путь к сценарию URI: <code>$1</code>.',
 	'config-no-uri' => "'''Ошибка:''' Не могу определить текущий URI. 
@@ -3642,6 +3679,8 @@ MediaWiki будет работать, но это снизит безопасн
 	'config-license' => 'Авторские права и лицензии:',
 	'config-email-settings' => 'Настройки электронной почты',
 	'config-email-user' => 'Включить электронную почту от участника к участнику',
+	'config-email-usertalk' => 'Включить уведомления пользователей о сообщениях на их странице обсуждения',
+	'config-email-watchlist' => 'Включить уведомление на электронную почту об изменении списка наблюдения',
 	'config-upload-settings' => 'Загрузка изображений и файлов',
 	'config-upload-enable' => 'Разрешить загрузку файлов',
 	'config-upload-help' => 'Разрешение загрузки файлов, потенциально, может привести к угрозе безопасности сервера.
@@ -3652,15 +3691,21 @@ MediaWiki будет работать, но это снизит безопасн
 	'config-upload-deleted' => 'Директория для удалённых файлов:',
 	'config-upload-deleted-help' => 'Выберите каталог, в котором будут храниться архивы удалённых файлов.
 В идеальном случае, в этот каталог не должно быть доступа из сети Интернет.',
+	'config-instantcommons' => 'Включить Commons Мгновенное',
 	'config-advanced-settings' => 'Дополнительные настройки',
 	'config-cache-options' => 'Параметры кэширования объектов:',
 	'config-extensions' => 'Расширения',
 	'config-extensions-help' => 'Расширения MediaWiki, перечисленные выше, были найдены в каталоге <code>./extensions</code>. 
 
 Они могут потребовать дополнительные настройки, но их можно включить прямо сейчас',
+	'config-install-alreadydone' => "'''Предупреждение:''' Вы, кажется, уже устанавливали MediaWiki и пытаетесь произвести повторную установку.
+Пожалуйста, перейдите на следующую страницу.",
 	'config-install-step-done' => 'выполнено',
 	'config-install-step-failed' => 'не удалось',
+	'config-install-database' => 'Настройка базы данных',
+	'config-install-user' => 'Создание базы данных пользователей',
 	'config-install-tables' => 'Создание таблиц',
+	'config-install-tables-failed' => "'''Ошибка''': Таблица не может быть создана из-за ошибки: $1",
 	'config-install-interwiki-sql' => 'Не удалось найти файл <code>interwiki.sql</code>.',
 	'config-install-secretkey' => 'Создание секретного ключа',
 	'config-install-sysop' => 'Создание учётной записи администратора',

@@ -51,6 +51,7 @@
  * @author The Evil IP address
  * @author Urhixidur
  * @author Verdy p
+ * @author Yumeki
  * @author Zetud
  * @author Горан Анђелковић
  * @author לערי ריינהארט
@@ -824,6 +825,15 @@ Ignorez ce message si ce compte a été créé par erreur.',
 Veuillez attendre avant d’essayer à nouveau.',
 'loginlanguagelabel'         => 'Langue : $1',
 'suspicious-userlogout'      => 'Votre demande de déconnexion a été refusée car il semble qu’elle a été envoyée par un navigateur cassé ou la mise en cache d’un proxy.',
+
+# JavaScript password checks
+'password-strength'            => 'Niveau de sécurité du mot de passe : $1',
+'password-strength-bad'        => 'faible',
+'password-strength-mediocre'   => 'médiocre',
+'password-strength-acceptable' => 'acceptable',
+'password-strength-good'       => 'élevé',
+'password-retype'              => 'Confirmez le mot de passe',
+'password-retype-mismatch'     => 'Les mots de passe ne correspondent pas',
 
 # Password reset dialog
 'resetpass'                 => 'Changer le mot de passe',
