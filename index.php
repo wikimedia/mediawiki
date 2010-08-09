@@ -41,7 +41,6 @@ $preIP = dirname( __FILE__ );
 require_once( "$preIP/includes/WebStart.php" );
 
 # Initialize MediaWiki base class
-require_once( "$preIP/includes/Wiki.php" );
 $mediaWiki = new MediaWiki();
 
 wfProfileIn( 'main-misc-setup' );
