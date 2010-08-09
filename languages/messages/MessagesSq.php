@@ -593,6 +593,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'gotaccount'                 => "Keni një llogari? '''$1'''.",
 'gotaccountlink'             => 'Hyni',
 'createaccountmail'          => 'me email',
+'createaccountreason'        => 'Arsyeja:',
 'badretype'                  => 'Fjalëkalimet nuk janë njësoj.',
 'userexists'                 => 'Nofka që kërkuat është në përdorim. Zgjidhni një nofkë tjetër.',
 'loginerror'                 => 'Gabim hyrje',
@@ -640,6 +641,15 @@ Duhet të hyni brenda dhe të ndërroni fjalëkalimin tani nëse ky person jeni 
 'login-throttled'            => 'Keni bërë shumë tentime të njëpasnjëshme në fjalëkalimin e kësaj llogarie. Ju lutemi prisni para tentimit përsëri.',
 'loginlanguagelabel'         => 'Gjuha: $1',
 'suspicious-userlogout'      => 'Kërkesa juaj për të shkëputet u mohua sepse duket sikur është dërguar nga një shfletues të thyer ose caching proxy.',
+
+# JavaScript password checks
+'password-strength'            => 'Forca e vlerësuar të fjalëkalimit: $1',
+'password-strength-bad'        => 'KEQ',
+'password-strength-mediocre'   => 'mesatar',
+'password-strength-acceptable' => 'i pranueshëm',
+'password-strength-good'       => 'mirë',
+'password-retype'              => 'Fusni fjalëkalimin përsëri',
+'password-retype-mismatch'     => 'Fjalëkalimi nuk përputhet',
 
 # Password reset dialog
 'resetpass'                 => 'Ndrysho fjalëkalimin',
@@ -755,6 +765,10 @@ Në qoftë se jeni përdorues anonim dhe mendoni se komente kot janë drejtuar n
 Ju mundeni [[Special:Search/{{PAGENAME}}|me kërkue këtë titull]] në faqe tjera,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërkue në regjistrat tematikisht të afërm],
 apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktue këtë faqe]</span>.',
+'noarticletext-nopermission'       => 'Momentalisht nuk ka tekst në këtë faqe.
+Ju mundeni [[Special:Search/{{PAGENAME}}|me kërku këtë titull]] në faqe tjera,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërku në regjistrat tematikisht të afërm],
+apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
 'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "$1" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
 'userpage-userdoesnotexist-view'   => 'Profili i përdoruesit "$ 1" nuk është i regjistruar.',
 'blocked-notice-logextract'        => 'Ky përdorues është bllokuar aktualisht.
@@ -818,6 +832,8 @@ Administruesi që ka bërë mbylljen ka dhënë këtë sqarim: $1.",
 'nocreatetitle'                    => 'Krijimi i faqeve të reja është i kufizuar.',
 'nocreatetext'                     => 'Mundësia për të krijuar faqe të reja është kufizuar. Duhet të [[Special:UserLogin|hyni ose të hapni një llogari]] për të krijuar faqe të reja, ose mund të ktheheni mbrapsh dhe të redaktoni një faqe ekzistuese.',
 'nocreate-loggedin'                => 'Nuk ju lejohet të krijoni faqe të reja.',
+'sectioneditnotsupported-title'    => 'Redaktimi i pjesës nuk është i mbështetur',
+'sectioneditnotsupported-text'     => 'Redaktimi nuk është i mbështetur në këtë faqe.',
 'permissionserrors'                => 'Gabime privilegjesh',
 'permissionserrorstext'            => 'Nuk keni leje për të bërë këtë veprim për {{PLURAL:$1|këtë arsye|këto arsye}}:',
 'permissionserrorstext-withaction' => 'Ju nuk keni leje për $2, për {{PLURAL:$1|këtë arsye|këto arsye}}:',
@@ -875,6 +891,7 @@ Arsyeja e dhënë nga $3 është ''$2''.",
 'histlegend'             => 'Legjenda: (tani) = ndryshimet me versionin e tanishëm,
 (fund) = ndryshimet me versionin e parardhshëm, V = redaktim i vogël',
 'history-fieldset-title' => 'Shfleto historikun',
+'history-show-deleted'   => 'Vetëm versionet të grisur',
 'histfirst'              => 'Së pari',
 'histlast'               => 'Së fundmi',
 'historysize'            => '({{PLURAL:$1|1 B|$1 B}})',
@@ -902,6 +919,7 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'revdelete-nologtype-title'   => 'Nuk është dhënë asnjë lloj i të dhënave',
 'revdelete-nologtype-text'    => 'Nuk keni caktuar llojin e të dhënave për të realizuar veprimin.',
 'revdelete-no-file'           => 'Skeda e dhënë nuk ekziston.',
+'revdelete-show-file-submit'  => 'Po',
 'revdelete-selected'          => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
 'revdelete-text'              => "'''Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve.''' Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.",
@@ -912,6 +930,7 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'revdelete-hide-comment'      => 'fshih komentin e redaktimit',
 'revdelete-hide-user'         => 'Fshihe emrin/IP-në të redaktuesit',
 'revdelete-hide-restricted'   => 'Këto përkufizme vlejnë edhe për Admintratorët (jo vetëm për përdoruesit "normal")',
+'revdelete-radio-same'        => '(Mos ndryshoni)',
 'revdelete-radio-set'         => 'Po',
 'revdelete-radio-unset'       => 'Jo',
 'revdelete-suppress'          => 'Ndalo të dhëna nga administrues si dhe të tjerë',
@@ -939,6 +958,9 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 # Suppression log
 'suppressionlog'     => 'Regjistri i ndalimeve',
 'suppressionlogtext' => 'Më poshtë jepet një listë grisjesh dhe bllokimesh që kanë të bëjnë me përmbatje të fshehur nga administruesit. Shikoni [[Special:IPBlockList|listën e IP bllokimeve]] për një listë të bllokimeve dhe përzënieve në fuqi.',
+
+# Revision move
+'revmove-nullmove-title' => 'Titull i pasaktë',
 
 # History merging
 'mergehistory'                     => 'Bashko historikët e faqeve',
@@ -1065,6 +1087,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'prefs-watchlist-edits-max'     => '(numri maksimal: 1000)',
 'prefs-misc'                    => 'Të ndryshme',
 'prefs-resetpass'               => 'Ndrysho fjalëkalimin',
+'prefs-email'                   => 'Opsionet E-mail',
 'saveprefs'                     => 'Ruaj parapëlqimet',
 'resetprefs'                    => 'Rikthe parapëlqimet',
 'restoreprefs'                  => 'Rikthe të gjitha të dhënat e mëparshme',
@@ -1133,6 +1156,12 @@ Kjo informatë del publike.',
 'prefs-info'                    => 'Informatat bazike',
 'prefs-i18n'                    => 'Internacionalizimi',
 'prefs-signature'               => 'Firma',
+'prefs-dateformat'              => 'Data i formatit',
+'prefs-advancedediting'         => 'Opsionet e avancuar',
+'prefs-advancedrc'              => 'Opsionet e avancuar',
+'prefs-advancedrendering'       => 'Opsionet e avancuar',
+'prefs-advancedsearchoptions'   => 'Opsionet e avancuar',
+'prefs-advancedwatchlist'       => 'Opsionet e avancuar',
 
 # User rights
 'userrights'                  => 'Ndrysho privilegjet e përdoruesve',
@@ -1442,6 +1471,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'duplicatesoffile'          => 'Skedat vijuese {{PLURAL:$1|është e dyfishtë|$1 dyfishohen}} tek kjo skedë:',
 'sharedupload'              => 'Kjo skedë është një ngarkim i përbashkët dhe mund të përdoret nga projekte të tjera.',
 'uploadnewversion-linktext' => 'Ngarkoni një version të ri për këtë skedë',
+'shared-repo-from'          => 'nga $ 1',
 
 # File reversion
 'filerevert'                => 'Rikthe $1',
@@ -1503,6 +1533,7 @@ Mos harroni të shihni nyje tjera të stampave para grisjes së tyre.',
 'statistics-header-edits'      => 'Statistikat e redaktimit',
 'statistics-header-views'      => 'Statistikat e shikimit',
 'statistics-header-users'      => 'Statistikat e përdoruesve',
+'statistics-header-hooks'      => 'Statistikat të tjera',
 'statistics-articles'          => 'Përmbajtja e faqeve',
 'statistics-pages'             => 'Faqet',
 'statistics-pages-desc'        => 'Të gjitha faqet në wiki, duke përfshitë edhe faqet e diskutimit, zhvendosjet, etj.',
@@ -1598,6 +1629,7 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 'nopagetext'              => 'Faqja e kërkuar nuk ekziston.',
 'pager-newer-n'           => '{{PLURAL:$1|1 më i reja|$1 më të reja}}',
 'pager-older-n'           => '{{PLURAL:$1|1 më i vjetër|$1 më të vjetra}}',
+'suppress'                => 'Kujdestari',
 
 # Book sources
 'booksources'               => 'Burime librash',
@@ -1656,6 +1688,7 @@ Shih edhe [[Special:WantedCategories|kategoritë e dëshiruara]].',
 'listusersfrom'      => 'Trego përdoruesit duke filluar prej te:',
 'listusers-submit'   => 'Trego',
 'listusers-noresult' => "Asnjë përdorues s'u gjet.",
+'listusers-blocked'  => '(Bllokuar)',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Regjistri i llogarive',
@@ -2700,9 +2733,37 @@ Vendosni emrin e skedës pa parashtesën "{{ns:file}}:".',
 'intentionallyblankpage' => 'Kjo faqe me qëllim është lënë e zbrazët',
 
 # Special:Tags
-'tags-edit' => 'redakto',
+'tag-filter-submit' => 'Filtër',
+'tags-title'        => 'Etiketat',
+'tags-edit'         => 'redakto',
+
+# Special:ComparePages
+'compare-page1'  => 'Faqe 1',
+'compare-page2'  => 'Faqe 2',
+'compare-rev1'   => 'Version 1',
+'compare-rev2'   => 'Version 2',
+'compare-submit' => 'Krahasimi',
+
+# Database error messages
+'dberr-header'      => 'Kjo wiki ka një problem',
+'dberr-problems'    => 'Na vjen keq! 
+Kjo faqe është duke përjetuar vështirësi teknike.',
+'dberr-again'       => 'Pritni disa minuta dhe provoni të ringarkoni faqen.',
+'dberr-info'        => '(Nuk mund të lidhet me serverin bazë e të dhënave : $1)',
+'dberr-usegoogle'   => 'Ju mund të provoni të kërkoni përmes Googles në ndërkohë.',
+'dberr-outofdate'   => 'Vini re se indekset e tyre të përmbajtjes tona mund të jetë e vjetëruar.',
+'dberr-cachederror' => 'Kjo është një kopje e faqes së kërkuar dhe mund të jetë e vjetëruar.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Ka probleme me disa kontribute tuaja',
+'htmlform-select-badoption'    => 'Vlera që ju e specifikuat nuk është një alternativë e vlefshme.',
+'htmlform-int-invalid'         => 'Vlera që ju e specifikuat nuk është numër i plotë.',
+'htmlform-float-invalid'       => 'Vlera që ju e specifikuat nuk është numër.',
+'htmlform-int-toolow'          => 'Vlera që ju e përcaktuat është nën minimumin e $1',
+'htmlform-int-toohigh'         => 'Vlera që ju e përcaktuat është mbi maksimumin e $1',
+'htmlform-required'            => 'Kjo vlerë është e nevojshme',
+'htmlform-submit'              => 'Dërgo',
+'htmlform-reset'               => 'Zhbëj ndryshimin',
 'htmlform-selectorother-other' => 'Gjitha',
 
 );
