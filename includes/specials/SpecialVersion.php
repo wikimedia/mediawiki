@@ -198,6 +198,24 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * Returns an array with the base extension types.
+	 * Type is stored as array key, the message as array value.
+	 * 
+	 * @since 1.17
+	 * 
+	 * @return array
+	 */
+	public static function getBaseExtensionTypes() {
+		return array(
+			'specialpage' => wfMsg( 'version-specialpages' ),
+			'parserhook' => wfMsg( 'version-parserhooks' ),
+			'variable' => wfMsg( 'version-variables' ),
+			'media' => wfMsg( 'version-mediahandlers' ),
+			'other' => wfMsg( 'version-other' ),
+		);
+	}
+	
+	/**
 	 * Generate wikitext showing extensions name, URL, author and description.
 	 *
 	 * @return String: Wikitext
@@ -209,13 +227,7 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		}
 
-		$extensionTypes = array(
-			'specialpage' => wfMsg( 'version-specialpages' ),
-			'parserhook' => wfMsg( 'version-parserhooks' ),
-			'variable' => wfMsg( 'version-variables' ),
-			'media' => wfMsg( 'version-mediahandlers' ),
-			'other' => wfMsg( 'version-other' ),
-		);
+		$extensionTypes = self::getBaseExtensionTypes();
 		
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
