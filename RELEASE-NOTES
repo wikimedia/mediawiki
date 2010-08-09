@@ -282,8 +282,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   instead of showing an error page
 * (bug 24425) Use Database::replace instead of delete/insert in SqlBagOStuff::set
   to avoid query errors about duplicate keynames.
-* (bug 24700) Update dialog shown when clicking on the special page tab after
-  saving preferences
 * (bug 15470) First letters of filenames are always capitalized by upload JS.
 * (bug 21215) NoLocalSettings.php doesn't tolerate rewrite rules
 
