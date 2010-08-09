@@ -9,10 +9,8 @@
 define( 'REPORTING_INTERVAL', 1 );
 
 if ( !defined( 'MEDIAWIKI' ) ) {
-	$optionsWithArgs = array( 'e', 's' );
-
 	require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
-	require_once( 'ExternalStoreDB.php' );
+	require_once( dirname( __FILE__ ) . '/../../includes/ExternalStoreDB.php' );
 	require_once( 'resolveStubs.php' );
 
 	$fname = 'moveToExternal';
@@ -34,8 +32,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 	moveToExternal( $cluster, $maxID, $minID );
 }
-
-
 
 function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 	$fname = 'moveToExternal';
