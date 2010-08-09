@@ -201,11 +201,15 @@ class SpecialVersion extends SpecialPage {
 	 * Returns an array with the base extension types.
 	 * Type is stored as array key, the message as array value.
 	 * 
+	 * TODO: ideally this would return all extension types, including
+	 * those added by SpecialVersionExtensionTypes. This is not possible
+	 * since this hook is passing along $this though.
+	 * 
 	 * @since 1.17
 	 * 
 	 * @return array
 	 */
-	public static function getBaseExtensionTypes() {
+	public static function getExtensionTypes() {
 		return array(
 			'specialpage' => wfMsg( 'version-specialpages' ),
 			'parserhook' => wfMsg( 'version-parserhooks' ),
@@ -227,24 +231,34 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		}
 
-		$extensionTypes = self::getBaseExtensionTypes();
+		$extensionTypes = self::getExtensionTypes();
 		
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), wfMsg( 'version-extensions' ) ) .
 			Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-ext' ) );
 
-		foreach ( $extensionTypes as $type => $text ) {
-			if ( isset ( $wgExtensionCredits[$type] ) && count ( $wgExtensionCredits[$type] ) ) {
-				$out .= $this->openExtType( $text, 'credits-' . $type );
-
-				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
-
-				foreach ( $wgExtensionCredits[$type] as $extension ) {
-					$out .= $this->getCreditsForExtension( $extension );
-				}
+		// Make sure the 'other' type is set to an array. 
+		if ( !array_key_exists( 'other', $wgExtensionCredits ) ) {
+			$wgExtensionCredits['other'] = array();
+		}
+		
+		// Find all extensions that do not have a valid type and give them the type 'other'.
+		foreach ( $wgExtensionCredits as $type => $extensions ) {
+			if ( !array_key_exists( $type, $extensionTypes ) ) {
+				$wgExtensionCredits['other'] = array_merge( $wgExtensionCredits['other'], $extensions );
 			}
 		}
+		
+		// Loop through the extension categories to display their extensions in the list.
+		foreach ( $extensionTypes as $type => $message ) {
+			if ( $type != 'other' ) {
+				$out .= $this->getExtensionCategory( $type, $message );
+			}
+		}
+		
+		// We want the 'other' type to be last in the list.
+		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'] );
 
 		if ( count( $wgExtensionFunctions ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-extension-functions' ), 'extension-functions' );
@@ -272,6 +286,34 @@ class SpecialVersion extends SpecialPage {
 		
 		return $out;
 	}
+	
+	/**
+	 * Creates and returns the HTML for a single extension category.
+	 * 
+	 * @since 1.17
+	 * 
+	 * @param $type String
+	 * @param $message String
+	 * 
+	 * @return string
+	 */
+	protected function getExtensionCategory( $type, $message ) {
+		global $wgExtensionCredits; 
+		
+		$out = '';
+		
+		if ( array_key_exists( $type, $wgExtensionCredits ) && count( $wgExtensionCredits[$type] ) > 0 ) {
+			$out .= $this->openExtType( $message, 'credits-' . $type );
+
+			usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
+
+			foreach ( $wgExtensionCredits[$type] as $extension ) {
+				$out .= $this->getCreditsForExtension( $extension );
+			}
+		}
+
+		return $out;
+	}	
 
 	/**
 	 * Callback to sort extensions by type.
