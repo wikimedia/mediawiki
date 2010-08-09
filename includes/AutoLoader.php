@@ -27,6 +27,7 @@ $wgAutoloadLocalClasses = array(
 	'BagOStuff' => 'includes/BagOStuff.php',
 	'Block' => 'includes/Block.php',
 	'CacheDependency' => 'includes/CacheDependency.php',
+	'CacheTime' => 'includes/parser/ParserOutput.php',
 	'Category' => 'includes/Category.php',
 	'Categoryfinder' => 'includes/Categoryfinder.php',
 	'CategoryPage' => 'includes/CategoryPage.php',
