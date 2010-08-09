@@ -593,4 +593,4 @@ class MediaWiki {
 
 	}
 
-}; /* End of class MediaWiki */
+}
