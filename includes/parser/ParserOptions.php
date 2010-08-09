@@ -183,6 +183,7 @@ class ParserOptions {
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 		$this->mMath = $user->getOption( 'math' );
 		$this->mUserLang = $wgLang->getCode();
+		$this->mThumbSize = $user->getOption( 'thumbsize' );
 		
 		$this->mIsPreview = false;
 		$this->mIsSectionPreview = false;
