@@ -834,7 +834,7 @@ class Article {
 		$oldid = $this->getOldID();
 		$parserCache = ParserCache::singleton();
 
-		$parserOptions = clone $this->getParserOptions();
+		$parserOptions = $this->getParserOptions();
 		# Render printable version, use printable version cache
 		if ( $wgOut->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
@@ -1470,7 +1470,7 @@ class Article {
 
 		$oldid = $this->getOldID();
 		$useParserCache = $this->useParserCache( $oldid );
-		$parserOptions = clone $this->getParserOptions();
+		$parserOptions = $this->getParserOptions();
 
 		# Render printable version, use printable version cache
 		$parserOptions->setIsPrintable( $wgOut->isPrintable() );
@@ -4465,7 +4465,9 @@ class Article {
 			$this->mParserOptions->enableLimitReport();
 		}
 
-		return $this->mParserOptions;
+		// Clone to allow modifications of the return value without affecting 
+		// the cache
+		return clone $this->mParserOptions;
 	}
 
 	/**
