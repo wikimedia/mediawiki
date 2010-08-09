@@ -210,13 +210,17 @@ class SpecialVersion extends SpecialPage {
 	 * @return array
 	 */
 	public static function getExtensionTypes() {
-		return array(
+		$extensionTypes = array(
 			'specialpage' => wfMsg( 'version-specialpages' ),
 			'parserhook' => wfMsg( 'version-parserhooks' ),
 			'variable' => wfMsg( 'version-variables' ),
 			'media' => wfMsg( 'version-mediahandlers' ),
 			'other' => wfMsg( 'version-other' ),
 		);
+		
+		wfRunHooks( 'ExtensionTypes', array( &$extensionTypes ) );
+		
+		return $extensionTypes;
 	}
 	
 	/**
@@ -233,6 +237,9 @@ class SpecialVersion extends SpecialPage {
 
 		$extensionTypes = self::getExtensionTypes();
 		
+		/**
+		 * @deprecated as of 1.17, use hook ExtensionTypes instead.
+		 */
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), wfMsg( 'version-extensions' ) ) .
