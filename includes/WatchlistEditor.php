@@ -503,14 +503,13 @@ class WatchlistEditor {
 		$modes = array( 'view' => false, 'edit' => 'edit', 'raw' => 'raw' );
 		foreach( $modes as $mode => $subpage ) {
 			// can use messages 'watchlisttools-view', 'watchlisttools-edit', 'watchlisttools-raw'
-			$tools[] = $skin->link(
+			$tools[] = $skin->linkKnown(
 				SpecialPage::getTitleFor( 'Watchlist', $subpage ),
-				wfMsgHtml( "watchlisttools-{$mode}" ),
-				array(),
-				array(),
-				array( 'known', 'noclasses' )
+				wfMsgHtml( "watchlisttools-{$mode}" )
 			);
 		}
-		return $wgLang->pipeList( $tools );
+		return Html::rawElement( 'span',
+					array( 'class' => 'mw-watchlist-toollinks' ),
+					wfMsg( 'parentheses', $wgLang->pipeList( $tools ) ) );
 	}
 }
