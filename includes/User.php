@@ -827,7 +827,7 @@ class User {
 		$this->mOptionOverrides = null;
 		$this->mOptionsLoaded = false;
 
-		if( $wgRequest->getCookie( 'LoggedOut' ) ) {
+		if( $wgRequest->getCookie( 'LoggedOut' ) !== null ) {
 			$this->mTouched = wfTimestamp( TS_MW, $wgRequest->getCookie( 'LoggedOut' ) );
 		} else {
 			$this->mTouched = '0'; # Allow any pages to be cached
@@ -875,7 +875,7 @@ class User {
 			}
 		}
 
-		if ( $wgRequest->getCookie( 'UserID' ) ) {
+		if ( $wgRequest->getCookie( 'UserID' ) !== null ) {
 			$sId = intval( $wgRequest->getCookie( 'UserID' ) );
 			if( isset( $_SESSION['wsUserID'] ) && $sId != $_SESSION['wsUserID'] ) {
 				$this->loadDefaults(); // Possible collision!
@@ -898,7 +898,7 @@ class User {
 
 		if ( isset( $_SESSION['wsUserName'] ) ) {
 			$sName = $_SESSION['wsUserName'];
-		} else if ( $wgRequest->getCookie('UserName') ) {
+		} else if ( $wgRequest->getCookie('UserName') !== null ) {
 			$sName = $wgRequest->getCookie('UserName');
 			$_SESSION['wsUserName'] = $sName;
 		} else {
@@ -923,7 +923,7 @@ class User {
 		if ( isset( $_SESSION['wsToken'] ) ) {
 			$passwordCorrect = $_SESSION['wsToken'] == $this->mToken;
 			$from = 'session';
-		} else if ( $wgRequest->getCookie( 'Token' ) ) {
+		} else if ( $wgRequest->getCookie( 'Token' ) !== null ) {
 			$passwordCorrect = $this->mToken == $wgRequest->getCookie( 'Token' );
 			$from = 'cookie';
 		} else {
