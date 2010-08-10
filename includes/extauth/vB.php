@@ -61,7 +61,7 @@ class ExternalUser_vB extends ExternalUser {
 		} else {
 			$prefix = $wgExternalAuthConf['cookieprefix'];
 		}
-		if ( !$wgRequest->getCookie( 'sessionhash', $prefix ) ) {
+		if ( $wgRequest->getCookie( 'sessionhash', $prefix ) === null ) {
 			return false;
 		}
 
