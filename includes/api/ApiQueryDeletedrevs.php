@@ -106,7 +106,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if( $limit == 'max' ) {
 			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$this->getResult()->addValue( 'limits', $this->getModuleName(), $limit );
+			$this->getResult()->setParsedLimit( $this->getModuleName(), $limit );
 		}
 
 		$this->validateLimit('limit', $limit, 1, $userMax, $botMax);

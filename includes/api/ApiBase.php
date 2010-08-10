@@ -548,21 +548,16 @@ abstract class ApiBase {
 						}
 						break;
 					case 'limit' :
-						if (!isset ($paramSettings[self :: PARAM_MAX]) || !isset ($paramSettings[self :: PARAM_MAX2]))
-							ApiBase :: dieDebug(__METHOD__, "MAX1 or MAX2 are not defined for the limit $encParamName");
-						if ($multi)
-							ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $encParamName");
-						$min = isset ($paramSettings[self :: PARAM_MIN]) ? $paramSettings[self :: PARAM_MIN] : 0;
-						if( $value == 'max' ) {
-							if( $parseMaxLimit ) {
-								$value = $this->getMain()->canApiHighLimits() ? $paramSettings[self :: PARAM_MAX2] : $paramSettings[self :: PARAM_MAX];
-								$this->getResult()->addValue( 'limits', $this->getModuleName(), $value );
-								$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
-							}
+						if ( $multi ) {
+							ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
 						}
-						else {
-							$value = intval($value);
-							$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
+						$min = isset( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : 0;
+						if ( $value == 'max' ) {
+							$value = $this->getMain()->canApiHighLimits() ? $paramSettings[self::PARAM_MAX2] : $paramSettings[self::PARAM_MAX];
+							$this->getResult()->setParsedLimit( $this->getModuleName(), $value );
+						} else {
+							$value = intval( $value );
+							$this->validateLimit( $paramName, $value, $min, $paramSettings[self::PARAM_MAX], $paramSettings[self::PARAM_MAX2] );
 						}
 						break;
 					case 'boolean' :
