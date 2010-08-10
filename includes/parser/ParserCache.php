@@ -79,7 +79,7 @@ class ParserCache {
 		global $wgCacheEpoch;
 		
 		if( $popts instanceof User ) {
-			wfDebug( "Use of outdated prototype ParserCache::getKey( &\$article, &\$user )\n" );
+			wfWarn( "Use of outdated prototype ParserCache::getKey( &\$article, &\$user )\n" );
 			$popts = ParserOptions::newFromUser( $popts );
 		}
 		
