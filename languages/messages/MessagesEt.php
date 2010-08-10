@@ -2082,7 +2082,6 @@ Toetatud protokollid: <tt>$1</tt>',
 # Watchlist
 'watchlist'            => 'Jälgimisloend',
 'mywatchlist'          => 'Jälgimisloend',
-'watchlistfor'         => "(kasutajale '''$1''')",
 'nowatchlist'          => 'Sinu jälgimisloend on tühi.',
 'watchlistanontext'    => 'Oma jälgimisloendi nägemiseks ja muutmiseks pead $1.',
 'watchnologin'         => 'Ei ole sisse logitud',
@@ -3145,7 +3144,8 @@ Kontrolli aadressi õigsust.
 Veateade e-kirja saatmisel: $1',
 'confirmemail_invalid'      => 'Vigane kinnituskood, kinnituskood võib olla aegunud.',
 'confirmemail_needlogin'    => 'Pead oma e-posti aadressi kinnitamiseks $1.',
-'confirmemail_success'      => 'Sinu e-posti aadress on nüüd kinnitatud. Sa võid sisse logida ning viki imelisest maailma nautida.',
+'confirmemail_success'      => 'Sinu e-posti aadress on kinnitatud
+Võid nüüd [[Special:UserLogin|sisse logida]].',
 'confirmemail_loggedin'     => 'Sinu e-posti aadress on nüüd kinnitatud.',
 'confirmemail_error'        => 'Viga kinnituskoodi salvestamisel.',
 'confirmemail_subject'      => '{{GRAMMAR:genitive|{{SITENAME}}}} e-posti aadressi kinnitamine',

@@ -1225,7 +1225,6 @@ kū siōstomiet el. gruomatas kėtėm nauduotuojam.',
 # Watchlist
 'watchlist'            => 'Keravuojamė straipsnē',
 'mywatchlist'          => 'Keravuojamė poslapē',
-'watchlistfor'         => "(nauduotuojė '''$1''')",
 'nowatchlist'          => 'Netorėt anėvėina keravuojama poslapė.',
 'watchlistanontext'    => 'Prašuom $1, ka parveizietomėt a pakeistomiet elementus sava keravuojamu sārašė.',
 'watchnologin'         => 'Neprisėjongės',

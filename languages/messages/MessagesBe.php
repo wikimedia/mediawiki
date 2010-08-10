@@ -184,6 +184,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|У гэтай катэгорыі ёсць толькі адзін файл.|У гэтай катэгорыі ёсць наступн{{PLURAL:$1|ы файл|ыя $1 файлаў}} з агульнага ліку $2.}}',
 'category-file-count-limited'    => 'У гэтай катэгорыі ёсць наступны{{PLURAL:$1| файл|я $1 файлаў}}.',
 'listingcontinuesabbrev'         => 'працяг',
+'noindex-category'               => 'Неіндэксуемыя старонкі',
 
 'mainpagetext'      => "'''MediaWiki паспяхова ўсталяваная.'''",
 'mainpagedocfooter' => 'Гл. [http://meta.wikimedia.org/wiki/Help:Contents Дапаможнік карыстальніка (англ.)] па далейшыя звесткі аб карыстанні вікі-праграмамі.
@@ -1584,7 +1585,6 @@ $2',
 # Watchlist
 'watchlist'            => 'Мой спіс назіранага',
 'mywatchlist'          => 'Назіранае',
-'watchlistfor'         => "(для '''$1''')",
 'nowatchlist'          => 'Ваш спіс назіранага зараз пусты.',
 'watchlistanontext'    => 'Каб бачыць або правіць складнікі назіранага, трэба $1.',
 'watchnologin'         => 'Без прадстаўлення',

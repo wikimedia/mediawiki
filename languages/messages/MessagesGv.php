@@ -881,7 +881,6 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 # Watchlist
 'watchlist'         => 'My rolley arrey',
 'mywatchlist'       => 'My rolley arrey',
-'watchlistfor'      => "(son '''$1''')",
 'watchnologin'      => 'Cha nel oo loggit stiagh',
 'addedwatch'        => 'Currit rish y rolley arrey',
 'addedwatchtext'    => "Va'n duillag \"[[:\$1]]\" currit lesh dty [[Special:Watchlist|rolley arrey]].<br />

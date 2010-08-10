@@ -510,7 +510,6 @@ $messages = array(
 # Watchlist
 'watchlist'         => 'ჩქიმ კონტროლიშ ხასილეფ',
 'mywatchlist'       => 'ჩქიმ კონტროლიშ ერკებულ',
-'watchlistfor'      => "('''$1'''-შენი)",
 'removedwatchtext'  => 'ასე გვერდ "[[:$1]]" ვარე თქვან კონტროლიშ გვერდეფს.',
 'watch'             => 'კონტროლ',
 'watchthispage'     => 'თე ხასილაშ კონტროლ',

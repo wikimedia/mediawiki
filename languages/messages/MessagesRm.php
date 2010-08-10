@@ -1107,7 +1107,6 @@ L'adressa d'e-mail che ti has endatà en [[Special:Preferences|tias preferenzas]
 # Watchlist
 'watchlist'            => "mia glista d'observaziun",
 'mywatchlist'          => "Mia glista d'observaziun",
-'watchlistfor'         => "(per '''$1''')",
 'watchnologin'         => "Ti n'es betg t'annunzià!",
 'watchnologintext'     => "Ti stos [[Special:UserLogin|t'annunziar]] per midar tia glista d'observaziun.",
 'addedwatch'           => 'Agiuntà a la glista dad observaziun',

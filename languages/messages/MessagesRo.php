@@ -2139,7 +2139,6 @@ Adresa de e-mail introdusă de tine în [[Special:Preferences|preferințele de u
 # Watchlist
 'watchlist'            => 'Pagini urmărite',
 'mywatchlist'          => 'Pagini urmărite',
-'watchlistfor'         => "(pentru '''$1''')",
 'nowatchlist'          => 'Nu ați ales să urmăriți nici o pagină.',
 'watchlistanontext'    => 'Te rugăm să $1 pentru a vizualiza sau edita itemii de pe lista ta de urmărire.',
 'watchnologin'         => 'Nu sunteți autentificat',

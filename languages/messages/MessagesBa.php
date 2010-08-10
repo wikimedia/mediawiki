@@ -1477,7 +1477,6 @@ $1",
 # Watchlist
 'watchlist'         => 'Күҙәтеү исемлеге',
 'mywatchlist'       => 'Күҙәтеү исемлеге',
-'watchlistfor'      => "('''$1''' өсөн)",
 'watchnologin'      => 'Үҙегеҙҙе танытырға кәрәк',
 'addedwatch'        => 'Күҙәтеү исемлегенә өҫтәлде',
 'addedwatchtext'    => "\"[[:\$1]]\" бите [[Special:Watchlist|күҙәтеү исемлегегеҙгә]] өҫтәлде.

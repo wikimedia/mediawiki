@@ -555,6 +555,7 @@ $1 is for indicating whether or not we should be able to use the feature.',
 
 /** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
  * @author EugeneZelenko
+ * @author Jim-by
  * @author Wizardist
  */
 $messages['be-tarask'] = array(
@@ -689,10 +690,84 @@ MediaWiki для працы патрабуюцца функцыі рэгуляр
 	'config-no-scaling' => 'Ні GD, ні ImageMagick ня знойдзеныя.
 Маштабаваньне выяваў будзе адключанае.',
 	'config-dir' => 'Дырэкторыя для усталяваньня: <code>$1</code>',
+	'config-uri' => 'URI-шлях да скрыпта: <code>$1</code>.',
 	'config-no-uri' => "'''Памылка:''' Не магчыма вызначыць цяперашні URI.
 Усталяваньне спыненае.",
+	'config-dir-not-writable-group' => "'''Памылка:''' немагчыма запісаць файл канфігурацыі.
+Усталяваньне перарванае.
+
+Праграма ўсталяваньня вызначыла імя карыстальніка, пад якім працуе вэб-сэрвэр.
+Дайце дазвол на запіс у дырэкторыю <code><nowiki>config</nowiki></code> для працягненьня.
+У Unix/Linux сыстэмах выканайце:
+
+<pre>cd $1
+chgrp $2 config
+chmod g+w config</pre>",
+	'config-dir-not-writable-nogroup' => "'''Памылка:''' немагчыма запісаць файл канфігурацыі.
+Усталяваньне перарванае.
+
+Не атрымалася вызначыць імя карыстальніка, пад якім працуе вэб-сэрвэр.
+Дайце карыстальніку (і іншым) дазвол на запіс у дырэкторыю <code><nowiki>config</nowiki></code> для працягненьня.
+У Unix/Linux выканайце:
+
+<pre>cd $1
+chmod a+w config</pre>",
+	'config-file-extension' => 'Усталяваньне MediaWiki з пашырэньнямі файлаў <code>$1</code>',
+	'config-shell-locale' => 'Лякаль асяродзьдзя: «$1»',
+	'config-uploads-safe' => 'У дырэкторыі для загрузак па змоўчваньні запуск скрыптоў забаронены.',
+	'config-uploads-not-safe' => "'''Папярэджаньне:''' дырэкторыя для загрузак па змоўчваньні <code>$1</code> уразьлівая да выкананьня адвольнага коду.
+Хоць MediaWiki і правярае ўсе файлы перад захаваньнем, вельмі рэкамэндуецца [http://www.mediawiki.org/wiki/Manual:Security#Upload_security закрыць гэтую ўразьлівасьць] перад уключэньнем магчымасьці загрузкі файлаў.",
 	'config-db-type' => 'Тып базы зьвестак:',
+	'config-db-host' => 'Хост базы зьвестак:',
+	'config-db-host-help' => 'Калі Вашая база зьвестак знаходзіцца на іншым сэрвэры, увядзіце імя хоста ці IP-адрас.
+
+Калі Вы набываеце shared-хостынг, Ваш хостынг-правайдэр мусіць даць Вам слушнае імя хоста базы зьвестак для выкарыстаньня.',
+	'config-db-wiki-settings' => 'Ідэнтыфікацыя гэтай вікі',
 	'config-db-name' => 'Назва базы зьвестак:',
+	'config-db-name-help' => 'Выберыце імя, якое вызначыць Вашую вікі.
+Яно ня мусіць зьмяшчаць прагалаў ці злучкоў.
+
+Калі Вы набываеце shared-хостынг, Ваш хостынг-правайдэр мусіць надаць Вам ці пэўнае імя базы зьвестак для выкарыстаньня, ці магчымасьць ствараць базы зьвестак праз кантрольную панэль.',
+	'config-db-install-account' => 'Імя карыстальніка для ўсталяваньня',
+	'config-db-username' => 'Імя карыстальніка базы зьвестак:',
+	'config-db-password' => 'Пароль базы зьвестак:',
+	'config-db-install-help' => 'Увядзіце імя карыстальніка і пароль, якія будуць выкарыстаныя для далучэньня да базы зьвестак падчас працэсу ўсталяваньня.',
+	'config-db-account-lock' => 'Выкарыстоўваць тыя ж імя карыстальніка і пароль пасьля ўсталяваньня',
+	'config-db-wiki-account' => 'Імя карыстальніка для працы',
+	'config-db-wiki-help' => 'Увядзіце імя карыстальніка і пароль, якія будуць выкарыстаныя для далучэньня да базы зьвестак падчас працы (пасьля ўсталяваньня).
+Калі рахунак ня створаны, а рахунак для ўсталяваньня мае значныя правы, гэты рахунак будзе створаны зь мінімальна патрэбнымі для працы вікі правамі.',
+	'config-db-prefix' => 'Прэфікс табліцаў базы зьвестак:',
+	'config-db-prefix-help' => 'Калі Вы падзяляеце адну базу зьвестак паміж некалькімі вікі, ці паміж MediaWiki і іншым вэб-дастасаваньнем, можаце вызначыць прэфікс, які будзе выкарыстоўвацца ва ўсіх назваў табліцаў для пазьбяганьня канфліктаў.
+Пазьбягайце прагалаў ці злучкоў.
+
+Калі прэфікс не патрэбны, пакіньце поле пустым.',
+	'config-db-charset' => 'Кадаваньне сымбаляў базы зьвестак',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binary',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 UTF-8 з адваротнай сумяшчальнасьцю',
+	'config-charset-help' => "'''Папярэджаньне:''' калі Вы выкарыстоўваеце '''UTF-8 з адваротнай сумяшчальнасьцю''' на MySQL 4.1+ і зробіце рэзэрвовую копію праз <code>mysqldump</code>, ён можа зьнішчыць усе не-ASCII-сымбалі беспаваротна!
+
+У '''бінарным (binary)''' рэжыме MediaWiki захоўвае тэксты ў UTF-8 у палёх тыпу binary.
+Гэты рэжым болей эфэктыўны за рэжым MySQL UTF-8 і дазваляе выкарыстоўваць увесь абсяг сымбаляў Unicode.
+У рэжыме '''UTF-8''' MySQL будзе ведаць, у якім кадаваньне Вы зьмяшчаеце зьвесткі, і будзе вяртаць іх у адпаведным кадаваньні,
+але MySQL ня можа ўтрымліваць сымбалі па-за [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Стандартным шматмоўным пластом] сымбаляў Unicode.",
+	'config-mysql-old' => 'Патрабуецца MySQL $1 ці навейшая, усталяваная вэрсія $2.',
+	'config-db-port' => 'Порт базы зьвестак:',
+	'config-db-schema' => 'Схема для MediaWiki',
+	'config-db-ts2-schema' => 'Схема для tsearch2',
+	'config-db-schema-help' => 'Вышэй пададзеныя схемы слушныя ў большасьці выпадкаў.
+Зьмяняйце іх толькі тады, калі Вы ведаеце, што гэта неабходна.',
+	'config-sqlite-dir' => 'Дырэкторыя зьвестак SQLite:',
+	'config-sqlite-dir-help' => "SQLite захоўвае ўсе зьвесткі ў адзіным файле.
+
+Пададзеная Вамі дырэкторыя павінна быць даступнай да запісу вэб-сэрвэрам падчас усталяваньня.
+
+Яна '''ня''' мусіць быць даступнай праз Сеціва, вось чаму мы не захоўваем яе ў адным месцы з файламі PHP.
+
+Праграма ўсталяваньня дадаткова створыць файл <code>.htaccess</code>, але калі ён не выкарыстоўваецца, хто заўгодна зможа атрымаць зьвесткі з базы зьвестак.
+Гэта ўключае як прыватныя зьвесткі ўдзельнікаў (адрасы электроннай пошты, хэшы пароляў), гэтак і выдаленыя вэрсіі старонак і іншыя зьвесткі, доступ да якіх маецца абмежаваны.
+
+Падумайце над тым, каб зьмяшчаць базу зьвестак у іншым месцы, напрыклад у <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -702,18 +777,29 @@ MediaWiki для працы патрабуюцца функцыі рэгуляр
 	'config-header-sqlite' => 'Устаноўкі SQLite',
 	'config-header-oracle' => 'Устаноўкі Oracle',
 	'config-invalid-db-type' => 'Няслушны тып базы зьвестак',
+	'config-missing-db-name' => 'Вы павінны ўвесьці значэньне парамэтру «Імя базы зьвестак»',
+	'config-invalid-db-name' => 'Няслушная назва базы зьвестак «$1».
+Назва можа ўтрымліваць толькі літары, лічбы і сымбалі падкрэсьліваньня.',
+	'config-regenerate' => 'Рэгенэраваць LocalSettings.php →',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-admin-name' => 'Вашае імя:',
 	'config-admin-password' => 'Пароль:',
 	'config-admin-email' => 'Адрас электроннай пошты:',
+	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike (сумяшчальная зь Вікіпэдыяй)',
+	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
+	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 ці болей позьняя',
+	'config-license-pd' => 'Грамадзкая ўласнасьць',
+	'config-license-cc-choose' => 'Выберыце іншую ліцэнзію Creative Commons',
 	'config-memcached-servers' => 'Сэрвэры memcached:',
 	'config-extensions' => 'Пашырэньні',
 	'config-install-step-done' => 'зроблена',
 );
 
 /** Breton (Brezhoneg)
+ * @author Gwendal
  * @author Y-M D
  */
 $messages['br'] = array(
@@ -739,9 +825,32 @@ $messages['br'] = array(
 	'config-page-copying' => 'O eilañ',
 	'config-page-upgradedoc' => 'O hizivaat',
 	'config-restart' => "Ya, adloc'hañ anezhañ",
+	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Degemer]
+* [http://www.mediawiki.org/wiki/Help:Contents Pajenn-stur an implijer]
+* [http://www.mediawiki.org/wiki/Manual:Contents Pajenn-stur ar merour]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAG]',
 	'config-env-php' => 'Staliet eo PHP $1.',
+	'config-env-latest-ok' => "O staliañ emaoc'h stumm diwezhañ Mediawiki.",
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] a zo staliet',
+	'config-apc' => '[http://www.php.net/apc APC] a zo staliet',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] a zo staliet',
+	'config-type-mysql' => 'MySQL',
+	'config-type-postgres' => 'PostgreSQL',
+	'config-type-sqlite' => 'SQLite',
+	'config-type-oracle' => 'Oracle',
+	'config-header-mysql' => 'Arventennoù MySQL',
+	'config-header-postgres' => 'Arventennoù PostgreSQL',
+	'config-header-sqlite' => 'Arventennoù SQLite',
+	'config-header-oracle' => 'Arventennoù Oracle',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-binary' => 'Daouredel',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-ns-generic' => 'Raktres',
 	'config-admin-name' => "Hoc'h anv :",
 	'config-admin-password' => 'Ger-tremen :',
+	'config-admin-email' => "Chomlec'h postel :",
+	'config-license-pd' => 'Domani foran',
 	'config-email-settings' => 'Arventennoù ar postel',
 	'config-extensions' => 'Astennoù',
 	'config-install-step-done' => 'graet',
@@ -1483,6 +1592,7 @@ Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoitta
 );
 
 /** French (Français)
+ * @author Crochet.david
  * @author Peter17
  * @author Yumeki
  */
@@ -1523,6 +1633,13 @@ Redémarrer le processus d'installation.",
 	'config-page-releasenotes' => 'Notes de version',
 	'config-page-copying' => 'Copie',
 	'config-page-upgradedoc' => 'Mise à jour',
+	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Accueil]
+* [http://www.mediawiki.org/wiki/Help:Contents Guide de l’utilisateur]
+* [http://www.mediawiki.org/wiki/Manual:Contents Guide de l’administrateur]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
+	'config-env-php' => 'PHP $1 est installé.',
+	'config-env-latest-ok' => 'Vous installez la dernière version de MediaWiki.',
+	'config-env-latest-old' => "'''Attention :''' Vous installez une version obsolète de MediaWiki.",
 	'config-memory-none' => 'PHP est configuré sans paramètre <code>memory_limit</code>',
 	'config-memory-ok' => 'Le paramètre <code>memory_limit</code> de PHP est à $1.
 OK.',
@@ -1530,6 +1647,10 @@ OK.',
 	'config-memory-bad' => "'''Attention :''' Le paramètre <code>memory_limit</code> de PHP est à $1.
 Cette valeur est probablement trop faible.
 Il est possible que l’installation échoue !",
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] est installé',
+	'config-apc' => '[http://www.php.net/apc APC] est installé',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] est installé',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] est installé',
 	'config-db-username' => 'Nom d’utilisateur de la base de données :',
 	'config-db-password' => 'Mot de passe de la base de données :',
 	'config-db-prefix' => 'Préfixe des tables de la base de données :',
@@ -1993,6 +2114,49 @@ MediaWikiは、このモジュールの関数を必要としているため、�
 Mandrakeを実行している場合、php-xmlパッケージをインストールしてください。',
 );
 
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'config-desc' => 'Et Projramm för Mediwiki opzesäze.',
+	'config-title' => 'MediaWiki $1 opsäze',
+	'config-information' => 'Enfomazjuhn',
+	'config-localsettings-upgrade' => "'''Opjepaß''': De Dattei <code>LocalSettings.php</code> es ald doh.
+Di Projramme, di ald doh sin, künne op der neuste Shtand jebraat wääde.
+Donn de <code>LocalSettings.php</code> aan enem seshere Plaz aflääje, un dann dat Projramm för et Opsäze norr_ens aanschmiiße.",
+	'config-localsettings-noupgrade' => "'''Fähler''': De Dattei <code>LocalSettings.php</code> es ald doh.
+Di Projramme, di ald doh sin, künne ävver nit op der neue Shtand jebraat wääde.
+Dat Projramm för et Opsäze es zor Sesherheit afjeschalldt.",
+	'config-session-error' => 'Ene Fähler es opjetrodde beim Aanmelde för en Sezung: $1',
+	'config-session-expired' => 'De Daate för Ding Setzung sinn wall övverholld of afjeloufe.
+De Setzungunge sin esu enjeshtallt, nit mieh wi $1 ze doore.
+Dat kanns De verlängere, endämm dat De de <code lang="en">session.gc_maxlifetime</code> en dä Dattei <code>php.ini</code> jrüüßer määß.
+Don dat Projramm för et Opsäze norr_ens aanschmiiße.',
+	'config-no-session' => 'De Daate för Ding Setzung sinn verschött jejange.
+Donn en dä Dattei <code>php.ini</code> nohloore, ov dä <code lang="en">session.save_path</code> op e zopaß Verzeijschneß zeisch.',
+	'config-session-path-bad' => 'De Dattei uß däm <code lang="en">session.save_path</code>, dat es <code>$1</code>, schingk onjöltesch udder kappott ze sin, udder mer künne nit dren schriive.',
+	'config-show-help' => 'Hölp',
+	'config-hide-help' => 'Hölp afschallde',
+	'config-your-language' => 'Ding Shprooch:',
+	'config-your-language-help' => 'Donn heh di Shprooch ußsöhke, di dat Enshtallzjuhnsprojramm kalle sull.',
+	'config-wiki-language' => 'Dem Wiki sing Shprooch:',
+	'config-wiki-language-help' => 'Donn heh di Shprooch ußsöhke, di et Wiki shtandattmääßesch kalle sull.',
+	'config-back' => '← Retuur',
+	'config-continue' => 'Wigger →',
+	'config-page-language' => 'Shprooch',
+	'config-page-welcome' => 'Wellkumme bei MediaWiki!',
+	'config-page-dbconnect' => 'Donn en Verbindung met dä Daatebangk maache',
+	'config-page-upgrade' => 'En Inshtallzjuhn op der neuste Shtand bränge, di ald doh es',
+	'config-page-dbsettings' => 'Parrameeter för de Daatebangk',
+	'config-page-name' => 'Name',
+	'config-page-options' => 'Ennställunge',
+	'config-page-install' => 'Opsäzze',
+	'config-page-complete' => 'Jedonn!',
+	'config-page-restart' => 'Dat Opsäze norr_ens aanfange',
+	'config-page-readme' => 'Donn mesch lässe! (<i lang="en">read me</i>)',
+	'config-page-releasenotes' => 'Henwiiß för de Ußjaav',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
@@ -2036,6 +2200,8 @@ Dir kënnt MediWiki net installéieren.',
 	'config-env-latest-help' => "Dir installéiert d'Versioun $1, awer déi lescht Versioun ass $2.
 Et gëtt geroden déi lescht Release ze benotzen, déi Dir vun [http://www.mediawiki.org/wiki/Download mediawiki.org] erofluede kënnt.",
 	'config-memory-none' => 'PHP ass ouni <code>memory_limit</code> configuréiert.',
+	'config-memory-ok' => 'De PHP-Parameter <code>memory_limit</code> huet de Wäert $1.
+OK.',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] ass installéiert',
 	'config-apc' => '[http://www.php.net/apc APC] ass installéiert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] ass installéiert',
@@ -2048,6 +2214,7 @@ Et gëtt geroden déi lescht Release ze benotzen, déi Dir vun [http://www.media
 	'config-db-username' => 'Datebank-Benotzernumm:',
 	'config-db-password' => 'Passwuert vun der Datebank:',
 	'config-db-install-help' => 'Gitt de Benotzernumm an Passwuert an dat wàhrend der Installatioun benotzt gëtt fir sech mat der Datebank ze verbannen.',
+	'config-db-account-lock' => 'De selwechte Benotzernumm a Passwuert fir déi normal Operatioune benotzen',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binair',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-mysql-old' => 'MySQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.',
@@ -2073,6 +2240,7 @@ Et gëtt geroden déi lescht Release ze benotzen, déi Dir vun [http://www.media
 	'config-mysql-binary' => 'binär',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Numm vun der Wiki:',
+	'config-site-name-help' => 'Dësen daucht an der Titelleescht vum Browser an op verschiddenen anere Plazen op.',
 	'config-site-name-blank' => 'Gitt den Numm vum Site un.',
 	'config-project-namespace' => 'Projet Nummraum:',
 	'config-ns-generic' => 'Projet',
@@ -2102,6 +2270,7 @@ Et gëtt geroden déi lescht Release ze benotzen, déi Dir vun [http://www.media
 	'config-extensions' => 'Erweiderungen',
 	'config-install-step-done' => 'fäerdeg',
 	'config-install-step-failed' => 'huet net fonctionnéiert',
+	'config-install-extensions' => 'Mat den Ereiderungen',
 );
 
 /** Macedonian (Македонски)
@@ -3639,6 +3808,10 @@ MediaWiki будет работать, но это снизит безопасн
 Имя может содержать только цифры, буквы и знаки подчёркивания.',
 	'config-invalid-db-prefix' => 'Неверный префикс базы данных «$1».
 Префикс может содержать только цифры, буквы и знаки подчёркивания.',
+	'config-connection-error' => '$1.
+
+Проверьте хост, имя пользователя и пароль и попробуйте ещё раз.',
+	'config-postgres-old' => 'Необходим PostgreSQL $1 или более поздняя версия. У вас установлен PostgreSQL $2.',
 	'config-sqlite-mkdir-error' => 'Ошибка при создании каталога данных «$1».
 Проверьте расположение и повторите попытку.',
 	'config-sqlite-dir-unwritable' => 'Невозможно произвести запись в каталог «$1».

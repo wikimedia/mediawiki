@@ -1020,7 +1020,6 @@ Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bl
 # Watchlist
 'watchlist'         => 'Volglieste',
 'mywatchlist'       => 'Mien volglieste',
-'watchlistfor'      => "(vò '''$1''')",
 'watchnologin'      => 'Je bin nie angemolde.',
 'watchnologintext'  => 'Je moe [[Special:UserLogin|angemolde]] weze om je volglieste an te passen.',
 'addedwatch'        => 'An de volglieste toegevoegd',

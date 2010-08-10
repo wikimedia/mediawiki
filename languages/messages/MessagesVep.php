@@ -1650,7 +1650,6 @@ Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
 # Watchlist
 'watchlist'          => 'Kaclendnimikirjutez',
 'mywatchlist'        => 'Minun kaclendnimikirjutez',
-'watchlistfor'       => "('''$1''')",
 'nowatchlist'        => "Teiden kaclendnimikirjutez om pall'az.",
 'watchlistanontext'  => 'Olgat hüväd, $1, miše lugeda vai redaktiruida teiden kaclendnimikirjutez.',
 'watchnologin'       => 'Pidab kirjutadas sistemha',

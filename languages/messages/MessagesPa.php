@@ -704,7 +704,6 @@ to upload files.',
 # Watchlist
 'watchlist'     => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ',
 'mywatchlist'   => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ',
-'watchlistfor'  => "('''$1''' ਲਈ)",
 'watchnologin'  => 'ਲਾਗਇਨ ਨਹੀਂ',
 'addedwatch'    => 'ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ',
 'watch'         => 'ਵਾਚ',

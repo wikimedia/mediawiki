@@ -627,7 +627,6 @@ Yma folennow eus war dha [[Special:Watchlist|rol a golyas]] yn '''tew'''.",
 # Watchlist
 'watchlist'         => 'Ow rol golyas',
 'mywatchlist'       => 'Ow rol golyas',
-'watchlistfor'      => "(rag '''$1''')",
 'addedwatch'        => 'Keworrys dhe rol golyas',
 'watch'             => 'Golyas',
 'watchthispage'     => 'Golya an folen-ma',

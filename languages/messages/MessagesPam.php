@@ -1377,7 +1377,6 @@ Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nun
 # Watchlist
 'watchlist'            => 'Deng kanakung babanten',
 'mywatchlist'          => 'Deng kakung babanten',
-'watchlistfor'         => "(para '''$1''')",
 'nowatchlist'          => 'Ala yang laman ing kekang tala ring babanten (watchlist).',
 'watchlistanontext'    => 'Paki $1 ba mong akit o a-edit deng laman ning kekang tala ring babanten (watchlist).',
 'watchnologin'         => 'E maka-login',

@@ -1305,7 +1305,6 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 # Watchlist
 'watchlist'            => 'Fehristi nazaroti man',
 'mywatchlist'          => 'Fehristi nazaroti man',
-'watchlistfor'         => "(baroi '''$1''')",
 'nowatchlist'          => 'Dar fehristi pajgirihoi şumo heç mavride nest.',
 'watchlistanontext'    => 'Lutfan baroi muşohida va viroişi fehristi pajgirihoi xud az $1 istifoda kuned.',
 'watchnologin'         => 'Vurud naşuda',

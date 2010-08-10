@@ -553,7 +553,6 @@ $messages = array(
 # Watchlist
 'watchlist'         => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
 'mywatchlist'       => 'ಎನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿ',
-'watchlistfor'      => "('''$1''' ಇಂದೆತ)",
 'watch'             => 'ತೂಲೆ',
 'watchthispage'     => 'ಈ ಪುಟೊನು ತೂಲೆ',
 'unwatch'           => 'ವೀಕ್ಷಣಾಪಟ್ಟಿರ್ದ್ ದೆಪ್ಪು',

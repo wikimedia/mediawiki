@@ -1991,7 +1991,6 @@ Ang ipinasok mong adres ng e-liham sa [[Special:Preferences|iyong mga kagustuhan
 # Watchlist
 'watchlist'            => 'Mga binabantayan ko',
 'mywatchlist'          => 'Bantayan ko',
-'watchlistfor'         => "(para sa '''$1''')",
 'nowatchlist'          => 'Wala kang pahinang binabantayan.',
 'watchlistanontext'    => 'Paki $1 upang makita o mabago ang mga aytem sa iyong binabantayan.',
 'watchnologin'         => 'Di ka naka-lagda',

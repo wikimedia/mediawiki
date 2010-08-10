@@ -976,6 +976,8 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 'revmove-reasonfield'          => 'Sababu:',
 'revmove-titlefield'           => 'Ukurasa unaolengwa',
 'revmove-nullmove-title'       => 'Jina halifai',
+'revmove-success-existing'     => '{{PLURAL:$1|Pitio moja kutoka kwa [[$2]] limehamishwa|mapitio $1 kutoka kwa [[$2]] yamehamishwa}} kwenda ukurasa uliopo tayari unaoitwa [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Pitio moja kutoka kwa [[$2]] limehamishwa|mapitio $1 kutoka kwa [[$2]] yamehamishwa}} kwenda ukurasa mpya unaoitwa [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Unganisha historia za kurasa',
@@ -1446,8 +1448,9 @@ $1',
 'img-auth-nofile' => 'Hakuna faili la "$1".',
 
 # HTTP errors
-'http-invalid-url' => 'URL batili: $1',
-'http-timed-out'   => 'Ombi la HTTP muda umepita.',
+'http-invalid-url'      => 'URL batili: $1',
+'http-timed-out'        => 'Ombi la HTTP muda umepita.',
+'http-host-unreachable' => 'KISARA (URL) haikupatikana',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'KISARA (URL) haikupatikana',
@@ -1756,7 +1759,6 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 # Watchlist
 'watchlist'         => 'Maangalizi yangu',
 'mywatchlist'       => 'Maangalizi yangu',
-'watchlistfor'      => "(kwa '''$1''')",
 'nowatchlist'       => 'Hamna vitu katika maangalizi yako.',
 'watchlistanontext' => 'Tafadhali $1 ili kutazama au kuhariri vitu vilivyopo katika orodha yako ya maangalizi.',
 'watchnologin'      => 'Hujaingia',

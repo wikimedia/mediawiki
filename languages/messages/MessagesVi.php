@@ -281,7 +281,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Tự động theo dõi trang tôi xóa',
 'tog-previewontop'            => 'Hiển thị phần xem thử nằm trên hộp sửa đổi',
 'tog-previewonfirst'          => 'Hiện xem thử tại lần sửa đầu tiên',
-'tog-nocache'                 => 'Không lưu trang trong bộ nhớ đệm',
+'tog-nocache'                 => 'Không lưu trang trong bộ nhớ đệm trình duyệt',
 'tog-enotifwatchlistpages'    => 'Gửi thư cho tôi khi có thay đổi tại trang tôi theo dõi',
 'tog-enotifusertalkpages'     => 'Gửi thư cho tôi khi có thay đổi tại trang thảo luận của tôi',
 'tog-enotifminoredits'        => 'Gửi thư cho tôi cả những thay đổi nhỏ trong trang',
@@ -684,6 +684,7 @@ Tài khoản của bạn đã mở.
 'gotaccount'                 => "Đã mở tài khoản rồi? '''$1'''.",
 'gotaccountlink'             => 'Đăng nhập',
 'createaccountmail'          => 'qua thư điện tử',
+'createaccountreason'        => 'Lý do:',
 'badretype'                  => 'Hai mật khẩu không khớp.',
 'userexists'                 => 'Tên người dùng này đã có người lấy.
 Hãy chọn một tên khác.',
@@ -735,6 +736,15 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 Xin hãy đợi chốc lát rồi thử lại.',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
 'suspicious-userlogout'      => 'Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.',
+
+# JavaScript password checks
+'password-strength'            => 'Độ mạnh ước lượng của mật khẩu: $1',
+'password-strength-bad'        => 'DỞ',
+'password-strength-mediocre'   => 'xoàng',
+'password-strength-acceptable' => 'được',
+'password-strength-good'       => 'tốt',
+'password-retype'              => 'Gõ lại mật khẩu tại đây',
+'password-retype-mismatch'     => 'Mật khẩu không khớp',
 
 # Password reset dialog
 'resetpass'                 => 'Đổi mật khẩu',
@@ -1276,6 +1286,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'contextlines'                  => 'Số hàng trong trang dùng để tìm ra kết quả:',
 'contextchars'                  => 'Số chữ trong một hàng kết quả:',
 'stub-threshold'                => 'Định dạng <a href="#" class="stub">liên kết đến sơ khai</a> cho các trang ngắn hơn (byte):',
+'stub-threshold-disabled'       => 'Tắt',
 'recentchangesdays'             => 'Số ngày hiển thị trong thay đổi gần đây:',
 'recentchangesdays-max'         => '(tối đa $1 {{PLURAL:$1|ngày|ngày}})',
 'recentchangescount'            => 'Số sửa đổi hiển thị mặc định:',
@@ -1827,7 +1838,7 @@ Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiể
 'mimesearch'         => 'Tìm kiếm theo định dạng',
 'mimesearch-summary' => 'Trang này có khả năng lọc tập tin theo định dạng MIME. Đầu vào: contenttype/subtype, v.d. <tt>image/jpeg</tt>.',
 'mimetype'           => 'Định dạng MIME:',
-'download'           => 'tải xuống',
+'download'           => 'tải về',
 
 # Unwatched pages
 'unwatchedpages' => 'Trang chưa được theo dõi',
@@ -2088,7 +2099,6 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 # Watchlist
 'watchlist'            => 'Trang tôi theo dõi',
 'mywatchlist'          => 'Trang tôi theo dõi',
-'watchlistfor'         => "(của '''$1''')",
 'nowatchlist'          => 'Danh sách theo dõi của bạn không có gì.',
 'watchlistanontext'    => 'Xin hãy $1 để xem hay sửa đổi các trang được theo dõi.',
 'watchnologin'         => 'Chưa đăng nhập',

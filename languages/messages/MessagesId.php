@@ -2109,7 +2109,6 @@ Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] 
 # Watchlist
 'watchlist'            => 'Daftar pantauan saya',
 'mywatchlist'          => 'Daftar pantauan saya',
-'watchlistfor'         => "(untuk '''$1''')",
 'nowatchlist'          => 'Daftar pantauan Anda kosong.',
 'watchlistanontext'    => 'Silakan $1 untuk melihat atau menyunting daftar pantauan Anda.',
 'watchnologin'         => 'Belum masuk log',

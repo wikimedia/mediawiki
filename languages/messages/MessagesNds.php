@@ -1788,7 +1788,6 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 # Watchlist
 'watchlist'            => 'Mien Oppasslist',
 'mywatchlist'          => 'Mien Oppasslist',
-'watchlistfor'         => "(för '''$1''')",
 'nowatchlist'          => 'Du hest kene Indreeg op dien Oppasslist.',
 'watchlistanontext'    => '$1, dat du dien Oppasslist ankieken oder ännern kannst.',
 'watchnologin'         => 'Du büst nich anmellt',

@@ -1641,7 +1641,6 @@ E-mail adressi kawīdan tū enpeisāi en [[Special:Preferences|twajjans pirminis
 # Watchlist
 'watchlist'            => 'Listi stēisan nadirītan',
 'mywatchlist'          => 'Listi stēisan nadirītan',
-'watchlistfor'         => "(per '''$1''')",
 'nowatchlist'          => 'Twajā listi stēisan nadirītan pāusan ast pāustan.',
 'watchlistanontext'    => 'Madli $1, kāi widālai elāmentans stesse listin stēisan nadirītan.',
 'watchnologin'         => 'Ni assei engūbun',

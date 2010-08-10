@@ -1313,7 +1313,6 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 # Watchlist
 'watchlist'            => 'Abbaidaddi ippiziari',
 'mywatchlist'          => 'Abbaidaddi ippiziari',
-'watchlistfor'         => "(pa '''$1''')",
 'nowatchlist'          => "La listha di l'abbaidaddi ippiziari è biodda.",
 'watchlistanontext'    => "Pa visuarizzà e mudìfiggà l'erencu di l'abbaidaddi ippiziari è nezzessàriu $1.",
 'watchnologin'         => 'Intradda nò effettuadda',

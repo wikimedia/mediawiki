@@ -1390,7 +1390,6 @@ Ayrıca [[Special:WantedCategories|talap etilgen kategoriyalarnıñ cedveline]] 
 # Watchlist
 'watchlist'            => 'Közetüv cedveli',
 'mywatchlist'          => 'Közetüv cedvelim',
-'watchlistfor'         => "('''$1''' içün)",
 'nowatchlist'          => 'Siziñ közetüv cedveliñiz boştır.',
 'watchlistanontext'    => 'Közetüv cedvelini baqmaq ya da deñiştirmek içün $1 borclusıñız.',
 'watchnologin'         => 'Oturım açmaq kerek',

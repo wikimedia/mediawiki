@@ -491,7 +491,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 # Watchlist
 'watchlist'         => 'L-Lista de s-suivi dyalṫi',
 'mywatchlist'       => 'L-Lista dyal s-suivi',
-'watchlistfor'      => "(dyal '''$1''')",
 'addedwatch'        => 'Ṫzadeṫ le l-lista dyal s-suivi',
 'addedwatchtext'    => "Ṣ-Ṣefḫa \"[[:\$1]]\" ṫzadeṫ le [[Special:Watchlist|l-lista dyal s-suivi dyalṫek]].
 Ṫ-Ṫeġyiraṫ j-jayyin dyal had ṣ-ṣefḫa o dyal ṣ-ṣefḫa de n-niqaċ l-mnasba ġayṫċejjlo fiha.

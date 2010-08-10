@@ -1433,7 +1433,6 @@ La direción email qu'aigas escrebiu enas tus preferéncias apaicirá cumu remit
 # Watchlist
 'watchlist'            => 'La mi lista e seguimientu',
 'mywatchlist'          => 'La mi lista e seguimientu',
-'watchlistfor'         => "(pa '''$1''')",
 'nowatchlist'          => 'La tu lista e seguimientu está vacia.',
 'watchlistanontext'    => 'Pa vel u eital las entrás ena tu lista e seguimientu es mestel $1.',
 'watchnologin'         => 'Nu estás rustriu',

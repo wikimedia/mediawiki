@@ -1479,7 +1479,7 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'recentchanges-label-newpage'       => "Met die wysiging is 'n nuwe bladsy geskep",
 'recentchanges-legend-minor'        => '$1 - klein wysiging',
 'recentchanges-label-minor'         => "Hierdie is 'n klein wysiging",
-'recentchanges-legend-bot'          => '$1 - botbywerking',
+'recentchanges-legend-bot'          => '$1 - robotwysiging',
 'recentchanges-label-bot'           => "Hierdie wysiging was deur 'n bot uitgevoer",
 'recentchanges-legend-unpatrolled'  => '$1 - ongekontroleerde wysiging',
 'recentchanges-label-unpatrolled'   => 'Die wysiging is nog nie gekontroleer nie',
@@ -2058,7 +2058,6 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 # Watchlist
 'watchlist'            => 'My dophoulys',
 'mywatchlist'          => 'My dophoulys',
-'watchlistfor'         => "(vir '''$1''')",
 'nowatchlist'          => 'U het geen items in u dophoulys nie.',
 'watchlistanontext'    => '$1 is noodsaaklik om u dophoulys te sien of te wysig.',
 'watchnologin'         => 'Nie ingeteken nie',

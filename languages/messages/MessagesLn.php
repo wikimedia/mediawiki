@@ -361,7 +361,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Watchlist
 'watchlist'         => 'Nkásá nalandí',
 'mywatchlist'       => 'Nkásá nalandí',
-'watchlistfor'      => "(mpɔ̂ na moto '''$1''')",
 'watch'             => 'Kolanda',
 'watchthispage'     => 'Kolanda lonkásá óyo',
 'unwatch'           => 'Kolanda tɛ́',

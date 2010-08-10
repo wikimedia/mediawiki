@@ -287,7 +287,6 @@ $3',
 # Watchlist
 'watchlist'         => 'bikʼi déshʼį́į́ʼígíí',
 'mywatchlist'       => 'bikʼi déshʼį́į́ʼígíí',
-'watchlistfor'      => "('''$1''')",
 'addedwatchtext'    => "[[Special:Watchlist|Naaltsoos bikʼi díníʼį́į́ʼígíí]] bíhiniidééh. \"[[:\$1]]\" kʼad bikʼi díníʼį́į́ʼ.<br />Nááná [[Special:RecentChanges|\"áníídí łahgo ályaaígíí\"]] bikáaʼgi díí naaltsoos kʼad kodóó '''ditą́ą''' dooleeł.",
 'removedwatchtext'  => '"[[:$1]]" kʼad doo [[Special:Watchlist|bikʼi díníʼį́į]] da.',
 'watch'             => 'bikʼi déshʼį́į́ʼ nisin',

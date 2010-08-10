@@ -1013,7 +1013,6 @@ Eseye pou wè si ak prefiks ''all:'' pou chache nan tout kontni a (anndann nou a
 # Watchlist
 'watchlist'         => 'Lis swivi',
 'mywatchlist'       => 'Lis swivi',
-'watchlistfor'      => "(pou itilizatè '''$1''')",
 'addedwatch'        => 'Ajoute nan lis swivi',
 'addedwatchtext'    => 'Paj « <nowiki>$1</nowiki> » an byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
 Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <b>fonse </b> nan [[Special:RecentChanges|chanjman ki fèk fèt]] pou ou kapab wè yo pli fasilman.',

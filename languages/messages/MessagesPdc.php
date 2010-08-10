@@ -593,7 +593,6 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # Watchlist
 'watchlist'         => 'Mei Watsch-Lischt',
 'mywatchlist'       => 'Mei Watsch-Lischt',
-'watchlistfor'      => "(fer '''$1''')",
 'addedwatch'        => 'Zu de Watsch-Lischt dezu geduh',
 'watch'             => 'watsche',
 'watchthispage'     => 'watsch des Blatt',

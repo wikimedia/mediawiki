@@ -708,6 +708,9 @@ Parameters:
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 
 # JavaScript password checks
+'password-strength'            => 'Indicator of [[w:Password strength|password strength]] shown when entering a new password (during user registration or password reset).
+
+<code>$1</code> is one of {{msg-mw|Password-strength-bad}}, {{msg-mw|Password-strength-mediocre}}, {{msg-mw|Password-strength-acceptable}}, {{msg-mw|Password-strength-good}}',
 'password-strength-bad'        => 'See {{msg-mw|password-strength}} for context',
 'password-strength-mediocre'   => 'See {{msg-mw|password-strength}} for context',
 'password-strength-acceptable' => 'See {{msg-mw|password-strength}} for context',

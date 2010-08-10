@@ -288,7 +288,6 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 # Watchlist
 'watchlist'         => 'Mi list foh wach',
 'mywatchlist'       => 'Mi list foh wach',
-'watchlistfor'      => "(foh '''$1''')",
 'nowatchlist'       => 'Yu noh geht natin na yu list foh wach.',
 'watchlistanontext' => '$1 Foh luk o chenj wetin de na yu list foh wach',
 'watchnologin'      => 'Yu noh kam insai di sait yet',

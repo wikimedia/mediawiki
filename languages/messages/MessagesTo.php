@@ -763,7 +763,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 # Watchlist
 'watchlist'            => 'Hokohoko leʻo ʻaʻaku',
 'mywatchlist'          => 'Hokohoko leʻo ʻaʻaku',
-'watchlistfor'         => "(maʻa e '''$1''')",
 'nowatchlist'          => 'ʻOku ʻikai ha meʻa ʻi hoʻo hokohoko leʻo.',
 'watchlistanontext'    => 'Kātaki, ʻe $1 kapau te ke fievakai pe fiefatu ha ngaahi meʻa ʻi hoʻo hokohoko leʻo.',
 'watchnologin'         => 'Teʻeki kau ki ai',

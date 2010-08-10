@@ -1372,7 +1372,6 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 # Watchlist
 'watchlist'            => 'Suzdasiki',
 'mywatchlist'          => 'Jinafi suzdasiki',
-'watchlistfor'         => "(tori '''$1''')",
 'nowatchlist'          => 'Rinafi suzdasiki va nedoy teliz ruldar.',
 'watchlistanontext'    => 'Ta wira ik betara va ra ke rinafi suzdasiki vay $1.',
 'watchnologin'         => 'Dogluyariskaf',

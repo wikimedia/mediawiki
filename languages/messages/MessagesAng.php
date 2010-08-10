@@ -903,7 +903,6 @@ Cnæpp on sƿeorhēafde hƿeorfþ þā endebyrdnessa.',
 # Watchlist
 'watchlist'         => 'Mīnu ƿæcceȝetalu',
 'mywatchlist'       => 'Mīnu ƿæcceȝetalu',
-'watchlistfor'      => "(for '''$1''')",
 'addedwatch'        => 'To ƿæcceȝetale ēacod',
 'removedwatch'      => 'Fornōm fram ƿæccȝetale',
 'removedwatchtext'  => 'Sēo sīde "[[:$1]]" ƿæs fram [[Special:Watchlist|þīnre ƿæccȝetale]] fornōm.',

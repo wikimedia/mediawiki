@@ -889,7 +889,6 @@ iitom e-iitomde diijömde caitóm.',
 # Watchlist
 'watchlist'        => 'He listade cáminot',
 'mywatchlist'      => 'He listade cáminot',
-'watchlistfor'     => "('''$1''' mii)",
 'nowatchlist'      => 'Hecoccebj 0 itémii helistade cáminot iti.',
 'watchnologin'     => 'Necaápo',
 'watchnologintext' => 'Zo coccebj Neces [[Special:UserLogin|caápo]] ticpatlöx helistade cáminot.',

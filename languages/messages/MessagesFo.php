@@ -799,7 +799,6 @@ ella hevur hann valt ikki at taka ímóti t-posti frá øðrum brúkarum.',
 # Watchlist
 'watchlist'         => 'Mítt eftirlit',
 'mywatchlist'       => 'Mítt eftirlit',
-'watchlistfor'      => "(fyri '''$1''')",
 'nowatchlist'       => 'Tú hevur ongar lutir í eftirlitinum.',
 'watchnologin'      => 'Tú hevur ikki ritað inn',
 'addedwatch'        => 'Lagt undir eftirlit',

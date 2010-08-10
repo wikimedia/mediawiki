@@ -1986,7 +1986,6 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 # Watchlist
 'watchlist'            => 'Overvågningsliste',
 'mywatchlist'          => 'Min overvågningsliste',
-'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ingenting i din overvågningsliste.',
 'watchlistanontext'    => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
 'watchnologin'         => 'Ikke logget på',

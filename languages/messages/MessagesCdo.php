@@ -586,7 +586,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Watchlist
 'watchlist'         => 'Nguāi gì gáng-sê-dăng',
 'mywatchlist'       => 'Nguāi gì gáng-sê-dăng',
-'watchlistfor'      => "('''$1''' gì)",
 'nowatchlist'       => 'Nṳ̄ gì gáng-sê-dăng gà̤-dēng mò̤ dèu-mĕ̤k.',
 'watchnologin'      => 'Mò̤ láuk diē',
 'addedwatch'        => 'Gă-tiĕng gáu gáng-sê-dăng',

@@ -1748,7 +1748,6 @@ De ûntfanger kin dus daliks nei jo reagearje.',
 # Watchlist
 'watchlist'          => 'Folchlist',
 'mywatchlist'        => 'Folchlist',
-'watchlistfor'       => "(foar '''$1''')",
 'nowatchlist'        => 'Jo hawwe gjin siden op jo folchlist.',
 'watchnologin'       => 'Net oanmeld yn',
 'watchnologintext'   => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om jo folchlist te feroarjen.',

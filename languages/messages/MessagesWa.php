@@ -975,7 +975,6 @@ Do côp, c' est nén possibe di lyi evoyî èn emile.",
 # Watchlist
 'watchlist'            => 'Pådjes shuvowes',
 'mywatchlist'          => 'Pådjes shuvowes',
-'watchlistfor'         => "(po l' uzeu «'''$1'''»)",
 'nowatchlist'          => 'Vosse djivêye des pådjes a shuve est vude.',
 'watchlistanontext'    => 'I vs fåt $1 po vey ou candjî les cayets di vosse djivêye des shuvous.',
 'watchnologin'         => "Vos n' estoz nén elodjî",

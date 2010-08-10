@@ -1782,7 +1782,6 @@ Protucolli suppurtati: <tt>$1</tt>',
 # Watchlist
 'watchlist'            => 'Lista taliata mia',
 'mywatchlist'          => 'Lista taliata mia',
-'watchlistfor'         => "(di l'utenti '''$1''')",
 'nowatchlist'          => "Nun hai innicatu pàggini a tèniri d'occhiu.",
 'watchlistanontext'    => "Pi visualizzari e canciari l'alencu di l'ossirvati spiciali è nicissariu $1.",
 'watchnologin'         => 'Nun hai effittuatu lu login',

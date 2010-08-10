@@ -2111,7 +2111,6 @@ E-mail adresa iz Vaših [[Special:Preferences|postavki]] nalazit će se u "From"
 # Watchlist
 'watchlist'            => 'Moj popis praćenja',
 'mywatchlist'          => 'Moj popis praćenja',
-'watchlistfor'         => "(suradnika '''$1''')",
 'nowatchlist'          => 'Na Vašem popisu praćenja nema nijednog članka.',
 'watchlistanontext'    => 'Molimo Vas $1 kako biste mogli vidjeti ili uređivati Vaš popis praćenih stranica.',
 'watchnologin'         => 'Niste prijavljeni',

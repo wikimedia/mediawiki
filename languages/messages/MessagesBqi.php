@@ -558,7 +558,6 @@ $2',
 # Watchlist
 'watchlist'         => 'لیست پیگیریهای مو',
 'mywatchlist'       => 'لیست پیگیریهای مو',
-'watchlistfor'      => "(سی '''$1''')",
 'addedwatch'        => 'اضاف وابید به لیست پیگیری',
 'addedwatchtext'    => "صفحه «<nowiki>$1</nowiki>» به [[Special:Watchlist|لیست پی‌گیری‌های ]] ایسا
 اضاف وابید.

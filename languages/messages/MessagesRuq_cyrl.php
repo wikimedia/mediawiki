@@ -254,11 +254,10 @@ $3',
 'allpagessubmit' => 'Треме',
 
 # Watchlist
-'watchlist'    => 'Мај клајаеру',
-'mywatchlist'  => 'Мај клајаере',
-'watchlistfor' => "(пентру '''$1''')",
-'watch'        => 'клајаере',
-'unwatch'      => 'Деклајаера',
+'watchlist'   => 'Мај клајаеру',
+'mywatchlist' => 'Мај клајаере',
+'watch'       => 'клајаере',
+'unwatch'     => 'Деклајаера',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'О клајаере...',

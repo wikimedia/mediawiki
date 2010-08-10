@@ -1658,7 +1658,6 @@ Man ngaa fee gis itam [[{{MediaWiki:Listgrouprights-helppage}}|yeneen xibaar]] �
 # Watchlist
 'watchlist'            => 'Limu toppte',
 'mywatchlist'          => 'Limu toppte',
-'watchlistfor'         => "(yu jëfandikukat '''$1''')",
 'nowatchlist'          => 'Sa limu toppte amul benn jukki.',
 'watchlistanontext'    => 'Ngir mana gis walla soppi jëfkayu sa limu toppte, faw nga  $1.',
 'watchnologin'         => 'Duggoo de',

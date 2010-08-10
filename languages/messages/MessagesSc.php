@@ -1064,7 +1064,6 @@ S'indiritzu chi as insertadu in is [[Special:Preferences|preferèntzias usuàriu
 # Watchlist
 'watchlist'         => 'Sa watchlist mea',
 'mywatchlist'       => 'Sa watchlist mea',
-'watchlistfor'      => "(pro '''$1''')",
 'nowatchlist'       => 'No as indicadu pàginas in sa watchlist tua.',
 'watchnologin'      => 'No intrau (log in)',
 'watchnologintext'  => 'Devi prima fare il [[Special:UserLogin|login]]

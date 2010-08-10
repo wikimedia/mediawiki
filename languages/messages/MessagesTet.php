@@ -603,7 +603,6 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Watchlist
 'watchlist'        => "Ha'u-nia lista hateke",
 'mywatchlist'      => "Ha'u-nia lista hateke",
-'watchlistfor'     => "('''$1''' nian)",
 'addedwatch'       => 'tau tan tiha ba lista hateke',
 'removedwatch'     => 'La hateke pájina ona',
 'removedwatchtext' => 'La hateke pájina "[[:$1]]" ona.',
