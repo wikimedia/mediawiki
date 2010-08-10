@@ -450,7 +450,7 @@ CONTROL;
 			}
 		} elseif( $pCache ) {
 			$article = new Article( $this->mTitle, 0 );
-			$pOutput = ParserCache::singleton()->get( $article, $wgUser );
+			$pOutput = ParserCache::singleton()->get( $article, $wgOut->parserOptions() );
 			if( $pOutput ) {
 				$wgOut->addParserOutput( $pOutput );
 			} else {
