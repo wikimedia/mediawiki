@@ -48,6 +48,12 @@ class ParserCache {
 		return wfMemcKey( 'pcache', 'idoptions', "{$pageid}" );
 	}
 
+	/**
+	 * Provides an E-Tag suitable for the whole page, even if $article is
+	 * just the main wikitext. So it uses the complete set of user options.
+	 * Most importantly, that includes the user language, but other options
+	 * would give problems on some setups, too.
+	 */
 	function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article, 
 			$popts->optionsHash( ParserOptions::legacyOptions() ) ) .
@@ -74,7 +80,7 @@ class ParserCache {
 		
 		// Determine the options which affect this article
 		$optionsKey = $this->mMemc->get( $this->getOptionsKey( $article ) );
-		if ( $optionsKey !== false ) {
+		if ( $optionsKey != false ) {
 			if ( !$useOutdated && $optionsKey->expired( $article->mTouched ) ) {
 				wfIncrStats( "pcache_miss_expired" );
 				$cacheTime = $optionsKey->getCacheTime();
