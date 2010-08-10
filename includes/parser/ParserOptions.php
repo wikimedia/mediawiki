@@ -38,6 +38,7 @@ class ParserOptions {
 	var $mIsSectionPreview;          # Parsing the page for a "preview" operation on a single section
 	var $mIsPrintable;               # Parsing the printable version of the page
 	
+	var $mExtraKey = '';             # Extra key that should be present in the caching key.
 	
 	protected $accessedOptions;
 	
@@ -132,6 +133,13 @@ class ParserOptions {
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
 	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
 	function setIsPrintable( $x )               { return wfSetVar( $this->mIsPrintable, $x ); }
+
+	/**
+	 * Extra key that should be present in the parser cache key.
+	 */
+	function addExtraKey( $key ) {
+		$this->mExtraKey .= '!' . $key;
+	}
 
 	function __construct( $user = null ) {
 		$this->initialiseFromUser( $user );
@@ -298,6 +306,9 @@ class ParserOptions {
 			$confstr .= '!edit=0';
 		if (  $this->mIsPrintable && in_array( 'printable', $forOptions ) )
 			$confstr .= '!printable=1';
+		
+		if ( $this->mExtraKey != '' )
+			$confstr .= $this->mExtraKey;
 		
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
