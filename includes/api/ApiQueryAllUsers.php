@@ -224,7 +224,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		return array(
 			'from' => 'The user name to start enumerating from',
 			'to' => 'The user name to stop enumerating at',
-			'prefix' => 'Search for all page titles that begin with this value',
+			'prefix' => 'Search for all users that begin with this value',
 			'group' => 'Limit users to a given group name',
 			'prop' => array(
 				'What pieces of information to include.',
