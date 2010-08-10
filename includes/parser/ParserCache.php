@@ -78,6 +78,11 @@ class ParserCache {
 	public function getKey( $article, $popts, $useOutdated = true ) {
 		global $wgCacheEpoch;
 		
+		if( $popts instanceof User ) {
+			wfDebug( "Use of outdated prototype ParserCache::getKey( &\$article, &\$user )\n" );
+			$popts = ParserOptions::newFromUser( $popts );
+		}
+		
 		// Determine the options which affect this article
 		$optionsKey = $this->mMemc->get( $this->getOptionsKey( $article ) );
 		if ( $optionsKey != false ) {
@@ -135,6 +140,7 @@ class ParserCache {
 		
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			wfIncrStats( "pcache_miss_expired" );
+			$cacheTime = $value->getCacheTime();
 			wfDebug( "ParserOutput key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
 		} else {
