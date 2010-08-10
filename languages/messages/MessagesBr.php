@@ -1561,6 +1561,7 @@ PICT # misc.
 
 $1",
 'upload-warning-subj'         => "Kemmen diwall e-pad ar c'hargañ",
+'upload-warning-msg'          => "Ur gudenn a zo bet e-kerzh ho ezporzhiadur eus [$2]. Galloud a c'heller distreiñ d'ar [[Special:Upload/stash/$1|furmskrid ezporzhiañ]] evit renkañ ar gudenn.",
 
 'upload-proto-error'        => 'Protokol direizh',
 'upload-proto-error-text'   => 'Rekis eo an URLoù a grog gant <code>http://</code> pe <code>ftp://</code> evit enporzhiañ.',
@@ -1966,7 +1967,6 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 # Watchlist
 'watchlist'            => 'Roll evezhiañ',
 'mywatchlist'          => 'Ma roll evezhiañ',
-'watchlistfor'         => "(evit '''$1''')",
 'nowatchlist'          => "N'eus pennad ebet en ho roll evezhiañ.",
 'watchlistanontext'    => "Ret eo deoc'h $1 evit gwelet pe kemmañ an elfennoù zo en ho roll evezhiañ.",
 'watchnologin'         => 'Digevreet',
@@ -2054,7 +2054,7 @@ Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat
 'actionfailed'           => "Ober c'hwitet",
 'deletedtext'            => '"Diverket eo bet <nowiki>$1</nowiki>".
 Sellet ouzh $2 evit roll an diverkadennoù diwezhañ.',
-'deletedarticle'         => 'diverket "$1"',
+'deletedarticle'         => 'en deus dilamet "[[$1]]"',
 'suppressedarticle'      => 'diverket "[[$1]]"',
 'dellogpage'             => 'Roll ar pajennoù diverket',
 'dellogpagetext'         => 'Setu roll ar pajennnoù diwezhañ bet diverket.',

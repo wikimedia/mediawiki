@@ -523,6 +523,15 @@ $2',
 'loginlanguagelabel'         => 'Омугун тыла: $1',
 'suspicious-userlogout'      => 'Сеансы түмүктүүр ыйытыгыҥ ылыныллыбата, тоҕо диэтэххэ браузер эбэтэр кээштыыр прокси алҕас ыыппыт ыйытыктарыгар майгынныыр.',
 
+# JavaScript password checks
+'password-strength'            => '↓ Киирии тыл туругун тургутуу: $1',
+'password-strength-bad'        => '↓ МӨЛТӨХ',
+'password-strength-mediocre'   => '↓ орто',
+'password-strength-acceptable' => '↓ барсар',
+'password-strength-good'       => '↓ үчүгэй',
+'password-retype'              => '↓ Киирии тылгын хатылаа',
+'password-retype-mismatch'     => '↓ Киирии тыллар сөп түбэспэттэр',
+
 # Password reset dialog
 'resetpass'                 => 'Киирии тылы уларытыы',
 'resetpass_announce'        => 'Бу быстах кэмҥэ туттуллар киирии тылынан киирдиҥ. Түмүккэ саҥа киирии тылла суруй:',
@@ -1887,7 +1896,6 @@ $1',
 # Watchlist
 'watchlist'            => 'Мин кэтээһиним',
 'mywatchlist'          => 'Кэтиир сирэйдэрим',
-'watchlistfor'         => "('''$1''' киэнэ)",
 'nowatchlist'          => 'Эн кэтиир сирэйдэриҥ суохтар.',
 'watchlistanontext'    => 'Кэтэбилиҥ сирэйин көрөргөр эбэтэр уларытаргар маны оҥор: $1.',
 'watchnologin'         => 'Бэйэҕин билиһиннэр',
@@ -3012,7 +3020,8 @@ $1',
 Сурук барбатах төрүөтэ: $1',
 'confirmemail_invalid'      => 'Бигэргэтии куода сыыһа эбэтэр болдьоҕо ааспыт.',
 'confirmemail_needlogin'    => '$1 - маны оҥордоххуна аадырыскын бигэргэтиэҥ.',
-'confirmemail_success'      => 'Электроннай аадырыһыҥ бигэргэтилиннэ.',
+'confirmemail_success'      => 'Электроннай аадырыһыҥ бигэргэтилиннэ.
+[[Special:UserLogin|Ааккын этэн]] биикигэ киириэххин сөп.',
 'confirmemail_loggedin'     => 'Электроннай почтаҥ аадырыһа бигэргэтилиннэ.',
 'confirmemail_error'        => 'Бигэргэтии кэмигэр моһол таҕыста.',
 'confirmemail_subject'      => '{{SITENAME}}: эл. почта аадырыһын бигэргэтии',

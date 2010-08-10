@@ -1814,7 +1814,6 @@ PICT # misc.
 # Watchlist
 'watchlist'            => 'منی لیست چارگ',
 'mywatchlist'          => 'منی لیست چارگ',
-'watchlistfor'         => "(په '''$1''')",
 'nowatchlist'          => 'شما را هچ چیزی ته وتی لیست چارگ نیست.',
 'watchlistanontext'    => 'لطفا  $1 په دیستن یا اصلاح ایتیمان ته وتی لیست چارگء',
 'watchnologin'         => 'وارد نه بی تگیت',

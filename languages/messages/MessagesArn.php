@@ -388,7 +388,6 @@ $messages = array(
 'emailsend'    => 'Werkün',
 
 # Watchlist
-'watchlistfor'    => "('''$1''')",
 'watchnologin'    => 'Petu konlaymi',
 'watch'           => 'Llaytun',
 'watchthispage'   => 'Llaytun tüfachi pakina',

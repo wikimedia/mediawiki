@@ -827,6 +827,14 @@ Počkejte chvíli, než to zkusíte znovu.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
 
+# JavaScript password checks
+'password-strength'            => 'Odhad síly hesla: $1',
+'password-strength-bad'        => 'ŠPATNÉ',
+'password-strength-acceptable' => 'přijatelné',
+'password-strength-good'       => 'dobré',
+'password-retype'              => 'Zde zopakujte heslo',
+'password-retype-mismatch'     => 'Hesla se neshodují',
+
 # Password reset dialog
 'resetpass'                 => 'Změna hesla',
 'resetpass_announce'        => 'Přihlašujete se dočasným heslem zaslaným e-mailem. Přihlášení lze dokončit po nastavení nového trvalého hesla.',
@@ -2165,7 +2173,6 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 # Watchlist
 'watchlist'            => 'Sledované stránky',
 'mywatchlist'          => 'Sledované stránky',
-'watchlistfor'         => "(uživatele '''$1''')",
 'nowatchlist'          => 'Na svém seznamu sledovaných stránek nemáte žádné položky.',
 'watchlistanontext'    => 'Pro prohlížení či úpravu seznamu sledovaných stránek se musíte $1.',
 'watchnologin'         => 'Nejste přihlášen(a)',

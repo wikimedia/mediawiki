@@ -1907,7 +1907,6 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 # Watchlist
 'watchlist'            => 'Narahiko maso',
 'mywatchlist'          => 'Pejy arahako-maso',
-'watchlistfor'         => "(ho an'ny/i '''$1''')",
 'nowatchlist'          => "Tsy misy n'inon'inona ao amin'ny lisitry ny pejy arahinao maso.",
 'watchlistanontext'    => "Andana $1 ianao mba hahita na hanova zavatra ao amin'ny pejy arahanao.",
 'watchnologin'         => 'Tsy tafiditra',

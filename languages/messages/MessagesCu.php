@@ -334,6 +334,7 @@ $messages = array(
 # Search results
 'searchresults'                  => 'иска́ниꙗ ито́гъ',
 'searchresults-title'            => 'иска́ниꙗ ⁖ $1 ⁖ ито́гъ',
+'viewprevnext'                   => 'виждь ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-new'                 => "'''страни́цѫ ⁖ [[:$1]] ⁖ сътвори́ти мо́жєши'''",
 'searchhelp-url'                 => 'Help:Ката́логъ',
 'searchprofile-articles'         => 'члѣ́ни',
@@ -344,6 +345,7 @@ $messages = array(
 'search-redirect'                => '(прѣнаправлє́ниѥ $1)',
 'search-section'                 => '(чѧ́сть $1)',
 'search-interwiki-caption'       => 'ро́дьствьна опꙑтьствова́ниꙗ',
+'search-interwiki-more'          => '(вѧ́щє)',
 'searchall'                      => 'вьсꙗ́',
 'powersearch'                    => 'ищи́',
 
@@ -515,7 +517,6 @@ $messages = array(
 # Watchlist
 'watchlist'      => 'моꙗ́ блюдє́ниꙗ',
 'mywatchlist'    => 'Моꙗ́ блюдє́ниꙗ',
-'watchlistfor'   => "(по́льꙃєватєлꙗ и́мѧ '''$1''' ѥ́стъ)",
 'addedwatchtext' => "страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ по́дъ твоимь [[Special:Watchlist|блюдє́ниѥмь]] ѥ́стъ ⁙
 всꙗ ѥѩ и ѥѩжє бєсѣдꙑ мѣ́нꙑ страни́цѧ ⁖ [[Special:Watchlist|моꙗ́ блюдє́ниꙗ]] ⁖ покаꙁанꙑ сѫ́тъ и  [[Special:RecentChanges|послѣ́дьнъ мѣ́нъ]] ката́лоꙃѣ '''чрьнꙑимъ''' сѧ авлꙗѭтъ",
 'watch'          => 'блюдє́ниѥ',
@@ -568,6 +569,7 @@ $messages = array(
 'sp-contributions-blocklog' => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
 'sp-contributions-deleted'  => 'пони́чьжєнꙑ добродѣꙗ́ниꙗ',
 'sp-contributions-talk'     => 'бєсѣ́да',
+'sp-contributions-username' => 'IP число или по́льꙃєватєлꙗ и́мѧ :',
 'sp-contributions-submit'   => 'ищи́',
 
 # What links here
@@ -581,6 +583,7 @@ $messages = array(
 
 # Block/unblock
 'blockip'            => 'ꙁагради́ по́льꙃєватєл҄ь',
+'ipadressorusername' => 'IP число или по́льꙃєватєлꙗ и́мѧ :',
 'ipblocklist-submit' => 'иска́ниѥ',
 'blocklink'          => 'ꙁагради́',
 'contribslink'       => 'добродѣꙗ́ниꙗ',
@@ -617,12 +620,14 @@ $messages = array(
 'tooltip-ca-delete'              => 'си страни́цѧ поничьжє́ниѥ',
 'tooltip-ca-move'                => 'си страни́цѧ прѣимєнова́ниѥ',
 'tooltip-ca-watch'               => 'си страни́цѧ блюдє́ниѥ',
+'tooltip-search'                 => 'ищи {{{grammar:genitive|{{SITENAME}}}}} страни́цѧ',
 'tooltip-p-logo'                 => 'гла́вьна страни́ца',
 'tooltip-n-mainpage'             => 'ви́ждь гла́вьнѫ страни́цѫ',
 'tooltip-n-mainpage-description' => 'ви́ждь гла́вьнѫ страни́цѫ',
 'tooltip-n-recentchanges'        => 'послѣ́дьнъ мѣ́нъ ката́логъ',
 'tooltip-t-upload'               => 'положє́ниѥ дѣ́лъ',
 'tooltip-t-specialpages'         => 'вьсѣѩ наро́чьнъ страни́цѧ ката́логъ',
+'tooltip-t-print'                => 'сѥѩ страни́цѧ пєча́тьнъ о́браꙁъ',
 'tooltip-ca-nstab-special'       => 'си наро́чьна страни́ца ѥ́стъ · ѥѩжє иꙁмѣнꙗ́ти нє можєши',
 'tooltip-watch'                  => 'си страни́цѧ блюдє́ниѥ',
 

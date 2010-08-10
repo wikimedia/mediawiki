@@ -9,6 +9,7 @@
  *
  * @author Hakka
  * @author Hintha
+ * @author Umherirrender
  */
 
 $digitTransformTable = array(
@@ -115,7 +116,7 @@ $messages = array(
 'newpage'          => 'စာမျက်နှာအသစ်',
 'talk'             => 'ပြော​ရေး​ဆို​ရာ​',
 'toolbox'          => 'တန်​ဆာ​ပ​လာ​',
-'otherlanguages'   => 'အ​ခြား​ဘာ​သာ​ဖြင့်​',
+'otherlanguages'   => 'In other languages',
 'jumptonavigation' => 'အ​ညွှန်း​',
 'jumptosearch'     => 'ရှာ​ဖွေ​ရန်​',
 
@@ -130,7 +131,7 @@ $messages = array(
 'portal'               => 'ပြော​ရေး​ဆို​ရာ​',
 
 'newmessageslink'         => 'သ​တင်း​အ​သစ်​',
-'youhavenewmessagesmulti' => 'သင့်​အ​တွက်​သီ​တင်း​အ​သစ်​ $1 တွင်​ရှိ​သည်​',
+'youhavenewmessagesmulti' => 'You have new messages on $1',
 'editsection'             => 'ပြင်​ဆင်​ရန်​',
 'editold'                 => 'ပြင်​ဆင်​ရန်​',
 'showtoc'                 => 'ပြ',
@@ -150,15 +151,15 @@ $messages = array(
 'yourpassword'            => 'လှို့​ဝှက်​စ​ကား​လုံး:',
 'yourpasswordagain'       => 'ပြန်​ရိုက်​ပါ:',
 'remembermypassword'      => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ကျွန်​တော့​ကို​မှတ်​ထား​ပါ​',
-'login'                   => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
+'login'                   => 'Log in',
 'nav-login-createaccount' => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​ / မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
-'userlogin'               => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​ / မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
+'userlogin'               => 'Log in / create account',
 'logout'                  => 'ထွက်​ပါ​',
 'userlogout'              => 'ထွက်​ပါ​',
-'notloggedin'             => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
+'notloggedin'             => 'Not logged in',
 'nologinlink'             => 'မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
 'createaccount'           => 'မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
-'gotaccountlink'          => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
+'gotaccountlink'          => 'Log in',
 'loginsuccesstitle'       => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ခြင်းအောင်မြင်သည်။',
 'loginlanguagelabel'      => 'ဘာသာ: $1',
 
@@ -177,7 +178,7 @@ $messages = array(
 # Edit pages
 'summary'            => 'အ​ကျဉ်း​ချုပ်​:',
 'minoredit'          => 'သာ​မန်​ပြင်​ဆင်​မှု​ဖြစ်​ပါ​သည်​',
-'watchthis'          => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
+'watchthis'          => 'Watch this page',
 'savearticle'        => 'သိမ်း​ပါ​',
 'preview'            => 'နမူနာ',
 'showpreview'        => 'န​မူ​နာ​ပြ​ပါ​',
@@ -186,7 +187,7 @@ $messages = array(
 'summary-preview'    => 'အ​ကျဉ်း​ချုပ်​န​မူ​နာ:',
 'whitelistedittitle' => 'ပြင်​ဆင်​ခြင်း​သည်​မှတ်​ပုံ​တင်​ရန်​လို​သည်​',
 'loginreqtitle'      => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ဖို့လိုပါတယ်',
-'loginreqlink'       => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
+'loginreqlink'       => 'log in',
 'accmailtitle'       => 'ဝှက်​စ​ကား​လုံးကိုပို့ပြီးပြီ',
 'newarticle'         => '(အသစ်)',
 
@@ -203,7 +204,7 @@ $messages = array(
 # Preferences page
 'preferences'       => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
 'mypreferences'     => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
-'prefsnologin'      => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
+'prefsnologin'      => 'Not logged in',
 'changepassword'    => 'ဝှက်​စ​ကား​လုံးကိုပြောင်းပါ',
 'skin-preview'      => 'နမူနာ',
 'prefs-math'        => 'သင်္ချာ',
@@ -237,7 +238,7 @@ $messages = array(
 # Upload
 'upload'            => 'ဖိုင်​တင်​ရန်​',
 'uploadbtn'         => 'ဖိုင်​တင်​ရန်​',
-'uploadnologin'     => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
+'uploadnologin'     => 'Not logged in',
 'filename'          => 'ဖိုင်အမည်',
 'filedesc'          => 'အ​ကျဉ်း​ချုပ်​',
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
@@ -299,11 +300,10 @@ $messages = array(
 'emailsend' => 'ပို့',
 
 # Watchlist
-'watchlist'     => 'စောင့်​ကြည့်​စာ​ရင်း​',
-'mywatchlist'   => 'စောင့်​ကြည့်​စာ​ရင်း​',
-'watchlistfor'  => "('''$1'''အတွက်)",
-'watch'         => 'စောင့်​ကြည့်​ပါ​',
-'watchthispage' => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
+'watchlist'     => 'My watchlist',
+'mywatchlist'   => 'My watchlist',
+'watch'         => 'Watch',
+'watchthispage' => 'Watch this page',
 
 # Delete
 'deletepage'     => 'စာမျက်နှာကိုဖျက်ပါ',
@@ -333,7 +333,7 @@ $messages = array(
 'sp-contributions-submit' => 'ရှာ​ဖွေ​ရန်​',
 
 # What links here
-'whatlinkshere' => 'မည်​သည့်​စာ​မျက်​နှာ​များ​မှ​ညွန်း​ထား​သည်​',
+'whatlinkshere' => 'What links here',
 
 # Block/unblock
 'ipbreason'          => 'အ​ကြောင်း​ပြ​ချက်:',
@@ -346,7 +346,7 @@ $messages = array(
 # Move page
 'move-page-legend' => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
 'movearticle'      => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
-'movenologin'      => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
+'movenologin'      => 'Not logged in',
 'movepagebtn'      => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
 'pagemovedsub'     => 'ပြောင်းရွှေ့ခြင်းအောင်မြင်သည်',
 'movedto'          => 'ရွေ့​ပြောင်း​ရန်​နေ​ရာ​',

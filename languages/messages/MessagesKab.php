@@ -990,7 +990,6 @@ deg « Expéditeur» n izen inek iwakken amseqdac-nni yezmer a k-yerr.',
 # Watchlist
 'watchlist'            => 'Umuɣ n uɛessi inu',
 'mywatchlist'          => 'Umuɣ n uɛessi inu',
-'watchlistfor'         => "(n '''$1''')",
 'nowatchlist'          => 'Umuɣ n uɛessi inek d ilem.',
 'watchlistanontext'    => 'G leɛnaya-k $1 iwakken ad twalaḍ neɣ tbeddleḍ iferdas deg wumuɣ n uɛessi inek.',
 'watchnologin'         => 'Ur tekcimeḍ ara',

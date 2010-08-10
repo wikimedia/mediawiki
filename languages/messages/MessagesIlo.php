@@ -1056,7 +1056,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 # Watchlist
 'watchlist'         => 'Dagiti bambantayak',
 'mywatchlist'       => 'Dagiti bambantayak',
-'watchlistfor'      => "(para ken ni '''$1''')",
 'nowatchlist'       => 'Awan ti pampanid iti listaan dagiti bambantayam.',
 'watchnologin'      => 'Saan a nakastrek',
 'watchnologintext'  => 'Nasken a [[Special:UserLogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',

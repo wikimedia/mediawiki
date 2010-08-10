@@ -1344,7 +1344,6 @@ Ols Obsender werd de E-Mail-Adtresse aus denn [[Special:Preferences|Einstellunga
 'emailuserfooter'  => 'Diese E-Mail wurde vu {{SITENAME}}-Nutzer „$1“ oa „$2“ gesendet.',
 
 # Watchlist
-'watchlistfor'         => "(fier '''$1''')",
 'nowatchlist'          => 'Du host kenne Einträge uff denner Beobachtungsliste.',
 'watchlistanontext'    => 'Du mußt diech $1, im denne Beobachtungsliste zu sahn oder Einträge uff ihr zu beoarbeeta.',
 'watchnologin'         => 'Du best ne oagemeldet',

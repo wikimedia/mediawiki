@@ -1235,7 +1235,6 @@ o habo magresibo nin e-surat sa ibang paragamit.',
 # Watchlist
 'watchlist'            => 'Pigbabantayan ko',
 'mywatchlist'          => 'Pigbabantayan ko',
-'watchlistfor'         => "(para sa '''$1''')",
 'nowatchlist'          => 'Mayo ka man na mga bagay saimong lista nin pigbabantayan.',
 'watchlistanontext'    => 'Mag $1 tabi para mahiling o maghira nin mga bagay saimong lista nin mga pigbabantayan.',
 'watchnologin'         => 'Mayô sa laog',

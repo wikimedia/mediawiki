@@ -1800,7 +1800,6 @@ Dae kin dös drek reazjere.",
 # Watchlist
 'watchlist'            => 'Volglies',
 'mywatchlist'          => 'Volglies',
-'watchlistfor'         => "(veur '''$1''')",
 'nowatchlist'          => "D'r sjtit niks op dien volglies.",
 'watchlistanontext'    => '$1 is verplich om dien volglies in te zeen of te wiezige.',
 'watchnologin'         => 'De bis neet aangemèld',

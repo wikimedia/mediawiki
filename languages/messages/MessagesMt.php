@@ -1921,7 +1921,6 @@ Jista' jkun hemm [[{{MediaWiki:Listgrouprights-helppage}}|aktar informazzjoni]] 
 # Watchlist
 'watchlist'            => "Lista ta' osservazzjoni tiegħi",
 'mywatchlist'          => 'li qed insegwi',
-'watchlistfor'         => "(għal '''$1''')",
 'nowatchlist'          => "Il-lista ta' osservazzjoni tiegħek hija vojta.",
 'watchlistanontext'    => "Sabiex tara u timmodifika l-lista ta' osservazzjoni tiegħek, hemm bżonn li $1.",
 'watchnologin'         => 'Għadek ma dħaltx ġewwa',

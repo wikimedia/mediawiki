@@ -13,6 +13,7 @@
  * @author Naveen
  * @author Sundar
  * @author Surya Prakash.S.A.
+ * @author TRYPPN
  * @author Trengarasu
  * @author Ulmo
  * @author Urhixidur
@@ -1209,6 +1210,9 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'filehist-revert'           => 'முன்நிலையாக்கு',
 'filehist-current'          => 'தற்போதைய',
 'filehist-datetime'         => 'நாள்/நேரம்',
+'filehist-thumb'            => '# படத்தின் கட்டைவிரல் அளவு தோற்றம்
+# வில்லைப்படம்
+# படத்தின் சிறிய தோற்றம்',
 'filehist-user'             => 'பயனர்',
 'filehist-dimensions'       => 'பரிமாணங்கள்',
 'filehist-filesize'         => 'கோப்பின் அளவு',
@@ -1368,6 +1372,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'nextpage'          => 'அடுத்த பக்கம் ($1)',
 'prevpage'          => 'முந்தைய பக்கம் ($1)',
 'allpagesfrom'      => 'அடுத்து காணப்படும் எழுத்தில் தொடங்கும் பக்கங்களை காட்டு:',
+'allpagesto'        => 'இவ்வெழுத்துக்களில் முடிவடையும் பக்கங்களைக் காட்டு',
 'allarticles'       => 'அனைத்துக் கட்டுரைகள்',
 'allinnamespace'    => 'அனைத்து பக்கங்கள் ($1 பெயர்வெளியில்)',
 'allnotinnamespace' => 'அனைத்து பக்கங்கள் ($1 பெயர்வெளி தவிர்த்து)',
@@ -1432,7 +1437,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 # Watchlist
 'watchlist'            => 'என் கவனிப்புப் பட்டியல்',
 'mywatchlist'          => 'என் கவனிப்புப் பட்டியல்',
-'watchlistfor'         => "('''$1''' பயனருக்கான)",
 'nowatchlist'          => 'உங்களுடைய கவனிப்புப் பட்டியலில் ஒரு விடயமும் இல்லை.',
 'watchlistanontext'    => 'உமது கவனிப்புப் பட்டியலை பார்க அல்லது தொகுக்க அருள் கூர்ந்து $1.',
 'watchnologin'         => 'புகுபதிகை செயப்படவில்லை',
@@ -1457,6 +1461,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'iteminvalidname'      => "விடயம் '$1' தொடர்பில் பிரச்சினை உள்ளது, செல்லுபடியாகாத பெயர்...",
 'wlnote'               => "பின்வருவன கடைசி {{PLURAL:$2|மணித்தியாலத்தில்|'''$2''' மணித்தியாலங்களில்}} செய்யப்பட்ட {{PLURAL:$1|கடைசி ஒரு மாற்றமாகும்|கடைசி $1 மாற்றங்களாகும்}}.",
 'wlshowlast'           => 'கடைசி $1 மணித்தியாலங்கள் $2 நாட்களைக் காட்டு $3',
+'watchlist-options'    => 'கவனிப்பு பட்டியலின் விருப்பத் தேர்வுகள்',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'கவனிக்கப்படுகிறது...',
@@ -1670,6 +1675,7 @@ $1',
 'nolinkshere-ns'           => "தெரிவு செய்யப்பட்ட பெயர்வெளியில் '''[[:$1]]''' பக்கத்துக்கு இணைக்கப்பட்ட பக்கங்கள் எதுவுமில்லை.",
 'isredirect'               => 'வழிமாற்றுப் பக்கம்',
 'istemplate'               => 'உள்ளிடப்பட்டுள்ளது',
+'isimage'                  => 'இப் படத்தை இணைத்தவை',
 'whatlinkshere-prev'       => '{{PLURAL:$1|முந்தைய|முந்தைய $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|அடுத்த|அடுத்த $1}}',
 'whatlinkshere-links'      => '← இணைப்புக்கள்',

@@ -799,7 +799,6 @@ $1',
 # Watchlist
 'watchlist'         => 'Тергаме могlам',
 'mywatchlist'       => 'Тергаме могlам',
-'watchlistfor'      => "(декъашхона '''$1''')",
 'watchnologin'      => 'Хьо вовзита веза гlирсан',
 'addedwatch'        => 'Юькъатоьхна тергаме могlамна',
 'addedwatchtext'    => 'Хlар агlо «[[:$1]]» тlетоьхна хьан [[Special:Watchlist|тидаме могlам чу]].

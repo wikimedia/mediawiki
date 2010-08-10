@@ -2119,7 +2119,6 @@ De ontvanger kan dus drek beantwoorden.",
 # Watchlist
 'watchlist'            => 'Volglieste',
 'mywatchlist'          => 'Mien volglieste',
-'watchlistfor'         => "(veur '''$1''')",
 'nowatchlist'          => 'Gien artikels in volglieste.',
 'watchlistanontext'    => '$1 is verplich um joew volglieste te bekieken of te wiezigen.',
 'watchnologin'         => 'Neet an-emeld',

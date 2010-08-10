@@ -1280,7 +1280,6 @@ $1",
 # Watchlist
 'watchlist'         => '监控列表',
 'mywatchlist'       => '我个监控列表',
-'watchlistfor'      => "（'''$1'''个监控列表）",
 'nowatchlist'       => '倷个监控列表是空个。',
 'watchnologin'      => '朆登录',
 'addedwatch'        => '加到监控列表哉',

@@ -1089,7 +1089,6 @@ Ubwa, o na ga [[$2]].',
 # Watchlist
 'watchlist'         => 'Ndetu ihem ne lé',
 'mywatchlist'       => 'Ndetu ihem ne lé',
-'watchlistfor'      => "(maka '''$1''')",
 'addedwatch'        => 'Tìrì na ndétu nlé',
 'addedwatchtext'    => "Ihü \"[[:\$1]]\" à bányéré [[Special:Watchlist|ndétu ihe Í ne lé]].
 Ihe gi gbanwe na ógè gi bya nà ihüá na ihü okwu ya gi di ndétu ngáhù, na ihü gi da na mkpụrụ édé '''sírí íke''' ímé [[Special:RecentChanges|ndétu gbanwere méré na ogè nso]] ka ȯ dí òfelè Í hü ya.",

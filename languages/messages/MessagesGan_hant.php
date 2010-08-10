@@ -1279,7 +1279,6 @@ $2',
 # Watchlist
 'watchlist'            => '監視列表',
 'mywatchlist'          => '偶嗰監視列表',
-'watchlistfor'         => "（'''$1'''嗰監視列表'）",
 'nowatchlist'          => '倷嗰監視列表什哩都冇有。',
 'watchlistanontext'    => '請$1眵吖或改吖倷嗰監視列表。',
 'watchnologin'         => '冇登入',

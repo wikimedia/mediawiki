@@ -1122,7 +1122,6 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 # Watchlist
 'watchlist'            => 'Tignûts di voli',
 'mywatchlist'          => 'Tignûts di voli',
-'watchlistfor'         => "(par '''$1''')",
 'nowatchlist'          => 'Nissun element al è tignût di voli.',
 'watchnologin'         => 'No tu sês jentrât',
 'watchnologintext'     => "Tu 'nd âs di [[Special:UserLogin|jentrâ]] par modificâ la liste des pagjinis tignudis di voli.",

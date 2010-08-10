@@ -1994,7 +1994,6 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 # Watchlist
 'watchlist'            => 'Meng Iwwerwaachungslëscht',
 'mywatchlist'          => 'Meng Iwwerwaachungslëscht',
-'watchlistfor'         => "(fir '''$1''')",
 'nowatchlist'          => 'Är Iwwerwaachungslëscht ass eidel.',
 'watchlistanontext'    => "Dir musst $1 fir Säiten op ärer Iwwerwaachungslëscht ze gesinn oder z'änneren.",
 'watchnologin'         => 'Net ageloggt',
@@ -2080,7 +2079,7 @@ W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'actioncomplete'         => 'Aktioun ofgeschloss',
 'actionfailed'           => 'Aktioun huet net fonctionnéiert',
 'deletedtext'            => '"<nowiki>$1</nowiki>" gouf geläscht. Kuckt $2 fir eng Lëscht vun de Säiten déi viru Kuerzem geläscht goufen.',
-'deletedarticle'         => '"$1" gouf geläscht',
+'deletedarticle'         => 'huet "[[$1]]" geläscht',
 'suppressedarticle'      => 'geläscht "$1"',
 'dellogpage'             => 'Läschlëscht',
 'dellogpagetext'         => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server.',

@@ -1862,7 +1862,6 @@ Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan d
 # Watchlist
 'watchlist'            => 'Senarai pantau',
 'mywatchlist'          => 'Senarai pantau saya',
-'watchlistfor'         => "(bagi '''$1''')",
 'nowatchlist'          => 'Tiada item dalam senarai pantau anda.',
 'watchlistanontext'    => 'Sila $1 terlebih dahulu untuk melihat atau menyunting senarai pantau anda.',
 'watchnologin'         => 'Belum log masuk',

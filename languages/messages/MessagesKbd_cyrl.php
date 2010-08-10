@@ -408,7 +408,6 @@ $messages = array(
 # Watchlist
 'watchlist'     => 'Сызыхэплъэ списокыр',
 'mywatchlist'   => 'СызыкIэлъыплъхэм и список',
-'watchlistfor'  => "('''$1''' щхьа)",
 'addedwatch'    => 'Список узыкIэлъыплъым хэтхащ',
 'watch'         => 'КIэлъплъын',
 'watchthispage' => 'НапэкIуэцIым кIэлъыплъын',

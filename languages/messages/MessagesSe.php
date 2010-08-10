@@ -836,7 +836,6 @@ $1 {{int:pipe-separator}} $2',
 # Watchlist
 'watchlist'            => 'Čuovvunlistu',
 'mywatchlist'          => 'Čuovvunlistu',
-'watchlistfor'         => '$1',
 'nowatchlist'          => 'Du čuovvunlisttus eai leat siiddut.',
 'watchlistanontext'    => 'Don fertet $1, jus hálidat geavahit čuovvunlisttu.',
 'watchnologin'         => 'It leat čálligoahtán sisa',

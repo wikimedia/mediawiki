@@ -1667,7 +1667,6 @@ Ba dabinons [[{{MediaWiki:Listgrouprights-helppage}}|nüns pluik]] tefü gebanag
 # Watchlist
 'watchlist'            => 'Galädalised obik',
 'mywatchlist'          => 'Galädalised obik',
-'watchlistfor'         => "(tefü '''$1''')",
 'nowatchlist'          => 'Labol nosi in galädalised olik.',
 'watchlistanontext'    => '$1 ad logön u redakön lienis galädaliseda olik',
 'watchnologin'         => 'No enunädon oki',

@@ -1080,7 +1080,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 # Watchlist
 'watchlist'            => 'Kam-sṳ lie̍t-péu',
 'mywatchlist'          => 'Ngài-ke kam-sṳ lie̍t-péu',
-'watchlistfor'         => "（'''$1''' ke kam-sṳ lie̍t-péu）",
 'nowatchlist'          => 'Ngì ke kam-sṳ lie̍t-péu he khûng-hî.',
 'watchlistanontext'    => 'Chhiáng $1 yî kiám-sṳ fe̍t-chá phiên-chho ngì-ke kam-sṳ lie̍t-péu.',
 'watchnologin'         => 'Hàn-mò tên-ngi̍p',

@@ -1957,7 +1957,6 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 # Watchlist
 'watchlist'            => 'నా వీక్షణ జాబితా',
 'mywatchlist'          => 'నా వీక్షణ జాబితా',
-'watchlistfor'         => "('''$1''' కొరకు)",
 'nowatchlist'          => 'మీ వీక్షణ జాబితా ఖాళీగా ఉంది.',
 'watchlistanontext'    => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు, మార్చేందుకు $1 చెయ్యండి.',
 'watchnologin'         => 'లాగిన్‌ అయిలేరు',

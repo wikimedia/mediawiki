@@ -1477,7 +1477,6 @@ Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis 
 # Watchlist
 'watchlist'          => 'Paginae custoditae',
 'mywatchlist'        => 'Paginae custoditae',
-'watchlistfor'       => "(pro usore '''$1''')",
 'nowatchlist'        => 'Nullas paginas custodis.',
 'watchlistanontext'  => 'Necesse est $1 ad indicem paginarum custoditarum inspiciendum vel recensendum.',
 'watchnologin'       => 'Conventum non est apertum',

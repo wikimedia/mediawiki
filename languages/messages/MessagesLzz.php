@@ -488,7 +488,6 @@ Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (o
 # Watchlist
 'watchlist'         => 'çkimi gotxozu listʼe',
 'mywatchlist'       => 'Çkimi gotxozu listʼe',
-'watchlistfor'      => "('''$1''' şeni)",
 'addedwatch'        => 'Skani gotxozu listʼeşa ikʼayitʼinu.',
 'addedwatchtext'    => '"<nowiki>[[:$1]]</nowiki>" coxoni butʼkʼa [[Special:Watchlist|gotxozu listʼes]] ikʼayitʼinu.
 

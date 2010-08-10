@@ -420,7 +420,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'listgrouprights-group' => 'Hame',
 
 # Watchlist
-'watchlistfor'  => "(na '''$1''')",
 'watch'         => 'Le ŋku ɖe eŋu',
 'watchthispage' => 'Le ŋku ɖe axa sia ŋu',
 'wlnote'        => "Afisia wofia {{PLURAL:$1|tɔtrɔ '''1''' mamlea|tɔtrɔ '''$1''' mamleawo}} le {{PLURAL:$2|gaƒoƒo mamlea si|gaƒoƒo '''$2''' mamleawo siwo}} vayi la me.",

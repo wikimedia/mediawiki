@@ -728,7 +728,6 @@ dicon sa sosize ni sa meli di kupo sebelu.',
 # Watchlist
 'watchlist'         => 'Zwa mukoloko di kentezi',
 'mywatchlist'       => 'Zwa mukoloko di kentezi',
-'watchlistfor'      => "(di '''$1''')",
 'watchnologin'      => 'A ni sa menuhile',
 'watchnologintext'  => "A sa [[Special:UserLogin|menuhile]] di hloli ye ng'i zwa mukoloko di kentezi.",
 'addedwatch'        => 'Tumbelize a mukoloko di kentezi',

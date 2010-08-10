@@ -2155,7 +2155,6 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',
 'mywatchlist'          => 'Lista de seguimiento',
-'watchlistfor'         => "(para '''$1''')",
 'nowatchlist'          => 'No tiene ninguna página en su lista de seguimiento.',
 'watchlistanontext'    => 'Para ver o editar las entradas de tu lista de seguimiento es necesario $1.',
 'watchnologin'         => 'No has iniciado sesión',

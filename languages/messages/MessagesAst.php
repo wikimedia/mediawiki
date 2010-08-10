@@ -1563,7 +1563,6 @@ La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences
 # Watchlist
 'watchlist'            => 'La mio páxina de vixilancia',
 'mywatchlist'          => 'La mio páxina de vixilancia',
-'watchlistfor'         => "(pa '''$1''')",
 'nowatchlist'          => 'La to llista de vixilancia ta vacia.',
 'watchlistanontext'    => 'Por favor $1 pa ver o editar entraes na to llista de vixilancia.',
 'watchnologin'         => 'Non identificáu',

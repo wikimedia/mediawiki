@@ -764,7 +764,6 @@ Las hojas en tu [[Special:Watchlist|lista de escogidas]] son escritas '''gordas'
 # Watchlist
 'watchlist'         => 'Mi lista de escogidas',
 'mywatchlist'       => 'Mi lista de escogidas',
-'watchlistfor'      => "(para '''$1''')",
 'addedwatch'        => 'Ajustado a la lista de escogidas',
 'addedwatchtext'    => "La hoja «[[:$1]]» fue ajustada a tu [[Special:Watchlist|lista de escogidas]]. Los trocamientos venideros en esta hoja i en tu hoja de diskussión associada se van indicar aí, i la hoja va aparecer '''gordo''' en la hoja de [[Special:RecentChanges|trocamientos freskos]] para hazerla más kolay de detektar.
 

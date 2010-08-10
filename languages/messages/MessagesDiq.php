@@ -1822,7 +1822,6 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 # Watchlist
 'watchlist'            => 'lista mına seyr-kerdışi',
 'mywatchlist'          => 'Lista mına seyr-kerdışi',
-'watchlistfor'         => "(semedê '''$1''')",
 'nowatchlist'          => 'listeya temaşa kerdıişê şıma de yew madde zi çina.',
 'watchlistanontext'    => 'qey vurnayişê maddeya listeya temaşakerdişi $1.',
 'watchnologin'         => 'hesab akerde niyo',

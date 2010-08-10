@@ -2319,7 +2319,6 @@ $1',
 # Watchlist
 'watchlist'            => 'قائمة مراقبتي',
 'mywatchlist'          => 'قائمة مراقبتي',
-'watchlistfor'         => "(ل'''$1''')",
 'nowatchlist'          => 'لا توجد مدخلات في قائمة مراقبتك.',
 'watchlistanontext'    => 'الرجاء $1 لعرض أو تعديل الصفحات في قائمة مراقبتك.',
 'watchnologin'         => 'غير مسجل',

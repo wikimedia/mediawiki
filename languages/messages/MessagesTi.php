@@ -151,9 +151,6 @@ $messages = array(
 'allpagesnext'   => 'ዝቕጽል',
 'allpagessubmit' => 'ኪድ',
 
-# Watchlist
-'watchlistfor' => "(ን'''$1''')",
-
 # Protect
 'pagesize' => '(ባይታት)',
 

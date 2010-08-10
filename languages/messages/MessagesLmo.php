@@ -983,7 +983,6 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 # Watchlist
 'watchlist'         => "Paginn ch'a tegni d'ögg",
 'mywatchlist'       => "Paginn che a tegni d'ögg",
-'watchlistfor'      => "(per '''$1''')",
 'addedwatch'        => 'Pagina giuntada a la lista di paginn sot ögg',
 'addedwatchtext'    => "La pagina \"[[:\$1]]\" l'è stada giuntada a la lista di [[Special:Watchlist|paginn da tegn d'ögg]].
 I cambiament che vegnarà fai a 'sta pagina chì e a la sóa pagina de discüssion

@@ -2132,7 +2132,6 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 # Watchlist
 'watchlist'            => 'Páginas vigiadas',
 'mywatchlist'          => 'Páginas vigiadas',
-'watchlistfor'         => "(para '''$1''')",
 'nowatchlist'          => 'A sua lista de páginas vigiadas não possui títulos.',
 'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de páginas vigiadas.',
 'watchnologin'         => 'Não está autenticado',

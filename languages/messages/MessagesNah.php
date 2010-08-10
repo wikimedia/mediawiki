@@ -962,7 +962,6 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 # Watchlist
 'watchlist'         => 'Notlachiyaliz',
 'mywatchlist'       => 'Notlachiyaliz',
-'watchlistfor'      => "('''$1''' ītechcopa)",
 'watchnologin'      => 'Ahmo ōtimocalac',
 'addedwatch'        => 'Ōmocētili tlachiyalizpan',
 'removedwatch'      => 'Ōmopolo īpan motlachiyaliz',

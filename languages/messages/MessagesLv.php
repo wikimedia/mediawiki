@@ -1400,7 +1400,6 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 # Watchlist
 'watchlist'            => 'Mani uzraugāmie raksti',
 'mywatchlist'          => 'Mani uzraugāmie raksti',
-'watchlistfor'         => "(priekš '''$1''')",
 'nowatchlist'          => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchnologin'         => 'Neesi iegājis',
 'watchnologintext'     => 'Tev ir [[Special:UserLogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',

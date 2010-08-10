@@ -681,7 +681,6 @@ Mga Pahina sa [[Special:Watchlist|imo watchlist]]  '''madukot'''.",
 # Watchlist
 'watchlist'         => 'Mga akon ginabantayan',
 'mywatchlist'       => 'Akon ginabantayan',
-'watchlistfor'      => "(para  sa '''$1''')",
 'addedwatch'        => 'Gindugang sa lista sang ginabantayan',
 'addedwatchtext'    => "Ang pahina nga \"[[:\$1]]\" gindugang na sa imo [[Special:Watchlist|ginabantayan]].
 Ang mga pagbag-o sa buwas-damlag kag mga kaangot nga pahina sang istoryahanay pagalistahon diya, kag ang pahina maggwa nga '''madukot''' sa [[Special:RecentChanges|lista sang mga nagligad nga pagbag-o]] para mas mahapos makita.",

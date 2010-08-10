@@ -686,7 +686,6 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 # Watchlist
 'watchlist'         => 'Pajes oservada',
 'mywatchlist'       => 'Me lista de pajes oservada',
-'watchlistfor'      => "(per '''$1''')",
 'nowatchlist'       => 'Tu ave no cosas en tu lista oservada',
 'addedwatch'        => 'Juntada a la lista de pajes oservada',
 'addedwatchtext'    => "La paje \"[[:\$1]]\" ia es juntada a tu [[Special:Watchlist|lista de pajes oservada]].

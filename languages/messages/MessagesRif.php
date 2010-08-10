@@ -511,7 +511,6 @@ Tasniwin di [[Special:Watchlist|your watchlist]] d '''tizurarin'''.",
 # Watchlist
 'watchlist'         => 'Tabdart uḥṭṭu inu',
 'mywatchlist'       => 'Tabdart uḥṭṭu inu',
-'watchlistfor'      => "(i '''$1''')",
 'addedwatch'        => 'Temmarni ɣar Tabdart uḥṭṭu',
 'addedwatchtext'    => 'Tasna "[[:$1]]" Temmarni ɣar [[Special:Watchlist|Tabdart uḥṭṭu]].',
 'removedwatch'      => 'twakkes zi Tabdart uḥṭṭu',

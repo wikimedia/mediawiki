@@ -735,6 +735,15 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'login-throttled'            => 'Du har prøvd å logge inn for mange gonger. Ver venleg og vent før du prøver igjen.',
 'loginlanguagelabel'         => 'Språk: $1',
 
+# JavaScript password checks
+'password-strength'            => 'Utrekna passordstyrke: $1',
+'password-strength-bad'        => 'DÅRLEG',
+'password-strength-mediocre'   => 'medels',
+'password-strength-acceptable' => 'dugande',
+'password-strength-good'       => 'god',
+'password-retype'              => 'Skriv opp att passordet',
+'password-retype-mismatch'     => 'Passorda er ikkje dei same',
+
 # Password reset dialog
 'resetpass'                 => 'Endra passord',
 'resetpass_announce'        => 'Du logga inn med eit mellombels passord du fekk på e-post. For å fullføre innlogginga må du lage eit nytt passord her:',
@@ -2039,7 +2048,6 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 # Watchlist
 'watchlist'            => 'Overvakingsliste',
 'mywatchlist'          => 'Overvakingslista mi',
-'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ikkje noko i overvakingslista di.',
 'watchlistanontext'    => 'Ver venleg og $1 for å vise eller endre sider på overvakingslista di.',
 'watchnologin'         => 'Ikkje innlogga',

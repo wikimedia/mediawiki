@@ -2070,7 +2070,6 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 # Watchlist
 'watchlist'            => 'Tarkkailulista',
 'mywatchlist'          => 'Tarkkailulista',
-'watchlistfor'         => '$1',
 'nowatchlist'          => 'Tarkkailulistallasi ei ole sivuja.',
 'watchlistanontext'    => 'Sinun täytyy $1, jos haluat käyttää tarkkailulistaa.',
 'watchnologin'         => 'Et ole kirjautunut sisään',

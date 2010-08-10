@@ -1169,7 +1169,6 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 # Watchlist
 'watchlist'            => 'İzlədiyim səhifələr',
 'mywatchlist'          => 'İzlədiyim səhifələr',
-'watchlistfor'         => "('''$1''' üçün)",
 'watchnologin'         => 'Daxil olmamısınız',
 'watchnologintext'     => 'İzləmə siyahınızda dəyişiklik aparmaq üçün [[Special:UserLogin|daxil olmalısınız]].',
 'addedwatch'           => 'İzləmə siyahısına əlavə edildi.',

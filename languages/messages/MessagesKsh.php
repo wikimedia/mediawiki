@@ -734,6 +734,14 @@ e-mail eijfach. Wann De en däm Wikki nit metmaache wells, och.',
 Waat e Wielsche, ih dat De et widder versöhks.',
 'loginlanguagelabel'         => 'Sproch: $1',
 
+# JavaScript password checks
+'password-strength-bad'        => '<span style="text-transform:uppercase">schlääsch</span>',
+'password-strength-mediocre'   => 'schlapp',
+'password-strength-acceptable' => 'kammer bruche',
+'password-strength-good'       => 'joot',
+'password-retype'              => 'Noch ens dat Passwood',
+'password-retype-mismatch'     => 'De Paßwööter sin unejaal',
+
 # Password reset dialog
 'resetpass'                 => 'Passwood tuusche udder neu ußjävve',
 'resetpass_announce'        => 'De beß jez enjelogg med ennem Zweschepasswoot, wat De övver e-mail krääje häs. Dat kanns De nit einfar_esu behallde. Alsu donn jetz e neu Passwoot för op Duur aanjevve.',
@@ -1137,6 +1145,7 @@ $1",
 'logdelete-failure'           => "'''Däm Enndraach em Logboch sing Seeschbaakeit kunnte mer nit ändere:''' $1",
 'revdel-restore'              => 'Versteische udder Seeschba maache',
 'revdel-restore-deleted'      => 'fottjeschmeße Versione',
+'revdel-restore-visible'      => 'seeshtba Versione',
 'pagehist'                    => 'Älldere Versione',
 'deletedhist'                 => 'Fottjeschmesse Versione',
 'revdelete-content'           => 'dä Enhalt fun dä Sigg',
@@ -1363,6 +1372,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'prefs-files'                   => 'Dateie',
 'prefs-custom-css'              => 'Selfsjemaat <i lang="en">Cascading Style Sheet</i>',
 'prefs-custom-js'               => 'Selfsjemaat JavaSkripp',
+'prefs-common-css-js'           => 'Gemeinsam CSS un JavaSkrepp för all de Bovverfläshe:',
 'prefs-reset-intro'             => 'Op dä Sigg kanns De Ding Enstellunge op dämm Wiki singe Shandatt setze lohße. Ävver Opjepaß: Do jidd et keine „Retuur“-Knopp för!',
 'prefs-emailconfirm-label'      => 'Beshtätejung övver <i lang="en">e-mail</i>:',
 'prefs-textboxsize'             => 'Wi jruuß sull dat Feld för et Afschnedde un Sigge ändere sin',
@@ -2182,7 +2192,6 @@ Alles klor?',
 # Watchlist
 'watchlist'            => 'ming Oppassliss',
 'mywatchlist'          => 'ming Oppassliss',
-'watchlistfor'         => '(för <strong>$1</strong>)',
 'nowatchlist'          => 'En Ding Oppassliss es nix dren.',
 'watchlistanontext'    => 'Do muss $1, domet de en Ding Oppassliss erenluure kanns, oder jet dran ändere.',
 'watchnologin'         => 'Nit enjelogg',
@@ -2848,6 +2857,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-undo'                    => '„{{UCfirst:{{int:editundo}}}}“ määt der förije Zostand
 fun dä Sigg op, zom Beärbeide un widder Afspeichere.
 Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
+'tooltip-summary'                 => 'Jif en koote Zesammefassung en',
 
 # Stylesheets
 'common.css'      => '/* CSS hee aan dä Stell hät Uswirkunge op all Ovverflääsche */',

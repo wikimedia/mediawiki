@@ -1740,7 +1740,6 @@ $1',
 # Watchlist
 'watchlist'            => '哨站',
 'mywatchlist'          => '哨站',
-'watchlistfor'         => "（'''$1'''之哨）",
 'nowatchlist'          => '無哨',
 'watchlistanontext'    => '$1以治哨',
 'watchnologin'         => '未登簿',

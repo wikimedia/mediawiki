@@ -1961,7 +1961,6 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 # Watchlist
 'watchlist'            => 'Wobglědowańka',
 'mywatchlist'          => 'mója wobglědowańka',
-'watchlistfor'         => "(za wužywarja '''$1''')",
 'nowatchlist'          => 'Žedne zapise w twójej wobglědowańce.',
 'watchlistanontext'    => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',
 'watchnologin'         => 'Njepśizjawjony(a)',

@@ -1362,7 +1362,6 @@ Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podeblja
 # Watchlist
 'watchlist'         => 'Moj spisak praćenja',
 'mywatchlist'       => 'Moj spisak praćenja',
-'watchlistfor'      => "(za '''$1''')",
 'addedwatch'        => 'Dodano na listu praćenih stranica',
 'addedwatchtext'    => "Stranica \"[[:\$1]]\" je dodana [[Special:Watchlist|vašoj listi praćenih stranica]].
 Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti navedene ovdje, te će stranica izgledati '''podebljana''' u [[Special:RecentChanges|listi nedavnih]] izmjena kako bi se lakše uočila.",

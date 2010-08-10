@@ -1109,7 +1109,6 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 # Watchlist
 'watchlist'            => 'Lîsteya min ya şopandinê',
 'mywatchlist'          => 'Lîsteya min ya şopandinê',
-'watchlistfor'         => "(ji bo '''$1''')",
 'nowatchlist'          => 'Tiştek di lîsteya te ya şopandinê da tune ye.',
 'watchlistanontext'    => 'Ji bo sekirinê ya xeyrandinê lîsteya te ya şopandinê tu gireke xwe $1.',
 'watchnologin'         => 'Te xwe qeyd nekirîye.',

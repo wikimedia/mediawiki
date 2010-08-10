@@ -938,7 +938,6 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 # Watchlist
 'watchlist'         => 'Eefterkiikliste',
 'mywatchlist'       => 'Eefterkiikliste',
-'watchlistfor'      => "(for '''$1''')",
 'addedwatch'        => 'Tu eefterkiiksid tubaifäiged',
 'addedwatchtext'    => 'Jü sid „[[:$1]]“ wörd tu din [[Special:Watchlist|eefterkiiklist]] tubaifäiged.
 

@@ -2005,7 +2005,6 @@ Template:消除歧義',
 # Watchlist
 'watchlist'            => '監視列表',
 'mywatchlist'          => '我的監視列表',
-'watchlistfor'         => "（'''$1'''的監視列表）",
 'nowatchlist'          => '您的監視列表為空。',
 'watchlistanontext'    => '請$1以檢視或編輯您的監視列表。',
 'watchnologin'         => '未登入',

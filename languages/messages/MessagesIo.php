@@ -1080,7 +1080,6 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 # Watchlist
 'watchlist'          => 'Mea surveyaji',
 'mywatchlist'        => 'Mea surveyaji',
-'watchlistfor'       => "(por '''$1''')",
 'nowatchlist'        => 'Vu ne havas objekti en vua listo di surveyaji.',
 'watchnologin'       => 'Vu ne startis sesiono',
 'watchnologintext'   => 'Vu mustas [[Special:UserLogin|enirir]] por modifikar vua surveyaji.',

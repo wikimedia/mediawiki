@@ -2047,7 +2047,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 # Watchlist
 'watchlist'            => 'Osservati speciali',
 'mywatchlist'          => 'osservati speciali',
-'watchlistfor'         => "(dell'utente '''$1''')",
+'watchlistfor2'        => "Dell'utente $1 $2",
 'nowatchlist'          => 'La lista degli osservati speciali è vuota.',
 'watchlistanontext'    => "Per visualizzare e modificare l'elenco degli osservati speciali è necessario $1.",
 'watchnologin'         => 'Accesso non effettuato',

@@ -1320,7 +1320,6 @@ Bákannáà ẹ le è yàn láti jẹ́ kí àwọn ẹlòmíràn kó báyiín s
 # Watchlist
 'watchlist'         => 'Ìmójútó mi',
 'mywatchlist'       => 'Ìmójútó mi',
-'watchlistfor'      => "(fún '''$1''')",
 'watchnologin'      => 'Ẹ kò tíì wọlé',
 'addedwatch'        => 'Ti fikún sí ìmójútó',
 'addedwatchtext'    => "A ti ṣ'àfikún \"[[:\$1]]\" sí [[Special:Watchlist|ìmójútó]] yín.

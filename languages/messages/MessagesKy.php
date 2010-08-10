@@ -256,7 +256,6 @@ $messages = array(
 
 # Watchlist
 'watchlist'         => 'Байкоо тизмем',
-'watchlistfor'      => "('''$1''' үчүн)",
 'watchnologin'      => 'Катталган жок',
 'addedwatch'        => 'Байкоо тизмеге кошумчаланды',
 'watch'             => 'Байкоо',

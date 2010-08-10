@@ -1411,7 +1411,6 @@ Ja'nede [[Special:WantedCategories|kerekli kategoriyalardı]] qarap ko'rin'.",
 # Watchlist
 'watchlist'         => 'Betlerdi baqlaw dizimi',
 'mywatchlist'       => "Menin' baqlaw dizimim",
-'watchlistfor'      => "('''$1''' ushın)",
 'nowatchlist'       => "Baqlaw dizimin'iz bos.",
 'watchlistanontext' => "Baqlaw dizimin'izdegilerdi qaraw yamasa o'zgertiw ushın $1 kerek.",
 'watchnologin'      => 'Kirilmegen',

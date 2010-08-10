@@ -552,7 +552,6 @@ Tungkaran-tungkaran dalam [[Special:Watchlist|your watchlist]] ditandai '''citak
 # Watchlist
 'watchlist'         => 'Daptar itihan ulun',
 'mywatchlist'       => 'Daptar itihan ulun',
-'watchlistfor'      => "(gasan '''$1''')",
 'addedwatch'        => 'Sudah ditambahakan ka daptar itihan',
 'addedwatchtext'    => "Tungkaran \"[[:\$1]]\" sudah ditambahakan ke [[Special:Watchlist|daptar itihan]] Pian.
 Parubahan-parubahan salanjutnya pada tungkaran ini dan tungkaran pamandiran taraitnya akan takambit di sia, wan tungkaran itu akan ditampaiakan '''kandal''' pada [[Special:RecentChanges|daptar parubahan tahanyar]] cagar labih mudah diitihi.",

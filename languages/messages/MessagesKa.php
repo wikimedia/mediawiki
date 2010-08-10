@@ -1927,7 +1927,6 @@ $1',
 # Watchlist
 'watchlist'            => 'ჩემი კონტროლის სია',
 'mywatchlist'          => 'ჩემი კონტროლის სია',
-'watchlistfor'         => "('''$1'''-თვის)",
 'nowatchlist'          => 'თქვენი კონტროლის სია ცარიელია.',
 'watchlistanontext'    => '$1
 

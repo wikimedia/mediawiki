@@ -932,7 +932,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Watchlist
 'watchlist'         => 'ܪ̈ܗܝܬܝ',
 'mywatchlist'       => 'ܪ̈ܗܝܬܝ',
-'watchlistfor'      => "(ܠ'''$1''')",
 'nowatchlist'       => 'ܠܝܬ ܠܟ ܡܕܡ ܒܪ̈ܗܝܬܐ ܕܝܠܟ',
 'watchnologin'      => 'ܠܐ ܥܠܝܠܐ',
 'addedwatch'        => 'ܐܘܣܦ ܠܪ̈ܗܝܬܐ',

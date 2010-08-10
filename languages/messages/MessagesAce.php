@@ -760,7 +760,6 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 # Watchlist
 'watchlist'         => 'Dapeuta keunalön lôn',
 'mywatchlist'       => 'Keunalön lôn',
-'watchlistfor'      => "(keu '''$1''')",
 'addedwatch'        => 'Ka geupeutamah u dapeuta kalön',
 'addedwatchtext'    => "Ôn \"[[:\$1]]\" ka geupeutamah u [[Special:Watchlist|dapeuta keunalön]] Droëneuh. Neu’ubah-neu’ubah bak masa u keuë bak ôn nyan ngön bak ôn peugah habajih, euntreuk leumah nyoë pat. Ôn nyan euntreuk geupeuleumah ''teubay'' bak [[Special:RecentChanges|dapeuta neu’ubah paléng barô]] mangat leubèh mudah leumah.",
 'removedwatch'      => 'Ka geusampôh nibak dapeuta keunalön',

@@ -983,7 +983,6 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 # Watchlist
 'watchlist'         => 'Mi Tan Luku réy',
 'mywatchlist'       => 'Mi Tan luku réy',
-'watchlistfor'      => "(fu '''$1''')",
 'addedwatch'        => 'Presi a yu sirey',
 'addedwatchtext'    => "A papira \"[[:\$1]]\" ben presi a yu [[Special:Watchlist|sirey]]. Folo kenki fu disi papira nanga a taki sey opo [[Special:Watchlist|yu sirey]] nanga sey '''deku''' ini a [[Special:RecentChanges|rey fu bakseywan kenki]].
 

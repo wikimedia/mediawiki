@@ -1922,7 +1922,6 @@ Adresa e-pošte koju ste vi uneli u svojim [[Special:Preferences|korisničkim po
 # Watchlist
 'watchlist'            => 'Moj spisak nadgledanja',
 'mywatchlist'          => 'Moj spisak nadgledanja',
-'watchlistfor'         => "(za '''$1''')",
 'nowatchlist'          => 'Nemate ništa na svom spisku nadgledanja.',
 'watchlistanontext'    => 'Molimo $1 da biste gledali ili menjali stavke na vašem spisku nadgledanja.',
 'watchnologin'         => 'Niste prijavljeni',

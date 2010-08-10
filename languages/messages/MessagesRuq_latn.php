@@ -254,11 +254,10 @@ $3',
 'allpagessubmit' => 'Treme',
 
 # Watchlist
-'watchlist'    => 'Maj klăaeru',
-'mywatchlist'  => 'Maj klăaere',
-'watchlistfor' => "(pentru '''$1''')",
-'watch'        => 'klăaere',
-'unwatch'      => 'Deklăaera',
+'watchlist'   => 'Maj klăaeru',
+'mywatchlist' => 'Maj klăaere',
+'watch'       => 'klăaere',
+'unwatch'     => 'Deklăaera',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'O klăaere...',

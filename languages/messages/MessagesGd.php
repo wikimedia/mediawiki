@@ -732,7 +732,6 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 # Watchlist
 'watchlist'          => 'Mo chlàr-faire',
 'mywatchlist'        => 'Mo chlàr-faire',
-'watchlistfor'       => "(do '''$1''')",
 'nowatchlist'        => "Chan eil altan air d' fhaire.",
 'addedwatch'         => 'Air a chur ri do chlàr-faire',
 'addedwatchtext'     => "Chaidh an duilleag \"[[:\$1]]\" a chur ri [[Special:Watchlist|do chlàr-faire]].

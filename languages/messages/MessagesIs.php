@@ -1613,7 +1613,6 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 # Watchlist
 'watchlist'            => 'Vaktlistinn',
 'mywatchlist'          => 'Vaktlistinn',
-'watchlistfor'         => "(fyrir '''$1''')",
 'nowatchlist'          => 'Vaktlistinn er tómur.',
 'watchlistanontext'    => 'Vinsamlegast $1 til að skoða eða breyta vaktlistanum þínum.',
 'watchnologin'         => 'Óinnskráð(ur)',

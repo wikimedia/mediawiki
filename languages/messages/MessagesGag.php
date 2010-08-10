@@ -646,7 +646,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 # Watchlist
 'watchlist'         => 'Bakmaa listam',
 'mywatchlist'       => 'Bakmaa listam',
-'watchlistfor'      => "('''$1''' için)",
 'addedwatch'        => 'Bakmaa listasına registrat edildi.',
 'addedwatchtext'    => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|bakmaa listanıza]] registrat olundu.
 

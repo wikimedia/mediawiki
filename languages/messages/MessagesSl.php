@@ -2043,7 +2043,6 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 # Watchlist
 'watchlist'            => 'Spisek nadzorov',
 'mywatchlist'          => 'Spisek nadzorov',
-'watchlistfor'         => "(za '''$1''')",
 'nowatchlist'          => 'Vaš spisek nadzorov je prazen.',
 'watchlistanontext'    => 'Prosimo, $1 za pregled ali urejanje vsebine vašega spiska nadzorov.',
 'watchnologin'         => 'Niste prijavljeni',

@@ -1923,7 +1923,6 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferencias
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',
 'mywatchlist'          => 'Lista de seguimiento',
-'watchlistfor'         => "(de '''$1''')",
 'nowatchlist'          => 'No tien garra pachina en a lista de seguimiento.',
 'watchlistanontext'    => "Ha de $1 ta veyer u editar as dentradas d'a suya lista de seguimiento.",
 'watchnologin'         => 'No ha encetato a sesión',

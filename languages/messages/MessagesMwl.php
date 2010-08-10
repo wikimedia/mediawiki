@@ -875,7 +875,6 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 # Watchlist
 'watchlist'         => 'Ls mius begiados',
 'mywatchlist'       => 'Las mies páiginas begiadas',
-'watchlistfor'      => "(para '''$1''')",
 'addedwatch'        => 'Ajuntada a las páiginas begiadas',
 'addedwatchtext'    => "La páigina \"[[:\$1]]\" fui ajuntada a la tue [[Special:Watchlist|lista de páiginas begiadas]].
 Altaraçones feturas na tal páigina i páiginas de çcusson a eilha associadas seran listadas alhá, cun la páigina aparecendo a '''negrito''' na [[Special:RecentChanges|lista de redadeiras altaraçones]], para que se pouda ancuntrar cun maior facelidade.",

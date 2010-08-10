@@ -695,7 +695,6 @@ Links aus Namensräume wern da net aufglistet.',
 # Watchlist
 'watchlist'         => 'Beobachtungslistn',
 'mywatchlist'       => 'Beobachtungslistn',
-'watchlistfor'      => "(fia '''$1''')",
 'watchlistanontext' => 'Sie miaßn si $1, um Eanane Beobachtungslistn zum seng oda Einträge auf ihr zum bearbatn.',
 'watchnologin'      => 'Sie san net ogmeidt',
 'addedwatch'        => 'Zua Beobachtungslistn dazuado',

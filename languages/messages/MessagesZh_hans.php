@@ -2004,7 +2004,6 @@ Template:消除歧義',
 # Watchlist
 'watchlist'            => '监视列表',
 'mywatchlist'          => '监视列表',
-'watchlistfor'         => "（'''$1'''的监视列表'）",
 'nowatchlist'          => '您的监视列表为空。',
 'watchlistanontext'    => '请$1以查看或编辑您的监视列表。',
 'watchnologin'         => '未登录',

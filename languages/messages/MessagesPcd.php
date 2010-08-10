@@ -598,7 +598,6 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 # Watchlist
 'watchlist'         => 'Em lisse à suire',
 'mywatchlist'       => "M'lisse à suire",
-'watchlistfor'      => "(pou '''$1''')",
 'addedwatch'        => "Rajouté su l'lisse à suire",
 'addedwatchtext'    => "L' pache « [[:$1]] » o té rajoutée à vote [[Special:Watchlist|lisse à suire]].<br /> Chés  canjemints à vnir del pache-lo pi del page éd pérlache sront mis din l'lisse. L'pache sro '''in cros''' din el [[Special:RecentChanges|lisse d'chés darins canjemints]] pou les értreuver fachilmint. Pou értirer chol pache del ''lisse à suire'', bukez su « {{MediaWiki:Unwatch}} ».",
 'removedwatch'      => 'Értiré del lisse à suire',

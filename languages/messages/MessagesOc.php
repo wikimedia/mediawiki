@@ -2089,7 +2089,6 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 # Watchlist
 'watchlist'            => 'Ma lista de seguiment',
 'mywatchlist'          => 'Lista de seguiment',
-'watchlistfor'         => "(per l’utilizaire '''$1''')",
 'nowatchlist'          => "Vòstra lista de seguiment conten pas cap d'article.",
 'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguiment, vos cal vos $1.',
 'watchnologin'         => 'Vos sètz pas identificat(ada)',

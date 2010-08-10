@@ -1831,7 +1831,6 @@ Goldanylýan protokollar: <tt>$1</tt>',
 # Watchlist
 'watchlist'            => 'Gözegçilik sanawym',
 'mywatchlist'          => 'Gözegçilik sanawym',
-'watchlistfor'         => "('''$1''' üçin)",
 'nowatchlist'          => 'Gözegçilik sanawyňyzda hiçhili sahypa ýok.',
 'watchlistanontext'    => 'Gözegçilik sanawyňyzdaky sahypalary görmek ýa-da redaktirlemek üçin $1.',
 'watchnologin'         => 'Sessiýa açmansyňyz',

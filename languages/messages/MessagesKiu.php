@@ -1047,7 +1047,6 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 # Watchlist
 'watchlist'         => 'Pela mına şêrkerdene',
 'mywatchlist'       => 'Lista mına şêrkerdışi',
-'watchlistfor'      => "(serba '''$1''')",
 'addedwatch'        => 'Kerd be lista şêrkerdişi ser',
 'addedwatchtext'    => "Pela \"[[:\$1]]\"i ilawe biye be [[Special:Watchlist|pela şêrkerdişi]].
 Nara dıme, vurnaisê na pele u pela hurênaisê dawa alaqedare ita bena lista, u pele [[Special:RecentChanges|lista vurnaisunê peyênu]] de '''qolınd''' asena ke cı ra asan weçiniyo.",

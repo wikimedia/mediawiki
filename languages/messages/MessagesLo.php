@@ -721,7 +721,6 @@ $messages = array(
 # Watchlist
 'watchlist'            => 'ລາຍການຕິດຕາມ',
 'mywatchlist'          => 'ລາຍການຕິດຕາມ',
-'watchlistfor'         => "(ສຳຫຼັບ '''$1''')",
 'watchlistanontext'    => 'ກະລຸນາ $1 ເພື່ອເບິ່ງ ຫຼື ດັດແກ້ ໜ້າຢູ່ໃນລາຍການຕິດຕາມຂອງທ່ານ.',
 'watchnologin'         => 'ບໍ່ໄດ້ເຊັນເຂົ້າ',
 'addedwatch'           => 'ເພີ່ມໃສ່ລາຍການຕິດຕາມແລ້ວ',

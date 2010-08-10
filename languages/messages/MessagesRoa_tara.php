@@ -1863,7 +1863,6 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 # Watchlist
 'watchlist'            => 'Pàggene condrollete',
 'mywatchlist'          => 'Pàggene condrollete',
-'watchlistfor'         => "(pe '''$1''')",
 'nowatchlist'          => "Non ge tine pàggene jndr'à liste de le pàggene condrollete.",
 'watchlistanontext'    => 'Pe piacere $1 pe vedè o cangià le vosce sus a liste de le pàggene condrollete.',
 'watchnologin'         => 'Non ge sinde colleghete',

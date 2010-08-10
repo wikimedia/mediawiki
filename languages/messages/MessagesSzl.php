@@ -1467,7 +1467,6 @@ Adres e-brifa, kery zostoł bez Ćebje wkludzůny we [[Special:Preferences|Twoji
 # Watchlist
 'watchlist'            => 'Pozorlista',
 'mywatchlist'          => 'Moja pozůrlista',
-'watchlistfor'         => "(dla užytkowńika '''$1''')",
 'nowatchlist'          => 'Ńy ma žodnych pozycyji na liśće zajtůw, na kere dowoš pozůr.',
 'watchlistanontext'    => '$1 coby uobejřeć abo sprowjać elymynty listy zajtůw, na kere dowoš pozůr',
 'watchnologin'         => 'Ńy jest žeś zalůgowany',

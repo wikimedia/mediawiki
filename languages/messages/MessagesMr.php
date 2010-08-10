@@ -1678,7 +1678,6 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 # Watchlist
 'watchlist'            => 'माझी पहार्‍याची सूची',
 'mywatchlist'          => 'माझी पहार्‍याची सूची',
-'watchlistfor'         => "('''$1'''करिता)",
 'nowatchlist'          => 'तुमची पहार्‍याची सूची रिकामी आहे.',
 'watchlistanontext'    => 'तुमच्या पहार्‍याच्या सूचीतील बाबी पाहण्याकरता किंवा संपादित करण्याकरता, कृपया $1.',
 'watchnologin'         => 'प्रवेश केलेला नाही',

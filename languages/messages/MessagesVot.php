@@ -387,7 +387,6 @@ Tšüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on
 # Watchlist
 'watchlist'         => 'Minu kattsõspiiska',
 'mywatchlist'       => 'Minu kattsõspiiska',
-'watchlistfor'      => '$1',
 'addedwatch'        => 'Lisättü kattsospiizgallõ',
 'addedwatchtext'    => "Tšültši \"[[:\$1]]\" on lisättü Teďďee [[Special:Watchlist|kattsospiizgallõ]].
 Tšültšese ja sene juttutšültšese tehäväd tulõvaizõd muutuhsõd leeväd tšisloitõtud siäll.

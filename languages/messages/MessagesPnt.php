@@ -982,7 +982,6 @@ $messages = array(
 # Watchlist
 'watchlist'         => "Σελίδας ντ' ωριάζω",
 'mywatchlist'       => "Σελίδας ντ' ωριάζω",
-'watchlistfor'      => "(για '''$1''')",
 'watchnologin'      => "'Κ είστουν συνδεμένος",
 'addedwatch'        => 'Εθέκεν σην λίσταν ωριαγματί',
 'addedwatchtext'    => "Η σελίδαν \"[[:\$1]]\" επήγεν σον [[Special:Watchlist|κατάλογον οριαγματί]] εσούν.

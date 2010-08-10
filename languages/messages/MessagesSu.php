@@ -1688,7 +1688,6 @@ Alamat surélék nu diasupkeun kana [[Special:Preferences|préferénsi pamaké a
 # Watchlist
 'watchlist'            => 'Awaskeuneun',
 'mywatchlist'          => 'Awaskeuneun',
-'watchlistfor'         => "(keur '''$1''')",
 'nowatchlist'          => 'Anjeun teu boga awaskeuneun.',
 'watchlistanontext'    => 'Mangga $1 pikeun némbongkeun atawa ngarobah béréndélan awaskeuneun anjeun.',
 'watchnologin'         => 'Can asup log',

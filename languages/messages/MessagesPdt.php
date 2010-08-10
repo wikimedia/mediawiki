@@ -419,7 +419,6 @@ Bitte nemm eenen aundren.',
 
 # Watchlist
 'mywatchlist'   => 'Miene Oppaussied',
-'watchlistfor'  => "(fer '''$1''')",
 'addedwatch'    => "No Oppausssied bieje'done",
 'watch'         => 'Oppausse',
 'watchthispage' => 'Op dise Sied oppausse',

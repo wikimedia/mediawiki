@@ -634,7 +634,6 @@ Template:Khu-pia̍t-ia̍h',
 # Watchlist
 'watchlist'          => 'Kàm-sī-toaⁿ',
 'mywatchlist'        => 'Góa ê kàm-sī-toaⁿ',
-'watchlistfor'       => "('''$1''' ê)",
 'nowatchlist'        => 'Lí ê kàm-sī-toaⁿ bô pòaⁿ hāng.',
 'watchnologin'       => 'Bô teng-ji̍p',
 'watchnologintext'   => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng siu-kái lí ê kàm-sī-toaⁿ.',

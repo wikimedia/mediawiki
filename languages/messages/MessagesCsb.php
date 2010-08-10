@@ -757,7 +757,6 @@ Mòżesz zawãżëc wëszłosc przez wëbranié ôrtu registru, miona brëkòwni
 # Watchlist
 'watchlist'            => 'Lësta ùzérónëch artiklów',
 'mywatchlist'          => 'Lësta ùzérónëch artiklów',
-'watchlistfor'         => "(dlô '''$1''')",
 'watchnologin'         => 'Felënk logòwóniô',
 'addedwatch'           => 'Dodónô do lëstë ùzérónëch',
 'addedwatchtext'       => "Starna \"[[:\$1]]\" òsta dodónô do twòji [[Special:Watchlist|lëstë ùzérónëch artiklów]].

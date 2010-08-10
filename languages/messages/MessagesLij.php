@@ -772,7 +772,6 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 # Watchlist
 'watchlist'         => 'A mæ lista in osservassion',
 'mywatchlist'       => 'Lista in osservaçion',
-'watchlistfor'      => "(pe '''$1''')",
 'watchnologin'      => "Non ti t'æ entroö",
 'watchnologintext'  => 'Devvi [[Special:UserLogin|entrâ]] pe cangiâ a toa lista in osservaçion.',
 'addedwatch'        => 'Azzonto a a lista in osservaçion',

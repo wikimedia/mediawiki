@@ -1892,7 +1892,6 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 # Watchlist
 'watchlist'            => 'Oservai spesałi',
 'mywatchlist'          => 'oservai spesałi',
-'watchlistfor'         => "(de l'utente '''$1''')",
 'nowatchlist'          => "No te ghè indicà pagine da tegner d'ocio.",
 'watchlistanontext'    => "Per vardar e modifegar l'ełenco de i osservati speciałi bisogna $1.",
 'watchnologin'         => 'Acesso mia efetuà',
