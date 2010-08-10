@@ -2280,9 +2280,10 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'mywatchlist'          => 'Link at the upper right corner of the screen.
 
 {{Identical|My watchlist}}',
-'watchlistfor'         => 'Subtitle on [[Special:Watchlist]].
+'watchlistfor2'        => 'Subtitle on [[Special:Watchlist]].
 
 *$1: Username of current user
+*$2: Tool links (View relevant changes | View and edit watchlist | Edit raw watchlist)
 {{Identical|For $1}}',
 'nowatchlist'          => 'Displayed when there is no pages in the watchlist.',
 'watchlistanontext'    => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
