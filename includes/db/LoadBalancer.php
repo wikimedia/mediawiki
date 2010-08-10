@@ -400,9 +400,12 @@ class LoadBalancer {
 	/**
 	 * Get a connection by index
 	 * This is the main entry point for this class.
+	 * 
 	 * @param $i Integer: server index
 	 * @param $groups Array: query groups
 	 * @param $wiki String: wiki ID
+	 * 
+	 * @return DatabaseBase
 	 */
 	public function &getConnection( $i, $groups = array(), $wiki = false ) {
 		wfProfileIn( __METHOD__ );
