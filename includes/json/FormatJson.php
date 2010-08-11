@@ -19,7 +19,7 @@ class FormatJson {
 		}
 	}
 
-	public static function decode( $value, $assoc = self::AS_ARRAY ) {
+	public static function decode( $value, $assoc = false ) {
 		if ( !function_exists( 'json_decode' ) ) {
 			$json = new Services_JSON();
 			$jsonDec = $json->decode( $value );
