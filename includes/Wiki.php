@@ -5,14 +5,10 @@
  * @internal documentation reviewed 15 Mar 2010
  */
 class MediaWiki {
-
-	var $GET; /* Stores the $_GET variables at time of creation, can be changed */
 	var $params = array();
 
-	/** Constructor. It just save the $_GET variable */
-	function __construct() {
-		$this->GET = $_GET;
-	}
+	/** Constructor */
+	function __construct() {}
 
 	/**
 	 * Stores key/value pairs to circumvent global variables
@@ -214,11 +210,11 @@ class MediaWiki {
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} else if( $action == 'view' && !$request->wasPosted() &&
-			( ( !isset($this->GET['title']) || $title->getPrefixedDBKey() != $this->GET['title'] ) ||
+			( ( !$request->getVal( 'title' ) || $title->getPrefixedDBKey() != $request->getText( 'title' ) ) ||
 			  // No valid variant in URL (if the main-language has multi-variants), to ensure
 			  // anonymous access would always be redirect to a URL with 'variant' parameter
-			  ( !isset($this->GET['variant']) && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
-			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
+			  ( !$request->getVal( 'variant' ) && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
+			!count( array_diff( array_keys( $request->getValues() ), array( 'action', 'title' ) ) ) )
 		{
 			if( !$wgUser->isLoggedIn() ) {
 				$pref = $wgContLang->getPreferredVariant( false, $fromHeader = true );
