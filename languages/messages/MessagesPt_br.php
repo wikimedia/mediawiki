@@ -19,6 +19,7 @@
  * @author Eduardo.mps
  * @author GKnedo
  * @author Giro720
+ * @author GoEThe
  * @author Hamilton Abreu
  * @author Heldergeovane
  * @author Jesielt
@@ -716,6 +717,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",
 'gotaccountlink'             => 'Autenticar-se',
 'createaccountmail'          => 'por e-mail',
+'createaccountreason'        => 'Razão:',
 'badretype'                  => 'As senhas que você digitou não são iguais.',
 'userexists'                 => 'O nome de usuário que você digitou já existe.
 Escolha um nome diferente.',
@@ -773,6 +775,14 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
+
+# JavaScript password checks
+'password-strength-bad'        => 'MÁ',
+'password-strength-mediocre'   => 'medíocre',
+'password-strength-acceptable' => 'aceitável',
+'password-strength-good'       => 'boa',
+'password-retype'              => 'Escreva novamente a sua senha aqui',
+'password-retype-mismatch'     => 'Senhas não são iguais',
 
 # Password reset dialog
 'resetpass'                 => 'Alterar senha',
@@ -1327,6 +1337,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'contextlines'                  => 'Linhas por resultado:',
 'contextchars'                  => 'Contexto por linha:',
 'stub-threshold'                => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',
+'stub-threshold-disabled'       => 'Desabilitado',
 'recentchangesdays'             => 'Dias a serem exibidos nas Mudanças recentes:',
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'            => 'Número de edições a serem exibidas por padrão:',
@@ -1734,6 +1745,7 @@ PICT # misc.
 'upload-failure-msg'          => 'Ocorreu um problema com o seu upload:
 
 $1',
+'upload-warning-msg'          => 'Houve um problema com o seu formulário de carregamento [$2]. Pode voltar ao [[Special:Upload/stash/$1|formulário]] para corrigir este problema.',
 
 'upload-proto-error'        => 'Protocolo incorreto',
 'upload-proto-error-text'   => 'O envio de arquivos remotos requer endereços (URLs) que iniciem com <code>http://</code> ou <code>ftp://</code>.',
@@ -2132,6 +2144,7 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 # Watchlist
 'watchlist'            => 'Páginas vigiadas',
 'mywatchlist'          => 'Páginas vigiadas',
+'watchlistfor2'        => 'Para $1 $2',
 'nowatchlist'          => 'A sua lista de páginas vigiadas não possui títulos.',
 'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de páginas vigiadas.',
 'watchnologin'         => 'Não está autenticado',

@@ -1948,6 +1948,7 @@ Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chith
 # Watchlist
 'watchlist'            => 'Fy rhestr wylio',
 'mywatchlist'          => 'Fy rhestr wylio',
+'watchlistfor2'        => 'Yn ôl gofyn $1 $2',
 'nowatchlist'          => "Mae eich rhestr wylio'n wag.",
 'watchlistanontext'    => "Rhaid $1 er mwyn gweld neu ddiwygio'ch rhestr wylio.",
 'watchnologin'         => 'Nid ydych wedi mewngofnodi',

@@ -2190,7 +2190,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
 'mywatchlist'          => 'Beobachtungsliste',
-'watchlistfor2'        => 'Für $1 $2',
+'watchlistfor2'        => 'Von $1 $2',
 'nowatchlist'          => 'Du hast keine Einträge auf deiner Beobachtungsliste.',
 'watchlistanontext'    => 'Du musst dich $1, um deine Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.',
 'watchnologin'         => 'Du bist nicht angemeldet',

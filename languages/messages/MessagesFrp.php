@@ -962,7 +962,7 @@ Se cen tôrne pas reussir, vos volyéd [[Special:UserLogout|dèbranchiér]], et 
 
 '''Se la tentativa de changement ére lèg·itima, volyéd tornar èprovar.'''
 Se cen tôrne pas reussir, vos volyéd [[Special:UserLogout|dèbranchiér]], et pués vos tornar branchiér.",
-'token_suffix_mismatch'            => "'''Voutron changement at pas étâ accèptâ perce que voutron navigator at mècllâ los caractèros de ponctuacion dens l’identifiant de changement.'''
+'token_suffix_mismatch'            => "'''Voutron changement at pas étâ accèptâ perce que voutron navigator at mècllâ los caractèros de ponctuacion dens lo numerô de changement.'''
 Lo changement at étâ refusâ por empachiér la corrupcion du tèxto de la pâge.
 Ceti problèmo arreve quand vos utilisâd un sèrvor mandatèro (''proxy'') anonimo qu’est pas de sûr.",
 'editing'                          => 'Changement de $1',
@@ -1192,7 +1192,7 @@ Pôt pas étre suprimâ.',
 Vos y avéd pas accès.',
 'revdelete-modify-no-access'  => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : il est marcâ coment « rètrent ».
 Vos y avéd pas accès.',
-'revdelete-modify-missing'    => 'Èrror pendent lo changement de l’èlèment avouéc l’identifiant $1 : il est manquent dens la bâsa de balyês !',
+'revdelete-modify-missing'    => 'Èrror pendent lo changement de l’èlèment avouéc lo numerô $1 : il est manquent dens la bâsa de balyês !',
 'revdelete-no-change'         => "'''Atencion :''' l’èlèment datâ du $1 a $2 at ja los paramètres de visibilitât demandâs.",
 'revdelete-concurrent-change' => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : son statut at étâ changiê per quârqu’un d’ôtro pendent que vos lo changiéd.
 Volyéd controlar los jornals.',
@@ -2217,6 +2217,7 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences
 # Watchlist
 'watchlist'            => 'Lista de survelyence',
 'mywatchlist'          => 'Lista de survelyence',
+'watchlistfor2'        => 'Por $1 $2',
 'nowatchlist'          => 'Voutra lista de survelyence contint gins d’èlèment.',
 'watchlistanontext'    => 'Vos volyéd $1 por fâre vêre ou changiér los èlèments de voutra lista de survelyence.',
 'watchnologin'         => 'Pas branchiê',
@@ -2454,7 +2455,7 @@ Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de
 'undelete-filename-mismatch'   => 'Empossiblo de refâre la vèrsion du fichiér datâ du $1 : lo nom de fichiér corrèspond pas.',
 'undelete-bad-store-key'       => 'Empossiblo de refâre la vèrsion du fichiér datâ du $1 : lo fichiér ére absent devant la suprèssion.',
 'undelete-cleanup-error'       => 'Èrror pendent la suprèssion du fichiér de les arch·ives inutilisâ « $1 ».',
-'undelete-missing-filearchive' => 'Empossiblo de refâre lo fichiér de les arch·ives avouéc l’identifiant $1 perce qu’il est pas dens la bâsa de balyês.
+'undelete-missing-filearchive' => 'Empossiblo de refâre lo fichiér de les arch·ives avouéc lo numerô $1 perce qu’il est pas dens la bâsa de balyês.
 Il at pôt-étre ja étâ refêt.',
 'undelete-error-short'         => 'Èrror pendent la rèstoracion du fichiér : $1',
 'undelete-error-long'          => 'Des èrrors ont étâ rencontrâs pendent la rèstoracion du fichiér :
@@ -2614,7 +2615,7 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 $1 est ja blocâ.
 Voléd-vos changiér los paramètres ?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}',
-'ipb_cant_unblock'                => 'Èrror : identifiant de blocâjo $1 pas trovâ.
+'ipb_cant_unblock'                => 'Èrror : numerô de blocâjo $1 pas trovâ.
 O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'ipb_blocked_as_range'            => 'Èrror : l’adrèce IP $1 est pas blocâ tot drêt et pôt vêr pas étre dèblocâ.
 Portant, el est avouéc la plage $2 que pôt étre dèblocâ.',
@@ -3177,7 +3178,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-sharpness'                   => 'Prècision',
 'exif-devicesettingdescription'    => 'Dèscripcion de la configuracion du dispositif',
 'exif-subjectdistancerange'        => 'Distance du sujèt',
-'exif-imageuniqueid'               => 'Identifiant solèt de l’émâge',
+'exif-imageuniqueid'               => 'Numerô solèt de l’émâge',
 'exif-gpsversionid'                => 'Vèrsion de la balisa GPS',
 'exif-gpslatituderef'              => "Latituda bise (''nord'') ou mié-jorn (''sud'')",
 'exif-gpslatitude'                 => 'Latituda',

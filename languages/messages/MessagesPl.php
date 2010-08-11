@@ -2108,6 +2108,7 @@ Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferenc
 # Watchlist
 'watchlist'            => 'Obserwowane',
 'mywatchlist'          => 'Obserwowane',
+'watchlistfor2'        => 'Dla $1 $2',
 'nowatchlist'          => 'Lista obserwowanych przez Ciebie stron jest pusta.',
 'watchlistanontext'    => '$1, aby obejrzeć lub edytować elementy listy obserwowanych.',
 'watchnologin'         => 'Nie jesteś zalogowany',

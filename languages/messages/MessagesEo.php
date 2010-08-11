@@ -763,6 +763,9 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 'suspicious-userlogout'      => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
 
 # JavaScript password checks
+'password-strength'            => 'Taksita pasvorta forteco: $1',
+'password-strength-bad'        => 'MALBONA',
+'password-strength-mediocre'   => 'mezbona',
 'password-strength-acceptable' => 'akceptinda',
 'password-strength-good'       => 'bona',
 'password-retype'              => 'Retajpu pasvorton',
@@ -2118,6 +2121,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 # Watchlist
 'watchlist'            => 'Atentaro',
 'mywatchlist'          => 'Atentaro',
+'watchlistfor2'        => 'Por $1 $2',
 'nowatchlist'          => 'Vi ne jam elektis priatenti iun ajn paĝon.',
 'watchlistanontext'    => 'Bonvolu $1 por vidi aŭ redakti erojn en via atentaro.',
 'watchnologin'         => 'Ne ensalutinta',
@@ -2199,7 +2203,7 @@ Por viaj reagoj kaj por obteni plian helpon:
 'actionfailed'           => 'Ago malsukcesis',
 'deletedtext'            => '"<nowiki>$1</nowiki>" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
-'deletedarticle'         => 'forigis "$1"',
+'deletedarticle'         => 'forigis "[[$1]]"',
 'suppressedarticle'      => '"[[$1]]" estas subigita',
 'dellogpage'             => 'Protokolo pri forigoj',
 'dellogpagetext'         => 'Jen listo de la plej lastaj forigoj el la datumaro.

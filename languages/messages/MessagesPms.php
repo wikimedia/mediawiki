@@ -1376,25 +1376,25 @@ Le pàgine dzora a [[Special:Watchlist|la lista ëd lòn ch'as ten sot-euj]] a r
 'uploadnologin'               => 'Nen rintrà ant ël sistema',
 'uploadnologintext'           => "A dev [[Special:UserLogin|rintré ant ël sistema]] për podèj carié dj'archivi.",
 'upload_directory_missing'    => 'Ël repertòri ëd caria ($1) a-i é nen e a peul pa esse creà dal servent.',
-'upload_directory_read_only'  => 'Ël programa webserver a-i la fa nen a scrive ansima a la diretriss ëd càrich ($1).',
+'upload_directory_read_only'  => "Ël servent ëd l'aragnà a-i la fa nen a scrive ansima a la diretris ëd càrich ($1).",
 'uploaderror'                 => 'Eror dëmentré che as cariava',
 'upload-recreate-warning'     => "'''Atension: n'archivi con col nòm a l'é già stàit ëscancelà o tramudà.'''
 
 Ël registr dle scancelassion e dij tramud për sta pàgina a l'é butà ambelessì për comodità:",
-'uploadtext'                  => "Dovra la forma sota për carié ëd file.
-Për vardé ò sërché figure già carià, va an sla [[Special:FileList|lista dle figure]], ij (ri)càrich a son ëdcò registrà ant ël [[Special:Log/upload|registr dij càrich]], jë scanselament ant ël [[Special:Log/delete|registr dië scanselament]].
+'uploadtext'                  => "Dovra ël formolari sì-sota për carié dj'archivi.
+Për vardé ò sërché dle figure già carià, ch'a vada an sla [[Special:FileList|lista dle figure]], ij (ri)càrich a son ëdcò registrà ant ël [[Special:Log/upload|registr dij càrich]], jë scancelament ant ël [[Special:Log/delete|registr djë scancelament]].
 
 Për buté na figura ant n'artìcol, dovré n'anliura ant un-a dle forme sì sota:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' për dovré la vërsion pien-a dla figura
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' për dovré na dimension ëd 200 pixel ant un quàder al màrgin snist con 'alt text' com descrission
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' për coleghé diretament la figura sensa fé vëdde ël file",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' për dovré la version pien-a dla figura
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' për dovré na dimension ëd 200 pontin ant un quàder a la bordura snistra con 'alt text' com descrission
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' për coleghé diretament la figura sensa fé vëdde l'archivi",
 'upload-permitted'            => "Sòrt d'archivi consentìe: $1.",
 'upload-preferred'            => "Sòrt d'archivi preferìe: $1.",
 'upload-prohibited'           => "Sòrt d'archivi proibìe: $1.",
 'uploadlog'                   => 'Registr dij càrich',
 'uploadlogpage'               => 'Registr dij càrich',
-'uploadlogpagetext'           => "Ambelessì sota a-i é na lista dj'ùltim archivi carià.
-Varda l'[[Special:NewFiles|elench dij file neuv]] për na presentassion pì visual.",
+'uploadlogpagetext'           => "Ambelessì-sota a-i é na lista dj'ùltim archivi carià.
+Beiché la [[Special:NewFiles|galarìa dj'archivi neuv]] për na presentassion pì visual.",
 'filename'                    => "Nòm dl'archivi",
 'filedesc'                    => 'Oget',
 'fileuploadsummary'           => "Detaj dl'archivi:",

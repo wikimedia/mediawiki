@@ -1994,6 +1994,7 @@ D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hut
 # Watchlist
 'watchlist'            => 'Meng Iwwerwaachungslëscht',
 'mywatchlist'          => 'Meng Iwwerwaachungslëscht',
+'watchlistfor2'        => 'Vum $1 $2',
 'nowatchlist'          => 'Är Iwwerwaachungslëscht ass eidel.',
 'watchlistanontext'    => "Dir musst $1 fir Säiten op ärer Iwwerwaachungslëscht ze gesinn oder z'änneren.",
 'watchnologin'         => 'Net ageloggt',

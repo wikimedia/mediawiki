@@ -733,12 +733,15 @@ e-mail eijfach. Wann De en däm Wikki nit metmaache wells, och.',
 'login-throttled'            => 'Do häs zo öff, zo vill, un zo lang en de letzde Zick probeet, ennzelogge.
 Waat e Wielsche, ih dat De et widder versöhks.',
 'loginlanguagelabel'         => 'Sproch: $1',
+'suspicious-userlogout'      => "Do bes '''nit''' ußjelogg.
+Et süht us, wi wann ene kappodde Brauser udder <i lang=\"en\">proxy</i>ẞööver met Zwescheschpeischer noh däm Ußlogge jefrooch hät.",
 
 # JavaScript password checks
-'password-strength-bad'        => '<span style="text-transform:uppercase">schlääsch</span>',
-'password-strength-mediocre'   => 'schlapp',
+'password-strength'            => 'Dat Passwoot $1 (jeschäz)',
+'password-strength-bad'        => 'es <span style="text-transform:uppercase">schlääsch</span>',
+'password-strength-mediocre'   => 'es jet schlapp',
 'password-strength-acceptable' => 'kammer bruche',
-'password-strength-good'       => 'joot',
+'password-strength-good'       => 'es joot',
 'password-retype'              => 'Noch ens dat Passwood',
 'password-retype-mismatch'     => 'De Paßwööter sin unejaal',
 
@@ -755,6 +758,7 @@ Waat e Wielsche, ih dat De et widder versöhks.',
 'resetpass_forbidden'       => 'E Passwoot kann nit jeändert wääde.',
 'resetpass-no-info'         => 'Do mööts ad enjelogg sin, öm tiräk op di Sigg jonn ze dörve',
 'resetpass-submit-loggedin' => 'Passwood tuusche',
+'resetpass-submit-cancel'   => 'Nix donn!',
 'resetpass-wrong-oldpass'   => 'Dat Zweschepasswood udder dat aktoälle Passwood stemmp nit.
 Müjjelesch, Do häs Ding Passwood ald jetuusch, künnt och sin,
 Do häs Der enzwesche e neuZweschepasswood jehollt.',
@@ -1179,6 +1183,7 @@ Do kanns kein Enndrääsch vör de Wiki_Köbeße verschteijsche, der oohne noch 
 Loor en de [[Special:IPBlockList|{{int:ipblocklist}}]] öm ze sinn, wää un wat em Momang wie jesperrt es.',
 
 # Revision move
+'revisionmove'        => 'Versione vun „$1“ ömnänne',
 'revmove-reasonfield' => 'Jrond:',
 
 # History merging
@@ -1799,6 +1804,9 @@ Dat Wiki heh es ävver öffentlesch.
 Dröm es <code lang="en">img_auth.php</code> zor Sisherheit heh affjeschalldt.',
 'img-auth-noread'       => 'Dä Metmaacher hät keine Zohjang, öm „$1“ ze lässe.',
 
+# HTTP errors
+'http-invalid-url' => 'Dat es en onjöltije URL: $1',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Keij Antwoot vun dä URL',
 'upload-curl-error6-text'  => 'Dä ẞööver för dä <i lang="en">URL</i> hät zo lang nit jeantwoot. Bes esu joot un fingk eruß, ov dä övverhoup aam Laufe es, un don_ens jenou pröfe, ov dä <i lang="en">URL</i> stemmp.',
@@ -2192,6 +2200,7 @@ Alles klor?',
 # Watchlist
 'watchlist'            => 'ming Oppassliss',
 'mywatchlist'          => 'ming Oppassliss',
+'watchlistfor2'        => 'För {{GENDER:$1|dä|dat|dä Metmaacher|de|dat}} $1 $2',
 'nowatchlist'          => 'En Ding Oppassliss es nix dren.',
 'watchlistanontext'    => 'Do muss $1, domet de en Ding Oppassliss erenluure kanns, oder jet dran ändere.',
 'watchnologin'         => 'Nit enjelogg',
