@@ -41,7 +41,7 @@ class ParserTest {
 	/**
 	 * boolean $useTemporaryTables Use temporary tables for the temporary database
 	 */
-	private $useTemporaryTables = false;
+	private $useTemporaryTables = true;
 
 	/**
 	 * boolean $databaseSetupDone True if the database has been set up
