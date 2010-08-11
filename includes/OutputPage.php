@@ -517,7 +517,7 @@ class OutputPage {
 		if ( $this->mTitle instanceof Title ) {
 			return $this->mTitle;
 		} else {
-			wfDebug( __METHOD__ . ' called and $mTitle is null. Return $wgTitle for sanity' );
+			wfDebug( __METHOD__ . " called and \$mTitle is null. Return \$wgTitle for sanity\n" );
 			global $wgTitle;
 			return $wgTitle;
 		}
