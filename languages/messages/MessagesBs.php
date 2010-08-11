@@ -290,7 +290,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Stranice koje obrišem dodaj na spisak praćenja',
 'tog-previewontop'            => 'Prikaži pretpregled prije polja za izmjenu a ne poslije',
 'tog-previewonfirst'          => 'Prikaži izgled pri prvoj izmjeni',
-'tog-nocache'                 => 'Onemogući keširanje stranica',
+'tog-nocache'                 => 'Onemogući keširanje stranica u pregledniku',
 'tog-enotifwatchlistpages'    => 'Pošalji mi e-poštu kad se promijene stranice',
 'tog-enotifusertalkpages'     => 'Pošalji mi e-poštu kad se promijeni moja korisnička stranica za razgovor',
 'tog-enotifminoredits'        => 'Pošalji mi e-poštu takođe za male izmjene stranica',
@@ -696,6 +696,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'gotaccount'                 => "Imate nalog? '''$1'''.",
 'gotaccountlink'             => 'Prijavi se',
 'createaccountmail'          => 'e-poštom',
+'createaccountreason'        => 'Razlog:',
 'badretype'                  => 'Šifre koje ste unijeli se ne poklapaju.',
 'userexists'                 => 'Korisničko ime koje ste unijeli je već u upotrebi.
 Molimo Vas da izaberete drugo ime.',
@@ -756,6 +757,15 @@ Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
 Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
+
+# JavaScript password checks
+'password-strength'            => 'Procijenjena snaga šifre: $1',
+'password-strength-bad'        => 'LOŠA',
+'password-strength-mediocre'   => 'osrednja',
+'password-strength-acceptable' => 'prihvatljiva',
+'password-strength-good'       => 'dobra',
+'password-retype'              => 'Ponovite šifru ovdje',
+'password-retype-mismatch'     => 'Šifre se ne slažu',
 
 # Password reset dialog
 'resetpass'                 => 'Promijeni korisničku šifru',
@@ -1319,6 +1329,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'contextlines'                  => 'Linija po pogotku:',
 'contextchars'                  => 'Karaktera konteksta po liniji:',
 'stub-threshold'                => 'Formatiranje <a href="#" class="stub">linkova stranica u začetku</a> (bajtova):',
+'stub-threshold-disabled'       => 'Isključen/a',
 'recentchangesdays'             => 'Broj dana za prikaz u nedavnim izmjenama:',
 'recentchangesdays-max'         => '(najviše $1 {{PLURAL:$1|dan|dana}})',
 'recentchangescount'            => 'Broj uređivanja za prikaz po pretpostavkama:',
@@ -1726,11 +1737,13 @@ MGP # Pentax
 PICT # razni
  #</pre> <!-- ostavite ovu liniju onakvom kakva jeste -->',
 'upload-success-subj'         => 'Uspješno slanje',
-'upload-success-msg'          => 'Vaša datoteka je dostupna ovdje: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Vaša datoteka iz [$2] je uspješno postavljena. Dostupna je ovdje: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem pri postavljanju',
 'upload-failure-msg'          => 'Nastao je problem s Vašim postavljanjem:
 
 $1',
+'upload-warning-subj'         => 'Upozorenje pri slanju',
+'upload-warning-msg'          => 'Nastao je problem sa vašim postavljanjem sa [$2]. Morate se vratiti na [[Special:Upload/stash/$1|formu za postavljanje]] kako biste riješili ovaj problem.',
 
 'upload-proto-error'        => 'Pogrešan protokol',
 'upload-proto-error-text'   => 'Postavljanje sa vanjske lokacije zahtjeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
@@ -2141,6 +2154,7 @@ E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim posta
 # Watchlist
 'watchlist'            => 'Moji praćeni članci',
 'mywatchlist'          => 'Moji praćeni članci',
+'watchlistfor2'        => 'Za $1 $2',
 'nowatchlist'          => 'Nemate ništa na svom spisku praćenih članaka.',
 'watchlistanontext'    => 'Molimo da $1 da možete vidjeti ili urediti stavke na Vašem spisku praćenja.',
 'watchnologin'         => 'Niste prijavljeni',
@@ -2648,6 +2662,7 @@ Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
 'immobile-source-page'         => 'Ova stranica se ne može premještati.',
 'immobile-target-page'         => 'Ne može se preusmjeriti na taj odredišni naslov.',
 'imagenocrossnamespace'        => 'Ne može se premjestiti datoteka u nedatotečni imenski prostor',
+'nonfile-cannot-move-to-file'  => 'Ne mogu se premjestiti podaci u datotečni imenski prostor',
 'imagetypemismatch'            => 'Ekstenzija nove datoteke ne odgovara njenom tipu',
 'imageinvalidfilename'         => 'Ciljno ime datoteke nije valjano',
 'fix-double-redirects'         => 'Ažuriraj sva preusmjerenja koja vode ka originalnom naslovu',

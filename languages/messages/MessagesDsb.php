@@ -1961,6 +1961,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 # Watchlist
 'watchlist'            => 'Wobglědowańka',
 'mywatchlist'          => 'mója wobglědowańka',
+'watchlistfor2'        => 'Za wužywarja $1 $2',
 'nowatchlist'          => 'Žedne zapise w twójej wobglědowańce.',
 'watchlistanontext'    => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',
 'watchnologin'         => 'Njepśizjawjony(a)',
@@ -3057,7 +3058,8 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 E-mailowy program jo wrośił: $1',
 'confirmemail_invalid'      => 'Njepłaśece wobkšuśeńske gronidło. Snaź jo kod mjaztym płaśiwosć zgubił.',
 'confirmemail_needlogin'    => 'Dejš $1 aby swóju e-mailowu adresu wobkšuśił.',
-'confirmemail_success'      => 'Twója e-mailowa adresa jo wobkšuśona, móžoš se pśizjawiś.',
+'confirmemail_success'      => 'Twója e-mailowa adresa jo wobkšuśona
+Móžoš se něnto [[Special:UserLogin|pśizjawiś]] a se wikiju wijaseliś.',
 'confirmemail_loggedin'     => 'Twója e-mailowa adresa jo něnto wobkšuśona.',
 'confirmemail_error'        => 'Zmólka pśi wobkšuśenju e-mailoweje adresy.',
 'confirmemail_subject'      => '{{SITENAME}} - Wobkšuśenje e-mailoweje adrese',

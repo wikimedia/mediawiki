@@ -143,7 +143,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Cosirar as pachinas que borre',
 'tog-previewontop'            => "Amostrar l'anvista previa antes d'o quatrón d'edición",
 'tog-previewonfirst'          => "Amostrar l'anvista previa de l'articlo en a primera edición",
-'tog-nocache'                 => "Desactivar a ''caché'' de pachinas",
+'tog-nocache'                 => "Desactivar a ''caché'' d'o navegador",
 'tog-enotifwatchlistpages'    => 'Recibir un correu quan se faigan cambios en una pachina cosirata por yo',
 'tog-enotifusertalkpages'     => 'Ninviar-me un correu quan cambee a mía pachina de descusión',
 'tog-enotifminoredits'        => 'Ninviar-me un correu tamién quan bi haiga edicions menors de pachinas',
@@ -543,6 +543,7 @@ No xublide de presonalizar [[Special:Preferences|as suyas preferencias en {{SITE
 'gotaccount'                 => "Tiene ya una cuenta? '''$1'''.",
 'gotaccountlink'             => 'Identificar-se y encetar sesión',
 'createaccountmail'          => 'por correu electronico',
+'createaccountreason'        => 'Razón:',
 'badretype'                  => 'As contrasenyas que ha escrito no son iguals.',
 'userexists'                 => "Ixe nombre d'usuario ya ye en uso.
 Por favor, meta-ne uno diferent.",
@@ -595,6 +596,15 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'login-throttled'            => 'Ha feito masiaus intentos ta encetar una sesión. Por favor, aspere antes de prebar de fer-lo unatra vegada.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => "S'ha denegau a suya demanda de zarrar a sesión ya que pareix que la ninvió un navegador defectuoso u bell proxy amagau.",
+
+# JavaScript password checks
+'password-strength'            => "Livel de seguranza d'a contrasenya: $1",
+'password-strength-bad'        => 'MALA',
+'password-strength-mediocre'   => 'mediocre',
+'password-strength-acceptable' => 'acceptable',
+'password-strength-good'       => 'bueno',
+'password-retype'              => 'Torne a escribir aquí a contrasenya',
+'password-retype-mismatch'     => 'As contrasenyas no concuerdan',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar a contrasenya',
@@ -1127,6 +1137,7 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'contextlines'                  => "Linias de contexto que s'amostrarán por resultau",
 'contextchars'                  => 'Carácters de contexto por linia',
 'stub-threshold'                => 'Branquil superior ta o formateyo de <a href="#" class="stub">vinclos ta borradors</a> (en bytes):',
+'stub-threshold-disabled'       => 'Desactivato',
 'recentchangesdays'             => "Días que s'amostrarán en ''zaguers cambeos'':",
 'recentchangesdays-max'         => '(masimo $1 {{PLURAL:$1|día|días}})',
 'recentchangescount'            => "Numero d'edicions a amostrar, por defecto:",
@@ -1198,6 +1209,8 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'prefs-advancedsearchoptions'   => 'Opcions avanzadas',
 'prefs-advancedwatchlist'       => 'Opcions avanzadas',
 'prefs-displayrc'               => 'Opcions de visualización',
+'prefs-displaysearchoptions'    => 'Opcions de visualización',
+'prefs-displaywatchlist'        => 'Opcions de visualización',
 'prefs-diffs'                   => 'Diferencias',
 
 # User rights
@@ -1521,11 +1534,13 @@ MGP # Pentax
 PICT # misz.
  #</pre> <!-- dixe ista linia esautament igual como ye -->',
 'upload-success-subj'         => 'Cargata correctament',
-'upload-success-msg'          => 'O fichero cargau ye disponible aquí: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'A carga de [$2] ha surtiu con exito. Ye disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en a carga',
 'upload-failure-msg'          => 'I ha habiu bell problema con a suya carga:
 
 $1',
+'upload-warning-subj'         => 'Alvertencia de carga',
+'upload-warning-msg'          => 'I habió un problea con a carga de [$2]. Puede tornar ta [[Special:Upload/stash/$1|upload form]] pa correchir iste problema.',
 
 'upload-proto-error'        => 'Protocolo incorrecto',
 'upload-proto-error-text'   => 'Si quiere cargar fichers dende atra pachina, a URL ha de prencipiar por <code>http://</code> u <code>ftp://</code>.',
@@ -1923,6 +1938,7 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferencias
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',
 'mywatchlist'          => 'Lista de seguimiento',
+'watchlistfor2'        => 'De $1 $2',
 'nowatchlist'          => 'No tien garra pachina en a lista de seguimiento.',
 'watchlistanontext'    => "Ha de $1 ta veyer u editar as dentradas d'a suya lista de seguimiento.",
 'watchnologin'         => 'No ha encetato a sesión',
@@ -1995,7 +2011,7 @@ Ta obtenir más información y aduya:
 'deletepage'             => 'Borrar ista pachina',
 'confirm'                => 'Confirmar',
 'excontent'              => "O conteniu yera: '$1'",
-'excontentauthor'        => "O conteniu yera: '$1' (y o suyo unico autor '$2')",
+'excontentauthor'        => "O conteniu yera: '$1' (y o suyo unico autor yera [[Special:Contributions/$2|$2]])",
 'exbeforeblank'          => "O conteniu antis de blanquiar yera: '$1'",
 'exblank'                => 'a pachina yera bueda',
 'delete-confirm'         => 'Borrar "$1"',
@@ -2007,7 +2023,7 @@ Por favor, confirme que reyalment ye mirando de fer ixo, que entiende as conseq�
 'actionfailed'           => "L'acción ha feito fallita",
 'deletedtext'            => 'S\'ha borrau "<nowiki>$1</nowiki>".
 Se veiga en $2 un rechistro d\'os borraus recients.',
-'deletedarticle'         => 'borrato "$1"',
+'deletedarticle'         => 'ha borrato "[[$1]]"',
 'suppressedarticle'      => 's\'ha supreso "[[$1]]"',
 'dellogpage'             => 'Rechistro de borraus',
 'dellogpagetext'         => "Contino se i amuestra una lista d'os borraus más recients.",
@@ -2125,7 +2141,7 @@ Si s'ha creyato una nueva pachina con o mesmo nombre dende que se borró a orich
 'undeletereset'                => 'Prencipiar',
 'undeleteinvert'               => 'Contornar selección',
 'undeletecomment'              => 'Razón:',
-'undeletedarticle'             => 'restaurata "$1"',
+'undeletedarticle'             => 'ha restaurato "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|Una edición restaurata|$1 edicions restauratas}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revisón|revisions}} y $2 {{PLURAL:$2|fichero|fichers}} restauratos',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichero restaurato|fichers restauratos}}',
@@ -2400,7 +2416,8 @@ A pachina de destino ("[[:$1]]") ya existe. Quiere borrar-la ta premitir o tresl
 'immobile-target-namespace-iw' => 'No se puet tresladar una pachina enta un vinclo interwiki.',
 'immobile-source-page'         => 'Ista pachina no se puet tresladar.',
 'immobile-target-page'         => 'No se puet tresladar ta ixe títol.',
-'imagenocrossnamespace'        => "No se puede tresladar un fichero ta un espacio de nombres que no sía t'fichers",
+'imagenocrossnamespace'        => 'No se puede tresladar un fichero ta un espacio de nombres que no sía fichers',
+'nonfile-cannot-move-to-file'  => 'No ye posible de mover qualcosa que no siga un fichero ta o espacio de nombres fichers',
 'imagetypemismatch'            => 'A nueva estensión no concuerda con o tipo de fichero',
 'imageinvalidfilename'         => "O nombre d'o fichero obchectivo no ye conforme",
 'fix-double-redirects'         => 'Esviellar todas as reendreceras que plegan ta o títol orichinal',
@@ -3005,7 +3022,7 @@ Iste codigo no ye necesario ta dentrar, pero amenistará escribir-lo antis d'act
 O programa retornó o siguient codigo d'error: $1",
 'confirmemail_invalid'      => 'O codigo de confirmación no ye conforme. Regular que o codigo sía circumducito.',
 'confirmemail_needlogin'    => 'Amenistar $1 ta confirmar a suya adreza de correu-e.',
-'confirmemail_success'      => 'A suya adreza de correu-e ya ye confirmata. Agora puede dentrar en o wiki y espleitiar-lo.',
+'confirmemail_success'      => 'A suya adreza de correu-e ya ye confirmata. Agora puede [[Special:UserLogin|dentrar]] en o wiki y gronxiar-se-ie.',
 'confirmemail_loggedin'     => 'A suya adreza de correu-e ya ye confirmata.',
 'confirmemail_error'        => 'Bella cosa falló en alzar a suya confirmación.',
 'confirmemail_subject'      => "confirmación de l'adreza de correu-e de {{SITENAME}}",

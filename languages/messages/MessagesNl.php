@@ -2249,6 +2249,7 @@ De ontvanger kan dus direct naar u reageren.',
 # Watchlist
 'watchlist'            => 'Volglijst',
 'mywatchlist'          => 'Mijn volglijst',
+'watchlistfor2'        => 'Voor $1 $2',
 'nowatchlist'          => 'Uw volglijst is leeg.',
 'watchlistanontext'    => '$1 is noodzakelijk om uw volglijst in te zien of te wijzigen.',
 'watchnologin'         => 'U bent niet aangemeld',

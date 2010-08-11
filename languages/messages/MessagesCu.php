@@ -216,6 +216,7 @@ $messages = array(
 'redirectedfrom'   => '(прѣнаправлѥ́ниѥ о́тъ ⁖ $1 ⁖)',
 'redirectpagesub'  => 'прѣнаправлѥ́ниѥ',
 'lastmodifiedat'   => 'страни́цѧ послѣ́дьнꙗ мѣ́на сътворѥна́ $2 · $1 бѣ ⁙',
+'jumpto'           => 'прѣиди́ къ :',
 'jumptonavigation' => 'пла́ваниѥ',
 'jumptosearch'     => 'иска́ниѥ',
 
@@ -284,9 +285,15 @@ $messages = array(
 'accountcreated'          => 'мѣ́сто сътворєно́ ѥ́стъ',
 'loginlanguagelabel'      => 'ѩꙁꙑ́къ : $1',
 
+# JavaScript password checks
+'password-strength-bad'  => 'ꙀЪЛА',
+'password-strength-good' => 'добра',
+
 # Password reset dialog
-'oldpassword' => 'старо таино слово :',
-'newpassword' => 'ново таино слово :',
+'resetpass'                 => 'таина словєсє иꙁмѣнѥ́ниѥ',
+'oldpassword'               => 'старо таино слово :',
+'newpassword'               => 'ново таино слово :',
+'resetpass-submit-loggedin' => 'таина словєсє иꙁмѣнѥ́ниѥ',
 
 # Edit page toolbar
 'link_sample'    => 'съвѧ́ꙁи и́мѧ',
@@ -299,6 +306,7 @@ $messages = array(
 'minoredit'                  => 'ма́лаꙗ мѣ́на',
 'watchthis'                  => 'си страни́цѧ блюдє́ниѥ',
 'savearticle'                => 'съхранѥ́ниѥ',
+'showpreview'                => 'мѣ́нꙑ поꙁьрѣ́ниѥ (беꙁъ съхранѥ́ниꙗ)',
 'loginreqlink'               => 'Въниди',
 'newarticle'                 => '(но́въ)',
 'noarticletext'              => 'нꙑнѣ с̑ьдє́ ничєсожє нє напьсано ѥ́стъ ⁙
@@ -329,7 +337,12 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 при $2',
 
 # Revision deletion
-'revdelete-uname' => 'по́льꙃєватєлꙗ и́мѧ',
+'rev-delundel'               => 'каꙁаниѥ / съкрꙑ́тиѥ',
+'rev-showdeleted'            => 'ви́ждь',
+'revdelete-show-file-submit' => 'да',
+'revdelete-radio-set'        => 'да',
+'revdelete-radio-unset'      => 'нѣ́тъ',
+'revdelete-uname'            => 'по́льꙃєватєлꙗ и́мѧ',
 
 # Search results
 'searchresults'                  => 'иска́ниꙗ ито́гъ',
@@ -352,8 +365,10 @@ $messages = array(
 # Preferences page
 'preferences'         => 'строи',
 'mypreferences'       => 'мои строи',
+'changepassword'      => 'таина словєсє иꙁмѣнѥ́ниѥ',
 'prefs-rc'            => 'послѣ́дьнѩ мѣ́нꙑ',
 'prefs-watchlist'     => 'блюдє́ниꙗ',
+'prefs-resetpass'     => 'таина словєсє иꙁмѣнѥ́ниѥ',
 'searchresultshead'   => 'иска́ниѥ',
 'prefs-searchoptions' => 'иска́ниꙗ строи́',
 'prefs-files'         => 'дѣла́',

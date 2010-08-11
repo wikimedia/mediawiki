@@ -2099,6 +2099,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 # Watchlist
 'watchlist'            => 'Trang tôi theo dõi',
 'mywatchlist'          => 'Trang tôi theo dõi',
+'watchlistfor2'        => 'Của $1 $2',
 'nowatchlist'          => 'Danh sách theo dõi của bạn không có gì.',
 'watchlistanontext'    => 'Xin hãy $1 để xem hay sửa đổi các trang được theo dõi.',
 'watchnologin'         => 'Chưa đăng nhập',

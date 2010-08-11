@@ -1759,6 +1759,7 @@ Anwani yako ya barua pepe ulioitaja katika [[Special:Preferences|mapendekezo yak
 # Watchlist
 'watchlist'         => 'Maangalizi yangu',
 'mywatchlist'       => 'Maangalizi yangu',
+'watchlistfor2'     => 'Kwa ajili ya $1 $2',
 'nowatchlist'       => 'Hamna vitu katika maangalizi yako.',
 'watchlistanontext' => 'Tafadhali $1 ili kutazama au kuhariri vitu vilivyopo katika orodha yako ya maangalizi.',
 'watchnologin'      => 'Hujaingia',

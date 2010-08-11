@@ -1942,6 +1942,7 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 # Watchlist
 'watchlist'            => 'wobkedźbowanki',
 'mywatchlist'          => 'wobkedźbowanki',
+'watchlistfor2'        => 'Za wužiwarja $1 $2',
 'nowatchlist'          => 'Nimaš žane strony w swojich wobkedźbowankach.',
 'watchlistanontext'    => 'Dyrbiš so $1, zo by swoje wobkedźbowanki wobhladać abo wobdźěłać móhł.',
 'watchnologin'         => 'Njejsy přizjewjeny.',
@@ -2147,7 +2148,7 @@ W tutym padźe dyrbiš najnowšu wušmórnjenu wersiju znjemóžnić abo pokaza�
 'undeletereset'                => 'Cofnyć',
 'undeleteinvert'               => 'Wuběr wobroćić',
 'undeletecomment'              => 'Přičina:',
-'undeletedarticle'             => 'Strona „$1” bu wuspěšnje wobnowjena.',
+'undeletedarticle'             => 'je „[[$1]]” wobnowił.',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} {{PLURAL:$1|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} a $2 {{PLURAL:$2|dataja|dataji|dataje|datajow}} {{PLURAL:$2|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|dataja|dataji|dataje|datajow}} {{PLURAL:$1|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}.',
