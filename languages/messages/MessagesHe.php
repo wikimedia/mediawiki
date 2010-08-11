@@ -2188,6 +2188,7 @@ $1',
 # Watchlist
 'watchlist'            => 'רשימת המעקב שלי',
 'mywatchlist'          => 'רשימת המעקב שלי',
+'watchlistfor2'        => 'עבור $1 $2',
 'nowatchlist'          => 'אין דפים ברשימת המעקב.',
 'watchlistanontext'    => 'עליכם $1 כדי לצפות או לערוך פריטים ברשימת המעקב.',
 'watchnologin'         => 'לא נכנסתם לחשבון',
