@@ -132,7 +132,7 @@ class LinkHolderArray {
 		global $wgContLang;
 
 		$colours = array();
-		$sk = $this->parent->getOptions()->getSkin();
+		$sk = $this->parent->getOptions()->getSkin( $this->parent->mTitle );
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
 
@@ -269,7 +269,7 @@ class LinkHolderArray {
 
 		wfProfileIn( __METHOD__ );
 		# Make interwiki link HTML
-		$sk = $this->parent->getOptions()->getSkin();
+		$sk = $this->parent->getOptions()->getSkin( $this->parent->mTitle );
 		$output = $this->parent->getOutput();
 		$replacePairs = array();
 		foreach( $this->interwikis as $key => $link ) {
@@ -294,7 +294,7 @@ class LinkHolderArray {
 		$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
 		$linkCache = LinkCache::singleton();
-		$sk = $this->parent->getOptions()->getSkin();
+		$sk = $this->parent->getOptions()->getSkin( $this->parent->mTitle );
 		$threshold = $this->getStubThreshold();
 		$titlesToBeConverted = '';
 		$titlesAttrs = array();

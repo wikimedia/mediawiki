@@ -74,9 +74,9 @@ class ParserOptions {
 	function getIsPrintable()                   { $this->accessedOptions['printable'] = true;
 	                                              return $this->mIsPrintable; }
 
-	function getSkin() {
+	function getSkin( $title = null ) {
 		if ( !isset( $this->mSkin ) ) {
-			$this->mSkin = $this->mUser->getSkin();
+			$this->mSkin = $this->mUser->getSkin( $title );
 		}
 		return $this->mSkin;
 	}
