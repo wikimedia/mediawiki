@@ -377,10 +377,12 @@ class LocalFile extends File {
 				$this->$field = $info[$field];
 			}
 		}
+
 		// Fix up mime fields
 		if ( isset( $info['major_mime'] ) ) {
 			$this->mime = "{$info['major_mime']}/{$info['minor_mime']}";
 		} elseif ( isset( $info['mime'] ) ) {
+			$this->mime = $info['mime'];
 			list( $this->major_mime, $this->minor_mime ) = self::splitMime( $this->mime );
 		}
 	}
