@@ -24,6 +24,7 @@ class SearchDbTest extends SearchEngineTest {
 		}
 		unset( $this->db );
 		unset( $this->search );
+		$GLOBALS['wgContLang'] = null;
 	}
 }
 

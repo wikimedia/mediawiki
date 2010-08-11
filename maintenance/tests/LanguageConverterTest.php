@@ -17,10 +17,11 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function tearDown() {
-		global $wgMemc;
+		global $wgMemc, $wgContLang;
 		unset( $wgMemc );
 		unset( $this->lc );
 		unset( $this->lang );
+		$wgContLang = null;
 	}
 
 	function testGetPreferredVariantDefaults() {

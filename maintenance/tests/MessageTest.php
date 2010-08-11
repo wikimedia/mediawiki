@@ -1,6 +1,13 @@
 <?php
 
 class MessageTest extends PHPUnit_Framework_TestCase {
+
+	function setUp() {
+		global $wgContLanguageCode;
+		
+		$wgContLanguageCode = 'en'; # For mainpage to be 'Main Page'
+	}
+
 	function testExists() {
 		$this->assertTrue( Message::key( 'mainpage' )->exists() );
 		$this->assertTrue( Message::key( 'mainpage' )->params( array() )->exists() );

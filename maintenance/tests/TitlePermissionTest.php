@@ -10,7 +10,12 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 	static $altUserName;
 
 	function setUp() {
-		global $wgLocaltimezone, $wgLocalTZoffset;
+		global $wgLocaltimezone, $wgLocalTZoffset, $wgMemc, $wgContLang, $wgLang, $wgMessageCache;
+
+		$wgMemc = new FakeMemCachedClient;
+		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
+		$wgContLang = $wgLang = Language::factory( 'en' );
+
 		self::$userName = "Useruser";
 		self::$altUserName = "Altuseruser";
 		date_default_timezone_set( $wgLocaltimezone );
@@ -37,6 +42,11 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 
 			self::$user = self::$userUser;
 		}
+	}
+
+	function tearDown() {
+		global $wgMemc, $wgContLang, $wgLang;
+		$wgMemc = $wgContLang = $wgLang = null;
 	}
 
 	function setUserPerm( $perm ) {

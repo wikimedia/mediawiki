@@ -62,7 +62,7 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function setUp() {
-		global $wgSearchType, $wgDBtype, $wgLBFactoryConf, $wgDBservers;
+		global $wgSearchType, $wgDBtype, $wgLBFactoryConf, $wgDBservers, $wgContLang;
 
 		self::$searchType  = $wgSearchType;
 		self::$dbtype      = $wgDBtype;
@@ -73,6 +73,7 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 		$wgDBtype = 'mock';
 		$wgLBFactoryConf['class'] = 'LBFactory_Simple';
 		$wgDBservers = null;
+		$wgContLang = Language::factory( 'en' );
 		LBFactory::destroyInstance();
 	}
 
@@ -85,6 +86,7 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 		$wgDBtype = self::$dbtype;
 		$wgLBFactoryConf = self::$factoryconf;
 		$wgDBservers = self::$dbservers;
+		$wgContLang = null;
 	}
 
 	function testUpdateText() {
