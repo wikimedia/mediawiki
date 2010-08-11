@@ -1145,7 +1145,7 @@ class Parser {
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMsg( $urlmsg, $id);
-			$sk = $this->mOptions->getSkin();
+			$sk = $this->mOptions->getSkin( $this->mTitle );
 			$la = $sk->getExternalLinkAttributes( "external $CssClass" );
 			return "<a href=\"{$url}\"{$la}>{$keyword} {$id}</a>";
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
@@ -1174,7 +1174,7 @@ class Parser {
 		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 
-		$sk = $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin( $this->mTitle );
 		$trail = '';
 
 		# The characters '<' and '>' (which were escaped by
@@ -1423,7 +1423,7 @@ class Parser {
 		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 
-		$sk = $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin( $this->mTitle );
 
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		$s = array_shift( $bits );
@@ -1572,7 +1572,7 @@ class Parser {
 	 * @private
 	 */
 	function maybeMakeExternalImage( $url ) {
-		$sk = $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin( $this->mTitle );
 		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
 		$imagesexception = !empty( $imagesfrom );
 		$text = false;
@@ -1648,7 +1648,7 @@ class Parser {
 			$e1_img = "/^([{$tc}]+)\\|(.*)\$/sD";
 		}
 
-		$sk = $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin( $this->mTitle );
 		$holders = new LinkHolderArray( $this );
 
 	 	# split the entire text string on occurences of [[
@@ -1991,7 +1991,7 @@ class Parser {
 	 */
 	function makeKnownLinkHolder( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		$sk = $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin( $this->mTitle );
 		# FIXME: use link() instead of deprecated makeKnownLinkObj()
 		$link = $sk->makeKnownLinkObj( $nt, $text, $query, $inside, $prefix );
 		return $this->armorLinks( $link ) . $trail;
@@ -3743,7 +3743,7 @@ class Parser {
 		}
 
 		# We need this to perform operations on the HTML
-		$sk = $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin( $this->mTitle );
 
 		# headline counter
 		$headlineCount = 0;
@@ -4480,7 +4480,7 @@ class Parser {
 		$ig->setParser( $this );
 		$ig->setHideBadImages();
 		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'table' ) );
-		$ig->useSkin( $this->mOptions->getSkin() );
+		$ig->useSkin( $this->mOptions->getSkin( $this->mTitle ) );
 		$ig->mRevisionId = $this->mRevisionId;
 
 		if ( isset( $params['showfilename'] ) ) {
@@ -4618,7 +4618,7 @@ class Parser {
 		#  * text-bottom
 
 		$parts = StringUtils::explode( "|", $options );
-		$sk = $this->mOptions->getSkin();
+		$sk = $this->mOptions->getSkin( $this->mTitle );
 
 		# Give extensions a chance to select the file revision for us
 		$skip = $time = $descQuery = false;
