@@ -6,7 +6,17 @@ class ApiWatchTest extends ApiTestSetup {
 		ini_set( 'log_errors', 1 );
 		ini_set( 'error_reporting', 1 );
 		ini_set( 'display_errors', 1 );
+
+		global $wgMemc;
+		$wgMemc = new FakeMemCachedClient;
 	}
+
+	function tearDown() {
+		global $wgMemc;
+
+		$wgMemc = null;
+	}
+
 
 	function doApiRequest( $params, $data = null ) {
 		$_SESSION = isset( $data[2] ) ? $data[2] : array();
