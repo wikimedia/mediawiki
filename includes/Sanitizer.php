@@ -44,7 +44,7 @@ $attrib_first = '[:A-Z_a-z]';
 $attrib = '[:A-Z_a-z-.0-9]';
 $space = '[\x09\x0a\x0d\x20]';
 define( 'MW_ATTRIBS_REGEX',
-    "/(?:^|$space)({$attrib_first}{$attrib}*)
+	"/(?:^|$space)({$attrib_first}{$attrib}*)
 	  ($space*=$space*
 		(?:
 		 # The attribute value: quoted or alone
