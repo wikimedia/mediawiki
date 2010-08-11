@@ -39,10 +39,12 @@ if ( $wgImgAuthPublicTest
 
 // Extract path and image information
 if( !isset( $_SERVER['PATH_INFO'] ) ) {
-        if( isset( $_GET['path'] ) ) $path = $_GET['path'];
-        else wfForbidden('img-auth-accessdenied','img-auth-nopathinfo');
+	$path = $wgRequest->getText( 'path' );
+	if( !$path ) {
+        wfForbidden( 'img-auth-accessdenied', 'img-auth-nopathinfo' );
+	}
 } else {
-        $path = $_SERVER['PATH_INFO'];
+	$path = $_SERVER['PATH_INFO'];
 }
 
 $filename = realpath( $wgUploadDirectory . '/' . $path );
