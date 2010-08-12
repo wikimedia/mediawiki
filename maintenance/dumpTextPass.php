@@ -80,11 +80,11 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function processOption( $opt, $val, $param ) {
+		global $IP;
 		$url = $this->processFileOpt( $val, $param );
 
 		switch( $opt ) {
 		case 'prefetch':
-			global $IP;
 			require_once "$IP/maintenance/backupPrefetch.inc";
 			$this->prefetch = new BaseDump( $url );
 			break;

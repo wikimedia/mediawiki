@@ -70,12 +70,10 @@ class ApiLogin extends ApiBase {
 
 		$loginForm = new LoginForm( $req );
 
-		global $wgCookiePrefix;
+		global $wgCookiePrefix, $wgUser, $wgPasswordAttemptThrottle;;
 
 		switch ( $authRes = $loginForm->authenticateUserData() ) {
 			case LoginForm::SUCCESS:
-				global $wgUser;
-
 				$wgUser->setOption( 'rememberpassword', 1 );
 				$wgUser->setCookies();
 
@@ -134,7 +132,6 @@ class ApiLogin extends ApiBase {
 				break;
 
 			case LoginForm::THROTTLED:
-				global $wgPasswordAttemptThrottle;
 				$result['result'] = 'Throttled';
 				$result['wait'] = intval( $wgPasswordAttemptThrottle['seconds'] );
 				break;

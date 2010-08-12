@@ -167,6 +167,8 @@ class ApiUpload extends ApiBase {
 	 * Performs file verification, dies on error.
 	 */
 	protected function verifyUpload( ) {
+		global $wgFileExtensions;
+
 		$verification = $this->mUpload->verifyUpload( );
 		if ( $verification['status'] === UploadBase::OK ) {
 			return;
@@ -184,7 +186,6 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( 'The file is missing an extension', 'filetype-missing' );
 				break;
 			case UploadBase::FILETYPE_BADTYPE:
-				global $wgFileExtensions;
 				$this->dieUsage( 'This type of file is banned', 'filetype-banned',
 						0, array(
 							'filetype' => $verification['finalExt'],

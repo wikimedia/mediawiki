@@ -252,6 +252,8 @@ class ApiEditPage extends ApiBase {
 
 		$retval = $ep->internalAttemptSave( $result, $wgUser->isAllowed( 'bot' ) && $params['bot'] );
 		$wgRequest = $oldRequest;
+		global $wgMaxArticleSize;
+
 		switch( $retval ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
@@ -274,7 +276,6 @@ class ApiEditPage extends ApiBase {
 
 			case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case EditPage::AS_CONTENT_TOO_BIG:
-				global $wgMaxArticleSize;
 				$this->dieUsageMsg( array( 'contenttoobig', $wgMaxArticleSize ) );
 
 			case EditPage::AS_READ_ONLY_PAGE_ANON:
