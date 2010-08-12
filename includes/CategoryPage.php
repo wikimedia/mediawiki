@@ -51,7 +51,7 @@ class CategoryPage extends Article {
 	}
 
 	function closeShowCategory() {
-		global $wgOut, $wgRequest;
+		global $wgOut;
 
 		$from = $until = array();
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
