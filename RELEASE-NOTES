@@ -353,7 +353,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 MediaWiki supports over 330 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
-changes to languages because of MediaZilla reports.
+changes to languages because of Bugzilla reports.
 
 * Moroccan Spoken Arabic (ary) (new)
 * Banjar (bjn) (new)
