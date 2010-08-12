@@ -509,7 +509,7 @@ class DatabaseMssql extends DatabaseBase {
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect',
 		$insertOptions = array(), $selectOptions = array() )
 	{
-		$ret = parent::insertSelect( $destTable, $srcTable, $varMap, $conds, $fname, insertOptions, $selectOptions );
+		$ret = parent::insertSelect( $destTable, $srcTable, $varMap, $conds, $fname, $insertOptions, $selectOptions );
 		
 		if ( $ret === false ) {
 			throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), $sql, $fname );
@@ -814,7 +814,7 @@ class DatabaseMssql extends DatabaseBase {
 	}
 	
 	function setup_database() {
-		global $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgDBport, $wgDBuser;
+		global $wgVersion, $wgDBmwschema, $wgDBport, $wgDBuser;
 
 		// Make sure that we can write to the correct schema
 		$ctest = "mediawiki_test_table";
