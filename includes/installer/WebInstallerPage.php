@@ -792,13 +792,14 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->setVar( 'wgRightsIcon', '' );
 		}
 
-		$exts = $this->parent->getVar( '_Extensions' );
-		foreach( $exts as $key => $ext ) {
-			if( !$this->parent->request->getCheck( 'config_ext-' . $ext ) ) {
-				unset( $exts[$key] );
+		$extsAvailable = $this->parent->findExtensions();
+		$extsToInstall = array();
+		foreach( $extsAvailable as $ext ) {
+			if( $this->parent->request->getCheck( 'config_ext-' . $ext ) ) {
+				$extsToInstall[] = $ext;
 			}
 		}
-		$this->parent->setVar( '_Extensions', $exts );
+		$this->parent->setVar( '_Extensions', $extsToInstall );
 		return true;
 	}
 	
