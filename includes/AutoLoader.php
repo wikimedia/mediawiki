@@ -670,6 +670,7 @@ $wgAutoloadLocalClasses = array(
 	'ParserTestStaticParserHook' => 'maintenance/parserTestsStaticParserHook.php',
 	'RemoteTestRecorder' => 'maintenance/parserTests.inc',
 	'SevenZipStream' => 'maintenance/7zip.inc',
+	'Sqlite' => 'maintenance/sqlite.inc',
 	'TestFileIterator' => 'maintenance/parserTests.inc',
 	'TestRecorder' => 'maintenance/parserTests.inc',
 
