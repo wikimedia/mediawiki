@@ -572,9 +572,9 @@ class DatabaseSqlite extends DatabaseBase {
 			// no such thing as unsigned
 			$s = preg_replace( '/\b(un)?signed\b/i', '', $s );
 			// INT -> INTEGER
-			$s = preg_replace( '/\b(tiny|small|medium|big|)int(\([\s\d]*\)|\b)/i', 'INTEGER', $s );
+			$s = preg_replace( '/\b(tiny|small|medium|big|)int(\s*\([\s\d]*\)|\b)/i', 'INTEGER', $s );
 			// varchar -> TEXT
-			$s = preg_replace( '/\bvarchar\(\d+\)/i', 'TEXT', $s );
+			$s = preg_replace( '/\b(var)?char\s*\(.*?\)/i', 'TEXT', $s );
 			// TEXT normalization
 			$s = preg_replace( '/\b(tiny|medium|long)text\b/i', 'TEXT', $s );
 			// BLOB normalization
