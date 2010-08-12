@@ -137,20 +137,20 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 }
 
 
-/**
- * One-step cache variable to hold base blobs; operations that
- * pull multiple revisions may often pull multiple times from
- * the same blob. By keeping the last-used one open, we avoid
- * redundant unserialization and decompression overhead.
- */
-global $wgBlobCache;
-$wgBlobCache = array();
 
 
 /**
  * Pointer object for an item within a CGZ blob stored in the text table.
  */
 class HistoryBlobStub {
+	/**
+	 * One-step cache variable to hold base blobs; operations that
+	 * pull multiple revisions may often pull multiple times from
+	 * the same blob. By keeping the last-used one open, we avoid
+	 * redundant unserialization and decompression overhead.
+	 */
+	protected static $blobCache = array();
+
 	var $mOldId, $mHash, $mRef;
 
 	/**
@@ -185,9 +185,9 @@ class HistoryBlobStub {
 
 	function getText() {
 		$fname = 'HistoryBlobStub::getText';
-		global $wgBlobCache;
-		if( isset( $wgBlobCache[$this->mOldId] ) ) {
-			$obj = $wgBlobCache[$this->mOldId];
+
+		if( isset( self::$blobCache[$this->mOldId] ) ) {
+			$obj = self::$blobCache[$this->mOldId];
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'text', array( 'old_flags', 'old_text' ), array( 'old_id' => $this->mOldId ) );
@@ -225,7 +225,7 @@ class HistoryBlobStub {
 			// Save this item for reference; if pulling many
 			// items in a row we'll likely use it again.
 			$obj->uncompress();
-			$wgBlobCache = array( $this->mOldId => $obj );
+			self::$blobCache = array( $this->mOldId => $obj );
 		}
 		return $obj->getItem( $this->mHash );
 	}
