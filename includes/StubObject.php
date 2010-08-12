@@ -165,30 +165,3 @@ class StubUserLang extends StubObject {
 		}
 	}
 }
-
-/**
- * Stub object for the user. The initialisation of the will depend of
- * $wgCommandLineMode. If it's true, it will be an anonymous user and if it's
- * false, the user will be loaded from credidentails provided by cookies. This
- * object have to be in $wgUser global.
- */
-class StubUser extends StubObject {
-
-	function __construct() {
-		parent::__construct( 'wgUser' );
-	}
-
-	function __call( $name, $args ) {
-		return $this->_call( $name, $args );
-	}
-
-	function _newObject() {
-		global $wgCommandLineMode;
-		if( $wgCommandLineMode ) {
-			$user = new User;
-		} else {
-			$user = User::newFromSession();
-		}
-		return $user;
-	}
-}
