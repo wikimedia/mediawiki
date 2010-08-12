@@ -627,7 +627,7 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	static function validateAttributes( $attribs, $whitelist ) {
-		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes;
+		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes, $wgHtml5;
 
 		$whitelist = array_flip( $whitelist );
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
@@ -643,7 +643,8 @@ class Sanitizer {
 				continue;
 			}
 
-			if( !isset( $whitelist[$attribute] ) ) {
+			# Allow any attribute beginning with "data-", if in HTML5 mode
+			if ( !($wgHtml5 && preg_match( '/^data-/i', $attribute )) && !isset( $whitelist[$attribute] ) ) {
 				continue;
 			}
 

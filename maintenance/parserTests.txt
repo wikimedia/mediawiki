@@ -8146,6 +8146,18 @@ disabled
 
 !! end
 
+!! test
+HTML5 data attributes
+!! input
+<span data-foo="bar">Baz</span>
+<p data-abc-def_hij="">Quuz</p>
+!! result
+<p><span data-foo="bar">Baz</span>
+</p>
+<p data-abc-def_hij="">Quuz</p>
+
+!! end
+
 
 TODO:
 more images

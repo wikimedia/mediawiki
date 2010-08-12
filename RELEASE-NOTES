@@ -146,6 +146,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11005) Add CSS class to empty pages in Special:Newpages
 * The parser cache is now shared amongst users whose different settings aren't
   used in the page.
+* Any attribute beginning with "data-" can now be used in wikitext, per HTML5.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
