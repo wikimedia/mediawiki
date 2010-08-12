@@ -1144,7 +1144,7 @@ class Parser {
 				throw new MWException( __METHOD__.': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
-			$url = wfMsg( $urlmsg, $id);
+			$url = wfMsgForContent( $urlmsg, $id);
 			$sk = $this->mOptions->getSkin( $this->mTitle );
 			$la = $sk->getExternalLinkAttributes( "external $CssClass" );
 			return "<a href=\"{$url}\"{$la}>{$keyword} {$id}</a>";
@@ -3407,13 +3407,13 @@ class Parser {
 		global $wgEnableScaryTranscluding;
 
 		if ( !$wgEnableScaryTranscluding ) {
-			return wfMsg('scarytranscludedisabled');
+			return wfMsgForContent('scarytranscludedisabled');
 		}
 
 		$url = $title->getFullUrl( "action=$action" );
 
 		if ( strlen( $url ) > 255 ) {
-			return wfMsg( 'scarytranscludetoolong' );
+			return wfMsgForContent( 'scarytranscludetoolong' );
 		}
 		return $this->fetchScaryTemplateMaybeFromCache( $url );
 	}
@@ -3430,7 +3430,7 @@ class Parser {
 
 		$text = Http::get( $url );
 		if ( !$text ) {
-			return wfMsg( 'scarytranscludefailed', $url );
+			return wfMsgForContent( 'scarytranscludefailed', $url );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
