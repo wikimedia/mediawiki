@@ -1375,16 +1375,17 @@ class Linker {
 	 *   to be included in the link, like "&section=$section"
 	 * @param $tooltip string The tooltip to use for the link: will be escaped
 	 *   and wrapped in the 'editsectionhint' message
+	 * @param $lang    string Language code
 	 * @return         string HTML to use for edit link
 	 */
-	public function doEditSectionLink( Title $nt, $section, $tooltip = null ) {
+	public function doEditSectionLink( Title $nt, $section, $tooltip = null, $lang = false ) {
 		// HTML generated here should probably have userlangattributes
 		// added to it for LTR text on RTL pages
 		$attribs = array();
 		if( !is_null( $tooltip ) ) {
-			$attribs['title'] = wfMsg( 'editsectionhint', $tooltip );
+			$attribs['title'] = wfMsgReal( 'editsectionhint', array( $tooltip ), true, $lang );
 		}
-		$link = $this->link( $nt, wfMsg('editsection'),
+		$link = $this->link( $nt, wfMsgExt( 'editsection', array( 'language'=> $lang ) ),
 			$attribs,
 			array( 'action' => 'edit', 'section' => $section ),
 			array( 'noclasses', 'known' )
@@ -1394,7 +1395,7 @@ class Linker {
 		# we can rid of it someday.
 		$attribs = '';
 		if( $tooltip ) {
-			$attribs = wfMsgHtml( 'editsectionhint', htmlspecialchars( $tooltip ) );
+			$attribs = htmlspecialchars( wfMsgReal( 'editsectionhint', array( $tooltip ), true, $lang ) );
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
@@ -1404,13 +1405,13 @@ class Linker {
 			# run, and even add them to hook-provided text.  (This is the main
 			# reason that the EditSectionLink hook is deprecated in favor of
 			# DoEditSectionLink: it can't change the brackets or the span.)
-			$result = wfMsgHtml( 'editsection-brackets', $result );
+			$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language'=>$lang ), $link );
 			return "<span class=\"editsection\">$result</span>";
 		}
 
 		# Add the brackets and the span, and *then* run the nice new hook, with
 		# clean and non-redundant arguments.
-		$result = wfMsgHtml( 'editsection-brackets', $link );
+		$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language'=>$lang ), $link );
 		$result = "<span class=\"editsection\">$result</span>";
 
 		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result ) );

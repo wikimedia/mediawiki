@@ -3967,9 +3967,9 @@ class Parser {
 				if ( $isTemplate ) {
 					# Put a T flag in the section identifier, to indicate to extractSections()
 					# that sections inside <includeonly> should be counted.
-					$editlink = $sk->doEditSectionLink( Title::newFromText( $titleText ), "T-$sectionIndex" );
+					$editlink = $sk->doEditSectionLink( Title::newFromText( $titleText ), "T-$sectionIndex", null, $this->mOptions->getUserLang() );
 				} else {
-					$editlink = $sk->doEditSectionLink( $this->mTitle, $sectionIndex, $headlineHint );
+					$editlink = $sk->doEditSectionLink( $this->mTitle, $sectionIndex, $headlineHint, $this->mOptions->getUserLang() );
 				}
 			} else {
 				$editlink = '';
