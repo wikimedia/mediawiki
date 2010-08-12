@@ -759,7 +759,7 @@ class WebInstaller_Options extends WebInstallerPage {
 
 	public function submit() {
 		$this->parent->setVarsFromRequest( array( '_RightsProfile', '_LicenseCode',
-			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUpload', 'wgLogo',
+			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
 			'wgUseInstantCommons' ) );
