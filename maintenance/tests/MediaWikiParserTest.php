@@ -17,8 +17,9 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 	public function run( PHPUnit_Framework_TestResult $result = null, $filter = false, 
 		array $groups = array(), array $excludeGroups = array(), $processIsolation = false
 	) {
-		global $IP, $wgContLang;
+		global $IP, $wgContLang, $wgMemc;
 		$wgContLang = Language::factory( 'en' );
+		$wgMemc = new FakeMemCachedClient;
 		$this->backend->setupDatabase();
 
 		$iter = new TestFileIterator( "$IP/maintenance/parserTests.txt" );
