@@ -732,24 +732,28 @@ class ParserTest {
 		$user = User::createNew( 'WikiSysop' );
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
 		$image->recordUpload2( '', 'Upload of some lame file', 'Some lame file', array(
+			'size'        => 12345,
 			'width'       => 1941,
 			'height'      => 220,
 			'bits'        => 24,
 			'media_type'  => MEDIATYPE_BITMAP,
 			'mime'        => 'image/jpeg',
 			'metadata'    => serialize( array() ),
+			'sha1'				=> sha1(''),
 			'fileExists'  => true
 			), $db->timestamp( '20010115123500' ), $user );
 
 		# This image will be blacklisted in [[MediaWiki:Bad image list]]
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
 		$image->recordUpload2( '', 'zomgnotcensored', 'Borderline image', array(
+			'size'        => 12345,
 			'width'       => 320,
 			'height'      => 240,
 			'bits'        => 24,
 			'media_type'  => MEDIATYPE_BITMAP,
 			'mime'        => 'image/jpeg',
 			'metadata'    => serialize( array() ),
+			'sha1'				=> sha1(''),
 			'fileExists'  => true
 			), $db->timestamp( '20010115123500' ), $user );
 	}
