@@ -18,51 +18,23 @@ require_once( 'AjaxFunctions.php' );
  * @ingroup Ajax
  */
 class AjaxDispatcher {
-	/** The way the request was made, either a 'get' or a 'post' */
-	private $mode;
-
 	/** Name of the requested handler */
-	private $func_name;
+	private $func_name = null;
 
 	/** Arguments passed */
-	private $args;
+	private $args = array();
 
 	/** Load up our object with user supplied data */
-	function __construct() {
+	public function __construct( WebRequest $req ) {
 		wfProfileIn( __METHOD__ );
 
-		$this->mode = "";
-
-		if ( ! empty( $_GET["rs"] ) ) {
-			$this->mode = "get";
+		$rs = $req->getVal( 'rs' );
+		if( $rs !== null ) {
+			$this->func_name = $rs;
 		}
-
-		if ( !empty( $_POST["rs"] ) ) {
-			$this->mode = "post";
-		}
-
-		switch( $this->mode ) {
-			case 'get':
-				$this->func_name = isset( $_GET["rs"] ) ? $_GET["rs"] : '';
-				if ( ! empty( $_GET["rsargs"] ) ) {
-					$this->args = $_GET["rsargs"];
-				} else {
-					$this->args = array();
-				}
-				break;
-			case 'post':
-				$this->func_name = isset( $_POST["rs"] ) ? $_POST["rs"] : '';
-				if ( ! empty( $_POST["rsargs"] ) ) {
-					$this->args = $_POST["rsargs"];
-				} else {
-					$this->args = array();
-				}
-				break;
-			default:
-				wfProfileOut( __METHOD__ );
-				return;
-				# Or we could throw an exception:
-				# throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
+		$rsargs = $req->getVal( 'rsargs' );
+		if( $rsargs !== null ) {
+			$this->args = $rsargs;
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -76,7 +48,7 @@ class AjaxDispatcher {
 	function performAction() {
 		global $wgAjaxExportList, $wgOut;
 
-		if ( empty( $this->mode ) ) {
+		if ( is_null( $this->func_name ) ) {
 			return;
 		}
 
