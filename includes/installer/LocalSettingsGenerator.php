@@ -156,7 +156,7 @@ class LocalSettingsGenerator {
 		}
 		
 		$rights = $this->values['wgRightsUrl'] ? '' : '#';
-		$hashedUploads = $this->safeMode ? '#' : '';
+		$hashedUploads = $this->safeMode ? '' : '#';
 		
 		switch( $this->values['wgMainCacheType'] ) {
 			case 'anything':
