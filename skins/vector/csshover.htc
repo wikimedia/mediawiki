@@ -1,11 +1,13 @@
 <public:attach event="ondocumentready" onevent="CSSHover()" />
 <script>
-// <![CDATA[
 /**
- *	Whatever:hover - V3.00.081222
+ *	Whatever:hover - V3.11
  *	------------------------------------------------------------
  *	Author  - Peter Nederlof, http://www.xs4all.nl/~peterned
  *	License - http://creativecommons.org/licenses/LGPL/2.1
+ *
+ *	Special thanks to Sergiu Dumitriu, http://purl.org/net/sergiu,
+ *	for fixing the expression loop.
  *
  *	Whatever:hover is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU Lesser General Public
@@ -24,16 +26,31 @@
 window.CSSHover = (function(){
 
 	// regular expressions, used and explained later on.
-	var REG_INTERACTIVE = /(^|\s)((([^a]([^ ]+)?)|(a([^#.][^ ]+)+)):(hover|active|focus))/i,
-		REG_AFFECTED = /(.*?)\:(hover|active|focus)/i,
-		REG_PSEUDO = /[^:]+:([a-z-]+).*/i,
-		REG_SELECT = /(\.([a-z0-9_-]+):[a-z]+)|(:[a-z]+)/gi,
-		REG_CLASS = /\.([a-z0-9_-]*on(hover|active|focus))/i,
-		REG_MSIE = /msie (5|6|7)/i,
-		REG_COMPAT = /backcompat/i;
+	var REG_INTERACTIVE = /(^|\s)((([^a]([^ ]+)?)|(a([^#.][^ ]+)+)):(hover|active|focus))/i;
+	var REG_AFFECTED = /(.*?)\:(hover|active|focus)/i;
+	var REG_PSEUDO = /[^:]+:([a-z\-]+).*/i;
+	var REG_SELECT = /(\.([a-z0-9_\-]+):[a-z]+)|(:[a-z]+)/gi;
+	var REG_CLASS = /\.([a-z0-9_\-]*on(hover|active|focus))/i;
+	var REG_MSIE = /msie (5|6|7)/i;
+	var REG_COMPAT = /backcompat/i;
 
-	// css prefix, a leading dash would be nice (spec), but IE6 doesn't like that.
-	var CSSHOVER_PREFIX = 'csh-';
+	// property mapping, real css properties must be used in order to clear expressions later on...
+	// Uses obscure css properties that no-one is likely to use. The properties are borrowed to
+	// set an expression, and are then restored to the most likely correct value.
+	var Properties = {
+		index: 0,
+		list: ['text-kashida', 'text-kashida-space', 'text-justify'],
+		get: function() {
+			return this.list[(this.index++)%this.list.length];
+		}
+	};
+
+	// camelize is used to convert css properties from (eg) text-kashida to textKashida
+	var camelize = function(str) {
+		return str.replace(/-(.)/mg, function(result, match){
+			return match.toUpperCase();
+		});
+	};
 	
 	/**
 	 *	Local CSSHover object
@@ -52,7 +69,9 @@ window.CSSHover = (function(){
 		init:function() {
 			// don't run in IE8 standards; expressions don't work in standards mode anyway, 
 			// and the stuff we're trying to fix should already work properly
-			if(!REG_MSIE.test(navigator.userAgent) && !REG_COMPAT.test(window.document.compatMode)) return;
+			if(!REG_MSIE.test(navigator.userAgent) && !REG_COMPAT.test(window.document.compatMode)) {
+				return;
+			}
 
 			// start parsing the existing stylesheets
 			var sheets = window.document.styleSheets, l = sheets.length;
@@ -66,26 +85,25 @@ window.CSSHover = (function(){
 			// check sheet imports and parse those recursively
 			if(sheet.imports) {
 				try {
-					var imports = sheet.imports, l = imports.length;
+					var imports = sheet.imports;
+					var l = imports.length;
 					for(var i=0; i<l; i++) {
 						this.parseStylesheet(sheet.imports[i]);
 					}
 				} catch(securityException){
-					// trycatch for various possible errors,
-					// todo; might need to be placed inside the for loop, since an error
-					// on an import stops following imports from being processed.
+					// trycatch for various possible errors
 				}
 			}
 			
 			// interate the sheet's rules and send them to the parser
 			try {
-				var rules = sheet.rules, l = rules.length;
-				for(var j=0; j<l; j++) {
+				var rules = sheet.rules;
+				var r = rules.length;
+				for(var j=0; j<r; j++) {
 					this.parseCSSRule(rules[j], sheet);
 				}
-			} catch(securityException){
-				// trycatch for various errors, most likely accessing the sheet's rules,
-				// don't see how individual rules would throw errors, but you never know.
+			} catch(someException){
+				// trycatch for various errors, most likely accessing the sheet's rules.
 			}
 		},
 
@@ -98,39 +116,40 @@ window.CSSHover = (function(){
 			// only parse a rule if it contains an interactive pseudo.
 			var select = rule.selectorText;
 			if(REG_INTERACTIVE.test(select)) {
-				var style = rule.style.cssText,
+				var style = rule.style.cssText;
 					
-					// affected elements are found by truncating the selector after the interactive pseudo,
-					// eg: "div li:hover" >>  "div li"
-					affected = REG_AFFECTED.exec(select)[1],
+				// affected elements are found by truncating the selector after the interactive pseudo,
+				// eg: "div li:hover" >>  "div li"
+				var affected = REG_AFFECTED.exec(select)[1];
 					
-					// that pseudo is needed for a classname, and defines the type of interaction (focus, hover, active)
-					// eg: "li:hover" >> "onhover"
-					pseudo = select.replace(REG_PSEUDO, 'on$1'),
+				// that pseudo is needed for a classname, and defines the type of interaction (focus, hover, active)
+				// eg: "li:hover" >> "onhover"
+				var pseudo = select.replace(REG_PSEUDO, 'on$1');
 					
-					// the new selector is going to use that classname in a new css rule,
-					// since IE6 doesn't support multiple classnames, this is merged into one classname
-					// eg: "li:hover" >> "li.onhover",  "li.folder:hover" >> "li.folderonhover"
-					newSelect = select.replace(REG_SELECT, '.$2' + pseudo),
+				// the new selector is going to use that classname in a new css rule,
+				// since IE6 doesn't support multiple classnames, this is merged into one classname
+				// eg: "li:hover" >> "li.onhover",  "li.folder:hover" >> "li.folderonhover"
+				var newSelect = select.replace(REG_SELECT, '.$2' + pseudo);
 					
-					// the classname is needed for the events that are going to be set on affected nodes
-					// eg: "li.folder:hover" >> "folderonhover"
-					className = REG_CLASS.exec(newSelect)[1];
+				// the classname is needed for the events that are going to be set on affected nodes
+				// eg: "li.folder:hover" >> "folderonhover"
+				var className = REG_CLASS.exec(newSelect)[1];
 
 				// no need to set the same callback more than once when the same selector uses the same classname
 				var hash = affected + className;
 				if(!this.callbacks[hash]) {
-
-					// affected elements are given an expression under a fake css property, the classname is used
-					// because a unique name (eg "behavior:") would be overruled (in IE6, not 7) by a following rule 
-					// selecting the same element. The expression does a callback to CSSHover.patch, rerouted via the
-					// exposed window.CSSHover function. 
+					
+					// affected elements are given an expression under a borrowed css property, because fake properties
+					// can't have their expressions cleared. Different properties are used per pseudo, to avoid
+					// expressions from overwriting eachother. The expression does a callback to CSSHover.patch, 
+					// rerouted via the exposed window.CSSHover function.
+					var property = Properties.get();
+					var atRuntime = camelize(property);
 
 					// because the expression is added to the stylesheet, and styles are always applied to html that is
 					// dynamically added to the dom, the expression will also trigger for those new elements (provided
 					// they are selected by the affected selector). 
-
-					sheet.addRule(affected, CSSHOVER_PREFIX + className + ':expression(CSSHover(this, "'+pseudo+'", "'+className+'"))');
+					sheet.addRule(affected, property + ':expression(CSSHover(this, "'+pseudo+'", "'+className+'", "'+atRuntime+'"))');
 					
 					// hash it, so an identical selector/class combo does not duplicate the expression
 					this.callbacks[hash] = true;
@@ -142,18 +161,23 @@ window.CSSHover = (function(){
 		},
 
 		// called via the expression, patches individual nodes
-		patch:function(node, type, className) {
-			
-			// the patch's type is returned to the expression. That way the expression property
-			// can be found and removed, to stop it from calling patch over and over. 
-			// The if will fail the first time, since the expression has not yet received a value.
-			var property = CSSHOVER_PREFIX + className;
-			if(node.style[property]) {
-				node.style[property] = null;
-			}
+		patch:function(node, type, className, property) {
 
+			// restores the borrowed css property to the value of its immediate parent, clearing
+			// the expression so that it's not repeatedly called. 
+			try {
+				var value = node.parentNode.currentStyle[property];
+				node.style[property] = value;	
+			} catch(e) {
+				// the above reset should never fail, but just in case, clear the runtimeStyle if it does.
+				// this will also stop the expression.
+				node.runtimeStyle[property] = '';
+			}			
+		
 			// just to make sure, also keep track of patched classnames locally on the node
-			if(!node.csshover) node.csshover = [];
+			if(!node.csshover) {
+				node.csshover = [];
+			}
 
 			// and check for it to prevent duplicate events with the same classname from being set
 			if(!node.csshover[className]) {
@@ -188,11 +212,6 @@ window.CSSHover = (function(){
 			}
 		}
 	};
-
-	// add the unload to the onbeforeunload event
-	window.attachEvent('onbeforeunload', function(){
-		CSSHover.unload();
-	});
 
 	/**
 	 *	CSSHoverElement
@@ -241,15 +260,20 @@ window.CSSHover = (function(){
 		}
 	};
 
+	// add the unload to the onbeforeunload event
+	window.attachEvent('onbeforeunload', function(){
+		CSSHover.unload();
+	});
+
 	/**
 	 *	Public hook
 	 *	--------------------------
 	 */
 	
-	return function(node, type, className) {
+	return function(node, type, className, property) {
 		if(node) {
 			// called via the css expression; patches individual nodes
-			return CSSHover.patch(node, type, className);
+			return CSSHover.patch(node, type, className, property);
 		} else {
 			// called ondomcontentready via the public:attach node
 			CSSHover.init();
@@ -257,6 +281,4 @@ window.CSSHover = (function(){
 	};
 
 })();
-
-// ]]>
 </script>
