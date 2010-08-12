@@ -271,8 +271,6 @@ abstract class CoreInstaller extends Installer {
 			}
 		}
 
-		$this->setVar( '_Extensions', $exts );
-
 		return $exts;
 	}
 
