@@ -921,11 +921,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		else if ( $conf->DBtype == 'mssql' ) {
 			error_reporting( E_ALL );
-			$wgSuperUser = '';
-			# # Possible connect as a superuser
+			# Possible connect as a superuser
 			if ( $useRoot ) {
-				$wgDBsuperuser = $conf->RootUser;
-				echo( "<li>Attempting to connect to database \"{$conf->DBtype}\" as superuser \"{$wgDBsuperuser}\"" );
+				echo( "<li>Attempting to connect to database \"{$conf->DBtype}\" as superuser \"{$conf->RootUser}\"" );
 				$wgDatabase = $dbc->newFromParams(
 										$conf->DBserver,
 										$conf->RootUser,
@@ -1080,7 +1078,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 		} else { # not mysql
 			error_reporting( E_ALL | E_STRICT );
-			$wgSuperUser = '';
 			## Possible connect as a superuser
 			// Changed !mysql to postgres check since it seems to only apply to postgres
 			if( $useRoot && $conf->DBtype == 'postgres' ) {
