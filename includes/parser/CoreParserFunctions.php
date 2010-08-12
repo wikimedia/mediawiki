@@ -605,7 +605,7 @@ class CoreParserFunctions {
 			return '';
 		else
 			return( '<span class="error">' .
-				wfMsg( 'duplicate-defaultsort',
+				wfMsgForContent( 'duplicate-defaultsort',
 						 htmlspecialchars( $old ),
 						 htmlspecialchars( $text ) ) .
 				'</span>' );
@@ -643,7 +643,7 @@ class CoreParserFunctions {
 		$stripList = $parser->getStripList();
 		if ( !in_array( $tagName, $stripList ) ) {
 			return '<span class="error">' .
-				wfMsg( 'unknown_extension_tag', $tagName ) .
+				wfMsgForContent( 'unknown_extension_tag', $tagName ) .
 				'</span>';
 		}
 
