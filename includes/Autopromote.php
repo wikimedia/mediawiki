@@ -104,6 +104,7 @@ class Autopromote {
 	 * @return bool Whether the condition is true for the user
 	 */
 	private static function checkCondition( $cond, User $user ) {
+		global $wgEmailAuthentication;
 		if ( count( $cond ) < 1 ) {
 			return false;
 		}
@@ -111,7 +112,6 @@ class Autopromote {
 		switch( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
 				if ( User::isValidEmailAddr( $user->getEmail() ) ) {
-					global $wgEmailAuthentication;
 					if ( $wgEmailAuthentication ) {
 						return (bool)$user->getEmailAuthenticationTimestamp();
 					} else {

@@ -550,6 +550,7 @@ abstract class ApiBase {
 	 * @returns mixed
 	 */
 	protected function getWatchlistValue ( $watchlist, $titleObj, $userOption = null ) {
+		global $wgUser;
 		switch ( $watchlist ) {
 			case 'watch':
 				return true;
@@ -558,7 +559,6 @@ abstract class ApiBase {
 				return false;
 
 			case 'preferences':
-				global $wgUser;
 				# If the user is already watching, don't bother checking
 				if ( $titleObj->userIsWatching() ) {
 					return null;
