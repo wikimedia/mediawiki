@@ -596,16 +596,16 @@ class ParserTest {
 	 */
 	private function listTables() {
 		global $wgDBtype;
-		$tables = array( 'user', 'page', 'page_restrictions',
+		$tables = array( 'user', 'user_properties', 'page', 'page_restrictions',
 			'protected_titles', 'revision', 'text', 'pagelinks', 'imagelinks',
 			'categorylinks', 'templatelinks', 'externallinks', 'langlinks', 'iwlinks',
 			'site_stats', 'hitcounter',	'ipblocks', 'image', 'oldimage',
-			'recentchanges', 'watchlist', 'math', 'interwiki',
+			'recentchanges', 'watchlist', 'math', 'interwiki', 'logging',
 			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
 			'archive', 'user_groups', 'page_props', 'category',
 		);
 
-		if ( $wgDBtype === 'mysql' )
+		if ( in_array( $wgDBtype, array( 'mysql', 'sqlite' ) ) )
 			array_push( $tables, 'searchindex' );
 
 		// Allow extensions to add to the list of tables to duplicate;
