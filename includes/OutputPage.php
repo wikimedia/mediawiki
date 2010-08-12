@@ -1973,7 +1973,7 @@ class OutputPage {
 			) as $message ) {
 			$data['messages'][$message] = wfMsg( $message );
 		}
-		$this->addScript( Html::inlineScript( 'var passwordSecurity=' . FormatJSON::encode( $data ) ) );
+		$this->addScript( Html::inlineScript( 'var passwordSecurity=' . FormatJson::encode( $data ) ) );
 		$this->addScriptFile( 'password.js' );
 		$this->addStyle( 'common/password.css' );
 	}
