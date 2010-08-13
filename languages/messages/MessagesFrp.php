@@ -1304,7 +1304,7 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'searchprofile-advanced-tooltip'   => 'Chouèsir los èspâços de noms por la rechèrche',
 'search-result-size'               => '$1 ($2 mot{{PLURAL:$2||s}})',
 'search-result-category-size'      => '$1 membro{{PLURAL:$1||s}} ($2 sot-catègorie{{PLURAL:$2||s}}, $3 fichiér{{PLURAL:$3||s}})',
-'search-result-score'              => 'Rapôrt : $1%',
+'search-result-score'              => 'Rapôrt : $1 %',
 'search-redirect'                  => '(redirèccion dês $1)',
 'search-section'                   => '(sèccion $1)',
 'search-suggest'                   => 'Vos éd volu dére : $1',

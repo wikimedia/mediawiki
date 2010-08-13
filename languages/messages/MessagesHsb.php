@@ -1243,8 +1243,8 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'group-user'          => 'wužiwarjo',
 'group-autoconfirmed' => 'awtomatisce potwjerdźeny',
 'group-bot'           => 'Boty',
-'group-sysop'         => 'administratorojo',
-'group-bureaucrat'    => 'běrokraća',
+'group-sysop'         => 'Administratorojo',
+'group-bureaucrat'    => 'Běrokraća',
 'group-suppress'      => 'dohladowarjo',
 'group-all'           => '(wšě)',
 

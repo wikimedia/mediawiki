@@ -11,6 +11,7 @@
  * @author Jim-by
  * @author Mienski
  * @author Prima klasy4na
+ * @author Riwnodennyk
  * @author Urhixidur
  * @author Yury Tarasievich
  * @author Тест
@@ -434,7 +435,7 @@ $2',
 'yourname'                   => 'Імя ўдзельніка',
 'yourpassword'               => 'Пароль',
 'yourpasswordagain'          => 'Паўтарыце пароль',
-'remembermypassword'         => 'Памятаць мяне',
+'remembermypassword'         => 'Запамятаць мяне на гэтым кампутары (ня больш, чым на $1 {{PLURAL:$1|дзень|дзён}})',
 'yourdomainname'             => 'Ваш дамен',
 'externaldberror'            => 'Або памылка вонкавай аўтэнтыкацыі ў базе дадзеных, або вам не дазволена абнаўляць свой вонкавы рахунак.',
 'login'                      => 'Увайсці ў сістэму',
@@ -2157,6 +2158,7 @@ $1 ужо знаходзіцца пад блокам. Ці жадаеце змя
 'tooltip-search-fulltext'         => 'Знайсці гэты тэкст у тэкстах старонак',
 'tooltip-p-logo'                  => 'Першая старонка',
 'tooltip-n-mainpage'              => 'Адкрыць Першую старонку',
+'tooltip-n-mainpage-description'  => 'Наведайце галоўную старонку',
 'tooltip-n-portal'                => 'Аб гэтым праекце, чым можна заняцца, дзе што шукаць',
 'tooltip-n-currentevents'         => 'Атрымаць інфармацыю пра актуальныя падзеі',
 'tooltip-n-recentchanges'         => 'Пералік нядаўніх змяненняў у віксе.',

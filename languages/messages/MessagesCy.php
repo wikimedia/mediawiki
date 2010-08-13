@@ -1538,7 +1538,7 @@ Dyma'r lòg dileu ar gyfer y ffeil i chi gael gweld:",
 'upload-success-subj'         => 'Wedi llwyddo uwchlwytho',
 'upload-success-msg'          => "Llwyddwyd i uwchlwytho'r ffeil o [$2]. Mae ar gael yma: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => 'Cafwyd problem wrth uwchlwytho',
-'upload-failure-msg'          => 'Cafwyd problem with uwchlwytho:
+'upload-failure-msg'          => 'Cafwyd problem wrth uwchlwytho o [$2]:
 
 $1',
 'upload-warning-subj'         => 'Rhybudd uwchlwytho',

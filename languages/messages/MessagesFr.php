@@ -2188,6 +2188,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 # Watchlist
 'watchlist'            => 'Liste de suivi',
 'mywatchlist'          => 'Liste de suivi',
+'watchlistfor2'        => 'Pour $1 $2',
 'nowatchlist'          => 'Votre liste de suivi ne référence aucune page.',
 'watchlistanontext'    => 'Veuillez vous $1 pour visualiser ou modifier les éléments de votre liste de suivi.',
 'watchnologin'         => 'Non connecté',

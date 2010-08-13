@@ -1817,9 +1817,14 @@ $1",
 'emailsenttext'        => 'דיין אי-מעיל מעסעדזש איז געשיקט געווארן.',
 'emailuserfooter'      => 'דער בליצבריוו איז געשיקט געווארן דורך$1 צו $2 מיט דער  "שיקן בליצבריוו"  פֿונקציע בײַ {{SITENAME}}.',
 
+# User Messenger
+'usermessage-summary' => 'איבערלאזן סיסטעם אָנזאָג',
+'usermessage-editor'  => 'סיסטעם שליח',
+
 # Watchlist
 'watchlist'            => 'מיין אויפפַּאסונג ליסטע',
 'mywatchlist'          => 'מיין אויפפַּאסונג ליסטע',
+'watchlistfor2'        => 'פֿאַר $1 $2',
 'nowatchlist'          => 'איר האט נישט קיין שום בלעטער אין אייער אויפפַּאסונג ליסטע.',
 'watchlistanontext'    => 'ביטע $1 כדי צו זען אדער ענדערן בלעטער אין אייער אַכטגעבן ליסטע.',
 'watchnologin'         => 'איר זענט נישט אַרײַנלאגירט',
@@ -2066,6 +2071,7 @@ $UNWATCHURL
 די לעצטע בלאָקירן לאג אַקציע איז צוגעשטעלט אונטן:',
 'sp-contributions-search'              => 'זוכן בײַשטײַערונגען',
 'sp-contributions-username'            => 'באניצער נאמען אדער IP אדרעס:',
+'sp-contributions-toponly'             => 'בלויז ווײַזן רעדאַקטירונגען וואָס זענען די לעצטיקע רעוויזיעס',
 'sp-contributions-submit'              => 'זוכן',
 
 # What links here
@@ -2128,6 +2134,7 @@ $UNWATCHURL
 'ipbotheroption'                  => 'אַנדער',
 'ipbotherreason'                  => 'אנדער/נאך א סיבה:',
 'ipbhidename'                     => 'באַהאַלטן באַניצער נאָמען פֿון רעדאַקטירונגען און רשימות',
+'ipbwatchuser'                    => 'אויפֿפאַסן דעם באַניצערס באַניצער און רעדן בלעטער',
 'badipaddress'                    => 'נישט קיין גוטער IP אַדרעס.',
 'blockipsuccesssub'               => 'בלאק איז דורכגפירט מיט דערפֿאלג',
 'blockipsuccesstext'              => 'באנוצער [[Special:Contributions/$1|$1]] <br />איז פארשפארט.
@@ -2140,6 +2147,7 @@ $UNWATCHURL
 'ipb-blocklist-contribs'          => 'בײַשטײַערונגען פֿון $1',
 'unblockip'                       => 'אויפֿבלאקירן באניצער',
 'ipusubmit'                       => 'אוועקנעמען דעם בלאק',
+'unblocked'                       => '[[User:$1|$1]] איז געווארן באַפֿרייט פון זײַן בלאק',
 'unblocked-id'                    => 'בלאק $1 איז געווארן אַראָפגענומען.',
 'ipblocklist'                     => 'ליסטע פון בלאקירטע באניצערס און IP אדרעסן',
 'ipblocklist-legend'              => 'געפֿינען א בלאקירטן באניצער',
@@ -2343,6 +2351,7 @@ $1 איז שוין בלאקירט. צי ווילט איר טוישן די באַ
 'importstart'                => 'אימפארטירט בלעטער…',
 'import-revision-count'      => '{{PLURAL:$1|איין ווערסיע|$1 ווערסיעס}}',
 'importnopages'              => 'נישטא קיין בלעטער צו אימפארטירן.',
+'imported-log-entries'       => '$1 {{PLURAL:$1|לאג אַקציע|לאג אַקציעס}} אימפארטירט.',
 'importfailed'               => 'אימפארט דורכגעפֿאלן: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'אומבאקאנטער  אימפארט טיפ',
 'importcantopen'             => 'נישט געקענט עפֿענען אימפארט טעקע',
@@ -2433,6 +2442,7 @@ $1 איז שוין בלאקירט. צי ווילט איר טוישן די באַ
 'tooltip-upload'                  => 'הייב אן אויפלאדן',
 'tooltip-rollback'                => '"צוריקדרייען" דרײט צוריק רעדאַקטירונג(ען) צו דעם בלאַט פֿונעם לעצטן בײַשטײַערער מיט אײן קװעטש',
 'tooltip-undo'                    => 'עפֿנט דעם רעדאַגיר־פֿענסטער אין אַ פֿאָרױסדיקן אױסקוק כּדי צוריקדרײען די רעדאַקציע. עס איז מעגלעך צוצולײגן אַ סיבה דערװעגן אין דעם "קורץ װאָרט" קעסטל.',
+'tooltip-preferences-save'        => 'היטן פרעפֿערענצן',
 
 # Stylesheets
 'common.css'   => '/* CSS געשריבן דא וועט אפילירן און באיינפלוסן אלע סקינס */',
@@ -2505,7 +2515,9 @@ $1 איז שוין בלאקירט. צי ווילט איר טוישן די באַ
 'svg-long-desc'        => '(טעקע SVG, נאמינעל: $1 × $2 פיקסעלן, טעקע גרייס: $3)',
 'show-big-image'       => 'בילד מיט דער גרעסטער רעזאלוציע',
 'show-big-image-thumb' => '<small>גרייס פון דער ווײַזונג: $1 × $2 פיקסעלן</small>',
+'file-info-gif-looped' => 'אין א פעטליע',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|ראם|ראמען}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|ראם|ראמען}}',
 
 # Special:NewFiles
 'newimages'             => 'גאַלעריע פֿון נײַע בילדער',
@@ -2591,7 +2603,7 @@ $1 איז שוין בלאקירט. צי ווילט איר טוישן די באַ
 'exif-scenetype'                => 'סצענע טיפ',
 'exif-cfapattern'               => 'פעטערן CFA',
 'exif-customrendered'           => 'קאסטעם בילד פראצעסירונג',
-'exif-exposuremode'             => 'עקספאוזשער מאוד',
+'exif-exposuremode'             => 'באַלײַכטן מצב',
 'exif-digitalzoomratio'         => 'דיזשיטאלער זום ראשיאו',
 'exif-focallengthin35mmfilm'    => 'פאקאל לענג אין 35 מ"מ פילם',
 'exif-gaincontrol'              => 'סצענע קאנטראל',
@@ -2640,6 +2652,7 @@ $1 איז שוין בלאקירט. צי ווילט איר טוישן די באַ
 
 'exif-meteringmode-0'   => 'אומבאוויסט',
 'exif-meteringmode-1'   => 'דורכשניט',
+'exif-meteringmode-6'   => 'טיילווײַז',
 'exif-meteringmode-255' => 'אנדער',
 
 'exif-lightsource-0' => 'אומבאַוויסט',
@@ -2781,6 +2794,7 @@ $5
 'table_pager_first'        => 'ערשטער בלאט',
 'table_pager_last'         => 'לעצטער בלאט',
 'table_pager_limit'        => 'ווײַז $1 פרטים א בלאט',
+'table_pager_limit_label'  => 'איינהייטן אין א בלאַט',
 'table_pager_limit_submit' => 'גיין',
 'table_pager_empty'        => 'קיין רעזולטאטן',
 
@@ -2854,6 +2868,7 @@ $5
 'version-software-version' => 'ווערסיע',
 
 # Special:FilePath
+'filepath'      => 'טעקע שטעג',
 'filepath-page' => 'טעקע:',
 
 # Special:FileDuplicateSearch

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Horacewai2
  * @author Kayau
  * @author PhiLiP
  * @author Wong128hk
@@ -36,6 +37,8 @@ $messages = array(
 'november'  => '十一月',
 'december'  => '十二月',
 
+'mytalk' => '我的討論頁',
+
 'tagline'          => '從 {{SITENAME}}',
 'search'           => '搜尋',
 'printableversion' => '可打印版',
@@ -60,7 +63,7 @@ $messages = array(
 *: ''地址、電話號碼、身份證號碼等。''",
 
 # Diffs
-'editundo' => '回退',
+'editundo' => '撤銷',
 
 # Search results
 'search-mwsuggest-disabled' => '沒有意見',

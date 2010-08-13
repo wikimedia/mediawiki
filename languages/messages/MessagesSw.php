@@ -1406,6 +1406,15 @@ Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'tmp-write-error'         => 'Hitilafu ya kuandika faili la muda.',
 'large-file'              => 'Tunashauri mafaili yasizidi $1;
 faili hili lina $2.',
+'fileexists'              => "Faili lenye jina hili lipo tayari, tafadhali utazame '''<tt>[[:$1]]</tt>''' ikiwa una mashaka kuhusu kulibadilisha.
+[[$1|thumb]]",
+'fileexists-extension'    => "Faili lenye jina linalofanana nalo lipo tayari: [[$2|thumb]]
+* Jina la faili linalopakiwa: '''<tt>[[:$1]]</tt>'''
+* Jina la faili lililopo tayari: '''<tt>[[:$2]]</tt>'''
+Tafadhali chagua jina lingine.",
+'fileexists-forbidden'    => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
+Kama unataka kupakia faili lako, tafadhali rudie kwa kutumia jina lingine.
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'   => 'Faili hili ni nakili ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
 'uploadwarning'           => 'Ilani kuhusu kupakia',
 'savefile'                => 'Hifadhi faili',
@@ -1432,7 +1441,7 @@ Tafadhali chagua jina linaloeleweka kirahisi kwa ajili ya faili lako.",
 'upload-success-subj'     => 'Upakiaji ulifaulu',
 'upload-success-msg'      => 'Umefaulu kupakia faili kutoka kwa [$2]. Faili linapatikana hapa: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'     => 'Hitilafu ya kupakia',
-'upload-failure-msg'      => 'Kulikuwa na tatizo ulipopakia faili yako:
+'upload-failure-msg'      => 'Kulikuwa na tatizo ulipopakia faili kutoka kwa [$2]:
 
 $1',
 'upload-warning-subj'     => 'Ilani ya kupakia',

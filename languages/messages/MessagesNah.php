@@ -177,7 +177,7 @@ $messages = array(
 'mainpagetext' => "'''MediaHuiqui cualli ōmotlahtlāli.'''",
 
 'about'         => 'Ītechpa',
-'article'       => 'tlahcuilōlli',
+'article'       => 'Tlahcuilōlli',
 'newwindow'     => '(Motlapoāz cē yancuīc tlanexillōtl)',
 'cancel'        => 'Ticcuepāz',
 'moredotdotdot' => 'Huehca ōmpa...',
@@ -230,14 +230,14 @@ $messages = array(
 'talkpagelinktext'  => 'Tēixnāmiquiliztli',
 'specialpage'       => 'Nōncuahquīzqui āmatl',
 'personaltools'     => 'In tlein nitēquitiltilia',
-'postcomment'       => 'Xiquihcuiloa cē tlanehnemiliztli',
+'postcomment'       => 'Yancuīc xeliuhcāyōtl',
 'articlepage'       => 'Xiquittaz in tlahcuilōlli',
 'talk'              => 'tēixnāmiquiliztli',
 'views'             => 'Tlachiyaliztli',
 'toolbox'           => 'In tlein motequitiltia',
 'userpage'          => 'Xiquitta tlatequitiltilīlli zāzanilli',
 'projectpage'       => 'Xiquitta tlachīhualiztli zāzanilli',
-'imagepage'         => 'Xiquitta īxiptli zāzanilli',
+'imagepage'         => 'Tiquittaz in zāzanilli īāma',
 'mediawikipage'     => 'Xiquitta tlahcuilōltzin zāzanilli',
 'templatepage'      => 'Tiquittāz nemachiyōtīlli zāzanilli',
 'viewhelppage'      => 'Xiquitta tēpalēhuiliztli zāzanilli',
@@ -382,10 +382,11 @@ Timitztlātlauhtiah xitlahcuiloa occē.',
 'noname'                  => 'Ahmo ōtiquihto cualli tlatequitiltilīlli tōcāitl.',
 'loginsuccesstitle'       => 'Cualli calaquiliztli',
 'loginsuccess'            => "'''Ōticalac {{SITENAME}} quemeh \"\$1\".'''",
-'nosuchuser'              => 'Ahmo ia tlatequitiltilīlli ītōca "$1".
-Xiquimpiya motlahtōl, nozo [[Special:UserLogin/signup|xicchīhua yancuīc cuentah]].',
-'nosuchusershort'         => 'Ahmo cah tlatequitiltilīlli ītōcā "<nowiki>$1</nowiki>".
-Xiquimpiya motlahtōl.',
+'nosuchuser'              => 'Ayāc tlatequitiltilīlli motōcāitia "$1".
+In tlatequitiltilīltōcāitl quimati in huēyimachiyōtlahtōliztli.
+Xiquitta in yēquihcuilōlli, ahnozo [[Special:UserLogin/signup|xicchīhua yancuīc cuenta]].',
+'nosuchusershort'         => 'Ayāc tlatequitiltilīlli motōcāitia "<nowiki>$1</nowiki>". Xiquitta in tlein ōtitlahcuiloh melāhuacā cah.
+Xiquitta moyēquihcuilōl.',
 'nouserspecified'         => 'Mohuīquilia tiquihtoa cualli tlatequitiltilīltōcāitl.',
 'wrongpassword'           => 'Ahcualli motlahtōlichtacāyo.
 Timitztlātlauhtia xicchīhua occeppa.',
