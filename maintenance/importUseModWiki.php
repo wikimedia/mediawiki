@@ -199,8 +199,6 @@ function checkUserCache( $name, $host )
 
 function importPage( $title )
 {
-	global $usercache;
-
 	echo "\n<!-- Importing page " . xmlCommentSafe( $title ) . " -->\n";
 	$page = fetchPage( $title );
 

@@ -225,7 +225,6 @@ class LanguageConverter {
 	 */
 	protected function getHeaderVariant() {
 		global $wgRequest;
-		$ret = null;
 
 		if ( $this->mHeaderVariant ) {
 			return $this->mHeaderVariant;
@@ -544,7 +543,6 @@ class LanguageConverter {
 		$out = '';
 		$length = strlen( $text );
 		while ( $startPos < $length ) {
-			$m = false;
 			$pos = strpos( $text, '-{', $startPos );
 
 			if ( $pos === false ) {
@@ -1280,7 +1278,6 @@ class ConverterRule {
 			$variant = $this->mConverter->getPreferredVariant();
 		}
 
-		$variants = $this->mConverter->mVariants;
 		$this->parseFlags();
 		$flags = $this->mFlags;
 

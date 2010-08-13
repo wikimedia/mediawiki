@@ -271,7 +271,6 @@ class SkinCologneBlue extends Skin {
 
 		$s .= $this->menuHead( 'qbmyoptions' );
 		if ( $wgUser->isLoggedIn() ) {
-			$name = $wgUser->getName();
 			$tl = $this->link(
 				$wgUser->getTalkPage(),
 				wfMsg( 'mytalk' ),

@@ -180,10 +180,8 @@ class KuConverter extends LanguageConverter {
 	 *    - ommiting roman numbers
 	 */
 	function translate( $text, $toVariant ) {
-		$breaks = '[^\w\x80-\xff]';
-
 		/* From Kazakh interface, maybe we need it later
-		 *
+		$breaks = '[^\w\x80-\xff]';
 		// regexp for roman numbers
 		$roman = 'M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})';
 		$roman = '';

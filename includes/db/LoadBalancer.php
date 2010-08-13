@@ -217,7 +217,6 @@ class LoadBalancer {
 		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $group, $wiki );
 
 		$i = false;
-		$found = false;
 		$laggedSlaveMode = false;
 
 		# First try quickly looking through the available servers for a server that

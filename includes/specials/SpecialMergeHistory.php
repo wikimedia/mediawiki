@@ -455,7 +455,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	}
 
 	function formatRow( $row ) {
-		$block = new Block;
 		return $this->mForm->formatRevisionRow( $row );
 	}
 

@@ -437,7 +437,6 @@ class ImagePage extends Article {
 						'onchange' => 'document.pageselector.submit();',
 					);
 
-					$option = array();
 					for ( $i = 1; $i <= $count; $i++ ) {
 						$options[] = Xml::option( $wgLang->formatNum( $i ), $i, $i == $page );
 					}
@@ -530,7 +529,6 @@ EOT
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
 		$repo = $this->img->getRepo()->getDisplayName();
 
-		$msg = '';
 		if ( $descUrl && $descText && wfMsgNoTrans( 'sharedupload-desc-here' ) !== '-'  ) {
 			$wgOut->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
 		} elseif ( $descUrl && wfMsgNoTrans( 'sharedupload-desc-there' ) !== '-' ) {

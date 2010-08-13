@@ -130,7 +130,6 @@ class FixBug20757 extends Maintenance {
 			}
 
 			// Process the stubs
-			$stubsToFix = array();
 			foreach ( $stubs as $primaryId => $stub ) {
 				$secondaryId = $stub['secondaryId'];
 				if ( !isset( $trackedBlobs[$secondaryId] ) ) {
