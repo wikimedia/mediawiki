@@ -3,11 +3,41 @@
 /** Esperanto (Esperanto)
  *
  * @ingroup Language
+ * @author Brion Vibber <brion@pobox.com>
  */
 class LanguageEo extends Language {
+	/**
+	 * Wrapper for charset conversions.
+	 *
+	 * In most languages, this calls through to standard system iconv(), but
+	 * for Esperanto we're also adding a special pseudo-charset to convert
+	 * accented characters to/from the ASCII-friendly "X" surrogate coding:
+	 *
+	 *     cx = ĉ     cxx = cx
+	 *     gx = ĝ     gxx = gx
+	 *     hx = ĥ     hxx = hx
+	 *     jx = ĵ     jxx = jx
+	 *     sx = ŝ     sxx = sx
+	 *     ux = ŭ     uxx = ux
+	 *     xx = x
+	 *
+	 *   http://en.wikipedia.org/wiki/Esperanto_orthography#X-system
+	 *   http://eo.wikipedia.org/wiki/X-sistemo
+	 *
+	 * X-conversion is applied, in either direction, between "utf-8" and "x" charsets;
+	 * this comes into effect when input is run through $wgRequest->getText() and the
+	 * $wgEditEncoding is set to 'x'.
+	 *
+	 * In the long run, this should be moved out of here and into the client-side
+	 * editor behavior; the original server-side translation system dates to 2002-2003
+	 * when many browsers will really bad Unicode support were still in use.
+	 *
+	 * @param string $in input character set
+	 * @param string $out output character set
+	 * @param string $string text to be converted
+	 * @return string
+	 */
 	function iconv( $in, $out, $string ) {
-		# Por multaj lingvoj, ĉi tiu nur voku la sisteman funkcion iconv()
-		# Ni ankaŭ konvertu X-sistemajn surogotajn
 		if ( strcasecmp( $in, 'x' ) == 0 && strcasecmp( $out, 'utf-8' ) == 0 ) {
 			return preg_replace_callback (
 				'/([cghjsu]x?)((?:xx)*)(?!x)/i',
