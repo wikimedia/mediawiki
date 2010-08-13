@@ -1376,6 +1376,16 @@ function do_postgres_updates() {
 		"page_restrictions_pr_id_seq",
 	);
 
+	$renamed_sequences = array(
+		array('ipblocks_ipb_id_val', 'ipblocks_ipb_id_seq'),
+		array('rev_rev_id_val', 'revision_rev_id_seq'),
+		array('text_old_id_val', 'text_old_id_seq'),
+		array('category_id_seq', 'category_cat_id_seq'),
+		array('rc_rc_id_seq', 'recentchanges_rc_id_seq'),
+		array('log_log_id_seq', 'logging_log_id_seq'),
+		array('pr_id_val', 'page_restrictions_pr_id_seq'),
+	);
+
 	$newtables = array(
 		array( "category",          "patch-category.sql" ),
 		array( "mwuser",            "patch-mwuser.sql" ),
@@ -1551,21 +1561,23 @@ function do_postgres_updates() {
 		array( "watchlist",        "wl_user",         "mwuser(user_id) ON DELETE CASCADE" ),
 	);
 
-	# Check new sequences, rename if needed
+	# Create new sequences
 	foreach ( $newsequences as $ns ) {
-		if ( $wgDatabase->sequenceExists( 'pr_id_val' ) ) {
-			wfOut( "Updating sequence names\n" );
-			$wgDatabase->sourceFile( archive( 'patch-update_sequences.sql' ) );
-			continue;
-		} elseif ( $wgDatabase->sequenceExists( 'page_restrictions_pr_id_seq' ) ) {
-			wfOut( "... sequences already updated\n" );
-			continue;
-		} else {
-			wfOut( "Creating sequence \"$ns\"\n" );
+		if ( ! $wgDatabase->sequenceExists( $ns ) ) {
+			wfOut( "Creating sequence $ns\n" );
 			$wgDatabase->query( "CREATE SEQUENCE $ns" );
 		}
 	}
 
+	# Rename sequences
+	foreach ( $renamed_sequences as $ren ) {
+		if ( $wgDatabase->sequenceExists( $ren[0] ) ) {
+			wfOut( "Renaming sequence $ren[0] to $ren[1]\n" );
+			$wgDatabase->query( "ALTER SEQUENCE $ren[0] RENAME TO $ren[1]" );
+		}
+	}
+
+	# Create new tables
 	foreach ( $newtables as $nt ) {
 		if ( $wgDatabase->tableExists( $nt[0] ) ) {
 			wfOut( "... table \"$nt[0]\" already exists\n" );
@@ -1576,7 +1588,7 @@ function do_postgres_updates() {
 		$wgDatabase->sourceFile( archive( $nt[1] ) );
 	}
 
-	# # Needed before newcols
+	# Needed before newcols
 	if ( $wgDatabase->tableExists( "archive2" ) ) {
 		wfOut( "Converting \"archive2\" back to normal archive table\n" );
 		if ( $wgDatabase->ruleExists( "archive", "archive_insert" ) ) {
