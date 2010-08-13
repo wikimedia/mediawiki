@@ -1113,7 +1113,6 @@ class ConverterRule {
 	 */
 	function parseRules() {
 		$rules = $this->mRules;
-		$flags = $this->mFlags;
 		$bidtable = array();
 		$unidtable = array();
 		$variants = $this->mConverter->mVariants;

@@ -1122,7 +1122,7 @@ EOF;
 				$overhead = "SAVEPOINT $ignore ON ROLLBACK RETAIN CURSORS";
 				db2_exec($this->mConn, $overhead, $this->mStmtOptions);
 				
-				$res2 = $this->execute($stmt, $row);
+				$this->execute($stmt, $row);
 				// get the last inserted value into a generated column
 				$this->calcInsertId($table, $primaryKey, $stmt);
 				

@@ -1163,7 +1163,6 @@ class RevDel_FileItem extends RevDel_Item {
 			return '<span class="history-deleted">' . $link . '</span>';
 		} else {
 			# Regular files...
-			$url = $this->file->getUrl();
 			return Xml::element( 'a', array( 'href' => $this->file->getUrl() ), $date );
 		}
 	}

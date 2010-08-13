@@ -1086,8 +1086,6 @@ class HTMLFloatField extends HTMLTextField {
 			return wfMsgExt( 'htmlform-float-invalid', 'parse' );
 		}
 
-		$in_range = true;
-
 		# The "int" part of these message names is rather confusing.
 		# They make equal sense for all numbers.
 		if ( isset( $this->mParams['min'] ) ) {
