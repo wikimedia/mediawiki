@@ -11,6 +11,9 @@ if ( !defined( 'MEDIAWIKI' ) )
 /**
  */
 class CategoryPage extends Article {
+	# Subclasses can change this to override the viewer class.
+	protected $mCategoryViewerClass = 'CategoryViewer';
+
 	function view() {
 		global $wgRequest, $wgUser;
 
@@ -62,7 +65,7 @@ class CategoryPage extends Article {
 			$until[$type] = isset( $_GET["{$type}until"] ) ? $_GET["{$type}until"] : null;
 		}
 
-		$viewer = new CategoryViewer( $this->mTitle, $from, $until, $_GET );
+		$viewer = new $this->mCategoryViewerClass( $this->mTitle, $from, $until, $_GET );
 		$wgOut->addHTML( $viewer->getHTML() );
 	}
 }
