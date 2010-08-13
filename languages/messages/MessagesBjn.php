@@ -86,7 +86,10 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
+'pagecategories'         => '{{PLURAL:$1|Kataguri|Kataguri}}',
+'category_header'        => "Tungkaran-tungkaran dalam kataguri ''$1''",
 'subcategories'          => 'Subkataguri',
+'hidden-categories'      => '{{PLURAL:$1|Kataguri tasungkup|Kataguri tasungkup}}',
 'listingcontinuesabbrev' => 'samb.',
 
 'article'       => 'Tulisan',
@@ -215,6 +218,7 @@ $messages = array(
 'nstab-mediawiki' => 'Pasan',
 'nstab-template'  => 'Citakan',
 'nstab-help'      => 'Patulung',
+'nstab-category'  => 'Kataguri',
 
 # Main script and global functions
 'nosuchaction' => 'Kadada tindakan',
@@ -536,6 +540,7 @@ Tungkaran-tungkaran dalam [[Special:Watchlist|your watchlist]] ditandai '''citak
 'alphaindexline' => '$1 sampai $2',
 'prevpage'       => 'Tungkaran sabalumnya ($1)',
 'allpagesfrom'   => 'Tampaiakan tungkaran mulai matan:',
+'allpagesto'     => 'Tampaiakan ujung pahabisan tungkaran:',
 'allarticles'    => 'Samunyaan tungkaran',
 'allpagessubmit' => 'Tulak',
 
@@ -639,6 +644,7 @@ Pian kawa maubah tingkatan palindungan gasan tungkaran ini, tagal ini kada pacan
 'isredirect'               => 'tungkaran paugahan',
 'istemplate'               => 'lawan citakan',
 'isimage'                  => 'Tautan barakas',
+'whatlinkshere-prev'       => '$1 {{PLURAL:$1|sabalumnya|sabalumnya}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|dudi|dudi $1}}',
 'whatlinkshere-links'      => '← tautan',
 'whatlinkshere-hideredirs' => '$1 paugahan',
@@ -735,6 +741,7 @@ Pian kawa maubah tingkatan palindungan gasan tungkaran ini, tagal ini kada pacan
 'tooltip-ca-nstab-project'        => 'Tiring tungkaran rangka gawian',
 'tooltip-ca-nstab-image'          => 'Tiringi barakas tungkaran',
 'tooltip-ca-nstab-template'       => 'Tiring citakan',
+'tooltip-ca-nstab-category'       => 'Lihati tungkaran kataguri',
 'tooltip-minoredit'               => 'Tandai ini sabagai sabuah pambaikan sapalih',
 'tooltip-save'                    => 'Simpan parubahan Pian',
 'tooltip-preview'                 => 'Tilik parubahan Pian, muhun puruk ini sabalum manyimpan!',

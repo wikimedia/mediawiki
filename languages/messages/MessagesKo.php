@@ -2117,6 +2117,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # Watchlist
 'watchlist'            => '주시문서 목록',
 'mywatchlist'          => '내 주시문서 목록',
+'watchlistfor2'        => '사용자:$1 $2',
 'nowatchlist'          => '주시하는 문서가 아직 없습니다.',
 'watchlistanontext'    => '주시문서 목록을 보거나 고치려면 $1 하세요.',
 'watchnologin'         => '로그인하지 않음',
@@ -2238,7 +2239,8 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => '문서 보호 기록',
-'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.',
+'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.
+현재 보호된 문서의 목록에 대해서는 [[Special:ProtectedPages|보호된 문서 목록]]을 참고하십시오.',
 'protectedarticle'            => '‘[[$1]]’ 문서를 보호함',
 'modifiedarticleprotection'   => '‘[[$1]]’ 문서의 보호 설정을 변경함',
 'unprotectedarticle'          => '‘[[$1]]’ 문서를 보호 해제함',

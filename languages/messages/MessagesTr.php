@@ -308,7 +308,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Sildiğim sayfaları izleme listeme ekle',
 'tog-previewontop'            => 'Önizlemeyi yazma alanın üstünde göster',
 'tog-previewonfirst'          => 'Değiştirmede önizlemeyi göster',
-'tog-nocache'                 => 'Sayfaları bellekleme',
+'tog-nocache'                 => 'Tarayıcı sayfalarını bellekleme',
 'tog-enotifwatchlistpages'    => 'Sayfa değişikliklerinde bana e-posta gönder',
 'tog-enotifusertalkpages'     => 'Kullanıcı sayfamda değişiklik olduğunda bana e-posta gönder',
 'tog-enotifminoredits'        => 'Sayfalardaki küçük değişikliklerde de bana e-posta gönder',
@@ -709,6 +709,7 @@ Hesabınız açıldı.
 'gotaccount'                 => "Daha önceden kayıt oldunuz mu? '''$1'''.",
 'gotaccountlink'             => 'Eğer önceden hesap açtırdıysanız bu bağlantıdan giriş yapınız.',
 'createaccountmail'          => 'e-posta ile',
+'createaccountreason'        => 'Sebep:',
 'badretype'                  => 'Girdiğiniz parolalar birbirini tutmuyor.',
 'userexists'                 => 'Girdiğiniz kullanıcı adı kullanımda. Lütfen farklı bir kullanıcı adı seçin.',
 'loginerror'                 => 'Oturum açma hatası.',
@@ -767,6 +768,15 @@ Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoks
 Lütfen tekrar denemeden önce bekleyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
+
+# JavaScript password checks
+'password-strength'            => 'Tahmini şifre güçlüğü: $1',
+'password-strength-bad'        => 'KÖTÜ',
+'password-strength-mediocre'   => 'ortalama',
+'password-strength-acceptable' => 'kabul edilebilir',
+'password-strength-good'       => 'iyi',
+'password-retype'              => 'Şifreyi buraya tekrar yazın',
+'password-retype-mismatch'     => 'Şifreler eşleşmiyor',
 
 # Password reset dialog
 'resetpass'                 => 'Parolayı değiştir',
@@ -1306,6 +1316,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'contextlines'                  => 'Bulunan madde için ayrılan satır sayısı',
 'contextchars'                  => 'Satırdaki karakter sayısı',
 'stub-threshold'                => '<a href="#" class="stub">Taslak bağlantısı</a> formatı için baraj (byte):',
+'stub-threshold-disabled'       => 'Devre dışı',
 'recentchangesdays'             => 'Son değişikliklerde gösterilecek günler:',
 'recentchangesdays-max'         => '(maksimum $1 {{PLURAL:$1|gün|gün}})',
 'recentchangescount'            => 'Varsayılan olarak gösterilecek değişiklik sayısı:',
@@ -1708,11 +1719,13 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
 'upload-success-subj'         => 'Yükleme başarılı',
-'upload-success-msg'          => 'Yüklemeniz burada mevcut: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => '[$2] yüklemeniz başarılı oldu. Yüklemeniz burada mevcut: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Yükleme sorunu',
 'upload-failure-msg'          => 'Yüklemenizle ilgili bir sorun var:
 
 $1',
+'upload-warning-subj'         => 'Yükleme uyarısı',
+'upload-warning-msg'          => '[$2] yüklemenizde bir sorun oluştu. Sorunu düzeltmek için [[Special:Upload/stash/$1|yükleme formuna]] geri dönebilirsiniz.',
 
 'upload-proto-error'        => 'Hatalı protokol',
 'upload-proto-error-text'   => "Uzaktan yükleme, <code>http://</code> veya <code>ftp://</code> ile başlayan URL'ler gerektirmektedir.",
@@ -2113,6 +2126,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 # Watchlist
 'watchlist'            => 'izleme listem',
 'mywatchlist'          => 'izleme listem',
+'watchlistfor2'        => '$1 için $2',
 'nowatchlist'          => 'İzleme listesinde hiçbir madde bulunmuyor.',
 'watchlistanontext'    => 'Lütfen izleme listenizdeki maddeleri görmek yada değiştirmek için $1.',
 'watchnologin'         => 'Oturum açık değil.',
@@ -2245,8 +2259,8 @@ Lütfen "geri" gidin ve geldiğiniz sayfayı yeniden yükleyin, sonra tekrar den
 
 # Protect
 'protectlogpage'              => 'Koruma kayıtları',
-'protectlogtext'              => 'Korumaya alma/kaldırma ile ilgili değişiklikleri görmektesiniz.
-Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına bakabilirsiniz.',
+'protectlogtext'              => 'Aşağıdaki, sayfa korumaları ve koruma kaldırmalarının bir listesidir.
+Şu anda uygulanan sayfa korumaları için [[Special:ProtectedPages|koruma altına alınmış sayfalar listesine]] bakabilirsiniz.',
 'protectedarticle'            => '"[[$1]]" koruma altında alındı',
 'modifiedarticleprotection'   => '"[[$1]]" için koruma düzeyi değiştirildi',
 'unprotectedarticle'          => 'koruma kaldırıldı: "[[$1]]"',

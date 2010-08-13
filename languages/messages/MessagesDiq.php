@@ -2584,8 +2584,8 @@ $1',
 'nextdiff'     => 'Vurnayışo newêr →',
 
 # Media information
-'mediawarning'         => "''Hişyari!''': Na dosya de belka kodê niyetxırabi estî.
-Beno ke zerar bıdo sistemê şuxulnayişê şıma.",
+'mediawarning'         => "'''Teme''': Na dosya de belkia kodê xırabıni estê.
+Gurênayışê nae de, beno ke sistemê şıma zerar bıvêno.",
 'imagemaxsize'         => "Limitê ebat ê resimi:<br />''(qe pela deskripsiyonê dosyayan)''",
 'thumbsize'            => 'Ebadê Thumbnaili',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pele|peleyi}}',

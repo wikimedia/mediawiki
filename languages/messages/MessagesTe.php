@@ -1957,6 +1957,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 # Watchlist
 'watchlist'            => 'నా వీక్షణ జాబితా',
 'mywatchlist'          => 'నా వీక్షణ జాబితా',
+'watchlistfor2'        => '$1 కొరకు $2',
 'nowatchlist'          => 'మీ వీక్షణ జాబితా ఖాళీగా ఉంది.',
 'watchlistanontext'    => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు లేదా మార్చేందుకు మీరు $1 ఉండాలి.',
 'watchnologin'         => 'లాగిన్‌ అయిలేరు',
@@ -2029,7 +2030,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'deletepage'             => 'పేజీని తుడిచివేయి',
 'confirm'                => 'ధృవీకరించు',
 'excontent'              => "ఇదివరకు విషయ సంగ్రహం: '$1'",
-'excontentauthor'        => "ఇదివరకు విషయ సంగ్రహం: '$1' (మరియు దీని ఒకేఒక్క రచయిత '$2')",
+'excontentauthor'        => 'ఉన్న విషయ సంగ్రహం: "$1" (మరియు దీని ఒకే ఒక్క రచయిత "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank'          => "ఖాళీ చెయ్యకముందు పేజీలో ఉన్న విషయ సంగ్రహం: '$1'",
 'exblank'                => 'పేజీ ఖాళీగా ఉంది',
 'delete-confirm'         => '"$1"ని తొలగించు',
@@ -2079,7 +2080,8 @@ $UNWATCHURL కి వెళ్ళండి.
 
 # Protect
 'protectlogpage'              => 'సంరక్షణల చిట్టా',
-'protectlogtext'              => 'పేజీ సంరక్షణ గురించిన వివరాల జాబితా క్రింద వున్నది.',
+'protectlogtext'              => 'ఈ క్రింద ఉన్నది పుటల యొక్క సంరక్షణ మరియు అసంరక్షణల యొక్క జాబితా.
+ప్రస్తుతం అమలులో ఉన్న సంరక్షణలకై [[Special:ProtectedPages|సంరక్షిత పుటల జాబితా]]ని చూడండి.',
 'protectedarticle'            => '"[[$1]]" సంరక్షించబడింది.',
 'modifiedarticleprotection'   => '"[[$1]]" సరక్షణ స్థాయిని మార్చాం',
 'unprotectedarticle'          => '"[[$1]]" ను సంరక్షణ నుండి తీసేసాం',
