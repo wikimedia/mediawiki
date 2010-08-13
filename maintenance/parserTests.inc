@@ -335,7 +335,6 @@ class ParserTest {
 		$user = new User();
 		$options = ParserOptions::newFromUser( $user );
 
-		$m = array();
 		if ( isset( $opts['title'] ) ) {
 			$titleText = $opts['title'];
 		}
@@ -349,7 +348,6 @@ class ParserTest {
 		$parser = $this->getParser( $preprocessor );
 		$title = Title::newFromText( $titleText );
 
-		$matches = array();
 		if ( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
 		} elseif ( isset( $opts['msg'] ) ) {

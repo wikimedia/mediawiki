@@ -749,7 +749,7 @@ class Sanitizer {
 
 		// Decode escape sequences and line continuation
 		// See the grammar in the CSS 2 spec, appendix D.
-		static $decodeRegex, $reencodeTable;
+		static $decodeRegex;
 		if ( !$decodeRegex ) {
 			$space = '[\\x20\\t\\r\\n\\f]';
 			$nl = '(?:\\n|\\r\\n|\\r|\\f)';

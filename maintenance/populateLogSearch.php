@@ -56,7 +56,6 @@ class PopulateLogSearch extends Maintenance {
 			$this->output( "...doing log_id from $blockStart to $blockEnd\n" );
 			$cond = "log_id BETWEEN $blockStart AND $blockEnd";
 			$res = $db->select( 'logging', '*', $cond, __FUNCTION__ );
-			$batch = array();
 			foreach ( $res as $row ) {
 				// RevisionDelete logs - revisions
 				if ( LogEventsList::typeAction( $row, $delTypes, 'revision' ) ) {

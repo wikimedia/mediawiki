@@ -1101,7 +1101,6 @@ EOF;
 		$this->begin();
 
 		if ( !$ignore ) {
-			$first = true;
 			foreach ( $args as $row ) {
 				// insert each row into the database
 				$res = $res & $this->execute($stmt, $row);

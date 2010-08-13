@@ -628,7 +628,6 @@ class CoreParserFunctions {
 	 * Parser function to extension tag adaptor
 	 */
 	public static function tagObj( $parser, $frame, $args ) {
-		$xpath = false;
 		if ( !count( $args ) ) {
 			return '';
 		}

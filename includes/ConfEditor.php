@@ -836,7 +836,6 @@ class ConfEditor {
 	 * not call except from popPath() or nextPath().
 	 */
 	function endPath() {
-		$i = count( $this->pathStack ) - 1;
 		$key = '';
 		foreach ( $this->pathStack as $pathInfo ) {
 			if ( $key !== '' ) {
