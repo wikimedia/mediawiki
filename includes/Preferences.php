@@ -1060,7 +1060,6 @@ class Preferences {
 				$wgDefaultUserOptions['date'] = 'default';
 			}
 
-			$idCnt = 0;
 			$epoch = wfTimestampNow();
 			foreach ( $dateopts as $key ) {
 				if ( $key == 'default' ) {
