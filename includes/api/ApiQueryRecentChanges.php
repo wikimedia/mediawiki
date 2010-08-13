@@ -164,7 +164,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addWhereIf( 'page_is_redirect = 0 OR page_is_redirect IS NULL', isset( $show['!redirect'] ) );
 		}
 
-		if ( !is_null( $params['user'] ) && !is_null( $param['excludeuser'] ) ) {
+		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
 			$this->dieUsage( 'user and excludeuser cannot be used together', 'user-excludeuser' );
 		}
 
