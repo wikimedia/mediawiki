@@ -68,7 +68,7 @@ wfProfileOut( 'main-misc-setup' );
 #
 if( $wgUseAjax && $action == 'ajax' ) {
 	require_once( $IP . '/includes/AjaxDispatcher.php' );
-	$dispatcher = new AjaxDispatcher( $wgRequest );
+	$dispatcher = new AjaxDispatcher();
 	$dispatcher->performAction();
 	$mediaWiki->restInPeace();
 	exit;
