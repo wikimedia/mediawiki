@@ -28,7 +28,6 @@ class LanguageTyv extends Language {
 		$roundFrontVowels = array( "ө", "ү", "ö", "ü" );
 		$unroundBackVowels = array( "а", "ы", "я", "a", "y" );
 		$roundBackVowels = array( "ё", "о", "у", "ю", "o", "u" );
-		$voicedPhonemes = array( "д", "б", "з", "ж", "г", "d", "b", "z", "g" );
 		$unvoicedPhonemes = array( "т", "п", "с", "ш", "к", "ч", "х", "t", "p", "s", "k", "x" );
 		$directiveUnvoicedStems = array( "т", "п", "с", "ш", "к", "ч", "х", "л", "м", "н", "ң", "t", "p", "s", "k", "x", "l", "m", "n", "ŋ" );
 		$directiveVoicedStems = array( "д", "б", "з", "ж", "г", "р", "й", "d", "b", "z", "g", "r", "j" );
