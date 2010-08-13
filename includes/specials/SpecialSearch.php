@@ -961,7 +961,6 @@ class SpecialSearch {
 
 	protected function shortDialog( $term ) {
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
-		$searchable = SearchEngine::searchableNamespaces();
 		$out = Html::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
 		// Keep redirect setting
 		$out .= Html::hidden( "redirs", (int)$this->searchRedirects ) . "\n";

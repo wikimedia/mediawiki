@@ -7,7 +7,7 @@ class MockApi extends ApiBase {
 	public function __construct() { }
 
 	public function getAllowedParams() {
-		$params = array(
+		return array(
 			'filename' => null,
 			'enablechunks' => false,
 			'sessionkey' => null,
