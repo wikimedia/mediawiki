@@ -888,7 +888,7 @@ class ImageHistoryList {
 		$description = $file->getDescription();
 
 		$local = $this->current->isLocal();
-		$row = $css = $selected = '';
+		$row = $selected = '';
 
 		// Deletion link
 		if ( $local && ( $wgUser->isAllowed( 'delete' ) || $wgUser->isAllowed( 'deletedhistory' ) ) ) {

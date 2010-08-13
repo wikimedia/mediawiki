@@ -3191,7 +3191,6 @@ function wfWaitForSlaves( $maxLag, $wiki = false ) {
  * Do not use it in any other context, its behaviour is subject to change.
  */
 function wfOut( $s ) {
-	static $lineStarted = false;
 	global $wgCommandLineMode;
 	if ( $wgCommandLineMode && !defined( 'MEDIAWIKI_INSTALL' ) ) {
 		echo $s;
