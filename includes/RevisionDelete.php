@@ -1009,7 +1009,7 @@ class RevDel_FileList extends RevDel_List {
 	var $storeBatch, $deleteBatch, $cleanupBatch;
 
 	public function doQuery( $db ) {
-		$archiveName = array();
+		$archiveNames = array();
 		foreach( $this->ids as $timestamp ) {
 			$archiveNames[] = $timestamp . '!' . $this->title->getDBkey();
 		}
