@@ -75,7 +75,6 @@ function getMediawikiMessages( $languageCode = 'En' ) {
 
 	$foo = "wgAllMessages$languageCode";
 	global $$foo;
-	global $wgSkinNamesEn; // potentially unused global declaration?
 
 	// it might already be loaded in LocalSettings.php
 	if ( !isset( $$foo ) ) {
@@ -84,7 +83,9 @@ function getMediawikiMessages( $languageCode = 'En' ) {
 		if ( file_exists( $langFile ) ) {
 			print "Including $langFile\n";
 			include( $langFile );
-		} else wfDie( "ERROR: The file $langFile does not exist !\n" );
+		} else {
+			wfDie( "ERROR: The file $langFile does not exist !\n" );
+		}
 	}
 	return $$foo;
 }
