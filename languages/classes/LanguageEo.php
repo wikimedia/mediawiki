@@ -30,7 +30,7 @@ class LanguageEo extends Language {
 	 *
 	 * In the long run, this should be moved out of here and into the client-side
 	 * editor behavior; the original server-side translation system dates to 2002-2003
-	 * when many browsers will really bad Unicode support were still in use.
+	 * when many browsers with really bad Unicode support were still in use.
 	 *
 	 * @param string $in input character set
 	 * @param string $out output character set
