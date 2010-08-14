@@ -1,6 +1,8 @@
 <?php
 /**
- * Copyright (C) 2010 Derk-Jan Hartman <hartman@videolan.org>
+ * Implements Special:ComparePages
+ *
+ * Copyright © 2010 Derk-Jan Hartman <hartman@videolan.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +18,14 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
- * implements Special:ComparePages
+ * Implements Special:ComparePages
+ *
  * @ingroup SpecialPage
  */
 class SpecialComparePages extends SpecialPage {

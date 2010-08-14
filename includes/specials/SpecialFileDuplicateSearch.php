@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:FileDuplicateSearch
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,21 +16,16 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
- * A special page to search for files by hash value as defined in the
- * img_sha1 field in the image table
  *
  * @file
  * @ingroup SpecialPage
- *
  * @author Raimond Spekking, based on Special:MIMESearch by Ævar Arnfjörð Bjarmason
  */
 
 /**
  * Searches the database for files of the requested hash, comparing this with the
  * 'img_sha1' field in the image table.
+ *
  * @ingroup SpecialPage
  */
 class FileDuplicateSearchPage extends QueryPage {
