@@ -449,6 +449,7 @@ $wgMessageStructure = array(
 		'throttled-mailpassword',
 		'loginstart',
 		'loginend',
+		'signupstart',
 		'signupend',
 		'mailerror',
 		'acct_creation_throttle_hit',
