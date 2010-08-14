@@ -1,7 +1,10 @@
 <?php
 /**
+ * External editors support
+ *
  * License: Public domain
  *
+ * @file
  * @author Erik Moeller <moeller@scireview.de>
  */
 
@@ -15,7 +18,6 @@
  * and save the modified data back to the server.
  *
  */
-
 class ExternalEdit {
 
 	function __construct( $article, $mode ) {

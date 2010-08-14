@@ -1,8 +1,12 @@
 <?php
-
-# This does the initial setup for a web request. It does some security checks,
-# starts the profiler and loads the configuration, and optionally loads
-# Setup.php depending on whether MW_NO_SETUP is defined.
+/**
+ * This does the initial setup for a web request.
+ * It does some security checks, starts the profiler and loads the
+ * configuration, and optionally loads Setup.php depending on whether
+ * MW_NO_SETUP is defined.
+ *
+ * @file
+ */
 
 # Protect against register_globals
 # This must be done before any globals are set by the code

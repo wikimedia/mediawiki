@@ -1,5 +1,11 @@
 <?php
 /**
+ * Classes used to send headers and cookies back to the user
+ *
+ * @file
+ */
+
+/**
  * Allow programs to request this object from WebRequest::response()
  * and handle all outputting (or lack of outputting) via it.
  * @ingroup HTTP

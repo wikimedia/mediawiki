@@ -1,5 +1,11 @@
 <?php
 /**
+ * Global functions related to images
+ *
+ * @file
+ */
+
+/**
  * Return a rounded pixel equivalent for a labeled CSS/SVG length.
  * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
  *
