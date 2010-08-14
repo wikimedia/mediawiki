@@ -1,5 +1,9 @@
 <?php
-/** */
+/**
+ * Functions related to the output of file content
+ *
+ * @file
+ */
 
 /** */
 function wfStreamFile( $fname, $headers = array() ) {

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Native CDB file reader and writer
+ *
+ * @file
+ */
 
 /**
  * Read from a CDB file.

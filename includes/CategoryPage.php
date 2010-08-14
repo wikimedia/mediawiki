@@ -1,14 +1,17 @@
 <?php
 /**
- * Special handling for category description pages
- * Modelled after ImagePage.php
+ * Special handling for category description pages.
+ * Modelled after ImagePage.php.
  *
+ * @file
  */
 
 if ( !defined( 'MEDIAWIKI' ) )
 	die( 1 );
 
 /**
+ * Special handling for category description pages, showing pages,
+ * subcategories and file that belong to the category
  */
 class CategoryPage extends Article {
 	# Subclasses can change this to override the viewer class.

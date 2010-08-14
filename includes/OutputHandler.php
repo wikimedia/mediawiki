@@ -1,4 +1,9 @@
 <?php
+/**
+ * Functions to be used with PHP's output buffer
+ *
+ * @file
+ */
 
 /**
  * Standard output handler for use with ob_start

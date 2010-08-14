@@ -1,4 +1,12 @@
 <?php
+/**
+ * Classes to show various lists of changes:
+ * - what links here
+ * - related changes
+ * - recent changes
+ *
+ * @file
+ */
 
 /**
  * @todo document
@@ -17,13 +25,9 @@ class RCCacheEntry extends RecentChange {
 }
 
 /**
- * Class to show various lists of changes:
- * - what links here
- * - related changes
- * - recent changes
+ * Base class for all changes lists
  */
 class ChangesList {
-	# Called by history lists and recent changes
 	public $skin;
 	protected $watchlist = false;
 

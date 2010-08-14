@@ -1,11 +1,12 @@
 <?php
-
 /**
  * This is a port of D.J. Bernstein's CDB to PHP. It's based on the copy that 
  * appears in PHP 5.3. Changes are:
  *    * Error returns replaced with exceptions
  *    * Exception thrown if sizes or offsets are between 2GB and 4GB
  *    * Some variables renamed
+ *
+ * @file
  */
 
 /**
