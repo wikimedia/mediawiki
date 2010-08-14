@@ -1,7 +1,8 @@
 <?php
 /**
- * MediaWiki page data importer
- * Copyright (C) 2003,2005 Brion Vibber <brion@pobox.com>
+ * Implements Special:Import
+ *
+ * Copyright © 2003,2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -23,6 +24,11 @@
  * @ingroup SpecialPage
  */
 
+/**
+ * MediaWiki page data importer
+ *
+ * @ingroup SpecialPage
+ */
 class SpecialImport extends SpecialPage {
 	
 	private $interwiki = false;

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:MIMESearch
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,17 +16,10 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
- * A special page to search for files by MIME type as defined in the
- * img_major_mime and img_minor_mime fields in the image table
  *
  * @file
  * @ingroup SpecialPage
- *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
 /**

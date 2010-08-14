@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:Blockme
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,10 +16,14 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
- * Implements Special:Blockme
+ * A special page called by proxy_check.php to block open proxies
+ *
  * @ingroup SpecialPage
  */
 class SpecialBlockme extends UnlistedSpecialPage {

@@ -1,6 +1,8 @@
 <?php
 /**
- * Copyright (C) 2003-2008 Brion Vibber <brion@pobox.com>
+ * Implements Special:Export
+ *
+ * Copyright © 2003-2008 Brion Vibber <brion@pobox.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,13 +18,16 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
+ *
  * @file
  * @ingroup SpecialPage
  */
 
+/**
+ * A special page that allows users to export pages in a XML file
+ *
+ * @ingroup SpecialPage
+ */
 class SpecialExport extends SpecialPage {
 
 	private $curonly, $doExport, $pageLinkDepth, $templates;
