@@ -27,23 +27,26 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 class SpecialVersion extends SpecialPage {
-	private $firstExtOpened = false;
+	
+	protected $firstExtOpened = false;
 
-	static $viewvcUrls = array(
+	protected static $extensionTypes = false;
+	
+	protected static $viewvcUrls = array(
 		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
 		'http://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
 		# Doesn't work at the time of writing but maybe some day: 
 		'https://svn.wikimedia.org/viewvc/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
 	);
 
-	function __construct(){
+	public function __construct(){
 		parent::__construct( 'Version' );
 	}
 
 	/**
 	 * main()
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		global $wgOut, $wgSpecialVersionShowHooks, $wgContLang;
 		
 		$this->setHeaders();
@@ -210,17 +213,33 @@ class SpecialVersion extends SpecialPage {
 	 * @return array
 	 */
 	public static function getExtensionTypes() {
-		$extensionTypes = array(
-			'specialpage' => wfMsg( 'version-specialpages' ),
-			'parserhook' => wfMsg( 'version-parserhooks' ),
-			'variable' => wfMsg( 'version-variables' ),
-			'media' => wfMsg( 'version-mediahandlers' ),
-			'other' => wfMsg( 'version-other' ),
-		);
+		if ( self::$extensionTypes === false ) {
+			self::$extensionTypes = array(
+				'specialpage' => wfMsg( 'version-specialpages' ),
+				'parserhook' => wfMsg( 'version-parserhooks' ),
+				'variable' => wfMsg( 'version-variables' ),
+				'media' => wfMsg( 'version-mediahandlers' ),
+				'other' => wfMsg( 'version-other' ),
+			);
+			
+			wfRunHooks( 'ExtensionTypes', array( &self::$extensionTypes ) );
+		}
 		
-		wfRunHooks( 'ExtensionTypes', array( &$extensionTypes ) );
-		
-		return $extensionTypes;
+		return self::$extensionTypes;
+	}
+	
+	/**
+	 * Returns the internationalized name for an extension type.
+	 * 
+	 * @since 1.17
+	 * 
+	 * @param $type String
+	 * 
+	 * @return string
+	 */
+	public static function getExtensionTypeName( $type ) {
+		$types = self::getExtensionTypes();
+		return $types[$type];
 	}
 	
 	/**
