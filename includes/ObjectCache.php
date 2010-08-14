@@ -1,5 +1,7 @@
 <?php
 /**
+ * Functions to get cache objects
+ *
  * @file
  * @ingroup Cache
  */
