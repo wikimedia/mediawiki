@@ -1428,7 +1428,10 @@ abstract class DatabaseBase {
 			if ( isset($join_conds_safe[$table]) && isset($use_index_safe[$table]) ) {
 				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
 				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$table] ) );
-				$tableClause .= ' ON (' . $this->makeList((array)$join_conds_safe[$table][1], LIST_AND) . ')';
+				$on = $this->makeList((array)$join_conds_safe[$table][1], LIST_AND);
+				if ( $on != '' ) {
+					$tableClause .= ' ON (' . $on . ')';
+				}
 				$retJOIN[] = $tableClause;
 			// Is there an INDEX clause?
 			} else if ( isset($use_index_safe[$table]) ) {
@@ -1438,7 +1441,10 @@ abstract class DatabaseBase {
 			// Is there a JOIN clause?
 			} else if ( isset($join_conds_safe[$table]) ) {
 				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
-				$tableClause .= ' ON (' . $this->makeList((array)$join_conds_safe[$table][1], LIST_AND) . ')';
+				$on = $this->makeList((array)$join_conds_safe[$table][1], LIST_AND);
+				if ( $on != '' ) {
+					$tableClause .= ' ON (' . $on . ')';
+				}				
 				$retJOIN[] = $tableClause;
 			} else {
 				$tableClause = $this->tableName( $table );
