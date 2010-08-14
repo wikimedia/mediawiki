@@ -1840,10 +1840,6 @@ $user: User object
 &$timestamp: new timestamp, change this to override local email
 authentification timestamp
 
-'UserToggles': called when initialising User::$mToggles, use this to add
-new toggles
-$toggles: array of toggles to add
-
 'WantedPages::getSQL': called in WantedPagesPage::getSQL(), can be used to
 alter the SQL query which gets the list of wanted pages
 &$wantedPages: WantedPagesPage object

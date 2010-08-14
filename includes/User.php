@@ -43,56 +43,6 @@ class PasswordError extends MWException {
 class User {
 
 	/**
-	 * \type{\arrayof{\string}} A list of default user toggles, i.e., boolean user
-	 * preferences that are displayed by Special:Preferences as checkboxes.
-	 * This list can be extended via the UserToggles hook or by
-	 * $wgContLang::getExtraUserToggles().
-	 * @showinitializer
-	 */
-	public static $mToggles = array(
-		'highlightbroken',
-		'justify',
-		'hideminor',
-		'extendwatchlist',
-		'usenewrc',
-		'numberheadings',
-		'showtoolbar',
-		'editondblclick',
-		'editsection',
-		'editsectiononrightclick',
-		'showtoc',
-		'rememberpassword',
-		'watchcreations',
-		'watchdefault',
-		'watchmoves',
-		'watchdeletion',
-		'previewontop',
-		'previewonfirst',
-		'nocache',
-		'enotifwatchlistpages',
-		'enotifusertalkpages',
-		'enotifminoredits',
-		'enotifrevealaddr',
-		'shownumberswatching',
-		'fancysig',
-		'externaleditor',
-		'externaldiff',
-		'showjumplinks',
-		'uselivepreview',
-		'forceeditsummary',
-		'watchlisthideminor',
-		'watchlisthidebots',
-		'watchlisthideown',
-		'watchlisthideanons',
-		'watchlisthideliu',
-		'ccmeonemails',
-		'diffonly',
-		'showhiddencats',
-		'noconvertlink',
-		'norollbackdiff',
-	);
-
-	/**
 	 * \type{\arrayof{\string}} List of member variables which are saved to the
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.
@@ -1088,22 +1038,6 @@ class User {
 		} else {
 			return null;
 		}
-	}
-
-	/**
-	 * Get a list of user toggle names
-	 * @return \type{\arrayof{\string}} Array of user toggle names
-	 */
-	static function getToggles() {
-		global $wgContLang, $wgUseRCPatrol;
-		$extraToggles = array();
-		wfRunHooks( 'UserToggles', array( &$extraToggles ) );
-		if( $wgUseRCPatrol ) {
-			$extraToggles[] = 'hidepatrolled';
-			$extraToggles[] = 'newpageshidepatrolled';
-			$extraToggles[] = 'watchlisthidepatrolled';
-		}
-		return array_merge( self::$mToggles, $extraToggles, $wgContLang->getExtraUserToggles() );
 	}
 
 
