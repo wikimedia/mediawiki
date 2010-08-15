@@ -936,14 +936,12 @@ function do_all_updates( $shared = false, $purge = true ) {
 
 	wfRunHooks( 'LoadExtensionSchemaUpdates' );
 
-	$doUser = $shared ? $wgSharedDB && in_array( 'user', $wgSharedTables ) : !$wgSharedDB || !in_array( 'user', $wgSharedTables );
-
 	if ( $wgDBtype === 'postgres' ) {
 		do_postgres_updates();
 		return;
 	}
 
-	$up = DatabaseUpdater::newForDb( $wgDatabase );
+	$up = DatabaseUpdater::newForDb( $wgDatabase, $shared );
 	$up->doUpdates();
 
 	wfOut( "Deleting old default messages (this may take a long time!)..." );

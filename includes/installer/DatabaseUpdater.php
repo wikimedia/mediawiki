@@ -18,73 +18,44 @@ abstract class DatabaseUpdater {
 
 	protected $db;
 
-	protected function __construct( $db ) {
+	protected $shared = false;
+
+	protected function __construct( $db, $shared ) {
 		$this->db = $db;
+		$this->shared = $shared;
 	}
 
-	public static function newForDB( $db ) {
+	public static function newForDB( $db, $shared ) {
 		switch( $db->getType() ) {
 			case 'mysql':
-				return new MysqlUpdater( $db );
+				return new MysqlUpdater( $db, $shared );
 			case 'sqlite':
-				return new SqliteUpdater( $db );
+				return new SqliteUpdater( $db, $shared );
 			case 'oracle':
-				return new OracleUpdater( $db );
+				return new OracleUpdater( $db, $shared );
 			default:
 				throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
 		}
 	}
 
-	public function doUpdates() {
-		global $IP;
+	public function doUpdates( $doUser = false ) {
+		global $IP, $wgVersion;
 		require_once( "$IP/maintenance/updaters.inc" );
-		$this->loadUpdates();
-		foreach ( $this->updates as $version => $updates ) {
-			foreach( $updates as $params ) {
-				$func = array_shift( $params );
-				call_user_func_array( $func, $params );
-				flush();
-			}
-			// some updates don't get recorded :(
-			if( $version !== 'always' ) {
-				$this->setAppliedUpdates( $version, $updates );
-			}
+		$this->updates = array_merge( $this->getCoreUpdateList(),
+			$this->getOldGlobalUpdates( $doUser ) );
+		foreach ( $this->updates as $params ) {
+			$func = array_shift( $params );
+			call_user_func_array( $func, $params );
+			flush();
 		}
-	}
-
-	protected function loadUpdates() {
-		// If the updatelog table hasn't been upgraded, we can't use the new
-		// style of recording our steps. Run all to be safe
-		if( !$this->canUseNewUpdatelog() ) {
-			$this->updates = $this->getCoreUpdateList();
-		} else {
-			foreach( $this->getCoreUpdateList() as $version => $updates ) {
-				$appliedUpdates = $this->getAppliedUpdates( $version );
-				if( !$appliedUpdates || $appliedUpdates != $updates ) {
-					$this->updates[ $version ] = $updates;
-				}
-			}
-		}
-		$this->getOldGlobalUpdates();
-	}
-
-	protected function getAppliedUpdates( $version ) {
-		$key = "updatelist-$version";
-		$val = $this->db->selectField( 'updatelog', 'ul_value',
-			array( 'ul_key' => $key ), __METHOD__ );
-		if( !$val ) {
-			return null;
-		} else {
-			return unserialize( $val );
-		}
+		$this->setAppliedUpdates( $wgVersion, $this->updates );
 	}
 
 	protected function setAppliedUpdates( $version, $updates = array() ) {
 		if( !$this->canUseNewUpdatelog() ) {
 			return;
 		}
-		$key = "updatelist-$version";
-		$this->db->delete( 'updatelog', array( 'ul_key' => $key ), __METHOD__ );
+		$key = "updatelist-$version-" . time();
 		$this->db->insert( 'updatelog',
 			array( 'ul_key' => $key, 'ul_value' => serialize( $updates ) ),
 			 __METHOD__ );
@@ -111,25 +82,31 @@ abstract class DatabaseUpdater {
 	 * version these like we do with our core updates, so they have to go
 	 * in 'always'
 	 */
-	private function getOldGlobalUpdates() {
+	private function getOldGlobalUpdates( $douser ) {
 		global $wgUpdates, $wgExtNewFields, $wgExtNewTables,
-			$wgExtModifiedFields, $wgExtNewIndexes;
+			$wgExtModifiedFields, $wgExtNewIndexes, $wgSharedDB, $wgSharedTables;
+
+		$doUser = $this->shared ?
+			$wgSharedDB && in_array( 'user', $wgSharedTables ) :
+			!$wgSharedDB || !in_array( 'user', $wgSharedTables );
+
+		$updates = array();
 
 		if( isset( $wgUpdates[ $this->db->getType() ] ) ) {
 			foreach( $wgUpdates[ $this->db->getType() ] as $upd ) {
-				$this->updates['always'][] = $upd;
+				$updates[] = $upd;
 			}
 		}
 
 		foreach ( $wgExtNewTables as $tableRecord ) {
-			$this->updates['always'][] = array(
+			$updates[] = array(
 				'add_table', $tableRecord[0], $tableRecord[1], true
 			);
 		}
 
 		foreach ( $wgExtNewFields as $fieldRecord ) {
 			if ( $fieldRecord[0] != 'user' || $doUser ) {
-				$this->updates['always'][] = array(
+				$updates[] = array(
 					'add_field', $fieldRecord[0], $fieldRecord[1],
 						$fieldRecord[2], true
 				);
@@ -137,18 +114,20 @@ abstract class DatabaseUpdater {
 		}
 
 		foreach ( $wgExtNewIndexes as $fieldRecord ) {
-			$this->updates['always'][] = array(
+			$updates[] = array(
 				'add_index', $fieldRecord[0], $fieldRecord[1],
 					$fieldRecord[2], true
 			);
 		}
 
 		foreach ( $wgExtModifiedFields as $fieldRecord ) {
-			$this->updates['always'][] = array(
+			$updates[] = array(
 				'modify_field', $fieldRecord[0], $fieldRecord[1],
 					$fieldRecord[2], true
 			);
 		}
+
+		return $updates;
 	}
 
 	/**
