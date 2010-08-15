@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:RevisionMove
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +16,9 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -33,17 +37,13 @@
  * **** NOTE: This feature is EXPERIMENTAL.  ****
  * **** Do not use on any productive system. ****
  *
- * @file
  * @ingroup SpecialPage
- */
-
-/* TODO In case page_deleted gets introduced some day, use it.
- *      Currently it is possible with RevisionMove to make the latest revision
- *      of a page a RevisionDeleted one. When that happens, the user is presented
- *      an empty page with no error message whatsoever (in case he is not permitted
- *      to view deleted edits).
+ * @todo In case page_deleted gets introduced some day, use it.
+ *       Currently it is possible with RevisionMove to make the latest revision
+ *       of a page a RevisionDeleted one. When that happens, the user is presented
+ *       an empty page with no error message whatsoever (in case he is not permitted
+ *       to view deleted edits).
 */
-
 class SpecialRevisionMove extends UnlistedSpecialPage {
 	# common objects
 	var $mOldTitle; # Title object.

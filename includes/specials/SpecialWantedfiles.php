@@ -1,5 +1,8 @@
 <?php
 /**
+ * Implements Special:Wantedfiles
+ *
+ * Copyright © 2008 Soxred93
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,17 +18,16 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
- * Querypage that lists the most wanted files - implements Special:Wantedfiles
  *
  * @file
  * @ingroup SpecialPage
- *
  * @author Soxred93 <soxred93@gmail.com>
- * @copyright Copyright © 2008, Soxred93
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
+
+/**
+ * Querypage that lists the most wanted files
+ *
+ * @ingroup SpecialPage
  */
 class WantedFilesPage extends WantedQueryPage {
 

@@ -1,5 +1,10 @@
 <?php
 /**
+ * Implements Special:Wantedtemplates
+ *
+ * Copyright © 2008, Danny B.
+ * Based on SpecialWantedcategories.php by Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * makeWlhLink() taken from SpecialMostlinkedtemplates by Rob Church <robchur@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,19 +20,16 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
- * A querypage to list the most wanted templates - implements Special:Wantedtemplates
- * based on SpecialWantedcategories.php by Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * makeWlhLink() taken from SpecialMostlinkedtemplates by Rob Church <robchur@gmail.com>
  *
  * @file
  * @ingroup SpecialPage
- *
  * @author Danny B.
- * @copyright Copyright © 2008, Danny B.
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
+
+/**
+ * A querypage to list the most wanted templates
+ *
+ * @ingroup SpecialPage
  */
 class WantedTemplatesPage extends WantedQueryPage {
 
