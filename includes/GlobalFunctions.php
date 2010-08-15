@@ -3454,3 +3454,22 @@ function wfArrayMap( $function, $input ) {
 	}
 	return $ret;
 }
+
+/**
+ * Returns the PackageRepository object for interaction with the package repository.
+ * 
+ * TODO: Make the repository type also configurable. 
+ * 
+ * @since 1.17
+ * 
+ * @return PackageRepository
+ */
+function wfGetRepository() {
+	global $wgRepository, $wgRepositoryApiLocation;
+	
+	if ( !isset( $wgRepository ) ) {
+		$wgRepository = new DistributionRepository( $wgRepositoryApiLocation );
+	}
+	
+	return $wgRepository;
+} 

@@ -17,7 +17,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * Base repository class. Deriving classes handle interaction with
  * package repositories of the type they support.
  * 
- * @since 0.1
+ * @since 1.17
  * 
  * @ingroup Deployment
  * 
@@ -28,7 +28,7 @@ abstract class PackageRepository {
 	/**
 	 * Base location of the repository.
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 * 
 	 * @var string
 	 */
@@ -37,7 +37,7 @@ abstract class PackageRepository {
 	/**
 	 * Returns a list of extensions matching the search criteria.
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 * 
 	 * @param $filterType String
 	 * @param $filterValue String
@@ -49,7 +49,7 @@ abstract class PackageRepository {
 	/**
 	 * Checks if newer versions of an extension are available.
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 * 
 	 * @param $extensionName String
 	 * @param $currentVersion String
@@ -61,7 +61,7 @@ abstract class PackageRepository {
 	/**
 	 * Checks if newer versions of MediaWiki is available.
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 * 
 	 * @param $currentVersion String
 	 * 
@@ -72,7 +72,7 @@ abstract class PackageRepository {
 	/**
 	 * Checks if there are any updates for this MediaWiki installation and extensions.
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 * 
 	 * @param $coreVersion String
 	 * @param $extensions Array
@@ -86,7 +86,7 @@ abstract class PackageRepository {
 	 * 
 	 * @param $location String
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 */
 	public function __construct( $location ) {
 		$this->location = $location;
