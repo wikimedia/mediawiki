@@ -26,17 +26,20 @@
  *
  * @ingroup SpecialPage
  */
-class ProtectedPagesForm {
+class SpecialProtectedpages extends SpecialPage {
 
 	protected $IdLevel = 'level';
 	protected $IdType  = 'type';
 
-	public function showList( $msg = '' ) {
+	public function __construct() {
+		parent::__construct( 'Protectedpages' );
+	}
+
+	public function execute( $par ) {
 		global $wgOut, $wgRequest;
 
-		if( $msg != "" ) {
-			$wgOut->setSubtitle( $msg );
-		}
+		$this->setHeaders();
+		$this->outputHeader();
 
 		// Purge expired entries on one in every 10 queries
 		if( !mt_rand( 0, 10 ) ) {
@@ -351,12 +354,4 @@ class ProtectedPagesPager extends AlphabeticPager {
 	function getIndexField() {
 		return 'pr_id';
 	}
-}
-
-/**
- * Constructor
- */
-function wfSpecialProtectedpages() {
-	$ppForm = new ProtectedPagesForm();
-	$ppForm->showList();
 }
