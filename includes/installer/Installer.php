@@ -385,25 +385,19 @@ abstract class Installer {
 
 		$repository = wfGetRepository();
 		$currentVersion = $repository->getLatestCoreVersion();
-		
-		/*
-		if( !$latestInfo ) {
-			$this->showMessage( 'config-env-latest-can-not-check', $latestInfoUrl );
-			return;
-		}
-		*/
 
 		$this->setVar( '_ExternalHTTP', true );
 
 		if ( $currentVersion === false ) {
 			# For when the request is successful but there's e.g. some silly man in
 			# the middle firewall blocking us, e.g. one of those annoying airport ones
-			$this->showMessage( 'config-env-latest-data-invalid', $latestInfoUrl );
+			$this->showMessage( 'config-env-latest-can-not-check', $repository->getLocation() );
 			return;
 		}
 
 		if( version_compare( $wgVersion, $currentVersion, '<' ) ) {
 			$this->showMessage( 'config-env-latest-old' );
+			// FIXME: this only works for the web installer!
 			$this->showHelpBox( 'config-env-latest-help', $wgVersion, $currentVersion );
 		} elseif( version_compare( $wgVersion, $currentVersion, '>' ) ) {
 			$this->showMessage( 'config-env-latest-new' );
@@ -438,6 +432,7 @@ abstract class Installer {
 
 		if ( !$compiledDBs ) {
 			$this->showMessage( 'config-no-db' );
+			// FIXME: this only works for the web installer!
 			$this->showHelpBox( 'config-no-db-help', $wgLang->commaList( $allNames ) );
 			return false;
 		}
