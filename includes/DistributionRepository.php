@@ -17,7 +17,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * Repository class for interaction with repositories provided by
  * the Distirbution extension and the MediaWiki API.
  * 
- * @since 0.1
+ * @since 1.17
  * 
  * @ingroup Deployment
  * 
@@ -30,7 +30,7 @@ class DistributionRepository extends PackageRepository {
 	 * 
 	 * @param $location String: path to the api of the MediaWiki install providing the repository.
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 */
 	public function __construct( $location ) {
 		parent::__construct( $location );
@@ -39,7 +39,7 @@ class DistributionRepository extends PackageRepository {
 	/**
 	 * @see PackageRepository::findExtenions
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 * 
 	 * @param $filterType String
 	 * @param $filterValue String
@@ -75,7 +75,7 @@ class DistributionRepository extends PackageRepository {
 	/**
 	 * @see PackageRepository::extensionHasUpdate
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 */		
 	public function extensionHasUpdate( $extensionName, $currentVersion ) {
 		global $wgRepositoryPackageStates;
@@ -106,7 +106,7 @@ class DistributionRepository extends PackageRepository {
 	/**
 	 * @see PackageRepository::coreHasUpdate
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 */			
 	public function coreHasUpdate( $currentVersion ) {
 		global $wgRepositoryPackageStates;
@@ -136,7 +136,7 @@ class DistributionRepository extends PackageRepository {
 	/**
 	 * @see PackageRepository::installationHasUpdates
 	 * 
-	 * @since 0.1
+	 * @since 1.17
 	 */			
 	public function installationHasUpdates( $coreVersion, array $extensions ) {
 		global $wgRepositoryPackageStates;
