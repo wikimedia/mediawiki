@@ -934,15 +934,15 @@ function purge_cache() {
 function do_all_updates( $shared = false, $purge = true ) {
 	global $wgSharedDB, $wgSharedTables, $wgDatabase, $wgDBtype;
 
-	wfRunHooks( 'LoadExtensionSchemaUpdates' );
+	$updater = DatabaseUpdater::newForDb( $wgDatabase, $shared );
+
+	wfRunHooks( 'LoadExtensionSchemaUpdates', array( &$updater ) );
+
+	$updater->doUpdates();
 
 	if ( $wgDBtype === 'postgres' ) {
-		do_postgres_updates();
 		return;
 	}
-
-	$up = DatabaseUpdater::newForDb( $wgDatabase, $shared );
-	$up->doUpdates();
 
 	wfOut( "Deleting old default messages (this may take a long time!)..." );
 	if ( !defined( 'MW_NO_SETUP' ) ) {

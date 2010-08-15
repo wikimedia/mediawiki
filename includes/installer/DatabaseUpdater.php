@@ -26,16 +26,16 @@ abstract class DatabaseUpdater {
 	}
 
 	public static function newForDB( $db, $shared ) {
-		switch( $db->getType() ) {
-			case 'mysql':
-			case 'sqlite':
-			case 'oracle':
-				$class = ucfirst( $db->getType() ) . 'Updater';
-				return new $class( $db, $shared );
-			default:
-				throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
+		$type = $db->getType();
+		if( in_array( $type, Installer::getDBTypes() ) ) {
+			$class = ucfirst( $type ) . 'Updater';
+			return new $class( $db, $shared );
+		} else {
+			throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
 		}
 	}
+
+	public function getDB() { return $this->db; }
 
 	public function doUpdates() {
 		global $IP, $wgVersion;
