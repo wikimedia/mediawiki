@@ -1,5 +1,11 @@
 #!/usr/bin/php
 <?php
+/**
+ * Other tests for the unicode normalization module
+ *
+ * @file
+ * @ingroup UtfNormal
+ */
 
 if( php_sapi_name() != 'cli' ) {
 	die( "Run me from the command line please.\n" );

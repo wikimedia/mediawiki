@@ -1,4 +1,10 @@
 <?php
+/**
+ * Some constant definitions for the unicode normalization module
+ *
+ * @file
+ * @ingroup UtfNormal
+ */
 
 define( 'UNICODE_HANGUL_FIRST', 0xac00 );
 define( 'UNICODE_HANGUL_LAST',  0xd7a3 );
