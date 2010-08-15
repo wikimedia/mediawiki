@@ -1,11 +1,19 @@
 <?php
 /**
-  * PNG frame counter.
-  * Slightly derived from GIFMetadataExtractor.php
-  * Deliberately not using MWExceptions to avoid external dependencies, encouraging
-  * redistribution.
-  */
+ * PNG frame counter.
+ * Slightly derived from GIFMetadataExtractor.php
+ * Deliberately not using MWExceptions to avoid external dependencies, encouraging
+ * redistribution.
+ *
+ * @file
+ * @ingroup Media
+ */
 
+/**
+ * PNG frame counter.
+ *
+ * @ingroup Media
+ */
 class PNGMetadataExtractor {
 	static $png_sig;
 	static $CRC_size;

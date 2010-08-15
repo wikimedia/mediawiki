@@ -1,10 +1,14 @@
 <?php
 /**
+ * Handler for SVG images.
+ *
  * @file
  * @ingroup Media
  */
 
 /**
+ * Handler for SVG images.
+ *
  * @ingroup Media
  */
 class SvgHandler extends ImageHandler {

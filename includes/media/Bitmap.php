@@ -1,10 +1,14 @@
 <?php
 /**
+ * Generic handler for bitmap images
+ *
  * @file
  * @ingroup Media
  */
 
 /**
+ * Generic handler for bitmap images
+ *
  * @ingroup Media
  */
 class BitmapHandler extends ImageHandler {
