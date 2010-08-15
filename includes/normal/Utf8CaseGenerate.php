@@ -1,31 +1,29 @@
 <?php
-# Copyright (C) 2004,2008 Brion Vibber <brion@pobox.com>
-# http://www.mediawiki.org/
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-# http://www.gnu.org/copyleft/gpl.html
-
 /**
- * This script generates Utf8Case.inc from the Unicode Character Database
+ * This script generates Utf8Case.php from the Unicode Character Database
  * and supplementary files.
  *
+ * Copyright © 2004,2008 Brion Vibber <brion@pobox.com>
+ * http://www.mediawiki.org/
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  * @ingroup UtfNormal
- * @access private
  */
-
-/** */
 
 if( php_sapi_name() != 'cli' ) {
 	die( "Run me from the command line please.\n" );
@@ -67,23 +65,24 @@ if( $out ) {
 	$outLowerChars = escapeArray( $wikiLowerChars );
 	$outdata = "<" . "?php
 /**
- * Simple 1:1 upper/lowercase switching arrays for utf-8 text
- * Won't get context-sensitive things yet
+ * Simple 1:1 upper/lowercase switching arrays for utf-8 text.
+ * Won't get context-sensitive things yet.
  *
  * Hack for bugs in ucfirst() and company
  *
  * These are pulled from memcached if possible, as this is faster than filling
  * up a big array manually.
+ *
+ * @file
  * @ingroup Language
  */
 
-/*
+/**
  * Translation array to get upper case character
  */
-
 \$wikiUpperChars = $outUpperChars;
 
-/*
+/**
  * Translation array to get lower case character
  */
 \$wikiLowerChars = $outLowerChars;\n";

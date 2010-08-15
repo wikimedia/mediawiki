@@ -1,19 +1,20 @@
 <?php
 /**
- * Simple 1:1 upper/lowercase switching arrays for utf-8 text
- * Won't get context-sensitive things yet
+ * Simple 1:1 upper/lowercase switching arrays for utf-8 text.
+ * Won't get context-sensitive things yet.
  *
  * Hack for bugs in ucfirst() and company
  *
  * These are pulled from memcached if possible, as this is faster than filling
  * up a big array manually.
+ *
+ * @file
  * @ingroup Language
  */
 
-/*
+/**
  * Translation array to get upper case character
  */
-
 $wikiUpperChars = array(
 	'a' => 'A',
 	'b' => 'B',
@@ -1048,7 +1049,7 @@ $wikiUpperChars = array(
 	'𐑏' => '𐐧'
 );
 
-/*
+/**
  * Translation array to get lower case character
  */
 $wikiLowerChars = array(
