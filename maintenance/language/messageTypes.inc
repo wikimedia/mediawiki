@@ -108,6 +108,7 @@ $wgIgnoredMessages = array(
 	'shareddescriptionfollows',
 	'signature',
 	'signature-anon',
+	'signupstart',
 	'signupend',
 	'sitenotice',
 	'sitesubtitle',
