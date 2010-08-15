@@ -26,17 +26,20 @@
  *
  * @ingroup SpecialPage
  */
-class ProtectedTitlesForm {
+class SpecialProtectedtitles extends SpecialPage {
 
 	protected $IdLevel = 'level';
 	protected $IdType  = 'type';
 
-	function showList( $msg = '' ) {
+	public function __construct() {
+		parent::__construct( 'Protectedtitles' );
+	}
+
+	function execute( $par ) {
 		global $wgOut, $wgRequest;
 
-		if ( $msg != "" ) {
-			$wgOut->setSubtitle( $msg );
-		}
+		$this->setHeaders();
+		$this->outputHeader();
 
 		// Purge expired entries on one in every 10 queries
 		if ( !mt_rand( 0, 10 ) ) {
