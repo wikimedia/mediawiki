@@ -195,7 +195,8 @@ abstract class IndexPager implements Pager {
 		$numRows = $res->numRows();
 		if ( $numRows ) {
 			# Remove any table prefix from index field
-			$indexColumn = end( explode( '.', $this->mIndexField ) );
+			$parts = explode( '.', $this->mIndexField );
+			$indexColumn = end( $parts );
 			
 			$row = $res->fetchRow();
 			$firstIndex = $row[$indexColumn];
