@@ -99,6 +99,17 @@ abstract class PackageRepository {
 	 */
 	public function __construct( $location ) {
 		$this->location = $location;
-	}		
+	}
+
+	/**
+	 * Returns the repository location.
+	 * 
+	 * @since 1.17
+	 * 
+	 * @return string
+	 */	
+	public function getLocation() {
+		return $this->location;
+	}
 	
 }
