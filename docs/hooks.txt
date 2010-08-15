@@ -1031,8 +1031,8 @@ completed
 'ListDefinedTags': When trying to find all defined tags.
 &$tags: The list of tags.
 
-'LoadExtensionSchemaUpdates': called by maintenance/updaters.inc when upgrading
-database schema
+'LoadExtensionSchemaUpdates': called during database installation and updates
+&updater: A DatabaseUpdater subclass
 
 'LocalFile::getHistory': called before file history query performed
 $file: the file

@@ -200,7 +200,7 @@ abstract class CoreInstaller extends Installer {
 			$this->settings[$var] = $GLOBALS[$var];
 		}
 
-		foreach ( $this->dbTypes as $type ) {
+		foreach ( self::getDBTypes() as $type ) {
 			$installer = $this->getDBInstaller( $type );
 
 			if ( !$installer->isCompiled() ) {

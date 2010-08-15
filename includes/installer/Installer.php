@@ -61,7 +61,7 @@ abstract class Installer {
 	 *
 	 * @var array
 	 */
-	protected $dbTypes = array(
+	protected static $dbTypes = array(
 		'mysql',
 		'postgres',
 		'sqlite',
@@ -118,8 +118,8 @@ abstract class Installer {
 	/**
 	 * Get a list of known DB types.
 	 */
-	public function getDBTypes() {
-		return $this->dbTypes;
+	public static function getDBTypes() {
+		return self::$dbTypes;
 	}
 
 	/**
@@ -416,7 +416,7 @@ abstract class Installer {
 		$goodNames = array();
 		$allNames = array();
 
-		foreach ( $this->dbTypes as $name ) {
+		foreach ( self::getDBTypes() as $name ) {
 			$db = $this->getDBInstaller( $name );
 			$readableName = wfMsg( 'config-type-' . $name );
 
