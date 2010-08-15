@@ -1,5 +1,7 @@
 <?php
 /**
+ * Handler for Microsoft's bitmap format
+ *
  * @file
  * @ingroup Media
  */

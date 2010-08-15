@@ -1,10 +1,14 @@
 <?php
 /**
+ * Handler for DjVu images
+ *
  * @file
  * @ingroup Media
  */
  
 /**
+ * Handler for DjVu images
+ *
  * @ingroup Media
  */
 class DjVuHandler extends ImageHandler {

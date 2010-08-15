@@ -1,5 +1,7 @@
 <?php
 /**
+ * Base class for the output of file transformation methods.
+ *
  * @file
  * @ingroup Media
  */

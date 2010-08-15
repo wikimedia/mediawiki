@@ -1,12 +1,21 @@
 <?php
 /**
-  * GIF frame counter.
-  * Originally written in Perl by Steve Sanbeg.
-  * Ported to PHP by Andrew Garrett
-  * Deliberately not using MWExceptions to avoid external dependencies, encouraging
-  * redistribution.
-  */
+ * GIF frame counter.
+ *
+ * Originally written in Perl by Steve Sanbeg.
+ * Ported to PHP by Andrew Garrett
+ * Deliberately not using MWExceptions to avoid external dependencies, encouraging
+ * redistribution.
+ *
+ * @file
+ * @ingroup Media
+ */
 
+/**
+ * GIF frame counter.
+ *
+ * @ingroup Media
+ */
 class GIFMetadataExtractor {
 	static $gif_frame_sep;
 	static $gif_extension_sep;

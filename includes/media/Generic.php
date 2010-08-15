@@ -1,6 +1,7 @@
 <?php
 /**
  * Media-handling base classes and generic functionality
+ *
  * @file
  * @ingroup Media
  */

@@ -1,10 +1,14 @@
 <?php
 /**
+ * Handler for Tiff images.
+ *
  * @file
  * @ingroup Media
  */
 
 /**
+ * Handler for Tiff images.
+ *
  * @ingroup Media
  */
 class TiffHandler extends BitmapHandler {

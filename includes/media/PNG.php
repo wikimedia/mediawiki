@@ -1,5 +1,7 @@
 <?php
 /**
+ * Handler for PNG images.
+ *
  * @file
  * @ingroup Media
  */

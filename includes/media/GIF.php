@@ -1,5 +1,7 @@
 <?php
 /**
+ * Handler for GIF images.
+ *
  * @file
  * @ingroup Media
  */
