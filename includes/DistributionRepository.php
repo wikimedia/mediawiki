@@ -112,7 +112,7 @@ class DistributionRepository extends PackageRepository {
 		global $wgRepositoryPackageStates;
 		
 		$currentVersion = urlencode( $currentVersion );	
-		$states = urlencode( implode( '|', $wgRepositoryPackageStates ) );	
+		$states = urlencode( implode( '|', $wgRepositoryPackageStates ) );
 		
 		$response = Http::get(
 			"$this->location?format=json&action=updates&mediawiki=$currentVersion&state=$states",
@@ -131,6 +131,43 @@ class DistributionRepository extends PackageRepository {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * @see PackageRepository::coreHasUpdate
+	 * 
+	 * @since 1.17
+	 */		
+	public function getLatestCoreVersion() {
+		global $wgRepositoryPackageStates;
+		
+		$states = urlencode( implode( '|', $wgRepositoryPackageStates ) );
+		
+		// TODO: use $states
+		
+		$response = Http::get(
+			"$this->location?format=json&action=mwreleases",
+			'default',
+			array( 'sslVerifyHost' => true, 'sslVerifyCert' => true )
+		);
+		
+		if ( $response === false ) {
+			return false;
+		}
+
+		$response = FormatJson::decode( $response );
+		
+		$current = false;
+		
+		if ( property_exists( $response, 'mwreleases' ) ) {
+			foreach ( $response->mwreleases as $release ) {
+				if ( property_exists( $release, 'current' ) && property_exists( $release, 'version') ) {
+					$current = $release->version;
+				}
+			}
+		}
+		
+		return $current;
 	}
 	
 	/**

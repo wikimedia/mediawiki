@@ -70,6 +70,15 @@ abstract class PackageRepository {
 	public abstract function coreHasUpdate( $currentVersion );
 	
 	/**
+	 * Returns the latest MediaWiki release, or false when the request fails.
+	 * 
+	 * @since 1.17
+	 * 
+	 * @return Mixed: string or false
+	 */		
+	public abstract function getLatestCoreVersion();	
+	
+	/**
 	 * Checks if there are any updates for this MediaWiki installation and extensions.
 	 * 
 	 * @since 1.17
