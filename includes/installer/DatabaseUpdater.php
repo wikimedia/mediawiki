@@ -37,11 +37,11 @@ abstract class DatabaseUpdater {
 		}
 	}
 
-	public function doUpdates( $doUser = false ) {
+	public function doUpdates() {
 		global $IP, $wgVersion;
 		require_once( "$IP/maintenance/updaters.inc" );
 		$this->updates = array_merge( $this->getCoreUpdateList(),
-			$this->getOldGlobalUpdates( $doUser ) );
+			$this->getOldGlobalUpdates() );
 		foreach ( $this->updates as $params ) {
 			$func = array_shift( $params );
 			call_user_func_array( $func, $params );
@@ -81,7 +81,7 @@ abstract class DatabaseUpdater {
 	 * version these like we do with our core updates, so they have to go
 	 * in 'always'
 	 */
-	private function getOldGlobalUpdates( $douser ) {
+	private function getOldGlobalUpdates() {
 		global $wgUpdates, $wgExtNewFields, $wgExtNewTables,
 			$wgExtModifiedFields, $wgExtNewIndexes, $wgSharedDB, $wgSharedTables;
 
