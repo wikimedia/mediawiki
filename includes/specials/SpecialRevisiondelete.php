@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:Revisiondelete
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,16 +16,17 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * Special page allowing users with the appropriate permissions to view
  * and hide revisions. Log items can also be hidden.
  *
- * @file
  * @ingroup SpecialPage
  */
-
 class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** Skin object */
 	var $skin;

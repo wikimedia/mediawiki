@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:Preferences
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,8 +16,16 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup SpecialPage
  */
 
+/**
+ * A special page that allows users to change their preferences
+ *
+ * @ingroup SpecialPage
+ */
 class SpecialPreferences extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'Preferences' );

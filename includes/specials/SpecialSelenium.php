@@ -1,9 +1,15 @@
 <?php
-
 /**
- * TODO: remove this feature
+ * Implements Special:Selenium
+ *
+ * @file
+ * @ingroup SpecialPage
+ * @todo Remove this feature
  */
 
+/**
+ * @ingroup SpecialPage
+ */
 class SpecialSelenium extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'Selenium', 'selenium', false );

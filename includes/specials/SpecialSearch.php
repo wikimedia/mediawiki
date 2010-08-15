@@ -1,6 +1,8 @@
 <?php
 /**
- * Copyright (C) 2004 Brion Vibber <brion@pobox.com>
+ * Implements Special:Search
+ *
+ * Copyright © 2004 Brion Vibber <brion@pobox.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +18,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
- * Run text & title search and display the output
+ *
  * @file
  * @ingroup SpecialPage
  */

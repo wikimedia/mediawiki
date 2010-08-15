@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:Statistics
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,18 +16,16 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
- * Special page lists various statistics, including the contents of
- * `site_stats`, plus page view details if enabled
  *
  * @file
  * @ingroup SpecialPage
  */
 
 /**
- * Some statistics about the wiki
+ * Special page lists various statistics, including the contents of
+ * `site_stats`, plus page view details if enabled
+ *
+ * @ingroup SpecialPage
  */
 class SpecialStatistics extends SpecialPage {
 	

@@ -1,5 +1,8 @@
 <?php
 /**
+ * Implements Special:Unusedtemplates
+ *
+ * Copyright © 2006 Rob Church
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,18 +18,15 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
+ *
  * @file
  * @ingroup SpecialPage
+ * @author Rob Church <robchur@gmail.com>
  */
 
 /**
- * implements Special:Unusedtemplates
- * @author Rob Church <robchur@gmail.com>
- * @copyright © 2006 Rob Church
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ * A special page that lists unused templates
+ *
  * @ingroup SpecialPage
  */
 class UnusedtemplatesPage extends QueryPage {

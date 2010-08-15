@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:Uncategorizedimages
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,10 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
- * Special page lists images which haven't been categorised
  *
  * @file
  * @ingroup SpecialPage
@@ -26,6 +23,8 @@
  */
 
 /**
+ * Special page lists images which haven't been categorised
+ *
  * @ingroup SpecialPage
  */
 class UncategorizedImagesPage extends ImageQueryPage {

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Implements Special:Upload
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,16 +16,18 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- */
-
-/**
+ *
  * @file
  * @ingroup SpecialPage
  * @ingroup Upload
- *
- * Form for handling uploads and special page.
  */
 
+/**
+ * Form for handling uploads and special page.
+ *
+ * @ingroup SpecialPage
+ * @ingroup Upload
+ */
 class SpecialUpload extends SpecialPage {
 	/**
 	 * Constructor : initialise object
