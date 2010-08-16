@@ -20,6 +20,10 @@ abstract class DatabaseUpdater {
 
 	protected $shared = false;
 
+	protected $postDatabaseUpdateMaintenance = array(
+		'DeleteDefaultMessages'
+	);
+
 	protected function __construct( $db, $shared ) {
 		$this->db = $db;
 		$this->shared = $shared;
@@ -36,6 +40,10 @@ abstract class DatabaseUpdater {
 	}
 
 	public function getDB() { return $this->db; }
+
+	public function getPostDatabaseUpdateMaintenance() {
+		return $this->postDatabaseUpdateMaintenance;
+	}
 
 	public function doUpdates() {
 		global $IP, $wgVersion;
