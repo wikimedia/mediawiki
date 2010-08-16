@@ -439,7 +439,7 @@ $1',
 'policy-url'           => 'Project:ප්‍රතිපත්තිය',
 'portal'               => 'ප්‍රජා ද්වාරය',
 'portal-url'           => 'Project:ප්‍රජා ද්වාරය',
-'privacy'              => 'පුද්ගලිකත්ව ප්‍රතිපත්තිය',
+'privacy'              => 'පෞද්ගලිකත්ව ප්‍රතිපත්තිය',
 'privacypage'          => 'Project:පුද්ගලිකත්ව ප්‍රතිපත්තිය',
 
 'badaccess'        => 'අවසරදීමේ දෝෂයකි',
@@ -676,6 +676,15 @@ $2',
 'loginlanguagelabel'         => 'භාෂාව: $1',
 'suspicious-userlogout'      => 'නිෂ්ක්‍රමණය සඳහා ඔබගේ අයැදුම නිෂ්ප්‍රභා කෙරුනේ එය යොමු කොට ඇත්තේ භින්න(කැඩුනු) බ්‍රවුසරයකින් හෝ නිවේෂණය කෙරෙමින් පවතින ප්‍රොක්සියක් වෙතින් යැයි බැලූ බැල්මට පෙනෙන බැවිනි.',
 
+# JavaScript password checks
+'password-strength'            => 'ඇස්තමේන්තු කෙරුණු මුරපද ප්‍රබලතාවය: $1',
+'password-strength-bad'        => 'අවප්‍රමාණයි',
+'password-strength-mediocre'   => 'මධ්‍යමාන',
+'password-strength-acceptable' => 'පිළිගත හැකි',
+'password-strength-good'       => 'හොඳ',
+'password-retype'              => 'මුරපදය මෙහි යළි-සටහන් කරන්න',
+'password-retype-mismatch'     => 'මුරපද නොගැලපෙති',
+
 # Password reset dialog
 'resetpass'                 => 'මුර-පදය වෙනස් කරන්න',
 'resetpass_announce'        => 'විද්‍යුත්-තැපෑලෙන් එවනු ලැබූ තාවකාලික කේතයක් උපයෝගී කර ගනිමින් ඔබ ප්‍රවිෂ්ට වී ඇත.
@@ -734,7 +743,7 @@ $2',
 ඔබ නැවතත් සුරැකීම ක්ලික් කලහොත්, ඔබගේ සංස්කරණය එවැන්නක් විරහිතවම සුරැකෙනු ඇත.",
 'missingcommenttext'               => 'කරුණාකර පහතින් පරිකථනයක් ඇතුළු කරන්න.',
 'missingcommentheader'             => "'''සිහිගැන්වීමයි:''' මෙම පරිකථනය සඳහා ඔබ විසින් විෂයයක්/සිරස්තලයක් සපයා නොමැත.
-ඔබ නැවතත් සුරැකීම ක්ලික් කලහොත්, ඔබගේ සංස්කරණය එවැන්නක් විරහිතවම සුරැකෙනු ඇත.",
+ඔබ නැවතත් \"{{int:savearticle}}\" ක්ලික් කලහොත්, ඔබගේ සංස්කරණය එවැන්නක් විරහිතවම සුරැකෙනු ඇත.",
 'summary-preview'                  => 'සාරාංශ පෙර-දසුන:',
 'subject-preview'                  => 'විෂයය/සිරස්තලය හි පෙර-දසුන:',
 'blockedtitle'                     => 'පරිශීලකයා වාරණය කර ඇත',
@@ -1238,6 +1247,7 @@ $1",
 'contextlines'                  => 'හිට් එකකට පේළි ගණන:',
 'contextchars'                  => 'එක් පේළියකට සන්දර්භය:',
 'stub-threshold'                => '<a href="#" class="stub">කොට සබැඳි</a> ආකෘතිකරණය සඳහා සීමකය (බයිට්):',
+'stub-threshold-disabled'       => 'අක්‍රිය කෙරිණි',
 'recentchangesdays'             => 'මෑත වෙනස්වීම්හි පෙන්විය යුතු දිනයන්:',
 'recentchangesdays-max'         => '(උපරිමයෙන් {{PLURAL:$1|එක් දිනක්|දින $1 ක්}})',
 'recentchangescount'            => 'පෙරනිමියෙන් පෙන්විය යුතු සංස්කරණ ගණන:',
@@ -1313,6 +1323,8 @@ HTML ටැගයන් පිරික්සන්න.',
 'prefs-advancedsearchoptions'   => 'ප්‍රගත විකල්පයන්',
 'prefs-advancedwatchlist'       => 'ප්‍රගත විකල්පයන්',
 'prefs-displayrc'               => 'දර්ශන විකල්පයන්',
+'prefs-displaysearchoptions'    => 'විකල්ප පෙන්වන්න',
+'prefs-displaywatchlist'        => 'විකල්ප පෙන්වන්න',
 'prefs-diffs'                   => 'වෙනස',
 
 # User rights
@@ -1424,6 +1436,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'right-override-export-depth' => '5වන මට්ටම දක්වා සබැඳි පිටු ද සහිතව පිටු නිර්යාත කරන්න',
 'right-sendemail'             => 'අනෙක් පරිශීලකයන්ට ඊ-ලිපි යවන්න',
 'right-revisionmove'          => 'සංශෝධන ඒකාබද්ධ කරන්න',
+'right-selenium'              => 'සෙලිනියම් පරික්ෂාවන් සිදුකරන්න',
 
 # User rights log
 'rightslog'      => 'පරිශීලක හිමිකම් සටහන',
@@ -1652,11 +1665,13 @@ MGP # පෙන්ටැක්ස්
 PICT # විවිධ.
  #</pre> <!-- මෙම පේළිය මෙලෙසම පැවතීමට ඉඩදෙන්න -->',
 'upload-success-subj'         => 'සාර්ථක උඩුගත කිරීමකි',
-'upload-success-msg'          => 'ඔබගේ උඩුගත කිරීම මෙහි ඇත: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => '[$2]වෙතින් ඔබගේ උඩුගත කිරීම සාර්ථක විය. එය මෙහි ඇත: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'උඩුගත කිරීමේ ගැටළුව',
 'upload-failure-msg'          => 'ඔබගේ උඩුගතකිරීම හා බැඳි ගැටළුවක් විය:
 
 $1',
+'upload-warning-subj'         => 'උඩුගතකෙරුම් අවවාදය',
+'upload-warning-msg'          => '[$2] වෙතින් ඔබගේ උඩුගතකෙරුමෙහි ගැටළුවක් පැන නැගිනි. මෙම ගැටළුව විසඳනු වස් [[Special:Upload/stash/$1|උඩුගතකෙරුම් ආකෘතිපත්‍රය]] වෙත පෙරළා පිවිසීමට ඔබට හැකියාව ඇත.',
 
 'upload-proto-error'        => 'සදොස් මූලලේඛය',
 'upload-proto-error-text'   => 'දුරස්ථ උඩුගත කිරීම් සඳහා,  කලාප ලිපිනයන් (URLලයන්)  <code>http://</code> හෝ <code>ftp://</code> යන්නෙන් ආරම්භ විය යුතුයි.',
@@ -2066,6 +2081,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 # Watchlist
 'watchlist'            => 'මගේ මුර-ලැයිස්තුව',
 'mywatchlist'          => 'මගේ මුර ලැයිස්තුව',
+'watchlistfor2'        => '$1 සඳහා ($2)',
 'nowatchlist'          => 'ඔබගේ මුර-ලැයිස්තුවේ කිසිදු අයිතමයක් නොමැත.',
 'watchlistanontext'    => 'ඔබගේ මුර-ලැයිස්තුවෙහි අයිතම නැරඹීමට හෝ සංස්කරණය කිරීමට හෝ කරුණාකර $1 සපුරන්න.',
 'watchnologin'         => 'ප්‍රවිෂ්ට වී නොමැත',
@@ -2343,6 +2359,7 @@ $1',
 ඔබගේ උපමානයන් සඳහා නවතම වාරණ ලඝු නිවේශිතය මෙහි පහත දක්වා ඇත:',
 'sp-contributions-search'              => 'දායකත්ව පිළිබඳ ගවේෂණය කරන්න',
 'sp-contributions-username'            => 'පරිශීලක නාමය හෝ IP ලිපිනය:',
+'sp-contributions-toponly'             => 'නවතම අනුවාදයන් වන සංස්කරණයන් පමණක් පෙන්වයි',
 'sp-contributions-submit'              => 'ගවේෂණය කරන්න',
 
 # What links here
@@ -2579,6 +2596,7 @@ $1 දැනටමත් වාරණය කොට ඇත. පරිස්ථි
 'immobile-source-page'         => 'මෙම පිටුව ගෙනයාහැක්කක් නොවේ.',
 'immobile-target-page'         => 'එම අන්ත ශීර්ෂයට ගෙන යෑම කල නොහැක.',
 'imagenocrossnamespace'        => 'ගොනුවක්, ගොනුවක්-නොවන නාමඅවකාශයකට ගෙනයෑම කල නොහැක',
+'nonfile-cannot-move-to-file'  => 'ගොනුවක්-නොවන්න ගොනු නාමඅවකාශයට ගෙනයෑම කල නොහැක',
 'imagetypemismatch'            => 'නව ගොනු ප්‍රසර්ජනය එහි වර්ගය හා නොගැලපේ',
 'imageinvalidfilename'         => 'ඉලක්කගත ගොනු නාමය අනීතිකයි',
 'fix-double-redirects'         => 'මුල් ශීර්ෂයට එල්ලවන කිසියම් යළි-යොමුවීම් උඩුගත කරන්න',
@@ -2889,6 +2907,8 @@ $1',
 'show-big-image-thumb' => '<small>පෙර නැරඹුමෙහි  විශාලත්වය: $1 × $2 පික්සල</small>',
 'file-info-gif-looped' => 'වලිත',
 'file-info-gif-frames' => '$1 {{PLURAL:$1රාමුව|රාමු}}',
+'file-info-png-looped' => 'ලුපගත වී ඇත',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|එක් වරක්| $1 වරක්}} ප්‍රතිවාදනය කෙරිණි',
 'file-info-png-frames' => '↓ $1 {{PLURAL:$1|රාමුව|රාමු}}',
 
 # Special:NewFiles

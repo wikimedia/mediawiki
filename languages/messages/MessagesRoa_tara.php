@@ -453,6 +453,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'gotaccount'                 => "Tine già 'nu cunde? '''$1'''.",
 'gotaccountlink'             => 'Tràse',
 'createaccountmail'          => 'pe e-mail',
+'createaccountreason'        => 'Mutive:',
 'badretype'                  => 'Le passuord ca è scritte non ge sonde uguale.',
 'userexists'                 => "'U nome de l'utende ca è scritte jè già ausete.
 Mittene n'otre.",
@@ -522,6 +523,12 @@ Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore
 Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel'         => 'Lénga: $1',
 'suspicious-userlogout'      => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
+
+# JavaScript password checks
+'password-strength-bad'        => 'SCKEFUSE',
+'password-strength-mediocre'   => 'megghie de ninde',
+'password-strength-acceptable' => 'pò scè',
+'password-strength-good'       => 'bbuène',
 
 # Password reset dialog
 'resetpass'                 => "Cange 'a password",
@@ -920,7 +927,10 @@ Pe piacere condrolle l'archivije.",
 Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
 
 # Revision move
-'revmove-reasonfield' => 'Mutive:',
+'revmove-reasonfield'    => 'Mutive:',
+'revmove-titlefield'     => 'Pàgene de destinazione:',
+'revmove-badparam-title' => 'Parametre sbagliate',
+'revmove-nullmove-title' => 'Titele sbagliate',
 
 # History merging
 'mergehistory'                     => "Scuagghie 'a storie de le pàggene",
@@ -1072,6 +1082,7 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'contextlines'                  => 'Linne pe collegamende:',
 'contextchars'                  => 'Condeste pe linee:',
 'stub-threshold'                => 'Soglie pe <a href="#" class="stub">collegamende stub</a> de formattazione (byte):',
+'stub-threshold-disabled'       => 'Disabbilitate',
 'recentchangesdays'             => "Sciurne da fà vedè jndr'à le cangiaminde recende:",
 'recentchangesdays-max'         => '(massime $1 {{PLURAL:$1|sciurne|sciurne}})',
 'recentchangescount'            => 'Numere de cangiaminde da fà vedè pe default:',
@@ -1863,6 +1874,7 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 # Watchlist
 'watchlist'            => 'Pàggene condrollete',
 'mywatchlist'          => 'Pàggene condrollete',
+'watchlistfor2'        => 'Pe $1 $2',
 'nowatchlist'          => "Non ge tine pàggene jndr'à liste de le pàggene condrollete.",
 'watchlistanontext'    => 'Pe piacere $1 pe vedè o cangià le vosce sus a liste de le pàggene condrollete.',
 'watchnologin'         => 'Non ge sinde colleghete',
@@ -2658,6 +2670,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'show-big-image-thumb' => '<small>Dimenziune de sta andeprime: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'infinite',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frame}}',
 
 # Special:NewFiles
 'newimages'             => 'Gallerie de le fail nuève',
@@ -3198,11 +3211,13 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'tags-hitcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 
 # Special:ComparePages
-'compare-page1'  => 'Pàgene 1',
-'compare-page2'  => 'Pàgene 2',
-'compare-rev1'   => 'Revisione 1',
-'compare-rev2'   => 'Revisione 2',
-'compare-submit' => 'Combronde',
+'comparepages'     => 'Combronde le pàggene',
+'compare-selector' => "Combronde le revisiune d'à pàgene",
+'compare-page1'    => 'Pàgene 1',
+'compare-page2'    => 'Pàgene 2',
+'compare-rev1'     => 'Revisione 1',
+'compare-rev2'     => 'Revisione 2',
+'compare-submit'   => 'Combronde',
 
 # Database error messages
 'dberr-header'      => "Sta Uicchi tène 'nu probbleme",

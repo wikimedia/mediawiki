@@ -610,6 +610,14 @@ Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
 'suspicious-userlogout'      => 'Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.',
 
+# JavaScript password checks
+'password-strength-bad'        => 'KASKARRA',
+'password-strength-mediocre'   => 'erdipurdikoa',
+'password-strength-acceptable' => 'onargarria',
+'password-strength-good'       => 'ona',
+'password-retype'              => 'Berridatzi hemen pasahitza',
+'password-retype-mismatch'     => 'Pasahitzak ez datoz bat',
+
 # Password reset dialog
 'resetpass'                 => 'Pasahitza aldatu',
 'resetpass_announce'        => 'E-postaz jasotako kode tenporal baten bidez saioa hasi duzu. Saioa hasierarekin jarraitzeko, pasahitz berri bat definitu beharra daukazu:',

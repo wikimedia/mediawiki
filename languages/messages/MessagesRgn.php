@@ -55,6 +55,7 @@ $messages = array(
 'tog-watchlisthideanons'      => " ↓ In tla lèsta da tnì d'occ, nascond al mudèfic d'j utent senza nom",
 'tog-watchlisthidepatrolled'  => "↓ Nascond tòt al mudèfic za cuntrulèdi in tla lèsta dal pàgin da tnì d'occ",
 'tog-ccmeonemails'            => "↓ Mènd'm una còpia d'j mesèg ch'a spedèss a j étar druvador",
+'tog-showhiddencats'          => "↓ Fa'm avdé al categurèj nascosti",
 
 # Dates
 'january'       => 'Znèr',
