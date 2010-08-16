@@ -493,12 +493,14 @@ abstract class DatabaseBase {
 		}
 
 		if ( $this->debug() ) {
+			static $cnt = 0;
+			$cnt++;
 			$sqlx = substr( $commentedSql, 0, 500 );
 			$sqlx = strtr( $sqlx, "\t\n", '  ' );
 			if ( $isMaster ) {
-				wfDebug( "SQL-master: $sqlx\n" );
+				wfDebug( "Query $cnt (master): $sqlx\n" );
 			} else {
-				wfDebug( "SQL: $sqlx\n" );
+				wfDebug( "Query $cnt (slave): $sqlx\n" );
 			}
 		}
 
