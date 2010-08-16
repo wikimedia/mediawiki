@@ -43,23 +43,6 @@ function update_row_exists( $key ) {
 	return (bool)$row;
 }
 
-function rename_table( $from, $to, $patch ) {
-	global $wgDatabase;
-	if ( $wgDatabase->tableExists( $from ) ) {
-		if ( $wgDatabase->tableExists( $to ) ) {
-			wfOut( "...can't move table $from to $to, $to already exists.\n" );
-		} else {
-			wfOut( "Moving table $from to $to..." );
-			$wgDatabase->sourceFile( archive( $patch ) );
-			wfOut( "ok\n" );
-		}
-	} else {
-		// Source table does not exist
-		// Renames are done before creations, so this is typical for a new installation
-		// Ignore silently
-	}
-}
-
 function add_table( $name, $patch, $fullpath = false ) {
 	global $wgDatabase;
 	if ( $wgDatabase->tableExists( $name ) ) {
@@ -1315,8 +1298,6 @@ function do_postgres_updates() {
 	# # Gather version numbers in case we need them
 	$version = $wgDatabase->getServerVersion(); # # long string
 	$numver = $wgDatabase->numeric_version; # # X.Y e.g. 8.3
-
-	$wgShowExceptionDetails = 1;
 
 	# Just in case their LocalSettings.php does not have this:
 	if ( !isset( $wgDBmwschema ) ) {
