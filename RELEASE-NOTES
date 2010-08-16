@@ -293,6 +293,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24714) Usage of {{#dateformat: }} in wikis without $wgUseDynamicDates no 
   longer pollutes the parser cache.
 * (bug 17031) Correct which characters the parser allows in tag attributes.
+* Save 200 useless queries on each category page view
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

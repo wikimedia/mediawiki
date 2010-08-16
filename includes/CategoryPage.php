@@ -276,7 +276,7 @@ class CategoryViewer {
 
 			$res = $dbr->select(
 				array( 'page', 'categorylinks', 'category' ),
-				array( 'page_title', 'page_namespace', 'page_len',
+				array( 'page_id', 'page_title', 'page_namespace', 'page_len',
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 					'cat_subcats', 'cat_pages', 'cat_files', 'cl_sortkey_prefix' ),
 				array( 'cl_to' => $this->title->getDBkey() ) + $extraConds,
