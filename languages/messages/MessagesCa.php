@@ -606,6 +606,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'gotaccount'                 => 'Ja teniu un compte? $1.',
 'gotaccountlink'             => 'Inicia una sessió',
 'createaccountmail'          => 'per correu electrònic',
+'createaccountreason'        => 'Raó:',
 'badretype'                  => 'Les contrasenyes que heu introduït no coincideixen.',
 'userexists'                 => 'El nom que heu entrat ja és en ús. Escolliu-ne un de diferent.',
 'loginerror'                 => "Error d'inici de sessió",
@@ -660,6 +661,12 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 Si us plau, esperi abans de tornar-ho a intentar.",
 'loginlanguagelabel'         => 'Llengua: $1',
 'suspicious-userlogout'      => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
+
+# JavaScript password checks
+'password-strength-bad'        => 'DOLENT',
+'password-strength-mediocre'   => 'mediocre',
+'password-strength-acceptable' => 'acceptable',
+'password-strength-good'       => 'bo',
 
 # Password reset dialog
 'resetpass'                 => 'Canvia la contrasenya',
@@ -1201,6 +1208,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'contextlines'                  => 'Línies a mostrar per resultat',
 'contextchars'                  => 'Caràcters de context per línia',
 'stub-threshold'                => 'Límit per a formatar l\'enllaç com <a href="#" class="stub">esborrany</a> (en octets):',
+'stub-threshold-disabled'       => 'Deshabilitat',
 'recentchangesdays'             => 'Dies a mostrar en els canvis recents:',
 'recentchangesdays-max'         => '(màxim $1 {{PLURAL:$1|dia|dies}})',
 'recentchangescount'            => "Nombre d'edicions a mostrar per defecte:",
@@ -1273,6 +1281,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'prefs-advancedsearchoptions'   => 'Opcions avançades',
 'prefs-advancedwatchlist'       => 'Opcions avançades',
 'prefs-displayrc'               => "Opcions d'aparença",
+'prefs-displaysearchoptions'    => 'Opcions de visualització',
 'prefs-diffs'                   => 'Difs',
 
 # User rights

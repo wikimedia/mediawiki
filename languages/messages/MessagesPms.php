@@ -1404,12 +1404,12 @@ Beiché la [[Special:NewFiles|galarìa dj'archivi neuv]] për na presentassion p
 'uploadedfiles'               => 'Archivi carià',
 'ignorewarning'               => "Lassé perde j'avis e salvé an tute le manere",
 'ignorewarnings'              => "Lassé perde j'avis",
-'minlength1'                  => "Ël nòm dl'archivi a dev esse longh almanch un caràter.",
-'illegalfilename'             => 'Ël nòm d\'archivi "$1" a l\'ha andrinta dij caràter che as peulo pa dovresse ant ij tìtoj dle pàgine. Për piasì che a-j cangia nòm e peui che a torna a carielo.',
+'minlength1'                  => "Ij nòm ëd j'archivi a devo esse longh almanch un caràter.",
+'illegalfilename'             => 'Ël nòm d\'archivi "$1" a l\'ha andrinta dij caràter che as peulo pa dovresse ant ij tìtoj dle pàgine. Për piasì che a-j cangia \'d nòm e peui che a torna a carielo.',
 'badfilename'                 => 'Ël nòm dl\'archivi a l\'é stait cambià an "$1".',
 'filetype-mime-mismatch'      => "L'estension dl'archivi a rispeta pa la sòrt ëd MIME.",
-'filetype-badmime'            => 'J\'archivi dla sòrt MIME "$1" as peulo nen carié.',
-'filetype-bad-ie-mime'        => 'As peul pa carié sto file-sì përchè Internet Explorer a podrìa considerelo com "$1", che a l\'é na rasa ëd file vietà e potensialment pericolos.',
+'filetype-badmime'            => 'J\'archivi dla sòrt MIME "$1" as peulo pa carié.',
+'filetype-bad-ie-mime'        => 'As peul pa carié st\'archivi-sì përchè Internet Explorer a podrìa considerelo com "$1", che a l\'é na rassa d\'archivi vietà e potensialment pericolos.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' a l'é na sòrt d'archivi ch'as pija nen ëd bon-a veuja.
 {{PLURAL:\$3|La sòrt preferìa a l'é|Le sòrt preferìe a son}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' a l'é na sòrt d'archivi proibìa.

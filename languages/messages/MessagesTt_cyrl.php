@@ -1113,10 +1113,34 @@ $3 күрсәткән сәбәп: ''$2''",
 'recentchangeslinked-to'       => 'Моның урынына бу биткә бәйле булган битләрдәге үзгәртүләрне күрсәтү',
 
 # Upload
-'upload'        => 'Файлны йөкләү',
-'uploadbtn'     => 'Файлны йөкләү',
-'uploadlogpage' => 'Йөкләү көндәлеге',
-'uploadedimage' => '«[[$1]]» йөкләнгән',
+'upload'                     => 'Файлны йөкләү',
+'uploadbtn'                  => 'Файлны йөкләү',
+'reuploaddesc'               => 'Файлны йөкләүгә кире кату',
+'upload-tryagain'            => 'Яңартылган файлны җибәрү',
+'uploadnologin'              => 'Сез хисап язмагызга кермәгәнсез',
+'uploadnologintext'          => 'Файлны йөкләү өчен сез биткә[[Special:UserLogin|керергә]] тиешсез',
+'upload_directory_missing'   => '$1 Йөкләнү директориясе юк',
+'upload_directory_read_only' => 'Моңа Сезнең хокукларыгыз юк һәм веб-сервер $1 папкасыны йөкли алмый.',
+'uploaderror'                => 'Файлны йөкләүдә хата',
+'upload-recreate-warning'    => "'''Игътибар: Мондый исемле файл бетерелгән яки исеме алмаштырылган '''",
+'uploadtext'                 => "Бу форманы кулланып серверга файллар йөкли аласыз. Элегрәк йөкләнелгән файлларны карау өчен [[Special:FileList|Йөкләнелгән файллар исемлегенә]] мәрәҗәгать итегез. Шулай ук ул [[Special:Log/upload|йөкләнмәләр исемлегенә]] һәм [[Special:Log/delete|бетерелгән файллар]] исемлегенә дә языла.
+
+Файлны мәкаләгә йөкләү өчен Сез менә бу үрнәкләрне куллана аласыз:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Рәсем.jpg]]</nowiki></tt>''' файлның тулы юрамасын кую өчен;
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Räsem.png|200px|thumb|left|сүрәте]]</nowiki></tt>'''  200 пиксельга кадәр киңлектәге  һәм текстның сул ягында, сүрәтләве белән;
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''биттә файлны сүрәтләмичш, бары тик сылтамасын гына кую.",
+'upload-permitted'           => 'Рөхсәт ителгән файл төрләре:$1',
+'upload-preferred'           => 'Мөмкин булган файл төрләре:$1',
+'upload-prohibited'          => 'Тыелган файл төрләре:$1',
+'uploadlog'                  => 'Йөкләү көндәлеге',
+'uploadlogpage'              => 'Йөкләү көндәлеге',
+'uploadlogpagetext'          => 'Аста яңа йөкләнелгән файллар исемлеге бирелә.
+Шулай ук [[Special:NewFiles|яңа файллар галлереясын]] карагыз',
+'filename'                   => 'Файл исеме',
+'filedesc'                   => 'Кыска тасвирлама',
+'fileuploadsummary'          => 'Үзгәртүләр тасвирламасы:',
+'filereuploadsummary'        => 'Файлдагы үзгәртүләр:',
+'uploadedimage'              => '«[[$1]]» йөкләнгән',
 
 # Special:ListFiles
 'listfiles'             => 'Сүрәтләр исемлеге',
@@ -1559,20 +1583,29 @@ $1',
 'tooltip-t-permalink'             => 'Битнең бу юрамасыга даими сылтама',
 'tooltip-ca-nstab-main'           => 'Мәкаләнең эчтәлеге',
 'tooltip-ca-nstab-user'           => 'Кулланучының битене карарга',
+'tooltip-ca-nstab-media'          => 'Медиа-файл',
 'tooltip-ca-nstab-special'        => 'Бу махсус бит, сез аны үзгәртү алмыйсыз',
-'tooltip-ca-nstab-project'        => 'Проектның битене карарга',
-'tooltip-ca-nstab-image'          => 'Сүрәтнең битене карарга',
-'tooltip-ca-nstab-template'       => 'Үрнәкне караy',
+'tooltip-ca-nstab-project'        => 'Проектның бите',
+'tooltip-ca-nstab-image'          => 'Сүрәтнең бите',
+'tooltip-ca-nstab-mediawiki'      => 'MediaWiki - хат бите',
+'tooltip-ca-nstab-template'       => 'Үрнәк бите',
 'tooltip-ca-nstab-help'           => 'Ярдәм битен карау',
 'tooltip-ca-nstab-category'       => 'Төркем битен карау',
 'tooltip-minoredit'               => 'Бу үзгәртүне кече дип билгелү',
 'tooltip-save'                    => 'Үзгәртүләрегезне саклау',
 'tooltip-preview'                 => 'Сезнең үзгәртүләрегезнең алдан каравы, саклаудан кадәр моны кулланыгыз әле!',
-'tooltip-diff'                    => 'Сезнең үзгәртмәләрегезне күрсәтү.',
+'tooltip-diff'                    => 'Сезнең үзгәртүләрегезне күрсәтү.',
 'tooltip-compareselectedversions' => 'Бу битнең сайланган ике версиясе арасында аерманы карарга',
 'tooltip-watch'                   => 'Бу битне күзәтү исемлегемә өстәргә',
+'tooltip-recreate'                => 'Бу битне кире кайтару',
+'tooltip-upload'                  => 'Йөкләүне башлау',
 'tooltip-rollback'                => "\"Кире кайтару\" соңгы кулланучының бу биттә ясаган '''барлык''' үзгәртүләрен бетерә.",
 'tooltip-undo'                    => 'Бу үзгәртүне алдан карап үткәрмәү. Шулай ук үткәрмәүнең сәбәбен язып була.',
+'tooltip-preferences-save'        => 'Көйләнмәләрегезне саклау',
+'tooltip-summary'                 => 'Кыска исемен кертү',
+
+# Stylesheets
+'common.css' => '/*  Монда урнаштырылган CSS башкаларында да урнашачак */',
 
 # Math errors
 'math_unknown_error' => 'беленмәгән хата',

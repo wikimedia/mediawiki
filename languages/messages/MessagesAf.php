@@ -2058,6 +2058,7 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 # Watchlist
 'watchlist'            => 'My dophoulys',
 'mywatchlist'          => 'My dophoulys',
+'watchlistfor2'        => 'Vir $1 $2',
 'nowatchlist'          => 'U het geen items in u dophoulys nie.',
 'watchlistanontext'    => '$1 is noodsaaklik om u dophoulys te sien of te wysig.',
 'watchnologin'         => 'Nie ingeteken nie',

@@ -3412,7 +3412,8 @@ $1 is a message from the e-mail delivery system.',
 'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out.
 * $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'confirmemail_loggedin'    => 'Explanation on [[Special:ConfirmEmail]] on completion of confirmation.',
-'confirmemail_subject'     => 'Text in subject box of e-mail sent to user during e-mail address confirmation',
+'confirmemail_subject'     => 'Text in subject box of e-mail sent to user during e-mail address confirmation
+{{Identical|SITENAME e-mail address confirmation}}',
 'confirmemail_body'        => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
 *$1 is the IP address of the user that changed the e-mail address
 *$2 is the name of the user

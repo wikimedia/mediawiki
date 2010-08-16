@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Break Through Pain
  * @author Garas
  * @author Homo
  * @author Hugo.arg
@@ -191,7 +192,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Pridėti puslapius, kuriuos ištrinu, į stebimų sąrašą',
 'tog-previewontop'            => 'Rodyti peržiūrą virš redagavimo lauko',
 'tog-previewonfirst'          => 'Rodyti peržiūrą pirmą kartą pakeitus',
-'tog-nocache'                 => 'Nenaudoti puslapių kaupimo',
+'tog-nocache'                 => 'Išjungti interneto naršyklės informacijos išsaugojimą lankant svetaines.',
 'tog-enotifwatchlistpages'    => 'Siųsti man laišką, kai pakeičiamas puslapis, kurį stebiu',
 'tog-enotifusertalkpages'     => 'Siųsti man laišką, kai pakeičiamas mano naudotojo aptarimo puslapis',
 'tog-enotifminoredits'        => 'Siųsti man laišką, kai puslapio keitimas yra smulkus',
@@ -578,7 +579,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo [[Special:Preferences|{
 'yourname'                   => 'Naudotojo vardas:',
 'yourpassword'               => 'Slaptažodis:',
 'yourpasswordagain'          => 'Pakartokite slaptažodį:',
-'remembermypassword'         => 'Prisiminti šią informaciją šiame kompiuteryje',
+'remembermypassword'         => 'Prisijungimo duomenis išsaugoti šiame kompiuteryje.',
 'yourdomainname'             => 'Jūsų domenas:',
 'externaldberror'            => 'Yra arba išorinė autorizacijos duomenų bazės klaida arba jums neleidžiama atnaujinti jūsų išorinės paskyros.',
 'login'                      => 'Prisijungti',
@@ -658,6 +659,9 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 Palaukite prieš bandant vėl.',
 'loginlanguagelabel'         => 'Kalba: $1',
 'suspicious-userlogout'      => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
+
+# JavaScript password checks
+'password-retype-mismatch' => 'Slaptažodžiai nesutampa',
 
 # Password reset dialog
 'resetpass'                 => 'Keisti slaptažodį',
@@ -1045,6 +1049,7 @@ Prašome patikrinti sąrašus.',
 'revmove-submit'               => 'Perkelti versijas į pasirinktą puslapį',
 'revisionmoveselectedversions' => 'Perkelti pasirinktas versijas',
 'revmove-reasonfield'          => 'Priežastis:',
+'revmove-badparam-title'       => 'Netinkami parametrai',
 
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',

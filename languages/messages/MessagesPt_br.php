@@ -310,7 +310,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de páginas vigiadas',
 'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
-'tog-nocache'                 => "Desativar ''caching'' de páginas",
+'tog-nocache'                 => 'Desativar o cache de páginas do navegador',
 'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma página da minha lista de páginas vigiadas for alterada',
 'tog-enotifusertalkpages'     => 'Enviar-me um email quando a minha página de discussão for editada',
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
@@ -777,6 +777,7 @@ Por favor aguarde antes de tentar novamente.',
 'suspicious-userlogout'      => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
 
 # JavaScript password checks
+'password-strength'            => 'Nível de segurança da senha: $1',
 'password-strength-bad'        => 'MÁ',
 'password-strength-mediocre'   => 'medíocre',
 'password-strength-acceptable' => 'aceitável',
@@ -1740,11 +1741,12 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- deixe esta linha exatamente como está -->',
 'upload-success-subj'         => 'Envio efetuado com sucesso',
-'upload-success-msg'          => 'Seu arquivo carregado está disponível aqui: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'O seu upload desde [$2] foi bem sucedido. Ele está disponível aqui: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema no upload',
 'upload-failure-msg'          => 'Ocorreu um problema com o seu upload:
 
 $1',
+'upload-warning-subj'         => 'Aviso de upload',
 'upload-warning-msg'          => 'Houve um problema com o seu formulário de carregamento [$2]. Pode voltar ao [[Special:Upload/stash/$1|formulário]] para corrigir este problema.',
 
 'upload-proto-error'        => 'Protocolo incorreto',

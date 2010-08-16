@@ -2270,6 +2270,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 # Watchlist
 'watchlist'            => 'فهرست پی‌گیری‌های من',
 'mywatchlist'          => 'پی‌گیری‌های من',
+'watchlistfor2'        => '$1 برای $2',
 'nowatchlist'          => 'در فهرست پی‌گیریهای شما هیچ موردی نیست.',
 'watchlistanontext'    => 'برای مشاهده و ویرایش فهرست پی‌گیری‌های خود از $1 استفاده کنید.',
 'watchnologin'         => 'به سامانه وارد نشده‌اید',

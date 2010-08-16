@@ -1600,7 +1600,7 @@ Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực
 'filedesc'                    => 'Miêu tả',
 'fileuploadsummary'           => 'Tóm lược:',
 'filereuploadsummary'         => 'Các thay đổi của tập tin:',
-'filestatus'                  => 'Bản quyền:',
+'filestatus'                  => 'Tình trạng bản quyền:',
 'filesource'                  => 'Nguồn:',
 'uploadedfiles'               => 'Tập tin đã tải',
 'ignorewarning'               => 'Bỏ qua cảnh báo và lưu tập tin',

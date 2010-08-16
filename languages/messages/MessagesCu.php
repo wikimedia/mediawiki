@@ -148,6 +148,7 @@ $messages = array(
 'linkprefix' => '/^(.*?)(„|«)$/sD',
 
 'about'         => 'опьса́ниѥ',
+'article'       => 'члѣ́нъ',
 'moredotdotdot' => 'вѧ́щє ···',
 'mypage'        => 'моꙗ́ страни́ца',
 'mytalk'        => 'моꙗ́ бєсѣ́да',
@@ -403,21 +404,22 @@ $messages = array(
 'action-edit' => 'си страни́цѧ исправлє́ниѥ',
 
 # Recent changes
-'nchanges'        => '$1 {{PLURAL:$1|мѣ́на|мѣ́нꙑ|мѣ́нъ}}',
-'recentchanges'   => 'послѣ́дьнѩ мѣ́нꙑ',
-'rcnote'          => "нижѣ {{PLURAL:$1|'''1''' послѣ́дьнѭ мѣ́нѫ|'''$1''' послѣ́дьни мѣ́нꙑ|'''$1''' послѣ́дьнъ мѣ́нъ|'''$1''' послѣ́дьнъ мѣ́нъ}} ꙁа {{PLURAL:$2|дьнь|'''$2''' дьнꙗ|'''$2''' дьнъ|'''$2''' дьнъ}} · ꙗко нꙑнѣ $5 · $4 лѣ́та",
-'rcshowhideminor' => '$1 ма́лꙑ мѣ́нꙑ',
-'rcshowhidebots'  => '$1 аѵтома́тъ',
-'rcshowhideliu'   => '$1 по́льꙃєватєлъ · ѩжє съꙁижьдє сѥ мѣ́сто · мѣ́нꙑ',
-'rcshowhideanons' => '$1 анонѷмьнъ по́льꙃєватєлъ мѣ́нꙑ',
-'rcshowhidemine'  => '$1 моꙗ́ мѣ́нꙑ',
-'diff'            => 'ра҃ꙁн',
-'hist'            => 'їс҃т',
-'hide'            => 'съкрꙑи',
-'show'            => 'ви́ждь',
-'minoreditletter' => 'м҃л',
-'newpageletter'   => 'н҃в',
-'boteditletter'   => 'а҃ѵ',
+'nchanges'             => '$1 {{PLURAL:$1|мѣ́на|мѣ́нꙑ|мѣ́нъ}}',
+'recentchanges'        => 'послѣ́дьнѩ мѣ́нꙑ',
+'recentchanges-legend' => 'послѣдьн҄ь мѣнъ строи',
+'rcnote'               => "нижѣ {{PLURAL:$1|'''1''' послѣ́дьнѭ мѣ́нѫ|'''$1''' послѣ́дьни мѣ́нꙑ|'''$1''' послѣ́дьнъ мѣ́нъ|'''$1''' послѣ́дьнъ мѣ́нъ}} ꙁа {{PLURAL:$2|дьнь|'''$2''' дьнꙗ|'''$2''' дьнъ|'''$2''' дьнъ}} · ꙗко нꙑнѣ $5 · $4 лѣ́та",
+'rcshowhideminor'      => '$1 ма́лꙑ мѣ́нꙑ',
+'rcshowhidebots'       => '$1 аѵтома́тъ',
+'rcshowhideliu'        => '$1 по́льꙃєватєлъ · ѩжє съꙁижьдє сѥ мѣ́сто · мѣ́нꙑ',
+'rcshowhideanons'      => '$1 анонѷмьнъ по́льꙃєватєлъ мѣ́нꙑ',
+'rcshowhidemine'       => '$1 моꙗ́ мѣ́нꙑ',
+'diff'                 => 'ра҃ꙁн',
+'hist'                 => 'їс҃т',
+'hide'                 => 'съкрꙑи',
+'show'                 => 'ви́ждь',
+'minoreditletter'      => 'м҃л',
+'newpageletter'        => 'н҃в',
+'boteditletter'        => 'а҃ѵ',
 
 # Recent changes linked
 'recentchangeslinked'         => 'съвѧ́ꙁанꙑ страни́цѧ',
@@ -454,6 +456,7 @@ $messages = array(
 'filehist-datetime'  => 'дьнь / врѣ́мѧ',
 'filehist-user'      => 'по́льꙃєватєл҄ь',
 'imagelinks'         => 'дѣ́ла съвѧ́ꙁи',
+'sharedupload'       => 'сѥ дѣ́ло въ $1 съхранѥ́но ѥ́стъ дѣ́ла · ѥгожє дроугꙑ́ опꙑтьствова́ниѩ по́льꙃєвати мо́гѫтъ',
 
 # File deletion
 'filedelete-submit' => 'поничьжє́ниѥ',
@@ -516,6 +519,7 @@ $messages = array(
 'deletedcontributions-title' => 'пони́чьжєнꙑ добродѣꙗ́ниꙗ',
 
 # Special:LinkSearch
+'linksearch'    => 'вънѣщьнѩ съвѧ́ꙁи',
 'linksearch-ok' => 'ищи́',
 
 # Special:ListUsers
@@ -530,13 +534,15 @@ $messages = array(
 'emailuser' => 'посъли єпїстолѫ',
 
 # Watchlist
-'watchlist'      => 'моꙗ́ блюдє́ниꙗ',
-'mywatchlist'    => 'Моꙗ́ блюдє́ниꙗ',
-'addedwatchtext' => "страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ по́дъ твоимь [[Special:Watchlist|блюдє́ниѥмь]] ѥ́стъ ⁙
+'watchlist'        => 'моꙗ́ блюдє́ниꙗ',
+'mywatchlist'      => 'Моꙗ́ блюдє́ниꙗ',
+'addedwatch'       => 'страни́ца нꙑнѣ по́дъ твоимь блюдє́ниѥмь ѥ́стъ',
+'addedwatchtext'   => "страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ по́дъ твоимь [[Special:Watchlist|блюдє́ниѥмь]] ѥ́стъ ⁙
 всꙗ ѥѩ и ѥѩжє бєсѣдꙑ мѣ́нꙑ страни́цѧ ⁖ [[Special:Watchlist|моꙗ́ блюдє́ниꙗ]] ⁖ покаꙁанꙑ сѫ́тъ и  [[Special:RecentChanges|послѣ́дьнъ мѣ́нъ]] ката́лоꙃѣ '''чрьнꙑимъ''' сѧ авлꙗѭтъ",
-'watch'          => 'блюдє́ниѥ',
-'watchthispage'  => 'си страни́цѧ блюдє́ниѥ',
-'unwatch'        => 'оста́ви блюдє́ниѥ',
+'removedwatchtext' => 'страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ иꙁъ твоѥго [[Special:Watchlist|блюдє́ниꙗ]] иꙁнєсєна ѥ́стъ',
+'watch'            => 'блюдє́ниѥ',
+'watchthispage'    => 'си страни́цѧ блюдє́ниѥ',
+'unwatch'          => 'оста́ви блюдє́ниѥ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'блюдє́ниѥ ...',
@@ -605,19 +611,20 @@ $messages = array(
 'blocklogpage'       => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
 
 # Move page
-'move-page'        => 'прѣимєнова́ниѥ ⁖ $1 ⁖',
-'move-page-legend' => 'страни́цѧ прѣимєнова́ниѥ',
-'movearticle'      => 'страни́ца :',
-'newtitle'         => 'но́во и́мѧ :',
-'move-watch'       => 'си страни́цѧ блюдє́ниѥ',
-'movepagebtn'      => 'прѣимєнова́ниѥ',
-'pagemovedsub'     => 'прѣимєнова́ниѥ сътворѥно́ ѥ́стъ',
-'movepage-moved'   => "'''⁖ $1 ⁖ нарєчє́нъ ⁖ $2⁖ ѥ́стъ'''",
-'movedto'          => 'прѣимєновано въ',
-'movetalk'         => 'си страни́цѧ бєсѣ́дꙑ прѣимєнова́ниѥ',
-'1movedto2'        => '⁖ [[$1]] ⁖ нарєчє́нъ ⁖ [[$2]] ⁖ ѥ́стъ',
-'1movedto2_redir'  => '[[$1]] нарєчє́нъ [[$2]] врьхоу́ прѣнаправлѥ́ниꙗ ѥ́стъ.',
-'movelogpage'      => 'прѣимєнова́ниꙗ їсторі́ꙗ',
+'move-page'               => 'прѣимєнова́ниѥ ⁖ $1 ⁖',
+'move-page-legend'        => 'страни́цѧ прѣимєнова́ниѥ',
+'movearticle'             => 'страни́ца :',
+'newtitle'                => 'но́во и́мѧ :',
+'move-watch'              => 'си страни́цѧ блюдє́ниѥ',
+'movepagebtn'             => 'прѣимєнова́ниѥ',
+'pagemovedsub'            => 'прѣимєнова́ниѥ сътворѥно́ ѥ́стъ',
+'movepage-moved'          => "'''⁖ $1 ⁖ нарєчє́нъ ⁖ $2⁖ ѥ́стъ'''",
+'movepage-moved-redirect' => 'прѣнаправлѥ́ниѥ сътворѥно́ бѣ',
+'movedto'                 => 'прѣимєновано въ',
+'movetalk'                => 'си страни́цѧ бєсѣ́дꙑ прѣимєнова́ниѥ',
+'1movedto2'               => '⁖ [[$1]] ⁖ нарєчє́нъ ⁖ [[$2]] ⁖ ѥ́стъ',
+'1movedto2_redir'         => '[[$1]] нарєчє́нъ [[$2]] врьхоу́ прѣнаправлѥ́ниꙗ ѥ́стъ.',
+'movelogpage'             => 'прѣимєнова́ниꙗ їсторі́ꙗ',
 
 # Namespace 8 related
 'allmessages'     => 'сѷсти́мьнꙑ напьса́ниꙗ',
@@ -629,6 +636,7 @@ $messages = array(
 'tooltip-pt-preferences'         => 'твоꙗ́ строи',
 'tooltip-pt-mycontris'           => 'твоꙗ́ добродѣꙗ́ниѩ ката́логъ',
 'tooltip-pt-logout'              => 'ис̾хо́дъ',
+'tooltip-ca-talk'                => 'си страни́цѧ бєсѣ́да',
 'tooltip-ca-viewsource'          => 'си страни́ца ꙁабранєна́ ѥ́стъ ⁙
 ѥѩ исто́чьнъ о́браꙁъ ви́дєти мо́жєщи',
 'tooltip-ca-protect'             => 'си страни́цѧ ꙁабранє́ниѥ',

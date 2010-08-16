@@ -2134,7 +2134,7 @@ $NEWPAGE
 
 Redigeerija resümee: $PAGESUMMARY $PAGEMINOREDIT
 
-Võta redigeerijaga ühendust:
+Redigeerijaga ühenduse võtmine:
 e-post: $PAGEEDITOR_EMAIL
 viki: $PAGEEDITOR_WIKI
 

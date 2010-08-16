@@ -26,6 +26,7 @@
  * @author PhiLiP
  * @author Shinjiman
  * @author Shizhao
+ * @author Wilsonmess
  * @author Wmr89502270
  * @author Wong128hk
  * @author Xiaomingyan
@@ -475,7 +476,7 @@ $1',
 
 'badaccess'        => '权限错误',
 'badaccess-group0' => '你被禁止执行你刚才请求的操作。',
-'badaccess-groups' => '您刚才请求的操作只有以下用户组的用户才能使用：$1',
+'badaccess-groups' => '您刚才请求的操作只有以下用户组的用户才能使用： $1',
 
 'versionrequired'     => '需要版本为$1的MediaWiki',
 'versionrequiredtext' => '需要版本为$1的MediaWiki才能使用本页。请见[[Special:Version|版本页面]]。',
@@ -677,6 +678,7 @@ $2',
 'suspicious-userlogout'      => '您登出的要求已经被拒绝，因为它可能是由已损坏的浏览器或者缓存代理传送。',
 
 # JavaScript password checks
+'password-strength'            => '预估密码强度： $1',
 'password-strength-acceptable' => '可接受',
 'password-strength-good'       => '好',
 'password-retype'              => '再次输入密码',
@@ -903,7 +905,7 @@ $2',
 'undo-success' => '此编辑可以被撤销。请检查以下比较以核实这正是您想做的，然后保存以下更改完成撤销编辑。',
 'undo-failure' => '由于中途不一致的编辑，此编辑不能撤销。',
 'undo-norev'   => '由于其修订版本不存在或已删除，此编辑不能撤销。',
-'undo-summary' => '撤销由[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）所作出的修订$1',
+'undo-summary' => '撤销由[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）所作出的修订$1',
 
 # Account creation failure
 'cantcreateaccounttitle' => '无法创建账户',
@@ -1464,7 +1466,7 @@ $1",
 'rcshowhidebots'                    => '$1机器人的编辑',
 'rcshowhideliu'                     => '$1登录用户的编辑',
 'rcshowhideanons'                   => '$1匿名用户的编辑',
-'rcshowhidepatr'                    => '$1检查过的编辑',
+'rcshowhidepatr'                    => '$1巡查过的编辑',
 'rcshowhidemine'                    => '$1我的编辑',
 'rclinks'                           => '显示最近$2天内最新的$1次改动。<br />$3',
 'diff'                              => '差异',
@@ -1600,7 +1602,7 @@ $1",
 为方便起见，这一个文件的删除记录已经在下面提供:",
 'filename-bad-prefix'         => '您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。',
 'upload-success-subj'         => '上传成功',
-'upload-success-msg'          => '你的上传可以在这里找到：[[:{{ns:file}}:$1]]',
+'upload-success-msg'          => '您的上传可以在这里找到：[[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '上传错误',
 'upload-failure-msg'          => '有一个问题与您的上传有关：
 
@@ -2114,7 +2116,7 @@ $UNWATCHURL
 
 该页最后的编辑者是[[User:$3|$3]]（[[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment'       => '编辑摘要："<i>$1</i>"。',
-'revertpage'        => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后一个修订版本',
+'revertpage'        => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）的编辑至[[User:$1|$1]]的最后一个修订版本',
 'revertpage-nouser' => '恢复由（移除了的用户名）的编辑到[[User:$1|$1]]的最后一个修订版本',
 'rollback-success'  => '已恢复$1的编辑；
 更改回$2的最后修订版本。',
@@ -2254,7 +2256,7 @@ $1',
 'sp-contributions-blocklog'            => '封禁日志',
 'sp-contributions-deleted'             => '已删除的用户贡献',
 'sp-contributions-logs'                => '日志',
-'sp-contributions-talk'                => '对话',
+'sp-contributions-talk'                => '讨论',
 'sp-contributions-userrights'          => '用户权限管理',
 'sp-contributions-blocked-notice'      => '这位用户现时正在被封锁中。
 最近的封锁日志项目在下面提供以便参考：',
@@ -3192,7 +3194,7 @@ $1',
 
 # Delete conflict
 'deletedwhileediting' => "'''警告'''：此页在您开始编辑之后已经被删除！",
-'confirmrecreate'     => "在您开始编辑这个页面后，用户[[User:$1|$1]] （[[User talk:$1|对话]]）以下列原因删除了这个页面：
+'confirmrecreate'     => "在您开始编辑这个页面后，用户[[User:$1|$1]] （[[User talk:$1|讨论]]）以下列原因删除了这个页面：
 : ''$2''
 请确认在您重新创建页面前三思。",
 'recreate'            => '重建',
