@@ -876,7 +876,7 @@ function maybe_do_profiling_memory_update() {
 function do_stats_init() {
 	// Sometimes site_stats table is not properly populated.
 	global $wgDatabase;
-	wfOut( "Checking site_stats row..." );
+	wfOut( "\nChecking site_stats row..." );
 	$row = $wgDatabase->selectRow( 'site_stats', '*', array( 'ss_row_id' => 1 ), __METHOD__ );
 	if ( $row === false ) {
 		wfOut( "data is missing! rebuilding...\n" );
@@ -915,7 +915,7 @@ function purge_cache() {
 }
 
 function do_all_updates( $shared = false, $purge = true ) {
-	global $wgSharedDB, $wgSharedTables, $wgDatabase, $wgDBtype;
+	global $wgDatabase, $wgDBtype;
 
 	$updater = DatabaseUpdater::newForDb( $wgDatabase, $shared );
 
@@ -923,17 +923,17 @@ function do_all_updates( $shared = false, $purge = true ) {
 
 	$updater->doUpdates();
 
-	if ( $wgDBtype === 'postgres' ) {
-		return;
-	}
-
-	wfOut( "Deleting old default messages (this may take a long time!)..." );
 	if ( !defined( 'MW_NO_SETUP' ) ) {
 		define( 'MW_NO_SETUP', true );
 	}
-	require_once 'deleteDefaultMessages.php';
-	DeleteDefaultMessages::reallyExecute();
-	wfOut( "Done\n" );
+
+	foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
+		call_user_func_array( array( new $maint, 'execute' ), array() );
+	}
+
+	if ( $wgDBtype === 'postgres' ) {
+		return;
+	}
 
 	do_stats_init();
 

@@ -31,10 +31,9 @@ class DeleteDefaultMessages extends Maintenance {
 	}
 
 	public function execute() {
-		self::reallyExecute();
-	}
-	
-	public static function reallyExecute() {
+
+		$this->output( 'Deleting old default messages (this may take a long time!)...', 'msg' );
+
 		$user = 'MediaWiki default';
 		$reason = 'No longer required';
 
@@ -65,6 +64,8 @@ class DeleteDefaultMessages extends Maintenance {
 			$article->doDeleteArticle( $reason );
 			$dbw->commit();
 		}
+
+		$this->output( 'done!', 'msg' );
 	}
 }
 

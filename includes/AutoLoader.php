@@ -668,6 +668,7 @@ $wgAutoloadLocalClasses = array(
 	'DbTestRecorder' => 'maintenance/parserTests.inc',
 	'DeleteArchivedFilesImplementation' => 'maintenance/deleteArchivedFiles.inc',
 	'DeleteArchivedRevisionsImplementation' => 'maintenance/deleteArchivedRevisions.inc',
+	'DeleteDefaultMessages' => 'maintenance/deleteDefaultMessages.php',
 	'DummyTermColorer' => 'maintenance/parserTests.inc',
 	'ParserTest' => 'maintenance/parserTests.inc',
 	'ParserTestParserHook' => 'maintenance/parserTestsParserHook.php',
