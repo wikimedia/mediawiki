@@ -118,7 +118,6 @@ class MysqlInstaller extends DatabaseInstaller {
 				$this->getVar( 'wgDBprefix' )
 			);
 			$status->value = $this->db;
-			return $status;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
