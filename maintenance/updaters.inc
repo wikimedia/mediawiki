@@ -43,21 +43,6 @@ function update_row_exists( $key ) {
 	return (bool)$row;
 }
 
-function add_table( $name, $patch, $fullpath = false ) {
-	global $wgDatabase;
-	if ( $wgDatabase->tableExists( $name ) ) {
-		wfOut( "...$name table already exists.\n" );
-	} else {
-		wfOut( "Creating $name table..." );
-		if ( $fullpath ) {
-			$wgDatabase->sourceFile( $patch );
-		} else {
-			$wgDatabase->sourceFile( archive( $patch ) );
-		}
-		wfOut( "ok\n" );
-	}
-}
-
 function modify_field( $table, $field, $patch, $fullpath = false ) {
 	global $wgDatabase;
 	if ( !$wgDatabase->tableExists( $table ) ) {
@@ -504,43 +489,6 @@ function do_text_id() {
 	} else {
 		wfOut( "Adding rev_text_id field... " );
 		$wgDatabase->sourceFile( archive( 'patch-rev_text_id.sql' ) );
-		wfOut( "ok\n" );
-	}
-}
-
-function do_namespace_size() {
-	$tables = array(
-		'page'          => 'page',
-		'archive'       => 'ar',
-		'recentchanges' => 'rc',
-		'watchlist'     => 'wl',
-		'querycache'    => 'qc',
-		'logging'       => 'log',
-	);
-	foreach ( $tables as $table => $prefix ) {
-		do_namespace_size_on( $table, $prefix );
-		flush();
-	}
-}
-
-function do_namespace_size_on( $table, $prefix ) {
-	global $wgDatabase, $wgDBtype;
-	if ( $wgDBtype != 'mysql' )
-		return;
-	$field = $prefix . '_namespace';
-
-	$tablename = $wgDatabase->tableName( $table );
-	$result = $wgDatabase->query( "SHOW COLUMNS FROM $tablename LIKE '$field'" );
-	$info = $wgDatabase->fetchObject( $result );
-
-	if ( substr( $info->Type, 0, 3 ) == 'int' ) {
-		wfOut( "...$field is already a full int ($info->Type).\n" );
-	} else {
-		wfOut( "Promoting $field from $info->Type to int... " );
-
-		$sql = "ALTER TABLE $tablename MODIFY $field int NOT NULL";
-		$wgDatabase->query( $sql );
-
 		wfOut( "ok\n" );
 	}
 }
