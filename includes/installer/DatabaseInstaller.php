@@ -302,11 +302,11 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return false;
 		}
-		$conn = $status->value;
-		if ( !$conn->selectDB( $this->getVar( 'wgDBname' ) ) ) {
+
+		if ( !$this->db->selectDB( $this->getVar( 'wgDBname' ) ) ) {
 			return false;
 		}
-		return $conn->tableExists( 'cur' ) || $conn->tableExists( 'revision' );
+		return $this->db->tableExists( 'cur' ) || $this->db->tableExists( 'revision' );
 	}
 
 	/**

@@ -18,14 +18,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		'wgDBts2schema',
 	);
 
-	protected $internalDefaults = array(
-		'_InstallUser' => 'postgres',
-		'_InstallPassword' => '',
-	);
-
 	var $minimumVersion = '8.1';
-
-	var $conn;
 
 	function getName() {
 		return 'postgres';
@@ -80,38 +73,37 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		// Try to connect
 		if ( $status->isOK() ) {
-			$status->merge( $this->attemptConnection() );
+			$status->merge( $this->getConnection() );
 		}
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 
 		// Check version
-		$version = $this->conn->getServerVersion();
+		$version = $this->db->getServerVersion();
 		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
 			return Status::newFatal( 'config-postgres-old', $this->minimumVersion, $version );
 		}
-		return $status;
-	}
 
-	function attemptConnection() {
-		$status = Status::newGood();
-
-		try {
-			$this->conn = new DatabasePostgres( 
-				$this->getVar( 'wgDBserver' ),
-				$this->getVar( '_InstallUser' ),
-				$this->getVar( '_InstallPassword' ),
-				'postgres' );
-			$status->value = $this->conn;
-		} catch ( DBConnectionError $e ) {
-			$status->fatal( 'config-connection-error', $e->getMessage() );
-		}
+		$this->setVar( 'wgDBuser', $this->getVar( '_InstallUser' ) );
+		$this->setVar( 'wgDBpassword', $this->getVar( '_InstallPassword' ) );
 		return $status;
 	}
 
 	function getConnection() {
-		return $this->attemptConnection();
+		$status = Status::newGood();
+
+		try {
+			$this->db = new DatabasePostgres(
+				$this->getVar( 'wgDBserver' ),
+				$this->getVar( '_InstallUser' ),
+				$this->getVar( '_InstallPassword' ),
+				$this->getVar( 'wgDBname' ) );
+			$status->value = $this->db;
+		} catch ( DBConnectionError $e ) {
+			$status->fatal( 'config-connection-error', $e->getMessage() );
+		}
+		return $status;
 	}
 
 	function getSettingsForm() {
@@ -126,6 +118,19 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	function createTables() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+	}
+		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
+
+		global $IP;
+		$err = $this->db->sourceFile( "$IP/maintenance/postgres/tables.sql" );
+		if ( $err !== true ) {
+			//@todo or...?
+			$this->db->reportQueryError( $err, 0, $sql, __FUNCTION__ );
+		}
+		return Status::newGood();
 	}
 
 	function getLocalSettings() {
