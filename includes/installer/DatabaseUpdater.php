@@ -117,7 +117,7 @@ abstract class DatabaseUpdater {
 		foreach ( $wgExtNewFields as $fieldRecord ) {
 			if ( $fieldRecord[0] != 'user' || $doUser ) {
 				$updates[] = array(
-					'add_field', $fieldRecord[0], $fieldRecord[1],
+					'addField', $fieldRecord[0], $fieldRecord[1],
 						$fieldRecord[2], true
 				);
 			}
@@ -125,7 +125,7 @@ abstract class DatabaseUpdater {
 
 		foreach ( $wgExtNewIndexes as $fieldRecord ) {
 			$updates[] = array(
-				'add_index', $fieldRecord[0], $fieldRecord[1],
+				'addIndex', $fieldRecord[0], $fieldRecord[1],
 					$fieldRecord[2], true
 			);
 		}
@@ -151,21 +151,66 @@ abstract class DatabaseUpdater {
 	protected abstract function getCoreUpdateList();
 
 	/**
+	 * Applies a SQL patch
+	 * @param $path String Path to the patch file
+	 * @param $isFullPath Boolean Whether to treat $path as a relative or not
+	 */
+	protected function applyPatch( $path, $isFullPath = false ) {
+		if ( $isFullPath ) {
+			$this->db->sourceFile( $path );
+		} else {
+			$this->db->sourceFile( archive( $path ) );
+		}
+	}
+
+	/**
 	 * Add a new table to the database
 	 * @param $name String Name of the new table
 	 * @param $patch String Path to the patch file
-	 * @param $fullpath Boolean Whether to treat $fullPath as a relative or not
+	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
 	protected function addTable( $name, $patch, $fullpath = false ) {
 		if ( $this->db->tableExists( $name ) ) {
 			wfOut( "...$name table already exists.\n" );
 		} else {
 			wfOut( "Creating $name table..." );
-			if ( $fullpath ) {
-				$this->db->sourceFile( $patch );
-			} else {
-				$this->db->sourceFile( archive( $patch ) );
-			}
+			$this->applyPatch( $patch, $fullpath );
+			wfOut( "ok\n" );
+		}
+	}
+
+	/**
+	 * Add a new field to an existing table
+	 * @param $table String Name of the table to modify
+	 * @param $field String Name of the new field
+	 * @param $patch String Path to the patch file
+	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
+	 */
+	protected function addField( $table, $field, $patch, $fullpath = false ) {
+		if ( !$this->db->tableExists( $table ) ) {
+			wfOut( "...$table table does not exist, skipping new field patch\n" );
+		} elseif ( $this->db->fieldExists( $table, $field ) ) {
+			wfOut( "...have $field field in $table table.\n" );
+		} else {
+			wfOut( "Adding $field field to table $table..." );
+			$this->applyPatch( $patch, $fullpath );
+			wfOut( "ok\n" );
+		}
+	}
+
+	/**
+	 * Add a new index to an existing table
+	 * @param $table String Name of the table to modify
+	 * @param $index String Name of the new index
+	 * @param $patch String Path to the patch file
+	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
+	 */
+	function addIndex( $table, $index, $patch, $fullpath = false ) {
+		if ( $this->db->indexExists( $table, $index ) ) {
+			wfOut( "...$index key already set on $table table.\n" );
+		} else {
+			wfOut( "Adding $index key to table $table... " );
+			$this->applyPatch( $patch, $fullpath );
 			wfOut( "ok\n" );
 		}
 	}

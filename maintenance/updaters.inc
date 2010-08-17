@@ -60,38 +60,6 @@ function modify_field( $table, $field, $patch, $fullpath = false ) {
 	}
 }
 
-function add_field( $table, $field, $patch, $fullpath = false ) {
-	global $wgDatabase;
-	if ( !$wgDatabase->tableExists( $table ) ) {
-		wfOut( "...$table table does not exist, skipping new field patch\n" );
-	} elseif ( $wgDatabase->fieldExists( $table, $field ) ) {
-		wfOut( "...have $field field in $table table.\n" );
-	} else {
-		wfOut( "Adding $field field to table $table..." );
-		if ( $fullpath ) {
-			$wgDatabase->sourceFile( $patch );
-		} else {
-			$wgDatabase->sourceFile( archive( $patch ) );
-		}
-		wfOut( "ok\n" );
-	}
-}
-
-function add_index( $table, $index, $patch, $fullpath = false ) {
-	global $wgDatabase;
-	if ( $wgDatabase->indexExists( $table, $index ) ) {
-		wfOut( "...$index key already set on $table table.\n" );
-	} else {
-		wfOut( "Adding $index key to table $table... " );
-		if ( $fullpath ) {
-			$wgDatabase->sourceFile( $patch );
-		} else {
-			$wgDatabase->sourceFile( archive( $patch ) );
-		}
-		wfOut( "ok\n" );
-	}
-}
-
 function drop_index_if_exists( $table, $index, $patch, $fullpath = false ) {
 	global $wgDatabase;
 	if ( $wgDatabase->indexExists( $table, $index ) ) {
