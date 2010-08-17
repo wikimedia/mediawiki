@@ -52,6 +52,9 @@ abstract class DatabaseUpdater {
 			$this->getOldGlobalUpdates() );
 		foreach ( $this->updates as $params ) {
 			$func = array_shift( $params );
+			if( method_exists( $this, $func ) ) {
+				$func = array( $this, $func );
+			}
 			call_user_func_array( $func, $params );
 			flush();
 		}
@@ -107,7 +110,7 @@ abstract class DatabaseUpdater {
 
 		foreach ( $wgExtNewTables as $tableRecord ) {
 			$updates[] = array(
-				'add_table', $tableRecord[0], $tableRecord[1], true
+				'addTable', $tableRecord[0], $tableRecord[1], true
 			);
 		}
 
@@ -146,6 +149,26 @@ abstract class DatabaseUpdater {
 	 * @return Array
 	 */
 	protected abstract function getCoreUpdateList();
+
+	/**
+	 * Add a new table to the database
+	 * @param $name String Name of the new table
+	 * @param $patch String Path to the patch file
+	 * @param $fullpath Boolean Whether to treat $fullPath as a relative or not
+	 */
+	protected function addTable( $name, $patch, $fullpath = false ) {
+		if ( $this->db->tableExists( $name ) ) {
+			wfOut( "...$name table already exists.\n" );
+		} else {
+			wfOut( "Creating $name table..." );
+			if ( $fullpath ) {
+				$this->db->sourceFile( $patch );
+			} else {
+				$this->db->sourceFile( archive( $patch ) );
+			}
+			wfOut( "ok\n" );
+		}
+	}
 }
 
 class OracleUpdater extends DatabaseUpdater {
