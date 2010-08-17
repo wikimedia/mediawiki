@@ -33,8 +33,8 @@ $wgExtModifiedFields = array(); // table, index, dir
 # Obviously, only use this for updates that occur after the updatelog table was
 # created!
 function update_row_exists( $key ) {
-	$dbr = wfGetDB( DB_SLAVE );
-	$row = $dbr->selectRow(
+	global $wgDatabase;
+	$row = $wgDatabase->selectRow(
 		'updatelog',
 		'1',
 		array( 'ul_key' => $key ),
