@@ -183,7 +183,7 @@ class DatabasePostgres extends DatabaseBase {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError()."\n" );
-			return false;
+			throw new DBConnectionError( $this, $phpError );
 		}
 
 		$this->mOpened = true;
