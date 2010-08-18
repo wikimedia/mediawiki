@@ -1623,8 +1623,7 @@ $1",
 പ്രമാണം താളിൽ പ്രദർശിപ്പിക്കുവാൻ താഴെ കാണുന്ന ഒരു വഴി സ്വീകരിക്കുക
 
 *'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''' പൂർണ്ണരൂപത്തിലുള്ള പ്രമാണം ഉപയോഗിക്കാൻ
-
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' 200 പിക്സൽ ഉള്ള പെട്ടിയിൽ പകരമുള്ള എഴുത്തടക്കം ഉപയോഗിക്കാൻ
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' 200 പിക്സൽ ഉള്ള പെട്ടിയിൽ പകരമുള്ള എഴുത്തടക്കം ഉപയോഗിക്കാൻ
 *'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' പ്രമാണം കാട്ടാതെ പ്രമാണത്തെ നേരിട്ടു കണ്ണി ചേർക്കാൻ",
 'upload-permitted'            => 'അനുവദനീയമായ പ്രമാണ തരങ്ങൾ: $1.',
 'upload-preferred'            => 'പ്രോത്സാഹിപ്പിക്കുന്ന പ്രമാണ തരങ്ങൾ: $1.',

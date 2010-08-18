@@ -611,6 +611,7 @@ Berriro saiatu aurretik itxaron ezazu, mesedez.',
 'suspicious-userlogout'      => 'Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.',
 
 # JavaScript password checks
+'password-strength'            => 'Pasahitzaren ustezko sendotasuna: $1',
 'password-strength-bad'        => 'KASKARRA',
 'password-strength-mediocre'   => 'erdipurdikoa',
 'password-strength-acceptable' => 'onargarria',

@@ -1414,12 +1414,12 @@ Beiché la [[Special:NewFiles|galarìa dj'archivi neuv]] për na presentassion p
 {{PLURAL:\$3|La sòrt preferìa a l'é|Le sòrt preferìe a son}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' a l'é na sòrt d'archivi proibìa.
 {{PLURAL:\$3|Cola consentìa a l'é|Cole consentìe a son}} \$2.",
-'filetype-missing'            => "A l'archivi a-j manca l'estension (pr'es. \".jpg\").",
+'filetype-missing'            => "A l'archivi a-j manca l'estension (pr'esempi \".jpg\").",
 'empty-file'                  => "L'archivi ch'a l'ha mandà a l'era veuid.",
 'file-too-large'              => "L'archivi ch'a l'ha mandà a l'era tròp gròss.",
-'filename-tooshort'           => "Ël nòm ëd l'archivi a l'é tròp curtt.",
+'filename-tooshort'           => "Ël nòm ëd l'archivi a l'é tròp curt.",
 'filetype-banned'             => "Costa sòrt d'archivi a l'é proibìa.",
-'verification-error'          => "Cost archivi a passa pa la verìfica dj'archivi.",
+'verification-error'          => "Cost archivi a l'ha pa passà la verìfica dj'archivi.",
 'hookaborted'                 => "La modìfica ch'a l'ha provà a fé a l'é stàita blocà dal gancio ëd n'estension.",
 'illegal-filename'            => "Ël nòm dl'archivi a l'é nen consentì.",
 'overwrite'                   => "Dzorascrive ansima a n'archivi esistent a l'é nen përmëttù.",
@@ -1431,7 +1431,7 @@ Beiché la [[Special:NewFiles|galarìa dj'archivi neuv]] për na presentassion p
 'emptyfile'                   => "L'archivi che a l'ha pen-a carià a smija veujd.
 Sòn a podrìa esse rivà përchè che chiel a l'ha scrivù mal ël nòm dl'archivi midem.
 Për piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
-'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che as contròla '''<tt>[[:$1]]</tt>''' se a l'é pa sigur dë volej cangelo.
+'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla '''<tt>[[:$1]]</tt>''' se a l'é pa sigur dë vorèj cangelo.
 [[$1|thumb]]",
 'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>[[:$1]]</tt>''', mach ch'a-i é pa gnun archivi ch'as ciama parej.
 Lòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission.
