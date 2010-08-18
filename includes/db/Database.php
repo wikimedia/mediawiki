@@ -2525,7 +2525,7 @@ class DBConnectionError extends DBError {
 	}
 
 	function getHTML() {
-		global $wgLang, $wgMessageCache, $wgUseFileCache, $wgShowDBErrorBacktrace, $wgContLang;
+		global $wgLang, $wgMessageCache, $wgUseFileCache, $wgShowDBErrorBacktrace;
 
 		$sorry = 'Sorry! This site is experiencing technical difficulties.';
 		$again = 'Try waiting a few minutes and reloading.';
@@ -2560,13 +2560,6 @@ class DBConnectionError extends DBError {
 				$cache = $this->fileCachedPage();
 				# Cached version on file system?
 				if( $cache !== null ) {
-					# Adding support for RTL languages
-					if ( $wgContLang !== null ) {					
-						if ( $wgContLang->isRTL() ) {		
-							$cache = str_replace( '<html>', '<html style="direction:rtl;">', $cache );
-						}
-					}
-
 					# Hack: extend the body for error messages
 					$cache = str_replace( array('</html>','</body>'), '', $cache );
 					# Add cache notice...
