@@ -1501,7 +1501,7 @@ class Article {
 		
 		if ( $wgOut->isPrintable() ) {
 			$options->setIsPrintable( true );
-			$parserOptions->setEditSection( false );
+			$options->setEditSection( false );
 		}
 		
 		$output = $parserCache->getDirty( $this, $options );
