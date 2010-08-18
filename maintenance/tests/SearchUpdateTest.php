@@ -2,7 +2,7 @@
 
 class DatabaseMock extends DatabaseBase {
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$flags = 0, $tablePrefix = 'get from global' )
+		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
 	{
 		$this->mConn = true;
 		$this->mOpened = true;

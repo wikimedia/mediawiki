@@ -97,10 +97,13 @@ class DatabasePostgres extends DatabaseBase {
 	var $mAffectedRows = null;
 
 	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
-		$flags = 0 )
+		$failFunction = false, $flags = 0 )
 	{
+
+		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 		$this->open( $server, $user, $password, $dbName);
+
 	}
 
 	function getType() {
@@ -138,12 +141,14 @@ class DatabasePostgres extends DatabaseBase {
 		return $this->numRows($res = $this->doQuery($SQL));
 	}
 
-	static function newFromParams( $server, $user, $password, $dbName, $flags = 0) {
-		return new DatabasePostgres( $server, $user, $password, $dbName, $flags );
+	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0)
+	{
+		return new DatabasePostgres( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 
 	/**
 	 * Usually aborts on failure
+	 * If the failFunction is set to a non-zero integer, returns success
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		# Test for Postgres support, to avoid suppressed fatal error
@@ -183,7 +188,11 @@ class DatabasePostgres extends DatabaseBase {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError()."\n" );
-			throw new DBConnectionError( $this, $phpError );
+			if ( !$this->mFailFunction ) {
+				throw new DBConnectionError( $this, $phpError );
+			} else {
+				return false;
+			}
 		}
 
 		$this->mOpened = true;
