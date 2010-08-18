@@ -1130,7 +1130,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	function bitNot( $field ) {
 		// expecting bit-fields smaller than 4bytes
-		return 'BITNOT(' . $bitField . ')';
+		return 'BITNOT(' . $field . ')';
 	}
 
 	function bitAnd( $fieldLeft, $fieldRight ) {
