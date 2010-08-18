@@ -2454,7 +2454,7 @@ function wfShellExec( $cmd, &$retval = null ) {
 		if ( $time > 0 && $mem > 0 ) {
 			$script = "$IP/bin/ulimit4.sh";
 			if ( is_executable( $script ) ) {
-				$cmd = escapeshellarg( $script ) . " $time $mem $filesize " . escapeshellarg( $cmd );
+				$cmd = '/bin/bash ' . escapeshellarg( $script ) . " $time $mem $filesize " . escapeshellarg( $cmd );
 			}
 		}
 	} elseif ( php_uname( 's' ) == 'Windows NT' &&
@@ -3472,4 +3472,4 @@ function wfGetRepository() {
 	}
 	
 	return $wgRepository;
-} 
+}
