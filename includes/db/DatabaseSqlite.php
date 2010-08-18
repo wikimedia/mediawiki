@@ -89,7 +89,7 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 		if ( $this->mConn === false ) {
 			wfDebug( "DB connection error: $err\n" );
-			return false;
+			throw new DBConnectionError( $this, $err );
 		}
 		$this->mOpened = !!$this->mConn;
 		# set error codes only, don't raise exceptions
