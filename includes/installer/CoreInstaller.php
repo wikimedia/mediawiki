@@ -186,7 +186,7 @@ abstract class CoreInstaller extends Installer {
 
 		// Load the installer's i18n file.
 		$wgExtensionMessagesFiles['MediawikiInstaller'] =
-			'./includes/installer/Installer.i18n.php';
+			dirname( __FILE__ ) . '/Installer.i18n.php';
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
