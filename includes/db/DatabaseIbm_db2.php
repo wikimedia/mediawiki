@@ -1768,7 +1768,7 @@ SQL;
 	 */
 	function bitNot($field) {
 		//expecting bit-fields smaller than 4bytes
-		return 'BITNOT('.$bitField.')';
+		return 'BITNOT('.$field.')';
 	}
 
 	/**
