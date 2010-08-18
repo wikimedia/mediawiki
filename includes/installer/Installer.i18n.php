@@ -95,7 +95,7 @@ The following database types are supported: $1.
 If you are on shared hosting, ask your hosting provider to install a suitable database driver.
 If you compiled PHP yourself, reconfigure it with a database client enabled, for example using <code>./configure --with-mysql</code>.
 If you installed PHP from a Debian or Ubuntu package, then you also need install the php5-mysql module.',
-	'config-have-db'                  => 'Found database drivers: $1.',
+	'config-have-db'                  => 'Found database {{PLURAL:$2|driver|drivers}}: $1.',
 	'config-register-globals'         => "'''Warning: PHP's <code>[http://php.net/register_globals register_globals]</code> option is enabled.'''
 '''Disable it if you can.'''
 MediaWiki will work, but your server is exposed to potential security vulnerabilities.",
@@ -504,7 +504,8 @@ $messages['qqq'] = array(
 	'config-no-db-help' => 'Parameters:
 * $1 is comma separated list of supported database types by MediaWiki.',
 	'config-have-db' => 'Parameters:
-* $1 is comma separated list of database drivers found in the application environment.',
+* $1 is comma separated list of database drivers found in the application environment.
+* $2 is the number of aforementioned drivers',
 	'config-memory-ok' => 'Parameters:
 * $1 is the configured <code>memory_limit</code>.',
 	'config-memory-raised' => 'Parameters:
