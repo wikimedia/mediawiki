@@ -14,7 +14,7 @@
  */
 class LoadBalancer {
 	/* private */ var $mServers, $mConns, $mLoads, $mGroupLoads;
-	/* private */ var $mFailFunction, $mErrorConnection;
+	/* private */ var $mErrorConnection;
 	/* private */ var $mReadIndex, $mAllowLagged;
 	/* private */ var $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
@@ -24,7 +24,6 @@ class LoadBalancer {
 	/**
 	 * @param $params Array with keys:
 	 *    servers           Required. Array of server info structures.
-	 *    failFunction      Deprecated, use exceptions instead.
 	 *    masterWaitTimeout Replication lag wait timeout
 	 *    loadMonitor       Name of a class used to fetch server lag and load.
 	 */
@@ -35,11 +34,6 @@ class LoadBalancer {
 		}
 		$this->mServers = $params['servers'];
 
-		if ( isset( $params['failFunction'] ) ) {
-			$this->mFailFunction = $params['failFunction'];
-		} else {
-			$this->mFailFunction = false;
-		}
 		if ( isset( $params['waitTimeout'] ) ) {
 			$this->mWaitTimeout = $params['waitTimeout'];
 		} else {
@@ -73,9 +67,9 @@ class LoadBalancer {
 		}
 	}
 
-	static function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
+	static function newFromParams( $servers, $waitTimeout = 10 )
 	{
-		return new LoadBalancer( $servers, $failFunction, $waitTimeout );
+		return new LoadBalancer( $servers, $waitTimeout );
 	}
 
 	/**
@@ -672,19 +666,11 @@ class LoadBalancer {
 			// No last connection, probably due to all servers being too busy
 			wfLogDBError( "LB failure with no last connection\n" );
 			$conn = new Database;
-			if ( $this->mFailFunction ) {
-				$conn->failFunction( $this->mFailFunction );
-				$conn->reportConnectionError( $this->mLastError );
-			} else {
-				// If all servers were busy, mLastError will contain something sensible
-				throw new DBConnectionError( $conn, $this->mLastError );
-			}
+
+			// If all servers were busy, mLastError will contain something sensible
+			throw new DBConnectionError( $conn, $this->mLastError );
 		} else {
-			if ( $this->mFailFunction ) {
-				$conn->failFunction( $this->mFailFunction );
-			} else {
-				$conn->failFunction( false );
-			}
+
 			$server = $conn->getProperty( 'mServer' );
 			wfLogDBError( "Connection error: {$this->mLastError} ({$server})\n" );
 			$conn->reportConnectionError( "{$this->mLastError} ({$server})" );

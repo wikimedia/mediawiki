@@ -32,7 +32,6 @@ abstract class DatabaseBase {
 	protected $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
 	protected $mOpened = false;
 
-	protected $mFailFunction;
 	protected $mTablePrefix;
 	protected $mFlags;
 	protected $mTrxLevel = 0;
@@ -45,14 +44,6 @@ abstract class DatabaseBase {
 # Accessors
 #------------------------------------------------------------------------------
 	# These optionally set a variable and return the previous state
-
-	/**
-	 * Fail function, takes a Database as a parameter
-	 * Set to false for default, 1 for ignore errors
-	 */
-	function failFunction( $function = null ) {
-		return wfSetVar( $this->mFailFunction, $function );
-	}
 
 	/**
 	 * Boolean, controls output of large amounts of debug information
@@ -291,12 +282,11 @@ abstract class DatabaseBase {
 	 * @param $user String: database user name
 	 * @param $password String: database user password
 	 * @param $dbName String: database name
-	 * @param $failFunction
 	 * @param $flags
 	 * @param $tablePrefix String: database table prefixes. By default use the prefix gave in LocalSettings.php
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' ) {
+		$flags = 0, $tablePrefix = 'get from global' ) {
 
 		global $wgOut, $wgDBprefix, $wgCommandLineMode;
 		# Can't get a reference if it hasn't been set yet
@@ -304,7 +294,6 @@ abstract class DatabaseBase {
 			$wgOut = null;
 		}
 
-		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 
 		if ( $this->mFlags & DBO_DEFAULT ) {
@@ -340,18 +329,16 @@ abstract class DatabaseBase {
 	 * @param $user String: database user name
 	 * @param $password String: database user password
 	 * @param $dbName String: database name
-	 * @param failFunction
 	 * @param $flags
 	 */
-	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 )
+	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 )
 	{
 		wfDeprecated( __METHOD__ );
-		return new DatabaseMysql( $server, $user, $password, $dbName, $failFunction, $flags );
+		return new DatabaseMysql( $server, $user, $password, $dbName, $flags );
 	}
 
 	/**
 	 * Usually aborts on failure
-	 * If the failFunction is set to a non-zero integer, returns success
 	 * @param $server String: database server host
 	 * @param $user String: database user name
 	 * @param $password String: database user password
@@ -403,16 +390,7 @@ abstract class DatabaseBase {
 			$error = $myError;
 		}
 
-		if ( $this->mFailFunction ) {
-			# Legacy error handling method
-			if ( !is_int( $this->mFailFunction ) ) {
-				$ff = $this->mFailFunction;
-				$ff( $this, $error );
-			}
-		} else {
-			# New method
-			throw new DBConnectionError( $this, $error );
-		}
+		throw new DBConnectionError( $this, $error );
 	}
 
 	/**
@@ -2547,7 +2525,7 @@ class DBConnectionError extends DBError {
 	}
 
 	function getHTML() {
-		global $wgLang, $wgMessageCache, $wgUseFileCache, $wgShowDBErrorBacktrace;
+		global $wgLang, $wgMessageCache, $wgUseFileCache, $wgShowDBErrorBacktrace, $wgContLang;
 
 		$sorry = 'Sorry! This site is experiencing technical difficulties.';
 		$again = 'Try waiting a few minutes and reloading.';
@@ -2582,6 +2560,13 @@ class DBConnectionError extends DBError {
 				$cache = $this->fileCachedPage();
 				# Cached version on file system?
 				if( $cache !== null ) {
+					# Adding support for RTL languages
+					if ( $wgContLang !== null ) {					
+						if ( $wgContLang->isRTL() ) {		
+							$cache = str_replace( '<html>', '<html style="direction:rtl;">', $cache );
+						}
+					}
+
 					# Hack: extend the body for error messages
 					$cache = str_replace( array('</html>','</body>'), '', $cache );
 					# Add cache notice...
