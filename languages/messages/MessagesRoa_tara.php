@@ -529,6 +529,7 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'password-strength-mediocre'   => 'megghie de ninde',
 'password-strength-acceptable' => 'pò scè',
 'password-strength-good'       => 'bbuène',
+'password-retype'              => "Rescrive 'a passuord aqquà",
 
 # Password reset dialog
 'resetpass'                 => "Cange 'a password",
@@ -891,6 +892,8 @@ $1",
 'logdelete-failure'           => "'''L'archivije d'a visibbilità non ge pò essere 'mbostate:'''
 $1",
 'revdel-restore'              => "Cange 'a visibilità",
+'revdel-restore-deleted'      => 'revisiune scangellate',
+'revdel-restore-visible'      => 'Revisiune visibbele',
 'pagehist'                    => "Storie d'a vôsce",
 'deletedhist'                 => "Storie d'u scangellamende",
 'revdelete-content'           => 'condenute',
@@ -1409,6 +1412,14 @@ Pe piacere vide ce renomene 'u file e pruève a carecarle 'n'otra vote.",
 'filetype-banned-type'        => "'''\".\$1\"''' ète 'nu tipe de file ca non g'è permesse.
 {{PLURAL:\$3|'U tipe de file permesse ète|Le tipe de file permesse sonde}} \$2.",
 'filetype-missing'            => '\'U file non ge tène l\'estenzione (cumme a ".jpg").',
+'empty-file'                  => "'U file ca tu è mannate ere vacande.",
+'file-too-large'              => "'U file ca tu è mannate ere troppe luènghe.",
+'filetype-banned'             => 'Stu tipe de file jè vietate.',
+'verification-error'          => "Stu file non g'à passate 'a verifeche de le file.",
+'illegal-filename'            => "'U nome d'u file non g'è permesse.",
+'unknown-error'               => "'N'errore scanusciute s'a verificate.",
+'tmp-create-error'            => 'Non ge pozze ccrejà file temboranèe.',
+'tmp-write-error'             => "Errore scrivenne 'u file temboranèe.",
 'large-file'                  => "Normalmende 'u file non g'adda essere cchiù granne de $1;
 Stu file jè $2.",
 'largefileserver'             => "Stu file jè troppe gruesse pe quidde ca 'a configurazione d'u server permette.",
@@ -1444,6 +1455,8 @@ Avissa verificà 'a storie d'a scangellazzione d'u file apprime de condinuà a c
 'uploadedimage'               => 'carechete "[[$1]]"',
 'overwroteimage'              => 'ha state carechete \'na versiona nove de "[[$1]]"',
 'uploaddisabled'              => 'Carecaminde disabbilitete',
+'copyuploaddisabled'          => "Carecamende da l'URL disabbilitate.",
+'uploadfromurl-queued'        => "'U carecamende tune ha state mise in code.",
 'uploaddisabledtext'          => 'Le carecaminde de le file sonde disabbilitete.',
 'php-uploaddisabledtext'      => "Le carecaminde de file sonde disabilitate in PHP.<br />
 Pe piacere verifiche le 'mbostaziune d'u ''file_uploads''.",
@@ -2566,6 +2579,8 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-rollback'                => '"Ripristine" annulle le cangiaminde a sta pàgene de l\'urteme condrebbutore cu \'nu cazzamende',
 'tooltip-undo'                    => "\"Annulle\" annulle stu cangiamende e iapre 'u form de le cangiaminde facenne vedè l'andeprime.
 Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
+'tooltip-preferences-save'        => 'Reggistre le preferenze',
+'tooltip-summary'                 => "Mitte 'nu riepileghe piccinne",
 
 # Metadata
 'nodublincore'      => "'U metadata ''Dublin Core RDF'' ète disabbilitate pe stu server.",
@@ -3072,6 +3087,7 @@ Pe piacere conferme ca tu vuè avveramende reccrejà sta pàgene.",
 'table_pager_first'        => 'Prima pàgene',
 'table_pager_last'         => 'Urtema pàgene',
 'table_pager_limit'        => 'Fa vedè $1 vosce pe pàgene',
+'table_pager_limit_label'  => 'Vôsce pe pàggene:',
 'table_pager_limit_submit' => 'Veje',
 'table_pager_empty'        => 'Nisciune resultete',
 

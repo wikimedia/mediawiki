@@ -9,6 +9,7 @@
  *
  * @author Adnergje
  * @author NJ
+ * @author Ooswesthoesbes
  * @author Purodha
  * @author Rob Church <robchur@gmail.com>
  * @author Steinbach
@@ -207,7 +208,7 @@ $messages = array(
 'deletethispage'    => 'Wis deêze bladzie',
 'undelete_short'    => '$1 {{PLURAL:$1|bewerkieng|bewerkiengen}} terugzetten',
 'protect'           => 'Bescherm',
-'protect_change'    => 'beveiligiengsstaotus wiezigen',
+'protect_change'    => 'wiezigen',
 'protectthispage'   => 'Bescherm deêze bladzie',
 'unprotect'         => 'Beveiligieng opheffen',
 'unprotectthispage' => 'Beveiligieng van deêze pagina opheffen',
@@ -289,13 +290,13 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-feed',
 'page-rss-feed'           => '“$1” RSS-feed',
 'page-atom-feed'          => '“$1” Atom-feed',
-'red-link-title'          => '$1 (besti nog nie)',
+'red-link-title'          => '$1 (de bladzie besti nie)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bladzie',
 'nstab-user'      => 'Gebruker',
 'nstab-media'     => 'Mediapagina',
-'nstab-special'   => 'Speciaol',
+'nstab-special'   => 'Speciaole bladzie',
 'nstab-project'   => 'Projectbladzie',
 'nstab-image'     => 'Bestand',
 'nstab-mediawiki' => 'Systeemtekst',
@@ -766,7 +767,7 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'notitlematches'        => "Hin resultaoten evon'n",
 'textmatches'           => 'Overeênkomst mie inoud',
 'notextmatches'         => "Hin pagina's evon'n",
-'prevn'                 => 'vorrege $1',
+'prevn'                 => 'vorrege {{PLURAL:$1|$1}}',
 'nextn'                 => 'volhende {{PLURAL:$1|$1}}',
 'viewprevnext'          => 'Bekiek ($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'        => 'Help:Inoud',
@@ -969,6 +970,7 @@ De lèste lienk is bedoeld voe mediabestan'n die an hin plaetje zien.",
 
 # File description page
 'file-anchor-link' => 'Bestand',
+'filehist-user'    => 'Gebruker',
 
 # Random page
 'randompage' => 'Bladzie op goed geluk',
