@@ -1278,7 +1278,7 @@ abstract class DatabaseBase {
 	 */
 
 	function bitNot($field) {
-		return "(~$bitField)";
+		return "(~$field)";
 	}
 
 	function bitAnd($fieldLeft, $fieldRight) {
