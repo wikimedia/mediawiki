@@ -437,7 +437,7 @@ abstract class Installer {
 			return false;
 		}
 
-		$this->showMessage( 'config-have-db', $wgLang->commaList( $goodNames ) );
+		$this->showMessage( 'config-have-db', $wgLang->listToText( $goodNames ), count( $goodNames ) );
 	}
 
 	/**
