@@ -929,6 +929,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 										$conf->RootUser,
 										$conf->RootPW,
 										false,
+										false,
 										1
 									);
 				if ( !$wgDatabase->isOpen() ) {
@@ -1048,7 +1049,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						$wgDBadminuser = $conf->RootUser;
 						$wgDBadminpassword = $conf->RootPW;
 						echo "<li>Attempting to create DB user.</li>";
-						$wgDatabase = $dbc->newFromParams('DUMMY', $wgDBadminuser, $wgDBadminpassword, $wgDBname, 64);
+						$wgDatabase = $dbc->newFromParams('DUMMY', $wgDBadminuser, $wgDBadminpassword, $wgDBname, 1, 64);
 						if ($wgDatabase->isOpen()) {
 							$wgDBOracleDefTS = $conf->DBdefTS_ora;
 							$wgDBOracleTempTS = $conf->DBtempTS_ora;

@@ -112,6 +112,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	protected $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
 	protected $mOut, $mOpened = false;
 
+	protected $mFailFunction;
 	protected $mTablePrefix;
 	protected $mFlags;
 	protected $mTrxLevel = 0;
@@ -163,6 +164,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * These can be safely inherited
 	 * 
 	 * Getter/Setter: (18)
+	 * failFunction
 	 * bufferResults
 	 * ignoreErrors
 	 * trxLevel
@@ -403,19 +405,22 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $user String: username
 	 * @param $password String: password
 	 * @param $dbName String: database name on the server
+	 * @param $failFunction Callback (optional)
 	 * @param $flags Integer: database behaviour flags (optional, unused)
 	 * @param $schema String
 	 */
 	public function DatabaseIbm_db2($server = false, $user = false, $password = false,
-							$dbName = false, $flags = 0,
+							$dbName = false, $failFunction = false, $flags = 0,
 							$schema = self::USE_GLOBAL )
 	{
+
 		global $wgOut, $wgDBmwschema;
 		# Can't get a reference if it hasn't been set yet
 		if ( !isset( $wgOut ) ) {
 			$wgOut = null;
 		}
 		$this->mOut =& $wgOut;
+		$this->mFailFunction = $failFunction;
 		$this->mFlags = DBO_TRX | $flags;
 		
 		if ( $schema == self::USE_GLOBAL ) {
@@ -574,11 +579,13 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $user String: username
 	 * @param $password String
 	 * @param $dbName String: database name on the server
+	 * @param $failFunction Callback (optional)
 	 * @param $flags Integer: database behaviour flags (optional, unused)
 	 * @return DatabaseIbm_db2 object
 	 */
-	static function newFromParams( $server, $user, $password, $dbName, $flags = 0) {
-		return new DatabaseIbm_db2( $server, $user, $password, $dbName, $flags );
+	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0)
+	{
+		return new DatabaseIbm_db2( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 	
 	/**
