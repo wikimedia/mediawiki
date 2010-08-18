@@ -132,7 +132,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		// The setContinue... is more complex because of this, and takes into account the higher sql limit
 		// to make sure all rows that belong to the same user are received.
 
-		$row = $db->fetchObject( $res );
 		foreach ( $res as $row ) {
 			$count++;
 
