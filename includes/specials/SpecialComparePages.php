@@ -51,7 +51,6 @@ class SpecialComparePages extends SpecialPage {
 		$opts->add( 'rev1', '' );
 		$opts->add( 'rev2', '' );
 		$opts->add( 'action', '' );
-		$opts->add( 'diffonly', '' );
 
 		// Set values
 		$opts->fetchValuesFromRequest( $wgRequest );
@@ -99,13 +98,13 @@ class SpecialComparePages extends SpecialPage {
 
 		if( $this->opts->getValue( 'rev1' ) && $this->opts->getValue( 'rev2' ) ) {
 			$title = Title::newFromText( $this->opts->getValue( 'page2' ) );
-			$de = new DifferenceEngine( $title,
+			$de = new DifferenceEngine( null,
 				$this->opts->getValue( 'rev1' ),
 				$this->opts->getValue( 'rev2' ),
 				null, // rcid
 				( $this->opts->getValue( 'action' ) == 'purge' ),
 				false );
-			$de->showDiffPage( (bool)$this->opts->getValue( 'diffonly' ) );
+			$de->showDiffPage( true );
 		}
 	}
 
