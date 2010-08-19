@@ -622,7 +622,6 @@ class SpecialVersion extends SpecialPage {
 				$info['url']
 			);
 			
-			$pathRelativeToRepo = substr( $info['url'], strlen( $info['repo-url'] ) );
 			$viewvc .= '/?pathrev=';
 			$viewvc .= urlencode( $info['checkout-rev'] );
 			$info['viewvc-url'] = $viewvc;

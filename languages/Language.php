@@ -1614,7 +1614,6 @@ class Language {
 			}
 		} else {
 			if ( $this->isMultibyte( $str ) ) {
-				list( $wikiUpperChars ) = $this->getCaseMaps();
 				$x = $first ? '^' : '';
 				return preg_replace_callback(
 					"/$x([a-z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",
@@ -1654,7 +1653,6 @@ class Language {
 			}
 		} else {
 			if ( $this->isMultibyte( $str ) ) {
-				list( , $wikiLowerChars ) = self::getCaseMaps();
 				$x = $first ? '^' : '';
 				return preg_replace_callback(
 					"/$x([A-Z]|[\\xc0-\\xff][\\x80-\\xbf]*)/",

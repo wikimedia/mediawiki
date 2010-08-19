@@ -3186,7 +3186,6 @@ class Article {
 		wfDebug( __METHOD__ . "\n" );
 
 		$dbw = wfGetDB( DB_MASTER );
-		$ns = $this->mTitle->getNamespace();
 		$t = $this->mTitle->getDBkey();
 		$id = $id ? $id : $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 

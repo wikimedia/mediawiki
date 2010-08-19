@@ -1212,7 +1212,6 @@ class RevDel_FileItem extends RevDel_Item {
 			' (' . 
 			wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $this->file->getSize() ) ) . 
 			')';
-		$pageLink = $this->getLink();
 
 		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
 			$data . ' ' . $this->getComment(). '</li>';

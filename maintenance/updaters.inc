@@ -1209,7 +1209,7 @@ END;
 }
 
 function do_postgres_updates() {
-	global $wgDatabase, $wgDBmwschema, $wgDBts2schema, $wgShowExceptionDetails, $wgDBuser;
+	global $wgDatabase, $wgDBmwschema, $wgDBts2schema, $wgDBuser;
 
 	# # Gather version numbers in case we need them
 	$version = $wgDatabase->getServerVersion(); # # long string
