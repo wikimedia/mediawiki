@@ -109,6 +109,7 @@ class UpdateSearchIndex extends Maintenance {
 			$title = $titleObj->getPrefixedDBkey();
 			$this->output( "$title..." );
 			$u = new SearchUpdate( $row->rc_cur_id, $title, false );
+			$u->doUpdate();
 			$this->output( "\n" );
 		} elseif ( $row->rc_type !== RC_LOG ) {
 			$this->updateSearchIndexForPage( $dbw, $row->rc_cur_id );
