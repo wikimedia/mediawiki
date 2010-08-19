@@ -253,7 +253,6 @@ class FileDeleteForm {
 	private function prepareMessage( $message ) {
 		global $wgLang;
 		if( $this->oldimage ) {
-			$url = $this->file->getArchiveUrl( $this->oldimage );
 			return wfMsgExt(
 				"{$message}-old", # To ensure grep will find them: 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
 				'parse',

@@ -135,13 +135,7 @@ class Parser_LinkHooks extends Parser
 			wfProfileOut( __METHOD__.'-setup' );
 			throw new MWException( __METHOD__.": \$this->mTitle is null\n" );
 		}
-		$nottalk = !$this->mTitle->isTalkPage();
-		
-		if($wgContLang->hasVariants()) {
-			$selflink = $wgContLang->convertLinkToAllVariants($this->mTitle->getPrefixedText());
-		} else {
-			$selflink = array($this->mTitle->getPrefixedText());
-		}
+
 		wfProfileOut( __METHOD__.'-setup' );
 		
 		$offset = 0;

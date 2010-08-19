@@ -216,7 +216,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		if ( $t->exists() ) {
 			$file = wfFindFile( $name, array( 'ignoreRedirect' => true ) );
 			$empty = "";
-			$status = FileDeleteForm::doDelete( $t, $file, $empty, "none", true );
+			FileDeleteForm::doDelete( $t, $file, $empty, "none", true );
 			$a = new Article ( $t );
 			$a->doDeleteArticle( "testing" );
 		}
