@@ -80,7 +80,6 @@ class WebInstaller extends CoreInstaller {
 	 */
 	public $showSessionWarning = false;
 
-	public $helpId = 0;
 	public $tabIndex = 1;
 
 	public $currentPageName;
@@ -607,7 +606,6 @@ class WebInstaller extends CoreInstaller {
 		$args = func_get_args();
 		array_shift( $args );
 		$args = array_map( 'htmlspecialchars', $args );
-		
 		$text = wfMsgReal( $msg, $args, false, false, false );
 		$html = $this->parse( $text, true );
 

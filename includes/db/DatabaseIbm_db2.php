@@ -1076,10 +1076,8 @@ EOF;
 		// assume success
 		$res = true;
 		// If we are not in a transaction, we need to be for savepoint trickery
-		$didbegin = 0;
 		if (! $this->mTrxLevel) {
 			$this->begin();
-			$didbegin = 1;
 		}
 
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';

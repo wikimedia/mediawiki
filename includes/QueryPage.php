@@ -228,8 +228,6 @@ class QueryPage {
 			return false;
 		}
 
-		$querycache = $dbr->tableName( 'querycache' );
-
 		if ( $ignoreErrors ) {
 			$ignoreW = $dbw->ignoreErrors( true );
 			$ignoreR = $dbr->ignoreErrors( true );
