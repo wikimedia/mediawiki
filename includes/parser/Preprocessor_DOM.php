@@ -612,7 +612,7 @@ class Preprocessor_DOM implements Preprocessor {
 					# do we still qualify for any callback with remaining count?
 					$names = $rules[$piece->open]['names'];
 					$skippedBraces = 0;
-					$enclosingAccum =& $accum;
+
 					while ( $piece->count ) {
 						if ( array_key_exists( $piece->count, $names ) ) {
 							$stack->push( $piece );
@@ -622,7 +622,6 @@ class Preprocessor_DOM implements Preprocessor {
 						--$piece->count;
 						$skippedBraces ++;
 					}
-					$enclosingAccum .= str_repeat( $piece->open, $skippedBraces );
 				}
 				$flags = $stack->getFlags();
 				extract( $flags );

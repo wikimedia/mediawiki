@@ -4629,7 +4629,6 @@ class Parser {
 		}
 
 		# Get the file
-		$imagename = $title->getDBkey();
 		$file = wfFindFile( $title, array( 'time' => $time ) );
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
@@ -5130,10 +5129,6 @@ class Parser {
 		# Strip HTML tags
 		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
 		return $text;
-	}
-
-	function srvus( $text ) {
-		return $this->testSrvus( $text, $this->mOutputType );
 	}
 
 	/**

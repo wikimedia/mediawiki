@@ -359,7 +359,9 @@ class Linker {
 	function normaliseSpecialPage( Title $title ) {
 		if ( $title->getNamespace() == NS_SPECIAL ) {
 			list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
-			if ( !$name ) return $title;
+			if ( !$name ) {
+				return $title;
+			}
 			$ret = SpecialPage::getTitleFor( $name, $subpage );
 			$ret->mFragment = $title->getFragment();
 			return $ret;
@@ -1911,7 +1913,6 @@ class Linker {
 		if( $text === '' ) {
 			$text = $this->linkText( $title );
 		}
-		$nt = $this->normaliseSpecialPage( $title );
 
 		$ret = $this->link( $title, "$prefix$text$inside", array(),
 			wfCgiToArray( $query ), 'broken' ) . $trail;

@@ -610,8 +610,6 @@ class WebInstaller extends CoreInstaller {
 		
 		$text = wfMsgReal( $msg, $args, false, false, false );
 		$html = $this->parse( $text, true );
-		$id = $this->helpId++;
-		$alt = wfMsg( 'help' );
 
 		return
 			"<div class=\"config-help-wrapper\">\n" .

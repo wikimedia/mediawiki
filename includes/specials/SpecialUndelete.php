@@ -1143,7 +1143,6 @@ class UndeleteForm extends SpecialPage {
 		if( $haveRevisions ) {
 			# The page's stored (deleted) history:
 			$wgOut->addHTML("<ul>");
-			$target = urlencode( $this->mTarget );
 			$remaining = $revisions->numRows();
 			$earliestLiveTime = $this->mTargetObj->getEarliestRevTime();
 
@@ -1263,7 +1262,6 @@ class UndeleteForm extends SpecialPage {
 		if( $this->mAllowed && $row->fa_storage_key ) {
 			$checkBox = Xml::check( "fileid" . $row->fa_id );
 			$key = urlencode( $row->fa_storage_key );
-			$target = urlencode( $this->mTarget );
 			$pageLink = $this->getFileLink( $file, $this->getTitle(), $ts, $key, $sk );
 		} else {
 			$checkBox = '';

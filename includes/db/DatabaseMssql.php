@@ -814,7 +814,7 @@ class DatabaseMssql extends DatabaseBase {
 	}
 	
 	function setup_database() {
-		global $wgVersion, $wgDBmwschema, $wgDBport, $wgDBuser;
+		global $wgVersion, $wgDBport, $wgDBuser;
 
 		// Make sure that we can write to the correct schema
 		$ctest = "mediawiki_test_table";
