@@ -123,7 +123,7 @@ class BitmapHandler extends ImageHandler {
 				$quality = "-quality 80"; // 80%
 				# Sharpening, see bug 6193
 				if ( ( $physicalWidth + $physicalHeight ) / ( $srcWidth + $srcHeight ) < $wgSharpenReductionThreshold ) {
-					$sharpen = "-sharpen " . wfEscapeShellArg( $wgSharpenParameter );
+					$sharpen = "-unsharp " . wfEscapeShellArg( $wgSharpenParameter );
 				}
 			} elseif ( $mimeType == 'image/png' ) {
 				$quality = "-quality 95"; // zlib 9, adaptive filtering
