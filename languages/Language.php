@@ -241,12 +241,12 @@ class Language {
 	 */
 	function getNamespaces() {
 		if ( is_null( $this->namespaceNames ) ) {
-			global $wgExtraNamespaces, $wgMetaNamespace, $wgMetaNamespaceTalk;
+			global $wgMetaNamespace, $wgMetaNamespaceTalk;
 
 			$this->namespaceNames = self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
-			if ( $wgExtraNamespaces ) {
-				$this->namespaceNames = $wgExtraNamespaces + $this->namespaceNames;
-			}
+			$validNamespaces = MWNamespace::getCanonicalNamespaces();
+
+			$this->namespaceNames = $validNamespaces + $this->namespaceNames;
 
 			$this->namespaceNames[NS_PROJECT] = $wgMetaNamespace;
 			if ( $wgMetaNamespaceTalk ) {
@@ -258,13 +258,10 @@ class Language {
 			}
 			
 			# Sometimes a language will be localised but not actually exist on this wiki.
-			global $wgCanonicalNamespaceNames;
-			$validNamespaces = array_keys($wgCanonicalNamespaceNames);
-			$validNamespaces[] = NS_MAIN;
 			foreach( $this->namespaceNames as $key => $text ) {
-			        if ( ! in_array( $key, $validNamespaces ) ) {
-			                unset( $this->namespaceNames[$key] );
-			        }
+				if ( !isset( $validNamespaces[$key] ) ) {
+					unset( $this->namespaceNames[$key] );
+				}
 			}
 
 			# The above mixing may leave namespaces out of canonical order.
