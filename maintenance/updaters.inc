@@ -9,7 +9,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-require_once 'convertLinks.inc';
 require_once 'userDupes.inc';
 # Extension updates
 require_once( "$IP/includes/Hooks.php" );
@@ -514,12 +513,12 @@ function do_drop_img_type() {
 }
 
 function do_old_links_update() {
-	global $wgDatabase;
-	if ( $wgDatabase->tableExists( 'pagelinks' ) ) {
-		wfOut( "...have pagelinks; skipping old links table updates.\n" );
-	} else {
-		convertLinks(); flush();
+	if( !defined( 'MW_NO_SETUP' ) ) {
+		define( 'MW_NO_SETUP', true );
 	}
+	require( "convertLinks.php" );
+	$cl = new ConvertLinks();
+	$cl->execute();
 }
 
 function fix_ancient_imagelinks() {

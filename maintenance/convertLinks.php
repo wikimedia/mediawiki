@@ -31,17 +31,22 @@ class ConvertLinks extends Maintenance {
 The wiki should be put into read-only mode while this script executes";
 	}
 
+	public function getDbType() {
+		return self::DB_ADMIN;
+	}
+
 	public function execute() {
 		global $wgDBtype;
-		if ( $wgDBtype == 'postgres' ) {
-			$this->output( "Links table already ok on Postgres.\n" );
+
+		$dbw = wfGetDB( DB_MASTER );
+
+		$type = $dbw->getType();
+		if ( $type != 'mysql' ) {
+			$this->output( "Link table conversion not necessary for $type\n" );
 			return;
 		}
 
-		$this->output( "Converting links table to ID-ID...\n" );
-
-		global $wgLang, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
-		global $noKeys, $logPerformance, $fh;
+		global $wgLang, $noKeys, $logPerformance, $fh;
 	
 		$tuplesAdded = $numBadLinks = $curRowsRead = 0; # counters etc
 		$totalTuplesInserted = 0; # total tuples INSERTed into links_temp
@@ -68,8 +73,12 @@ The wiki should be put into read-only mode while this script executes";
 		$perfLogFilename = "convLinksPerf.txt";
 		# --------------------------------------------------------------------
 
-		$dbw = wfGetDB( DB_MASTER );
 		list ( $cur, $links, $links_temp, $links_backup ) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
+
+		if( $dbw->tableExists( 'pagelinks' ) ) {
+			$this->output( "...have pagelinks; skipping old links table updates\n" );
+			return;
+		}
 	
 		$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );
 		if ( $dbw->fieldType( $res, 0 ) == "int" ) {
@@ -172,22 +181,17 @@ The wiki should be put into read-only mode while this script executes";
 		# --------------------------------------------------------------------
 
 		if ( $overwriteLinksTable ) {
-			$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
-			if ( !( $dbConn->isOpen() ) ) {
-				$this->output( "Opening connection to database failed.\n" );
-				return;
-			}
 			# Check for existing links_backup, and delete it if it exists.
 			$this->output( "Dropping backup links table if it exists..." );
-			$dbConn->query( "DROP TABLE IF EXISTS $links_backup", DB_MASTER );
+			$dbw->query( "DROP TABLE IF EXISTS $links_backup", DB_MASTER );
 			$this->output( " done.\n" );
 	
 			# Swap in the new table, and move old links table to links_backup
 			$this->output( "Swapping tables '$links' to '$links_backup'; '$links_temp' to '$links'..." );
-			$dbConn->query( "RENAME TABLE links TO $links_backup, $links_temp TO $links", DB_MASTER );
+			$dbw->query( "RENAME TABLE links TO $links_backup, $links_temp TO $links", DB_MASTER );
 			$this->output( " done.\n\n" );
 	
-			$dbConn->close();
+			$dbw->close();
 			$this->output( "Conversion complete. The old table remains at $links_backup;\n" );
 			$this->output( "delete at your leisure.\n" );
 		} else {
@@ -197,9 +201,8 @@ The wiki should be put into read-only mode while this script executes";
 	}
 
 	private function createTempTable() {
-		global $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
 		global $noKeys;
-		$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+		$dbConn = wfGetDB( DB_MASTER );
 
 		if ( !( $dbConn->isOpen() ) ) {
 			$this->output( "Opening connection to database failed.\n" );
