@@ -11,30 +11,42 @@
  */
 
 /**
- * @todo document
+ * Get a cache key for the given session id.
+ *
+ * @param $id String: session id
+ * @return String: cache key
  */
 function memsess_key( $id ) {
 	return wfMemcKey( 'session', $id );
 }
 
 /**
- * @todo document
+ * Callback when opening a session.
+ * NOP: $wgMemc should be set up already.
+ *
+ * @param $save_path String: path used to store session files, unused
+ * @param $session_name String: session name
+ * @return Boolean: success
  */
 function memsess_open( $save_path, $session_name ) {
-	# NOP, $wgMemc should be set up already
 	return true;
 }
 
 /**
- * @todo document
+ * Callback when closing a session.
+ * NOP.
+ *
+ * @return Boolean: success
  */
 function memsess_close() {
-	# NOP
 	return true;
 }
 
 /**
- * @todo document
+ * Callback when reading session data.
+ *
+ * @param $id String: session id
+ * @return Mixed: session data
  */
 function memsess_read( $id ) {
 	global $wgMemc;
@@ -44,7 +56,11 @@ function memsess_read( $id ) {
 }
 
 /**
- * @todo document
+ * Callback when writing session data.
+ *
+ * @param $id String: session id
+ * @param $data Mixed: session data
+ * @return Boolean: success
  */
 function memsess_write( $id, $data ) {
 	global $wgMemc;
@@ -53,19 +69,26 @@ function memsess_write( $id, $data ) {
 }
 
 /**
- * @todo document
+ * Callback to destroy a session when calling session_destroy().
+ *
+ * @param $id String: session id
+ * @return Boolean: success
  */
 function memsess_destroy( $id ) {
 	global $wgMemc;
+
 	$wgMemc->delete( memsess_key( $id ) );
 	return true;
 }
 
 /**
- * @todo document
+ * Callback to execute garbage collection.
+ * NOP: Memcached performs garbage collection.
+ *
+ * @param $maxlifetime Integer: maximum session life time
+ * @return Boolean: success
  */
 function memsess_gc( $maxlifetime ) {
-	# NOP: Memcached performs garbage collection.
 	return true;
 }
 
