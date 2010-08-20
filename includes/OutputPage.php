@@ -195,6 +195,7 @@ class OutputPage {
 	 */
 	public function addScriptFile( $file, $version = null ) {
 		global $wgStylePath, $wgStyleVersion;
+		// See if $file parameter is an absolute URL or begins with a slash
 		if( substr( $file, 0, 1 ) == '/' || preg_match( '#^[a-z]*://#i', $file ) ) {
 			$path = $file;
 		} else {
