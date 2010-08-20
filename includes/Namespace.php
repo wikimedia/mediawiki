@@ -133,7 +133,6 @@ class MWNamespace {
 				$namespaces = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
 			}
 			$namespaces[NS_MAIN] = '';
-			var_dump( $namespaces );
 		}
 		return $namespaces;
 	}
