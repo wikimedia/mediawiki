@@ -9,6 +9,7 @@
  *
  * @author Aleator
  * @author Cedric31
+ * @author Davidpar
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
@@ -663,10 +664,13 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'suspicious-userlogout'      => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
 
 # JavaScript password checks
+'password-strength'            => 'Força estimada de la contrasenya: $1',
 'password-strength-bad'        => 'DOLENT',
 'password-strength-mediocre'   => 'mediocre',
 'password-strength-acceptable' => 'acceptable',
 'password-strength-good'       => 'bo',
+'password-retype'              => 'Escriviu una altra vegada la contrasenya aquí',
+'password-retype-mismatch'     => 'Les contrasenyes no coincideixen.',
 
 # Password reset dialog
 'resetpass'                 => 'Canvia la contrasenya',
@@ -1282,6 +1286,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'prefs-advancedwatchlist'       => 'Opcions avançades',
 'prefs-displayrc'               => "Opcions d'aparença",
 'prefs-displaysearchoptions'    => 'Opcions de visualització',
+'prefs-displaywatchlist'        => 'Opcions de visualització',
 'prefs-diffs'                   => 'Difs',
 
 # User rights
@@ -1594,11 +1599,13 @@ Hauríeu de considerar si és realment adequat continuar carregant aquest fitxer
 A continuació teniu el registre d'eliminació per a que pugueu comprovar els motius que van portar a la seua eliminació:",
 'filename-bad-prefix'         => "El nom del fitxer que esteu penjant comença amb '''«$1»''', que és un nom no descriptiu que les càmeres digitals normalment assignen de forma automàtica. Trieu un de més descriptiu per al vostre fitxer.",
 'upload-success-subj'         => "El fitxer s'ha carregat amb èxit",
-'upload-success-msg'          => 'El material carregat està disponible ací: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'El material carregat de [$2] està disponible ací: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en la càrrega',
 'upload-failure-msg'          => 'Hi ha hagut un problema amb la vostra càrrega:
 
 $1',
+'upload-warning-subj'         => 'Avís de càrrega',
+'upload-warning-msg'          => 'Hi ha hagut un problema amb la teva càrrega de [$2]. Pots tornar a [[Special:Upload/stash/$1|formulari de càrrega]] per corregir aquest problema.',
 
 'upload-proto-error'        => 'El protocol és incorrecte',
 'upload-proto-error-text'   => 'Per a les càrregues remotes cal que els URL comencin amb <code>http://</code> o <code>ftp://</code>.',
@@ -1998,6 +2005,7 @@ L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres prefe
 # Watchlist
 'watchlist'            => 'Llista de seguiment',
 'mywatchlist'          => 'Llista de seguiment',
+'watchlistfor2'        => 'Per $1 $2',
 'nowatchlist'          => 'No teniu cap element en la vostra llista de seguiment.',
 'watchlistanontext'    => 'Premeu $1 per a visualitzar o modificar elements de la vostra llista de seguiment.',
 'watchnologin'         => 'No heu iniciat la sessió',
@@ -2503,6 +2511,7 @@ La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer
 'immobile-source-page'         => 'Aquesta pàgina no es pot moure.',
 'immobile-target-page'         => 'No es pot moure cap a una destinació amb aquest títol.',
 'imagenocrossnamespace'        => 'No es pot moure la imatge a un espai de noms on no li correspon',
+'nonfile-cannot-move-to-file'  => 'No es pot moure la imatge a un espai de noms on no li correspon',
 'imagetypemismatch'            => 'La nova extensió de fitxer no coincideix amb el seu tipus',
 'imageinvalidfilename'         => 'El nom de fitxer indicat no és vàlid',
 'fix-double-redirects'         => "Actualitza també les redireccions que apuntin a l'article original",
@@ -3129,7 +3138,8 @@ Comproveu que l'adreça no tingui caràcters no vàlids.
 El programari de correu retornà el següent missatge: $1",
 'confirmemail_invalid'      => 'El codi de confirmació no és vàlid. Aquest podria haver vençut.',
 'confirmemail_needlogin'    => 'Necessiteu $1 per a confirmar la vostra adreça electrònica.',
-'confirmemail_success'      => "S'ha confirmat la vostra adreça electrònica. Ara podeu iniciar una sessió i gaudir del wiki.",
+'confirmemail_success'      => "S'ha confirmat la vostra adreça electrònica.
+Ara podeu [[Special:UserLogin|iniciar una sessió]] i gaudir del wiki.",
 'confirmemail_loggedin'     => "Ja s'ha confirmat la vostra adreça electrònica.",
 'confirmemail_error'        => 'Quelcom ha fallat en desar la vostra confirmació.',
 'confirmemail_subject'      => "Confirmació de l'adreça electrònica del projecte {{SITENAME}}",

@@ -25,6 +25,7 @@
  * @author Khaledhosny
  * @author Lord Anubis
  * @author MK
+ * @author Majid Al-Dharrab
  * @author Menasim
  * @author Meno25
  * @author Mido
@@ -438,7 +439,7 @@ $messages = array(
 'tog-editsection'             => 'مكن تعديل الأقسام عن طريق وصلات [عدل]',
 'tog-editsectiononrightclick' => 'فعل تعديل الأقسام بواسطة كبسة الفأرة اليمين على عناوين الأقسام (جافاسكريبت)',
 'tog-showtoc'                 => 'اعرض فهرس المحتويات (للصفحات التي تحتوي على أكثر من 3 عناوين)',
-'tog-rememberpassword'        => 'تذكر دخولي على هذا الحاسوب (إلى {{PLURAL:$1||يوم وحد|يومين|$1 أيام|$1 يومًا|$1 يوم}} كحد أقصى)',
+'tog-rememberpassword'        => 'تذكر دخولي على هذا الحاسوب (إلى {{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يومًا|$1 يوم}} كحد أقصى)',
 'tog-watchcreations'          => 'أضف الصفحات التي أنشئها إلى قائمة مراقبتي',
 'tog-watchdefault'            => 'أضف الصفحات التي أعدلها إلى قائمة مراقبتي',
 'tog-watchmoves'              => 'أضف الصفحات التي أنقلها إلى قائمة مراقبتي',
@@ -478,9 +479,9 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'نمط خط منطقة التحرير:',
 'editfont-default'   => 'تبعا لإعدادات المتصفح',
-'editfont-monospace' => 'خط Monospaced',
-'editfont-sansserif' => 'خط Sans-serif',
-'editfont-serif'     => 'خط Serif',
+'editfont-monospace' => 'خط ثابت العرض',
+'editfont-sansserif' => 'خط بلا زوائد',
+'editfont-serif'     => 'خط بزوائد',
 
 # Dates
 'sunday'        => 'الأحد',
@@ -927,7 +928,10 @@ $2',
 
 # JavaScript password checks
 'password-strength'            => 'قوة كلمة المرور المقدرة: $1',
+'password-strength-bad'        => 'غير صالحة',
+'password-strength-mediocre'   => 'متوسطة',
 'password-strength-acceptable' => 'مقبولة',
+'password-strength-good'       => 'جيدة',
 'password-retype'              => 'أعد كتابة كلمة المرور هنا',
 'password-retype-mismatch'     => 'كلمتا المرور لا تتطابقان',
 
@@ -1904,11 +1908,13 @@ MGP # بينتاكس
 PICT # متنوع
  #</pre> <!-- اترك هذا السطر تماما كما هو -->',
 'upload-success-subj'         => 'تم رفع الملف بنجاح',
-'upload-success-msg'          => '[[مرفوعك من [$2] قد نجح. إنه متوفر هنا: [[:{{ns:file}}:$1',
+'upload-success-msg'          => 'مرفوعك من [$2] قد نجح، وهو متوفر هنا: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'مشكلة رفع',
 'upload-failure-msg'          => 'توجد مشكلة في رفعك:
 
 $1',
+'upload-warning-subj'         => 'تحذير رفع',
+'upload-warning-msg'          => 'ثمة مشكلة في مرفوعك من [$2]. يمكنك الرجوع إلى [[Special:Upload/stash/$1|نموذج الرفع]] لتصحيح المشكلة.',
 
 'upload-proto-error'        => 'بروتوكول غير صحيح',
 'upload-proto-error-text'   => 'الرفع عن بعد يتطلب مسارا يبدأ بـ <code>http://</code> أو <code>ftp://</code>.',

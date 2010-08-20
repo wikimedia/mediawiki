@@ -896,7 +896,7 @@ Introduza e valide o endereço através das [[Special:Preferences|preferências 
 Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 'loginreqtitle'                    => 'Autenticação necessária',
 'loginreqlink'                     => 'autenticar-se',
-'loginreqpagetext'                 => 'Precisa de $1 para poder visionar outras páginas.',
+'loginreqpagetext'                 => 'Precisa de $1 para ver outras páginas.',
 'accmailtitle'                     => 'Palavra-chave enviada.',
 'accmailtext'                      => 'Uma palavra-chave gerada aleatoriamente para [[User talk:$1|$1]] foi enviada para $2.
 
