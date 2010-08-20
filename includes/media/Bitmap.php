@@ -118,7 +118,8 @@ class BitmapHandler extends ImageHandler {
 			$quality = '';
 			$sharpen = '';
 			$scene = false;
-			$animation = '';
+			$animation_pre = '';
+			$animation_post = '';
 			if ( $mimeType == 'image/jpeg' ) {
 				$quality = "-quality 80"; // 80%
 				# Sharpening, see bug 6193
@@ -132,9 +133,14 @@ class BitmapHandler extends ImageHandler {
 					// Extract initial frame only; we're so big it'll
 					// be a total drag. :P
 					$scene = 0;
-				} else {
+				} elseif( $this->isAnimatedImage( $image ) ) {
 					// Coalesce is needed to scale animated GIFs properly (bug 1017).
-					$animation = ' -coalesce ';
+					$animation_pre = '-coalesce';
+					// We optimize the output, but -optimize is broken,
+					// use optimizeTransparency instead (bug 11822)
+					if( version_compare( $this->getMagickVersion(), "6.3.5" ) >= 0 ) {
+						$animation_post = '-fuzz 5% -layers optimizeTransparency +map';
+					}
 				}
 			}
 
@@ -156,14 +162,15 @@ class BitmapHandler extends ImageHandler {
 				wfEscapeShellArg( $wgImageMagickConvertCommand ) .
 				" {$quality} -background white -size {$physicalWidth} ".
 				wfEscapeShellArg( $this->escapeMagickInput( $srcPath, $scene ) ) .
-				$animation .
+				" {$animation_pre}" .
 				// For the -resize option a "!" is needed to force exact size,
 				// or ImageMagick may decide your ratio is wrong and slice off
 				// a pixel.
 				" -thumbnail " . wfEscapeShellArg( "{$physicalWidth}x{$physicalHeight}!" ) .
 				// Add the source url as a comment to the thumb.	
 				" -set comment " . wfEscapeShellArg( $this->escapeMagickProperty( $comment ) ) .
-				" -depth 8 $sharpen " .
+				" -depth 8 $sharpen" .
+				" {$animation_post} " .
 				wfEscapeShellArg( $this->escapeMagickOutput( $dstPath ) ) . " 2>&1";
 			wfDebug( __METHOD__.": running ImageMagick: $cmd\n" );
 			wfProfileIn( 'convert' );
