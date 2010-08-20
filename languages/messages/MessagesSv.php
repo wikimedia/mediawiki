@@ -728,6 +728,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'gotaccount'                 => "Har du redan ett användarkonto? '''$1'''.",
 'gotaccountlink'             => 'Logga in',
 'createaccountmail'          => 'med e-post',
+'createaccountreason'        => 'Orsak:',
 'badretype'                  => 'De lösenord du uppgett överenstämmer inte med varandra.',
 'userexists'                 => 'Det valda användarnamnet används redan.
 Välj ett annat namn.',
@@ -786,6 +787,15 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 Vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
+
+# JavaScript password checks
+'password-strength'            => 'Beräknad styrka på lösenord: $1',
+'password-strength-bad'        => 'DÅLIG',
+'password-strength-mediocre'   => 'medelmåttig',
+'password-strength-acceptable' => 'godtagbar',
+'password-strength-good'       => 'bra',
+'password-retype'              => 'Upprepa lösenord här',
+'password-retype-mismatch'     => 'Lösenorden stämmer inte överrens',
 
 # Password reset dialog
 'resetpass'                 => 'Ändra lösenord',
@@ -1338,6 +1348,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'contextlines'                  => 'Antal rader per träff:',
 'contextchars'                  => 'Tecken per rad:',
 'stub-threshold'                => 'Gräns för <a href="#" class="stub">stublänk</a>-formattering (byte):',
+'stub-threshold-disabled'       => 'Avaktiverat',
 'recentchangesdays'             => 'Antal dygn som skall visas i "senaste ändringarna":',
 'recentchangesdays-max'         => '(maximalt $1 {{PLURAL:$1|dygn|dygn}})',
 'recentchangescount'            => 'Antal redigeringar som visas som standard:',
@@ -1410,6 +1421,8 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'prefs-advancedsearchoptions'   => 'Avancerade alternativ',
 'prefs-advancedwatchlist'       => 'Avancerade alternativ',
 'prefs-displayrc'               => 'Visningsalternativ',
+'prefs-displaysearchoptions'    => 'Visningalternativ',
+'prefs-displaywatchlist'        => 'Visningalternativ',
 'prefs-diffs'                   => 'Skillnader',
 
 # User rights
@@ -1742,11 +1755,13 @@ MGP # Pentax
 PICT # allmänt bildprefix
  #</pre> <!-- ändra inte den här raden -->',
 'upload-success-subj'         => 'Uppladdningen lyckades',
-'upload-success-msg'          => 'Din uppladdade fil finns tillgänglig här: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Din uppladdning från [$2] lyckades. Den finns tillgänglig här: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Uppladdningsproblem',
 'upload-failure-msg'          => 'Det uppstod ett problem med din uppladdning:
 
 $1',
+'upload-warning-subj'         => 'Uppladdningsvarning',
+'upload-warning-msg'          => 'Det uppstod ett problem med din uppladdning från [$2]. Du kan återvända till [[Special:Upload/stash/$1|uppladdningsformuläret]] för att rätta till detta problem.',
 
 'upload-proto-error'        => 'Felaktigt protokoll',
 'upload-proto-error-text'   => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
@@ -2147,6 +2162,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 # Watchlist
 'watchlist'            => 'Bevakningslista',
 'mywatchlist'          => 'Min bevakningslista',
+'watchlistfor2'        => 'För $1 $2',
 'nowatchlist'          => 'Du har inga sidor i din bevakningslista.',
 'watchlistanontext'    => 'Du måste $1 för att se eller redigera din bevakningslista.',
 'watchnologin'         => 'Inte inloggad',
@@ -2635,6 +2651,7 @@ Den titel du vill flytta sidan till, "[[:$1]]", finns redan. Vill du radera den 
 'immobile-source-page'         => 'Denna sida är inte flyttbar.',
 'immobile-target-page'         => 'Kan inte flytta till det målnamnet.',
 'imagenocrossnamespace'        => 'Kan inte flytta filer till andra namnrymder än filnamnrymden',
+'nonfile-cannot-move-to-file'  => 'Kan inte flytta icke-fil till filnamnrymden',
 'imagetypemismatch'            => 'Den nya filändelsen motsvarar inte filtypen',
 'imageinvalidfilename'         => 'Önskat filnamn är ogiltigt',
 'fix-double-redirects'         => 'Uppdatera omdirigeringar som leder till den gamla titeln',

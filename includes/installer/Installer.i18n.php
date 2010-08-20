@@ -843,6 +843,9 @@ chmod a+w $3</pre>',
 	'config-db-web-help' => 'Выберыце імя карыстальніка і пароль, які выкарыстоўваецца вэб-сэрвэрам для злучэньня з сэрвэрам базы зьвестак, падчас звычайных апэрацыяў вікі.',
 	'config-db-web-account-same' => 'Выкарыстоўваць той жа рахунак, што для ўсталяваньня',
 	'config-db-web-create' => 'Стварыць рахунак, калі ён яшчэ не існуе',
+	'config-db-web-no-create-privs' => 'Рахунак, які Вы пазначылі для ўсталяваньня ня мае правоў для стварэньня рахунку.
+Рахунак, які Вы пазначылі тут, мусіць ужо існаваць.',
+	'config-mysql-engine' => 'Рухавік сховішча:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-engine-help' => "'''InnoDB''' — звычайна найбольш слушны варыянт, таму што добра падтрымлівае паралелізм.
@@ -852,6 +855,10 @@ chmod a+w $3</pre>',
 	'config-mysql-charset' => 'Кадаваньне базы зьвестак:',
 	'config-mysql-binary' => 'Двайковае',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "У '''двайковым рэжыме''', MediaWiki захоўвае тэкст у кадаваньні UTF-8 у базе зьвестак у двайковых палях.
+Гэта болей эфэктыўна за рэжым MySQL UTF-8, і дазваляе Вам выкарыстоўваць увесь дыяпазон сымбаляў Unicode.
+
+У '''рэжыме UTF-8''', MySQL ведае, якая табліцы сымбаляў выкарыстоўваецца ў Вашых зьвестках, і можа адпаведна прадстаўляць і канвэртаваць іх, але гэта не дазволіць Вам захоўваць сымбалі па-за межамі [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базавага шматмоўнага дыяпазону].",
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-help' => 'Назва будзе паказвацца ў загалоўку браўзэра і ў некаторых іншых месцах.',
 	'config-site-name-blank' => 'Увядзіце назву сайта.',
@@ -860,11 +867,17 @@ chmod a+w $3</pre>',
 	'config-ns-site-name' => 'Такая ж, як і назва вікі: $1',
 	'config-ns-other' => 'Іншая (вызначце)',
 	'config-ns-other-default' => 'MyWiki',
+	'config-ns-invalid' => 'Падана няслушная прастора назваў «<nowiki>$1</nowiki>».
+Падайце іншую прастору назваў праекту.',
 	'config-admin-box' => 'Рахунак адміністратара',
 	'config-admin-name' => 'Вашае імя:',
 	'config-admin-password' => 'Пароль:',
 	'config-admin-password-confirm' => 'Пароль яшчэ раз:',
+	'config-admin-help' => 'Увядзіце тут Вашае імя ўдзельніка, напрыклад «Янка Кавалевіч».
+Гэтае імя будзе выкарыстоўвацца для ўваходу ў вікі.',
 	'config-admin-name-blank' => 'Увядзіце імя адміністратара.',
+	'config-admin-name-invalid' => 'Падана няслушнае імя ўдзельніка «<nowiki>$1</nowiki>».
+Падайце іншае імя ўдзельніка.',
 	'config-admin-password-blank' => 'Увядзіце пароль рахунку адміністратара.',
 	'config-admin-password-same' => 'Пароль ня можа быць аднолькавым зь іменем удзельніка.',
 	'config-admin-password-mismatch' => 'Уведзеныя Вамі паролі не супадаюць.',
@@ -1786,7 +1799,7 @@ Les types de base de données suivants sont supportés: $1.
 Si vous êtes en hébergement mutualisé, demandez à votre fournisseur d'hébergement pour installer un pilote de base de données appropriée. 
 Si vous avez compilé PHP vous-même, reconfigurez-le en activant un client de base de données, par exemple en utilisant <code>./configure --with-mysql</code>. 
 Si vous avez installé PHP à partir d'un paquet Debian ou Ubuntu, vous devez également installer le module php5-mysql.",
-	'config-have-db' => 'Pilotes de base de données trouvés : $1.',
+	'config-have-db' => '{{PLURAL:$2|Pilote|Pilotes}} de base de données {{PLURAL:$2|trouvé|trouvés}} : $1.',
 	'config-register-globals' => "'''Attention : l'option <code>[http://php.net/register_globals register_globals]</code> de PHP est activée.'''
 '''Désactivez-la si vous le pouvez.'''
 MediaWiki fonctionnera, mais votre serveur sera exposé à de potentielles failles de sécurité.",
@@ -1844,6 +1857,10 @@ Installation avortée.",
 Si vous utilisez un hébergement mutualisé, votre hébergeur doit vous avoir fourni le nom d’hôte correct dans sa documentation.',
 	'config-db-wiki-settings' => 'Identifier ce wiki',
 	'config-db-name' => 'Nom de la base de données :',
+	'config-db-name-help' => "Choisissez un nom qui identifie votre wiki.
+Il ne doit pas contenir d'espaces ou de traits d'union.
+
+Si vous utilisez un hébergement web partagé, votre hébergeur vous fournira un nom spécifique de base de données à utiliser, ou bien vous permet de créer des bases de données via un panneau de contrôle.",
 	'config-db-install-account' => "Compte d'utilisateur pour l'installation",
 	'config-db-username' => 'Nom d’utilisateur de la base de données :',
 	'config-db-password' => 'Mot de passe de la base de données :',
@@ -1858,6 +1875,8 @@ Si vous utilisez un hébergement mutualisé, votre hébergeur doit vous avoir fo
 	'config-db-port' => 'Port de la base de données :',
 	'config-db-schema' => 'Schéma pour MediaWiki',
 	'config-db-ts2-schema' => 'Schéma pour tsearch2',
+	'config-db-schema-help' => "Les schémas ci-dessus sont généralement corrects.
+Ne les changez que si vous êtes sûr que c'est nécessaire.",
 	'config-sqlite-dir' => 'Dossier des données SQLite :',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
@@ -1868,16 +1887,22 @@ Si vous utilisez un hébergement mutualisé, votre hébergeur doit vous avoir fo
 	'config-header-sqlite' => 'Paramètres de SQLite',
 	'config-header-oracle' => 'Paramètres d’Oracle',
 	'config-invalid-db-type' => 'Type de base de données non valide',
+	'config-invalid-db-name' => 'Nom de base de données invalide ("$1").
+Il ne peut contenir que des chiffres, lettres et caractères de soulignement.',
 	'config-connection-error' => '$1.
 
 Vérifier le nom d’hôte, le nom d’utilisateur et le mot de passe ci-dessous puis réessayer.',
 	'config-sqlite-connection-error' => '$1.
 
 Vérifier le dossier des données et le nom de la base de données ci-dessous et réessayer.',
+	'config-sqlite-readonly' => "Le fichier <code>$1</code> n'est pas accessible en écriture.",
+	'config-sqlite-cant-create-db' => 'Impossible de créer le fichier de base de données <code>$1</code>.',
+	'config-show-table-status' => 'Échec de la requête SHOW TABLE STATUS !',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-binary' => 'Binaire',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => 'Nom du wiki :',
 	'config-site-name-blank' => 'Entrer un nom de site.',
 	'config-project-namespace' => 'Espace de nom du projet :',
 	'config-ns-generic' => 'Projet',
@@ -1888,7 +1913,13 @@ Vérifier le dossier des données et le nom de la base de données ci-dessous et
 	'config-admin-name' => 'Votre nom :',
 	'config-admin-password' => 'Mot de passe :',
 	'config-admin-password-confirm' => 'Re-saisir le mot de passe :',
+	'config-admin-name-blank' => "Entrez un nom d'administrateur.",
+	'config-admin-password-blank' => 'Entrez un mot de passe pour le compte administrateur.',
+	'config-admin-password-same' => "Le mot de passe doit être différent du nom d'utilisateur.",
+	'config-admin-password-mismatch' => 'Les deux mots de passe que vous avez saisis ne correspondent pas.',
 	'config-admin-email' => 'Adresse électronique :',
+	'config-admin-email-help' => "Entrez une adresse e-mail ici pour vous permettre de recevoir des e-mails d'autres utilisateurs du wiki, réinitialiser votre mot de passe, et être informé des modifications apportées aux pages de votre liste de suivi.",
+	'config-admin-error-user' => "Erreur interne lors de la création d'un admin avec le nom « <nowiki>$1</nowiki> ».",
 	'config-almost-done' => 'Vous avez presque fini !
 Vous pouvez sauter la configuration restante et installer immédiatement le wiki.',
 	'config-optional-continue' => 'Me poser davantage de questions.',
@@ -1925,8 +1956,12 @@ Des configurations de droits d’utilisateurs plus complexes sont disponibles ap
 	'config-email-user-help' => "Permet à tous les utilisateurs d'envoyer des courriels à d'autres utilisateurs si cela est activé dans leurs préférences.",
 	'config-email-usertalk' => 'Activer la notification des pages de discussion des utilisateurs',
 	'config-email-usertalk-help' => 'Permet aux utilisateurs de recevoir une notification en cas de modification de leurs pages de discussion, si cela est activé dans leurs préférences.',
+	'config-email-auth' => "Activer l'authentification e-mail",
+	'config-extensions' => 'Extensions',
 	'config-install-step-done' => 'fait',
 	'config-install-step-failed' => 'échec',
+	'config-install-interwiki-sql' => 'Impossible de trouver le fichier <code>interwiki.sql</code>.',
+	'config-install-secretkey' => 'Génération de la clé secrète',
 );
 
 /** Galician (Galego)
@@ -1987,7 +2022,7 @@ Aconséllase empregar o último lanzamento. Pódeo descargar en [http://www.medi
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para a normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensión intl PECL] para a normalización Unicode.',
 	'config-no-db' => 'Non se puido atopar un controlador axeitado para a base de datos!',
-	'config-have-db' => 'Controladores da base de datos atopados: $1.',
+	'config-have-db' => '{{PLURAL:$2|Controlador|Controladores}} da base de datos {{PLURAL:$2|atopado|atopados}}: $1.',
 	'config-xml-good' => 'Ten soporte para a conversión XML/Latin1-UTF-8.',
 	'config-memory-none' => 'PHP está configurado sen o parámetro <code>memory_limit</code>',
 	'config-memory-ok' => 'O parámetro <code>memory_limit</code> do PHP é $1.
@@ -2530,7 +2565,7 @@ Le sequente typos de base de datos es supportate: $1.
 Si tu sito usa un servitor partite (shared hosting), demanda a tu providitor de installar un driver de base de datos appropriate.
 Si tu compilava PHP tu mesme, reconfigura lo con un cliente de base de datos activate, per exemplo usante <code>./configure --with-mysql</code>.
 Si tu installava PHP ex un pacchetto Debian o Ubuntu, tu debe installar equalmente le modulo php5-mysql.',
-	'config-have-db' => 'Drivers de base de datos trovate: $1.',
+	'config-have-db' => '{{PLURAL:$2|Driver|Drivers}} de base de datos trovate: $1.',
 	'config-register-globals' => "'''Attention: le option <code>[http://php.net/register_globals register_globals]</code> de PHP es activate.'''
 '''Disactiva lo si tu pote.'''
 MediaWiki functionara, ma tu servitor es exponite a potential vulnerabilitates de securitate.",
@@ -2598,6 +2633,45 @@ In un systema Unix/Linux:
 
 <pre>cd $1
 chmod a+w config</pre>",
+	'config-file-extension' => 'MediaWiki es installate con <code>$1</code> extensiones de file.',
+	'config-shell-locale' => 'Region "$1" del shell detegite',
+	'config-uploads-safe' => 'Le directorio predefinite pro files incargate es protegite contra le execution arbitrari de scripts.',
+	'config-uploads-not-safe' => "'''Aviso:''' Le directorio predefinite pro files incargate <code>$1</code> es vulnerabile al execution arbitrari de scripts.
+Ben que MediaWiki verifica tote le files incargate contra le menacias de securitate, il es altemente recommendate [http://www.mediawiki.org/wiki/Manual:Security#Upload_security remediar iste vulnerabilitate de securitate] ante de activar le incargamento de files.",
+	'config-db-type' => 'Typo de base de datos:',
+	'config-db-host' => 'Servitor de base de datos:',
+	'config-db-host-help' => 'Si tu servitor de base de datos es super un altere servitor, entra hic le nomine de servitor o adresse IP.
+
+Si tu usa un servitor web partite, tu providitor deberea dar te le correcte nomine de servitor in su documentation.',
+	'config-db-wiki-settings' => 'Identificar iste wiki',
+	'config-db-name' => 'Nomine del base de datos:',
+	'config-db-name-help' => 'Selige un nomine que identifica tu wiki.
+Illo non debe continer spatios o tractos de union.
+
+Si tu usa un servitor web partite, tu providitor te fornira le nomine specific de un base de datos a usar, o te permitte crear un base de datos via un pannello de controlo.',
+	'config-db-install-account' => 'Conto de usator pro installation',
+	'config-db-username' => 'Nomine de usator del base de datos:',
+	'config-db-password' => 'Contrasigno del base de datos:',
+	'config-db-install-help' => 'Entra le nomine de usator e contrasigno que essera usate pro connecter al base de datos durante le processo de installation.',
+	'config-db-account-lock' => 'Usar le mesme nomine de usator e contrasigno durante le operation normal',
+	'config-db-wiki-account' => 'Conto de usator pro operation normal',
+	'config-db-wiki-help' => 'Entra le nomine de usator e contrasigno que essera usate pro connecter al base de datos durante le operation normal del wiki.
+Si le conto non existe, e si le conto de installation possede sufficiente privilegios, iste conto de usator essera create con le minime privilegios necessari pro operar le wiki.',
+	'config-db-prefix' => 'Prefixo de tabella del base de datos:',
+	'config-db-prefix-help' => 'Si il es necessari usar un base de datos in commun inter multiple wikis, o inter MediaWiki e un altere application web, tu pote optar pro adder un prefixo a tote le nomines de tabella pro evitar conflictos.
+Non usar spatios o tractos de union.
+
+Iste campo usualmente resta vacue.',
+	'config-db-charset' => 'Codification de characteres in le base de datos',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binari',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 retrocompatibile UTF-8',
+	'config-charset-help' => "'''Aviso:''' Si tu usa '''UTF-8 retrocompatibile''' sur MySQL 4.1+, e postea face un copia de reserva del base de datos con <code>mysqldump</code>, tote le characteres on ASCII pote esser destruite, resultante in corruption irreversibile de tu copias de reserva!
+
+In '''modo binari''', MediaWiki immagazina texto in UTF-8 in le base de datos in campos binari.
+Isto es plus efficiente que le modo UTF-8 de MySQL, e permitte usar le rango complete de characteres de Unicode.
+In '''modo UTF-8''', MySQL sapera in qual codification de characteres tu datos es, e pote presentar e converter lo appropriatemente,
+ma non te permittera immagazinar characteres supra le [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Plano Multilingue Basic].",
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -2757,7 +2831,7 @@ Unicodeを少しでも利用する可能性があるなら、[http://www.mediawi
 共有ホスト上の場合、ホスト元に適切なデータベースドライバをインストールするように依頼してください。
 PHPを自分自身でコンパイルした場合、<code>./configure --with-mysql</code>などを利用して、データベースクライアントを有効化する設定をしてください。
 DebianもしくはUbuntuパッケージからPHPをインストールした場合、php5-mysqlモジュールもインストールする必要があります。',
-	'config-have-db' => '見つかったデータベースドライバ：$1。',
+	'config-have-db' => '見つかったデータベース{{PLURAL:$2|ドライバ}}：$1。',
 	'config-register-globals' => "'''警告：PHPの<code>[http://php.net/register_globals register_globals]</code>オプションが有効になっています。'''
 '''可能なら無効化してください。'''
 MediaWikiは動作しますが、サーバーは、潜在的なセキュリティ脆弱性を露呈します。",
@@ -2847,6 +2921,13 @@ MediaWikiはアップロードされたファイルのセキュリティ上の�
 	'config-db-install-help' => 'インストール作業中にデータベースに接続するための利用者名とパスワードを入力してください。',
 	'config-db-account-lock' => 'インストール作業終了後も同じ利用者名とパスワードを使用する',
 	'config-db-wiki-account' => 'インストール作業終了後の利用者アカウント',
+	'config-db-wiki-help' => '通常のウィキ操作中にデータベースへの接続する時に利用する利用者名とパスワードを入力してください。
+アカウントがないが、インストールのアカウントに十分な権限があれば、このユーザーアカウントは、ウィキを操作するうえで最小限の権限を持った状態で作成されます。',
+	'config-db-prefix' => 'データベーステーブルの接頭辞：',
+	'config-db-prefix-help' => 'データベースを複数のウィキ間、もしくはMediaWikiと他のウェブアプリケーションで共有する必要がある場合、衝突を避けるために、すべてのテーブル名に接頭辞をつける必要があります。
+スペースやハイフンは使用しないでください。
+
+このフィールドは、通常は空のままです。',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0バイナリ',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-type-mysql' => 'MySQL',
@@ -2945,6 +3026,51 @@ Di kam_mer vun [http://www.mediawiki.org/wiki/Download/de mediawiki.org] erunger
 	'config-unicode-using-intl' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] nämme.',
 	'config-unicode-pure-php-warning' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] för et <i lang="en">Unicode</i>-Nommaliseere nit fenge.
 För jruuße Wikis met vill Metmaachere doht Üsch die Sigg övver et [http://www.mediawiki.org/wiki/Unicode_normalization_considerations <i lang="en">Unicode</i>-Nommaliseere] (es op Änglesch) aanloore.',
+	'config-unicode-update-warning' => "'''Opjepaß:''' Dat Projramm för der <i lang=\"en\">Unicode</i> zo normaliseere boud em Momang op en  ählter Version vun dä Bibliothek vum [http://site.icu-project.org/ ICU-Projäk] op.
+Doht di [http://www.mediawiki.org/wiki/Unicode_normalization_considerations op der neuste Shtand bränge], wann auf dat Wiki em Äänz <i lang=\"en\">Unicode</i> bruche sull.",
+	'config-no-db' => 'Mer kunnte kei zopaß Daatebangk-Driiverprojamm fenge.',
+	'config-no-db-help' => 'Mer bruche e Daatebangk-Driiverprojamm för PHP. Dat moß enjeresht wääde.
+Mer künne met heh dä Daatebangke ömjonn: $1.
+
+Wann De nit om eijene Rääshner bes, moß De Dinge <i lang="en">provider</i> bedde, dat hä Der ene zopaß Driiver enresht.
+Wann de PHP sellver övversaz häs, donn ene Zohjang för en Daatebangk enbenge, för e Beishpell met: <code  lang="en">./configure --with-mysql</code> op ene <i lang="en">command shell</i>.
+Wann De PHP uss enem <i lang="en">Debian</i> udder <i lang="en">Ubuntu</i> Pakätt enjeresht häs, moß De dann och noch et <code lang="en">php5-mysql</code> op Dinge Räschner bränge.',
+	'config-have-db' => '{{PLURAL:$2|Ei Daatebangk-Driiverprojamm|$2 Daatebangk-Driiverprojamme|Kei Daatebangk-Driiverprojamm}} jevonge: $1.',
+	'config-register-globals' => "'''Opjepaß:''' dem PHP singe Schallder <code lang=\"en\">[http://php.net/register_globals register_globals]</code> es enjeschalldt. 
+'''Donn dä ußmaache, wann De kann.'''
+MediaWiki löp och esu, dä künnt ävver Sesherheitslöcke opmaache, di mer noch nit jefonge un eruß jemaat hät.",
+	'config-magic-quotes-runtime' => "'''Dä!''' Dem PHP singe Schallder <code lang=\"en\">[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]</code> es enjeschalldt.
+Dä määt enjejovve Daate kapott, un doh draan kam_mer dann nix mieh repareere.
+Domet kam_mer MediaWiki nit ennreeshte un och nit loufe lohße.
+Dat heiß, mer moß en affschallde, söns jeiht nix.",
+	'config-magic-quotes-sybase' => "'''Dä!''' Dem PHP singe Schallder <code lang=\"en\">[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]</code> es enjeschalldt.
+Dä määt enjejovve Daate kapott, un doh draan kam_mer dann nix mieh repareere.
+Domet kam_mer MediaWiki nit ennreeshte un och nit loufe lohße.
+Dat heiß, mer moß en affschallde, söns jeiht nix.",
+	'config-mbstring' => "'''Dä!''' Dem PHP singe Schallder <code lang=\"en\">[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]</code> es enjeschalldt.
+Dat sorresch för Fähler un kann enjejovve Daate esu kapott maach, dat doh draan nix mieh ze repareere es.
+Domet kam_mer MediaWiki nit ennreeshte un och nit loufe lohße.
+Dat heiß, mer moß en affschallde, söns jeiht nix.",
+	'config-ze1' => "'''Dä!''' Dem PHP singe Schallder <code lang=\"en\">[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]</code> es enjeschalldt.
+Dat sorresch för schräcklejje Fähler em MediaWiki.
+Dat kam_mer domet nit ennreeshte un och nit loufe lohße.
+Dat heiß, mer moß en affschallde, söns jeiht nix.",
+	'config-diff3-good' => 'Han <i lang="en">GNU</i> <code lang="en">diff3</code> jefonge: <code lang="en">$1</code>',
+	'config-diff3-bad' => 'Han <i lang="en">GNU</i> <code lang="en">diff3</code> nit jefonge.',
+	'config-shell-locale' => 'Mer han de <i lang="en">locale</i> „$1“ för de <i lang="en">shell</i> jefonge',
+	'config-db-type' => 'Zoot Daatebangk:',
+	'config-db-host' => 'Dä Name vun däm Rääschner met dä Daatebangk:',
+	'config-db-host-help' => 'If your Zoot Daatebangk: server is on different server, enter the host name or IP address here.
+
+If you are using shared web hosting, your hosting provider should give you the correct host name in their documentation.',
+	'config-db-name' => 'Dä Name vun dä Daatebangk:',
+	'config-db-username' => 'Dä Name vun däm Aanwender för dä Zohjref op de Daatebangk:',
+	'config-db-password' => 'Et Paßwoot vun däm Aanwender för dä Zohjref op de Daatebangk:',
+	'config-db-install-help' => 'Donn dä Name un et Paßwoot vun däm Aanwänder för der Zohjreff op de Daatebangk jäz för et Enreeshte aanjävve.',
+	'config-db-account-lock' => 'Donn dersälve Name un et sälve Paßwoot för der nomaale Bedrief vum Wiki bruche',
+	'config-db-wiki-account' => 'Dä Name vun däm Aanwender för dä Zohjref op de Daatebangk em nomaale Bedrief:',
+	'config-db-prefix' => 'Vörsaz för de Name vun de Tabälle en de Daatebangk:',
+	'config-db-charset' => 'Dä Daatebangk iere Zeishesaz:',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -3140,7 +3266,7 @@ $1
 	'config-env-php' => 'PHP $1 е инсталиран.',
 	'config-env-latest-ok' => 'Ја инсталирате најновата верзија на МедијаВики.',
 	'config-env-latest-new' => "'''Напомена:''' Инсталирате развојна верзија на МедијаВики.",
-	'config-env-latest-can-not-check' => "'''Напомена:''' Инсталаторот не можеше да добие информации за најновото издание на МедијаВики од [$1].",
+	'config-env-latest-can-not-check' => "'''Предупредување:''' Инсталаторот не можеше да добие информации за најновото издание на МедијаВики од [$1].",
 	'config-env-latest-old' => "'''Предупредување:''' Инсталирате застарена верзија на МедијаВики.",
 	'config-env-latest-help' => 'Ја инсталирате верзијата $1, но најнова е верзијата $2.
 Ве советуваме да ја користите најновата верзија, која можете да ја преземете на [http://www.mediawiki.org/wiki/Download mediawiki.org]',
@@ -3158,7 +3284,7 @@ $1
 Ако сте на заедничко (споделено) вдомување, побарајте му на вдомителот да инсталира соодветен двигател за базата.
 Ако вие самите го составивте ова PHP, сменете ги поставките така што ќе овозможите клиент на базата - на пр. со кодот <code>./configure --with-mysql</code>.
 Ако инсталиравте PHP од пакет на Debian или Ubuntu, тогаш ќе треба да го инсталирате и модулот php5-mysql.',
-	'config-have-db' => 'Пронајдени двигатели за базата: $1.',
+	'config-have-db' => '{{PLURAL:$2|Пронајден двигател|Пронајдени двигатели}} за базата: $1.',
 	'config-register-globals' => "'''Предупредување: Можноста <code>[http://php.net/register_globals register_globals]</code> за PHP е овозможена.'''
 '''Оневозможете ја ако е можно.'''
 МедијаВики ќе работи, но опслужувачот ви е изложен на безбедносни ризици.",
@@ -4244,7 +4370,7 @@ São suportadas as seguintes bases de dados: $1.
 Se o seu site está alojado num servidor partilhado, peça ao fornecedor do alojamento para instalar um controlador de base de dados apropriado.
 Se fez a compilação do PHP você mesmo, reconfigure-o com um cliente de base de dados activado, usando, por exemplo, <code>./configure --with-mysql</code>.
 Se instalou o PHP a partir de um pacote Debian ou Ubuntu, então precisa de instalar também o módulo php5-mysql.",
-	'config-have-db' => "Controladores ''(drivers)'' de base de dados encontrados: $1.",
+	'config-have-db' => "{{PLURAL:$2|Controlador ''(driver)'' de base de dados encontrado|Controladores ''(drivers)'' de base de dados encontrados}}: $1.",
 	'config-register-globals' => "'''Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está activada.'''
 '''Desactive-a, se puder.'''
 O MediaWiki funciona mesmo assim, mas o seu servidor está exposto a potenciais vulnerabilidades de segurança.",
@@ -4682,7 +4808,7 @@ $messages['ru'] = array(
 	'config-unicode-using-intl' => 'Использовать [http://pecl.php.net/intl международный расширение PECL] для нормализации Юникода.',
 	'config-unicode-update-warning' => "'''Предупреждение''': установленная версия оболочки нормализации Юникода использует старую версию библиотеки [http://site.icu-project.org/ проекта ICU].
 Вы должны [http://www.mediawiki.org/wiki/Unicode_normalization_considerations обновить версию], если хотите полноценно использовать Юникод.",
-	'config-have-db' => 'Обнаружена поддержка баз данных $1.',
+	'config-have-db' => 'Обнаружена поддержка {{PLURAL:$2|базы|баз}} данных $1.',
 	'config-register-globals' => "'''Внимание: PHP-опция <code>[http://php.net/register_globals register_globals] включена.'''
 '''Отключите её, если это возможно.'''
 MediaWiki будет работать, но это снизит безопасность сервера и увеличит риск проникновения извне.",

@@ -162,6 +162,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|ይኸው መደብ የሚከተለውን ፋይል ብቻ አለው።|በዚሁ መደብ ውስጥ (ከ$2 በጠቅላላ) {{PLURAL:$1|የሚከተለው ፋይል አለ።|የሚከተሉት $1 ፋይሎች አሉ።}}}}',
 'category-file-count-limited'    => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|የሚከተለው ፋይል አለ|የሚከተሉት $1 ፋይሎች አሉ}}።',
 'listingcontinuesabbrev'         => '(ተቀጥሏል)',
+'index-category'                 => ' ማውጫው ላይ የተመዘገብ ገጾች',
 
 'mainpagetext'      => "'''MediaWiki በትክክል ማስገባቱ ተከናወነ።'''",
 'mainpagedocfooter' => "ስለ ዊኪ ሶፍትዌር ጥቅም ለመረዳት፣ [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ያንብቡ።
@@ -199,6 +200,7 @@ $messages = array(
 'vector-action-delete'       => 'አጥፋ',
 'vector-action-move'         => 'ለማዛወር',
 'vector-action-protect'      => 'ለመቆለፍ',
+'vector-action-undelete'     => 'አታጥፋ',
 'vector-action-unprotect'    => 'አለመቆለፍ',
 'vector-namespace-category'  => 'መደብ',
 'vector-namespace-help'      => 'እርዳታ ገጽ',
