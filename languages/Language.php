@@ -1,9 +1,13 @@
 <?php
 /**
- * @defgroup Language Language
+ * Internationalisation code
  *
  * @file
  * @ingroup Language
+ */
+
+/**
+ * @defgroup Language Language
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {

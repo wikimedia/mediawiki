@@ -1,12 +1,12 @@
 <?php
 /**
+ * Implements regular file uploads
+ *
  * @file
  * @ingroup upload
- *
  * @author Bryan Tong Minh
- *
- * Implements regular file uploads
  */
+
 class UploadFromFile extends UploadBase {
 	protected $mUpload = null;
 
