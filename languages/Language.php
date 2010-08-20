@@ -258,7 +258,9 @@ class Language {
 			}
 			
 			# Sometimes a language will be localised but not actually exist on this wiki.
-			$validNamespaces = MWNamespace::getValidNamespaces();
+			global $wgCanonicalNamespaceNames;
+			$validNamespaces = array_keys($wgCanonicalNamespaceNames);
+			$validNamespaces[] = NS_MAIN;
 			foreach( $this->namespaceNames as $key => $text ) {
 			        if ( ! in_array( $key, $validNamespaces ) ) {
 			                unset( $this->namespaceNames[$key] );
