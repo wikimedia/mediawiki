@@ -131,6 +131,8 @@ class MWNamespace {
 			global $wgExtraNamespaces, $wgCanonicalNamespaceNames;
 			if ( is_array( $wgExtraNamespaces ) ) {
 				$namespaces = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
+			} else {
+				$namespaces = $wgCanonicalNamespaceNames;
 			}
 			$namespaces[NS_MAIN] = '';
 		}
