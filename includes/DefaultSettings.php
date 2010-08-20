@@ -2295,7 +2295,10 @@ $wgMetaNamespaceTalk = false;
 /**
  * Additional namespaces. If the namespaces defined in Language.php and
  * Namespace.php are insufficient, you can create new ones here, for example,
- * to import Help files in other languages.
+ * to import Help files in other languages. You can also override the namespace
+ * names of existing namespaces. Extensions developers should use
+ * $wgCanonicalNamespaceNames.
+ *
  * PLEASE  NOTE: Once you delete a namespace, the pages in that namespace will
  * no longer be accessible. If you rename it, then you can access them through
  * the new namespace name.
