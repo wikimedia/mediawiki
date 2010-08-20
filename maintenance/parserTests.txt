@@ -53,6 +53,12 @@ Template:!
 |
 !! endarticle
 
+!!article
+MediaWiki:bad image list
+!!text
+* [[File:Bad.jpg]] except [[Nasty page]]
+!!endarticle
+
 ###
 ### Basic tests
 ###
@@ -7965,12 +7971,6 @@ title=[[Main Page]]
 !! result
 <span class="autocomment"><a href="/wiki/Main_Page#hello_world" title="Main Page">→</a>__hello__world__</span>
 !! end
-
-!!article
-MediaWiki:bad image list
-!!text
-* [[File:Bad.jpg]] except [[Nasty page]]
-!!endarticle
 
 !! test
 Bad images - basic functionality
