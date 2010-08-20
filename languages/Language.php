@@ -256,6 +256,14 @@ class Language {
 				$this->namespaceNames[NS_PROJECT_TALK] =
 					$this->fixVariableInNamespace( $talk );
 			}
+			
+			# Sometimes a language will be localised but not actually exist on this wiki.
+			$validNamespaces = MWNamespace::getValidNamespaces();
+			foreach( $this->namespaceNames as $key => $text ) {
+			        if ( ! in_array( $key, $validNamespaces ) ) {
+			                unset( $this->namespaceNames[$key] );
+			        }
+			}
 
 			# The above mixing may leave namespaces out of canonical order.
 			# Re-order by namespace ID number...
