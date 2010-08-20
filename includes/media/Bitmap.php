@@ -340,6 +340,32 @@ class BitmapHandler extends ImageHandler {
 		return $path;
 	}
 
+	/**
+	 * Retrieve the version of the installed ImageMagick
+	 * You can use PHPs version_compare() to use this value
+	 * Value is cached for one hour.
+	 * @return String representing the IM version.
+	 */
+	protected function getMagickVersion() {
+		global $wgMemc;
+
+		$cache = $wgMemc->get( "imagemagick-version" );
+		if( !$cache ) {
+			global $wgImageMagickConvertCommand;
+			$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
+			wfDebug( __METHOD__.": Running convert -version\n" );
+			$return = wfShellExec( $cmd, $retval );
+			$x = preg_match('/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches);
+			if( $x != 1 ) {
+				wfDebug( __METHOD__.": ImageMagick version check failed\n" );
+				return null;
+			}
+			$wgMemc->set( "imagemagick-version", $matches[1], 3600 );
+			return $matches[1];
+		}
+		return $cache;
+	}
+
 	static function imageJpegWrapper( $dst_image, $thumbPath ) {
 		imageinterlace( $dst_image );
 		imagejpeg( $dst_image, $thumbPath, 95 );
