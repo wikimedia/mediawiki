@@ -75,33 +75,23 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	private static function getMediaWikiCredits() {
+		global $wgLang;
+
+		$authorList = array( 'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
+			'Tim Starling', 'Erik Möller', 'Gabriel Wicke', 'Ævar Arnfjörð Bjarmason',
+			'Niklas Laxström', 'Domas Mituzas', 'Rob Church', 'Yuri Astrakhan',
+			'Aryeh Gregor', 'Aaron Schulz', 'Andrew Garrett', 'Raimond Spekking',
+			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
+			wfMsg( 'others' )
+		);
 		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMsg( 'version-license' ) );
 
 		// This text is always left-to-right.
-		$ret .= '<div dir="ltr">';
+		$ret .= '<div>';
 		$ret .= "__NOTOC__
-		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
-		copyright © 2001-2010 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
-		Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
-		Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor,
-		Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber,
-		Siebrand Mazeland, Chad Horohoe and others.
-
-		MediaWiki is free software; you can redistribute it and/or modify
-		it under the terms of the GNU General Public License as published by
-		the Free Software Foundation; either version 2 of the License, or
-		(at your option) any later version.
-
-		MediaWiki is distributed in the hope that it will be useful,
-		but WITHOUT ANY WARRANTY; without even the implied warranty of
-		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-		GNU General Public License for more details.
-
-		You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License]
-		along with this program; if not, write to the Free Software
-		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
-		or [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].
-		";
+		" . wfMsg( 'version-poweredby-credits', date( 'Y' ),
+				$wgLang->listToText( $authorList ) ) . "\n
+		" . wfMsg( 'version-license-info' );
 		$ret .= '</div>';
 
 		return str_replace( "\t\t", '', $ret ) . "\n";
