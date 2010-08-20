@@ -1,13 +1,13 @@
 <?php
 /**
- * @file
- * @ingroup upload
- *
  * Implements uploading from a HTTP resource.
  *
+ * @file
+ * @ingroup upload
  * @author Bryan Tong Minh
  * @author Michael Dale
  */
+
 class UploadFromUrl extends UploadBase {
 	protected $mAsync, $mUrl;
 	protected $mIgnoreWarnings = true;

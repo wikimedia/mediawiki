@@ -1,10 +1,9 @@
 <?php
 /**
- * @file
- * @ingroup upload
- *
  * Implements uploading from previously stored file.
  *
+ * @file
+ * @ingroup upload
  * @author Bryan Tong Minh
  */
 

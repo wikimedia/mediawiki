@@ -352,6 +352,8 @@ def main():
  *
  * Automatically generated using code and data in includes/zhtable/
  * Do not modify directly!
+ *
+ * @file
  */
 
 $zh2Hant = array(\n'''
