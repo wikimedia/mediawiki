@@ -119,7 +119,7 @@ class RefreshLinks extends Maintenance {
 				if ( $redirectsOnly )
 					$this->fixRedirect( $row->page_id );
 				else
-					$this->fixLinksFromArticle( $row->page_id );
+					self::fixLinksFromArticle( $row->page_id );
 			}
 		} else {
 			if ( !$end ) {
@@ -149,7 +149,7 @@ class RefreshLinks extends Maintenance {
 						$this->output( "$id\n" );
 						wfWaitForSlaves( $maxLag );
 					}
-					$this->fixLinksFromArticle( $id );
+					self::fixLinksFromArticle( $id );
 				}
 			}
 		}
@@ -190,7 +190,7 @@ class RefreshLinks extends Maintenance {
 	 * Run LinksUpdate for all links on a given page_id
 	 * @param $id int The page_id
 	 */
-	private function fixLinksFromArticle( $id ) {
+	public static function fixLinksFromArticle( $id ) {
 		global $wgTitle, $wgParser;
 
 		$wgTitle = Title::newFromID( $id );
