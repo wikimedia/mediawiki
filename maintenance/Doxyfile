@@ -284,11 +284,11 @@ ALIASES =	"type{1}=<b> \1 </b>:" \
 		"arrayof{2}=<b> Array </b> of \2" \
 		"null=\type{Null}" \
 		"boolean=\type{Boolean}" \
-		"bool=\boolean" \
+		"bool=\type{Boolean}" \
 		"integer=\type{Integer}" \
-		"int=\integer" \
+		"int=\type{Integer}" \
 		"string=\type{String}" \
-		"str=\string" \
+		"str=\type{String}" \
 		"mixed=\type{Mixed}" \
 		"access=\par Access:\n" \
 		"private=\access private" \
