@@ -324,7 +324,7 @@ Mai poina e hoʻololi i [[Special:Preferences|kāu makemake ma {{SITENAME}}]].',
 'yourname'                => "Inoa mea ho'ohana",
 'yourpassword'            => 'ʻŌlelo hūnā:',
 'yourpasswordagain'       => "Hua'ōlelo huna hou",
-'remembermypassword'      => 'Hoʻomanaʻo iaʻu',
+'remembermypassword'      => 'Hoʻomanaʻo iaʻu ma kēia lolo uila (no ka palena nui o $1 {{PLURAL:$1|lā|mau lā}})',
 'login'                   => 'ʻEʻe',
 'nav-login-createaccount' => 'ʻEʻe / E kāinoa',
 'loginprompt'             => 'Pono ʻoe e hoʻā i nā makana (cookies) no ka ʻeʻe ʻana i {{SITENAME}}.',
@@ -407,6 +407,7 @@ Inā ʻaʻole ʻoe makemake i ka hoʻololi ʻana kūnoa i kou kākau ʻana a ʻa
 Ke hoʻohiki nei ʻoe iā kākou: nou i kākau i kēia kikokikona a i ʻole nou i kope i kēia kikokikona mai ke kūmole kūʻokoʻa.
 '''MAI KĀKAU I NĀ KIKOKIKONA PONOKOPE E NELE AI KA ʻAE!'''",
 'protectedpagewarning'             => "'''A‘o ‘ana:  Ua laka ‘ia kēia ‘ao‘ao, pēlā, hiki i nā \"kahu\" ke ho‘opololei wale nō.'''",
+'templatesusedpreview'             => 'Hoʻohana ʻia kēia {{PLURAL:$1|anakuhi|mau anakuhi}} i kēia nāmua:',
 'template-protected'               => '(ho‘omalu ‘ia)',
 'template-semiprotected'           => '(hapa-ho‘omalu ‘ia)',
 'edittools'                        => '<!-- Eia ka ‘ōlelo e hō‘ike ‘ia malalo o nā palapala ho‘ololi ame nā palapala ho‘ohui. -->',
@@ -606,6 +607,9 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Mea hoʻohana hou',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(papa o nā lālā)',
 
 # E-mail user
 'emailuser'    => 'E leka uila i kēia mea ho‘ohana',

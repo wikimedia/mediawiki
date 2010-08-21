@@ -3434,6 +3434,17 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trang sửa đổi bình th
 'version-hook-subscribedby'        => 'Được theo dõi bởi',
 'version-version'                  => '(Phiên bản $1)',
 'version-license'                  => 'Giấy phép bản quyền',
+'version-poweredby-credits'        => "Wiki này chạy trên '''[http://www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
+'version-license-info'             => "MediaWiki là phần mềm tự do; bạn được phép tái phân phối và/hoặc sửa đổi nó theo những điều khoản của Giấy phép Công cộng GNU do Quỹ Phần mềm Tự do xuất bản; phiên bản 2 hay bất kỳ phiên bản nào mới hơn nào của Giấy phép.
+
+MediaWiki được phân phối với hy vọng rằng nó sẽ hữu ích, nhưng '''không có bất kỳ một bảo đảm nào cả''', ngay cả những bảo đảm ngụ ý cho '''các mục đích thương mại''' hoặc cho '''một mục đích đặc biệt nào đó'''. Xem Giấy phép Công cộng GNU để biết thêm chi tiết.
+
+Có lẽ bạn đã nhận [{{SERVER}}{{SCRIPTPATH}}/COPYING bản sao Giấy phép Công cộng GNU] đi kèm với tác phẩm này; nếu không, hãy viết thư đến:
+ Free Software Foundation, Inc.
+ 51 Franklin St., Fifth Floor
+ Boston, MA 02110-1301
+ USA
+hoặc [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuyến].",
 'version-software'                 => 'Phần mềm được cài đặt',
 'version-software-product'         => 'Phần mềm',
 'version-software-version'         => 'Phiên bản',

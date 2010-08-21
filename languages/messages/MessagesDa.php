@@ -193,7 +193,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Tilføj sider jeg sletter til min overvågningsliste',
 'tog-previewontop'            => 'Vis forhåndsvisning over redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning når du starter med at redigere',
-'tog-nocache'                 => 'Slå caching af sider fra',
+'tog-nocache'                 => 'Slå browsercaching af sider fra',
 'tog-enotifwatchlistpages'    => 'Send mig en e-mail ved sideændringer',
 'tog-enotifusertalkpages'     => 'Send mig en e-mail når min brugerdiskussionsside ændres',
 'tog-enotifminoredits'        => 'Send mig også en e-mail ved mindre ændringer af overvågede sider',
@@ -589,6 +589,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'gotaccount'                 => "Du har allerede en brugerkonto? '''$1'''.",
 'gotaccountlink'             => 'Log på',
 'createaccountmail'          => 'via e-mail',
+'createaccountreason'        => 'Begrundelse:',
 'badretype'                  => 'De indtastede adgangskoder er ikke ens.',
 'userexists'                 => 'Det brugernavn du har valgt er allerede i brug. Vælg venligst et andet brugernavn.',
 'loginerror'                 => 'Logon mislykket',
@@ -648,6 +649,15 @@ Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
 Vent venligst før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
 'suspicious-userlogout'      => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
+
+# JavaScript password checks
+'password-strength'            => 'Anslået passwordstyrke: $1',
+'password-strength-bad'        => 'DÅRLIG',
+'password-strength-mediocre'   => 'middelmådig',
+'password-strength-acceptable' => 'acceptabel',
+'password-strength-good'       => 'god',
+'password-retype'              => 'Gentag adgangskode her',
+'password-retype-mismatch'     => 'Adgangskoderne er ikke ens',
 
 # Password reset dialog
 'resetpass'                 => 'Skift adgangskode',
@@ -1195,6 +1205,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'contextlines'                  => 'Linjer pr. resultat',
 'contextchars'                  => 'Tegn pr. linje i resultatet',
 'stub-threshold'                => 'Grænse for visning af henvisning som <a href="#" class="stub">artikelstump</a>:',
+'stub-threshold-disabled'       => 'Deaktiveret',
 'recentchangesdays'             => 'Antal dage som skal vises i seneste ændringer:',
 'recentchangesdays-max'         => '(maks. $1 {{PLURAL:$1|dag|dage}})',
 'recentchangescount'            => 'Antal redigeringer som skal vises som standard:',
@@ -1583,12 +1594,13 @@ Overvej om det er passende at fortsætte med uploadet.
 Sletningsloggen for denne fil er gengivet herunder.",
 'filename-bad-prefix'         => "Navnet på filen du er ved at lægge op begynder med '''\"\$1\"'''. Dette er et ikkebeskrivende navn, der typisk er skabt automatisk af et digitalkamera. Vær venlig at vælge et mere beskrivende navn på dit billede.",
 'upload-success-subj'         => 'Oplægningen er gennemført',
-'upload-success-msg'          => 'Din upload er tilgængelig her: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Din upload fra [$2] lykkedes. Den er tilgængelig her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Upload problem',
 'upload-failure-msg'          => 'Der var et problem med din upload:
 
 $1',
 'upload-warning-subj'         => 'Uploadadvarsel',
+'upload-warning-msg'          => 'Der var et problem med din upload fra [$2]. Du kan vende tilbage til [[Special:Upload/stash/$1|upload form]] for at løse dette problem.',
 
 'upload-proto-error'        => 'Forkert protokol',
 'upload-proto-error-text'   => 'Adressen skal begynde med <code>http://</code> eller <code>ftp://</code>.',
@@ -1986,6 +1998,7 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 # Watchlist
 'watchlist'            => 'Overvågningsliste',
 'mywatchlist'          => 'Min overvågningsliste',
+'watchlistfor2'        => 'For $1 $2',
 'nowatchlist'          => 'Du har ingenting i din overvågningsliste.',
 'watchlistanontext'    => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
 'watchnologin'         => 'Ikke logget på',
@@ -3216,6 +3229,12 @@ Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'version-hook-subscribedby'        => 'Brugt af',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licens',
+'version-poweredby-credits'        => "Denne wiki er drevet af'''[http://www.mediawiki.org/ MediaWiki ]''', copyright © 2001 - $1 $2.",
+'version-license-info'             => 'MediaWiki er gratis software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
+
+MediaWiki distribueres i håb om at det vil være nyttigt, men UDEN NOGEN GARANTI; uden selv de underforståede garantier SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for yderligere detaljer. 
+
+Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General Public License] sammen med dette program; og hvis ikke, så skriv til Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html læs den online].',
 'version-software'                 => 'Installeret software',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Version',

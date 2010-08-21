@@ -435,6 +435,7 @@ Occeppa xicalaqui niman ticmatīz.',
 
 # Edit pages
 'summary'                          => 'Mopatlaliz:',
+'subject'                          => 'Tōcāitl/Āmoxmachiyōtl:',
 'minoredit'                        => 'Inīn cah tlapatlalitzintli',
 'watchthis'                        => 'Tictlachiyāz inīn zāzanilli',
 'savearticle'                      => 'Ticpiyāz',
@@ -455,8 +456,9 @@ Occeppa xicalaqui niman ticmatīz.',
 'loginreqlink'                     => 'ximocalaqui',
 'loginreqpagetext'                 => 'Tihuīquilia $1 ic tiquintta occequīntīn zāzaniltin.',
 'accmailtitle'                     => 'Tlahtōlichtacāyōtl ōmoihuah.',
-'accmailtext'                      => "Cē zāzotlahtōlichtacāyōtl ōquyōcox [[User talk:$1|$1]]  mitquītia īhuīc $2.
-In tlahtōlichtacāyōtl īpal inīn yancuīc cuenta hueliti ticpatla zāzanilpan ''[[Special:ChangePassword|tlahtōlichtacāyōtl patlaliztli]'' zatepan ōticalac.",
+'accmailtext'                      => "Cē zāzotlahtōlichtacāyōtl ōcyōcox [[User talk:$1|$1]]  moquitītlani īhuīc $2.
+
+In tlahtōlichtacāyōtl īpal inīn yancuīc cuenta hueliti ticpatlalo zāzanilpan ''[[Special:ChangePassword|tlahtōlichtacāyōtl patlaliztli]]'' zatepan ōticalac.",
 'newarticle'                       => '(Yancuīc)',
 'newarticletext'                   => 'Ōtictocac cētiliztli cē zāzanilhuīc oc ahmo ia. Intlā quiēlēhuia quichīhua, xitlahcuiloa niman (nō xiquitta [[{{MediaWiki:Helppage}}|tēpalēhuiliztli zāzanilli]] huehca ōmpa tlapatlaliztli). Intlā ahmo, yāuh achtopa zāzanilli.',
 'noarticletext'                    => 'In āxcān, ahmō onca tlahcuilōlli inīn zāzanilpan.
@@ -481,7 +483,7 @@ Tihuelīti [[Special:Search/{{PAGENAME}}|tictēmoa inīn zāzaniltōcācopa]] oc
 'longpageerror'                    => "'''AHCUALLŌTL: Motlahcuilōl cah huēiyac $1 KB, huehca ōmpa $2 KB. Ahmo mopiyāz.'''",
 'templatesused'                    => '{{PLURAL:$1|Nemachiyōtīlli|Nemachiyōtīlli}} inīn zāzanilpan:',
 'templatesusedpreview'             => '{{PLURAL:$1|Nemachiyōtīlli|Nemachiyōtīlli}} motequitiltia inīn achtochīhualizpan:',
-'templatesusedsection'             => 'Nemachiyōtīlli motequitiltia nicān:',
+'templatesusedsection'             => '{{PLURAL:$1|Nemachiyōtīlli motequitiltia|Nemachiyōtīlli motequitiltiah}} nicān:',
 'template-protected'               => '(ōmoquīxti)',
 'hiddencategories'                 => 'Inīn zāzanilli mopiya {{PLURAL:$1|1 neneuhcāyōc ōmotlāti|$1 neneuhcāyōc ōmotlāti}}:',
 'nocreatetext'                     => 'Inīn huiqui ōquitzacuili tlahuelītiliztli ic tlachīhua yancuīc zāzaniltin. Tichuelīti ticcuepa auh ticpatla cē zāzanilli, [[Special:UserLogin|xicalaqui nozo xicchīhua cē cuentah]].',
@@ -490,7 +492,7 @@ Tihuelīti [[Special:Search/{{PAGENAME}}|tictēmoa inīn zāzaniltōcācopa]] oc
 'permissionserrorstext'            => 'Ahmo tihuelīti quichīhua inōn, inīn {{PLURAL:$1|īxtlamatilizpampa|īxtlamatilizpampa}}:',
 'permissionserrorstext-withaction' => 'Ahmo tiquihuelīti $2 inīn {{PLURAL:$1|īxtlamatilizpampa|īxtlamatilizpampa}}:',
 'moveddeleted-notice'              => 'Inīn zāzanilli ōmopolo.
-Tlapololiztli tlahcuilōlloh cah tlani.',
+In tlapololiztli īhuān in tlazacaliztli tlahcuilōlloh cah tlani.',
 'edit-gone-missing'                => 'Ahmo huelīti yancuīya zāzanilli.
 Hueliz ōmopolo.',
 'edit-conflict'                    => 'Tlapatlaliztli yāōyōtōn',
@@ -576,8 +578,8 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'searchmenu-new'                   => "'''Tihuelīti ticchīhuāz zāzanilli ītōca \"[[:\$1]]\" inīn huiquipan'''",
 'searchhelp-url'                   => 'Help:Tlapiyaliztli',
 'searchprofile-articles'           => 'Tlapiyaliztli zāzanilli',
-'searchprofile-project'            => 'Tlachīhualiztli zāzanilli',
-'searchprofile-images'             => 'Tlahcuilōlli',
+'searchprofile-project'            => 'Tēpalēhuiliztli īhuān īxiptlahtli āmatl',
+'searchprofile-images'             => 'Nepapan media',
 'searchprofile-everything'         => 'Mochi',
 'searchprofile-advanced'           => 'Huehca ōmpa',
 'searchprofile-articles-tooltip'   => 'Tictēmōz īpan $1',
@@ -630,7 +632,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'localtime'                 => 'Cāhuitl nicān:',
 'prefs-searchoptions'       => 'Tlatēmoliztli tlaēlēhuiliztli',
 'prefs-namespaces'          => 'Tōcātzin',
-'defaultns'                 => 'Tlatēmōz inīn tōcātzimpan ic default:',
+'defaultns'                 => 'Tlatēmōz inīn tōcātzimpan achtopa:',
 'default'                   => 'ic default',
 'prefs-files'               => 'Tlahcuilōlli',
 'youremail'                 => 'E-mail:',
@@ -811,7 +813,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'nolinkstoimage'            => 'Ahmo cateh zāzaniltin tlein tzonhuiliah inīn tlahcuilōlhuīc.',
 'morelinkstoimage'          => 'Tiquinttāz [[Special:WhatLinksHere/$1|achi tzonhuiliztli]] inīn tlahcuilōlhuīc.',
 'redirectstofile'           => 'Inōn {{PLURAL:$1|tlahcuilōlli mocuepa|$1 tlahcuilōlli mocuepah}} nicān:',
-'duplicatesoffile'          => 'Inōn {{PLURAL:$1|tlahcuilōlli cah|$1 tlahcuilōlli cateh}} neneuhqui inīn:',
+'duplicatesoffile'          => 'Inōn {{PLURAL:$1|tlahcuilōlli cah|$1 tlahcuilōlli cateh}} ōntiah inīn zāzanilli ([[Special:FileDuplicateSearch/$2|ocahci]]):',
 'sharedupload'              => 'Inīn $1 zāzanilli huelīti motequitiltia zāzocāmpa.',
 'uploadnewversion-linktext' => 'Ticquetzāz yancuīc tlahcuilōlli',
 
@@ -848,7 +850,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 
 # Random page
 'randompage'         => 'Zāzozāzanilli',
-'randompage-nopages' => 'Ahmo cateh zāzaniltin īpan tōcātzin "$1".',
+'randompage-nopages' => 'Ahmo oncah zāzanilli īpan inīn {{PLURAL:$2|tōcāitl|tōcāitl}}: $1.',
 
 # Random redirect
 'randomredirect' => 'Zāzotlacuepaliztli',
@@ -934,8 +936,8 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 
 # Special:Categories
 'categories'                    => 'Neneuhcāyōtl',
-'categoriespagetext'            => 'Inīn neneuhcāyōtl quimpiyah zāzanilli nozo mēdiah.
-[[Special:UnusedCategories|Neneuhcāyōtl ahmo motequitiltia]] ahmo mottah nicān.
+'categoriespagetext'            => 'Inīn neneuhcāyōtl {{PLURAL:$1|quipiya|quimpiyah}} zāzanilli ahnozo medios.
+Ahmo ahmo mottah nicān in [[Special:UnusedCategories|Neneuhcāyōtl ahmo motequitiltia]].
 Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 'categoriesfrom'                => 'Xiquittaz neneuhcāyōtl mopēhuah īca:',
 'special-categories-sort-count' => 'tlapōhualcopa',
@@ -951,7 +953,7 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 
 # Special:Log/newusers
 'newuserlog-create-entry'  => 'Yancuīc tlatequitiltilīlli',
-'newuserlog-create2-entry' => 'ōmochīuh cuentah ic $1',
+'newuserlog-create2-entry' => 'Yancuīc cuenta ōmochīuh $1',
 
 # Special:ListGroupRights
 'listgrouprights-group'  => 'Olōlli',
@@ -1223,6 +1225,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'tooltip-ca-watch'                => 'Ticcēntilīz inīn zāzanilli motlachiyalizhuīc',
 'tooltip-ca-unwatch'              => 'Ahtictlachiyāz inīn zāzanilli',
 'tooltip-search'                  => 'Tlatēmōz īpan {{SITENAME}}',
+'tooltip-search-go'               => 'Tiyaz in zāzanilhuīc īca inīn huel melāhuac tōcaitl intlā yez',
 'tooltip-p-logo'                  => 'Calīxatl',
 'tooltip-n-mainpage'              => 'Tictlahpolōz in Calīxatl',
 'tooltip-n-mainpage-description'  => 'Tiquittaz in calīxatl',
@@ -1238,6 +1241,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'tooltip-t-emailuser'             => 'Tiquihcuilōz inīn tlatequitiltililhuīc',
 'tooltip-t-upload'                => 'Tiquinquetzāz tlahcuilōlli',
 'tooltip-t-specialpages'          => 'Mochīntīn nōncuahquīzqui zāzaniltin',
+'tooltip-t-print'                 => 'Tepoztlahcuilōlli',
 'tooltip-ca-nstab-main'           => 'Xiquitta in tlahcuilōlli',
 'tooltip-ca-nstab-user'           => 'Xiquitta tlatequitiltilīlli īzāzanil',
 'tooltip-ca-nstab-special'        => 'Cah inīn cē nōncuahquīzqui zāzanilli; ahmo tihuelīti ticpatla.',
@@ -1280,6 +1284,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:|zāzanilli|zāzanilli}}',
+'file-info-size'  => '($1 × $2 pixel; zāzanilli octacayōtl: $3; machiyōtl MIME: $4)',
 'file-nohires'    => '<small>Ahmo ia achi cualli ahmo occē īxiptli.</small>',
 'show-big-image'  => 'Mochi cuallōtl',
 

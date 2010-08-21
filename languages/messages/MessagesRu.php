@@ -15,6 +15,7 @@
  * @author Amikeco
  * @author Chilin
  * @author Claymore
+ * @author DCamer
  * @author Don Alessandro
  * @author Eleferen
  * @author EugeneZelenko
@@ -3456,6 +3457,12 @@ $1',
 'version-hook-subscribedby'        => 'Подписан на',
 'version-version'                  => '(Версия $1)',
 'version-license'                  => 'Лицензия',
+'version-poweredby-credits'        => "Эта вики работает на движке '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => 'MediaWiki является свободным программным обеспечением, которое вы можете распространять и/или изменять в соответствии с условиями лицензии GNU General Public License, опубликованной фондом свободного программного обеспечения; второй версии, либо любой более поздней версии.
+
+MediaWiki распространяется в надежде, что она будет полезной, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, даже без подразумеваемых гарантий КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ. См. лицензию GNU General Public License для более подробной информации.
+
+Вы должны были получить [{{SERVER}}{{SCRIPTPATH}}/COPYING копию GNU General Public License] вместе с этой программой, если нет, то напишите Free Software Foundation, Inc., по адресу: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочтите её онлайн].',
 'version-software'                 => 'Установленное программное обеспечение',
 'version-software-product'         => 'Продукт',
 'version-software-version'         => 'Версия',

@@ -11,6 +11,7 @@
  * @author Haqmar
  * @author Himiq Dzyu
  * @author KhayR
+ * @author Marat Vildanov
  * @author Rinatus
  * @author Timming
  * @author Yildiz
@@ -998,8 +999,10 @@ $3 күрсәткән сәбәп: ''$2''",
 'prefs-watchlist'             => 'Күзәтү исемлеге',
 'prefs-watchlist-days'        => 'Күзәтү исемлегендә ничә көн буена үзгәртүләрне күрсәтергә:',
 'prefs-watchlist-edits'       => 'Киңәйтелгән күзәтү исемлегендә үзгәртүләрнең иң югары исәбе:',
+'prefs-watchlist-edits-max'   => 'Максимум сан: 1000',
 'prefs-misc'                  => 'Башка көйләнмәләр',
 'prefs-resetpass'             => 'Серсүзне үзгәртү',
+'prefs-rendering'             => 'Күренеш',
 'saveprefs'                   => 'Саклау',
 'resetprefs'                  => 'Сакланмаган үзгәртүләрне бетерү',
 'prefs-editing'               => 'Үзгәртү',
@@ -1007,6 +1010,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'columns'                     => 'Баганалар:',
 'searchresultshead'           => 'Эзләү',
 'savedprefs'                  => 'Көйләнмәләрегез сакланды.',
+'localtime'                   => 'Җирле вакыт',
 'servertime'                  => 'Серверның вакыты:',
 'timezoneregion-africa'       => 'Африка',
 'timezoneregion-america'      => 'Америка',
@@ -1020,6 +1024,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'timezoneregion-pacific'      => 'Тын океан',
 'default'                     => 'килешү буенча',
 'prefs-files'                 => 'Файллар',
+'prefs-emailconfirm-label'    => 'E-mail раслау',
 'youremail'                   => 'Электрон почта:',
 'username'                    => 'Кулланучы исеме:',
 'uid'                         => 'Кулланучының идентификаторы:',
@@ -1454,6 +1459,7 @@ $NEWPAGE
 'protect-level-sysop'         => 'Идарәчеләр генә',
 'protect-summary-cascade'     => 'каскадлы',
 'protect-expiring'            => '$1 үтә (UTC)',
+'protect-expiry-indefinite'   => 'Вакыт чикләнмәгән',
 'protect-cascade'             => 'Бу биткә кергән битләрне якларга (каскадлы яклау)',
 'protect-cantedit'            => 'Сез бу битнең яклау дәрәҗәсене үзгәрә алмыйсыз, чөнки сездә аны үзгәртергә рөхсәтегез юк.',
 'protect-expiry-options'      => '1 сәгать:1 hour,1 көн:1 day,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 ел:1 year,вакытсыз:infinite',
@@ -1467,6 +1473,7 @@ $NEWPAGE
 'restriction-edit'   => 'Үзгәртү',
 'restriction-move'   => 'Күчерү',
 'restriction-create' => 'Төзү',
+'restriction-upload' => 'Йөкләү',
 
 # Restriction levels
 'restriction-level-sysop'         => 'тулы яклау',
@@ -1763,8 +1770,26 @@ $1',
 'fileduplicatesearch-submit' => 'Эзләү',
 
 # Special:SpecialPages
-'specialpages'            => 'Махсус битләр',
-'specialpages-group-spam' => 'Спамга каршы кораллар',
+'specialpages'                   => 'Махсус битләр',
+'specialpages-note'              => '----
+* Гади махсус битләр.
+* <strong class="mw-specialpagerestricted">Чикләнелгән гади махсус битләр</strong>',
+'specialpages-group-maintenance' => 'Техник карау хисапнамәсе',
+'specialpages-group-other'       => 'Башка махсус битләр',
+'specialpages-group-login'       => 'Керү / теркәлү',
+'specialpages-group-changes'     => 'Соңгы үзгәртүләр',
+'specialpages-group-media'       => 'Йөкләү һәм медиа-файллар хисапнамәсе',
+'specialpages-group-users'       => 'Кулланучылар һәм аларның хокуклары',
+'specialpages-group-highuse'     => 'Еш кулланылучы битләр',
+'specialpages-group-pages'       => 'Битләр исемлеге',
+'specialpages-group-pagetools'   => 'Бит өчен җиһазлар',
+'specialpages-group-wiki'        => 'Вики-мәгълүмат һәм җиһазлар',
+'specialpages-group-redirects'   => 'Күчерелүче махсус битләр',
+'specialpages-group-spam'        => 'Спамга каршы кораллар',
+
+# Special:BlankPage
+'blankpage'              => 'Буш бит',
+'intentionallyblankpage' => 'Бу бит махсус буш калдырылган',
 
 # Special:Tags
 'tags-edit' => 'үзгәртү',

@@ -1,5 +1,5 @@
 <?php
-/** Northern Frisian (Frasch)
+/** Northern Frisian (Nordfriisk)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -446,6 +446,7 @@ Ferjeet ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'gotaccount'              => "Dú hääst ål en brükerkonto? '''$1'''.",
 'gotaccountlink'          => 'Önjmälde',
 'createaccountmail'       => 'ouer E-mail',
+'createaccountreason'     => 'Grün:',
 'badretype'               => 'Da biise pååsuurde stime ai oueriinj.',
 'userexists'              => 'Dideer brükernoome as ål ferjääwen. Wees sü gödj en ouderen tu kiisen.',
 'loginerror'              => 'Fäägel bai önjmälding',

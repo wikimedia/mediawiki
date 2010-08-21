@@ -1715,6 +1715,8 @@ $NEWPAGE
 
 # Namespace 8 related
 'allmessagesname'           => 'Хәбәр',
+'allmessagesdefault'        => 'Ғәҙәттәге яҙма',
+'allmessagescurrent'        => 'Хәҙерге яҙма',
 'allmessages-filter-legend' => 'Иләк',
 'allmessages-filter-all'    => 'Бөтә',
 'allmessages-filter-submit' => 'Күсергә',

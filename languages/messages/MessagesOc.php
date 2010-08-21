@@ -657,8 +657,8 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 Benlèu la supression ja es estada efectuada per qualqu’un mai.',
 'badtitle'             => 'Títol marrit',
 'badtitletext'         => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
-'perfcached'           => 'Aquò es una version en amagatal e benlèu es pas a jorn.',
-'perfcachedts'         => 'Las donadas seguentas son en amagatal, son doncas pas obligatòriament a jorn. La darrièra actualizacion data del $1.',
+'perfcached'           => 'Aquò es una version en escondedor e benlèu es pas a jorn.',
+'perfcachedts'         => 'Las donadas seguentas son en escondedor, son doncas pas obligatòriament a jorn. La darrièra actualizacion data del $1.',
 'querypage-no-updates' => 'Las mesas a jorn per aquesta pagina son actualamnt desactivadas. Las donadas çaijós son pas mesas a jorn.',
 'wrong_wfQuery_params' => 'Paramètres incorrèctes sus wfQuery()<br />
 Foncion : $1<br />
@@ -771,7 +771,7 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'login-throttled'            => 'Avètz ensajat tròp de temptativas de connexion darrièrament.
 Esperatz abans d’ensajar tornamai.',
 'loginlanguagelabel'         => 'Lenga: $1',
-'suspicious-userlogout'      => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en amagatal d’un proxy.',
+'suspicious-userlogout'      => 'Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en escondedor d’un proxy.',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar lo senhal del compte',
