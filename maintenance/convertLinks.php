@@ -36,8 +36,6 @@ The wiki should be put into read-only mode while this script executes";
 	}
 
 	public function execute() {
-		global $wgDBtype;
-
 		$dbw = wfGetDB( DB_MASTER );
 
 		$type = $dbw->getType();
@@ -124,7 +122,8 @@ The wiki should be put into read-only mode while this script executes";
 			$dbw->bufferResults( true );
 			$this->output( "Finished loading IDs.\n\n" );
 			$this->performanceLog( "Took " . ( $this->getMicroTime() - $baseTime ) . " seconds to load IDs.\n\n" );
-		# --------------------------------------------------------------------
+
+			# --------------------------------------------------------------------
 
 			# Now, step through the links table (in chunks of $linksConvInsertInterval rows),
 			# convert, and write to the new table.
