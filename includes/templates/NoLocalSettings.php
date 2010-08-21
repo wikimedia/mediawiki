@@ -1,5 +1,7 @@
 <?php
 /**
+ * Template used when there is no LocalSettings.php file
+ *
  * @file
  * @ingroup Templates
  */

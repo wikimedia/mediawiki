@@ -1,9 +1,15 @@
 <?php
 /**
- * @defgroup Templates Templates
+ * Html forms for user login and account creation
+ *
  * @file
  * @ingroup Templates
  */
+
+/**
+ * @defgroup Templates Templates
+ */
+
 if( !defined( 'MEDIAWIKI' ) ) die( -1 );
 
 /**
