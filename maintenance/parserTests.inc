@@ -751,7 +751,7 @@ class ParserTest {
 			'media_type'  => MEDIATYPE_BITMAP,
 			'mime'        => 'image/jpeg',
 			'metadata'    => serialize( array() ),
-			'sha1'				=> sha1(''),
+			'sha1'        => sha1(''),
 			'fileExists'  => true
 			), $db->timestamp( '20010115123500' ), $user );
 	}
