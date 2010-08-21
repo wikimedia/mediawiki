@@ -1707,6 +1707,7 @@ if( count( $errs ) ) {
 	<div class="config-desc">
 		<p>No MS SQL Server specific options at this time.</p>
 	</div>
+	</fieldset>
 	
 	
 	<?php database_switcher('ibm_db2'); ?>
