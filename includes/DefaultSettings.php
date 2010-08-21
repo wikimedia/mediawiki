@@ -1509,13 +1509,6 @@ $wgUseLocalMessageCache = false;
 $wgLocalMessageCacheSerialized = true;
 
 /**
- * Instead of caching everything, keep track which messages are requested and
- * load only most used messages. This only makes sense if there is lots of
- * interface messages customised in the wiki (like hundreds in many languages).
- */
-$wgAdaptiveMessageCache = false;
-
-/**
  * Localisation cache configuration. Associative array with keys:
  *     class:       The class to use. May be overridden by extensions.
  *
