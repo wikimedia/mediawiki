@@ -24,11 +24,18 @@
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ConvertLinks extends Maintenance {
+	private $logPerformance;
 
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Convert from the old links schema (string->ID) to the new schema (ID->ID)
 The wiki should be put into read-only mode while this script executes";
+
+		$this->addArg( 'logperformance', "Log performance to perfLogFilename.", false );
+		$this->addArg( 'perfLogFilename', "Filename where performance is logged if --logperformance was set (defaults to 'convLinksPerf.txt').", false );
+		$this->addArg( 'keep-links-table', "Don't overwrite the old links table with the new one, leave the new table at links_temp.", false );
+		$this->addArg( 'nokeys', "Don't create keys, and so allow duplicates in the new links table.\n
+This gives a huge speed improvement for very large links tables which are MyISAM." /* (What about InnoDB?) */, false );
 	}
 
 	public function getDbType() {
@@ -44,7 +51,7 @@ The wiki should be put into read-only mode while this script executes";
 			return;
 		}
 
-		global $wgLang, $noKeys, $logPerformance, $fh;
+		global $wgContLang;
 	
 		$tuplesAdded = $numBadLinks = $curRowsRead = 0; # counters etc
 		$totalTuplesInserted = 0; # total tuples INSERTed into links_temp
@@ -58,17 +65,11 @@ The wiki should be put into read-only mode while this script executes";
 		$initialRowOffset = 0;
 		# $finalRowOffset = 0; # not used yet; highest row number from links table to process
 
-		# Overwrite the old links table with the new one.  If this is set to false,
-		# the new table will be left at links_temp.
-		$overwriteLinksTable = true;
-	
-		# Don't create keys, and so allow duplicates in the new links table.
-		# This gives a huge speed improvement for very large links tables which are MyISAM. (What about InnoDB?)
-		$noKeys = false;
-	
-	
-		$logPerformance = false; # output performance data to a file
-		$perfLogFilename = "convLinksPerf.txt";
+		$overwriteLinksTable = !$this->hasOption( 'keep-links-table' );
+		$noKeys = $this->hasOption( 'noKeys' );
+		$this->logPerformance = $this->hasOption( 'logperformance' ); 
+		$perfLogFilename = $this->getArg( 'perfLogFilename', "convLinksPerf.txt" );
+
 		# --------------------------------------------------------------------
 
 		list ( $cur, $links, $links_temp, $links_backup ) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
@@ -93,12 +94,19 @@ The wiki should be put into read-only mode while this script executes";
 			$this->output( "Updating schema (no rows to convert)...\n" );
 			$this->createTempTable();
 		} else {
-			if ( $logPerformance ) { $fh = fopen ( $perfLogFilename, "w" ); }
+			$fh = false;
+			if ( $this->logPerformance ) {
+				$fh = fopen ( $perfLogFilename, "w" );
+				if ( !$fh ) {
+					$this->error( "Couldn't open $perfLogFilename" );
+					$this->logPerformance = false;
+				}
+			}
 			$baseTime = $startTime = $this->getMicroTime();
 			# Create a title -> cur_id map
 			$this->output( "Loading IDs from $cur table...\n" );
-			$this->performanceLog ( "Reading $numRows rows from cur table...\n" );
-			$this->performanceLog ( "rows read vs seconds elapsed:\n" );
+			$this->performanceLog ( $fh, "Reading $numRows rows from cur table...\n" );
+			$this->performanceLog ( $fh, "rows read vs seconds elapsed:\n" );
 
 			$dbw->bufferResults( false );
 			$res = $dbw->query( "SELECT cur_namespace,cur_title,cur_id FROM $cur" );
@@ -107,13 +115,13 @@ The wiki should be put into read-only mode while this script executes";
 			while ( $row = $dbw->fetchObject( $res ) ) {
 				$title = $row->cur_title;
 				if ( $row->cur_namespace ) {
-					$title = $wgLang->getNsText( $row->cur_namespace ) . ":$title";
+					$title = $wgContLang->getNsText( $row->cur_namespace ) . ":$title";
 				}
 				$ids[$title] = $row->cur_id;
 				$curRowsRead++;
 				if ( $reportCurReadProgress ) {
 					if ( ( $curRowsRead % $curReadReportInterval ) == 0 ) {
-						$this->performanceLog( $curRowsRead . " " . ( $this->getMicroTime() - $baseTime ) . "\n" );
+						$this->performanceLog( $fh, $curRowsRead . " " . ( $this->getMicroTime() - $baseTime ) . "\n" );
 						$this->output( "\t$curRowsRead rows of $cur table read.\n" );
 					}
 				}
@@ -121,18 +129,18 @@ The wiki should be put into read-only mode while this script executes";
 			$dbw->freeResult( $res );
 			$dbw->bufferResults( true );
 			$this->output( "Finished loading IDs.\n\n" );
-			$this->performanceLog( "Took " . ( $this->getMicroTime() - $baseTime ) . " seconds to load IDs.\n\n" );
+			$this->performanceLog( $fh, "Took " . ( $this->getMicroTime() - $baseTime ) . " seconds to load IDs.\n\n" );
 
 			# --------------------------------------------------------------------
 
 			# Now, step through the links table (in chunks of $linksConvInsertInterval rows),
 			# convert, and write to the new table.
 			$this->createTempTable();
-			$this->performanceLog( "Resetting timer.\n\n" );
+			$this->performanceLog( $fh, "Resetting timer.\n\n" );
 			$baseTime = $this->getMicroTime();
 			$this->output( "Processing $numRows rows from $links table...\n" );
-			$this->performanceLog( "Processing $numRows rows from $links table...\n" );
-			$this->performanceLog( "rows inserted vs seconds elapsed:\n" );
+			$this->performanceLog( $fh, "Processing $numRows rows from $links table...\n" );
+			$this->performanceLog( $fh, "rows inserted vs seconds elapsed:\n" );
 	
 			for ( $rowOffset = $initialRowOffset; $rowOffset < $numRows; $rowOffset += $linksConvInsertInterval ) {
 				$sqlRead = "SELECT * FROM $links ";
@@ -169,13 +177,15 @@ The wiki should be put into read-only mode while this script executes";
 					$totalTuplesInserted += $tuplesAdded;
 					if ( $reportLinksConvProgress )
 						$this->output( " done. Total $totalTuplesInserted tuples inserted.\n" );
-						$this->performanceLog( $totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n"  );
+						$this->performanceLog( $fh, $totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n"  );
 				}
 			}
 			$this->output( "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n\n" );
-			$this->performanceLog( "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n" );
-			$this->performanceLog( "Total execution time: " . ( $this->getMicroTime() - $startTime ) . " seconds.\n" );
-			if ( $logPerformance ) { fclose ( $fh ); }
+			$this->performanceLog( $fh, "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n" );
+			$this->performanceLog( $fh, "Total execution time: " . ( $this->getMicroTime() - $startTime ) . " seconds.\n" );
+			if ( $this->logPerformance ) {
+				fclose ( $fh );
+			}
 		}
 		# --------------------------------------------------------------------
 
@@ -200,7 +210,6 @@ The wiki should be put into read-only mode while this script executes";
 	}
 
 	private function createTempTable() {
-		global $noKeys;
 		$dbConn = wfGetDB( DB_MASTER );
 
 		if ( !( $dbConn->isOpen() ) ) {
@@ -214,7 +223,7 @@ The wiki should be put into read-only mode while this script executes";
 		$this->output( " done.\n" );
 
 		$this->output( "Creating temporary links table..." );
-		if ( $noKeys ) {
+		if ( $this->hasOption( 'noKeys' ) ) {
 			$dbConn->query( "CREATE TABLE $links_temp ( " .
 			"l_from int(8) unsigned NOT NULL default '0', " .
 			"l_to int(8) unsigned NOT NULL default '0')" );
@@ -228,9 +237,8 @@ The wiki should be put into read-only mode while this script executes";
 		$this->output( " done.\n\n" );
 	}
 
-	private function performanceLog( $text ) {
-		global $logPerformance, $fh;
-		if ( $logPerformance ) {
+	private function performanceLog( $fh, $text ) {
+		if ( $this->logPerformance ) {
 			fwrite( $fh, $text );
 		}
 	}
