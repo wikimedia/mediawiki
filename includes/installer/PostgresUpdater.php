@@ -18,7 +18,7 @@
  * @since 1.17
  */
 
-class PostgresUpdater extends Updater {
+class PostgresUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return array();
 	}
