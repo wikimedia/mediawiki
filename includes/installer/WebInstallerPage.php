@@ -1,4 +1,10 @@
 <?php
+/**
+ * Base code for web installer pages.
+ *
+ * @file
+ * @ingroup Deployment
+ */
 
 /**
  * Abstract class to define pages for the web installer.

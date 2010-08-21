@@ -1,4 +1,10 @@
 <?php
+/**
+ * Core installer web interface.
+ *
+ * @file
+ * @ingroup Deployment
+ */
 
 /**
  * Class for the core installer web interface.

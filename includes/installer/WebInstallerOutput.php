@@ -1,4 +1,10 @@
 <?php
+/**
+ * Output handler for the web installer.
+ *
+ * @file
+ * @ingroup Deployment
+ */
 
 /**
  * Output class modelled on OutputPage.

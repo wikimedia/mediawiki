@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * DBMS-specific updater helper.
+ *
+ * @file
+ * @ingroup Deployment
+ */
+ 
 /*
  * Class for handling database updates. Roughly based off of updaters.inc, with
  * a few improvements :)

@@ -1,4 +1,10 @@
 <?php
+/**
+ * MySQL-specific updater.
+ *
+ * @file
+ * @ingroup Deployment
+ */
 
 /**
  * Mysql update list and mysql-specific update functions.

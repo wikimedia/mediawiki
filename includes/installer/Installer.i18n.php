@@ -1,8 +1,11 @@
 <?php
-/*
+/**
  * Internationalization file for the install/upgrade process. None of the
  * messages used here are loaded during normal operations, only during
  * install and upgrade. So you should not put normal messages here.
+ *
+ * @file
+ * @ingroup Deployment
  */
 
 $messages = array();
