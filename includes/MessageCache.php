@@ -851,7 +851,6 @@ class MessageCache {
 	}
 
 	public function getMostUsedMessages() {
-		global $wgContLang;
 		$cachekey = wfMemckey( 'message-profiling' );
 		$cache = wfGetCache( CACHE_DB );
 		$data = $cache->get( $cachekey );
