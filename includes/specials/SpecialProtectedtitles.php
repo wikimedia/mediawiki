@@ -230,12 +230,3 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	}
 }
 
-/**
- * Constructor
- */
-function wfSpecialProtectedtitles() {
-
-	$ppForm = new ProtectedTitlesForm();
-
-	$ppForm->showList();
-}
