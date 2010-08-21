@@ -1,5 +1,7 @@
 <?php
 /**
+ * Template used when the installer detects that this is PHP 4
+ *
  * @file
  * @ingroup Templates
  */
