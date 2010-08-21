@@ -21,25 +21,36 @@
  * @ingroup SpecialPage
  */
 
-function wfSpecialCategories( $par=null ) {
-	global $wgOut, $wgRequest;
+/**
+ * @ingroup SpecialPage
+ */
+class SpecialCategories extends SpecialPage {
 
-	if( $par == '' ) {
-		$from = $wgRequest->getText( 'from' );
-	} else {
-		$from = $par;
+	function __construct() {
+		parent::__construct( 'Categories' );
 	}
-	$cap = new CategoryPager( $from );
-	$cap->doQuery();
-	$wgOut->addHTML(
-		Xml::openElement( 'div', array('class' => 'mw-spcontent') ) .
-		wfMsgExt( 'categoriespagetext', array( 'parse' ), $cap->getNumRows() ) .
-		$cap->getStartForm( $from ) .
-		$cap->getNavigationBar() .
-		'<ul>' . $cap->getBody() . '</ul>' .
-		$cap->getNavigationBar() .
-		Xml::closeElement( 'div' )
-	);
+
+	function execute( $par ) {
+		global $wgOut, $wgRequest;
+
+		$this->setHeaders();
+		$this->outputHeader();
+
+		$from = $wgRequest->getText( 'from', $par );
+
+		$cap = new CategoryPager( $from );
+		$cap->doQuery();
+
+		$wgOut->addHTML(
+			Html::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) .
+			wfMsgExt( 'categoriespagetext', array( 'parse' ), $cap->getNumRows() ) .
+			$cap->getStartForm( $from ) .
+			$cap->getNavigationBar() .
+			'<ul>' . $cap->getBody() . '</ul>' .
+			$cap->getNavigationBar() .
+			Html::closeElement( 'div' )
+		);
+	}
 }
 
 /**

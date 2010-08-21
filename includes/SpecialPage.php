@@ -111,7 +111,7 @@ class SpecialPage {
 		# List of pages
 		'Allpages'                  => 'SpecialAllpages',
 		'Prefixindex'               => 'SpecialPrefixindex',
-		'Categories'                => array( 'SpecialPage', 'Categories' ),
+		'Categories'                => 'SpecialCategories',
 		'Disambiguations'           => array( 'SpecialPage', 'Disambiguations' ),
 		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),
 
