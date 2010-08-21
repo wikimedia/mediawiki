@@ -43,17 +43,17 @@ class LogPage {
 	var $updateRecentChanges, $sendToUDP;
 
 	/**
-	  * Constructor
-	  *
-	  * @param $type String: one of '', 'block', 'protect', 'rights', 'delete',
-	  *               'upload', 'move'
-	  * @param $rc Boolean: whether to update recent changes as well as the logging table
-	  * @param $udp String: pass 'UDP' to send to the UDP feed if NOT sent to RC
-	  */
+	 * Constructor
+	 *
+	 * @param $type String: one of '', 'block', 'protect', 'rights', 'delete',
+	 *               'upload', 'move'
+	 * @param $rc Boolean: whether to update recent changes as well as the logging table
+	 * @param $udp String: pass 'UDP' to send to the UDP feed if NOT sent to RC
+	 */
 	public function __construct( $type, $rc = true, $udp = 'skipUDP' ) {
 		$this->type = $type;
 		$this->updateRecentChanges = $rc;
-		$this->sendToUDP = ($udp == 'UDP');
+		$this->sendToUDP = ( $udp == 'UDP' );
 	}
 
 	protected function saveContent() {
@@ -77,23 +77,29 @@ class LogPage {
 			'log_params' => $this->params
 		);
 		$dbw->insert( 'logging', $data, __METHOD__ );
-		$newId = !is_null($log_id) ? $log_id : $dbw->insertId();
+		$newId = !is_null( $log_id ) ? $log_id : $dbw->insertId();
 
 		# And update recentchanges
 		if( $this->updateRecentChanges ) {
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-			RecentChange::notifyLog( $now, $titleObj, $this->doer, $this->getRcComment(), '', $this->type,
-				$this->action, $this->target, $this->comment, $this->params, $newId );
-		} else if( $this->sendToUDP ) {
+			RecentChange::notifyLog(
+				$now, $titleObj, $this->doer, $this->getRcComment(), '',
+				$this->type, $this->action, $this->target, $this->comment,
+				$this->params, $newId
+			);
+		} elseif( $this->sendToUDP ) {
 			# Don't send private logs to UDP
-			if( isset($wgLogRestrictions[$this->type]) && $wgLogRestrictions[$this->type] !='*' ) {
+			if( isset( $wgLogRestrictions[$this->type] ) && $wgLogRestrictions[$this->type] != '*' ) {
 				return true;
 			}
 			# Notify external application via UDP.
 			# We send this to IRC but do not want to add it the RC table.
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-			$rc = RecentChange::newLogEntry( $now, $titleObj, $this->doer, $this->getRcComment(), '',
-				$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
+			$rc = RecentChange::newLogEntry(
+				$now, $titleObj, $this->doer, $this->getRcComment(), '',
+				$this->type, $this->action, $this->target, $this->comment,
+				$this->params, $newId
+			);
 			$rc->notifyRC2UDP();
 		}
 		return $newId;
@@ -105,10 +111,11 @@ class LogPage {
 	public function getRcComment() {
 		$rcComment = $this->actionText;
 		if( $this->comment != '' ) {
-			if ($rcComment == '')
+			if ( $rcComment == '' ) {
 				$rcComment = $this->comment;
-			else
+			} else {
 				$rcComment .= wfMsgForContent( 'colon-separator' ) . $this->comment;
+			}
 		}
 		return $rcComment;
 	}
@@ -166,7 +173,7 @@ class LogPage {
 	 */
 	public static function logHeader( $type ) {
 		global $wgLogHeaders;
-		return wfMsgExt($wgLogHeaders[$type], array( 'parseinline' ) );
+		return wfMsgExt( $wgLogHeaders[$type], array( 'parseinline' ) );
 	}
 
 	/**
@@ -176,13 +183,13 @@ class LogPage {
 	 * @param $action String: log action
 	 * @param $title Mixed: Title object or null
 	 * @param $skin Mixed: Skin object or null. If null, we want to use the wiki
-	 *              content language, since that will go to the irc feed.
+	 *              content language, since that will go to the IRC feed.
 	 * @param $params Array: parameters
 	 * @param $filterWikilinks Boolean: whether to filter wiki links
 	 * @return HTML string
 	 */
 	public static function actionText( $type, $action, $title = null, $skin = null,
-		$params = array(), $filterWikilinks = false ) 
+		$params = array(), $filterWikilinks = false )
 	{
 		global $wgLang, $wgContLang, $wgLogActions;
 
@@ -207,10 +214,12 @@ class LogPage {
 					} else {
 						$rightsnone = wfMsgForContent( 'rightsnone' );
 					}
-					if( !isset( $params[0] ) || trim( $params[0] ) == '' )
+					if( !isset( $params[0] ) || trim( $params[0] ) == '' ) {
 						$params[0] = $rightsnone;
-					if( !isset( $params[1] ) || trim( $params[1] ) == '' )
+					}
+					if( !isset( $params[1] ) || trim( $params[1] ) == '' ) {
 						$params[1] = $rightsnone;
+					}
 				}
 				if( count( $params ) == 0 ) {
 					if ( $skin ) {
@@ -224,16 +233,16 @@ class LogPage {
 					// User suppression
 					if ( preg_match( '/^(block|suppress)\/(block|reblock)$/', $key ) ) {
 						if ( $skin ) {
-							$params[1] = '<span title="' . htmlspecialchars( $params[1] ). '">' . 
+							$params[1] = '<span title="' . htmlspecialchars( $params[1] ). '">' .
 								$wgLang->translateBlockExpiry( $params[1] ) . '</span>';
 						} else {
 							$params[1] = $wgContLang->translateBlockExpiry( $params[1] );
 						}
-						$params[2] = isset( $params[2] ) ? 
+						$params[2] = isset( $params[2] ) ?
 							self::formatBlockFlags( $params[2], is_null( $skin ) ) : '';
 
 					// Page protections
-					} else if ( $type == 'protect' && count($params) == 3 ) {
+					} elseif ( $type == 'protect' && count($params) == 3 ) {
 						// Restrictions and expiries
 						if( $skin ) {
 							$details .= htmlspecialchars( " {$params[1]}" );
@@ -243,14 +252,14 @@ class LogPage {
 						// Cascading flag...
 						if( $params[2] ) {
 							if ( $skin ) {
-								$details .= ' ['.wfMsg('protect-summary-cascade').']';
+								$details .= ' [' . wfMsg( 'protect-summary-cascade' ) . ']';
 							} else {
-								$details .= ' ['.wfMsgForContent('protect-summary-cascade').']';
+								$details .= ' [' . wfMsgForContent( 'protect-summary-cascade' ) . ']';
 							}
 						}
 
 					// Page moves
-					} else if ( $type == 'move' && count( $params ) == 3 && $action != 'move_rev' ) {
+					} elseif ( $type == 'move' && count( $params ) == 3 && $action != 'move_rev' ) {
 						if( $params[2] ) {
 							if ( $skin ) {
 								$details .= ' [' . wfMsg( 'move-redirect-suppressed' ) . ']';
@@ -260,18 +269,18 @@ class LogPage {
 						}
 
 					// Revision deletion
-					} else if ( preg_match( '/^(delete|suppress)\/revision$/', $key ) && count( $params ) == 5 ) {
+					} elseif ( preg_match( '/^(delete|suppress)\/revision$/', $key ) && count( $params ) == 5 ) {
 						$count = substr_count( $params[2], ',' ) + 1; // revisions
 						$ofield = intval( substr( $params[3], 7 ) ); // <ofield=x>
 						$nfield = intval( substr( $params[4], 7 ) ); // <nfield=x>
-						$details .= ': ' . RevisionDeleter::getLogMessage( $count, $nfield, $ofield, false, is_null($skin) );
+						$details .= ': ' . RevisionDeleter::getLogMessage( $count, $nfield, $ofield, false, is_null( $skin ) );
 
 					// Log deletion
-					} else if ( preg_match( '/^(delete|suppress)\/event$/', $key ) && count( $params ) == 4 ) {
+					} elseif ( preg_match( '/^(delete|suppress)\/event$/', $key ) && count( $params ) == 4 ) {
 						$count = substr_count( $params[1], ',' ) + 1; // log items
 						$ofield = intval( substr( $params[2], 7 ) ); // <ofield=x>
 						$nfield = intval( substr( $params[3], 7 ) ); // <nfield=x>
-						$details .= ': ' . RevisionDeleter::getLogMessage( $count, $nfield, $ofield, true, is_null($skin) );
+						$details .= ': ' . RevisionDeleter::getLogMessage( $count, $nfield, $ofield, true, is_null( $skin ) );
 					}
 
 					if ( $skin ) {
@@ -291,24 +300,24 @@ class LogPage {
 				$rv = "$action";
 			}
 		}
-		
+
 		// For the perplexed, this feature was added in r7855 by Erik.
-		//  The feature was added because we liked adding [[$1]] in our log entries
-		//  but the log entries are parsed as Wikitext on RecentChanges but as HTML
-		//  on Special:Log. The hack is essentially that [[$1]] represented a link
-		//  to the title in question. The first parameter to the HTML version (Special:Log)
-		//  is that link in HTML form, and so this just gets rid of the ugly [[]].
-		//  However, this is a horrible hack and it doesn't work like you expect if, say,
-		//  you want to link to something OTHER than the title of the log entry.
-		//  The real problem, which Erik was trying to fix (and it sort-of works now) is
-		//  that the same messages are being treated as both wikitext *and* HTML.
+		// The feature was added because we liked adding [[$1]] in our log entries
+		// but the log entries are parsed as Wikitext on RecentChanges but as HTML
+		// on Special:Log. The hack is essentially that [[$1]] represented a link
+		// to the title in question. The first parameter to the HTML version (Special:Log)
+		// is that link in HTML form, and so this just gets rid of the ugly [[]].
+		// However, this is a horrible hack and it doesn't work like you expect if, say,
+		// you want to link to something OTHER than the title of the log entry.
+		// The real problem, which Erik was trying to fix (and it sort-of works now) is
+		// that the same messages are being treated as both wikitext *and* HTML.
 		if( $filterWikilinks ) {
-			$rv = str_replace( "[[", "", $rv );
-			$rv = str_replace( "]]", "", $rv );
+			$rv = str_replace( '[[', '', $rv );
+			$rv = str_replace( ']]', '', $rv );
 		}
 		return $rv;
 	}
-	
+
 	protected static function getTitleLink( $type, $skin, $title, &$params ) {
 		global $wgLang, $wgContLang, $wgUserrightsInterwikiDelimiter;
 		if( !$skin ) {
@@ -317,7 +326,7 @@ class LogPage {
 		switch( $type ) {
 			case 'move':
 				$titleLink = $skin->link(
-					$title, 
+					$title,
 					htmlspecialchars( $title->getPrefixedText() ),
 					array(),
 					array( 'redirect' => 'no' )
@@ -350,8 +359,9 @@ class LogPage {
 				if ( count( $parts ) == 2 ) {
 					$titleLink = WikiMap::foreignUserLink( $parts[1], $parts[0],
 						htmlspecialchars( $title->getPrefixedText() ) );
-					if ( $titleLink !== false )
+					if ( $titleLink !== false ) {
 						break;
+					}
 				}
 				$titleLink = $skin->link( Title::makeTitle( NS_USER, $text ) );
 				break;
@@ -373,7 +383,7 @@ class LogPage {
 					list( $name, $par ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
 					# Use the language name for log titles, rather than Log/X
 					if( $name == 'Log' ) {
-						$titleLink = '('.$skin->link( $title, LogPage::logName( $par ) ).')';
+						$titleLink = '(' . $skin->link( $title, LogPage::logName( $par ) ) . ')';
 					} else {
 						$titleLink = $skin->link( $title );
 					}
@@ -398,27 +408,29 @@ class LogPage {
 			$params = array( $params );
 		}
 
-		if ( $comment === null ) $comment = "";
+		if ( $comment === null ) {
+			$comment = '';
+		}
 
 		$this->action = $action;
 		$this->target = $target;
 		$this->comment = $comment;
 		$this->params = LogPage::makeParamBlob( $params );
-		
-		if ($doer === null) {
+
+		if ( $doer === null ) {
 			global $wgUser;
 			$doer = $wgUser;
-		} elseif (!is_object( $doer ) ) {
+		} elseif ( !is_object( $doer ) ) {
 			$doer = User::newFromId( $doer );
 		}
-		
+
 		$this->doer = $doer;
 
 		$this->actionText = LogPage::actionText( $this->type, $action, $target, null, $params );
 
 		return $this->saveContent();
 	}
-	
+
 	/**
 	 * Add relations to log_search table
 	 *
@@ -428,11 +440,16 @@ class LogPage {
 	 * @return Boolean
 	 */
 	public function addRelations( $field, $values, $logid ) {
-		if( !strlen($field) || empty($values) )
+		if( !strlen( $field ) || empty( $values ) ) {
 			return false; // nothing
+		}
 		$data = array();
 		foreach( $values as $value ) {
-			$data[] = array('ls_field' => $field,'ls_value' => $value,'ls_log_id' => $logid);
+			$data[] = array(
+				'ls_field' => $field,
+				'ls_value' => $value,
+				'ls_log_id' => $logid
+			);
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'log_search', $data, __METHOD__, 'IGNORE' );
@@ -477,8 +494,9 @@ class LogPage {
 
 		$flags = explode( ',', trim( $flags ) );
 		if( count( $flags ) > 0 ) {
-			for( $i = 0; $i < count( $flags ); $i++ )
+			for( $i = 0; $i < count( $flags ); $i++ ) {
 				$flags[$i] = self::formatBlockFlag( $flags[$i], $forContent );
+			}
 			return '(' . $wgLang->commaList( $flags ) . ')';
 		} else {
 			return '';
@@ -497,10 +515,11 @@ class LogPage {
 		static $messages = array();
 		if( !isset( $messages[$flag] ) ) {
 			$k = 'block-log-flags-' . $flag;
-			if( $forContent )
+			if( $forContent ) {
 				$msg = wfMsgForContent( $k );
-			else
+			} else {
 				$msg = wfMsg( $k );
+			}
 			$messages[$flag] = htmlspecialchars( wfEmptyMsg( $k, $msg ) ? $flag : $msg );
 		}
 		return $messages[$flag];
