@@ -1,7 +1,13 @@
 <?php
+/**
+ * Generator for LocalSettings.php file.
+ *
+ * @file
+ * @ingroup Deployment
+ */
 
 /**
- * Class for manipulating LocalSettings.
+ * Class for generating LocalSettings.php file.
  *
  * @ingroup Deployment
  * @since 1.17

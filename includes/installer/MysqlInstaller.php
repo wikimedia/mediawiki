@@ -1,4 +1,10 @@
 <?php
+/**
+ * MySQL-specific installer.
+ *
+ * @file
+ * @ingroup Deployment
+ */
 
 /**
  * Class for setting up the MediaWiki database using MySQL.

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Base code for MediaWiki installer.
+ *
+ * @file
+ * @ingroup Deployment
+ */
 
 /**
  * This documentation group collects source code files with deployment functionality.
@@ -804,7 +810,7 @@ abstract class Installer {
 
 	/**
 	 * Convert a hex string representing a Unicode code point to that code point.
-	 * @param string $c
+	 * @param $c String
 	 * @return string
 	 */
 	protected function unicodeChar( $c ) {

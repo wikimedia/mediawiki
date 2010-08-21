@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * PostgreSQL-specific updater.
+ *
+ * @file
+ * @ingroup Deployment
+ */
+ 
 /**
  * Class for handling updates to Postgres databases.
  *

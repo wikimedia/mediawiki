@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Sqlite-specific updater.
+ *
+ * @file
+ * @ingroup Deployment
+ */
+ 
 /**
  * Class for handling updates to Sqlite databases.
  * 

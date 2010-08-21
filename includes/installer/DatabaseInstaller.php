@@ -1,4 +1,10 @@
 <?php
+/**
+ * DBMS-specific installation helper.
+ *
+ * @file
+ * @ingroup Deployment
+ */
 
 /**
  * Base class for DBMS-specific installation helper classes.
