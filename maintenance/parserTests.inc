@@ -737,7 +737,7 @@ class ParserTest {
 			'media_type'  => MEDIATYPE_BITMAP,
 			'mime'        => 'image/jpeg',
 			'metadata'    => serialize( array() ),
-			'sha1'				=> sha1(''),
+			'sha1'        => sha1(''),
 			'fileExists'  => true
 			), $db->timestamp( '20010115123500' ), $user );
 
@@ -1346,22 +1346,22 @@ class DbTestPreviewer extends TestRecorder  {
 	}
 
 	/**
-	 ** Returns a string giving information about when a test last had a status change.
-	 ** Could help to track down when regressions were introduced, as distinct from tests
-	 ** which have never passed (which are more change requests than regressions).
+	 * Returns a string giving information about when a test last had a status change.
+	 * Could help to track down when regressions were introduced, as distinct from tests
+	 * which have never passed (which are more change requests than regressions).
 	 */
 	private function getTestStatusInfo( $testname, $after ) {
 
 		// If we're looking at a test that has just been removed, then say when it first appeared.
 		if ( $after == 'n' ) {
 			$changedRun = $this->db->selectField ( 'testitem',
-												   'MIN(ti_run)',
-												   array( 'ti_name' => $testname ),
-												   __METHOD__ );
+				'MIN(ti_run)',
+				array( 'ti_name' => $testname ),
+				__METHOD__ );
 			$appear = $this->db->selectRow ( 'testrun',
-											 array( 'tr_date', 'tr_mw_version' ),
-											 array( 'tr_id' => $changedRun ),
-											 __METHOD__ );
+				array( 'tr_date', 'tr_mw_version' ),
+				array( 'tr_id' => $changedRun ),
+				__METHOD__ );
 			return "First recorded appearance: "
 				   . date( "d-M-Y H:i:s",  strtotime ( $appear->tr_date ) )
 				   .  ", " . $appear->tr_mw_version;
@@ -1391,15 +1391,15 @@ class DbTestPreviewer extends TestRecorder  {
 		// (i.e. it used to work, but now doesn't; or used to fail, but is now fixed.)
 		// In this situation, give as much info as we can as to when it changed status.
 		$pre  = $this->db->selectRow ( 'testrun',
-										array( 'tr_date', 'tr_mw_version' ),
-										array( 'tr_id' => $changedRun ),
-										__METHOD__ );
+			array( 'tr_date', 'tr_mw_version' ),
+			array( 'tr_id' => $changedRun ),
+			__METHOD__ );
 		$post = $this->db->selectRow ( 'testrun',
-										array( 'tr_date', 'tr_mw_version' ),
-										array( "tr_id > " . $this->db->addQuotes ( $changedRun ) ),
-										__METHOD__,
-										array( "LIMIT" => 1, "ORDER BY" => 'tr_id' )
-									 );
+			array( 'tr_date', 'tr_mw_version' ),
+			array( "tr_id > " . $this->db->addQuotes ( $changedRun ) ),
+			__METHOD__,
+			array( "LIMIT" => 1, "ORDER BY" => 'tr_id' )
+		);
 
 		if ( $post ) {
 			$postDate = date( "d-M-Y H:i:s",  strtotime ( $post->tr_date  ) ) . ", {$post->tr_mw_version}";
