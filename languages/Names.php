@@ -98,7 +98,7 @@
 	'fr' => 'Français',	# French
 	'frc' => 'Français cadien', # Cajun French
 	'frp' => 'Arpetan',	# Franco-Provençal/Arpitan
-	'frr' => 'Frasch',	# North Frisian
+	'frr' => 'Nordfriisk',	# North Frisian
 	'fur' => 'Furlan',		# Friulian
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
