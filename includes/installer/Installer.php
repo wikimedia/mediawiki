@@ -323,7 +323,7 @@ abstract class Installer {
 	/**
 	 * TODO: document
 	 *
-	 * @param DatabaseInstaller $installer
+	 * @param $installer DatabaseInstaller
 	 *
 	 * @return Status
 	 */
@@ -341,7 +341,7 @@ abstract class Installer {
 	/**
 	 * TODO: document
 	 *
-	 * @param DatabaseInstaller $installer
+	 * @param $installer DatabaseInstaller
 	 *
 	 * @return Status
 	 */
@@ -358,7 +358,7 @@ abstract class Installer {
 	/**
 	 * TODO: document
 	 *
-	 * @param DatabaseInstaller $installer
+	 * @param $installer DatabaseInstaller
 	 *
 	 * @return Status
 	 */
