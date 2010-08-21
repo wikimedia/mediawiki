@@ -102,7 +102,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23621) New Special:ComparePages to compare (diff) two articles.
 * (bug 4597) Provide support in Special:Contributions to show only "current"
   contributions
-* (bug 17857) {{anchorencode}} acts more like how the parser creates section ids.
+* (bug 17857) {{anchorencode}} acts more like how the parser creates section ids
 * (bug 21477) \& can now be used in <math>
 * (bug 11641) \dotsc \dotsm \dotsi \dotso can now be used in <math>
 * (bug 21475) \mathtt and \textsf can now be used in <math>
@@ -272,10 +272,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings
 * (bug 24022) Only check file extensions on the uploadpage when needed.
 * (bug 24076) Recognize Office 2003 files with OpenXML trailers
-* (bug 24244) Updated comments in DefaultSettings.php to reflect Image: --> File:
-  namespace rename.
+* (bug 24244) Updated comments in DefaultSettings.php to reflect
+  Image: --> File: namespace rename.
 * Make wfTimestamp recognize negative unix timestamp values.
-* (bug 24401) SimpleSearch: No button/text indicating 'Search' if image is disabled
+* (bug 24401) SimpleSearch: No button/text indicating 'Search' if image is
+  disabled
 * (bug 23293) Do not show change tags when special:recentchanges(linked)
   or special:newpages is transcluded into another page as it messes up the
   page.
@@ -285,12 +286,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   useful error message.
 * Uploading to a protected title will allow the user to choose a new name 
   instead of showing an error page
-* (bug 24425) Use Database::replace instead of delete/insert in SqlBagOStuff::set
-  to avoid query errors about duplicate keynames.
+* (bug 24425) Use Database::replace instead of delete/insert in
+  SqlBagOStuff::set to avoid query errors about duplicate keynames.
 * (bug 15470) First letters of filenames are always capitalized by upload JS.
 * (bug 21215) NoLocalSettings.php doesn't tolerate rewrite rules
 * (bug 21052) Fix link color for stubs in NewPages
-* (bug 24714) Usage of {{#dateformat: }} in wikis without $wgUseDynamicDates no 
+* (bug 24714) Usage of {{#dateformat: }} in wikis without $wgUseDynamicDates no
   longer pollutes the parser cache.
 * (bug 17031) Correct which characters the parser allows in tag attributes.
 * Save 200 useless queries on each category page view
@@ -303,7 +304,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 22868) don't list infinite block expiry date as "now" in API logevents.
 * (bug 22290) prop=revisions now outputs "comment" field even when comment.
   is empty, for consistency with list=recentchanges.
-* (bug 19721) API action=help should have a way to just list for a specific module.
+* (bug 19721) API action=help should have a way to just list for a specific
+  module.
 * (bug 23458) Add support for pageid parameter to action=parse requests.
 * (bug 23460) Parse action should have a section option.
 * (bug 21346) Make deleted images searchable by hash.
@@ -323,35 +325,41 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   ( 'paramname' => 'defaultval' ) correctly when outputting help
 * (bug 24089) Logevents causes PHP Notice if leprop=title isn't supplied
 * (bug 23473) Give description of properties on all modules
-* (bug 24136) unknownerror when adding new section without summary, but forceditsummary
-* (bug 16886) Sister projects box moves down the extract of the first result in IE 7.
+* (bug 24136) unknownerror when adding new section without summary, but
+  forceditsummary
+* (bug 16886) Sister projects box moves down the extract of the first result
+  in IE 7.
 * (bug 22339) Added srwhat=nearmatch to list=search to get a "go" result
-* (bug 24303) Added new &servedby parameter to all actions which adds the hostname
-  that served the request to the result. It is also added unconditionally on error
-* (bug 24185) Titles in the Media and Special namespace are now supported for 
+* (bug 24303) Added new &servedby parameter to all actions which adds the
+  hostname that served the request to the result. It is also added
+  unconditionally on error
+* (bug 24185) Titles in the Media and Special namespace are now supported for
   title normalization in action=query. Special pages have their name resolved
   to the local alias.
 * (bug 24296) Added converttitles parameter to convert titles to their 
   canonical language variant.
 * Fixed "link" parameter in image links with "thumb" parameter.
 * (bug 23936) Add "displaytitle" to query/info API
-* (bug 24485) Make iwbacklinks a generator, optionally display iwprefix and iwtitle
-* (bug 24564) Fix fatal errors when using list=deletedrevs, prop=revisions or 
+* (bug 24485) Make iwbacklinks a generator, optionally display iwprefix and
+  iwtitle
+* (bug 24564) Fix fatal errors when using list=deletedrevs, prop=revisions or
   one of the backlinks generators with limit=max.
 * (bug 24656) API's parse module needs option to disable PP report
-* PARAM_REQUIRED parameter flag added. If this flag is set, and the end user does not set 
-  the parameter, the API will automatically throw an error.
-* (bug 24665) When starttimestamp is not specified, fake it by setting it to NOW, not to 
-  the timestamp of the last edit
-* (bug 24677) axto= parameters added to allcategories, allimages, alllinks, allmessages, 
-  allpages, and allusers
-* (bug 24236) Add add, remove, add-self, remove-self tags to meta=siteinfo&siprop=usergroups
-* (bug 24484) Add prop=pageprops module 
-* (bug 24330) Add &redirect parameter to ?action=edit 
-* (bug 24722) For list=allusers&auprop=blockinfo, only show blockedby and blockreason if 
-  the user is actually blocked.
+* PARAM_REQUIRED parameter flag added. If this flag is set, and the end user
+  does not set the parameter, the API will automatically throw an error.
+* (bug 24665) When starttimestamp is not specified, fake it by setting it to
+  NOW, not to the timestamp of the last edit
+* (bug 24677) axto= parameters added to allcategories, allimages, alllinks,
+  allmessages, allpages, and allusers
+* (bug 24236) Add add, remove, add-self, remove-self tags to
+  meta=siteinfo&siprop=usergroups
+* (bug 24484) Add prop=pageprops module
+* (bug 24330) Add &redirect parameter to ?action=edit
+* (bug 24722) For list=allusers&auprop=blockinfo, only show blockedby and
+  blockreason if the user is actually blocked.
 * Add format=dump and format=dumpfm, outputs results in PHP's var_dump() format
-* For required string parameters, if '' is provided, this is now classed as missing
+* For required string parameters, if '' is provided, this is now classed as
+  missing
 
 === Languages updated in 1.17 ===
 
