@@ -87,7 +87,7 @@ class WebInstaller extends CoreInstaller {
 	/** 
 	 * Constructor.
 	 * 
-	 * @param WebRequest $request
+	 * @param $request WebRequest
 	 */
 	public function __construct( WebRequest $request ) {
 		parent::__construct();
@@ -637,7 +637,7 @@ class WebInstaller extends CoreInstaller {
 	 * Show a short informational message.
 	 * Output looks like a list.
 	 * 
-	 * @param srting $msg
+	 * @param $msg string
 	 */
 	public function showMessage( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -649,7 +649,7 @@ class WebInstaller extends CoreInstaller {
 	}
 	
 	/**
-	 * @param Status $status
+	 * @param $status Status
 	 */
 	public function showStatusMessage( Status $status ) {
 		$text = $status->getWikiText();

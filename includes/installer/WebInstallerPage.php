@@ -20,8 +20,8 @@ abstract class WebInstallerPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param WebInstaller $parent
-	 */	
+	 * @param $parent WebInstaller
+	 */
 	public function __construct( WebInstaller $parent ) {
 		$this->parent = $parent;
 	}
