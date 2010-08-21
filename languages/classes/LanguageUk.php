@@ -82,9 +82,8 @@ class LanguageUk extends Language {
 	/*
 	 * Ukrainian numeric format is "12 345,67" but "1234,56"
 	 */
-
 	function commafy( $_ ) {
-		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {
+		if ( !preg_match( '/^\-?\d{1,4}(\.\d+)?$/', $_ ) ) {
 			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 		} else {
 			return $_;
