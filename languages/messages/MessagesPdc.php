@@ -169,6 +169,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Iwwer {{SITENAME}}',
 'aboutpage'            => 'Project:Iwwer_{{SITENAME}}',
+'copyright'            => 'Was do drin schdeht iss unner $1 verfiechbar',
 'disclaimers'          => 'Impressum',
 'disclaimerpage'       => 'Project:Impressum',
 'edithelp'             => 'Hilf zum Ennere',
@@ -219,6 +220,11 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # General errors
 'error'               => 'Mischteek',
 'databaseerror'       => 'Fehler in de Daadescheier',
+'missing-article'     => 'De Text fer „$1“ $2 iss in de Daadebank net gfunne worre.
+
+Des Blatt iss verleicht glescht adder gezoge worre.
+
+Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld des an en [[Special:ListUsers/sysop|Verwalter]] unn gebb die URL dezu aa.',
 'missingarticle-rev'  => '(Version: $1)',
 'missingarticle-diff' => '(Unnerschidd zwische Versione: $1, $2)',
 'viewsourcefor'       => 'fer $1',
@@ -319,6 +325,9 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'editundo'   => 'zerick',
 
 # Search results
+'searchresults'                  => 'Results vum Uffgucke',
+'searchresults-title'            => 'Results vum Uffgucke fer „$1“',
+'searchsubtitle'                 => 'Du hoscht nooch \'\'\'[[:$1]]\'\'\' gsucht ([[Special:Prefixindex/$1|alle Bledder wu mit "$1" aafange]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Bledder wu uf "$1" zeige]])',
 'prevn'                          => '{{PLURAL:$1|letscht|letscht $1}}',
 'nextn'                          => 'neegschte {{PLURAL:$1|$1}}',
 'viewprevnext'                   => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
@@ -443,6 +452,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'newsectionsummary'            => 'Neier Abschnitt /* $1 */',
 
 # Recent changes linked
+'recentchangeslinked'      => 'Was on verlinkde Bledder geduh worre iss',
 'recentchangeslinked-page' => 'Blatt:',
 
 # Upload
@@ -559,6 +569,7 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'allnotinnamespace' => 'Alle Bledder (net vun $1 Blatznaame)',
 'allpagesprev'      => 'Letscht',
 'allpagesnext'      => 'Neegscht',
+'allpagessubmit'    => 'Zeige',
 'allpages-bad-ns'   => '{{SITENAME}} hot ken Blatznaame „$1“.',
 
 # Special:Categories
@@ -732,8 +743,11 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'tooltip-pt-mytalk'              => 'Dei Gschwetz-Blatt',
 'tooltip-pt-preferences'         => 'Mei Uffschtelling',
 'tooltip-pt-mycontris'           => 'Lischt vun deine Ardickel',
+'tooltip-pt-login'               => 'Du kannscht Dich aamelde, awwer du muschts net',
 'tooltip-pt-logout'              => 'Geh naus',
 'tooltip-ca-talk'                => 'Gschetz iwwers Blatt',
+'tooltip-ca-edit'                => 'Du kannscht des Blatt ennere. Bitte brauch de Aaguck-Gnopp vor em Speichere.',
+'tooltip-ca-history'             => 'Ledschde Versione vun dem Blattt',
 'tooltip-ca-protect'             => 'Des Blatt schitze',
 'tooltip-ca-delete'              => 'Des Blatt lösche',
 'tooltip-ca-move'                => 'Des Blatt ziehe',
@@ -743,14 +757,20 @@ Guck aach [[Special:Version|Versionsblatt]]',
 'tooltip-p-logo'                 => 'Haaptblatt',
 'tooltip-n-mainpage'             => 'Zum Haaptblatt geh',
 'tooltip-n-mainpage-description' => 'Haaptblatt bsuche',
+'tooltip-n-portal'               => 'Iwwers Projekt, was de duhn kannscht, wo de ebbes finnscht',
+'tooltip-n-recentchanges'        => 'D Lischt vun de letschte Enneringe in dem Wiki',
 'tooltip-n-randompage'           => 'Ennich Ardickel',
+'tooltip-n-help'                 => 'Hilf-Blatt zeige',
 'tooltip-t-whatlinkshere'        => 'Lischt vun all die Bledder, wu do her zeige',
+'tooltip-t-recentchangeslinked'  => 'Letschte Enneringe in Bledder, wu vun do verlinkt sinn',
 'tooltip-feed-rss'               => 'RSS-Feed fer des Blatt',
 'tooltip-feed-atom'              => 'Atom-Feed fer des Blatt',
 'tooltip-t-contributions'        => 'Lischt von Ardickele vun dem Yuuser zeige',
 'tooltip-t-upload'               => 'Feils ufflaade',
 'tooltip-t-specialpages'         => 'Lischt vun alle besunnere Bledder',
 'tooltip-t-print'                => 'Des Blatt fer zum Drucke',
+'tooltip-t-permalink'            => 'En permanent Gleecher zu derre Version vun dem Blatt',
+'tooltip-ca-nstab-main'          => 'Inhalt vun dem Blatt aagucke',
 'tooltip-ca-nstab-user'          => 'Yuuserblatt zeige',
 'tooltip-ca-nstab-special'       => 'Sell iss en besunneres Blatt. Du kannscht es Blatt net ennere.',
 'tooltip-ca-nstab-image'         => 'Feil zeige',

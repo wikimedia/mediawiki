@@ -3348,6 +3348,12 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'version-hook-subscribedby'        => 'Subscribite per',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licentia',
+'version-poweredby-credits'        => "Iste wiki es actionate per '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => 'MediaWiki es software libere; vos pote redistribuer lo e/o modificar lo sub le conditiones del Licentia Public General de GNU publicate per le Free Software Foundation; version 2 del Licentia, o (a vostre option) qualcunque version posterior.
+
+Iste programma es distribuite in le sperantia que illo sia utile, ma SIN GARANTIA; sin mesmo le implicite garantia de COMMERCIALISATION o APTITUDE PRO UN PROPOSITO PARTICULAR. Vide le Licentia Public General de GNU pro plus detalios.
+
+Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Licentia Public General de GNU] con iste programma; si non, scribe al Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, o [http://www.gnu.org/copyleft/gpl.html lege lo in linea].',
 'version-software'                 => 'Software installate',
 'version-software-product'         => 'Producto',
 'version-software-version'         => 'Version',

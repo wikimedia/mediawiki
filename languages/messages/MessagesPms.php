@@ -1433,19 +1433,19 @@ Sòn a podrìa esse rivà përchè che chiel a l'ha scrivù mal ël nòm dl'arch
 Për piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
 'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla '''<tt>[[:$1]]</tt>''' se a l'é pa sigur dë vorèj cangelo.
 [[$1|thumb]]",
-'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>[[:$1]]</tt>''', mach ch'a-i é pa gnun archivi ch'as ciama parej.
+'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>[[:$1]]</tt>''', mach ch'a-i é gnun archivi ch'as ciama parèj.
 Lòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission.
-Për podej buté sò somari a l'ha da modifichesse la pàgina a man.
+Për podèj buté sò somari a l'ha da modifichesse la pàgina a man.
 [[$1|thumb]]",
-'fileexists-extension'        => "N'archivi con ës nòm-s a-i é già: [[$2|thumb]]
+'fileexists-extension'        => "N'archivi con ës nòm-sì a-i é già: [[$2|thumb]]
 * Nòm dl'archivi ch'as carìa: '''<tt>[[:$1]]</tt>'''
 * Nòm dl'archivi ch'a-i é già: '''<tt>[[:$2]]</tt>'''
 Për piasì, ch'a serna un nòm diferent.",
-'fileexists-thumbnail-yes'    => "L'archivi a-j ëmsija a na ''figurin-a''. [[$1|thumb]]
+'fileexists-thumbnail-yes'    => "L'archivi a jë smija a na ''figurin-a''. [[$1|thumb]]
 Për piasì, ch'a contròla l'archivi '''<tt>[[:$1]]</tt>'''.
 S'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë carié na figurin-a.",
 'file-thumbnail-no'           => "Ël nòm dl'archivi as anandia con '''<tt>$1</tt>'''.
-A-j ësmija a na ''figurin-a''.
+A jë smija a na ''figurin-a''.
 Se a l'ha na figura a amzura pijn-a a l'é mej ch'a carìa cola-lì, dësnò ch'a-j cangia nòm a l'archivi, për piasì.",
 'fileexists-forbidden'        => "Belavans n'archivi con ës nòm-sì a-i é già, donca ël nòm as peul pa pì dovresse.
 Se it veule ancó cariè tò file, për piasì torna andré e dòvra un nòm neuv. [[File:$1|thumb|center|$1]]",
@@ -3194,6 +3194,7 @@ As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
 'version-hook-subscribedby'        => 'A son scrivusse',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licensa',
+'version-poweredby-credits'        => "Sta wiki-sì a l'é basà su '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-software'                 => 'Programa anstalà',
 'version-software-product'         => 'Prodot',
 'version-software-version'         => 'Version',

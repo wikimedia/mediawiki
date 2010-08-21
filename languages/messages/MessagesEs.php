@@ -2155,6 +2155,7 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',
 'mywatchlist'          => 'Lista de seguimiento',
+'watchlistfor2'        => 'Para $1 $2',
 'nowatchlist'          => 'No tiene ninguna página en su lista de seguimiento.',
 'watchlistanontext'    => 'Para ver o editar las entradas de tu lista de seguimiento es necesario $1.',
 'watchnologin'         => 'No has iniciado sesión',
@@ -3421,6 +3422,12 @@ También puedes [[Special:Watchlist/edit|usar el editor estándar]].',
 'version-hook-subscribedby'        => 'Suscrito por',
 'version-version'                  => '(Versión $1)',
 'version-license'                  => 'Licencia',
+'version-poweredby-credits'        => "Este wiki funciona gracias a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => 'MediaWiki es software libre; puedes redistribuírlo y/o modificarlo bajo los términos de la Licencia General Pública GNU publicada por la Fundación del Software Libre; ya sea la versión 2 de la licencia, o (a tu elección) cualquier versión posterior.
+
+MediaWiki es distribuído con la esperanza de que será útil, pero SIN NINGUNA GARANTÍA; ni siquiera con la garantía implícita de COMERCIALIZACIÓN ó ADAPTACIÓN A UN PROPÓSITO PARTICULAR. Véase la Licencia Pública General GNU para mayores detalles.
+
+Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública General GNU] junto a este programa; si no es así, escríbale a la Fundación del Software Libre, Inc., Calle Franklin 51, Quinto Piso, Boston, MA 02110-1301, EE.UU. ó [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html léela en línea].',
 'version-software'                 => 'Software instalado',
 'version-software-product'         => 'Producto',
 'version-software-version'         => 'Versión',

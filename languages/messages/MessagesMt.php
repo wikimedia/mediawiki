@@ -1688,8 +1688,8 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 
 # MIME search
 'mimesearch'         => 'Fittex fil-bażi għal tip MIME',
-'mimesearch-summary' => "Din il-paġna tħalli filtrar ta' fajls fil-bażi ta' tip MIME.
-Daħħal: tip/subtip, e.ż. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Din il-paġna tippermetti l-iffiltrar ta' fajls abbażi tat-tip MIME.
+Daħħal: tip/sottotip, eż. <tt>image/jpeg</tt>.",
 'mimetype'           => 'Tip MIME:',
 'download'           => 'niżżel',
 

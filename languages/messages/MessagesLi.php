@@ -3196,6 +3196,12 @@ De kèns ouch [[Special:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]]."
 'version-hook-subscribedby'        => 'Geabonneerd door',
 'version-version'                  => '(Versie $1)',
 'version-license'                  => 'Licentie',
+'version-poweredby-credits'        => "Deze wiki weurt aangedreve door '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => "MediaWiki is vrieje sofware; de kins MediaWiki verspreien en/of aanpassen onger de veurwaerde van de GNU General Public License wie gepubliceerd door de Free Software Foundation; ofwaal versie 2 van de Licentie, of - nao diene wönsj - innig later versie.
+
+MediaWiki weurd verspreid in de haop det 't nuttig is, mer ZONGER INNIG GARANTIE; zonger zelfs de implicitiete garantie van VERKOUPBAARHEID of GESJIKHEID VEUR INNIG DOEL IN 'T BIEZÖNJER. Zuuch de GNU General Public License veur mier informatie.
+
+Same mit dit programma heurs se 'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te höbben ontvange; zo neet, sjrief den nao de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html laes de licentie online].",
 'version-software'                 => 'Geïnstallieërde sofwaer',
 'version-software-product'         => 'Perduk',
 'version-software-version'         => 'Versie',

@@ -3481,6 +3481,12 @@ Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve
 'version-hook-subscribedby'        => 'Volán z',
 'version-version'                  => '(Verze $1)',
 'version-license'                  => 'Licence',
+'version-poweredby-credits'        => "Tato wiki běží na '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
+'version-license-info'             => 'MediaWiki je svobodný software; můžete jej šířit nebo modifikovat podle podmínek GNU General Public License, vydávané Free Software Foundation; buď verze 2 této licence anebo (podle vašeho uvážení) kterékoli pozdější verze.
+
+MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOLI ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO URČITÝ ÚČEL. Podrobnosti se dočtete v textu GNU General Public License.
+
+[{{SERVER}}{{SCRIPTPATH}}/COPYING Kopii GNU General Public License] jste měli obdržet spolu s tímto programem, pokud ne, napište na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA nebo [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html si ji přečtěte online].',
 'version-software'                 => 'Nainstalovaný software',
 'version-software-product'         => 'Název',
 'version-software-version'         => 'Verze',

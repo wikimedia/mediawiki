@@ -3575,6 +3575,12 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'version-hook-subscribedby'        => 'Geabonneerd door',
 'version-version'                  => '(Versie $1)',
 'version-license'                  => 'Licentie',
+'version-poweredby-credits'        => "Deze wiki wordt aangedreven door '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => 'MediaWiki is vrije software; u kunt MediaWiki verspreiden en/of aanpassen onder de voorwaarden van de GNU General Public License zoals gepubliceerd door de Free Software Foundation; ofwel versie 2 van de Licentie, of - naar uw wens - enige latere versie.
+
+MediaWiki wordt verspreid in de hoop dat het nuttig is, maar ZONDER ENIGE GARANTIE; zonder zelfs de implicitiete garantie van VERKOOPBAARHEID of GESCHIKHEID VOOR ENIG DOEL IN HET BIJZONDER. Zie de GNU General Public License voor meer informatie.
+
+Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te hebben ontvangen; zo niet, schrijf dan naar de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees de licentie online].',
 'version-software'                 => 'Geïnstalleerde software',
 'version-software-product'         => 'Product',
 'version-software-version'         => 'Versie',

@@ -3504,6 +3504,12 @@ Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
 'version-hook-subscribedby'        => 'Abonnés :',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licence',
+'version-poweredby-credits'        => "Ce wiki fonctionne grâce à '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => "MediaWiki est un logiciel libre, vous pouvez le redistribuer et / ou le modifier selon les termes de la Licence Publique Générale GNU telle que publiée par la Free Software Foundation ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure.
+
+MediaWiki est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE, sans même la garantie implicite de COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER. Voir la Licence Publique Générale GNU pour plus de détails.
+
+Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licence Publique Générale GNU] avec ce programme, sinon, écrivez à la Free Software Foundation, Inc, 51, rue Franklin, cinquième étage, Boston, MA 02110-1301, États-Unis ou [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lisez-la en ligne].",
 'version-software'                 => 'Logiciels installés',
 'version-software-product'         => 'Produit',
 'version-software-version'         => 'Version',

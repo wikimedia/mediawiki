@@ -1212,7 +1212,7 @@ $1",
 'qbsettings-floatingright' => 'ප්ලාවක දකුණ',
 
 # Preferences page
-'preferences'                   => 'අභීරුචි',
+'preferences'                   => 'අභිප්‍රේත',
 'mypreferences'                 => 'මගේ අභිරුචි',
 'prefs-edits'                   => 'සංස්කරණයන් සංඛ්‍යාව:',
 'prefsnologin'                  => 'ප්‍රවිෂ්ට වී නොමැත',

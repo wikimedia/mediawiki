@@ -1370,7 +1370,8 @@ Used in [[Special:Preferences]]. Parameters are:
 'gender-female'                 => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.
 {{Identical|Female}}',
 'email'                         => '{{Identical|E-mail}}',
-'prefs-help-realname'           => 'In user preferences.',
+'prefs-help-realname'           => 'In user preferences.
+{{Identical|Real name attribution}}',
 'prefs-help-email'              => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-info'                    => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
 'prefs-signature'               => '{{Identical|Signature}}',
@@ -2091,6 +2092,12 @@ $1 is a page title",
 {{Identical|Move}}',
 'movethispage'            => '{{Identical|Move this page}}',
 'unusedimagestext'        => 'Header message of [[Special:UnusedFiles]]',
+'nopagetitle'             => 'Used as title of [[Special:MovePage]], when the oldtitle does not exist.
+
+The text is {{msg-mw|nopagetext}}.',
+'nopagetext'              => 'Used as text of [[Special:MovePage]], when the oldtitle does not exist.
+
+The title is {{msg-mw|nopagetitle}}.',
 'pager-newer-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
 'pager-older-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
 'suppress'                => '{{Identical|Oversight}}',
@@ -3614,6 +3621,9 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 
 {{Identical|Revision}}',
 'version-license'                  => '{{Identical|License}}',
+'version-poweredby-credits'        => 'Message shown on [[Special:Version]]. Parameters are:
+*$1: the current year
+*$2: a list of selected MediaWiki authors',
 'version-software-product'         => 'Shown in [[Special:Version]]',
 'version-software-version'         => '{{Identical|Version}}',
 
