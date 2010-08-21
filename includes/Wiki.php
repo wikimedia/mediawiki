@@ -449,6 +449,7 @@ class MediaWiki {
 	 * Ends this task peacefully
 	 */
 	function restInPeace() {
+		MessageCache::logMessages();
 		wfLogProfilingData();
 		// Commit and close up!
 		$factory = wfGetLBFactory();
