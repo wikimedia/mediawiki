@@ -859,31 +859,55 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * Initial setup as superuser.
-	 * Create the database, schema, login, and user.
+	 * Escapes a identifier for use inm SQL.
+	 * Throws an exception if it is invalid.
+	 * Reference: http://msdn.microsoft.com/en-us/library/aa224033%28v=SQL.80%29.aspx
 	 */
-	function initial_setup() {
-		global $conf;
+	private function escapeIdentifier( $identifier ) {
+		if ( strlen( $identifier ) == 0 ) {
+			throw new MWException( "An identifier must not be empty" );
+		}
+		if ( strlen( $identifier ) > 128 ) {
+			throw new MWException( "The identifier '$identifier' is too long (max. 128)" );
+		}
+		if ( ( strpos( $identifier, '[' ) !== false ) || ( strpos( $identifier, ']' ) !== false ) ) {
+			// It may be allowed if you quoted with double quotation marks, but that would break if QUOTED_IDENTIFIER is OFF
+			throw new MWException( "You can't use square brackers in the identifier '$identifier'" );
+		}
+		return "[$identifier]";
+	}
+
+	/**
+	 * Initial setup.
+	 * Precondition: This object is connected as the superuser.
+	 * Creates the database, schema, user and login.
+	 */
+	function initial_setup( $dbName, $newUser, $loginPassword ) {
+		$dbName = $this->escapeIdentifier( $dbName );
+
+		// It is not clear what can be used as a login,
+		// From http://msdn.microsoft.com/en-us/library/ms173463.aspx 
+		// a sysname may be the same as an identifier.
+		$newUser = $this->escapeIdentifier( $newUser );
+		$loginPassword = $this->addQuotes( $loginPassword );
 		
-		// FIXME: fields need to be properly escaped.
-		
-		$this->doQuery("CREATE DATABASE {$conf->DBname};");
-		$this->doQuery("USE {$conf->DBname};");
-		$this->doQuery("CREATE SCHEMA {$conf->DBname};");
+		$this->doQuery("CREATE DATABASE $dbName;");
+		$this->doQuery("USE $dbName;");
+		$this->doQuery("CREATE SCHEMA $dbName;");
 		$this->doQuery("
 						CREATE 
-							LOGIN {$conf->DBuser} 
+							LOGIN $newUser 
 						WITH 
-							PASSWORD='{$conf->DBpassword}'
+							PASSWORD=$loginPassword
 						;
 					");
 		$this->doQuery("
 						CREATE 
-							USER {$conf->DBuser} 
+							USER $newUser 
 						FOR 
-							LOGIN {$conf->DBuser} 
+							LOGIN $newUser 
 						WITH 
-							DEFAULT_SCHEMA={$conf->DBname}
+							DEFAULT_SCHEMA=$dbName
 						;
 					");
 		$this->doQuery("
@@ -898,16 +922,16 @@ class DatabaseMssql extends DatabaseBase {
 							CREATE VIEW, 
 							CREATE FULLTEXT CATALOG 
 						ON 
-							DATABASE::{$conf->DBname} 
-						TO {$conf->DBuser}
+							DATABASE::$dbName 
+						TO $newUser
 						;
 					");
 		$this->doQuery("
 						GRANT 
 							CONTROL
 						ON 
-							SCHEMA::{$conf->DBname} 
-						TO {$conf->DBuser}
+							SCHEMA::$dbName 
+						TO $newUser
 						;
 					");
 		

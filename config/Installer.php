@@ -920,7 +920,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			if( !$ok ) { continue; }
 		}
 		else if ( $conf->DBtype == 'mssql' ) {
-			error_reporting( E_ALL );
 			# Possible connect as a superuser
 			if ( $useRoot ) {
 				echo( "<li>Attempting to connect to database \"{$conf->DBtype}\" as superuser \"{$conf->RootUser}\"" );
@@ -939,7 +938,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					$errs['RootPW'] = 'and password';
 					continue;
 				}
-				$wgDatabase->initial_setup( $conf->RootPW, $conf->DBtype );
+				$wgDatabase->initial_setup( $conf->DBname, $conf->DBuser, $conf->DBpassword );
 			}
 			echo( "<li>Attempting to connect to database \"{$wgDBname}\" as \"{$wgDBuser}\"..." );
 			$wgDatabase = $dbc->newFromParams(
