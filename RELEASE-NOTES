@@ -297,6 +297,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Save 200 useless queries on each category page view
 * Shell commands will now work on Linux in filesystems mounted noexec
 * (bug 24804) Corrected commafying in Polish and Ukrainian
+* "Difference between pages" is now displayed instead of "Difference between
+   revisions" on diffs when appropriate.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
