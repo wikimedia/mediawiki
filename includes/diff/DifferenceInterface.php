@@ -186,7 +186,11 @@ CONTROL;
 		} else {
 			$wgOut->setPageTitle( $oldTitle . ', ' . $newTitle );
 		}
-		$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
+		if ( $this->mNewPage->equals( $this->mOldPage ) ) {
+			$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
+		} else {
+			$wgOut->setSubtitle( wfMsgExt( 'difference-multipage', array( 'parseinline' ) ) );
+		}
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		if ( !$this->mOldPage->userCanRead() || !$this->mNewPage->userCanRead() ) {
