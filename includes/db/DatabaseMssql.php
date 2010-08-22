@@ -271,15 +271,15 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * SELECT wrapper
 	 *
-	 * @param mixed  $table   Array or string, table name(s) (prefix auto-added)
-	 * @param mixed  $vars	Array or string, field name(s) to be retrieved
-	 * @param mixed  $conds   Array or string, condition(s) for WHERE
-	 * @param string $fname   Calling function name (use __METHOD__) for logs/profiling
-	 * @param array  $options Associative array of options (e.g. array('GROUP BY' => 'page_title')),
-	 *						see Database::makeSelectOptions code for list of supported stuff
+	 * @param $table   Mixed: array or string, table name(s) (prefix auto-added)
+	 * @param $vars    Mixed: array or string, field name(s) to be retrieved
+	 * @param $conds   Mixed: array or string, condition(s) for WHERE
+	 * @param $fname   String: calling function name (use __METHOD__) for logs/profiling
+	 * @param $options Array: associative array of options (e.g. array('GROUP BY' => 'page_title')),
+	 *                 see Database::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
 	 *						   (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
-	 * @return mixed Database result resource (feed to Database::fetchObject or whatever), or false on failure
+	 * @return Mixed: database result resource (feed to Database::fetchObject or whatever), or false on failure
 	 */
 	function select( $table, $vars, $conds = '', $fname = 'Database::select', $options = array(), $join_conds = array() )
 	{
@@ -296,13 +296,13 @@ class DatabaseMssql extends DatabaseBase {
 	 * SELECT wrapper
 	 *
 	 * @param $table   Mixed:  Array or string, table name(s) (prefix auto-added)
-	 * @param $vars	Mixed:  Array or string, field name(s) to be retrieved
+	 * @param $vars    Mixed:  Array or string, field name(s) to be retrieved
 	 * @param $conds   Mixed:  Array or string, condition(s) for WHERE
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
 	 * @param $options Array:  Associative array of options (e.g. array('GROUP BY' => 'page_title')),
-	 *						 see Database::makeSelectOptions code for list of supported stuff
+	 *                 see Database::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
-	 *						   (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
+	 *                    (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return string, the SQL text
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = 'Database::select', $options = array(), $join_conds = array() ) {
@@ -531,7 +531,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * themselves. Pass the canonical name to such functions. This is only needed
 	 * when calling query() directly.
 	 *
-	 * @param string $name database table name
+	 * @param $name String: database table name
 	 */
 	function tableName( $name ) {
 		global $wgSharedDB;
@@ -1008,9 +1008,9 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * @private
 	 *
-	 * @param array $options an associative array of options to be turned into
-	 *			  an SQL query, valid keys are listed in the function.
-	 * @return array
+	 * @param $options Array: an associative array of options to be turned into
+	 *                 an SQL query, valid keys are listed in the function.
+	 * @return Array
 	 */
 	function makeSelectOptions( $options ) {
 		$tailOpts = '';
