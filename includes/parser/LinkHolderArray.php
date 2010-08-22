@@ -1,5 +1,13 @@
 <?php
+/**
+ * Holder of replacement pairs for wiki links
+ *
+ * @file
+ */
 
+/**
+ * @ingroup Parser
+ */
 class LinkHolderArray {
 	var $internals = array(), $interwikis = array();
 	var $size = 0;

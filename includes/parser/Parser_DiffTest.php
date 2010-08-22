@@ -1,4 +1,9 @@
 <?php
+/**
+ * Fake parser that output the difference of two different parsers
+ *
+ * @file
+ */
 
 /**
  * @ingroup Parser

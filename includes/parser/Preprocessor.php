@@ -1,4 +1,9 @@
 <?php
+/**
+ * Interfaces for preprocessors
+ *
+ * @file
+ */
 
 /**
  * @ingroup Parser

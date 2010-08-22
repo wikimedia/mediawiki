@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Options for the PHP parser
+ *
+ * @file
+ * @ingroup Parser
+ */
+ 
 /**
  * Set options of the Parser
  * @todo document

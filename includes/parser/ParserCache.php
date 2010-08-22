@@ -1,5 +1,11 @@
 <?php
 /**
+ * Cache for outputs of the PHP parser
+ *
+ * @file
+ */
+
+/**
  * @ingroup Cache Parser
  * @todo document
  */

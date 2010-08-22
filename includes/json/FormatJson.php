@@ -1,7 +1,10 @@
 <?php
 /**
  * Simple wrapper for json_econde and json_decode that falls back on Services_JSON class
+ *
+ * @file
  */
+
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }

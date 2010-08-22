@@ -1,4 +1,9 @@
 <?php
+/**
+ * Link functions provided by MediaWiki core; experimental
+ *
+ * @file
+ */
 
 /**
  * Various core link functions, registered in Parser::firstCallInit()
