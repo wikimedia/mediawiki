@@ -230,13 +230,13 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
 	function dropField( $table, $field, $patch, $fullpath = false ) {
-	if ( $this->db->fieldExists( $table, $field ) ) {
-		wfOut( "Table $table contains $field field. Dropping... " );
-		$this->applyPatch( $patch, $fullpath );
-		wfOut( "ok\n" );
-	} else {
-		wfOut( "...$table table does not contain $field field.\n" );
-	}
+		if ( $this->db->fieldExists( $table, $field ) ) {
+			wfOut( "Table $table contains $field field. Dropping... " );
+			$this->applyPatch( $patch, $fullpath );
+			wfOut( "ok\n" );
+		} else {
+			wfOut( "...$table table does not contain $field field.\n" );
+		}
 	}
 }
 
