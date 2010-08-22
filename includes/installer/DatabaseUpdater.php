@@ -58,7 +58,7 @@ abstract class DatabaseUpdater {
 			$this->getOldGlobalUpdates() );
 		foreach ( $this->updates as $params ) {
 			$func = array_shift( $params );
-			if( method_exists( $this, $func ) ) {
+			if( !is_array( $func ) && method_exists( $this, $func ) ) {
 				$func = array( $this, $func );
 			}
 			call_user_func_array( $func, $params );
