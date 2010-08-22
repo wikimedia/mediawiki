@@ -10,9 +10,7 @@
 
 $messages = array();
 
-/**
- * English
- */
+/** English */
 $messages['en'] = array(
 	'config-desc'                     => 'The installer for MediaWiki',
 	'config-title'                    => 'MediaWiki $1 installation',
@@ -78,10 +76,10 @@ You can install MediaWiki.</span>', // FIXME: take span out of message.
 	'config-env-bad'                  => 'The environment has been checked.
 You cannot install MediaWiki.',
 	'config-env-php'                  => 'PHP $1 is installed.',
-	'config-env-latest-ok'            => 'You are installing the latest version of Mediawiki.',
-	'config-env-latest-new'           => "'''Note:''' You are installing a development version of Mediawiki.",
+	'config-env-latest-ok'            => 'You are installing the latest version of MediaWiki.',
+	'config-env-latest-new'           => "'''Note:''' You are installing a development version of MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Warning:''' The installer was unable to retrieve information about the latest MediaWiki release from [$1].",
-	'config-env-latest-old'           => "'''Warning:''' You are installing an outdated version of Mediawiki.",
+	'config-env-latest-old'           => "'''Warning:''' You are installing an outdated version of MediaWiki.",
 	'config-env-latest-help'          => 'You are installing version $1, but the latest version is $2.
 You are advised to use the latest release, which can be downloaded from [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-php'        => 'Using the slow PHP implementation for Unicode normalization.',
@@ -226,9 +224,9 @@ Consider putting the database somewhere else altogether, for example in <code>/v
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
 	'config-type-oracle'              => 'Oracle',
-	'config-type-info' => 'Mediawiki supports the following database systems:
+	'config-type-info' => 'MediaWiki supports the following database systems:
 
-* $1 is the primary target for Mediawiki and is best supported ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])
+* $1 is the primary target for MediaWiki and is best supported ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])
 * $2 is a popular open souce database system as an alternative to MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support])
 * $3 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
 	'config-header-mysql'             => 'MySQL settings',
