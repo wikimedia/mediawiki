@@ -224,6 +224,13 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		$types = "<ul class=\"config-settings-block\">\n";
 		$settings = '';
 		$defaultType = $this->getVar( 'wgDBtype' );
+
+		$mysql = DatabaseMysql::getSoftwareLink();
+		$postgres = DatabasePostgres::getSoftwareLink();
+		$sqlite = DatabaseSqlite::getSoftwareLink();
+		$this->addHTML( $this->parent->getInfoBox(
+			wfMsg( 'config-type-info', $mysql, $postgres, $sqlite ) ) );
+
 		foreach ( $this->parent->getVar( '_CompiledDBs' ) as $type ) {
 			$installer = $this->parent->getDBInstaller( $type );
 			$types .=

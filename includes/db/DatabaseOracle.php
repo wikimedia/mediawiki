@@ -817,7 +817,7 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * @return string wikitext of a link to the server software's web site
 	 */
-	function getSoftwareLink() {
+	public static function getSoftwareLink() {
 		return '[http://www.oracle.com/ Oracle]';
 	}
 

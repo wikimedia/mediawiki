@@ -2077,7 +2077,9 @@ abstract class DatabaseBase {
 	 *
 	 * @return String: wikitext of a link to the server software's web site
 	 */
-	abstract function getSoftwareLink();
+	static function getSoftwareLink() {
+		throw new MWException( "A child class of DatabaseBase didn't implement getSoftwareLink(), shame on them" );
+	}
 
 	/**
 	 * A string describing the current software version, like from

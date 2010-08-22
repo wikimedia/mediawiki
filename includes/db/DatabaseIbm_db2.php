@@ -1436,7 +1436,7 @@ EOF;
 	 * Returns link to IBM DB2 free download
 	 * @return string wikitext of a link to the server software's web site
 	 */
-	public function getSoftwareLink() {
+	public static function getSoftwareLink() {
 		return "[http://www.ibm.com/software/data/db2/express/?s_cmp=ECDDWW01&s_tact=MediaWiki IBM DB2]";
 	}
 	
