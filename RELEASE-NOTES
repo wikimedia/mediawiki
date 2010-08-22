@@ -299,6 +299,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24804) Corrected commafying in Polish and Ukrainian
 * "Difference between pages" is now displayed instead of "Difference between
    revisions" on diffs when appropriate.
+* (bug 23703) ForeignAPIRepo fails on findBySha1() when using a 1.14 install as
+  a repository due to missing 'name' attribute from the API list=allimages
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
