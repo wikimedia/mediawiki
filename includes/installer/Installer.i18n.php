@@ -224,11 +224,14 @@ Consider putting the database somewhere else altogether, for example in <code>/v
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
 	'config-type-oracle'              => 'Oracle',
-	'config-type-info' => 'MediaWiki supports the following database systems:
+	'config-support-info'             => 'MediaWiki supports the following database systems:
 
-* $1 is the primary target for MediaWiki and is best supported ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])
-* $2 is a popular open souce database system as an alternative to MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support])
-* $3 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
+$1
+
+If you do not see the database system you are trying to use listed below, then follow the instructions linked above to enable support.',
+	'config-support-mysql'            => '* $1 is the primary target for MediaWiki and is best supported ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])',
+	'config-support-postgres'         => '* $1 is a popular open souce database system as an alternative to MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support])',
+	'config-support-sqlite'           => '* $1 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
 	'config-header-mysql'             => 'MySQL settings',
 	'config-header-postgres'          => 'PostgreSQL settings',
 	'config-header-sqlite'            => 'SQLite settings',
