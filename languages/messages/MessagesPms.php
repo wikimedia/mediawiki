@@ -969,6 +969,7 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 # Diffs
 'history-title'            => 'Cronologìa dle modìfiche ëd "$1"',
 'difference'               => '(Diferense antra revision)',
+'difference-multipage'     => '(Diferense tra pàgine)',
 'lineno'                   => 'Riga $1:',
 'compareselectedversions'  => 'Paragon-a le version selessionà',
 'showhideselectedversions' => 'Smon-e/stërmé le version selessionà',
@@ -3195,6 +3196,11 @@ As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licensa',
 'version-poweredby-credits'        => "Sta wiki-sì a l'é basà su '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => "MediaWiki a l'é un software lìber; it peule redistribuilo e/o modifichelo sota ij termo dla Licensa Pùblica General GNU con publicà da la Free Software Foundation; o la vërsion 2 dla licensa o (a toa decision) minca vërsion d'apress.
+
+MediaWiki a l'é distribuì ant la speransa che a sia ùtil, ma SENSA MINCA GARANSIA; sensa ëdcò la garansia implicita ëd COMERSIABILITA' o d'ADATAMENT A UN BUT PARTICOLAR. Varda la Licensa General Pùblica GNU per pi detaj.
+
+It dovrìe avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa Pùblica General GNU] ansema a sto programa-sì; dasnò, scriv a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lesla an linia].",
 'version-software'                 => 'Programa anstalà',
 'version-software-product'         => 'Prodot',
 'version-software-version'         => 'Version',

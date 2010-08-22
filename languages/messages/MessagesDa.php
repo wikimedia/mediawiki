@@ -1090,6 +1090,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 # Diffs
 'history-title'            => 'Versionshistorik for "$1"',
 'difference'               => '(Forskel mellem versioner)',
+'difference-multipage'     => '(Forskel mellem sider)',
 'lineno'                   => 'Linje $1:',
 'compareselectedversions'  => 'Sammenlign valgte versioner',
 'showhideselectedversions' => 'Vis/skjul udvalgte versioner',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Arwel Parry
  * @author Lloffiwr
  * @author Thaf
  * @author Urhixidur
@@ -3193,6 +3194,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio\'r rhestr arferol]].',
 'version-hook-subscribedby'        => 'Tanysgrifwyd gan',
 'version-version'                  => '(Fersiwn $1)',
 'version-license'                  => 'Trwydded',
+'version-poweredby-credits'        => "Mae'r Wiki hon yn nerthu gan '''[http://www.mediawiki.org/ MediaWiki]''', hawlfraint (c) 2001 - $1 $2",
 'version-software'                 => 'Meddalwedd gosodedig',
 'version-software-product'         => 'Cynnyrch',
 'version-software-version'         => 'Fersiwn',

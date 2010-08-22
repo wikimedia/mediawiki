@@ -26,6 +26,7 @@
  * @author PhiLiP
  * @author Shinjiman
  * @author Shizhao
+ * @author Tommyang
  * @author Wilsonmess
  * @author Wmr89502270
  * @author Wong128hk
@@ -214,7 +215,7 @@ $messages = array(
 'tog-hideminor'               => '在最近更改中隐藏小修改',
 'tog-hidepatrolled'           => '在最近更改中隐藏已巡查编辑',
 'tog-newpageshidepatrolled'   => '在新页面列表中隐藏已巡查页面',
-'tog-extendwatchlist'         => '增强监视列表以显示包括最近更改的所有更改',
+'tog-extendwatchlist'         => '展开监视列表以显示包括最近更改的所有更改',
 'tog-usenewrc'                => '启用增强最近更改（JavaScript）',
 'tog-numberheadings'          => '标题自动编号',
 'tog-showtoolbar'             => '显示编辑工具条（JavaScript）',
@@ -476,7 +477,7 @@ $1',
 
 'badaccess'        => '权限错误',
 'badaccess-group0' => '你被禁止执行你刚才请求的操作。',
-'badaccess-groups' => '您刚才请求的操作只有以下用户组的用户才能使用： $1',
+'badaccess-groups' => '您刚才请求的操作只有{{PLURAL:$2|这个用户组|以下用户组}}中的用户才能使用： $1',
 
 'versionrequired'     => '需要版本为$1的MediaWiki',
 'versionrequiredtext' => '需要版本为$1的MediaWiki才能使用本页。请见[[Special:Version|版本页面]]。',
@@ -1103,6 +1104,7 @@ $1",
 # Diffs
 'history-title'            => '“$1”的修订历史',
 'difference'               => '（修订版本间差异）',
+'difference-multipage'     => '页面间的差异',
 'lineno'                   => '第$1行：',
 'compareselectedversions'  => '比较选定的修订版本',
 'showhideselectedversions' => '显示／隐藏选定的修订版本',
@@ -3293,6 +3295,7 @@ $1',
 'version-hook-subscribedby'        => '署名',
 'version-version'                  => '（版本$1）',
 'version-license'                  => '授权',
+'version-poweredby-credits'        => "这个 Wiki 由 '''[http://www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 'version-software'                 => '已安装软件',
 'version-software-product'         => '产品',
 'version-software-version'         => '版本',

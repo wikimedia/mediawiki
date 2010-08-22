@@ -124,7 +124,7 @@ $messages = array(
 'tog-editsection'             => 'Dälön redakami dilädas me yüms: [redakön]',
 'tog-editsectiononrightclick' => 'Dälön redakami diläda me klik mugaknopa detik su dilädatiäds (JavaScript)',
 'tog-showtoc'                 => 'Jonön ninädalisedi (su pads labü diläds plu 3)',
-'tog-rememberpassword'        => 'Dakipön nunädamanünis obik in nünöm at',
+'tog-rememberpassword'        => 'Dakipolös nunädamanünis obik in nünöm at (muiko {{PLURAL:$1|del|dels}} $1)',
 'tog-watchcreations'          => 'Läükön padis fa ob pejafölis lä galädalised obik',
 'tog-watchdefault'            => 'Läükön padis fa ob peredakölis la galädalised obik',
 'tog-watchmoves'              => 'Läükön padis fa ob petopätükölis lä galädalised obik',
@@ -559,6 +559,11 @@ Kanol nedemön penedi at, üf jafam kala at binon pöl.',
 'login-throttled'            => 'Esteifülol tumödikna ad tuvön letavödi kala at. Stebedolös büä osteifülol nogna.',
 'loginlanguagelabel'         => 'Pük: $1',
 
+# JavaScript password checks
+'password-strength-bad'      => 'BADIK',
+'password-strength-mediocre' => 'zänedöfik',
+'password-strength-good'     => 'gudik',
+
 # Password reset dialog
 'resetpass'                 => 'Votükön letavödi',
 'resetpass_announce'        => 'Enunädol oli me kot nelaidüpik pisedöl ole. Ad finükön nunädami, mutol välön letavödi nulik is:',
@@ -609,7 +614,8 @@ Ba ya evotükol benosekiko letavödi olik, u ya ebegol benosekiko letavödi nela
 'anoneditwarning'                  => "'''Nuned:''' No enunädol oli. Ladet-IP olik poregistaron su redakamajenotem pada at.",
 'missingsummary'                   => "'''Noet:''' No epenol redakamipläni. If ovälol dönu knopi: Dakipolöd, redakam olik podakipon nen plän.",
 'missingcommenttext'               => 'Penolös, begö! küpeti dono.',
-'missingcommentheader'             => "'''Noet:''' No epenol yegädi/tiädi küpete at. If ovälol dönu knopi: Dakipolöd, redakam olik podakipon nen on.",
+'missingcommentheader'             => "'''Meib:''' No epenol yegädi/tiädi küpete at.
+If ovälol dönu knopi: \"{{int:savearticle}}\", redakam olik podakipon nen on.",
 'summary-preview'                  => 'Büologed brefik:',
 'subject-preview'                  => 'Büologed yegäda/diläda:',
 'blockedtitle'                     => 'Geban peblokon',
@@ -863,7 +869,8 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}
 'suppressionlogtext' => 'Is palisedons moükams e blokams lätik, kels ätefons ninädi de guvans peklänedöli. Logolös [[Special:IPBlockList|lisedi ladetas-IP pebloköl]], kö pajonons blokams anu lonöföls.',
 
 # Revision move
-'revmove-reasonfield' => 'Kod:',
+'revmove-reasonfield'    => 'Kod:',
+'revmove-nullmove-title' => 'Tiäd badik',
 
 # History merging
 'mergehistory'                     => 'Balön padajenotemis',
@@ -1931,7 +1938,7 @@ $1',
 'nolinkshere-ns'           => "Pads nonik yumons lü pad: '''[[:$1]]''' in nemaspad pevälöl.",
 'isredirect'               => 'lüodükömapad',
 'istemplate'               => 'ninükam',
-'isimage'                  => 'magodayüm',
+'isimage'                  => 'yüm magoda',
 'whatlinkshere-prev'       => '{{PLURAL:$1|büik|büik $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sököl|sököl $1}}',
 'whatlinkshere-links'      => '← yüms',
@@ -2842,7 +2849,7 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'dberr-problems'  => 'Säkusadolös! Bevüresodatopäd at nu labon säkädis kaenik.',
 'dberr-again'     => 'Steifülolös dönu pos stebedüp minutas anik.',
 'dberr-info'      => '(No eplöpos ad kosikön ko dünanünöm nünodema: $1)',
-'dberr-usegoogle' => 'Kanol sukön me el Google ün vütim.',
+'dberr-usegoogle' => 'Kanol sukön me el Google vütimo.',
 
 # HTML forms
 'htmlform-reset'               => 'Sädunön votükamis',

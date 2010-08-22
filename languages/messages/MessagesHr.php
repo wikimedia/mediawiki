@@ -1206,6 +1206,7 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 # Diffs
 'history-title'            => 'Povijest izmjena stranice "$1"',
 'difference'               => '(Usporedba među inačicama)',
+'difference-multipage'     => '(Razlika između stranica)',
 'lineno'                   => 'Redak $1:',
 'compareselectedversions'  => 'Usporedi odabrane inačice',
 'showhideselectedversions' => 'Otkrij/sakrij odabrane izmjene',
@@ -3364,6 +3365,12 @@ Također možete koristiti [[Special:Watchlist/edit|standardni editor]].',
 'version-hook-subscribedby'        => 'Pretplaćeno od',
 'version-version'                  => '(Inačica $1)',
 'version-license'                  => 'Licencija',
+'version-poweredby-credits'        => "Ovaj wiki pogoni '''[http://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
+'version-license-info'             => 'MediaWiki je slobodni softver; možete ga distribuirati i/ili mijenjati pod uvjetima GNU opće javne licencije u obliku u kojem ju je objavila Free Software Foundation; bilo verzije 2 licencije, ili (Vama na izbor) bilo koje kasnije verzije.
+
+MediaWiki je distribuiran u nadi da će biti koristan, no BEZ IKAKVOG JAMSTVA; čak i bez impliciranog jamstva MOGUĆNOSTI PRODAJE ili PRIKLADNOSTI ZA ODREĐENU NAMJENU. Pogledajte GNU opću javnu licenciju za više detalja.
+
+Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne licencije] uz ovaj program; ako ne, pišite na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, ili je [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte online].',
 'version-software'                 => 'Instalirani softver',
 'version-software-product'         => 'Proizvod',
 'version-software-version'         => 'Verzija',

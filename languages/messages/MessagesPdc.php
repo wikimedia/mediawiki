@@ -102,6 +102,7 @@ $messages = array(
 'qbfind'         => 'Finne',
 'qbedit'         => 'Ennere',
 'qbpageoptions'  => 'Des Blatt',
+'qbpageinfo'     => 'Daade vun dem Blatt',
 'qbmyoptions'    => 'Mei Bledder',
 'qbspecialpages' => 'Besunnere Bledder',
 'faq'            => 'FAQ',
@@ -115,11 +116,14 @@ $messages = array(
 'vector-namespace-help'     => 'Hilfblatt',
 'vector-namespace-image'    => 'Feil',
 'vector-namespace-main'     => 'Blatt',
+'vector-namespace-project'  => 'Project-Blatt',
 'vector-namespace-special'  => 'Besunneres Blatt',
 'vector-namespace-talk'     => 'Gschwetz',
 'vector-namespace-template' => 'Moddel',
 'vector-namespace-user'     => 'Yuuser-Blatt',
+'vector-view-create'        => 'Schtaerte',
 'vector-view-edit'          => 'Ennere',
+'vector-view-history'       => 'Gschicht zeige',
 'vector-view-view'          => 'Lese',
 'namespaces'                => 'Blatznaame',
 
@@ -138,6 +142,7 @@ $messages = array(
 'permalink'        => 'Permanent Gleecher',
 'print'            => 'Drucke',
 'edit'             => 'Ennere/Tscheensche',
+'create'           => 'Schtaerte',
 'editthispage'     => 'Des Blatt ennere',
 'delete'           => 'Lösche',
 'deletethispage'   => 'Des Blatt lösche',
@@ -170,6 +175,7 @@ $messages = array(
 'aboutsite'            => 'Iwwer {{SITENAME}}',
 'aboutpage'            => 'Project:Iwwer_{{SITENAME}}',
 'copyright'            => 'Was do drin schdeht iss unner $1 verfiechbar',
+'copyrightpage'        => '{{ns:project}}:Urhewerrechte',
 'disclaimers'          => 'Impressum',
 'disclaimerpage'       => 'Project:Impressum',
 'edithelp'             => 'Hilf zum Ennere',
@@ -220,9 +226,9 @@ Guck aach [[Special:Version|Versionsblatt]]',
 # General errors
 'error'               => 'Mischteek',
 'databaseerror'       => 'Fehler in de Daadescheier',
-'missing-article'     => 'De Text fer „$1“ $2 iss in de Daadebank net gfunne worre.
+'missing-article'     => 'De Text fer „$1“ $2 iss in de Daadebank net gfunne warre.
 
-Des Blatt iss verleicht glescht adder gezoge worre.
+Des Blatt iss verleicht glescht adder gezoge warre.
 
 Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld des an en [[Special:ListUsers/sysop|Verwalter]] unn gebb die URL dezu aa.',
 'missingarticle-rev'  => '(Version: $1)',
@@ -262,6 +268,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'link_tip'       => 'Gleecher',
 'extlink_sample' => 'http://www.example.com Gleecher-Text',
 'extlink_tip'    => 'Gewebbgleecher (acht uff http://)',
+'headline_tip'   => 'Iwwerschrift Level 2',
 'math_sample'    => 'Formula hier eigewwe',
 'image_sample'   => 'Beeschpiel.jpg',
 'media_sample'   => 'Beeschpiel.ogg',
@@ -341,6 +348,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'search-section'                 => '(Abschnitt $1)',
 'search-suggest'                 => 'Iss „$1“ gmeent?',
 'search-interwiki-caption'       => 'Schweschder Projects',
+'search-interwiki-default'       => '$1 Results:',
 'search-interwiki-more'          => '(weidere)',
 'search-mwsuggest-enabled'       => 'mit Vorschläch',
 'search-mwsuggest-disabled'      => 'kee Vorschläch',
@@ -452,12 +460,13 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'newsectionsummary'            => 'Neier Abschnitt /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Was on verlinkde Bledder geduh worre iss',
+'recentchangeslinked'      => 'Was on verlinkde Bledder geduh warre iss',
 'recentchangeslinked-page' => 'Blatt:',
 
 # Upload
 'upload'             => 'Ufflaade',
 'uploadbtn'          => 'Feil ufflaade',
+'uploadlogpage'      => 'Feil-Lochbuch',
 'filename'           => 'Feilnaame',
 'badfilename'        => 'Daer Feilnaame iss gennert warre nooch „$1“.',
 'uploadedimage'      => 'hot „[[$1]]“ uffglaade',
@@ -558,6 +567,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # Special:Log
 'specialloguserlabel'  => 'Yuuser:',
 'speciallogtitlelabel' => 'Titel:',
+'log'                  => 'Logbicher',
 
 # Special:AllPages
 'allpages'          => 'Alle Bledder',
@@ -588,15 +598,20 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'activeusers-hidebots'   => 'Waddefresser verschwinne losse',
 'activeusers-hidesysops' => 'Verwalter verschwinne losse',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logbuch vun neie Yuuser',
+
 # Special:ListGroupRights
 'listgrouprights'              => 'Rechte vun Yuuser-Druppe',
 'listgrouprights-group'        => 'Druppe',
 'listgrouprights-rights'       => 'Rechte',
 'listgrouprights-helppage'     => 'Help:Rechte vun Druppe',
+'listgrouprights-members'      => '(Lischt vun Mitglieder)',
 'listgrouprights-addgroup'     => 'Yuuser zu {{PLURAL:$2|daer Druppe|denne Druppe}} dezu duh: $1',
 'listgrouprights-addgroup-all' => 'Yuuser zu alle Druppe dezu duh',
 
 # E-mail user
+'emailuser'       => 'E-Poschd fer den Yuuser',
 'defemailsubject' => '{{SITENAME}}-E-Poschde',
 'emailfrom'       => 'Vun:',
 'emailto'         => 'Fer:',
@@ -628,6 +643,8 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'exblank'                => 'Blatt war leer',
 'delete-confirm'         => 'Lösche vun „$1“',
 'delete-legend'          => 'Lösche',
+'deletedtext'            => '"<nowiki>$1</nowiki>" iss gelescht warre.
+Guck $2 fer e Lischt vun de letscht Leschunge.',
 'deletedarticle'         => 'hot „[[$1]]“ gelöscht',
 'dellogpage'             => 'Lischt vun gelöschte Bledder',
 'deletecomment'          => 'Grund:',
@@ -653,6 +670,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # Restrictions (nouns)
 'restriction-edit'   => 'Ennere/Tscheensche',
 'restriction-move'   => 'Ziehe',
+'restriction-create' => 'Schtaerte',
 'restriction-upload' => 'Ufflaade',
 
 # Undelete
@@ -707,9 +725,11 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'movearticle'             => 'Blatt ziehe:',
 'move-watch'              => 'watsch des Blatt',
 'movepagebtn'             => 'Blatt ziehe',
+'pagemovedsub'            => 'Blatt iss gezoge warre',
 'movepage-moved'          => "'''Es Blatt „$1“ iss gezoge warre uff „$2“'''",
 'movedto'                 => 'gezoge uff',
 '1movedto2'               => 'hot „[[$1]]“ nooch „[[$2]]“ gezoge',
+'1movedto2_redir'         => 'hot „[[$1]]“ nooch „[[$2]]“ gezoge unn debei e Weiderleiding iwwerschriwwe',
 'movereason'              => 'Grund:',
 'revertmove'              => 'zerick ziehe',
 'delete_and_move_confirm' => 'Ya, es Blatt lösche',
@@ -766,6 +786,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'tooltip-feed-rss'               => 'RSS-Feed fer des Blatt',
 'tooltip-feed-atom'              => 'Atom-Feed fer des Blatt',
 'tooltip-t-contributions'        => 'Lischt von Ardickele vun dem Yuuser zeige',
+'tooltip-t-emailuser'            => 'Dem Yuuser e E-Poschd schicke',
 'tooltip-t-upload'               => 'Feils ufflaade',
 'tooltip-t-specialpages'         => 'Lischt vun alle besunnere Bledder',
 'tooltip-t-print'                => 'Des Blatt fer zum Drucke',
@@ -774,11 +795,15 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'tooltip-ca-nstab-user'          => 'Yuuserblatt zeige',
 'tooltip-ca-nstab-special'       => 'Sell iss en besunneres Blatt. Du kannscht es Blatt net ennere.',
 'tooltip-ca-nstab-image'         => 'Feil zeige',
+'tooltip-ca-nstab-template'      => 'Moddel aagucke',
 
 # Attribution
 'siteuser'  => '{{SITENAME}}-Yuuser $1',
 'others'    => 'annere',
 'siteusers' => '{{SITENAME}}-{{PLURAL:$2|Yuuser|Yuuser}} $1',
+
+# Browsing diffs
+'nextdiff' => 'Zum neegscht Versionsunnerschidd →',
 
 # Media information
 'widthheightpage' => '$1×$2, {{PLURAL:$3|1 Blatt|$3 Bledder}}',
@@ -841,6 +866,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 
 # Auto-summaries
 'autosumm-blank' => 'Des Blatt iss leer gmacht worre.',
+'autosumm-new'   => 'Des Blatt is gschtaert warre: „$1“',
 
 # Live preview
 'livepreview-loading' => 'Laade…',

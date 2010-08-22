@@ -1429,6 +1429,7 @@ $1",
 'prefs-advancedwatchlist'       => 'Προηγμένες επιλογές',
 'prefs-displayrc'               => 'Εμφάνιση επιλογών',
 'prefs-displaysearchoptions'    => 'Επιλογές εμφάνισης',
+'prefs-displaywatchlist'        => 'Επιλογές εμφάνισης',
 'prefs-diffs'                   => 'Διαφορές',
 
 # User rights
@@ -3420,6 +3421,11 @@ $1',
 'version-hook-subscribedby'        => 'Υπογεγραμμένο από',
 'version-version'                  => '(Έκδοση $1)',
 'version-license'                  => 'Άδεια χρήσης',
+'version-license-info'             => "To Το MediaWiki είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανέμετε ή / και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή εκδόθηκε από το Free Software Foundation.Είτε η δεύτερη έκδοση της άδειας, είτε (κατ' επιλογή σας) οποιδήποτε επόμενη έκδοση.
+Ο
+Το MediaWiki διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ.Ούτε καν την σιωπηρή εγγύση της  ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή της ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΕΝΑ PARTICULAR ΣΚΟΠΟ.Όπως δείτε την GNU General Public License για περισσότερες λεπτομέρειες.
+
+ Θα πρέπει να έχετε λάβει [((SERVER)) ((SCRIPTPATH)) / COPYING ένα αντίγραφο της GNU General Public License] μαζί με αυτό το πρόγραμμα.Αν όχι, γράψτε προς το Free Software Foundation, Inc, 51 Franklin Street, πέμπτο όροφο , Boston, MA 02110-1301, USA ή [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html διαβάστε το online].",
 'version-software'                 => 'Εγκατεστημένο λογισμικό',
 'version-software-product'         => 'Προϊόν',
 'version-software-version'         => 'Έκδοση',

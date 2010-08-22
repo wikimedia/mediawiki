@@ -521,7 +521,8 @@ Prosimo, da o tem obvestite [[Special:ListUsers/sysop|administratorja]] (ne poza
 'cannotdelete'         => 'Strani ali datoteke »$1« ni mogoče izbrisati.
 Morda jo je izbrisal že kdo drug.',
 'badtitle'             => 'Nepravilen naslov',
-'badtitletext'         => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom ali pa vsebuje nepodprte znake.',
+'badtitletext'         => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom.
+Morda vsebuje enega ali več nepodprtih znakov.',
 'perfcached'           => 'Navedeni podatki so shranjeni v predpomnilniku in morda niso popolnoma posodobljeni.',
 'perfcachedts'         => 'Prikazani podatki so shranjeni v predpomnilniku in so bili nazadnje osveženi $1.',
 'querypage-no-updates' => 'Posodobitve za to stran so trenutno onemogočene. Tukajšnji podatki se v kratkem ne bodo osvežili.',
@@ -726,14 +727,13 @@ Blokiral vas je $1.
 Podan razlog je ''$2''.
 
 * Začetek blokade: $8
-* Pote blokade: $6
-* Nameravane blokade: $7
+* Potek blokade: $6
+* Namen blokade: $7
 
 O blokiranju se lahko pogovorite z $1 ali katerim drugim [[{{MediaWiki:Grouppage-sysop}}|administratorjem]].
-
-Vedite, da lahko ukaz »Pošlji uporabniku e-pismo« uporabite le, če ste v [[Special:Preferences|nastavitvah]] vpisali in potrdili svoj elektronski naslov ter le ta ni bil blokiran.
-
-Vaš IP-naslov je $3, številka blokade pa #$5. Prosimo, vključite ga v vse morebitne poizvedbe.",
+Vedite, da lahko ukaz »Pošlji uporabniku e-pismo« uporabite le, če ste v [[Special:Preferences|nastavitvah]] vpisali in potrdili svoj elektronski naslov ter le-ta ni bil blokiran.
+Vaš IP-naslov je $3, številka blokade pa #$5.
+Prosimo, vključite ju v vse morebitne poizvedbe.",
 'autoblockedtext'                  => "Vaš IP-naslov je bil samodejno blokiran, saj je bil uporabljen s strani drugega uporabnika, ki ga je blokiral $1.
 Podan razlog je:
 
@@ -770,10 +770,7 @@ Geslo za ta račun lahko po prijavi ''[[Special:ChangePassword|spremenite]]''.",
 Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 (za več informacij glej [[{{MediaWiki:Helppage}}|pomoč]]).
 Če ste sem prišli po pomoti, v svojem brskalniku kliknite gumb ''Nazaj''.",
-'anontalkpagetext'                 => "---- ''To je pogovorna stran za nepodpisanega uporabnika, ki še ni ustvaril računa ali, ki ga ne uporablja.
-Zaradi tega moramo uporabiti IP-naslov za njegovo/njeno ugotavljanje istovetnosti.
-Takšen IP naslov si lahko deli več uporabnikov.
-Če ste nepodpisan uporabnik in če menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:UserLogin|ustvarite račun]] ali pa se [[Special:UserLogin/signup|vpišite]], da preprečite zmedo z drugimi nepodpisanimi uporabniki.''",
+'anontalkpagetext'                 => "---- ''To je pogovorna stran brezimnega uporabnika, ki si še ni ustvaril računa ali pa ga ne uporablja. Zaradi tega moramo uporabiti IP-naslov za njegovo/njeno ugotavljanje istovetnosti. Takšen IP-naslov si lahko deli več uporabnikov. Če ste brezimni uporabnik in menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:UserLogin|ustvarite račun]] ali pa se [[Special:UserLogin/signup|vpišite]], da preprečite zmedo z drugimi nepodpisanimi uporabniki.''",
 'noarticletext'                    => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v dnevniških zapisih] ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite]</span>.',
 'noarticletext-nopermission'       => 'Na tej strani ni trenutno nobenega besedila.
 Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov te strani]] v drugih straneh, ali <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} poiskati v povezanih dnevniških zapisih]</span>.',
@@ -832,7 +829,7 @@ Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa
 '''NE DODAJAJTE AVTORSKO ZAŠČITENEGA DELA BREZ DOVOLJENJA !'''",
 'longpagewarning'                  => 'Stran je dolga $1 {{PLURAL:$1|kilobajt|kilobajta|kilobajte|kilobajtov|kilobajtov}};
 nekateri brskalniki imajo lahko težave z urejanjem strani, daljših od 32 KB.
-Prosimo, razmislite o razdelitvi strani na manjše podstrani.',
+Prosimo, razmislite o razdelitvi strani na manjše razdelke.',
 'longpageerror'                    => "'''Napaka: Predloženo besedilo je dolgo $1 {{PLURAL:$1|kilobajt|kilobajta|kilobajte|kilobajtov|kilobajtov}}, s čimer presega največjo dovoljeno dolžino $2 {{PLURAL:$2|kilobajta|kilobajtov|kilobajtov|kilobajtov|kilobajtov}}.'''
 Zato ga ni mogoče shraniti.",
 'readonlywarning'                  => "'''Opozorilo: Zbirka podatkov je zaradi vzdrževanja začasno zaklenjena, kar pomeni, da sprememb trenutno ne morete shraniti. Prosimo, prenesite besedilo v urejevalnik in ga dodajte pozneje.'''
@@ -1097,6 +1094,7 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 # Diffs
 'history-title'            => 'Zgodovina strani »$1«',
 'difference'               => '(Primerjava redakcij)',
+'difference-multipage'     => '(Razlika med stranmi)',
 'lineno'                   => 'Vrstica $1:',
 'compareselectedversions'  => 'Primerjaj izbrani redakciji',
 'showhideselectedversions' => 'Prikaži/skrij izbrane redakcije',
@@ -2127,7 +2125,7 @@ Povratna sporočila in pomoč:
 Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
 'actioncomplete'         => 'Poseg je končan',
 'actionfailed'           => 'Dejanje spodletelo',
-'deletedtext'            => 'Stran »<nowiki>$1</nowiki>« je bila izbrisana.
+'deletedtext'            => 'Stran »<nowiki>$1</nowiki>« je izbrisana.
 Za zapise nedavnih brisanj glej $2.',
 'deletedarticle'         => 'je izbrisal(-a) »[[$1]]«',
 'suppressedarticle'      => 'skril »[[$1]]«',
@@ -2155,9 +2153,10 @@ nadaljujte s previdnostjo.',
 'rollbacklink'      => 'vrni',
 'rollbackfailed'    => 'Vrnitev ni uspela',
 'cantrollback'      => 'Urejanja ne morem vrniti; zadnji urejevalec je hkrati edini.',
-'alreadyrolled'     => 'Ne morem vrniti zadnje spremembe [[:$1]] uporabnika [[User:$2|$2]] ([[User talk:$2|Pogovor]]); nekdo drug je že spremenil ali vrnil članek.
+'alreadyrolled'     => 'Zadnje spremembe [[:$1]] uporabnika [[User:$2|$2]] ([[User talk:$2|pogovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ne morem vrniti;
+stran je spremenil ali vrnil že nekdo drug.
 
-Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
+Zadnji je stran urejal uporabnik [[User:$3|$3]] ([[User talk:$3|pogovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'       => "Povzetek urejanja je bil: »''$1''«.",
 'revertpage'        => 'vrnitev sprememb uporabnika [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]]) na zadnje urejanje uporabnika [[User:$1|$1]]',
 'revertpage-nouser' => 'vrnitev sprememb (uporabniško ime odstranjeno) na  zadnje urejanje uporabnika [[User:$1|$1]]',
@@ -2341,7 +2340,9 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'blockip'                         => 'Blokiranje IP-naslova ali uporabniškega imena',
 'blockip-title'                   => 'Blokiraj uporabnika',
 'blockip-legend'                  => 'Blokiraj uporabnika',
-'blockiptext'                     => "Naslednji obrazec vam omogoča, da določenemu IP-naslovu ali uporabniškemu imenu preprečite urejanje. To storimo le zaradi zaščite pred nepotrebnim uničevanjem in po [[{{MediaWiki:Policy-url}}|pravilih]]. Vnesite tudi razlog, ''na primer'' seznam strani, ki jih je uporabnik po nepotrebnem kvaril.",
+'blockiptext'                     => "Naslednji obrazec vam omogoča, da določenemu IP-naslovu ali uporabniškemu imenu preprečite urejanje.
+To storimo le zaradi zaščite pred nepotrebnim uničevanjem in po [[{{MediaWiki:Policy-url}}|pravilih]].
+Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotrebnem kvaril).",
 'ipaddress'                       => 'IP-naslov',
 'ipadressorusername'              => 'IP-naslov ali uporabniško ime',
 'ipbexpiry'                       => 'Pretek',
@@ -2370,8 +2371,8 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'ipb-change-block'                => 'Ponovno blokiraj uporabnika s temi nastavitvami',
 'badipaddress'                    => 'Neveljaven IP-naslov ali uporabniško ime.',
 'blockipsuccesssub'               => 'Blokiranje je uspelo',
-'blockipsuccesstext'              => 'IP-naslov ali uporabniški račun »[[Special:Contributions/$1|$1]]« je blokiran.<br />
-Preglejte [[Special:IPBlockList|seznam blokiranih IP-naslovov]].',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />
+Oglejte si [[Special:IPBlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
 'ipb-edit-dropdown'               => 'Uredi razloge blokade',
 'ipb-unblock-addr'                => 'Deblokiraj $1',
 'ipb-unblock'                     => 'Odblokirajte uporabniško ime ali IP-naslov',
@@ -2721,7 +2722,7 @@ Prosimo, poskusite znova.',
 'tooltip-compareselectedversions' => 'Preglejte razlike med izbranima redakcijama.',
 'tooltip-watch'                   => 'Dodajte stran na svoj spisek nadzorov.',
 'tooltip-recreate'                => 'Ponovno ustvari stran, čeprav je bila izbrisana',
-'tooltip-upload'                  => 'Naložite slikovno ali večpredstavno gradivo [alt-u]',
+'tooltip-upload'                  => 'Pričnite z nalaganjem',
 'tooltip-rollback'                => 'Funkcija »Vrni« z enim klikom povrne vsa urejanja zadnjega urejevalca te strani',
 'tooltip-undo'                    => '"Razveljavi" vrne to urejanje in odpre predogled v oknu za urejanje.
 Omogoča vnos pojasnila v povzetku urejanja.',
@@ -2851,8 +2852,11 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'video-dims' => '$1, $2&nbsp;×&nbsp;$3',
 
 # Bad image list
-'bad_image_list' => 'Prikaz naslednjih slik v člankih je preprečen s tehničnimi sredstvi. Zaradi pohitritve delovanja poskušajte stran obdržati kratko, npr. pod 10 KB.
-<!-- spodaj naštejte slike, ki jih želite v skladu s soglasjem občestva izključiti; sicer glejte razpravo v en: -->',
+'bad_image_list' => 'Oblika je naslednja:
+
+Upoštevane so le postavke seznama (vrstice, ki se začnejo z *).
+Prva povezava v vrstici mora biti povezava do neželene datoteke.
+Vse nadaljne povezave v isti vrstici se štejejo za izjeme, tj. za strani, kjer je datoteka lahko vključena.',
 
 # Metadata
 'metadata'          => 'Metapodatki',
@@ -3309,6 +3313,11 @@ Uporabite lahko tudi [[Special:Watchlist/edit|standardni urejevalnik]].',
 'version-version'                  => '(Različica $1)',
 'version-license'                  => 'Dovoljenje',
 'version-poweredby-credits'        => "Ta wiki poganja '''[http://www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
+'version-license-info'             => 'MediaWiki je prosto programje; lahko ga razširjate in / ali spreminjate pod pogoji GNU General Public License, kot ga je objavila Free Software Foundation; bodisi License različice 2 ali (po vaši izbiri) katere koli poznejše različice.
+
+MediaWiki je razširjan v upanju, da bo uporaben, vendar BREZ KAKRŠNEGA KOLI ZAGOTOVILA; tudi brez posrednega jamstva PRODAJNE VREDNOSTI ali PRIMERNOSTI ZA DOLOČEN NAMEN. Oglejte si GNU General Public License za več podrobnosti.
+
+Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo GNU General Public License]; če je niste, pišite Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ali jo [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html preberite na spletu].',
 'version-software'                 => 'Nameščena programska oprema',
 'version-software-product'         => 'Izdelek',
 'version-software-version'         => 'Različica',

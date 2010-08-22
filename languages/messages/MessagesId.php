@@ -1201,6 +1201,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 # Diffs
 'history-title'            => 'Riwayat revisi dari "$1"',
 'difference'               => '(Perbedaan antarrevisi)',
+'difference-multipage'     => '(Perbedaan antarhalaman)',
 'lineno'                   => 'Baris $1:',
 'compareselectedversions'  => 'Bandingkan versi terpilih',
 'showhideselectedversions' => 'Tampilkan/sembunyikan versi terpilih',
@@ -3406,6 +3407,12 @@ Anda juga dapat [[Special:Watchlist/edit|menggunakan penyunting standar Anda]].'
 'version-hook-subscribedby'        => 'Dilanggani oleh',
 'version-version'                  => '(Versi $1)',
 'version-license'                  => 'Lisensi',
+'version-poweredby-credits'        => "Wiki ini didukung oleh '''[http://www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
+'version-license-info'             => 'MediaWiki adalah perangkat lunak bebas; Anda diperbolehkan untuk mendistribusikan dan/atau memodfikasinya dengan persyaratan Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation; versi 2 atau terbaru.
+
+MediaWiki didistribusikan dengan harapan dapat digunakan, tetapi TANPA JAMINAN APA PUN; tanpa jaminan PERDAGANGAN atau KECOCOKAN UNTUK TUJUAN TERTENTU. Lihat Lisensi Publik Umum GNU untuk informasi lebih lanjut.
+
+Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi Publik Umum GNU] bersama dengan program ini; jika tidak, kirim surat ke Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA atau [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html baca daring].',
 'version-software'                 => 'Perangkat lunak terinstal',
 'version-software-product'         => 'Produk',
 'version-software-version'         => 'Versi',
@@ -3467,7 +3474,7 @@ Keterangan tampilan:
 'tags'                    => 'Tag perubahan yang valid',
 'tag-filter'              => 'Filter [[Special:Tags|tag]]:',
 'tag-filter-submit'       => 'Penyaring',
-'tags-title'              => 'Tag',
+'tags-title'              => 'Tanda',
 'tags-intro'              => 'Halaman ini berisi daftar tag yang dapat ditandai oleh perangkat lunak terhadap suatu suntingan berikut artinya.',
 'tags-tag'                => 'Nama tag',
 'tags-display-header'     => 'Tampilan di daftar perubahan',
