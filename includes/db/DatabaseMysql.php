@@ -362,7 +362,7 @@ class DatabaseMysql extends DatabaseBase {
 		return 'LOW_PRIORITY';
 	}
 
-	function getSoftwareLink() {
+	public static function getSoftwareLink() {
 		return '[http://www.mysql.com/ MySQL]';
 	}
 

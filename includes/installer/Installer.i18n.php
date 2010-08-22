@@ -226,6 +226,11 @@ Consider putting the database somewhere else altogether, for example in <code>/v
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
 	'config-type-oracle'              => 'Oracle',
+	'config-type-info' => 'Mediawiki supports the following database systems:
+
+* $1 is the primary target for Mediawiki and is best supported ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])
+* $2 is a popular open souce database system as an alternative to MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support])
+* $3 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
 	'config-header-mysql'             => 'MySQL settings',
 	'config-header-postgres'          => 'PostgreSQL settings',
 	'config-header-sqlite'            => 'SQLite settings',
