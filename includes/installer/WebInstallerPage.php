@@ -225,11 +225,13 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 		$settings = '';
 		$defaultType = $this->getVar( 'wgDBtype' );
 
-		$mysql = DatabaseMysql::getSoftwareLink();
-		$postgres = DatabasePostgres::getSoftwareLink();
-		$sqlite = DatabaseSqlite::getSoftwareLink();
+		$dbSupport = '';
+		foreach( $this->parent->getDBTypes() as $type ) {
+			$db = 'Database' . ucfirst( $type );
+			$dbSupport .= wfMsgNoTrans( "config-support-$type", $db::getSoftwareLink() ) . "\n";
+		}
 		$this->addHTML( $this->parent->getInfoBox(
-			wfMsg( 'config-type-info', $mysql, $postgres, $sqlite ) ) );
+			wfMsg( 'config-support-info', $dbSupport ) ) );
 
 		foreach ( $this->parent->getVar( '_CompiledDBs' ) as $type ) {
 			$installer = $this->parent->getDBInstaller( $type );
