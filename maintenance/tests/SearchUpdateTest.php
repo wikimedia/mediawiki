@@ -23,7 +23,7 @@ class DatabaseMock extends DatabaseBase {
 	function fieldInfo( $table, $field ) { }
 	function strencode( $s ) { }
 	function getSoftwareLink() { }
-	function getServerVersion() { }
+	static function getServerVersion() { }
 	function getType() { }
 	function getSearchEngine() { }
 }
