@@ -9,6 +9,7 @@
  *
  * @author Als-Holder
  * @author SPS
+ * @author Xqt
  */
 
 $fallback = 'de';

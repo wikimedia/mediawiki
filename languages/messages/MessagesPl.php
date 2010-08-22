@@ -1173,6 +1173,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 # Diffs
 'history-title'            => 'Historia edycji „$1”',
 'difference'               => '(Różnice między wersjami)',
+'difference-multipage'     => '(Różnica między stronami)',
 'lineno'                   => 'Linia $1:',
 'compareselectedversions'  => 'porównaj wybrane wersje',
 'showhideselectedversions' => 'Pokaż lub ukryj zaznaczone wersje',

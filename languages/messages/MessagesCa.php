@@ -1098,6 +1098,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 # Diffs
 'history-title'            => 'Historial de versions de «$1»',
 'difference'               => '(Diferència entre revisions)',
+'difference-multipage'     => '(Diferència entre pàgines)',
 'lineno'                   => 'Línia $1:',
 'compareselectedversions'  => 'Compara les versions seleccionades',
 'showhideselectedversions' => 'Mostrar/ocultar les versions seleccionades',
@@ -3280,6 +3281,11 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'version-version'                  => '(Versió $1)',
 'version-license'                  => 'Llicència',
 'version-poweredby-credits'        => "El wiki funciona gràcies a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => "↓ MediaWiki és programari lliure, podeu redistribuir-lo i/o modificar-lo sota els termes de la Llicència Pública General GNU publicada per la Free Software Foundation, ja sigui de la seva versió 2 o (a elecció vostra) qualsevol versió posterior. 
+
+MediaWiki es distribueix en l'esperança de ser d'utilitat, però SENSE CAP GARANTIA; ni tan sols la garantia implícita de COMERCIALITZACIÓ o ADEQUACIÓ A UNA FINALITAT DETERMINADA. En trobareu més detalls a  la Llicència Pública General GNU.
+
+Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còpia de la Llicència Pública General GNU]; si no és així, adreceu-vos a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o bé [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html llegiu-la en línia].",
 'version-software'                 => 'Programari instaŀlat',
 'version-software-product'         => 'Producte',
 'version-software-version'         => 'Versió',

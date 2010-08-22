@@ -1090,6 +1090,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 # Diffs
 'history-title'            => 'Historia de versiones de "$1"',
 'difference'               => '(Differentia inter versiones)',
+'difference-multipage'     => '(Differentia inter paginas)',
 'lineno'                   => 'Linea $1:',
 'compareselectedversions'  => 'Comparar versiones seligite',
 'showhideselectedversions' => 'Revelar/celar le versiones seligite',
@@ -3349,6 +3350,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licentia',
 'version-poweredby-credits'        => "Iste wiki es actionate per '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'alteres',
 'version-license-info'             => 'MediaWiki es software libere; vos pote redistribuer lo e/o modificar lo sub le conditiones del Licentia Public General de GNU publicate per le Free Software Foundation; version 2 del Licentia, o (a vostre option) qualcunque version posterior.
 
 Iste programma es distribuite in le sperantia que illo sia utile, ma SIN GARANTIA; sin mesmo le implicite garantia de COMMERCIALISATION o APTITUDE PRO UN PROPOSITO PARTICULAR. Vide le Licentia Public General de GNU pro plus detalios.

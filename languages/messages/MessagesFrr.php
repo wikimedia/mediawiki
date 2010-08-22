@@ -8,6 +8,7 @@
  * @file
  *
  * @author Maartenvdbent
+ * @author Murma174
  * @author Pyt
  */
 
@@ -893,6 +894,9 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'sharedupload'              => 'Jüdeer dååtäi ståmt üt $1 än mötj foon ouder prujäkte brükt wårde.',
 'uploadnewversion-linktext' => 'En nai färsjoon foon jüdeer dåtäi huuchsiinje',
 
+# Random page
+'randompage' => 'Tufåli sid',
+
 # Statistics
 'statistics' => 'Statistiik',
 
@@ -1203,6 +1207,12 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'watchlistall2' => 'åle',
 'namespacesall' => 'åle',
 'monthsall'     => 'åle',
+
+# Auto-summaries
+'autosumm-blank'   => 'Det sidj wurd leesagd.',
+'autosumm-replace' => 'Di iinhual wurd ütjbütjet mä "$1"',
+'autoredircomment' => 'Sidj tu [[$1]] widjerfeerd',
+'autosumm-new'     => 'Det sidj wurd nei uunlaanj: "$1"',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Eefterkiiklist: änringe',

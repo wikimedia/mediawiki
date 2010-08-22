@@ -1264,6 +1264,7 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 # Diffs
 'history-title'            => 'Historico de les vèrsions de « $1 »',
 'difference'               => '(Difèrences entre les vèrsions)',
+'difference-multipage'     => '(Difèrences entre les pâges)',
 'lineno'                   => 'Legne $1 :',
 'compareselectedversions'  => 'Comparar les vèrsions chouèsies',
 'showhideselectedversions' => 'Fâre vêre / cachiér les vèrsions chouèsies',
@@ -3612,6 +3613,12 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 'version-version'                  => '(Vèrsion $1)',
 'version-svn-revision'             => '(v$2)',
 'version-license'                  => 'Licence',
+'version-poweredby-credits'        => "Ceti vouiqui fonccione grâce a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-license-info'             => 'MediaWiki est una programeria abada ; cen vôt dére que vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence Publica G·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
+
+MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence Publica G·ènèrala GNU por més de dètalys.
+
+Vos devriâd avêr reçu una [{{SERVER}}{{SCRIPTPATH}}/COPYING copia de la Licence Publica G·ènèrala GNU] avouéc cél programo, ôtrament, ècrîde a la « Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA » ou ben [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liéséd-la en legne].',
 'version-software'                 => 'Programeries enstalâs',
 'version-software-product'         => 'Marchandie',
 'version-software-version'         => 'Vèrsion',

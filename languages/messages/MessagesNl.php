@@ -1289,6 +1289,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 # Diffs
 'history-title'            => 'Geschiedenis van "$1"',
 'difference'               => '(Verschil tussen bewerkingen)',
+'difference-multipage'     => "(Verschil tussen pagina's)",
 'lineno'                   => 'Regel $1:',
 'compareselectedversions'  => 'Aangevinkte versies vergelijken',
 'showhideselectedversions' => 'Geselecteerde versies weergeven/verbergen',
@@ -3576,6 +3577,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'version-version'                  => '(Versie $1)',
 'version-license'                  => 'Licentie',
 'version-poweredby-credits'        => "Deze wiki wordt aangedreven door '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'anderen',
 'version-license-info'             => 'MediaWiki is vrije software; u kunt MediaWiki verspreiden en/of aanpassen onder de voorwaarden van de GNU General Public License zoals gepubliceerd door de Free Software Foundation; ofwel versie 2 van de Licentie, of - naar uw wens - enige latere versie.
 
 MediaWiki wordt verspreid in de hoop dat het nuttig is, maar ZONDER ENIGE GARANTIE; zonder zelfs de implicitiete garantie van VERKOOPBAARHEID of GESCHIKHEID VOOR ENIG DOEL IN HET BIJZONDER. Zie de GNU General Public License voor meer informatie.

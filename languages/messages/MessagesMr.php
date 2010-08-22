@@ -14,6 +14,7 @@
  * @author Kaustubh
  * @author Mahitgar
  * @author Sankalpdravid
+ * @author V.narsikar
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
  * @author कोल्हापुरी
@@ -321,6 +322,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'मला छोट्या बदलांकरीता सुद्धा विरोप पाठवा',
 'tog-enotifrevealaddr'        => 'सूचना विरोपात माझा विरोपाचा पत्ता दाखवा',
 'tog-shownumberswatching'     => 'पहारा दिलेले सदस्य दाखवा',
+'tog-oldsig'                  => '↓ सध्याचे सहीची झलक:',
 'tog-fancysig'                => 'सही विकिसंज्ञा म्हणून वापरा (आपोआप दुव्याशिवाय)',
 'tog-externaleditor'          => 'कायम बाह्य संपादक वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते)',
 'tog-externaldiff'            => 'इतिहास पानावर निवडलेल्या आवृत्त्यांमधील बदल दाखविण्यासाठी बाह्य प्रणाली वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते)',
@@ -343,7 +345,10 @@ $messages = array(
 'underline-default' => 'न्याहाळक अविचल (browser default)',
 
 # Font style option in Special:Preferences
-'editfont-default' => 'न्याहाळक अविचल',
+'editfont-default'   => 'न्याहाळक अविचल',
+'editfont-monospace' => '↓ एकलअंतर असलेला टंक',
+'editfont-sansserif' => '↓ सॅन्स-सेरिफ टंक',
+'editfont-serif'     => '↓ सेरिफ टंक',
 
 # Dates
 'sunday'        => 'रविवार',
@@ -412,6 +417,8 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|या वर्गात फक्त खालील संचिका आहे.|एकूण $2 पैकी खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात {{PLURAL:$1|आहे|आहेत}}.}}',
 'category-file-count-limited'    => 'खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात आहेत.',
 'listingcontinuesabbrev'         => 'पुढे.',
+'index-category'                 => '↓ अनुक्रमित पाने',
+'noindex-category'               => '↓ अनुक्रम नसलेली पाने',
 
 'mainpagetext'      => "'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''",
 'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
@@ -445,6 +452,7 @@ $messages = array(
 'faqpage'        => 'Project:प्रश्नावली',
 
 # Vector skin
+'vector-action-addsection'   => '↓ विषय जोडा',
 'vector-action-delete'       => 'वगळा',
 'vector-action-move'         => 'स्थानांतरण',
 'vector-action-protect'      => 'सुरक्षित करा',
@@ -463,7 +471,10 @@ $messages = array(
 'vector-namespace-user'      => 'सदस्य पान',
 'vector-view-create'         => 'तयार करा',
 'vector-view-edit'           => 'संपादन',
+'vector-view-history'        => '↓ इतिहास पहा',
+'vector-view-view'           => '↓ वाचा',
 'vector-view-viewsource'     => 'स्रोत पहा',
+'actions'                    => '↓ क्रिया',
 'namespaces'                 => 'नामविश्वे',
 
 'errorpagetitle'    => 'चुक',
@@ -520,6 +531,8 @@ $messages = array(
 'jumpto'            => 'येथे जा:',
 'jumptonavigation'  => 'सुचालन',
 'jumptosearch'      => 'शोधयंत्र',
+'view-pool-error'   => '↓ माफ करा. यावेळेस सर्व्हरवर ताण आहे.अनेक सदस्य हे पान बघण्याचा प्रयत्न करीत आहेत.पुन्हा या पानावर पोचण्यासाठी थोडा वेळ थांबुन परत प्रयत्न करा.
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} बद्दल',
@@ -703,6 +716,7 @@ $2',
 'userexists'                 => 'या नावाने सदस्याची नोंदणी झालेली आहे.
 कृपया दुसरे सदस्य नाव निवडा.',
 'loginerror'                 => 'आपल्या प्रवेश नोंदणीमध्ये चुक झाली आहे',
+'createaccounterror'         => '↓ हे खाते तयार करता येउ शकले नाही:$1',
 'nocookiesnew'               => 'सदस्य खाते उघडले ,पण तुम्ही खाते वापरून दाखल झालेले नाही आहात.{{SITENAME}} सदस्यांना दाखल करून घेताना त्यांच्या स्मृतीशेष (cookies) वापरते.तुम्ही स्मृतीशेष सुविधा अनुपलब्ध टेवली आहे.ती कृपया उपलब्ध करा,आणि नंतर तुमच्या नवीन सदस्य नावाने आणि परवलीने दाखल व्हा.',
 'nocookieslogin'             => '{{SITENAME}} सदस्यांना दाखल करून घेताना त्यांच्या स्मृतीशेष (cookies) वापरते.तुम्ही स्मृतीशेष सुविधा अनुपलब्ध टेवली आहे.स्मृतीशेष सुविधा कृपया उपलब्ध करा,आणि दाखल होण्यासाठी पुन्हा प्रयत्न करा.',
 'noname'                     => 'आपण नोंदणीसाठी सदस्याचे योग्य नाव लिहिले नाही.',
@@ -711,9 +725,11 @@ $2',
 'nosuchuser'                 => '"$1" या नावाचा कोणताही सदस्य नाही.तुमचे शुद्धलेखन तपासा, किंवा नवीन खाते तयार करा.',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" या नावाचा सदस्य नाही. लिहीताना आपली चूक तर नाही ना झाली?',
 'nouserspecified'            => 'तुम्हाला सदस्यनाव नमुद करावे लागेल.',
+'login-userblocked'          => '↓ या सदस्याचे खाते ’प्रतिबंधित’ आहे. त्यास प्रवेश करु देणे शक्य नाही.',
 'wrongpassword'              => 'आपला परवलीचा शब्द चुकीचा आहे, पुन्हा एकदा प्रयत्न करा.',
 'wrongpasswordempty'         => 'परवलीचा शब्द रिकामा आहे; परत प्रयत्न करा.',
 'passwordtooshort'           => 'तुमचा परवलीचा शब्द जरूरीपेक्षा लहान आहे. यात कमीत कमी $1 अक्षरे पाहिजेत.',
+'password-name-match'        => '↓ आपला परवलीचा शब्द हा आपल्या सदस्यनावापेक्षा वेगळा हवा.',
 'mailmypassword'             => 'परवलीचा नवीन शब्द इमेल पत्त्यावर पाठवा',
 'passwordremindertitle'      => '{{SITENAME}}करिता नवा तात्पुरता परवलीचा शब्दांक.',
 'passwordremindertext'       => 'कुणीतरी (कदाचित तुम्ही, अंकपत्ता $1 कडून) {{SITENAME}} करिता ’नवा परवलीचा शब्दांक पाठवावा’ अशी विनंती केली आहे ($4).
@@ -722,6 +738,7 @@ $2',
 
 जर ही विनंती इतर कुणी केली असेल किंवा तुम्हाला तुमचा परवलीचा शब्दांक आठवला असेल आणि तुम्ही तो आता बदलू इच्छित नसाल तर, तुम्ही हा संदेश दूर्लक्षित करून जूना परवलीचा शब्दांक वापरत राहू शकता.',
 'noemail'                    => '"$1" सदस्यासाठी कोणताही इमेल पत्ता दिलेला नाही.',
+'noemailcreate'              => '↓ आपण वैध विरोप-पत्ता (ई-मेल ऍड्रेस) देणे आवश्यक आहे.',
 'passwordsent'               => '"$1" सदस्याच्या इमेल पत्त्यावर परवलीचा नवीन शब्द पाठविण्यात आलेला आहे.
 तो शब्द वापरुन पुन्हा प्रवेश करा.',
 'blocked-mailpassword'       => 'संपादनापासून तुमच्या अंकपत्त्यास आडविण्यात आले आहे,आणि म्हणून दुरूपयोग टाळ्ण्याच्या दृष्टीने परवलीचाशब्द परत मिळवण्यास सुद्धा मान्यता उपलब्ध नाही.',
@@ -847,6 +864,7 @@ $2',
 तुम्ही विकिपिडीयावरील इतर लेखांमध्ये या [[Special:Search/{{PAGENAME}}|मथळ्याच्या शोध घेऊ शकता]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} इतर याद्या शोधा],
 किंवा हा लेख [{{fullurl:{{FULLPAGENAME}}|action=edit}} लिहू शकता]</span>.',
 'userpage-userdoesnotexist'        => '"$1" सदस्य खाते नोंदीकॄत नाही.कृपया हे पान तुम्ही संपादीत किंवा नव्याने तयार करू इच्छिता का या बद्दल विचार करा.',
+'userpage-userdoesnotexist-view'   => '↓ सदस्यखाते "$1"  हे नोंदलेले नाही.',
 'clearyourcache'                   => "'''सूचना:''' जतन केल्यानंतर, बदल पहाण्याकरिता तुम्हाला तुमच्या विचरकाची सय टाळायला लागू शकते. '''मोझील्ला/फायरफॉक्स /सफारी:''' ''Reload''करताना ''Shift''दाबून ठेवा किंवा ''Ctrl-Shift-R'' दाबा
 
 (ऍपल मॅक वर ''Cmd-shift-R'');'''IE:''' ''Refresh'' टिचकताना ''Ctrl'' दाबा,किंवा ''Ctrl-F5'' दाबा ; '''Konqueror:''': केवळ '''Reload''' टिचकवा,किवा ''F5'' दाबा; '''Opera'''उपयोगकर्त्यांना  ''Tools→Preferences'' मधील सय पूर्ण रिकामी करायला लागेल.",

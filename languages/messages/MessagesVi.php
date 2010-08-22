@@ -1172,6 +1172,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 # Diffs
 'history-title'            => 'Lịch sử sửa đổi của “$1”',
 'difference'               => '(Khác biệt giữa các bản)',
+'difference-multipage'     => '(Khác biệt giữa các trang)',
 'lineno'                   => 'Dòng $1:',
 'compareselectedversions'  => 'So sánh các bản đã chọn',
 'showhideselectedversions' => 'Hiện/ẩn các phiên bản được chọn',

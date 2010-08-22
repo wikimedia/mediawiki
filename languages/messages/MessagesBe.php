@@ -9,6 +9,7 @@
  *
  * @author Cesco
  * @author Jim-by
+ * @author Maksim L.
  * @author Mienski
  * @author Prima klasy4na
  * @author Riwnodennyk
@@ -226,7 +227,7 @@ $messages = array(
 'tagline'           => 'З пляцоўкі {{SITENAME}}.',
 'help'              => 'Даведка',
 'search'            => 'Знайсці',
-'searchbutton'      => 'Тэкст',
+'searchbutton'      => 'Знайсці',
 'go'                => 'Пераход',
 'searcharticle'     => 'Артыкул',
 'history'           => 'Гісторыя старонкі',
