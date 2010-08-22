@@ -165,50 +165,6 @@ function do_image_name_unique_update() {
 	}
 }
 
-function do_logging_timestamp_index() {
-	global $wgDatabase;
-	if ( $wgDatabase->indexExists( 'logging', 'times' ) ) {
-		wfOut( "...timestamp key on logging already exists.\n" );
-	} else {
-		wfOut( "Adding timestamp key on logging table... " );
-		$wgDatabase->sourceFile( archive( "patch-logging-times-index.sql" ) );
-		wfOut( "ok\n" );
-	}
-}
-
-function do_archive_user_index() {
-	global $wgDatabase;
-	if ( $wgDatabase->indexExists( 'archive', 'usertext_timestamp' ) ) {
-		wfOut( "...usertext,timestamp key on archive already exists.\n" );
-	} else {
-		wfOut( "Adding usertext,timestamp key on archive table... " );
-		$wgDatabase->sourceFile( archive( "patch-archive-user-index.sql" ) );
-		wfOut( "ok\n" );
-	}
-}
-
-function do_image_user_index() {
-	global $wgDatabase;
-	if ( $wgDatabase->indexExists( 'image', 'img_usertext_timestamp' ) ) {
-		wfOut( "...usertext,timestamp key on image already exists.\n" );
-	} else {
-		wfOut( "Adding usertext,timestamp key on image table... " );
-		$wgDatabase->sourceFile( archive( "patch-image-user-index.sql" ) );
-		wfOut( "ok\n" );
-	}
-}
-
-function do_oldimage_user_index() {
-	global $wgDatabase;
-	if ( $wgDatabase->indexExists( 'oldimage', 'oi_usertext_timestamp' ) ) {
-		wfOut( "...usertext,timestamp key on oldimage already exists.\n" );
-	} else {
-		wfOut( "Adding usertext,timestamp key on oldimage table... " );
-		$wgDatabase->sourceFile( archive( "patch-oldimage-user-index.sql" ) );
-		wfOut( "ok\n" );
-	}
-}
-
 function do_watchlist_update() {
 	global $wgDatabase;
 	$fname = 'do_watchlist_update';
@@ -275,17 +231,6 @@ function do_copy_newtalk_to_watchlist() {
 		}
 	}
 	wfOut( "Done.\n" );
-}
-
-function do_user_update() {
-	global $wgDatabase;
-	if ( $wgDatabase->fieldExists( 'user', 'user_emailauthenticationtimestamp' ) ) {
-		wfOut( "User table contains old email authentication field. Dropping... " );
-		$wgDatabase->sourceFile( archive( 'patch-email-authentication.sql' ) );
-		wfOut( "ok\n" );
-	} else {
-		wfOut( "...user table does not contain old email authentication field.\n" );
-	}
 }
 
 /**
@@ -475,28 +420,6 @@ function do_schema_restructuring() {
 	}
 }
 
-function do_inverse_timestamp() {
-	global $wgDatabase;
-	if ( $wgDatabase->fieldExists( 'revision', 'inverse_timestamp' ) ) {
-		wfOut( "Removing revision.inverse_timestamp and fixing indexes... " );
-		$wgDatabase->sourceFile( archive( 'patch-inverse_timestamp.sql' ) );
-		wfOut( "ok\n" );
-	} else {
-		wfOut( "...revision timestamp indexes already up to 2005-03-13\n" );
-	}
-}
-
-function do_text_id() {
-	global $wgDatabase;
-	if ( $wgDatabase->fieldExists( 'revision', 'rev_text_id' ) ) {
-		wfOut( "...rev_text_id already in place.\n" );
-	} else {
-		wfOut( "Adding rev_text_id field... " );
-		$wgDatabase->sourceFile( archive( 'patch-rev_text_id.sql' ) );
-		wfOut( "ok\n" );
-	}
-}
-
 function do_pagelinks_update() {
 	global $wgDatabase;
 	if ( $wgDatabase->tableExists( 'pagelinks' ) ) {
@@ -535,18 +458,6 @@ function do_pagelinks_namespace( $namespace ) {
 
 	$wgDatabase->query( $sql, 'do_pagelinks_namespace' );
 	wfOut( "ok\n" );
-}
-
-function do_drop_img_type() {
-	global $wgDatabase;
-
-	if ( $wgDatabase->fieldExists( 'image', 'img_type' ) ) {
-		wfOut( "Dropping unused img_type field in image table... " );
-		$wgDatabase->sourceFile( archive( 'patch-drop_img_type.sql' ) );
-		wfOut( "ok\n" );
-	} else {
-		wfOut( "...no img_type field in image table; Good.\n" );
-	}
 }
 
 function do_old_links_update() {
