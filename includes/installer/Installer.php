@@ -71,7 +71,6 @@ abstract class Installer {
 		'mysql',
 		'postgres',
 		'sqlite',
-		'oracle'
 	);
 
 	/**
