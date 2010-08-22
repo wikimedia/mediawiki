@@ -1,4 +1,9 @@
 <?php
+/**
+ * HTML validation and correction
+ *
+ * @file
+ */
 
 /**
  * Class to interact with HTML tidy

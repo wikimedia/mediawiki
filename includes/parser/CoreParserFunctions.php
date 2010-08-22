@@ -1,4 +1,9 @@
 <?php
+/**
+ * Parser functions provided by MediaWiki core
+ *
+ * @file
+ */
 
 /**
  * Various core parser functions, registered in Parser::firstCallInit()

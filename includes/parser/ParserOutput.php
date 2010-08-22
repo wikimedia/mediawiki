@@ -1,5 +1,12 @@
 <?php
 /**
+ * Output of the PHP parser
+ *
+ * @file
+ * @ingroup Parser
+ */
+ 
+/**
  * @todo document
  * @ingroup Parser
  */

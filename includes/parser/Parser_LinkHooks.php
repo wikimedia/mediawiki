@@ -1,5 +1,11 @@
 <?php
 /**
+ * Modified version of the PHP parser with hooks for wiki links; experimental
+ *
+ * @file
+ */
+
+/**
  * Parser with LinkHooks experiment
  * @ingroup Parser
  */

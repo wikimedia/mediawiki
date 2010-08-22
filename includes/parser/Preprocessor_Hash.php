@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Preprocessor using PHP arrays
+ *
+ * @file
+ * @ingroup Parser
+ */
+ 
 /**
  * Differences from DOM schema:
  *   * attribute nodes are children

@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Preprocessor using PHP's dom extension
+ *
+ * @file
+ * @ingroup Parser
+ */
+ 
 /**
  * @ingroup Parser
  */

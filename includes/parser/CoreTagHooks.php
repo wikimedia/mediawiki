@@ -1,5 +1,14 @@
 <?php
+/**
+ * Tag hooks provided by MediaWiki core
+ *
+ * @file
+ */
 
+/**
+ * Various tag hooks, registered in Parser::firstCallInit()
+ * @ingroup Parser
+ */
 class CoreTagHooks {
 	static function register( $parser ) {
 		global $wgRawHtml, $wgUseTeX;
