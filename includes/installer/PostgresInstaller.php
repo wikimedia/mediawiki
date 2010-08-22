@@ -149,4 +149,9 @@ class PostgresInstaller extends DatabaseInstaller {
 \$wgDBmwschema       = \"{$schema}\";
 \$wgDBts2schema      = \"{$ts2}\";";
 	}
+
+	public function doUpgrade() {
+		// TODO
+		return false;
+	}
 }

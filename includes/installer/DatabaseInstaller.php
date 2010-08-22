@@ -123,11 +123,10 @@ abstract class DatabaseInstaller {
 	
 	/**
 	 * Perform database upgrades
-	 * @todo make abstract
+	 *
+	 * @return Boolean
 	 */
-	/*abstract*/ function doUpgrade() {
-		return false;
-	}
+	public abstract function doUpgrade();
 	
 	/**
 	 * Allow DB installers a chance to make last-minute changes before installation
@@ -135,6 +134,13 @@ abstract class DatabaseInstaller {
 	 * long after the constructor. Helpful for things like modifying setup steps :)
 	 */
 	public function preInstall() {
+	
+	}
+
+	/**
+	 * Allow DB installers a chance to make checks before upgrade.
+	 */
+	public function preUpgrade() {
 	
 	}
 
