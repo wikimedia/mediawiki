@@ -3140,6 +3140,7 @@ $wgMessageStructure = array(
 		'version-svn-revision',
 		'version-license',
 		'version-poweredby-credits',
+		'version-poweredby-others',
 		'version-license-info',
 		'version-software',
 		'version-software-product',

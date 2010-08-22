@@ -82,7 +82,7 @@ class SpecialVersion extends SpecialPage {
 			'Niklas Laxström', 'Domas Mituzas', 'Rob Church', 'Yuri Astrakhan',
 			'Aryeh Gregor', 'Aaron Schulz', 'Andrew Garrett', 'Raimond Spekking',
 			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
-			wfMsg( 'others' )
+			wfMsg( 'version-poweredby-others' )
 		);
 		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMsg( 'version-license' ) );
 
