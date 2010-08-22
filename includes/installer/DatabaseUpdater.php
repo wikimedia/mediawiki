@@ -98,7 +98,7 @@ abstract class DatabaseUpdater {
 	 * version these like we do with our core updates, so they have to go
 	 * in 'always'
 	 */
-	private function getOldGlobalUpdates() {
+	protected function getOldGlobalUpdates() {
 		global $wgUpdates, $wgExtNewFields, $wgExtNewTables,
 			$wgExtModifiedFields, $wgExtNewIndexes, $wgSharedDB, $wgSharedTables;
 
