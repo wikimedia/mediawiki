@@ -293,6 +293,7 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 		}
 
 		if ( $this->parent->request->wasPosted() ) {
+			$installer->preUpgrade();
 			$this->addHTML(
 				'<div id="config-spinner" style="display:none;"><img src="../skins/common/images/ajax-loader.gif" /></div>' .
 				'<script>jQuery( "#config-spinner" )[0].style.display = "block";</script>' .

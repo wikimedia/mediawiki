@@ -210,5 +210,4 @@ class SqliteInstaller extends DatabaseInstaller {
 "# SQLite-specific settings
 \$wgSQLiteDataDir    = \"{$dir}\";";
 	}
-	
 }

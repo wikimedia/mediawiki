@@ -130,13 +130,14 @@ class MysqlInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function doUpgrade() {
+	public function preUpgrade() {
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			$this->parent->showStatusError( $status );
 			return;
 		}
 		$conn = $status->value;
+		$conn->selectDB( $this->getVar( 'wgDBname' ) );
 
 		# Determine existing default character set
 		if ( $conn->tableExists( "revision" ) ) {
@@ -164,9 +165,53 @@ class MysqlInstaller extends DatabaseInstaller {
 					$existingEngine = $row->Type;
 				}
 			}
+		} else {
+			$existingSchema = false;
+			$existingEngine = false;
 		}
-		
-		// TODO
+
+		if ( $existingSchema && $existingSchema != $this->getVar( '_MysqlCharset' ) ) {
+			$this->parent->showMessage( 'config-mysql-charset-mismatch', $this->getVar( '_MysqlCharset' ), $existingSchema );
+			$this->setVar( '_MysqlCharset', $existingSchema );
+		}
+		if ( $existingEngine && $existingEngine != $this->getVar( '_MysqlEngine' ) ) {
+			$this->parent->showMessage( 'config-mysql-egine-mismatch', $this->getVar( '_MysqlEngine' ), $existingEngine );
+			$this->setVar( '_MysqlEngine', $existingEngine );
+		}
+	}
+
+	/**
+	 * @todo FIXME: this code is just pure crap for compatibility between
+	 * old and new code.
+	 */
+	public function doUpgrade() {
+		global $wgDatabase, $wgDBuser, $wgDBpassword;
+
+		# Some maintenance scripts like wfGetDB()
+		LBFactory::enableBackend();
+		# For do_all_updates()
+		$wgDatabase = $this->db;
+		# Normal user and password are selected after this step, so for now
+		# just copy these two
+		$wgDBuser = $this->getVar( '_InstallUser' );
+		$wgDBpassword = $this->getVar( '_InstallPassword' );
+
+		$ret = true;
+
+		ob_start( array( __CLASS__, 'outputHandler' ) );
+		try {
+			do_all_updates( false, true );
+		} catch ( MWException $e ) {
+			echo "\nAn error occured:\n";
+			echo $e->getText();
+			$ret = false;
+		}
+		ob_end_flush();
+		return $ret;
+	}
+
+	public static function outputHandler( $string ) {
+		return htmlspecialchars( $string );
 	}
 
 	/**
