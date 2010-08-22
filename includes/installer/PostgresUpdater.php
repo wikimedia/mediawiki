@@ -464,7 +464,7 @@ END;
 	}
 
 	public function addPgExtIndex( $table, $index, $type ) {
-		if ( $this->db->indexExists( $table, $ni[1] ) ) {
+		if ( $this->db->indexExists( $table, $index ) ) {
 			wfOut( "... index \"$index\" on table \"$table\" already exists\n" );
 		} else {
 			wfOut( "Creating index \"$index\" on table \"$table\"\n" );
