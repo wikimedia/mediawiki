@@ -160,6 +160,10 @@ class ForeignAPIRepo extends FileRepo {
 		$ret = array();
 		if ( isset( $results['query']['allimages'] ) ) {
 			foreach ( $results['query']['allimages'] as $img ) {
+				// 1.14 was broken, doesn't return name attribute
+				if( !isset( $img['name'] ) ) {
+					continue;
+				}
 				$ret[] = new ForeignAPIFile( Title::makeTitle( NS_FILE, $img['name'] ), $this, $img );
 			}
 		}
