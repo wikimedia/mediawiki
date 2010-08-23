@@ -22,8 +22,8 @@ class DatabaseMock extends DatabaseBase {
 	function affectedRows() { }
 	function fieldInfo( $table, $field ) { }
 	function strencode( $s ) { }
-	function getSoftwareLink() { }
-	static function getServerVersion() { }
+	static function getSoftwareLink() { }
+	function getServerVersion() { }
 	function getType() { }
 	function getSearchEngine() { }
 }
