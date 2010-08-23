@@ -186,7 +186,7 @@ class MWNamespace {
 
 		if ( is_null( $mValidNamespaces ) ) {
 			foreach ( array_keys( self::getCanonicalNamespaces() ) as $ns ) {
-				if ( $ns > 0 ) {
+				if ( $ns >= 0 ) {
 					$mValidNamespaces[] = $ns;
 				}
 			}
