@@ -437,6 +437,9 @@ abstract class CoreInstaller extends Installer {
 		// Extended debugging. Maybe disable before release?
 		$GLOBALS['wgShowSQLErrors'] = true;
 		$GLOBALS['wgShowDBErrorBacktrace'] = true;
+
+		// Allow multiple ob_flush() calls
+		$GLOBALS['wgDisableOutputCompression'] = true;
 	}
 
 	/**
