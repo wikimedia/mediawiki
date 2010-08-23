@@ -189,7 +189,7 @@ class ApiResult extends ApiBase {
 	/**
 	 * In case the array contains indexed values (in addition to named),
 	 * give all indexed values the given tag name. This function MUST be
-	 * called on every arrray that has numerical indexes.
+	 * called on every array that has numerical indexes.
 	 * @param $arr array
 	 * @param $tag string Tag name
 	 */
@@ -198,8 +198,7 @@ class ApiResult extends ApiBase {
 		if ( !$this->getIsRawMode() ) {
 			return;
 		}
-		if ( $arr === null || $tag === null || !is_array( $arr ) || is_array( $tag ) )
-		{
+		if ( $arr === null || $tag === null || !is_array( $arr ) || is_array( $tag ) ) {
 			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
 		}
 		// Do not use setElement() as it is ok to call this more than once
