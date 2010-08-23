@@ -301,6 +301,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
    revisions" on diffs when appropriate.
 * (bug 23703) ForeignAPIRepo fails on findBySha1() when using a 1.14 install as
   a repository due to missing 'name' attribute from the API list=allimages
+* (bug 24898) MediaWiki uses /tmp even if a vHost-specific tempdir is set, also
+  make wfTempDir() return a sane value for Windows on worst-case
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
