@@ -330,7 +330,7 @@ class LinkHolderArray {
 		}
 		
 		// Now do the conversion and explode string to text of titles
-		$titlesAllVariants = $wgContLang->convertLinkToAllVariants( $titlesToBeConverted );
+		$titlesAllVariants = $wgContLang->autoConvertToAllVariants( $titlesToBeConverted );
 		$allVariantsName = array_keys( $titlesAllVariants );
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
@@ -354,7 +354,7 @@ class LinkHolderArray {
 		$categoryMap = array(); // maps $category_variant => $category (dbkeys)
 		$varCategories = array(); // category replacements oldDBkey => newDBkey
 		foreach( $output->getCategoryLinks() as $category ){
-			$variants = $wgContLang->convertLinkToAllVariants( $category );
+			$variants = $wgContLang->autoConvertToAllVariants( $category );
 			foreach($variants as $variant){
 				if($variant != $category){
 					$variantTitle = Title::newFromDBkey( Title::makeName(NS_CATEGORY,$variant) );
