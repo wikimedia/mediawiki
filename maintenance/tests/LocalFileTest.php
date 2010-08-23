@@ -6,8 +6,10 @@
 
 class LocalFileTest extends PHPUnit_Framework_TestCase {
 	function setUp() {
-		global $wgContLang;
+		global $wgContLang, $wgCapitalLinks;
+
 		$wgContLang = new Language;
+		$wgCapitalLinks = true;
 		$info = array(
 			'name' => 'test',
 			'directory' => '/testdir',
