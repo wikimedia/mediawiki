@@ -1686,7 +1686,7 @@ class Parser {
 		}
 
 		if ( $wgContLang->hasVariants() ) {
-			$selflink = $wgContLang->convertLinkToAllVariants( $this->mTitle->getPrefixedText() );
+			$selflink = $wgContLang->autoConvertToAllVariants( $this->mTitle->getPrefixedText() );
 		} else {
 			$selflink = array( $this->mTitle->getPrefixedText() );
 		}

@@ -39,7 +39,7 @@ if ( function_exists( 'mb_strtoupper' ) ) {
 class FakeConverter {
 	var $mLang;
 	function FakeConverter( $langobj ) { $this->mLang = $langobj; }
-	function autoConvertToAllVariants( $text ) { return $text; }
+	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
 	function convert( $t ) { return $t; }
 	function convertTitle( $t ) { return $t->getPrefixedText(); }
 	function getVariants() { return array( $this->mLang->getCode() ); }
@@ -50,7 +50,7 @@ class FakeConverter {
 	function getParsedTitle() { return ''; }
 	function markNoConversion( $text, $noParse = false ) { return $text; }
 	function convertCategoryKey( $key ) { return $key; }
-	function convertLinkToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
+	function convertLinkToAllVariants( $text ) { return autoConvertToAllVariants( $text ); }
 	function armourMath( $text ) { return $text; }
 }
 
