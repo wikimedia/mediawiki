@@ -2180,7 +2180,7 @@ function wfTempDir() {
 	if( function_exists( 'sys_get_temp_dir' ) ) {
 		return sys_get_temp_dir();
 	}
-	# Hope this is Unix of some kind!
+	# Usual defaults
 	return wfIsWindows() ? 'C:\Windows\Temp' : '/tmp';
 }
 
