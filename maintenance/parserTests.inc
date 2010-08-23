@@ -1029,6 +1029,10 @@ class ParserTest {
 	 * @param $line Integer: the input line number, for reporting errors
 	 */
 	public function addArticle( $name, $text, $line ) {
+		global $wgCapitalLinks;
+		$oldCapitalLinks = $wgCapitalLinks;
+		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
+
 		$title = Title::newFromText( $name );
 		if ( is_null( $title ) ) {
 			wfDie( "invalid title at line $line\n" );
@@ -1041,6 +1045,8 @@ class ParserTest {
 
 		$art = new Article( $title );
 		$art->insertNewArticle( $text, '', false, false );
+
+		$wgCapitalLinks = $oldCapitalLinks;
 	}
 
 	/**
