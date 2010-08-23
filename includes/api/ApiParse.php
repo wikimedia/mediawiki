@@ -235,7 +235,7 @@ class ApiParse extends ApiBase {
 
 			$scripts = array( $out->getHeadScripts( $userSkin ) );
 
-			$result_array['headitems'] = array_merge( $headItems , $css, $scripts );
+			$result_array['headitems'] = array_merge( $headItems, $css, $scripts );
 		}
 
 		if ( isset( $prop['headhtml'] ) ) {
