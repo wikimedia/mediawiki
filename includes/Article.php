@@ -962,13 +962,11 @@ class Article {
 						if ( $oldid === $this->getLatest() && $this->useParserCache( false ) ) {
 							$this->mParserOutput = $parserCache->get( $this, $parserOptions );
 							if ( $this->mParserOutput ) {
-								wfDebug( __METHOD__ . ": showing parser cache for current rev permalink\n" );
+								wfDebug( __METHOD__ . ": showing parser cache for current rev permalink\n" );								
 								$wgOut->addParserOutput( $this->mParserOutput );
 								$wgOut->setRevisionId( $this->mLatest );
-								$this->showViewFooter();
-								$this->viewUpdates();
-								wfProfileOut( __METHOD__ );
-								return;
+								$outputDone = true;
+								break;								
 							}
 						}
 					}
