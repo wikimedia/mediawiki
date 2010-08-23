@@ -55,10 +55,14 @@ class ParserCache {
 	}
 
 	/**
-	 * Provides an E-Tag suitable for the whole page, even if $article is
-	 * just the main wikitext. So it uses the complete set of user options.
-	 * Most importantly, that includes the user language, but other options
-	 * would give problems on some setups, too.
+	 * Provides an E-Tag suitable for the whole page. Note that $article 
+	 * is just the main wikitext. The E-Tag has to be unique to the whole 
+	 * page, even if the article itself is the same, so it uses the 
+	 * complete set of user options. We don't want to use the preference 
+	 * of a different user on a message just because it wasn't used in 
+	 * $article. For example give a Chinese interface to a user with 
+	 * English preferences. That's why we take into account *all* user 
+	 * options. (r70809 CR)
 	 */
 	function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article, 
