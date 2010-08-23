@@ -69,8 +69,6 @@ class ApiQueryPageProps extends ApiQueryBase {
 			}
 		}
 
-		
-
 		foreach ( $this->everything as $pageid => $title ) {
 			$pageInfo = $this->extractPageInfo( $pageid, $title, $this->params['prop'] );
 			$fit = $result->addValue( array(
