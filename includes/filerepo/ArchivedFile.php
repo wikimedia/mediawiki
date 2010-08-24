@@ -140,7 +140,6 @@ class ArchivedFile
 			$this->deleted = $row->fa_deleted;
 		} else {
 			throw new MWException( 'This title does not correspond to an image page.' );
-			return;
 		}
 		$this->dataLoaded = true;
 		$this->exists = true;

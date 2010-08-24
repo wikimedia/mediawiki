@@ -286,8 +286,9 @@ class DatabaseMssql extends DatabaseBase {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( isset( $options['EXPLAIN'] ) ) {
 			sqlsrv_query( $this->mConn, "SET SHOWPLAN_ALL ON;" );
-			return $this->query( $sql, $fname );
+			$ret = $this->query( $sql, $fname );
 			sqlsrv_query( $this->mConn, "SET SHOWPLAN_ALL OFF;" );
+            return $ret;
 		}
 		return $this->query( $sql, $fname );
 	}
