@@ -15,7 +15,7 @@
 $specialPageAliases = array(
 	'Uncategorizedpages'        => array( 'UncategorisedPages' ),
 	'Uncategorizedcategories'   => array( 'UncategorisedCategories' ),
-	'Uncategorizedimages'       => array( 'UncategorisedImages' ),
+	'Uncategorizedimages'       => array( 'UncategorisedFiles', 'UncategorisedImages' ),
 	'Uncategorizedtemplates'    => array( 'UncategorisedTemplates' ),
 );
 

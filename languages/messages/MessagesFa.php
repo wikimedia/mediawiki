@@ -52,8 +52,8 @@ $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'تغییرمسیرهای_دوتایی' ),
 	'BrokenRedirects'           => array( 'تغییرمسیرهای_خراب' ),
 	'Disambiguations'           => array( 'ابهام‌زدایی' ),
-	'Userlogin'                 => array( 'ورود_به_سیستم' ),
-	'Userlogout'                => array( 'خروج_از_سیستم' ),
+	'Userlogin'                 => array( 'ورود_به_سامانه' ),
+	'Userlogout'                => array( 'خروج_از_سامانه' ),
 	'CreateAccount'             => array( 'ایجاد_حساب_کاربری' ),
 	'Preferences'               => array( 'ترجیحات' ),
 	'Watchlist'                 => array( 'فهرست_پی‌گیری' ),
@@ -93,6 +93,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'تمام_صفحه‌ها' ),
 	'Prefixindex'               => array( 'نمایه_پیشوندی' ),
 	'Ipblocklist'               => array( 'فهرست_بستن_نشانی_آی‌پی' ),
+	'Unblock'                   => array( 'باز_کردن' ),
 	'Specialpages'              => array( 'صفحه‌های_ویژه' ),
 	'Contributions'             => array( 'مشارکت‌ها' ),
 	'Emailuser'                 => array( 'نامه_به_کاربر' ),
@@ -137,6 +138,10 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'مشارکت‌های_حذف_شده' ),
 	'Tags'                      => array( 'برچسب‌ها' ),
 	'Activeusers'               => array( 'کاربران_فعال' ),
+	'RevisionMove'              => array( 'انتقال_نسخه' ),
+	'ComparePages'              => array( 'مقایسه_صفحات' ),
+	'Selenium'                  => array( 'سلنیوم' ),
+	'Badtitle'                  => array( 'عنوان_نامناسب' ),
 );
 
 

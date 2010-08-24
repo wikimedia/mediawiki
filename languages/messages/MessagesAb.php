@@ -47,6 +47,20 @@ $namespaceAliases = array(
 	'Обсуждение_категории' => NS_CATEGORY_TALK
 );
 
+$specialPageAliases = array(
+	'Recentchanges'             => array( 'АрҽеираҾыцқәа' ),
+	'Upload'                    => array( 'Аҭагалара' ),
+	'Newimages'                 => array( 'АфаилқәаҾыц' ),
+	'Randompage'                => array( 'Машәырлатәи' ),
+	'Newpages'                  => array( 'АдаҟьақәаҾыц' ),
+	'Specialpages'              => array( 'ЦастәиАдаҟьақәа' ),
+	'Categories'                => array( 'Акатегориақәа' ),
+	'Mypage'                    => array( 'Садаҟьа' ),
+	'Mytalk'                    => array( 'Сахцәажәара' ),
+	'Mycontributions'           => array( 'Архиарақәа' ),
+	'Search'                    => array( 'Аҧшаара' ),
+);
+
 $messages = array(
 # Dates
 'sunday'        => 'амҽыш',

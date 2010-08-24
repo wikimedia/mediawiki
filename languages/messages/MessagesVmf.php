@@ -33,28 +33,28 @@ $namespaceNames = array(
 );
 
 $specialPageAliases = array(
-	'DoubleRedirects'           => array( 'Dobâldâ Wajdârlajdungân' ),
+	'DoubleRedirects'           => array( 'Dobâldâ_Wajdârlajdungân' ),
 	'Userlogin'                 => array( 'Ôômäldâ' ),
 	'Userlogout'                => array( 'Ôbmäldâ' ),
 	'Preferences'               => array( 'Ôischtälungâ' ),
 	'Watchlist'                 => array( 'Bäoobôchdungslisdâ' ),
-	'Recentchanges'             => array( 'Lädsdâ Änârungâ' ),
+	'Recentchanges'             => array( 'Lädsdâ_Änârungâ' ),
 	'Upload'                    => array( 'Hoochlaadâ' ),
 	'Statistics'                => array( 'Schdadisdign' ),
-	'Newpages'                  => array( 'Nojâ Sajdâ' ),
-	'Allpages'                  => array( 'Ôlâ Sajdâ' ),
+	'Newpages'                  => array( 'Nojâ_Sajdâ' ),
+	'Allpages'                  => array( 'Ôlâ_Sajdâ' ),
 	'Prefixindex'               => array( 'Indägs' ),
 	'Specialpages'              => array( 'Schbädsjaalsajdâ' ),
 	'Contributions'             => array( 'Bajdräächâ' ),
 	'Emailuser'                 => array( 'Iimäjlâ' ),
-	'Confirmemail'              => array( 'Iimäjl bschdädigâ' ),
-	'Movepage'                  => array( 'Sajdâ färschiibâ' ),
+	'Confirmemail'              => array( 'Iimäjl_bschdädigâ' ),
+	'Movepage'                  => array( 'Sajdâ_färschiibâ' ),
 	'Categories'                => array( 'Gadâgoriin' ),
 	'Export'                    => array( 'Ägsbordiirn' ),
-	'Allmessages'               => array( 'Ôlâ Nôôchrichdâ' ),
+	'Allmessages'               => array( 'Ôlâ_Nôôchrichdâ' ),
 	'Undelete'                  => array( 'Wiidârhärschdälâ' ),
 	'Import'                    => array( 'Imbordiirn' ),
-	'Unwatchedpages'            => array( 'Unbäoobôchdâdâ Sajdn' ),
+	'Unwatchedpages'            => array( 'Unbäoobôchdâdâ_Sajdn' ),
 );
 
 $messages = array(

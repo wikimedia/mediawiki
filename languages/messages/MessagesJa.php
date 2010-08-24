@@ -158,7 +158,7 @@ $specialPageAliases = array(
 	'FileDuplicateSearch'       => array( '重複ファイル検索' ),
 	'Unwatchedpages'            => array( 'ウォッチされていないページ' ),
 	'Listredirects'             => array( 'リダイレクト一覧', 'リダイレクトの一覧', 'リダイレクトリスト' ),
-	'Revisiondelete'            => array( '特定版削除' ),
+	'Revisiondelete'            => array( '版指定削除', '特定版削除' ),
 	'Unusedtemplates'           => array( '使われていないテンプレート', '未使用テンプレート' ),
 	'Randomredirect'            => array( 'おまかせリダイレクト' ),
 	'Mypage'                    => array( '利用者ページ', 'マイページ', 'マイ・ページ' ),
@@ -178,6 +178,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '削除された投稿記録', '削除された投稿履歴', '削除歴' ),
 	'Tags'                      => array( 'タグ一覧' ),
 	'Activeusers'               => array( '活動中の利用者', '活動中の利用者一覧' ),
+	'ComparePages'              => array( 'ページの比較' ),
 );
 
 $magicWords = array(
