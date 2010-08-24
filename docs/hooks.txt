@@ -569,6 +569,9 @@ $user: the user who did the block (not the one being blocked)
 'BookInformation': Before information output on Special:Booksources
 $isbn: ISBN to show information for
 $output: OutputPage object in use
+
+'CanonicalNamespaces': For extensions adding their own namespaces or altering the defaults
+&$namespaces: Array of namespace numbers with they canonical names
  
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance

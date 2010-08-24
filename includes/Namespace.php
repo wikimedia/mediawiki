@@ -135,6 +135,7 @@ class MWNamespace {
 				$namespaces = $wgCanonicalNamespaceNames;
 			}
 			$namespaces[NS_MAIN] = '';
+			wfRunHooks( 'CanonicalNamespaces', array( &$namespaces ) );
 		}
 		return $namespaces;
 	}
