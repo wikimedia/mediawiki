@@ -896,7 +896,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'uploadnewversion-linktext' => 'En nai färsjoon foon jüdeer dåtäi huuchsiinje',
 
 # Random page
-'randompage' => 'Tufåli artiikel',
+'randompage' => 'Tufåli sid',
 
 # Statistics
 'statistics' => 'Statistiik',

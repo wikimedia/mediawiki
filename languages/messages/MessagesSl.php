@@ -2066,7 +2066,7 @@ E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastav
 'mywatchlist'          => 'Spisek nadzorov',
 'watchlistfor2'        => 'Za $1 $2',
 'nowatchlist'          => 'Vaš spisek nadzorov je prazen.',
-'watchlistanontext'    => 'Prosimo, $1 za pregled ali urejanje vsebine vašega spiska nadzorov.',
+'watchlistanontext'    => 'Za pregled ali urejanje vsebine vašega spiska nadzorov se morate $1.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Za urejanje spiska nadzorov morate biti [[Special:UserLogin|prijavljeni]].',
 'addedwatch'           => 'Dodano na spisek nadzorov',

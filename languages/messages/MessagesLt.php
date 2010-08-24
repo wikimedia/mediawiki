@@ -597,6 +597,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo [[Special:Preferences|{
 'gotaccount'                 => "Jau turite paskyrą? '''$1'''.",
 'gotaccountlink'             => 'Prisijunkite',
 'createaccountmail'          => 'el. paštu',
+'createaccountreason'        => 'Priežastis:',
 'badretype'                  => 'Įvesti slaptažodžiai nesutampa.',
 'userexists'                 => 'Įvestasis naudotojo vardas jau naudojamas.
 Prašome pasirinkti kitą vardą.',
@@ -662,6 +663,7 @@ Palaukite prieš bandant vėl.',
 'suspicious-userlogout'      => 'Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.',
 
 # JavaScript password checks
+'password-strength'            => 'Apskaičiuotas slaptažodžio stiprumas: $1',
 'password-strength-bad'        => 'BLOGAS',
 'password-strength-mediocre'   => 'vidutiniškas',
 'password-strength-acceptable' => 'priimtinas',
@@ -1054,10 +1056,15 @@ Prašome patikrinti sąrašus.',
 # Revision move
 'moverevlogentry'              => '{{PLURAL:$3|perkelta $3 versija|perkeltos $3 versijos|perkeltos $3 versijų}} iš $1 į $2',
 'revisionmove'                 => 'Daugiau versijų iš „$1“',
+'revmove-explain'              => 'Šie pakeitimai bus perkelti iš $1 į nurodytą paskirties puslapį. Jeigu paskirties puslapio nėra, jis bus sukurtas. Priešingu atveju šie pakeitimai bus sujungti su puslapio istorija.',
+'revmove-legend'               => 'Nurodykite paskirties puslapį ir komentarą',
 'revmove-submit'               => 'Perkelti versijas į pasirinktą puslapį',
 'revisionmoveselectedversions' => 'Perkelti pasirinktas versijas',
 'revmove-reasonfield'          => 'Priežastis:',
+'revmove-titlefield'           => 'Paskirties puslapis:',
 'revmove-badparam-title'       => 'Netinkami parametrai',
+'revmove-norevisions-title'    => 'Neleistina paskirties versija',
+'revmove-nullmove-title'       => 'Blogas pavadinimas',
 
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',
@@ -1206,6 +1213,7 @@ Prašome patikrinti sąrašus.',
 'contextlines'                  => 'Eilučių rezultate:',
 'contextchars'                  => 'Konteksto simbolių eilutėje:',
 'stub-threshold'                => 'Puslapį žymėti <a href="#" class="stub">nebaigtu</a>, jei mažesnis nei:',
+'stub-threshold-disabled'       => 'Išjungtas',
 'recentchangesdays'             => 'Rodomos dienos paskutinių keitimų sąraše:',
 'recentchangesdays-max'         => '(daugiausiai $1 {{PLURAL:$1|diena|dienos|dienų}})',
 'recentchangescount'            => 'Numatytasis rodomas keitimų skaičius:',
@@ -1279,6 +1287,8 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'prefs-advancedsearchoptions'   => 'Papildomi nustatymai',
 'prefs-advancedwatchlist'       => 'Papildomi nustatymai',
 'prefs-displayrc'               => 'Rodymo nustatymai',
+'prefs-displaysearchoptions'    => 'Rodymo nuostatos',
+'prefs-displaywatchlist'        => 'Rodymo nuostatos',
 'prefs-diffs'                   => 'Skirtumai',
 
 # User rights
@@ -1533,6 +1543,7 @@ Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
 'filename-tooshort'           => 'Failo pavadinimas per trumpas.',
 'filetype-banned'             => 'Šis failo tipas yra uždraustas.',
 'verification-error'          => 'Šis failas nepraėjo patikrinimo.',
+'hookaborted'                 => 'Pakeitimą, kurį bandėte atlikti, nutraukė priedo gaudlys.',
 'illegal-filename'            => 'Failo vardas neleidžiamas.',
 'overwrite'                   => 'Perrašyti esamą failą neleidžiama.',
 'unknown-error'               => 'Įvyko nežinoma klaida.',
@@ -1591,11 +1602,12 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 Šio failo šalinimų istorija yra pateikta dėl patogumo:",
 'filename-bad-prefix'         => "Jūsų įkeliamas failas prasideda su '''„$1“''', bet tai yra neapibūdinantis pavadinimas, dažniausiai priskirtas skaitmeninių kamerų. Prašome suteikti labiau apibūdinantį pavadinimą savo failui.",
 'upload-success-subj'         => 'Įkelta sėkmingai',
-'upload-success-msg'          => 'Jūsų įkėlimą galima rasti čia: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Jūsų įkėlimas iš [$2] buvo sėkmingas. Jį galima rasti čia: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Įkėlimo problema',
 'upload-failure-msg'          => 'Įvyko įkėlimo problema:
 
 $1',
+'upload-warning-subj'         => 'Įkėlimo įspėjimas',
 
 'upload-proto-error'        => 'Neteisingas protokolas',
 'upload-proto-error-text'   => 'Nuotoliniai įkėlimas reikalauja, kad URL prasidėtų <code>http://</code> arba <code>ftp://</code>.',
@@ -1995,6 +2007,7 @@ El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustaty
 # Watchlist
 'watchlist'            => 'Stebimi puslapiai',
 'mywatchlist'          => 'Stebimi puslapiai',
+'watchlistfor2'        => 'Naudotojo $1 $2',
 'nowatchlist'          => 'Neturite nei vieno stebimo puslapio.',
 'watchlistanontext'    => 'Prašome $1, kad peržiūrėtumėte ar pakeistumėte elementus savo stebimųjų sąraše.',
 'watchnologin'         => 'Neprisijungęs',
@@ -2499,6 +2512,7 @@ Paskirties puslapis „[[:$1]]“ jau yra. Ar norite jį ištrinti, kad galėtum
 'immobile-source-page'         => 'Šio puslapio perkelti negalima.',
 'immobile-target-page'         => 'Negalima perkelti į paskirtąją vietą.',
 'imagenocrossnamespace'        => 'Negalima pervadinti failo į ne failo vardų sritį',
+'nonfile-cannot-move-to-file'  => 'Negalima perkelti ne failo į failų vardų sritį',
 'imagetypemismatch'            => 'Naujas failo plėtinys neatitinka jo tipo',
 'imageinvalidfilename'         => 'Failo pavadinimas yra klaidingas',
 'fix-double-redirects'         => 'Atnaujinti peradresavimus, kad šie rodytų į originalų straipsnio pavadinimą',
@@ -2792,6 +2806,8 @@ Jį paleidus jūsų sistema gali būti pažeista.",
 'show-big-image-thumb' => '<small>Šios peržiūros dydis: $1 × $2 taškų</small>',
 'file-info-gif-looped' => 'ciklinis',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kadras|kadrai|kadrų}}',
+'file-info-png-looped' => 'ciklinis',
+'file-info-png-frames' => '$1 {{PLURAL:$1|kadras|kadrai|kadrų}}',
 
 # Special:NewFiles
 'newimages'             => 'Naujausių failų galerija',
@@ -3265,6 +3281,13 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'version-hook-subscribedby'        => 'Užsakyta',
 'version-version'                  => '(Versija $1)',
 'version-license'                  => 'Licencija',
+'version-poweredby-credits'        => "Šis projektas naudoja '''[http://www.mediawiki.org/ MediaWiki]''', autorystės teisės © 2001-$1 $2.",
+'version-poweredby-others'         => 'kiti',
+'version-license-info'             => 'MediaWiki yra nemokama programinė įranga; galite ją platinti ir/arba modifikuoti pagal GNU General Public License, kurią publikuoja Free Software Foundation; taikoma 2-oji licenzijos versija arba (Jūsų pasirinkimu) bet kuri vėlesnė versija. 
+
+MediaWiki yra platinama su viltimi, kad ji bus naudinga, bet BE JOKIOS GARANTIJOS; be jokios numanomos PARDAVIMO arba TINKAMUMO TAM TIKRAM TIKSLUI garantijos. Daugiau informacijos galite sužinoti GNU General Public License. 
+
+Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License kopiją] kartu su šia programa, jei ne, rašykite Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, JAV arba [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html perskaitykite ją internete].',
 'version-software'                 => 'Įdiegta programinė įranga',
 'version-software-product'         => 'Produktas',
 'version-software-version'         => 'Versija',
@@ -3333,6 +3356,9 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'tags-hitcount-header'    => 'Pažymėti pakeitimai',
 'tags-edit'               => 'taisyti',
 'tags-hitcount'           => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
+
+# Special:ComparePages
+'compare-rev1' => 'Pirma versija',
 
 # Database error messages
 'dberr-header'      => 'Ši svetainė turi problemų.',

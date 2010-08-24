@@ -1063,6 +1063,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 # Diffs
 'history-title'            => 'Gesjiedenis van "$1"',
 'difference'               => '(Versjil tösje bewirkinge)',
+'difference-multipage'     => '(Versjil tösje paazjes)',
 'lineno'                   => 'Tekslien $1:',
 'compareselectedversions'  => 'Vergeliek geselecteerde versies',
 'showhideselectedversions' => 'Tuin/versjtaek geselecteerde versies',
@@ -3197,6 +3198,7 @@ De kèns ouch [[Special:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]]."
 'version-version'                  => '(Versie $1)',
 'version-license'                  => 'Licentie',
 'version-poweredby-credits'        => "Deze wiki weurt aangedreve door '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'anger',
 'version-license-info'             => "MediaWiki is vrieje sofware; de kins MediaWiki verspreien en/of aanpassen onger de veurwaerde van de GNU General Public License wie gepubliceerd door de Free Software Foundation; ofwaal versie 2 van de Licentie, of - nao diene wönsj - innig later versie.
 
 MediaWiki weurd verspreid in de haop det 't nuttig is, mer ZONGER INNIG GARANTIE; zonger zelfs de implicitiete garantie van VERKOUPBAARHEID of GESJIKHEID VEUR INNIG DOEL IN 'T BIEZÖNJER. Zuuch de GNU General Public License veur mier informatie.
