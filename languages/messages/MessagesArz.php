@@ -213,6 +213,7 @@ $specialPageAliases = array(
 	'Preferences'               => array( 'تفضيلات' ),
 	'Watchlist'                 => array( 'ليستة_المراقبه' ),
 	'Recentchanges'             => array( 'اخر_تعديلات' ),
+	'Upload'                    => array( 'رفع' ),
 	'Listfiles'                 => array( 'عرض_الفايلات', 'ليستة_الفايلات', 'ليستة_الصور' ),
 	'Newimages'                 => array( 'فايلات_جديده', 'صور_جديده' ),
 	'Listusers'                 => array( 'عرض_اليوزرات', 'ليستة_اليوزرات' ),
@@ -247,6 +248,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'كل_الصفح' ),
 	'Prefixindex'               => array( 'فهرس_بدايه' ),
 	'Ipblocklist'               => array( 'ليستة_البلوك', 'بيّن_البلوك', 'ليستة_بلوك_IP' ),
+	'Unblock'                   => array( 'رفع_منع' ),
 	'Specialpages'              => array( 'صفح_مخصوصه' ),
 	'Contributions'             => array( 'مساهمات' ),
 	'Emailuser'                 => array( 'ابعت_ايميل_لليوزر' ),
@@ -289,6 +291,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'صفحه_فارضيه' ),
 	'LinkSearch'                => array( 'تدوير_اللينكات' ),
 	'DeletedContributions'      => array( 'مساهمات_ممسوحه' ),
+	'Tags'                      => array( 'وسوم' ),
 	'Activeusers'               => array( 'يوزرات_نشطا' ),
 );
 

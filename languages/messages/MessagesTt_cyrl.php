@@ -103,12 +103,36 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
+	'DoubleRedirects'           => array( 'Икеле_күчеш' ),
+	'BrokenRedirects'           => array( 'Өзелгән_күчеш' ),
+	'Userlogin'                 => array( 'Кулланучы_исеме' ),
+	'Userlogout'                => array( 'Чыгу' ),
 	'CreateAccount'             => array( 'Теркәлү' ),
-	'Watchlist'                 => array( 'Күзәтү исемлеге' ),
-	'Recentchanges'             => array( 'Соңгы үзгәртүләр' ),
+	'Watchlist'                 => array( 'Күзәтү_исемлеге' ),
+	'Recentchanges'             => array( 'Соңгы_үзгәртүләр' ),
 	'Statistics'                => array( 'Статистика' ),
 	'Randompage'                => array( 'Очраклы_мәкалә' ),
+	'Newpages'                  => array( 'Яңа_бит' ),
+	'Allpages'                  => array( 'Барлык_битләр' ),
+	'Emailuser'                 => array( 'Кулланучының_E-mail\'лы' ),
+	'Allmessages'               => array( 'Барлык_хатлар' ),
 	'Listadmins'                => array( 'Идарәчеләр_исемлеге' ),
+	'Preferences'               => array( 'Көйләнмәләр' ),
+	'Upload'                    => array( 'Йөкләү' ),
+	'Listfiles'                 => array( 'Файллар_исемлеге' ),
+	'Newimages'                 => array( 'Яңа_файл' ),
+	'Listusers'                 => array( 'Кулланучылар_исемлеге' ),
+	'Listgrouprights'           => array( 'Төркемнәр_исемлеге' ),
+	'Uncategorizedpages'        => array( 'Үзләштерелмәгән_битләр' ),
+	'Uncategorizedcategories'   => array( 'Үзләштерелмәгән__бүлекләр' ),
+	'Uncategorizedimages'       => array( 'Үзләштерелмәгән_файллар' ),
+	'Uncategorizedtemplates'    => array( 'Үзләштерелмәгән__үрнәкләр' ),
+	'Unusedcategories'          => array( 'Кулланылмаучы_бүлекләр' ),
+	'Unusedimages'              => array( 'Кулланылмаучы__файллар' ),
+	'Wantedpages'               => array( 'Мондый_бит_юк' ),
+	'Wantedcategories'          => array( 'Мондый_бүлек_юк' ),
+	'Wantedfiles'               => array( 'Мондый_файл_юк' ),
+	'Wantedtemplates'           => array( 'Мондый_үрнәк_юк' ),
 );
 
 $magicWords = array(

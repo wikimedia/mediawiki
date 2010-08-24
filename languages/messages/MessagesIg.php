@@ -10,6 +10,22 @@
  * @author Ukabia
  */
 
+$specialPageAliases = array(
+	'Userlogin'                 => array( 'Ọ\'bàniféÍBànyé' ),
+	'Userlogout'                => array( 'Ọ\'bàniféÍFụtá' ),
+	'Preferences'               => array( 'Ọtúm_dọsẹrẹ_ihem' ),
+	'Upload'                    => array( 'TinyéIheNélú' ),
+	'Allpages'                  => array( 'IhüNílé' ),
+	'Specialpages'              => array( 'IhüKá' ),
+	'Export'                    => array( 'MēKọFùtá' ),
+	'Undelete'                  => array( 'Ábàkàshịkwàlà' ),
+	'Import'                    => array( 'BàÍfé' ),
+	'Mypage'                    => array( 'IhüNkèm' ),
+	'Mytalk'                    => array( 'OkwuNkèm' ),
+	'Filepath'                  => array( 'UzọrAkwúkwóOrünotu' ),
+	'Blankpage'                 => array( 'HịcháIhü' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Okpürụ ahiri jikodo:',

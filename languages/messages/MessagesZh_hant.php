@@ -132,6 +132,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( '所有頁面' ),
 	'Prefixindex'               => array( '前綴索引' ),
 	'Ipblocklist'               => array( '封禁列表' ),
+	'Unblock'                   => array( '解除封禁' ),
 	'Specialpages'              => array( '特殊頁面' ),
 	'Contributions'             => array( '用戶貢獻' ),
 	'Emailuser'                 => array( '電郵用戶' ),
@@ -176,6 +177,9 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '已刪除的用戶貢獻' ),
 	'Tags'                      => array( '標籤' ),
 	'Activeusers'               => array( '活躍用戶' ),
+	'RevisionMove'              => array( '版本移動' ),
+	'ComparePages'              => array( '頁面比較' ),
+	'Badtitle'                  => array( '不好的標題' ),
 );
 
 $bookstoreList = array(

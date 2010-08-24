@@ -57,25 +57,25 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Watchlist'                 => array( 'Rol golyas' ),
-	'Recentchanges'             => array( 'Chanjyow a-dhiwedhes' ),
-	'Upload'                    => array( 'Ughkarga' ),
+	'Watchlist'                 => array( 'Rol_golyas' ),
+	'Recentchanges'             => array( 'Chanjyow_a-dhiwedhes' ),
+	'Upload'                    => array( 'Ughcarga' ),
 	'Randompage'                => array( 'FolenDreJons' ),
 	'Allpages'                  => array( 'OllFolennow' ),
 	'Specialpages'              => array( 'FolennowArbennek' ),
 	'Contributions'             => array( 'Kevrohow' ),
 	'Emailuser'                 => array( 'EbostyaDevnydhyer' ),
 	'Movepage'                  => array( 'RemovyaFolen' ),
-	'Categories'                => array( 'Klassys' ),
-	'Export'                    => array( 'Esperthi' ),
+	'Categories'                => array( 'Classys' ),
+	'Export'                    => array( 'Esperthy' ),
 	'Version'                   => array( 'Versyon' ),
 	'Allmessages'               => array( 'OllMessajow' ),
 	'Blockip'                   => array( 'Let' ),
-	'Import'                    => array( 'Ymperthi' ),
+	'Import'                    => array( 'Ymperthy' ),
 	'Mypage'                    => array( 'OwFolen' ),
 	'Mytalk'                    => array( 'OwHows' ),
 	'Mycontributions'           => array( 'OwHevrohow' ),
-	'Search'                    => array( 'Hwilans' ),
+	'Search'                    => array( 'Whilans' ),
 );
 
 $messages = array(
