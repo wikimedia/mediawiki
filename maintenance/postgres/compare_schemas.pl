@@ -43,7 +43,7 @@ tinytext mediumtext text char varchar varbinary binary
 timestamp datetime
 tinyblob mediumblob blob
 );
-$datatype .= q{|ENUM\([\"\w, ]+\)};
+$datatype .= q{|ENUM\([\"\w\', ]+\)};
 $datatype = qr{($datatype)};
 
 my $typeval = qr{(\(\d+\))?};
