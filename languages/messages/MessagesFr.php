@@ -1258,6 +1258,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 # Diffs
 'history-title'            => 'Historique des versions de « $1 »',
 'difference'               => '(Différences entre les versions)',
+'difference-multipage'     => '(Différence entre les pages)',
 'lineno'                   => 'Ligne $1 :',
 'compareselectedversions'  => 'Comparer les versions sélectionnées',
 'showhideselectedversions' => 'Afficher/masquer les versions sélectionnées',
@@ -3505,6 +3506,7 @@ Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licence',
 'version-poweredby-credits'        => "Ce wiki fonctionne grâce à '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'autres',
 'version-license-info'             => "MediaWiki est un logiciel libre, vous pouvez le redistribuer et / ou le modifier selon les termes de la Licence Publique Générale GNU telle que publiée par la Free Software Foundation ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure.
 
 MediaWiki est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE, sans même la garantie implicite de COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER. Voir la Licence Publique Générale GNU pour plus de détails.

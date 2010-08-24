@@ -8,6 +8,7 @@
  * @file
  *
  * @author Maartenvdbent
+ * @author Merlissimo
  * @author Murma174
  * @author Pyt
  */
@@ -50,7 +51,7 @@ $messages = array(
 'tog-showjumplinks'           => '"Schafte tu"-ferbininge aktiwiire',
 'tog-uselivepreview'          => 'Live-forbekiik ferwiinje (brükt JavaScript) (äksperimentäl)',
 'tog-forceeditsummary'        => 'Woorschoue, wan bai dåt spiikern jü tuhuupefooting breecht',
-'tog-watchlisthideown'        => ' Äine beårbinge önj e bekiiklist fersteege',
+'tog-watchlisthideown'        => 'Äine beårbinge önj e bekiiklist fersteege',
 'tog-watchlisthidebots'       => 'Beårbinge döör bots önj e bekiiklist fersteege',
 'tog-watchlisthideminor'      => 'Latje beårbinge önj e bekiiklist fersteege',
 'tog-watchlisthideliu'        => 'Beårbinge foon önjmäldede brükere önj e bekiikliste fersteege',
@@ -895,7 +896,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'uploadnewversion-linktext' => 'En nai färsjoon foon jüdeer dåtäi huuchsiinje',
 
 # Random page
-'randompage' => 'Tufåli sid',
+'randompage' => 'Tufåli artiikel',
 
 # Statistics
 'statistics' => 'Statistiik',

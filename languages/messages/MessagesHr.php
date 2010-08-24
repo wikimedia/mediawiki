@@ -12,6 +12,7 @@
  * @author Demicx
  * @author Dnik
  * @author Ex13
+ * @author Excaliboor
  * @author Luka Krstulovic
  * @author MayaSimFan
  * @author Meno25
@@ -3366,6 +3367,7 @@ Također možete koristiti [[Special:Watchlist/edit|standardni editor]].',
 'version-version'                  => '(Inačica $1)',
 'version-license'                  => 'Licencija',
 'version-poweredby-credits'        => "Ovaj wiki pogoni '''[http://www.mediawiki.org/ MediaWiki]''', autorska prava © 2001-$1 $2.",
+'version-poweredby-others'         => 'ostali',
 'version-license-info'             => 'MediaWiki je slobodni softver; možete ga distribuirati i/ili mijenjati pod uvjetima GNU opće javne licencije u obliku u kojem ju je objavila Free Software Foundation; bilo verzije 2 licencije, ili (Vama na izbor) bilo koje kasnije verzije.
 
 MediaWiki je distribuiran u nadi da će biti koristan, no BEZ IKAKVOG JAMSTVA; čak i bez impliciranog jamstva MOGUĆNOSTI PRODAJE ili PRIKLADNOSTI ZA ODREĐENU NAMJENU. Pogledajte GNU opću javnu licenciju za više detalja.

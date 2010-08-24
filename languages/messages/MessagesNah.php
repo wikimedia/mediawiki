@@ -427,7 +427,7 @@ Occeppa xicalaqui niman ticmatīz.',
 
 # JavaScript password checks
 'password-strength-bad'        => 'AHCUALLI',
-'password-strength-mediocre'   => 'centlacol cualli',
+'password-strength-mediocre'   => 'achi cualli',
 'password-strength-acceptable' => 'Tlaceliāni',
 'password-strength-good'       => 'cualli',
 
@@ -851,7 +851,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'filehist-deleteone'        => 'ticpolōz',
 'filehist-revert'           => 'tlacuepāz',
 'filehist-current'          => 'āxcān',
-'filehist-datetime'         => 'Cāhuitl',
+'filehist-datetime'         => 'Tlapōhualpan/Cāhuitl',
 'filehist-thumb'            => 'Īxiptlahtōn',
 'filehist-user'             => 'Tlatequitiltilīlli',
 'filehist-dimensions'       => 'Octacayōtl',

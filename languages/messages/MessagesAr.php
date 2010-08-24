@@ -1382,6 +1382,7 @@ $1",
 # Diffs
 'history-title'            => 'تاريخ مراجعة "$1"',
 'difference'               => '(الفرق بين المراجعتين)',
+'difference-multipage'     => '(الفرق بين الصفحتين)',
 'lineno'                   => 'سطر $1:',
 'compareselectedversions'  => 'قارن بين النسختين المختارتين',
 'showhideselectedversions' => 'أظهر/أخف المراجعات المختارة',
