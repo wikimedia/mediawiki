@@ -204,11 +204,11 @@ $magicWords = array(
 	'img_none'              => array( '1', 'vouedo', 'néant', 'neant', 'none' ),
 	'img_center'            => array( '1', 'centrâ', 'centré', 'center', 'centre' ),
 	'img_framed'            => array( '1', 'encâdrâ', 'câdro', 'cadre', 'encadré', 'encadre', 'framed', 'enframed', 'frame' ),
-	'img_frameless'         => array( '1', 'sen câdro', 'sans_cadre', 'sans cadre', 'non encadré', 'non encadre', 'frameless' ),
+	'img_frameless'         => array( '1', 'sen_câdro', 'sans_cadre', 'non_encadré', 'non_encadre', 'frameless' ),
 	'img_page'              => array( '1', 'pâge=$1', 'pâge $1', 'page=$1', 'page $1' ),
 	'img_upright'           => array( '1', 'drêt', 'drêt=$1', 'drêt $1', 'redresse', 'redresse=$1', 'redresse $1', 'upright', 'upright=$1', 'upright $1' ),
 	'img_border'            => array( '1', 'bordura', 'bordure', 'border' ),
-	'img_baseline'          => array( '1', 'legne de bâsa', 'ligne de base', 'base', 'baseline' ),
+	'img_baseline'          => array( '1', 'legne_de_bâsa', 'ligne_de_base', 'base', 'baseline' ),
 	'img_sub'               => array( '1', 'segno', 'indice', 'ind', 'sub' ),
 	'img_super'             => array( '1', 'èxposent', 'èxp', 'exposant', 'exp', 'super', 'sup' ),
 	'img_top'               => array( '1', 'd\'amont', 'haut', 'top' ),
@@ -278,7 +278,7 @@ $magicWords = array(
 	'numberingroup'         => array( '1', 'NOMBRO_D_UTILISATORS_DENS_LA_TROPA', 'NOMBREDANSGROUPE', 'NBDANSGROUPE', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__REDIRÈCCION_IMOBILA__', '__REDIRECTIONSTATIQUE__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'NIVÉL_DE_PROTÈCCION', 'NIVEAUDEPROTECTION', 'PROTECTIONLEVEL' ),
-	'formatdate'            => array( '0', 'format de dâta', 'formatdate', 'dateformat' ),
+	'formatdate'            => array( '0', 'format_de_dâta', 'formatdate', 'dateformat' ),
 );
 
 $linkTrail = '/^([a-zàâçéèêîœôû·’æäåāăëēïīòöōùü‘]+)(.*)$/sDu';

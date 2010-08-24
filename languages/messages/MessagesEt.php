@@ -219,6 +219,7 @@ $magicWords = array(
 	'ucfirst'               => array( '0', 'ESIST:', 'UCFIRST:' ),
 	'lc'                    => array( '0', 'VT:', 'LC:' ),
 	'uc'                    => array( '0', 'ST:', 'UC:' ),
+	'displaytitle'          => array( '1', 'PEALKIRI', 'DISPLAYTITLE' ),
 	'newsectionlink'        => array( '1', '__UUEALAOSALINK__', '__NEWSECTIONLINK__' ),
 	'nonewsectionlink'      => array( '1', '__UUEALAOSALINGITA__', '__NONEWSECTIONLINK__' ),
 	'currenttimestamp'      => array( '1', 'HETKEAJATEMPEL', 'CURRENTTIMESTAMP' ),

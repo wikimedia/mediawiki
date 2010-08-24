@@ -126,6 +126,8 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#దారిమార్పు', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__విషయసూచికవద్దు__', '__NOTOC__' ),
+	'toc'                   => array( '0', '__విషయసూచిక__', '__TOC__' ),
 	'pagename'              => array( '1', 'పేజీపేరు', 'PAGENAME' ),
 	'img_right'             => array( '1', 'కుడి', 'right' ),
 	'img_left'              => array( '1', 'ఎడమ', 'left' ),

@@ -49,7 +49,7 @@ $magicWords = array(
 	'img_manualthumb'       => array( '1', 'ܙܥܘܪܬܐ=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'             => array( '1', 'ܝܡܝܢܐ', 'right' ),
 	'img_left'              => array( '1', 'ܣܡܠܐ', 'left' ),
-	'img_none'              => array( '1', 'ܠܐ ܡܕܡ', 'none' ),
+	'img_none'              => array( '1', 'ܠܐ_ܡܕܡ', 'none' ),
 	'img_center'            => array( '1', 'ܡܨܥܐ', 'center', 'centre' ),
 	'grammar'               => array( '0', 'ܬܘܪܨ_ܡܡܠܠܐ', 'GRAMMAR:' ),
 	'language'              => array( '0', '#ܠܫܢܐ:', '#LANGUAGE:' ),

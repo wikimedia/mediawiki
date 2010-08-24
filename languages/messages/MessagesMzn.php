@@ -71,7 +71,7 @@ $namespaceAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#بور', '#تغییرمسیر', '#REDIRECT' ),
-	'numberofpages'         => array( '1', 'تعدادصفحه‌ها', 'تعداد_صفحه‌ها', 'ولگ‌ئون نمره', 'وألگ‌ئون نومره', 'NUMBEROFPAGES' ),
+	'numberofpages'         => array( '1', 'تعدادصفحه‌ها', 'تعداد_صفحه‌ها', 'ولگ‌ئون_نمره', 'وألگ‌ئون_نومره', 'NUMBEROFPAGES' ),
 );
 
 $messages = array(

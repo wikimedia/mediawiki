@@ -61,6 +61,12 @@ $specialPageAliases = array(
 	'Search'                    => array( 'Аҧшаара' ),
 );
 
+$magicWords = array(
+	'language'              => array( '0', '#АБЫЗШӘА:', '#ЯЗЫК:', '#LANGUAGE:' ),
+	'special'               => array( '0', 'цастәи', 'служебная', 'special' ),
+	'index'                 => array( '1', '__АИНДЕКС__', '__ИНДЕКС__', '__INDEX__' ),
+);
+
 $messages = array(
 # Dates
 'sunday'        => 'амҽыш',

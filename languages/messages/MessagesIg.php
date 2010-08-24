@@ -26,6 +26,19 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'HịcháIhü' ),
 );
 
+$magicWords = array(
+	'redirect'              => array( '0', '#KÚFÙ', '#REDIRECT' ),
+	'fullpagename'          => array( '1', 'ÁHÀNÍLÉNKÈIHÜ', 'FULLPAGENAME' ),
+	'msg'                   => array( '0', 'OZI:', 'MSG:' ),
+	'img_right'             => array( '1', 'áká_ịkẹngạ', 'right' ),
+	'img_left'              => array( '1', 'áká_èkpè', 'left' ),
+	'img_top'               => array( '1', 'élú', 'top' ),
+	'img_middle'            => array( '1', 'ẹtítì', 'middle' ),
+	'img_text_bottom'       => array( '1', 'okpúrù-ede', 'text-bottom' ),
+	'displaytitle'          => array( '1', 'ZIÍSHÍ', 'DISPLAYTITLE' ),
+	'pagesize'              => array( '1', 'ÀSÁIHÜ', 'PAGESIZE' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Okpürụ ahiri jikodo:',
