@@ -117,7 +117,6 @@ class MWNamespace {
 		return isset( $nslist[$index] );
 	}
 
-
 	/**
 	 * Returns array of all defined namespaces with their canonical
 	 * (English) names.

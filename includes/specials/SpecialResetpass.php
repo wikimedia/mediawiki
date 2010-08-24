@@ -222,7 +222,6 @@ class SpecialResetpass extends SpecialPage {
 		} catch( PasswordError $e ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
 			throw new PasswordError( $e->getMessage() );
-			return;
 		}
 		
 		$user->setCookies();

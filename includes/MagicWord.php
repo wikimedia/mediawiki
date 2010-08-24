@@ -648,7 +648,6 @@ class MagicWordArray {
 		}
 		// This shouldn't happen either
 		throw new MWException( __METHOD__.': parameter not found' );
-		return array( false, false );
 	}
 
 	/**
