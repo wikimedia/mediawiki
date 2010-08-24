@@ -33,14 +33,14 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Perdoruesi' => NS_USER,
+	'Perdoruesi'          => NS_USER,
 	'Perdoruesi_diskutim' => NS_USER_TALK,
-	'Përdoruesi' => NS_USER,
+	'Përdoruesi'          => NS_USER,
 	'Përdoruesi_diskutim' => NS_USER_TALK,
-	'Figura' => NS_FILE,
-	'Figura_diskutim' => NS_FILE_TALK,
-	'Kategori' => NS_CATEGORY,
-	'Kategori_Diskutim' => NS_CATEGORY_TALK
+	'Figura'              => NS_FILE,
+	'Figura_diskutim'     => NS_FILE_TALK,
+	'Kategori'            => NS_CATEGORY,
+	'Kategori_Diskutim'   => NS_CATEGORY_TALK
 );
 
 $specialPageAliases = array(

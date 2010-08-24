@@ -88,8 +88,8 @@ $linkPrefixExtension = false;
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
-	NS_MAIN	            => '',
-	NS_TALK	            => 'Talk',
+	NS_MAIN             => '',
+	NS_TALK             => 'Talk',
 	NS_USER             => 'User',
 	NS_USER_TALK        => 'User_talk',
 	# NS_PROJECT set by $wgMetaNamespace

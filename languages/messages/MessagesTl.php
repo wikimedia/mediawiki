@@ -19,25 +19,25 @@ $namespaceNames = array(
 	NS_SPECIAL          => 'Natatangi',
 	NS_TALK             => 'Usapan',
 	NS_USER             => 'Tagagamit',
-	NS_USER_TALK        => 'Usapang tagagamit',
-	NS_PROJECT_TALK     => 'Usapang $1',
+	NS_USER_TALK        => 'Usapang_tagagamit',
+	NS_PROJECT_TALK     => 'Usapang_$1',
 	NS_FILE             => 'Talaksan',
-	NS_FILE_TALK        => 'Usapang talaksan',
+	NS_FILE_TALK        => 'Usapang_talaksan',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'Usapang MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Usapang_MediaWiki',
 	NS_TEMPLATE         => 'Suleras',
-	NS_TEMPLATE_TALK    => 'Usapang suleras',
+	NS_TEMPLATE_TALK    => 'Usapang_suleras',
 	NS_HELP             => 'Tulong',
-	NS_HELP_TALK        => 'Usapang tulong',
-	NS_CATEGORY         => 'Kaurian',
-	NS_CATEGORY_TALK    => 'Usapang kaurian',
+	NS_HELP_TALK        => 'Usapang_tulong',
+	NS_CATEGORY         => 'Kategorya',
+	NS_CATEGORY_TALK    => 'Usapang_kategorya',
 );
 
 $namespaceAliases = array(
 	'Talaksan'          => NS_FILE,
 	'Usapang talaksan'  => NS_FILE_TALK,
-	'Kategorya'         => NS_CATEGORY,
-	'Usapang kategorya' => NS_CATEGORY_TALK,
+	'Kaurian'         => NS_CATEGORY,
+	'Usapang_kaurian' => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(

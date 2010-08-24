@@ -17,22 +17,41 @@
 $fallback = 'ru';
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Медйа',
-	NS_SPECIAL          => 'Башхо',
-	NS_TALK             => 'Дийца',
-	NS_USER             => 'Юзер',
-	NS_USER_TALK        => 'Юзери_дийца',
-	NS_PROJECT_TALK     => '$1_Дийца',
-	NS_FILE             => 'Сурт',
-	NS_FILE_TALK        => 'Сурти_дийца',
-	NS_MEDIAWIKI        => 'МедйаВики',
-	NS_MEDIAWIKI_TALK   => 'МедйаВики_дийца',
-	NS_TEMPLATE         => 'Дакъа',
-	NS_TEMPLATE_TALK    => 'Дакъан_дийца',
-	NS_HELP             => 'ГІо',
-	NS_HELP_TALK        => 'ГІодан_дийца',
-	NS_CATEGORY         => 'Тоба',
-	NS_CATEGORY_TALK    => 'Тобан_дийца',
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Белхан',
+	NS_TALK             => 'Дийцаре',
+	NS_USER             => 'Декъашхо',
+	NS_USER_TALK        => 'Дийцаре_декъашхо',
+	NS_PROJECT_TALK     => 'Дийцаре_{{GRAMMAR:genitive|$1}}',
+	NS_FILE             => 'Хlум',
+	NS_FILE_TALK        => 'Дийцаре_хlуман',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Дийцаре',
+	NS_TEMPLATE         => 'Куцкеп',
+	NS_TEMPLATE_TALK    => 'Куцкеп_дийцаре',
+	NS_HELP             => 'Гlо',
+	NS_HELP_TALK        => 'Гlон_дийцаре',
+	NS_CATEGORY         => 'Кадегар',
+	NS_CATEGORY_TALK    => 'Кадегар_дийцаре',
+);
+
+$namespaceAliases = array(
+	'Медйа'           => NS_MEDIA,
+	'Башхо'           => NS_SPECIAL,
+	'Дийца'           => NS_TALK,
+	'Юзер'            => NS_USER,
+	'Юзери_дийца'     => NS_USER_TALK,
+	'1_Дийца'         => NS_PROJECT_TALK,
+	'Сурт'            => NS_FILE,
+	'Сурти_дийца'     => NS_FILE_TALK,
+	'МедйаВики'       => NS_MEDIAWIKI,
+	'МедйаВики_дийца' => NS_MEDIAWIKI_TALK,
+	'Дакъан'          => NS_TEMPLATE,
+	'Дакъан_дийца'    => NS_TEMPLATE_TALK,
+	'ГІо'             => NS_HELP,
+	'ГІодан_дийца'    => NS_HELP_TALK,
+	'Тоба'            => NS_CATEGORY,
+	'Тобан_дийца'     => NS_CATEGORY_TALK
 );
 
 $magicWords = array(

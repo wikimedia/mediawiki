@@ -10,6 +10,25 @@
  * @author Ukabia
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Nká',
+	NS_SPECIAL          => 'Ihü_kárírí',
+	NS_TALK             => 'Okwu',
+	NS_USER             => 'Ọ\'bànifé',
+	NS_USER_TALK        => 'Okwu_ọ\'bànifé',
+	NS_PROJECT_TALK     => 'Okwu_$1',
+	NS_FILE             => 'Ákwúkwó_orünotu',
+	NS_FILE_TALK        => 'Okwu_ákwúkwó_orünotu',
+	NS_MEDIAWIKI        => 'NkáWiki',
+	NS_MEDIAWIKI_TALK   => 'Okwu_NkáWiki',
+	NS_TEMPLATE         => 'Àtụ',
+	NS_TEMPLATE_TALK    => 'Okwu_àtụ',
+	NS_HELP             => 'Nkwádọ',
+	NS_HELP_TALK        => 'Okwu_nkwádọ',
+	NS_CATEGORY         => 'Ébéonọr',
+	NS_CATEGORY_TALK    => 'Okwu_ébéonọr',
+);
+
 $specialPageAliases = array(
 	'Userlogin'                 => array( 'Ọ\'bàniféÍBànyé' ),
 	'Userlogout'                => array( 'Ọ\'bàniféÍFụtá' ),
