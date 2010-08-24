@@ -34,12 +34,12 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function removeSearchData() {
-        return;
-        /*while ( count( $this->pageList ) ) {
-            list( $title, $id ) = array_pop( $this->pageList );
-            $article = new Article( $title, $id );
-            $article->doDeleteArticle( "Search Test" );
-        }*/
+		return;
+		/*while ( count( $this->pageList ) ) {
+			list( $title, $id ) = array_pop( $this->pageList );
+			$article = new Article( $title, $id );
+			$article->doDeleteArticle( "Search Test" );
+		}*/
  	}
 
 	function fetchIds( $results ) {
