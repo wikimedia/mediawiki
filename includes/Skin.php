@@ -911,7 +911,7 @@ CSS;
 	protected function afterContentHook() {
 		$data = '';
 
-		if( wfRunHooks( 'SkinAfterContent', array( &$data ) ) ) {
+		if( wfRunHooks( 'SkinAfterContent', array( &$data, $this ) ) ) {
 			// adding just some spaces shouldn't toggle the output
 			// of the whole <div/>, so we use trim() here
 			if( trim( $data ) != '' ) {
