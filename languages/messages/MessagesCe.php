@@ -124,7 +124,7 @@ $magicWords = array(
 	'server'                => array( '0', 'ГlУЛКХДИРИГ', 'СЕРВЕР', 'SERVER' ),
 	'servername'            => array( '0', 'ГlУЛКХДЕЧУЬНА_ЦlЕ', 'НАЗВАНИЕ_СЕРВЕРА', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'НЕКЪ_ОЦ_МЕТТАКЕПА', 'ПУТЬ_К_СКРИПТУ', 'SCRIPTPATH' ),
-	'stylepath'             => array( '0', 'ЙОМАНХАТl', 'STYLEPATH' ),
+	'stylepath'             => array( '0', 'ЙОМАНХАТl', 'ПУТЬ_К_СТИЛЮ', 'STYLEPATH' ),
 	'grammar'               => array( '0', 'ДОЖАР:', 'ПАДЕЖ:', 'GRAMMAR:' ),
 	'gender'                => array( '0', 'ВУ_ЙУ:', 'GENDER', 'ПОЛ:', 'GENDER:' ),
 	'notitleconvert'        => array( '0', '__ХИЙЦАР_ДОЦУШ_КОЬРТЕ__', '__БЕЗ_ПРЕОБРАЗОВАНИЯ_ЗАГОЛОВКА__', '__NOTITLECONVERT__', '__NOTC__' ),
@@ -178,8 +178,8 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__БУХЕХЬДЕРГ_ДlАСХЬАЖАЙАР__', '__СТАТИЧЕСКОЕ_ПЕРЕНАПРАВЛЕНИЕ__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'ГlАРОЛЛИ_БАРАМ', 'УРОВЕНЬ_ЗАЩИТЫ', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'терахьибарам', 'форматдаты', 'formatdate', 'dateformat' ),
-	'url_path'              => array( '0', 'ЙОМА', 'PATH' ),
-	'url_wiki'              => array( '0', 'ЧЕХКА', 'WIKI' ),
+	'url_path'              => array( '0', 'ЙОМА', 'ПУТЬ', 'PATH' ),
+	'url_wiki'              => array( '0', 'ЧЕХКА', 'ВИКИ', 'WIKI' ),
 );
 
 $messages = array(

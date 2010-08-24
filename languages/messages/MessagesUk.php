@@ -150,7 +150,7 @@ $magicWords = array(
 	'subjectpagenamee'      => array( '1', 'НАЗВА_СТАТТІ_2', 'НАЗВАНИЕ_СТРАНИЦЫ_СТАТЬИ_2', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'msg'                   => array( '0', 'ПОВІД:', 'ПОВІДОМЛЕННЯ:', 'СООБЩЕНИЕ:', 'СООБЩ:', 'MSG:' ),
 	'subst'                 => array( '0', 'ПІДСТ:', 'ПІДСТАНОВКА:', 'ПОДСТАНОВКА:', 'ПОДСТ:', 'SUBST:' ),
-	'safesubst'             => array( '0', 'БЕЗПЕЧНА_ПІДСТАНОВКА:', 'SAFESUBST:' ),
+	'safesubst'             => array( '0', 'БЕЗПЕЧНА_ПІДСТАНОВКА:', 'ЗАЩПОДСТ:', 'SAFESUBST:' ),
 	'msgnw'                 => array( '0', 'ПОВІД_БЕЗ_ВІКІ:', 'СООБЩ_БЕЗ_ВИКИ:', 'MSGNW:' ),
 	'img_thumbnail'         => array( '1', 'міні', 'мініатюра', 'мини', 'миниатюра', 'thumbnail', 'thumb' ),
 	'img_manualthumb'       => array( '1', 'міні=$1', 'мініатюра=$1', 'мини=$1', 'миниатюра=$1', 'thumbnail=$1', 'thumb=$1' ),
