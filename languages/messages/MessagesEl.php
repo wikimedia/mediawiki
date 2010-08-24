@@ -270,7 +270,7 @@ $magicWords = array(
 	'img_framed'            => array( '1', 'με-πλαίσιο', 'framed', 'enframed', 'frame' ),
 	'img_frameless'         => array( '1', 'χωρίς-πλαίσιο', 'frameless' ),
 	'img_page'              => array( '1', 'σελίδα=$1', 'σελίδα $1', 'page=$1', 'page $1' ),
-	'img_upright'           => array( '1', 'κατακόρυφα', 'κατακόρυφα =$1', 'κατακόρυφα $1', 'upright', 'upright=$1', 'upright $1' ),
+	'img_upright'           => array( '1', 'κατακόρυφα', 'κατακόρυφα=$1', 'κατακόρυφα $1', 'upright', 'upright=$1', 'upright $1' ),
 	'img_border'            => array( '1', 'πλαίσιο', 'border' ),
 	'img_baseline'          => array( '1', 'γραμμήβάσης', 'baseline' ),
 	'img_sub'               => array( '1', 'δείκτης', 'sub' ),

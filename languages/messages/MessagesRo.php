@@ -94,7 +94,7 @@ $magicWords = array(
 	'img_page'              => array( '1', 'pagina=$1', 'pagina $1', 'page=$1', 'page $1' ),
 	'img_upright'           => array( '1', 'dreaptasus', 'dreaptasus=$1', 'dreaptasus $1', 'upright', 'upright=$1', 'upright $1' ),
 	'img_border'            => array( '1', 'chenar', 'border' ),
-	'img_baseline'          => array( '1', 'linia de bază', 'baseline' ),
+	'img_baseline'          => array( '1', 'linia_de_bază', 'baseline' ),
 	'img_sub'               => array( '1', 'indice', 'sub' ),
 	'img_super'             => array( '1', 'exponent', 'super', 'sup' ),
 	'img_top'               => array( '1', 'sus', 'top' ),

@@ -142,8 +142,10 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#යළියොමුව', '#REDIRECT' ),
-	'currentmonth'          => array( '1', 'වත්මන්මාසය', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth'          => array( '1', 'වත්මන්මාසය', 'වත්මන්මාසය2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth1'         => array( '1', 'වත්මන්මාසය1', 'CURRENTMONTH1' ),
 	'currentmonthname'      => array( '1', 'වත්මන්මාසනාමය', 'CURRENTMONTHNAME' ),
+	'currentmonthnamegen'   => array( '1', 'වත්මන්මාසනාමයපොදු', 'CURRENTMONTHNAMEGEN' ),
 	'currentmonthabbrev'    => array( '1', 'වත්මන්මාසයකෙටි', 'CURRENTMONTHABBREV' ),
 	'currentday'            => array( '1', 'වත්මන්දිනය', 'CURRENTDAY' ),
 	'currentday2'           => array( '1', 'වත්මන්දිනය2', 'CURRENTDAY2' ),
@@ -153,6 +155,7 @@ $magicWords = array(
 	'currenthour'           => array( '1', 'වත්මන්පැය', 'CURRENTHOUR' ),
 	'localmonth'            => array( '1', 'දේශීයමාසය', 'LOCALMONTH', 'LOCALMONTH2' ),
 	'localmonthname'        => array( '1', 'දේශීයමාසනාමය', 'LOCALMONTHNAME' ),
+	'localmonthnamegen'     => array( '1', 'දේශීයමාසනාමයපොදු', 'LOCALMONTHNAMEGEN' ),
 	'localmonthabbrev'      => array( '1', 'දේශීයමාසයකෙටි', 'LOCALMONTHABBREV' ),
 	'localday'              => array( '1', 'දේශීයදිනය', 'LOCALDAY' ),
 	'localday2'             => array( '1', 'දේශීයදිනය2', 'LOCALDAY2' ),
@@ -166,11 +169,17 @@ $magicWords = array(
 	'numberofusers'         => array( '1', 'පරිශීලකයන්සංඛ්‍යාව', 'NUMBEROFUSERS' ),
 	'numberofedits'         => array( '1', 'සංස්කරණසංඛ්‍යාව', 'NUMBEROFEDITS' ),
 	'pagename'              => array( '1', 'පිටුනාමය', 'PAGENAME' ),
+	'namespace'             => array( '1', 'නාමඅවකාශය', 'NAMESPACE' ),
+	'namespacee'            => array( '1', 'නාමඅවකාශයන්', 'NAMESPACEE' ),
+	'msg'                   => array( '0', 'පණිවුඩ:', 'MSG:' ),
 	'img_right'             => array( '1', 'දකුණ', 'right' ),
 	'img_left'              => array( '1', 'වම', 'left' ),
 	'img_none'              => array( '1', 'නොමැත', 'none' ),
 	'img_width'             => array( '1', '$1පික්', '$1px' ),
 	'img_center'            => array( '1', 'මධ්‍යය', 'center', 'centre' ),
+	'img_border'            => array( '1', 'දාරය', 'border' ),
+	'img_sub'               => array( '1', 'උප', 'sub' ),
+	'img_middle'            => array( '1', 'මැද', 'middle' ),
 	'special'               => array( '0', 'විශේෂ', 'special' ),
 );
 

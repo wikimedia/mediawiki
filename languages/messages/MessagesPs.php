@@ -136,7 +136,7 @@ $magicWords = array(
 	'img_right'             => array( '1', 'ښي', 'right' ),
 	'img_left'              => array( '1', 'کيڼ', 'left' ),
 	'img_none'              => array( '1', 'هېڅ', 'none' ),
-	'img_center'            => array( '1', 'مېنځ، center', 'center', 'centre' ),
+	'img_center'            => array( '1', 'مېنځ،_center', 'center', 'centre' ),
 	'sitename'              => array( '1', 'دوېبځي_نوم', 'SITENAME' ),
 	'server'                => array( '0', 'پالنګر', 'SERVER' ),
 	'servername'            => array( '0', 'دپالنګر_نوم', 'SERVERNAME' ),
@@ -150,7 +150,7 @@ $magicWords = array(
 	'hiddencat'             => array( '1', '__پټه_وېشنيزه__', '__HIDDENCAT__' ),
 	'pagesize'              => array( '1', 'مخکچه', 'PAGESIZE' ),
 	'index'                 => array( '1', '__ليکلړ__', '__INDEX__' ),
-	'noindex'               => array( '1', '__بې ليکلړ__', '__NOINDEX__' ),
+	'noindex'               => array( '1', '__بې_ليکلړ__', '__NOINDEX__' ),
 	'protectionlevel'       => array( '1', 'ژغورکچه', 'PROTECTIONLEVEL' ),
 );
 
