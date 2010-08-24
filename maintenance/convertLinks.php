@@ -39,7 +39,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 	}
 
 	public function getDbType() {
-		return self::DB_ADMIN;
+		return Maintenance::DB_ADMIN;
 	}
 
 	public function execute() {
