@@ -1036,6 +1036,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 # Diffs
 'history-title'            => 'Versionsgschicht vo „$1“',
 'difference'               => '(Unterschide zwüsche Versione)',
+'difference-multipage'     => '(Unterschid zwische Syte)',
 'lineno'                   => 'Zyle $1:',
 'compareselectedversions'  => 'Usgwählti Versione verglyche',
 'showhideselectedversions' => 'Uusgwehlti Versione zeige/verstecke',
@@ -3150,6 +3151,13 @@ Du chasch au d [[Special:Watchlist/edit|Standard-Bearbeitigssyte]] bruuche.',
 'version-hook-subscribedby'        => 'Ufruef vu',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Lizänz',
+'version-poweredby-credits'        => "Die Websyte nutzt '''[http://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-others'         => 'anderi',
+'version-license-info'             => 'MediaWiki isch e freji Software, d. h. s cha, no dr Bedingige vu dr GNU General Public-Lizänz, wu vu dr Free Software Foundation vereffentligt woren isch, wyterverteilt un/oder modifiziert wäre. Doderbyy cha d Version 2, oder no eigenem Ermässe, jedi nejeri Version vu dr Lizänz brucht wäre.
+
+Des Programm wird in dr Hoffnig verteilt, ass es nitzli isch, aber OHNI JEDI GARANTI un sogar ohni di impliziert Garanti vun ere MÄRTGÄNGIGKEIT oder EIGNIG FIR E BSTIMMTE ZWÄCK. Doderzue git meh Hiiwys in dr GNU General Public-Lizänz.
+
+E [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopi vu dr GNU General Public-Lizänz] sott zämme mit däm Programm verteilt wore syy. Wänn des nit eso isch, cha ne Kopi bi dr Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftli aagforderet oder [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html online gläse] wäre.',
 'version-software'                 => 'Installierti Software',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Version',

@@ -1449,10 +1449,10 @@ S'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë 
 A jë smija a na ''figurin-a''.
 Se a l'ha na figura a amzura pijn-a a l'é mej ch'a carìa cola-lì, dësnò ch'a-j cangia nòm a l'archivi, për piasì.",
 'fileexists-forbidden'        => "Belavans n'archivi con ës nòm-sì a-i é già, donca ël nòm as peul pa pì dovresse.
-Se it veule ancó cariè tò file, për piasì torna andré e dòvra un nòm neuv. [[File:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "Belavans n'archivi con ës nòm-sì ant la diretriss dj'archivi condivis a-i é già.
-Se it veule ancó carié tò file, për piasì torna andré e dòvra un nòm diferent. [[File:$1|thumb|center|$1]]",
-'file-exists-duplicate'       => "Sto file-sì a l'é un duplicà ëd cost {{PLURAL:$1|file|file}}:",
+Se a veul ancó cariè sò archivi, për piasì ch'a torna andré e ch'a deuvra n'àutr nòm. [[File:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Belavans n'archivi con ës nòm-sì ant la diretris dj'archivi condivis a-i é già.
+Se a veul ancó carié sò archivi, për piasì ch'a torna andré e ch'a deuvra un nòm diferent. [[File:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => "S'archivi a l'é un duplicà ëd {{PLURAL:$1|cost-sì|costi-sì}}:",
 'file-deleted-duplicate'      => "N'archivi idéntich a cost-sì ([[$1]]) a l'é scàit ëscancelà an passà.
 A dovrìa controlé la stòria djë scancelament ëd l'archivi prima ëd carielo torna.",
 'uploadwarning'               => 'Avis che i soma dapress a carié',
@@ -3196,11 +3196,12 @@ As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licensa',
 'version-poweredby-credits'        => "Sta wiki-sì a l'é basà su '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-license-info'             => "MediaWiki a l'é un software lìber; it peule redistribuilo e/o modifichelo sota ij termo dla Licensa Pùblica General GNU con publicà da la Free Software Foundation; o la vërsion 2 dla licensa o (a toa decision) minca vërsion d'apress.
+'version-poweredby-others'         => 'àutri',
+'version-license-info'             => "MediaWiki a l'é un programa lìber; a peul passelo an gir e/o modifichelo sota le condission dla Licensa Pùblica General GNU coma publicà da la Free Software Foundation; o la version 2 dla licensa o (a soa decision) qualsëssìa version apress.
 
-MediaWiki a l'é distribuì ant la speransa che a sia ùtil, ma SENSA MINCA GARANSIA; sensa ëdcò la garansia implicita ëd COMERSIABILITA' o d'ADATAMENT A UN BUT PARTICOLAR. Varda la Licensa General Pùblica GNU per pi detaj.
+MediaWiki a l'é distribuì ant la speransa che a sia ùtil, ma SENSA GNUN-A GARANSÌA; sensa gnanca la garansìa implìcita ëd COMERSIABILITA' o d'ADATAMENT A UN BUT PARTICOLAR. Ch'a lesa la Licensa General Pùblica GNU per pi 'd detaj.
 
-It dovrìe avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa Pùblica General GNU] ansema a sto programa-sì; dasnò, scriv a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lesla an linia].",
+A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa Pùblica General GNU] ansema a sto programa-sì; dësnò, ch'a scriva a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html ch'a la lesa an linia].",
 'version-software'                 => 'Programa anstalà',
 'version-software-product'         => 'Prodot',
 'version-software-version'         => 'Version',

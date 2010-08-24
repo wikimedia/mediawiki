@@ -122,16 +122,17 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}}',
-'category_header'          => 'Artitgels en la categoria "$1"',
-'subcategories'            => 'sutcategorias',
-'category-media-header'    => 'Datotecas en la categoria "$1"',
-'category-empty'           => "''Questa categoria cuntegna actualmain nagins artitgels e naginas datotecas.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria zuppentada|Categorias zuppentadas}}',
-'hidden-category-category' => 'Zuppa categorias',
-'category-subcat-count'    => '{{PLURAL:$2|Questa categoria cuntegna be suandanta sutcategoria.|Questa categoria cuntegna {{PLURAL:$1|la suandanta sutcategoria|las $1 suandantas sutcategorias}} da totalmain $2 sutcategoria.}}',
-'category-article-count'   => '{{PLURAL:$2|Questa categoria cuntegna be la suandanta pagina.|{{PLURAL:$1|La suandanta pagina è|Las $1 suandantas paginas èn}} en questa categoria che cuntegna totalmain $2 paginas.}}',
-'listingcontinuesabbrev'   => 'cuntinuaziun',
+'pagecategories'                => '{{PLURAL:$1|Categoria|Categorias}}',
+'category_header'               => 'Artitgels en la categoria "$1"',
+'subcategories'                 => 'sutcategorias',
+'category-media-header'         => 'Datotecas en la categoria "$1"',
+'category-empty'                => "''Questa categoria cuntegna actualmain nagins artitgels e naginas datotecas.''",
+'hidden-categories'             => '{{PLURAL:$1|Categoria zuppentada|Categorias zuppentadas}}',
+'hidden-category-category'      => 'Zuppa categorias',
+'category-subcat-count'         => '{{PLURAL:$2|Questa categoria cuntegna be suandanta sutcategoria.|Questa categoria cuntegna {{PLURAL:$1|la suandanta sutcategoria|las $1 suandantas sutcategorias}} da totalmain $2 sutcategoria.}}',
+'category-subcat-count-limited' => 'Questa categoria cuntegna {{PLURAL:$1|suandanta subcategoria|suandantas $1 subcategorias}}:',
+'category-article-count'        => '{{PLURAL:$2|Questa categoria cuntegna be la suandanta pagina.|{{PLURAL:$1|La suandanta pagina è|Las $1 suandantas paginas èn}} en questa categoria che cuntegna totalmain $2 paginas.}}',
+'listingcontinuesabbrev'        => 'cuntinuaziun',
 
 'about'         => 'Surda',
 'article'       => 'artitgel',
@@ -236,6 +237,11 @@ $messages = array(
 'jumpto'            => 'Midar tar:',
 'jumptonavigation'  => 'navigaziun',
 'jumptosearch'      => 'tschertga',
+'view-pool-error'   => 'Stgisa, ils servers èn actualmain surchargiads. 
+Memia blers utilisaders emprovan da guardar questa pagina. 
+Spetga per plaschair in mument avant che ti eprovas da puspè contemplar questa pagina. 
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Davart {{SITENAME}}',
@@ -330,6 +336,7 @@ L\'ultima dumonda per la banca da datas era:
 ord la funcziun "$2".
 La banca da datas ha rapporta l\'errur "$3: $4"',
 'laggedslavemode'     => 'Attenziun: La pagina mussada na cuntign eventualmain betg anc las ultimas midadas.',
+'readonly'            => 'Banca da datas bloccada',
 'missing-article'     => 'Il text da la pagina cun il num "$1" $2 n\'è betg vegnì chattà en la banca da datas.
 
 Quai capita sch\'ins suonda in link che n\'è betg pli actuals u in link sin ina pagina ch\'è vegnida stizzada.

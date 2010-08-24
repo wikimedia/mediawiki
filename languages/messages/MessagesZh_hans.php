@@ -9,6 +9,7 @@
  *
  * @author Bencmq
  * @author Biŋhai
+ * @author Chenxiaoqino
  * @author Chinalace
  * @author Fantasticfears
  * @author Franklsf95
@@ -680,6 +681,8 @@ $2',
 
 # JavaScript password checks
 'password-strength'            => '预估密码强度： $1',
+'password-strength-bad'        => '差',
+'password-strength-mediocre'   => '一般',
 'password-strength-acceptable' => '可接受',
 'password-strength-good'       => '好',
 'password-retype'              => '再次输入密码',
@@ -1604,12 +1607,13 @@ $1",
 为方便起见，这一个文件的删除记录已经在下面提供:",
 'filename-bad-prefix'         => '您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。',
 'upload-success-subj'         => '上传成功',
-'upload-success-msg'          => '您的上传可以在这里找到：[[:{{ns:file}}:$1]]',
+'upload-success-msg'          => '您的自[$2]的上传可以在这里找到：[[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '上传错误',
 'upload-failure-msg'          => '有一个问题与您的上传有关：
 
 $1',
 'upload-warning-subj'         => '上传警告',
+'upload-warning-msg'          => '您自[$2]的上传出错了。您可以返回[[Special:Upload/stash/$1|上传表单]]并更正问题。',
 
 'upload-proto-error'        => '协议错误',
 'upload-proto-error-text'   => '远程上传要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 开头。',
@@ -2008,6 +2012,7 @@ Template:消除歧義',
 # Watchlist
 'watchlist'            => '监视列表',
 'mywatchlist'          => '监视列表',
+'watchlistfor2'        => '$1 用户的$2',
 'nowatchlist'          => '您的监视列表为空。',
 'watchlistanontext'    => '请$1以查看或编辑您的监视列表。',
 'watchnologin'         => '未登录',
@@ -3296,6 +3301,7 @@ $1',
 'version-version'                  => '（版本$1）',
 'version-license'                  => '授权',
 'version-poweredby-credits'        => "这个 Wiki 由 '''[http://www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
+'version-poweredby-others'         => '其他',
 'version-software'                 => '已安装软件',
 'version-software-product'         => '产品',
 'version-software-version'         => '版本',

@@ -1257,7 +1257,7 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'powersearch-ns'                 => 'Used in the extended search form at [[Special:Search]]',
 'powersearch-redir'              => 'Used in the extended search form at [[Special:Search]]',
 'powersearch-field'              => 'Used in the extended search form at [[Special:Search]]',
-'powersearch-togglelabel'        => 'Used in [http://translatewiki.net/w/i.php?title=Special:Search&advanced=1 Advanced search]. Synomym: "select" as verb.',
+'powersearch-togglelabel'        => 'Used in [http://translatewiki.net/w/i.php?title=Special:Search&advanced=1 Advanced search]. Synonym: "Select" as verb.',
 'powersearch-toggleall'          => '"All" refers to namespaces. It is used in Advanced search: http://translatewiki.net/w/i.php?title=Special:Search&advanced=1
 {{Identical|All}}',
 'powersearch-togglenone'         => '"None" refers to namespaces. It is used in Advanced search: http://translatewiki.net/w/i.php?title=Special:Search&advanced=1
@@ -3626,6 +3626,7 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 'version-poweredby-credits'        => 'Message shown on [[Special:Version]]. Parameters are:
 *$1: the current year
 *$2: a list of selected MediaWiki authors',
+'version-poweredby-others'         => 'Used at the very end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then the word "and" (from {{msg-mw|and}}) follows and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
 'version-software-product'         => 'Shown in [[Special:Version]]',
 'version-software-version'         => '{{Identical|Version}}',
 

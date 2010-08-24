@@ -3614,6 +3614,7 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 'version-svn-revision'             => '(v$2)',
 'version-license'                  => 'Licence',
 'version-poweredby-credits'        => "Ceti vouiqui fonccione grâce a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'ôtros',
 'version-license-info'             => 'MediaWiki est una programeria abada ; cen vôt dére que vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence Publica G·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
 
 MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence Publica G·ènèrala GNU por més de dètalys.

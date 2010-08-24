@@ -1347,6 +1347,7 @@ $1",
 # Diffs
 'history-title'            => 'تاریخچه ویرایش‌های «$1»',
 'difference'               => '(تفاوت بین نسخه‌ها)',
+'difference-multipage'     => '(تفاوت بین صفحات)',
 'lineno'                   => 'سطر $1:',
 'compareselectedversions'  => 'مقایسهٔ نسخه‌های انتخاب‌شده',
 'showhideselectedversions' => 'نمایش/نهفتن نسخه‌های انتخاب شده',
@@ -3593,6 +3594,13 @@ $1',
 'version-version'                  => '(نسخه $1)',
 'version-svn-revision'             => '(&رلم;r$2)',
 'version-license'                  => 'اجازه‌نامه',
+'version-poweredby-credits'        => "این ویکی با قدرت '''[http://www.mediawiki.org/ مدیاویکی]''' کار می‌کند، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
+'version-poweredby-others'         => 'دیگران',
+'version-license-info'             => 'مدیاویکی یک نرم‌افزار رایگان است؛ که شما می‌توانید آن را تحت گنو ال‌جی‌پی‌ال که توسط بنیاد نرم‌افزارهای رایگان منتشر شده‌است، باز نشر کنید؛ یا نسخهٔ ۲ از این محوز، یا (بنا به اختیار) نسخه‌های بعدی.
+
+مدیاویکی منتشر شده‌است به امید اینکه مفید واقع شود، بدون هیچ گونه ضمانتی»؛ بدون ضمانت ضمنی که تجاری یا برای یک کار خاصی مناسب باشد. برای اطلاعات بیشتر مجوز گنو جی‌پی‌ال را مشاهده کنید.
+
+شما می‌بایست یک [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] را همراه این برنامه دریافت کرده باشید؛ اگر نه، بنویسید برای شرکت بنیاد نرم‌افزارهای رایگان، 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA یا آن را [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html به صورت بر خط بخوانید].',
 'version-software'                 => 'نسخهٔ نصب‌شده',
 'version-software-product'         => 'محصول',
 'version-software-version'         => 'نسخه',

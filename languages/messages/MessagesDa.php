@@ -9,6 +9,7 @@
  *
  * @author Amjaabc
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
+ * @author Aputtu
  * @author Boivie
  * @author Byrial
  * @author Christian List
@@ -3231,6 +3232,7 @@ Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licens',
 'version-poweredby-credits'        => "Denne wiki er drevet af'''[http://www.mediawiki.org/ MediaWiki ]''', copyright © 2001 - $1 $2.",
+'version-poweredby-others'         => 'andre',
 'version-license-info'             => 'MediaWiki er gratis software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
 
 MediaWiki distribueres i håb om at det vil være nyttigt, men UDEN NOGEN GARANTI; uden selv de underforståede garantier SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for yderligere detaljer. 

@@ -1255,6 +1255,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 # Diffs
 'history-title'            => 'Historie verzí stránky „$1“',
 'difference'               => '(Rozdíly mezi verzemi)',
+'difference-multipage'     => '(Rozdíly mezi stránkami)',
 'lineno'                   => 'Řádka $1:',
 'compareselectedversions'  => 'Porovnat vybrané verze',
 'showhideselectedversions' => 'Zobrazit/skrýt vybrané revize',
@@ -3482,6 +3483,7 @@ Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve
 'version-version'                  => '(Verze $1)',
 'version-license'                  => 'Licence',
 'version-poweredby-credits'        => "Tato wiki běží na '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
+'version-poweredby-others'         => 'další',
 'version-license-info'             => 'MediaWiki je svobodný software; můžete jej šířit nebo modifikovat podle podmínek GNU General Public License, vydávané Free Software Foundation; buď verze 2 této licence anebo (podle vašeho uvážení) kterékoli pozdější verze.
 
 MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOLI ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO URČITÝ ÚČEL. Podrobnosti se dočtete v textu GNU General Public License.

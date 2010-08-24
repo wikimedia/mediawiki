@@ -314,7 +314,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 # Vector skin
 'vector-action-addsection'       => 'Dodaj temo',
 'vector-action-delete'           => 'Izbriši',
-'vector-action-move'             => 'Premakni',
+'vector-action-move'             => 'Prestavi',
 'vector-action-protect'          => 'Zaščiti',
 'vector-action-undelete'         => 'Vrni',
 'vector-action-unprotect'        => 'Odstrani zaščito',
@@ -1491,7 +1491,7 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'recentchangeslinked-noresult' => 'Na povezanih straneh v določenem obdobju ni bilo nobenih sprememb.',
 'recentchangeslinked-summary'  => "To je seznam nedavnih sprememb strani povezanih na določeno stran (ali iz določene kategorije).
 Strani iz [[Special:Watchlist|vašega spiska nadzorov]] so '''odebeljene'''.",
-'recentchangeslinked-page'     => 'Ime strani:',
+'recentchangeslinked-page'     => 'Naslov strani:',
 'recentchangeslinked-to'       => 'Prikaži spremembe na določeno stran povezanih strani',
 
 # Upload
@@ -3313,6 +3313,7 @@ Uporabite lahko tudi [[Special:Watchlist/edit|standardni urejevalnik]].',
 'version-version'                  => '(Različica $1)',
 'version-license'                  => 'Dovoljenje',
 'version-poweredby-credits'        => "Ta wiki poganja '''[http://www.mediawiki.org/ MediaWiki]''', vse pravice pridržave © 2001-$1 $2.",
+'version-poweredby-others'         => 'drugi',
 'version-license-info'             => 'MediaWiki je prosto programje; lahko ga razširjate in / ali spreminjate pod pogoji GNU General Public License, kot ga je objavila Free Software Foundation; bodisi License različice 2 ali (po vaši izbiri) katere koli poznejše različice.
 
 MediaWiki je razširjan v upanju, da bo uporaben, vendar BREZ KAKRŠNEGA KOLI ZAGOTOVILA; tudi brez posrednega jamstva PRODAJNE VREDNOSTI ali PRIMERNOSTI ZA DOLOČEN NAMEN. Oglejte si GNU General Public License za več podrobnosti.

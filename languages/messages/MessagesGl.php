@@ -1309,7 +1309,7 @@ Este cambio non se poderá desfacer.',
 'prefs-textboxsize'             => 'Tamaño da caixa de edición',
 'youremail'                     => 'Correo electrónico:',
 'username'                      => 'Nome de usuario:',
-'uid'                           => 'ID do usuario:',
+'uid'                           => 'ID de usuario:',
 'prefs-memberingroups'          => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
 'prefs-registration'            => 'Data e hora de rexistro:',
 'yourrealname'                  => 'Nome real:',
@@ -3378,6 +3378,7 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'version-version'                  => '(Versión $1)',
 'version-license'                  => 'Licenza',
 'version-poweredby-credits'        => "Este wiki está desenvolvido por '''[http://www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
+'version-poweredby-others'         => 'outros',
 'version-license-info'             => 'MediaWiki é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.
 
 MediaWiki distribúese coa esperanza de que poida ser útil, pero SEN NINGUNHA GARANTÍA; nin sequera a garantía implícita de COMERCIALIZACIÓN ou ADECUACIÓN A UNHA FINALIDADE ESPECÍFICA. Olle a licenza pública xeral GNU para obter máis detalles.

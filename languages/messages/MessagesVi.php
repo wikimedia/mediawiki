@@ -3436,6 +3436,7 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trang sửa đổi bình th
 'version-version'                  => '(Phiên bản $1)',
 'version-license'                  => 'Giấy phép bản quyền',
 'version-poweredby-credits'        => "Wiki này chạy trên '''[http://www.mediawiki.org/ MediaWiki]''', bản quyền © 2001–$1 $2.",
+'version-poweredby-others'         => 'những người khác',
 'version-license-info'             => "MediaWiki là phần mềm tự do; bạn được phép tái phân phối và/hoặc sửa đổi nó theo những điều khoản của Giấy phép Công cộng GNU do Quỹ Phần mềm Tự do xuất bản; phiên bản 2 hay bất kỳ phiên bản nào mới hơn nào của Giấy phép.
 
 MediaWiki được phân phối với hy vọng rằng nó sẽ hữu ích, nhưng '''không có bất kỳ một bảo đảm nào cả''', ngay cả những bảo đảm ngụ ý cho '''các mục đích thương mại''' hoặc cho '''một mục đích đặc biệt nào đó'''. Xem Giấy phép Công cộng GNU để biết thêm chi tiết.

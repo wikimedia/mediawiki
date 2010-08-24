@@ -342,7 +342,7 @@ $messages = array(
 'personaltools'     => 'Ferramientas personals',
 'postcomment'       => 'Nueva sección',
 'articlepage'       => "Veyer l'articlo",
-'talk'              => 'Descusión',
+'talk'              => 'Discusión',
 'views'             => 'Visualizacions',
 'toolbox'           => 'Ferramientas',
 'userpage'          => "Veyer a pachina d'usuario",
@@ -625,7 +625,7 @@ Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya t
 'resetpass-temp-password'   => 'Contrasenya temporal:',
 
 # Edit page toolbar
-'bold_sample'     => 'texto en negreta',
+'bold_sample'     => 'Texto en negreta',
 'bold_tip'        => 'Texto en negreta',
 'italic_sample'   => 'Texto en cursiva',
 'italic_tip'      => 'Texto en cursiva',
@@ -643,7 +643,7 @@ Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya t
 'image_tip'       => 'Imachen incorporada',
 'media_sample'    => 'Exemplo.ogg',
 'media_tip'       => 'Vinclo ta un fichero',
-'sig_tip'         => 'A suya sinyadura con marca de calendata y hora',
+'sig_tip'         => 'Sinyatura, calendata y hora',
 'hr_tip'          => 'Linia horizontal (faiga-ne un emplego amoderau)',
 
 # Edit pages
@@ -1184,7 +1184,7 @@ No se podrá desfer iste cambio.",
 'yourrealname'                  => 'Nombre reyal:',
 'yourlanguage'                  => 'Luenga:',
 'yourvariant'                   => 'Modalidat linguistica:',
-'yournick'                      => 'Sinyadura:',
+'yournick'                      => 'Sinyatura:',
 'prefs-help-signature'          => 'Os comentarios en pachina de discusión s\'han de sinyar con "<nowiki>~~~~</nowiki>", que se tornará en a suya sinyatura y calendata.',
 'badsig'                        => 'A suya sinyadura no ye conforme; comprebe as etiquetas HTML.',
 'badsiglength'                  => 'A sinyadura ye masiau larga.

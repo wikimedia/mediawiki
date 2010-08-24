@@ -1172,7 +1172,7 @@ $1",
 # Diffs
 'history-title'            => 'Гісторыя зьменаў старонкі «$1»',
 'difference'               => '(Адрозьненьні паміж вэрсіямі)',
-'difference-multipage'     => '(Адрозьненьні паміж старонкамі)',
+'difference-multipage'     => '(Розьніца паміж старонкамі)',
 'lineno'                   => 'Радок $1:',
 'compareselectedversions'  => 'Параўнаць выбраныя вэрсіі',
 'showhideselectedversions' => 'Паказаць/схаваць вызначаныя вэрсіі',
@@ -3350,7 +3350,13 @@ $1',
 'version-hook-subscribedby'        => 'Падпісаны на',
 'version-version'                  => '(Вэрсія $1)',
 'version-license'                  => 'Ліцэнзія',
-'version-poweredby-credits'        => "Гэтая вікі працуе на праграмным забесьпячэньні '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'        => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'іншыя',
+'version-license-info'             => 'MediaWiki зьяўляецца вольным праграмным забесьпячэньнем, якое Вы можаце распаўсюджваць і/ці зьмяняць на ўмовах ліцэнзіі GNU General Public License вэрсіі 2 ці болей позьняй, апублікаванай Фундацыяй вольнага праграмнага забесьпячэньня (Free Software Foundation).
+
+MediaWiki распаўсюджваецца з надзеяй, што будзе карысным, але БЕЗ АНІЯКІХ ГАРАНТЫЯЎ, нават без меркаваных гарантыяў КАМЭРЦЫЙНАЙ КАШТОЎНАСЬЦІ ці ПРЫДАТНАСЬЦІ ДА ПЭЎНАЙ МЭТЫ. Глядзіце ліцэнзію GNU General Public License для болей падрабязных зьвестак.
+
+Вы мусілі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разам з гэтым праграмным забесьпячэньнем. Калі не, напішыце Free Software Foundation, Inc. па адрасе 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, альбо прачытайце [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html он-лайн копію ліцэнзіі].',
 'version-software'                 => 'Усталяванае праграмнае забесьпячэньне',
 'version-software-product'         => 'Прадукт',
 'version-software-version'         => 'Вэрсія',

@@ -3464,6 +3464,7 @@ Możesz także użyć [[Special:Watchlist/edit|standardowego edytora obserwowany
 'version-version'                  => '(Wersja $1)',
 'version-license'                  => 'Licencja',
 'version-poweredby-credits'        => "To wiki korzysta z oprogramowania '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001‐$1 $2.",
+'version-poweredby-others'         => 'inni',
 'version-license-info'             => 'MediaWiki jest wolnym oprogramowaniem – możesz je dystrybuować i modyfikować zgodnie z warunkami licencji GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 tej licencji lub (jeśli wolisz) dowolnej późniejszej.
 
 MediaWiki jest dystrybuowane w nadziei, że okaże się użyteczne ale BEZ JAKIEJKOLWIEK GWARANCJI – nawet bez domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ lub PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. Więcej szczegółów znajdziesz w treści licencji GNU General Public License.
