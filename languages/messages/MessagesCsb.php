@@ -14,6 +14,8 @@
  * @author Warszk
  * @author לערי ריינהארט
  */
+ 
+$fallback = 'pl';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
