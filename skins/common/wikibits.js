@@ -439,7 +439,7 @@ function addCheckboxClickHandlers( inputs, start ) {
 
 	for ( var i = start; i < finish; i++ ) {
 		var cb = inputs[i];
-		if ( !cb.type || cb.type.toLowerCase() != 'checkbox' ) {
+		if ( !cb.type || cb.type.toLowerCase() != 'checkbox' || ( ' ' + cb.className + ' ' ).indexOf( ' noshiftselect ' )  != -1 ) {
 			continue;
 		}
 		var end = checkboxes.length;
