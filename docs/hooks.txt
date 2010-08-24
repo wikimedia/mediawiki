@@ -1416,6 +1416,7 @@ Append to $text to add additional text/scripts after the stock bottom scripts.
 'SkinAfterContent': Allows extensions to add text after the page content and
 article metadata.
 &$data: (string) Text to be printed out directly (without parsing)
+$skin: Skin object
 This hook should work in all skins. Just set the &$data variable to the text
 you're going to add.
 
