@@ -303,6 +303,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a repository due to missing 'name' attribute from the API list=allimages
 * (bug 24898) MediaWiki uses /tmp even if a vHost-specific tempdir is set, also
   make wfTempDir() return a sane value for Windows on worst-case
+* (bug 24824) Support ImageMagick 6.5.6-2+ JPEG decoder size hint, to reduce 
+  memory usage when such an ImageMagick is used for scaling.
+* Disable multithreaded behaviour in recent ImageMagick, to avoid a deadlock 
+  when a resource limit such as $wgMaxShellMemory is hit.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
