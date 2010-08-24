@@ -11,6 +11,7 @@
  * @author AS
  * @author Ahonc
  * @author Aleksandrit
+ * @author Alex Khimich
  * @author AlexSm
  * @author Dubyk
  * @author EugeneZelenko
@@ -1182,6 +1183,7 @@ $1",
 # Diffs
 'history-title'            => 'Історія змін сторінки «$1»',
 'difference'               => '(відмінності між версіями)',
+'difference-multipage'     => '(Різниця між сторінками)',
 'lineno'                   => 'Рядок $1:',
 'compareselectedversions'  => 'Порівняти вибрані версії',
 'showhideselectedversions' => 'Показати/приховати обрані версії',
@@ -3392,6 +3394,13 @@ $1',
 'version-hook-subscribedby'        => 'Підписаний на',
 'version-version'                  => '(Версія $1)',
 'version-license'                  => 'Ліцензія',
+'version-poweredby-credits'        => "Ця Вікі працює на системі управління вмістом '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'інші',
+'version-license-info'             => 'MediaWiki є вільним програмним забезпеченням, ви можете його розповсюджувати та / або модифікувати його відповідно до умов GNU General Public License, яка опублікованя фондом вільного програмного забезпечення; або версії 2 Ліцензії, або (на Ваш розсуд) будь-якої наступної версії. 
+
+ MediaWiki поширюється в надії, що вона буде корисною, але БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ, навіть без неявної гарантії КОМЕРЦІЙНОЇ ПРИДАТНОСТІ чи для певної мети. Див GNU General Public License для більш докладної інформації. 
+
+ Ви повинні були отримати [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разом з цією програмою, якщо немає, напишіть у Free Software Foundation, Inc 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, США або [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитайте її онлайн].',
 'version-software'                 => 'Установлене програмне забезпечення',
 'version-software-product'         => 'Продукт',
 'version-software-version'         => 'Версія',
