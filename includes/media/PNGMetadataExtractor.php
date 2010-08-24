@@ -33,12 +33,13 @@ class PNGMetadataExtractor {
 		
 		$fh = fopen( $filename, 'r' );
 		
-		if (!$fh)
+		if (!$fh) {
 			throw new Exception( __METHOD__ . ": Unable to open file $filename" );
+		}
 		
 		// Check for the PNG header
 		$buf = fread( $fh, 8 );
-		if ( !($buf == self::$png_sig) ) {
+		if ( $buf != self::$png_sig ) {
 			throw new Exception( __METHOD__ . ": Not a valid PNG file; header: $buf" );
 		}
 
@@ -46,21 +47,21 @@ class PNGMetadataExtractor {
 		while( !feof( $fh ) ) {
 			$buf = fread( $fh, 4 );
 			if( !$buf ) {
-                throw new Exception( __METHOD__ . ": Read error" );
-            }
+				throw new Exception( __METHOD__ . ": Read error" );
+			}
 			$chunk_size = unpack( "N", $buf);
 			$chunk_size = $chunk_size[1];
 
 			$chunk_type = fread( $fh, 4 );
 			if( !$chunk_type ) {
-                throw new Exception( __METHOD__ . ": Read error" );
-            }
+				throw new Exception( __METHOD__ . ": Read error" );
+			}
 
 			if ( $chunk_type == "acTL" ) {
 				$buf = fread( $fh, $chunk_size );
 				if( !$buf ) {
-                    throw new Exception( __METHOD__ . ": Read error" );
-                }
+					throw new Exception( __METHOD__ . ": Read error" );
+				}
 
 				$actl = unpack( "Nframes/Nplays", $buf );
 				$frameCount = $actl['frames'];
@@ -68,8 +69,8 @@ class PNGMetadataExtractor {
 			} elseif ( $chunk_type == "fcTL" ) {
 				$buf = fread( $fh, $chunk_size );
 				if( !$buf ) {
-                    throw new Exception( __METHOD__ . ": Read error" );
-                }
+					throw new Exception( __METHOD__ . ": Read error" );
+				}
 				$buf = substr( $buf, 20 );	
 
 				$fctldur = unpack( "ndelay_num/ndelay_den", $buf );
