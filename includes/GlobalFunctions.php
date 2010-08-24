@@ -3465,11 +3465,12 @@ function wfArrayMap( $function, $input ) {
  * @return PackageRepository
  */
 function wfGetRepository() {
-	global $wgRepository, $wgRepositoryApiLocation;
+	global $wgRepositoryApiLocation;
+	static $repository = false;
 	
-	if ( !isset( $wgRepository ) ) {
-		$wgRepository = new DistributionRepository( $wgRepositoryApiLocation );
+	if ( $repository === false ) {
+		$repository = new DistributionRepository( $wgRepositoryApiLocation );
 	}
 	
-	return $wgRepository;
+	return $repository;
 }
