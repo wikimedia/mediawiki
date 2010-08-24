@@ -42,7 +42,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'رسانه' => NS_MEDIA
+	'رسانه' => NS_MEDIA,
 	'رسانه‌ای' => NS_MEDIA,
 	'تصویر' => NS_FILE,
 	'بحث_تصویر' => NS_FILE_TALK,
