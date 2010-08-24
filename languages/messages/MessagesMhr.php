@@ -16,7 +16,7 @@
 $fallback = 'ru';
 
 $namespaceNames = array(
-	NS_SPECIAL          => 'Лӱмын ыштыме',
+	NS_SPECIAL          => 'Лӱмын_ыштыме',
 	NS_TALK             => 'Каҥашымаш',
 	NS_USER             => 'Пайдаланыше',
 	NS_USER_TALK        => 'Пайдаланышын_каҥашымаш',

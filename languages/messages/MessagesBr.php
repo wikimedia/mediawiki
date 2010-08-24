@@ -23,8 +23,8 @@ $namespaceNames = array(
 	NS_USER             => 'Implijer',
 	NS_USER_TALK        => 'Kaozeadenn_Implijer',
 	NS_PROJECT_TALK     => 'Kaozeadenn_$1',
-	NS_FILE             => 'Skeudenn',
-	NS_FILE_TALK        => 'Kaozeadenn_Skeudenn',
+	NS_FILE             => 'Restr',
+	NS_FILE_TALK        => 'Kaozeadenn_Restr',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Kaozeadenn_MediaWiki',
 	NS_TEMPLATE         => 'Patrom',
@@ -33,6 +33,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Kaozeadenn_Skoazell',
 	NS_CATEGORY         => 'Rummad',
 	NS_CATEGORY_TALK    => 'Kaozeadenn_Rummad',
+);
+
+$namespaceAliases = array(
+	'Skeudenn'            => NS_FILE,
+	'Kaozeadenn_Skeudenn' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

@@ -17,17 +17,26 @@ $fallback = 'ru';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Амедиа',
+	NS_SPECIAL          => 'Цастәи',
 	NS_TALK             => 'Ахцәажәара',
-	NS_USER             => 'Иалахә',
+	NS_USER             => 'Алахәыла',
+	NS_USER_TALK        => 'Алахәыла_ахцәажәара',
 	NS_PROJECT_TALK     => '$1_ахцәажәара',
 	NS_FILE             => 'Афаил',
+	NS_FILE_TALK        => 'Афаил_ахцәажәара',
 	NS_MEDIAWIKI        => 'Амедиавики',
+	NS_MEDIAWIKI_TALK   => 'Амедиавики_ахцәажәара',
 	NS_TEMPLATE         => 'Ашаблон',
+	NS_TEMPLATE_TALK    => 'Ашаблон_ахцәажәара',
 	NS_HELP             => 'Ацхыраара',
+	NS_HELP_TALK        => 'Ацхыраара_ахцәажәара',
 	NS_CATEGORY         => 'Акатегориа',
+	NS_CATEGORY_TALK    => 'Акатегориа_ахцәажәара',
 );
 
 $namespaceAliases = array(
+	'Иалахә'             => NS_USER,
+
 	// Backward compat. Fallbacks from 'ru'.
 	'Медиа'                => NS_MEDIA,
 	'Служебная'            => NS_SPECIAL,
