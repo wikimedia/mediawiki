@@ -208,7 +208,7 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Return the last query that went through Database::query()
+	 * Return the last query that went through DatabaseBase::query()
 	 * @return String
 	 */
 	function lastQuery() { return $this->mLastQuery; }
@@ -444,14 +444,14 @@ abstract class DatabaseBase {
 			# logging size most of the time. The substr is really just a sanity check.
 
 			# Who's been wasting my precious column space? -- TS
-			#$profName = 'query: ' . $fname . ' ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
+			#$profName = 'query: ' . $fname . ' ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
 
 			if ( $isMaster ) {
-				$queryProf = 'query-m: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'Database::query-master';
+				$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'DatabaseBase::query-master';
 			} else {
-				$queryProf = 'query: ' . substr( Database::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'Database::query';
+				$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+				$totalProf = 'DatabaseBase::query';
 			}
 			wfProfileIn( $totalProf );
 			wfProfileIn( $queryProf );
@@ -581,7 +581,7 @@ abstract class DatabaseBase {
 	 * & = filename; reads the file and inserts as a blob
 	 *     (we don't use this though...)
 	 */
-	function prepare( $sql, $func = 'Database::prepare' ) {
+	function prepare( $sql, $func = 'DatabaseBase::prepare' ) {
 		/* MySQL doesn't support prepared statements (yet), so just
 		   pack up the query for reference. We'll manually replace
 		   the bits later. */
@@ -614,7 +614,7 @@ abstract class DatabaseBase {
 	 * @param $args ...
 	 */
 	function safeQuery( $query, $args = null ) {
-		$prepared = $this->prepare( $query, 'Database::safeQuery' );
+		$prepared = $this->prepare( $query, 'DatabaseBase::safeQuery' );
 		if( !is_array( $args ) ) {
 			# Pull the var args
 			$args = func_get_args();
@@ -680,7 +680,7 @@ abstract class DatabaseBase {
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
 	 *
-	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @param $res SQL result object as returned from DatabaseBase::query(), etc.
 	 * @return Row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -690,7 +690,7 @@ abstract class DatabaseBase {
 	 * Fetch the next row from the given result object, in associative array
 	 * form.  Fields are retrieved with $row['fieldname'].
 	 *
-	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @param $res SQL result object as returned from DatabaseBase::query(), etc.
 	 * @return Row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -761,10 +761,10 @@ abstract class DatabaseBase {
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns success
 	 *
-	 * This function exists for historical reasons, Database::update() has a more standard
+	 * This function exists for historical reasons, DatabaseBase::update() has a more standard
 	 * calling convention and feature set
 	 */
-	function set( $table, $var, $value, $cond, $fname = 'Database::set' ) {
+	function set( $table, $var, $value, $cond, $fname = 'DatabaseBase::set' ) {
 		$table = $this->tableName( $table );
 		$sql = "UPDATE $table SET $var = '" .
 		  $this->strencode( $value ) . "' WHERE ($cond)";
@@ -776,7 +776,7 @@ abstract class DatabaseBase {
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns FALSE on failure
 	 */
-	function selectField( $table, $var, $cond='', $fname = 'Database::selectField', $options = array() ) {
+	function selectField( $table, $var, $cond='', $fname = 'DatabaseBase::selectField', $options = array() ) {
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
 		}
@@ -856,12 +856,12 @@ abstract class DatabaseBase {
 	 * @param $conds   Mixed:  Array or string, condition(s) for WHERE
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
 	 * @param $options Array:  Associative array of options (e.g. array('GROUP BY' => 'page_title')),
-	 *                         see Database::makeSelectOptions code for list of supported stuff
+	 *                         see DatabaseBase::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
 	 *                           (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
-	 * @return mixed Database result resource (feed to Database::fetchObject or whatever), or false on failure
+	 * @return mixed Database result resource (feed to DatabaseBase::fetchObject or whatever), or false on failure
 	 */
-	function select( $table, $vars, $conds='', $fname = 'Database::select', $options = array(), $join_conds = array() )
+	function select( $table, $vars, $conds='', $fname = 'DatabaseBase::select', $options = array(), $join_conds = array() )
 	{
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 		return $this->query( $sql, $fname );
@@ -875,12 +875,12 @@ abstract class DatabaseBase {
 	 * @param $conds   Mixed:  Array or string, condition(s) for WHERE
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
 	 * @param $options Array:  Associative array of options (e.g. array('GROUP BY' => 'page_title')),
-	 *                         see Database::makeSelectOptions code for list of supported stuff
+	 *                         see DatabaseBase::makeSelectOptions code for list of supported stuff
 	 * @param $join_conds Array: Associative array of table join conditions (optional)
 	 *                           (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return string, the SQL text
 	 */
-	function selectSQLText( $table, $vars, $conds='', $fname = 'Database::select', $options = array(), $join_conds = array() ) {
+	function selectSQLText( $table, $vars, $conds='', $fname = 'DatabaseBase::select', $options = array(), $join_conds = array() ) {
 		if( is_array( $vars ) ) {
 			$vars = implode( ',', $vars );
 		}
@@ -942,7 +942,7 @@ abstract class DatabaseBase {
 	 *
 	 * @todo migrate documentation to phpdocumentor format
 	 */
-	function selectRow( $table, $vars, $conds, $fname = 'Database::selectRow', $options = array(), $join_conds = array() ) {
+	function selectRow( $table, $vars, $conds, $fname = 'DatabaseBase::selectRow', $options = array(), $join_conds = array() ) {
 		$options['LIMIT'] = 1;
 		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( $res === false )
@@ -958,7 +958,7 @@ abstract class DatabaseBase {
 	 * Estimate rows in dataset
 	 * Returns estimated count - not necessarily an accurate estimate across different databases,
 	 * so use sparingly
-	 * Takes same arguments as Database::select()
+	 * Takes same arguments as DatabaseBase::select()
 	 *
 	 * @param $table String: table name
 	 * @param $vars Array: unused
@@ -967,7 +967,7 @@ abstract class DatabaseBase {
 	 * @param $options Array: options for select
 	 * @return Integer: row count
 	 */
-	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
+	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'DatabaseBase::estimateRowCount', $options = array() ) {
 		$rows = 0;
 		$res = $this->select ( $table, 'COUNT(*) AS rowcount', $conds, $fname, $options );
 		if ( $res ) {
@@ -1011,7 +1011,7 @@ abstract class DatabaseBase {
 	 * @param $fname String: calling function name (optional)
 	 * @return Boolean: whether $table has filed $field
 	 */
-	function fieldExists( $table, $field, $fname = 'Database::fieldExists' ) {
+	function fieldExists( $table, $field, $fname = 'DatabaseBase::fieldExists' ) {
 		$info = $this->fieldInfo( $table, $field );
 		return (bool)$info;
 	}
@@ -1021,7 +1021,7 @@ abstract class DatabaseBase {
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns NULL on failure
 	 */
-	function indexExists( $table, $index, $fname = 'Database::indexExists' ) {
+	function indexExists( $table, $index, $fname = 'DatabaseBase::indexExists' ) {
 		$info = $this->indexInfo( $table, $index, $fname );
 		if ( is_null( $info ) ) {
 			return null;
@@ -1035,7 +1035,7 @@ abstract class DatabaseBase {
 	 * Get information about an index into an object
 	 * Returns false if the index does not exist
 	 */
-	function indexInfo( $table, $index, $fname = 'Database::indexInfo' ) {
+	function indexInfo( $table, $index, $fname = 'DatabaseBase::indexInfo' ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
 		# SHOW INDEX should work for 3.x and up:
 		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
@@ -1114,7 +1114,7 @@ abstract class DatabaseBase {
 	 *
 	 * @return bool
 	 */
-	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
+	function insert( $table, $a, $fname = 'DatabaseBase::insert', $options = array() ) {
 		return this->insertOnDupeUpdate( $table, $a, $fname, $options );
 	}
 
@@ -1136,7 +1136,7 @@ abstract class DatabaseBase {
 	 *
 	 * @return bool
 	 */
-	function insertOnDupeUpdate( $table, $a, $fname = 'Database::insertOnDupeUpdate', $options = array(), $onDupeUpdate = array() ) {
+	function insertOnDupeUpdate( $table, $a, $fname = 'DatabaseBase::insertOnDupeUpdate', $options = array(), $onDupeUpdate = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
 			return true;
@@ -1179,10 +1179,10 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Make UPDATE options for the Database::update function
+	 * Make UPDATE options for the DatabaseBase::update function
 	 *
 	 * @private
-	 * @param $options Array: The options passed to Database::update
+	 * @param $options Array: The options passed to DatabaseBase::update
 	 * @return string
 	 */
 	function makeUpdateOptions( $options ) {
@@ -1209,7 +1209,7 @@ abstract class DatabaseBase {
 	 *                        more of IGNORE, LOW_PRIORITY
 	 * @return Boolean
 	 */
-	function update( $table, $values, $conds, $fname = 'Database::update', $options = array() ) {
+	function update( $table, $values, $conds, $fname = 'DatabaseBase::update', $options = array() ) {
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
@@ -1230,7 +1230,7 @@ abstract class DatabaseBase {
 	 */
 	function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
-			throw new DBUnexpectedError( $this, 'Database::makeList called with incorrect parameters' );
+			throw new DBUnexpectedError( $this, 'DatabaseBase::makeList called with incorrect parameters' );
 		}
 
 		$first = true;
@@ -1629,7 +1629,7 @@ abstract class DatabaseBase {
 	 *
 	 * @todo migrate comment to phodocumentor format
 	 */
-	function replace( $table, $uniqueIndexes, $rows, $fname = 'Database::replace' ) {
+	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseBase::replace' ) {
 		$table = $this->tableName( $table );
 
 		# Single row case
@@ -1666,9 +1666,9 @@ abstract class DatabaseBase {
 	 * @param $conds Array: Condition array of field names mapped to variables, ANDed together in the WHERE clause
 	 * @param $fname String: Calling function name (use __METHOD__) for logs/profiling
 	 */
-	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'Database::deleteJoin' ) {
+	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'DatabaseBase::deleteJoin' ) {
 		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'Database::deleteJoin() called with empty $conds' );
+			throw new DBUnexpectedError( $this, 'DatabaseBase::deleteJoin() called with empty $conds' );
 		}
 
 		$delTable = $this->tableName( $delTable );
@@ -1687,7 +1687,7 @@ abstract class DatabaseBase {
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
-		$res = $this->query( $sql, 'Database::textFieldSize' );
+		$res = $this->query( $sql, 'DatabaseBase::textFieldSize' );
 		$row = $this->fetchObject( $res );
 
 		$m = array();
@@ -1715,9 +1715,9 @@ abstract class DatabaseBase {
 	 *
 	 * Use $conds == "*" to delete all rows
 	 */
-	function delete( $table, $conds, $fname = 'Database::delete' ) {
+	function delete( $table, $conds, $fname = 'DatabaseBase::delete' ) {
 		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 'Database::delete() called with no conditions' );
+			throw new DBUnexpectedError( $this, 'DatabaseBase::delete() called with no conditions' );
 		}
 		$table = $this->tableName( $table );
 		$sql = "DELETE FROM $table";
@@ -1730,11 +1730,11 @@ abstract class DatabaseBase {
 	/**
 	 * INSERT SELECT wrapper
 	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
-	 * Source items may be literals rather than field names, but strings should be quoted with Database::addQuotes()
+	 * Source items may be literals rather than field names, but strings should be quoted with DatabaseBase::addQuotes()
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
 	 */
-	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'Database::insertSelect',
+	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabaseBase::insertSelect',
 		$insertOptions = array(), $selectOptions = array() )
 	{
 		$destTable = $this->tableName( $destTable );
@@ -1879,7 +1879,7 @@ abstract class DatabaseBase {
 	 * reached.
 	 */
 	function deadlockLoop() {
-		$myFname = 'Database::deadlockLoop';
+		$myFname = 'DatabaseBase::deadlockLoop';
 
 		$this->begin();
 		$args = func_get_args();
@@ -1924,7 +1924,7 @@ abstract class DatabaseBase {
 	 * @param $timeout Integer: the maximum number of seconds to wait for synchronisation
 	 */
 	function masterPosWait( MySQLMasterPos $pos, $timeout ) {
-		$fname = 'Database::masterPosWait';
+		$fname = 'DatabaseBase::masterPosWait';
 		wfProfileIn( $fname );
 
 		# Commit any open transactions
@@ -1973,7 +1973,7 @@ abstract class DatabaseBase {
 			wfDebug( __METHOD__.": fake slave pos = $pos\n" );
 			return $pos;
 		}
-		$res = $this->query( 'SHOW SLAVE STATUS', 'Database::getSlavePos' );
+		$res = $this->query( 'SHOW SLAVE STATUS', 'DatabaseBase::getSlavePos' );
 		$row = $this->fetchObject( $res );
 		if ( $row ) {
 			$pos = isset($row->Exec_master_log_pos) ? $row->Exec_master_log_pos : $row->Exec_Master_Log_Pos;
@@ -1990,7 +1990,7 @@ abstract class DatabaseBase {
 		if ( $this->mFakeMaster ) {
 			return new MySQLMasterPos( 'fake', microtime( true ) );
 		}
-		$res = $this->query( 'SHOW MASTER STATUS', 'Database::getMasterPos' );
+		$res = $this->query( 'SHOW MASTER STATUS', 'DatabaseBase::getMasterPos' );
 		$row = $this->fetchObject( $res );
 		if ( $row ) {
 			return new MySQLMasterPos( $row->File, $row->Position );
@@ -2002,7 +2002,7 @@ abstract class DatabaseBase {
 	/**
 	 * Begin a transaction, committing any previously open transaction
 	 */
-	function begin( $fname = 'Database::begin' ) {
+	function begin( $fname = 'DatabaseBase::begin' ) {
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
 	}
@@ -2010,7 +2010,7 @@ abstract class DatabaseBase {
 	/**
 	 * End a transaction
 	 */
-	function commit( $fname = 'Database::commit' ) {
+	function commit( $fname = 'DatabaseBase::commit' ) {
 		if( $this->mTrxLevel ) {
 			$this->query( 'COMMIT', $fname );
 			$this->mTrxLevel = 0;
@@ -2021,7 +2021,7 @@ abstract class DatabaseBase {
 	 * Rollback a transaction.
 	 * No-op on non-transactional databases.
 	 */
-	function rollback( $fname = 'Database::rollback' ) {
+	function rollback( $fname = 'DatabaseBase::rollback' ) {
 		if( $this->mTrxLevel ) {
 			$this->query( 'ROLLBACK', $fname, true );
 			$this->mTrxLevel = 0;
@@ -2032,7 +2032,7 @@ abstract class DatabaseBase {
 	 * Begin a transaction, committing any previously open transaction
 	 * @deprecated use begin()
 	 */
-	function immediateBegin( $fname = 'Database::immediateBegin' ) {
+	function immediateBegin( $fname = 'DatabaseBase::immediateBegin' ) {
 		wfDeprecated( __METHOD__ );
 		$this->begin();
 	}
@@ -2041,7 +2041,7 @@ abstract class DatabaseBase {
 	 * Commit transaction, if one is open
 	 * @deprecated use commit()
 	 */
-	function immediateCommit( $fname = 'Database::immediateCommit' ) {
+	function immediateCommit( $fname = 'DatabaseBase::immediateCommit' ) {
 		wfDeprecated( __METHOD__ );
 		$this->commit();
 	}
@@ -2058,7 +2058,7 @@ abstract class DatabaseBase {
 	 * @param $fname String: calling function name
 	 * @return Boolean: true if operation was successful
 	 */
-	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'Database::duplicateTableStructure' ) {
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseBase::duplicateTableStructure' ) {
 		throw new MWException( 'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
 	}
 
@@ -2921,7 +2921,7 @@ class FakeResultWrapper extends ResultWrapper {
 
 /**
  * Used by DatabaseBase::buildLike() to represent characters that have special meaning in SQL LIKE clauses
- * and thus need no escaping. Don't instantiate it manually, use Database::anyChar() and anyString() instead.
+ * and thus need no escaping. Don't instantiate it manually, use DatabaseBase::anyChar() and anyString() instead.
  */
 class LikeMatch {
 	private $str;
