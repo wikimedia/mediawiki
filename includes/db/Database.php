@@ -1097,7 +1097,7 @@ abstract class DatabaseBase {
 		}
 		return !$indexInfo[0]->Non_unique;
 	}
-
+	
 	/**
 	 * INSERT wrapper, inserts an array into a table
 	 *
@@ -1115,6 +1115,28 @@ abstract class DatabaseBase {
 	 * @return bool
 	 */
 	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
+		return this->insertOnDupeUpdate( $table, $a, $fname, $options );
+	}
+
+	/**
+	 * INSERT ... ON DUPE UPDATE wrapper, inserts an array into a table, optionally updating if
+	 * duplicate primary key found
+	 *
+	 * $a may be a single associative array, or an array of these with numeric keys, for
+	 * multi-row insert.
+	 *
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns success
+	 *
+	 * @param $table   String: table name (prefix auto-added)
+	 * @param $a	   Array: Array of rows to insert
+	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
+	 * @param $options Mixed: Associative array of options
+	 * @param $onDupeUpdate   Array: Associative array of fields to update on duplicate
+	 *
+	 * @return bool
+	 */
+	function insertOnDupeUpdate( $table, $a, $fname = 'Database::insertOnDupeUpdate', $options = array(), $onDupeUpdate = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
 			return true;
@@ -1148,6 +1170,11 @@ abstract class DatabaseBase {
 		} else {
 			$sql .= '(' . $this->makeList( $a ) . ')';
 		}
+		
+		if ( count( $onDupeUpdate ) ) {
+			$sql .= ' ON DUPLICATE KEY UPDATE ' . $this->makeList( $onDupeUpdate );
+		}
+		
 		return (bool)$this->query( $sql, $fname );
 	}
 
