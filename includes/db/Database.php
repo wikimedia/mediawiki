@@ -1115,7 +1115,7 @@ abstract class DatabaseBase {
 	 * @return bool
 	 */
 	function insert( $table, $a, $fname = 'DatabaseBase::insert', $options = array() ) {
-		return this->insertOnDupeUpdate( $table, $a, $fname, $options );
+		return $this->insertOnDupeUpdate( $table, $a, $fname, $options );
 	}
 
 	/**
