@@ -1638,7 +1638,7 @@ abstract class DatabaseBase {
 	 * occurred in MySQL
 	 *
 	 * @param $table String: The table to replace the row(s) in.
-	 * @param $uniqueIndexes String:
+	 * @param $uniqueIndexes Array: An associative array of indexes
 	 * @param $rows Array: Array of rows to replace
 	 * @param $fname String: Calling function name (use __METHOD__) for logs/profiling
 	 */
