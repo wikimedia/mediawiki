@@ -2256,7 +2256,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Именски простор:',
-'invert'         => 'Обрни селекцију',
+'invert'         => 'Обрни избор',
 'blanknamespace' => '(Главно)',
 
 # Contributions
