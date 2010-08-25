@@ -1164,15 +1164,49 @@ abstract class DatabaseBase {
 	 * @param $table   String: table name (prefix auto-added)
 	 * @param $a	   Array: Array of rows to insert
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
-	 * @param $options Mixed: Associative array of options
+	 * @param $options Mixed: Associative array of options (ignored)
 	 * @param $onDupeUpdate   Array: Associative array of fields to update on duplicate
 	 *
 	 * @return bool
 	 */
 	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOnDupeUpdate', $options = array(), $onDupeUpdate = array() ) {
-		//TODO:FIXME
-		//$this->select();
-		//$this->replace();
+		
+		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
+			$keys = array_keys( $a[0] );
+		} else {
+			$keys = array_keys( $a );
+		}
+
+		//Get what is only to be set if inserted
+		$where = array_diff( $a, $onDupeUpdate );
+
+		$res = $this->select(
+			$table,
+			$keys,
+			$this->makeList( $where, LIST_AND ),
+			__METHOD__
+		);
+
+		if ( $res ) {
+			//Where there is a different value to set if this is being "updated", use the $onDupeUpdate value for that to
+			//replace the original option (if it was an insert), and replace the column name with the value read from
+			//the existing row
+			foreach( $where as $k => $v ){
+				if ( isset( $onDupeUpdate[$k] ) ){
+					$options[$k] = str_replace( $k, $res[0]->{$k}, $onDupeUpdate[$k] );
+				}
+			}
+		} else {
+			//No results, it's just an insert
+			$update = $where;
+		}
+
+		return (bool)$this->replace(
+			$table,
+			$update,
+			array(),
+			__METHOD__
+		);
 	}
 
 	/**
@@ -1659,6 +1693,9 @@ abstract class DatabaseBase {
 				$sql .= ',';
 			}
 			$sql .= '(' . $this->makeList( $row ) . ')';
+		}
+		if ($fname === 'insertOnDupeUpdate') {
+			var_dump($sql); die();
 		}
 		return $this->query( $sql, $fname );
 	}
