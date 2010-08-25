@@ -714,7 +714,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'sectioneditnotsupported-text'     => 'இப்பக்கத்தில் உட்பிரிவை தொகுக்க தேவையான ஆதரவில்லை.',
 'permissionserrors'                => 'அனுமதி தவறுகள்',
 'permissionserrorstext'            => 'பின்வரும் {{PLURAL:$1|காரணத்துக்காக|காரணங்களுக்காக}} நீங்கள் அதைச் செய்ய முடியாது:',
-'permissionserrorstext-withaction' => 'பின்வரும் {{PLURAL:$1|காரணம்|காரணங்களுக்காக}} $2 க்கு உங்களுக்கு அநுமதி கிடையாது:',
+'permissionserrorstext-withaction' => '$2-க்கு தங்களுக்கு அனுமதி இல்லை. அதற்கான {{PLURAL:$1|காரணம்|காரணங்கள்}}:',
 'recreate-moveddeleted-warn'       => "'''எச்சரிக்கை: தாங்கள் ஏற்கனவே நீக்கப்பட்ட பக்கமொன்றை மீண்டும் தொடங்க விழைகிறீர்கள்.'''
 
 இப்பக்கத்தைத் தொடர்ந்து தொகுப்பது சரியானதா என்று எண்ணிப்பார்க்கவும்.
@@ -1152,6 +1152,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'right-userrights'           => 'எல்லாப் பயனர் உரிமைகளையும் தொகுக்கவும்',
 'right-userrights-interwiki' => 'ஏனைய விக்கி தளங்களின் பயனர் உரிமைகளை தொகுத்தல்',
 'right-siteadmin'            => 'தரவுத்தளத்தை பூட்டல் திறத்தல்',
+'right-sendemail'            => 'மற்ற பயனர்களுக்கு மின்னஞ்சல் அனுப்பு',
+'right-revisionmove'         => 'திருத்தங்களை நகர்த்தவும்',
 
 # User rights log
 'rightslog'      => 'பயனர் உரிமைகள் பதிகை',
@@ -1160,18 +1162,23 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'rightsnone'     => '(எதுவுமில்லை)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'          => 'இப் பக்கத்தை வாசிக்கவும்',
-'action-edit'          => 'இப்பக்கத்தைத் தொகுக்கவும்',
-'action-createpage'    => 'பக்கங்களை உருவாக்கவும்',
-'action-createtalk'    => 'உரையாடல் பக்கங்களை உருவாக்கவும்',
-'action-createaccount' => 'இந்தப் பயனர் கணக்கை உருவாக்கவும்',
-'action-move'          => 'இந்தப் பக்கத்தை நகர்த்தவும்',
-'action-move-subpages' => 'இந்தப் பக்கத்தையும் அதன் துணைப்பக்கங்களையும் நகர்த்தவும்',
-'action-movefile'      => 'இந்தக் கோப்பை நகர்த்தவும்',
-'action-upload'        => 'இந்தக் கோப்பைப் பதிவிறக்கவும்',
-'action-delete'        => 'இந்தப் பக்கத்தை நீக்கவும்',
-'action-browsearchive' => 'அழிக்கப்பட்ட  பக்கங்களை தேடு',
-'action-undelete'      => 'அழித்த பக்கத்தை மறுபடியும் கொண்டு வா',
+'action-read'               => 'இப் பக்கத்தை வாசிக்கவும்',
+'action-edit'               => 'இப்பக்கத்தைத் தொகுக்கவும்',
+'action-createpage'         => 'பக்கங்களை உருவாக்கவும்',
+'action-createtalk'         => 'உரையாடல் பக்கங்களை உருவாக்கவும்',
+'action-createaccount'      => 'இந்தப் பயனர் கணக்கை உருவாக்கவும்',
+'action-minoredit'          => 'இந்த தொகுப்பை சிறுதொகுப்பு என்று குறிப்பிடவும்',
+'action-move'               => 'இந்தப் பக்கத்தை நகர்த்தவும்',
+'action-move-subpages'      => 'இந்தப் பக்கத்தையும் அதன் துணைப்பக்கங்களையும் நகர்த்தவும்',
+'action-move-rootuserpages' => 'மூலப் பயனர் பக்கங்களை நகர்த்தவும்',
+'action-movefile'           => 'இந்தக் கோப்பை நகர்த்தவும்',
+'action-upload'             => 'இந்தக் கோப்பைப் பதிவிறக்கவும்',
+'action-reupload'           => 'தற்போதுள்ள கோப்பின் மேலெழுதுங்கள்',
+'action-delete'             => 'இந்தப் பக்கத்தை நீக்கவும்',
+'action-deleterevision'     => 'இந்த மாற்றத்தை நீக்கவும்',
+'action-browsearchive'      => 'அழிக்கப்பட்ட  பக்கங்களை தேடு',
+'action-undelete'           => 'அழித்த பக்கத்தை மறுபடியும் கொண்டு வா',
+'action-block'              => 'இப்பயனரை மேலும் தொகுக்க அனுமதிக்க வேண்டாம்',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ஒரு மாற்றம்|$1 மாற்றங்கள்}}',

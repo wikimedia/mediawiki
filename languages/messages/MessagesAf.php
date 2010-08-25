@@ -1131,6 +1131,7 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 # Diffs
 'history-title'            => 'Weergawegeskiedenis van "$1"',
 'difference'               => '(Verskil tussen weergawes)',
+'difference-multipage'     => '(Verskil tussen bladsye)',
 'lineno'                   => 'Lyn $1:',
 'compareselectedversions'  => 'Vergelyk gekose weergawes',
 'showhideselectedversions' => 'Wys/versteek gekose weergawes',
@@ -3333,6 +3334,13 @@ U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].',
 'version-hook-subscribedby'        => 'Gebruik deur',
 'version-version'                  => '(Weergawe $1)',
 'version-license'                  => 'Lisensie',
+'version-poweredby-credits'        => "Hierdie wiki word aangedryf deur '''[http://www.mediawiki.org/ MediaWiki]''', kopiereg © 2001-$1 $2.",
+'version-poweredby-others'         => 'andere',
+'version-license-info'             => 'MediaWiki is vrye sagteware, u kan MediaWiki versprei en/of wysig onder die voorwaardes van die "GNU Algemene Publieke Lisensie", soos deur die "Free Software Foundation" gepubliseer; óf weergawe 2 van die lisensie, of (as u wil) enige latere weergawe daarvan.
+
+MediaWiki word versprei met die hoop dat dit nuttig sal wees, maar SONDER ENIGE WAARBORGE, selfs sonder geïmpliseerde waarborg van VERHANDELBAARHEID of GESKIKTHEID VIR \'N SPESIFIEKE DOEL. Verwys na die "GNU Algemene Publieke Lisensie" vir meer besonderhede.
+
+Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van die "GNU Algemene Publieke Lisensie"] ontvang het, indien nie, skryf aan die "Free Software Foundation, Inc", 51 Franklin-straat, Vyfde Vloer, Boston, MA 02110-1301, Verenigde State van Amerika of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees dit hier aanlyn].',
 'version-software'                 => 'Geïnstalleerde sagteware',
 'version-software-product'         => 'Produk',
 'version-software-version'         => 'Weergawe',

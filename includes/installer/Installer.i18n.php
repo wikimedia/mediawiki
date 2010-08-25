@@ -919,10 +919,32 @@ chmod a+w $3</pre>',
 	'config-admin-email' => 'Адрас электроннай пошты:',
 	'config-admin-email-help' => 'Увядзіце тут адрас электроннай пошты, каб атрымліваць электронныя лісты ад іншых удзельнікаў вікі, скідваць Ваш пароль і атрымліваць абвешчаньні пра зьмены старонак, якія знаходзяцца ў Вашым сьпісе назіраньня.',
 	'config-admin-error-user' => 'Унутраная памылка падчас стварэньня рахунку адміністратара зь іменем «<nowiki>$1</nowiki>».',
+	'config-admin-error-password' => 'Унутраная памылка падчас устаноўкі паролю для адміністратара «<nowiki>$1</nowiki>»: <pre>$2</pre>',
+	'config-subscribe' => 'Падпісацца на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce сьпіс распаўсюджаньня навінаў пра зьяўленьне новых вэрсіяў].',
+	'config-subscribe-help' => 'Гэта ня вельмі актыўны сьпіс распаўсюджаньня навінаў пра зьяўленьне новых вэрсіяў, які ўключаючы важныя навіны пра бясьпеку.
+Вам неабходна падпісацца на яго і абнавіць Вашае ўсталяваньне MediaWiki, калі зьявяцца новыя вэрсіі.',
+	'config-almost-done' => 'Вы амаль што скончылі!
+Цяпер Вы можаце прапусьціць астатнія ўстаноўкі і пачаць усталяваньне вікі.',
+	'config-optional-continue' => 'Задаць болей пытаньняў.',
 	'config-optional-skip' => 'Хопіць, проста ўсталяваць вікі.',
+	'config-profile' => 'Профіль правоў удзельніка:',
 	'config-profile-wiki' => 'Традыцыйная вікі',
 	'config-profile-no-anon' => 'Патрэбнае стварэньне рахунку',
+	'config-profile-fishbowl' => 'Толькі для аўтарызаваных рэдактараў',
 	'config-profile-private' => 'Прыватная вікі',
+	'config-profile-help' => "Вікі працуюць лепей, калі Вы дазваляеце як мага большай колькасьці людзей рэдагаваць яе.
+У MediaWiki вельмі лёгка праглядаць апошнія зьмены і выпраўляць любыя пашкоджаньні зробленыя недасьведчанымі ўдзельнікамі альбо вандаламі.
+
+Тым ня менш, многія лічаць, што MediaWiki можа быць карыснай ў шматлікіх іншых ролях, і часта вельмі нялёгка растлумачыць усім перавагі выкарыстаньня тэхналёгіяў вікі.
+Таму Вы маеце выбар.
+
+'''{{int:config-profile-wiki}}''' дазваляе рэдагаваць усім, нават без уваходу ў сыстэму.
+Вікі з '''{{int:config-profile-no-anon}}''' дазваляе дадатковую адказнасьць, але можа адштурхнуць некаторых патэнцыйных удзельнікаў.
+
+Сцэнар '''{{int:config-profile-fishbowl}}''' дазваляе рэдагаваць зацьверджаным удзельнікам, але ўсе могуць праглядаць старонкі іх гісторыю.
+'''{{int:config-profile-private}}''' дазваляе праглядаць і рэдагаваць старонкі толькі зацьверджаным удзельнікам.
+
+Больш складаныя правы ўдзельнікаў даступныя пасьля ўсталяваньня, глядзіце [http://www.mediawiki.org/wiki/Manual:User_rights адпаведную старонку дакумэнтацыі].",
 	'config-license' => 'Аўтарскія правы і ліцэнзія:',
 	'config-license-none' => 'Без інфармацыі пра ліцэнзію',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike (сумяшчальная зь Вікіпэдыяй)',
@@ -3879,6 +3901,8 @@ OK.',
 	'config-apc' => '[http://www.php.net/apc APC] ass installéiert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] ass installéiert',
 	'config-diff3-bad' => 'GNU diff3 gouf net fonnt.',
+	'config-no-uri' => "'''Feeler:''' Déi aktuell URI konnt net festgestallt ginn.
+Installatioun ofgebrach.",
 	'config-file-extension' => 'MediaWiki mat <code>$1</code> Fichiers-Erweiderungen installéieren',
 	'config-db-type' => 'Datebanktyp:',
 	'config-db-wiki-settings' => 'Dës Wiki identifizéieren',
@@ -3888,6 +3912,8 @@ OK.',
 	'config-db-password' => 'Passwuert vun der Datebank:',
 	'config-db-install-help' => 'Gitt de Benotzernumm an Passwuert an dat wàhrend der Installatioun benotzt gëtt fir sech mat der Datebank ze verbannen.',
 	'config-db-account-lock' => 'De selwechte Benotzernumm a Passwuert fir déi normal Operatioune benotzen',
+	'config-db-wiki-account' => 'Benotzerkont fir normal Operatiounen',
+	'config-db-charset' => 'Zeechesaz (character set) vun der Datebank',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binair',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-mysql-old' => 'MySQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.',
@@ -3918,12 +3944,15 @@ OK.',
 	'config-project-namespace' => 'Projet Nummraum:',
 	'config-ns-generic' => 'Projet',
 	'config-ns-site-name' => 'Deeselwechte wéi den Numm vun der Wiki: $1',
+	'config-ns-other' => 'Anerer (spezifizéieren)',
 	'config-ns-other-default' => 'MyWiki',
 	'config-admin-box' => 'Administrateurs-Kont',
 	'config-admin-name' => 'Ären Numm:',
 	'config-admin-password' => 'Passwuert:',
 	'config-admin-password-confirm' => 'Passwuert confirméieren:',
 	'config-admin-name-blank' => 'Gitt e Benotzernumm fir den Administrateur an.',
+	'config-admin-name-invalid' => 'De spezifizéierte Benotzernumm "<nowiki>$1</nowiki>" ass net valabel.
+Spezifizéiert en anere Benotzernumm.',
 	'config-admin-password-blank' => 'Gitt e Passwuert fir den Adminstateur-Kont an.',
 	'config-admin-password-same' => "D'Passwuert däerf net dat selwecht si wéi de Benotzernumm.",
 	'config-admin-password-mismatch' => 'Déi zwee Passwierder Déi dir aginn stëmmen net iwwerteneen.',
@@ -3939,6 +3968,7 @@ OK.',
 	'config-email-settings' => 'E-Mail-Astellungen',
 	'config-upload-settings' => 'Eropgeluede Biller a Fichieren',
 	'config-logo' => 'URL vum Logo:',
+	'config-cc-again' => 'Nach eng kéier eraussichen...',
 	'config-advanced-settings' => 'Erweidert Astellungen',
 	'config-extensions' => 'Erweiderungen',
 	'config-install-step-done' => 'fäerdeg',

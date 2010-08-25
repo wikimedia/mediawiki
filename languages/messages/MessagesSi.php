@@ -12,6 +12,7 @@
  * @author Chandana
  * @author Jiro Ono
  * @author Meno25
+ * @author Pasanbhathiya2
  * @author Romaine
  * @author Singhalawap
  * @author චතුනි අලහප්පෙරුම
@@ -1577,7 +1578,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'filestatus'                  => 'හිමිකම් තත්ත්වය:',
 'filesource'                  => 'මූලාශ්‍රය:',
 'uploadedfiles'               => 'උඩුගත කෙරුනු ගොනු',
-'ignorewarning'               => 'අවවාදය නොසලකා කෙසේ හෝ ගොනුව සුරකින්න',
+'ignorewarning'               => 'අවවාදය නොසලකා හැර කෙසේ හෝ ගොනුව සුරකින්න',
 'ignorewarnings'              => 'සියළු අවවාද නොසලකා හරින්න',
 'minlength1'                  => 'ගොනු නාමයන් අඩුම වශයෙන් එක් අකුරකින් සමන්විත විය යුතුය.',
 'illegalfilename'             => 'ශීර්ෂයන්හි භාවිත කිරීමට ඉඩ නොදෙන යම් අක්ෂරයන් "$1" ගොනු නාමයෙහි අඩංගුය.

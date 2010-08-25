@@ -2096,6 +2096,7 @@ $5
 'version-other'            => 'بل',
 'version-version'          => '(بڼه $1)',
 'version-license'          => 'اجازتليک',
+'version-poweredby-others' => 'نور',
 'version-software'         => 'نصب شوی ساوتری',
 'version-software-version' => 'بڼه',
 
@@ -2138,17 +2139,24 @@ $5
 'compare-selector' => 'د مخ بڼې سره پرتلل',
 'compare-page1'    => '۱ مخ',
 'compare-page2'    => '۲ مخ',
+'compare-rev1'     => '۱ بڼه',
+'compare-rev2'     => '۲ بڼه',
 'compare-submit'   => 'پرتلل',
 
 # Database error messages
-'dberr-header'   => 'دا ويکي يوه ستونزه لري',
-'dberr-problems' => 'اوبخښۍ!
+'dberr-header'    => 'دا ويکي يوه ستونزه لري',
+'dberr-problems'  => 'اوبخښۍ!
 دم مهال دا وېبپاڼه د تخنيکي ستونزو سره مخامخ شوې.',
+'dberr-usegoogle' => 'تاسې کولای شی چې هم مهاله د ګووګل له لخوا هم د پلټنې هڅه وکړۍ.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'ستاسې ځينې ورکړېينې ستونزې لري',
 'htmlform-select-badoption'    => 'کوم څه چې تاسو ځانګړي کړي هغه د منلو وړ خوښه نه ده.',
 'htmlform-int-invalid'         => 'کوم څه چې تاسو ځانګړي کړي هغه يوه سمه شمېره نه ده.',
 'htmlform-float-invalid'       => 'کوم څه چې تاسو ځانګړي کړي هغه يوه شمېره نه ده.',
+'htmlform-int-toolow'          => 'کوم ارزښت چې تاسې ځانګړی کړی هغه تر $1 لږ دی',
+'htmlform-int-toohigh'         => 'کوم ارزښت چې تاسې ځانګړی کړی هغه تر $1 ډېر  دی',
+'htmlform-required'            => 'دې ارزښت ته اړتيا ده',
 'htmlform-submit'              => 'سپارل',
 'htmlform-reset'               => 'بدلونونه ناکړل',
 'htmlform-selectorother-other' => 'بل',
