@@ -861,8 +861,7 @@ abstract class DatabaseBase {
 	 *                           (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return mixed Database result resource (feed to DatabaseBase::fetchObject or whatever), or false on failure
 	 */
-	function select( $table, $vars, $conds='', $fname = 'DatabaseBase::select', $options = array(), $join_conds = array() )
-	{
+	function select( $table, $vars, $conds='', $fname = 'DatabaseBase::select', $options = array(), $join_conds = array() ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 		return $this->query( $sql, $fname );
 	}
@@ -1638,7 +1637,10 @@ abstract class DatabaseBase {
 	 * However if you do this, you run the risk of encountering errors which wouldn't have
 	 * occurred in MySQL
 	 *
-	 * @todo migrate comment to phodocumentor format
+	 * @param $table String: The table to replace the row(s) in.
+	 * @param $uniqueIndexes String:
+	 * @param $rows Array: Array of rows to replace
+	 * @param $fname String: Calling function name (use __METHOD__) for logs/profiling
 	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseBase::replace' ) {
 		$table = $this->tableName( $table );
