@@ -1106,6 +1106,13 @@ abstract class DatabaseBase {
 	 *
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns success
+	 *
+	 * @param $table   String: table name (prefix auto-added)
+	 * @param $a	   Array: Array of rows to insert
+	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
+	 * @param $options Mixed: Associative array of options
+	 *
+	 * @return bool
 	 */
 	function insert( $table, $a, $fname = 'Database::insert', $options = array() ) {
 		# No rows to insert, easy just return now
