@@ -1115,28 +1115,6 @@ abstract class DatabaseBase {
 	 * @return bool
 	 */
 	function insert( $table, $a, $fname = 'DatabaseBase::insert', $options = array() ) {
-		return $this->insertOnDupeUpdate( $table, $a, $fname, $options );
-	}
-
-	/**
-	 * INSERT ... ON DUPE UPDATE wrapper, inserts an array into a table, optionally updating if
-	 * duplicate primary key found
-	 *
-	 * $a may be a single associative array, or an array of these with numeric keys, for
-	 * multi-row insert.
-	 *
-	 * Usually aborts on failure
-	 * If errors are explicitly ignored, returns success
-	 *
-	 * @param $table   String: table name (prefix auto-added)
-	 * @param $a	   Array: Array of rows to insert
-	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
-	 * @param $options Mixed: Associative array of options
-	 * @param $onDupeUpdate   Array: Associative array of fields to update on duplicate
-	 *
-	 * @return bool
-	 */
-	function insertOnDupeUpdate( $table, $a, $fname = 'DatabaseBase::insertOnDupeUpdate', $options = array(), $onDupeUpdate = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
 			return true;
@@ -1170,12 +1148,32 @@ abstract class DatabaseBase {
 		} else {
 			$sql .= '(' . $this->makeList( $a ) . ')';
 		}
-		
-		if ( count( $onDupeUpdate ) ) {
-			$sql .= ' ON DUPLICATE KEY UPDATE ' . $this->makeList( $onDupeUpdate );
-		}
-		
+
 		return (bool)$this->query( $sql, $fname );
+	}
+
+	/**
+	 * INSERT ... ON DUPE UPDATE wrapper, inserts an array into a table, optionally updating if
+	 * duplicate primary key found
+	 *
+	 * $a may be a single associative array, or an array of these with numeric keys, for
+	 * multi-row insert.
+	 *
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns success
+	 *
+	 * @param $table   String: table name (prefix auto-added)
+	 * @param $a	   Array: Array of rows to insert
+	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
+	 * @param $options Mixed: Associative array of options
+	 * @param $onDupeUpdate   Array: Associative array of fields to update on duplicate
+	 *
+	 * @return bool
+	 */
+	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOnDupeUpdate', $options = array(), $onDupeUpdate = array() ) {
+		//TODO:FIXME
+		//$this->select();
+		//$this->replace();
 	}
 
 	/**
@@ -1190,10 +1188,12 @@ abstract class DatabaseBase {
 			$options = array( $options );
 		}
 		$opts = array();
-		if ( in_array( 'LOW_PRIORITY', $options ) )
+		if ( in_array( 'LOW_PRIORITY', $options ) ) {
 			$opts[] = $this->lowPriorityOption();
-		if ( in_array( 'IGNORE', $options ) )
+		}
+		if ( in_array( 'IGNORE', $options ) ) {
 			$opts[] = 'IGNORE';
+		}
 		return implode(' ', $opts);
 	}
 
@@ -1369,7 +1369,9 @@ abstract class DatabaseBase {
 		# Note that we check the end so that we will still quote any use of
 		# use of `database`.table. But won't break things if someone wants
 		# to query a database table with a dot in the name.
-		if ( $name[0] == '`' && substr( $name, -1, 1 ) == '`' ) return $name;
+		if ( $name[0] == '`' && substr( $name, -1, 1 ) == '`' ) {
+			return $name;
+		}
 
 		# Lets test for any bits of text that should never show up in a table
 		# name. Basically anything like JOIN or ON which are actually part of
@@ -1378,19 +1380,26 @@ abstract class DatabaseBase {
 		# Note that we use a whitespace test rather than a \b test to avoid
 		# any remote case where a word like on may be inside of a table name
 		# surrounded by symbols which may be considered word breaks.
-		if( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) return $name;
+		if( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
+			return $name;
+		}
 
 		# Split database and table into proper variables.
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
 		$dbDetails = array_reverse( explode( '.', $name, 2 ) );
-		if( isset( $dbDetails[1] ) ) @list( $table, $database ) = $dbDetails;
-		else                         @list( $table ) = $dbDetails;
+		if( isset( $dbDetails[1] ) ) {
+			@list( $table, $database ) = $dbDetails;
+		} else {
+			@list( $table ) = $dbDetails;
+		}
 		$prefix = $this->mTablePrefix; # Default prefix
 
 		# A database name has been specified in input. Quote the table name
 		# because we don't want any prefixes added.
-		if( isset($database) ) $table = ( $table[0] == '`' ? $table : "`{$table}`" );
+		if( isset($database) ) {
+			$table = ( $table[0] == '`' ? $table : "`{$table}`" );
+		}
 
 		# Note that we use the long format because php will complain in in_array if
 		# the input is not an array, and will complain in is_array if it is not set.
@@ -1405,7 +1414,9 @@ abstract class DatabaseBase {
 		}
 
 		# Quote the $database and $table and apply the prefix if not quoted.
-		if( isset($database) ) $database = ( $database[0] == '`' ? $database : "`{$database}`" );
+		if( isset($database) ) {
+			$database = ( $database[0] == '`' ? $database : "`{$database}`" );
+		}
 		$table = ( $table[0] == '`' ? $table : "`{$prefix}{$table}`" );
 
 		# Merge our database and table into our final table name.
