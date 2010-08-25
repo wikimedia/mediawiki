@@ -405,7 +405,7 @@ class DatabaseMysql extends DatabaseBase {
 		}
 
 		if ( count( $onDupeUpdate ) ) {
-			$sql .= ' ON DUPLICATE KEY UPDATE ' . $this->makeList( $onDupeUpdate );
+			$sql .= ' ON DUPLICATE KEY UPDATE ' . $this->makeList( $onDupeUpdate, LIST_SET );
 		}
 
 		return (bool)$this->query( $sql, $fname );
