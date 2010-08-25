@@ -15,6 +15,8 @@
 
 $fallback = 'de';
 
+$linktrail = '/^([a-zäöüßåāđē]+)(.*)$/sDu';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Linke unerstrike:',
