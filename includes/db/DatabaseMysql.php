@@ -253,8 +253,9 @@ class DatabaseMysql extends DatabaseBase {
 	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
-		if ( $res === false )
+		if ( $res === false ) {
 			return false;
+		}
 		if ( !$this->numRows( $res ) ) {
 			return 0;
 		}
@@ -348,6 +349,66 @@ class DatabaseMysql extends DatabaseBase {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * INSERT ... ON DUPE UPDATE wrapper, inserts an array into a table, optionally updating if
+	 * duplicate primary key found
+	 *
+	 * $a may be a single associative array, or an array of these with numeric keys, for
+	 * multi-row insert.
+	 *
+	 * Usually aborts on failure
+	 * If errors are explicitly ignored, returns success
+	 *
+	 * @param $table   String: table name (prefix auto-added)
+	 * @param $a	   Array: Array of rows to insert
+	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
+	 * @param $options Mixed: Associative array of options
+	 * @param $onDupeUpdate   Array: Associative array of fields to update on duplicate
+	 *
+	 * @return bool
+	 */
+	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOnDupeUpdate', $options = array(), $onDupeUpdate = array() ) {
+		# No rows to insert, easy just return now
+		if ( !count( $a ) ) {
+			return true;
+		}
+
+		$table = $this->tableName( $table );
+		if ( !is_array( $options ) ) {
+			$options = array( $options );
+		}
+		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
+			$multi = true;
+			$keys = array_keys( $a[0] );
+		} else {
+			$multi = false;
+			$keys = array_keys( $a );
+		}
+
+		$sql = 'INSERT ' . implode( ' ', $options ) .
+			" INTO $table (" . implode( ',', $keys ) . ') VALUES ';
+
+		if ( $multi ) {
+			$first = true;
+			foreach ( $a as $row ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ',';
+				}
+				$sql .= '(' . $this->makeList( $row ) . ')';
+			}
+		} else {
+			$sql .= '(' . $this->makeList( $a ) . ')';
+		}
+
+		if ( count( $onDupeUpdate ) ) {
+			$sql .= ' ON DUPLICATE KEY UPDATE ' . $this->makeList( $onDupeUpdate );
+		}
+
+		return (bool)$this->query( $sql, $fname );
 	}
 
 	function getServerVersion() {
