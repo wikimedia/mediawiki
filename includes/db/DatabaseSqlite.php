@@ -197,25 +197,29 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	function freeResult( $res ) {
-		if ( $res instanceof ResultWrapper )
+		if ( $res instanceof ResultWrapper ) {
 			$res->result = null;
-		else
+		} else {
 			$res = null;
+		}
 	}
 
 	function fetchObject( $res ) {
-		if ( $res instanceof ResultWrapper )
+		if ( $res instanceof ResultWrapper ) {
 			$r =& $res->result;
-		else
+		} else {
 			$r =& $res;
+		}
 
 		$cur = current( $r );
 		if ( is_array( $cur ) ) {
 			next( $r );
 			$obj = new stdClass;
-			foreach ( $cur as $k => $v )
-				if ( !is_numeric( $k ) )
+			foreach ( $cur as $k => $v ) {
+				if ( !is_numeric( $k ) ) {
 					$obj->$k = $v;
+				}
+			}
 
 			return $obj;
 		}
@@ -223,11 +227,11 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	function fetchRow( $res ) {
-		if ( $res instanceof ResultWrapper )
+		if ( $res instanceof ResultWrapper ) {
 			$r =& $res->result;
-		else
+		} else {
 			$r =& $res;
-
+		}
 		$cur = current( $r );
 		if ( is_array( $cur ) ) {
 			next( $r );
@@ -280,19 +284,23 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	function dataSeek( $res, $row ) {
-		if ( $res instanceof ResultWrapper )
+		if ( $res instanceof ResultWrapper ) {
 			$r =& $res->result;
-		else
+		} else {
 			$r =& $res;
+		}
 		reset( $r );
-		if ( $row > 0 )
-			for ( $i = 0; $i < $row; $i++ )
+		if ( $row > 0 ) {
+			for ( $i = 0; $i < $row; $i++ ) {
 				next( $r );
+			}
+		}
 	}
 
 	function lastError() {
-		if ( !is_object( $this->mConn ) )
+		if ( !is_object( $this->mConn ) ) {
 			return "Cannot return last error, no db connection";
+		}
 		$e = $this->mConn->errorInfo();
 		return isset( $e[2] ) ? $e[2] : '';
 	}
@@ -355,9 +363,11 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Filter the options used in SELECT statements
 	 */
 	function makeSelectOptions( $options ) {
-		foreach ( $options as $k => $v )
-			if ( is_numeric( $k ) && $v == 'FOR UPDATE' )
+		foreach ( $options as $k => $v ) {
+			if ( is_numeric( $k ) && $v == 'FOR UPDATE' ) {
 				$options[$k] = '';
+			}
+		}
 		return parent::makeSelectOptions( $options );
 	}
 
@@ -365,20 +375,28 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
 	 */
 	function insert( $table, $a, $fname = 'DatabaseSqlite::insert', $options = array() ) {
-		if ( !count( $a ) ) return true;
-		if ( !is_array( $options ) ) $options = array( $options );
+		if ( !count( $a ) ) {
+			return true;
+		}
+		if ( !is_array( $options ) ) {
+			$options = array( $options );
+		}
 
 		# SQLite uses OR IGNORE not just IGNORE
-		foreach ( $options as $k => $v )
-			if ( $v == 'IGNORE' )
+		foreach ( $options as $k => $v ) {
+			if ( $v == 'IGNORE' ) {
 				$options[$k] = 'OR IGNORE';
+			}
+		}
 
 		# SQLite can't handle multi-row inserts, so divide up into multiple single-row inserts
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
 			$ret = true;
-			foreach ( $a as $k => $v )
-				if ( !parent::insert( $table, $v, "$fname/multi-row", $options ) )
+			foreach ( $a as $k => $v ) {
+				if ( !parent::insert( $table, $v, "$fname/multi-row", $options ) ) {
 					$ret = false;
+				}
+			}
 		} else {
 			$ret = parent::insert( $table, $a, "$fname/single-row", $options );
 		}
@@ -392,9 +410,11 @@ class DatabaseSqlite extends DatabaseBase {
 		# SQLite can't handle multi-row replaces, so divide up into multiple single-row queries
 		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
 			$ret = true;
-			foreach ( $rows as $k => $v )
-				if ( !parent::replace( $table, $uniqueIndexes, $v, "$fname/multi-row" ) )
+			foreach ( $rows as $k => $v ) {
+				if ( !parent::replace( $table, $uniqueIndexes, $v, "$fname/multi-row" ) ) {
 					$ret = false;
+				}
+			}
 		} else {
 			$ret = parent::replace( $table, $uniqueIndexes, $rows, "$fname/single-row" );
 		}
