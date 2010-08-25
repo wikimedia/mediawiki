@@ -981,7 +981,9 @@ class Sanitizer {
 	 *
 	 * To ensure we don't have to bother escaping anything, we also strip ', ",
 	 * & even if $wgExperimentalIds is true.  TODO: Is this the best tactic?
-	 * We also strip # because it upsets IE6.
+	 * We also strip # because it upsets IE, and % because it could be
+	 * ambiguous if it's part of something that looks like a percent escape
+	 * (which don't work reliably in fragments cross-browser).
 	 *
 	 * @see http://www.w3.org/TR/html401/types.html#type-name Valid characters
 	 *                                                          in the id and
@@ -1007,7 +1009,7 @@ class Sanitizer {
 
 		if ( $wgHtml5 && $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
 			$id = Sanitizer::decodeCharReferences( $id );
-			$id = preg_replace( '/[ \t\n\r\f_\'"&#]+/', '_', $id );
+			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
 			$id = trim( $id, '_' );
 			if ( $id === '' ) {
 				# Must have been all whitespace to start with.
