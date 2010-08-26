@@ -369,7 +369,7 @@ class DatabaseMysql extends DatabaseBase {
 	 *
 	 * @return bool
 	 */
-	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOnDupeUpdate', $options = array(), $onDupeUpdate = array() ) {
+	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOrUpdate', $options = array(), $onDupeUpdate = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
 			return true;
