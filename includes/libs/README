@@ -1,0 +1,7 @@
+The classes in this directory ./includes/libs are considered standalone
+from the remainder of the MediaWiki codebase. They do not call on any other
+portions of MediaWiki code, and can be used in other projects without
+dependency issues.
+
+Like the rest of MediaWiki, these are distributed under the GNU General Public
+License, version 2.
