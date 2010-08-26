@@ -560,12 +560,12 @@ class DatabaseSqlite extends DatabaseBase {
 			dieout( "Could not find the interwiki.sql file." );
 		}
 
-		$sql = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
+		$sql = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local,iw_api,iw_wikiid) VALUES ";
 		while ( !feof( $f ) ) {
 			$line = fgets( $f, 1024 );
 			$matches = array();
 			if ( !preg_match( '/^\s*(\(.+?),(\d)\)/', $line, $matches ) ) continue;
-			$this->query( "$sql $matches[1],$matches[2])" );
+			$this->query( "$sql $matches[1],$matches[2],'','')" );
 		}
 	}
 
