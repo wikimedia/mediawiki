@@ -124,7 +124,6 @@ $wgAutoloadLocalClasses = array(
 	'HTMLInfoField' => 'includes/HTMLForm.php',
 	'Http' => 'includes/HttpFunctions.php',
 	'HttpRequest' => 'includes/HttpFunctions.php',
-	'IEContentAnalyzer' => 'includes/IEContentAnalyzer.php',
 	'ImageGallery' => 'includes/ImageGallery.php',
 	'ImageHistoryList' => 'includes/ImagePage.php',
 	'ImageHistoryPseudoPager' => 'includes/ImagePage.php',
@@ -453,6 +452,9 @@ $wgAutoloadLocalClasses = array(
 	'RefreshLinksJob' => 'includes/job/RefreshLinksJob.php',
 	'RefreshLinksJob2' => 'includes/job/RefreshLinksJob.php',
 	'UploadFromUrlJob' => 'includes/job/UploadFromUrlJob.php',
+
+	# includes/libs
+	'IEContentAnalyzer' => 'includes/IEContentAnalyzer.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
