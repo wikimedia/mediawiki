@@ -272,7 +272,7 @@ class LoginForm {
 		# Request forgery checks.
 		if ( !self::getCreateaccountToken() ) {
 			self::setCreateaccountToken();
-			$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
+			$this->mainLoginForm( wfMsgExt( 'nocookiesnew', array( 'parseinline' ) ) );;
 			return false;
 		}
 
@@ -657,6 +657,8 @@ class LoginForm {
 				break;
 
 			case self::NEED_TOKEN:
+				$this->mainLoginForm( wfMsgExt( 'nocookieslogin', array( 'parseinline' ) ) );
+				break;
 			case self::WRONG_TOKEN:
 				$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
 				break;
