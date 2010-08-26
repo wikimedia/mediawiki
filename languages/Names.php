@@ -61,7 +61,7 @@
 	'co' => 'Corsu',		# Corsican
 	'cps' => 'Capiceño', # Capiznon
 	'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ',		# Cree
-	'crh' => 'Qırımtatarca',   # Crimean Tatar
+	'crh' => 'Qırımtatarca',   # Crimean Tatar (multiple scripts - defaults to Latin)
 	'crh-latn' => "\xE2\x80\xAAQırımtatarca (Latin)\xE2\x80\xAC",       # Crimean Tatar (Latin)
 	'crh-cyrl' => "\xE2\x80\xAAКъырымтатарджа (Кирилл)\xE2\x80\xAC",       # Crimean Tatar (Cyrillic)
 	'cs' => 'Česky',	# Czech
@@ -75,7 +75,6 @@
 	'de-ch' => 'Schweizer Hochdeutsch',		# Swiss Standard German
 	'de-formal' => 'Deutsch (Sie-Form)',		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
-	'dk' => 'Dansk (deprecated:da)',		# Unused code currently falls back to Danish, 'da' is correct for the language
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Bhutani
@@ -103,7 +102,7 @@
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
 	'gag' => 'Gagauz',		# Gagauz
-	'gan' => '贛語',		# Gan
+	'gan' => '贛語',		# Gan (multiple scripts - defaults to Traditional)
 	'gan-hans' => '赣语(简体)',	# Gan (Simplified Han)
 	'gan-hant' => '贛語(繁體)',	# Gan (Traditional Han)
 	'gd' => 'Gàidhlig',	# Scots Gaelic
@@ -120,8 +119,7 @@
 	'haw' => 'Hawai`i',		# Hawaiian
 	'he' => 'עברית',	# Hebrew
 	'hi' => 'हिन्दी',	# Hindi
-	'hif' => 'Fiji Hindi',	# Fijian Hindi (falls back to hif-latn)
-	'hif-deva' => 'फ़ीजी हिन्दी',	# Fiji Hindi (devangari)
+	'hif' => 'Fiji Hindi',	# Fijian Hindi (multiple scripts - defaults to Latin)
 	'hif-latn' => 'Fiji Hindi',	# Fiji Hindi (latin)
 	'hil' => 'Ilonggo',	# Hiligaynon
 	'ho' => 'Hiri Motu',	# Hiri Motu
@@ -152,13 +150,13 @@
 	'ka' => 'ქართული',	# Georgian
 	'kaa' => 'Qaraqalpaqsha',	# Karakalpak
 	'kab' => 'Taqbaylit',	# Kabyle
-	'kbd' => 'къэбэрдеибзэ/qabardjajəbza',	# Kabardian (falls back to kdb-cyrl)
+	'kbd' => 'къэбэрдеибзэ/qabardjajəbza',	# Kabardian (multiple scripts - defaults to Cyrillic)
 	'kbd-cyrl' => 'къэбэрдеибзэ',	# Kabardian (Cyrillic)
 	'kg' => 'Kongo',	# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 	'ki' => 'Gĩkũyũ',	# Gikuyu
 	'kiu' => 'Kırmancki',	# Kirmanjki
 	'kj' => 'Kwanyama',	# Kwanyama
-	'kk' => 'Қазақша',	# Kazakh
+	'kk' => 'Қазақша',	# Kazakh (multiple scripts - defaults to Cyrillic)
 	'kk-arab' => "\xE2\x80\xABقازاقشا (تٴوتە)\xE2\x80\xAC",	# Kazakh Arabic
 	'kk-cyrl' => "\xE2\x80\xAAҚазақша (кирил)\xE2\x80\xAC",	# Kazakh Cyrillic
 	'kk-latn' => "\xE2\x80\xAAQazaqşa (latın)\xE2\x80\xAC",	# Kazakh Latin
@@ -177,10 +175,10 @@
 	'krj' => 'Kinaray-a', # Kinaray-a
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
 	'ksh' => 'Ripoarisch',	# Ripuarian
-	'ku'  => 'Kurdî',	# Kurdish
-	'ku-latn' => "\xE2\x80\xAAKurdî (latînî)\xE2\x80\xAC",	# Northern Kurdish Latin script
-	'ku-arab' => "\xE2\x80\xABكوردي (عەرەبی)\xE2\x80\xAC",	# Northern Kurdish Arabic script
-	'kv' => 'Коми',	# Komi-Zyrian, cyrillic is common script but also written in latin script
+	'ku'  => 'Kurdî',	# Kurdish (multiple scripts - defaults to Latin)
+	'ku-latn' => "\xE2\x80\xAAKurdî (latînî)\xE2\x80\xAC",	# Northern Kurdish (Latin script)
+	'ku-arab' => "\xE2\x80\xABكوردي (عەرەبی)\xE2\x80\xAC",	# Northern Kurdish (Arabic script) (falls back to ckb)
+	'kv' => 'Коми',	# Komi-Zyrian (Cyrillic is common script but also written in Latin script)
 	'kw' => 'Kernewek',		# Cornish
 	'ky' => 'Кыргызча',	# Kirghiz
 	'la' => 'Latina',		# Latin
@@ -233,7 +231,7 @@
 	'ng' => 'Oshiwambo',		# Ndonga
 	'niu' => 'Niuē',	# Niuean
 	'nl' => 'Nederlands',	# Dutch
-	'nl-informal' => 'Nederlands (informeel)',	# Nederlands - informal address ("je")
+	'nl-informal' => 'Nederlands (informeel)',	# Dutch (informal address ("je"))
 	'nn' => "\xE2\x80\xAANorsk (nynorsk)\xE2\x80\xAC",	# Norwegian (Nynorsk)
 	'no' => "\xE2\x80\xAANorsk (bokmål)\xE2\x80\xAC",		# Norwegian
 	'nov' => 'Novial',		# Novial
@@ -245,7 +243,7 @@
 	'om' => 'Oromoo',		# Oromo
 	'or' => 'ଓଡ଼ିଆ',		# Oriya
 	'os' => 'Иронау', # Ossetic
-	'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (pan)
+	'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (Gurmukhi script) (pan)
 	'pag' => 'Pangasinan',	# Pangasinan
 	'pam' => 'Kapampangan',   # Pampanga
 	'pap' => 'Papiamentu',	# Papiamentu
@@ -274,7 +272,7 @@
 	'roa-tara' => 'Tarandíne',	# Tarantino
 	'ru' => 'Русский',	# Russian
 	'rue' => 'русиньскый язык',	# Rusyn
-	'ruq' => 'Vlăheşte',	# Megleno-Romanian (falls back to ruq-latn)
+	'ruq' => 'Vlăheşte',	# Megleno-Romanian (multiple scripts - defaults to Latin)
 	'ruq-cyrl' => 'Влахесте',	# Megleno-Romanian (Cyrillic script)
 	# 'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
 	'ruq-latn' => 'Vlăheşte',	# Megleno-Romanian (Latin script)
@@ -301,7 +299,7 @@
 	'sn' => 'chiShona',		# Shona
 	'so' => 'Soomaaliga',	# Somali
 	'sq' => 'Shqip',		# Albanian
-	'sr' => 'Српски / Srpski',	# Serbian
+	'sr' => 'Српски / Srpski',	# Serbian (multiple scripts - defaults to Cyrillic)
 	'sr-ec' => 'Српски (ћирилица)',	# Serbian Cyrillic ekavian
 	'sr-el' => 'Srpski (latinica)',	# Serbian Latin ekavian
 	'srn' => 'Sranantongo',		# Sranan Tongo
@@ -331,7 +329,7 @@
 	'tr' => 'Türkçe',	# Turkish
 	'ts' => 'Xitsonga',		# Tsonga
 	'tt' => 'Татарча/Tatarça',	# Tatar (multiple scripts - defaults to Cyrillic)
-	'tt-cyrl' => 'Татарча',	# Tatar (Cyrillic script)
+	'tt-cyrl' => 'Татарча',	# Tatar (Cyrillic script) (default)
 	'tt-latn' => 'Tatarça',	# Tatar (Latin script)
 	'tum' => 'chiTumbuka',  # Tumbuka
 	'tw' => 'Twi',			# Twi, (FIXME!)
@@ -339,7 +337,7 @@
 	'tyv' => 'Тыва дыл',	# Tyvan
 	'udm' => 'Удмурт',	# Udmurt
 	'ug' => 'ئۇيغۇرچە / Uyghurche‎',	# Uyghur (multiple scripts - defaults to Arabic)
-	'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script - default)
+	'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script) (default)
 	'ug-latn' => 'Uyghurche‎', # Uyghur (Latin script)
 	'uk' => 'Українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
@@ -368,8 +366,8 @@
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
 	'zh-classical' => '文言',			# Classical Chinese/Literary Chinese -- (see bug 8217)
 	'zh-cn' => "\xE2\x80\xAA中文(中国大陆)\xE2\x80\xAC",	# Chinese (PRC)
-	'zh-hans' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Chinese written using the Simplified Chinese script
-	'zh-hant' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Chinese written using the Traditional Chinese script
+	'zh-hans' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Mandarin Chinese (Simplified Chinese script) (cmn-hans)
+	'zh-hant' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Mandarin Chinese (Traditional Chinese script) (cmn-hant)
 	'zh-hk' => "\xE2\x80\xAA中文(香港)\xE2\x80\xAC",	# Chinese (Hong Kong)
 	'zh-min-nan' => 'Bân-lâm-gú',				# Min-nan -- (see bug 8217)
 	'zh-mo' => "\xE2\x80\xAA中文(澳門)\xE2\x80\xAC",	# Chinese (Macau)
