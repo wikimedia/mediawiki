@@ -364,21 +364,18 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $table   String: table name (prefix auto-added)
 	 * @param $a	   Array: Array of rows to insert
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
-	 * @param $options Mixed: Associative array of options
 	 * @param $onDupeUpdate   Array: Associative array of fields to update on duplicate
 	 *
 	 * @return bool
 	 */
-	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOrUpdate', $options = array(), $onDupeUpdate = array() ) {
+	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOrUpdate', $onDupeUpdate = array() ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
 			return true;
 		}
 
 		$table = $this->tableName( $table );
-		if ( !is_array( $options ) ) {
-			$options = array( $options );
-		}
+		
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
 			$multi = true;
 			$keys = array_keys( $a[0] );
@@ -387,8 +384,7 @@ class DatabaseMysql extends DatabaseBase {
 			$keys = array_keys( $a );
 		}
 
-		$sql = 'INSERT ' . implode( ' ', $options ) .
-			" INTO $table (" . implode( ',', $keys ) . ') VALUES ';
+		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
 			$first = true;
