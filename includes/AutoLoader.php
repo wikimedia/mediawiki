@@ -454,7 +454,7 @@ $wgAutoloadLocalClasses = array(
 	'UploadFromUrlJob' => 'includes/job/UploadFromUrlJob.php',
 
 	# includes/libs
-	'IEContentAnalyzer' => 'includes/IEContentAnalyzer.php',
+	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
