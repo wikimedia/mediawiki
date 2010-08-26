@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 /**
  * @file
@@ -24,31 +25,72 @@
 
 define( 'SELENIUMTEST', true );
 
-require( dirname( __FILE__ ) . "/../commandLine.inc" );
-if ( isset( $options['help'] ) ) {
-	echo <<<ENDS
-MediaWiki $wgVersion Selenium Framework tester
-Usage: php RunSeleniumTests.php [options...]
-Options:
---port=<TCP port> Port used by selenium server to accept commands
---help            Show this help message
-ENDS;
-	exit( 1 );
+require_once( dirname( dirname( __FILE__ ) )."/Maintenance.php" );
+
+class SeleniumTester extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+
+		$this->addOption( 'port', 'Port used by selenium server' );
+		$this->addOption( 'host', 'Host selenium server' );
+		$this->addOption( 'browser', 'The browser he used during testing' );
+		$this->addOption( 'url', 'The Mediawiki installation to point to.' );
+		$this->addOption( 'list-browsers', 'List the available browsers.' );
+
+		$this->deleteOption( 'dbpass' );
+		$this->deleteOption( 'dbuser' );
+		$this->deleteOption( 'globals' );
+		$this->deleteOption( 'wiki' );
+	}
+
+	public function listBrowsers() {
+		global $wgSeleniumTestsBrowsers;
+
+		$desc = "Available browsers:\n";
+		foreach ($wgSeleniumTestsBrowsers as $k => $v) {
+			$desc .= "  $k => $v\n";
+		}
+
+		echo $desc;
+	}
+
+	protected function runTests() {
+		global $wgSeleniumLogger, $wgSeleniumTestSuites;
+
+		SeleniumLoader::load();
+		$result = new PHPUnit_Framework_TestResult;
+		$wgSeleniumLogger = new SeleniumTestConsoleLogger;
+		$result->addListener( new SeleniumTestListener( $wgSeleniumLogger ) );
+
+		foreach ( $wgSeleniumTestSuites as $testSuiteName ) {
+			$suite = new $testSuiteName;
+			$suite->addTests();
+			try {
+				$suite->run( $result );
+			} catch ( Testing_Selenium_Exception $e ) {
+				throw new MWException( $e->getMessage() );
+			}
+		}
+	}
+
+	public function execute() {
+		global $wgSeleniumServerPort, $wgSeleniumTestsSeleniumHost,
+			$wgSeleniumTestsWikiUrl, $wgServer, $wgScriptPath;
+
+		if( $this->hasOption( 'list-browsers' ) ) {
+			$this->listBrowsers();
+			exit(0);
+		}
+
+		$wgSeleniumServerPort = $this->getOption( 'port', 4444 );
+		$wgSeleniumTestsSeleniumHost = $this->getOption( 'host', 'localhost' );
+		$wgSeleniumTestsWikiUrl = $this->getOption( 'test-url', $wgServer . $wgScriptPath );
+		$wgSeleniumTestsUseBrowser = $this->getOption( 'browser', 'firefox' );
+
+		$this->runTests();
+	}
 }
 
-if ( isset( $options['port'] ) ) {
-	$wgSeleniumServerPort = (int) $options['port'];
-}
+$maintClass = "SeleniumTester";
 
-SeleniumLoader::load();
-
-$result = new PHPUnit_Framework_TestResult;
-$wgSeleniumLogger = new SeleniumTestConsoleLogger;
-$result->addListener( new SeleniumTestListener( $wgSeleniumLogger ) );
-
-foreach ( $wgSeleniumTestSuites as $testSuiteName ) {
-	$suite = new $testSuiteName;
-	$suite->addTests();
-	$suite->run( $result );
-}
-
+require_once( DO_MAINTENANCE );
