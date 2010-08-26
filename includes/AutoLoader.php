@@ -333,7 +333,6 @@ $wgAutoloadLocalClasses = array(
 	'ApiUpload' => 'includes/api/ApiUpload.php',
 	'ApiWatch' => 'includes/api/ApiWatch.php',
 
-	'Spyc' => 'includes/api/ApiFormatYaml_spyc.php',
 	'UsageException' => 'includes/api/ApiMain.php',
 
 	# includes/extauth
@@ -455,6 +454,7 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/libs
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
+	'Spyc' => 'includes/libs/spyc.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
