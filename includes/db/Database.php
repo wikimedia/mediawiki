@@ -19,7 +19,7 @@ define( 'DEADLOCK_DELAY_MAX', 1500000 );
  * Database abstraction object
  * @ingroup Database
  */
-abstract class DatabaseBase {
+abstract class DatabaseBase implements DatabaseType {
 
 #------------------------------------------------------------------------------
 # Variables
@@ -276,11 +276,6 @@ abstract class DatabaseBase {
 		}
 	}
 
-	/**
-	 * Get the type of the DBMS, as it appears in $wgDBtype.
-	 */
-	abstract function getType();
-
 #------------------------------------------------------------------------------
 # Other functions
 #------------------------------------------------------------------------------
@@ -348,16 +343,6 @@ abstract class DatabaseBase {
 		wfDeprecated( __METHOD__ );
 		return new DatabaseMysql( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
-
-	/**
-	 * Usually aborts on failure
-	 * If the failFunction is set to a non-zero integer, returns success
-	 * @param $server String: database server host
-	 * @param $user String: database user name
-	 * @param $password String: database user password
-	 * @param $dbName String: database name
-	 */
-	abstract function open( $server, $user, $password, $dbName );
 
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
@@ -541,14 +526,6 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * The DBMS-dependent part of query()
-	 * @param  $sql String: SQL query.
-	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure
-	 * @private
-	 */
-	/*private*/ abstract function doQuery( $sql );
-
-	/**
 	 * @param $error String
 	 * @param $errno Integer
 	 * @param $sql String
@@ -674,87 +651,6 @@ abstract class DatabaseBase {
 		# Stub.  Might not really need to be overridden, since results should
 		# be freed by PHP when the variable goes out of scope anyway.
 	}
-
-	/**
-	 * Fetch the next row from the given result object, in object form.
-	 * Fields can be retrieved with $row->fieldname, with fields acting like
-	 * member variables.
-	 *
-	 * @param $res SQL result object as returned from DatabaseBase::query(), etc.
-	 * @return Row object
-	 * @throws DBUnexpectedError Thrown if the database returns an error
-	 */
-	abstract function fetchObject( $res );
-
-	/**
-	 * Fetch the next row from the given result object, in associative array
-	 * form.  Fields are retrieved with $row['fieldname'].
-	 *
-	 * @param $res SQL result object as returned from DatabaseBase::query(), etc.
-	 * @return Row object
-	 * @throws DBUnexpectedError Thrown if the database returns an error
-	 */
-	abstract function fetchRow( $res );
-
-	/**
-	 * Get the number of rows in a result object
-	 * @param $res Mixed: A SQL result
-	 */
-	abstract function numRows( $res );
-
-	/**
-	 * Get the number of fields in a result object
-	 * See documentation for mysql_num_fields()
-	 * @param $res Mixed: A SQL result
-	 */
-	abstract function numFields( $res );
-
-	/**
-	 * Get a field name in a result object
-	 * See documentation for mysql_field_name():
-	 * http://www.php.net/mysql_field_name
-	 * @param $res Mixed: A SQL result
-	 * @param $n Integer
-	 */
-	abstract function fieldName( $res, $n );
-
-	/**
-	 * Get the inserted value of an auto-increment row
-	 *
-	 * The value inserted should be fetched from nextSequenceValue()
-	 *
-	 * Example:
-	 * $id = $dbw->nextSequenceValue('page_page_id_seq');
-	 * $dbw->insert('page',array('page_id' => $id));
-	 * $id = $dbw->insertId();
-	 */
-	abstract function insertId();
-
-	/**
-	 * Change the position of the cursor in a result object
-	 * See mysql_data_seek()
-	 * @param $res Mixed: A SQL result
-	 * @param $row Mixed: Either MySQL row or ResultWrapper
-	 */
-	abstract function dataSeek( $res, $row );
-
-	/**
-	 * Get the last error number
-	 * See mysql_errno()
-	 */
-	abstract function lastErrno();
-
-	/**
-	 * Get a description of the last error
-	 * See mysql_error() for more details
-	 */
-	abstract function lastError();
-
-	/**
-	 * Get the number of rows affected by the last write query
-	 * See mysql_affected_rows() for more details
-	 */
-	abstract function affectedRows();
 
 	/**
 	 * Simple UPDATE wrapper
@@ -1066,15 +962,6 @@ abstract class DatabaseBase {
 		$this->ignoreErrors( $old );
 		return (bool)$res;
 	}
-
-	/**
-	 * mysql_fetch_field() wrapper
-	 * Returns false if the field doesn't exist
-	 *
-	 * @param $table
-	 * @param $field
-	 */
-	abstract function fieldInfo( $table, $field );
 
 	/**
 	 * mysql_field_type() wrapper
@@ -1553,13 +1440,6 @@ abstract class DatabaseBase {
 			return $index;
 		}
 	}
-
-	/**
-	 * Wrapper for addslashes()
-	 * @param $s String: to be slashed.
-	 * @return String: slashed string.
-	 */
-	abstract function strencode( $s );
 
 	/**
 	 * If it's a string, adds quotes and backslashes
@@ -2148,26 +2028,6 @@ abstract class DatabaseBase {
 	function aggregateValue ($valuedata,$valuename='value') {
 		return $valuename;
 	}
-
-	/**
-	 * Returns a wikitext link to the DB's website, e.g.,
-	 *     return "[http://www.mysql.com/ MySQL]";
-	 * Should at least contain plain text, if for some reason
-	 * your database has no website.
-	 *
-	 * @return String: wikitext of a link to the server software's web site
-	 */
-	public static function getSoftwareLink() {
-		throw new MWException( "A child class of DatabaseBase didn't implement getSoftwareLink(), shame on them" );
-	}
-
-	/**
-	 * A string describing the current software version, like from
-	 * mysql_get_server_info().  Will be listed on Special:Version, etc.
-	 *
-	 * @return String: Version information from the database
-	 */
-	abstract function getServerVersion();
 
 	/**
 	 * Ping the server and try to reconnect if it there is no connection
