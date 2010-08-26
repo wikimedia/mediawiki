@@ -1164,12 +1164,11 @@ abstract class DatabaseBase {
 	 * @param $table   String: table name (prefix auto-added)
 	 * @param $a	   Array: Array of rows to insert
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
-	 * @param $options Mixed: Associative array of options (ignored in this implementation)
 	 * @param $onDupeUpdate   Array: Associative array of fields to update on duplicate
 	 *
 	 * @return bool
 	 */
-	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOrUpdate', $options = array(), $onDupeUpdate = array() ) {
+	function insertOrUpdate( $table, $a, $fname = 'DatabaseBase::insertOrUpdate', $onDupeUpdate = array() ) {
 		
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
 			$keys = array_keys( $a[0] );
