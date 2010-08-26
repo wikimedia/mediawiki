@@ -31,8 +31,7 @@ class DatabaseMysql extends DatabaseBase {
 		global $wgAllDBsAreLocalhost;
 		wfProfileIn( __METHOD__ );
 
-		# Test for missing mysql.so
-		# First try to load it
+		# Load mysql.so if we don't have it
 		wfDl( 'mysql' );
 
 		# Fail now
