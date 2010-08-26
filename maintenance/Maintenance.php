@@ -158,6 +158,22 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Remove an option.  Useful for removing options that won't be used in your script.
+	 * @param $name String: the option to remove.
+	 */
+	protected function deleteOption( $name ) {
+		unset( $this->mParams[$name] );
+	}
+
+	/**
+	 * Set the description text.
+	 * @param $text String: the text of the description
+	 */
+	protected function addDescription( $text ) {
+		$this->mDescription = $text;
+	}
+
+	/**
 	 * Does a given argument exist?
 	 * @param $argId Integer: the integer value (from zero) for the arg
 	 * @return Boolean
@@ -770,7 +786,7 @@ abstract class Maintenance {
 
 		if ( !is_readable( $settingsFile ) ) {
 			$this->error( "A copy of your installation's LocalSettings.php\n" .
-			  			"must exist and be readable in the source directory.", true );
+						"must exist and be readable in the source directory.", true );
 		}
 		$wgCommandLineMode = true;
 		return $settingsFile;
