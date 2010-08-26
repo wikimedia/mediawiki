@@ -1694,9 +1694,6 @@ abstract class DatabaseBase {
 			}
 			$sql .= '(' . $this->makeList( $row ) . ')';
 		}
-		if ($fname === 'insertOnDupeUpdate') {
-			var_dump($sql); die();
-		}
 		return $this->query( $sql, $fname );
 	}
 
