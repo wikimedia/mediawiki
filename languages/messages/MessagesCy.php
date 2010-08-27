@@ -9,6 +9,7 @@
  *
  * @author Arwel Parry
  * @author Lloffiwr
+ * @author Malafaya
  * @author Thaf
  * @author Urhixidur
  * @author Xxglennxx
@@ -842,7 +843,7 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'currentrev-asof'        => 'Y diwygiad cyfredol, am $1',
 'revisionasof'           => 'Diwygiad $1',
 'revision-info'          => 'Y fersiwn a roddwyd ar gadw am $1 gan $2',
-'previousrevision'       => '← at y diwygiad blaenorol',
+'previousrevision'       => '← At y diwygiad blaenorol',
 'nextrevision'           => 'At y diwygiad dilynol →',
 'currentrevisionlink'    => 'Y diwygiad cyfoes',
 'cur'                    => 'cyf',

@@ -1153,6 +1153,7 @@ $1",
 # Diffs
 'history-title'            => '「$1」の変更履歴',
 'difference'               => '(版間での差分)',
+'difference-multipage'     => '（ページ間の差分）',
 'lineno'                   => '$1 行:',
 'compareselectedversions'  => '選択した版同士を比較',
 'showhideselectedversions' => '選択した版を表示もしくは非表示',
@@ -3359,6 +3360,13 @@ $1',
 'version-hook-subscribedby'        => '使用個所',
 'version-version'                  => '(バージョン $1)',
 'version-license'                  => 'ライセンス',
+'version-poweredby-credits'        => "このウィキは、'''[http://www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
+'version-poweredby-others'         => 'その他',
+'version-license-info'             => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License)（バージョン2、またはそれ以降のライセンス）の規約にもとづき、このライブラリの再配布や改変をすることができます。
+
+MediaWikiは、有用であることを期待して配布されていますが、商用あるいは特定の目的に適するかどうかも含めて、暗黙的にも、一切保証されません。詳しくは、GNU一般公衆利用許諾書をご覧下さい。
+
+あなたはこのプログラムと共に、[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU一般公衆利用許諾契約書の複製]を受け取ったはずです。もし受け取っていなければ、フリーソフトウェア財団(the Free Software Foundation, Inc., 59Temple Place, Suite 330, Boston, MA 02111-1307 USA)まで請求するか、[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html オンラインで閲覧]してください。',
 'version-software'                 => 'インストール済みソフトウェア',
 'version-software-product'         => 'ソフトウェア名',
 'version-software-version'         => 'バージョン',

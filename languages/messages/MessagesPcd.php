@@ -8,6 +8,7 @@
  * @file
  *
  * @author Geoleplubo
+ * @author Hercule
  */
 
 $fallback = 'fr';
@@ -212,6 +213,8 @@ $messages = array(
 'aboutpage'            => 'Project:à pérpos',
 'copyright'            => "Ch'contnu, il est disponipe dsou $1.",
 'copyrightpage'        => '{{ns:project}}:Copyrights',
+'currentevents'        => 'Darinnetés picardes',
+'currentevents-url'    => 'Project:Darinnetés picardes',
 'disclaimers'          => 'Démintis',
 'disclaimerpage'       => 'Project:Déminti général',
 'edithelp'             => 'Éditer el aiyude',
@@ -220,6 +223,7 @@ $messages = array(
 'mainpage'             => 'Moaite Pache',
 'mainpage-description' => 'Moaite Pache',
 'portal'               => 'Portal del conmeunauté',
+'portal-url'           => 'Project:Accueul del conminnité',
 'privacy'              => "Politique d'éscrè",
 'privacypage'          => "Project:Politique d'éscrè",
 

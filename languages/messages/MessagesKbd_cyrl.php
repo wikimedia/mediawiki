@@ -127,6 +127,7 @@ $messages = array(
 'vector-view-view'       => 'Еджэн',
 
 'errorpagetitle'   => 'Щыуагъэ',
+'returnto'         => '$1 напэІуэцІым кІуэжын.',
 'tagline'          => 'Къыздихар {{grammar:genitive|{{SITENAME}}}}',
 'help'             => 'Справкэ',
 'search'           => 'Лъыхъу',
@@ -185,20 +186,24 @@ $messages = array(
 
 'badaccess' => 'Хуитыныгъэм щыуагъэ иIэщ',
 
-'retrievedfrom'   => 'Къыздрахар: "$1"',
-'newmessageslink' => 'тхыгъэщIэхэр',
-'editsection'     => 'хъуэжын',
-'editold'         => 'хъуэжын',
-'viewsourceold'   => 'къызыхэкIа кодым хэплъэн',
-'editlink'        => 'хъуэжын',
-'viewsourcelink'  => 'къызыхэкIа кодым еплъын',
-'editsectionhint' => 'Секцэр хъуэжын: $1',
-'showtoc'         => 'гъэлъэгъуэн',
-'hidetoc'         => 'гъэпщкIуын',
-'viewdeleted'     => 'Ухэплэну $1?',
-'site-rss-feed'   => '$1 — RSS-лентIэ',
-'site-atom-feed'  => '$1 — Atom-лентIэ',
-'red-link-title'  => '$1 (апхуэдэ напэкIуэцI щыIэкъым)',
+'retrievedfrom'       => 'Къыздрахар: "$1"',
+'newmessageslink'     => 'тхыгъэщIэхэр',
+'newmessagesdifflink' => 'иужьрей зэхъуэкІыныгъэр',
+'editsection'         => 'хъуэжын',
+'editold'             => 'хъуэжын',
+'viewsourceold'       => 'къызыхэкIа кодым хэплъэн',
+'editlink'            => 'хъуэжын',
+'viewsourcelink'      => 'къызыхэкIа кодым еплъын',
+'editsectionhint'     => 'Секцэр хъуэжын: $1',
+'toc'                 => 'Хэтхахэр',
+'showtoc'             => 'гъэлъэгъуэн',
+'hidetoc'             => 'гъэпщкIуын',
+'viewdeleted'         => 'Ухэплэну $1?',
+'site-rss-feed'       => '$1 — RSS-лентIэ',
+'site-atom-feed'      => '$1 — Atom-лентIэ',
+'page-rss-feed'       => '$1 — RSS-лентIэ',
+'page-atom-feed'      => '$1 — Atom-лентIэ',
+'red-link-title'      => '$1 (апхуэдэ напэкIуэцI щыIэкъым)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Статья',
@@ -243,13 +248,17 @@ $messages = array(
 'italic_sample'   => 'Текстыр укъуэншауэ',
 'italic_tip'      => 'Текстыр зыблэшауэ',
 'link_sample'     => 'Ссылкэм ицIэр',
+'link_tip'        => 'КІуэцІ техьэпІэ',
 'extlink_sample'  => 'http://www.example.com link title ссылкэм и заголовэк',
 'extlink_tip'     => 'Ссылкэ щIыб (зыщывмыгъэгъупщэ http:// префиксыр)',
 'headline_sample' => 'Заголовокым и текст',
+'headline_tip'    => 'ЕтІуанэ щхьагъ зиІэ фІэщыгъэцІэ',
+'math_sample'     => 'Мыбдеж формулэ итхэ',
 'math_tip'        => 'Математикэм тещIыхьауэ формулэ (LaTeX)',
 'nowiki_tip'      => 'Вики-форматыр Iухын',
 'image_tip'       => 'Файл кIуэцIылъу',
 'media_tip'       => 'Файлым и ссылкэ',
+'sig_tip'         => 'Уи Іэ тедзэмрэ заман къыщыхъуамрэ',
 'hr_tip'          => 'Сатыр горизонталну (куэдрэ къэвмыгъэмэбэп)',
 
 # Edit pages
@@ -300,6 +309,7 @@ $messages = array(
 
 # Diffs
 'history-title'           => '$1 - зэхъуэкIыныгъэм и тхыдэ',
+'difference'              => '(Іэмалхэр зэрызыщхьэщыкІыр)',
 'lineno'                  => 'Сатыр $1:',
 'compareselectedversions' => 'Хэха версиехэр зэгъэпщэн',
 'editundo'                => 'щIегъуэжын',
@@ -308,6 +318,7 @@ $messages = array(
 'searchresults'             => 'Лъыхъум къигъуэтахэр',
 'searchresults-title'       => '"$1" мыбы щхьа лъыхъум къигъуэтахэр',
 'notitlematches'            => 'Зэтехуэ хэткъым напэкIуэцIхэм я цIэм',
+'notextmatches'             => 'Зэтехуэ хэткъым напэкIуэцIхэм кІуэцІылъхэм',
 'search-result-size'        => '$1 ({{PLURAL:$2|псалъэу $2|псалъэу $2|псалъэу $2}})',
 'search-redirect'           => '(егъэкIуэкIын $1)',
 'search-section'            => '(секцэ $1)',
@@ -337,6 +348,7 @@ $messages = array(
 # Recent changes
 'recentchanges'                  => 'Хъуэжыныгъэ щIэхэр',
 'recentchanges-feed-description' => 'Вики и иужьырей зэхъуэкIыныгъэхэм кIэлъылъын мыбы и потокым.',
+'rcshowhideminor'                => '$1 мащІэу яхъуэжахэр',
 'rcshowhidebots'                 => 'Боту $1',
 'rcshowhideliu'                  => 'ЦIыхухэту, ихьауэ $1',
 'rcshowhidemine'                 => '$1 схъуэжахэр',
@@ -347,10 +359,13 @@ $messages = array(
 'minoreditletter'                => 'м',
 'newpageletter'                  => 'Н',
 'boteditletter'                  => 'б',
+'rc-enhanced-expand'             => 'Нэхъыбэ къэгъэлъагъуэн (JavaScript къегъэсэбэп)',
+'rc-enhanced-hide'               => 'Гъэхуа жыІэхэр Іухын',
 
 # Recent changes linked
 'recentchangeslinked'      => 'ЗэпыщIа хъуэжыныгъэхэр',
 'recentchangeslinked-page' => 'НапэкIуэцIым и цIэр:',
+'recentchangeslinked-to'   => 'Пхэнжу, къэгъэлъэгъуэн напэкІуэцІхэм я хъуэжахэр, къыхэпха напэкІуэцІым къекІуэкІхэм',
 
 # Upload
 'upload'        => 'Файл илъхьэн',
@@ -405,10 +420,14 @@ $messages = array(
 # Special:ListGroupRights
 'listgrouprights-members' => '(гупым и список)',
 
+# E-mail user
+'emailuser' => 'Тхыгъэ хуэтхын',
+
 # Watchlist
 'watchlist'     => 'Сызыхэплъэ списокыр',
 'mywatchlist'   => 'СызыкIэлъыплъхэм и список',
 'addedwatch'    => 'Список узыкIэлъыплъым хэтхащ',
+'removedwatch'  => 'Хэплъэ къебжэкІым хэгъэкІыжащ',
 'watch'         => 'КIэлъплъын',
 'watchthispage' => 'НапэкIуэцIым кIэлъыплъын',
 'unwatch'       => 'КIэлъымыплъын',
@@ -436,6 +455,7 @@ $messages = array(
 'protect_expiry_invalid'      => 'Защитэм и зэман щиухар пц1ыщ.',
 'protect_expiry_old'          => 'Щиуха зэманыр - блэкIам.',
 'protect-default'             => 'Хъумаиншэхэр',
+'protect-fallback'            => '"$1" хуитыныгъэ ухуещ',
 'protect-level-autoconfirmed' => 'ЦIыхухэтыщIэмрэ щIэуэ къыхыхьахэмрэ щыхъумэн',
 'protect-level-sysop'         => 'Администраторхэм фIэкIа',
 'protect-summary-cascade'     => 'каскаднууэ',
@@ -451,6 +471,7 @@ $messages = array(
 
 # Namespace form on various pages
 'namespace'      => 'ЦIэхэм и пространствэ:',
+'invert'         => 'Къыхэхар пхэнж щІын',
 'blanknamespace' => '(Нэхъыщхьэ)',
 
 # Contributions
@@ -465,24 +486,29 @@ $messages = array(
 'sp-contributions-submit'   => 'Къэгъуэтын',
 
 # What links here
-'whatlinkshere'           => 'Ссылкэхэр мыбдеж',
-'whatlinkshere-page'      => 'НапэкIуэцI:',
-'istemplate'              => 'хэгъэхьэныгъэ',
-'isimage'                 => 'сурэтым и ссылкэ',
-'whatlinkshere-links'     => '← ссылкэхэр',
-'whatlinkshere-hidetrans' => '$1 хэтхэныгъэ',
-'whatlinkshere-hidelinks' => '$1 ссылкэхэр',
-'whatlinkshere-filters'   => 'Фильтры',
+'whatlinkshere'            => 'Ссылкэхэр мыбдеж',
+'whatlinkshere-title'      => '«$1» узыгъакІуэ напэкІуэцІхэр',
+'whatlinkshere-page'       => 'НапэкIуэцI:',
+'isredirect'               => 'НапэкIуэцI-уезыгъэкIуэкI',
+'istemplate'               => 'хэгъэхьэныгъэ',
+'isimage'                  => 'сурэтым и ссылкэ',
+'whatlinkshere-links'      => '← ссылкэхэр',
+'whatlinkshere-hideredirs' => '$1 уезыгъэкІуэкІхэр',
+'whatlinkshere-hidetrans'  => '$1 хэтхэныгъэ',
+'whatlinkshere-hidelinks'  => '$1 ссылкэхэр',
+'whatlinkshere-filters'    => 'Фильтры',
 
 # Block/unblock
 'ipblocklist'      => 'IP-адрес учетнэ запись гъэбыдахэмрэ',
 'blocklink'        => 'зэхуэщIын',
 'change-blocklink' => 'блокировкэр зэхъуэкIын',
 'contribslink'     => 'хэлъхьэгъуэ',
+'blocklogpage'     => 'Блокировкэхэм я къебжэкІ',
 
 # Move page
 'movearticle'     => 'НапэкIуэцIым и цIэр хъуэжын',
 'newtitle'        => 'ЩIэуэ и цIэр',
+'move-watch'      => 'НапэкІуэцІыр узыкІэлъыплъ къебжэкІым хэтхэн',
 'movepagebtn'     => 'НапэкIкэцIым и цIэр хъуэжын',
 'pagemovedsub'    => 'НапэкIуэцIым и цIэр хъуэжащ',
 'movepage-moved'  => "'''«$1» напэкIуэцIым и цIэр хъуэжащ мыпхуэдэу: «$2»'''",
@@ -514,7 +540,8 @@ $messages = array(
 'tooltip-ca-protect'             => 'Хъуэжыным напэкIуэцIыр щыхъумэн',
 'tooltip-ca-delete'              => 'Мы напэкIуэцIыр тегъэкIын',
 'tooltip-ca-move'                => 'НапэкIуэцIым и цIэр хъуэжын',
-'tooltip-ca-watch'               => 'Мы напэкIуэцIыр список узыхэплъэм хэлъхьэн',
+'tooltip-ca-watch'               => 'Мы напэкIуэцIыр узыкІэлъыплъ къебжэкІым хэлъхьэн',
+'tooltip-ca-unwatch'             => 'Мы напэкIуэцIыр узыкІэлъыплъ къебжэкІым хэхын',
 'tooltip-search'                 => 'Мы псалъэр къэлъыхъуэн',
 'tooltip-search-go'              => 'Мыпхуэдабзэ цIэ зиIэ напэкIуэцIым кIуэн',
 'tooltip-search-fulltext'        => 'Мы текстыр зыхэт напэкIуэцIхэр къэгъуэтын',
@@ -526,26 +553,41 @@ $messages = array(
 'tooltip-n-help'                 => 'Проектым и дэIэпыкъуэгъу «{{SITENAME}}»',
 'tooltip-t-whatlinkshere'        => 'Мы напэкIуэцым и цIэр къизыIуу хъуам  и список',
 'tooltip-t-recentchangeslinked'  => 'Мы напэкIуэц1ым зызэхуигъазэ напэкIуэцIхэм и иужьрей зэхъуэкIыныгъэхэр',
+'tooltip-feed-rss'               => 'НапэкІуэцІым щхьа RSS пыщІэн',
+'tooltip-feed-atom'              => 'НапэкІуэцІым щхьа Atom пыщІэн',
 'tooltip-t-emailuser'            => 'Мы цIыхухэтым и e-mail хуэтхын',
 'tooltip-t-upload'               => 'Сурэт, уэрэд сыт зыгуэр илъхьэн',
 'tooltip-t-specialpages'         => 'Служебнэ напэкIуэцIхэм и список',
 'tooltip-t-print'                => 'НапэкIуэцIым и версие, печатым щхьа',
 'tooltip-ca-nstab-main'          => 'Статьям кIуэцIылъыр',
 'tooltip-ca-nstab-user'          => 'ЦIыхухэтым и напэкIуэцIыр къэгъэлъэгъуэн',
+'tooltip-ca-nstab-project'       => 'НапэкІуэцІым и проект',
 'tooltip-ca-nstab-image'         => 'Файлым и напэкIуэцI',
 'tooltip-ca-nstab-category'      => 'Категорием и напэкIуэцI',
+'tooltip-minoredit'              => 'ЗэхъуэкІыныгъэр жьгъейуэ бжын',
 'tooltip-save'                   => 'Фи зэхъуэкIыныгъэхэр хъумэн',
+'tooltip-preview'                => 'НапэкІуэцІым и япэеплъ, пхъумэн ипэ къэгъэсэбэп!',
+'tooltip-watch'                  => 'Мы напэкIуэцIыр узыкІэлъыплъ къебжэкІым хэлъхьэн',
 'tooltip-rollback'               => 'Зы текъузэкIэ иужьрей зэхъуэкIыныгъэхэр зыщIам и щIахэм къегъэзэжын',
 
 # Browsing diffs
 'nextdiff' => 'КIэлъыкIуэ хъуэжыгъэр →',
 
 # Media information
-'file-nohires'   => '<small>Ин плъыфэу къэгъэлъэгъуэн щыIэкъым.</small>',
-'show-big-image' => 'Сурэтыр нэхъ къабзэу',
+'file-nohires'         => '<small>Ин плъыфэу къэгъэлъэгъуэн щыIэкъым.</small>',
+'show-big-image'       => 'Сурэтыр нэхъ къабзэу',
+'show-big-image-thumb' => '<small>Япэеплъым и инагъ: пиксел: $1 × $2</small>',
 
 # Metadata
-'metadata' => 'Метаданнэхэр',
+'metadata'        => 'Метаданнэхэр',
+'metadata-fields' => 'Метаданнэхэр, мыбы кърибжэкІхэр къызэрыгуэкІыу сурэтым и напэкІуэцІым къщридзэнущ, адрейхэр гъэпщкІуау щытынущ.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength',
 
 # External editor support
 'edit-externally' => 'Файлыр хъуэжын, нэгъуэщI программэ и сэбэпкIэ',

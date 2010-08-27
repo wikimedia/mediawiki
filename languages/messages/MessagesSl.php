@@ -2100,15 +2100,15 @@ Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tuk
 'enotif_reset'                 => 'Označi vse strani kot prebrane',
 'enotif_newpagetext'           => 'To je nova stran.',
 'enotif_impersonal_salutation' => 'Uporabnik {{GRAMMAR:rodilnik|{{SITENAME}}}}',
-'changed'                      => 'spremenjena',
-'created'                      => 'ustvarjena',
+'changed'                      => 'spremenil',
+'created'                      => 'ustvaril',
 'enotif_subject'               => 'Stran {{GRAMMAR:rodilnik|{{SITENAME}}}} $PAGETITLE je $CHANGEDORCREATED $PAGEEDITOR',
 'enotif_lastvisited'           => 'Za spremembe po vašem zadnjem obisku glejte $1.',
 'enotif_lastdiff'              => 'Glej $1 za to spremembo.',
 'enotif_anon_editor'           => 'brezimni uporabnik $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-stran v {{GRAMMAR:dajalnik|{{SITENAME}}}} $PAGETITLE je bila $PAGEEDITDATE $CHANGEDORCREATED s strani $PAGEEDITOR,
+stran v {{GRAMMAR:dajalnik|{{SITENAME}}}} $PAGETITLE je dne $PAGEEDITDATE $CHANGEDORCREATED uporabnik $PAGEEDITOR,
 za trenutno redakcijo glejte $PAGETITLE_URL.
 
 $NEWPAGE

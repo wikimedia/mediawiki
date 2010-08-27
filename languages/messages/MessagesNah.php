@@ -1377,7 +1377,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 
 'exif-meteringmode-255' => 'Occē',
 
-'exif-lightsource-1'   => 'Tōnameyyōtl',
+'exif-lightsource-1'   => 'Tōnameyōtl',
 'exif-lightsource-2'   => 'Nāltic',
 'exif-lightsource-4'   => 'Flax',
 'exif-lightsource-10'  => 'Mixxoh',

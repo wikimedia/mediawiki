@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author DasRakel
  * @author Tbc
  * @author לערי ריינהארט
  */
@@ -33,12 +34,81 @@ $namespaceNames = array(
 );
 
 $messages = array(
-# Dates
-'tuesday' => 'diensdag',
+# User preference toggles
+'tog-enotifrevealaddr'    => 'Tôog min e-mailadres in e-mails',
+'tog-shownumberswatching' => 'Tôog et aantal gebrukers dan et blad volgn',
 
-'newwindow' => '(opent in e nieuw veister)',
-'mypage'    => 'Myn gebrukersblad',
-'mytalk'    => 'Myn discuusjeblad',
+'underline-always'  => 'Olsan',
+'underline-never'   => 'Noois',
+'underline-default' => 'Browser standoard',
+
+# Dates
+'sunday'        => 'zundag',
+'monday'        => 'moandag',
+'tuesday'       => 'disndag',
+'wednesday'     => 'woesdag',
+'thursday'      => 'dunderdag',
+'friday'        => 'vrydag',
+'saturday'      => 'zoaterdag',
+'sun'           => 'zu',
+'mon'           => 'moa',
+'tue'           => 'din',
+'wed'           => 'woe',
+'thu'           => 'dun',
+'fri'           => 'vry',
+'sat'           => 'zat',
+'january'       => 'januoari',
+'february'      => 'februoari',
+'march'         => 'moarte',
+'april'         => 'april',
+'may_long'      => 'mei',
+'june'          => 'juni',
+'july'          => 'juli',
+'august'        => 'ogustus',
+'september'     => 'september',
+'october'       => 'oktober',
+'november'      => 'november',
+'december'      => 'december',
+'january-gen'   => 'januari',
+'february-gen'  => 'februoari',
+'march-gen'     => 'moarte',
+'april-gen'     => 'april',
+'may-gen'       => 'mei',
+'june-gen'      => 'juni',
+'july-gen'      => 'juli',
+'august-gen'    => 'ogustus',
+'september-gen' => 'september',
+'october-gen'   => 'oktober',
+'november-gen'  => 'november',
+'december-gen'  => 'december',
+'jan'           => 'jan',
+'feb'           => 'feb',
+'mar'           => 'mrt',
+'apr'           => 'apr',
+'may'           => 'mei',
+'jun'           => 'jun',
+'jul'           => 'jul',
+'aug'           => 'ogs',
+'sep'           => 'sep',
+'oct'           => 'okt',
+'nov'           => 'nov',
+'dec'           => 'dec',
+
+# Categories related messages
+'listingcontinuesabbrev' => 'vervolg',
+
+'newwindow'     => '(opent in e nieuw veister)',
+'moredotdotdot' => 'Mêer…',
+'mypage'        => 'Myn gebrukersblad',
+'mytalk'        => 'Myn discuusjeblad',
+'and'           => '&#32;en',
+
+# Cologne Blue skin
+'qbedit'         => "Bewerk'n",
+'qbspecialpages' => 'Specioale bloadn',
+
+# Vector skin
+'vector-namespace-special' => 'Specioale blad',
 
 'history_short' => 'Geschiedenisse',
 'edit'          => "Bewerk'n",
@@ -46,6 +116,16 @@ $messages = array(
 'unprotect'     => 'beveiliginge wegdoen',
 'newpage'       => 'Nieuw blad',
 'toolbox'       => 'Ulpmiddeln',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'   => 'Over {{SITENAME}}',
+'disclaimers' => 'Aansprakelekeid',
+'mainpage'    => 'Voorblad',
+
+'red-link-title' => '$1 (Blad bestoat nie)',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-special' => 'Specioale blad',
 
 # Login and logout pages
 'logout' => 'Ofmeldn',
