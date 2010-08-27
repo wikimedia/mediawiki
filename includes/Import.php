@@ -311,7 +311,6 @@ class WikiRevision {
 
 		$file = wfLocalFile( $this->getTitle() );
 		if( !$file ) {
-			var_dump( $file );
 			wfDebug( "IMPORT: Bad file. :(\n" );
 			return false;
 		}
