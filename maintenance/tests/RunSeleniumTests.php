@@ -36,6 +36,7 @@ class SeleniumTester extends Maintenance {
 		$this->addOption( 'browser', 'The browser he used during testing' );
 		$this->addOption( 'url', 'The Mediawiki installation to point to.' );
 		$this->addOption( 'list-browsers', 'List the available browsers.' );
+		$this->addOption( 'verbose', 'Be noisier.' );
 
 		$this->deleteOption( 'dbpass' );
 		$this->deleteOption( 'dbuser' );
@@ -54,10 +55,12 @@ class SeleniumTester extends Maintenance {
 		echo $desc;
 	}
 
-	protected function runTests() {
+	protected function runTests( $verbose = false ) {
 		global $wgSeleniumLogger, $wgSeleniumTestSuites;
 
-		SeleniumLoader::load();
+		require_once( 'Testing/Selenium.php' );
+		require_once( 'PHPUnit/Framework.php' );
+		require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
 		$result = new PHPUnit_Framework_TestResult;
 		$wgSeleniumLogger = new SeleniumTestConsoleLogger;
 		$result->addListener( new SeleniumTestListener( $wgSeleniumLogger ) );
@@ -84,10 +87,10 @@ class SeleniumTester extends Maintenance {
 
 		$wgSeleniumServerPort = $this->getOption( 'port', 4444 );
 		$wgSeleniumTestsSeleniumHost = $this->getOption( 'host', 'localhost' );
-		$wgSeleniumTestsWikiUrl = $this->getOption( 'test-url', $wgServer . $wgScriptPath );
+		$wgSeleniumTestsWikiUrl = $this->getOption( 'url', $wgServer . $wgScriptPath );
 		$wgSeleniumTestsUseBrowser = $this->getOption( 'browser', 'firefox' );
 
-		$this->runTests();
+		$this->runTests( $this->hasOption( 'verbose' ) );
 	}
 }
 
