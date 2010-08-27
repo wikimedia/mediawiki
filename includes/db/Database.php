@@ -1039,62 +1039,6 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * INSERT ... ON DUPLICATE KEY UPDATE wrapper, inserts an array into a
-	 * table, optionally updating if duplicate primary key found
-	 *
-	 * $rows may be a single associative array, or an array of these with
-	 * numeric keys, for multi-row insert.
-	 *
-	 * Usually aborts on failure.  If errors are explicitly ignored, returns success.
-	 *
-	 * @param $table   String: table name (prefix auto-added)
-	 * @param $rows	   Array: Array of rows to insert
-	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
-	 * @param $onDupeUpdate   Array: Associative array of fields to update on duplicate
-	 *
-	 * @return bool
-	 */
-	function insertOrUpdate( $table, $rows, $fname = 'DatabaseBase::insertOrUpdate', $onDupeUpdate = array() ) {
-		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
-			$keys = array_keys( $rows[0] );
-		} else {
-			$keys = array_keys( $rows );
-		}
-
-		// Get what is only to be set if inserted
-		$where = array_diff( $rows, $onDupeUpdate );
-
-		$res = $this->select(
-			$table,
-			$keys,
-			$where,
-			__METHOD__
-		);
-
-		if ( $res ) {
-			// Where there is a different value to set if this is being
-			// "updated", use the $onDupeUpdate value for that to replace the
-			// original option (if it was an insert), and replace the column
-			// name with the value read from the existing row
-			foreach ( $where as $key => $unused ) {
-				if ( isset( $onDupeUpdate[$key] ) ) {
-					$options[$key] = str_replace( $key, $res[0]->{$key}, $onDupeUpdate[$key] );
-				}
-			}
-		} else {
-			// No results, it's just an insert
-			$update = $where;
-		}
-
-		return (bool)$this->replace(
-			$table,
-			$update,
-			array(),
-			__METHOD__
-		);
-	}
-
-	/**
 	 * Make UPDATE options for the DatabaseBase::update function
 	 *
 	 * @private
