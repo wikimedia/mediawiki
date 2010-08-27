@@ -18,7 +18,7 @@ $messages = array(
 'tog-underline'          => 'Gleecher unnerleine:',
 'tog-hideminor'          => 'Gleene Enneringe verschwinne losse',
 'tog-watchdefault'       => 'Vun mir gennerte Ardickele watsche',
-'tog-nocache'            => 'Ken Bledder-Scheier',
+'tog-nocache'            => 'Bledder-Scheier ausmache',
 'tog-watchlisthideown'   => 'Mei Ardickele vun mei Watsch-Lischt verschwinne losse',
 'tog-watchlisthidebots'  => 'Enneringe vun Bots vun mei Watsch-Lischt verschwinne losse',
 'tog-watchlisthideminor' => 'Gleene Enneringe vun mei Watsch-Lischt verschwinne losse',
@@ -156,7 +156,7 @@ $messages = array(
 'personaltools'    => 'Paerseenlich Gscharr',
 'talk'             => 'Gschwetz',
 'views'            => 'Aasichte',
-'toolbox'          => 'Schapp',
+'toolbox'          => 'Gscharr',
 'userpage'         => 'Yuuserblatt zeige',
 'imagepage'        => 'Feils zeige',
 'templatepage'     => 'Moddle zeige',
@@ -252,6 +252,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'userlogout'              => 'Geh naus',
 'gotaccountlink'          => 'Kumm nei',
 'createaccountmail'       => 'iwwer E-Mail',
+'createaccountreason'     => 'Grund:',
 'noemail'                 => 'Yuuser „$1“ hot ken E-Mail aagewwe.',
 'loginlanguagelabel'      => 'Schprooch: $1',
 
@@ -312,12 +313,13 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'revdelete-hide-text'        => 'Text vun de Version verschwinne losse',
 'revdelete-radio-set'        => 'Ya',
 'revdelete-radio-unset'      => 'Nee',
+'revdelete-log'              => 'Grund:',
 'pagehist'                   => 'Gschicht',
 'revdelete-uname'            => 'Yuuser-Naame',
 'revdelete-log-message'      => '$1 fer $2 {{PLURAL:$2|Version|Versione}}',
 'revdelete-otherreason'      => 'Annere Grind dezu:',
 'revdelete-reasonotherlist'  => 'Annere Grind',
-'revdelete-edit-reasonlist'  => "Grind fer's Loesche ennere",
+'revdelete-edit-reasonlist'  => "Grind fer's Lesche ennere",
 'revdelete-offender'         => 'Schreiwer fun daer Version:',
 
 # Revision move
@@ -498,6 +500,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'filehist-deleteone'  => 'Sell Version lösche',
 'filehist-revert'     => 'zerick',
 'filehist-datetime'   => 'Version vum',
+'filehist-thumb'      => 'Glee Pikder',
 'filehist-user'       => 'Yuuser',
 'filehist-dimensions' => 'Grees',
 'filehist-filesize'   => 'Grees vum Feil',
@@ -516,6 +519,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'filedelete-nofile'           => "'''„$1“''' gebt es net.",
 'filedelete-otherreason'      => 'Annere Grind dezu:',
 'filedelete-reason-otherlist' => 'Annerer Gund',
+'filedelete-edit-reasonlist'  => "Grind fer's Lesche ennere",
 
 # MIME search
 'download' => 'Runnerlaade',
@@ -650,7 +654,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'deletecomment'          => 'Grund:',
 'deleteotherreason'      => 'Annre Grind:',
 'deletereasonotherlist'  => 'Annerer Grund',
-'delete-edit-reasonlist' => 'Grind fers Lösche ennere',
+'delete-edit-reasonlist' => "Grind fer's Lesche ennere",
 
 # Protect
 'protectcomment'            => 'Grund:',
@@ -862,6 +866,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'table_pager_next'         => 'Neegscht Blatt',
 'table_pager_prev'         => 'Letscht Blatt',
 'table_pager_first'        => 'Erschtes Blatt',
+'table_pager_last'         => 'Letscht Blatt',
 'table_pager_limit_submit' => 'Geh los',
 
 # Auto-summaries

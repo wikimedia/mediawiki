@@ -953,8 +953,33 @@ chmod a+w $3</pre>',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 ці болей позьняя',
 	'config-license-pd' => 'Грамадзкі набытак',
 	'config-license-cc-choose' => 'Выберыце іншую ліцэнзію Creative Commons',
+	'config-license-help' => "Шматлікія адкрытыя вікі разьмяшчаюць унёскі на ўмовах ліцэнзіі [http://freedomdefined.org/Definition вольнай ліцэнзіі].
+Гэта дазваляе ствараць сэнс супольнай уласнасьці і садзейнічае доўгатэрміновым унёскам.
+Гэта не неабходна для прыватных і карпаратыўных вікі.
+
+Калі Вы жадаеце выкарыстоўваць тэкст з Вікіпэдыі, і жадаеце каб Вікіпэдыя магла прынімаць тэкст скапіяваны з Вашай вікі, Вам неабходна выбраць ліцэнзію '''Creative Commons Attribution Share Alike'''.
+
+Раней Вікіпэдыя выкарыстоўвала ліцэнзію GNU Free Documentation. Яна ўсё яшчэ дзейнічае, але яна ўтрымлівае некаторыя моманты, якія ўскладняюць паўторнае выкарыстоўваньне і інтэрпрэтацыю матэрыялаў.",
 	'config-email-settings' => 'Устаноўкі электроннай пошты',
+	'config-enable-email' => 'Дазволіць выходзячыя электронныя лісты',
+	'config-enable-email-help' => 'Калі Вы жадаеце каб працавала электронная пошта, неабходна зрабіць [http://www.php.net/manual/en/mail.configuration.php адпаведныя ўстаноўкі PHP].
+Калі Вы не жадаеце выкарыстоўваць магчымасьці электроннай пошты, тут Вы можаце яе адключыць.',
 	'config-email-user' => 'Дазволіць электронную пошту для сувязі паміж удзельнікамі',
+	'config-email-user-help' => 'Дазволіць усім удзельнікам дасылаць адзін аднаму электронныя лісты, калі ўключаная адпаведная магчымасьць ў іх ўстаноўках.',
+	'config-email-usertalk' => 'Уключыць абвяшчэньні пра паведамленьні на старонцы абмеркаваньня',
+	'config-email-usertalk-help' => 'Дазваляе ўдзельнікам атрымліваць абвяшчэньні пра зьмены на старонцы абмеркаваньня, калі гэтая магчымасьць уключаная ў іх устаноўках.',
+	'config-email-watchlist' => 'Уключыць абвяшчэньні пра зьмены ў сьпісе назіраньня',
+	'config-email-watchlist-help' => 'Дазваляе ўдзельнікам атрымліваць абвяшчэньні пра зьмены ў іх сьпісе назіраньня, калі гэтая магчымасьць уключаная ў іх устаноўках.',
+	'config-email-auth' => 'Уключыць аўтэнтыфікацыю праз электронную пошту',
+	'config-email-auth-help' => "Калі гэтая магчымасьць уключаная, удзельнікі павінны пацьвердзіць іх адрас электроннай пошты праз спасылку, якая дасылаецца ім праз электронную пошту. Яна дасылаецца і падчас зьмены адрасу электроннай пошты.
+Толькі аўтэнтыфікаваныя адрасы электроннай пошты могуць атрымліваць электронныя лісты ад іншых удзельнікаў, ці зьмяняць абвяшчэньні дасылаемыя праз электронную пошту.
+Уключэньне гэтай магчымасьці '''рэкамэндуецца'''  для адкрытых вікі, з-за магчымых злоўжываньняў магчымасьцямі электроннай пошты.",
+	'config-email-sender' => 'Адрас электроннай пошты для вяртаньня:',
+	'config-email-sender-help' => 'Увядзіце адрас электроннай пошты для вяртаньня ў якасьці адрасу дасылаемых электронных лістоў.
+Сюды будуць дасылацца неатрыманыя электронныя лісты.
+Шматлікія паштовыя сэрвэры патрабуюць, каб хаця б назва дамэну была слушнай.',
+	'config-upload-settings' => 'Загрузкі выяваў і файлаў',
+	'config-upload-enable' => 'Дазволіць загрузку файлаў',
 	'config-memcached-servers' => 'Сэрвэры memcached:',
 	'config-extensions' => 'Пашырэньні',
 	'config-install-step-done' => 'зроблена',
@@ -2425,6 +2450,9 @@ chmod a+w config</pre>",
 	'config-db-install-account' => 'Conta de usuario para a instalación',
 	'config-db-username' => 'Nome de usuario da base de datos:',
 	'config-db-password' => 'Contrasinal da base de datos:',
+	'config-db-install-help' => 'Introduza o nome de usuario e contrasinal que se usará para conectar á base de datos durante o proceso de instalación.',
+	'config-db-account-lock' => 'Use o mesmo nome de usuario e contrasinal despois do proceso de instalación',
+	'config-db-wiki-account' => 'Conta de usuario para despois do proceso de instalación',
 	'config-db-prefix' => 'Prefixo das táboas da base de datos:',
 	'config-db-charset' => 'Conxunto de caracteres da base de datos',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binario',
@@ -2473,16 +2501,24 @@ Comprobe o directorio de datos e o nome da base de datos que hai a continuación
 	'config-can-upgrade' => "Existen táboas MediaWiki nesta base de datos.
 Para actualizalas a MediaWiki \$1, prema sobre \"'''Continuar'''\".",
 	'config-regenerate' => 'Rexenerar LocalSettings.php →',
+	'config-show-table-status' => 'A pescuda SHOW TABLE STATUS fallou!',
 	'config-unknown-collation' => "'''Atención:''' A base de datos está a empregar unha clasificación alfabética irrecoñecible.",
 	'config-db-web-account' => 'Conta na base de datos para o acceso á internet',
+	'config-db-web-help' => 'Seleccione o nome de usuario e contrasinal que o servidor web empregará para se conectar ao servidor da base de datos durante o funcionamento normal do wiki.',
 	'config-db-web-account-same' => 'Empregar a mesma conta que para a instalación',
 	'config-db-web-create' => 'Crear a conta se aínda non existe',
+	'config-db-web-no-create-privs' => 'A conta que especificou para a instalación non ten os privilexios suficientes para crear unha conta.
+A conta que se especifique aquí xa debe existir.',
 	'config-mysql-engine' => 'Motor de almacenamento:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-egine-mismatch' => "'''Atención:''' Solicitou o motor de almacenamento $1, mais o existente na base de datos é o motor $2.
+Esta escritura de actualización non o pode converter, de modo que permanecerá $2.",
 	'config-mysql-charset' => 'Conxunto de caracteres da base de datos:',
 	'config-mysql-binary' => 'Binario',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-mismatch' => "'''Atención:''' Solicitou o esquema $1, mais o existente na base de datos é o esquema $2.
+Esta escritura de actualización non o pode converter, de modo que permanecerá $2.",
 	'config-site-name' => 'Nome do wiki:',
 	'config-site-name-help' => 'Isto aparecerá na barra de títulos do navegador e noutros lugares.',
 	'config-site-name-blank' => 'Escriba o nome do sitio.',
@@ -2491,6 +2527,8 @@ Para actualizalas a MediaWiki \$1, prema sobre \"'''Continuar'''\".",
 	'config-ns-site-name' => 'O mesmo nome que o wiki: $1',
 	'config-ns-other' => 'Outro (especificar)',
 	'config-ns-other-default' => 'OMeuWiki',
+	'config-ns-invalid' => 'O espazo de nomes especificado, "<nowiki>$1</nowiki>", é incorrecto.
+Especifique un espazo de nomes do proxecto diferente.',
 	'config-admin-box' => 'Conta de administrador',
 	'config-admin-name' => 'O seu nome:',
 	'config-admin-password' => 'Contrasinal:',
@@ -2502,6 +2540,8 @@ Especifique un nome de usuario diferente.',
 	'config-admin-password-same' => 'O contrasinal debe diferir do nome de usuario.',
 	'config-admin-password-mismatch' => 'Os contrasinais non coinciden.',
 	'config-admin-email' => 'Enderezo de correo electrónico:',
+	'config-admin-error-user' => 'Erro interno ao crear un administrador co nome "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Erro interno ao establecer un contrasinal para o administrador "<nowiki>$1</nowiki>": <pre>$2</pre>',
 	'config-subscribe' => 'Subscríbase á [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de correo de anuncios sobre lanzamentos].',
 	'config-almost-done' => 'Xa case rematou!
 Neste paso pode saltar o resto da configuración e instalar o wiki agora mesmo.',
@@ -2533,8 +2573,12 @@ Neste paso pode saltar o resto da configuración e instalar o wiki agora mesmo.'
 	'config-upload-settings' => 'Imaxes e carga de ficheiros',
 	'config-upload-enable' => 'Activar a carga de ficheiros',
 	'config-upload-deleted' => 'Directorio para os ficheiros borrados:',
+	'config-upload-deleted-help' => 'Escolla un directorio no que arquivar os ficheiros borrados.
+O ideal é que non sexa accesible desde a web.',
 	'config-logo' => 'URL do logo:',
 	'config-instantcommons' => 'Activar Instant Commons',
+	'config-instantcommons-good' => 'O instalador foi capaz de detectar a conectividade á internet durante as comprobacións do entorno.
+Pode activar esta característica se quere.',
 	'config-cc-error' => 'A escolla da licenza Creative Commons non deu resultados.
 Escriba o nome da licenza manualmente.',
 	'config-cc-again' => 'Escolla outra vez...',
@@ -5730,6 +5774,9 @@ MediaWiki не будет работать в этой конфигурации,
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-support-mysql' => '* $1 — основная база данных для MediaWiki, и лучше поддерживается ([http://www.php.net/manual/en/mysql.installation.php инструкция, как собрать PHP с поддержкой MySQL])',
+	'config-support-postgres' => '* $1 — популярная открытая СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL])',
+	'config-support-sqlite' => '* $1 — это лёгковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php Инструкция, как скомпилировать PHP с поддержкой SQLite], работающей посредством PDO)',
 	'config-header-mysql' => 'Настройки MySQL',
 	'config-header-postgres' => 'Настройки PostgreSQL',
 	'config-header-sqlite' => 'Настройки SQLite',

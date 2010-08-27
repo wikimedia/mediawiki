@@ -144,6 +144,9 @@ $messages = array(
 'hidden-categories'        => '{{PLURAL:$1|Class covys|Class covys}}',
 'hidden-category-category' => 'Classys covys',
 'category-subcat-count'    => "{{PLURAL:$2|Nyns ujy dhe'n class-ma saw an isglass a-sew.|Yma dhe'n class-ma an {{PLURAL:$1|isglass|$1 isglassys}} a-sew; yma $2 isglass dhodho en sum.}}",
+'category-article-count'   => "Yma dhe'n class-ma an 14 isglassys a-sew; yma 14 isglass dhodho en sum. 
+
+{{PLURAL:$2|Nyns eus dhe'n class-ma saw an folen a-sew.|Yma'n {{PLURAL:$1|folen|$1 folennow}} a-sew et an class-ma; yma $2 class en sum.}}",
 'listingcontinuesabbrev'   => 'pes.',
 
 'about'         => 'A-dro dhe',
@@ -593,6 +596,7 @@ Yth yw folennow eus war dha [[Special:Watchlist|rol golyas]] en '''tew'''.",
 'filehist-dimensions'       => 'Mynsow',
 'filehist-comment'          => 'Ger',
 'imagelinks'                => "Kevrennow dhe'n restren-ma",
+'linkstoimage'              => "Yma'n {{PLURAL:$1|folen|$1 folen}} a-sew ow kevrenna dhe'n restren-ma:",
 'sharedupload'              => 'Yma an folen-ma ow tos dhort $1 ha hi a ell bos usys gen ragdresow erel.',
 'uploadnewversion-linktext' => "Ughcarga versyon nowyth a'n restren-ma",
 
@@ -696,7 +700,7 @@ Yth yw folennow eus war dha [[Special:Watchlist|rol golyas]] en '''tew'''.",
 'deletedtext'           => '"<nowiki>$1</nowiki>" yw dileys.
 Gwelewgh $2 rag covath a dhileansow a-dhiwedhes.',
 'deletedarticle'        => 'a dhileys "[[$1]]"',
-'dellogpage'            => 'Covnoten dileyans',
+'dellogpage'            => 'Covnoten dileyansow',
 'deletecomment'         => 'Acheson:',
 'deleteotherreason'     => 'Acheson aral/keworransel:',
 'deletereasonotherlist' => 'Acheson aral',
@@ -705,7 +709,7 @@ Gwelewgh $2 rag covath a dhileansow a-dhiwedhes.',
 'rollbacklink' => 'restorya',
 
 # Protect
-'protectlogpage'      => 'Covnoten difresyans',
+'protectlogpage'      => 'Covnoten difresyansow',
 'protectcomment'      => 'Acheson:',
 'protect-level-sysop' => 'Menysteryon hepken',
 'restriction-type'    => 'Cubmyas:',
@@ -757,7 +761,7 @@ Gwelewgh $2 rag covath a dhileansow a-dhiwedhes.',
 'whatlinkshere-filters'    => 'Sidhlow',
 
 # Block/unblock
-'blockip'                    => 'Let devnydhyer',
+'blockip'                    => 'Lettya an devnydhyer',
 'ipaddress'                  => 'Trigva IP:',
 'ipadressorusername'         => 'Trigva IP po hanow-usyer:',
 'ipbreason'                  => 'Acheson:',
@@ -783,7 +787,7 @@ Gwelewgh $2 rag covath a dhileansow a-dhiwedhes.',
 'movepage-moved'   => '\'\'\'Gwayes yw "$1" war-tu "$2"\'\'\'',
 'movedto'          => 'gwayes war-tu',
 '1movedto2'        => '[[$1]] gwayes war-tu [[$2]]',
-'movelogpage'      => 'Gwaya an govnoten',
+'movelogpage'      => 'Covnoten gwayansow',
 'movereason'       => 'Acheson:',
 'revertmove'       => 'trebuchya',
 
