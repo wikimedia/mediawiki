@@ -997,13 +997,10 @@ class Article {
 
 					$this->checkTouched();
 					$key = $parserCache->getKey( $this, $parserOptions );
-					$poolCounter = PoolCounter::factory( 'Article::view', $key );
-					$dirtyCallback = $useParserCache ? array( $this, 'tryDirtyCache' ) : false;
-					$status = $poolCounter->executeProtected( array( $this, 'doViewParse' ), $dirtyCallback );
-
-					if ( !$status->isOK() ) {
+					$poolArticleView = new PoolWorkArticleView( $this, $key, $useParserCache, $parserOptions );
+					
+					if ( !$poolArticleView->execute() ) {
 						# Connection or timeout error
-						$this->showPoolError( $status );
 						wfProfileOut( __METHOD__ );
 						return;
 					} else {
@@ -1482,6 +1479,8 @@ class Article {
 		
 		$useParserCache = $this->useParserCache( $oldid );
 		$this->outputWikiText( $this->getContent(), $useParserCache, $parserOptions );
+		
+		return true;
 	}
 
 	/**
@@ -1519,23 +1518,6 @@ class Article {
 
 			return false;
 		}
-	}
-
-	/**
-	 * Show an error page for an error from the pool counter.
-	 * @param $status Status
-	 */
-	public function showPoolError( $status ) {
-		global $wgOut;
-
-		$wgOut->clearHTML(); // for release() errors
-		$wgOut->enableClientCache( false );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->addWikiText(
-			'<div class="errorbox">' .
-			$status->getWikiText( false, 'view-pool-error' ) .
-			'</div>'
-		);
 	}
 
 	/**
@@ -4631,4 +4613,57 @@ class Article {
 		return wfGetDB( DB_MASTER );
 	}
 
+}
+
+class PoolWorkArticleView extends PoolCounterWork {
+	private $mArticle;
+	
+	function __construct( $article, $key, $useParserCache, $parserOptions ) {
+		parent::__construct( __CLASS__, $key );
+		$this->mArticle = $article;
+		$this->cacheable = $useParserCache;
+		$this->parserOptions = $parserOptions;
+	}
+	
+	function doWork() {
+		return $this->mArticle->doViewParse();
+	}
+	
+	function getCachedWork() {
+		global $wgOut;
+		
+		$parserCache = ParserCache::singleton();
+		$this->mArticle->mParserOutput = $parserCache->get( $this->mArticle, $this->parserOptions );
+
+		if ( $this->mArticle->mParserOutput !== false ) {
+			wfDebug( __METHOD__ . ": showing contents parsed by someone else\n" );
+			$wgOut->addParserOutput( $this->mArticle->mParserOutput );
+			# Ensure that UI elements requiring revision ID have
+			# the correct version information.
+			$wgOut->setRevisionId( $this->mArticle->getLatest() );
+			return true;
+		}
+		return false;
+	}
+	
+	function fallback() {
+		return $this->mArticle->tryDirtyCache();
+	}
+	
+	function error( $status ) {
+		global $wgOut;
+
+		$wgOut->clearHTML(); // for release() errors
+		$wgOut->enableClientCache( false );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		
+		if ( $status instanceof Status ) {
+			$errortext = $status->getWikiText( false, 'view-pool-error' );
+		} else {
+			$errortext = wfMsgNoTrans( 'view-pool-error', '' );
+		}
+		$wgOut->addWikiText( '<div class="errorbox">' . $errortext . '</div>' );
+		
+		return false;
+	}
 }

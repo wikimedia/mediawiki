@@ -177,6 +177,7 @@ $wgAutoloadLocalClasses = array(
 	'PatrolLog' => 'includes/PatrolLog.php',
 	'PoolCounter' => 'includes/PoolCounter.php',
 	'PoolCounter_Stub' => 'includes/PoolCounter.php',
+	'PoolCounterWork' => 'includes/PoolCounter.php',
 	'Preferences' => 'includes/Preferences.php',
 	'PrefixSearch' => 'includes/PrefixSearch.php',
 	'Profiler' => 'includes/Profiler.php',
