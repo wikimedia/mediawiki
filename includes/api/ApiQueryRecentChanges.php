@@ -41,9 +41,9 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'rc' );
 	}
 
-	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_flags = false,
-			$fld_timestamp = false, $fld_title = false, $fld_ids = false,
-			$fld_sizes = false;
+	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
+			$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
+			$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false, $fld_tags = false;
 	/**
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($pageid, $title, $rc)
@@ -94,6 +94,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$this->fld_comment = isset( $prop['comment'] );
 		$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
 		$this->fld_user = isset( $prop['user'] );
+		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_flags = isset( $prop['flags'] );
 		$this->fld_timestamp = isset( $prop['timestamp'] );
 		$this->fld_title = isset( $prop['title'] );
@@ -208,7 +209,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addFieldsIf( 'rc_last_oldid', $this->fld_ids );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_user', $this->fld_user );
-			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
+			$this->addFieldsIf( 'rc_user_text', $this->fld_user || $this->fld_userid );
 			$this->addFieldsIf( 'rc_minor', $this->fld_flags );
 			$this->addFieldsIf( 'rc_bot', $this->fld_flags );
 			$this->addFieldsIf( 'rc_new', $this->fld_flags );
@@ -335,8 +336,16 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		}
 
 		/* Add user data and 'anon' flag, if use is anonymous. */
-		if ( $this->fld_user ) {
-			$vals['user'] = $row->rc_user_text;
+		if ( $this->fld_user || $this->fld_userid ) {
+
+			if ( $this->fld_user ) {
+				$vals['user'] = $row->rc_user_text;
+			}
+
+			if ( $this->fld_userid ) {
+				$vals['userid'] = $row->rc_user;
+			}
+
 			if ( !$row->rc_user ) {
 				$vals['anon'] = '';
 			}
@@ -491,6 +500,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => 'title|timestamp|ids',
 				ApiBase::PARAM_TYPE => array(
 					'user',
+					'userid',
 					'comment',
 					'parsedcomment',
 					'flags',
@@ -552,6 +562,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'prop' => array(
 				'Include additional pieces of information',
 				' user           - Adds the user responsible for the edit and tags if they are an IP',
+				' userid         - Adds the user id responsible for the edit',
 				' comment        - Adds the comment for the edit',
 				' parsedcomment  - Adds the parsed comment for the edit',
 				' flags          - Adds flags for the edit',

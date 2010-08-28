@@ -43,7 +43,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	private $params;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 			$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
-			$fld_patrolled = false, $fld_tags = false;
+			$fld_patrolled = false, $fld_tags = false, $fld_size = false;
 
 	public function execute() {
 		// Parse some parameters
@@ -206,6 +206,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'rev_timestamp',
 			'page_namespace',
 			'page_title',
+			'rev_user',
 			'rev_user_text',
 			'rev_deleted'
 		) );
@@ -272,6 +273,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	private function extractRowInfo( $row ) {
 		$vals = array();
 
+		$vals['userid'] = $row->rev_user;
 		$vals['user'] = $row->rev_user_text;
 		if ( $row->rev_deleted & Revision::DELETED_USER ) {
 			$vals['userhidden'] = '';
