@@ -52,6 +52,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$prop = array_flip( $params['prop'] );
 		$fld_revid = isset( $prop['revid'] );
 		$fld_user = isset( $prop['user'] );
+		$fld_userid = isset( $prop['userid'] );
 		$fld_comment = isset( $prop['comment'] );
 		$fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$fld_minor = isset( $prop['minor'] );
@@ -86,6 +87,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 		if ( $fld_user ) {
 			$this->addFields( 'ar_user_text' );
+		}
+		if ( $fld_userid ) {
+			$this->addFields( 'ar_user' );
 		}
 		if ( $fld_comment || $fld_parsedcomment ) {
 			$this->addFields( 'ar_comment' );
@@ -202,6 +206,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $fld_user ) {
 				$rev['user'] = $row->ar_user_text;
 			}
+			if ( $fld_userid ) {
+				$rev['userid'] = $row->ar_user;
+			}
 			if ( $fld_comment ) {
 				$rev['comment'] = $row->ar_comment;
 			}
@@ -290,6 +297,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array(
 					'revid',
 					'user',
+					'userid',
 					'comment',
 					'parsedcomment',
 					'minor',
@@ -311,7 +319,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'prop' => array(
 				'Which properties to get',
 				' revid          - Adds the revision id of the deleted revision',
-				' user           - Adds user who made the revision',
+				' user           - Adds the user who made the revision',
+				' userid         - Adds the user id whom made the revision',
 				' comment        - Adds the comment of the revision',
 				' parsedcomment  - Adds the parsed comment of the revision',
 				' minor          - Tags if the revision is minor',
