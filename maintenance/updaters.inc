@@ -777,78 +777,26 @@ function purge_cache() {
 	wfOut( "done.\n" );
 }
 
+/**
+ * Adding page_restrictions table, obsoleting page.page_restrictions.
+ * Migrating old restrictions to new table
+ * -- Andrew Garrett, January 2007.
+ */
 function do_restrictions_update() {
-	# Adding page_restrictions table, obsoleting page.page_restrictions.
-	#  Migrating old restrictions to new table
-	# -- Andrew Garrett, January 2007.
-
 	global $wgDatabase;
 
-	$name = 'page_restrictions';
-	$patch = 'patch-page_restrictions.sql';
-	$patch2 = 'patch-page_restrictions_sortkey.sql';
-
-	if ( $wgDatabase->tableExists( $name ) ) {
-		wfOut( "...$name table already exists.\n" );
+	if ( $wgDatabase->tableExists( 'page_restrictions' ) ) {
+		wfOut( "...page_restrictions table already exists.\n" );
 	} else {
-		wfOut( "Creating $name table..." );
-		$wgDatabase->sourceFile( archive( $patch ) );
-		$wgDatabase->sourceFile( archive( $patch2 ) );
+		wfOut( "Creating page_restrictions table..." );
+		$wgDatabase->sourceFile( archive( 'patch-page_restrictions.sql' ) );
+		$wgDatabase->sourceFile( archive( 'patch-page_restrictions_sortkey.sql' ) );
 		wfOut( "ok\n" );
 
-		wfOut( "Migrating old restrictions to new table..." );
-
-		$res = $wgDatabase->select( 'page', array( 'page_id', 'page_restrictions' ), array( "page_restrictions!=''", "page_restrictions!='edit=:move='" ), __METHOD__ );
-
-		$count = 0;
-
-		while ( $row = $wgDatabase->fetchObject( $res ) ) {
-			$count = ( $count + 1 ) % 100;
-
-			if ( $count == 0 ) {
-				if ( function_exists( 'wfWaitForSlaves' ) ) {
-					wfWaitForSlaves( 10 );
-				} else {
-					sleep( 1 );
-				}
-			}
-
-			# Figure out what the restrictions are..
-			$id = $row->page_id;
-			$flatrestrictions = explode( ':', $row->page_restrictions );
-
-			$restrictions = array ();
-			foreach ( $flatrestrictions as $restriction ) {
-				$thisrestriction = explode( '=', $restriction, 2 );
-				if ( count( $thisrestriction ) == 1 ) {
-					// Compatibility with old protections from before
-					// separate move protection was added.
-					list( $level ) = $thisrestriction;
-					if ( $level ) {
-						$restrictions['edit'] = $level;
-						$restrictions['move'] = $level;
-					}
-				} else {
-					list( $type, $level ) = $thisrestriction;
-					if ( $level ) {
-						$restrictions[$type] = $level;
-					}
-				}
-
-			$wgDatabase->update( 'page', array ( 'page_restrictions' => '' ), array( 'page_id' => $id ), __METHOD__ );
-
-			}
-
-			foreach ( $restrictions as $type => $level ) {
-				$wgDatabase->insert( 'page_restrictions', array ( 'pr_page' => $id,
-											'pr_type' => $type,
-											'pr_level' => $level,
-											'pr_cascade' => 0,
-											'pr_expiry' => 'infinity' ),
-											__METHOD__ );
-			}
-		}
-		wfOut( "ok\n" );
+		wfOut( "Migrating old restrictions to new table...\n" );
+		require_once( 'updateRestrictions.php' );
+		$task = new UpdateRestrictions();
+		$task->execute();
 	}
 }
 
