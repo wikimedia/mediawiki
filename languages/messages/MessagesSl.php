@@ -521,7 +521,7 @@ Podatkovna zbirka je vrnila napako »$3: $4«.',
 Sistemski skrbnik, ki jo je zaklenil, je podal naslednjo razlago: $1',
 'missing-article'      => 'Podatkovna baza ni našla besedila strani, ki ga bi morala najti, z imenom »$1« $2.
 
-Ta je ponavadi posledica zastarelih sprememb ali pa je bila stran izbrisana.
+To je ponavadi posledica zastarelih sprememb ali pa je bila stran izbrisana.
 
 Če menite, da vzrok ni v tem, ste morda odkrili hrošč v programju.
 Prosimo, da o tem obvestite [[Special:ListUsers/sysop|administratorja]] (ne pozabite navesti točen URL).',
@@ -1651,7 +1651,7 @@ PICT # mešano
 'upload-success-subj'         => 'Datoteka je bila uspešno naložena',
 'upload-success-msg'          => 'Vaša datoteka iz [$2] je bila uspešno naložena. Na voljo je tukaj: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Težava pri nalaganju',
-'upload-failure-msg'          => 'Prišlo je do težave z vašo naloženo datoteko:
+'upload-failure-msg'          => 'Prišlo je do težave z vašo naloženo datoteko iz [$2]:
 
 $1',
 'upload-warning-subj'         => 'Opozorilo pri nalaganju',

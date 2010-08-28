@@ -1789,7 +1789,7 @@ PICT # verschiedene
 'upload-success-subj'         => 'Erfolgreich hochgeladen',
 'upload-success-msg'          => 'Das Hochladen von [$2] war erfolgreich. Sie ist hier verfügbar: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Hochladefehler',
-'upload-failure-msg'          => 'Es gab ein Problem mit deiner hochgeladenen Datei:
+'upload-failure-msg'          => 'Es gab ein Problem mit deiner hochgeladenen Datei von [$2]:
 
 $1',
 'upload-warning-subj'         => 'Hochladewarnung',

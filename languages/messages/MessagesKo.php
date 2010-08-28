@@ -1191,6 +1191,7 @@ $1",
 # Diffs
 'history-title'            => '‘$1’ 문서의 변경 내력',
 'difference'               => '(버전 사이의 차이)',
+'difference-multipage'     => '(문서간의 차이)',
 'lineno'                   => '$1번째 줄:',
 'compareselectedversions'  => '선택된 판들을 비교하기',
 'showhideselectedversions' => '선택한 판을 보이기/숨기기',

@@ -291,7 +291,7 @@ $1',
 
 'ok'                      => 'Temam',
 'pagetitle'               => '"$1" adres ra gerya.',
-'pagetitle-view-mainpage' => 'Newe <u>$1</u> esto. ($2)',
+'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom'           => '"$1" ra ard',
 'youhavenewmessages'      => 'To rê estê $1 ($2).',
 'newmessageslink'         => 'mesajê newey',
@@ -317,7 +317,7 @@ $1',
 'site-atom-feed'          => '$1 Cıresnayışê atomi',
 'page-rss-feed'           => '"$1" Cıresnayışê RSSi',
 'page-atom-feed'          => '"$1" Cıresnayışê atomi',
-'feed-atom'               => '$1 (pel çino)',
+'feed-atom'               => 'Atom',
 'red-link-title'          => '$1 (pele çıniya)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

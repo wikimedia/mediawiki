@@ -108,6 +108,7 @@ $messages = array(
 'qbspecialpages' => 'Specioale bloadn',
 
 # Vector skin
+'vector-namespace-project' => 'Projectblad',
 'vector-namespace-special' => 'Specioale blad',
 
 'history_short' => 'Geschiedenisse',
@@ -129,6 +130,9 @@ $messages = array(
 
 # Login and logout pages
 'logout' => 'Ofmeldn',
+
+# Search results
+'search-result-size' => '$1 ({{PLURAL:$2|1 woord|$2 woordn}})',
 
 # Recent changes
 'recentchanges' => 'Juste veranderd',

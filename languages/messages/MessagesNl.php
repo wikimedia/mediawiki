@@ -1833,7 +1833,7 @@ PICT # overig
 'upload-success-subj'         => 'Het bestand is toegevoegd',
 'upload-success-msg'          => 'Uw uploaden van [$2] is geslaagd en is beschikbaar: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Uploadprobleem',
-'upload-failure-msg'          => 'Er was een probleem met uw upload:
+'upload-failure-msg'          => 'Er was een probleem met uw upload van [$2]:
 
 $1',
 'upload-warning-subj'         => 'Uploadwaarschuwing',
