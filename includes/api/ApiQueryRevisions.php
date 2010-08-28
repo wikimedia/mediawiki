@@ -43,7 +43,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false,
-			$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_content = false, $fld_tags = false;
+			$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
+			$fld_content = false, $fld_tags = false;
 
 	protected function getTokenFunctions() {
 		// tokenname => function
@@ -149,6 +150,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_comment = isset ( $prop['comment'] );
 		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_size = isset ( $prop['size'] );
+		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_user = isset ( $prop['user'] );
 		$this->token = $params['token'];
 
@@ -364,11 +366,16 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$vals['minor'] = '';
 		}
 
-		if ( $this->fld_user ) {
+		if ( $this->fld_user || $this->fld_userid ) {
 			if ( $revision->isDeleted( Revision::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
 			} else {
-				$vals['user'] = $revision->getUserText();
+				if ( $this->fld_user ) {
+					$vals['user'] = $revision->getUserText();
+				} else {
+					$user = User::newFromText( $revision->getUserText() );
+					$vals['userid'] = $user->getId();
+				}
 				if ( !$revision->getUser() ) {
 					$vals['anon'] = '';
 				}
@@ -502,6 +509,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'flags',
 					'timestamp',
 					'user',
+					'userid',
 					'size',
 					'comment',
 					'parsedcomment',
@@ -562,7 +570,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 				' ids            - The ID of the revision',
 				' flags          - Revision flags (minor)',
 				' timestamp      - The timestamp of the revision',
-				' user           - Gives user to make the revision',
+				' user           - User that made the revision',
+				' userid		 - User id of revision creator',
 				' size           - Length of the revision',
 				' comment        - Comment by the user for revision',
 				' parsedcomment  - Parsed comment by the user for the revision',
