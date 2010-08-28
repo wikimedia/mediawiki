@@ -201,7 +201,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 			if ( isset( $prop['user'] ) ) {
 				$vals['user'] = $file->getUser();
-			} else if ( isset( $prop['userid'] ) ) {
+			}
+			if ( isset( $prop['userid'] ) ) {
 				$vals['userid'] = $file->getUser( 'id' );
 			}
 			if ( !$file->getUser( 'id' ) ) {
