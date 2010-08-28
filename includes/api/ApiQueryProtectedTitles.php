@@ -55,7 +55,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addFields( array( 'pt_namespace', 'pt_title', 'pt_timestamp' ) );
 
 		$prop = array_flip( $params['prop'] );
-		$this->addFieldsIf( 'pt_user', isset( $prop['user'] ) );
+		$this->addFieldsIf( 'pt_user', isset( $prop['user'] ) || isset( $prop['userid'] ) );
 		$this->addFieldsIf( 'pt_reason', isset( $prop['comment'] ) || isset( $prop['parsedcomment'] ) );
 		$this->addFieldsIf( 'pt_expiry', isset( $prop['expiry'] ) );
 		$this->addFieldsIf( 'pt_create_perm', isset( $prop['level'] ) );
@@ -94,6 +94,10 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 				if ( isset( $prop['user'] ) && !is_null( $row->user_name ) ) {
 					$vals['user'] = $row->user_name;
+				}
+
+				if ( isset( $prop['user'] ) ) {
+					$vals['userid'] = $row->pt_user;
 				}
 
 				if ( isset( $prop['comment'] ) ) {
@@ -177,6 +181,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => array(
 					'timestamp',
 					'user',
+					'userid',
 					'comment',
 					'parsedcomment',
 					'expiry',
@@ -197,6 +202,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				'Which properties to get',
 				' timestamp      - Adds the timestamp of when protection was added',
 				' user           - Adds the user to add the protection',
+				' userid         - Adds the user id to add the protection',
 				' comment        - Adds the comment for the protection',
 				' parsedcomment  - Adds the parsed comment for the protection',
 				' expiry         - Adds the timestamp of when the protection will be lifted',
