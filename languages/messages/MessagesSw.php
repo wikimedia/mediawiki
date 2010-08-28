@@ -1219,7 +1219,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'userrights-reason'            => 'Sababu:',
 'userrights-no-interwiki'      => 'Huna ruhusa ya kuhariri haki za mtumiaji kwenye wiki zingine.',
 'userrights-nodatabase'        => 'Hakuna hifadhidata inayoitwa $1 au haimo katiko jumuia hii ya wiki.',
-'userrights-nologin'           => 'Lazima [[Special:UserLogin|uingie ndani]] na akaunti ya mkabidhi ili kupanga haki za mtumiaji.',
+'userrights-nologin'           => 'Lazima [[Special:UserLogin|uingie ndani]] ya akaunti ya mkabidhi ili kupanga haki za mtumiaji.',
 'userrights-notallowed'        => 'Akaunti yako haina ruhusa ya kupanga haki za mtumiaji.',
 'userrights-changeable-col'    => 'Makundi unayoweza kuyabadilisha',
 'userrights-unchangeable-col'  => 'Makundi usiyoweza kuyabadilisha',
@@ -1263,7 +1263,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-upload'               => 'Kupakia mafaili',
 'right-reupload'             => 'Kuandikiza mafaili yaliyopo tayari',
 'right-reupload-own'         => 'Kuandikiza mafaili yaliyopakizwa na mimi mwenyewe',
-'right-reupload-shared'      => 'Tandaza mafaili kwenye hifadhi ya pamoja ya faili kienyeji',
+'right-reupload-shared'      => 'Kupuuza mafaili yaliyopo hifadhi ya pamoja ya faili hapo wiki hii',
 'right-upload_by_url'        => 'Kupakia mafaili kutoka kwa URL',
 'right-purge'                => 'Safisha kache za wavuti kwa ajili ya ukurasa usio na uthibitisho',
 'right-autoconfirmed'        => 'Hariri kurasa zilizokingwa-kiasi',
@@ -1279,9 +1279,10 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-suppressionlog'       => 'Kutazama kumbukumbu za faragha',
 'right-block'                => 'Kuwazuia watumiaji wengine wasihariri',
 'right-blockemail'           => 'Kumzuia mtumiaji asitume barua-pepe',
-'right-hideuser'             => 'Zuia jina la mtumiaji, lisionekane mbele ya kadamnasi',
-'right-editinterface'        => 'Hariri kusano ya mtumiaji',
+'right-hideuser'             => 'Kuzuia jina la mtumiaji, lisionekane mbele ya kadamnasi',
+'right-editinterface'        => 'Kuhariri kusano ya mtumiaji',
 'right-import'               => 'Kuleta kurasa kutoka kwa wiki zingine',
+'right-unwatchedpages'       => 'Kutazama orodha ya kurasa zisizofuatiliwa',
 'right-mergehistory'         => 'Kuunganisha historia ya kurasa zingine',
 'right-userrights'           => 'Kubadilisha wezo zote za watumiaji',
 'right-userrights-interwiki' => 'Kuhariri wezo za watumiaji kwenye wiki zingine',
@@ -1304,9 +1305,11 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-minoredit'            => 'kutia alama ya badiliko dogo',
 'action-move'                 => 'kuhamisha ukurasa huu',
 'action-move-subpages'        => 'kuhamisha ukurasa huu, pamoja na kurasa zake ndogo',
+'action-move-rootuserpages'   => 'kuhamisha kurasa za watumiaji',
 'action-movefile'             => 'kuhamisha faili hili',
 'action-upload'               => 'kupakia faili hili',
 'action-reupload'             => 'kuandikiza faili lililopo tayari',
+'action-reupload-shared'      => 'kupuuza faili lililopo hifadhi ya pamoja ya faili',
 'action-upload_by_url'        => 'kupakia faili hili kutoka kwa gombo wavu',
 'action-delete'               => 'kufuta ukurasa huu',
 'action-deleterevision'       => 'kufuta pitio hili',
@@ -1317,6 +1320,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'action-suppressionlog'       => 'kutazama kumbukumbu za faragha',
 'action-block'                => 'kumzuia mtumiaji huyu asihariri',
 'action-import'               => 'kuleta ukurasa huu kutoka kwa wiki nyingine',
+'action-unwatchedpages'       => 'kutazama orodha ya kurasa zisizofuatiliwa',
 'action-mergehistory'         => 'kuunganisha historia ya ukurasa huu',
 'action-userrights'           => 'kubadilisha wezo zote za watumiaji',
 'action-userrights-interwiki' => 'kuhariri wezo za watumiaji kwenye wiki zingine',
@@ -1420,15 +1424,13 @@ Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'tmp-write-error'         => 'Hitilafu ya kuandika faili la muda.',
 'large-file'              => 'Tunashauri mafaili yasizidi $1;
 faili hili lina $2.',
-'fileexists'              => "Faili lenye jina hili lipo tayari, tafadhali utazame '''<tt>[[:$1]]</tt>''' ikiwa una mashaka kuhusu kulibadilisha.
-[[$1|thumb]]",
-'fileexists-extension'    => "Faili lenye jina linalofanana nalo lipo tayari: [[$2|thumb]]
-* Jina la faili linalopakiwa: '''<tt>[[:$1]]</tt>'''
-* Jina la faili lililopo tayari: '''<tt>[[:$2]]</tt>'''
+'fileexists'              => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.",
+'fileexists-extension'    => "Faili lenye jina linalofanana nalo lipo tayari:<br />
+Jina la faili linalopakiwa: '''<tt>$1</tt>'''<br />
+Jina la faili lililopo tayari: '''<tt>$2</tt>'''<br />
 Tafadhali chagua jina lingine.",
 'fileexists-forbidden'    => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
-Kama unataka kupakia faili lako, tafadhali rudie kwa kutumia jina lingine.
-[[File:$1|thumb|center|$1]]',
+Kama unataka kupakia faili lako, tafadhali rudia kwa kutumia jina lingine. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'   => 'Faili hili ni nakili ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
 'uploadwarning'           => 'Ilani kuhusu kupakia',
 'savefile'                => 'Hifadhi faili',

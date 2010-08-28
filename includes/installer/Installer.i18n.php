@@ -5960,6 +5960,7 @@ $messages['te'] = array(
 
 /** Ukrainian (Українська)
  * @author Ahonc
+ * @author Alex Khimich
  * @author Diemon.ukr
  * @author Тест
  */
@@ -6008,9 +6009,9 @@ $messages['uk'] = array(
 	'config-env-php' => 'Встановлено версію PHP: $1.',
 	'config-env-latest-ok' => 'Ви встановлюєте останню версію MediaWiki.',
 	'config-env-latest-new' => "'''Увага:''' Ви встановлюєте версію MediaWiki, яка ще знаходиться у розробці.",
-	'config-env-latest-can-not-check' => "'''Увага:''' Програмі встановлення не вдалося отримати інформацію про останню версію MediaWiki починаючи від [\$ 1].",
+	'config-env-latest-can-not-check' => "'''Увага:''' Програмі встановлення не вдалося отримати інформацію про останню версію MediaWiki починаючи від [$1].",
 	'config-env-latest-old' => "'''Увага:''' Ви встановлюєте застарілу версію MediaWiki.",
-	'config-env-latest-help' => 'Ви встановлюєте версію $ 1, але остання версія: $ 2. 
+	'config-env-latest-help' => 'Ви встановлюєте версію $1, але остання версія: $2. 
 Рекомендуємо використовувати останню версію MediaWiki, яка може бути завантажена з сайту: [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-php' => 'Використовувати повільний варіант реалізації PHP для нормалізації Юнікоду.',
 	'config-unicode-using-utf8' => 'Використовувати utf8_normalize.so Брайона Віббера для нормалізації Юнікоду.',

@@ -1464,9 +1464,9 @@ A dovrìa controlé la stòria djë scancelament ëd l'archivi prima ëd carielo
 'copyuploaddisabled'          => "Ël càrich për mojen ëd n'adrëssa dl'aragnà a l'é disabilità.",
 'uploadfromurl-queued'        => "Sò càrich a l'é stàit butà an coa.",
 'uploaddisabledtext'          => "La possibilità ëd carié dj'archivi a l'é staita disabilità.",
-'php-uploaddisabledtext'      => "Ël caricament ëd file a l'é disabilità an PHP.
-Për piasì controla l'ampostassion file_uploads.",
-'uploadscripted'              => "St'archivi-sì a l'ha andrinta chèich-còs (dël còdes HTML ò pura dlë script) che a podrìe esse travajà mal da chèich programa ëd navigassion (browser).",
+'php-uploaddisabledtext'      => "Ij cariament d'archivi a son disabilità an PHP.
+Për piasì, ch'a controla l'ampostassion file_uploads.",
+'uploadscripted'              => "St'archivi-sì a l'ha andrinta chèich-còs (dël còdes HTML ò pura un senari) che a podrìa esse travajà mal da chèich programa ëd navigassion.",
 'uploadvirus'                 => "St'archivi-sì a l'han andrinta un '''vìrus!''' Detaj: $1",
 'upload-source'               => 'Archivi sorgiss',
 'sourcefilename'              => "Nòm dl'archivi sorgiss:",

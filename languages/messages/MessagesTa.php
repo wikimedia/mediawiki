@@ -304,7 +304,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} பற்றி',
-'aboutpage'            => 'Project:விபரம்',
+'aboutpage'            => 'Project:விவரம்',
 'copyright'            => 'உள்ளடக்கங்கள் $1 இன் கீழ் கிடைக்கின்றன.',
 'copyrightpage'        => '{{ns:project}}:பதிப்புரிமை',
 'currentevents'        => 'தற்போதைய நிகழ்வுகள்',

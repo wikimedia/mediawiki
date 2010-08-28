@@ -1477,7 +1477,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-siteadmin'             => 'Blokowanie i odblokowywanie bazy danych',
 'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
-'right-sendemail'             => 'Wysyłać e‐maile do innych użytkowników',
+'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
 'right-revisionmove'          => 'Przenoszenie wersji',
 'right-selenium'              => 'Uruchamianie testów Selenium',
 

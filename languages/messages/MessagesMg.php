@@ -1616,7 +1616,7 @@ Misafidia anaran-drakitra mambangovango.",
 'upload-success-subj'         => 'Voaray soa aman-tsara ny rakitra',
 'upload-success-msg'          => 'Eto ny rakitra nalefanao : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Olana nitranga teo am-pandefasana',
-'upload-failure-msg'          => "Nisy olana tamin'ny fampidiranao ($2) :
+'upload-failure-msg'          => "Nisy olana tamin'ny fampidiranao [$2] :
 
 $1",
 'upload-warning-subj'         => 'Fampitandremana rehefa mampiditra',
@@ -2633,7 +2633,7 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'notacceptable' => "Tsy afaka manome données amin'ny format zakan'ny navigateur-nao ny serveur wiki.",
 
 # Attribution
-'anonymous'        => "Mpikambana {{PLURAL:}} tsy mitonona anarana eto amin'ny {{SITENAME}}",
+'anonymous'        => "Mpikambana {{PLURAL:$1}} tsy mitonona anarana eto amin'ny {{SITENAME}}",
 'siteuser'         => '{{SITENAME}} mpikambana $1',
 'anonuser'         => "ny mpikambana tsy nisoratra anarana $1 an'i {{SITENAME}}",
 'lastmodifiedatby' => "Novain'i $3 tamin'ny $1 tamin'ny $2 ity pejy ity.",

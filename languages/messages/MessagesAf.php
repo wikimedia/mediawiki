@@ -1658,7 +1658,7 @@ Kies asseblief 'n meer beskrywende naam vir die lêer.",
 'upload-success-subj'         => 'Laai suksesvol',
 'upload-success-msg'          => 'U het [$2] suksesvol opgelaai. Dit is nou beskikbaar by: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Oplaaiprobleem',
-'upload-failure-msg'          => "Daar was 'n probleem met u oplaai:
+'upload-failure-msg'          => "Daar was 'n probleem met u oplaai van [$2]:
 
 $1",
 'upload-warning-subj'         => 'Oplaai-waarskuwing',

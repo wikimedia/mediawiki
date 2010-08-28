@@ -87,6 +87,14 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Sell Feil iss|Selle $1 Feils sin}} in daer Abdeeling drin:',
 'listingcontinuesabbrev'         => '(weider)',
 
+'mainpagedocfooter' => "Hilf fer's Yuuse unn Konfiguriere vun de Wiki-Software kansch finne im [http://meta.wikimedia.org/wiki/Help:Contents Handbuch fer Yuuser].
+
+== Hilf zum Schtaerte ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lischt vun Gnepp zum Konfiguriere]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Eposchde-Lischt fer neie MediaWiki-Versione]",
+
 'about'         => 'Iwwer',
 'article'       => 'Blatt',
 'newwindow'     => '(in em nei Fenschder)',
@@ -144,6 +152,7 @@ $messages = array(
 'edit'             => 'Ennere/Tscheensche',
 'create'           => 'Schtaerte',
 'editthispage'     => 'Des Blatt ennere',
+'create-this-page' => 'Blatt schtaerte',
 'delete'           => 'Lösche',
 'deletethispage'   => 'Des Blatt lösche',
 'protect'          => 'Schitze',
@@ -256,6 +265,10 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'noemail'                 => 'Yuuser „$1“ hot ken E-Mail aagewwe.',
 'loginlanguagelabel'      => 'Schprooch: $1',
 
+# JavaScript password checks
+'password-strength-bad'  => 'SCHLECHT',
+'password-strength-good' => 'guud',
+
 # Password reset dialog
 'resetpass'                 => 'Paesswatt ennere',
 'oldpassword'               => 'Aldes Paesswatt:',
@@ -264,16 +277,17 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'resetpass-submit-loggedin' => 'Paesswatt ennere',
 
 # Edit page toolbar
-'bold_sample'    => 'Wadde fett gmarrickt',
-'bold_tip'       => 'Wadde fett gmarrickt',
-'link_tip'       => 'Gleecher',
-'extlink_sample' => 'http://www.example.com Gleecher-Text',
-'extlink_tip'    => 'Gewebbgleecher (acht uff http://)',
-'headline_tip'   => 'Iwwerschrift Level 2',
-'math_sample'    => 'Formula hier eigewwe',
-'image_sample'   => 'Beeschpiel.jpg',
-'media_sample'   => 'Beeschpiel.ogg',
-'media_tip'      => 'Gleecher fer Feil',
+'bold_sample'     => 'Wadde fett gmarrickt',
+'bold_tip'        => 'Wadde fett gmarrickt',
+'link_tip'        => 'Gleecher',
+'extlink_sample'  => 'http://www.example.com Gleecher-Text',
+'extlink_tip'     => 'Gewebbgleecher (acht uff http://)',
+'headline_sample' => 'Iwwerschrift',
+'headline_tip'    => 'Iwwerschrift Level 2',
+'math_sample'     => 'Formula hier eigewwe',
+'image_sample'    => 'Beeschpiel.jpg',
+'media_sample'    => 'Beeschpiel.ogg',
+'media_tip'       => 'Gleecher fer Feil',
 
 # Edit pages
 'minoredit'              => 'Nur gleene Enneringe gemacht',
@@ -305,12 +319,14 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'historyempty'     => '(leer)',
 
 # Revision deletion
+'rev-deleted-comment'        => '(Aamaericking iss weg geduh warre)',
 'rev-deleted-user'           => '(Yuuser-Naame gelöscht)',
 'rev-delundel'               => 'zeig/verschwinne losse',
 'rev-showdeleted'            => 'zeig',
 'revdelete-no-file'          => 'Sell Feil gebt es net.',
 'revdelete-show-file-submit' => 'Ya',
 'revdelete-hide-text'        => 'Text vun de Version verschwinne losse',
+'revdelete-radio-same'       => '(net ennere)',
 'revdelete-radio-set'        => 'Ya',
 'revdelete-radio-unset'      => 'Nee',
 'revdelete-log'              => 'Grund:',
@@ -340,6 +356,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'prevn'                          => '{{PLURAL:$1|letscht|letscht $1}}',
 'nextn'                          => 'neegschte {{PLURAL:$1|$1}}',
 'viewprevnext'                   => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-new'                 => "'''Schtaert des Blatt „[[:$1|$1]]“ uf dem Wiki.'''",
 'searchhelp-url'                 => 'Help:Hilf',
 'searchprofile-everything'       => 'Alles',
 'searchprofile-articles-tooltip' => 'Uffgucke in $1',
@@ -376,6 +393,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'prefs-watchlist-days'     => 'Daage in de Watsch-Lischt:',
 'prefs-resetpass'          => 'Paesswatt ennere',
 'prefs-editing'            => 'Ennere',
+'columns'                  => 'Kallems:',
 'searchresultshead'        => 'Guck uff',
 'recentchangesdays-max'    => 'Max. $1 {{PLURAL:$1|Daag|Daag}}',
 'timezoneregion-africa'    => 'Afrikaa',
@@ -497,14 +515,14 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'file-anchor-link'    => 'Feil',
 'filehist'            => 'Versione vun Feils',
 'filehist-deleteall'  => 'All Versione lösche',
-'filehist-deleteone'  => 'Sell Version lösche',
+'filehist-deleteone'  => 'Sell Version lesche',
 'filehist-revert'     => 'zerick',
 'filehist-datetime'   => 'Version vum',
 'filehist-thumb'      => 'Glee Pikder',
 'filehist-user'       => 'Yuuser',
 'filehist-dimensions' => 'Grees',
 'filehist-filesize'   => 'Grees vum Feil',
-'filehist-comment'    => 'Anmaerricking',
+'filehist-comment'    => 'Aamaericking',
 'imagelinks'          => 'Gleecher fer es Feil',
 'shared-repo-from'    => 'vun $1',
 

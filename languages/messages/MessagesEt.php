@@ -792,7 +792,7 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'link_sample'     => 'Lingitav pealkiri',
 'link_tip'        => 'Siselink',
 'extlink_sample'  => 'http://www.example.com Lingi nimi',
-'extlink_tip'     => 'Välislink (ärge unustage kasutada http:// eesliidet)',
+'extlink_tip'     => 'Välislink (ära unusta eesliidet http://)',
 'headline_sample' => 'Pealkiri',
 'headline_tip'    => '2. taseme pealkiri',
 'math_sample'     => 'Sisesta valem siia',
@@ -897,7 +897,8 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 Ära unusta, et kasutaja isiklikud .css- ja .js-lehed kasutavad väiketähega algavaid nimesid, näiteks  {{ns:user}}:Juhan Julm/monobook.css ja mitte {{ns:user}}:Juhan Julm/Monobook.css.",
 'updated'                          => '(Värskendatud)',
 'note'                             => "'''Meeldetuletus:'''",
-'previewnote'                      => "'''Ärge unustage, et see versioon ei ole veel salvestatud!'''",
+'previewnote'                      => "'''Ära unusta, et see on kõigest eelvaade!'''
+Sinu muudatused pole veel salvestatud!",
 'previewconflict'                  => 'See eelvaade näitab, kuidas ülemises toimetuskastis olev tekst hakkab välja nägema, kui otsustate salvestada.',
 'session_fail_preview'             => "'''Vabandust! Meil ei õnnestunud seansiandmete kaotuse tõttu sinu muudatust töödelda.'''
 Palun proovi uuesti.
