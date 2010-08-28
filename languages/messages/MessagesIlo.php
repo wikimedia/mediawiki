@@ -27,7 +27,7 @@ $messages = array(
 'tog-editsection'             => 'Pagbalinen ti panagedit iti benneg babaen ti [edit] a panilpo',
 'tog-editsectiononrightclick' => 'Pagmayaten ti section editing babaen ti panang-right click kadagiti section titles (JavaScript)',
 'tog-showtoc'                 => 'Ipakita dagiti linaon (para kadagiti panid nga addaan ad-adu ngem 3 a headings)',
-'tog-rememberpassword'        => 'Laglagipen ti iseserrekko kadaytoy a kompiuter',
+'tog-rememberpassword'        => 'Laglagipen ti iseserrekko kadaytoy a kompiuter (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Inayon dagiti inaramidko a pampanid iti listaan ti bambantayak',
 'tog-watchdefault'            => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
 'tog-watchmoves'              => 'Inayon dagiti inyakarko a pampanid iti listaan ti bambantayak',
@@ -343,7 +343,7 @@ Dimo liplipatan a sukatan dagiti preferenciam iti [[Special:Preferences|{{SITENA
 'yourname'                   => 'Nagan:',
 'yourpassword'               => 'Pasesbalikas:',
 'yourpasswordagain'          => 'Uliten ti pasesbalikas',
-'remembermypassword'         => 'Laglagipennak',
+'remembermypassword'         => 'Laglagipennak (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Ti bukodmo a domain:',
 'login'                      => 'Sumrek',
 'nav-login-createaccount'    => 'Mangaramid iti account wenno ag-login',
@@ -1020,7 +1020,9 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 
 # Special:Categories
 'categories'                    => 'Dagiti Categoria',
-'categoriespagetext'            => 'Dagiti sumaganad a categoria ket addaan pampanid wenno media.',
+'categoriespagetext'            => 'Dagiti sumaganad a categoria ket addaan pampanid wenno media.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'urnosen babaen ti bilang',
 'special-categories-sort-abc'   => 'urnosen nga alfabetikal',
 

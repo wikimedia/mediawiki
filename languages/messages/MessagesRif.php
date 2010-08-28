@@ -167,7 +167,7 @@ teqqad ad yilli days ca n usekkil war itwagg deg isem .',
 # Login and logout pages
 'yourname'                => 'Izwl-usqdac:',
 'yourpassword'            => 'Tawalt n wadaf:',
-'remembermypassword'      => 'ejj (login) inu deg uselkim a',
+'remembermypassword'      => 'ejj (login) inu deg uselkim a (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'Adf',
 'nav-login-createaccount' => 'Adef / egg amiḍan',
 'loginprompt'             => "itxessa ad-teṭfed (''cookies'') bac ad tadfed ɣar {{SITENAME}}.",

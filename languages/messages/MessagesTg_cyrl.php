@@ -84,7 +84,7 @@ $messages = array(
 'tog-editsection'             => 'Иҷозат додани вироиши қисмати саҳифа ба воситаи пайванди [вироиш]',
 'tog-editsectiononrightclick' => 'Ба кор андохтани вироиши сарлавҳаҳои қисматҳо бо клики рост (ҶаваСкрипт)',
 'tog-showtoc'                 => 'Намоиши феҳристи мундариҷон (барои мақолаҳои бо беш аз 3 сарлавҳа)',
-'tog-rememberpassword'        => 'Маро дар хотири компютер нигоҳ дор',
+'tog-rememberpassword'        => 'Маро дар хотири компютер нигоҳ дор (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Дохил намудани саҳифаҳое, ки ман сохтаам ба феҳристи назароти ман',
 'tog-watchdefault'            => 'Саҳифаҳои эҷодкардаамро ба феҳристи пайгириам илова кунед',
 'tog-watchmoves'              => 'Саҳифаҳои кӯчонидаамро ба феҳристи пайгириҳоям илова кунед',
@@ -472,7 +472,7 @@ $1',
 'yourname'                   => 'Номи корбар',
 'yourpassword'               => 'Калимаи убур\\пароль',
 'yourpasswordagain'          => 'Калимаи убурро боз нависед',
-'remembermypassword'         => 'Манро дар хотир нигоҳ дор',
+'remembermypassword'         => 'Манро дар хотир нигоҳ дор (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Домейни Шумо',
 'externaldberror'            => 'Хатое дар иртибот бо пойгоҳи дода рух дода аст ё ин ки шумо иҷозат ба рӯзрасонии ҳисоби берунии худро надоред.',
 'login'                      => 'Вуруд',
@@ -1399,7 +1399,9 @@ $1',
 
 # Special:Categories
 'categories'                    => 'Гурӯҳҳо',
-'categoriespagetext'            => 'Гурӯҳҳои зерин дар вики вуҷуд доранд.',
+'categoriespagetext'            => 'Гурӯҳҳои зерин дар вики вуҷуд доранд.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Намоиши гурӯҳҳо бо шурӯъ аз:',
 'special-categories-sort-count' => 'муратаб кардан бар асоси теъдод',
 'special-categories-sort-abc'   => 'муратаб кардани алифбоӣ',

@@ -1210,7 +1210,9 @@ $2',
 
 # Special:Categories
 'categories'         => 'বিষয়রথাকহানি',
-'categoriespagetext' => 'ইমারঠারর উইকিপিডিয়াত এবাকার বিষয়রথাক:',
+'categoriespagetext' => 'ইমারঠারর উইকিপিডিয়াত এবাকার বিষয়রথাক.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'sp-deletedcontributions-contribs' => 'অবদানহানি',

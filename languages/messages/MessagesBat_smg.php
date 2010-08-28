@@ -69,7 +69,7 @@ $messages = array(
 'tog-editsection'             => 'Ijongtė skėrsneliu redagavėma nauduojant nūruodas [taisītė]',
 'tog-editsectiononrightclick' => 'Ijongtė skėrsneliu redagavėma paspaudos skėrsnelė pavadėnėma<br />dešėniouju pelies klavėšu (JavaScript)',
 'tog-showtoc'                 => 'Ruodītė torėni, jē poslapī daugiau kāp 3 skėrsnelē',
-'tog-rememberpassword'        => 'Atmintė prėsėjongėma infuormacėjė šėtom kuompioterī',
+'tog-rememberpassword'        => 'Atmintė prėsėjongėma infuormacėjė šėtom kuompioterī (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Pridietė poslapius, katrūs sokorio, i keravuojamu sāraša',
 'tog-watchdefault'            => 'Pridietė poslapius, katrūs taisau, i keravuojamu sāraša',
 'tog-watchmoves'              => 'Pridietė poslapius, katrūs parkelio, i keravuojamu sāraša',
@@ -390,7 +390,7 @@ Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava {{SITENAME}} nusta
 'yourname'                   => 'Nauduotuojė vards:',
 'yourpassword'               => 'Slaptažuodis:',
 'yourpasswordagain'          => 'Pakartuoket slaptažuodė:',
-'remembermypassword'         => 'Atmintė šėta infuormacėjė šėtom kuompioteri',
+'remembermypassword'         => 'Atmintė šėta infuormacėjė šėtom kuompioteri(for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Tamstas domens:',
 'login'                      => 'Prisėjongtė',
 'nav-login-createaccount'    => 'Prėsėjongtė / sokortė paskīra',
@@ -1176,7 +1176,9 @@ katram ivīkdītė šėta funkcėjė.',
 
 # Special:Categories
 'categories'         => 'Kateguorėjės',
-'categoriespagetext' => 'Pruojekte īr šėtuos kateguorėjės.',
+'categoriespagetext' => 'Pruojekte īr šėtuos kateguorėjės.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'     => 'Ruodītė kateguorėjės pradedont nu:',
 
 # Special:DeletedContributions

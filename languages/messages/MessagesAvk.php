@@ -111,7 +111,7 @@ $messages = array(
 'tog-editsection'             => 'Betara va gabot kan "[Betara]" gluyasiki',
 'tog-editsectiononrightclick' => 'Betara va gabot talton vulegason<br /> va gabotvergumvelt',
 'tog-showtoc'                 => 'Nedira va ugak<br /> (icde teliz dem lo 3 gabot)',
-'tog-rememberpassword'        => 'Va jinaf remravlem setiker (cookie)',
+'tog-rememberpassword'        => 'Va jinaf remravlem setiker (cookie) (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Kosuzdasikira va jinon betayan bueem',
 'tog-watchdefault'            => 'Va jinon reduyun ik betayan telizeem suzdá',
 'tog-watchmoves'              => 'Kosuzdasikira va jinon arrundayan bueem',
@@ -428,7 +428,7 @@ Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'yourname'                   => 'Rinaf favesikyolt',
 'yourpassword'               => 'Rinaf remravlem',
 'yourpasswordagain'          => 'Va rinaf remravlem tolon bazel',
-'remembermypassword'         => 'Setikera va jinaf remravlem (cookie)',
+'remembermypassword'         => 'Setikera va jinaf remravlem (cookie) (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Rinaf ind',
 'externaldberror'            => 'Ont divefa origakrokla va pilkomodara ont va rinafa divefa pata me ronuskel.',
 'login'                      => 'Pilkomodá',
@@ -1309,7 +1309,9 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 
 # Special:Categories
 'categories'                    => 'Bulomeem',
-'categoriespagetext'            => 'Radimiasa loma se moe wiki krulded :',
+'categoriespagetext'            => 'Radimiasa loma se moe wiki krulded.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Nedira va loma tozakirafa gu :',
 'special-categories-sort-count' => 'Otafa mubera',
 'special-categories-sort-abc'   => 'Abavafa mubera',

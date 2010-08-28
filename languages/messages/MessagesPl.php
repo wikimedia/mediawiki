@@ -1704,7 +1704,7 @@ PICT # wiele różnych
 'upload-success-subj'         => 'Przesłanie pliku powiodło się',
 'upload-success-msg'          => 'Przesłano plik z [$2]. Jest dostępny tutaj – [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem z przesłaniem pliku',
-'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu Twojego pliku:
+'upload-failure-msg'          => 'Wystąpił problem przy przesyłaniu pliku z [$2]:
 
 $1',
 'upload-warning-subj'         => 'Ostrzeżenie dotyczące przesyłania',

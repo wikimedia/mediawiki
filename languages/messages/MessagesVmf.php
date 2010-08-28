@@ -65,7 +65,7 @@ $messages = array(
 'tog-hideminor'              => 'Glaane ändrungn ned ôôdsajchn',
 'tog-hidepatrolled'          => 'Ned dsajchn in dâ „Ledschdâ Ändrungn“, was an andrar schon brüüfd had',
 'tog-showtoc'                => 'Inhalds-fârdsajchnis ôôdsajchn baj määr wi 3 iiwârschrifdn',
-'tog-rememberpassword'       => 'Uf dem Ghombjuudâr schdändich ôôgmäld blajwn',
+'tog-rememberpassword'       => 'Uf dem Ghombjuudâr schdändich ôôgmäld blajwn (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'         => 'Ale fon miir sälwâr gmachdn sajdn soln uf mâj beoobachdungs-lischdn',
 'tog-watchdefault'           => 'Ale fon miir gändârdnd sajdn soln uf mâj beoobachdungs-lischdn',
 'tog-watchmoves'             => 'Ale fon miir fârschoobnen sajdn soln uf mâj beoobachdungs-lischdn',
@@ -347,7 +347,7 @@ Wen's des ned is, bisd womeeglich iwa ân feela in dr sofdwäâr gschdolbäd. In
 # Login and logout pages
 'yourname'                => 'Benudsârnôômâ',
 'yourpassword'            => 'Bhaswôrd:',
-'remembermypassword'      => 'Af dem ghombjuudâr schdändich ôôgmäld blajm',
+'remembermypassword'      => 'Af dem ghombjuudâr schdändich ôôgmäld blajm (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'Ôômeldn',
 'nav-login-createaccount' => 'Oomeldn / Ghondoo ooleeng',
 'userlogin'               => 'Ôômeldn / Als Bajdräächâr ajschrajm',

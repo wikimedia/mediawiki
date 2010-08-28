@@ -117,7 +117,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Abilitá redatazziún dai sezziún cun al clic<br />
 süi titul dai sezziún (JavaScript)',
 'tog-showtoc'                 => "Fà vidè l'indes per i paginn cun püssee de 3 sezión",
-'tog-rememberpassword'        => "Regòrdass la mè paròla d'urdin",
+'tog-rememberpassword'        => "Regòrdass la mè paròla d'urdin (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'tog-watchcreations'          => "Giunta i paginn ch'hoo creaa mì a la lista di paginn che tegni sot ögg",
 'tog-watchdefault'            => "Gjüntá i pagin redataa in dala lista dii pagin tegnüü d'öcc",
 'tog-watchmoves'              => "Giunta i paginn ch'hoo muvüü a la lista di paginn che tegni sot ögg",
@@ -438,7 +438,7 @@ Tegné cünt che certi paginn pödass che i seguiten a vedess tant 'me se a füd
 'yourname'                => 'El to suranóm:',
 'yourpassword'            => "Parola d'urdin",
 'yourpasswordagain'       => "Mett dent ammò la parola d'urdin",
-'remembermypassword'      => "Regordass la mè parola d'urdin",
+'remembermypassword'      => "Regordass la mè parola d'urdin (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'login'                   => 'Va dent',
 'nav-login-createaccount' => 'Vena denter / Crea un cünt',
 'loginprompt'             => 'Par cunett a {{SITENAME}}, a duvii abilitá i galet.',

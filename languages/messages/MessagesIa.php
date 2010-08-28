@@ -1621,7 +1621,7 @@ PICT # misc.
 'upload-success-subj'         => 'Incargamento succedite',
 'upload-success-msg'          => 'Le incargamento de [$2] ha succedite. Illo es disponibile hic: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema de incargamento',
-'upload-failure-msg'          => 'Il ha occurrite un problema con tu incargamento:
+'upload-failure-msg'          => 'Il ha occurrite un problema con tu incargamento ab [$2]:
 
 $1',
 'upload-warning-subj'         => 'Advertimento de incargamento',

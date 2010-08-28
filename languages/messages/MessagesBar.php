@@ -287,7 +287,7 @@ Vagiss bittschee ned, deine [[Special:Preferences|{{SITENAME}}-Eistellungen]] ã
 'yourname'                   => 'Benutzernam:',
 'yourpassword'               => 'Passwoat:',
 'yourpasswordagain'          => 'Passwort no amoi',
-'remembermypassword'         => 'auf dem Computer dauahåft ãnmöidn',
+'remembermypassword'         => 'auf dem Computer dauahåft ãnmöidn(for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Eanane Domain:',
 'login'                      => 'Oomeidn',
 'nav-login-createaccount'    => 'Ãnmöidn',

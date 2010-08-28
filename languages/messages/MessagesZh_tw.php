@@ -485,7 +485,9 @@ $messages = array(
 'alllogstext'         => '綜合顯示上傳、刪除、保護、封鎖以及站務日誌。',
 
 # Special:Categories
-'categoriespagetext' => '以下列出所有的頁面分類。',
+'categoriespagetext' => '以下列出所有的頁面分類。
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ListUsers
 'listusersfrom'      => '給定顯示使用者條件:',

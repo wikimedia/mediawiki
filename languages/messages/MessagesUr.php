@@ -61,7 +61,7 @@ $messages = array(
 'tog-editsection'             => '[ترمیم] روابط کے ذریعے سطری ترمیم کاری فعال کرو',
 'tog-editsectiononrightclick' => 'سطری عنوانات پر دایاں طق کے ذریعے سطری ترمیم کاری فعال بناؤ',
 'tog-showtoc'                 => 'فہرستِ مندرجات دکھاؤ (3 سے زیادہ سرخیوں والے صفحات کیلئے)',
-'tog-rememberpassword'        => 'اِس شمارندہ پر میری داخلہ کاری معلومات یاد رکھو',
+'tog-rememberpassword'        => 'اِس شمارندہ پر میری داخلہ کاری معلومات یاد رکھو (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'میرے مرتب شدہ صفحات کو میری زیرِنظرفہرست میں شامل کیا کرو',
 'tog-watchdefault'            => 'میرے ترمیم شدہ صفحات کو میری زیرِنظرفہرست میں شامل کیا کرو',
 'tog-watchmoves'              => 'میں جن صفحات کو منتقل کرتا ہوں، اُن کو میری زیرِنظرفہرست میں شامل کیا کرو',
@@ -433,7 +433,7 @@ Warning: Page may not contain recent updates.',
 'yourname'                   => 'اسمِ رکنیت',
 'yourpassword'               => 'کلمۂ شناخت',
 'yourpasswordagain'          => 'کلمۂ شناخت دوبارہ لکھیں',
-'remembermypassword'         => 'مجھے یاد رکھیں',
+'remembermypassword'         => 'مجھے یاد رکھیں (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'آپکا ڈومین',
 'externaldberror'            => 'یا تو توثیقی ڈیٹابیس میں خطا واقع ہوئی اور یا آپ کو بیرونی کھاتہ بتاریخ کرنے کی اِجازت نہیں ہے.',
 'login'                      => 'داخل ہوں',
@@ -1098,7 +1098,9 @@ HTML tags جانچئے.',
 
 # Special:Categories
 'categories'         => 'زمرہ',
-'categoriespagetext' => 'مندرجہ ذیل زمرہ جات اس وکی میں موجود ہیں۔',
+'categoriespagetext' => 'مندرجہ ذیل زمرہ جات اس وکی میں موجود ہیں۔
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'نوشتۂ آمد صارف',

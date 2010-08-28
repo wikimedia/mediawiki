@@ -85,7 +85,7 @@ $messages = array(
 
 # Login and logout pages
 'yourpasswordagain'  => 'Ngola lepetjo hape',
-'remembermypassword' => 'O nkgopole',
+'remembermypassword' => 'O nkgopole (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'nologinlink'        => 'Ingodisetse',
 'createaccount'      => 'Ingodisetse',
 'gotaccount'         => "O se o ingodisitse? '''$1'''.",
@@ -134,7 +134,9 @@ $messages = array(
 
 # Special:Categories
 'categories'         => 'Mekga',
-'categoriespagetext' => 'Wiki e na le mekga ena',
+'categoriespagetext' => 'Wiki e na le mekga ena.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # E-mail user
 'emailuser'     => 'Romela motho enwa email',

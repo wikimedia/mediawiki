@@ -402,7 +402,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                   => 'يُوزرنانءُ:',
 'yourpassword'               => 'ڳجھو لفظ:',
-'remembermypassword'         => 'هن ڳڻپيوڪر تي مون کي ياد رکو',
+'remembermypassword'         => 'هن ڳڻپيوڪر تي مون کي ياد رکو (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                      => 'لاگ اِن',
 'nav-login-createaccount'    => 'لاگ اِن ٿيو / کاتو کوليو',
 'loginprompt'                => '{{SITENAME}} ۾ لاگ اِن ٿيڻ لاءِ ڪوڪيز جي قبوليت لازمي آهي.',

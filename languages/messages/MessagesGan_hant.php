@@ -67,7 +67,7 @@ $messages = array(
 'tog-editsection'             => '可以用[編寫]連結來編寫個別段落',
 'tog-editsectiononrightclick' => '可以按右鍵來編寫隻把子段落（JavaScript）',
 'tog-showtoc'                 => '超過三隻標題就顯到目錄',
-'tog-rememberpassword'        => '到箇隻電腦記到偶嗰密碼',
+'tog-rememberpassword'        => '到箇隻電腦記到偶嗰密碼 (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => '拿偶開嘞嗰頁面加到偶嗰監視列表',
 'tog-watchdefault'            => '拿偶改嘞嗰頁面加到偶嗰監視列表',
 'tog-watchmoves'              => '拿偶動嘞嗰頁面加到偶嗰監視列表',
@@ -445,7 +445,7 @@ $2',
 'yourname'                   => '用戶名：',
 'yourpassword'               => '密碼：',
 'yourpasswordagain'          => '輸過道密碼：',
-'remembermypassword'         => '讓電腦記到密碼',
+'remembermypassword'         => '讓電腦記到密碼 (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => '倷嗰域名：',
 'externaldberror'            => '外部驗證資料庫出錯，或倷更新伓正倷嗰外部帳戶。',
 'login'                      => '登入',
@@ -1238,7 +1238,9 @@ $2',
 
 # Special:Categories
 'categories'         => '頁面分類',
-'categoriespagetext' => '下底嗰分類包到頁面或係媒體文件。',
+'categoriespagetext' => '下底嗰分類包到頁面或係媒體文件。
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch' => '外部連結',

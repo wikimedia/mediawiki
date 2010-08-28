@@ -257,7 +257,7 @@ Sineñ xísabıñ yasaldı. {{SITENAME}}'dağı köyläwläreñne dä üzgärter
 'yourname'              => 'İreşü isemeñ',
 'yourpassword'          => 'Sersüzeñ',
 'yourpasswordagain'     => 'Sersüz qabat',
-'remembermypassword'    => 'Tanı mine kergändä.',
+'remembermypassword'    => 'Tanı mine kergändä (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                 => 'İreşü',
 'userlogin'             => 'Xísap yasaw yä ki kerü',
 'logout'                => 'Çığu',

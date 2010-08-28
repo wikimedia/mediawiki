@@ -2065,7 +2065,8 @@ $1',
 
 # Special:Categories
 'categories'                    => 'Κατηγορίες',
-'categoriespagetext'            => 'Οι ακόλουθες {{PLURAL:$1|κατηγορία περιέχει|κατηγορίες περιέχουν}} σελίδες ή μέσα. Οι [[Special:UnusedCategories|αχρησιμοποίητες κατηγορίες]] δεν εμφανίζονται εδώ.
+'categoriespagetext'            => 'Οι ακόλουθες {{PLURAL:$1|κατηγορία περιέχει|κατηγορίες περιέχουν}} σελίδες ή μέσα.
+Οι [[Special:UnusedCategories|αχρησιμοποίητες κατηγορίες]] δεν εμφανίζονται εδώ.
 Δείτε επίσης τις [[Special:WantedCategories|ζητούμενες κατηγορίες]].',
 'categoriesfrom'                => 'Εμφάνιση κατηγοριών που αρχίζουν από:',
 'special-categories-sort-count' => 'ταξινόμηση κατά απαρίθμηση',

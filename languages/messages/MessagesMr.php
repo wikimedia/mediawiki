@@ -309,7 +309,7 @@ $messages = array(
 'tog-editsection'             => '[संपादन] दुव्याने संपादन करणे शक्य करा',
 'tog-editsectiononrightclick' => 'विभाग शीर्षकावर उजव्या क्लीकने संपादन करा(जावास्क्रीप्ट)',
 'tog-showtoc'                 => '३ पेक्षा जास्त शीर्षके असताना अनुक्रमणिका दाखवा',
-'tog-rememberpassword'        => 'माझा प्रवेश या संगणकावर लक्षात ठेवा',
+'tog-rememberpassword'        => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'मी तयार केलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
 'tog-watchdefault'            => 'मी संपादित केलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
 'tog-watchmoves'              => 'मी स्थानांतरीत केलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
@@ -694,7 +694,7 @@ $2',
 'yourname'                   => 'तुमचे नाव',
 'yourpassword'               => 'तुमचा परवलीचा शब्द',
 'yourpasswordagain'          => 'तुमचा परवलीचा शब्द पुन्हा लिहा',
-'remembermypassword'         => 'माझा परवलीचा शब्द पुढील खेपेसाठी लक्षात ठेवा.',
+'remembermypassword'         => 'माझा परवलीचा शब्द पुढील खेपेसाठी लक्षात ठेवा (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'तुमचे क्षेत्र (डॉमेन) :',
 'externaldberror'            => 'विदागार ’खातरजमा’ (प्रमाणितीकरण) त्रूटी होती अथवा तुम्हाला तुमचे बाह्य खाते अद्यावत  करण्याची परवानगी नाही.',
 'login'                      => 'प्रवेश करा',
@@ -1653,7 +1653,9 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # Special:Categories
 'categories'                    => 'वर्ग',
-'categoriespagetext'            => 'विकिवर खालील वर्ग आहेत.',
+'categoriespagetext'            => 'विकिवर खालील वर्ग आहेत.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'या शब्दापासून सुरू होणारे वर्ग दाखवा:',
 'special-categories-sort-count' => 'क्रमानुसार लावा',
 'special-categories-sort-abc'   => 'अक्षरांप्रमाणे लावा',

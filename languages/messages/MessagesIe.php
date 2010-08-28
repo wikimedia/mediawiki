@@ -171,7 +171,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'yourname'                   => 'Vor nómine usatori:',
 'yourpassword'               => 'Vor passa-parol:',
 'yourpasswordagain'          => 'Tippa denov vor passa-parol',
-'remembermypassword'         => 'Memorar mi passa-parol (per cookie)',
+'remembermypassword'         => 'Memorar mi passa-parol (per cookie) (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                      => 'Aperter session',
 'nav-login-createaccount'    => 'Crear un conto o intrar',
 'loginprompt'                => 'Cookies deve esser permisset por intrar in {{SITENAME}}.',

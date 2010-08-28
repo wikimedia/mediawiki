@@ -1949,7 +1949,9 @@ $1',
 
 # Special:Categories
 'categories'                    => 'カテゴリ',
-'categoriespagetext'            => '以下の{{PLURAL:$1|カテゴリ}}にはページまたはメディアが存在します。[[Special:UnusedCategories|未使用のカテゴリ]]はここには表示されていません。[[Special:WantedCategories|カテゴリページが存在しないカテゴリ]]も参照してください。',
+'categoriespagetext'            => '以下の{{PLURAL:$1|カテゴリ}}にはページまたはメディアが存在します。
+[[Special:UnusedCategories|未使用のカテゴリ]]はここには表示されていません。
+[[Special:WantedCategories|カテゴリページが存在しないカテゴリ]]も参照してください。',
 'categoriesfrom'                => '最初に表示するカテゴリ:',
 'special-categories-sort-count' => '項目数順',
 'special-categories-sort-abc'   => 'アルファベット順',

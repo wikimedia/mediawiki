@@ -211,7 +211,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'მახვარებელ',
 'yourpassword'            => 'პაროლ',
-'remembermypassword'      => 'ქიმკომიწონი',
+'remembermypassword'      => 'ქიმკომიწონი (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'          => 'თქვან დომენ',
 'login'                   => 'მინულა',
 'nav-login-createaccount' => 'მინულა',

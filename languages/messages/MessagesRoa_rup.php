@@ -99,7 +99,7 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'yourname'           => 'Numa di ufilizitor:',
 'yourpassword'       => 'Cljao:',
 'yourpasswordagain'  => 'Bãgats-u cljao iara:',
-'remembermypassword' => 'Apurã-u ligãtura-a mea pi compiuterlu aistu',
+'remembermypassword' => 'Apurã-u ligãtura-a mea pi compiuterlu aistu (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'              => 'Ligats-vã',
 'userlogin'          => 'Ligats-vã / Fãtsets Isape',
 'logout'             => 'Disligats-vã',

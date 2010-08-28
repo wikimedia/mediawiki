@@ -171,7 +171,7 @@ No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} preferensianan]].',
 'yourname'                   => 'Nòmber di uzadó',
 'yourpassword'               => 'Kontraseña',
 'yourpasswordagain'          => 'Hinka kontraseña atrobe',
-'remembermypassword'         => 'Kordá mi',
+'remembermypassword'         => 'Kordá mi (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'userlogin'                  => 'Traha un kuenta nobo òf outentiká',
 'userlogout'                 => 'Terminá sesion',
 'badretype'                  => 'E kontraseñanan hinká no ta kuadra.',
@@ -276,7 +276,9 @@ Bo por skohe un tipo di registro tambe, òf filtrá e bista ku un nòmber di uza
 
 # Special:Categories
 'categories'         => 'Kategorianan',
-'categoriespagetext' => 'Esaki ta e kategorianan ku ta eksistí den {{SITENAME}}.',
+'categoriespagetext' => 'Esaki ta e kategorianan ku ta eksistí den {{SITENAME}}.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # E-mail user
 'emailuser'       => 'Manda e-mail pa e uzadó aki',

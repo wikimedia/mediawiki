@@ -66,7 +66,7 @@ $messages = array(
 'tog-editsection'             => "Permette 'e cagnà 'e sezzione cu a jonta [cagna]",
 'tog-editsectiononrightclick' => "Permette 'e cangne 'e sezzione cliccanno p''o tasto destro ncopp 'e titule 'e sezzione (JavaScript)",
 'tog-showtoc'                 => "Mosta ll'innece pe 'e paggene cu cchiù 'e 3 sezzione",
-'tog-rememberpassword'        => "Ricurda 'a registrazzione pe' cchiu sessione",
+'tog-rememberpassword'        => "Ricurda 'a registrazzione pe' cchiu sessione (for a maximum of $1 {{PLURAL:$1|day|days}})",
 
 'underline-always' => 'Sèmpe',
 'underline-never'  => 'Màje',
@@ -222,7 +222,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'welcomecreation'            => "== Bemmenuto, $1! ==
 
 'O cunto è stato criato currettamente.  Nun scurdà 'e perzonalizzà 'e ppreferenze 'e {{SITENAME}}.",
-'remembermypassword'         => 'Allicuordate d"a password',
+'remembermypassword'         => 'Allicuordate d"a password (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => "Spiecà 'o dumminio",
 'login'                      => 'Tràse',
 'userlogin'                  => "Tràse o cria n'acciesso nuovo",
@@ -352,7 +352,9 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 
 # Special:Categories
 'categories'         => 'Categurìe',
-'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.",
+'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].",
 
 # Special:LinkSearch
 'linksearch-ok' => 'Truova',

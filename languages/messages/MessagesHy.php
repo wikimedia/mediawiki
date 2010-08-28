@@ -284,7 +284,7 @@ $messages = array(
 'tog-editsection'             => 'Ցույց տալ [խմբագրել] հղումը ամեն բաժնի համար',
 'tog-editsectiononrightclick' => 'Խմբագրել բաժինները վերնագրի աջ մատնահարմամբ (JavaScript)',
 'tog-showtoc'                 => 'Ցույց տալ բովանդակությունը (3  կամ ավել վերնագրեր ունեցող էջերի համար)',
-'tog-rememberpassword'        => 'Հիշել իմ մասնակցի հաշիվը այս համակարգչում',
+'tog-rememberpassword'        => 'Հիշել իմ մասնակցի հաշիվը այս համակարգչում (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Ավելացնել իմ ստեղծած էջերը հսկացանկին',
 'tog-watchdefault'            => 'Ավելացնել իմ խմբագրած էջերը հսկացանկին',
 'tog-watchmoves'              => 'Ավելացնել իմ տեղափոխած էջերը հսկացանկին',
@@ -1605,7 +1605,9 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 
 # Special:Categories
 'categories'         => 'Կատեգորիաներ',
-'categoriespagetext' => 'Հետևյալ կատեգորիաները պարունակում են էջեր կամ մեդիա։',
+'categoriespagetext' => 'Հետևյալ կատեգորիաները պարունակում են էջեր կամ մեդիա.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'Մասնակցի ջնջված ներդրում',

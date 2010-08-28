@@ -78,7 +78,7 @@ $messages = array(
 'tog-editsection'             => 'Mausab ang mga seksiyon gamit ang [usba] nga sumpay',
 'tog-editsectiononrightclick' => 'Mahimo ang pag-usab sa seksyon pinaagi sa pag-right click sa titulo sa seksyon (JavaScript kinahanglan)',
 'tog-showtoc'                 => 'Ipakita ang talaan sa sulod (alang sa mga panid nga may daghan pa sa 3 ka heading)',
-'tog-rememberpassword'        => 'Hinumdomi ako sa kining kompyuter',
+'tog-rememberpassword'        => 'Hinumdomi ako sa kining kompyuter (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Bantayi ang akong gisugdang mga panid',
 'tog-watchdefault'            => 'Bantayi ang akong giusab nga mga panid',
 'tog-watchmoves'              => 'Bantayi ang akong gibalhin nga mga panid',
@@ -467,7 +467,7 @@ Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga prepere
 'yourname'                => 'Ngalan sa tiggamit:',
 'yourpassword'            => 'Pasword:',
 'yourpasswordagain'       => 'Itayp og usab ang pasword:',
-'remembermypassword'      => 'Hinumdomi ako niini nga kompyuter',
+'remembermypassword'      => 'Hinumdomi ako niini nga kompyuter (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'          => 'Ang imong domain:',
 'externaldberror'         => 'May nahitabong authentication database error o kaha wala ka tugoti nga mag-update sa imong eksternal nga akawnt.',
 'login'                   => 'Sulod',
@@ -999,7 +999,9 @@ Ang mga panid sa [[Special:Watchlist|imong gibantayan]] '''nakalugom'''.",
 
 # Special:Categories
 'categories'                  => 'Mga kategoriya',
-'categoriespagetext'          => 'Ang mosunod nga mga kategoriya adunay sulod nga panid o medya.',
+'categoriespagetext'          => 'Ang mosunod nga mga kategoriya adunay sulod nga panid o medya.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-abc' => 'han-aya nga paalpabetikal',
 
 # Special:LinkSearch

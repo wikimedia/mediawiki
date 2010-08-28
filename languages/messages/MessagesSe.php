@@ -27,7 +27,7 @@ $messages = array(
 'tog-editsection'             => 'Čájet rievdadanliŋkkaid juohke oasáža bájabealde',
 'tog-editsectiononrightclick' => 'Rievdat osiid nu ahte deaddilat bájilčállaga sáhpána olggeš boaluin (JavaScript)',
 'tog-showtoc'                 => 'Čájet sisdoallologahallama siidduin, main lea eanet go golbma bájilčállaga',
-'tog-rememberpassword'        => 'Muite mu dieđuid dán dihtoris',
+'tog-rememberpassword'        => 'Muite mu dieđuid dán dihtoris (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Lasit čuovvunlistui siidduid maid lean álggahan',
 'tog-watchdefault'            => 'Lasit čuovvunlistui siidduid maid lean ođasmahttán',
 'tog-watchmoves'              => 'Lasit čuovvunlistui siidduid maid lean sirdán',
@@ -275,7 +275,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'yourname'                   => 'Geavaheaddjidovddaldat',
 'yourpassword'               => 'Suollemassátni:',
 'yourpasswordagain'          => 'Čále suollemassáni ođđasit:',
-'remembermypassword'         => 'Muite mu',
+'remembermypassword'         => 'Muite mu (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Fierbmenamma',
 'login'                      => 'Čálligoađe sisa',
 'nav-login-createaccount'    => 'Daga ođđa geavaheaddjidovddaldaga dahje čálligoađe sisa',
@@ -807,7 +807,9 @@ $1 {{int:pipe-separator}} $2',
 
 # Special:Categories
 'categories'         => 'Luohkát',
-'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} lea čuovvovaš luohkát:',
+'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} lea čuovvovaš luohkát.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ListUsers
 'listusers-submit'   => 'Oza',
