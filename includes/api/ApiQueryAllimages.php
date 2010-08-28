@@ -200,6 +200,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 				'Which properties to get',
 				' timestamp    - Adds the timestamp when the image was upload',
 				' user         - Adds the username of the last uploader',
+				' userid       - Adds the user id of the last uploader',
 				' comment      - Adds the comment of the last upload',
 				' url          - Adds the URL of the image and its description page',
 				' size         - Adds the size of the image in bytes and its height and width',
