@@ -202,7 +202,7 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 # Login and logout pages
 'yourname'                => 'Soranòm:',
 'yourpassword'            => 'Paróla segreta:',
-'remembermypassword'      => "Regèstra la mi parola d'ordin sora ste computer",
+'remembermypassword'      => "Regèstra la mi parola d'ordin sora ste computer (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'login'                   => 'Va dentar',
 'nav-login-createaccount' => 'Va dentar / Èla la prèma volta?',
 'userlogin'               => 'Vèn dentar/A sit nov?',

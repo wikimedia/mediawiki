@@ -118,7 +118,7 @@ $messages = array(
 'tog-editsection'             => 'Mudìfigga di li sezzioni attrabessu lu cullegamentu [mudifigga]',
 'tog-editsectiononrightclick' => "Mudìfigga di li sezzioni attrabessu lu clic dresthu i' lu tìturu (nezzessàriu JavaScript)",
 'tog-showtoc'                 => "Musthra l'indizi pa li pàgini cun più di 3 sezzioni",
-'tog-rememberpassword'        => "Ammenta la paràura d'órdhini (nezzessàriu azzittà li cookie)",
+'tog-rememberpassword'        => "Ammenta la paràura d'órdhini (nezzessàriu azzittà li cookie) (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'tog-watchcreations'          => "Aggiungi li pàgini criaddi a l'abbaidaddi ippiziari",
 'tog-watchdefault'            => "Aggiungi li pàgini mudìfiggaddi a l'abbaidaddi ippiziari",
 'tog-watchmoves'              => "Aggiungi li pàgini ippusthaddi a l'abbaidaddi ippiziari",
@@ -460,7 +460,7 @@ La registhrazioni è isthadda criadda currettamenti. No dimintiggà di passunari
 'yourname'                   => 'Innòmu utenti',
 'yourpassword'               => "Paràura d'órdhini",
 'yourpasswordagain'          => "Ripeti la paràura d'órdhini",
-'remembermypassword'         => "Ammenta la paràura d'órdhini",
+'remembermypassword'         => "Ammenta la paràura d'órdhini (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'yourdomainname'             => 'Ippizzificà lu dumìniu',
 'externaldberror'            => "S'è verifiggaddu un errori cu lu server di autentificazioni esthernu, oppuru nò si diponi di l'autorizazioni nezzessàri pa aggiornà la propria registhrazioni estherna.",
 'login'                      => 'Intra',
@@ -1272,7 +1272,9 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 
 # Special:Categories
 'categories'         => 'Categuri',
-'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i'lu situ.",
+'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i'lu situ.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].",
 
 # Special:LinkSearch
 'linksearch'    => 'Cullegamenti estherni',

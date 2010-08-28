@@ -54,7 +54,7 @@ $messages = array(
 'tog-editsection'             => 'Lupaq lõikõ toimõndaq [toimõndaq]-linkõga',
 'tog-editsectiononrightclick' => 'Lupaq lõikõ toimõndaq hüäpoolidsõ klõpsutusõga <br /> lõigu päälkirä pääl (JavaScript)',
 'tog-showtoc'                 => 'Näütäq sisukõrda (rohkõmb ku kolmõ vaihõpäälkiräga lehile)',
-'tog-rememberpassword'        => 'Salasõna miildejätmine tulõvaidsis kõrros',
+'tog-rememberpassword'        => 'Salasõna miildejätmine tulõvaidsis kõrros (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Panõq mu luuduq leheq mu perräkaemisnimekirjä',
 'tog-watchdefault'            => 'Kaeq vahtsidõ ja muudõtuidõ artiklidõ perrä',
 'tog-watchmoves'              => 'Panõq mu ümbrenõstõduq leheküleq mu perräkaemisnimekirjä',
@@ -1261,7 +1261,9 @@ Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs
 
 # Special:Categories
 'categories'         => 'Katõgooriaq',
-'categoriespagetext' => 'Seon vikin ommaq sääntseq katõgooriaq:',
+'categoriespagetext' => 'Seon vikin ommaq sääntseq katõgooriaq.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch' => 'Välislingiq',

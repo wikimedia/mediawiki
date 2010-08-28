@@ -160,7 +160,7 @@ Kui tšüsümüssessä ebõõ rootšittu tšültši, võib õlla õlõttõ löü
 # Login and logout pages
 'yourname'                => 'Tšäüttijänimi:',
 'yourpassword'            => 'Salasõna',
-'remembermypassword'      => 'Mäleht minuu',
+'remembermypassword'      => 'Mäleht minuu (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'Tširjut süäme',
 'nav-login-createaccount' => 'Tširjut süäme vai registriiroit tšäüttijässi',
 'userlogin'               => 'Tširjut süäme',

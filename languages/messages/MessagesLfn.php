@@ -47,7 +47,7 @@ $messages = array(
 'tog-editsection'             => 'Engrana la edita de sesion via lias de {edita}.',
 'tog-editsectiononrightclick' => 'Engrana la edita de sesion par clica a la destra a titulos de sesion (JavaScript)',
 'tog-showtoc'                 => 'Mostra la table de contenis (per pajes con plu ce tre titulos)',
-'tog-rememberpassword'        => 'Memora me sinia per entra a esta computador',
+'tog-rememberpassword'        => 'Memora me sinia per entra a esta computador (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Junta la pajes ce me ia creada a me lista de pajes oservada',
 'tog-watchdefault'            => 'Junta pajes ce me ia edita a me lista de pajes oservada',
 'tog-watchmoves'              => 'Junta pajes ce me ia moveda a me lista de pajes oservada',
@@ -286,7 +286,7 @@ $messages = array(
 'yourname'                => 'Nom de usor:',
 'yourpassword'            => 'Sinia de entra:',
 'yourpasswordagain'       => 'Retape la sinia:',
-'remembermypassword'      => 'Memora me sinia de entra a esta computador',
+'remembermypassword'      => 'Memora me sinia de entra a esta computador (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'          => 'Tu domina:',
 'login'                   => 'Identifia',
 'nav-login-createaccount' => 'Sinia per entra',
@@ -669,7 +669,9 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 
 # Special:Categories
 'categories'         => 'Categorias',
-'categoriespagetext' => 'Es la categorias seguente en la vici.',
+'categoriespagetext' => 'Es la categorias seguente en la vici.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Xerca',

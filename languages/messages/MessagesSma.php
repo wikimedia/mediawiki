@@ -204,7 +204,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'Nuhtjiennomme:',
 'yourpassword'            => 'Loevesbaakoe:',
-'remembermypassword'      => 'Måjhtije mov loggesïjse nille dïhte daatovre',
+'remembermypassword'      => 'Måjhtije mov loggesïjse nille dïhte daatovre (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'          => 'Dov domäne:',
 'login'                   => 'Logge sïjse',
 'nav-login-createaccount' => 'Logge sïjse / skaepede nuhtjien',

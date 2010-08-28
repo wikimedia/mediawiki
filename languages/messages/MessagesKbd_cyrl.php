@@ -19,7 +19,7 @@ $messages = array(
 'tog-highlightbroken'    => 'ЩымыIэ ссылкэхэр къэгъэлъэгъуэн <a href="" class="new">вот так</a> (ар мыхъумэ мыпхуэдэу<a href="" class="internal">?</a>).',
 'tog-justify'            => 'БгъуагъкIэ напэкIуэцIыр зэгъэзэхуэн',
 'tog-hideminor'          => 'ГъэпщкIун: кIуэдкIэ зыхэмылэжьыхьа, щIэуэ яхъуэжа списокым',
-'tog-rememberpassword'   => 'Компьютерым си логиныр щыхъумэн',
+'tog-rememberpassword'   => 'Компьютерым си логиныр щыхъумэн (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'     => 'Сэ сщIа напэкIуэцIхэр сызыкIэлъыплъ списокым хэлъхьэн',
 'tog-watchdefault'       => 'Сэ схъуэжа напэкIуэцIхэр сызыкIэлъыплъ списокым хэлъхьэн',
 'tog-watchmoves'         => 'Зи цIэ схъуэжа напэкIуэцIхэр сызыкIэлъыплъ списокым хэлъхьэн',

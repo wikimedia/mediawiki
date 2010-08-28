@@ -171,7 +171,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'ལག་ལེན་པའི་མིང་:',
 'yourpassword'            => 'ཆོག་ཡིག:',
-'remembermypassword'      => 'གློག་རིག་དེ་གུར་ ངེ་གི་ནང་བསྐྱོད་སེམས་ཁར་བཞག།',
+'remembermypassword'      => 'གློག་རིག་དེ་གུར་ ངེ་གི་ནང་བསྐྱོད་སེམས་ཁར་བཞག (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'ནང་བསྐྱོད།',
 'nav-login-createaccount' => 'ནང་བསྐྱོད་འབད་ / རྩིས་ཐོ་གསརཔ་བཟོ།',
 'loginprompt'             => '{{SITENAME}} ནང་ལུ་ ནང་བསྐྱོད་འབད་ནིའི་དོན་ལུ་ ཁྱོད་ཀྱིས་ ཀུ་ཀིསི་འདི་ལྕོགས་ཅན་བཟོ་དགོ།',

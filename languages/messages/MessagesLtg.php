@@ -195,7 +195,7 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 # Login and logout pages
 'yourname'                => 'Tovs lītuotuojvuords / Slāgvuords:',
 'yourpassword'            => 'Paroļs:',
-'remembermypassword'      => 'Atguoduot munu paroli iz ituo datora',
+'remembermypassword'      => 'Atguoduot munu paroli iz ituo datora (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'Dasaslāgt',
 'nav-login-createaccount' => 'Dasaslāgt / sataiseit jaunu lītuotuoju',
 'userlogin'               => 'Dasaslāgt / sataiseit jaunu lītuotuoju',

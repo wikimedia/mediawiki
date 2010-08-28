@@ -123,7 +123,7 @@ $messages = array(
 'tog-editsection'             => 'Rætta greinpart við hjálp av [rætta]-ávísing',
 'tog-editsectiononrightclick' => 'Rætta greinpart við at høgraklikkja á yvirskrift av greinparti (JavaScript)',
 'tog-showtoc'                 => 'Vís innihaldsyvurlit (Til greinir við meira enn trimun greinpartum)',
-'tog-rememberpassword'        => 'Minst til loyniorð næstu ferð',
+'tog-rememberpassword'        => 'Minst til loyniorð næstu ferð (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Legg síður, sum eg stovni, í mítt eftirlit',
 'tog-watchdefault'            => 'Vaka yvur nýggjum og broyttum greinum',
 'tog-previewontop'            => 'Vís forhondsvísning áðren rættingarkassan',
@@ -372,7 +372,7 @@ Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstilling
 'yourname'                   => 'Títt brúkaranavn:',
 'yourpassword'               => 'Títt loyniorð:',
 'yourpasswordagain'          => 'Skriva loyniorð umaftur:',
-'remembermypassword'         => 'Minst til loyniorðið hjá mær.',
+'remembermypassword'         => 'Minst til loyniorðið hjá mær (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                      => 'Rita inn',
 'nav-login-createaccount'    => 'Stovna kontu ella rita inn',
 'loginprompt'                => 'Cookies má verða sett til fyri at innrita á {{SITENAME}}.',
@@ -765,7 +765,9 @@ Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella á
 
 # Special:Categories
 'categories'         => 'Bólkar',
-'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.',
+'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch-ns' => 'Navnarúm:',

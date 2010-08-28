@@ -56,7 +56,7 @@ $messages = array(
 'tog-editsection'             => "Bewerken van deêlpahina's meuhlijk maeken via [bewerken]-koppeliengen",
 'tog-editsectiononrightclick' => "Bewerken van deêlpahina's meulijk maeken mie een rechtermuusklik op een tussenkopje (JavaScript vereist)",
 'tog-showtoc'                 => "Inoudsopgaeve weerheven (voe pahina's mie minstes 3 tussenkopjes)",
-'tog-rememberpassword'        => 'Wachtwoôrd ontouwe',
+'tog-rememberpassword'        => 'Wachtwoôrd ontouwe (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => "Pahina's die ak anmik automaotisch volhen",
 'tog-watchdefault'            => "Pahina's die ak bewerk automaotisch volhen",
 'tog-watchmoves'              => "Pahina's die ak verplekke automaotisch volhen",
@@ -383,7 +383,7 @@ Vergeet nie je [[Special:Preferences|vòkeuren voe {{SITENAME}}]] an te passen.'
 'yourname'                   => 'Gebrukersnaem',
 'yourpassword'               => 'Wachtwoôrd',
 'yourpasswordagain'          => 'Heef je wachtwoôrd opnieuw in:',
-'remembermypassword'         => 'Anmeldhehevens ontouwen',
+'remembermypassword'         => 'Anmeldhehevens ontouwen (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Je domein:',
 'externaldberror'            => "Der is een fout opetreeën bie 't anmelden bie de database of je ei hin toestemmieng jen externe gebruker bie te werken.",
 'login'                      => 'Anmelden',
@@ -1008,7 +1008,9 @@ Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bl
 
 # Special:Categories
 'categories'                    => 'Categorieën',
-'categoriespagetext'            => 'De wiki eit de volgende categorieën.',
+'categoriespagetext'            => 'De wiki eit de volgende categorieën.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'op antal sorteern',
 'special-categories-sort-abc'   => 'alfabetisch sorteern',
 

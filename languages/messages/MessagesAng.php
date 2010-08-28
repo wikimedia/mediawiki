@@ -387,7 +387,7 @@ Cnāw þæt sume sīdan cunnon gelǣstende ēowod wesan swā þū wǣre gīet in
 'yourname'                   => 'Þīn brūcendnama',
 'yourpassword'               => 'Þafungƿord:',
 'yourpasswordagain'          => 'Þafungƿord edƿrītan:',
-'remembermypassword'         => 'Mīne inmeldunge ȝemyndan on þissum spearcatelle',
+'remembermypassword'         => 'Mīne inmeldunge ȝemyndan on þissum spearcatelle (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Þīn ȝeƿeald:',
 'login'                      => 'Inmeldian',
 'nav-login-createaccount'    => 'Nīƿne hordcleofan scieppan oþþe inmeldian',
@@ -862,7 +862,9 @@ Cnæpp on sƿeorhēafde hƿeorfþ þā endebyrdnessa.',
 
 # Special:Categories
 'categories'         => 'Floccas',
-'categoriespagetext' => 'Þā folgendan floccas standaþ in þǣm wici.',
+'categoriespagetext' => 'Þā folgendan floccas standaþ in þǣm wici.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'sp-deletedcontributions-contribs' => 'forðunga',

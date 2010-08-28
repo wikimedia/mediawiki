@@ -709,7 +709,9 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 
 # Special:Categories
 'categories'         => 'Gnethan',
-'categoriespagetext' => "Tha na gnethan a leanas anns a'wiki.",
+'categoriespagetext' => 'The following {{PLURAL:$1|category contains|categories contain}} pages or media.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch' => 'Ceanglaichean dhan taobh a-muigh',

@@ -2035,7 +2035,9 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 
 # Special:Categories
 'categories'                    => 'വർഗ്ഗങ്ങൾ',
-'categoriespagetext'            => 'താഴെ കൊടുത്തിരിക്കുന്ന {{PLURAL:$1|വർഗ്ഗത്തിൽ|വർഗ്ഗങ്ങളിൽ}} താളുകളും പ്രമാണങ്ങളുമുണ്ട്. [[Special:UnusedCategories|ഉപയോഗിക്കപ്പെടാത്ത വർഗ്ഗങ്ങൾ]] ഇവിടെ കാണിക്കുന്നില്ല. [[Special:WantedCategories|അവശ്യവർഗ്ഗങ്ങൾ]] കൂടി കാണുക.',
+'categoriespagetext'            => 'താഴെ കൊടുത്തിരിക്കുന്ന {{PLURAL:$1|വർഗ്ഗത്തിൽ|വർഗ്ഗങ്ങളിൽ}} താളുകളും പ്രമാണങ്ങളുമുണ്ട്.
+[[Special:UnusedCategories|ഉപയോഗിക്കപ്പെടാത്ത വർഗ്ഗങ്ങൾ]] ഇവിടെ കാണിക്കുന്നില്ല.
+[[Special:WantedCategories|അവശ്യവർഗ്ഗങ്ങൾ]] കൂടി കാണുക.',
 'categoriesfrom'                => 'ഇങ്ങനെ തുടങ്ങുന്ന വർഗ്ഗങ്ങൾ കാട്ടുക:',
 'special-categories-sort-count' => 'എണ്ണത്തിനനുസരിച്ച് ക്രമപ്പെടുത്തുക',
 'special-categories-sort-abc'   => 'അക്ഷരമാലാക്രമത്തിൽ ക്രമീകരിക്കുക',

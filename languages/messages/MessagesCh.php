@@ -37,7 +37,7 @@ $messages = array(
 'tog-extendwatchlist'      => "Na'ladångkolu i listan pinilan para u na'annok i manaplikayon na tinilaika siha",
 'tog-usenewrc'             => "I manmana'lamaolek na tinilaika (JavaScript)",
 'tog-showtoc'              => "Na'annok i fañodda'an (annai guåha mas ki 3 na titulo gi påhina)",
-'tog-rememberpassword'     => 'Hasso iyo-ku login gi este na komputadora.',
+'tog-rememberpassword'     => 'Hasso iyo-ku login gi este na komputadora (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'       => "Po'lo i påhina siha ni fina'tinas-hu gi iyo-ku listan pinilan.",
 'tog-watchdefault'         => "Po'lo i påhina siha ni hu tulaika gi iyo-ku listan pinilan.",
 'tog-watchmoves'           => "Po'lo i påhina siha ni hu muebi gi iyo-ku listan pinilan.",
@@ -315,7 +315,7 @@ Munga mamalefa tumulaika ga'ña-mu {{SITENAME}}.",
 'yourname'                   => "Nå'an ni muna'setbi:",
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => "Taip ta'lo i password:",
-'remembermypassword'         => "Na'hasso iyo-ku login gi este na komputer",
+'remembermypassword'         => "Na'hasso iyo-ku login gi este na komputer (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'yourdomainname'             => 'Lugat-mu:',
 'login'                      => 'Log in',
 'nav-login-createaccount'    => "Hålom / fa'tinas kuenta-mu",
@@ -895,7 +895,9 @@ Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'c
 
 # Special:Categories
 'categories'                    => 'Katigoria',
-'categoriespagetext'            => 'Guåha påhina pat media gi halom i sigiente katigoria.',
+'categoriespagetext'            => 'Guåha påhina pat media gi halom i sigiente katigoria.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'såttea pot tinefong',
 'special-categories-sort-abc'   => 'såttea pot i atfabetu',
 

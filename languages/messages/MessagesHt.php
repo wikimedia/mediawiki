@@ -139,7 +139,7 @@ $messages = array(
 'tog-editsection'             => 'Pemèt edite yon seksyon via [edite] lyen yo',
 'tog-editsectiononrightclick' => 'Pemèt edite yon seksyon pa klike a dwat tit seksyon an (JavaScrip)',
 'tog-showtoc'                 => 'Montre tab de matyè yo (pou tout paj ki gen plis ke twa tit)',
-'tog-rememberpassword'        => 'Sonje login mwen nan òdinatè sa',
+'tog-rememberpassword'        => 'Sonje login mwen nan òdinatè sa (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
 'tog-watchdefault'            => 'Mete paj mwen edite yo nan lis veye m',
 'tog-watchmoves'              => 'Mete paj mwen deplase nan lis veye m',
@@ -507,7 +507,7 @@ Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou
 'yourname'                   => 'Non itilizatè ou an :',
 'yourpassword'               => 'Mopas ou an :',
 'yourpasswordagain'          => 'Mete mopas ou an ankò :',
-'remembermypassword'         => 'Anrejistre mopas mwen an nan òdinatè mwen an',
+'remembermypassword'         => 'Anrejistre mopas mwen an nan òdinatè mwen an (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Domèn ou an',
 'externaldberror'            => 'Li sanble ke yon erè pwodui ak bazdone a pou idantifikasyon ki pa nan sistèm an, oubyen ou pa otorize pou mete a jou kont ou genyen nan lòt sistèm yo.',
 'login'                      => 'Idantifikasyon',
@@ -1013,7 +1013,9 @@ Eseye pou wè si ak prefiks ''all:'' pou chache nan tout kontni a (anndann nou a
 
 # Special:Categories
 'categories'                    => 'Kategori yo',
-'categoriespagetext'            => 'Kategori ki swiv yo gen lòt paj oubien medya nan yo.',
+'categoriespagetext'            => 'Kategori ki swiv yo gen lòt paj oubien medya nan yo.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'klase pa valè',
 'special-categories-sort-abc'   => 'klase alfabetikalman',
 

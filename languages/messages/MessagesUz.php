@@ -223,7 +223,7 @@ Shuni e'tiborga olingki, ayrim sahifalar siz brauzeringiz keshini tozalamaguning
 'yourname'                => 'Foydalanuvchi nomi',
 'yourpassword'            => "Maxfiy so'z",
 'yourpasswordagain'       => "Maxfiy so'zni qayta kiriting",
-'remembermypassword'      => "Hisob ma'lumotlarini shu kompyuterda eslab qolish",
+'remembermypassword'      => "Hisob ma'lumotlarini shu kompyuterda eslab qolish (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'login'                   => 'Kirish',
 'nav-login-createaccount' => 'Kirish / Hisob yaratish',
 'loginprompt'             => "{{SITENAME}}ga kirish uchun kukilar yoqilgan bo'lishi kerak.",
@@ -475,7 +475,9 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 
 # Special:Categories
 'categories'         => 'Turkumlar',
-'categoriespagetext' => 'Ushbu turkumlarda sahifa yoki fayllar mavjud.',
+'categoriespagetext' => 'Ushbu turkumlarda sahifa yoki fayllar mavjud.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Yangi foydalanuvchi',

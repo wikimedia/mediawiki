@@ -125,7 +125,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'yourname'                => 'Isiga',
 'yourpassword'            => 'Izwi elingenangozi',
 'yourpasswordagain'       => 'Bhala izwi elingenangozi lakho kabusha',
-'remembermypassword'      => 'Ngikhumbule',
+'remembermypassword'      => 'Ngikhumbule (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'Ngena',
 'nav-login-createaccount' => 'Ngena / Dala ikhawundi',
 'userlogin'               => 'Ngena / Dala ikhawundi',

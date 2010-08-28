@@ -229,7 +229,7 @@ $messages = array(
 'tog-editsection'             => "Ataovy mety ny fanovana fizaràna amin'ny alalan'ny rohy [hanova]",
 'tog-editsectiononrightclick' => "Ovay ny fizaràna rehefa manindry ny bokotra havanana amin'ny totozy eo amin'ny lohateny hoe fizaràna (mila JavaScript)",
 'tog-showtoc'                 => "Asehoy ny fanoroan-takila (ho an'ny pejy misy lohateny mihoatra ny 3)",
-'tog-rememberpassword'        => "Tadidio ny tenimiafiko eto amin'ity ordinatera ity",
+'tog-rememberpassword'        => "Tadidio ny tenimiafiko eto amin'ity ordinatera ity (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'tog-watchcreations'          => "Ampina ao anarin'ny pejy fanaraha-maso ny pejy amboariko",
 'tog-watchdefault'            => "Atsofohy ao amin'ny lisitry ny pejy arahinao maso ny pejy izay ovainao na foroninao",
 'tog-watchmoves'              => "Ampina ao anatin'ny pejiko fanaraha-maso ny pejy soloiko anarana",
@@ -1903,7 +1903,9 @@ Azonao akelezina ny fahitana azy amin'ny alàlan'ny fisafidianana tatitr'asa ira
 
 # Special:Categories
 'categories'                    => 'Sokajy',
-'categoriespagetext'            => "Ireto no sokajy misy eto amin'ity wiki ity.",
+'categoriespagetext'            => "Ireto no sokajy misy eto amin'ity wiki ity.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].",
 'categoriesfrom'                => "Haneho ny sokajy manomboka amin'ny :",
 'special-categories-sort-count' => "afantina amin'ny isan-javatra",
 'special-categories-sort-abc'   => 'famantinana ara-abidy',

@@ -9,6 +9,7 @@
  *
  * @author Misos
  * @author Terik
+ * @author Жељко Тодоровић
  */
 
 $fallback = 'sr-ec';
@@ -24,7 +25,7 @@ $messages = array(
 
 # Special:Log/newusers
 'newuserlogpage'           => 'историја креирања корисника',
-'newuserlogpagetext'       => 'Ово је историја скорашњих креација корисника.',
+'newuserlogpagetext'       => 'Ово је историја скорашњих креирања корисника.',
 'newuserlog-create2-entry' => 'направио налог за $1',
 
 );

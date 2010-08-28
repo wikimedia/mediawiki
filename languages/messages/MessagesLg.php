@@ -13,7 +13,7 @@
 $messages = array(
 # User preference toggles
 'tog-showtoc'          => 'Teekawo endagiriro (singa ku lupapula kubaako emitwe gisukka mu esatu)',
-'tog-rememberpassword' => 'Ekigambo kyange ekikuumi kitereke ku kompyuta eno',
+'tog-rememberpassword' => 'Ekigambo kyange ekikuumi kitereke ku kompyuta eno (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-norollbackdiff'   => 'Okujjulula nga kuwedde, tolaga bigerageranya ebikyuse',
 
 # Dates
@@ -207,7 +207,7 @@ Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde -
 'yourname'                   => "Ery'obwa memba",
 'yourpassword'               => 'Ekigambo ekikuumi',
 'yourpasswordagain'          => 'Ddamu ekigambo ekikuumi',
-'remembermypassword'         => 'Tereka ekigambo kyange ekikuumi ku kompyuta eno',
+'remembermypassword'         => 'Tereka ekigambo kyange ekikuumi ku kompyuta eno (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                      => 'Yingira',
 'nav-login-createaccount'    => 'Yingira / kolawo akawunti',
 'loginprompt'                => 'Okuyingira {{SITENAME}}, kalambula-neti yo erina okukkirizako kuki.',

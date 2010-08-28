@@ -29,7 +29,7 @@ $messages = array(
 Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'tog-editsectiononrightclick' => "Paganan ya ing pamag-edit seksiyon (section editing) kapamilata'ning pamag right click kareng pamagat da reng seksiyon (JavaScript)",
 'tog-showtoc'                 => 'Pakit ya ing kalamnan [table of contents] (kareng bulung a maki 3 o mas dakal a pamagat)',
-'tog-rememberpassword'        => 'Tandanan ya ing kanakung login keng computer a ini',
+'tog-rememberpassword'        => 'Tandanan ya ing kanakung login keng computer a ini (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Idagdag la deng bulung a lelengan ku kareng babanten',
 'tog-watchdefault'            => 'Idagdag la reng bulung a inalilan ku kareng babanten',
 'tog-watchmoves'              => 'Idagdag la reng bulung a inalis ku kareng babanten',
@@ -381,7 +381,7 @@ Melalang ne ing kekang account. E mo kakalingwan alilan deng kekang piniling {{S
 'yourname'                   => 'Lagyung talagamit (Username):',
 'yourpassword'               => 'Kekang password:',
 'yourpasswordagain'          => 'Pakisulat meng pasibayu ing password:',
-'remembermypassword'         => 'Tandanan me ing login ku king computer a ini',
+'remembermypassword'         => 'Tandanan me ing login ku king computer a ini (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Ing kekang karinan (domain):',
 'externaldberror'            => 'Mapalyaring mika pamagkamali king external authentication (pamagpatutung panlual) ning database, o ala kang paintulut a i-update ya ing kekang account a panlual (external account).',
 'login'                      => 'Mag log in',
@@ -1326,7 +1326,9 @@ Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nun
 
 # Special:Categories
 'categories'                    => 'Kategoriya',
-'categoriespagetext'            => 'Deng tutuking categoria atin lang bulung o media',
+'categoriespagetext'            => 'Deng tutuking categoria atin lang bulung o media
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'surian tukituki agpang keng bilang',
 'special-categories-sort-abc'   => 'surian lang tukituki agpang keng kulitan',
 

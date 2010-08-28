@@ -189,7 +189,7 @@ $messages = array(
 'yourname'                => 'Hero',
 'yourpassword'            => 'Ne remiñemi',
 'yourpasswordagain'       => 'Repita ne remiñemi',
-'remembermypassword'      => "Aipota chemomandu'ajepi amba'apo jave.",
+'remembermypassword'      => "Aipota chemomandu'ajepi amba'apo jave (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'login'                   => 'Terañemboguapy/Ke',
 'nav-login-createaccount' => 'Terañemboguapy/Ke',
 'userlogin'               => 'Terañemboguapy/Ke',
@@ -245,7 +245,7 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.'''",
 
 # Revision deletion
 'rev-delundel'       => 'hechauka/toñemi',
-'logdelete-selected' => "'''Seleccionados $2 eventos de registro:'''",
+'logdelete-selected' => "'''Seleccionados $1 eventos de registro:'''",
 
 # Diffs
 'difference' => "(Mba'épe ojaovy oñemyatyrõva'ekue)",

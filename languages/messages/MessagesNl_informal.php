@@ -365,8 +365,8 @@ Controleer of het inderdaad je bedoeling is dit bestand te uploaden.
 Het verwijderingslogboek van dit bestand kunt je hier zien:",
 'filename-bad-prefix'         => "De naam van het bestand dat je aan het uploaden bent begint met '''\"\$1\"''', wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven.
 Kies een duidelijke naam voor je bestand.",
-'upload-success-msg'          => 'Je upload is hier beschikbaar: [[:{{ns:file}}:$1]]',
-'upload-failure-msg'          => 'Er was een probleem met je upload:
+'upload-success-msg'          => 'Je upload van [$2] is geslaagd en is beschikbaar: [[:{{ns:file}}:$1]]',
+'upload-failure-msg'          => 'Er was een probleem met je upload van [$2]:
 
 $1',
 

@@ -27,7 +27,7 @@ $messages = array(
 'tog-editsection'             => 'Premitil eital mensahis gastandu el atihu [eital]',
 'tog-editsectiononrightclick' => 'Premitil eital secionis pulsandu el botón de la derecha<br /> enus entítulus de secionis (JavaScript)',
 'tog-showtoc'                 => 'Muestral cuairu e continius (pa páhinas con mas de 3 entítulus)',
-'tog-rememberpassword'        => 'Recordal la mi cuenta nesti ordinaol',
+'tog-rememberpassword'        => 'Recordal la mi cuenta nesti ordinaol (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Vehilal las páhinas que yo crei',
 'tog-watchdefault'            => "Vehilal las páhinas qu'eiti",
 'tog-watchmoves'              => 'Vehilal las páhinas que rellami',
@@ -403,7 +403,7 @@ Alcuerdati de chambal las tus [[Special:Preferences|preferéncias de {{SITENAME}
 'yourname'                   => "Nombri d'usuáriu:",
 'yourpassword'               => 'Consínia:',
 'yourpasswordagain'          => 'Escrebi e nuevu la consínia:',
-'remembermypassword'         => 'Recordal la mi cuenta nesti ordinaol',
+'remembermypassword'         => 'Recordal la mi cuenta nesti ordinaol (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'El tu domiñu:',
 'externaldberror'            => "Marru d'autentificación esterna e la basi e datus, u bien nu t'alcuentras autorizau p'atualizal la tu cuenta esterna.",
 'login'                      => 'Entral',
@@ -1369,7 +1369,9 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 
 # Special:Categories
 'categories'                    => 'Categorias',
-'categoriespagetext'            => 'Las siguientis categorias contienin artículus u archivus murtimeya.',
+'categoriespagetext'            => 'Las siguientis categorias contienin artículus u archivus murtimeya.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'ordenal pol cuenta',
 'special-categories-sort-abc'   => 'ordenal alfabeticamenti',
 

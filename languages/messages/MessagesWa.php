@@ -83,7 +83,7 @@ $messages = array(
 'tog-editsection'             => "Eployî les loyéns «[candjî]» po candjî rén k' ene seccion",
 'tog-editsectiononrightclick' => 'Candjî les seccions avou on dobe-clitch sol tite (JavaScript)',
 'tog-showtoc'                 => "Mostrer l' tåvlea d' ådvins<br />(po ls årtikes avou pus di 3 seccions)",
-'tog-rememberpassword'        => 'Rimimbrer li scret inte les sessions',
+'tog-rememberpassword'        => 'Rimimbrer li scret inte les sessions (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => "Mete les pådjes ki dj' askepeye dins l' djivêye des pådjes shuvowes",
 'tog-watchdefault'            => "Shuve les årtikes ki dj' fwai ou ki dj' candje",
 'tog-watchmoves'              => "Radjouter a m' djivêye des shuvous les pådjes ki dji displaece",
@@ -354,7 +354,7 @@ Vosse conte a stî ahivé.
 'yourname'                   => "Vosse no d' elodjaedje",
 'yourpassword'               => 'Vosse sicret',
 'yourpasswordagain'          => 'Ritapez vosse sicret',
-'remembermypassword'         => "Rimimbrer m' sicret inte les sessions.",
+'remembermypassword'         => "Rimimbrer m' sicret inte les sessions (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'yourdomainname'             => 'Vosse dominne',
 'login'                      => "S' elodjî",
 'nav-login-createaccount'    => "Ahiver on conte, udon-bén s' elodjî",
@@ -940,7 +940,9 @@ Vos ploz limiter l' håynaedje tot tchoezixhant ene sôre di djournå, on no d' 
 
 # Special:Categories
 'categories'         => 'Categoreyes',
-'categoriespagetext' => 'I gn a les categoreyes shuvantes sol wiki.',
+'categoriespagetext' => 'I gn a les categoreyes shuvantes sol wiki.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:Log/newusers
 'newuserlogpage'           => 'Djournå des noveas uzeus',

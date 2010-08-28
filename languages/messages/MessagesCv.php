@@ -52,7 +52,7 @@ $messages = array(
 'tog-editsection'             => '«Тӳрлет» ссылкăна кашни пайра кăтартмалла',
 'tog-editsectiononrightclick' => 'Шăшин сылтăм пускăчне пуссан статья пайне тӳрлетмелле (JavaScript)',
 'tog-showtoc'                 => 'Тупмаллине кăтартмалла (3, е ытларах заголовок пулсан)',
-'tog-rememberpassword'        => 'Мана ку компьютер çинче астуса хăвармалла',
+'tog-rememberpassword'        => 'Мана ку компьютер çинче астуса хăвармалла (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Эпĕ тунă страницăсене сăнав списокне кĕртмелле',
 'tog-watchdefault'            => 'Тӳрлетнĕ страницăсене сăнав списокне кĕртмелле',
 'tog-watchmoves'              => 'Страница ятне эпĕ улаштарсан вĕсене сăнав списокне кĕртмелле',
@@ -404,7 +404,7 @@ $1',
 'yourname'                   => 'Сирĕн ят',
 'yourpassword'               => 'Вăрттăн сăмах:',
 'yourpasswordagain'          => 'Вăрттăн сăмах тепре çырăр:',
-'remembermypassword'         => 'Ку компьютер çинче мана астуса хăвармалла',
+'remembermypassword'         => 'Ку компьютер çинче мана астуса хăвармалла (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Сирĕн домен',
 'login'                      => 'Сайта кĕр',
 'nav-login-createaccount'    => 'Сайта кĕр / регистрацилен',
@@ -899,7 +899,9 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 
 # Special:Categories
 'categories'                    => 'Категорисем',
-'categoriespagetext'            => 'Викинче çак категорисем пур.',
+'categoriespagetext'            => 'Викинче çак категорисем пур.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'шучĕ тăрăх йĕркеле',
 'special-categories-sort-abc'   => 'алфавит тăрăх йĕркеле',
 

@@ -42,7 +42,7 @@ $messages = array(
 'tog-editsection'             => 'Soim ol [senisim] link long wanwan hap bilong ol pes',
 'tog-editsectiononrightclick' => 'Senisim ol hap bilong pes taim yu paitim nem bilong hap<br />wantaim raithan-klik (i nidim Javascript)',
 'tog-showtoc'                 => 'Soim ol nem bilong hap insait long liklik bokis, taim igat antap long 3 hap long pes',
-'tog-rememberpassword'        => 'Holim nem bilong yusa bilong mi long dispela kompiuta',
+'tog-rememberpassword'        => 'Holim nem bilong yusa bilong mi long dispela kompiuta (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Putim ol nupela pes mi wokim long lukautbuk',
 'tog-watchdefault'            => 'Putim ol pes mi senisim long lukautbuk bilong mi',
 'tog-watchmoves'              => 'Putim ol pes mi surikim long lukautbuk bilong mi',
@@ -193,7 +193,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 
 # Special:Categories
 'categories'         => 'Ol grup',
-'categoriespagetext' => 'Ol dispela grup istap.',
+'categoriespagetext' => 'Ol dispela grup istap.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Watchlist
 'watchlist'            => 'Lukautbuk bilong mi',

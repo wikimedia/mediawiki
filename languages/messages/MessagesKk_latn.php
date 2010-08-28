@@ -377,7 +377,7 @@ $messages = array(
 'tog-editsection'             => 'Bölimderdi [öñdew] siltemesimen öñdewin qos',
 'tog-editsectiononrightclick' => 'Bölim taqırıbın oñ nuqwmen öñdewin qos (JavaScript)',
 'tog-showtoc'                 => 'Mazmunın körset (3-ten arta bölimi barılarğa)',
-'tog-rememberpassword'        => 'Kirgenimdi osı komp′ywterde umıtpa',
+'tog-rememberpassword'        => 'Kirgenimdi osı komp′ywterde umıtpa (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Men bastağan betterdi baqılaw tizimime üste',
 'tog-watchdefault'            => 'Men öñdegen betterdi baqılaw tizimime üste',
 'tog-watchmoves'              => 'Men jıljıtqan betterdi baqılaw tizimime üste',
@@ -716,7 +716,7 @@ Jaña tirkelgiñiz jasaldı.
 'yourname'                   => 'Qatıswşı atıñız:',
 'yourpassword'               => 'Qupïya söziñiz:',
 'yourpasswordagain'          => 'Qupïya sözdi qaýtalañız:',
-'remembermypassword'         => 'Meniñ kirgenimdi bul komp′ywterde umıtpa',
+'remembermypassword'         => 'Meniñ kirgenimdi bul komp′ywterde umıtpa (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Jeli üýşigiñiz:',
 'externaldberror'            => 'Osı arada ne şettik rastaw derekqorında qate boldı, nemese şettik tirkelgiñizdi jañalaw ruqsatı joq.',
 'login'                      => 'Kirw',
@@ -1676,7 +1676,9 @@ Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
 
 # Special:Categories
 'categories'                    => 'Sanattar',
-'categoriespagetext'            => 'Kelesi sanattar işinde better ne taspalar bar.',
+'categoriespagetext'            => 'Kelesi sanattar işinde better ne taspalar bar.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Sanattardı mınadan bastap körsetw:',
 'special-categories-sort-count' => 'sanımen surıptaw',
 'special-categories-sort-abc'   => 'älipbïmen surıptaw',

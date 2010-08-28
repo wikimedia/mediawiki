@@ -163,7 +163,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'Choyoołʼįįhí bizhiʼ:',
 'yourpassword'            => 'Passwordígíí:',
-'remembermypassword'      => 'shipassword béédíínih',
+'remembermypassword'      => 'shipassword béédíínih (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'nav-login-createaccount' => 'Log in / accountígíí ádíílííł',
 'nologinlink'             => 'Accountígíí ádíílííł',
 'mailmypassword'          => 'passwordígíí ániidí shichʼįʼ ádíílííł (e-mail)',

@@ -1413,6 +1413,10 @@ Tazama [[Special:NewFiles|mkusanyiko wa mafaili mapya]] kuona picha zenyewe.',
 Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'badfilename'             => 'Jina la faili limebadilishwa kuwa "$1".',
 'filetype-mime-mismatch'  => 'Tawi (extension) la faili halingani na aina ya MIME.',
+'filetype-unwanted-type'  => "Aina la faili '''\".\$1\"''' haitakiwi.
+{{PLURAL:\$3|Aina ya faili inayopendelewa|Aina za faili zinazopendelewa}} ni \$2.",
+'filetype-banned-type'    => "Aina la faili '''\".\$1\"''' hairuhusiwi.
+{{PLURAL:\$3|Aina ya faili inayoruhusiwa|Aina za faili zinazoruhusiwa}} ni \$2.",
 'empty-file'              => 'Faili ulilowasilisha ni tupu.',
 'file-too-large'          => 'Faili ulilowasilisha ni kubwa mno.',
 'filename-tooshort'       => 'Jina la faili ni fupi mno.',
@@ -1424,10 +1428,18 @@ Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'tmp-write-error'         => 'Hitilafu ya kuandika faili la muda.',
 'large-file'              => 'Tunashauri mafaili yasizidi $1;
 faili hili lina $2.',
+'largefileserver'         => 'Faili hili ni kubwa kuliko linavyoweza kuwekwa, kwa jinsi seva inavyopangaliwa',
+'emptyfile'               => 'Faili ulilolipakia linaonekana kuwa tupu.
+Labda jina lake limeandikwa vibaya.
+Tafadhali uhakikishe kwamba unataka kupakia faili hili.',
 'fileexists'              => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.",
-'fileexists-extension'    => "Faili lenye jina linalofanana nalo lipo tayari:<br />
-Jina la faili linalopakiwa: '''<tt>$1</tt>'''<br />
-Jina la faili lililopo tayari: '''<tt>$2</tt>'''<br />
+'filepageexists'          => "Ukurasa wa maelezo ya faili hili limeshaanzishwa hapo '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili.
+Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
+Ili muhtasari uonekana pale, itabidi uhariri ukurasa.
+[[$1|thumb]]",
+'fileexists-extension'    => "Faili lenye jina linalofanana nalo lipo tayari:[[$2|thumb]]
+* Jina la faili linalopakiwa: '''<tt>[[:$1]]</tt>'''
+* Jina la faili lililopo tayari: '''<tt>[[:$2]]</tt>'''
 Tafadhali chagua jina lingine.",
 'fileexists-forbidden'    => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
 Kama unataka kupakia faili lako, tafadhali rudia kwa kutumia jina lingine. [[File:$1|thumb|center|$1]]',

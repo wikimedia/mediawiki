@@ -19,7 +19,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'        => "Link'iş tude kogu3’uxaçki:",
 'tog-highlightbroken'  => 'Upşu linkepe <a href="" class="new">am şekilite</a> (alternatifi: am şekilite<a href="" class="internal">?</a>) ko3\'iri.',
-'tog-rememberpassword' => 'Parola-skani goişini',
+'tog-rememberpassword' => 'Parola-skani goişini (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-showhiddencats'   => "Şinaxeri k'at'egorepe ko3'iri",
 
 'underline-always' => "P'anda",
@@ -225,7 +225,7 @@ Dudicoxopes oxmaruşi yasaği na ren ar, varna daha dido kʼarakʼtʼeri uğun.'
 # Login and logout pages
 'yourname'                => 'Skani maxmare-coxo:',
 'yourpassword'            => 'Pʼarola-skani:',
-'remembermypassword'      => 'Parola-skani goişini',
+'remembermypassword'      => 'Parola-skani goişini (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'Sitʼeşa amaxti',
 'nav-login-createaccount' => 'Sitʼeşa amaxti / hesabi dokʼidi',
 'userlogin'               => 'Sitʼeşa amaxti / hesabi dokʼidi',

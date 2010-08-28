@@ -16,7 +16,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'            => 'Ngaahi fehokotaki ʻoku laineʻi ʻi lalo:',
 'tog-highlightbroken'      => 'Ngaohi ʻa e ngaahi fehokotaki maumau ʻoku <a href="" class="new">pehē</a> (meʻa kehe ʻoku pehē <a href="" class="internal">?</a>).',
-'tog-rememberpassword'     => 'Manatuʻi ʻeku kau-ki-ai ʻi he komipiuta ʻeni',
+'tog-rememberpassword'     => 'Manatuʻi ʻeku kau-ki-ai ʻi he komipiuta ʻeni (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'       => 'Tānaki ngaahi peesi ʻoku fakatupu ʻe au ki he hokohoko leʻo',
 'tog-watchdefault'         => 'Tānaki ngaahi peesi ʻoku fatu ʻe au ki he hokohoko leʻo',
 'tog-watchmoves'           => 'Tānaki ki heʻeku hokohoko leʻo ʻa e ngaahi peesi kuo ʻunu ʻe au',
@@ -269,7 +269,7 @@ Kuo fakatupu hoʻo tohi kau-ki-ai. ʻOua ʻe ngalo ke liliu hoʻo faʻiteliha {{
 'yourname'                   => 'Hingoa ʻetita',
 'yourpassword'               => 'Leatapu',
 'yourpasswordagain'          => 'Toe ʻai leatapu',
-'remembermypassword'         => 'Manatuʻi au',
+'remembermypassword'         => 'Manatuʻi au (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'ho ngāueʻanga',
 'login'                      => 'Kau ki ai',
 'nav-login-createaccount'    => 'Kau ki ai',
@@ -723,7 +723,9 @@ Ko e ʻuhinga loka ko e $1 ia.",
 
 # Special:Categories
 'categories'         => 'Faʻahinga',
-'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
+'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions'       => 'Ngaahi foaki ʻo ha ʻetita kuo tāmateʻi',

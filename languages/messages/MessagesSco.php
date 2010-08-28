@@ -36,7 +36,7 @@ $messages = array(
 'tog-editsection'             => 'Enable section editin via [edit] airtins',
 'tog-editsectiononrightclick' => 'Enable section editin bi richt-dabbin on section teitles (JavaScript)',
 'tog-showtoc'                 => 'Shaw table o contents (for pages wi mair nor 3 heidins)',
-'tog-rememberpassword'        => 'Mynd password ower sessions',
+'tog-rememberpassword'        => 'Mynd password ower sessions (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Add pages ye mak tar yer watchleet',
 'tog-watchdefault'            => 'Add pages ye edit tae yer watchleet',
 'tog-watchmoves'              => 'Eik pages A move tae ma watchleet',
@@ -390,7 +390,7 @@ Mynd an chynge yer [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname'                   => 'Yer uiser name',
 'yourpassword'               => 'Passwaird:',
 'yourpasswordagain'          => 'Retype passwaird:',
-'remembermypassword'         => 'Mynd ma password across sessions.',
+'remembermypassword'         => 'Mynd ma password across sessions (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Yer domain:',
 'externaldberror'            => "Aither the wis an external authenteication database mishanter, or ye'r no alloued tae update yer external accoont.",
 'login'                      => 'Log in',
@@ -953,7 +953,9 @@ Tae pit the eimage intae a page, uise an airtin i the form
 
 # Special:Categories
 'categories'                    => 'Categories',
-'categoriespagetext'            => 'The follaein categories exist in the wiki.',
+'categoriespagetext'            => 'The follaein categories exist in the wiki.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'sairt bi coont',
 'special-categories-sort-abc'   => 'sairt by the alphabet',
 

@@ -33,7 +33,7 @@ $messages = array(
 'tog-editsection'             => 'Ji̍h [siu-kái] chit-ê liân-kiat to̍h ē-tàng pian-chi̍p toāⁿ-lo̍h',
 'tog-editsectiononrightclick' => 'Chiàⁿ-ji̍h (right click) toāⁿ-lo̍h (section) phiau-tê to̍h ē-tàng pian-chi̍p toāⁿ-lo̍h (su-iàu JavaScript)',
 'tog-showtoc'                 => 'Hián-sī bo̍k-chhù (3-ê phiau-tê í-siōng ê ia̍h)',
-'tog-rememberpassword'        => 'Kì tiâu bi̍t-bé, āu-chōa iōng',
+'tog-rememberpassword'        => 'Kì tiâu bi̍t-bé, āu-chōa iōng (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Kā goá khui ê ia̍h ka-ji̍p kàm-sī-toaⁿ lāi-té',
 'tog-watchdefault'            => 'Kā goá pian-chi̍p kòe ê ia̍h ka-ji̍p kàm-sī-toaⁿ lāi-té',
 'tog-watchmoves'              => 'Kā goá soá ê ia̍h ka-ji̍p kàm-sī-toaⁿ',
@@ -258,7 +258,7 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'yourname'                   => 'Lí ê iōng-chiá miâ-chheng:',
 'yourpassword'               => 'Lí ê bi̍t-bé:',
 'yourpasswordagain'          => 'Têng phah bi̍t-bé:',
-'remembermypassword'         => 'Kì tiâu góa ê bi̍t-bé (āu-chhiú teng-ji̍p iōng).',
+'remembermypassword'         => 'Kì tiâu góa ê bi̍t-bé (āu-chhiú teng-ji̍p iōng) (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                      => 'Teng-ji̍p',
 'nav-login-createaccount'    => 'Teng-ji̍p / khui sin kháu-chō',
 'loginprompt'                => 'Thiⁿ ē-kha ê chu-liāu thang khui sin hō·-thâu a̍h-sī teng-ji̍p {{SITENAME}}.',
@@ -606,7 +606,9 @@ Template:Khu-pia̍t-ia̍h',
 
 # Special:Categories
 'categories'         => 'Lūi-pia̍t',
-'categoriespagetext' => 'Chit ê wiki ū ē-kha chia ê lūi-pia̍t.',
+'categoriespagetext' => 'Chit ê wiki ū ē-kha chia ê lūi-pia̍t.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions'       => 'Hō͘ lâng thâi tiāu ê kòng-hiàn',

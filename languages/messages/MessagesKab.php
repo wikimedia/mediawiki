@@ -52,7 +52,7 @@ $messages = array(
 'tog-editsection'             => 'Eǧǧ abeddel n umur s yizdayen [beddel]',
 'tog-editsectiononrightclick' => 'Eǧǧ abeddel n umur mi wekkiɣ ɣef uyeffus<br /> ɣef yizwal n umur (JavaScript)',
 'tog-showtoc'                 => 'Ssken agbur (i isebtar i yesɛan kter n 3 izwalen)',
-'tog-rememberpassword'        => 'Cfu ɣef yisem n wemseqdac inu di uselkim-agi',
+'tog-rememberpassword'        => 'Cfu ɣef yisem n wemseqdac inu di uselkim-agi (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Rnu isebtar i xelqeɣ deg wumuɣ n uɛessi inu',
 'tog-watchdefault'            => 'Rnu isebtar i ttbeddileɣ deg wumuɣ n uɛessi inu',
 'tog-watchmoves'              => 'Rnu isebtar i smimḍeɣ deg wumuɣ n uɛessi inu',
@@ -334,7 +334,7 @@ Isem n wemseqdac inek yettwaxleq. Ur tettuḍ ara ad tbeddleḍ Isemyifiyen n {{
 'yourname'                   => 'Isem n wemseqdac',
 'yourpassword'               => 'Awal n tbaḍnit',
 'yourpasswordagain'          => 'Ɛiwed ssekcem awal n tbaḍnit',
-'remembermypassword'         => 'Cfu ɣef wawal n tbaḍnit inu di uselkim-agi.',
+'remembermypassword'         => 'Cfu ɣef wawal n tbaḍnit inu di uselkim-agi (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Taɣult inek',
 'externaldberror'            => 'Yella ugul aberrani n database neɣ ur tettalaseḍ ara ad tbeddleḍ isem an wemseqdac aberrani inek.',
 'login'                      => 'Kcem',
@@ -956,7 +956,9 @@ Tzemreḍ ad textareḍ cwiṭ seg-sen ma tebɣiḍ.',
 
 # Special:Categories
 'categories'         => 'Taggayin',
-'categoriespagetext' => 'Llant taggayin-agi deg wiki-yagi.',
+'categoriespagetext' => 'Llant taggayin-agi deg wiki-yagi.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ListUsers
 'listusersfrom'      => 'Ssken imseqdacen seg:',

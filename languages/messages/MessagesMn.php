@@ -1610,7 +1610,9 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 
 # Special:Categories
 'categories'                    => 'Ангиллууд',
-'categoriespagetext'            => 'Дараах ангиллуудад хуудас эсвэл медиа файл агуулагдаж байна.',
+'categoriespagetext'            => 'Дараах ангиллуудад хуудас эсвэл медиа файл агуулагдаж байна.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Дараах гэж эхлэх ангиллуудыг үзүүлэх:',
 'special-categories-sort-count' => 'тоогоор ялгах',
 'special-categories-sort-abc'   => 'үсгийн дарааллаар ялгах',

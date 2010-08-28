@@ -1593,7 +1593,7 @@ Zu Ärer Informatioun steet an der Läsch-Lëscht de Grond vum virege Läschen:"
 'upload-success-subj'         => 'Eroplueden erfollegräich',
 'upload-success-msg'          => 'Ärt Eropluede vun [$2] huet fonctionnéiert. De Fichier ass hei disponibel: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem beim Eroplueden',
-'upload-failure-msg'          => 'Et gouf e Problem mat dem Fichier deen Dir eropgelueden hutt:
+'upload-failure-msg'          => 'Et gouf e Problem mam Fichier vu(n) [$2] deen Dir eropgelueden hutt:
 
 $1',
 'upload-warning-subj'         => 'Warnung beim Eroplueden',

@@ -44,7 +44,7 @@ $messages = array(
 'tog-editsection'             => '可以用[编写]链接来编写个别段落',
 'tog-editsectiononrightclick' => '可以按右键来编写只把子段落（JavaScript）',
 'tog-showtoc'                 => '超过三只标题就显到目录',
-'tog-rememberpassword'        => '到个只电脑记到偶𠮶密码',
+'tog-rememberpassword'        => '到个只电脑记到偶𠮶密码 (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => '拿偶开嘞𠮶页面加到偶𠮶监视列表',
 'tog-watchdefault'            => '拿偶改嘞𠮶页面加到偶𠮶监视列表',
 'tog-watchmoves'              => '拿偶动嘞𠮶页面加到偶𠮶监视列表',
@@ -422,7 +422,7 @@ $2',
 'yourname'                   => '用户名：',
 'yourpassword'               => '密码：',
 'yourpasswordagain'          => '输过道密码：',
-'remembermypassword'         => '让电脑记到密码',
+'remembermypassword'         => '让电脑记到密码 (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => '倷𠮶域名：',
 'externaldberror'            => '外部验证数据库出错，或倷更新伓正倷𠮶外部帐户。',
 'login'                      => '登入',
@@ -1211,7 +1211,9 @@ $2',
 
 # Special:Categories
 'categories'         => '页面分类',
-'categoriespagetext' => '下底𠮶分类包到页面或系媒体文件。',
+'categoriespagetext' => '下底𠮶分类包到页面或系媒体文件。
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch' => '外部连结',

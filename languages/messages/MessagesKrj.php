@@ -23,7 +23,7 @@ $messages = array(
 'tog-extendwatchlist'      => "Palapadun ang ''watchlist'' agud nga mapakita ang tanan nga ginasogtan nga pag-ilis",
 'tog-numberheadings'       => "Automatiko nga togroan kang nomero ang manga ''heading''",
 'tog-showtoolbar'          => 'Ipakita ang pangbolig sa pag-ilis (JavaScript)',
-'tog-rememberpassword'     => "Tandaan ang akun nga ''log-in'' sa dya nga ''computer''",
+'tog-rememberpassword'     => "Tandaan ang akun nga ''log-in'' sa dya nga ''computer'' (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'tog-watchcreations'       => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpanghimo ko",
 'tog-watchdefault'         => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpang-''edit'' ko",
 'tog-watchmoves'           => "Idogang sa akun nga ''watchlist'' ang manga pahina nga ginpanghalin ko",
@@ -214,7 +214,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 'viewsource'           => 'Turukun ang ginhalinan',
 
 # Login and logout pages
-'remembermypassword' => "Tandaan ang akun nga ''log-in'' sa dya nga ''computer''",
+'remembermypassword' => "Tandaan ang akun nga ''log-in'' sa dya nga ''computer'' (for a maximum of $1 {{PLURAL:$1|day|days}})",
 'nologinlink'        => "Himo ka sangka ''account''",
 'createaccount'      => "Himo ka ''account''",
 

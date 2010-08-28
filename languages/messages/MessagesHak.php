@@ -25,7 +25,7 @@ $messages = array(
 'tog-editsection'             => 'Yún-chún thûng-ko tiám-kit [phiên-siá] lièn-kiet phiên-cho thon-lo̍k',
 'tog-editsectiononrightclick' => 'Yún-chún yu-kit phêu-thì phiên-chho thon-lo̍k （JavaScript）',
 'tog-showtoc'                 => 'Hién-sṳ muk-liu̍k （chṳ̂m-tui yit-chông chhêu-ko sâm-ke phêu-thì ke vùn-chông）',
-'tog-rememberpassword'        => 'Hâ-yit-chhṳ tên-ngi̍p ki-he̍t me̍t-me̍t',
+'tog-rememberpassword'        => 'Hâ-yit-chhṳ tên-ngi̍p ki-he̍t me̍t-me̍t (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'          => 'Chiông ngô chhóng-chho ke vùn-chông kâ-thiâm to ngô-ke kam-sṳ lie̍t-péu chûng',
 'tog-watchdefault'            => 'Chiông ngô kiên-kói ke vùn-chông kâ-thiâm to ngô-ke kam-sṳ lie̍t-péu chûng',
 'tog-watchmoves'              => 'Chiông ngô yì-thung ke vùn-chông kâ-ngi̍p ngô-ke kam-sṳ lie̍t-péu',
@@ -354,7 +354,7 @@ Ngì khó-yî ki-siu̍k yî ngia̍k-miàng fông-sṳt sṳ́-yung {{SITENAME}},
 'yourname'                   => 'Yung-fu-miàng',
 'yourpassword'               => 'Me̍t-ma:',
 'yourpasswordagain'          => 'Chai-chhṳ sû-ngi̍p me̍t-ma:',
-'remembermypassword'         => 'Hâ-chhṳ tên-ngi̍p ki-he̍t pi-me̍t.',
+'remembermypassword'         => 'Hâ-chhṳ tên-ngi̍p ki-he̍t pi-me̍t (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Ngì ke mióng',
 'externaldberror'            => 'Liá-ke khó-nèn he chhut-yì ngoi-phu ngiam-chṳn chṳ̂-liau-khu chho-ngu fe̍t-chá ngì pûn-ngìn kim-chṳ́ kiên-sîn ngì-ke ngoi-phu chong-ho.',
 'login'                      => 'Tên-ngi̍p',
@@ -1037,7 +1037,9 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 
 # Special:Categories
 'categories'         => 'Hong-mien fûn-lui',
-'categoriespagetext' => 'Yî-ha lie̍t-chhut só-yû ke hong-mien fûn-lui.',
+'categoriespagetext' => 'Yî-ha lie̍t-chhut só-yû ke hong-mien fûn-lui.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch'    => 'Ngoi-phu lièn-chiap',

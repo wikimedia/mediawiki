@@ -1609,7 +1609,9 @@ Ad brefükam lisedi, kanol välön lisedasoti, gebananemi, u padi tefik.',
 
 # Special:Categories
 'categories'                    => 'Klads',
-'categoriespagetext'            => 'Klads sököl labons padis u ragivis. [[Special:UnusedCategories|Klads no pageböls]] no pajonons is. Logolös i [[Special:WantedCategories|klads pevilöl]].',
+'categoriespagetext'            => 'Klads sököl labons padis u ragivis.
+[[Special:UnusedCategories|Klads no pageböls]] no pajonons is.
+Logolös i [[Special:WantedCategories|klads pevilöl]].',
 'categoriesfrom'                => 'Jonön padis primölo de:',
 'special-categories-sort-count' => 'leodükön ma num',
 'special-categories-sort-abc'   => 'leodükön ma lafab',

@@ -1326,7 +1326,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 # Special:Categories
 'categories'                  => 'ምድቦች',
-'categoriespagetext'          => 'በዚሁ ሥራ ዕቅድ ውስጥ የሚከተሉ መደቦች ይኖራሉ።',
+'categoriespagetext'          => 'በዚሁ ሥራ ዕቅድ ውስጥ የሚከተሉ መደቦች ይኖራሉ።
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-abc' => 'በፊደል ተራ ይደርደሩ',
 
 # Special:LinkSearch
