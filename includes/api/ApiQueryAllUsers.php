@@ -108,7 +108,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$this->addOption( 'LIMIT', $sqlLimit );
 
-		$this->addFields( 'u1.user_name' );
+		$this->addFields( array(
+			'u1.user_name',
+			'u1.user_id'
+		) );
 		$this->addFieldsIf( 'u1.user_editcount', $fld_editcount );
 		$this->addFieldsIf( 'u1.user_registration', $fld_registration );
 
@@ -155,7 +158,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 				// Record new user's data
 				$lastUser = $row->user_name;
-				$lastUserData = array( 'name' => $lastUser );
+				$lastUserData = array(
+					'name' => $lastUser,
+					'userid' => $row->user_id,
+				);
 				if ( $fld_blockinfo && !is_null( $row->blocker_name ) ) {
 					$lastUserData['blockedby'] = $row->blocker_name;
 					$lastUserData['blockreason'] = $row->ipb_reason;
