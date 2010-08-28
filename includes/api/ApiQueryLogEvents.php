@@ -51,6 +51,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_type = isset( $prop['type'] );
 		$this->fld_action = isset ( $prop['action'] );
 		$this->fld_user = isset( $prop['user'] );
+		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_timestamp = isset( $prop['timestamp'] );
 		$this->fld_comment = isset( $prop['comment'] );
 		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
@@ -84,6 +85,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf( 'page_id', $this->fld_ids );
 		$this->addFieldsIf( 'log_user', $this->fld_user );
 		$this->addFieldsIf( 'user_name', $this->fld_user );
+		$this->addFieldsIf( 'user_id', $this->fld_userid );
 		$this->addFieldsIf( 'log_namespace', $this->fld_title || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_title', $this->fld_title || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
@@ -259,11 +261,17 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_user ) {
+		if ( $this->fld_user || $this->fld_userid ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
 			} else {
-				$vals['user'] = $row->user_name;
+				if ( $this->fld_user ) {
+					$vals['user'] = $row->user_name;
+				}
+				if ( $this->fld_userid ) {
+					$vals['userid'] = $row->user_id;
+				}
+				
 				if ( !$row->log_user ) {
 					$vals['anon'] = '';
 				}
