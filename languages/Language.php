@@ -262,6 +262,8 @@ class Language {
 			}
 			
 			# Sometimes a language will be localised but not actually exist on this wiki.
+			global $wgCanonicalNamespaceNames;
+			$validNamespaces = array_keys(MWNamespace::getCanonicalNamespaces());
 			foreach( $this->namespaceNames as $key => $text ) {
 				if ( !isset( $validNamespaces[$key] ) ) {
 					unset( $this->namespaceNames[$key] );
