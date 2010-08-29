@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Siebrand
  * @author Tedjuh10
  */
 

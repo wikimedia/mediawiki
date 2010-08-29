@@ -1707,7 +1707,7 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'upload-success-subj'         => 'Postavljanje uspješno.',
 'upload-success-msg'          => 'Vaša datoteka iz [$2] je uspješno postavljena. Dostupna je ovdje: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Greška pri postavljanju',
-'upload-failure-msg'          => 'Došlo je do problema s Vašim postavljanjem:
+'upload-failure-msg'          => 'Došlo je do problema s Vašim postavljanjem datoteke [$2]:
 
 $1',
 'upload-warning-subj'         => 'Upozorenje kod postavljanja',

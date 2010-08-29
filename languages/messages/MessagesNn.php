@@ -1669,7 +1669,7 @@ PICT # div.
 'upload-success-subj'         => 'Opplastinga er ferdig',
 'upload-success-msg'          => 'Opplastinga di er tilgjengeleg her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Opplastingsproblem',
-'upload-failure-msg'          => 'Det oppstod eit problem med opplastinga di:
+'upload-failure-msg'          => 'Det oppstod eit problem med opplastinga di frå [$2]:
 
 $1',
 'upload-warning-subj'         => 'Opplastingsåtvaring',

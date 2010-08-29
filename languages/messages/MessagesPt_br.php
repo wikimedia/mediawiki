@@ -1744,7 +1744,7 @@ PICT # misc.
 'upload-success-subj'         => 'Envio efetuado com sucesso',
 'upload-success-msg'          => 'O seu upload desde [$2] foi bem sucedido. Ele está disponível aqui: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema no upload',
-'upload-failure-msg'          => 'Ocorreu um problema com o seu upload:
+'upload-failure-msg'          => 'Ocorreu um problema com o seu upload de [$2]:
 
 $1',
 'upload-warning-subj'         => 'Aviso de upload',

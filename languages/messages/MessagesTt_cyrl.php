@@ -1352,7 +1352,8 @@ PICT # төрле
 'linkstoimage'              => 'Бу файлга киләчәк {{PLURAL:$1|бит|$1 бит}} сылтый:',
 'nolinkstoimage'            => 'Бу файлга сылтаган битләр юк.',
 'sharedupload'              => "Бу файл $1'дан һәм башка проектларда кулланырга мөмкин.",
-'uploadnewversion-linktext' => 'Бу файлның яңа версиясен йөкләү',
+'uploadnewversion-linktext' => 'Бу файлның яңа юрамасын йөкләү',
+'shared-repo-from'          => '$1 дән',
 
 # File reversion
 'filerevert'         => '$1 юрамасына кире кайту',

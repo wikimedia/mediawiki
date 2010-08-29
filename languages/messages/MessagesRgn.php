@@ -57,6 +57,7 @@ $messages = array(
 'tog-ccmeonemails'            => "↓ Mènd'm una còpia d'j mesèg ch'a spedèss a j étar druvador",
 'tog-diffonly'                => "↓ T'an fëga avdé e' contnù dla pàgina dop e' cunfront tra l'versiòn",
 'tog-showhiddencats'          => "↓ Fa'm avdé al categurèj nascosti",
+'tog-norollbackdiff'          => "↓ T'an fèga avdé al diferenzi dop d'avé recuperè l'ultma versiòn",
 
 # Dates
 'january'       => 'Znèr',

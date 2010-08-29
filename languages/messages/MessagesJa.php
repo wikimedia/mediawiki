@@ -1659,7 +1659,7 @@ PICT # その他
 'upload-success-subj'         => 'アップロード成功',
 'upload-success-msg'          => '[$2]からのアップロードに成功しました。[[:{{ns:file}}:$1]]から利用可能です。',
 'upload-failure-subj'         => 'アップロードで発生した問題',
-'upload-failure-msg'          => 'ファイルのアップロード中に問題が発生しました:
+'upload-failure-msg'          => '[$2]からのアップロード中に問題が発生しました：
 
 $1',
 'upload-warning-subj'         => 'アップロードの警告',

@@ -1470,9 +1470,9 @@ Për piasì, ch'a controla l'ampostassion file_uploads.",
 'uploadvirus'                 => "St'archivi-sì a l'han andrinta un '''vìrus!''' Detaj: $1",
 'upload-source'               => 'Archivi sorgiss',
 'sourcefilename'              => "Nòm dl'archivi sorgiss:",
-'sourceurl'                   => 'URL sorgiss',
+'sourceurl'                   => "Adrëssa dl'aragnà sorgiss:",
 'destfilename'                => "Nòm dl'archivi ëd destinassion:",
-'upload-maxfilesize'          => 'Dimension massima dël file: $1.',
+'upload-maxfilesize'          => "Dimension màssima ëd l'archivi: $1.",
 'upload-description'          => "Descrission dl'archivi",
 'upload-options'              => 'Opsion për carié',
 'watchthisupload'             => "Ten d'euj sto file-sì.",
@@ -1499,7 +1499,7 @@ PICT # vàire marche diferente
 'upload-success-subj'         => 'Carià con sucess',
 'upload-success-msg'          => "A l'ha carià da [$2] për da bin. Lòn ch'a l'ha carià a l'é disponìbil ambelessì: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => 'Problema a carié',
-'upload-failure-msg'          => "A-i é staje un problema con lòn ch'a l'ha carià:
+'upload-failure-msg'          => "A-i é staje un problema con lòn ch'a l'ha carià da [$2]:
 
 $1",
 'upload-warning-subj'         => 'Avis che i soma dapress a carié',

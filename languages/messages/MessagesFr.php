@@ -366,7 +366,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'M’avertir par courrier électronique lorsqu’une page de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel si ma page de discussion est modifiée',
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modifications mineures des pages',
-'tog-enotifrevealaddr'        => 'Afficher mon adresse e-mail dans les e-mails de notification',
+'tog-enotifrevealaddr'        => 'Afficher mon adresse de courriel dans les courriels de notification',
 'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
 'tog-oldsig'                  => 'Aperçu de la signature existante :',
 'tog-fancysig'                => 'Traiter la signature comme du wikitexte (sans lien automatique)',
@@ -1784,7 +1784,7 @@ PICT # divers
 'upload-success-subj'         => 'Téléversement effectué avec succès',
 'upload-success-msg'          => 'Votre téléversement depuis [$2] a réussi. Il est disponible ici : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problème de téléversement',
-'upload-failure-msg'          => 'Il y a eu un problème avec votre téléversement :
+'upload-failure-msg'          => 'Il y a eu un problème avec votre import depuis [$2] :
 
 $1',
 'upload-warning-subj'         => 'Avertissement lors du téléversement',
