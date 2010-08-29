@@ -391,12 +391,13 @@ changes to languages because of Bugzilla reports.
 * Rusyn (rue) (new)
 
 * (bug 23156) Commafy and search normalization updated for Belarusian
-  (Taraškievica)
-* (bug 23283) Native name for Old English -> Ænglisc
-* (bug 23364) Native name for Azerbaijani -> Azərbaycanca
-* (bug 24593) Native name for Sorani now uses only Arabic script
-* (bug 24628) Generic translations for NS_USER/NS_USER_TALK for Esperanto
-* (bug 24917) Polish as fallback for Kashubia
+  (Taraškievica).
+* (bug 23283) Native name for Old English -> Ænglisc.
+* (bug 23364) Native name for Azerbaijani -> Azərbaycanca.
+* (bug 24593) Native name for Sorani now uses only Arabic script.
+* (bug 24628) Generic translations for NS_USER/NS_USER_TALK for Esperanto.
+* (bug 24917) Polish as fallback for Kashubia.
+* (bug 24794) Tatar link trail updated.
 
 == Compatibility ==
 
