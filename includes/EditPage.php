@@ -1559,13 +1559,13 @@ HTML
 	protected function showFormBeforeText() {
 		global $wgOut;
 		$section = htmlspecialchars( $this->section );
-		$wgOut->addHTML( <<<INPUTS
+		$wgOut->addHTML( <<<HTML
 <input type='hidden' value="{$section}" name="wpSection" />
 <input type='hidden' value="{$this->starttime}" name="wpStarttime" />
 <input type='hidden' value="{$this->edittime}" name="wpEdittime" />
 <input type='hidden' value="{$this->scrolltop}" name="wpScrolltop" id="wpScrolltop" />
 
-INPUTS
+HTML
 		);
 		if ( !$this->checkUnicodeCompliantBrowser() )
 			$wgOut->addHTML(Xml::hidden( 'safemode', '1' ));
