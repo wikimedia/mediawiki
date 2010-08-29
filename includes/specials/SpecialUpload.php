@@ -43,29 +43,29 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/** Misc variables **/
-	protected $mRequest;			// The WebRequest or FauxRequest this form is supposed to handle
-	protected $mSourceType;
-	protected $mUpload;
-	protected $mLocalFile;
-	protected $mUploadClicked;
+	public $mRequest;			// The WebRequest or FauxRequest this form is supposed to handle
+	public $mSourceType;
+	public $mUpload;
+	public $mLocalFile;
+	public $mUploadClicked;
 
 	/** User input variables from the "description" section **/
-	public    $mDesiredDestName;	// The requested target file name
-	protected $mComment;
-	protected $mLicense;
+	public $mDesiredDestName;	// The requested target file name
+	public $mComment;
+	public $mLicense;
 
 	/** User input variables from the root section **/
-	protected $mIgnoreWarning;
-	protected $mWatchThis;
-	protected $mCopyrightStatus;
-	protected $mCopyrightSource;
+	public $mIgnoreWarning;
+	public $mWatchThis;
+	public $mCopyrightStatus;
+	public $mCopyrightSource;
 
 	/** Hidden variables **/
-	protected $mDestWarningAck;
-	protected $mForReUpload;		// The user followed an "overwrite this file" link
-	protected $mCancelUpload;		// The user clicked "Cancel and return to upload form" button
-	protected $mTokenOk;
-	protected $mUploadSuccessful = false;	// Subclasses can use this to determine whether a file was uploaded
+	public $mDestWarningAck;
+	public $mForReUpload;		// The user followed an "overwrite this file" link
+	public $mCancelUpload;		// The user clicked "Cancel and return to upload form" button
+	public $mTokenOk;
+	public $mUploadSuccessful = false;	// Subclasses can use this to determine whether a file was uploaded
 
 	/** Text injection points for hooks not using HTMLForm **/
 	public $uploadFormTextTop;
