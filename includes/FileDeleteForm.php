@@ -110,9 +110,10 @@ class FileDeleteForm {
 				// Need to do a log item
 				$log = new LogPage( 'delete' );
 				$logComment = wfMsgForContent( 'deletedrevision', $oldimage );
-				if( trim( $reason ) != '' )
+				if( trim( $reason ) != '' ) {
 					$logComment .= wfMsgForContent( 'colon-separator' ) . $reason;
-					$log->addEntry( 'delete', $title, $logComment );
+				}
+				$log->addEntry( 'delete', $title, $logComment );
 			}
 		} else {
 			$id = $title->getArticleID( GAID_FOR_UPDATE );
