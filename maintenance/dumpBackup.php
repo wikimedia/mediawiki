@@ -85,12 +85,22 @@ Actions:
 
 Options:
   --quiet     Don't dump status reports to stderr.
+  --report=n  Report position and speed after every n pages processed.
+              (Default: 100)
+  --server=h  Force reading from MySQL server h
   --start=n   Start from page_id or log_id n
   --end=n     Stop before page_id or log_id n (exclusive)
   --skip-header Don't output the <mediawiki> header
   --skip-footer Don't output the </mediawiki> footer
   --stub      Don't perform old_text lookups; for 2-pass dump
   --uploads   Include upload records (experimental)
+
+Fancy stuff: (Works? Add examples please.)
+  --plugin=<class>[:<file>]   Load a dump plugin class
+  --output=<type>:<file>      Begin a filtered output stream;
+                              <type>s: file, gzip, bzip2, 7zip
+  --filter=<type>[:<options>] Add a filter on an output branch
+
 ENDS
 );
 }
