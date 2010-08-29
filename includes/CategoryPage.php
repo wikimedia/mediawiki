@@ -585,12 +585,21 @@ class CategoryViewer {
 		$totalrescnt = count( $this->articles ) + count( $this->children ) +
 			( $this->showGallery ? $this->gallery->count() : 0 );
 
-		if ( $dbcnt == $rescnt || ( ( $totalrescnt == $this->limit || $this->from
-			|| $this->until ) && $dbcnt > $rescnt ) )
+		# Check if there's a "from" or "until" for anything
+		$fromOrUntil = false;
+		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
+			if ( $this->from[$type] !== null || $this->until[$type] !== null ) {
+				$fromOrUntil = true;
+				break;
+			}
+		}
+
+		if ( $dbcnt == $rescnt || ( ( $totalrescnt == $this->limit || $fromOrUntil )
+			&& $dbcnt > $rescnt ) )
 		{
 			# Case 1: seems sane.
 			$totalcnt = $dbcnt;
-		} elseif ( $totalrescnt < $this->limit && !$this->from && !$this->until ) {
+		} elseif ( $totalrescnt < $this->limit && !$fromOrUntil ) {
 			# Case 2: not sane, but salvageable.  Use the number of results.
 			# Since there are fewer than 200, we can also take this opportunity
 			# to refresh the incorrect category table entry -- which should be
