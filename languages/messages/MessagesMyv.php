@@ -179,7 +179,7 @@ $messages = array(
 'tog-editsection'             => 'Невтемс сюлмавома пенть «витемс» эрьва секциянтень-пельксэнтень',
 'tog-editsectiononrightclick' => 'Витнемс секциятнень-пелькстнэнь, лепштямс сёрмадовксонть лемензэ лангс чэерень витьёнсе повнэсэ  (JavaScript)',
 'tog-showtoc'                 => 'Невтемс сёрмадовкс потмокс (лопатненень, конатнесэ 3-до ламо сёрмадовкст)',
-'tog-rememberpassword'        => 'Ванстомс совамо валом те арсиймашинасонть (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => '↓ Ледстемс совамо валом те арсемашинасонть (сех кувать $1 {{PLURAL:$1|чи|чить}})',
 'tog-watchcreations'          => 'Совавтомс монь теевть лопатнень ванома лем рисьмезэнь',
 'tog-watchdefault'            => 'Совавтомс монь витевть лопатнень ванома лем рисьмезэнь',
 'tog-watchmoves'              => 'Лопанть лиякстомтса, совавтык ванома лем рисьмезэнь',
@@ -509,7 +509,7 @@ $messages = array(
 'yourname'                   => 'Теицянь лем:',
 'yourpassword'               => 'Совамо валот:',
 'yourpasswordagain'          => 'Омбоцеде сёрмадык кирдицянь леметь:',
-'remembermypassword'         => 'Ледстемс монь совамо валонть те арсемашинасонть (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'         => 'Ледстемс монь совамо валонть те арсемашинасонть (сех кувать $1 {{PLURAL:$1|чи|чить}})',
 'yourdomainname'             => 'Эсеть доменэть:',
 'login'                      => 'Совамо',
 'nav-login-createaccount'    => 'Совамо / тейть совамотарка',
@@ -564,6 +564,12 @@ $messages = array(
 'accountcreated'             => 'Совамо таркась теезь',
 'accountcreatedtext'         => '$1-нь совицянь таркась теевсь-шкавсь.',
 'loginlanguagelabel'         => 'Кель: $1',
+
+# JavaScript password checks
+'password-strength-bad'        => '↓ БЕРЯНЬ',
+'password-strength-mediocre'   => '↓ берякшке',
+'password-strength-acceptable' => '↓ маштови',
+'password-strength-good'       => '↓ вадря',
 
 # Password reset dialog
 'resetpass'                 => 'Полавтомс совамо валот',

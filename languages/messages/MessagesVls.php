@@ -111,17 +111,20 @@ $messages = array(
 'vector-namespace-project' => 'Projectblad',
 'vector-namespace-special' => 'Specioale blad',
 
-'history_short' => 'Geschiedenisse',
-'edit'          => "Bewerk'n",
-'delete'        => 'Wegdoen',
-'unprotect'     => 'beveiliginge wegdoen',
-'newpage'       => 'Nieuw blad',
-'toolbox'       => 'Ulpmiddeln',
+'history_short'    => 'Geschiedenisse',
+'edit'             => "Bewerk'n",
+'delete'           => 'Wegdoen',
+'unprotect'        => 'beveiliginge wegdoen',
+'newpage'          => 'Nieuw blad',
+'talkpagelinktext' => 'Discuusje',
+'talk'             => 'Discuusje',
+'toolbox'          => 'Ulpmiddeln',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'   => 'Over {{SITENAME}}',
 'disclaimers' => 'Aansprakelekeid',
 'mainpage'    => 'Voorblad',
+'privacy'     => 'Privacybeleid',
 
 'red-link-title' => '$1 (Blad bestoat nie)',
 
@@ -177,6 +180,9 @@ $messages = array(
 # Contributions
 'mycontris' => 'Myn bydroagn',
 'uctop'     => '(latste veranderienge)',
+
+# Block/unblock
+'contribslink' => 'bydroagn',
 
 # Move page
 'delete_and_move' => 'Wegdoen en ernoemn',

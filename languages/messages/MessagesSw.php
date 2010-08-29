@@ -1375,105 +1375,124 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'recentchangeslinked-to'       => 'Onyesha mabadiliko yaliyotokea kwenye kurasa zile zinazoungwa kufikia ukurasa uliotajwa',
 
 # Upload
-'upload'                  => 'Pakia faili',
-'uploadbtn'               => 'Pakia faili',
-'reuploaddesc'            => 'Kubatilisha kupakia na kurudi kwenye fomu ya kupakia',
-'upload-tryagain'         => 'Wasilisha maelezo ya faili lililobadilishwa',
-'uploadnologin'           => 'Hujaingia',
-'uploadnologintext'       => 'Lazima [[Special:UserLogin|uingie akaunti yako]] ile upakie mafaili.',
-'uploaderror'             => 'Hitilafu ya kupia',
-'upload-recreate-warning' => "'''Ilani: Faili lenye jina hilo limeshafutwa au limeshasogezwa.'''
+'upload'                      => 'Pakia faili',
+'uploadbtn'                   => 'Pakia faili',
+'reuploaddesc'                => 'Kubatilisha kupakia na kurudi kwenye fomu ya kupakia',
+'upload-tryagain'             => 'Wasilisha maelezo ya faili lililobadilishwa',
+'uploadnologin'               => 'Hujaingia',
+'uploadnologintext'           => 'Lazima [[Special:UserLogin|uingie akaunti yako]] ile upakie mafaili.',
+'uploaderror'                 => 'Hitilafu ya kupia',
+'upload-recreate-warning'     => "'''Ilani: Faili lenye jina hilo limeshafutwa au limeshasogezwa.'''
 
 Rejea kumbukumbu za kufuta au kuhamisha ukurasa huu zinazotolewa chini:",
-'uploadtext'              => "Tumia fomu hapo chini kwa kupakizia mafaili.
+'uploadtext'                  => "Tumia fomu hapo chini kwa kupakizia mafaili.
 Kwa kutazama au kutafuta faili zilizopakiwa awali, tafadhali nenda kwenye [[Special:FileList|orodha ya mafaili yaliyopakiwa]]. Kwa zile faili ambazo zishapitiwa, basi angalia [[Special:Log/upload|kumbukumbu ya mafaili]]. Kwa mafaili yaliyofutwa, tafadhali [[Special:Log/delete|tazama hapa]].
 
 Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.jpg]]</nowiki></tt>''' kwa kutumia toleo zima la faili
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.png|200px|thumb|left|maelezo ya picha]]</nowiki></tt>''' tumia pixel 200 kwa ukubwa mzuri na sehemu ya 'maelezo ya picha' ikiwa kama maelezo husika na picha iliyopo
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' kwa kuunga moja kwa moja bila kuonyesga faili",
-'upload-permitted'        => 'Aina ya mafaili yanayoruhusiwa: $1.',
-'upload-preferred'        => 'Aina za mafaili yaliyopendelewa: $1.',
-'upload-prohibited'       => 'Aina za mafaili yanayokataliwa: $1.',
-'uploadlog'               => 'kumbukumbu za kupakia',
-'uploadlogpage'           => 'Kumbukumbu ya upakiaji',
-'uploadlogpagetext'       => 'Hapo chini kuna orodha wa mafaili yaliyopakizwa hivi karibuni.
+'upload-permitted'            => 'Aina ya mafaili yanayoruhusiwa: $1.',
+'upload-preferred'            => 'Aina za mafaili yaliyopendelewa: $1.',
+'upload-prohibited'           => 'Aina za mafaili yanayokataliwa: $1.',
+'uploadlog'                   => 'kumbukumbu za kupakia',
+'uploadlogpage'               => 'Kumbukumbu ya upakiaji',
+'uploadlogpagetext'           => 'Hapo chini kuna orodha wa mafaili yaliyopakizwa hivi karibuni.
 Tazama [[Special:NewFiles|mkusanyiko wa mafaili mapya]] kuona picha zenyewe.',
-'filename'                => 'Jina la faili',
-'filedesc'                => 'Muhtasari',
-'fileuploadsummary'       => 'Muhtasari:',
-'filereuploadsummary'     => 'Mabadiliko ya faili:',
-'filestatus'              => 'Hali ya hatimiliki:',
-'filesource'              => 'Chanzo:',
-'uploadedfiles'           => 'Mafaili yaliyopakiwa:',
-'ignorewarning'           => 'Hifadhi bila kujali maonyo yoyote.',
-'ignorewarnings'          => 'Usijali ilani zozote',
-'minlength1'              => 'Majina ya mafaili yanatakiwa kuwa na herufi moja au zaidi.',
-'illegalfilename'         => 'Jina la faili la "$1" lina herufi zisizoruhusiwa katika majina ya kurasa.
+'filename'                    => 'Jina la faili',
+'filedesc'                    => 'Muhtasari',
+'fileuploadsummary'           => 'Muhtasari:',
+'filereuploadsummary'         => 'Mabadiliko ya faili:',
+'filestatus'                  => 'Hali ya hatimiliki:',
+'filesource'                  => 'Chanzo:',
+'uploadedfiles'               => 'Mafaili yaliyopakiwa:',
+'ignorewarning'               => 'Hifadhi bila kujali maonyo yoyote.',
+'ignorewarnings'              => 'Usijali ilani zozote',
+'minlength1'                  => 'Majina ya mafaili yanatakiwa kuwa na herufi moja au zaidi.',
+'illegalfilename'             => 'Jina la faili la "$1" lina herufi zisizoruhusiwa katika majina ya kurasa.
 Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
-'badfilename'             => 'Jina la faili limebadilishwa kuwa "$1".',
-'filetype-mime-mismatch'  => 'Tawi (extension) la faili halingani na aina ya MIME.',
-'filetype-unwanted-type'  => "Aina la faili '''\".\$1\"''' haitakiwi.
+'badfilename'                 => 'Jina la faili limebadilishwa kuwa "$1".',
+'filetype-mime-mismatch'      => 'Tawi (extension) la faili halingani na aina ya MIME.',
+'filetype-unwanted-type'      => "Aina la faili '''\".\$1\"''' haitakiwi.
 {{PLURAL:\$3|Aina ya faili inayopendelewa|Aina za faili zinazopendelewa}} ni \$2.",
-'filetype-banned-type'    => "Aina la faili '''\".\$1\"''' hairuhusiwi.
+'filetype-banned-type'        => "Aina la faili '''\".\$1\"''' hairuhusiwi.
 {{PLURAL:\$3|Aina ya faili inayoruhusiwa|Aina za faili zinazoruhusiwa}} ni \$2.",
-'empty-file'              => 'Faili ulilowasilisha ni tupu.',
-'file-too-large'          => 'Faili ulilowasilisha ni kubwa mno.',
-'filename-tooshort'       => 'Jina la faili ni fupi mno.',
-'filetype-banned'         => 'Aina hili la faili haliruhusiwi.',
-'illegal-filename'        => 'Jina hilo la faili haliruhusiwi.',
-'overwrite'               => 'Kuandikiza faili lililopo tayari hairuhusiwi.',
-'unknown-error'           => 'Ilitokea hitilafu isiyojulikana.',
-'tmp-create-error'        => 'Haikuweza kuanzisha faili la muda.',
-'tmp-write-error'         => 'Hitilafu ya kuandika faili la muda.',
-'large-file'              => 'Tunashauri mafaili yasizidi $1;
+'empty-file'                  => 'Faili ulilowasilisha ni tupu.',
+'file-too-large'              => 'Faili ulilowasilisha ni kubwa mno.',
+'filename-tooshort'           => 'Jina la faili ni fupi mno.',
+'filetype-banned'             => 'Aina hili la faili haliruhusiwi.',
+'illegal-filename'            => 'Jina hilo la faili haliruhusiwi.',
+'overwrite'                   => 'Kuandikiza faili lililopo tayari hairuhusiwi.',
+'unknown-error'               => 'Ilitokea hitilafu isiyojulikana.',
+'tmp-create-error'            => 'Haikuweza kuanzisha faili la muda.',
+'tmp-write-error'             => 'Hitilafu ya kuandika faili la muda.',
+'large-file'                  => 'Tunashauri mafaili yasizidi $1;
 faili hili lina $2.',
-'largefileserver'         => 'Faili hili ni kubwa kuliko linavyoweza kuwekwa, kwa jinsi seva inavyopangaliwa',
-'emptyfile'               => 'Faili ulilolipakia linaonekana kuwa tupu.
+'largefileserver'             => 'Faili hili ni kubwa kuliko linavyoweza kuwekwa, kwa jinsi seva inavyopangaliwa',
+'emptyfile'                   => 'Faili ulilolipakia linaonekana kuwa tupu.
 Labda jina lake limeandikwa vibaya.
 Tafadhali uhakikishe kwamba unataka kupakia faili hili.',
-'fileexists'              => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.",
-'filepageexists'          => "Ukurasa wa maelezo ya faili hili limeshaanzishwa hapo '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili.
+'fileexists'                  => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.",
+'filepageexists'              => "Ukurasa wa maelezo ya faili hili limeshaanzishwa hapo '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili.
 Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
 Ili muhtasari uonekana pale, itabidi uhariri ukurasa.
 [[$1|thumb]]",
-'fileexists-extension'    => "Faili lenye jina linalofanana nalo lipo tayari:[[$2|thumb]]
+'fileexists-extension'        => "Faili lenye jina linalofanana nalo lipo tayari:[[$2|thumb]]
 * Jina la faili linalopakiwa: '''<tt>[[:$1]]</tt>'''
 * Jina la faili lililopo tayari: '''<tt>[[:$2]]</tt>'''
 Tafadhali chagua jina lingine.",
-'fileexists-forbidden'    => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
+'fileexists-thumbnail-yes'    => "Faili huwa ni ''picha ndogo''.
+[[$1|thumb]]
+Tafadhali utazame faili la '''<tt>[[:$1]]</tt>'''.
+Ikiwa faili hili inaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
+'file-thumbnail-no'           => "Jina la faili linaanza na '''<tt>$1</tt>'''.
+Huwa ukubwa wake ulipunguzwa ''(ni picha ndogo)''.
+Ikiwa unao picha hii kwa ukubwa wa kawaida tafadhali upakie picha ile, la sivyo tafadhali badilisha jina la faili.",
+'fileexists-forbidden'        => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
 Kama unataka kupakia faili lako, tafadhali rudia kwa kutumia jina lingine. [[File:$1|thumb|center|$1]]',
-'file-exists-duplicate'   => 'Faili hili ni nakili ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
-'uploadwarning'           => 'Ilani kuhusu kupakia',
-'savefile'                => 'Hifadhi faili',
-'uploadedimage'           => 'ameipakia "[[$1]]"',
-'overwroteimage'          => 'alipakia toleo jipya la "[[$1]]"',
-'uploadvirus'             => 'Faili lina kirusi!
+'fileexists-shared-forbidden' => 'Faili lenye jina hili tayari lipo katika hifadhi ya pamoja ya faili.
+Kama bado unataka kupakia faili lako, tafadhali rudie kwa kutumia jina jipya.
+[[File:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Faili hili ni nakili ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
+'file-deleted-duplicate'      => 'Faili sawa sawa na faili hili ([[$1]]) limeshafutwa.
+Tazama kumbukumbu za kufuta faili lile kabla hujalipakia upya.',
+'uploadwarning'               => 'Ilani kuhusu kupakia',
+'uploadwarning-text'          => 'Tafadhali ubadilishe maelezo ya faili hapo chini, halafu jaribu tena.',
+'savefile'                    => 'Hifadhi faili',
+'uploadedimage'               => 'ameipakia "[[$1]]"',
+'overwroteimage'              => 'alipakia toleo jipya la "[[$1]]"',
+'uploaddisabled'              => 'Upakiaji umelemazwa.',
+'copyuploaddisabled'          => 'Kupakia kwa kupitia URL umelemazwa.',
+'uploadfromurl-queued'        => 'Faili limewekwa kwenye foleni linaposubiri kupakiwa.',
+'uploaddisabledtext'          => 'Upakiaji wa mafaili umelemazwa.',
+'php-uploaddisabledtext'      => 'Upakiaji wa mafaili umelemazwa katika PHP.
+Tafadhali utazame kipimo cha file_uploads.',
+'uploadvirus'                 => 'Faili lina kirusi!
 Maelezo mengine: $1',
-'upload-source'           => 'Faili la chanzo',
-'sourcefilename'          => 'Jina la faili la chanzo:',
-'sourceurl'               => 'URL ya chanzo:',
-'destfilename'            => 'Jina la faili la mwishilio:',
-'upload-maxfilesize'      => 'Ukubwa wa faili lisizidi: $1',
-'upload-description'      => 'Elezo la faili',
-'upload-options'          => 'Machaguo ya kupakia',
-'watchthisupload'         => 'Kufuatilia faili hili',
-'filewasdeleted'          => 'Faili lenye jina hili limeshapakiwa halafu limefutwa.
+'upload-source'               => 'Faili la chanzo',
+'sourcefilename'              => 'Jina la faili la chanzo:',
+'sourceurl'                   => 'URL ya chanzo:',
+'destfilename'                => 'Jina la faili la mwishilio:',
+'upload-maxfilesize'          => 'Ukubwa wa faili lisizidi: $1',
+'upload-description'          => 'Elezo la faili',
+'upload-options'              => 'Machaguo ya kupakia',
+'watchthisupload'             => 'Kufuatilia faili hili',
+'filewasdeleted'              => 'Faili lenye jina hili limeshapakiwa halafu limefutwa.
 Unapaswa kuangalia $1 kabla hujapakia tena.',
-'upload-wasdeleted'       => "'''Ilani: Unapakia upya faili lililofutwa tayari.'''
+'upload-wasdeleted'           => "'''Ilani: Unapakia upya faili lililofutwa tayari.'''
 
 Fikiria kama inafaa kuendelea kupakia faili hili.
 Kumbukumbu ya kufuta faili hili inapatikana hapa kukusaidia:",
-'filename-bad-prefix'     => "Jina la faili unalolipakia huanza na '''\"\$1\"''', ambalo ni jina lisilo na maana yanayoeleweka kirahisi, ya aina inayotolewa huwa na kamera dijiti.
+'filename-bad-prefix'         => "Jina la faili unalolipakia huanza na '''\"\$1\"''', ambalo ni jina lisilo na maana yanayoeleweka kirahisi, ya aina inayotolewa huwa na kamera dijiti.
 Tafadhali chagua jina linaloeleweka kirahisi kwa ajili ya faili lako.",
-'upload-success-subj'     => 'Upakiaji ulifaulu',
-'upload-success-msg'      => 'Umefaulu kupakia faili kutoka kwa [$2]. Faili linapatikana hapa: [[:{{ns:file}}:$1]]',
-'upload-failure-subj'     => 'Hitilafu ya kupakia',
-'upload-failure-msg'      => 'Kulikuwa na tatizo ulipopakia faili kutoka kwa [$2]:
+'upload-success-subj'         => 'Upakiaji ulifaulu',
+'upload-success-msg'          => 'Umefaulu kupakia faili kutoka kwa [$2]. Faili linapatikana hapa: [[:{{ns:file}}:$1]]',
+'upload-failure-subj'         => 'Hitilafu ya kupakia',
+'upload-failure-msg'          => 'Kulikuwa na tatizo ulipopakia faili kutoka kwa [$2]:
 
 $1',
-'upload-warning-subj'     => 'Ilani ya kupakia',
-'upload-warning-msg'      => 'Kulitokea tatizo wakati wa kupakia kutoka kwa [$2]. Unaweza kurudi katika [[Special:Upload/stash/$1|fomu ya kupakia]] ili kurekebisha tatizo.',
+'upload-warning-subj'         => 'Ilani ya kupakia',
+'upload-warning-msg'          => 'Kulitokea tatizo wakati wa kupakia kutoka kwa [$2]. Unaweza kurudi katika [[Special:Upload/stash/$1|fomu ya kupakia]] ili kurekebisha tatizo.',
 
 'upload-proto-error'  => 'Itifaki isio sahihi',
 'upload-file-error'   => 'Hitilafu ya ndani',
@@ -1482,7 +1501,8 @@ $1',
 'upload-http-error'   => 'Imetokea hitilafu ya HTTP: $1',
 
 # img_auth script messages
-'img-auth-nofile' => 'Hakuna faili la "$1".',
+'img-auth-accessdenied' => 'Ruksa imekataliwa',
+'img-auth-nofile'       => 'Hakuna faili la "$1".',
 
 # HTTP errors
 'http-invalid-url'      => 'URL batili: $1',
@@ -1537,6 +1557,7 @@ Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 'filepage-nofile'           => 'Hakuna faili yenye jina hili.',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
 'shared-repo-from'          => 'kutoka kwa $1',
+'shared-repo'               => 'hifadhi ya pamoja',
 
 # File reversion
 'filerevert'                => 'Rejesha $1',

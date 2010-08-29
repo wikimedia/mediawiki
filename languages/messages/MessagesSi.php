@@ -1141,6 +1141,7 @@ $1",
 # Diffs
 'history-title'            => '"$1"හි සංශෝධන ඉතිහාසය',
 'difference'               => '(අනුවාද අතර වෙනස්කම්)',
+'difference-multipage'     => 'පිටු අතර වෙනස',
 'lineno'                   => 'පේළිය $1:',
 'compareselectedversions'  => 'තෝරාගත් සංශෝධන සසඳන්න',
 'showhideselectedversions' => 'තෝරාගත් සංශෝධන පෙන්වන්න/සඟවන්න',
@@ -1678,7 +1679,7 @@ PICT # විවිධ.
 'upload-success-subj'         => 'සාර්ථක උඩුගත කිරීමකි',
 'upload-success-msg'          => '[$2]වෙතින් ඔබගේ උඩුගත කිරීම සාර්ථක විය. එය මෙහි ඇත: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'උඩුගත කිරීමේ ගැටළුව',
-'upload-failure-msg'          => 'ඔබගේ උඩුගතකිරීම හා බැඳි ගැටළුවක් විය:
+'upload-failure-msg'          => 'ඔබගේ [$2] උඩුගතකිරීම හා බැඳි ගැටළුවක් විය:
 
 $1',
 'upload-warning-subj'         => 'උඩුගතකෙරුම් අවවාදය',
@@ -3533,6 +3534,7 @@ $1',
 'version-hook-subscribedby'        => 'දායකවී ඇත්තේ',
 'version-version'                  => '(අනුවාදය $1)',
 'version-license'                  => 'බලපත්‍රය',
+'version-poweredby-others'         => 'අනෙකුත්',
 'version-software'                 => 'ස්ථාපිත මෘදුකාංග',
 'version-software-product'         => 'නිෂ්පාදනය',
 'version-software-version'         => 'අනුවාදය',

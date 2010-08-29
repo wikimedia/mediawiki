@@ -1598,7 +1598,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload-success-subj'         => 'Oplægningen er gennemført',
 'upload-success-msg'          => 'Din upload fra [$2] lykkedes. Den er tilgængelig her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Upload problem',
-'upload-failure-msg'          => 'Der var et problem med din upload:
+'upload-failure-msg'          => 'Der var et problem med din upload fra [$2]:
 
 $1',
 'upload-warning-subj'         => 'Uploadadvarsel',

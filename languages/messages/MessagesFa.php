@@ -18,6 +18,7 @@
  * @author Meisam
  * @author Meno25
  * @author Roozbeh Pournader <roozbeh at gmail.com>
+ * @author Wayiran
  * @author לערי ריינהארט
  */
 
@@ -3068,7 +3069,7 @@ $1',
 'file-info-png-frames' => '$1 {{PLURAL:$1|قاب|قاب}}',
 
 # Special:NewFiles
-'newimages'             => 'گالری پرونده‌های جدید',
+'newimages'             => 'نگارخانهٔ پرونده‌های جدید',
 'imagelisttext'         => 'در زیر فهرست $1 {{PLURAL:$1|تصویری|تصویری}} که $2 مرتب شده است آمده است.',
 'newimages-summary'     => 'این صفحهٔ ویژه آخرین پرونده‌های بارگذاری شده را نمایش می‌دهد',
 'newimages-legend'      => 'پالودن',

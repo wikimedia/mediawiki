@@ -1803,7 +1803,7 @@ PICT # de totes sôrtes
 'upload-success-subj'         => 'Tèlèchargement fêt avouéc reusséta',
 'upload-success-msg'          => 'Voutron tèlèchargement dês [$2] at reussi. Il est disponiblo ique : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèmo de tèlèchargement',
-'upload-failure-msg'          => 'Y at avu un problèmo avouéc voutron tèlèchargement :
+'upload-failure-msg'          => 'Y at avu un problèmo avouéc voutron tèlèchargement dês [$2] :
 
 $1',
 'upload-warning-subj'         => 'Avèrtissement pendent lo tèlèchargement',

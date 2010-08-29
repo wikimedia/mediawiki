@@ -1140,6 +1140,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 # Diffs
 'history-title'            => 'Revisjonshistorikk for «$1»',
 'difference'               => '(Forskjell mellom revisjoner)',
+'difference-multipage'     => '(Forskjell mellom sider)',
 'lineno'                   => 'Linje $1:',
 'compareselectedversions'  => 'Sammenlign valgte revisjoner',
 'showhideselectedversions' => 'Vis/skjul valgte versjoner',
@@ -1659,7 +1660,7 @@ PICT # div.
 'upload-success-subj'         => 'Opplastingen er gjennomført',
 'upload-success-msg'          => 'Din opplasting fra [$2] var vellykket. Den er tilgjengelig her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Opplastingsproblem',
-'upload-failure-msg'          => 'Det oppsto et problem med opplastingen din:
+'upload-failure-msg'          => 'Det oppsto et problem med opplastingen din fra [$2]:
 
 $1',
 'upload-warning-subj'         => 'Opplastingsadvarsel',
@@ -3352,6 +3353,13 @@ Du kan også [[Special:Watchlist/edit|bruke standardverktøyet]].',
 'version-hook-subscribedby'        => 'Brukes av',
 'version-version'                  => '(versjon $1)',
 'version-license'                  => 'Lisens',
+'version-poweredby-credits'        => "Denne wikien er drevet av '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'andre',
+'version-license-info'             => 'MediaWiki er fri programvare; du kan redistribuere det og/eller modifisere det under betingelsene i GNU General Public License som publisert av Free Software Foundation; enten versjon 2 av lisensen, eller (etter eget valg) enhver senere versjon.
+
+MediaWiki er distribuert i håp om at det vil være nyttig, men UTEN NOEN GARANTI; ikke engang implisitt garanti av SALGBARHET eller EGNETHET FOR ET BESTEMT FORMÅL. Se GNU General Public License for flere detaljer.
+
+Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Public License] sammen med dette programmet; hvis ikke, skriv til Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA eller [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html les det på nettet].',
 'version-software'                 => 'Installert programvare',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Versjon',
