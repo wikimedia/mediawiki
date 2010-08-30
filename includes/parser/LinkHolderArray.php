@@ -159,7 +159,7 @@ class LinkHolderArray {
 		$current = null;
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $index => $entry ) {
-				$key = 	"$ns:$index";
+				$key = "$ns:$index";
 				$title = $entry['title'];
 				$pdbk = $entry['pdbk'];
 
@@ -172,6 +172,8 @@ class LinkHolderArray {
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
 					$colours[$pdbk] = '';
+				} elseif ( $ns == NS_SPECIAL ) {
+					$colours[$pdbk] = 'new';
 				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
 					$colours[$pdbk] = $sk->getLinkColour( $title, $threshold );
 					$output->addLink( $title, $id );
