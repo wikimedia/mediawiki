@@ -12,7 +12,7 @@ class ZhClient {
 	 *
 	 * @access private
 	 */
-	function ZhClient($host, $port) {
+	function __construct($host, $port) {
 		$this->mHost = $host;
 		$this->mPort = $port;
 		$this->mConnected = $this->connect();

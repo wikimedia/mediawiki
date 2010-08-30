@@ -27,7 +27,7 @@
  * @ingroup SpecialPage
  */
 class UncategorizedCategoriesPage extends UncategorizedPagesPage {
-	function UncategorizedCategoriesPage() {
+	function __construct() {
 		$this->requestedNamespace = NS_CATEGORY;
 	}
 

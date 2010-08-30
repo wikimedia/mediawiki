@@ -620,7 +620,7 @@ class FormatExif {
 	 * @param $exif Array: the Exif data to format ( as returned by
 	 *                    Exif::getFilteredData() )
 	 */
-	function FormatExif( $exif ) {
+	function __construct( $exif ) {
 		$this->mExif = $exif;
 	}
 

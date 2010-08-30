@@ -663,7 +663,7 @@ class DumpOutput {
 class DumpFileOutput extends DumpOutput {
 	var $handle;
 
-	function DumpFileOutput( $file ) {
+	function __construct( $file ) {
 		$this->handle = fopen( $file, "wt" );
 	}
 
@@ -679,7 +679,7 @@ class DumpFileOutput extends DumpOutput {
  * @ingroup Dump
  */
 class DumpPipeOutput extends DumpFileOutput {
-	function DumpPipeOutput( $command, $file = null ) {
+	function __construct( $command, $file = null ) {
 		if( !is_null( $file ) ) {
 			$command .=  " > " . wfEscapeShellArg( $file );
 		}
@@ -692,8 +692,8 @@ class DumpPipeOutput extends DumpFileOutput {
  * @ingroup Dump
  */
 class DumpGZipOutput extends DumpPipeOutput {
-	function DumpGZipOutput( $file ) {
-		parent::DumpPipeOutput( "gzip", $file );
+	function __construct( $file ) {
+		parent::__construct( "gzip", $file );
 	}
 }
 
@@ -702,8 +702,8 @@ class DumpGZipOutput extends DumpPipeOutput {
  * @ingroup Dump
  */
 class DumpBZip2Output extends DumpPipeOutput {
-	function DumpBZip2Output( $file ) {
-		parent::DumpPipeOutput( "bzip2", $file );
+	function __construct( $file ) {
+		parent::__construct( "bzip2", $file );
 	}
 }
 
@@ -712,12 +712,12 @@ class DumpBZip2Output extends DumpPipeOutput {
  * @ingroup Dump
  */
 class Dump7ZipOutput extends DumpPipeOutput {
-	function Dump7ZipOutput( $file ) {
+	function __construct( $file ) {
 		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
 		// Suppress annoying useless crap from p7zip
 		// Unfortunately this could suppress real error messages too
 		$command .= ' >' . wfGetNull() . ' 2>&1';
-		parent::DumpPipeOutput( $command );
+		parent::__construct( $command );
 	}
 }
 
@@ -730,7 +730,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
  * @ingroup Dump
  */
 class DumpFilter {
-	function DumpFilter( &$sink ) {
+	function __construct( &$sink ) {
 		$this->sink =& $sink;
 	}
 
@@ -793,8 +793,8 @@ class DumpNamespaceFilter extends DumpFilter {
 	var $invert = false;
 	var $namespaces = array();
 
-	function DumpNamespaceFilter( &$sink, $param ) {
-		parent::DumpFilter( $sink );
+	function __construct( &$sink, $param ) {
+		parent::__construct( $sink );
 
 		$constants = array(
 			"NS_MAIN"           => NS_MAIN,
@@ -879,7 +879,7 @@ class DumpLatestFilter extends DumpFilter {
  * @ingroup Dump
  */
 class DumpMultiWriter {
-	function DumpMultiWriter( $sinks ) {
+	function __construct( $sinks ) {
 		$this->sinks = $sinks;
 		$this->count = count( $sinks );
 	}

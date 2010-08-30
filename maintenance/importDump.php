@@ -38,7 +38,7 @@ class BackupReader {
 	var $debug     = false;
 	var $uploads   = false;
 
-	function BackupReader() {
+	function __construct() {
 		$this->stderr = fopen( "php://stderr", "wt" );
 	}
 

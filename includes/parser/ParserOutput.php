@@ -123,7 +123,7 @@ class ParserOutput extends CacheTime
 		$mTOCHTML = '';	              # HTML of the TOC
 	private $mIndexPolicy = '';	      # 'index' or 'noindex'?  Any other value will result in no change.
 
-	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
+	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
 	{
 		$this->mText = $text;

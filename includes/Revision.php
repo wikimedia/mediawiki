@@ -290,7 +290,7 @@ class Revision {
 	 * @param $row Mixed: either a database row or an array
 	 * @access private
 	 */
-	function Revision( $row ) {
+	function __construct( $row ) {
 		if( is_object( $row ) ) {
 			$this->mId        = intval( $row->rev_id );
 			$this->mPage      = intval( $row->rev_page );

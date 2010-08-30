@@ -34,7 +34,7 @@ class DateFormatter
 	/**
 	 * @todo document
 	 */
-	function DateFormatter() {
+	function __construct() {
 		global $wgContLang;
 
 		$this->monthNames = $this->getMonthRegex();

@@ -73,7 +73,7 @@ class WikiErrorMsg extends WikiError {
 	 * @param $message String: wiki message name
 	 * @param ... parameters to pass to wfMsg()
 	 */
-	function WikiErrorMsg( $message/*, ... */ ) {
+	function __construct( $message/*, ... */ ) {
 		$args = func_get_args();
 		array_shift( $args );
 		$this->mMessage = wfMsgReal( $message, $args, true );
@@ -102,7 +102,7 @@ class WikiXmlError extends WikiError {
 	 * @param $context
 	 * @param $offset Int
 	 */
-	function WikiXmlError( $parser, $message = 'XML parsing error', $context = null, $offset = 0 ) {
+	function __construct( $parser, $message = 'XML parsing error', $context = null, $offset = 0 ) {
 		$this->mXmlError = xml_get_error_code( $parser );
 		$this->mColumn = xml_get_current_column_number( $parser );
 		$this->mLine = xml_get_current_line_number( $parser );

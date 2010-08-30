@@ -30,7 +30,7 @@
 class MIMEsearchPage extends QueryPage {
 	var $major, $minor;
 
-	function MIMEsearchPage( $major, $minor ) {
+	function __construct( $major, $minor ) {
 		$this->major = $major;
 		$this->minor = $minor;
 	}
