@@ -711,9 +711,15 @@ abstract class DatabaseBase implements DatabaseType {
 			}
 		}
 
-		if ( isset( $options['GROUP BY'] ) ) $preLimitTail .= " GROUP BY {$options['GROUP BY']}";
-		if ( isset( $options['HAVING'] ) ) $preLimitTail .= " HAVING {$options['HAVING']}";
-		if ( isset( $options['ORDER BY'] ) ) $preLimitTail .= " ORDER BY {$options['ORDER BY']}";
+		if ( isset( $options['GROUP BY'] ) ) {
+			$preLimitTail .= " GROUP BY {$options['GROUP BY']}";
+		}
+		if ( isset( $options['HAVING'] ) ) {
+			$preLimitTail .= " HAVING {$options['HAVING']}";
+		}
+		if ( isset( $options['ORDER BY'] ) ) {
+			$preLimitTail .= " ORDER BY {$options['ORDER BY']}";
+		}
 
 		//if (isset($options['LIMIT'])) {
 		//	$tailOpts .= $this->limitResult('', $options['LIMIT'],
@@ -721,19 +727,41 @@ abstract class DatabaseBase implements DatabaseType {
 		//		: false);
 		//}
 
-		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) $postLimitTail .= ' FOR UPDATE';
-		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) $postLimitTail .= ' LOCK IN SHARE MODE';
-		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
+		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
+			$postLimitTail .= ' FOR UPDATE';
+		}
+		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) {
+			$postLimitTail .= ' LOCK IN SHARE MODE';
+		}
+		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
+			$startOpts .= 'DISTINCT';
+		}
 
 		# Various MySQL extensions
-		if ( isset( $noKeyOptions['STRAIGHT_JOIN'] ) ) $startOpts .= ' /*! STRAIGHT_JOIN */';
-		if ( isset( $noKeyOptions['HIGH_PRIORITY'] ) ) $startOpts .= ' HIGH_PRIORITY';
-		if ( isset( $noKeyOptions['SQL_BIG_RESULT'] ) ) $startOpts .= ' SQL_BIG_RESULT';
-		if ( isset( $noKeyOptions['SQL_BUFFER_RESULT'] ) ) $startOpts .= ' SQL_BUFFER_RESULT';
-		if ( isset( $noKeyOptions['SQL_SMALL_RESULT'] ) ) $startOpts .= ' SQL_SMALL_RESULT';
-		if ( isset( $noKeyOptions['SQL_CALC_FOUND_ROWS'] ) ) $startOpts .= ' SQL_CALC_FOUND_ROWS';
-		if ( isset( $noKeyOptions['SQL_CACHE'] ) ) $startOpts .= ' SQL_CACHE';
-		if ( isset( $noKeyOptions['SQL_NO_CACHE'] ) ) $startOpts .= ' SQL_NO_CACHE';
+		if ( isset( $noKeyOptions['STRAIGHT_JOIN'] ) ) {
+			$startOpts .= ' /*! STRAIGHT_JOIN */';
+		}
+		if ( isset( $noKeyOptions['HIGH_PRIORITY'] ) ) {
+			$startOpts .= ' HIGH_PRIORITY';
+		}
+		if ( isset( $noKeyOptions['SQL_BIG_RESULT'] ) ) {
+			$startOpts .= ' SQL_BIG_RESULT';
+		}
+		if ( isset( $noKeyOptions['SQL_BUFFER_RESULT'] ) ) {
+			$startOpts .= ' SQL_BUFFER_RESULT';
+		}
+		if ( isset( $noKeyOptions['SQL_SMALL_RESULT'] ) ) {
+			$startOpts .= ' SQL_SMALL_RESULT';
+		}
+		if ( isset( $noKeyOptions['SQL_CALC_FOUND_ROWS'] ) ) {
+			$startOpts .= ' SQL_CALC_FOUND_ROWS';
+		}
+		if ( isset( $noKeyOptions['SQL_CACHE'] ) ) {
+			$startOpts .= ' SQL_CACHE';
+		}
+		if ( isset( $noKeyOptions['SQL_NO_CACHE'] ) ) {
+			$startOpts .= ' SQL_NO_CACHE';
+		}
 
 		if ( isset( $options['USE INDEX'] ) && ! is_array( $options['USE INDEX'] ) ) {
 			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
@@ -783,10 +811,11 @@ abstract class DatabaseBase implements DatabaseType {
 			$options = array( $options );
 		}
 		if( is_array( $table ) ) {
-			if ( !empty($join_conds) || ( isset( $options['USE INDEX'] ) && is_array( @$options['USE INDEX'] ) ) )
+			if ( !empty($join_conds) || ( isset( $options['USE INDEX'] ) && is_array( @$options['USE INDEX'] ) ) ) {
 				$from = ' FROM ' . $this->tableNamesWithUseIndexOrJOIN( $table, @$options['USE INDEX'], $join_conds );
-			else
+			} else {
 				$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
+			}
 		} elseif ($table!='') {
 			if ($table{0}==' ') {
 				$from = ' FROM ' . $table;
@@ -840,8 +869,9 @@ abstract class DatabaseBase implements DatabaseType {
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseBase::selectRow', $options = array(), $join_conds = array() ) {
 		$options['LIMIT'] = 1;
 		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
-		if ( $res === false )
+		if ( $res === false ) {
 			return false;
+		}
 		if ( !$this->numRows($res) ) {
 			return false;
 		}
@@ -1114,7 +1144,7 @@ abstract class DatabaseBase implements DatabaseType {
 			} elseif ( ($mode == LIST_SET) && is_numeric( $field ) ) {
 				$list .= "$value";
 			} elseif ( ($mode == LIST_AND || $mode == LIST_OR) && is_array($value) ) {
-				if( count( $value ) == 0 ) {
+				if ( count( $value ) == 0 ) {
 					throw new MWException( __METHOD__.': empty input' );
 				} elseif( count( $value ) == 1 ) {
 					// Special-case single values, as IN isn't terribly efficient
@@ -1125,7 +1155,7 @@ abstract class DatabaseBase implements DatabaseType {
 				} else {
 					$list .= $field." IN (".$this->makeList($value).") ";
 				}
-			} elseif( $value === null ) {
+			} elseif ( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
 					$list .= "$field IS ";
 				} elseif ( $mode == LIST_SET ) {
@@ -1377,7 +1407,7 @@ abstract class DatabaseBase implements DatabaseType {
 			'un_user_id'		=> 'user_id',
 			'un_user_ip'		=> 'user_ip',
 		);
-		if( isset( $renamed[$index] ) ) {
+		if ( isset( $renamed[$index] ) ) {
 			return $renamed[$index];
 		} else {
 			return $index;
@@ -1614,7 +1644,7 @@ abstract class DatabaseBase implements DatabaseType {
 			$selectOptions = array( $selectOptions );
 		}
 		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
-		if( is_array( $srcTable ) ) {
+		if ( is_array( $srcTable ) ) {
 			$srcTable =  implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
@@ -1774,7 +1804,7 @@ abstract class DatabaseBase implements DatabaseType {
 					$this->reportQueryError( $error, $errno, $sql, $fname );
 				}
 			}
-		} while( $this->wasDeadlock() && --$tries > 0 );
+		} while ( $this->wasDeadlock() && --$tries > 0 );
 		$this->ignoreErrors( $oldIgnore );
 		if ( $tries <= 0 ) {
 			$this->rollback( $myFname );
@@ -1942,7 +1972,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Local database timestamp format or null
 	 */
 	function timestampOrNull( $ts = null ) {
-		if( is_null( $ts ) ) {
+		if ( is_null( $ts ) ) {
 			return null;
 		} else {
 			return $this->timestamp( $ts );
@@ -1953,7 +1983,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @todo document
 	 */
 	function resultObject( $result ) {
-		if( empty( $result ) ) {
+		if ( empty( $result ) ) {
 			return false;
 		} elseif ( $result instanceof ResultWrapper ) {
 			return $result;
@@ -2095,8 +2125,12 @@ abstract class DatabaseBase implements DatabaseType {
 			$line = trim( fgets( $fp, 1024 ) );
 			$sl = strlen( $line ) - 1;
 
-			if ( $sl < 0 ) { continue; }
-			if ( '-' == $line{0} && '-' == $line{1} ) { continue; }
+			if ( $sl < 0 ) {
+				continue;
+			}
+			if ( '-' == $line{0} && '-' == $line{1} ) {
+				continue;
+			}
 
 			## Allow dollar quoting for function declarations
 			if (substr($line,0,4) == '$mw$') {
@@ -2115,7 +2149,9 @@ abstract class DatabaseBase implements DatabaseType {
 				}
 			}
 
-			if ( $cmd != '' ) { $cmd .= ' '; }
+			if ( $cmd != '' ) {
+				$cmd .= ' ';
+			}
 			$cmd .= "$line\n";
 
 			if ( $done ) {
@@ -2151,7 +2187,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 		// Ordinary variables
 		foreach ( $varnames as $var ) {
-			if( isset( $GLOBALS[$var] ) ) {
+			if ( isset( $GLOBALS[$var] ) ) {
 				$val = addslashes( $GLOBALS[$var] ); // FIXME: safety check?
 				$ins = str_replace( '{$' . $var . '}', $val, $ins );
 				$ins = str_replace( '/*$' . $var . '*/`', '`' . $val, $ins );
