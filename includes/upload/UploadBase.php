@@ -371,6 +371,12 @@ abstract class UploadBase {
 		if ( $virus ) {
 			return array( 'uploadvirus', $virus );
 		}
+
+		wfRunHooks( 'UploadVerifyFile', array( $this, $mime, &$status ) );
+		if ( $status !== true ) {
+			return $status;
+		}
+
 		wfDebug( __METHOD__ . ": all clear; passing.\n" );
 		return true;
 	}
