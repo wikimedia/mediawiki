@@ -206,6 +206,7 @@
 	'mh' => 'Ebon',			# Marshallese
 	'mhr' => 'Олык Марий',	# Eastern Mari
 	'mi' => 'Māori',	# Maori
+	'min' => 'Baso Minangkabau',	# Minangkabau
 	'mk' => 'Македонски',	# Macedonian
 	'ml' => 'മലയാളം',	# Malayalam
 	'mn' => 'Монгол',	# Halh Mongolian (Cyrillic) (ISO 639-3: khk)
