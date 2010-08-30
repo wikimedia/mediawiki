@@ -1542,7 +1542,7 @@ Bitte gib dr Datei e Name, wu dr Inhalt besser bschryybt.",
 'upload-success-subj'         => 'Erfolgryych uffegelade',
 'upload-success-msg'          => 'Dyyni vu [$2] uffeglade Datei isch jetz do verfiegbar: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Fähler bim Uffelade',
-'upload-failure-msg'          => 'S het e Probläm gee mit Dyyre uffegladene Datei:
+'upload-failure-msg'          => 'S het e Probläm gee mit Dyyre vu [$2] uffegladene Datei:
 
 $1',
 'upload-warning-subj'         => 'Warnig bim Uffelade',

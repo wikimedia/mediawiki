@@ -1695,7 +1695,7 @@ PICT # khác
 'upload-success-subj'         => 'Đã tải xong',
 'upload-success-msg'          => 'Bạn đã tải lên tập tin thành công từ [$2]. Nó có sẵn tại [[:{{ns:file}}:$1]].',
 'upload-failure-subj'         => 'Vấn đề tải lên',
-'upload-failure-msg'          => 'Tập tin bạn tải lên có một vấn đề:
+'upload-failure-msg'          => 'Tập tin bạn tải lên từ [$2] có một vấn đề:
 
 $1',
 'upload-warning-subj'         => 'Cảnh báo tải lên',

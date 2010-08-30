@@ -525,7 +525,7 @@ $1',
 # Main script and global functions
 'nosuchaction'      => 'Nema takve akcije',
 'nosuchactiontext'  => 'Akciju navedenu u URL-u viki softver nije prepoznao.
-Moguće je da ste ukucalči pogrešan URL, ili sledili zastarelu vezu.
+Moguće je da ste ukucali pogrešan URL, ili sledili zastarelu vezu.
 Takođe je moguće da se radi o grešci u viki softveru.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
 'nospecialpagetext' => '<strong>Tražili ste nepostojeću posebnu stranicu.</strong>
@@ -590,7 +590,7 @@ Pretraga: $2',
 'viewsource'           => 'pogledaj kod',
 'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Akciji je smanjena brzina.',
-'actionthrottledtext'  => 'U cilju borbe protiv spama, niste u mogućnosti da učinite to više puta u kratkom vremenu, a upravo ste prešli taj limit. Pokušajte ponovo za par minuta.',
+'actionthrottledtext'  => 'U cilju borbe protiv spama, niste u mogućnosti da učinite to više puta u kratkom vremenu, a upravo ste prešli to ograničenje. Pokušajte ponovo za par minuta.',
 'protectedpagetext'    => 'Ova stranica je zaključana kako se ne bi vršile izmene na njoj.',
 'viewsourcetext'       => 'Možete da pregledate i kopirate sadržaj ove strane:',
 'protectedinterface'   => 'Ova stranica pruža tekst interfejsa za softver i zaključana je kako bi se sprečila zloupotreba.',
@@ -1090,7 +1090,7 @@ $1",
 'searchresulttext'                 => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|Pretraživanje {{SITENAME}}]].',
 'searchsubtitle'                   => 'Tražili ste \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sve stranice koje počinju sa "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|sve stranice koje povezuju na "$1"]])',
 'searchsubtitleinvalid'            => "Tražili ste '''$1'''",
-'toomanymatches'                   => 'Previše pogodaka je vrećno. Izmenite upit.',
+'toomanymatches'                   => 'Previše pogodaka je vraćeno. Izmenite upit.',
 'titlematches'                     => 'Naslov stranice odgovara',
 'notitlematches'                   => 'Nijedan naslov stranice ne odgovara',
 'textmatches'                      => 'Tekst stranice odgovara',
@@ -1451,7 +1451,7 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'recentchangeslinked-toolbox'  => 'Srodne promene',
 'recentchangeslinked-title'    => 'Srodne promene za "$1"',
 'recentchangeslinked-noresult' => 'Nema izmena na povezanim stranicama za odabrani period.',
-'recentchangeslinked-summary'  => "Ova posebna stranica pokazuje spisak poselenjih promena na stranicama koje su povezane (ili članovi određene kategorije).
+'recentchangeslinked-summary'  => "Ova posebna stranica pokazuje spisak poslednjih promena na stranicama koje su povezane (ili članovi određene kategorije).
 Stranice sa [[Special:Watchlist|vašeg spiska nadgledanja]] su '''podebljane'''.",
 'recentchangeslinked-page'     => 'Ime stranice:',
 'recentchangeslinked-to'       => 'prikazivanje izmena prema stranama povezanih sa datom stranom',
@@ -2056,7 +2056,7 @@ Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda poku�
 # Protect
 'protectlogpage'              => 'istorija zaključavanja',
 'protectlogtext'              => 'Ispod je spisak zaključavanja i otključavanja stranica.',
-'protectedarticle'            => 'zaštitio $1',
+'protectedarticle'            => 'je zaštitio „$1“',
 'modifiedarticleprotection'   => 'je promenio nivo zaštite za „[[$1]]“',
 'unprotectedarticle'          => 'skinuo zaštitu sa $1',
 'movedarticleprotection'      => 'premestio podešavanja zaštite sa "[[$2]]" na "[[$1]]"',
@@ -2089,9 +2089,9 @@ Ovo su trenutna podešavanja za stranicu '''$1''':",
 'protect-existing-expiry'     => 'Trenutno vreme isteka: $3, $2',
 'protect-otherreason'         => 'Drugi/dodatni razlog:',
 'protect-otherreason-op'      => 'Drugi razlog',
-'protect-dropdown'            => '*Razlozi zaštite
+'protect-dropdown'            => '* Razlozi zaštite
 ** Vandalizam
-** Neženjene poruke
+** Neželjene poruke
 ** Kontra-produktivne izmene
 ** Stranica sa velikim brojem poseta',
 'protect-edit-reasonlist'     => 'Izmenite razloge zaštite',
@@ -2137,7 +2137,7 @@ U ovakvim slučajevima morate skinuti oznaku sa ili ponovo prikazati najnoviju o
 'undeletelink'                 => 'pogledaj/vrati',
 'undeleteviewlink'             => 'pogledaj',
 'undeletereset'                => 'Poništi',
-'undeleteinvert'               => 'Invertujte izbor',
+'undeleteinvert'               => 'Obrnite izbor',
 'undeletecomment'              => 'Razlog:',
 'undeletedarticle'             => 'je vratio „[[$1]]“',
 'undeletedrevisions'           => '$1 revizija vraćeno',
@@ -2198,8 +2198,8 @@ Poslednji unos u dnevnik blokiranja je ponuđen ispod kao referenca:',
 'whatlinkshere-title'      => 'Stranice koje su povezane na „$1“',
 'whatlinkshere-page'       => 'Strana:',
 'linkshere'                => "Sledeće stranice su povezane na '''[[:$1]]''':",
-'nolinkshere'              => "Ni jedna stranica nije povezana na: '''[[:$1]]'''.",
-'nolinkshere-ns'           => "Ni jedna stranica u odabranom imenskom prostoru se ne veže za '''[[:$1]]'''",
+'nolinkshere'              => "Nijedna stranica nije povezana na: '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Nijedna stranica u odabranom imenskom prostoru se ne veže za '''[[:$1]]'''",
 'isredirect'               => 'preusmerivač',
 'istemplate'               => 'uključivanje',
 'isimage'                  => 'veza ka slici',

@@ -233,7 +233,7 @@ $messages = array(
 'categorypage'      => 'Gweles folen an class',
 'viewtalkpage'      => 'Gweles an kescows',
 'otherlanguages'    => 'Yethow erel',
-'redirectedfrom'    => '(Daswedyas dhort $1)',
+'redirectedfrom'    => '(Daswedyes dhort $1)',
 'redirectpagesub'   => 'Folen daswedyans',
 'lastmodifiedat'    => 'An folen-ma a veu kens chanjys an $1, dhe $2.',
 'jumpto'            => 'Lamma dhe:',
@@ -344,6 +344,8 @@ $messages = array(
 'extlink_tip'     => 'Kevren a-mes (remembra an rager http://)',
 'headline_sample' => 'Text pennlinen',
 'headline_tip'    => 'Pennlinen nivel 2',
+'math_sample'     => 'Keworrewgh an furvel omma',
+'math_tip'        => 'Furvel galcoriethek (LaTeX)',
 'image_tip'       => 'Restren neythys',
 'media_tip'       => 'Kevren restren',
 'sig_tip'         => 'Agas sinans gen stampa-termyn',
@@ -410,10 +412,11 @@ po [{{fullurl:{{FULLPAGENAME}}|action=edit}} chanjya an folen-ma]</span>.',
 'revertmerge' => 'Disworunya',
 
 # Diffs
-'history-title' => 'Istory an folen "$1"',
-'difference'    => '(Dyffrans ynter an amendyansow)',
-'lineno'        => 'Linen $1:',
-'editundo'      => 'diswul',
+'history-title'           => 'Istory an folen "$1"',
+'difference'              => '(Dyffrans ynter an amendyansow)',
+'lineno'                  => 'Linen $1:',
+'compareselectedversions' => 'Hevelly an amendyansow dewisyes',
+'editundo'                => 'diswul',
 
 # Search results
 'searchresults'                  => 'Sewyansow an whilans',
@@ -640,8 +643,9 @@ Yth yw folennow eus war dha [[Special:Watchlist|rol golyas]] yn '''tew'''.",
 'pager-older-n'     => '{{PLURAL:$1|1 cottha|$1 cottha}}',
 
 # Book sources
-'booksources'    => 'Penn-fentynyow lyver',
-'booksources-go' => 'Ke',
+'booksources'               => 'Penn-fentynyow lyver',
+'booksources-search-legend' => 'Whilas pennfentynnyow lyver',
+'booksources-go'            => 'Ke',
 
 # Special:Log
 'specialloguserlabel'  => 'Devnydhyer:',
@@ -939,9 +943,11 @@ Ty a ell gweles hy fennfenten.',
 'table_pager_limit_submit' => 'Ke',
 
 # Auto-summaries
-'autosumm-new' => "Formas folen gen: '$1'",
+'autoredircomment' => 'Daswedyas an folen war-tu [[$1]]',
+'autosumm-new'     => "Formas folen gen: '$1'",
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Gweles chanjyow longus',
 'watchlisttools-edit' => 'Gweles ha chanjya an rol golyas',
 'watchlisttools-raw'  => 'Chanjya restren an rol golyas',
 

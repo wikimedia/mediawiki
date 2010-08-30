@@ -107,6 +107,7 @@ $messages = array(
 'tog-watchlisthideminor'      => "Catchî les candjmints mineurs dins l' djivêye des shuvous",
 'tog-ccmeonemails'            => "m' evoyî ene copeye des emiles ki dj' evoye ås ôtes",
 'tog-diffonly'                => "Èn nén håyner l' contnou del pådje pa dzo l' pådje des diferinces",
+'tog-showhiddencats'          => 'Mostrer les categoreyes mucheyes',
 
 'underline-always'  => 'Tofer',
 'underline-never'   => 'Måy',
@@ -247,6 +248,11 @@ $messages = array(
 'jumpto'            => 'Potchî a:',
 'jumptonavigation'  => 'naiviaedje',
 'jumptosearch'      => 'cweri',
+'view-pool-error'   => "Mande escuze, les sierveus sont fortcherdjîs pol moumint.
+Gn a trop d' uzeus ki saynut di vey cisse pådje ci.
+Soeyoz vayant di ratinde ene miete divant di rsayî di vey cisse pådje ci.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Åd fwait di {{SITENAME}}',
@@ -354,7 +360,7 @@ Vosse conte a stî ahivé.
 'yourname'                   => "Vosse no d' elodjaedje",
 'yourpassword'               => 'Vosse sicret',
 'yourpasswordagain'          => 'Ritapez vosse sicret',
-'remembermypassword'         => "Rimimbrer m' sicret inte les sessions (for a maximum of $1 {{PLURAL:$1|day|days}})",
+'remembermypassword'         => "Rimimbrer m' sicret inte les sessions (nén dpus ki po $1 {{PLURAL:$1|djoû|djoûs}})",
 'yourdomainname'             => 'Vosse dominne',
 'login'                      => "S' elodjî",
 'nav-login-createaccount'    => "Ahiver on conte, udon-bén s' elodjî",
@@ -554,7 +560,7 @@ Tuzez bén s' el fåt vormint rahiver, tot tapant èn ouy so l' istwere del påd
 ki vos vloz comparer et s' tchôkîz sol tape «enter» ou clitchîz sol
 boton do dzo.<br />
 Ledjinde: (ast.) = diferince avou l' modêye d' asteure,
-(dif.) = diferince avou l' modêye di dvant, M = candjmint mineur.",
+(dif.) = diferince avou l' modêye di dvant, M = pitit candjmint d' rén do tot.",
 'histfirst'           => 'li pus vî',
 'histlast'            => 'li dierin',
 'historysize'         => '({{PLURAL:$1|1 octet|$1 octets}})',
@@ -678,6 +684,8 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'email'                 => 'Emile',
 'prefs-help-realname'   => '* Li vraiy no da vosse (opcionel): si vos tchoezixhoz del diner i serè-st eployî po les contribouwaedjes da vosse.',
 'prefs-help-email'      => "* Emile (opcionel): Permete di rçure des emiles ki ds ôtes uzeus vos polèt evoyî a pårti del pådje d' uzeu da vosse, sins ki voste adresse emile ni soeye håynêye.",
+'prefs-signature'       => 'Sinateure',
+'prefs-dateformat'      => 'Cogne del date',
 
 # User rights
 'userrights'               => 'Manaedjî les liveas des uzeus',
@@ -820,7 +828,7 @@ ou co po les sons
 'filehist-user'             => 'Uzeu',
 'filehist-filesize'         => 'Grandeur do fitchî',
 'filehist-comment'          => 'Comintaire',
-'imagelinks'                => 'Loyéns viè ciste imådje chal',
+'imagelinks'                => 'Loyéns viè ciste imådje cial',
 'linkstoimage'              => '{{PLURAL:$1|Li pådje shuvante|Les pådjes shuvantes}} eployèt ciste imådje chal:',
 'nolinkstoimage'            => "I n' a nole pådje k' eploye ciste imådje chal.",
 'sharedupload'              => "Ci fitchî ci est so on ridant pårtaedjî ey i s' pout k' i soeye eployî pa ds ôtes pordjets.",
@@ -1340,7 +1348,7 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'tooltip-ca-nstab-template'       => 'Vey li modele',
 'tooltip-ca-nstab-help'           => "Vey li pådje d' aidance",
 'tooltip-ca-nstab-category'       => 'Vey li pådje di categoreye',
-'tooltip-minoredit'               => 'Mete çouci come on candjmint mineur [alt-i]',
+'tooltip-minoredit'               => "Mete çouci come on ptit candjmint d' rén do tot [alt-i]",
 'tooltip-save'                    => 'Schaper vos candjmints [alt-s]',
 'tooltip-preview'                 => "Prévey vos candjmints, fijhoz l' divant d' schaper s' i vs plait! [alt-p]",
 'tooltip-diff'                    => 'Mostrer les candjmints ki vos avoz fwait e tecse. [alt-v]',
