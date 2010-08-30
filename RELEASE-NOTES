@@ -46,6 +46,7 @@ further.
 
 == Changes since 1.16.0 ==
 * (bug 24981) Allow extensions to access SpecialUpload variables again
+* (bug 24724) list=allusers is out by 1 (shows total users - 1)
 
 == Changes since 1.16 beta 3 ==
 
@@ -862,7 +863,6 @@ comment from another wiki.
 * (bug 17790) Users instantly logged off on HughesNet
 
 == API changes in 1.16 ==
-
 * Added uiprop=changeablegroups to meta=userinfo
 * Added usprop=gender to list=users
 * (bug 18311) action=purge now works for images too
