@@ -83,7 +83,7 @@ class profile_point {
 	var $time;
 	var $children;
 
-	function profile_point( $name, $count, $time, $memory ) {
+	function __construct( $name, $count, $time, $memory ) {
 		$this->name = $name;
 		$this->count = $count;
 		$this->time = $time;

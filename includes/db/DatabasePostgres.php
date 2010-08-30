@@ -96,7 +96,7 @@ class DatabasePostgres extends DatabaseBase {
 	var $numeric_version = null;
 	var $mAffectedRows = null;
 
-	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
+	function __construct($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0 )
 	{
 

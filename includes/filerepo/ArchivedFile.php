@@ -29,7 +29,7 @@ class ArchivedFile
 
 	/**#@-*/
 
-	function ArchivedFile( $title, $id=0, $key='' ) {
+	function __construct( $title, $id=0, $key='' ) {
 		$this->id = -1;
 		$this->title = false;
 		$this->name = false;

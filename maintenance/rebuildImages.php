@@ -36,7 +36,7 @@ require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
 class ImageBuilder extends FiveUpgrade {
-	function ImageBuilder( $dryrun = false ) {
+	function __construct( $dryrun = false ) {
 		parent::FiveUpgrade();
 
 		$this->maxLag = 10; # if slaves are lagged more than 10 secs, wait

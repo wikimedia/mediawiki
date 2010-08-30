@@ -2278,7 +2278,7 @@ abstract class DatabaseBase implements DatabaseType {
 class DBObject {
 	public $mData;
 
-	function DBObject($data) {
+	function __construct($data) {
 		$this->mData = $data;
 	}
 
@@ -2635,7 +2635,7 @@ class ResultWrapper implements Iterator {
 	/**
 	 * Create a new result object from a result resource and a Database object
 	 */
-	function ResultWrapper( $database, $result ) {
+	function __construct( $database, $result ) {
 		$this->db = $database;
 		if ( $result instanceof ResultWrapper ) {
 			$this->result = $result->result;

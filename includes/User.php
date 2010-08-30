@@ -178,7 +178,7 @@ class User {
 	 * @see newFromSession()
 	 * @see newFromRow()
 	 */
-	function User() {
+	function __construct() {
 		$this->clearInstanceCache( 'defaults' );
 	}
 

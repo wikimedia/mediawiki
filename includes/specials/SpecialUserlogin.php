@@ -68,7 +68,7 @@ class LoginForm {
 	 * @param $request WebRequest: a WebRequest object passed by reference
 	 * @param $par String: subpage parameter
 	 */
-	function LoginForm( &$request, $par = '' ) {
+	function __construct( &$request, $par = '' ) {
 		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;
 
 		$this->mType = ( $par == 'signup' ) ? $par : $request->getText( 'type' ); # Check for [[Special:Userlogin/signup]]

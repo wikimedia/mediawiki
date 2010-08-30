@@ -96,7 +96,7 @@ class EditPage {
 	 * @todo document
 	 * @param $article
 	 */
-	function EditPage( $article ) {
+	function __construct( $article ) {
 		$this->mArticle =& $article;
 		$this->mTitle = $article->getTitle();
 		$this->action = 'submit';

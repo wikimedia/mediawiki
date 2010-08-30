@@ -115,7 +115,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @param $page Integer: page number, for multipage files
 	 * @private
 	 */
-	function ThumbnailImage( $file, $url, $width, $height, $path = false, $page = false ) {
+	function __construct( $file, $url, $width, $height, $path = false, $page = false ) {
 		$this->file = $file;
 		$this->url = $url;
 		# These should be integers when they get here.

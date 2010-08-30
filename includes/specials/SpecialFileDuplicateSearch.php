@@ -31,7 +31,7 @@
 class FileDuplicateSearchPage extends QueryPage {
 	var $hash, $filename;
 
-	function FileDuplicateSearchPage( $hash, $filename ) {
+	function __construct( $hash, $filename ) {
 		$this->hash = $hash;
 		$this->filename = $filename;
 	}

@@ -166,7 +166,7 @@ class License {
 	 *
 	 * @param $str String: license name??
 	 */
-	function License( $str ) {
+	function __construct( $str ) {
 		list( $text, $template ) = explode( '|', strrev( $str ), 2 );
 
 		$this->template = strrev( $template );

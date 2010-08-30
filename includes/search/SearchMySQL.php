@@ -402,7 +402,7 @@ class SearchMySQL extends SearchEngine {
  * @ingroup Search
  */
 class MySQLSearchResultSet extends SqlSearchResultSet {
-	function MySQLSearchResultSet( $resultSet, $terms, $totalHits=null ) {
+	function __construct( $resultSet, $terms, $totalHits=null ) {
 		parent::__construct( $resultSet, $terms );
 		$this->mTotalHits = $totalHits;
 	}

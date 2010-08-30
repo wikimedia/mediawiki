@@ -157,7 +157,7 @@ class HistoryBlobStub {
 	 * @param $hash Strng: the content hash of the text
 	 * @param $oldid Integer: the old_id for the CGZ object
 	 */
-	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
+	function __construct( $hash = '', $oldid = 0 ) {
 		$this->mHash = $hash;
 	}
 
@@ -253,7 +253,7 @@ class HistoryBlobCurStub {
 	/**
 	 * @param $curid Integer: the cur_id pointed to
 	 */
-	function HistoryBlobCurStub( $curid = 0 ) {
+	function __construct( $curid = 0 ) {
 		$this->mCurId = $curid;
 	}
 

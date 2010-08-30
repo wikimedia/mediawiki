@@ -38,7 +38,7 @@ if ( function_exists( 'mb_strtoupper' ) ) {
  */
 class FakeConverter {
 	var $mLang;
-	function FakeConverter( $langobj ) { $this->mLang = $langobj; }
+	function __construct( $langobj ) { $this->mLang = $langobj; }
 	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
 	function convert( $t ) { return $t; }
 	function convertTitle( $t ) { return $t->getPrefixedText(); }

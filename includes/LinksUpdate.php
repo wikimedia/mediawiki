@@ -30,7 +30,7 @@ class LinksUpdate {
 	 * @param $parserOutput ParserOutput: output from a full parse of this page
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 */
-	function LinksUpdate( $title, $parserOutput, $recursive = true ) {
+	function __construct( $title, $parserOutput, $recursive = true ) {
 		global $wgAntiLockFlags;
 
 		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
