@@ -227,9 +227,10 @@ function wfArrayDiff2_cmp( $a, $b ) {
 /**
  * Seed Mersenne Twister
  * No-op for compatibility; only necessary in PHP < 4.2.0
+ * @deprecated. Remove in 1.18
  */
 function wfSeedRandom() {
-	/* No-op */
+	wfDeprecated(__FUNCTION__);
 }
 
 /**
