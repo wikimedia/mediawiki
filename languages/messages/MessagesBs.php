@@ -1740,7 +1740,7 @@ PICT # razni
 'upload-success-subj'         => 'Uspješno slanje',
 'upload-success-msg'          => 'Vaša datoteka iz [$2] je uspješno postavljena. Dostupna je ovdje: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problem pri postavljanju',
-'upload-failure-msg'          => 'Nastao je problem s Vašim postavljanjem:
+'upload-failure-msg'          => 'Nastao je problem s Vašim postavljanjem sa [$2]:
 
 $1',
 'upload-warning-subj'         => 'Upozorenje pri slanju',

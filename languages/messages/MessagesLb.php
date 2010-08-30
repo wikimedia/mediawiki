@@ -1366,7 +1366,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'right-editusercss'           => 'Anere Benotzer hir CSS Fichieren änneren',
 'right-edituserjs'            => 'Anere Benotzer hir JS Fichieren änneren',
 'right-rollback'              => "Ännerunge vum läschte Benotzer vun enger spezieller Säit séier z'récksetzen ''(rollback)''",
-'right-markbotedits'          => 'Annuléiert Ännerungen als Botännerungen uweisen',
+'right-markbotedits'          => 'Annuléiert Ännerungen als Botännerunge weisen',
 'right-noratelimit'           => 'Net limitéiert duerch Zäitlimitatiounen um Server',
 'right-import'                => 'Säite vun anere Wikien importéieren',
 'right-importupload'          => 'Säite vun engem eropgeluedene Fichier importéieren',
@@ -1921,7 +1921,7 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'linksearch-error' => 'Wildcards (*,?) kënnen nëmmen am Ufank vum Host-Numm benotzt ginn.',
 
 # Special:ListUsers
-'listusersfrom'      => "D'Benotzer uweisen, ugefaange bei:",
+'listusersfrom'      => "D'Benotzer weisen, ugefaange bei:",
 'listusers-submit'   => 'Weis',
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 'listusers-blocked'  => '(gespaart)',

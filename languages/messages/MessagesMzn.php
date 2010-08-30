@@ -587,7 +587,7 @@ $2، $1',
 'disambiguations' => 'گجگجی بایری ولگ ئون',
 
 # Miscellaneous special pages
-'nbytes'            => '$1 بایت',
+'nbytes'            => '$1 {{PLURAL:$1|بایت|بایت}}',
 'unusedcategories'  => 'کـار نـأزو رج‌ئون',
 'unusedimages'      => 'کـار نأزو فایل‌ئون',
 'popularpages'      => 'خاسگار هه‌دار ولگ ئون',

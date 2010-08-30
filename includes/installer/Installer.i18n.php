@@ -980,6 +980,20 @@ chmod a+w $3</pre>',
 Шматлікія паштовыя сэрвэры патрабуюць, каб хаця б назва дамэну была слушнай.',
 	'config-upload-settings' => 'Загрузкі выяваў і файлаў',
 	'config-upload-enable' => 'Дазволіць загрузку файлаў',
+	'config-upload-help' => 'Дазвол загрузкі файлаў можа патэнцыйна пагражаць бясьпекі сэрвэра.
+Дадатковую інфармацыю можна атрымаць ў [http://www.mediawiki.org/wiki/Manual:Security разьдзеле бясьпекі].
+
+Каб дазволіць загрузку файлаў, зьмяніце рэжым падкаталёга <code>images</code> у карэннай дырэкторыі MediaWiki так, каб ўэб-сэрвэр меў доступ на запіс.
+Потым дазвольце гэтую магчымасьць.',
+	'config-upload-deleted' => 'Дырэкторыя для выдаленых файлаў:',
+	'config-upload-deleted-help' => 'Выберыце дырэкторыю, у якой будуць захоўвацца выдаленыя файлы.
+У ідэальным выпадку, яна не павінна мець доступу з Інтэрнэту.',
+	'config-logo' => 'URL-адрас лягатыпу:',
+	'config-logo-help' => 'Афармленьне MediaWiki па змоўчваньні уключае прастору для лягатыпу памерам 135×135 піксэляў у верхнім левым куце.
+Загрузіце выяву адпаведнага памеру, і увядзіце тут URL-адрас.
+
+Калі Вы не жадаеце мець ніякага лягатыпу, пакіньце гэтае поле пустым.',
+	'config-instantcommons' => 'Дазволіць Instant Commons',
 	'config-memcached-servers' => 'Сэрвэры memcached:',
 	'config-extensions' => 'Пашырэньні',
 	'config-install-step-done' => 'зроблена',
@@ -3439,6 +3453,9 @@ $messages['id'] = array(
 	'config-title' => 'Instalasi MediaWiki $1',
 	'config-information' => 'Informasi',
 	'config-session-error' => 'Kesalahan sesi mulai: $1',
+	'config-no-session' => 'Data sesi Anda hilang!
+Cek php.ini Anda dan pastikan bahwa <code>session.save_path</code> diatur ke direktori yang sesuai.',
+	'config-session-path-bad' => '<code>session.save_path</code> (<code>$1</code>) Anda sepertinya tidak sah atau tidak dapat ditulis.',
 	'config-show-help' => 'Bantuan',
 	'config-hide-help' => 'Sembunyikan bantuan',
 	'config-your-language' => 'Bahasa Anda:',
@@ -3461,6 +3478,7 @@ $messages['id'] = array(
 	'config-page-releasenotes' => 'Catatan pelepasan',
 	'config-page-copying' => 'Menyalin',
 	'config-page-upgradedoc' => 'Memerbarui',
+	'config-help-restart' => 'Apakah Anda ingin menghapus semua data tersimpan yang telah Anda masukkan dan mengulang proses instalasi?',
 	'config-restart' => 'Ya, nyalakan ulang',
 	'config-authors' => 'MediaWiki adalah Hak Cipta © 2001-2010 oleh Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe dan lainnya.',
 	'config-sidebar' => '* [http://www.mediawiki.org Halaman utama MediaWiki]
@@ -3473,7 +3491,18 @@ Anda dapat menginstal MediaWiki.</span>',
 Anda tidak dapat menginstal MediaWiki.',
 	'config-env-php' => 'PHP $1 diinstal.',
 	'config-env-latest-ok' => 'Anda menginstal versi terbaru Mediawiki.',
+	'config-env-latest-new' => "'''Catatan:''' Anda menginstal versi pengembangan MediaWiki.",
+	'config-env-latest-can-not-check' => "'''Peringatan:''' Penginstal tidak dapat memeroleh informasi mengenai rilis MediaWiki terbaru dari [$1].",
+	'config-env-latest-old' => "'''Peringatan:''' Anda menginstal versi kadaluwarsa MediaWiki.",
+	'config-env-latest-help' => 'Anda menginstal versi $1, tetapi versi terbaru ialah $2.
+Anda disarankan untuk menggunakan versi terbaru yang dapat diunduh dari [http://www.mediawiki.org/wiki/Download mediawiki.org]',
+	'config-unicode-using-php' => 'Menggunakan implementasi PHP lambat untuk normalisasi Unicode.',
+	'config-unicode-using-utf8' => 'Menggunakan utf8_normalize.so Brion Vibber untuk normalisasi Unicode.',
+	'config-unicode-using-intl' => 'Menggunakan [http://pecl.php.net/intl ekstensi PECL intl] untuk normalisasi Unicode.',
 	'config-xml-good' => 'Memiliki bantuan konversi XML / Latin1-UTF-8.',
+	'config-xml-bad' => 'Modul XML PHP hilang.
+MediaWiki membutuhkan fungsi dalam modul ini dan tidak akan bekerja dalam konfigurasi ini.
+Jika Anda menggunakan Mandrake, instal paket php-xml.',
 	'config-memory-none' => 'PHP dikonfigurasi tanpa <code>memory_limit</code>',
 	'config-memory-ok' => '<code>memory_limit</code> PHP adalah $1.
 OK.',
@@ -3489,19 +3518,116 @@ Instalasi terancam gagal!",
 Penembolokan obyek tidak dinonaktifkan.",
 	'config-diff3-good' => 'Ditemukan diff3 GNU: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 tidak ditemukan.',
+	'config-dir' => 'Direktori instalasi: <code>$1</code>.',
+	'config-file-extension' => 'Menginstal MediaWiki dengan ekstensi berkas <code>$1</code>.',
+	'config-db-type' => 'Jenis basis data:',
+	'config-db-wiki-settings' => 'Identifikasi wiki ini',
+	'config-db-name' => 'Nama basis data:',
+	'config-db-install-account' => 'Akun pengguna untuk instalasi',
+	'config-db-username' => 'Nama pengguna basis data:',
+	'config-db-password' => 'Kata sandi basis data:',
+	'config-db-account-lock' => 'Gunakan nama pengguna dan kata sandi yang sama selama operasi normal',
+	'config-db-wiki-account' => 'Akun pengguna untuk operasi normal',
+	'config-db-prefix' => 'Prefiks tabel basis data:',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 biner',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-mysql-old' => 'MySQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.',
 	'config-db-schema' => 'Skema untuk MediaWiki',
 	'config-db-ts2-schema' => 'Skema untuk tsearch2',
+	'config-sqlite-dir' => 'Direktori data SQLite:',
+	'config-type-mysql' => 'MySQL',
+	'config-type-postgres' => 'PostgreSQL',
+	'config-type-sqlite' => 'SQLite',
+	'config-type-oracle' => 'Oracle',
 	'config-header-mysql' => 'Pengaturan MySQL',
 	'config-header-postgres' => 'Pengaturan PostgreSQL',
 	'config-header-sqlite' => 'Pengaturan SQLite',
 	'config-header-oracle' => 'Pengaturan Oracle',
+	'config-invalid-db-type' => 'Jenis basis data tidak sah',
+	'config-missing-db-name' => 'Anda harus memasukkan nilai untuk "Nama basis data"',
+	'config-postgres-old' => 'PostgreSQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.',
+	'config-sqlite-connection-error' => '$1.
+
+Periksa direktori data dan nama basis data di bawah dan coba lagi.',
+	'config-sqlite-readonly' => 'Berkas <code>$1</code> tidak dapat ditulisi.',
+	'config-sqlite-cant-create-db' => 'Tidak dapat membuat berkas basis data <code>$1</code>.',
+	'config-sqlite-fts3-add' => 'Menambahkan kemampuan pencarian FTS3',
+	'config-can-upgrade' => "Ada tabel MediaWiki di basis dataini.
+Untuk memperbaruinya ke MediaWiki $1, klik '''Lanjut'''.",
+	'config-regenerate' => 'Regenerasi LocalSettings.php →',
+	'config-show-table-status' => 'Kueri SHOW TABLE STATUS gagal!',
+	'config-db-web-account' => 'Akun basis data untuk akses web',
+	'config-db-web-account-same' => 'Gunakan akun yang sama seperti untuk instalasi',
+	'config-db-web-create' => 'Buat akun jika belum ada',
+	'config-mysql-engine' => 'Mesin penyimpanan:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-binary' => 'Biner',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Nama wiki:',
+	'config-site-name-blank' => 'Masukkan nama situs.',
+	'config-project-namespace' => 'Ruang nama proyek:',
+	'config-ns-generic' => 'Proyek',
+	'config-ns-site-name' => 'Sama seperti nama wiki: $1',
+	'config-ns-other' => 'Lainnya (sebutkan)',
+	'config-ns-other-default' => 'MyWiki',
+	'config-admin-box' => 'Akun pengurus',
+	'config-admin-name' => 'Nama Anda:',
+	'config-admin-password' => 'Kata sandi:',
+	'config-admin-password-confirm' => 'Kata sandi lagi:',
+	'config-admin-name-blank' => 'Masukkan nama pengguna pengurus.',
+	'config-admin-password-blank' => 'Masukkan kata sandi untuk akun pengurus.',
+	'config-admin-password-same' => 'Kata sandi harus tidak sama seperti nama pengguna.',
+	'config-admin-password-mismatch' => 'Dua kata sandi yang Anda masukkan tidak cocok.',
+	'config-admin-email' => 'Alamat surel:',
+	'config-optional-continue' => 'Berikan saya pertanyaan lagi.',
+	'config-optional-skip' => 'Saya sudah bosan, instal saja wikinya.',
+	'config-profile' => 'Profil hak pengguna:',
+	'config-profile-wiki' => 'Wiki tradisional',
+	'config-profile-no-anon' => 'Pembuatan akun diperlukan',
+	'config-profile-fishbowl' => 'Khusus penyunting terdaftar',
+	'config-profile-private' => 'Wiki pribadi',
+	'config-license' => 'Hak cipta dan lisensi:',
+	'config-license-none' => 'Tidak ada lisensi',
+	'config-license-cc-by-sa' => 'Creative Commons Atribusi Berbagi Serupa (cocok untuk Wikipedia)',
+	'config-license-cc-by-nc-sa' => 'Creative Commons Atribusi Non-Komersial Berbagi Serupa',
+	'config-license-gfdl-old' => 'Lisensi Dokumentasi Bebas GNU 1.2',
+	'config-license-gfdl-current' => 'Lisensi Dokumentasi Bebas GNU 1.3 atau versi terbaru',
+	'config-license-pd' => 'Domain Umum',
+	'config-license-cc-choose' => 'Pilih lisensi Creative Commons kustom',
+	'config-email-settings' => 'Pengaturan surel',
+	'config-email-watchlist' => 'Aktifkan pemberitahuan daftar pantau',
+	'config-email-auth' => 'Aktifkan otentikasi surel',
+	'config-upload-settings' => 'Pengunggahan gambar dan berkas',
+	'config-upload-enable' => 'Aktifkan pengunggahan berkas',
+	'config-upload-deleted' => 'Direktori untuk berkas terhapus:',
+	'config-logo' => 'URL logo:',
+	'config-instantcommons' => 'Aktifkan Instant Commons',
+	'config-cc-error' => 'Pemilih lisensi Creative Commons tidak memberikan hasil.
+Masukkan nama lisensi secara manual.',
+	'config-cc-again' => 'Pilih lagi...',
+	'config-cc-not-chosen' => 'Pilih lisensi Creative Commons yang Anda inginkan dan klik "lanjutkan".',
+	'config-advanced-settings' => 'Konfigurasi lebih lanjut',
+	'config-cache-options' => 'Pengaturan untuk penembolokan objek:',
+	'config-cache-accel' => 'Penembolokan objek PHP (APC, eAccelerator, XCache atau WinCache)',
+	'config-cache-memcached' => 'Gunakan Memcached (memerlukan setup dan konfigurasi tambahan)',
+	'config-memcached-servers' => 'Server Memcached:',
+	'config-memcached-help' => 'Daftar alamat IP yang digunakan untuk Memcached.
+Harus dipisahkan dengan koma dan sebutkan port yang akan digunakan (contoh: 127.0.0.1:11211, 192.168.1.25:11211).',
+	'config-extensions' => 'Ekstensi',
+	'config-install-step-done' => 'selesai',
+	'config-install-step-failed' => 'gagal',
+	'config-install-extensions' => 'Termasuk ekstensi',
+	'config-install-database' => 'Mendirikan basis data',
+	'config-install-user' => 'Membuat pengguna basis data',
+	'config-install-user-failed' => 'Memberikan izin untuk pengguna "$1" gagal: $2',
+	'config-install-tables' => 'Membuat tabel',
+	'config-install-tables-exist' => "'''Peringatan''': Tabel MediaWiki sepertinya sudah ada.
+Melompati pembuatan.",
+	'config-install-tables-failed' => "'''Kesalahan''': Pembuatan tabel gagal dengan kesalahan berikut: $1",
+	'config-install-interwiki-sql' => 'Tidak dapat menemukan berkas <code>interwiki.sql</code>.',
+	'config-install-secretkey' => 'Menciptakan kunci rahasia',
+	'config-install-sysop' => 'Membuat akun pengguna pengurus',
 );
 
 /** Igbo (Igbo)
@@ -5642,6 +5768,7 @@ $messages['pt-br'] = array(
  * @author DCamer
  * @author Eleferen
  * @author MaxSem
+ * @author Сrower
  */
 $messages['ru'] = array(
 	'config-desc' => 'Инсталлятор MediaWiki',
@@ -5716,9 +5843,17 @@ MediaWiki распространяется в надежде, что она бу
 	'config-unicode-using-php' => 'Использовать медленный вариант реализации PHP для нормализации Юникода.',
 	'config-unicode-using-utf8' => 'Использовать Brion Vibber utf8_normalize.so для нормализации Юникода.',
 	'config-unicode-using-intl' => 'Использовать [http://pecl.php.net/intl международный расширение PECL] для нормализации Юникода.',
+	'config-unicode-pure-php-warning' => "'''Внимание!''': [http://pecl.php.net/intl международное расширение PECL] недоступно для нормализации Юникода.
+Если Ваш сайт работает под высокой нагрузкой, Вам следует больше узнать о [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормализации Юникода].",
 	'config-unicode-update-warning' => "'''Предупреждение''': установленная версия обёртки нормализации Юникода использует старую версию библиотеки [http://site.icu-project.org/ проекта ICU].
 Вы должны [http://www.mediawiki.org/wiki/Unicode_normalization_considerations обновить версию], если хотите полноценно использовать Юникод.",
 	'config-no-db' => 'Не найдено поддержки баз данных!',
+	'config-no-db-help' => 'Вам необходимо установить драйвера базы данных для PHP. 
+Следующие типы баз данных поддерживаются: $ 1. 
+
+Если Вы используете виртуальный хостинг, обратитесь к Вашему хостинг-провайдеру для установки подходящего драйвера базы данных. 
+Если Вы скомпилировали PHP сами, сконфигурируйте его снова с включенным клиентом базы данных, например, с помощью <code>./configure --with-mysql</code> . 
+Если Вы установили PHP из пакета Debian и Ubuntu, то Вам также необходимо установить модуль php5-mysql.',
 	'config-have-db' => 'Обнаружена поддержка {{PLURAL:$2|базы|баз}} данных $1.',
 	'config-register-globals' => "'''Внимание: PHP-опция <code>[http://php.net/register_globals register_globals] включена.'''
 '''Отключите её, если это возможно.'''

@@ -1663,16 +1663,18 @@ Parameter $2 is a date and time.
 Parameter $3 is a date.
 Parameter $4 is a time.',
 'rclistfrom'                       => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]). The corrosponding message is {{msg-mw|Rcnotefrom}}.',
-'rcshowhideminor'                  => 'Option text in [[Special:RecentChanges]]',
-'rcshowhidebots'                   => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].
-
+'rcshowhideminor'                  => "Option text in [[Special:RecentChanges]]. Parameters:
+* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
+'rcshowhidebots'                   => "Option text in [[Special:RecentChanges]]. Parameters:
+* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.
 {{Identical|$1 bots}}",
 'rcshowhideliu'                    => 'Option text in [[Special:RecentChanges]]',
-'rcshowhideanons'                  => "Option text in [[Special:RecentChanges]]
-* $1 is 'hide' or 'show'",
-'rcshowhidepatr'                   => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].",
-'rcshowhidemine'                   => 'Parameters:
-* $1 can be "show" or "hide"',
+'rcshowhideanons'                  => "Option text in [[Special:RecentChanges]]. Parameters:
+* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
+'rcshowhidepatr'                   => "Option text in [[Special:RecentChanges]]. Parameters:
+* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
+'rcshowhidemine'                   => "Option text in [[Special:RecentChanges]]. Parameters:
+* $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
 'rclinks'                          => "Used on [[Special:RecentChanges]].
 * '''\$1''' is a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".
 * '''\$2''' is a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".
@@ -2287,7 +2289,7 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 
 # User Messenger
 'usermessage-summary' => 'This message is used as an edit summary for any message that is posted because of a system event. Translate "leaving a message" in the sense of: to give a message to someone; to deliver a message somewhere; to deposit.',
-'usermessage-editor'  => 'The user name for the user that is the editor of system messages.',
+'usermessage-editor'  => 'The user name for the user that is the editor of system messages. See [http://translatewiki.net/wiki/Thread:Support/Message_info_please discussion on Support].',
 
 # Watchlist
 'watchlist'            => '{{Identical|My watchlist}}',

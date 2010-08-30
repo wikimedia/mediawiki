@@ -842,6 +842,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт|байт}}',
+'nlinks'                  => '$1 {{PLURAL:$1|каçă|каçă}}',
 'nviews'                  => '$1 хут пăхнă',
 'specialpage-empty'       => 'Ку страница пушă',
 'lonelypages'             => 'Тăлăх страницăсем',

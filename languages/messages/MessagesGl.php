@@ -1681,7 +1681,7 @@ PICT # varias
 'upload-success-subj'         => 'A carga realizouse correctamente',
 'upload-success-msg'          => 'A súa carga desde [$2] rematou correctamente e está dispoñible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema ao cargar',
-'upload-failure-msg'          => 'Houbo un problema durante a carga:
+'upload-failure-msg'          => 'Houbo un problema durante a carga desde [$2]:
 
 $1',
 'upload-warning-subj'         => 'Advertencia ao cargar',

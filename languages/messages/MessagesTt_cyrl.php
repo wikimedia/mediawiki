@@ -679,6 +679,7 @@ $2',
 'math_tip'        => 'Математик формула (LaTeX форматы)',
 'nowiki_sample'   => 'Форматланмаган текстны монда өстәгез',
 'nowiki_tip'      => 'Вики-форматлауны исәпкә алмаска',
+'image_sample'    => 'Мисал.jpg',
 'image_tip'       => 'Куелган файл',
 'media_tip'       => 'Медиа-файлга сылтама',
 'sig_tip'         => 'Имза һәм вакыт',
@@ -1187,6 +1188,7 @@ $3 күрсәткән сәбәп: ''$2''",
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit'       => 'бу битне үзгәртергә',
 'action-createpage' => 'сәхифәләрне язырга',
+'action-createtalk' => 'бәхәс битен ясау',
 'action-move'       => 'бу битне күчерү',
 
 # Recent changes
@@ -1966,6 +1968,10 @@ $1',
 'exif-subjectdistancerange-2' => 'Якыннан төшерү',
 'exif-subjectdistancerange-3' => 'Ерактан төшерү',
 
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'км/сәг',
+'exif-gpsspeed-m' => 'миль/сәг',
+
 # External editor support
 'edit-externally'      => 'Бу файлны тышкы кушымтаны кулланып үзгәртү',
 'edit-externally-help' => '(тулырак мәгълүмат өчен [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
@@ -2011,6 +2017,11 @@ $1',
 'watchlisttools-view' => 'Соңгы үзгәртүләрне күрсәтү',
 'watchlisttools-edit' => 'Күзәтү исемлегене карау һәм үзгәртү',
 'watchlisttools-raw'  => 'Текст сыман үзгәртү',
+
+# Hijri month names
+'hijri-calendar-m1' => 'Мөхәррәм',
+'hijri-calendar-m7' => 'Раҗәб',
+'hijri-calendar-m9' => 'Рамазан',
 
 # Special:Version
 'version'                  => 'Юрама',

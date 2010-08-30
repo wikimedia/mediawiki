@@ -1475,8 +1475,8 @@ Për piasì, ch'a controla l'ampostassion file_uploads.",
 'upload-maxfilesize'          => "Dimension màssima ëd l'archivi: $1.",
 'upload-description'          => "Descrission dl'archivi",
 'upload-options'              => 'Opsion për carié',
-'watchthisupload'             => "Ten d'euj sto file-sì.",
-'filewasdeleted'              => "N'archivi con ës nòm-sì a l'é gia stait caria e peui scancelà. Për piasì, che a verìfica $1 anans che carielo n'àutra vira.",
+'watchthisupload'             => "Ten-e d'euj s'archivi.",
+'filewasdeleted'              => "N'archivi con ës nòm-sì a l'é già stàit carià e peui scancelà. Për piasì, che a verìfica $1 anans che carielo n'àutra vira.",
 'upload-wasdeleted'           => "'''Dosman: a l'é antramentr ch'a carìa torna n'archivi ch'a l'era dëscancelasse.'''
 
 Për piasì, ch'a contròla s'a val la pen-a dë felo.
