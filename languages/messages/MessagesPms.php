@@ -1477,7 +1477,7 @@ Për piasì, ch'a controla l'ampostassion file_uploads.",
 'upload-options'              => 'Opsion për carié',
 'watchthisupload'             => "Ten-e d'euj s'archivi.",
 'filewasdeleted'              => "N'archivi con ës nòm-sì a l'é già stàit carià e peui scancelà. Për piasì, che a verìfica $1 anans che carielo n'àutra vira.",
-'upload-wasdeleted'           => "'''Dosman: a l'é antramentr ch'a carìa torna n'archivi ch'a l'era dëscancelasse.'''
+'upload-wasdeleted'           => "'''Dossman: a l'é antramentr ch'a carìa torna n'archivi ch'a l'era dëscancelasse.'''
 
 Për piasì, ch'a contròla s'a val la pen-a dë felo.
 Për soa comodità, ambelessì a-i son ij dat dla scancelament:",
@@ -1490,7 +1490,7 @@ CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
 DSCN # Nikon
-DUW # chèich celular
+DUW # chèich sacociàbil
 IMG # genérich
 JD # Jenoptik
 MGP # Pentax
