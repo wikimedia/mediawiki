@@ -371,6 +371,14 @@ abstract class UploadBase {
 			return array( 'uploadvirus', $virus );
 		}
 
+		$handler = MediaHandler::getHandler( $mime );
+		if ( $handler ) {
+			$handler->verifyFileHook( $this, $mime, &$status );
+			if ( $status !== true ) {
+				return $status;
+			}
+		}
+
 		wfRunHooks( 'UploadVerifyFile', array( $this, $mime, &$status ) );
 		if ( $status !== true ) {
 			return $status;
