@@ -309,6 +309,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Disable multithreaded behaviour in recent ImageMagick, to avoid a deadlock
   when a resource limit such as $wgMaxShellMemory is hit.
 * (bug 24981) Allow extensions to access SpecialUpload variables again
+* (bug 20744) Wiki forgets about an uploaded file
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

@@ -807,12 +807,12 @@ class LocalFile extends File {
 		$props['timestamp'] = wfTimestamp( TS_MW );
 		$this->setProps( $props );
 
-		// Delete thumbnails and refresh the metadata cache
+		# Delete thumbnails
 		$this->purgeThumbnails();
-		$this->saveToCache();
+		# The file is already on its final location, remove it from the squid cache
 		SquidUpdate::purge( array( $this->getURL() ) );
 
-		// Fail now if the file isn't there
+		# Fail now if the file isn't there
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": File " . $this->getPath() . " went missing!\n" );
 			return false;
@@ -922,8 +922,9 @@ class LocalFile extends File {
 			$descTitle->invalidateCache();
 			$descTitle->purgeSquid();
 		} else {
-			// New file; create the description page.
-			// There's already a log entry, so don't make a second RC entry
+			# New file; create the description page.
+			# There's already a log entry, so don't make a second RC entry
+			# Squid and file cache for the description page are purged by doEdit.
 			$article->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
 		}
 
@@ -934,6 +935,12 @@ class LocalFile extends File {
 		# The most important thing is that files don't get lost, especially archives
 		$dbw->commit();
 
+		# Save to cache and purge the squid
+		# We shall not saveToCache before the commit since otherwise
+		# in case of a rollback there is an usable file from memcached
+		# which in fact doesn't really exist (bug 24978)
+		$this->saveToCache();
+		
 		# Invalidate cache for all pages using this file
 		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
 		$update->doUpdate();
