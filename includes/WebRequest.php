@@ -365,11 +365,11 @@ class WebRequest {
 
 	/**
 	 * Fetch a text string from the given array or return $default if it's not
-	 * set. \r is stripped from the text, and with some language modules there
-	 * is an input transliteration applied. This should generally be used for
-	 * form <textarea> and <input> fields. Used for user-supplied freeform text
-	 * input (for which input transformations may be required - e.g. Esperanto
-	 * x-coding).
+	 * set. Carriage returns are stripped from the text, and with some language
+	 * modules there is an input transliteration applied. This should generally
+	 * be used for form <textarea> and <input> fields. Used for user-supplied
+	 * freeform text input (for which input transformations may be required - e.g.
+	 * Esperanto x-coding).
 	 *
 	 * @param $name String
 	 * @param $default String: optional
