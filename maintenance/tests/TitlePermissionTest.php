@@ -76,7 +76,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 
 	function testQuickPermissions() {
 		global $wgContLang;
-		$prefix = $wgContLang->getNsText( NS_PROJECT );
+		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
 
 		$this->setUser( 'anon' );
 		$this->setTitle( NS_TALK );
@@ -330,7 +330,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 		$this->setUser( self::$userName );
 		global $wgUser, $wgContLang;
 		$wgUser = self::$user;
-		$prefix = $wgContLang->getNsText( NS_PROJECT );
+		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
 
 		$this->setTitle( NS_SPECIAL );
 
@@ -436,7 +436,7 @@ class TitlePermissionTest extends PhpUnit_Framework_TestCase {
 	function testPageRestrictions() {
 		global $wgUser, $wgContLang;
 
-		$prefix = $wgContLang->getNsText( NS_PROJECT );
+		$prefix = $wgContLang->getFormattedNsText( NS_PROJECT );
 
 		$wgUser = self::$user;
 		$this->setTitle( NS_MAIN );
