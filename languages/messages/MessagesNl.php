@@ -8,6 +8,7 @@
  * @file
  *
  * @author Annabel
+ * @author DasRakel
  * @author Effeietsanders
  * @author Erwin
  * @author Erwin85
@@ -476,7 +477,7 @@ $messages = array(
 'faqpage'        => 'Project:Veelgestelde vragen',
 
 # Vector skin
-'vector-action-addsection'       => 'Kopje toevoegen',
+'vector-action-addsection'       => 'Ounderwerp toevoegn',
 'vector-action-delete'           => 'Verwijderen',
 'vector-action-move'             => 'Hernoemen',
 'vector-action-protect'          => 'Beveiligen',

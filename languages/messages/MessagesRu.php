@@ -13,6 +13,7 @@
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Amikeco
+ * @author Assele
  * @author Chilin
  * @author Claymore
  * @author DCamer

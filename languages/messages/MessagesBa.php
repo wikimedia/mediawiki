@@ -1477,21 +1477,28 @@ $1",
 'emailsend'    => 'Ебәреү',
 
 # Watchlist
-'watchlist'         => 'Күҙәтеү исемлеге',
-'mywatchlist'       => 'Күҙәтеү исемлеге',
-'watchnologin'      => 'Үҙегеҙҙе танытырға кәрәк',
-'addedwatch'        => 'Күҙәтеү исемлегенә өҫтәлде',
-'addedwatchtext'    => "\"[[:\$1]]\" бите [[Special:Watchlist|күҙәтеү исемлегегеҙгә]] өҫтәлде.
+'watchlist'            => 'Күҙәтеү исемлеге',
+'mywatchlist'          => 'Күҙәтеү исемлеге',
+'watchnologin'         => 'Үҙегеҙҙе танытырға кәрәк',
+'addedwatch'           => 'Күҙәтеү исемлегенә өҫтәлде',
+'addedwatchtext'       => "\"[[:\$1]]\" бите [[Special:Watchlist|күҙәтеү исемлегегеҙгә]] өҫтәлде.
 Был биттә һәм уның фекер алышыу битендә бөтә буласаҡ үҙгәртеүҙәр исемлектә һәм [[Special:RecentChanges|һуңғы үҙгәртеүҙәр]] исемлегендә уларҙы еңелерәк табыу өсөн '''ҡалын яҙыу''' менән күрһәтеләсәк.",
-'removedwatch'      => 'Күҙәтеү исемлегенән сығарылды',
-'removedwatchtext'  => '«[[:$1]]» бите [[Special:Watchlist|күҙәтеү исемлегегеҙҙән]] сығарылды.',
-'watch'             => 'Күҙәтергә',
-'watchthispage'     => 'Был битте күҙәтергә',
-'unwatch'           => 'Күҙәтмәҫкә',
-'notanarticle'      => 'Мәҡәлә түгел',
-'watchlist-details' => 'Һеҙҙең күҙәтеү исемлегегеҙҙә, фекер алышыу биттәрен һанамағанда, {{PLURAL:$1|$1 бит|$1 бит}} бар.',
-'wlshowlast'        => 'Һуңғы $1 сәғәт $2 көн өсөн күрһәт $3',
-'watchlist-options' => 'Күҙәтеү исемлеге көйләүҙәре',
+'removedwatch'         => 'Күҙәтеү исемлегенән сығарылды',
+'removedwatchtext'     => '«[[:$1]]» бите [[Special:Watchlist|күҙәтеү исемлегегеҙҙән]] сығарылды.',
+'watch'                => 'Күҙәтергә',
+'watchthispage'        => 'Был битте күҙәтергә',
+'unwatch'              => 'Күҙәтмәҫкә',
+'notanarticle'         => 'Мәҡәлә түгел',
+'watchnochange'        => 'Күрһәтелгән арауыҡта күҙәтеүҙәр исемлегенән бер ни ҙә үҙгәрмәгән.',
+'watchlist-details'    => 'Һеҙҙең күҙәтеү исемлегегеҙҙә, фекер алышыу биттәрен һанамағанда, {{PLURAL:$1|$1 бит|$1 бит}} бар.',
+'wlheader-showupdated' => "* Һеҙҙең аҙаҡҡы кереүегеҙҙән һуң үҙгәргән биттәр '''ҡалын''' шрифт менән күрһәтелгән.",
+'watchmethod-recent'   => 'күҙәтелгән биттәр өсөн аҙаҡҡы үҙгәртеүҙәрҙе ҡарау',
+'watchmethod-list'     => 'аҙаҡҡы үҙгәртеүҙәр өсөн күҙәтелгән биттәрҙе ҡарау',
+'watchlistcontains'    => 'Һеҙҙең күҙәтеү исемлегендә $1 {{PLURAL:$1|бит|бит}}бар.',
+'iteminvalidname'      => '«$1» менән ҡыйынлыҡтар, исеме дөрөҫ түгел...',
+'wlnote'               => "Түбәндә аҙаҡҡы {{PLURAL:$2|сәғәт|'''$2''' сәғәт}} эсендә эшләнгән {{PLURAL:$1|үҙгәртеү|'''$1''' үҙгәртеү}} күрһәтелгән.",
+'wlshowlast'           => 'Һуңғы $1 сәғәт $2 көн өсөн күрһәт $3',
+'watchlist-options'    => 'Күҙәтеү исемлеге көйләүҙәре',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Күҙәтеү исемлегенә өҫтәү...',
@@ -1877,7 +1884,25 @@ $NEWPAGE
 'table_pager_limit_submit' => 'Күсеү',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'Яҙмалар:',
+'watchlistedit-numitems'       => 'Һеҙҙең күҙәтеү исемлегегеҙҙә фекер алышыу биттәрен иҫәпләмәгәндә - {{PLURAL:$1|$1 бит|$1 бит}} бар.',
+'watchlistedit-noitems'        => 'Һеҙҙең күҙәтеү исемлегегеҙҙә бер бит тә юҡ.',
+'watchlistedit-normal-title'   => 'Күҙәтеү исемлеген мөхәррирләү',
+'watchlistedit-normal-legend'  => 'Күҙәтеү исемлегенән биттәрҙе юйыу',
+'watchlistedit-normal-explain' => 'Түбәндә һеҙҙең күҙәтеү исемлегендә булған биттәр күрһәтелгән.
+Биттәрҙе юйыу өсөн, кәрәкле юлдарҙы һайлағыҙ һәм «{{int:Watchlistedit-normal-submit}}» төймәһенә баҫығыҙ.
+Һеҙ шулай уҡ [[Special:Watchlist/raw|исемлекте текст рәүешендә үҙгәртә]] алаһығыҙ.',
+'watchlistedit-normal-submit'  => 'Биттәрҙе юйырға',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|$1 бит|$1 бит}} һеҙҙең күҙәтеү исемлегенән юйылды:',
+'watchlistedit-raw-title'      => '«Сей» күҙәтеү исемлеген мөхәррирләү',
+'watchlistedit-raw-legend'     => '«Сей» күҙәтеү исемлеген мөхәррирләү',
+'watchlistedit-raw-explain'    => 'Түбәндә һеҙҙең күҙәтеү исемлегендә булған биттәр күрһәтелгән. Һеҙ был исемлекте, юлдар өҫтәп йәки юйып, үҙгәртә алаһығыҙ; бер юлға - бер исем.
+Үҙгәртеүҙе тамамлағас, «{{int:Watchlistedit-raw-submit}}» төймәһенә баҫығыҙ.
+Һеҙ шулай уҡ ғәҙәттәге [[Special:Watchlist/edit|күҙәтеү исемен мөхәррирләү битен]] ҡулланана алаһығыҙ.',
+'watchlistedit-raw-titles'     => 'Яҙмалар:',
+'watchlistedit-raw-submit'     => 'Исемлекте яңыртырға',
+'watchlistedit-raw-done'       => 'Һеҙҙең күҙәтеү исемлеге яңырҙы.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 яҙма|$1 яҙма}} өҫтәлде:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 яҙма|$1 яҙма}} юйылды:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Исемлектәге биттәрҙәге үҙгәрештәр',

@@ -1605,7 +1605,7 @@ PICT # misc.
 'upload-success-subj'         => 'Eiladenn kaset da benn vat',
 'upload-success-msg'          => 'Ho kargadenn eus [$2] a zo bet graet. Gellout a rit kavout anezhi amañ : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Kudenn kargañ',
-'upload-failure-msg'          => "Ur gudenn 'zo bet e-pad ho kargadenn :
+'upload-failure-msg'          => "Ur gudenn 'zo bet e-pad ho kargadenn adalek [$2] :
 
 $1",
 'upload-warning-subj'         => "Kemmen diwall e-pad ar c'hargañ",

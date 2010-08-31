@@ -812,7 +812,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 # Unused templates
 'unusedtemplates'     => 'Усă курман шаблонсем',
 'unusedtemplatestext' => 'Ку страница çинче страницăсенче усă курман «Шаблон» ятлă ятсен уçлăхне шутне кĕрекен страницăсене куратăр.',
-'unusedtemplateswlh'  => 'ытти ссылкăсем',
+'unusedtemplateswlh'  => 'ытти каçăсем',
 
 # Random page
 'randompage' => 'Ăнсăртран илнě страницă',
@@ -855,7 +855,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'wantedcategories'        => 'Хатĕрлемелли категорисем',
 'wantedpages'             => 'Хатĕрлемелли страницăсем',
 'mostlinked'              => 'Ку страницăсем çине чи нумай ссылка лартнă',
-'mostlinkedcategories'    => 'Ку категорисем чи нумай ссылкăсем лартнă',
+'mostlinkedcategories'    => 'Ку категорисем чи нумай каçă лартнă',
 'mostlinkedtemplates'     => 'Чи анлă усă куракан шаблонсем',
 'mostcategories'          => 'Чи нумай категорине кĕртнĕ страницăсем',
 'mostimages'              => 'Чи анлă усă куракан ӳкерчĕксем',

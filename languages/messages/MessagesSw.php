@@ -2351,6 +2351,11 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 
 'exif-focalplaneresolutionunit-2' => 'inchi',
 
+'exif-scenecapturetype-0' => 'Kawaida',
+'exif-scenecapturetype-1' => 'Mandhari',
+'exif-scenecapturetype-2' => 'Watu',
+'exif-scenecapturetype-3' => 'Usiku',
+
 'exif-gaincontrol-0' => 'Bila',
 
 'exif-contrast-0' => 'Kawaida',
@@ -2479,6 +2484,7 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 'table_pager_first'        => 'Ukurasa wa kwanza',
 'table_pager_last'         => 'Ukurasa wa mwisho',
 'table_pager_limit'        => 'Ionyeshwe vitu $1 katika kila ukurasa',
+'table_pager_limit_label'  => 'Vitu katika kila ukurasa:',
 'table_pager_limit_submit' => 'Nenda',
 'table_pager_empty'        => 'Hakuna matokeo',
 
@@ -2581,11 +2587,12 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'intentionallyblankpage' => 'Ukurasa huu umeachwa tupu kwa makusudi.',
 
 # Special:Tags
-'tag-filter'        => 'Chujio cha [[Special:Tags|tagi]]:',
-'tag-filter-submit' => 'Chuja',
-'tags-title'        => 'Tagi',
-'tags-edit'         => 'hariri',
-'tags-hitcount'     => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
+'tag-filter'              => 'Chujio cha [[Special:Tags|tagi]]:',
+'tag-filter-submit'       => 'Chuja',
+'tags-title'              => 'Tagi',
+'tags-description-header' => 'Maelezo kamili ya maana',
+'tags-edit'               => 'hariri',
+'tags-hitcount'           => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
 
 # Special:ComparePages
 'comparepages'     => 'Linganisha kurasa',
