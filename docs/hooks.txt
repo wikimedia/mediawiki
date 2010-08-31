@@ -1684,9 +1684,9 @@ string &$error: output: message key for message to show if upload canceled
 'UploadVerifyFile': extra file verification, based on mime type, etc. Preferred
                     in most cases over UploadVerification.
 object $upload: an instance of UploadBase, with all info about the upload
-object $mime: the uploaded file's mime type, as detected by MediaWiki. Handlers 
+string $mime: the uploaded file's mime type, as detected by MediaWiki. Handlers 
 	will typically only apply for specific mime types.
-object &$error: output: true if the file is valid. Otherwise, and indexed array
+object &$error: output: true if the file is valid. Otherwise, an indexed array
 	representing the problem with the file, where the first element
 	is the message key and the remaining elements are used as parameters to
 	the message.
