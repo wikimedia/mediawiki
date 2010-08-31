@@ -1086,15 +1086,15 @@ La raison donnée était ''$2''.",
 'page_first'             => 'première',
 'page_last'              => 'dernière',
 'histlegend'             => 'Légende : ({{MediaWiki:Cur}}) = différence avec la version actuelle, ({{MediaWiki:Last}}) = différence avec la version précédente, <b>m</b> = modification mineure',
-'history-fieldset-title' => "Naivyî divins l' istwere del pådje",
-'history-show-deleted'   => "Rén k' les rsaetchîs",
+'history-fieldset-title' => 'Naviguer dans l’historique',
+'history-show-deleted'   => 'Supprimés seulement',
 'histfirst'              => 'toute première',
 'histlast'               => 'toute dernière',
 'historysize'            => '($1 octet{{PLURAL:$1||s}})',
 'historyempty'           => '(vide)',
 
 # Revision feed
-'history-feed-title'          => 'Istwere des modêyes',
+'history-feed-title'          => 'Historique des versions',
 'history-feed-description'    => 'Historique pour cette page sur le wiki',
 'history-feed-item-nocomment' => '$1 le $2',
 'history-feed-empty'          => 'La page demandée n’existe pas.
@@ -1134,8 +1134,8 @@ En tant qu’administrateur, vous pouvez voir ce diff ; des détails sont dispon
 'rev-delundel'                => 'afficher/masquer',
 'rev-showdeleted'             => 'afficher',
 'revisiondelete'              => 'Supprimer ou restaurer des événements',
-'revdelete-nooldid-title'     => 'Li modêye ricwerowe ni va nén',
-'revdelete-nooldid-text'      => "Vos n' avo nén metou li kéne modêye vos vlîz vey, oudon-bén ki li modêye ricandjeye n' egzistêye nén, ou k' c' est l' modêye d' asteure.",
+'revdelete-nooldid-title'     => 'Version cible non valide',
+'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la version cible de cette fonction, elle n’existe pas, ou il s’agit de la version actuelle.',
 'revdelete-nologtype-title'   => 'Aucun type de journal spécifié',
 'revdelete-nologtype-text'    => 'Vous n’avez pas spécifié un type de journal sur lequel cette action doit être réalisée.',
 'revdelete-nologid-title'     => 'Entrée du journal invalide',
@@ -1259,12 +1259,12 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'mergelogpagetext'   => 'Voici la liste des fusions de l’historique d’une page dans celui d’une autre les plus récentes.',
 
 # Diffs
-'history-title'            => 'Istwere des modêyes di « $1 »',
+'history-title'            => 'Historique des versions de « $1 »',
 'difference'               => '(Différences entre les versions)',
 'difference-multipage'     => '(Différence entre les pages)',
 'lineno'                   => 'Ligne $1 :',
 'compareselectedversions'  => 'Comparer les versions sélectionnées',
-'showhideselectedversions' => 'Mostrer/muchî les modêyes relîtes',
+'showhideselectedversions' => 'Afficher/masquer les versions sélectionnées',
 'editundo'                 => 'défaire',
 'diff-multi'               => '({{PLURAL:$1|Une version intermédiaire masquée|$1 versions intermédiaires masquées}})',
 
@@ -2447,8 +2447,8 @@ $1',
 'contribsub2'         => 'Pour $1 ($2)',
 'nocontribs'          => 'Aucune modification correspondant à ces critères n’a été trouvée.',
 'uctop'               => '(dernière)',
-'month'               => 'A cmincî do moes (et pus timpe):',
-'year'                => "A cmincî di l' anêye (et pus timpe):",
+'month'               => 'À partir du mois (et précédents) :',
+'year'                => 'À partir de l’année (et précédentes) :',
 
 'sp-contributions-newbies'             => 'Ne montrer que les contributions des nouveaux utilisateurs',
 'sp-contributions-newbies-sub'         => 'Parmi les nouveaux comptes',
@@ -2753,9 +2753,9 @@ Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation de 
 # Special:Import
 'import'                     => 'Importer des pages',
 'importinterwiki'            => 'Importation inter-wiki',
-'import-interwiki-text'      => 'Relijhoz on wiki ey on tite a-z apoirter.
-Les dates des modêyes et les nos des scrijheus(es) seront wårdés.
-Tos les apoirtaedjes inte les wikis sont rashious divns l’[[Special:Log/import|istwere des apoirtaedjes]].',
+'import-interwiki-text'      => 'Sélectionnez un wiki et un titre de page à importer.
+Les dates des versions et les noms des contributeurs seront préservés.
+Toutes les actions d’importation inter-wiki sont consignées dans l’[[Special:Log/import|historique des importations]].',
 'import-interwiki-source'    => 'Wiki et page sources :',
 'import-interwiki-history'   => 'Copier toutes les versions de l’historique de cette page',
 'import-interwiki-templates' => 'Inclure tous les modèles',
