@@ -928,9 +928,6 @@ class LocalFile extends File {
 			$article->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
 		}
 
-		# Hooks, hooks, the magic of hooks...
-		wfRunHooks( 'FileUpload', array( $this ) );
-
 		# Commit the transaction now, in case something goes wrong later
 		# The most important thing is that files don't get lost, especially archives
 		$dbw->commit();
@@ -941,6 +938,9 @@ class LocalFile extends File {
 		# which in fact doesn't really exist (bug 24978)
 		$this->saveToCache();
 		
+		# Hooks, hooks, the magic of hooks...
+		wfRunHooks( 'FileUpload', array( $this, $reupload, $descTitle->exists() ) );
+
 		# Invalidate cache for all pages using this file
 		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
 		$update->doUpdate();
