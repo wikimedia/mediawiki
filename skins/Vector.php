@@ -110,7 +110,7 @@ class SkinVector extends SkinTemplate {
 			);
 			$links['namespaces'][$subjectId]['context'] = 'subject';
 			$links['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, 'nstab-talk', $isTalk, '', true
+				$talkPage, 'talk', $isTalk, '', true
 			);
 			$links['namespaces'][$talkId]['context'] = 'talk';
 
