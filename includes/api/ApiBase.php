@@ -341,7 +341,11 @@ abstract class ApiBase {
 								$desc .= $paramPrefix . $prompt . implode( ', ', MWNamespace::getValidNamespaces() );
 								break;
 							case 'limit':
-								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]} ({$paramSettings[self::PARAM_MAX2]} for bots) allowed";
+								$desc .= $paramPrefix . "No more than {$paramSettings[self :: PARAM_MAX]}";
+								if ( isset( $paramSettings[self::PARAM_MAX2] ) ) {
+									$desc .= " ({$paramSettings[self::PARAM_MAX2]} for bots)";
+								}
+								$desc .= ' allowed';
 								break;
 							case 'integer':
 								$hasMin = isset( $paramSettings[self::PARAM_MIN] );
