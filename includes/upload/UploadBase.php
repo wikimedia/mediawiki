@@ -344,8 +344,9 @@ abstract class UploadBase {
 		$this->mFileProps = File::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 		$this->checkMacBinary();
 
-		$mime = $this->mFileProps[ 'mime' ];
+		# magically determine mime type
 		$magic = MimeMagic::singleton();
+		$mime = $magic->guessMimeType( $this->mTempPath, false );
 
 		# check mime type, if desired
 		$status = $this->verifyMimeType( $magic, $mime );
