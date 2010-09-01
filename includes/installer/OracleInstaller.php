@@ -88,15 +88,6 @@ class OracleInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-
-	public function getSettingsForm() {
-		// TODO
-	}
-	
-	public function submitSettingsForm() {
-		// TODO
-	}
-
 	public function getConnection() {
 		// TODO
 	}

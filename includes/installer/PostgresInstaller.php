@@ -112,14 +112,6 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	function getSettingsForm() {
-		return false;
-	}
-
-	function submitSettingsForm() {
-		return Status::newGood();
-	}
-
 	function setupDatabase() {
 	}
 
