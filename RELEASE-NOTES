@@ -47,6 +47,7 @@ further.
 == Changes since 1.16.0 ==
 * (bug 24981) Allow extensions to access SpecialUpload variables again
 * (bug 24724) list=allusers is out by 1 (shows total users - 1)
+* (bug 24166) API error when using rvprop=tags
 
 == Changes since 1.16 beta 3 ==
 
