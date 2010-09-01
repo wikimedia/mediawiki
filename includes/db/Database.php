@@ -276,6 +276,18 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 	}
 
+	/**
+	 * Return a path to the DBMS-specific schema, otherwise default to tables.sql
+	 */
+	public function getSchema() {
+		global $IP;
+		if ( file_exists( "$IP/maintenance/" . $this->getType() . "/tables.sql" ) ) {
+			return "$IP/maintenance/" . $this->getType() . "/tables.sql";
+		} else {
+			return "$IP/maintenance/tables.sql";
+		}
+	}
+
 #------------------------------------------------------------------------------
 # Other functions
 #------------------------------------------------------------------------------

@@ -466,26 +466,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function createTables() {
-		global $IP;
-		$status = $this->getConnection();
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
-		
-		if( $this->db->tableExists( 'user' ) ) {
-			$status->warning( 'config-install-tables-exist' );
-			return $status;
-		} 
-		
-		$error = $this->db->sourceFile( "$IP/maintenance/tables.sql" );
-		if( $error !== true ) {
-			$status->fatal( 'config-install-tables-failed', $error );
-		}
-		return $status;
-	}
-
 	public function getTableOptions() {
 		return array( 'engine' => $this->getVar( '_MysqlEngine' ),
 			'default charset' => $this->getVar( '_MysqlCharset' ) );

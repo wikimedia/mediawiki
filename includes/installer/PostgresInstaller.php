@@ -115,22 +115,6 @@ class PostgresInstaller extends DatabaseInstaller {
 	function setupDatabase() {
 	}
 
-	function createTables() {
-		$status = $this->getConnection();
-		if ( !$status->isOK() ) {
-			return $status;
-	}
-		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
-
-		global $IP;
-		$err = $this->db->sourceFile( "$IP/maintenance/postgres/tables.sql" );
-		if ( $err !== true ) {
-			//@todo or...?
-			$this->db->reportQueryError( $err, 0, $sql, __FUNCTION__ );
-		}
-		return Status::newGood();
-	}
-
 	function getLocalSettings() {
 		$port = $this->getVar( 'wgDBport' );
 		$schema = $this->getVar( 'wgDBmwschema' );

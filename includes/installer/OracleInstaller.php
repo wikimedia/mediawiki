@@ -96,10 +96,6 @@ class OracleInstaller extends DatabaseInstaller {
 		// TODO
 	}
 
-	public function createTables() {
-		// TODO
-	}
-
 	public function getLocalSettings() {
 		$prefix = $this->getVar( 'wgDBprefix' );
 		return

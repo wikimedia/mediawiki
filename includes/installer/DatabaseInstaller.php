@@ -116,7 +116,25 @@ abstract class DatabaseInstaller {
 	 * 
 	 * @return Status
 	 */
-	public abstract function createTables();
+	public function createTables() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
+
+		if( $this->db->tableExists( 'user' ) ) {
+			$status->warning( 'config-install-tables-exist' );
+			return $status;
+		}
+
+		$error = $this->db->sourceFile( $this->db->getSchema() );
+		if( $error !== true ) {
+			$this->db->reportQueryError( $error, 0, $sql, __METHOD__ );
+			$status->fatal( 'config-install-tables-failed', $error );
+		}
+		return $status;
+	}
 
 	/**
 	 * Get the DBMS-specific options for LocalSettings.php generation.
