@@ -152,7 +152,7 @@ class SqliteInstaller extends DatabaseInstaller {
 
 	public function createTables() {
 		$status = parent::createTables();
-		return $this->setupSearchIndex( $status );;
+		return $this->setupSearchIndex( $status );
 	}
 
 	public function setupSearchIndex( &$status ) {
