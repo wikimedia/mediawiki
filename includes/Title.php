@@ -3530,6 +3530,31 @@ class Title {
 		return !$this->isExternal() && MWNamespace::isWatchable( $this->getNamespace() );
 	}
 
+	/*
+	 * Returns whether an article is in the specific category
+	 *
+	 * @param $category String: The category name (without Category: Prefix)
+	 *
+	 * @return bool
+	 */
+	public function isInCategory( $category ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			'categorylinks',
+			'*',
+			array(
+				'cl_from' => $this->getArticleId(),
+				'cl_to' => $category,
+			),
+			__METHOD__,
+			array(
+				'LIMIT' => 1
+			)
+		);
+
+		return ( $dbr->numRows( $res ) > 0 );
+	}
+
 	/**
 	 * Get categories to which this Title belongs and return an array of
 	 * categories' names.
@@ -3553,9 +3578,10 @@ class Title {
 		$res = $dbr->query( $sql );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			foreach ( $res as $row )
+			foreach ( $res as $row ) {
 				// $data[] = Title::newFromText($wgContLang->getNSText ( NS_CATEGORY ).':'.$row->cl_to);
 				$data[$wgContLang->getNSText( NS_CATEGORY ) . ':' . $row->cl_to] = $this->getFullText();
+			}
 		} else {
 			$data = array();
 		}
