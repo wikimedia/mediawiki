@@ -151,24 +151,12 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	public function createTables() {
-		global $IP;
-		$status = $this->getConnection();
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-		// Process common MySQL/SQLite table definitions
-		$err = $this->db->sourceFile( "$IP/maintenance/tables.sql" );
-		if ( $err !== true ) {
-			//@todo or...?
-			$this->db->reportQueryError( $err, 0, $sql, __FUNCTION__ );
-		}
-		return $this->setupSearchIndex();
+		$status = parent::createTables();
+		return $this->setupSearchIndex( $status );;
 	}
 
-	public function setupSearchIndex() {
+	public function setupSearchIndex( &$status ) {
 		global $IP;
-
-		$status = Status::newGood();
 
 		$module = $this->db->getFulltextSearchModule();
 		$fts3tTable = $this->db->checkForEnabledSearch();
