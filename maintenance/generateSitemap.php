@@ -4,6 +4,9 @@ define( 'GS_TALK', -1 );
 /**
  * Creates a sitemap for the site
  *
+ * Copyright © 2005, Ævar Arnfjörð Bjarmason, Jens Frank <jeluf@gmx.de> and
+ * Brion Vibber <brion@pobox.com>
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,16 +22,10 @@ define( 'GS_TALK', -1 );
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
- *
- * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
- * @copyright Copyright © 2005, Jens Frank <jeluf@gmx.de>
- * @copyright Copyright © 2005, Brion Vibber <brion@pobox.com>
- *
  * @see http://www.sitemaps.org/
  * @see http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
- *
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
