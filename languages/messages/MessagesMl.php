@@ -3155,6 +3155,10 @@ $1',
 'exif-scenecapturetype-3' => 'രാത്രി ദൃശ്യം',
 
 'exif-gaincontrol-0' => 'ഒന്നുമില്ല',
+'exif-gaincontrol-1' => 'ലോ ഗെയ്‌ൻ അപ്',
+'exif-gaincontrol-2' => 'ഹൈ ഗെയ്‌ൻ അപ്',
+'exif-gaincontrol-3' => 'ലോ ഗെയ്‌ൻ ഡൗൺ',
+'exif-gaincontrol-4' => 'ഹൈ ഗെയ്‌ൻ ഡൗൺ',
 
 'exif-contrast-0' => 'സാധാരണം',
 'exif-contrast-1' => 'സോഫ്റ്റ്',
