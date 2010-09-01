@@ -373,7 +373,7 @@ abstract class UploadBase {
 
 		$handler = MediaHandler::getHandler( $mime );
 		if ( $handler ) {
-			$handler->verifyFileHook( $this, $mime, &$status );
+			$handler->verifyFileHook( $this, $mime, $status );
 			if ( $status !== true ) {
 				return $status;
 			}
