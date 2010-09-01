@@ -186,14 +186,10 @@ class SqliteInstaller extends DatabaseInstaller {
 		global $wgDatabase;
 		LBFactory::enableBackend();
 		$wgDatabase = wfGetDB( DB_MASTER );
-		ob_start( array( 'SqliteInstaller', 'outputHandler' ) );
+		ob_start( array( $this, 'outputHandler' ) );
 		do_all_updates( false, true );
 		ob_end_flush();
 		return true;
-	}
-
-	public static function outputHandler( $string ) {
-		return htmlspecialchars( $string );
 	}
 
 	public function getLocalSettings() {

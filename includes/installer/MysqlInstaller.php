@@ -198,7 +198,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		$ret = true;
 
-		ob_start( array( __CLASS__, 'outputHandler' ) );
+		ob_start( array( $this, 'outputHandler' ) );
 		try {
 			do_all_updates( false, true );
 		} catch ( MWException $e ) {
@@ -208,10 +208,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 		ob_end_flush();
 		return $ret;
-	}
-
-	public static function outputHandler( $string ) {
-		return htmlspecialchars( $string );
 	}
 
 	/**

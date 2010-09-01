@@ -424,4 +424,7 @@ abstract class DatabaseInstaller {
 		return Status::newGood();
 	}
 
+	public function outputHandler( $string ) {
+		return htmlspecialchars( $string );
+	}
 }
