@@ -564,7 +564,7 @@ END;
 				wfOut( "Dropping rule \"archive_delete\"\n" );
 				$this->db->query( 'DROP RULE archive_delete ON archive' );
 			}
-			$this->db->sourceFile( archive( 'patch-remove-archive2.sql' ) );
+			$this->applyPatch( 'patch-remove-archive2.sql' );
 		} else {
 			wfOut( "... obsolete table \"archive2\" does not exist\n" );
 		}

@@ -165,7 +165,7 @@ abstract class DatabaseUpdater {
 		if ( $isFullPath ) {
 			$this->db->sourceFile( $path );
 		} else {
-			$this->db->sourceFile( archive( $path ) );
+			$this->db->sourceFile( DatabaseBase::patchPath( $path ) );
 		}
 	}
 

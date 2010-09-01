@@ -103,12 +103,8 @@ function do_all_updates( $shared = false, $purge = true ) {
 }
 
 function archive( $name ) {
-	global $wgDBtype, $IP;
-	if ( file_exists( "$IP/maintenance/$wgDBtype/archives/$name" ) ) {
-		return "$IP/maintenance/$wgDBtype/archives/$name";
-	} else {
-		return "$IP/maintenance/archives/$name";
-	}
+	wfDeprecated( __FUNCTION__ );
+	return DatabaseBase::patchPath( $name );
 }
 
 function do_interwiki_update() {
