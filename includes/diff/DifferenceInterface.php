@@ -277,18 +277,22 @@ CONTROL;
 		if( $this->unhide ) {
 			$query['unhide'] = 1;
 		}
-		$prevlink = $sk->link(
-			$this->mTitle,
-			wfMsgHtml( 'previousdiff' ),
-			array(
-				'id' => 'differences-prevlink'
-			),
-			$query,
-			array(
-				'known',
-				'noclasses'
-			)
-		);
+		if( !$this->mOldRev->getPrevious() ) {
+			$prevlink = '&#160;';
+		} else {
+			$prevlink = $sk->link(
+				$this->mTitle,
+				wfMsgHtml( 'previousdiff' ),
+				array(
+					'id' => 'differences-prevlink'
+				),
+				$query,
+				array(
+					'known',
+					'noclasses'
+				)
+			);
+		}
 
 		# Make "next revision link"
 		$query['diff'] = 'next';
