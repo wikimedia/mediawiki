@@ -644,6 +644,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->SQLiteDataDir = importPost( "SQLiteDataDir", "$IP/../data" );
 
 	## DB2 specific:
+	$conf->DBport_db2   = importPost( "DBport_db2",      "50000" );
 	$conf->DBdb2schema  = importPost( "DBdb2schema",  "mediawiki" );
 
 	// Oracle specific
@@ -834,6 +835,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 
 		## DB2 specific:
+		if ( $conf->DBtype == 'ibm_db2' ) {
+			$wgDBport      = $conf->DBport_db2;
+		}
 
 		$wgCommandLineMode = true;
 		if (! defined ( 'STDERR' ) )
@@ -1707,7 +1711,7 @@ if( count( $errs ) ) {
 	
 	<?php database_switcher($ourdb, 'ibm_db2'); ?>
 	<div class="config-input"><?php
-		aField( $conf, "DBport", "Database port:" );
+		aField( $conf, "DBport_db2", "Database port:" );
 	?></div>
 	<div class="config-desc">
 		<p>50000 is the usual DB2 port.</p>
@@ -1905,10 +1909,11 @@ function writeLocalSettings( $conf ) {
 "# SQLite-specific settings
 \$wgSQLiteDataDir    = \"{$sqliteDataDir}\";";
 	} elseif( $conf->DBtype == 'ibm_db2' ) {
-		$dbsettings =
-"# DB2 specific settings
-\$wgDBport       = \"{$slconf['DBport']}\";
-\$wgDBmwschema       = \"{$slconf['DBdb2schema']}\";";
+		$dbsettings = <<<MULTILINE
+# DB2 specific settings
+\$wgDBport           = "{$slconf['DBport_db2']}";
+\$wgDBmwschema       = "{$slconf['DBdb2schema']}";
+MULTILINE;
 	} elseif( $conf->DBtype == 'oracle' ) {
 		$dbsettings =
 "# Oracle specific settings
