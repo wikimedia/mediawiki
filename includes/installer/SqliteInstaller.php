@@ -122,14 +122,6 @@ class SqliteInstaller extends DatabaseInstaller {
 		return parent::needsUpgrade();
 	}
 
-	public function getSettingsForm() {
-		return false;
-	}
-
-	public function submitSettingsForm() {
-		return Status::newGood();
-	}
-
 	public function setupDatabase() {
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 

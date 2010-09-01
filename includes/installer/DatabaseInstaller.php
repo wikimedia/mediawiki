@@ -80,7 +80,9 @@ abstract class DatabaseInstaller {
 	 * If the DB type has no settings beyond those already configured with 
 	 * getConnectForm(), this should return false.
 	 */
-	public abstract function getSettingsForm();
+	public function getSettingsForm() {
+		return false;
+	}
 
 	/**
 	 * Set variables based on the request array, assuming it was submitted via
@@ -88,7 +90,9 @@ abstract class DatabaseInstaller {
 	 * 
 	 * @return Status
 	 */
-	public abstract function submitSettingsForm();
+	public function submitSettingsForm() {
+		return Status::newGood();
+	}
 
 	/**
 	 * Connect to the database using the administrative user/password currently
