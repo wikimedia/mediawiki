@@ -831,6 +831,8 @@ class WebInstaller_Install extends WebInstallerPage {
 			$status = new Status();
 			$status->warning( 'config-install-alreadydone' );
 			$this->parent->showStatusBox( $status );
+		} elseif( $this->getVar( '_UpgradeDone' ) ) {
+			return 'skip';
 		} else {
 			$this->startForm();
 			$this->addHTML("<ul>");
