@@ -76,6 +76,7 @@ ENABLED_SECTIONS       =
 MAX_INITIALIZER_LINES  = 30
 SHOW_USED_FILES        = YES
 SHOW_DIRECTORIES       = NO
+SHOW_NAMESPACES        = NO
 FILE_VERSION_FILTER    = {{SVNSTAT}}
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages
