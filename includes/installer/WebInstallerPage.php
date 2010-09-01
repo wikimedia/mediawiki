@@ -197,7 +197,8 @@ class WebInstaller_Welcome extends WebInstallerPage {
 		$this->parent->output->addWikiText( wfMsgNoTrans( 'config-welcome' ) );
 		$status = $this->parent->doEnvironmentChecks();
 		if ( $status ) {
-			$this->parent->output->addWikiText( wfMsgNoTrans( 'config-copyright', wfMsg( 'config-authors' ) ) );
+			$this->parent->output->addWikiText( wfMsgNoTrans( 'config-copyright', 
+				SpecialVersion::getCopyrightAndAuthorList() ) );
 			$this->startForm();
 			$this->endForm();
 		}

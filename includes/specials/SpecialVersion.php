@@ -89,12 +89,31 @@ class SpecialVersion extends SpecialPage {
 		// This text is always left-to-right.
 		$ret .= '<div>';
 		$ret .= "__NOTOC__
-		" . wfMsg( 'version-poweredby-credits', date( 'Y' ),
-				$wgLang->listToText( $authorList ) ) . "\n
+		" . self::getCopyrightAndAuthorList() . "\n
 		" . wfMsg( 'version-license-info' );
 		$ret .= '</div>';
 
 		return str_replace( "\t\t", '', $ret ) . "\n";
+	}
+
+	/**
+	 * Get the "Mediawiki is copyright 2001-20xx by lots of cool guys" text
+	 *
+	 * @return String
+	 */
+	public static function getCopyrightAndAuthorList() {
+		global $wgLang;
+
+		$authorList = array( 'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
+			'Tim Starling', 'Erik Möller', 'Gabriel Wicke', 'Ævar Arnfjörð Bjarmason',
+			'Niklas Laxström', 'Domas Mituzas', 'Rob Church', 'Yuri Astrakhan',
+			'Aryeh Gregor', 'Aaron Schulz', 'Andrew Garrett', 'Raimond Spekking',
+			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
+			wfMsg( 'version-poweredby-others' )
+		);
+
+		return wfMsg( 'version-poweredby-credits', date( 'Y' ),
+			$wgLang->listToText( $authorList ) );
 	}
 
 	/**
