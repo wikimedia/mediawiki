@@ -330,17 +330,6 @@ $messages = array(
 'vector-action-protect'          => 'Яклау',
 'vector-action-undelete'         => 'Кайтару',
 'vector-action-unprotect'        => 'Яклауны бетерү',
-'vector-namespace-category'      => 'Төркем',
-'vector-namespace-help'          => 'Ярдәм бите',
-'vector-namespace-image'         => 'Файл',
-'vector-namespace-main'          => 'Бит',
-'vector-namespace-media'         => 'Медиа-бит',
-'vector-namespace-mediawiki'     => 'Хәбәр',
-'vector-namespace-project'       => 'Проект бите',
-'vector-namespace-special'       => 'Махсус бит',
-'vector-namespace-talk'          => 'Бәхәс',
-'vector-namespace-template'      => 'Үрнәк',
-'vector-namespace-user'          => 'Кулланучы бите',
 'vector-simplesearch-preference' => 'Эзләү өчен киңәйтелгән ярдәм хәбәрләрен күрсәтү («Векторлы» бизәлеше өчен генә кулланылыа)',
 'vector-view-create'             => 'Төзү',
 'vector-view-edit'               => 'Үзгәртү',
@@ -1585,24 +1574,29 @@ $UNWATCHURL
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'            => 'Битне бетерү',
-'confirm'               => 'Расларга',
-'excontent'             => 'эчтәлек: «$1»',
-'exblank'               => 'бит буш иде',
-'delete-confirm'        => '«$1» бетерү',
-'delete-legend'         => 'Бетерү',
-'historywarning'        => "'''Кисәтү''': сез бетерергә теләгән биттә үзгәртү тарихы бар, ул $1дән {{PLURAL:$1|юрамалар}}:",
-'confirmdeletetext'     => 'Сез бу битнең (яки рәсемнең) тулысынча бетерелүен сорадыгыз.
+'deletepage'             => 'Битне бетерү',
+'confirm'                => 'Расларга',
+'excontent'              => 'эчтәлек: «$1»',
+'exblank'                => 'бит буш иде',
+'delete-confirm'         => '«$1» бетерү',
+'delete-legend'          => 'Бетерү',
+'historywarning'         => "'''Кисәтү''': сез бетерергә теләгән биттә үзгәртү тарихы бар, ул $1дән {{PLURAL:$1|юрамалар}}:",
+'confirmdeletetext'      => 'Сез бу битнең (яки рәсемнең) тулысынча бетерелүен сорадыгыз.
 Зинһар, моны чыннан да эшләргә теләгәнегезне, моның нәтиҗәләрен аңлаганыгызны һәм [[{{MediaWiki:Policy-url}}]] бүлегендәге кагыйдәләр буенча эшләгәнегезне раслагыз.',
-'actioncomplete'        => 'Гамәл башкарган',
-'deletedtext'           => '«<nowiki>$1</nowiki>» бетерелгән инде.<br />
+'actioncomplete'         => 'Гамәл башкарган',
+'deletedtext'            => '«<nowiki>$1</nowiki>» бетерелгән инде.<br />
 Соңгы бетерелгән битләрне күрер өчен, $2 карагыз.',
-'deletedarticle'        => '«[[$1]]» бетерелде',
-'dellogpage'            => 'Бетерү көндәлеге',
-'deletionlog'           => 'бетерү көндәлеге',
-'deletecomment'         => 'Сәбәп:',
-'deleteotherreason'     => 'Башка/өстәмә сәбәп:',
-'deletereasonotherlist' => 'Башка сәбәп',
+'deletedarticle'         => '«[[$1]]» бетерелде',
+'dellogpage'             => 'Бетерү көндәлеге',
+'deletionlog'            => 'бетерү көндәлеге',
+'deletecomment'          => 'Сәбәп:',
+'deleteotherreason'      => 'Башка/өстәмә сәбәп:',
+'deletereasonotherlist'  => 'Башка сәбәп',
+'deletereason-dropdown'  => '* Бетерүнең сәбәпләре
+** вандаллык
+** автор соравы буенча
+** автор хокукларын бозу',
+'delete-edit-reasonlist' => 'Сәбәпләр исемлеген үзгәртү',
 
 # Rollback
 'rollback_short' => 'Кире кайтару',

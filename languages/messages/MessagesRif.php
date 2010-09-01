@@ -78,10 +78,6 @@ $messages = array(
 'qbedit'         => 'Ẓṛeg',
 'qbspecialpages' => 'Tudmawin Special',
 
-# Vector skin
-'vector-namespace-main'      => 'Tasna',
-'vector-namespace-mediawiki' => 'Tabrat',
-
 'errorpagetitle'   => 'Anezri',
 'returnto'         => 'Dwl ghar $1.',
 'tagline'          => 'Zi {{SITENAME}}',

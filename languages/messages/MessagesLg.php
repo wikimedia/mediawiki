@@ -94,7 +94,6 @@ $messages = array(
 
 # Vector skin
 'vector-action-move'     => 'Simbuliza',
-'vector-namespace-main'  => 'Lupapula',
 'vector-view-edit'       => 'Kyusa',
 'vector-view-viewsource' => "Kebera obulambike obw'ennono obw'olupapula luno",
 

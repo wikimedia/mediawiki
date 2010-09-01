@@ -96,7 +96,6 @@ $messages = array(
 # Vector skin
 'vector-action-delete'   => 'Tutui',
 'vector-action-move'     => 'Ɖɔli eƒe nɔƒe',
-'vector-namespace-main'  => 'Axa',
 'vector-view-create'     => 'Dze egɔme',
 'vector-view-edit'       => 'Trɔ asi le eŋu',
 'vector-view-history'    => 'Kpɔ xoxoawo',

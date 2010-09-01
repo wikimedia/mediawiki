@@ -123,7 +123,6 @@ $messages = array(
 'vector-action-move'     => 'ЦIэр хъуэжын',
 'vector-action-protect'  => 'Хъумэн',
 'vector-action-undelete' => 'ЗыфIэгъэувэжын',
-'vector-namespace-image' => 'Файл',
 'vector-view-view'       => 'Еджэн',
 
 'errorpagetitle'   => 'Щыуагъэ',

@@ -103,12 +103,8 @@ $messages = array(
 'faqpage'        => 'Project:отир сё юасьö',
 
 # Vector skin
-'vector-action-delete'      => 'Чышкыны',
-'vector-namespace-category' => 'Категория',
-'vector-namespace-help'     => 'Отсасян листбок',
-'vector-namespace-image'    => 'Файл',
-'vector-namespace-main'     => 'Листбок',
-'variants'                  => 'Варианттэз',
+'vector-action-delete' => 'Чышкыны',
+'variants'             => 'Варианттэз',
 
 'errorpagetitle'   => 'Сорасьöм',
 'returnto'         => 'Бертны $1-öдз.',

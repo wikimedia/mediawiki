@@ -150,9 +150,6 @@ $messages = array(
 'qbmyoptions'    => 'Påhina-hu siha',
 'qbspecialpages' => 'Manespesiat na påhina',
 
-# Vector skin
-'vector-namespace-template' => 'Plantiya',
-
 'errorpagetitle'    => 'Linachi',
 'returnto'          => 'Hånao tåtte para $1.',
 'tagline'           => 'Ginen {{SITENAME}}',

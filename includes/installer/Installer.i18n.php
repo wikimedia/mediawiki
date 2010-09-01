@@ -994,6 +994,14 @@ chmod a+w $3</pre>',
 
 Калі Вы не жадаеце мець ніякага лягатыпу, пакіньце гэтае поле пустым.',
 	'config-instantcommons' => 'Дазволіць Instant Commons',
+	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] — магчымасьць, якая дазваляе вікі выкарыстоўваць выявы, гукі і іншыя мэдыя, якія знаходзяцца на сайце [http://commons.wikimedia.org/ Wikimedia Commons].
+Каб гэта зрабіць, MediaWiki патрабуе доступу да Інтэрнэту. $1
+
+Каб даведацца болей пра гэтую магчымасьць, уключаючы інструкцыю пра тое, як яе ўстанавіць ў любой вікі, акрамя Wikimedia Commons, глядзіце [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos дакумэнтацыю].',
+	'config-instantcommons-good' => 'Праграма ўсталяваньня знайшла далучэньне да Інтэрнэту падчас праверкі асяродзьдзя.
+Вы можаце дазволіць гэтую магчымасьць, калі жадаеце.',
+	'config-instantcommons-bad' => "''На жаль, праграма ўсталяваньня не знайшла далучэньня да інтэрнэту, падчас праверкі асяродзьдзя, таму, магчыма, Вы ня зможаце выкарыстоўваць гэтую магчымасьць.
+Калі Ваш сэрвэр даступны праз проксі-сэрвэр, верагодна Вам  патрэбна будзе зьмяніць [http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy дадатковыя ўстаноўкі].''",
 	'config-memcached-servers' => 'Сэрвэры memcached:',
 	'config-extensions' => 'Пашырэньні',
 	'config-install-step-done' => 'зроблена',
@@ -1097,6 +1105,46 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-install-user' => 'O krouiñ an diaz roadennoù implijer',
 	'config-install-tables' => 'Krouiñ taolennoù',
 	'config-install-secretkey' => "Genel an alc'hwez kuzh",
+);
+
+/** Bosnian (Bosanski)
+ * @author CERminator
+ */
+$messages['bs'] = array(
+	'config-desc' => 'Instalacija za MediaWiki',
+	'config-title' => 'MediaWiki $1 instalacija',
+	'config-information' => 'Informacija',
+	'config-localsettings-upgrade' => "'''Upozorenje''': Otkrivena je datoteka <code>LocalSettings.php</code>.
+Vaš softver je moguće unaprijediti.
+Molimo premjestite <code>LocalSettings.php</code> na sigurno mjesto a zatim ponovo pokrenite instalaciju.",
+	'config-session-error' => 'Greška pri pokretanju sesije: $1',
+	'config-show-help' => 'Pomoć',
+	'config-hide-help' => 'Sakrij pomoć',
+	'config-your-language' => 'Vaš jezik:',
+	'config-your-language-help' => 'Odaberite jezik koji ćete koristiti tokom procesa instalacije.',
+	'config-wiki-language' => 'Wiki jezik:',
+	'config-wiki-language-help' => 'Odaberite jezik na kojem će wiki biti najvećim dijelim pisana.',
+	'config-back' => '← Nazad',
+	'config-continue' => 'Nastavi →',
+	'config-page-language' => 'Jezik',
+	'config-page-welcome' => 'Dobrodošli u MediaWiki!',
+	'config-page-dbconnect' => 'Poveži sa bazom podataka',
+	'config-page-upgrade' => 'Unaprijedi postojeću instalaciju',
+	'config-page-dbsettings' => 'Postavke baze podataka',
+	'config-page-name' => 'Naziv',
+	'config-page-options' => 'Opcije',
+	'config-page-install' => 'Instaliraj',
+	'config-page-complete' => 'Završeno!',
+	'config-page-restart' => 'Ponovi instalaciju ispočetka',
+	'config-page-readme' => 'Pročitaj me',
+	'config-page-releasenotes' => 'Bilješke izdanja',
+	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Početna strana]
+* [http://www.mediawiki.org/wiki/Help:Contents Vodič za korisnike]
+* [http://www.mediawiki.org/wiki/Manual:Contents Vodič za administratore]
+* [http://www.mediawiki.org/wiki/Manual:FAQ NPP]',
+	'config-env-good' => '<span class="success-message">Okruženje je provjereno.
+Možete instalirati MediaWiki.</span>',
+	'config-env-php' => 'PHP $1 je instaliran.',
 );
 
 /** German (Deutsch)

@@ -87,16 +87,10 @@ $messages = array(
 'qbspecialpages' => 'Specialuos puslopys',
 
 # Vector skin
-'vector-action-addsection'  => 'Dalikt padaļu',
-'vector-action-delete'      => 'Iztreit',
-'vector-action-protect'     => 'Apsorguot',
-'vector-namespace-category' => 'Kategoreja',
-'vector-namespace-image'    => 'Fails',
-'vector-namespace-project'  => 'Projekta puslopa',
-'vector-namespace-special'  => 'Specialuo puslopa',
-'vector-namespace-talk'     => 'Sprīža',
-'vector-namespace-template' => 'Taiss',
-'variants'                  => 'Varianti',
+'vector-action-addsection' => 'Dalikt padaļu',
+'vector-action-delete'     => 'Iztreit',
+'vector-action-protect'    => 'Apsorguot',
+'variants'                 => 'Varianti',
 
 'errorpagetitle'   => 'Klaida',
 'returnto'         => 'Atsagrīzt: $1.',

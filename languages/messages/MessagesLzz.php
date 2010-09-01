@@ -118,14 +118,8 @@ $messages = array(
 'qbspecialpages' => 'Doxmeli sayfape',
 
 # Vector skin
-'vector-action-delete'       => 'Jili',
-'vector-namespace-category'  => "K'at'egori",
-'vector-namespace-help'      => "Meşvelaş t'aba",
-'vector-namespace-image'     => 'Dosya',
-'vector-namespace-mediawiki' => 'Mesaji',
-'vector-namespace-project'   => "P'rojeşi t'aba",
-'vector-namespace-special'   => 'Doxmeli sayfa',
-'vector-view-edit'           => 'Doktiri',
+'vector-action-delete' => 'Jili',
+'vector-view-edit'     => 'Doktiri',
 
 'errorpagetitle'   => 'Çilata',
 'returnto'         => '$1 butʼkʼaşa goikti.',

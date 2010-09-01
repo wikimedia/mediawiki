@@ -364,31 +364,20 @@ Dat es och all op Änglesch:
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'   => 'Ne neue Afschnet onge draan!',
-'vector-action-delete'       => 'Fottschmiiße!',
-'vector-action-move'         => 'Ömnänne!',
-'vector-action-protect'      => 'Schöze!',
-'vector-action-undelete'     => 'Zerökholle!',
-'vector-action-unprotect'    => 'Schoz ophävve!',
-'vector-namespace-category'  => 'Saachjroppesigg',
-'vector-namespace-help'      => 'Hölpsigg',
-'vector-namespace-image'     => 'Datei',
-'vector-namespace-main'      => 'Wikisigg',
-'vector-namespace-media'     => 'Medijesigg',
-'vector-namespace-mediawiki' => 'Täx/Nohreesch',
-'vector-namespace-project'   => 'Projäksigg',
-'vector-namespace-special'   => '{{int:nstab-special}}',
-'vector-namespace-talk'      => 'Klaafsigg',
-'vector-namespace-template'  => 'Schablohn',
-'vector-namespace-user'      => 'Metmaachersigg',
-'vector-view-create'         => 'Neu Schriive!',
-'vector-view-edit'           => 'Ändere!',
-'vector-view-history'        => 'Versione zeije!',
-'vector-view-view'           => 'Lesse!',
-'vector-view-viewsource'     => 'Wikitex aanlooere!',
-'actions'                    => 'Akßjuhne',
-'namespaces'                 => 'Appachtemangs',
-'variants'                   => 'Variante',
+'vector-action-addsection' => 'Ne neue Afschnet onge draan!',
+'vector-action-delete'     => 'Fottschmiiße!',
+'vector-action-move'       => 'Ömnänne!',
+'vector-action-protect'    => 'Schöze!',
+'vector-action-undelete'   => 'Zerökholle!',
+'vector-action-unprotect'  => 'Schoz ophävve!',
+'vector-view-create'       => 'Neu Schriive!',
+'vector-view-edit'         => 'Ändere!',
+'vector-view-history'      => 'Versione zeije!',
+'vector-view-view'         => 'Lesse!',
+'vector-view-viewsource'   => 'Wikitex aanlooere!',
+'actions'                  => 'Akßjuhne',
+'namespaces'               => 'Appachtemangs',
+'variants'                 => 'Variante',
 
 'errorpagetitle'    => 'Fähler',
 'returnto'          => 'Jangk widder noh: „$1“.',
@@ -1190,9 +1179,13 @@ Do kanns kein Enndrääsch vör de Wiki_Köbeße verschteijsche, der oohne noch 
 Loor en de [[Special:IPBlockList|{{int:ipblocklist}}]] öm ze sinn, wää un wat em Momang wie jesperrt es.',
 
 # Revision move
-'revisionmove'              => 'Versione vun „$1“ ömnänne',
-'revmove-reasonfield'       => 'Jrond:',
-'revmove-norevisions-title' => 'Enem Ziel sing Version es nit jöltesch',
+'revisionmove'                 => 'Versione vun „$1“ ömnänne',
+'revmove-legend'               => 'Zielsigg un Jrond aanjävve',
+'revmove-submit'               => 'Lohß jonn!',
+'revisionmoveselectedversions' => 'Ußjesoht Versione ömnänne',
+'revmove-reasonfield'          => 'Jrond:',
+'revmove-titlefield'           => 'Zielsigg:',
+'revmove-norevisions-title'    => 'Enem Ziel sing Version es nit jöltesch',
 
 # History merging
 'mergehistory'                     => 'Versione fun Sigge zosamme schmiiße',
@@ -1531,6 +1524,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-reset-passwords'       => 'Enem andere Metmaacher et Paßwoot zeröck setze',
 'right-override-export-depth' => 'Beim Sigge Expoteere de Sigge metnämme, woh Lingks drop jon — beß fönef Schredde wigk',
 'right-sendemail'             => '<i lang="en">e-mail</i> aan ander Metmaacher schecke',
+'right-revisionmove'          => 'Versione ömnänne',
 'right-selenium'              => 'de Prövunge vum Seleenium jonn lohße',
 
 # User rights log
@@ -1574,6 +1568,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'action-userrights'           => 'alle Metmaacher ier Rääschte ze ändere',
 'action-userrights-interwiki' => 'dä Metmaacher fun ander Wikis ier Rääschte ze ändere',
 'action-siteadmin'            => 'de Datebank ze sperre udder widder freizejävve',
+'action-revisionmove'         => 'Versione ömzenänne',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
@@ -2344,6 +2339,7 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 'protectexpiry'               => 'Duur, wi lang:',
 'protect_expiry_invalid'      => 'Die Duur för ze Schötz es Kappes, di künne mer nit verstonn.',
 'protect_expiry_old'          => 'Do häs De Desch verdonn. Die Zick för ze Schötze es doch ald eröm!',
+'protect-unchain-permissions' => 'Donn de andere Ußwahle freij schallde',
 'protect-text'                => "Heh kanns De dä Schotz jäje Veränderunge för de Sigg „'''<nowiki>$1</nowiki>'''“ aanluure un ändere.",
 'protect-locked-blocked'      => "Do kanns nit der Siggeschotz ändere, esu lang wi Dinge Zojang zom Wiki jesperrt es. Hee es der aktuelle Stand fum Siggeschotz för di Sigg '''„$1“:'''",
 'protect-locked-dblock'       => "De Datebank es jesperrt. Dröm künne mer der Siggeschotz nit ändere.
