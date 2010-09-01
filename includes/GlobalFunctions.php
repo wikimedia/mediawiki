@@ -1510,7 +1510,11 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	if( !$wgDiff3 || !file_exists( $wgDiff3 ) ) {
+	wfSuppressWarnings();
+	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
+	wfRestoreWarnings();
+
+	if( !$haveDiff3 ) {
 		wfDebug( "diff3 not found\n" );
 		return false;
 	}
@@ -1580,10 +1584,13 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	}
 
 	global $wgDiff;
+	wfSuppressWarnings();
+	$haveDiff = $wgDiff && file_exists( $wgDiff );
+	wfRestoreWarnings();
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	if( !file_exists( $wgDiff ) ) {
+	if( !$haveDiff ) {
 		wfDebug( "diff executable not found\n" );
 		$diffs = new Diff( explode( "\n", $before ), explode( "\n", $after ) );
 		$format = new UnifiedDiffFormatter();
