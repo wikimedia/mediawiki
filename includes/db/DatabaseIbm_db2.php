@@ -459,7 +459,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $string String: the relevant debug message
 	 */
 	private function installPrint($string) {
-		wfDebug("$string");
+		wfDebug("$string\n");
 		if ($this->mMode == self::INSTALL_MODE) {
 			print "<li>$string</li>";
 			flush();
@@ -634,16 +634,13 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 */
 	/*private*/
 	public function doQuery( $sql ) {
-		//print "<li><pre>$sql</pre></li>";
-		// Switch into the correct namespace
 		$this->applySchema();
 		
 		$ret = db2_exec( $this->mConn, $sql, $this->mStmtOptions );
-		if( !$ret ) {
-			print "<br><pre>";
-			print $sql;
-			print "</pre><br>";
+		if( $ret == FALSE ) {
 			$error = db2_stmt_errormsg();
+			$this->installPrint("<pre>$sql</pre>");
+			$this->installPrint($error);
 			throw new DBUnexpectedError($this,  'SQL error: ' . htmlspecialchars( $error ) );
 		}
 		$this->mLastResult = $ret;
@@ -747,6 +744,12 @@ EOF;
 				print " <b>FAILED</b>: " . htmlspecialchars( $res ) . "</li>";
 			} else {
 				print " done</li>";
+			}
+			$res = $this->sourceFile( "../maintenance/ibm_db2/foreignkeys.sql" );
+			if ($res !== true) {
+				print " <b>FAILED</b>: " . htmlspecialchars( $res ) . "</li>";
+			} else {
+				print "<li>Foreign keys done</li>";
 			}
 			$res = null;
 			
@@ -881,67 +884,35 @@ EOF;
 	 *        LIST_OR            - ORed WHERE clause (without the WHERE)
 	 *        LIST_SET           - comma separated with field names, like a SET clause
 	 *        LIST_NAMES         - comma separated field names
+	 *        LIST_SET_PREPARED  - like LIST_SET, except with ? tokens as values
 	 */
-	public function makeList( $a, $mode = LIST_COMMA ) {
+	function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
-			throw new DBUnexpectedError( $this, 'Database::makeList called with incorrect parameters' );
+			throw new DBUnexpectedError( $this, 'DatabaseBase::makeList called with incorrect parameters' );
 		}
-
-		$first = true;
-		$list = '';
-		foreach ( $a as $field => $value ) {
-			if ( !$first ) {
-				if ( $mode == LIST_AND ) {
-					$list .= ' AND ';
-				} elseif($mode == LIST_OR) {
-					$list .= ' OR ';
-				} else {
-					$list .= ',';
-				}
-			} else {
-				$first = false;
-			}
-			if ( ($mode == LIST_AND || $mode == LIST_OR) && is_numeric( $field ) ) {
-				$list .= "($value)";
-			} elseif ( ($mode == LIST_SET) && is_numeric( $field ) ) {
-				$list .= "$value";
-			} elseif ( ($mode == LIST_AND || $mode == LIST_OR) && is_array($value) ) {
-				if( count( $value ) == 0 ) {
-					throw new MWException( __METHOD__.': empty input' );
-				} elseif( count( $value ) == 1 ) {
-					// Special-case single values, as IN isn't terribly efficient
-					// Don't necessarily assume the single key is 0; we don't
-					// enforce linear numeric ordering on other arrays here.
-					$value = array_values( $value );
-					$list .= $field." = ".$this->addQuotes( $value[0] );
-				} else {
-					$list .= $field." IN (".$this->makeList($value).") ";
-				}
-			} elseif( is_null($value) ) {
-				if ( $mode == LIST_AND || $mode == LIST_OR ) {
-					$list .= "$field IS ";
-				} elseif ( $mode == LIST_SET ) {
-					$list .= "$field = ";
-				}
-				$list .= 'NULL';
-			} else {
-				if ( $mode == LIST_AND || $mode == LIST_OR || $mode == LIST_SET ) {
-					$list .= "$field = ";
-				}
-				if ( $mode == LIST_NAMES ) {
-					$list .= $value;
-				}
-				// Leo: Can't insert quoted numbers into numeric columns
-				// (?) Might cause other problems. May have to check column type before insertion.
-				else if ( is_numeric($value) ) {
-					$list .= $value;
+		
+		// if this is for a prepared UPDATE statement
+		// (this should be promoted to the parent class
+		//  once other databases use prepared statements)
+		if ($mode == LIST_SET_PREPARED) {
+			$first = true;
+			$list = '';
+			foreach ( $a as $field => $value ) {
+				if (!$first) {
+					$list .= ", $field = ?";
 				}
 				else {
-					$list .= $this->addQuotes( $value );
+					$list .= "( $field = ?";
+				  $first = false;
 				}
 			}
+			$list .= ')';
+			
+			return $list;
 		}
-		return $list;
+		
+		// otherwise, call the usual function
+		return parent::makeList( $a, $mode );
 	}
 	
 	/**
@@ -956,10 +927,14 @@ EOF;
 			throw new DBUnexpectedError( $this, "Invalid non-numeric limit passed to limitResult()\n" );
 		}
 		if( $offset ) {
-			$this->installPrint("Offset parameter not supported in limitResult()\n");
+			//$this->installPrint("Offset parameter not supported in limitResult()\n");
+			if ( stripos($sql, 'where') === false ) {
+				return "$sql AND (ROWNUM BETWEEN $offset AND $offset+$limit)";
+			}
+			else {
+				return "$sql WHERE (ROWNUM BETWEEN $offset AND $offset+$limit)";
+			}
 		}
-		// TODO implement proper offset handling
-		// idea: get all the rows between 0 and offset, advance cursor to offset
 		return "$sql FETCH FIRST $limit ROWS ONLY ";
 	}
 	
@@ -1027,8 +1002,8 @@ EOF;
 	 */
 	private function calcInsertId($table, $primaryKey, $stmt) {
 		if ($primaryKey) {
-			$id_row = $this->fetchRow($stmt);
-			$this->mInsertId = $id_row[0];
+			$this->mInsertId = db2_last_insert_id($this->mConn);
+			//$this->installPrint("Last $primaryKey for $table was $this->mInsertId");
 		}
 	}
 	
@@ -1052,11 +1027,12 @@ EOF;
 		// get database-specific table name (not used)
 		$table = $this->tableName( $table );
 		// format options as an array
-		if ( !is_array( $options ) ) $options = array( $options );
+		$options = IBM_DB2Helper::makeArray($options);
 		// format args as an array of arrays
 		if ( !( isset( $args[0] ) && is_array( $args[0] ) ) ) {
 			$args = array($args);
 		}
+		
 		// prevent insertion of NULL into primary key columns
 		list($args, $primaryKeys) = $this->removeNullPrimaryKeys($table, $args);
 		// if there's only one primary key
@@ -1081,27 +1057,29 @@ EOF;
 		}
 
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
-		switch($key_count) {
-			//case 0 impossible
-			case 1:
-				$sql .= '(?)';
-				break;
-			default:
-				$sql .= '(?' . str_repeat(',?', $key_count-1) . ')';
+		if ($key_count == 1) {
+			$sql .= '(?)';
+		} else {
+			$sql .= '(?' . str_repeat(',?', $key_count-1) . ')';
 		}
-		// add logic to read back the new primary key value
-		if ($primaryKey) {
-			$sql = "SELECT $primaryKey FROM FINAL TABLE($sql)";
-		}
+		//$this->installPrint("Preparing the following SQL:");
+		//$this->installPrint("$sql");
+		//$this->installPrint(print_r($args, true));
 		$stmt = $this->prepare($sql);
 		
 		// start a transaction/enter transaction mode
 		$this->begin();
 
 		if ( !$ignore ) {
+			//$first = true;
 			foreach ( $args as $row ) {
+				//$this->installPrint("Inserting " . print_r($row, true));
 				// insert each row into the database
 				$res = $res & $this->execute($stmt, $row);
+				if (!$res) {
+					$this->installPrint("Last error:");
+					$this->installPrint($this->lastError());
+				}
 				// get the last inserted value into a generated column
 				$this->calcInsertId($table, $primaryKey, $stmt);
 			}
@@ -1118,8 +1096,14 @@ EOF;
 			foreach ( $args as $row ) {
 				$overhead = "SAVEPOINT $ignore ON ROLLBACK RETAIN CURSORS";
 				db2_exec($this->mConn, $overhead, $this->mStmtOptions);
+				//$this->installPrint("Inserting " . print_r($row, true));
 				
 				$this->execute($stmt, $row);
+				//$this->installPrint(wfGetAllCallers());
+				if (!$res2) {
+					$this->installPrint("Last error:");
+					$this->installPrint($this->lastError());
+				}
 				// get the last inserted value into a generated column
 				$this->calcInsertId($table, $primaryKey, $stmt);
 				
@@ -1139,6 +1123,7 @@ EOF;
 		}
 		// commit either way
 		$this->commit();
+		$this->freePrepared($stmt);
 		
 		return $res;
 	}
@@ -1187,11 +1172,20 @@ EOF;
 	public function update( $table, $values, $conds, $fname = 'Database::update', $options = array() ) {
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
-		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
+		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET_PREPARED );
 		if ( $conds != '*' ) {
 			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
 		}
-		return $this->query( $sql, $fname );
+		$stmt = $this->prepare( $sql );
+		$this->installPrint("UPDATE: " . print_r($values, TRUE));
+		// assuming for now that an array with string keys will work
+		// if not, convert to simple array first
+		$result = $this->execute( $stmt, $values );
+		$this->freePrepared( $stmt );
+		//$result = $this->query( $sql, $fname );
+		// commit regardless of state
+		//$this->commit();
+		return $result;
 	}
 	
 	/**
@@ -1208,7 +1202,10 @@ EOF;
 		if ( $conds != '*' ) {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
-		return $this->query( $sql, $fname );
+		$result = $this->query( $sql, $fname );
+		// commit regardless
+		//$this->commit();
+		return $result;
 	}
 	
 	/**
@@ -1643,7 +1640,7 @@ SQL;
 	 * @return mixed
 	 */
 	public function decodeBlob($b) {
-		return $b->getData();
+		return "$b";
 	}
 	
 	/**
@@ -1789,5 +1786,13 @@ SQL;
 	 */
 	function bitOr($fieldLeft, $fieldRight) {
 		return 'BITOR('.$fieldLeft.', '.$fieldRight.')';
+	}
+}
+
+class IBM_DB2Helper {
+	public static function makeArray($maybeArray) {
+		if ( !is_array( $maybeArray ) ) $maybeArray = array( $maybeArray );
+		
+		return $maybeArray;
 	}
 }

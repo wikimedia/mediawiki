@@ -192,6 +192,7 @@ define( 'LIST_AND', 1 );
 define( 'LIST_SET', 2 );
 define( 'LIST_NAMES', 3);
 define( 'LIST_OR', 4);
+define( 'LIST_SET_PREPARED', 8);  // List of (?, ?, ?) for DatabaseIbm_db2
 
 /**
  * Unicode and normalisation related
