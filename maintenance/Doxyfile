@@ -9,6 +9,7 @@
 # {{INPUT}}
 #
 # A number of MediaWiki-specific aliases are near the end of this file.
+# To generate documentation run: php mwdocgen.php --no-extensions
 
 #---------------------------------------------------------------------------
 # Project related configuration options
@@ -39,7 +40,6 @@ STRIP_FROM_INC_PATH    =
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = YES
 MULTILINE_CPP_IS_BRIEF = NO
-DETAILS_AT_TOP         = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 8
@@ -245,7 +245,7 @@ SKIP_FUNCTION_MACROS   = YES
 # Configuration::additions related to external references   
 #---------------------------------------------------------------------------
 TAGFILES               = 
-GENERATE_TAGFILE       = 
+GENERATE_TAGFILE       = {{OUTPUT_DIRECTORY}}/html/tagfile.xml
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 PERL_PATH              = /usr/bin/perl
@@ -293,4 +293,7 @@ ALIASES =	"type{1}=<b> \1 </b>:" \
 		"access=\par Access:\n" \
 		"private=\access private" \
 		"protected=\access protected" \
-		"public=\access public"
+		"public=\access public" \
+                "copyright=\note" \
+                "license=\note"
+
