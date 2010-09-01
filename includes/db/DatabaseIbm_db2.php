@@ -122,10 +122,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 *
 	 */
 	
-	/// Server port for uncataloged connections
+	/// Server port
 	protected $mPort = null;
-	/// Whether connection is cataloged
-	protected $mCataloged = null;
 	/// Schema for tables, stored procedures, triggers
 	protected $mSchema = null;
 	/// Whether the schema has been applied in this session
@@ -143,8 +141,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	public $mStmtOptions = array();
 	
 	
-	const CATALOGED = "cataloged";
-	const UNCATALOGED = "uncataloged";
 	const USE_GLOBAL = "get from global";
 	
 	const NONE_OPTION = 0x00;
@@ -461,7 +457,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	private function installPrint($string) {
 		wfDebug("$string\n");
 		if ($this->mMode == self::INSTALL_MODE) {
-			print "<li>$string</li>";
+			print "<li><pre>$string</pre></li>";
 			flush();
 		} 
 	}
@@ -478,7 +474,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	public function open( $server, $user, $password, $dbName )
 	{
 		// Load the port number
-		global $wgDBport, $wgDBcataloged;
+		global $wgDBport;
 		wfProfileIn( __METHOD__ );
 		
 		// Load IBM DB2 driver if missing
@@ -503,14 +499,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
-		$this->mCataloged = $cataloged = $wgDBcataloged;
 		
-		if ( $cataloged == self::CATALOGED ) {
-			$this->openCataloged($dbName, $user, $password);
-		}
-		elseif ( $cataloged == self::UNCATALOGED ) {
-			$this->openUncataloged($dbName, $user, $password, $server, $port);
-		}
+		$this->openUncataloged($dbName, $user, $password, $server, $port);
+		
 		// Apply connection config
 		db2_set_option($this->mConn, $this->mConnOptions, 1);
 		// Not all MediaWiki code is transactional
@@ -536,7 +527,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 */
 	protected function openCataloged( $dbName, $user, $password )
 	{
-		@$this->mConn = db2_connect($dbName, $user, $password);
+		@$this->mConn = db2_pconnect($dbName, $user, $password);
 	}
 	
 	/**
@@ -552,7 +543,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$str .= "UID=$user;";
 		$str .= "PWD=$password;";
 		
-		@$this->mConn = db2_connect($str, $user, $password);
+		@$this->mConn = db2_pconnect($str, $user, $password);
 	}
 	
 	/**
@@ -902,11 +893,11 @@ EOF;
 					$list .= ", $field = ?";
 				}
 				else {
-					$list .= "( $field = ?";
+					$list .= "$field = ?";
 				  $first = false;
 				}
 			}
-			$list .= ')';
+			$list .= '';
 			
 			return $list;
 		}
@@ -1473,15 +1464,8 @@ EOF;
 		// db2_ping() doesn't exist
 		// Emulate
 		$this->close();
-		if ($this->mCataloged == null) {
-			return false;
-		}
-		else if ($this->mCataloged) {
-			$this->mConn = $this->openCataloged($this->mDBName, $this->mUser, $this->mPassword);
-		}
-		else if (!$this->mCataloged) {
-			$this->mConn = $this->openUncataloged($this->mDBName, $this->mUser, $this->mPassword, $this->mServer, $this->mPort);
-		}
+		$this->mConn = $this->openUncataloged($this->mDBName, $this->mUser, $this->mPassword, $this->mServer, $this->mPort);
+		
 		return false;
 	}
 	######################################
@@ -1706,6 +1690,9 @@ SQL;
 			array_shift( $args );
 		}
 		$res = db2_execute($prepared, $args);
+		if ( !$res ) {
+			$this->installPrint(db2_stmt_errormsg());
+		}
 		return $res;
 	}
 

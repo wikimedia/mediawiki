@@ -48,11 +48,7 @@ CREATE TABLE user_groups (
   --    REFERENCES user(user_id) ON DELETE CASCADE,
   ug_group  VARCHAR(255)     NOT NULL
 );
-CREATE UNIQUE INDEX user_groups_unique ON user_groups (ug_user, ug_group);
---leonsp:
-CREATE UNIQUE INDEX user_groups_include_idx
-	ON user_groups(ug_user)
-	INCLUDE (ug_group);
+CREATE INDEX user_groups_unique ON user_groups (ug_user, ug_group);
 
 
 CREATE TABLE user_newtalk (
