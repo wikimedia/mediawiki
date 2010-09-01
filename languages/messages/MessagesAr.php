@@ -591,17 +591,6 @@ $messages = array(
 'vector-action-protect'          => 'احم',
 'vector-action-undelete'         => 'استرجع الحذف',
 'vector-action-unprotect'        => 'أزل الحماية',
-'vector-namespace-category'      => 'تصنيف',
-'vector-namespace-help'          => 'صفحة مساعدة',
-'vector-namespace-image'         => 'ملف',
-'vector-namespace-main'          => 'صفحة',
-'vector-namespace-media'         => 'صفحة وسيط',
-'vector-namespace-mediawiki'     => 'رسالة',
-'vector-namespace-project'       => 'صفحة مشروع',
-'vector-namespace-special'       => 'صفحة خاصة',
-'vector-namespace-talk'          => 'نقاش',
-'vector-namespace-template'      => 'قالب',
-'vector-namespace-user'          => 'صفحة مستخدم',
 'vector-simplesearch-preference' => 'مكّن مقترحات البحث المُحسّنة (لواجهة فكتور فقط)',
 'vector-view-create'             => 'أنشئ',
 'vector-view-edit'               => 'عدل',
@@ -1912,7 +1901,7 @@ PICT # متنوع
 'upload-success-subj'         => 'تم رفع الملف بنجاح',
 'upload-success-msg'          => 'مرفوعك من [$2] قد نجح، وهو متوفر هنا: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'مشكلة رفع',
-'upload-failure-msg'          => 'توجد مشكلة في رفعك:
+'upload-failure-msg'          => 'توجد مشكلة في مرفوعك من [$2]:
 
 $1',
 'upload-warning-subj'         => 'تحذير رفع',

@@ -247,15 +247,11 @@ Li sighenti cullegamenti so in linga ingrese:
 'faqpage'        => 'Project:FAQ (infuimmazioni e aggiuddu)',
 
 # Vector skin
-'vector-action-delete'      => 'Canzella',
-'vector-action-move'        => 'Ippustha',
-'vector-namespace-category' => 'Categuria',
-'vector-namespace-image'    => 'File',
-'vector-namespace-main'     => 'Pàgina',
-'vector-namespace-talk'     => 'Dischussioni',
-'vector-view-create'        => 'Cria',
-'vector-view-edit'          => 'Mudifigga',
-'vector-view-view'          => 'Leggi',
+'vector-action-delete' => 'Canzella',
+'vector-action-move'   => 'Ippustha',
+'vector-view-create'   => 'Cria',
+'vector-view-edit'     => 'Mudifigga',
+'vector-view-view'     => 'Leggi',
 
 'errorpagetitle'    => 'Errori',
 'returnto'          => 'Turra a $1.',

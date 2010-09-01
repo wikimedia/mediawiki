@@ -96,15 +96,11 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-delete'       => 'Ñamümün',
-'vector-namespace-main'      => 'Pakina',
-'vector-namespace-mediawiki' => 'Yefalzugu',
-'vector-namespace-talk'      => 'Nvxamkawvn',
-'vector-namespace-user'      => 'Kellufe',
-'vector-view-create'         => 'Zewmape',
-'vector-view-edit'           => 'Pepikan',
-'vector-view-history'        => 'Pegelpe rupañmael',
-'vector-view-view'           => 'Chillkatun',
+'vector-action-delete' => 'Ñamümün',
+'vector-view-create'   => 'Zewmape',
+'vector-view-edit'     => 'Pepikan',
+'vector-view-history'  => 'Pegelpe rupañmael',
+'vector-view-view'     => 'Chillkatun',
 
 'returnto'         => 'Amutun $1 püle.',
 'tagline'          => '{{SITENAME}} mew',

@@ -131,9 +131,6 @@ $messages = array(
 'qbmyoptions'    => 'Ásahusat',
 'qbspecialpages' => 'Doaibmasiiddut',
 
-# Vector skin
-'vector-namespace-image' => 'Fiila',
-
 'errorpagetitle'    => 'Feaila',
 'returnto'          => 'Máhcat siidui $1.',
 'tagline'           => '{{SITENAME}}',

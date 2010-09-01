@@ -234,12 +234,11 @@ $messages = array(
 'faqpage'        => 'Project:HD',
 
 # Vector skin
-'vector-action-delete'  => 'paráon',
-'vector-action-move'    => 'Ibalyó',
-'vector-namespace-main' => 'Pahina',
-'vector-view-create'    => 'Maggíbo',
-'vector-view-edit'      => 'Liwatón',
-'vector-view-view'      => 'Basáhon',
+'vector-action-delete' => 'paráon',
+'vector-action-move'   => 'Ibalyó',
+'vector-view-create'   => 'Maggíbo',
+'vector-view-edit'     => 'Liwatón',
+'vector-view-view'     => 'Basáhon',
 
 'errorpagetitle'    => 'Salâ',
 'returnto'          => 'Magbwelta sa $1.',

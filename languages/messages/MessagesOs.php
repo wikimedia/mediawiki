@@ -168,17 +168,11 @@ $messages = array(
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
 
 # Vector skin
-'vector-namespace-category' => 'Категори',
-'vector-namespace-image'    => 'Файл',
-'vector-namespace-main'     => 'Фарс',
-'vector-namespace-project'  => 'Проекты фарс',
-'vector-namespace-template' => 'Шаблон',
-'vector-namespace-user'     => 'Архайæджы фарс',
-'vector-view-create'        => 'Скæн æй',
-'vector-view-edit'          => 'Фен æй',
-'vector-view-history'       => 'Истори',
-'vector-view-view'          => 'Кæс',
-'vector-view-viewsource'    => 'Йæ код фен',
+'vector-view-create'     => 'Скæн æй',
+'vector-view-edit'       => 'Фен æй',
+'vector-view-history'    => 'Истори',
+'vector-view-view'       => 'Кæс',
+'vector-view-viewsource' => 'Йæ код фен',
 
 'errorpagetitle'    => 'Рæдыд',
 'returnto'          => '$1 фарсмæ раздæх.',

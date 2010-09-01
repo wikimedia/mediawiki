@@ -24,6 +24,7 @@
  * @author Mwpnl
  * @author Naudefj
  * @author Niels
+ * @author Romaine
  * @author SPQRobin
  * @author Servien
  * @author Siebrand
@@ -477,23 +478,12 @@ $messages = array(
 'faqpage'        => 'Project:Veelgestelde vragen',
 
 # Vector skin
-'vector-action-addsection'       => 'Ounderwerp toevoegn',
+'vector-action-addsection'       => 'Kopje toevoegen',
 'vector-action-delete'           => 'Verwijderen',
 'vector-action-move'             => 'Hernoemen',
 'vector-action-protect'          => 'Beveiligen',
 'vector-action-undelete'         => 'Terugplaatsen',
 'vector-action-unprotect'        => 'Beveiliging opheffen',
-'vector-namespace-category'      => 'Categorie',
-'vector-namespace-help'          => 'Hulppagina',
-'vector-namespace-image'         => 'Bestand',
-'vector-namespace-main'          => 'Pagina',
-'vector-namespace-media'         => 'Mediapagina',
-'vector-namespace-mediawiki'     => 'Bericht',
-'vector-namespace-project'       => 'Projectpagina',
-'vector-namespace-special'       => 'Speciale pagina',
-'vector-namespace-talk'          => 'Overleg',
-'vector-namespace-template'      => 'Sjabloon',
-'vector-namespace-user'          => 'Gebruikerspagina',
 'vector-simplesearch-preference' => 'Verbeterde zoeksuggesties inschakelen (alleen voor het uiterlijk Vector)',
 'vector-view-create'             => 'Aanmaken',
 'vector-view-edit'               => 'Bewerken',

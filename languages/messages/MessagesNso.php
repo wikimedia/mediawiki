@@ -155,9 +155,6 @@ $messages = array(
 'qbmyoptions'    => 'Matlakala a ka',
 'qbspecialpages' => 'Matlakala a itšego',
 
-# Vector skin
-'vector-namespace-main' => 'Letlakala',
-
 'errorpagetitle'    => 'Phošo',
 'returnto'          => 'Boela go $1.',
 'tagline'           => 'Gotšwa go {{SITENAME}}',

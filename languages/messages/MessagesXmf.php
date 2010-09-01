@@ -107,12 +107,9 @@ $messages = array(
 'qbspecialpages' => 'სპეციალურ ხასილეფ',
 
 # Vector skin
-'vector-namespace-category' => 'კატეგორია',
-'vector-namespace-main'     => 'ხასილა',
-'vector-namespace-special'  => 'სპეციალური ხასილა',
-'vector-view-create'        => 'დორსხუაფა',
-'vector-view-edit'          => 'რედაქტირაფა',
-'vector-view-viewsource'    => 'ქიძირე წყუ',
+'vector-view-create'     => 'დორსხუაფა',
+'vector-view-edit'       => 'რედაქტირაფა',
+'vector-view-viewsource' => 'ქიძირე წყუ',
 
 'errorpagetitle'   => 'შეცთომა',
 'returnto'         => 'დირთი $1-შა',

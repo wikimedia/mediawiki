@@ -239,17 +239,12 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'faqpage'        => 'Project:Ceisteanna_Coiteanta',
 
 # Vector skin
-'vector-action-delete'       => 'Scrios',
-'vector-action-move'         => 'Athainmnigh',
-'vector-action-protect'      => 'Glasáil',
-'vector-namespace-category'  => 'Catagóir',
-'vector-namespace-image'     => 'Comhad',
-'vector-namespace-main'      => 'Leathanach',
-'vector-namespace-mediawiki' => 'Teachtaireacht',
-'vector-namespace-special'   => 'Leathanach speisialta',
-'vector-view-create'         => 'Cruthaigh',
-'vector-view-edit'           => 'Athraigh an lch seo',
-'vector-view-view'           => 'Léigh',
+'vector-action-delete'  => 'Scrios',
+'vector-action-move'    => 'Athainmnigh',
+'vector-action-protect' => 'Glasáil',
+'vector-view-create'    => 'Cruthaigh',
+'vector-view-edit'      => 'Athraigh an lch seo',
+'vector-view-view'      => 'Léigh',
 
 'errorpagetitle'    => 'Earráid',
 'returnto'          => 'Fill ar ais go $1.',
