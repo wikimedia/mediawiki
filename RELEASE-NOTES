@@ -376,6 +376,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * For required string parameters, if '' is provided, this is now classed as
   missing
 * (bug 24724) list=allusers is out by 1 (shows total users - 1)
+* (bug 24166) API error when using rvprop=tags
 
 === Languages updated in 1.17 ===
 
