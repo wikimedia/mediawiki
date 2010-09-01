@@ -342,8 +342,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		// (b) We want all pages NOT in a certain namespaces (inverted)
 		// (c) There is a tag to filter on (use tag index instead)
 		// (d) UNION + sort/limit is not an option for the DBMS
-		if( is_null($namespace)
-			|| $invert
+		if( is_null( $namespace )
+			|| ( $invert && !is_null( $namespace ) )
 			|| $opts['tagfilter'] != ''
 			|| !$dbr->unionSupportsOrderAndLimit() )
 		{
