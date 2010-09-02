@@ -2264,11 +2264,7 @@ class Parser {
 					if ( $preOpenMatch and !$preCloseMatch ) {
 						$this->mInPre = true;
 					}
-					if ( $closematch ) {
-						$inBlockElem = false;
-					} else {
-						$inBlockElem = true;
-					}
+					$inBlockElem = !$closematch;
 				} elseif ( !$inBlockElem && !$this->mInPre ) {
 					if ( ' ' == substr( $t, 0, 1 ) and ( $this->mLastSection === 'pre' || trim( $t ) != '' ) ) {
 						# pre
