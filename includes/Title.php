@@ -3569,14 +3569,13 @@ class Title {
 			 . " ORDER BY cl_sortkey";
 
 		$res = $dbr->query( $sql );
+		$data = array();
 
 		if ( $dbr->numRows( $res ) > 0 ) {
 			foreach ( $res as $row ) {
 				// $data[] = Title::newFromText($wgContLang->getNSText ( NS_CATEGORY ).':'.$row->cl_to);
 				$data[$wgContLang->getNSText( NS_CATEGORY ) . ':' . $row->cl_to] = $this->getFullText();
 			}
-		} else {
-			$data = array();
 		}
 		return $data;
 	}
@@ -3603,10 +3602,9 @@ class Title {
 					}
 				}
 			}
-			return $stack;
-		} else {
-			return array();
 		}
+
+		return $stack;
 	}
 
 
@@ -3801,21 +3799,21 @@ class Title {
 			return true;  // any interwiki link might be viewable, for all we know
 		}
 		switch( $this->mNamespace ) {
-		case NS_MEDIA:
-		case NS_FILE:
-			return (bool)wfFindFile( $this );  // file exists, possibly in a foreign repo
-		case NS_SPECIAL:
-			return SpecialPage::exists( $this->getDBkey() );  // valid special page
-		case NS_MAIN:
-			return $this->mDbkeyform == '';  // selflink, possibly with fragment
-		case NS_MEDIAWIKI:
-			// If the page is form Mediawiki:message/lang, calling wfMsgWeirdKey causes
-			// the full l10n of that language to be loaded. That takes much memory and
-			// isn't needed. So we strip the language part away.
-			list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
-			return (bool)wfMsgWeirdKey( $basename );  // known system message
-		default:
-			return false;
+			case NS_MEDIA:
+			case NS_FILE:
+				return (bool)wfFindFile( $this );  // file exists, possibly in a foreign repo
+			case NS_SPECIAL:
+				return SpecialPage::exists( $this->getDBkey() );  // valid special page
+			case NS_MAIN:
+				return $this->mDbkeyform == '';  // selflink, possibly with fragment
+			case NS_MEDIAWIKI:
+				// If the page is form Mediawiki:message/lang, calling wfMsgWeirdKey causes
+				// the full l10n of that language to be loaded. That takes much memory and
+				// isn't needed. So we strip the language part away.
+				list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
+				return (bool)wfMsgWeirdKey( $basename );  // known system message
+			default:
+				return false;
 		}
 	}
 
@@ -4079,7 +4077,6 @@ class Title {
 			$where,
 			__METHOD__
 		);
-
 
 		foreach ( $res as $row ) {
 			$redirs[] = self::newFromRow( $row );
