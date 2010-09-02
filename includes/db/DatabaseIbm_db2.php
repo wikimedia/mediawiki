@@ -2,7 +2,7 @@
 /**
  * This is the IBM DB2 database abstraction layer.
  * See maintenance/ibm_db2/README for development notes
- *  and other specific information
+ * and other specific information
  *
  * @file
  * @ingroup Database
@@ -37,13 +37,17 @@ nulls AS attnotnull, length AS attlen
 FROM sysibm.syscolumns
 WHERE tbcreator=%s AND tbname=%s AND name=%s;
 SQL;
-		$res = $db->query( sprintf( $q,
+		$res = $db->query(
+			sprintf( $q,
 				$db->addQuotes( $wgDBmwschema ),
 				$db->addQuotes( $table ),
-				$db->addQuotes( $field )) );
+				$db->addQuotes( $field )
+			)
+		);
 		$row = $db->fetchObject( $res );
-		if ( !$row )
+		if ( !$row ) {
 			return null;
+		}
 		$n = new IBM_DB2Field;
 		$n->type = $row->typname;
 		$n->nullable = ( $row->attnotnull == 'N' );
@@ -94,10 +98,9 @@ class IBM_DB2Blob {
 		return $this->mData;
 	}
 
-	public function __toString()
-    {
-        return $this->mData;
-    }
+	public function __toString() {
+		return $this->mData;
+	}
 }
 
 /**
@@ -142,7 +145,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	public $mStmtOptions = array();
 
 	/** Default schema */
-	const USE_GLOBAL = "mediawiki";
+	const USE_GLOBAL = 'mediawiki';
 
 	/** Option that applies to nothing */
 	const NONE_OPTION = 0x00;
@@ -275,8 +278,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 
 		if ( $schema == self::USE_GLOBAL ) {
 			$this->mSchema = $wgDBmwschema;
-		}
-		else {
+		} else {
 			$this->mSchema = $schema;
 		}
 
@@ -298,15 +300,14 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $type Integer: whether this is a Connection or Statement otion
 	 */
 	private function setDB2Option( $name, $const, $type ) {
-		if ( defined( $const )) {
+		if ( defined( $const ) ) {
 			if ( $type & self::CONN_OPTION ) {
 				$this->mConnOptions[$name] = constant( $const );
 			}
 			if ( $type & self::STMT_OPTION ) {
 				$this->mStmtOptions[$name] = constant( $const );
 			}
-		}
-		else {
+		} else {
 			$this->installPrint(
 				"$const is not defined. ibm_db2 version is likely too low." );
 		}
@@ -327,14 +328,14 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Opens a database connection and returns it
 	 * Closes any existing connection
-	 * @return a fresh connection
+	 *
 	 * @param $server String: hostname
 	 * @param $user String
 	 * @param $password String
 	 * @param $dbName String: database name
+	 * @return a fresh connection
 	 */
-	public function open( $server, $user, $password, $dbName )
-	{
+	public function open( $server, $user, $password, $dbName ) {
 		// Load the port number
 		global $wgDBport;
 		wfProfileIn( __METHOD__ );
@@ -352,7 +353,7 @@ ERROR;
 			$this->reportConnectionError( $error );
 		}
 
-		if ( strlen( $user ) < 1) {
+		if ( strlen( $user ) < 1 ) {
 			return null;
 		}
 
@@ -393,8 +394,7 @@ ERROR;
 	/**
 	 * Opens a cataloged database connection, sets mConn
 	 */
-	protected function openCataloged( $dbName, $user, $password )
-	{
+	protected function openCataloged( $dbName, $user, $password ) {
 		@$this->mConn = db2_pconnect( $dbName, $user, $password );
 	}
 
@@ -422,12 +422,11 @@ ERROR;
 	public function close() {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
-			if ($this->trxLevel() > 0) {
+			if ( $this->trxLevel() > 0 ) {
 				$this->commit();
 			}
 			return db2_close( $this->mConn );
-		}
-		else {
+		} else {
 			return true;
 		}
 	}
@@ -503,15 +502,15 @@ ERROR;
 		$this->applySchema();
 
 		$ret = db2_exec( $this->mConn, $sql, $this->mStmtOptions );
-		if( $ret == FALSE ) {
+		if( $ret == false ) {
 			$error = db2_stmt_errormsg();
 			$this->installPrint( "<pre>$sql</pre>" );
 			$this->installPrint( $error );
-			throw new DBUnexpectedError( $this,  'SQL error: '
+			throw new DBUnexpectedError( $this, 'SQL error: '
 				. htmlspecialchars( $error ) );
 		}
 		$this->mLastResult = $ret;
-		$this->mAffectedRows = null;	// Not calculated until asked for
+		$this->mAffectedRows = null; // Not calculated until asked for
 		return $ret;
 	}
 
@@ -534,12 +533,14 @@ SELECT COUNT( * ) FROM SYSIBM.SYSTABLES ST
 WHERE ST.NAME = '$table' AND ST.CREATOR = '$schema'
 EOF;
 		$res = $this->query( $sql );
-		if ( !$res ) return false;
+		if ( !$res ) {
+			return false;
+		}
 
 		// If the table exists, there should be one of it
 		@$row = $this->fetchRow( $res );
 		$count = $row[0];
-		if ( $count == '1' or $count == 1 ) {
+		if ( $count == '1' || $count == 1 ) {
 			return true;
 		}
 
@@ -569,7 +570,7 @@ EOF;
 
 	/**
 	 * Fetch the next row from the given result object, in associative array
-	 * form.  Fields are retrieved with $row['fieldname'].
+	 * form. Fields are retrieved with $row['fieldname'].
 	 *
 	 * @param $res SQL result object as returned from Database::query(), etc.
 	 * @return DB2 row object
@@ -607,15 +608,15 @@ EOF;
 
 			$res = $this->sourceFile( "../maintenance/ibm_db2/tables.sql" );
 			if ( $res !== true ) {
-				print " <b>FAILED</b>: " . htmlspecialchars( $res ) . "</li>";
+				print ' <b>FAILED</b>: ' . htmlspecialchars( $res ) . '</li>';
 			} else {
-				print " done</li>";
+				print ' done</li>';
 			}
 			$res = $this->sourceFile( "../maintenance/ibm_db2/foreignkeys.sql" );
 			if ( $res !== true ) {
-				print " <b>FAILED</b>: " . htmlspecialchars( $res ) . "</li>";
+				print ' <b>FAILED</b>: ' . htmlspecialchars( $res ) . '</li>';
 			} else {
-				print "<li>Foreign keys done</li>";
+				print '<li>Foreign keys done</li>';
 			}
 			$res = null;
 
@@ -623,16 +624,13 @@ EOF;
 
 			if ( $this->lastError() ) {
 				$this->installPrint(
-					"Errors encountered during table creation -- rolled back" );
-				$this->installPrint( "Please install again" );
+					'Errors encountered during table creation -- rolled back' );
+				$this->installPrint( 'Please install again' );
 				$this->rollback();
-			}
-			else {
+			} else {
 				$this->commit();
 			}
-		}
-		catch ( MWException $mwe )
-		{
+		} catch ( MWException $mwe ) {
 			print "<br><pre>$mwe</pre><br>";
 		}
 	}
@@ -640,43 +638,44 @@ EOF;
 	/**
 	 * Escapes strings
 	 * Doesn't escape numbers
+	 *
 	 * @param $s String: string to escape
 	 * @return escaped string
 	 */
 	public function addQuotes( $s ) {
 		//$this->installPrint( "DB2::addQuotes( $s )\n" );
 		if ( is_null( $s ) ) {
-			return "NULL";
-		} else if ( $s instanceof Blob ) {
+			return 'NULL';
+		} elseif ( $s instanceof Blob ) {
 			return "'" . $s->fetch( $s ) . "'";
-		} else if ( $s instanceof IBM_DB2Blob ) {
+		} elseif ( $s instanceof IBM_DB2Blob ) {
 			return "'" . $this->decodeBlob( $s ) . "'";
 		}
 		$s = $this->strencode( $s );
 		if ( is_numeric( $s ) ) {
 			return $s;
-		}
-		else {
+		} else {
 			return "'$s'";
 		}
 	}
 
 	/**
 	 * Verifies that a DB2 column/field type is numeric
-	 * @return bool true if numeric
+	 *
 	 * @param $type String: DB2 column type
+	 * @return Boolean: true if numeric
 	 */
 	public function is_numeric_type( $type ) {
-		switch ( strtoupper( $type )) {
-		case 'SMALLINT':
-		case 'INTEGER':
-		case 'INT':
-		case 'BIGINT':
-		case 'DECIMAL':
-		case 'REAL':
-		case 'DOUBLE':
-		case 'DECFLOAT':
-			return true;
+		switch ( strtoupper( $type ) ) {
+			case 'SMALLINT':
+			case 'INTEGER':
+			case 'INT':
+			case 'BIGINT':
+			case 'DECIMAL':
+			case 'REAL':
+			case 'DOUBLE':
+			case 'DECFLOAT':
+				return true;
 		}
 		return false;
 	}
@@ -695,7 +694,7 @@ EOF;
 		$s = utf8_encode( $s );
 		// Fix its stupidity
 		$from =	array( 	"\\\\",	"\\'",	'\\n',	'\\t',	'\\"',	'\\r' );
-		$to =	array( 		"\\",		"''",		"\n",		"\t",		'"',		"\r" );
+		$to = array( 		"\\",		"''",		"\n",		"\t",		'"',		"\r" );
 		$s = str_replace( $from, $to, $s ); // DB2 expects '', not \' escaping
 		return $s;
 	}
@@ -778,8 +777,7 @@ EOF;
 			foreach ( $a as $field => $value ) {
 				if ( !$first ) {
 					$list .= ", $field = ?";
-				}
-				else {
+				} else {
 					$list .= "$field = ?";
 					$first = false;
 				}
@@ -796,6 +794,7 @@ EOF;
 	/**
 	 * Construct a LIMIT query with optional offset
 	 * This is used for query pages
+	 *
 	 * @param $sql string SQL query we will append the limit too
 	 * @param $limit integer the SQL limit
 	 * @param $offset integer the SQL offset (default false)
@@ -808,8 +807,7 @@ EOF;
 		if( $offset ) {
 			if ( stripos( $sql, 'where' ) === false ) {
 				return "$sql AND ( ROWNUM BETWEEN $offset AND $offset+$limit )";
-			}
-			else {
+			} else {
 				return "$sql WHERE ( ROWNUM BETWEEN $offset AND $offset+$limit )";
 			}
 		}
@@ -818,8 +816,9 @@ EOF;
 
 	/**
 	 * Handle reserved keyword replacement in table names
-	 * @return
+	 *
 	 * @param $name Object
+	 * @return String
 	 */
 	public function tableName( $name ) {
 		// we want maximum compatibility with MySQL schema
@@ -828,10 +827,11 @@ EOF;
 
 	/**
 	 * Generates a timestamp in an insertable format
-	 * @return string timestamp value
+	 *
 	 * @param $ts timestamp
+	 * @return String: timestamp value
 	 */
-	public function timestamp( $ts=0 ) {
+	public function timestamp( $ts = 0 ) {
 		// TS_MW cannot be easily distinguished from an integer
 		return wfTimestamp( TS_DB2, $ts );
 	}
@@ -867,6 +867,7 @@ EOF;
 	/**
 	 * Updates the mInsertId property with the value of the last insert
 	 *  into a generated column
+	 *
 	 * @param $table      String: sanitized table name
 	 * @param $primaryKey Mixed: string name of the primary key
 	 * @param $stmt       Resource: prepared statement resource
@@ -925,7 +926,7 @@ EOF;
 		// assume success
 		$res = true;
 		// If we are not in a transaction, we need to be for savepoint trickery
-		if ( ! $this->mTrxLevel ) {
+		if ( !$this->mTrxLevel ) {
 			$this->begin();
 		}
 
@@ -950,14 +951,13 @@ EOF;
 				// insert each row into the database
 				$res = $res & $this->execute( $stmt, $row );
 				if ( !$res ) {
-					$this->installPrint( "Last error:" );
+					$this->installPrint( 'Last error:' );
 					$this->installPrint( $this->lastError() );
 				}
 				// get the last inserted value into a generated column
 				$this->calcInsertId( $table, $primaryKey, $stmt );
 			}
-		}
-		else {
+		} else {
 			$olde = error_reporting( 0 );
 			// For future use, we may want to track the number of actual inserts
 			// Right now, insert (all writes) simply return true/false
@@ -970,11 +970,10 @@ EOF;
 				$overhead = "SAVEPOINT $ignore ON ROLLBACK RETAIN CURSORS";
 				db2_exec( $this->mConn, $overhead, $this->mStmtOptions );
 
-
 				$this->execute( $stmt, $row );
 
 				if ( !$res2 ) {
-					$this->installPrint( "Last error:" );
+					$this->installPrint( 'Last error:' );
 					$this->installPrint( $this->lastError() );
 				}
 				// get the last inserted value into a generated column
@@ -984,8 +983,7 @@ EOF;
 				if ( $errNum ) {
 					db2_exec( $this->mConn, "ROLLBACK TO SAVEPOINT $ignore",
 						$this->mStmtOptions );
-				}
-				else {
+				} else {
 					db2_exec( $this->mConn, "RELEASE SAVEPOINT $ignore",
 						$this->mStmtOptions );
 					$numrowsinserted++;
@@ -1015,12 +1013,14 @@ EOF;
 		$schema = $this->mSchema;
 		// find out the primary keys
 		$keyres = db2_primary_keys( $this->mConn, null, strtoupper( $schema ),
-			strtoupper( $table ));
+			strtoupper( $table )
+		);
 		$keys = array();
 		for (
 			$row = $this->fetchObject( $keyres );
 			$row != null;
-			$row = $this->fetchObject( $keyres ))
+			$row = $this->fetchObject( $keyres )
+		)
 		{
 			$keys[] = strtolower( $row->column_name );
 		}
@@ -1060,7 +1060,7 @@ EOF;
 			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
 		}
 		$stmt = $this->prepare( $sql );
-		$this->installPrint( "UPDATE: " . print_r( $values, TRUE ));
+		$this->installPrint( 'UPDATE: ' . print_r( $values, true ) );
 		// assuming for now that an array with string keys will work
 		// if not, convert to simple array first
 		$result = $this->execute( $stmt, $values );
@@ -1098,8 +1098,9 @@ EOF;
 			// Forced result for simulated queries
 			return $this->mAffectedRows;
 		}
-		if( empty( $this->mLastResult ) )
+		if( empty( $this->mLastResult ) ) {
 			return 0;
+		}
 		return db2_num_rows( $this->mLastResult );
 	}
 
@@ -1133,7 +1134,7 @@ EOF;
 				foreach ( $uniqueIndexes as $index ) {
 					if ( $first ) {
 						$first = false;
-						$sql .= "( ";
+						$sql .= '( ';
 					} else {
 						$sql .= ' ) OR ( ';
 					}
@@ -1175,8 +1176,7 @@ EOF;
 		}
 		if ( $this->mNumRows ) {
 			return $this->mNumRows;
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}
@@ -1208,7 +1208,7 @@ EOF;
 			$res = $res->result;
 		}
 		if ( !@db2_free_result( $res ) ) {
-			throw new DBUnexpectedError( $this,  "Unable to free DB2 result\n" );
+			throw new DBUnexpectedError( $this, "Unable to free DB2 result\n" );
 		}
 	}
 
@@ -1255,7 +1255,7 @@ EOF;
 	 * @return Mixed: database result resource for fetch functions or false
 	 *                 on failure
 	 */
-	public function select( $table, $vars, $conds='', $fname = 'DatabaseIbm_db2::select', $options = array(), $join_conds = array() )
+	public function select( $table, $vars, $conds = '', $fname = 'DatabaseIbm_db2::select', $options = array(), $join_conds = array() )
 	{
 		$res = parent::select( $table, $vars, $conds, $fname, $options,
 			$join_conds );
@@ -1290,7 +1290,6 @@ EOF;
 			$join_conds );
 		$obj = $this->fetchObject( $res2 );
 		$this->mNumRows = $obj->num_rows;
-
 
 		return $res;
 	}
@@ -1337,10 +1336,10 @@ EOF;
 
 	/**
 	 * Returns link to IBM DB2 free download
-	 * @return string wikitext of a link to the server software's web site
+	 * @return String: wikitext of a link to the server software's web site
 	 */
 	public static function getSoftwareLink() {
-		return "[http://www.ibm.com/db2/express/ IBM DB2]";
+		return '[http://www.ibm.com/db2/express/ IBM DB2]';
 	}
 
 	/**
@@ -1350,7 +1349,7 @@ EOF;
 	 * @return String
 	 */
 	public function getSearchEngine() {
-		return "SearchIBM_DB2";
+		return 'SearchIBM_DB2';
 	}
 
 	/**
@@ -1392,9 +1391,9 @@ EOF;
 	 * Not implemented
 	 * @return string ''
 	 */
-	public function getStatus( $which="%" ) {
-			$this->installPrint( 'Not implemented for DB2: getStatus()' );
-			return '';
+	public function getStatus( $which = '%' ) {
+		$this->installPrint( 'Not implemented for DB2: getStatus()' );
+		return '';
 	}
 	/**
 	 * Not implemented
@@ -1443,8 +1442,9 @@ SQL;
 		$row = $this->fetchObject( $res );
 		if ( $row != null ) {
 			return $row;
+		} else {
+			return false;
 		}
-		else return false;
 	}
 
 	/**
@@ -1681,7 +1681,7 @@ SQL;
 	 * Switches module between regular and install modes
 	 */
 	public function setMode( $mode ) {
-		$old =  $this->mMode;
+		$old = $this->mMode;
 		$this->mMode = $mode;
 		return $old;
 	}
@@ -1693,7 +1693,7 @@ SQL;
 	 * @return String
 	 */
 	function bitNot( $field ) {
-		//expecting bit-fields smaller than 4bytes
+		// expecting bit-fields smaller than 4bytes
 		return "BITNOT( $field )";
 	}
 
