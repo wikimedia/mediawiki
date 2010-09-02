@@ -892,7 +892,7 @@ class LoginForm {
 	}
 
 	/** */
-	function userNotPrivilegedMessage($errors) {
+	function userNotPrivilegedMessage( $errors ) {
 		global $wgOut;
 
 		$wgOut->setPageTitle( wfMsg( 'permissionserrors' ) );

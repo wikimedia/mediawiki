@@ -732,7 +732,7 @@ END;
 		$info['width'] = $image->getWidth();
 		$info['height'] = $image->getHeight();
 
-		$gis = $image->getImageSize();
+		$gis = $image->getImageSize( $filename );
 		if ( isset( $gis['bits'] ) ) {
 			$info['bits'] = $gis['bits'];
 		}
