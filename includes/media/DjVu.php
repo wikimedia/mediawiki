@@ -108,7 +108,8 @@ class DjVuHandler extends ImageHandler {
 		$cmd .= ' > ' . wfEscapeShellArg($dstPath) . ') 2>&1';
 		wfProfileIn( 'ddjvu' );
 		wfDebug( __METHOD__.": $cmd\n" );
-		$err = wfShellExec( $cmd, $retval );
+		$retval = '';
+		$err = wfShellExec( $cmd, &$retval );
 		wfProfileOut( 'ddjvu' );
 
 		$removed = $this->removeBadFile( $dstPath, $retval );
