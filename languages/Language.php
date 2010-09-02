@@ -1611,7 +1611,7 @@ class Language {
 			return ucfirst( $str ); // use PHP's ucfirst()
 		} else {
 			// fall back to more complex logic in case of multibyte strings
-			return self::uc( $str, true );
+			return $this->uc( $str, true );
 		}
 	}
 
