@@ -3539,20 +3539,13 @@ class Title {
 	 */
 	public function isInCategory( $category ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			'categorylinks',
-			'*',
+		return $dbr->selectRow( 'categorylinks', '*',
 			array(
 				'cl_from' => $this->getArticleId(),
 				'cl_to' => $category,
 			),
-			__METHOD__,
-			array(
-				'LIMIT' => 1
-			)
+			__METHOD__
 		);
-
-		return ( $dbr->numRows( $res ) > 0 );
 	}
 
 	/**
