@@ -106,7 +106,7 @@ class Orphans extends Maintenance {
 		}
 	
 		if ( $fix ) {
-			$dbw->unlockTables();
+			$dbw->unlockTables( __METHOD__ );
 		}
 	}
 
@@ -153,7 +153,7 @@ class Orphans extends Maintenance {
 		}
 	
 		if ( $fix ) {
-			$dbw->unlockTables();
+			$dbw->unlockTables( __METHOD__ );
 		}
 	}
 
@@ -226,7 +226,7 @@ class Orphans extends Maintenance {
 		}
 	
 		if ( $fix ) {
-			$dbw->unlockTables();
+			$dbw->unlockTables( __METHOD__ );
 		}
 	}
 }

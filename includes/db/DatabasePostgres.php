@@ -137,7 +137,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	function hasConstraint( $name ) {
 		global $wgDBmwschema;
-		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n WHERE c.connamespace = n.oid AND conname = '" . pg_escape_string( $name ) . "' AND n.nspname = '" . pg_escape_string($wgDBmwschema) ."'";
+		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n WHERE c.connamespace = n.oid AND conname = '" . pg_escape_string( null, $name ) . "' AND n.nspname = '" . pg_escape_string( null, $wgDBmwschema ) ."'";
 		return $this->numRows($res = $this->doQuery($SQL));
 	}
 
@@ -1339,7 +1339,7 @@ SQL;
 	}
 
 	function encodeBlob( $b ) {
-		return new Blob ( pg_escape_bytea( $b ) ) ;
+		return new Blob ( pg_escape_bytea( null, $b ) ) ;
 	}
 
 	function decodeBlob( $b ) {
@@ -1350,7 +1350,7 @@ SQL;
 	}
 
 	function strencode( $s ) { ## Should not be called by us
-		return pg_escape_string( $s );
+		return pg_escape_string( null, $s );
 	}
 
 	function addQuotes( $s ) {
@@ -1361,7 +1361,7 @@ SQL;
 		} else if ($s instanceof Blob) {
 			return "'".$s->fetch($s)."'";
 		}
-		return "'" . pg_escape_string($s) . "'";
+		return "'" . pg_escape_string( null, $s ) . "'";
 	}
 
 	function quote_ident( $s ) {
