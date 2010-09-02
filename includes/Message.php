@@ -1,7 +1,5 @@
 <?php
 /**
- * OBS!!! *EXPERIMENTAL* This class is still under discussion.
- *
  * This class provides methods for fetching interface messages and
  * processing them into variety of formats that are needed in MediaWiki.
  *
@@ -10,22 +8,22 @@
  *
  * Examples:
  * Fetching a message text for interface message
- *    $button = Xml::button( Message::key( 'submit' )->text() );
+ *    $button = Xml::button( wfMessage( 'submit' )->text() );
  * </pre>
  * Messages can have parameters:
- *    Message::key( 'welcome-to' )->params( $wgSitename )->text(); 
+ *    wfMessage( 'welcome-to' )->params( $wgSitename )->text(); 
  *        {{GRAMMAR}} and friends work correctly
- *    Message::key( 'are-friends', $user, $friend );
- *    Message::key( 'bad-message' )->rawParams( '<script>...</script>' )->escaped();
+ *    wfMessage( 'are-friends', $user, $friend );
+ *    wfMessage( 'bad-message' )->rawParams( '<script>...</script>' )->escaped();
  * </pre>
  * Sometimes the message text ends up in the database, so content language is needed.
- *    Message::key( 'file-log' )->params( $user, $filename )->inContentLanguage()->text()
+ *    wfMessage( 'file-log', $user, $filename )->inContentLanguage()->text()
  * </pre>
  * Checking if message exists:
- *    Message::key( 'mysterious-message' )->exists()
+ *    wfMessage( 'mysterious-message' )->exists()
  * </pre>
  * If you want to use a different language:
- *    Message::key( 'email-header' )->inLanguage( $user->getOption( 'language' ) )->plain()
+ *    wfMessage( 'email-header' )->inLanguage( $user->getOption( 'language' ) )->plain()
  *        Note that you cannot parse the text except in the content or interface
  *        languages
  * </pre>
@@ -35,27 +33,27 @@
  *
  * Use full parsing.
  *     wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
- *     === Message::key( 'key', 'apple' )->parse();
+ *     === wfMessage( 'key', 'apple' )->parse();
  * </pre>
  * Parseinline is used because it is more useful when pre-building html.
  * In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
  *
  * Places where html cannot be used. {{-transformation is done.
  *     wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
- *     === Message::key( 'key', 'apple', 'pear' )->text();
+ *     === wfMessage( 'key', 'apple', 'pear' )->text();
  * </pre>
  *
  * Shortcut for escaping the message too, similar to wfMsgHTML, but
  * parameters are not replaced after escaping by default.
- * $escaped = Message::key( 'key' )->rawParams( 'apple' )->escaped();
+ * $escaped = wfMessage( 'key' )->rawParams( 'apple' )->escaped();
  * </pre>
  *
  * TODO:
  * - test, can we have tests?
  * - sort out the details marked with fixme
- * - should we have _m() or similar global wrapper?
  *
  * @since 1.17
+ * @author Niklas Laxström
  */
 class Message {
 	/**
@@ -115,7 +113,7 @@ class Message {
 	 * @param Varargs: parameters as Strings
 	 * @return Message: $this
 	 */
-	public static function key( $key /*...*/ ) {
+	public static function newFromKey( $key /*...*/ ) {
 		$params = func_get_args();
 		array_shift( $params );
 		return new self( $key, $params );
