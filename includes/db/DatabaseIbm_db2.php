@@ -21,7 +21,7 @@ class IBM_DB2Field {
 	private $max_length = 0;
 
 	/**
-	 * Builder method for the class 
+	 * Builder method for the class
 	 * @param $db DatabaseIbm_db2: Database interface
 	 * @param $table String: table name
 	 * @param $field String: column name
@@ -93,7 +93,7 @@ class IBM_DB2Blob {
 	public function getData() {
 		return $this->mData;
 	}
-	
+
 	public function __toString()
     {
         return $this->mData;
@@ -122,7 +122,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	protected $mFakeSlaveLag = null, $mFakeMaster = false;
 	 *
 	 */
-	
+
 	/** Database server port */
 	protected $mPort = null;
 	/** Schema for tables, stored procedures, triggers */
@@ -135,37 +135,37 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	protected $mAffectedRows = null;
 	/** Number of rows returned by last SELECT */
 	protected $mNumRows = null;
-	
+
 	/** Connection config options - see constructor */
 	public $mConnOptions = array();
 	/** Statement config options -- see constructor */
 	public $mStmtOptions = array();
-	
+
 	/** Default schema */
 	const USE_GLOBAL = "mediawiki";
-	
+
 	/** Option that applies to nothing */
 	const NONE_OPTION = 0x00;
 	/** Option that applies to connection objects */
 	const CONN_OPTION = 0x01;
 	/** Option that applies to statement objects */
 	const STMT_OPTION = 0x02;
-	
+
 	/** Regular operation mode -- minimal debug messages */
 	const REGULAR_MODE = 'regular';
 	/** Installation mode -- lots of debug messages */
 	const INSTALL_MODE = 'install';
-	
+
 	/** Controls the level of debug message output */
 	protected $mMode = self::REGULAR_MODE;
-	
+
 	/** Last sequence value used for a primary key */
 	protected $mInsertId = null;
-	
+
 	######################################
 	# Getters and Setters
 	######################################
-	
+
 	/**
 	 * Returns true if this database supports (and uses) cascading deletes
 	 */
@@ -189,7 +189,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	function strictIPs() {
 		return true;
 	}
-	
+
 	/**
 	 * Returns true if this database uses timestamps rather than integers
 	*/
@@ -227,7 +227,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	function functionalIndexes() {
 		return true;
 	}
-	
+
 	/**
 	 * Returns a unique string representing the wiki on the server
 	 */
@@ -242,14 +242,14 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	function getType() {
 		return 'ibm_db2';
 	}
-	
+
 	######################################
 	# Setup
 	######################################
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * @param $server String: hostname of database server
 	 * @param $user String: username
 	 * @param $password String: password
@@ -272,14 +272,14 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$this->mOut =& $wgOut;
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = DBO_TRX | $flags;
-		
+
 		if ( $schema == self::USE_GLOBAL ) {
 			$this->mSchema = $wgDBmwschema;
 		}
 		else {
 			$this->mSchema = $schema;
 		}
-		
+
 		// configure the connection and statement objects
 		$this->setDB2Option( 'db2_attr_case', 'DB2_CASE_LOWER',
 			self::CONN_OPTION | self::STMT_OPTION );
@@ -287,10 +287,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 			self::STMT_OPTION );
 		$this->setDB2Option( 'rowcount', 'DB2_ROWCOUNT_PREFETCH_ON',
 			self::STMT_OPTION );
-		
+
 		$this->open( $server, $user, $password, $dbName );
 	}
-	
+
 	/**
 	 * Enables options only if the ibm_db2 extension version supports them
 	 * @param $name String: name of the option in the options array
@@ -311,7 +311,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 				"$const is not defined. ibm_db2 version is likely too low." );
 		}
 	}
-	
+
 	/**
 	 * Outputs debug information in the appropriate place
 	 * @param $string String: the relevant debug message
@@ -321,9 +321,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		if ( $this->mMode == self::INSTALL_MODE ) {
 			print "<li><pre>$string</pre></li>";
 			flush();
-		} 
+		}
 	}
-	
+
 	/**
 	 * Opens a database connection and returns it
 	 * Closes any existing connection
@@ -338,7 +338,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		// Load the port number
 		global $wgDBport;
 		wfProfileIn( __METHOD__ );
-		
+
 		// Load IBM DB2 driver if missing
 		wfDl( 'ibm_db2' );
 
@@ -355,7 +355,7 @@ ERROR;
 		if ( strlen( $user ) < 1) {
 			return null;
 		}
-		
+
 		// Close existing connection
 		$this->close();
 		// Cache conn info
@@ -364,9 +364,9 @@ ERROR;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
-		
+
 		$this->openUncataloged( $dbName, $user, $password, $server, $port );
-		
+
 		// Apply connection config
 		db2_set_option( $this->mConn, $this->mConnOptions, 1 );
 		// Some MediaWiki code is still transaction-less (?).
@@ -385,11 +385,11 @@ ERROR;
 
 		$this->mOpened = true;
 		$this->applySchema();
-		
+
 		wfProfileOut( __METHOD__ );
 		return $this->mConn;
 	}
-	
+
 	/**
 	 * Opens a cataloged database connection, sets mConn
 	 */
@@ -397,7 +397,7 @@ ERROR;
 	{
 		@$this->mConn = db2_pconnect( $dbName, $user, $password );
 	}
-	
+
 	/**
 	 * Opens an uncataloged database connection, sets mConn
 	 */
@@ -411,10 +411,10 @@ ERROR;
 		$str .= "PROTOCOL=TCPIP;";
 		$str .= "UID=$user;";
 		$str .= "PWD=$password;";
-		
+
 		@$this->mConn = db2_pconnect( $str, $user, $password );
 	}
-	
+
 	/**
 	 * Closes a database connection, if it is open
 	 * Returns success, true if already closed
@@ -431,7 +431,7 @@ ERROR;
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Returns a fresh instance of this class
 	 *
@@ -449,7 +449,7 @@ ERROR;
 		return new DatabaseIbm_db2( $server, $user, $password, $dbName,
 			$failFunction, $flags );
 	}
-	
+
 	/**
 	 * Retrieves the most current database error
 	 * Forces a database rollback
@@ -465,10 +465,10 @@ ERROR;
 			//$this->rollback();
 			return $stmterr;
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Get the last error number
 	 * Return 0 if no error
@@ -485,13 +485,13 @@ ERROR;
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * Is a database connection open?
-	 * @return 
+	 * @return
 	 */
 	public function isOpen() { return $this->mOpened; }
-	
+
 	/**
 	 * The DBMS-dependent part of query()
 	 * @param  $sql String: SQL query.
@@ -501,7 +501,7 @@ ERROR;
 	/*private*/
 	public function doQuery( $sql ) {
 		$this->applySchema();
-		
+
 		$ret = db2_exec( $this->mConn, $sql, $this->mStmtOptions );
 		if( $ret == FALSE ) {
 			$error = db2_stmt_errormsg();
@@ -514,7 +514,7 @@ ERROR;
 		$this->mAffectedRows = null;	// Not calculated until asked for
 		return $ret;
 	}
-	
+
 	/**
 	 * @return string Version information from the database
 	 */
@@ -522,7 +522,7 @@ ERROR;
 		$info = db2_server_info( $this->mConn );
 		return $info->DBMS_VER;
 	}
-	
+
 	/**
 	 * Queries whether a given table exists
 	 * @return boolean
@@ -535,17 +535,17 @@ WHERE ST.NAME = '$table' AND ST.CREATOR = '$schema'
 EOF;
 		$res = $this->query( $sql );
 		if ( !$res ) return false;
-		
+
 		// If the table exists, there should be one of it
 		@$row = $this->fetchRow( $res );
 		$count = $row[0];
 		if ( $count == '1' or $count == 1 ) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Fetch the next row from the given result object, in object form.
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
@@ -586,25 +586,25 @@ EOF;
 		}
 		return $row;
 	}
-	
+
 	/**
 	 * Override if introduced to base Database class
 	 */
 	public function initial_setup() {
 		// do nothing
 	}
-	
+
 	/**
 	 * Create tables, stored procedures, and so on
 	 */
 	public function setup_database() {
 		try {
 			// TODO: switch to root login if available
-			
+
 			// Switch into the correct namespace
 			$this->applySchema();
 			$this->begin();
-			
+
 			$res = $this->sourceFile( "../maintenance/ibm_db2/tables.sql" );
 			if ( $res !== true ) {
 				print " <b>FAILED</b>: " . htmlspecialchars( $res ) . "</li>";
@@ -618,16 +618,16 @@ EOF;
 				print "<li>Foreign keys done</li>";
 			}
 			$res = null;
-			
+
 			// TODO: populate interwiki links
-			
+
 			if ( $this->lastError() ) {
 				$this->installPrint(
 					"Errors encountered during table creation -- rolled back" );
 				$this->installPrint( "Please install again" );
 				$this->rollback();
 			}
-			else {			
+			else {
 				$this->commit();
 			}
 		}
@@ -660,7 +660,7 @@ EOF;
 			return "'$s'";
 		}
 	}
-	
+
 	/**
 	 * Verifies that a DB2 column/field type is numeric
 	 * @return bool true if numeric
@@ -680,7 +680,7 @@ EOF;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Alias for addQuotes()
 	 * @param $s String: string to escape
@@ -688,7 +688,7 @@ EOF;
 	 */
 	public function strencode( $s ) {
 		// Bloody useless function
-		//  Prepends backslashes to \x00, \n, \r, \, ', " and \x1a. 
+		//  Prepends backslashes to \x00, \n, \r, \, ', " and \x1a.
 		//  But also necessary
 		$s = db2_escape_string( $s );
 		// Wide characters are evil -- some of them look like '
@@ -699,7 +699,7 @@ EOF;
 		$s = str_replace( $from, $to, $s ); // DB2 expects '', not \' escaping
 		return $s;
 	}
-	
+
 	/**
 	 * Switch into the database schema
 	 */
@@ -709,39 +709,39 @@ EOF;
 			$this->begin();
 			$this->doQuery( "SET SCHEMA = $this->mSchema" );
 			$this->commit();
-		}	
+		}
 	}
-	
+
 	/**
 	 * Start a transaction (mandatory)
 	 */
 	public function begin( $fname = 'DatabaseIbm_db2::begin' ) {
 		// BEGIN is implicit for DB2
 		// However, it requires that AutoCommit be off.
-		
+
 		// Some MediaWiki code is still transaction-less (?).
 		// The strategy is to keep AutoCommit on for that code
 		//  but switch it off whenever a transaction is begun.
 		db2_autocommit( $this->mConn, DB2_AUTOCOMMIT_OFF );
-		
+
 		$this->mTrxLevel = 1;
 	}
-	
+
 	/**
 	 * End a transaction
 	 * Must have a preceding begin()
 	 */
 	public function commit( $fname = 'DatabaseIbm_db2::commit' ) {
 		db2_commit( $this->mConn );
-		
+
 		// Some MediaWiki code is still transaction-less (?).
 		// The strategy is to keep AutoCommit on for that code
 		//  but switch it off whenever a transaction is begun.
 		db2_autocommit( $this->mConn, DB2_AUTOCOMMIT_ON );
-		
+
 		$this->mTrxLevel = 0;
 	}
-	
+
 	/**
 	 * Cancel a transaction
 	 */
@@ -752,7 +752,7 @@ EOF;
 		db2_autocommit( $this->mConn, DB2_AUTOCOMMIT_ON );
 		$this->mTrxLevel = 0;
 	}
-	
+
 	/**
 	 * Makes an encoded list of strings from an array
 	 * $mode:
@@ -768,7 +768,7 @@ EOF;
 			throw new DBUnexpectedError( $this,
 				'DatabaseBase::makeList called with incorrect parameters' );
 		}
-		
+
 		// if this is for a prepared UPDATE statement
 		// (this should be promoted to the parent class
 		//  once other databases use prepared statements)
@@ -785,14 +785,14 @@ EOF;
 				}
 			}
 			$list .= '';
-			
+
 			return $list;
 		}
-		
+
 		// otherwise, call the usual function
 		return parent::makeList( $a, $mode );
 	}
-	
+
 	/**
 	 * Construct a LIMIT query with optional offset
 	 * This is used for query pages
@@ -815,17 +815,17 @@ EOF;
 		}
 		return "$sql FETCH FIRST $limit ROWS ONLY ";
 	}
-	
+
 	/**
 	 * Handle reserved keyword replacement in table names
-	 * @return 
+	 * @return
 	 * @param $name Object
 	 */
 	public function tableName( $name ) {
 		// we want maximum compatibility with MySQL schema
 		return $name;
 	}
-	
+
 	/**
 	 * Generates a timestamp in an insertable format
 	 * @return string timestamp value
@@ -855,7 +855,7 @@ EOF;
 		*/
 		return null;
 	}
-	
+
 	/**
 	 * This must be called after nextSequenceVal
 	 * @return Last sequence value used as a primary key
@@ -863,7 +863,7 @@ EOF;
 	public function insertId() {
 		return $this->mInsertId;
 	}
-	
+
 	/**
 	 * Updates the mInsertId property with the value of the last insert
 	 *  into a generated column
@@ -877,7 +877,7 @@ EOF;
 			$this->mInsertId = db2_last_insert_id( $this->mConn );
 		}
 	}
-	
+
 	/**
 	 * INSERT wrapper, inserts an array into a table
 	 *
@@ -905,7 +905,7 @@ EOF;
 		if ( !( isset( $args[0] ) && is_array( $args[0] ) ) ) {
 			$args = array( $args );
 		}
-		
+
 		// prevent insertion of NULL into primary key columns
 		list( $args, $primaryKeys ) = $this->removeNullPrimaryKeys( $table, $args );
 		// if there's only one primary key
@@ -914,7 +914,7 @@ EOF;
 		if ( count( $primaryKeys ) == 1 ) {
 			$primaryKey = $primaryKeys[0];
 		}
-		
+
 		// get column names
 		$keys = array_keys( $args[0] );
 		$key_count = count( $keys );
@@ -939,7 +939,7 @@ EOF;
 		//$this->installPrint( "$sql" );
 		//$this->installPrint( print_r( $args, true ));
 		$stmt = $this->prepare( $sql );
-		
+
 		// start a transaction/enter transaction mode
 		$this->begin();
 
@@ -962,24 +962,24 @@ EOF;
 			// For future use, we may want to track the number of actual inserts
 			// Right now, insert (all writes) simply return true/false
 			$numrowsinserted = 0;
-			
+
 			// always return true
 			$res = true;
-				
+
 			foreach ( $args as $row ) {
 				$overhead = "SAVEPOINT $ignore ON ROLLBACK RETAIN CURSORS";
 				db2_exec( $this->mConn, $overhead, $this->mStmtOptions );
-				
-				
+
+
 				$this->execute( $stmt, $row );
-				
+
 				if ( !$res2 ) {
 					$this->installPrint( "Last error:" );
 					$this->installPrint( $this->lastError() );
 				}
 				// get the last inserted value into a generated column
 				$this->calcInsertId( $table, $primaryKey, $stmt );
-				
+
 				$errNum = $this->lastErrno();
 				if ( $errNum ) {
 					db2_exec( $this->mConn, "ROLLBACK TO SAVEPOINT $ignore",
@@ -991,7 +991,7 @@ EOF;
 					$numrowsinserted++;
 				}
 			}
-			
+
 			$olde = error_reporting( $olde );
 			// Set the affected row count for the whole operation
 			$this->mAffectedRows = $numrowsinserted;
@@ -999,14 +999,14 @@ EOF;
 		// commit either way
 		$this->commit();
 		$this->freePrepared( $stmt );
-		
+
 		return $res;
 	}
-	
+
 	/**
 	 * Given a table name and a hash of columns with values
 	 * Removes primary key columns from the hash where the value is NULL
-	 * 
+	 *
 	 * @param $table String: name of the table
 	 * @param $args Array of hashes of column names with values
 	 * @return Array: tuple( filtered array of columns, array of primary keys )
@@ -1036,7 +1036,7 @@ EOF;
 		// return modified hash
 		return array( $args, $keys );
 	}
-	
+
 	/**
 	 * UPDATE wrapper, takes a condition array and a SET array
 	 *
@@ -1065,10 +1065,10 @@ EOF;
 		// if not, convert to simple array first
 		$result = $this->execute( $stmt, $values );
 		$this->freePrepared( $stmt );
-		
+
 		return $result;
 	}
-	
+
 	/**
 	 * DELETE query wrapper
 	 *
@@ -1085,10 +1085,10 @@ EOF;
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
 		$result = $this->query( $sql, $fname );
-		
+
 		return $result;
 	}
-	
+
 	/**
 	 * Returns the number of rows affected by the last query or 0
 	 * @return Integer: the number of rows affected by the last query
@@ -1102,7 +1102,7 @@ EOF;
 			return 0;
 		return db2_num_rows( $this->mLastResult );
 	}
-	
+
 	/**
 	 * Simulates REPLACE with a DELETE followed by INSERT
 	 * @param $table Object
@@ -1162,7 +1162,7 @@ EOF;
 			$this->query( $sql, $fname );
 		}
 	}
-	
+
 	/**
 	 * Returns the number of rows in the result set
 	 * Has to be called right after the corresponding select query
@@ -1180,7 +1180,7 @@ EOF;
 			return 0;
 		}
 	}
-	
+
 	/**
 	 * Moves the row pointer of the result set
 	 * @param $res Object: result set
@@ -1193,11 +1193,11 @@ EOF;
 		}
 		return db2_fetch_row( $res, $row );
 	}
-	
+
 	###
-	# Fix notices in Block.php 
+	# Fix notices in Block.php
 	###
-	
+
 	/**
 	 * Frees memory associated with a statement resource
 	 * @param $res Object: statement resource to free
@@ -1211,7 +1211,7 @@ EOF;
 			throw new DBUnexpectedError( $this,  "Unable to free DB2 result\n" );
 		}
 	}
-	
+
 	/**
 	 * Returns the number of columns in a resource
 	 * @param $res Object: statement resource
@@ -1223,7 +1223,7 @@ EOF;
 		}
 		return db2_num_fields( $res );
 	}
-	
+
 	/**
 	 * Returns the nth column name
 	 * @param $res Object: statement resource
@@ -1236,7 +1236,7 @@ EOF;
 		}
 		return db2_field_name( $res, $n );
 	}
-	
+
 	/**
 	 * SELECT wrapper
 	 *
@@ -1259,7 +1259,7 @@ EOF;
 	{
 		$res = parent::select( $table, $vars, $conds, $fname, $options,
 			$join_conds );
-		
+
 		// We must adjust for offset
 		if ( isset( $options['LIMIT'] ) ) {
 			if ( isset ( $options['OFFSET'] ) ) {
@@ -1267,13 +1267,13 @@ EOF;
 				$offset = $options['OFFSET'];
 			}
 		}
-		
-		
+
+
 		// DB2 does not have a proper num_rows() function yet, so we must emulate
 		// DB2 9.5.4 and the corresponding ibm_db2 driver will introduce
 		//  a working one
 		// TODO: Yay!
-		
+
 		// we want the count
 		$vars2 = array( 'count( * ) as num_rows' );
 		// respecting just the limit option
@@ -1285,20 +1285,20 @@ EOF;
 		if ( isset( $options['GROUP BY'] ) ) {
 			return $res;
 		}
-		
+
 		$res2 = parent::select( $table, $vars2, $conds, $fname, $options2,
 			$join_conds );
 		$obj = $this->fetchObject( $res2 );
 		$this->mNumRows = $obj->num_rows;
-		
-		
+
+
 		return $res;
 	}
-	
+
 	/**
 	 * Handles ordering, grouping, and having options ('GROUP BY' => colname)
 	 * Has limited support for per-column options (colnum => 'DISTINCT')
-	 * 
+	 *
 	 * @private
 	 *
 	 * @param $options Associative array of options to be turned into
@@ -1325,16 +1325,16 @@ EOF;
 		if ( isset( $options['ORDER BY'] ) ) {
 			$preLimitTail .= " ORDER BY {$options['ORDER BY']}";
 		}
-		
+
 		if ( isset( $noKeyOptions['DISTINCT'] )
 			|| isset( $noKeyOptions['DISTINCTROW'] ) )
 		{
 			$startOpts .= 'DISTINCT';
 		}
-		
+
 		return array( $startOpts, '', $preLimitTail, $postLimitTail );
 	}
-	
+
 	/**
 	 * Returns link to IBM DB2 free download
 	 * @return string wikitext of a link to the server software's web site
@@ -1342,11 +1342,11 @@ EOF;
 	public static function getSoftwareLink() {
 		return "[http://www.ibm.com/db2/express/ IBM DB2]";
 	}
-	
+
 	/**
 	 * Get search engine class. All subclasses of this
 	 * need to implement this if they wish to use searching.
-	 * 
+	 *
 	 * @return String
 	 */
 	public function getSearchEngine() {
@@ -1370,7 +1370,7 @@ EOF;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Ping the server and try to reconnect if it there is no connection
 	 * The connection may be closed and reopened while this happens
@@ -1382,7 +1382,7 @@ EOF;
 		$this->close();
 		$this->mConn = $this->openUncataloged( $this->mDBName, $this->mUser,
 			$this->mPassword, $this->mServer, $this->mPort );
-		
+
 		return false;
 	}
 	######################################
@@ -1399,12 +1399,12 @@ EOF;
 	/**
 	 * Not implemented
 	 * @return string $sql
-	 */ 
+	 */
 	public function limitResultForUpdate( $sql, $num ) {
 		$this->installPrint( 'Not implemented for DB2: limitResultForUpdate()' );
 		return $sql;
 	}
-	
+
 	/**
 	 * Only useful with fake prepare like in base Database class
 	 * @return	string
@@ -1413,11 +1413,11 @@ EOF;
 		$this->installPrint( 'Not useful for DB2: fillPreparedArg()' );
 		return '';
 	}
-	
+
 	######################################
 	# Reflection
 	######################################
-	
+
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
@@ -1446,7 +1446,7 @@ SQL;
 		}
 		else return false;
 	}
-	
+
 	/**
 	 * Returns an information object on a table column
 	 * @param $table String: table name
@@ -1456,7 +1456,7 @@ SQL;
 	public function fieldInfo( $table, $field ) {
 		return IBM_DB2Field::fromText( $this, $table, $field );
 	}
-	
+
 	/**
 	 * db2_field_type() wrapper
 	 * @param $res Object: result of executed statement
@@ -1469,7 +1469,7 @@ SQL;
 		}
 		return db2_field_type( $res, $index );
 	}
-	
+
 	/**
 	 * Verifies that an index was created as unique
 	 * @param $table String: table name
@@ -1498,7 +1498,7 @@ SQL;
 		return false;
 
 	}
-	
+
 	/**
 	 * Returns the size of a text field, or -1 for "unlimited"
 	 * @param $table String: table name
@@ -1518,7 +1518,7 @@ SQL;
 		$size = $row->size;
 		return $size;
 	}
-	
+
 	/**
 	 * DELETE where the condition is a join
 	 * @param $delTable String: deleting from this table
@@ -1532,7 +1532,7 @@ SQL;
 		$conds, $fname = "DatabaseIbm_db2::deleteJoin" )
 	{
 		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, 
+			throw new DBUnexpectedError( $this,
 			'Database::deleteJoin() called with empty $conds' );
 		}
 
@@ -1541,8 +1541,8 @@ SQL;
 		$sql = <<<SQL
 DELETE FROM $delTable
 WHERE $delVar IN (
-  SELECT $joinVar FROM $joinTable 
-  
+  SELECT $joinVar FROM $joinTable
+
 SQL;
 		if ( $conds != '*' ) {
 			$sql .= 'WHERE ' . $this->makeList( $conds, LIST_AND );
@@ -1560,7 +1560,7 @@ SQL;
 	public function encodeBlob( $b ) {
 		return new IBM_DB2Blob( $b );
 	}
-	
+
 	/**
 	 * Description is left as an exercise for the reader
 	 * @param $b IBM_DB2Blob: data to be decoded
@@ -1569,7 +1569,7 @@ SQL;
 	public function decodeBlob( $b ) {
 		return "$b";
 	}
-	
+
 	/**
 	 * Convert into a list of string being concatenated
 	 * @param $stringList Array: strings that need to be joined together
@@ -1581,7 +1581,7 @@ SQL;
 		// Sample query: VALUES 'foo' CONCAT 'bar' CONCAT 'baz'
 		return implode( ' || ', $stringList );
 	}
-	
+
 	/**
 	 * Generates the SQL required to convert a DB2 timestamp into a Unix epoch
 	 * @param $column String: name of timestamp column
@@ -1591,11 +1591,11 @@ SQL;
 		// TODO
 		// see SpecialAncientpages
 	}
-	
+
 	######################################
 	# Prepared statements
 	######################################
-	
+
 	/**
 	 * Intended to be compatible with the PEAR::DB wrapper functions.
 	 * http://pear.php.net/manual/en/package.database.db.intro-execute.php
@@ -1669,14 +1669,14 @@ SQL;
 	public function fillPrepared( $preparedQuery, $args ) {
 		reset( $args );
 		$this->preparedArgs =& $args;
-		
+
 		foreach ( $args as $i => $arg ) {
 			db2_bind_param( $preparedQuery, $i+1, $args[$i] );
 		}
-		
+
 		return $preparedQuery;
 	}
-	
+
 	/**
 	 * Switches module between regular and install modes
 	 */
@@ -1685,7 +1685,7 @@ SQL;
 		$this->mMode = $mode;
 		return $old;
 	}
-	
+
 	/**
 	 * Bitwise negation of a column or value in SQL
 	 * Same as (~field) in C
@@ -1725,7 +1725,7 @@ class IBM_DB2Helper {
 		if ( !is_array( $maybeArray ) ) {
 			return array( $maybeArray );
 		}
-		
+
 		return $maybeArray;
 	}
 }
