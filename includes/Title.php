@@ -3530,24 +3530,6 @@ class Title {
 		return !$this->isExternal() && MWNamespace::isWatchable( $this->getNamespace() );
 	}
 
-	/*
-	 * Returns whether an article is in the specific category
-	 *
-	 * @param $category String: The category name (without Category: Prefix)
-	 *
-	 * @return bool
-	 */
-	public function isInCategory( $category ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		return (bool)$dbr->selectRow( 'categorylinks', '*',
-			array(
-				'cl_from' => $this->getArticleId(),
-				'cl_to' => $category,
-			),
-			__METHOD__
-		);
-	}
-
 	/**
 	 * Get categories to which this Title belongs and return an array of
 	 * categories' names.
