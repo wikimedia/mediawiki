@@ -2116,7 +2116,7 @@ $UNWATCHURL
 'actioncomplete'         => '完了しました',
 'actionfailed'           => '操作失敗',
 'deletedtext'            => '「<nowiki>$1</nowiki>」は削除されました。最近の削除に関しては、$2を参照してください。',
-'deletedarticle'         => '「$1」を削除しました',
+'deletedarticle'         => '「[[$1]]」を削除しました',
 'suppressedarticle'      => '「[[$1]]」を秘匿しました',
 'dellogpage'             => '削除記録',
 'dellogpagetext'         => '以下は最近の削除と復帰の記録です。',

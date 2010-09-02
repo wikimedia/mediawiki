@@ -771,7 +771,7 @@ Možete zanemariti ovu poruku ako je suradnički račun stvoren nenamjerno.',
 'login-throttled'            => 'Nedavno ste se previše puta pokušali prijaviti.
 Molimo Vas da pričekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
-'suspicious-userlogout'      => 'Vaš zahtjev za odjavu je odbijen jer to izgleda kao da je poslan preko pokvarenog preglednika ili keširanog proxyja.',
+'suspicious-userlogout'      => 'Vaš zahtjev za odjavu je odbijen jer to izgleda kao da je poslan preko pokvarenog preglednika ili keširanog posrednika (proxyja).',
 
 # JavaScript password checks
 'password-strength'            => 'Procijenjena snaga lozinke: $1',
@@ -916,9 +916,9 @@ Molimo pokušajte ponovno. Ako i dalje ne bude uspijevalo, pokušajte se [[Speci
 ''Budući da je na ovom wikiju ({{SITENAME}}) omogućen unos HTML oznaka (tagova), pretpregled je skriven kao mjera predstrožnosti protiv napada pomoću JavaScripta.''
 
 '''Ukoliko ste pokušali vidjeti kako stranica izgleda, molimo probajte opet. Ako ne uspije, [[Special:UserLogout|odjavite se]] i prijavite se ponovo.'''",
-'token_suffix_mismatch'            => "'''Vaše uređivanje je odbačeno jer je Vaš web preglednik ubacio znak/znakove interpunkcije u token uređivanja.
+'token_suffix_mismatch'            => "'''Vaše uređivanje je odbačeno jer je Vaš web preglednik ubacio znak/znakove interpunkcije u token uređivanja.'''
 Stoga je uređivanje odbačeno da se spriječi uništavanje teksta stranice.
-To se ponekad događa kad rabite neispravan web-baziran anonimni proxy.'''",
+To se ponekad događa kad rabite neispravan web-baziran anonimni posrednik (proxy).",
 'editing'                          => 'Uređujete $1',
 'editingsection'                   => 'Uređujete $1 (odlomak)',
 'editingcomment'                   => 'Uređujete $1 (novi odlomak)',
@@ -1467,7 +1467,7 @@ Možete omogućiti drugima da Vas kontaktiraju na suradničkoj stranici ili stra
 'right-blockemail'            => 'Blokiranje suradnika u slanju elektroničke pošte',
 'right-hideuser'              => 'Blokiranje suradničkog imena, skrivajući ga od javnosti',
 'right-ipblock-exempt'        => 'Imunitet na IP blokiranje, auto-blok i blokiranje opsega',
-'right-proxyunbannable'       => 'Imunitet na automatska blokiranja proxya',
+'right-proxyunbannable'       => 'Imunitet na automatska blokiranja posrednika (proxya)',
 'right-unblockself'           => 'Odblokirati se',
 'right-protect'               => 'Mijenjanje razina zaštićivanja i uređivanje zaštićenih stranica',
 'right-editprotected'         => 'Uređivanje zaštićenih stranica (s prenosivom zaštitom)',

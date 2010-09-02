@@ -539,6 +539,11 @@ Do côp, vos n' såroz schaper vos candjmints asteure; motoit vos dvrîz copyî 
 'recreate-moveddeleted-warn' => "'''Asteme : vous estoz ki rahive ene pådje k' a stî dsfacêye davance.'''
 
 Tuzez bén s' el fåt vormint rahiver, tot tapant èn ouy so l' istwere del pådje :",
+'edit-gone-missing'          => "Li pàdje n' a sepou esse rapontieye.
+Motoit k' elle a stî tapêye evoye.",
+'edit-conflict'              => 'Ecramiaedje di candjmints.',
+'edit-no-change'             => "Vosse sicrijhaedje n' a nén passé, paski rén n' a stî candjî al modêye di dvant.",
+'edit-already-exists'        => "Li novele pâdje n' a savou esse ahivêye, ca cisse pâdje la egzistêye dedja.",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Vos n' ploz nén ahiver-st on conte.",
@@ -1061,7 +1066,7 @@ tot [[{{MediaWiki:Policy-url}}|shuvant les rîles]].",
 'actioncomplete'    => 'Fwait',
 'deletedtext'       => 'Li pådje «<nowiki>$1</nowiki>» a stî disfacêye. Loukîz li $2 po ene
 djivêye des dierins disfaçaedjes.',
-'deletedarticle'    => 'pådje «$1» disfacêye',
+'deletedarticle'    => 'pådje «[[$1]]» disfacêye',
 'dellogpage'        => 'Djournå des disfaçaedjes',
 'dellogpagetext'    => "Chal pa dzo c' est l' djivêye des dierins disfaçaedjes.",
 'deletionlog'       => 'djournå des disfaçaedjes',

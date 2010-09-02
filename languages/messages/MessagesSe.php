@@ -885,7 +885,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'actioncomplete'    => 'Doaibma lea dahkkon',
 'deletedtext'       => '"<nowiki>$1</nowiki>" lea sihkojuvvon.
 Siiddus $2 lea listu maŋimus sihkomiin.',
-'deletedarticle'    => 'sihkoi siiddu $1',
+'deletedarticle'    => 'sihkoi siiddu [[$1]]',
 'dellogpage'        => 'Sihkkunlogga',
 'dellogpagetext'    => 'Vuolábealde lea logga maŋimus sihkkumiin.',
 'deletionlog'       => 'sihkkunlogga',

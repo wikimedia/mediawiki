@@ -1854,7 +1854,7 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 'actioncomplete'         => 'Akschoon trech',
 'actionfailed'           => 'Akschoon fehlslaan',
 'deletedtext'            => 'De Artikel „<nowiki>$1</nowiki>“ is nu wegsmeten. Op $2 gifft dat en Logbook vun de letzten Löschakschonen.',
-'deletedarticle'         => '„$1“ wegsmeten',
+'deletedarticle'         => '„[[$1]]“ wegsmeten',
 'suppressedarticle'      => 'hett „[[$1]]“ versteken',
 'dellogpage'             => 'Lösch-Logbook',
 'dellogpagetext'         => 'Hier is en List vun de letzten Löschen.',

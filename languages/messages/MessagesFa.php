@@ -2353,7 +2353,7 @@ $NEWPAGE
 'actionfailed'           => 'عمل ناموفق',
 'deletedtext'            => '«<nowiki>$1</nowiki>» حذف شد.
 برای سابقهٔ حذف‌های اخیر به $2 مراجعه کنید.',
-'deletedarticle'         => '«$1» حذف شد',
+'deletedarticle'         => '«[[$1]]» حذف شد',
 'suppressedarticle'      => '«[[$1]]» را فرونشاند',
 'dellogpage'             => 'سیاههٔ_حذف',
 'dellogpagetext'         => 'فهرست زیر فهرستی از آخرین حذف‌هاست.

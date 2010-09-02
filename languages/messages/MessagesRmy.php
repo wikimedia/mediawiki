@@ -408,7 +408,7 @@ Kana kamesa te khoses kadaya patrin andar tiri lista le patryange so arakhes len
 'actioncomplete'  => 'Agorisardi buti',
 'deletedtext'     => '"<nowiki>$1</nowiki>" sas khosli.
 Dikh ando $2 ek patrinipen le palutne butyange khosle.',
-'deletedarticle'  => '"$1" sas khosli.',
+'deletedarticle'  => '"[[$1]]" sas khosli.',
 
 # Rollback
 'rollback_short' => 'Palemavilipen',

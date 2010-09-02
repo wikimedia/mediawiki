@@ -564,7 +564,7 @@ $messages = array(
 
 # Delete
 'actioncomplete' => 'ಕಾರ್ಯ ಸಂಪೂರ್ಣ',
-'deletedarticle' => '"$1" ನೆನ್ನ್ ದೆತ್ತ್ ದಾ೦ಡ್',
+'deletedarticle' => '"[[$1]]" ನೆನ್ನ್ ದೆತ್ತ್ ದಾ೦ಡ್',
 'dellogpage'     => 'ಡಿಲೀಟ್ ಮಲ್ತಿನ ಫೈಲ್’ಲೆದ ದಾಖಲೆ',
 
 # Rollback

@@ -335,8 +335,8 @@ $messages = array(
 'revdelete-uname'            => 'по́льꙃєватєлꙗ и́мѧ',
 
 # Search results
-'searchresults'                  => 'иска́ниꙗ ито́гъ',
-'searchresults-title'            => 'иска́ниꙗ ⁖ $1 ⁖ ито́гъ',
+'searchresults'                  => 'иска́ниꙗ слѣдьствиѥ',
+'searchresults-title'            => 'иска́ниꙗ ⁖ $1 ⁖ слѣдьствиѥ',
 'viewprevnext'                   => 'виждь ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-new'                 => "'''страни́цѫ ⁖ [[:$1]] ⁖ сътвори́ти мо́жєши'''",
 'searchhelp-url'                 => 'Help:Ката́логъ',
@@ -525,7 +525,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'        => 'моꙗ́ блюдє́ниꙗ',
-'mywatchlist'      => 'Моꙗ́ блюдє́ниꙗ',
+'mywatchlist'      => 'моꙗ́ блюдє́ниꙗ',
 'addedwatch'       => 'страни́ца нꙑнѣ по́дъ твоимь блюдє́ниѥмь ѥ́стъ',
 'addedwatchtext'   => "страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ по́дъ твоимь [[Special:Watchlist|блюдє́ниѥмь]] ѥ́стъ ⁙
 всꙗ ѥѩ и ѥѩжє бєсѣдꙑ мѣ́нꙑ страни́цѧ ⁖ [[Special:Watchlist|моꙗ́ блюдє́ниꙗ]] ⁖ покаꙁанꙑ сѫ́тъ и  [[Special:RecentChanges|послѣ́дьнъ мѣ́нъ]] ката́лоꙃѣ '''чрьнꙑимъ''' сѧ авлꙗѭтъ",

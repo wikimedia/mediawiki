@@ -1460,7 +1460,7 @@ iepriekšējas versijas.",
 'actioncomplete'         => 'Darbība pabeigta',
 'deletedtext'            => 'Lapa "<nowiki>$1</nowiki>" ir izdzēsta.
 Šeit var apskatīties pēdējos izdzēstos: "$2".',
-'deletedarticle'         => 'izdzēsu "$1"',
+'deletedarticle'         => 'izdzēsu "[[$1]]"',
 'dellogpage'             => 'Dzēšanas reģistrs',
 'dellogpagetext'         => 'Šajā lapā ir pēdējo dzēsto lapu saraksts.',
 'deletionlog'            => 'dzēšanas reģistrs',

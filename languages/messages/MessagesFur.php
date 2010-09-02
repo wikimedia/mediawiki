@@ -1167,7 +1167,7 @@ Par plasê, da la conferme che tu vuelis fâlu, che tu capissis lis conseguencis
 'actioncomplete'        => 'Azion completade',
 'deletedtext'           => '"<nowiki>$1</nowiki>" al è stât eliminât.
 Cjale $2 par une liste des ultimis eliminazions.',
-'deletedarticle'        => 'eliminât "$1"',
+'deletedarticle'        => 'eliminât "[[$1]]"',
 'dellogpage'            => 'Regjistri des eliminazions',
 'deletionlog'           => 'regjistri eliminazions',
 'reverted'              => 'Tornât ae version precedente',

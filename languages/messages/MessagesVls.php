@@ -111,15 +111,18 @@ $messages = array(
 'qbspecialpages' => 'Specioale bloadn',
 
 # Vector skin
-'vector-action-delete' => 'Wegdoen',
-'vector-action-move'   => 'Ernoemn',
-'vector-view-create'   => 'Anmoakn',
-'vector-view-edit'     => 'Bewerkn',
-'vector-view-history'  => 'Geschiedenisse bekykn',
-'vector-view-view'     => 'Leezn',
+'vector-action-delete'   => 'Wegdoen',
+'vector-action-move'     => 'Ernoemn',
+'vector-view-create'     => 'Anmoakn',
+'vector-view-edit'       => 'Bewerkn',
+'vector-view-history'    => 'Geschiedenisse bekykn',
+'vector-view-view'       => 'Leezn',
+'vector-view-viewsource' => 'Brontekst bekykn',
 
+'tagline'           => 'Van {{SITENAME}}',
 'help'              => 'Ulpe',
 'search'            => 'Zoekn',
+'searchbutton'      => 'Zoekn',
 'history_short'     => 'Geschiedenisse',
 'updatedmarker'     => 'bygewerkt sinds min latste visite',
 'info_short'        => 'Informoatie',
@@ -145,14 +148,22 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'   => 'Over {{SITENAME}}',
+'aboutpage'   => 'Project:Info',
 'disclaimers' => 'Aansprakelekeid',
 'mainpage'    => 'Voorblad',
 'privacy'     => 'Privacybeleid',
 
+'viewsourceold'  => 'Brontekst bekykn',
+'viewsourcelink' => 'Brontekst bekykn',
+'site-rss-feed'  => '$1 RSS-feed',
+'site-atom-feed' => '$1 Atom-feed',
 'red-link-title' => '$1 (Blad bestoat nie)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-special' => 'Specioal blad',
+
+# General errors
+'viewsource' => 'Brontekst bekykn',
 
 # Login and logout pages
 'logout' => 'Ofmeldn',

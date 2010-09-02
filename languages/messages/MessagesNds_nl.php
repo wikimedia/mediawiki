@@ -2206,7 +2206,7 @@ Bevestig hieronder dat dit inderdaod de bedoeling is, da-j de gevolgen begriepen
 'actioncomplete'         => 'Uut-evoerd',
 'actionfailed'           => 'De haandeling is mislok.',
 'deletedtext'            => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
-'deletedarticle'         => '"$1" vort-edaon',
+'deletedarticle'         => '"[[$1]]" vort-edaon',
 'suppressedarticle'      => 'hef "[[$1]]" verbörgen',
 'dellogpage'             => 'Vortdologboek',
 'dellogpagetext'         => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",

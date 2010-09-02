@@ -1457,7 +1457,7 @@ Vay gruyel da djuskul ise va maletireem vangrupel ise tarkason va [[{{MediaWiki:
 'actioncomplete'         => 'Skuyuna sulara',
 'deletedtext'            => '« <nowiki>$1</nowiki> » tir sulayan.
 Ta vexala dem noeltaf sulareem va $2 disukel.',
-'deletedarticle'         => 'al sular va « $1 »',
+'deletedarticle'         => 'al sular va « [[$1]] »',
 'suppressedarticle'      => '"[[$1]]" sulayan',
 'dellogpage'             => 'Izvot va sulareem',
 'dellogpagetext'         => 'Tir tela vexala dem noeltaf sulareem.

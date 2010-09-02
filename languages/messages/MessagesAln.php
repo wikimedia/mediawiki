@@ -1338,7 +1338,7 @@ Ju lutemi konfirmoni që kjo âsht ajo që deshtët me bâ, që i keni të njoft
 'actioncomplete'        => 'Veprimi u kry',
 'deletedtext'           => '"<nowiki>$1</nowiki>" âsht fshi.
 Shih $2 për regjistrin e fshimjeve të fundit.',
-'deletedarticle'        => 'grisi "$1"',
+'deletedarticle'        => 'grisi "[[$1]]"',
 'dellogpage'            => 'Regjistri i fshimjeve',
 'deletecomment'         => 'Arsyeja:',
 'deleteotherreason'     => 'Arsyet tjera/shtesë:',
