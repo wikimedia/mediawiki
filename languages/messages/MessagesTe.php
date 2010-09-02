@@ -2032,7 +2032,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'actioncomplete'         => 'పని పూర్తయింది',
 'actionfailed'           => 'చర్య విఫలమైంది',
 'deletedtext'            => '"<nowiki>$1</nowiki>" తుడిచివేయబడింది. ఇటీవలి తుడిచివేతలకు సంబంధించిన నివేదిక కొరకు $2 చూడండి.',
-'deletedarticle'         => '"$1" తుడిచివేయబడినది',
+'deletedarticle'         => '"[[$1]]" తుడిచివేయబడినది',
 'suppressedarticle'      => '"[[$1]]" ను అణచి ఉంచాం',
 'dellogpage'             => 'తొలగింపుల చిట్టా',
 'dellogpagetext'         => 'ఇది ఇటీవలి తుడిచివేతల జాబితా.',

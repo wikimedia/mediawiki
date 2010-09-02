@@ -2147,7 +2147,7 @@ Palaute ja lisäapu osoitteessa:
 'actionfailed'           => 'Toiminto epäonnistui',
 'deletedtext'            => '”<nowiki>$1</nowiki>” on poistettu.
 Sivulla $2 on lista viimeaikaisista poistoista.',
-'deletedarticle'         => 'poisti sivun $1',
+'deletedarticle'         => 'poisti sivun [[$1]]',
 'suppressedarticle'      => 'häivytti sivun [[$1]]',
 'dellogpage'             => 'Poistoloki',
 'dellogpagetext'         => 'Alla on loki viimeisimmistä poistoista.',

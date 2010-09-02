@@ -1173,7 +1173,7 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 'confirmdeletetext'      => 'Tu kê niha rûpelekê bi tev dîroka wê jêbibê. Xêra xwe zanibe tu kê niha çi bikê û zanibe, çi di wîkîyê da yê bibe. Hên jî seke, ku ev jêbirina bi [[{{MediaWiki:Policy-url}}|mafên wîkîyê]] ra dimeşin ya na.',
 'actioncomplete'         => 'Çalakî temam',
 'deletedtext'            => '"<nowiki>$1</nowiki>" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
-'deletedarticle'         => '"$1" hat jêbirin',
+'deletedarticle'         => '"[[$1]]" hat jêbirin',
 'dellogpage'             => 'Reşahîya jêbirin',
 'dellogpagetext'         => 'Li jêr lîsteyek ji jêbirinên dawî heye.',
 'deletionlog'            => 'reşahîya jêbirin',

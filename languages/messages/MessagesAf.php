@@ -2145,7 +2145,7 @@ Bevestig asseblief dat u dit wil doen, dat u die gevolge verstaan en dat u dit d
 'actionfailed'           => 'Aksie het gefaal',
 'deletedtext'            => '"<nowiki>$1</nowiki>" is geskrap.
 Kyk na $2 vir \'n rekord van onlangse skrappings.',
-'deletedarticle'         => '"$1" geskrap',
+'deletedarticle'         => '"[[$1]]" geskrap',
 'suppressedarticle'      => 'het "[[$1]]" verberg',
 'dellogpage'             => 'Skraplogboek',
 'dellogpagetext'         => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).",

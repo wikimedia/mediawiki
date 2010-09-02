@@ -20,6 +20,7 @@
  * @author දසනැබළයෝ
  * @author නන්දිමිතුරු
  * @author බිඟුවා
+ * @author රොමානිස් සැමුවෙල්
  */
 
 $namespaceNames = array(
@@ -1333,7 +1334,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'userrights-lookup-user'         => 'පරිශීලක කණ්ඩායම් කළමනාකරණය කරන්න',
 'userrights-user-editname'       => 'පරිශීලක-නාමයක් ආදායනය කරන්න:',
 'editusergroup'                  => 'පරිශීලක කණ්ඩායම් සංස්කරණය කරන්න',
-'editinguser'                    => "පරිශීලක  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) ගේ පරිශීලක හිමිකම් වෙනස්කිරීම",
+'editinguser'                    => "පරිශීලක  '''[[පරිශීලක:$1|$1]]''' ([[පරිශීලක සාකච්ඡාව:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) ගේ පරිශීලක හිමිකම් වෙනස්කිරීම",
 'userrights-editusergroup'       => 'පරිශීලක කණ්ඩායම් සංස්කරණය කරන්න',
 'saveusergroups'                 => 'පරිශීලක කණ්ඩායම් සුරකින්න',
 'userrights-groupsmember'        => 'ඉදිරි කාණ්ඩයන්හි සාමාජිකයෙකි:',

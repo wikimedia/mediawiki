@@ -674,7 +674,7 @@ Lütfen doorulayın ani siz neetlenersiniz bunu yapmaa, annêêrsiniz onun rezul
 'actioncomplete'        => 'İşlik tamannandı.',
 'deletedtext'           => '"<nowiki>$1</nowiki>" silindi.
 Yakın zamanda silinenleri görmää deyni: $2.',
-'deletedarticle'        => '"$1" silindi',
+'deletedarticle'        => '"[[$1]]" silindi',
 'dellogpage'            => 'Silmää jurnalı',
 'deletecomment'         => 'Sebep',
 'deleteotherreason'     => 'Başka/ek sebep:',

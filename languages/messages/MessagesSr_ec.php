@@ -571,10 +571,10 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Чланак',
-'nstab-user'      => 'Корисничка страна',
+'nstab-user'      => 'Корисник',
 'nstab-media'     => 'Страница медија',
-'nstab-special'   => 'Посебна страница',
-'nstab-project'   => 'Страна пројекта',
+'nstab-special'   => 'Посебна',
+'nstab-project'   => 'Пројект',
 'nstab-image'     => 'Слика',
 'nstab-mediawiki' => 'Порука',
 'nstab-template'  => 'Шаблон',
@@ -2795,8 +2795,8 @@ $1',
 Све друге везе у истој линији се сматрају изузецима тј. чланци у којима се слика може приказати.',
 
 # Variants for Serbian language
-'variantname-sr-ec' => 'ћирилица',
-'variantname-sr-el' => 'latinica',
+'variantname-sr-ec' => 'Ћирилица',
+'variantname-sr-el' => 'Latinica',
 'variantname-sr'    => 'disable',
 
 # Metadata

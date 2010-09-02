@@ -2332,7 +2332,8 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 'deletedtext'            => 'Parameters:
 * $1 is a page that was deleted
 * $2 is {{msg-mw|deletionlog}}',
-'deletedarticle'         => "This is a ''logentry'' message. $1 is deleted page name.",
+'deletedarticle'         => "This is a ''logentry'' message. Parameters:
+* $1 is deleted page name.",
 'dellogpage'             => 'The name of the deletion log. Used as heading on [[Special:Log/delete]] and in the drop down menu for selecting logs on [[Special:Log]].
 
 {{Identical|Deletion log}}',

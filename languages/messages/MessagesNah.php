@@ -1065,7 +1065,7 @@ Ticpatlāz motlanequiliz:
 'actioncomplete'         => 'Cēntetl',
 'deletedtext'            => '"<nowiki>$1</nowiki>" ōmopolo.
 Xiquitta $2 ic yancuīc tlapololiztli.',
-'deletedarticle'         => 'ōmopolo "$1"',
+'deletedarticle'         => 'ōmopolo "[[$1]]"',
 'dellogpage'             => 'Tlapololiztli tlahcuilōlloh',
 'deletionlog'            => 'tlapololiztli tlahcuilōlloh',
 'deletecomment'          => 'Īxtlamatiliztli:',

@@ -410,7 +410,7 @@ Tšültši leeb tširjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall
 'actioncomplete'        => 'Töö tehtü lõppuu',
 'deletedtext'           => '"<nowiki>$1</nowiki>" on pühittü.
 Tšüľľellä $2 on spiiska viimeiziss pühtšimühsiiss.',
-'deletedarticle'        => 'roottšiz tšüľľee $1',
+'deletedarticle'        => 'roottšiz tšüľľee [[$1]]',
 'dellogpage'            => 'Pühitüd tšüľľed',
 'deletecomment'         => 'Süü',
 'deleteotherreason'     => 'Muu vai lisä süü',

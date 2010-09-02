@@ -1366,7 +1366,7 @@ Kinnüdäq, et sa tahat tuud tõtõstõ tetäq, et sa saat arvo, miä tuust tull
 'actioncomplete'        => 'Tallitus valmis',
 'deletedtext'           => '"<nowiki>$1</nowiki>" om ärq kistutõt.
 Perämäidsi kistutuisi nimekirjä näet siist: $2.',
-'deletedarticle'        => '"$1" kistutõt',
+'deletedarticle'        => '"[[$1]]" kistutõt',
 'dellogpage'            => 'Kistutõduq leheküleq',
 'dellogpagetext'        => 'Naaq ommaq perämädseq kistutamisõq.
 Kelläaoq ummaq serveriao perrä.',

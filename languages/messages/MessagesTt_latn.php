@@ -550,7 +550,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'actioncomplete'        => 'Ğämäl tämam',
 'deletedtext'           => '«<nowiki>$1</nowiki>» beterelgän buldı.
 Soñğı beterülär $2 bitendä terkälenä.',
-'deletedarticle'        => '«$1» beterelde',
+'deletedarticle'        => '«[[$1]]» beterelde',
 'dellogpage'            => 'Beterü_köndälege',
 'deletionlog'           => 'beterü köndälege',
 'reverted'              => 'Aldağı yuramanı qaytart',

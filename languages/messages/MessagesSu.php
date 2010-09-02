@@ -1757,7 +1757,7 @@ Asupan jeung bantuan salajengna:
 'confirmdeletetext'      => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan {{SITENAME}}]].',
 'actioncomplete'         => 'Peta geus réngsé',
 'deletedtext'            => '"<nowiki>$1</nowiki>" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
-'deletedarticle'         => 'ngahapus "$1"',
+'deletedarticle'         => 'ngahapus "[[$1]]"',
 'dellogpage'             => 'Log_hapusan',
 'dellogpagetext'         => 'Di handap ieu daptar hapusan nu ahir-ahir, sakabéh wanci dumasar wanci server.',
 'deletionlog'            => 'log hapusan',
