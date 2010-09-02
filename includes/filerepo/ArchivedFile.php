@@ -218,7 +218,7 @@ class ArchivedFile
 	 * Return the FileStore storage group
 	 */
 	public function getGroup() {
-		return $file->group;
+		return $this->group;
 	}
 
 	/**
