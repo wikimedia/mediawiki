@@ -599,6 +599,21 @@ function wfUILang() {
 }
 
 /**
+ * This is the new function for getting translated interface messages.
+ * See the Message class for documentation how to use them.
+ * The intention is that this function replaces all old wfMsg* functions.
+ * @param $key \string Message key.
+ * Varargs: normal message parameters.
+ * @return \type{Message}
+ * @since 1.17
+ */
+function wfMessage( $key /*...*/) {
+	$params = func_get_args();
+	array_shift( $params );
+	return new Message( $key, $params );
+}
+
+/**
  * Get a message from anywhere, for the current user language.
  *
  * Use wfMsgForContent() instead if the message should NOT
