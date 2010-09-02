@@ -1600,18 +1600,24 @@ class Language {
 		return strtr( $matches[0], $wikiUpperChars );
 	}
 
+	/**
+	 * Make a string's first character uppercase
+	 */
 	function ucfirst( $str ) {
 		$o = ord( $str );
-		if ( $o < 96 ) {
+		if ( $o < 96 ) { // if already uppercase...
 			return $str;
 		} elseif ( $o < 128 ) {
-			return ucfirst( $str );
+			return ucfirst( $str ); // use PHP's ucfirst()
 		} else {
 			// fall back to more complex logic in case of multibyte strings
-			return $this->uc( $str, true );
+			return self::uc( $str, true );
 		}
 	}
 
+	/**
+	 * Convert a string to uppercase
+	 */
 	function uc( $str, $first = false ) {
 		if ( function_exists( 'mb_strtoupper' ) ) {
 			if ( $first ) {
