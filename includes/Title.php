@@ -1316,6 +1316,7 @@ class Title {
 	 */
 	private function checkPermissionHooks( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		// Use getUserPermissionsErrors instead
+		$result = '';
 		if ( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
 			return $result ? array() : array( array( 'badaccess-group0' ) );
 		}

@@ -21,7 +21,7 @@ class ApiWatchTest extends ApiTestSetup {
 	function doApiRequest( $params, $data = null ) {
 		$_SESSION = isset( $data[2] ) ? $data[2] : array();
 
-		$req = new FauxRequest( $params, true, $session );
+		$req = new FauxRequest( $params, true, $_SESSION );
 		$module = new ApiMain( $req, true );
 		$module->execute();
 
