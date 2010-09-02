@@ -1100,7 +1100,7 @@ class Preferences {
 	}
 
 	static function validateSignature( $signature, $alldata ) {
-		global $wgMaxSigChars, $wgLang;
+		global $wgParser, $wgMaxSigChars, $wgLang;
 		if ( mb_strlen( $signature ) > $wgMaxSigChars ) {
 			return Xml::element( 'span', array( 'class' => 'error' ),
 				wfMsgExt( 'badsiglength', 'parsemag',
