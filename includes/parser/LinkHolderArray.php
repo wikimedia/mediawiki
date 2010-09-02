@@ -345,7 +345,9 @@ class LinkHolderArray {
 				extract( $titlesAttrs[$i] );
 				if($textVariant != $titleText){
 					$variantTitle = Title::makeTitle( $ns, $textVariant );
-					if( is_null( $variantTitle ) ) { continue; }
+					if( is_null( $variantTitle ) ) {
+						continue;
+					}
 					$linkBatch->addObj( $variantTitle );
 					$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
 				}

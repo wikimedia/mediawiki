@@ -248,7 +248,8 @@ class DjVuImage {
 			wfProfileIn( 'djvutxt' );
 			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename ) ;
 			wfDebug( __METHOD__.": $cmd\n" );
-			$txt = wfShellExec( $cmd, $retval );
+			$retval = '';
+			$txt = wfShellExec( $cmd, &$retval );
 			wfProfileOut( 'djvutxt' );
 			if( $retval == 0) {
 				# Get rid of invalid UTF-8, strip control characters

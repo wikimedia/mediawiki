@@ -82,6 +82,7 @@ class SvgHandler extends ImageHandler {
 	public function rasterize( $srcPath, $dstPath, $width, $height ) {
 		global $wgSVGConverters, $wgSVGConverter, $wgSVGConverterPath;
 		$err = false;
+		$retval = '';
 		if ( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
 			$cmd = str_replace(
 				array( '$path/', '$width', '$height', '$input', '$output' ),
@@ -94,7 +95,7 @@ class SvgHandler extends ImageHandler {
 			) . " 2>&1";
 			wfProfileIn( 'rsvg' );
 			wfDebug( __METHOD__.": $cmd\n" );
-			$err = wfShellExec( $cmd, $retval );
+			$err = wfShellExec( $cmd, &$retval );
 			wfProfileOut( 'rsvg' );
 		}
 		$removed = $this->removeBadFile( $dstPath, $retval );
