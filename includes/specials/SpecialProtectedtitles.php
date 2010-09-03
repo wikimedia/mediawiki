@@ -54,7 +54,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$pager = new ProtectedTitlesPager( $this, array(), $type, $level, $NS, $sizetype, $size );
 
-		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size ) );
+		$wgOut->addHTML( $this->showOptions( $NS, $type, $level ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
@@ -109,11 +109,9 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @param $namespace Integer:
 	 * @param $type string
 	 * @param $level string
-	 * @param $sizetype Unused
-	 * @param $size Unused
 	 * @private
 	 */
-	function showOptions( $namespace, $type='edit', $level, $sizetype, $size ) {
+	function showOptions( $namespace, $type='edit', $level ) {
 		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'Protectedtitles' );
