@@ -493,12 +493,7 @@ CREATE TABLE /*_*/categorylinks (
   -- A binary string obtained by applying a sortkey generation algorithm
   -- (Language::convertToSortkey()) to page_title, or cl_sortkey_prefix . "\0"
   -- . page_title if cl_sortkey_prefix is nonempty.
-  --
-  -- Truncate so that the cl_sortkey key fits in 1000 bytes (MyISAM 5 with
-  -- server_character_set=utf8).  FIXME: this truncation probably makes no
-  -- sense anymore; we should be using varbinary for this, utf8 will break
-  -- everything.
-  cl_sortkey varchar(70) binary NOT NULL default '',
+  cl_sortkey varbinary(255) NOT NULL default '',
 
   -- A prefix for the raw sortkey manually specified by the user, either via
   -- [[Category:Foo|prefix]] or {{defaultsort:prefix}}.  If nonempty, it's
@@ -511,12 +506,12 @@ CREATE TABLE /*_*/categorylinks (
   -- sorting method by approximate addition time.
   cl_timestamp timestamp NOT NULL,
 
-  -- Stores $wgCollationVersion at the time cl_sortkey was generated.  This can
-  -- be used to install new collation versions, tracking which rows are not yet
-  -- updated.  0 means no collation, this is a legacy row that needs to be
+  -- Stores $wgCategoryCollation at the time cl_sortkey was generated.  This
+  -- can be used to install new collation versions, tracking which rows are not
+  -- yet updated.  '' means no collation, this is a legacy row that needs to be
   -- updated by updateCollation.php.  In the future, it might be possible to
   -- specify different collations per category.
-  cl_collation tinyint NOT NULL default 0,
+  cl_collation varbinary(32) NOT NULL default '',
 
   -- Stores whether cl_from is a category, file, or other page, so we can
   -- paginate the three categories separately.  This never has to be updated

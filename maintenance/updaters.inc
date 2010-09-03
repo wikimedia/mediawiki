@@ -103,7 +103,6 @@ function do_all_updates( $shared = false, $purge = true ) {
 }
 
 function archive( $name ) {
-	wfDeprecated( __FUNCTION__ );
 	return DatabaseBase::patchPath( $name );
 }
 
@@ -833,12 +832,23 @@ function do_populate_rev_len() {
 	$task->execute();
 }
 
+function do_cl_fields_update() {
+	if ( update_row_exists( 'cl_fields_update' ) ) {
+		wfOut( "...categorylinks up-to-date.\n" );
+		return;
+	}
+	wfOut( 'Updating categorylinks (again)...' );
+	global $wgDatabase;
+	$wgDatabase->sourceFile( archive( 'patch-categorylinks-better-collation2.sql' ) );
+	wfOut( "done.\n" );
+}
+
 function do_collation_update() {
-	global $wgDatabase, $wgCollationVersion;
+	global $wgDatabase, $wgCategoryCollation;
 	if ( $wgDatabase->selectField(
 		'categorylinks',
 		'COUNT(*)',
-		'cl_collation != ' . $wgDatabase->addQuotes( $wgCollationVersion ),
+		'cl_collation != ' . $wgDatabase->addQuotes( $wgCategoryCollation ),
 		__FUNCTION__
 	) == 0 ) {
 		wfOut( "...collations up-to-date.\n" );
