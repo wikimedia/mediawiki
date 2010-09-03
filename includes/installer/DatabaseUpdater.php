@@ -94,9 +94,7 @@ abstract class DatabaseUpdater {
 	 * Before 1.17, we used to handle updates via stuff like $wgUpdates,
 	 * $wgExtNewTables/Fields/Indexes. This is nasty :) We refactored a lot
 	 * of this in 1.17 but we want to remain back-compatible for awhile. So
-	 * load up these old global-based things into our update list. We can't
-	 * version these like we do with our core updates, so they have to go
-	 * in 'always'
+	 * load up these old global-based things into our update list.
 	 */
 	protected function getOldGlobalUpdates() {
 		global $wgUpdates, $wgExtNewFields, $wgExtNewTables,
