@@ -1,4 +1,10 @@
 <?php
+/**
+ * Job to fix double redirects after moving a page
+ *
+ * @file
+ * @ingroup JobQueue
+ */
 
 /**
  * Job to fix double redirects after moving a page

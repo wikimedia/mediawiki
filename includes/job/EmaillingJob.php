@@ -1,4 +1,10 @@
 <?php
+/**
+ * Old job for notification emails.
+ *
+ * @file
+ * @ingroup JobQueue
+ */
 
 /**
  * Old job used for sending single notification emails;

@@ -1,7 +1,13 @@
 <?php
+/**
+ * Job for asynchronous upload-by-url.
+ *
+ * @file
+ * @ingroup JobQueue
+ */
 
 /**
- * Job for asynchronous upload-by-url. 
+ * Job for asynchronous upload-by-url.
  * 
  * This job is in fact an interface to UploadFromUrl, which is designed such
  * that it does not require any globals. If it does, fix it elsewhere, do not

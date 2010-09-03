@@ -1,4 +1,10 @@
 <?php
+/**
+ * Job to update links for a given title.
+ *
+ * @file
+ * @ingroup JobQueue
+ */
 
 /**
  * Background job to update links for a given title.
