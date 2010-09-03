@@ -1502,8 +1502,8 @@ Për piasì, ch'as butà an comunicassion con n'[[Special:ListUsers/sysop|aminis
 'upload-misc-error'         => "Eror nen identificà antramentr ch'as cariava",
 'upload-misc-error-text'    => "A l'é staie n'eror nen identificà dëmentrè ch'as cariava chèich-còs.
 Për piasì, ch'a varda che soa anliura a sia bon-a e che a l'arsponda e peuj ch'a preuva torna.
-Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:ListUsers/sysop|aministrador]].",
-'upload-too-many-redirects' => "L'URT a l'avìa tròpe rediression",
+Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
+'upload-too-many-redirects' => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
 'upload-unknown-size'       => 'Dimension pa conossùa',
 'upload-http-error'         => "A l'é stàit-ie n'eror HTTP: $1.",
 

@@ -107,6 +107,7 @@ $messages = array(
 'tog-fancysig'                => 'ایمضا ره ویکی متن نظر بیرین (بدون لینک هایتن)',
 'tog-externaleditor'          => 'به شیکل پیش فرض خارجی ویرایشگرون جه ایستیفاده بواشه',
 'tog-externaldiff'            => 'ایستیفاده از تفاوت‌گیر جه (diff) خارجی به‌طور پیش‌فرض.',
+'tog-showjumplinks'           => 'فعال هکردن بپرسنی پیوندون مندرجات فهرست دله',
 'tog-uselivepreview'          => 'ایستیفاده از پیش نیمایش زنده (جاوا اسکریپ) (آزمایشی)',
 'tog-forceeditsummary'        => 'زمونی که خولاصه دچی‌ین ره ننویشتمه مه ره بائو',
 'tog-watchlisthideown'        => 'دپوشنی‌ین کارای من پیگریای ِفهرست دله',
@@ -120,9 +121,12 @@ $messages = array(
 'tog-showhiddencats'          => 'دپوشونیه رج‌ئون ره نشون هاده',
 'tog-norollbackdiff'          => 'بعد واگردونی تفاوت ره نشون نده',
 
+'underline-always'  => 'همیشه مازرونی',
+'underline-never'   => 'دکل',
 'underline-default' => 'مه چأرخ‌گأر ده‌لخاء',
 
 # Font style option in Special:Preferences
+'editfont-style'     => 'دچی ین جعبه قلم سبک:',
 'editfont-default'   => 'مه چأرخ‌گأر ده‌لخاء',
 'editfont-monospace' => 'فونت Monospaced',
 'editfont-sansserif' => 'فونت Sans-serif',
@@ -181,12 +185,15 @@ $messages = array(
 'dec'           => 'ده‌سه‌مبر',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|رج|رج‌ئون}}',
-'category_header'        => '"$1" ره ده‌له وألـگ‌ئون',
-'subcategories'          => 'جیر رج‌ئون',
-'category-empty'         => 'ای رج ره ده‌له ئه‌سا هیچی دأنیه',
-'category-article-count' => '{{PLURAL:$2|ای رج هأمـینـتا وألـگ ره داره‌نه.|ای  {{PLURAL:$1ولگ|ولگ|$1 ئون}}، $2 جه ایجه دأره‌نه.}}',
-'listingcontinuesabbrev' => '(دمباله)',
+'pagecategories'           => '{{PLURAL:$1|رج|رج‌ئون}}',
+'category_header'          => '"$1" ره ده‌له وألـگ‌ئون',
+'subcategories'            => 'جیر رج‌ئون',
+'category-media-header'    => '«$1» رج پرونده‌ئون',
+'category-empty'           => 'ای رج ره ده‌له ئه‌سا هیچی دأنیه',
+'hidden-categories'        => '{{PLURAL:$1|خف رج|خف رجون}}',
+'hidden-category-category' => 'خف رجون',
+'category-article-count'   => '{{PLURAL:$2|ای رج هأمـینـتا وألـگ ره داره‌نه.|ای  {{PLURAL:$1ولگ|ولگ|$1 ئون}}، $2 جه ایجه دأره‌نه.}}',
+'listingcontinuesabbrev'   => '(دمباله)',
 
 'about'         => 'ده‌لـه‌واره',
 'newwindow'     => '(ته‌رنه‌ روجین ده‌له‌ وا بونه)',

@@ -655,9 +655,9 @@ Foar Information foulget n aktuellen Iendraach uut dät Benutser-Logbouk:',
 'note'                             => "'''Waiwiesenge:'''",
 'previewnote'                      => "'''Dit is man ne Foarschau, die Artikkel wuude noch nit spiekerd!'''",
 'previewconflict'                  => 'Disse Foarschau rakt dän Inhoold fon dät buppere Täkstfäild wier; so wol die Artikkel uutsjo, wan du nu spiekerjen dääst.',
-'session_fail_preview'             => "'''Dien Beoarbaidenge kuud nit spiekerd wäide, deer dien Sitsengsdoaten ferlädden geen sunt.
+'session_fail_preview'             => "Dien Beoarbaidenge kuud nit spiekerd wäide, deer dien Sitsengsdoaten ferlädden geen sunt.
 Fersäik dät jädden fonnäien, deertruch dät du unner ju foulgjende Foarschau nochmoal ap \"Siede spiekerje\" klikst.
-Schuul dät Problem bestounden blieuwe, mäldje die ou un deerätter wier an.'''",
+Schuul dät Problem bestounden blieuwe, [[Special:UserLogout|mäldje die ou]] un deerätter wier an.'''",
 'session_fail_preview_html'        => "'''Dien Beoarbaidenge kuud nit spiekerd wäide, deer dien Sitsengsdoaten ferlädden geen sunt.'''
 
 ''Deer in  {{SITENAME}} dät Spikerjen fon scheen HTML aktivierd is, wuude ju Foarschau uutblended uum JavaScript Angriepe tou ferhinnerjen.''
@@ -853,6 +853,8 @@ $1",
 'logdelete-failure'           => "'''Logbouksichtboarkaid kon nit annerd wäide:'''
 $1",
 'revdel-restore'              => 'Sichtboarhaid annerje',
+'revdel-restore-deleted'      => 'läskede Versione',
+'revdel-restore-visible'      => 'sichtboare Revisione',
 'pagehist'                    => 'Siedegeschichte',
 'deletedhist'                 => 'Läskede Versione',
 'revdelete-content'           => 'Siedeninhoold',
@@ -887,6 +889,23 @@ Wröigje do Logbouke.',
 # Suppression log
 'suppressionlog'     => 'Uursicht-Logbouk',
 'suppressionlogtext' => 'Dit is dät Logbouk fon do Uursicht-Aktione (Annerengen fon ju Sichtboarhaid fon Versione, Beorbaidengskommentare, Benutsernoomen un Benutserspeeren).',
+
+# Revision move
+'moverevlogentry'              => 'ferschäuw {{PLURAL:$3|een Version|$3 Versione}} fon $1 ätter $2',
+'revisionmove'                 => 'Moor Revisione fon "$1"',
+'revmove-explain'              => 'Do foulgjende Versione wäide fon $1 tou ju anroate Sielsiede ferschäuwen. Fals ju Sielsiede nit bestoant, wäd ju moaked. Uurfals wäide disse Versione in ju Versionsgeschichte touhoopefierd.',
+'revmove-legend'               => 'Sielsiede un Touhoopefpatenge fäästlääse',
+'revmove-submit'               => 'Versione tou ju uutwäälde Siede ferschäuwen',
+'revisionmoveselectedversions' => 'Uutwäälde Versione ferschuuwe',
+'revmove-reasonfield'          => 'Gruund:',
+'revmove-titlefield'           => 'Sielsiede:',
+'revmove-badparam-title'       => 'Falske Parameetere',
+'revmove-badparam'             => 'Dien Anfroage änthaalt nit-ferlööwede of gebräkkelke Parameetere. Klik ap "tourääch" un fersäik dät nochmoal.',
+'revmove-norevisions-title'    => 'Uunjäildige Sielversion',
+'revmove-norevisions'          => 'Du hääst neen Sielversion ounroat, uum disse Aktion truchtoufieren of ju ounroate Version bestoant nit.',
+'revmove-nullmove-title'       => 'Uungultigen Tittel',
+'revmove-nullmove'             => 'Wälle- un Sielsiede sunt identisk. Klik ap "tourääch" un reek n uur Siedennoome as "$1" ien.',
+'revmove-success-existing'     => '{{PLURAL:$1|Ne Version fon [[$2]] wuud|$1 Versione fon [[$2]] wuuden}} tou ju existierende Siede [[$3]] ferschäuwen.',
 
 # History merging
 'mergehistory'                     => 'Versionsgeschichten fereenigje',
@@ -1796,6 +1815,7 @@ As Ouseender wäd ju E-Mail-Adresse uut dien [[Special:Preferences|Ienstaalengen
 # Watchlist
 'watchlist'            => 'Beooboachtengslieste',
 'mywatchlist'          => 'Beooboachtengslieste',
+'watchlistfor2'        => 'Fon $1 $2',
 'nowatchlist'          => 'Du hääst neen Iendraage ap dien Beooboachtengslieste. Du moast anmälded weese, dät die een Beooboachtengslieste tou Ferföigenge stoant.',
 'watchlistanontext'    => 'Du moast die $1, uum dien Beooboachtengslieste tou sjoon of Iendraage ap hier tou beoarbaidjen.',
 'watchnologin'         => 'Du bäst nit anmälded',

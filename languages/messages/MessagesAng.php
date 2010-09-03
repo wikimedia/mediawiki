@@ -188,7 +188,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'       => 'Ȝief ȝīet ān mā dǣl',
+'vector-action-addsection'       => 'Mearcunge ēacian',
 'vector-action-delete'           => 'Forlēos',
 'vector-action-move'             => 'Ƿeȝ',
 'vector-action-protect'          => 'Beorȝa',
@@ -197,7 +197,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Lǣt forðoda sēcunge tōtyhtinga (synderlīce for Vector scinne)',
 'vector-view-create'             => 'Sciepe',
 'vector-view-edit'               => 'Ādihte',
-'vector-view-history'            => 'Sēo stǣr',
+'vector-view-history'            => 'Stǣr',
 'vector-view-view'               => 'Rǣd',
 'vector-view-viewsource'         => 'Sēo fruman',
 'actions'                        => 'Fremmunga',

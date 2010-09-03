@@ -308,20 +308,21 @@ Okakasa nti kisaanira okuluzzaawo?
 Ebifa ku kugyibwawo kw'olupapula luno bye bino:",
 
 # History pages
-'viewpagelogs'        => "Kebera likooda ez'olupapula luno",
-'currentrev'          => 'Ebiriwo kaakano',
-'currentrev-asof'     => "Oluwandika lw'olupapula luno olusinga obupya, okuva nga $1",
-'revisionasof'        => "Enfaanana y'olupapula luno ku saawa $1",
-'previousrevision'    => '←Laba ebyasookawo bino',
-'nextrevision'        => 'Oluwandika oluddako→',
-'currentrevisionlink' => 'Oluwandika oluliwo kakati',
-'cur'                 => 'ebiriwo',
-'last'                => 'ebyasookawo bino',
-'histlegend'          => "'''Ebyokugerageranizibwa:''' nyiga obutonnyeze ku likooda zoyagala okugerageranya olyoke onyige eppeesa erya 'Enter'<br />
+'viewpagelogs'           => "Kebera likooda ez'olupapula luno",
+'currentrev'             => 'Ebiriwo kaakano',
+'currentrev-asof'        => "Oluwandika lw'olupapula luno olusinga obupya, okuva nga $1",
+'revisionasof'           => "Enfaanana y'olupapula luno ku saawa $1",
+'previousrevision'       => '←Laba ebyasookawo bino',
+'nextrevision'           => 'Oluwandika oluddako→',
+'currentrevisionlink'    => 'Oluwandika oluliwo kakati',
+'cur'                    => 'ebiriwo',
+'last'                   => 'ebyasookawo bino',
+'histlegend'             => "'''Ebyokugerageranizibwa:''' nyiga obutonnyeze ku likooda zoyagala okugerageranya olyoke onyige eppeesa erya 'Enter'<br />
 oba ku gano agali ku lupapula luno.<br />
 '''Ebigambo:''' (erw) = enjawulo ku ebiriwo, (eku) = enjawulo ku egikulembera, N = enkyukakyuka entono.",
-'histfirst'           => "Tandikira ku bisinga okuba eby'edda",
-'histlast'            => 'Tandikira ku bisinga obupya',
+'history-fieldset-title' => 'Mu nnanda nonamu ebyakolebwa:',
+'histfirst'              => "Tandikira ku bisinga okuba eby'edda",
+'histlast'               => 'Tandikira ku bisinga obupya',
 
 # Revision deletion
 'rev-delundel'   => 'laga/kisa',
@@ -390,25 +391,27 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'action-edit' => 'olupapula luno okulukolamu nkyukakyuka',
 
 # Recent changes
-'nchanges'           => '{{PLURAL:$1|Olukyukakyuka|Nkyukakyuka}} $1',
-'recentchanges'      => 'Ebyakakyusibwa',
-'recentchangestext'  => "Goberera enkyuukakyuuka empya ez'oku muko guno",
-'rcnote'             => "Wano olaba {{PLURAL:$1|olukyukakyuka '''1''' olukoledwawo|enkyukakyuka '''$1''' ezikoledwawo}} mu {{PLURAL:$2|lunaku olwakayita|naku '''$2''' ezaakayita}}. Bino byategeerese ku ssaawa $5 nga $4.",
-'rclistfrom'         => 'Laga enkyukakyuka empya ezikoledwa okuva $1',
-'rcshowhideminor'    => 'Enkyukakyuka ntono $1',
-'rcshowhidebots'     => '$1 ebya bboti',
-'rcshowhideliu'      => '$1 ebya bamemba abali ku wiki ku saawa eno',
-'rcshowhideanons'    => "$1 eby'abakola ng'abatamanyise",
-'rcshowhidemine'     => '$1 nze byenkoze',
-'rclinks'            => 'Ndaga enkyukakyuka $1 ezikoledwa mu nnaku $2 ezaakayita<br />$3',
-'diff'               => 'enjawulo',
-'hist'               => 'ennanda',
-'hide'               => 'Kisa',
-'show'               => 'Laga',
-'minoreditletter'    => 'n',
-'newpageletter'      => 'Lupya!',
-'rc-enhanced-expand' => 'Birage mu bujjuvu (kino kyetaagisa JavaScript)',
-'rc-enhanced-hide'   => 'Birage mu bumpi',
+'nchanges'             => '{{PLURAL:$1|Olukyukakyuka|Nkyukakyuka}} $1',
+'recentchanges'        => 'Ebyakakyusibwa',
+'recentchanges-legend' => "Awategekerwa endaga y'ebyakakyusibwa",
+'recentchangestext'    => "Goberera enkyuukakyuuka empya ez'oku muko guno",
+'rcnote'               => "Wano olaba {{PLURAL:$1|olukyukakyuka '''1''' olukoledwawo|enkyukakyuka '''$1''' ezikoledwawo}} mu {{PLURAL:$2|lunaku olwakayita|naku '''$2''' ezaakayita}}. Bino byategeerese ku ssaawa $5 nga $4.",
+'rclistfrom'           => 'Laga enkyukakyuka empya ezikoledwa okuva $1',
+'rcshowhideminor'      => '$1 nkyukakyuka ntono',
+'rcshowhidebots'       => '$1 ebya bboti',
+'rcshowhideliu'        => '$1 ebya bamemba abali ku wiki ku saawa eno',
+'rcshowhideanons'      => "$1 eby'abakola ng'abatamanyise",
+'rcshowhidemine'       => '$1 nze byenkoze',
+'rclinks'              => 'Ndaga enkyukakyuka $1 ezikoledwa mu nnaku $2 ezaakayita<br />$3',
+'diff'                 => 'enjawulo',
+'hist'                 => 'ennanda',
+'hide'                 => 'Kisa',
+'show'                 => 'Laga',
+'minoreditletter'      => 'n',
+'newpageletter'        => 'Lupya!',
+'boteditletter'        => 'b',
+'rc-enhanced-expand'   => 'Birage mu bujjuvu (kino kyetaagisa JavaScript)',
+'rc-enhanced-hide'     => 'Birage mu bumpi',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ebikyusiddwa ebyekuusa ku lupapula luno',
@@ -418,6 +421,7 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'recentchangeslinked-noresult' => 'Empapula eziriko enyunzi tewali lukyuse mu kiseera kino.',
 'recentchangeslinked-summary'  => "Olulpapula olw'enjawulo luno luliko olukalala lw'ebikyuse ku mpapula eziriko enyunzi ezigguka ku lw'obadde otunuulira. Ebiwandikidwa mu '''nukuta enziggumivu''' biri ku [[Special:Watchlist|mpapula z'ogoberera]].",
 'recentchangeslinked-page'     => 'Lupapula:',
+'recentchangeslinked-to'       => "Nonamu eby'empapula ezikuggusa ku luno zokka",
 
 # Upload
 'upload'        => 'Teekayo fayiro',
@@ -500,6 +504,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'watchthispage'     => 'Goberera olupapula luno',
 'unwatch'           => 'Lekerawo okugoberera olupapula luno',
 'watchlist-details' => "Olina {{PLURAL:$1|olupapula $1|empapula $1}} z'ogoberera, nga tobalideko n'eza yogera-nange.",
+'watchlist-options' => "Enteetakeeka y'endaga ya mpapula zengoberera",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Kikolebwako...',
@@ -518,6 +523,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'rollbackfailed' => 'Okujjulula tekusobose',
 
 # Protect
+'protectlogpage'         => "Olukalala lw'ebifa ku mpapula ezisibidwa",
 'protectedarticle'       => 'olupapula "[[$1]]" lusibidwa',
 'protect-expiry-options' => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
 
@@ -531,6 +537,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 
 # Namespace form on various pages
 'namespace'      => 'Kuŋaanyizo:',
+'invert'         => 'Kola ku byonna ebitali ekyo ekirondedwa',
 'blanknamespace' => '(Kuŋaanyizo lya byonna)',
 
 # Contributions
@@ -549,17 +556,19 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'sp-contributions-submit'   => 'Noonya',
 
 # What links here
-'whatlinkshere'           => 'Empapula ezikuggusa ku luno',
-'whatlinkshere-title'     => 'Empapula eziriko enyunzi ezigguka ku $1',
-'whatlinkshere-page'      => 'Lupapula:',
-'linkshere'               => "Zino z'empapula eziriko enyunzi ezigguka ku '''[[:$1]]''':",
-'nolinkshere'             => "Tewali mpapula eziriko enyunzi ezigguka ku '''[[:$1]]'''.",
-'isimage'                 => 'lukozesa ekifaananyi kino',
-'whatlinkshere-prev'      => '{{PLURAL:$1|olukulembera|$1 ezikulembera}}',
-'whatlinkshere-next'      => '{{PLURAL:$1|oluddako|$1 eziddako}}',
-'whatlinkshere-links'     => '← Empapula eziriko enyunzi ezigguka ku luno',
-'whatlinkshere-hidelinks' => '$1 nyunzi',
-'whatlinkshere-filters'   => 'Ensunsula',
+'whatlinkshere'            => 'Empapula ezikuggusa ku luno',
+'whatlinkshere-title'      => 'Empapula eziriko enyunzi ezigguka ku $1',
+'whatlinkshere-page'       => 'Lupapula:',
+'linkshere'                => "Zino z'empapula eziriko enyunzi ezigguka ku '''[[:$1]]''':",
+'nolinkshere'              => "Tewali mpapula eziriko enyunzi ezigguka ku '''[[:$1]]'''.",
+'isredirect'               => 'lupapula olukutwalabutwazi ku lunnaalwo',
+'isimage'                  => 'lukozesa ekifaananyi kino',
+'whatlinkshere-prev'       => '{{PLURAL:$1|olukulembera|$1 ezikulembera}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|oluddako|$1 eziddako}}',
+'whatlinkshere-links'      => '← Empapula eziriko enyunzi ezigguka ku luno',
+'whatlinkshere-hideredirs' => '$1 mpapula ezikutwalabutwazi ku zinnaazo',
+'whatlinkshere-hidelinks'  => '$1 nyunzi',
+'whatlinkshere-filters'    => 'Ensunsula',
 
 # Block/unblock
 'blockip'           => 'Gaana memba okuwandiika',

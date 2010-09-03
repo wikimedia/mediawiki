@@ -2293,7 +2293,7 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'prot_1movedto2'              => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
 'protect-legend'              => 'Potvrdit zamčení',
 'protectcomment'              => 'Důvod:',
-'protectexpiry'               => 'Čas vypršení',
+'protectexpiry'               => 'Čas vypršení:',
 'protect_expiry_invalid'      => 'Čas vypršení je chybný.',
 'protect_expiry_old'          => 'Čas vypršení již minul.',
 'protect-unchain-permissions' => 'Zpřístupnit další nastavení zámku',

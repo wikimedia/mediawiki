@@ -2568,6 +2568,12 @@ O normal é que este campo quede baleiro.',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binario',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 retrocompatible UTF-8',
+	'config-charset-help' => "'''Atención:''' Se emprega '''backwards-compatible UTF-8''' no MySQL 4.1+ e posteriormente realiza unha copia de seguridade da base de datos con <code>mysqldump</code>, pode destruír todos os caracteres que non sexan ASCII, corrompendo de xeito irreversible as súas copias!
+
+No '''modo binario''', MediaWiki almacena texto UTF-8 na base de datos en campos binarios.
+Isto é máis eficaz ca o modo UTF-8 de MySQL e permítelle usar o rango completo de caracteres Unicode.
+No '''modo UTF-8''', MySQL saberá o xogo de caracteres dos seus datos e pode presentar e converter os datos de maneira axeitada,
+pero non lle deixará gardar caracteres por riba do [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingüe básico].",
 	'config-mysql-old' => 'Necesítase MySQL $1 ou posterior; ten a versión $2.',
 	'config-db-port' => 'Porto da base de datos:',
 	'config-db-schema' => 'Esquema para MediaWiki',
@@ -2575,6 +2581,16 @@ O normal é que este campo quede baleiro.',
 	'config-db-schema-help' => 'O normal é que os esquemas anteriores sexan correctos.
 Cámbieos soamente se sabe que é necesario.',
 	'config-sqlite-dir' => 'Directorio de datos SQLite:',
+	'config-sqlite-dir-help' => "SQLite recolle todos os datos nun ficheiro único.
+
+O servidor web debe ter permisos sobre o directorio para que poida escribir nel durante a instalación.
+
+Ademais, o servidor '''non''' debe ser accesible a través da web, motivo polo que non está no mesmo lugar ca os ficheiros PHP.
+
+Asemade, o instalador escribirá un ficheiro <code>.htaccess</code>, pero se erra alguén pode obter acceso á súa base de datos.
+Isto inclúe datos de usuario (enderezos de correo electrónico, contrasinais codificados), así como revisións borradas e outros datos restrinxidos no wiki.
+
+Considere poñer a base de datos nun só lugar, por exemplo en <code>/var/lib/mediawiki/oseuwiki</code>.",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -2608,6 +2624,25 @@ Só pode conter letras, números e guións baixos.',
 	'config-sqlite-name-help' => 'Escolla un nome que identifique o seu wiki.
 Non utilice espazos ou guións.
 Este nome será utilizado para o ficheiro de datos SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'Non se puido crear o directorio de datos <code><nowiki>$1</nowiki></code>, porque o servidor web non pode escribir no directorio pai <code><nowiki>$2</nowiki></code>.
+
+O instalador determinou o usuario que executa o seu servidor web.
+Para continuar, faga que se poida escribir no directorio <code><nowiki>$3</nowiki></code>.
+Nun sistema Unix/Linux cómpre realizar:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'Non se puido crear o directorio de datos <code><nowiki>$1</nowiki></code>, porque o servidor web non pode escribir no directorio pai <code><nowiki>$2</nowiki></code>.
+
+O instalador non puido determinar o usuario que executa o seu servidor web.
+Para continuar, faga que se poida escribir globalmente no directorio <code><nowiki>$3</nowiki></code>.
+Nun sistema Unix/Linux cómpre realizar:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Erro ao crear o directorio de datos "$1".
 Comprobe a localización e inténteo de novo.',
 	'config-sqlite-dir-unwritable' => 'Non se puido escribir o directorio "$1".
@@ -2639,11 +2674,20 @@ A conta que se especifique aquí xa debe existir.',
 	'config-mysql-engine' => 'Motor de almacenamento:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "'''InnoDB''' é case sempre a mellor opción, dado que soporta ben os accesos simultáneos.
+
+'''MyISAM''' é máis rápido en instalacións de usuario único e de só lectura.
+As bases de datos MyISAM tenden a se corromper máis a miúdo ca as bases de datos InnoDB.",
 	'config-mysql-egine-mismatch' => "'''Atención:''' Solicitou o motor de almacenamento $1, mais o existente na base de datos é o motor $2.
 Esta escritura de actualización non o pode converter, de modo que permanecerá $2.",
 	'config-mysql-charset' => 'Conxunto de caracteres da base de datos:',
 	'config-mysql-binary' => 'Binario',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "No '''modo binario''', MediaWiki almacena texto UTF-8 na base de datos en campos binarios.
+Isto é máis eficaz ca o modo UTF-8 de MySQL e permítelle usar o rango completo de caracteres Unicode.
+
+No '''modo UTF-8''', MySQL saberá o xogo de caracteres dos seus datos e pode presentar e converter os datos de maneira axeitada,
+pero non lle deixará gardar caracteres por riba do [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingüe básico].",
 	'config-mysql-charset-mismatch' => "'''Atención:''' Solicitou o esquema $1, mais o existente na base de datos é o esquema $2.
 Esta escritura de actualización non o pode converter, de modo que permanecerá $2.",
 	'config-site-name' => 'Nome do wiki:',
@@ -2654,6 +2698,9 @@ Esta escritura de actualización non o pode converter, de modo que permanecerá 
 	'config-ns-site-name' => 'O mesmo nome que o wiki: $1',
 	'config-ns-other' => 'Outro (especificar)',
 	'config-ns-other-default' => 'OMeuWiki',
+	'config-project-namespace-help' => 'Seguindo o exemplo da Wikipedia, moitos wikis manteñen as súas páxinas de políticas separadas das súas páxinas de contido, nun "\'\'\'espazo de nomes do proxecto\'\'\'".
+Todos os títulos presentes neste espazo de nomes comezan cun prefixo determinado, que pode especificar aquí.
+Tradicionalmente, este prefixo deriva do nome do wiki, pero non pode conter caracteres de puntuación como "#" ou ":".',
 	'config-ns-invalid' => 'O espazo de nomes especificado, "<nowiki>$1</nowiki>", é incorrecto.
 Especifique un espazo de nomes do proxecto diferente.',
 	'config-admin-box' => 'Conta de administrador',
@@ -2669,9 +2716,12 @@ Especifique un nome de usuario diferente.',
 	'config-admin-password-same' => 'O contrasinal debe diferir do nome de usuario.',
 	'config-admin-password-mismatch' => 'Os contrasinais non coinciden.',
 	'config-admin-email' => 'Enderezo de correo electrónico:',
+	'config-admin-email-help' => 'Escriba aquí un enderezo de correo electrónico para que poida recibir mensaxes doutros usuarios a través do wiki, restablecer o contrasinal e ser notificado das modificacións feitas nas páxinas presentes na súa lista de vixilancia.',
 	'config-admin-error-user' => 'Erro interno ao crear un administrador co nome "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Erro interno ao establecer un contrasinal para o administrador "<nowiki>$1</nowiki>": <pre>$2</pre>',
 	'config-subscribe' => 'Subscríbase á [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de correo de anuncios sobre lanzamentos].',
+	'config-subscribe-help' => 'Esta é unha lista de correos de baixo volume usada para anuncios sobre lanzamentos de novas versións, incluíndo avisos de seguridade importantes.
+Debería subscribirse a ela e actualizar a súa instalación MediaWiki cando saian as novas versións.',
 	'config-almost-done' => 'Xa case rematou!
 Neste paso pode saltar o resto da configuración e instalar o wiki agora mesmo.',
 	'config-optional-continue' => 'Facédeme máis preguntas.',
@@ -2721,6 +2771,9 @@ Escriba o nome da licenza manualmente.',
 	'config-memcached-help' => 'Lista de enderezos IP para Memcached.
 Deben separarse por comas e especificar o porto a usar (por exemplo: 127.0.0.1:11211, 192.168.1.25:11211).',
 	'config-extensions' => 'Extensións',
+	'config-extensions-help' => 'As extensións anteriores detectáronse no seu directorio <code>./extensions</code>.
+
+Quizais necesite algunha configuración adicional, pero pode activalas agora',
 	'config-install-alreadydone' => "'''Atención:''' Semella que xa instalou MediaWiki e que o está a instalar de novo.
 Vaia ata a seguinte páxina.",
 	'config-install-step-done' => 'feito',
