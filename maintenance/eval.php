@@ -49,7 +49,7 @@ if ( function_exists( 'readline_add_history' )
 
 if ( $useReadline ) {
 	$historyFile = isset( $_ENV['HOME'] ) ?
-		"{$_ENV['HOME']}/.mweval_history" : '.mweval_history';
+		"{$_ENV['HOME']}/.mweval_history" : "$IP/maintenance/.mweval_history";
 	readline_read_history( $historyFile );
 }
 
