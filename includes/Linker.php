@@ -774,12 +774,9 @@ class Linker {
 	 * Usage example: $skin->specialLink( 'recentchanges' )
 	 */
 	function specialLink( $name, $key = '' ) {
-		global $wgContLang;
-
 		if ( $key == '' ) { $key = strtolower( $name ); }
-		$pn = $wgContLang->ucfirst( $name );
-		return $this->makeKnownLink( $wgContLang->specialPage( $pn ),
-		  wfMsg( $key ) );
+
+		return $this->link( SpecialPage::getTitleFor( $name ) , wfMsg( $key ), array(), array(), array( 'known', 'noclasses' ) );
 	}
 
 	/**
