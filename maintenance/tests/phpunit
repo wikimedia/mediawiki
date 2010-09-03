@@ -3,7 +3,7 @@
 
 require( dirname( __FILE__ ) . '/../commandLine.inc' );
 // XXX: This can go away if everyone switches to PHPUnit 3.5
-if ( file_exists( get_include_path() . '/PHPUnit/Autoload.php' ) ) { 
+if ( file_get_contents( 'PHPUnit/Autoload.php', true ) !== false ) { 
 	// Works for PHPUnit >= 3.5
 	require_once 'PHPUnit/Autoload.php';
 } else {
