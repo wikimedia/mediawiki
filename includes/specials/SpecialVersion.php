@@ -75,15 +75,6 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	private static function getMediaWikiCredits() {
-		global $wgLang;
-
-		$authorList = array( 'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
-			'Tim Starling', 'Erik Möller', 'Gabriel Wicke', 'Ævar Arnfjörð Bjarmason',
-			'Niklas Laxström', 'Domas Mituzas', 'Rob Church', 'Yuri Astrakhan',
-			'Aryeh Gregor', 'Aaron Schulz', 'Andrew Garrett', 'Raimond Spekking',
-			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
-			wfMsg( 'version-poweredby-others' )
-		);
 		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMsg( 'version-license' ) );
 
 		// This text is always left-to-right.
