@@ -9,32 +9,32 @@ class MessageTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testExists() {
-		$this->assertTrue( Message::key( 'mainpage' )->exists() );
-		$this->assertTrue( Message::key( 'mainpage' )->params( array() )->exists() );
-		$this->assertTrue( Message::key( 'mainpage' )->rawParams( 'foo', 123 )->exists() );
-		$this->assertFalse( Message::key( 'i-dont-exist-evar' )->exists() );
-		$this->assertFalse( Message::key( 'i-dont-exist-evar' )->params( array() )->exists() );
-		$this->assertFalse( Message::key( 'i-dont-exist-evar' )->rawParams( 'foo', 123 )->exists() );
+		$this->assertTrue( wfMessage( 'mainpage' )->exists() );
+		$this->assertTrue( wfMessage( 'mainpage' )->params( array() )->exists() );
+		$this->assertTrue( wfMessage( 'mainpage' )->rawParams( 'foo', 123 )->exists() );
+		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->exists() );
+		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->params( array() )->exists() );
+		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->rawParams( 'foo', 123 )->exists() );
 	}
 
 	function testKey() {
-		$this->assertType( 'Message', Message::key( 'mainpage' ) );
-		$this->assertType( 'Message', Message::key( 'i-dont-exist-evar' ) );
-		$this->assertEquals( 'Main Page', Message::key( 'mainpage' )->text() );
-		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', Message::key( 'i-dont-exist-evar' )->text() );
+		$this->assertType( 'Message', wfMessage( 'mainpage' ) );
+		$this->assertType( 'Message', wfMessage( 'i-dont-exist-evar' ) );
+		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->text() );
+		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', wfMessage( 'i-dont-exist-evar' )->text() );
 	}
 
 	function testInLanguage() {
-		$this->assertEquals( 'Main Page', Message::key( 'mainpage' )->inLanguage( 'en' )->text() );
-		$this->assertEquals( 'Заглавная страница', Message::key( 'mainpage' )->inLanguage( 'ru' )->text() );
-		$this->assertEquals( 'Main Page', Message::key( 'mainpage' )->inLanguage( Language::factory( 'en' ) )->text() );
-		$this->assertEquals( 'Заглавная страница', Message::key( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
+		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( 'en' )->text() );
+		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( 'ru' )->text() );
+		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'en' ) )->text() );
+		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
 	}
 
 	/**
 	 * @expectedException MWException
 	 */
 	function testInLanguageThrows() {
-		Message::key( 'foo' )->inLanguage( 123 );
+		wfMessage( 'foo' )->inLanguage( 123 );
 	}
 }
