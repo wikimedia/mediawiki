@@ -1,5 +1,8 @@
 <?php
 /**
+ * Job queue base code
+ *
+ * @file
  * @defgroup JobQueue JobQueue
  */
 

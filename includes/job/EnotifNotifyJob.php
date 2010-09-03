@@ -1,4 +1,10 @@
 <?php
+/**
+ * Job for notification emails.
+ *
+ * @file
+ * @ingroup JobQueue
+ */
 
 /**
  * Job for email notification mails
