@@ -549,7 +549,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'prefs-math'                  => 'ܡܬܡܐܛܝܩܘܬܐ',
 'datedefault'                 => 'ܠܐ ܓܒܝܬܐ',
 'prefs-datetime'              => 'ܣܝܩܘܡܐ ܘܙܒܢܐ',
-'prefs-personal'              => 'ܠܦܦܐ ܕܡܦܠܚܢܐ',
+'prefs-personal'              => 'ܦܘܓܪܦܐ ܕܡܦܠܚܢܐ',
 'prefs-rc'                    => 'ܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
 'prefs-watchlist'             => 'ܪ̈ܗܝܬܐ',
 'prefs-watchlist-days'        => 'ܝܘܡܬ̈ܐ ܠܚܙܝܐ ܒܪ̈ܗܝܬܐ:',
@@ -587,7 +587,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'prefs-info'                  => 'ܝܕ̈ܥܬܐ ܪ̈ܫܝܬܐ',
 'prefs-i18n'                  => 'ܬܘܪܓܡܐ',
 'prefs-signature'             => 'ܪܡܝ ܐܝܕܐ',
-'prefs-dateformat'            => 'ܚܫܠܬܐ ܕܙܒܢܐ',
+'prefs-dateformat'            => 'ܚܫܠܬܐ ܕܣܝܩܘܡܐ',
 'prefs-advancedediting'       => 'ܓܒܝܬ̈ܐ ܡܬܩܕ̈ܡܢܐ',
 'prefs-advancedrc'            => 'ܓܒܝܬ̈ܐ ܡܬܩܕ̈ܡܢܐ',
 'prefs-advancedrendering'     => 'ܓܒܝܬ̈ܐ ܡܬܩܕ̈ܡܢܐ',
@@ -696,6 +696,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'newpageletter'                => 'ܚ',
 'boteditletter'                => 'ܒ',
 'newsectionsummary'            => '/* $1 */ ܡܢܬܐ ܚܕܬܐ',
+'rc-enhanced-expand'           => 'ܚܘܝ ܐܪ̈ܝܟܬܐ (ܒܥܐ ܠܟ JavaScript)',
 'rc-enhanced-hide'             => 'ܛܫܝ ܐܪ̈ܝܟܬܐ',
 
 # Recent changes linked
@@ -725,10 +726,11 @@ Note that some pages may continue to be displayed as if you were still logged in
 'upload_source_file' => ' (ܠܦܦܐ ܥܠ ܚܫܘܒܬܐ ܕܝܠܟ)',
 
 # Special:ListFiles
-'imgfile'        => 'ܠܦܦܐ',
-'listfiles_date' => 'ܣܝܩܘܡܐ',
-'listfiles_name' => 'ܫܡܐ',
-'listfiles_user' => 'ܡܦܠܚܢܐ',
+'imgfile'         => 'ܠܦܦܐ',
+'listfiles_date'  => 'ܣܝܩܘܡܐ',
+'listfiles_name'  => 'ܫܡܐ',
+'listfiles_user'  => 'ܡܦܠܚܢܐ',
+'listfiles_count' => 'ܨܚܚ̈ܐ',
 
 # File description page
 'file-anchor-link'          => 'ܠܦܦܐ',
@@ -821,7 +823,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'protectedpages'          => 'ܦܐܬܬ̈ܐ ܢܛܝܪ̈ܬܐ',
 'listusers'               => 'ܒܪܒܝܢ ܕܗܕ̈ܡܐ',
 'listusers-editsonly'     => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܥܡ ܫܘܚܠܦ̈ܐ ܒܠܚܘܕ',
-'listusers-creationsort'  => 'ܛܟܣ ܒܣܝܩܘܡܐ ܕܒܪܝܐ',
+'listusers-creationsort'  => 'ܛܟܣ ܐܝܟ ܣܝܩܘܡܐ ܕܒܪܝܐ',
 'usereditcount'           => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
 'usercreated'             => 'ܒܪܐ ܒܣܝܩܘܡ $1 ܫܥܬܐ $2',
 'newpages'                => 'ܦܐܬܬ̈ܐ ܚܕ̈ܬܬܐ',
@@ -1213,6 +1215,8 @@ Do you want to change the settings?',
 'exif-lightsource-11' => 'ܛܠܐ',
 
 'exif-customrendered-0' => 'ܥܡܠܝܬܐ ܟܝܢܝܬܐ',
+
+'exif-gaincontrol-0' => 'ܠܐ ܡܕܡ',
 
 'exif-contrast-0' => 'ܟܝܢܝܐ',
 'exif-contrast-1' => 'ܪܟܝܟܐ',
