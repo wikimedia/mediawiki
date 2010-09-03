@@ -426,7 +426,7 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getCategoryInsertions( $existing = array() ) {
-		global $wgContLang, $wgCollationVersion;
+		global $wgContLang, $wgCategoryCollation;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = array();
 		foreach ( $diffs as $name => $sortkey ) {
@@ -465,7 +465,7 @@ class LinksUpdate {
 				'cl_sortkey' => $sortkey,
 				'cl_timestamp' => $this->mDb->timestamp(),
 				'cl_sortkey_prefix' => $prefix,
-				'cl_collation' => $wgCollationVersion,
+				'cl_collation' => $wgCategoryCollation,
 				'cl_type' => $type,
 			);
 		}

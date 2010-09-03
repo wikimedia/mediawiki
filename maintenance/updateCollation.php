@@ -15,10 +15,10 @@ class UpdateCollation extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		global $wgCollationVersion;
+		global $wgCategoryCollation;
 		$this->mDescription = <<<TEXT
 This script will find all rows in the categorylinks table whose collation is
-out-of-date (cl_collation != $wgCollationVersion) and repopulate cl_sortkey
+out-of-date (cl_collation != '$wgCategoryCollation') and repopulate cl_sortkey
 using the page title and cl_sortkey_prefix.  If everything's collation is
 up-to-date, it will do nothing.
 TEXT;
@@ -27,13 +27,13 @@ TEXT;
 	}
 	
 	public function execute() {
-		global $wgCollationVersion, $wgContLang;
+		global $wgCategoryCollation, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$count = $dbw->selectField(
 			'categorylinks',
 			'COUNT(*)',
-			'cl_collation != ' . $dbw->addQuotes( $wgCollationVersion ),
+			'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation ),
 			__METHOD__
 		);
 
@@ -51,7 +51,7 @@ TEXT;
 					'cl_sortkey', 'page_namespace', 'page_title'
 				),
 				array(
-					'cl_collation != ' . $dbw->addQuotes( $wgCollationVersion ),
+					'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation ),
 					'cl_from = page_id'
 				),
 				__METHOD__,
@@ -89,7 +89,7 @@ TEXT;
 						'cl_sortkey' => $wgContLang->convertToSortkey(
 							$title->getCategorySortkey( $prefix ) ),
 						'cl_sortkey_prefix' => $prefix,
-						'cl_collation' => $wgCollationVersion,
+						'cl_collation' => $wgCategoryCollation,
 						'cl_type' => $type,
 						'cl_timestamp = cl_timestamp',
 					),

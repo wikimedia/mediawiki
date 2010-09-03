@@ -4449,10 +4449,13 @@ $wgCategoryPagingLimit = 200;
 /**
  * A version indicator for collations that will be stored in cl_collation for
  * all new rows.  Used when the collation algorithm changes: a script checks
- * for all rows where cl_collation != $wgCollationVersion and regenerates
+ * for all rows where cl_collation != $wgCategoryCollation and regenerates
  * cl_sortkey based on the page name and cl_sortkey_prefix.
+ *
+ * Currently only supports 'uppercase', which just uppercases the string.  This
+ * is a dummy collation, to be replaced later by real ones.
  */
-$wgCollationVersion = 1;
+$wgCategoryCollation = 'uppercase';
 
 /** @} */ # End categories }
 

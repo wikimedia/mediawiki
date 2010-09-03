@@ -165,6 +165,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'drop_index_if_exists', 'iwlinks', 'iwl_prefix',  'patch-kill-iwl_prefix.sql' ),
 			array( 'drop_index_if_exists', 'iwlinks', 'iwl_prefix_from_title', 'patch-kill-iwl_pft.sql' ),
 			array( 'addField', 'categorylinks', 'cl_collation', 'patch-categorylinks-better-collation.sql' ),
+			array( 'do_cl_fields_update' ),
 			array( 'do_collation_update' ),
 		);
 	}
