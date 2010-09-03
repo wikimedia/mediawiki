@@ -363,7 +363,7 @@ class BitmapHandler extends ImageHandler {
 			$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
 			wfDebug( __METHOD__.": Running convert -version\n" );
 			$retval = '';
-			$return = wfShellExec( $cmd, &$retval );
+			$return = wfShellExec( $cmd, $retval );
 			$x = preg_match('/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches);
 			if( $x != 1 ) {
 				wfDebug( __METHOD__.": ImageMagick version check failed\n" );
