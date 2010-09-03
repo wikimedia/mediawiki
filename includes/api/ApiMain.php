@@ -397,12 +397,6 @@ class ApiMain extends ApiBase {
 				header( 'Cache-Control: private' );
 				return;
 			} // else no XVO and anonymous, send public headers below
-		} else /* if public */ {
-			// Give a debugging message if the user object is unstubbed on a public request
-			global $wgUser;
-			if ( !( $wgUser instanceof StubUser ) ) {
-				wfDebug( __METHOD__ . " \$wgUser is unstubbed on a public request!\n" );
-			}
 		}
 
 		// If nobody called setCacheMaxAge(), use the (s)maxage parameters
