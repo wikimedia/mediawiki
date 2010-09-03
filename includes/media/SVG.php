@@ -95,7 +95,7 @@ class SvgHandler extends ImageHandler {
 			) . " 2>&1";
 			wfProfileIn( 'rsvg' );
 			wfDebug( __METHOD__.": $cmd\n" );
-			$err = wfShellExec( $cmd, &$retval );
+			$err = wfShellExec( $cmd, $retval );
 			wfProfileOut( 'rsvg' );
 		}
 		$removed = $this->removeBadFile( $dstPath, $retval );
