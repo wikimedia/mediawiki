@@ -239,9 +239,3 @@ abstract class DatabaseUpdater {
 		}
 	}
 }
-
-class OracleUpdater extends DatabaseUpdater {
-	protected function getCoreUpdateList() {
-		return array();
-	}
-}
