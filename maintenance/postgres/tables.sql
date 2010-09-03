@@ -190,7 +190,7 @@ CREATE TABLE categorylinks (
   cl_sortkey        TEXT             NULL,
   cl_timestamp      TIMESTAMPTZ  NOT NULL,
   cl_sortkey_prefix TEXT         NOT NULL  DEFAULT '',
-  cl_collation      SMALLINT     NOT NULL  DEFAULT 0,
+  cl_collation      TEXT         NOT NULL  DEFAULT 0,
   cl_type           TEXT         NOT NULL  DEFAULT 'page'
 );
 CREATE UNIQUE INDEX cl_from ON categorylinks (cl_from, cl_to);
