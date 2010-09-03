@@ -2,7 +2,7 @@
 <?php
 
 require( dirname( __FILE__ ) . '/../commandLine.inc' );
-require 'PHPUnit/TextUI/Command.php';
+require_once 'PHPUnit/Autoload.php';
 define( 'MW_PHPUNIT_TEST', 1 );
 
 $wgLocaltimezone = 'UTC';
