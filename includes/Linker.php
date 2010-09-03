@@ -776,7 +776,7 @@ class Linker {
 	function specialLink( $name, $key = '' ) {
 		if ( $key == '' ) { $key = strtolower( $name ); }
 
-		return $this->link( SpecialPage::getTitleFor( $name ) , wfMsg( $key ), array(), array(), array( 'known', 'noclasses' ) );
+		return $this->linkKnown( SpecialPage::getTitleFor( $name ) , wfMsg( $key ) );
 	}
 
 	/**
