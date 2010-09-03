@@ -254,8 +254,11 @@ abstract class ApiBase {
 						$examples
 					);
 				}
-				$msg .= 'Example' . ( count( $examples ) > 1 ? 's' : '' ) . ":\n  ";
-				$msg .= implode( $lnPrfx, $examples ) . "\n";
+
+				if ( count( $examples ) > 0 ) {
+					$msg .= 'Example' . ( count( $examples ) > 1 ? 's' : '' ) . ":\n  ";
+					$msg .= implode( $lnPrfx, $examples ) . "\n";
+				}
 			}
 
 			if ( $this->getMain()->getShowVersions() ) {
