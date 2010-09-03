@@ -1,6 +1,6 @@
 <?php
 
-class TitlePermissionTest extends PhpUnit_Framework_TestCase {
+class TitlePermissionTest extends PHPUnit_Framework_TestCase {
 	static $title;
 	static $user;
 	static $anonUser;
