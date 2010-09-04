@@ -687,20 +687,20 @@ class Linker {
 		if ( $title instanceof Title ) {
 			wfProfileIn( __METHOD__ );
 			$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
-			if ( ( $wgUploadMissingFileUrl || $wgEnableUploads ) && !$currentExists ) {
-				if ( $text == '' )
-					$text = htmlspecialchars( $title->getPrefixedText() );
 
+			list( $inside, $trail ) = self::splitTrail( $trail );
+			if ( $text == '' )
+				$text = htmlspecialchars( $title->getPrefixedText() );
+
+			if ( ( $wgUploadMissingFileUrl || $wgEnableUploads ) && !$currentExists ) {
 				$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
+
 				if ( $redir ) {
 					wfProfileOut( __METHOD__ );
-					return $this->makeKnownLinkObj( $title, $text, $query, $trail, $prefix );
+					return $this->linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
 				}
 
 				$href = $this->getUploadUrl( $title, $query );
-
-
-				list( $inside, $trail ) = self::splitTrail( $trail );
 
 				wfProfileOut( __METHOD__ );
 				return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
@@ -708,7 +708,7 @@ class Linker {
 								htmlspecialchars( $prefix . $text . $inside, ENT_NOQUOTES ) . '</a>' . $trail;
 			} else {
 				wfProfileOut( __METHOD__ );
-				return $this->makeKnownLinkObj( $title, $text, $query, $trail, $prefix );
+				return $this->linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
 			}
 		} else {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";

@@ -3568,6 +3568,32 @@ Bug 3090: External links other than http: in image captions
 
 !! end
 
+!! article 
+File:Barfoo.jpg
+!! text
+#REDIRECT [[File:Barfoo.jpg]]
+!! endarticle
+
+!! test
+Redirected image
+!! input
+[[Image:Barfoo.jpg]]
+!! result
+<p><a href="/wiki/File:Barfoo.jpg" title="File:Barfoo.jpg">File:Barfoo.jpg</a>
+</p>
+!! end
+
+!! test
+Missing image with uploads disabled
+!! options
+wgEnableUploads=0
+!! input
+[[Image:Foobaz.jpg]]
+!! result
+<p><a href="/wiki/File:Foobaz.jpg" title="File:Foobaz.jpg">File:Foobaz.jpg</a>
+</p>
+!! end
+
 
 ###
 ### Subpages
