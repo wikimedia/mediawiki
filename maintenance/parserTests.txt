@@ -3730,7 +3730,7 @@ Some text
 </ul>
 </li>
 </ul>
-</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline" id="Headline_1"> Headline 1 </span></h2>
 <h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Subheadline 1">edit</a>]</span> <span class="mw-headline" id="Subheadline_1"> Subheadline 1 </span></h3>
 <h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline" id="Skipping_a_level"> Skipping a level </span></h5>
@@ -3785,7 +3785,7 @@ Handling of sections up to level 6 and beyond
 </ul>
 </li>
 </ul>
-</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>
 <h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Level 1 Heading">edit</a>]</span> <span class="mw-headline" id="Level_1_Heading"> Level 1 Heading</span></h1>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Level 2 Heading">edit</a>]</span> <span class="mw-headline" id="Level_2_Heading"> Level 2 Heading</span></h2>
 <h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Level 3 Heading">edit</a>]</span> <span class="mw-headline" id="Level_3_Heading"> Level 3 Heading</span></h3>
@@ -3827,7 +3827,7 @@ TOC regression (bug 9764)
 </ul>
 </li>
 </ul>
-</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
 <h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
 <h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1.1"> title 1.1.1 </span></h4>
@@ -3863,7 +3863,7 @@ wgMaxTocLevel=3
 </ul>
 </li>
 </ul>
-</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
 <h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
 <h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1.1"> title 1.1.1 </span></h4>
@@ -3893,7 +3893,7 @@ wgMaxTocLevel=3
 </li>
 <li class="toclevel-1 tocsection-5"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a></li>
 </ul>
-</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline" id="Section_1">Section 1</span></h2>
 <h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1">Section 1.1</span></h3>
 <h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Section 1.1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1.1">Section 1.1.1</span></h4>
@@ -3985,7 +3985,7 @@ __TOC__
 </li>
 <li class="toclevel-1 tocsection-3"><a href="#title_2"><span class="tocnumber">2</span> <span class="toctext">title 2</span></a></li>
 </ul>
-</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline" id="title_1"> title 1 </span></h2>
 <h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline" id="title_1.1"> title 1.1 </span></h3>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline" id="title_2"> title 2 </span></h2>
@@ -5228,7 +5228,7 @@ http://<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2><
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
 </ul>
-</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>
 
 !! end
 
@@ -6977,7 +6977,7 @@ Out-of-order TOC heading levels
 </ul>
 </li>
 </ul>
-</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</td></tr></table>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: 2">edit</a>]</span> <span class="mw-headline" id="2">2</span></h2>
 <h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: 6">edit</a>]</span> <span class="mw-headline" id="6">6</span></h6>
 <h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: 3">edit</a>]</span> <span class="mw-headline" id="3">3</span></h3>
