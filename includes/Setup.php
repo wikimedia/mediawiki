@@ -173,7 +173,7 @@ wfProfileIn( $fname.'-misc1' );
 wfMemoryLimit();
 
 /**
- * Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+ 
+ * Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+
  * that happens whenever you use a date function without the timezone being
  * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
  */
@@ -186,13 +186,14 @@ $wgIP = false; # Load on demand
 $wgRequest = new WebRequest;
 
 # Useful debug output
+global $wgCommandLineMode;
 if ( $wgCommandLineMode ) {
 	wfDebug( "\n\nStart command line script $self\n" );
 } else {
 	wfDebug( "Start request\n\n" );
 	# Output the REQUEST_URI. This is not supported by IIS in rewrite mode,
 	# so use an alternative
-	$requestUri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : 
+	$requestUri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] :
 		( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] ) ? $_SERVER['HTTP_X_ORIGINAL_URL'] :
 		$_SERVER['PHP_SELF'] );
 	wfDebug( "{$_SERVER['REQUEST_METHOD']} {$requestUri}\n" );
