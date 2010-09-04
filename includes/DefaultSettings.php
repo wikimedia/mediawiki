@@ -2731,6 +2731,11 @@ $wgPasswordSalt = true;
 $wgMinimalPasswordLength = 1;
 
 /**
+ * Enabes or disables JavaScript-based suggestions of password strength
+ */
+$wgLivePasswordStrengthChecks = false;
+
+/**
  * Maximum number of Unicode characters in signature
  */
 $wgMaxSigChars		= 255;
@@ -5051,11 +5056,6 @@ $wgPoolCounterConf = null;
  * To disable file delete/restore temporarily
  */
 $wgUploadMaintenance = false;
-
-/**
- * Enabes or disables JavaScript-based suggestions of password strength
- */
-$wgLivePasswordStrengthChecks = false;
 
 /**
  * The location of the MediaWiki package repository to use.
