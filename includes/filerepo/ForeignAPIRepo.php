@@ -1,4 +1,10 @@
 <?php
+/**
+ * Foreign repository accessible through api.php requests.
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
  * A foreign repository with a remote MediaWiki with an API thingy

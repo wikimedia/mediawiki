@@ -1,7 +1,14 @@
 <?php
+/**
+ * A foreign repository with a MediaWiki database accessible via the configured LBFactory
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
  * A foreign repository with a MediaWiki database accessible via the configured LBFactory
+ *
  * @ingroup FileRepo
  */
 class ForeignDBViaLBRepo extends LocalRepo {

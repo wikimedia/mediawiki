@@ -1,8 +1,15 @@
 <?php
+/**
+ * Base code for file repositories.
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
- * Base class for file repositories
+ * Base class for file repositories.
  * Do not instantiate, use a derived class.
+ *
  * @ingroup FileRepo
  */
 abstract class FileRepo {

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Base code for files.
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
  * Implements some public methods and some protected utility functions which

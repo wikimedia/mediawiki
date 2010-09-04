@@ -1,4 +1,10 @@
 <?php
+/**
+ * A repository for files accessible via the local filesystem.
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
  * A repository for files accessible via the local filesystem. Does not support

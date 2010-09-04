@@ -1,4 +1,10 @@
 <?php
+/**
+ * File repository with no files.
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
  * File repository with no files, for performance testing

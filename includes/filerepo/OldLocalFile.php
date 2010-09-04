@@ -1,4 +1,10 @@
 <?php
+/**
+ * Old file in the in the oldimage table
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
  * Class to represent a file in the oldimage table

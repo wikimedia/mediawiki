@@ -1,7 +1,13 @@
 <?php
+/**
+ * Backward compatibility code for MW < 1.11
+ *
+ * @file
+ */
 
 /**
  * Backwards compatibility class
+ *
  * @deprecated
  * @ingroup FileRepo
  */

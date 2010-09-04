@@ -1,4 +1,10 @@
 <?php
+/**
+ * File without associated database record
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
  * A file object referring to either a standalone local file, or a file in a
