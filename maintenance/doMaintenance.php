@@ -51,6 +51,7 @@ $maintenance->setup();
 $self = $maintenance->getName();
 
 # Setup the profiler
+global $IP;
 if ( file_exists( "$IP/StartProfiler.php" ) ) {
 	require_once( "$IP/StartProfiler.php" );
 } else {

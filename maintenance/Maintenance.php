@@ -9,6 +9,11 @@
 define( 'DO_MAINTENANCE', dirname( __FILE__ ) . '/doMaintenance.php' );
 $maintClass = false;
 
+function wfRunMaintenance( $class ) {
+	$maintClass = $class;
+	require_once( DO_MAINTENANCE );
+}
+
 // Make sure we're on PHP5 or better
 if ( version_compare( PHP_VERSION, '5.0.0' ) < 0 ) {
 	die ( "Sorry! This version of MediaWiki requires PHP 5; you are running " .
@@ -400,7 +405,7 @@ abstract class Maintenance {
 		global $IP, $wgCommandLineMode, $wgRequestTime;
 
 		# Abort if called from a web server
-		if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
+		if ( isset( $_SERVER ) && isset( $_SERVER['REQUEST_METHOD'] ) ) {
 			$this->error( 'This script must be run from the command line', true );
 		}
 
