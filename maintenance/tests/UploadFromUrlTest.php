@@ -1,5 +1,8 @@
 <?php
 
+/* Force User.php include for EDIT_TOKEN_SUFFIX */
+require_once dirname(__FILE__) . "/../../includes/User.php";
+
 class nullClass {
 	public function handleOutput() { }
 	public function purgeRedundantText() { }
