@@ -364,7 +364,7 @@ class VectorTemplate extends QuickTemplate {
 	 * Outputs the entire contents of the XHTML page
 	 */
 	public function execute() {
-		global $wgRequest, $wgContLang;
+		global $wgRequest, $wgLang;
 
 		$this->skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
@@ -456,7 +456,7 @@ class VectorTemplate extends QuickTemplate {
 			}
 		}
 		// Reverse horizontally rendered navigation elements
-		if ( $wgContLang->isRTL() ) {
+		if ( $wgLang->isRTL() ) {
 			$this->data['view_urls'] =
 				array_reverse( $this->data['view_urls'] );
 			$this->data['namespace_urls'] =
