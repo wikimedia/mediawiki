@@ -1,10 +1,17 @@
 <?php
+/**
+ * Deleted file in the 'filearchive' table
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
- * @ingroup Media
+ * Class representing a row of the 'filearchive' table
+ *
+ * @ingroup FileRepo
  */
-class ArchivedFile
-{
+class ArchivedFile {
 	/**#@+
 	 * @private
 	 */

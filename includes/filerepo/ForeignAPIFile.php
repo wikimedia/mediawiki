@@ -1,8 +1,14 @@
 <?php
+/**
+ * Foreign file accessible through api.php requests.
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
-/** 
- * Very hacky and inefficient
- * do not use :D
+/**
+ * Foreign file accessible through api.php requests.
+ * Very hacky and inefficient, do not use :D
  *
  * @ingroup FileRepo
  */

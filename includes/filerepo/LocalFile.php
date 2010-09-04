@@ -1,5 +1,9 @@
 <?php
 /**
+ * Local file in the wiki's own database
+ *
+ * @file
+ * @ingroup FileRepo
  */
 
 /**

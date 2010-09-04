@@ -1,5 +1,13 @@
 <?php
 /**
+ * Local repository that stores files in the local filesystem and registers them
+ * in the wiki's own database.
+ *
+ * @file
+ * @ingroup FileRepo
+ */
+
+/**
  * A repository that stores files in the local filesystem and registers them
  * in the wiki's own database. This is the most commonly used repository class.
  * @ingroup FileRepo
