@@ -311,6 +311,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24981) Allow extensions to access SpecialUpload variables again
 * (bug 20744) Wiki forgets about an uploaded file
 * (bug 17913) Don't show "older edit" when no older edit available
+* (bug 6204) TOC not properly rendered when using $wgMaxTocLevel
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
