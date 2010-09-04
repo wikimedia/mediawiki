@@ -1943,7 +1943,6 @@ You can also choose to let others contact you through your user or talk page wit
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-sendemail'             => 'Send e-mail to other users',
 'right-revisionmove'          => 'Move revisions',
-'right-selenium'              => 'Run Selenium tests',
 
 # User rights log
 'rightslog'      => 'User rights log',
