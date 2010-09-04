@@ -3782,7 +3782,6 @@ class Parser {
 
 			if ( $toclevel ) {
 				$prevlevel = $level;
-				$prevtoclevel = $toclevel;
 			}
 			$level = $matches[1][$headlineCount];
 

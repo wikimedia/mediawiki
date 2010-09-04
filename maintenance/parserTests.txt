@@ -3874,6 +3874,36 @@ wgMaxTocLevel=3
 !! end
 
 !! test
+TOC with wgMaxTocLevel=3 and two level four headings (bug 6204)
+!! options
+wgMaxTocLevel=3
+!! input
+==Section 1==
+===Section 1.1===
+====Section 1.1.1====
+====Section 1.1.1.1====
+==Section 2==
+!! result
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Section_1.1"><span class="tocnumber">1.1</span> <span class="toctext">Section 1.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline" id="Section_1">Section 1</span></h2>
+<h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1">Section 1.1</span></h3>
+<h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Section 1.1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1.1">Section 1.1.1</span></h4>
+<h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Section 1.1.1.1">edit</a>]</span> <span class="mw-headline" id="Section_1.1.1.1">Section 1.1.1.1</span></h4>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Section 2">edit</a>]</span> <span class="mw-headline" id="Section_2">Section 2</span></h2>
+
+!! end
+
+
+!! test
 Resolving duplicate section names
 !! input
 == Foo bar ==
