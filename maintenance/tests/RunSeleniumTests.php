@@ -26,8 +26,13 @@
 define( 'SELENIUMTEST', true );
 
 require_once( dirname( dirname( __FILE__ ) )."/Maintenance.php" );
+require_once( 'PHPUnit/Framework.php' );
+require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
+
 
 class SeleniumTester extends Maintenance {
+	protected $selenium;
+
 	public function __construct() {
 		parent::__construct();
 
@@ -45,27 +50,25 @@ class SeleniumTester extends Maintenance {
 	}
 
 	public function listBrowsers() {
-		global $wgSeleniumTestsBrowsers;
-
 		$desc = "Available browsers:\n";
-		foreach ($wgSeleniumTestsBrowsers as $k => $v) {
+
+		$sel = new Selenium;
+		foreach ($sel->setupBrowsers() as $k => $v) {
 			$desc .= "  $k => $v\n";
 		}
 
 		echo $desc;
 	}
 
-	protected function runTests( $verbose = false ) {
-		global $wgSeleniumLogger, $wgSeleniumTestSuites;
+	protected function getTestSuites() {
+		return array( 'SimpleSeleniumTestSuite' );
+	}
 
-		require_once( 'Testing/Selenium.php' );
-		require_once( 'PHPUnit/Framework.php' );
-		require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
+	protected function runTests( ) {
 		$result = new PHPUnit_Framework_TestResult;
-		$wgSeleniumLogger = new SeleniumTestConsoleLogger;
-		$result->addListener( new SeleniumTestListener( $wgSeleniumLogger ) );
+		$result->addListener( new SeleniumTestListener( $this->selenium->getLogger() ) );
 
-		foreach ( $wgSeleniumTestSuites as $testSuiteName ) {
+		foreach ( $this->getTestSuites() as $testSuiteName ) {
 			$suite = new $testSuiteName;
 			$suite->addTests();
 			try {
@@ -77,20 +80,29 @@ class SeleniumTester extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgSeleniumServerPort, $wgSeleniumTestsSeleniumHost,
-			$wgSeleniumTestsWikiUrl, $wgServer, $wgScriptPath;
+		global $wgServer, $wgScriptPath;
+
+		/**
+		 * @todo Add an alternative where settings are read from an INI file.
+		 */
+		$this->selenium = new Selenium( );
+		$this->selenium->setUrl( $this->getOption( 'url', $wgServer . $wgScriptPath ) );
+		$this->selenium->setBrowser( $this->getOption( 'browser', 'firefox' ) );
+		$this->selenium->setPort( $this->getOption( 'port', 4444 ) );
+		$this->selenium->setHost( $this->getOption( 'host', 'localhost' ) );
+		$this->selenium->setUser( $this->getOption( 'user', 'WikiSysop' ) );
+		$this->selenium->setPass( $this->getOption( 'pass', 'Password' ) );
+		$this->selenium->setVerbose( $this->hasOption( 'verbose' ) );
 
 		if( $this->hasOption( 'list-browsers' ) ) {
 			$this->listBrowsers();
 			exit(0);
 		}
 
-		$wgSeleniumServerPort = $this->getOption( 'port', 4444 );
-		$wgSeleniumTestsSeleniumHost = $this->getOption( 'host', 'localhost' );
-		$wgSeleniumTestsWikiUrl = $this->getOption( 'url', $wgServer . $wgScriptPath );
-		$wgSeleniumTestsUseBrowser = $this->getOption( 'browser', 'firefox' );
+		$logger = new SeleniumTestConsoleLogger;
+		$this->selenium->setLogger( $logger );
 
-		$this->runTests( $this->hasOption( 'verbose' ) );
+		$this->runTests( );
 	}
 }
 
