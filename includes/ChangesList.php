@@ -601,7 +601,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return String
 	 */
 	public function beginRecentChangesList() {
-		global $wgStylePath, $wgStyleVersion, $wgOut;
+		global $wgOut;
 		$this->rc_cache = array();
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;

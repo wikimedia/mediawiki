@@ -1565,7 +1565,7 @@ class OutputPage {
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgEnableMWSuggest, $wgUniversalEditButton;
-		global $wgArticle, $wgJQueryOnEveryPage;
+		global $wgArticle;
 
 		if( $this->mDoNothing ) {
 			return;
@@ -2301,7 +2301,7 @@ class OutputPage {
 	 */
 	function getHeadScripts( Skin $sk ) {
 		global $wgUser, $wgRequest, $wgJsMimeType;
-		global $wgStylePath, $wgStyleVersion, $wgUseSiteJs;
+		global $wgUseSiteJs;
 		
 		// Statup - this will immediately load jquery and mediawiki modules
 		$scripts = self::makeResourceLoaderLink( $sk, 'startup', 'scripts' );
