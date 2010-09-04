@@ -26,7 +26,7 @@ class Http {
 	 *    - sslVerifyCert       (curl only) Verify SSL certificate
 	 *    - caInfo              (curl only) Provide CA information
 	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
-	 *    - followRedirects     Whether to follow redirects (defaults to false). 
+	 *    - followRedirects     Whether to follow redirects (defaults to false).
 	 *		                    Note: this should only be used when the target URL is trusted,
 	 *		                    to avoid attacks on intranet services accessible by HTTP.
 	 * @return Mixed: (bool)false on failure or a string on success
@@ -222,7 +222,7 @@ class HttpRequest {
 
 	/**
 	 * Set the parameters of the request
-	 
+
 	 * @param $args Array
 	 * @todo overload the args param
 	 */
@@ -502,7 +502,7 @@ class HttpRequest {
 	}
 
 	/**
-	 * Returns true if the backend can follow redirects. Overridden by the 
+	 * Returns true if the backend can follow redirects. Overridden by the
 	 * child classes.
 	 */
 	public function canFollowRedirects() {
@@ -767,7 +767,7 @@ class CurlHttpRequest extends HttpRequest {
 		if ( isset( $this->sslVerifyHost ) ) {
 			$this->curlOptions[CURLOPT_SSL_VERIFYHOST] = $this->sslVerifyHost;
 		}
-		
+
 		if ( isset( $this->sslVerifyCert ) ) {
 			$this->curlOptions[CURLOPT_SSL_VERIFYPEER] = $this->sslVerifyCert;
 		}
@@ -800,7 +800,7 @@ class CurlHttpRequest extends HttpRequest {
 			if ( ! @curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, true ) ) {
 				wfDebug( __METHOD__.": Couldn't set CURLOPT_FOLLOWLOCATION. " .
 					"Probably safe_mode or open_basedir is set.\n");
-				// Continue the processing. If it were in curl_setopt_array, 
+				// Continue the processing. If it were in curl_setopt_array,
 				// processing would have halted on its entry
 			}
 		}

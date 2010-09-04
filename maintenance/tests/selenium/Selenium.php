@@ -81,7 +81,7 @@ class Selenium {
 		if ( $value != true ) {
 			throw new Testing_Selenium_Exception( "Login Failed" );
 		}
-		
+
 	}
 
 	public static function getInstance() {
@@ -107,7 +107,7 @@ class Selenium {
 	public function log( $message ) {
 		$this->logger->write( $message );
 	}
-	
+
 	public function setUrl( $url ) {
 		self::$url = $url;
 	}

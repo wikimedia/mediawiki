@@ -13,11 +13,11 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 
 	function setUp() {
 		global $wgParser,  $wgParserConf, $IP, $messageMemc, $wgMemc, $wgDeferredUpdateList,
-                  $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-                  $wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $parserMemc,
-                  $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
-                  $wgThumbnailScriptPath, $wgScriptPath,
-                  $wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
+				  $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
+				  $wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $parserMemc,
+				  $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
+				  $wgThumbnailScriptPath, $wgScriptPath,
+				  $wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
 
 		$wgScript = '/index.php';
 		$wgScriptPath = '/';
@@ -163,10 +163,10 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite
 		return $dir;
 	}
 
-    public static function suite()
-    {
-        return new UploadFromUrlTestSuite( 'UploadFromUrlTest' );
-    }
+	public static function suite()
+	{
+		return new UploadFromUrlTestSuite( 'UploadFromUrlTest' );
+	}
 
 }
 

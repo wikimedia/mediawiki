@@ -664,10 +664,10 @@ CSS;
 
 		wfProfileOut( __METHOD__ );
 	}
-	
+
 	/**
 	 * Get the query to generate a dynamic stylesheet
-	 * 
+	 *
 	 * @return array
 	 */
 	public static function getDynamicStylesheetQuery() {
@@ -2140,14 +2140,14 @@ CSS;
 	 * Currently only used for MediaWiki:Sidebar (but may be used by Extensions)
 	 *
 	 * This is just a wrapper around addToSidebarPlain() for backwards compatibility
-	 * 
+	 *
 	 * @param &$bar array
 	 * @param $message String
 	 */
 	function addToSidebar( &$bar, $message ) {
 		$this->addToSidebarPlain( $bar, wfMsgForContent( $message ) );
 	}
-	
+
 	/**
 	 * Add content from plain text
 	 * @since 1.17
@@ -2205,12 +2205,12 @@ CSS;
 					);
 				} else if ( (substr($line, 0, 2) == '{{') && (substr($line, -2) == '}}') ) {
 					global $wgParser, $wgTitle;
-					
+
 					$line = substr($line, 2, strlen($line) - 4 );
-					
+
 					if (is_null($wgParser->mOptions))
 						$wgParser->mOptions = new ParserOptions();
-					
+
 					$wgParser->mOptions->setEditSection(false);
 					$wikiBar[$heading] = $wgParser->parse( wfMsgForContentNoTrans( $line ) , $wgTitle, $wgParser->mOptions )->getText();
 				} else {
@@ -2218,10 +2218,10 @@ CSS;
 				}
 			}
 		}
-		
+
 		if ( count($wikiBar) > 0 )
 			$bar = array_merge($bar, $wikiBar);
-		
+
 		return $bar;
 	}
 

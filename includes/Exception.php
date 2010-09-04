@@ -229,7 +229,7 @@ class MWException extends Exception {
 	function htmlFooter() {
 		return "</body></html>";
 	}
-	
+
 	/**
 	 * headers handled by subclass?
 	 */

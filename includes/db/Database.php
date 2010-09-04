@@ -186,7 +186,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Returns true if this database requires that SELECT DISTINCT queries require that all
-       ORDER BY expressions occur in the SELECT list per the SQL92 standard
+	   ORDER BY expressions occur in the SELECT list per the SQL92 standard
 	 */
 	function standardSelectDistinct() {
 		return true;
@@ -2030,7 +2030,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return Database replication lag in seconds
 	 */
 	function getLag() {
-		return $this->mFakeSlaveLag;		
+		return $this->mFakeSlaveLag;
 	}
 
 	/**
@@ -2096,7 +2096,7 @@ abstract class DatabaseBase implements DatabaseType {
 				throw $e;
 			}
 		}
-		
+
 		fclose( $fp );
 		return $error;
 	}
@@ -2554,16 +2554,16 @@ class DBConnectionError extends DBError {
 <small>$outofdate</small></div>
 <!-- SiteSearch Google -->
 <form method="get" action="http://www.google.com/search" id="googlesearch">
-    <input type="hidden" name="domains" value="$wgServer" />
-    <input type="hidden" name="num" value="50" />
-    <input type="hidden" name="ie" value="$wgInputEncoding" />
-    <input type="hidden" name="oe" value="$wgInputEncoding" />
+	<input type="hidden" name="domains" value="$wgServer" />
+	<input type="hidden" name="num" value="50" />
+	<input type="hidden" name="ie" value="$wgInputEncoding" />
+	<input type="hidden" name="oe" value="$wgInputEncoding" />
 
-    <input type="text" name="q" size="31" maxlength="255" value="$search" />
-    <input type="submit" name="btnG" value="$googlesearch" />
+	<input type="text" name="q" size="31" maxlength="255" value="$search" />
+	<input type="submit" name="btnG" value="$googlesearch" />
   <div>
-    <input type="radio" name="sitesearch" id="gwiki" value="$wgServer" checked="checked" /><label for="gwiki">$wgSitename</label>
-    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
+	<input type="radio" name="sitesearch" id="gwiki" value="$wgServer" checked="checked" /><label for="gwiki">$wgSitename</label>
+	<input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
   </div>
 </form>
 <!-- SiteSearch Google -->
