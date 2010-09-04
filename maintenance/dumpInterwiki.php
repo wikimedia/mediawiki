@@ -216,7 +216,6 @@ class DumpInterwiki extends Maintenance {
 	}
 
 	function makeLink( $entry, $source ) {
-		global $prefixRewrites, $dbFile;
 		if ( isset( $this->prefixRewrites[$source] ) && isset( $this->prefixRewrites[$source][$entry[0]] ) )
 			$entry[0] = $this->prefixRewrites[$source][$entry[0]];
 
