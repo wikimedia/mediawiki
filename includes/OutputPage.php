@@ -2285,9 +2285,9 @@ class OutputPage {
 		);
 		// Automatically select style/script elements
 		if ( $only === 'styles' ) {
-			return Html::linkedStyle( wfAppendQuery( $wgScriptPath . '/load.php', $query ) );
+			return Html::linkedStyle( wfAppendQuery( wfScript( 'load' ), $query ) );
 		} else {
-			return Html::linkedScript( wfAppendQuery( $wgScriptPath . '/load.php', $query ) );
+			return Html::linkedScript( wfAppendQuery( wfScript( 'load' ), $query ) );
 		}
 	}
 	
