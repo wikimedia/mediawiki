@@ -62,7 +62,7 @@ class CSSMin {
 					// If we ever get to PHP 5.3, we should use the Fileinfo extension instead of mime_content_type
 					$type = mime_content_type( $file );
 					// Strip off any trailing = symbols (makes browsers freak out)
-					$data = rtrim( base64_encode( file_get_contents( $file ) ), '=' );
+					$data = base64_encode( file_get_contents( $file ) );
 					// Build 2 CSS properties; one which uses a base64 encoded data URI in place of the @embed
 					// comment to try and retain line-number integrity , and the other with a remapped an versioned
 					// URL and an Internet Explorer hack making it ignored in all browsers that support data URIs
