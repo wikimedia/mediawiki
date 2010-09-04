@@ -40,7 +40,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	private $mQueryModule, $mDb, $tables, $where, $fields, $options, $join_conds;
 
-	public function __construct( $query, $moduleName, $paramPrefix = '' ) {
+	public function __construct( ApiQuery $query, $moduleName, $paramPrefix = '' ) {
 		parent::__construct( $query->getMain(), $moduleName, $paramPrefix );
 		$this->mQueryModule = $query;
 		$this->mDb = null;
@@ -361,7 +361,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	protected function getDB() {
 		if ( is_null( $this->mDb ) ) {
-			$this->mDb = $this->getQuery()->getDB();
+			$apiQuery = $this->getQuery();
+			$this->mDb = $apiQuery->getDB();
 		}
 		return $this->mDb;
 	}
