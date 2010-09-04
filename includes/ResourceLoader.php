@@ -254,6 +254,13 @@ class ResourceLoader {
 			$maxage = min( $maxage, self::$modules[$name]->getClientMaxage() );
 			$smaxage = min( $smaxage, self::$modules[$name]->getServerMaxage() );
 		}
+		
+		// Output headers
+		if ( $context->getOnly() === 'styles' ) {
+			header( 'Content-Type: text/css' );
+		} else {
+			header( 'Content-Type: text/javascript' );
+		}
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
 		$expires = wfTimestamp( TS_RFC2822, min( $maxage, $smaxage ) + time() );
 		header( "Cache-Control: public, maxage=$maxage, s-maxage=$smaxage" );
@@ -322,10 +329,7 @@ class ResourceLoader {
 			}
 		}
 		// Output the appropriate header
-		if ( $context->getOnly() === 'styles' ) {
-			header( 'Content-Type: text/css' );
-		} else {
-			header( 'Content-Type: text/javascript' );
+		if ( $context->getOnly() !== 'styles' ) {
 			if ( $context->getDebug() ) {
 				ob_end_flush();
 			} else {
