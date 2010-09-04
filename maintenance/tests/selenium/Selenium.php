@@ -155,49 +155,6 @@ class Selenium {
 		return $t;
 	}
 
-	public function setUrl( $url ) {
-		self::$url = $url;
-	}
-
-	static public function getUrl() {
-		return self::$url;
-	}
-
-	public function setPort( $port ) {
-		$this->port = $port;
-	}
-
-	public function setUser( $user ) {
-		$this->user = $user;
-	}
-
-	public function setPass( $pass ) {
-		$this->pass = $pass;
-	}
-
-	public function setHost( $host ) {
-		$this->host = $host;
-	}
-
-	public function setVerbose( $verbose ) {
-		$this->verbose = $verbose;
-	}
-
-	public function setBrowser( $b ) {
-		$browsers = $this->setupBrowsers();
-
-		if ( !isset( $browsers[$b] ) ) {
-			throw new MWException( "Invalid Browser: $b.\n" );
-		}
-
-		$this->browser = $browsers[$b];
-	}
-
-	public function __call( $name, $args ) {
-		$t = call_user_func_array( array( $this->tester, $name ), $args );
-		return $t;
-	}
-
 	// Prevent external cloning
 	protected function __clone() { }
 	// Prevent external construction
