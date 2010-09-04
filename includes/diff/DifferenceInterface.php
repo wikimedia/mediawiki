@@ -579,7 +579,7 @@ CONTROL;
 	 * Add style sheets and supporting JS for diff display.
 	 */
 	function showDiffStyle() {
-		global $wgStylePath, $wgStyleVersion, $wgOut;
+		global $wgOut;
 		$wgOut->addModules( 'mediawiki.legacy.diff' );
 	}
 

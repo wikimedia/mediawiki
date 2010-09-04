@@ -156,7 +156,7 @@ class HTMLForm {
 	static function addJS() {
 		if ( self::$jsAdded ) return;
 
-		global $wgOut, $wgStylePath;
+		global $wgOut;
 
 		$wgOut->addModules( 'mediawiki.legacy.htmlform' );
 	}

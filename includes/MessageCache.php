@@ -750,6 +750,7 @@ class MessageCache {
 			# Invalidate all local caches
 			$this->mMemc->delete( wfMemcKey( 'messages', $code, 'hash' ) );
 		}
+		$this->mLoadedLanguages = array();
 	}
 
  	/**
@@ -811,7 +812,7 @@ class MessageCache {
 	}
 
 	public function figureMessage( $key ) {
-		global $wgContLanguageCode, $wgContLang;
+		global $wgContLanguageCode;
 		$pieces = explode( '/', $key );
 		if( count( $pieces ) < 2 )
 			return array( $key, $wgContLanguageCode );
