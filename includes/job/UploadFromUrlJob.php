@@ -126,9 +126,9 @@ class UploadFromUrlJob extends Job {
 	 * Store a result in the session data
 	 * THIS IS BROKEN. $_SESSION does not exist when using runJobs.php
 	 * 
-	 * @param $result string The result (Success|Warning|Failure)
-	 * @param $dataKey string The key of the extra data
-	 * @param $dataKey mixed The extra data itself
+	 * @param $result String: the result (Success|Warning|Failure)
+	 * @param $dataKey String: the key of the extra data
+	 * @param $dataValue Mixed: the extra data itself
 	 */
 	protected function storeResultInSession( $result, $dataKey, $dataValue ) {
 		$session &= $_SESSION[UploadBase::getSessionKeyname()][$this->params['sessionKey']];

@@ -298,7 +298,7 @@ abstract class UploadBase {
 
 	/**
 	 * Verify the mime type
-	 * @param $magic MagicMime object
+	 *
 	 * @param $mime string representing the mime
 	 * @return mixed true if the file is verified, an array otherwise
 	 */
