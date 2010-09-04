@@ -1,4 +1,4 @@
-function licenseSelectorCheck() {
+window.licenseSelectorCheck = function() {
 	var selector = document.getElementById( "wpLicense" );
 	var selection = selector.options[selector.selectedIndex].value;
 	if( selector.selectedIndex > 0 ) {
@@ -11,7 +11,7 @@ function licenseSelectorCheck() {
 	wgUploadLicenseObj.fetchPreview( selection );
 }
 
-function wgUploadSetup() {
+window.wgUploadSetup = function() {
 	// Disable URL box if the URL copy upload source type is not selected
 	var e = document.getElementById( 'wpSourceTypeurl' );
 	if( e ) {
@@ -92,7 +92,7 @@ function wgUploadSetup() {
  * @param enabledId The id of the selected radio button 
  * @return emptiness
  */
-function toggleUploadInputs() {
+window.toggleUploadInputs = function() {
 	// Iterate over all rows with UploadSourceField
 	var rows;
 	if ( document.getElementsByClassName ) {
@@ -126,7 +126,7 @@ function toggleUploadInputs() {
 	}
 }
 
-var wgUploadWarningObj = {
+window.wgUploadWarningObj = {
 	'responseCache' : { '' : '&nbsp;' },
 	'nameToCheck' : '',
 	'typing': false,
@@ -212,7 +212,7 @@ var wgUploadWarningObj = {
 	}
 }
 
-function fillDestFilename(id) {
+window.fillDestFilename = function(id) {
 	if (!wgUploadAutoFill) {
 		return;
 	}
@@ -286,7 +286,7 @@ function fillDestFilename(id) {
 	}
 }
 
-function toggleFilenameFiller() {
+window.toggleFilenameFiller = function() {
 	if(!document.getElementById) return;
 	var upfield = document.getElementById('wpUploadFile');
 	var destName = document.getElementById('wpDestFile').value;
@@ -297,7 +297,7 @@ function toggleFilenameFiller() {
 	}
 }
 
-var wgUploadLicenseObj = {
+window.wgUploadLicenseObj = {
 
 	'responseCache' : { '' : '' },
 

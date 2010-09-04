@@ -158,7 +158,7 @@ class HTMLForm {
 
 		global $wgOut, $wgStylePath;
 
-		$wgOut->addScriptFile( "$wgStylePath/common/htmlform.js" );
+		$wgOut->addModules( 'mediawiki.legacy.htmlform' );
 	}
 
 	/**

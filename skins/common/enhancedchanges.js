@@ -24,7 +24,7 @@ appendCSS('.mw-changeslist-hidden {'+
  * Switch an RC line between hidden/shown
  * @param int idNumber : the id number of the RC group
 */ 
-function toggleVisibility(idNumber) {
+window.toggleVisibility = function(idNumber) {
 	var openarrow = document.getElementById("mw-rc-openarrow-"+idNumber);
 	var closearrow = document.getElementById("mw-rc-closearrow-"+idNumber);
 	var subentries = document.getElementById("mw-rc-subentries-"+idNumber);

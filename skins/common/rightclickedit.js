@@ -1,4 +1,4 @@
-function setupRightClickEdit() {
+window.setupRightClickEdit = function() {
 	if (document.getElementsByTagName) {
 		var spans = document.getElementsByTagName('span');
 		for (var i = 0; i < spans.length; i++) {
@@ -10,7 +10,7 @@ function setupRightClickEdit() {
 	}
 }
 
-function addRightClickEditHandler(el) {
+window.addRightClickEditHandler = function(el) {
 	for (var i = 0; i < el.childNodes.length; i++) {
 		var link = el.childNodes[i];
 		if (link.nodeType == 1 && link.nodeName.toLowerCase() == 'a') {

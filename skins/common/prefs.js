@@ -1,7 +1,7 @@
 // generate toc from prefs form, fold sections
 // XXX: needs testing on IE/Mac and safari
 // more comments to follow
-function tabbedprefs() {
+window.tabbedprefs = function() {
 	var prefform = document.getElementById( 'preferences' );
 	if ( !prefform || !document.createElement ) {
 		return;
@@ -59,7 +59,7 @@ function tabbedprefs() {
 	document.getElementById( 'prefsubmit' ).id = 'prefcontrol';
 }
 
-function uncoversection() {
+window.uncoversection = function() {
 	var oldsecid = this.parentNode.parentNode.selectedid;
 	var newsec = document.getElementById( this.secid );
 	if ( oldsecid != this.secid ) {
@@ -78,7 +78,7 @@ function uncoversection() {
 
 // Timezone stuff
 // tz in format [+-]HHMM
-function checkTimezone( tz, msg ) {
+window.checkTimezone = function( tz, msg ) {
 	var localclock = new Date();
 	// returns negative offset from GMT in minutes
 	var tzRaw = localclock.getTimezoneOffset();
@@ -91,7 +91,7 @@ function checkTimezone( tz, msg ) {
 	}
 }
 
-function timezoneSetup() {
+window.timezoneSetup = function() {
 	var tzSelect = document.getElementById( 'mw-input-timecorrection' );
 	var tzTextbox = document.getElementById( 'mw-input-timecorrection-other' );
 
@@ -105,7 +105,7 @@ function timezoneSetup() {
 
 // in [-]HH:MM format...
 // won't yet work with non-even tzs
-function fetchTimezone() {
+window.fetchTimezone = function() {
 	// FIXME: work around Safari bug
 	var localclock = new Date();
 	// returns negative offset from GMT in minutes
@@ -117,7 +117,7 @@ function fetchTimezone() {
 	return tzString;
 }
 
-function guessTimezone() {
+window.guessTimezone = function() {
 	var textbox = document.getElementById( 'mw-input-timecorrection-other' );
 	var selector = document.getElementById( 'mw-input-timecorrection' );
 
@@ -127,7 +127,7 @@ function guessTimezone() {
 	updateTimezoneSelection( true );
 }
 
-function updateTimezoneSelection( force_offset ) {
+window.updateTimezoneSelection = function( force_offset ) {
 	var selector = document.getElementById( 'mw-input-timecorrection' );
 
 	if ( selector.value == 'guess' ) {

@@ -1628,6 +1628,19 @@ $wgUseETag = false;
  */
 $wgClockSkewFudge = 5;
 
+/**
+ * Maximum time in seconds to cache resources served by the resource loader on
+ * the client side (e.g. in the browser cache).
+ */
+$wgResourceLoaderClientMaxage = 30*24*60*60; // 30 days
+
+/**
+ * Maximum time in seconds to cache resources served by the resource loader on
+ * the server side. This means Squid/Varnish but also any other public proxy
+ * cache between the client and MediaWiki.
+ */
+$wgResourceLoaderServerMaxage = 30*24*60*60; // 30 days
+
 /** @} */ # end of cache settings
 
 /************************************************************************//**
@@ -2189,26 +2202,6 @@ $wgUseSiteJs = true;
 
 /** Use the site's Cascading Style Sheets (CSS)? */
 $wgUseSiteCss = true;
-
-/**
- * Version of jQuery to use. Currently available versions are 1.3.2 and 1.4.2 .
- * Other versions can be installed by hand at your own risk, see
- * http://www.mediawiki.org/wiki/Manual:$wgJQueryVersion
- */
-$wgJQueryVersion = '1.4.2';
-
-/**
- * Use a minified version of jQuery. If enabled, jquery-versionnumber.min.js
- * will be used instead of jquery-versionnumber.js . It is recommended you only
- * disable this for debugging purposes.
- */
-$wgJQueryMinified = true;
-
-/**
- * Include jQuery on every page served by MediaWiki. You can disable this if
- * your user/site-wide JS doesn't need it and you want to save bandwidth.
- */
-$wgJQueryOnEveryPage = true;
 
 /**
  * Set to false to disable application of access keys and tooltips,

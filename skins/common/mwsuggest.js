@@ -8,38 +8,38 @@
  */
 
 // search_box_id -> Results object
-var os_map = {};
+window.os_map = {};
 // cached data, url -> json_text
-var os_cache = {};
+window.os_cache = {};
 // global variables for suggest_keypress
-var os_cur_keypressed = 0;
-var os_keypressed_count = 0;
+window.os_cur_keypressed = 0;
+window.os_keypressed_count = 0;
 // type: Timer
-var os_timer = null;
+window.os_timer = null;
 // tie mousedown/up events
-var os_mouse_pressed = false;
-var os_mouse_num = -1;
+window.os_mouse_pressed = false;
+window.os_mouse_num = -1;
 // if true, the last change was made by mouse (and not keyboard)
-var os_mouse_moved = false;
+window.os_mouse_moved = false;
 // delay between keypress and suggestion (in ms)
-var os_search_timeout = 250;
+window.os_search_timeout = 250;
 // these pairs of inputs/forms will be autoloaded at startup
-var os_autoload_inputs = new Array('searchInput', 'searchInput2', 'powerSearchText', 'searchText');
-var os_autoload_forms = new Array('searchform', 'searchform2', 'powersearch', 'search' );
+window.os_autoload_inputs = new Array('searchInput', 'searchInput2', 'powerSearchText', 'searchText');
+window.os_autoload_forms = new Array('searchform', 'searchform2', 'powersearch', 'search' );
 // if we stopped the service
-var os_is_stopped = false;
+window.os_is_stopped = false;
 // max lines to show in suggest table
-var os_max_lines_per_suggest = 7;
+window.os_max_lines_per_suggest = 7;
 // number of steps to animate expansion/contraction of container width
-var os_animation_steps = 6;
+window.os_animation_steps = 6;
 // num of pixels of smallest step
-var os_animation_min_step = 2;
+window.os_animation_min_step = 2;
 // delay between steps (in ms)
-var os_animation_delay = 30;
+window.os_animation_delay = 30;
 // max width of container in percent of normal size (1 == 100%)
-var os_container_max_width = 2;
+window.os_container_max_width = 2;
 // currently active animation timer
-var os_animation_timer = null;
+window.os_animation_timer = null;
 /**
  * <datalist> is a new HTML5 element that allows you to manually supply
  * suggestion lists and have them rendered according to the right platform
@@ -50,17 +50,17 @@ var os_animation_timer = null;
  * (maybe with a UA check) when some browser has a better implementation.
  */
 // var os_use_datalist = 'list' in document.createElement( 'input' );
-var os_use_datalist = false;
+window.os_use_datalist = false;
 
 /** Timeout timer class that will fetch the results */
-function os_Timer( id, r, query ) {
+window.os_Timer = function( id, r, query ) {
 	this.id = id;
 	this.r = r;
 	this.query = query;
 }
 
 /** Property class for single search box */
-function os_Results( name, formname ) {
+window.os_Results = function( name, formname ) {
 	this.searchform = formname; // id of the searchform
 	this.searchbox = name; // id of the searchbox
 	this.container = name + 'Suggest'; // div that holds results
@@ -80,7 +80,7 @@ function os_Results( name, formname ) {
 }
 
 /** Timer user to animate expansion/contraction of container width */
-function os_AnimationTimer( r, target ) {
+window.os_AnimationTimer = function( r, target ) {
 	this.r = r;
 	var current = document.getElementById(r.container).offsetWidth;
 	this.inc = Math.round( ( target - current ) / os_animation_steps );
@@ -98,7 +98,7 @@ function os_AnimationTimer( r, target ) {
  ******************/
 
 /** Initialization, call upon page onload */
-function os_MWSuggestInit() {
+window.os_MWSuggestInit = function() {
 	for( i = 0; i < os_autoload_inputs.length; i++ ) {
 		var id = os_autoload_inputs[i];
 		var form = os_autoload_forms[i];
@@ -110,7 +110,7 @@ function os_MWSuggestInit() {
 }
 
 /** Init Result objects and event handlers */
-function os_initHandlers( name, formname, element ) {
+window.os_initHandlers = function( name, formname, element ) {
 	var r = new os_Results( name, formname );
 	var formElement = document.getElementById( formname );
 	if( !formElement ) {
@@ -159,7 +159,7 @@ function os_initHandlers( name, formname, element ) {
 
 }
 
-function os_hookEvent( element, hookName, hookFunct ) {
+window.os_hookEvent = function( element, hookName, hookFunct ) {
 	if ( element.addEventListener ) {
 		element.addEventListener( hookName, hookFunct, false );
 	} else if ( window.attachEvent ) {
@@ -172,7 +172,7 @@ function os_hookEvent( element, hookName, hookFunct ) {
  ********************/
 
 /** Event handler that will fetch results on keyup */
-function os_eventKeyup( e ) {
+window.os_eventKeyup = function( e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
 	if( r == null ) {
@@ -188,7 +188,7 @@ function os_eventKeyup( e ) {
 }
 
 /** catch arrows up/down and escape to hide the suggestions */
-function os_processKey( r, keypressed, targ ) {
+window.os_processKey = function( r, keypressed, targ ) {
 	if ( keypressed == 40 && !r.visible && os_timer == null ) {
 		// If the user hits the down arrow, fetch results immediately if none
 		// are already displayed.
@@ -218,7 +218,7 @@ function os_processKey( r, keypressed, targ ) {
 }
 
 /** When keys is held down use a timer to output regular events */
-function os_eventKeypress( e ) {
+window.os_eventKeypress = function( e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
 	if( r == null ) {
@@ -232,7 +232,7 @@ function os_eventKeypress( e ) {
 }
 
 /** Catch the key code (Firefox bug) */
-function os_eventKeydown( e ) {
+window.os_eventKeydown = function( e ) {
 	if ( !e ) {
 		e = window.event;
 	}
@@ -250,7 +250,7 @@ function os_eventKeydown( e ) {
 
 
 /** When the form is submitted hide everything, cancel updates... */
-function os_eventOnsubmit( e ) {
+window.os_eventOnsubmit = function( e ) {
 	var targ = os_getTarget( e );
 
 	os_is_stopped = true;
@@ -278,7 +278,7 @@ function os_eventOnsubmit( e ) {
 
 /** Hide results from the user, either making the div visibility=hidden or
  * detaching the datalist from the input. */
-function os_hideResults( r ) {
+window.os_hideResults = function( r ) {
 	if ( os_use_datalist ) {
 		document.getElementById( r.searchbox ).setAttribute( 'list', '' );
 	} else {
@@ -291,7 +291,7 @@ function os_hideResults( r ) {
 	r.selected = -1;
 }
 
-function os_decodeValue( value ) {
+window.os_decodeValue = function( value ) {
 	if ( decodeURIComponent ) {
 		return decodeURIComponent( value );
 	}
@@ -301,7 +301,7 @@ function os_decodeValue( value ) {
 	return null;
 }
 
-function os_encodeQuery( value ) {
+window.os_encodeQuery = function( value ) {
 	if ( encodeURIComponent ) {
 		return encodeURIComponent( value );
 	}
@@ -312,7 +312,7 @@ function os_encodeQuery( value ) {
 }
 
 /** Handles data from XMLHttpRequest, and updates the suggest results */
-function os_updateResults( r, query, text, cacheKey ) {
+window.os_updateResults = function( r, query, text, cacheKey ) {
 	os_cache[cacheKey] = text;
 	r.query = query;
 	r.original = query;
@@ -348,7 +348,7 @@ function os_updateResults( r, query, text, cacheKey ) {
  * @param r       os_Result object
  * @param results Array of the new results to replace existing ones
  */
-function os_setupDatalist( r, results ) {
+window.os_setupDatalist = function( r, results ) {
 	var s = document.getElementById( r.searchbox );
 	var c = document.getElementById( r.container );
 	if ( c == null ) {
@@ -374,7 +374,7 @@ function os_setupDatalist( r, results ) {
 
 /** Fetch namespaces from checkboxes or hidden fields in the search form,
     if none defined use wgSearchNamespaces global */
-function os_getNamespaces( r ) {
+window.os_getNamespaces = function( r ) {
 	var namespaces = '';
 	var elements = document.forms[r.searchform].elements;
 	for( i = 0; i < elements.length; i++ ) {
@@ -398,7 +398,7 @@ function os_getNamespaces( r ) {
 }
 
 /** Update results if user hasn't already typed something else */
-function os_updateIfRelevant( r, query, text, cacheKey ) {
+window.os_updateIfRelevant = function( r, query, text, cacheKey ) {
 	var t = document.getElementById( r.searchbox );
 	if( t != null && t.value == query ) { // check if response is still relevant
 		os_updateResults( r, query, text, cacheKey );
@@ -407,7 +407,7 @@ function os_updateIfRelevant( r, query, text, cacheKey ) {
 }
 
 /** Fetch results after some timeout */
-function os_delayedFetch() {
+window.os_delayedFetch = function() {
 	if( os_timer == null ) {
 		return;
 	}
@@ -444,7 +444,7 @@ function os_delayedFetch() {
 }
 
 /** Init timed update via os_delayedUpdate() */
-function os_fetchResults( r, query, timeout ) {
+window.os_fetchResults = function( r, query, timeout ) {
 	if( query == '' ) {
 		r.query = '';
 		os_hideResults( r );
@@ -469,7 +469,7 @@ function os_fetchResults( r, query, timeout ) {
 }
 
 /** Find event target */
-function os_getTarget( e ) {
+window.os_getTarget = function( e ) {
 	if ( !e ) {
 		e = window.event;
 	}
@@ -483,7 +483,7 @@ function os_getTarget( e ) {
 }
 
 /** Check if x is a valid integer */
-function os_isNumber( x ) {
+window.os_isNumber = function( x ) {
 	if( x == '' || isNaN( x ) ) {
 		return false;
 	}
@@ -497,12 +497,12 @@ function os_isNumber( x ) {
 }
 
 /** Call this to enable suggestions on input (id=inputId), on a form (name=formName) */
-function os_enableSuggestionsOn( inputId, formName ) {
+window.os_enableSuggestionsOn = function( inputId, formName ) {
 	os_initHandlers( inputId, formName, document.getElementById( inputId ) );
 }
 
 /** Call this to disable suggestios on input box (id=inputId) */
-function os_disableSuggestionsOn( inputId ) {
+window.os_disableSuggestionsOn = function( inputId ) {
 	r = os_map[inputId];
 	if( r != null ) {
 		// cancel/hide results
@@ -526,7 +526,7 @@ function os_disableSuggestionsOn( inputId ) {
  ************************************************/
 
 /** Event: loss of focus of input box */
-function os_eventBlur( e ) {
+window.os_eventBlur = function( e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
 	if( r == null ) {
@@ -545,7 +545,7 @@ function os_eventBlur( e ) {
 }
 
 /** Event: focus (catch only when stopped) */
-function os_eventFocus( e ) {
+window.os_eventFocus = function( e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[targ.id];
 	if( r == null ) {
@@ -560,7 +560,7 @@ function os_eventFocus( e ) {
  * @param r       os_Result object
  * @param results Array of the new results to replace existing ones
  */
-function os_setupDiv( r, results ) {
+window.os_setupDiv = function( r, results ) {
 	var c = document.getElementById( r.container );
 	if ( c == null ) {
 		c = os_createContainer( r );
@@ -576,7 +576,7 @@ function os_setupDiv( r, results ) {
 }
 
 /** Create the result table to be placed in the container div */
-function os_createResultTable( r, results ) {
+window.os_createResultTable = function( r, results ) {
 	var c = document.getElementById( r.container );
 	var width = c.offsetWidth - os_operaWidthFix( c.offsetWidth );
 	var html = '<table class="os-suggest-results" id="' + r.resultTable + '" style="width: ' + width + 'px;">';
@@ -592,7 +592,7 @@ function os_createResultTable( r, results ) {
 }
 
 /** Show results div */
-function os_showResults( r ) {
+window.os_showResults = function( r ) {
 	if( os_is_stopped ) {
 		return;
 	}
@@ -609,7 +609,7 @@ function os_showResults( r ) {
 	}
 }
 
-function os_operaWidthFix( x ) {
+window.os_operaWidthFix = function( x ) {
 	// For browsers that don't understand overflow-x, estimate scrollbar width
 	if( typeof document.body.style.overflowX != 'string' ) {
 		return 30;
@@ -618,7 +618,7 @@ function os_operaWidthFix( x ) {
 }
 
 /** Brower-dependent functions to find window inner size, and scroll status */
-function f_clientWidth() {
+window.f_clientWidth = function() {
 	return f_filterResults(
 		window.innerWidth ? window.innerWidth : 0,
 		document.documentElement ? document.documentElement.clientWidth : 0,
@@ -626,7 +626,7 @@ function f_clientWidth() {
 	);
 }
 
-function f_clientHeight() {
+window.f_clientHeight = function() {
 	return f_filterResults(
 		window.innerHeight ? window.innerHeight : 0,
 		document.documentElement ? document.documentElement.clientHeight : 0,
@@ -634,7 +634,7 @@ function f_clientHeight() {
 	);
 }
 
-function f_scrollLeft() {
+window.f_scrollLeft = function() {
 	return f_filterResults(
 		window.pageXOffset ? window.pageXOffset : 0,
 		document.documentElement ? document.documentElement.scrollLeft : 0,
@@ -642,7 +642,7 @@ function f_scrollLeft() {
 	);
 }
 
-function f_scrollTop() {
+window.f_scrollTop = function() {
 	return f_filterResults(
 		window.pageYOffset ? window.pageYOffset : 0,
 		document.documentElement ? document.documentElement.scrollTop : 0,
@@ -650,7 +650,7 @@ function f_scrollTop() {
 	);
 }
 
-function f_filterResults( n_win, n_docel, n_body ) {
+window.f_filterResults = function( n_win, n_docel, n_body ) {
 	var n_result = n_win ? n_win : 0;
 	if ( n_docel && ( !n_result || ( n_result > n_docel ) ) ) {
 		n_result = n_docel;
@@ -659,7 +659,7 @@ function f_filterResults( n_win, n_docel, n_body ) {
 }
 
 /** Get the height available for the results container */
-function os_availableHeight( r ) {
+window.os_availableHeight = function( r ) {
 	var absTop = document.getElementById( r.container ).style.top;
 	var px = absTop.lastIndexOf( 'px' );
 	if( px > 0 ) {
@@ -669,7 +669,7 @@ function os_availableHeight( r ) {
 }
 
 /** Get element absolute position {left,top} */
-function os_getElementPosition( elemID ) {
+window.os_getElementPosition = function( elemID ) {
 	var offsetTrail = document.getElementById( elemID );
 	var offsetLeft = 0;
 	var offsetTop = 0;
@@ -686,7 +686,7 @@ function os_getElementPosition( elemID ) {
 }
 
 /** Create the container div that will hold the suggested titles */
-function os_createContainer( r ) {
+window.os_createContainer = function( r ) {
 	var c = document.createElement( 'div' );
 	var s = document.getElementById( r.searchbox );
 	var pos = os_getElementPosition( r.searchbox );
@@ -712,7 +712,7 @@ function os_createContainer( r ) {
 }
 
 /** change container height to fit to screen */
-function os_fitContainer( r ) {
+window.os_fitContainer = function( r ) {
 	var c = document.getElementById( r.container );
 	var h = os_availableHeight( r ) - 20;
 	var inc = r.containerRow;
@@ -733,7 +733,7 @@ function os_fitContainer( r ) {
 }
 
 /** If some entries are longer than the box, replace text with "..." */
-function os_trimResultText( r ) {
+window.os_trimResultText = function( r ) {
 	// find max width, first see if we could expand the container to fit it
 	var maxW = 0;
 	for( var i = 0; i < r.resultCount; i++ ) {
@@ -799,7 +799,7 @@ function os_trimResultText( r ) {
 }
 
 /** Invoked on timer to animate change in container width */
-function os_animateChangeWidth() {
+window.os_animateChangeWidth = function() {
 	var r = os_animation_timer.r;
 	var c = document.getElementById( r.container );
 	var w = c.offsetWidth;
@@ -823,7 +823,7 @@ function os_animateChangeWidth() {
 }
 
 /** Change the highlighted row (i.e. suggestion), from position cur to next */
-function os_changeHighlight( r, cur, next, updateSearchBox ) {
+window.os_changeHighlight = function( r, cur, next, updateSearchBox ) {
 	if ( next >= r.resultCount ) {
 		next = r.resultCount - 1;
 	}
@@ -870,7 +870,7 @@ function os_changeHighlight( r, cur, next, updateSearchBox ) {
 	}
 }
 
-function os_HighlightClass() {
+window.os_HighlightClass = function() {
 	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
 	if ( match ) {
 		var webKitVersion = parseInt( match[1] );
@@ -884,7 +884,7 @@ function os_HighlightClass() {
 	return 'os-suggest-result-hl';
 }
 
-function os_updateSearchQuery( r, newText ) {
+window.os_updateSearchQuery = function( r, newText ) {
 	document.getElementById( r.searchbox ).value = newText;
 	r.query = newText;
 }
@@ -895,7 +895,7 @@ function os_updateSearchQuery( r, newText ) {
  ********************/
 
 /** Mouse over the container */
-function os_eventMouseover( srcId, e ) {
+window.os_eventMouseover = function( srcId, e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[srcId];
 	if( r == null || !os_mouse_moved ) {
@@ -908,7 +908,7 @@ function os_eventMouseover( srcId, e ) {
 }
 
 /* Get row where the event occured (from its id) */
-function os_getNumberSuffix( id ) {
+window.os_getNumberSuffix = function( id ) {
 	var num = id.substring( id.length - 2 );
 	if( !( num.charAt( 0 ) >= '0' && num.charAt( 0 ) <= '9' ) ) {
 		num = num.substring( 1 );
@@ -921,12 +921,12 @@ function os_getNumberSuffix( id ) {
 }
 
 /** Save mouse move as last action */
-function os_eventMousemove( srcId, e ) {
+window.os_eventMousemove = function( srcId, e ) {
 	os_mouse_moved = true;
 }
 
 /** Mouse button held down, register possible click */
-function os_eventMousedown( srcId, e ) {
+window.os_eventMousedown = function( srcId, e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[srcId];
 	if( r == null ) {
@@ -946,7 +946,7 @@ function os_eventMousedown( srcId, e ) {
 }
 
 /** Mouse button released, check for click on some row */
-function os_eventMouseup( srcId, e ) {
+window.os_eventMouseup = function( srcId, e ) {
 	var targ = os_getTarget( e );
 	var r = os_map[srcId];
 	if( r == null ) {
@@ -967,7 +967,7 @@ function os_eventMouseup( srcId, e ) {
 /** Toggle stuff seems to be dead code? */
 
 /** Return the span element that contains the toggle link */
-function os_createToggle( r, className ) {
+window.os_createToggle = function( r, className ) {
 	var t = document.createElement( 'span' );
 	t.className = className;
 	t.setAttribute( 'id', r.toggle );
@@ -981,7 +981,7 @@ function os_createToggle( r, className ) {
 }
 
 /** Call when user clicks on some of the toggle links */
-function os_toggle( inputId, formName ) {
+window.os_toggle = function( inputId, formName ) {
 	r = os_map[inputId];
 	var msg = '';
 	if( r == null ) {

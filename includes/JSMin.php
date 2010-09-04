@@ -60,8 +60,11 @@ class JSMin {
 	// -- Public Static Methods --------------------------------------------------
 
 	public static function minify( $js ) {
+		wfProfileIn( __METHOD__ );
 		$jsmin = new JSMin( $js );
-		return $jsmin->min();
+		$ret = $jsmin->min();
+		wfProfileOut( __METHOD__ );
+		return $ret;
 	}
 
 	// -- Public Instance Methods ------------------------------------------------

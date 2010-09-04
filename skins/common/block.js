@@ -1,6 +1,4 @@
-addOnloadHook( considerChangingExpiryFocus );
-
-function considerChangingExpiryFocus() {
+window.considerChangingExpiryFocus = function() {
 	if ( !document.getElementById ) {
 		return;
 	}
@@ -19,8 +17,7 @@ function considerChangingExpiryFocus() {
 		field.style.display = 'none';
 	}
 }
-
-function updateBlockOptions() {
+window.updateBlockOptions = function() {
 	if ( !document.getElementById ) {
 		return;
 	}
@@ -55,3 +52,5 @@ function updateBlockOptions() {
 		watchuserRow.style.display = isIpRange && !isEmpty ? 'none' : '';
 	}
 }
+
+addOnloadHook( considerChangingExpiryFocus );

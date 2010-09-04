@@ -1065,8 +1065,7 @@ class UploadForm extends HTMLForm {
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );
 
 		// For <charinsert> support
-		$wgOut->addScriptFile( 'edit.js' );
-		$wgOut->addScriptFile( 'upload.js' );
+		$wgOut->addModules( array( 'mediawiki.legacy.edit', 'mediawiki.legacy.upload' ) );
 	}
 
 	/**

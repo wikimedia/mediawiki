@@ -1,4 +1,4 @@
-function historyRadios(parent) {
+window.historyRadios = function(parent) {
 	var inputs = parent.getElementsByTagName('input');
 	var radios = [];
 	for (var i = 0; i < inputs.length; i++) {
@@ -10,7 +10,7 @@ function historyRadios(parent) {
 }
 
 // check selection and tweak visibility/class onclick
-function diffcheck() {
+window.diffcheck = function() {
 	var dli = false; // the li where the diff radio is checked
 	var oli = false; // the li where the oldid radio is checked
 	var hf = document.getElementById('pagehistory');
@@ -77,7 +77,7 @@ function diffcheck() {
 }
 
 // Attach event handlers to the input elements on history page
-function histrowinit() {
+window.histrowinit = function() {
 	var hf = document.getElementById('pagehistory');
 	if (!hf) return;
 	var lis = hf.getElementsByTagName('li');

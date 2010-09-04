@@ -12,7 +12,7 @@ addOnloadHook( function() {
 	}
 } );
 
-var htmlforms = {
+window.htmlforms = {
 	'selectOrOtherSelectChanged' : function( e ) {
 		var select;
 		if ( !e ) {

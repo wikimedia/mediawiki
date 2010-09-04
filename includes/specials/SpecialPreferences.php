@@ -52,7 +52,7 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 		
-		$wgOut->addScriptFile( 'prefs.js' );
+		$wgOut->addModules( 'mediawiki.legacy.prefs' );
 
 		if ( $wgRequest->getCheck( 'success' ) ) {
 			$wgOut->wrapWikiMsg(
