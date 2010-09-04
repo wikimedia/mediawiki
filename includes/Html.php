@@ -571,10 +571,12 @@ class Html {
 		global $wgHtml5;
 		$attribs['name'] = $name;
 		if ( !$wgHtml5 ) {
-			if ( !isset( $attribs['cols'] ) )
+			if ( !isset( $attribs['cols'] ) ) {
 				$attribs['cols'] = "";
-			if ( !isset( $attribs['rows'] ) )
+			}
+			if ( !isset( $attribs['rows'] ) ) {
 				$attribs['rows'] = "";
+			}
 		}
 		return self::element( 'textarea', $attribs, $value );
 	}
@@ -610,7 +612,9 @@ class Html {
 			}
 		}
 		$html = Html::openElement( 'html', $attribs );
-		if ( $html ) $html .= "\n";
+		if ( $html ) {
+			$html .= "\n";
+		}
 		$ret .= $html;
 		return $ret;
 	}
@@ -623,12 +627,12 @@ class Html {
 	 */
 	public static function isXmlMimeType( $mimetype ) {
 		switch ( $mimetype ) {
-		case 'text/xml':
-		case 'application/xhtml+xml':
-		case 'application/xml':
-			return true;
-		default:
-			return false;
+			case 'text/xml':
+			case 'application/xhtml+xml':
+			case 'application/xml':
+				return true;
+			default:
+				return false;
 		}
 	}
 }

@@ -68,12 +68,14 @@ class WikiMap {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
 
-		if ( !$text )
+		if ( !$text ) {
 			$text = $page;
+		}
 
 		$url = self::getForeignURL( $wikiID, $page );
-		if ( $url === false )
+		if ( $url === false ) {
 			return false;
+		}
 
 		return $sk->makeExternalLink( $url, $text );
 	}
@@ -88,8 +90,9 @@ class WikiMap {
 	public static function getForeignURL( $wikiID, $page ) {
 		$wiki = WikiMap::getWiki( $wikiID );
 		
-		if ( $wiki )
+		if ( $wiki ) {
 			return $wiki->getUrl( $page );
+		}
 			
 		return false;
 	}

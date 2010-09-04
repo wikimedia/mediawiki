@@ -35,7 +35,7 @@ class ZhClient {
 		$errno = $errstr = '';
 		$this->mFP = fsockopen($this->mHost, $this->mPort, $errno, $errstr, 30);
 		wfRestoreWarnings();
-		if(!$this->mFP) {
+		if ( !$this->mFP ) {
 			return false;
 		}
 		return true;
@@ -47,8 +47,9 @@ class ZhClient {
 	 * @access private
 	 */
 	function query($request) {
-		if(!$this->mConnected)
+		if ( !$this->mConnected ) {
 			return false;
+		}
 
 		fwrite($this->mFP, $request);
 
@@ -68,8 +69,9 @@ class ZhClient {
 			$data .= $str;
 		}
 		//data should be of length $len. otherwise something is wrong
-		if(strlen($data) != $len)
+		if ( strlen($data) != $len ) {
 			return false;
+		}
 		return $data;
 	}
 
@@ -84,8 +86,9 @@ class ZhClient {
 		$len = strlen($text);
 		$q = "CONV $tolang $len\n$text";
 		$result = $this->query($q);
-		if(!$result)
+		if ( !$result ) {
 			$result = $text;
+		}
 		return $result;
 	}
 
@@ -99,8 +102,9 @@ class ZhClient {
 		$len = strlen($text);
 		$q = "CONV ALL $len\n$text";
 		$result = $this->query($q);
-		if(!$result)
+		if ( !$result ) {
 			return false;
+		}
 		list($infoline, $data) = explode('|', $result, 2);
 		$info = explode(";", $infoline);
 		$ret = array();
@@ -122,7 +126,7 @@ class ZhClient {
 		$len = strlen($text);
 		$q = "SEG $len\n$text";
 		$result = $this->query($q);
-		if(!$result) {// fallback to character based segmentation
+		if ( !$result ) {// fallback to character based segmentation
 			$result = $this->segment($text);
 		}
 		return $result;
