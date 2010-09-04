@@ -31,6 +31,7 @@ class ResourceLoaderContext {
 	protected $modules;
 	protected $language;
 	protected $direction;
+	protected $flip;
 	protected $skin;
 	protected $debug;
 	protected $only;
@@ -39,7 +40,7 @@ class ResourceLoaderContext {
 	/* Methods */
 	
 	public function __construct( WebRequest $request, $server ) {
-		global $wgUser, $wgLang, $wgDefaultSkin;
+		global $wgUser, $wgLang, $wgContLang, $wgDefaultSkin;
 		
 		$this->request = $request;
 		$this->server = $server;
@@ -60,6 +61,8 @@ class ResourceLoaderContext {
 		if ( !$this->skin ) {
 			$this->skin = $wgDefaultSkin;
 		}
+		// Evaluate flip
+		$this->flip = $wgContLang->getDir() !== $this->direction;
 	}
 	
 	public function getRequest() {
@@ -77,9 +80,13 @@ class ResourceLoaderContext {
 	public function getLanguage() {
 		return $this->language;
 	}
-	
+
 	public function getDirection() {
 		return $this->direction;
+	}
+	
+	public function getFlip() {
+		return $this->flip;
 	}
 	
 	public function getSkin() {
