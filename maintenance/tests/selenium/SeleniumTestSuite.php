@@ -15,7 +15,7 @@ class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 		if ( $this->isSetUp ) {
 			return;
 		}
-		$this->isSetUp = true;	
+		$this->isSetUp = true;
 		$this->selenium = Selenium::getInstance();
 		$this->selenium->start();
 		$this->login();

@@ -657,7 +657,7 @@ class ParserTest {
 				$db->query( "DROP TABLE IF EXISTS $newTableName" );
 			} elseif ( in_array( $wgDBtype, array( 'postgres', 'oracle' ) ) ) {
 				/* DROPs wouldn't work due to Foreign Key Constraints (bug 14990, r58669)
-				 * Use "DROP TABLE IF EXISTS $newTableName CASCADE" for postgres? That 
+				 * Use "DROP TABLE IF EXISTS $newTableName CASCADE" for postgres? That
 				 * syntax would also work for mysql.
 				 */
 			} elseif ( $db->tableExists( $tbl ) ) {

@@ -35,7 +35,7 @@ class CliInstaller extends CoreInstaller {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param $siteName
 	 * @param $admin
 	 * @param $option Array
@@ -59,7 +59,7 @@ class CliInstaller extends CoreInstaller {
 		}
 
 		$this->setVar( 'wgSitename', $siteName );
-		
+
 		if ( $admin ) {
 			$this->setVar( '_AdminName', $admin );
 		}
@@ -96,7 +96,7 @@ class CliInstaller extends CoreInstaller {
 
 	public function endStage( $step, $status ) {
 		$warnings = $status->getWarningsArray();
-		
+
 		if ( !$status->isOk() ) {
 			$this->showStatusMessage( $status );
 			echo "\n";
@@ -107,7 +107,7 @@ class CliInstaller extends CoreInstaller {
 					wfMsg( 'word-separator' ) );
 			}
 		}
-		
+
 		$this->showMessage( wfMsg( 'config-install-step-done' ) ."\n");
 	}
 

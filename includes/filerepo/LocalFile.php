@@ -73,7 +73,7 @@ class LocalFile extends File {
 		$file->loadFromRow( $row );
 		return $file;
 	}
-	
+
 	/**
 	 * Create a LocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
@@ -91,7 +91,7 @@ class LocalFile extends File {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Fields in the image table
 	 */
@@ -130,7 +130,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Get the memcached key for the main data for this file, or false if 
+	 * Get the memcached key for the main data for this file, or false if
 	 * there is no access to the shared cache.
 	 */
 	function getCacheKey() {
@@ -655,7 +655,7 @@ class LocalFile extends File {
 		$opts['ORDER BY'] = "oi_timestamp $order";
 		$opts['USE INDEX'] = array( 'oldimage' => 'oi_name_timestamp' );
 
-		wfRunHooks( 'LocalFile::getHistory', array( &$this, &$tables, &$fields, 
+		wfRunHooks( 'LocalFile::getHistory', array( &$this, &$tables, &$fields,
 			&$conds, &$opts, &$join_conds ) );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
@@ -792,7 +792,7 @@ class LocalFile extends File {
 	{
 		if( is_null( $user ) ) {
 			global $wgUser;
-			$user = $wgUser; 
+			$user = $wgUser;
 		}
 
 		$dbw = $this->repo->getMasterDB();
@@ -914,7 +914,7 @@ class LocalFile extends File {
 			$nullRevision = Revision::newNullRevision( $dbw, $descTitle->getArticleId(),
 				$log->getRcComment(), false );
 			$nullRevision->insertOn( $dbw );
-			
+
 			wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $user ) );
 			$article->updateRevisionOn( $dbw, $nullRevision );
 
@@ -1023,7 +1023,7 @@ class LocalFile extends File {
 			// Purge the new image
 			$this->purgeEverything();
 		}
-		
+
 		return $status;
 	}
 
@@ -1870,7 +1870,7 @@ class LocalFileMoveBatch {
 		$dbw = $this->db;
 
 		// Update current image
-		$dbw->update( 
+		$dbw->update(
 			'image',
 			array( 'img_name' => $this->newName ),
 			array( 'img_name' => $this->oldName ),
@@ -1902,7 +1902,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Generate triplets for FSRepo::storeBatch().
-	 */ 
+	 */
 	function getMoveTriplets() {
 		$moves = array_merge( array( $this->cur ), $this->olds );
 		$triplets = array();	// The format is: (srcUrl, destZone, destUrl)
@@ -1917,7 +1917,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Removes non-existent files from move batch.
-	 */ 
+	 */
 	function removeNonexistentFiles( $triplets ) {
 		$files = array();
 		foreach( $triplets as $file )
