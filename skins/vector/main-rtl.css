@@ -25,12 +25,14 @@ body {
 }
 body {
 	background-color: #f3f3f3;
+	/* @embed */
 	background-image: url(images/page-base.png?1);
 }
 /* Content */
 div#content {
 	margin-right: 10em;
 	padding: 1em;
+	/* @embed */
 	background-image: url(images/border.png?1);
 	background-position: top right;
 	background-repeat: repeat-y;
@@ -42,6 +44,7 @@ div#content {
 #mw-page-base {
 	height: 5em;
 	background-color: white;
+	/* @embed */
 	background-image: url(images/page-fade.png?1);
 	background-position: bottom right;
 	background-repeat: repeat-x;
@@ -50,6 +53,7 @@ div#content {
 	margin-top: -5em;
 	margin-right: 10em;
 	height: 5em;
+	/* @embed */
 	background-image: url(images/border.png?1);
 	background-position: bottom right;
 	background-repeat: repeat-x;
@@ -117,6 +121,7 @@ div#mw-head h5 {
 		height: 2.5em;
 	}
 	div.vectorTabs {
+		/* @embed */
 		background-image: url(images/tab-break.png?1);
 		background-position: bottom right;
 		background-repeat: no-repeat;
@@ -144,6 +149,7 @@ div#mw-head h5 {
 		margin: 0;
 		padding: 0;
 		background-color: #f3f3f3;
+		/* @embed */
 		background-image: url(images/tab-normal-fade.png?1);
 		background-position: bottom right;
 		background-repeat: repeat-x;
@@ -154,6 +160,7 @@ div#mw-head h5 {
 		display: block;
 	}
 	div.vectorTabs li.selected {
+		/* @embed */
 		background-image: url(images/tab-current-fade.png?1);
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
@@ -162,6 +169,7 @@ div#mw-head h5 {
 		height: 1.9em;
 		padding-right: 0.5em;
 		padding-left: 0.5em;
+		/* @embed */
 		background-image: url(images/tab-break.png?1);
 		background-position: bottom left;
 		background-repeat: no-repeat;
@@ -202,6 +210,7 @@ div#mw-head h5 {
 	div.vectorMenu {
 		direction: ltr;
 		float: left;
+		/* @embed */
 		background-image: url(images/arrow-down-icon.png?1);
 		background-position: 100% 60%;
 		background-repeat: no-repeat;
@@ -215,6 +224,7 @@ div#mw-head h5 {
 	/* @noflip */
 	div#mw-head div.vectorMenu h5 {
 		float: left;
+		/* @embed */
 		background-image: url(images/tab-break.png?1);
 		background-repeat: no-repeat;
 	}
@@ -242,6 +252,7 @@ div#mw-head h5 {
 		width: 24px;
 		height: 2.5em;
 		text-decoration: none;
+		/* @embed */
 		background-image: url(images/tab-break.png?1);
 		background-repeat: no-repeat;
 	}
@@ -274,8 +285,7 @@ div#mw-head h5 {
 	x:-moz-any-link {
 		margin-left: 23px;
 	}
-	div.vectorMenu:hover div.menu,
-	div.vectorMenu:focus div.menu {
+	div.vectorMenu:hover div.menu {
 		display: block;
 	}
 	div.vectorMenu ul {
@@ -351,6 +361,7 @@ div#mw-head h5 {
 		min-height: 1px; /* Gotta trigger hasLayout for IE7 */
 		border: solid 1px #AAAAAA;
 		background-color: white;
+		/* @embed */
 		background-image: url(images/search-fade.png?1);
 		background-position: top right;
 		background-repeat: repeat-x;
@@ -423,6 +434,7 @@ div#mw-panel {
 		margin: 0;
 		padding-top: 0.5em;
 		margin-right: 1.25em;
+		/* @embed */
 		background-image: url(images/portal-break.png?1);
 		background-repeat: no-repeat;
 		background-position: top right;
@@ -453,6 +465,7 @@ div#footer {
 	margin-right: 10em;
 	margin-top: 0;
 	padding: 0.75em;
+	/* @embed */
 	background-image: url(images/border.png?1);
 	background-position: top right;
 	background-repeat: repeat-x;
@@ -525,6 +538,7 @@ div#footer #footer-places li {
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
+	/* @embed */
 	background-image: url(images/preferences-break.png?1);
 	background-position: bottom right;
 	background-repeat: no-repeat;
@@ -539,6 +553,7 @@ div#footer #footer-places li {
 		white-space: nowrap;
 		list-style-type: none;
 		list-style-image: none;
+		/* @embed */
 		background-image: url(images/preferences-break.png?1);
 		background-position: bottom left;
 		background-repeat: no-repeat;
@@ -557,10 +572,12 @@ div#footer #footer-places li {
 		background-image: none;
 		font-size: 0.9em;
 	}
-	#preftoc a:hover, #preftoc a:focus {
+	#preftoc a:hover,
+	#preftoc a:focus {
 		text-decoration: underline;
 	}
 	#preftoc li.selected a {
+		/* @embed */
 		background-image: url(images/preferences-fade.png?1);
 		background-position: bottom;
 		background-repeat: repeat-x;
@@ -575,6 +592,7 @@ div#footer #footer-places li {
 	clear: both;
 	border: solid 1px #cccccc;
 	background-color: #f9f9f9;
+	/* @embed */
 	background-image: url(images/preferences-base.png?1);
 }
 #preferences fieldset.prefsection {
@@ -755,6 +773,7 @@ ul {
 	list-style-type: square;
 	margin: .3em 1.5em 0 0;
 	padding: 0;
+	/* @embed */
 	list-style-image: url(images/bullet-icon.png?1);
 }
 ol {
@@ -1012,31 +1031,37 @@ h3, h4, h5 {
 }
 div#content a.external,
 div#content a[href ^="gopher://"] {
+	/* @embed */
 	background: url(images/external-link-rtl-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
 div#content a[href ^="https://"],
 .link-https {
+	/* @embed */
 	background: url(images/lock-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
 div#content a[href ^="mailto:"],
 .link-mailto {
+	/* @embed */
 	background: url(images/mail-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
 div#content a[href ^="news://"] {
+	/* @embed */
 	background: url(images/news-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
 div#content a[href ^="ftp://"],
 .link-ftp {
+	/* @embed */
 	background: url(images/file-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
 div#content a[href ^="irc://"],
 div#content a.extiw[href ^="irc://"],
 .link-irc {
+	/* @embed */
 	background: url(images/talk-icon.png?2) center left no-repeat;
 	padding: 0 0 0 13px;
 }
@@ -1047,6 +1072,7 @@ div#content a.external[href $=".mp3"], div#content a.external[href $=".MP3"],
 div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"],
 div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
 .link-audio {
+	/* @embed */
 	background: url("images/audio-icon.png?2") center left no-repeat;
 	padding: 0 0 0 13px;
 }
@@ -1055,6 +1081,7 @@ div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"],
 div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"],
 div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
 .link-video {
+	/* @embed */
 	background: url("images/video-icon.png?2") center left no-repeat;
 	padding: 0 0 0 13px;
 }
@@ -1062,6 +1089,7 @@ div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
 div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
 div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 .link-document {
+	/* @embed */
 	background: url("images/document-icon.png?2") center left no-repeat;
 	padding: 0 0 0 13px;
 }
@@ -1082,6 +1110,7 @@ div#content .printfooter {
 #pt-userpage,
 #pt-anonuserpage,
 #pt-login {
+	/* @embed */
 	background: url(images/user-icon.png?1) right top no-repeat;
 	padding-right: 15px !important;
 	text-transform: none;
@@ -1122,25 +1151,30 @@ div#bodyContent {
 	overflow: hidden;
 }
 #ca-unwatch.icon a {
+	/* @embed */
 	background-image: url(images/watch-icons.png?1);
 	background-position: -43px 60%;
 }
 #ca-watch.icon a {
+	/* @embed */
 	background-image: url(images/watch-icons.png?1);
 	background-position: 5px 60%;
 }
 #ca-unwatch.icon a:hover,
 #ca-unwatch.icon a:focus {
+	/* @embed */
 	background-image: url(images/watch-icons.png?1);
 	background-position: -67px 60%;
 }
 #ca-watch.icon a:hover,
 #ca-watch.icon a:focus {
+	/* @embed */
 	background-image: url(images/watch-icons.png?1);
 	background-position: -19px 60%;
 }
 #ca-unwatch.icon a.loading,
 #ca-watch.icon a.loading {
+	/* @embed */
 	background-image: url(images/watch-icon-loading.gif?1);
 	background-position: center 60%;
 }
@@ -1149,6 +1183,7 @@ div#bodyContent {
 	display: none;
 }
 div.vectorTabs ul {
+	/* @embed */
 	background-image:url(images/tab-break.png?1);
 	background-position:left bottom;
 	background-repeat:no-repeat;

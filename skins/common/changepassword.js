@@ -1,5 +1,5 @@
 
-function onNameChange() {
+window.onNameChange = function() {
 	if ( wgUserName != document.getElementById('wpName').value ) {
 		document.getElementById('wpPassword').disabled = true;
 		document.getElementById('wpComment').disabled = false;
@@ -9,7 +9,7 @@ function onNameChange() {
 	}
 }
 
-function onNameChangeHook() {
+window.onNameChangeHook = function() {
 	document.getElementById( 'wpName' ).onblur = onNameChange;
 }
 

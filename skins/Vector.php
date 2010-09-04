@@ -50,10 +50,8 @@ class SkinVector extends SkinTemplate {
 		global $wgVectorExtraStyles;
 
 		parent::setupSkinUserCss( $out );
-
-		// Append skin-specific styles
-		$out->addStyle( "{$this->stylename}/main-rtl.css", 'screen', '', 'rtl' );
-		$out->addStyle( "{$this->stylename}/main-ltr.css", 'screen', '', 'ltr' );
+		
+		$out->addModuleStyles( 'vector' );
 
 		// Add extra stylesheets
 		// THIS IS ONLY USEFUL FOR EXPERIMENTING WITH DIFFERNT STYLE OPTIONS! THIS WILL BE REMOVED IN THE NEAR FUTURE.

@@ -196,8 +196,8 @@ class IPBlockForm extends SpecialPage {
 			wfMsgForContent( 'ipbreasonotherlist' ), $this->BlockReasonList, 'wpBlockDropDown', 4 );
 
 		global $wgStylePath, $wgStyleVersion;
+		$wgOut->addModules( 'mediawiki.legacy.block' );
 		$wgOut->addHTML(
-			Xml::tags( 'script', array( 'type' => 'text/javascript', 'src' => "$wgStylePath/common/block.js?$wgStyleVersion" ), '' ) .
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'blockip' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'blockip-legend' ) ) .

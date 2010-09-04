@@ -580,10 +580,7 @@ CONTROL;
 	 */
 	function showDiffStyle() {
 		global $wgStylePath, $wgStyleVersion, $wgOut;
-		$wgOut->addStyle( 'common/diff.css' );
-
-		// JS is needed to detect old versions of Mozilla to work around an annoyance bug.
-		$wgOut->addScript( "<script type=\"text/javascript\" src=\"$wgStylePath/common/diff.js?$wgStyleVersion\"></script>" );
+		$wgOut->addModules( 'mediawiki.legacy.diff' );
 	}
 
 	/**

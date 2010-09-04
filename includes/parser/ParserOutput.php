@@ -116,6 +116,7 @@ class ParserOutput extends CacheTime
 		$mHideNewSection = false,     # Hide the new section link?
 		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
 		$mHeadItems = array(),        # Items to put in the <head> section
+		$mModules = array(),      	  # Modules to be loaded by the resource loader
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections = array(),         # Table of contents
@@ -146,6 +147,7 @@ class ParserOutput extends CacheTime
 	function &getExternalLinks()         { return $this->mExternalLinks; }
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getHeadItems()              { return $this->mHeadItems; }
+	function getModules()             	 { return $this->mModules; }
 	function getSubtitle()               { return $this->mSubtitle; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
@@ -266,6 +268,10 @@ class ParserOutput extends CacheTime
 		} else {
 			$this->mHeadItems[] = $section;
 		}
+	}
+	
+	function addModules( $modules ) {
+		$this->mModules = array_merge( $this->mModules, (array) $modules );
 	}
 
 	/**

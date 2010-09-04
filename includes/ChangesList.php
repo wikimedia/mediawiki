@@ -601,13 +601,13 @@ class EnhancedChangesList extends ChangesList {
 	 * @return String
 	 */
 	public function beginRecentChangesList() {
-		global $wgStylePath, $wgStyleVersion;
+		global $wgStylePath, $wgStyleVersion, $wgOut;
 		$this->rc_cache = array();
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$script = Html::linkedScript( $wgStylePath . "/common/enhancedchanges.js?$wgStyleVersion" );
+		$wgOut->addModules( 'mediawiki.legacy.enhancedchanges' );
 		return $script;
 	}
 	/**

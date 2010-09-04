@@ -621,6 +621,9 @@ class LocalisationCache {
 			}
 		}
 		$this->store->finishWrite();
+		
+		# Clear out the MessageBlobStore
+		MessageBlobStore::clear();
 
 		wfProfileOut( __METHOD__ );
 	}

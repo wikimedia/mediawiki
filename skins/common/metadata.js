@@ -5,7 +5,7 @@
 //
 // attachMetadataToggle('mw_metadata', 'More...', 'Fewer...');
 
-function attachMetadataToggle( tableId, showText, hideText ) {
+window.attachMetadataToggle = function( tableId, showText, hideText ) {
 	if ( document.createTextNode ) {
 		var box = document.getElementById( tableId );
 		if ( !box ) {

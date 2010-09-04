@@ -330,14 +330,14 @@ class ProtectionForm {
 	 * @return String: HTML form
 	 */
 	function buildForm() {
-		global $wgUser, $wgLang;
+		global $wgUser, $wgLang, $wgOut;
 
 		$mProtectreasonother = Xml::label( wfMsg( 'protectcomment' ), 'wpProtectReasonSelection' );
 		$mProtectreason = Xml::label( wfMsg( 'protect-otherreason' ), 'mwProtect-reason' );
 
 		$out = '';
 		if( !$this->disabled ) {
-			$out .= $this->buildScript();
+			$wgOut->addModules( 'mediawiki.legacy.protect' );
 			$out .= Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->mTitle->getLocalUrl( 'action=protect' ),
 				'id' => 'mw-Protect-Form', 'onsubmit' => 'ProtectionForm.enableUnchainedInputs(true)' ) );
@@ -508,8 +508,8 @@ class ProtectionForm {
 		}
 
 		if ( !$this->disabled ) {
-			$out .= Xml::closeElement( 'form' ) .
-				$this->buildCleanupScript();
+			$out .= Xml::closeElement( 'form' );
+			$wgOut->addScript( $this->buildCleanupScript() );
 		}
 
 		return $out;
@@ -572,12 +572,7 @@ class ProtectionForm {
 			return $msg;
 		}
 	}
-
-	function buildScript() {
-		global $wgStylePath, $wgStyleVersion;
-		return Html::linkedScript( "$wgStylePath/common/protect.js?$wgStyleVersion.1" );
-	}
-
+	
 	function buildCleanupScript() {
 		global $wgRestrictionLevels, $wgGroupPermissions;
 		$script = 'var wgCascadeableLevels=';
@@ -597,7 +592,7 @@ class ProtectionForm {
 		$encOptions = Xml::encodeJsVar( $options );
 
 		$script .= "ProtectionForm.init($encOptions)";
-		return Html::inlineScript( $script );
+		return Html::inlineScript( "if ( mediaWiki !== undefined ) { mediaWiki.loader.using( 'mediawiki.legacy.protect', function() { {$script} } ); }" );
 	}
 
 	/**

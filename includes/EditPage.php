@@ -318,11 +318,11 @@ class EditPage {
 			$this->preview = true;
 		}
 
-		$wgOut->addScriptFile( 'edit.js' );
+		$wgOut->addModules( 'mediawiki.legacy.edit' );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->includeJQuery();
-			$wgOut->addScriptFile( 'preview.js' );
+			$wgOut->addModules( 'mediawiki.legacy.preview' );
 		}
 		// Bug #19334: textarea jumps when editing articles in IE8
 		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
@@ -2108,7 +2108,7 @@ HTML
 	 * @return string
 	 */
 	static function getEditToolbar() {
-		global $wgStylePath, $wgContLang, $wgLang;
+		global $wgStylePath, $wgContLang, $wgLang, $wgOut;
 
 		/**
 
@@ -2244,8 +2244,11 @@ HTML
 				array_map( array( 'Xml', 'encodeJsVar' ), $params ) );
 			$script .= "addButton($paramList);\n";
 		}
-		$toolbar .= Html::inlineScript( "\n$script\n" );
-
+		
+		$wgOut->addScript( Html::inlineScript(
+			"if ( mediaWiki !== undefined ) { mediaWiki.loader.using( 'mediawiki.legacy.edit', function() { $script } ); }"
+		) );
+		
 		$toolbar .= "\n</div>";
 
 		wfRunHooks( 'EditPageBeforeEditToolbar', array( &$toolbar ) );

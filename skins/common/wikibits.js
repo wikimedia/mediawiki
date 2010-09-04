@@ -1,39 +1,46 @@
 // MediaWiki JavaScript support functions
 
-var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-var is_gecko = /gecko/.test( clientPC ) &&
+window.clientPC = navigator.userAgent.toLowerCase(); // Get client info
+window.is_gecko = /gecko/.test( clientPC ) &&
 	!/khtml|spoofer|netscape\/7\.0/.test(clientPC);
-var webkit_match = clientPC.match(/applewebkit\/(\d+)/);
+
+window.is_safari = window.is_safari_win = window.webkit_version =
+	window.is_chrome = window.is_chrome_mac = false;
+window.webkit_match = clientPC.match(/applewebkit\/(\d+)/);
 if (webkit_match) {
-	var is_safari = clientPC.indexOf('applewebkit') != -1 &&
+	window.is_safari = clientPC.indexOf('applewebkit') != -1 &&
 		clientPC.indexOf('spoofer') == -1;
-	var is_safari_win = is_safari && clientPC.indexOf('windows') != -1;
-	var webkit_version = parseInt(webkit_match[1]);
+	window.is_safari_win = is_safari && clientPC.indexOf('windows') != -1;
+	window.webkit_version = parseInt(webkit_match[1]);
 	// Tests for chrome here, to avoid breaking old scripts safari left alone
 	// This is here for accesskeys
-	var is_chrome = clientPC.indexOf('chrome') !== -1 &&
+	window.is_chrome = clientPC.indexOf('chrome') !== -1 &&
 		clientPC.indexOf('spoofer') === -1;
-	var is_chrome_mac = is_chrome && clientPC.indexOf('mac') !== -1
+	window.is_chrome_mac = is_chrome && clientPC.indexOf('mac') !== -1
 }
+
 // For accesskeys; note that FF3+ is included here!
-var is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
-var ff2_bugs = /firefox\/2/.test( clientPC );
+window.is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
+window.ff2_bugs = /firefox\/2/.test( clientPC );
 // These aren't used here, but some custom scripts rely on them
-var is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
-var is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
+window.is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
+window.is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
+
+window.is_opera = window.is_opera_preseven = window.is_opera_95 =
+	window.opera6_bugs = window.opera7_bugs = window.opera95_bugs = false;
 if (clientPC.indexOf('opera') != -1) {
-	var is_opera = true;
-	var is_opera_preseven = window.opera && !document.childNodes;
-	var is_opera_seven = window.opera && document.childNodes;
-	var is_opera_95 = /opera\/(9\.[5-9]|[1-9][0-9])/.test( clientPC );
-	var opera6_bugs = is_opera_preseven;
-	var opera7_bugs = is_opera_seven && !is_opera_95;
-	var opera95_bugs = /opera\/(9\.5)/.test( clientPC );
+	window.is_opera = true;
+	window.is_opera_preseven = window.opera && !document.childNodes;
+	window.is_opera_seven = window.opera && document.childNodes;
+	window.is_opera_95 = /opera\/(9\.[5-9]|[1-9][0-9])/.test( clientPC );
+	window.opera6_bugs = is_opera_preseven;
+	window.opera7_bugs = is_opera_seven && !is_opera_95;
+	window.opera95_bugs = /opera\/(9\.5)/.test( clientPC );
 }
 // As recommended by <http://msdn.microsoft.com/en-us/library/ms537509.aspx>,
 // avoiding false positives from moronic extensions that append to the IE UA
 // string (bug 23171)
-var ie6_bugs = false;
+window.ie6_bugs = false;
 if ( /MSIE ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
 && parseFloat( RegExp.$1 ) <= 6.0 ) {
 	ie6_bugs = true;
@@ -43,13 +50,13 @@ if ( /MSIE ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
 /*extern ta, stylepath, skin */
 
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
-var doneOnloadHook;
+window.doneOnloadHook = undefined;
 
 if (!window.onloadFuncts) {
-	var onloadFuncts = [];
+	window.onloadFuncts = [];
 }
 
-function addOnloadHook( hookFunct ) {
+window.addOnloadHook = function( hookFunct ) {
 	// Allows add-on scripts to add onload functions
 	if( !doneOnloadHook ) {
 		onloadFuncts[onloadFuncts.length] = hookFunct;
@@ -58,11 +65,7 @@ function addOnloadHook( hookFunct ) {
 	}
 }
 
-function hookEvent( hookName, hookFunct ) {
-	addHandler( window, hookName, hookFunct );
-}
-
-function importScript( page ) {
+window.importScript = function( page ) {
 	// TODO: might want to introduce a utility function to match wfUrlencode() in PHP
 	var uri = wgScript + '?title=' +
 		encodeURIComponent(page.replace(/ /g,'_')).replace(/%2F/ig,'/').replace(/%3A/ig,':') +
@@ -70,8 +73,8 @@ function importScript( page ) {
 	return importScriptURI( uri );
 }
 
-var loadedScripts = {}; // included-scripts tracker
-function importScriptURI( url ) {
+window.loadedScripts = {}; // included-scripts tracker
+window.importScriptURI = function( url ) {
 	if ( loadedScripts[url] ) {
 		return null;
 	}
@@ -83,11 +86,11 @@ function importScriptURI( url ) {
 	return s;
 }
 
-function importStylesheet( page ) {
+window.importStylesheet = function( page ) {
 	return importStylesheetURI( wgScript + '?action=raw&ctype=text/css&title=' + encodeURIComponent( page.replace(/ /g,'_') ) );
 }
 
-function importStylesheetURI( url, media ) {
+window.importStylesheetURI = function( url, media ) {
 	var l = document.createElement( 'link' );
 	l.type = 'text/css';
 	l.rel = 'stylesheet';
@@ -99,7 +102,7 @@ function importStylesheetURI( url, media ) {
 	return l;
 }
 
-function appendCSS( text ) {
+window.appendCSS = function( text ) {
 	var s = document.createElement( 'style' );
 	s.type = 'text/css';
 	s.rel = 'stylesheet';
@@ -126,14 +129,14 @@ if ( typeof stylepath != 'undefined' && skin == 'monobook' ) {
 }
 
 
-if ( wgBreakFrames ) {
+if ( 'wgBreakFrames' in window && window.wgBreakFrames ) {
 	// Un-trap us from framesets
 	if ( window.top != window ) {
 		window.top.location = window.location;
 	}
 }
 
-function showTocToggle() {
+window.showTocToggle = function() {
 	if ( document.createTextNode ) {
 		// Uses DOM calls to avoid document.write + XHTML issues
 
@@ -169,7 +172,7 @@ function showTocToggle() {
 	}
 }
 
-function changeText( el, newText ) {
+window.changeText = function( el, newText ) {
 	// Safari work around
 	if ( el.innerText ) {
 		el.innerText = newText;
@@ -178,7 +181,7 @@ function changeText( el, newText ) {
 	}
 }
 
-function killEvt( evt ) {
+window.killEvt = function( evt ) {
 	evt = evt || window.event || window.Event; // W3C, IE, Netscape
 	if ( typeof ( evt.preventDefault ) != 'undefined' ) {
 		evt.preventDefault(); // Don't follow the link
@@ -189,7 +192,7 @@ function killEvt( evt ) {
 	return false; // Don't follow the link (IE)
 }
 
-function toggleToc() {
+window.toggleToc = function() {
 	var tocmain = document.getElementById( 'toc' );
 	var toc = document.getElementById('toc').getElementsByTagName('ul')[0];
 	var toggleLink = document.getElementById( 'togglelink' );
@@ -208,10 +211,10 @@ function toggleToc() {
 	return false;
 }
 
-var mwEditButtons = [];
-var mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
+window.mwEditButtons = [];
+window.mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
 
-function escapeQuotes( text ) {
+window.escapeQuotes = function( text ) {
 	var re = new RegExp( "'", "g" );
 	text = text.replace( re, "\\'" );
 	re = new RegExp( "\\n", "g" );
@@ -219,7 +222,7 @@ function escapeQuotes( text ) {
 	return escapeQuotesHTML( text );
 }
 
-function escapeQuotesHTML( text ) {
+window.escapeQuotesHTML = function( text ) {
 	var re = new RegExp( '&', "g" );
 	text = text.replace( re, "&amp;" );
 	re = new RegExp( '"', "g" );
@@ -234,7 +237,7 @@ function escapeQuotesHTML( text ) {
 /**
  * Set the accesskey prefix based on browser detection.
  */
-var tooltipAccessKeyPrefix = 'alt-';
+window.tooltipAccessKeyPrefix = 'alt-';
 if ( is_opera ) {
 	tooltipAccessKeyPrefix = 'shift-esc-';
 } else if ( is_chrome ) {
@@ -248,7 +251,7 @@ if ( is_opera ) {
 } else if ( is_ff2 ) {
 	tooltipAccessKeyPrefix = 'alt-shift-';
 }
-var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/;
+window.tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/;
 
 /**
  * Add the appropriate prefix to the accesskey shown in the tooltip.
@@ -258,7 +261,7 @@ var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/;
  *
  * @param Array nodeList -- list of elements to update
  */
-function updateTooltipAccessKeys( nodeList ) {
+window.updateTooltipAccessKeys = function( nodeList ) {
 	if ( !nodeList ) {
 		// Rather than scan all links on the whole page, we can just scan these
 		// containers which contain the relevant links. This is really just an
@@ -318,7 +321,7 @@ function updateTooltipAccessKeys( nodeList ) {
  *
  * @return Node -- the DOM node of the new item (an LI element) or null
  */
-function addPortletLink( portlet, href, text, id, tooltip, accesskey, nextnode ) {
+window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 	var root = document.getElementById( portlet );
 	if ( !root ) {
 		return null;
@@ -382,7 +385,7 @@ function addPortletLink( portlet, href, text, id, tooltip, accesskey, nextnode )
 	return item;
 }
 
-function getInnerText( el ) {
+window.getInnerText = function( el ) {
 	if ( typeof el == 'string' ) {
 		return el;
 	}
@@ -414,20 +417,20 @@ function getInnerText( el ) {
 
 /* Dummy for deprecated function */
 window.ta = [];
-function akeytt( doId ) {
+window.akeytt = function( doId ) {
 }
 
-var checkboxes;
-var lastCheckbox;
+window.checkboxes = undefined;
+window.lastCheckbox = undefined;
 
-function setupCheckboxShiftClick() {
+window.setupCheckboxShiftClick = function() {
 	checkboxes = [];
 	lastCheckbox = null;
 	var inputs = document.getElementsByTagName( 'input' );
 	addCheckboxClickHandlers( inputs );
 }
 
-function addCheckboxClickHandlers( inputs, start ) {
+window.addCheckboxClickHandlers = function( inputs, start ) {
 	if ( !start ) {
 		start = 0;
 	}
@@ -455,7 +458,7 @@ function addCheckboxClickHandlers( inputs, start ) {
 	}
 }
 
-function checkboxClickHandler( e ) {
+window.checkboxClickHandler = function( e ) {
 	if ( typeof e == 'undefined' ) {
 		e = window.event;
 	}
@@ -489,7 +492,7 @@ function checkboxClickHandler( e ) {
 	Author says "The credit comment is all it takes, no license. Go crazy with it!:-)"
 	From http://www.robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/
 */
-function getElementsByClassName( oElm, strTagName, oClassNames ) {
+window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
 	var arrReturnElements = new Array();
 	if ( typeof( oElm.getElementsByClassName ) == 'function' ) {
 		/* Use a native implementation where possible FF3, Saf3.2, Opera 9.5 */
@@ -533,7 +536,7 @@ function getElementsByClassName( oElm, strTagName, oClassNames ) {
 	return ( arrReturnElements );
 }
 
-function redirectToFragment( fragment ) {
+window.redirectToFragment = function( fragment ) {
 	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
 	if ( match ) {
 		var webKitVersion = parseInt( match[1] );
@@ -573,16 +576,16 @@ function redirectToFragment( fragment ) {
  * @todo support all accepted date formats (bug 8226)
  */
 
-var ts_image_path = stylepath + '/common/images/';
-var ts_image_up = 'sort_up.gif';
-var ts_image_down = 'sort_down.gif';
-var ts_image_none = 'sort_none.gif';
-var ts_europeandate = wgContentLanguage != 'en'; // The non-American-inclined can change to "true"
-var ts_alternate_row_colors = false;
-var ts_number_transform_table = null;
-var ts_number_regex = null;
+window.ts_image_path = stylepath + '/common/images/';
+window.ts_image_up = 'sort_up.gif';
+window.ts_image_down = 'sort_down.gif';
+window.ts_image_none = 'sort_none.gif';
+window.ts_europeandate = wgContentLanguage != 'en'; // The non-American-inclined can change to "true"
+window.ts_alternate_row_colors = false;
+window.ts_number_transform_table = null;
+window.ts_number_regex = null;
 
-function sortables_init() {
+window.sortables_init = function() {
 	var idnum = 0;
 	// Find all tables with class sortable and make them sortable
 	var tables = getElementsByClassName( document, 'table', 'sortable' );
@@ -595,7 +598,7 @@ function sortables_init() {
 	}
 }
 
-function ts_makeSortable( table ) {
+window.ts_makeSortable = function( table ) {
 	var firstRow;
 	if ( table.rows && table.rows.length > 0 ) {
 		if ( table.tHead && table.tHead.rows.length > 0 ) {
@@ -626,11 +629,11 @@ function ts_makeSortable( table ) {
 	}
 }
 
-function ts_getInnerText( el ) {
+window.ts_getInnerText = function( el ) {
 	return getInnerText( el );
 }
 
-function ts_resortTable( lnk ) {
+window.ts_resortTable = function( lnk ) {
 	// get the span
 	var span = lnk.getElementsByTagName('span')[0];
 
@@ -757,7 +760,7 @@ function ts_resortTable( lnk ) {
 	}
 }
 
-function ts_initTransformTable() {
+window.ts_initTransformTable = function() {
 	if ( typeof wgSeparatorTransformTable == 'undefined'
 			|| ( wgSeparatorTransformTable[0] == '' && wgDigitTransformTable[2] == '' ) )
 	{
@@ -810,11 +813,11 @@ function ts_initTransformTable() {
 	);
 }
 
-function ts_toLowerCase( s ) {
+window.ts_toLowerCase = function( s ) {
 	return s.toLowerCase();
 }
 
-function ts_dateToSortKey( date ) {
+window.ts_dateToSortKey = function( date ) {
 	// y2k notes: two digit years less than 50 are treated as 20XX, greater than 50 are treated as 19XX
 	if ( date.length == 11 ) {
 		switch ( date.substr( 3, 3 ).toLowerCase() ) {
@@ -879,7 +882,7 @@ function ts_dateToSortKey( date ) {
 	return '00000000';
 }
 
-function ts_parseFloat( s ) {
+window.ts_parseFloat = function( s ) {
 	if ( !s ) {
 		return 0;
 	}
@@ -900,15 +903,15 @@ function ts_parseFloat( s ) {
 	return ( isNaN( num ) ? -Infinity : num );
 }
 
-function ts_currencyToSortKey( s ) {
+window.ts_currencyToSortKey = function( s ) {
 	return ts_parseFloat(s.replace(/[^-\u22120-9.,]/g,''));
 }
 
-function ts_sort_generic( a, b ) {
+window.ts_sort_generic = function( a, b ) {
 	return a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : a[2] - b[2];
 }
 
-function ts_alternate( table ) {
+window.ts_alternate = function( table ) {
 	// Take object table and get all it's tbodies.
 	var tableBodies = table.getElementsByTagName( 'tbody' );
 	// Loop through these tbodies
@@ -945,7 +948,7 @@ function ts_alternate( table ) {
  *   call to allow CSS/JS to hide different boxes.  null = no class used.
  * @return Boolean       True on success, false on failure
  */
-function jsMsg( message, className ) {
+window.jsMsg = function( message, className ) {
 	if ( !document.getElementById ) {
 		return false;
 	}
@@ -997,7 +1000,7 @@ function jsMsg( message, className ) {
  * @param element Element to inject after
  * @param id Identifier string (for use with removeSpinner(), below)
  */
-function injectSpinner( element, id ) {
+window.injectSpinner = function( element, id ) {
 	var spinner = document.createElement( 'img' );
 	spinner.id = 'mw-spinner-' + id;
 	spinner.src = stylepath + '/common/images/spinner.gif';
@@ -1014,14 +1017,14 @@ function injectSpinner( element, id ) {
  *
  * @param id Identifier string
  */
-function removeSpinner( id ) {
+window.removeSpinner = function( id ) {
 	var spinner = document.getElementById( 'mw-spinner-' + id );
 	if( spinner ) {
 		spinner.parentNode.removeChild( spinner );
 	}
 }
 
-function runOnloadHook() {
+window.runOnloadHook = function() {
 	// don't run anything below this for non-dom browsers
 	if ( doneOnloadHook || !( document.getElementById && document.getElementsByTagName ) ) {
 		return;
@@ -1048,12 +1051,16 @@ function runOnloadHook() {
  * @param String attach Event to attach to
  * @param callable handler Event handler callback
  */
-function addHandler( element, attach, handler ) {
+window.addHandler = function( element, attach, handler ) {
 	if( window.addEventListener ) {
 		element.addEventListener( attach, handler, false );
 	} else if( window.attachEvent ) {
 		element.attachEvent( 'on' + attach, handler );
 	}
+}
+
+window.hookEvent = function( hookName, hookFunct ) {
+	addHandler( window, hookName, hookFunct );
 }
 
 /**
@@ -1062,7 +1069,7 @@ function addHandler( element, attach, handler ) {
  * @param Element element Element to add handler to
  * @param callable handler Event handler callback
  */
-function addClickHandler( element, handler ) {
+window.addClickHandler = function( element, handler ) {
 	addHandler( element, 'click', handler );
 }
 
@@ -1073,7 +1080,7 @@ function addClickHandler( element, handler ) {
  * @param String remove Event to remove
  * @param callable handler Event handler callback to remove
  */
-function removeHandler( element, remove, handler ) {
+window.removeHandler = function( element, remove, handler ) {
 	if( window.removeEventListener ) {
 		element.removeEventListener( remove, handler, false );
 	} else if( window.detachEvent ) {
@@ -1087,8 +1094,3 @@ hookEvent( 'load', runOnloadHook );
 if ( ie6_bugs ) {
 	importScriptURI( stylepath + '/common/IEFixes.js' );
 }
-
-// For future use.
-mw = {};
-
-

@@ -5,8 +5,8 @@
  * @todo Check for popular passwords and keyboard sequences (QWERTY, etc)
  */
 
-// Estimates how hard it would be to pick the password using brute forece
-function bruteForceComplexity( pwd ) {
+// Estimates how hard it would be to pick the password using brute force
+window.bruteForceComplexity = function( pwd ) {
 	var score = pwd.length * 5;
 
 	var regexes = [
@@ -39,7 +39,7 @@ function bruteForceComplexity( pwd ) {
 }
 
 // Calculates a penalty to brute force score due to character repetition
-function repetitionAdjustment( pwd ) {
+window.repetitionAdjustment = function( pwd ) {
 	var unique = '';
 	for ( var i=0; i< pwd.length; i++ ) {
 		if ( unique.indexOf( pwd[i] ) < 0 ) {
@@ -52,7 +52,7 @@ function repetitionAdjustment( pwd ) {
 }
 
 // Checks how many simple sequences ("abc", "321") are there in the password
-function sequenceScore( pwd ) {
+window.sequenceScore = function( pwd ) {
 	pwd = pwd.concat( '\0' );
 	var score = 100, sequence = 1;
 	for ( var i = 1; i < pwd.length; i++ ) {

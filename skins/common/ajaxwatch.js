@@ -4,15 +4,8 @@
  * Uses jsMsg() from wikibits.js.
  */
 
-if( typeof wgAjaxWatch === 'undefined' || !wgAjaxWatch ) {
-	var wgAjaxWatch = {
-		watchMsg: 'Watch',
-		unwatchMsg: 'Unwatch',
-		watchingMsg: 'Watching...',
-		unwatchingMsg: 'Unwatching...',
-		'tooltip-ca-watchMsg': 'Add this page to your watchlist',
-		'tooltip-ca-unwatchMsg': 'Remove this page from your watchlist'
-	};
+if ( typeof wgAjaxWatch === 'undefined' || !wgAjaxWatch ) {
+	window.wgAjaxWatch = { };
 }
 
 wgAjaxWatch.setLinkText = function( $link, action ) {
@@ -21,23 +14,23 @@ wgAjaxWatch.setLinkText = function( $link, action ) {
 		var keyCommand = $link.attr( 'title' ).match( /\[.*?\]$/ )
 			? $link.attr( 'title' ).match( /\[.*?\]$/ )[0]
 			: '';
-		$link.attr( 'title', wgAjaxWatch['tooltip-ca-' + action + 'Msg'] + ' ' + keyCommand );
+		$link.attr( 'title', mediaWiki.msg.get( 'tooltip-ca-' + action + 'Msg') + ' ' + keyCommand );
 	}
 	if( $link.data( 'icon' ) ) {
-		$link.attr( 'alt', wgAjaxWatch[action + 'Msg'] );
+		$link.attr( 'alt', mediaWiki.msg.get( action + 'Msg' ) );
 		if ( action == 'watching' || action == 'unwatching' ) {
 			$link.addClass( 'loading' );
 		} else {
 			$link.removeClass( 'loading' );
 		}
 	} else {
-		$link.html( wgAjaxWatch[action + 'Msg'] );
+		$link.html( mediaWiki.msg.get( action + 'Msg' ) );
 	}
 };
 
 wgAjaxWatch.processResult = function( response ) {
 	response = response.watch;
-	var $link = $j( this );
+	var $link = $( this );
 	// To ensure we set the same status for all watch links with the
 	// same target we trigger a custom event on *all* watch links.
 	if( response.watched !== undefined ) {
@@ -55,23 +48,23 @@ wgAjaxWatch.processResult = function( response ) {
 	// Bug 12395 - update the watch checkbox on edit pages when the
 	// page is watched or unwatched via the tab.
 	if( response.watched !== undefined ) {
-		$j( '#wpWatchthis' ).attr( 'checked', '1' );
+		$( '#wpWatchthis' ).attr( 'checked', '1' );
 	} else {
-		$j( '#wpWatchthis' ).removeAttr( 'checked' );
+		$( '#wpWatchthis' ).removeAttr( 'checked' );
 	}
 };
 
-$j( document ).ready( function() {
-	var $links = $j( '.mw-watchlink a, a.mw-watchlink' );
+$( document ).ready( function() {
+	var $links = $( '.mw-watchlink a, a.mw-watchlink' );
 	// BC with older skins
 	$links = $links
-		.add( $j( '#ca-watch a, #ca-unwatch a, a#mw-unwatch-link1' ) )
-		.add( $j( 'a#mw-unwatch-link2, a#mw-watch-link2, a#mw-watch-link1' ) );
+		.add( $( '#ca-watch a, #ca-unwatch a, a#mw-unwatch-link1' ) )
+		.add( $( 'a#mw-unwatch-link2, a#mw-watch-link2, a#mw-watch-link1' ) );
 	// allowing people to add inline animated links is a little scary
 	$links = $links.filter( ':not( #bodyContent *, #content * )' );
 
 	$links.each( function() {
-		var $link = $j( this );
+		var $link = $( this );
 		$link
 			.data( 'icon', $link.parents( 'li' ).hasClass( 'icon' ) )
 			.data( 'action', $link.attr( 'href' ).match( /[\?\&]action=unwatch/i ) ? 'unwatch' : 'watch' );
@@ -80,7 +73,7 @@ $j( document ).ready( function() {
 	});
 
 	$links.click( function( event ) {
-		var $link = $j( this );
+		var $link = $( this );
 
 		if( wgAjaxWatch.supported === false || !wgEnableWriteAPI || !wfSupportsAjax() ) {
 			// Lazy initialization so we don't toss up
@@ -91,7 +84,7 @@ $j( document ).ready( function() {
 		}
 
 		wgAjaxWatch.setLinkText( $link, $link.data( 'action' ) + 'ing' );
-		$j.get( wgScriptPath
+		$.get( wgScriptPath
 				+ '/api' + wgScriptExtension + '?action=watch&format=json&title='
 				+ encodeURIComponent( $link.data( 'target' ) )
 				+ ( $link.data( 'action' ) == 'unwatch' ? '&unwatch' : '' ),
@@ -106,7 +99,7 @@ $j( document ).ready( function() {
 	// When a request returns, a custom event 'mw-ajaxwatch' is triggered
 	// on *all* watch links, so they can be updated if necessary
 	$links.bind( 'mw-ajaxwatch', function( event, target, action ) {
-		var $link = $j( this );
+		var $link = $( this );
 		var foo = $link.data( 'target' );
 		if( $link.data( 'target' ) == target ) {
 			var otheraction = action == 'watch'
@@ -119,7 +112,7 @@ $j( document ).ready( function() {
 			if( $link.parents( 'li' ).attr( 'id' ) == 'ca-' + action ) {
 				$link.parents( 'li' ).attr( 'id', 'ca-' + otheraction );
 				// update the link text with the new message
-				$link.text( wgAjaxWatch[ otheraction + 'Msg'] );
+				$link.text( mediaWiki.msg.get( otheraction + 'Msg' ) );
 			}
 		};
 		return false;

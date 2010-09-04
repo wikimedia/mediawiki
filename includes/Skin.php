@@ -332,23 +332,17 @@ class Skin extends Linker {
 
 		$out->out( $afterContent );
 
-		$out->out( $this->bottomScripts() );
+		$out->out( $this->bottomScripts( $out ) );
 
 		$out->out( wfReportTime() );
 
 		$out->out( "\n</body></html>" );
 		wfProfileOut( __METHOD__ );
 	}
-
+	
 	static function makeVariablesScript( $data ) {
 		if( $data ) {
-			$r = array();
-			foreach ( $data as $name => $value ) {
-				$encValue = Xml::encodeJsVar( $value );
-				$r[] = "$name=$encValue";
-			}
-			$js = 'var ' . implode( ",\n", $r ) . ';';
-			return Html::inlineScript( "\n$js\n" );
+			return Html::inlineScript( 'mediaWiki.config.set(' . json_encode( $data ) . ');' );
 		} else {
 			return '';
 		}
@@ -686,8 +680,9 @@ CSS;
 	 * @param $out OutputPage
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
-		$out->addStyle( 'common/shared.css' );
-		$out->addStyle( 'common/oldshared.css' );
+		// This includes the shared.js and oldshared.js files from skins/common/
+		$out->addModuleStyles( 'mediawiki.legacy.shared' );
+		// TODO: Figure out how to best integrate this stuff into ResourceLoader
 		$out->addStyle( $this->getStylesheet() );
 		$out->addStyle( 'common/common_rtl.css', '', '', 'rtl' );
 	}
@@ -992,10 +987,11 @@ CSS;
 
 	/**
 	 * This gets called shortly before the </body> tag.
+	 * @param $out OutputPage object
 	 * @return String HTML-wrapped JS code to be put before </body>
 	 */
-	function bottomScripts() {
-		$bottomScriptText = "\n" . Html::inlineScript( 'if (window.runOnloadHook) runOnloadHook();' ) . "\n";
+	function bottomScripts( $out ) {
+		$bottomScriptText = "\n" . $out->getHeadScripts( $this );
 		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
 		return $bottomScriptText;
 	}

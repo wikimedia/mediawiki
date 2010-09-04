@@ -128,10 +128,15 @@ wfProfileOut( 'WebStart.php-conf' );
 
 wfProfileIn( 'WebStart.php-ob_start' );
 # Initialise output buffering
-if ( ob_get_level() ) {
-	# Someone's been mixing configuration data with code!
-	# How annoying.
-} elseif ( !defined( 'MW_NO_OUTPUT_BUFFER' ) ) {
+
+# Check that there is no previous output or previously set up buffers, because
+# that would cause us to potentially mix gzip and non-gzip output, creating a
+# big mess.
+# In older versions of PHP ob_get_level() returns 0 if there is no buffering or
+# previous output, in newer versions the default output buffer is always set up
+# and ob_get_level() returns 1. In this case we check that the buffer is empty.
+# FIXME: Check that this is the right way to handle this
+if ( !defined( 'MW_NO_OUTPUT_BUFFER' ) && ( ob_get_level() == 0 || ( ob_get_level() == 1 && ob_get_contents() === '' ) ) ) {
 	require_once( "$IP/includes/OutputHandler.php" );
 	ob_start( 'wfOutputHandler' );
 }

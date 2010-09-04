@@ -1,0 +1,68 @@
+/* suggestions plugin */
+
+.suggestions {
+	overflow: hidden;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	border: none;
+	z-index: 99;
+	padding: 0;
+	margin: -1px 0 0 0;
+}
+.suggestions-special {
+	position: relative;
+	background-color: Window;
+	font-size: 0.8em;
+	cursor: pointer;
+	border: solid 1px #aaaaaa;
+	padding: 0;
+	margin: 0;
+	margin-top: -2px;
+	display: none;
+	padding: 0.25em 0.25em;
+	line-height: 1.25em;
+}
+.suggestions-results {
+	background-color: white;
+	background-color: Window;
+	font-size: 0.8em;
+	cursor: pointer;
+	border: solid 1px #aaaaaa;
+	padding: 0;
+	margin: 0;
+}
+.suggestions-result {
+	color: black;
+	color: WindowText;
+	margin: 0;
+	line-height: 1.5em;
+	padding: 0.01em 0.25em;
+}
+.suggestions-result-current {
+	background-color: #4C59A6;
+	background-color: Highlight;
+	color: white;
+	color: HighlightText;
+}
+.suggestions-special .special-label {
+	font-size: 0.8em;
+	color: gray;
+}
+.suggestions-special .special-query {
+	color: black;
+	font-style: italic;
+}
+.suggestions-special .special-hover {
+	background-color: silver;
+}
+.suggestions-result-current .special-label,
+.suggestions-result-current .special-query {
+	color: white;
+	color: HighlightText;
+}
+.autoellipsis-matched,
+.highlight {
+	font-weight: bold;
+}

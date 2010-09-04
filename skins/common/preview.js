@@ -2,12 +2,12 @@
  * Live preview script for MediaWiki
  */
 
-function doLivePreview( e ) {
+window.doLivePreview = function( e ) {
 	e.preventDefault();
 
-	$j( mw ).trigger( 'LivePreviewPrepare' );
+	$( mw ).trigger( 'LivePreviewPrepare' );
 	
-	var postData = $j('#editform').formToArray();
+	var postData = $('#editform').formToArray();
 	postData.push( { 'name' : 'wpPreview', 'value' : '1' } );
 	
 	// Hide active diff, used templates, old preview if shown
@@ -15,14 +15,14 @@ function doLivePreview( e ) {
 						'#catlinks'];
 	var copySelector = copyElements.join(',');
 
-	$j.each( copyElements, function(k,v) { $j(v).fadeOut('fast'); } );
+	$.each( copyElements, function(k,v) { $(v).fadeOut('fast'); } );
 	
 	// Display a loading graphic
-	var loadSpinner = $j('<div class="mw-ajax-loader"/>');
-	$j('#wikiPreview').before( loadSpinner );
+	var loadSpinner = $('<div class="mw-ajax-loader"/>');
+	$('#wikiPreview').before( loadSpinner );
 	
-	var page = $j('<div/>');
-	var target = $j('#editform').attr('action');
+	var page = $('<div/>');
+	var target = $('#editform').attr('action');
 	
 	if ( !target ) {
 		target = window.location.href;
@@ -36,25 +36,25 @@ function doLivePreview( e ) {
 				//  and the real page, empty the element in the real page, and fill it
 				//  with the content of the loaded page
 				var copyContent = page.find( copyElements[i] ).contents();
-				$j(copyElements[i]).empty().append( copyContent );
+				$(copyElements[i]).empty().append( copyContent );
 				var newClasses = page.find( copyElements[i] ).attr('class');
-				$j(copyElements[i]).attr( 'class', newClasses );
+				$(copyElements[i]).attr( 'class', newClasses );
 			}
 			
-			$j.each( copyElements, function(k,v) {
+			$.each( copyElements, function(k,v) {
 				// Don't belligerently show elements that are supposed to be hidden
-				$j(v).fadeIn( 'fast', function() { $j(this).css('display', ''); } );
+				$(v).fadeIn( 'fast', function() { $(this).css('display', ''); } );
 			} );
 			
 			loadSpinner.remove();
 
-			$j( mw ).trigger( 'LivePreviewDone', [copyElements] );
+			$( mw ).trigger( 'LivePreviewDone', [copyElements] );
 		} );
 }
 
 // Shamelessly stolen from the jQuery form plugin, which is licensed under the GPL.
 // http://jquery.malsup.com/form/#download
-$j.fn.formToArray = function() {
+$.fn.formToArray = function() {
 	var a = [];
 	if (this.length == 0) return a;
 
@@ -66,7 +66,7 @@ $j.fn.formToArray = function() {
 		var n = el.name;
 		if (!n) continue;
 
-		var v = $j.fieldValue(el, true);
+		var v = $.fieldValue(el, true);
 		if (v && v.constructor == Array) {
 			for(var j=0, jmax=v.length; j < jmax; j++)
 				a.push({name: n, value: v[j]});
@@ -89,7 +89,7 @@ $j.fn.formToArray = function() {
 /**
  * Returns the value of the field element.
  */
-$j.fieldValue = function(el, successful) {
+$.fieldValue = function(el, successful) {
 	var n = el.name, t = el.type, tag = el.tagName.toLowerCase();
 	if (typeof successful == 'undefined') successful = true;
 
@@ -122,6 +122,6 @@ $j.fieldValue = function(el, successful) {
 	return el.value;
 };
 
-$j(document).ready( function() {
-	$j('#wpPreview').click( doLivePreview );
+$(document).ready( function() {
+	$('#wpPreview').click( doLivePreview );
 } );

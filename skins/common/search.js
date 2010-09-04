@@ -1,7 +1,7 @@
 // JS specific to Special:Search
 
 // change the search link to what user entered
-function mwSearchHeaderClick( obj ) {
+window.mwSearchHeaderClick = function( obj ) {
 	var searchbox = document.getElementById( 'searchText' );
 	if( searchbox === null ) {
 		searchbox = document.getElementById( 'powerSearchText' );
@@ -22,7 +22,7 @@ function mwSearchHeaderClick( obj ) {
 	obj.href = parts[0] + prefix + encodeURIComponent( searchterm ) + lastpart;
 }
 
-function mwToggleSearchCheckboxes( btn ) {
+window.mwToggleSearchCheckboxes = function( btn ) {
 	if( !document.getElementById ) {
 		return;
 	}

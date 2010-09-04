@@ -1328,16 +1328,7 @@ class Linker {
 		   '<table id="toc" class="toc"><tr><td>'
 		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
 		 . $toc
-		 # no trailing newline, script should not be wrapped in a
-		 # paragraph
-		 . "</ul>\n</td></tr></table>"
-		 . Html::inlineScript(
-			'if (window.showTocToggle) {'
-			. ' var tocShowText = "' . Xml::escapeJsString( wfMsg( 'showtoc' ) ) . '";'
-			. ' var tocHideText = "' . Xml::escapeJsString( wfMsg( 'hidetoc' ) ) . '";'
-			. ' showTocToggle();'
-			. ' } ' )
-		. "\n";
+		 . "</ul>\n</td></tr></table>\n";
 	}
 
 	/**

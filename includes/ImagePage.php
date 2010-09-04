@@ -147,7 +147,7 @@ class ImagePage extends Article {
 			$collapse = htmlspecialchars( Xml::escapeJsString( wfMsg( 'metadata-collapse' ) ) );
 			$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'metadata' ), wfMsg( 'metadata' ) ) . "\n" );
 			$wgOut->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
-			$wgOut->addScriptFile( 'metadata.js' );
+			$wgOut->addModules( array( 'mediawiki.legacy.metadata' ) );
 			$wgOut->addHTML(
 				"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
 		}

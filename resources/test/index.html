@@ -1,0 +1,21 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Resource Loader Test</title>
+		<style>
+			#tests li {
+				color: white;
+			}
+		</style>
+		<script type="text/javascript" src="../../load.php?modules=jquery|mw&debug=1"></script>
+		<script type="text/javascript" src="../../load.php?modules=test&debug=1"></script>
+		<script>
+			mw.config.set( 'wgScriptPath', '../..' );
+		</script>
+	</head>
+	<body>
+		<h1>Resource Loader Tests</h1>
+		<ul id="tests"></ul>
+	</body>
+</html>

@@ -1,7 +1,7 @@
-var currentFocused;
+window.currentFocused = undefined;
 
 // this function adds a toolbar button to the mwEditButtons list
-function addButton( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId ) {
+window.addButton = function( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId ) {
 	// Don't generate buttons for browsers which don't fully
 	// support it.
 	mwEditButtons.push({
@@ -15,7 +15,7 @@ function addButton( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId 
 }
 
 // this function adds one toolbar button from a mwEditButtons/mwCustomEditButtons item
-function mwInsertEditButton( parent, item ) {
+window.mwInsertEditButton = function( parent, item ) {
 	var image = document.createElement( 'img' );
 	image.width = 23;
 	image.height = 22;
@@ -31,8 +31,8 @@ function mwInsertEditButton( parent, item ) {
 	image.onclick = function() {
 		insertTags( item.tagOpen, item.tagClose, item.sampleText );
 		// click tracking
-		if ( ( typeof $j != 'undefined' )  && ( typeof $j.trackAction != 'undefined' ) ) {
-			$j.trackAction( 'oldedit.' + item.speedTip.replace(/ /g, "-") );
+		if ( ( typeof $ != 'undefined' )  && ( typeof $.trackAction != 'undefined' ) ) {
+			$.trackAction( 'oldedit.' + item.speedTip.replace(/ /g, "-") );
 		}
 		return false;
 	};
@@ -43,7 +43,7 @@ function mwInsertEditButton( parent, item ) {
 
 // this function generates the actual toolbar buttons with localized text
 // we use it to avoid creating the toolbar where javascript is not enabled
-function mwSetupToolbar() {
+window.mwSetupToolbar = function() {
 	var toolbar = document.getElementById( 'toolbar' );
 	if ( !toolbar ) {
 		return false;
@@ -77,10 +77,10 @@ function mwSetupToolbar() {
 
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
-function insertTags( tagOpen, tagClose, sampleText ) {
-	if ( typeof $j != 'undefined' && typeof $j.fn.textSelection != 'undefined' &&
+window.insertTags = function( tagOpen, tagClose, sampleText ) {
+	if ( typeof $ != 'undefined' && typeof $.fn.textSelection != 'undefined' &&
 			( currentFocused.nodeName.toLowerCase() == 'iframe' || currentFocused.id == 'wpTextbox1' ) ) {
-		$j( '#wpTextbox1' ).textSelection(
+		$( '#wpTextbox1' ).textSelection(
 			'encapsulateSelection', { 'pre': tagOpen, 'peri': sampleText, 'post': tagClose }
 		);
 		return;
@@ -166,7 +166,7 @@ function insertTags( tagOpen, tagClose, sampleText ) {
  * Restore the edit box scroll state following a preview operation,
  * and set up a form submission handler to remember this state
  */
-function scrollEditBox() {
+window.scrollEditBox = function() {
 	var editBox = document.getElementById( 'wpTextbox1' );
 	var scrollTop = document.getElementById( 'wpScrolltop' );
 	var editForm = document.getElementById( 'editform' );
@@ -217,10 +217,10 @@ hookEvent( 'load', function() {
 	
 	// HACK: make currentFocused work with the usability iframe
 	// With proper focus detection support (HTML 5!) this'll be much cleaner
-	if ( typeof $j != 'undefined' ) {
-		var iframe = $j( '.wikiEditor-ui-text iframe' );
+	if ( typeof $ != 'undefined' ) {
+		var iframe = $( '.wikiEditor-ui-text iframe' );
 		if ( iframe.length > 0 ) {
-			$j( iframe.get( 0 ).contentWindow.document )
+			$( iframe.get( 0 ).contentWindow.document )
 				.add( iframe.get( 0 ).contentWindow.document.body ) // for IE
 				.focus( function() { currentFocused = iframe.get( 0 ); } );
 		}

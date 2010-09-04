@@ -366,7 +366,7 @@ class SpecialSearch {
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		// add javascript specific to special:search
-		$wgOut->addScriptFile( 'search.js' );
+		$wgOut->addModules( 'mediawiki.legacy.search' );
 
 		// Bug #16886: Sister projects box moves down the first extract on IE7  
 		$wgOut->addStyle( 'common/IE70Fixes.css', 'screen', 'IE 7' );

@@ -1,5 +1,5 @@
 
-var ProtectionForm = {
+window.ProtectionForm = {
 	'existingMatch': false,
 
 	/**

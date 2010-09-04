@@ -167,6 +167,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'categorylinks', 'cl_collation', 'patch-categorylinks-better-collation.sql' ),
 			array( 'do_cl_fields_update' ),
 			array( 'do_collation_update' ),
+			array( 'addTable', 'msg_resource',                      'patch-msg_resource.sql' ),
+			array( 'addTable', 'module_deps',                       'patch-module_deps.sql' ),
 		);
 	}
 
