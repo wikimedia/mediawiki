@@ -100,15 +100,17 @@ class WatchlistEditor {
 		$titles = array();
 		if( !is_array( $list ) ) {
 			$list = explode( "\n", trim( $list ) );
-			if( !is_array( $list ) )
+			if( !is_array( $list ) ) {
 				return array();
+			}
 		}
 		foreach( $list as $text ) {
 			$text = trim( $text );
 			if( strlen( $text ) > 0 ) {
 				$title = Title::newFromText( $text );
-				if( $title instanceof Title && $title->isWatchable() )
+				if( $title instanceof Title && $title->isWatchable() ) {
 					$titles[] = $title->getPrefixedText();
+				}
 			}
 		}
 		return array_unique( $titles );
@@ -129,8 +131,9 @@ class WatchlistEditor {
 		// Do a batch existence check
 		$batch = new LinkBatch();
 		foreach( $titles as $title ) {
-			if( !$title instanceof Title )
+			if( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
+			}
 			if( $title instanceof Title ) {
 				$batch->addObj( $title );
 				$batch->addObj( $title->getTalkPage() );
@@ -140,8 +143,9 @@ class WatchlistEditor {
 		// Print out the list
 		$output->addHTML( "<ul>\n" );
 		foreach( $titles as $title ) {
-			if( !$title instanceof Title )
+			if( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
+			}
 			if( $title instanceof Title ) {
 				$output->addHTML( "<li>" . $skin->link( $title )
 				. ' (' . $skin->link( $title->getTalkPage(), $talk ) . ")</li>\n" );
@@ -221,8 +225,9 @@ class WatchlistEditor {
 						$cache->addBadLinkObj( $title );
 					}
 					// Ignore non-talk
-					if( !$title->isTalkPage() )
+					if( !$title->isTalkPage() ) {
 						$titles[$row->wl_namespace][$row->wl_title] = $row->page_is_redirect;
+					}
 				}
 			}
 		}
@@ -270,8 +275,9 @@ class WatchlistEditor {
 		$dbw = wfGetDB( DB_MASTER );
 		$rows = array();
 		foreach( $titles as $title ) {
-			if( !$title instanceof Title )
+			if( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
+			}
 			if( $title instanceof Title ) {
 				$rows[] = array(
 					'wl_user' => $user->getId(),
@@ -302,8 +308,9 @@ class WatchlistEditor {
 	private function unwatchTitles( $titles, $user ) {
 		$dbw = wfGetDB( DB_MASTER );
 		foreach( $titles as $title ) {
-			if( !$title instanceof Title )
+			if( !$title instanceof Title ) {
 				$title = Title::newFromText( $title );
+			}
 			if( $title instanceof Title ) {
 				$dbw->delete(
 					'watchlist',
@@ -410,8 +417,9 @@ class WatchlistEditor {
 		global $wgLang;
 
 		$link = $skin->link( $title );
-		if( $redirect )
+		if( $redirect ) {
 			$link = '<span class="watchlistredir">' . $link . '</span>';
+		}
 		$tools[] = $skin->link( $title->getTalkPage(), wfMsgHtml( 'talkpagelinktext' ) );
 		if( $title->exists() ) {
 			$tools[] = $skin->link(
@@ -459,8 +467,9 @@ class WatchlistEditor {
 		$form .= Xml::openElement( 'textarea', array( 'id' => 'titles', 'name' => 'titles',
 			'rows' => $wgUser->getIntOption( 'rows' ), 'cols' => $wgUser->getIntOption( 'cols' ) ) );
 		$titles = $this->getWatchlist( $user );
-		foreach( $titles as $title )
+		foreach( $titles as $title ) {
 			$form .= htmlspecialchars( $title ) . "\n";
+		}
 		$form .= '</textarea>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'watchlistedit-raw-submit' ) ) . '</p>';
 		$form .= '</fieldset></form>';

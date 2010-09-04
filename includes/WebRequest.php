@@ -563,15 +563,23 @@ class WebRequest {
 		global $wgUser;
 
 		$limit = $this->getInt( 'limit', 0 );
-		if( $limit < 0 ) $limit = 0;
+		if( $limit < 0 ) {
+			$limit = 0;
+		}
 		if( ( $limit == 0 ) && ( $optionname != '' ) ) {
 			$limit = (int)$wgUser->getOption( $optionname );
 		}
-		if( $limit <= 0 ) $limit = $deflimit;
-		if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
+		if( $limit <= 0 ) {
+			$limit = $deflimit;
+		}
+		if( $limit > 5000 ) {
+			$limit = 5000; # We have *some* limits...
+		}
 
 		$offset = $this->getInt( 'offset', 0 );
-		if( $offset < 0 ) $offset = 0;
+		if( $offset < 0 ) {
+			$offset = 0;
+		}
 
 		return array( $limit, $offset );
 	}
@@ -686,8 +694,9 @@ class WebRequest {
 	 * @return Mixed
 	 */
 	public function getSessionData( $key ) {
-		if( !isset( $_SESSION[$key] ) )
+		if( !isset( $_SESSION[$key] ) ) {
 			return null;
+		}
 		return $_SESSION[$key];
 	}
 
@@ -939,13 +948,15 @@ class FauxRequest extends WebRequest {
 		global $wgTitle;
 		$basequery = '';
 		foreach( $this->data as $var => $val ) {
-			if ( $var == 'title' )
+			if ( $var == 'title' ) {
 				continue;
-			if ( is_array( $val ) )
+			}
+			if ( is_array( $val ) ) {
 				/* This will happen given a request like
 				 * http://en.wikipedia.org/w/index.php?title[]=Special:Userlogin&returnto[]=Main_Page
 				 */
 				continue;
+			}
 			$basequery .= '&' . urlencode( $var ) . '=' . urlencode( $val );
 		}
 		$basequery .= '&' . $query;

@@ -46,8 +46,9 @@ class Xml {
 		if( is_null( $attribs ) ) {
 			return null;
 		} elseif( is_array( $attribs ) ) {
-			foreach( $attribs as $name => $val )
+			foreach( $attribs as $name => $val ) {
 				$out .= " {$name}=\"" . Sanitizer::encodeAttribute( $val ) . '"';
+			}
 			return $out;
 		} else {
 			throw new MWException( 'Expected attribute array, got something else in ' . __METHOD__ );
@@ -133,10 +134,12 @@ class Xml {
 		if( !is_null( $all ) )
 			$namespaces = array( $all => wfMsg( 'namespacesall' ) ) + $namespaces;
 		foreach( $namespaces as $index => $name ) {
-			if( $index < NS_MAIN )
+			if( $index < NS_MAIN ) {
 				continue;
-			if( $index === 0 )
+			}
+			if( $index === 0 ) {
 				$name = wfMsg( 'blanknamespace' );
+			}
 			$options[] = self::option( $name, $index, $index === $selected );
 		}
 
@@ -749,9 +752,15 @@ class XmlSelect {
 	protected $attributes = array();
 
 	public function __construct( $name = false, $id = false, $default = false ) {
-		if ( $name ) $this->setAttribute( 'name', $name );
-		if ( $id ) $this->setAttribute( 'id', $id );
-		if ( $default !== false ) $this->default = $default;
+		if ( $name ) {
+			$this->setAttribute( 'name', $name );
+		}
+		if ( $id ) {
+			$this->setAttribute( 'id', $id );
+		}
+		if ( $default !== false ) {
+			$this->default = $default;
+		}
 	}
 
 	public function setDefault( $default ) {
