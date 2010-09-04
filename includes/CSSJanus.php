@@ -20,10 +20,10 @@
 /**
  * This is a PHP port of CSSJanus, a utility that transforms CSS style sheets
  * written for LTR to RTL.
- * 
+ *
  * The original Python version of CSSJanus is Copyright 2008 by Google Inc. and
- * is distributed under the Apache license. 
- * 
+ * is distributed under the Apache license.
+ *
  * Original code: http://code.google.com/p/cssjanus/source/browse/trunk/cssjanus.py
  * License of original code: http://code.google.com/p/cssjanus/source/browse/trunk/LICENSE
  * @author Roan Kattouw
@@ -55,7 +55,6 @@ class CSSJanus {
 		'lookbehind_not_letter' => '(?<![a-zA-Z])',
 		'chars_within_selector' => '[^\}]*?',
 		'noflip_annotation' => '\/\*\s*@noflip\s*\*\/',
-	
 		'noflip_single' => null,
 		'noflip_class' => null,
 		'comment' => '/\/\*[^*]*\*+([^\/*][^*]*\*+)*\//',
@@ -74,7 +73,7 @@ class CSSJanus {
 		'bg_horizontal_percentage' => null,
 		'bg_horizontal_percentage_x' => null,
 	);
-	
+
 	/**
 	 * Build patterns we can't define above because they depend on other patterns.
 	 */
@@ -83,6 +82,7 @@ class CSSJanus {
 			// Patterns have already been built
 			return;
 		}
+
 		$patterns =& self::$patterns;
 		$patterns['escape'] = "(?:{$patterns['unicode']}|\\[^\r\n\f0-9a-f])";
 		$patterns['nmstart'] = "(?:[_a-z]|{$patterns['nonAscii']}|{$patterns['escape']})";
@@ -95,7 +95,6 @@ class CSSJanus {
 		$patterns['lookahead_not_open_brace'] = "(?!({$patterns['nmchar']}|\r?\n|\s|#|\:|\.|\,|\+|>)*?{)";
 		$patterns['lookahead_not_closing_paren'] = "(?!{$patterns['url_chars']}?{$patterns['valid_after_uri_chars']}\))";
 		$patterns['lookahead_for_closing_paren'] = "(?={$patterns['url_chars']}?{$patterns['valid_after_uri_chars']}\))";
-		
 		$patterns['noflip_single'] = "/({$patterns['noflip_annotation']}{$patterns['lookahead_not_open_brace']}[^;}]+;?)/i";
 		$patterns['noflip_class'] = "/({$patterns['noflip_annotation']}{$patterns['chars_within_selector']}})/i";
 		$patterns['body_direction_ltr'] = "/({$patterns['body_selector']}{$patterns['chars_within_selector']}{$patterns['direction']})ltr/i";
@@ -115,7 +114,7 @@ class CSSJanus {
 		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)({$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
 		$patterns['bg_horizontal_percentage_x'] = "/(background-position-x\s*:\s*)({$patterns['num']})(%)/";
 	}
-	
+
 	/**
 	 * Transform an LTR stylesheet to RTL
 	 * @param string $css Stylesheet to transform
@@ -126,28 +125,29 @@ class CSSJanus {
 	public static function transform( $css, $swapLtrRtlInURL = false, $swapLeftRightInURL = false ) {
 		// We wrap tokens in ` , not ~ like the original implementation does.
 		// This was done because ` is not a legal character in CSS and can only
-		// occur in URLs, where we escape it to %60 before inserting our tokens.	
+		// occur in URLs, where we escape it to %60 before inserting our tokens.
 		$css = str_replace( '`', '%60', $css );
-		
+
 		self::buildPatterns();
-		
+
 		// Tokenize single line rules with /* @noflip */
 		$noFlipSingle = new CSSJanus_Tokenizer( self::$patterns['noflip_single'], '`NOFLIP_SINGLE`' );
 		$css = $noFlipSingle->tokenize( $css );
-		
+
 		// Tokenize class rules with /* @noflip */
 		$noFlipClass = new CSSJanus_Tokenizer( self::$patterns['noflip_class'], '`NOFLIP_CLASS`' );
 		$css = $noFlipClass->tokenize( $css );
-		
+
 		// Tokenize comments
 		$comments = new CSSJanus_Tokenizer( self::$patterns['comment'], '`C`' );
 		$css = $comments->tokenize( $css );
-		
+
 		// LTR->RTL fixes start here
 		$css = self::fixBodyDirection( $css );
 		if ( $swapLtrRtlInURL ) {
 			$css = self::fixLtrRtlInURL( $css );
 		}
+
 		if ( $swapLeftRightInURL ) {
 			$css = self::fixLeftRightInURL( $css );
 		}
@@ -155,18 +155,19 @@ class CSSJanus {
 		$css = self::fixCursorProperties( $css );
 		$css = self::fixFourPartNotation( $css );
 		$css = self::fixBackgroundPosition( $css );
-		
+
 		// Detokenize stuff we tokenized before
 		$css = $comments->detokenize( $css );
 		$css = $noFlipClass->detokenize( $css );
 		$css = $noFlipSingle->detokenize( $css );
+
 		return $css;
 	}
-	
+
 	/**
 	 * Replace direction: ltr; with direction: rtl; and vice versa, but *only*
 	 * those inside a body { .. } selector.
-	 * 
+	 *
 	 * Unlike the original implementation, this function doesn't suffer from
 	 * the bug causing "body\n{\ndirection: ltr;\n}" to be missed.
 	 * See http://code.google.com/p/cssjanus/issues/detail?id=15
@@ -176,9 +177,10 @@ class CSSJanus {
 			'$1' . self::$patterns['tmpToken'], $css );
 		$css = preg_replace( self::$patterns['body_direction_rtl'], '$1ltr', $css );
 		$css = str_replace( self::$patterns['tmpToken'], 'rtl', $css );
+
 		return $css;
 	}
-	
+
 	/**
 	 * Replace 'ltr' with 'rtl' and vice versa in background URLs
 	 */
@@ -186,9 +188,10 @@ class CSSJanus {
 		$css = preg_replace( self::$patterns['ltr_in_url'], self::$patterns['tmpToken'], $css );
 		$css = preg_replace( self::$patterns['rtl_in_url'], 'ltr', $css );
 		$css = str_replace( self::$patterns['tmpToken'], 'rtl', $css );
+
 		return $css;
 	}
-	
+
 	/**
 	 * Replace 'left' with 'right' and vice versa in background URLs
 	 */
@@ -196,9 +199,10 @@ class CSSJanus {
 		$css = preg_replace( self::$patterns['left_in_url'], self::$patterns['tmpToken'], $css );
 		$css = preg_replace( self::$patterns['right_in_url'], 'left', $css );
 		$css = str_replace( self::$patterns['tmpToken'], 'right', $css );
+
 		return $css;
 	}
-	
+
 	/**
 	 * Flip rules like left: , padding-right: , etc.
 	 */
@@ -206,9 +210,10 @@ class CSSJanus {
 		$css = preg_replace( self::$patterns['left'], self::$patterns['tmpToken'], $css );
 		$css = preg_replace( self::$patterns['right'], 'left', $css );
 		$css = str_replace( self::$patterns['tmpToken'], 'right', $css );
+
 		return $css;
 	}
-	
+
 	/**
 	 * Flip East and West in rules like cursor: nw-resize;
 	 */
@@ -217,13 +222,14 @@ class CSSJanus {
 			'$1' . self::$patterns['tmpToken'], $css );
 		$css = preg_replace( self::$patterns['cursor_west'], '$1e-resize', $css );
 		$css = str_replace( self::$patterns['tmpToken'], 'w-resize', $css );
+
 		return $css;
 	}
-	
+
 	/**
 	 * Swap the second and fourth parts in four-part notation rules like
 	 * padding: 1px 2px 3px 4px;
-	 * 
+	 *
 	 * Unlike the original implementation, this function doesn't suffer from
 	 * the bug where whitespace is not preserved when flipping four-part rules
 	 * and four-part color rules with multiple whitespace characters between
@@ -233,27 +239,29 @@ class CSSJanus {
 	private static function fixFourPartNotation( $css ) {
 		$css = preg_replace( self::$patterns['four_notation_quantity'], '$1$2$7$4$5$6$3', $css );
 		$css = preg_replace( self::$patterns['four_notation_color'], '$1$2$3$8$5$6$7$4', $css );
+
 		return $css;
 	}
-	
+
 	/**
-	 * Flip horizontal background percentages. 
+	 * Flip horizontal background percentages.
 	 */
 	private static function fixBackgroundPosition( $css ) {
 		$css = preg_replace_callback( self::$patterns['bg_horizontal_percentage'],
 			array( 'self', 'calculateNewBackgroundPosition' ), $css );
 		$css = preg_replace_callback( self::$patterns['bg_horizontal_percentage_x'],
 			array( 'self', 'calculateNewBackgroundPosition' ), $css );
+
 		return $css;
 	}
-	
+
 	/**
-	 * Callback for calculateNewBackgroundPosition() 
+	 * Callback for calculateNewBackgroundPosition()
 	 */
 	private static function calculateNewBackgroundPosition( $matches ) {
 		return $matches[1] . ( 100 - $matches[2] ) . $matches[3];
 	}
-}	
+}
 
 /**
  * Utility class used by CSSJanus that tokenizes and untokenizes things we want
@@ -263,7 +271,7 @@ class CSSJanus {
 class CSSJanus_Tokenizer {
 	private $regex, $token;
 	private $originals;
-	
+
 	/**
 	 * Constructor
 	 * @param $regex string Regular expression whose matches to replace by a token.
@@ -274,22 +282,22 @@ class CSSJanus_Tokenizer {
 		$this->token = $token;
 		$this->originals = array();
 	}
-	
+
 	/**
 	 * Replace all occurrences of $regex in $str with a token and remember
-	 * the original strings. 
+	 * the original strings.
 	 * @param $str string String to tokenize
 	 * @return string Tokenized string
 	 */
 	public function tokenize( $str ) {
 		return preg_replace_callback( $this->regex, array( $this, 'tokenizeCallback' ), $str );
 	}
-	
+
 	private function tokenizeCallback( $matches ) {
 		$this->originals[] = $matches[0];
 		return $this->token;
 	}
-	
+
 	/**
 	 * Replace tokens with their originals. If multiple strings were tokenized, it's important they be
 	 * detokenized in exactly the SAME ORDER.
@@ -303,11 +311,11 @@ class CSSJanus_Tokenizer {
 		return preg_replace_callback( '/' . preg_quote( $this->token, '/' ) . '/',
 			array( $this, 'detokenizeCallback' ), $str );
 	}
-	
+
 	private function detokenizeCallback( $matches ) {
 		$retval = current( $this->originals );
 		next( $this->originals );
+
 		return $retval;
 	}
-	
 }
