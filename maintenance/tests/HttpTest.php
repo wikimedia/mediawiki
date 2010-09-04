@@ -6,7 +6,7 @@ class MockCookie extends Cookie {
 	public function isUnExpired() { return parent::isUnExpired(); }
 }
 
-class HttpTest extends PhpUnit_Framework_TestCase {
+class HttpTest extends PHPUnit_Framework_TestCase {
 	static $content;
 	static $headers;
 	static $has_curl;
