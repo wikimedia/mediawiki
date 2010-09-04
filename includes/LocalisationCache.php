@@ -623,7 +623,11 @@ class LocalisationCache {
 		$this->store->finishWrite();
 		
 		# Clear out the MessageBlobStore
-		MessageBlobStore::clear();
+		# HACK: If using a null (i.e. disabled) storage backend, we
+		# can't write to the MessageBlobStore either
+		if ( !$this->store instanceof LCStore_Null ) {
+			MessageBlobStore::clear();
+		}
 
 		wfProfileOut( __METHOD__ );
 	}
