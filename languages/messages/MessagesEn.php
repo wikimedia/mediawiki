@@ -459,7 +459,6 @@ $specialPageAliases = array(
 	'Activeusers'               => array( 'ActiveUsers' ),
 	'RevisionMove'              => array( 'RevisionMove' ),
 	'ComparePages'              => array( 'ComparePages' ),
-	'Selenium'                  => array( 'Selenium' ),
 	'Badtitle'                  => array( 'Badtitle' ),
 );
 
