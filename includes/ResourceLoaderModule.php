@@ -69,6 +69,15 @@ abstract class ResourceLoaderModule {
 		global $wgResourceLoaderServerMaxage;
 		return $wgResourceLoaderServerMaxage;
 	}
+
+	/**
+	 * Get whether CSS for this module should be flipped
+	 */
+	public function getFlip( $context ) {
+		return $context->getDirection() === 'rtl';
+	}
+	
+	/* Abstract Methods */
 	
 	/**
 	 * Get all JS for this module for a given language and skin.
@@ -423,7 +432,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$this->modifiedTime[$context->getHash()] = max( $filesMtime, $msgBlobMtime );
 		return $this->modifiedTime[$context->getHash()];
 	}
-	
+		
 	/* Protected Members */
 	
 	/**
@@ -689,6 +698,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 	
 	public function getStyle( ResourceLoaderContext $context ) { return ''; }
+	public function getFlip( $context ) {
+		global $wgContLang;
+		return $wgContLang->getDir() !== $context->getDirection();
+	}
 	public function getMessages() { return array(); }
 	public function getLoaderScript() { return ''; }
 	public function getDependencies() { return array(); }

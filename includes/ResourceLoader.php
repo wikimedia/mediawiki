@@ -294,7 +294,7 @@ class ResourceLoader {
 				$context->shouldIncludeStyles() &&
 				( $styles .= self::$modules[$name]->getStyle( $context ) ) !== ''
 			) {
-				if ( $context->getFlip() ) {
+				if ( self::$modules[$name]->getFlip( $context ) ) {
 					$styles = self::filter( 'flip-css', $styles );
 				}
 				$styles = $context->getDebug() ? $styles : self::filter( 'minify-css', $styles );
