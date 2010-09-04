@@ -1641,6 +1641,12 @@ $wgResourceLoaderClientMaxage = 30*24*60*60; // 30 days
  */
 $wgResourceLoaderServerMaxage = 30*24*60*60; // 30 days
 
+/**
+ * Enable data URL embedding (experimental). This variable is very temporary and
+ * will be removed once we get this feature stable.
+ */
+$wgUseDataURLs = false;
+
 /** @} */ # end of cache settings
 
 /************************************************************************//**
