@@ -101,14 +101,14 @@ class CliInstaller extends CoreInstaller {
 			$this->showStatusMessage( $status );
 			echo "\n";
 			exit;
-		} elseif ( count($warnings) !== 0 ) {
+		} elseif ( count( $warnings ) !== 0 ) {
 			foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
 				$this->showMessage( $w . wfMsg( 'ellipsis' ) .
 					wfMsg( 'word-separator' ) );
 			}
 		}
 
-		$this->showMessage( wfMsg( 'config-install-step-done' ) ."\n");
+		$this->showMessage( wfMsg( 'config-install-step-done' ) . "\n" );
 	}
 
 	public function showMessage( $msg /*, ... */ ) {
@@ -119,5 +119,4 @@ class CliInstaller extends CoreInstaller {
 	public function showStatusMessage( Status $status ) {
 		$this->showMessage( $status->getWikiText() );
 	}
-
 }

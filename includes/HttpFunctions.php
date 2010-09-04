@@ -35,11 +35,14 @@ class Http {
 		$url = wfExpandUrl( $url );
 		wfDebug( "HTTP: $method: $url\n" );
 		$options['method'] = strtoupper( $method );
+
 		if ( !isset( $options['timeout'] ) ) {
 			$options['timeout'] = 'default';
 		}
+
 		$req = HttpRequest::factory( $url, $options );
 		$status = $req->execute();
+
 		if ( $status->isOK() ) {
 			return $req->getContent();
 		} else {
@@ -72,6 +75,7 @@ class Http {
 	 */
 	public static function isLocalURL( $url ) {
 		global $wgCommandLineMode, $wgConf;
+
 		if ( $wgCommandLineMode ) {
 			return false;
 		}
@@ -84,6 +88,7 @@ class Http {
 			$domainParts = explode( '.', $host );
 			// Check if this domain or any superdomain is listed in $wgConf as a local virtual host
 			$domainParts = array_reverse( $domainParts );
+
 			for ( $i = 0; $i < count( $domainParts ); $i++ ) {
 				$domainPart = $domainParts[$i];
 				if ( $i == 0 ) {
@@ -91,11 +96,13 @@ class Http {
 				} else {
 					$domain = $domainPart . '.' . $domain;
 				}
+
 				if ( $wgConf->isLocalVHost( $domain ) ) {
 					return true;
 				}
 			}
 		}
+
 		return false;
 	}
 
@@ -165,12 +172,12 @@ class HttpRequest {
 		$this->parsedUrl = parse_url( $url );
 
 		if ( !Http::isValidURI( $this->url ) ) {
-			$this->status = Status::newFatal('http-invalid-url');
+			$this->status = Status::newFatal( 'http-invalid-url' );
 		} else {
 			$this->status = Status::newGood( 100 ); // continue
 		}
 
-		if ( isset($options['timeout']) && $options['timeout'] != 'default' ) {
+		if ( isset( $options['timeout'] ) && $options['timeout'] != 'default' ) {
 			$this->timeout = $options['timeout'];
 		} else {
 			$this->timeout = $wgHTTPTimeout;
@@ -178,8 +185,9 @@ class HttpRequest {
 
 		$members = array( "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
 				  "method", "followRedirects", "maxRedirects", "sslVerifyCert" );
+
 		foreach ( $members as $o ) {
-			if ( isset($options[$o]) ) {
+			if ( isset( $options[$o] ) ) {
 				$this->$o = $options[$o];
 			}
 		}
@@ -193,21 +201,21 @@ class HttpRequest {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new MWException( __METHOD__.': curl (http://php.net/curl) is not installed, but'.
+			throw new MWException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
 								   ' Http::$httpEngine is set to "curl"' );
 		}
 
 		switch( Http::$httpEngine ) {
-		case 'curl':
-			return new CurlHttpRequest( $url, $options );
-		case 'php':
-			if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
-				throw new MWException( __METHOD__.': allow_url_fopen needs to be enabled for pure PHP'.
-					' http requests to work. If possible, curl should be used instead. See http://php.net/curl.' );
-			}
-			return new PhpHttpRequest( $url, $options );
-		default:
-			throw new MWException( __METHOD__.': The setting of Http::$httpEngine is not valid.' );
+			case 'curl':
+				return new CurlHttpRequest( $url, $options );
+			case 'php':
+				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
+					throw new MWException( __METHOD__ . ': allow_url_fopen needs to be enabled for pure PHP' .
+						' http requests to work. If possible, curl should be used instead. See http://php.net/curl.' );
+				}
+				return new PhpHttpRequest( $url, $options );
+			default:
+				throw new MWException( __METHOD__ . ': The setting of Http::$httpEngine is not valid.' );
 		}
 	}
 
@@ -226,7 +234,7 @@ class HttpRequest {
 	 * @param $args Array
 	 * @todo overload the args param
 	 */
-	public function setData($args) {
+	public function setData( $args ) {
 		$this->postData = $args;
 	}
 
@@ -242,6 +250,7 @@ class HttpRequest {
 		if ( $this->proxy ) {
 			return;
 		}
+
 		if ( Http::isLocalURL( $this->url ) ) {
 			$this->proxy = 'http://localhost:80/';
 		} elseif ( $wgHTTPProxy ) {
@@ -255,20 +264,20 @@ class HttpRequest {
 	 * Set the refererer header
 	 */
 	public function setReferer( $url ) {
-		$this->setHeader('Referer', $url);
+		$this->setHeader( 'Referer', $url );
 	}
 
 	/**
 	 * Set the user agent
 	 */
 	public function setUserAgent( $UA ) {
-		$this->setHeader('User-Agent', $UA);
+		$this->setHeader( 'User-Agent', $UA );
 	}
 
 	/**
 	 * Set an arbitrary header
 	 */
-	public function setHeader($name, $value) {
+	public function setHeader( $name, $value ) {
 		// I feel like I should normalize the case here...
 		$this->reqHeaders[$name] = $value;
 	}
@@ -279,14 +288,18 @@ class HttpRequest {
 	public function getHeaderList() {
 		$list = array();
 
-		if( $this->cookieJar ) {
+		if ( $this->cookieJar ) {
 			$this->reqHeaders['Cookie'] =
-				$this->cookieJar->serializeToHttpRequest($this->parsedUrl['path'],
-														 $this->parsedUrl['host']);
+				$this->cookieJar->serializeToHttpRequest(
+					$this->parsedUrl['path'],
+					$this->parsedUrl['host']
+				);
 		}
-		foreach($this->reqHeaders as $name => $value) {
+
+		foreach ( $this->reqHeaders as $name => $value ) {
 			$list[] = "$name: $value";
 		}
+
 		return $list;
 	}
 
@@ -321,7 +334,7 @@ class HttpRequest {
 
 		$this->content = "";
 
-		if( strtoupper($this->method) == "HEAD" ) {
+		if ( strtoupper( $this->method ) == "HEAD" ) {
 			$this->headersOnly = true;
 		}
 
@@ -329,7 +342,7 @@ class HttpRequest {
 			$this->postData = wfArrayToCGI( $this->postData );
 		}
 
-		if ( is_object( $wgTitle ) && !isset($this->reqHeaders['Referer']) ) {
+		if ( is_object( $wgTitle ) && !isset( $this->reqHeaders['Referer'] ) ) {
 			$this->setReferer( $wgTitle->getFullURL() );
 		}
 
@@ -341,8 +354,8 @@ class HttpRequest {
 			$this->setCallback( array( $this, 'read' ) );
 		}
 
-		if ( !isset($this->reqHeaders['User-Agent']) ) {
-			$this->setUserAgent(Http::userAgent());
+		if ( !isset( $this->reqHeaders['User-Agent'] ) ) {
+			$this->setUserAgent( Http::userAgent() );
 		}
 	}
 
@@ -355,14 +368,15 @@ class HttpRequest {
 	 */
 	protected function parseHeader() {
 		$lastname = "";
-		foreach( $this->headerList as $header ) {
-			if( preg_match( "#^HTTP/([0-9.]+) (.*)#", $header, $match ) ) {
+
+		foreach ( $this->headerList as $header ) {
+			if ( preg_match( "#^HTTP/([0-9.]+) (.*)#", $header, $match ) ) {
 				$this->respVersion = $match[1];
 				$this->respStatus = $match[2];
-			} elseif( preg_match( "#^[ \t]#", $header ) ) {
-				$last = count($this->respHeaders[$lastname]) - 1;
+			} elseif ( preg_match( "#^[ \t]#", $header ) ) {
+				$last = count( $this->respHeaders[$lastname] ) - 1;
 				$this->respHeaders[$lastname][$last] .= "\r\n$header";
-			} elseif( preg_match( "#^([^:]*):[\t ]*(.*)#", $header, $match ) ) {
+			} elseif ( preg_match( "#^([^:]*):[\t ]*(.*)#", $header, $match ) ) {
 				$this->respHeaders[strtolower( $match[1] )][] = $match[2];
 				$lastname = strtolower( $match[1] );
 			}
@@ -378,13 +392,13 @@ class HttpRequest {
 	 * @return nothing
 	 */
 	protected function setStatus() {
-		if( !$this->respHeaders ) {
+		if ( !$this->respHeaders ) {
 			$this->parseHeader();
 		}
 
-		if((int)$this->respStatus !== 200) {
-			list( $code, $message ) = explode(" ", $this->respStatus, 2);
-			$this->status->fatal("http-bad-status", $code, $message );
+		if ( (int)$this->respStatus !== 200 ) {
+			list( $code, $message ) = explode( " ", $this->respStatus, 2 );
+			$this->status->fatal( "http-bad-status", $code, $message );
 		}
 	}
 
@@ -395,14 +409,16 @@ class HttpRequest {
 	 * @return Boolean
 	 */
 	public function isRedirect() {
-		if( !$this->respHeaders ) {
+		if ( !$this->respHeaders ) {
 			$this->parseHeader();
 		}
 
 		$status = (int)$this->respStatus;
+
 		if ( $status >= 300 && $status <= 303 ) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -415,9 +431,10 @@ class HttpRequest {
 	 * @return Array
 	 */
 	public function getResponseHeaders() {
-		if( !$this->respHeaders ) {
+		if ( !$this->respHeaders ) {
 			$this->parseHeader();
 		}
+
 		return $this->respHeaders;
 	}
 
@@ -427,14 +444,16 @@ class HttpRequest {
 	 * @param $header String
 	 * @return String
 	 */
-	public function getResponseHeader($header) {
-		if( !$this->respHeaders ) {
+	public function getResponseHeader( $header ) {
+		if ( !$this->respHeaders ) {
 			$this->parseHeader();
 		}
+
 		if ( isset( $this->respHeaders[strtolower ( $header ) ] ) ) {
 			$v = $this->respHeaders[strtolower ( $header ) ];
 			return $v[count( $v ) - 1];
 		}
+
 		return null;
 	}
 
@@ -453,9 +472,10 @@ class HttpRequest {
 	 * @returns CookieJar
 	 */
 	public function getCookieJar() {
-		if( !$this->respHeaders ) {
+		if ( !$this->respHeaders ) {
 			$this->parseHeader();
 		}
+
 		return $this->cookieJar;
 	}
 
@@ -465,23 +485,25 @@ class HttpRequest {
 	 * Set-Cookie headers.
 	 * @see Cookie::set
 	 */
-	public function setCookie( $name, $value = null, $attr = null) {
-		if( !$this->cookieJar ) {
+	public function setCookie( $name, $value = null, $attr = null ) {
+		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
 		}
-		$this->cookieJar->setCookie($name, $value, $attr);
+
+		$this->cookieJar->setCookie( $name, $value, $attr );
 	}
 
 	/**
 	 * Parse the cookies in the response headers and store them in the cookie jar.
 	 */
 	protected function parseCookies() {
-		if( !$this->cookieJar ) {
+		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
 		}
-		if( isset( $this->respHeaders['set-cookie'] ) ) {
+
+		if ( isset( $this->respHeaders['set-cookie'] ) ) {
 			$url = parse_url( $this->getFinalUrl() );
-			foreach( $this->respHeaders['set-cookie'] as $cookie ) {
+			foreach ( $this->respHeaders['set-cookie'] as $cookie ) {
 				$this->cookieJar->parseCookieResponseHeader( $cookie, $url['host'] );
 			}
 		}
@@ -493,7 +515,8 @@ class HttpRequest {
 	 * @return String
 	 */
 	public function getFinalUrl() {
-		$location = $this->getResponseHeader("Location");
+		$location = $this->getResponseHeader( "Location" );
+
 		if ( $location ) {
 			return $location;
 		}
@@ -541,21 +564,24 @@ class Cookie {
 	 */
 	public function set( $value, $attr ) {
 		$this->value = $value;
-		if( isset( $attr['expires'] ) ) {
+
+		if ( isset( $attr['expires'] ) ) {
 			$this->isSessionKey = false;
 			$this->expires = strtotime( $attr['expires'] );
 		}
-		if( isset( $attr['path'] ) ) {
+
+		if ( isset( $attr['path'] ) ) {
 			$this->path = $attr['path'];
 		} else {
 			$this->path = "/";
 		}
-		if( isset( $attr['domain'] ) ) {
-			if( self::validateCookieDomain( $attr['domain'] ) ) {
+
+		if ( isset( $attr['domain'] ) ) {
+			if ( self::validateCookieDomain( $attr['domain'] ) ) {
 				$this->domain = $attr['domain'];
 			}
 		} else {
-			throw new MWException("You must specify a domain.");
+			throw new MWException( "You must specify a domain." );
 		}
 	}
 
@@ -571,39 +597,48 @@ class Cookie {
 	 * @param $originDomain String: (optional) the domain the cookie originates from
 	 * @return Boolean
 	 */
-	public static function validateCookieDomain( $domain, $originDomain = null) {
+	public static function validateCookieDomain( $domain, $originDomain = null ) {
 		// Don't allow a trailing dot
-		if( substr( $domain, -1 ) == "." ) return false;
+		if ( substr( $domain, -1 ) == "." ) {
+			return false;
+		}
 
-		$dc = explode(".", $domain);
+		$dc = explode( ".", $domain );
 
 		// Only allow full, valid IP addresses
-		if( preg_match( '/^[0-9.]+$/', $domain ) ) {
-			if( count( $dc ) != 4 ) return false;
+		if ( preg_match( '/^[0-9.]+$/', $domain ) ) {
+			if ( count( $dc ) != 4 ) {
+				return false;
+			}
 
-			if( ip2long( $domain ) === false ) return false;
+			if ( ip2long( $domain ) === false ) {
+				return false;
+			}
 
-			if( $originDomain == null || $originDomain == $domain ) return true;
+			if ( $originDomain == null || $originDomain == $domain ) {
+				return true;
+			}
 
 		}
 
 		// Don't allow cookies for "co.uk" or "gov.uk", etc, but allow "supermarket.uk"
-		if( strrpos( $domain, "." ) - strlen( $domain )  == -3 ) {
-			if( (count($dc) == 2 && strlen( $dc[0] ) <= 2 )
-				|| (count($dc) == 3 && strlen( $dc[0] ) == "" && strlen( $dc[1] ) <= 2 ) ) {
+		if ( strrpos( $domain, "." ) - strlen( $domain )  == -3 ) {
+			if ( ( count( $dc ) == 2 && strlen( $dc[0] ) <= 2 )
+				|| ( count( $dc ) == 3 && strlen( $dc[0] ) == "" && strlen( $dc[1] ) <= 2 ) ) {
 				return false;
 			}
-			if( (count($dc) == 2 || (count($dc) == 3 && $dc[0] == "") )
-				&& preg_match( '/(com|net|org|gov|edu)\...$/', $domain) ) {
+			if ( ( count( $dc ) == 2 || ( count( $dc ) == 3 && $dc[0] == "" ) )
+				&& preg_match( '/(com|net|org|gov|edu)\...$/', $domain ) ) {
 				return false;
 			}
 		}
 
-		if( $originDomain != null ) {
-			if( substr( $domain, 0, 1 ) != "." && $domain != $originDomain ) {
+		if ( $originDomain != null ) {
+			if ( substr( $domain, 0, 1 ) != "." && $domain != $originDomain ) {
 				return false;
 			}
-			if( substr( $domain, 0, 1 ) == "."
+
+			if ( substr( $domain, 0, 1 ) == "."
 				&& substr_compare( $originDomain, $domain, -strlen( $domain ),
 								   strlen( $domain ), TRUE ) != 0 ) {
 				return false;
@@ -623,40 +658,42 @@ class Cookie {
 	public function serializeToHttpRequest( $path, $domain ) {
 		$ret = "";
 
-		if( $this->canServeDomain( $domain )
+		if ( $this->canServeDomain( $domain )
 				&& $this->canServePath( $path )
 				&& $this->isUnExpired() ) {
-			$ret = $this->name ."=". $this->value;
+			$ret = $this->name . "=" . $this->value;
 		}
 
 		return $ret;
 	}
 
 	protected function canServeDomain( $domain ) {
-		if( $domain == $this->domain
-			|| ( strlen( $domain) > strlen( $this->domain )
-				 && substr( $this->domain, 0, 1) == "."
+		if ( $domain == $this->domain
+			|| ( strlen( $domain ) > strlen( $this->domain )
+				 && substr( $this->domain, 0, 1 ) == "."
 				 && substr_compare( $domain, $this->domain, -strlen( $this->domain ),
 									strlen( $this->domain ), TRUE ) == 0 ) ) {
 			return true;
 		}
+
 		return false;
 	}
 
 	protected function canServePath( $path ) {
-		if( $this->path && substr_compare( $this->path, $path, 0, strlen( $this->path ) ) == 0 ) {
+		if ( $this->path && substr_compare( $this->path, $path, 0, strlen( $this->path ) ) == 0 ) {
 			return true;
 		}
+
 		return false;
 	}
 
 	protected function isUnExpired() {
-		if( $this->isSessionKey || $this->expires > time() ) {
+		if ( $this->isSessionKey || $this->expires > time() ) {
 			return true;
 		}
+
 		return false;
 	}
-
 }
 
 class CookieJar {
@@ -666,12 +703,13 @@ class CookieJar {
 	 * Set a cookie in the cookie jar.	Make sure only one cookie per-name exists.
 	 * @see Cookie::set()
 	 */
-	public function setCookie ($name, $value, $attr) {
+	public function setCookie ( $name, $value, $attr ) {
 		/* cookies: case insensitive, so this should work.
 		 * We'll still send the cookies back in the same case we got them, though.
 		 */
-		$index = strtoupper($name);
-		if( isset( $this->cookie[$index] ) ) {
+		$index = strtoupper( $name );
+
+		if ( isset( $this->cookie[$index] ) ) {
 			$this->cookie[$index]->set( $value, $attr );
 		} else {
 			$this->cookie[$index] = new Cookie( $name, $value, $attr );
@@ -684,12 +722,15 @@ class CookieJar {
 	public function serializeToHttpRequest( $path, $domain ) {
 		$cookies = array();
 
-		foreach( $this->cookie as $c ) {
+		foreach ( $this->cookie as $c ) {
 			$serialized = $c->serializeToHttpRequest( $path, $domain );
-			if ( $serialized ) $cookies[] = $serialized;
+
+			if ( $serialized ) {
+				$cookies[] = $serialized;
+			}
 		}
 
-		return implode("; ", $cookies);
+		return implode( "; ", $cookies );
 	}
 
 	/**
@@ -700,33 +741,36 @@ class CookieJar {
 	 */
 	public function parseCookieResponseHeader ( $cookie, $domain ) {
 		$len = strlen( "Set-Cookie:" );
+
 		if ( substr_compare( "Set-Cookie:", $cookie, 0, $len, TRUE ) === 0 ) {
 			$cookie = substr( $cookie, $len );
 		}
 
 		$bit = array_map( 'trim', explode( ";", $cookie ) );
-		if ( count($bit) >= 1 ) {
-			list($name, $value) = explode( "=", array_shift( $bit ), 2 );
+
+		if ( count( $bit ) >= 1 ) {
+			list( $name, $value ) = explode( "=", array_shift( $bit ), 2 );
 			$attr = array();
-			foreach( $bit as $piece ) {
+
+			foreach ( $bit as $piece ) {
 				$parts = explode( "=", $piece );
-				if( count( $parts ) > 1 ) {
+				if ( count( $parts ) > 1 ) {
 					$attr[strtolower( $parts[0] )] = $parts[1];
 				} else {
 					$attr[strtolower( $parts[0] )] = true;
 				}
 			}
 
-			if( !isset( $attr['domain'] ) ) {
+			if ( !isset( $attr['domain'] ) ) {
 				$attr['domain'] = $domain;
 			} elseif ( !Cookie::validateCookieDomain( $attr['domain'], $domain ) ) {
 				return null;
 			}
+
 			$this->setCookie( $name, $value, $attr );
 		}
 	}
 }
-
 
 /**
  * HttpRequest implemented using internal curl compiled into PHP
@@ -747,19 +791,21 @@ class CurlHttpRequest extends HttpRequest {
 
 	public function execute() {
 		parent::execute();
+
 		if ( !$this->status->isOK() ) {
 			return $this->status;
 		}
+
 		$this->curlOptions[CURLOPT_PROXY] = $this->proxy;
 		$this->curlOptions[CURLOPT_TIMEOUT] = $this->timeout;
 		$this->curlOptions[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_1_0;
 		$this->curlOptions[CURLOPT_WRITEFUNCTION] = $this->callback;
-		$this->curlOptions[CURLOPT_HEADERFUNCTION] = array($this, "readHeader");
+		$this->curlOptions[CURLOPT_HEADERFUNCTION] = array( $this, "readHeader" );
 		$this->curlOptions[CURLOPT_MAXREDIRS] = $this->maxRedirects;
 		$this->curlOptions[CURLOPT_ENCODING] = ""; # Enable compression
 
 		/* not sure these two are actually necessary */
-		if(isset($this->reqHeaders['Referer'])) {
+		if ( isset( $this->reqHeaders['Referer'] ) ) {
 			$this->curlOptions[CURLOPT_REFERER] = $this->reqHeaders['Referer'];
 		}
 		$this->curlOptions[CURLOPT_USERAGENT] = $this->reqHeaders['User-Agent'];
@@ -793,13 +839,15 @@ class CurlHttpRequest extends HttpRequest {
 		$this->curlOptions[CURLOPT_HTTPHEADER] = $this->getHeaderList();
 
 		$curlHandle = curl_init( $this->url );
+
 		if ( !curl_setopt_array( $curlHandle, $this->curlOptions ) ) {
-			throw new MWException("Error setting curl options.");
+			throw new MWException( "Error setting curl options." );
 		}
+
 		if ( $this->followRedirects && $this->canFollowRedirects() ) {
 			if ( ! @curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, true ) ) {
-				wfDebug( __METHOD__.": Couldn't set CURLOPT_FOLLOWLOCATION. " .
-					"Probably safe_mode or open_basedir is set.\n");
+				wfDebug( __METHOD__ . ": Couldn't set CURLOPT_FOLLOWLOCATION. " .
+					"Probably safe_mode or open_basedir is set.\n" );
 				// Continue the processing. If it were in curl_setopt_array,
 				// processing would have halted on its entry
 			}
@@ -814,13 +862,14 @@ class CurlHttpRequest extends HttpRequest {
 				$this->status->fatal( 'http-curl-error', curl_error( $curlHandle ) );
 			}
 		} else {
-			$this->headerList = explode("\r\n", $this->headerText);
+			$this->headerList = explode( "\r\n", $this->headerText );
 		}
 
 		curl_close( $curlHandle );
 
 		$this->parseHeader();
 		$this->setStatus();
+
 		return $this->status;
 	}
 
@@ -829,10 +878,12 @@ class CurlHttpRequest extends HttpRequest {
 			wfDebug( "Cannot follow redirects in safe mode\n" );
 			return false;
 		}
+
 		if ( !defined( 'CURLOPT_REDIR_PROTOCOLS' ) ) {
 			wfDebug( "Cannot follow redirects with libcurl < 7.19.4 due to CVE-2009-0037\n" );
 			return false;
 		}
+
 		return true;
 	}
 }
@@ -875,7 +926,7 @@ class PhpHttpRequest extends HttpRequest {
 		}
 
 		$options['method'] = $this->method;
-		$options['header'] = implode("\r\n", $this->getHeaderList());
+		$options['header'] = implode( "\r\n", $this->getHeaderList() );
 		// Note that at some future point we may want to support
 		// HTTP/1.1, but we'd have to write support for chunking
 		// in version of PHP < 5.3.1
@@ -891,7 +942,7 @@ class PhpHttpRequest extends HttpRequest {
 
 		$oldTimeout = false;
 		if ( version_compare( '5.2.1', phpversion(), '>' ) ) {
-			$oldTimeout = ini_set('default_socket_timeout', $this->timeout);
+			$oldTimeout = ini_set( 'default_socket_timeout', $this->timeout );
 		} else {
 			$options['timeout'] = $this->timeout;
 		}
@@ -901,17 +952,21 @@ class PhpHttpRequest extends HttpRequest {
 		$this->headerList = array();
 		$reqCount = 0;
 		$url = $this->url;
+
 		do {
 			$reqCount++;
 			wfSuppressWarnings();
 			$fh = fopen( $url, "r", false, $context );
 			wfRestoreWarnings();
+
 			if ( !$fh ) {
 				break;
 			}
+
 			$result = stream_get_meta_data( $fh );
 			$this->headerList = $result['wrapper_data'];
 			$this->parseHeader();
+
 			if ( !$manuallyRedirect || !$this->followRedirects ) {
 				break;
 			}
@@ -921,16 +976,18 @@ class PhpHttpRequest extends HttpRequest {
 				break;
 			}
 			# Check security of URL
-			$url = $this->getResponseHeader("Location");
+			$url = $this->getResponseHeader( "Location" );
+
 			if ( substr( $url, 0, 7 ) !== 'http://' ) {
-				wfDebug( __METHOD__.": insecure redirection\n" );
+				wfDebug( __METHOD__ . ": insecure redirection\n" );
 				break;
 			}
 		} while ( true );
 
 		if ( $oldTimeout !== false ) {
-			ini_set('default_socket_timeout', $oldTimeout);
+			ini_set( 'default_socket_timeout', $oldTimeout );
 		}
+
 		$this->setStatus();
 
 		if ( $fh === false ) {
@@ -943,13 +1000,15 @@ class PhpHttpRequest extends HttpRequest {
 			return $this->status;
 		}
 
-		if($this->status->isOK()) {
+		if ( $this->status->isOK() ) {
 			while ( !feof( $fh ) ) {
 				$buf = fread( $fh, 8192 );
+
 				if ( $buf === false ) {
 					$this->status->fatal( 'http-read-error' );
 					break;
 				}
+
 				if ( strlen( $buf ) ) {
 					call_user_func( $this->callback, $fh, $buf );
 				}
