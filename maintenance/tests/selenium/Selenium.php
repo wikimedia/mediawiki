@@ -5,6 +5,7 @@
  */
 
 require( 'Testing/Selenium.php' );
+
 class Selenium {
 	protected static $_instance = null;
 	public $isStarted = false;
@@ -36,7 +37,7 @@ class Selenium {
 		if ( null === self::$_instance ) {
 			self::$_instance = $this;
 		} else {
-			throw new MWException("Already have one Selenium instance.");
+			throw new MWException( "Already have one Selenium instance." );
  		}
 	}
 
@@ -75,9 +76,11 @@ class Selenium {
 		$this->type( 'wpName1', $this->user );
 		$this->type( 'wpPassword1', $this->pass );
 		$this->click( "//input[@id='wpLoginAttempt']" );
-		$this->waitForPageToLoad(5000);
-		//after login we redirect to the main page. So check whether the "Prefernces" top menu item exists
+		$this->waitForPageToLoad( 5000 );
+
+		// after login we redirect to the main page. So check whether the "Prefernces" top menu item exists
 		$value = $this->isElementPresent( "//li[@id='pt-preferences']" );
+
 		if ( $value != true ) {
 			throw new Testing_Selenium_Exception( "Login Failed" );
 		}
@@ -95,7 +98,7 @@ class Selenium {
 	public function loadPage( $title, $action ) {
 		$this->open( self::$url . '/index.php?title=' . $title . '&action=' . $action );
 	}
-	
+
 	public function setLogger( $logger ) {
 		$this->logger = $logger;
 	}
@@ -138,14 +141,17 @@ class Selenium {
 
 	public function setBrowser( $b ) {
 		$browsers = $this->setupBrowsers();
+
+
 		if ( !isset( $browsers[$b] ) ) {
 			throw new MWException( "Invalid Browser: $b.\n" );
 		}
+
 		$this->browser = $browsers[$b];
 	}
 
 	public function __call( $name, $args ) {
-		$t = call_user_func_array( array( $this->tester, $name), $args );
+		$t = call_user_func_array( array( $this->tester, $name ), $args );
 		return $t;
 	}
 
@@ -179,14 +185,16 @@ class Selenium {
 
 	public function setBrowser( $b ) {
 		$browsers = $this->setupBrowsers();
+
 		if ( !isset( $browsers[$b] ) ) {
 			throw new MWException( "Invalid Browser: $b.\n" );
 		}
+
 		$this->browser = $browsers[$b];
 	}
 
 	public function __call( $name, $args ) {
-		$t = call_user_func_array( array( $this->tester, $name), $args );
+		$t = call_user_func_array( array( $this->tester, $name ), $args );
 		return $t;
 	}
 

@@ -11,7 +11,7 @@ class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 
 	public function setUp() {
 		// Hack because because PHPUnit version 3.0.6 which is on prototype does not
-		//run setUp as part of TestSuite::run
+		// run setUp as part of TestSuite::run
 		if ( $this->isSetUp ) {
 			return;
 		}
@@ -34,4 +34,3 @@ class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 		$this->selenium->loadPage( $title, $action );
 	}
 }
-
