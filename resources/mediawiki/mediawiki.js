@@ -463,7 +463,7 @@ window.mediaWiki = new ( function( $ ) {
 					var html = '';
 					for ( var r = 0; r < requests.length; r++ ) {
 						// Build out the HTML
-						var src = mediaWiki.config.get( 'server' ) + '/load.php?' + $.param( requests[r] );
+						var src = mediaWiki.config.get( 'server' ) + '?' + $.param( requests[r] );
 						html += '<script type="text/javascript" src="' + src + '"></script>';
 					}
 					return html;
