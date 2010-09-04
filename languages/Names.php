@@ -272,7 +272,7 @@
 	'roa-rup' => 'Armãneashce', # Aromanian
 	'roa-tara' => 'Tarandíne',	# Tarantino
 	'ru' => 'Русский',	# Russian
-	'rue' => 'русиньскый язык',	# Rusyn
+	'rue' => 'Русиньскый',	# Rusyn
 	'ruq' => 'Vlăheşte',	# Megleno-Romanian (multiple scripts - defaults to Latin)
 	'ruq-cyrl' => 'Влахесте',	# Megleno-Romanian (Cyrillic script)
 	# 'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
