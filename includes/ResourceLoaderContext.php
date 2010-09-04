@@ -23,9 +23,8 @@
  * Object passed around to modules which contains information about the state of a specific loader request
  */
 class ResourceLoaderContext {
-	
 	/* Protected Members */
-	
+
 	protected $request;
 	protected $server;
 	protected $modules;
@@ -35,12 +34,12 @@ class ResourceLoaderContext {
 	protected $debug;
 	protected $only;
 	protected $hash;
-	
+
 	/* Methods */
-	
+
 	public function __construct( WebRequest $request, $server ) {
 		global $wgUser, $wgLang, $wgDefaultSkin;
-		
+
 		$this->request = $request;
 		$this->server = $server;
 		// Interperet request
@@ -50,30 +49,33 @@ class ResourceLoaderContext {
 		$this->skin = $request->getVal( 'skin' );
 		$this->debug = $request->getVal( 'debug' ) === 'true' || $request->getBool( 'debug' );
 		$this->only = $request->getVal( 'only' );
+
 		// Fallback on system defaults
 		if ( !$this->language ) {
 			$this->language = $wgLang->getCode();
 		}
+
 		if ( !$this->direction ) {
 			$this->direction = Language::factory( $this->language )->getDir();
 		}
+
 		if ( !$this->skin ) {
 			$this->skin = $wgDefaultSkin;
 		}
 	}
-	
+
 	public function getRequest() {
 		return $this->request;
 	}
-	
+
 	public function getServer() {
 		return $this->server;
 	}
-	
+
 	public function getModules() {
 		return $this->modules;
 	}
-	
+
 	public function getLanguage() {
 		return $this->language;
 	}
@@ -81,31 +83,31 @@ class ResourceLoaderContext {
 	public function getDirection() {
 		return $this->direction;
 	}
-	
+
 	public function getSkin() {
 		return $this->skin;
 	}
-	
+
 	public function getDebug() {
 		return $this->debug;
 	}
-	
+
 	public function getOnly() {
 		return $this->only;
 	}
-	
+
 	public function shouldIncludeScripts() {
 		return is_null( $this->only ) || $this->only === 'scripts';
 	}
-	
+
 	public function shouldIncludeStyles() {
 		return is_null( $this->only ) || $this->only === 'styles';
 	}
-	
+
 	public function shouldIncludeMessages() {
 		return is_null( $this->only ) || $this->only === 'messages';
 	}
-	
+
 	public function getHash() {
 		return isset( $this->hash ) ?
 			$this->hash : $this->hash = implode( '|', array( $this->language, $this->skin, $this->debug ) );

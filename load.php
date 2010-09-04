@@ -22,7 +22,7 @@
  * @author Trevor Parscal
  *
  */
- 
+
 require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 wfProfileIn( 'load.php' );
 
