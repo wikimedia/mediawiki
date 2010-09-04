@@ -58,7 +58,7 @@
  * 	) );
  * @example
  * 	// Responds to a resource loading request
- * 	ResourceLoader::respond( $wgRequest, $wgServer . $wgScriptPath . '/load.php' );
+ * 	ResourceLoader::respond( $wgRequest, $wgServer . wfScript( 'load' ) );
  */
 class ResourceLoader {
 	/* Protected Static Members */
