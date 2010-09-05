@@ -15,6 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @author Trevor Parscal
  * @author Roan Kattouw
  */
@@ -32,7 +33,8 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get this module's name. This is set when the module is registered
 	 * with ResourceLoader::register()
-	 * @return mixed Name (string) or null if no name was set
+	 *
+	 * @return Mixed: name (string) or null if no name was set
 	 */
 	public function getName() {
 		return $this->name;
@@ -41,7 +43,8 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Set this module's name. This is called by ResourceLodaer::register()
 	 * when registering the module. Other code should not call this.
-	 * @param $name string Name
+	 *
+	 * @param $name String: name
 	 */
 	public function setName( $name ) {
 		$this->name = $name;
@@ -51,7 +54,8 @@ abstract class ResourceLoaderModule {
 	 * The maximum number of seconds to cache this module for in the
 	 * client-side (browser) cache. Override this only if you have a good
 	 * reason not to use $wgResourceLoaderClientMaxage.
-	 * @return int Cache maxage in seconds
+	 *
+	 * @return Integer: cache maxage in seconds
 	 */
 	public function getClientMaxage() {
 		global $wgResourceLoaderClientMaxage;
@@ -62,7 +66,8 @@ abstract class ResourceLoaderModule {
 	 * The maximum number of seconds to cache this module for in the
 	 * server-side (Squid / proxy) cache. Override this only if you have a
 	 * good reason not to use $wgResourceLoaderServerMaxage.
-	 * @return int Cache maxage in seconds
+	 *
+	 * @return Integer: cache maxage in seconds
 	 */
 	public function getServerMaxage() {
 		global $wgResourceLoaderServerMaxage;
@@ -81,17 +86,17 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get all JS for this module for a given language and skin.
 	 * Includes all relevant JS except loader scripts.
-	 * @param $lang string Language code
-	 * @param $skin string Skin name
-	 * @param $debug bool Whether to include debug scripts
-	 * @return string JS
+	 *
+	 * @param $context ResourceLoaderContext object
+	 * @return String: JS
 	 */
 	public abstract function getScript( ResourceLoaderContext $context );
 
 	/**
 	 * Get all CSS for this module for a given skin.
-	 * @param $skin string Skin name
-	 * @return string CSS
+	 *
+	 * @param $context ResourceLoaderContext object
+	 * @return String: CSS
 	 */
 	public abstract function getStyle( ResourceLoaderContext $context );
 
@@ -99,13 +104,15 @@ abstract class ResourceLoaderModule {
 	 * Get the messages needed for this module.
 	 *
 	 * To get a JSON blob with messages, use MessageBlobStore::get()
+	 *
 	 * @return array of message keys. Keys may occur more than once
 	 */
 	public abstract function getMessages();
 
 	/**
 	 * Get the loader JS for this module, if set.
-	 * @return mixed Loader JS (string) or false if no custom loader set
+	 *
+	 * @return Mixed: loader JS (string) or false if no custom loader set
 	 */
 	public abstract function getLoaderScript();
 
@@ -122,7 +129,7 @@ abstract class ResourceLoaderModule {
 	 *
 	 * To add dependencies dynamically on the client side, use a custom
 	 * loader script, see getLoaderScript()
-	 * @return array Array of module names (strings)
+	 * @return Array of module names (strings)
 	 */
 	public abstract function getDependencies();
 
@@ -132,9 +139,8 @@ abstract class ResourceLoaderModule {
 	 * the highest of each of the relevant components' modification
 	 * timestamps. Whenever anything happens that changes the module's
 	 * contents for these parameters, the mtime should increase.
-	 * @param $lang string Language code
-	 * @param $skin string Skin name
-	 * @param $debug bool Debug mode flag
+	 *
+	 * @param $context ResourceLoaderContext object
 	 * @return int UNIX timestamp
 	 */
 	public abstract function getModifiedTime( ResourceLoaderContext $context );
@@ -230,7 +236,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Add script files to this module. In order to be valid, a module
 	 * must contain at least one script file.
-	 * @param $scripts mixed Path to script file (string) or array of paths
+	 *
+	 * @param $scripts Mixed: path to script file (string) or array of paths
 	 */
 	public function addScripts( $scripts ) {
 		$this->scripts = array_merge( $this->scripts, (array)$scripts );
@@ -238,7 +245,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Add style (CSS) files to this module.
-	 * @param $styles mixed Path to CSS file (string) or array of paths
+	 *
+	 * @param $styles Mixed: path to CSS file (string) or array of paths
 	 */
 	public function addStyles( $styles ) {
 		$this->styles = array_merge( $this->styles, (array)$styles );
@@ -246,7 +254,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Add messages to this module.
-	 * @param $messages mixed Message key (string) or array of message keys
+	 *
+	 * @param $messages Mixed: message key (string) or array of message keys
 	 */
 	public function addMessages( $messages ) {
 		$this->messages = array_merge( $this->messages, (array)$messages );
@@ -264,7 +273,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * To add dependencies dynamically on the client side, use a custom
 	 * loader (see addLoaders())
 	 *
-	 * @param $dependencies mixed Module name (string) or array of module names
+	 * @param $dependencies Mixed: module name (string) or array of module names
 	 */
 	public function addDependencies( $dependencies ) {
 		$this->dependencies = array_merge( $this->dependencies, (array)$dependencies );
@@ -273,7 +282,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Add debug scripts to the module. These scripts are only included
 	 * in debug mode.
-	 * @param $scripts mixed Path to script file (string) or array of paths
+	 *
+	 * @param $scripts Mixed: path to script file (string) or array of paths
 	 */
 	public function addDebugScripts( $scripts ) {
 		$this->debugScripts = array_merge( $this->debugScripts, (array)$scripts );
@@ -282,8 +292,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Add language-specific scripts. These scripts are only included for
 	 * a given language.
-	 * @param $lang string Language code
-	 * @param $scripts mixed Path to script file (string) or array of paths
+	 *
+	 * @param $lang String: language code
+	 * @param $scripts Mixed: path to script file (string) or array of paths
 	 */
 	public function addLanguageScripts( $lang, $scripts ) {
 		$this->languageScripts = array_merge_recursive(
@@ -295,8 +306,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Add skin-specific scripts. These scripts are only included for
 	 * a given skin.
-	 * @param $skin string Skin name, or 'default'
-	 * @param $scripts mixed Path to script file (string) or array of paths
+	 *
+	 * @param $skin String: skin name, or 'default'
+	 * @param $scripts Mixed: path to script file (string) or array of paths
 	 */
 	public function addSkinScripts( $skin, $scripts ) {
 		$this->skinScripts = array_merge_recursive(
@@ -309,8 +321,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Add skin-specific CSS. These CSS files are only included for a
 	 * given skin. If there are no skin-specific CSS files for a skin,
 	 * the files defined for 'default' will be used, if any.
-	 * @param $skin string Skin name, or 'default'
-	 * @param $scripts mixed Path to CSS file (string) or array of paths
+	 *
+	 * @param $skin String: skin name, or 'default'
+	 * @param $scripts Mixed: path to CSS file (string) or array of paths
 	 */
 	public function addSkinStyles( $skin, $scripts ) {
 		$this->skinStyles = array_merge_recursive(
@@ -330,7 +343,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Note that loader scripts are included on every page, so they should
 	 * be lightweight and use mediaWiki.loader.register()'s callback
 	 * feature to defer dependency calculation.
-	 * @param $scripts mixed Path to script file (string) or array of paths
+	 *
+	 * @param $scripts Mixed: path to script file (string) or array of paths
 	 */
 	public function addLoaders( $scripts ) {
 		$this->loaders = array_merge( $this->loaders, (array)$scripts );
@@ -399,10 +413,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * relevant to the given language and skin are taken into account, and
 	 * files only relevant in debug mode are not taken into account when
 	 * debug mode is off.
-	 * @param $lang string Language code
-	 * @param $skin string Skin name
-	 * @param $debug bool Debug mode flag
-	 * @return int UNIX timestamp
+	 *
+	 * @param $context ResourceLoaderContext object
+	 * @return Integer: UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
@@ -442,7 +455,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the primary JS for this module. This is pulled from the
 	 * script files added through addScripts()
-	 * @return string JS
+	 *
+	 * @return String: JS
 	 */
 	protected function getPrimaryScript() {
 		return self::concatScripts( $this->scripts );
@@ -451,7 +465,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the primary CSS for this module. This is pulled from the CSS
 	 * files added through addStyles()
-	 * @return string JS
+	 *
+	 * @return String: JS
 	 */
 	protected function getPrimaryStyle() {
 		return self::concatStyles( $this->styles );
@@ -460,7 +475,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the debug JS for this module. This is pulled from the script
 	 * files added through addDebugScripts()
-	 * @return string JS
+	 *
+	 * @return String: JS
 	 */
 	protected function getDebugScript() {
 		return self::concatScripts( $this->debugScripts );
@@ -469,7 +485,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the language-specific JS for a given language. This is pulled
 	 * from the language-specific script files added through addLanguageScripts()
-	 * @return string JS
+	 *
+	 * @return String: JS
 	 */
 	protected function getLanguageScript( $lang ) {
 		if ( !isset( $this->languageScripts[$lang] ) ) {
@@ -481,7 +498,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the skin-specific JS for a given skin. This is pulled from the
 	 * skin-specific JS files added through addSkinScripts()
-	 * @return string JS
+	 *
+	 * @return String: JS
 	 */
 	protected function getSkinScript( $skin ) {
 		return self::concatScripts( self::getSkinFiles( $skin, $this->skinScripts ) );
@@ -490,7 +508,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the skin-specific CSS for a given skin. This is pulled from the
 	 * skin-specific CSS files added through addSkinStyles()
-	 * @return string CSS
+	 *
+	 * @return String: CSS
 	 */
 	protected function getSkinStyle( $skin ) {
 		return self::concatStyles( self::getSkinFiles( $skin, $this->skinStyles ) );
@@ -498,8 +517,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Helper function to get skin-specific data from an array.
-	 * @param $skin string Skin name
-	 * @param $map array Map of skin names to arrays
+	 *
+	 * @param $skin String: skin name
+	 * @param $map Array: map of skin names to arrays
 	 * @return $map[$skin] if set and non-empty, or $map['default'] if set, or an empty array
 	 */
 	protected static function getSkinFiles( $skin, $map ) {
@@ -517,7 +537,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the files this module depends on indirectly for a given skin.
 	 * Currently these are only image files referenced by the module's CSS.
-	 * @param $skin string Skin name
+	 *
+	 * @param $skin String: skin name
 	 * @return array of files
 	 */
 	protected function getFileDependencies( $skin ) {
@@ -553,8 +574,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the contents of a set of files and concatenate them, with
 	 * newlines in between. Each file is used only once.
-	 * @param $files array Array of file names
-	 * @return string Concatenated contents of $files
+	 *
+	 * @param $files Array of file names
+	 * @return String: concatenated contents of $files
 	 */
 	protected static function concatScripts( $files ) {
 		return implode( "\n", array_map( 'file_get_contents', array_map( array( __CLASS__, 'remapFilename' ), array_unique( (array) $files ) ) ) );
@@ -563,8 +585,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the contents of a set of CSS files, remap then and concatenate
 	 * them, with newlines in between. Each file is used only once.
-	 * @param $files array Array of file names
-	 * @return string Concatenated and remapped contents of $files
+	 *
+	 * @param $files Array of file names
+	 * @return String: concatenated and remapped contents of $files
 	 */
 	protected static function concatStyles( $files ) {
 		return implode( "\n", array_map( array( __CLASS__, 'remapStyle' ), array_unique( (array) $files ) ) );
@@ -572,7 +595,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Remap a relative to $IP. Used as a callback for array_map()
-	 * @param $file string File name
+	 *
+	 * @param $file String: file name
 	 * @return string $IP/$file
 	 */
 	protected static function remapFilename( $file ) {
@@ -584,7 +608,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get the contents of a CSS file and run it through CSSMin::remap().
 	 * This wrapper is needed so we can use array_map() in concatStyles()
-	 * @param $file string File name
+	 *
+	 * @param $file String: file name
 	 * @return string Remapped CSS
 	 */
 	protected static function remapStyle( $file ) {

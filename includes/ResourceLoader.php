@@ -15,11 +15,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @author Roan Kattouw
  * @author Trevor Parscal
  */
 
-/*
+/**
  * Dynamic JavaScript and CSS resource loading system
  *
  * @example
@@ -27,10 +28,10 @@
  * 	ResourceLoader::register( 'foo', array(
  * 		// Script or list of scripts to include when implementating the module (required)
  * 		'script' => 'resources/foo/foo.js',
- *		// List of scripts or lists of scripts to include based on the current language
- *		'locales' => array(
- *			'en-gb' => 'resources/foo/locales/en-gb.js',
- *		),
+ * 		// List of scripts or lists of scripts to include based on the current language
+ * 		'locales' => array(
+ * 			'en-gb' => 'resources/foo/locales/en-gb.js',
+ * 		),
  * 		// Script or list of scripts to include only when in debug mode
  * 		'debug' => 'resources/foo/debug.js',
  * 		// If this module is going to be loaded before the mediawiki module is ready such as jquery or the mediawiki
@@ -45,16 +46,16 @@
  * 		'loader' => 'resources/foo/loader.js',
  * 		// Style-sheets or list of style-sheets to include
  * 		'style' => 'resources/foo/foo.css',
- *		// List of style-sheets or lists of style-sheets to include based on the skin - if no match is found for current
- *		// skin, 'default' is used - if default doesn't exist nothing is added
- *		'themes' => array(
- *			'default' => 'resources/foo/themes/default/foo.css',
- *			'vector' => 'resources/foo/themes/vector.foo.css',
- *		),
+ * 		// List of style-sheets or lists of style-sheets to include based on the skin - if no match is found for current
+ * 		// skin, 'default' is used - if default doesn't exist nothing is added
+ * 		'themes' => array(
+ * 			'default' => 'resources/foo/themes/default/foo.css',
+ * 			'vector' => 'resources/foo/themes/vector.foo.css',
+ * 		),
  * 		// List of keys of messages to include
  * 		'messages' => array( 'foo-hello', 'foo-goodbye' ),
  * 		// Subclass of ResourceLoaderModule to use for custom modules
- *		'class' => 'ResourceLoaderSiteJSModule',
+ * 		'class' => 'ResourceLoaderSiteJSModule',
  * 	) );
  * @example
  * 	// Responds to a resource loading request
@@ -71,10 +72,10 @@ class ResourceLoader {
 	/**
 	 * Runs text through a filter, caching the filtered result for future calls
 	 *
-	 * @param {string} $filter name of filter to run
-	 * @param {string} $data text to filter, such as JavaScript or CSS text
-	 * @param {string} $file path to file being filtered, (optional: only required for CSS to resolve paths)
-	 * @return {string} filtered data
+	 * @param $filter String: name of filter to run
+	 * @param $data String: text to filter, such as JavaScript or CSS text
+	 * @param $file String: path to file being filtered, (optional: only required for CSS to resolve paths)
+	 * @return String: filtered data
 	 */
 	protected static function filter( $filter, $data ) {
 		global $wgMemc;
@@ -126,9 +127,9 @@ class ResourceLoader {
 	 * Note that registering the same object under multiple names is not supported and may silently fail in all
 	 * kinds of interesting ways.
 	 *
-	 * @param {mixed} $name string of name of module or array of name/object pairs
-	 * @param {ResourceLoaderModule} $object module object (optional when using multiple-registration calling style)
-	 * @return {boolean} false if there were any errors, in which case one or more modules were not registered
+	 * @param $name Mixed: string of name of module or array of name/object pairs
+	 * @param $object ResourceLoaderModule: module object (optional when using multiple-registration calling style)
+	 * @return Boolean: false if there were any errors, in which case one or more modules were not registered
 	 *
 	 * @todo We need much more clever error reporting, not just in detailing what happened, but in bringing errors to
 	 * the client in a way that they can easily see them if they want to, such as by using FireBug
@@ -156,7 +157,7 @@ class ResourceLoader {
 	/**
 	 * Gets a map of all modules and their options
 	 *
-	 * @return {array} array( modulename => ResourceLoaderModule )
+	 * @return Array: array( modulename => ResourceLoaderModule )
 	 */
 	public static function getModules() {
 		return self::$modules;
@@ -164,7 +165,8 @@ class ResourceLoader {
 
 	/**
 	 * Get the ResourceLoaderModule object for a given module name
-	 * @param $name string Module name
+	 *
+	 * @param $name String: module name
 	 * @return mixed ResourceLoaderModule or null if not registered
 	 */
 	public static function getModule( $name ) {
@@ -174,12 +176,8 @@ class ResourceLoader {
 	/**
 	 * Gets registration code for all modules, except pre-registered ones listed in self::$preRegisteredModules
 	 *
-	 * The $lang, $skin and $debug parameters are used to calculate the last modified timestamps for each
-	 * module.
-	 * @param $lang string Language code
-	 * @param $skin string Skin name
-	 * @param $debug bool Debug mode flag
-	 * @return {string} JavaScript code for registering all modules with the client loader
+	 * @param $context ResourceLoaderContext object
+	 * @return String: JavaScript code for registering all modules with the client loader
 	 */
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
 		$scripts = '';
@@ -208,10 +206,9 @@ class ResourceLoader {
 	/**
 	 * Get the highest modification time of all modules, based on a given combination of language code,
 	 * skin name and debug mode flag.
-	 * @param $lang string Language code
-	 * @param $skin string Skin name
-	 * @param $debug bool Debug mode flag
-	 * @return int UNIX timestamp
+	 *
+	 * @param $context ResourceLoaderContext object
+	 * @return Integer: UNIX timestamp
 	 */
 	public static function getHighestModifiedTime( ResourceLoaderContext $context ) {
 		$time = 1; // wfTimestamp() treats 0 as 'now', so that's not a suitable choice
@@ -223,22 +220,10 @@ class ResourceLoader {
 		return $time;
 	}
 
-	/* Methods */
-
-	/*
+	/**
 	 * Outputs a response to a resource load-request, including a content-type header
 	 *
-	 * @param {WebRequest} $request web request object to respond to
-	 * @param {string} $server web-accessible path to script server
-	 *
-	 * $options format:
-	 * 	array(
-	 * 		'lang' => [string: language code, optional, code of default language by default],
-	 * 		'skin' => [string: name of skin, optional, name of default skin by default],
-	 * 		'dir' => [string: 'ltr' or 'rtl', optional, direction of lang by default],
-	 * 		'debug' => [boolean: true to include debug-only scripts, optional, false by default],
-	 * 		'only' => [string: 'scripts', 'styles' or 'messages', optional, if set only get part of the requested module]
-	 * 	)
+	 * @param $context ResourceLoaderContext object
 	 */
 	public static function respond( ResourceLoaderContext $context ) {
 		// Split requested modules into two groups, modules and missing
