@@ -13,7 +13,7 @@ class PostgresField {
 	global $wgDBmwschema;
 
 		$q = <<<SQL
-SELECT 
+SELECT
  attnotnull, attlen, COALESCE(conname, '') AS conname,
  COALESCE(condeferred, 'f') AS deferred,
  COALESCE(condeferrable, 'f') AS deferrable,
@@ -321,17 +321,17 @@ class DatabasePostgres extends DatabaseBase {
 
 			if ($this->numeric_version < 8.3) {
 				// Tsearch2 checks
-				print "<li>Checking that tsearch2 is installed in the database \"" . 
+				print "<li>Checking that tsearch2 is installed in the database \"" .
 					htmlspecialchars( $wgDBname ) . "\"...";
 				if (! $this->tableExists("pg_ts_cfg", $wgDBts2schema)) {
-					print "<b>FAILED</b>. tsearch2 must be installed in the database \"" . 
+					print "<b>FAILED</b>. tsearch2 must be installed in the database \"" .
 						htmlspecialchars( $wgDBname ) . "\".";
 					print "Please see <a href='http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
 					print " for instructions or ask on #postgresql on irc.freenode.net</li>\n";
 					dieout("</ul>");
 				}
 				print "OK</li>\n";
-				print "<li>Ensuring that user \"" . htmlspecialchars( $wgDBuser ) . 
+				print "<li>Ensuring that user \"" . htmlspecialchars( $wgDBuser ) .
 					"\" has select rights on the tsearch2 tables...";
 				foreach (array('cfg','cfgmap','dict','parser') as $table) {
 					$SQL = "GRANT SELECT ON pg_ts_$table TO $safeuser";
@@ -410,8 +410,8 @@ class DatabasePostgres extends DatabaseBase {
 					$SQL = "SELECT count(*) FROM $safetsschema.pg_ts_$tname";
 					$res = $this->doQuery($SQL);
 					if (!$res) {
-						print "<b>FAILED</b> to access " . htmlspecialchars( "pg_ts_$tname" ) . 
-							". Make sure that the user \"". htmlspecialchars( $wgDBuser ) . 
+						print "<b>FAILED</b> to access " . htmlspecialchars( "pg_ts_$tname" ) .
+							". Make sure that the user \"". htmlspecialchars( $wgDBuser ) .
 							"\" has SELECT access to all four tsearch2 tables</li>\n";
 						dieout("</ul>");
 					}
@@ -439,7 +439,7 @@ class DatabasePostgres extends DatabaseBase {
 					$tsname = pg_fetch_result($res, 0, 0);
 					if ($tsname != 'default') {
 						print "<b>not set to default (" . htmlspecialchars( $tsname ) . ")</b>";
-						print "<li>Attempting to change tsearch2 default locale to \"" . 
+						print "<li>Attempting to change tsearch2 default locale to \"" .
 							htmlspecialchars( $ctype ) . "\"...";
 						$resetlocale = 1;
 					}
@@ -449,7 +449,7 @@ class DatabasePostgres extends DatabaseBase {
 					$res = $this->doQuery($SQL);
 					if (!$res) {
 						print "<b>FAILED</b>. ";
-						print "Please make sure that the locale in pg_ts_cfg for \"default\" is set to \"" . 
+						print "Please make sure that the locale in pg_ts_cfg for \"default\" is set to \"" .
 							htmlspecialchars( $ctype ) . "\"</li>\n";
 						dieout("</ul>");
 					}
@@ -478,21 +478,21 @@ class DatabasePostgres extends DatabaseBase {
 				$result = $this->doQuery("CREATE SCHEMA $safeschema");
 				error_reporting( E_ALL );
 				if (!$result) {
-					print "<b>FAILED</b>. The user \"" . htmlspecialchars( $wgDBuser ) . 
+					print "<b>FAILED</b>. The user \"" . htmlspecialchars( $wgDBuser ) .
 						"\" must be able to access the schema. ".
 						"You can try making them the owner of the database, or try creating the schema with a ".
-						"different user, and then grant access to the \"" . 
+						"different user, and then grant access to the \"" .
 						htmlspecialchars( $wgDBuser ) . "\" user.</li>\n";
 					dieout("</ul>");
 				}
 				print "OK</li>\n";
 			}
 			else if ($result != $wgDBuser) {
-				print "<li>Schema \"" . htmlspecialchars( $wgDBmwschema ) . "\" exists but is not owned by \"" . 
+				print "<li>Schema \"" . htmlspecialchars( $wgDBmwschema ) . "\" exists but is not owned by \"" .
 					htmlspecialchars( $wgDBuser ) . "\". Not ideal.</li>\n";
 			}
 			else {
-				print "<li>Schema \"" . htmlspecialchars( $wgDBmwschema ) . "\" exists and is owned by \"" . 
+				print "<li>Schema \"" . htmlspecialchars( $wgDBmwschema ) . "\" exists and is owned by \"" .
 					htmlspecialchars( $wgDBuser ) . "\". Excellent.</li>\n";
 			}
 
@@ -572,13 +572,13 @@ class DatabasePostgres extends DatabaseBase {
 				$result = $this->doQuery("CREATE LANGUAGE plpgsql");
 				error_reporting($olde);
 				if (!$result) {
-					print "<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>" . 
+					print "<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>" .
 						htmlspecialchars( $wgDBname ) . "</tt></li>";
 					dieout("</ul>");
 				}
 			}
 			else {
-				print "<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>" . 
+				print "<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>" .
 					htmlspecialchars( $wgDBname ) . "</tt></li>";
 				dieout("</ul>");
 			}
@@ -751,7 +751,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	function indexUnique ($table, $index, $fname = 'DatabasePostgres::indexUnique' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'".
-			" AND indexdef LIKE 'CREATE UNIQUE%(" . 
+			" AND indexdef LIKE 'CREATE UNIQUE%(" .
 			$this->strencode( $this->indexName( $index ) ) .
 			")'";
 		$res = $this->query( $sql, $fname );
@@ -971,7 +971,7 @@ class DatabasePostgres extends DatabaseBase {
 
 		return $res;
 	}
-	
+
 	function tableName( $name ) {
 		# Replace reserved words with better ones
 		switch( $name ) {
@@ -1261,7 +1261,7 @@ SQL;
 	function fieldInfo( $table, $field ) {
 		return PostgresField::fromText($this, $table, $field);
 	}
-	
+
 	/**
 	 * pg_field_type() wrapper
 	 */
@@ -1292,7 +1292,7 @@ SQL;
 		$res = $this->doQuery($SQL);
 		error_reporting( $olde );
 		if (!$res) {
-			print "<b>FAILED</b>. Make sure that the user \"" . htmlspecialchars( $wgDBuser ) . 
+			print "<b>FAILED</b>. Make sure that the user \"" . htmlspecialchars( $wgDBuser ) .
 				"\" can write to the schema \"" . htmlspecialchars( $wgDBmwschema ) . "\"</li>\n";
 			dieout(""); # Will close the main list <ul> and finish the page.
 		}
