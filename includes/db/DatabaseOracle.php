@@ -301,7 +301,6 @@ class DatabaseOracle extends DatabaseBase {
 
 		$sql = preg_replace( '/^EXPLAIN /', 'EXPLAIN PLAN SET STATEMENT_ID = \'' . $explain_id . '\' FOR', $sql, 1, $explain_count );
 
-
 		wfSuppressWarnings();
 
 		if ( ( $this->mLastResult = $stmt = oci_parse( $this->mConn, $sql ) ) === false ) {
@@ -560,7 +559,9 @@ class DatabaseOracle extends DatabaseBase {
 
 		if ( ( $sequenceData = $this->getSequenceData( $destTable ) ) !== false &&
 				!isset( $varMap[$sequenceData['column']] ) )
+		{
 			$varMap[$sequenceData['column']] = 'GET_SEQUENCE_VALUE(\'' . $sequenceData['sequence'] . '\')';
+		}
 
 		// count-alias subselect fields to avoid abigious definition errors
 		$i = 0;
@@ -675,15 +676,23 @@ class DatabaseOracle extends DatabaseBase {
 		return ( isset( $this->sequenceData[$table] ) ) ? $this->sequenceData[$table] : false;
 	}
 
-	# REPLACE query wrapper
-	# Oracle simulates this with a DELETE followed by INSERT
-	# $row is the row to insert, an associative array
-	# $uniqueIndexes is an array of indexes. Each element may be either a
-	# field name or an array of field names
-	#
-	# It may be more efficient to leave off unique indexes which are unlikely to collide.
-	# However if you do this, you run the risk of encountering errors which wouldn't have
-	# occurred in MySQL
+	/**
+	 * REPLACE query wrapper
+	 * Oracle simulates this with a DELETE followed by INSERT
+	 * $row is the row to insert, an associative array
+	 * $uniqueIndexes is an array of indexes. Each element may be either a
+	 * field name or an array of field names
+	 *
+	 * It may be more efficient to leave off unique indexes which are unlikely to collide.
+	 * However if you do this, you run the risk of encountering errors which wouldn't have
+	 * occurred in MySQL.
+	 *
+	 * @param $table String: table name
+	 * @param $uniqueIndexes Array: array of indexes. Each element may be
+	 *                       either a field name or an array of field names
+	 * @param $rows Array: rows to insert to $table
+	 * @param $fname String: function name, you can use __METHOD__ here
+	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseOracle::replace' ) {
 		$table = $this->tableName( $table );
 
@@ -702,9 +711,10 @@ class DatabaseOracle extends DatabaseBase {
 			# Delete rows which collide
 			if ( $uniqueIndexes ) {
 				$condsDelete = array();
-				foreach ( $uniqueIndexes as $index )
+				foreach ( $uniqueIndexes as $index ) {
 					$condsDelete[$index] = $row[$index];
-				if (count($condsDelete) > 0) {
+				}
+				if ( count( $condsDelete ) > 0 ) {
 					$this->delete( $table, $condsDelete, $fname );
 				}
 			}
@@ -719,9 +729,9 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	# DELETE where the condition is a join
-	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = "DatabaseOracle::deleteJoin" ) {
+	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'DatabaseOracle::deleteJoin' ) {
 		if ( !$conds ) {
-			throw new DBUnexpectedError( $this,  'DatabaseOracle::deleteJoin() called with empty $conds' );
+			throw new DBUnexpectedError( $this, 'DatabaseOracle::deleteJoin() called with empty $conds' );
 		}
 
 		$delTable = $this->tableName( $delTable );
@@ -738,7 +748,7 @@ class DatabaseOracle extends DatabaseBase {
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$fieldInfoData = $this->fieldInfo( $table, $field);
-		if ( $fieldInfoData->type == "varchar" ) {
+		if ( $fieldInfoData->type == 'varchar' ) {
 			$size = $row->size - 4;
 		} else {
 			$size = $row->size;
@@ -753,7 +763,6 @@ class DatabaseOracle extends DatabaseBase {
 		return "SELECT * FROM ($sql) WHERE rownum >= (1 + $offset) AND rownum < (1 + $limit + $offset)";
 	}
 
-
 	function unionQueries( $sqls, $all ) {
 		$glue = ' UNION ALL ';
 		return 'SELECT * ' . ( $all ? '':'/* UNION_UNIQUE */ ' ) . 'FROM (' . implode( $glue, $sqls ) . ')' ;
@@ -763,28 +772,27 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->lastErrno() == 'OCI-00060';
 	}
 
-
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseOracle::duplicateTableStructure' ) {
 		$temporary = $temporary ? 'TRUE' : 'FALSE';
-		$oldName = trim(strtoupper($oldName), '"');
-		$oldParts = explode('_', $oldName);
+		$oldName = trim( strtoupper( $oldName ), '"');
+		$oldParts = explode( '_', $oldName );
 
-		$newName = trim(strtoupper($newName), '"');
-		$newParts = explode('_', $newName);
+		$newName = trim( strtoupper( $newName ), '"');
+		$newParts = explode( '_', $newName );
 
 		$oldPrefix = '';
 		$newPrefix = '';
-		for ($i = count($oldParts)-1; $i >= 0; $i--) {
-			if ($oldParts[$i] != $newParts[$i]) {
-				$oldPrefix = implode('_', $oldParts).'_';
-				$newPrefix = implode('_', $newParts).'_';
+		for ( $i = count( $oldParts ) - 1; $i >= 0; $i-- ) {
+			if ( $oldParts[$i] != $newParts[$i] ) {
+				$oldPrefix = implode( '_', $oldParts ) . '_';
+				$newPrefix = implode( '_', $newParts ) . '_';
 				break;
 			}
-			unset($oldParts[$i]);
-			unset($newParts[$i]);
+			unset( $oldParts[$i] );
+			unset( $newParts[$i] );
 		}
 
-		$tabName = substr($oldName, strlen($oldPrefix));
+		$tabName = substr( $oldName, strlen( $oldPrefix ) );
 
 		return $this->query( 'BEGIN DUPLICATE_TABLE(\'' . $tabName . '\', \'' . $oldPrefix . '\', \''.$newPrefix.'\', ' . $temporary . '); END;', $fname );
 	}
@@ -854,21 +862,21 @@ class DatabaseOracle extends DatabaseBase {
 	 */
 	private function fieldInfoMulti( $table, $field ) {
 		$tableWhere = '';
-		$field = strtoupper($field);
-		if (is_array($table)) {
+		$field = strtoupper( $field );
+		if ( is_array( $table ) ) {
 			$table = array_map( array( &$this, 'tableName' ), $table );
 			$tableWhere = 'IN (';
-			foreach($table as &$singleTable) {
-				$singleTable = strtoupper(trim( $singleTable, '"' ));
-				if (isset($this->mFieldInfoCache["$singleTable.$field"])) {
+			foreach( $table as &$singleTable ) {
+				$singleTable = strtoupper( trim( $singleTable, '"' ) );
+				if ( isset( $this->mFieldInfoCache["$singleTable.$field"] ) ) {
 					return $this->mFieldInfoCache["$singleTable.$field"];
 				}
-				$tableWhere .= '\''.$singleTable.'\',';
+				$tableWhere .= '\'' . $singleTable . '\',';
 			}
-			$tableWhere = rtrim($tableWhere, ',').')';
+			$tableWhere = rtrim( $tableWhere, ',' ) . ')';
 		} else {
-			$table = strtoupper(trim( $this->tableName($table), '"' ));
-			if (isset($this->mFieldInfoCache["$table.$field"])) {
+			$table = strtoupper( trim( $this->tableName( $table ), '"' ) );
+			if ( isset( $this->mFieldInfoCache["$table.$field"] ) ) {
 				return $this->mFieldInfoCache["$table.$field"];
 			}
 			$tableWhere = '= \''.$table.'\'';
@@ -881,9 +889,9 @@ class DatabaseOracle extends DatabaseBase {
 			return false;
 		}
 		$res = new ORAResult( $this, $fieldInfoStmt );
-		if ($res->numRows() == 0 ) {
-			if (is_array($table)) {
-				foreach($table as &$singleTable) {
+		if ( $res->numRows() == 0 ) {
+			if ( is_array( $table ) ) {
+				foreach( $table as &$singleTable ) {
 					$this->mFieldInfoCache["$singleTable.$field"] = false;
 				}
 			} else {
@@ -992,7 +1000,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	function setup_database() {
 		$res = $this->sourceFile( "../maintenance/ora/tables.sql" );
-		if ($res === true) {
+		if ( $res === true ) {
 			print " done.</li>\n";
 		} else {
 			print " <b>FAILED</b></li>\n";
@@ -1007,7 +1015,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		// do it like the postgres :D
-		$SQL = "INSERT INTO ".$this->tableName('interwiki')." (iw_prefix,iw_url,iw_local) VALUES ";
+		$SQL = "INSERT INTO " . $this->tableName( 'interwiki' ) . " (iw_prefix,iw_url,iw_local) VALUES ";
 		while ( !feof( $f ) ) {
 			$line = fgets( $f, 1024 );
 			$matches = array();
@@ -1040,7 +1048,7 @@ class DatabaseOracle extends DatabaseBase {
 		global $wgContLang;
 
 		$conds2 = array();
-		$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
+		$conds = ( $conds != null && !is_array( $conds ) ) ? array( $conds ) : $conds;
 		foreach ( $conds as $col => $val ) {
 			$col_info = $this->fieldInfoMulti( $table, $col );
 			$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
@@ -1104,7 +1112,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		if ( $wgContLang != null ) {
 			$conds2 = array();
-			$conds = ($conds != null && !is_array($conds)) ? array($conds) : $conds;
+			$conds = ( $conds != null && !is_array( $conds ) ) ? array( $conds ) : $conds;
 			foreach ( $conds as $col => $val ) {
 				$col_info = $this->fieldInfoMulti( $table, $col );
 				$col_type = $col_info != false ? $col_info->type() : 'CONSTANT';
