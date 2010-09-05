@@ -11,6 +11,7 @@ if ( !isset( $wgVersion ) ) {
 }
 $script = $_SERVER['SCRIPT_NAME'];
 $path = pathinfo( $script, PATHINFO_DIRNAME ) . '/';
+$path = str_replace( '//', '/', $path );
 $ext = pathinfo( $script, PATHINFO_EXTENSION );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
