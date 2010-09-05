@@ -1,8 +1,16 @@
 <?php
+/**
+ * Base interface for all DBMS-specific code.
+ *
+ * @file
+ * @ingroup Database
+ */
 
 /**
  * Base interface for all DBMS-specific code. At a bare minimum, all of the
  * following must be implemented to support MediaWiki
+ *
+ * @ingroup Database
  */
 interface DatabaseType {
 
