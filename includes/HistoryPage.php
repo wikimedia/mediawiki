@@ -380,15 +380,19 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= Html::hidden( 'title', $this->title->getPrefixedDbKey() ) . "\n";
 		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 
+		$s .= '<div>' . $this->submitButton( wfMsg( 'compareselectedversions'),
+			array( 'class' => 'historysubmit' ) ) . "\n";
+		
 		$this->buttons = '<div>';
 		$this->buttons .= $this->submitButton( wfMsg( 'compareselectedversions'),
 			array( 'class' => 'historysubmit' )
 				+ $wgUser->getSkin()->tooltipAndAccessKeyAttribs( 'compareselectedversions' )
 		) . "\n";
+		
 		if( $wgUser->isAllowed('deleterevision') ) {
 			$float = $wgContLang->alignEnd();
 			# Note bug #20966, <button> is non-standard in IE<8
-			$this->buttons .= Html::element( 'button',
+			$element = Html::element( 'button',
 				array(
 					'type' => 'submit',
 					'name' => 'revisiondelete',
@@ -398,11 +402,13 @@ class HistoryPager extends ReverseChronologicalPager {
 				),
 				wfMsg( 'showhideselectedversions' )
 			) . "\n";
+			$s .= $element;
+			$this->buttons .= $element;
 		}
 		if( $wgUser->isAllowed( 'revisionmove' ) ) {
 			$float = $wgContLang->alignEnd();
 			# Note bug #20966, <button> is non-standard in IE<8
-			$this->buttons .= Html::element( 'button',
+			$element = Html::element( 'button',
 				array(
 					'type' => 'submit',
 					'name' => 'revisionmove',
@@ -412,9 +418,11 @@ class HistoryPager extends ReverseChronologicalPager {
 				),
 				wfMsg( 'revisionmoveselectedversions' )
 			) . "\n";
+			$s .= $element;
+			$this->buttons .= $element;
 		}
 		$this->buttons .= '</div>';
-		$s .= $this->buttons . '<ul id="pagehistory">' . "\n";
+		$s .= '</div><ul id="pagehistory">' . "\n";
 		return $s;
 	}
 
