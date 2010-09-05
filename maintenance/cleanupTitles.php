@@ -1,12 +1,12 @@
 <?php
-/*
+/**
  * Script to clean up broken, unparseable titles.
  *
  * Usage: php cleanupTitles.php [--fix]
  * Options:
  *   --fix  Actually clean up titles; otherwise just checks for them
  *
- * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
+ * Copyright © 2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,6 +24,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @author Brion Vibber <brion at pobox.com>
  * @ingroup Maintenance
  */

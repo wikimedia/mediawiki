@@ -1,12 +1,12 @@
 <?php
-/*
+/**
  * Script to clean up broken page links when somebody turns on $wgCapitalLinks.
  *
  * Usage: php cleanupCaps.php [--dry-run]
  * Options:
  *   --dry-run  don't actually try moving them
  *
- * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
+ * Copyright © 2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,8 +24,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @author Brion Vibber <brion at pobox.com>
- * @ingroup maintenance
+ * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/cleanupTable.inc' );

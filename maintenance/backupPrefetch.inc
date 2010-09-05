@@ -1,4 +1,10 @@
 <?php
+/**
+ * Helper class for the --prefetch option of dumpTextPass.php
+ *
+ * @file
+ * @ingrouo Maintenance
+ */
 
 // Some smart guy removed XMLReader's global constants from PHP 5.1
 // and replaced them with class constants. Breaking source compatibility
