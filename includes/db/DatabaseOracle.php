@@ -317,7 +317,7 @@ class DatabaseOracle extends DatabaseBase {
 				return false;
 			}
 		}
-		
+
 		wfRestoreWarnings();
 
 		if ( $explain_count > 0 ) {
@@ -768,7 +768,7 @@ class DatabaseOracle extends DatabaseBase {
 		$temporary = $temporary ? 'TRUE' : 'FALSE';
 		$oldName = trim(strtoupper($oldName), '"');
 		$oldParts = explode('_', $oldName);
-		
+
 		$newName = trim(strtoupper($newName), '"');
 		$newParts = explode('_', $newName);
 
@@ -783,9 +783,9 @@ class DatabaseOracle extends DatabaseBase {
 			unset($oldParts[$i]);
 			unset($newParts[$i]);
 		}
-		
+
 		$tabName = substr($oldName, strlen($oldPrefix));
-		
+
 		return $this->query( 'BEGIN DUPLICATE_TABLE(\'' . $tabName . '\', \'' . $oldPrefix . '\', \''.$newPrefix.'\', ' . $temporary . '); END;', $fname );
 	}
 

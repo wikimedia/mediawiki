@@ -80,11 +80,11 @@ class DatabaseMssql extends DatabaseBase {
 		$this->mDBname = $dbName;
 
 		$connectionInfo = array();
-		
+
 		if( $dbName ) {
 			$connectionInfo['Database'] = $dbName;
 		}
-		
+
 		// Start NT Auth Hack
 		// Quick and dirty work around to provide NT Auth designation support.
 		// Current solution requires installer to know to input 'ntauth' for both username and password
@@ -92,7 +92,7 @@ class DatabaseMssql extends DatabaseBase {
 		// TO-DO: Make this better and add NT Auth choice to MW installer when SQL Server option is chosen.
 		$ntAuthUserTest = strtolower( $user );
 		$ntAuthPassTest = strtolower( $password );
-		
+
 		// Decide which auth scenerio to use
 		if( ( $ntAuthPassTest == 'ntauth' && $ntAuthUserTest == 'ntauth' ) ){
 			// Don't add credentials to $connectionInfo
@@ -103,7 +103,7 @@ class DatabaseMssql extends DatabaseBase {
 		// End NT Auth Hack
 
 		$this->mConn = @sqlsrv_connect( $server, $connectionInfo );
-		
+
 		if ( $this->mConn === false ) {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
@@ -131,7 +131,7 @@ class DatabaseMssql extends DatabaseBase {
 	function doQuery( $sql ) {
 		wfDebug( "SQL: [$sql]\n" );
 		$this->offset = 0;
-		
+
 		// several extensions seem to think that all databases support limits via LIMIT N after the WHERE clause
 		// well, MSSQL uses SELECT TOP N, so to catch any of those extensions we'll do a quick check for a LIMIT
 		// clause and pass $sql through $this->LimitToTopN() which parses the limit clause and passes the result to
@@ -140,13 +140,13 @@ class DatabaseMssql extends DatabaseBase {
 			// massage LIMIT -> TopN
 			$sql = $this->LimitToTopN( $sql ) ;
 		}
-		
-		// MSSQL doesn't have EXTRACT(epoch FROM XXX) 
+
+		// MSSQL doesn't have EXTRACT(epoch FROM XXX)
 		if ( preg_match('#\bEXTRACT\s*?\(\s*?EPOCH\s+FROM\b#i', $sql, $matches ) ) {
 			// This is same as UNIX_TIMESTAMP, we need to calc # of seconds from 1970
 			$sql = str_replace( $matches[0], "DATEDIFF(s,CONVERT(datetime,'1/1/1970'),", $sql );
 		}
-		
+
 		// perform query
 		$stmt = sqlsrv_query( $this->mConn, $sql );
 		if ( $stmt == false ) {
@@ -157,16 +157,16 @@ class DatabaseMssql extends DatabaseBase {
 			foreach ( sqlsrv_errors() as $error ) {
 				$message .= $message . "ERROR[" . $error['code'] . "] " . $error['message'] . "\n";
 			}
-			
+
 			throw new DBUnexpectedError( $this, $message );
 		}
 		// remember number of rows affected
 		$this->mAffectedRows = sqlsrv_rows_affected( $stmt );
-		
-		// if it is a SELECT statement, or an insert with a request to output something we want to return a row.  
-		if ( ( preg_match( '#\bSELECT\s#i', $sql ) ) || 
+
+		// if it is a SELECT statement, or an insert with a request to output something we want to return a row.
+		if ( ( preg_match( '#\bSELECT\s#i', $sql ) ) ||
 			( preg_match( '#\bINSERT\s#i', $sql ) && preg_match( '#\bOUTPUT\s+INSERTED\b#i', $sql ) ) ) {
-			// this is essentially a rowset, but Mediawiki calls these 'result' 
+			// this is essentially a rowset, but Mediawiki calls these 'result'
 			// the rowset owns freeing the statement
 			$res = new MssqlResult( $stmt );
 		} else {
@@ -190,7 +190,7 @@ class DatabaseMssql extends DatabaseBase {
 		$row = $res->fetch( 'OBJECT' );
 		return $row;
 	}
-	
+
 	function getErrors() {
 		$strRet = '';
 		$retErrors = sqlsrv_errors( SQLSRV_ERR_ALL );
@@ -220,14 +220,14 @@ class DatabaseMssql extends DatabaseBase {
 		}
 		return ( $res ) ? $res->numrows() : 0;
 	}
-	
+
 	function numFields( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
 		return ( $res ) ? $res->numfields() : 0;
 	}
-	
+
 	function fieldName( $res, $n ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -257,7 +257,7 @@ class DatabaseMssql extends DatabaseBase {
 			return "No database connection";
 		}
 	}
-	
+
 	function lastErrno() {
 		$err = sqlsrv_errors( SQLSRV_ERR_ALL );
 		if ( $err[0] ) return $err[0]['code'];
@@ -267,7 +267,7 @@ class DatabaseMssql extends DatabaseBase {
 	function affectedRows() {
 		return $this->mAffectedRows;
 	}
-	
+
 	/**
 	 * SELECT wrapper
 	 *
@@ -292,7 +292,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 		return $this->query( $sql, $fname );
 	}
-	
+
 	/**
 	 * SELECT wrapper
 	 *
@@ -312,7 +312,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 		return parent::selectSQLText(  $table, $vars, $conds, $fname, $options, $join_conds );
 	}
-	
+
 	/**
 	 * Estimate rows in dataset
 	 * Returns estimated count, based on SHOWPLAN_ALL output
@@ -323,7 +323,7 @@ class DatabaseMssql extends DatabaseBase {
 	function estimateRowCount( $table, $vars = '*', $conds = '', $fname = 'DatabaseMssql::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
-		
+
 		$rows = -1;
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
@@ -381,20 +381,20 @@ class DatabaseMssql extends DatabaseBase {
 		if ( !count( $arrToInsert ) ) {
 			return true;
 		}
-		
+
 		if ( !is_array( $options ) ) {
 			$options = array( $options );
 		}
 
 		$table = $this->tableName( $table );
-		
+
 		if ( !( isset( $arrToInsert[0] ) && is_array( $arrToInsert[0] ) ) ) {// Not multi row
 			$arrToInsert = array( 0 => $arrToInsert );// make everything multi row compatible
 		}
-		
+
 		$allOk = true;
-		
-		
+
+
 		// We know the table we're inserting into, get its identity column
 		$identity = null;
 		$tableRaw = preg_replace( '#\[([^\]]*)\]#', '$1', $table ); // strip matching square brackets from table name
@@ -404,23 +404,23 @@ class DatabaseMssql extends DatabaseBase {
 			$identity = array_pop( $res->fetch( SQLSRV_FETCH_ASSOC ) );
 		}
 		unset( $res );
-				
+
 		foreach ( $arrToInsert as $blah => $a ) {
 			// start out with empty identity column, this is so we can return it as a result of the insert logic
 			$sqlPre = '';
 			$sqlPost = '';
 			$identityClause = '';
-			
+
 			// if we have an identity column
 			if( $identity ) {
-				// iterate through 
+				// iterate through
 				foreach ($a as $k => $v ) {
 					if ( $k == $identity ) {
 						if( !is_null($v) ){
 							// there is a value being passed to us, we need to turn on and off inserted identity
 							$sqlPre = "SET IDENTITY_INSERT $table ON;" ;
 							$sqlPost = ";SET IDENTITY_INSERT $table OFF;";
-							
+
 						} else {
 							// we can't insert NULL into an identity column, so remove the column from the insert.
 							unset( $a[$k] );
@@ -429,10 +429,10 @@ class DatabaseMssql extends DatabaseBase {
 				}
 				$identityClause = "OUTPUT INSERTED.$identity "; // we want to output an identity column as result
 			}
-			
+
 			$keys = array_keys( $a );
-			
-			
+
+
 			// INSERT IGNORE is not supported by SQL Server
 			// remove IGNORE from options list and set ignore flag to true
 			$ignoreClause = false;
@@ -442,20 +442,20 @@ class DatabaseMssql extends DatabaseBase {
 					$ignoreClause = true;
 				}
 			}
-			
+
 			// translate MySQL INSERT IGNORE to something SQL Server can use
 			// example:
 			// MySQL: INSERT IGNORE INTO user_groups (ug_user,ug_group) VALUES ('1','sysop')
-			// MSSQL: IF NOT EXISTS (SELECT * FROM user_groups WHERE ug_user = '1') INSERT INTO user_groups (ug_user,ug_group) VALUES ('1','sysop')			
+			// MSSQL: IF NOT EXISTS (SELECT * FROM user_groups WHERE ug_user = '1') INSERT INTO user_groups (ug_user,ug_group) VALUES ('1','sysop')
 			if ( $ignoreClause == true ) {
 				$prival = $a[$keys[0]];
 				$sqlPre .= "IF NOT EXISTS (SELECT * FROM $table WHERE $keys[0] = '$prival')";
 			}
-			
+
 			// Build the actual query
 			$sql = $sqlPre . 'INSERT ' . implode( ' ', $options ) .
 				" INTO $table (" . implode( ',', $keys ) . ") $identityClause VALUES (";
-			
+
 			$first = true;
 			foreach ( $a as $key => $value ) {
 				if ( $first ) {
@@ -478,10 +478,10 @@ class DatabaseMssql extends DatabaseBase {
 				}
 			}
 			$sql .= ')' . $sqlPost;
-			
+
 			// Run the query
 			$ret = sqlsrv_query( $this->mConn, $sql );
-			
+
 			if ( $ret === false ) {
 				throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), $sql, $fname );
 			} elseif ( $ret != NULL ) {
@@ -499,7 +499,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 		return $allOk;
 	}
-	
+
 	/**
 	 * INSERT SELECT wrapper
 	 * $varMap must be an associative array of the form array( 'dest1' => 'source1', ...)
@@ -511,7 +511,7 @@ class DatabaseMssql extends DatabaseBase {
 		$insertOptions = array(), $selectOptions = array() )
 	{
 		$ret = parent::insertSelect( $destTable, $srcTable, $varMap, $conds, $fname, $insertOptions, $selectOptions );
-		
+
 		if ( $ret === false ) {
 			throw new DBQueryError( $this, $this->getErrors(), $this->lastErrno(), $sql, $fname );
 		} elseif ( $ret != NULL ) {
@@ -521,7 +521,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 		return NULL;
 	}
-	
+
 	/**
 	 * Format a table name ready for use in constructing an SQL query
 	 *
@@ -660,7 +660,7 @@ class DatabaseMssql extends DatabaseBase {
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
-		$sql = "SELECT CHARACTER_MAXIMUM_LENGTH,DATA_TYPE FROM INFORMATION_SCHEMA.Columns 
+		$sql = "SELECT CHARACTER_MAXIMUM_LENGTH,DATA_TYPE FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'";
 		$res = $this->query( $sql );
 		$row = $this->fetchRow( $res );
@@ -689,7 +689,7 @@ class DatabaseMssql extends DatabaseBase {
 				  SELECT sub2.*, ROW_NUMBER() OVER(ORDER BY sub2.line2) AS line3 FROM (
 					SELECT 1 AS line2, sub1.* FROM (' . $sql . ') AS sub1
 				  ) as sub2
-				) AS sub3 
+				) AS sub3
 				WHERE line3 BETWEEN ' . ( $offset + 1 ) . ' AND ' . ( $offset + $limit );
 			return $sql;
 		}
@@ -708,14 +708,14 @@ class DatabaseMssql extends DatabaseBase {
 			$offset = $matches[3] or
 				$offset = $matches[6] or
 				$offset = false;
-			
+
 			// strip the matching LIMIT clause out
 			$sql = str_replace( $matches[0], '', $sql );
 			return $this->limitResult( $sql, $row_count, $offset );
 		}
 		return $sql;
 	}
-	
+
 	// MSSQL does support this, but documentation is too thin to make a generalized
 	// function for this. Apparently UPDATE TOP (N) works, but the sort order
 	// may not be what we're expecting so the top n results may be a random selection.
@@ -723,8 +723,8 @@ class DatabaseMssql extends DatabaseBase {
 	function limitResultForUpdate( $sql, $num ) {
 		return $sql;
 	}
-	
-	
+
+
 	function timestamp( $ts = 0 ) {
 		return wfTimestamp( TS_ISO_8601, $ts );
 	}
@@ -747,7 +747,7 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	function tableExists ( $table, $schema = false ) {
-		$res = sqlsrv_query( $this->mConn, "SELECT * FROM information_schema.tables 
+		$res = sqlsrv_query( $this->mConn, "SELECT * FROM information_schema.tables
 			WHERE table_type='BASE TABLE' AND table_name = '$table'" );
 		if ( $res === false ) {
 			print( "Error in tableExists query: " . $this->getErrors() );
@@ -758,13 +758,13 @@ class DatabaseMssql extends DatabaseBase {
 		else
 			return false;
 	}
-	
+
 	/**
 	 * Query whether a given column exists in the mediawiki schema
 	 */
 	function fieldExists( $table, $field, $fname = 'DatabaseMssql::fieldExists' ) {
 		$table = $this->tableName( $table );
-		$res = sqlsrv_query( $this->mConn, "SELECT DATA_TYPE FROM INFORMATION_SCHEMA.Columns 
+		$res = sqlsrv_query( $this->mConn, "SELECT DATA_TYPE FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
 		if ( $res === false ) {
 			print( "Error in fieldExists query: " . $this->getErrors() );
@@ -778,7 +778,7 @@ class DatabaseMssql extends DatabaseBase {
 
 	function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
-		$res = sqlsrv_query( $this->mConn, "SELECT * FROM INFORMATION_SCHEMA.Columns 
+		$res = sqlsrv_query( $this->mConn, "SELECT * FROM INFORMATION_SCHEMA.Columns
 			WHERE TABLE_NAME = '$table' AND COLUMN_NAME = '$field'" );
 		if ( $res === false ) {
 			print( "Error in fieldInfo query: " . $this->getErrors() );
@@ -796,7 +796,7 @@ class DatabaseMssql extends DatabaseBase {
 		sqlsrv_begin_transaction( $this->mConn );
 		$this->mTrxLevel = 1;
 	}
-	
+
 	/**
 	 * End a transaction
 	 */
@@ -813,7 +813,7 @@ class DatabaseMssql extends DatabaseBase {
 		sqlsrv_rollback( $this->mConn );
 		$this->mTrxLevel = 0;
 	}
-	
+
 	function setup_database() {
 		global $wgVersion, $wgDBport, $wgDBuser;
 
@@ -887,58 +887,58 @@ class DatabaseMssql extends DatabaseBase {
 		$dbName = $this->escapeIdentifier( $dbName );
 
 		// It is not clear what can be used as a login,
-		// From http://msdn.microsoft.com/en-us/library/ms173463.aspx 
+		// From http://msdn.microsoft.com/en-us/library/ms173463.aspx
 		// a sysname may be the same as an identifier.
 		$newUser = $this->escapeIdentifier( $newUser );
 		$loginPassword = $this->addQuotes( $loginPassword );
-		
+
 		$this->doQuery("CREATE DATABASE $dbName;");
 		$this->doQuery("USE $dbName;");
 		$this->doQuery("CREATE SCHEMA $dbName;");
 		$this->doQuery("
-						CREATE 
-							LOGIN $newUser 
-						WITH 
+						CREATE
+							LOGIN $newUser
+						WITH
 							PASSWORD=$loginPassword
 						;
 					");
 		$this->doQuery("
-						CREATE 
-							USER $newUser 
-						FOR 
-							LOGIN $newUser 
-						WITH 
+						CREATE
+							USER $newUser
+						FOR
+							LOGIN $newUser
+						WITH
 							DEFAULT_SCHEMA=$dbName
 						;
 					");
 		$this->doQuery("
-						GRANT 
-							BACKUP DATABASE, 
-							BACKUP LOG, 
-							CREATE DEFAULT, 
-							CREATE FUNCTION, 
-							CREATE PROCEDURE, 
-							CREATE RULE, 
+						GRANT
+							BACKUP DATABASE,
+							BACKUP LOG,
+							CREATE DEFAULT,
+							CREATE FUNCTION,
+							CREATE PROCEDURE,
+							CREATE RULE,
 							CREATE TABLE,
-							CREATE VIEW, 
-							CREATE FULLTEXT CATALOG 
-						ON 
-							DATABASE::$dbName 
+							CREATE VIEW,
+							CREATE FULLTEXT CATALOG
+						ON
+							DATABASE::$dbName
 						TO $newUser
 						;
 					");
 		$this->doQuery("
-						GRANT 
+						GRANT
 							CONTROL
-						ON 
-							SCHEMA::$dbName 
+						ON
+							SCHEMA::$dbName
 						TO $newUser
 						;
 					");
-		
-		
+
+
 	}
-	
+
 	function encodeBlob( $b ) {
 	// we can't have zero's and such, this is a simple encoding to make sure we don't barf
 		return base64_encode( $b );
@@ -1029,7 +1029,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( isset( $options['ORDER BY'] ) ) $tailOpts .= " ORDER BY {$options['ORDER BY']}";
 
 		if ( isset( $noKeyOptions['DISTINCT'] ) && isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
-		
+
 		// we want this to be compatible with the output of parent::makeSelectOptions()
 		return array( $startOpts, '' , $tailOpts, '' );
 	}
@@ -1044,7 +1044,7 @@ class DatabaseMssql extends DatabaseBase {
 	function buildConcat( $stringList ) {
 		return implode( ' + ', $stringList );
 	}
-	
+
 	public function getSearchEngine() {
 		return "SearchMssql";
 	}
@@ -1092,7 +1092,7 @@ class MssqlField {
 }
 
 /**
- * The MSSQL PHP driver doesn't support sqlsrv_num_rows, so we recall all rows into an array and maintain our 
+ * The MSSQL PHP driver doesn't support sqlsrv_num_rows, so we recall all rows into an array and maintain our
  * own cursor index into that array...This is similar to the way the Oracle driver handles this same issue
  *
  * @ingroup Database
@@ -1131,7 +1131,7 @@ class MssqlResult {
 		}
 		return $obj;
   }
-	
+
   public function fetch( $mode = SQLSRV_FETCH_BOTH, $object_class = 'stdClass' ) {
 	if ( $this->mCursor >= $this->mRowCount || $this->mRowCount == 0 ) return false;
 	$ret = false;
@@ -1157,7 +1157,7 @@ class MssqlResult {
 			$ret = $this->mRows[$this->mCursor] + $arrNum;
 			break;
 	}
-	
+
 	$this->mCursor++;
 	return $ret;
   }
