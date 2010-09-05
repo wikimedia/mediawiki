@@ -1512,7 +1512,6 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar email a outros usuários',
 'right-revisionmove'          => 'Mover revisões',
-'right-selenium'              => 'Executar os testes do Selenium',
 
 # User rights log
 'rightslog'      => 'Registro de privilégios de usuário',
@@ -1631,7 +1630,7 @@ Para incluir a imagem numa página, utilize uma ligação em um dos seguintes fo
 'upload-preferred'            => 'Tipos de arquivos preferidos: $1.',
 'upload-prohibited'           => 'Tipos de arquivo proibidos: $1.',
 'uploadlog'                   => 'registro de uploads',
-'uploadlogpage'               => 'Registro de uploads',
+'uploadlogpage'               => 'Registro de carregamento',
 'uploadlogpagetext'           => 'Segue a listagem dos envios de arquivos mais recentes.
 A [[Special:NewFiles|galeria de arquivos novos]] oferece uma listagem mais visual.',
 'filename'                    => 'Nome do arquivo',

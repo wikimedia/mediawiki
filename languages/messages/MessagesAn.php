@@ -1311,7 +1311,6 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-override-export-depth' => 'Exporta pachinas que incluigan as enlazadas dica un fundaria de 5',
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
 'right-revisionmove'          => 'Tresladar versions',
-'right-selenium'              => 'Executar os tests Selenium',
 
 # User rights log
 'rightslog'      => "Rechistro de cambios en os dreitos d'os usuarios",

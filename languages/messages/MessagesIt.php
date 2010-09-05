@@ -1423,7 +1423,6 @@ L'operazione non può essere annullata.",
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
 'right-revisionmove'          => 'Sposta le revisioni',
-'right-selenium'              => 'Esegue i test Selenium',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',

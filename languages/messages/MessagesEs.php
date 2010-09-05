@@ -23,6 +23,7 @@
  * @author Clerc
  * @author Crazymadlover
  * @author Cvmontuy
+ * @author Danke7
  * @author David0811
  * @author Dferg
  * @author Diego Grez
@@ -1230,6 +1231,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 # Diffs
 'history-title'            => 'Historial de revisiones para «$1»',
 'difference'               => '(Diferencias entre revisiones)',
+'difference-multipage'     => '(Diferencia entre las páginas)',
 'lineno'                   => 'Línea $1:',
 'compareselectedversions'  => 'Comparar versiones seleccionadas',
 'showhideselectedversions' => 'Mostrar/ocultar versiones seleccionadas',
@@ -1401,7 +1403,7 @@ Esto no puede ser deshecho.',
 'gender-unknown'                => 'Sin especificar',
 'gender-male'                   => 'Masculino',
 'gender-female'                 => 'Femenino',
-'prefs-help-gender'             => 'Opcional: Usada para tarea de corrección de género por el software. Esta información será pública.',
+'prefs-help-gender'             => 'Opcional: empleado para que sea usado correctamente el género por parte del software. Esta información será pública.',
 'email'                         => 'Correo electrónico',
 'prefs-help-realname'           => 'El nombre real es opcional. Si decides proporcionarlo, se usará para dar atribución a tu trabajo.',
 'prefs-help-email'              => 'La dirección de correo es opcional, pero permite enviar una nueva contraseña en caso de olvidarla.
@@ -1530,7 +1532,6 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
 'right-revisionmove'          => 'Mover revisiones',
-'right-selenium'              => 'Ejecutar tests de Selenium',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',
@@ -1738,7 +1739,7 @@ Por favor, elige un nombre más descriptivo.",
 'upload-success-subj'         => 'Subida con éxito',
 'upload-success-msg'          => 'Tu carga de  [$2] fue existosa. Está disponible aquí: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en la carga',
-'upload-failure-msg'          => 'Hubo un problema con tu carga:
+'upload-failure-msg'          => 'Hubo un problema durante la carga desde [$2]:
 
 $1',
 'upload-warning-subj'         => 'Alerta de carga',
@@ -2453,7 +2454,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 ** Comportamiento intimidatorio u hostil
 ** Abusar de múltiples cuentas
 ** Nombre de usuario inaceptable',
-'ipbanononly'                     => 'Bloquear usuarios anónimos solamente',
+'ipbanononly'                     => 'Bloquear sólo usuarios anónimos',
 'ipbcreateaccount'                => 'Prevenir la creación de cuentas de usuario',
 'ipbemailban'                     => 'Prevenir que el usuario envíe correo electrónico',
 'ipbenableautoblock'              => 'Bloquear automáticamente la dirección IP usada por este usuario y cualquier IP posterior desde la cual intente editar',
@@ -3412,6 +3413,7 @@ También puedes [[Special:Watchlist/edit|usar el editor estándar]].',
 'version-version'                  => '(Versión $1)',
 'version-license'                  => 'Licencia',
 'version-poweredby-credits'        => "Este wiki funciona gracias a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'otros',
 'version-license-info'             => 'MediaWiki es software libre; puedes redistribuírlo y/o modificarlo bajo los términos de la Licencia General Pública GNU publicada por la Fundación del Software Libre; ya sea la versión 2 de la licencia, o (a tu elección) cualquier versión posterior.
 
 MediaWiki es distribuído con la esperanza de que será útil, pero SIN NINGUNA GARANTÍA; ni siquiera con la garantía implícita de COMERCIALIZACIÓN ó ADAPTACIÓN A UN PROPÓSITO PARTICULAR. Véase la Licencia Pública General GNU para mayores detalles.

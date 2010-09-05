@@ -1558,7 +1558,6 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
 'right-revisionmove'          => 'Dèplaciér des vèrsions',
-'right-selenium'              => 'Ègzécutar les èprôves « Selenium »',
 
 # User rights log
 'rightslog'      => 'Jornal des changements de statut d’utilisator',

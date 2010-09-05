@@ -1263,7 +1263,6 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-override-export-depth' => 'Esporté le pàgine ancludend le pàgine colegà fin-a a na profondeur ëd 5',
 'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
 'right-revisionmove'          => 'Tramudé le revision',
-'right-selenium'              => 'Fé marcé le preuve Selenium',
 
 # User rights log
 'rightslog'      => "Argistr dij drit ëd j'utent",

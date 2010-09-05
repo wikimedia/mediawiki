@@ -1356,7 +1356,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'right-override-export-depth' => "Export paazjes midin geslinkdje paazjes mit 'n deepdje ven 5",
 'right-sendemail'             => 'Versjik e-mail aan anger gebroekers',
 'right-revisionmove'          => 'Versjuuf versies',
-'right-selenium'              => 'Veur selenium-tests oet',
 
 # User rights log
 'rightslog'      => 'Gebroekersrechtelogbook',

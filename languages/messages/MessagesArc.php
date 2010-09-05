@@ -334,6 +334,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'login'                   => 'ܥܘܠ',
 'nav-login-createaccount' => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
 'userlogin'               => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
+'userloginnocreate'       => 'ܥܘܠ',
 'logout'                  => 'ܦܠܘܛ',
 'userlogout'              => 'ܦܠܘܛ',
 'notloggedin'             => 'ܠܐ ܥܠܝܠܐ',
@@ -343,12 +344,15 @@ Note that some pages may continue to be displayed as if you were still logged in
 'gotaccount'              => "ܐܝܬ ܠܟ ܚܘܫܒܢܐ؟ '''$1'''.",
 'gotaccountlink'          => 'ܥܘܠ',
 'createaccountmail'       => 'ܒܝܕ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
+'createaccountreason'     => 'ܥܠܬܐ',
 'badretype'               => 'ܡܠܬܐ ܕܥܠܠܐ ܟܬܒܬ ܐܢܬ ܠܐ ܐܘܝܢܬܐ.',
 'userexists'              => 'ܫܡܐ ܕܡܦܠܚܢܐ ܫܩܝܠܐ.
 ܓܒܝ ܫܡܐ ܐܚܪܢܐ.',
 'loginerror'              => 'ܦܘܕܐ ܒܥܠܠܐ',
+'noname'                  => 'ܠܐ ܦܪܫ ܐܢܬ ܫܡܐ ܕܡܬܚܫܚܢܐ ܬܪܝܨܐ',
 'loginsuccesstitle'       => 'ܥܠܠܐ ܓܡܪ',
 'loginsuccess'            => "'''ܗܫܐ ܥܠܝܠܐ ܐܢܬ ܒ{{SITENAME}} ܒܫܡ \"\$1\".'''",
+'nouserspecified'         => 'ܘܠܐ ܠܟ ܕܬܚܡ ܫܡܐ ܕܡܬܚܫܚܢܐ',
 'mailmypassword'          => 'ܫܕܪ ܠܝ ܡܠܬܐ ܚܕܬܐ ܕܥܠܠܐ',
 'passwordremindertitle'   => 'ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܢܝܬܐ ܚܕܬܐ ܠ{{SITENAME}}',
 'noemail'                 => 'ܠܝܬ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܠܡܦܠܚܢܐ "$1".',
@@ -358,6 +362,13 @@ Note that some pages may continue to be displayed as if you were still logged in
 'createaccount-title'     => 'ܒܪܝܐ ܕܚܘܫܒܢܐ ܒ {{SITENAME}}',
 'loginlanguagelabel'      => 'ܠܫܢܐ: $1',
 
+# JavaScript password checks
+'password-strength'            => 'ܚܝܠܐ ܕܡܠܬܐ ܕܥܠܠܐ',
+'password-strength-bad'        => 'ܠܐ ܛܒܬܐ',
+'password-strength-mediocre'   => 'ܡܨܥܝܬܐ',
+'password-strength-acceptable' => 'ܡܬܩܒܠܢܬܐ',
+'password-strength-good'       => 'ܛܒܬܐ',
+
 # Password reset dialog
 'resetpass'                 => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ',
 'resetpass_header'          => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ ܕܚܘܫܒܢܐ',
@@ -365,6 +376,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'newpassword'               => 'ܡܠܬܐ ܕܥܠܠܐ ܚܕܬܐ:',
 'retypenew'                 => 'ܟܬܘܒ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܬܐ ܐܚܪܬܐ:',
 'resetpass-submit-loggedin' => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ',
+'resetpass-submit-cancel'   => 'ܒܛܘܠ',
 'resetpass-temp-password'   => 'ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܢܝܬܐ:',
 
 # Edit page toolbar

@@ -1373,7 +1373,6 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 'right-revisionmove'          => "Dilec'hiañ an adweladennoù",
-'right-selenium'              => 'Seveniñ an testoù seleniom',
 
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',

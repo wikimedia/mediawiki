@@ -1169,7 +1169,6 @@ $1",
 'right-override-export-depth' => '出有五層深之頁',
 'right-sendemail'             => '擬書傳予他簿',
 'right-revisionmove'          => '遷審',
-'right-selenium'              => '試Selenium',
 
 # User rights log
 'rightslog'  => '職權志',

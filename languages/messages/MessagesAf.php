@@ -1423,7 +1423,6 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-override-export-depth' => "Eksporteer bladsye insluitend geskakelde bladsye tot 'n diepte van 5",
 'right-sendemail'             => 'Stuur e-pos aan ander gebruikers',
 'right-revisionmove'          => 'Skuif wysigings',
-'right-selenium'              => 'Voer Slenium-toets uit',
 
 # User rights log
 'rightslog'      => 'Gebruikersregtelogboek',

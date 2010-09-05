@@ -1503,7 +1503,6 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
 'right-revisionmove'          => 'Movi reviziojn',
-'right-selenium'              => 'Ekzekuti testojn de Selenium',
 
 # User rights log
 'rightslog'      => 'Protokolo de uzanto-rajtoj',

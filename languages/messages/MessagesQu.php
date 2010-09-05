@@ -1443,7 +1443,6 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'right-override-export-depth' => "P'anqakunata hawaman quy, t'inkisqa p'anqakunatapas pichqa ñiqin t'inkipayasqakama",
 'right-sendemail'             => 'Huk ruraqkunaman e-chaskita kachay',
 'right-revisionmove'          => 'Musuqchasqakunata astay',
-'right-selenium'              => 'Silinyu llanchiykunata purichiy',
 
 # User rights log
 'rightslog'      => 'Ruraqpa hayñinkunap hukyasqankuna',

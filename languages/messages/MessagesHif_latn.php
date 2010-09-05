@@ -1244,7 +1244,6 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-sendemail'             => 'Duusra sadasya ke lage e-mail bhejo',
 'right-revisionmove'          => 'Badlao ke naam badlo',
-'right-selenium'              => 'Selenium test karo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',

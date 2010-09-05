@@ -1544,7 +1544,6 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
 'right-revisionmove'          => 'Přesouvání verzí',
-'right-selenium'              => 'Spouštění testů v Seleniu',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',

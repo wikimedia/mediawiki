@@ -1461,7 +1461,6 @@ $1",
 'right-override-export-depth' => 'экспартаваньне старонак, уключаючы зьвязаныя старонкі з глыбінёй да 5',
 'right-sendemail'             => 'адпраўка электронных лістоў іншым удзельнікам',
 'right-revisionmove'          => 'перанос вэрсіяў',
-'right-selenium'              => 'выкананьне тэстаў Selenium',
 
 # User rights log
 'rightslog'      => 'Журнал правоў удзельнікаў',

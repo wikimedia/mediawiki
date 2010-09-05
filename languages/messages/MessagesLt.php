@@ -1052,8 +1052,15 @@ Prašome patikrinti sąrašus.',
 'revmove-reasonfield'          => 'Priežastis:',
 'revmove-titlefield'           => 'Paskirties puslapis:',
 'revmove-badparam-title'       => 'Netinkami parametrai',
+'revmove-badparam'             => 'Jūsų užklausoje yra negalimų parametrų ar jų nepakanka.
+Grįžkite į ankstesnį puslapį ir bandykite dar kartą.',
 'revmove-norevisions-title'    => 'Neleistina paskirties versija',
+'revmove-norevisions'          => 'Nenurodėte nė vienos versijos arba nurodyta versija neegzistuoja.',
 'revmove-nullmove-title'       => 'Blogas pavadinimas',
+'revmove-nullmove'             => 'Puslapis, į kurį perkeliamas keitimas, negali būti tokio paties pavadinimo, kaip šaltinio puslapis.
+Grįžkite į ankstesnį puslapį ir pasirinkite kitą pavadinimą iš "$1".',
+'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] keitimas buvo perkeltas|$1 [[$2]] keitimai buvo perkelti}} į egzistuojantį puslapį [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Vienas [[$2]] keitimas buvo|$1 [[$2]] keitimai buvo}} perkelti į naujai sukurtą puslapį [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',
@@ -1088,6 +1095,7 @@ Prašome patikrinti sąrašus.',
 # Diffs
 'history-title'            => '„$1“ versijų istorija',
 'difference'               => '(Skirtumai tarp versijų)',
+'difference-multipage'     => '(Skirtumai tarp puslapių)',
 'lineno'                   => 'Eilutė $1:',
 'compareselectedversions'  => 'Palyginti pasirinktas versijas',
 'showhideselectedversions' => 'Rodyti/slėpti pasirinktas versijas',
@@ -1593,10 +1601,11 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 'upload-success-subj'         => 'Įkelta sėkmingai',
 'upload-success-msg'          => 'Jūsų įkėlimas iš [$2] buvo sėkmingas. Jį galima rasti čia: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Įkėlimo problema',
-'upload-failure-msg'          => 'Įvyko įkėlimo problema:
+'upload-failure-msg'          => 'Įvyko įkėlimo iš [$2] problema:
 
 $1',
 'upload-warning-subj'         => 'Įkėlimo įspėjimas',
+'upload-warning-msg'          => 'Įvyko įkėlimo iš [$2] problema. Jums reikėtų grįžti į [[Special:Upload/stash/$1|įkėlimo formą]], norint išspręsti šią problemą.',
 
 'upload-proto-error'        => 'Neteisingas protokolas',
 'upload-proto-error-text'   => 'Nuotoliniai įkėlimas reikalauja, kad URL prasidėtų <code>http://</code> arba <code>ftp://</code>.',
@@ -2117,7 +2126,8 @@ Paskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User talk:$3|Aptarimas]]
 grąžinta prieš tai buvusi $2 versija.',
 
 # Edit tokens
-'sessionfailure' => 'Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.
+'sessionfailure-title' => 'Sesijos klaida',
+'sessionfailure'       => 'Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.
 Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pamėginkite vėl.',
 
 # Protect
@@ -2261,6 +2271,7 @@ Pateikiamas paskutinis blokavimo istorijos įrašas.',
 Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'sp-contributions-search'              => 'Ieškoti įnašo',
 'sp-contributions-username'            => 'IP adresas arba naudotojo vardas:',
+'sp-contributions-toponly'             => 'Rodyti tik paskutinius keitimus',
 'sp-contributions-submit'              => 'Ieškoti',
 
 # What links here
@@ -2796,6 +2807,7 @@ Jį paleidus jūsų sistema gali būti pažeista.",
 'file-info-gif-looped' => 'ciklinis',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kadras|kadrai|kadrų}}',
 'file-info-png-looped' => 'ciklinis',
+'file-info-png-repeat' => 'grota $1 {{PLURAL:$1|kartą|kartus|kartų}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|kadras|kadrai|kadrų}}',
 
 # Special:NewFiles
@@ -3198,6 +3210,7 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'table_pager_first'        => 'Pirmas puslapis',
 'table_pager_last'         => 'Paskutinis puslapis',
 'table_pager_limit'        => 'Rodyti po $1 puslapyje',
+'table_pager_limit_label'  => 'Elementai puslapyje:',
 'table_pager_limit_submit' => 'Rodyti',
 'table_pager_empty'        => 'Jokių rezultatų',
 
@@ -3347,7 +3360,13 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'tags-hitcount'           => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
 
 # Special:ComparePages
-'compare-rev1' => 'Pirma versija',
+'comparepages'     => 'Palyginti puslapius',
+'compare-selector' => 'Palyginti puslapio keitimus',
+'compare-page1'    => 'Puslapis 1',
+'compare-page2'    => 'Puslapis 2',
+'compare-rev1'     => 'Pirma versija',
+'compare-rev2'     => 'Antra versija',
+'compare-submit'   => 'Palyginti',
 
 # Database error messages
 'dberr-header'      => 'Ši svetainė turi problemų.',

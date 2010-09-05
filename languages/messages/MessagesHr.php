@@ -1493,7 +1493,6 @@ Možete omogućiti drugima da Vas kontaktiraju na suradničkoj stranici ili stra
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 'right-revisionmove'          => 'Premjesti izmjene',
-'right-selenium'              => 'Pokreni testove Selenium',
 
 # User rights log
 'rightslog'      => 'Evidencija suradničkih prava',

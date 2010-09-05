@@ -1290,7 +1290,6 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'right-override-export-depth' => 'بەت قەۋەتلىك ئۇلىنىشى بار بەتنى چىقار',
 'right-sendemail'             => 'باشقا ئىشلەتكۈچىگە ئېلخەت يوللا',
 'right-revisionmove'          => 'تۈزىتىلگەن نەشرىنى يۆتكە',
-'right-selenium'              => 'Selenium سىناشنى ئىجرا قىل',
 
 # User rights log
 'rightslog'      => 'ئىشلەتكۈچى ھوقۇق خاتىرىسى',

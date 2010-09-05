@@ -1340,7 +1340,6 @@ $1",
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-sendemail'             => '寄電郵畀其他用戶',
 'right-revisionmove'          => '搬修訂',
-'right-selenium'              => '運行Selenium測試',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',

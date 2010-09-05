@@ -1394,7 +1394,6 @@ $1",
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-sendemail'             => '发电子邮件给其他用户',
 'right-revisionmove'          => '移动修订版本',
-'right-selenium'              => '运行Selenium测试',
 
 # User rights log
 'rightslog'      => '用户权限日志',

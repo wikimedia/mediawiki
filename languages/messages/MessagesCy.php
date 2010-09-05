@@ -1321,7 +1321,6 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-override-export-depth' => 'Allforio tudalennau gan gynnwys tudalennau cysylltiedig hyd at ddyfnder o 5',
 'right-sendemail'             => 'Anfon e-bost at ddefnyddwyr eraill',
 'right-revisionmove'          => 'Symud diwygiadau',
-'right-selenium'              => 'Gwneud profion Seleniwm',
 
 # User rights log
 'rightslog'      => 'Lòg galluoedd defnyddiwr',
@@ -3191,7 +3190,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio\'r rhestr arferol]].',
 
 Cyhoeddir MediaWiki yn y gobaith y bydd o ddefnydd, ond HEB UNRHYW WARANT; heb hyd yn oed gwarant ymhlyg o FARCHNADWYEDD nag o FOD YN ADDAS AT RYW BWRPAS ARBENNIG. Gweler y GNU General Public License am fanylion pellach.
 
-Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Public License] gyda'r rhaglen hon; os nad ydych, ysgrifennwch at Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, neu [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html darllenwch amdano ar y we].",
+Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Public License] gyda'r rhaglen hon; os nad ydych, ysgrifennwch at Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, neu [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html gallwch ei ddarllen ar y we].",
 'version-software'                 => 'Meddalwedd gosodedig',
 'version-software-product'         => 'Cynnyrch',
 'version-software-version'         => 'Fersiwn',

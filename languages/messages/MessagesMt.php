@@ -1815,7 +1815,7 @@ Kun af li siti elettroniċi oħra jistgħu jorbtu b'ħolqa diretta lejn il-fajl,
 'all-logs-page'        => 'Ir-reġistri pubbliċi kollha',
 'alllogstext'          => "Preżentazzjoni unifikata tar-reġistri kollha ta' {{SITENAME}}.<br />
 Tista' tqassar il-kriterji ta' tfittxija billi tagħżel it-tip ta' log, l-isem tal-utent, jew il-paġna affetwata (it-tnejn tal-aħħar huma sensittivi għal kif jinkitbu l-karattri).",
-'logempty'             => "Ir-reġistru m'għandu ebda element korrispondenti mat-tfittxija tiegħek.",
+'logempty'             => "Ir-reġistru m'għandu l-ebda element li jaqbel mat-tfittxija tiegħek.",
 'log-title-wildcard'   => "Tfittxija ta' titli li jibdew b'dan it-test",
 
 # Special:AllPages

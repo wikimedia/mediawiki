@@ -1507,7 +1507,6 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
 'right-revisionmove'          => 'lapváltozatok áthelyezése',
-'right-selenium'              => 'Selenium-tesztek futtatása',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',
