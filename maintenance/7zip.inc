@@ -1,5 +1,12 @@
 <?php
 /**
+ * 7z stream wrapper
+ *
+ * @file
+ * @ingroup Maintenance
+ */
+
+/**
  * Stream wrapper around 7za filter program.
  * Required since we can't pass an open file resource to XMLReader->open()
  * which is used for the text prefetch.

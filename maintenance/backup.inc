@@ -1,6 +1,8 @@
 <?php
 /**
- * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
+ * Base classes for database dumpers
+ *
+ * Copyright © 2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify

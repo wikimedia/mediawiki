@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Script to remove broken, unparseable titles in the Watchlist.
  *
  * Usage: php cleanupWatchlist.php [--fix]
@@ -24,6 +24,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @author Brion Vibber <brion at pobox.com>
  * @ingroup Maintenance
  */
