@@ -41,6 +41,13 @@ class PasswordError extends MWException {
  * of the database.
  */
 class User {
+	/**
+	 * Global constants made accessable as class constants so that autoloader
+	 * magic can be used.
+	 */
+	const USER_TOKEN_LENGTH = USER_TOKEN_LENGTH;
+	const MW_USER_VERSION = MW_USER_VERSION;
+	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
 	/**
 	 * \type{\arrayof{\string}} List of member variables which are saved to the
