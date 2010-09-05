@@ -150,7 +150,7 @@ class DatabaseMssql extends DatabaseBase {
 		// perform query
 		$stmt = sqlsrv_query( $this->mConn, $sql );
 		if ( $stmt == false ) {
-			$message = "A database error has occurred\n" .
+			$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 				"Query: " . htmlentities( $sql ) . "\n" .
 				"Function: " . __FUNCTION__ . "\n";
 			// process each error (our driver will give us an array of errors unlike other providers)
