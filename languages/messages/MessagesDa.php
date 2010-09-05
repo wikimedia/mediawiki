@@ -1381,7 +1381,6 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
 'right-revisionmove'          => 'Flyt revisioner',
-'right-selenium'              => 'Kør Selenium tests',
 
 # User rights log
 'rightslog'      => 'Rettighedslog',

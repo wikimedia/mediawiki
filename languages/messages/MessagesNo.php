@@ -1430,7 +1430,6 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
 'right-sendemail'             => 'Send e-post til andre brukere',
 'right-revisionmove'          => 'Flytte revisjoner',
-'right-selenium'              => 'Kjør Selenium-tester',
 
 # User rights log
 'rightslog'      => 'Brukerrettighetslogg',

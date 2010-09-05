@@ -1478,7 +1478,6 @@ $1",
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
 'right-revisionmove'          => '특정 판 옮기기',
-'right-selenium'              => '셀레늄 테스트 실행',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',

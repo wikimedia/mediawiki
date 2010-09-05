@@ -1252,7 +1252,6 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'right-override-export-depth' => 'Sahypalary, şol sanda çykgytly sahypalary 5-e çenli çuňlukda eksportirle',
 'right-sendemail'             => 'Başga ulanyjylara e-poçta iber',
 'right-revisionmove'          => 'Wersiýalary geçir',
-'right-selenium'              => 'Selenium synaglaryny geçir',
 
 # User rights log
 'rightslog'      => 'Ulanyjy hukuklarynyň gündeligi',

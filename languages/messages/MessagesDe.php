@@ -1556,7 +1556,6 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
 'right-revisionmove'          => 'Versionen verschieben',
-'right-selenium'              => 'Tests mit Selenium durchführen',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',

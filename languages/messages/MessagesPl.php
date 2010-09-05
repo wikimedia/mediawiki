@@ -1468,7 +1468,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
 'right-revisionmove'          => 'Przenoszenie wersji',
-'right-selenium'              => 'Uruchamianie testów Selenium',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',

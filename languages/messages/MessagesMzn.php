@@ -516,9 +516,6 @@ $2، $1',
 
 'grouppage-sysop' => '{{ns:project}}:کـاره‌ئون',
 
-# Rights
-'right-selenium' => 'ایجرای آزمون سلنیوم',
-
 # User rights log
 'rightslog'     => 'سیاهه اختیارای کاروری',
 'rightslogtext' => 'اینتا سیاهه تغییرای اختیارای کاروری هسته.',

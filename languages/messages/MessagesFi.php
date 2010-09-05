@@ -1468,7 +1468,6 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
 'right-revisionmove'          => 'Siirtää versioita',
-'right-selenium'              => 'Suorittaa Selenium-testit',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',

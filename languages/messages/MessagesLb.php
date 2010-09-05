@@ -1372,7 +1372,6 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
 'right-revisionmove'          => 'Versioune réckelen',
-'right-selenium'              => 'Selenium-Tester maachen',
 
 # User rights log
 'rightslog'      => 'Logbuch vun de Benotzerrechter',

@@ -1463,7 +1463,6 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
 'right-revisionmove'          => 'Di chuyển phiên bản',
-'right-selenium'              => 'Chạy thử nghiệm Selenium',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp quyền thành viên',

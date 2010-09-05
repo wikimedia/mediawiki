@@ -1396,7 +1396,6 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'right-override-export-depth' => "Mamoaka ny pejy miaraka amin'ny zana-pejy hatramin'ny ambaratonga fahadimy",
 'right-sendemail'             => "Mandefa imailaka any amin'ny mpikambana hafa",
 'right-revisionmove'          => 'Afindra ny revision',
-'right-selenium'              => 'Hanao fanandramana Selenium',
 
 # User rights log
 'rightslog'      => 'Tatitr’asa momban’ny fanovana satam-pikambana',

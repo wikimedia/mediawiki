@@ -1589,7 +1589,6 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
 'right-revisionmove'          => 'Versies verplaatsen',
-'right-selenium'              => 'Selenium-tests uitvoeren',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',

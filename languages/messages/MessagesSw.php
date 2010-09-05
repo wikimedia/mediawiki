@@ -1446,7 +1446,7 @@ Kama unataka kupakia faili lako, tafadhali rudia kwa kutumia jina lingine. [[Fil
 'fileexists-shared-forbidden' => 'Faili lenye jina hili tayari lipo katika hifadhi ya pamoja ya faili.
 Kama bado unataka kupakia faili lako, tafadhali rudie kwa kutumia jina jipya.
 [[File:$1|thumb|center|$1]]',
-'file-exists-duplicate'       => 'Faili hili ni nakili ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
+'file-exists-duplicate'       => 'Faili hili ni nakala ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
 'file-deleted-duplicate'      => 'Faili sawa sawa na faili hili ([[$1]]) limeshafutwa.
 Tazama kumbukumbu za kufuta faili lile kabla hujalipakia upya.',
 'uploadwarning'               => 'Ilani kuhusu kupakia',
@@ -1488,11 +1488,18 @@ $1',
 'upload-warning-subj'         => 'Ilani ya kupakia',
 'upload-warning-msg'          => 'Kulitokea tatizo wakati wa kupakia kutoka kwa [$2]. Unaweza kurudi katika [[Special:Upload/stash/$1|fomu ya kupakia]] ili kurekebisha tatizo.',
 
-'upload-proto-error'  => 'Itifaki isio sahihi',
-'upload-file-error'   => 'Hitilafu ya ndani',
-'upload-misc-error'   => 'Hitilafu ya kupakia isiyojulikana',
-'upload-unknown-size' => 'Ukubwa haujulikani',
-'upload-http-error'   => 'Imetokea hitilafu ya HTTP: $1',
+'upload-proto-error'        => 'Itifaki isio sahihi',
+'upload-proto-error-text'   => 'Ili kupakia kutoka mbali lazima URL ianze na <code>http://</code> or <code>ftp://</code>.',
+'upload-file-error'         => 'Hitilafu ya ndani',
+'upload-file-error-text'    => 'Hitilafu ya ndani ilitokea ulipojaribu kuanzisha faili la muda kwenye seva.
+Tafadhali uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
+'upload-misc-error'         => 'Hitilafu ya kupakia isiyojulikana',
+'upload-misc-error-text'    => 'Hitilafu isiyojulikana ilitokea wakati wa kupakia.
+Tafadhali uhakikishe kwamba URL ni halali na inafikika, halafu jaribu tena.
+Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
+'upload-too-many-redirects' => 'URL ilikuwa na maelekezo mengi mno',
+'upload-unknown-size'       => 'Ukubwa haujulikani',
+'upload-http-error'         => 'Imetokea hitilafu ya HTTP: $1',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Ruksa imekataliwa',
@@ -1517,6 +1524,10 @@ Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 'upload_source_file' => '(faili kwenye tarakilishi yako)',
 
 # Special:ListFiles
+'listfiles-summary'     => 'Ukurasa maalum huu unaonyesha mafaili yote yaliyopakiwa.
+Unapofika ukurasa orodha ya mafaili inapangwa ianze na mafaili yaliyopakiwa hivi karibuni.
+Ukibofya kichwa cha safu mtindo wa kupanga orodha utabadili.',
+'listfiles_search_for'  => 'Tafuta jina la faili:',
 'imgfile'               => 'faili',
 'listfiles'             => 'Orodha ya mafaili',
 'listfiles_date'        => 'Tarehe',
@@ -1545,9 +1556,13 @@ Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 'filehist-missing'          => 'Faili halipo',
 'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu umeunganishwa|Kurasa hizi $1 zimeunganishwa}} na faili hili:',
+'linkstoimage-more'         => 'Zipo {{PLURAL:$1|kurasa|kurasa}} zaidi na $1 zinazounga na faili hili.
+Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}} tu vinavyounga na faili hili.
+[[Special:WhatLinksHere/$2|Orodha nzima]] inapatikana.',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
 'morelinkstoimage'          => 'Tazama [[Special:WhatLinksHere/$1|viungo vingine]] vinavyoelekeza faili hili.',
 'redirectstofile'           => '{{PLURAL:$1|Faili linalofuata linaelekeza|Mafaili $1 yanayofuata yanaelekeza}} faili hili:',
+'duplicatesoffile'          => '{{PLURAL:$1|Faili linalofuata ni nakala ya|Mafaili $1 yanayofuata ni nakala za}} faili hili ([[Special:FileDuplicateSearch/$2|maelezo mengine]]):',
 'sharedupload'              => 'Faili hili linatoka $1 na linaweza kushirikiwa na miradi mingine.',
 'filepage-nofile'           => 'Hakuna faili yenye jina hili.',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
@@ -1833,6 +1848,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'notanarticle'      => 'Ukurasa nje ya kusudi ya wiki',
 'notvisiblerev'     => 'Haririo ya mwisho, iliotendwa na mtumiaji mwingine, imefutwa',
 'watchlist-details' => 'Unafuatilia {{PLURAL:$1|ukurasa $1|kurasa $1}} bila kuzingatia kurasa za majadiliano.',
+'wlheader-enotif'   => '* Huduma ya kuarifu kwa barua pepe imewezeshwa.',
 'watchlistcontains' => 'Orodha ya maangalizi yako ina {{PLURAL:$1|kitu|vitu}} $1.',
 'wlshowlast'        => 'Onyesha kutoka masaa $1 siku $2 $3',
 'watchlist-options' => 'Hitiari za maangalizi',
@@ -1841,11 +1857,15 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'watching'   => 'Unafuatilia...',
 'unwatching' => 'Umeacha kufuatilia...',
 
+'enotif_mailer'                => 'Huduma ya taarifa ya barua pepe kutoka kwa {{SITENAME}}',
 'enotif_newpagetext'           => 'Ukurasa huu ni mpya.',
 'enotif_impersonal_salutation' => 'Kwa mtumiaji wa {{SITENAME}}',
 'changed'                      => 'alibadilisha',
 'created'                      => 'alianzisha',
 'enotif_subject'               => '$PAGEEDITOR $CHANGEDORCREATED ukurasa wa $PAGETITLE kwenye {{SITENAME}}',
+'enotif_lastvisited'           => 'Tazama mabadiliko yote tangu ziara yako iliyopita kwenye ukurasa wa $1.',
+'enotif_lastdiff'              => 'Tazama badiliko hili hapo $1.',
+'enotif_anon_editor'           => 'mtumiaji bila jina $1',
 'enotif_body'                  => 'Mpendwa $WATCHINGUSERNAME,
 
 
@@ -1878,6 +1898,8 @@ Kutoa maoni yako au kupata msaada mwingine:
 'deletepage'             => 'Futa ukurasa',
 'confirm'                => 'Yakinisha',
 'excontent'              => "iliyokuwemo: '$1'",
+'excontentauthor'        => 'yaliyomo yalikuwa: "$1" (yaliyechangiwa na mchangiaji mmoja tu anayeitwa "[[Special:Contributions/$2|$2]]")',
+'exbeforeblank'          => 'maandishi kabla hayajafutwa yote yalikuwa: "$1"',
 'exblank'                => 'ukurasa ulikuwa tupu',
 'delete-confirm'         => 'Futa "$1"',
 'delete-legend'          => 'Futa',
@@ -1888,7 +1910,9 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'actionfailed'           => 'Tendo halikufaulu',
 'deletedtext'            => '"<nowiki>$1</nowiki>" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
 'deletedarticle'         => 'alifuta "[[$1]]"',
+'suppressedarticle'      => 'alificha "[[$1]]"',
 'dellogpage'             => 'Kumbukumbu ya ufutaji',
+'dellogpagetext'         => 'Kurasa na mafaili zilizofutwa hivi karibuni zinaorodheshwa chini.',
 'deletionlog'            => 'kumbukumbu za kufuta',
 'reverted'               => 'Ilirejeshwa hadi pitio la zamani',
 'deletecomment'          => 'Sababu:',
@@ -1899,6 +1923,8 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 ** Ukiukaji wa hakimiliki
 ** Uharabu',
 'delete-edit-reasonlist' => 'Uhariri orodha ya sababu za kufuta',
+'delete-toobig'          => 'Ukurasa huu una historia ya kuhariri ndefu sana, yenye {{PLURAL:$1|badiliko|mabadiliko}} zaidi na $1.
+Ufutaji wa kurasa hizi moja kwa moja umezuluiwa ili {{SITENAME}} isivurugwe kwa bahati mbaya.',
 
 # Rollback
 'rollback'         => 'Rejesha masahihisho',
@@ -1907,6 +1933,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'rollbackfailed'   => 'Haikufaulu kurejesha',
 'cantrollback'     => 'Haiwezekana kujesha sahihisho;
 ukurasa huu una mhariri mmoja tu.',
+'editcomment'      => "Muhtasari wa kuhariri ilikuwa: \"''\$1''\".",
 'revertpage'       => 'Masahihisho aliyefanya [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]]) yalirejeshwa hadi sahihisho la mwisho na [[User:$1|$1]]',
 'rollback-success' => 'Masahihisho aliyeyafanya $1 yalirejeshwa hadi kufika sahihisho la mwisho aliyefanya $2.',
 
@@ -2530,9 +2557,11 @@ Pia unaweza [[Special:Watchlist/edit|kutumia kihariri cha kawaida]].',
 'version-license'           => 'Ruhusa',
 'version-poweredby-credits' => "Wiki hii inaendeshwa na bidhaa pepe ya '''[http://www.mediawiki.org/ MediaWiki]''', hatimiliki © 2001-$1 $2.",
 'version-poweredby-others'  => 'wengine',
-'version-license-info'      => 'MediaWiki ni bidhaa pepe huru; unaweza kuigawanyika pamoja na kuitumia na kuibadilisha kutokana na masharti ya hatimiliki GNU General Public License inayotolewa na Free Software Foundation; ama toleo 2 la hatimiliki, ama (ukitaka) toleo lolote linalofuata.
+'version-license-info'      => 'MediaWiki ni bidhaa pepe huru; unaweza kuigawanyika pamoja na kuitumia na kuibadilisha kutokana na masharti ya leseni ya GNU General Public License inayotolewa na Free Software Foundation (Shirika la Bidhaa Pepe Huru); ama toleo 2 la hatimiliki, ama (ukitaka) toleo lolote linalofuata.
 
-MediaWiki inagawanyika',
+MediaWiki inagawanyiwa kwa kutumaini kwamba ni ya manufaa, lakini BILA JUKUMU; hata bila jukumu linalojitokeza la KUWA TAYARI KUUZIKA au KUFAA KWA KUSUDI FULANI. Tazama leseni ya GNU General Public License kuona maelezo mengine.
+
+Huwa unapokea [{{SERVER}}{{SCRIPTPATH}}/COPYING nakala ya GNU General Public License] pamoja na programu hii; la sivyo, andika kuomba nakala kwa Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA au [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html uisome mkondoni].',
 'version-software'          => 'Bidhaa pepe iliyosakinishwa',
 'version-software-product'  => 'Bidhaa',
 'version-software-version'  => 'Toleo',

@@ -1492,7 +1492,6 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
 'right-revisionmove'          => 'Revizyonları taşı',
-'right-selenium'              => 'Selenyum testleri yap',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',

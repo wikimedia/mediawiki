@@ -1365,7 +1365,6 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 'right-override-export-depth' => 'Iluwas ang mga pahina na kabilang ang mga pahinang nakakawing magpahanggang sa isang lalim na 5',
 'right-sendemail'             => 'Magpadala ng e-liham sa ibang mga tagagamit',
 'right-revisionmove'          => 'Ilipat ang mga pagbabago',
-'right-selenium'              => 'Patakbuhin ang mga pagsusulit na Selenium',
 
 # User rights log
 'rightslog'      => 'Tala ng mga karapatan ng tagagamit',

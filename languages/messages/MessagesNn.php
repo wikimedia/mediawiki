@@ -1445,7 +1445,6 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-override-export-depth' => 'Eksporter sider inkludert lenkte sider til ei djupn på 5',
 'right-sendemail'             => 'Senda e-post til andre brukarar',
 'right-revisionmove'          => 'Flytta versjonar',
-'right-selenium'              => 'Køyra Selenium-testar',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',

@@ -1490,7 +1490,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-override-export-depth' => 'Eksportida lehekülgi, kaasates viidatud leheküljed kuni viienda tasemeni',
 'right-sendemail'             => 'Saata teistele kasutajatele e-kirju',
 'right-revisionmove'          => 'Teisaldada redaktsioone',
-'right-selenium'              => 'Käivitada Seleniumi teste',
 
 # User rights log
 'rightslog'      => 'Kasutaja õiguste logi',

@@ -1551,7 +1551,6 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
 'right-revisionmove'          => 'Déplacer des révisions',
-'right-selenium'              => 'Exécuter les tests Selenium',
 
 # User rights log
 'rightslog'      => 'Journal des modifications de droits d’utilisateurs',

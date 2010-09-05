@@ -795,6 +795,7 @@ $1',
 'revisiondelete'             => 'د ړنګولو/ناړنګولو مخکتنې',
 'revdelete-no-file'          => 'ځانګړې شوې دوتنه نشته.',
 'revdelete-show-file-submit' => 'هو',
+'revdelete-selected'         => "'''د [[:$1]] {{PLURAL:$2|ټاکلې بڼه|ټاکلې بڼې}}:'''",
 'revdelete-hide-image'       => 'د دوتنې مېنځپانګه پټول',
 'revdelete-hide-comment'     => 'د سمون لنډيز پټول',
 'revdelete-radio-same'       => '(مه بدلوه)',
@@ -903,7 +904,9 @@ $1',
 'search-external'                  => 'باندنۍ پلټنه',
 
 # Quickbar
-'qbsettings-none' => 'هېڅ',
+'qbsettings-none'          => 'هېڅ',
+'qbsettings-floatingleft'  => 'کيڼه لامبا',
+'qbsettings-floatingright' => 'ښي لامبا',
 
 # Preferences page
 'preferences'                 => 'غوره توبونه',
@@ -921,6 +924,8 @@ $1',
 'prefs-rc'                    => 'وروستي بدلونونه',
 'prefs-watchlist'             => 'کتنلړ',
 'prefs-watchlist-days'        => 'د ورځو شمېر چې په کتلي لړليک کې به ښکاري:',
+'prefs-watchlist-days-max'    => 'اکثر بريد 7 ورځې',
+'prefs-watchlist-edits-max'   => 'د شمېر اکثر بريد: 1000',
 'prefs-misc'                  => 'بېلابېل',
 'prefs-resetpass'             => 'پټنوم بدلول',
 'prefs-email'                 => 'د برېښليک خوښنې',
@@ -1810,6 +1815,7 @@ $1',
 'tooltip-undo'                    => '"ناکړ" همدا سمون پر شا ګرځوي او د سمون کړکۍ د مخکتنې په بڼه پرانيزي.
 دا کړنه د لنډيز په برخه کې د سمونونو د سببونو د ورګډولو آسانتيا برابروي.',
 'tooltip-preferences-save'        => 'غوره توبونه خوندي کول',
+'tooltip-summary'                 => 'يو لنډ لنډيز کښل',
 
 # Attribution
 'anonymous'        => 'د {{SITENAME}} {{PLURAL:$1|ورکنومی کارن|ورکنومي کارنان}}',

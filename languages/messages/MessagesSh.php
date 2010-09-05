@@ -1270,7 +1270,6 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 'right-revisionmove'          => 'Premještanje izmjena',
-'right-selenium'              => 'Pokretanje selenijum testova',
 
 # User rights log
 'rightslog'      => 'Registar korisničkih prava',

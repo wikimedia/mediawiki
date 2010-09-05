@@ -644,6 +644,7 @@ $2',
 'suspicious-userlogout'      => ' אײַער בקשה אַרויסלאָגירן זיך איז אפגעלייגט געווארן ווייַל אייגנטלעך איז זי געשיקט דורך אַ צעבראכענעם בלעטערער אָדער א פראקסי מיט א זאפאס.',
 
 # JavaScript password checks
+'password-strength'            => 'געשאַצטע פאַסווארט־שטאַרקייט: $1',
 'password-strength-bad'        => 'שוואַך',
 'password-strength-mediocre'   => 'מיטלמעסיק',
 'password-strength-acceptable' => 'נישקשה',
@@ -982,6 +983,8 @@ $1",
 'logdelete-failure'           => "'''נישט מעגלעך צו שטעלן לאג זעבאַרקייט:'''
 $1",
 'revdel-restore'              => 'טויש די זעבארקייט',
+'revdel-restore-deleted'      => 'אויסגעמעקטע ווערסיעס',
+'revdel-restore-visible'      => 'זעבאַרע ווערסיעס',
 'pagehist'                    => 'בלאט היסטאריע',
 'deletedhist'                 => 'אויסגעמעקטע ווערסיעס',
 'revdelete-content'           => 'אינהאלט',
@@ -1011,6 +1014,7 @@ $1",
 'revmove-reasonfield'    => 'אורזאַך:',
 'revmove-titlefield'     => 'ציל בלאַט:',
 'revmove-badparam-title' => 'פֿאַלשע פאַראַמעטערס',
+'revmove-nullmove-title' => 'אומגילדיגער טיטל',
 
 # History merging
 'mergehistory'                     => 'צונויפֿגיסן בלאט היסטאריעס',
@@ -1438,6 +1442,7 @@ $1",
 ביטע געבן א נײַעם נאמען דער טעקע און פּרובירט ארויפֿלאָדן נאכאַמאָל.',
 'badfilename'           => 'טעקע נאמען איז געטוישט צו "$1".',
 'filetype-missing'      => 'די טעקע האט נישט קיין פארברייטערונג (למשל ".jpg").',
+'filename-tooshort'     => 'דער טעקענאמען איז צו קורץ',
 'large-file'            => 'רעקאמענדירט אז טעקעס זאל נישט זײַן גרעסער פֿון$1;
 די טעקע איז $2.',
 'emptyfile'             => 'די טעקע וואס איר האט ארויפֿלגעלאָדן איז ליידיג.
@@ -1464,6 +1469,7 @@ $1",
 'upload-options'        => "אַרויפֿלאָדן ברירה'ס",
 'watchthisupload'       => 'אויפֿפאַסן דעם בלאט',
 'upload-success-subj'   => 'דערפֿאלגרייכער ארויפֿלאָד',
+'upload-failure-subj'   => 'אַרויפֿלאָדן פראבלעם',
 
 'upload-proto-error'        => 'פאלשער פראטאקאל',
 'upload-file-error'         => 'אינערליכער פעלער',
@@ -2862,6 +2868,7 @@ $5
 'version-variables'        => 'וואַריאַבלען',
 'version-other'            => 'אנדער',
 'version-version'          => '(ווערסיע $1)',
+'version-poweredby-others' => 'אַנדערע',
 'version-software-product' => 'פראדוקט',
 'version-software-version' => 'ווערסיע',
 

@@ -1496,7 +1496,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
 'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
 'right-revisionmove'          => 'Presunúť revízie',
-'right-selenium'              => 'Spustiť testy Selenium',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',

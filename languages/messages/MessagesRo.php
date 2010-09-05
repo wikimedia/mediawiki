@@ -1499,7 +1499,6 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-sendemail'             => 'Trimite e-mail altor utilizatori',
 'right-revisionmove'          => 'Mută versiuni',
-'right-selenium'              => 'Rulează testele Selenium',
 
 # User rights log
 'rightslog'      => 'Jurnal permisiuni de utilizator',

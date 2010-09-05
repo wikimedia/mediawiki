@@ -514,6 +514,7 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'suspicious-userlogout'      => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
 
 # JavaScript password checks
+'password-strength'            => "Lunghezze d'a passuord stimate: $1",
 'password-strength-bad'        => 'SCKEFUSE',
 'password-strength-mediocre'   => 'megghie de ninde',
 'password-strength-acceptable' => 'pò scè',
@@ -1469,6 +1470,7 @@ L'archivije de le scangellaminde pe stu file 'u iacchije aqquà pe convenienze:"
 Pe piacere scacchie 'n'otre nome ca jè cchiù descrittive.",
 'upload-success-subj'         => 'Carecamende sciute apposte',
 'upload-failure-subj'         => 'Careche le probbleme',
+'upload-warning-subj'         => 'Avvise de carecamende',
 
 'upload-proto-error'        => 'Protocolle scorrette',
 'upload-proto-error-text'   => "Le carecaminde remote onne abbesogne de le URL ca accumenzene cu 'a parole <code>http://</code> o <code>ftp://</code>.",
@@ -1873,6 +1875,10 @@ L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze
 'emailsenttext'        => "'U messagge email tue ha state mannete.",
 'emailuserfooter'      => 'Sta e-mail ha state mannate da $1 a $2 da \'a funziona "E-mail a l\'utende" de {{SITENAME}}.',
 
+# User Messenger
+'usermessage-summary' => "Lassanne 'nu messagge de sisteme.",
+'usermessage-editor'  => 'Messaggiatore de sisteme',
+
 # Watchlist
 'watchlist'            => 'Pàggene condrollete',
 'mywatchlist'          => 'Pàggene condrollete',
@@ -2001,7 +2007,8 @@ L'urteme cangiamende d'a pàgene ere de [[User:$3|$3]] ([[User talk:$3|'Ngazzami
 turnate rete a l'urtema versione da $2.",
 
 # Edit tokens
-'sessionfailure' => "Pare ca stonne probbleme cu 'a sessiona toje de collegamende;
+'sessionfailure-title' => 'Sessione fallite',
+'sessionfailure'       => "Pare ca stonne probbleme cu 'a sessiona toje de collegamende;
 st'azione ha state scangellate pe precauzione condre a le 'ngasinaminde d'a sessione.
 Pe piacere cazze \"rete\" e recareche 'a pàgene da addò tu è venute e pruève 'n'otra vote.",
 
@@ -2470,6 +2477,7 @@ Reggistrele sus a 'u combiuter tue e carechele aqquà.",
 'importstart'                => "'Mbortazione de le pàggene...",
 'import-revision-count'      => '$1 {{PLURAL:$1|revisione|revisiune}}',
 'importnopages'              => "Nisciuna pàgene da 'mbortà.",
+'imported-log-entries'       => "'Mbortate $1 {{PLURAL:$1|vôsce de l'archivije|vôsce de l'archivije}}.",
 'importfailed'               => "'Mbortaziona fallite: <nowiki>$1</nowiki>",
 'importunknownsource'        => "Tipe de sorgende de 'mbortaziona scanusciute",
 'importcantopen'             => "Non ge puè aprè 'u file 'mbortete",
@@ -3145,6 +3153,7 @@ Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
 'version-hook-subscribedby'        => 'Sottoscritte da',
 'version-version'                  => '(Versione $1)',
 'version-license'                  => 'Licenze',
+'version-poweredby-others'         => 'otre',
 'version-software'                 => 'Softuer installete',
 'version-software-product'         => 'Prodotte',
 'version-software-version'         => 'Versione',

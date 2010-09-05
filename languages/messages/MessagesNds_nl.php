@@ -1505,7 +1505,6 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-override-export-depth' => "Pagina's uutvoeren, oek de pagina's waor naor verwezen wonnen, tot een diepte van 5",
 'right-sendemail'             => 'Berich versturen naor aandere gebrukers',
 'right-revisionmove'          => 'Versies herneumen',
-'right-selenium'              => 'Seleniumtests uutvoeren',
 
 # User rights log
 'rightslog'      => 'Gebrukersrechenlogboek',

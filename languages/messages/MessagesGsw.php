@@ -1323,7 +1323,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
 'right-revisionmove'          => 'Versione verschiebe',
-'right-selenium'              => 'Tescht mit Selenium uusfiere',
 
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',

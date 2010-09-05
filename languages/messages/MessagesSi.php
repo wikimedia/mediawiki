@@ -1438,7 +1438,6 @@ HTML ටැගයන් පිරික්සන්න.',
 'right-override-export-depth' => '5වන මට්ටම දක්වා සබැඳි පිටු ද සහිතව පිටු නිර්යාත කරන්න',
 'right-sendemail'             => 'අනෙක් පරිශීලකයන්ට ඊ-ලිපි යවන්න',
 'right-revisionmove'          => 'සංශෝධන ඒකාබද්ධ කරන්න',
-'right-selenium'              => 'සෙලිනියම් පරික්ෂාවන් සිදුකරන්න',
 
 # User rights log
 'rightslog'      => 'පරිශීලක හිමිකම් සටහන',
