@@ -170,6 +170,10 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	}
 
 	public static function suite() {
-		return new UploadFromUrlTestSuite( 'UploadFromUrlTest' );
+		// Hack to invoke the autoloader required to get phpunit to recognize
+		// the UploadFromUrlTest class 
+		class_exists( 'UploadFromUrlTest' );
+		$suite = new UploadFromUrlTestSuite( 'UploadFromUrlTest' );
+		return $suite;
 	}
 }

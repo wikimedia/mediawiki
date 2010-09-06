@@ -2918,7 +2918,7 @@ function wfHttpOnlySafe() {
 /**
  * Initialise php session
  */
-function wfSetupSession() {
+function wfSetupSession( $sessionId = false ) {
 	global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain,
 			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
 	if( $wgSessionsInMemcached ) {
@@ -2944,6 +2944,9 @@ function wfSetupSession() {
 		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure );
 	}
 	session_cache_limiter( 'private, must-revalidate' );
+	if ( $sessionId ) {
+		session_id( $sessionId );
+	}
 	wfSuppressWarnings();
 	session_start();
 	wfRestoreWarnings();

@@ -22,7 +22,7 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 	static function setupUser() {
 		if ( self::$user == NULL ) {
 			self::$userName = "Useruser";
-			self::$passWord = User::randomPassword();
+			self::$passWord = 'Passpass';
 
 			self::$user = User::newFromName( self::$userName );
 			if ( !self::$user->getID() ) {
@@ -33,5 +33,7 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 			self::$user->setPassword( self::$passWord );
 			self::$user->saveSettings();
 		}
+		
+		$GLOBALS['wgUser'] = self::$user;
 	}
 }

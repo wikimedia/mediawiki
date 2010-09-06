@@ -197,8 +197,10 @@ class UploadFromUrl extends UploadBase {
 			'userName' => $user->getName(),
 			'leaveMessage' => $this->mAsync == 'async-leavemessage',
 			'ignoreWarnings' => $this->mIgnoreWarnings,
+			'sessionId' => session_id(),
 			'sessionKey' => $sessionKey,
 		) );
+		$job->initializeSessionData();
 		$job->insert();
 		return $sessionKey;
 	}

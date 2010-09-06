@@ -55,7 +55,10 @@ class ApiUpload extends ApiBase {
 		$this->mParams['file'] = $request->getFileName( 'file' );
 
 		// Select an upload module
-		$this->selectUploadModule();
+		if ( !$this->selectUploadModule() ) {
+			// This is not a true upload, but a status request or similar
+			return;
+		}
 		if ( !isset( $this->mUpload ) ) {
 			$this->dieUsage( 'No upload module set', 'nomodule' );
 		}
@@ -96,15 +99,39 @@ class ApiUpload extends ApiBase {
 	}
 
 	/**
-	 * Select an upload module and set it to mUpload. Dies on failure.
+	 * Select an upload module and set it to mUpload. Dies on failure. If the
+	 * request was a status request and not a true upload, returns false; 
+	 * otherwise true
+	 * 
+	 * @return bool
 	 */
 	protected function selectUploadModule() {
 		$request = $this->getMain()->getRequest();
 
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
-			'sessionkey', 'file', 'url' );
+			'sessionkey', 'file', 'url', 'statuskey' );
 
+		if ( $this->mParams['statuskey'] ) {
+			// Status request for an async upload
+			$sessionData = UploadFromUrlJob::getSessionData( $this->mParams['statuskey'] );
+			if ( !isset( $sessionData['result'] ) ) {
+				$this->dieUsage();	
+			}
+			if ( $sessionData['result'] == 'Warning' ) {
+				$sessionData['warnings'] = $this->transformWarnings( $sessionData['warnings'] );
+				$sessionData['sessionkey'] = $this->mParams['statuskey'];
+			}
+			$this->getResult()->addValue( null, $this->getModuleName(), $sessionData );
+			return false;
+			
+		} 
+		
+		// The following modules all require the filename parameter to be set
+		if ( is_null( $this->mParams['filename'] ) ) {
+			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
+		}
+		
 		if ( $this->mParams['sessionkey'] ) {
 			// Upload stashed in a previous request
 			$sessionData = $request->getSessionData( UploadBase::getSessionKeyName() );
@@ -132,6 +159,11 @@ class ApiUpload extends ApiBase {
 
 			$async = false;
 			if ( $this->mParams['asyncdownload'] ) {
+				if ( $this->mParams['leavemessage'] && !$this->mParams['ignorewarnings'] ) {
+					$this->dieUsage( 'Using leavemessage without ignorewarnings is not supported',
+						'missing-ignorewarnings' );
+				}
+				
 				if ( $this->mParams['leavemessage'] ) {
 					$async = 'async-leavemessage';
 				} else {
@@ -143,6 +175,8 @@ class ApiUpload extends ApiBase {
 				$this->mParams['url'], $async );
 
 		}
+		
+		return true;
 	}
 
 	/**
@@ -225,25 +259,8 @@ class ApiUpload extends ApiBase {
 		if ( !$this->mParams['ignorewarnings'] ) {
 			$warnings = $this->mUpload->checkWarnings();
 			if ( $warnings ) {
-				// Add indices
-				$this->getResult()->setIndexedTagName( $warnings, 'warning' );
-
-				if ( isset( $warnings['duplicate'] ) ) {
-					$dupes = array();
-					foreach ( $warnings['duplicate'] as $key => $dupe )
-						$dupes[] = $dupe->getName();
-					$this->getResult()->setIndexedTagName( $dupes, 'duplicate' );
-					$warnings['duplicate'] = $dupes;
-				}
-
-				if ( isset( $warnings['exists'] ) ) {
-					$warning = $warnings['exists'];
-					unset( $warnings['exists'] );
-					$warnings[$warning['warning']] = $warning['file']->getName();
-				}
-
 				$result['result'] = 'Warning';
-				$result['warnings'] = $warnings;
+				$result['warnings'] = $this->transformWarnings( $warnings );
 
 				$sessionKey = $this->mUpload->stashSession();
 				if ( !$sessionKey ) {
@@ -256,6 +273,32 @@ class ApiUpload extends ApiBase {
 			}
 		}
 		return;
+	}
+	
+	/**
+	 * Transforms a warnings array returned by mUpload->checkWarnings() into
+	 * something that can be directly used as API result
+	 */
+	protected function transformWarnings( $warnings ) {
+		// Add indices
+		$this->getResult()->setIndexedTagName( $warnings, 'warning' );
+
+		if ( isset( $warnings['duplicate'] ) ) {
+			$dupes = array();
+			foreach ( $warnings['duplicate'] as $key => $dupe ) {
+				$dupes[] = $dupe->getName();
+			}
+			$this->getResult()->setIndexedTagName( $dupes, 'duplicate' );
+			$warnings['duplicate'] = $dupes;
+		}
+
+		if ( isset( $warnings['exists'] ) ) {
+			$warning = $warnings['exists'];
+			unset( $warnings['exists'] );
+			$warnings[$warning['warning']] = $warning['file']->getName();
+		}
+		
+		return $warnings;	
 	}
 
 	/**
@@ -290,7 +333,7 @@ class ApiUpload extends ApiBase {
 				// requested so
 				return array(
 					'result' => 'Queued',
-					'sessionkey' => $error[0][1],
+					'statuskey' => $error[0][1],
 				);
 			} else {
 				$this->getResult()->setIndexedTagName( $error, 'error' );
@@ -320,7 +363,6 @@ class ApiUpload extends ApiBase {
 		$params = array(
 			'filename' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
 			),
 			'comment' => array(
 				ApiBase::PARAM_DFLT => ''
@@ -351,6 +393,7 @@ class ApiUpload extends ApiBase {
 			$params += array(
 				'asyncdownload' => false,
 				'leavemessage' => false,
+				'statuskey' => null,
 			);
 		}
 		return $params;
@@ -375,6 +418,7 @@ class ApiUpload extends ApiBase {
 			$params += array(
 				'asyncdownload' => 'Make fetching a URL asynchronous',
 				'leavemessage' => 'If asyncdownload is used, leave a message on the user talk page if finished',
+				'statuskey' => 'Fetch the upload status for this session key',
 			);
 		}
 

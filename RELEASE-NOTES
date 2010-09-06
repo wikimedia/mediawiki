@@ -380,6 +380,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   missing
 * (bug 24724) list=allusers is out by 1 (shows total users - 1)
 * (bug 24166) API error when using rvprop=tags
+* Introduced "asynchronous download" mode for upload-by-url. Requires 
+  $wgAllowAsyncCopyUploads to be true.
 
 === Languages updated in 1.17 ===
 
