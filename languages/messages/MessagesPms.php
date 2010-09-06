@@ -1504,17 +1504,17 @@ Për piasì, ch'a varda che soa anliura a sia bon-a e che a l'arsponda e peuj ch
 Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
 'upload-too-many-redirects' => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
 'upload-unknown-size'       => 'Dimension pa conossùa',
-'upload-http-error'         => "A l'é stàit-ie n'eror HTTP: $1.",
+'upload-http-error'         => "A l'é staje n'eror HTTP: $1.",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acess negà',
 'img-auth-nopathinfo'   => "PATH_INFO mancant.
-Tò server a l'é pa ampostà për passé sta anformassion-sì.
-A peul esse basà an sij CGI e a peul pa apogé img_auth.
-Varda http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "Ël path ciamà a l'é pa ant la directory configurà për carié.",
+Sò servent a l'é nen ampostà për passé costa anformassion.
+Peul desse ch'a sia basà an sij CGI e a peul pa mantnì img_auth.
+Ch'a bèica http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+'img-auth-notindir'     => "Ël senté ciamà a l'é pa ant ël dossié configurà për carié.",
 'img-auth-badtitle'     => 'As peul pa fesse un tìtol bon për "$1".',
-'img-auth-nologinnWL'   => 'It ses pa intrà e "$1" a l\'é pa ant la whitelist.',
+'img-auth-nologinnWL'   => 'A l\'é pa intrà ant ël sistema e "$1" a l\'é pa ant la lista bianca.',
 'img-auth-nofile'       => 'Ël file "$1" a esist pa.',
 'img-auth-isdir'        => 'It ses an mente ch\'it preuve a andé ant na directory "$1".
 As peul mach acede ai file.',

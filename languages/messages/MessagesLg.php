@@ -130,6 +130,7 @@ $messages = array(
 'toolbox'          => 'Ebikozesebwa',
 'otherlanguages'   => 'Mu nnimi ndala',
 'redirectedfrom'   => '(Oleetedwa wano okuva ku $1)',
+'redirectpagesub'  => 'Olupapula luno lukutwalabutwazi ku lunnaalwo',
 'lastmodifiedat'   => 'Luno olupapula lwasemba okukyusibwamu ku $2, $1.',
 'viewcount'        => 'Luno olupapula lwakasomebwa {{PLURAL:$1|omurundi gumu|emirundi $1}}.',
 'protectedpage'    => 'Luno olupapula terukyusibwamu',
@@ -336,32 +337,34 @@ oba ku gano agali ku lupapula luno.<br />
 'editundo'                => 'julula enkyukakyuka',
 
 # Search results
-'searchresults'            => 'Noonyeza mu bizuulidwa',
-'searchresults-title'      => 'Ebizuulidwa ku "$1"',
-'searchresulttext'         => "Okumanya ebisingawo ku konoonya bintu ku {{SITENAME}}, kebera ku '[[{{MediaWiki:Helppage}}|{{int:help}}]]'.",
-'searchsubtitle'           => 'Onoonyezza \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|empapula zonna ezitandika ne "$1"]]{{int:pipe-separator}}
+'searchresults'             => 'Noonyeza mu bizuulidwa',
+'searchresults-title'       => 'Ebizuulidwa ku "$1"',
+'searchresulttext'          => "Okumanya ebisingawo ku konoonya bintu ku {{SITENAME}}, kebera ku '[[{{MediaWiki:Helppage}}|{{int:help}}]]'.",
+'searchsubtitle'            => 'Onoonyezza \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|empapula zonna ezitandika ne "$1"]]{{int:pipe-separator}}
 [[Special:WhatLinksHere/$1|empapula zonna ezikuggusa ku "$1"]])',
-'searchsubtitleinvalid'    => "Onoonyezza '''$1'''",
-'notitlematches'           => 'Tewali mpapula zirina mutwe guno',
-'notextmatches'            => 'Tewali mpapula ziriko bigambo bino',
-'prevn'                    => '{{PLURAL:$1|$1}} ezikulembedde zino',
-'nextn'                    => '{{PLURAL:$1|$1}} eziddako',
-'viewprevnext'             => 'Laga ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url'           => 'Help:Endagiriro',
-'search-result-size'       => '$1 ({{PLURAL:$2|kigambo 1 | bigambo $2}})',
-'search-redirect'          => "(olupapula '$1' lukuggusiza wano)",
-'search-section'           => '(ekitundu ekya $1)',
-'search-suggest'           => 'Obadde onoonya $1 ?',
-'search-interwiki-default' => 'ebizuulidwa ku $1:',
-'search-interwiki-more'    => '(ebikyaliyo)',
-'search-mwsuggest-enabled' => 'mpeeraako amagezi',
-'nonefound'                => "'''Wekkaanye''': Okunoonya kuno kukoma mu makuŋaanyizo amalondemu okugyako nga okulagidde okweyonera awalala.
+'searchsubtitleinvalid'     => "Onoonyezza '''$1'''",
+'notitlematches'            => 'Tewali mpapula zirina mutwe guno',
+'notextmatches'             => 'Tewali mpapula ziriko bigambo bino',
+'prevn'                     => '{{PLURAL:$1|$1}} ezikulembedde zino',
+'nextn'                     => '{{PLURAL:$1|$1}} eziddako',
+'viewprevnext'              => 'Laga ($1 {{int:pipe-separator}} $2) ($3).',
+'searchhelp-url'            => 'Help:Endagiriro',
+'search-result-size'        => '$1 ({{PLURAL:$2|kigambo 1 | bigambo $2}})',
+'search-redirect'           => "(olupapula '$1' lukuggusiza wano)",
+'search-section'            => '(ekitundu ekya $1)',
+'search-suggest'            => 'Obadde onoonya $1 ?',
+'search-interwiki-caption'  => "Pulojekiti ezikolagana n'eno",
+'search-interwiki-default'  => 'ebizuulidwa ku $1:',
+'search-interwiki-more'     => '(ebikyaliyo)',
+'search-mwsuggest-enabled'  => 'mpeeraako amagezi',
+'search-mwsuggest-disabled' => "sisitemu ereme okuteebereza ky'onoonya",
+'nonefound'                 => "'''Wekkaanye''': Okunoonya kuno kukoma mu makuŋaanyizo amalondemu okugyako nga okulagidde okweyonera awalala.
 W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipediya yonna. Bw'obanga olina ekkuŋaanyizo limu lyokka lyoyagala okunoonyezamu, soosawo erinnya lyalyo w'owandikira by'onoonya.",
-'powersearch'              => 'Noonya mu ngeri esunsula',
-'powersearch-legend'       => 'Noonya mu ngeri esunsula',
-'powersearch-ns'           => 'Noonyeza mu makuŋaaniro gano:',
-'powersearch-redir'        => "Laga n'empapula ezikutwalabutwazi ku zinnaazo",
-'powersearch-field'        => 'Nnoonyeza',
+'powersearch'               => 'Noonya mu ngeri esunsula',
+'powersearch-legend'        => 'Noonya mu ngeri esunsula',
+'powersearch-ns'            => 'Noonyeza mu makuŋaaniro gano:',
+'powersearch-redir'         => "Laga n'empapula ezikutwalabutwazi ku zinnaazo",
+'powersearch-field'         => 'Nnoonyeza',
 
 # Preferences page
 'preferences'       => 'Enteekateeka yange',
@@ -487,6 +490,10 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'linksearch'    => 'Ennyunzi eziggukira wabweru wa Wikipediya',
 'linksearch-ns' => 'Kuŋaanyizo:',
 
+# Special:Log/newusers
+'newuserlogpage'          => "Olukalala olw'ebifudeyo mu kukolawo akawunti empya",
+'newuserlog-create-entry' => 'Akawunti empya',
+
 # E-mail user
 'emailuser' => 'Memba ono musindikire e-mail',
 
@@ -504,6 +511,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'watchthispage'     => 'Goberera olupapula luno',
 'unwatch'           => 'Lekerawo okugoberera olupapula luno',
 'watchlist-details' => "Olina {{PLURAL:$1|olupapula $1|empapula $1}} z'ogoberera, nga tobalideko n'eza yogera-nange.",
+'wlshowlast'        => "Endaga ez'omu ssaawa $1 n'ennaku $2 eziyeese oba $3",
 'watchlist-options' => "Enteetakeeka y'endaga ya mpapula zengoberera",
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -562,11 +570,13 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'linkshere'                => "Zino z'empapula eziriko enyunzi ezigguka ku '''[[:$1]]''':",
 'nolinkshere'              => "Tewali mpapula eziriko enyunzi ezigguka ku '''[[:$1]]'''.",
 'isredirect'               => 'lupapula olukutwalabutwazi ku lunnaalwo',
+'istemplate'               => 'kitundu ekyeyazike',
 'isimage'                  => 'lukozesa ekifaananyi kino',
 'whatlinkshere-prev'       => '{{PLURAL:$1|olukulembera|$1 ezikulembera}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|oluddako|$1 eziddako}}',
 'whatlinkshere-links'      => '← Empapula eziriko enyunzi ezigguka ku luno',
 'whatlinkshere-hideredirs' => '$1 mpapula ezikutwalabutwazi ku zinnaazo',
+'whatlinkshere-hidetrans'  => '$1 ebitundu ebyeyazike',
 'whatlinkshere-hidelinks'  => '$1 nyunzi',
 'whatlinkshere-filters'    => 'Ensunsula',
 
@@ -698,6 +708,7 @@ Enyunzi endala eziba ku lunyiriri olwo zibalibwa nga ezigguka ku mpapula ezikoze
 'edit-externally-help' => '[http://www.mediawiki.org/wiki/Manual:External_editors Nyiga wano] okuyiga ebisingawo ku kukozesa pulogulamu endala okukola enkyukakyuka.',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'Zonna',
 'namespacesall' => 'Gonna',
 'monthsall'     => 'gyonna',
 

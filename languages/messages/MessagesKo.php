@@ -1701,7 +1701,7 @@ PICT # 기타
 'upload-success-subj'         => '올리기 성공',
 'upload-success-msg'          => '파일을 [$2]에서 성공적으로 올렸습니다. 당신이 올린 파일이 여기 있습니다: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '올리기 실패',
-'upload-failure-msg'          => '파일을 올리는 중 문제가 발생했습니다:
+'upload-failure-msg'          => '[$2]에서 파일을 올리는 중 문제가 발생했습니다:
 
 $1',
 'upload-warning-subj'         => '파일 올리기 경고',
