@@ -16,6 +16,8 @@
  * @ingroup JobQueue
  */
 class UploadFromUrlJob extends Job {
+	const SESSION_KEYNAME = 'wsUploadFromUrlJobData';
+	
 	public $upload;
 	protected $user;
 
@@ -24,14 +26,6 @@ class UploadFromUrlJob extends Job {
 	}
 
 	public function run() {
-		# Until we find a way to store data in sessions, set leaveMessage to
-		# true unconditionally
-		$this->params['leaveMessage'] = true;
-		# Similar for ignorewarnings. This is not really a good fallback, but
-		# there is no easy way to get a wikitext formatted warning message to
-		# show to the user
-		$this->params['ignoreWarnings'] = true;
-		
 		# Initialize this object and the upload object
 		$this->upload = new UploadFromUrl();
 		$this->upload->initialize( 
@@ -60,6 +54,8 @@ class UploadFromUrlJob extends Job {
 		if ( !$this->params['ignoreWarnings'] ) {
 			$warnings = $this->upload->checkWarnings();
 			if ( $warnings ) {		
+				wfSetupSession( $this->params['sessionId'] );
+								
 				if ( $this->params['leaveMessage'] ) {
 					$this->user->leaveUserMessage( 
 						wfMsg( 'upload-warning-subj' ),
@@ -72,7 +68,10 @@ class UploadFromUrlJob extends Job {
 						'warnings', $warnings );
 				}
 				
-				// FIXME: stash in session
+				# Stash the upload in the session
+				$this->upload->stashSession( $this->params['sessionKey'] );
+				session_write_close();
+				
 				return true;
 			}
 		}
@@ -111,28 +110,44 @@ class UploadFromUrlJob extends Job {
 					) );
 			}
 		} else {
+			wfSetupSession( $this->params['sessionId'] );			
 			if ( $status->isOk() ) {
 				$this->storeResultInSession( 'Success', 
-					'filename', $this->getLocalFile()->getName() );
+					'filename', $this->upload->getLocalFile()->getName() );
 			} else {
 				$this->storeResultInSession( 'Failure',
 					'errors', $status->getErrorsArray() );
 			}
-			
+			session_write_close();			
 		}
 	}
 
 	/**
-	 * Store a result in the session data
-	 * THIS IS BROKEN. $_SESSION does not exist when using runJobs.php
+	 * Store a result in the session data. Note that the caller is responsible
+	 * for appropriate session_start and session_write_close calls.
 	 * 
 	 * @param $result String: the result (Success|Warning|Failure)
 	 * @param $dataKey String: the key of the extra data
 	 * @param $dataValue Mixed: the extra data itself
 	 */
 	protected function storeResultInSession( $result, $dataKey, $dataValue ) {
-		$session &= $_SESSION[UploadBase::getSessionKeyname()][$this->params['sessionKey']];
+		$session =& self::getSessionData( $this->params['sessionKey'] );
 		$session['result'] = $result;
 		$session[$dataKey] = $dataValue;
+	}
+	
+	/**
+	 * Initialize the session data. Sets the intial result to queued.
+	 */
+	public function initializeSessionData() {
+		$session =& self::getSessionData( $this->params['sessionKey'] );
+		$$session['result'] = 'Queued';
+	}
+	
+	public static function &getSessionData( $key ) {
+		if ( !isset( $_SESSION[self::SESSION_KEYNAME][$key] ) ) {
+			$_SESSION[self::SESSION_KEYNAME][$key] = array();
+		}
+		return $_SESSION[self::SESSION_KEYNAME][$key];
 	}
 }

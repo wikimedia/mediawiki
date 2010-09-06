@@ -379,6 +379,8 @@ class MediaWiki {
 		$output->output();
 		// Do any deferred jobs
 		$this->doUpdates( $deferredUpdates );
+		// Close the session so that jobs don't access the current session
+		session_write_close();
 		$this->doJobs();
 		wfProfileOut( __METHOD__ );
 	}
