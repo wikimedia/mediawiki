@@ -137,8 +137,8 @@ class FeedItem {
 	 * @return String
 	 */
 	public function getLanguage() {
-		global $wgContLanguageCode;
-		return $wgContLanguageCode;
+		global $wgLanguageCode;
+		return $wgLanguageCode;
 	}
 
 	/**

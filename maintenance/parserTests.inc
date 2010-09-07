@@ -550,7 +550,6 @@ class ParserTest {
 			'wgSitename' => 'MediaWiki',
 			'wgServerName' => 'Britney-Spears',
 			'wgLanguageCode' => $lang,
-			'wgContLanguageCode' => $lang,
 			'wgDBprefix' => $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_',
 			'wgRawHtml' => isset( $opts['rawhtml'] ),
 			'wgLang' => null,

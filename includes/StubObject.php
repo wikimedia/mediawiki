@@ -122,8 +122,8 @@ class StubContLang extends StubObject {
 	}
 
 	function _newObject() {
-		global $wgContLanguageCode;
-		$obj = Language::factory( $wgContLanguageCode );
+		global $wgLanguageCode;
+		$obj = Language::factory( $wgLanguageCode );
 		$obj->initEncoding();
 		$obj->initContLang();
 		return $obj;
@@ -146,7 +146,7 @@ class StubUserLang extends StubObject {
 	}
 
 	function _newObject() {
-		global $wgContLanguageCode, $wgRequest, $wgUser, $wgContLang;
+		global $wgLanguageCode, $wgRequest, $wgUser, $wgContLang;
 		$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
 		// BCP 47 - letter case MUST NOT carry meaning
 		$code = strtolower( $code );
@@ -154,10 +154,10 @@ class StubUserLang extends StubObject {
 		# Validate $code
 		if( empty( $code ) || !preg_match( '/^[a-z-]+$/', $code ) || ( $code === 'qqq' ) ) {
 			wfDebug( "Invalid user language code\n" );
-			$code = $wgContLanguageCode;
+			$code = $wgLanguageCode;
 		}
 
-		if( $code === $wgContLanguageCode ) {
+		if( $code === $wgLanguageCode ) {
 			return $wgContLang;
 		} else {
 			$obj = Language::factory( $code );

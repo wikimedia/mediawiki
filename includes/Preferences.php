@@ -228,10 +228,10 @@ class Preferences {
 		}
 
 		// Language
-		global $wgContLanguageCode;
+		global $wgLanguageCode;
 		$languages = Language::getLanguageNames( false );
-		if ( !array_key_exists( $wgContLanguageCode, $languages ) ) {
-			$languages[$wgContLanguageCode] = $wgContLanguageCode;
+		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
+			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
 		ksort( $languages );
 

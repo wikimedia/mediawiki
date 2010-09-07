@@ -63,11 +63,11 @@ abstract class RdfMetaData {
 	}
 
 	protected function basics() {
-		global $wgContLanguageCode, $wgSitename;
+		global $wgLanguageCode, $wgSitename;
 
 		$this->element( 'title', $this->mArticle->mTitle->getText() );
 		$this->pageOrString( 'publisher', wfMsg( 'aboutpage' ), $wgSitename );
-		$this->element( 'language', $wgContLanguageCode );
+		$this->element( 'language', $wgLanguageCode );
 		$this->element( 'type', 'Text' );
 		$this->element( 'format', 'text/html' );
 		$this->element( 'identifier', $this->reallyFullUrl() );

@@ -41,8 +41,8 @@ function wfStreamFile( $fname, $headers = array() ) {
 		return;
 	}
 
-	global $wgContLanguageCode;
-	header( "Content-Disposition: inline;filename*=utf-8'$wgContLanguageCode'" . urlencode( basename( $fname ) ) );
+	global $wgLanguageCode;
+	header( "Content-Disposition: inline;filename*=utf-8'$wgLanguageCode'" . urlencode( basename( $fname ) ) );
 
 	foreach ( $headers as $header ) {
 		header( $header );

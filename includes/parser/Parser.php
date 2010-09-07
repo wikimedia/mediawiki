@@ -2785,8 +2785,8 @@ class Parser {
 			case 'directionmark':
 				return $wgContLang->getDirMark();
 			case 'contentlanguage':
-				global $wgContLanguageCode;
-				return $wgContLanguageCode;
+				global $wgLanguageCode;
+				return $wgLanguageCode;
 			default:
 				$ret = null;
 				if ( wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$this->mVarCache, &$index, &$ret, &$frame ) ) ) {
