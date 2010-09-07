@@ -15,7 +15,7 @@
 
 $fallback = 'de';
 
-$linktrail = '/^([a-zäöüßåāđē]+)(.*)$/sDu';
+$linkTrail = '/^([a-zäöüßåāđē]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
