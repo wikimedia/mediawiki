@@ -245,7 +245,7 @@ class KkConverter extends LanguageConverter {
 	 *  It translates text into variant
 	 */
 	function translate( $text, $toVariant ) {
-		global $wgContLanguageCode;
+		global $wgLanguageCode;
 		$text = parent::translate( $text, $toVariant );
 
 		$letters = '';
@@ -253,20 +253,20 @@ class KkConverter extends LanguageConverter {
 			case 'kk-cyrl':
 			case 'kk-kz':
 				$letters = KK_L_UC . KK_L_LC . 'ʺʹ#0123456789';
-				$wgContLanguageCode = 'kk';
+				$wgLanguageCode = 'kk';
 				break;
 			case 'kk-latn':
 			case 'kk-tr':
 				$letters = KK_C_UC . KK_C_LC . '№0123456789';
-				$wgContLanguageCode = 'kk-Latn';
+				$wgLanguageCode = 'kk-Latn';
 				break;
 			case 'kk-arab':
 			case 'kk-cn':
 				$letters = KK_C_UC . KK_C_LC . /*KK_L_UC.KK_L_LC.'ʺʹ'.*/',;\?%\*№0123456789';
-				$wgContLanguageCode = 'kk-Arab';
+				$wgLanguageCode = 'kk-Arab';
 				break;
 			default:
-				$wgContLanguageCode = 'kk';
+				$wgLanguageCode = 'kk';
 				return $text;
 		}
 		// disable conversion variables like $1, $2...
