@@ -171,3 +171,20 @@ queries, by using an appropriate condition in the WHERE clause of an
 UPDATE, or by using unique indexes in combination with INSERT IGNORE.
 Then use the affected row count to see if the query succeeded.
 
+------------------------------------------------------------------------
+    Supported DBMSs
+------------------------------------------------------------------------
+
+MediaWiki is written primarily for use with MySQL. Queries are optimized
+for it and its schema is considered the canonical version. However,
+MediaWiki does support the following other DBMSs to varying degrees.
+
+* PostgreSQL
+* SQLite
+* Oracle
+* IBM DB2
+* MSSQL
+
+More information can be found about each of these databases (known issues,
+level of support, extra configuration) in the "databases" subdirectory in
+this folder.
