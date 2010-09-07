@@ -126,8 +126,12 @@ class PostgresInstaller extends DatabaseInstaller {
 \$wgDBts2schema      = \"{$ts2}\";";
 	}
 
-	public function doUpgrade() {
-		// TODO
-		return false;
+	public function preUpgrade() {
+		global $wgDBuser, $wgDBpassword;
+
+		# Normal user and password are selected after this step, so for now
+		# just copy these two
+		$wgDBuser = $this->getVar( '_InstallUser' );
+		$wgDBpassword = $this->getVar( '_InstallPassword' );
 	}
 }

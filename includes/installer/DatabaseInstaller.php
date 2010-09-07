@@ -141,14 +141,30 @@ abstract class DatabaseInstaller {
 	 * 
 	 * @return String
 	 */
-	public abstract function getLocalSettings();	
+	public abstract function getLocalSettings();
 	
 	/**
 	 * Perform database upgrades
 	 *
 	 * @return Boolean
 	 */
-	public abstract function doUpgrade();
+	public function doUpgrade() {
+		# Maintenance scripts like wfGetDB()
+		LBFactory::enableBackend();
+
+		$ret = true;
+		ob_start( array( __CLASS__, 'outputHandler' ) );
+		try {
+			$up = DatabaseUpdater::newForDB( $this->db );
+			$up->execute();
+		} catch ( MWException $e ) {
+			echo "\nAn error occured:\n";
+			echo $e->getText();
+			$ret = false;
+		}
+		ob_end_flush();
+		return $ret;
+	}
 	
 	/**
 	 * Allow DB installers a chance to make last-minute changes before installation
