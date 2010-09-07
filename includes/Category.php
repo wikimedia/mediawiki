@@ -245,27 +245,29 @@ class Category {
 		if ( wfReadOnly() ) {
 			return false;
 		}
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
+
 		# Note, we must use names for this, since categorylinks does.
 		if ( $this->mName === null ) {
 			if ( !$this->initialize() ) {
 				return false;
 			}
-		} else {
-			# Let's be sure that the row exists in the table.  We don't need to
-			# do this if we got the row from the table in initialization!
-			$seqVal = $dbw->nextSequenceValue( 'category_cat_id_seq' );
-			$dbw->insert(
-				'category',
-				array(
-					'cat_id' => $seqVal,
-					'cat_title' => $this->mName
-				),
-				__METHOD__,
-				'IGNORE'
-			);
 		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
+
+		# Let's be sure that the row exists in the table.  We don't need to
+		# do this if we got the row from the table in initialization!
+		$seqVal = $dbw->nextSequenceValue( 'category_cat_id_seq' );
+		$dbw->insert(
+			'category',
+			array(
+				'cat_id' => $seqVal,
+				'cat_title' => $this->mName
+			),
+			__METHOD__,
+			'IGNORE'
+		);
 
 		$cond1 = $dbw->conditional( 'page_namespace=' . NS_CATEGORY, 1, 'NULL' );
 		$cond2 = $dbw->conditional( 'page_namespace=' . NS_FILE, 1, 'NULL' );
