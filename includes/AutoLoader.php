@@ -693,15 +693,6 @@ $wgAutoloadLocalClasses = array(
 	'TestFileIterator' => 'maintenance/parserTests.inc',
 	'TestRecorder' => 'maintenance/parserTests.inc',
 
-	# maintenance/tests
-	'ApiTestSetup' => 'maintenance/tests/ApiSetup.php',
-	'MediaWikiTestSetup' => 'maintenance/tests/MediaWiki_Setup.php',
-	'PHPUnitTestRecorder' => 'maintenance/tests/ParserHelpers.php',
-	'ParserTestSuiteBackend' => 'maintenance/tests/ParserHelpers.php',
-	'ParserUnitTest' => 'maintenance/tests/ParserHelpers.php',
-	'SearchEngineTest' => 'maintenance/tests/SearchEngineTest.php',
-	'UploadFromUrlTest' => 'maintenance/tests/UploadFromUrlTest.php',
-
 	# maintenance/tests/selenium
 	'SimpleSeleniumTestSuite' => 'maintenance/tests/selenium/SimpleSeleniumTestSuite.php',
 	'Selenium' => 'maintenance/tests/selenium/Selenium.php',

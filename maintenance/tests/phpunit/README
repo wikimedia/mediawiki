@@ -1,0 +1,29 @@
+== MediaWiki PHPUnit Tests ==
+
+Some quickie unit tests done with the PHPUnit testing framework. To run the
+test suite, run 'make test' in this (maintenance/tests/phpunit) directory.
+
+=== Installation ===
+
+PHPUnit is no longer maintained by PEAR. To get the current version of
+PHPUnit, first uninstall any old version of PHPUnit or PHPUnit2 from PEAR, 
+then install the current version from phpunit.de like this:
+
+ pear channel-discover pear.phpunit.de
+ pear install phpunit/PHPUnit
+
+You also may wish to install this via your normal package mechanism:
+
+ aptitude install phpunit
+- or -
+ yum install phpunit
+
+=== Notes ===
+
+* Label currently broken tests in the group Broken and they will not be run
+by phpunit.  You can add them to the group by putting the following comment at
+the top of the file:
+ /**
+  * @group Broken
+  */
+* Need to fix some broken tests
