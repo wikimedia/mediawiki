@@ -812,21 +812,10 @@ CONTROL;
 		}
 
 		$n = $this->mTitle->countRevisionsBetween( $oldid, $newid );
-		if ( !$n ) {
+		if ( !$n )
 			return '';
-		} else {
-			global $wgLang;
-			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
-				array(
-					'rev_page = ' . $this->mOldRev->getPage(),
-					'rev_id > ' . $this->mOldRev->getId(),
-					'rev_id < ' . $this->mNewRev->getId()
-				), __METHOD__, array( 'LIMIT' => 1 )
-			);
-			return wfMsgExt( 'diff-multi', array( 'parseinline' ), $wgLang->formatNum( $n ),
-				$wgLang->formatNum( $dbr->numRows( $res ) ) );
-		}
+
+		return wfMsgExt( 'diff-multi', array( 'parseinline' ), $n );
 	}
 
 
