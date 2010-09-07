@@ -131,6 +131,8 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	public function preUpgrade() {
+		global $wgDBuser, $wgDBpassword;
+
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			$this->parent->showStatusError( $status );
@@ -178,35 +180,11 @@ class MysqlInstaller extends DatabaseInstaller {
 			$this->parent->showMessage( 'config-mysql-egine-mismatch', $this->getVar( '_MysqlEngine' ), $existingEngine );
 			$this->setVar( '_MysqlEngine', $existingEngine );
 		}
-	}
 
-	/**
-	 * @todo FIXME: this code is just pure crap for compatibility between
-	 * old and new code.
-	 */
-	public function doUpgrade() {
-		global $wgDBuser, $wgDBpassword;
-
-		# Some maintenance scripts like wfGetDB()
-		LBFactory::enableBackend();
 		# Normal user and password are selected after this step, so for now
 		# just copy these two
 		$wgDBuser = $this->getVar( '_InstallUser' );
 		$wgDBpassword = $this->getVar( '_InstallPassword' );
-
-		$ret = true;
-
-		ob_start( array( $this, 'outputHandler' ) );
-		try {
-			$updater = DatabaseUpdater::newForDb( $this->db );
-			$updater->doUpdates();
-		} catch ( MWException $e ) {
-			echo "\nAn error occured:\n";
-			echo $e->getText();
-			$ret = false;
-		}
-		ob_end_flush();
-		return $ret;
 	}
 
 	/**
