@@ -133,7 +133,7 @@ class SkinTemplate extends Skin {
 	 */
 	function outputPage( OutputPage $out ) {
 		global $wgArticle, $wgUser, $wgLang, $wgContLang;
-		global $wgScript, $wgStylePath, $wgContLanguageCode;
+		global $wgScript, $wgStylePath, $wgLanguageCode;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
 		global $wgDisableCounters, $wgLogo, $wgHideInterlanguageLinks;
@@ -426,7 +426,7 @@ class SkinTemplate extends Skin {
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
 		global $wgBetterDirectionality;
 		if ( $wgBetterDirectionality ) {
-			$realBodyAttribs = array( 'lang' => $wgContLanguageCode, 'dir' => $wgContLang->getDir() );
+			$realBodyAttribs = array( 'lang' => $wgLanguageCode, 'dir' => $wgContLang->getDir() );
 			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		}
 		$out->mBodytext .= $printfooter . $this->generateDebugHTML();

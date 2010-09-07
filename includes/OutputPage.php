@@ -1569,7 +1569,7 @@ class OutputPage {
 	 */
 	public function output() {
 		global $wgUser, $wgOutputEncoding, $wgRequest;
-		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
+		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgEnableMWSuggest, $wgUniversalEditButton;
 		global $wgArticle;
@@ -1657,7 +1657,7 @@ class OutputPage {
 		ob_start();
 
 		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
-		$wgRequest->response()->header( 'Content-language: ' . $wgContLanguageCode );
+		$wgRequest->response()->header( 'Content-language: ' . $wgLanguageCode );
 
 		if ( $this->mArticleBodyOnly ) {
 			$this->out( $this->mBodytext );

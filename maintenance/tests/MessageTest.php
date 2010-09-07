@@ -3,9 +3,9 @@
 class MessageTest extends PHPUnit_Framework_TestCase {
 
 	function setUp() {
-		global $wgContLanguageCode;
+		global $wgLanguageCode;
 		
-		$wgContLanguageCode = 'en'; # For mainpage to be 'Main Page'
+		$wgLanguageCode = 'en'; # For mainpage to be 'Main Page'
 	}
 
 	function testExists() {
