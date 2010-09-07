@@ -2281,7 +2281,7 @@ class OutputPage {
 	}
 	
 	static function makeResourceLoaderLink( $skin, $modules, $only ) {
-		global $wgUser, $wgLang, $wgRequest, $wgScriptPath;
+		global $wgUser, $wgLang, $wgRequest;
 		// TODO: Should this be a static function of ResourceLoader instead?
 		$query = array(
 			'modules' => implode( '|', array_unique( (array) $modules ) ),
