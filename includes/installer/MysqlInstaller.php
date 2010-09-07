@@ -185,12 +185,10 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * old and new code.
 	 */
 	public function doUpgrade() {
-		global $wgDatabase, $wgDBuser, $wgDBpassword;
+		global $wgDBuser, $wgDBpassword;
 
 		# Some maintenance scripts like wfGetDB()
 		LBFactory::enableBackend();
-		# For do_all_updates()
-		$wgDatabase = $this->db;
 		# Normal user and password are selected after this step, so for now
 		# just copy these two
 		$wgDBuser = $this->getVar( '_InstallUser' );
@@ -200,7 +198,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		ob_start( array( $this, 'outputHandler' ) );
 		try {
-			do_all_updates( false, true );
+			$updater = DatabaseUpdater::newForDb( $this->db );
+			$updater->doUpdates();
 		} catch ( MWException $e ) {
 			echo "\nAn error occured:\n";
 			echo $e->getText();

@@ -9,25 +9,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-require_once 'userDupes.inc';
-# Extension updates
-require_once( "$IP/includes/Hooks.php" );
-
-/**
- * @deprecated. Do not use, ever.
- */
-$wgUpdates = array();
-
-
-# For extensions only, should be populated via hooks
-# $wgDBtype should be checked to specifiy the proper file
-$wgExtNewTables = array(); // table, dir
-$wgExtNewFields = array(); // table, column, dir
-$wgExtPGNewFields = array(); // table, column, column attributes; for PostgreSQL
-$wgExtPGAlteredFields = array(); // table, column, new type, conversion method; for PostgreSQL
-$wgExtNewIndexes = array(); // table, index, dir
-$wgExtModifiedFields = array(); // table, index, dir
-
 # Helper function: check if the given key is present in the updatelog table.
 # Obviously, only use this for updates that occur after the updatelog table was
 # created!
@@ -71,34 +52,6 @@ function drop_index_if_exists( $table, $index, $patch, $fullpath = false ) {
 		wfOut( "ok\n" );
 	} else {
 		wfOut( "...$index doesn't exist.\n" );
-	}
-}
-
-function do_all_updates( $shared = false, $purge = true ) {
-	global $wgDatabase, $wgDBtype;
-
-	$updater = DatabaseUpdater::newForDb( $wgDatabase, $shared );
-
-	wfRunHooks( 'LoadExtensionSchemaUpdates', array( &$updater ) );
-
-	$updater->doUpdates();
-
-	if ( !defined( 'MW_NO_SETUP' ) ) {
-		define( 'MW_NO_SETUP', true );
-	}
-
-	foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
-		call_user_func_array( array( new $maint, 'execute' ), array() );
-	}
-
-	if ( $wgDBtype === 'postgres' ) {
-		return;
-	}
-
-	do_stats_init();
-
-	if ( $purge ) {
-		purge_cache();
 	}
 }
 
@@ -479,6 +432,7 @@ function fix_ancient_imagelinks() {
 
 function do_user_unique_update() {
 	global $wgDatabase;
+	require_once( "userDupes.inc" );
 	$duper = new UserDupes( $wgDatabase );
 	if ( $duper->hasUniqueIndex() ) {
 		wfOut( "...already have unique user_name index.\n" );
@@ -761,15 +715,6 @@ function do_active_users_init() {
 		);
 	}
 	wfOut( "...ss_active_users user count set...\n" );
-}
-
-function purge_cache() {
-	global $wgDatabase;
-	# We can't guarantee that the user will be able to use TRUNCATE,
-	# but we know that DELETE is available to us
-	wfOut( "Purging caches..." );
-	$wgDatabase->delete( 'objectcache', '*', __METHOD__ );
-	wfOut( "done.\n" );
 }
 
 /**
