@@ -1042,7 +1042,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				echo "<li>Connect failed.</li>";
 				if ($useRoot) {
 					if (ini_get('oci8.privileged_connect') === false) {
-						echo "<li>Privileged connect disabled, please set oci8.privileged_connect or run maintenance/ora/user.sql script manually prior to continuing.</li>";
+						echo "<li>Privileged connect disabled, please set oci8.privileged_connect or run maintenance/oracle/user.sql script manually prior to continuing.</li>";
 						$ok = false;
 					} else {
 						$wgDBadminuser = $conf->RootUser;
@@ -1052,7 +1052,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						if ($wgDatabase->isOpen()) {
 							$wgDBOracleDefTS = $conf->DBdefTS_ora;
 							$wgDBOracleTempTS = $conf->DBtempTS_ora;
-							$res = $wgDatabase->sourceFile( "../maintenance/ora/user.sql"  );
+							$res = $wgDatabase->sourceFile( "../maintenance/oracle/user.sql"  );
 							if ($res !== true) dieout($res);
 						} else {
 							echo "<li>Invalid database superuser, please supply a valid superuser account.</li>";

@@ -999,7 +999,7 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function setup_database() {
-		$res = $this->sourceFile( "../maintenance/ora/tables.sql" );
+		$res = $this->sourceFile( "../maintenance/oracle/tables.sql" );
 		if ( $res === true ) {
 			print " done.</li>\n";
 		} else {
