@@ -274,18 +274,17 @@ abstract class MediaHandler {
 	function parserTransformHook( $parser, $file ) {}
 
 	/**
-	 * File validation hook; Called by UploadBase::verifyFile, exactly like UploadVerifyFile hooks.
-	 * If the file represented by the $upload object is not valid, $error should be set to an array
-	 * in which the first item is the name of a system message describing the problem, and any
-	 * remaining items are parameters for that message. In that case, verifyFileHook should return false.
+	 * File validation hook called on upload.
 	 *
-	 * @param $upload An instance of UploadBase, representing a freshly uploaded file
-	 * @param $mime The mime type of the uploaded file
-	 * @param $error (output) set to an array describing the problem, if there is one. If the file is OK, this should not be modified.
-	 * @return true if the file is OK, false otherwise
+	 * If the file at the given local path is not valid, or its MIME type does not 
+	 * match the handler class, a Status object should be returned containing
+	 * relevant errors.
+	 * 
+	 * @param $fileName The local path to the file.
+	 * @return Status object
 	 */
-	function verifyFileHook( $upload, $mime, &$error ) {
-		return true;
+	function verifyUpload( $fileName ) {
+		return Status::newGood();
 	}
 
 	/**
