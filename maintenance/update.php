@@ -9,7 +9,6 @@
  * @ingroup Maintenance
  */
 
-define( 'MW_CMDLINE_CALLBACK', 'wfSetupUpdateScript' );
 $wgUseMasterForMaintenance = true;
 require_once( 'Maintenance.php' );
 
@@ -76,20 +75,20 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( "Done.\n" );
 	}
-}
 
-function wfSetupUpdateScript() {
-	global $wgLocalisationCacheConf;
+	protected function afterFinalSetup() {
+		global $wgLocalisationCacheConf;
 
-	# Don't try to access the database
-	# This needs to be disabled early since extensions will try to use the l10n
-	# cache from $wgExtensionSetupFunctions (bug 20471)
-	$wgLocalisationCacheConf = array(
-		'class' => 'LocalisationCache',
-		'storeClass' => 'LCStore_Null',
-		'storeDirectory' => false,
-		'manualRecache' => false,
-	);
+		# Don't try to access the database
+		# This needs to be disabled early since extensions will try to use the l10n
+		# cache from $wgExtensionSetupFunctions (bug 20471)
+		$wgLocalisationCacheConf = array(
+			'class' => 'LocalisationCache',
+			'storeClass' => 'LCStore_Null',
+			'storeDirectory' => false,
+			'manualRecache' => false,
+		);
+	}
 }
 
 $maintClass = 'UpdateMediaWiki';
