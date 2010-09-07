@@ -171,11 +171,11 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	public function doUpgrade() {
-		global $wgDatabase;
 		LBFactory::enableBackend();
-		$wgDatabase = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_MASTER );
 		ob_start( array( $this, 'outputHandler' ) );
-		do_all_updates( false, true );
+		$updater = DatabaseUpdater::newForDb( $this->db );
+		$updater->doUpdates();
 		ob_end_flush();
 		return true;
 	}
