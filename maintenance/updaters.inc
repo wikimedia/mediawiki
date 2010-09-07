@@ -9,20 +9,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-# Helper function: check if the given key is present in the updatelog table.
-# Obviously, only use this for updates that occur after the updatelog table was
-# created!
-function update_row_exists( $key ) {
-	global $wgDatabase;
-	$row = $wgDatabase->selectRow(
-		'updatelog',
-		'1',
-		array( 'ul_key' => $key ),
-		__FUNCTION__
-	);
-	return (bool)$row;
-}
-
 function modify_field( $table, $field, $patch, $fullpath = false ) {
 	global $wgDatabase;
 	if ( !$wgDatabase->tableExists( $table ) ) {
