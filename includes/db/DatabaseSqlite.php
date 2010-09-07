@@ -647,6 +647,7 @@ class DatabaseSqlite extends DatabaseBase {
 class DatabaseSqliteStandalone extends DatabaseSqlite {
 	public function __construct( $fileName, $flags = 0 ) {
 		$this->mFlags = $flags;
+		$this->tablePrefix( null );
 		$this->openFile( $fileName );
 	}
 }
