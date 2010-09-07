@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Alquen
  * @author Balasyum
  * @author Bdamokos
  * @author Bennó
@@ -1725,9 +1726,9 @@ MGP # Pentax
 PICT # ált.
  #</pre> <!-- ezt a sort hagyd így -->',
 'upload-success-subj'         => 'A feltöltés sikerült',
-'upload-success-msg'          => 'A feltöltésed itt érhető el: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'A feltöltés (innen $2) sikeres volt. A feltöltésed itt érhető el: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Feltöltési hiba',
-'upload-failure-msg'          => 'Probléma történt a feltöltéseddel:
+'upload-failure-msg'          => 'Probléma történt a feltöltéseddel (innen: $2):
 
 $1',
 'upload-warning-subj'         => 'Feltöltési figyelmeztetés',

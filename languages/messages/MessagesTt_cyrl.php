@@ -293,6 +293,7 @@ $messages = array(
 'index-category'                 => 'Индексланган битләр',
 'noindex-category'               => 'Индексланмаган битләр',
 
+'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => '«MediaWiki» уңышлы куелды.',
 'mainpagedocfooter' => "Бу вики турында мәгълүматны [http://meta.wikimedia.org/wiki/Ярдәм:Эчтәлек биредә] табып була.
 
