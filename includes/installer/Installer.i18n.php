@@ -1024,6 +1024,19 @@ chmod a+w $3</pre>',
 	'config-install-step-failed' => 'не атрымалася',
 	'config-install-extensions' => 'Уключаючы пашырэньні',
 	'config-install-database' => 'Устаноўка базы зьвестак',
+	'config-install-pg-schema-failed' => 'Немагчыма стварыць табліцу.
+Упэўніцеся, што карыстальнік «$1» можа пісаць у схему «$2».',
+	'config-install-user' => 'Стварэньне карыстальніка базы зьвестак',
+	'config-install-user-failed' => 'Немагчыма даць правы удзельніку «$1»: $2',
+	'config-install-tables' => 'Стварэньне табліцаў',
+	'config-install-tables-exist' => "'''Папярэджаньне''': Выглядае, што табліцы MediaWiki ужо існуюць.
+Стварэньне прапушчанае.",
+	'config-install-tables-failed' => "'''Памылка''': немагчыма стварыць табліцы з-за наступнай памылкі: $1",
+	'config-install-interwiki' => 'Запаўненьне табліцы інтэрвікі па змоўчваньні',
+	'config-install-interwiki-sql' => 'Немагчыма знайсьці файл <code>interwiki.sql</code>.',
+	'config-install-interwiki-exists' => "'''Папярэджаньне''': выглядае, што табліца інтэрвікі ўжо запоўненая.
+Сьпіс па змоўчваньні прапушчаны.",
+	'config-install-secretkey' => 'Стварэньне сакрэтнага ключа',
 );
 
 /** Breton (Brezhoneg)
@@ -1067,11 +1080,11 @@ OK.',
 	'config-apc' => '[http://www.php.net/apc APC] a zo staliet',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] a zo staliet',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] zo staliet',
-	'config-diff3-good' => 'GNU diff3 kavet: <code>$1</code>.',
+	'config-diff3-good' => 'GNU diff3 kavet : <code>$1</code>.',
 	'config-diff3-bad' => "N'eo ket bet kavet GNU diff3.",
-	'config-dir' => "Kavlec'h staliañ: <code>$1</code>.",
-	'config-uri' => "Chomlec'h URI ar skript: <code>$1</code>.",
-	'config-no-uri' => "'''Fazi:''' N'eus ket tu da gouzout URI ar skript.
+	'config-dir' => "Kavlec'h staliañ : <code>$1</code>.",
+	'config-uri' => "Chomlec'h URI ar skript : <code>$1</code>.",
+	'config-no-uri' => "'''Fazi :''' N'eus ket tu da gouzout URI ar skript.
 Staliadur diforc'het.",
 	'config-db-name' => 'Anv an diaz roadennoù:',
 	'config-db-username' => 'Anv implijer an diaz roadennoù :',
@@ -1081,8 +1094,10 @@ Staliadur diforc'het.",
 	'config-db-prefix' => 'Rakrann taolennoù an diaz roadennoù :',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 daouredel',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-mysql-old' => 'MySQL $1 pe eilstummoù diwezhañ zo ret, $2 ho peus.',
 	'config-db-port' => 'Porzh an diaz roadennoù :',
 	'config-db-schema' => 'Brastres evit MediaWiki',
+	'config-db-ts2-schema' => 'Brastres evit tsearch2',
 	'config-sqlite-dir' => "Kavlec'h roadennoù SQLite:",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
@@ -1092,6 +1107,12 @@ Staliadur diforc'het.",
 	'config-header-postgres' => 'Arventennoù PostgreSQL',
 	'config-header-sqlite' => 'Arventennoù SQLite',
 	'config-header-oracle' => 'Arventennoù Oracle',
+	'config-invalid-db-type' => 'Doare diaz roadennoù fall',
+	'config-sqlite-readonly' => "N'eus ket tu skrivañ en diell <code>$1</code>.",
+	'config-sqlite-cant-create-db' => "N'eus ket tu krouiñ restr an diaz roadennoù <code>$1</code>.",
+	'config-regenerate' => 'Adlañsañ LocalSettings.php →',
+	'config-show-table-status' => "C'hwitet ar reked SHOW TABLE STATUS !",
+	'config-mysql-engine' => 'Keflusker berniañ :',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-binary' => 'Daouredel',
@@ -5381,7 +5402,6 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-welcome' => '=== Sprawdzenie środowiska instalacji ===
 Wykonywane są podstawowe testy sprawdzające czy to środowisko jest odpowiednie dla instalacji MediaWiki. 
 Jeśli potrzebujesz pomocy podczas instalacji załącz wyniki tych testów.',
-	'config-authors' => 'Copyright © 2001‐2010 – autorskie prawa majątkowe do oprogramowania MediaWiki należą do: Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe oraz innych współautorów.',
 	'config-sidebar' => '* [http://www.mediawiki.org Strona domowa MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Podręcznik użytkownika]
 * [http://www.mediawiki.org/wiki/Manual:Contents Podręcznik administratora]
@@ -5411,6 +5431,26 @@ Jeśli skompilowałeś PHP samodzielnie, skonfiguruj je ponownie z włączonym k
 <code>./configure --with-mysql</code>. 
 Jeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować moduł php5-mysql.',
 	'config-have-db' => 'Odnaleziono {{PLURAL:$2|sterownik bazy danych|sterowniki bazy danych:}} $1.',
+	'config-imagemagick' => 'Odnaleziono ImageMagick <code>$1</code>.
+Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
+	'config-gd' => 'Odnaleziono wbudowaną bibliotekę graficzną GD.
+Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
+	'config-no-scaling' => 'Nie można odnaleźć biblioteki GD lub ImageMagick.
+Tworzenie miniatur grafik będzie wyłączone.',
+	'config-dir' => 'Katalog instalacji <code>$1</code>.',
+	'config-uri' => 'Ścieżka URI skryptu <code>$1</code>.',
+	'config-no-uri' => "'''Błąd.''' Nie można określić aktualnego URI.
+Instalacja została przerwana.",
+	'config-dir-not-writable-group' => "'''Błąd.''' Nie można zapisać pliku konfiguracyjnego.
+Instalacja została przerwana. 
+
+Instalator odnalazł użytkownika, na którego koncie uruchomiony jest web serwer. 
+Dodaj uprawnienie do zapisywania dla katalogu <code><nowiki>config</nowiki></code> aby móc kontynuować.
+W systemie Linux lub innym Unix wydaj polecenia:
+
+<pre>cd $1
+chgrp $2 config
+chmod g+w config</pre>",
 	'config-mysql-engine' => 'Silnik bazy danych',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -5911,11 +5951,24 @@ Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",
 );
 
 /** Brazilian Portuguese (Português do Brasil)
+ * @author Giro720
  * @author Marcionunes
  */
 $messages['pt-br'] = array(
 	'config-desc' => 'O instalador do MediaWiki',
 	'config-title' => 'Instalação MediaWiki $1',
+	'config-information' => 'Informações',
+	'config-localsettings-upgrade' => "'''Aviso''': Foi detetada a existência de um arquivo <code>LocalSettings.php</code>.
+É possível atualizar o seu software.
+Mova o <code>LocalSettings.php</code> para um lugar seguro e execute o instalador novamente, por favor.",
+	'config-localsettings-noupgrade' => "'''Erro''': Foi detetada a existência de um arquivo <code>LocalSettings.php</code>.
+Não é possível atualizar o seu software neste momento.
+Por razões de segurança, o instalador foi desativado.",
+	'config-session-error' => 'Erro ao iniciar a sessão: $1',
+	'config-session-expired' => 'Os seus dados de sessão parecem ter expirado.
+As sessões estão configuradas para uma duração de $1.
+Você pode aumentar esta duração configurando <code>session.gc_maxlifetime</code> no php.ini.
+Reinicie o processo de instalação.',
 );
 
 /** Russian (Русский)

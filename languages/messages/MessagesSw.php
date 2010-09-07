@@ -1507,11 +1507,17 @@ Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
 
 # HTTP errors
 'http-invalid-url'      => 'URL batili: $1',
+'http-request-error'    => 'Ombi la HTTP lilishindwa kutokana na hitilafu isiyojulikana.',
+'http-read-error'       => 'Hitilafu ya kusoma HTTP.',
 'http-timed-out'        => 'Ombi la HTTP muda umepita.',
+'http-curl-error'       => 'Hitilafu ya kuleta URL: $1',
 'http-host-unreachable' => 'KISARA (URL) haikupatikana',
+'http-bad-status'       => 'Ilitokea tatizo wakati wa kutekeleza ombi la HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'KISARA (URL) haikupatikana',
+'upload-curl-error6-text'  => 'URL iliyotajwa haikupatikana.
+Tafadhali uhakikishe kwamba URL ni sahihi na kwamba tovuti inafanya kazi.',
 'upload-curl-error28'      => 'Muda wa upakiaji umeisha',
 'upload-curl-error28-text' => 'Tovuti imechelewa mno kuitikia.
 Tafadhali uhakikishe kwamba tovuti inafanya kazi, subiri kidogo halafu jaribu tena.
@@ -1521,6 +1527,7 @@ Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 'license-header'     => 'Hatimiliki',
 'nolicense'          => 'Haikuchaguliwa',
 'license-nopreview'  => '(Hakikisho hakipatikani)',
+'upload_source_url'  => ' (URL halali, inayofifika kadamnasi)',
 'upload_source_file' => '(faili kwenye tarakilishi yako)',
 
 # Special:ListFiles
@@ -1707,7 +1714,7 @@ Sasa unaelekeza [[$2]].',
 
 # Special:Log
 'specialloguserlabel'  => 'Mtumiaji:',
-'speciallogtitlelabel' => 'Kichwa:',
+'speciallogtitlelabel' => 'Cheo:',
 'log'                  => 'Kumbukumbu',
 'all-logs-page'        => 'Kumbukumbu zote zilizo wazi',
 'alllogstext'          => 'Hapa panaonyeshwa kumbukumbu zote za {{SITENAME}} kwa pamoja.
@@ -1850,6 +1857,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'watchlist-details' => 'Unafuatilia {{PLURAL:$1|ukurasa $1|kurasa $1}} bila kuzingatia kurasa za majadiliano.',
 'wlheader-enotif'   => '* Huduma ya kuarifu kwa barua pepe imewezeshwa.',
 'watchlistcontains' => 'Orodha ya maangalizi yako ina {{PLURAL:$1|kitu|vitu}} $1.',
+'iteminvalidname'   => "Kitu '$1' kina tatizo la jina batili...",
 'wlshowlast'        => 'Onyesha kutoka masaa $1 siku $2 $3',
 'watchlist-options' => 'Hitiari za maangalizi',
 
@@ -1963,7 +1971,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-othertime'           => 'Kipindi kingine:',
 'protect-othertime-op'        => 'kipindi kingine',
 'protect-otherreason'         => 'Sababu nyingine:',
-'protect-otherreason-op'      => 'sababu nyingine',
+'protect-otherreason-op'      => 'Sababu nyingine',
 'protect-dropdown'            => '*Sababu za kawaida za ulindaji
 ** Uharabu kupindukia
 ** Upuuzi kupindukia

@@ -3101,7 +3101,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-focalplaneresolutionunit'    => 'Unidade de resolução do plano focal',
 'exif-subjectlocation'             => 'Localização do motivo',
 'exif-exposureindex'               => 'Índice de exposição',
-'exif-sensingmethod'               => 'Método de sensação',
+'exif-sensingmethod'               => 'Tipo de sensor',
 'exif-filesource'                  => 'Fonte do ficheiro',
 'exif-scenetype'                   => 'Tipo de cena',
 'exif-cfapattern'                  => 'padrão CFA',

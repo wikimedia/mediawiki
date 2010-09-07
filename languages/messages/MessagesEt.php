@@ -2705,6 +2705,7 @@ Fail on lubatust suurem.',
 Fail oli vaid osaliselt üleslaaditud.',
 'importuploaderrortemp'      => 'Üleslaaditava faili import ebaõnnestus.
 Puudub ajutine kataloog.',
+'import-parse-failure'       => 'Viga XML-i importimisel',
 'import-noarticle'           => 'Ühtki lehekülge polnud importida!',
 'import-nonewrevisions'      => 'Kõik versioonid on eelnevalt imporditud.',
 'xml-error-string'           => '$1 real $2, tulbas $3 (bait $4): $5',
@@ -2857,6 +2858,9 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'math_syntax_error'     => 'Süntaksiviga',
 'math_image_error'      => "PNG konverteerimine ebaõnnestus;
 kontrollige oma ''latex'', ''dvips'', ''gs'', ''convert'' installatsioonide korrektsust.",
+'math_bad_tmpdir'       => 'Ajutise matemaatikakataloogi loomine või sinna kirjutamine ebaõnnestus',
+'math_bad_output'       => 'Matemaatika-väljundkataloogi loomine või sinna kirjutamine ebaõnnestus',
+'math_notexvc'          => 'Texvc-rakendus puudub; häälestamiseks vaata matemaatikakataloogist README-faili',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Märgi kui kontrollitud',
@@ -2904,7 +2908,9 @@ Selle avamine võib su arvutit kahjustada.",
 'svg-long-desc'        => '(SVG fail, algsuurus $1 × $2 pikslit, faili suurus: $3)',
 'show-big-image'       => 'Originaalsuurus',
 'show-big-image-thumb' => '<small>Selle eelvaate suurus on: $1 × $2 pikselit</small>',
+'file-info-gif-looped' => 'korduv',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kaader|kaadrit}}',
+'file-info-png-looped' => 'korduv',
 'file-info-png-repeat' => 'mängitud $1 {{PLURAL:$1|korra|korda}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|kaader|kaadrit}}',
 
