@@ -1,5 +1,7 @@
 <?php
 
+require_once( dirname( dirname( __FILE__ ) ) . '/includes/UploadFromUrlTest.php' );
+
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	public static function addTables( &$tables ) {
 		$tables[] = 'user_properties';

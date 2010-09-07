@@ -1,5 +1,7 @@
 <?php
 
+require_once( 'ApiSetup.php' );
+
 class MockApi extends ApiBase {
 	public function execute() { }
 	public function getVersion() { }

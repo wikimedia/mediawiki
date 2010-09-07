@@ -1,5 +1,7 @@
 <?php
 
+require_once( 'ParserHelpers.php' );
+
 class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 	private $count;
 	public $backend;

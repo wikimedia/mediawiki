@@ -1,4 +1,7 @@
 <?php
+
+require_once( 'SearchEngineTest.php' );
+
 class SearchDbTest extends SearchEngineTest {
 	var $db;
 
