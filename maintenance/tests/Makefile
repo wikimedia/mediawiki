@@ -8,16 +8,16 @@ TEST_FILE_TARGETS=$(subst .php,.target,$(TEST_FILES))
 all test: phpunit
 
 phpunit:
-	php phpunit
+	php phpunit.php
 
 tap:
-	prove -e 'php phpunit --tap' *Test*.php
+	prove -e 'php phpunit.php --tap' *Test*.php
 
 separate: $(TEST_FILE_TARGETS)
 
 # Need --tap because without it, the target specification doesn't work
 $(TEST_FILE_TARGETS) : %.target : %.php
-	php phpunit --tap $<
+	php phpunit.php --tap $<
 
 install:
 	pear channel-discover pear.phpunit.de
