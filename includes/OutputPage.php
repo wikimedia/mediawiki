@@ -227,7 +227,8 @@ class OutputPage {
 
 	/**
 	 * Get the list of modules to include on this page
-	 * @return array of module names
+	 *
+	 * @return Array of module names
 	 */
 	public function getModules() {
 		return $this->mModules;
@@ -237,7 +238,8 @@ class OutputPage {
 	 * Add one or more modules recognized by the resource loader. Modules added
 	 * through this function will be loaded by the resource loader when the
 	 * page loads.
-	 * @param $module mixed Module name (string) or array of module names
+	 *
+	 * @param $modules Mixed: module name (string) or array of module names
 	 */
 	public function addModules( $modules ) {
 		$this->mModules = array_merge( $this->mModules, (array)$modules );
@@ -255,7 +257,8 @@ class OutputPage {
 	 * Add only JS of one or more modules recognized by the resource loader. Module
 	 * scripts added through this function will be loaded by the resource loader when
 	 * the page loads.
-	 * @param $module mixed Module name (string) or array of module names
+	 *
+	 * @param $modules Mixed: module name (string) or array of module names
 	 */
 	public function addModuleScripts( $modules ) {
 		$this->mModuleScripts = array_merge( $this->mModuleScripts, (array)$modules );
@@ -263,7 +266,8 @@ class OutputPage {
 
 	/**
 	 * Get the list of module CSS to include on this page
-	 * @return array of module names
+	 *
+	 * @return Array of module names
 	 */
 	public function getModuleStyles() {
 		return $this->mModuleStyles;
@@ -273,7 +277,8 @@ class OutputPage {
 	 * Add only CSS of one or more modules recognized by the resource loader. Module
 	 * styles added through this function will be loaded by the resource loader when
 	 * the page loads.
-	 * @param $module mixed Module name (string) or array of module names
+	 *
+	 * @param $modules Mixed: module name (string) or array of module names
 	 */
 	public function addModuleStyles( $modules ) {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
@@ -281,7 +286,8 @@ class OutputPage {
 
 	/**
 	 * Get the list of module messages to include on this page
-	 * @return array of module names
+	 *
+	 * @return Array of module names
 	 */
 	public function getModuleMessages() {
 		return $this->mModuleMessages;
@@ -291,7 +297,8 @@ class OutputPage {
 	 * Add only messages of one or more modules recognized by the resource loader.
 	 * Module messages added through this function will be loaded by the resource
 	 * loader when the page loads.
-	 * @param $module mixed Module name (string) or array of module names
+	 *
+	 * @param $modules Mixed: module name (string) or array of module names
 	 */
 	public function addModuleMessages( $modules ) {
 		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
