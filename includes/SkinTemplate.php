@@ -108,7 +108,8 @@ class SkinTemplate extends Skin {
 	 */
 	function setupSkinUserCss( OutputPage $out ){
 		$out->addModuleStyles( 'mediawiki.legacy.shared' );
-		$out->addModuleStyles( 'mediawiki.legacy.commonPrint' );
+		// ResourceLoader does not support CSS media types yet, so we must include this on it's own the old way
+		$out->addStyle( 'common/commonPrint.css', 'print' );
 	}
 
 	/**
