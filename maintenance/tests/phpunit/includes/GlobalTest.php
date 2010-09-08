@@ -2,10 +2,11 @@
 
 class GlobalTest extends PHPUnit_Framework_TestCase {
 	function setUp() {
-		global $wgReadOnlyFile;
+		global $wgReadOnlyFile, $wgContLang, $wgLang;
 		$this->originals['wgReadOnlyFile'] = $wgReadOnlyFile;
 		$wgReadOnlyFile = tempnam( wfTempDir(), "mwtest_readonly" );
 		unlink( $wgReadOnlyFile );
+		$wgContLang = $wgLang = Language::factory( 'en' );
 	}
 	
 	function tearDown() {
