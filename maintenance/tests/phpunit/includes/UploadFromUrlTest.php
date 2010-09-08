@@ -244,6 +244,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		) );
 		
 		$job = Job::pop();
+		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
 		$job->run();
 		
 		$this->assertTrue( wfLocalFile( 'UploadFromUrlTest.png' )->exists() );		
