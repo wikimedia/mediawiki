@@ -3,18 +3,18 @@ This document describes the state of Postgres support in MediaWiki.
 
 == Overview ==
 
-Support for PostgreSQL has been available since version 1.7 
-of MediaWiki, and is fairly well maintained. The main code 
-is very well integrated, while extensions are very hit and miss. 
+Support for PostgreSQL has been available since version 1.7
+of MediaWiki, and is fairly well maintained. The main code
+is very well integrated, while extensions are very hit and miss.
 Still, it is probably the most supported database after MySQL.
-Much of the work in making MediaWiki database-agnostic came 
+Much of the work in making MediaWiki database-agnostic came
 about through the work of creating Postgres support.
 
 
 == Required versions ==
 
-The current minimum version of PostgreSQL for MediaWiki is 8.1. 
-It is expected that this will be raised to 8.3 at some point, 
+The current minimum version of PostgreSQL for MediaWiki is 8.1.
+It is expected that this will be raised to 8.3 at some point,
 as 8.1 and 8.2 are nearing end of life.
 
 
@@ -23,79 +23,78 @@ as 8.1 and 8.2 are nearing end of life.
 
 Postgres has its own schema file at maintenance/postgres/tables.sql.
 
-The goal is to keep this file as close as possible to the canonical 
-schema at maintenance/tables.sql, but without copying over 
+The goal is to keep this file as close as possible to the canonical
+schema at maintenance/tables.sql, but without copying over
 all the usage comments. General notes on the conversion:
 
-* The use of a true TIMESTAMP rather than the text string that 
-MySQL uses is highly encouraged. There are still places in the 
-code (especially extensions) which make assumptions about the 
-textual nature of timestamp fields, but these can almost always 
+* The use of a true TIMESTAMP rather than the text string that
+MySQL uses is highly encouraged. There are still places in the
+code (especially extensions) which make assumptions about the
+textual nature of timestamp fields, but these can almost always
 be programmed around.
 
-* Although Postgres has a true BOOLEAN type, boolean columns 
-are always mapped to SMALLINT, as the code does not always treat 
-the column as a boolean (which is limited to accepting true, 
+* Although Postgres has a true BOOLEAN type, boolean columns
+are always mapped to SMALLINT, as the code does not always treat
+the column as a boolean (which is limited to accepting true,
 false, 0, 1, t, or f)
 
-* The default data type for all VARCHAR, CHAR, and VARBINARY 
-columns should simply be TEXT. The only exception is 
-when VARBINARY is used to store true binary data, such as 
+* The default data type for all VARCHAR, CHAR, and VARBINARY
+columns should simply be TEXT. The only exception is
+when VARBINARY is used to store true binary data, such as
 the math_inputhash column, in which case BYTEA should be used.
 
-* All integer variants should generally be mapped to INTEGER. 
-There is small-to-no advantage in using SMALLINT versus 
-INTEGER in Postgres, and the possibility of running out of 
-room outweighs such concerns. The columns that are BIGINT 
-in other schemas should be INTEGER as well, as none of them 
-so far are even remotely likely to reach the 32 billion 
+* All integer variants should generally be mapped to INTEGER.
+There is small-to-no advantage in using SMALLINT versus
+INTEGER in Postgres, and the possibility of running out of
+room outweighs such concerns. The columns that are BIGINT
+in other schemas should be INTEGER as well, as none of them
+so far are even remotely likely to reach the 32 billion
 limit of an INTEGER.
 
-* Blobs (blob, tinyblog, mediumblob) should be mapped to TEXT 
-whenever possible, and to BYTEA if they are known to contain 
+* Blobs (blob, tinyblog, mediumblob) should be mapped to TEXT
+whenever possible, and to BYTEA if they are known to contain
 binary data.
 
-* All length modifiers on data types should be removed. If 
-they are on an INTEGER, it's probably an error, and if on 
+* All length modifiers on data types should be removed. If
+they are on an INTEGER, it's probably an error, and if on
 any text-based field, simply using TEXT is preferred.
 
-* Sequences should be explicitly named rather than using 
+* Sequences should be explicitly named rather than using
 SERIAL, as the code can depend on having a specific name.
 
-* Foreign keys should be used when possible. This makes things 
-both easier and harder in the code, but most of the major 
-problems have now been overcome. Always add an explicit ON DELETE 
-clause, and consider carefully what choice to use (all things 
+* Foreign keys should be used when possible. This makes things
+both easier and harder in the code, but most of the major
+problems have now been overcome. Always add an explicit ON DELETE
+clause, and consider carefully what choice to use (all things
 considered, prefer CASCADE).
 
-* The use of CIDR should be done very carefully, because the code 
-will sometimes want to store things such as an empty string or 
+* The use of CIDR should be done very carefully, because the code
+will sometimes want to store things such as an empty string or
 other non-IP value in the column. When in doubt, use TEXT.
 
-* Indexes should be created using the original MySQL tables.sql 
-as a guide, but keeping in mind the ability of Postgres to use 
-partial indexes, functional indexes, and bitmaps. The index names 
-should be logical but are not too important, as they are never 
-referenced directly by the code (unlike sequence names). Most of 
-the indexes in the file as of this writing are there due to production 
+* Indexes should be created using the original MySQL tables.sql
+as a guide, but keeping in mind the ability of Postgres to use
+partial indexes, functional indexes, and bitmaps. The index names
+should be logical but are not too important, as they are never
+referenced directly by the code (unlike sequence names). Most of
+the indexes in the file as of this writing are there due to production
 testing of expensive queries on a busy wiki.
 
 
 == Keeping in sync with tables.sql ==
 
-The script maintenance/postgres/compare_schemas.pl should be 
-periodically run. It will parse both "tables.sql" files and 
-produce any differences found. Such differences should be fixed 
-or exceptions specifically carved out by editing the script 
-itself. This script has also been very useful in finding problems 
-in maintenance/tables.sql itself, as it is very strict in the 
+The script maintenance/postgres/compare_schemas.pl should be
+periodically run. It will parse both "tables.sql" files and
+produce any differences found. Such differences should be fixed
+or exceptions specifically carved out by editing the script
+itself. This script has also been very useful in finding problems
+in maintenance/tables.sql itself, as it is very strict in the
 format it expects things to be in. :)
 
 
 == Getting help ==
 
-In addition to the normal venues (MediaWiki mailing lists 
-and IRC channels), the #postgresql channel on irc.freenode.net 
-is a friendly and expert resource if you should encounter a 
+In addition to the normal venues (MediaWiki mailing lists
+and IRC channels), the #postgresql channel on irc.freenode.net
+is a friendly and expert resource if you should encounter a
 problem with your Postgres-enabled MediaWiki.
-
