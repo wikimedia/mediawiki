@@ -2776,6 +2776,13 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-fnumber'                   => 'Isa F',
 'exif-isospeedratings'           => 'ISO',
 'exif-aperturevalue'             => 'Sanasana',
+'exif-gpsdatestamp'              => 'Daty GPS',
+
+'exif-unknowndate' => 'Daty tsy fantatra',
+
+'exif-componentsconfiguration-0' => 'tsy nahitana',
+
+'exif-exposureprogram-0' => 'Tsy nolazaina',
 
 'exif-subjectdistance-value' => '$1 metatra',
 

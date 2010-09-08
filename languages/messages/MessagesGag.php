@@ -278,6 +278,12 @@ $messages = array(
 'error'              => 'Kusurluk',
 'databaseerror'      => 'Data bazası kusurluu',
 'readonly'           => 'Data bazası kilitlendi',
+'missing-article'    => 'Yok nicä bulunsun "$1" $2 adlı sayfadan teksti angısı istenerdi bulunsun.
+
+Bu hal var nasıl peydalansın açan sayfa olêr geçmiş reviziyası o sayfanın angısı silindi.
+
+Herliim sebep diilsä bu, bekim karşılaştınız bir yannışlan angısı yapıldı açan programma yazıldı.
+Yalvarêrız benneyiniz URL - i hem raport ediniz bunu bir [[Special:ListUsers/sysop|izmetliyä]]',
 'missingarticle-rev' => '(reviziya#: $1)',
 'internalerror'      => 'İç yannış',
 'internalerror_info' => 'İç yannış: $1',
@@ -426,7 +432,7 @@ Herliim istemeersiniz ani sizin tekstlär serbest yayılsın hem diiştirilsin �
 Hem siz garantiyada bulunêrsiniz ani eklemäklerin avtorusunuz, yaki onnarı kopiya ettiniz kaynaktan angısı izin verer teksti serbest yaymaa hem diiştirmää.<br />
 '''<center>AVTORLUK KORUNMAK HAKKILAN KORUNMAYAN MATERİALLAR EKLEMEYNİZ!</center>'''",
 'longpagewarning'                  => "'''BAK: Bu sayfanın ölçüsü $1 kilobayt; ölçüsü 32 kb-a yakın yaki onnan çok sayfalar bir takım brauzerlärdä var nicä yannış görünsün. Savaşênız onu bölümnerä ayırmaa.'''",
-'templatesused'                    => 'Bu sayfada kullanılan {{PLURAL:$1|şablon|şablonlar}} :',
+'templatesused'                    => 'Bu sayfada kullanılan {{PLURAL:$1|şablon|şablonlar}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Şablon|Şablonnar}} ani bu ön siirdä kullanıldı:',
 'templatesusedsection'             => 'Bu bölümde kullanılan şablonlar:',
 'template-protected'               => '(korumaa)',
@@ -514,6 +520,8 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'search-interwiki-more'     => '(taa çok)',
 'search-mwsuggest-enabled'  => 'tekliflerlän',
 'search-mwsuggest-disabled' => 'tekliflersiz',
+'nonefound'                 => "'''Bennemäk''': Sadä kimi ad erleri sessizcä aaranêr.
+Aaramaanızın önünä ''all:'' prefiksini koyun da deneyin hepsi içlii aaramaa deyni (sözleşmäk sayfaları, şablonlar h.b.pay alarak), yaki kullanınız beenilän prefiksi sansın er adı.",
 'powersearch'               => 'Gelişmiş arama',
 'powersearch-legend'        => 'Gelişmiş arama',
 'powersearch-ns'            => 'Ad erlerindä aara:',
@@ -581,7 +589,8 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'recentchangeslinked-toolbox'  => 'İlgili diişilmäklär',
 'recentchangeslinked-title'    => '"$1" ilgili diişmäklär',
 'recentchangeslinked-noresult' => 'Baalantılı sayfalarda verilmiş devirde diişmäk olmadı.',
-'recentchangeslinked-summary'  => "Bu maasus sayfa baalantılı sayfalardaki diişmäkleri sayêr. Sizin bakmaa listasındaki sayfalar verildi [[Special:Watchlist|your watchlist]] '''kalın''' bukvalarnan.",
+'recentchangeslinked-summary'  => "Bu maasus sayfa baalantılı sayfalardaki diişmäkleri sayêr.
+Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' bukvalarnan.",
 'recentchangeslinked-page'     => 'Yaprak adı:',
 'recentchangeslinked-to'       => 'Bu sayfa erinä verilen sayfaa baalı sayfaları göster',
 
@@ -722,7 +731,7 @@ Gelecektä, bu sayfaya hem ilgili konuşmaa sayfasına yapılacêk diişmäkler 
 
 Ne zaman neetlendiniz sayfayı bakmaa listasınnan çıkarmaa tuşlayın "sayfaya bakmaa durgun" baalantısına.',
 'removedwatch'      => 'Bakmaa listanızdan silindi',
-'removedwatchtext'  => '[[:$1]]" yapraı siir listanızdan silindi [[Special:Watchlist|your watchlist]].',
+'removedwatchtext'  => '"[[:$1]]" yapraı siir [[Special:Watchlist|listanızdan]] silindi.',
 'watch'             => 'Bak',
 'watchthispage'     => 'Bak bu sayfaya',
 'unwatch'           => 'Durgun sayfa izlemää',
@@ -838,7 +847,7 @@ Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
 'move-page-legend' => 'Ad diişmäklii',
 'movepagetext'     => "Aşaadaki formayı kullanılarak var nicä sayfanın adın diiştirin, onnan bilä hepsi diiştirmää jurnalı eni ada aktarılacêk.
 Eski ad eni ada yönnendirmäk olacêk.
-Eski başlaa baalantılar diişmeycek [[Special:DoubleRedirects|double]] çift yaki yannış yönnendirmäkleri [[Special:BrokenRedirects|broken redirects]].
+Eski başlaa baalantılar  [[Special:DoubleRedirects|diişmeycek]] çift yaki yannış  [[Special:BrokenRedirects|yönnendirmäkleri]].
 Läazım inanmaa ani baalantılar genä dä gösterer orayı nerä läazım göstersin.
 
 Herliim ilerdän eni adda sayfa vardı, ad diişmää '''yapılmaycêk'''.
@@ -894,7 +903,7 @@ Yalvarêrêz başka bir ad seçmää.',
 'tooltip-pt-logout'               => 'Sistemadan çık',
 'tooltip-ca-talk'                 => 'İçindekilärlän ilgili düşünmäk sölä',
 'tooltip-ca-edit'                 => 'Bu yapraı var nicä diiştirin. Kaydetmeden ileri ön siir etmää unutmayın.',
-'tooltip-ca-addsection'           => 'Bu diskussiya için kommentariya ekleyin.',
+'tooltip-ca-addsection'           => 'Bu diskussiya için kommentariya ekleyin',
 'tooltip-ca-viewsource'           => 'Bu sayfa korunmak altında. Gelinir kodunu sadä var nicä görünüz. Yok nicä diiştirmää.',
 'tooltip-ca-history'              => 'Bu sayfanın geçmiş versiyaları.',
 'tooltip-ca-protect'              => 'Bu sayfayı kolla',

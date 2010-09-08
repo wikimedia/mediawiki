@@ -836,7 +836,7 @@ Ver venleg og opplyse dette ved eventuelle førespurnader.",
 'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst.
 Han kan ha vorten flytta eller sletta medan du såg på sida.',
 'loginreqtitle'                    => 'Innlogging trengst',
-'loginreqlink'                     => 'logga inn',
+'loginreqlink'                     => 'logg inn',
 'loginreqpagetext'                 => 'Du lyt $1 for å lesa andre sider.',
 'accmailtitle'                     => 'Passord er sendt.',
 'accmailtext'                      => "Eit tilfeldig laga passord for [[User talk:$1|$1]] er sendt til $2.

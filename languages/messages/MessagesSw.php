@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ikiwaner
  * @author Lloffiwr
  * @author Malangali
  * @author Marcos
@@ -2338,6 +2339,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 # EXIF tags
 'exif-imagewidth'              => 'Upana',
 'exif-imagelength'             => 'Urefu',
+'exif-artist'                  => 'Mwandishi',
 'exif-componentsconfiguration' => 'Maana ya kila kijenzi',
 'exif-makernote'               => 'Maelezo ya mtengenezaji',
 'exif-usercomment'             => 'Maoni ya mtumiaji',
