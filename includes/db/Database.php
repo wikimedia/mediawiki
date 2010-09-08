@@ -2350,8 +2350,10 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $filename String: File name to open
 	 * @param $lineCallback Callback: Optional function called before reading each line
 	 * @param $resultCallback Callback: Optional function called for each MySQL result
+	 * @param $fname String: Calling function name or false if name should be generated dynamically
+	 * 		using $filename
 	 */
-	function sourceFile( $filename, $lineCallback = false, $resultCallback = false ) {
+	function sourceFile( $filename, $lineCallback = false, $resultCallback = false, $fname = false ) {
 		$fp = fopen( $filename, 'r' );
 
 		if ( false === $fp ) {
@@ -2361,8 +2363,12 @@ abstract class DatabaseBase implements DatabaseType {
 				return "Could not open \"{$filename}\".\n";
 		}
 
+		if ( !$fname ) {
+			$fname = __METHOD__ . "( $filename )";
+		}
+
 		try {
-			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback );
+			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback, $fname );
 		}
 		catch ( MWException $e ) {
 			if ( defined( "MEDIAWIKI_INSTALL" ) ) {
@@ -2402,8 +2408,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fp String: File handle
 	 * @param $lineCallback Callback: Optional function called before reading each line
 	 * @param $resultCallback Callback: Optional function called for each MySQL result
+	 * @param $fname String: Calling function name
 	 */
-	function sourceStream( $fp, $lineCallback = false, $resultCallback = false ) {
+	function sourceStream( $fp, $lineCallback = false, $resultCallback = false, $fname = 'DatabaseBase::sourceStream' ) {
 		$cmd = "";
 		$done = false;
 		$dollarquote = false;
@@ -2450,7 +2457,7 @@ abstract class DatabaseBase implements DatabaseType {
 			if ( $done ) {
 				$cmd = str_replace( ';;', ";", $cmd );
 				$cmd = $this->replaceVars( $cmd );
-				$res = $this->query( $cmd, __METHOD__ );
+				$res = $this->query( $cmd, $fname );
 
 				if ( $resultCallback ) {
 					call_user_func( $resultCallback, $res, $this );
