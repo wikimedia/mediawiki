@@ -169,7 +169,8 @@ class CategoryViewer {
 			array( 'known', 'noclasses' )
 		);
 
-		$this->children_start_char[] = $this->getSubcategorySortChar( $title, $sortkey );
+		$this->children_start_char[] = 
+			$this->getSubcategorySortChar( $cat->getTitle(), $sortkey );
 	}
 
 	/**
