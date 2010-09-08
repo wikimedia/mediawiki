@@ -331,7 +331,7 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['topOnly'] = false;
 		}
 
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'class' => 'mw-contributions-form' ) );
 
 		# Add hidden params for tracking except for parameters in $skipParameters
 		$skipParameters = array( 'namespace', 'deletedOnly', 'target', 'contribs', 'year', 'month', 'topOnly' );
@@ -344,8 +344,7 @@ class SpecialContributions extends SpecialPage {
 
 		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagFilter'] );
 
-		$f .= '<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
+		$f .= 	Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ),
 				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ? true : false ) . '<br />' .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parsemag' ) ),
@@ -354,27 +353,24 @@ class SpecialContributions extends SpecialPage {
 				'size' => '20',
 				'required' => ''
 			) + ( $this->opts['target'] ? array() : array( 'autofocus' ) ) ) . ' '.
-			'<span style="white-space: nowrap">' .
-			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
-			Xml::namespaceSelector( $this->opts['namespace'], '' ) .
-			'</span>' .
+			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+				Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
+				Xml::namespaceSelector( $this->opts['namespace'], '' )
+			) .
 			Xml::checkLabel( wfMsg( 'history-show-deleted' ),
 				'deletedOnly', 'mw-show-deleted-only', $this->opts['deletedOnly'] ) . '<br />' .
 			Xml::tags( 'p', null, Xml::checkLabel( wfMsg( 'sp-contributions-toponly' ),
 				'topOnly', 'mw-show-top-only', $this->opts['topOnly'] ) ) .
 			( $tagFilter ? Xml::tags( 'p', null, implode( '&#160;', $tagFilter ) ) : '' ) .
-			Xml::openElement( 'p' ) .
-			'<span style="white-space: nowrap">' .
-			Xml::dateMenu( $this->opts['year'], $this->opts['month'] ) .
-			'</span>' . ' ' .
-			Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
-			Xml::closeElement( 'p' );
-
+			Html::rawElement( 'p', array( 'style' => 'white-space: nowrap' ),
+				Xml::dateMenu( $this->opts['year'], $this->opts['month'] ) . ' ' .
+				Xml::submitButton( wfMsg( 'sp-contributions-submit' ) )
+			) . ' ';	
 		$explain = wfMsgExt( 'sp-contributions-explain', 'parseinline' );
-		if( !wfEmptyMsg( 'sp-contributions-explain', $explain ) )
+		if( !wfEmptyMsg( 'sp-contributions-explain', $explain ) ) {
 			$f .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";
-
-		$f .= '</fieldset>' .
+		}
+		$f .= Xml::closeElement('fieldset' ) .
 			Xml::closeElement( 'form' );
 		return $f;
 	}
