@@ -772,7 +772,7 @@ Tip for internal links',
 'showdiff'                         => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.',
 'anoneditwarning'                  => 'Shown when editing a page anonymously.',
 'anonpreviewwarning'               => 'See also {{msg-mw|Anoneditwarning}}',
-'missingsummary'                   => 'The text "sdit summary" is in {{msg-mw|summary}}.
+'missingsummary'                   => 'The text "edit summary" is in {{msg-mw|summary}}.
 The text "Save" is in {{msg-mw|savearticle}}.',
 'missingcommenttext'               => 'This message is shown, when the textbox by a new-section is empty.',
 'missingcommentheader'             => 'Edit summary that is shown if you enable "Prompt me when entering a blank summary" and add a new section without headline to a talk page.',

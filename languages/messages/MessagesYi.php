@@ -1011,6 +1011,7 @@ $1",
 'suppressionlog' => 'באהאלטונגען לאג',
 
 # Revision move
+'revisionmove'           => ' באַוועגן ווערסיעס פון "$1"',
 'revmove-reasonfield'    => 'אורזאַך:',
 'revmove-titlefield'     => 'ציל בלאַט:',
 'revmove-badparam-title' => 'פֿאַלשע פאַראַמעטערס',

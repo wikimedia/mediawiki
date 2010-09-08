@@ -185,6 +185,7 @@ $messages = array(
 'nstab-special'  => 'Olupapula olwawule',
 'nstab-project'  => 'Ekkuŋaanizo erya kawefube',
 'nstab-image'    => 'Fayiro',
+'nstab-template' => 'Lutiba',
 'nstab-category' => 'Ttuluba lya',
 
 # General errors
@@ -497,6 +498,9 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'newuserlogpage'          => "Olukalala olw'ebifudeyo mu kukolawo akawunti empya",
 'newuserlog-create-entry' => 'Akawunti empya',
 
+# Special:ListGroupRights
+'listgrouprights-members' => '(lukalala lwa bamemba)',
+
 # E-mail user
 'emailuser' => 'Memba ono musindikire e-mail',
 
@@ -522,10 +526,14 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'unwatching' => 'Kikolebwako...',
 
 # Delete
-'confirm'        => 'Kakasa',
-'actioncomplete' => 'Kiwedde',
-'deletedarticle' => 'olupapula olwa "[[$1]]" lugyidwawo',
-'dellogpage'     => 'Ebigyidwawo',
+'deletepage'            => 'Gyawo olupapula',
+'confirm'               => 'Kakasa',
+'actioncomplete'        => 'Kiwedde',
+'deletedarticle'        => 'olupapula olwa "[[$1]]" lugyidwawo',
+'dellogpage'            => 'Ebigyidwawo',
+'deletecomment'         => 'Nsonga:',
+'deleteotherreason'     => 'Nsonga ndala:',
+'deletereasonotherlist' => 'Nsonga ndala',
 
 # Rollback
 'rollback'       => 'Jjululako ku bikyusidwamu',
@@ -534,9 +542,14 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'rollbackfailed' => 'Okujjulula tekusobose',
 
 # Protect
-'protectlogpage'         => "Olukalala lw'ebifa ku mpapula ezisibidwa",
-'protectedarticle'       => 'olupapula "[[$1]]" lusibidwa',
-'protect-expiry-options' => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
+'protectlogpage'              => "Olukalala lw'ebifa ku mpapula ezisibidwa",
+'protectedarticle'            => 'olupapula "[[$1]]" lusibidwa',
+'modifiedarticleprotection'   => 'okusibibwa kwa "[[$1]]" kukyusidwa',
+'protectcomment'              => 'Nsonga:',
+'protect-default'             => 'Kkiriza buli memba',
+'protect-fallback'            => 'Kyetaagise obuyinza obwa "$1"',
+'protect-level-autoconfirmed' => "Gaana bamemba abapya n'abatali bamemba",
+'protect-expiry-options'      => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Kyusa',
@@ -584,14 +597,18 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'whatlinkshere-filters'    => 'Ensunsula',
 
 # Block/unblock
-'blockip'           => 'Gaana memba okuwandiika',
-'ipboptions'        => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
-'blockipsuccesssub' => 'Memba agaaniddwa okuwandika',
-'ipblocklist'       => "Endagiriro n'amanya ag'abagaanidwa",
-'blocklink'         => 'Ono agaanibwe okuwandiika',
-'contribslink'      => 'byawaddeyo',
-'blocklogpage'      => 'Abagaanidwa',
-'blocklogentry'     => '[[$1]] agaanidwa. Obuyinza bumuddizibwa ku $2 $3',
+'blockip'                  => 'Gaana memba okuwandika',
+'ipboptions'               => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
+'blockipsuccesssub'        => 'Memba agaaniddwa okuwandika',
+'ipblocklist'              => "Endagiriro n'amanya ag'abagaanidwa",
+'blocklink'                => 'Ono agaanibwe okuwandiika',
+'unblocklink'              => 'kkiriza memba okuwandika',
+'change-blocklink'         => 'kyusa okugaanibwa',
+'contribslink'             => 'byawaddeyo',
+'blocklogpage'             => 'Abagaanidwa',
+'blocklogentry'            => '[[$1]] agaanidwa. Obuyinza bumuddizibwa ku $2 $3',
+'unblocklogentry'          => '$1 akkirizidwa okuddamu okuwandika',
+'block-log-flags-nocreate' => 'okukolawo akawunti empya kusibidwa',
 
 # Move page
 'move-page-legend' => 'Simbuliza olupapula luno',
@@ -660,6 +677,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'tooltip-ca-nstab-special'        => 'Luno lupapula olwawule, gwe tosobola okulukolako enkuyukakyuka',
 'tooltip-ca-nstab-project'        => "Nyiga wano ob'oyagala okukebera ekkuŋaanizo erya kawefube ono",
 'tooltip-ca-nstab-image'          => 'Nyiga wano okugenda ku lupapula oluliko ekifaananyi',
+'tooltip-ca-nstab-template'       => 'Nyiga wano okukebera olutiba',
 'tooltip-ca-nstab-category'       => "Nyiga wano ob'oyagala okulaba olupapula olw'ettuluba lino",
 'tooltip-minoredit'               => "Nyiga wano ob'oyagala nkyukakyuka z'ovakukola zirambibwe nti ntono",
 'tooltip-save'                    => "Kaza enkyukakyuka z'okoze",

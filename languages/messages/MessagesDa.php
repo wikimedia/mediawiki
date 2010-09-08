@@ -2237,7 +2237,7 @@ $1',
 
 'sp-contributions-newbies'             => 'Vis kun bidrag fra nye brugere',
 'sp-contributions-newbies-sub'         => 'Fra nye kontoer',
-'sp-contributions-newbies-title'       => 'Brugerbidrag fra nye kontoer',
+'sp-contributions-newbies-title'       => 'Brugerbidrag fra nye konti',
 'sp-contributions-blocklog'            => 'blokeringslog',
 'sp-contributions-deleted'             => 'slettede brugerbidrag',
 'sp-contributions-logs'                => 'loglister',
