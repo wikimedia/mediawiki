@@ -256,8 +256,11 @@ class Category {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 
-		# Let's be sure that the row exists in the table.  We don't need to
-		# do this if we got the row from the table in initialization!
+		# Insert the row if it doesn't exist yet (e.g., this is being run via
+		# update.php from a pre-1.16 schema).  TODO: This will cause lots and
+		# lots of gaps on some non-MySQL DBMSes if you run populateCategory.php
+		# repeatedly.  Plus it's an extra query that's unneeded almost all the
+		# time.  This should be rewritten somehow, probably.
 		$seqVal = $dbw->nextSequenceValue( 'category_cat_id_seq' );
 		$dbw->insert(
 			'category',
