@@ -258,7 +258,7 @@ class ResourceLoader {
 
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
 		$expires = wfTimestamp( TS_RFC2822, min( $maxage, $smaxage ) + time() );
-		header( "Cache-Control: public, maxage=$maxage, s-maxage=$smaxage" );
+		header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
 		header( "Expires: $expires" );
 
 		// Check if there's an If-Modified-Since header and respond with a 304 Not Modified if possible
