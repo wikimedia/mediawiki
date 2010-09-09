@@ -24,7 +24,7 @@
  * @author Trevor Parscal
  */
 class CSSMin {
-	
+
 	/* Constants */
 
 	/**
@@ -69,8 +69,7 @@ class CSSMin {
 	 * @param $path string File path where the source was read from
 	 * @return string Remapped CSS data
 	 */
-	public static function remap( $source, $path ) {
-		global $wgUseDataURLs;
+	public static function remap( $source, $path, $embed = true ) {
 
 		$pattern = '/((?<embed>\s*\/\*\s*\@embed\s*\*\/)(?<rule>[^\;\}]*))?url\([\'"]?(?<file>[^\?\)\:]*)\??[^\)]*[\'"]?\)(?<extra>[^;]*)[\;]?/';
 		$offset = 0;
@@ -81,14 +80,14 @@ class CSSMin {
 			$rule = $match['rule'][0];
 			$extra = $match['extra'][0];
 			$file = "{$path}/{$match['file'][0]}";
-
+			
 			// Only proceed if we can access the file
 			if ( file_exists( $file ) ) {
 				// Add version parameter as a time-stamp in ISO 8601 format, using Z for the timezone, meaning GMT
 				$url = "{$file}?" . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
 
 				// Detect when URLs were preceeded with embed tags, and also verify file size is below the limit
-				if ( $wgUseDataURLs && $match['embed'][1] > 0 && filesize( $file ) < self::EMBED_SIZE_LIMIT ) {
+				if ( $embed && $match['embed'][1] > 0 && filesize( $file ) < self::EMBED_SIZE_LIMIT ) {
 					// If we ever get to PHP 5.3, we should use the Fileinfo extension instead of mime_content_type
 					$type = mime_content_type( $file );
 					// Strip off any trailing = symbols (makes browsers freak out)
