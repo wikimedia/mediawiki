@@ -8,7 +8,7 @@
 /**
  * Backwards compatibility class
  *
- * @deprecated
+ * @deprecated. Will be removed in 1.18!
  * @ingroup FileRepo
  */
 class Image extends LocalFile {
@@ -23,7 +23,7 @@ class Image extends LocalFile {
 	 * Do not use in core code.
 	 * @deprecated
 	 */
-	static function newFromTitle( $title, $time = false ) {
+	static function newFromTitle( $title, $repo, $time = null ) {
 		wfDeprecated( __METHOD__ );
 		$img = wfFindFile( $title, array( 'time' => $time ) );
 		if ( !$img ) {
