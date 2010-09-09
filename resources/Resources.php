@@ -18,37 +18,37 @@ ResourceLoader::register( array(
 	/* jQuery Plugins */
 	
 	'jquery.async' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.async.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.async.js' )
 	),
 	'jquery.autoEllipsis' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.autoEllipsis.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.autoEllipsis.js' )
 	),
 	'jquery.color' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.color.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.color.js' )
 	),
 	'jquery.cookie' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.cookie.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.cookie.js' )
 	),
 	'jquery.delayedBind' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.delayedBind.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.delayedBind.js' )
 	),
 	'jquery.expandableField' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.expandableField.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.expandableField.js' )
 	),
 	'jquery.highlightText' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.highlightText.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.highlightText.js' )
 	),
 	'jquery.suggestions' => new ResourceLoaderFileModule(
 		array(
 			'scripts' => 'resources/jquery/jquery.suggestions.js',
 			'styles' => 'resources/jquery/jquery.suggestions.css',
-		),
+		)
 	),
 	'jquery.tabIndex' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.tabIndex.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.tabIndex.js' )
 	),
 	'jquery.textSelection' => new ResourceLoaderFileModule(
-		array( 'scripts' => 'resources/jquery/jquery.textSelection.js' ),
+		array( 'scripts' => 'resources/jquery/jquery.textSelection.js' )
 	),
 	
 	/* jQuery UI */
