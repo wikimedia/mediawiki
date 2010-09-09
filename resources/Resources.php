@@ -315,7 +315,7 @@ ResourceLoader::register( array(
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	) ),
 	'mediawiki.legacy.commonPrint' => new ResourceLoaderFileModule( array(
-		'scripts' => 'skins/common/commonPrint.css',
+		'styles' => 'skins/common/commonPrint.css',
 	) ),
 	'mediawiki.legacy.config' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/config.js',
