@@ -34,6 +34,7 @@ class CSSMin {
 	 * result in a 1/3 increase in size.
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
+	const URL_REGEX = 'url\([\'"]?(?<file>[^\?\)\:\'"]*)\??[^\)\'"]*[\'"]?\)';
 	
 	/* Protected Static Members */
 	
@@ -59,9 +60,8 @@ class CSSMin {
 	 * @return array List of local file references
 	 */
 	public static function getLocalFileReferences( $source, $path = null ) {
-		$pattern = '/url\([\'"]?(?<file>[^\?\)\:]*)\??[^\)]*[\'"]?\)/';
 		$files = array();
-		if ( preg_match_all( $pattern, $source, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER ) ) {
+		if ( preg_match_all( '/' . self::URL_REGEX . '/', $source, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER ) ) {
 			foreach ( $matches as $match ) {
 				$file = ( isset( $path ) ? rtrim( $path, '/' ) . '/' : '' ) . "{$match['file'][0]}";
 
@@ -82,13 +82,13 @@ class CSSMin {
 	 * @return string Remapped CSS data
 	 */
 	public static function remap( $source, $path, $embed = true ) {
-		$pattern = '/((?<embed>\s*\/\*\s*\@embed\s*\*\/)(?<rule>[^\;\}]*))?url\([\'"]?(?<file>[^\?\)\:\'"]*)\??[^\)\'"]*[\'"]?\)(?<extra>[^;]*)[\;]?/';
+		$pattern = '/((?<embed>\s*\/\*\s*\@embed\s*\*\/)(?<pre>[^\;\}]*))?' . self::URL_REGEX . '(?<post>[^;]*)[\;]?/';
 		$offset = 0;
 		while ( preg_match( $pattern, $source, $match, PREG_OFFSET_CAPTURE, $offset ) ) {
 			// Shortcuts
 			$embed = $match['embed'][0];
-			$rule = $match['rule'][0];
-			$extra = $match['extra'][0];
+			$pre = $match['pre'][0];
+			$post = $match['post'][0];
 			$file = "{$path}/{$match['file'][0]}";
 			// Only proceed if we can access the file
 			if ( file_exists( $file ) ) {
@@ -117,10 +117,10 @@ class CSSMin {
 					// Build 2 CSS properties; one which uses a base64 encoded data URI in place of the @embed
 					// comment to try and retain line-number integrity , and the other with a remapped an versioned
 					// URL and an Internet Explorer hack making it ignored in all browsers that support data URIs
-					$replacement = "{$rule}url(data:{$type};base64,{$data}){$extra};{$rule}url({$url}){$extra}!ie;";
+					$replacement = "{$pre}url(data:{$type};base64,{$data}){$post};{$pre}url({$url}){$post}!ie;";
 				} else {
-					// Build a CSS property with a remapped and versioned URL
-					$replacement = "{$embed}{$rule}url({$url}){$extra};";
+					// Build a CSS property with a remapped and versioned URL, preserving comment for debug mode
+					$replacement = "{$embed}{$pre}url({$url}){$post};";
 				}
 
 				// Perform replacement on the source
