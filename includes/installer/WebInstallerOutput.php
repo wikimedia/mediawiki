@@ -145,7 +145,7 @@ class WebInstallerOutput {
 	<?php echo Html::linkedStyle( '../skins/monobook/main.css' ) . "\n"; ?>
 	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
 	<?php echo Html::inlineScript(  "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
-	<?php $this->outputJQuery() . "\n"; ?>
+	<?php echo $this->getJQuery() . "\n"; ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ) . "\n"; ?>
 </head>
 
@@ -209,7 +209,7 @@ class WebInstallerOutput {
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo Html::linkedStyle( '../skins/monobook/main.css' ) . "\n"; ?>
 	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
-	<?php $this->outputJQuery(); ?>
+	<?php echo $this->getJQuery(); ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ); ?>
 </head>
 
@@ -222,9 +222,8 @@ class WebInstallerOutput {
 		echo htmlspecialchars( wfMsg( 'config-title', $wgVersion ) );
 	}
 
-	public function outputJQuery() {
-		global $wgJQueryVersion;
-		echo Html::linkedScript( "../skins/common/jquery-$wgJQueryVersion.min.js" );
+	public function getJQuery() {
+		return Html::linkedScript( "../resources/jquery/jquery.js" );
 	}
 
 	public function outputWarnings() {
