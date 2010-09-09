@@ -24,9 +24,9 @@
  * @author Trevor Parscal
  */
 class CSSMin {
-
+	
 	/* Constants */
-
+	
 	/**
 	 * Maximum file size to still qualify for in-line embedding as a data-URI
 	 *
@@ -34,9 +34,23 @@ class CSSMin {
 	 * result in a 1/3 increase in size.
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
-
+	
+	/* Protected Static Members */
+	
+	/** @var array List of common image files extensions and mime-types */
+	protected static $mimeTypes = array(
+		'gif' => 'image/gif',
+		'jpe' => 'image/jpeg',
+		'jpeg' => 'image/jpeg',
+		'jpg' => 'image/jpeg',
+		'png' => 'image/png',
+		'tif' => 'image/tiff',
+		'tiff' => 'image/tiff',
+		'xbm' => 'image/x-xbitmap',
+	);
+	
 	/* Static Methods */
-
+	
 	/**
 	 * Gets a list of local file paths which are referenced in a CSS style sheet
 	 *
@@ -47,7 +61,6 @@ class CSSMin {
 	public static function getLocalFileReferences( $source, $path = null ) {
 		$pattern = '/url\([\'"]?(?<file>[^\?\)\:]*)\??[^\)]*[\'"]?\)/';
 		$files = array();
-
 		if ( preg_match_all( $pattern, $source, $matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER ) ) {
 			foreach ( $matches as $match ) {
 				$file = ( isset( $path ) ? rtrim( $path, '/' ) . '/' : '' ) . "{$match['file'][0]}";
@@ -58,10 +71,9 @@ class CSSMin {
 				}
 			}
 		}
-
 		return $files;
 	}
-
+	
 	/**
 	 * Remaps CSS URL paths and automatically embeds data URIs for URL rules preceded by an /* @embed * / comment
 	 *
@@ -70,26 +82,36 @@ class CSSMin {
 	 * @return string Remapped CSS data
 	 */
 	public static function remap( $source, $path, $embed = true ) {
-
 		$pattern = '/((?<embed>\s*\/\*\s*\@embed\s*\*\/)(?<rule>[^\;\}]*))?url\([\'"]?(?<file>[^\?\)\:]*)\??[^\)]*[\'"]?\)(?<extra>[^;]*)[\;]?/';
 		$offset = 0;
-
 		while ( preg_match( $pattern, $source, $match, PREG_OFFSET_CAPTURE, $offset ) ) {
 			// Shortcuts
 			$embed = $match['embed'][0];
 			$rule = $match['rule'][0];
 			$extra = $match['extra'][0];
 			$file = "{$path}/{$match['file'][0]}";
-			
 			// Only proceed if we can access the file
 			if ( file_exists( $file ) ) {
 				// Add version parameter as a time-stamp in ISO 8601 format, using Z for the timezone, meaning GMT
 				$url = "{$file}?" . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
-
-				// Detect when URLs were preceeded with embed tags, and also verify file size is below the limit
-				if ( $embed && $match['embed'][1] > 0 && filesize( $file ) < self::EMBED_SIZE_LIMIT ) {
-					// If we ever get to PHP 5.3, we should use the Fileinfo extension instead of mime_content_type
+				// If we the mime-type can't be determined, no embedding will take place
+				$type = false;
+				// Try a couple of different ways to get the mime-type of a file, in order of preference
+				if ( function_exists( 'finfo_file' ) && function_exists( 'finfo_open' ) ) {
+					// As of PHP 5.3, this is how you get the mime-type of a file; it uses the Fileinfo PECL extension
+					$type = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $file );
+				} else if ( function_exists( 'mime_content_type' ) ) {
+					// Before this was deprecated in PHP 5.3, this used to be how you get the mime-type of a file
 					$type = mime_content_type( $file );
+				} else {
+					// Worst-case scenario has happend, use the file extension to infer the mime-type
+					$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
+					if ( isset( self::$mimeTypes[$ext] ) ) {
+						$type = self::$mimeTypes[$ext];
+					}
+				}
+				// Detect when URLs were preceeded with embed tags, and also verify file size is below the limit
+				if ( $embed && $type && $match['embed'][1] > 0 && filesize( $file ) < self::EMBED_SIZE_LIMIT ) {
 					// Strip off any trailing = symbols (makes browsers freak out)
 					$data = base64_encode( file_get_contents( $file ) );
 					// Build 2 CSS properties; one which uses a base64 encoded data URI in place of the @embed
@@ -110,10 +132,9 @@ class CSSMin {
 			// Move the offset to the end of the match, leaving it alone
 			$offset = $match[0][1] + strlen( $match[0][0] );
 		}
-
 		return $source;
 	}
-
+	
 	/**
 	 * Removes whitespace from CSS data
 	 *
