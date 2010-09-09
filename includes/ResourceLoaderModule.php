@@ -613,7 +613,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string Remapped CSS
 	 */
 	protected static function remapStyle( $file ) {
-		return CSSMin::remap( file_get_contents( self::remapFilename( $file ) ), dirname( $file ) );
+		global $wgUseDataURLs;
+		return CSSMin::remap( file_get_contents( self::remapFilename( $file ) ), dirname( $file ), $wgUseDataURLs );
 	}
 }
 
