@@ -1281,7 +1281,6 @@ Dieses Programm ist freie Software, d. h. es kann, gemäß den Bedingungen der v
 Dieses Programm wird in der Hoffnung verteilt, dass es nützlich sein wird, allerdings '''ohne jegliche Garantie''' und sogar ohne die implizierte Garantie einer '''Marktgängigkeit''' oder '''Eignung für einen bestimmten Zweck'''. Hierzu sind weitere Hinweise in der GNU General Public License enthalten.
 
 Eine <doclink href=Copying>Kopie der GNU General Public License</doclink> sollte zusammen mit diesem Programm verteilt worden sein. Sofern dies nicht der Fall war, kann eine Kopie bei der Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftlich angefordert oder auf deren Website [http://www.gnu.org/copyleft/gpl.html online gelesen] werden.",
-	'config-authors' => 'MediaWiki – Copyright © 2001–2010 Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Kirche, Yuri Astrachan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe und andere.',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Website von MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Nutzeranleitung zu MediaWiki]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorenanleitung zu MediaWiki]
@@ -2033,7 +2032,6 @@ Ce programme est distribué dans l’espoir qu’il sera utile, mais '''sans auc
 Voir la Licence Publique Générale GNU pour plus de détails.
 
 Vous devriez avoir reçu <doclink href=Copying>une copie de la Licence Publique Générale GNU</doclink> avec ce programme ; dans le cas contraire, écrivez à la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. ou [http://www.gnu.org/copyleft/gpl.html lisez-le en ligne].",
-	'config-authors' => 'MediaWiki est Copyright © 2001-2010 par Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe et autres.',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Accueil]
 * [http://www.mediawiki.org/wiki/Help:Contents Guide de l’utilisateur]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guide de l’administrateur]
@@ -2796,6 +2794,18 @@ Neste paso pode saltar o resto da configuración e instalar o wiki agora mesmo.'
 	'config-profile-no-anon' => 'Necesítase a creación dunha conta',
 	'config-profile-fishbowl' => 'Só os editores autorizados',
 	'config-profile-private' => 'Wiki privado',
+	'config-profile-help' => "Os wikis funcionan mellor canta máis xente os edite.
+En MediaWiki, é doado revisar os cambios recentes e reverter calquera dano feito por usuarios novatos ou con malas intencións.
+Porén, moita xente atopa MediaWiki útil nunha ampla variedade de papeis, e ás veces non é fácil convencer a todos dos beneficios que leva consigo o estilo wiki.
+Vostede decide.
+
+O tipo '''{{int:config-profile-wiki}}''' permite a edición por parte de calquera, mesmo sen rexistro.
+A opción '''{{int:config-profile-no-anon}}''' proporciona un control maior, pero pode desalentar os colaboradores casuais.
+
+O escenario '''{{int:config-profile-fishbowl}}''' restrinxe a edición aos usuarios aprobados, pero o público pode ollar as páxinas, incluíndo os historiais.
+O tipo '''{{int:config-profile-private}}''' só deixa que os usuarios aprobados vexan e editen as páxinas.
+
+Hai dispoñibles configuracións de dereitos de usuario máis complexas despois da instalación; bótelle un ollo a [http://www.mediawiki.org/wiki/Manual:User_rights esta entrada no manual].",
 	'config-license' => 'Dereitos de autor e licenza:',
 	'config-license-none' => 'Sen licenza ao pé',
 	'config-license-cc-by-sa' => 'Creative Commons recoñecemento compartir igual (compatible coa Wikipedia)',
@@ -2804,6 +2814,14 @@ Neste paso pode saltar o resto da configuración e instalar o wiki agora mesmo.'
 	'config-license-gfdl-current' => 'Licenza de documentación libre de GNU 1.3 ou posterior',
 	'config-license-pd' => 'Dominio público',
 	'config-license-cc-choose' => 'Seleccione unha licenza Creative Commons personalizada',
+	'config-license-help' => "Moitos wikis públicos liberan todas as súas contribucións baixo unha [http://freedomdefined.org/Definition/Gl licenza libre].
+Isto axuda a crear un sentido de propiedade na comunidade e anima a seguir contribuíndo durante moito tempo.
+Xeralmente, non é necesario nos wikis privados ou de empresas.
+
+Se quere poder empregar textos da Wikipedia, así como que a Wikipedia poida aceptar textos copiados do seu wiki, escolla a licenza '''Creative Commons recoñecemento compartir igual'''.
+
+A licenza de documentación libre de GNU era a licenza anterior da Wikipedia.
+Malia aínda ser unha licenza válida, esta ten algunhas características que poden facer o reuso e a interpretación difíciles.",
 	'config-email-settings' => 'Configuración do correo electrónico',
 	'config-enable-email' => 'Activar os correos electrónicos de saída',
 	'config-enable-email-help' => 'Se quere que o correo electrónico funcione, cómpre configurar os [http://www.php.net/manual/en/mail.configuration.php parámetros PHP] correctamente.
@@ -3232,6 +3250,25 @@ Móžeš to manuelnje činić.",
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
 );
 
+/** Hungarian (Magyar) */
+$messages['hu'] = array(
+	'config-information' => 'Információ',
+	'config-show-help' => 'Segítség',
+	'config-continue' => 'Folytatás →',
+	'config-page-language' => 'Nyelv',
+	'config-page-name' => 'Név',
+	'config-page-options' => 'Beállítások',
+	'config-page-install' => 'Telepítés',
+	'config-db-name' => 'Adatbázisnév:',
+	'config-ns-generic' => 'Projekt',
+	'config-admin-name' => 'Neved:',
+	'config-admin-password' => 'Jelszó:',
+	'config-email-settings' => 'Email beállítások',
+	'config-extensions' => 'Kiterjesztések',
+	'config-install-step-done' => 'kész',
+	'config-install-step-failed' => 'sikertelen',
+);
+
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
@@ -3290,7 +3327,6 @@ Iste programma es distribuite in le sperantia que illo sia utile, ma '''sin gara
 Vide le Licentia Public General de GNU pro plus detalios.
 
 Vos deberea haber recipite <doclink href=Copying>un exemplar del Licentia Public General de GNU</doclink> con iste programma; si non, scribe al Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, o [http://www.gnu.org/copyleft/gpl.html lege lo in linea].",
-	'config-authors' => 'MediaWiki es Copyright © 2001-2010 per Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe e alteres.',
 	'config-sidebar' => '* [http://www.mediawiki.org Pagina principal de MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Guida pro usatores]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida pro administratores]
@@ -3901,6 +3937,7 @@ $messages['ig'] = array(
 
 /** Japanese (日本語)
  * @author Whym
+ * @author Yanajin66
  * @author 青子守歌
  */
 $messages['ja'] = array(
@@ -4083,6 +4120,7 @@ MediaWikiはアップロードされたファイルのセキュリティ上の�
 スペースやハイフンは使用しないでください。
 
 このフィールドは、通常は空のままです。',
+	'config-db-charset' => 'データベースの文字セット',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0バイナリ',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-type-mysql' => 'MySQL',
@@ -4189,7 +4227,6 @@ Donn en dä Dattei <code>php.ini</code> nohloore, ov dä <code lang="en">session
 	'config-welcome' => '=== Ömjevong Prööfe ===
 Mer maache en Aanzal jrundlääje Prövunge, öm erus ze fenge, dat di Ömjevong heh paß, för Mediawiki opzesäze.
 Do sullts aanjävve, wat erus kohm, wann de Hölp bem Opsäze bruchs.',
-	'config-authors' => 'Et Urhävverrääsch aan MediaWiki jehürt © 2001-2010  däm Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe, un noch andere Lück.',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki sing Hompäjdsch]
 * [http://www.mediawiki.org/wiki/Help:Contents Handbooch för Aanwender]
 * [http://www.mediawiki.org/wiki/Manual:Contents Handbooch för Administratore un Köbesse]
@@ -4519,7 +4556,6 @@ $1
 Повеќе информации ќе најдете во текстот на ГНУ-овата општа јавна лиценца.
 
 Би требало да имате добиено <doclink href=Copying>примерок од ГНУ-овата општа јавна лиценца</doclink> заедно со програмов; ако немате добиено, тогаш пишете ни на Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. или [http://www.gnu.org/copyleft/gpl.html прочитајте ја тука].",
-	'config-authors' => 'МедијаВики (MediaWiki) е под Авторски права © 2001-2010 на Магнус Манске (Magnus Manske), Брајон Вибер (Brion Vibber), Ли Даниел Крокер (Lee Daniel Crocker), Тим Старлинг (Tim Starling), Ерик Мелер (Erik Möller), Габриел Вике (Gabriel Wicke), Ајвар Арнфјерд Бјармасон (Ævar Arnfjörð Bjarmason), Никлас Лакстрем (Niklas Laxström), Домас Митузас (Domas Mituzas), Роб Черч (Rob Church), Јуриј Астрахан (Yuri Astrakhan), Арје Грегор (Aryeh Gregor), Арон Шулц (Aaron Schulz), Ендрју Гарет (Andrew Garrett), Рајмонд Спекинг (Raimond Spekking), Александар Емзенхубер (Alexandre Emsenhuber), Сибранд Мазеланд (Siebrand Mazeland), Чед Хороху (Chad Horohoe) и други.',
 	'config-sidebar' => '* [http://www.mediawiki.org Домашна страница на МедијаВики]
 * [http://www.mediawiki.org/wiki/Help:Contents Водич закорисници]
 * [http://www.mediawiki.org/wiki/Manual:Contents Водич за администратори]
@@ -4994,7 +5030,6 @@ Dit programma wordt verspreid in de hoop dat het nuttig is, maar '''zonder enige
 Zie de GNU General Public License voor meer informatie. 
 
 Samen met dit programma hoort u een <doclink href=Copying>exemplaar van de GNU General Public License</doclink> ontvangen te hebben; zo niet, schrijf dan aan de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, Verenigde Staten. Of [http://www.gnu.org/copyleft/gpl.html lees de licentie online].",
-	'config-authors' => 'MediaWiki is Copyright © 2001-2010 door Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe en anderen.',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki thuispagina]
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:Contents Beheerdershandleiding] (Engelstalig)
@@ -5100,7 +5135,11 @@ Hoewel MediaWiki alle toegevoegde bestanden  controleert op bedreigingen, is het
 	'config-db-type' => 'Databasetype:',
 	'config-db-host' => 'Databasehost:',
 	'config-db-host-help' => 'Als uw databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.
-Als u gebruik maakt van gedeelde webhosting, hoort uw provider u de juiste hostnaam te hebben verstrekt.',
+
+Als u gebruik maakt van gedeelde webhosting, hoort uw provider u de juiste hostnaam te hebben verstrekt.
+
+Als u MediaWiki op een Windowsserver installeert en MySQL gebruikt, dan werkt "localhost" mogelijk niet als servernaam.
+Als het inderdaad niet werkt, probeer dan "127.0.0.1" te gebruiken als lokaal IP-adres.',
 	'config-db-wiki-settings' => 'Identificeer deze wiki',
 	'config-db-name' => 'Databasenaam:',
 	'config-db-name-help' => 'Kies een naam die uw wiki identificeert.
@@ -5650,7 +5689,6 @@ Este programa é distribuído na esperança de que seja útil, mas '''sem qualqu
 Consulte a licença GNU General Public License para mais detalhes.
 
 Em conjunto com este programa deve ter recebido <doclink href=Copying>uma cópia da licença GNU General Public License</doclink>; se não a recebeu, peça-a por escrito para Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ou [http://www.gnu.org/copyleft/gpl.html leia-a na internet].",
-	'config-authors' => 'O MediaWiki é Copyright © 2001-2010 por Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe e outros.',
 	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/pt Página principal do MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
 * [http://www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
@@ -6077,6 +6115,7 @@ $messages['pt-br'] = array(
  * @author DCamer
  * @author Eleferen
  * @author MaxSem
+ * @author Александр Сигачёв
  * @author Сrower
  */
 $messages['ru'] = array(
@@ -6133,7 +6172,6 @@ MediaWiki является свободным программным обесп�
 MediaWiki распространяется в надежде, что она будет полезной, но '''без каких-либо гарантий''', даже без подразумеваемых гарантий '''коммерческой ценности''' или '''пригодности для определённой цели'''. См. лицензию GNU General Public License для более подробной информации.
 
 Вы должны были получить <doclink href=Copying>копию GNU General Public License</doclink> вместе с этой программой, если нет, то напишите Free Software Foundation, Inc., по адресу: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочтите её онлайн].",
-	'config-authors' => 'MediaWiki © 2001-2010 Магнус Манске, Брайон Виббер, Ли Дэниэл Крокер, Тим Старлинг, Эрик Мёллер, Габриэль Викке, Авар Арнфьёрт Бьярмассон, Никлас Лакстрём, Домас Митузас, Роб Чёрч, Юрий Астрахан, Арьех Грегор, Аарон Шульц, Эндрю Гарретт, Раймонд Шпеккинг, Александр Эмзенхубер, Зибранд Мазеланд, Чад Хорохо и другие.',
 	'config-sidebar' => '* [http://www.mediawiki.org Сайт MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents/ru Справка для пользователей]
 * [http://www.mediawiki.org/wiki/Manual:Contents/ru Справка для администраторов]
@@ -6158,11 +6196,11 @@ MediaWiki распространяется в надежде, что она бу
 Вы должны [http://www.mediawiki.org/wiki/Unicode_normalization_considerations обновить версию], если хотите полноценно использовать Юникод.",
 	'config-no-db' => 'Не найдено поддержки баз данных!',
 	'config-no-db-help' => 'Вам необходимо установить драйвера базы данных для PHP. 
-Следующие типы баз данных поддерживаются: $ 1. 
+Поддерживаются следующие типы баз данных: $1. 
 
-Если Вы используете виртуальный хостинг, обратитесь к Вашему хостинг-провайдеру для установки подходящего драйвера базы данных. 
-Если Вы скомпилировали PHP сами, сконфигурируйте его снова с включенным клиентом базы данных, например, с помощью <code>./configure --with-mysql</code> . 
-Если Вы установили PHP из пакета Debian и Ubuntu, то Вам также необходимо установить модуль php5-mysql.',
+Если вы используете виртуальный хостинг, обратитесь к своему хостинг-провайдеру с просьбой установить подходящий драйвер базы данных. 
+Если вы скомпилировали PHP сами, сконфигурируйте его снова с включенным клиентом базы данных, например, с помощью <code>./configure --with-mysql</code>. 
+Если вы установили PHP из пакетов Debian или Ubuntu, то вам также необходимо установить модуль php5-mysql.',
 	'config-have-db' => 'Обнаружена поддержка {{PLURAL:$2|базы|баз}} данных $1.',
 	'config-register-globals' => "'''Внимание: PHP-опция <code>[http://php.net/register_globals register_globals] включена.'''
 '''Отключите её, если это возможно.'''
@@ -6181,6 +6219,7 @@ MediaWiki будет работать, но это снизит безопасн
 Установка и использование MediaWiki без выключения этой опции невозможно.",
 	'config-safe-mode' => "'''Предупреждение:''' PHP работает в [http://www.php.net/features.safe-mode «безопасном режиме»].
 Это может привести к проблемам, особенно с загрузкой файлов и вставкой математических формул.",
+	'config-xml-good' => 'Поддержка преобразования XML / Latin1-UTF-8.',
 	'config-xml-bad' => 'XML-модуль РНР отсутствует.
 MediaWiki не будет работать в этой конфигурации, так как требуется функционал этого модуля.
 Если вы работаете в Mandrake, установите PHP XML-пакет.',
@@ -6211,18 +6250,70 @@ MediaWiki не будет работать в этой конфигурации,
 	'config-uri' => 'URI скрипта: <code>$1</code>.',
 	'config-no-uri' => "'''Ошибка:''' Не могу определить текущий URI. 
 Установка прервана.",
+	'config-dir-not-writable-group' => "'''Ошибка.''' Невозможно записать файл конфигурации. 
+Установка прервана. 
+
+Установщик определил пользователя, от имени которого работает веб-сервер.
+Сделайте для него доступной на запись директорию <code><nowiki>config</nowiki></code>.
+В Unix/Linux системах: 
+
+<pre>cd $1
+chgrp $2 config
+chmod g+w config</pre>",
+	'config-dir-not-writable-nogroup' => "'''Ошибка.''' Невозможно записать файл конфигурации. 
+Установка прервана. 
+
+Не удалось определить пользователя, от имени которого запущен веб-сервер.
+Для продолжения сделайте директорию <code><nowiki>config</nowiki></code> доступной на запись для всех пользователей.
+В Unix/Linux системах: 
+
+<pre>cd $1
+chmod a+w config</pre>",
+	'config-file-extension' => 'Установка MediaWiki с расширениями файлов <code>$1</code>.',
+	'config-shell-locale' => 'Определена локаль оболочки — $1',
+	'config-uploads-safe' => 'Директория по умолчанию для загрузок безопасна от выполнения произвольных скриптов.',
+	'config-uploads-not-safe' => "'''Внимание.''' Ваша директория по умолчанию для загрузок <code>$1</code> уязвима к выполнению произвольных скриптов. 
+Хотя MediaWiki проверяет все загружаемые файлы на наличие угроз, настоятельно рекомендуется [http://www.mediawiki.org/wiki/Manual:Security#Upload_security закрыть данную уязвимость] перед включением загрузки файлов.",
 	'config-db-type' => 'Тип базы данных:',
+	'config-db-host' => 'Хост базы данных:',
+	'config-db-host-help' => 'Если сервер базы данных находится на другом сервере, введите здесь его имя хоста или IP-адрес. 
+
+Если вы используете виртуальный хостинг, ваш провайдер должен был указать данное имя хоста в своей документации.',
 	'config-db-wiki-settings' => 'Идентификация этой вики',
 	'config-db-name' => 'Имя базы данных:',
+	'config-db-name-help' => 'Выберите название-идентификатор для вашей вики. 
+Оно не должно содержать пробелов и дефисов. 
+
+Если вы используете виртуальный хостинг, провайдер или выдаст вам конкретное имя базы данных, или позволит создавать базы данных с помощью панели управления.',
+	'config-db-install-account' => 'Учётная запись для установки',
 	'config-db-username' => 'Имя пользователя базы данных:',
 	'config-db-password' => 'Пароль базы данных:',
 	'config-db-install-help' => 'Введите имя пользователя и пароль, которые будут использоваться для подключения к базе данных во время процесса установки.',
+	'config-db-account-lock' => 'Использовать то же имя пользователя и пароль для обычной работы',
+	'config-db-wiki-account' => 'Учётная запись для обычной работы',
+	'config-db-wiki-help' => 'Введите имя пользователя и пароль, которые будут использоваться для подключения к базе данных во время обычной работы вики. 
+Если такой учётной записи не существует, а установочная учётная запись имеет достаточно привилегий, то обычная учётная запись будет создана с минимально необходимыми для работы вики привилегиями.',
 	'config-db-prefix' => 'Префикс таблиц базы данных:',
+	'config-db-prefix-help' => 'Если вам нужно делить одну базу данных между несколькими вики, или между MediaWiki и другими веб-приложениями, вы можете добавить префикс для всех имён таблиц. 
+Не используйте пробелы и дефисы. 
+
+Это поле, как правило, остаётся пустым.',
+	'config-db-charset' => 'Набор символов базы данных',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 бинарная',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 обратно совместимая с UTF-8',
+	'config-charset-help' => "'''Внимание.''' Если вы используете '''обратно совместый UTF-8''' на MySQL 4.1+ и создаёте резервные копии базы данных с помощью <code>mysqldump</code>, то все не-ASCII символы могут быть искажены, а резервная копия окажется негодной! 
+
+В '''бинарном режиме''' MediaWiki хранит юникодный текст в базе в виде двоичных полей. 
+Это более эффективно, чем MySQL в режиме UTF-8, позволяет использовать полный набор символов Юникода. 
+В '''режиме UTF-8''' MySQL будет знать к какому набору символу относятся ваши данные, сможет представлять и преобразовать их надлежащим образом (буква Ё окажется при сортировке после буквы Е, а не после буквы Я, как в бинарном режиме), 
+но не позволит вам сохранять символы, выходящие за пределы [http://ru.wikipedia.org/wiki/Символы,_представленные_в_Юникоде#.D0.91.D0.B0.D0.B7.D0.BE.D0.B2.D0.B0.D1.8F_.D0.BC.D0.BD.D0.BE.D0.B3.D0.BE.D1.8F.D0.B7.D1.8B.D0.BA.D0.BE.D0.B2.D0.B0.D1.8F_.D0.BF.D0.BB.D0.BE.D1.81.D0.BA.D0.BE.D1.81.D1.82.D1.8C BMP].",
 	'config-mysql-old' => 'Необходим MySQL $1 или более поздняя версия. У вас установлен MySQL $2.',
 	'config-db-port' => 'Порт базы данных:',
+	'config-db-schema' => 'Схема для MediaWiki',
+	'config-db-ts2-schema' => 'Схема для tsearch2',
+	'config-db-schema-help' => 'Вышеприведённые схемы, как правило, работают нормально. 
+Изменяйте их только если знаете, зачем это необходимо.',
 	'config-sqlite-dir' => 'Директория данных SQLite:',
 	'config-sqlite-dir-help' => "SQLite хранит все данные в одном файле. 
 
@@ -6238,6 +6329,11 @@ MediaWiki не будет работать в этой конфигурации,
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-support-info' => 'MediaWiki поддерживает следующие СУБД: 
+
+$1 
+
+Если вы не видите своей системы хранения данных в этом списке, следуйте инструкциям, на которые есть ссылка выше, чтобы получить поддержку.',
 	'config-support-mysql' => '* $1 — основная база данных для MediaWiki, и лучше поддерживается ([http://www.php.net/manual/en/mysql.installation.php инструкция, как собрать PHP с поддержкой MySQL])',
 	'config-support-postgres' => '* $1 — популярная открытая СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL])',
 	'config-support-sqlite' => '* $1 — это лёгковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php Инструкция, как скомпилировать PHP с поддержкой SQLite], работающей посредством PDO)',
@@ -6254,13 +6350,35 @@ MediaWiki не будет работать в этой конфигурации,
 	'config-connection-error' => '$1.
 
 Проверьте хост, имя пользователя и пароль и попробуйте ещё раз.',
+	'config-invalid-schema' => 'Неправильная схема для MediaWiki «$1». 
+Используйте только буквы, цифры и знаки подчёркивания.',
+	'config-invalid-ts2schema' => 'Неправильная схема для tsearch2 «$1». 
+Используйте только буквы, цифры и знаки подчёркивания.',
 	'config-postgres-old' => 'Необходим PostgreSQL $1 или более поздняя версия. У вас установлен PostgreSQL $2.',
+	'config-sqlite-name-help' => 'Выберите имя-идентификатор для вашей вики. 
+Не используйте дефисы и пробелы.
+Эта строка будет использоваться в имени файла SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'Не удалось создать директорию данных <nowiki><code>$1</code></nowiki>, так как у веб-сервера нет прав записи в родительскую директорию <nowiki><code>$2</code></nowiki>. 
+
+Установщик определил пользователя, под которым работает веб-сервер. 
+Сделайте директорию <nowiki><code>$3</code></nowiki> доступной для записи и продолжите. 
+В Unix/Linux системе выполните: 
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Ошибка при создании каталога данных «$1».
 Проверьте расположение и повторите попытку.',
 	'config-sqlite-dir-unwritable' => 'Невозможно произвести запись в каталог «$1».
 Измените настройки доступа так, чтобы веб-сервер мог записывать в этот каталог, и попробуйте ещё раз.',
+	'config-sqlite-connection-error' => '$1. 
+
+Проверьте название базы данных и директорию с данными и попробуйте ещё раз.',
+	'config-sqlite-readonly' => 'Файл <code>$1</code> недоступен для записи.',
 	'config-sqlite-cant-create-db' => 'Не удаётся создать файл базы данных <code>$1</code> .',
 	'config-sqlite-fts3-downgrade' => 'У PHP отсутствует поддержка FTS3 — сбрасываем таблицы',
+	'config-sqlite-fts3-add' => 'Добавление возможности поиска через FTS3',
 	'config-upgrade-done' => "Обновление завершено. 
 
 Теперь вы можете [$1 начать использовать вики]. 
@@ -6280,6 +6398,7 @@ MediaWiki не будет работать в этой конфигурации,
 	'config-site-name' => 'Название вики:',
 	'config-site-name-help' => 'Название будет отображаться в заголовке окна браузера и в некоторых других местах вики.',
 	'config-site-name-blank' => 'Введите название сайта.',
+	'config-ns-generic' => 'Проект',
 	'config-admin-box' => 'Учётная запись администратора',
 	'config-admin-name' => 'Имя:',
 	'config-admin-password' => 'Пароль:',

@@ -10,6 +10,7 @@
  * @author Juanpabl
  * @author Malafaya
  * @author Remember the dot
+ * @author The Evil IP address
  * @author Urhixidur
  * @author Willtron
  * @author לערי ריינהארט
@@ -647,7 +648,7 @@ Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya t
 'showdiff'                         => 'Amostrar cambeos',
 'anoneditwarning'                  => "''Pare cuenta:'' No s'ha identificato con un nombre d'usuario. A suya adreza IP s'alzará en l'historial d'a pachina.",
 'anonpreviewwarning'               => "''No s'ha identificau con una cuenta d'usuario. A suya adreza IP quedará rechistrada en l'historial d'edicions d'ista pachina.\"",
-'missingsummary'                   => "'''Pare cuenta:''' No ha escrito garra resumen d'edición. Si puncha de nuevas en «{{MediaWiki:Savearticle}}» a suya edición se grabará sin resumen.",
+'missingsummary'                   => "'''Pare cuenta:''' No ha escrito garra resumen d'edición. Si puncha de nuevas en «{{int:savearticle}}» a suya edición se grabará sin resumen.",
 'missingcommenttext'               => 'Por favor, escriba o texto astí baixo.',
 'missingcommentheader'             => "'''Recordanza:''' No ha garra títol ta iste comentario. Si puncha de nuevas en \"{{int:savearticle}}\", a suya edición se grabará sin garra títol.",
 'summary-preview'                  => "Veyer anvista previa d'o resumen:",

@@ -2610,7 +2610,7 @@ Kérlek, válassz egy másik nevet.',
 'movesubpage'                  => '{{PLURAL:$1|Allap|Allapok}}',
 'movesubpagetext'              => 'Ennek a lapnak {{PLURAL:$1|egy|$1}} allapja van.',
 'movenosubpage'                => 'Ez a lap nem rendelkezik allapokkal.',
-'movereason'                   => 'Indoklás',
+'movereason'                   => 'Indoklás:',
 'revertmove'                   => 'visszaállítás',
 'delete_and_move'              => 'Törlés és átnevezés',
 'delete_and_move_text'         => '== Törlés szükséges ==

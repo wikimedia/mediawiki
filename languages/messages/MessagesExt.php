@@ -8,6 +8,7 @@
  * @file
  *
  * @author Better
+ * @author The Evil IP address
  * @author Urhixidur
  */
 
@@ -508,7 +509,7 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'showlivepreview'                  => '"Live Preview"',
 'showdiff'                         => 'Muestral chambus',
 'anoneditwarning'                  => "'''Avisu:''' Nu t'alcuentras rustriu, razón pola que s'emburacará la tu IP nel estorial d'esta páhina.",
-'missingsummary'                   => "'''Atención:''' Nu as escrebiu una síntesis al tentu la tu eición. Si pursas otra vezi sobri «{{MediaWiki:Savearticle}}» la tu eición s´emburacará sin él.",
+'missingsummary'                   => "'''Atención:''' Nu as escrebiu una síntesis al tentu la tu eición. Si pursas otra vezi sobri «{{int:savearticle}}» la tu eición s´emburacará sin él.",
 'missingcommenttext'               => 'Pol favol, escrebi un testu embahu.',
 'missingcommentheader'             => "'''Atención:''' Nu as escrebiu un entítulu pal tu comentáriu. Si güervis a pursal sobri \"Emburacal\", s'emburacará sin él.",
 'summary-preview'                  => 'Previsoreal síntesis:',

@@ -77,7 +77,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Aciungi is pàginas chi apo fuliadu a sa watchlist mea',
 'tog-previewontop'            => "Ammustra s'antiprima a subra sa casella de acontzu e no a suta",
 'tog-previewonfirst'          => "Ammustra s'antiprima pro su primu acontzu",
-'tog-nocache'                 => "Disativa sa ''cache'' pro is pàginas",
+'tog-nocache'                 => "Disativa sa ''cache'' pro is pàginas de su ''browser''",
 'tog-enotifwatchlistpages'    => 'Spedi·mi una missada eletrònica cando una pàgina de sa watchlist mea est acontzada',
 'tog-enotifusertalkpages'     => 'Spedi·mi una missada eletrònica cando sa pàgina de is cuntierras mias est acontzada',
 'tog-enotifminoredits'        => 'Spedi·mi una missada eletrònica fintzas pro is acontzos minores de is pàginas',
@@ -202,7 +202,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'Agiungi cuntierra',
+'vector-action-addsection' => 'Giunghe cuntierra',
 'vector-action-delete'     => 'Cantzella',
 'vector-action-move'       => 'Move',
 'vector-action-protect'    => 'Ampara',
@@ -416,6 +416,7 @@ No iscaressa de personalizare sas [[Special:Preferences|preferèntzias de {{SITE
 'gotaccount'              => 'Tenes giai unu account? $1.',
 'gotaccountlink'          => 'Identifica·ti',
 'createaccountmail'       => 'via e-mail',
+'createaccountreason'     => 'Motivu:',
 'badretype'               => 'Sas passwords chi as insertau non currenspundint.',
 'userexists'              => 'Su nùmene usuàriu insertadu est giai impreadu.
 Sèbera unu nùmene diferente.',
@@ -450,6 +451,14 @@ Pro praxere, cando dda retzis identìfica·ti torra.',
 'accountcreatedtext'      => "S'account usuàriu pro $1 est stadu creadu.",
 'createaccount-title'     => 'Creatzione de unu account pro {{SITENAME}}',
 'loginlanguagelabel'      => 'Limba: $1',
+
+# JavaScript password checks
+'password-strength-bad'        => 'MALA',
+'password-strength-mediocre'   => 'discreta',
+'password-strength-acceptable' => 'atzetàbile',
+'password-strength-good'       => 'bona',
+'password-retype'              => 'Repite sa password:',
+'password-retype-mismatch'     => 'Sas passwords non cointzident',
 
 # Password reset dialog
 'resetpass'                 => 'Càmbia sa password',
@@ -517,6 +526,7 @@ Nota ca sa funtzione 'Ispedi un'e-mail a custu usuàriu' no est ativa ki no est 
 
 S'indiritzu IP atuale est $3, su nùmeru ID de su bloccu est #$5.
 Pro praxere spetzìfica totu is particulares in antis in carche siat pregunta de acrarimentu.",
+'blockednoreason'                  => 'perunu motivu indicadu',
 'whitelistedittitle'               => "Esigit s'identificatzione pro acontzare is pàginas",
 'loginreqtitle'                    => 'Identificatzione rekesta',
 'loginreqlink'                     => 'identifica·ti',
@@ -599,15 +609,21 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'revdelete-show-file-submit' => 'Eja',
 'revdelete-radio-set'        => 'Eja',
 'revdel-restore'             => 'Muda sa visibilidade',
+'revdel-restore-deleted'     => 'revisiones burradas',
+'revdel-restore-visible'     => 'revisiones visìbiles',
 'pagehist'                   => 'Istòria de sa pàgina',
 'deletedhist'                => 'Istòria fuliada',
 'revdelete-content'          => 'cuntènnidu',
+'revdelete-summary'          => "ogetu de s'acontzu",
 'revdelete-uname'            => 'nùmene usuàriu',
 'revdelete-hid'              => 'cua $1',
 'revdelete-unhid'            => 'ammustra $1',
 'revdelete-log-message'      => '$1 pro $2 {{PLURAL:$2|revisione|revisiones}}',
 'logdelete-log-message'      => '$1 pro $2 {{PLURAL:$2|eventu|eventos}}',
 'revdelete-reasonotherlist'  => 'Àteru motivu',
+
+# Revision move
+'revmove-reasonfield' => 'Motivu:',
 
 # History merging
 'mergehistory-from'      => 'Pàgina de orìgine:',
@@ -655,6 +671,7 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'search-interwiki-more'          => '(àteru)',
 'search-mwsuggest-enabled'       => 'cun impostos',
 'search-mwsuggest-disabled'      => 'chentza impostos',
+'searcheverything-enable'        => 'Chirca in totu is nùmene-logos:',
 'searchall'                      => 'totu',
 'showingresults'                 => "Inoghe sighende {{PLURAL:$1|benit ammustradu '''1''' resurtadu|benint ammustrados '''$1''' resurtados}} incumentzende dae su nùmeru '''$2'''.",
 'showingresultsheader'           => "{{PLURAL:$5|Resultadu '''$1''' de '''$3'''|Resultadus '''$1 - $2''' de '''$3'''}} pro '''$4'''",
@@ -688,7 +705,9 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'skin-preview'                => 'Antiprima',
 'prefs-math'                  => 'Fòrmulas matemàticas',
 'prefs-datetime'              => 'Data e ora',
+'prefs-rc'                    => 'Ùrtimas mudàntzias',
 'prefs-watchlist'             => 'Watchlist',
+'prefs-misc'                  => 'Àteras preferèntzias',
 'prefs-resetpass'             => 'Càmbia password',
 'saveprefs'                   => 'Sarva preferèntzias',
 'resetprefs'                  => 'Re-imposta is preferèntzias',
@@ -699,8 +718,10 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'resultsperpage'              => 'Risultati da visualizzare per pagina',
 'contextlines'                => 'Righe di testo da mostrare per ciascun risultato',
 'contextchars'                => 'Caratteri per linea',
+'stub-threshold-disabled'     => 'Disativadu',
 'recentchangescount'          => 'Nùmeru de acontzos de amostare pro definidura:',
 'savedprefs'                  => 'Is preferèntzias tuas sunt stadas sarbadas.',
+'timezonelegend'              => 'Zona de oràriu:',
 'localtime'                   => 'Ora locale:',
 'timezoneoffset'              => 'Diferèntzia¹:',
 'timezoneregion-africa'       => 'Àfrica',
@@ -1072,7 +1093,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'watchlist-options' => 'Possibilidades subra sa watchlist',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Agiungende a sa watchlist...',
+'watching'   => 'Giunghende a sa watchlist...',
 'unwatching' => 'Boghende dae sa watchlist...',
 
 'enotif_newpagetext'           => 'Custa est una pàgina noa.',
@@ -1304,7 +1325,7 @@ In custos casos, si cheres, depes mòvere a manu su cuntènnidu de sa pàgina.",
 'movepage-moved'          => '\'\'\'"$1" est istada mòvida a "$2"\'\'\'',
 'articleexists'           => "Una pàgina cun custu nùmene esistit giai, o su nùmene ki as seberadu no est bàlidu.
 Pro praxere sèbera un'àteru nùmene.",
-'talkexists'              => "'''Su movimentu de sa pàgina est andadu bene, ma no est stadu possìbile mòver sa pàgina de cuntierras pro ite nde esistit giai un'àtera cun su matessi tìtulu. Pro praxere agiunge tue su cuntestu de sa pàgina bècia.'''",
+'talkexists'              => "'''Su movimentu de sa pàgina est andadu bene, ma no est stadu possìbile mòver sa pàgina de cuntierras pro ite nde esistit giai un'àtera cun su matessi tìtulu. Pro praxere giunghe tue su cuntestu de sa pàgina betza.'''",
 'movedto'                 => 'mòvida a',
 'movetalk'                => 'Move sa pàgina de cuntierra galu',
 '1movedto2'               => 'at mòvidu [[$1]] a [[$2]]',
@@ -1355,7 +1376,7 @@ Podes castiare sa mitza sua',
 'tooltip-ca-protect'              => 'Ampara custa pàgina',
 'tooltip-ca-delete'               => 'Fùlia custa pàgina',
 'tooltip-ca-move'                 => 'Move custa pàgina (càmbia su tìtulu)',
-'tooltip-ca-watch'                => 'Agiungi custa pàgina a sa watchlist tua',
+'tooltip-ca-watch'                => "Giunghe custa pàgina a sa ''watchlist'' tua",
 'tooltip-ca-unwatch'              => 'Tira custa pàgina da sa watchlist tua',
 'tooltip-search'                  => 'Chirca a intru de {{SITENAME}}',
 'tooltip-search-go'               => 'Anda a una pàgina cun custu nùmene, si esistit',
