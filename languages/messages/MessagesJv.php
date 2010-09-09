@@ -430,7 +430,7 @@ Supaya dimangertèni bilih ana kaca sing isih nganggo panjenengan kacathet ing s
 
 Akun panjenengan wis kacipta. Aja lali nata konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] panjenengan.',
 'yourname'                   => 'Asma pangangeman',
-'yourpassword'               => 'tembung sandhi',
+'yourpassword'               => 'Tembung sandhi:',
 'yourpasswordagain'          => 'Balènana tembung sandhi',
 'remembermypassword'         => 'Éling tembung sandhi (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Dhomain panjenengan',

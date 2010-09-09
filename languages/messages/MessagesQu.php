@@ -10,6 +10,7 @@
  * @author AlimanRuna
  * @author Diego Grez
  * @author Omnipaedista
+ * @author The Evil IP address
  * @author לערי ריינהארט
  */
 
@@ -784,7 +785,7 @@ Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata
 'showdiff'                         => 'Hukchasqakunata rikuchiy',
 'anoneditwarning'                  => "''Paqtataq:'' Manaraqmi ruraqpa sutiykita qumurqunkichu. IP huchhaykim kay p'anqap hukchay hallch'ayninpi waqaychasqa kanqa.",
 'anonpreviewwarning'               => "''Manam ruraqpa sutiykiwan yaykusqa kachkankichu. Imatapas waqaychaptiykiqa, IP huchhaykim hallch'asqa kanqa kay p'anqap llamk'apuy wiñay kawsayninpi.''",
-'missingsummary'                   => "'''Paqtataq:''' Manaraqmi llamk'apusqaykimanta pisichaytachu qillqamurqunki. Musuqmanta «{{MediaWiki:Savearticle}}» nisqapi ñit'iptiykiqa, llamk'apusqayki waqaychasqam kanqa mana pisichay kaptinpas.",
+'missingsummary'                   => "'''Paqtataq:''' Manaraqmi llamk'apusqaykimanta pisichaytachu qillqamurqunki. Musuqmanta «{{int:savearticle}}» nisqapi ñit'iptiykiqa, llamk'apusqayki waqaychasqam kanqa mana pisichay kaptinpas.",
 'missingcommenttext'               => 'Ama hina kaspa, kay qatiqpi willaspa qillqamuy.',
 'missingcommentheader'             => "'''Paqtataq:''' Manaraqmi kay willaypa umallintachu qillqamurqunki. Musuqmanta \"{{int:savearticle}}\" nisqapi ñit'iptiykiqa, llamk'apusqayki waqaychasqam kanqa mana willaypa umallin kaptinpas.",
 'summary-preview'                  => 'Pisichayta ñawpaqta qhawarillay:',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Amdf
+ * @author Andrijko Z.
  */
 
 $fallback = 'ru';
@@ -245,7 +246,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'Сирӹшӹн лӹмжӹ:',
 'yourpassword'            => 'Пароль:',
-'remembermypassword'      => 'Ти компьютерӹштӹ мӹньӹн учетный сирмӓшем ӓштӓш (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Ти компьютерӹштӹ мӹньӹн учетный сирмӓшем ӓштӓш (for a maximum of $1 {{PLURAL:$1|кечы|кечы}})',
 'login'                   => 'Системыш сирӓлтдӓ',
 'nav-login-createaccount' => 'Коргӹшкӹ сирӓлтдӓ/регистрируялтда',
 'userlogin'               => 'Кӧргӹшкӹ сирӓлтдӓ ӓль регистрируялтда',

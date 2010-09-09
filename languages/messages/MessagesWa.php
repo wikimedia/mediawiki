@@ -720,6 +720,9 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'grouppage-sysop'      => '{{ns:project}}:Manaedjeus',
 'grouppage-bureaucrat' => '{{ns:project}}:Mwaisse-manaedjeus',
 
+# Rights
+'right-read' => 'Lére les pådjes',
+
 # User rights log
 'rightslog'      => 'Djournå des droets des uzeus',
 'rightslogtext'  => "Çouchal, c' est on djournå des candjmints des droets des uzeus.",

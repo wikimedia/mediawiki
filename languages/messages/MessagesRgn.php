@@ -59,6 +59,9 @@ $messages = array(
 'tog-showhiddencats'          => "↓ Fa'm avdé al categurèj nascosti",
 'tog-norollbackdiff'          => "↓ T'an fèga avdé al diferenzi dop d'avé recuperè l'ultma versiòn",
 
+'underline-always' => '↓ Sempar',
+'underline-never'  => '↓ Mai',
+
 # Dates
 'january'       => 'Znèr',
 'february'      => 'Febrér',

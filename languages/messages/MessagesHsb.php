@@ -529,7 +529,7 @@ Wobkedźbuj, zo so někotre strony dale jewja, kaž by hišće přizjewjeny był
 
 Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|{{GRAMMAR:akuzatiw|{{SITENAME}}}}]] změnić.',
 'yourname'                   => 'Wužiwarske mjeno',
-'yourpassword'               => 'Hesło',
+'yourpassword'               => 'Hesło:',
 'yourpasswordagain'          => 'Hesło znowa zapodać',
 'remembermypassword'         => 'Na tutym ličaku přizjewjeny wostać (za maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'yourdomainname'             => 'Twoja domejna',

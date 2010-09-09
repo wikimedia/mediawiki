@@ -55,6 +55,7 @@
  * @author Sanbec
  * @author Spacebirdy
  * @author Technorum
+ * @author The Evil IP address
  * @author Titoxd
  * @author Toniher
  * @author Translationista
@@ -850,7 +851,7 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'anoneditwarning'                  => "'''Aviso:''' No ha iniciado sesión con una cuenta de usuario.
 Tu dirección IP se almacenará en el historial de ediciones de la página.",
 'anonpreviewwarning'               => "''No ha iniciado sesión con una cuenta de usuario. Al guardar los cambios se almacenará su dirección IP en el historial de edición de la página.''",
-'missingsummary'                   => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{MediaWiki:Savearticle}}» tu edición se grabará sin él.",
+'missingsummary'                   => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{int:savearticle}}» tu edición se grabará sin él.",
 'missingcommenttext'               => 'Por favor introduce texto debajo.',
 'missingcommentheader'             => "'''Recordatorio:''' No has escrito un título para este comentario. Si haces clic nuevamente en \"{{int:savearticle}}\" tu edición se grabará sin él.",
 'summary-preview'                  => 'Previsualización del resumen:',

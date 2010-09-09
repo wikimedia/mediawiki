@@ -643,13 +643,24 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'revdelete-hide-comment'      => 'Nivîsandinê kurte yê guherandinê veşêre',
 'revdelete-hide-user'         => "Navî bikarhêner/IP'yê veşêre",
 'revdelete-hide-restricted'   => 'Ev qebûlkirinan ji koordînatoran ra ye jî û ev rûpela tê girtin',
+'revdelete-radio-set'         => 'Erê',
+'revdelete-radio-unset'       => 'Na',
 'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
+'revdelete-log'               => 'Sedem',
+'pagehist'                    => 'Dîroka rûpelê',
+'revdelete-uname'             => 'navê bikarhêner',
 'revdelete-hid'               => '$1 veşart',
 'revdelete-unhid'             => '$1 nîşanbide',
+'revdelete-otherreason'       => 'Sedemekî din:',
+'revdelete-reasonotherlist'   => 'Sedemekî din',
 'revdelete-edit-reasonlist'   => 'Sedemên jêbirinê biguherîne',
 
+# Revision move
+'revmove-nullmove-title' => 'Sernivîsa nebaş',
+
 # History merging
-'mergehistory-from' => 'Çavkanîya rûpelê:',
+'mergehistory-from'   => 'Çavkanîya rûpelê:',
+'mergehistory-reason' => 'Sedem',
 
 # Merge log
 'mergelog' => 'Reşahîya yekkirinê',
@@ -675,6 +686,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'nextn'                          => '{{PLURAL:$1|$1}} pêş',
 'viewprevnext'                   => '($1 {{int:pipe-separator}} $2) ($3).',
 'searchhelp-url'                 => 'Help:Alîkarî',
+'searchprofile-advanced'         => 'Pêşketî',
 'searchprofile-articles-tooltip' => 'Di $1 da lêbigere',
 'searchprofile-project-tooltip'  => 'Di $1 da lêbigere',
 'search-result-size'             => '$1 ({{PLURAL:$2|peyvek|$2 peyv}})',
@@ -689,6 +701,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'powersearch-legend'             => 'Lê bigere',
 'powersearch-ns'                 => "Di namespace'an da lêbigere:",
 'powersearch-field'              => 'Bigere li',
+'powersearch-togglenone'         => 'Tune',
 'searchdisabled'                 => '<p>Tu dikarî li {{SITENAME}} bi Google an Yahoo! bigere. Têbînî: Dibe ku encamen lêgerîne ne yên herî nû ne.
 </p>',
 
@@ -1066,6 +1079,7 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'deletedcontributions-title' => 'Guherandinên bikarhênerekî yê jêbirî',
 
 # Special:LinkSearch
+'linksearch-ns' => 'Boşahîya nav:',
 'linksearch-ok' => 'Lêbigere',
 
 # Special:ListUsers
@@ -1217,6 +1231,8 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'protect-level-autoconfirmed' => 'Bikarhênerên neqeydkirî astengbike',
 'protect-level-sysop'         => 'Bes koordînatoran (admînan)',
 'protect-expiring'            => 'heta rojê $1 (UTC)',
+'protect-otherreason'         => 'Sedemekî din:',
+'protect-otherreason-op'      => 'Sedemekî din',
 'protect-expiry-options'      => '1 seet:1 hour,1 roj:1 day,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,6 mihe:6 months,1 sal:1 year,ji her demê ra:infinite',
 'restriction-type'            => 'Destûr:',
 
@@ -1272,7 +1288,8 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'sp-contributions-newbies-sub' => 'Ji bikarhênerên nû re',
 'sp-contributions-blocklog'    => 'Reşahîya astengkirinê',
 'sp-contributions-deleted'     => 'Guherandinên bikarhênerekî yê jêbirî',
-'sp-contributions-talk'        => 'Nîqaş',
+'sp-contributions-logs'        => 'reşahîyan',
+'sp-contributions-talk'        => 'nîqaş',
 'sp-contributions-userrights'  => 'Îdarekirina mafên bikarhêneran',
 'sp-contributions-search'      => 'Li beşdarîyan bigere',
 'sp-contributions-username'    => 'Adresê IP ya navî bikarhêner:',
@@ -1424,10 +1441,12 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'immobile-source-page'      => 'Nava vê rûpelê nikare were guherandin.',
 
 # Namespace 8 related
-'allmessages'        => 'Hemû mesajên sîstemê',
-'allmessagesname'    => 'Nav',
-'allmessagescurrent' => 'Texta niha',
-'allmessagestext'    => 'Ev lîsteya hemû mesajên di namespace a MediaWiki: de ye.',
+'allmessages'               => 'Hemû mesajên sîstemê',
+'allmessagesname'           => 'Nav',
+'allmessagescurrent'        => 'Texta niha',
+'allmessagestext'           => 'Ev lîsteya hemû mesajên di namespace a MediaWiki: de ye.',
+'allmessages-language'      => 'Ziman',
+'allmessages-filter-submit' => 'Gotar',
 
 # Thumbnails
 'thumbnail-more' => 'Mezin bike',
@@ -1708,11 +1727,13 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'watchlisttools-edit' => 'Lîsteya şopandinê bibîne û biguherîne',
 
 # Special:Version
-'version'       => 'Verzîyon',
-'version-other' => 'yên din',
+'version'                  => 'Verzîyon',
+'version-other'            => 'yên din',
+'version-software-version' => 'Verzîyon',
 
 # Special:FilePath
-'filepath-page' => 'Data:',
+'filepath-page'   => 'Data:',
+'filepath-submit' => 'Gotar',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Lêbigere',
@@ -1727,5 +1748,12 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'specialpages-group-changes' => 'Guherandinên dawî û reşahîyan',
 'specialpages-group-media'   => 'Nameyên medyayan û barkirinan',
 'specialpages-group-users'   => 'Bikarhêner û maf',
+
+# Special:Tags
+'tags-edit' => 'biguherîne',
+
+# HTML forms
+'htmlform-submit'              => 'Bike',
+'htmlform-selectorother-other' => 'Yên din',
 
 );
