@@ -82,7 +82,7 @@ class CSSMin {
 	 * @return string Remapped CSS data
 	 */
 	public static function remap( $source, $path, $embed = true ) {
-		$pattern = '/((?<embed>\s*\/\*\s*\@embed\s*\*\/)(?<rule>[^\;\}]*))?url\([\'"]?(?<file>[^\?\)\:]*)\??[^\)]*[\'"]?\)(?<extra>[^;]*)[\;]?/';
+		$pattern = '/((?<embed>\s*\/\*\s*\@embed\s*\*\/)(?<rule>[^\;\}]*))?url\([\'"]?(?<file>[^\?\)\:\'"]*)\??[^\)\'"]*[\'"]?\)(?<extra>[^;]*)[\;]?/';
 		$offset = 0;
 		while ( preg_match( $pattern, $source, $match, PREG_OFFSET_CAPTURE, $offset ) ) {
 			// Shortcuts
