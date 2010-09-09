@@ -153,7 +153,7 @@ abstract class DatabaseInstaller {
 		LBFactory::enableBackend();
 
 		$ret = true;
-		ob_start( array( __CLASS__, 'outputHandler' ) );
+		ob_start( array( $this, 'outputHandler' ) );
 		try {
 			$up = DatabaseUpdater::newForDB( $this->db );
 			$up->execute();
