@@ -2281,7 +2281,7 @@ class OutputPage {
 	}
 	
 	static function makeResourceLoaderLink( $skin, $modules, $only ) {
-		global $wgUser, $wgLang, $wgRequest;
+		global $wgUser, $wgLang, $wgRequest, $wgLoadScript;
 		// TODO: Should this be a static function of ResourceLoader instead?
 		$query = array(
 			'modules' => implode( '|', array_unique( (array) $modules ) ),
@@ -2292,9 +2292,9 @@ class OutputPage {
 		);
 		// Automatically select style/script elements
 		if ( $only === 'styles' ) {
-			return Html::linkedStyle( wfAppendQuery( wfScript( 'load' ), $query ) );
+			return Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) );
 		} else {
-			return Html::linkedScript( wfAppendQuery( wfScript( 'load' ), $query ) );
+			return Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) );
 		}
 	}
 	
