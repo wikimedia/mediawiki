@@ -372,11 +372,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 			$styles[$media] .= $style;
 		}
-		foreach ( $this->getPrimaryStyles() as $media => $style ) {
+		foreach ( $this->getSkinStyles( $context->getSkin() ) as $media => $style ) {
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = '';
 			}
-			$styles[$media] .= $this->getSkinStyles( $context->getSkin() );
+			$styles[$media] .= $style;
 		}
 		
 		// Collect referenced files
@@ -718,7 +718,9 @@ class ResourceLoaderSiteModule extends ResourceLoaderModule {
 		return $this->modifiedTime;
 	}
 
-	public function getStyles( ResourceLoaderContext $context ) { return array(); }
+	public function getStyles( ResourceLoaderContext $context ) {
+		return array();
+	}
 	public function getMessages() { return array(); }
 	public function getLoaderScript() { return ''; }
 	public function getDependencies() { return array(); }
