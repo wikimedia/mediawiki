@@ -691,6 +691,8 @@ class ResourceLoaderSiteModule extends ResourceLoaderModule {
 	}
 
 	public function getModifiedTime( ResourceLoaderContext $context ) {
+		global $wgHandheldStyle;
+		
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
 			return $this->modifiedTime[$context->getHash()];
 		}
@@ -698,20 +700,28 @@ class ResourceLoaderSiteModule extends ResourceLoaderModule {
 		// HACK: We duplicate the message names from generateUserJs()
 		// here and weird things (i.e. mtime moving backwards) can happen
 		// when a MediaWiki:Something.js page is deleted
-		$jsPages = array( Title::makeTitle( NS_MEDIAWIKI, 'Common.js' ),
-			Title::makeTitle( NS_MEDIAWIKI, ucfirst( $context->getSkin() ) . '.js' )
+		$pages = array(
+			Title::makeTitle( NS_MEDIAWIKI, 'Common.js' ),
+			Title::makeTitle( NS_MEDIAWIKI, 'Common.css' ),
+			Title::makeTitle( NS_MEDIAWIKI, ucfirst( $context->getSkin() ) . '.js' ),
+			Title::makeTitle( NS_MEDIAWIKI, ucfirst( $context->getSkin() ) . '.css' ),
+			Title::makeTitle( NS_MEDIAWIKI, 'Print.css' ),
+			
 		);
+		if ( $wgHandheldStyle ) {
+			$pages[] = Title::makeTitle( NS_MEDIAWIKI, 'Handheld.css' );
+		}
 
 		// Do batch existence check
 		// TODO: This would work better if page_touched were loaded by this as well
-		$lb = new LinkBatch( $jsPages );
+		$lb = new LinkBatch( $pages );
 		$lb->execute();
 
 		$this->modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
 
-		foreach ( $jsPages as $jsPage ) {
-			if ( $jsPage->exists() ) {
-				$this->modifiedTime = max( $this->modifiedTime, wfTimestamp( TS_UNIX, $jsPage->getTouched() ) );
+		foreach ( $pages as $page ) {
+			if ( $page->exists() ) {
+				$this->modifiedTime = max( $this->modifiedTime, wfTimestamp( TS_UNIX, $page->getTouched() ) );
 			}
 		}
 
@@ -719,7 +729,26 @@ class ResourceLoaderSiteModule extends ResourceLoaderModule {
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
-		return array();
+		global $wgHandheldStyle;
+		$styles = array(
+			'all' => array( 'Common.css', $context->getSkin() . '.css' ),
+			'print' => array( 'Print.css' ),
+		);
+		if ( $wgHandheldStyle ) {
+			$sources['handheld'] = array( 'Handheld.css' );
+		}
+		foreach ( $styles as $media => $messages ) {
+			foreach ( $messages as $i => $message ) {
+				$style = wfMsgExt( $message, 'content' );
+				if ( !wfEmptyMsg( $message, $style ) ) {
+					$styles[$media][$i] = $style;
+				}
+			}
+		}
+		foreach ( $styles as $media => $messages ) {
+			$styles[$media] = implode( "\n", $messages );
+		}
+		return $styles;
 	}
 	public function getMessages() { return array(); }
 	public function getLoaderScript() { return ''; }

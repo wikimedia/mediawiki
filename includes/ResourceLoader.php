@@ -307,8 +307,17 @@ class ResourceLoader {
 
 			// Output
 			if ( $context->getOnly() === 'styles' ) {
-				foreach ( $styles as $media => $style ) {
-					echo "@media $media {\n$style\n}\n";
+				if ( $context->getDebug() ) {
+					echo "/* $name */\n";
+					foreach ( $styles as $media => $style ) {
+						echo "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "\n}\n";
+					}
+				} else {
+					foreach ( $styles as $media => $style ) {
+						if ( strlen( $style ) ) {
+							echo "@media $media{" . $style . "}";
+						}
+					}
 				}
 			} else if ( $context->getOnly() === 'scripts' ) {
 				echo $scripts;
