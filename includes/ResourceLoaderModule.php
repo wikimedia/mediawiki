@@ -676,7 +676,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 /**
  * Custom module for MediaWiki:Common.js and MediaWiki:Skinname.js
- * TODO: Add Site CSS functionality too
  */
 class ResourceLoaderSiteModule extends ResourceLoaderModule {
 	/* Protected Members */
