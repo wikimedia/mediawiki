@@ -69,8 +69,6 @@ class ApiUndelete extends ApiBase {
 		}
 
 		$pa = new PageArchive( $titleObj );
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 		$retval = $pa->undelete( ( isset( $params['timestamps'] ) ? $params['timestamps'] : array() ), $params['reason'] );
 		if ( !is_array( $retval ) ) {
 			$this->dieUsageMsg( array( 'cannotundelete' ) );
