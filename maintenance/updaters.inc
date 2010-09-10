@@ -101,7 +101,6 @@ function do_image_name_unique_update() {
 
 function do_watchlist_update() {
 	$dbw = wfGetDB( DB_MASTER );
-	$fname = 'do_watchlist_update';
 	if ( $dbw->fieldExists( 'watchlist', 'wl_notificationtimestamp' ) ) {
 		wfOut( "...the watchlist table is already set up for email notification.\n" );
 	} else {
@@ -111,8 +110,8 @@ function do_watchlist_update() {
 		wfOut( "ok\n" );
 	}
 	# Check if we need to add talk page rows to the watchlist
-	$talk = $dbw->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', $fname );
-	$nontalk = $dbw->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', $fname );
+	$talk = $dbw->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', __METHOD__ );
+	$nontalk = $dbw->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', __METHOD__ );
 	if ( $talk != $nontalk ) {
 		wfOut( "Adding missing watchlist talk page rows... " );
 		flush();
@@ -123,7 +122,7 @@ function do_watchlist_update() {
 				'wl_namespace' => 'wl_namespace | 1',
 				'wl_title' => 'wl_title',
 				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
-			), array( 'NOT (wl_namespace & 1)' ), $fname, 'IGNORE' );
+			), array( 'NOT (wl_namespace & 1)' ), __METHOD__, 'IGNORE' );
 		wfOut( "ok\n" );
 	} else {
 		wfOut( "...watchlist talk page rows already present\n" );
@@ -189,7 +188,6 @@ function check_bin( $table, $field, $patchFile ) {
 
 function do_schema_restructuring() {
 	$dbw = wfGetDB( DB_MASTER );
-	$fname = "do_schema_restructuring";
 	if ( $dbw->tableExists( 'page' ) ) {
 		wfOut( "...page table already exists.\n" );
 	} else {
@@ -200,7 +198,7 @@ function do_schema_restructuring() {
 		list ( $cur, $old, $page, $revision, $text ) = $dbw->tableNamesN( 'cur', 'old', 'page', 'revision', 'text' );
 
 		$rows = $dbw->query( "SELECT cur_title, cur_namespace, COUNT(cur_namespace) AS c
-				FROM $cur GROUP BY cur_title, cur_namespace HAVING c>1", $fname );
+				FROM $cur GROUP BY cur_title, cur_namespace HAVING c>1", __METHOD__ );
 
 		if ( $dbw->numRows( $rows ) > 0 ) {
 			wfOut( wfTimestamp( TS_DB ) );
@@ -237,7 +235,7 @@ function do_schema_restructuring() {
 			# All following entries will be deleted by the next while-loop.
 			$sql .= 'ORDER BY cur_namespace, cur_title, cur_timestamp DESC';
 
-			$rows = $dbw->query( $sql, $fname );
+			$rows = $dbw->query( $sql, __METHOD__ );
 
 			$prev_title = $prev_namespace = false;
 			$deleteId = array();
@@ -250,7 +248,7 @@ function do_schema_restructuring() {
 				$prev_namespace = $row->cur_namespace;
 			}
 			$sql = "DELETE FROM $cur WHERE cur_id IN ( " . join( ',', $deleteId ) . ')';
-			$rows = $dbw->query( $sql, $fname );
+			$rows = $dbw->query( $sql, __METHOD__ );
 			wfOut( wfTimestamp( TS_DB ) );
 			wfOut( "......<b>Deleted</b> " . $dbw->affectedRows() . " records.\n" );
 		}
@@ -275,7 +273,7 @@ function do_schema_restructuring() {
 			UNIQUE INDEX name_title (page_namespace,page_title),
 			INDEX (page_random),
 			INDEX (page_len)
-			) ENGINE=InnoDB", $fname );
+			) ENGINE=InnoDB", __METHOD__ );
 		$dbw->query( "CREATE TABLE $revision (
 			rev_id int(8) unsigned NOT NULL auto_increment,
 			rev_page int(8) unsigned NOT NULL,
@@ -293,13 +291,13 @@ function do_schema_restructuring() {
 			INDEX page_timestamp (rev_page,rev_timestamp),
 			INDEX user_timestamp (rev_user,rev_timestamp),
 			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
-			) ENGINE=InnoDB", $fname );
+			) ENGINE=InnoDB", __METHOD__ );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Locking tables.\n" );
-		$dbw->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", $fname );
+		$dbw->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", __METHOD__ );
 
-		$maxold = intval( $dbw->selectField( 'old', 'max(old_id)', '', $fname ) );
+		$maxold = intval( $dbw->selectField( 'old', 'max(old_id)', '', __METHOD__ ) );
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......maxold is {$maxold}\n" );
 
@@ -321,7 +319,7 @@ function do_schema_restructuring() {
 		$dbw->query( "INSERT INTO $old (old_namespace, old_title, old_text, old_comment, old_user, old_user_text,
 					old_timestamp, old_minor_edit, old_flags)
 			SELECT cur_namespace, cur_title, $cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit, $cur_flags
-			FROM $cur", $fname );
+			FROM $cur", __METHOD__ );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Setting up revision table.\n" );
@@ -329,7 +327,7 @@ function do_schema_restructuring() {
 				rev_minor_edit)
 			SELECT old_id, cur_id, old_comment, old_user, old_user_text,
 				old_timestamp, old_minor_edit
-			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title", $fname );
+			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title", __METHOD__ );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Setting up page table.\n" );
@@ -338,15 +336,15 @@ function do_schema_restructuring() {
 			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
 				cur_random, cur_touched, rev_id, LENGTH(cur_text)
 			FROM $cur,$revision
-			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", $fname );
+			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", __METHOD__ );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Unlocking tables.\n" );
-		$dbw->query( "UNLOCK TABLES", $fname );
+		$dbw->query( "UNLOCK TABLES", __METHOD__ );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "......Renaming old.\n" );
-		$dbw->query( "ALTER TABLE $old RENAME TO $text", $fname );
+		$dbw->query( "ALTER TABLE $old RENAME TO $text", __METHOD__ );
 
 		wfOut( wfTimestamp( TS_DB ) );
 		wfOut( "...done.\n" );
@@ -433,7 +431,6 @@ function do_user_unique_update() {
 }
 
 function do_user_groups_update() {
-	$fname = 'do_user_groups_update';
 	$dbw = wfGetDB( DB_MASTER );
 
 	if ( $dbw->tableExists( 'user_groups' ) ) {
@@ -462,7 +459,7 @@ function do_user_groups_update() {
 	$result = $dbw->select( 'user_rights',
 		array( 'ur_user', 'ur_rights' ),
 		array( "ur_rights != ''" ),
-		$fname );
+		__METHOD__ );
 
 	while ( $row = $dbw->fetchObject( $result ) ) {
 		$groups = array_unique(
@@ -474,7 +471,7 @@ function do_user_groups_update() {
 				array(
 					'ug_user'  => $row->ur_user,
 					'ug_group' => $group ),
-				$fname );
+				__METHOD__ );
 		}
 	}
 	wfOut( "ok\n" );
@@ -538,7 +535,6 @@ function do_page_random_update() {
 
 function do_templatelinks_update() {
 	$dbw = wfGetDB( DB_MASTER );
-	$fname = 'do_templatelinks_update';
 
 	if ( $dbw->tableExists( 'templatelinks' ) ) {
 		wfOut( "...templatelinks table already exists\n" );
@@ -550,7 +546,7 @@ function do_templatelinks_update() {
 	if ( wfGetLB()->getServerCount() > 1 ) {
 		// Slow, replication-friendly update
 		$res = $dbw->select( 'pagelinks', array( 'pl_from', 'pl_namespace', 'pl_title' ),
-			array( 'pl_namespace' => NS_TEMPLATE ), $fname );
+			array( 'pl_namespace' => NS_TEMPLATE ), __METHOD__ );
 		$count = 0;
 		while ( $row = $dbw->fetchObject( $res ) ) {
 			$count = ( $count + 1 ) % 100;
@@ -566,7 +562,7 @@ function do_templatelinks_update() {
 					'tl_from' => $row->pl_from,
 					'tl_namespace' => $row->pl_namespace,
 					'tl_title' => $row->pl_title,
-				), $fname
+				), __METHOD__
 			);
 
 		}
@@ -579,7 +575,7 @@ function do_templatelinks_update() {
 				'tl_title' => 'pl_title'
 			), array(
 				'pl_namespace' => 10
-			), $fname
+			), __METHOD__
 		);
 	}
 	wfOut( "Done. Please run maintenance/refreshLinks.php for a more thorough templatelinks update.\n" );
