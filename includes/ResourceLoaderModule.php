@@ -674,56 +674,73 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 }
 
-/**
- * Custom module for MediaWiki:Common.js and MediaWiki:Skinname.js
- */
-class ResourceLoaderSiteModule extends ResourceLoaderModule {
+abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
+	
 	/* Protected Members */
-
+	
 	// In-object cache for modified time
 	protected $modifiedTime = null;
-
+	
+	/* Abstract Protected Methods */
+	
+	abstract protected function getPages( ResourceLoaderContext $context );
+	
 	/* Methods */
-
-	public function getScript( ResourceLoaderContext $context ) {
-		return Skin::newFromKey( $context->getSkin() )->generateUserJs();
-	}
-
+	
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		global $wgHandheldStyle;
-		
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
 			return $this->modifiedTime[$context->getHash()];
 		}
-
-		// HACK: We duplicate the message names from generateUserJs()
-		// here and weird things (i.e. mtime moving backwards) can happen
-		// when a MediaWiki:Something.js page is deleted
-		$pages = array(
-			Title::makeTitle( NS_MEDIAWIKI, 'Common.js' ),
-			Title::makeTitle( NS_MEDIAWIKI, 'Common.css' ),
-			Title::makeTitle( NS_MEDIAWIKI, ucfirst( $context->getSkin() ) . '.js' ),
-			Title::makeTitle( NS_MEDIAWIKI, ucfirst( $context->getSkin() ) . '.css' ),
-			Title::makeTitle( NS_MEDIAWIKI, 'Print.css' ),
-		);
-		if ( $wgHandheldStyle ) {
-			$pages[] = Title::makeTitle( NS_MEDIAWIKI, 'Handheld.css' );
+		$pages = $this->getPages( $context );
+		foreach ( $pages as $i => $page ) {
+			$pages[$i] = Title::makeTitle( NS_MEDIAWIKI, $page );
 		}
-
 		// Do batch existence check
 		// TODO: This would work better if page_touched were loaded by this as well
 		$lb = new LinkBatch( $pages );
 		$lb->execute();
-
 		$this->modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
-
 		foreach ( $pages as $page ) {
 			if ( $page->exists() ) {
 				$this->modifiedTime = max( $this->modifiedTime, wfTimestamp( TS_UNIX, $page->getTouched() ) );
 			}
 		}
-
 		return $this->modifiedTime;
+	}
+	public function getMessages() { return array(); }
+	public function getLoaderScript() { return ''; }
+	public function getDependencies() { return array(); }
+}
+
+/**
+ * Custom module for MediaWiki:Common.js and MediaWiki:Skinname.js
+ */
+class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
+
+	/* Protected Methods */
+
+	protected function getPages( ResourceLoaderContext $context ) {
+		global $wgHandheldStyle;
+		
+		// HACK: We duplicate the message names from generateUserJs() and generateUserCss here and weird things (i.e.
+		// mtime moving backwards) can happen when a MediaWiki:Something.js page is deleted
+		$pages = array(
+			'Common.js',
+			'Common.css',
+			ucfirst( $context->getSkin() ) . '.js',
+			ucfirst( $context->getSkin() ) . '.css',
+			'Print.css',
+		);
+		if ( $wgHandheldStyle ) {
+			$pages[] = 'Handheld.css';
+		}
+		return $pages;
+	}
+
+	/* Methods */
+
+	public function getScript( ResourceLoaderContext $context ) {
+		return Skin::newFromKey( $context->getSkin() )->generateUserJs();
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
@@ -748,11 +765,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderModule {
 		}
 		return $styles;
 	}
-	public function getMessages() { return array(); }
-	public function getLoaderScript() { return ''; }
-	public function getDependencies() { return array(); }
 }
-
 
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Protected Members */
