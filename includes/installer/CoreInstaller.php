@@ -283,7 +283,8 @@ abstract class CoreInstaller extends Installer {
 	/**
 	 * Installs the auto-detected extensions.
 	 *
-	 * TODO: this only requires them?
+	 * @TODO: this only requires them? That's all it's supposed to do. Poorly
+	 * named step.
 	 *
 	 * @return Status
 	 */
@@ -298,6 +299,12 @@ abstract class CoreInstaller extends Installer {
 		return Status::newGood();
 	}
 
+	/**
+	 * Get an array of install steps. These could be a plain key like the defaults
+	 * in $installSteps, or could be an array with a name and a specific callback
+	 *
+	 * @return array
+	 */
 	public function getInstallSteps() {
 		if( $this->getVar( '_UpgradeDone' ) ) {
 			$this->installSteps = array( 'localsettings' );
@@ -357,7 +364,8 @@ abstract class CoreInstaller extends Installer {
 	}
 
 	/**
-	 * TODO: document
+	 * Generate $wgSecretKey. Will warn if we had to use mt_rand() instead of
+	 * /dev/urandom
 	 *
 	 * @return Status
 	 */
@@ -391,7 +399,7 @@ abstract class CoreInstaller extends Installer {
 	}
 
 	/**
-	 * TODO: document
+	 * Create the first user account, grant it sysop and bureaucrat rights
 	 *
 	 * @return Status
 	 */
