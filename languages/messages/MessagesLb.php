@@ -2109,7 +2109,7 @@ Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Disku
 'sessionfailure-title' => 'Setzungsfeeler',
 'sessionfailure'       => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
 Dës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt är Séance piratéiert ka ginn.
-Klickt w.e.g. op "Zréck" a lued déi Säit vun däer Dir komm sidd nei, a versicht et dann nach eng Kéier.',
+Klickt w.e.g. op "Zréck" a lued déi Säit vun där Dir komm sidd nei, a versicht et dann nach eng Kéier.',
 
 # Protect
 'protectlogpage'              => 'Protectiouns-Logbuch',

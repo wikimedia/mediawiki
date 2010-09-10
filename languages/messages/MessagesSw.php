@@ -522,7 +522,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 'yourname'                   => 'Jina la mtumiaji:',
 'yourpassword'               => 'Neno la siri:',
 'yourpasswordagain'          => 'Andika tena neno la siri',
-'remembermypassword'         => 'Kumbuka kuingia kwangu kwenye tarakilishi hii (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
+'remembermypassword'         => 'Kumbuka kuingia kwangu katika kivinjari hiki (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
 'yourdomainname'             => 'Tovuti yako:',
 'externaldberror'            => 'Huenda kulikuwa na hitilafu ya database au labda hauruhusiwi kubadilisha akaunti yako ya nje.',
 'login'                      => 'Ingia',
@@ -1505,6 +1505,7 @@ Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
 # img_auth script messages
 'img-auth-accessdenied' => 'Ruksa imekataliwa',
 'img-auth-nofile'       => 'Hakuna faili la "$1".',
+'img-auth-noread'       => 'Mtumiaji hana ruhusa kusoma "$1".',
 
 # HTTP errors
 'http-invalid-url'      => 'URL batili: $1',
@@ -1572,7 +1573,12 @@ Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}
 'redirectstofile'           => '{{PLURAL:$1|Faili linalofuata linaelekeza|Mafaili $1 yanayofuata yanaelekeza}} faili hili:',
 'duplicatesoffile'          => '{{PLURAL:$1|Faili linalofuata ni nakala ya|Mafaili $1 yanayofuata ni nakala za}} faili hili ([[Special:FileDuplicateSearch/$2|maelezo mengine]]):',
 'sharedupload'              => 'Faili hili linatoka $1 na linaweza kushirikiwa na miradi mingine.',
+'sharedupload-desc-there'   => 'Faili hili linatoka $1 na linaweza kutumika na miradi mingine.
+Tafadhali tazama [$2 ukurasa wa maelezo ya faili] ukitaka maelezo mengine.',
+'sharedupload-desc-here'    => 'Faili hili linatoka $1 na linaweza kutumika na miradi mingine.
+Maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] linaonyeshwa hapa.',
 'filepage-nofile'           => 'Hakuna faili yenye jina hili.',
+'filepage-nofile-link'      => 'Hakuna faili lenye jina hili, lakini unaweza [$1 kulipakia].',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
 'shared-repo-from'          => 'kutoka kwa $1',
 'shared-repo'               => 'hifadhi ya pamoja',
@@ -1587,6 +1593,7 @@ Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}
 # File deletion
 'filedelete'                  => 'Futa $1',
 'filedelete-legend'           => 'Futa faili',
+'filedelete-intro'            => "Unakaribia kufuta faili la '''[[Media:$1|$1]]''' pamoja na historia yake yote.",
 'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
 'filedelete-comment'          => 'Sababu:',
 'filedelete-submit'           => 'Futa',
@@ -1603,9 +1610,11 @@ Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}
 'filedelete-maintenance'      => 'Tovuti inarekebishwa. Kwa muda huo kufuta na kurudisha mafaili haiwezikani.',
 
 # MIME search
-'mimesearch' => 'Utafutaji wa MIME',
-'mimetype'   => 'Aina ya MIME:',
-'download'   => 'pakua',
+'mimesearch'         => 'Utafutaji wa MIME',
+'mimesearch-summary' => 'Ukarasa huu unawezesha kuchuja mafaili kutokana na aina ya MIME. 
+Ingiza: aina ya faili/aina mahususi, kwa mfano <tt>image/jpeg</tt>.',
+'mimetype'           => 'Aina ya MIME:',
+'download'           => 'pakua',
 
 # Unwatched pages
 'unwatchedpages' => 'Kurasa zisizofuatiliwa',
@@ -1614,15 +1623,18 @@ Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}
 'listredirects' => 'Maelekezo',
 
 # Unused templates
-'unusedtemplates'    => 'Vigezo ambavyo havitumiwi',
-'unusedtemplateswlh' => 'viungo vingine',
+'unusedtemplates'     => 'Vigezo ambavyo havitumiwi',
+'unusedtemplatestext' => 'Ukurasa huu unaorodhesha kurasa zote katika eneo la wiki la {{ns:template}} zisizowekwa ndani ya ukurasa mwingine.
+Kumbuka kuhakikisha kwamba hakuna viungo vingine vinavyoelekea kigezo fulani kabla hujakifuta.',
+'unusedtemplateswlh'  => 'viungo vingine',
 
 # Random page
 'randompage'         => 'Ukurasa wa bahati',
 'randompage-nopages' => 'Hakuna kurasa katika {{PLURAL:$2|eneo la wiki lifuatalo|maeneo ya wiki yafuatayo}}: $1.',
 
 # Random redirect
-'randomredirect' => 'Elekezo la bahati',
+'randomredirect'         => 'Elekezo la bahati',
+'randomredirect-nopages' => 'Hakuna maelekezo katika eneo la wiki la "$1".',
 
 # Statistics
 'statistics'                   => 'Takwimu',
@@ -1651,6 +1663,7 @@ Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}
 Sasa unaelekeza [[$2]].',
 
 'brokenredirects'        => 'Maelekezo yenye hitilafu',
+'brokenredirectstext'    => 'Maelekezo yafuatayo yanaelekeza katika kurasa zisizopatikana:',
 'brokenredirects-edit'   => 'hariri',
 'brokenredirects-delete' => 'futa',
 
@@ -1693,6 +1706,7 @@ Sasa unaelekeza [[$2]].',
 'deadendpages'            => 'Kurasa ambazo haziungi na ukurasa mwingine wowote',
 'deadendpagestext'        => 'Kurasa zifuatazo haziungana na kurasa zingine katika {{SITENAME}}.',
 'protectedpages'          => 'Kurasa zinazolindwa',
+'protectedpagestext'      => 'Kurasa zifuatazo zinalindwa zisisogezwe wala zisihaririwe',
 'protectedtitles'         => 'Majina yanayozuluiwa',
 'protectedtitlestext'     => 'Yafuatayo ni majina ya kurasa yanayozuluiwa kuyatumia',
 'listusers'               => 'Orodha ya Watumiaji',
@@ -1705,6 +1719,7 @@ Sasa unaelekeza [[$2]].',
 'ancientpages'            => 'Kurasa za kale',
 'move'                    => 'Sogeza',
 'movethispage'            => 'Sogeza ukurasa huu',
+'unusedcategoriestext'    => 'Kurasa za jamii zifuatazo zinapatikana, ingawaje hakuna ukurasa wala jamii nyingine iliyowekwa ndani ya jamii hizi.',
 'pager-newer-n'           => '{{PLURAL:$1|1 ya karibu zaidi|$1 ya karibu zaidi}}',
 'pager-older-n'           => '{{PLURAL:$1|$1 ya zamani zaidi}}',
 
@@ -1756,12 +1771,14 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'sp-deletedcontributions-contribs' => 'michango',
 
 # Special:LinkSearch
-'linksearch'      => 'Viungo vya nje',
-'linksearch-pat'  => 'Herufi zitakazotafutwa:',
-'linksearch-ns'   => 'Eneo la wiki:',
-'linksearch-ok'   => 'Tafuta',
-'linksearch-text' => 'Alama maalum za kutafuta kama "*.wikipedia.org" zinaweza kutumika.<br />
+'linksearch'       => 'Viungo vya nje',
+'linksearch-pat'   => 'Herufi zitakazotafutwa:',
+'linksearch-ns'    => 'Eneo la wiki:',
+'linksearch-ok'    => 'Tafuta',
+'linksearch-text'  => 'Alama maalum za kutafuta kama "*.wikipedia.org" zinaweza kutumika.<br />
 Itifaki zinazoungwa mkono: <tt>$1</tt>',
+'linksearch-line'  => '$2 lina kiungo kinachokupeleka hadi $1',
+'linksearch-error' => 'Alama maalum za kutafuta zinaweza kutumika mwanzoni mwa URL tu.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Onyesha watumiaji kuanzia:',
@@ -1863,6 +1880,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'watchmethod-list'     => 'kupitia kurasa za maangalizi ili kupata madabiliko ya karibuni',
 'watchlistcontains'    => 'Orodha ya maangalizi yako ina {{PLURAL:$1|kitu|vitu}} $1.',
 'iteminvalidname'      => "Kitu '$1' kina tatizo la jina batili...",
+'wlnote'               => "{{PLURAL:$1|Badiliko la|Mabadiliko '''$1''' ya}} mwisho katika {{PLURAL:$2|saa iliyopita linaonyeshwa|masaa '''$2''' yaliyopita yanaonyeshwa}} chini.",
 'wlshowlast'           => 'Onyesha kutoka masaa $1 siku $2 $3',
 'watchlist-options'    => 'Hitiari za maangalizi',
 
@@ -1954,6 +1972,7 @@ ukurasa huu una mhariri mmoja tu.',
 'protectlogpage'              => 'Kumbukumbu ya ulindaji',
 'protectedarticle'            => 'aliulinda "[[$1]]"',
 'modifiedarticleprotection'   => 'alibadilisha kiwango cha ulindaji kwa ajili ya "[[$1]]"',
+'unprotectedarticle'          => 'alitoa ulindaji wa "[[$1]]"',
 'prot_1movedto2'              => 'alisogeza [[$1]] hadi [[$2]]',
 'protect-legend'              => 'Hakikisha ukingo',
 'protectcomment'              => 'Sababu:',
@@ -2055,6 +2074,7 @@ huenda ikawa mtu mwingine ameurudisha tayari.',
 'whatlinkshere-hideredirs' => '$1 maelekezo',
 'whatlinkshere-hidetrans'  => '$1 majumuisho',
 'whatlinkshere-hidelinks'  => '$1 viungo',
+'whatlinkshere-hideimages' => '$1 viungo vya picha',
 'whatlinkshere-filters'    => 'Machujio',
 
 # Block/unblock
@@ -2089,6 +2109,7 @@ huenda ikawa mtu mwingine ameurudisha tayari.',
 'badipaddress'               => 'Anwani batili ya IP',
 'blockipsuccesssub'          => 'Kulifaulu kumzuia',
 'ipblocklist'                => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
+'ipblocklist-username'       => 'Jina la mtumiaji au anwani ya IP:',
 'ipblocklist-submit'         => 'Tafuta',
 'blocklistline'              => '$1, $2 alimzuia $3 ($4)',
 'infiniteblock'              => 'milele',
@@ -2104,6 +2125,10 @@ huenda ikawa mtu mwingine ameurudisha tayari.',
 'block-log-flags-nocreate'   => 'uwezo wa kuunda akaunti imesitishwa',
 'block-log-flags-hiddenname' => 'jina la mtumiaji limefichwa',
 'proxyblocksuccess'          => 'Tayari.',
+
+# Developer tools
+'lockbtn'   => 'Funga hifadhidata',
+'unlockbtn' => 'Fungua hifadhidata',
 
 # Move page
 'move-page'               => 'Hamisha $1',
@@ -2137,6 +2162,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'movepagebtn'             => 'Sogeza ukurasa',
 'pagemovedsub'            => 'Umefaulu kuhamisha ukurasa',
 'movepage-moved'          => '\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'',
+'movepage-moved-redirect' => 'Elekezo limetengenezwa.',
 'articleexists'           => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',
