@@ -706,7 +706,6 @@ class ResourceLoaderSiteModule extends ResourceLoaderModule {
 			Title::makeTitle( NS_MEDIAWIKI, ucfirst( $context->getSkin() ) . '.js' ),
 			Title::makeTitle( NS_MEDIAWIKI, ucfirst( $context->getSkin() ) . '.css' ),
 			Title::makeTitle( NS_MEDIAWIKI, 'Print.css' ),
-			
 		);
 		if ( $wgHandheldStyle ) {
 			$pages[] = Title::makeTitle( NS_MEDIAWIKI, 'Handheld.css' );
