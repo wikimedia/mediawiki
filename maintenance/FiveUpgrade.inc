@@ -5,7 +5,6 @@
  */
 
 require_once( 'cleanupDupes.inc' );
-require_once( 'userDupes.inc' );
 require_once( 'updaters.inc' );
 
 define( 'MW_UPGRADE_COPY',     false );

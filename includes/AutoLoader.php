@@ -678,6 +678,7 @@ $wgAutoloadLocalClasses = array(
 
 	# maintenance
 	'AnsiTermColorer' => 'maintenance/parserTests.inc',
+	'ConvertLinks' => 'maintenance/convertLinks.php',
 	'DbTestPreviewer' => 'maintenance/parserTests.inc',
 	'DbTestRecorder' => 'maintenance/parserTests.inc',
 	'DeleteArchivedFilesImplementation' => 'maintenance/deleteArchivedFiles.inc',
@@ -687,11 +688,18 @@ $wgAutoloadLocalClasses = array(
 	'ParserTest' => 'maintenance/parserTests.inc',
 	'ParserTestParserHook' => 'maintenance/parserTestsParserHook.php',
 	'ParserTestStaticParserHook' => 'maintenance/parserTestsStaticParserHook.php',
+	'PopulateCategory' => 'maintenance/populateCategory.php',
+	'PopulateLogSearch' => 'maintenance/populateLogSearch.php',
+	'PopulateParentId' => 'maintenance/populateParentId.php',
+	'PopulateRevisionLength' => 'maintenance/populateRevisionLength.php',
 	'RemoteTestRecorder' => 'maintenance/parserTests.inc',
 	'SevenZipStream' => 'maintenance/7zip.inc',
 	'Sqlite' => 'maintenance/sqlite.inc',
 	'TestFileIterator' => 'maintenance/parserTests.inc',
 	'TestRecorder' => 'maintenance/parserTests.inc',
+	'UpdateCollation' => 'maintenance/updateCollation.php',
+	'UpdateRestrictions' => 'maintenance/updateRestrictions.php',
+	'UserDupes' => 'maintenance/userDupes.inc',
 
 	# maintenance/tests/selenium
 	'SimpleSeleniumTestSuite' => 'maintenance/tests/selenium/SimpleSeleniumTestSuite.php',
