@@ -275,7 +275,7 @@ class ResourceLoader {
 
 		// Pre-fetch blobs
 		$blobs = $context->shouldIncludeMessages() ?
-			MessageBlobStore::get( $modules, $context->getLanguage() ) : array();
+		MessageBlobStore::get( $modules, $context->getLanguage() ) : array();
 
 		// Generate output
 		foreach ( $modules as $name ) {
@@ -290,8 +290,7 @@ class ResourceLoader {
 			$styles = array();
 
 			if (
-				$context->shouldIncludeStyles() &&
-				( count( $styles = self::$modules[$name]->getStyles( $context ) ) )
+				$context->shouldIncludeStyles() && ( count( $styles = self::$modules[$name]->getStyles( $context ) ) )
 			) {
 				foreach ( $styles as $media => $style ) {
 					if ( self::$modules[$name]->getFlip( $context ) ) {
@@ -308,8 +307,8 @@ class ResourceLoader {
 
 			// Output
 			if ( $context->getOnly() === 'styles' ) {
-				if ( isset( $styles[$context->getMedia()] ) ) {
-					echo $styles[$context->getMedia()];
+				foreach ( $styles as $media => $style ) {
+					echo "@media $media {\n$style\n}\n";
 				}
 			} else if ( $context->getOnly() === 'scripts' ) {
 				echo $scripts;
