@@ -2368,7 +2368,7 @@ class OutputPage {
 		
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
-			$scripts .= self::makeResourceLoaderLink( $sk, 'sitejs', 'scripts' );
+			$scripts .= self::makeResourceLoaderLink( $sk, 'site', 'scripts' );
 		}
 		
 		return $scripts;
