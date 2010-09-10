@@ -2313,10 +2313,11 @@ class OutputPage {
 		// Statup - this will immediately load jquery and mediawiki modules
 		$scripts = self::makeResourceLoaderLink( $sk, 'startup', 'scripts' );
 		
-		// Configuration
+		// Configuration -- this could be merged together with the load and go, but makeGlobalVariablesScript returns a
+		// whole script tag -- grumble grumble
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
 		
-		// Support individual script requests in debug mode
+		// Script and Messages "only"
 		if ( $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) !== 'false' ) {
 			// Scripts
 			foreach ( $this->getModuleScripts() as $name ) {
@@ -2336,8 +2337,9 @@ class OutputPage {
 				$scripts .= self::makeResourceLoaderLink( $sk, $this->getModuleMessages(), 'messages' );
 			}
 		}
+		
+		// Modules - let the client calculate dependencies and batch requests as it likes
 		if ( $this->getModules() ) {
-			// Modules - let the client calculate dependencies and batch requests as it likes
 			$modules = FormatJson::encode( $this->getModules() );
 			$scripts .= Html::inlineScript(
 				"if ( mediaWiki !== undefined ) { mediaWiki.loader.load( {$modules} ); mediaWiki.loader.go(); }"
