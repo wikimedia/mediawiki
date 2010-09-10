@@ -58,8 +58,8 @@ class CSSJanus {
 		'noflip_single' => null,
 		'noflip_class' => null,
 		'comment' => '/\/\*[^*]*\*+([^\/*][^*]*\*+)*\//',
-		'body_direction_ltr' => null,
-		'body_direction_rtl' => null,
+		'direction_ltr' => null,
+		'direction_rtl' => null,
 		'left' => null,
 		'right' => null,
 		'left_in_url' => null,
@@ -97,8 +97,8 @@ class CSSJanus {
 		$patterns['lookahead_for_closing_paren'] = "(?={$patterns['url_chars']}?{$patterns['valid_after_uri_chars']}\))";
 		$patterns['noflip_single'] = "/({$patterns['noflip_annotation']}{$patterns['lookahead_not_open_brace']}[^;}]+;?)/i";
 		$patterns['noflip_class'] = "/({$patterns['noflip_annotation']}{$patterns['chars_within_selector']}})/i";
-		$patterns['body_direction_ltr'] = "/({$patterns['body_selector']}{$patterns['chars_within_selector']}{$patterns['direction']})ltr/i";
-		$patterns['body_direction_rtl'] = "/({$patterns['body_selector']}{$patterns['chars_within_selector']}{$patterns['direction']})rtl/i";
+		$patterns['direction_ltr'] = "/({$patterns['direction']})ltr/i";
+		$patterns['direction_rtl'] = "/({$patterns['direction']})rtl/i";
 		$patterns['left'] = "/{$patterns['lookbehind_not_letter']}(left){$patterns['lookahead_not_closing_paren']}{$patterns['lookahead_not_open_brace']}/i";
 		$patterns['right'] = "/{$patterns['lookbehind_not_letter']}(right){$patterns['lookahead_not_closing_paren']}{$patterns['lookahead_not_open_brace']}/i";
 		$patterns['left_in_url'] = "/{$patterns['lookbehind_not_letter']}(left){$patterns['lookahead_for_closing_paren']}/i";
@@ -143,7 +143,7 @@ class CSSJanus {
 		$css = $comments->tokenize( $css );
 
 		// LTR->RTL fixes start here
-		$css = self::fixBodyDirection( $css );
+		$css = self::fixDirection( $css );
 		if ( $swapLtrRtlInURL ) {
 			$css = self::fixLtrRtlInURL( $css );
 		}
@@ -165,17 +165,19 @@ class CSSJanus {
 	}
 
 	/**
-	 * Replace direction: ltr; with direction: rtl; and vice versa, but *only*
-	 * those inside a body { .. } selector.
+	 * Replace direction: ltr; with direction: rtl; and vice versa.
 	 *
-	 * Unlike the original implementation, this function doesn't suffer from
-	 * the bug causing "body\n{\ndirection: ltr;\n}" to be missed.
-	 * See http://code.google.com/p/cssjanus/issues/detail?id=15
+	 * The original implementation only does this inside body selectors
+	 * and misses "body\n{\ndirection:ltr;\n}". This function does not have
+	 * these problems.
+	 *
+	 * See http://code.google.com/p/cssjanus/issues/detail?id=15 and
+	 * TODO: URL
 	 */
-	private static function fixBodyDirection( $css ) {
-		$css = preg_replace( self::$patterns['body_direction_ltr'],
+	private static function fixDirection( $css ) {
+		$css = preg_replace( self::$patterns['direction_ltr'],
 			'$1' . self::$patterns['tmpToken'], $css );
-		$css = preg_replace( self::$patterns['body_direction_rtl'], '$1ltr', $css );
+		$css = preg_replace( self::$patterns['direction_rtl'], '$1ltr', $css );
 		$css = str_replace( self::$patterns['tmpToken'], 'rtl', $css );
 
 		return $css;
