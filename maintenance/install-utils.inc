@@ -180,14 +180,7 @@ function readlineEmulation( $prompt ) {
 function dbsource( $fname, $db = false ) {
 	wfDeprecated( __METHOD__ );
 	if ( !$db ) {
-		// Try $wgDatabase, which is used in the install and update scripts
-		global $wgDatabase;
-		if ( isset( $wgDatabase ) ) {
-			$db = $wgDatabase;
-		} else {
-			// No? Well, we must be outside of those scripts, so use the standard method
-			$db = wfGetDB( DB_MASTER );
-		}
+		$db = wfGetDB( DB_MASTER );
 	}
 	$error = $db->sourceFile( $fname );
 	if ( $error !== true ) {
