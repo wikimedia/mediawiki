@@ -2340,12 +2340,9 @@ class OutputPage {
 			// Modules - let the client calculate dependencies and batch requests as it likes
 			$modules = FormatJson::encode( $this->getModules() );
 			$scripts .= Html::inlineScript(
-				"if ( mediaWiki !== undefined ) { mediaWiki.loader.load( {$modules} ); }"
+				"if ( mediaWiki !== undefined ) { mediaWiki.loader.load( {$modules} ); mediaWiki.loader.go(); }"
 			);
 		}
-		
-		// Add code to fetch all requested modules
-		$scripts .= Html::inlineScript( "if ( mediaWiki !== undefined ) { mediaWiki.loader.go(); }" );
 		
 		// TODO: User Scripts should be included using the resource loader
 		// Add user JS if enabled
