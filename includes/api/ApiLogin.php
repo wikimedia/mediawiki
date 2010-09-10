@@ -70,7 +70,7 @@ class ApiLogin extends ApiBase {
 
 		$loginForm = new LoginForm( $req );
 
-		global $wgCookiePrefix, $wgUser, $wgPasswordAttemptThrottle;;
+		global $wgCookiePrefix, $wgUser, $wgPasswordAttemptThrottle;
 
 		switch ( $authRes = $loginForm->authenticateUserData() ) {
 			case LoginForm::SUCCESS:
