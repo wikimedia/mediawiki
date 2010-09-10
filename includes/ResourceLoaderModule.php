@@ -96,9 +96,9 @@ abstract class ResourceLoaderModule {
 	 * Get all CSS for this module for a given skin.
 	 *
 	 * @param $context ResourceLoaderContext object
-	 * @return String: CSS
+	 * @return array: strings of CSS keyed by media type
 	 */
-	public abstract function getStyle( ResourceLoaderContext $context );
+	public abstract function getStyles( ResourceLoaderContext $context );
 
 	/**
 	 * Get the messages needed for this module.
@@ -191,9 +191,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 		// Non-raw module options
 	 * 		'dependencies' => 'module' | array( 'module1', 'module2' ... )
 	 * 		'loaderScripts' => 'dir/loader.js' | array( 'dir/loader1.js', 'dir/loader2.js' ... ),
-	 * 		'styles' => 'dir/file.css' | array( 'dir/file1.css', 'dir/file2.css' ... ),
+	 * 		'styles' => 'dir/file.css' | array( 'dir/file1.css', 'dir/file2.css' ... ), |
+	 * 			array( 'dir/file1.css' => array( 'media' => 'print' ) ),
 	 * 		'skinStyles' => array(
-	 * 			'[skin name]' => 'dir/skin.css' | '[skin name]' => array( 'dir/skin1.css', 'dir/skin2.css' ... )
+	 * 			'[skin name]' => 'dir/skin.css' |  array( 'dir/skin1.css', 'dir/skin2.css' ... ) |
+	 * 				array( 'dir/file1.css' => array( 'media' => 'print' )
 	 * 			...
 	 * 		),
 	 * 		'messages' => array( 'message1', 'message2' ... ),
@@ -362,12 +364,28 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return $retval;
 	}
 
-	public function getStyle( ResourceLoaderContext $context ) {
-		$style = $this->getPrimaryStyle() . "\n" . $this->getSkinStyle( $context->getSkin() );
-
-		// Extract and store the list of referenced files
-		$files = CSSMin::getLocalFileReferences( $style );
-
+	public function getStyles( ResourceLoaderContext $context ) {
+		$styles = array();
+		foreach ( $this->getPrimaryStyles() as $media => $style ) {
+			if ( !isset( $styles[$media] ) ) {
+				$styles[$media] = '';
+			}
+			$styles[$media] .= $style;
+		}
+		foreach ( $this->getPrimaryStyles() as $media => $style ) {
+			if ( !isset( $styles[$media] ) ) {
+				$styles[$media] = '';
+			}
+			$styles[$media] .= $this->getSkinStyles( $context->getSkin() );
+		}
+		
+		// Collect referenced files
+		$files = array();
+		foreach ( $styles as $media => $style ) {
+			// Extract and store the list of referenced files
+			$files = array_merge( $files, CSSMin::getLocalFileReferences( $style ) );
+		}
+		
 		// Only store if modified
 		if ( $files !== $this->getFileDependencies( $context->getSkin() ) ) {
 			$encFiles = FormatJson::encode( $files );
@@ -379,15 +397,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					'md_deps' => $encFiles,
 				)
 			);
-
+			
 			// Save into memcached
 			global $wgMemc;
-
+			
 			$key = wfMemcKey( 'resourceloader', 'module_deps', $this->getName(), $context->getSkin() );
 			$wgMemc->set( $key, $encFiles );
 		}
-
-		return $style;
+		
+		return $styles;
 	}
 
 	public function getMessages() {
@@ -421,19 +439,31 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
 			return $this->modifiedTime[$context->getHash()];
 		}
-
+		
+		// Sort of nasty way we can get a flat list of files depended on by all styles
+		$styles = array();
+		foreach ( self::organizeFilesByOption( $this->styles, 'media', 'all' ) as $media => $styleFiles ) {
+			$styles = array_merge( $styles, $styleFiles );
+		}
+		$skinFiles = (array) self::getSkinFiles(
+			$context->getSkin(), self::organizeFilesByOption( $this->skinStyles, 'media', 'all' )
+		);
+		foreach ( $skinFiles as $media => $styleFiles ) {
+			$styles = array_merge( $styles, $styleFiles );
+		}
+		
+		// Final merge, this should result in a master list of dependent files
 		$files = array_merge(
 			$this->scripts,
-			$this->styles,
+			$styles,
 			$context->getDebug() ? $this->debugScripts : array(),
 			isset( $this->languageScripts[$context->getLanguage()] ) ?
 				(array) $this->languageScripts[$context->getLanguage()] : array(),
 			(array) self::getSkinFiles( $context->getSkin(), $this->skinScripts ),
-			(array) self::getSkinFiles( $context->getSkin(), $this->skinStyles ),
 			$this->loaders,
 			$this->getFileDependencies( $context->getSkin() )
 		);
-
+		
 		$filesMtime = max( array_map( 'filemtime', array_map( array( __CLASS__, 'remapFilename' ), $files ) ) );
 
 		// Get the mtime of the message blob
@@ -468,7 +498,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @return String: JS
 	 */
-	protected function getPrimaryStyle() {
+	protected function getPrimaryStyles() {
 		return self::concatStyles( $this->styles );
 	}
 
@@ -509,9 +539,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Get the skin-specific CSS for a given skin. This is pulled from the
 	 * skin-specific CSS files added through addSkinStyles()
 	 *
-	 * @return String: CSS
+	 * @return Array: list of CSS strings keyed by media type
 	 */
-	protected function getSkinStyle( $skin ) {
+	protected function getSkinStyles( $skin ) {
 		return self::concatStyles( self::getSkinFiles( $skin, $this->skinStyles ) );
 	}
 
@@ -582,15 +612,41 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return implode( "\n", array_map( 'file_get_contents', array_map( array( __CLASS__, 'remapFilename' ), array_unique( (array) $files ) ) ) );
 	}
 
+	protected static function organizeFilesByOption( $files, $option, $default ) {
+		$organizedFiles = array();
+		foreach ( (array) $files as $key => $value ) {
+			if ( is_int( $key ) ) {
+				// File name as the value
+				if ( !isset( $organizedFiles[$default] ) ) {
+					$organizedFiles[$default] = array();
+				}
+				$organizedFiles[$default][] = $value;
+			} else if ( is_array( $value ) ) {
+				// File name as the key, options array as the value
+				$media = isset( $value[$option] ) ? $value[$option] : $default;
+				if ( !isset( $organizedFiles[$media] ) ) {
+					$organizedFiles[$media] = array();
+				}
+				$organizedFiles[$media][] = $key;
+			}
+		}
+		return $organizedFiles;
+	}
+	
 	/**
 	 * Get the contents of a set of CSS files, remap then and concatenate
 	 * them, with newlines in between. Each file is used only once.
 	 *
 	 * @param $files Array of file names
-	 * @return String: concatenated and remapped contents of $files
+	 * @return Array: list of concatenated and remapped contents of $files keyed by media type
 	 */
-	protected static function concatStyles( $files ) {
-		return implode( "\n", array_map( array( __CLASS__, 'remapStyle' ), array_unique( (array) $files ) ) );
+	protected static function concatStyles( $styles ) {
+		$styles = self::organizeFilesByOption( $styles, 'media', 'all' );
+		foreach ( $styles as $media => $files ) {
+			$styles[$media] =
+				implode( "\n", array_map( array( __CLASS__, 'remapStyle' ), array_unique( (array) $files ) ) );
+		}
+		return $styles;
 	}
 
 	/**
@@ -662,7 +718,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderModule {
 		return $this->modifiedTime;
 	}
 
-	public function getStyle( ResourceLoaderContext $context ) { return ''; }
+	public function getStyles( ResourceLoaderContext $context ) { return array(); }
 	public function getMessages() { return array(); }
 	public function getLoaderScript() { return ''; }
 	public function getDependencies() { return array(); }
@@ -738,7 +794,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return 300; // 5 minutes
 	}
 
-	public function getStyle( ResourceLoaderContext $context ) { return ''; }
+	public function getStyles( ResourceLoaderContext $context ) { return array(); }
 
 	public function getFlip( $context ) {
 		global $wgContLang;

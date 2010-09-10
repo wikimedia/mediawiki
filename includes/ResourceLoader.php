@@ -287,16 +287,20 @@ class ResourceLoader {
 			}
 
 			// Styles
-			$styles = '';
+			$styles = array();
 
 			if (
 				$context->shouldIncludeStyles() &&
-				( $styles .= self::$modules[$name]->getStyle( $context ) ) !== ''
+				( count( $styles = self::$modules[$name]->getStyles( $context ) ) )
 			) {
-				if ( self::$modules[$name]->getFlip( $context ) ) {
-					$styles = self::filter( 'flip-css', $styles );
+				foreach ( $styles as $media => $style ) {
+					if ( self::$modules[$name]->getFlip( $context ) ) {
+						$styles[$media] = self::filter( 'flip-css', $style );
+					}
+					if ( !$context->getDebug() ) {
+						$styles[$media] = self::filter( 'minify-css', $style );
+					}
 				}
-				$styles = $context->getDebug() ? $styles : self::filter( 'minify-css', $styles );
 			}
 
 			// Messages
@@ -304,14 +308,16 @@ class ResourceLoader {
 
 			// Output
 			if ( $context->getOnly() === 'styles' ) {
-				echo $styles;
+				if ( isset( $styles[$context->getMedia()] ) ) {
+					echo $styles[$context->getMedia()];
+				}
 			} else if ( $context->getOnly() === 'scripts' ) {
 				echo $scripts;
 			} else if ( $context->getOnly() === 'messages' ) {
 				echo "mediaWiki.msg.set( $messages );\n";
 			} else {
-				$styles = Xml::escapeJsString( $styles );
-				echo "mediaWiki.loader.implement( '$name', function() {{$scripts}},\n'$styles',\n$messages );\n";
+				$styles = FormatJson::encode( $styles );
+				echo "mediaWiki.loader.implement( '$name', function() {{$scripts}},\n$styles,\n$messages );\n";
 			}
 		}
 

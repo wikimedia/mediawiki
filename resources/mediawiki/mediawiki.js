@@ -323,6 +323,12 @@ window.mediaWiki = new ( function( $ ) {
 			// Add style sheet to document
 			if ( typeof registry[module].style === 'string' && registry[module].style.length ) {
 				$( 'head' ).append( '<style type="text/css">' + registry[module].style + '</style>' );
+			} else if ( typeof registry[module].style === 'object' ) {
+				for ( var media in registry[module].style ) {
+					$( 'head' ).append(
+						'<style type="text/css" media="' + media + '">' + registry[module].style[media] + '</style>'
+					);
+				}
 			}
 			// Add localizations to message system
 			if ( typeof registry[module].messages === 'object' ) {
@@ -526,8 +532,8 @@ window.mediaWiki = new ( function( $ ) {
 			if ( typeof script !== 'function' ) {
 				throw new Error( 'script must be a function, not a ' + typeof script );
 			}
-			if ( typeof style !== 'undefined' && typeof style !== 'string' ) {
-				throw new Error( 'style must be a string, not a ' + typeof style );
+			if ( typeof style !== 'undefined' && typeof style !== 'string' && typeof style !== 'object' ) {
+				throw new Error( 'style must be a string or object, not a ' + typeof style );
 			}
 			if ( typeof localization !== 'undefined' && typeof localization !== 'object' ) {
 				throw new Error( 'localization must be an object, not a ' + typeof localization );
