@@ -33,7 +33,6 @@ class ResourceLoaderContext {
 	protected $skin;
 	protected $debug;
 	protected $only;
-	protected $media;
 	protected $hash;
 
 	/* Methods */
@@ -50,7 +49,6 @@ class ResourceLoaderContext {
 		$this->skin = $request->getVal( 'skin' );
 		$this->debug = $request->getVal( 'debug' ) === 'true' || $request->getBool( 'debug' );
 		$this->only = $request->getVal( 'only' );
-		$this->media = $request->getVal( 'media', 'all' );
 
 		// Fallback on system defaults
 		if ( !$this->language ) {
@@ -97,10 +95,6 @@ class ResourceLoaderContext {
 	public function getOnly() {
 		return $this->only;
 	}
-	
-	public function getMedia() {
-		return $this->media;
-	}
 
 	public function shouldIncludeScripts() {
 		return is_null( $this->only ) || $this->only === 'scripts';
@@ -117,6 +111,6 @@ class ResourceLoaderContext {
 	public function getHash() {
 		return isset( $this->hash ) ?
 			$this->hash : $this->hash =
-				implode( '|', array( $this->language, $this->skin, $this->debug, $this->only, $this->media ) );
+				implode( '|', array( $this->language, $this->skin, $this->debug, $this->only ) );
 	}
 }

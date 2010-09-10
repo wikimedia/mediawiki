@@ -2280,7 +2280,7 @@ class OutputPage {
 		return $ret;
 	}
 	
-	static function makeResourceLoaderLink( $skin, $modules, $only, $media = 'all' ) {
+	static function makeResourceLoaderLink( $skin, $modules, $only ) {
 		global $wgUser, $wgLang, $wgRequest;
 		// TODO: Should this be a static function of ResourceLoader instead?
 		$query = array(
@@ -2292,8 +2292,7 @@ class OutputPage {
 		);
 		// Automatically select style/script elements
 		if ( $only === 'styles' ) {
-			$query['media'] = $media;
-			return Html::linkedStyle( wfAppendQuery( wfScript( 'load' ), $query ), $media );
+			return Html::linkedStyle( wfAppendQuery( wfScript( 'load' ), $query ) );
 		} else {
 			return Html::linkedScript( wfAppendQuery( wfScript( 'load' ), $query ) );
 		}
@@ -2489,15 +2488,11 @@ class OutputPage {
 		// Support individual script requests in debug mode
 		if ( $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) !== 'false' ) {
 			foreach ( $this->getModuleStyles() as $name ) {
-				$tags[] = self::makeResourceLoaderLink( $sk, $name, 'styles', 'all' );
-				$tags[] = self::makeResourceLoaderLink( $sk, $name, 'styles', 'screen' );
-				$tags[] = self::makeResourceLoaderLink( $sk, $name, 'styles', 'print' );
+				$tags[] = self::makeResourceLoaderLink( $sk, $name, 'styles' );
 			}
 		} else {
 			if ( count( $this->getModuleStyles() ) ) {
-				$tags[] = self::makeResourceLoaderLink( $sk, $this->getModuleStyles(), 'styles', 'all' );
-				$tags[] = self::makeResourceLoaderLink( $sk, $this->getModuleStyles(), 'styles', 'screen' );
-				$tags[] = self::makeResourceLoaderLink( $sk, $this->getModuleStyles(), 'styles', 'print' );
+				$tags[] = self::makeResourceLoaderLink( $sk, $this->getModuleStyles(), 'styles' );
 			}
 		}
 		
