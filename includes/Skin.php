@@ -646,17 +646,7 @@ CSS;
 		// If we use the site's dynamic CSS, throw that in, too
 		// Per-site custom styles
 		if ( $wgUseSiteCss ) {
-			global $wgHandheldStyle;
-
-			$query = wfArrayToCGI( self::getDynamicStylesheetQuery() );
-			# Site settings must override extension css! (bug 15025)
-			$out->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) );
-			$out->addStyle( self::makeNSUrl( 'Print.css', $query, NS_MEDIAWIKI ), 'print' );
-
-			if ( $wgHandheldStyle ) {
-				$out->addStyle( self::makeNSUrl( 'Handheld.css', $query, NS_MEDIAWIKI ), 'handheld' );
-			}
-			$out->addStyle( self::makeNSUrl( $this->getSkinName() . '.css', $query, NS_MEDIAWIKI ) );
+			$out->addModuleStyles( 'site' );
 		}
 
 		global $wgAllowUserCssPrefs;
@@ -727,6 +717,7 @@ CSS;
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
 		// TODO: Figure out how to best integrate this stuff into ResourceLoader
 		$out->addStyle( $this->getStylesheet() );
+		// TODO: When converting old skins to use ResourceLoader (or removing them) this needs to be reconsidered
 		$out->addStyle( 'common/common_rtl.css', '', '', 'rtl' );
 	}
 
