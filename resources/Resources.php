@@ -10,7 +10,7 @@ ResourceLoader::register( array(
 	/* Skins */
 	
 	'vector' => new ResourceLoaderFileModule(
-		array( 'styles' => array( 'skins/vector/main-ltr.css' => array( 'media' => 'screen' ) ) )
+		array( 'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) ) )
 	),
 	
 	/* jQuery */

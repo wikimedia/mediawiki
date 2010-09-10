@@ -47,19 +47,8 @@ class SkinVector extends SkinTemplate {
 	 * @param $out OutputPage object
 	 */
 	function setupSkinUserCss( OutputPage $out ){
-		global $wgVectorExtraStyles;
-
 		parent::setupSkinUserCss( $out );
-		
 		$out->addModuleStyles( 'vector' );
-
-		// Add extra stylesheets
-		// THIS IS ONLY USEFUL FOR EXPERIMENTING WITH DIFFERNT STYLE OPTIONS! THIS WILL BE REMOVED IN THE NEAR FUTURE.
-		if ( is_array( $wgVectorExtraStyles ) ) {
-			foreach ( $wgVectorExtraStyles as $style ) {
-				$out->addStyle( "vector/$style", 'screen' );
-			}
-		}
 	}
 
 	/**

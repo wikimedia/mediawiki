@@ -1,18 +1,7 @@
 /*
- * main-rtl.css is automatically generated using CSSJanus, a python script for
- * creating RTL versions of otherwise LTR stylesheets.
- * 
- * You may download the tool to rebuild this stylesheet
- * http://code.google.com/p/cssjanus/
- * 
- * An online version of this tool can be used at:
- * http://cssjanus.commoner.com/
- * 
- * The following command is used to generate the RTL version of this file
- * ./cssjanus.py --swap_ltr_rtl_in_url < main-ltr.css > main-rtl.css 
- *
- * Any rules which should not be flipped should be prepended with @noflip in
- * a comment block.
+ * Any rules which should not be flipped automatically in right-to-left situations should be prepended with @noflip in
+ * a comment block. Images that should be embedded as base64 data-URLs should be prepended with @embed in a comment
+ * block.
  */
 /* Framework */
 html,
@@ -30,15 +19,15 @@ body {
 }
 /* Content */
 div#content {
-	margin-right: 10em;
+	margin-left: 10em;
 	padding: 1em;
 	/* @embed */
 	background-image: url(images/border.png?1);
-	background-position: top right;
+	background-position: top left;
 	background-repeat: repeat-y;
 	background-color: white;
 	color: black;
-	direction: rtl;
+	direction: ltr;
 }
 /* Head */
 #mw-page-base {
@@ -46,22 +35,22 @@ div#content {
 	background-color: white;
 	/* @embed */
 	background-image: url(images/page-fade.png?1);
-	background-position: bottom right;
+	background-position: bottom left;
 	background-repeat: repeat-x;
 }
 #mw-head-base {
 	margin-top: -5em;
-	margin-right: 10em;
+	margin-left: 10em;
 	height: 5em;
 	/* @embed */
 	background-image: url(images/border.png?1);
-	background-position: bottom right;
+	background-position: bottom left;
 	background-repeat: repeat-x;
 }
 div#mw-head {
 	position: absolute;
 	top: 0;
-	left: 0;
+	right: 0;
 	width: 100%;
 }
 div#mw-head h5 {
@@ -76,8 +65,8 @@ div#mw-head h5 {
 	#p-personal {
 		position: absolute;
 		top: 0;
-		padding-right: 10em;
-		left: 0.75em;
+		padding-left: 10em;
+		right: 0.75em;
 	}
 	#p-personal h5 {
 		display: none;
@@ -94,7 +83,7 @@ div#mw-head h5 {
 	}
 	/* This one flips! */
 	#p-personal li {
-		margin-right: 0.75em;
+		margin-left: 0.75em;
 		margin-top: 0.5em;
 		font-size: 0.75em;
 		white-space: nowrap;
@@ -102,11 +91,11 @@ div#mw-head h5 {
 	/* Navigation Containers */
 	#left-navigation {
 		position: absolute;
-		right: 10em;
+		left: 10em;
 		top: 2.5em;
 	}
 	#right-navigation {
-		float: left;
+		float: right;
 		margin-top: 2.5em;
 	}
 	/* Navigation Labels */
@@ -123,9 +112,9 @@ div#mw-head h5 {
 	div.vectorTabs {
 		/* @embed */
 		background-image: url(images/tab-break.png?1);
-		background-position: bottom right;
+		background-position: bottom left;
 		background-repeat: no-repeat;
-		padding-right: 1px;
+		padding-left: 1px;
 	}
 	/* @noflip */
 	div.vectorTabs ul {
@@ -151,7 +140,7 @@ div#mw-head h5 {
 		background-color: #f3f3f3;
 		/* @embed */
 		background-image: url(images/tab-normal-fade.png?1);
-		background-position: bottom right;
+		background-position: bottom left;
 		background-repeat: repeat-x;
 		white-space:nowrap;
 	}
@@ -167,11 +156,11 @@ div#mw-head h5 {
 	div.vectorTabs li a {
 		display: inline-block;
 		height: 1.9em;
-		padding-right: 0.5em;
 		padding-left: 0.5em;
+		padding-right: 0.5em;
 		/* @embed */
 		background-image: url(images/tab-break.png?1);
-		background-position: bottom left;
+		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
 	div.vectorTabs li a{
@@ -233,14 +222,14 @@ div#mw-head h5 {
 		background-image: none;
 	}
 	div#mw-head div.vectorMenu h5 {
-		background-position: bottom right;
-		margin-right: -1px;
+		background-position: bottom left;
+		margin-left: -1px;
 	}
 	div#mw-head div.vectorMenu h4 {
 		display: inline-block;
-		float: right;
+		float: left;
 		font-size: 0.8em;
-		padding-right: 0.5em;
+		padding-left: 0.5em;
 		padding-top: 1.375em;
 		font-weight: normal;
 		border: none;
@@ -257,7 +246,7 @@ div#mw-head h5 {
 		background-repeat: no-repeat;
 	}
 	div.vectorMenu h5 a{
-		background-position: bottom left;
+		background-position: bottom right;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorMenu h5 > a {
@@ -267,7 +256,7 @@ div#mw-head h5 {
 		position: relative;
 		display: none;
 		clear: both;
-		text-align: right;
+		text-align: left;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	/* @noflip */
@@ -298,8 +287,8 @@ div#mw-head h5 {
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
-		margin-right: -1px;
-		text-align: right;
+		margin-left: -1px;
+		text-align: left;
 	}
 	/* Fixes old versions of FireFox */
 	div.vectorMenu ul,
@@ -315,7 +304,7 @@ div#mw-head h5 {
 	div.vectorMenu li {
 		padding: 0;
 		margin: 0;
-		text-align: right;
+		text-align: left;
 		line-height: 1em;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
@@ -347,8 +336,8 @@ div#mw-head h5 {
 		float: left;
 	}
 	#p-search {
-		margin-left: 0.5em;
 		margin-right: 0.5em;
+		margin-left: 0.5em;
 	}
 	#p-search form,
 	#p-search input {
@@ -363,7 +352,7 @@ div#mw-head h5 {
 		background-color: white;
 		/* @embed */
 		background-image: url(images/search-fade.png?1);
-		background-position: top right;
+		background-position: top left;
 		background-repeat: repeat-x;
 	}
 	div#simpleSearch label {
@@ -414,18 +403,18 @@ div#mw-panel {
 	top: 160px;
 	padding-top: 1em;
 	width: 10em;
-	right: 0;
+	left: 0;
 }
 	div#mw-panel div.portal {
 		padding-bottom: 1.5em;
-		direction: rtl;
+		direction: ltr;
 	}
 	div#mw-panel div.portal h5 {
 		font-weight: normal;
 		color: #444444;
 		padding: 0.25em;
 		padding-top: 0;
-		padding-right: 1.75em;
+		padding-left: 1.75em;
 		cursor: default;
 		border: none;
 		font-size: 0.75em;
@@ -433,11 +422,11 @@ div#mw-panel {
 	div#mw-panel div.portal div.body {
 		margin: 0;
 		padding-top: 0.5em;
-		margin-right: 1.25em;
+		margin-left: 1.25em;
 		/* @embed */
 		background-image: url(images/portal-break.png?1);
 		background-repeat: no-repeat;
-		background-position: top right;
+		background-position: top left;
 	}
 	div#mw-panel div.portal div.body ul {
 		list-style: none;
@@ -462,14 +451,14 @@ div#mw-panel {
 	}
 /* Footer */
 div#footer {
-	margin-right: 10em;
+	margin-left: 10em;
 	margin-top: 0;
 	padding: 0.75em;
 	/* @embed */
 	background-image: url(images/border.png?1);
-	background-position: top right;
+	background-position: top left;
 	background-repeat: repeat-x;
-	direction: rtl;
+	direction: ltr;
 }
 div#footer ul {
 	list-style: none;
@@ -487,7 +476,7 @@ div#footer ul li {
 	font-size: 0.7em;
 }
 div#footer #footer-icons {
-	float: left;
+	float: right;
 }
 /* @noflip */
 body.ltr div#footer #footer-places {
@@ -497,20 +486,20 @@ div#footer #footer-info li {
 	line-height: 1.4em;
 }
 div#footer #footer-icons li {
-	float: right;
-	margin-right: 0.5em;
+	float: left;
+	margin-left: 0.5em;
 	line-height: 2em;
 }
 div#footer #footer-places li {
-	float: right;
-	margin-left: 1em;
+	float: left;
+	margin-right: 1em;
 	line-height: 2em;
 }
 /* Logo */
 #p-logo {
 	position: absolute;
 	top: -160px;
-	right: 0;
+	left: 0;
 	width: 10em;
 	height: 160px;
 }
@@ -534,33 +523,33 @@ div#footer #footer-places li {
 #preftoc {
 	/* Tabs */
 	width: 100%;
-	float: right;
+	float: left;
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
 	/* @embed */
 	background-image: url(images/preferences-break.png?1);
-	background-position: bottom right;
+	background-position: bottom left;
 	background-repeat: no-repeat;
 }
 	#preftoc li {
 		/* Tab */
-		float: right;
+		float: left;
 		margin: 0;
 		padding: 0;
-		padding-left: 1px;
+		padding-right: 1px;
 		height: 2.25em;
 		white-space: nowrap;
 		list-style-type: none;
 		list-style-image: none;
 		/* @embed */
 		background-image: url(images/preferences-break.png?1);
-		background-position: bottom left;
+		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
 	#preftoc li:first-child {
-		margin-right: 1px;
+		margin-left: 1px;
 	}
 	#preftoc a,
 	#preftoc a:active {
@@ -585,7 +574,7 @@ div#footer #footer-places li {
 		text-decoration: none;
 	}
 #preferences {
-	float: right;
+	float: left;
 	width: 100%;
 	margin: 0;
 	margin-top: -2px;
@@ -611,8 +600,8 @@ div#footer #footer-places li {
 	display: none;
 }
 #preferences td {
-	padding-right: 0.5em;
 	padding-left: 0.5em;
+	padding-right: 0.5em;
 }
 #preferences td.htmlform-tip {
 	font-size: x-small;
@@ -623,7 +612,7 @@ div#footer #footer-places li {
 	padding: 1em;
 }
 #preferences div.mw-prefs-buttons input {
-	margin-left: 0.25em;
+	margin-right: 0.25em;
 }
 
 /* 
@@ -633,7 +622,7 @@ div#footer #footer-places li {
 	border: solid 1px #cccccc;
 	padding: 1.2em;
 	margin: .5em;
-	float: right;
+	float: left;
 }
 
 #userlogin {
@@ -726,7 +715,7 @@ h5 { font-size: 100%; }
 h5 .editsection { font-weight: normal; }
 h6 { font-size: 80%;  }
 h6 .editsection { font-size: 125%; font-weight: normal; }
-.editsection { float: left; }
+.editsection { float: right; }
 p {
 	margin: .4em 0 .5em 0;
 	line-height: 1.5em;
@@ -771,14 +760,14 @@ pre {
 ul {
 	line-height: 1.5em;
 	list-style-type: square;
-	margin: .3em 1.5em 0 0;
+	margin: .3em 0 0 1.5em;
 	padding: 0;
 	/* @embed */
 	list-style-image: url(images/bullet-icon.png?1);
 }
 ol {
 	line-height: 1.5em;
-	margin: .3em 3.2em 0 0;
+	margin: .3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
 }
@@ -795,7 +784,7 @@ dl {
 }
 dd {
 	line-height: 1.5em;
-	margin-right: 2em;
+	margin-left: 2em;
 	margin-bottom: .1em;
 }
 /* Tables */
@@ -863,13 +852,13 @@ select {
 .toc ul {
 	list-style-type: none;
 	list-style-image: none;
-	margin-right: 0;
-	padding-right: 0;
-	text-align: right;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
 }
 #toc ul ul,
 .toc ul ul {
-	margin: 0 2em 0 0;
+	margin: 0 0 0 2em;
 }
 #toc .toctoggle,
 .toc .toctoggle {
@@ -877,18 +866,18 @@ select {
 }
 /* Images */
 div.floatright, table.floatright {
-	clear: left;
-	float: left;
+	clear: right;
+	float: right;
 	position: relative;
-	margin: 0 .5em .5em 0;
+	margin: 0 0 .5em .5em;
 	border: 0;
 }
 div.floatright p { font-style: italic; }
 div.floatleft, table.floatleft {
-	float: right;
-	clear: right;
+	float: left;
+	clear: left;
 	position: relative;
-	margin: 0 0 .5em .5em;
+	margin: 0 .5em .5em 0;
 	border: 0;
 }
 div.floatleft p { font-style: italic; }
@@ -913,13 +902,13 @@ html .thumbimage {
 }
 html .thumbcaption {
 	border: none;
-	text-align: right;
+	text-align: left;
 	line-height: 1.4em;
 	padding: 3px !important;
 	font-size: 94%;
 }
 div.magnify {
-	float: left;
+	float: right;
 	border: none !important;
 	background: none !important;
 }
@@ -949,8 +938,8 @@ img.thumbborder {
 }
 /* Warning */
 .mw-warning {
-	margin-right: 50px;
 	margin-left: 50px;
+	margin-right: 50px;
 	text-align: center;
 }
 /* User Message */
@@ -990,7 +979,7 @@ img.thumbborder {
 #contentSub, #contentSub2 {
 	font-size: 84%;
 	line-height: 1.2em;
-	margin: 0 1em 1.4em 0;
+	margin: 0 0 1.4em 1em;
 	color: #7d7d7d;
 	width: auto;
 }
@@ -1003,8 +992,8 @@ span.subpages {
 	text-align: center;
 }
 *.center * {
-	margin-right: auto;
 	margin-left: auto;
+	margin-right: auto;
 }
 /* Small for tables and similar */
 .small, .small * {
@@ -1032,38 +1021,38 @@ h3, h4, h5 {
 div#content a.external,
 div#content a[href ^="gopher://"] {
 	/* @embed */
-	background: url(images/external-link-rtl-icon.png?2) center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url(images/external-link-ltr-icon.png?2) center right no-repeat;
+	padding: 0 13px 0 0;
 }
 div#content a[href ^="https://"],
 .link-https {
 	/* @embed */
-	background: url(images/lock-icon.png?2) center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url(images/lock-icon.png?2) center right no-repeat;
+	padding: 0 13px 0 0;
 }
 div#content a[href ^="mailto:"],
 .link-mailto {
 	/* @embed */
-	background: url(images/mail-icon.png?2) center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url(images/mail-icon.png?2) center right no-repeat;
+	padding: 0 13px 0 0;
 }
 div#content a[href ^="news://"] {
 	/* @embed */
-	background: url(images/news-icon.png?2) center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url(images/news-icon.png?2) center right no-repeat;
+	padding: 0 13px 0 0;
 }
 div#content a[href ^="ftp://"],
 .link-ftp {
 	/* @embed */
-	background: url(images/file-icon.png?2) center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url(images/file-icon.png?2) center right no-repeat;
+	padding: 0 13px 0 0;
 }
 div#content a[href ^="irc://"],
 div#content a.extiw[href ^="irc://"],
 .link-irc {
 	/* @embed */
-	background: url(images/talk-icon.png?2) center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url(images/talk-icon.png?2) center right no-repeat;
+	padding: 0 13px 0 0;
 }
 div#content a.external[href $=".ogg"], div#content a.external[href $=".OGG"],
 div#content a.external[href $=".mid"], div#content a.external[href $=".MID"],
@@ -1073,8 +1062,8 @@ div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"],
 div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
 .link-audio {
 	/* @embed */
-	background: url("images/audio-icon.png?2") center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url("images/audio-icon.png?2") center right no-repeat;
+	padding: 0 13px 0 0;
 }
 div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"],
 div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"],
@@ -1082,16 +1071,16 @@ div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"],
 div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
 .link-video {
 	/* @embed */
-	background: url("images/video-icon.png?2") center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url("images/video-icon.png?2") center right no-repeat;
+	padding: 0 13px 0 0;
 }
 div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
 div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
 div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 .link-document {
 	/* @embed */
-	background: url("images/document-icon.png?2") center left no-repeat;
-	padding: 0 0 0 13px;
+	background: url("images/document-icon.png?2") center right no-repeat;
+	padding: 0 13px 0 0;
 }
 /* Interwiki Styling  (Disabled) */
 div#content a.extiw,
@@ -1111,8 +1100,8 @@ div#content .printfooter {
 #pt-anonuserpage,
 #pt-login {
 	/* @embed */
-	background: url(images/user-icon.png?1) right top no-repeat;
-	padding-right: 15px !important;
+	background: url(images/user-icon.png?1) left top no-repeat;
+	padding-left: 15px !important;
 	text-transform: none;
 }
 
@@ -1136,7 +1125,7 @@ div#bodyContent {
 /* Watch/Unwatch Icon Styling */
 #ca-unwatch.icon,
 #ca-watch.icon {
-	margin-left:1px;
+	margin-right:1px;
 }
 #ca-unwatch.icon a,
 #ca-watch.icon a {
@@ -1185,12 +1174,12 @@ div#bodyContent {
 div.vectorTabs ul {
 	/* @embed */
 	background-image:url(images/tab-break.png?1);
-	background-position:left bottom;
+	background-position:right bottom;
 	background-repeat:no-repeat;
 }
 
 /* Convenience links to edit block, delete and protect reasons */
 p.mw-ipb-conveniencelinks, p.mw-protect-editreasons,
 p.mw-filedelete-editreasons, p.mw-delete-editreasons {
-	float: left;
+	float: right;
 }
