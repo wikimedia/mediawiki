@@ -9,7 +9,9 @@ ResourceLoader::register( array(
 	
 	/* Skins */
 	
-	'vector' => new ResourceLoaderFileModule( array( 'styles' => 'skins/vector/main-ltr.css' ) ),
+	'vector' => new ResourceLoaderFileModule(
+		array( 'styles' => array( 'skins/vector/main-ltr.css' => array( 'media' => 'screen' ) ) )
+	),
 	
 	/* jQuery */
 	
@@ -315,7 +317,7 @@ ResourceLoader::register( array(
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	) ),
 	'mediawiki.legacy.commonPrint' => new ResourceLoaderFileModule( array(
-		'styles' => 'skins/common/commonPrint.css',
+		'styles' => array( 'skins/common/commonPrint.css' => array( 'media' => 'print' ) ),
 	) ),
 	'mediawiki.legacy.config' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/config.js',
@@ -381,10 +383,10 @@ ResourceLoader::register( array(
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	) ),
 	'mediawiki.legacy.shared' => new ResourceLoaderFileModule( array(
-		'styles' => 'skins/common/shared.css',
+		'styles' => array( 'skins/common/shared.css' => array( 'media' => 'screen' ) ),
 	) ),
 	'mediawiki.legacy.oldshared' => new ResourceLoaderFileModule( array(
-		'styles' => 'skins/common/oldshared.css',
+		'styles' => array( 'skins/common/oldshared.css' => array( 'media' => 'screen' ) ),
 	) ),
 	'mediawiki.legacy.upload' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/upload.js',
@@ -393,5 +395,8 @@ ResourceLoader::register( array(
 	'mediawiki.legacy.wikibits' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/wikibits.js',
 		'messages' => array( 'showtoc', 'hidetoc' ),
+	) ),
+	'mediawiki.legacy.wikiprintable' => new ResourceLoaderFileModule( array(
+		'styles' => array( 'skins/common/wikiprintable.css' => array( 'media' => 'print' ) ),
 	) ),
 ) );
