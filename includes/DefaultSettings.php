@@ -142,6 +142,12 @@ $wgScript           = false;
 $wgRedirectScript   = false; ///< defaults to
 /**@}*/
 
+/**
+ * The URL path to load.php.
+ *
+ * Defaults to "{$wgScriptPath}/load{$wgScriptExtension}".
+ */
+$wgLoadScript           = false;
 
 /************************************************************************//**
  * @name   URLs and file paths
