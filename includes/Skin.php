@@ -715,9 +715,8 @@ CSS;
 	function setupSkinUserCss( OutputPage $out ) {
 		$out->addModuleStyles( 'mediawiki.legacy.shared' );
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
-		// TODO: Figure out how to best integrate this stuff into ResourceLoader
+		// TODO: When converting old skins to use ResourceLoader (or removing them) the following should be reconsidered
 		$out->addStyle( $this->getStylesheet() );
-		// TODO: When converting old skins to use ResourceLoader (or removing them) this needs to be reconsidered
 		$out->addStyle( 'common/common_rtl.css', '', '', 'rtl' );
 	}
 
