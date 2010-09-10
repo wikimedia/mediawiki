@@ -21,7 +21,7 @@
  */
 
 /**
- * Interface for resource loader modules, with name registration and maxage functionality.
+ * Abstraction for resource loader modules, with name registration and maxage functionality.
  */
 abstract class ResourceLoaderModule {
 	/* Protected Members */
@@ -674,6 +674,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 }
 
+/**
+ * Abstraction for resource loader modules which pull from wiki pages
+ */
 abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	
 	/* Protected Members */
@@ -684,6 +687,23 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/* Abstract Protected Methods */
 	
 	abstract protected function getPages( ResourceLoaderContext $context );
+	
+	/* Protected Methods */
+	
+	protected function getStyleCode( array $styles ) {
+		foreach ( $styles as $media => $messages ) {
+			foreach ( $messages as $i => $message ) {
+				$style = wfMsgExt( $message, 'content' );
+				if ( !wfEmptyMsg( $message, $style ) ) {
+					$styles[$media][$i] = $style;
+				}
+			}
+		}
+		foreach ( $styles as $media => $messages ) {
+			$styles[$media] = implode( "\n", $messages );
+		}
+		return $styles;
+	}
 	
 	/* Methods */
 	
@@ -713,7 +733,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 }
 
 /**
- * Custom module for MediaWiki:Common.js and MediaWiki:Skinname.js
+ * Custom module for site customizations
  */
 class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 
@@ -752,18 +772,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		if ( $wgHandheldStyle ) {
 			$sources['handheld'] = array( 'Handheld.css' );
 		}
-		foreach ( $styles as $media => $messages ) {
-			foreach ( $messages as $i => $message ) {
-				$style = wfMsgExt( $message, 'content' );
-				if ( !wfEmptyMsg( $message, $style ) ) {
-					$styles[$media][$i] = $style;
-				}
-			}
-		}
-		foreach ( $styles as $media => $messages ) {
-			$styles[$media] = implode( "\n", $messages );
-		}
-		return $styles;
+		return $this->getStyleCode( $styles );
 	}
 }
 
