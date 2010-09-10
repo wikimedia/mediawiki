@@ -549,10 +549,10 @@ class VectorTemplate extends QuickTemplate {
 			<div style="clear:both"></div>
 		</div>
 		<!-- /footer -->
+		<?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 		<!-- fixalpha -->
 		<script type="<?php $this->text('jsmimetype') ?>"> if ( window.isMSIE55 ) fixalpha(); </script>
 		<!-- /fixalpha -->
-		<?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 		<?php $this->html( 'reporttime' ) ?>
 		<?php if ( $this->data['debug'] ): ?>
 		<!-- Debug output: <?php $this->text( 'debug' ); ?> -->
