@@ -393,10 +393,6 @@ function do_pagelinks_namespace( $namespace ) {
 }
 
 function do_old_links_update() {
-	if( !defined( 'MW_NO_SETUP' ) ) {
-		define( 'MW_NO_SETUP', true );
-	}
-	require( "convertLinks.php" );
 	$cl = new ConvertLinks();
 	$cl->execute();
 }
@@ -416,7 +412,6 @@ function fix_ancient_imagelinks() {
 
 function do_user_unique_update() {
 	$dbw = wfGetDB( DB_MASTER );
-	require_once( "userDupes.inc" );
 	$duper = new UserDupes( $dbw );
 	if ( $duper->hasUniqueIndex() ) {
 		wfOut( "...already have unique user_name index.\n" );
@@ -710,7 +705,6 @@ function do_restrictions_update() {
 		wfOut( "ok\n" );
 
 		wfOut( "Migrating old restrictions to new table...\n" );
-		require_once( 'updateRestrictions.php' );
 		$task = new UpdateRestrictions();
 		$task->execute();
 	}
@@ -721,7 +715,7 @@ function do_category_population() {
 		wfOut( "...category table already populated.\n" );
 		return;
 	}
-	require_once( 'populateCategory.php' );
+
 	wfOut(
 		"Populating category table, printing progress markers. " .
 		"For large databases, you\n" .
@@ -738,7 +732,7 @@ function do_populate_parent_id() {
 		wfOut( "...rev_parent_id column already populated.\n" );
 		return;
 	}
-	require_once( 'populateParentId.php' );
+
 	$task = new PopulateParentId();
 	$task->execute();
 }
@@ -748,7 +742,7 @@ function do_populate_rev_len() {
 		wfOut( "...rev_len column already populated.\n" );
 		return;
 	}
-	require_once( 'populateRevisionLength.php' );
+
 	$task = new PopulateRevisionLength();
 	$task->execute();
 }
@@ -775,7 +769,7 @@ function do_collation_update() {
 		wfOut( "...collations up-to-date.\n" );
 		return;
 	}
-	require_once( 'updateCollation.php' );
+
 	$task = new UpdateCollation();
 	$task->execute();
 }
@@ -826,7 +820,6 @@ function do_log_search_population() {
 		wfOut( "...log_search table already populated.\n" );
 		return;
 	}
-	require_once( 'populateLogSearch.php' );
 	wfOut(
 "Populating log_search table, printing progress markers. For large\n" .
 "databases, you may want to hit Ctrl-C and do this manually with\n" .
