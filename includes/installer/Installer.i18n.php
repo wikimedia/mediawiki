@@ -1385,9 +1385,11 @@ chmod a+w config</pre>",
 Obzwar MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen diese [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
 	'config-db-type' => 'Datenbanksystem:',
 	'config-db-host' => 'Datenbankserver:',
-	'config-db-host-help' => 'Sofern sich die Datenbank auf einem anderen Server befindet, ist der hier der Servername oder die entsprechende IP-Adresse anzugeben.
+	'config-db-host-help' => 'Sofern sich die Datenbank auf einem anderen Server befindet, ist hier der Servername oder die entsprechende IP-Adresse anzugeben.
 
-Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster den zutreffenden Servernamen in seiner Dokumentation angegeben haben.',
+Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster den zutreffenden Servernamen in seiner Dokumentation angegeben haben.
+
+Sofern auf einem Windows-Server installiert und MySQL genutzt wird, funktioniert der Servername „localhost“ voraussichtlich nicht. Wenn nicht, sollte  „127.0.0.1“ oder die lokale IP-Adresse angegeben werden.',
 	'config-db-wiki-settings' => 'Bitte identifiziere dieses Wiki',
 	'config-db-name' => 'Datenbankname:',
 	'config-db-name-help' => 'Bitten einen Namen angeben, mit dem das Wiki identifiziert werden kann.
@@ -1890,7 +1892,6 @@ $messages['fi'] = array(
 	'config-page-upgradedoc' => 'Päivittäminen',
 	'config-help-restart' => 'Haluatko poistaa kaikki annetut tiedot ja aloittaa asennuksen alusta?',
 	'config-restart' => 'Kyllä',
-	'config-authors' => 'MediaWikin tekijänoikeus © 2001–2010 Tekijät: Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe ja muut henkilöt.',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWikin kotisivu]
 * [http://www.mediawiki.org/wiki/Help:Contents Käyttöopas]
 * [http://www.mediawiki.org/wiki/Manual:Contents Hallintaopas]
@@ -2607,7 +2608,9 @@ Aínda que MediaWiki comproba todos os ficheiros cargados por se houbese ameazas
 	'config-db-host' => 'Servidor da base de datos:',
 	'config-db-host-help' => 'Se o servidor da súa base de datos está nun servidor diferente, escriba o nome do servidor ou o enderezo IP aquí.
 
-Se está usando un aloxamento web compartido, o seu provedor de hospedaxe debe darlle o nome de servidor correcto na súa documentación.',
+Se está usando un aloxamento web compartido, o seu provedor de hospedaxe debe darlle o nome de servidor correcto na súa documentación.
+
+Se está a realizar a instalación nun servidor de Windows con MySQL, o nome "localhost" pode non valer como servidor. Se non funcionase, inténteo con "127.0.0.1" como enderezo IP local.',
 	'config-db-wiki-settings' => 'Identificar o wiki',
 	'config-db-name' => 'Nome da base de datos:',
 	'config-db-name-help' => 'Escolla un nome que identifique o seu wiki.
@@ -3044,7 +3047,6 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 	'config-page-upgradedoc' => 'Aktualizowanje',
 	'config-help-restart' => 'Chceš wšě składowane daty hašeć, kotrež sy zapodał a instalaciski proces znowa startować?',
 	'config-restart' => 'Haj, znowa startować',
-	'config-authors' => 'MediaWiki je Copyright © 2001-2010 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe a druzy.',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Startowa strona MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Nawod za wužiwarjow]
 * [http://www.mediawiki.org/wiki/Manual:Contents Nawod za administratorow]
@@ -3250,25 +3252,6 @@ Móžeš to manuelnje činić.",
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
 );
 
-/** Hungarian (Magyar) */
-$messages['hu'] = array(
-	'config-information' => 'Információ',
-	'config-show-help' => 'Segítség',
-	'config-continue' => 'Folytatás →',
-	'config-page-language' => 'Nyelv',
-	'config-page-name' => 'Név',
-	'config-page-options' => 'Beállítások',
-	'config-page-install' => 'Telepítés',
-	'config-db-name' => 'Adatbázisnév:',
-	'config-ns-generic' => 'Projekt',
-	'config-admin-name' => 'Neved:',
-	'config-admin-password' => 'Jelszó:',
-	'config-email-settings' => 'Email beállítások',
-	'config-extensions' => 'Kiterjesztések',
-	'config-install-step-done' => 'kész',
-	'config-install-step-failed' => 'sikertelen',
-);
-
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
@@ -3431,9 +3414,11 @@ chmod a+w config</pre>",
 Ben que MediaWiki verifica tote le files incargate contra le menacias de securitate, il es altemente recommendate [http://www.mediawiki.org/wiki/Manual:Security#Upload_security remediar iste vulnerabilitate de securitate] ante de activar le incargamento de files.",
 	'config-db-type' => 'Typo de base de datos:',
 	'config-db-host' => 'Servitor de base de datos:',
-	'config-db-host-help' => 'Si tu servitor de base de datos es super un altere servitor, entra hic le nomine de servitor o adresse IP.
+	'config-db-host-help' => 'Si tu servitor de base de datos es in un altere servitor, entra hic le nomine o adresse IP del servitor.
 
-Si tu usa un servitor web partite, tu providitor deberea dar te le correcte nomine de servitor in su documentation.',
+Si tu usa un servitor web usate in commun, tu providitor deberea dar te le correcte nomine de servitor in su documentation.
+
+Si tu face le installation in un servitor Windows e usa MySQL, le nomine "localhost" possibilemente non functiona como nomine de servitor. Si non, essaya "127.0.0.1", i.e. le adresse IP local.',
 	'config-db-wiki-settings' => 'Identificar iste wiki',
 	'config-db-name' => 'Nomine del base de datos:',
 	'config-db-name-help' => 'Selige un nomine que identifica tu wiki.
@@ -4098,9 +4083,11 @@ chmod a+w config</pre>",
 MediaWikiはアップロードされたファイルのセキュリティ上の脅威を確認しますが、アップロードを有効化するまえに、[http://www.mediawiki.org/wiki/Manual:Security#Upload_security このセキュリティ上の脆弱性を閉じる]ことが強く推奨されます。",
 	'config-db-type' => 'データベースの種類：',
 	'config-db-host' => 'データベースのホスト：',
-	'config-db-host-help' => 'データベースのサーバーが別のサーバーの場合、ホスト名かIPアドレスをここに入力して下さい。
+	'config-db-host-help' => 'もし、あなたのデータベースサーバーが異なったサーバー上にあるならば、ホスト名またはIPアドレスをここに入力してください。
 
-共有のウェブホストを利用している場合、ホスト・プロバイダーは、正しいホスト名をどこかで解説しているはずです。',
+もし、共有されたウェブホスティングを使用している場合、ホスティングプロバイダはドキュメンテーションにおいて正確なホストネームを提示するでしょう。
+
+もし、WindowsサーバーをインストールしていてしかもMySQLを使用しているならば、"localhost"を使用することは、サーバーネームとしての用はなさないでしょう。そうであるならば、ローカルIPアドレスのために"127.0.0.1"を試みてください。',
 	'config-db-wiki-settings' => 'このウィキを識別',
 	'config-db-name' => 'データベース名：',
 	'config-db-name-help' => 'このウィキを識別する名前を選んで下さい。
@@ -4662,7 +4649,9 @@ chmod a+w config</pre>",
 	'config-db-host' => 'Домаќин на базата:',
 	'config-db-host-help' => 'Ако вашата база е на друг опслужувач, тогаш тука внесете го името на домаќинот илиу IP-адресата.
 
-Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител треба да го доде точното име на домаќинот и неговата документација.',
+Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител треба да го доде точното име на домаќинот и неговата документација.
+
+Ако инсталирате на опслужувач на Windows и користите MySQL, можноста „localhost“ може да не функционира за опслужувачкото име. Во тој случај, обидете се со внесување на „127.0.0.1“ како локална IP-адреса',
 	'config-db-wiki-settings' => 'Идентификувај го викиво',
 	'config-db-name' => 'Име на базата:',
 	'config-db-name-help' => 'Одберете име што ќе го претставува вашето вики.
@@ -5795,7 +5784,9 @@ Embora o MediaWiki verifique a existência de ameaças de segurança em todos os
 	'config-db-host' => 'Servidor da base de dados:',
 	'config-db-host-help' => 'Se a base de dados estiver num servidor separado, introduza aqui o nome ou o endereço IP desse servidor.
 
-Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve ter-lhe fornecido o nome do servidor na documentação.',
+Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve ter-lhe fornecido o nome do servidor na documentação.
+
+Se está a fazer a instalação num servidor Windows com MySQL, usar como nome do servidor "localhost" poderá não funcionar. Se não funcionar, tente usar "127.0.0.1" como endereço IP local.',
 	'config-db-wiki-settings' => 'Identifique esta wiki',
 	'config-db-name' => 'Nome da base de dados:',
 	'config-db-name-help' => 'Escolha um nome para identificar a sua wiki.
