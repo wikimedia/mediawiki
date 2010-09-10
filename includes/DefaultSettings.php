@@ -4369,6 +4369,8 @@ $wgExceptionHooks = array();
  * the API help page.
  */
 $wgPageProps = array(
+	'displaytitle' => 'Value of the {{DISPLAYTITLE}} tag',
+	'defaultsort' => 'Value of the {{DEFAULTSORT}} tag',
 	'hiddencat' => 'Whether or not the page has a category with the __HIDDENCAT__ magic word',
 );
 
