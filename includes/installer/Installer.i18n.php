@@ -174,7 +174,7 @@ Although MediaWiki checks all uploaded files for security threats, it is highly 
 
 If you are using shared web hosting, your hosting provider should give you the correct host name in their documentation.
 
-If you are installing on a Windows server and using MySQL, using "localhost" may not work for the server name. If it does not, try "127.0.0.1" for the local IP address',
+If you are installing on a Windows server and using MySQL, using "localhost" may not work for the server name. If it does not, try "127.0.0.1" for the local IP address.',
 	'config-db-wiki-settings'         => 'Identify this wiki',
 	'config-db-name'                  => 'Database name:',
 	'config-db-name-help'             => 'Choose a name that identifies your wiki.
