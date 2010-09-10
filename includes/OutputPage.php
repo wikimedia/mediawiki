@@ -2312,8 +2312,10 @@ class OutputPage {
 		
 		// Statup - this will immediately load jquery and mediawiki modules
 		$scripts = self::makeResourceLoaderLink( $sk, 'startup', 'scripts' );
+		
 		// Configuration
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
+		
 		// Support individual script requests in debug mode
 		if ( $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) !== 'false' ) {
 			// Scripts
@@ -2341,6 +2343,10 @@ class OutputPage {
 				"if ( mediaWiki !== undefined ) { mediaWiki.loader.load( {$modules} ); }"
 			);
 		}
+		
+		// Add code to fetch all requested modules
+		$scripts .= Html::inlineScript( "if ( mediaWiki !== undefined ) { mediaWiki.loader.go(); }" );
+		
 		// TODO: User Scripts should be included using the resource loader
 		// Add user JS if enabled
 		if( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
@@ -2360,8 +2366,7 @@ class OutputPage {
 			}
 		}
 		$scripts .= "\n" . $this->mScripts;
-		// This should be at the bottom of the body - below ALL other scripts
-		$scripts .= Html::inlineScript( "if ( mediaWiki !== undefined ) { mediaWiki.loader.go(); }" );
+		
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
 			$scripts .= self::makeResourceLoaderLink( $sk, 'sitejs', 'scripts' );
