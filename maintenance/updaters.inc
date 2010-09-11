@@ -142,7 +142,7 @@ function check_bin( $table, $field, $patchFile ) {
 	if ( $dbw->getType() != 'mysql' )
 		return;
 	$tableName = $dbw->tableName( $table );
-	$res = $dbw->query( "SELECT $field FROM $tableName LIMIT 0" );
+	$res = $dbw->query( "SELECT $field FROM $tableName LIMIT 0", __METHOD__ );
 	$flags = explode( ' ', mysql_field_flags( $res->result, 0 ) );
 
 	if ( in_array( 'binary', $flags ) ) {

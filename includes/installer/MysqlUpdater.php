@@ -185,17 +185,14 @@ class MysqlUpdater extends DatabaseUpdater {
 			$field = $prefix . '_namespace';
 
 			$tablename = $this->db->tableName( $table );
-			$result = $this->db->query( "SHOW COLUMNS FROM $tablename LIKE '$field'" );
+			$result = $this->db->query( "SHOW COLUMNS FROM $tablename LIKE '$field'", __METHOD__ );
 			$info = $this->db->fetchObject( $result );
 
 			if ( substr( $info->Type, 0, 3 ) == 'int' ) {
 				wfOut( "...$field is already a full int ($info->Type).\n" );
 			} else {
 				wfOut( "Promoting $field from $info->Type to int... " );
-
-				$sql = "ALTER TABLE $tablename MODIFY $field int NOT NULL";
-				$this->db->query( $sql );
-
+				$this->db->query( "ALTER TABLE $tablename MODIFY $field int NOT NULL", __METHOD__ );
 				wfOut( "ok\n" );
 			}
 		}
