@@ -240,16 +240,16 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-invalid-db-type'          => 'Invalid database type',
 	'config-missing-db-name'          => 'You must enter a value for "Database name"',
 	'config-invalid-db-name'          => 'Invalid database name "$1".
-Use only ACSII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
+Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-invalid-db-prefix'        => 'Invalid database prefix "$1".
-Use only ACSII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
+Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-connection-error'         => '$1.
 
 Check the host, username and password below and try again.',
 	'config-invalid-schema'           => 'Invalid schema for MediaWiki "$1".
-Use only ACSII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
+Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-invalid-ts2schema'        => 'Invalid schema for tsearch2 "$1".
-Use only ACSII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
+Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-postgres-old'             => 'PostgreSQL $1 or later is required, you have $2.',
 	'config-sqlite-name-help'         => 'Choose a name that identifies your wiki.
 Do not use spaces or hyphens.
