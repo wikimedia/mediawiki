@@ -331,8 +331,8 @@ abstract class DatabaseUpdater {
 	/**
 	 * Modify an existing field
 	 *
-	 * @param $table String: name of the table to modify
-	 * @param $field String: name of the old field
+	 * @param $table String: name of the table to which the field belongs
+	 * @param $field String: name of the field to modify
 	 * @param $patch String: path to the patch file
 	 * @param $fullpath Boolean: whether to treat $patch path as a relative or not
 	 */
