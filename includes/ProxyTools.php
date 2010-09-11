@@ -68,15 +68,15 @@ function wfGetAgent() {
  * @return string
  */
 function wfGetIP() {
-	global $wgIP, $wgUsePrivateIPs, $wgCommandLineMode;
+	global $wgUsePrivateIPs, $wgCommandLineMode;
+	static $ip = false;
 
 	# Return cached result
-	if ( !empty( $wgIP ) ) {
-		return $wgIP;
+	if ( !empty( $ip ) ) {
+		return $ip;
 	}
 
 	$ipchain = array();
-	$ip = false;
 
 	/* collect the originating ips */
 	# Client connecting to this webserver
@@ -112,12 +112,14 @@ function wfGetIP() {
 		}
 	}
 
+	# Allow extensions to improve our guess
+	wfRunHooks( 'GetIP', array( &$ip ) );
+
 	if( !$ip ) {
 		throw new MWException( "Unable to determine IP" );
 	}
 
 	wfDebug( "IP: $ip\n" );
-	$wgIP = $ip;
 	return $ip;
 }
 

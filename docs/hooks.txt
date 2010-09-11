@@ -826,6 +826,9 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getInternalURL()
 
+'GetIP': modify the ip of the current user (called only once)
+&$ip: string holding the ip as determined so far
+
 'GetLinkColours': modify the CSS class of an array of page links
 $linkcolour_ids: array of prefixed DB keys of the pages linked to,
 	indexed by page_id.
