@@ -32,9 +32,10 @@ class LocalFile extends File {
 	/**#@+
 	 * @private
 	 */
-	var	$fileExists,       # does the file file exist on disk? (loadFromXxx)
-		$historyLine, 	   # Number of line to return by nextHistoryLine() (constructor)
-		$historyRes, 	   # result of the query for the file's history (nextHistoryLine)
+	var
+		$fileExists,       # does the file file exist on disk? (loadFromXxx)
+		$historyLine,      # Number of line to return by nextHistoryLine() (constructor)
+		$historyRes,       # result of the query for the file's history (nextHistoryLine)
 		$width,            # \
 		$height,           #  |
 		$bits,             #   --- returned by getimagesize (loadFromXxx)
@@ -53,7 +54,7 @@ class LocalFile extends File {
 		$upgraded,         # Whether the row was upgraded on load
 		$locked,           # True if the image row is locked
 		$missing,          # True if file is not present in file system. Not to be cached in memcached
-		$deleted;       # Bitfield akin to rev_deleted
+		$deleted;          # Bitfield akin to rev_deleted
 
 	/**#@-*/
 
