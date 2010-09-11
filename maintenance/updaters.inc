@@ -9,23 +9,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-function modify_field( $table, $field, $patch, $fullpath = false ) {
-	$dbw = wfGetDB( DB_MASTER );
-	if ( !$dbw->tableExists( $table ) ) {
-		wfOut( "...$table table does not exist, skipping modify field patch\n" );
-	} elseif ( !$dbw->fieldExists( $table, $field ) ) {
-		wfOut( "...$field field does not exist in $table table, skipping modify field patch\n" );
-	} else {
-		wfOut( "Modifying $field field of table $table..." );
-		if ( $fullpath ) {
-			$dbw->sourceFile( $patch );
-		} else {
-			$dbw->sourceFile( archive( $patch ) );
-		}
-		wfOut( "ok\n" );
-	}
-}
-
 function drop_index_if_exists( $table, $index, $patch, $fullpath = false ) {
 	$dbw = wfGetDB( DB_MASTER );
 	if ( $dbw->indexExists( $table, $index ) ) {

@@ -227,7 +227,7 @@ abstract class DatabaseUpdater {
 
 		foreach ( $wgExtModifiedFields as $fieldRecord ) {
 			$updates[] = array(
-				'modify_field', $fieldRecord[0], $fieldRecord[1],
+				'modifyField', $fieldRecord[0], $fieldRecord[1],
 					$fieldRecord[2], true
 			);
 		}
@@ -325,6 +325,26 @@ abstract class DatabaseUpdater {
 			wfOut( "ok\n" );
 		} else {
 			wfOut( "...$table table does not contain $field field.\n" );
+		}
+	}
+
+	/**
+	 * Modify an existing field
+	 *
+	 * @param $table String: name of the table to modify
+	 * @param $field String: name of the old field
+	 * @param $patch String: path to the patch file
+	 * @param $fullpath Boolean: whether to treat $patch path as a relative or not
+	 */
+	public function modifyField( $table, $field, $patch, $fullpath = false ) {
+		if ( !$this->db->tableExists( $table ) ) {
+			wfOut( "...$table table does not exist, skipping modify field patch\n" );
+		} elseif ( !$this->db->fieldExists( $table, $field ) ) {
+			wfOut( "...$field field does not exist in $table table, skipping modify field patch\n" );
+		} else {
+			wfOut( "Modifying $field field of table $table..." );
+			$this->applyPatch( $patch, $fullpath );
+			wfOut( "ok\n" );
 		}
 	}
 
