@@ -70,7 +70,7 @@ class MessageBlobStore {
 			return false;
 		}
 
-		$dbw = wfGetDb( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$success = $dbw->insert( 'msg_resource', array(
 				'mr_lang' => $lang,
 				'mr_resource' => $module,
@@ -121,8 +121,9 @@ class MessageBlobStore {
 		$retval = null;
 
 		// Find all existing blobs for this module
-		$dbw = wfGetDb( DB_MASTER );
-		$res = $dbw->select( 'msg_resource', array( 'mr_lang', 'mr_blob' ),
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->select( 'msg_resource',
+			array( 'mr_lang', 'mr_blob' ),
 			array( 'mr_resource' => $module ),
 			__METHOD__
 		);
@@ -191,7 +192,7 @@ class MessageBlobStore {
 	 * @param $key string Message key
 	 */
 	public static function updateMessage( $key ) {
-		$dbw = wfGetDb( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		// Keep running until the updates queue is empty.
 		// Due to update conflicts, the queue might not be emptied
@@ -205,9 +206,11 @@ class MessageBlobStore {
 				// didn't change since we fetched it by putting
 				// the timestamp in the WHERE clause.
 				$success = $dbw->update( 'msg_resource',
-					array(	'mr_blob' => $update['newBlob'],
+					array(
+						'mr_blob' => $update['newBlob'],
 						'mr_timestamp' => $dbw->timestamp() ),
-					array(	'mr_resource' => $update['resource'],
+					array(
+						'mr_resource' => $update['resource'],
 						'mr_lang' => $update['lang'],
 						'mr_timestamp' => $update['timestamp'] ),
 					__METHOD__
@@ -230,7 +233,7 @@ class MessageBlobStore {
 	public static function clear() {
 		// TODO: Give this some more thought
 		// TODO: Is TRUNCATE better?
-		$dbw = wfGetDb( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'msg_resource', '*', __METHOD__ );
 		$dbw->delete( 'msg_resource_links', '*', __METHOD__ );
 	}
@@ -242,14 +245,14 @@ class MessageBlobStore {
 	 * @return array Updates queue
 	 */
 	private static function getUpdatesForMessage( $key, $prevUpdates = null ) {
-		$dbw = wfGetDb( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		if ( is_null( $prevUpdates ) ) {
 			// Fetch all blobs referencing $key
 			$res = $dbw->select(
-				array(	'msg_resource', 'msg_resource_links' ),
-				array(	'mr_resource', 'mr_lang', 'mr_blob', 'mr_timestamp' ),
-				array( 	'mrl_message' => $key, 'mr_resource=mrl_resource' ),
+				array( 'msg_resource', 'msg_resource_links' ),
+				array( 'mr_resource', 'mr_lang', 'mr_blob', 'mr_timestamp' ),
+				array( 'mrl_message' => $key, 'mr_resource=mrl_resource' ),
 				__METHOD__
 			);
 		} else {
@@ -264,7 +267,7 @@ class MessageBlobStore {
 			}
 
 			$res = $dbw->select( 'msg_resource',
-				array(	'mr_resource', 'mr_lang', 'mr_blob', 'mr_timestamp' ),
+				array( 'mr_resource', 'mr_lang', 'mr_blob', 'mr_timestamp' ),
 				$dbw->makeWhereFrom2d( $twoD, 'mr_resource', 'mr_lang' ),
 				__METHOD__
 			);
@@ -278,8 +281,7 @@ class MessageBlobStore {
 				'resource' => $row->mr_resource,
 				'lang' => $row->mr_lang,
 				'timestamp' => $row->mr_timestamp,
-				'newBlob' => self::reencodeBlob( $row->mr_blob,
-					$key, $row->mr_lang )
+				'newBlob' => self::reencodeBlob( $row->mr_blob, $key, $row->mr_lang )
 			);
 		}
 
@@ -310,7 +312,8 @@ class MessageBlobStore {
 	private static function getFromDB( $modules, $lang ) {
 		$retval = array();
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'msg_resource', array( 'mr_blob', 'mr_resource', 'mr_timestamp' ),
+		$res = $dbr->select( 'msg_resource',
+			array( 'mr_blob', 'mr_resource', 'mr_timestamp' ),
 			array( 'mr_resource' => $modules, 'mr_lang' => $lang ),
 			__METHOD__
 		);
