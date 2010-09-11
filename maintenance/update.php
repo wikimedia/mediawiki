@@ -34,7 +34,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
 
-		if ( !isset( $this->mOptions['skip-compat-checks'] ) ) {
+		if ( !$this->hasOption( 'skip-compat-checks' ) ) {
 			install_version_checks();
 		} else {
 			$this->output( "Skipping compatibility checks, proceed at your own risk (Ctrl+C to abort)\n" );
