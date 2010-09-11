@@ -2334,7 +2334,7 @@ The description on its [$2 file description page] there is shown below.',
 
 # MIME search
 'mimesearch'         => 'MIME search',
-'mimesearch-summary' => 'This page enables the filtering of files for its MIME type.
+'mimesearch-summary' => 'This page enables the filtering of files for their MIME type.
 Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'mimetype'           => 'MIME type:',
 'download'           => 'download',
