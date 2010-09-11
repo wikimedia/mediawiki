@@ -1339,25 +1339,26 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'prefs-diffs'                   => 'Skilnader',
 
 # User rights
-'userrights'                  => 'Administrering av brukartilgang',
-'userrights-lookup-user'      => 'Administrer brukargrupper',
-'userrights-user-editname'    => 'Skriv inn brukarnamn:',
-'editusergroup'               => 'Endre brukargrupper',
-'editinguser'                 => "Endrar brukartilgangen til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Endre brukargrupper',
-'saveusergroups'              => 'Lagre brukargrupper',
-'userrights-groupsmember'     => 'Medlem av:',
-'userrights-groups-help'      => 'Du kan endre kva for grupper denne brukaren er medlem av.
+'userrights'                   => 'Administrering av brukartilgang',
+'userrights-lookup-user'       => 'Administrer brukargrupper',
+'userrights-user-editname'     => 'Skriv inn brukarnamn:',
+'editusergroup'                => 'Endre brukargrupper',
+'editinguser'                  => "Endrar brukartilgangen til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'     => 'Endre brukargrupper',
+'saveusergroups'               => 'Lagre brukargrupper',
+'userrights-groupsmember'      => 'Medlem av:',
+'userrights-groupsmember-auto' => 'Implisitt medlem av:',
+'userrights-groups-help'       => 'Du kan endre kva for grupper denne brukaren er medlem av.
 * Ein krossa boks tyder at brukaren er medlem av denne gruppa.
 * Ein ikkjekrossa boks tyder at brukaren ikkje er medlem av denne gruppa.
 * Ein * tyder at du ikkje kan fjerne gruppemedlemskapen etter at du har lagt han til, eller omvendt.',
-'userrights-reason'           => 'Årsak:',
-'userrights-no-interwiki'     => 'Du har ikkje tilgang til å endre brukartilgangar på andre wikiar.',
-'userrights-nodatabase'       => 'Databasen $1 finst ikkje eller er ikkje lokal.',
-'userrights-nologin'          => 'Du må [[Special:UserLogin|logge inn]] med ein administrator- og/eller byråkratkonto for å endre brukartilgangar.',
-'userrights-notallowed'       => 'Kontoen din har ikkje tilgang til å endre brukartilgangar.',
-'userrights-changeable-col'   => 'Grupper du kan endre',
-'userrights-unchangeable-col' => 'Grupper du ikkje kan endre',
+'userrights-reason'            => 'Årsak:',
+'userrights-no-interwiki'      => 'Du har ikkje tilgang til å endre brukartilgangar på andre wikiar.',
+'userrights-nodatabase'        => 'Databasen $1 finst ikkje eller er ikkje lokal.',
+'userrights-nologin'           => 'Du må [[Special:UserLogin|logge inn]] med ein administrator- og/eller byråkratkonto for å endre brukartilgangar.',
+'userrights-notallowed'        => 'Kontoen din har ikkje tilgang til å endre brukartilgangar.',
+'userrights-changeable-col'    => 'Grupper du kan endre',
+'userrights-unchangeable-col'  => 'Grupper du ikkje kan endre',
 
 # Groups
 'group'               => 'Gruppe:',

@@ -2803,9 +2803,10 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 *$1 is the path incl. filename of the missing image',
 
 # Special:Import
-'import'                  => 'The title of the special page [[Special:Import]];',
-'import-interwiki-submit' => '{{Identical|Import}}',
-'xml-error-string'        => ':$1: Some kind of message, perhaps name of the error?
+'import'                   => 'The title of the special page [[Special:Import]];',
+'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.',
+'import-interwiki-submit'  => '{{Identical|Import}}',
+'xml-error-string'         => ':$1: Some kind of message, perhaps name of the error?
 :$2: line number
 :$3: columm number
 :$4: ?? $this->mByte . $this->mContext
@@ -2813,7 +2814,7 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 ----
 :Example
 Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki xml"): Empty document',
-'import-upload'           => 'Used on [[Special:Import]].
+'import-upload'            => 'Used on [[Special:Import]].
 
 Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 

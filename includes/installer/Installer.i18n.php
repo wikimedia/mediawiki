@@ -820,8 +820,8 @@ $1
 Праверце хост, імя карыстальніка і пароль ніжэй і паспрабуйце зноў.',
 	'config-invalid-schema' => 'Няслушная схема «$1» для MediaWiki.
 Выкарыстоўвайце толькі літары, лічбы і сымбалі падкрэсьліваньня.',
-	'config-invalid-ts2schema' => 'Няслушная схема «$1» для tsearch2.
-Выкарыстоўвайце толькі літары, лічбы і сымбалі падкрэсьліваньня.',
+	'config-invalid-ts2schema' => 'Няслушная схема «$1» для TSearch2.
+Выкарыстоўвайце толькі літары (a-z, A-Z), лічбы (0-9) і сымбалі падкрэсьліваньня (_).',
 	'config-postgres-old' => 'Патрабуецца PostgreSQL $1 ці навейшая, усталяваная вэрсія $2.',
 	'config-sqlite-name-help' => 'Выберыце назву, якая будзе ідэнтыфікаваць Вашую вікі.
 Не выкарыстоўвайце прагалы ці злучкі.
@@ -1455,16 +1455,16 @@ Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt
 	'config-invalid-db-type' => 'Unzulässiges Datenbanksystem',
 	'config-missing-db-name' => 'Bei „Datenbankname“ muss ein Wert angegeben werden.',
 	'config-invalid-db-name' => 'Ungültiger Datenbankname „$1“.
-Er darf nur Zahlen, Buchstaben und Unterstriche enthalten.',
+Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
 	'config-invalid-db-prefix' => 'Ungültiger Datenbanktabellenpräfix „$1“.
-Er darf nur Zahlen, Buchstaben und Unterstriche enthalten.',
+Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
 	'config-connection-error' => '$1.
 
 Bitte unten angegebenen Servernamen, Benutzernamen sowie das Passwort überprüfen und es danach erneut versuchen.',
 	'config-invalid-schema' => 'Ungültiges Datenschema für MediaWiki „$1“.
-Es darf nur Zahlen, Buchstaben und Unterstriche enthalten.',
-	'config-invalid-ts2schema' => 'Ungültiges Datenschema für tsearch2 „$1“.
-Es darf nur Zahlen, Buchstaben und Unterstriche enthalten.',
+Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
+	'config-invalid-ts2schema' => 'Ungültiges Datenschema für TSearch2 „$1“.
+Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
 	'config-postgres-old' => 'PostgreSQL $1 oder höher wird benötigt. PostgreSQL $2 ist momentan vorhanden.',
 	'config-sqlite-name-help' => 'Bitten einen Namen angeben, mit dem das Wiki identifiziert werden kann.
 Dabei bitte keine Leerzeichen oder Bindestriche verwenden.
@@ -2210,7 +2210,7 @@ Il ne peut contenir que des chiffres, des lettres et des caractères de souligne
 Vérifier le nom d’hôte, le nom d’utilisateur et le mot de passe ci-dessous puis réessayer.',
 	'config-invalid-schema' => 'Schéma invalide pour MediaWiki « $1 ». 
 Utilisez seulement des lettres, des chiffres et des caractères de soulignement.',
-	'config-invalid-ts2schema' => 'Schéma non valide pour tsearch2 « $1 ». 
+	'config-invalid-ts2schema' => 'Schéma non valide pour TSearch2 « $1 ». 
 Utilisez seulement des lettres, des chiffres et des caractères de soulignement.',
 	'config-postgres-old' => 'PostgreSQL $1 ou version ultérieure est requis, vous avez $2.',
 	'config-sqlite-name-help' => "Choisir un nom qui identifie votre wiki. 
@@ -2676,16 +2676,16 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-invalid-db-type' => 'Tipo de base de datos incorrecto',
 	'config-missing-db-name' => 'Debe escribir un valor "Nome da base de datos"',
 	'config-invalid-db-name' => 'O nome da base de datos, "$1", é incorrecto.
-Só pode conter números, letras e guións baixos.',
+Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
 	'config-invalid-db-prefix' => 'O prefixo da base de datos, "$1", é incorrecto.
-Só pode conter números, letras e guións baixos.',
+Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
 	'config-connection-error' => '$1.
 
 Comprobe o servidor, nome de usuario e contrasinal que hai a continuación e inténteo de novo.',
 	'config-invalid-schema' => 'O esquema de MediaWiki, "$1", é incorrecto.
-Só pode conter letras, números e guións baixos.',
-	'config-invalid-ts2schema' => 'O esquema de tsearch2, "$1", é incorrecto.
-Só pode conter letras, números e guións baixos.',
+Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
+	'config-invalid-ts2schema' => 'O esquema de TSearch2, "$1", é incorrecto.
+Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
 	'config-postgres-old' => 'Necesítase PostgreSQL $1 ou posterior; ten a versión $2.',
 	'config-sqlite-name-help' => 'Escolla un nome que identifique o seu wiki.
 Non utilice espazos ou guións.
@@ -3129,7 +3129,7 @@ Smě jenož ličby, pismiki a podsmužki wobsahować.',
 Skontroluj serwer, wužiwarske a hesło a spytaj hišće raz.',
 	'config-invalid-schema' => 'Njepłaćiwe šema za MediaWiki "$1".
 Wužij jenož pismiki, ličby a podsmužki.',
-	'config-invalid-ts2schema' => 'Njepłaćiwe šema za tsearch2 "$1".
+	'config-invalid-ts2schema' => 'Njepłaćiwe šema za TSearch2 "$1".
 Wužij jenož pismiki, ličby a podsmužki.',
 	'config-postgres-old' => 'PostgreSQL $1 abo nowši trěbny, maš $2.',
 	'config-sqlite-name-help' => 'Wubjer mjeno, kotrež twój wiki identifikuje.
@@ -3484,16 +3484,16 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-invalid-db-type' => 'Typo de base de datos invalide',
 	'config-missing-db-name' => 'Tu debe entrar un valor pro "Nomine de base de datos"',
 	'config-invalid-db-name' => 'Nomine de base de datos "$1" invalide.
-Illo pote continer solmente numeros, litteras e characteres de sublineamento.',
+Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
 	'config-invalid-db-prefix' => 'Prefixo de base de datos "$1" invalide.
-Illo pote continer solmente numeros, litteras e characteres de sublineamento.',
+Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
 	'config-connection-error' => '$1.
 
 Verifica le servitor, nomine de usator e contrasigno hic infra e reproba.',
 	'config-invalid-schema' => 'Schema invalide pro MediaWiki "$1".
-Usa solmente litteras, numeros e characteres de sublineamento.',
-	'config-invalid-ts2schema' => 'Schema invalide pro tsearch2 "$1".
-Usa solmente litteras, numeros e characteres de sublineamento.',
+Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
+	'config-invalid-ts2schema' => 'Schema invalide pro TSearch2 "$1".
+Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
 	'config-postgres-old' => 'PostgreSQL $1 o plus recente es requirite, tu ha $2.',
 	'config-sqlite-name-help' => 'Selige un nomine que identifica tu wiki.
 Non usar spatios o tractos de union.
@@ -4083,11 +4083,11 @@ chmod a+w config</pre>",
 MediaWikiはアップロードされたファイルのセキュリティ上の脅威を確認しますが、アップロードを有効化するまえに、[http://www.mediawiki.org/wiki/Manual:Security#Upload_security このセキュリティ上の脆弱性を閉じる]ことが強く推奨されます。",
 	'config-db-type' => 'データベースの種類：',
 	'config-db-host' => 'データベースのホスト：',
-	'config-db-host-help' => 'もし、あなたのデータベースサーバーが異なったサーバー上にあるならば、ホスト名またはIPアドレスをここに入力してください。
+	'config-db-host-help' => 'データベースサーバーが異なったサーバー上にある場合、ホスト名またはIPアドレスをここに入力してください。
 
-もし、共有されたウェブホスティングを使用している場合、ホスティングプロバイダはドキュメンテーションにおいて正確なホストネームを提示するでしょう。
+もし、共有されたウェブホスティングを使用している場合、ホスティング・プロバイダは正確なホストネームを解説しているはずです。
 
-もし、WindowsサーバーをインストールしていてしかもMySQLを使用しているならば、"localhost"を使用することは、サーバーネームとしての用はなさないでしょう。そうであるならば、ローカルIPアドレスのために"127.0.0.1"を試みてください。',
+WindowsでMySQLを使用している場合に、「localhost」は、サーバー名としてはうまく働かないでしょう。もしそのような場合は、ローカルIPアドレスとして「127.0.0.1」を試してみてください。',
 	'config-db-wiki-settings' => 'このウィキを識別',
 	'config-db-name' => 'データベース名：',
 	'config-db-name-help' => 'このウィキを識別する名前を選んで下さい。
@@ -4110,25 +4110,87 @@ MediaWikiはアップロードされたファイルのセキュリティ上の�
 	'config-db-charset' => 'データベースの文字セット',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0バイナリ',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-mysql-old' => 'MySQLの$1以降が要求されています。あなたの所有のものは$2です。',
+	'config-db-port' => 'データベースポート:',
+	'config-db-schema' => 'メディアウィキの図式',
+	'config-db-schema-help' => '上の図式は常に正確です。
+必要である場合のみ、変更してください。',
+	'config-sqlite-dir' => 'SQLiteのデータディレクトリ:',
+	'config-sqlite-dir-help' => 'SQLiteは単一のファイル中に全てのデータを保持しています。
+
+あなたが供給するディレクトリーはインストール時にウェブサーバーによって書き込み可能でなければならない。
+
+ウェブを通してアクセス可能"不可能"でなければならない。これはあなたのPHPファイルのある所に配置不能な理由です。
+
+インストーラーは共に<code>.htaccess</code>ファイルを書き込むことでしょう。しかし、例え失敗しても誰かがあなたの生のデータベースにアクセスすることが可能となるでしょう。
+
+例えば<code>/var/lib/mediawiki/yourwiki</code>のように、全く違う場所にデータベースを配置することを考えてください。',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-support-info' => 'メディアウィキは次のようなデータベースシステムをサポートする:
+
+$1
+
+もし、データベースシステムが不可視であるならば、以下のようにリスト化されたものを使用してみてください。可能なサポートの指示に従ってください。',
 	'config-header-mysql' => 'MySQLの設定',
 	'config-header-postgres' => 'PostgreSQLの設定',
 	'config-header-sqlite' => 'SQLiteの設定',
 	'config-header-oracle' => 'Oracleの設定',
 	'config-invalid-db-type' => '不正なデータベースの種類',
 	'config-missing-db-name' => '「データベース名」を入力する必要があります',
+	'config-invalid-db-name' => '無効なデータベース名"$1"。
+アスキー文字(a-z, A-Z)、数字(0-9)、下線(_)のみを使用してください。',
+	'config-invalid-db-prefix' => 'データベースの接頭語"$1"が無効です。
+アスキー文字(a-z, A-Z)、数字(0-9)、下線(_)のみを使用してください。',
+	'config-connection-error' => '$1。
+
+以下のホスト名、ユーザ名、パスワードをチェックして、再度試してみてください。',
+	'config-invalid-schema' => 'メディアウィキ"$1"における無効な図式です。
+アスキー文字(a-z, A-Z)、数字(0-9)、下線(_)のみを使用してください。',
+	'config-invalid-ts2schema' => 'TSearch2 "$1"における無効な図式です。
+アスキー文字(a-z, A-Z)、数字(0-9)、下線(_)のみを使用してください。',
+	'config-sqlite-name-help' => 'あなたのウェキと同一性のある名前を選んでください。
+空白およびハイフンは使用しないでください。
+SQLiteのデータファイル名として使用されます。',
+	'config-sqlite-mkdir-error' => 'データディレクトリー"$1"を作成したことによるエラー。
+場所をチェックして、再度試してください。',
+	'config-sqlite-dir-unwritable' => 'ディレクトリー"$1"を書き込むことができません。
+パーミッションを変更すれば、ウェブサーバーが書き込み可能となります。再度試してください。',
+	'config-sqlite-connection-error' => '$1。
+
+以下のデータディレクトリーとデータベースをチェックし、再度試してみてください。',
+	'config-sqlite-readonly' => 'ファイル<code>$1</code>は書き込み不能です。',
+	'config-sqlite-cant-create-db' => 'データベースファイル<code>$1</code>を作成できませんでした。',
+	'config-sqlite-fts3-downgrade' => 'PHPはFTS3のサポート、テーブルのダウングレードが無効です。',
+	'config-sqlite-fts3-add' => 'FTS3の検索機能を追加する',
+	'config-can-upgrade' => 'このデータベースにはメディアウィキテーブルが存在します。
+それらをメディアウィキ$1にアップグレードするために「続行」をクリックしてください。',
+	'config-db-web-account' => 'ウェブアクセスのためのデータベースアカウント',
+	'config-db-web-help' => 'ウィキの元来の操作中、ウェブサーバーがデーターベースサーバーに接続できるように、ユーザ名とパスワードを選択してください。',
+	'config-db-web-account-same' => 'インストールのために同じアカウントを使用してください',
+	'config-db-web-create' => '既に存在していないのであれば、アカウントを作成してください',
+	'config-db-web-no-create-privs' => 'あなたがインストールのために定義したアカウントは、アカウント作成のための特権としては不充分です。
+あなたがここで特定したアカウントはすでに存在していなければなりません。',
+	'config-mysql-engine' => 'ストレージエンジン:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-charset' => 'データベースの文字セット:',
 	'config-mysql-binary' => 'バイナリ',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'ウィキの名前：',
+	'config-site-name-help' => 'この事象はブラウザのタイトルバーと他の様々な場所において出現する。',
 	'config-site-name-blank' => 'サイト名を入力してください。',
 	'config-project-namespace' => 'プロジェクト名前空間：',
 	'config-ns-generic' => 'プロジェクト',
 	'config-ns-site-name' => 'ウィキ名と同じ：$1',
+	'config-ns-other' => 'その他(特化されたもの)',
+	'config-ns-other-default' => 'マイウィキ',
+	'config-project-namespace-help' => "ウィキペディアの例に従えば、多くのウィキは「'''プロジェクトの名前空間'''」において、コンテンツのページとは分離した独自のポリシーページを持つ。
+伝統的にはこの接頭辞はウィキのページから派生される。しかし、\"#\" や \":\"のような句切り記号は含んでいない。",
+	'config-ns-invalid' => '"<nowiki>$1</nowiki>"のように指定された名前空間は無効です。
+違うプロジェクト名前空間を指定してください。',
 	'config-admin-box' => '管理アカウント',
 	'config-admin-name' => '名前：',
 	'config-admin-password' => 'パスワード：',
@@ -4145,6 +4207,15 @@ MediaWikiはアップロードされたファイルのセキュリティ上の�
 	'config-admin-email-help' => '電子メールアドレスを入力してください。他のユーザーからの電子メールの受け取りと、パスワードのリセット、ウォッチリストに登録したページの更新通知に用いられます。',
 	'config-admin-error-user' => '"<nowiki>$1</nowiki>"という名前の管理者を作成する際に内部エラーが発生しました。',
 	'config-admin-error-password' => '管理者"<nowiki>$1</nowiki>"のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>',
+	'config-almost-done' => 'あなたはほとんど完璧です！
+設定を残すことをはぶいて、今すぐにウィキをインストールできます。',
+	'config-optional-continue' => '私にもっと質問してください。',
+	'config-optional-skip' => 'すでに飽きてしまった、ウィキをインストールするだけです。',
+	'config-profile' => '正しいプロフィールのユーザ:',
+	'config-profile-wiki' => '伝統的なウィキ',
+	'config-profile-no-anon' => 'リクエストされたアカウント作成',
+	'config-profile-fishbowl' => '承認された編集者のみ',
+	'config-profile-private' => 'プライベートなウィキ',
 	'config-license' => '著作権とライセンス:',
 	'config-license-none' => 'ライセンスのフッターを付けない',
 	'config-license-cc-by-sa' => 'クリエイティブ・コモンズ 表示-継承 (Wikipedia互換)',
@@ -4161,6 +4232,13 @@ MediaWikiはアップロードされたファイルのセキュリティ上の�
 
 GNUフリー文書利用許諾契約書はウィキペディアが採用していた古いライセンスです。
 今も有効なライセンスではありますが、再利用や解釈を難しくする条項が含まれています。",
+	'config-email-settings' => '電子メールの設定',
+	'config-enable-email' => '電子メール送信の有効',
+	'config-enable-email-help' => "もし、電子メールの作動を欲するならば、[http://www.php.net/manual/en/mail.configuration.php PHP's mail settings]のページが正確に設定されている必要がある。
+もし、電子メールに関するいかなる機能を欲しないのであれば、ここで無効にできます。",
+	'config-email-user' => 'ユーザ間同士の電子メールの許可',
+	'config-email-user-help' => '設定において有効になっている場合、全てのユーザがお互いに電子メールのやりとりを行うことを許可する。',
+	'config-email-usertalk' => 'ユーザのトークページにおける通知を有効にする',
 	'config-cc-error' => 'クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。
 ライセンスの名前を手動で入力してください。',
 	'config-cc-again' => 'もう一度選択してください...',
@@ -4430,6 +4508,7 @@ Installatioun ofgebrach.",
 	'config-postgres-old' => 'PostgreSQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.',
 	'config-sqlite-readonly' => 'An de Fichier <code>$1</code> Kann net geschriwwe ginn.',
 	'config-sqlite-cant-create-db' => 'Den Datebank-Fichier <code>$1</code> konnt net ugeluecht ginn.',
+	'config-db-web-account' => 'Datebankkont fir den Accès iwwer de Web',
 	'config-db-web-account-same' => 'Dee selwechte Kont wéi bei der Installatioun benotzen',
 	'config-db-web-create' => 'De Kont uleeë wann et e net scho gëtt',
 	'config-mysql-innodb' => 'InnoDB',
@@ -4718,15 +4797,15 @@ $1
 	'config-missing-db-name' => 'Мора да внесете значење за параметарот „Име на базата“',
 	'config-invalid-db-name' => 'Неважечко име на базата „$1“.
 Може да содржи само бројки, букви и долни црти.',
-	'config-invalid-db-prefix' => 'Неважечки префикс за базата „$1“.
+	'config-invalid-db-prefix' => 'Неважечки префикс за база „$1“.
 Може да содржи само бројки, букви и долни црти.',
 	'config-connection-error' => '$1.
 
 Проверете го долунаведениот домаќин, корисничко име и лозинка и обидете се повторно.',
 	'config-invalid-schema' => 'Неважечка шема за МедијаВики „$1“.
-Користете само бројки, букви и долни црти.',
-	'config-invalid-ts2schema' => 'Неважечка шема за tsearch2 „$1“.
-Користете само бројки, букви и долни црти.',
+Користете само букви, бројки и долни црти.',
+	'config-invalid-ts2schema' => 'Неважечка шема за TSearch2 „$1“.
+Користете само букви, бројки и долни црти.',
 	'config-postgres-old' => 'Се бара PostgreSQL $1 или поново, а вие имате $2.',
 	'config-sqlite-name-help' => 'Одберете име кое ќе го претставува вашето вики.
 Не користете празни простори и црти.
@@ -5193,17 +5272,17 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-header-oracle' => 'Oracle-instellingen',
 	'config-invalid-db-type' => 'Ongeldig databasetype',
 	'config-missing-db-name' => 'U moet een waarde ingeven voor "Databasenaam"',
-	'config-invalid-db-name' => 'Ongeldige database naam "$1".
-Deze mag alleen cijfers, letters en liggende streepjes bevatten.',
+	'config-invalid-db-name' => 'Ongeldige databasenaam "$1".
+Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-invalid-db-prefix' => 'Ongeldig databasevoorvoegsel "$1".
-Dit mag alleen cijfers, letters en liggende streepjes bevatten.',
+Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-connection-error' => '$1.
 
 Controleer de host, gebruikersnaam en wachtwoord hieronder in en probeer het opnieuw.',
-	'config-invalid-schema' => 'Ongeldige schema voor MediaWiki "$1".
-Gebruik alleen letters, cijfers en liggende streepjes.',
-	'config-invalid-ts2schema' => 'Ongeldig schema voor tsearch "$1".
-Gebruik alleen letters, cijfers en liggende streepjes.',
+	'config-invalid-schema' => 'Ongeldig schema voor MediaWiki "$1".
+Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
+	'config-invalid-ts2schema' => 'Ongeldig schema voor TSearch2 "$1".
+Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-postgres-old' => 'PostgreSQL $1 of hoger is vereist.
 U gebruikt $2.',
 	'config-sqlite-name-help' => 'Kies een naam die uw wiki identificeert.
@@ -5860,7 +5939,7 @@ Este prefixo só pode conter algarismos, letras e sublinhados.',
 Verifique o servidor, o nome do utilizador e a palavra-chave abaixo e tente novamente.',
 	'config-invalid-schema' => "Esquema ''(schema)'' inválido para o MediaWiki: \"\$1\".
 Use só letras, algarismos e sublinhados.",
-	'config-invalid-ts2schema' => "Esquema ''(schema)'' inválido para o tsearch2: \"\$1\".
+	'config-invalid-ts2schema' => "Esquema ''(schema)'' inválido para o TSearch2: \"\$1\".
 Use só letras, algarismos e sublinhados.",
 	'config-postgres-old' => 'É necessário o PostgreSQL $1 ou posterior; tem a versão $2.',
 	'config-sqlite-name-help' => 'Escolha o nome que identificará a sua wiki.
@@ -6343,7 +6422,7 @@ $1
 Проверьте хост, имя пользователя и пароль и попробуйте ещё раз.',
 	'config-invalid-schema' => 'Неправильная схема для MediaWiki «$1». 
 Используйте только буквы, цифры и знаки подчёркивания.',
-	'config-invalid-ts2schema' => 'Неправильная схема для tsearch2 «$1». 
+	'config-invalid-ts2schema' => 'Неправильная схема для TSearch2 «$1». 
 Используйте только буквы, цифры и знаки подчёркивания.',
 	'config-postgres-old' => 'Необходим PostgreSQL $1 или более поздняя версия. У вас установлен PostgreSQL $2.',
 	'config-sqlite-name-help' => 'Выберите имя-идентификатор для вашей вики. 

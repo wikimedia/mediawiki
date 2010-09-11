@@ -11,6 +11,7 @@
  * @author Man77
  * @author Merlissimo
  * @author Metalhead64
+ * @author Mucalexx
  * @author The Evil IP address
  * @author Wikifan
  * @author bar.wikipedia.org administrators
@@ -111,6 +112,7 @@ $messages = array(
 'hidden-category-category'       => 'Vasteckte Kategorie',
 'category-subcat-count'          => "{{PLURAL:$2|De Kategorie enthåit netta de foignde Untakategorie:|{{PLURAL:$1|D'foignde Untakategorie is ane vu insgsamt $2 Untakategorien in dea Kategorie:|Vu insgsamt $2 Untakategorien in dea Kategorie wean $1 ãzoagt:}}}}",
 'category-subcat-count-limited'  => 'In de Kategorie {{PLURAL:$1|is de foignde Untakategorie|san de foigndn Untakategorien}} eisoatiad:',
+'category-article-count'         => '{{PLURAL:$2|De Kategorii enthoit foigande Saitn:|{{PLURAL:$1|Foigande Saitn is aane vo insgsaumt $2 Saitn in derer Kategorii:|Es wern $1 vo insgsaumt $2 Saitn in derer Kategorii augzaagt:}}}}',
 'category-article-count-limited' => 'De {{PLURAL:$1|foignde Seitn is|foigndn $1 Seitn san}} in dea Kategorie enthåitn:',
 'category-file-count-limited'    => "{{PLURAL:$1|D'foignde Datei is|De foigndn $1 Datein san}} in de Kategorie eisoatiad:",
 'listingcontinuesabbrev'         => '(Foatsetzung)',

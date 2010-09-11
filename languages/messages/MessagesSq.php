@@ -336,7 +336,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection'       => 'Shtoe temën',
-'vector-action-delete'           => 'Grise',
+'vector-action-delete'           => 'Fshij',
 'vector-action-move'             => 'Zhvendose',
 'vector-action-protect'          => 'Mbrojtëje',
 'vector-action-undelete'         => 'Jo e grisur',

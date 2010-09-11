@@ -34,6 +34,7 @@
  * @author Suisui
  * @author Web comic
  * @author Whym
+ * @author Yanajin66
  * @author לערי ריינהארט
  * @author 青子守歌
  */
@@ -316,7 +317,7 @@ $messages = array(
 'tog-editsection'             => 'セクション編集用リンクを有効にする',
 'tog-editsectiononrightclick' => 'セクション見出しの右クリックでセクション編集を行えるようにする (JavaScriptが必要)',
 'tog-showtoc'                 => '目次を表示する (4つ以上の見出しがあるページ)',
-'tog-rememberpassword'        => 'このコンピューターにログイン情報を保存する (最長 $1{{PLURAL:$1|日|日間}})',
+'tog-rememberpassword'        => 'このブラウザにログイン情報を保持する。 ($1の最大数{{PLURAL:$1|日|日数}})',
 'tog-watchcreations'          => '自分が作成したページをウォッチリストに追加する',
 'tog-watchdefault'            => '自分が編集したページをウォッチリストに追加する',
 'tog-watchmoves'              => '自分が移動したページをウォッチリストに追加する',
