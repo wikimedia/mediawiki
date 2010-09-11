@@ -22,6 +22,8 @@ abstract class DatabaseUpdater {
 	 */
 	protected $updates = array();
 
+	protected $extensionUpdates = array();
+
 	protected $db;
 
 	protected $shared = false;
@@ -78,7 +80,38 @@ abstract class DatabaseUpdater {
 		}
 	}
 
-	public function getDB() { return $this->db; }
+	/**
+	 * Get a database connection to run updates
+	 *
+	 * @return DatabasBase object
+	 */
+	public function getDB() {
+		return $this->db;
+	}
+
+	/**
+	 * Add a new update coming from an extension. This should be called by
+	 * extensions while executing the LoadExtensionSchemaUpdates hook.
+	 *
+	 * @param $update Array: the update to run. Format is the following:
+	 *                first item is the callback function, it also can be a
+	 *                simple string with the name of a function in this class,
+	 *                following elements are parameters to the function.
+	 *                Note that callback functions will recieve this object as
+	 *                first parameter.
+	 */
+	public function addExtensionUpdate( $update ) {
+		$this->extensionUpdates[] = $update;
+	}
+
+	/**
+	 * Get the list of extension-defined updates
+	 *
+	 * @return Array
+	 */
+	protected function getExtensionUpdates() {
+		return $this->extensionUpdates;
+	}
 
 	public function getPostDatabaseUpdateMaintenance() {
 		return $this->postDatabaseUpdateMaintenance;
@@ -86,26 +119,43 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Do all the updates
-	 * @param $purge bool Whether to clear the objectcache table after updates
+	 *
+	 * @param $purge Boolean: whether to clear the objectcache table after updates
 	 */
 	public function doUpdates( $purge = true ) {
 		global $IP, $wgVersion;
 		require_once( "$IP/maintenance/updaters.inc" );
-		$this->updates = array_merge( $this->getCoreUpdateList(),
-			$this->getOldGlobalUpdates() );
-		foreach ( $this->updates as $params ) {
-			$func = array_shift( $params );
-			if( !is_array( $func ) && method_exists( $this, $func ) ) {
-				$func = array( $this, $func );
-			}
-			call_user_func_array( $func, $params );
-			flush();
-		}
+
+		$this->runUpdates( $this->getCoreUpdateList(), false );
+		$this->runUpdates( $this->getOldGlobalUpdates(), false );
+		$this->runUpdates( $this->getExtensionUpdates(), true );
+
 		$this->setAppliedUpdates( $wgVersion, $this->updates );
 
 		if( $purge ) {
 			$this->purgeCache();
 		}
+	}
+
+	/**
+	 * Helper function for doUpdates()
+	 *
+	 * @param $updates Array of updates to run
+	 * @param $passSelf Boolean: whether to pass this object we calling external
+	 *                  functions
+	 */
+	private function runUpdates( array $updates, $passSelf ) {
+		foreach ( $updates as $params ) {
+			$func = array_shift( $params );
+			if( !is_array( $func ) && method_exists( $this, $func ) ) {
+				$func = array( $this, $func );
+			} elseif ( $passSelf ) {
+				array_unshift( $params, $this );
+			}
+			call_user_func_array( $func, $params );
+			flush();
+		}
+		$this->updates = array_merge( $this->updates, $updates );
 	}
 
 	protected function setAppliedUpdates( $version, $updates = array() ) {
