@@ -97,42 +97,6 @@ function do_watchlist_update() {
 	}
 }
 
-function do_copy_newtalk_to_watchlist() {
-	$dbw = wfGetDB( DB_MASTER );
-	$res = $dbw->safeQuery( 'SELECT user_id, user_ip FROM !',
-		$dbw->tableName( 'user_newtalk' ) );
-	$num_newtalks = $dbw->numRows( $res );
-	wfOut( "Now converting $num_newtalks user_newtalk entries to watchlist table entries ... \n" );
-
-	$user = new User();
-	for ( $i = 1; $i <= $num_newtalks; $i++ ) {
-		$wluser = $dbw->fetchObject( $res );
-		if ( $wluser->user_id == 0 ) { # anonymous users ... have IP numbers as "names"
-			if ( $user->isIP( $wluser->user_ip ) ) { # do only if it really looks like an IP number (double checked)
-				$dbw->replace( 'watchlist',
-					array( array( 'wl_user', 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ) ),
-					array( 'wl_user' => 0,
-						'wl_namespace' => NS_USER_TALK,
-						'wl_title' => $wluser->user_ip,
-						'wl_notificationtimestamp' => '19700101000000'
-						), 'updaters.inc::do_watchlist_update2'
-					);
-			}
-		} else { # normal users ... have user_ids
-			$user->setID( $wluser->user_id );
-			$dbw->replace( 'watchlist',
-				array( array( 'wl_user', 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ) ),
-				array( 'wl_user' => $user->getID(),
-					'wl_namespace' => NS_USER_TALK,
-					'wl_title' => $user->getName(),
-					'wl_notificationtimestamp' => '19700101000000'
-					), 'updaters.inc::do_watchlist_update3'
-				);
-		}
-	}
-	wfOut( "Done.\n" );
-}
-
 /**
  * 1.4 betas were missing the 'binary' marker from logging.log_title,
  * which causes a collation mismatch error on joins in MySQL 4.1.
