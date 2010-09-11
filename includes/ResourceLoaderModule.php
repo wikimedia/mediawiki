@@ -855,6 +855,10 @@ class ResourceLoaderUserPreferencesModule extends ResourceLoaderModule {
 		global $wgAllowUserCssPrefs;
 		if ( $wgAllowUserCssPrefs ) {
 			$user = User::newFromName( $context->getUser() );
+			if ( $user === false ) {
+				$user = User::newFromId( 0 );
+			}
+
 			$rules = array();
 			if ( ( $underline = $user->getOption( 'underline' ) ) < 2 ) {
 				$rules[] = "a { text-decoration: " . ( $underline ? 'underline' : 'none' ) . "; }";
