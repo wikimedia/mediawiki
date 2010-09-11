@@ -45,7 +45,7 @@ if ( $wgRequest->isPathInfoBad() ) {
 }
 
 // Respond to resource loading request
-ResourceLoader::respond( new ResourceLoaderContext( $wgRequest, $wgServer . $wgScriptPath . '/load.php' ) );
+ResourceLoader::respond( new ResourceLoaderContext( $wgRequest ) );
 
 wfProfileOut( 'load.php' );
 wfLogProfilingData();

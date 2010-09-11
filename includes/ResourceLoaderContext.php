@@ -31,23 +31,24 @@ class ResourceLoaderContext {
 	protected $language;
 	protected $direction;
 	protected $skin;
+	protected $user;
 	protected $debug;
 	protected $only;
 	protected $hash;
 
 	/* Methods */
 
-	public function __construct( WebRequest $request, $server ) {
+	public function __construct( WebRequest $request ) {
 		global $wgLang, $wgDefaultSkin;
 
 		$this->request = $request;
-		$this->server = $server;
 		// Interperet request
 		$this->modules = explode( '|', $request->getVal( 'modules' ) );
 		$this->language = $request->getVal( 'lang' );
 		$this->direction = $request->getVal( 'dir' );
 		$this->skin = $request->getVal( 'skin' );
-		$this->debug = $request->getVal( 'debug' ) === 'true' || $request->getBool( 'debug' );
+		$this->user = $request->getVal( 'user' );
+		$this->debug = $request->getBool( 'debug' ) && $request->getVal( 'debug' ) === 'true';
 		$this->only = $request->getVal( 'only' );
 
 		// Fallback on system defaults
@@ -68,10 +69,6 @@ class ResourceLoaderContext {
 		return $this->request;
 	}
 
-	public function getServer() {
-		return $this->server;
-	}
-
 	public function getModules() {
 		return $this->modules;
 	}
@@ -85,6 +82,10 @@ class ResourceLoaderContext {
 	}
 
 	public function getSkin() {
+		return $this->skin;
+	}
+
+	public function getUser() {
 		return $this->skin;
 	}
 
@@ -111,6 +112,6 @@ class ResourceLoaderContext {
 	public function getHash() {
 		return isset( $this->hash ) ?
 			$this->hash : $this->hash =
-				implode( '|', array( $this->language, $this->skin, $this->debug, $this->only ) );
+				implode( '|', array( $this->language, $this->skin, $this->user, $this->debug, $this->only ) );
 	}
 }

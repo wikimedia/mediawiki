@@ -6,6 +6,8 @@ ResourceLoader::register( array(
 	
 	'site' => new ResourceLoaderSiteModule,
 	'startup' => new ResourceLoaderStartUpModule,
+	'user' => new ResourceLoaderUserModule,
+	'user.preferences' => new ResourceLoaderUserPreferencesModule,
 	
 	/* Skins */
 	
@@ -356,6 +358,7 @@ ResourceLoader::register( array(
 	'mediawiki.legacy.mwsuggest' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/mwsuggest.js',
 		'dependencies' => 'mediawiki.legacy.wikibits',
+		'messages' => array( 'search-mwsuggest-enabled', 'search-mwsuggest-disabled' ),
 	) ),
 	'mediawiki.legacy.password' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/password.js',
