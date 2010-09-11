@@ -947,7 +947,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		if ( $wgUseAjax && $wgEnableMWSuggest ) {
 			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
 			$vars['wgDBname'] = $wgDBname;
-			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $wgUser );
 		}
 		
 		return $vars;

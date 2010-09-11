@@ -373,7 +373,7 @@ class Skin extends Linker {
 	 * You will only be adding bloat to the page and causing page caches to have to be purged on configuration changes.
 	 */
 	static function makeGlobalVariablesScript( $skinName ) {
-		global $wgTitle, $wgUser, $wgRequest, $wgArticle, $wgOut, $wgRestrictionTypes;
+		global $wgTitle, $wgUser, $wgRequest, $wgArticle, $wgOut, $wgRestrictionTypes, $wgUseAjax, $wgEnableMWSuggest;
 		
 		$ns = $wgTitle->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $wgTitle->getNsText();
@@ -394,6 +394,9 @@ class Skin extends Linker {
 		);
 		foreach ( $wgRestrictionTypes as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
+		}
+		if ( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {
+			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $wgUser );
 		}
 		
 		// Allow extensions to add their custom variables to the global JS variables
