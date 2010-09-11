@@ -408,6 +408,20 @@ window.mediaWiki = new ( function( $ ) {
 			that.work();
 		}
 		
+		function sortQuery(o) {
+			var sorted = {}, key, a = [];
+			for ( key in o ) {
+				if ( o.hasOwnProperty( key ) ) {
+					a.push( key );
+				}
+			}
+			a.sort();
+			for ( key = 0; key < a.length; key++ ) {
+				sorted[a[key]] = o[a[key]];
+			}
+			return sorted;
+		}
+		
 		/* Public Methods */
 		
 		/**
@@ -468,6 +482,7 @@ window.mediaWiki = new ( function( $ ) {
 				function request() {
 					var html = '';
 					for ( var r = 0; r < requests.length; r++ ) {
+						requests[r] = sortQuery( requests[r] );
 						// Build out the HTML
 						var src = mediaWiki.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] );
 						html += '<script type="text/javascript" src="' + src + '"></script>';
