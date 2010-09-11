@@ -43,19 +43,6 @@ function do_index_update() {
 	return false;
 }
 
-function do_image_index_update() {
-	$dbw = wfGetDB( DB_MASTER );
-	$meta = $dbw->fieldInfo( "image", "img_major_mime" );
-	if ( !$meta->isMultipleKey() ) {
-		wfOut( "Updating indexes to 20050912: " );
-		$dbw->sourceFile( archive( "patch-mimesearch-indexes.sql" ) );
-		wfOut( "ok\n" );
-		return true;
-	}
-	wfOut( "...indexes seem up to 20050912 standards\n" );
-	return false;
-}
-
 function do_image_name_unique_update() {
 	$dbw = wfGetDB( DB_MASTER );
 	if ( $dbw->indexExists( 'image', 'PRIMARY' ) ) {
