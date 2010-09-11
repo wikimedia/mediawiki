@@ -96,6 +96,9 @@ class MinifyScript extends Maintenance {
 			case 'js':
 				$outText = JSMin::minify( $inText );
 				break;
+			case 'css':
+				$outText = CSSMin::minify( $inText );
+				break;
 			default:
 				$this->error( "No minifier defined for extension \"$extension\"" );
 		}
