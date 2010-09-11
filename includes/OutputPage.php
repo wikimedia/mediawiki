@@ -2360,7 +2360,6 @@ class OutputPage {
 			);
 		}
 		
-		// TODO: User Scripts should be included using the resource loader
 		// Add user JS if enabled
 		if( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
 			$action = $wgRequest->getVal( 'action', 'view' );
@@ -2368,14 +2367,7 @@ class OutputPage {
 				# XXX: additional security check/prompt?
 				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
-				$userpage = $wgUser->getUserPage();
-				foreach( array( 'common', $sk->getSkinName() ) as $name ) {
-					$scriptpage = Title::makeTitleSafe( NS_USER, $userpage->getDBkey() . '/' . $name . '.js' );
-					if ( $scriptpage && $scriptpage->exists() && ( $scriptpage->getLength() > 0 ) ) {
-						$userjs = $scriptpage->getLocalURL( 'action=raw&ctype=' . $wgJsMimeType );
-						$this->addScriptFile( $userjs, $scriptpage->getLatestRevID() );
-					}
-				}
+				$scripts .= self::makeResourceLoaderLink( $sk, 'user', 'scripts' );
 			}
 		}
 		$scripts .= "\n" . $this->mScripts;

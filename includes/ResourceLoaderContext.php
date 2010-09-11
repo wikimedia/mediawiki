@@ -86,7 +86,7 @@ class ResourceLoaderContext {
 	}
 
 	public function getUser() {
-		return $this->skin;
+		return $this->user;
 	}
 
 	public function getDebug() {

@@ -703,29 +703,51 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	
 	abstract protected function getPages( ResourceLoaderContext $context );
 	
+	/* Protected Methods */
+	
+	protected function getContent( $page, $ns ) {
+		if ( $ns === NS_MEDIAWIKI ) {
+			return wfMsgExt( $page, 'content' );
+		}
+		if ( $title = Title::newFromText( $page, $ns ) ) {
+			if ( $title->isValidCssJsSubpage() && $revision = Revision::newFromTitle( $title ) ) {
+				return $revision->getRawText();
+			}
+		}
+		return null;
+	}
+	
 	/* Methods */
 
 	public function getScript( ResourceLoaderContext $context ) {
+		global $wgCanonicalNamespaceNames;
+		
 		$scripts = '';
 		foreach ( $this->getPages( $context ) as $page => $options ) {
 			if ( $options['type'] === 'script' ) {
-				$script = wfMsgExt( $page, 'content' );
-				$scripts .= "/* MediaWiki:$page */\n" . ( !wfEmptyMsg( $page, $script ) ? $script : '' ) . "\n";
+				if ( $script = $this->getContent( $page, $options['ns'] ) ) {
+					$ns = $wgCanonicalNamespaceNames[$options['ns']];
+					$scripts .= "/*$ns:$page */\n$script\n";
+				}
 			}
 		}
 		return $scripts;
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
+		global $wgCanonicalNamespaceNames;
+		
 		$styles = array();
 		foreach ( $this->getPages( $context ) as $page => $options ) {
 			if ( $options['type'] === 'style' ) {
 				$media = isset( $options['media'] ) ? $options['media'] : 'all';
-				$style = wfMsgExt( $page, 'content' );
-				if ( !isset( $styles[$media] ) ) {
-					$styles[$media] = '';
+				if ( $style = $this->getContent( $page, $options['ns'] ) ) {
+					if ( !isset( $styles[$media] ) ) {
+						$styles[$media] = '';
+					}
+					$ns = $wgCanonicalNamespaceNames[$options['ns']];
+					$styles[$media] .= "/* $ns:$page */\n$style\n";
 				}
-				$styles[$media] .= "/* MediaWiki:$page */\n" . ( !wfEmptyMsg( $page, $style ) ? $style : '' ) . "\n";
 			}
 		}
 		return $styles;
@@ -738,7 +760,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 		$titles = array();
 		foreach ( $this->getPages( $context ) as $page => $options ) {
-			$titles[] = Title::makeTitle( NS_MEDIAWIKI, $page );
+			$titles[] = Title::makeTitle( $options['ns'], $page );
 		}
 		// Do batch existence check
 		// TODO: This would work better if page_touched were loaded by this as well
@@ -765,14 +787,14 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		global $wgHandheldStyle;
 		
 		$pages = array(
-			'Common.js' => array( 'type' => 'script' ),
-			'Common.css' => array( 'type' => 'style' ),
-			ucfirst( $context->getSkin() ) . '.js' => array( 'type' => 'script' ),
-			ucfirst( $context->getSkin() ) . '.css' => array( 'type' => 'style' ),
-			'Print.css' => array( 'type' => 'style', 'media' => 'print' ),
+			'Common.js' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'script' ),
+			'Common.css' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'style' ),
+			ucfirst( $context->getSkin() ) . '.js' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'script' ),
+			ucfirst( $context->getSkin() ) . '.css' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'style' ),
+			'Print.css' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'style', 'media' => 'print' ),
 		);
 		if ( $wgHandheldStyle ) {
-			$pages['Handheld.css'] = array( 'type' => 'style', 'media' => 'handheld' );
+			$pages['Handheld.css'] = array( 'ns' => NS_MEDIAWIKI, 'type' => 'style', 'media' => 'handheld' );
 		}
 		return $pages;
 	}
@@ -789,11 +811,12 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 		global $wgAllowUserCss;
 		
 		if ( $context->getUser() && $wgAllowUserCss ) {
-			$user = User::newFromName( $context->getUser() );
-			$userPage = $user->getUserPage()->getPrefixedText();
+			$username = $context->getUser();
 			return array(
-				"$userPage/common.css" => array( 'type' => 'style' ),
-				"$userPage/" . $context->getSkin() . '.css' => array( 'type' => 'style' ),
+				"$username/common.js" => array( 'ns' => NS_USER, 'type' => 'script' ),
+				"$username/" . $context->getSkin() . '.js' => array( 'ns' => NS_USER, 'type' => 'script' ),
+				"$username/common.css" => array( 'ns' => NS_USER, 'type' => 'style' ),
+				"$username/" . $context->getSkin() . '.css' => array( 'ns' => NS_USER, 'type' => 'style' ),
 			);
 		}
 		return array();
@@ -816,8 +839,12 @@ class ResourceLoaderUserPreferencesModule extends ResourceLoaderModule {
 		if ( isset( $this->modifiedTime[$hash] ) ) {
 			return $this->modifiedTime[$hash];
 		}
-		$user = User::newFromName( $context->getUser() );
-		return $this->modifiedTime[$hash] = $user->getTouched();
+		if ( $context->getUser() ) {
+			$user = User::newFromName( $context->getUser() );
+			return $this->modifiedTime[$hash] = $user->getTouched();
+		} else {
+			return 0;
+		}
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
