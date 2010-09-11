@@ -81,8 +81,6 @@ abstract class ResourceLoaderModule {
 		return $context->getDirection() === 'rtl';
 	}
 
-	/* Abstract Methods */
-
 	/**
 	 * Get all JS for this module for a given language and skin.
 	 * Includes all relevant JS except loader scripts.
@@ -90,7 +88,10 @@ abstract class ResourceLoaderModule {
 	 * @param $context ResourceLoaderContext object
 	 * @return String: JS
 	 */
-	public abstract function getScript( ResourceLoaderContext $context );
+	public function getScript( ResourceLoaderContext $context ) {
+		// Stub, override expected
+		return '';
+	}
 
 	/**
 	 * Get all CSS for this module for a given skin.
@@ -98,7 +99,10 @@ abstract class ResourceLoaderModule {
 	 * @param $context ResourceLoaderContext object
 	 * @return array: strings of CSS keyed by media type
 	 */
-	public abstract function getStyles( ResourceLoaderContext $context );
+	public function getStyles( ResourceLoaderContext $context ) {
+		// Stub, override expected
+		return '';
+	}
 
 	/**
 	 * Get the messages needed for this module.
@@ -107,14 +111,20 @@ abstract class ResourceLoaderModule {
 	 *
 	 * @return array of message keys. Keys may occur more than once
 	 */
-	public abstract function getMessages();
+	public function getMessages() {
+		// Stub, override expected
+		return array();
+	}
 
 	/**
 	 * Get the loader JS for this module, if set.
 	 *
 	 * @return Mixed: loader JS (string) or false if no custom loader set
 	 */
-	public abstract function getLoaderScript();
+	public function getLoaderScript() {
+		// Stub, override expected
+		return '';
+	}
 
 	/**
 	 * Get a list of modules this module depends on.
@@ -131,8 +141,13 @@ abstract class ResourceLoaderModule {
 	 * loader script, see getLoaderScript()
 	 * @return Array of module names (strings)
 	 */
-	public abstract function getDependencies();
+	public function getDependencies() {
+		// Stub, override expected
+		return array();
+	}
 
+	/* Abstract Methods */
+	
 	/**
 	 * Get this module's last modification timestamp for a given
 	 * combination of language, skin and debug mode flag. This is typically
@@ -682,58 +697,65 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/* Protected Members */
 	
 	// In-object cache for modified time
-	protected $modifiedTime = null;
+	protected $modifiedTime = array();
 	
 	/* Abstract Protected Methods */
 	
 	abstract protected function getPages( ResourceLoaderContext $context );
 	
-	/* Protected Methods */
-	
-	protected function getStyleCode( array $styles ) {
-		foreach ( $styles as $media => $messages ) {
-			foreach ( $messages as $i => $message ) {
-				$style = wfMsgExt( $message, 'content' );
-				if ( !wfEmptyMsg( $message, $style ) ) {
-					$styles[$media][$i] = $style;
-				}
+	/* Methods */
+
+	public function getScript( ResourceLoaderContext $context ) {
+		$scripts = '';
+		foreach ( $this->getPages( $context ) as $page => $options ) {
+			if ( $options['type'] === 'script' ) {
+				$script = wfMsgExt( $page, 'content' );
+				$scripts .= "/* MediaWiki:$page */\n" . ( !wfEmptyMsg( $page, $script ) ? $script : '' ) . "\n";
 			}
 		}
-		foreach ( $styles as $media => $messages ) {
-			$styles[$media] = implode( "\n", $messages );
+		return $scripts;
+	}
+
+	public function getStyles( ResourceLoaderContext $context ) {
+		$styles = array();
+		foreach ( $this->getPages( $context ) as $page => $options ) {
+			if ( $options['type'] === 'style' ) {
+				$media = isset( $options['media'] ) ? $options['media'] : 'all';
+				$style = wfMsgExt( $page, 'content' );
+				if ( !isset( $styles[$media] ) ) {
+					$styles[$media] = '';
+				}
+				$styles[$media] .= "/* MediaWiki:$page */\n" . ( !wfEmptyMsg( $page, $style ) ? $style : '' ) . "\n";
+			}
 		}
 		return $styles;
 	}
-	
-	/* Methods */
-	
+
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
-			return $this->modifiedTime[$context->getHash()];
+		$hash = $context->getHash();
+		if ( isset( $this->modifiedTime[$hash] ) ) {
+			return $this->modifiedTime[$hash];
 		}
-		$pages = $this->getPages( $context );
-		foreach ( $pages as $i => $page ) {
-			$pages[$i] = Title::makeTitle( NS_MEDIAWIKI, $page );
+		$titles = array();
+		foreach ( $this->getPages( $context ) as $page => $options ) {
+			$titles[] = Title::makeTitle( NS_MEDIAWIKI, $page );
 		}
 		// Do batch existence check
 		// TODO: This would work better if page_touched were loaded by this as well
-		$lb = new LinkBatch( $pages );
+		$lb = new LinkBatch( $titles );
 		$lb->execute();
-		$this->modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
-		foreach ( $pages as $page ) {
-			if ( $page->exists() ) {
-				$this->modifiedTime = max( $this->modifiedTime, wfTimestamp( TS_UNIX, $page->getTouched() ) );
+		$modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
+		foreach ( $titles as $title ) {
+			if ( $title->exists() ) {
+				$modifiedTime = max( $modifiedTime, wfTimestamp( TS_UNIX, $title->getTouched() ) );
 			}
 		}
-		return $this->modifiedTime;
+		return $this->modifiedTime[$hash] = $modifiedTime;
 	}
-	public function getMessages() { return array(); }
-	public function getLoaderScript() { return ''; }
-	public function getDependencies() { return array(); }
 }
 
 /**
- * Custom module for site customizations
+ * Module for site customizations
  */
 class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 
@@ -742,49 +764,172 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	protected function getPages( ResourceLoaderContext $context ) {
 		global $wgHandheldStyle;
 		
-		// HACK: We duplicate the message names from generateUserJs() and generateUserCss here and weird things (i.e.
-		// mtime moving backwards) can happen when a MediaWiki:Something.js page is deleted
 		$pages = array(
-			'Common.js',
-			'Common.css',
-			ucfirst( $context->getSkin() ) . '.js',
-			ucfirst( $context->getSkin() ) . '.css',
-			'Print.css',
+			'Common.js' => array( 'type' => 'script' ),
+			'Common.css' => array( 'type' => 'style' ),
+			ucfirst( $context->getSkin() ) . '.js' => array( 'type' => 'script' ),
+			ucfirst( $context->getSkin() ) . '.css' => array( 'type' => 'style' ),
+			'Print.css' => array( 'type' => 'style', 'media' => 'print' ),
 		);
 		if ( $wgHandheldStyle ) {
-			$pages[] = 'Handheld.css';
+			$pages['Handheld.css'] = array( 'type' => 'style', 'media' => 'handheld' );
 		}
 		return $pages;
 	}
+}
+
+/**
+ * Module for user customizations
+ */
+class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
+
+	/* Protected Methods */
+
+	protected function getPages( ResourceLoaderContext $context ) {
+		global $wgAllowUserCss;
+		
+		if ( $context->getUser() && $wgAllowUserCss ) {
+			$user = User::newFromName( $context->getUser() );
+			$userPage = $user->getUserPage()->getPrefixedText();
+			return array(
+				"$userPage/common.css" => array( 'type' => 'style' ),
+				"$userPage/" . $context->getSkin() . '.css' => array( 'type' => 'style' ),
+			);
+		}
+		return array();
+	}
+}
+
+/**
+ * Module for user preference customizations
+ */
+class ResourceLoaderUserPreferencesModule extends ResourceLoaderModule {
+
+	/* Protected Members */
+
+	protected $modifiedTime = array();
 
 	/* Methods */
 
-	public function getScript( ResourceLoaderContext $context ) {
-		return Skin::newFromKey( $context->getSkin() )->generateUserJs();
+	public function getModifiedTime( ResourceLoaderContext $context ) {
+		$hash = $context->getHash();
+		if ( isset( $this->modifiedTime[$hash] ) ) {
+			return $this->modifiedTime[$hash];
+		}
+		$user = User::newFromName( $context->getUser() );
+		return $this->modifiedTime[$hash] = $user->getTouched();
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
-		global $wgHandheldStyle;
-		$styles = array(
-			'all' => array( 'Common.css', $context->getSkin() . '.css' ),
-			'print' => array( 'Print.css' ),
-		);
-		if ( $wgHandheldStyle ) {
-			$sources['handheld'] = array( 'Handheld.css' );
+		global $wgAllowUserCssPrefs;
+		if ( $wgAllowUserCssPrefs ) {
+			$user = User::newFromName( $context->getUser() );
+			$rules = array();
+			if ( ( $underline = $user->getOption( 'underline' ) ) < 2 ) {
+				$rules[] = "a { text-decoration: " . ( $underline ? 'underline' : 'none' ) . "; }";
+			}
+			if ( $user->getOption( 'highlightbroken' ) ) {
+				$rules[] = "a.new, #quickbar a.new { color: #CC2200; }\n";
+			} else {
+				$rules[] = "a.new, #quickbar a.new, a.stub, #quickbar a.stub { color: inherit; }";
+				$rules[] = "a.new:after, #quickbar a.new:after { content: '?'; color: #CC2200; }";
+				$rules[] = "a.stub:after, #quickbar a.stub:after { content: '!'; color: #772233; }";
+			}
+			if ( $user->getOption( 'justify' ) ) {
+				$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
+			}
+			if ( !$user->getOption( 'showtoc' ) ) {
+				$rules[] = "#toc { display: none; }\n";
+			}
+			if ( !$user->getOption( 'editsection' ) ) {
+				$rules[] = ".editsection { display: none; }\n";
+			}
+			if ( ( $fontstyle = $user->getOption( 'editfont' ) ) !== 'default' ) {
+				$rules[] = "textarea { font-family: $fontstyle; }\n";
+			}
+			return array( 'all' => implode( "\n", $rules ) );
 		}
-		return $this->getStyleCode( $styles );
+		return array();
+	}
+
+	public function getFlip( $context ) {
+		global $wgContLang;
+
+		return $wgContLang->getDir() !== $context->getDirection();
 	}
 }
 
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Protected Members */
 
-	protected $modifiedTime = null;
+	protected $modifiedTime = array();
 
+	/* Protected Methods */
+	
+	protected function getConfig( $context ) {
+		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension, $wgArticlePath, $wgScriptPath, $wgServer,
+			$wgContLang, $wgBreakFrames, $wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgAjaxWatch, $wgVersion,
+			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest, $wgSitename, $wgFileExtensions;
+
+		// Pre-process information
+		$separatorTransTable = $wgContLang->separatorTransformTable();
+		$separatorTransTable = $separatorTransTable ? $separatorTransTable : array();
+		$compactSeparatorTransTable = array(
+			implode( "\t", array_keys( $separatorTransTable ) ),
+			implode( "\t", $separatorTransTable ),
+		);
+		$digitTransTable = $wgContLang->digitTransformTable();
+		$digitTransTable = $digitTransTable ? $digitTransTable : array();
+		$compactDigitTransTable = array(
+			implode( "\t", array_keys( $digitTransTable ) ),
+			implode( "\t", $digitTransTable ),
+		);
+		$mainPage = Title::newMainPage();
+		
+		// Build list of variables
+		$vars = array(
+			'wgLoadScript' => $wgLoadScript,
+			'debug' => $context->getDebug(),
+			'skin' => $context->getSkin(),
+			'stylepath' => $wgStylePath,
+			'wgUrlProtocols' => wfUrlProtocols(),
+			'wgArticlePath' => $wgArticlePath,
+			'wgScriptPath' => $wgScriptPath,
+			'wgScriptExtension' => $wgScriptExtension,
+			'wgScript' => $wgScript,
+			'wgVariantArticlePath' => $wgVariantArticlePath,
+			'wgActionPaths' => $wgActionPaths,
+			'wgServer' => $wgServer,
+			'wgUserLanguage' => $context->getLanguage(),
+			'wgContentLanguage' => $wgContLang->getCode(),
+			'wgBreakFrames' => $wgBreakFrames,
+			'wgVersion' => $wgVersion,
+			'wgEnableAPI' => $wgEnableAPI,
+			'wgEnableWriteAPI' => $wgEnableWriteAPI,
+			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
+			'wgDigitTransformTable' => $compactDigitTransTable,
+			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,
+			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
+			'wgNamespaceIds' => $wgContLang->getNamespaceIds(),
+			'wgSiteName' => $wgSitename,
+			'wgFileExtensions' => $wgFileExtensions,
+		);
+		if ( $wgContLang->hasVariants() ) {
+			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
+		}
+		if ( $wgUseAjax && $wgEnableMWSuggest ) {
+			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
+			$vars['wgDBname'] = $wgDBname;
+			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $wgUser );
+		}
+		
+		return $vars;
+	}
+	
 	/* Methods */
 
 	public function getScript( ResourceLoaderContext $context ) {
-		global $IP;
+		global $IP, $wgStylePath, $wgLoadScript;
 
 		$scripts = file_get_contents( "$IP/resources/startup.js" );
 
@@ -792,9 +937,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Get all module registrations
 			$registration = ResourceLoader::getModuleRegistrations( $context );
 			// Build configuration
-			$config = FormatJson::encode(
-				array( 'server' => $context->getServer(), 'debug' => $context->getDebug() )
-			);
+			$config = FormatJson::encode( $this->getConfig( $context ) );
 			// Add a well-known start-up function
 			$scripts .= "window.startUp = function() { $registration mediaWiki.config.set( $config ); };";
 			// Build load query for jquery and mediawiki modules
@@ -814,7 +957,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			);
 
 			// Build HTML code for loading jquery and mediawiki modules
-			$loadScript = Html::linkedScript( $context->getServer() . "?$query" );
+			$loadScript = Html::linkedScript( "$wgLoadScript?$query" );
 			// Add code to add jquery and mediawiki loading code; only if the current client is compatible
 			$scripts .= "if ( isCompatible() ) { document.write( '$loadScript' ); }";
 			// Delete the compatible function - it's not needed anymore
@@ -827,14 +970,15 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		global $IP;
 
-		if ( !is_null( $this->modifiedTime ) ) {
-			return $this->modifiedTime;
+		$hash = $context->getHash();
+		if ( isset( $this->modifiedTime[$hash] ) ) {
+			return $this->modifiedTime[$hash];
 		}
-
-		// HACK getHighestModifiedTime() calls this function, so protect against infinite recursion
-		$this->modifiedTime = filemtime( "$IP/resources/startup.js" );
-		$this->modifiedTime = ResourceLoader::getHighestModifiedTime( $context );
-		return $this->modifiedTime;
+		$this->modifiedTime[$hash] = filemtime( "$IP/resources/startup.js" );
+		// ATTENTION!: Because of the line above, this is not going to cause infinite recursion - think carefully
+		// before making changes to this code!
+		$this->modifiedTime[$hash] = ResourceLoader::getHighestModifiedTime( $context );
+		return $this->modifiedTime[$hash];
 	}
 
 	public function getClientMaxage() {
@@ -845,14 +989,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return 300; // 5 minutes
 	}
 
-	public function getStyles( ResourceLoaderContext $context ) { return array(); }
-
 	public function getFlip( $context ) {
 		global $wgContLang;
 
 		return $wgContLang->getDir() !== $context->getDirection();
 	}
-	public function getMessages() { return array(); }
-	public function getLoaderScript() { return ''; }
-	public function getDependencies() { return array(); }
 }

@@ -357,10 +357,10 @@ class Skin extends Linker {
 
 	static function makeVariablesScript( $data ) {
 		if ( $data ) {
-			return Html::inlineScript( 'mediaWiki.config.set(' . json_encode( $data ) . ');' );
+			return Html::inlineScript( 'mediaWiki.config.set(' . FormatJson::encode( $data ) . ');' );
 		} else {
 			return '';
-		}
+		} 
 	}
 
 	/**
@@ -368,50 +368,16 @@ class Skin extends Linker {
 	 * @param $skinName string Name of the skin
 	 * The odd calling convention is for backwards compatibility
 	 * @todo FIXME: Make this not depend on $wgTitle!
+	 * 
+	 * Do not add things here which can be evaluated in ResourceLoaderStartupScript - in other words, without state.
+	 * You will only be adding bloat to the page and causing page caches to have to be purged on configuration changes.
 	 */
 	static function makeGlobalVariablesScript( $skinName ) {
-		if ( is_array( $skinName ) ) {
-			# Weird back-compat stuff.
-			$skinName = $skinName['skinname'];
-		}
-
-		global $wgScript, $wgTitle, $wgStylePath, $wgUser, $wgScriptExtension;
-		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
-		global $wgOut, $wgArticle;
-		global $wgBreakFrames, $wgRequest, $wgVariantArticlePath, $wgActionPaths;
-		global $wgUseAjax, $wgAjaxWatch;
-		global $wgVersion, $wgEnableAPI, $wgEnableWriteAPI;
-		global $wgRestrictionTypes;
-		global $wgDBname, $wgEnableMWSuggest;
-		global $wgSitename;
-
+		global $wgTitle, $wgUser, $wgRequest, $wgArticle, $wgOut, $wgRestrictionTypes;
+		
 		$ns = $wgTitle->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $wgTitle->getNsText();
-		$separatorTransTable = $wgContLang->separatorTransformTable();
-		$separatorTransTable = $separatorTransTable ? $separatorTransTable : array();
-		$compactSeparatorTransTable = array(
-			implode( "\t", array_keys( $separatorTransTable ) ),
-			implode( "\t", $separatorTransTable ),
-		);
-		$digitTransTable = $wgContLang->digitTransformTable();
-		$digitTransTable = $digitTransTable ? $digitTransTable : array();
-		$compactDigitTransTable = array(
-			implode( "\t", array_keys( $digitTransTable ) ),
-			implode( "\t", $digitTransTable ),
-		);
-
-		$mainPage = Title::newMainPage();
 		$vars = array(
-			'skin' => $skinName,
-			'stylepath' => $wgStylePath,
-			'wgUrlProtocols' => wfUrlProtocols(),
-			'wgArticlePath' => $wgArticlePath,
-			'wgScriptPath' => $wgScriptPath,
-			'wgScriptExtension' => $wgScriptExtension,
-			'wgScript' => $wgScript,
-			'wgVariantArticlePath' => $wgVariantArticlePath,
-			'wgActionPaths' => (object)$wgActionPaths,
-			'wgServer' => $wgServer,
 			'wgCanonicalNamespace' => $nsname,
 			'wgCanonicalSpecialPageName' => $ns == NS_SPECIAL ?
 				SpecialPage::resolveAlias( $wgTitle->getDBkey() ) : false, # bug 21115
@@ -423,56 +389,16 @@ class Skin extends Linker {
 			'wgIsArticle' => $wgOut->isArticle(),
 			'wgUserName' => $wgUser->isAnon() ? null : $wgUser->getName(),
 			'wgUserGroups' => $wgUser->getEffectiveGroups(),
-			'wgUserLanguage' => $wgLang->getCode(),
-			'wgContentLanguage' => $wgContLang->getCode(),
-			'wgBreakFrames' => $wgBreakFrames,
 			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
-			'wgVersion' => $wgVersion,
-			'wgEnableAPI' => $wgEnableAPI,
-			'wgEnableWriteAPI' => $wgEnableWriteAPI,
-			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
-			'wgDigitTransformTable' => $compactDigitTransTable,
-			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,
-			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
-			'wgNamespaceIds' => $wgContLang->getNamespaceIds(),
-			'wgSiteName' => $wgSitename,
 			'wgCategories' => $wgOut->getCategories(),
 		);
-
-		if ( $wgContLang->hasVariants() ) {
-			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
-		}
-
-		// if on upload page output the extension list & js_upload
-		if ( SpecialPage::resolveAlias( $wgTitle->getDBkey() ) == 'Upload' ) {
-			global $wgFileExtensions;
-			$vars['wgFileExtensions'] = $wgFileExtensions;
-		}
-
-		if ( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {
-			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
-			$vars['wgDBname'] = $wgDBname;
-			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $wgUser );
-			$vars['wgMWSuggestMessages'] = array( wfMsg( 'search-mwsuggest-enabled' ), wfMsg( 'search-mwsuggest-disabled' ) );
-		}
-
 		foreach ( $wgRestrictionTypes as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
 		}
-
-		if ( $wgOut->isArticleRelated() && $wgUseAjax && $wgAjaxWatch && $wgUser->isLoggedIn() ) {
-			$msgs = (object)array();
-
-			foreach ( array( 'watch', 'unwatch', 'watching', 'unwatching',
-				'tooltip-ca-watch', 'tooltip-ca-unwatch' ) as $msgName ) {
-				$msgs-> { $msgName . 'Msg' } = wfMsg( $msgName );
-			}
-			$vars['wgAjaxWatch'] = $msgs;
-		}
-
+		
 		// Allow extensions to add their custom variables to the global JS variables
 		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars ) );
-
+		
 		return self::makeVariablesScript( $vars );
 	}
 
@@ -521,51 +447,20 @@ class Skin extends Linker {
 	 * @return string
 	 */
 	public function generateUserJs( $skinName = null ) {
-		global $wgStylePath;
-
-		wfProfileIn( __METHOD__ );
-
-		if ( !$skinName ) {
-			$skinName = $this->getSkinName();
-		}
-
-		$s = "/* generated javascript */\n";
-		$s .= "var skin = '" . Xml::escapeJsString( $skinName ) . "';\n";
-		$s .= "var stylepath = '" . Xml::escapeJsString( $wgStylePath ) . "';";
-		$s .= "\n\n/* MediaWiki:Common.js */\n";
-
-		$commonJs = wfMsgExt( 'common.js', 'content' );
-
-		if ( !wfEmptyMsg( 'common.js', $commonJs ) ) {
-			$s .= $commonJs;
-		}
-
-		$s .= "\n\n/* MediaWiki:" . ucfirst( $skinName ) . ".js */\n";
-
-		// avoid inclusion of non defined user JavaScript (with custom skins only)
-		// by checking for default message content
-		$msgKey = ucfirst( $skinName ) . '.js';
-		$userJS = wfMsgExt( $msgKey, 'content' );
-
-		if ( !wfEmptyMsg( $msgKey, $userJS ) ) {
-			$s .= $userJS;
-		}
-
-		wfProfileOut( __METHOD__ );
-		return $s;
+		
+		// Stub - see ResourceLoaderSiteModule, CologneBlue, Simple and Standard skins override this
+		
+		return '';
 	}
 
 	/**
 	 * Generate user stylesheet for action=raw&gen=css
 	 */
 	public function generateUserStylesheet() {
-		wfProfileIn( __METHOD__ );
-
-		$s = "/* generated user stylesheet */\n" .
-			$this->reallyGenerateUserStylesheet();
-
-		wfProfileOut( __METHOD__ );
-		return $s;
+		
+		// Stub - see ResourceLoaderUserModule, CologneBlue, Simple and Standard skins override this
+		
+		return '';
 	}
 
 	/**
@@ -573,53 +468,10 @@ class Skin extends Linker {
 	 * Anything in here won't be generated if $wgAllowUserCssPrefs is false.
 	 */
 	protected function reallyGenerateUserStylesheet() {
-		global $wgUser;
-
-		$s = '';
-
-		if ( ( $undopt = $wgUser->getOption( 'underline' ) ) < 2 ) {
-			$underline = $undopt ? 'underline' : 'none';
-			$s .= "a { text-decoration: $underline; }\n";
-		}
-
-		if ( $wgUser->getOption( 'highlightbroken' ) ) {
-			$s .= "a.new, #quickbar a.new { color: #CC2200; }\n";
-		} else {
-			$s .= <<<CSS
-a.new, #quickbar a.new,
-a.stub, #quickbar a.stub {
-	color: inherit;
-}
-a.new:after, #quickbar a.new:after {
-	content: "?";
-	color: #CC2200;
-}
-a.stub:after, #quickbar a.stub:after {
-	content: "!";
-	color: #772233;
-}
-CSS;
-		}
-
-		if ( $wgUser->getOption( 'justify' ) ) {
-			$s .= "#article, #bodyContent, #mw_content { text-align: justify; }\n";
-		}
-
-		if ( !$wgUser->getOption( 'showtoc' ) ) {
-			$s .= "#toc { display: none; }\n";
-		}
-
-		if ( !$wgUser->getOption( 'editsection' ) ) {
-			$s .= ".editsection { display: none; }\n";
-		}
-
-		$fontstyle = $wgUser->getOption( 'editfont' );
-
-		if ( $fontstyle !== 'default' ) {
-			$s .= "textarea { font-family: $fontstyle; }\n";
-		}
-
-		return $s;
+		
+		// Stub - see  ResourceLoaderUserModule, CologneBlue, Simple and Standard skins override this
+		
+		return '';
 	}
 
 	/**
@@ -627,7 +479,7 @@ CSS;
 	 */
 	function setupUserCss( OutputPage $out ) {
 		global $wgRequest, $wgUser;
-		global $wgAllowUserCss, $wgUseSiteCss, $wgSquidMaxage;
+		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs, $wgSquidMaxage;
 
 		wfProfileIn( __METHOD__ );
 
@@ -643,49 +495,24 @@ CSS;
 			$out->addStyle( $url );
 		}
 
-		// If we use the site's dynamic CSS, throw that in, too
 		// Per-site custom styles
 		if ( $wgUseSiteCss ) {
 			$out->addModuleStyles( 'site' );
 		}
 
-		global $wgAllowUserCssPrefs;
-
-		if ( $wgAllowUserCssPrefs ) {
-			if ( $wgUser->isLoggedIn() ) {
-				// Ensure that logged-in users' generated CSS isn't clobbered
-				// by anons' publicly cacheable generated CSS.
-				$siteargs['smaxage'] = '0';
-				$siteargs['ts'] = $wgUser->mTouched;
-			}
-
-			// Per-user styles based on preferences
-			$siteargs['gen'] = 'css';
-
-			if ( ( $us = $wgRequest->getVal( 'useskin', '' ) ) !== '' ) {
-				$siteargs['useskin'] = $us;
-			}
-
-			$out->addStyle( self::makeUrl( '-', wfArrayToCGI( $siteargs ) ) );
-		}
-
-		// Per-user custom style pages
-		if ( $wgAllowUserCss && $wgUser->isLoggedIn() ) {
-			$action = $wgRequest->getVal( 'action' );
-
-			# If we're previewing the CSS page, use it
-			if ( $this->mTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
+		// Per-user custom styles
+		if ( $wgAllowUserCss ) {
+			if ( $this->mTitle->isCssSubpage() && $this->userCanPreview( $wgRequest->getVal( 'action' ) ) ) {
 				// @FIXME: properly escape the cdata!
 				$out->addInlineStyle( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
-				$names = array( 'common', $this->getSkinName() );
-				foreach ( $names as $name ) {
-					$out->addStyle( self::makeUrl(
-						$this->userpage . '/' . $name . '.css',
-						'action=raw&ctype=text/css' )
-					);
-				}
+				$out->addModuleStyles( 'user' );
 			}
+		}
+
+		// Per-user preference styles
+		if ( $wgAllowUserCssPrefs ) {
+			$out->addModuleStyles( 'user.preferences' );
 		}
 
 		wfProfileOut( __METHOD__ );

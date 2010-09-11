@@ -2283,19 +2283,33 @@ class OutputPage {
 	static function makeResourceLoaderLink( $skin, $modules, $only ) {
 		global $wgUser, $wgLang, $wgRequest, $wgLoadScript;
 		// TODO: Should this be a static function of ResourceLoader instead?
+		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$query = array(
-			'modules' => implode( '|', array_unique( (array) $modules ) ),
 			'lang' => $wgLang->getCode(),
 			'debug' => $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) !== 'false',
 			'skin' => $wgUser->getSkin()->getSkinName(),
 			'only' => $only,
 		);
-		// Automatically select style/script elements
-		if ( $only === 'styles' ) {
-			return Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) );
-		} else {
-			return Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) );
+		$moduleGroups = array( null => array(), 'user' => array() );
+		foreach ( (array) $modules as $module ) {
+			$moduleGroups[strpos( $module, 'user' ) === 0 ? 'user' : null][] = $module;
 		}
+		$links = '';
+		foreach ( $moduleGroups as $group => $modules ) {
+			if ( count( $modules ) ) {
+				$query['modules'] = implode( '|', array_unique( (array) $modules ) );
+				if ( $group === 'user' ) {
+					$query['user'] = $wgUser->getName();
+				}
+				// Automatically select style/script elements
+				if ( $only === 'styles' ) {
+					$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) );
+				} else {
+					$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) );
+				}
+			}
+		}
+		return $links;
 	}
 	
 	/**
@@ -2313,8 +2327,8 @@ class OutputPage {
 		// Statup - this will immediately load jquery and mediawiki modules
 		$scripts = self::makeResourceLoaderLink( $sk, 'startup', 'scripts' );
 		
-		// Configuration -- this could be merged together with the load and go, but makeGlobalVariablesScript returns a
-		// whole script tag -- grumble grumble
+		// Configuration -- This could be merged together with the load and go, but makeGlobalVariablesScript returns a
+		// whole script tag -- grumble grumble...
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
 		
 		// Script and Messages "only"
