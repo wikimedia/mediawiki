@@ -1452,14 +1452,6 @@ function wfExpandUrl( $url ) {
 }
 
 /**
- * This is obsolete, use SquidUpdate::purge()
- * @deprecated
- */
-function wfPurgeSquidServers( $urlArr ) {
-	SquidUpdate::purge( $urlArr );
-}
-
-/**
  * Windows-compatible version of escapeshellarg()
  * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg()
  * function puts single quotes in regardless of OS.
