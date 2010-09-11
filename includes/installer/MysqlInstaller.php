@@ -144,7 +144,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		# Determine existing default character set
 		if ( $conn->tableExists( "revision" ) ) {
 			$revision = $conn->escapeLike( $this->getVar( 'wgDBprefix' ) . 'revision' );
-			$res = $conn->query( "SHOW TABLE STATUS LIKE '$revision'" );
+			$res = $conn->query( "SHOW TABLE STATUS LIKE '$revision'", __METHOD__ );
 			$row = $conn->fetchObject( $res );
 			if ( !$row ) {
 				$this->parent->showMessage( 'config-show-table-status' );
@@ -205,7 +205,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		$engines = array();
-		$res = $conn->query( 'SHOW ENGINES' );
+		$res = $conn->query( 'SHOW ENGINES', __METHOD__ );
 		foreach ( $res as $row ) {
 			if ( $row->Support == 'YES' || $row->Support == 'DEFAULT' ) {
 				$engines[] = $row->Engine;
@@ -415,7 +415,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 		$dbName = $this->getVar( 'wgDBname' );
 		if( !$conn->selectDB( $dbName ) ) {
-			$conn->query( "CREATE DATABASE `$dbName`" );
+			$conn->query( "CREATE DATABASE `$dbName`", __METHOD__ );
 			$conn->selectDB( $dbName );
 		}
 		return $status;
