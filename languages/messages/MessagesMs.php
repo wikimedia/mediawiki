@@ -167,7 +167,7 @@ $messages = array(
 'tog-editsection'             => 'Bolehkan penyuntingan bahagian melalui pautan [sunting]',
 'tog-editsectiononrightclick' => 'Bolehkan penyuntingan bahagian dengan mengklik kanan pada tajuk bahagian (JavaScript)',
 'tog-showtoc'                 => 'Tunjukkan isi kandungan (bagi rencana yang melebihi 3 tajuk)',
-'tog-rememberpassword'        => 'Ingat status log masuk saya di komputer ini (tidak melebihi $1 hari)',
+'tog-rememberpassword'        => 'Ingat status log masuk saya di pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
 'tog-watchcreations'          => 'Tambahkan laman yang saya cipta ke dalam senarai pantau',
 'tog-watchdefault'            => 'Tambahkan laman yang saya sunting ke dalam senarai pantau',
 'tog-watchmoves'              => 'Tambahkan laman yang saya pindahkan ke dalam senarai pantau',
@@ -1461,6 +1461,9 @@ terlebih dahulu untuk memuat naik fail.',
 'upload_directory_missing'    => 'Direktori muat naik ($1) hilang dan tidak dapat dicipta oleh pelayan web.',
 'upload_directory_read_only'  => 'Direktori muat naik ($1) tidak boleh ditulis oleh pelayan web.',
 'uploaderror'                 => 'Ralat muat naik',
+'upload-recreate-warning'     => "'''Amaran: Sebuah fail dengan nama tersebut telah pun dihapuskan atau dipindahkan.'''
+
+Log penghapusan dan pemindahan untuk laman ini disediakan di bawah ini untuk kemudahan:",
 'uploadtext'                  => "Gunakan borang di bawah untuk memuat naik fail.
 Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:FileList|senarai fail yang dimuat naik]]. Tindakan muat naik akan direkodkan dalam [[Special:Log/upload|log muat naik]], manakala penghapusan dalam [[Special:Log/delete|log penghapusan]].
 
@@ -1499,6 +1502,7 @@ Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan s
 'verification-error'          => 'Fail ini tidak lulus pengesahan fail.',
 'hookaborted'                 => 'Pengubahsuaian yang anda buat telah disekat oleh sebuah cangkuk penyambung.',
 'illegal-filename'            => 'Nama fail tidak dibenarkan.',
+'overwrite'                   => 'Menulis ganti fail yang telah wujud adalah tidak dibenarkan.',
 'unknown-error'               => 'Berlaku ralat yang tidak diketahui.',
 'tmp-create-error'            => 'Fail sementara tidak dapat dicipta.',
 'tmp-write-error'             => 'Fail sementara tidak dapat ditulis.',

@@ -1867,8 +1867,8 @@ wiki ity aza izy.</p>",
 'speciallogtitlelabel' => 'Lohateny:',
 'log'                  => 'Tatitr’asa',
 'all-logs-page'        => 'Ny tatitr’asa',
-'alllogstext'          => "Seho nakambana an'ny tatitr'asa rehetra azo jerena eo amin'ny {{SITENAME}}.
-Azonao akelezina ny fahitana azy amin'ny alàlan'ny fisafidianana tatitr'asa iray manokana, anaram-pikambana iray na pejy iray (manasamihafa ny sorabaventy sy soramadinika ny rindrankajy).",
+'alllogstext'          => "Seho nakambana an'ny tatitr'asa rehetra izay azonao jerena eto amin'ny {{SITENAME}}.
+Azonao ferana ny fahitana ny tao amin'ny alàlan'ny fisafidianana karazana tatitr'asa iray, anaram-pikambana iray na pejy iray (manasamihafa ny sorabaventy sy soramadinika).",
 'logempty'             => 'Tsy nahitana.',
 'log-title-wildcard'   => "Hitady amin'ny lohateny manomboka amin'io soratra io",
 

@@ -308,7 +308,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Activează modificarea secţiunilor prin clic dreapta
 pe titlul secțiunii (JavaScript)',
 'tog-showtoc'                 => 'Arată cuprinsul (pentru paginile cu mai mult de 3 paragrafe cu titlu)',
-'tog-rememberpassword'        => 'Autentificare automată de la acest calculator (expiră după {{PLURAL:$1|24 de ore|$1 zile}})',
+'tog-rememberpassword'        => 'Autentificare automată de la acest navigator (expiră după $1 {{PLURAL:$1|zi|zile}})',
 'tog-watchcreations'          => 'Adaugă paginile pe care le creez la lista mea de urmărire',
 'tog-watchdefault'            => 'Adaugă paginile pe care le modific la lista mea de urmărire',
 'tog-watchmoves'              => 'Adaugă paginile pe care le redenumesc la lista de pagini urmărite',

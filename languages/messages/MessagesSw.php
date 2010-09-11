@@ -136,7 +136,7 @@ $messages = array(
 'tog-editsection'             => 'Wezesha sehemu ya kuandikia kwa kutumia viungo vya [hariri]',
 'tog-editsectiononrightclick' => 'Wezesha sehemu ya kuandikia kwa kubonyeza kitufe cha kulia cha puku yako juu ya sehemu ya majina husika (JavaScript)',
 'tog-showtoc'                 => 'Onyesha mistari ya yaliyomo (kwa kila kurasa iliyo na zaidi ya vichwa vya habari 3)',
-'tog-rememberpassword'        => 'Kumbuka kuingia kwangu pamoja na neno la siri katika tarakalishi hii (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
+'tog-rememberpassword'        => 'Kumbuka kuingia kwangu pamoja na neno la siri katika kivinjari hiki (kwa muda usiozidi {{PLURAL:$1|siku}} $1)',
 'tog-watchcreations'          => 'Weka kurasa nilizoumba katika maangalizi yangu',
 'tog-watchdefault'            => 'Weka kurasa zote nilizohariri katika maangalizi yangu',
 'tog-watchmoves'              => 'Weka kurasa zote nilizohamisha katika maangalizi yangu',
@@ -806,7 +806,7 @@ Rejea kumbukumbu ya mwisho inayoandikwa chini:",
 'hiddencategories'                 => 'Ukurasa huu uliomo katika jamii $1 {{PLURAL:$1|iliofichwa|zilizofichwa}}:',
 'nocreatetitle'                    => 'Si wote wanaoweza kuanzisha ukurasa',
 'nocreatetext'                     => '{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya. Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:UserLogin|ingia au anza akaunti]].',
-'nocreate-loggedin'                => 'Huna ruhusa ya kuazisha kurasa mpya.',
+'nocreate-loggedin'                => 'Huna ruhusa ya kuanzisha ukurasa mpya.',
 'sectioneditnotsupported-title'    => 'Kuhariri sehemu kwa sehemu haiwezikani',
 'sectioneditnotsupported-text'     => 'Haiwezikani kuhariri ukurasa huu sehemu kwa sehemu.',
 'permissionserrors'                => 'Hitilafu za ruhusa',
@@ -2157,6 +2157,11 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 
 Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa kwa mkono ukitaka.",
 'movenologin'             => 'Hujaingia',
+'movenologintext'         => 'Lazima uwe mtumiaji uliyesajiliwa na [[Special:UserLogin|uliyeingizwa]] ili uhamishe ukurasa.',
+'movenotallowed'          => 'Huna ruhusa ya kuhamisha kurasa.',
+'movenotallowedfile'      => 'Huna ruhusa ya kuhamisha mafaili.',
+'cant-move-user-page'     => 'Huna ruhusa kuhamisha ukurasa wa mtumiaji (isopokuwa ukurasa tanzu).',
+'cant-move-to-user-page'  => 'Huna ruhusa ya kuhamisha ukurasa katika ukurasa wa mtumiaji (isipokuwa katika ukurasa tanzu wa mtumiaji).',
 'newtitle'                => 'Kuelekeza jina jipya:',
 'move-watch'              => 'Fuatilia ukurasa huu',
 'movepagebtn'             => 'Sogeza ukurasa',
@@ -2169,18 +2174,27 @@ Chagua jina lengine.',
 'talkexists'              => "'''Ukurasa wenyewe ulisogezwa salama, lakini ukurasa wake wa majadiliano haujasogezwa kwa sababu tayari kuna ukurasa wenye jina lake.  Tafadhali ziunganishe kwa mkono.'''",
 'movedto'                 => 'imesogezwa hadi',
 'movetalk'                => 'Sogeza ukurasa wake wa majadiliano',
+'move-subpages'           => 'Hamisha kurasa tanzu (hadi $1)',
+'move-talk-subpages'      => 'Hamisha kurasa tanzu za ukurasa wa majadiliano (hadi $1)',
 '1movedto2'               => '[[$1]] umesogezwa hapa [[$2]]',
 '1movedto2_redir'         => 'alihamisha [[$1]] kwenda [[$2]] kwa kutengeneza elekezo',
 'movelogpage'             => 'Kumbukumbu ya uhamiaji',
+'movelogpagetext'         => 'Hapo chini panaorodheshwa kurasa zote zilizohamishwa.',
+'movesubpage'             => '{{PLURAL:$1|Ukurasa tanzu|Kurasa tanzu}}',
+'movesubpagetext'         => 'Ukurasa huu una {{PLURAL:$1|ukurasa tanzu unao|kurasa tanzu $1 zinazo}}onyeshwa hapo.',
+'movenosubpage'           => 'Ukurasa huu hauna kurasa tanzu.',
 'movereason'              => 'Sababu:',
 'revertmove'              => 'rejesha',
 'delete_and_move'         => 'Kufuta na kuhamisha',
 'delete_and_move_confirm' => 'Ndiyo, ukurasa ufutwe',
 
 # Export
-'export'        => 'Hamisha kurasa',
-'export-addcat' => 'Ongeza',
-'export-addns'  => 'Ongeza',
+'export'            => 'Hamisha kurasa',
+'export-addcattext' => 'Ongeza kurasa kutoka jamii:',
+'export-addcat'     => 'Ongeza',
+'export-addnstext'  => 'Ongeza kurasa kutoka eneo la wiki:',
+'export-addns'      => 'Ongeza',
+'export-download'   => 'Hifadhi kama faili',
 
 # Namespace 8 related
 'allmessages'                   => 'Jumbe za mfumo',
@@ -2205,13 +2219,26 @@ Ukitaka kusaidia kazi ya kutohoa MediaWiki yote katika lugha nyingi, tafadhali u
 'thumbnail_error' => 'Hitilafu kutengeneza picha ndogo: $1',
 
 # Special:Import
-'import-upload-filename' => 'Jina la faili:',
-'import-comment'         => 'Maelezo:',
-'import-token-mismatch'  => 'Data ya kipindi zilipotelewa.
+'import'                     => 'Kuleta kurasa',
+'importinterwiki'            => 'Kuleta kutoka wiki nyingine',
+'import-interwiki-text'      => 'Chagua wiki na jina la ukurasa unaotaka kuuleta.
+Tarehe za mapitio na majina ya wahariri zitaletwa pia.
+Vitendo vyote vya kuleta kutoka wiki nyingine vinaandikwa katika [[Special:Log/import|kumbukumbu za kuleta]].',
+'import-interwiki-source'    => 'Wiki/ukurasa wa chanzo:',
+'import-interwiki-templates' => 'Leta pamoja na vigezo vyote',
+'import-interwiki-submit'    => 'Leta',
+'import-interwiki-namespace' => 'Eneo la wiki la mwishilio:',
+'import-upload-filename'     => 'Jina la faili:',
+'import-comment'             => 'Maelezo:',
+'importstart'                => 'Kurasa zinaletwa...',
+'import-revision-count'      => '{{PLURAL:$1|pitio|mapitio}} $1',
+'importnopages'              => 'Hakuna kurasa za kuleta.',
+'importsuccess'              => 'Kuleta kumekamilishwa!',
+'import-token-mismatch'      => 'Data ya kipindi zilipotelewa.
 Tafadhali jaribu tena.',
 
 # Import log
-'importlogpage'                 => 'Kumbukumbu ya kuingizwa',
+'importlogpage'                 => 'Kumbukumbu ya kuleta',
 'import-logentry-upload-detail' => '{{PLURAL:$1|pitio|mapitio}} $1',
 
 # Tooltip help for the actions

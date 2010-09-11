@@ -44,6 +44,7 @@
  * @author UV
  * @author Umherirrender
  * @author W (aka Wuzur)
+ * @author Wikifan
  * @author Ziko
  * @author לערי ריינהארט
  */
@@ -361,7 +362,7 @@ $messages = array(
 'tog-editsection'             => 'Links zum Bearbeiten einzelner Abschnitte anzeigen',
 'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten (benötigt JavaScript)',
 'tog-showtoc'                 => 'Anzeigen eines Inhaltsverzeichnisses bei Seiten mit mehr als drei Überschriften',
-'tog-rememberpassword'        => 'Auf diesem Browser dauerhaft angemeldet bleiben (Maximal für $1 {{PLURAL:$1|Tag|Tage}})',
+'tog-rememberpassword'        => 'Mit diesem Browser dauerhaft angemeldet bleiben (maximal $1 {{PLURAL:$1|Tag|Tage}})',
 'tog-watchcreations'          => 'Selbst erstellte Seiten automatisch beobachten',
 'tog-watchdefault'            => 'Selbst geänderte Seiten automatisch beobachten',
 'tog-watchmoves'              => 'Selbst verschobene Seiten automatisch beobachten',
@@ -1281,7 +1282,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'shown-title'                      => 'Zeige $1 {{PLURAL:$1|Ergebnis|Ergebnisse}} pro Seite',
 'viewprevnext'                     => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Suchoptionen',
-'searchmenu-exists'                => "'''Es gibt eine Seite, die den Namen „[[:$1]]“ hat'''",
+'searchmenu-exists'                => "'''Es gibt eine Seite, die den Namen „[[:$1]]“ hat.'''",
 'searchmenu-new'                   => "'''Erstelle die Seite „[[:$1|$1]]“ in diesem Wiki.'''",
 'searchhelp-url'                   => 'Help:Hilfe',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zeige alle Seiten, die mit dem Suchbegriff anfangen]]',
@@ -2369,9 +2370,9 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'viewdeletedpage'              => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'             => 'Die {{PLURAL:$1|folgende Seite wurde gelöscht und kann|folgenden $1 Seiten wurden gelöscht und können}} von Administratoren wiederhergestellt werden:',
 'undelete-fieldset-title'      => 'Wiederherstellen',
-'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, wähle keine Version aus, gib eine Begründung an und klicke auf „Wiederherstellen“.
-* Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln anhand der Markierungen aus, gib eine Begründung an und klicke dann auf „Wiederherstellen“.
-* „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
+'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, wähle keine Version aus, gib eine Begründung an und klicke auf „{{int:undeletebtn}}“.
+* Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln anhand der Markierungen aus, gib eine Begründung an und klicke dann auf „{{int:undeletebtn}}“.
+* „{{int:undeletereset}}“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeleterevisions'            => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
 'undeletehistory'              => 'Wenn du diese Seite wiederherstellst, werden auch alle alten Versionen wiederhergestellt.
 Wenn seit der Löschung eine neue Seite gleichen Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.',
@@ -2733,7 +2734,7 @@ Besuche die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalis
 Die Versionsdaten und Benutzernamen bleiben dabei erhalten.
 Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
 'import-interwiki-source'    => 'Quell-Wiki/-Seite:',
-'import-interwiki-history'   => 'Importiere alle Versionen dieser Seite',
+'import-interwiki-history'   => 'Alle Versionen dieser Seite importieren',
 'import-interwiki-templates' => 'Alle Vorlagen einschließen',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Zielnamensraum:',

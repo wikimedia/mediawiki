@@ -77,7 +77,7 @@ $messages = array(
 'tog-editsection'             => 'Lejo redaktimin e seksioneve me opcionin [redakto]',
 'tog-editsectiononrightclick' => 'Lejo redaktimin e seksioneve tue klikue me të djathtë mbi titull (JavaScript)',
 'tog-showtoc'                 => 'Trego përmbajtjen<br />(për faqet me mâ shum se 3 tituj)',
-'tog-rememberpassword'        => 'Ruej fjalëkalimin në këtë kompjuter (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Ruej fjalëkalimin tem në këtë shfletues (për $1 {{PLURAL:$1|ditë|ditë}})',
 'tog-watchcreations'          => 'Shtoji në listë mbikëqyrëse faqet që i krijoj vetë',
 'tog-watchdefault'            => 'Shtoji në listë mbikëqyrëse faqet që i redaktoj',
 'tog-watchmoves'              => 'Shtoji në listë mbikëqyrëse faqet që i zhvendosi',
@@ -224,20 +224,21 @@ $messages = array(
 'faqpage'        => 'Project:Pyetjet e shpeshta',
 
 # Vector skin
-'vector-action-addsection' => 'Shto temë',
-'vector-action-delete'     => 'Fshij',
-'vector-action-move'       => 'Zhvendos',
-'vector-action-protect'    => 'Mbroj',
-'vector-action-undelete'   => 'Kthe fshimjen mbrapsht',
-'vector-action-unprotect'  => 'Hiq mbrojtjen',
-'vector-view-create'       => 'Krijo',
-'vector-view-edit'         => 'Redakto',
-'vector-view-history'      => 'Shih historinë',
-'vector-view-view'         => 'Lexo',
-'vector-view-viewsource'   => 'Shih kodin',
-'actions'                  => 'Veprimet',
-'namespaces'               => 'Hapësinat',
-'variants'                 => 'Variantet',
+'vector-action-addsection'       => 'Shto temë',
+'vector-action-delete'           => 'Fshij',
+'vector-action-move'             => 'Zhvendos',
+'vector-action-protect'          => 'Mbroj',
+'vector-action-undelete'         => 'Kthe fshimjen mbrapsht',
+'vector-action-unprotect'        => 'Hiq mbrojtjen',
+'vector-simplesearch-preference' => 'Aktivizo sugjerime të avancueme në kërkim (vetëm për Vector skin)',
+'vector-view-create'             => 'Krijo',
+'vector-view-edit'               => 'Redakto',
+'vector-view-history'            => 'Shih historinë',
+'vector-view-view'               => 'Lexo',
+'vector-view-viewsource'         => 'Shih kodin',
+'actions'                        => 'Veprimet',
+'namespaces'                     => 'Hapësinat',
+'variants'                       => 'Variantet',
 
 'errorpagetitle'    => 'Gabim',
 'returnto'          => 'Kthehu te $1.',
@@ -419,7 +420,7 @@ Nëse nuk âsht kështu, mund ta keni gjetë nji gabim në software. Ju lutemi, 
 'unexpected'           => 'Vlerë e papritun: "$1"="$2".',
 'formerror'            => 'Gabim: nuk mujta me dërgue formularin',
 'badarticleerror'      => 'Ky veprim nuk mundet me u ekzekutue në këtë faqe.',
-'cannotdelete'         => 'Nuk mujta me fshi faqen apo skedën e dhânë.
+'cannotdelete'         => 'Nuk mujta me fshi faqen apo skedën "$1".
 Ndodh që âsht fshi prej dikujt tjetër.',
 'badtitle'             => 'Titull i keq',
 'badtitletext'         => 'Titulli i faqes që kërkuet ishte jovalid, bosh, apo ishte nji vegëz gabim e lidhun ndërgjuhesisht apo ndër-wiki.
@@ -468,7 +469,7 @@ Mos harroni me i ndryshue [[Special:Preferences|parapëlqimet për {{SITENAME}}]
 'yourname'                   => 'Nofka:',
 'yourpassword'               => 'Fjalëkalimi:',
 'yourpasswordagain'          => 'Fjalëkalimi përsëdyti:',
-'remembermypassword'         => 'Mbaj mend fjalëkalimin tem në këtë kompjuter (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'         => 'Mbaj mend fjalëkalimin tem në këtë shfletues (për $1 {{PLURAL:$1|ditë|ditë}})',
 'yourdomainname'             => 'Domena juej:',
 'externaldberror'            => 'Ose pat gabim në databazën e autentifikimit, ose nuk lejoheni me ndryshue llogarinë tuej të jashtme.',
 'login'                      => 'Kyçu',
@@ -485,6 +486,7 @@ Mos harroni me i ndryshue [[Special:Preferences|parapëlqimet për {{SITENAME}}]
 'gotaccount'                 => "Ke llogari? '''$1'''.",
 'gotaccountlink'             => 'Kyçu',
 'createaccountmail'          => 'me email',
+'createaccountreason'        => 'Arsyeja:',
 'badretype'                  => 'Fjalëkalimet nuk janë të njêjta.',
 'userexists'                 => 'Nofka keni zgjedhë âsht në përdorim.
 Zgjedh nji emën tjetër.',
@@ -551,10 +553,19 @@ Kyçuni tash dhe ndërroni fjalëkalimin.
 
 Nëse kjo llogari âsht krijue gabimisht, mundeni me injorue këtë email.',
 'usernamehasherror'          => 'Emri nuk mund të përmbajë karaktere hash',
-'login-throttled'            => 'Keni bâ shumë tentime frik në fjalëkalimin e kësaj llogarie.
+'login-throttled'            => 'Keni bâ shumë tentime frik me u kyçë në kët llogari.
 Ju lutemi pritni pak për me provue prap.',
 'loginlanguagelabel'         => 'Gjuha: $1',
 'suspicious-userlogout'      => 'Kërkesa juaj për të shkëputet u mohua sepse duket sikur është dërguar nga një shfletues të thyer ose caching proxy',
+
+# JavaScript password checks
+'password-strength'            => 'Kompleksiteti i fjalëkalimit: $1',
+'password-strength-bad'        => 'DOBËT',
+'password-strength-mediocre'   => 'mediokër',
+'password-strength-acceptable' => 'i pranueshëm',
+'password-strength-good'       => 'mirë',
+'password-retype'              => 'rishtype fjalëkalimin këtu',
+'password-retype-mismatch'     => 'fjalëkalimet nuk përputhen',
 
 # Password reset dialog
 'resetpass'                 => 'Ndrysho fjalëkalimin',
@@ -609,6 +620,7 @@ Ndoshta tashmâ e keni ndryshue fjalëkalimin me sukses, apo keni kërkue nji fj
 'showdiff'                         => 'Trego ndryshimet',
 'anoneditwarning'                  => "'''Kujdes:''' Ju nuk jeni i kyçun.
 Adresa juej IP do të regjistrohet në historikun e redaktimit të kësaj faqeje.",
+'anonpreviewwarning'               => "''Nuk jeni i kyçun. Regjistrimi ka me marrë shenim IP adresën tuej në histori të faqes.''",
 'missingsummary'                   => "'''Vini re:''' Nuk keni specifikue përmbledhje të redaktimit.
 Nëse klikoni prap në regjistro, redaktimi do të ruhet pa tê.",
 'missingcommenttext'               => 'Ju lutemi shtoni nji koment mâ poshtë.',
