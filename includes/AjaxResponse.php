@@ -125,7 +125,7 @@ class AjaxResponse {
 
 				# Let the client do the caching. Cache is not purged.
 				header ( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->mCacheDuration ) . " GMT" );
-				header ( "Cache-Control: s-max-age={$this->mCacheDuration},public,max-age={$this->mCacheDuration}" );
+				header ( "Cache-Control: s-maxage={$this->mCacheDuration},public,max-age={$this->mCacheDuration}" );
 			}
 
 		} else {
