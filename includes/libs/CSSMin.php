@@ -18,7 +18,7 @@
  * This class provides minification, URL remapping, URL extracting, and data-URL embedding.
  * 
  * @file
- * @version 0.1.0 -- 2010-09-09
+ * @version 0.1.1 -- 2010-09-11
  * @author Trevor Parscal <tparscal@wikimedia.org>
  * @copyright Copyright 2010 Wikimedia Foundation
  * @license http://www.apache.org/licenses/LICENSE-2.0
@@ -81,7 +81,7 @@ class CSSMin {
 	 * @param $path string File path where the source was read from
 	 * @return string Remapped CSS data
 	 */
-	public static function remap( $source, $path, $embed = true ) {
+	public static function remap( $source, $local, $remote, $embed = true ) {
 		$pattern = '/((?<embed>\s*\/\*\s*\@embed\s*\*\/)(?<pre>[^\;\}]*))?' . self::URL_REGEX . '(?<post>[^;]*)[\;]?/';
 		$offset = 0;
 		while ( preg_match( $pattern, $source, $match, PREG_OFFSET_CAPTURE, $offset ) ) {
@@ -89,11 +89,12 @@ class CSSMin {
 			$embed = $match['embed'][0];
 			$pre = $match['pre'][0];
 			$post = $match['post'][0];
-			$file = "{$path}/{$match['file'][0]}";
-			// Only proceed if we can access the file
+			$file = "{$local}/{$match['file'][0]}";
+			$url = "{$remote}/{$match['file'][0]}";
+			// Only proceed if we can access the fill
 			if ( file_exists( $file ) ) {
 				// Add version parameter as a time-stamp in ISO 8601 format, using Z for the timezone, meaning GMT
-				$url = "{$file}?" . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
+				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
 				// If we the mime-type can't be determined, no embedding will take place
 				$type = false;
 				// Try a couple of different ways to get the mime-type of a file, in order of preference
