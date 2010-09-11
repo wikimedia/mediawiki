@@ -903,7 +903,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	
 	protected function getConfig( $context ) {
 		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension, $wgArticlePath, $wgScriptPath, $wgServer,
-			$wgContLang, $wgBreakFrames, $wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgAjaxWatch, $wgVersion,
+			$wgContLang, $wgBreakFrames, $wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion,
 			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest, $wgSitename, $wgFileExtensions;
 
 		// Pre-process information
@@ -963,7 +963,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Methods */
 
 	public function getScript( ResourceLoaderContext $context ) {
-		global $IP, $wgStylePath, $wgLoadScript;
+		global $IP, $wgLoadScript;
 
 		$scripts = file_get_contents( "$IP/resources/startup.js" );
 

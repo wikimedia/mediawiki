@@ -68,7 +68,7 @@ class PNGHandler extends BitmapHandler {
 		if ($metadata['loopCount'] == 0)
 			$info[] = wfMsgExt( 'file-info-png-looped', 'parseinline' );
 		elseif ($metadata['loopCount'] > 1)
-			$info[] = wfMsgExt( 'file-info-png-repeat', 'parseinline', $metadata['loopCount'] );;
+			$info[] = wfMsgExt( 'file-info-png-repeat', 'parseinline', $metadata['loopCount'] );
 		
 		if ($metadata['frameCount'] > 0)
 			$info[] = wfMsgExt( 'file-info-png-frames', 'parseinline', $metadata['frameCount'] );

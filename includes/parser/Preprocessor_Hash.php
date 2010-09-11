@@ -680,7 +680,7 @@ class Preprocessor_Hash implements Preprocessor {
 		
 		// Cache
 		if ($cacheable) {
-			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );;
+			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );
 			$wgMemc->set( $cacheKey, $cacheValue, 86400 );
 			wfProfileOut( __METHOD__.'-cache-miss' );
 			wfProfileOut( __METHOD__.'-cacheable' );
