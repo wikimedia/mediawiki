@@ -757,35 +757,6 @@ function do_collation_update() {
 	$task->execute();
 }
 
-function sqlite_initial_indexes() {
-	$dbw = wfGetDB( DB_MASTER );
-	// initial-indexes.sql fails if the indexes are already present, so we perform a quick check if our database is newer.
-	if ( update_row_exists( 'initial_indexes' ) || $dbw->indexExists( 'user', 'user_name' ) ) {
-		wfOut( "...have initial indexes\n" );
-		return;
-	}
-	wfOut( "Adding initial indexes..." );
-	$dbw->sourceFile( archive( 'initial-indexes.sql' ) );
-	wfOut( "done\n" );
-}
-
-function sqlite_setup_searchindex() {
-	$dbw = wfGetDB( DB_MASTER );
-	$module = $dbw->getFulltextSearchModule();
-	$fts3tTable = update_row_exists( 'fts3' );
-	if ( $fts3tTable &&  !$module ) {
-		wfOut( '...PHP is missing FTS3 support, downgrading tables...' );
-		$dbw->sourceFile( archive( 'searchindex-no-fts.sql' ) );
-		wfOut( "done\n" );
-	} elseif ( !$fts3tTable && $module == 'FTS3' ) {
-		wfOut( '...adding FTS3 search capabilities...' );
-		$dbw->sourceFile( archive( 'searchindex-fts3.sql' ) );
-		wfOut( "done\n" );
-	} else {
-		wfOut( "...fulltext search table appears to be in order.\n" );
-	}
-}
-
 function do_unique_pl_tl_il() {
 	$dbw = wfGetDB( DB_MASTER );
 	$info = $dbw->indexInfo( 'pagelinks', 'pl_namespace' );
