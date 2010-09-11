@@ -839,8 +839,7 @@ class ResourceLoaderUserPreferencesModule extends ResourceLoaderModule {
 		if ( isset( $this->modifiedTime[$hash] ) ) {
 			return $this->modifiedTime[$hash];
 		}
-		if ( $context->getUser() ) {
-			$user = User::newFromName( $context->getUser() );
+		if ( $context->getUser() && $user = User::newFromName( $context->getUser() ) ) {
 			return $this->modifiedTime[$hash] = $user->getTouched();
 		} else {
 			return 0;
