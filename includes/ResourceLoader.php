@@ -338,7 +338,7 @@ class ResourceLoader {
 			}
 
 			$statuses = FormatJson::encode( $statuses );
-			echo "mediaWiki.loader.state( $statuses );";
+			echo "mediaWiki.loader.state( $statuses );\n";
 		}
 
 		// Register missing modules

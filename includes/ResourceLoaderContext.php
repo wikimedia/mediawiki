@@ -26,7 +26,6 @@ class ResourceLoaderContext {
 	/* Protected Members */
 
 	protected $request;
-	protected $server;
 	protected $modules;
 	protected $language;
 	protected $direction;
@@ -64,7 +63,7 @@ class ResourceLoaderContext {
 			$this->skin = $wgDefaultSkin;
 		}
 	}
-
+	
 	public function getRequest() {
 		return $this->request;
 	}
