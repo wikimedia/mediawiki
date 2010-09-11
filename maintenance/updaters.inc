@@ -9,21 +9,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-function drop_index_if_exists( $table, $index, $patch, $fullpath = false ) {
-	$dbw = wfGetDB( DB_MASTER );
-	if ( $dbw->indexExists( $table, $index ) ) {
-		wfOut( "Dropping $index from table $table... " );
-		if ( $fullpath ) {
-			$dbw->sourceFile( $patch );
-		} else {
-			$dbw->sourceFile( archive( $patch ) );
-		}
-		wfOut( "ok\n" );
-	} else {
-		wfOut( "...$index doesn't exist.\n" );
-	}
-}
-
 function archive( $name ) {
 	return DatabaseBase::patchPath( $name );
 }

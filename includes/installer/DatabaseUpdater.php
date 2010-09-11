@@ -329,6 +329,24 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Drop an index from an existing table
+	 *
+	 * @param $table String: Name of the table to modify
+	 * @param $index String: Name of the old index
+	 * @param $patch String: Path to the patch file
+	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
+	 */
+	function dropIndex( $table, $index, $patch, $fullpath = false ) {
+		if ( $this->db->indexExists( $table, $index ) ) {
+			wfOut( "Dropping $index from table $table... " );
+			$this->applyPatch( $patch, $fullpath );
+			wfOut( "ok\n" );
+		} else {
+			wfOut( "...$index key doesn't exist.\n" );
+		}
+	}
+
+	/**
 	 * Modify an existing field
 	 *
 	 * @param $table String: name of the table to which the field belongs

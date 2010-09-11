@@ -45,8 +45,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'iwlinks',   'iwl_prefix_title_from', 'patch-rename-iwl_prefix.sql' ),
 			array( 'addField', 'updatelog', 'ul_value',              'patch-ul_value.sql' ),
 			array( 'addField', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
-			array( 'drop_index_if_exists', 'iwlinks', 'iwl_prefix',  'patch-kill-iwl_prefix.sql' ),
-			array( 'drop_index_if_exists', 'iwlinks', 'iwl_prefix_from_title', 'patch-kill-iwl_pft.sql' ),
+			array( 'dropIndex', 'iwlinks', 'iwl_prefix',  'patch-kill-iwl_prefix.sql' ),
+			array( 'dropIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-kill-iwl_pft.sql' ),
 			array( 'addTable', 'msg_resource',                      'patch-msg_resource.sql' ),
 			array( 'addTable', 'module_deps',                       'patch-module_deps.sql' ),
 		);
