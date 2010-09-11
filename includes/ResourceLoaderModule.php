@@ -967,23 +967,21 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Add a well-known start-up function
 			$scripts .= "window.startUp = function() { $registration mediaWiki.config.set( $config ); };";
 			// Build load query for jquery and mediawiki modules
-			$query = wfArrayToCGI(
-				array(
-					'modules' => implode( '|', array( 'jquery', 'mediawiki' ) ),
-					'only' => 'scripts',
-					'lang' => $context->getLanguage(),
-					'dir' => $context->getDirection(),
-					'skin' => $context->getSkin(),
-					'debug' => $context->getDebug(),
-					'version' => wfTimestamp( TS_ISO_8601, round( max(
-						ResourceLoader::getModule( 'jquery' )->getModifiedTime( $context ),
-						ResourceLoader::getModule( 'mediawiki' )->getModifiedTime( $context )
-					), -2 ) )
-				)
+			$query = array(
+				'modules' => implode( '|', array( 'jquery', 'mediawiki' ) ),
+				'only' => 'scripts',
+				'lang' => $context->getLanguage(),
+				'skin' => $context->getSkin(),
+				'debug' => $context->getDebug() ? 'true' : 'false',
+				'version' => wfTimestamp( TS_ISO_8601, round( max(
+					ResourceLoader::getModule( 'jquery' )->getModifiedTime( $context ),
+					ResourceLoader::getModule( 'mediawiki' )->getModifiedTime( $context )
+				), -2 ) )
 			);
-
+			// Uniform query order
+			ksort( $query );
 			// Build HTML code for loading jquery and mediawiki modules
-			$loadScript = Html::linkedScript( "$wgLoadScript?$query" );
+			$loadScript = Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) );
 			// Add code to add jquery and mediawiki loading code; only if the current client is compatible
 			$scripts .= "if ( isCompatible() ) { document.write( '$loadScript' ); }";
 			// Delete the compatible function - it's not needed anymore

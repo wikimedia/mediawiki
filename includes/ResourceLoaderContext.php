@@ -110,7 +110,8 @@ class ResourceLoaderContext {
 
 	public function getHash() {
 		return isset( $this->hash ) ?
-			$this->hash : $this->hash =
-				implode( '|', array( $this->language, $this->skin, $this->user, $this->debug, $this->only ) );
+			$this->hash : $this->hash = implode( '|', array(
+				$this->language, $this->direction, $this->skin, $this->user, $this->debug, $this->only
+			) );
 	}
 }
