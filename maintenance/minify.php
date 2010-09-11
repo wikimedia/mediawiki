@@ -48,13 +48,12 @@ class MinifyScript extends Maintenance {
 			$inDir = dirname( $inPath );
 
 			if ( strpos( $inName, '.min.' ) !== false ) {
-				echo "Skipping $inName\n";
+				$this->error( "Skipping $inName\n" );
 				continue;
 			}
 
 			if ( !file_exists( $inPath ) ) {
-				$this->error( "File does not exist: $arg" );
-				exit( 1 );
+				$this->error( "File does not exist: $arg", true );
 			}
 
 			$extension = $this->getExtension( $inName );
@@ -80,7 +79,7 @@ class MinifyScript extends Maintenance {
 
 	public function minify( $inPath, $outPath ) {
 		$extension = $this->getExtension( $inPath );
-		echo basename( $inPath ) . ' -> ' . basename( $outPath ) . '...';
+		$this->output( basename( $inPath ) . ' -> ' . basename( $outPath ) . '...' );
 
 		$inText = file_get_contents( $inPath );
 		if ( $inText === false ) {
@@ -103,7 +102,7 @@ class MinifyScript extends Maintenance {
 
 		fwrite( $outFile, $outText );
 		fclose( $outFile );
-		echo " ok\n";
+		$this->output( " ok\n" );
 	}
 }
 
