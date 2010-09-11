@@ -182,7 +182,6 @@ wfSuppressWarnings();
 date_default_timezone_set( date_default_timezone_get() );
 wfRestoreWarnings();
 
-$wgIP = false; # Load on demand
 # Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
 $wgRequest = new WebRequest;
 
