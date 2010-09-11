@@ -237,7 +237,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Get an array of updates to perform on the database. Should return a
-	 * mutli-dimensional array. The main key is the MediaWiki version (1.12,
+	 * multi-dimensional array. The main key is the MediaWiki version (1.12,
 	 * 1.13...) with the values being arrays of updates, identical to how
 	 * updaters.inc did it (for now)
 	 *

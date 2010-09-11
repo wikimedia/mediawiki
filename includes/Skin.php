@@ -481,7 +481,7 @@ class Skin extends Linker {
 	 * @private
 	 */
 	function setupUserCss( OutputPage $out ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest;
 		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs, $wgSquidMaxage;
 
 		wfProfileIn( __METHOD__ );

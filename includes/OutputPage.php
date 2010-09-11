@@ -2332,7 +2332,7 @@ class OutputPage {
 	 * @return String: HTML fragment
 	 */
 	function getHeadScripts( Skin $sk ) {
-		global $wgUser, $wgRequest, $wgJsMimeType;
+		global $wgUser, $wgRequest;
 		global $wgUseSiteJs;
 		
 		// Statup - this will immediately load jquery and mediawiki modules

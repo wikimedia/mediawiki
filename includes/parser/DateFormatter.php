@@ -271,7 +271,7 @@ class DateFormatter
 			$isoBits[] = $bits['y'];
 		$isoBits[] = $bits['m'];
 		$isoBits[] = $bits['d'];
-		$isoDate = implode( '-', $isoBits );;
+		$isoDate = implode( '-', $isoBits );
 		
 		// Output is not strictly HTML (it's wikitext), but <span> is whitelisted.
 		$text = Html::rawElement( 'span',
