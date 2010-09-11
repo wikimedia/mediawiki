@@ -121,7 +121,7 @@ class UserMailer {
 				$emails .= $t->toString() . ",";
 			}
 			$emails = rtrim( $emails, ',' );
-			wfDebug( __METHOD__.': sending mail to ' . implode( ',', $to ) . "\n" );
+			wfDebug( __METHOD__.': sending mail to ' . $emails . "\n" );
 		} else {
 			wfDebug( __METHOD__.': sending mail to ' . implode( ',', array( $to->toString() ) ) . "\n" );
 		}
