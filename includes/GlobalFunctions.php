@@ -3331,9 +3331,8 @@ function wfCountDown( $n ) {
  *              characters before hashing.
  */
 function wfGenerateToken( $salt = '' ) {
- 	$salt = serialize( $salt );
-
- 	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
+	$salt = serialize( $salt );
+	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
 }
 
 /**
