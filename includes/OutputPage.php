@@ -2286,13 +2286,13 @@ class OutputPage {
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$query = array(
 			'lang' => $wgLang->getCode(),
-			'debug' => $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) !== 'false',
+			'debug' => ( $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) == 'true' ) ? 'true' : 'false',
 			'skin' => $wgUser->getSkin()->getSkinName(),
 			'only' => $only,
 		);
 		$moduleGroups = array( null => array(), 'user' => array() );
-		foreach ( (array) $modules as $module ) {
-			$moduleGroups[strpos( $module, 'user' ) === 0 ? 'user' : null][] = $module;
+		foreach ( (array) $modules as $name ) {
+			$moduleGroups[strpos( $name, 'user' ) === 0 ? 'user' : null][] = $name;
 		}
 		$links = '';
 		foreach ( $moduleGroups as $group => $modules ) {
@@ -2301,6 +2301,16 @@ class OutputPage {
 				if ( $group === 'user' ) {
 					$query['user'] = $wgUser->getName();
 				}
+				$context = new ResourceLoaderContext( new FauxRequest( $query ) );
+				$timestamp = 0;
+				foreach ( $modules as $name ) {
+					if ( $module = ResourceLoader::getModule( $name ) ) {
+						$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
+					}
+				}
+				$query['version'] = wfTimestamp( TS_ISO_8601, round( $timestamp, -2 ) );
+				// Make queries uniform in order
+				ksort( $query );
 				// Automatically select style/script elements
 				if ( $only === 'styles' ) {
 					$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) );
