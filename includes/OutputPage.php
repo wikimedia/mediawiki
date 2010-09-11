@@ -2297,6 +2297,7 @@ class OutputPage {
 		$links = '';
 		foreach ( $moduleGroups as $group => $modules ) {
 			if ( count( $modules ) ) {
+				sort( $modules );
 				$query['modules'] = implode( '|', array_unique( (array) $modules ) );
 				if ( $group === 'user' ) {
 					$query['user'] = $wgUser->getName();
