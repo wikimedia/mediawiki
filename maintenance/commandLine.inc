@@ -5,6 +5,7 @@
  */
 require( dirname( __FILE__ ) . '/Maintenance.php' );
 
+global $optionsWithArgs;
 if ( !isset( $optionsWithArgs ) ) {
     $optionsWithArgs = array();
 }
