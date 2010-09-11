@@ -357,7 +357,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to the local alias.
 * (bug 24296) Added converttitles parameter to convert titles to their
   canonical language variant.
-* Fixed "link" parameter in image links with "thumb" parameter.
+* (bug 17398) Fixed "link" parameter in image links with "thumb" or "frame" parameter.
 * (bug 23936) Add "displaytitle" to query/info API
 * (bug 24485) Make iwbacklinks a generator, optionally display iwprefix and
   iwtitle
