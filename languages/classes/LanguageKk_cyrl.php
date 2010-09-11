@@ -23,14 +23,14 @@ class LanguageKk_cyrl extends Language {
 		// Set up some constants...
 		// Vowels in last syllable
 		$frontVowels = array( "е", "ө", "ү", "і", "ә", "э", "я", "ё", "и" );
-		//$backVowels = array( "а", "о", "ұ", "ы" );
+		$backVowels = array( "а", "о", "ұ", "ы" );
 		$allVowels = array( "е", "ө", "ү", "і", "ә", "э", "а", "о", "ұ", "ы", "я", "ё", "и" );
 		// Preceding letters
-		//$Nasals = array( "м", "н", "ң" );
-		//$Sonants = array( "и", "й", "л", "р", "у", "ю" );
+		$Nasals = array( "м", "н", "ң" );
+		$Sonants = array( "и", "й", "л", "р", "у", "ю" );
 		$Consonants = array( "п", "ф", "к", "қ", "т", "ш", "с", "х", "ц", "ч", "щ", "б", "в", "г", "д" );
-		//$Sibilants = array( "ж", "з" );
-		//$Sonorants = array( "и", "й", "л", "р", "у", "ю", "м", "н", "ң", "ж", "з" );
+		$Sibilants = array( "ж", "з" );
+		$Sonorants = array( "и", "й", "л", "р", "у", "ю", "м", "н", "ң", "ж", "з" );
 
 		// Possessives
 		$firstPerson = array( "м", "ң" ); // 1st singular, 2nd unformal
