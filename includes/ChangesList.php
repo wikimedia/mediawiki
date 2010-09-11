@@ -608,7 +608,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->lastdate = '';
 		$this->rclistOpen = false;
 		$wgOut->addModules( 'mediawiki.legacy.enhancedchanges' );
-		return $script;
+		return '';
 	}
 	/**
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
