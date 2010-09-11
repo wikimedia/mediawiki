@@ -24,7 +24,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	public function getDbType() {
-		return self::DB_ADMIN;
+		return Maintenance::DB_ADMIN;
 	}
 
 	public function execute() {
@@ -34,7 +34,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
 
-		if ( !isset( $options['skip-compat-checks'] ) ) {
+		if ( !isset( $this->mOptions['skip-compat-checks'] ) ) {
 			install_version_checks();
 		} else {
 			$this->output( "Skipping compatibility checks, proceed at your own risk (Ctrl+C to abort)\n" );
