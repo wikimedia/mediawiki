@@ -1,5 +1,6 @@
 <?php
 
+require_once 'api/ApiSetup.php';
 
 class UploadFromUrlTest extends ApiTestSetup {
 
