@@ -39,6 +39,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'recentchanges', 'rc_patrolled',     'patch-rc-patrol.sql' ),
 			array( 'addTable', 'logging',                           'patch-logging.sql' ),
 			array( 'addField', 'user',          'user_token',       'patch-user_token.sql' ),
+			array( 'addField', 'watchlist',     'wl_notificationtimestamp', 'patch-email-notification.sql' ),
 			array( 'do_watchlist_update' ),
 			array( 'dropField', 'user',         'user_emailauthenticationtimestamp', 'patch-email-authentication.sql' ),
 
