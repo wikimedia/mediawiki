@@ -125,13 +125,12 @@ class UsersPager extends AlphabeticPager {
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
 		$name = $this->getSkin()->link( $userPage, htmlspecialchars( $userPage->getText() ) );
 
-		if( $row->numgroups > 1 || ( $this->requestedGroup && $row->numgroups == 1 ) ) {
+		$groups_list = self::getGroups( $row->user_id );
+		if( count( $groups_list ) > 0 ) {
 			$list = array();
-			foreach( self::getGroups( $row->user_id ) as $group )
+			foreach( $groups_list as $group )
 				$list[] = self::buildGroupLink( $group );
 			$groups = $wgLang->commaList( $list );
-		} elseif( $row->numgroups == 1 ) {
-			$groups = self::buildGroupLink( $row->singlegroup );
 		} else {
 			$groups = '';
 		}
