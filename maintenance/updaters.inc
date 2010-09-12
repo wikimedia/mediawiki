@@ -56,20 +56,11 @@ function do_image_name_unique_update() {
 
 function do_watchlist_update() {
 	$dbw = wfGetDB( DB_MASTER );
-	if ( $dbw->fieldExists( 'watchlist', 'wl_notificationtimestamp' ) ) {
-		wfOut( "...the watchlist table is already set up for email notification.\n" );
-	} else {
-		wfOut( "Adding wl_notificationtimestamp field for email notification management." );
-		/* ALTER TABLE watchlist ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0'); */
-		$dbw->sourceFile( archive( 'patch-email-notification.sql' ) );
-		wfOut( "ok\n" );
-	}
 	# Check if we need to add talk page rows to the watchlist
 	$talk = $dbw->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', __METHOD__ );
 	$nontalk = $dbw->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', __METHOD__ );
 	if ( $talk != $nontalk ) {
 		wfOut( "Adding missing watchlist talk page rows... " );
-		flush();
 
 		$dbw->insertSelect( 'watchlist', 'watchlist',
 			array(
@@ -278,7 +269,6 @@ function do_pagelinks_update() {
 		wfOut( "Converting links and brokenlinks tables to pagelinks... " );
 		$dbw->sourceFile( archive( 'patch-pagelinks.sql' ) );
 		wfOut( "ok\n" );
-		flush();
 
 		global $wgCanonicalNamespaceNames;
 		foreach ( $wgCanonicalNamespaceNames as $ns => $name ) {
