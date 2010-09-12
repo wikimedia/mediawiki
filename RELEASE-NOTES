@@ -315,6 +315,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6204) TOC not properly rendered when using $wgMaxTocLevel
 * (bug 24977) The accesskey in history page now lead directly to the diff 
   instead of alterning focus between the two buttons.
+* (bug 24987) Special:ListUsers does not take external groups into account
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
