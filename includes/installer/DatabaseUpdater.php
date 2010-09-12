@@ -135,6 +135,7 @@ abstract class DatabaseUpdater {
 		if( $purge ) {
 			$this->purgeCache();
 		}
+		$this->checkStats();
 	}
 
 	/**
@@ -376,4 +377,22 @@ abstract class DatabaseUpdater {
 		$this->db->delete( 'objectcache', '*', __METHOD__ );
 		wfOut( "done.\n" );
 	}
+
+	/**
+	 * Check the site_stats table is not properly populated.
+	 */
+	protected function checkStats() {
+		wfOut( "Checking site_stats row..." );
+		$row = $this->db->selectRow( 'site_stats', '*', array( 'ss_row_id' => 1 ), __METHOD__ );
+		if ( $row === false ) {
+			wfOut( "data is missing! rebuilding...\n" );
+		} elseif ( isset( $row->site_stats ) && $row->ss_total_pages == -1 ) {
+			wfOut( "missing ss_total_pages, rebuilding...\n" );
+		} else {
+			wfOut( "done.\n" );
+			return;
+		}
+		SiteStatsInit::doAllAndCommit( false );
+	}
+
 }

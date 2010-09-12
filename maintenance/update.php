@@ -59,21 +59,11 @@ class UpdateMediaWiki extends Maintenance {
 		$updater = DatabaseUpdater::newForDb( $db, $shared );
 		$updater->doUpdates( $purge );
 
-		if ( !defined( 'MW_NO_SETUP' ) ) {
-			define( 'MW_NO_SETUP', true );
-		}
-
 		foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
-			call_user_func_array( array( new $maint, 'execute' ), array() );
+			$this->runChild( $maint )->execute();
 		}
 
-		if ( $db->getType() === 'postgres' ) {
-			return;
-		}
-
-		do_stats_init();
-
-		$this->output( "Done.\n" );
+		$this->output( "\nDone.\n" );
 	}
 
 	protected function afterFinalSetup() {

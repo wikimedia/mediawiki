@@ -567,21 +567,6 @@ function maybe_do_profiling_memory_update() {
 	}
 }
 
-function do_stats_init() {
-	// Sometimes site_stats table is not properly populated.
-	wfOut( "\nChecking site_stats row..." );
-	$row = wfGetDB( DB_MASTER )->selectRow( 'site_stats', '*', array( 'ss_row_id' => 1 ), __METHOD__ );
-	if ( $row === false ) {
-		wfOut( "data is missing! rebuilding...\n" );
-	} elseif ( isset( $row->site_stats ) && $row->ss_total_pages == -1 ) {
-		wfOut( "missing ss_total_pages, rebuilding...\n" );
-	} else {
-		wfOut( "ok.\n" );
-		return;
-	}
-	SiteStatsInit::doAllAndCommit( false );
-}
-
 function do_active_users_init() {
 	$dbw = wfGetDB( DB_MASTER );
 	$activeUsers = $dbw->selectField( 'site_stats', 'ss_active_users', false, __METHOD__ );
