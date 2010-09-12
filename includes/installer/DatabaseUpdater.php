@@ -54,11 +54,8 @@ abstract class DatabaseUpdater {
 	 * something much nicer
 	 */
 	private function initOldGlobals() {
-		global $wgUpdates, $wgExtNewTables, $wgExtNewFields, $wgExtPGNewFields,
+		global $wgExtNewTables, $wgExtNewFields, $wgExtPGNewFields,
 			$wgExtPGAlteredFields, $wgExtNewIndexes, $wgExtModifiedFields;
-
-		// Deprecated. Do not use, ever.
-		$wgUpdates = array();
 
 		# For extensions only, should be populated via hooks
 		# $wgDBtype should be checked to specifiy the proper file
@@ -197,26 +194,20 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Before 1.17, we used to handle updates via stuff like $wgUpdates,
+	 * Before 1.17, we used to handle updates via stuff like
 	 * $wgExtNewTables/Fields/Indexes. This is nasty :) We refactored a lot
 	 * of this in 1.17 but we want to remain back-compatible for awhile. So
 	 * load up these old global-based things into our update list.
 	 */
 	protected function getOldGlobalUpdates() {
-		global $wgUpdates, $wgExtNewFields, $wgExtNewTables,
-			$wgExtModifiedFields, $wgExtNewIndexes, $wgSharedDB, $wgSharedTables;
+		global $wgExtNewFields, $wgExtNewTables, $wgExtModifiedFields,
+			$wgExtNewIndexes, $wgSharedDB, $wgSharedTables;
 
 		$doUser = $this->shared ?
 			$wgSharedDB && in_array( 'user', $wgSharedTables ) :
 			!$wgSharedDB || !in_array( 'user', $wgSharedTables );
 
 		$updates = array();
-
-		if( isset( $wgUpdates[ $this->db->getType() ] ) ) {
-			foreach( $wgUpdates[ $this->db->getType() ] as $upd ) {
-				$updates[] = $upd;
-			}
-		}
 
 		foreach ( $wgExtNewTables as $tableRecord ) {
 			$updates[] = array(
