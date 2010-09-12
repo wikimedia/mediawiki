@@ -1,5 +1,7 @@
 <?php
 
+require_once 'ApiSetup.php';
+
 class ApiWatchTest extends ApiTestSetup {
 
 	function setUp() {
