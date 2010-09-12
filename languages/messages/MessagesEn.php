@@ -1638,7 +1638,7 @@ Note that using the navigation links will reset this column.',
 'shown-title'                      => 'Show $1 {{PLURAL:$1|result|results}} per page',
 'viewprevnext'                     => 'View ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Search options',
-'searchmenu-exists'                => "'''There is a page named \"[[:\$1]]\" on this wiki'''",
+'searchmenu-exists'                => "'''There is a page named \"[[:\$1]]\" on this wiki.'''",
 'searchmenu-new'                   => "'''Create the page \"[[:\$1]]\" on this wiki!'''",
 'searchmenu-new-nocreate'          => '', # do not translate or duplicate this message to other languages
 'searchhelp-url'                   => 'Help:Contents',
