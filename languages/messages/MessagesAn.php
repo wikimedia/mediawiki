@@ -137,7 +137,7 @@ $messages = array(
 'tog-editsection'             => 'Activar a edición por seccions usando os vinclos [editar]',
 'tog-editsectiononrightclick' => "Activar a edición de seccions punchando con o botón dreito d'o ratet <br /> en os títols de seccions (cal JavaScript)",
 'tog-showtoc'                 => "Amostrar l'endice (ta pachinas con más de 3 seccions)",
-'tog-rememberpassword'        => "Remerar o mío nombre d'usuario y contrasenya entre sesions en iste ordinador (como muito por $1 {{PLURAL:$1|día|días}})",
+'tog-rememberpassword'        => "Remerar o mío nombre d'usuario en iste navegador (como muito por $1 {{PLURAL:$1|día|días}})",
 'tog-watchcreations'          => 'Cosirar as pachinas que creye',
 'tog-watchdefault'            => 'Cosirar as pachinas que edite',
 'tog-watchmoves'              => 'Cosirar as pachinas que treslade',
@@ -2224,7 +2224,7 @@ as pachinas que s'han vandalizato).",
 ** Meter información falsa
 ** Borrar conteniu d'as pachinas
 ** Fer publicidat ficando vinclos con atras pachinas web
-** Meter sinconisions u basuera en as pachinas
+** Meter sinconisions u vasuera en as pachinas
 ** Portar-se de traza intimidatoria u violenta / atosegar
 ** Abusar de multiples cuentas
 ** Nombre d'usuario inacceptable",

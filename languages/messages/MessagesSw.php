@@ -760,7 +760,7 @@ Kama bado haifanyi kazi, jaribu [[Special:UserLogout|kutoka kwenye akaunti yako]
 '''Iwapo hili ni haririo la jaribio halali, tafadhali jaribu tena.'''
 Iwapo bado haifanyikazi, jaribu [[Special:UserLogout|kutoka]] na uingie tena.",
 'token_suffix_mismatch'            => "'''Uhariri wako umekataliwa kwa sababu koteja yako imeharibu herufi za ishara ya kuhariri.'''
-Uharirio umekataliwa ili kuzuia uharibifu wa maandishi ya kurasa.
+Haririo umekataliwa ili kuzuia uharibifu wa maandishi ya kurasa.
 Haya hutokea kwa muda ambao unatumia huduma ya seva ya wavu isiyotiwa jina na yenye hitilafu nyingi.",
 'editing'                          => 'Kuhariri $1',
 'editingsection'                   => 'Unahariri $1 (fungu)',
@@ -2131,9 +2131,9 @@ huenda ikawa mtu mwingine ameurudisha tayari.',
 'unlockbtn' => 'Fungua hifadhidata',
 
 # Move page
-'move-page'               => 'Hamisha $1',
-'move-page-legend'        => 'Sogeza ukurasa',
-'movepagetext'            => "Tumia fomu hapo chini ili kubadilisha jina la ukurasa, pamoja na kuhamisha historia yake yote katika jina jipya lile lile.
+'move-page'                    => 'Hamisha $1',
+'move-page-legend'             => 'Sogeza ukurasa',
+'movepagetext'                 => "Tumia fomu hapo chini ili kubadilisha jina la ukurasa, pamoja na kuhamisha historia yake yote katika jina jipya lile lile.
 Jina la awali litahamishwa na kuelekezwa kwa ukurasa wa jina jipya.
 Unaweza kurekebisha maelekezo yanayokwenda kwenye ukurasa wa zamani kwa kujiendesha.
 Usipotaka marekebisho yafanyike kwa kujiendesha, kumbuka kutafutia maelekezo [[Special:DoubleRedirects|mawilimawili]] au maelezo [[Special:BrokenRedirects|yenye hitilafu]].
@@ -2145,56 +2145,84 @@ Yaani unaweza kurudisha ukurasa kwenye jina la awali ukikosea, na haiwezekani ku
 '''ILANI!'''
 Kuhamisha ukurasa wenye wasomaji wengi kunaweza kuathirika watumiaji wetu.
 Tafadhali hakikisha kwamba unaelewa matokeo ya kitendo hiki kabla ya kuendelea.",
-'movepagetalktext'        => "Ukurasa wa majadiliano wa ukurasa huu utasogezwa pamoja yake
+'movepagetalktext'             => "Ukurasa wa majadiliano wa ukurasa huu utasogezwa pamoja yake
 '''ila:'''
 *tayari kuna ukurasa wa majadiliano (usiyo tupu) kwenye jina jipya, au
 *ukifuta tiki katika kisanduku hapa chini.
 
 Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa kwa mkono ukitaka.",
-'movearticle'             => "Ukurasa wa majadiliano wa ukurasa huu utasogezwa pamoja yake '''ila:'''
+'movearticle'                  => "Ukurasa wa majadiliano wa ukurasa huu utasogezwa pamoja yake '''ila:'''
 *tayari kuna ukurasa wa majadiliano (usiyo tupu) kwenye jina jipya, au
 *ukifuta tiki katika kisanduku hapa chini.
 
 Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa kwa mkono ukitaka.",
-'movenologin'             => 'Hujaingia',
-'movenologintext'         => 'Lazima uwe mtumiaji uliyesajiliwa na [[Special:UserLogin|uliyeingizwa]] ili uhamishe ukurasa.',
-'movenotallowed'          => 'Huna ruhusa ya kuhamisha kurasa.',
-'movenotallowedfile'      => 'Huna ruhusa ya kuhamisha mafaili.',
-'cant-move-user-page'     => 'Huna ruhusa kuhamisha ukurasa wa mtumiaji (isopokuwa ukurasa tanzu).',
-'cant-move-to-user-page'  => 'Huna ruhusa ya kuhamisha ukurasa katika ukurasa wa mtumiaji (isipokuwa katika ukurasa tanzu wa mtumiaji).',
-'newtitle'                => 'Kuelekeza jina jipya:',
-'move-watch'              => 'Fuatilia ukurasa huu',
-'movepagebtn'             => 'Sogeza ukurasa',
-'pagemovedsub'            => 'Umefaulu kuhamisha ukurasa',
-'movepage-moved'          => '\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'',
-'movepage-moved-redirect' => 'Elekezo limetengenezwa.',
-'articleexists'           => 'Tayari kuna ukurasa wenye jina hilo, au
+'movenologin'                  => 'Hujaingia',
+'movenologintext'              => 'Lazima uwe mtumiaji uliyesajiliwa na [[Special:UserLogin|uliyeingizwa]] ili uhamishe ukurasa.',
+'movenotallowed'               => 'Huna ruhusa ya kuhamisha kurasa.',
+'movenotallowedfile'           => 'Huna ruhusa ya kuhamisha mafaili.',
+'cant-move-user-page'          => 'Huna ruhusa kuhamisha ukurasa wa mtumiaji (isopokuwa ukurasa tanzu).',
+'cant-move-to-user-page'       => 'Huna ruhusa ya kuhamisha ukurasa katika ukurasa wa mtumiaji (isipokuwa katika ukurasa tanzu wa mtumiaji).',
+'newtitle'                     => 'Kuelekeza jina jipya:',
+'move-watch'                   => 'Fuatilia ukurasa huu',
+'movepagebtn'                  => 'Sogeza ukurasa',
+'pagemovedsub'                 => 'Umefaulu kuhamisha ukurasa',
+'movepage-moved'               => '\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'',
+'movepage-moved-redirect'      => 'Elekezo limetengenezwa.',
+'articleexists'                => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',
-'talkexists'              => "'''Ukurasa wenyewe ulisogezwa salama, lakini ukurasa wake wa majadiliano haujasogezwa kwa sababu tayari kuna ukurasa wenye jina lake.  Tafadhali ziunganishe kwa mkono.'''",
-'movedto'                 => 'imesogezwa hadi',
-'movetalk'                => 'Sogeza ukurasa wake wa majadiliano',
-'move-subpages'           => 'Hamisha kurasa tanzu (hadi $1)',
-'move-talk-subpages'      => 'Hamisha kurasa tanzu za ukurasa wa majadiliano (hadi $1)',
-'1movedto2'               => '[[$1]] umesogezwa hapa [[$2]]',
-'1movedto2_redir'         => 'alihamisha [[$1]] kwenda [[$2]] kwa kutengeneza elekezo',
-'movelogpage'             => 'Kumbukumbu ya uhamiaji',
-'movelogpagetext'         => 'Hapo chini panaorodheshwa kurasa zote zilizohamishwa.',
-'movesubpage'             => '{{PLURAL:$1|Ukurasa tanzu|Kurasa tanzu}}',
-'movesubpagetext'         => 'Ukurasa huu una {{PLURAL:$1|ukurasa tanzu unao|kurasa tanzu $1 zinazo}}onyeshwa hapo.',
-'movenosubpage'           => 'Ukurasa huu hauna kurasa tanzu.',
-'movereason'              => 'Sababu:',
-'revertmove'              => 'rejesha',
-'delete_and_move'         => 'Kufuta na kuhamisha',
-'delete_and_move_confirm' => 'Ndiyo, ukurasa ufutwe',
+'talkexists'                   => "'''Ukurasa wenyewe ulisogezwa salama, lakini ukurasa wake wa majadiliano haujasogezwa kwa sababu tayari kuna ukurasa wenye jina lake.  Tafadhali ziunganishe kwa mkono.'''",
+'movedto'                      => 'imesogezwa hadi',
+'movetalk'                     => 'Sogeza ukurasa wake wa majadiliano',
+'move-subpages'                => 'Hamisha kurasa tanzu (hadi $1)',
+'move-talk-subpages'           => 'Hamisha kurasa tanzu za ukurasa wa majadiliano (hadi $1)',
+'1movedto2'                    => '[[$1]] umesogezwa hapa [[$2]]',
+'1movedto2_redir'              => 'alihamisha [[$1]] kwenda [[$2]] kwa kutengeneza elekezo',
+'movelogpage'                  => 'Kumbukumbu ya uhamiaji',
+'movelogpagetext'              => 'Hapo chini panaorodheshwa kurasa zote zilizohamishwa.',
+'movesubpage'                  => '{{PLURAL:$1|Ukurasa tanzu|Kurasa tanzu}}',
+'movesubpagetext'              => 'Ukurasa huu una {{PLURAL:$1|ukurasa tanzu unao|kurasa tanzu $1 zinazo}}onyeshwa hapo.',
+'movenosubpage'                => 'Ukurasa huu hauna kurasa tanzu.',
+'movereason'                   => 'Sababu:',
+'revertmove'                   => 'rejesha',
+'delete_and_move'              => 'Kufuta na kuhamisha',
+'delete_and_move_confirm'      => 'Ndiyo, ukurasa ufutwe',
+'immobile-target-namespace-iw' => 'Kiungo kinachoelekea wiki nyingine hakiwezi kuwa ukurasa wa mwishilio wa kuhamisha ukurasa.',
+'immobile-source-page'         => 'Ukurasa huu hauwezi kuhamishwa.',
+'immobile-target-page'         => 'Kuhamisha katika jina hilo la mwishilio haiwezikani.',
+'imagenocrossnamespace'        => 'Faili linaweza kuhamishwa katika eneo la wiki la faili tu.',
+'nonfile-cannot-move-to-file'  => 'Ni mafaili tu yanayoweza kuhamishwa katika eneo la faili',
+'imageinvalidfilename'         => 'Jina la faili la mwishilio ni batili',
+'fix-double-redirects'         => 'Sasisha maelekezo yanayoelekeza jina lililopita la faili',
+'move-leave-redirect'          => 'Weka elekezo mahali pake',
+'protectedpagemovewarning'     => "'''Ilani:''' Ukurasa huu umelindwa, kwa hiyo ni watumiaji wenye wezo za wakabidhi tu wanaoweza  kuuhamisha.
+Kumbukumbu ya mwisho inaandikwa chini:",
+'semiprotectedpagemovewarning' => "'''Ilani:''' Ukurasa huu umelindwa, kwa hiyo ni watumiaji waliosajiliwa tu wanaoweza  kuuhamisha.
+Kumbukumbu ya mwisho inaandikwa chini:",
+'move-over-sharedrepo'         => '== Faili linapatikana ==
+[[:$1]] lipo katika hifadhi ya pamoja. Ukihamisha faili kwa jina hili litapuuza faili la hifadhi ya pamoja.',
+'file-exists-sharedrepo'       => 'Jina la faili ulilolichagua linatumiwa tayari katika hifadhi ya pamoja.
+Tafadhali chagua jina lingine.',
 
 # Export
-'export'            => 'Hamisha kurasa',
+'export'            => 'Peleka kurasa',
+'exporttext'        => 'Unaweza kupeleka nakala za maandishi ya kurasa fulani, pamoja na mapitio yao, kwa kuiviringishia na XML.
+Nakala hizi zinaweza kuletwa katika wiki nyingine ya MediaWiki kwa kupitia [[Special:Import|ukurasa wa kuleta]].
+
+Kupeleka kurasa, andika majina yao katika sanduku chini, jina moja kwa kila mstari. Chagua kupeleka ama haririo ya kisasa pamoja na mapitio yote ya awali na maelezo ya historia, ama haririo ya kisasa pamoja na maelezo ya haririo la mwisho tu.
+
+Ukipeleka haririo ya kisasa tu, unaweza kutumia kiungo kinachokwenda ukurasa wa chanzo, kwa mfano [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] kwa ajili ya ukurasa wa "[[{{MediaWiki:Mainpage}}]]".',
+'exportcuronly'     => 'Peleka haririo la kisasa tu, bila mapitio ya awali',
+'exportnohistory'   => "----
+'''Ilani:''' Kupeleka mapitio yote ya kurasa kwa kutumia fomu hii kumesimamishwa ili utendaji wa tovuti isiathiriwe.",
+'export-submit'     => 'Peleka',
 'export-addcattext' => 'Ongeza kurasa kutoka jamii:',
 'export-addcat'     => 'Ongeza',
 'export-addnstext'  => 'Ongeza kurasa kutoka eneo la wiki:',
 'export-addns'      => 'Ongeza',
 'export-download'   => 'Hifadhi kama faili',
+'export-templates'  => 'Peleka pamoja na vigezo vyote',
+'export-pagelinks'  => 'Ni pamoja na kurasa zinazoungwa kwa kina cha:',
 
 # Namespace 8 related
 'allmessages'                   => 'Jumbe za mfumo',
@@ -2214,9 +2242,10 @@ Ukitaka kusaidia kazi ya kutohoa MediaWiki yote katika lugha nyingi, tafadhali u
 'allmessages-filter-submit'     => 'Uende',
 
 # Thumbnails
-'thumbnail-more'  => 'Kuza',
-'filemissing'     => 'Faili halipo',
-'thumbnail_error' => 'Hitilafu kutengeneza picha ndogo: $1',
+'thumbnail-more'          => 'Kuza',
+'filemissing'             => 'Faili halipo',
+'thumbnail_error'         => 'Hitilafu kutengeneza picha ndogo: $1',
+'thumbnail_image-missing' => 'Faili halipatikani: $1',
 
 # Special:Import
 'import'                     => 'Kuleta kurasa',
@@ -2225,14 +2254,23 @@ Ukitaka kusaidia kazi ya kutohoa MediaWiki yote katika lugha nyingi, tafadhali u
 Tarehe za mapitio na majina ya wahariri zitaletwa pia.
 Vitendo vyote vya kuleta kutoka wiki nyingine vinaandikwa katika [[Special:Log/import|kumbukumbu za kuleta]].',
 'import-interwiki-source'    => 'Wiki/ukurasa wa chanzo:',
+'import-interwiki-history'   => 'Leta pamoja na mapitio yote ya ukurasa huu',
 'import-interwiki-templates' => 'Leta pamoja na vigezo vyote',
 'import-interwiki-submit'    => 'Leta',
 'import-interwiki-namespace' => 'Eneo la wiki la mwishilio:',
 'import-upload-filename'     => 'Jina la faili:',
 'import-comment'             => 'Maelezo:',
+'importtext'                 => 'Tafadhali upeleke faili kutoka wiki lake kwa kutumia [[Special:Export|zana ya kupeleka]].
+Ulihafadhi katika tarakalishi yako, halafu ulipakie hapa.',
 'importstart'                => 'Kurasa zinaletwa...',
 'import-revision-count'      => '{{PLURAL:$1|pitio|mapitio}} $1',
 'importnopages'              => 'Hakuna kurasa za kuleta.',
+'imported-log-entries'       => 'Kumbukumbu $1 {{PLURAL:$1|ililetwa|zililetwa}}.',
+'importfailed'               => 'Kuleta hakufaulu: <nowiki>$1</nowiki>',
+'importunknownsource'        => 'Aina ya kitu unacholeta haijulikani',
+'importcantopen'             => 'Faili lililoletwa halikuweza kufunguliwa',
+'importbadinterwiki'         => 'Kiungo kibovu kati za wiki',
+'importnotext'               => 'Tupu au bila maandishi',
 'importsuccess'              => 'Kuleta kumekamilishwa!',
 'import-token-mismatch'      => 'Data ya kipindi zilipotelewa.
 Tafadhali jaribu tena.',
@@ -2552,7 +2590,7 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 # action=purge
 'confirm_purge_button' => 'Sawa',
 'confirm-purge-top'    => 'Ghili ya ukurasa huu ifutwe?',
-'confirm-purge-bottom' => 'Unaposafisha ukurasa ghili yake inasafishwa na haririo wa kisasa unaonekana.',
+'confirm-purge-bottom' => 'Unaposafisha ukurasa ghili yake inasafishwa na haririo la kisasa linaonekana.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ukurasa uliotangulia',
