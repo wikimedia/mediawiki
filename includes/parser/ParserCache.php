@@ -37,14 +37,14 @@ class ParserCache {
 		}
 		$this->mMemc = $memCached;
 	}
-	
+
 	protected function getParserOutputKey( $article, $hash ) {
 		global $wgRequest;
-		
+
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
 		$pageid = $article->getID();
 		$renderkey = (int)($wgRequest->getVal('action') == 'render');
-		
+
 		$key = wfMemcKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
 		return $key;
 	}
@@ -55,17 +55,17 @@ class ParserCache {
 	}
 
 	/**
-	 * Provides an E-Tag suitable for the whole page. Note that $article 
-	 * is just the main wikitext. The E-Tag has to be unique to the whole 
-	 * page, even if the article itself is the same, so it uses the 
-	 * complete set of user options. We don't want to use the preference 
-	 * of a different user on a message just because it wasn't used in 
-	 * $article. For example give a Chinese interface to a user with 
-	 * English preferences. That's why we take into account *all* user 
+	 * Provides an E-Tag suitable for the whole page. Note that $article
+	 * is just the main wikitext. The E-Tag has to be unique to the whole
+	 * page, even if the article itself is the same, so it uses the
+	 * complete set of user options. We don't want to use the preference
+	 * of a different user on a message just because it wasn't used in
+	 * $article. For example give a Chinese interface to a user with
+	 * English preferences. That's why we take into account *all* user
 	 * options. (r70809 CR)
 	 */
 	function getETag( $article, $popts ) {
-		return 'W/"' . $this->getParserOutputKey( $article, 
+		return 'W/"' . $this->getParserOutputKey( $article,
 			$popts->optionsHash( ParserOptions::legacyOptions() ) ) .
 				"--" . $article->mTouched . '"';
 	}
@@ -80,19 +80,19 @@ class ParserCache {
 
 	/**
 	 * Used to provide a unique id for the PoolCounter.
-	 * It would be preferable to have this code in get() 
+	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
-	 * 
+	 *
 	 * Precondition: $article->checkTouched() has been called.
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
 		global $wgCacheEpoch;
-		
+
 		if( $popts instanceof User ) {
 			wfWarn( "Use of outdated prototype ParserCache::getKey( &\$article, &\$user )\n" );
 			$popts = ParserOptions::newFromUser( $popts );
 		}
-		
+
 		// Determine the options which affect this article
 		$optionsKey = $this->mMemc->get( $this->getOptionsKey( $article ) );
 		if ( $optionsKey != false ) {
@@ -102,12 +102,12 @@ class ParserCache {
 				wfDebug( "Parser options key expired, touched {$article->mTouched}, epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
 			}
-			
+
 			$usedOptions = $optionsKey->mUsedOptions;
 			wfDebug( "Parser cache options found.\n" );
 		} else {
 			# TODO: Fail here $wgParserCacheExpireTime after deployment unless $useOutdated
-			
+
 			$usedOptions = ParserOptions::legacyOptions();
 		}
 
@@ -131,7 +131,7 @@ class ParserCache {
 
 		// Having called checkTouched() ensures this will be loaded
 		$touched = $article->mTouched;
-		
+
 		$parserOutputKey = $this->getKey( $article, $popts, $useOutdated );
 		if ( $parserOutputKey === false ) {
 			wfProfileOut( __METHOD__ );
@@ -147,7 +147,7 @@ class ParserCache {
 		}
 
 		wfDebug( "Found.\n" );
-		
+
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			wfIncrStats( "pcache_miss_expired" );
 			$cacheTime = $value->getCacheTime();
@@ -168,13 +168,13 @@ class ParserCache {
 	public function save( $parserOutput, $article, $popts ) {
 		$expire = $parserOutput->getCacheExpiry();
 
-		if( $expire > 0 ) {			
+		if( $expire > 0 ) {
 			$now = wfTimestampNow();
 
-			$optionsKey = new CacheTime;			
+			$optionsKey = new CacheTime;
 			$optionsKey->mUsedOptions = $popts->usedOptions();
 			$optionsKey->updateCacheExpiry( $expire );
-			
+
 			$optionsKey->setCacheTime( $now );
 			$parserOutput->setCacheTime( $now );
 
