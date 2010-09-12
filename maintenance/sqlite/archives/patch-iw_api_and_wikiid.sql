@@ -15,3 +15,5 @@ CREATE TABLE /*_*/interwiki_tmp (
 INSERT INTO /*_*/interwiki_tmp SELECT iw_prefix, iw_url, '', '', iw_local, iw_trans FROM /*_*/interwiki;
 DROP TABLE /*_*/interwiki;
 ALTER TABLE /*_*/interwiki_tmp RENAME TO /*_*/interwiki;
+
+CREATE UNIQUE INDEX /*i*/iw_prefix ON /*_*/interwiki (iw_prefix);
