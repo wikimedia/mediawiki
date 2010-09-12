@@ -61,10 +61,10 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 		$checkUserBlock = false;
 	}
 
-	# Get --from 
+	# Get --from
 	$from = @$options['from'];
 
-	# Get sleep time. 
+	# Get sleep time.
 	$sleep = @$options['sleep'];
 	if ( $sleep ) $sleep = (int)$sleep;
 
@@ -92,17 +92,17 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 
 	# Batch "upload" operation
 	if ( ( $count = count( $files ) ) > 0 ) {
-	
+
 		foreach ( $files as $file ) {
 			$base = wfBaseName( $file );
-	
+
 			# Validate a title
 			$title = Title::makeTitleSafe( NS_FILE, $base );
 			if ( !is_object( $title ) ) {
 				echo( "{$base} could not be imported; a valid title cannot be produced\n" );
 				continue;
 			}
-	
+
 			if ( $from ) {
 				if ( $from == $title->getDBkey() ) {
 					$from = NULL;
@@ -149,49 +149,49 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 				$svar = 'added';
 			}
 
-            if ( isset( $options['source-wiki-url'] ) ) {
-                /* find comment text directly from source wiki, through MW's API */
-                $real_comment = getFileCommentFromSourceWiki( $options['source-wiki-url'], $base );
-                if ( $real_comment === false )
-                    $commentText = $comment;
-                else
-                    $commentText = $real_comment;
+			if ( isset( $options['source-wiki-url'] ) ) {
+				/* find comment text directly from source wiki, through MW's API */
+				$real_comment = getFileCommentFromSourceWiki( $options['source-wiki-url'], $base );
+				if ( $real_comment === false )
+					$commentText = $comment;
+				else
+					$commentText = $real_comment;
 
-                /* find user directly from source wiki, through MW's API */
-                $real_user = getFileUserFromSourceWiki( $options['source-wiki-url'], $base );
-                if ( $real_user === false ) {
-                    $wgUser = $user;
-                } else {
-                    $wgUser = User::newFromName( $real_user );
-                    if ( $wgUser === false ) {
-                        # user does not exist in target wiki
-                        echo ( "failed: user '$real_user' does not exist in target wiki." );
-                        continue;
-                    }
-                }
-            } else {
-                # Find comment text
-                $commentText = false;
+				/* find user directly from source wiki, through MW's API */
+				$real_user = getFileUserFromSourceWiki( $options['source-wiki-url'], $base );
+				if ( $real_user === false ) {
+					$wgUser = $user;
+				} else {
+					$wgUser = User::newFromName( $real_user );
+					if ( $wgUser === false ) {
+						# user does not exist in target wiki
+						echo ( "failed: user '$real_user' does not exist in target wiki." );
+						continue;
+					}
+				}
+			} else {
+				# Find comment text
+				$commentText = false;
 
-                if ( $commentExt ) {
-                    $f = findAuxFile( $file, $commentExt );
-                    if ( !$f ) {
-                        echo( " No comment file with extension {$commentExt} found for {$file}, using default comment. " );
-                    } else {
-                        $commentText = file_get_contents( $f );
-                        if ( !$f ) {
-                            echo( " Failed to load comment file {$f}, using default comment. " );
-                        }
-                    }
-                }
+				if ( $commentExt ) {
+					$f = findAuxFile( $file, $commentExt );
+					if ( !$f ) {
+						echo( " No comment file with extension {$commentExt} found for {$file}, using default comment. " );
+					} else {
+						$commentText = file_get_contents( $f );
+						if ( !$f ) {
+							echo( " Failed to load comment file {$f}, using default comment. " );
+						}
+					}
+				}
 
-                if ( !$commentText ) {
-                    $commentText = $comment;
-                }
-            }
+				if ( !$commentText ) {
+					$commentText = $comment;
+				}
+			}
 
 
-			# Import the file	
+			# Import the file
 			if ( isset( $options['dry'] ) ) {
 				echo( " publishing {$file} by '" . $wgUser->getName() . "', comment '$commentText'... " );
 			} else {
@@ -202,14 +202,14 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 					continue;
 				}
 			}
-			
+
 			$doProtect = false;
 			$restrictions = array();
-			
+
 			global $wgRestrictionLevels;
-			
+
 			$protectLevel = isset( $options['protect'] ) ? $options['protect'] : null;
-			
+
 			if ( $protectLevel && in_array( $protectLevel, $wgRestrictionLevels ) ) {
 					$restrictions['move'] = $protectLevel;
 					$restrictions['edit'] = $protectLevel;
@@ -234,19 +234,19 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 						// Wait for slaves.
 						sleep( 2.0 );
 						wfWaitForSlaves( 1.0 );
-						
+
 						echo( "\nSetting image restrictions ... " );
 						if ( $article->updateRestrictions( $restrictions ) )
-								echo( "done.\n" );
+							echo( "done.\n" );
 						else
-								echo( "failed.\n" );
+							echo( "failed.\n" );
 				}
 
 			} else {
 				echo( "failed.\n" );
 				$svar = 'failed';
 			}
-			
+
 			$$svar++;
 			$processed++;
 
@@ -256,7 +256,7 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 			if ( $sleep )
 				sleep( $sleep );
 		}
-		
+
 		# Print out some statistics
 		echo( "\n" );
 		foreach ( array( 'count' => 'Found', 'limit' => 'Limit', 'ignored' => 'Ignored',
@@ -265,7 +265,7 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 			if ( $$var > 0 )
 				echo( "{$desc}: {$$var}\n" );
 		}
-		
+
 	} else {
 		echo( "No suitable files could be found for import.\n" );
 	}
