@@ -380,17 +380,19 @@ Note that some pages may continue to be displayed as if you were still logged in
 'resetpass-temp-password'   => 'ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܢܝܬܐ:',
 
 # Edit page toolbar
-'bold_sample'   => 'ܟܬܒܬܐ ܥܒܝܬܐ',
-'bold_tip'      => 'ܟܬܒܬܐ ܥܒܝܬܐ',
-'italic_sample' => 'ܟܬܒܬܐ ܦܠܝܡܬܐ',
-'italic_tip'    => 'ܟܬܒܬܐ ܦܠܝܡܬܐ',
-'link_tip'      => 'ܐܣܘܪܐ ܓܘܝܐ',
-'extlink_tip'   => 'ܐܣܘܪܐ ܒܪܝܐ (ܕܟܘܪ http:// ܩܕܡܝܬܐ)',
-'media_tip'     => 'ܐܣܘܪܐ ܕܠܦܦܐ',
-'sig_tip'       => 'ܪܡܝ ܐܝܕܟ ܥܡ ܙܒܢܐ ܘܣܝܩܘܡܐ',
+'bold_sample'     => 'ܟܬܒܬܐ ܥܒܝܬܐ',
+'bold_tip'        => 'ܟܬܒܬܐ ܥܒܝܬܐ',
+'italic_sample'   => 'ܟܬܒܬܐ ܦܠܝܡܬܐ',
+'italic_tip'      => 'ܟܬܒܬܐ ܦܠܝܡܬܐ',
+'link_tip'        => 'ܐܣܘܪܐ ܓܘܝܐ',
+'extlink_tip'     => 'ܐܣܘܪܐ ܒܪܝܐ (ܕܟܘܪ http:// ܩܕܡܝܬܐ)',
+'headline_sample' => 'ܨܚܚܐ ܕܦܪܫܓܢܐ ܪܫܝܐ',
+'media_tip'       => 'ܐܣܘܪܐ ܕܠܦܦܐ',
+'sig_tip'         => 'ܪܡܝ ܐܝܕܟ ܥܡ ܙܒܢܐ ܘܣܝܩܘܡܐ',
 
 # Edit pages
 'summary'                          => 'ܦܣܝܩܬ̈ܐ ܕܫܘܚܠܦܐ:',
+'subject'                          => 'ܡܠܘܐܐ/ܦܪܫܓܢܐ ܪܫܝܐ:',
 'minoredit'                        => 'ܗܢܐ ܗܘ ܫܘܚܠܦܐ ܙܥܘܪܐ',
 'watchthis'                        => 'ܪܗܝ ܦܐܬܐ ܗܕܐ',
 'savearticle'                      => 'ܠܒܘܟ ܕܦܐ',
@@ -983,6 +985,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'unprotectedarticle'          => 'ܠܐ ܢܛܝܪܐ "[[$1]]"',
 'protect-legend'              => 'ܚܬܬ ܢܘܛܪܐ',
 'protectcomment'              => 'ܥܠܬܐ:',
+'protect-default'             => 'ܦܣܣܐ ܠܟܠ ܡܬܚܫܚܢ̈ܐ',
 'protect-fallback'            => 'ܒܥܝ "$1" ܦܣܣܐ',
 'protect-level-autoconfirmed' => 'ܚܪܘܡ ܡܦܠܚܢ̈ܐ ܚܕ̈ܬܐ ܘܠܐ ܥܠܝܠ̈ܐ',
 'protect-level-sysop'         => 'ܡܕܒܪ̈ܢܐ ܒܠܚܘܕ',
@@ -1005,6 +1008,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'viewdeletedpage'           => 'ܚܙܝ ܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ',
 'undelete-revision'         => 'ܫܦ ܬܢܝܬܐ ܕ $1 (ܒܣܝܩܘܡ $4, ܒ $5) ܒܝܕ $3:',
 'undelete-nodiff'           => 'ܠܝܬ ܬܢܝܬܐ ܥܬܝܩܬܐ.',
+'undeletelink'              => '↓ ܚܙܝ/ܐܦܢܝ',
 'undeleteviewlink'          => 'ܚܙܝ',
 'undeleteinvert'            => 'ܐܗܦܟ ܠܓܘܒܝܐ',
 'undelete-header'           => 'ܚܙܝ [[Special:Log/delete|ܣܓܠܐ ܕܫܝܦܐ]] ܠܚܙܝܐ ܕܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ ܚܕ̈ܬܬܐ.',
@@ -1053,6 +1057,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'whatlinkshere-hideredirs' => '$1 ܨܘܝܒ̈ܐ',
 'whatlinkshere-hidelinks'  => '$1 ܐܣܘܪ̈ܐ',
 'whatlinkshere-hideimages' => '$1 ܐܣܘܪܐ ܕܨܘܪܬܐ',
+'whatlinkshere-filters'    => '↓ ܡܨܦܝܢܝܬ̈ܐ',
 
 # Block/unblock
 'blockip'                    => 'ܚܪܘܡ ܡܦܠܚܢܐ',

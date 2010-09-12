@@ -4239,9 +4239,53 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-email-user' => 'ユーザ間同士の電子メールの許可',
 	'config-email-user-help' => '設定において有効になっている場合、全てのユーザがお互いに電子メールのやりとりを行うことを許可する。',
 	'config-email-usertalk' => 'ユーザのトークページにおける通知を有効にする',
+	'config-email-usertalk-help' => '設定で有効にしているならば、ユーザのトークページの変更の通知を受けることをユーザに許可する。',
+	'config-email-watchlist' => 'ウォッチリストの通知を有効にする',
+	'config-email-watchlist-help' => '設定で有効にしているならば、閲覧されたページに関する通知を受け取ることをユーザに許可する。',
+	'config-email-auth' => '電子メールの認証を有効にする',
+	'config-email-sender' => '電子メールのアドレスを返す:',
+	'config-upload-settings' => '画像およびファイルのアップロード',
+	'config-upload-enable' => 'ファイルのアップロードを有効にする',
+	'config-upload-help' => 'ファイルのアップロードは潜在的にあなたのサーバにセキュリティー上の危険をさらします。
+更なる情報のために、マニュアルの[http://www.mediawiki.org/wiki/Manual:Security security section] を読むことをすすめます。
+
+ファイルのアップロードを可能にするために、メディアウィキのルートディレクトリ下の<code>images</code>サブディレクトリのモードを変更します。そうすることにより、ウェブサーバはそこに書き込みが可能になります。
+そして、このオプションを有効にしてください。',
+	'config-upload-deleted' => '削除されたファイルのためのディレクトリ:',
+	'config-upload-deleted-help' => '削除されるファイルを保存するためのディレクトリを選択してください。
+これがウェブからアクセスできないことが理想です。',
+	'config-logo' => 'ロゴのURL:',
+	'config-logo-help' => 'メディアウィキの初期のスキンは最上部左角にある135x135ピクセルのロゴのためにスペースを含んでいます。
+適切なサイズのイメージをアップロードし、ここにURLを入力してください。
+
+もし、ロゴを望まないならば、このボックスを空白状態のままにしてください。',
+	'config-instantcommons' => '瞬時のコモンズを有効にする',
+	'config-instantcommons-good' => 'インストーラは環境チェック中にインターネット接続を検出できた。
+もし、求めるならば、この機能を有効にできる。',
 	'config-cc-error' => 'クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。
 ライセンスの名前を手動で入力してください。',
 	'config-cc-again' => 'もう一度選択してください...',
+	'config-cc-not-chosen' => 'あなたの求めるクリエイティブコモンズのライセンスを選んで、"続行"をクリックしてください。',
+	'config-advanced-settings' => '高度な設定',
+	'config-cache-options' => 'オブジェクトのキャッシュの設定:',
+	'config-cache-help' => 'オブジェクトのキャッシュは、使用したデータを頻繁にキャッシングすることによって、メディアウィキのスピード改善に使用されます。
+中〜大サイトにおいては、これを有効にするために大変望ましいことです。また小さなサイトにおいても同様な利点をもたらすと考えられます。',
+	'config-cache-none' => 'キャッシングしない(機能は取り払われます、しかもより大きなウィキサイト上でスピードの問題が発生します)',
+	'config-memcached-servers' => 'メモリをキャッシュされたサーバ:',
+	'config-extensions' => '拡張子',
+	'config-extensions-help' => '上記のリストにある拡張子は<code>./extensions</code>ディレクトリ上で検出された。
+
+これらは更に多くの設定を要求しているかもしれない、しかし今あなたはそれらを有効にできる。',
+	'config-install-step-done' => '実行',
+	'config-install-step-failed' => '失敗した',
+	'config-install-database' => 'データベースの構築',
+	'config-install-pg-schema-failed' => 'テーブルの作成に失敗した。
+ユーザ"$1"が図式"$2"に書き込みができるようにしてください。',
+	'config-install-user' => 'データベースユーザを作成する',
+	'config-install-tables' => 'テーブルの作成',
+	'config-install-interwiki-sql' => 'ファイル<code>interwiki.sql</code>を見つけることができませんでした。',
+	'config-install-secretkey' => '秘密鍵を生成する',
+	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
 );
 
 /** Colognian (Ripoarisch)
@@ -4456,6 +4500,10 @@ Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
 	'config-page-copying' => 'Kopéieren',
 	'config-page-upgradedoc' => 'Aktualiséieren',
 	'config-restart' => 'Jo, neistarten',
+	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Haaptsäit]
+* [http://www.mediawiki.org/wiki/Help:Contents Benotzerguide]
+* [http://www.mediawiki.org/wiki/Manual:Contents Guide fir Administrateuren]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
 	'config-env-good' => '<span class="success-message">Den Environement gouf nogekuckt.
 Dir kënnt MediaWiki installéieren.</span>',
 	'config-env-bad' => 'Den Environnement gouf iwwerpréift.
@@ -4544,6 +4592,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-profile-no-anon' => 'Uleeë vun engem Benotzerkont verlaangt',
 	'config-profile-private' => 'Privat Wiki',
 	'config-license' => 'Copyright a Lizenz:',
+	'config-license-none' => 'Keng Lizenz ënnen op der Säit',
 	'config-email-settings' => 'E-Mail-Astellungen',
 	'config-email-user' => 'Benotzer-op-Benotzer E-Mail aschalten',
 	'config-email-watchlist' => 'Benoriichtigung vun der Iwwerwaachungslëscht aschalten',
@@ -4560,8 +4609,10 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-database' => 'Datebank gëtt installéiert',
 	'config-install-user' => 'Datebank Benotzer uleeën',
 	'config-install-tables' => 'Tabelle ginn ugeluecht',
+	'config-install-interwiki' => 'Standard Interwiki-Tabell gëtt ausgefëllt',
 	'config-install-interwiki-sql' => 'De Fichier <code>interwiki.sql</code> gouf net fonnt.',
 	'config-install-secretkey' => 'Generéiere vum Geheimschlëssel',
+	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
 );
 
 /** Macedonian (Македонски)
@@ -5931,16 +5982,16 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-invalid-db-type' => 'O tipo de base de dados é inválido',
 	'config-missing-db-name' => 'Tem de introduzir um valor para "Nome da base de dados"',
 	'config-invalid-db-name' => 'O nome da base de dados, "$1",  é inválido.
-Este nome só pode conter algarismos, letras e sublinhados.',
+Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.',
 	'config-invalid-db-prefix' => 'O prefixo da base de dados, "$1",  é inválido.
-Este prefixo só pode conter algarismos, letras e sublinhados.',
+Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.',
 	'config-connection-error' => '$1.
 
 Verifique o servidor, o nome do utilizador e a palavra-chave abaixo e tente novamente.',
-	'config-invalid-schema' => "Esquema ''(schema)'' inválido para o MediaWiki: \"\$1\".
-Use só letras, algarismos e sublinhados.",
-	'config-invalid-ts2schema' => "Esquema ''(schema)'' inválido para o TSearch2: \"\$1\".
-Use só letras, algarismos e sublinhados.",
+	'config-invalid-schema' => "O esquema ''(schema)'' do MediaWiki, \"\$1\", é inválido.
+Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.",
+	'config-invalid-ts2schema' => "O esquema ''(schema)'' para o TSearch2, \"\$1\", é inválido.
+Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.",
 	'config-postgres-old' => 'É necessário o PostgreSQL $1 ou posterior; tem a versão $2.',
 	'config-sqlite-name-help' => 'Escolha o nome que identificará a sua wiki.
 Não use espaços ou hífens.

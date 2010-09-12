@@ -3532,7 +3532,7 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 # Estas serão comparadas com as URLs das imagens externas (com link directo)
 # As que corresponderem serão apresentadas como imagens, caso contrário apenas será apresentado um link para a imagem
 # As linhas que começam com um símbolo de cardinal (#) são tratadas como comentários
-# Esta lista não é sensível a maiúsculas ou minúsculas
+# Esta lista não distingue maiúsculas de minúsculas
 
 # Coloque todos os fragmentos de expressões regulares (regex) acima desta linha. Deixe esta linha exatamente como ela está</pre>',
 

@@ -963,7 +963,8 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'compareselectedversions'  => 'Paragon-a le version selessionà',
 'showhideselectedversions' => 'Smon-e/stërmé le version selessionà',
 'editundo'                 => "buta 'me ch'a l'era",
-'diff-multi'               => '({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} pa mostrà.)',
+'diff-multi'               => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} da {{PLURAL:$2|n'utent|$2 utent}} pa mostrà.)",
+'diff-multi-manyusers'     => '($1 revisions antërmedie revisions da 100+ utent pa mostà)',
 
 # Search results
 'searchresults'                    => "Arzultà dl'arserca",

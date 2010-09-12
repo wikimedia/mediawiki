@@ -196,7 +196,7 @@ $messages = array(
 'tog-editsection'             => 'Activa la modificació de seccions mitjançant els enllaços [modifica]',
 'tog-editsectiononrightclick' => "Habilita l'edició per seccions en clicar amb el botó dret sobre els títols de les seccions (cal JavaScript)",
 'tog-showtoc'                 => 'Mostra la taula de continguts (per pàgines amb més de 3 seccions)',
-'tog-rememberpassword'        => "Recorda la sessió a l'ordinador (per un màxim de {{PLURAL:$1|dia|dies}})",
+'tog-rememberpassword'        => 'Recorda la sessió al navegador (per un màxim de {{PLURAL:$1|dia|dies}})',
 'tog-watchcreations'          => 'Vigila les pàgines que he creat',
 'tog-watchdefault'            => 'Afegeix les pàgines que edito a la meua llista de seguiment',
 'tog-watchmoves'              => 'Afegeix les pàgines que reanomeni a la llista de seguiment',
@@ -1590,7 +1590,7 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'upload-success-subj'         => "El fitxer s'ha carregat amb èxit",
 'upload-success-msg'          => 'El material carregat de [$2] està disponible ací: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problema en la càrrega',
-'upload-failure-msg'          => 'Hi ha hagut un problema amb la vostra càrrega:
+'upload-failure-msg'          => 'Hi ha hagut un problema amb la vostra càrrega des de [$2]:
 
 $1',
 'upload-warning-subj'         => 'Avís de càrrega',
@@ -3269,6 +3269,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'version-version'                  => '(Versió $1)',
 'version-license'                  => 'Llicència',
 'version-poweredby-credits'        => "El wiki funciona gràcies a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'altres',
 'version-license-info'             => "↓ MediaWiki és programari lliure, podeu redistribuir-lo i/o modificar-lo sota els termes de la Llicència Pública General GNU publicada per la Free Software Foundation, ja sigui de la seva versió 2 o (a elecció vostra) qualsevol versió posterior. 
 
 MediaWiki es distribueix en l'esperança de ser d'utilitat, però SENSE CAP GARANTIA; ni tan sols la garantia implícita de COMERCIALITZACIÓ o ADEQUACIÓ A UNA FINALITAT DETERMINADA. En trobareu més detalls a  la Llicència Pública General GNU.

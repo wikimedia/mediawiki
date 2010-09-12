@@ -1262,7 +1262,8 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'compareselectedversions'  => 'Gewählte Versionen vergleichen',
 'showhideselectedversions' => 'Gewählte Versionen zeigen/verstecken',
 'editundo'                 => 'rückgängig',
-'diff-multi'               => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischenliegende Version|$1 dazwischenliegende Versionen}} mit ein.)',
+'diff-multi'               => '({{PLURAL:$1|1 dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|1 Benutzer|$2 Benutzer}} werden nicht angezeigt)',
+'diff-multi-manyusers'     => '($1 dazwischenliegende Versionen von 100+ Benutzern, die nicht angezeigt werden)',
 
 # Search results
 'searchresults'                    => 'Suchergebnisse',

@@ -90,6 +90,8 @@ $messages = array(
 'january-gen'  => 'Jänner',
 'february-gen' => 'Februa',
 'march-gen'    => 'Mäaz',
+'april-gen'    => 'Aprüi',
+'may-gen'      => 'Mai',
 'jan'          => 'Jän.',
 'feb'          => 'Feb.',
 'mar'          => 'Mär.',
@@ -280,8 +282,10 @@ Funkzion: $1<br />
 'titleprotected'       => "A Seitn mit dem Nama kann net ogelegt wern. De Sperre is durch [[User:$1|$1]] mit da Begründung ''„$2“'' eigericht worn.",
 
 # Login and logout pages
-'logouttext'                 => 'Sie san iatzat abgmeldt.
-Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am andern Benutzernamen wieder omeldn.',
+'logouttext'                 => "'''Du bist jetzad abgmöidt.'''
+
+Du kååst {{SITENAME}} jetzad anonym waidernytzn, oder di ernait unterm söim oder am åndern Benytzernåm [[Special:UserLogin|åmöidn]].
+Beochtt ower, dass oanige Saitn no åzoang kennan, dass du ågmöidt bist, solång du ned dai Browsercache glaart host.",
 'welcomecreation'            => '== Seavas, $1! ==
 
 Dei Benutzakonto is gråd eigricht woan.
@@ -291,9 +295,12 @@ Vagiss bittschee ned, deine [[Special:Preferences|{{SITENAME}}-Eistellungen]] ã
 'yourpasswordagain'          => 'Passwort no amoi',
 'remembermypassword'         => 'auf dem Computer dauahåft ãnmöidn(for a maximum of $1 {{PLURAL:$1|day|days}})',
 'yourdomainname'             => 'Eanane Domain:',
+'externaldberror'            => 'Entweder es ligt a Feeler bai da externen Authentifiziarung vur oder du derfst dai externs Benytzerkonto ned aktualisirn.',
 'login'                      => 'Oomeidn',
 'nav-login-createaccount'    => 'Ãnmöidn',
+'loginprompt'                => 'Zur Åmöidung miassn Cookies aktiviard sai.',
 'userlogin'                  => 'Oomeidn / Konto eastöön',
+'userloginnocreate'          => 'Åmöidn',
 'logout'                     => 'Obmeidn',
 'userlogout'                 => 'Obmeidn',
 'notloggedin'                => 'Net ogmeldt',
@@ -302,8 +309,13 @@ Vagiss bittschee ned, deine [[Special:Preferences|{{SITENAME}}-Eistellungen]] ã
 'createaccount'              => 'Benutzerkonto oleng',
 'gotaccount'                 => "Du hast hast scho a Benutzerkonto? '''$1'''.",
 'gotaccountlink'             => 'Omeidn',
+'createaccountmail'          => 'per E-Mäil',
+'createaccountreason'        => 'Grund',
+'badretype'                  => 'De zwoa Posswerter stimman ned ywerai.',
 'userexists'                 => "Der Benutzernam is schon vergem. Bittschee nehman S' an andern.",
 'loginerror'                 => 'Fehla bei da Oomeidung',
+'createaccounterror'         => 'Des Benytzerkonto hod ned erstöid wern kenna: $1',
+'nocookiesnew'               => "Da Benytzerzuagång is erstöid worn, du bist ower ned ågmöidt. {{SITENAME}} benedigt fyr de Funkzion Cookies, bittschee aktiviar de und möidt de danoch mid daim naichn Benytzernåm und 'm dazuaghering Posswort å.",
 'nocookieslogin'             => "{{SITENAME}} nimmt Cookies zum Eiloggen vo de Benutzer her. Sie ham Cookies deaktiviert, bittschee aktiviern Sie de und versuchan's nomoi.",
 'loginsuccesstitle'          => 'Omeidung is erfolgreich gwen',
 'loginsuccess'               => 'Sie san  iatzat ois „$1“ bei {{SITENAME}} oogmeidt.',
