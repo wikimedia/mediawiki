@@ -1617,7 +1617,8 @@ Note that using the navigation links will reset this column.',
 'compareselectedversions'  => 'Compare selected revisions',
 'showhideselectedversions' => 'Show/hide selected revisions',
 'editundo'                 => 'undo',
-'diff-multi'               => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown)',
+'diff-multi'               => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
+'diff-multi-manyusers'     => '($1 intermediate revisions intermediate revisions by 100+ users not shown)',
 
 # Search results
 'search-summary'                   => '', # do not translate or duplicate this message to other languages
