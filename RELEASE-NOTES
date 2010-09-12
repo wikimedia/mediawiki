@@ -150,6 +150,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Any attribute beginning with "data-" can now be used in wikitext, per HTML5.
 * (bug 24007) Diff pages now mention the number of users having edited
   intermediate revisions
+* Added new hook GetIP
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
