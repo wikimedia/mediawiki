@@ -9,7 +9,6 @@ define( 'MW_CONFIG_CALLBACK', 'CoreInstaller::overrideConfig' );
 
 chdir( ".." );
 require( './includes/WebStart.php' );
-require_once( './maintenance/updaters.inc' ); // sigh...
 
 $installer = new WebInstaller( $wgRequest );
 

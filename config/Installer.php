@@ -277,9 +277,6 @@ if( !is_writable( "." ) ) {
 	<p>Afterwards retry to start the <a href=\"\">setup</a>.</p>" );
 }
 
-
-require_once( "$IP/maintenance/updaters.inc" );
-
 class ConfigData {
 	function getEncoded( $data ) {
 		# removing latin1 support, no need...
@@ -1236,7 +1233,14 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "</ul><pre>\n";
 			chdir( ".." );
 			flush();
-			do_all_updates();
+
+			define( 'MW_NO_SETUP', true );
+			$updater = DatabaseUpdater::newForDb( $wgDatabase, false );
+			$updater->doUpdates();
+			foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
+				call_user_func_array( array( new $maint, 'execute' ), array() );
+			}
+
 			chdir( "config" );
 			print "</pre>\n";
 			print "<ul><li>Finished update checks.</li>\n";
