@@ -189,19 +189,9 @@ function dbsource( $fname, $db = false ) {
 	}
 }
 
-/**
- * Helper function: check if the given key is present in the updatelog table.
- * Obviously, only use this for updates that occur after the updatelog table was
- * created!
- */
-function update_row_exists( $key ) {
-	$row = wfGetDB( DB_MASTER )->selectRow(
-		'updatelog',
-		'1',
-		array( 'ul_key' => $key ),
-		__FUNCTION__
-	);
-	return (bool)$row;
+function archive( $name ) {
+	wfDeprecated( __METHOD__ );
+	return DatabaseBase::patchPath( $name );
 }
 
 /**

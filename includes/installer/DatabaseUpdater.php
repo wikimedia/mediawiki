@@ -123,8 +123,7 @@ abstract class DatabaseUpdater {
 	 * @param $purge Boolean: whether to clear the objectcache table after updates
 	 */
 	public function doUpdates( $purge = true ) {
-		global $IP, $wgVersion;
-		require_once( "$IP/maintenance/updaters.inc" );
+		global $wgVersion;
 
 		$this->runUpdates( $this->getCoreUpdateList(), false );
 		$this->runUpdates( $this->getOldGlobalUpdates(), false );
@@ -167,6 +166,21 @@ abstract class DatabaseUpdater {
 		$this->db->insert( 'updatelog',
 			array( 'ul_key' => $key, 'ul_value' => serialize( $updates ) ),
 			 __METHOD__ );
+	}
+
+	/**
+	 * Helper function: check if the given key is present in the updatelog table.
+	 * Obviously, only use this for updates that occur after the updatelog table was
+	 * created!
+	 */
+	public function updateRowExists( $key ) {
+		$row = $this->db->selectRow(
+			'updatelog',
+			'1',
+			array( 'ul_key' => $key ),
+			__METHOD__
+		);
+		return (bool)$row;
 	}
 
 	/**
@@ -395,4 +409,62 @@ abstract class DatabaseUpdater {
 		SiteStatsInit::doAllAndCommit( false );
 	}
 
+	# Common updater functions
+
+	protected function doActiveUsersInit() {
+		$activeUsers = $this->db->selectField( 'site_stats', 'ss_active_users', false, __METHOD__ );
+		if ( $activeUsers == -1 ) {
+			$activeUsers = $this->db->selectField( 'recentchanges',
+				'COUNT( DISTINCT rc_user_text )',
+				array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ), __METHOD__
+			);
+			$this->db->update( 'site_stats',
+				array( 'ss_active_users' => intval( $activeUsers ) ),
+				array( 'ss_row_id' => 1 ), __METHOD__, array( 'LIMIT' => 1 )
+			);
+		}
+		wfOut( "...ss_active_users user count set...\n" );
+	}
+
+	protected function doLogSearchPopulation() {
+		if ( $this->updateRowExists( 'populate log_search' ) ) {
+			wfOut( "...log_search table already populated.\n" );
+			return;
+		}
+
+		wfOut(
+			"Populating log_search table, printing progress markers. For large\n" .
+			"databases, you may want to hit Ctrl-C and do this manually with\n" .
+			"maintenance/populateLogSearch.php.\n" );
+		$task = new PopulateLogSearch();
+		$task->execute();
+		wfOut( "Done populating log_search table.\n" );
+	}
+
+	function doUpdateTranscacheField() {
+		if ( $this->updateRowExists( 'convert transcache field' ) ) {
+			wfOut( "...transcache tc_time already converted.\n" );
+			return;
+		}
+
+		wfOut( "Converting tc_time from UNIX epoch to MediaWiki timestamp... " );
+		$this->applyPatch( 'patch-tc-timestamp.sql' );
+		wfOut( "ok\n" );
+	}
+
+	protected function doCollationUpdate() {
+		global $wgCategoryCollation;
+		if ( $this->db->selectField(
+			'categorylinks',
+			'COUNT(*)',
+			'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
+			__METHOD__
+		) == 0 ) {
+			wfOut( "...collations up-to-date.\n" );
+			return;
+		}
+
+		$task = new UpdateCollation();
+		$task->execute();
+	}
 }
