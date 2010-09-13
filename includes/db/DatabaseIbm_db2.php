@@ -589,13 +589,6 @@ EOF;
 	}
 
 	/**
-	 * Override if introduced to base Database class
-	 */
-	public function initial_setup() {
-		// do nothing
-	}
-
-	/**
 	 * Create tables, stored procedures, and so on
 	 */
 	public function setup_database() {
