@@ -22,44 +22,6 @@
 
 /**
  * Dynamic JavaScript and CSS resource loading system
- *
- * @example
- * 	// Registers a module with the resource loading system
- * 	ResourceLoader::register( 'foo', array(
- * 		// Script or list of scripts to include when implementating the module (required)
- * 		'script' => 'resources/foo/foo.js',
- * 		// List of scripts or lists of scripts to include based on the current language
- * 		'locales' => array(
- * 			'en-gb' => 'resources/foo/locales/en-gb.js',
- * 		),
- * 		// Script or list of scripts to include only when in debug mode
- * 		'debug' => 'resources/foo/debug.js',
- * 		// If this module is going to be loaded before the mediawiki module is ready such as jquery or the mediawiki
- * 		// module itself, it can be included without special loader wrapping - this will also limit the module to not be
- * 		// able to specify needs, custom loaders, styles, themes or messages (any of the options below) - raw scripts
- * 		// get registered as 'ready' after the mediawiki module is ready, so they can be named as dependencies
- * 		'raw' => false,
- * 		// Modules or list of modules which are needed and should be used when generating loader code
- * 		'needs' => 'resources/foo/foo.js',
- * 		// Script or list of scripts which will cause loader code to not be generated - if you are doing something fancy
- * 		// with your dependencies this gives you a way to use custom registration code
- * 		'loader' => 'resources/foo/loader.js',
- * 		// Style-sheets or list of style-sheets to include
- * 		'style' => 'resources/foo/foo.css',
- * 		// List of style-sheets or lists of style-sheets to include based on the skin - if no match is found for current
- * 		// skin, 'default' is used - if default doesn't exist nothing is added
- * 		'themes' => array(
- * 			'default' => 'resources/foo/themes/default/foo.css',
- * 			'vector' => 'resources/foo/themes/vector.foo.css',
- * 		),
- * 		// List of keys of messages to include
- * 		'messages' => array( 'foo-hello', 'foo-goodbye' ),
- * 		// Subclass of ResourceLoaderModule to use for custom modules
- * 		'class' => 'ResourceLoaderSiteJSModule',
- * 	) );
- * @example
- * 	// Responds to a resource loading request
- * 	ResourceLoader::respond( $wgRequest, $wgServer . wfScript( 'load' ) );
  */
 class ResourceLoader {
 	/* Protected Static Members */
