@@ -892,3 +892,19 @@ a.sortheader {
 	display: table-cell;
 	padding: 0.33ex;
 }
+
+/* Localised ordered list numbering for some languages */
+ol:lang(bcc) li,
+ol:lang(bqi) li,
+ol:lang(fa) li,
+ol:lang(glk) li,
+ol:lang(kk-arab) li,
+ol:lang(mzn) li {
+	list-style-type: -moz-persian;
+	list-style-type: persian;
+}
+
+ol:lang(ckb-arab) li {
+	list-style-type: -moz-arabic-indic;
+	list-style-type: arabic-indic;
+}
