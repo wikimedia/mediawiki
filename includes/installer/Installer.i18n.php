@@ -2137,8 +2137,11 @@ chmod a+w config</pre>",
 Bien que MediaWiki vérifie tous les fichiers téléchargés, il est fortement recommandé de [http://www.mediawiki.org/wiki/Manual:Security#Upload_security fermer cette vulnérabilité de sécurité] (texte en anglais) avant d'activer les téléchargements.",
 	'config-db-type' => 'Type de base de données :',
 	'config-db-host' => 'Nom d’hôte de la base de données :',
-	'config-db-host-help' => 'Si votre serveur de base de données est sur un serveur différent, saisissez ici son nom d’hôte ou son adresse IP.
-Si vous utilisez un hébergement mutualisé, votre hébergeur doit vous avoir fourni le nom d’hôte correct dans sa documentation.',
+	'config-db-host-help' => "Si votre serveur de base de données est sur un serveur différent, saisissez ici son nom d’hôte ou son adresse IP.
+
+Si vous utilisez un hébergement mutualisé, votre hébergeur doit vous avoir fourni le nom d’hôte correct dans sa documentation.
+
+Si vous installez sur un serveur Windows et utilisez MySQL, « localhost » peut ne pas fonctionner comme nom de serveur. S'il ne fonctionne pas, essayez « 127.0.0.1 » comme adresse IP locale.",
 	'config-db-wiki-settings' => 'Identifier ce wiki',
 	'config-db-name' => 'Nom de la base de données :',
 	'config-db-name-help' => "Choisissez un nom qui identifie votre wiki.
@@ -2202,16 +2205,16 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-invalid-db-type' => 'Type de base de données non valide',
 	'config-missing-db-name' => 'Vous devez saisir une valeur pour « Nom de la base de données »',
 	'config-invalid-db-name' => 'Nom de la base de données invalide (« $1 »).
-Il ne peut contenir que des chiffres, des lettres et des caractères de soulignement.',
+Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
 	'config-invalid-db-prefix' => 'Préfixe de la base de données non valide « $1 ». 
-Il ne peut contenir que des chiffres, des lettres et des caractères de soulignement.',
+Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
 	'config-connection-error' => '$1.
 
 Vérifier le nom d’hôte, le nom d’utilisateur et le mot de passe ci-dessous puis réessayer.',
 	'config-invalid-schema' => 'Schéma invalide pour MediaWiki « $1 ». 
-Utilisez seulement des lettres, des chiffres et des caractères de soulignement.',
+Utilisez seulement des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
 	'config-invalid-ts2schema' => 'Schéma non valide pour TSearch2 « $1 ». 
-Utilisez seulement des lettres, des chiffres et des caractères de soulignement.',
+Utilisez seulement des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
 	'config-postgres-old' => 'PostgreSQL $1 ou version ultérieure est requis, vous avez $2.',
 	'config-sqlite-name-help' => "Choisir un nom qui identifie votre wiki. 
 Ne pas utiliser des espaces ou des traits d'union. 

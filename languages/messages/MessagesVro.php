@@ -54,14 +54,14 @@ $messages = array(
 'tog-editsection'             => 'Lupaq lõikõ toimõndaq [toimõndaq]-linkõga',
 'tog-editsectiononrightclick' => 'Lupaq lõikõ toimõndaq hüäpoolidsõ klõpsutusõga <br /> lõigu päälkirä pääl (JavaScript)',
 'tog-showtoc'                 => 'Näütäq sisukõrda (rohkõmb ku kolmõ vaihõpäälkiräga lehile)',
-'tog-rememberpassword'        => 'Salasõna miildejätmine tulõvaidsis kõrros (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Salasõna miildejätmine tulõvaidsis kõrros (kõgõ inämb $1 {{PLURAL:$1|pääväs|pääväs}})',
 'tog-watchcreations'          => 'Panõq mu luuduq leheq mu perräkaemisnimekirjä',
 'tog-watchdefault'            => 'Kaeq vahtsidõ ja muudõtuidõ artiklidõ perrä',
 'tog-watchmoves'              => 'Panõq mu ümbrenõstõduq leheküleq mu perräkaemisnimekirjä',
 'tog-watchdeletion'           => 'Panõq mu kistutõduq leheküleq mu perräkaemisnimekirjä',
 'tog-previewontop'            => 'Näütäq proovikaehust inne, mitte perän toimõnduskasti',
 'tog-previewonfirst'          => 'Näütäq edimädse toimõndusõ aigo proovikaehust',
-'tog-nocache'                 => 'Pästku-i lehekülgi vaihõmällo',
+'tog-nocache'                 => '↓ Pästku-i lehekülgi võrgokaeja vaihõmällo',
 'tog-enotifwatchlistpages'    => 'Saadaq mullõ e-kiri, ku muq perräkaetavat lehte muudõtas',
 'tog-enotifusertalkpages'     => 'Saadaq mullõ e-kiri, ku mu arotuslehte muudõtas',
 'tog-enotifminoredits'        => 'Saadaq mullõ e-kiri ka väikeisi muutmiisi kotsilõ',
@@ -346,12 +346,12 @@ Olõmanolõvaq tallitusleheküleq ommaq löüdäq leheküle päält [[Special:Sp
 # General errors
 'error'                => 'Viga',
 'databaseerror'        => 'Teedüskogo viga',
-'dberrortext'          => 'Teedüskogo perräküsümisen oll\' süntaksiviga.
+'dberrortext'          => '↓ Teedüskogo perräküsümisen oll\' süntaksiviga.
 Perräküsümine oll\' viganõ vai om tarkvaran viga.
 Viimäne teedüskogo perräküsümine oll\':
 <blockquote><tt>$1</tt></blockquote>
 ja tuu tetti funktsioonist "<tt>$2</tt>".
-MySQL and\' via "<tt>$3: $4</tt>".',
+Teedüskogo and\' viateedüse "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Teedüskogo perräküsümisen oll\' süntaksiviga.
 Viimäne teedüskogo perräküsümine oll\':
 "$1"
@@ -584,7 +584,9 @@ Suq puutri võrgoaadrõs om parhilla $3 ja kinniqpidämise tunnusnummõr om #$5.
 'loginreqlink'                     => 'nimega sisse minemä',
 'loginreqpagetext'                 => 'Tõisi lehekülgi kaemisõs piät $1.',
 'accmailtitle'                     => 'Salasõna saadõt.',
-'accmailtext'                      => "Pruukja '$1' salasyna saadõti aadrõsi pääle $2.",
+'accmailtext'                      => "↓ Pruukjalõ '$1' luud johuslinõ salasõna saadõti aadresi pääle $2.
+
+Tuud salasõnna saa muutaq ''[[Special:ChangePassword|salasõba muutmisõ lehe pääl]]'' päält vahtsõ nimega sisseminemist.",
 'newarticle'                       => '(Vahtsõnõ)',
 'newarticletext'                   => "Taad lehekülge olõ-i viil luud.
 Leheküle luumisõs nakkaq kirotama alanolõvahe kasti (kaeq [[{{MediaWiki:Helppage}}|oppust]]).
@@ -594,6 +596,8 @@ Ku sa johtuq siiäq kogõmaldaq, sis klõpsaq võrgokaeja '''Tagasi'''-nuppi.",
 Võit [[Special:Search/{{PAGENAME}}|otsiq soe lehe nimme]]  tõisi lehti päält vai
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uuriq muutmisnimekirjo] vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduolõva leheküle esiq luvvaq]</span>.',
 'userpage-userdoesnotexist'        => 'Pruukjanimme "$1" olõ-i kirjä pant. Kaeq perrä, kas olõt iks kimmäs, et tahat taad lehte toimõndaq.',
+'userpage-userdoesnotexist-view'   => '↓
+Pruukjanimme "$1" olõ-õi kirjä pant.',
 'clearyourcache'                   => "'''Panõq tähele:''' perän pästmist piät muutmiisi nägemises uma võrgokaeja vaihõmälo tühäs tegemä. '''Mozillal / Firofoxil / Safaril''' hoiaq all nõstmisnuppi ''Shift'' ja vaodaq ''Reload'' vai ''Ctrl-R'' (Macintoshil ''Command-R''); Konqueroril vaodaq ''Reload'' vai ''F5''. Operal puhastaq vaihõmälo ja võtaq valikust ''Tools → Preferences''. Internet Exploreril hoiaq ''Ctrl'' ja vaodaq ''Refresh'' vai vaodaq  ''ctrl-f5''.",
 'usercssyoucanpreview'             => "'''Nõvvoannõq:''' Pruugiq nuppi 'Näütäq proovikaehust' uma vahtsõ CCS-i vai JavaScripti ülekaemisõs, inne ku taa ärq pästät.",
 'userjsyoucanpreview'              => "'''Nõvvoannõq:''' Pruugiq nuppi 'Näütäq proovikaehust' uma vahtsõ CCS-i vai JavaScripti ülekaemisõs, inne ku taa ärq pästät.",
@@ -695,7 +699,7 @@ Seletüs: (viim) = lahkominegiq viimätsest kujost,
 # Revision deletion
 'rev-deleted-comment'         => '(kommõntaar ärq kistutõt)',
 'rev-deleted-user'            => '(pruukjanimi ärq kistutõt)',
-'rev-deleted-event'           => '(kiräkotus ärq kistutõt)',
+'rev-deleted-event'           => '↓ (muutmisnimekirä tallitus ärq kistutõt)',
 'rev-deleted-text-permission' => 'Lehe taa kujo om avaligust arhiivist ärq kistutõt.
 Lisateedüst või ollaq [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} kistutamisnimekirän].',
 'rev-deleted-text-view'       => "Taa lehekujo om avaligust pruugist ärq kistutõt, a kõrraldajaq saavaq taad nätäq. As'a kotsilõ või teedüst olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kistutusnimekirän].",
@@ -1029,7 +1033,7 @@ Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia e
 'uploadedimage'               => 'laadõ üles "$1"',
 'overwroteimage'              => 'üles laadit "[[$1]]" vahtsõnõ kujo',
 'uploaddisabled'              => 'Üleslaatminõ lää-s kõrda',
-'uploaddisabledtext'          => '{{SITENAME}} lupa-i parhilla teedüstüid üles laatiq.',
+'uploaddisabledtext'          => '↓ Teedüstü üleslaatminõ om keelet.',
 'uploadscripted'              => 'Seol teedüstül om HTML-kuud vai skripte, minkast võrgokaeja või võlssi arvo saiaq.',
 'uploadvirus'                 => 'Teedüstül om viirus man! Kaeq: $1',
 'sourcefilename'              => 'Teedüstü nimi:',
@@ -1076,7 +1080,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'filehist'                  => 'Teedüstü aolugu',
 'filehist-help'             => "Klõpsaq kuupäävä/kelläao pääl, et nätäq määne taa teedüstü sis oll'.",
 'filehist-deleteall'        => 'kistudaq kõik ärq',
-'filehist-deleteone'        => 'kistudaq taa ärq',
+'filehist-deleteone'        => '↓ kistudaq ärq',
 'filehist-revert'           => 'võtaq tagasi',
 'filehist-current'          => 'parhillanõ',
 'filehist-datetime'         => 'Kuupäiv/Kelläaig',
@@ -1095,7 +1099,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 # File reversion
 'filerevert'         => 'Võtaq tagasi $1',
 'filerevert-legend'  => 'Võtaq tagasi teedüstü',
-'filerevert-comment' => 'Põhjus:',
+'filerevert-comment' => '↓ Põhjus:',
 'filerevert-submit'  => 'Võtaq tagasi',
 
 # File deletion

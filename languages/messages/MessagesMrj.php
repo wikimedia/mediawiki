@@ -246,7 +246,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'Сирӹшӹн лӹмжӹ:',
 'yourpassword'            => 'Пароль:',
-'remembermypassword'      => 'Ти компьютерӹштӹ мӹньӹн учетный сирмӓшем ӓштӓш (for a maximum of $1 {{PLURAL:$1|кечы|кечы}})',
+'remembermypassword'      => 'Ти компьютерӹштӹ мӹньӹн учетный сирмӓшем ӓштӓш (максимум $1 {{PLURAL:$1|кечы|кечы}})',
 'login'                   => 'Системыш сирӓлтдӓ',
 'nav-login-createaccount' => 'Коргӹшкӹ сирӓлтдӓ/регистрируялтда',
 'userlogin'               => 'Кӧргӹшкӹ сирӓлтдӓ ӓль регистрируялтда',

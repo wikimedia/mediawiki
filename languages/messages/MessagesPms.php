@@ -1519,8 +1519,8 @@ Ch'a bèica http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-nofile'       => 'L\'archivi "$1" a esist pa.',
 'img-auth-isdir'        => 'A l\'é an camin ch\'a preuve a intré ant un dossié "$1".
 As peul mach avèj acess a j\'archivi.',
-'img-auth-streaming'    => 'Streaming "$1".',
-'img-auth-public'       => "La funsion d'img_auth.php a l'é ëd dé an output file da na wiki privà.
+'img-auth-streaming'    => 'Letura an continuà ëd "$1".',
+'img-auth-public'       => "La funsion d'img_auth.php a l'é dë smone dj'archivi da na wiki privà.
 Sta wiki-sì a l'é configurà com na wiki pùblica.
 Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 'img-auth-noread'       => 'L\'utent a l\'ha pa ij privilegi për lese "$1".',

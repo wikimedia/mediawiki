@@ -1204,7 +1204,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'compareselectedversions'  => 'Compară versiunile marcate',
 'showhideselectedversions' => 'Arată/ascunde reviziile marcate',
 'editundo'                 => 'anulează',
-'diff-multi'               => '({{PLURAL:$1|O revizie intermediară neafișată|$1 revizii intermediare neafișate}})',
+'diff-multi'               => '({{PLURAL:$1|O revizie intermediară|$1 revizii intermediare}} efectuată de {{PLURAL:$2|un utilizator|$2 utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
 
 # Search results
 'searchresults'                    => 'Rezultatele căutării',

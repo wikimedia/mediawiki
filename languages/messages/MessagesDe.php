@@ -1263,7 +1263,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'showhideselectedversions' => 'Gewählte Versionen zeigen/verstecken',
 'editundo'                 => 'rückgängig',
 'diff-multi'               => '({{PLURAL:$1|1 dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|1 Benutzer|$2 Benutzer}} werden nicht angezeigt)',
-'diff-multi-manyusers'     => '($1 dazwischenliegende Versionen von 100+ Benutzern, die nicht angezeigt werden)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|$1 dazwischenliegende Versionen}} von 100+ {{PLURAL:$2|Benutzern}}, die nicht angezeigt werden)',
 
 # Search results
 'searchresults'                    => 'Suchergebnisse',

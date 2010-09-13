@@ -1077,7 +1077,8 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'compareselectedversions'  => 'Ausgewielte Versioune vergläichen',
 'showhideselectedversions' => 'Erausgesichte Versioune weisen/verstoppen',
 'editundo'                 => 'zréck',
-'diff-multi'               => '({{PLURAL:$1|Eng Tëscheversioun gëtt net|$1 Tëscheversioune ginn net}} gewisen)',
+'diff-multi'               => '({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem|$2}} Benotzer {{PLURAL:$1|¨gëtt|ginn}} net gewisen)',
+'diff-multi-manyusers'     => '($1 Tëscheversioune vu méi wéi 100 Benotzer ginn net gewisen)',
 
 # Search results
 'searchresults'                    => 'Resultat vun der Sich',

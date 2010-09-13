@@ -289,7 +289,7 @@ $messages = array(
 'tog-editsection'             => 'Umožniť úpravu sekcie pomocu odkazov [upraviť]',
 'tog-editsectiononrightclick' => 'Umožniť upravovať sekcie po kliknutí pravým tlačidlom na nadpisy sekcií (JavaScript)',
 'tog-showtoc'                 => 'Zobrazovať obsah (pre stránky s viac ako 3 nadpismi)',
-'tog-rememberpassword'        => 'Zapamätať si heslo na tomto počítači (naviac $1 {{PLURAL:$1|deň|dni|dní}})',
+'tog-rememberpassword'        => 'Zapamätať si prihlásenie na tomto počítači (najviac $1 {{PLURAL:$1|deň|dni|dní}})',
 'tog-watchcreations'          => 'Pridávať stránky, ktoré vytvorím, automaticky medzi sledované',
 'tog-watchdefault'            => 'Pridávať stránky, ktoré upravujem, automaticky medzi sledované',
 'tog-watchmoves'              => 'Pridávať stránky, ktoré presuniem, do môjho zoznamu sledovaných',
@@ -1203,7 +1203,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'compareselectedversions'  => 'Porovnať označené verzie',
 'showhideselectedversions' => 'Zobraziť/skryť vybrané revízie',
 'editundo'                 => 'vrátiť',
-'diff-multi'               => '{{PLURAL:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
+'diff-multi'               => '{{PLURAL:$1|Jedna medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od {{PLURAL:$2|jedného používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}}.',
+'diff-multi-manyusers'     => '($1 medziľahlých revízií od viac ako 100 používateľov nie je zobrazených)',
 
 # Search results
 'searchresults'                    => 'Výsledky vyhľadávania',

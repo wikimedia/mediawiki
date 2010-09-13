@@ -1163,7 +1163,6 @@ See also {{msg-mw|difference}}.',
 *Parameter $1 is the number of revisions, will always be 101 or more.
 *Parameter $2 is the number of users we've found, which was limited at 100",
 
-
 # Search results
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
 'notitlematches'                 => 'Header of results page after a search for a title for which no page exists',

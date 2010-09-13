@@ -963,7 +963,7 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'compareselectedversions'  => 'Combronde le versiune selezionete',
 'showhideselectedversions' => 'Fà vedè/scunne le revisiune selezionate',
 'editundo'                 => 'annulle',
-'diff-multi'               => "({{PLURAL:$1|'na versione de mmienze|$1 cchiù versiune de mmienze}} non ge se vèdene.)",
+'diff-multi'               => "({{PLURAL:$1|'na versione de mmienze|$1 cchiù versiune de mmienze}} de {{PLURAL:$2|'n'utende|$2 utinde}} non ge se vèdene)",
 
 # Search results
 'searchresults'                    => "Resultete d'a ricerche",

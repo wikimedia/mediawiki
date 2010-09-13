@@ -1241,7 +1241,8 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'compareselectedversions'  => 'Compare as versões seleccionadas',
 'showhideselectedversions' => 'Mostrar/ocultar versões selecionadas',
 'editundo'                 => 'desfazer',
-'diff-multi'               => '({{PLURAL:$1|uma edição intermédia não apresentada|$1 edições intermédias não apresentadas}})',
+'diff-multi'               => '({{PLURAL:$1|uma edição intermédia|$1 edições intermédias}} de {{PLURAL:$2|um utilizador|$2 utilizadores}} {{PLURAL:$1|não apresentada|não apresentadas}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de mais de {{PLURAL:$2|um utilizador|$2 utilizadores}} não {{PLURAL:$1|apresentada|apresentadas}})',
 
 # Search results
 'searchresults'                    => 'Resultados da pesquisa',
