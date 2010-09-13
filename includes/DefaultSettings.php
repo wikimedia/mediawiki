@@ -502,6 +502,10 @@ $wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/File:";
 /**
  * This is the list of preferred extensions for uploading files. Uploading files
  * with extensions not in this list will trigger a warning.
+ *
+ * WARNING: If you add any OpenDocument file formats here, such as odt, ods or 
+ * odp, and untrusted users are allowed to upload files, then your wiki will be 
+ * vulnerable to cross-site request forgery (CSRF). 
  */
 $wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 
@@ -539,12 +543,18 @@ $wgMimeTypeBlacklist = array(
 	'application/x-opc+zip',
 );
 
-/** This is a flag to determine whether or not to check file extensions on upload. */
+/** 
+ * This is a flag to determine whether or not to check file extensions on upload.
+ *
+ * WARNING: setting this to false is insecure for public wikis.
+ */
 $wgCheckFileExtensions = true;
 
 /**
  * If this is turned off, users may override the warning for files not covered
  * by $wgFileExtensions.
+ *
+ * WARNING: setting this to false is insecure for public wikis. 
  */
 $wgStrictFileExtensions = true;
 
