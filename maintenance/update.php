@@ -28,8 +28,9 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgVersion, $wgTitle;
+		global $wgVersion, $wgTitle, $wgLang;
 
+		$wgLang = Language::factory( 'en' );
 		$wgTitle = Title::newFromText( "MediaWiki database updater" );
 
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
