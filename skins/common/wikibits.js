@@ -1094,3 +1094,7 @@ hookEvent( 'load', runOnloadHook );
 if ( ie6_bugs ) {
 	importScriptURI( stylepath + '/common/IEFixes.js' );
 }
+
+// jQuery alias
+
+window.$j = jQuery;
