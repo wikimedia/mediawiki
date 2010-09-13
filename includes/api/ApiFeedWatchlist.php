@@ -62,7 +62,6 @@ class ApiFeedWatchlist extends ApiBase {
 			// limit to the number of hours going from now back
 			$endTime = wfTimestamp( TS_MW, time() - intval( $params['hours'] * 60 * 60 ) );
 
-			$dbr = wfGetDB( DB_SLAVE );
 			// Prepare parameters for nested request
 			$fauxReqArr = array(
 				'action' => 'query',
@@ -71,7 +70,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'list' => 'watchlist',
 				'wlprop' => 'title|user|comment|timestamp',
 				'wldir' => 'older', // reverse order - from newest to oldest
-				'wlend' => $dbr->timestamp( $endTime ),	// stop at this time
+				'wlend' => wfTimestamp( TS_MW, $endTime ),	// stop at this time
 				'wllimit' => ( 50 > $wgFeedLimit ) ? $wgFeedLimit : 50
 			);
 
