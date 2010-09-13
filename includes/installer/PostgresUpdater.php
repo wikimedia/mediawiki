@@ -40,6 +40,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			# new tables
 			array( 'addTable', 'category',          'patch-category.sql' ),
 			array( 'addTable', 'mwuser',            'patch-mwuser.sql' ),
+			array( 'addTable', 'page',              'patch-page.sql' ),
 			array( 'addTable', 'pagecontent',       'patch-pagecontent.sql' ),
 			array( 'addTable', 'querycachetwo',     'patch-querycachetwo.sql' ),
 			array( 'addTable', 'page_props',        'patch-page_props.sql' ),
