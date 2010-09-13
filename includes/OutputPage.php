@@ -2302,14 +2302,25 @@ class OutputPage {
 				if ( $group === 'user' ) {
 					$query['user'] = $wgUser->getName();
 				}
-				$context = new ResourceLoaderContext( new FauxRequest( $query ) );
+				// Users might change their stuff on-wiki like site or user pages, or user preferences; we need to find
+				// the highest timestamp of these user-changable modules so we can ensure cache misses upon change
 				$timestamp = 0;
 				foreach ( $modules as $name ) {
-					if ( $module = ResourceLoader::getModule( $name ) ) {
-						$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
+					$module = ResourceLoader::getModule( $name );
+					if (
+						$module instanceof ResourceLoaderWikiModule ||
+						$module instanceof ResourceLoaderUserPreferencesModule
+					) {
+						$timestamp = max(
+							$timestamp,
+							$module->getModifiedTime( new ResourceLoaderContext( new FauxRequest( $query ) ) )
+						);
 					}
 				}
-				$query['version'] = wfTimestamp( TS_ISO_8601, round( $timestamp, -2 ) );
+				// Add a version parameter if any of the modules were user-changable
+				if ( $timestamp ) {
+					$query['version'] = wfTimestamp( TS_ISO_8601, round( $timestamp, -2 ) );
+				}
 				// Make queries uniform in order
 				ksort( $query );
 				// Automatically select style/script elements

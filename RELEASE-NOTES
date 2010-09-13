@@ -54,7 +54,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgUseMemCached, $wgDisableSearchContext, $wgColorErrors,
   $wgUseZhdaemon, $wgZhdaemonHost and $wgZhdaemonPort.
 * (bug 24408) The include_path is not modified in the default LocalSettings.php
-* $wgVectorExtraStyles has been removed, and is no longer in use.
+* $wgVectorExtraStyles was removed, and is no longer in use.
+* $wgLoadScript was added to specify alternative locations for ResourceLoader
+  requests.
+* $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage,
+  $wgResourceLoaderUnversionedClientMaxage and
+  wgResourceLoaderUnversionedServerMaxage were added to specify maxage and
+  smaxage times for responses from ResourceLoader based on whether the request's
+  URL contained a version parameter or not.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via

@@ -33,6 +33,7 @@ class ResourceLoaderContext {
 	protected $user;
 	protected $debug;
 	protected $only;
+	protected $version;
 	protected $hash;
 
 	/* Methods */
@@ -49,6 +50,7 @@ class ResourceLoaderContext {
 		$this->user = $request->getVal( 'user' );
 		$this->debug = $request->getBool( 'debug' ) && $request->getVal( 'debug' ) === 'true';
 		$this->only = $request->getVal( 'only' );
+		$this->version = $request->getVal( 'version' );
 
 		// Fallback on system defaults
 		if ( !$this->language ) {
@@ -63,7 +65,7 @@ class ResourceLoaderContext {
 			$this->skin = $wgDefaultSkin;
 		}
 	}
-	
+
 	public function getRequest() {
 		return $this->request;
 	}
@@ -96,6 +98,10 @@ class ResourceLoaderContext {
 		return $this->only;
 	}
 
+	public function getVersion() {
+		return $this->version;
+	}
+
 	public function shouldIncludeScripts() {
 		return is_null( $this->only ) || $this->only === 'scripts';
 	}
@@ -111,7 +117,7 @@ class ResourceLoaderContext {
 	public function getHash() {
 		return isset( $this->hash ) ?
 			$this->hash : $this->hash = implode( '|', array(
-				$this->language, $this->direction, $this->skin, $this->user, $this->debug, $this->only
+				$this->language, $this->direction, $this->skin, $this->user, $this->debug, $this->only, $this->version
 			) );
 	}
 }

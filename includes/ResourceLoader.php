@@ -24,6 +24,7 @@
  * Dynamic JavaScript and CSS resource loading system
  */
 class ResourceLoader {
+
 	/* Protected Static Members */
 
 	// @var array list of module name/ResourceLoaderModule object pairs
@@ -188,6 +189,9 @@ class ResourceLoader {
 	 * @param $context ResourceLoaderContext object
 	 */
 	public static function respond( ResourceLoaderContext $context ) {
+		global $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage;
+		global $wgResourceLoaderUnversionedServerMaxage, $wgResourceLoaderUnversionedClientMaxage;
+
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
 		$missing = array();
@@ -200,33 +204,31 @@ class ResourceLoader {
 			}
 		}
 
-		// Calculate the mtime and caching maxages for this request. We need this, 304 or no 304
-		$mtime = 1;
-		$maxage = PHP_INT_MAX;
-		$smaxage = PHP_INT_MAX;
+		// If a version wasn't specified we need a shorter expiry time for updates to propagate to clients quickly
+		if ( is_null( $context->getVersion() ) ) {
+			$maxage = $wgResourceLoaderUnversionedClientMaxage;
+			$smaxage = $wgResourceLoaderUnversionedServerMaxage;
+		}
+		// If a version was specified we can use a longer expiry time since changing version numbers causes cache misses
+		else {
+			$maxage = $wgResourceLoaderVersionedClientMaxage;
+			$smaxage = $wgResourceLoaderVersionedServerMaxage;
+		}
 
+		// To send Last-Modified and support If-Modified-Since, we need to detect the last modified time
+		$mtime = 1;
 		foreach ( $modules as $name ) {
 			$mtime = max( $mtime, self::$modules[$name]->getModifiedTime( $context ) );
-			$maxage = min( $maxage, self::$modules[$name]->getClientMaxage() );
-			$smaxage = min( $smaxage, self::$modules[$name]->getServerMaxage() );
 		}
 
-		// Output headers
-		if ( $context->getOnly() === 'styles' ) {
-			header( 'Content-Type: text/css' );
-		} else {
-			header( 'Content-Type: text/javascript' );
-		}
-
+		header( 'Content-Type: ' . ( $context->getOnly() === 'styles' ? 'text/css' : 'text/javascript' ) );
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
-		$expires = wfTimestamp( TS_RFC2822, min( $maxage, $smaxage ) + time() );
 		header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
-		header( "Expires: $expires" );
+		header( 'Expires: ' . wfTimestamp( TS_RFC2822, min( $maxage, $smaxage ) + time() ) );
 
-		// Check if there's an If-Modified-Since header and respond with a 304 Not Modified if possible
+		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		$ims = $context->getRequest()->getHeader( 'If-Modified-Since' );
-
-		if ( $ims !== false && wfTimestamp( TS_UNIX, $ims ) == $mtime ) {
+		if ( $ims !== false && $mtime >= wfTimestamp( TS_UNIX, $ims ) ) {
 			header( 'HTTP/1.0 304 Not Modified' );
 			header( 'Status: 304 Not Modified' );
 			return;
