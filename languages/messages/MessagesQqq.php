@@ -1158,6 +1158,11 @@ See also {{msg-mw|difference}}.',
 
 *Parameter $1 is the number of revisions
 *Parameter $2 is the number of users making those revisions",
+'diff-multi-manyusers'     => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users
+
+*Parameter $1 is the number of revisions, will always be 101 or more.
+*Parameter $2 is the number of users we've found, which was limited at 100",
+
 
 # Search results
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
