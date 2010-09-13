@@ -1645,17 +1645,30 @@ $wgUseETag = false;
 $wgClockSkewFudge = 5;
 
 /**
- * Maximum time in seconds to cache resources served by the resource loader on
- * the client side (e.g. in the browser cache).
+ * Maximum time in seconds to cache versioned resources served by the resource
+ * loader on the client side (e.g. in the browser cache).
  */
-$wgResourceLoaderClientMaxage = 30*24*60*60; // 30 days
+$wgResourceLoaderVersionedClientMaxage = 30 * 24 * 60 * 60; // 30 days
 
 /**
- * Maximum time in seconds to cache resources served by the resource loader on
- * the server side. This means Squid/Varnish but also any other public proxy
- * cache between the client and MediaWiki.
+ * Maximum time in seconds to cache versioned resources served by the resource
+ * loader on the server side. This means Squid/Varnish but also any other public
+ * proxy cache between the client and MediaWiki.
  */
-$wgResourceLoaderServerMaxage = 30*24*60*60; // 30 days
+$wgResourceLoaderVersionedServerMaxage = 30 * 24 * 60 * 60; // 30 days
+
+/**
+ * Maximum time in seconds to cache unversioned resources served by the resource
+ * loader on the client.
+ */
+$wgResourceLoaderUnversionedClientMaxage = 5 * 60; // 5 minutes
+
+/**
+ * Maximum time in seconds to cache unversioned resources served by the resource
+ * loader on the server. This means Squid/Varnish but also any other public
+ * proxy cache between the client and MediaWiki.
+ */
+$wgResourceLoaderUnversionedServerMaxage = 5 * 60; // 5 minutes
 
 /**
  * Enable data URL embedding (experimental). This variable is very temporary and
