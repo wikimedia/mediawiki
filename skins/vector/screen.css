@@ -954,6 +954,7 @@ img.thumbborder {
 }
 /* Site Notice (includes notices from CentralNotice extension) */
 #siteNotice {
+	position: relative;
 	text-align: center;
 	font-size: 0.8em;
 	margin: 0;
