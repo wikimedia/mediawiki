@@ -430,7 +430,8 @@ class MimeMagic {
 	function improveTypeFromExtension( $mime, $ext ) {
 		if ( $mime === "unknown/unknown" ) {
 			if( $this->isRecognizableExtension( $ext ) ) {
-				wfDebug( __METHOD__. ": refusing to guess mime type for .$ext file, we should have recognized it\n" );
+				wfDebug( __METHOD__. ": refusing to guess mime type for .$ext file, " .
+					"we should have recognized it\n" );
 			} else {
 				/* Not something we can detect, so simply 
 				* trust the file extension */
@@ -443,7 +444,8 @@ class MimeMagic {
 				* find the proper mime type for that file extension */
 				$mime = $this->guessTypesForExtension( $ext );
 			} else {
-				wfDebug( __METHOD__. ": refusing to guess better type for $mime file, .$ext is not a known OPC extension.\n" );
+				wfDebug( __METHOD__. ": refusing to guess better type for $mime file, " . 
+					".$ext is not a known OPC extension.\n" );
 				$mime = "application/zip";
 			}
 		}
@@ -470,7 +472,8 @@ class MimeMagic {
 	*/
 	function guessMimeType( $file, $ext = true ) {
 		if( $ext ) { # TODO: make $ext default to false. Or better, remove it.
-			wfDebug( __METHOD__.": WARNING: use of the \$ext parameter is deprecated. Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
+			wfDebug( __METHOD__.": WARNING: use of the \$ext parameter is deprecated. " .
+				"Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
 		}
 
 		$mime = $this->doGuessMimeType( $file, $ext );
@@ -663,7 +666,8 @@ class MimeMagic {
 	 */
 	function detectZipType( $header, $tail = null, $ext = false ) {
 		if( $ext ) { # TODO: remove $ext param
-			wfDebug( __METHOD__.": WARNING: use of the \$ext parameter is deprecated. Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
+			wfDebug( __METHOD__.": WARNING: use of the \$ext parameter is deprecated. " .
+				"Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
 		}
 
 		$mime = 'application/zip';

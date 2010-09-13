@@ -1197,8 +1197,10 @@ abstract class File {
 				$ext = strtolower( $i ? substr( $path, $i + 1 ) : '' );
 			}
 
-			$info['file-mime'] = $magic->guessMimeType( $path, false ); # mime type according to file contents
-			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext ); # logical mime type
+			# mime type according to file contents
+			$info['file-mime'] = $magic->guessMimeType( $path, false );
+			# logical mime type
+			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
 			list( $info['major_mime'], $info['minor_mime'] ) = self::splitMime( $info['mime'] );
 			$info['media_type'] = $magic->getMediaType( $path, $info['mime'] );
