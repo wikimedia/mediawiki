@@ -560,7 +560,7 @@ window.mediaWiki = new ( function( $ ) {
 			registry[module].state = 'loaded';
 			// Attach components
 			registry[module].script = script;
-			if ( typeof style === 'string' ) {
+			if ( typeof style === 'string' || typeof style === 'object' ) {
 				registry[module].style = style;
 			}
 			if ( typeof localization === 'object' ) {
