@@ -9,7 +9,7 @@
 
 // This file is not included in the global scope, but rather within a function, so we must global anything we need to
 // have access to in the global scope explicitly
-global $wgCommandLineMode, $IP, $optionsWithArgs, $wgProfiler;
+global $wgCommandLineMode, $IP, $optionsWithArgs, $wgProfiler, $wgAutoloadClasses;
 
 // Evaluate the include path relative to this file
 $IP = dirname( dirname( dirname( dirname( __FILE__ ) ) ) );
