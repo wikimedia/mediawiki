@@ -817,16 +817,26 @@ CONTROL;
 		} else {
 			global $wgLang;
 			$dbr = wfGetDB( DB_SLAVE );
+			
+			// Actually, the limit is $limit + 1. We do this so we can detect
+			// if there are > 100 authors in a given revision range. If they
+			// are, $limit will be passed to diff-multi-manyusers for l10n.
+			$limit = 100;
 			$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
 				array(
 					'rev_page = ' . $this->mOldRev->getPage(),
 					'rev_id > ' . $this->mOldRev->getId(),
 					'rev_id < ' . $this->mNewRev->getId()
 				), __METHOD__,
-				array( 'LIMIT' => 101 )
+				array( 'LIMIT' => $limit + 1 )
 			);
 			$numUsers = $dbr->numRows( $res );
-			$msg = $numUsers > 100 ? 'diff-multi-manyusers' : 'diff-multi';
+			if( $numUsers > $limit ) {
+				$msg = 'diff-multi-manyusers';
+				$numUsers = $limit;
+			} else {
+				$msg = 'diff-multi';
+			}
 			return wfMsgExt( $msg, array( 'parseinline' ), $wgLang->formatnum( $n ),
 				$wgLang->formatnum( $numUsers ) );
 		}
