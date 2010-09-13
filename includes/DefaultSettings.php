@@ -503,9 +503,9 @@ $wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/File:";
  * This is the list of preferred extensions for uploading files. Uploading files
  * with extensions not in this list will trigger a warning.
  *
- * WARNING: If you add any OpenDocument file formats here, such as odt, ods or 
- * odp, and untrusted users are allowed to upload files, then your wiki will be 
- * vulnerable to cross-site request forgery (CSRF). 
+ * WARNING: If you add any OpenOffice or Microsoft Office file formats here, 
+ * such as odt or doc, and untrusted users are allowed to upload files, then 
+ * your wiki will be vulnerable to cross-site request forgery (CSRF). 
  */
 $wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 
