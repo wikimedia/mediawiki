@@ -319,6 +319,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24977) The accesskey in history page now lead directly to the diff 
   instead of alterning focus between the two buttons.
 * (bug 24987) Special:ListUsers does not take external groups into account
+* (bug 20633) update.php has mixed language output
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
