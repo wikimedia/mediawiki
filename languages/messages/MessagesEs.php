@@ -328,7 +328,7 @@ $messages = array(
 'tog-editsection'             => 'Habilitar la edición de secciones usando el enlace [editar]',
 'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha en los títulos de secciones (requiere JavaScript)',
 'tog-showtoc'                 => 'Mostrar el índice (para páginas con más de 3 encabezados)',
-'tog-rememberpassword'        => 'Recordar mi nombre de usuario y contraseña entre sesiones en esta computadora (por un máximo de $1 {{PLURAL:$1|día|días}})',
+'tog-rememberpassword'        => 'Recordar mi nombre de usuario y contraseña entre sesiones en este navegador (por un máximo de $1 {{PLURAL:$1|día|días}})',
 'tog-watchcreations'          => 'Vigilar las páginas que yo cree',
 'tog-watchdefault'            => 'Vigilar las páginas que yo modifique',
 'tog-watchmoves'              => 'Vigilar las páginas que renombre',
@@ -1237,7 +1237,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'compareselectedversions'  => 'Comparar versiones seleccionadas',
 'showhideselectedversions' => 'Mostrar/ocultar versiones seleccionadas',
 'editundo'                 => 'deshacer',
-'diff-multi'               => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
+'diff-multi'               => '(No se {{PLURAL:$1|muestra una edición intermedia realizada|muestran $1 ediciones intermedias realizadas}} por {{PLURAL:$2|un usuario|$2 usuarios}})',
+'diff-multi-manyusers'     => '(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de {{PLURAL:$2|un usuario|$2 usuarios}})',
 
 # Search results
 'searchresults'                    => 'Resultados de la búsqueda',

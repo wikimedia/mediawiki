@@ -1084,7 +1084,8 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'compareselectedversions'  => 'Comparar versiones seligite',
 'showhideselectedversions' => 'Revelar/celar le versiones seligite',
 'editundo'                 => 'disfacer',
-'diff-multi'               => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non es monstrate)',
+'diff-multi'               => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per {{PLURAL:$2|un usator|$2 usatores}} non es monstrate)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per plus de $2 {{PLURAL:$2|usator|usatores}} non es monstrate)',
 
 # Search results
 'searchresults'                    => 'Resultatos del recerca',

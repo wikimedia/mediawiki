@@ -1166,7 +1166,8 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'compareselectedversions'  => 'So sánh các bản đã chọn',
 'showhideselectedversions' => 'Hiện/ẩn các phiên bản được chọn',
 'editundo'                 => 'lùi sửa',
-'diff-multi'               => '(Không hiển thị {{PLURAL:$1|một|$1}} phiên bản ở giữa)',
+'diff-multi'               => '(Không hiển thị {{PLURAL:$1||$1}} phiên bản {{PLURAL:$2||của $2 người dùng}} ở giữa)',
+'diff-multi-manyusers'     => '(Không hiển thị {{PLURAL:$1||$1}} phiên bản của hơn $2 người dùng ở giữa)',
 
 # Search results
 'searchresults'                    => 'Kết quả tìm kiếm',

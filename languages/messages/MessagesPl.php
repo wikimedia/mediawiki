@@ -1171,7 +1171,8 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'compareselectedversions'  => 'porównaj wybrane wersje',
 'showhideselectedversions' => 'Pokaż lub ukryj zaznaczone wersje',
 'editundo'                 => 'anuluj edycję',
-'diff-multi'               => '(Nie pokazano $1 {{PLURAL:$1|wersji|wersji}} pomiędzy niniejszymi.)',
+'diff-multi'               => '(Nie pokazano $1 wersji {{PLURAL:$1|utworzonej|utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
+'diff-multi-manyusers'     => '(Nie pokazano $1 wersji utworzonych przez ponad 100 użytkowników)',
 
 # Search results
 'searchresults'                    => 'Wyniki wyszukiwania',

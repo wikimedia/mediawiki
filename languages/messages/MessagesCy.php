@@ -1452,7 +1452,7 @@ Gweler [[Special:NewFiles|oriel y ffeiliau newydd]] i fwrw golwg drostynt.",
 'ignorewarnings'              => 'Anwybydder pob rhybudd',
 'minlength1'                  => 'Rhaid i enwau ffeiliau gynnwys un llythyren neu ragor.',
 'illegalfilename'             => 'Mae\'r enw ffeil "$1" yn cynnwys nodau sydd wedi\'u gwahardd mewn teitlau tudalennau. Ail-enwch y ffeil ac uwchlwythwch hi eto os gwelwch yn dda.',
-'badfilename'                 => 'Mae enw\'r ffeil wedi\'i newid i "$1".',
+'badfilename'                 => 'Newidiwyd enw\'r ffeil i "$1".',
 'filetype-mime-mismatch'      => "Nid yw estyniad y ffeil yn cysefeillio â'r math MIME.",
 'filetype-badmime'            => "Ni chaniateir uwchlwytho ffeiliau o'r math MIME '$1'.",
 'filetype-bad-ie-mime'        => 'Ni ellir uwchlwytho\'r ffeil hon oherwydd y byddai Internet Explorer yn ei adnabod fel "$1", sef math annilys o ffeil sydd efallai hefyd yn beryglus.',
@@ -2259,7 +2259,7 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'ipballowusertalk'                => "Galluogi'r defnyddiwr hwn i olygu ei dudalen sgwrs ei hun tra bod bloc arno",
 'ipb-change-block'                => "Ailflocio'r defnyddiwr hwn gyda'r gosodiadau hyn",
 'badipaddress'                    => 'Cyfeiriad IP annilys.',
-'blockipsuccesssub'               => 'Y blocio wedi llwyddo',
+'blockipsuccesssub'               => 'Llwyddodd y rhwystr',
 'blockipsuccesstext'              => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.
 <br />Gwelwch [[Special:IPBlockList|restr y blociau IP]] er mwyn arolygu blociau.',
 'ipb-edit-dropdown'               => "Golygu'r rhesymau dros flocio",
@@ -2296,13 +2296,13 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'unblocklink'                     => 'dadflocio',
 'change-blocklink'                => 'newid y bloc',
 'contribslink'                    => 'cyfraniadau',
-'autoblocker'                     => 'Rydych chi wedi cael eich blocio yn awtomatig gan eich bod chi\'n rhannu cyfeiriad IP gyda "[[User:$1|$1]]". Dyma\'r rheswm a roddwyd dros flocio $1: "$2".',
+'autoblocker'                     => 'Rydych wedi cael eich rhwystro\'n awtomatig oherwydd defnyddiwyd eich cyfeiriad IP gyda "[[User:$1|$1]]" yn ddiweddar. Dyma\'r rheswm a roddwyd dros rwystro $1: "$2".',
 'blocklogpage'                    => 'Lòg blociau',
 'blocklog-showlog'                => "Cafodd y defnyddiwr hwn ei flocio o'r blaen.
 Dyma'r lòg blocio perthnasol:",
 'blocklog-showsuppresslog'        => "Cafodd y defnyddiwr hwn ei flocio a'i guddio o'r blaen.
 Dyma'r lòg cuddio perthnasol:",
-'blocklogentry'                   => 'wedi blocio "[[$1]]" am gyfnod $2 $3',
+'blocklogentry'                   => 'wedi rhwystro "[[$1]]" am gyfnod o $2 $3',
 'reblock-logentry'                => 'wedi newid y gosodiadau blocio ar [[$1]], gan ddod i ben am $2 $3',
 'blocklogtext'                    => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:IPBlockList|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
 'unblocklogentry'                 => 'wedi dadflocio $1',
@@ -3200,7 +3200,7 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'filepath-page'    => 'Ffeil:',
 'filepath-submit'  => 'Eler',
 'filepath-summary' => 'Mae\'r dudalen arbennig hon yn adrodd llwybr ffeil yn gyfan.
-Dangosir delweddau ar eu llawn maint, dechreuir ffeiliau o fathau eraill yn uniongyrchol gan y rhaglen cysylltiedig.
+Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn uniongyrchol gan y rhaglen gysylltiedig.
 
 Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 

@@ -1249,7 +1249,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'compareselectedversions'  => 'Porovnat vybrané verze',
 'showhideselectedversions' => 'Zobrazit/skrýt vybrané revize',
 'editundo'                 => 'zrušit editaci',
-'diff-multi'               => '({{PLURAL:$1|Není zobrazena jedna mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}}.)',
+'diff-multi'               => '({{PLURAL:$1|Není zobrazena 1 mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}} od {{PLURAL:$2|1 uživatele|$2 uživatelů}}.)',
+'diff-multi-manyusers'     => '(Není zobrazeno $1 mezilehlých verzí od více než sta uživatelů.)',
 
 # Search results
 'searchresults'                    => 'Výsledky hledání',
