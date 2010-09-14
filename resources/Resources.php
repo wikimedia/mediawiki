@@ -7,7 +7,7 @@ ResourceLoader::register( array(
 	'site' => new ResourceLoaderSiteModule,
 	'startup' => new ResourceLoaderStartUpModule,
 	'user' => new ResourceLoaderUserModule,
-	'user.preferences' => new ResourceLoaderUserPreferencesModule,
+	'user.options' => new ResourceLoaderUserOptionsModule,
 	
 	/* Skins */
 	
