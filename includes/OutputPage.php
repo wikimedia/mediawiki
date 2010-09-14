@@ -2299,8 +2299,8 @@ class OutputPage {
 			if ( count( $modules ) ) {
 				sort( $modules );
 				$query['modules'] = implode( '|', array_unique( (array) $modules ) );
-				if ( $group === 'user' ) {
-					$query['user'] = $wgUser->isLoggedIn() ? $wgUser->getName() : null;
+				if ( $group === 'user' && $wgUser->isLoggedIn() ) {
+					$query['user'] = $wgUser->getName();
 				}
 				// Users might change their stuff on-wiki like site or user pages, or user preferences; we need to find
 				// the highest timestamp of these user-changable modules so we can ensure cache misses upon change
