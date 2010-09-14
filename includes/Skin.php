@@ -244,6 +244,7 @@ class Skin extends Linker {
 		}
 
 		$lb = new LinkBatch( $titles );
+		$lb->setCaller( __METHOD__ );
 		$lb->execute();
 	}
 
