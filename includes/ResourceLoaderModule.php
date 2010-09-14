@@ -813,7 +813,7 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 /**
  * Module for user preference customizations
  */
-class ResourceLoaderUserPreferencesModule extends ResourceLoaderModule {
+class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 	/* Protected Members */
 
@@ -839,40 +839,44 @@ class ResourceLoaderUserPreferencesModule extends ResourceLoaderModule {
 		}
 	}
 
+	public function getScript( ResourceLoaderContext $context ) {
+		$user = User::newFromName( $context->getUser() );
+		$options = FormatJson::encode( $user instanceof User ? $user->getOptions() : User::getDefaultOptions() );
+		return "mediaWiki.user.options.set( $options );";
+	}
+
 	public function getStyles( ResourceLoaderContext $context ) {
 		global $wgAllowUserCssPrefs;
 		if ( $wgAllowUserCssPrefs ) {
 			$user = User::newFromName( $context->getUser() );
-			if ( $user === false ) {
-				$user = User::newFromId( 0 );
-			}
-
+			$options = $user instanceof User ? $user->getOptions() : User::getDefaultOptions();
+			
 			$rules = array();
-			if ( ( $underline = $user->getOption( 'underline' ) ) < 2 ) {
-				$rules[] = "a { text-decoration: " . ( $underline ? 'underline' : 'none' ) . "; }";
+			if ( $options['underline'] < 2 ) {
+				$rules[] = "a { text-decoration: " . ( $options['underline'] ? 'underline' : 'none' ) . "; }";
 			}
-			if ( $user->getOption( 'highlightbroken' ) ) {
+			if ( $options['highlightbroken'] ) {
 				$rules[] = "a.new, #quickbar a.new { color: #CC2200; }\n";
 			} else {
 				$rules[] = "a.new, #quickbar a.new, a.stub, #quickbar a.stub { color: inherit; }";
 				$rules[] = "a.new:after, #quickbar a.new:after { content: '?'; color: #CC2200; }";
 				$rules[] = "a.stub:after, #quickbar a.stub:after { content: '!'; color: #772233; }";
 			}
-			if ( $user->getOption( 'justify' ) ) {
+			if ( $options['justify'] ) {
 				$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
 			}
-			if ( !$user->getOption( 'showtoc' ) ) {
+			if ( !$options['showtoc'] ) {
 				$rules[] = "#toc { display: none; }\n";
 			}
-			if ( !$user->getOption( 'editsection' ) ) {
+			if ( !$options['editsection'] ) {
 				$rules[] = ".editsection { display: none; }\n";
 			}
-			if ( ( $fontstyle = $user->getOption( 'editfont' ) ) !== 'default' ) {
-				$rules[] = "textarea { font-family: $fontstyle; }\n";
+			if ( $options['editfont'] !== 'default' ) {
+				$rules[] = "textarea { font-family: {$options['editfont']}; }\n";
 			}
 			return array( 'all' => implode( "\n", $rules ) );
 		}
-		return array();
+		return array( 'all' => 'test { color: pink; }' );
 	}
 
 	public function getFlip( $context ) {

@@ -2300,7 +2300,7 @@ class OutputPage {
 				sort( $modules );
 				$query['modules'] = implode( '|', array_unique( (array) $modules ) );
 				if ( $group === 'user' ) {
-					$query['user'] = $wgUser->getName();
+					$query['user'] = $wgUser->isLoggedIn() ? $wgUser->getName() : null;
 				}
 				// Users might change their stuff on-wiki like site or user pages, or user preferences; we need to find
 				// the highest timestamp of these user-changable modules so we can ensure cache misses upon change
@@ -2382,15 +2382,20 @@ class OutputPage {
 			);
 		}
 		
-		// Add user JS if enabled
-		if( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
+		// Add user JS if enabled - trying to load user.options as a bundle if possible
+		$userOptionsAdded = false;
+		if ( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
 			$action = $wgRequest->getVal( 'action', 'view' );
 			if( $this->mTitle && $this->mTitle->isJsSubpage() && $sk->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
 				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
-				$scripts .= self::makeResourceLoaderLink( $sk, 'user', 'scripts' );
+				$scripts .= self::makeResourceLoaderLink( $sk, array( 'user', 'user.options' ), 'scripts' );
+				$userOptionsAdded = true;
 			}
+		}
+		if ( !$userOptionsAdded ) {
+			$scripts .= self::makeResourceLoaderLink( $sk, 'user.options', 'scripts' );
 		}
 		$scripts .= "\n" . $this->mScripts;
 		

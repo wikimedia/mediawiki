@@ -516,7 +516,7 @@ class Skin extends Linker {
 
 		// Per-user preference styles
 		if ( $wgAllowUserCssPrefs ) {
-			$out->addModuleStyles( 'user.preferences' );
+			$out->addModuleStyles( 'user.options' );
 		}
 
 		wfProfileOut( __METHOD__ );
