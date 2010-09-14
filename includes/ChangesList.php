@@ -1,7 +1,7 @@
 <?php
 /**
  * Classes to show various lists of changes:
- * - what links here
+ * - watchlist
  * - related changes
  * - recent changes
  *
