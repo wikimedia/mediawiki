@@ -747,14 +747,21 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		// Do batch existence check
 		// TODO: This would work better if page_touched were loaded by this as well
 		$lb = new LinkBatch( $titles );
+		$lb->setCaller( __METHOD__ );
 		$lb->execute();
 		$modifiedTime = 1; // wfTimestamp() interprets 0 as "now"
+
+		$ids = array();
 		foreach ( $titles as $title ) {
 			if ( $title->exists() ) {
-				$modifiedTime = max( $modifiedTime, wfTimestamp( TS_UNIX, $title->getTouched() ) );
+				$ids[] = $title->getArticleId();
 			}
 		}
-		return $this->modifiedTime[$hash] = $modifiedTime;
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$modifiedTime = $dbr->selectField( 'page', 'MAX(page_touched)', array( 'page_id' => $ids ), __METHOD__ );
+
+		return $this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $modifiedTime );
 	}
 }
 
