@@ -456,6 +456,7 @@ $wgMessageStructure = array(
 		'loginlanguagelabel',
 		'loginlanguagelinks',
 		'suspicious-userlogout',
+		'ratelimit-excluded-ips',
 	),
 	'passwordstrength' => array(
 		'password-strength',
