@@ -454,19 +454,20 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->loaders,
 			$this->getFileDependencies( $context->getSkin() )
 		);
-		
 		$filesMtime = max( array_map( 'filemtime', array_map( array( __CLASS__, 'remapFilename' ), $files ) ) );
-
-		// Get the mtime of the message blob
-		// TODO: This timestamp is queried a lot and queried separately for each module. Maybe it should be put in memcached?
-		$dbr = wfGetDb( DB_SLAVE );
-		$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
-				'mr_resource' => $this->getName(),
-				'mr_lang' => $context->getLanguage()
-			), __METHOD__
-		);
-		$msgBlobMtime = $msgBlobMtime ? wfTimestamp( TS_UNIX, $msgBlobMtime ) : 0;
-
+		// Only get the message timestamp if there are messages in the module
+		$msgBlobMtime = 0;
+		if ( count( $this->messages ) ) {
+			// Get the mtime of the message blob
+			// TODO: This timestamp is queried a lot and queried separately for each module. Maybe it should be put in memcached?
+			$dbr = wfGetDb( DB_SLAVE );
+			$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
+					'mr_resource' => $this->getName(),
+					'mr_lang' => $context->getLanguage()
+				), __METHOD__
+			);
+			$msgBlobMtime = $msgBlobMtime ? wfTimestamp( TS_UNIX, $msgBlobMtime ) : 0;
+		}
 		$this->modifiedTime[$context->getHash()] = max( $filesMtime, $msgBlobMtime );
 		return $this->modifiedTime[$context->getHash()];
 	}
