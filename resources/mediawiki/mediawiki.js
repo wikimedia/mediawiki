@@ -44,9 +44,78 @@ window.mediaWiki = new ( function( $ ) {
 	// This will not change until we are 100% ready to turn off legacy globals
 	var LEGACY_GLOBALS = true;
 	
-	/* Members */
+	/* Private Members */
 	
-	this.legacy = LEGACY_GLOBALS ? window : {};
+	var that = this;
+	
+	/* Prototypes */
+	
+	this.prototypes = {
+		/*
+		 * An object which allows single and multiple get/set/exists functionality on a list of key / value pairs
+		 * 
+		 * @param {boolean} global whether to get/set/exists values on the window object or a private object
+		 */
+		'configuration': function( global ) {
+			
+			/* Private Members */
+			
+			var that = this;
+			var values = global === true ? window : {};
+			
+			/* Public Methods */
+			
+			/**
+			 * Gets one or multiple configuration values using a key and an optional fallback or an array of keys
+			 */
+			this.get = function( keys, fallback ) {
+				if ( typeof keys === 'object' ) {
+					var result = {};
+					for ( var k = 0; k < keys.length; k++ ) {
+						if ( typeof values[keys[k]] !== 'undefined' ) {
+							result[keys[k]] = values[keys[k]];
+						}
+					}
+					return result;
+				} else if ( typeof keys === 'string' ) {
+					if ( typeof values[keys] === 'undefined' ) {
+						return typeof fallback !== 'undefined' ? fallback : null;
+					} else {
+						return values[keys];
+					}
+				} else {
+					return values;
+				}
+			};
+			/**
+			 * Sets one or multiple configuration values using a key and a value or an object of keys and values
+			 */
+			this.set = function( keys, value ) {
+				if ( typeof keys === 'object' ) {
+					for ( var k in keys ) {
+						values[k] = keys[k];
+					}
+				} else if ( typeof keys === 'string' && typeof value !== 'undefined' ) {
+					values[keys] = value;
+				}
+			};
+			/**
+			 * Checks if one or multiple configuration fields exist
+			 */
+			this.exists = function( keys ) {
+				if ( typeof keys === 'object' ) {
+					for ( var k = 0; k < keys.length; k++ ) {
+						if ( !( keys[k] in values ) ) {
+							return false;
+						}
+					}
+					return true;
+				} else {
+					return keys in values;
+				}
+			};
+		}
+	};
 	
 	/* Methods */
 	
@@ -55,67 +124,19 @@ window.mediaWiki = new ( function( $ ) {
 	 */
 	this.log = function() { };
 	/*
-	 * An object which allows single and multiple existence, setting and getting on a list of key / value pairs
+	 * List of configuration values
+	 * 
+	 * In legacy mode the values this object wraps will be in the global space
 	 */
-	this.config = new ( function() {
+	this.config = new this.prototypes.configuration( LEGACY_GLOBALS );
+	/*
+	 * Information about the current user
+	 */
+	this.user = new ( function() {
 		
-		/* Private Members */
+		/* Public Members */
 		
-		var that = this;
-		// List of configuration values - in legacy mode these configurations were ALL in the global space
-		var values = LEGACY_GLOBALS ? window : {};
-		
-		/* Public Methods */
-		
-		/**
-		 * Sets one or multiple configuration values using a key and a value or an object of keys and values
-		 */
-		this.set = function( keys, value ) {
-			if ( typeof keys === 'object' ) {
-				for ( var k in keys ) {
-					values[k] = keys[k];
-				}
-			} else if ( typeof keys === 'string' && typeof value !== 'undefined' ) {
-				values[keys] = value;
-			}
-		};
-		/**
-		 * Gets one or multiple configuration values using a key and an optional fallback or an array of keys
-		 */
-		this.get = function( keys, fallback ) {
-			if ( typeof keys === 'object' ) {
-				var result = {};
-				for ( var k = 0; k < keys.length; k++ ) {
-					if ( typeof values[keys[k]] !== 'undefined' ) {
-						result[keys[k]] = values[keys[k]];
-					}
-				}
-				return result;
-			} else if ( typeof keys === 'string' ) {
-				if ( typeof values[keys] === 'undefined' ) {
-					return typeof fallback !== 'undefined' ? fallback : null;
-				} else {
-					return values[keys];
-				}
-			} else {
-				return values;
-			}
-		};
-		/**
-		 * Checks if one or multiple configuration fields exist
-		 */
-		this.exists = function( keys ) {
-			if ( typeof keys === 'object' ) {
-				for ( var k = 0; k < keys.length; k++ ) {
-					if ( !( keys[k] in values ) ) {
-						return false;
-					}
-				}
-				return true;
-			} else {
-				return keys in values;
-			}
-		};
+		this.options = new that.prototypes.configuration();
 	} )();
 	/*
 	 * Localization system
