@@ -823,6 +823,11 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 Bitte warte, bevor du es erneut probierst.',
 'loginlanguagelabel'         => 'Sprache: $1',
 'suspicious-userlogout'      => 'Deine Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.',
+'ratelimit-excluded-ips'     => ' #<!-- Diese Zeile darf nicht verändert werden! --> <pre>
+#  Syntax:
+#  * Alles von einem #-Zeichen bis zum Ende der Zeile ist ein Kommentar
+#  * Jede nicht-leere Zeile ist eine IP-Adresse, die von der Begrenzung ausgenommen ist
+ #</pre> <!-- Diese Zeile darf nicht verändert werden! -->',
 
 # JavaScript password checks
 'password-strength'            => 'Geschätzte Passwortstärke: $1',
@@ -1262,8 +1267,8 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'compareselectedversions'  => 'Gewählte Versionen vergleichen',
 'showhideselectedversions' => 'Gewählte Versionen zeigen/verstecken',
 'editundo'                 => 'rückgängig',
-'diff-multi'               => '({{PLURAL:$1|1 dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|1 Benutzer|$2 Benutzer}} werden nicht angezeigt)',
-'diff-multi-manyusers'     => '({{PLURAL:$1|$1 dazwischenliegende Versionen}} von 100+ {{PLURAL:$2|Benutzern}}, die nicht angezeigt werden)',
+'diff-multi'               => '({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}} {{PLURAL:$1|wird|werden}} nicht angezeigt)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|$1 dazwischenliegende Versionen}} von mehr als {{PLURAL:$2|$2 Benutzern}}, die nicht angezeigt werden)',
 
 # Search results
 'searchresults'                    => 'Suchergebnisse',

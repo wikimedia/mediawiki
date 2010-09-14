@@ -358,7 +358,7 @@ Why a ell [[Special:Search/{{PAGENAME}}|whila titel an folen-ma]] yn folednow er
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} whila y\'n covnotednow kelmys],
 po [{{fullurl:{{FULLPAGENAME}}|action=edit}} chanjya an folen-ma]</span>.',
 'note'                             => "'''Noten:'''",
-'previewnote'                      => "'''Gwrewgh remembra, nyns yw hemm ma's ragwel.''' Nyns yw agas chanjyow gwithys whath!",
+'previewnote'                      => "'''Gwrewgh remembra, nyns yw hebma ma's ragwel.''' Nyns yw agas chanjyow gwithys whath!",
 'editing'                          => 'ow chanjya $1',
 'editingsection'                   => 'ow chanjya $1 (rann)',
 'editingcomment'                   => 'ow chanjya $1 (rann nowyth)',

@@ -1192,7 +1192,8 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 'compareselectedversions'  => 'Võrdle valitud redaktsioone',
 'showhideselectedversions' => 'Näita/peida valitud versioonid',
 'editundo'                 => 'eemalda',
-'diff-multi'               => '({{PLURAL:$1|Ühte vahepealset muudatust|$1 vahepealset muudatust}} ei näidata.)',
+'diff-multi'               => '({{PLURAL:$1|Ühte|$1}} vahepealset {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Ühte|$1}} vahepealset rohkem kui {{PLURAL:$2|ühe|$2}} kasutaja redaktsiooni ei näidata.)',
 
 # Search results
 'searchresults'                    => 'Otsingu tulemused',

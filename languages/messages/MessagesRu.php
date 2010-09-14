@@ -38,6 +38,7 @@
  * @author MaxSem
  * @author Putnik
  * @author Sk
+ * @author TarzanASG
  * @author Temuri rajavi
  * @author VasilievVV
  * @author Ytsukeng Fyvaprol
@@ -517,8 +518,8 @@ $1',
 'copyrightpage'        => '{{ns:project}}:Авторское право',
 'currentevents'        => 'Текущие события',
 'currentevents-url'    => 'Project:Текущие события',
-'disclaimers'          => 'Отказ от ответственности',
-'disclaimerpage'       => 'Project:Отказ от ответственности',
+'disclaimers'          => 'Отказы от ответственности',
+'disclaimerpage'       => 'Project:Общий отказ от ответственности',
 'edithelp'             => 'Справка по редактированию',
 'edithelppage'         => 'Help:Справка по редактированию',
 'helppage'             => 'Help:Справка',

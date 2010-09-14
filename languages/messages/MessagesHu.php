@@ -2811,7 +2811,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'tooltip-summary'                 => 'Adj meg egy rövid összefoglalót',
 
 # Stylesheets
-'common.css'   => '/* Közös CSS az összes felszínnek */',
+'common.css'   => '/* Közös CSS az összes felületnek */',
 'monobook.css' => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
 'vector.css'   => '/******************************************************************************************\\
 *                   Ezek a stílusok csak a Vector felületre vonatkoznak                    *
