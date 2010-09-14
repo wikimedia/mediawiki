@@ -828,7 +828,13 @@ class ResourceLoaderUserPreferencesModule extends ResourceLoaderModule {
 		if ( isset( $this->modifiedTime[$hash] ) ) {
 			return $this->modifiedTime[$hash];
 		}
-		if ( $context->getUser() && $user = User::newFromName( $context->getUser() ) ) {
+
+		global $wgUser;
+		$username = $context->getUser();
+		// Avoid extra db query by using $wgUser if possible
+		$user = $wgUser->getName() === $username ? $wgUser : User::newFromName( $username );
+
+		if ( $user ) {
 			return $this->modifiedTime[$hash] = $user->getTouched();
 		} else {
 			return 0;
