@@ -408,9 +408,12 @@ class IPUnblockForm extends SpecialPage {
 
 	/**
 	 * Makes change an option link which carries all the other options
+	 *
 	 * @param $title see Title
-	 * @param $override
-	 * @param $options
+	 * @param $override Array: special query string options, will override the
+	 *                  ones in $options
+	 * @param $options Array: query string options
+	 * @param $active Boolean: whether to display the link in bold
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		global $wgUser;
