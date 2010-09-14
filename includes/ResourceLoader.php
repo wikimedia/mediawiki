@@ -149,7 +149,7 @@ class ResourceLoader {
 		foreach ( self::$modules as $name => $module ) {
 			// Support module loader scripts
 			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
-				$deps = json_encode( $module->getDependencies() );
+				$deps = FormatJson::encode( $module->getDependencies() );
 				$version = wfTimestamp( TS_ISO_8601, round( $module->getModifiedTime( $context ), -2 ) );
 				$scripts .= "( function( name, version, dependencies ) { $loader } )( '$name', '$version', $deps );";
 			}
