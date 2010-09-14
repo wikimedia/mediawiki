@@ -158,6 +158,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24007) Diff pages now mention the number of users having edited
   intermediate revisions
 * Added new hook GetIP
+* (bug 16574) Allow administrators to temporarily disable the account creation
+  limit for IP addresses: [[MediaWiki:Ratelimit-excluded-ips]]
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
