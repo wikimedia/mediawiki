@@ -55,8 +55,11 @@ window.mediaWiki = new ( function( $ ) {
 		 * An object which allows single and multiple get/set/exists functionality on a list of key / value pairs
 		 * 
 		 * @param {boolean} global whether to get/set/exists values on the window object or a private object
+		 * @param {function} parser function to perform extra processing before while getting a value which accepts
+		 * value and options parameters where value is a string to be parsed and options is an object of options for the
+		 * parser
 		 */
-		'configuration': function( global ) {
+		'configuration': function( global, parser ) {
 			
 			/* Private Members */
 			
@@ -66,52 +69,78 @@ window.mediaWiki = new ( function( $ ) {
 			/* Public Methods */
 			
 			/**
-			 * Gets one or multiple configuration values using a key and an optional fallback or an array of keys
+			 * Gets one or more values
+			 * 
+			 * If called with no arguments, all values will be returned. If a parser is in use, no parsing will take
+			 * place when calling with no arguments or calling with an array of names.
+			 * 
+			 * @param {mixed} selection string name of value to get, array of string names of values to get, or object
+			 * of name/option pairs
+			 * @param {object} options optional set of options which are also passed to a parser if in use; only used
+			 * when selection is a string
+			 * @format options
+			 * 	{
+			 * 		// Value to use if key does not exist
+			 * 		'fallback': ''
+			 * 	}
 			 */
-			this.get = function( keys, fallback ) {
-				if ( typeof keys === 'object' ) {
-					var result = {};
-					for ( var k = 0; k < keys.length; k++ ) {
-						if ( typeof values[keys[k]] !== 'undefined' ) {
-							result[keys[k]] = values[keys[k]];
+			this.get = function( selection, options ) {
+				if ( typeof selection === 'object' ) {
+					var results = {};
+					for ( s in selection ) {
+						if ( selection.hasOwnProperty( s ) ) {
+							if ( typeof s === 'string' ) {
+								return that.get( values[s], selection[s] );
+							} else {
+								return that.get( selection[s] );
+							}
 						}
 					}
-					return result;
-				} else if ( typeof keys === 'string' ) {
-					if ( typeof values[keys] === 'undefined' ) {
-						return typeof fallback !== 'undefined' ? fallback : null;
+					return results;
+				} else if ( typeof selection === 'string' ) {
+					if ( typeof values[selection] === 'undefined' ) {
+						return 'fallback' in options !== 'undefined' ? options.fallback : null;
 					} else {
-						return values[keys];
+						if ( typeof parser === 'function' ) {
+							return parser( values[selection], options );
+						} else {
+							return values[selection];
+						}
 					}
 				} else {
 					return values;
 				}
 			};
+			
 			/**
 			 * Sets one or multiple configuration values using a key and a value or an object of keys and values
+			 * 
+			 * @param {mixed} key string of name by which value will be made accessible, or object of name/value pairs
+			 * @param {mixed} value optional value to set, only in use when key is a string
 			 */
-			this.set = function( keys, value ) {
-				if ( typeof keys === 'object' ) {
-					for ( var k in keys ) {
-						values[k] = keys[k];
+			this.set = function( selection, value ) {
+				if ( typeof selection === 'object' ) {
+					for ( var s in selection ) {
+						values[s] = selection[s];
 					}
-				} else if ( typeof keys === 'string' && typeof value !== 'undefined' ) {
-					values[keys] = value;
+				} else if ( typeof selection === 'string' && typeof value !== 'undefined' ) {
+					values[selection] = value;
 				}
 			};
+			
 			/**
 			 * Checks if one or multiple configuration fields exist
 			 */
-			this.exists = function( keys ) {
+			this.exists = function( selection ) {
 				if ( typeof keys === 'object' ) {
-					for ( var k = 0; k < keys.length; k++ ) {
-						if ( !( keys[k] in values ) ) {
+					for ( var s = 0; s < selection.length; s++ ) {
+						if ( !( selection[s] in values ) ) {
 							return false;
 						}
 					}
 					return true;
 				} else {
-					return keys in values;
+					return selection in values;
 				}
 			};
 		}
@@ -123,12 +152,14 @@ window.mediaWiki = new ( function( $ ) {
 	 * Dummy function which in debug mode can be replaced with a function that does something clever
 	 */
 	this.log = function() { };
+	
 	/*
 	 * List of configuration values
 	 * 
 	 * In legacy mode the values this object wraps will be in the global space
 	 */
 	this.config = new this.prototypes.configuration( LEGACY_GLOBALS );
+	
 	/*
 	 * Information about the current user
 	 */
@@ -138,43 +169,30 @@ window.mediaWiki = new ( function( $ ) {
 		
 		this.options = new that.prototypes.configuration();
 	} )();
+	
+	/*
+	 * Basic parser, can be replaced with something more robust
+	 */
+	this.parser = function( key, args ) {
+		if ( !( key in messages ) ) {
+			return '<' + key + '>';
+		}
+		var msg = messages[key];
+		if ( typeof args == 'object' || typeof args == 'array' ) {
+			for ( var a = 0; a < args.length; a++ ) {
+				msg = msg.replace( '\$' + ( parseInt( a ) + 1 ), args[a] );
+			}
+		} else if ( typeof args == 'string' || typeof args == 'number' ) {
+			msg = msg.replace( '$1', args );
+		}
+		return msg;
+	};
+	
 	/*
 	 * Localization system
 	 */
-	this.msg = new ( function() {
-		
-		/* Private Members */
-		
-		var that = this;
-		// List of localized messages
-		var messages = {};
-		
-		/* Public Methods */
-		
-		this.set = function( keys, value ) {
-			if ( typeof keys === 'object' ) {
-				for ( var k in keys ) {
-					messages[k] = keys[k];
-				}
-			} else if ( typeof keys === 'string' && typeof value !== 'undefined' ) {
-				messages[keys] = value;
-			}
-		};
-		this.get = function( key, args ) {
-			if ( !( key in messages ) ) {
-				return '<' + key + '>';
-			}
-			var msg = messages[key];
-			if ( typeof args == 'object' || typeof args == 'array' ) {
-				for ( var a = 0; a < args.length; a++ ) {
-					msg = msg.replace( '\$' + ( parseInt( a ) + 1 ), args[a] );
-				}
-			} else if ( typeof args == 'string' || typeof args == 'number' ) {
-				msg = msg.replace( '$1', args );
-			}
-			return msg;
-		};
-	} )();
+	this.msg = new that.prototypes.configuration( false, this.parser );
+	
 	/*
 	 * Client-side module loader which integrates with the MediaWiki ResourceLoader
 	 */
@@ -236,6 +254,7 @@ window.mediaWiki = new ( function( $ ) {
 				pad1( date.getUTCSeconds() ) +
 				'Z';
 		}
+		
 		/**
 		 * Recursively resolves dependencies and detects circular references
 		 */
@@ -263,6 +282,7 @@ window.mediaWiki = new ( function( $ ) {
 			resolved[resolved.length] = module;
 			unresolved.splice( unresolved.indexOf( module ), 1 );
 		}
+		
 		/**
 		 * Gets a list of modules names that a module dependencies in their proper dependency order
 		 * 
@@ -292,6 +312,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			throw new Error( 'Invalid module argument: ' + module );
 		};
+		
 		/**
 		 * Narrows a list of module names down to those matching a specific state. Possible states are 'undefined',
 		 * 'registered', 'loading', 'loaded', or 'ready'
@@ -326,6 +347,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return list;
 		}
+		
 		/**
 		 * Executes a loaded module, making it ready to use
 		 * 
@@ -393,6 +415,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 			}
 		}
+		
 		/**
 		 * Adds a dependencies to the queue with optional callbacks to be run when the dependencies are ready or fail
 		 * 
@@ -518,6 +541,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 			}
 		};
+		
 		/**
 		 * Registers a module, letting the system know about it and it's dependencies. loader.js files contain calls
 		 * to this function.
@@ -555,6 +579,7 @@ window.mediaWiki = new ( function( $ ) {
 				registry[module].dependencies = dependencies;
 			}
 		};
+		
 		/**
 		 * Implements a module, giving the system a course of action to take upon loading. Results of a request for
 		 * one or more modules contain calls to this function.
@@ -594,6 +619,7 @@ window.mediaWiki = new ( function( $ ) {
 				request( module );
 			}
 		};
+		
 		/**
 		 * Executes a function as soon as one or more required modules are ready
 		 * 
@@ -630,6 +656,7 @@ window.mediaWiki = new ( function( $ ) {
 				request( dependencies, ready, error );
 			}
 		};
+		
 		/**
 		 * Loads one or more modules for future use
 		 */
@@ -658,6 +685,7 @@ window.mediaWiki = new ( function( $ ) {
 				return true;
 			}
 		};
+		
 		/**
 		 * Flushes the request queue and begin executing load requests on demand
 		 */
@@ -665,6 +693,7 @@ window.mediaWiki = new ( function( $ ) {
 			suspended = false;
 			that.work();
 		};
+		
 		/**
 		 * Changes the state of a module
 		 * 
