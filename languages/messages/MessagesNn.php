@@ -836,7 +836,7 @@ Ver venleg og opplyse dette ved eventuelle førespurnader.",
 'nosuchsectiontext'                => 'Du prøvde å endre ein bolk som ikkje finst.
 Han kan ha vorten flytta eller sletta medan du såg på sida.',
 'loginreqtitle'                    => 'Innlogging trengst',
-'loginreqlink'                     => 'logg inn',
+'loginreqlink'                     => 'logge inn',
 'loginreqpagetext'                 => 'Du lyt $1 for å lesa andre sider.',
 'accmailtitle'                     => 'Passord er sendt.',
 'accmailtext'                      => "Eit tilfeldig laga passord for [[User talk:$1|$1]] er sendt til $2.
@@ -2049,7 +2049,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'watchlist'            => 'Overvakingsliste',
 'mywatchlist'          => 'Overvakingslista mi',
 'nowatchlist'          => 'Du har ikkje noko i overvakingslista di.',
-'watchlistanontext'    => 'Ver venleg og $1 for å vise eller endre sider på overvakingslista di.',
+'watchlistanontext'    => 'Du lyt $ for å vise eller endre sider på overvakingslista di.',
 'watchnologin'         => 'Ikkje innlogga',
 'watchnologintext'     => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna endre overvakingslista.',
 'addedwatch'           => 'Lagt til overvakingslista',

@@ -515,6 +515,11 @@ Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.'
 Për piasì speta prima ëd prové torna.",
 'loginlanguagelabel'         => 'Lenga: $1',
 'suspicious-userlogout'      => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
+'ratelimit-excluded-ips'     => " #<!-- leave this line exactly as it is --> <pre>
+# La sintass a l'é com ch'a ven:
+#   * Minca ròba da un caràter \"#\" a la fin ëd la linia a l'é un coment
+#   * Minca linia pa-bianca a l'é n'adrëssa IP gavà dal lìmit ëd valutassion
+ #</pre> <!-- leave this line exactly as it is -->",
 
 # JavaScript password checks
 'password-strength'            => 'Fòrsa stimà dla ciav: $1',
@@ -964,7 +969,7 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'showhideselectedversions' => 'Smon-e/stërmé le version selessionà',
 'editundo'                 => "buta 'me ch'a l'era",
 'diff-multi'               => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} da {{PLURAL:$2|n'utent|$2 utent}} pa mostrà.)",
-'diff-multi-manyusers'     => '($1 revisions antërmedie revisions da 100+ utent pa mostà)',
+'diff-multi-manyusers'     => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} da pi che $2 {{PLURAL:$2|n'utent|$2 utent}} pa mostrà.)",
 
 # Search results
 'searchresults'                    => "Arzultà dl'arserca",

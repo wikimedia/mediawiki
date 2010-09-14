@@ -764,6 +764,11 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
+'ratelimit-excluded-ips'     => ' #<!-- deixe esta linha exatamente como está --> <pre>
+# A sintaxe é a seguinte:
+#  * Tudo desde o caractere "#" até ao fim da linha é um comentário
+#  * Qualquer linha que não esteja em branco é um endereço de IP isento dos limites de velocidade de operação
+ #</pre> <!-- deixe esta linha exatamente como está  -->',
 
 # JavaScript password checks
 'password-strength'            => 'Nível de segurança da senha: $1',
@@ -1216,7 +1221,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'compareselectedversions'  => 'Compare as versões selecionadas',
 'showhideselectedversions' => 'Mostrar/esconder versões selecionadas',
 'editundo'                 => 'desfazer',
-'diff-multi'               => '({{PLURAL:$1|uma edição intermediária não está sendo exibida|$1 edições intermediárias não estão sendo exibidas}}.)',
+'diff-multi'               => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de {{PLURAL:$2|um usuário|$2 usuários}} {{PLURAL:$1|não apresentada|não apresentadas}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de mais de {{PLURAL:$2|um usuário|$2 usuário}} não {{PLURAL:$1|apresentada|apresentadas}})',
 
 # Search results
 'searchresults'                    => 'Resultados de pesquisa',

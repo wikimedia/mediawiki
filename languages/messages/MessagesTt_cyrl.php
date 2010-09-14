@@ -879,7 +879,7 @@ $3 күрсәткән сәбәп: ''$2''",
 # History pages
 'viewpagelogs'           => 'Бу битнең көндәлекләрен карау',
 'nohistory'              => 'Бу битнең үзгәртүләр тарихы юк.',
-'currentrev'             => 'Хәзерге версия',
+'currentrev'             => 'Хәзерге юрама',
 'currentrev-asof'        => 'Хәзерге версия, $1',
 'revisionasof'           => '$1 версиясе',
 'revision-info'          => 'Версия: $1; $2',
@@ -1382,6 +1382,10 @@ PICT # төрле
 'linkstoimage'              => 'Бу файлга киләчәк {{PLURAL:$1|бит|$1 бит}} сылтый:',
 'nolinkstoimage'            => 'Бу файлга сылтаган битләр юк.',
 'sharedupload'              => "Бу файл $1'дан һәм башка проектларда кулланырга мөмкин.",
+'sharedupload-desc-here'    => "Бу файл $1'дан һәм башка проектларда кулланырга мөмкин.
+Файл турында [$2 мәгълүмат ]  аста бирелгән.",
+'filepage-nofile'           => 'Мондый исемле файл юк.',
+'filepage-nofile-link'      => 'Мондый исемле файл  юк. Сез аны [$1 йөкли аласыз].',
 'uploadnewversion-linktext' => 'Бу файлның яңа юрамасын йөкләү',
 'shared-repo-from'          => '$1 дән',
 
@@ -2105,7 +2109,7 @@ $1',
 
 # Special:Version
 'version'                  => 'Юрама',
-'version-other'            => 'Башкалар',
+'version-other'            => 'Башка',
 'version-license'          => 'Лицензия',
 'version-software'         => 'Урнаштырылган программа белән тәэмин ителешне',
 'version-software-product' => 'Продукт',
