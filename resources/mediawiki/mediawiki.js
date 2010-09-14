@@ -42,7 +42,7 @@ window.mediaWiki = new ( function( $ ) {
 	/* Constants */
 	
 	// This will not change until we are 100% ready to turn off legacy globals
-	const LEGACY_GLOBALS = true;
+	var LEGACY_GLOBALS = true;
 	
 	/* Members */
 	
