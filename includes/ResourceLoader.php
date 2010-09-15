@@ -39,15 +39,13 @@ class ResourceLoader {
 	protected static function initialize() {
 		global $IP;
 		
-		// Safety check - this should never be called more than once anyways
-		if ( self::$initialized ) {
-			wfDebug( 'ResourceLoader::intitialize was called more than once' );
-			return;
+		// Safety check - this should never be called more than once
+		if ( !self::$initialized ) {
+			// This needs to be first, because hooks might call ResourceLoader public interfaces which will call this
+			self::$initialized = true;
+			self::register( include( "$IP/resources/Resources.php" ) );
+			wfRunHooks( 'ResourceLoaderRegisterModules' );
 		}
-		
-		self::$initialized = true;
-		self::register( include( "$IP/resources/Resources.php" ) );
-		wfRunHooks( 'ResourceLoaderRegisterModules' );
 	}
 
 	/**
@@ -117,9 +115,7 @@ class ResourceLoader {
 	 */
 	public static function register( $name, ResourceLoaderModule $object = null ) {
 		
-		if ( !self::$initialized ) {
-			self::initialize();
-		}
+		self::initialize();
 		
 		// Allow multiple modules to be registered in one call
 		if ( is_array( $name ) && !isset( $object ) ) {
@@ -147,9 +143,7 @@ class ResourceLoader {
 	 */
 	public static function getModules() {
 		
-		if ( !self::$initialized ) {
-			self::initialize();
-		}
+		self::initialize();
 		
 		return self::$modules;
 	}
@@ -162,9 +156,7 @@ class ResourceLoader {
 	 */
 	public static function getModule( $name ) {
 		
-		if ( !self::$initialized ) {
-			self::initialize();
-		}
+		self::initialize();
 		
 		return isset( self::$modules[$name] ) ? self::$modules[$name] : null;
 	}
@@ -177,9 +169,7 @@ class ResourceLoader {
 	 */
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
 		
-		if ( !self::$initialized ) {
-			self::initialize();
-		}
+		self::initialize();
 		
 		$scripts = '';
 		$registrations = array();
@@ -215,9 +205,7 @@ class ResourceLoader {
 	 */
 	public static function getHighestModifiedTime( ResourceLoaderContext $context ) {
 		
-		if ( !self::$initialized ) {
-			self::initialize();
-		}
+		self::initialize();
 		
 		$time = 1; // wfTimestamp() treats 0 as 'now', so that's not a suitable choice
 
@@ -237,9 +225,7 @@ class ResourceLoader {
 		global $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage;
 		global $wgResourceLoaderUnversionedServerMaxage, $wgResourceLoaderUnversionedClientMaxage;
 
-		if ( !self::$initialized ) {
-			self::initialize();
-		}
+		self::initialize();
 		
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
