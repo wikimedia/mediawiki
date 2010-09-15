@@ -9,8 +9,10 @@
  * of the cpu of the pool. This is also known as 'Michael Jackson effect'.
  *  The PoolCounter provides semaphore semantics for restricting the number
  * of workers that may be concurrently performing such single task.
+ *
+ *  By default PoolCounter_Stub is used, which provides no locking. You 
+ * can get a useful one in the PoolCounter extension.
  */
-
 abstract class PoolCounter {
 	
 	/* Return codes */

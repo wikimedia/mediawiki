@@ -4455,7 +4455,6 @@ class Article {
 	 *
 	 * @param $parserOutput mixed ParserOptions object, or boolean false
 	 **/
-
 	protected function doCascadeProtectionUpdates( $parserOutput ) {
 		if ( !$this->isCurrent() || wfReadOnly() || !$this->mTitle->areRestrictionsCascading() ) {
 			return;
@@ -4623,7 +4622,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $mArticle;
 	
 	function __construct( $article, $key, $useParserCache, $parserOptions ) {
-		parent::__construct( __CLASS__, $key );
+		parent::__construct( 'ArticleView', $key );
 		$this->mArticle = $article;
 		$this->cacheable = $useParserCache;
 		$this->parserOptions = $parserOptions;
