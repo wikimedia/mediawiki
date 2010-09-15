@@ -1514,7 +1514,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'group-user'          => 'gebruikers',
 'group-autoconfirmed' => 'autobevestigde gebruikers',
 'group-bot'           => 'bots',
-'group-sysop'         => 'beheerders',
+'group-sysop'         => 'Beheerders',
 'group-bureaucrat'    => 'bureaucraten',
 'group-suppress'      => 'toezichthouders',
 'group-all'           => '(iedereen)',
@@ -1522,7 +1522,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'group-user-member'          => 'gebruiker',
 'group-autoconfirmed-member' => 'autobevestigde gebruiker',
 'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'beheerder',
+'group-sysop-member'         => 'Beheerder',
 'group-bureaucrat-member'    => 'bureaucraat',
 'group-suppress-member'      => 'Toezichthouder',
 

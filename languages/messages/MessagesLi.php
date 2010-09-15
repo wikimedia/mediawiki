@@ -624,6 +624,11 @@ Negeer dit berich as deze gebroeker zonger dien medewete is aangemaak.',
 Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'loginlanguagelabel'         => 'Taol: $1',
 'suspicious-userlogout'      => "Die verzeuk óm aaf te mèlje is genegeerdj gewaoren, ómdet 't liek det 't verzeuk is verzónje dórch 'ne browser of cacheproxy dae kepót is.",
+'ratelimit-excluded-ips'     => " #<!-- laot deze regel wie d'r is --> <pre>
+# De syntaxis is es volg:
+#   * Alle teks vanaaf 't \"#\"-teike toet 't ènj van de regels weurt gezeen es opmèrking
+#   * Edere neet-laege regel is 'n IP-adres woróp gein snelheidsbepèrkinge van toepassing zeen
+ #</pre> <!-- laot deze regel wie d'r is -->",
 
 # JavaScript password checks
 'password-strength'            => 'Gesjatdje wachwaordjstèrkdje: $1',
@@ -1057,7 +1062,8 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'compareselectedversions'  => 'Vergeliek geselecteerde versies',
 'showhideselectedversions' => 'Tuin/versjtaek geselecteerde versies',
 'editundo'                 => 'maak óngedaon',
-'diff-multi'               => '({{PLURAL:$1|éin tusseligkede versie wörd|$1 tusseligkede versies waere}} neet getuund)',
+'diff-multi'               => '({{PLURAL:$1|Ein tusseligkende versie|$1 Tusseligkende versies}} dórch {{PLURAL:$2|eine gebroeker|$2 gebroekers}} {{PLURAL:$1|weurt|waere}} neet getuund)',
+'diff-multi-manyusers'     => '($1 tösseligkende versies door mier es $2 gebroekers waere neet waergaeve)',
 
 # Search results
 'searchresults'                    => 'Zeukresultate',

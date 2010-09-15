@@ -481,6 +481,7 @@ Cruthaíodh do chuntas. Ná déan dearmad athrú a dhéanamh ar do chuid [[Speci
 'userexists'                 => 'Tá an ainm úsáideora sin in úsáid cheana féin.<br />
 Roghnaigh ainm eile agus bain triail eile as.',
 'loginerror'                 => 'Earráid leis an logáil isteach',
+'createaccounterror'         => 'Theip ar an cuntas a chruthú: $1',
 'nocookiesnew'               => "Cruthaíodh an cuntas úsáideora, ach níl tú logáilte isteach.
 
 Úsáideann {{SITENAME}} fianáin chun úsáideoirí a logáil isteach.
@@ -763,8 +764,10 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'searchprofile-project-tooltip'  => 'Cuardaigh i $1',
 'searchprofile-images-tooltip'   => 'Cuardaigh le comhaid',
 'search-result-size'             => '$1 ({{PLURAL:$2|focal amháin|$2 focail}})',
+'search-redirect'                => '(athsheoladh $1)',
 'search-section'                 => '(gearradh $1)',
 'search-suggest'                 => 'An raibh $1 á lorg agat?',
+'search-interwiki-caption'       => 'Comhthionscadail',
 'search-interwiki-default'       => '$1 torthaí:',
 'search-interwiki-more'          => '(níos mó)',
 'search-mwsuggest-enabled'       => 'le moltaí',
@@ -948,6 +951,8 @@ do chuid dreachtaí a chur i leith tusa.',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|úsáideoir amháin|$1 úsáideoirí}} ag faire]',
 'rc_categories_any'                 => 'Aon chatagóir',
 'newsectionsummary'                 => '/* $1 */ mír nua',
+'rc-enhanced-expand'                => 'Taispeáin mionsonraithe (JavaScript riachtanach)',
+'rc-enhanced-hide'                  => 'Folaigh shonraí',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Athruithe gaolmhara',
@@ -1202,6 +1207,7 @@ Féach freisin ar [[Special:WantedCategories|catagóirí faoi iarraidh]].',
 'listusers-submit' => 'Taispeáin',
 
 # Special:Log/newusers
+'newuserlogpage'           => 'Log cruthú úsáideoira',
 'newuserlog-create-entry'  => 'Úsáideoir nua',
 'newuserlog-create2-entry' => 'cuntas cruthú le $1',
 
@@ -1451,25 +1457,27 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'whatlinkshere-prev'       => '{{PLURAL:$1|roimhe|$1 roimhe}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|ar aghaidh|$1 ar aghaidh}}',
 'whatlinkshere-links'      => '← naisc',
+'whatlinkshere-hideredirs' => '$1 athsheolaidh',
 'whatlinkshere-hidetrans'  => '$1 trasiamh',
 'whatlinkshere-hidelinks'  => '$1 nasc',
 'whatlinkshere-hideimages' => '$1 nasc íomhá',
+'whatlinkshere-filters'    => 'Scagairí',
 
 # Block/unblock
-'blockip'                 => 'Coisc úsáideoir',
-'blockip-legend'          => 'Coisc úsáideoir',
-'blockiptext'             => 'Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó
+'blockip'                  => 'Coisc úsáideoir',
+'blockip-legend'           => 'Coisc úsáideoir',
+'blockiptext'              => 'Úsáid an foirm anseo thíos chun bealach scríofa a chosc ó
 seoladh IP nó ainm úsáideora áirithe.
 Is féidir leat an rud seo a dhéanamh amháin chun an chreachadóireacht a chosc, de réir
 mar a deirtear sa [[{{MediaWiki:Policy-url}}|polasaí {{GRAMMAR:genitive|{{SITENAME}}}}]].
 Líonaigh cúis áirithe anseo thíos (mar shampla, is féidir leat a luaigh
 leathanaigh áirithe a rinne an duine damáiste ar).',
-'ipaddress'               => 'Seoladh IP / ainm úsáideora',
-'ipadressorusername'      => 'Seoladh IP nó ainm úsáideora:',
-'ipbexpiry'               => 'Am éaga',
-'ipbreason'               => 'Fáth:',
-'ipbreasonotherlist'      => 'Fáth eile',
-'ipbreason-dropdown'      => '*Fáthanna coitianta
+'ipaddress'                => 'Seoladh IP / ainm úsáideora',
+'ipadressorusername'       => 'Seoladh IP nó ainm úsáideora:',
+'ipbexpiry'                => 'Am éaga',
+'ipbreason'                => 'Fáth:',
+'ipbreasonotherlist'       => 'Fáth eile',
+'ipbreason-dropdown'       => '*Fáthanna coitianta
 ** Loitiméaracht
 ** Naisc turscar
 ** Fadhbanna cóipcheart
@@ -1478,53 +1486,54 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 ** Fadhbanna idirvicí
 ** Feallaire
 ** Seachfhreastalaí Oscailte',
-'ipbsubmit'               => 'Coisc an úsáideoir seo',
-'ipbother'                => 'Méid eile ama',
-'ipboptions'              => '2 uair:2 hours,1 lá amháin:1 day,3 lá:3 days,1 sheachtain amháin:1 week,2 sheachtain:2 weeks,1 mhí amháin:1 month,3 mhí:3 months,6 mhí:6 months,1 bhliain amháin:1 year,gan teorainn:infinite',
-'ipbotheroption'          => 'eile',
-'badipaddress'            => 'Níl aon úsáideoir ann leis an ainm seo.',
-'blockipsuccesssub'       => "D'éirigh leis an cosc",
-'blockipsuccesstext'      => 'Choisceadh [[Special:Contributions/$1|$1]].
+'ipbsubmit'                => 'Coisc an úsáideoir seo',
+'ipbother'                 => 'Méid eile ama',
+'ipboptions'               => '2 uair:2 hours,1 lá amháin:1 day,3 lá:3 days,1 sheachtain amháin:1 week,2 sheachtain:2 weeks,1 mhí amháin:1 month,3 mhí:3 months,6 mhí:6 months,1 bhliain amháin:1 year,gan teorainn:infinite',
+'ipbotheroption'           => 'eile',
+'badipaddress'             => 'Níl aon úsáideoir ann leis an ainm seo.',
+'blockipsuccesssub'        => "D'éirigh leis an cosc",
+'blockipsuccesstext'       => 'Choisceadh [[Special:Contributions/$1|$1]].
 <br />Féach ar an g[[Special:IPBlockList|liosta coisc IP]] chun coisc a athbhreithniú.',
-'ipb-unblock-addr'        => 'Díchoisc $1',
-'ipb-unblock'             => 'Díchosc ainm úsáideora ná seoladh IP',
-'unblockip'               => 'Díchoisc úsáideoir',
-'unblockiptext'           => 'Úsáid an foirm anseo thíos chun bealach scríofa a thabhairt ar ais do seoladh
+'ipb-unblock-addr'         => 'Díchoisc $1',
+'ipb-unblock'              => 'Díchosc ainm úsáideora ná seoladh IP',
+'unblockip'                => 'Díchoisc úsáideoir',
+'unblockiptext'            => 'Úsáid an foirm anseo thíos chun bealach scríofa a thabhairt ar ais do seoladh
 IP nó ainm úsáideora a raibh faoi chosc roimhe seo.',
-'ipusubmit'               => 'Bain an chosc seo',
-'unblocked'               => 'Díchoisceadh [[User:$1|$1]]',
-'ipblocklist'             => 'Liosta seoltaí IP agus ainmneacha úsáideoirí coiscthe',
-'ipblocklist-legend'      => 'Aimsigh úsáideoir coiscthe',
-'ipblocklist-username'    => 'Ainm úsáideora ná seoladh IP:',
-'ipblocklist-submit'      => 'Cuardaigh',
-'blocklistline'           => '$1, $2 a choisc $3 (am éaga $4)',
-'infiniteblock'           => 'gan teorainn',
-'anononlyblock'           => 'úsáideoirí gan ainm agus iad amháin',
-'ipblocklist-empty'       => 'Tá an liosta coisc folamh.',
-'blocklink'               => 'coisc',
-'unblocklink'             => 'bain an cosc',
-'change-blocklink'        => 'athraigh cosc',
-'contribslink'            => 'dréachtaí',
-'autoblocker'             => 'Coisceadh go huathoibríoch thú dá bharr gur úsáid an t-úsáideoir "[[User:$1|$1]]" do sheoladh IP le déanaí.
+'ipusubmit'                => 'Bain an chosc seo',
+'unblocked'                => 'Díchoisceadh [[User:$1|$1]]',
+'ipblocklist'              => 'Liosta seoltaí IP agus ainmneacha úsáideoirí coiscthe',
+'ipblocklist-legend'       => 'Aimsigh úsáideoir coiscthe',
+'ipblocklist-username'     => 'Ainm úsáideora ná seoladh IP:',
+'ipblocklist-submit'       => 'Cuardaigh',
+'blocklistline'            => '$1, $2 a choisc $3 (am éaga $4)',
+'infiniteblock'            => 'gan teorainn',
+'anononlyblock'            => 'úsáideoirí gan ainm agus iad amháin',
+'ipblocklist-empty'        => 'Tá an liosta coisc folamh.',
+'blocklink'                => 'coisc',
+'unblocklink'              => 'bain an cosc',
+'change-blocklink'         => 'athraigh cosc',
+'contribslink'             => 'dréachtaí',
+'autoblocker'              => 'Coisceadh go huathoibríoch thú dá bharr gur úsáid an t-úsáideoir "[[User:$1|$1]]" do sheoladh IP le déanaí.
 Is é seo an chúis don chosc ar $1: "$2".',
-'blocklogpage'            => 'Cuntas_coisc',
-'blocklogentry'           => 'coisceadh [[$1]]; am éaga $2. $3',
-'blocklogtext'            => 'Seo é cuntas de gníomhartha coisc úsáideoirí agus míchoisc úsáideoirí. Ní cuirtear
+'blocklogpage'             => 'Cuntas_coisc',
+'blocklogentry'            => 'coisceadh [[$1]]; am éaga $2. $3',
+'blocklogtext'             => 'Seo é cuntas de gníomhartha coisc úsáideoirí agus míchoisc úsáideoirí. Ní cuirtear
 seoltaí IP a raibh coiscthe go huathoibríoch ar an liosta seo. Féach ar an
 [[Special:IPBlockList|Liosta coisc IP]] chun
 liosta a fháil de coisc atá i bhfeidhm faoi láthair.',
-'unblocklogentry'         => 'díchoisceadh $1',
-'block-log-flags-noemail' => 'cosc ar ríomhphost',
-'range_block_disabled'    => 'Faoi láthair, míchumasaítear an cumas riarthóra chun réimsechoisc a dhéanamh.',
-'ipb_expiry_invalid'      => 'Am éaga neamhbhailí.',
-'ipb_already_blocked'     => 'Tá cosc ar "$1" cheana féin',
-'ip_range_invalid'        => 'Réimse IP neamhbhailí.',
-'proxyblocker'            => 'Cosc ar seachfhreastalaithe',
-'proxyblockreason'        => "Coisceadh do sheoladh IP dá bharr gur seachfhreastalaí
+'unblocklogentry'          => 'díchoisceadh $1',
+'block-log-flags-nocreate' => 'cuntas chruthú díchumasaithe',
+'block-log-flags-noemail'  => 'cosc ar ríomhphost',
+'range_block_disabled'     => 'Faoi láthair, míchumasaítear an cumas riarthóra chun réimsechoisc a dhéanamh.',
+'ipb_expiry_invalid'       => 'Am éaga neamhbhailí.',
+'ipb_already_blocked'      => 'Tá cosc ar "$1" cheana féin',
+'ip_range_invalid'         => 'Réimse IP neamhbhailí.',
+'proxyblocker'             => 'Cosc ar seachfhreastalaithe',
+'proxyblockreason'         => "Coisceadh do sheoladh IP dá bharr gur seachfhreastalaí
 neamhshlándála is ea é. Déan teagmháil le do chomhlacht idirlín nó le do lucht cabhrach teicneolaíochta
 go mbeidh 'fhios acu faoin fadhb slándála tábhachtach seo.",
-'proxyblocksuccess'       => 'Rinneadh.',
-'sorbsreason'             => 'Liostalaítear do sheoladh IP mar sheachfhreastalaí oscailte sa DNSBL.',
+'proxyblocksuccess'        => 'Rinneadh.',
+'sorbsreason'              => 'Liostalaítear do sheoladh IP mar sheachfhreastalaí oscailte sa DNSBL.',
 
 # Developer tools
 'lockdb'              => 'Glasáil an bunachar sonraí',

@@ -725,6 +725,11 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 Xin hãy đợi chốc lát rồi thử lại.',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
 'suspicious-userlogout'      => 'Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.',
+'ratelimit-excluded-ips'     => ' #<!-- xin để dòng này đừng thay đổi --> <pre>
+# Cú pháp như sau:
+#   * Mọi thứ bắt đầu bằng ký tự “$” là lời chú thích
+#   * Mọi hàng không trắng là một địa chỉ IP được loại trừ khỏi bị giới hạn tỷ lệ
+ #</pre> <!-- xin để dòng này đừng thay đổi -->',
 
 # JavaScript password checks
 'password-strength'            => 'Độ mạnh ước lượng của mật khẩu: $1',
@@ -1560,7 +1565,7 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 
 # Upload
 'upload'                      => 'Tải tập tin lên',
-'uploadbtn'                   => 'Tải lên',
+'uploadbtn'                   => 'Tải tập tin lên',
 'reuploaddesc'                => 'Hủy tác vụ tải và quay lại mẫu tải tập tin lên',
 'upload-tryagain'             => 'Lưu miêu tả tập tin được sửa đổi',
 'uploadnologin'               => 'Chưa đăng nhập',

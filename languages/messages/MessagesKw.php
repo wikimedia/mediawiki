@@ -371,6 +371,9 @@ po [{{fullurl:{{FULLPAGENAME}}|action=edit}} chanjya an folen-ma]</span>.',
 'hiddencategories'                 => 'Esel a {{PLURAL:$1|1 class covys|$1 class covys}} yw an folen-ma:',
 'permissionserrorstext-withaction' => 'Nyns eus cubmyes dhewgh dhe $2, rag an {{PLURAL:$1|cheson|chesonys}} a-sew:',
 
+# "Undo" feature
+'undo-summary' => 'Diswul amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|keskows]])',
+
 # History pages
 'viewpagelogs'           => 'Gweles covnotednow an folen-ma',
 'currentrev-asof'        => 'An chanj diwettha dhort $1',

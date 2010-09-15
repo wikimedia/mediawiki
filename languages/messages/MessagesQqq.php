@@ -65,6 +65,7 @@
  * @author PhiLiP
  * @author Platonides
  * @author Prima klasy4na
+ * @author Prometheus.pyrphoros
  * @author Purodha
  * @author Raymond
  * @author Ryan Schmidt
@@ -375,6 +376,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 {{Identical|Content page}}",
 'talk'              => 'Used as display name for the tab to all talk pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
 
+Talk page name is displayed as "আলাপ" in Bengali, plz dont change this.
 {{Identical|Discussion}}',
 'views'             => 'Subtitle for the list of available views, for the current page. In "monobook" skin the list of views are shown as tabs, so this sub-title is not shown.  To check when and where this message is displayed switch to "simple" skin.
 

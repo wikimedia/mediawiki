@@ -756,6 +756,11 @@ $2',
 'login-throttled'            => 'ログインの失敗が制限回数を超えました。しばらく時間をおいてから再度お試しください。',
 'loginlanguagelabel'         => '言語: $1',
 'suspicious-userlogout'      => 'あなたのログアウトは拒否されました。送信されたリクエストが、壊れたブラウザもしくはキャッシュ・プロキシによって送信された可能性があるからです。',
+'ratelimit-excluded-ips'     => ' #<!-- この行は変更しないでください --> <pre>
+# 構文は次のとおりです：
+#  * 「#」文字から行末まで、すべてコメントとして扱われます
+#  * 空白を含んでいない行は、速度制限が除外されているIPアドレスです
+  #</pre> <!-- この行は変更しないでください -->',
 
 # JavaScript password checks
 'password-strength'            => 'パスワードの推定強度：$1',
@@ -1148,7 +1153,8 @@ $1",
 'compareselectedversions'  => '選択した版同士を比較',
 'showhideselectedversions' => '選択した版を表示もしくは非表示',
 'editundo'                 => '取り消し',
-'diff-multi'               => '({{PLURAL:$1|間の$1版}}分が非表示)',
+'diff-multi'               => '（{{PLURAL:$2|$2人の利用者}}による、間の{{PLURAL:$1|$1つの版}}が非表示）',
+'diff-multi-manyusers'     => '（{{PLURAL:$2|$2人以上の利用者}}による、間の{{PLURAL:$1|$1つの版}}が非表示）',
 
 # Search results
 'searchresults'                    => '検索結果',
