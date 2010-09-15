@@ -1,8 +1,14 @@
 /*
  * User-agent detection 
  */
-
-jQuery.client = {
+jQuery.client = new ( function() {
+	
+	/* Private Members */
+	
+	var profile;
+	
+	/* Public Functions */
+	
 	/**
 	 * Returns an object containing information about the browser
 	 * 
@@ -16,9 +22,9 @@ jQuery.client = {
 	 * 		'versionNumber': 3.5,
 	 * 	}
 	 */
-	'profile': function() {
+	this.profile = function() {
 		// Use the cached version if possible
-		if ( typeof this.profile === 'undefined' ) {
+		if ( typeof profile === 'undefined' ) {
 			
 			/* Configuration */
 			
@@ -115,7 +121,7 @@ jQuery.client = {
 			
 			/* Caching */
 			
-			this.profile = {
+			profile = {
 				'browser': browser,
 				'layout': layout,
 				'os': os,
@@ -124,8 +130,9 @@ jQuery.client = {
 				'versionNumber': ( parseFloat( version, 10 ) || 0.0 )
 			};
 		}
-		return this.profile;
-	},
+		return profile;
+	};
+	
 	/**
 	 * Checks the current browser against a support map object to determine if the browser has been black-listed or
 	 * not. If the browser was not configured specifically it is assumed to work. It is assumed that the body
@@ -151,14 +158,15 @@ jQuery.client = {
 	 * 
 	 * @return Boolean true if browser known or assumed to be supported, false if blacklisted
 	 */
-	'test': function( map ) {
-		var profile = $.client.profile();
+	this.test = function( map ) {
+		var profile = jQuery.client.profile();
+		var dir = jQuery( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
 		// Check over each browser condition to determine if we are running in a compatible client
-		var browser = map[$( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr'][profile.browser];
-		if ( typeof browser !== 'object' ) {
+		if ( typeof map[dir] !== 'object' || map[dir][profile.browser] !== 'object' ) {
 			// Unknown, so we assume it's working
 			return true;
 		}
+		var browser = map[dir][profile.browser];
 		for ( var condition in browser ) {
 			var op = browser[condition][0];
 			var val = browser[condition][1];
@@ -176,4 +184,4 @@ jQuery.client = {
 		}
 		return true;
 	}
-};
+} )();
