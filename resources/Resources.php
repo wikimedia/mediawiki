@@ -1,6 +1,6 @@
 <?php
 
-ResourceLoader::register( array(
+return array(
 
 	/* Special resources who have their own classes */
 	
