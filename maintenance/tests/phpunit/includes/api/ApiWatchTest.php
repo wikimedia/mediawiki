@@ -1,6 +1,6 @@
 <?php
 
-require_once 'ApiSetup.php';
+require_once dirname( __FILE__ ) . '/ApiSetup.php';
 
 class ApiWatchTest extends ApiTestSetup {
 

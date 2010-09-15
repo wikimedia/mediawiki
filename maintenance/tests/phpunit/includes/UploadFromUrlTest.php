@@ -1,6 +1,6 @@
 <?php
 
-require_once 'api/ApiSetup.php';
+require_once dirname( __FILE__ ) . '/api/ApiSetup.php';
 
 class UploadFromUrlTest extends ApiTestSetup {
 
