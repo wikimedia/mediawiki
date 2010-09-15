@@ -1195,6 +1195,8 @@ Molimo premjestite <code>LocalSettings.php</code> na sigurno mjesto a zatim pono
 	'config-page-restart' => 'Ponovi instalaciju ispočetka',
 	'config-page-readme' => 'Pročitaj me',
 	'config-page-releasenotes' => 'Bilješke izdanja',
+	'config-page-copying' => 'Kopiram',
+	'config-page-upgradedoc' => 'Nadograđujem',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Početna strana]
 * [http://www.mediawiki.org/wiki/Help:Contents Vodič za korisnike]
 * [http://www.mediawiki.org/wiki/Manual:Contents Vodič za administratore]
@@ -1202,6 +1204,21 @@ Molimo premjestite <code>LocalSettings.php</code> na sigurno mjesto a zatim pono
 	'config-env-good' => '<span class="success-message">Okruženje je provjereno.
 Možete instalirati MediaWiki.</span>',
 	'config-env-php' => 'PHP $1 je instaliran.',
+	'config-env-latest-ok' => 'Instalirate posljednju verziju MediaWiki.',
+	'config-env-latest-new' => "'''Napomena:''' Instalirate razvojnu veziju MediaWiki.",
+	'config-diff3-bad' => 'GNU diff3 nije pronađen.',
+	'config-uri' => 'Putanja URI skripte: <code>$1</code>.',
+	'config-db-name' => 'Naziv baze podataka:',
+	'config-header-mysql' => 'Postavke MySQL',
+	'config-header-postgres' => 'Postavke PostgreSQL',
+	'config-header-sqlite' => 'Postavke SQLite',
+	'config-header-oracle' => 'Postavke Oracle',
+	'config-upgrade-done' => "Nadogradnja završena.
+
+Sada možete [$1 početi koristiti vašu wiki].
+
+Ako želite regenerisati vašu datoteku <code>LocalSettings.php</code>, kliknite na dugme ispod.
+Ovo '''nije preporučeno''' osim ako nemate problema s vašom wiki.",
 );
 
 /** Czech (Česky) */
@@ -4308,6 +4325,28 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
 );
 
+/** Khmer (ភាសាខ្មែរ)
+ * @author គីមស៊្រុន
+ */
+$messages['km'] = array(
+	'config-show-help' => 'ជំនួយ',
+	'config-hide-help' => 'លាក់ជំនួយ',
+	'config-your-language' => 'ភាសារបស់អ្នក៖',
+	'config-your-language-help' => 'ជ្រើសយកភាសាដើម្បីប្រើក្នុងពេលតំលើង។',
+	'config-wiki-language' => 'ភាសាវិគី៖',
+	'config-wiki-language-help' => 'ជ្រើសរើសភាសាដែលវិគីនេះប្រើជាចំបង។',
+	'config-back' => '← ត្រលប់ក្រោយ',
+	'config-continue' => 'បន្ត →',
+	'config-page-language' => 'ភាសា',
+	'config-page-welcome' => 'មេឌាវិគីសូមស្វាគមន៍!',
+	'config-page-dbconnect' => 'ភ្ជាប់ទៅមូលដ្ឋានទិន្នន័យ',
+	'config-page-name' => 'ឈ្មោះ',
+	'config-page-options' => 'ជំរើស',
+	'config-page-install' => 'តំលើង',
+	'config-page-complete' => 'បញ្ចប់!',
+	'config-page-restart' => 'តំលើងឡើងវិញ',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
@@ -5832,6 +5871,243 @@ It ses avisà ëd dovré l'ùltima vërsion, che a peul esse dëscarià da [http
 	'config-unicode-using-php' => "Dovré l'implementassion PHP andormìa për la normalisassion Unicode.",
 	'config-unicode-using-utf8' => 'Dovré utf8_normalize.so ëd Brion Vibber për la normalisassion Unicode.',
 	'config-unicode-using-intl' => "Dovré l'[http://pecl.php.net/intl estension intl PECL] për la normalisassion Unicode.",
+	'config-unicode-pure-php-warning' => "'''Avis:''' L'[http://pecl.php.net/intl estension intl PECL] a l'é pa disponibla për gestì la normalisassion Unicode.
+S'it fas giré un sit a àut tràfich, it dovrìe lese un pòch an sla [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalisassion Unicode].",
+	'config-unicode-update-warning' => "'''Avis:''' La vërsion instalà dël wrapper ëd normalisassion Unicode a dòvra na veja vërsion ëd la librerìa dël [http://site.icu-project.org/ proget ICU].
+It dovrìe [http://www.mediawiki.org/wiki/Unicode_normalization_considerations agiorné] s'it ses antëressà a propòsit ëd dovré Unicode.",
+	'config-no-db' => 'As peul pa trovesse un driver ëd database adat!',
+	'config-no-db-help' => "It deuve instalé un driver ëd database për PHP.
+A son apogià le sòrt ëd database ch'a ven-o: $1.
+
+S'it ses su un host condivis, ciama al provider ëd tò host d'instalé un driver ëd database adat.
+S'it l'has compilà ti midem PHP, reconfigurlo con un client ëd database abilità, për esempi an dovrand <code>./configure --with-mysql</code>.
+S'it l'has instalà PHP da un pachet Debian o Ubuntu, antlora it deuve ëdcò instalé ël mòdul php5-mysql.",
+	'config-have-db' => 'Trovà {{PLURAL:$2|driver|driver}} ëd database: $1.',
+	'config-register-globals' => "'''Avis: L'opsion <code>[http://php.net/register_globals register_globals]</code> ëd PHP a l'é abilità.'''
+'''Disabìlitlo s'it peule.'''
+MediaWiki a travajerà, ma tò server a l'é espòst a possìbij vunerabilità ëd sicurëssa.",
+	'config-magic-quotes-runtime' => "'''Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] a l'é ativ!'''
+Sta opsion a danegia ij dat d'input an manera pa prevedibla.
+It peule pa instalé o dovré MediaWiki a men che sta opsion a sia disabilità.",
+	'config-magic-quotes-sybase' => "'''Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] a l'é ativ!'''
+Sta opsion a danegia ij dat d'input an manera pa prevedibla.
+It peule pa instalé o dovré MediaWiki a men che sta opsion a sia disabilità.",
+	'config-mbstring' => "'''Fatal: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] a l'é ativ!'''
+Sta opsion a causa d'eror e a peul danegié ij dat d'input an manera pa prevedibla.
+It peule pa instalé o dovré MediaWiki a men che sta opsion a sia disabilità.",
+	'config-ze1' => "'''Fatal: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] a l'é ativ!'''
+Sta opsion a causa eror orìbij con MediaWiki.
+It peule pa instalé o dovré MediaWiki a men che sta opsion a sia disabilità.",
+	'config-safe-mode' => "'''Avis:''' [http://www.php.net/features.safe-mode Safe mode] ëd PHP a l'é ativ.
+A peul causé ëd problem, dzortut s'as dòvra carie ëd file e apògg ëd <code>math</code>.",
+	'config-xml-good' => "Pija l'apògg ëd conversion XML / Latin1-UTF-8.",
+	'config-xml-bad' => "Mòdul XML ed PHP mancant.
+MediaWiki a ciama le funsion an sto mòdul e a travajerà pa an sta configurassion.
+S'it fas giré mandrake, instala ël pachet php-xml.",
+	'config-pcre' => "A smija che ël mòdul d'apògg PCRE a sia mancant.
+MediaWiki a ciama le funsion dle espression regolar Perl-compatìbij për travajé.",
+	'config-memory-none' => "PHP a l'é configurà con gnun <code>memory_limit</code>",
+	'config-memory-ok' => "<code>memory_limit</code> ëd PHP a l'é $1.
+OK.",
+	'config-memory-raised' => "<code>memory_limit</code> ëd PHP a l'é $1, aussà a $2.",
+	'config-memory-bad' => "'''Avis:''' <code>memory_limit</code> ëd PHP a l'é $1.
+Sossì a l'é probabilment tròp bass.
+L'instalassion a peul falì!",
+	'config-xcache' => "[http://trac.lighttpd.net/xcache/ XCache] a l'é instalà",
+	'config-apc' => "[http://www.php.net/apc APC] a l'é instalà",
+	'config-eaccel' => "[http://eaccelerator.sourceforge.net/ eAccelerator] a l'é instalà",
+	'config-wincache' => "[http://www.iis.net/download/WinCacheForPhp WinCache]  a l'é instalà",
+	'config-no-cache' => "'''Avis:''' As treuva pa [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache]. L'object caching a l'é pa abilità.",
+	'config-diff3-good' => 'Trovà GNU diff3: <code>$1</code>.',
+	'config-diff3-bad' => 'GNU diff3 pa trovà.',
+	'config-imagemagick' => "Trovà ImageMagick: <code>$1</code>.
+La miniaturisassion ëd figure a sarà abilità s'it abìlite le carie.",
+	'config-gd' => "Trovà la librerìa gràfica built-in GD.
+La miniaturisassion ëd figure a sarà abilità s'it abìlite le carie.",
+	'config-no-scaling' => 'As treuva pa la librerìa GD o ImageMagick.
+La miniaturisassion ëd figure a sarà disabilità.',
+	'config-dir' => 'Instalassion directory: <code>$1</code>.',
+	'config-uri' => "Path ëd l'URI dë script: <code>$1</code>.",
+	'config-no-uri' => "'''Eror:''' As peul pa determiné l'URI corenta.
+Instalassion abortìa.",
+	'config-dir-not-writable-group' => "'''Eror:''' as peul pa scrivse ël file ëd configurassion.
+Instalassion abortìa.
+
+L'instalador a l'ha determinà l'utent sota ël qual tò webserver a gira.
+Fa che la directory ëd <code><nowiki>config</nowiki></code> a sia scrivibla da chiel për continué.
+
+Su un sistem Unix/Linus:
+
+<pre>cd $1
+chgrp $2 config
+chmod g+w config</pre>",
+	'config-dir-not-writable-nogroup' => "'''Eror:''' as peul pa scrivse ël file ëd configurassion.
+Instalassion abortìa.
+
+L'utent sota ël qual tò webserver a gira a peul pa esse determinà.
+Fa che la directory ëd <code><nowiki>config</nowiki></code> a sia scrivibla globalment da chiel (e da d'àutri!) për continué.
+
+Su un sistem Unix/Linus fà:
+
+<pre>cd $1
+chmod a+w config</pre>",
+	'config-file-extension' => 'Instalé MediaWiki con <code>$1</code> estension ëd file.',
+	'config-shell-locale' => 'Trovà shell local "$1"',
+	'config-uploads-safe' => "La directory ëd default për le carie a l'é sigura da l'esecussion arbitraria dë script.",
+	'config-uploads-not-safe' => "'''Avis:''' Toa directory ëd default për le carie <code>$1</code> a l'é vulnerabla a l'esecussion arbitraria dë script.
+Ëdcò se MediaWiki a contròla j'aspet ëd sicurëssa ëd tùit ij file carià, a l'é motobin arcomandà ëd [http://www.mediawiki.org/wiki/Manual:Security#Upload_security saré sta vulnerabilità ëd sicurëssa] prima d'abilité le carie.",
+	'config-db-type' => 'Sòrt ëd database:',
+	'config-db-host' => 'Host ëd database:',
+	'config-db-host-help' => 'Se tò server ëd database a l\'é su server diferent, ansëriss ambelessì ël nòm host o l\'adrëssa IP.
+
+Si të stas dovrand host wen condivis, tò provider d\'host a dovrìa dete ël nòm host giust ant soa documentassion.
+
+Si të stas instaland su un server Windows e dovrand MySQL, dovré "localhost" a podrìa pa funsioné com nòm server. Dasnò, preuva "127.0.0.1" com adrëssa IP local.',
+	'config-db-wiki-settings' => 'Identìfica sta wiki',
+	'config-db-name' => 'Nòm dël database:',
+	'config-db-name-help' => "Sern un nòm ch'a identìfica toa wiki.
+A dovrìa pa conten-e spassi o tratin.
+
+Si të stas dovrand un web host condivis, tò provider ëd l'host at darà un nòm ëd database specìfich da dovré, o a lassrà ch'it lo cree via un panel ëd contròl.",
+	'config-db-install-account' => "Cont utent për l'instalassion.",
+	'config-db-username' => 'Nòm utent dël database:',
+	'config-db-password' => 'Ciav dël database:',
+	'config-db-install-help' => "Ansëriss ël nòm utent e ciav che a saran dovrà për coleghesse al database an mente dël process d'instalassion.",
+	'config-db-account-lock' => "Dòvra ij midem nòm utent e ciav an mente dj'operassion normaj",
+	'config-db-wiki-account' => "Cont utent për j'operassion normaj",
+	'config-db-wiki-help' => "Ansëriss ël nòm utent e ciav che a saran dovrà për coleghesse al database an mente dj'operassion normaj dla wiki.
+S'ël cont a esist pa, e ël cont d'instalassion a l'ha basta privilegi, sto cont utent a sarà creà con ij privilegi mìnin për fé giré la wiki.",
+	'config-db-prefix' => 'Prefiss dle tàule dël database:',
+	'config-db-prefix-help' => "S'it l'has dabzògn ëd condivide un database an tra vàire wiki, o tr aMediaWiki e n'àutra web application, it peule serne ëd gionté un prefiss a tùit ij nòm ëd le tàule për evité ëd conflit.
+Dovrà nen ni spassi ni tratin.
+
+Sto camp a l'é lassà normalment veuid.",
+	'config-db-charset' => 'Set ëd caràter dël database',
+	'config-charset-mysql5-binary' => 'Binary ëd MySQL 4.1/5.0',
+	'config-charset-mysql5' => 'UTF-8 ëd MySQL 4.1/5.0',
+	'config-charset-mysql4' => "UTF-8 compatìbil a l'indré ëd MySQL 4.0",
+	'config-charset-help' => "'''Avis:''' S'it deuvre '''UTF-8 compatìbil a l'indré''' su MySQL 4.1+, e peui if fas ël backup con <code>mysqldump</code>, a peul scanselé tùit ij caràter nen-ASCII, rovinand sensa speranse tò backup!
+
+An '''manera binaria''', mediaWiki a memorisa ël test UTF-8 an camp binary ant ël database.
+Soss' a l'é pi eficient che la manera UTF-8 ëd MySQL, e a përmëtt ëd dovré l'anter ansema ëd caràter Unicode.
+An '''manera UTF-8''', MySQL a conòss an che ansema ëd caràter a son ij tò dat, e a peul presenteje e convertije apropriatament, ma at lasserà pa memorisé ij caràter an dzora al [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+	'config-mysql-old' => "A l'é ciamà MySQL $1 o pi recent, ti it l'has $2.",
+	'config-db-port' => 'Porta dël database:',
+	'config-db-schema' => 'Schema për MediaWiki',
+	'config-db-ts2-schema' => 'Schema për tsearch2',
+	'config-db-schema-help' => "Jë schema sota a son normalment giust.
+Cang-je mach s'it sas ch'it deuve.",
+	'config-sqlite-dir' => 'Directory ëd dat SQLite:',
+	'config-sqlite-dir-help' => "SQLite a memorisa tùit ij dat ant un ùnich file.
+
+La directory ch'it das a deuv esse scrivibla dal webserver an mente dl'instalassion.
+
+A dovrìa '''pa''' esse acessibla via web, sossì a l'é ël përchè i l'oma pa butala andova a-i son ij tò file PHP.
+
+L'instalador a scriverà un file <code>.htaccess</code> ansema con chiel, ma se lòn a faliss quaidun a peul pijé acess a tò raw file.
+Lòn a comprend raw dat ëd l'utent (adrëssa e-mail, pciav critografà) parèj com revision scanselà e àutri dat segret ëd la wiki.
+
+Consìdera ëd buté ël database ansema a quaidun d'àutr, për esempi an <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-support-info' => "MediaWiki a apògia i sistem ëd database ch'a ven-o:
+
+$1
+
+S'it vëdde pa listà sì sota ël sistem ëd database ch'it preuve a dovré,antlora va daré a le istrussion linkà sì sota për abilité l'apògg.",
+	'config-support-mysql' => "* $1 e l'é l'obietiv primary për mediaWiki e a l'é ël mej apogià ([http://www.php.net/manual/en/mysql.installation.php com compilé PHP con l'apògg MySQL])",
+	'config-support-postgres' => "* $1 e l'é un sistem ëd database popolar a sorziss doverta com alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php com compilé PHP con l'apògg PostgreSQL])",
+	'config-support-sqlite' => "* $1 e l'é un sistem ëd database linger che a l'é motobin bin apogià ([http://www.php.net/manual/en/pdo.installation.php com compilé PHP con l'apògg SQLite], a dòvra PDO)",
+	'config-header-mysql' => 'Ampostassion MySQL',
+	'config-header-postgres' => 'Ampostassion PostgreSQL',
+	'config-header-sqlite' => 'Ampostassion SQLite',
+	'config-header-oracle' => 'Ampostassion Oracle',
+	'config-invalid-db-type' => 'Sòrt ëd database pa bon',
+	'config-missing-db-name' => 'It deuve anserì un valor për "Nòm database"',
+	'config-invalid-db-name' => 'Nòm dël database pa bon "$1".
+Dòvra mach litre ASCII (a-z, A-Z), nùmer (0-9) e underscore (_).',
+	'config-invalid-db-prefix' => 'Prefiss dël database pa bon "$1".
+Dòvra mach litre ASCII (a-z, A-Z), nùmer (0-9) e underscore (_).',
+	'config-connection-error' => "$1.
+
+Contròla l'host, nòm utent e ciav sota e preuva torna.",
+	'config-invalid-schema' => 'Schema pa bon për MediaWiki "$1".
+Dòvra mach litre ASCII (a-z, A-Z), nùmer (0-9) e underscore (_).',
+	'config-invalid-ts2schema' => 'Schema pa bon për TSearch2 "$1".
+Dòvra mach litre ASCII (a-z, A-Z), nùmer (0-9) e underscore (_).',
+	'config-postgres-old' => "A l'é ciamà PostgreSQL $1 o pi recent, ti it l'has $2.",
+	'config-sqlite-name-help' => "Sern un nòm ch'a identìfica toa wiki.
+Dòvra nen spassi o tratin.
+Sossì a sarà dovrà për ël nòm dël file ëd dat SQLite.",
+	'config-sqlite-parent-unwritable-group' => "As peul pa creesse la directory ëd dat <code><nowiki>$1</nowiki></code>, përchè la directory dë dzora <code><nowiki>$2</nowiki></code> a l'é pa scrivibla dal webserver.
+
+L'instalador a l'ha determinà sota che utent a gira tò webserver.
+Fà che la directory <code><nowiki>$3</nowiki></code> a sia scrivibla da chiel për continué.
+Su un sistem Unix/Linux fà:
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>",
+	'config-sqlite-parent-unwritable-nogroup' => "As peul pa creesse la directory ëd dat <code><nowiki>$1</nowiki></code>, përchè la directory dë dzora <code><nowiki>$2</nowiki></code> a l'é pa scrivibla dal webserver.
+
+L'instalador a peul pa determiné l'utent sota ël qual a gira tò webserver.
+Fà che la directory <code><nowiki>$3</nowiki></code> a sia scrivibla globalment da chiel (e da d'àutri) për continué.
+Su un sistem Unix/Linux fà:
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>",
+	'config-sqlite-mkdir-error' => 'Eror an creand la directory ëd dat "$1".
+Contròla la locassion e preuva torna.',
+	'config-sqlite-dir-unwritable' => 'As peul pa scrivse la directory "$1".
+Cangia ij sò përmess an manera che ël webserver a peussa scrivje, e preuva torna.',
+	'config-sqlite-connection-error' => '$1.
+
+Contròla la directory ëd dat e ël nòm ëd database sota e preuva torna.',
+	'config-sqlite-readonly' => "Ël file <code>$1</code> a l'é pa scrivìbil.",
+	'config-sqlite-cant-create-db' => 'As peul pa cresse ël file ëd database <code>$1</code>.',
+	'config-sqlite-fts3-downgrade' => "PHP a l'ha pa l'apògg ëd FTS3, degradà le tàule",
+	'config-sqlite-fts3-add' => "Gionté le capassità d'arserca FTS3",
+	'config-can-upgrade' => "A-i é dle tàule MediaWiki an sto database.
+Për agiorneje a MediaWiki $1, sgnaca '''Continua'''.",
+	'config-upgrade-done' => "Agiornament complet.
+
+Adess it peule [$1 ancaminé a dovré toa wiki].
+
+S'it veule regeneré tò file <code>LocalSettings.php</code> file, sgnaca ël boton sota.
+Sossì a l'è '''pa arcomandà''' a men ch'it të stìe avend dij problem con toa wiki.",
+	'config-regenerate' => 'Regeneré LocalSettings.php →',
+	'config-show-table-status' => 'Query SHOW TABLE STATUS falìa!',
+	'config-unknown-collation' => "'''Avis:''' Ël database a dòvra un confront pa arconossù.",
+	'config-db-web-account' => 'Cont dël database për acess web',
+	'config-db-web-help' => 'Selession-a ël nòm utent e la ciav che ël web server a dovrerà për coleghesse al server dël database, an mente dle operassion ordinarie dla wiki.',
+	'config-db-web-account-same' => "Dòvra ël midem cont com për l'istalassion",
+	'config-db-web-create' => "Crea ël cont se a esist pa anco'",
+	'config-db-web-no-create-privs' => "Ël cont ch'it l'has specificà për l'instalassion a l'ha pa basta privilegi për creé un cont.
+Ël cont ch'it të specifiche ambelessì a deuv già esiste.",
+	'config-mysql-engine' => 'Motor ëd memorisassion:',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "'''InnoDB''' a l'é almanch sempe la mej opsion, da già ch'a l'ha un bon apògg dla concorensa.
+
+'''MyISAM''' a peul esse pi lest an instalassion ingle-user o read-only.
+Ël database MyISAM a tira a corompse pi soens che ël database InnoDB.",
+	'config-mysql-egine-mismatch' => "'''Avis:''' it l'has ciamà ël motor ëd memorisassion $1, ma ël database esistent a dòvra ël motor $2.
+Sto script d'agiornament a peul pa convertilo, parèj a rëstrà $2.",
+	'config-mysql-charset' => 'Set ëd caràter dël database:',
+	'config-mysql-binary' => 'Binari',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "An '''manera binaria''', MediaWiki a memorisa test UTF-8 ant ël database an camp binari.
+Sossì a l'é pi eficient che la manera UTF-8 ëd MySQL, e at përmëtt ëd dovré l'ansema anter ëd caràter Unicode.
+
+An '''manera UTF-8''', MySQL a conosserà an che set ëd caràter a son ij tò dat, e a peul presenteje e convertije apropriatament, ma at lassa pa memorisé caràter an dzora al [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+	'config-mysql-charset-mismatch' => "'''Avis:''' it l'has ciamà lë schema $1, ma ël database esistent a l'ha lë schema $2.
+Sto script d'agiornament a peul pa convertilo, parèj a rëstrà $2.",
+	'config-site-name' => 'Nòm ëd la wiki:',
+	'config-site-name-help' => 'Sossì a pararirà ant la bara dël tìtol dël browser e an vàire àutri pòst.',
+	'config-site-name-blank' => 'Ansëriss un nòm ëd sit.',
+	'config-project-namespace' => 'Spassi nominal dël proget:',
+	'config-ns-generic' => 'Proget',
+	'config-ns-site-name' => 'Midem com ël nom dla wiki: $1',
+	'config-ns-other' => 'Àutr (specìfica)',
+	'config-ns-other-default' => 'MyWiki',
 );
 
 /** Pashto (پښتو)
@@ -6326,11 +6602,30 @@ Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",
 );
 
 /** Brazilian Portuguese (Português do Brasil)
+ * @author Giro720
  * @author Marcionunes
  */
 $messages['pt-br'] = array(
 	'config-desc' => 'O instalador do MediaWiki',
 	'config-title' => 'Instalação MediaWiki $1',
+	'config-information' => 'Informações',
+	'config-localsettings-upgrade' => "'''Aviso''': Foi detetada a existência de um arquivo <code>LocalSettings.php</code>.
+É possível atualizar o seu software.
+Mova o <code>LocalSettings.php</code> para um lugar seguro e execute o instalador novamente, por favor.",
+	'config-localsettings-noupgrade' => "'''Erro''': Foi detetada a existência de um arquivo <code>LocalSettings.php</code>.
+Não é possível atualizar o seu software neste momento.
+Por razões de segurança, o instalador foi desativado.",
+	'config-session-error' => 'Erro ao iniciar a sessão: $1',
+	'config-session-expired' => 'Os seus dados de sessão parecem ter expirado.
+As sessões estão configuradas para uma duração de $1.
+Você pode aumentar esta duração configurando <code>session.gc_maxlifetime</code> no php.ini.
+Reinicie o processo de instalação.',
+	'config-no-session' => 'Os seus dados de sessão foram perdidos!
+Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.',
+	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logotipo de 135x160 pixels no canto superior esquerdo.
+Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
+
+Se você não pretende usar um logotipo, deixe este campo em branco.',
 );
 
 /** Russian (Русский)
@@ -6500,9 +6795,9 @@ chmod a+w config</pre>",
 	'config-db-host' => 'Хост базы данных:',
 	'config-db-host-help' => 'Если сервер базы данных находится на другом сервере, введите здесь его имя хоста или IP-адрес. 
 
-Если Вы используете виртуальный хостинг, ваш провайдер должен указать правильное имя хоста в своей документации.
+Если вы используете виртуальный хостинг, ваш провайдер должен указать правильное имя хоста в своей документации.
 
-Если вы устанавливаете систему на сервере под Windows и используете MySQL, имя сервера «localhost» не работать. В этом случае попробуйте указать «127.0.0.1».',
+Если вы устанавливаете систему на сервере под Windows и используете MySQL, имя сервера «localhost» может не работать. В этом случае попробуйте указать «127.0.0.1».',
 	'config-db-wiki-settings' => 'Идентификация этой вики',
 	'config-db-name' => 'Имя базы данных:',
 	'config-db-name-help' => 'Выберите название-идентификатор для вашей вики. 
@@ -6670,6 +6965,7 @@ chmod a+w $3</pre>',
 Остальные настройки можно пропустить и приступить к установке вики.',
 	'config-optional-continue' => 'Произвести тонкую настройку',
 	'config-optional-skip' => 'Хватит, установить вики',
+	'config-profile-wiki' => 'Традиционная вики',
 	'config-profile-no-anon' => 'Требуется создание учётной записи',
 	'config-profile-fishbowl' => 'Только для авторизованых редакторов',
 	'config-profile-private' => 'Частная wiki',
@@ -6740,6 +7036,8 @@ chmod a+w $3</pre>',
 	'config-install-interwiki-exists' => "'''Предупреждение''': в интервики-таблице, кажется, уже есть записи.
 Создание стандартного списка, пропущено.",
 	'config-install-secretkey' => 'Создание секретного ключа',
+	'config-insecure-secretkey' => "'''Внимание:''' Не получилось создать безопасный секретный ключ (<code>\$wgSecretKey</code>).
+По возможности, смените его вручную.",
 	'config-install-sysop' => 'Создание учётной записи администратора',
 	'config-install-done' => "'''Поздравляем!'''
 Вы успешно установили MediaWiki.

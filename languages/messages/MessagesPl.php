@@ -716,6 +716,11 @@ Możesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomy�
 Odczekaj chwilę zanim ponowisz próbę.',
 'loginlanguagelabel'         => 'Język: $1',
 'suspicious-userlogout'      => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
+'ratelimit-excluded-ips'     => ' #<!-- nie modyfikuj tej linii --> <pre>
+# Składnia jest następująca:
+# * Wszystko od znaku „#” do końca linii uznawane jest za komentarz
+# * Każda niepusta linia, zawiera adres IP wyłączony z ograniczenia przepustowości
+ #</pre> <!-- nie modyfikuj tej linii -->',
 
 # JavaScript password checks
 'password-strength'            => 'Szacowane bezpieczeństwo hasła – $1',
@@ -1172,7 +1177,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'showhideselectedversions' => 'Pokaż lub ukryj zaznaczone wersje',
 'editundo'                 => 'anuluj edycję',
 'diff-multi'               => '(Nie pokazano $1 wersji {{PLURAL:$1|utworzonej|utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
-'diff-multi-manyusers'     => '(Nie pokazano $1 wersji utworzonych przez ponad 100 użytkowników)',
+'diff-multi-manyusers'     => '(Nie pokazano $1 {{PLURAL:$1|pośredniej wersji utworzonej|pośrednich wersji utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
 
 # Search results
 'searchresults'                    => 'Wyniki wyszukiwania',

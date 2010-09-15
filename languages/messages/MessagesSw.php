@@ -1579,7 +1579,7 @@ Tafadhali tazama [$2 ukurasa wa maelezo ya faili] ukitaka maelezo mengine.',
 Maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] linaonyeshwa hapa.',
 'filepage-nofile'           => 'Hakuna faili yenye jina hili.',
 'filepage-nofile-link'      => 'Hakuna faili lenye jina hili, lakini unaweza [$1 kulipakia].',
-'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
+'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hili',
 'shared-repo-from'          => 'kutoka kwa $1',
 'shared-repo'               => 'hifadhi ya pamoja',
 
