@@ -405,4 +405,4 @@ return array(
 	'mediawiki.legacy.wikiprintable' => new ResourceLoaderFileModule( array(
 		'styles' => array( 'skins/common/wikiprintable.css' => array( 'media' => 'print' ) ),
 	) ),
-) );
+);

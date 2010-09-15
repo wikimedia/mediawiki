@@ -326,4 +326,4 @@ class ResourceLoader {
 }
 
 ResourceLoader::register( include( "$IP/resources/Resources.php" ) );
-wfRunHook( 'ResourceLoaderRegisterModules' );
+wfRunHooks( 'ResourceLoaderRegisterModules' );
