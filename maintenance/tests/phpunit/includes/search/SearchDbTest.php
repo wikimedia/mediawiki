@@ -1,6 +1,6 @@
 <?php
 
-require_once( 'SearchEngineTest.php' );
+require_once( dirname( __FILE__ ) . '/SearchEngineTest.php' );
 
 class SearchDbTest extends SearchEngineTest {
 	var $db;

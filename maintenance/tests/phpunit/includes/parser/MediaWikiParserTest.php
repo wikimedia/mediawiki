@@ -1,6 +1,6 @@
 <?php
 
-require_once( 'ParserHelpers.php' );
+require_once( dirname( __FILE__ ) . '/ParserHelpers.php' );
 
 class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 	private $count;
