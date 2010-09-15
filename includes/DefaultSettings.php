@@ -5070,8 +5070,11 @@ $wgRedirectOnLogin = null;
  * The remaining elements are passed through to the class as constructor
  * parameters. Example:
  *
- *   $wgPoolCounterConf = array( 'Article::view' => array(
+ *   $wgPoolCounterConf = array( 'ArticleView' => array(
  *     'class' => 'PoolCounter_Client',
+ *     'timeout' => 15, // wait timeout in seconds
+ *     'workers' => 5, // maximum number of active threads in each pool
+ *     'maxqueue' => 50, // maximum number of total threads in each pool
  *     ... any extension-specific options...
  *   );
  */
