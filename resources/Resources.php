@@ -27,6 +27,9 @@ return array(
 	'jquery.autoEllipsis' => new ResourceLoaderFileModule(
 		array( 'scripts' => 'resources/jquery/jquery.autoEllipsis.js' )
 	),
+	'jquery.client' => new ResourceLoaderFileModule(
+		array( 'scripts' => 'resources/jquery/jquery.client.js' )
+	),
 	'jquery.color' => new ResourceLoaderFileModule(
 		array( 'scripts' => 'resources/jquery/jquery.color.js' )
 	),
