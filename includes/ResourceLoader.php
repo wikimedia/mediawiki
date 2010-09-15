@@ -325,5 +325,5 @@ class ResourceLoader {
 	}
 }
 
-// FIXME: Temp hack
-require_once "$IP/resources/Resources.php";
+ResourceLoader::register( include( "$IP/resources/Resources.php" ) );
+wfRunHook( 'ResourceLoaderRegisterModules' );
