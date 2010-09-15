@@ -2,11 +2,7 @@
  * User-agent detection 
  */
 
-( function( $, mw ) {
-
-/* Extension */
-
-$.client = {
+jQuery.client = {
 	/**
 	 * Returns an object containing information about the browser
 	 * 
