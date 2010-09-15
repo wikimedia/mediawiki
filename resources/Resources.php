@@ -30,6 +30,9 @@ return array(
 	'jquery.client' => new ResourceLoaderFileModule(
 		array( 'scripts' => 'resources/jquery/jquery.client.js' )
 	),
+	'jquery.collapsibleTabs' => new ResourceLoaderFileModule(
+		array( 'scripts' => 'resources/jquery/jquery.collapsibleTabs.js' )
+	),
 	'jquery.color' => new ResourceLoaderFileModule(
 		array( 'scripts' => 'resources/jquery/jquery.color.js' )
 	),

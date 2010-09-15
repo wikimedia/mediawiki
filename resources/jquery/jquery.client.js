@@ -152,9 +152,9 @@ jQuery.client = {
 	 * @return Boolean true if browser known or assumed to be supported, false if blacklisted
 	 */
 	'test': function( map ) {
-		var client = this.client();
+		var profile = $.client.profile();
 		// Check over each browser condition to determine if we are running in a compatible client
-		var browser = map[$( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr'][client.browser];
+		var browser = map[$( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr'][profile.browser];
 		if ( typeof browser !== 'object' ) {
 			// Unknown, so we assume it's working
 			return true;
@@ -165,11 +165,11 @@ jQuery.client = {
 			if ( val === false ) {
 				return false;
 			} else if ( typeof val == 'string' ) {
-				if ( !( eval( 'client.version' + op + '"' + val + '"' ) ) ) {
+				if ( !( eval( 'profile.version' + op + '"' + val + '"' ) ) ) {
 					return false;
 				}
 			} else if ( typeof val == 'number' ) {
-				if ( !( eval( 'client.versionNumber' + op + val ) ) ) {
+				if ( !( eval( 'profile.versionNumber' + op + val ) ) ) {
 					return false;
 				}
 			}
