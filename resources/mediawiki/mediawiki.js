@@ -173,19 +173,13 @@ window.mediaWiki = new ( function( $ ) {
 	/*
 	 * Basic parser, can be replaced with something more robust
 	 */
-	this.parser = function( key, args ) {
-		if ( !( key in messages ) ) {
-			return '<' + key + '>';
-		}
-		var msg = messages[key];
-		if ( typeof args == 'object' || typeof args == 'array' ) {
-			for ( var a = 0; a < args.length; a++ ) {
-				msg = msg.replace( '\$' + ( parseInt( a ) + 1 ), args[a] );
+	this.parser = function( text, options ) {
+		if ( typeof options === 'object' && typeof options.parameters === 'object' ) {
+			for ( var p = 0; p < options.parameters.length; p++ ) {
+				text = text.replace( '\$' + ( parseInt( p ) + 1 ), options.parameters[p] );
 			}
-		} else if ( typeof args == 'string' || typeof args == 'number' ) {
-			msg = msg.replace( '$1', args );
 		}
-		return msg;
+		return text;
 	};
 	
 	/*
