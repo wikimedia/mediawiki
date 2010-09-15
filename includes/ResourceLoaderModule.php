@@ -876,7 +876,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 			}
 			return array( 'all' => implode( "\n", $rules ) );
 		}
-		return array( 'all' => 'test { color: pink; }' );
+		return array();
 	}
 
 	public function getFlip( $context ) {
