@@ -1311,16 +1311,6 @@ SQL;
 			dieout( htmlspecialchars( $res ) );
 		}
 
-		# Update version information
-		$mwv = $this->addQuotes( $wgVersion);
-		$pgv = $this->addQuotes( $this->getServerVersion() );
-		$pgu = $this->addQuotes( $this->mUser );
-		$mws = $this->addQuotes( $wgDBmwschema );
-		$tss = $this->addQuotes( $wgDBts2schema );
-		$pgp = $this->addQuotes( $wgDBport );
-		$dbn = $this->addQuotes( $this->mDBname );
-		$ctype = $this->addQuotes( pg_fetch_result( $this->doQuery( 'SHOW lc_ctype' ), 0, 0 ) );
-
 		echo '<li>Populating interwiki table... ';
 		# Avoid the non-standard "REPLACE INTO" syntax
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
