@@ -33,6 +33,23 @@ class ResourceLoader {
 
 	/* Protected Static Methods */
 
+	/*
+	 * Registers core modules and runs registration hooks
+	 */
+	protected static function initialize() {
+		global $IP;
+		
+		// Safety check - this should never be called more than once anyways
+		if ( self::$initialized ) {
+			wfDebug( 'ResourceLoader::intitialize was called more than once' );
+			return;
+		}
+		
+		self::$initialized = true;
+		self::register( include( "$IP/resources/Resources.php" ) );
+		wfRunHooks( 'ResourceLoaderRegisterModules' );
+	}
+
 	/**
 	 * Runs text through a filter, caching the filtered result for future calls
 	 *
@@ -85,17 +102,6 @@ class ResourceLoader {
 
 	/* Static Methods */
 
-	public static function initialize() {
-		global $IP;
-		
-		if ( !self::$initialized ) {
-			// Do this first just in case someone accidentally adds a call to ResourceLoader::initialize in their hook
-			self::$initialized = true;
-			self::register( include( "$IP/resources/Resources.php" ) );
-			wfRunHooks( 'ResourceLoaderRegisterModules' );
-		}
-	}
-
 	/**
 	 * Registers a module with the ResourceLoader system.
 	 *
@@ -110,6 +116,11 @@ class ResourceLoader {
 	 * the client in a way that they can easily see them if they want to, such as by using FireBug
 	 */
 	public static function register( $name, ResourceLoaderModule $object = null ) {
+		
+		if ( !self::$initialized ) {
+			self::initialize();
+		}
+		
 		// Allow multiple modules to be registered in one call
 		if ( is_array( $name ) && !isset( $object ) ) {
 			foreach ( $name as $key => $value ) {
@@ -135,6 +146,11 @@ class ResourceLoader {
 	 * @return Array: array( modulename => ResourceLoaderModule )
 	 */
 	public static function getModules() {
+		
+		if ( !self::$initialized ) {
+			self::initialize();
+		}
+		
 		return self::$modules;
 	}
 
@@ -145,6 +161,11 @@ class ResourceLoader {
 	 * @return mixed ResourceLoaderModule or null if not registered
 	 */
 	public static function getModule( $name ) {
+		
+		if ( !self::$initialized ) {
+			self::initialize();
+		}
+		
 		return isset( self::$modules[$name] ) ? self::$modules[$name] : null;
 	}
 
@@ -155,6 +176,11 @@ class ResourceLoader {
 	 * @return String: JavaScript code for registering all modules with the client loader
 	 */
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
+		
+		if ( !self::$initialized ) {
+			self::initialize();
+		}
+		
 		$scripts = '';
 		$registrations = array();
 
@@ -188,6 +214,11 @@ class ResourceLoader {
 	 * @return Integer: UNIX timestamp
 	 */
 	public static function getHighestModifiedTime( ResourceLoaderContext $context ) {
+		
+		if ( !self::$initialized ) {
+			self::initialize();
+		}
+		
 		$time = 1; // wfTimestamp() treats 0 as 'now', so that's not a suitable choice
 
 		foreach ( self::$modules as $module ) {
@@ -206,8 +237,9 @@ class ResourceLoader {
 		global $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage;
 		global $wgResourceLoaderUnversionedServerMaxage, $wgResourceLoaderUnversionedClientMaxage;
 
-		// Register modules
-		self::initialize();
+		if ( !self::$initialized ) {
+			self::initialize();
+		}
 		
 		// Split requested modules into two groups, modules and missing
 		$modules = array();

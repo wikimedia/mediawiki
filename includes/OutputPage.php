@@ -2294,8 +2294,6 @@ class OutputPage {
 		foreach ( (array) $modules as $name ) {
 			$moduleGroups[strpos( $name, 'user' ) === 0 ? 'user' : null][] = $name;
 		}
-		// Make sure ResourceLoader is ready for use
-		ResourceLoader::initialize();
 		$links = '';
 		foreach ( $moduleGroups as $group => $modules ) {
 			if ( count( $modules ) ) {
