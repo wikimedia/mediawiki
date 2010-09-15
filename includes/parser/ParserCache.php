@@ -74,7 +74,7 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
 	 */
 	public function getDirty( $article, $popts ) {
-		$value = $this->mMemc->get( $article, $popts, true );
+		$value = $this->get( $article, $popts, true );
 		return is_object( $value ) ? $value : false;
 	}
 
