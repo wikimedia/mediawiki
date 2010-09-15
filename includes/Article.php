@@ -4660,11 +4660,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$wgOut->enableClientCache( false );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		
-		if ( $status instanceof Status ) {
-			$errortext = $status->getWikiText( false, 'view-pool-error' );
-		} else {
-			$errortext = wfMsgNoTrans( 'view-pool-error', '' );
-		}
+		$errortext = $status->getWikiText( false, 'view-pool-error' );
 		$wgOut->addWikiText( '<div class="errorbox">' . $errortext . '</div>' );
 		
 		return false;

@@ -84,15 +84,15 @@ abstract class PoolCounter {
 
 class PoolCounter_Stub extends PoolCounter {
 	function acquireForMe() {
-		return PoolCounter::LOCKED;
+		return Status::newGood( PoolCounter::LOCKED );
 	}
 
 	function acquireForAnyone() {
-		return PoolCounter::LOCKED;
+		return Status::newGood( PoolCounter::LOCKED );
 	}
 
 	function release() {
-		return PoolCounter::RELEASED;
+		return Status::newGood( PoolCounter::RELEASED );
 	}
 	
 	public function __construct() {
@@ -146,35 +146,43 @@ abstract class PoolCounterWork {
 		}
 		
 		$result = false;
-		switch ( is_int( $status ) ? $status : PoolCounter::ERROR ) {
-			case PoolCounter::LOCKED:
-				$result = $this->doWork();
-				$this->poolCounter->release();
-				return $result;
-			
-			case PoolCounter::DONE:
-				$result = $this->getCachedWork();
-				if ( $result === false ) {
-					/* That someone else work didn't serve us.
-					 * Acquire the lock for me
-					 */
-					return $this->execute( true );
-				}
-				return $result;
-				
-			case PoolCounter::QUEUE_FULL:
-			case PoolCounter::TIMEOUT:
-				$result = $this->fallback();
-				
-				if ( $result !== false ) {
+		
+		if ( $status->isOK() ) {
+			switch ( $status->value ) {
+				case PoolCounter::LOCKED:
+					$result = $this->doWork();
+					$this->poolCounter->release();
 					return $result;
-				}
-				/* no break */
-			
-			case PoolCounter::ERROR:
-			default:
-				return $this->error( $status );
+				
+				case PoolCounter::DONE:
+					$result = $this->getCachedWork();
+					if ( $result === false ) {
+						/* That someone else work didn't serve us.
+						 * Acquire the lock for me
+						 */
+						return $this->execute( true );
+					}
+					return $result;
+					
+				case PoolCounter::QUEUE_FULL:
+				case PoolCounter::TIMEOUT:
+					$result = $this->fallback();
+					
+					if ( $result !== false ) {
+						return $result;
+					}
+					/* no break */
+				
+				/* These two cases should never be hit... */
+				case PoolCounter::ERROR:
+				default:
+					$errors = array( PoolCounter::QUEUE_FULL => 'pool-queuefull', PoolCounter::TIMEOUT => 'pool-timeout' );
+					
+					$status = Status::newFatal( isset($errors[$status->value]) ? $errors[$status->value] : 'pool-errorunknown' );
+					/* continue to the error */
+			}
 		}
+		return $this->error( $status );
 	}
 	
 	function __construct( $type, $key ) {
