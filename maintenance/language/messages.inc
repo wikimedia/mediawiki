@@ -247,6 +247,9 @@ $wgMessageStructure = array(
 		'jumptonavigation',
 		'jumptosearch',
 		'view-pool-error',
+		'pool-timeout',
+		'pool-queuefull',
+		'pool-errorunknown',
 	),
 	'links' => array(
 		'aboutsite',
