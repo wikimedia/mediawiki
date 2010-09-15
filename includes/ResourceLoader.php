@@ -29,6 +29,7 @@ class ResourceLoader {
 
 	// @var array list of module name/ResourceLoaderModule object pairs
 	protected static $modules = array();
+	protected static $initialized = false;
 
 	/* Protected Static Methods */
 
@@ -83,6 +84,17 @@ class ResourceLoader {
 	}
 
 	/* Static Methods */
+
+	public static function initialize() {
+		global $IP;
+		
+		if ( !self::$initialized ) {
+			// Do this first just in case someone accidentally adds a call to ResourceLoader::initialize in their hook
+			self::$initialized = true;
+			self::register( include( "$IP/resources/Resources.php" ) );
+			wfRunHooks( 'ResourceLoaderRegisterModules' );
+		}
+	}
 
 	/**
 	 * Registers a module with the ResourceLoader system.
@@ -194,6 +206,9 @@ class ResourceLoader {
 		global $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage;
 		global $wgResourceLoaderUnversionedServerMaxage, $wgResourceLoaderUnversionedClientMaxage;
 
+		// Register modules
+		self::initialize();
+		
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
 		$missing = array();
@@ -324,6 +339,3 @@ class ResourceLoader {
 		}
 	}
 }
-
-ResourceLoader::register( include( "$IP/resources/Resources.php" ) );
-wfRunHooks( 'ResourceLoaderRegisterModules' );
