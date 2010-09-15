@@ -304,6 +304,9 @@ if ( \$wgCommandLineMode ) {
 # When you make changes to this configuration file, this will make
 # sure that cached pages are cleared.
 \$wgCacheEpoch = max( \$wgCacheEpoch, gmdate( 'YmdHis', @filemtime( __FILE__ ) ) );
+
+# Enabled Extensions. Most extensions are enabled by including the base extension file here
+# but check specific extension documentation for more details
 ";
 	}
 	
