@@ -652,15 +652,36 @@ window.mediaWiki = new ( function( $ ) {
 		};
 		
 		/**
-		 * Loads one or more modules for future use
+		 * Loads an external script or one or more modules for future use
+		 * 
+		 * @param {mixed} modules either the name of a module, array of modules, or a URL of an external script or style
+		 * @param {string} type mime-type to use if calling with a URL of an external script or style; acceptable values
+		 * are "text/css" and "text/javascript"; if no type is provided, text/javascript is assumed
 		 */
-		this.load = function( modules ) {
+		this.load = function( modules, type ) {
 			// Validate input
 			if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
 				throw new Error( 'dependencies must be a string or an array, not a ' + typeof dependencies )
 			}
-			// Allow calling with a single dependency as a string
+			// Allow calling with an external script or single dependency as a string
 			if ( typeof modules === 'string' ) {
+				// Support adding arbitrary external scripts
+				if ( modules.substr( 0, 7 ) == 'http://' || modules.substr( 0, 8 ) == 'https://' ) {
+					if ( type === 'text/css' ) {
+						setTimeout(  function() {
+							$( 'head' ).append( '<link rel="stylesheet" type="text/css" href="' + modules + '" />' );
+						}, 0 );
+						return true;
+					} else if ( type === 'text/javascript' || typeof type === 'undefined' ) {
+						setTimeout(  function() {
+							$( 'body' ).append( '<script type="text/javascript" src="' + modules + '"></script>' );
+						}, 0 );
+						return true;
+					}
+					// Unknown type
+					return false;
+				}
+				// Called with single module
 				modules = [modules];
 			}
 			// Resolve entire dependency map
