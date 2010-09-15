@@ -296,12 +296,6 @@ return array(
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 	) ),
 	
-	/* MediaWiki Utilities */
-	
-	'mediawiki.util.client' => new ResourceLoaderFileModule( array(
-		'scripts' => 'resources/mediawiki.util/mediawiki.util.client.js',
-	) ),
-	
 	/* MediaWiki Legacy */
 	
 	'mediawiki.legacy.ajax' => new ResourceLoaderFileModule( array(
