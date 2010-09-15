@@ -418,7 +418,7 @@ Then enable this option.",
 	'config-upload-deleted-help'      => 'Choose a directory in which to archive deleted files.
 Ideally, this should not be accessible from the web.',
 	'config-logo'                     => 'Logo URL:',
-	'config-logo-help'                => "MediaWiki's default skin includes space for a 135x135 pixel logo in the top left corner.
+	'config-logo-help'                => "MediaWiki's default skin includes space for a 135x160 pixel logo in the top left corner.
 Upload an image of the appropriate size, and enter the URL here.
 
 If you do not want a logo, leave this box blank.",
@@ -989,7 +989,7 @@ chmod a+w $3</pre>',
 	'config-upload-deleted-help' => 'Выберыце дырэкторыю, у якой будуць захоўвацца выдаленыя файлы.
 У ідэальным выпадку, яна не павінна мець доступу з Інтэрнэту.',
 	'config-logo' => 'URL-адрас лягатыпу:',
-	'config-logo-help' => 'Афармленьне MediaWiki па змоўчваньні уключае прастору для лягатыпу памерам 135×135 піксэляў у верхнім левым куце.
+	'config-logo-help' => 'Афармленьне MediaWiki па змоўчваньні уключае прастору для лягатыпу памерам 135×160 піксэляў у верхнім левым куце.
 Загрузіце выяву адпаведнага памеру, і увядзіце тут URL-адрас.
 
 Калі Вы не жадаеце мець ніякага лягатыпу, пакіньце гэтае поле пустым.',
@@ -1631,7 +1631,7 @@ Hernach kann diese Option aktiviert werden.',
 	'config-upload-deleted-help' => 'Bitte ein Verzeichnis auswählen, in dem gelöschte Dateien archiviert werden sollen.
 Idealerweise sollte es nicht über das Internet zugänglich sein.',
 	'config-logo' => 'URL des Logos:',
-	'config-logo-help' => 'Die Standardoberfläche von MediaWiki verfügt, in der oberen linken Ecke, über Platz für eine Logo mit den Maßen 135x135 Pixel.
+	'config-logo-help' => 'Die Standardoberfläche von MediaWiki verfügt, in der oberen linken Ecke, über Platz für eine Logo mit den Maßen 135x160 Pixel.
 Bitte ein Logo in entsprechender Größe hochladen und die zugehörige URL an dieser Stelle angeben.
 
 Sofern kein Logo benötigt wird, kann dieses Datenfeld leer bleiben.',
@@ -2399,7 +2399,7 @@ Ensuite, activez cette option.",
 	'config-upload-deleted-help' => 'Choisissez un répertoire qui servira à archiver les fichiers supprimés. 
 Idéalement, il ne devrait pas être accessible depuis le web.',
 	'config-logo' => 'URL du logo :',
-	'config-logo-help' => "L'habillage (''skin'') par défaut de MediaWiki comprend l'espace pour un logo de 135x135 pixels dans le coin supérieur gauche. 
+	'config-logo-help' => "L'habillage (''skin'') par défaut de MediaWiki comprend l'espace pour un logo de 135x160 pixels dans le coin supérieur gauche. 
 Téléchargez une image de la taille appropriée, et entrez l'URL ici. 
 
 Si vous ne voulez pas d'un logo, laissez cette case vide.",
@@ -2874,7 +2874,7 @@ A continuación, active esta opción.',
 	'config-upload-deleted-help' => 'Escolla un directorio no que arquivar os ficheiros borrados.
 O ideal é que non sexa accesible desde a web.',
 	'config-logo' => 'URL do logo:',
-	'config-logo-help' => 'A aparencia de MediaWiki por defecto inclúe espazo para un logo de 135x135 píxeles no recuncho superior esquerdo.
+	'config-logo-help' => 'A aparencia de MediaWiki por defecto inclúe espazo para un logo de 135x160 píxeles no recuncho superior esquerdo.
 Cargue unha imaxe do tamaño axeitado e introduza o URL aquí.
 
 Se non quere un logo, deixe esta caixa en branco.',
@@ -3682,7 +3682,7 @@ Postea activa iste option.',
 	'config-upload-deleted-help' => 'Selige un directorio in le qual archivar le files delite.
 Idealmente, isto non debe esser accessibile ab le web.',
 	'config-logo' => 'URL del logotypo:',
-	'config-logo-help' => 'Le apparentia predefinite de MediaWiki include spatio pro un logotypo de 135×135 pixeles in le angulo superior sinistre.
+	'config-logo-help' => 'Le apparentia predefinite de MediaWiki include spatio pro un logotypo de 135×160 pixeles in le angulo superior sinistre.
 Incarga un imagine con le dimensiones appropriate, e entra le URL hic.
 
 Si tu non vole un logotypo, lassa iste quadro vacue.',
@@ -4275,7 +4275,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-upload-deleted-help' => '削除されるファイルを保存するためのディレクトリを選択してください。
 これがウェブからアクセスできないことが理想です。',
 	'config-logo' => 'ロゴのURL:',
-	'config-logo-help' => 'メディアウィキの初期のスキンは最上部左角にある135x135ピクセルのロゴのためにスペースを含んでいます。
+	'config-logo-help' => 'メディアウィキの初期のスキンは最上部左角にある135x160ピクセルのロゴのためにスペースを含んでいます。
 適切なサイズのイメージをアップロードし、ここにURLを入力してください。
 
 もし、ロゴを望まないならば、このボックスを空白状態のままにしてください。',
@@ -5049,7 +5049,7 @@ chmod a+w $3</pre>',
 	'config-upload-deleted-help' => 'Одберете во која папка да се архивираат избришаните податотеки.
 Најдобро би било ако таа не е достапна преку интернет.',
 	'config-logo' => 'URL за логото:',
-	'config-logo-help' => 'Матичното руво на МедијаВики има простор за лого од 135x135 пиксели во горниот лев агол.
+	'config-logo-help' => 'Матичното руво на МедијаВики има простор за лого од 135x160 пиксели во горниот лев агол.
 Подигнете слика со соодветна големина, и тука внесете ја URL-адресата.
 
 Ако не сакате да имате лого, тогаш оставете го ова поле празно.',
@@ -5529,7 +5529,7 @@ Daarmee wordt deze functie ingeschakeld.",
 	'config-upload-deleted-help' => 'Kies een map waarin verwijderde bestanden gearchiveerd kunnen worden.
 Idealiter is deze map niet via het web te benaderen.',
 	'config-logo' => 'URL voor logo:',
-	'config-logo-help' => 'Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x135 pixels in de linker bovenhoek.
+	'config-logo-help' => 'Het standaarduiterlijk van MediaWiki bevat ruimte voor een logo van 135x160 pixels in de linker bovenhoek.
 Upload een afbeelding met de juiste afmetingen en voer de URL hier in.
 
 Als u geen logo wilt gebruiken, kunt u dit veld leeg laten.',
@@ -6260,7 +6260,7 @@ Depois active esta opção.',
 	'config-upload-deleted-help' => 'Escolha um directório onde serão arquivados os ficheiros apagados.
 O ideal é que este directório não possa ser directamente acedido a partir da internet.',
 	'config-logo' => 'URL do logótipo:',
-	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logótipo de 135x135 pixels no canto superior esquerdo.
+	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logótipo de 135x160 pixels no canto superior esquerdo.
 Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
 
 Se não pretende usar um logótipo, deixe este campo em branco.',
