@@ -81,7 +81,7 @@ class SkinStandard extends Skin {
 		$s .= "\n<br />" . $wgLang->pipeList( array(
 			$this->mainPageLink(),
 			$this->aboutLink(),
-			$this->specialLink( 'recentchanges' ),
+			$this->specialLink( 'Recentchanges' ),
 			$this->searchForm() ) )
 			. '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
@@ -130,7 +130,7 @@ class SkinStandard extends Skin {
 		}
 
 		if( $wgUser->isLoggedIn() ) {
-			$s.= $this->specialLink( 'watchlist' ) ;
+			$s.= $this->specialLink( 'Watchlist' ) ;
 			$s .= $sep . $this->linkKnown(
 				SpecialPage::getTitleFor( 'Contributions' ),
 				wfMsg( 'mycontris' ),
@@ -267,7 +267,7 @@ class SkinStandard extends Skin {
 			$s .= $this->getUploadLink() . $sep;
 		}
 
-		$s .= $this->specialLink( 'specialpages' );
+		$s .= $this->specialLink( 'Specialpages' );
 
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage ) {

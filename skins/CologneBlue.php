@@ -156,7 +156,7 @@ class SkinCologneBlue extends Skin {
 				Title::newFromText( wfMsgForContent( 'faqpage' ) ),
 				wfMsg( 'faq' )
 			),
-			$this->specialLink( 'specialpages' )
+			$this->specialLink( 'Specialpages' )
 		);
 
 		/* show links to different language variants */
@@ -288,7 +288,7 @@ class SkinCologneBlue extends Skin {
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
-				) . $sep . $tl . $sep . $this->specialLink( 'watchlist' )
+				) . $sep . $tl . $sep . $this->specialLink( 'Watchlist' )
 					. $sep .
 				$this->link(
 					SpecialPage::getSafeTitleFor( 'Contributions', $wgUser->getName() ),
@@ -296,16 +296,16 @@ class SkinCologneBlue extends Skin {
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
-				) . $sep . $this->specialLink( 'preferences' )
-				. $sep . $this->specialLink( 'userlogout' );
+				) . $sep . $this->specialLink( 'Preferences' )
+				. $sep . $this->specialLink( 'Userlogout' );
 		} else {
-			$s .= $this->specialLink( 'userlogin' );
+			$s .= $this->specialLink( 'Userlogin' );
 		}
 
 		$s .= $this->menuHead( 'qbspecialpages' )
-			. $this->specialLink( 'newpages' )
-			. $sep . $this->specialLink( 'listfiles' )
-			. $sep . $this->specialLink( 'statistics' );
+			. $this->specialLink( 'Newpages' )
+			. $sep . $this->specialLink( 'Listfiles' )
+			. $sep . $this->specialLink( 'Statistics' );
 		if( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
 			$s .= $sep . $this->getUploadLink();
 		}
