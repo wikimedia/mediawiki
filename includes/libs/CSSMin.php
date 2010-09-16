@@ -66,7 +66,7 @@ class CSSMin {
 				$file = ( isset( $path ) ? rtrim( $path, '/' ) . '/' : '' ) . "{$match['file'][0]}";
 
 				// Only proceed if we can access the file
-				if ( file_exists( $file ) ) {
+				if ( !is_null( $path ) && file_exists( $file ) ) {
 					$files[] = $file;
 				}
 			}
