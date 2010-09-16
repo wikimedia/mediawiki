@@ -13,7 +13,7 @@
 .ui-widget { font-family: sans-serif; font-size: 0.8em; }
 .ui-widget .ui-widget { font-size: 1em; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: sans-serif; font-size: 1em; }
-.ui-widget-content { border: 1px solid #cccccc; background: #f2f5f7 url(images/ui-bg_highlight-hard_100_f2f5f7_1x100.png) 50% top repeat-x; color: #362b36; }
+.ui-widget-content { border: none; background: #f2f5f7 url(images/ui-bg_highlight-hard_100_f2f5f7_1x100.png) 50% top repeat-x; color: #362b36; }
 .ui-widget-content a { color: #362b36; }
 .ui-widget-header { border: 1px solid #aed0ea; line-height: 1em; background: #ffffff url(images/ui-bg_highlight-soft_100_ffffff_1x100.png) 50% 50% repeat-x; color: #222222; font-weight: bold; }
 .ui-widget-header a { color: #222222; }
