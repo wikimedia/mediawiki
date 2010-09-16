@@ -99,7 +99,8 @@ window.mediaWiki = new ( function( $ ) {
 					return results;
 				} else if ( typeof selection === 'string' ) {
 					if ( typeof values[selection] === 'undefined' ) {
-						return 'fallback' in options !== 'undefined' ? options.fallback : null;
+						return typeof options === 'object' && 'fallback' in options ?
+							options.fallback : '<' + selection + '>';
 					} else {
 						if ( typeof parser === 'function' ) {
 							return parser( values[selection], options );
