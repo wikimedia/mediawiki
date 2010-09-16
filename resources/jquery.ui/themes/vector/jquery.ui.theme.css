@@ -245,5 +245,5 @@
 .ui-corner-all { -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
 
 /* Overlays */
-.ui-widget-overlay { background: #000000 url(images/ui-bg_glow-ball_100_000000_600x600.png) 50% 35% repeat-x; opacity: .50;filter:Alpha(Opacity=50); }
+.ui-widget-overlay { background: #000000; opacity: .50;filter:Alpha(Opacity=50); }
 .ui-widget-shadow { margin: -7px 0 0 -7px; padding: 7px; background: #000000 url(images/ui-bg_flat_70_000000_40x100.png) 50% 50% repeat-x; opacity: .20;filter:Alpha(Opacity=20); -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
