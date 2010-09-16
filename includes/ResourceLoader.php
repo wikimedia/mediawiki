@@ -323,7 +323,11 @@ class ResourceLoader {
 			} else if ( $context->getOnly() === 'messages' ) {
 				echo "mediaWiki.msg.set( $messages );\n";
 			} else {
-				$styles = FormatJson::encode( $styles );
+				if ( count( $styles ) ) {
+					$styles = FormatJson::encode( $styles );
+				} else {
+					$styles = 'null';
+				}
 				echo "mediaWiki.loader.implement( '$name', function() {{$scripts}},\n$styles,\n$messages );\n";
 			}
 		}
