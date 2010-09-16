@@ -360,7 +360,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Add style sheet to document
 			if ( typeof registry[module].style === 'string' && registry[module].style.length ) {
 				$( 'head' ).append( '<style type="text/css">' + registry[module].style + '</style>' );
-			} else if ( typeof registry[module].style === 'object' ) {
+			} else if ( typeof registry[module].style === 'object' && !( registry[module].style instanceof Array ) ) {
 				for ( var media in registry[module].style ) {
 					$( 'head' ).append(
 						'<style type="text/css" media="' + media + '">' + registry[module].style[media] + '</style>'
@@ -600,7 +600,7 @@ window.mediaWiki = new ( function( $ ) {
 			registry[module].state = 'loaded';
 			// Attach components
 			registry[module].script = script;
-			if ( typeof style === 'string' || typeof style === 'object' ) {
+			if ( typeof style === 'string' || typeof style === 'object' && !( style instanceof Array ) ) {
 				registry[module].style = style;
 			}
 			if ( typeof localization === 'object' ) {

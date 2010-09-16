@@ -80,24 +80,22 @@ return array(
 	) ),
 	'jquery.ui.widget' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.widget.js',
-		'dependencies' => 'jquery.ui.core',
 	) ),
 	'jquery.ui.mouse' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.mouse.js',
-		'dependencies' => 'jquery',
+		'dependencies' => 'jquery.ui.widget',
 	) ),
 	'jquery.ui.position' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.position.js',
-		'dependencies' => 'jquery',
 	) ),
 	// Interactions
 	'jquery.ui.draggable' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.draggable.js',
-		'dependencies' => 'jquery.ui.core',
+		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget' ),
 	) ),
 	'jquery.ui.droppable' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.droppable.js',
-		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.draggable' ),
+		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget', 'jquery.ui.draggable' ),
 	) ),
 	'jquery.ui.resizable' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.resizable.js',
@@ -105,7 +103,7 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.resizable.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.resizable.css',
 		),
-		'dependencies' => 'jquery.ui.core',
+		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse' ),
 	) ),
 	'jquery.ui.selectable' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.selectable.js',
@@ -113,16 +111,16 @@ return array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.selectable.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.selectable.css',
 		),
-		'dependencies' => 'jquery.ui.core',
+		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse' ),
 	) ),
 	'jquery.ui.sortable' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.sortable.js',
-		'dependencies' => 'jquery.ui.core',
+		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse' ),
 	) ),
 	// Widgets
 	'jquery.ui.accordion' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.accordion.js',
-		'dependencies' => 'jquery.ui.core',
+		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget' ),
 		'skinStyles' => array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.accordion.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.accordion.css',
@@ -208,7 +206,15 @@ return array(
 	) ),
 	'jquery.ui.dialog' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.dialog.js',
-		'dependencies' => 'jquery.ui.core',
+		'dependencies' => array(
+			'jquery.ui.core',
+			'jquery.ui.widget',
+			'jquery.ui.button',
+			'jquery.ui.draggable',
+			'jquery.ui.mouse',
+			'jquery.ui.position',
+			'jquery.ui.resizable',
+		),
 		'skinStyles' => array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.dialog.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.dialog.css',
@@ -216,7 +222,7 @@ return array(
 	) ),
 	'jquery.ui.progressbar' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.progressbar.js',
-		'dependencies' => 'jquery.ui.core',
+		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget' ),
 		'skinStyles' => array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.progressbar.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.progressbar.css',
@@ -232,7 +238,7 @@ return array(
 	) ),
 	'jquery.ui.tabs' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.tabs.js',
-		'dependencies' => 'jquery.ui.core',
+		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.widget' ),
 		'skinStyles' => array(
 			'default' => 'resources/jquery.ui/themes/default/jquery.ui.tabs.css',
 			'vector' => 'resources/jquery.ui/themes/vector/jquery.ui.tabs.css',
