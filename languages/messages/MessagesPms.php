@@ -275,6 +275,9 @@ Tròpi utent a son an camin ch'a preuvo a lese sta pàgina-sì.
 Për piasì, speta un pòch prima ëd prové torna a vardé sta pàgina-sì.
 
 $1",
+'pool-timeout'      => 'Timeout an spetand ël lock',
+'pool-queuefull'    => "La coa dël pool a l'é pien-a",
+'pool-errorunknown' => 'Eror pa conossù',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A propòsit ëd {{SITENAME}}',
@@ -1532,11 +1535,11 @@ Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 
 # HTTP errors
 'http-invalid-url'      => "Adrëssa dl'aragnà pa bon-a: $1.",
-'http-invalid-scheme'   => 'J\'adrësse dl\'aragnà con lë schema "$1" a son pa sostnùe',
-'http-request-error'    => "Arcesta Http falìa për n'eror pa conossù.",
+'http-invalid-scheme'   => 'J\'adrësse dl\'aragnà con ël prefiss "$1" a son pa mantnùe.',
+'http-request-error'    => "L'arcesta Http a l'é falìa për n'eror pa conossù.",
 'http-read-error'       => 'Eror ëd letura HTTP.',
-'http-timed-out'        => "L'arcesta HTTP a l'ha finì ël temp.",
-'http-curl-error'       => "Eror an sërcand l'URL: $1.",
+'http-timed-out'        => "L'arcesta HTTP a l'ha finì sò temp.",
+'http-curl-error'       => "Eror an sërcand d'arcuperé l'adrëssa dl'aragnà: $1.",
 'http-host-unreachable' => "L'anliura a l'arspond pa",
 'http-bad-status'       => "A l'é staje un problema durant l'arcesta HTTP: $1 $2",
 

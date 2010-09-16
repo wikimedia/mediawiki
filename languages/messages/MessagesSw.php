@@ -1000,7 +1000,7 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 'compareselectedversions'  => 'Linganisha mapitio mawili uliyochagua',
 'showhideselectedversions' => 'Onyesha/ficha mapitio yaliyoteuliwa',
 'editundo'                 => 'tengua',
-'diff-multi'               => '(Hatuonyeshi {{PLURAL:$1|pitio moja la katikati|mapitio $1 ya katikati}}.)',
+'diff-multi'               => '(Haioneshwi {{PLURAL:$1|pitio moja la katikati|mapitio $1 ya katikati}}.)',
 
 # Search results
 'searchresults'                    => 'Matokeo ya utafutaji',
@@ -1257,7 +1257,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-upload_by_url'        => 'Kupakia mafaili kutoka kwa URL',
 'right-purge'                => 'Safisha kache za wavuti kwa ajili ya ukurasa usio na uthibitisho',
 'right-autoconfirmed'        => 'Hariri kurasa zilizokingwa-kiasi',
-'right-nominornewtalk'       => 'Isiwe maharirio madogo kwenye kurasa za majadiliano fyatua kunijulisha kuhusu jumbe mpya',
+'right-nominornewtalk'       => 'Isiwe na maharirio madogo kwenye kurasa za majadiliano fyatua kunijulisha kuhusu jumbe mpya',
 'right-delete'               => 'Kufuta kurasa',
 'right-bigdelete'            => 'Kufuta kurasa zenye mabadiliko mengi',
 'right-deleterevision'       => 'Kufuta na kurudisha mapitio fulani ya kurasa',
@@ -1403,9 +1403,9 @@ Tazama [[Special:NewFiles|mkusanyiko wa mafaili mapya]] kuona picha zenyewe.',
 Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'badfilename'                 => 'Jina la faili limebadilishwa kuwa "$1".',
 'filetype-mime-mismatch'      => 'Tawi (extension) la faili halingani na aina ya MIME.',
-'filetype-badmime'            => 'Mafaili ya aina MIME ya "$1" hayaruhusiwi kupakiwa.',
-'filetype-bad-ie-mime'        => 'Hatuwezi kupakia faili hili kwa sababu Internet Explorer ingefikiri kwamba ni "$1". Mafaili ya aina hii hayaruhusiwa, na huenda ni ya hatari.',
-'filetype-unwanted-type'      => "Aina la faili '''\".\$1\"''' haitakiwi.
+'filetype-badmime'            => 'Mafaili ya aina ya MIME ya "$1" hayaruhusiwi kupakiwa.',
+'filetype-bad-ie-mime'        => 'Haiwezi kupakia faili hili kwa sababu Internet Explorer ingefikiri kwamba ni "$1". Mafaili ya aina hii hayaruhusiwa, na huenda ni ya hatari.',
+'filetype-unwanted-type'      => "Aina la faili '''\".\$1\"''' halitakiwi.
 {{PLURAL:\$3|Aina ya faili inayopendelewa|Aina za faili zinazopendelewa}} ni \$2.",
 'filetype-banned-type'        => "Aina la faili '''\".\$1\"''' hairuhusiwi.
 {{PLURAL:\$3|Aina ya faili inayoruhusiwa|Aina za faili zinazoruhusiwa}} ni \$2.",
@@ -2016,6 +2016,11 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'restriction-move'   => 'Kuhamisha',
 'restriction-create' => 'Kuanzisha',
 'restriction-upload' => 'Kupakia',
+
+# Restriction levels
+'restriction-level-sysop'         => 'umelindwa kabisa',
+'restriction-level-autoconfirmed' => 'umelindwa kwa kiasi',
+'restriction-level-all'           => 'chochote',
 
 # Undelete
 'undelete'                  => 'Kuzitazama kurasa zilizofutwa',

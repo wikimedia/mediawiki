@@ -542,6 +542,9 @@ $messages = array(
 ഇനിയും താൾ ലഭ്യമാക്കുവാൻ താങ്കൾ ശ്രമിക്കുന്നതിന് മുൻപ് ദയവായി അല്പസമയം കാത്തിരിക്കുക.
 
 $1',
+'pool-timeout'      => 'പൂട്ട് മാറാനുള്ള കാത്തിരിപ്പ് സമയം',
+'pool-queuefull'    => 'പൂൾ ക്യൂ നിറഞ്ഞിരിക്കുന്നു',
+'pool-errorunknown' => 'അപരിചിതമായ പിഴവ്',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} സം‌രംഭത്തെക്കുറിച്ച്',
@@ -2854,7 +2857,7 @@ $1 നിലവിൽ തടയപ്പെട്ടതാണ്.<br />
 
 # Math errors
 'math_failure'          => 'parse ചെയ്യുവാൻ പരാജയപ്പെട്ടു',
-'math_unknown_error'    => 'കാരണമറിയാത്ത പിഴവ്',
+'math_unknown_error'    => 'അപരിചിതമായ പിഴവ്',
 'math_unknown_function' => 'അജ്ഞാതമായ ഫങ്ങ്ഷൻ',
 'math_lexing_error'     => 'ലെക്സിങ് പിഴവ്',
 'math_syntax_error'     => 'തെറ്റായ പദവിന്യാസം',

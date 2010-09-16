@@ -9,6 +9,7 @@
  *
  * @author Aurora
  * @author Aviator
+ * @author CoolCityCat
  * @author Diagramma Della Verita
  * @author Izzudin
  * @author Kurniasan
@@ -167,7 +168,7 @@ $messages = array(
 'tog-editsection'             => 'Bolehkan penyuntingan bahagian melalui pautan [sunting]',
 'tog-editsectiononrightclick' => 'Bolehkan penyuntingan bahagian dengan mengklik kanan pada tajuk bahagian (JavaScript)',
 'tog-showtoc'                 => 'Tunjukkan isi kandungan (bagi rencana yang melebihi 3 tajuk)',
-'tog-rememberpassword'        => 'Ingat status log masuk saya di pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
+'tog-rememberpassword'        => 'Ingat log masuk saya di pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
 'tog-watchcreations'          => 'Tambahkan laman yang saya cipta ke dalam senarai pantau',
 'tog-watchdefault'            => 'Tambahkan laman yang saya sunting ke dalam senarai pantau',
 'tog-watchmoves'              => 'Tambahkan laman yang saya pindahkan ke dalam senarai pantau',
@@ -202,11 +203,11 @@ $messages = array(
 
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
-'underline-default' => 'Ikut tetapan pelayar',
+'underline-default' => 'Pelayar asal',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Gaya fon ruang sunting:',
-'editfont-default'   => 'Lalai pelayar',
+'editfont-default'   => 'Pelayar asal',
 'editfont-monospace' => 'Fon monospace',
 'editfont-sansserif' => 'Fon sans-serif',
 'editfont-serif'     => 'Fon serif',
@@ -388,6 +389,7 @@ Terlalu ramai pengguna cuba melihat laman ini.
 Sila tunggu sebentar sebelum cuba mencapai laman ini lagi.
 
 $1',
+'pool-errorunknown' => 'Ralat yang tidak diketahui',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Perihal {{SITENAME}}',
@@ -662,7 +664,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'headline_sample' => 'Teks tajuk',
 'headline_tip'    => 'Tajuk peringkat 2',
 'math_sample'     => 'Masukkan rumus di sini',
-'math_tip'        => 'Formula matematik (LaTeX)',
+'math_tip'        => 'Rumus matematik (LaTeX)',
 'nowiki_sample'   => 'Masukkan teks tak berformat di sini',
 'nowiki_tip'      => 'Abaikan pemformatan wiki',
 'image_sample'    => 'Contoh.jpg',
@@ -993,6 +995,10 @@ Anda tidak memiliki capaian padanya.',
 'revdelete-modify-no-access'  => 'Ralat menyunting item bertarikh $2, $1: item ini telah ditanda "larangan".
 Anda tidak memiliki capaian padanya.',
 'revdelete-modify-missing'    => 'Ralat menyunting item ID $1: ia tiada dalam pangkalan data!',
+'revdelete-no-change'         => "'''Amaran:''' item bertarikh $2, $1 telah mempunyai aturan penglihatan yang diminta.",
+'revdelete-concurrent-change' => 'Ralat ketika mengubahsuai item bertarikh $2, $1: kelihatan statusnya telah diubah oleh orang lain ketika anda cuba untuk mengubahsuainya.
+Mohon semak log.',
+'revdelete-only-restricted'   => 'Ralat menyembunyikan item bertarikh $2, $1: anda tidak boleh menyekat item-item dari pandangan pentadbir-pentadbir tanpa memilih juga salah satu pilihan pandangan lain.',
 'revdelete-reason-dropdown'   => '*Sebab penghapusan biasa
 ** Pencabulan hak cipta
 ** Maklumat peribadi tidak sesuai
@@ -1065,7 +1071,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'compareselectedversions'  => 'Bandingkan versi-versi yang dipilih',
 'showhideselectedversions' => 'Tunjuk/sorok versi yang dipilih',
 'editundo'                 => 'batal',
-'diff-multi'               => '({{PLURAL:$1|Satu|$1}} semakan pertengahan tidak ditunjukkan.)',
+'diff-multi'               => '({{PLURAL:$1|semakan pertengahan|$1 semakan pertengahan}} oleh {{PLURAL:$2|pengguna|$2 pengguna}} tidak dipaparkan)',
 
 # Search results
 'searchresults'                    => 'Keputusan carian',
@@ -1555,7 +1561,11 @@ Untuk rujukan, yang berikut ialah log penghapusan bagi fail ini:",
 'filename-bad-prefix'         => "Nama bagi fail yang dimuat naik bermula dengan '''\"\$1\"''', yang mana merupakan nama yang tidak deskriptif yang biasanya ditetapkan oleh kamera digital secara automatik. Sila berikan nama yang lebih deskriptif bagi fail tersebut.",
 'upload-success-subj'         => 'Muat naik berjaya',
 'upload-failure-subj'         => 'Masalah muat naik',
+'upload-failure-msg'          => 'Terdapat masalah dengan muat naik anda daripada [$2]:
+
+$1',
 'upload-warning-subj'         => 'Amaran muat naik',
+'upload-warning-msg'          => 'Terdapat masalah dengan muat naik anda daripada [$2]. Anda boleh kembali ke [[Special:Upload/stash/$1|borang muat naik]] untuk mengatasi masalah ini.',
 
 'upload-proto-error'        => 'Protokol salah',
 'upload-proto-error-text'   => 'Muat naik jauh memerlukan URL yang dimulakan dengan <code>http://</code> atau <code>ftp://</code>.',
@@ -1574,10 +1584,12 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 Pelayan anda tidak ditetapkan untuk menyampaikan maklumat ini.
 Ia barangkali berdasarkan CGI dan tidak boleh menyokong img_auth.
 Lihat http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Laluan yang diminta tiada dalam direktori muat naik yang telah dikonfigurasikan.',
 'img-auth-badtitle'     => 'Tajuk yang sah tidak dapat dibina daripada "$1".',
 'img-auth-nologinnWL'   => 'Anda belum log masuk dan "$1" tiada dalam senarai putih.',
 'img-auth-nofile'       => 'Fail "$1" tiada.',
 'img-auth-isdir'        => 'Anda telah mencuba mencapai direktori "$1". Hanya capaian fail dibenarkan.',
+'img-auth-streaming'    => '"$1" sedang disalurkan.',
 'img-auth-public'       => 'Fungsi img_auth.php ialah mengoutput fail-fail daripada wiki peribadi.
 Wiki ini telah dikonfigurasikan sebagai wiki awam.
 Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
@@ -1589,6 +1601,7 @@ Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
 'http-request-error'    => 'Permintaan HTTP gagal kerana ralat yang tidak diketahui.',
 'http-read-error'       => 'Ralat baca HTTP.',
 'http-timed-out'        => 'Permintaan HTTP melebihi waktu tamat.',
+'http-curl-error'       => 'Ralat mendapatkan URL: $1',
 'http-host-unreachable' => 'URL tidak dapat dicapai.',
 'http-bad-status'       => 'Berlaku masalah ketika permintaan HTTP: $1 $2',
 
@@ -2093,6 +2106,7 @@ Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebel
 'protectexpiry'               => 'Sehingga:',
 'protect_expiry_invalid'      => 'Waktu tamat tidak sah.',
 'protect_expiry_old'          => 'Waktu tamat telah berlalu.',
+'protect-unchain-permissions' => 'Aktifkan pilihan perlindungan selanjutnya',
 'protect-text'                => "Anda boleh melihat dan menukar peringkat perlindungan bagi laman '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Anda telah disekat, justeru tidak boleh menukar peringkat perlindungan.
 Ini adalah tetapan semasa bagi laman '''$1''':",
@@ -2216,6 +2230,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'Alamat IP ini sedang disekat. Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'sp-contributions-search'              => 'Cari sumbangan',
 'sp-contributions-username'            => 'Alamat IP atau nama pengguna:',
+'sp-contributions-toponly'             => 'Hanya paparkan suntingan yang merupakan semakan terkini',
 'sp-contributions-submit'              => 'Cari',
 
 # What links here
@@ -2314,6 +2329,8 @@ dirosakkan).',
 'autoblocker'                     => 'Disekat secara automatik kerana baru-baru ini alamat IP anda digunakan oleh "[[User:$1|$1]]". Sebab sekatan $1 ialah: "$2"',
 'blocklogpage'                    => 'Log sekatan',
 'blocklog-showlog'                => 'Pengguna ini pernah disekat sebelum ini. Log sekatan disediakan di bawah sebagai rujukan:',
+'blocklog-showsuppresslog'        => 'Pengguna ini pernah disekat dan tersembunyi sebelum ini.
+Log sekatan disediakan di bawah sebagai rujukan:',
 'blocklogentry'                   => 'menyekat [[$1]] sehingga $2 $3',
 'reblock-logentry'                => 'menukar tetapan sekatan [[$1]] yang tamat pada $2 $3',
 'blocklogtext'                    => 'Ini adalah log bagi sekatan dan penyahsekatan.
@@ -2347,6 +2364,8 @@ $1 telah pun disekat Adakah anda mahu menukar tetapan sekatan pengguna ini?',
 'sorbsreason'                     => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}. Oleh itu, anda tidak dibenarkan membuka akaun baru.',
 'cant-block-while-blocked'        => 'Anda tidak boleh menyekat orang lain sedangkan anda disekat.',
+'cant-see-hidden-user'            => 'Pengguna yang anda cuba sekat telahpun disekat dan tersembunyi.
+Disebabkan anda tidak mempunyai hak sembunyi pengguna, anda tidak boleh melihat atau menyunting sekatan pengguna tersebut.',
 'ipbblocked'                      => 'Anda tidak boleh menyekat atau menyahsekat pengguna lain kerana anda sendiri telah disekat',
 'ipbnounblockself'                => 'Anda tidak dibenarkan menyahsekat diri sendiri',
 

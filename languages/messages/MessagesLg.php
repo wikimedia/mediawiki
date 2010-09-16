@@ -12,6 +12,10 @@
 
 $messages = array(
 # User preference toggles
+'tog-underline'        => 'Enyunzi ebengako olukoloboze?',
+'tog-highlightbroken'  => 'Enyunzi ezigeza okugukka ku mpapula ezitaliwo <a href="" class="new">zifaanane bwezityi</a> (oba bwezityi: <a href="" class="internal">?</a>)',
+'tog-hideminor'        => 'Kisa nkyukakyuka entono ezakakolebwa',
+'tog-hidepatrolled'    => "Kisa nkyukakyuka ezakakolebwa ezimaz'okulawunibwa",
 'tog-showtoolbar'      => "Amapeesa g'ebiyamba mu kuwandika galabikenga (kino kyetaagisa JavaScript)",
 'tog-showtoc'          => 'Teekawo endagiriro (singa ku lupapula kubaako emitwe gisukka mu esatu)',
 'tog-rememberpassword' => 'Tereka ekigambo kyange ekikuumi ku kompyuta eno (okumala {{PLURAL:$1|olunaku|ennaku ezitasukka mu}} $1)',

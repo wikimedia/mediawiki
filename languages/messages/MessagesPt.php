@@ -525,6 +525,9 @@ Há demasiados utilizadores a tentar visionar esta página.
 Espere um pouco antes de tentar aceder à página novamente, por favor.
 
 $1',
+'pool-timeout'      => 'Tempo limite de espera para o bloqueio excedido',
+'pool-queuefull'    => 'A pool queue está cheia',
+'pool-errorunknown' => 'Erro desconhecido',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sobre a {{SITENAME}}',

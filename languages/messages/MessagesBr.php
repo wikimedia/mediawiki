@@ -398,6 +398,7 @@ Re a implijerien a glask mont war ar bajenn-mañ war un dro.
 Gortozit ur pennadig a-raok klask mont war ar bjann-mañ en-dro.
 
 $1',
+'pool-errorunknown' => 'Fazi dianav',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Diwar-benn {{SITENAME}}',
@@ -1077,7 +1078,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'compareselectedversions'  => 'Keñveriañ ar stummoù diuzet',
 'showhideselectedversions' => 'Diskouez/Kuzhat ar stummoù diuzet',
 'editundo'                 => 'disteuler',
-'diff-multi'               => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} kuzhet.)",
+'diff-multi'               => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant {{PLURAL:$2|un implijer|$2 implijer}} kuzhet.)",
 
 # Search results
 'searchresults'                    => "Disoc'h ar c'hlask",

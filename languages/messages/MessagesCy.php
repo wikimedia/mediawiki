@@ -1023,7 +1023,8 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'compareselectedversions'  => 'Cymharer y fersiynau dewisedig',
 'showhideselectedversions' => 'Dangos/cuddio y diwygiadau dewisedig',
 'editundo'                 => 'dadwneud',
-'diff-multi'               => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol.)',
+'diff-multi'               => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol gan {{PLURAL:$2||un defnyddiwr|$2 ddefnyddiwr|$2 defnyddiwr|$2 o ddefnyddwyr|$2 o ddefnyddwyr}}.)',
+'diff-multi-manyusers'     => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol gan mwy na $2 {{PLURAL:$2|o ddefnyddwyr}}.)',
 
 # Search results
 'searchresults'                    => "Canlyniadau'r chwiliad",

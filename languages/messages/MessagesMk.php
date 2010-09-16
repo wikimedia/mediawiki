@@ -499,6 +499,9 @@ $messages = array(
 Ве молиме почекајте некое време пред повторно да се обидете да пристапите до оваа страница.
 
 $1',
+'pool-timeout'      => 'Истече времето за чекање на заклучувањето',
+'pool-queuefull'    => 'Редицата на барања е полна',
+'pool-errorunknown' => 'Непозната грешка',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'За {{SITENAME}}',

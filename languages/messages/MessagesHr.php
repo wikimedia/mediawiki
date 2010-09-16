@@ -534,6 +534,9 @@ Previše suradnika pokušava vidjeti ovu stranicu.
 Molimo malo pričekajte  prije nego što opet pokušate pristupiti ovoj stranici.
 
 $1',
+'pool-timeout'      => "Istek vremena (''timeout'') čekajući zaključavanje",
+'pool-queuefull'    => 'Red čekanja je pun',
+'pool-errorunknown' => 'Nepoznata pogreška',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',

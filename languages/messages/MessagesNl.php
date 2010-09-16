@@ -553,6 +553,9 @@ Te veel gebruikers proberen deze pagina te bekijken.
 Wacht alstublieft even voordat u opnieuw toegang probeert te krijgen tot deze pagina.
 
 $1',
+'pool-timeout'      => 'De maximaal te wachten tijd voor het wachten op een lock is verstreken',
+'pool-queuefull'    => 'De wachtrij van de poel is vol',
+'pool-errorunknown' => 'Er is een onbekende fout opgetreden',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Over {{SITENAME}}',
@@ -1514,7 +1517,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'group-user'          => 'gebruikers',
 'group-autoconfirmed' => 'autobevestigde gebruikers',
 'group-bot'           => 'bots',
-'group-sysop'         => 'Beheerders',
+'group-sysop'         => 'beheerders',
 'group-bureaucrat'    => 'bureaucraten',
 'group-suppress'      => 'toezichthouders',
 'group-all'           => '(iedereen)',
@@ -1522,7 +1525,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'group-user-member'          => 'gebruiker',
 'group-autoconfirmed-member' => 'autobevestigde gebruiker',
 'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'Beheerder',
+'group-sysop-member'         => 'beheerder',
 'group-bureaucrat-member'    => 'bureaucraat',
 'group-suppress-member'      => 'Toezichthouder',
 

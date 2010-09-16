@@ -510,6 +510,9 @@ $messages = array(
 Пожалуйста, подождите и повторите попытку обращения к странице позже.
 
 $1',
+'pool-timeout'      => 'Истекло время ожидания блокировки',
+'pool-queuefull'    => 'Накопитель запросов полон',
+'pool-errorunknown' => 'Неизвестная ошибка',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Описание {{grammar:genitive|{{SITENAME}}}}',
@@ -519,7 +522,7 @@ $1',
 'currentevents'        => 'Текущие события',
 'currentevents-url'    => 'Project:Текущие события',
 'disclaimers'          => 'Отказы от ответственности',
-'disclaimerpage'       => 'Project:Общий отказ от ответственности',
+'disclaimerpage'       => 'Project:Отказ от ответственности',
 'edithelp'             => 'Справка по редактированию',
 'edithelppage'         => 'Help:Справка по редактированию',
 'helppage'             => 'Help:Справка',

@@ -4213,9 +4213,13 @@ SQLiteのデータファイル名として使用されます。',
 	'config-mysql-engine' => 'ストレージエンジン:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-egine-mismatch' => "'''警告:''' あなたは$1ストレージエンジンを要求しました、しかし存在するデータベースは$2エンジンを使用します。
+このアップグレードスクリプトはこれをカバーしていません、それゆえに$2が残ることになるでしょう。",
 	'config-mysql-charset' => 'データベースの文字セット:',
 	'config-mysql-binary' => 'バイナリ',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-mismatch' => "'''警告:''' あなたは図式$1を要求しました。しかし存在するデータベースは図式$2を所持しています。
+このアップグレードスクリプトはこれをカバーしていません、それゆえに$2が残ることになるでしょう。",
 	'config-site-name' => 'ウィキの名前：',
 	'config-site-name-help' => 'この事象はブラウザのタイトルバーと他の様々な場所において出現する。',
 	'config-site-name-blank' => 'サイト名を入力してください。',
@@ -4244,6 +4248,7 @@ SQLiteのデータファイル名として使用されます。',
 	'config-admin-email-help' => '電子メールアドレスを入力してください。他のユーザーからの電子メールの受け取りと、パスワードのリセット、ウォッチリストに登録したページの更新通知に用いられます。',
 	'config-admin-error-user' => '"<nowiki>$1</nowiki>"という名前の管理者を作成する際に内部エラーが発生しました。',
 	'config-admin-error-password' => '管理者"<nowiki>$1</nowiki>"のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>',
+	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list]サイトに登録する',
 	'config-almost-done' => 'あなたはほとんど完璧です！
 設定を残すことをはぶいて、今すぐにウィキをインストールできます。',
 	'config-optional-continue' => '私にもっと質問してください。',
@@ -4313,15 +4318,27 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-extensions-help' => '上記のリストにある拡張子は<code>./extensions</code>ディレクトリ上で検出された。
 
 これらは更に多くの設定を要求しているかもしれない、しかし今あなたはそれらを有効にできる。',
+	'config-install-alreadydone' => "'''警告:''' あなたはすでにメディアウィキをインストールしていて、再びインストールし直そうとしています。
+次のページへ進んでください。",
 	'config-install-step-done' => '実行',
 	'config-install-step-failed' => '失敗した',
+	'config-install-extensions' => '拡張機能を含む',
 	'config-install-database' => 'データベースの構築',
 	'config-install-pg-schema-failed' => 'テーブルの作成に失敗した。
 ユーザ"$1"が図式"$2"に書き込みができるようにしてください。',
 	'config-install-user' => 'データベースユーザを作成する',
+	'config-install-user-failed' => 'ユーザ"$1"に許可を与えることに失敗しました。： $2',
 	'config-install-tables' => 'テーブルの作成',
+	'config-install-tables-exist' => "'''警告''': メディアウィキテーブルはすでに存在しているようです。
+作成をスキップしています。",
+	'config-install-tables-failed' => "'''エラー''': テーブルの作成は次のエラーにより失敗しました: $1",
+	'config-install-interwiki' => 'デフォルトのインターウィキテーブルを移入しています',
 	'config-install-interwiki-sql' => 'ファイル<code>interwiki.sql</code>を見つけることができませんでした。',
+	'config-install-interwiki-exists' => "'''警告''': インターウィキテーブルはすでに登録されているようです。
+初期のリストをスキップしています。",
 	'config-install-secretkey' => '秘密鍵を生成する',
+	'config-insecure-secretkey' => "'''警告:''' 安全な<code>\$wgSecretKey</code>を作成できません。
+手動でこれを変更することを考えてください。",
 	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
 );
 

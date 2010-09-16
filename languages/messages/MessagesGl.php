@@ -435,6 +435,9 @@ Hai moitos usuarios intentando ver esta páxina.
 Por favor, agarde un anaco antes de intentar acceder á páxina de novo.
 
 $1',
+'pool-timeout'      => 'Tempo límite de espera para o peche',
+'pool-queuefull'    => 'A cola está chea',
+'pool-errorunknown' => 'Erro descoñecido',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
