@@ -468,6 +468,9 @@ Zbyt wielu użytkowników próbuje wyświetlić tę stronę.
 Poczekaj chwilę przed ponowną próbą dostępu do tej strony.
 
 $1',
+'pool-timeout'      => 'Zbyt długi czas oczekiwania na blokadę',
+'pool-queuefull'    => 'Kolejka zadań jest pełna',
+'pool-errorunknown' => 'Błąd nieznany',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',

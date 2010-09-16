@@ -495,6 +495,9 @@ Có quá nhiều thành viên đang cố gắng xem trang này.
 Xin hãy đợi một lát rồi thử truy cập lại vào trang.
 
 $1',
+'pool-timeout'      => 'Hết thời gian chờ đợi khóa',
+'pool-queuefull'    => 'Đầy hàng đợi khối ứng dụng (pool queue)',
+'pool-errorunknown' => 'Lỗi lạ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Giới thiệu {{SITENAME}}',

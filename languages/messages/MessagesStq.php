@@ -8,6 +8,7 @@
  * @file
  *
  * @author Maartenvdbent
+ * @author Mucalexx
  * @author Purodha
  * @author Pyt
  * @author Urhixidur
@@ -774,7 +775,7 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'historyempty'           => '(loos)',
 
 # Revision feed
-'history-feed-title'          => 'Versionsgeschichte',
+'history-feed-title'          => 'Versionsgschicht',
 'history-feed-description'    => 'Versionsgeschichte foar disse Siede in {{SITENAME}}',
 'history-feed-item-nocomment' => '$1 uum $2',
 'history-feed-empty'          => 'Ju anfoarderde Siede existiert nit. Fielicht wuud ju läsked of ferschäuwen. [[Special:Search|Truchsäik]] {{SITENAME}} foar paasjende näie Sieden.',

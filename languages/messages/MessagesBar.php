@@ -261,6 +261,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Saiten',
 'nstab-user'      => 'Benytzersaiten',
+'nstab-media'     => 'Mediensaiten',
 'nstab-special'   => 'Speziaalsaiten',
 'nstab-project'   => 'Projektsaiten',
 'nstab-image'     => 'Datai',
@@ -504,6 +505,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'revdelete-text'              => "'''Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte.'''
 {{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.",
 'revdel-restore'              => 'Sichtborkait ändern',
+'pagehist'                    => 'Versionsgschicht',
 
 # Merge log
 'revertmerge'      => 'Vaoanigung zruckenemma',
@@ -1034,8 +1036,8 @@ Bitte nehmans an andern Nam.',
 # Namespace 8 related
 'allmessagesname'           => 'Nam',
 'allmessagescurrent'        => 'Aktuella Text',
-'allmessagestext'           => 'Des is a Listn vo de MediaWiki-Systemtexte.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Des is a Listen vo de MediaWiki-Systemtextt.
+Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisiarung] und [http://translatewiki.net translatewiki.net], wånn du de ån da Lokalisiarung vo MediaWiki betailing mechadst.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' is im Moment net möglich, wei de Datenbank offline is.",
 
 # Thumbnails
@@ -1200,7 +1202,7 @@ Darauf foignde Links auf Seitn in da söiwn Zeun definian Ausnãhmen, in denen e
 'watchlistedit-noitems'        => 'Dei Beobachtungslistn is laar.',
 'watchlistedit-normal-title'   => 'Beobachtungslistn bearbatn',
 'watchlistedit-normal-legend'  => 'Eiträge vo da Beobachtungslistn wegnehma',
-'watchlistedit-normal-explain' => 'Des sand de Eiträge vo deiner Beobachtungslistn. Um Eiträge zum entferna, markier de Kastl nem de Eiträg und klick auf „Eiträg entferna“. Du kannst dei Beobachtungsliste aa im [[Special:Watchlist/raw|Listenformat bearbatn]].',
+'watchlistedit-normal-explain' => "Des san de Eiträg vo deiner Beowochtungslisten. Um de Eiträg z' entferna, markir de Kastln neem de Eiträg und druck am End vo da Seiten auf „{{int:Watchlistedit-normal-submit}}“. Du kåst dei Beowochtungslisten aa im  [[Special:Watchlist/raw|Listenformat beorweiten]].",
 'watchlistedit-normal-submit'  => 'Eiträge wegnehma',
 'watchlistedit-raw-titles'     => 'Eiträg:',
 

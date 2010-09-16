@@ -97,6 +97,7 @@ $messages = array(
 'qbfind'         => 'Кошшан',
 'qbbrowse'       => 'Мыччавны',
 'qbedit'         => 'Мöдкодьсьöтны',
+'qbpageoptions'  => 'Этiя листбок',
 'qbmyoptions'    => 'Листбоккезö',
 'qbspecialpages' => 'Тодильнöй листбоккез',
 'faq'            => 'Отир сё юасьö',
@@ -104,6 +105,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-delete' => 'Чышкыны',
+'vector-view-view'     => 'Лыддьöтны',
 'variants'             => 'Варианттэз',
 
 'errorpagetitle'   => 'Сорасьöм',
@@ -189,6 +191,7 @@ $messages = array(
 'nstab-project'  => 'Проект йылiсь',
 'nstab-image'    => 'Серпас',
 'nstab-template' => 'Шаблон',
+'nstab-help'     => 'Отсасян',
 'nstab-category' => 'Категория',
 
 # General errors
@@ -218,6 +221,7 @@ $messages = array(
 'createaccount'           => 'Лöсьöт аслыт уджкерисьлiсь ним',
 'gotaccountlink'          => 'Пырны ним увтын',
 'createaccountmail'       => 'Электрон поштаöн',
+'createaccountreason'     => 'Мыля:',
 'loginerror'              => 'Пырöмыт эз аркмы',
 'loginsuccesstitle'       => 'Пырöмыт аркмис',
 'mailmypassword'          => 'Ыстыны виль пароль',
@@ -273,6 +277,8 @@ $messages = array(
 'anoneditwarning'                  => "'''Тöд''': Сiйöн,  мыля эн висьтась нимтö, этiя листбок историяö гижасö IP-адрестö.",
 'summary-preview'                  => 'Дженыта сы йылiсь, мый лоас:',
 'blockednoreason'                  => 'абу висьталöм мыля',
+'loginreqtitle'                    => 'Колö пырны ним увтын',
+'loginreqlink'                     => 'Пырны ним увтын',
 'accmailtitle'                     => 'Пароль иньдöтöм',
 'newarticle'                       => '(Виль)',
 'newarticletext'                   => "Ыстöт кузя тэ шедiн листбок вылö,  кöдa абу на. Мед аркмöтны сiйö,  гиж тексттö улiсь öшынöко (унажык  видзöт: [[{{MediaWiki:Helppage}}|отсасян листбок]]). Шедiн кö татчö сорасьöмöн,  нырышт браузерсит '''бöрлань''' личкöт.",
@@ -430,7 +436,7 @@ $messages = array(
 'recentchangeslinked-to'      => 'Мыччавны мöдкодьсьöтöммез листбоккез вылын, кöдна асьныс ыстiсьöны этiя листбок вылö',
 
 # Upload
-'upload'        => 'Тöбавны файл',
+'upload'        => 'Кышавны файл',
 'uploadlogpage' => 'Тöбалöм сьöртi журнал',
 'uploadedimage' => "тöбалiс ''[[$1]]''",
 
@@ -447,7 +453,7 @@ $messages = array(
 'imagelinks'                => 'Файл дынö ыстöттэз',
 'linkstoimage'              => '{{PLURAL:$1|Сэтшöм листбок|$1 Сэтшöм листбоккез}} ыстiсьö(ны) этiя файл вылö:',
 'sharedupload'              => 'Этiя файл $1-ись да вермас овны и мöдiк проекттэзын',
-'uploadnewversion-linktext' => 'Тöбавны этiя файллiсь виль версия',
+'uploadnewversion-linktext' => 'Кышавны этiя файллiсь виль версия',
 
 # Random page
 'randompage' => 'Виччисьтöг шедöм листбок',
@@ -689,7 +695,7 @@ $messages = array(
 'tooltip-n-portal'                => 'Проект йылiсь, мый тэ верман керны, кытiсь мый кошшыны',
 'tooltip-n-currentevents'         => 'Адззыны унажык юöррез чулалан лоöмторрез йылiсь',
 'tooltip-n-recentchanges'         => 'Медбöрья вежöммез',
-'tooltip-n-randompage'            => 'Тöбавны виччисьтöг шедöм листбок',
+'tooltip-n-randompage'            => 'Кышавны виччисьтöг шедöм листбок',
 'tooltip-n-help'                  => 'Отсöт проект понда:',
 'tooltip-t-whatlinkshere'         => 'Быдöс листбоккез, кöдна ыстiсьöны татчö',
 'tooltip-t-recentchangeslinked'   => 'Медбöрья вильмöтöммез листбоккезын,  кöдна вылö этiя листбокыс ыстiсьö',
@@ -697,7 +703,7 @@ $messages = array(
 'tooltip-feed-atom'               => 'Этiя листбок понда Atom-визыв',
 'tooltip-t-contributions'         => 'Видзöтны листбоккез, кöднö вильмöтлiс этiя уджкерись',
 'tooltip-t-emailuser'             => 'Иньдöтны гижöт этiя уджкерисьлö',
-'tooltip-t-upload'                => 'Тöбавны медиа-файллэз',
+'tooltip-t-upload'                => 'Кышавны медиа-файллэз',
 'tooltip-t-specialpages'          => 'Тодильнöй листбоккез ним сьöртi',
 'tooltip-t-print'                 => 'Этiя листбоклöн печатайтан версия',
 'tooltip-t-permalink'             => 'Листбоклöн этiя версия дынö пырся ыстöт',

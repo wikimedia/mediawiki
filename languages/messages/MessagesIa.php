@@ -365,6 +365,9 @@ Troppo de usatores tenta vider iste pagina.
 Per favor attende un momento ante que tu essaya acceder novemente a iste pagina.
 
 $1',
+'pool-timeout'      => 'Tempore limite excedite attendente le serratura',
+'pool-queuefull'    => 'Le cauda de ressources commun es plen',
+'pool-errorunknown' => 'Error incognite',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A proposito de {{SITENAME}}',

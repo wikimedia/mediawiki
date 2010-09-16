@@ -536,6 +536,9 @@ $messages = array(
 'view-pool-error'   => '申し訳ありません。ただいま、サーバーに過大な負荷がかかっています。このページを閲覧しようとする利用者が多すぎます。しばらく時間を置いてから、もう一度このページにアクセスしてみてください。
 
 $1',
+'pool-timeout'      => 'ロック待ちタイムアウト',
+'pool-queuefull'    => 'プールキューがいっぱいです',
+'pool-errorunknown' => '不明なエラー',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}について',
@@ -918,12 +921,12 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 データベースをロックした管理者による説明は以下の通りです: $1",
 'protectedpagewarning'             => "'''警告:このページは保護されています。{{int:group-sysop}}しか編集できません。'''
-参考として以下に一番最後のログを表示します:",
-'semiprotectedpagewarning'         => "'''お知らせ:''' このページは登録利用者のみが編集できるよう保護されています。
-参考として以下に一番最後のログを表示します:",
+参考として以下に一番最後の記録を表示します：",
+'semiprotectedpagewarning'         => "'''お知らせ：'''このページは登録利用者のみが編集できるよう保護されています。
+参考として以下に一番最後の記録を表示します：",
 'cascadeprotectedwarning'          => "'''警告:''' このページはカスケード保護されている以下の{{PLURAL:$1|ページ}}から呼び出されているため、{{int:group-sysop}}しか編集できません。",
-'titleprotectedwarning'            => "'''警告: このページは保護されているため、作成には[[Special:ListGroupRights|一定の権限]]が必要です。'''
-参考として以下に一番最後のログを表示します:",
+'titleprotectedwarning'            => "'''警告：このページは保護されているため、作成には[[Special:ListGroupRights|特定の権限]]が必要です。'''
+参考として以下に一番最後の記録を表示します：",
 'templatesused'                    => 'このページで使われている{{PLURAL:$1|テンプレート}}:',
 'templatesusedpreview'             => 'このプレビューで使われている{{PLURAL:$1|テンプレート}}:',
 'templatesusedsection'             => 'このセクションで使われている{{PLURAL:$1|テンプレート}}:',
@@ -944,7 +947,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 このページを編集し続けることが適切であるかどうか確認してください。参考として以下にこのページの削除と移動の記録を表示します:",
 'moveddeleted-notice'              => 'このページは削除されています。
 参考のため、このページの削除と移動の記録を以下に表示します。',
-'log-fulllog'                      => '完全なログを見る',
+'log-fulllog'                      => '完全な記録を見る',
 'edit-hook-aborted'                => 'フックによって編集が破棄されました。理由は不明です。',
 'edit-gone-missing'                => 'ページをアップデートできませんでした。既に削除されているようです。',
 'edit-conflict'                    => '編集競合。',
@@ -978,7 +981,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 $3による理由は以下の通りです: ''$2''",
 
 # History pages
-'viewpagelogs'           => 'このページに関するログを表示',
+'viewpagelogs'           => 'このページに関する記録を表示',
 'nohistory'              => 'このページには変更履歴がありません。',
 'currentrev'             => '最新版',
 'currentrev-asof'        => '$1 時点における最新版',
@@ -1008,9 +1011,9 @@ $3による理由は以下の通りです: ''$2''",
 'history-feed-empty'          => '要求したページは存在しません。既に削除されたか移動された可能性があります。 [[Special:Search|このウィキの検索]]で関連する新しいページを探してみてください。',
 
 # Revision deletion
-'rev-deleted-comment'         => '(要約は削除されています)',
-'rev-deleted-user'            => '(投稿者名は削除されています)',
-'rev-deleted-event'           => '(ログは削除されています)',
+'rev-deleted-comment'         => '（要約は除去されています）',
+'rev-deleted-user'            => '（利用者名は除去されています）',
+'rev-deleted-event'           => '（記録は除去されています）',
 'rev-deleted-user-contribs'   => '[利用者名またはIPアドレスを除去しました - 投稿は投稿記録から秘匿されています]',
 'rev-deleted-text-permission' => "この版は'''削除されています'''。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-deleted-text-unhide'     => "この版は'''削除されています'''。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。あなたは管理者であるため、このまま[$1 この版を見る]ことができます。",
@@ -1028,17 +1031,17 @@ $3による理由は以下の通りです: ''$2''",
 'revisiondelete'              => '版の削除と復帰',
 'revdelete-nooldid-title'     => '対象版がありません',
 'revdelete-nooldid-text'      => 'この操作の対象となる版を指定していないか、指定した版が存在していないか、あるいは最新版を秘匿しようとしています。',
-'revdelete-nologtype-title'   => 'ログの種類が指定されていません',
-'revdelete-nologtype-text'    => 'この操作を実行するログ種類を指定していません。',
-'revdelete-nologid-title'     => 'ログ項目が無効',
-'revdelete-nologid-text'      => 'この操作の対象となるログの項目を指定していないか、あるいは指定した項目が存在しません。',
+'revdelete-nologtype-title'   => '記録の種類が指定されていません',
+'revdelete-nologtype-text'    => 'この操作を実行する記録の種類を指定していません。',
+'revdelete-nologid-title'     => '不正な記録項目',
+'revdelete-nologid-text'      => 'この操作の対象となる記録の項目を指定していないか、あるいは指定した項目が存在しません。',
 'revdelete-no-file'           => '指定されたファイルは存在しません。',
 'revdelete-show-file-confirm' => '本当にファイル「<nowiki>$1</nowiki>」の削除された $2 $3 の版を閲覧しますか？',
 'revdelete-show-file-submit'  => 'はい',
-'revdelete-selected'          => "'''[[:$1]]の{{PLURAL:$2|特定版}}:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|選択されたログの項目}}:'''",
-'revdelete-text'              => "'''削除された版や記録はページの履歴やログに表示され続けますが、一般の利用者はその内容にアクセスできなくなります。'''
-追加の制限がかけられない限り、{{SITENAME}} の他の{{int:group-sysop}}もこれと同じインターフェースを使って隠された内容にアクセスしたり、復元したりできます。",
+'revdelete-selected'          => "'''[[:$1]]の{{PLURAL:$2|選択された版}}：'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|選択された記録の項目}}：'''",
+'revdelete-text'              => "'''削除された版や記録はページの履歴や記録に表示され続けますが、一般の利用者はその内容にアクセスできなくなります。'''
+追加の制限がかけられない限り、{{SITENAME}}の他の{{int:group-sysop}}もこれと同じインターフェースを使って隠された内容にアクセスしたり、復元したりできます。",
 'revdelete-confirm'           => 'この操作を意図して行っていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に沿って行っていることを確認してください。',
 'revdelete-suppress-text'     => "隠蔽は、'''以下の場合に限って'''使用すべきです:
 * 不適切な個人情報
@@ -1062,8 +1065,8 @@ $3による理由は以下の通りです: ''$2''",
 'revdelete-success'           => "'''版の閲覧レベルを更新しました。'''",
 'revdelete-failure'           => "'''版の閲覧レベルを更新できませんでした。'''
 $1",
-'logdelete-success'           => "'''ログの閲覧レベルを変更しました。'''",
-'logdelete-failure'           => "'''ログの閲覧レベルを設定できませんでした。'''
+'logdelete-success'           => "'''記録の閲覧レベルを変更しました。'''",
+'logdelete-failure'           => "'''記録の閲覧レベルを設定できませんでした。'''
 $1",
 'revdel-restore'              => '閲覧レベルを変更',
 'revdel-restore-deleted'      => '削除された版',
@@ -1084,7 +1087,7 @@ $1",
 'revdelete-modify-no-access'  => '$2 $1 の項目の変更に失敗しました: この項目は「制限付き」に設定されているため、あなたにはアクセスすることができません。',
 'revdelete-modify-missing'    => 'ID $1 の項目の変更に失敗しました: データベースに見当たりません！',
 'revdelete-no-change'         => "'''警告:''' $1$2の項目には既に要求された閲覧レベルが設定されています。",
-'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました: あなたが変更を加えている間に他の利用者によって設定が変更されたようです。ログを確認してください。',
+'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました: あなたが変更を加えている間に他の利用者によって設定が変更されたようです。記録を確認してください。',
 'revdelete-only-restricted'   => '日付 $1 $2 の項目の秘匿に失敗: 管理者から項目を秘匿するには、他の可視性設定のうちどれかをさらに選択しなければなりません。',
 'revdelete-reason-dropdown'   => '*よくある削除理由
 ** 著作権侵害
@@ -1268,7 +1271,7 @@ $1",
 'recentchangesdays'             => '最近の更新に表示する日数:',
 'recentchangesdays-max'         => '(最大$1 {{PLURAL:$1|日|日間}})',
 'recentchangescount'            => '既定で表示する件数:',
-'prefs-help-recentchangescount' => 'この設定は{{int:recentchanges}}、ページ履歴、およびログに適用されます。',
+'prefs-help-recentchangescount' => 'この設定は{{int:recentchanges}}、ページ履歴、および記録に適用されます。',
 'prefs-help-watchlist-token'    => 'この欄に秘密鍵を入力すると、あなたのウォッチリストの RSS フィードが生成されます。この欄に入力されている鍵を知っている人は誰でもあなたのウォッチリストを閲覧できるようになります。よって、他人に分からない値を選んでください。無作為に生成された次の値を使うこともできます: $1',
 'savedprefs'                    => '個人設定を保存しました。',
 'timezonelegend'                => 'タイムゾーン:',
@@ -1414,7 +1417,7 @@ $1",
 'right-browsearchive'         => '削除されたページの検索',
 'right-undelete'              => 'ページの復帰',
 'right-suppressrevision'      => '管理者から秘匿された版の閲覧・復帰',
-'right-suppressionlog'        => '非公開ログの閲覧',
+'right-suppressionlog'        => '非公開記録の閲覧',
 'right-block'                 => '他利用者の投稿ブロック',
 'right-blockemail'            => '電子メール送信のブロック',
 'right-hideuser'              => '利用者名のブロックおよび一般の閲覧からの秘匿',
@@ -1474,7 +1477,7 @@ $1",
 'action-browsearchive'        => '削除されたページの検索',
 'action-undelete'             => 'このページの復帰',
 'action-suppressrevision'     => '秘匿版の閲覧と復帰',
-'action-suppressionlog'       => 'この非公開ログの表示',
+'action-suppressionlog'       => 'この非公開記録の表示',
 'action-block'                => 'この利用者の投稿ブロック',
 'action-protect'              => 'このページの保護レベルの変更',
 'action-import'               => '他のウィキからのこのページのインポート',
@@ -1919,9 +1922,9 @@ $1',
 # Special:Log
 'specialloguserlabel'  => '利用者名:',
 'speciallogtitlelabel' => 'ページ名:',
-'log'                  => 'ログ',
+'log'                  => '記録',
 'all-logs-page'        => 'すべての公開記録',
-'alllogstext'          => '{{SITENAME}}の取得可能なログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ (利用者) による絞り込みができます。',
+'alllogstext'          => '{{SITENAME}}の取得可能な記録がまとめて表示されています。記録の種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
 'logempty'             => '該当する記録がみつかりませんでした。',
 'log-title-wildcard'   => 'この文字列で始まるページ名を検索する',
 
@@ -2251,7 +2254,7 @@ $UNWATCHURL
 'undelete-no-results'          => '削除ページのアーカイブに一致するページが見つかりませんでした。',
 'undelete-filename-mismatch'   => '$1 版のファイルを復帰できません: ファイル名が一致しません',
 'undelete-bad-store-key'       => '$1 版のファイルを復帰できません: 削除前にファイルが失われています。',
-'undelete-cleanup-error'       => '使用されていないログファイル "$1" の削除中にエラーが発生しました。',
+'undelete-cleanup-error'       => '使用されていない古いファイル"$1"の削除中にエラーが発生しました。',
 'undelete-missing-filearchive' => 'ID $1 の記録がデータベースに存在しないため復帰できません。既に復帰されている可能性があります。',
 'undelete-error-short'         => 'ファイル復帰エラー: $1',
 'undelete-error-long'          => 'ファイルの復帰中にエラーが発生しました:
@@ -2280,7 +2283,7 @@ $1',
 'sp-contributions-newbies-title'       => '新規利用者の投稿記録',
 'sp-contributions-blocklog'            => '投稿ブロック記録',
 'sp-contributions-deleted'             => '削除された投稿履歴',
-'sp-contributions-logs'                => '各種ログ',
+'sp-contributions-logs'                => '各種記録',
 'sp-contributions-talk'                => 'トーク',
 'sp-contributions-userrights'          => '利用者権限の管理',
 'sp-contributions-blocked-notice'      => 'この利用者は現在ブロックされています。参考のために最新のブロック記録を以下に表示します。',
@@ -2508,10 +2511,10 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'imageinvalidfilename'         => '指定したファイル名が無効です',
 'fix-double-redirects'         => 'このページへのリダイレクトがあればそのリダイレクトを修正する',
 'move-leave-redirect'          => '移動元にリダイレクトを作成する',
-'protectedpagemovewarning'     => "'''警告:''' このページは管理者権限をもつ利用者のみが移動できるように保護されています。
-参考として以下に一番最後のログを表示します:",
-'semiprotectedpagemovewarning' => "'''注意:''' このページは登録利用者のみが移動できるように保護されています。
-参考として以下に一番最後のログを表示します:",
+'protectedpagemovewarning'     => "'''警告：'''このページは管理者権限をもつ利用者のみが移動できるように保護されています。
+参考として以下に一番最後の記録を表示します：",
+'semiprotectedpagemovewarning' => "'''注意：'''このページは登録利用者のみが移動できるように保護されています。
+参考として以下に一番最後の記録を表示します：",
 'move-over-sharedrepo'         => '== ファイルが存在します ==
 [[:$1]] は共有リポジトリー上に存在します。ファイルをこの名前に移動すると共有ファイルを無効にします。',
 'file-exists-sharedrepo'       => '選ばれたファイル名は既に共有リポジトリー上で使われています。別の名前を選んでください。',
@@ -2578,7 +2581,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'importstart'                => 'ページを取り込んでいます...',
 'import-revision-count'      => '$1{{PLURAL:$1|版}}',
 'importnopages'              => 'インポートするページがありません',
-'imported-log-entries'       => '$1件の{{PLURAL:$1|ログ項目}}を取り込みました。',
+'imported-log-entries'       => '$1件の{{PLURAL:$1|記録項目}}を取り込みました。',
 'importfailed'               => '取り込みに失敗しました: $1',
 'importunknownsource'        => 'インポート元のファイルタイプが不明です',
 'importcantopen'             => 'インポートファイルを開けませんでした',
@@ -3396,7 +3399,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'specialpages-group-maintenance' => 'メンテナンス報告',
 'specialpages-group-other'       => 'その他特別ページ',
 'specialpages-group-login'       => 'ログイン / 利用者登録',
-'specialpages-group-changes'     => '最近の更新とログ',
+'specialpages-group-changes'     => '最近の更新と記録',
 'specialpages-group-media'       => 'メディア情報とアップロード',
 'specialpages-group-users'       => '利用者と権限',
 'specialpages-group-highuse'     => 'よく利用されているページ',
