@@ -728,6 +728,18 @@ window.mediaWiki = new ( function( $ ) {
 			}
 		};
 		
+		/**
+		 * Gets the version of a module
+		 * 
+		 * @param string module name of module to get version for
+		 */
+		this.version = function( module ) {
+			if ( module in registry && 'version' in registry[module] ) {
+				return formatVersionNumber( registry[module].version );
+			}
+			return null;
+		}
+		
 		/* Cache document ready status */
 		
 		$(document).ready( function() { ready = true; } );
