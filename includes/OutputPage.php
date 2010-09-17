@@ -2325,9 +2325,9 @@ class OutputPage {
 				ksort( $query );
 				// Automatically select style/script elements
 				if ( $only === 'styles' ) {
-					$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) );
+					$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
 				} else {
-					$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) );
+					$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
 				}
 			}
 		}
@@ -2378,8 +2378,8 @@ class OutputPage {
 		if ( $this->getModules() ) {
 			$modules = FormatJson::encode( $this->getModules() );
 			$scripts .= Html::inlineScript(
-				"if ( mediaWiki !== undefined ) { mediaWiki.loader.load( {$modules} ); mediaWiki.loader.go(); }"
-			);
+				"if ( mediaWiki !== undefined ) { mediaWiki.loader.load( {$modules} ); mediaWiki.loader.go(); }\n"
+			) . "\n";
 		}
 		
 		// Add user JS if enabled - trying to load user.options as a bundle if possible

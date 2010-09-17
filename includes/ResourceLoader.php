@@ -41,10 +41,13 @@ class ResourceLoader {
 		
 		// Safety check - this should never be called more than once
 		if ( !self::$initialized ) {
-			// This needs to be first, because hooks might call ResourceLoader public interfaces which will call this
+			wfProfileIn( __METHOD__ );
+			// This needs to be first, because hooks might call ResourceLoader 
+			// public interfaces which will call this
 			self::$initialized = true;
 			self::register( include( "$IP/resources/Resources.php" ) );
 			wfRunHooks( 'ResourceLoaderRegisterModules' );
+			wfProfileOut( __METHOD__ );
 		}
 	}
 
@@ -53,14 +56,17 @@ class ResourceLoader {
 	 *
 	 * @param $filter String: name of filter to run
 	 * @param $data String: text to filter, such as JavaScript or CSS text
-	 * @param $file String: path to file being filtered, (optional: only required for CSS to resolve paths)
+	 * @param $file String: path to file being filtered, (optional: only required 
+	 *     for CSS to resolve paths)
 	 * @return String: filtered data
 	 */
 	protected static function filter( $filter, $data ) {
 		global $wgMemc;
+		wfProfileIn( __METHOD__ );
 
 		// For empty or whitespace-only things, don't do any processing
 		if ( trim( $data ) === '' ) {
+			wfProfileOut( __METHOD__ );
 			return $data;
 		}
 
@@ -69,6 +75,7 @@ class ResourceLoader {
 		$cached = $wgMemc->get( $key );
 
 		if ( $cached !== false && $cached !== null ) {
+			wfProfileOut( __METHOD__ );
 			return $cached;
 		}
 
@@ -86,6 +93,7 @@ class ResourceLoader {
 					break;
 				default:
 					// Don't cache anything, just pass right through
+					wfProfileOut( __METHOD__ );
 					return $data;
 			}
 		} catch ( Exception $exception ) {
@@ -95,6 +103,7 @@ class ResourceLoader {
 		// Save to memcached
 		$wgMemc->set( $key, $result );
 
+		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
@@ -103,18 +112,21 @@ class ResourceLoader {
 	/**
 	 * Registers a module with the ResourceLoader system.
 	 *
-	 * Note that registering the same object under multiple names is not supported and may silently fail in all
-	 * kinds of interesting ways.
+	 * Note that registering the same object under multiple names is not supported 
+	 * and may silently fail in all kinds of interesting ways.
 	 *
 	 * @param $name Mixed: string of name of module or array of name/object pairs
-	 * @param $object ResourceLoaderModule: module object (optional when using multiple-registration calling style)
-	 * @return Boolean: false if there were any errors, in which case one or more modules were not registered
+	 * @param $object ResourceLoaderModule: module object (optional when using 
+	 *    multiple-registration calling style)
+	 * @return Boolean: false if there were any errors, in which case one or more 
+	 *    modules were not registered
 	 *
-	 * @todo We need much more clever error reporting, not just in detailing what happened, but in bringing errors to
-	 * the client in a way that they can easily see them if they want to, such as by using FireBug
+	 * @todo We need much more clever error reporting, not just in detailing what 
+	 *    happened, but in bringing errors to the client in a way that they can 
+	 *    easily see them if they want to, such as by using FireBug
 	 */
 	public static function register( $name, ResourceLoaderModule $object = null ) {
-		
+		wfProfileIn( __METHOD__ );
 		self::initialize();
 		
 		// Allow multiple modules to be registered in one call
@@ -123,6 +135,7 @@ class ResourceLoader {
 				self::register( $key, $value );
 			}
 
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -134,6 +147,7 @@ class ResourceLoader {
 		// Attach module
 		self::$modules[$name] = $object;
 		$object->setName( $name );
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -162,13 +176,14 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Gets registration code for all modules, except pre-registered ones listed in self::$preRegisteredModules
+	 * Gets registration code for all modules, except pre-registered ones listed in 
+	 * self::$preRegisteredModules
 	 *
 	 * @param $context ResourceLoaderContext object
 	 * @return String: JavaScript code for registering all modules with the client loader
 	 */
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
-		
+		wfProfileIn( __METHOD__ );
 		self::initialize();
 		
 		$scripts = '';
@@ -178,27 +193,34 @@ class ResourceLoader {
 			// Support module loader scripts
 			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
 				$deps = FormatJson::encode( $module->getDependencies() );
-				$version = wfTimestamp( TS_ISO_8601, round( $module->getModifiedTime( $context ), -2 ) );
-				$scripts .= "( function( name, version, dependencies ) { $loader } )( '$name', '$version', $deps );";
+				$version = wfTimestamp( TS_ISO_8601, 
+					round( $module->getModifiedTime( $context ), -2 ) );
+				$scripts .= "( function( name, version, dependencies ) { $loader } )\n" . 
+					"( '$name', '$version', $deps );\n";
 			}
 			// Automatically register module
 			else {
-				// Modules without dependencies pass two arguments (name, timestamp) to mediaWiki.loader.register()
+				// Modules without dependencies pass two arguments (name, timestamp) to 
+				// mediaWiki.loader.register()
 				if ( !count( $module->getDependencies() ) ) {
 					$registrations[] = array( $name, $module->getModifiedTime( $context ) );
 				}
-				// Modules with dependencies pass three arguments (name, timestamp, dependencies) to mediaWiki.loader.register()
+				// Modules with dependencies pass three arguments (name, timestamp, dependencies) 
+				// to mediaWiki.loader.register()
 				else {
-					$registrations[] = array( $name, $module->getModifiedTime( $context ), $module->getDependencies() );
+					$registrations[] = array( $name, $module->getModifiedTime( $context ), 
+						$module->getDependencies() );
 				}
 			}
 		}
-		return $scripts . "mediaWiki.loader.register( " . FormatJson::encode( $registrations ) . " );";
+		$out = $scripts . "mediaWiki.loader.register( " . FormatJson::encode( $registrations ) . " );\n";
+		wfProfileOut( __METHOD__ );
+		return $out;
 	}
 
 	/**
-	 * Get the highest modification time of all modules, based on a given combination of language code,
-	 * skin name and debug mode flag.
+	 * Get the highest modification time of all modules, based on a given 
+	 * combination of language code, skin name and debug mode flag.
 	 *
 	 * @param $context ResourceLoaderContext object
 	 * @return Integer: UNIX timestamp
@@ -225,6 +247,7 @@ class ResourceLoader {
 		global $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage;
 		global $wgResourceLoaderUnversionedServerMaxage, $wgResourceLoaderUnversionedClientMaxage;
 
+		wfProfileIn( __METHOD__ );
 		self::initialize();
 		
 		// Split requested modules into two groups, modules and missing
@@ -239,22 +262,27 @@ class ResourceLoader {
 			}
 		}
 
-		// If a version wasn't specified we need a shorter expiry time for updates to propagate to clients quickly
+		// If a version wasn't specified we need a shorter expiry time for updates to 
+		// propagate to clients quickly
 		if ( is_null( $context->getVersion() ) ) {
 			$maxage = $wgResourceLoaderUnversionedClientMaxage;
 			$smaxage = $wgResourceLoaderUnversionedServerMaxage;
 		}
-		// If a version was specified we can use a longer expiry time since changing version numbers causes cache misses
+		// If a version was specified we can use a longer expiry time since changing 
+		// version numbers causes cache misses
 		else {
 			$maxage = $wgResourceLoaderVersionedClientMaxage;
 			$smaxage = $wgResourceLoaderVersionedServerMaxage;
 		}
 
-		// To send Last-Modified and support If-Modified-Since, we need to detect the last modified time
+		// To send Last-Modified and support If-Modified-Since, we need to detect 
+		// the last modified time
+		wfProfileIn( __METHOD__.'-getModifiedTime' );
 		$mtime = 1;
 		foreach ( $modules as $name ) {
 			$mtime = max( $mtime, self::$modules[$name]->getModifiedTime( $context ) );
 		}
+		wfProfileOut( __METHOD__.'-getModifiedTime' );
 
 		header( 'Content-Type: ' . ( $context->getOnly() === 'styles' ? 'text/css' : 'text/javascript' ) );
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
@@ -266,6 +294,7 @@ class ResourceLoader {
 		if ( $ims !== false && $mtime >= wfTimestamp( TS_UNIX, $ims ) ) {
 			header( 'HTTP/1.0 304 Not Modified' );
 			header( 'Status: 304 Not Modified' );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
@@ -278,18 +307,20 @@ class ResourceLoader {
 
 		// Generate output
 		foreach ( $modules as $name ) {
+			wfProfileIn( __METHOD__ . '-' . $name );
 			// Scripts
 			$scripts = '';
 
 			if ( $context->shouldIncludeScripts() ) {
-				$scripts .= self::$modules[$name]->getScript( $context );
+				$scripts .= self::$modules[$name]->getScript( $context ) . "\n";
 			}
 
 			// Styles
 			$styles = array();
 
 			if (
-				$context->shouldIncludeStyles() && ( count( $styles = self::$modules[$name]->getStyles( $context ) ) )
+				$context->shouldIncludeStyles() 
+				&& ( count( $styles = self::$modules[$name]->getStyles( $context ) ) )
 			) {
 				foreach ( $styles as $media => $style ) {
 					if ( self::$modules[$name]->getFlip( $context ) ) {
@@ -330,6 +361,7 @@ class ResourceLoader {
 				}
 				echo "mediaWiki.loader.implement( '$name', function() {{$scripts}},\n$styles,\n$messages );\n";
 			}
+			wfProfileOut( __METHOD__ . '-' . $name );
 		}
 
 		// Update the status of script-only modules
@@ -359,5 +391,6 @@ class ResourceLoader {
 				echo self::filter( 'minify-js', ob_get_clean() );
 			}
 		}
+		wfProfileOut( __METHOD__ );
 	}
 }

@@ -37,7 +37,9 @@ class MessageBlobStore {
 	 */
 	public static function get( $modules, $lang ) {
 		// TODO: Invalidate blob when module touched
+		wfProfileIn( __METHOD__ );
 		if ( !count( $modules ) ) {
+			wfProfileOut( __METHOD__ );
 			return array();
 		}
 		// Try getting from the DB first
@@ -52,6 +54,7 @@ class MessageBlobStore {
 			}
 		}
 
+		wfProfileOut( __METHOD__ );
 		return $blobs;
 	}
 
@@ -115,7 +118,8 @@ class MessageBlobStore {
 	 * Update all message blobs for a given module.
 	 * @param $module string Module name
 	 * @param $lang string Language code (optional)
-	 * @return mixed If $lang is set, the new message blob for that language is returned if present. Otherwise, null is returned.
+	 * @return mixed If $lang is set, the new message blob for that language is 
+	 *    returned if present. Otherwise, null is returned.
 	 */
 	public static function updateModule( $module, $lang = null ) {
 		$retval = null;

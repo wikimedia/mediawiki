@@ -20,7 +20,8 @@
  */
 
 /**
- * Object passed around to modules which contains information about the state of a specific loader request
+ * Object passed around to modules which contains information about the state 
+ * of a specific loader request
  */
 class ResourceLoaderContext {
 	/* Protected Members */
@@ -115,9 +116,12 @@ class ResourceLoaderContext {
 	}
 
 	public function getHash() {
-		return isset( $this->hash ) ?
-			$this->hash : $this->hash = implode( '|', array(
-				$this->language, $this->direction, $this->skin, $this->user, $this->debug, $this->only, $this->version
+		if ( isset( $this->hash ) ) {
+			$this->hash = implode( '|', array(
+				$this->language, $this->direction, $this->skin, $this->user, 
+				$this->debug, $this->only, $this->version
 			) );
+		}
+		return $this->hash;
 	}
 }
