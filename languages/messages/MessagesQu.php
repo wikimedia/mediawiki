@@ -276,7 +276,7 @@ $messages = array(
 'tog-editsection'             => "Rakirilla llamk'apuyta saqillay [qillqay] t'inkiwan",
 'tog-editsectiononrightclick' => "Rakirilla llamk'apuyta saqillay paña butunta rakirip sutinpi ñit'ispa (JavaScript)",
 'tog-showtoc'                 => "Yuyarina wachuchasqata rikuchiy (kimsamanta aswan uma siq'iyuq p'anqakunapaq)",
-'tog-rememberpassword'        => "Ruraqpa sutiyta yaykuna rimaytapas yuyaykuy llamk'ay tiyayniypura ({{PLURAL:$1|huk p'unchawkama|$1 p'unchawkama}})",
+'tog-rememberpassword'        => "Ruraqpa sutiyta yaykuna rimaytapas yuyaykuy kay llika wamp'unapi ({{PLURAL:$1|huk p'unchawkama|$1 p'unchawkama}})",
 'tog-watchcreations'          => "Qallarisqay p'anqakunata watiqay.",
 'tog-watchdefault'            => "Hukchasqay p'anqakunata watiqay",
 'tog-watchmoves'              => "Astasqay p'anqakunata watiqay",
@@ -497,6 +497,9 @@ Nisyu ruraqkunam kay p'anqataqa qhawayta munachkan.
 Ama hina kaspa, ratullata suyay kay p'anqata manaraq musuqmanta qhawaykachaspa.
 
 $1",
+'pool-timeout'      => "Wichq'aypaq suyaspa mit'a llallisqa",
+'pool-queuefull'    => "Suyana siq'iqa huntasqañam",
+'pool-errorunknown' => 'Mana riqsisqa pantasqa',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}manta',
@@ -724,6 +727,11 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'login-throttled'            => 'Nisyu kutitachá kay rakiqunapaq yaykuna rimawan ñaqha yaykuykachanki. Ama hina kaspa, suyariy manaraq musuqmanta yaykuykachaspa.',
 'loginlanguagelabel'         => 'Rimay: $1',
 'suspicious-userlogout'      => "Lluqsiy mañakuyniykiqa mananchasqam karqan, waqllisqa wamp'unamanta icha pakaq proksimanta kachasqa kaspanchá.",
+'ratelimit-excluded-ips'     => "#<!-- leave this line exactly as it is --> <pre>
+# Sintaksisninqa kay hinam:
+#  * \"#\" sananchamanta siq'ip puchunkama tukuyqa willapunallam
+#  * Llapa mana ch'usaq siq'iqa IP huchham, achura saywachanamanta raqpasqa
+ #</pre> <!-- leave this line exactly as it is -->",
 
 # JavaScript password checks
 'password-strength'            => 'Yaykuna rimap chhikaynasqa kallpan: $1',
@@ -1150,7 +1158,8 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'compareselectedversions'  => "Akllasqa llamk'apusqakunata wakichay",
 'showhideselectedversions' => 'Akllasqa musuqchasqakunata rikuchiy/pakay',
 'editundo'                 => 'kutichiy',
-'diff-multi'               => "({{PLURAL:$1|Chawpipi huk llamk'apusqaqa manam rikuchisqachu|Chawpipi $1 llamk'apusqaqa manam rikuchisqachu}}.)",
+'diff-multi'               => "({{PLURAL:$2|Huk ruraqpa|$2 ruraqpa}} {{PLURAL:$1|chawpipi huk llamk'apusqanqa manam rikuchisqachu|chawpipi $1 llamk'apusqankunaqa manam rikuchisqachu}})",
+'diff-multi-manyusers'     => "({{PLURAL:$2|Hukmanta|$2-manta}} aswan ruraqkunap {{PLURAL:$1|chawpipi huk llamk'apusqanqa manam rikuchisqachu|chawpipi $1 llamk'apusqankunaqa manam rikuchisqachu}})",
 
 # Search results
 'searchresults'                    => 'Maskaymanta tarisqakuna',

@@ -421,6 +421,7 @@ $messages = array(
 මෙම පිටුවට පිවිසීමට නැවත උත්සාහ දැරීමට පෙර මදක් පමාවන්න.
 
 $1',
+'pool-errorunknown' => 'අඥාත දෝෂය',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} පිළිබඳ
@@ -2378,7 +2379,7 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|ඉදිරි|ඉදිරි $1}}',
 'whatlinkshere-links'      => '← සබැඳි',
 'whatlinkshere-hideredirs' => '$1 යළි-යොමුකරයි',
-'whatlinkshere-hidetrans'  => '$1 අන්තඃගතයන්',
+'whatlinkshere-hidetrans'  => '$1 අන්තර්ගතයන්',
 'whatlinkshere-hidelinks'  => 'සබැඳියන් $1',
 'whatlinkshere-hideimages' => ' රූප සබැඳියන් $1',
 'whatlinkshere-filters'    => 'පෙරහන්',

@@ -624,6 +624,11 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
+'ratelimit-excluded-ips'     => ' #<!-- jangan ubah baris ini --> <pre>
+# Sintaks:
+#  * Aksara "#" sampai akhir baris diabaikan
+#  * Ungkapan nalar dibaca daripada setiap baris dan dipadankan dengan nama hos sahaja
+ #</pre> <!-- jangan ubah baris ini -->',
 
 # JavaScript password checks
 'password-strength'            => 'Anggaran kekebalan kata laluan: $1',
@@ -1071,7 +1076,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'compareselectedversions'  => 'Bandingkan versi-versi yang dipilih',
 'showhideselectedversions' => 'Tunjuk/sorok versi yang dipilih',
 'editundo'                 => 'batal',
-'diff-multi'               => '({{PLURAL:$1|semakan pertengahan|$1 semakan pertengahan}} oleh {{PLURAL:$2|pengguna|$2 pengguna}} tidak dipaparkan)',
+'diff-multi'               => '($1 {{PLURAL:$1|semakan pertengahan|semakan pertengahan}} oleh $2 {{PLURAL:$2|pengguna|pengguna}} tidak dipaparkan)',
+'diff-multi-manyusers'     => '($1 {{PLURAL:$1|semakan pertengahan|semakan pertengahan}} oleh lebih daripada $2 {{PLURAL:$2|pengguna|pengguna}} tidak dipaparkan)',
 
 # Search results
 'searchresults'                    => 'Keputusan carian',
@@ -2539,6 +2545,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'importstart'                => 'Mengimport laman...',
 'import-revision-count'      => '$1 semakan',
 'importnopages'              => 'Tiada laman untuk diimport.',
+'imported-log-entries'       => '$1 {{PLURAL:$1|entri log|entri log}} telah diimport.',
 'importfailed'               => 'Import gagal: $1',
 'importunknownsource'        => 'Jenis sumber import tidak dikenali',
 'importcantopen'             => 'Fail import tidak dapat dibuka',

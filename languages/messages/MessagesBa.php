@@ -53,7 +53,7 @@ $messages = array(
 'tog-editsection'             => 'Һәр бүлек өсөн «үҙгәртеү» һылтанмаһын күрһәтергә',
 'tog-editsectiononrightclick' => 'Бүлектәрҙе исемдәренә сысҡан менән сиртеп үҙгәртергә (JavaScript кәрәкле)',
 'tog-showtoc'                 => 'Эстәлек күрһәтелһен (3-тән күп башлығы булған биттәрҙә)',
-'tog-rememberpassword'        => 'Был компьютерҙа (иң күбендә $1 {{PLURAL:$1|көнгә|көнгә}}) иҫәп яҙыуым хәтерләнһен',
+'tog-rememberpassword'        => 'Был браузерҙа (иң күбендә $1 {{PLURAL:$1|көнгә}}) иҫәп яҙыуым хәтерләнһен',
 'tog-watchcreations'          => 'Мин төҙөгән биттәрҙе күҙәтеү исемлегенә яҙырға',
 'tog-watchdefault'            => 'Үҙгәрткән биттәрем күҙәтеү исемлегемә өҫтәлһен',
 'tog-watchmoves'              => 'Исемен үҙгәрткән биттәрем күҙәтеү исемлегемә өҫтәлһен',
@@ -196,20 +196,21 @@ $messages = array(
 'faqpage'        => 'Project:ЙБҺ',
 
 # Vector skin
-'vector-action-addsection' => 'Тема өҫтәргә',
-'vector-action-delete'     => 'Юйырға',
-'vector-action-move'       => 'Исемен үҙгәртергә',
-'vector-action-protect'    => 'Һаҡларға',
-'vector-action-undelete'   => 'Тергеҙергә',
-'vector-action-unprotect'  => 'Һаҡлауҙы сисергә',
-'vector-view-create'       => 'Яһау',
-'vector-view-edit'         => 'Үҙгәртергә',
-'vector-view-history'      => 'Тарихты ҡарау',
-'vector-view-view'         => 'Уҡыу',
-'vector-view-viewsource'   => 'Сығанаҡты ҡарарға',
-'actions'                  => 'Хәрәкәт',
-'namespaces'               => 'Исем арауыҡтары',
-'variants'                 => 'Варианттар',
+'vector-action-addsection'       => 'Тема өҫтәргә',
+'vector-action-delete'           => 'Юйырға',
+'vector-action-move'             => 'Исемен үҙгәртергә',
+'vector-action-protect'          => 'Һаҡларға',
+'vector-action-undelete'         => 'Тергеҙергә',
+'vector-action-unprotect'        => 'Һаҡлауҙы сисергә',
+'vector-simplesearch-preference' => 'Киңәйтелгән эҙләү тәҡдимдәрен ҡулланырға ("Векторлы" күренеш өсөн генә)',
+'vector-view-create'             => 'Яһау',
+'vector-view-edit'               => 'Үҙгәртергә',
+'vector-view-history'            => 'Тарихты ҡарау',
+'vector-view-view'               => 'Уҡыу',
+'vector-view-viewsource'         => 'Сығанаҡты ҡарарға',
+'actions'                        => 'Хәрәкәт',
+'namespaces'                     => 'Исем арауыҡтары',
+'variants'                       => 'Варианттар',
 
 'errorpagetitle'    => 'Хата',
 'returnto'          => '$1 битенә ҡайтыу.',
@@ -270,6 +271,8 @@ $messages = array(
 Зинһар был биткә һуңырак кереп ҡарағыҙ.
 
 $1',
+'pool-queuefull'    => 'Һорауҙар йыйынтығы тулы',
+'pool-errorunknown' => 'Билдәһеҙ хата',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} тураһында',

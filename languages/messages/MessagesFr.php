@@ -576,6 +576,7 @@ Trop d’utilisateurs cherchent à consulter cette page.
 Veuillez attendre un moment avant de retenter l’accès à cette page.
 
 $1',
+'pool-errorunknown' => 'Erreur inconnue',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'À propos de {{SITENAME}}',

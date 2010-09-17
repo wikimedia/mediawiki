@@ -531,6 +531,9 @@ Túl sok felhasználó próbálta megtekinteni ezt az oldalt.
 Kérlek, várj egy kicsit, mielőtt újrapróbálkoznál a lap megtekintésével.
 
 $1',
+'pool-timeout'      => 'Letelt a várakozási idő a zároláshoz',
+'pool-queuefull'    => 'A pool sor megtelt',
+'pool-errorunknown' => 'Ismeretlen hiba',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A {{SITENAME}} wikiről',
@@ -770,6 +773,11 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 Várj egy kicsit, mielőtt újra próbálkozol.',
 'loginlanguagelabel'         => 'Nyelv: $1',
 'suspicious-userlogout'      => 'A kijelentkezési kérésed vissza lett utasítva, mert úgy tűnik, hogy egy hibás böngésző vagy gyorsítótárazó proxy küldte.',
+'ratelimit-excluded-ips'     => '# <!-- leave this line exactly as it is --><pre>
+# A szintaktika a következő:
+#  * Minden „#” karakterrel kezdődő sor megjegyzésnek számít a sor végéig
+#  * Minden nem üres sor egy IP-cím, ami ki van zárva a sebességkorlátozásból 
+#</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Becsült jelszóerősség: $1',
@@ -1219,7 +1227,8 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'compareselectedversions'  => 'Kiválasztott változatok összehasonlítása',
 'showhideselectedversions' => 'Kiválasztott változatok láthatóságának beállítása',
 'editundo'                 => 'visszavonás',
-'diff-multi'               => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
+'diff-multi'               => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)',
 
 # Search results
 'searchresults'                    => 'A keresés eredménye',
@@ -1737,6 +1746,7 @@ PICT # ált.
 
 $1',
 'upload-warning-subj'         => 'Feltöltési figyelmeztetés',
+'upload-warning-msg'          => 'Hiba történt a feltöltéseddel innen: [$2]. Visszatérhetsz a [[Special:Upload/stash/$1|feltöltéshez]], hogy orvosold a hibát.',
 
 'upload-proto-error'        => 'Hibás protokoll',
 'upload-proto-error-text'   => 'A távoli feltöltéshez <code>http://</code> vagy <code>ftp://</code> kezdetű URL-ekre van szükség.',
@@ -2136,6 +2146,7 @@ Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címe
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
 'mywatchlist'          => 'Figyelőlistám',
+'watchlistfor2'        => '$1 felhasználó $2 eszközei',
 'nowatchlist'          => 'Nincs lap a figyelőlistádon.',
 'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
 'watchnologin'         => 'Nem vagy bejelentkezve',
@@ -3410,6 +3421,11 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-license'                  => 'Licenc',
 'version-poweredby-credits'        => "Ez a wiki '''[http://www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
 'version-poweredby-others'         => 'mások',
+'version-license-info'             => 'A MediaWiki szabad szoftver, terjeszthető és / vagy módosítható a GNU General Public License alatt, amit a Free Software Foundation közzétett; vagy a 2-es verziójú licenc, vagy (az Ön választása alapján) bármely későbbi verzió szerint. 
+
+A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉLKÜL, anélkül, hogy PIACKÉPES vagy HASZNÁLHATÓ LENNE EGY ADOTT CÉLRA. Lásd a GNU General Public License-t a további részletekért. 
+
+Önnek kapnia kellett [{{SERVER}}{{SCRIPTPATH}}/COPYING egy példányt a GNU General Public License-ből] ezzel a programmal együtt, ha nem, írjon a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA címre vagy [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html olvassa el online].',
 'version-software'                 => 'Telepített szoftverek',
 'version-software-product'         => 'Termék',
 'version-software-version'         => 'Verzió',

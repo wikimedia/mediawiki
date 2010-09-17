@@ -113,8 +113,8 @@ $messages = array(
 'dec'           => 'Dez.',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategoriin}}',
-'category_header'                => 'Saiten in da Kategorii „$1“',
+'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'category_header'                => 'Seiten in da Kategorie „$1“',
 'subcategories'                  => 'Unterkategoriin',
 'category-media-header'          => 'Medien in da Kategorii „$1“',
 'category-empty'                 => "''De Kategorii enthoit im Moment koane Saiten und koane Medien ned.''",
@@ -155,12 +155,21 @@ $messages = array(
 'qbspecialpages' => 'Speziaalsaiten',
 
 # Vector skin
-'vector-action-delete'    => 'Leschen',
-'vector-action-move'      => 'Vaschiam',
-'vector-action-protect'   => 'Schytzen',
-'vector-action-undelete'  => 'Wiaderherstöin',
-'vector-action-unprotect' => 'Fraigeem',
-'namespaces'              => 'Nåmensraim',
+'vector-action-addsection'       => 'Obschnit dazuafyng',
+'vector-action-delete'           => 'leschn',
+'vector-action-move'             => 'Vaschiam',
+'vector-action-protect'          => 'Schytzen',
+'vector-action-undelete'         => 'Wiaderherstöin',
+'vector-action-unprotect'        => 'Fraigeem',
+'vector-simplesearch-preference' => 'Daweiterte Suachvurschläg aktivirn (netter Vector)',
+'vector-view-create'             => 'Erstöin',
+'vector-view-edit'               => 'Werkln',
+'vector-view-history'            => 'Versionsgschicht',
+'vector-view-view'               => 'Leesn',
+'vector-view-viewsource'         => 'Quöitext åzong',
+'actions'                        => 'Akzionen',
+'namespaces'                     => 'Nåmensraim',
+'variants'                       => 'Variantn',
 
 'errorpagetitle'    => 'Feeler',
 'returnto'          => 'Zruck zur Saiten $1.',
@@ -259,7 +268,7 @@ $messages = array(
 'red-link-title'          => '$1 (de Saiten gibts ned)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Saiten',
+'nstab-main'      => 'Seitn',
 'nstab-user'      => 'Benytzersaiten',
 'nstab-media'     => 'Mediensaiten',
 'nstab-special'   => 'Speziaalsaiten',
@@ -369,6 +378,7 @@ Vagiss bittschee ned, daine [[Special:Preferences|{{SITENAME}}-Aistellungen]] å
 'acct_creation_throttle_hit' => 'Du host scho $1 {{PLURAL:$1|Benytzerkonto|Benytzerkonten}} und kååst jetzad koane mer åleeng.',
 'accountcreated'             => 'Benytzerkonto is erstöid worn',
 'accountcreatedtext'         => "'s Benytzerkonto $1 is aigrichtt worn.",
+'loginlanguagelabel'         => 'Sprooch: $1',
 
 # Password reset dialog
 'oldpassword' => 'Oids Posswort:',
@@ -416,17 +426,23 @@ Vagiss bittschee ned, daine [[Special:Preferences|{{SITENAME}}-Aistellungen]] å
 'loginreqlink'                     => 'åmöiden',
 'loginreqpagetext'                 => "Du muasst de $1, dass d' Saiten leesen kååst.",
 'accmailtitle'                     => 'Passwort is vaschickt worn',
-'accmailtext'                      => 'Des Posswort fyr „$1“ is an $2 gschickt worn.',
+'accmailtext'                      => 'E zuafällig genariards Posswort fyr [[User talk:$1|$1]] is an $2 gschickt worn.
+
+Des Posswort fyr des naiche Benutzerkonto kå auf da Speziaalseiten  „[[Special:ChangePassword|Posswort ändern]]“ gändert wern.',
 'newarticle'                       => '(Naich)',
 'newarticletext'                   => "↓ Du bist am Link zua ner Saiten gfóigt, dé néd vurhånden is.
 Das d' dé Saiten åléng kååst, trog dain Text a dé untensteehate Boxen ai (schau unter da [[{{MediaWiki:Helppage}}|Hüifssaiten]] fyr merer Informaziónen).
 Bist du föischlicherwais dodan, dånn druck dé '''Zruck'''-Schoitflächen vo daim Browser.",
-'anontalkpagetext'                 => "---- ''De Saiten werd dodazua hergnumma, am ned-ågmöidten Benytzer Nochrichten z' hinterlossen.
-Wånnst mid de Kommentare auf derer Saiten nix åfanga kååst, is vamuatlich da friarerne Inhower vo derer IP-Adress gmoant und du kååstas ignorirn.
-Wånnst a anonymer Benytzer bist und denkst, das irrelevante Kommentare ån di grichtt worn san, [[Special:UserLogin|möid de bittschee å]], um zuakynftig Vawirrung z' vamain.''",
+'anontalkpagetext'                 => "---- ''De Seiten werd dodazua hergnumma, am ned-ågmöiderten Benutzer Nochrichten z' hinterlossen.
+Wånnst mid de Kommentare auf derer Seiten nix åfanga kåst, is vamuatlich da friarerne Inhower vo derer IP-Adress gmoat und du kåstas ignorirn.
+Wånnst a anonymer Benutzer bist und denkst, das irrelevante Kommentare ån di grichtt worn san, [[Special:UserLogin|möid de bittschee å]], um zuakynfteg Vawirrung z' vamein.''",
 'noarticletext'                    => 'De Saiten enthoit zua Zaid koan Text ned.
 Du kååst an Titl vo derer Saiten auf de åndern Saiten [[Special:Search/{{PAGENAME}}|suacha]],
 <span class="plainlinks"> in de dazuagheraden [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} Logbiache suacha] oder de Saiten [{{fullurl:{{FULLPAGENAME}}|action=edit}} beorwaiten]</span>.',
+'userpage-userdoesnotexist'        => 'Des Benutzerkonto „$1“ is ned vurhånden. Bittschee priaf, ob du de Seiten wirkle erstöin/beorweiten wüist.',
+'userpage-userdoesnotexist-view'   => 'Benutzerkonto „$1“ existiard ned.',
+'blocked-notice-logextract'        => "{{GENDER:$1|Der Benutzer|De Benutzarin|Der Benutzer do}} is zurzeid gesperrd.
+Zua da Informazion foigt a aktueller Auszug aus 'm Benutzersperr-Logbiache:",
 'updated'                          => '(Gendert)',
 'previewnote'                      => "'''Des is netter a Vurschau, d' Saiten is nu ned gspaichert worn!'''",
 'previewconflict'                  => "De Vurschau gibt an Inhoit vom owern Textföidl wiader. So werd d' Saiten ausschaun, wånn du jetzad spaichertst.",
@@ -520,7 +536,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 
 # Search results
 'searchresults'             => 'Suachergebniss',
-'searchresults-title'       => 'Eagebnisse vu da Suach nåch „$1“',
+'searchresults-title'       => 'Ergebniss vo da Suach noch „$1“',
 'searchresulttext'          => "Fia weidare Infos üwa's Suacha schau auf'd [[{{MediaWiki:Helppage}}|Hüifeseitn]].",
 'searchsubtitle'            => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
 'searchsubtitleinvalid'     => 'Dei Suachãnfråg: „$1“.',
@@ -544,6 +560,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'powersearch-ns'            => 'Suach in Nãmensräume:',
 'powersearch-redir'         => 'Weidaleitungen ãnzoang',
 'powersearch-field'         => 'Suach nåch:',
+'search-external'           => 'Externe Suach',
 
 # Preferences page
 'preferences'       => 'Eistellungen',
@@ -613,8 +630,8 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 
 # Recent changes linked
 'recentchangeslinked'         => 'Valinkts priafm',
-'recentchangeslinked-feed'    => 'Valinkts prüfn',
-'recentchangeslinked-toolbox' => 'Valinkts prüfn',
+'recentchangeslinked-feed'    => 'Valinkts priafm',
+'recentchangeslinked-toolbox' => 'Valinkts priafm',
 'recentchangeslinked-title'   => 'Ändarungen auf Seitn, zu de vu da Seitn „$1“ valinkt is',
 'recentchangeslinked-summary' => "De Spezialseitn zagt de letztn Änderungen bei de Seitn, zu de vu ana gwissn Seitn valinkt wiad (bzw. de wås in ana gwissn Kategorie eisoatiad han). Seitn vu deina [[Special:Watchlist|Beobåchtungslistn]] wean '''fett''' ãnzoagt.",
 'recentchangeslinked-page'    => 'Saiten:',
@@ -647,6 +664,9 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 
 'license-nopreview'  => '(es gibt koa Vorschau)',
 'upload_source_file' => ' (a Datei auf deim Computa)',
+
+# Special:ListFiles
+'listfiles_search_for' => 'Suach noch da Datai:',
 
 # File description page
 'file-anchor-link'          => 'Datai',
@@ -1057,7 +1077,7 @@ Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki
 'tooltip-pt-mycontris'            => 'Liste vo eigene Beiträg',
 'tooltip-pt-login'                => 'Das ma se ånmöidt, werd zwor gern gseeng, is ower koa Pflicht ned.',
 'tooltip-pt-logout'               => 'Obmeidn',
-'tooltip-ca-talk'                 => 'Diskussion zum Seitninhåit',
+'tooltip-ca-talk'                 => 'Diskussion zum Seitninhoit',
 'tooltip-ca-edit'                 => "Seitn beåawatn. Bitte voa'm Speichan d'Voaschaufunkzion benutzn.",
 'tooltip-ca-addsection'           => 'An Kommentar zua dera Diskussion dazuagem.',
 'tooltip-ca-viewsource'           => 'De Seitn is gschützt. An Quelltext kann ma oschaun.',
@@ -1078,7 +1098,7 @@ Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki
 'tooltip-n-recentchanges'         => 'Listen vo de letzten Endarungen auf {{SITENAME}}',
 'tooltip-n-randompage'            => 'Zuafellige Saiten',
 'tooltip-n-help'                  => 'Hüifesaiten åzoang',
-'tooltip-t-whatlinkshere'         => 'Listn vu ålle Seitn, de då hea zoang',
+'tooltip-t-whatlinkshere'         => 'Listn vo olle Seitn, de do her zoang',
 'tooltip-t-recentchangeslinked'   => "D'letztn Ändarungen auf de Seitn, de vu då valinkt san",
 'tooltip-feed-rss'                => 'RSS-Feed vo derer Saiten',
 'tooltip-feed-atom'               => 'Atom-Feed vo derer Saiten',
@@ -1086,7 +1106,7 @@ Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki
 'tooltip-t-emailuser'             => 'Dem Benutza E-Post schicka',
 'tooltip-t-upload'                => 'Datain auffeloon',
 'tooltip-t-specialpages'          => 'Listen vo olle Speziaalsaiten',
-'tooltip-t-print'                 => 'Druckãnsicht vu dea Seitn',
+'tooltip-t-print'                 => 'Druckåsicht vo dera Seitn',
 'tooltip-t-permalink'             => 'Dauerhofter Link zua der Saitenversion',
 'tooltip-ca-nstab-main'           => 'Saiteninhoit åzoang',
 'tooltip-ca-nstab-user'           => 'Benutzaseitn ãzoang',

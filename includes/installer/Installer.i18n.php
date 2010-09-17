@@ -6125,6 +6125,159 @@ Sto script d'agiornament a peul pa convertilo, parèj a rëstrà $2.",
 	'config-ns-site-name' => 'Midem com ël nom dla wiki: $1',
 	'config-ns-other' => 'Àutr (specìfica)',
 	'config-ns-other-default' => 'MyWiki',
+	'config-project-namespace-help' => "Andasend daré a l'esempi ëd Wikipedia, vàire wiki a manten-o soe pàgine ëd plicy separà da soe pàgine ëd contnù, ant në \"'''spassi nominal ëd proget'''\".
+Tùit ij tìtoj ëd pàgina ant cost spassi nominal a parto con un sert prefiss, che it peule cpecifiché ambelessì.
+Tradissionalment, sto prefiss a l'é derivà dal nòm ëd la wiki, ma a peul pa conten-e caràter ëd pontegiatura cpm \"#\" o \":\".",
+	'config-ns-invalid' => 'Lë spassi nominal specificà "<nowiki>$1</nowiki>" a l\'é pa bon.
+Specìfica në spassi nominal ëd proget diferent.',
+	'config-admin-box' => "Cont ëd l'Anministrador",
+	'config-admin-name' => 'Tò nòm:',
+	'config-admin-password' => 'Ciav:',
+	'config-admin-password-confirm' => 'Torna ciav:',
+	'config-admin-help' => 'Ansëriss ambelessì tò nòm utent preferì, për esempi "Joe Bloggs".
+Sto sì a l\'é ël nòm ch\'it dovrerai për intré ant la wiki.',
+	'config-admin-name-blank' => "Ansëriss un nòm utent dl'aministrador.",
+	'config-admin-name-invalid' => 'Ël nòm utent specificà "<nowiki>$1</nowiki>" a l\'é pa bon.
+Specìfica un nòm utent diferent.',
+	'config-admin-password-blank' => "Ansëriss na ciav për ël cont ëd l'aministrador",
+	'config-admin-password-same' => 'La ciav a deuv pa esse istessa al nòm utent',
+	'config-admin-password-mismatch' => "Le doe ciav che a l'ha scrivù a resto diferente antra lor.",
+	'config-admin-email' => 'Adrëssa ëd pòsta eletrònica:',
+	'config-admin-email-help' => "Ansëriss n'adrëssa e-mail ambelessì për përmëtt-te d'arseive e-mail da àutr utent an sla wiki, riamposté toa ciav, e esse notificà ëd cambi a pàgine ch'it ten-e sot euj.",
+	'config-admin-error-user' => 'Eror antern an creand n\'admin con ël nòm "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Eror antern an ampostand na ciav për l\'admin "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-subscribe' => "Sotscriv la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list ëd j'anonsi ëd release].",
+	'config-subscribe-help' => "Sossì a l'é na mailing list a bass-volum dovrà për j'anonsi ëd release, compreis amportant anonsi ëd sicurëssa.
+It dovrìe sotscrivla e agiorné toa instalassion mediaWiki quand che vërsion neuve a rivo.",
+	'config-almost-done' => "It l'has già falo!
+It peule adess sauté le configurassion rimanenta e instalé la wiki propi adess.",
+	'config-optional-continue' => "Ciam-me anco' custion.",
+	'config-optional-skip' => 'I son già anojà, instala mach la wiki.',
+	'config-profile' => 'Profil dij drit utent:',
+	'config-profile-wiki' => 'Wiki tradissional',
+	'config-profile-no-anon' => "A l'é ciamà la creassion d'un cont",
+	'config-profile-fishbowl' => 'Mach editor autorisà',
+	'config-profile-private' => 'Wiki privà',
+	'config-profile-help' => "Le wiki a travajo mej quand it lasse che motobin ëd përson-e aj modìfico ël pi possìbil.
+An MediaWiki, a l'é bel fé revisiné ij cambi recent, e buté andré minca dann che a sia fàit da utent noviss o malissios.
+
+An tùit ij cas, tant a l'han trovà che MediaWiki a sia ùtil ant na gran varietà ëd manere, e quaich vire a l'é pa bel fé convinse quidun dij benefit dla wiki.
+Parej it l'has doe possibilità.
+
+Un '''{{int:config-profile-wiki}}''' a përmëtt a mincadun ëd modifiché, fin-a sensa intré.
+Na wiki con  '''{{int:config-profile-no-anon}}''' a dà contabilità extra, ma a peul slontané contribudor casuaj.
+
+Lë scenari '''{{int:config-profile-fishbowl}}''' a përmëtt a j'utent aprovà ëd modifiché, ma ël pùblich a peul vëdde le pàgine, compreisa la stòria.
+Un '''{{int:config-profile-private}}''' a përmëtt mach a j'utent aprovà ëd vëdde le pàgine, com la midema partìa ch'a peul modifiché.
+
+Configurassion ëd drit utent pi complicà a son disponìbij d'apress ëd l'instalassion, varda la [http://www.mediawiki.org/wiki/Manual:User_rights relevant manual entry].",
+	'config-license' => "Drit d'autor e licensa",
+	'config-license-none' => 'Pa gnun pé ëd licensa',
+	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike (Wikipedia-compatibla)',
+	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-gfdl-old' => 'Licensa ëd documentassion lìbera GNU 1.2',
+	'config-license-gfdl-current' => 'Licensa ëd documentassion lìbera GNU 1.3 o pi recenta',
+	'config-license-pd' => 'Domini Pùblich',
+	'config-license-cc-choose' => 'Selession-a na licensa utent Creative Commons',
+	'config-license-help' => "Vàire wiki pùbliche a but tute le contribussion sota na [http://freedomdefined.org/Definition licensa libra]. Sossì a giuta a creé un sens d'apartenensa a la comunità e a ancoragia contribussion a longh andé.
+A l'é generalment pa necessari për na wiki privà o d'asienda.
+
+S'it veule podèj dovré test da Wikipedia, e it vole che Wikipedia a peussa aceté test copià da àutre wiki, it dovrìe serne '''Creative Commons Attribution Share Alike'''.
+
+La GNU Free Documentation License a l'era la veja licensa dont sota a-i era Wikipedia.
+A l'é anco' na licensa bon-a, an tùit ij cas, sta licensa a l'ha quaich funsion ch'a peulo esse riusà e antërpretassion mal fé.",
+	'config-email-settings' => 'Ampostassion e-mail',
+	'config-enable-email' => 'Abìlita e-mail an surtìa',
+	'config-enable-email-help' => "S'it veule che j'e-mail a travajo, j'[http://www.php.net/manual/en/mail.configuration.php ampostassion dla mail PHP] a deuv esse configurà da bin.
+S'it veule pa minca funsion e-mail, it deuve disabiliteje ambelessì.",
+	'config-email-user' => 'Abìlita e-mail utent-a-utent',
+	'config-email-user-help' => "A përmëtt a tùit j'utent ëd mandé e-mail un a l'àutr se lor a l'han abilitàlo an soe preferense.",
+	'config-email-usertalk' => 'Abìlita notificassion dle pàgine ëd discussion utent',
+	'config-email-usertalk-help' => "A përmëtt a j'utent d'arseive notificassion an sij cambi dle pàgine ëd discussion utent, s'a l'han abilitalo ant soe preferense.",
+	'config-email-watchlist' => "Abìlita notificassion ëd lòn ch'as ten sot euj",
+	'config-email-watchlist-help' => "A përmëtt a j'utent d'arseive notificassion an sle pàgine ch'a ten-o sot euj s'a l'han abilitalo ant soe preferense.",
+	'config-email-auth' => 'Abìlita autenticassion e-mail',
+	'config-email-auth-help' => "Se st'opsion a l'é abilità, j'utent a deuvo confirmé soe adrësse e-mail an dovrand un colegament mandà a lor quand ch'a l'han ampostala o cambiala.
+Mach adrësse e-mail autenticà a peulo arseive e-mail da àutr utent o cangé e-mail ëd notificassion.
+Amposté st'opsion a l'é '''arcomandà''' për wiki pùbliche a càusa ëd possìbij abus ëd le funsion e-mail.",
+	'config-email-sender' => "Artorna l'adrëssa ëd pòsta eletrònica:",
+	'config-email-sender-help' => "Ansëriss l'adrëssa e-mail da dovré com adrëssa d'artorn ant l'e-mail surtìa.
+Sossì a l'é andova j'arspòste a saran mandà.
+Motobin ëd servent ëd pòsta a ciamo che almanch la part dël nòm ëd domini a sia bon.",
+	'config-upload-settings' => 'Carie ëd figure e file',
+	'config-upload-enable' => 'Abìlita carie ëd file',
+	'config-upload-help' => 'Le carie ëd file potensialment a espon-o tò servent a risch ëd sicurëssa.
+Per pi anformassion, les la [http://www.mediawiki.org/wiki/Manual:Security session ëd sicurëssa] an st manual.
+
+Për abilité carie ëd file, cangia la manera dla sotdirectory dle <code>figure</code> sota la directory radis ëd MediaWiki an manera che ël servent web a peussa scrivla.
+Peui abìlita sta opsion.',
+	'config-upload-deleted' => 'Directory për file scanselà:',
+	'config-upload-deleted-help' => 'Sern na directory andova archivié ij file scanselà.
+Idealment, costa a dovrìa pa esse acessibla via web.',
+	'config-logo' => 'Anliura dël Logo:',
+	'config-logo-help' => "Lë skin ëd default ëd MediaWiki a comprend spassi për un logo ëd 135x160 pixel ant ël canton àut a snista.
+Caria na figura ëd la dimension aproprià, e ansëriss l'anliura ambelessì.
+
+S'it veule pa un logo, lassa sto camp bianch.",
+	'config-instantcommons' => 'Abìlita Instant Commons',
+	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] a l\'é na funsion ch\'a përmëtt a le wiki ëd dovré figure, son e àutr mojen trovà an sël sit [http://commons.wikimedia.org/ Wikimedia Commons].
+Për dovré sossì, MediaWiki a ciama acess a la ragnà. $1
+
+Për pi anformassion su sta funsion, compreis istrussion su com ampostela për wiki diferente da Wikimedia Commons, consulta [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos ël manual].',
+	'config-instantcommons-good' => "L'instalador a peul prové la conetività Internet an mente dij cntròj d'ambient. 
+It peule abilité sta funsion s'it veule.",
+	'config-instantcommons-bad' => "''Për maleur, l'instalador a peul pa determiné la conetività Internet an mente dij contròj d'ambient, parèj it podrìe pa podèj dovré sta funsion.
+Se tò servent a l'é daré a un proxy, it podrìe dovèj fé quaich [http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy configurassion adissionaj].''",
+	'config-cc-error' => "Ël sernidor ëd la licensa Creative Commons a l'ha pa dàit gnun arzultà.
+Ansëriss ël nòm dla licensa manualment.",
+	'config-cc-again' => 'Torna cheuje...',
+	'config-cc-not-chosen' => 'Sern che licensa Creative Commons it veule e sgnaca "anans".',
+	'config-advanced-settings' => 'Configurassin avansà',
+	'config-cache-options' => "Ampostassion për caching d'oget:",
+	'config-cache-help' => "Ël caching d'oget a l'é dovrà për mejoré la velocità ëd MediaWiki an fasend cashing dij dat dovrà soens.
+Ij sit da medi a gròss a son motobin ancoragià a abilité sossì, e ij sit cit a vëddran ëdcò dij benefissi.",
+	'config-cache-none' => 'Pa gnente caching (gnun-a funsionalità gavà, ma la velocità a peul esse tocà su  sit ëd gròsse wiki)',
+	'config-cache-accel' => "Caching d'oget PHP (APC, eAccelerator, XCache o WinCache)",
+	'config-cache-memcached' => 'Dòvra Memcached (a ciama ampostassion e configurassion adissionaj)',
+	'config-memcached-servers' => 'Servent Memcached:',
+	'config-memcached-help' => "Lista d'adrësse IP da dovré për Memcached.
+A dovrìa esse separà cn vìrgole e specifiché la pòrta da dovré (për esempi: 127.0.0.1:11211, 192.168.1.25:11211).",
+	'config-extensions' => 'Estension',
+	'config-extensions-help' => "J'estension listà sota a son ëstàite trovà ant toa directory <code>./extensions</code>.
+
+A peulo ciamé configurassion adissionaj, ma it peule abiliteje adess",
+	'config-install-alreadydone' => "'''Avis''' A smija ch'it l'abie già instalà MediaWiki e it preuve torna a instalelo.
+Për piasì va a la pàgina ch'i ven.",
+	'config-install-step-done' => 'fàit',
+	'config-install-step-failed' => 'falì',
+	'config-install-extensions' => 'Compreise estension',
+	'config-install-database' => 'Amposté databse',
+	'config-install-pg-schema-failed' => 'Creassion dle tàule falìa.
+Sigurte che l\'utent "$1" a peussa scrive lë schema "$2".',
+	'config-install-user' => "Creé l'utent dël database",
+	'config-install-user-failed' => 'Falì a dé ij përmess a l\'utent "$1": $2',
+	'config-install-tables' => 'Creé tàule',
+	'config-install-tables-exist' => "'''Avis''': A smija che le tàule ëd mediaWiki a esisto già.
+Sauté la creassion.",
+	'config-install-tables-failed' => "'''Eror''': Creassion ëd le tàule falìa con l'eror ch'a ven: $1",
+	'config-install-interwiki' => 'Popolé le tàule interwiki ëd default',
+	'config-install-interwiki-sql' => 'As peul pa trovesse ël file <code>interwiki.sql</code>.',
+	'config-install-interwiki-exists' => "'''Avis''': La tàula interwiki a smija ch'a l'abia già dle righe.
+Sauté la lista ëd default.",
+	'config-install-secretkey' => 'Generé ciav segreta',
+	'config-insecure-secretkey' => "'''Avis:''' As peul pa creesse na <code>\$wgSecretKey</code>. segura.
+Considra ëd cangela manualment.",
+	'config-install-sysop' => "Creé ël cont ëd l'utent aministrador",
+	'config-install-done' => "'''Congratulassion!'''
+It l'has instalà da bin mediaWiki.
+
+L'instalador a l'ha generà un file <code>LocalSettings.php</code>.
+A conten tuta toa configurassion.
+
+It dovras [$1 dëscarié]lo e butelo ant la bas ëd l'instalassion ëd toa wiki (la midema directory com index.php).
+'''Nòta''': S'it fas pa sossì adess, sto file ëd configurassion generà a sarà pa disponìbil për ti pi tard s'it finisse l'instalassion sensa dëscarielo.
+
+Quand che a l'é stàit fàit, it peule '''[$2 intré an toa wiki]'''.",
 );
 
 /** Pashto (پښتو)
@@ -6956,6 +7109,8 @@ chmod a+w $3</pre>',
 Это более эффективно, чем ''UTF-8 режим'' MySQL, и позволяет использовать полный набор символов Unicode. 
 
 В '''режиме UTF-8''' MySQL будет знать в какой кодировке находятся Ваши данные и может отображать и преобразовывать их соответствующим образом, но это не позволит вам хранить символы выше [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Базовой Многоязыковой Плоскости].",
+	'config-mysql-charset-mismatch' => "'''Внимание.''' Вы запросили схему $1, но существующая база данных имеет схему $2. 
+Этот сценарий обновления не сможет преобразовать схему, она останется типа $2.",
 	'config-site-name' => 'Название вики:',
 	'config-site-name-help' => 'Название будет отображаться в заголовке окна браузера и в некоторых других местах вики.',
 	'config-site-name-blank' => 'Введите название сайта.',
@@ -6964,6 +7119,11 @@ chmod a+w $3</pre>',
 	'config-ns-site-name' => 'То же, что имя вики: $1',
 	'config-ns-other' => 'Другие (укажите)',
 	'config-ns-other-default' => 'MyWiki',
+	'config-project-namespace-help' => "Следуя примеру Википедии, многие вики хранят свои страницы правил отдельно от страниц основного содержания, в так называемом '''«пространстве имён проекта»'''. 
+Все названия страниц в этом пространстве имён начинается с определённого префикса, который вы можете задать здесь. 
+Обычно, этот префикс происходит от имени вики, но он не может содержать знаки препинания, символы «#» или «:».",
+	'config-ns-invalid' => 'Указанное пространство имён <nowiki>$1</nowiki> недопустимо. 
+Укажите другое пространство имён проекта.',
 	'config-admin-box' => 'Учётная запись администратора',
 	'config-admin-name' => 'Имя:',
 	'config-admin-password' => 'Пароль:',
@@ -6971,17 +7131,23 @@ chmod a+w $3</pre>',
 	'config-admin-help' => 'Введите ваше имя пользователя здесь, например, «Иван Иванов».
 Это имя будет использоваться для входа в вики.',
 	'config-admin-name-blank' => 'Введите имя пользователя администратора.',
+	'config-admin-name-invalid' => 'Указанное имя пользователя «<nowiki>$1</nowiki>» недопустимо. 
+Укажите другое имя пользователя.',
 	'config-admin-password-blank' => 'Введите пароль для учётной записи администратора.',
 	'config-admin-password-same' => 'Пароль не должен быть таким же, как имя пользователя.',
 	'config-admin-password-mismatch' => 'Введённые вами пароли не совпадают.',
 	'config-admin-email' => 'Адрес электронной почты:',
+	'config-admin-email-help' => 'Введите адрес электронной почты, чтобы получать сообщения от других пользователей вики, иметь возможность восстановить пароль, а также получать уведомления об изменениях страниц из списка наблюдения.',
 	'config-admin-error-user' => 'Внутренняя ошибка при создании учётной записи администратора с именем «<nowiki>$1</nowiki>».',
 	'config-admin-error-password' => 'Внутренняя ошибка при установке пароля для учётной записи администратора «<nowiki>$1</nowiki>»: <pre>$2</pre>',
 	'config-subscribe' => 'Подписаться на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce рассылку новостей о появлении новых версий MediaWiki].',
+	'config-subscribe-help' => 'Это список рассылки с малым числом сообщений, используется для анонса новых выпусков и сообщений о проблемах с безопасностью.
+Вам следует подписаться на него и обновлять движок MediaWiki, по мере выхода новых версий.',
 	'config-almost-done' => 'Вы почти у цели! 
 Остальные настройки можно пропустить и приступить к установке вики.',
 	'config-optional-continue' => 'Произвести тонкую настройку',
 	'config-optional-skip' => 'Хватит, установить вики',
+	'config-profile' => 'Профиль прав прользователей:',
 	'config-profile-wiki' => 'Традиционная вики',
 	'config-profile-no-anon' => 'Требуется создание учётной записи',
 	'config-profile-fishbowl' => 'Только для авторизованых редакторов',

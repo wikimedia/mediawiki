@@ -398,6 +398,7 @@ Re a implijerien a glask mont war ar bajenn-mañ war un dro.
 Gortozit ur pennadig a-raok klask mont war ar bjann-mañ en-dro.
 
 $1',
+'pool-timeout'      => "Timeout zo o c'hortoz evit klozañ",
 'pool-errorunknown' => 'Fazi dianav',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -637,6 +638,11 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 Gortozit a-raok klask en-dro.",
 'loginlanguagelabel'         => 'Yezh : $1',
 'suspicious-userlogout'      => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
+'ratelimit-excluded-ips'     => " #<!-- laoskit al linenn-mañ tre evel m'emañ --> <pre>
+# Setu penaos emañ an ereadur :
+#  * Kement tra war-lerc'h an arouezenn \"#\" zo un urzhiad, betek penn all al linenn
+#  * Kement linenn n'eo ket goullo zo ur chomlec'h IP e-maez ar feur termen
+  #</pre> <!-- laoskit al linenn-mañ tre evel m'emañ -->",
 
 # JavaScript password checks
 'password-strength'            => 'Live surentez ar ger-tremen : $1',
@@ -1079,6 +1085,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'showhideselectedversions' => 'Diskouez/Kuzhat ar stummoù diuzet',
 'editundo'                 => 'disteuler',
 'diff-multi'               => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant {{PLURAL:$2|un implijer|$2 implijer}} kuzhet.)",
+'diff-multi-manyusers'     => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant muioc'h evit $2 {{PLURAL:$2|implijer|implijer}} kuzhet.)",
 
 # Search results
 'searchresults'                    => "Disoc'h ar c'hlask",
