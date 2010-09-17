@@ -380,7 +380,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Only store if modified
 		if ( $files !== $this->getFileDependencies( $context->getSkin() ) ) {
 			$encFiles = FormatJson::encode( $files );
-			$dbw = wfGetDb( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER );
 			$dbw->replace( 'module_deps',
 				array( array( 'md_module', 'md_skin' ) ), array(
 					'md_module' => $this->getName(),
@@ -430,6 +430,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
 			return $this->modifiedTime[$context->getHash()];
 		}
+		wfProfileIn( __METHOD__ );
 		
 		// Sort of nasty way we can get a flat list of files depended on by all styles
 		$styles = array();
@@ -454,13 +455,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->loaders,
 			$this->getFileDependencies( $context->getSkin() )
 		);
+		wfProfileIn( __METHOD__.'-filemtime' );
 		$filesMtime = max( array_map( 'filemtime', array_map( array( __CLASS__, 'remapFilename' ), $files ) ) );
+		wfProfileOut( __METHOD__.'-filemtime' );
 		// Only get the message timestamp if there are messages in the module
 		$msgBlobMtime = 0;
 		if ( count( $this->messages ) ) {
 			// Get the mtime of the message blob
-			// TODO: This timestamp is queried a lot and queried separately for each module. Maybe it should be put in memcached?
-			$dbr = wfGetDb( DB_SLAVE );
+			// TODO: This timestamp is queried a lot and queried separately for each module. 
+			// Maybe it should be put in memcached?
+			$dbr = wfGetDB( DB_SLAVE );
 			$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
 					'mr_resource' => $this->getName(),
 					'mr_lang' => $context->getLanguage()
@@ -469,6 +473,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$msgBlobMtime = $msgBlobMtime ? wfTimestamp( TS_UNIX, $msgBlobMtime ) : 0;
 		}
 		$this->modifiedTime[$context->getHash()] = max( $filesMtime, $msgBlobMtime );
+		wfProfileOut( __METHOD__ );
 		return $this->modifiedTime[$context->getHash()];
 	}
 
@@ -576,7 +581,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$deps = $wgMemc->get( $key );
 
 		if ( !$deps ) {
-			$dbr = wfGetDb( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE );
 			$deps = $dbr->selectField( 'module_deps', 'md_deps', array(
 					'md_module' => $this->getName(),
 					'md_skin' => $skin,
@@ -601,7 +606,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return String: concatenated contents of $files
 	 */
 	protected static function concatScripts( $files ) {
-		return implode( "\n", array_map( 'file_get_contents', array_map( array( __CLASS__, 'remapFilename' ), array_unique( (array) $files ) ) ) );
+		return implode( "\n", 
+			array_map( 
+				'file_get_contents', 
+				array_map( 
+					array( __CLASS__, 'remapFilename' ), 
+					array_unique( (array) $files ) ) ) );
 	}
 
 	protected static function organizeFilesByOption( $files, $option, $default ) {
@@ -636,7 +646,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$styles = self::organizeFilesByOption( $styles, 'media', 'all' );
 		foreach ( $styles as $media => $files ) {
 			$styles[$media] =
-				implode( "\n", array_map( array( __CLASS__, 'remapStyle' ), array_unique( (array) $files ) ) );
+				implode( "\n", 
+					array_map( 
+						array( __CLASS__, 'remapStyle' ), 
+						array_unique( (array) $files ) ) );
 		}
 		return $styles;
 	}
@@ -841,7 +854,11 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 	public function getScript( ResourceLoaderContext $context ) {
 		$user = User::newFromName( $context->getUser() );
-		$options = FormatJson::encode( $user instanceof User ? $user->getOptions() : User::getDefaultOptions() );
+		if ( $user instanceof User ) {
+			$options = FormatJson::encode( $user->getOptions() );
+		} else {
+			$options = FormatJson::encode( User::getDefaultOptions() );
+		}
 		return "mediaWiki.user.options.set( $options );";
 	}
 
@@ -894,9 +911,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Protected Methods */
 	
 	protected function getConfig( $context ) {
-		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension, $wgArticlePath, $wgScriptPath, $wgServer,
-			$wgContLang, $wgBreakFrames, $wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion,
-			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest, $wgSitename, $wgFileExtensions;
+		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension, 
+			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgBreakFrames, 
+			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion, 
+			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest, 
+			$wgSitename, $wgFileExtensions;
 
 		// Pre-process information
 		$separatorTransTable = $wgContLang->separatorTransformTable();
@@ -965,7 +984,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Build configuration
 			$config = FormatJson::encode( $this->getConfig( $context ) );
 			// Add a well-known start-up function
-			$scripts .= "window.startUp = function() { $registration mediaWiki.config.set( $config ); };";
+			$scripts .= <<<JAVASCRIPT
+window.startUp = function() {
+	$registration
+	mediaWiki.config.set( $config ); 
+};
+JAVASCRIPT;
 			// Build load query for jquery and mediawiki modules
 			$query = array(
 				'modules' => implode( '|', array( 'jquery', 'mediawiki' ) ),
@@ -983,9 +1007,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Build HTML code for loading jquery and mediawiki modules
 			$loadScript = Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) );
 			// Add code to add jquery and mediawiki loading code; only if the current client is compatible
-			$scripts .= "if ( isCompatible() ) { document.write( '$loadScript' ); }";
+			$scripts .= "if ( isCompatible() ) { document.write( " . FormatJson::encode( $loadScript ) . "); }\n";
 			// Delete the compatible function - it's not needed anymore
-			$scripts .= "delete window['isCompatible'];";
+			$scripts .= "delete window['isCompatible'];\n";
 		}
 
 		return $scripts;
