@@ -1283,7 +1283,7 @@ SQL;
 	}
 
 	function setup_database() {
-		global $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgDBport, $wgDBuser;
+		global $wgDBmwschema, $wgDBuser;
 
 		// Make sure that we can write to the correct schema
 		// If not, Postgres will happily and silently go to the next search_path item
