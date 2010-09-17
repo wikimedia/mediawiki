@@ -2394,6 +2394,10 @@ Additionally available:
 'protectlogtext'              => 'Text in [[Special:Log/protect]].',
 'protectedarticle'            => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
 'modifiedarticleprotection'   => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
+'movedarticleprotection'      => 'This is a log entry. It appears in the log if a protected page is renamed.
+
+Example:
+<code>00:51, 16 September 2010 Siebrand +(Talk • contribs • block) moved protection settings from "User:Siebrand/prot-move" to "User:Siebrand/prot-moved" ‎ (User:Siebrand/prot-move moved to User:Siebrand/prot-moved: prot_move test.)</code>',
 'protect-title'               => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
 'prot_1movedto2'              => 'Message description: [[mw:Manual:Interface/1movedto2]]',
 'protect-backlink'            => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}

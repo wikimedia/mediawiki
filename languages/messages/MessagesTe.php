@@ -371,6 +371,7 @@ $messages = array(
 ఈ పేజీని వీక్షించడానికి కొద్దిసేపు నిరీక్షించండి.
 
 $1',
+'pool-errorunknown' => 'గుర్తుతెలియని పొరపాటు',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} గురించి',
@@ -614,6 +615,11 @@ $2',
 మళ్ళీ ప్రయత్నించే ముందు కాసేపు వేచివుండండి.',
 'loginlanguagelabel'         => 'భాష: $1',
 'suspicious-userlogout'      => 'సరిగా పనిచేయని విహారిణి లేదా కాషింగ్ ప్రాక్సీ వల్ల పంపబడడం చేత, నిష్క్రమించాలనే మీ అభ్యర్థనని నిరాకరించారు.',
+'ratelimit-excluded-ips'     => ' #<!-- ఈ పంక్తిని ఉన్నదున్నట్లు ఇలాగే వదిలివేయండి --> <pre>
+# ఇక్కడ రాయాల్సిన విధానం ఇదీ:
+#  * "#" అనే అక్షరం నుండి ఆ పంక్తి చివరివరకూ వ్యాఖ్యానం
+#  * ఖాళీగా లేని ప్రతీ పంక్తీ మూల్యాంకన పరిమితి నుండి మినహాయించాల్సిన ఐపీ చిరునామా
+  #</pre> <!-- ఈ పంక్తిని ఉన్నదున్నట్లు ఇలాగే వదిలివేయండి -->',
 
 # JavaScript password checks
 'password-strength'            => 'అంచనావేసిన సంకేతపదపు  బలం: $1',

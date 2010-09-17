@@ -704,7 +704,7 @@ Yth yw folednow eus war agas [[Special:Watchlist|rol golyas]] yn '''tew'''.",
 'actioncomplete'        => 'An gwryans yw cowlwres',
 'deletedtext'           => '"<nowiki>$1</nowiki>" yw dileys.
 Gwelewgh $2 rag covath a dhileansow a-dhiwedhes.',
-'deletedarticle'        => 'a dhileys "[[$1]]"',
+'deletedarticle'        => 'a dhileas "[[$1]]"',
 'dellogpage'            => 'Covnoten dileyansow',
 'deletecomment'         => 'Acheson:',
 'deleteotherreason'     => 'Acheson aral/keworransel:',

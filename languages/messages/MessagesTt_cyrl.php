@@ -953,6 +953,10 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-unhid'             => '$1 ачылган',
 'revdelete-reasonotherlist'   => 'Башка сәбәп',
 'revdelete-edit-reasonlist'   => 'Сәбәпләр исемлеген үзгәртү',
+'revdelete-offender'          => 'Әлеге юрамалы битнең авторы:',
+
+# Suppression log
+'suppressionlog' => 'Яшерү көндәлеге',
 
 # Revision move
 'revmove-reasonfield'    => 'Сәбәп:',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author (vinny)
  * @author Avicennasis
  * @author Derek Ross
  * @author Malafaya
@@ -317,8 +318,8 @@ A leet o valid byordinar pages can be funnd at [[Special:SpecialPages|{{int:spec
 # General errors
 'error'                => 'Error',
 'databaseerror'        => 'Database error',
-'dberrortext'          => 'A database query syntax error haes occurt. This micht indicate a bug in the saftware. The last attemptit database query wis: <blockquote><tt>$1</tt></blockquote> frae athin function "<tt>$2</tt>". MySQL returned error "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'A database query syntax error haes occurt. The last attemptit database query wis: "$1" frae athin function "$2". MySQL returned error "$3: $4".',
+'dberrortext'          => 'A database query syntax error haes occurt. This micht indicate a bug in the saftware. The last attemptit database query wis: <blockquote><tt>$1</tt></blockquote> frae athin function "<tt>$2</tt>". Database returned error "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'A database query syntax error haes occurt. The last attemptit database query wis: "$1" frae athin function "$2". Database returned error "$3: $4".',
 'laggedslavemode'      => 'Warning: Page micht nae contain recent updates',
 'readonly'             => 'Database lockit',
 'enterlockreason'      => "Enter a raeson for the lock, includin an estimate o whan the lock'll be lowsed",

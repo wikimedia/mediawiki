@@ -482,6 +482,9 @@ $messages = array(
 Калі ласка, пачакайце і паспрабуйце зайсьці пазьней.
 
 $1',
+'pool-timeout'      => 'Скончыўся час чаканьня блякаваньня',
+'pool-queuefull'    => 'Чарга запытаў поўная',
+'pool-errorunknown' => 'Невядомая памылка',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
