@@ -109,18 +109,18 @@ class JSMin {
 						$runLength = strcspn( $this->input, $interestingChars, $this->inputIndex );
 						$this->output .= substr( $this->input, $this->inputIndex, $runLength );
 						$this->inputIndex += $runLength;
-						$this->a = $this->get();
+						$c = $this->get();
 
-						if ( $this->a === $this->b ) {
+						if ( $c === $this->b ) {
 							break;
 						}
 
-						if ( $this->a === "\n" || $this->a === null ) {
+						if ( $c === "\n" || $c === null ) {
 							throw new JSMinException( 'Unterminated string literal.' );
 						}
 
-						if ( $this->a === '\\' ) {
-							$this->output .= $this->a . $this->get();
+						if ( $c === '\\' ) {
+							$this->output .= $c . $this->get();
 						}
 					}
 				}
