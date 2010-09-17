@@ -69,7 +69,7 @@ class JSMin {
 	// -- Public Static Methods --------------------------------------------------
 
 	public static function minify( $js ) {
-		$jsmin = new JSMin( $js );
+		$jsmin = new self( $js );
 		$ret = $jsmin->min();
 		return $ret;
 	}
@@ -77,7 +77,10 @@ class JSMin {
 	// -- Public Instance Methods ------------------------------------------------
 
 	public function __construct( $input ) {
+		// Fix line endings
 		$this->input       = str_replace( "\r\n", "\n", $input );
+		// Replace tabs and other control characters (except LF) with spaces
+		$this->input = preg_replace( '/[\x00-\x09\x0b-\x1f]/', ' ', $this->input );
 		$this->inputLength = strlen( $this->input );
 	}
 
@@ -94,35 +97,35 @@ class JSMin {
 	protected function action( $d ) {
 		switch( $d ) {
 			case self::OUTPUT:
-				// Output A. Copy B to A. Get the next B.
 				$this->output .= $this->a;
 
 			case self::DELETE_A:
-				// Copy B to A. Get the next B. (Delete A).
 				$this->a = $this->b;
 
 				if ( $this->a === "'" || $this->a === '"' ) {
+					$interestingChars = $this->a . "\\\n";
+					$this->output .= $this->a;
 					for ( ; ; ) {
-						$this->output .= $this->a;
-						$this->a       = $this->get();
+						$runLength = strcspn( $this->input, $interestingChars, $this->inputIndex );
+						$this->output .= substr( $this->input, $this->inputIndex, $runLength );
+						$this->inputIndex += $runLength;
+						$this->a = $this->get();
 
 						if ( $this->a === $this->b ) {
 							break;
 						}
 
-						if ( ord( $this->a ) <= self::ORD_LF ) {
+						if ( $this->a === "\n" || $this->a === null ) {
 							throw new JSMinException( 'Unterminated string literal.' );
 						}
 
 						if ( $this->a === '\\' ) {
-							$this->output .= $this->a;
-							$this->a       = $this->get();
+							$this->output .= $this->a . $this->get();
 						}
 					}
 				}
 
 			case self::DELETE_B:
-				// Get the next B. (Delete B).
 				$this->b = $this->next();
 
 				if ( $this->b === '/' && (
@@ -133,6 +136,9 @@ class JSMin {
 					$this->output .= $this->a . $this->b;
 
 					for ( ; ; ) {
+						$runLength = strcspn( $this->input, "/\\\n", $this->inputIndex );
+						$this->output .= substr( $this->input, $this->inputIndex, $runLength );
+						$this->inputIndex += $runLength;
 						$this->a = $this->get();
 
 						if ( $this->a === '/' ) {
@@ -140,7 +146,7 @@ class JSMin {
 						} elseif ( $this->a === '\\' ) {
 							$this->output .= $this->a;
 							$this->a       = $this->get();
-						} elseif ( ord( $this->a ) <= self::ORD_LF ) {
+						} elseif ( $this->a === "\n" || $this->a === null ) {
 							throw new JSMinException( 'Unterminated regular expression ' .
 									'literal.' );
 						}
@@ -159,27 +165,11 @@ class JSMin {
      * linefeed.
 	 */
 	protected function get() {
-		$c = $this->lookAhead;
-		$this->lookAhead = null;
-
-		if ( $c === null ) {
-			if ( $this->inputIndex < $this->inputLength ) {
-				$c = substr( $this->input, $this->inputIndex, 1 );
-				$this->inputIndex += 1;
-			} else {
-				$c = null;
-			}
+		if ( $this->inputIndex < $this->inputLength ) {
+			return $this->input[$this->inputIndex++];
+		} else {
+			return null;
 		}
-
-		if ( $c === "\r" ) {
-			return "\n";
-		}
-
-		if ( $c === null || $c === "\n" || ord( $c ) >= self::ORD_SPACE ) {
-			return $c;
-		}
-
-		return ' ';
 	}
 
 	/**
@@ -212,25 +202,12 @@ class JSMin {
 
 				case "\n":
 					switch ( $this->b ) {
-						case '{':
-						case '[':
-						case '(':
-						case '+':
-						case '-':
-							$this->action( self::OUTPUT );
-							break;
-
 						case ' ':
 							$this->action( self::DELETE_B );
 							break;
 
 						default:
-							if ( $this->isAlphaNum( $this->b ) ) {
-								$this->action( self::OUTPUT );
-							}
-							else {
-								$this->action( self::DELETE_A );
-							}
+							$this->action( self::OUTPUT );
 					}
 					break;
 
@@ -244,29 +221,6 @@ class JSMin {
 
 							$this->action( self::DELETE_B );
 							break;
-
-						case "\n":
-							switch ( $this->a ) {
-								case '}':
-								case ']':
-								case ')':
-								case '+':
-								case '-':
-								case '"':
-								case "'":
-									$this->action( self::OUTPUT );
-									break;
-
-								default:
-									if ( $this->isAlphaNum( $this->a ) ) {
-										$this->action( self::OUTPUT );
-									}
-									else {
-										$this->action( self::DELETE_B );
-									}
-							}
-							break;
-
 						default:
 							$this->action( self::OUTPUT );
 							break;
@@ -274,58 +228,54 @@ class JSMin {
 			}
 		}
 
-		return $this->output;
+		// Remove initial line break
+		if ( $this->output[0] !== "\n" ) {
+			throw new JSMinException( 'Unexpected lack of line break.' );
+		}
+		if ( $this->output === "\n" ) {
+			return '';
+		} else {
+			return substr( $this->output, 1 );
+		}
 	}
 
 	/**
-	 * Get the next character, excluding comments. peek() is used to see
-     * if a '/' is followed by a '/' or '*'.
+	 * Get the next character, excluding comments.
 	 */
 	protected function next() {
-		$c = $this->get();
+		if ( $this->inputIndex >= $this->inputLength ) {
+			return null;
+		}
+		$c = $this->input[$this->inputIndex++];
+
+		if ( $this->inputIndex >= $this->inputLength ) {
+			return $c;
+		}
 
 		if ( $c === '/' ) {
-			switch( $this->peek() ) {
+			switch( $this->input[$this->inputIndex] ) {
 				case '/':
-					for ( ; ; ) {
-						$c = $this->get();
-
-						if ( ord( $c ) <= self::ORD_LF ) {
-							return $c;
-						}
-					}
-
+					$this->inputIndex += strcspn( $this->input, "\n", $this->inputIndex ) + 1;
+					return "\n";
 				case '*':
-					$this->get();
-
-					for ( ; ; ) {
-						switch( $this->get() ) {
-							case '*':
-								if ( $this->peek() === '/' ) {
-									$this->get();
-									return ' ';
-								}
-								break;
-
-							case null:
-								throw new JSMinException( 'Unterminated comment.' );
-						}
+					$endPos = strpos( $this->input, '*/', $this->inputIndex + 1 );
+					if ( $endPos === false ) {
+						throw new JSMinException( 'Unterminated comment.' );
 					}
-
+					$numLines = substr_count( $this->input, "\n", $this->inputIndex, 
+						$endPos - $this->inputIndex );
+					$this->inputIndex = $endPos + 2;
+					if ( $numLines ) {
+						return str_repeat( "\n", $numLines );
+					} else {
+						return ' ';
+					}
 				default:
 					return $c;
 			}
 		}
 
 		return $c;
-	}
-
-	/** 
-	 * Get the next character without getting it.
-	 */
-	protected function peek() {
-		$this->lookAhead = $this->get();
-		return $this->lookAhead;
 	}
 }
 
