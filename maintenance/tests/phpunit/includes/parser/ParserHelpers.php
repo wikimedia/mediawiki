@@ -16,7 +16,7 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 		if ( $result === NULL ) {
 			$result = new PHPUnit_Framework_TestResult;
 		}
-return $result;
+
 		$backend = $this->suite->getBackend();
 		$result->startTest( $this );
 		PHPUnit_Util_Timer::start();
