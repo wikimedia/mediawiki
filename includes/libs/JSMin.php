@@ -49,8 +49,17 @@ class JSMin {
 	const ORD_LF    = 10;
 	const ORD_SPACE = 32;
 
+	// Action constants
+	const OUTPUT = 1;
+	const DELETE_A = 2;
+	const DELETE_B = 3;
+
+	/** Current character */
 	protected $a           = '';
+
+	/** Next character */
 	protected $b           = '';
+
 	protected $input       = '';
 	protected $inputIndex  = 0;
 	protected $inputLength = 0;
@@ -74,12 +83,22 @@ class JSMin {
 
 	// -- Protected Instance Methods ---------------------------------------------
 
+	/**
+	 * Do something! What you do is determined by the argument:
+	 *		- self::OUTPUT     Output A. Copy B to A. Get the next B.
+	 *		- self::DELETE_A   Copy B to A. Get the next B. (Delete A).
+	 *		- self::DELETE_B   Get the next B. (Delete B).
+	 *  action treats a string as a single character. Wow!
+	 *  action recognizes a regular expression if it is preceded by ( or , or =.
+	 */
 	protected function action( $d ) {
 		switch( $d ) {
-			case 1:
+			case self::OUTPUT:
+				// Output A. Copy B to A. Get the next B.
 				$this->output .= $this->a;
 
-			case 2:
+			case self::DELETE_A:
+				// Copy B to A. Get the next B. (Delete A).
 				$this->a = $this->b;
 
 				if ( $this->a === "'" || $this->a === '"' ) {
@@ -102,7 +121,8 @@ class JSMin {
 					}
 				}
 
-			case 3:
+			case self::DELETE_B:
+				// Get the next B. (Delete B).
 				$this->b = $this->next();
 
 				if ( $this->b === '/' && (
@@ -133,6 +153,11 @@ class JSMin {
 		}
 	}
 
+	/**
+	 * Return the next character from the input. Watch out for lookahead. If
+     * the character is a control character, translate it to a space or
+     * linefeed.
+	 */
 	protected function get() {
 		$c = $this->lookAhead;
 		$this->lookAhead = null;
@@ -157,21 +182,31 @@ class JSMin {
 		return ' ';
 	}
 
+	/**
+	 * Return true if the character is a letter, digit, underscore,
+	 * dollar sign, or non-ASCII character.
+	 */
 	protected function isAlphaNum( $c ) {
 		return ord( $c ) > 126 || $c === '\\' || preg_match( '/^[\w\$]$/', $c ) === 1;
 	}
 
+	/**
+	 * Copy the input to the output, deleting the characters which are
+	 * insignificant to JavaScript. Comments will be removed. Tabs will be
+	 * replaced with spaces. Carriage returns will be replaced with linefeeds.
+	 * Most spaces and linefeeds will be removed.
+	 */
 	protected function min() {
 		$this->a = "\n";
-		$this->action( 3 );
+		$this->action( self::DELETE_B );
 
 		while ( $this->a !== null ) {
 			switch ( $this->a ) {
 				case ' ':
 					if ( $this->isAlphaNum( $this->b ) ) {
-						$this->action( 1 );
+						$this->action( self::OUTPUT );
 					} else {
-						$this->action( 2 );
+						$this->action( self::DELETE_A );
 					}
 					break;
 
@@ -182,19 +217,19 @@ class JSMin {
 						case '(':
 						case '+':
 						case '-':
-							$this->action( 1 );
+							$this->action( self::OUTPUT );
 							break;
 
 						case ' ':
-							$this->action( 3 );
+							$this->action( self::DELETE_B );
 							break;
 
 						default:
 							if ( $this->isAlphaNum( $this->b ) ) {
-								$this->action( 1 );
+								$this->action( self::OUTPUT );
 							}
 							else {
-								$this->action( 2 );
+								$this->action( self::DELETE_A );
 							}
 					}
 					break;
@@ -203,11 +238,11 @@ class JSMin {
 					switch ( $this->b ) {
 						case ' ':
 							if ( $this->isAlphaNum( $this->a ) ) {
-								$this->action( 1 );
+								$this->action( self::OUTPUT );
 								break;
 							}
 
-							$this->action( 3 );
+							$this->action( self::DELETE_B );
 							break;
 
 						case "\n":
@@ -219,21 +254,21 @@ class JSMin {
 								case '-':
 								case '"':
 								case "'":
-									$this->action( 1 );
+									$this->action( self::OUTPUT );
 									break;
 
 								default:
 									if ( $this->isAlphaNum( $this->a ) ) {
-										$this->action( 1 );
+										$this->action( self::OUTPUT );
 									}
 									else {
-										$this->action( 3 );
+										$this->action( self::DELETE_B );
 									}
 							}
 							break;
 
 						default:
-							$this->action( 1 );
+							$this->action( self::OUTPUT );
 							break;
 					}
 			}
@@ -242,6 +277,10 @@ class JSMin {
 		return $this->output;
 	}
 
+	/**
+	 * Get the next character, excluding comments. peek() is used to see
+     * if a '/' is followed by a '/' or '*'.
+	 */
 	protected function next() {
 		$c = $this->get();
 
@@ -281,6 +320,9 @@ class JSMin {
 		return $c;
 	}
 
+	/** 
+	 * Get the next character without getting it.
+	 */
 	protected function peek() {
 		$this->lookAhead = $this->get();
 		return $this->lookAhead;
