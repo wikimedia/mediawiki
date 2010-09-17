@@ -2,10 +2,6 @@
 /**
  * This script starts pending jobs.
  *
- * Usage:
- *  --maxjobs <num> (default 10000)
- *  --type <job_cmd>
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -33,6 +29,7 @@ class RunJobs extends Maintenance {
 		$this->addOption( 'maxjobs', 'Maximum number of jobs to run', false, true );
 		$this->addOption( 'type', 'Type of job to run', false, true );
 		$this->addOption( 'procs', 'Number of processes to use', false, true );
+		$this->addOption( 'exclusive', 'Run only one exclusive runJobs script at a time. Timeout is 1800 seconds. Useful for cron scripts.', false );
 	}
 
 	public function memoryLimit() {
@@ -41,6 +38,10 @@ class RunJobs extends Maintenance {
 	}
 
 	public function execute() {
+		if ( $this->lock() === false ) {
+			exit( 0 );
+		}
+
 		global $wgTitle;
 		if ( $this->hasOption( 'procs' ) ) {
 			$procs = intval( $this->getOption( 'procs' ) );
@@ -49,6 +50,7 @@ class RunJobs extends Maintenance {
 			}
 			$fc = new ForkController( $procs );
 			if ( $fc->start( $procs ) != 'child' ) {
+				$this->unlock();
 				exit( 0 );
 			}
 		}
@@ -85,6 +87,9 @@ class RunJobs extends Maintenance {
 				}
 			}
 		}
+		if ( !$this->hasOption( 'procs' ) ) {
+			$this->unlock();
+		}
 	}
 
 	/**
@@ -95,6 +100,25 @@ class RunJobs extends Maintenance {
 		$this->output( wfTimestamp( TS_DB ) . " $msg\n" );
 		wfDebugLog( 'runJobs', $msg );
 	}
+
+	protected function lock() {
+		if ( $this->hasOption( 'exclusive' ) ) {
+			$cache = wfGetCache( CACHE_ANYTHING );
+			$running = $cache->get( wfMemcKey( 'runjobs' ) );
+			if ( $running ) {
+				return false;
+			} else {
+				$cache->set( wfMemcKey( 'runjobs' ), '1', 1800 );
+				return true;
+			}
+		}
+		return true;
+	}
+
+	protected function unlock() {
+		wfGetCache( CACHE_ANYTHING )->delete( wfMemcKey( 'runjobs' ) );
+	}
+
 }
 
 $maintClass = "RunJobs";
