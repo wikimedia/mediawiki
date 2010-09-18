@@ -1256,8 +1256,8 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'compareselectedversions'  => 'Comparer les versions sélectionnées',
 'showhideselectedversions' => 'Afficher/masquer les versions sélectionnées',
 'editundo'                 => 'défaire',
-'diff-multi'               => "({{PLURAL:$1|Une version intermédiaire|$1 versions intermédiaires}} {{PLURAL:$2|d'un utilisateur|de $2 utilisateurs}} sont masquées)",
-'diff-multi-manyusers'     => '($1 révisions intermédiaires par plus de 100 utilisateurs sont masquées)',
+'diff-multi'               => '({{PLURAL:$1|Une révision intermédiaire|$1 révision intermédiaires}} par {{PLURAL:$2|un utilisateur|$2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
+'diff-multi-manyusers'     => "({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par plus {{PLURAL:$2|d'un utilisateur|de $2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})",
 
 # Search results
 'searchresults'                    => 'Résultats de la recherche',

@@ -535,6 +535,7 @@ Trop d’utilisators chèrchont a arrevar a ceta pâge.
 Volyéd atendre un moment devant que vos tâchiéd de tornar arrevar a ceta pâge.
 
 $1',
+'pool-errorunknown' => 'Èrror encognua',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A propôs de {{SITENAME}}',

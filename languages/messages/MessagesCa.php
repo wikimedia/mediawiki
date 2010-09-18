@@ -416,6 +416,9 @@ Massa usuaris estan tractant d'accedir a aquesta pàgina.
 Per favor, esperau una mica abans de tornar a accedir a aquesta pàgina.
 
 $1",
+'pool-timeout'      => "Temps d'espera per al blocatge",
+'pool-queuefull'    => 'La cua de treball és plena',
+'pool-errorunknown' => 'Error desconegut',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Quant al projecte {{SITENAME}}',

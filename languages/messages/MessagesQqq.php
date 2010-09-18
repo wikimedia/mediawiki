@@ -398,6 +398,9 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'jumptosearch'      => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], {{int:jumptosearch}}.
 
 {{Identical|Search}}',
+'pool-timeout'      => 'Part of {{msg-mw|view-pool-error}}.',
+'pool-queuefull'    => 'Part of {{msg-mw|view-pool-error}}.',
+'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Used as the label of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. The link target is {{msg-mw|aboutpage}}.
@@ -1761,6 +1764,7 @@ $1 is the value in KB/MB/GB',
 Parameters:
 * $1 is a link to the deletion log, with the text from {{msg|deletionlog}}.',
 'filename-prefix-blacklist'   => "Do not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
+'upload-success-msg'          => '$2 is apparently the url the file was uploaded from, when using upload-by-url.',
 
 'upload-proto-error-text' => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].',
 'upload-file-error'       => 'Unused on core [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/specials/SpecialUpload.php?r1=53161&r2=53282].

@@ -401,6 +401,7 @@ For mange brugere prøver at vise denne side.
 Vent et øjeblik, før du prøver at vise denne side ige.
 
 $1',
+'pool-errorunknown' => 'Ukendt fejl',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Om {{SITENAME}}',

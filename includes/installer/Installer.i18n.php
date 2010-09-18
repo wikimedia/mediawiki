@@ -1070,6 +1070,7 @@ $messages['br'] = array(
 	'config-back' => '← Distreiñ',
 	'config-continue' => "Kenderc'hel →",
 	'config-page-language' => 'Yezh',
+	'config-page-welcome' => 'Degemer mat e MediaWiki!',
 	'config-page-dbconnect' => "Kevreañ d'an diaz roadennoù",
 	'config-page-dbsettings' => 'Arventennoù an diaz roadennoù',
 	'config-page-name' => 'Anv',
@@ -1088,29 +1089,38 @@ $messages['br'] = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAG]',
 	'config-env-php' => 'Staliet eo PHP $1.',
 	'config-env-latest-ok' => "O staliañ emaoc'h stumm diwezhañ Mediawiki.",
+	'config-env-latest-new' => "'''Notenn:''' O staliañ emaoc'h ur stumm da zioreiñ eus MediaWiki.",
 	'config-memory-none' => 'PHP zo kefluniet hep <code>memory_limit</code>',
 	'config-memory-ok' => 'Arventenn PHP <code>memory_limit</code> zo $1.
 OK.',
+	'config-memory-raised' => '<code>memory_limit</code> ar PHP zo $1, kemmet e $2.',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] a zo staliet',
 	'config-apc' => '[http://www.php.net/apc APC] a zo staliet',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] a zo staliet',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] zo staliet',
-	'config-diff3-good' => 'GNU diff3 kavet: <code>$1</code>.',
+	'config-diff3-good' => 'GNU diff3 kavet : <code>$1</code>.',
 	'config-diff3-bad' => "N'eo ket bet kavet GNU diff3.",
-	'config-dir' => "Kavlec'h staliañ: <code>$1</code>.",
-	'config-uri' => "Chomlec'h URI ar skript: <code>$1</code>.",
-	'config-no-uri' => "'''Fazi:''' N'eus ket tu da gouzout URI ar skript.
+	'config-dir' => "Kavlec'h staliañ : <code>$1</code>.",
+	'config-uri' => "Chomlec'h URI ar skript : <code>$1</code>.",
+	'config-no-uri' => "'''Fazi :''' N'eus ket tu da gouzout URI ar skript.
 Staliadur diforc'het.",
+	'config-db-type' => 'Doare an diaz roadennoù:',
+	'config-db-host' => 'Anv implijer an diaz roadennoù :',
+	'config-db-wiki-settings' => 'Anavezout ar wiki-mañ',
 	'config-db-name' => 'Anv an diaz roadennoù:',
+	'config-db-install-account' => 'Kont implijer evit ar staliadur',
 	'config-db-username' => 'Anv implijer an diaz roadennoù :',
 	'config-db-password' => 'Ger-tremen an diaz roadennoù :',
 	'config-db-install-help' => 'Lakaat anv an implijer hag ar ger-tremen a vo implijet evit kennaskañ ouzh an diaz roadennoù e-pad argerzh ar sterniadur.',
+	'config-db-account-lock' => 'Implijout ar memes anv implijer ha ger-tremen e-kerzh oberiadurioù boutin',
 	'config-db-wiki-account' => 'Kont implijer evit oberiadurioù boutin',
 	'config-db-prefix' => 'Rakrann taolennoù an diaz roadennoù :',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 daouredel',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-mysql-old' => 'MySQL $1 pe eilstummoù diwezhañ zo ret, $2 ho peus.',
 	'config-db-port' => 'Porzh an diaz roadennoù :',
 	'config-db-schema' => 'Brastres evit MediaWiki',
+	'config-db-ts2-schema' => 'Brastres evit tsearch2',
 	'config-sqlite-dir' => "Kavlec'h roadennoù SQLite:",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
@@ -1120,6 +1130,14 @@ Staliadur diforc'het.",
 	'config-header-postgres' => 'Arventennoù PostgreSQL',
 	'config-header-sqlite' => 'Arventennoù SQLite',
 	'config-header-oracle' => 'Arventennoù Oracle',
+	'config-invalid-db-type' => 'Doare diaz roadennoù fall',
+	'config-missing-db-name' => 'Rediet oc\'h da reiñ un talvoud evit "Anv an diaz roadennoù"',
+	'config-sqlite-readonly' => "N'eus ket tu skrivañ en diell <code>$1</code>.",
+	'config-sqlite-cant-create-db' => "N'eus ket tu krouiñ restr an diaz roadennoù <code>$1</code>.",
+	'config-regenerate' => 'Adlañsañ LocalSettings.php →',
+	'config-show-table-status' => "C'hwitet ar reked SHOW TABLE STATUS !",
+	'config-db-web-account' => 'Kont an diaz roadennoù evit ar voned Kenrouedad',
+	'config-mysql-engine' => 'Keflusker berniañ :',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-binary' => 'Daouredel',
@@ -1136,6 +1154,7 @@ Staliadur diforc'het.",
 	'config-admin-password' => 'Ger-tremen :',
 	'config-admin-password-confirm' => 'Adskrivañ ar ger-tremen :',
 	'config-admin-name-blank' => 'Lakait anv ur merour.',
+	'config-admin-password-blank' => 'Reiñ ur ger-tremen evit kont ar merour.',
 	'config-admin-password-same' => "Ne c'hell ket ar ger-tremen bezañ heñvel ouzh hini ar gont.",
 	'config-admin-email' => "Chomlec'h postel :",
 	'config-almost-done' => "Kazi echu eo !
@@ -1162,6 +1181,7 @@ Gellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	'config-install-user' => 'O krouiñ an diaz roadennoù implijer',
 	'config-install-tables' => 'Krouiñ taolennoù',
 	'config-install-secretkey' => "Genel an alc'hwez kuzh",
+	'config-install-sysop' => 'Krouidigezh kont ar merour',
 );
 
 /** Bosnian (Bosanski)
@@ -4147,9 +4167,17 @@ WindowsでMySQLを使用している場合に、「localhost」は、サーバ�
 	'config-db-charset' => 'データベースの文字セット',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0バイナリ',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 下位互換UTF-8',
+	'config-charset-help' => "'''警告：'''MySQL 4.1+で'''下位互換UTF-8'''を使用し、その後<code>mysqldump</code>でデータベースをバックアップすると、すべての非ASCII文字が破壊され、不可逆的にバップアップが壊れるかもしれません。
+
+'''バイナリー系式'''では、MediaWikiは、UTF-8テキストを、データベースのバイナリーフィールドに格納します。
+これは、MySQLのUTF-8形式より効率的で、ユニコード文字の全範囲を利用することが出来るようになります。
+'''UTF-8形式'''では、MySQLは、なんの文字集合がデータのなかに含まれているかを知り、それに対して適切な提示と変換をするでしょうが、
+[http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 基本多言語面]の外にある文字を格納させられるようにはしないでしょう。",
 	'config-mysql-old' => 'MySQLの$1以降が要求されています。あなたの所有のものは$2です。',
 	'config-db-port' => 'データベースポート:',
 	'config-db-schema' => 'メディアウィキの図式',
+	'config-db-ts2-schema' => 'tsearch2のためのスキーマ',
 	'config-db-schema-help' => '上の図式は常に正確です。
 必要である場合のみ、変更してください。',
 	'config-sqlite-dir' => 'SQLiteのデータディレクトリ:',
@@ -4171,6 +4199,9 @@ WindowsでMySQLを使用している場合に、「localhost」は、サーバ�
 $1
 
 もし、データベースシステムが不可視であるならば、以下のようにリスト化されたものを使用してみてください。可能なサポートの指示に従ってください。',
+	'config-support-mysql' => '* $1はMediaWikiの主要な対象で、もっともサポートされています（[http://www.php.net/manual/en/mysql.installation.php MySQLのサポート下でPHPをコンパイルする方法]）',
+	'config-support-postgres' => '* $1は、MySQLの代替として、人気のあるオープンソースデータベースシステムです（[http://www.php.net/manual/en/pgsql.installation.php PostgreSQLのサポート下でPHPをコンパイルする方法]）',
+	'config-support-sqlite' => '* $1は、良くサポートされている、軽量データベースシステムです。（[http://www.php.net/manual/en/pdo.installation.php SQLiteのサポート下でPHPをコンパイルする方法]、PDOを使用）',
 	'config-header-mysql' => 'MySQLの設定',
 	'config-header-postgres' => 'PostgreSQLの設定',
 	'config-header-sqlite' => 'SQLiteの設定',
@@ -4188,9 +4219,29 @@ $1
 アスキー文字(a-z, A-Z)、数字(0-9)、下線(_)のみを使用してください。',
 	'config-invalid-ts2schema' => 'TSearch2 "$1"における無効な図式です。
 アスキー文字(a-z, A-Z)、数字(0-9)、下線(_)のみを使用してください。',
+	'config-postgres-old' => 'PostgreSQLの$1あるいはそれ以降が必要で、いまのバージョンは$2です。',
 	'config-sqlite-name-help' => 'あなたのウェキと同一性のある名前を選んでください。
 空白およびハイフンは使用しないでください。
 SQLiteのデータファイル名として使用されます。',
+	'config-sqlite-parent-unwritable-group' => '<code><nowiki>$1</nowiki></code>データディレクトリを作成できません。理由は親となるディレクトリ<code><nowiki>$2</nowiki></code>がウェブサーバによって書き込みできないからです。
+
+インストーラはあなたのウェブサーバとして稼動させているユーザを決定しました。
+続行するために<code><nowiki>$3</nowiki></code>ディレクトリを書き込み可能にしてください。
+Unix/Linux上で次のことを行ってください。:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => '<code><nowiki>$1</nowiki></code>データディレクトリを作成できません。理由は親となるディレクトリ<code><nowiki>$2</nowiki></code>がウェブサーバによって書き込みできないからです。
+
+インストーラはあなたのウェブサーバとして稼動させているユーザを決定できませんでした。
+続行するために<code><nowiki>$3</nowiki></code>ディレクトリをウェブサーバ（あるいは他のもの）によってグローバルに書き込み可能にしてください。
+Unix/Linux上で次のことを行ってください。:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'データディレクトリー"$1"を作成したことによるエラー。
 場所をチェックして、再度試してください。',
 	'config-sqlite-dir-unwritable' => 'ディレクトリー"$1"を書き込むことができません。
@@ -4204,6 +4255,13 @@ SQLiteのデータファイル名として使用されます。',
 	'config-sqlite-fts3-add' => 'FTS3の検索機能を追加する',
 	'config-can-upgrade' => 'このデータベースにはメディアウィキテーブルが存在します。
 それらをメディアウィキ$1にアップグレードするために「続行」をクリックしてください。',
+	'config-upgrade-done' => "アップグレードは完了しました。
+
+あなたは現在、 [$1 ウィキを使い始める]ことができます。
+
+もし、<code>LocalSettings.php</code>ファイルを再生成したいのならば、下のボタンを押してください。
+あなたが自身のウィキに問題を抱えていない限り、これは'''推奨されません'''。",
+	'config-unknown-collation' => "'''警告:''' データベースは認識されない照合を使用しています。",
 	'config-db-web-account' => 'ウェブアクセスのためのデータベースアカウント',
 	'config-db-web-help' => 'ウィキの元来の操作中、ウェブサーバーがデーターベースサーバーに接続できるように、ユーザ名とパスワードを選択してください。',
 	'config-db-web-account-same' => 'インストールのために同じアカウントを使用してください',
@@ -4340,6 +4398,16 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-insecure-secretkey' => "'''警告:''' 安全な<code>\$wgSecretKey</code>を作成できません。
 手動でこれを変更することを考えてください。",
 	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
+	'config-install-done' => "'''おめでとう！''' 
+あなたはメディアウィキのインストールに成功しました。
+
+インストーラは<code>LocalSettings.php</code>ファイルの生成を行いました。
+そこにはあなたの全ての設定が含まれます。
+
+あなたはそれを[$1 ダウンロード]し、あなたのウィキインストールの拠点（index.phpと同じディレクトリ）に置く必要があるでしょう。
+'''注意''': もし、あなたがこれを今しないのならば、つまりあなたがダウンロードなしでインストールを終了した場合、この生成された構成ファイルはあなたにとって、有効なものではなくなるでしょう。
+
+それがなされた時、あなたは'''[$2 ウィキの中に入る]'''ことができます。",
 );
 
 /** Khmer (ភាសាខ្មែរ)
