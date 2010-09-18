@@ -629,7 +629,7 @@ class SpecialPage {
 				}
 			}
 			if ( !$found ) {
-				wfWarn( "Did not find alias for special page '$name'." . 
+				wfWarn( "Did not find alias for special page '$name'. " . 
 					"Perhaps no aliases are defined for it?" );
 			}
 		}
