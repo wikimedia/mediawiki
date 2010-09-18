@@ -280,7 +280,8 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$this->assertFalse( $job );
 		
 		return;
-		
+
+		/**
 		// Broken until using leavemessage with ignorewarnings is supported
 		$job->run();
 		
@@ -288,8 +289,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		
 		$talkRev = Revision::newFromTitle( $talk );
 		$this->assertTrue( $talkRev->getSize() > $talkSize, 'New message left' );
-
-		
+		*/
 	}
 	
 	/**
