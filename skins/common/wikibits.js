@@ -386,6 +386,10 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 }
 
 window.getInnerText = function( el ) {
+	if ( el.getAttribute( 'data-sort-value' ) !== null ) {
+		return el.getAttribute( 'data-sort-value' );
+	}
+	
 	if ( typeof el == 'string' ) {
 		return el;
 	}
