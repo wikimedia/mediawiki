@@ -2,6 +2,9 @@
 
 require_once dirname( __FILE__ ) . '/api/ApiSetup.php';
 
+/**
+ * @group Broken
+ */
 class UploadFromUrlTest extends ApiTestSetup {
 
 	public function setUp() {
