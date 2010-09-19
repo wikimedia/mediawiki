@@ -81,7 +81,7 @@ class SpecialAllmessages extends SpecialPage {
 
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-allmessages-form' ) ) .
 			Xml::fieldset( wfMsg( 'allmessages-filter-legend' ) ) .
-			Xml::hidden( 'title', $this->getTitle() ) .
+			Xml::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 			Xml::openElement( 'table', array( 'class' => 'mw-allmessages-table' ) ) . "\n" .
 			'<tr>
 				<td class="mw-label">' .
