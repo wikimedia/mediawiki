@@ -266,6 +266,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
 	 */
 	function tableName( $name ) {
+		// table names starting with sqlite_ are reserved
+		if ( strpos( $name, 'sqlite_' ) === 0 ) return $name;
 		return str_replace( '`', '', parent::tableName( $name ) );
 	}
 

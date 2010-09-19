@@ -17,22 +17,25 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 	}
 }
 
+/**
+ * @group sqlite
+ */
 class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 	var $db;
 
-	function setup() {
+	public function setup() {
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
 		$this->db = new MockDatabaseSqlite();
 	}
 
-	function replaceVars( $sql ) {
+	private function replaceVars( $sql ) {
 		// normalize spacing to hide implementation details
 		return preg_replace( '/\s+/', ' ', $this->db->replaceVars( $sql ) );
 	}
 
-	function testReplaceVars() {
+	public function testReplaceVars() {
 		$this->assertEquals( 'foo', $this->replaceVars( 'foo' ), "Don't break anything accidentally" );
 
 		$this->assertEquals( "CREATE TABLE /**/foo (foo_key INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
@@ -57,6 +60,16 @@ class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( "ALTER TABLE foo ADD COLUMN foo_bar INTEGER DEFAULT 42",
 			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42" )
 			);
+	}
+	
+	public function testTableName() {
+		// @todo Moar!
+		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$this->assertEquals( 'foo', $db->tableName( 'foo' ) );
+		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
+		$db->tablePrefix( 'foo' );
+		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
+		$this->assertEquals( 'foobar', $db->tableName( 'bar' ) );
 	}
 
 	function testEntireSchema() {
