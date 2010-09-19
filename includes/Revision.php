@@ -314,8 +314,8 @@ class Revision {
 
 			if( isset( $row->page_latest ) ) {
 				$this->mCurrent = ( $row->rev_id == $row->page_latest );
-				$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->mTitle->resetArticleID( $this->mPage );
+				$row->page_id = $this->mPage;
+				$this->mTitle = Title::newFromRow( $row );
 			} else {
 				$this->mCurrent = false;
 				$this->mTitle = null;
