@@ -701,12 +701,10 @@ Jekk jogħġbok, erġa' pprova.",
 'password-name-match'        => 'Il-password trid tkun differenti mill-isem tal-utent tiegħek.',
 'mailmypassword'             => 'Ibgħatli password ġdida',
 'passwordremindertitle'      => 'Password temporanju ġdid għal {{SITENAME}}',
-'passwordremindertext'       => 'Xi ħadd (probabbilment int, mill-indirizz tal-IP $1) għamel rikjesta għal password ġdida għal {{SITENAME}} ($4).<br />
-Inħolqot password temporanja għall-utent "$2" u din hi "$3".
-Huwa opportun li inti tidħol issa u tbiddel immedjatament il-password tiegħek.<br />
-Din il-password il-ġdida se tiskadi fi żmien {{PLURAL:$5|ġurnata|$5 ijiem}}.
+'passwordremindertext'       => 'Xi ħadd (probabbilment int, mill-indirizz IP $1) għamel rikjesta għal password ġdida għal {{SITENAME}} ($4). Password temporanja għall-utent "$2" ġiet maħluqa u din hi "$3".
+Huwa opportun li inti tidħol issa u tbiddel immedjatament il-password tiegħek. Din il-password il-ġdida se tiskadi fi żmien {{PLURAL:$5|ġurnata|$5 ijiem}}.
 
-Jekk xi ħadd ieħor għamel din ir-rikjesta jew jekk int ftakart il-password tiegħek u issa ma tridx tbiddilha, int tista\' ma tagħtix każ dan il-messaġġ u tkompli bl-użu tal-password l-antika.',
+Jekk xi ħadd ieħor għamel din ir-rikjesta jew jekk int ftakart il-password tiegħek u issa ma tridx tbiddilha, int tista\' ma tagħtix każ dan il-messaġġ u tkompli tuża\' l-password l-antika.',
 'noemail'                    => 'M\'hemm l-ebda indirizz ta\' posta elettronika għall-utent "$1".',
 'noemailcreate'              => 'Huwa neċessarju li tipprovdi indirizz elettroniku validu',
 'passwordsent'               => 'Il-password il-ġdida ntbagħtet fl-indirizz tal-posta elettronika ta\' "$1".
@@ -1430,14 +1428,9 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'recentchanges-legend'              => 'Opzjonijiet tat-tibdil riċenti',
 'recentchangestext'                 => 'Din il-paġna turi l-modifiki l-aktar riċenti għal kontenut tas-sit.',
 'recentchanges-feed-description'    => "Dan il-feed jirraporta l-modifiki l-aktar riċenti fil-kontenut ta' dan is-sit.",
-'recentchanges-label-legend'        => 'Leġġenda: $1.',
-'recentchanges-legend-newpage'      => '$1 - paġna ġdida',
 'recentchanges-label-newpage'       => 'Din il-modifika ħolqot paġna ġdida',
-'recentchanges-legend-minor'        => '$1 - modifika minuri',
 'recentchanges-label-minor'         => 'Din hi modifika minuri',
-'recentchanges-legend-bot'          => "$1 - modifika ta' bot",
 'recentchanges-label-bot'           => 'Din il-modifika ġiet effettwata minn bot',
-'recentchanges-legend-unpatrolled'  => '$1 - modifika mhux verifikata',
 'recentchanges-label-unpatrolled'   => 'Din il-modifika għadha ma ġietx verifikata',
 'rcnote'                            => "Hawn taħt {{PLURAL:$1|tinsab l-aktar modifika riċenti|jinsabu l-'''$1''' modifiki riċenti}} għas-sit fl-aħħar {{PLURAL:$2|24 siegħa|'''$2''' ġranet}}, id-dati ġew aġġornati fil-$5 ta' $4.",
 'rcnotefrom'                        => "Ħawn taħt jinsabu l-modifiki minn '''$2''' (sa '''$1''').",

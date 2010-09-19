@@ -454,8 +454,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|өскерлиишкин}}',
 'recentchanges'                     => 'Амгы өскерлиишкиннер',
-'recentchanges-legend-newpage'      => '$1 — чаа арын',
-'recentchanges-legend-minor'        => '$1 — бичии өскерлиишкин',
 'recentchanges-label-minor'         => 'Бо өскерлиишкин биче-дир',
 'rcshowhideminor'                   => 'Бичии өскерлиишкиннерни $1',
 'rcshowhidebots'                    => 'Роботтарну $1',

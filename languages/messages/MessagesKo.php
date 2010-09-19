@@ -301,7 +301,7 @@ $messages = array(
 'tog-editsection'             => '[편집] 링크로 부분 편집하기',
 'tog-editsectiononrightclick' => '제목을 오른쪽 클릭해서 부분 편집하기 (자바스크립트)',
 'tog-showtoc'                 => '문서의 차례 보여주기 (머릿글이 4개 이상인 경우)',
-'tog-rememberpassword'        => '이 컴퓨터에서 로그인 상태를 저장하기 (최대 $1일)',
+'tog-rememberpassword'        => '이 브라우저에서 로그인 상태를 저장하기 (최대 $1일)',
 'tog-watchcreations'          => '내가 처음 만드는 문서를 주시문서 목록에 추가',
 'tog-watchdefault'            => '내가 편집하는 문서를 주시문서 목록에 추가',
 'tog-watchmoves'              => '내가 이동하는 문서를 주시문서 목록에 추가',
@@ -751,6 +751,11 @@ $2',
 잠시 후에 다시 시도해주세요.',
 'loginlanguagelabel'         => '언어: $1',
 'suspicious-userlogout'      => '브라우저의 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.',
+'ratelimit-excluded-ips'     => '  #<!-- 이 줄은 그대로 두십시오 --> <pre>
+# 문법은 다음과 같습니다:
+# * "#"로 시작하는 줄은 주석입니다.
+# * 빈 줄이 아닌 줄은 제한 속도의 영향을 받지 않는 IP 주소입니다.
+ #</pre> <!-- 이 줄은 그대로 두십시오 -->',
 
 # JavaScript password checks
 'password-strength'            => '예상 비밀 번호 강도: $1',
@@ -1185,7 +1190,8 @@ $1",
 'compareselectedversions'  => '선택된 판들을 비교하기',
 'showhideselectedversions' => '선택한 판을 보이기/숨기기',
 'editundo'                 => '편집 취소',
-'diff-multi'               => '(중간의 편집 $1 개 숨겨짐)',
+'diff-multi'               => '({{PLURAL:$2|한 사용자의|사용자 $2명의}} 중간의 편집 $1개 숨겨짐)',
+'diff-multi-manyusers'     => '({{PLURAL:$2|한 사용자의|사용자 $2명 이상의}} 중간의 편집 $1개 숨겨짐)',
 
 # Search results
 'searchresults'                    => '검색 결과',
@@ -1528,14 +1534,9 @@ $1",
 'recentchanges-legend'              => '최근 바뀜 설정',
 'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
 'recentchanges-feed-description'    => '위키의 최근 바뀜',
-'recentchanges-label-legend'        => '범례: $1.',
-'recentchanges-legend-newpage'      => '$1 - 새 문서',
 'recentchanges-label-newpage'       => '새로운 문서',
-'recentchanges-legend-minor'        => '$1 - 사소한 편집',
 'recentchanges-label-minor'         => '사소한 편집',
-'recentchanges-legend-bot'          => '$1 - 봇 편집',
 'recentchanges-label-bot'           => '봇의 편집',
-'recentchanges-legend-unpatrolled'  => '$1 - 검토되지 않은 편집',
 'recentchanges-label-unpatrolled'   => '아직 검토되지 않은 편집',
 'rcnote'                            => "다음은 $4 $5 까지의 '''$2'''일동안 바뀐 '''$1'''개의 문서입니다.",
 'rcnotefrom'                        => "다음은 '''$2'''에서부터 바뀐 '''$1'''개의 문서입니다.",

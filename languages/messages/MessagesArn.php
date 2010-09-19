@@ -298,8 +298,6 @@ $messages = array(
 'action-undelete'      => 'Namümlay tüfachi pakina',
 
 # Recent changes
-'recentchanges-legend-newpage'      => '$1 - We Pakina',
-'recentchanges-legend-minor'        => '$1 pichi wirin',
 'rcshowhideminor'                   => '$1 pichi wirin',
 'rcshowhidemine'                    => '$1 tañi wirin',
 'hist'                              => 'rupañ',

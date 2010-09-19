@@ -1363,14 +1363,9 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'recentchanges-legend'              => 'Opcije aktualnych změnow',
 'recentchangestext'                 => 'Na tutej stronje móžeš najaktualniše změny w {{GRAMMAR:lokatiw|{{SITENAME}}}} wobkedźbować.',
 'recentchanges-feed-description'    => 'Slěduj najaktualniše změny {{GRAMMAR:genitiw|{{SITENAME}}}} w tutym kanalu.',
-'recentchanges-label-legend'        => 'Legenda: $1.',
-'recentchanges-legend-newpage'      => '$1 - nowa strona',
 'recentchanges-label-newpage'       => 'Tuta změna je nowu stronu wutworiła',
-'recentchanges-legend-minor'        => '$1 - snadna změna',
 'recentchanges-label-minor'         => 'To je snadna změna',
-'recentchanges-legend-bot'          => '$1 - změna boćika',
 'recentchanges-label-bot'           => 'Tuta změna bu přez roboćik přewjedźena',
-'recentchanges-legend-unpatrolled'  => '$1 - njepřepruwowana změna',
 'recentchanges-label-unpatrolled'   => 'Tuta změnu hišće njebu přepruwowana',
 'rcnote'                            => "Deleka {{PLURAL:\$1|je '''1''' změna|stej poslednjej '''\$1''' změnje|su poslednje '''\$1''' změny|je poslednich '''\$1''' změnow}} za {{PLURAL:\$2|posledny dźeń|poslednjej '''\$2''' dnjej|poslednje '''\$2''' dny|poslednich '''\$2''' dnjow}}, staw wot \$4, \$5.
 <div id=\"rc-legend\" style=\"float:right;font-size:84%;margin-left:5px;\"> <b>Legenda</b><br />

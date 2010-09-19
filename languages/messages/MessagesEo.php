@@ -14,6 +14,7 @@
  * @author Castelobranco
  * @author Jens Liebenau
  * @author Lucas
+ * @author LyzTyphone
  * @author Malafaya
  * @author Melancholie
  * @author Michawiki
@@ -429,7 +430,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Trovi',
-'qbbrowse'       => 'Foliumado',
+'qbbrowse'       => 'Foliumi',
 'qbedit'         => 'Redakti',
 'qbpageoptions'  => 'Paĝagado',
 'qbpageinfo'     => 'Paĝinformoj',
@@ -1294,7 +1295,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-math'                    => 'Matematikaĵoj',
 'datedefault'                   => 'Nenia prefero',
 'prefs-datetime'                => 'Dato kaj horo',
-'prefs-personal'                => 'Datenoj pri uzanto',
+'prefs-personal'                => 'Uzanta profilo',
 'prefs-rc'                      => 'Lastaj ŝanĝoj',
 'prefs-watchlist'               => 'Atentaro',
 'prefs-watchlist-days'          => 'Nombro de tagoj montri en la atentaro:',
@@ -1359,7 +1360,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'prefs-textboxsize'             => 'Grandeco de redakta fenestro',
 'youremail'                     => 'Retadreso:',
 'username'                      => 'Salutnomo:',
-'uid'                           => 'Uzantnumero:',
+'uid'                           => 'Uzanta ID:',
 'prefs-memberingroups'          => 'Ano de {{PLURAL:$1|grupo|grupoj}}:',
 'prefs-registration'            => 'Tempo de registrado:',
 'yourrealname'                  => 'Vera nomo:',
@@ -1553,14 +1554,9 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'recentchanges-legend'              => 'Opcioj pri lastaj ŝanĝoj',
 'recentchangestext'                 => 'Sekvi la plej lastajn ŝanĝojn en la {{SITENAME}} per ĉi tiu paĝo.',
 'recentchanges-feed-description'    => 'Sekvi la plej lastatempajn ŝanĝojn al la vikio en ĉi tiu fonto.',
-'recentchanges-label-legend'        => 'Klarigeto: $1.',
-'recentchanges-legend-newpage'      => '$1 - nova paĝo',
 'recentchanges-label-newpage'       => 'Ĉi tiu redakto kreis novan paĝon',
-'recentchanges-legend-minor'        => '$1 - eta redakto',
 'recentchanges-label-minor'         => 'Ĉi tiu estas eta redakto',
-'recentchanges-legend-bot'          => '$1 - robota redakto',
 'recentchanges-label-bot'           => 'Ĉi tiu redakto estis farita per roboto.',
-'recentchanges-legend-unpatrolled'  => '$1 - nepatrolita redakto',
 'recentchanges-label-unpatrolled'   => 'Ĉi tiu redakto ne jam estis patrolata.',
 'rcnote'                            => "Jen la {{PLURAL:$1|lasta '''1''' ŝanĝo|lastaj '''$1''' ŝanĝoj}} dum la {{PLURAL:$2|lasta tago|lastaj '''$2''' tagoj}}, ekde $5, $4.",
 'rcnotefrom'                        => "Jen la ŝanĝoj ekde '''$2''' (lastaj ĝis '''$1''').",
@@ -1696,7 +1692,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'uploadvirus'                 => 'Viruso troviĝas en la dosiero! Detaloj: $1',
 'upload-source'               => 'Fonta dosiero:',
 'sourcefilename'              => 'Fonta dosiernomo:',
-'sourceurl'                   => 'Fonta URL-o:',
+'sourceurl'                   => 'Fonta URL:',
 'destfilename'                => 'Celdosiernomo:',
 'upload-maxfilesize'          => 'Maksimuma dosier-pezo: $1',
 'upload-description'          => 'Dosiera priskribo',
