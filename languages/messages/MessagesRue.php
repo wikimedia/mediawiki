@@ -248,6 +248,9 @@ $messages = array(
 Просиме Вас, почекайте і спробуйте доступность пізнїше.
 
 $1',
+'pool-timeout'      => 'Час скінчіня чекать про замок',
+'pool-queuefull'    => 'Фронта є повна',
+'pool-errorunknown' => 'Незнама хыба',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O  {{grammar:accusative|{{SITENAME}}}}',
@@ -1273,14 +1276,9 @@ $1",
 'recentchanges-legend'              => 'Можности послїднїх змін',
 'recentchangestext'                 => 'Слїдуйте послїднї зміны на {{grammar:6sg|{{SITENAME}}}}  тій сторінцї.',
 'recentchanges-feed-description'    => 'На тотїм каналу слїдуєте послїднї зміны на {{grammar:6sg|{{SITENAME}}}}.',
-'recentchanges-label-legend'        => 'Леґенда: $1.',
-'recentchanges-legend-newpage'      => '$1 — нова сторінка',
 'recentchanges-label-newpage'       => 'Тым едітованём была створена нова сторінка',
-'recentchanges-legend-minor'        => '$1 малы едітованя',
 'recentchanges-label-minor'         => 'Тото є мала зміна',
-'recentchanges-legend-bot'          => '$1 — ботове едітованя',
 'recentchanges-label-bot'           => 'Тото едітованя зроблене ботом',
-'recentchanges-legend-unpatrolled'  => '$1 – неперевірене едітованя',
 'recentchanges-label-unpatrolled'   => 'Тота зміна дотеперь не была патролёвана.',
 'rcnote'                            => "{{PLURAL:$1|Послїдня '''$1''' зміна|Послїднї '''$1''' зміны|Послїднїх '''$1''' змін}} за '''$2''' {{PLURAL:$2|день|днї|днїв}}, на час $5, $4.",
 'rcnotefrom'                        => 'Ниже {{PLURAL:$1|є|суть|є}} найвеце <b>$1</b> {{PLURAL:$1|зміна|зміны|змін}} од <b>$2</b>.',

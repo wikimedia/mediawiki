@@ -82,9 +82,8 @@ $messages = array(
 'grouppage-bot' => '{{ns:project}}:機械人',
 
 # Recent changes
-'recentchanges-legend-bot' => '$1 - 機械人編輯',
-'recentchanges-label-bot'  => '這次編輯是由機械人進行',
-'rcshowhidebots'           => '$1機械人的編輯',
+'recentchanges-label-bot' => '這次編輯是由機械人進行',
+'rcshowhidebots'          => '$1機械人的編輯',
 
 # Special:ActiveUsers
 'activeusers-hidebots' => '隱藏機械人',

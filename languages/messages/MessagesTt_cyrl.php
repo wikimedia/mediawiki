@@ -1226,12 +1226,8 @@ $3 күрсәткән сәбәп: ''$2''",
 'recentchanges-legend'              => 'Соңгы үзгәртүләр көйләүләре',
 'recentchangestext'                 => 'Бу биттә {{grammar:genitive|{{SITENAME}}}} проектының соңгы үзгәртүләре күрсәтелә.',
 'recentchanges-feed-description'    => 'Бу агымда соңгы үзгәртүләрне күзәтү.',
-'recentchanges-label-legend'        => 'Махсус тамгалар: $1.',
-'recentchanges-legend-newpage'      => '$1 — яңа бит',
 'recentchanges-label-newpage'       => 'Бу үзгәртү белән яңа бит төзелде',
-'recentchanges-legend-minor'        => '$1 — кече үзгәртү',
 'recentchanges-label-minor'         => 'Бу кече үзгәртү',
-'recentchanges-legend-bot'          => '$1 — ботның үзгәртүе',
 'rcnote'                            => 'Аста $4 $5 вакытынна соңгы {{PLURAL:$2|1|$2}} көн эчендә булган соңгы {{PLURAL:$1|1|$1}} үзгәртмә күрсәтелә:',
 'rcnotefrom'                        => "Астарак '''$2''' башлап ('''$1''' кадәр) үзгәртүләр күрсәтелгән.",
 'rclistfrom'                        => '$1 башлап яңа үзгәртүләрне күрсәт',
@@ -1409,6 +1405,9 @@ PICT # төрле
 # MIME search
 'mimesearch' => 'MIME эзләү',
 'download'   => 'йөкләргә',
+
+# Unwatched pages
+'unwatchedpages' => 'Беркемдә күзәтмәүче  битләр',
 
 # List redirects
 'listredirects' => 'Юнәлтүләр исемлеге',

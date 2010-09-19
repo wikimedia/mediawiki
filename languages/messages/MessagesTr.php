@@ -303,7 +303,7 @@ $messages = array(
 'tog-editsection'             => 'Bölümleri [değiştir] bağlantıları ile değiştirebilme olanağı ver',
 'tog-editsectiononrightclick' => 'Bölümleri bölüm başlığına sağ tıklayarak değiştirebilme olanağı ver (JavaScript)',
 'tog-showtoc'                 => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
-'tog-rememberpassword'        => 'Girişimi bu bilgisayarda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
+'tog-rememberpassword'        => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'tog-watchcreations'          => 'Yaratmış olduğum sayfaları izleme listeme ekle',
 'tog-watchdefault'            => 'Değişiklik yapılan sayfayı izleme listesine ekle',
 'tog-watchmoves'              => 'Taşıdığım sayfaları izleme listeme ekle',
@@ -522,6 +522,9 @@ Birçok kullanıcı bu sayfayı görüntülemeye çalışıyor.
 Lütfen bu sayfaya  tekrar erişmeyi denemeden önce biraz bekleyin.
 
 $1',
+'pool-timeout'      => 'Kilit için zaman bitimi bekleniyor',
+'pool-queuefull'    => 'Havuz sırası dolu',
+'pool-errorunknown' => 'Bilinmeyen hata',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} hakkında',
@@ -759,6 +762,11 @@ Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoks
 Lütfen tekrar denemeden önce bekleyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
+'ratelimit-excluded-ips'     => ' #<!-- bu satırı olduğu gibi bırakın --> <pre>
+# Sözdizimi aşağıdaki gibidir:
+#   * Bir "#" karakterinden satır sonuna kadar her şey yorumdur
+#   * Her boş olmayan satır oran sınırı dışında tutulan bir IP adresidir
+ #</pre> <!-- bu satırı olduğu gibi bırakın -->',
 
 # JavaScript password checks
 'password-strength'            => 'Tahmini şifre güçlüğü: $1',
@@ -1197,7 +1205,8 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'compareselectedversions'  => 'Seçilen sürümleri karşılaştır',
 'showhideselectedversions' => 'Seçili sürümleri göster/gizle',
 'editundo'                 => 'geri al',
-'diff-multi'               => '(Gösterilmeyen {{PLURAL:$1|$1 ara değişiklik|$1 ara değişiklik}} bulunmaktadır.)',
+'diff-multi'               => '({{PLURAL:$2|Bir kullanıcı|$2 kullanıcı}} tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)',
+'diff-multi-manyusers'     => '($2 kullancıdan fazla {{PLURAL:$2|kullanıcı|kullanıcı}} tarafından yapılan {{PLURAL:$1|bir ara revizyon|$1 ara revizyon}} gösterilmiyor)',
 
 # Search results
 'searchresults'                    => 'Arama sonuçları',
@@ -1542,14 +1551,9 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'recentchanges-legend'              => 'Son değişiklikler seçenekleri',
 'recentchangestext'                 => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description'    => "Bu beslemedeki viki'de yapılan en son değişiklikleri takip edin.",
-'recentchanges-label-legend'        => 'Açıklamalar: $1.',
-'recentchanges-legend-newpage'      => '$1 - yeni sayfa',
 'recentchanges-label-newpage'       => 'Bu değişiklik yeni bir sayfa oluşturdu',
-'recentchanges-legend-minor'        => '$1 - küçük değişiklik',
 'recentchanges-label-minor'         => 'Bu küçük bir değişiklik',
-'recentchanges-legend-bot'          => '$1 - bot değişikliği',
 'recentchanges-label-bot'           => 'Bu değişiklik bir bot tarafından yapıldı',
-'recentchanges-legend-unpatrolled'  => '$1 - gözlenmemiş değişiklik',
 'recentchanges-label-unpatrolled'   => 'Bu değişiklik henüz gözlenmemiş',
 'rcnote'                            => "$4 tarihi ve saat $5 itibarı ile, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
 'rcnotefrom'                        => '<b>$2</b> tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> adet madde gösterilmektedir).',

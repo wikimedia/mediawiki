@@ -463,6 +463,9 @@ For mange brukere forsøker å se denne siden.
 Vennligst vent en stund før du prøver å besøke denne siden på nytt.
 
 $1',
+'pool-timeout'      => 'Tidsavbudd mens man ventet på låsing',
+'pool-queuefull'    => 'Køen er full',
+'pool-errorunknown' => 'Ukjent feil',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Om {{SITENAME}}',
@@ -1480,14 +1483,9 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'recentchanges-legend'              => 'Alternativ for siste endringer',
 'recentchangestext'                 => 'Vis de siste endringene til denne siden',
 'recentchanges-feed-description'    => 'Følg med på siste endringer i denne wikien med denne matingen.',
-'recentchanges-label-legend'        => 'Forklaring: $1.',
-'recentchanges-legend-newpage'      => '$1 – ny side',
 'recentchanges-label-newpage'       => 'Denne redigeringen opprettet en ny side',
-'recentchanges-legend-minor'        => '$1 – mindre endring',
 'recentchanges-label-minor'         => 'Dette er en mindre endring',
-'recentchanges-legend-bot'          => '$1 – botendring',
 'recentchanges-label-bot'           => 'Denne redigeringen ble gjort av en bot',
-'recentchanges-legend-unpatrolled'  => '$1 – upatruljert endring',
 'recentchanges-label-unpatrolled'   => 'Denne redigeringen har ikke blitt patruljert ennå',
 'rcnote'                            => "Nedenfor vises {{PLURAL:$1|'''1''' endring|de siste '''$1''' endringene}} fra {{PLURAL:$2|det siste døgnet|de siste '''$2''' døgnene}}, per $5 $4.",
 'rcnotefrom'                        => "Nedenfor er endringene fra '''$2''' (opp til '''$1''' vises).",

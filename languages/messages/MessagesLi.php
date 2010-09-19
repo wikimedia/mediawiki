@@ -389,6 +389,9 @@ Te väöl gebroekers perberen óm dees pazjena te bekieke.
 Wach estebleef nag efkes veudet g'r óppernuuj toegank verzeuk te kriege toet dees pazjena.
 
 $1",
+'pool-timeout'      => "Timeout-wachte veur 't sloete",
+'pool-queuefull'    => 'De wachrie van de pool is vól',
+'pool-errorunknown' => 'Ónbekènde fout',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Euver {{SITENAME}}',
@@ -1412,14 +1415,9 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'recentchanges-legend'              => 'Opties veur recènte verangeringe',
 'recentchangestext'                 => 'op dees pazjena kins doe de recènte verangeringe in deze wiki betrachte.',
 'recentchanges-feed-description'    => 'Volg de meis recente bewerkinge in deze wiki via deze feed.',
-'recentchanges-label-legend'        => 'Legenda: $1.',
-'recentchanges-legend-newpage'      => '$1 - Nuuj pagina',
 'recentchanges-label-newpage'       => "Mit dees verangering is 'n nuuj pagina aangemaak",
-'recentchanges-legend-minor'        => '$1 - klein verangering',
 'recentchanges-label-minor'         => "Dit is 'n klein bewirking",
-'recentchanges-legend-bot'          => '$1 - botbewirking',
 'recentchanges-label-bot'           => "Dees bewirking is oetgeveurd door 'ne bot",
-'recentchanges-legend-unpatrolled'  => '$1 - ongekónterleerde bewirking',
 'recentchanges-label-unpatrolled'   => 'Dees bewirking is nog neet gekónterleerd',
 'rcnote'                            => "Hiejónger {{PLURAL:$1|steit de lètste bewirking|staon de lètste '''$1''' bewirkinge}} van de aafgeloupe {{PLURAL:$2|daag|'''$2''' daag}}, op $4, um $5.",
 'rcnotefrom'                        => "Verangeringe sins <b>$2</b> (mit 'n maximum van <b>$1</b> verangeringe).",

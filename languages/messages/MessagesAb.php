@@ -222,9 +222,8 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:Администраторцәа',
 
 # Recent changes
-'recentchanges'                => 'Арҽеира ҿыцқәа',
-'recentchanges-legend-newpage' => '$1 — адаҟьа ҿыц',
-'newpageletter'                => 'Ҿ',
+'recentchanges' => 'Арҽеира ҿыцқәа',
+'newpageletter' => 'Ҿ',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Еимадоу ариашарақәа',
