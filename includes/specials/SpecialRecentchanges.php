@@ -506,8 +506,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			Xml::fieldset( wfMsg( 'recentchanges-legend' ), $panelString, array( 'class' => 'rcoptions' ) )
 		);
 
-		$wgOut->addHTML( ChangesList::flagLegend() );
-
 		$this->setBottomText( $wgOut, $opts );
 	}
 

@@ -331,8 +331,6 @@ function wfSpecialWatchlist( $par ) {
 	$form .= Xml::closeElement( 'fieldset' );
 	$wgOut->addHTML( $form );
 
-	$wgOut->addHTML( ChangesList::flagLegend() );
-
 	# If there's nothing to show, stop here
 	if( $numRows == 0 ) {
 		$wgOut->addWikiMsg( 'watchnochange' );
