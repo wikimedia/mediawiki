@@ -513,7 +513,7 @@ class ApiQuery extends ApiBase {
 	/**
 	 * For generator mode, execute generator, and use its output as new
 	 * ApiPageSet
-	 * @param $generatorName string Module name
+	 * @param $generator string Module name
 	 * @param $modules array of module objects
 	 */
 	protected function executeGeneratorModule( $generator, $modules ) {
