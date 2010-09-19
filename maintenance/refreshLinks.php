@@ -196,8 +196,7 @@ class RefreshLinks extends Maintenance {
 		$wgTitle = Title::newFromID( $id );
 		$dbw = wfGetDB( DB_MASTER );
 
-		$linkCache =& LinkCache::singleton();
-		$linkCache->clear();
+		LinkCache::singleton()->clear();
 
 		if ( is_null( $wgTitle ) ) {
 			return;
