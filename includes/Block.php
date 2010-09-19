@@ -861,8 +861,8 @@ class Block {
 			# BEGIN DatabaseMssql hack
 			# Since MSSQL doesn't recognize the infinity keyword, set date manually.
 			# TO-DO: Refactor for better DB portability and remove magic date
-			$dbw = wfGetDB( DB_MASTER );
-			if ( $dbw instanceof DatabaseMssql ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			if ( $dbr->getType() == 'mssql' ) {
 				return '3000-01-31 00:00:00.000';
 			}
 			# End DatabaseMssql hack
