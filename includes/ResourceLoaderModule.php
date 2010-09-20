@@ -91,6 +91,16 @@ abstract class ResourceLoaderModule {
 		// Stub, override expected
 		return array();
 	}
+	
+	/**
+	 * Get the group this module is in.
+	 * 
+	 * @return string of group name
+	 */
+	public function getGroup() {
+		// Stub, override expected
+		return null;
+	}
 
 	/**
 	 * Get the loader JS for this module, if set.
@@ -99,7 +109,7 @@ abstract class ResourceLoaderModule {
 	 */
 	public function getLoaderScript() {
 		// Stub, override expected
-		return '';
+		return false;
 	}
 
 	/**
@@ -146,6 +156,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $scripts = array();
 	protected $styles = array();
 	protected $messages = array();
+	protected $group;
 	protected $dependencies = array();
 	protected $debugScripts = array();
 	protected $languageScripts = array();
@@ -170,7 +181,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 	array(
 	 * 		// Required module options (mutually exclusive)
 	 * 		'scripts' => 'dir/script.js' | array( 'dir/script1.js', 'dir/script2.js' ... ),
-	 *
+	 * 
 	 * 		// Optional module options
 	 * 		'languageScripts' => array(
 	 * 			'[lang name]' => 'dir/lang.js' | '[lang name]' => array( 'dir/lang1.js', 'dir/lang2.js' ... )
@@ -190,6 +201,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 			...
 	 * 		),
 	 * 		'messages' => array( 'message1', 'message2' ... ),
+	 * 		'group' => 'stuff',
 	 * 	)
 	 */
 	public function __construct( $options = array() ) {
@@ -203,6 +215,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 				case 'messages':
 					$this->messages = (array)$value;
+					break;
+				case 'group':
+					$this->group = (string)$value;
 					break;
 				case 'dependencies':
 					$this->dependencies = (array)$value;
@@ -253,7 +268,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function addMessages( $messages ) {
 		$this->messages = array_merge( $this->messages, (array)$messages );
 	}
-
+	
+	/**
+	 * Sets the group of this module.
+	 *
+	 * @param $group string group name
+	 */
+	public function setGroup( $group ) {
+		$this->group = $group;
+	}
+	
 	/**
 	 * Add dependencies. Dependency information is taken into account when
 	 * loading a module on the client side. When adding a module on the
@@ -401,6 +425,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	public function getMessages() {
 		return $this->messages;
+	}
+
+	public function getGroup() {
+		return $this->group;
 	}
 
 	public function getDependencies() {
@@ -798,6 +826,12 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		}
 		return $pages;
 	}
+	
+	/* Methods */
+	
+	public function getGroup() {
+		return 'site';
+	}
 }
 
 /**
@@ -820,6 +854,12 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 			);
 		}
 		return array();
+	}
+	
+	/* Methods */
+	
+	public function getGroup() {
+		return 'user';
 	}
 }
 
@@ -848,7 +888,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		if ( $user ) {
 			return $this->modifiedTime[$hash] = $user->getTouched();
 		} else {
-			return 0;
+			return 1;
 		}
 	}
 
@@ -900,6 +940,10 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		global $wgContLang;
 
 		return $wgContLang->getDir() !== $context->getDirection();
+	}
+	
+	public function getGroup() {
+		return 'user';
 	}
 }
 
@@ -1033,5 +1077,11 @@ JAVASCRIPT;
 		global $wgContLang;
 
 		return $wgContLang->getDir() !== $context->getDirection();
+	}
+	
+	/* Methods */
+	
+	public function getGroup() {
+		return 'startup';
 	}
 }

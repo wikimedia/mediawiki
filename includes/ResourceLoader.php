@@ -176,8 +176,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Gets registration code for all modules, except pre-registered ones listed in 
-	 * self::$preRegisteredModules
+	 * Gets registration code for all modules
 	 *
 	 * @param $context ResourceLoaderContext object
 	 * @return String: JavaScript code for registering all modules with the client loader
@@ -193,23 +192,29 @@ class ResourceLoader {
 			// Support module loader scripts
 			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
 				$deps = FormatJson::encode( $module->getDependencies() );
-				$version = wfTimestamp( TS_ISO_8601, 
-					round( $module->getModifiedTime( $context ), -2 ) );
+				$group = FormatJson::encode( $module->getGroup() );
+				$version = wfTimestamp( TS_ISO_8601, round( $module->getModifiedTime( $context ), -2 ) );
 				$scripts .= "( function( name, version, dependencies ) { $loader } )\n" . 
-					"( '$name', '$version', $deps );\n";
+					"( '$name', '$version', $deps, $group );\n";
 			}
 			// Automatically register module
 			else {
-				// Modules without dependencies pass two arguments (name, timestamp) to 
+				// Modules without dependencies or a group pass two arguments (name, timestamp) to 
 				// mediaWiki.loader.register()
-				if ( !count( $module->getDependencies() ) ) {
+				if ( !count( $module->getDependencies() && $module->getGroup() === null ) ) {
 					$registrations[] = array( $name, $module->getModifiedTime( $context ) );
 				}
-				// Modules with dependencies pass three arguments (name, timestamp, dependencies) 
+				// Modules with dependencies but no group pass three arguments (name, timestamp, dependencies) 
+				// to mediaWiki.loader.register()
+				else if ( $module->getGroup() === null ) {
+					$registrations[] = array(
+						$name, $module->getModifiedTime( $context ),  $module->getDependencies() );
+				}
+				// Modules with dependencies pass four arguments (name, timestamp, dependencies, group) 
 				// to mediaWiki.loader.register()
 				else {
-					$registrations[] = array( $name, $module->getModifiedTime( $context ), 
-						$module->getDependencies() );
+					$registrations[] = array(
+						$name, $module->getModifiedTime( $context ),  $module->getDependencies(), $module->getGroup() );
 				}
 			}
 		}

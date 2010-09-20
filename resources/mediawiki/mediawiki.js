@@ -541,7 +541,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * Registers a module, letting the system know about it and it's dependencies. loader.js files contain calls
 		 * to this function.
 		 */
-		this.register = function( module, version, dependencies, status ) {
+		this.register = function( module, version, dependencies, group ) {
 			// Allow multiple registration
 			if ( typeof module === 'object' ) {
 				for ( var m = 0; m < module.length; m++ ) {
@@ -557,12 +557,13 @@ window.mediaWiki = new ( function( $ ) {
 			if ( typeof module !== 'string' ) {
 				throw new Error( 'module must be a string, not a ' + typeof module );
 			}
-			if ( typeof registry[module] !== 'undefined' && typeof status === 'undefined' ) {
+			if ( typeof registry[module] !== 'undefined' ) {
 				throw new Error( 'module already implemeneted: ' + module );
 			}
 			// List the module as registered
 			registry[module] = {
-				'state': typeof status === 'string' ? status : 'registered',
+				'state': 'registered',
+				'group': typeof group === 'string' ? group : null,
 				'dependencies': [],
 				'version': typeof version !== 'undefined' ? parseInt( version ) : 0
 			};
