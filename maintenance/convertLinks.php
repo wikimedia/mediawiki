@@ -53,7 +53,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 
 		global $wgContLang;
 	
-		$tuplesAdded = $numBadLinks = $curRowsRead = 0; # counters etc
+		$numBadLinks = $curRowsRead = 0; # counters etc
 		$totalTuplesInserted = 0; # total tuples INSERTed into links_temp
 
 		$reportCurReadProgress = true; # whether or not to give progress reports while reading IDs from cur table

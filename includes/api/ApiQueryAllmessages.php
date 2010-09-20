@@ -54,7 +54,6 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		$prop = array_flip( (array)$params['prop'] );
 
 		// Determine which messages should we print
-		$messages_target = array();
 		if ( in_array( '*', $params['messages'] ) ) {
 			$message_names = array_keys( Language::getMessagesFor( 'en' ) );
 			sort( $message_names );

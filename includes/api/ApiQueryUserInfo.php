@@ -43,13 +43,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
-		$r = array();
 
 		if ( !is_null( $params['prop'] ) ) {
 			$this->prop = array_flip( $params['prop'] );
 		} else {
 			$this->prop = array();
 		}
+
 		$r = $this->getCurrentUserInfo();
 		$result->addValue( 'query', $this->getModuleName(), $r );
 	}
