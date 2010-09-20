@@ -14,9 +14,9 @@ jQuery.client = new ( function() {
 	 * 
 	 * The resulting client object will be in the following format:
 	 *  {
-	 * 		'browser': 'firefox',
+	 * 		'name': 'firefox',
 	 * 		'layout': 'gecko',
-	 * 		'os': 'linux'
+	 * 		'platform': 'linux'
 	 * 		'version': '3.5.1',
 	 * 		'versionBase': '3',
 	 * 		'versionNumber': 3.5,
@@ -58,20 +58,20 @@ jQuery.client = new ( function() {
 			// Used as matches 2, 3 and 4 in version extraction - 3 is used as actual version number
 			var versionSuffix = '(\/|\;?\s|)([a-z0-9\.\+]*?)(\;|dev|rel|\\)|\s|$)';
 			// Names of known browsers
-			var browserNames = [
+			var names = [
 			 	'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera', 'safari', 'ipod',
 			 	'iphone', 'blackberry', 'ps3'
 			];
 			// Tanslations for conforming browser names
-			var browserTranslations = [];
+			var nameTranslations = [];
 			// Names of known layout engines
-			var layoutNames = ['gecko', 'konqueror', 'msie', 'opera', 'webkit'];
+			var layouts = ['gecko', 'konqueror', 'msie', 'opera', 'webkit'];
 			// Translations for conforming layout names
 			var layoutTranslations = [['konqueror', 'khtml'], ['msie', 'trident'], ['opera', 'presto']];
 			// Names of known operating systems
-			var osNames = ['win', 'mac', 'linux', 'sunos', 'solaris', 'iphone'];
+			var platforms = ['win', 'mac', 'linux', 'sunos', 'solaris', 'iphone'];
 			// Translations for conforming operating system names
-			var osTranslations = [['sunos', 'solaris']];
+			var platformTranslations = [['sunos', 'solaris']];
 			
 			/* Methods */
 			
@@ -85,7 +85,7 @@ jQuery.client = new ( function() {
 			
 			/* Pre-processing  */
 			
-			var userAgent = navigator.userAgent, match, browser = uk, layout = uk, os = uk, version = x;
+			var userAgent = navigator.userAgent, match, name = uk, layout = uk, platform = uk, version = x;
 			if ( match = new RegExp( '(' + wildUserAgents.join( '|' ) + ')' ).exec( userAgent ) ) {
 				// Takes a userAgent string and translates given text into something we can more easily work with
 				userAgent = translate( userAgent, userAgentTranslations );
@@ -95,14 +95,14 @@ jQuery.client = new ( function() {
 			
 			/* Extraction */
 			
-			if ( match = new RegExp( '(' + browserNames.join( '|' ) + ')' ).exec( userAgent ) ) {
-				browser = translate( match[1], browserTranslations );
+			if ( match = new RegExp( '(' + names.join( '|' ) + ')' ).exec( userAgent ) ) {
+				name = translate( match[1], nameTranslations );
 			}
-			if ( match = new RegExp( '(' + layoutNames.join( '|' ) + ')' ).exec( userAgent ) ) {
+			if ( match = new RegExp( '(' + layouts.join( '|' ) + ')' ).exec( userAgent ) ) {
 				layout = translate( match[1], layoutTranslations );
 			}
-			if ( match = new RegExp( '(' + osNames.join( '|' ) + ')' ).exec( navigator.platform.toLowerCase() ) ) {
-				var os = translate( match[1], osTranslations );
+			if ( match = new RegExp( '(' + platforms.join( '|' ) + ')' ).exec( navigator.platform.toLowerCase() ) ) {
+				platform = translate( match[1], platformTranslations );
 			}
 			if ( match = new RegExp( '(' + versionPrefixes.join( '|' ) + ')' + versionSuffix ).exec( userAgent ) ) {
 				version = match[3];
@@ -122,9 +122,9 @@ jQuery.client = new ( function() {
 			/* Caching */
 			
 			profile = {
-				'browser': browser,
+				'name': name,
 				'layout': layout,
-				'os': os,
+				'platform': platform,
 				'version': version,
 				'versionBase': ( version !== x ? new String( version ).substr( 0, 1 ) : x ),
 				'versionNumber': ( parseFloat( version, 10 ) || 0.0 )
@@ -162,14 +162,14 @@ jQuery.client = new ( function() {
 		var profile = jQuery.client.profile();
 		var dir = jQuery( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
 		// Check over each browser condition to determine if we are running in a compatible client
-		if ( typeof map[dir] !== 'object' || map[dir][profile.browser] !== 'object' ) {
+		if ( typeof map[dir] !== 'object' || map[dir][profile.name] !== 'object' ) {
 			// Unknown, so we assume it's working
 			return true;
 		}
-		var browser = map[dir][profile.browser];
-		for ( var condition in browser ) {
-			var op = browser[condition][0];
-			var val = browser[condition][1];
+		var name = map[dir][profile.name];
+		for ( var condition in name ) {
+			var op = name[condition][0];
+			var val = name[condition][1];
 			if ( val === false ) {
 				return false;
 			} else if ( typeof val == 'string' ) {
