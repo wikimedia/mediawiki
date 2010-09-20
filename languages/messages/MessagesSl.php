@@ -1473,7 +1473,7 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'recentchanges-label-newpage'       => 'S tem urejanjem je bila ustvarjena nova stran',
 'recentchanges-label-minor'         => 'To je manjše urejanje',
 'recentchanges-label-bot'           => 'To urejanje je bilo izvedeno z botom',
-'recentchanges-label-unpatrolled'   => 'To urejanje še ni bila pregledano',
+'recentchanges-label-unpatrolled'   => 'To urejanje še ni bilo pregledano',
 'rcnote'                            => "Prikazujem {{PLURAL:$1|zadnjo spremembo|zadnji '''$1''' spremembi|zadnje '''$1''' spremembe|zadnjih '''$1''' sprememb|zadnjih '''$1''' sprememb}} v {{PLURAL:$2|zadnjem|zadnjih|zadnjih|zadnjih|zadnjih}} '''$2''' {{PLURAL:$2|dnevu|dneh|dneh|dneh|dneh}}, od $5, $4.",
 'rcnotefrom'                        => "Navedene so spremembe od '''$2''' dalje (prikazujem jih do '''$1''').",
 'rclistfrom'                        => 'Prikaži spremembe od $1 naprej',

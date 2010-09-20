@@ -29,7 +29,7 @@ $messages = array(
 'tog-editsection'             => '[Badlao] ke jorr se section ke badlao se enable karo',
 'tog-editsectiononrightclick' => 'Bhaag ke title pe right click kare pe bhaag ke badle ke laabu karo  (JavaScript)',
 'tog-showtoc'                 => 'Dhyan suchi dekhao (uu panna khatir jon me tiin se jaada heading hai)',
-'tog-rememberpassword'        => 'Ii computer me hamaar login yaad rakho (jaada se jaada $1 {{PLURAL:$1|din|din}}) talak.',
+'tog-rememberpassword'        => 'Ii browser me (jaada se jaada $1 {{PLURAL:$1|din|din}}) talak hamaar login ke yaad rakho.',
 'tog-watchcreations'          => 'Hamaar banawa waala panna ke hamaar dhyaan suchi me jorro',
 'tog-watchdefault'            => 'Ham se badla gae panna ke hamaar dhyaan suchi me jorro',
 'tog-watchmoves'              => 'Uu panna jiske naam ham badla hai ke hamaar dhyaan suchi me jorro',
@@ -248,6 +248,9 @@ Bahut dher sadasya ii panna ke dekhe maange hae.
 Meharbani kar ke, thora deri sabur kar ke ii panna ke fir se kholo.
 
 $1',
+'pool-timeout'      => 'Lock ke wait kare waala time khalaas hoe gais hae',
+'pool-queuefull'    => 'Pool ke line bhar gais hae',
+'pool-errorunknown' => 'Pata nahi kaisan galti hae',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ke baare me',
@@ -493,6 +496,11 @@ Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
 Thora deri baad fir se kosis karna.',
 'loginlanguagelabel'         => 'Bhasa: $1',
 'suspicious-userlogout'      => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
+'ratelimit-excluded-ips'     => ' #<!-- ii line ke yahii rakam chhorr do --> <pre>
+# Syntax ii rakam hae:
+#  * Sab chij "#" character se lae ke line ke end talak comment hae
+#  * Sab line jon ki khaali nai hae, ek IP address hae, jiske rate limit se nikal dewa gais hae
+ #</pre> <!-- ii line ke yahii rakam chhorr do -->',
 
 # JavaScript password checks
 'password-strength'            => 'Password ke lambai pe anumaan: $1',
@@ -946,11 +954,13 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 # Diffs
 'history-title'            => '"$1" ke sansodhan ke itihaas',
 'difference'               => '(Badlao me farak)',
+'difference-multipage'     => '(Panna ke biich ke antar)',
 'lineno'                   => 'Rekha $1:',
 'compareselectedversions'  => 'Chuna gae version ke compare karo',
 'showhideselectedversions' => 'Chuna gae versions ke dekhao/lukao',
 'editundo'                 => 'Pahile jaise kar do',
-'diff-multi'               => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} nai dekhawa jae hai.)',
+'diff-multi'               => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} jiske {{PLURAL:$2|sadasya|$2 sadasya}} karis hae, ke  nai dekhawa jae hai.)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} jiske {{PLURAL:$2|sadasya|$2 sadasya}} se jaada log karin hae, ke  nai dekhawa jae hai.)',
 
 # Search results
 'searchresults'                    => 'Khoj ke natija',
@@ -1063,6 +1073,7 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'contextlines'                  => 'Ek hit me ketnaa line hae:',
 'contextchars'                  => 'Ek line me ketnaa context hae:',
 'stub-threshold'                => 'Threshold ke khatir <a href="#" class="stub">stub link</a> formatting (bytes):',
+'stub-threshold-disabled'       => 'Band kar dewa gais hae',
 'recentchangesdays'             => 'Nawaa badlao me ketna roj dekhawa jaae:',
 'recentchangesdays-max'         => '(sab se jaada $1 {{PLURAL:$1|din|din}})',
 'recentchangescount'            => 'Default se ketnaa badlao ke dekhae ke chaahi:',
@@ -1134,6 +1145,9 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'prefs-advancedrendering'       => 'Uchchaa pasand',
 'prefs-advancedsearchoptions'   => 'Uchchaa pasand',
 'prefs-advancedwatchlist'       => 'Uchchaa pasand',
+'prefs-displayrc'               => 'Choice dekhao',
+'prefs-displaysearchoptions'    => 'Choice dekhao',
+'prefs-displaywatchlist'        => 'Choice dekhao',
 'prefs-diffs'                   => 'Farka',
 
 # User rights
@@ -1449,9 +1463,11 @@ Meharbaani kar ke aur jaada descriptive filename chose karo.",
 'upload-success-subj'         => 'Upload safal bhais',
 'upload-success-msg'          => 'Aap ke upload [$2] se safal bhais. Iske hian pe dekhe saktaa hae: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Upload kare me kuchh karrbarr hoe gais hae',
-'upload-failure-msg'          => 'Aap ke upload me kuchh garrbarr hoe gais hae:
+'upload-failure-msg'          => 'Aap ke [$2] se uploadkare  me kuchh garrbarr hoe gais hae:
 
 $1',
+'upload-warning-subj'         => 'Upload ke baare me chetauni',
+'upload-warning-msg'          => '[$2] se upload kare me kuch karrbarr hoe gais hae. Aap  [[Special:Upload/stash/$1|upload form]] me laut ke ii garrbarri ke sidha kare sakta hae.',
 
 'upload-proto-error'        => 'Protocol right nai hai',
 'upload-proto-error-text'   => 'Duur ke upload maange hai URLs jon ki suruu hoe hai <code>http://</code> nai to <code>ftp://</code>.',
@@ -1860,6 +1876,7 @@ Jon e-mail address aap [[Special:Preferences|your user preferences]] me enter ka
 # Watchlist
 'watchlist'            => 'Hamaar dhyan suchi',
 'mywatchlist'          => 'Hamaar dhyaan suchi',
+'watchlistfor2'        => '$1 $2 ke khatir',
 'nowatchlist'          => 'Aap ke dhyan suchi me koi chij nai hai.',
 'watchlistanontext'    => 'Aapan dhyan suchi me ke dekhe nai to badle ke khatir meharbani kar ke $1 karo.',
 'watchnologin'         => 'Logged in nai hai',
@@ -2370,6 +2387,7 @@ panna ke wahi ke uppar nai save karaa jaae sake hai.',
 'immobile-source-page'         => 'Ii panna ke naam nai badla jaawe sake hai.',
 'immobile-target-page'         => 'Uu jagah pe nai move kare sakta hai.',
 'imagenocrossnamespace'        => 'File ke non-file namespace me hatae ke nai kare sakta hai',
+'nonfile-cannot-move-to-file'  => 'Ek chij jon ki file nai hae ke file waala jagha pe nai kare sakta hae',
 'imagetypemismatch'            => 'Nawaa file extension uske type se nai match kare hai.',
 'imageinvalidfilename'         => 'Jon naam pe aap badle mangtaa hai valid nai hai',
 'fix-double-redirects'         => 'Update any redirects that point to the original title',
@@ -2734,6 +2752,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-aperturevalue'               => 'Aperture',
 'exif-brightnessvalue'             => 'Chamak',
 'exif-focallength'                 => 'Lens ke focal length',
+'exif-focalplanexresolution'       => 'Focal plane X resolution',
 'exif-gpsaltitude'                 => 'Uunchai',
 'exif-gpsspeedref'                 => 'Raftar ke unit',
 'exif-gpsdatestamp'                => 'GPS ke taarik',
@@ -2813,12 +2832,12 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'watchlisttools-raw'  => 'Dhyan suchi ke apne sampadan karo',
 
 # Special:Version
-'version'              => 'Version',
+'version'              => 'Badlao',
 'version-specialpages' => 'Khaas panna',
 'version-other'        => 'Duusra',
 
 # Special:FilePath
-'filepath-submit' => 'Rasta',
+'filepath-submit' => 'Jaao',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'File ke naam:',

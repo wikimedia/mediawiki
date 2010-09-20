@@ -579,6 +579,9 @@ Tuto stránku si právě prohlíží příliš mnoho uživatelů.
 Před tím, než ji zkusíte načíst znovu, chvíli počkejte.
 
 $1',
+'pool-timeout'      => 'Při čekání na zámek vypršel časový limit',
+'pool-queuefull'    => 'Fronta ve fondu je plná',
+'pool-errorunknown' => 'Neznámá chyba',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O&nbsp;{{grammar:6sg|{{SITENAME}}}}',
