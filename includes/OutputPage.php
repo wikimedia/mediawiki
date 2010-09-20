@@ -2309,7 +2309,7 @@ class OutputPage {
 					$module = ResourceLoader::getModule( $name );
 					if (
 						$module instanceof ResourceLoaderWikiModule ||
-						$module instanceof ResourceLoaderUserPreferencesModule
+						$module instanceof ResourceLoaderUserOptionsModule
 					) {
 						$timestamp = max(
 							$timestamp,
