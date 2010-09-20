@@ -68,7 +68,6 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	} else {
 		$ts = false;
 	}
-	$sql = '';
 
 	# If we were clever, we'd use this to cache.
 	$latestTimestamp = wfTimestamp( TS_MW, $ts );
@@ -100,7 +99,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$where[] = "img_timestamp >= '" . $dbr->timestamp( $from ) . "'";
 		$invertSort = true;
 	}
-	$sql='SELECT img_size, img_name, img_user, img_user_text,'.
+	$sql = 'SELECT img_size, img_name, img_user, img_user_text,'.
 	     "img_description,img_timestamp FROM $image";
 
 	if( $hidebotsql ) {

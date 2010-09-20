@@ -42,7 +42,6 @@ class SpecialTags extends SpecialPage {
 		$wgOut->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		// Write the headers
-		$html = '';
 		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, wfMsgExt( 'tags-tag', 'parseinline' ) ) .
 				Xml::tags( 'th', null, wfMsgExt( 'tags-display-header', 'parseinline' ) ) .
 				Xml::tags( 'th', null, wfMsgExt( 'tags-description-header', 'parseinline' ) ) .

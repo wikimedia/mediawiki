@@ -42,8 +42,6 @@ class ApiProtect extends ApiBase {
 		global $wgUser, $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
-		$titleObj = null;
-
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );

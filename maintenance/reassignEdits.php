@@ -47,8 +47,9 @@ class ReassignEdits extends Maintenance {
 				$report = $this->hasOption( 'report' );
 				$count = $this->doReassignEdits( $from, $to, !$this->hasOption( 'norc' ), $report );
 				# If reporting, and there were items, advise the user to run without --report	
-				if ( $report )
+				if ( $report ) {
 					$this->output( "Run the script again without --report to update.\n" );
+				}
 			} else {
 				$ton = $to->getName();
 				$this->error( "User '{$ton}' not found." );
