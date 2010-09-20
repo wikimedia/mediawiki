@@ -2006,7 +2006,7 @@ class User {
 
 		if ( $oname == 'skin' ) {
 			# Clear cached skin, so the new one displays immediately in Special:Preferences
-			unset( $this->mSkin );
+			$this->mSkin = null;
 		}
 
 		// Explicitly NULL values should refer to defaults
