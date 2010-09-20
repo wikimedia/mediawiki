@@ -14,7 +14,7 @@ jQuery.client = new ( function() {
 	 * 
 	 * The resulting client object will be in the following format:
 	 *  {
-	 * 		'name': 'firefox',
+	 * 		'browser': 'firefox',
 	 * 		'layout': 'gecko',
 	 * 		'os': 'linux'
 	 * 		'version': '3.5.1',
