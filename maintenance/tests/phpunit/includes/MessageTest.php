@@ -8,8 +8,7 @@ class MessageTest extends PHPUnit_Framework_TestCase {
 		$wgLanguageCode = 'en'; # For mainpage to be 'Main Page'
 		//Some test set this to a Stub Object. For this test we need the real deal
 		$wgContLang = $wgLang = Language::factory( $wgLanguageCode );
-		$wgMemc = new FakeMemCachedClient;
-		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
+		$wgMessageCache = new MessageCache( false, true, 3600 );
 	}
 
 	function testExists() {
