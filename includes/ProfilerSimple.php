@@ -109,8 +109,9 @@ class ProfilerSimple extends Profiler {
 
 	function getCpuTime($ru=null) {
 		if ( function_exists( 'getrusage' ) ) {
-			if ( $ru == null )
+			if ( $ru == null ) {
 				$ru = getrusage();
+			}
 			return ($ru['ru_utime.tv_sec'] + $ru['ru_stime.tv_sec'] + ($ru['ru_utime.tv_usec'] +
 				$ru['ru_stime.tv_usec']) * 1e-6);
 		} else {
@@ -120,8 +121,9 @@ class ProfilerSimple extends Profiler {
 
 	/* If argument is passed, it assumes that it is dual-format time string, returns proper float time value */
 	function getTime($time=null) {
-		if ($time==null)
+		if ($time==null) {
 			return microtime(true);
+		}
 		list($a,$b)=explode(" ",$time);
 		return (float)($a+$b);
 	}

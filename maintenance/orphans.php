@@ -168,7 +168,7 @@ class Orphans extends Maintenance {
 		$text     = $dbw->tableName( 'text' );
 	
 		if ( $fix ) {
-			$dbw->lockTables( $dbw, 'text' );
+			$dbw->lockTables( $dbw, 'text', __METHOD__ );
 		}
 	
 		$this->output( "\nChecking for pages whose page_latest links are incorrect... (this may take a while on a large wiki)\n" );
