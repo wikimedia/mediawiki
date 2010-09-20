@@ -59,7 +59,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   requests.
 * $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage,
   $wgResourceLoaderUnversionedClientMaxage and
-  wgResourceLoaderUnversionedServerMaxage were added to specify maxage and
+  $wgResourceLoaderUnversionedServerMaxage were added to specify maxage and
   smaxage times for responses from ResourceLoader based on whether the request's
   URL contained a version parameter or not.
 
