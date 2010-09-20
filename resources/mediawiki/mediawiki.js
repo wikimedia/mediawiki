@@ -502,16 +502,27 @@ window.mediaWiki = new ( function( $ ) {
 						);
 					}
 				} else {
-					// Calculate the highest timestamp
-					var version = 0;
+					// Split into groups
+					var groups = {};
 					for ( var b = 0; b < batch.length; b++ ) {
-						if ( registry[batch[b]].version > version ) {
-							version = registry[batch[b]].version;
+						var group = registry[batch[b]].group;
+						if ( !( group in groups ) ) {
+							groups[group] = [];
 						}
+						groups[group][groups[group].length] = batch[b];
 					}
-					requests[requests.length] = $.extend(
-						{ 'modules': batch.join( '|' ), 'version': formatVersionNumber( version ) }, base
-					);
+					for ( var group in groups ) {
+						// Calculate the highest timestamp
+						var version = 0;
+						for ( var g = 0; g < groups[group].length; g++ ) {
+							if ( registry[groups[group][g]].version > version ) {
+								version = registry[groups[group][g]].version;
+							}
+						}
+						requests[requests.length] = $.extend(
+							{ 'modules': groups[group].join( '|' ), 'version': formatVersionNumber( version ) }, base
+						);
+					}
 				}
 				// Clear the batch - this MUST happen before we append the script element to the body or it's
 				// possible that the script will be locally cached, instantly load, and work the batch again,
