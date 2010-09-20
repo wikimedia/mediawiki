@@ -570,6 +570,9 @@ $messages = array(
 אנא המתינו זמן מה לפני שתנסו שוב לצפות בדף.
 
 $1',
+'pool-timeout'      => 'זמן ההמתנה לסיום הנעילה עבר',
+'pool-queuefull'    => 'התור מלא',
+'pool-errorunknown' => 'שגיאה בלתי ידועה',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'אודות {{SITENAME}}',
