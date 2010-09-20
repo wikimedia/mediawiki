@@ -1655,6 +1655,7 @@ $UNWATCHURL
 # Rollback
 'rollback_short' => 'Кире кайтару',
 'rollbacklink'   => 'кире кайтару',
+'revertpage'     => '[[Special:Contributions/$2|$2]] үзгәртүләре ([[User talk:$2|бәхәс]])  [[User:$1|$1]] юрамасына кире кайтарылды',
 
 # Protect
 'protectlogpage'              => 'Яклану көндәлеге',

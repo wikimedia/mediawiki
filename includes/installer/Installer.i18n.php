@@ -3978,6 +3978,7 @@ $messages['ig'] = array(
 );
 
 /** Japanese (日本語)
+ * @author Aphaia
  * @author Whym
  * @author Yanajin66
  * @author 青子守歌
@@ -4173,7 +4174,7 @@ WindowsでMySQLを使用している場合に、「localhost」は、サーバ�
 '''バイナリー系式'''では、MediaWikiは、UTF-8テキストを、データベースのバイナリーフィールドに格納します。
 これは、MySQLのUTF-8形式より効率的で、ユニコード文字の全範囲を利用することが出来るようになります。
 '''UTF-8形式'''では、MySQLは、なんの文字集合がデータのなかに含まれているかを知り、それに対して適切な提示と変換をするでしょうが、
-[http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 基本多言語面]の外にある文字を格納させられるようにはしないでしょう。",
+[http://ja.wikipedia.org/wiki/%E5%9F%BA%E6%9C%AC%E5%A4%9A%E8%A8%80%E8%AA%9E%E9%9D%A2 基本多言語面]の外にある文字を格納できるようにはなりません。",
 	'config-mysql-old' => 'MySQLの$1以降が要求されています。あなたの所有のものは$2です。',
 	'config-db-port' => 'データベースポート:',
 	'config-db-schema' => 'メディアウィキの図式',
@@ -4233,11 +4234,12 @@ Unix/Linux上で次のことを行ってください。:
 mkdir $3
 chgrp $4 $3
 chmod g+w $3</pre>',
-	'config-sqlite-parent-unwritable-nogroup' => '<code><nowiki>$1</nowiki></code>データディレクトリを作成できません。理由は親となるディレクトリ<code><nowiki>$2</nowiki></code>がウェブサーバによって書き込みできないからです。
+	'config-sqlite-parent-unwritable-nogroup' => 'データディレクトリ <code><nowiki>$1</nowiki></code> を作成できません。親ディレクトリ<code><nowiki>$2</nowiki></code>がウェブサーバから書き込みできませんでした。
 
-インストーラはあなたのウェブサーバとして稼動させているユーザを決定できませんでした。
-続行するために<code><nowiki>$3</nowiki></code>ディレクトリをウェブサーバ（あるいは他のもの）によってグローバルに書き込み可能にしてください。
-Unix/Linux上で次のことを行ってください。:
+インストーラはあなたのウェブサーバが稼動しているユーザを特定できませんでした。
+続行するには、<code><nowiki>$3</nowiki></code>ディレクトリを、ウェブサーバ（と他のユーザ！）からグローバルに書き込み出来るようにしてください。
+
+Unix/Linux上で、以下を実行してください:
 
 <pre>cd $2
 mkdir $3
@@ -4261,6 +4263,8 @@ chmod a+w $3</pre>',
 
 もし、<code>LocalSettings.php</code>ファイルを再生成したいのならば、下のボタンを押してください。
 あなたが自身のウィキに問題を抱えていない限り、これは'''推奨されません'''。",
+	'config-regenerate' => 'LocalSettings.phpを再生成→',
+	'config-show-table-status' => 'SHOW TABLE STATUSクエリーが失敗しました！',
 	'config-unknown-collation' => "'''警告:''' データベースは認識されない照合を使用しています。",
 	'config-db-web-account' => 'ウェブアクセスのためのデータベースアカウント',
 	'config-db-web-help' => 'ウィキの元来の操作中、ウェブサーバーがデーターベースサーバーに接続できるように、ユーザ名とパスワードを選択してください。',
@@ -4271,11 +4275,20 @@ chmod a+w $3</pre>',
 	'config-mysql-engine' => 'ストレージエンジン:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "'''InnoDB'''は、並行処理のサポートに優れているので、ほとんどの場合において最良の選択肢です。
+
+'''MyISAM'''は、利用者が1人の場合、あるいは読み込み専用でインストールする場合に、より処理が早くなるでしょう。
+ただし、MyISAMのデータベースは、InnoDBより高頻度で破損する傾向があります。",
 	'config-mysql-egine-mismatch' => "'''警告:''' あなたは$1ストレージエンジンを要求しました、しかし存在するデータベースは$2エンジンを使用します。
 このアップグレードスクリプトはこれをカバーしていません、それゆえに$2が残ることになるでしょう。",
 	'config-mysql-charset' => 'データベースの文字セット:',
 	'config-mysql-binary' => 'バイナリ',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "'''バイナリー系式'''では、MediaWikiは、UTF-8テキストを、データベースのバイナリーフィールドに格納します。
+これは、MySQLのUTF-8形式より効率的で、ユニコード文字の全範囲を利用することが出来るようになります。
+
+'''UTF-8形式'''では、MySQLは、なんの文字集合がデータのなかに含まれているかを知り、それに対して適切な提示と変換をするでしょうが、
+[http://ja.wikipedia.org/wiki/%E5%9F%BA%E6%9C%AC%E5%A4%9A%E8%A8%80%E8%AA%9E%E9%9D%A2 基本多言語面]の外にある文字を格納できるようにはなりません。",
 	'config-mysql-charset-mismatch' => "'''警告:''' あなたは図式$1を要求しました。しかし存在するデータベースは図式$2を所持しています。
 このアップグレードスクリプトはこれをカバーしていません、それゆえに$2が残ることになるでしょう。",
 	'config-site-name' => 'ウィキの名前：',
@@ -4307,15 +4320,30 @@ chmod a+w $3</pre>',
 	'config-admin-error-user' => '"<nowiki>$1</nowiki>"という名前の管理者を作成する際に内部エラーが発生しました。',
 	'config-admin-error-password' => '管理者"<nowiki>$1</nowiki>"のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>',
 	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list]サイトに登録する',
+	'config-subscribe-help' => 'これは、リリースの告知（重要なセキュリティに関する案内を含む）に使われる、低容量のメーリングリストです。
+このメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。',
 	'config-almost-done' => 'あなたはほとんど完璧です！
 設定を残すことをはぶいて、今すぐにウィキをインストールできます。',
 	'config-optional-continue' => '私にもっと質問してください。',
 	'config-optional-skip' => 'すでに飽きてしまった、ウィキをインストールするだけです。',
 	'config-profile' => '正しいプロフィールのユーザ:',
 	'config-profile-wiki' => '伝統的なウィキ',
-	'config-profile-no-anon' => 'リクエストされたアカウント作成',
+	'config-profile-no-anon' => 'アカウントの作成が必要',
 	'config-profile-fishbowl' => '承認された編集者のみ',
-	'config-profile-private' => 'プライベートなウィキ',
+	'config-profile-private' => '非公開ウィキ',
+	'config-profile-help' => "ウィキは、たくさんの人が可能な限りそのウィキを編集できるとき、最も優れた働きをします。
+MediaWikiでは、最近の更新を確認し、神経質な、もしくは悪意を持った利用者からの損害を差し戻すことが、簡単にできます。
+
+しかし一方で、MediaWikiは、さらに様々な形態でもの利用も優れていると言われています。また、時には、すべての人にウィキ手法の利点を説得させるのは容易ではないかもしれません。
+そこで、選択肢があります。
+
+'''{{int:config-profile-wiki}}'''は、ログインをせずとも、誰でも編集が可能なものです。
+'''{{int:config-profile-no-anon}}'''なウィキは、各編集に対してより強い説明責任を付与しますが、気軽な投稿を阻害するかもしれません。
+
+'''{{int:config-profile-fishbowl}}'''のウィキは、承認された利用者は編集でき、一方、一般の人はページ（とその履歴）の閲覧が可能です。
+'''{{int:config-profile-private}}'''は、承認された利用者がページを閲覧可能で、そのグループが編集可能です。
+
+より複雑な利用者権限の設定は、インストール後に設定可能です。詳細は[http://www.mediawiki.org/wiki/Manual:User_rights 関連するマニュアル]をご覧ください。",
 	'config-license' => '著作権とライセンス:',
 	'config-license-none' => 'ライセンスのフッターを付けない',
 	'config-license-cc-by-sa' => 'クリエイティブ・コモンズ 表示-継承 (Wikipedia互換)',
@@ -4343,7 +4371,13 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-email-watchlist' => 'ウォッチリストの通知を有効にする',
 	'config-email-watchlist-help' => '設定で有効にしているならば、閲覧されたページに関する通知を受け取ることをユーザに許可する。',
 	'config-email-auth' => '電子メールの認証を有効にする',
+	'config-email-auth-help' => "この選択肢が有効化されると、利用者が電子メールのアドレスを設定あるいは変更したときに送信されるリンクにより、そのアドレスを確認しなければならなくなります。
+認証済みのアドレスだけが、他の利用者からのメールや、変更通知のメールを受け取ることができます。
+公開ウィキでは、メール機能による潜在的な不正利用の防止のため、この選択肢を設定することが'''推奨'''されます。",
 	'config-email-sender' => '電子メールのアドレスを返す:',
+	'config-email-sender-help' => '送信メールの返信アドレスとして利用するメールアドレスを入力してください。
+宛先不明の場合、このアドレスにその通知が送信されます。
+多くのメールサーバーでは、少なくともドメイン名の一部が有効であることが必要になっています。',
 	'config-upload-settings' => '画像およびファイルのアップロード',
 	'config-upload-enable' => 'ファイルのアップロードを有効にする',
 	'config-upload-help' => 'ファイルのアップロードは潜在的にあなたのサーバにセキュリティー上の危険をさらします。
@@ -4360,6 +4394,10 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 
 もし、ロゴを望まないならば、このボックスを空白状態のままにしてください。',
 	'config-instantcommons' => '瞬時のコモンズを有効にする',
+	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons InstantCommons]は、[http://commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトで見つかった画像や音声、その他のメディアをウィキ上で利用することができるようになる機能です。
+これを有効化するには、MediaWikiはインターネットに接続できなければなりません。$1
+
+ウィキメディアコモンズ以外のウィキを同じように設定する方法など、この機能に関する詳細な情報は、[http://mediawiki.org/wiki/Manual:$wgForeignFileRepos マニュアル]をご覧ください。',
 	'config-instantcommons-good' => 'インストーラは環境チェック中にインターネット接続を検出できた。
 もし、求めるならば、この機能を有効にできる。',
 	'config-cc-error' => 'クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。
@@ -5240,6 +5278,7 @@ chmod a+w $3</pre>',
 
 /** Dutch (Nederlands)
  * @author McDutchie
+ * @author SPQRobin
  * @author Siebrand
  */
 $messages['nl'] = array(
@@ -5472,14 +5511,14 @@ Als u het databasesysteem dat u wilt gebruiken niet in de lijst terugvindt, volg
 	'config-invalid-db-type' => 'Ongeldig databasetype',
 	'config-missing-db-name' => 'U moet een waarde ingeven voor "Databasenaam"',
 	'config-invalid-db-name' => 'Ongeldige databasenaam "$1".
-Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
+Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-invalid-db-prefix' => 'Ongeldig databasevoorvoegsel "$1".
-Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
+Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-connection-error' => '$1.
 
 Controleer de host, gebruikersnaam en wachtwoord hieronder in en probeer het opnieuw.',
 	'config-invalid-schema' => 'Ongeldig schema voor MediaWiki "$1".
-Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
+Gebruik alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-invalid-ts2schema' => 'Ongeldig schema voor TSearch2 "$1".
 Gebruiker alleen letters (a-z, A-Z), cijfers (0-9) en liggende streepjes (_).',
 	'config-postgres-old' => 'PostgreSQL $1 of hoger is vereist.

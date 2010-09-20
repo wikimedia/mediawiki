@@ -359,7 +359,7 @@ Vagiss bittschee ned, daine [[Special:Preferences|{{SITENAME}}-Aistellungen]] å
 'nologin'                    => "Du host koa Benytzerkonto? '''$1'''.",
 'nologinlink'                => 'A naichs Benytzerkonto erstöin',
 'createaccount'              => 'Benytzerkonto åleeng',
-'gotaccount'                 => "Du hast hast scho a Benutzerkonto? '''$1'''.",
+'gotaccount'                 => "Du host scho a Benutzerkonto? '''$1'''.",
 'gotaccountlink'             => 'Åmöiden',
 'createaccountmail'          => 'per E-Mäil',
 'createaccountreason'        => 'Grund',
@@ -563,17 +563,26 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'search-external'           => 'Externe Suach',
 
 # Preferences page
-'preferences'       => 'Eistellungen',
-'mypreferences'     => 'Aistellungen',
-'changepassword'    => 'Passwort ändan',
-'prefs-editing'     => 'Beorwaiten',
-'searchresultshead' => 'Suachen',
-'resultsperpage'    => 'Treffer pro Saiten:',
-'guesstimezone'     => 'Vom Browser übanehma',
-'allowemail'        => 'E-Mail-Empfang vo andere Benutzer möglich macha.',
-'username'          => 'Benutzernam:',
-'yourrealname'      => 'Echter Nam:',
-'yourlanguage'      => 'Sprooch vo da Benytzerowerflächen',
+'preferences'               => 'Eistellungen',
+'mypreferences'             => 'Aistellungen',
+'changepassword'            => 'Passwort ändan',
+'prefs-editing'             => 'Beorwaiten',
+'searchresultshead'         => 'Suachen',
+'resultsperpage'            => 'Treffer pro Saiten:',
+'savedprefs'                => 'Daine Aistellungen san gspaichert worn.',
+'timezonelegend'            => 'Zaidzone:',
+'localtime'                 => 'Ortszaid:',
+'timezoneuseserverdefault'  => 'Standardzaid vom Server',
+'guesstimezone'             => 'Vom Browser übanehma',
+'allowemail'                => 'E-Mail-Empfang vo andere Benutzer möglich macha.',
+'username'                  => 'Benutzernam:',
+'yourrealname'              => 'Da echte Nåm:',
+'yourlanguage'              => 'Sprooch vo da Benytzerowerflächen',
+'prefs-help-realname'       => 'Opzionoi. Dodamid kå dai byrgerlicher Nåm daine Baiträg zuagordnet wern.',
+'prefs-help-email'          => 'De Ågob vo ner E-Mäil is opzionoi, ermeglicht ower de Zuasendung voram Ersootzposswort, wånn du dai Posswort vagessen host.
+Mid ånderne Benutzer kåst du aa ywer de Benutzerdischkrirsaiten an Kontakt aufnemma, one dass du dai Identität offmleeng muasst.',
+'prefs-help-email-required' => 'Es werd a güitige E-Mäil-Adress braucht.',
+'prefs-info'                => 'Baasisinformazionen',
 
 # User rights
 'userrights-groupsmember' => 'Midgliad vo:',
@@ -719,6 +728,8 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 Sie solltn stattdessn auf de eigentlich gemoante Seitn valinkn.<br />A Seitn werd ois Begriffsklärungsseitn behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie valinkt.<br />
 Links aus Namensräume wern da net aufglistet.',
 
+'doubleredirects' => 'Doppede Waiderloatunga',
+
 'withoutinterwiki-submit' => 'Zoag',
 
 # Miscellaneous special pages
@@ -729,6 +740,7 @@ Links aus Namensräume wern da net aufglistet.',
 'nrevisions'             => '{{PLURAL:$1|oa Beåawatung|$1 Beåawatungen}}',
 'nviews'                 => '{{PLURAL:$1|1 Åbfråg|$1 Åbfrång}}',
 'uncategorizedtemplates' => 'Net kategorisierte Vorlagen',
+'wantedcategories'       => 'Bnutzte, ower ned ågleegte Kategorien',
 'prefixindex'            => 'olle Saiten mid Präfix',
 'shortpages'             => 'Kurze Saiten',
 'longpages'              => 'Långe Saiten',
@@ -912,7 +924,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'sp-contributions-submit'      => 'Suacha',
 
 # What links here
-'whatlinkshere'            => 'Links auf de Seitn',
+'whatlinkshere'            => 'Links auf de Saiten',
 'whatlinkshere-title'      => 'Seitn, de nåch „$1“ valinkn',
 'whatlinkshere-page'       => 'Seitn:',
 'linkshere'                => "↓ Dé foiganden Saiten valinken auf '''„[[:$1]]“''':",

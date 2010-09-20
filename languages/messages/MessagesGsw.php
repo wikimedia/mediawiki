@@ -346,6 +346,9 @@ S versueche grad zvyl Benutzer die Syte aazluege.
 Bitte wart e paar Minute, voreb Du s nomol versuechsch.
 
 $1',
+'pool-timeout'      => '
+Di maximal Wartezyt fir e Lock isch umme',
+'pool-queuefull'    => 'D Warteschlang isch voll',
 'pool-errorunknown' => 'Nit bekannte Fähler',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -589,6 +592,11 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
 'loginlanguagelabel'         => 'Sproch: $1',
 'suspicious-userlogout'      => 'Dyy Versuech di abzmälde isch abbroche wore, wel s uusgsäh het, wie wänn s vun eme bschedigte Browser oder eme Cacheproxy uus gsändet woren isch.',
+'ratelimit-excluded-ips'     => ' #<!-- Die Zyyle derf nit gänderet wäre! --> <pre>
+#  Syntax:
+#   * Alles vun eme #-Zeiche bis zum Änd vu dr Zyyle isch e Kommentar
+#   * Jedi nit-lääri Zyyle isch e IP-Adräss, wu vu dr Begränzig uusgnuu isch
+ #</pre> <!-- Die Zyyle derf nit gänderet wäre! -->',
 
 # JavaScript password checks
 'password-strength'            => 'Gschätzti Passwortsterki: $1',

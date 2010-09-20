@@ -1541,15 +1541,15 @@ Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "L'anliura a l'arspond pa",
 'upload-curl-error6-text'  => "L'anliura che a l'ha butà a marcia pa. Për piasì, ch'a contròla che st'anliura a sia scrita giusta e che ël sit a marcia.",
-'upload-curl-error28'      => "A l'é finìe ël temp chas peul dovresse për carié",
-'upload-curl-error28-text' => "Ël sit a-i buta tròp temp a arspònde. Për piasì, ch'a contròla che a funsion-a, ch'a speta na minuta e peuj che a torna a prové. A peul esse che a-j ven-a a taj serne un moment che ës sit a sia nen tant crarià ëd tràfich.",
+'upload-curl-error28'      => "A l'é finìje ël temp ch'as peul dovresse për carié",
+'upload-curl-error28-text' => "Ël sit a-i buta tròp temp a arsponde. Për piasì, ch'a contròla che a l'é an pé, ch'a speta na minuta e peuj che a torna a prové. A peul esse che a-j ven-a a taj serne un moment che ës sit a sia nen tant carià ëd tràfich.",
 
 'license'            => 'Licensa:',
 'license-header'     => 'Licensa',
-'nolicense'          => 'Pa gnun-a selession faita',
+'nolicense'          => 'Gnun-a selession fàita',
 'license-nopreview'  => "(Gnun-a preuva ch'as peula smon-se)",
-'upload_source_url'  => "  (n'anliura bon-a e che as peula dovresse)",
-'upload_source_file' => " (n'archivi da sò calcolator)",
+'upload_source_url'  => "(n'anliura bon-a e che as peula dovresse)",
+'upload_source_file' => "(n'archivi da sò ordinator)",
 
 # Special:ListFiles
 'listfiles-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a ëstàit carià.
