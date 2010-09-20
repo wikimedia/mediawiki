@@ -2290,45 +2290,48 @@ class OutputPage {
 			'skin' => $wgUser->getSkin()->getSkinName(),
 			'only' => $only,
 		);
-		$moduleGroups = array( null => array(), 'user' => array() );
+		// Remove duplicate module requests
+		$modules = array_unique( (array) $modules );
+		// Sort module names so requests are more uniform
+		sort( $modules );
+		// Create keyed-by-group list of module objects from modules list
+		$groups = array();
 		foreach ( (array) $modules as $name ) {
-			$moduleGroups[strpos( $name, 'user' ) === 0 ? 'user' : null][] = $name;
+			$module = ResourceLoader::getModule( $name );
+			$group = $module->getGroup();
+			if ( !isset( $groups[$group] ) ) {
+				$groups[$group] = array();
+			}
+			$groups[$group][$name] = $module;
 		}
 		$links = '';
-		foreach ( $moduleGroups as $group => $modules ) {
-			if ( count( $modules ) ) {
-				sort( $modules );
-				$query['modules'] = implode( '|', array_unique( (array) $modules ) );
-				if ( $group === 'user' && $wgUser->isLoggedIn() ) {
-					$query['user'] = $wgUser->getName();
-				}
-				// Users might change their stuff on-wiki like site or user pages, or user preferences; we need to find
-				// the highest timestamp of these user-changable modules so we can ensure cache misses upon change
+		foreach ( $groups as $group => $modules ) {
+			$query['modules'] = implode( '|', array_keys( $modules ) );
+			// Special handling for user group
+			if ( $group === 'user' && $wgUser->isLoggedIn() ) {
+				$query['user'] = $wgUser->getName();
+			}
+			// Special handling for user and site groups; because users might change their stuff on-wiki like site or
+			// user pages, or user preferences; we need to find the highest timestamp of these user-changable modules so
+			// we can ensure cache misses on change
+			if ( $group === 'user' || $group === 'site' ) {
+				// Create a fake request based on the one we are about to make so modules return correct times
+				$request = new ResourceLoaderContext( new FauxRequest( $query ) );
+				// Get the maximum timestamp
 				$timestamp = 0;
-				foreach ( $modules as $name ) {
-					$module = ResourceLoader::getModule( $name );
-					if (
-						$module instanceof ResourceLoaderWikiModule ||
-						$module instanceof ResourceLoaderUserOptionsModule
-					) {
-						$timestamp = max(
-							$timestamp,
-							$module->getModifiedTime( new ResourceLoaderContext( new FauxRequest( $query ) ) )
-						);
-					}
+				foreach ( $modules as $module ) {
+					$timestamp = max( $timestamp, $module->getModifiedTime( $request ) );
 				}
-				// Add a version parameter if any of the modules were user-changable
-				if ( $timestamp ) {
-					$query['version'] = wfTimestamp( TS_ISO_8601, round( $timestamp, -2 ) );
-				}
-				// Make queries uniform in order
-				ksort( $query );
-				// Automatically select style/script elements
-				if ( $only === 'styles' ) {
-					$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
-				} else {
-					$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
-				}
+				// Add a version parameter so cache will break when things change
+				$query['version'] = wfTimestamp( TS_ISO_8601, round( $timestamp, -2 ) );
+			}
+			// Make queries uniform in order
+			ksort( $query );
+			// Automatically select style/script elements
+			if ( $only === 'styles' ) {
+				$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+			} else {
+				$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
 			}
 		}
 		return $links;
