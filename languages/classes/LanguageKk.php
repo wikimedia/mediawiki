@@ -284,10 +284,10 @@ class KkConverter extends LanguageConverter {
 	}
 
 	function regsConverter( $text, $toVariant ) {
-		if ( $text == '' ) return $text;
+		if ( $text == '' ) {
+			return $text;
+		}
 
-		$pat = array();
-		$rep = array();
 		switch( $toVariant ) {
 			case 'kk-arab':
 			case 'kk-cn':

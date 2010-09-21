@@ -2761,9 +2761,9 @@ class User {
 	function getMaxID() {
 		static $res; // cache
 
-		if ( isset( $res ) )
+		if ( isset( $res ) ) {
 			return $res;
-		else {
+		} else {
 			$dbr = wfGetDB( DB_SLAVE );
 			return $res = $dbr->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 		}
