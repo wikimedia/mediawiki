@@ -4224,22 +4224,21 @@ $1
 	'config-sqlite-name-help' => 'あなたのウェキと同一性のある名前を選んでください。
 空白およびハイフンは使用しないでください。
 SQLiteのデータファイル名として使用されます。',
-	'config-sqlite-parent-unwritable-group' => '<code><nowiki>$1</nowiki></code>データディレクトリを作成できません。理由は親となるディレクトリ<code><nowiki>$2</nowiki></code>がウェブサーバによって書き込みできないからです。
+	'config-sqlite-parent-unwritable-group' => 'データディレクトリ<code><nowiki>$1</nowiki></code>を作成できません。親ディレクトリ<code><nowiki>$2</nowiki></code>は、ウェブサーバから書き込みできませんでした。
 
-インストーラはあなたのウェブサーバとして稼動させているユーザを決定しました。
-続行するために<code><nowiki>$3</nowiki></code>ディレクトリを書き込み可能にしてください。
-Unix/Linux上で次のことを行ってください。:
+インストール機能は、実行しているウェブサーバのユーザーを特定しました。
+続行するには、<code><nowiki>$3</nowiki></code>ディレクトリを書き込み可能にしてください。
+UnixあるいはLinux上では、以下を実行してください:
 
 <pre>cd $2
 mkdir $3
 chgrp $4 $3
 chmod g+w $3</pre>',
-	'config-sqlite-parent-unwritable-nogroup' => 'データディレクトリ <code><nowiki>$1</nowiki></code> を作成できません。親ディレクトリ<code><nowiki>$2</nowiki></code>がウェブサーバから書き込みできませんでした。
+	'config-sqlite-parent-unwritable-nogroup' => 'データディレクトリ<code><nowiki>$1</nowiki></code>を作成できません。親ディレクトリ<code><nowiki>$2</nowiki></code>は、ウェブサーバから書き込みできませんでした。
 
-インストーラはあなたのウェブサーバが稼動しているユーザを特定できませんでした。
+インストール機能は、実行しているウェブサーバのユーザーを特定できませんでした。
 続行するには、<code><nowiki>$3</nowiki></code>ディレクトリを、ウェブサーバ（と他のユーザ！）からグローバルに書き込み出来るようにしてください。
-
-Unix/Linux上で、以下を実行してください:
+UnixあるいはLinux上では、以下を実行してください：
 
 <pre>cd $2
 mkdir $3
@@ -4400,6 +4399,8 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 ウィキメディアコモンズ以外のウィキを同じように設定する方法など、この機能に関する詳細な情報は、[http://mediawiki.org/wiki/Manual:$wgForeignFileRepos マニュアル]をご覧ください。',
 	'config-instantcommons-good' => 'インストーラは環境チェック中にインターネット接続を検出できた。
 もし、求めるならば、この機能を有効にできる。',
+	'config-instantcommons-bad' => "''残念なことに、インストール機能は、環境の確認中にインターネット接続を検出できず、この機能を使用できない可能性があります。
+もしサーバーがプロキシの背後にある場合、いくつかの[http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy 追加の設定]が必要です。''",
 	'config-cc-error' => 'クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。
 ライセンスの名前を手動で入力してください。',
 	'config-cc-again' => 'もう一度選択してください...',
@@ -4409,7 +4410,11 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-cache-help' => 'オブジェクトのキャッシュは、使用したデータを頻繁にキャッシングすることによって、メディアウィキのスピード改善に使用されます。
 中〜大サイトにおいては、これを有効にするために大変望ましいことです。また小さなサイトにおいても同様な利点をもたらすと考えられます。',
 	'config-cache-none' => 'キャッシングしない(機能は取り払われます、しかもより大きなウィキサイト上でスピードの問題が発生します)',
+	'config-cache-accel' => 'PHPオブジェクトキャッシング（APC、eAccelerator、XCacheあるいはWinCache）',
+	'config-cache-memcached' => 'Memcachedを使用（追加の設定が必要です）',
 	'config-memcached-servers' => 'メモリをキャッシュされたサーバ:',
+	'config-memcached-help' => 'Memcachedを使用するIPアドレスの一覧。
+カンマ区切りで、利用する特定のポートの指定が必要です（例：127.0.0.1:11211, 192.168.1.25:11211）。',
 	'config-extensions' => '拡張子',
 	'config-extensions-help' => '上記のリストにある拡張子は<code>./extensions</code>ディレクトリ上で検出された。
 
