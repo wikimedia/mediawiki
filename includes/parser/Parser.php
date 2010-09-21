@@ -3307,7 +3307,7 @@ class Parser {
 
 		if ( !$title->equals( $cacheTitle ) ) {
 			$this->mTplRedirCache[$cacheTitle->getPrefixedDBkey()] =
-				array( $title->getNamespace(),$cdb = $title->getDBkey() );
+				array( $title->getNamespace(), $cdb = $title->getDBkey() );
 		}
 
 		return array( $dom, $title );
