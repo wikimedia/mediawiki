@@ -583,6 +583,8 @@ Zu viele Benutzer versuchen, diese Seite zu besuchen.
 Bitte warte einige Minuten, bevor du es noch einmal versuchst.
 
 $1',
+'pool-timeout'      => 'Timeout bis die Sperrung aufgehoben ist',
+'pool-queuefull'    => 'Poolwarteschlange ist voll',
 'pool-errorunknown' => 'Unbekannter Fehler',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
