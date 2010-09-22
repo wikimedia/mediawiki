@@ -2281,12 +2281,12 @@ class OutputPage {
 	}
 	
 	static function makeResourceLoaderLink( $skin, $modules, $only ) {
-		global $wgUser, $wgLang, $wgRequest, $wgLoadScript;
+		global $wgUser, $wgLang, $wgRequest, $wgLoadScript, $wgResourceLoaderDebug;
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$query = array(
 			'lang' => $wgLang->getCode(),
-			'debug' => $wgRequest->getFuzzyBool( 'debug' ) ? 'true' : 'false',
+			'debug' => $wgRequest->getFuzzyBool( 'debug', $wgResourceLoaderDebug ) ? 'true' : 'false',
 			'skin' => $wgUser->getSkin()->getSkinName(),
 			'only' => $only,
 		);
@@ -2346,8 +2346,7 @@ class OutputPage {
 	 * @return String: HTML fragment
 	 */
 	function getHeadScripts( Skin $sk ) {
-		global $wgUser, $wgRequest;
-		global $wgUseSiteJs;
+		global $wgUser, $wgRequest, $wgUseSiteJs, $wgResourceLoaderDebug;
 		
 		// Statup - this will immediately load jquery and mediawiki modules
 		$scripts = self::makeResourceLoaderLink( $sk, 'startup', 'scripts' );
@@ -2357,7 +2356,7 @@ class OutputPage {
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
 		
 		// Script and Messages "only"
-		if ( $wgRequest->getFuzzyBool( 'debug' ) ) {
+		if ( $wgRequest->getFuzzyBool( 'debug', $wgResourceLoaderDebug ) ) {
 			// Scripts
 			foreach ( $this->getModuleScripts() as $name ) {
 				$scripts .= self::makeResourceLoaderLink( $sk, $name, 'scripts' );
@@ -2455,7 +2454,7 @@ class OutputPage {
 	 * @return string HTML tag links to be put in the header.
 	 */
 	public function getHeadLinks( $sk ) {
-		global $wgFeed, $wgRequest;
+		global $wgFeed, $wgRequest, $wgResourceLoaderDebug;
 
 		// Ideally this should happen earlier, somewhere. :P
 		$this->addDefaultMeta();
@@ -2526,7 +2525,7 @@ class OutputPage {
 		}
 
 		// Support individual script requests in debug mode
-		if ( $wgRequest->getFuzzyBool( 'debug' ) ) {
+		if ( $wgRequest->getFuzzyBool( 'debug', $wgResourceLoaderDebug ) ) {
 			foreach ( $this->getModuleStyles() as $name ) {
 				$tags[] = self::makeResourceLoaderLink( $sk, $name, 'styles' );
 			}
