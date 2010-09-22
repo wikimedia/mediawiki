@@ -1,6 +1,6 @@
 <?php
 
-class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
+abstract class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 	private $selenium;
 	private $isSetUp = false;
 
@@ -9,6 +9,8 @@ class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 	const RESULT_OK = 2;
 	const RESULT_ERROR = 3;
 
+	public abstract function addTests();
+	
 	public function setUp() {
 		// Hack because because PHPUnit version 3.0.6 which is on prototype does not
 		// run setUp as part of TestSuite::run
@@ -18,11 +20,12 @@ class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 		$this->isSetUp = true;
 		$this->selenium = Selenium::getInstance();
 		$this->selenium->start();
+		//$this->selenium->open( $this->selenium->getUrl() . '/index.php?setupTestSuite=' . $this->getName() );
 		$this->login();
-		// $this->loadPage( 'Testpage', 'edit' );
 	}
 
 	public function tearDown() {
+		//$this->selenium->open( $this->selenium->getUrl() . '/index.php?clearTestSuite=' . $this->getName() );
 		$this->selenium->stop();
 	}
 

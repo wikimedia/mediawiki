@@ -633,7 +633,6 @@ $wgAutoloadLocalClasses = array(
 	'SpecialRecentChanges' => 'includes/specials/SpecialRecentchanges.php',
 	'SpecialRecentchangeslinked' => 'includes/specials/SpecialRecentchangeslinked.php',
 	'SpecialSearch' => 'includes/specials/SpecialSearch.php',
-	'SpecialSelenium' => 'includes/specials/SpecialSelenium.php',
 	'SpecialSpecialpages' => 'includes/specials/SpecialSpecialpages.php',
 	'SpecialStatistics' => 'includes/specials/SpecialStatistics.php',
 	'SpecialTags' => 'includes/specials/SpecialTags.php',
@@ -705,7 +704,6 @@ $wgAutoloadLocalClasses = array(
 	'UserDupes' => 'maintenance/userDupes.inc',
 
 	# maintenance/tests/selenium
-	'SimpleSeleniumTestSuite' => 'maintenance/tests/selenium/SimpleSeleniumTestSuite.php',
 	'Selenium' => 'maintenance/tests/selenium/Selenium.php',
 	'SeleniumLoader' => 'maintenance/tests/selenium/SeleniumLoader.php',
 	'SeleniumTestCase' => 'maintenance/tests/selenium/SeleniumTestCase.php',
@@ -713,6 +711,7 @@ $wgAutoloadLocalClasses = array(
 	'SeleniumTestHTMLLogger' => 'maintenance/tests/selenium/SeleniumTestHTMLLogger.php',
 	'SeleniumTestListener' => 'maintenance/tests/selenium/SeleniumTestListener.php',
 	'SeleniumTestSuite' => 'maintenance/tests/selenium/SeleniumTestSuite.php',
+	'SeleniumTestConfig' => 'maintenance/tests/selenium/SeleniumTestConfig.php',
 
 	# maintenance/language
 	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',

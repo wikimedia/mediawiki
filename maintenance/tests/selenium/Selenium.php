@@ -8,6 +8,7 @@ require( 'Testing/Selenium.php' );
 
 class Selenium {
 	protected static $_instance = null;
+
 	public $isStarted = false;
 	public $tester;
 
@@ -56,27 +57,15 @@ class Selenium {
 		$this->isStarted = false;
 	}
 
-	protected function setupBrowsers() {
-		/**
-		 * @todo This needs to be replaced with something not hard
-		 * coded. This would be entries in a .ini file or
-		 * screen-scraping
-		 * http://grid.tesla.usability.wikimedia.org:4444/console for
-		 * example.
-		 */
-		return array(
-			'firefox' => 'Firefox 3.5 on Linux',
-			'iexplorer' => '*iexploreproxy',
-			'chrome' => '*googlechrome',
-		);
-		}
-
 	public function login() {
+		if ( strlen( $this->user ) == 0 ) {
+			return;
+		} 
 		$this->open( self::$url . '/index.php?title=Special:Userlogin' );
 		$this->type( 'wpName1', $this->user );
 		$this->type( 'wpPassword1', $this->pass );
 		$this->click( "//input[@id='wpLoginAttempt']" );
-		$this->waitForPageToLoad( 5000 );
+		$this->waitForPageToLoad( 10000 );
 
 		// after login we redirect to the main page. So check whether the "Prefernces" top menu item exists
 		$value = $this->isElementPresent( "//li[@id='pt-preferences']" );
@@ -138,16 +127,21 @@ class Selenium {
 	public function setVerbose( $verbose ) {
 		$this->verbose = $verbose;
 	}
+	
+	public function setAvailableBrowsers( $availableBrowsers ) {
+		$this->browsers = $availableBrowsers;
+	}
 
 	public function setBrowser( $b ) {
-		$browsers = $this->setupBrowsers();
-
-
-		if ( !isset( $browsers[$b] ) ) {
+		if ( !isset( $this->browsers[$b] ) ) {
 			throw new MWException( "Invalid Browser: $b.\n" );
 		}
 
-		$this->browser = $browsers[$b];
+		$this->browser = $this->browsers[$b];
+	}
+	
+	public function getAvailableBrowsers() {
+		return $this->browsers;
 	}
 
 	public function __call( $name, $args ) {

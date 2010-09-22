@@ -35,11 +35,14 @@ class SeleniumTester extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-
-		$this->addOption( 'port', 'Port used by selenium server' );
-		$this->addOption( 'host', 'Host selenium server' );
-		$this->addOption( 'browser', 'The browser he used during testing' );
-		$this->addOption( 'url', 'The Mediawiki installation to point to.' );
+		$this->mDescription = "Selenium Test Runner. For documentation, visit http://www.mediawiki.org/wiki/SeleniumFramework";
+		$this->addOption( 'port', 'Port used by selenium server. Default: 4444' );
+		$this->addOption( 'host', 'Host selenium server. Default: $wgServer . $wgScriptPath' );
+		$this->addOption( 'testBrowser', 'The browser he used during testing. Default: firefox'  );
+		$this->addOption( 'wikiUrl', 'The Mediawiki installation to point to. Default: http://localhost' );
+		$this->addOption( 'username', 'The login username for sunning tests. Default: empty' );
+		$this->addOption( 'userPassword', 'The login password for running tests. Default: empty' );
+		$this->addOption( 'seleniumConfig', 'Location of the selenium config file. Default: empty' );
 		$this->addOption( 'list-browsers', 'List the available browsers.' );
 		$this->addOption( 'verbose', 'Be noisier.' );
 
@@ -52,46 +55,76 @@ class SeleniumTester extends Maintenance {
 	public function listBrowsers() {
 		$desc = "Available browsers:\n";
 
-		$sel = new Selenium;
-		foreach ($sel->setupBrowsers() as $k => $v) {
+		foreach ($this->selenium->getAvailableBrowsers() as $k => $v) {
 			$desc .= "  $k => $v\n";
 		}
 
 		echo $desc;
 	}
 
-	protected function getTestSuites() {
-		return array( 'SimpleSeleniumTestSuite' );
-	}
-
-	protected function runTests( ) {
+	protected function runTests( $seleniumTestSuites = array() ) {
 		$result = new PHPUnit_Framework_TestResult;
 		$result->addListener( new SeleniumTestListener( $this->selenium->getLogger() ) );
-
-		foreach ( $this->getTestSuites() as $testSuiteName ) {
-			$suite = new $testSuiteName;
+		
+		foreach ( $seleniumTestSuites as $testSuiteName => $testSuiteFile ) {
+			require( $testSuiteFile ); 		
+ 			$suite = new $testSuiteName();
 			$suite->addTests();
+			
 			try {
 				$suite->run( $result );
 			} catch ( Testing_Selenium_Exception $e ) {
+				$suite->tearDown(); 
 				throw new MWException( $e->getMessage() );
 			}
 		}
 	}
 
 	public function execute() {
-		global $wgServer, $wgScriptPath;
+		global $wgServer, $wgScriptPath, $wgHooks;
+		
+		$seleniumSettings;
+		$seleniumBrowsers;
+		$seleniumTestSuites;
 
-		/**
-		 * @todo Add an alternative where settings are read from an INI file.
-		 */
+		$configFile = $this->getOption( 'seleniumConfig', '' );
+		if ( strlen( $configFile ) > 0 ) {
+			$this->output("Using Selenium Configuration file: " . $configFile . "\n");
+			SeleniumTestConfig::getSeleniumSettings( 	&$seleniumSettings, 
+										  				&$seleniumBrowsers, 
+										  				&$seleniumTestSuites,
+										  				$configFile );
+		} else if ( !isset( $wgHooks['SeleniumSettings'] ) ) {
+			$this->output("Using default Selenium Configuration file: selenium_settings.ini in the root directory.\n");
+			SeleniumTestConfig::getSeleniumSettings( 	&$seleniumSettings, 
+										  				&$seleniumBrowsers, 
+										  				&$seleniumTestSuites
+										  			);
+		} else {
+			$this->output("Using 'SeleniumSettings' hook for configuration.\n");
+			wfRunHooks('SeleniumSettings', array( 	&$seleniumSettings, 
+										  			&$seleniumBrowsers, 
+										  			&$seleniumTestSuites ) );
+		}
+		
+
+		//set reasonable defaults if we did not find the settings
+		if ( !isset( $seleniumBrowsers ) ) $seleniumBrowsers = array ('firefox' => '*firefox');
+		if ( !isset( $seleniumSettings['host'] ) ) $seleniumSettings['host'] = $wgServer . $wgScriptPath;
+		if ( !isset( $seleniumSettings['port'] ) ) $seleniumSettings['port'] = '4444';
+		if ( !isset( $seleniumSettings['wikiUrl'] ) ) $seleniumSettings['wikiUrl'] = 'http://localhost';
+		if ( !isset( $seleniumSettings['username'] ) ) $seleniumSettings['username'] = '';
+		if ( !isset( $seleniumSettings['userPassword'] ) ) $seleniumSettings['userPassword'] = '';
+		if ( !isset( $seleniumSettings['testBrowser'] ) ) $seleniumSettings['testBrowser'] = 'firefox';
+		
 		$this->selenium = new Selenium( );
-		$this->selenium->setUrl( $this->getOption( 'url', $wgServer . $wgScriptPath ) );
-		$this->selenium->setBrowser( $this->getOption( 'browser', 'firefox' ) );
-		$this->selenium->setPort( $this->getOption( 'port', 4444 ) );
-		$this->selenium->setHost( $this->getOption( 'host', 'localhost' ) );
-		$this->selenium->setUser( $this->getOption( 'user', 'WikiSysop' ) );
-		$this->selenium->setPass( $this->getOption( 'pass', 'Password' ) );
+		$this->selenium->setAvailableBrowsers( $seleniumBrowsers );
+		$this->selenium->setUrl( $this->getOption( 'wikiUrl', $seleniumSettings['wikiUrl'] ) );
+		$this->selenium->setBrowser( $this->getOption( 'testBrowser', $seleniumSettings['testBrowser'] ) );
+		$this->selenium->setPort( $this->getOption( 'port', $seleniumSettings['port'] ) );
+		$this->selenium->setHost( $this->getOption( 'host', $seleniumSettings['host'] ) );
+		$this->selenium->setUser( $this->getOption( 'username', $seleniumSettings['username'] ) );
+		$this->selenium->setPass( $this->getOption( 'userPassword', $seleniumSettings['userPassword'] ) );
 		$this->selenium->setVerbose( $this->hasOption( 'verbose' ) );
 
 		if( $this->hasOption( 'list-browsers' ) ) {
@@ -102,7 +135,7 @@ class SeleniumTester extends Maintenance {
 		$logger = new SeleniumTestConsoleLogger;
 		$this->selenium->setLogger( $logger );
 
-		$this->runTests( );
+		$this->runTests( $seleniumTestSuites );
 	}
 }
 

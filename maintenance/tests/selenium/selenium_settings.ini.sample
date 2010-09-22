@@ -1,0 +1,17 @@
+[SeleniumSettings]
+
+browsers[firefox] 	= "*firefox"
+browsers[iexplorer] = "*iexploreproxy"
+browsers[chrome] 	= "*chrome"
+host 				= "localhost"
+port 				= "4444"
+wikiUrl 			= "http://localhost/deployment"
+username 			= "wikiuser"
+userPassword 		= "wikipass"
+testBrowser 		= "firefox"
+
+[SeleniumTests]
+
+testSuite[SimpleSeleniumTestSuite] = "maintenance/tests/selenium/SimpleSeleniumTestSuite.php"
+testSuite[PagedTiffHandlerSeleniumTestSuite] = "extensions/PagedTiffHandler/selenium/PagedTiffHandlerTestSuite.php"
+
