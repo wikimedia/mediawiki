@@ -29,7 +29,7 @@
  */
 class DumpDBZip2Output extends DumpPipeOutput {
 	function DumpDBZip2Output( $file ) {
-		parent::DumpPipeOutput( "dbzip2", $file );
+		parent::__construct( "dbzip2", $file );
 	}
 }
 
@@ -305,7 +305,7 @@ class BackupDumper {
 
 class ExportProgressFilter extends DumpFilter {
 	function ExportProgressFilter( &$sink, &$progress ) {
-		parent::DumpFilter( $sink );
+		parent::__construct( $sink );
 		$this->progress = $progress;
 	}
 
