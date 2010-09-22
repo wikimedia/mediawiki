@@ -49,13 +49,16 @@ class SeleniumTestListener implements PHPUnit_Framework_TestListener {
 	public function startTestSuite( PHPUnit_Framework_TestSuite $suite ) {
 		$this->logger->write( 'Testsuite ' . $suite->getName() . ' started.' );
 		$this->tests_ok = 0;
+		$this->tests_failed = 0;
 	}
 
 	public function endTestSuite( PHPUnit_Framework_TestSuite $suite ) {
-		$this->logger->write(
-			'Testsuite ' . $suite->getName() . ' ended. OK: ' .
-			$this->tests_ok . ' Failed: ' . $this->tests_failed
-		);
+		$this->logger->write('Testsuite ' . $suite->getName() . ' ended.' );
+		if ( $this->tests_ok > 0 || $this->tests_failed > 0 ) {
+			$this->logger->write( ' OK: ' . $this->tests_ok . ' Failed: ' . $this->tests_failed );
+		}
+		$this->tests_ok = 0;
+		$this->tests_failed = 0;
 	}
 
 	public function statusMessage( $message ) {
