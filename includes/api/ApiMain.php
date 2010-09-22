@@ -158,11 +158,6 @@ class ApiMain extends ApiBase {
 		global $wgAPIModules; // extension modules
 		$this->mModules = $wgAPIModules + self::$Modules;
 
-		global $wgAPIDisabledActions;
-		foreach ( $wgAPIDisabledActions as $action ) {
-			unset( $this->mModules[$action] );
-		}
-
 		$this->mModuleNames = array_keys( $this->mModules );
 		$this->mFormats = self::$Formats;
 		$this->mFormatNames = array_keys( $this->mFormats );
