@@ -107,9 +107,9 @@ testBrowser 		= "firefox"
 		$seleniumBrowsers;
 		$seleniumTestSuites;
 
-		SeleniumTestConfig::getSeleniumSettings(&$seleniumSettings, 
-										  		&$seleniumBrowsers, 
-										  		&$seleniumTestSuites,
+		SeleniumTestConfig::getSeleniumSettings($seleniumSettings, 
+										  		$seleniumBrowsers, 
+										  		$seleniumTestSuites,
 										  		"Some_fake_settings_file.ini" );
 	}
 	
@@ -126,9 +126,9 @@ testBrowser 		= "firefox"
 		$seleniumBrowsers;
 		$seleniumTestSuites;
 
-		SeleniumTestConfig::getSeleniumSettings(&$seleniumSettings, 
-										  		&$seleniumBrowsers, 
-										  		&$seleniumTestSuites,
+		SeleniumTestConfig::getSeleniumSettings($seleniumSettings, 
+										  		$seleniumBrowsers, 
+										  		$seleniumTestSuites,
 										  		$this->tempFileName );
 
 		 			
