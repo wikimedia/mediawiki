@@ -1,7 +1,7 @@
 <?php
 
 class SeleniumConfigurationTest extends PHPUnit_Framework_TestCase {
-	
+
 	/*
 	 * The file where the test temporarity stores the selenium config.
 	 * This should be cleaned up as part of teardown. 
@@ -84,6 +84,12 @@ testBrowser 		= "firefox"
 	 */
 	private $testSuites1 = null;		
 	
+	
+	public function setUp() {
+		if ( !defined( 'SELENIUMTEST' ) ) {
+			define( 'SELENIUMTEST', true );
+		}
+	}
 	 
 	/*
 	 * Clean up the temporary file used to sore the selenium settings.
@@ -99,39 +105,73 @@ testBrowser 		= "firefox"
 	/**
      * @expectedException MWException
      * @group SeleniumFramework
-     * This test will throw warnings unless you have the following setting in your php.ini
-	 * allow_call_time_pass_reference = On
+     */
+	public function testErrorOnIncorrectConfigFile() {		
+		$seleniumSettings;
+		$seleniumBrowsers;
+		$seleniumTestSuites;
+
+		SeleniumConfig::getSeleniumSettings($seleniumSettings, 
+			$seleniumBrowsers, 
+			$seleniumTestSuites,
+			"Some_fake_settings_file.ini" );
+
+	}
+	
+	/**
+     * @expectedException MWException
+     * @group SeleniumFramework
      */
 	public function testErrorOnMissingConfigFile() {		
 		$seleniumSettings;
 		$seleniumBrowsers;
 		$seleniumTestSuites;
-
-		SeleniumTestConfig::getSeleniumSettings($seleniumSettings, 
-										  		$seleniumBrowsers, 
-										  		$seleniumTestSuites,
-										  		"Some_fake_settings_file.ini" );
+		global $wgSeleniumConfigFile;
+		$wgSeleniumConfigFile = '';
+		SeleniumConfig::getSeleniumSettings($seleniumSettings, 
+			$seleniumBrowsers, 
+			$seleniumTestSuites);
+	}
+	
+	/**
+     * @group SeleniumFramework
+     */
+	public function testUsesGlobalVarForConfigFile() {		
+		$seleniumSettings;
+		$seleniumBrowsers;
+		$seleniumTestSuites;
+		global $wgSeleniumConfigFile;
+		$this->writeToTempFile( $this->testConfig0 );
+		$wgSeleniumConfigFile = $this->tempFileName;
+		SeleniumConfig::getSeleniumSettings($seleniumSettings, 
+			$seleniumBrowsers, 
+			$seleniumTestSuites);
+		$this->assertEquals($seleniumSettings, $this->testSettings0 ,
+		'The selenium settings should have been read from the file defined in $wgSeleniumConfigFile'
+		);
+		$this->assertEquals($seleniumBrowsers, $this->testBrowsers0, 
+		'The available browsers should have been read from the file defined in $wgSeleniumConfigFile'
+		);
+		$this->assertEquals($seleniumTestSuites, $this->testSuites0, 
+		'The test suites should have been read from the file defined in $wgSeleniumConfigFile'
+		);								  		
 	}
 	
 	/**
      * @group SeleniumFramework
      * @dataProvider sampleConfigs
-	 * This test will throw warnings unless you have the following setting in your php.ini
-	 * allow_call_time_pass_reference = On
      */
 	public function testgetSeleniumSettings($sampleConfig, $expectedSettings, $expectedBrowsers, $expectedSuites ) {	
-		//print "SAMPLE_CONFIG " . $sampleConfig . "\n\n";	
 		$this->writeToTempFile( $sampleConfig );
 		$seleniumSettings;
 		$seleniumBrowsers;
 		$seleniumTestSuites;
 
-		SeleniumTestConfig::getSeleniumSettings($seleniumSettings, 
-										  		$seleniumBrowsers, 
-										  		$seleniumTestSuites,
-										  		$this->tempFileName );
-
-		 			
+		SeleniumConfig::getSeleniumSettings($seleniumSettings, 
+			$seleniumBrowsers, 
+			$seleniumTestSuites,
+			$this->tempFileName );
+					
 		$this->assertEquals($seleniumSettings, $expectedSettings, 
 		"The selenium settings for the following test configuration was not retrieved correctly" . $sampleConfig
 		);

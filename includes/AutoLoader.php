@@ -710,7 +710,7 @@ $wgAutoloadLocalClasses = array(
 	'SeleniumTestHTMLLogger' => 'maintenance/tests/selenium/SeleniumTestHTMLLogger.php',
 	'SeleniumTestListener' => 'maintenance/tests/selenium/SeleniumTestListener.php',
 	'SeleniumTestSuite' => 'maintenance/tests/selenium/SeleniumTestSuite.php',
-	'SeleniumTestConfig' => 'maintenance/tests/selenium/SeleniumTestConfig.php',
+	'SeleniumConfig' => 'maintenance/tests/selenium/SeleniumConfig.php',
 
 	# maintenance/language
 	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
