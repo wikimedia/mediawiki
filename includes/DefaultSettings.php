@@ -4833,6 +4833,13 @@ $wgAPIPropModules = array();
 $wgAPIListModules = array();
 
 /**
+ * Disabled API actions. To disable an API action, add its name here, for 
+ * example:
+ *    $wgAPIDisabledActions[] = 'parse';
+ */
+$wgAPIDisabledActions = array();
+
+/**
  * Maximum amount of rows to scan in a DB query in the API
  * The default value is generally fine
  */
