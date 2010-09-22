@@ -363,10 +363,10 @@ div#mw-head h5 {
 		font-size: 13px;
 		top: 0.25em;
 	}
-	div#simpleSearch .placeholder {
+	div#simpleSearch input {
 		color: black;
 	}
-	div#simpleSearch .placeholder {
+	div#simpleSearch input.placeholder {
 		color: #999999;
 	}
 	div#simpleSearch input::-webkit-input-placeholder { 
