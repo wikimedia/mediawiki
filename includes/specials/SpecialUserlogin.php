@@ -968,8 +968,6 @@ class LoginForm {
 			}
 		}
 
-		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
-
 		if ( $this->mType == 'signup' ) {
 			global $wgLivePasswordStrengthChecks;
 			if ( $wgLivePasswordStrengthChecks ) {
