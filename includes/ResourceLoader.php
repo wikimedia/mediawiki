@@ -249,8 +249,7 @@ class ResourceLoader {
 	 * @param $context ResourceLoaderContext object
 	 */
 	public static function respond( ResourceLoaderContext $context ) {
-		global $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage;
-		global $wgResourceLoaderUnversionedServerMaxage, $wgResourceLoaderUnversionedClientMaxage;
+		global $wgResourceLoaderMaxage;
 
 		wfProfileIn( __METHOD__ );
 		self::initialize();
@@ -270,14 +269,14 @@ class ResourceLoader {
 		// If a version wasn't specified we need a shorter expiry time for updates to 
 		// propagate to clients quickly
 		if ( is_null( $context->getVersion() ) ) {
-			$maxage = $wgResourceLoaderUnversionedClientMaxage;
-			$smaxage = $wgResourceLoaderUnversionedServerMaxage;
+			$maxage = $wgResourceLoaderMaxage['unversioned']['client'];
+			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
 		}
 		// If a version was specified we can use a longer expiry time since changing 
 		// version numbers causes cache misses
 		else {
-			$maxage = $wgResourceLoaderVersionedClientMaxage;
-			$smaxage = $wgResourceLoaderVersionedServerMaxage;
+			$maxage = $wgResourceLoaderMaxage['versioned']['client'];
+			$smaxage = $wgResourceLoaderMaxage['versioned']['server'];
 		}
 
 		// To send Last-Modified and support If-Modified-Since, we need to detect 

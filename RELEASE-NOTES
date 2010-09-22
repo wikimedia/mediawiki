@@ -57,11 +57,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgVectorExtraStyles was removed, and is no longer in use.
 * $wgLoadScript was added to specify alternative locations for ResourceLoader
   requests.
-* $wgResourceLoaderVersionedClientMaxage, $wgResourceLoaderVersionedServerMaxage,
-  $wgResourceLoaderUnversionedClientMaxage and
-  $wgResourceLoaderUnversionedServerMaxage were added to specify maxage and
-  smaxage times for responses from ResourceLoader based on whether the request's
-  URL contained a version parameter or not.
+* $wgResourceLoaderMaxage was added to specify maxage and smaxage times for
+  responses from ResourceLoader based on whether the request's URL contained a
+  version parameter or not.
+* $wgResourceLoaderDebug was added to specify the default state of debug mode;
+  this will still be overridden with the debug URL parameter a la $wgLanguageCode.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
