@@ -2286,7 +2286,7 @@ class OutputPage {
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$query = array(
 			'lang' => $wgLang->getCode(),
-			'debug' => ( $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) == 'true' ) ? 'true' : 'false',
+			'debug' => $wgRequest->getFuzzyBool( 'debug' ) ? 'true' : 'false',
 			'skin' => $wgUser->getSkin()->getSkinName(),
 			'only' => $only,
 		);
@@ -2357,7 +2357,7 @@ class OutputPage {
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
 		
 		// Script and Messages "only"
-		if ( $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) !== 'false' ) {
+		if ( $wgRequest->getFuzzyBool( 'debug' ) ) {
 			// Scripts
 			foreach ( $this->getModuleScripts() as $name ) {
 				$scripts .= self::makeResourceLoaderLink( $sk, $name, 'scripts' );
@@ -2526,7 +2526,7 @@ class OutputPage {
 		}
 
 		// Support individual script requests in debug mode
-		if ( $wgRequest->getBool( 'debug' ) && $wgRequest->getVal( 'debug' ) !== 'false' ) {
+		if ( $wgRequest->getFuzzyBool( 'debug' ) ) {
 			foreach ( $this->getModuleStyles() as $name ) {
 				$tags[] = self::makeResourceLoaderLink( $sk, $name, 'styles' );
 			}

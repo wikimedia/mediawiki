@@ -347,6 +347,19 @@ class WebRequest {
 	public function getBool( $name, $default = false ) {
 		return $this->getVal( $name, $default ) ? true : false;
 	}
+	
+	/**
+	 * Fetch a boolean value from the input or return $default if not set.
+	 * Unlike getBool, the string "false" will result in boolean false, which is
+	 * useful when interpreting information sent from JavaScript.
+	 *
+	 * @param $name String
+	 * @param $default Boolean
+	 * @return Boolean
+	 */
+	public function getFuzzyBool( $name, $default = false ) {
+		return $this->getBool( $name, $default ) && $this->getVal( $name ) !== 'false';
+	}
 
 	/**
 	 * Return true if the named value is set in the input, whatever that
