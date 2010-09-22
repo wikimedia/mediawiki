@@ -49,7 +49,7 @@ class ResourceLoaderContext {
 		$this->direction = $request->getVal( 'dir' );
 		$this->skin = $request->getVal( 'skin' );
 		$this->user = $request->getVal( 'user' );
-		$this->debug = $request->getBool( 'debug' ) && $request->getVal( 'debug' ) === 'true';
+		$this->debug = $request->getFuzzyBool( 'debug' );
 		$this->only = $request->getVal( 'only' );
 		$this->version = $request->getVal( 'version' );
 
