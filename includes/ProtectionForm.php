@@ -592,7 +592,7 @@ class ProtectionForm {
 		$encOptions = Xml::encodeJsVar( $options );
 
 		$script .= "ProtectionForm.init($encOptions)";
-		return Html::inlineScript( "if ( mediaWiki !== undefined ) { mediaWiki.loader.using( 'mediawiki.legacy.protect', function() { {$script} } ); }" );
+		return Html::inlineScript( "if ( window.mediaWiki ) { $script }" );
 	}
 
 	/**
