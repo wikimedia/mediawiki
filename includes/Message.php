@@ -158,7 +158,9 @@ class Message {
 		if( $lang instanceof Language ){
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
-			$this->language = Language::factory( $lang );
+			if( $this->language->getCode() != $lang ) {
+				$this->language = Language::factory( $lang );
+			}
 		} else {
 			$type = gettype( $lang );
 			throw new MWException( __METHOD__ . " must be "
