@@ -364,6 +364,9 @@ div#mw-head h5 {
 		top: 0.25em;
 	}
 	div#simpleSearch .placeholder {
+		color: black;
+	}
+	div#simpleSearch .placeholder {
 		color: #999999;
 	}
 	div#simpleSearch input::-webkit-input-placeholder { 
@@ -381,7 +384,6 @@ div#mw-head h5 {
 		font-size: 13px;
 		width: 14em;
 		background-color: transparent;
-		color: black;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#simpleSearch button#searchButton {
