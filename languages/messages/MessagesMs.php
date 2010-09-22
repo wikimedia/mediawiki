@@ -389,6 +389,8 @@ Terlalu ramai pengguna cuba melihat laman ini.
 Sila tunggu sebentar sebelum cuba mencapai laman ini lagi.
 
 $1',
+'pool-timeout'      => 'Menunggu sebentar untuk dikunci',
+'pool-queuefull'    => 'Giliran kolam telah penuh',
 'pool-errorunknown' => 'Ralat yang tidak diketahui',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

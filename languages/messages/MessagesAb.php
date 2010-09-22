@@ -213,6 +213,7 @@ $messages = array(
 'searchresultshead' => 'Аҧшаара',
 'uid'               => 'Алахәыла ID:',
 'yourlanguage'      => 'Абызшәа:',
+'prefs-signature'   => 'Анапынҵамҭа',
 
 # Groups
 'group-user' => 'Алахәылацәа',

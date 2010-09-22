@@ -973,11 +973,12 @@ $3 күрсәткән сәбәп: ''$2''",
 'revertmerge' => 'Бүләргә',
 
 # Diffs
-'history-title'           => '$1 битенең үзгәртү тарихы',
-'difference'              => '(Юрамалар арасында аерма)',
-'lineno'                  => '$1 юл:',
-'compareselectedversions' => 'Сайланган юрамаларны чагыштыру',
-'editundo'                => 'үткәрмәү',
+'history-title'            => '$1 битенең үзгәртү тарихы',
+'difference'               => '(Юрамалар арасында аерма)',
+'lineno'                   => '$1 юл:',
+'compareselectedversions'  => 'Сайланган юрамаларны чагыштыру',
+'showhideselectedversions' => 'Сайланган юрамаларны күрсәтү/яшерү',
+'editundo'                 => 'үткәрмәү',
 
 # Search results
 'searchresults'                    => 'Эзләү нәтиҗәләре',
