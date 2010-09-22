@@ -90,21 +90,21 @@ class SeleniumTester extends Maintenance {
 		$configFile = $this->getOption( 'seleniumConfig', '' );
 		if ( strlen( $configFile ) > 0 ) {
 			$this->output("Using Selenium Configuration file: " . $configFile . "\n");
-			SeleniumTestConfig::getSeleniumSettings( 	&$seleniumSettings, 
-										  				&$seleniumBrowsers, 
-										  				&$seleniumTestSuites,
-										  				$configFile );
+			SeleniumConfig::getSeleniumSettings( $seleniumSettings, 
+				$seleniumBrowsers,
+				$seleniumTestSuites,
+				$configFile );
 		} else if ( !isset( $wgHooks['SeleniumSettings'] ) ) {
-			$this->output("Using default Selenium Configuration file: selenium_settings.ini in the root directory.\n");
-			SeleniumTestConfig::getSeleniumSettings( 	&$seleniumSettings, 
-										  				&$seleniumBrowsers, 
-										  				&$seleniumTestSuites
+			$this->output("No command line configuration file or configuration hook found.\n");
+			SeleniumConfig::getSeleniumSettings( $seleniumSettings, 
+				$seleniumBrowsers,
+				$seleniumTestSuites
 										  			);
 		} else {
 			$this->output("Using 'SeleniumSettings' hook for configuration.\n");
-			wfRunHooks('SeleniumSettings', array( 	&$seleniumSettings, 
-										  			&$seleniumBrowsers, 
-										  			&$seleniumTestSuites ) );
+			wfRunHooks('SeleniumSettings', array( $seleniumSettings, 
+				$seleniumBrowsers,
+				$seleniumTestSuites ) );
 		}
 		
 

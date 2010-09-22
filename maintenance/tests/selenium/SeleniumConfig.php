@@ -1,6 +1,9 @@
 <?php
+if ( !defined( 'SELENIUMTEST' ) ) {
+	die( 1 );
+}
 
-class SeleniumTestConfig {
+class SeleniumConfig {
 	
 	/*
 	 * Retreives the Selenium configuration values from an ini file.
@@ -8,16 +11,15 @@ class SeleniumTestConfig {
 	 * 
 	 */
 	public static function getSeleniumSettings ( &$seleniumSettings, 
-										  		 &$seleniumBrowsers, 
-										  		 &$seleniumTestSuites, 
-										  		 $seleniumConfigFile = null ) {
-		if ( $seleniumConfigFile == null ) {
+			&$seleniumBrowsers, 
+			&$seleniumTestSuites, 
+			$seleniumConfigFile = null ) {
+		if ( strlen( $seleniumConfigFile ) == 0 ) {
 			global $wgSeleniumConfigFile;
-			$seleniumConfigFile =  ( isset( $wgSeleniumConfigFile ) ) ? 
-									$wgSeleniumConfigFile : dirname( __FILE__ ) . "/../../../selenium_settings.ini";
+			if ( isset( $wgSeleniumConfigFile ) ) $seleniumConfigFile =  $wgSeleniumConfigFile ;
 		}
 
-		if ( !file_exists( $seleniumConfigFile ) ) {
+		if ( strlen( $seleniumConfigFile ) == 0 || !file_exists( $seleniumConfigFile ) ) {
 			throw new MWException( "Unable to read local Selenium Settings from " . $seleniumConfigFile . "\n" );
 		}
 		
