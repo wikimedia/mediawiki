@@ -148,14 +148,19 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return String
 	 */
 	function getFulltextSearchModule() {
+		static $cachedResult = null;
+		if ( $cachedResult !== null ) {
+			return $cachedResult;
+		}
+		$cachedResult = false;
 		$table = 'dummy_search_test';
 		$this->query( "DROP TABLE IF EXISTS $table", __METHOD__ );
 
 		if ( $this->query( "CREATE VIRTUAL TABLE $table USING FTS3(dummy_field)", __METHOD__, true ) ) {
 			$this->query( "DROP TABLE IF EXISTS $table", __METHOD__ );
-			return 'FTS3';
+			$cachedResult = 'FTS3';
 		}
-		return false;
+		return $cachedResult;
 	}
 
 	/**
@@ -466,6 +471,13 @@ class DatabaseSqlite extends DatabaseBase {
 	function getServerVersion() {
 		$ver = $this->mConn->getAttribute( PDO::ATTR_SERVER_VERSION );
 		return $ver;
+	}
+
+	/**
+	 * @return string User-friendly database information
+	 */
+	public function getServerInfo() {
+		return wfMsg( $this->getFulltextSearchModule() ? 'sqlite-has-fts' : 'sqlite-no-fts', $this->getServerVersion() );
 	}
 
 	/**
