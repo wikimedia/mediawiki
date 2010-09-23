@@ -4260,12 +4260,12 @@ chmod a+w $3</pre>',
 	'config-sqlite-fts3-add' => 'FTS3の検索機能を追加する',
 	'config-can-upgrade' => 'このデータベースにはメディアウィキテーブルが存在します。
 それらをメディアウィキ$1にアップグレードするために「続行」をクリックしてください。',
-	'config-upgrade-done' => "アップグレードは完了しました。
+	'config-upgrade-done' => "更新は完了しました。
 
-あなたは現在、 [$1 ウィキを使い始める]ことができます。
+[$1 ウィキを使い始める]ことができます。
 
 もし、<code>LocalSettings.php</code>ファイルを再生成したいのならば、下のボタンを押してください。
-あなたが自身のウィキに問題を抱えていない限り、これは'''推奨されません'''。",
+ウィキに問題がないのであれば、これは'''推奨されません'''。",
 	'config-regenerate' => 'LocalSettings.phpを再生成→',
 	'config-show-table-status' => 'SHOW TABLE STATUSクエリーが失敗しました！',
 	'config-unknown-collation' => "'''警告:''' データベースは認識されない照合を使用しています。",
@@ -4282,8 +4282,8 @@ chmod a+w $3</pre>',
 
 '''MyISAM'''は、利用者が1人の場合、あるいは読み込み専用でインストールする場合に、より処理が早くなるでしょう。
 ただし、MyISAMのデータベースは、InnoDBより高頻度で破損する傾向があります。",
-	'config-mysql-egine-mismatch' => "'''警告:''' あなたは$1ストレージエンジンを要求しました、しかし存在するデータベースは$2エンジンを使用します。
-このアップグレードスクリプトはこれをカバーしていません、それゆえに$2が残ることになるでしょう。",
+	'config-mysql-egine-mismatch' => "'''警告：'''$1ストレージエンジンが要求されましたが、既存のデータベースは$2エンジンを使用します。
+この更新スクリプトは、これに対応していません、$2のままになります。",
 	'config-mysql-charset' => 'データベースの文字セット:',
 	'config-mysql-binary' => 'バイナリ',
 	'config-mysql-utf8' => 'UTF-8',
@@ -4292,8 +4292,8 @@ chmod a+w $3</pre>',
 
 '''UTF-8形式'''では、MySQLは、なんの文字集合がデータのなかに含まれているかを知り、それに対して適切な提示と変換をするでしょうが、
 [http://ja.wikipedia.org/wiki/%E5%9F%BA%E6%9C%AC%E5%A4%9A%E8%A8%80%E8%AA%9E%E9%9D%A2 基本多言語面]の外にある文字を格納できるようにはなりません。",
-	'config-mysql-charset-mismatch' => "'''警告:''' あなたは図式$1を要求しました。しかし存在するデータベースは図式$2を所持しています。
-このアップグレードスクリプトはこれをカバーしていません、それゆえに$2が残ることになるでしょう。",
+	'config-mysql-charset-mismatch' => "'''警告：'''$1スキーマが要求されましたが、既存のデータベースは$2スキーマです。
+この更新スクリプトは、これに対応していませんので、$2のままになります。",
 	'config-site-name' => 'ウィキの名前：',
 	'config-site-name-help' => 'この事象はブラウザのタイトルバーと他の様々な場所において出現する。',
 	'config-site-name-blank' => 'サイト名を入力してください。',
@@ -4322,7 +4322,7 @@ chmod a+w $3</pre>',
 	'config-admin-email-help' => '電子メールアドレスを入力してください。他のユーザーからの電子メールの受け取りと、パスワードのリセット、ウォッチリストに登録したページの更新通知に用いられます。',
 	'config-admin-error-user' => '"<nowiki>$1</nowiki>"という名前の管理者を作成する際に内部エラーが発生しました。',
 	'config-admin-error-password' => '管理者"<nowiki>$1</nowiki>"のパスワードを設定する際に内部エラーが発生しました: <pre>$2</pre>',
-	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release announcements mailing list]サイトに登録する',
+	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce リリース告知のメーリングリスト]を購読する。',
 	'config-subscribe-help' => 'これは、リリースの告知（重要なセキュリティに関する案内を含む）に使われる、低容量のメーリングリストです。
 このメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。',
 	'config-almost-done' => 'あなたはほとんど完璧です！
@@ -4432,29 +4432,29 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-install-pg-schema-failed' => 'テーブルの作成に失敗した。
 ユーザ"$1"が図式"$2"に書き込みができるようにしてください。',
 	'config-install-user' => 'データベースユーザを作成する',
-	'config-install-user-failed' => 'ユーザ"$1"に許可を与えることに失敗しました。： $2',
+	'config-install-user-failed' => 'ユーザー「$1」に許可を与えることに失敗しました。：$2',
 	'config-install-tables' => 'テーブルの作成',
-	'config-install-tables-exist' => "'''警告''': メディアウィキテーブルはすでに存在しているようです。
-作成をスキップしています。",
-	'config-install-tables-failed' => "'''エラー''': テーブルの作成は次のエラーにより失敗しました: $1",
-	'config-install-interwiki' => 'デフォルトのインターウィキテーブルを移入しています',
+	'config-install-tables-exist' => "'''警告'''：MediaWikiテーブルが、すでに存在しているようです。
+作成を飛ばします。",
+	'config-install-tables-failed' => "'''エラー'''：テーブルの作成が、次のエラーにより失敗しました：$1",
+	'config-install-interwiki' => '既定のウィキ間テーブルを導入しています',
 	'config-install-interwiki-sql' => 'ファイル<code>interwiki.sql</code>を見つけることができませんでした。',
-	'config-install-interwiki-exists' => "'''警告''': インターウィキテーブルはすでに登録されているようです。
-初期のリストをスキップしています。",
+	'config-install-interwiki-exists' => "'''警告'''：ウィキ間テーブルはすでに登録されているようです。
+既定のテーブルを無視します。",
 	'config-install-secretkey' => '秘密鍵を生成する',
-	'config-insecure-secretkey' => "'''警告:''' 安全な<code>\$wgSecretKey</code>を作成できません。
+	'config-insecure-secretkey' => "'''警告：'''安全な<code>\$wgSecretKey</code>を作成できません。
 手動でこれを変更することを考えてください。",
 	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
-	'config-install-done' => "'''おめでとう！''' 
-あなたはメディアウィキのインストールに成功しました。
+	'config-install-done' => "'''おめでとうございます！''' 
+MediaWikiのインストールに成功しました。
 
-インストーラは<code>LocalSettings.php</code>ファイルの生成を行いました。
-そこにはあなたの全ての設定が含まれます。
+インストール機能は<code>LocalSettings.php</code>ファイルを生成しました。
+すべての設定がそのファイルに含まれています。
 
-あなたはそれを[$1 ダウンロード]し、あなたのウィキインストールの拠点（index.phpと同じディレクトリ）に置く必要があるでしょう。
-'''注意''': もし、あなたがこれを今しないのならば、つまりあなたがダウンロードなしでインストールを終了した場合、この生成された構成ファイルはあなたにとって、有効なものではなくなるでしょう。
+それを[$1 ダウンロード]し、ウィキをインストールした基準ディレクトリー（index.phpと同じディレクトリー）に置く必要があります。
+'''注意''': もし、これを今しなければ、つまり、このファイルをダウンロードせずインストールを終了した場合、この生成された設定ファイルは利用されません。
 
-それがなされた時、あなたは'''[$2 ウィキの中に入る]'''ことができます。",
+それを完了すれば、'''[$2 ウィキのに入る]'''ことができます。",
 );
 
 /** Khmer (ភាសាខ្មែរ)

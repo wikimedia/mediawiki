@@ -222,7 +222,7 @@ $messages = array(
 நீக்கியதை பழையபடிக்குக் கொண்டுவா',
 'vector-action-unprotect'  => 'காப்பைநீக்கு',
 'vector-view-create'       => 'உருவாக்கவும்',
-'vector-view-edit'         => 'தொகுக்கவும்',
+'vector-view-edit'         => 'தொகு',
 'vector-view-history'      => 'வரலாற்றைக் காட்டவும்',
 'vector-view-view'         => 'வாசிக்கவும்',
 'vector-view-viewsource'   => 'மூலத்தைக் காட்டவும்',

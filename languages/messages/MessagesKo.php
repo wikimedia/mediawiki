@@ -520,6 +520,8 @@ $messages = array(
 이 문서를 다시 열기 전에 잠시만 기다려주세요.
 
 $1',
+'pool-queuefull'    => '풀 큐가 가득 찼습니다.',
+'pool-errorunknown' => '알 수 없는 오류',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} 소개',
@@ -3366,6 +3368,13 @@ $1',
 'version-hook-subscribedby'        => '훅이 사용된 위치',
 'version-version'                  => '(버전 $1)',
 'version-license'                  => '라이센스',
+'version-poweredby-credits'        => "이 위키는 '''[http://www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
+'version-poweredby-others'         => '그 외 다른 개발자',
+'version-license-info'             => '미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
+
+미디어위키가 유용하게 사용될 수 있기를 바라지만 상용으로 사용되거나 특정 목적에 맞을 것이라는 것을 보증하지 않습니다. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
+
+당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인]으로 읽어보시기 바랍니다.',
 'version-software'                 => '설치된 프로그램',
 'version-software-product'         => '제품',
 'version-software-version'         => '버전',
