@@ -3219,7 +3219,8 @@ $wgMessageStructure = array(
 	),
 	'sqlite' => array(
 		'sqlite-has-fts',
-	),  'sqlite-no-fts',
+		'sqlite-no-fts',
+	),
 );
 
 /** Comments for each block */
