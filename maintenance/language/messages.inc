@@ -3432,5 +3432,5 @@ Variants for Chinese language",
 	'comparepages'          => 'Special:ComparePages',
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
-	'sqlite'                => 'SQLite databse support',
+	'sqlite'                => 'SQLite database support',
 );
