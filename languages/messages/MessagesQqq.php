@@ -3753,4 +3753,7 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 
 {{Identical|Other}}',
 
+# SQLite
+'sqlite-has-fts'    => 'Shown on Special:Version, $1 is version',
+'sqlite-no-fts'     => 'Shown on Special:Version, $1 is version',
 );

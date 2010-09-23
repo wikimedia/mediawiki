@@ -160,6 +160,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added new hook GetIP
 * (bug 16574) Allow administrators to temporarily disable the account creation
   limit for IP addresses: [[MediaWiki:Ratelimit-excluded-ips]]
+* Special:Version now displays whether a SQLite database supports full-text
+  search.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

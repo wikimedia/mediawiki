@@ -177,11 +177,20 @@ interface DatabaseType {
 
 	/**
 	 * A string describing the current software version, like from
-	 * mysql_get_server_info().  Will be listed on Special:Version, etc.
+	 * mysql_get_server_info().
 	 *
-	 * @return string: Version information from the database
+	 * @return string: Version information from the database server.
 	 */
 	public function getServerVersion();
+
+	/**
+	 * A string describing the current software version, and possibly
+	 * other details in a user-friendly way.  Will be listed on Special:Version, etc.
+	 * Use getServerVersion() to get machine-friendly information.
+	 *
+	 * @return string: Version information from the database server
+	 */
+	public function getServerInfo();
 }
 
 /**
@@ -214,6 +223,17 @@ abstract class DatabaseBase implements DatabaseType {
 # Accessors
 # ------------------------------------------------------------------------------
 	# These optionally set a variable and return the previous state
+
+	/**
+	 * A string describing the current software version, and possibly
+	 * other details in a user-friendly way.  Will be listed on Special:Version, etc.
+	 * Use getServerVersion() to get machine-friendly information.
+	 *
+	 * @return string: Version information from the database server
+	 */
+	public function getServerInfo() {
+		return $this->getServerVersion();
+	}
 
 	/**
 	 * Fail function, takes a Database as a parameter

@@ -121,7 +121,7 @@ class SpecialVersion extends SpecialPage {
 		$software = array();
 		$software['[http://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
-		$software[$dbr->getSoftwareLink()] = $dbr->getServerVersion();
+		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
 		// Allow a hook to add/remove items.
 		wfRunHooks( 'SoftwareInfo', array( &$software ) );
