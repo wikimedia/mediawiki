@@ -878,7 +878,7 @@ De door $3 opgegaeve reje is ''$2''",
 'page_last'              => 'lèste',
 'histlegend'             => 'Verklaoring aafkortinge: (wijz) = versjil mit actueile versie, (vörrige) = versjil mit vörrige versie, K = kleine verangering',
 'history-fieldset-title' => 'Door de historie blajere',
-'history-show-deleted'   => 'Nör gwösj',
+'history-show-deleted'   => 'Inkel eweggesjaf',
 'histfirst'              => 'Aajste',
 'histlast'               => 'Nuujste',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -1856,7 +1856,7 @@ Controleer of se wellich n fout höbs gemaak bie de inveur.',
 'log-title-wildcard'   => "Zeuk pagina's die met deze naam beginne",
 
 # Special:AllPages
-'allpages'          => "Alle pazjena's",
+'allpages'          => "Alle pagina's",
 'alphaindexline'    => '$1 nao $2',
 'nextpage'          => 'Volgende pazjena ($1)',
 'prevpage'          => 'Vörge pazjena ($1)',
@@ -3096,9 +3096,9 @@ $1',
 
 # Delete conflict
 'deletedwhileediting' => "'''Waorsjoewing''': Dees pazjena is gewis naodats doe bis begós mit bewirke!",
-'confirmrecreate'     => "Gebroeker [[User:$1|$1]] ([[User talk:$1|euverlèk]]) heet dit artikel gewis naodats doe mèt bewirke begós mèt de rae:
+'confirmrecreate'     => "Gebroeker [[User:$1|$1]] ([[User talk:$1|euverlèk]]) heet dees pagina eweggesjaf naodats doe mèt bewirke begós mèt de rae:
 : ''$2''
-Bevèsteg estebleef dats te dees pazjena ech obbenuujts wils make.",
+Bevesteg estebleef dats te dees pazjena ech obbenuujts wils aanmake.",
 'recreate'            => 'Pazjena obbenuujts make',
 
 # action=purge

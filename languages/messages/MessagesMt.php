@@ -1806,8 +1806,7 @@ Kun af li siti elettroniċi oħra jistgħu jorbtu b'ħolqa diretta lejn il-fajl,
 'speciallogtitlelabel' => 'Titlu:',
 'log'                  => 'Reġistri',
 'all-logs-page'        => 'Ir-reġistri pubbliċi kollha',
-'alllogstext'          => "Preżentazzjoni unifikata tar-reġistri kollha ta' {{SITENAME}}.<br />
-Tista' tqassar il-kriterji ta' tfittxija billi tagħżel it-tip ta' log, l-isem tal-utent, jew il-paġna affetwata (it-tnejn tal-aħħar huma sensittivi għal kif jinkitbu l-karattri).",
+'alllogstext'          => "Preżentazzjoni unifikata tar-reġistri kollha ta' {{SITENAME}}. Tista' tqassar il-kriterji ta' tfittxija billi tagħżel it-tip ta' reġistru, l-isem tal-utent, jew il-paġna affetwata (it-tnejn tal-aħħar huma sensittivi għal kif jinkitbu l-karattri).",
 'logempty'             => "Ir-reġistru m'għandu l-ebda element li jaqbel mat-tfittxija tiegħek.",
 'log-title-wildcard'   => "Tfittxija ta' titli li jibdew b'dan it-test",
 
@@ -2608,10 +2607,11 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'markedaspatrollederror-noautopatrol' => "Int m'għandhekx id-drittijiet neċessarji biex timmarka l-modifiki tiegħek bħala verifikati.",
 
 # Patrol log
-'patrol-log-page' => 'Modifiki verifikati',
-'patrol-log-line' => 'immarka r-$1 tal-paġna $2 bħala verifikata $3',
-'patrol-log-auto' => '(verifika awtomatika)',
-'patrol-log-diff' => 'reviżjoni $1',
+'patrol-log-page'      => 'Modifiki verifikati',
+'patrol-log-line'      => 'immarka r-$1 tal-paġna $2 bħala verifikata $3',
+'patrol-log-auto'      => '(verifika awtomatika)',
+'patrol-log-diff'      => 'reviżjoni $1',
+'log-show-hide-patrol' => '$1 r-reġistru tal-modifiki verifikati',
 
 # Image deletion
 'deletedrevision'                 => 'Reviżjoni preċedenti, mħassra: $1',

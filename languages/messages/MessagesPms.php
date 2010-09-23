@@ -1552,10 +1552,10 @@ Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 'upload_source_file' => "(n'archivi da sò ordinator)",
 
 # Special:ListFiles
-'listfiles-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a ëstàit carià.
+'listfiles-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a son ëstàit carià.
 Për sòlit j'ùltim carià a resto an sima.
-Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órdin.",
-'listfiles_search_for'  => "Arsërca për nòm d'archivi multimojen:",
+Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé l'órdin.",
+'listfiles_search_for'  => "Arserché un nòm d'archivi multimojen:",
 'imgfile'               => 'archivi',
 'listfiles'             => 'Lista dle figure',
 'listfiles_date'        => 'Data',
