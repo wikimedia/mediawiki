@@ -33,7 +33,7 @@ class ResourceLoader {
 
 	/* Protected Static Methods */
 
-	/*
+	/**
 	 * Registers core modules and runs registration hooks
 	 */
 	protected static function initialize() {
@@ -48,6 +48,55 @@ class ResourceLoader {
 			self::register( include( "$IP/resources/Resources.php" ) );
 			wfRunHooks( 'ResourceLoaderRegisterModules' );
 			wfProfileOut( __METHOD__ );
+		}
+	}
+	
+	protected static function preloadModuleInfo( $modules, ResourceLoaderContext $context ) {
+		$dbr = wfGetDb( DB_SLAVE );
+		$skin = $context->getSkin();
+		$lang = $context->getLanguage();
+		
+		// Get file dependency information
+		$res = $dbr->select( 'module_deps', array( 'md_module', 'md_deps' ), array(
+				'md_module' => $modules,
+				'md_skin' => $context->getSkin()
+			), __METHOD__
+		);
+		
+		$modulesWithDeps = array();
+		foreach ( $res as $row ) {
+			self::$modules[$row->md_module]->setFileDependencies( $skin,
+				FormatJson::decode( $row->md_deps, true )
+			);
+			$modulesWithDeps[] = $row->md_module;
+		}
+		// Register the absence of a dependencies row too
+		foreach ( array_diff( $modules, $modulesWithDeps ) as $name ) {
+			self::$modules[$name]->setFileDependencies( $skin, array() );
+		}
+		
+		// Get message blob mtimes. Only do this for modules with messages
+		$modulesWithMessages = array();
+		$modulesWithoutMessages = array();
+		foreach ( $modules as $name ) {
+			if ( count( self::$modules[$name]->getMessages() ) ) {
+				$modulesWithMessages[] = $name;
+			} else {
+				$modulesWithoutMessages[] = $name;
+			}
+		}
+		if ( count( $modulesWithMessages ) ) {
+			$res = $dbr->select( 'msg_resource', array( 'mr_resource', 'mr_timestamp' ), array(
+					'mr_resource' => $modulesWithMessages,
+					'mr_lang' => $lang
+				), __METHOD__
+			);
+			foreach ( $res as $row ) {
+				self::$modules[$row->mr_resource]->setMsgBlobMtime( $lang, $row->mr_timestamp );
+			}
+		}
+		foreach ( $modulesWithoutMessages as $name ) {
+			self::$modules[$name]->setMsgBlobMtime( $lang, 0 );
 		}
 	}
 
@@ -279,6 +328,9 @@ class ResourceLoader {
 			$smaxage = $wgResourceLoaderMaxage['versioned']['server'];
 		}
 
+		// Preload information needed to the mtime calculation below
+		self::preloadModuleInfo( $modules, $context );
+
 		// To send Last-Modified and support If-Modified-Since, we need to detect 
 		// the last modified time
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
@@ -307,7 +359,7 @@ class ResourceLoader {
 
 		// Pre-fetch blobs
 		$blobs = $context->shouldIncludeMessages() ?
-		MessageBlobStore::get( $modules, $context->getLanguage() ) : array();
+			MessageBlobStore::get( $modules, $context->getLanguage() ) : array();
 
 		// Generate output
 		foreach ( $modules as $name ) {

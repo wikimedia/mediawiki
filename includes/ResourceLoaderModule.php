@@ -27,6 +27,11 @@ abstract class ResourceLoaderModule {
 	/* Protected Members */
 
 	protected $name = null;
+	
+	// In-object cache for file dependencies
+	protected $fileDeps = array();
+	// In-object cache for message blob mtime
+	protected $msgBlobMtime = array();
 
 	/* Methods */
 
@@ -131,7 +136,73 @@ abstract class ResourceLoaderModule {
 		// Stub, override expected
 		return array();
 	}
+	
+	/**
+	 * Get the files this module depends on indirectly for a given skin.
+	 * Currently these are only image files referenced by the module's CSS.
+	 *
+	 * @param $skin String: skin name
+	 * @return array of files
+	 */
+	public function getFileDependencies( $skin ) {
+		// Try in-object cache first
+		if ( isset( $this->fileDeps[$skin] ) ) {
+			return $this->fileDeps[$skin];
+		}
 
+		$dbr = wfGetDB( DB_SLAVE );
+		$deps = $dbr->selectField( 'module_deps', 'md_deps', array(
+				'md_module' => $this->getName(),
+				'md_skin' => $skin,
+			), __METHOD__
+		);
+		if ( !is_null( $deps ) ) {
+			$this->fileDeps[$skin] = (array) FormatJson::decode( $deps, true );
+		}
+		return $this->fileDeps[$skin];
+	}
+	
+	/**
+	 * Set preloaded file dependency information. Used so we can load this
+	 * information for all modules at once.
+	 * @param $skin string Skin name
+	 * @param $deps array Array of file names
+	 */
+	public function setFileDependencies( $skin, $deps ) {
+		$this->fileDeps[$skin] = $deps;
+	}
+	
+	/**
+	 * Get the last modification timestamp of the message blob for this
+	 * module in a given language.
+	 * @param $lang string Language code
+	 * @return int UNIX timestamp, or 0 if no blob found
+	 */
+	public function getMsgBlobMtime( $lang ) {
+		if ( !count( $this->getMessages() ) )
+			return 0;
+		
+		$dbr = wfGetDB( DB_SLAVE );
+		$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
+				'mr_resource' => $this->getName(),
+				'mr_lang' => $lang
+			), __METHOD__
+		);
+		$this->msgBlobMtime[$lang] = $msgBlobMtime ? wfTimestamp( TS_UNIX, $msgBlobMtime ) : 0;
+		return $this->msgBlobMtime[$lang];
+	}
+	
+	/**
+	 * Set a preloaded message blob last modification timestamp. Used so we
+	 * can load this information for all modules at once.
+	 * @param $lang string Language code
+	 * @param $mtime int UNIX timestamp or 0 if there is no such blob
+	 */
+	public function setMsgBlobMtime( $lang, $mtime ) {
+		$this->msgBlobMtime[$lang] = $mtime;
+	}
+	
+	
 	/* Abstract Methods */
 	
 	/**
@@ -483,24 +554,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->loaders,
 			$this->getFileDependencies( $context->getSkin() )
 		);
+		
 		wfProfileIn( __METHOD__.'-filemtime' );
 		$filesMtime = max( array_map( 'filemtime', array_map( array( __CLASS__, 'remapFilename' ), $files ) ) );
 		wfProfileOut( __METHOD__.'-filemtime' );
-		// Only get the message timestamp if there are messages in the module
-		$msgBlobMtime = 0;
-		if ( count( $this->messages ) ) {
-			// Get the mtime of the message blob
-			// TODO: This timestamp is queried a lot and queried separately for each module. 
-			// Maybe it should be put in memcached?
-			$dbr = wfGetDB( DB_SLAVE );
-			$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
-					'mr_resource' => $this->getName(),
-					'mr_lang' => $context->getLanguage()
-				), __METHOD__
-			);
-			$msgBlobMtime = $msgBlobMtime ? wfTimestamp( TS_UNIX, $msgBlobMtime ) : 0;
-		}
-		$this->modifiedTime[$context->getHash()] = max( $filesMtime, $msgBlobMtime );
+		$this->modifiedTime[$context->getHash()] = max( $filesMtime, $this->getMsgBlobMtime( $context->getLanguage() ) );
 		wfProfileOut( __METHOD__ );
 		return $this->modifiedTime[$context->getHash()];
 	}
@@ -587,43 +645,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		return $retval;
-	}
-
-	/**
-	 * Get the files this module depends on indirectly for a given skin.
-	 * Currently these are only image files referenced by the module's CSS.
-	 *
-	 * @param $skin String: skin name
-	 * @return array of files
-	 */
-	protected function getFileDependencies( $skin ) {
-		// Try in-object cache first
-		if ( isset( $this->fileDeps[$skin] ) ) {
-			return $this->fileDeps[$skin];
-		}
-
-		// Now try memcached
-		global $wgMemc;
-
-		$key = wfMemcKey( 'resourceloader', 'module_deps', $this->getName(), $skin );
-		$deps = $wgMemc->get( $key );
-
-		if ( !$deps ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$deps = $dbr->selectField( 'module_deps', 'md_deps', array(
-					'md_module' => $this->getName(),
-					'md_skin' => $skin,
-				), __METHOD__
-			);
-			if ( !$deps ) {
-				$deps = '[]'; // Empty array so we can do negative caching
-			}
-			$wgMemc->set( $key, $deps );
-		}
-
-		$this->fileDeps = FormatJson::decode( $deps, true );
-
-		return $this->fileDeps;
 	}
 
 	/**
