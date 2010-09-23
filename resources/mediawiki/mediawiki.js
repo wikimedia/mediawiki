@@ -648,7 +648,7 @@ window.mediaWiki = new ( function( $ ) {
 			dependencies = resolve( dependencies );
 			// If all dependencies are met, execute ready immediately
 			if ( filter( ['ready'], dependencies ).compare( dependencies ) ) {
-				if ( typeof ready !== 'function' ) {
+				if ( typeof ready === 'function' ) {
 					ready();
 				}
 			}
