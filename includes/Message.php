@@ -127,7 +127,8 @@ class Message {
 	 * @return Message: $this
 	 */
 	public function params( /*...*/ ) {
-		$this->parameters = array_merge( $this->parameters, array_values( func_get_args() ) );
+		$args_values = array_values( func_get_args() );
+		$this->parameters = array_merge( $this->parameters, $args_values );
 		return $this;
 	}
 
