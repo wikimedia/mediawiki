@@ -186,7 +186,7 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 				}
 
 				if ( !$commentText ) {
-					$commentText = $comment;
+					$commentText = $comment ? $comment : 'Importing image file';
 				}
 			}
 
