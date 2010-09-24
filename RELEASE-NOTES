@@ -400,6 +400,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24166) API error when using rvprop=tags
 * Introduced "asynchronous download" mode for upload-by-url. Requires 
   $wgAllowAsyncCopyUploads to be true.
+* sinumberingroup correctly gives size of 'user' group, and omits size of
+  implicit groups rather than showing 0.
 
 === Languages updated in 1.17 ===
 

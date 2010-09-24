@@ -331,8 +331,17 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'name' => $group,
 				'rights' => array_keys( $permissions, true ),
 			);
+			
 			if ( $numberInGroup ) {
-				$arr['number'] = SiteStats::numberInGroup( $group );
+				global $wgAutopromote;
+			
+				if ($group == 'user') {
+					$arr['number'] = SiteStats::users();
+					
+				// '*' and autopromote groups have no size
+				} elseif (!($group == '*' || in_array($group, array_keys($wgAutopromote)))) {
+					$arr['number'] = SiteStats::numberInGroup( $group );
+				}
 			}
 			
 			$groupArr = array(
