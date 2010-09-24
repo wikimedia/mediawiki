@@ -437,4 +437,47 @@ class ResourceLoader {
 			return "mediaWiki.loader.state( '$name', '$state' );\n";
 		}
 	}
+	
+	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $script ) {
+		$name = Xml::escapeJsString( $name );
+		$version = (int) $version > 1 ? (int) $version : 1;
+		if ( is_array( $dependencies ) ) {
+			$dependencies = FormatJson::encode( $dependencies );
+		} else if ( is_string( $dependencies ) ) {
+			$dependencies = "'" . Xml::escapeJsString( $dependencies ) . "'";
+		} else {
+			$dependencies = 'null';
+		}
+		if ( is_string( $group ) ) {
+			$group = "'" . Xml::escapeJsString( $group ) . "'";
+		} else {
+			$group = 'null';
+		}
+		$script = str_replace( "\n", "\n\t", trim( $script ) );
+		return "( function( name, version, dependencies ) {\t$script\t} )" .
+			"( '$name', $version, $dependencies, $group );\n";
+	}
+	
+	public static function makeLoaderRegisterScript( $name, $version = null, $dependencies = null, $group = null ) {
+		if ( is_array( $name ) ) {
+			$registrations = FormatJson::encode( $name );
+			return "mediaWiki.loader.register( $registrations );\n";
+		} else {
+			$name = Xml::escapeJsString( $name );
+			$version = (int) $version > 1 ? (int) $version : 1;
+			if ( is_array( $dependencies ) ) {
+				$dependencies = FormatJson::encode( $dependencies );
+			} else if ( is_string( $dependencies ) ) {
+				$dependencies = "'" . Xml::escapeJsString( $dependencies ) . "'";
+			} else {
+				$dependencies = 'null';
+			}
+			if ( is_string( $group ) ) {
+				$group = "'" . Xml::escapeJsString( $group ) . "'";
+			} else {
+				$group = 'null';
+			}
+			return "mediaWiki.loader.register( '$name', $version, $dependencies, $group );\n";
+		}
+	}
 }
