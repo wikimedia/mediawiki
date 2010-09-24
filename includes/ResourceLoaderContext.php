@@ -27,7 +27,7 @@ defined( 'MEDIAWIKI' ) || die( 1 );
  * of a specific loader request
  */
 class ResourceLoaderContext {
-	
+
 	/* Protected Members */
 
 	protected $request;

@@ -2282,7 +2282,8 @@ class OutputPage {
 	
 	// TODO: Document
 	static function makeResourceLoaderLink( $skin, $modules, $only, $useESI = false ) {
-		global $wgUser, $wgLang, $wgRequest, $wgLoadScript, $wgResourceLoaderDebug, $wgResourceLoaderUseESI;
+		global $wgUser, $wgLang, $wgRequest, $wgLoadScript, $wgResourceLoaderDebug, $wgResourceLoaderUseESI,
+			$wgResourceLoaderInlinePrivateModules;
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$query = array(
@@ -2308,20 +2309,38 @@ class OutputPage {
 		$links = '';
 		foreach ( $groups as $group => $modules ) {
 			$query['modules'] = implode( '|', array_keys( $modules ) );
-			// Special handling for user group
-			if ( $group === 'user' && $wgUser->isLoggedIn() ) {
+			// Special handling for user-specific groups
+			if ( ( $group === 'user' || $group === 'private' ) && $wgUser->isLoggedIn() ) {
 				$query['user'] = $wgUser->getName();
+			}
+			// Support inlining of private modules if configured as such
+			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
+				$context = new ResourceLoaderContext( new FauxRequest( $query ) );
+				if ( $only == 'styles' ) {
+					$links .= Html::inlineStyle(
+						ResourceLoader::makeLoaderConditionalScript(
+							ResourceLoader::makeModuleResponse( $context, $modules )
+						)
+					);
+				} else {
+					$links .= Html::inlineScript(
+						ResourceLoader::makeLoaderConditionalScript(
+							ResourceLoader::makeModuleResponse( $context, $modules )
+						)
+					);
+				}
+				continue;
 			}
 			// Special handling for user and site groups; because users might change their stuff on-wiki like site or
 			// user pages, or user preferences; we need to find the highest timestamp of these user-changable modules so
 			// we can ensure cache misses on change
 			if ( $group === 'user' || $group === 'site' ) {
 				// Create a fake request based on the one we are about to make so modules return correct times
-				$request = new ResourceLoaderContext( new FauxRequest( $query ) );
+				$context = new ResourceLoaderContext( new FauxRequest( $query ) );
 				// Get the maximum timestamp
 				$timestamp = 0;
 				foreach ( $modules as $module ) {
-					$timestamp = max( $timestamp, $module->getModifiedTime( $request ) );
+					$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
 				}
 				// Add a version parameter so cache will break when things change
 				$query['version'] = wfTimestamp( TS_ISO_8601, round( $timestamp, -2 ) );

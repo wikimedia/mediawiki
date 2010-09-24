@@ -205,7 +205,6 @@ abstract class ResourceLoaderModule {
 		$this->msgBlobMtime[$lang] = $mtime;
 	}
 	
-	
 	/* Abstract Methods */
 	
 	/**
@@ -905,21 +904,20 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		}
 
 		global $wgUser;
-		$username = $context->getUser();
-		// Avoid extra db query by using $wgUser if possible
-		$user = $wgUser->getName() === $username ? $wgUser : User::newFromName( $username );
 
-		if ( $user ) {
-			return $this->modifiedTime[$hash] = $user->getTouched();
+		if ( $context->getUser() === $wgUser->getName() ) {
+			return $this->modifiedTime[$hash] = $wgUser->getTouched();
 		} else {
 			return 1;
 		}
 	}
 
 	public function getScript( ResourceLoaderContext $context ) {
-		$user = User::newFromName( $context->getUser() );
-		if ( $user instanceof User ) {
-			$options = FormatJson::encode( $user->getOptions() );
+		global $wgUser;
+
+		// Verify identity -- this is a private module
+		if ( $context->getUser() === $wgUser->getName() ) {
+			$options = FormatJson::encode( $wgUser->getOptions() );
 		} else {
 			$options = FormatJson::encode( User::getDefaultOptions() );
 		}
@@ -927,11 +925,17 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
-		global $wgAllowUserCssPrefs;
+		global $wgUser, $wgAllowUserCssPrefs;
+
 		if ( $wgAllowUserCssPrefs ) {
-			$user = User::newFromName( $context->getUser() );
-			$options = $user instanceof User ? $user->getOptions() : User::getDefaultOptions();
-			
+			// Verify identity -- this is a private module
+			if ( $context->getUser() === $wgUser->getName() ) {
+				$options = FormatJson::encode( $wgUser->getOptions() );
+			} else {
+				$options = FormatJson::encode( User::getDefaultOptions() );
+			}
+
+			// Build CSS rules
 			$rules = array();
 			if ( $options['underline'] < 2 ) {
 				$rules[] = "a { text-decoration: " . ( $options['underline'] ? 'underline' : 'none' ) . "; }";
@@ -965,9 +969,9 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 		return $wgContLang->getDir() !== $context->getDirection();
 	}
-	
+
 	public function getGroup() {
-		return 'user';
+		return 'private';
 	}
 }
 
