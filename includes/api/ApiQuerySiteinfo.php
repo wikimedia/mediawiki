@@ -335,11 +335,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( $numberInGroup ) {
 				global $wgAutopromote;
 			
-				if ($group == 'user') {
+				if ( $group == 'user' ) {
 					$arr['number'] = SiteStats::users();
 					
 				// '*' and autopromote groups have no size
-				} elseif (!($group == '*' || in_array($group, array_keys($wgAutopromote)))) {
+				} elseif ( $group !== '*' && !isset( $wgAutopromote[$group] ) ) {
 					$arr['number'] = SiteStats::numberInGroup( $group );
 				}
 			}
