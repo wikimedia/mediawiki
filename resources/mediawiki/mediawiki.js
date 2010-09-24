@@ -735,9 +735,10 @@ window.mediaWiki = new ( function( $ ) {
 				}
 				return;
 			}
-			if ( module in registry ) {
-				registry[module].state = state;
+			if ( !( module in registry ) ) {
+				that.register( module );
 			}
+			registry[module].state = state;
 		};
 		
 		/**
