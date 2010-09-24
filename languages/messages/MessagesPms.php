@@ -3294,4 +3294,8 @@ Ch'a bata 'l nòm dl'archivi sensa pa bute-ie 'l prefiss \"{{ns:file}}:\".",
 'htmlform-reset'               => 'Scansela ij cambiament',
 'htmlform-selectorother-other' => 'Àutr',
 
+# SQLite database support
+'sqlite-has-fts' => 'apògg $1 con arserca a test pien',
+'sqlite-no-fts'  => 'apògg $1 sensa arserca a test pien',
+
 );

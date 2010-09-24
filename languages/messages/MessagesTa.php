@@ -190,7 +190,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ மிடியாவிக்கி பொதுவான கேள்விகள்]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce மீடியாவிக்கி வெளியீடு மின்னஞ்சல் பட்டியல்]',
 
-'about'         => 'விபரம்',
+'about'         => 'விவரம்',
 'article'       => 'உள்ளடக்கப் பக்கம்',
 'newwindow'     => '(புதிய சாளரத்துள் திறக்கும்)',
 'cancel'        => 'விடு',
@@ -217,9 +217,7 @@ $messages = array(
 'vector-action-delete'     => 'நீக்கவும்',
 'vector-action-move'       => 'நகர்த்தவும்',
 'vector-action-protect'    => 'காக்கவும்',
-'vector-action-undelete'   => 'நீக்கத்தை நிறுத்து
-
-நீக்கியதை பழையபடிக்குக் கொண்டுவா',
+'vector-action-undelete'   => 'நீக்கத்தை நிறுத்து',
 'vector-action-unprotect'  => 'காப்பைநீக்கு',
 'vector-view-create'       => 'உருவாக்கவும்',
 'vector-view-edit'         => 'தொகு',
@@ -1335,7 +1333,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'listfiles_search_for'  => 'பின்வரும் பெயருள்ள ஊடகக் கோப்பைத் தேடு:',
 'imgfile'               => 'கோப்பு',
 'listfiles'             => 'படிமங்களின் பட்டியல்',
-'listfiles_date'        => 'நாள்',
+'listfiles_date'        => 'தேதி',
 'listfiles_name'        => 'பெயர்',
 'listfiles_user'        => 'பயனர்',
 'listfiles_size'        => 'அளவு',

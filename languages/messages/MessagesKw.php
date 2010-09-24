@@ -372,7 +372,7 @@ po [{{fullurl:{{FULLPAGENAME}}|action=edit}} chanjya an folen-ma]</span>.',
 'permissionserrorstext-withaction' => 'Nyns eus cubmyes dhewgh dhe $2, rag an {{PLURAL:$1|cheson|chesonys}} a-sew:',
 
 # "Undo" feature
-'undo-summary' => 'Diswul amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|keskows]])',
+'undo-summary' => 'Diswras amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|kescows]])',
 
 # History pages
 'viewpagelogs'           => 'Gweles covnotednow an folen-ma',
@@ -718,7 +718,7 @@ Gwelewgh $2 rag covath a dhileansow a-dhiwedhes.',
 'protect_expiry_old'      => "Yma'n termyn diweth y'n termyn eus passyes.",
 'protect-level-sysop'     => 'Menysteryon hepken',
 'protect-summary-cascade' => 'ow froslabma',
-'protect-expiring'        => 'a wra diwedha $1 (UTC)',
+'protect-expiring'        => 'y whra diwedha $1 (UTC)',
 'restriction-type'        => 'Cubmyas:',
 'pagesize'                => '(bayt)',
 

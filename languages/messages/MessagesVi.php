@@ -3538,4 +3538,8 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'htmlform-reset'               => 'Hủy các thay đổi',
 'htmlform-selectorother-other' => 'Khác',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 với sự hỗ trợ tìm kiếm toàn văn',
+'sqlite-no-fts'  => '$1 không có hỗ trợ tìm kiếm toàn văn',
+
 );

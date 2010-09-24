@@ -3583,4 +3583,8 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 'htmlform-reset'               => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
+'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
+
 );

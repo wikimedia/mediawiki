@@ -365,7 +365,7 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'revertmerge' => 'ḥiyyd tazdayt',
 
 # Diffs
-'history-title' => 'Asakud n umcggr',
+'history-title' => 'Asakud n umcggr n « $1 »',
 'difference'    => 'laḥna gr tamzwarut d tamǧarut',
 'lineno'        => 'Izriri $1:',
 'editundo'      => 'Urri',
@@ -667,8 +667,12 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'tooltip-n-help'                  => 'Adɣar n w-aws',
 'tooltip-t-whatlinkshere'         => 'Umuɣ n kullu tisnatin n Wiki lid ilkkmn ɣid',
 'tooltip-t-recentchangeslinked'   => 'Imbddln imaynutn n tisnatin li ittylkamn s tasna yad',
+'tooltip-feed-rss'                => 'Usuddm (Flux) n tasna yad',
+'tooltip-feed-atom'               => 'Usuddm Atum n tasna yad',
+'tooltip-t-contributions'         => 'Ẓr umuɣ n tiwuriwin n umsqdac ad',
+'tooltip-t-emailuser'             => 'Ṣafd tabrat umsqdac ad',
 'tooltip-t-upload'                => 'sɣlid ifaylutn',
-'tooltip-t-specialpages'          => 'kolchi tiwriqin tesbtarin',
+'tooltip-t-specialpages'          => 'Umuɣ n tisniwin timẓlayin',
 'tooltip-t-print'                 => 'Lqim uziggz n tasna yad',
 'tooltip-t-permalink'             => 'Azday bdda i lqim n tasna yad',
 'tooltip-ca-nstab-main'           => 'Ẓr mayllan ɣ tasna',
@@ -717,6 +721,9 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn
 'exif-gaincontrol-0' => 'walo',
 
 'exif-subjectdistancerange-0' => 'orityawssan',
+
+# External editor support
+'edit-externally-help' => '(Ẓṛ [http://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] bac ad taf uggar n inɣmisn)',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'kullu',

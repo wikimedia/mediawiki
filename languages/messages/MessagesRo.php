@@ -529,6 +529,7 @@ Prea multi utilizatori încearcă să vizualizeze această pagină.
 Vă rugăm să așteptați un moment înainte să încercați să accesați pagina din nou.
 
 $1',
+'pool-errorunknown' => 'Eroare necunoscută',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Despre {{SITENAME}}',

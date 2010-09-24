@@ -4344,8 +4344,8 @@ This site is experiencing technical difficulties.',
 'htmlform-reset'               => 'Undo changes',
 'htmlform-selectorother-other' => 'Other',
 
-# SQLite support
-'sqlite-has-fts'               => '$1 with full-text search support',
-'sqlite-no-fts'                => '$1 without full-text search support',
+# SQLite database support
+'sqlite-has-fts' => '$1 with full-text search support',
+'sqlite-no-fts'  => '$1 without full-text search support',
 
 );

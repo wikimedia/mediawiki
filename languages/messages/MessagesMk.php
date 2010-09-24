@@ -3638,4 +3638,8 @@ $1',
 'htmlform-reset'               => 'Откажи промени',
 'htmlform-selectorother-other' => 'Друго',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 со поддршка за пребарување по цели текстови',
+'sqlite-no-fts'  => '$1 без поддршка за пребарување по цели текстови',
+
 );

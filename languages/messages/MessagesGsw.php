@@ -3250,4 +3250,8 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'htmlform-reset'               => 'Änderige ruckgängig mache',
 'htmlform-selectorother-other' => 'Anderi',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 mit Unterstitzig vu dr Volltextsuechi',
+'sqlite-no-fts'  => '$1 ohni Unterstitzig vu dr Volltextsuechi',
+
 );

@@ -3580,4 +3580,8 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'htmlform-reset'               => 'Vrátit změny',
 'htmlform-selectorother-other' => 'Jiná hodnota',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',
+'sqlite-no-fts'  => '$1 bez podpory plnotextového vyhledávání',
+
 );
