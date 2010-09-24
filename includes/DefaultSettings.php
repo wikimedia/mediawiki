@@ -1667,6 +1667,13 @@ $wgResourceLoaderMaxage = array(
 $wgResourceLoaderDebug = false;
 
 /**
+ * Enable embedding of certain resources using Edge Side Includes. This will
+ * improve performance but only works if there is something in front of the
+ * web server (e..g a Squid or Varnish server) configured to process the ESI.
+ */
+$wgResourceLoaderUseESI = false;
+
+/**
  * Enable data URL embedding (experimental). This variable is very temporary and
  * will be removed once we get this feature stable.
  */

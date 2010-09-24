@@ -2280,8 +2280,9 @@ class OutputPage {
 		return $ret;
 	}
 	
-	static function makeResourceLoaderLink( $skin, $modules, $only ) {
-		global $wgUser, $wgLang, $wgRequest, $wgLoadScript, $wgResourceLoaderDebug;
+	// TODO: Document
+	static function makeResourceLoaderLink( $skin, $modules, $only, $useESI = false ) {
+		global $wgUser, $wgLang, $wgRequest, $wgLoadScript, $wgResourceLoaderDebug, $wgResourceLoaderUseESI;
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$query = array(
@@ -2327,11 +2328,22 @@ class OutputPage {
 			}
 			// Make queries uniform in order
 			ksort( $query );
-			// Automatically select style/script elements
-			if ( $only === 'styles' ) {
-				$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+			
+			$url = wfAppendQuery( $wgLoadScript, $query );
+			if ( $useESI && $wgResourceLoaderUseESI ) {
+				$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
+				if ( $only == 'styles' ) {
+					$links .= Html::inlineStyle( $esi );
+				} else {
+					$links .= Html::inlineScript( $esi );
+				}
 			} else {
-				$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+				// Automatically select style/script elements
+				if ( $only === 'styles' ) {
+					$links .= Html::linkedStyle( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+				} else {
+					$links .= Html::linkedScript( wfAppendQuery( $wgLoadScript, $query ) ) . "\n";
+				}
 			}
 		}
 		return $links;
@@ -2348,8 +2360,8 @@ class OutputPage {
 	function getHeadScripts( Skin $sk ) {
 		global $wgUser, $wgRequest, $wgUseSiteJs, $wgResourceLoaderDebug;
 		
-		// Statup - this will immediately load jquery and mediawiki modules
-		$scripts = self::makeResourceLoaderLink( $sk, 'startup', 'scripts' );
+		// Startup - this will immediately load jquery and mediawiki modules
+		$scripts = self::makeResourceLoaderLink( $sk, 'startup', 'scripts', true );
 		
 		// Configuration -- This could be merged together with the load and go, but makeGlobalVariablesScript returns a
 		// whole script tag -- grumble grumble...
