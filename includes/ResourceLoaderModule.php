@@ -1048,7 +1048,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
 		wfProfileIn( __METHOD__ );
 		
-		$scripts = '';
+		$out = '';
 		$registrations = array();
 		foreach ( ResourceLoader::getModules() as $name => $module ) {
 			// Support module loader scripts
@@ -1056,8 +1056,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				$deps = FormatJson::encode( $module->getDependencies() );
 				$group = FormatJson::encode( $module->getGroup() );
 				$version = wfTimestamp( TS_ISO_8601, round( $module->getModifiedTime( $context ), -2 ) );
-				$scripts .= "( function( name, version, dependencies ) { $loader } )\n" . 
-					"( '$name', '$version', $deps, $group );\n";
+				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $loader );
 			}
 			// Automatically register module
 			else {
@@ -1080,7 +1079,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				}
 			}
 		}
-		$out = $scripts . "mediaWiki.loader.register( " . FormatJson::encode( $registrations ) . " );";
+		$out .= ResourceLoader::makeLoaderRegisterScript( $registrations );
 		
 		wfProfileOut( __METHOD__ );
 		return $out;
@@ -1091,14 +1090,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP, $wgLoadScript;
 
-		$scripts = file_get_contents( "$IP/resources/startup.js" );
+		$out = file_get_contents( "$IP/resources/startup.js" );
 		if ( $context->getOnly() === 'scripts' ) {
-			// Get all module registrations
-			$registration = self::getModuleRegistrations( $context );
-			// Build configuration
-			$config = FormatJson::encode( $this->getConfig( $context ) );
-			// Add a well-known start-up function
-			$scripts .= "window.startUp = function() {\n\t$registration\n\tmediaWiki.config.set( $config );\n};\n";
 			// Build load query for jquery and mediawiki modules
 			$query = array(
 				'modules' => implode( '|', array( 'jquery', 'mediawiki' ) ),
@@ -1111,17 +1104,20 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					ResourceLoader::getModule( 'mediawiki' )->getModifiedTime( $context )
 				), -2 ) )
 			);
-			// Uniform query order
+			// Ensure uniform query order
 			ksort( $query );
-			// Build HTML code for loading jquery and mediawiki modules
-			$loadScript = Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) );
-			// Add code to add jquery and mediawiki loading code; only if the current client is compatible
-			$scripts .= "if ( isCompatible() ) {\n\tdocument.write( " . FormatJson::encode( $loadScript ) . ");\n}\n";
-			// Delete the compatible function - it's not needed anymore
-			$scripts .= "delete window['isCompatible'];\n";
+			
+			// Startup function
+			$configuration = FormatJson::encode( $this->getConfig( $context ) );
+			$registrations = self::getModuleRegistrations( $context );
+			$out .= "window.startUp = function() {\n\t$registrations\n\tmediaWiki.config.set( $configuration );\n};";
+			
+			// Conditional script injection
+			$scriptTag = Xml::escapeJsString( Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) ) );
+			$out .= "if ( isCompatible() ) {\n\tdocument.write( '$scriptTag' );\n}\ndelete window['isCompatible'];";
 		}
 
-		return $scripts;
+		return $out;
 	}
 
 	public function getModifiedTime( ResourceLoaderContext $context ) {
