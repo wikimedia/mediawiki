@@ -3435,4 +3435,8 @@ Ta stran se sooča s tehničnimi težavami.',
 'htmlform-reset'               => 'Razveljavi spremembe',
 'htmlform-selectorother-other' => 'Drugo',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 s podporo iskanju polnih besedil',
+'sqlite-no-fts'  => '$1 brez podpore iskanju polnih besedil',
+
 );

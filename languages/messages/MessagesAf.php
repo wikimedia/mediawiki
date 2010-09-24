@@ -437,6 +437,7 @@ Te veel gebruikers probeer om na hierdie bladsy te kyk.
 Wag asseblief 'n rukkie voordat u weer probeer om die bladsy op te roep.
 
 $1",
+'pool-errorunknown' => 'Onbekende fout',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Inligting oor {{SITENAME}}',

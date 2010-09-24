@@ -3379,4 +3379,8 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'htmlform-reset'               => 'Desfés els canvis',
 'htmlform-selectorother-other' => 'Altres',
 
+# SQLite database support
+'sqlite-has-fts' => '$1, amb suport de búsqueda de text íntegre',
+'sqlite-no-fts'  => '$1, sense supor de búsqueda de text íntegre',
+
 );

@@ -1434,7 +1434,7 @@ Tafadhali chagua jina lingine.",
 'fileexists-thumbnail-yes'    => "Faili huwa ni ''picha ndogo''.
 [[$1|thumb]]
 Tafadhali utazame faili la '''<tt>[[:$1]]</tt>'''.
-Ikiwa faili hili inaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
+Ikiwa faili hili linaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
 'file-thumbnail-no'           => "Jina la faili linaanza na '''<tt>$1</tt>'''.
 Huwa ukubwa wake ulipunguzwa ''(ni picha ndogo)''.
 Ikiwa unao picha hii kwa ukubwa wa kawaida tafadhali upakie picha ile, la sivyo tafadhali badilisha jina la faili.",

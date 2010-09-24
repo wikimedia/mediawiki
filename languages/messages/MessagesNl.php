@@ -3680,4 +3680,8 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'htmlform-reset'               => 'Wijzigingen ongedaan maken',
 'htmlform-selectorother-other' => 'Anders',
 
+# SQLite database support
+'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',
+'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
+
 );

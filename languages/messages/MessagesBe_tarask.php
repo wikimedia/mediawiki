@@ -3449,4 +3449,8 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'htmlform-reset'               => 'Адмяніць зьмены',
 'htmlform-selectorother-other' => 'Іншае',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 з падтрымкай поўнатэкстнага пошуку',
+'sqlite-no-fts'  => '$1 без падтрымкі поўнатэкстнага пошуку',
+
 );

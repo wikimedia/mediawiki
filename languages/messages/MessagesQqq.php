@@ -340,6 +340,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 
 {{Identical|History}}',
 'updatedmarker'     => 'Displayed in the page history (of a page you are [[Special:Watchlist|watching]]), when the page has been edited since the last time you visited it.',
+'info_short'        => '{{Identical|Information}}',
 'printableversion'  => 'Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].',
 'permalink'         => 'Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]',
 'print'             => '{{Identical|Print}}',
@@ -3753,7 +3754,8 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 
 {{Identical|Other}}',
 
-# SQLite
-'sqlite-has-fts'    => 'Shown on Special:Version, $1 is version',
-'sqlite-no-fts'     => 'Shown on Special:Version, $1 is version',
+# SQLite database support
+'sqlite-has-fts' => 'Shown on Special:Version, $1 is version',
+'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
+
 );

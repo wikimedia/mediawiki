@@ -303,7 +303,7 @@ $messages = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'ның яңа версияләре турында хәбәрләр яздырып алу].",
 
 'about'         => 'Тасвирлама',
-'article'       => 'Эчтәлек бите',
+'article'       => 'Мәкалә',
 'newwindow'     => '(яңа тәрәзәдә ачыла)',
 'cancel'        => 'Баш тарту',
 'moredotdotdot' => 'Дәвамы…',
@@ -1565,7 +1565,7 @@ PICT # төрле
 'listgrouprights-group'    => 'Төркем',
 'listgrouprights-rights'   => 'Хокуклар',
 'listgrouprights-helppage' => 'Help:Төркемнәрнең хокуклары',
-'listgrouprights-members'  => '(группа исемлеге)',
+'listgrouprights-members'  => '(төркем исемлеге)',
 
 # E-mail user
 'emailuser'       => 'Бу кулланучыга хат',
@@ -1945,7 +1945,11 @@ $1',
 'common.css' => '/*  Монда урнаштырылган CSS башкаларында да урнашачак */',
 
 # Attribution
+'siteusers'   => '{{SITENAME}} {{PLURAL:$2|кулланучысы|кулланучылары}} $1',
 'creditspage' => 'Рәхмәтләр',
+
+# Spam protection
+'spamprotectiontitle' => 'Спам фильтры',
 
 # Skin names
 'skinname-standard'    => 'Классик',

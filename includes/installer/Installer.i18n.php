@@ -495,6 +495,7 @@ $messages['qqq'] = array(
 	'config-desc' => '{{desc}}',
 	'config-title' => 'Parameters:
 * $1 is the version of MediaWiki that is being installed.',
+	'config-information' => '{{Identical|Information}}',
 	'config-session-error' => 'Parameters:
 * $1 is the error that was encountered with the session.',
 	'config-session-expired' => 'Parameters:
@@ -570,7 +571,87 @@ $1 is for indicating whether or not we should be able to use the feature.',
  * @author Naudefj
  */
 $messages['af'] = array(
+	'config-desc' => 'Die Installasieprogram vir MediaWiki',
+	'config-title' => 'Installasie MediaWiki $1',
+	'config-information' => 'Inligting',
+	'config-session-error' => 'Fout met begin van sessie: $1',
+	'config-show-help' => 'Hulp',
+	'config-hide-help' => 'Versteek hulp',
+	'config-your-language' => 'U taal:',
+	'config-your-language-help' => "Kies 'n taal om tydens die installasieproses te gebruik.",
+	'config-wiki-language' => 'Wiki se taal:',
+	'config-back' => '← Terug',
+	'config-continue' => 'Gaan voort →',
+	'config-page-language' => 'Taal',
+	'config-page-welcome' => 'Welkom by MediaWiki!',
+	'config-page-dbconnect' => 'Konnekteer na die databasis',
+	'config-page-upgrade' => "Opgradeer 'n bestaande installasie",
+	'config-page-dbsettings' => 'Databasis-instellings',
+	'config-page-name' => 'Naam',
+	'config-page-options' => 'Opsies',
+	'config-page-install' => 'Installeer',
+	'config-page-complete' => 'Voltooi!',
+	'config-page-restart' => 'Herbegin installasie',
+	'config-page-readme' => 'Lees my',
+	'config-page-releasenotes' => 'Vrystellingsnotas',
+	'config-page-copying' => 'Besig met kopiëring',
+	'config-page-upgradedoc' => 'Besig met opgradering',
+	'config-restart' => 'Ja, herbegin dit',
+	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki tuisblad]
+* [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
+* [http://www.mediawiki.org/wiki/Manual:Contents Administrateurshandleiding] (Engelstalig)
+* [http://www.mediawiki.org/wiki/Manual:FAQ Algemene vrae] (Engelstalig)',
+	'config-env-php' => 'PHP $1 is tans geïnstalleer.',
+	'config-env-latest-ok' => 'U is besig om die nuutste weergawe van MediaWiki te installeer.',
+	'config-env-latest-new' => "'''Let op:''' U is besig om 'n ontwikkelingsweergawe van MediaWiki te installeer.",
+	'config-no-db' => "Kon nie 'n geskikte databasisdrywer vind nie!",
+	'config-diff3-bad' => 'GNU diff3 nie gevind nie.',
+	'config-db-type' => 'Databasistipe:',
+	'config-db-host' => 'Databasisbediener:',
+	'config-db-wiki-settings' => 'Identifiseer hierdie wiki',
+	'config-db-name' => 'Databasisnaam:',
+	'config-db-install-account' => 'Gebruiker vir die installasie',
+	'config-db-username' => 'Databasis gebruikersnaam:',
+	'config-db-password' => 'Databasis wagwoord:',
+	'config-db-charset' => 'Karakterstelsel vir databasis',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-db-port' => 'Databasispoort:',
+	'config-db-schema' => 'Skema vir MediaWiki',
+	'config-db-ts2-schema' => 'Skema vir tsearch2',
+	'config-sqlite-dir' => 'Gids vir SQLite se data:',
+	'config-header-mysql' => 'MySQL-instellings',
+	'config-header-postgres' => 'PostgreSQL-instellings',
+	'config-header-sqlite' => 'SQLite-instellings',
+	'config-header-oracle' => 'Oracle-instellings',
+	'config-invalid-db-type' => 'Ongeldige databasistipe',
+	'config-missing-db-name' => 'U moet \'n waarde vir "Databasnaam" verskaf',
+	'config-sqlite-cant-create-db' => 'Kon nie databasislêer <code>$1</code> skep nie.',
+	'config-show-table-status' => 'Die uitvoer van SHOW TABLE STATUS het gefaal!',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => 'Naam van die wiki:',
 	'config-ns-generic' => 'Projek',
+	'config-ns-other' => 'Ander (spesifiseer)',
+	'config-ns-other-default' => 'MyWiki',
+	'config-admin-name' => 'U naam:',
+	'config-admin-password' => 'Wagwoord:',
+	'config-admin-password-confirm' => 'Wagwoord weer:',
+	'config-admin-email' => 'E-posadres:',
+	'config-optional-continue' => 'Vra my meer vrae.',
+	'config-profile-wiki' => 'Tradisionele wiki',
+	'config-license' => 'Kopiereg en lisensie:',
+	'config-license-pd' => 'Publieke Domein',
+	'config-email-settings' => 'E-posinstellings',
+	'config-logo' => 'URL vir logo:',
+	'config-cc-again' => 'Kies weer...',
+	'config-advanced-settings' => 'Gevorderde konfigurasie',
+	'config-memcached-servers' => 'Memcached-bedieners:',
+	'config-extensions' => 'Uitbreidings',
+	'config-install-step-done' => 'gedoen',
+	'config-install-step-failed' => 'het misluk',
+	'config-install-user' => 'Besig om die databasisgebruiker te skep',
+	'config-install-tables' => 'Skep tabelle',
 );
 
 /** Aragonese (Aragonés)
@@ -5283,6 +5364,20 @@ chmod a+w $3</pre>',
 '''Напомена''': Ако излезете од инсталацијата без да ја преземете сега, оваа создадена податотека со нагодувања повеќе нема да ви биде на достапна.
 
 Откога ќе завршите со тоа, можете да '''[$2 влезете на вашето вики]'''.",
+);
+
+/** Erzya (Эрзянь)
+ * @author Botuzhaleny-sodamo
+ */
+$messages['myv'] = array(
+	'config-page-language' => 'Кель',
+	'config-page-name' => 'Лемезэ',
+	'config-page-readme' => 'Ловномак',
+	'config-admin-name' => 'Леметь:',
+	'config-admin-password' => 'Совамо валот:',
+	'config-admin-password-confirm' => 'Совамо валот одов:',
+	'config-admin-email' => 'Е-сёрма паргот:',
+	'config-install-step-done' => 'теезь',
 );
 
 /** Dutch (Nederlands)

@@ -3448,4 +3448,8 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'htmlform-reset'               => 'Disfacer modificationes',
 'htmlform-selectorother-other' => 'Altere',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 con supporto de recerca de texto integre',
+'sqlite-no-fts'  => '$1 sin supporto de recerca de texto integre',
+
 );

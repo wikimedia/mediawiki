@@ -3566,4 +3566,8 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'htmlform-reset'               => 'Cofnij zmiany',
 'htmlform-selectorother-other' => 'Inne',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
+'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
+
 );

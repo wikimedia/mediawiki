@@ -3433,4 +3433,8 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'htmlform-reset'               => 'Bawiin ang mga pagbabago',
 'htmlform-selectorother-other' => 'Iba pa',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 na may suportang paghahanap ng buong teksto',
+'sqlite-no-fts'  => '$1 na walang suporta ng paghahanap ng buong teksto',
+
 );

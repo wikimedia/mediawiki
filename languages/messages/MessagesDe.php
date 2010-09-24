@@ -3573,4 +3573,8 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'htmlform-reset'               => 'Änderungen rückgängig machen',
 'htmlform-selectorother-other' => 'Andere',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 unterstützt die Volltextsuche',
+'sqlite-no-fts'  => '$1 unterstützt die Volltextsuche nicht',
+
 );

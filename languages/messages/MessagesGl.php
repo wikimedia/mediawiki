@@ -3476,4 +3476,8 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'htmlform-reset'               => 'Desfacer os cambios',
 'htmlform-selectorother-other' => 'Outra',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 con soporte para procuras de texto completo',
+'sqlite-no-fts'  => '$1 sen soporte para procuras de texto completo',
+
 );

@@ -264,7 +264,7 @@ $messages = array(
 'lastmodifiedat'    => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1.',
 'viewcount'         => 'Inīn zāzanilli quintlapōhua {{PLURAL:$1|cē tlahpololiztli|$1 tlahpololiztli}}.',
 'protectedpage'     => 'Ōmoquīxtix zāzanilli',
-'jumpto'            => 'Yāuh īhuīc:',
+'jumpto'            => 'Īhuīcpa ticholōz:',
 'jumptonavigation'  => 'ācalpapanōliztli',
 'jumptosearch'      => 'tlatēmoliztli',
 
@@ -592,7 +592,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'history-title' => '"$1" ītlachiyaliz tlahcuilōlloh',
 'difference'    => '(Ahneneuhquiliztli tlapatlaliznepantlah)',
 'lineno'        => 'Pāntli $1:',
-'editundo'      => 'ahticchīhuāz',
+'editundo'      => 'Tichuelōz',
 'diff-multi'    => '({{PLURAL:$1|Cē tlapatlaliztli nepantlah ahmo motta|$1 tlapatlaliztli nepantlah ahmo mottah}}.)',
 
 # Search results
@@ -1103,7 +1103,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'viewdeletedpage'           => 'Tiquinttāz zāzaniltin ōmopolōzqueh',
 'undelete-revision'         => 'Tlapoloc $1 ītlachiyaliz (īpan $4, $5) īpal $3:',
 'undeletebtn'               => 'Ahticpolōz',
-'undeletelink'              => 'tiquittaz/ticcualtilīz',
+'undeletelink'              => 'tiquittaz/ticpahtīz',
 'undeleteviewlink'          => 'tiquittāz',
 'undeletedarticle'          => 'ōticcualtilih "[[$1]]"',
 'undelete-search-box'       => 'Tiquintlatēmōz zāzaniltin ōmopolōz',
@@ -1122,7 +1122,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'contributions-title' => 'Tlatequitiltilīlli $1 ītlahcuilōl',
 'mycontris'           => 'Notlahcuilōl',
 'contribsub2'         => '$1 ($2)',
-'uctop'               => ' (ahco)',
+'uctop'               => '(ahco)',
 'month'               => 'Īhuīcpa mētztli (auh achtopa):',
 'year'                => 'Xiuhhuīcpa (auh achtopa):',
 
@@ -1292,7 +1292,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'tooltip-t-print'                 => 'Tepoztlahcuilōlli',
 'tooltip-ca-nstab-main'           => 'Xiquitta in tlahcuilōlli',
 'tooltip-ca-nstab-user'           => 'Xiquitta tlatequitiltilīlli īzāzanil',
-'tooltip-ca-nstab-special'        => 'Cah inīn cē nōncuahquīzqui zāzanilli; ahmo tihuelīti ticpatla.',
+'tooltip-ca-nstab-special'        => 'Inīn cē nōncuahquīzqui zāzanilli; ahmo ticpatlahuelitīz in zāzanilli',
 'tooltip-ca-nstab-project'        => 'Xiquitta tlachīhualiztli īzāzanil',
 'tooltip-ca-nstab-image'          => 'Xiquittāz īxipzāzanilli',
 'tooltip-ca-nstab-mediawiki'      => 'Xiquitta in tlahcuilōltzin',
@@ -1328,7 +1328,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 
 # Browsing diffs
 'previousdiff' => '← Achtopa',
-'nextdiff'     => 'Niman →',
+'nextdiff'     => 'Oc ye cencah yancuīc tlapatlaliztli →',
 
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:|zāzanilli|zāzanilli}}',

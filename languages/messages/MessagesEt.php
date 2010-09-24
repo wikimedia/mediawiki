@@ -1024,7 +1024,7 @@ See võib olla vikist kustutatud või ümber nimetatud.
 Ürita [[Special:Search|vikist otsida]] teemakohaseid lehekülgi.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(kommentaar eemaldatud)',
+'rev-deleted-comment'         => '(resümee eemaldatud)',
 'rev-deleted-user'            => '(kasutajanimi eemaldatud)',
 'rev-deleted-event'           => '(logitoiming eemaldatud)',
 'rev-deleted-user-contribs'   => '[kasutajanimi või IP-aadress kustutatud - muudatust ei näidata]',
@@ -1077,7 +1077,7 @@ Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppr
 'revdelete-hide-text'         => 'Peida redigeerimise tekst',
 'revdelete-hide-image'        => 'Peida faili sisu',
 'revdelete-hide-name'         => 'Peida toiming ja sihtmärk',
-'revdelete-hide-comment'      => 'Peida muudatuse kommentaar',
+'revdelete-hide-comment'      => 'Peida resümee',
 'revdelete-hide-user'         => 'Peida toimetaja kasutajanimi või IP-aadress',
 'revdelete-hide-restricted'   => 'Varja andmeid nii administraatorite kui ka teiste eest.',
 'revdelete-radio-same'        => '(ära muuda)',
@@ -1092,7 +1092,7 @@ Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppr
 'revdelete-success'           => "Redaktsiooni nähtavus edukalt värskendatud.'''",
 'revdelete-failure'           => "'''Redaktsiooni nähtavust ei saanud värskendada:'''
 $1",
-'logdelete-success'           => "'''Logi nähtavus edukalt paigas.'''",
+'logdelete-success'           => "'''Logi nähtavus edukalt muudetud.'''",
 'logdelete-failure'           => "'''Logi nähtavust ei saanud paika:'''
 $1",
 'revdel-restore'              => 'Muuda nähtavust',
@@ -1101,14 +1101,14 @@ $1",
 'pagehist'                    => 'Lehekülje ajalugu',
 'deletedhist'                 => 'Kustutatud ajalugu',
 'revdelete-content'           => 'sisu',
-'revdelete-summary'           => 'toimetamise kokkuvõte',
+'revdelete-summary'           => 'resümee',
 'revdelete-uname'             => 'kasutajanimi',
-'revdelete-restricted'        => 'ülematele piirangud kehtestatud',
-'revdelete-unrestricted'      => 'ülematelt piirangud eemaldatud',
+'revdelete-restricted'        => 'kohta administraatoritele piirangud kehtestatud',
+'revdelete-unrestricted'      => 'kohta administraatoritelt piirangud eemaldatud',
 'revdelete-hid'               => '$1 peidetud',
 'revdelete-unhid'             => '$1 nähtavaks tehtud',
-'revdelete-log-message'       => '{{PLURAL:$2|Ühe redaktsiooni|$2 redaktsiooni}} kohta $1',
-'logdelete-log-message'       => '{{PLURAL:$2|Ühe sündmuse|$2 sündmuse}} kohta $1',
+'revdelete-log-message'       => '{{PLURAL:$2|Ühe|$2}} redaktsiooni $1',
+'logdelete-log-message'       => '{{PLURAL:$2|Ühe|$2}} toimingu $1',
 'revdelete-hide-current'      => 'Tõrge üksuse kuupäevaga $2, kell $1 peitmisel: see on praegune redaktsioon.
 Seda ei saa peita.',
 'revdelete-show-no-access'    => 'Tõrge ajatempliga $1 kell $2 üksuse näitamisel: selle on märge "piiranguga".

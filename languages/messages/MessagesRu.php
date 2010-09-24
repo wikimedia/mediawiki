@@ -3565,4 +3565,8 @@ MediaWiki распространяется в надежде, что она бу
 'htmlform-reset'               => 'Отменить изменения',
 'htmlform-selectorother-other' => 'Иное',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 с поддержкой полнотекстового поиска',
+'sqlite-no-fts'  => '$1 без поддержки полнотекстового поиска',
+
 );
