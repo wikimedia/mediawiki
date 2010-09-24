@@ -20,6 +20,8 @@
  * @author Roan Kattouw
  */
 
+defined( 'MEDIAWIKI' ) || die( 1 );
+
 /**
  * Abstraction for resource loader modules, with name registration and maxage functionality.
  */
