@@ -26,6 +26,7 @@ defined( 'MEDIAWIKI' ) || die( 1 );
  * Abstraction for resource loader modules, with name registration and maxage functionality.
  */
 abstract class ResourceLoaderModule {
+	
 	/* Protected Members */
 
 	protected $name = null;
@@ -1038,25 +1039,66 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return $vars;
 	}
 	
+	/**
+	 * Gets registration code for all modules
+	 *
+	 * @param $context ResourceLoaderContext object
+	 * @return String: JavaScript code for registering all modules with the client loader
+	 */
+	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
+		wfProfileIn( __METHOD__ );
+		
+		$scripts = '';
+		$registrations = array();
+		foreach ( ResourceLoader::getModules() as $name => $module ) {
+			// Support module loader scripts
+			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
+				$deps = FormatJson::encode( $module->getDependencies() );
+				$group = FormatJson::encode( $module->getGroup() );
+				$version = wfTimestamp( TS_ISO_8601, round( $module->getModifiedTime( $context ), -2 ) );
+				$scripts .= "( function( name, version, dependencies ) { $loader } )\n" . 
+					"( '$name', '$version', $deps, $group );\n";
+			}
+			// Automatically register module
+			else {
+				// Modules without dependencies or a group pass two arguments (name, timestamp) to 
+				// mediaWiki.loader.register()
+				if ( !count( $module->getDependencies() && $module->getGroup() === null ) ) {
+					$registrations[] = array( $name, $module->getModifiedTime( $context ) );
+				}
+				// Modules with dependencies but no group pass three arguments (name, timestamp, dependencies) 
+				// to mediaWiki.loader.register()
+				else if ( $module->getGroup() === null ) {
+					$registrations[] = array(
+						$name, $module->getModifiedTime( $context ),  $module->getDependencies() );
+				}
+				// Modules with dependencies pass four arguments (name, timestamp, dependencies, group) 
+				// to mediaWiki.loader.register()
+				else {
+					$registrations[] = array(
+						$name, $module->getModifiedTime( $context ),  $module->getDependencies(), $module->getGroup() );
+				}
+			}
+		}
+		$out = $scripts . "mediaWiki.loader.register( " . FormatJson::encode( $registrations ) . " );";
+		
+		wfProfileOut( __METHOD__ );
+		return $out;
+	}
+
 	/* Methods */
 
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP, $wgLoadScript;
 
 		$scripts = file_get_contents( "$IP/resources/startup.js" );
-
 		if ( $context->getOnly() === 'scripts' ) {
 			// Get all module registrations
-			$registration = ResourceLoader::getModuleRegistrations( $context );
+			$registration = self::getModuleRegistrations( $context );
 			// Build configuration
 			$config = FormatJson::encode( $this->getConfig( $context ) );
 			// Add a well-known start-up function
-			$scripts .= <<<JAVASCRIPT
-window.startUp = function() {
-	$registration
-	mediaWiki.config.set( $config ); 
-};
-JAVASCRIPT;
+			$scripts .= "window.startUp = function() {\n\t$registration\n\tmediaWiki.config.set( $config );\n};\n";
 			// Build load query for jquery and mediawiki modules
 			$query = array(
 				'modules' => implode( '|', array( 'jquery', 'mediawiki' ) ),
@@ -1074,7 +1116,7 @@ JAVASCRIPT;
 			// Build HTML code for loading jquery and mediawiki modules
 			$loadScript = Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) );
 			// Add code to add jquery and mediawiki loading code; only if the current client is compatible
-			$scripts .= "if ( isCompatible() ) { document.write( " . FormatJson::encode( $loadScript ) . "); }\n";
+			$scripts .= "if ( isCompatible() ) {\n\tdocument.write( " . FormatJson::encode( $loadScript ) . ");\n}\n";
 			// Delete the compatible function - it's not needed anymore
 			$scripts .= "delete window['isCompatible'];\n";
 		}
@@ -1090,10 +1132,10 @@ JAVASCRIPT;
 			return $this->modifiedTime[$hash];
 		}
 		$this->modifiedTime[$hash] = filemtime( "$IP/resources/startup.js" );
+		
 		// ATTENTION!: Because of the line above, this is not going to cause infinite recursion - think carefully
 		// before making changes to this code!
-		$this->modifiedTime[$hash] = ResourceLoader::getHighestModifiedTime( $context );
-		return $this->modifiedTime[$hash];
+		return $this->modifiedTime[$hash] = ResourceLoader::getHighestModifiedTime( $context );
 	}
 
 	public function getFlip( $context ) {
