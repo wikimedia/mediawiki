@@ -59,7 +59,7 @@ class ResourceLoader {
 	 * This is not inside the module code because it's so much more performant to request all of the information at once
 	 * than it is to have each module requests it's own information.
 	 * 
-	 * @param $modules array list of modules to preload information for
+	 * @param $modules array list of module names to preload information for
 	 * @param $context ResourceLoaderContext context to load the information within
 	 */
 	protected static function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
@@ -268,10 +268,10 @@ class ResourceLoader {
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
 		$missing = array();
-
+		
 		foreach ( $context->getModules() as $name ) {
 			if ( isset( self::$modules[$name] ) ) {
-				$modules[] = $name;
+				$modules[$name] = self::$modules[$name];
 			} else {
 				$missing[] = $name;
 			}
@@ -291,14 +291,19 @@ class ResourceLoader {
 		}
 
 		// Preload information needed to the mtime calculation below
-		self::preloadModuleInfo( $modules, $context );
+		self::preloadModuleInfo( array_keys( $modules ), $context );
 
 		// To send Last-Modified and support If-Modified-Since, we need to detect 
 		// the last modified time
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
 		$mtime = 1;
-		foreach ( $modules as $name ) {
-			$mtime = max( $mtime, self::$modules[$name]->getModifiedTime( $context ) );
+		foreach ( $modules as $module ) {
+			// Bypass squid cache if the request includes any private modules
+			if ( $module->getGroup() === 'private' ) {
+				$smaxage = 0;
+			}
+			// Calculate maximum modified time
+			$mtime = max( $mtime, $module->getModifiedTime( $context ) );
 		}
 		wfProfileOut( __METHOD__.'-getModifiedTime' );
 
@@ -316,26 +321,34 @@ class ResourceLoader {
 			return;
 		}
 
+		echo self::makeModuleResponse( $context, $modules, $missing );
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	public static function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = null ) {
+		global $wgUser;
+		
 		// Pre-fetch blobs
 		$blobs = $context->shouldIncludeMessages() ?
-			MessageBlobStore::get( $modules, $context->getLanguage() ) : array();
+			MessageBlobStore::get( array_keys( $modules ), $context->getLanguage() ) : array();
 
 		// Generate output
 		$out = '';
-		foreach ( $modules as $name ) {
+		foreach ( $modules as $name => $module ) {
 			wfProfileIn( __METHOD__ . '-' . $name );
 
 			// Scripts
 			$scripts = '';
 			if ( $context->shouldIncludeScripts() ) {
-				$scripts .= self::$modules[$name]->getScript( $context ) . "\n";
+				$scripts .= $module->getScript( $context ) . "\n";
 			}
 
 			// Styles
 			$styles = array();
 			if (
 				$context->shouldIncludeStyles() &&
-				( count( $styles = self::$modules[$name]->getStyles( $context ) ) )
+				( count( $styles = $module->getStyles( $context ) ) )
 			) {
 				// Flip CSS on a per-module basis
 				if ( self::$modules[$name]->getFlip( $context ) ) {
@@ -360,7 +373,7 @@ class ResourceLoader {
 					$out .= self::makeMessageSetScript( $messages );
 					break;
 				default:
-					// Minify CSS, unless in debug mode, before embedding in implment script
+					// Minify CSS before embedding in mediaWiki.loader.implement call (unless in debug mode)
 					if ( !$context->getDebug() ) {
 						foreach ( $styles as $media => $style ) {
 							$styles[$media] = self::filter( 'minify-css', $style );
@@ -376,29 +389,28 @@ class ResourceLoader {
 		// Update module states
 		if ( $context->shouldIncludeScripts() ) {
 			// Set the state of modules loaded as only scripts to ready
-			if ( count( $modules ) && $context->getOnly() === 'scripts' && !in_array( 'startup', $modules ) ) {
-				$out .= self::makeLoaderStateScript( array_fill_keys( $modules, 'ready' ) );
+			if ( count( $modules ) && $context->getOnly() === 'scripts' && !isset( $modules['startup'] ) ) {
+				$out .= self::makeLoaderStateScript( array_fill_keys( array_keys( $modules ), 'ready' ) );
 			}
 			// Set the state of modules which were requested but unavailable as missing
-			if ( count( $missing ) ) {
+			if ( is_array( $missing ) && count( $missing ) ) {
 				$out .= self::makeLoaderStateScript( array_fill_keys( $missing, 'missing' ) );
 			}
 		}
 
-		// Send output
 		if ( $context->getDebug() ) {
-			echo $out;
+			return $out;
 		} else {
 			if ( $context->getOnly() === 'styles' ) {
-				echo self::filter( 'minify-css', $out );
+				return self::filter( 'minify-css', $out );
 			} else {
-				echo self::filter( 'minify-js', $out );
+				return self::filter( 'minify-js', $out );
 			}
 		}
-
-		wfProfileOut( __METHOD__ );
 	}
-
+	
+	// Client code generation methods
+	
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_array( $scripts ) ) {
 			$scripts = implode( $scripts, "\n" );
@@ -437,7 +449,7 @@ class ResourceLoader {
 			return "mediaWiki.loader.state( '$name', '$state' );\n";
 		}
 	}
-	
+
 	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $script ) {
 		$name = Xml::escapeJsString( $name );
 		$version = (int) $version > 1 ? (int) $version : 1;
@@ -454,10 +466,10 @@ class ResourceLoader {
 			$group = 'null';
 		}
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
-		return "( function( name, version, dependencies ) {\t$script\t} )" .
+		return "( function( name, version, dependencies ) {\n\t$script\n} )" .
 			"( '$name', $version, $dependencies, $group );\n";
 	}
-	
+
 	public static function makeLoaderRegisterScript( $name, $version = null, $dependencies = null, $group = null ) {
 		if ( is_array( $name ) ) {
 			$registrations = FormatJson::encode( $name );
@@ -479,5 +491,15 @@ class ResourceLoader {
 			}
 			return "mediaWiki.loader.register( '$name', $version, $dependencies, $group );\n";
 		}
+	}
+
+	public static function makeLoaderConditionalScript( $script ) {
+		$script = str_replace( "\n", "\n\t", trim( $script ) );
+		return "if ( window.mediaWiki ) {\n\t$script\n}\n";
+	}
+
+	public static function makeConfigSetScript( array $configuration ) {
+		$configuration = FormatJson::encode( $configuration );
+		return "mediaWiki.config.set( $configuration );\n";
 	}
 }

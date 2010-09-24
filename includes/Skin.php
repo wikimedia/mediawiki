@@ -358,7 +358,9 @@ class Skin extends Linker {
 
 	static function makeVariablesScript( $data ) {
 		if ( $data ) {
-			return Html::inlineScript( 'mediaWiki.config.set(' . FormatJson::encode( $data ) . ');' );
+			return Html::inlineScript(
+				ResourceLoader::makeLoaderConditionalScript( ResourceLoader::makeConfigSetScript( $data ) )
+			);
 		} else {
 			return '';
 		} 

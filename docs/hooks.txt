@@ -1337,6 +1337,9 @@ $errorMsg: an html message string of an error
 $article: the page the form is shown for
 $out: OutputPage object
 
+'ResourceLoaderRegisterModules': Right before modules information is required, such as when responding to a resource
+loader request or generating HTML output.
+
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw
 &$obj: RawPage object
 &$text: The text that's going to be the output

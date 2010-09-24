@@ -62,6 +62,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   version parameter or not.
 * $wgResourceLoaderDebug was added to specify the default state of debug mode;
   this will still be overridden with the debug URL parameter a la $wgLanguageCode.
+* $wgResourceLoaderInlinePrivateModules was added to specify whether private
+  modules such as user.options should be embedded in the HTML output or delivered
+  through a resource loader request, which bypasses server cache (like squid) and
+  checks the user parameter against $wgUser. The former adds more data to all
+  pages, while the latter adds a request which cannot be cached server side.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via

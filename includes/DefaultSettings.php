@@ -1661,6 +1661,12 @@ $wgResourceLoaderMaxage = array(
 );
 
 /**
+ * Whether to embed private modules inline with HTML output or to bypass caching and check the user parameter against
+ * $wgUser to prevent unauthorized access to private modules.
+ */
+$wgResourceLoaderInlinePrivateModules = true;
+
+/**
  * The default debug mode (on/off) for of ResourceLoader requests. This will still
  * be overridden when the debug URL parameter is used.
  */
