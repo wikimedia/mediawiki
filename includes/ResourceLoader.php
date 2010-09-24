@@ -20,6 +20,8 @@
  * @author Trevor Parscal
  */
 
+defined( 'MEDIAWIKI' ) || die( 1 );
+
 /**
  * Dynamic JavaScript and CSS resource loading system
  */

@@ -15,9 +15,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @author Trevor Parscal
  * @author Roan Kattouw
  */
+
+defined( 'MEDIAWIKI' ) || die( 1 );
 
 /**
  * Object passed around to modules which contains information about the state 
