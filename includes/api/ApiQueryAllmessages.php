@@ -121,7 +121,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $a );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'from', $name );
+					$this->setContinueEnumParameter( 'from', $message );
 					break;
 				}
 			}
