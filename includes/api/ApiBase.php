@@ -589,7 +589,7 @@ abstract class ApiBase {
 	 * Set a watch (or unwatch) based the based on a watchlist parameter.
 	 * @param $watch String Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param $titleObj Title the article's title to change
-	 * @param $userOption The user option to consider when $watch=preferences
+	 * @param $userOption String The user option to consider when $watch=preferences
 	 */
 	protected function setWatch ( $watch, $titleObj, $userOption = null ) {
 		$value = $this->getWatchlistValue( $watch, $titleObj, $userOption );

@@ -3086,7 +3086,7 @@ function &wfGetLBFactory() {
 /**
  * Find a file.
  * Shortcut for RepoGroup::singleton()->findFile()
- * @param $title Either a string or Title object
+ * @param $title String or Title object
  * @param $options Associative array of options:
  *     time:           requested time for an archived image, or false for the
  *                     current version. An image object will be returned which was
