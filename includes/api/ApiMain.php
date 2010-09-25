@@ -220,7 +220,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Set the type of caching headers which will be sent.
 	 *
-	 * @param $mode One of:
+	 * @param $mode String One of:
 	 *    - 'public':     Cache this object in public caches, if the maxage or smaxage
 	 *         parameter is set, or if setCacheMaxAge() was called. If a maximum age is
 	 *         not provided by any of these means, the object will be private.

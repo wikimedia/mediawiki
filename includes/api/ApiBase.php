@@ -181,8 +181,7 @@ abstract class ApiBase {
 		if ( isset( $data['warnings'][$this->getModuleName()] ) ) {
 			// Don't add duplicate warnings
 			$warn_regex = preg_quote( $warning, '/' );
-			if ( preg_match( "/{$warn_regex}(\\n|$)/", $data['warnings'][$this->getModuleName()]['*'] ) )
-			{
+			if ( preg_match( "/{$warn_regex}(\\n|$)/", $data['warnings'][$this->getModuleName()]['*'] ) ) {
 				return;
 			}
 			$oldwarning = $data['warnings'][$this->getModuleName()]['*'];
