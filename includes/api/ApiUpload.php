@@ -116,7 +116,7 @@ class ApiUpload extends ApiBase {
 			// Status request for an async upload
 			$sessionData = UploadFromUrlJob::getSessionData( $this->mParams['statuskey'] );
 			if ( !isset( $sessionData['result'] ) ) {
-				$this->dieUsage();	
+				$this->dieUsage( 'No result in session data', 'missingresult');
 			}
 			if ( $sessionData['result'] == 'Warning' ) {
 				$sessionData['warnings'] = $this->transformWarnings( $sessionData['warnings'] );

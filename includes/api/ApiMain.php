@@ -637,7 +637,9 @@ class ApiMain extends ApiBase {
 
 		$this->checkExecutePermissions( $module );
 
-		if ( !$this->checkMaxLag( $module, $params ) ) return;
+		if ( !$this->checkMaxLag( $module, $params ) ) {
+			return;
+		}
 
 		if ( !$this->mInternalMode ) {
 			$this->setupExternalResponse( $module, $params );
