@@ -33,7 +33,7 @@ if ( count( $args ) > 0 ) {
 	if ( isset( $options['protect'] ) && isset( $options['unprotect'] ) )
 			die( "Cannot specify both protect and unprotect.  Only 1 is allowed.\n" );
 
-if ( isset( $options['protect'] ) && $options['protect'] == 1 )
+	if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 			die( "You must specify a protection option.\n" );
 
 	# Prepare the list of allowed extensions
@@ -72,8 +72,8 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 	$limit = @$options['limit'];
 	if ( $limit ) $limit = (int)$limit;
 
-	# Get the upload comment
-	$comment = NULL;
+	# Get the upload comment. Provide a default one in case there's no comment given.
+	$comment = 'Importing image file';
 
 	if ( isset( $options['comment-file'] ) ) {
 		$comment =  file_get_contents( $options['comment-file'] );
@@ -186,7 +186,7 @@ if ( isset( $options['protect'] ) && $options['protect'] == 1 )
 				}
 
 				if ( !$commentText ) {
-					$commentText = $comment ? $comment : 'Importing image file';
+					$commentText = $comment;
 				}
 			}
 
