@@ -73,7 +73,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$result = $this->getResult();
 
 		if ( !is_null( $params['prop'] ) ) {
 			$this->prop = array_flip( $params['prop'] );

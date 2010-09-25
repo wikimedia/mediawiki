@@ -47,7 +47,6 @@ class ApiImport extends ApiBase {
 		}
 		$params = $this->extractRequestParams();
 
-		$source = null;
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
 			if ( !isset( $params['interwikipage'] ) ) {
