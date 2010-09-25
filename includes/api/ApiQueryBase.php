@@ -168,7 +168,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Same as addWhere(), but add the WHERE clauses only if a condition is met
 	 * @param $value mixed See addWhere()
-	 * @param $condition boolIf false, do nothing
+	 * @param $condition bool If false, do nothing
 	 * @return bool $condition
 	 */
 	protected function addWhereIf( $value, $condition ) {
