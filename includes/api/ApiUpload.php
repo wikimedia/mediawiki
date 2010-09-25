@@ -285,7 +285,7 @@ class ApiUpload extends ApiBase {
 
 		if ( isset( $warnings['duplicate'] ) ) {
 			$dupes = array();
-			foreach ( $warnings['duplicate'] as $key => $dupe ) {
+			foreach ( $warnings['duplicate'] as $dupe ) {
 				$dupes[] = $dupe->getName();
 			}
 			$this->getResult()->setIndexedTagName( $dupes, 'duplicate' );
