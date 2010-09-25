@@ -63,13 +63,15 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	);
 
 	public function __construct( $query, $moduleName ) {
-		extract( $this->backlinksSettings[$moduleName] );
+		$settings = $this->backlinksSettings[$moduleName];
+		$prefix = $settings['prefix'];
+		$code = $settings['code'];
 		$this->resultArr = array();
 
 		parent::__construct( $query, $moduleName, $code );
 		$this->bl_ns = $prefix . '_namespace';
 		$this->bl_from = $prefix . '_from';
-		$this->bl_table = $linktbl;
+		$this->bl_table = $settings['linktbl'];
 		$this->bl_code = $code;
 
 		$this->hasNS = $moduleName !== 'imageusage';
