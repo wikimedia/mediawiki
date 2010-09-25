@@ -535,6 +535,8 @@ Trop d’utilisators chèrchont a arrevar a ceta pâge.
 Volyéd atendre un moment devant que vos tâchiéd de tornar arrevar a ceta pâge.
 
 $1',
+'pool-timeout'      => 'Dèpassement du dèlê pendent l’atenta du vèrrolyâjo',
+'pool-queuefull'    => 'La fela d’ôvra est plêna',
 'pool-errorunknown' => 'Èrror encognua',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -790,6 +792,11 @@ Ignorâd ceti mèssâjo se cél compto at étâ fêt per èrror.',
 Volyéd atendre devant que tornar èprovar.',
 'loginlanguagelabel'         => 'Lengoua : $1',
 'suspicious-userlogout'      => "Voutra demanda de dèbranchement at étâ refusâ perce que semble qu’el at étâ mandâ per un navigator câsso ou ben la misa en cache d’un sèrvor mandatèro (''proxy'').",
+'ratelimit-excluded-ips'     => ' #<!-- lèssiéd ceta legne justo d’ense --> <pre>
+# La sintaxa est ceta :
+#  * Tot caractèro dês « # » tant qu’a la fin de la legne est considèrâ coment un comentèro.
+#  * Tota legne pas voueda est una adrèce IP èxcllua de la limitacion de frèquence.
+ #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 
 # JavaScript password checks
 'password-strength'            => 'Nivél de sècuritât du mot de pâssa : $1',
@@ -3704,5 +3711,9 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'htmlform-submit'              => 'Sometre',
 'htmlform-reset'               => 'Dèfâre los changements',
 'htmlform-selectorother-other' => 'Ôtro',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 avouéc rechèrche en tèxto complèt recognua',
+'sqlite-no-fts'  => '$1 sen rechèrche en tèxto complèt recognua',
 
 );

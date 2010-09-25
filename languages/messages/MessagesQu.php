@@ -3381,4 +3381,8 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'htmlform-reset'               => 'Hukchasqakunata kutichiy',
 'htmlform-selectorother-other' => 'Wakin',
 
+# SQLite database support
+'sqlite-has-fts' => "$1 hunt'a qillqa maskana yanapawan",
+'sqlite-no-fts'  => "$1 mana hunt'a qillqa maskana yanapawan",
+
 );

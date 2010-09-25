@@ -1519,6 +1519,7 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protectedarticle'            => 'aizsargāja $1',
 'modifiedarticleprotection'   => 'izmainīja aizsardzības līmeni "[[$1]]"',
 'unprotectedarticle'          => 'atcēla aizsardzību: $1',
+'movedarticleprotection'      => 'pārcēla aizsardzību no "[[$2]]" uz "[[$1]]"',
 'protect-title'               => 'Izmainīt "$1" aizsargāšanas līmeni?',
 'prot_1movedto2'              => '"[[$1]]" pārdēvēju par "[[$2]]"',
 'protect-legend'              => 'Apstiprināt aizsargāšanu',

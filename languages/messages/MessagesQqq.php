@@ -2004,7 +2004,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'statistics-mostpopular'       => 'Used in [[Special:Statistics]]',
 
 'disambiguations'      => 'Name of a special page displayed in [[Special:SpecialPages]].',
-'disambiguationspage'  => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages that links to disambiguation pages.
+'disambiguationspage'  => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages which link to disambiguation pages.
 
 {{doc-important|Don\'t translate the "Template:" part!}}',
 'disambiguations-text' => "This block of text is shown on [[:Special:Disambiguations]].

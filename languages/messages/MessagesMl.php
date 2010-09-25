@@ -3470,4 +3470,8 @@ $1',
 'htmlform-reset'               => 'മാറ്റങ്ങൾ വേണ്ട',
 'htmlform-selectorother-other' => 'മറ്റുള്ളവ',
 
+# SQLite database support
+'sqlite-has-fts' => 'പൂർണ്ണ-എഴുത്ത് തിരച്ചിൽ പിന്തുണയുള്ള $1',
+'sqlite-no-fts'  => 'പൂർണ്ണ-എഴുത്ത് തിരച്ചിൽ പിന്തുണയില്ലാത്ത $1',
+
 );

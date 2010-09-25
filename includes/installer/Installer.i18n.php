@@ -567,6 +567,24 @@ $1 is for indicating whether or not we should be able to use the feature.',
 * $2 is a link to the wiki.',
 );
 
+/** Magyar (magázó) (Magyar (magázó))
+ * @author Dani
+ */
+$messages['hu-formal'] = array(
+	'config-your-language-help' => 'Válassza ki a telepítési folyamat során használandó nyelvet.',
+	'config-wiki-language-help' => 'Válassza ki azt a nyelvet, amin a wiki tartalmának legnagyobb része íródik.',
+	'config-page-welcome' => 'Üdvözli a MediaWiki!',
+	'config-help-restart' => 'Szeretné törölni az eddig megadott összes adatot és újraindítani a telepítési folyamatot?',
+	'config-welcome' => '=== Környezet ellenőrzése ===
+Alapvető ellenőrzés, ami megmondja, hogy a környezet alkalmas-e a MediaWiki számára.
+Ha probléma merülne fel a telepítés során, meg kell adnia mások számára ezeket az eredményeket.',
+	'config-env-latest-ok' => 'A MediaWiki legújabb verzióját telepíti.',
+	'config-env-latest-new' => "'''Megjegyzés:''' A MediaWiki fejlesztői változatát telepíti.",
+	'config-env-latest-old' => "'''Figyelmeztetés:''' A MediaWiki elavult változatát telepíti.",
+	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.
+Ha nagy látogatottságú oldalt üzemeltet, itt találhat információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
+);
+
 /** Afrikaans (Afrikaans)
  * @author Naudefj
  */
@@ -605,6 +623,16 @@ $messages['af'] = array(
 	'config-env-latest-ok' => 'U is besig om die nuutste weergawe van MediaWiki te installeer.',
 	'config-env-latest-new' => "'''Let op:''' U is besig om 'n ontwikkelingsweergawe van MediaWiki te installeer.",
 	'config-no-db' => "Kon nie 'n geskikte databasisdrywer vind nie!",
+	'config-memory-none' => "PHP is opgestel sonder 'n <code>memory_limit</code>",
+	'config-memory-ok' => 'PHP se <code>memory_limit</code> is $1. 
+In orde.',
+	'config-memory-bad' => "'''Waarskuwing:''' PHP se <code>memory_limit</code> is $1. 
+Dit is waarskynlik te laag.
+Die installasie mag moontlik faal!",
+	'config-xcache' => '[Http://trac.lighttpd.net/xcache/ XCache] is geïnstalleer',
+	'config-apc' => '[Http://www.php.net/apc APC] is geïnstalleer',
+	'config-eaccel' => '[Http://eaccelerator.sourceforge.net/ eAccelerator] is geïnstalleer',
+	'config-wincache' => '[Http://www.iis.net/download/WinCacheForPhp WinCache] is geïnstalleer',
 	'config-diff3-bad' => 'GNU diff3 nie gevind nie.',
 	'config-db-type' => 'Databasistipe:',
 	'config-db-host' => 'Databasisbediener:',
@@ -613,8 +641,11 @@ $messages['af'] = array(
 	'config-db-install-account' => 'Gebruiker vir die installasie',
 	'config-db-username' => 'Databasis gebruikersnaam:',
 	'config-db-password' => 'Databasis wagwoord:',
+	'config-db-prefix' => 'Voorvoegsel vir databasistabelle:',
 	'config-db-charset' => 'Karakterstelsel vir databasis',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-mysql-old' => 'U moet MySQL $1 of later gebruik.
+U gebruik tans $2.',
 	'config-db-port' => 'Databasispoort:',
 	'config-db-schema' => 'Skema vir MediaWiki',
 	'config-db-ts2-schema' => 'Skema vir tsearch2',
@@ -626,6 +657,7 @@ $messages['af'] = array(
 	'config-invalid-db-type' => 'Ongeldige databasistipe',
 	'config-missing-db-name' => 'U moet \'n waarde vir "Databasnaam" verskaf',
 	'config-sqlite-cant-create-db' => 'Kon nie databasislêer <code>$1</code> skep nie.',
+	'config-regenerate' => 'Herskep LocalSettings.php →',
 	'config-show-table-status' => 'Die uitvoer van SHOW TABLE STATUS het gefaal!',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -634,15 +666,22 @@ $messages['af'] = array(
 	'config-ns-generic' => 'Projek',
 	'config-ns-other' => 'Ander (spesifiseer)',
 	'config-ns-other-default' => 'MyWiki',
+	'config-admin-box' => 'Administrateur se gebruiker',
 	'config-admin-name' => 'U naam:',
 	'config-admin-password' => 'Wagwoord:',
 	'config-admin-password-confirm' => 'Wagwoord weer:',
+	'config-admin-password-blank' => "Verskaf 'n wagwoord vir die administrateur in.",
+	'config-admin-password-same' => 'Die wagwoord mag nie dieselfde as die gebruikersnaam wees nie.',
+	'config-admin-password-mismatch' => 'Die twee wagwoorde wat u ingetik het stem nie ooreen nie.',
 	'config-admin-email' => 'E-posadres:',
 	'config-optional-continue' => 'Vra my meer vrae.',
 	'config-profile-wiki' => 'Tradisionele wiki',
 	'config-license' => 'Kopiereg en lisensie:',
+	'config-license-none' => 'Geen lisensie in die onderskrif',
 	'config-license-pd' => 'Publieke Domein',
+	'config-license-cc-choose' => "Kies 'n Creative Commons-lisensie",
 	'config-email-settings' => 'E-posinstellings',
+	'config-upload-deleted' => 'Gids vir verwyderde lêers:',
 	'config-logo' => 'URL vir logo:',
 	'config-cc-again' => 'Kies weer...',
 	'config-advanced-settings' => 'Gevorderde konfigurasie',
@@ -3392,6 +3431,69 @@ Standardna lisćina sp přeskakuje.",
 	'config-insecure-secretkey' => "'''Warnowanje:'''Wěsty kluč <code>\$wgSecretKey</code> njeda so wutworić.
 Móžeš to manuelnje činić.",
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
+);
+
+/** Hungarian (Magyar)
+ * @author Dani
+ */
+$messages['hu'] = array(
+	'config-title' => 'MediaWiki $1 telepítése',
+	'config-information' => 'Információ',
+	'config-show-help' => 'Segítség',
+	'config-hide-help' => 'Segítség elrejtése',
+	'config-your-language' => 'Nyelv:',
+	'config-your-language-help' => 'Válaszd ki a telepítési folyamat során használandó nyelvet.',
+	'config-wiki-language' => 'A wiki nyelve:',
+	'config-wiki-language-help' => 'Válaszd ki azt a nyelvet, amin a wiki tartalmának legnagyobb része íródik.',
+	'config-back' => '← Vissza',
+	'config-continue' => 'Folytatás →',
+	'config-page-language' => 'Nyelv',
+	'config-page-welcome' => 'Üdvözöl a MediaWiki!',
+	'config-page-dbconnect' => 'Kapcsolódás az adatbázishoz',
+	'config-page-upgrade' => 'Telepített változat frissítése',
+	'config-page-dbsettings' => 'Adatbázis-beállítások',
+	'config-page-name' => 'Név',
+	'config-page-options' => 'Beállítások',
+	'config-page-install' => 'Telepítés',
+	'config-page-complete' => 'Kész!',
+	'config-page-restart' => 'Telepítés újraindítása',
+	'config-page-readme' => 'Tudnivalók',
+	'config-page-releasenotes' => 'Kiadási megjegyzések',
+	'config-page-copying' => 'Másolás',
+	'config-page-upgradedoc' => 'Frissítés',
+	'config-help-restart' => 'Szeretnéd törölni az eddig megadott összes adatot és újraindítani a telepítési folyamatot?',
+	'config-restart' => 'Igen, újraindítás',
+	'config-welcome' => '=== Környezet ellenőrzése ===
+Alapvető ellenőrzés, ami megmondja, hogy a környezet alkalmas-e a MediaWiki számára.
+Ha probléma merülne fel a telepítés során, meg kell adnod mások számára ezeket az eredményeket.',
+	'config-sidebar' => '* [http://www.mediawiki.org A MediaWiki honlapja]
+* [http://www.mediawiki.org/wiki/Help:Contents Felhasználói kézikönyv]
+* [http://www.mediawiki.org/wiki/Manual:Contents Útmutató adminisztrátoroknak]
+* [http://www.mediawiki.org/wiki/Manual:FAQ GyIK]',
+	'config-env-good' => '<span class="success-message">A környezet ellenőrzése befejeződött.
+A MediaWiki telepíthető.</span>',
+	'config-env-bad' => 'A környezet ellenőrzése befejeződött.
+A MediaWiki nem telepíthető.',
+	'config-env-php' => 'A PHP verziója: $1',
+	'config-env-latest-ok' => 'A MediaWiki legújabb verzióját telepíted.',
+	'config-env-latest-new' => "'''Megjegyzés:''' A MediaWiki fejlesztői változatát telepíted.",
+	'config-env-latest-can-not-check' => "'''Figyelmeztetés:''' A telepítő nem tudta lekérni a MediaWiki legújabb kiadásával kapcsolatos információkat a következő címről: [$1].",
+	'config-env-latest-old' => "'''Figyelmeztetés:''' A MediaWiki elavult változatát telepíted.",
+	'config-env-latest-help' => 'A telepítés alatt álló változat $1, míg a legújabb $2.
+Ajánlott a legutóbbi kiadás használata, ami a [http://www.mediawiki.org/wiki/Download mediawiki.org]-ról tölthető le.',
+	'config-unicode-using-php' => 'A rendszer Unicode normalizálására a PHP lassú implementációját használja.',
+	'config-unicode-using-utf8' => 'A rendszer Unicode normalizálására Brion Vibber utf8_normalize.so könyvtárát használja.',
+	'config-unicode-using-intl' => 'A rendszer Unicode normalizálására az [http://pecl.php.net/intl intl PECL kiterjesztést] használja.',
+	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.
+Ha nagy látogatottságú oldalt üzemeltetsz, itt találhatsz információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
+	'config-db-name' => 'Adatbázisnév:',
+	'config-ns-generic' => 'Projekt',
+	'config-admin-name' => 'Neved:',
+	'config-admin-password' => 'Jelszó:',
+	'config-email-settings' => 'Email beállítások',
+	'config-extensions' => 'Kiterjesztések',
+	'config-install-step-done' => 'kész',
+	'config-install-step-failed' => 'sikertelen',
 );
 
 /** Interlingua (Interlingua)
@@ -7378,11 +7480,17 @@ chmod a+w $3</pre>',
 	'config-email-user' => 'Включить электронную почту от участника к участнику',
 	'config-email-user-help' => 'Разрешить всем пользователям отправлять друг другу электронные письма, если выставлена соответствующая настройка в профиле.',
 	'config-email-usertalk' => 'Включить уведомления пользователей о сообщениях на их странице обсуждения',
+	'config-email-usertalk-help' => 'Разрешить пользователям получать уведомления об изменениях своих страниц обсуждения, если они разрешат это в своих настройках.',
 	'config-email-watchlist' => 'Включить уведомление на электронную почту об изменении списка наблюдения',
+	'config-email-watchlist-help' => 'Разрешить пользователям получать уведомления об отслеживаемых ими страницах, если они разрешили это в своих настройках.',
 	'config-email-auth' => 'Включить аутентификацию через электронную почту',
 	'config-email-auth-help' => "Если эта опция включена, пользователи должны подтвердить свой адрес электронной почты перейдя по ссылке, которая отправляется на e-mail. Подтверждение требуется каждый раз при смене электронного ящика в настройках пользователя.
 Только прошедшие проверку подлинности адреса электронной почты, могут получать электронные письма от других пользователей или изменять уведомления, отправляемые по электронной почте.
 Включение этой опции '''рекомендуется'''  для открытых вики в целях пресечения потенциальных злоупотреблений возможностями электронной почты.",
+	'config-email-sender' => 'Обратный адрес электронной почты:',
+	'config-email-sender-help' => 'Введите адрес электронной почты для использования в качестве обратного адреса исходящей электронной почты. 
+На него будут отправляться отказы.
+Многие почтовые серверы требуют, чтобы по крайней мере доменное имя в нём была правильной.',
 	'config-upload-settings' => 'Загрузка изображений и файлов',
 	'config-upload-enable' => 'Разрешить загрузку файлов',
 	'config-upload-help' => 'Разрешение загрузки файлов, потенциально, может привести к угрозе безопасности сервера.
@@ -7394,6 +7502,10 @@ chmod a+w $3</pre>',
 	'config-upload-deleted-help' => 'Выберите каталог, в котором будут храниться архивы удалённых файлов.
 В идеальном случае, в этот каталог не должно быть доступа из сети Интернет.',
 	'config-logo' => 'URL логотипа:',
+	'config-logo-help' => 'Тема по умолчанию для MediaWiki включает пространство для логотипа размером 135x160 в левом верхнем углу. 
+Загрузите изображение соответствующего размера, и введите его URL здесь. 
+
+Если вам не нужен логотип, оставьте это поле пустым.',
 	'config-instantcommons' => 'Включить Instant Commons',
 	'config-cc-again' => 'Выберите ещё раз…',
 	'config-cc-not-chosen' => 'Выберите, какую лицензию Creative Commons Вы хотите использовать, и нажмите кнопку "Продолжить".',
