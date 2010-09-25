@@ -92,7 +92,7 @@ testBrowser 		= "firefox"
 	}
 	 
 	/*
-	 * Clean up the temporary file used to sore the selenium settings.
+	 * Clean up the temporary file used to store the selenium settings.
 	 */
 	public function tearDown() {
 		if ( strlen( $this->tempFileName ) > 0 ) {
