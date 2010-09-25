@@ -2,6 +2,20 @@
 
 class XmlTest extends PHPUnit_Framework_TestCase {
 
+	public function testExpandAttributes() {
+		$this->assertNull( Xml::expandAttributes(null),
+			'Converting a null list of attributes'
+		);
+		$this->assertEquals( '', Xml::expandAttributes( array() ),
+			'Converting an empty list of attributes'
+		);
+	}
+
+	public function testExpandAttributesException() {
+		$this->setExpectedException('MWException');
+		Xml::expandAttributes('string');
+	}
+
 	function testElementOpen() {
 		$this->assertEquals(
 			'<element>',
@@ -23,6 +37,12 @@ class XmlTest extends PHPUnit_Framework_TestCase {
 			'<element>hello &lt;there&gt; you &amp; you</element>',
 			Xml::element( 'element', null, 'hello <there> you & you' ),
 			'Element with no attributes and content that needs escaping'
+		);
+	}
+
+	public function testEscapeTagsOnly() {
+		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),
+			'replace " > and < with their HTML entitites'
 		);
 	}
 
@@ -112,4 +132,8 @@ class XmlTest extends PHPUnit_Framework_TestCase {
 			'encodeJsVar() with object'
 		);
 	}
+}
+
+// TODO
+class XmlSelectTest extends PHPUnit_Framework_TestCase {
 }
