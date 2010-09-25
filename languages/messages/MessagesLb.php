@@ -393,6 +393,8 @@ Zevill Benotzer versichen dës Säit ze gesinn.
 Waart w.e.g. e bëssen ier Dir versicht dës Säit nach emol opzeruffen.
 
 $1",
+'pool-timeout'      => "Timeout bis d'Spär opgehuewen ass",
+'pool-queuefull'    => 'Pool.Queue ass voll',
 'pool-errorunknown' => 'Onbekannte Feeler',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

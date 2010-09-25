@@ -576,6 +576,8 @@ Trop d’utilisateurs cherchent à consulter cette page.
 Veuillez attendre un moment avant de retenter l’accès à cette page.
 
 $1',
+'pool-timeout'      => 'Délai dépassé durant l’attente du verrou',
+'pool-queuefull'    => 'La file de travail est pleine',
 'pool-errorunknown' => 'Erreur inconnue',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -818,6 +820,11 @@ Ignorez ce message si ce compte a été créé par erreur.',
 Veuillez attendre avant d’essayer à nouveau.',
 'loginlanguagelabel'         => 'Langue : $1',
 'suspicious-userlogout'      => 'Votre demande de déconnexion a été refusée car il semble qu’elle a été envoyée par un navigateur cassé ou la mise en cache d’un proxy.',
+'ratelimit-excluded-ips'     => ' # <!-- leave this line exactly as it is --><pre>
+# La syntaxe est comme suit: 
+#   * Tout ce qui est entre un caractère "#" et la fin de la ligne est un commentaire. 
+#   * Toute ligne non vide est une adresse IP exclue de la limitation de fréquence.
+ # </pre><!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Niveau de sécurité du mot de passe : $1',
@@ -1188,9 +1195,10 @@ Vous n’y avez pas accès.',
 'revdelete-concurrent-change' => 'Erreur lors de la modification de l’élément daté du $1 à $2 : son statut a été changé par quelqu’un d’autre pendant que vous le modifiez.
 Vérifiez les journaux.',
 'revdelete-only-restricted'   => 'Erreur lors de la suppression de l’entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.',
-'revdelete-reason-dropdown'   => '* Raisons courantes de suppression
-** Violation des droits d’auteurs
-** Renseignements personnels inappropriés',
+'revdelete-reason-dropdown'   => '* Raisons courantes de suppression :
+** Violation des droits d’auteurs ;
+** Renseignements personnels inappropriés ;
+** Informations potentiellement diffamatoires.',
 'revdelete-otherreason'       => 'Autre raison / raison supplémentaire :',
 'revdelete-reasonotherlist'   => 'Autre raison',
 'revdelete-edit-reasonlist'   => 'Modifier les motifs fréquents de suppression',
@@ -2154,7 +2162,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'defemailsubject'      => 'Courriel de {{SITENAME}}',
 'usermaildisabled'     => 'L’envoi de courriels entre utilisateurs est désactivé',
 'usermaildisabledtext' => 'Vous ne pouvez pas envoyer de courriels à d’autres utilisateurs sur ce wiki',
-'noemailtitle'         => 'Aucune adresse électronique',
+'noemailtitle'         => 'Aucune adresse de courriel',
 'noemailtext'          => 'Cet utilisateur n’a pas spécifié une adresse de courriel valide.',
 'nowikiemailtitle'     => 'Pas de courriel autorisé',
 'nowikiemailtext'      => 'Cet utilisateur a choisi de ne pas recevoir de courriel de la part d’autre utilisateurs.',
@@ -3599,5 +3607,9 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'htmlform-submit'              => 'Soumettre',
 'htmlform-reset'               => 'Défaire les modifications',
 'htmlform-selectorother-other' => 'Autre',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',
+'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
 
 );

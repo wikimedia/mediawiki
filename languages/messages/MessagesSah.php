@@ -52,7 +52,7 @@ $messages = array(
 'tog-editsection'             => '[Көннөрүү] диэн ыйынньыгынан сиэксийэны көннөрүү',
 'tog-editsectiononrightclick' => 'Сиэксийэ баһыгар уҥа тимэҕинэн<br />баттаан сиэксийэни көннөрүү (JavaScript)',
 'tog-showtoc'                 => 'Иһинээҕитин көрдөр (ыстатыйа үстэн ордук бас тыллаах буоллаҕына)',
-'tog-rememberpassword'        => 'Миигин бу көмпүүтэргэ сигээ ($1 {{PLURAL:$1|күн|күнтэн ордуга суох}})',
+'tog-rememberpassword'        => 'Миигин бу браузерга сигээ ($1 {{PLURAL:$1|күн|күнтэн ордуга суох}})',
 'tog-watchcreations'          => 'Суруйбут ыстатыйаларбын кэтээн көрүүгэ киллэрэн ис',
 'tog-watchdefault'            => 'Уларыппыт сирэйдэрбин кэтээн көрүү испииһэгэр киллэрэн ис',
 'tog-watchmoves'              => 'Аатын уларыппыт сирэйдэрбин кэтээн көрүү испииһэгэр киллэрэн ис',
@@ -271,6 +271,9 @@ $messages = array(
 Бука диэн, кэтэһэ түһэн баран өссө боруобалаар.
 
 $1',
+'pool-timeout'      => 'Хааччахтааһыны кэтэһии болдьоҕо ааста',
+'pool-queuefull'    => 'Көрдөбүллэри хомуйуу туолбут',
+'pool-errorunknown' => 'Биллибэт алҕас',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} туһунан',
@@ -511,6 +514,11 @@ $2',
 Бука диэн кыратык тохтуу түһэн баран өссө боруобалаа.',
 'loginlanguagelabel'         => 'Омугун тыла: $1',
 'suspicious-userlogout'      => 'Сеансы түмүктүүр ыйытыгыҥ ылыныллыбата, тоҕо диэтэххэ браузер эбэтэр кээштыыр прокси алҕас ыыппыт ыйытыктарыгар майгынныыр.',
+'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
+# Синтаксиһын быһаарыыта:
+#  * "#" бэлиэттэн саҕаланар устуруокалар хос быһаарыы курдук ааҕыллар
+#  * Хас биирдии кураанах буолбатах устуруока түргэнэ хааччахтамматах IP-аадырыс быһыытынан ааҕыллар
+  #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => '↓ Киирии тыл туругун тургутуу: $1',
@@ -774,7 +782,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'currentrevisionlink'    => 'Билиҥҥи барыл',
 'cur'                    => 'бил.',
 'next'                   => 'аныгыскы',
-'last'                   => 'бүтэһик',
+'last'                   => 'инн',
 'page_first'             => 'бастакы',
 'page_last'              => 'бүтэһик',
 'histlegend'             => 'Тал: торумнары тэҥнииргэ бэлиэтээ. <br />
@@ -963,7 +971,8 @@ $1",
 'compareselectedversions'  => 'Талыллыбыт торумнары тэҥнээ',
 'showhideselectedversions' => 'Талыллыбыт барыллары көрдөр/кистээ',
 'editundo'                 => 'төнүн',
-'diff-multi'               => '({{PLURAL:$1|$1 орто торум көрдөрүллүбэтэ|$1 орто торумнар көрдөрүллүбэтилэр|$1.}})',
+'diff-multi'               => '({{PLURAL:$2|$2 кыттааччы|$2 ахсааннаах кыттааччы}} {{PLURAL:$1|$1 ыккардынааҕы барыла көрдөрүллүбэтэ|$1 ахсааннаах ыккардынааҕы барыла көрдөрүллүбэтэ|$1.}})',
+'diff-multi-manyusers'     => '(Кырата {{PLURAL:$2|$1 кыттааччы|$2 ахсааннаах кыттааччы}} оҥорбут {{PLURAL:$1|ыккардынааҕы $1 барыла|ыккардынааҕы $1 барыллара}} көрдөрүллүбэтэ)',
 
 # Search results
 'searchresults'                    => 'Булулунна',
@@ -1473,7 +1482,7 @@ PICT # misc.
 'upload-success-subj'         => 'Сатанна',
 'upload-success-msg'          => '[$2]  хачайдааһын табылынна. Ол түмүгүн манна көрүөххүн сөп: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Хачайдааһын моһуога',
-'upload-failure-msg'          => 'Эн хачайдааһыныҥ моһуога билиннэ:
+'upload-failure-msg'          => 'Эн хачайдааһыныҥ (мантан [$2]) моһуогурда:
 
 $1',
 'upload-warning-subj'         => 'Хачайдыырга сэрэтии',
@@ -3249,5 +3258,9 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'htmlform-submit'              => 'Ыыт',
 'htmlform-reset'               => 'Уларытыыны төннөр',
 'htmlform-selectorother-other' => 'Атын',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 толору тиэкистээх көрдөөһүнү өйүүр',
+'sqlite-no-fts'  => '$1 толору тиэкистээх көрдөөһүнү өйөөбөт',
 
 );

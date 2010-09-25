@@ -714,7 +714,7 @@ Labda ilihamishwa au ilifutwa endapo unatazama ukurasa.',
 'loginreqtitle'                    => 'Unatakiwa kuingia kwanza',
 'loginreqlink'                     => 'uingie',
 'loginreqpagetext'                 => 'Inabidi $1 ili uweze kutazama kurasa zingine.',
-'accmailtitle'                     => 'Neno la siri limeshakutumiwa.',
+'accmailtitle'                     => 'Neno la siri limetumwa.',
 'accmailtext'                      => "Neno la siri limetolewa na programu kwa ajili ya [[User talk:$1|$1]] na limetumwa kwa $2.
 
 Unaweza kubadilisha neno la siri hili kwenye ukurasa wa ''[[Special:ChangePassword|kubadilisha neno la siri]]'' baada ya kuingia kwenye wiki.",
@@ -782,7 +782,7 @@ Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka b
 'copyrightwarning2'                => "Tafadhali elewa kwamba michango yote ya {{SITENAME}} inaweza kuhahariwa, kubadilishwa, au kuondolewa na wachangiaji wengine.
 Ikiwa hutaki maandishi yako yasihaririwe na yeyote, basi usiyaweke hapa.<br />
 Pia una tuahidi kwamba umeandika haya wewe mwenyewe, au umenakili kutoka katika tovuti ya umma au chanzo cha wazo sawa na hiki (tazama  $1 kwa maelezo).
-'''Usiandike makala yenye hatimiliki bila ya ruhusa halali!'''",
+'''Usiandike makala yenye hakimiliki bila ya ruhusa halali!'''",
 'longpagewarning'                  => "'''ILANI: Urefu wa ukurasa huu ni kilobaiti $1; vivinjari kadhaa vinaweza kuwa na matatizo ukihariri ukurasa wenye urefu zaidi ya kb 32 hivi.
 Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.'''",
 'longpageerror'                    => "'''Hitilafu: Maandishi uliyoyaweka yana urefu wa kilobati $1, ambayo ni marefu kuliko kiwango cha kawaida cha kilobaiti $2.'''
@@ -958,7 +958,7 @@ Haliwezi kufichwa.',
 Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizopo sasa hivi.',
 
 # Revision move
-'moverevlogentry'              => 'alisogeza {{PLURAL:$3|pitio moja|mapitio $3}} kutoka $1 kwenda $2',
+'moverevlogentry'              => 'alihamisha {{PLURAL:$3|pitio moja|mapitio $3}} kutoka $1 kwenda $2',
 'revisionmove'                 => 'Hamisha mapitio kutoka "$1"',
 'revmove-legend'               => 'Weka ukurasa unaolengwa pamoja na muhtasari',
 'revmove-submit'               => 'Hamisha mapitio kwenda ukurasa uliochaguliwa',
@@ -1652,7 +1652,11 @@ Kumbuka kuhakikisha kwamba hakuna viungo vingine vinavyoelekea kigezo fulani kab
 'statistics-users-active-desc' => 'Watumiaji waliofanya kazi katika siku {{PLURAL:$1|iliyopita|$1 zilizopita}}',
 'statistics-mostpopular'       => 'Kurasa zinazotazamwa sana',
 
-'disambiguations' => 'Kurasa za kuainisha maneno',
+'disambiguations'      => 'Kurasa za kuainisha maneno',
+'disambiguationspage'  => 'Template:Maana',
+'disambiguations-text' => "Kurasa zinazofuata zina viungo vinavyoelekea '''kurasa ya kutofautishana maana'''.
+Ni afadhali kiungo kiende makala inayostahili moja kwa moja.<br />
+Kurasa za kutofautishana maana ni zile zinazotumia kigezo kinachoorodheshwa katika ukurasa wa [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Maelekezo mawilimawili',
 'double-redirect-fixed-move' => '[[$1]] umehamishwa.
@@ -1715,8 +1719,8 @@ Sasa unaelekeza [[$2]].',
 'newpages'                => 'Kurasa mpya',
 'newpages-username'       => 'Jina la mtumiaji:',
 'ancientpages'            => 'Kurasa za kale',
-'move'                    => 'Sogeza',
-'movethispage'            => 'Sogeza ukurasa huu',
+'move'                    => 'Hamisha',
+'movethispage'            => 'Hamisha ukurasa huu',
 'unusedcategoriestext'    => 'Kurasa za jamii zifuatazo zinapatikana, ingawaje hakuna ukurasa wala jamii nyingine iliyowekwa ndani ya jamii hizi.',
 'pager-newer-n'           => '{{PLURAL:$1|1 ya karibu zaidi|$1 ya karibu zaidi}}',
 'pager-older-n'           => '{{PLURAL:$1|$1 ya zamani zaidi}}',
@@ -1973,7 +1977,7 @@ ukurasa huu una mhariri mmoja tu.',
 'unprotectedarticle'          => 'alitoa ulindaji wa "[[$1]]"',
 'movedarticleprotection'      => 'alihamisha ulindaji wa "[[$2]]" hadi "[[$1]]"',
 'protect-title'               => 'Kubadilisha kiwango cha ulindaji wa "$1"',
-'prot_1movedto2'              => 'alisogeza [[$1]] hadi [[$2]]',
+'prot_1movedto2'              => 'alihamisha [[$1]] hadi [[$2]]',
 'protect-legend'              => 'Hakikisha ukingo',
 'protectcomment'              => 'Sababu:',
 'protectexpiry'               => 'Itakwisha:',
@@ -2140,7 +2144,7 @@ huenda ikawa mtu mwingine ameurudisha tayari.',
 
 # Move page
 'move-page'                    => 'Hamisha $1',
-'move-page-legend'             => 'Sogeza ukurasa',
+'move-page-legend'             => 'Kuhamisha ukurasa',
 'movepagetext'                 => "Tumia fomu hapo chini ili kubadilisha jina la ukurasa, pamoja na kuhamisha historia yake yote katika jina jipya lile lile.
 Jina la awali litahamishwa na kuelekezwa kwa ukurasa wa jina jipya.
 Unaweza kurekebisha maelekezo yanayokwenda kwenye ukurasa wa zamani kwa kujiendesha.
@@ -2172,7 +2176,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'cant-move-to-user-page'       => 'Huna ruhusa ya kuhamisha ukurasa katika ukurasa wa mtumiaji (isipokuwa katika ukurasa tanzu wa mtumiaji).',
 'newtitle'                     => 'Kuelekeza jina jipya:',
 'move-watch'                   => 'Fuatilia ukurasa huu',
-'movepagebtn'                  => 'Sogeza ukurasa',
+'movepagebtn'                  => 'Hamisha ukurasa',
 'pagemovedsub'                 => 'Umefaulu kuhamisha ukurasa',
 'movepage-moved'               => '\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'',
 'movepage-moved-redirect'      => 'Elekezo limetengenezwa.',
@@ -2181,7 +2185,7 @@ jina ulilochagua ni batilifu.
 Chagua jina lengine.',
 'talkexists'                   => "'''Ukurasa wenyewe ulisogezwa salama, lakini ukurasa wake wa majadiliano haujasogezwa kwa sababu tayari kuna ukurasa wenye jina lake.  Tafadhali ziunganishe kwa mkono.'''",
 'movedto'                      => 'imesogezwa hadi',
-'movetalk'                     => 'Sogeza ukurasa wake wa majadiliano',
+'movetalk'                     => 'Hamisha ukurasa wake wa majadiliano',
 'move-subpages'                => 'Hamisha kurasa tanzu (hadi $1)',
 'move-talk-subpages'           => 'Hamisha kurasa tanzu za ukurasa wa majadiliano (hadi $1)',
 '1movedto2'                    => '[[$1]] umesogezwa hapa [[$2]]',
@@ -2307,7 +2311,7 @@ Tafadhali jaribu tena.',
 'tooltip-ca-unprotect'            => 'Kuondoa tunzo la ukurasa',
 'tooltip-ca-delete'               => 'Futa ukurasa huu',
 'tooltip-ca-undelete'             => 'Rudisha masahihisho yaliyofanyiwa katika ukurasa huu kabla haujafutwa',
-'tooltip-ca-move'                 => 'Sogeza ukurasa huu',
+'tooltip-ca-move'                 => 'Kuhamisha ukurasa huu',
 'tooltip-ca-watch'                => 'Fuatilia ukurasa huu kwenye maangalizi yako',
 'tooltip-ca-unwatch'              => 'Futa ukurasa huu kutoka maangalizi yako',
 'tooltip-search'                  => 'Tafuta {{SITENAME}}',

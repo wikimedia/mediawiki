@@ -2184,7 +2184,7 @@ Ecce le configurationes actual del pagina '''$1''':",
 Ecce le configurationes actual del pagina '''$1''':",
 'protect-locked-access'       => "Tu conto non ha le permission de cambiar le nivellos de protection de paginas.
 Ecce le configurationes actual del pagina '''$1''':",
-'protect-cascadeon'           => 'Iste pagina es actualmente protegite proque es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} ha activate le protection in cascada.
+'protect-cascadeon'           => 'Iste pagina es actualmente protegite proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} ha activate le protection in cascada.
 Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le effecto del protection in cascada.',
 'protect-default'             => 'Permitter tote le usatores',
 'protect-fallback'            => 'Requirer permission de "$1"',
@@ -2671,8 +2671,7 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'tooltip-ca-edit'                 => 'Tu pote modificar iste pagina.
 Per favor usa le previsualisation ante de publicar.',
 'tooltip-ca-addsection'           => 'Initiar un nove section',
-'tooltip-ca-viewsource'           => 'Iste pagina es protegite.
-Tu pote vider su codice-fonte.',
+'tooltip-ca-viewsource'           => 'Iste pagina es protegite. Tu pote vider su codice fonte.',
 'tooltip-ca-history'              => 'Versiones anterior de iste pagina',
 'tooltip-ca-protect'              => 'Proteger iste pagina',
 'tooltip-ca-unprotect'            => 'Disproteger iste pagina',

@@ -1395,7 +1395,8 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'gender-female'                 => 'Feminino',
 'prefs-help-gender'             => 'Opcional: usado para endereçamento correto pelo software baseado no sexo. Esta informação será pública.',
 'email'                         => 'E-mail',
-'prefs-help-realname'           => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
+'prefs-help-realname'           => 'O fornecimento de seu nome verdadeiro é opcional.
+Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu trabalho.',
 'prefs-help-email'              => "O fornecimento de um endereço de ''e-mail'' é opcional, mas permite que uma nova senha lhe seja enviada caso você esqueça sua senha. Você pode ainda preferir deixar que os usuários entrem em contato consigo através de sua página de usuário ou discussão sem ter de revelar sua identidade.",
 'prefs-help-email-required'     => 'O endereço de e-mail é requerido.',
 'prefs-info'                    => 'Informações básicas',
@@ -3505,5 +3506,9 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfazer alterações',
 'htmlform-selectorother-other' => 'Outros',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
+'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
 
 );

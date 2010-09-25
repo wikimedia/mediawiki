@@ -3294,4 +3294,8 @@ $1',
 'htmlform-reset'               => 'మార్పులను రద్దుచెయ్యి',
 'htmlform-selectorother-other' => 'ఇతర',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటుతో',
+'sqlite-no-fts'  => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటు లేకుండా',
+
 );

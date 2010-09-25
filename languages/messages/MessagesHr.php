@@ -3464,4 +3464,8 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'htmlform-reset'               => 'Poništi izmjene',
 'htmlform-selectorother-other' => 'Drugi',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 s podrškom pretraživanja cijelog teksta',
+'sqlite-no-fts'  => '$1 bez podrške pretraživanja cijelog teksta',
+
 );

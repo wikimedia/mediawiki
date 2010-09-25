@@ -3527,4 +3527,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'htmlform-reset'               => '変更を取り消す',
 'htmlform-selectorother-other' => 'その他',
 
+# SQLite database support
+'sqlite-has-fts' => '$1（全文検索あり）',
+'sqlite-no-fts'  => '$1（全文検索なし）',
+
 );
