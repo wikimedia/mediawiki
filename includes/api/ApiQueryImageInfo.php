@@ -264,6 +264,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return $vals;
 	}
 
+	/*
+	 *
+	 * param $metadata Array
+	 * param $result ApiResult
+	 */
 	public static function processMetaData( $metadata, $result ) {
 		$retval = array();
 		if ( is_array( $metadata ) ) {

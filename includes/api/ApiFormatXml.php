@@ -155,7 +155,7 @@ class ApiFormatXml extends ApiFormatBase {
 						$retval .= self::recXmlPrint( $subElemId, $subElemValue, $indent );
 					}
 
-					foreach ( $indElements as $subElemId => & $subElemValue ) {
+					foreach ( $indElements as &$subElemValue ) {
 						$retval .= self::recXmlPrint( $subElemIndName, $subElemValue, $indent );
 					}
 

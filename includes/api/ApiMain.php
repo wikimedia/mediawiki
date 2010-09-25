@@ -583,7 +583,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Check for sufficient permissions to execute
-	 * @param $module object An Api module
+	 * @param $module ApiBase An Api module
 	 */
 	protected function checkExecutePermissions( $module ) {
 		global $wgUser;
@@ -607,7 +607,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Check POST for external response and setup result printer
-	 * @param $module object An Api module
+	 * @param $module ApiBase An Api module
 	 * @param $params Array an array with the request parameters
 	 */
 	protected function setupExternalResponse( $module, $params ) {
