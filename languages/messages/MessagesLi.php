@@ -3295,4 +3295,8 @@ Gaef de bestandjsnaam zónger \'t "{{ns:file}}:" veurvoogsel.',
 'htmlform-reset'               => 'Maak verangeringe óngedaon',
 'htmlform-selectorother-other' => 'Anges',
 
+# SQLite database support
+'sqlite-has-fts' => 'Zeuk versie $1 mit óngersteuning veur "full-text"',
+'sqlite-no-fts'  => 'Zeuk versie $1 zónger óngersteuning veur "fulltext"',
+
 );

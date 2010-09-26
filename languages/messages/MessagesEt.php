@@ -3174,7 +3174,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'limitall'         => 'iga',
 
 # E-mail address confirmation
-'confirmemail'              => 'Kinnita e-posti aadress',
+'confirmemail'              => 'E-posti aadressi kinnitamine',
 'confirmemail_noemail'      => 'Sul ei ole e-aadress määratud [[Special:Preferences|eelistustes]].',
 'confirmemail_text'         => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead oma e-posti aadressi õigsust kinnitama. Allpool olevat nuppu klõpsates saadetakse sulle e-posti teel kinnituskood. Aadressi kinnitamiseks klõpsa e-kirjas olevat linki.',
 'confirmemail_pending'      => 'Kinnituskood on juba saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',

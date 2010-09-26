@@ -944,7 +944,7 @@ $1",
 'revdelete-hide-current'      => 'Hitilafu ya kuficha pitio lililotengenezwa saa $2, tarehe $1: hilo ndilo pitio la sasa hivi.
 Haliwezi kufichwa.',
 'revdelete-reason-dropdown'   => '*Sababu za kufuta zinazotokea mara kwa mara
-** Ukiukaji wa hatimiliki
+** Ukiukaji wa hakimiliki
 ** Taarifa za mtu binafsi zisizofaa
 ** Taarifa zinazowezekana kwamba ni za kukashifu',
 'revdelete-otherreason'       => 'Sababu nyingine:',
@@ -1389,7 +1389,7 @@ Tazama [[Special:NewFiles|mkusanyiko wa mafaili mapya]] kuona picha zenyewe.',
 'filedesc'                    => 'Muhtasari',
 'fileuploadsummary'           => 'Muhtasari:',
 'filereuploadsummary'         => 'Mabadiliko ya faili:',
-'filestatus'                  => 'Hali ya hatimiliki:',
+'filestatus'                  => 'Hali ya hakimiliki:',
 'filesource'                  => 'Chanzo:',
 'uploadedfiles'               => 'Mafaili yaliyopakiwa:',
 'ignorewarning'               => 'Hifadhi bila kujali maonyo yoyote.',
@@ -1600,7 +1600,7 @@ Maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] linaonyeshwa hapa.',
 'filedelete-otherreason'      => 'Sababu nyingine:',
 'filedelete-reason-otherlist' => 'Sababu nyingine',
 'filedelete-reason-dropdown'  => '*Sababu zinazotolewa mara kwa mara
-** Kosa la hatimiliki
+** Kosa la hakimiliki
 ** Faili la nakili',
 'filedelete-edit-reasonlist'  => 'Kuhariri orodha ya sababu za kufuta',
 'filedelete-maintenance'      => 'Tovuti inarekebishwa. Kwa muda huo kufuta na kurudisha mafaili haiwezikani.',
@@ -1659,8 +1659,11 @@ Ni afadhali kiungo kiende makala inayostahili moja kwa moja.<br />
 Kurasa za kutofautishana maana ni zile zinazotumia kigezo kinachoorodheshwa katika ukurasa wa [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Maelekezo mawilimawili',
+'doubleredirectstext'        => 'Ukurasa huu unaorodhesha kurasa zinazoelekeza kurasa zingine za kuelekeza.
+Katika kila mstari kuna viungo vinavyokwenda katika kurasa za kuelekeza zote mbili, pamoja na ukurasa wa mwishilio mwa elekezo la pili. Ukurasa huu wa mwishilio huwa ni ukurasa unaostahili kuelekezwa kutoka kwa ukurasa wa kuelekeza wa kwanza. Vitu <del>vilivyokatwa kwa mstari</del> vimeshatatuliwa.',
 'double-redirect-fixed-move' => '[[$1]] umehamishwa.
 Sasa unaelekeza [[$2]].',
+'double-redirect-fixer'      => 'Boti ya kurekebisha maelekezo',
 
 'brokenredirects'        => 'Maelekezo yenye hitilafu',
 'brokenredirectstext'    => 'Maelekezo yafuatayo yanaelekeza katika kurasa zisizopatikana:',
@@ -2205,7 +2208,7 @@ Chagua jina lengine.',
 'imagenocrossnamespace'        => 'Faili linaweza kuhamishwa katika eneo la wiki la faili tu.',
 'nonfile-cannot-move-to-file'  => 'Ni mafaili tu yanayoweza kuhamishwa katika eneo la faili',
 'imageinvalidfilename'         => 'Jina la faili la mwishilio ni batili',
-'fix-double-redirects'         => 'Sasisha maelekezo yanayoelekeza jina lililopita la faili',
+'fix-double-redirects'         => 'Sasisha maelekezo yanayoelekeza jina la zamani la faili',
 'move-leave-redirect'          => 'Weka elekezo mahali pake',
 'protectedpagemovewarning'     => "'''Ilani:''' Ukurasa huu umelindwa, kwa hiyo ni watumiaji wenye wezo za wakabidhi tu wanaoweza  kuuhamisha.
 Kumbukumbu ya mwisho inaandikwa chini:",
@@ -2672,9 +2675,9 @@ Pia unaweza [[Special:Watchlist/edit|kutumia kihariri cha kawaida]].',
 'version-other'             => 'Zingine',
 'version-version'           => '(Toleo $1)',
 'version-license'           => 'Ruhusa',
-'version-poweredby-credits' => "Wiki hii inaendeshwa na bidhaa pepe ya '''[http://www.mediawiki.org/ MediaWiki]''', hatimiliki © 2001-$1 $2.",
+'version-poweredby-credits' => "Wiki hii inaendeshwa na bidhaa pepe ya '''[http://www.mediawiki.org/ MediaWiki]''', hakimiliki © 2001-$1 $2.",
 'version-poweredby-others'  => 'wengine',
-'version-license-info'      => 'MediaWiki ni bidhaa pepe huru; unaweza kuigawanyika pamoja na kuitumia na kuibadilisha kutokana na masharti ya leseni ya GNU General Public License inayotolewa na Free Software Foundation (Shirika la Bidhaa Pepe Huru); ama toleo 2 la hatimiliki, ama (ukitaka) toleo lolote linalofuata.
+'version-license-info'      => 'MediaWiki ni bidhaa pepe huru; unaweza kuigawanyika pamoja na kuitumia na kuibadilisha kutokana na masharti ya leseni ya GNU General Public License inayotolewa na Free Software Foundation (Shirika la Bidhaa Pepe Huru); ama toleo 2 la hakimiliki, ama (ukitaka) toleo lolote linalofuata.
 
 MediaWiki inagawanyiwa kwa kutumaini kwamba ni ya manufaa, lakini BILA JUKUMU; hata bila jukumu linalojitokeza la KUWA TAYARI KUUZIKA au KUFAA KWA KUSUDI FULANI. Tazama leseni ya GNU General Public License kuona maelezo mengine.
 

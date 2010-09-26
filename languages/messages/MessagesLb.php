@@ -635,6 +635,11 @@ Falls dëse Benotzerkont ongewollt ugeluecht ginn ass kënnt Dir dës Noriicht e
 Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 'loginlanguagelabel'         => 'Sprooch: $1',
 'suspicious-userlogout'      => 'Är Ufro fir Iech auszeloggen gouf refuséiert well et esou ausgesäit wéi wann se vun engem Futtise Browser oder Proxy-Tëschespäicher kënnt.',
+'ratelimit-excluded-ips'     => '   #<!-- Dës Linn onverännert loossen --> <pre>
+#  Syntax:
+#  * Alles vun engem #-Zeechen u bis zum Enn vun där Zeil ass eng Bemierkung
+#  * All Linn déi net eidel ass, ass eng IP-Adress fir déi de Rate Limit net gëllt
+   #</pre> <!-- Dës Linn onverännert loossen -->',
 
 # JavaScript password checks
 'password-strength'            => 'Geschate Stäerkt vum Passwuert: $1',
