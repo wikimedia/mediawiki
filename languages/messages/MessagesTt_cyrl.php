@@ -400,6 +400,9 @@ $messages = array(
 Бу биткә соңарак керүегез сорала.
 
 $1',
+'pool-timeout'      => 'Кысылуның  вакыты узды',
+'pool-queuefull'    => 'Сорауларны саклау  бите тулы',
+'pool-errorunknown' => 'Билгесез  хата',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} турында',
@@ -947,10 +950,14 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-radio-set'         => 'Әйе',
 'revdelete-radio-unset'       => 'Юк',
 'revdel-restore'              => 'күренүчәнлекне үзгәртергә',
+'revdel-restore-deleted'      => 'бетерелгән юрамалар',
+'revdel-restore-visible'      => 'күрсәтелгән юрамалар',
 'pagehist'                    => 'битнең тарихы',
 'deletedhist'                 => 'Бетерүләр тарихы',
 'revdelete-content'           => 'контент',
+'revdelete-summary'           => 'үзгәртүләр тасвирламасы',
 'revdelete-uname'             => 'кулланучы исеме',
+'revdelete-restricted'        => 'чикләүләр идарәчеләргә дә кулланыла',
 'revdelete-hid'               => ' $1 яшерелгән',
 'revdelete-unhid'             => '$1 ачылган',
 'revdelete-reasonotherlist'   => 'Башка сәбәп',
@@ -962,10 +969,15 @@ $3 күрсәткән сәбәп: ''$2''",
 
 # Revision move
 'revmove-reasonfield'    => 'Сәбәп:',
+'revmove-titlefield'     => 'Төп бит:',
 'revmove-badparam-title' => 'Яраксыз параметрлар',
+'revmove-nullmove-title' => 'Яраксыз исем',
 
 # History merging
+'mergehistory'        => 'Үзгәртүләр тарихын берләштерү',
+'mergehistory-box'    => 'Ике битнең үзгәртүләр тарихын берләштерергә:',
 'mergehistory-from'   => 'Чыганак:',
+'mergehistory-into'   => 'Төп бит:',
 'mergehistory-reason' => 'Сәбәп:',
 
 # Merge log
@@ -1669,11 +1681,16 @@ $UNWATCHURL
 'protectedarticle'            => '«[[$1]]» якланган',
 'modifiedarticleprotection'   => '"[[$1]]" бите өчен яклау дәрәҗәсе үзгәртелде',
 'unprotectedarticle'          => '«[[$1]]» инде якланмаган',
+'movedarticleprotection'      => 'яклау көйләнмәләрен «[[$2]]» битеннән «[[$1]]» битенә күчерде',
+'protect-title'               => '«$1» өчен яклау дәрәҗәсен билгеләү',
 'prot_1movedto2'              => '«[[$1]]» бите «[[$2]]» битенә күчерелде',
+'protect-backlink'            => '← $1',
+'protect-legend'              => 'Битне яклау турында раслагыз',
 'protectcomment'              => 'Сәбәп:',
 'protectexpiry'               => 'Бетә:',
 'protect_expiry_invalid'      => 'Яклау бетү вакыты дөрес түгел.',
 'protect_expiry_old'          => 'Яклау бетү көне узган көнгә куелган.',
+'protect-unchain-permissions' => 'Өстәмә яклау чараларын ачарга',
 'protect-text'                => "Биредә сез '''<nowiki>$1</nowiki>''' бите өчен яклау дәрәҗәсене карый һәм үзгәрә аласыз.",
 'protect-locked-access'       => "Хисап язмагызга битләрнең яклау дәрәҗәсен үзгәртү өчен хак җитми. '''$1''' битенең хәзерге көйләүләре:",
 'protect-cascadeon'           => 'Бу бит якланган, чөнки ул әлеге каскадлы яклаулы {{PLURAL:$1|биткә|битләргә}} керә. Сез бу битнең яклау дәрәҗәсен үзгәртә аласыз, әмма каскадлы яклау үзгәрмәячәк.',

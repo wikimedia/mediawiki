@@ -349,6 +349,9 @@ Mae gormod o ddefnyddwyr am weld y dudalen hon ar unwaith.
 Arhoswch ychydig cyn ceisio mynd at y dudalen hon eto.
 
 $1',
+'pool-timeout'      => "Daeth yr amser i'w ben wrth aros am y clo",
+'pool-queuefull'    => "Mae'r cwt gydgyfrannu'n llawn",
+'pool-errorunknown' => 'Gwall anhysbys',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ynglŷn â {{SITENAME}}',
@@ -582,6 +585,11 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
 'suspicious-userlogout'      => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
+'ratelimit-excluded-ips'     => " #<!-- gadewch y llinell hwn yn union fel y mae --> <pre>
+# Dylai'r cystrawen fod fel hyn:
+#   * Sylw yw popeth o gymeriad \"#\" hyd at ddiwedd y llinell
+#   * Cyfeiriad IP sy'n cael ei gau allan o'r cyfyngiad cyfradd yw pob un llinell sydd ddim yn wag
+ #</pre> <!-- gadewch y llinell hwn yn union fel y mae -->",
 
 # JavaScript password checks
 'password-strength'            => 'Amcangyfrif o gryfder y cyfrinair: $1',
@@ -3286,5 +3294,9 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'htmlform-submit'              => 'Gosoder',
 'htmlform-reset'               => 'Datod y newidiadau',
 'htmlform-selectorother-other' => 'Arall',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 gyda chymorth chwilio yr holl destun',
+'sqlite-no-fts'  => '$1 heb gymorth chwiliad yr holl destun',
 
 );

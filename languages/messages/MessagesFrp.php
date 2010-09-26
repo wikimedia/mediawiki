@@ -1665,7 +1665,7 @@ Les pâges de voutra [[Special:Watchlist|lista de survelyence]] sont '''en grâs
 'uploadnologintext'           => 'Vos dête étre [[Special:UserLogin|branchiê]] por tèlèchargiér des fichiérs sur lo sèrvor.',
 'upload_directory_missing'    => 'Lo rèpèrtouèro de tèlèchargement ($1) est entrovâblo et pués at pas possu étre fêt per lo sèrvor vouèbe.',
 'upload_directory_read_only'  => 'Lo rèpèrtouèro de tèlèchargement ($1) est pas accèssiblo en ècritura dês lo sèrvor vouèbe.',
-'uploaderror'                 => 'Èrror de tèlèchargement',
+'uploaderror'                 => 'Èrror pendent lo tèlèchargement',
 'upload-recreate-warning'     => "'''Atencion : un fichiér avouéc cél nom at étâ suprimâ ou ben dèplaciê.'''
 
 Los jornals de les suprèssions et des changements de nom de cela pâge sont montrâs ce-desot :",
@@ -1691,7 +1691,7 @@ Vêde la [[Special:NewFiles|galerie des novéls fichiérs]] por una presentacion
 'filestatus'                  => 'Statut des drêts d’ôtor :',
 'filesource'                  => 'Sôrsa :',
 'uploadedfiles'               => 'Fichiérs tèlèchargiês',
-'ignorewarning'               => 'Ignorar l’avèrtissement et sôvar lo fichiér',
+'ignorewarning'               => 'Ignorar l’avèrtissement et pués sôvar quand mémo lo fichiér',
 'ignorewarnings'              => 'Ignorar tôs los avèrtissements',
 'minlength1'                  => 'Los noms de fichiér dêvont comprendre u muens yona lètra.',
 'illegalfilename'             => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dens los titros de pâges.

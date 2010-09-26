@@ -54,7 +54,7 @@ $messages = array(
 'tog-watchdeletion'           => 'مەن ئۆچۈرگەن بەتنى كۆزەت تىزىملىكىمگە قوش',
 'tog-previewontop'            => 'تەھرىر رامكىسىنىڭ ئۈستىدە ئالدىن كۆزىتىشنى كۆرسەت',
 'tog-previewonfirst'          => 'تۇنجى قېتىم تەھرىرلىگەندە ئالدىن كۆزىتىشنى كۆرسەت',
-'tog-nocache'                 => 'بەت غەملەشنى چەكلە',
+'tog-nocache'                 => 'توركۆرگۈ بەت غەملەشنى چەكلە',
 'tog-enotifwatchlistpages'    => 'كۆزەت تىزىملىكىمدىكى بەت ئۆزگەرگەندە ئېلخەت يوللا',
 'tog-enotifusertalkpages'     => 'مۇنازىرە بېتىم ئۆزگەرگەندە ئېلخەت يوللا',
 'tog-enotifminoredits'        => 'بەت ئازراقلا تەھرىرلەنگەندىمۇ ئېلخەت يوللا',
@@ -265,6 +265,9 @@ $messages = array(
 بۇ بەتنى قايتا زىيارەت قىلىشتىن ئىلگىرى سەل كۈتۈڭ.
 
 $1',
+'pool-timeout'      => 'قۇلۇپنى ساقلاش ۋاقىت ھالقىدى',
+'pool-queuefull'    => 'قاچا ئۆچرىتى توشتى',
+'pool-errorunknown' => 'نامەلۇم خاتالىق',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ھەققىدە',
@@ -466,6 +469,7 @@ $2',
 'gotaccount'                 => "ھېساباتىم بار؟ '''$1'''.",
 'gotaccountlink'             => 'تىزىمغا كىر',
 'createaccountmail'          => 'ئېلخەتتە',
+'createaccountreason'        => 'سەۋەب:',
 'badretype'                  => 'سىز كىرگۈزگەن ئىم ماس كەلمىدى.',
 'userexists'                 => 'كىرگۈزگەن ئىشلەتكۈچى ئاتى ئىشلىتىلىۋاتىدۇ.
 باشقا ئاتنى تاللاڭ.',
@@ -541,6 +545,15 @@ $2',
 سەل تەخىر قىلىپ، ئاندىن قايتا سىناڭ.',
 'loginlanguagelabel'         => 'تىل: $1',
 'suspicious-userlogout'      => 'تىزىمدىن چىقىش ئىلتىماسىڭىز رەت قىلىندى، چۈنكى ئۇ بەلكىم بۇزۇلغان توركۆرگۈ ياكى غەملەك ۋاكالەتچىسى يوللىغان بولۇشى مۇمكىن.',
+
+# JavaScript password checks
+'password-strength'            => 'مۆلچەرلەنگەن ئىم كۈچلۈكلۈكى: $1',
+'password-strength-bad'        => 'ناچار',
+'password-strength-mediocre'   => 'ئوتتۇراھال',
+'password-strength-acceptable' => 'قوبۇل قىلغىلى بولىدۇ',
+'password-strength-good'       => 'ياخشى',
+'password-retype'              => 'بۇ جايغا ئىمنى قايتا كىرگۈزۈڭ',
+'password-retype-mismatch'     => 'ئىم ماس كەلمىدى',
 
 # Password reset dialog
 'resetpass'                 => 'ئىم ئۆزگەرت',
@@ -985,11 +998,13 @@ $1",
 # Diffs
 'history-title'            => '"$1" نىڭ ئۆزگەرتىش خاتىرىسى',
 'difference'               => '(تۈزەتكەن نەشرىلىرىنىڭ پەرقى)',
+'difference-multipage'     => '(بەتلەر ئارىسىدىكى پەرق)',
 'lineno'                   => '$1 -قۇر:',
 'compareselectedversions'  => 'تاللانغان نەشرىنى سېلىشتۇر',
 'showhideselectedversions' => 'تاللانغان تۈزىتىلگەن نەشرىنى كۆرسەت/يوشۇر',
 'editundo'                 => 'يېنىۋال',
-'diff-multi'               => '({{PLURAL:$1| بىر ئوتتۇرىدىكى تۈزىتىلگەن نەشرى |$1 ئوتتۇرىدىكى تۈزىتىلگەن نەشرى }} كۆرسىتىلمىدى)',
+'diff-multi'               => '({{PLURAL:$2|ئىشلەتكۈچى|$2 ئىشلەتكۈچى}} نىڭ{{PLURAL:$1|تۈزىتىلگەن نەشرى|$1 تۈزىتىلگەن نەشرى}} كۆرسىتىلمىدى)',
+'diff-multi-manyusers'     => '( $2  دىن كۆپ{{PLURAL:$2|ئىشلەتكۈچى|ئىشلەتكۈچى}} نىڭ {{PLURAL:$1|تۈزىتىلگەن نەشرى|$1 تۈزىتىلگەن نەشرى}}  كۆرسىتىلمىدى)',
 
 # Search results
 'searchresults'                    => 'ئىزدەش نەتىجىسى',
@@ -1101,6 +1116,7 @@ $1",
 'contextlines'                  => 'ھەر ئۇلانمىدىكى قۇر سانى:',
 'contextchars'                  => 'ھەر قۇردىكى ھەرپ سانى:',
 'stub-threshold'                => '<a href=\\"#\\" class=\\"stub\\">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :',
+'stub-threshold-disabled'       => 'چەكلەنگەن',
 'recentchangesdays'             => 'يېقىنقى ئۆزگەرتىشنىڭ كۆرۈنىدىغان كۈن سانى:',
 'recentchangesdays-max'         => 'ئەڭ چوڭ $1 {{PLURAL:$1|كۈن|كۈن}}',
 'recentchangescount'            => 'كۆرسىتىدىغان تەھرىرنىڭ كۆڭۈلدىكى سانى:',
@@ -1180,6 +1196,8 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'prefs-advancedsearchoptions'   => 'ئالىي تاللانما',
 'prefs-advancedwatchlist'       => 'ئالىي تاللانما',
 'prefs-displayrc'               => 'كۆرسىتىش تاللانما',
+'prefs-displaysearchoptions'    => 'كۆرسىتىش تاللانما',
+'prefs-displaywatchlist'        => 'كۆرسىتىش تاللانما',
 'prefs-diffs'                   => 'پەرقلەر',
 
 # User rights
@@ -1497,11 +1515,13 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'filename-bad-prefix'         => "سىز يۈكلىگەن ھۆججەتنىڭ ئاتى'''\\\"\$1\\\"''' دىن باشلىنىپتۇ، بۇ خىل مەنىسى يوق ھۆججەت ئاتىنى رەقەملىك فوتو ئاپپارات ئۆزلۈكىدىن ھاسىل قىلىدۇ.
 ھۆججىتىڭىزگە تېخىمۇ ئەھمىيەتلىك ھۆججەت ئاتىدىن بىرنى تاللاڭ.",
 'upload-success-subj'         => 'مۇۋەپپەقىيەتلىك يۈكلەندى',
-'upload-success-msg'          => 'يۈكلەشىڭىز بۇ جايدا مەۋجۇد: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => '[$2] دىن مۇۋەپپەقىيەتلىك يۈكلىدىڭىز. ئۇنىڭ مەۋجۇد ئورنى: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'يۈكلەش كاشىلىسى',
-'upload-failure-msg'          => 'بۇ سىزنىڭ يۈكلەش خاتالىقىڭىز:
+'upload-failure-msg'          => '[$2] دىن يۈكلەشتە  خاتالىق بار:
 
 $1',
+'upload-warning-subj'         => 'يۈكلەش ئاگاھلاندۇرۇشى',
+'upload-warning-msg'          => '[$2] دىن يۈكلىگىنىڭىزدىن خاتالىق كۆرۈلدى. سىز [[Special:Upload/stash/$1|يۈكلەش جەدۋىلى]]گە قايتىپ مەسىلىنى تۈزەتسىڭىز بولىدۇ.',
 
 'upload-proto-error'        => 'كېلىشىم خاتالىقى',
 'upload-proto-error-text'   => 'يىراقتىن يۈكلەيدىغان  URL <code>http://</code> ياكى <code>ftp://</code> دىن باشلىنىدۇ.',
@@ -1908,6 +1928,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 # Watchlist
 'watchlist'            => 'كۆزەت تىزىملىكىم',
 'mywatchlist'          => 'كۆزەت تىزىملىكىم',
+'watchlistfor2'        => '$1 $2 ئۈچۈن',
 'nowatchlist'          => 'كۆزەت تىزىملىكىڭىز بوش.',
 'watchlistanontext'    => '$1 كۆزەت تىزىملىكىڭىزنى كۆرۈپ تەھرىرلەڭ.',
 'watchnologin'         => 'تىزىمغا كىرمىدى',
@@ -2421,6 +2442,7 @@ $1 ئاللىبۇرۇن چەكلەنگەن.
 'immobile-source-page'         => 'بۇ بەتنى يۆتكىگىلى بولمايدۇ.',
 'immobile-target-page'         => 'بۇ نىشان ماۋزۇغا يۆتكىگىلى بولمايدۇ.',
 'imagenocrossnamespace'        => 'ھۆججەتنى غەيرى ھۆججەت ئات بوشلۇقىغا يۆتكىگىلى بولمايدۇ.',
+'nonfile-cannot-move-to-file'  => 'غەيرى ھۆججەتنى ھۆججەت ئات بوشلۇقىغا يۆتكىگىلى بولمايدۇ.',
 'imagetypemismatch'            => 'بۇ يېڭى كېڭەيتىلگەن ئات بىلەن باشقا تىپ ماسلاشمىدى.',
 'imageinvalidfilename'         => 'نىشان ھۆججەت ئاتى ئىناۋەتسىز',
 'fix-double-redirects'         => 'ئەسلى ماۋزۇغا قايتا نىشانلانغان ھەممە ئۇلىنىشنى يېڭىلا.',
@@ -3177,6 +3199,8 @@ $1',
 'version-hook-subscribedby'        => 'ئىمزا قويغۇچى',
 'version-version'                  => '(نەشرى $1)',
 'version-license'                  => 'ئىجازەتنامە',
+'version-poweredby-credits'        => "بۇ ۋىكىنى '''[http://www.mediawiki.org/ MediaWiki]''' تېخنىكىلىق قوللايدۇ، نەشر ھوقۇقى © 2001-$1 $2",
+'version-poweredby-others'         => 'باشقا',
 'version-software'                 => 'قاچىلانغان يۇمشاق دېتال',
 'version-software-product'         => 'مەھسۇلات',
 'version-software-version'         => 'نەشرى',
@@ -3277,5 +3301,9 @@ $1',
 'htmlform-submit'              => 'تاپشۇر',
 'htmlform-reset'               => 'ئۆزگەرتىشتىن يېنىۋال',
 'htmlform-selectorother-other' => 'باشقا',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 پۈتۈن تېكست ئىزدەشنى قوللايدۇ',
+'sqlite-no-fts'  => '$1 پۈتۈن تېكست ئىزدەشنى قوللىمايدۇ',
 
 );
