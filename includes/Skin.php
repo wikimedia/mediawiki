@@ -1058,7 +1058,7 @@ class Skin extends Linker {
 	function subPageSubtitle() {
 		$subpages = '';
 
-		if ( !wfRunHooks( 'SkinSubPageSubtitle', array( &$subpages ) ) ) {
+		if ( !wfRunHooks( 'SkinSubPageSubtitle', array( &$subpages, $this ) ) ) {
 			return $subpages;
 		}
 
