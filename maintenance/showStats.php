@@ -20,7 +20,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @ingroup Maintenance
- * @author Ashar Voultoiz <hashar@altern.org>
+ * @author Ashar Voultoiz <hashar at free dot fr>
  * Based on initStats.php by:
  * @author Brion Vibber
  * @author Rob Church <robchur@gmail.com>

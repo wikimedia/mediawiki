@@ -8,7 +8,7 @@
  *
  * @file
  * @ingroup Maintenance
- * @author Ashar Voultoiz <hashar@altern.org>
+ * @author Ashar Voultoiz <hashar at free dot fr>
  */
 
 // This is a command line script, load tools and parse args

@@ -3,7 +3,7 @@
  * Functions and constants to play with IP addresses and ranges
  *
  * @file
- * @author Ashar Voultoiz <hashar@altern.org>
+ * @author Ashar Voultoiz <hashar at free dot fr>
  * @license GPL v2 or later
  */
 
