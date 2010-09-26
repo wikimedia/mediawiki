@@ -31,7 +31,7 @@
  *
  * @file
  * @ingroup Maintenance
- * @author Ashar Voultoiz <hashar@altern.org>
+ * @author Ashar Voultoiz <hashar at free dot fr>
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
