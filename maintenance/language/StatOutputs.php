@@ -6,7 +6,7 @@ if ( !defined( 'MEDIAWIKI' ) ) die();
  * @file
  * @ingroup MaintenanceLanguage
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @author Ashar Voultoiz <thoane@altern.org>
+ * @author Ashar Voultoiz <hashar at free dot fr>
  */
 
 /** A general output object. Need to be overriden */
