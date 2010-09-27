@@ -206,6 +206,7 @@ $messages = array(
 'vector-view-edit'         => 'አርም',
 'vector-view-history'      => ' ታሪኩን አሳይ',
 'vector-view-view'         => ' የተነበበ',
+'vector-view-viewsource'   => 'ጥሬ ኮድ ለመመልከት',
 
 'errorpagetitle'    => 'ስህተት',
 'returnto'          => '(ወደ $1 ለመመለስ)',

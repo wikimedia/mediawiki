@@ -1601,7 +1601,7 @@ PICT # misc.
 
 $1",
 'upload-warning-subj'         => "Kemmen diwall e-pad ar c'hargañ",
-'upload-warning-msg'          => "Ur gudenn a zo bet e-kerzh ho ezporzhiadur eus [$2]. Galloud a c'heller distreiñ d'ar [[Special:Upload/stash/$1|furmskrid ezporzhiañ]] evit renkañ ar gudenn.",
+'upload-warning-msg'          => "Ur gudenn zo bet e-kerzh hoc'h ezporzhiadur eus [$2]. Gallout a c'heller distreiñ d'ar [[Special:Upload/stash/$1|furmskrid ezporzhiañ]] evit renkañ ar gudenn.",
 
 'upload-proto-error'        => 'Protokol direizh',
 'upload-proto-error-text'   => 'Rekis eo an URLoù a grog gant <code>http://</code> pe <code>ftp://</code> evit enporzhiañ.',

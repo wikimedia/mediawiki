@@ -1870,7 +1870,7 @@ Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s 
 'filepage-nofile-link'      => 'Soubor s tímto názvem neexistuje, ale můžete [$1 ho načíst].',
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',
 'shared-repo-from'          => 'z {{grammar:2sg|$1}}',
-'shared-repo'               => 'sdílené úložiště',
+'shared-repo'               => 'sdíleného úložiště',
 
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',

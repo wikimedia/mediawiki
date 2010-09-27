@@ -3450,4 +3450,8 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 'htmlform-reset'               => 'Omgjør endringer',
 'htmlform-selectorother-other' => 'Andre',
 
+# SQLite database support
+'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
+'sqlite-no-fts'  => '$1 uten støtte for fulltekstsøk',
+
 );
