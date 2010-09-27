@@ -923,7 +923,7 @@ Es possibile que illo esseva delite del wiki, o renominate.
 Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(commento eliminate)',
+'rev-deleted-comment'         => '(commento removite)',
 'rev-deleted-user'            => '(nomine de usator eliminate)',
 'rev-deleted-event'           => '(entrata eliminate)',
 'rev-deleted-user-contribs'   => '[nomine de usator o adresse IP removite - modification celate ab contributiones]',
