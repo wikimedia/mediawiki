@@ -87,8 +87,7 @@ class MessageBlobStore {
 		if ( $success ) {
 			if ( $dbw->affectedRows() == 0 ) {
 				// Blob was already present, fetch it
-				$dbr = wfGetDB( DB_SLAVE );
-				$blob = $dbr->selectField( 'msg_resource', 'mr_blob', array(
+				$blob = $dbw->selectField( 'msg_resource', 'mr_blob', array(
 						'mr_resource' => $module,
 						'mr_lang' => $lang,
 					),
