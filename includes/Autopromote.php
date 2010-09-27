@@ -143,7 +143,7 @@ class Autopromote {
 					throw new MWException( "Unrecognized condition {$cond[0]} for autopromotion!" );
 				}
 
-				return $result ? true : false;
+				return (bool)$result;
 		}
 	}
 }

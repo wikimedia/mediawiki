@@ -487,7 +487,7 @@ class WebInstaller_Name extends WebInstallerPage {
 			// Title-style validation
 			$title = Title::newFromText( $name );
 			if ( !$title ) {
-				$good = $nsType == 'site-name' ? true : false;
+				$good = $nsType == 'site-name';
 			} else {
 				$name = $title->getDBkey();
 				$good = true;

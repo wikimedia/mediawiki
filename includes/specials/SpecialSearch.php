@@ -67,7 +67,7 @@ class SpecialSearch {
 		if( empty( $this->namespaces ) ) {
 			$this->namespaces = SearchEngine::userNamespaces( $user );
 		}
-		$this->searchRedirects = $request->getcheck( 'redirs' ) ? true : false;
+		$this->searchRedirects = $request->getCheck( 'redirs' );
 		$this->searchAdvanced = $request->getVal( 'advanced' );
 		$this->active = 'advanced';
 		$this->sk = $user->getSkin();

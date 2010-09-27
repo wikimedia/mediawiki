@@ -188,7 +188,7 @@ class IPBlockForm extends SpecialPage {
 			list( $show, $value ) = explode( ':', $option );
 			$show = htmlspecialchars( $show );
 			$value = htmlspecialchars( $value );
-			$blockExpiryFormOptions .= Xml::option( $show, $value, $this->BlockExpiry === $value ? true : false ) . "\n";
+			$blockExpiryFormOptions .= Xml::option( $show, $value, $this->BlockExpiry === $value ) . "\n";
 		}
 
 		$reasonDropDown = Xml::listDropDown( 'wpBlockReasonList',

@@ -100,19 +100,19 @@ class SpecialAllmessages extends SpecialPage {
 						'filter',
 						'unmodified',
 						'mw-allmessages-form-filter-unmodified',
-						( $this->filter == 'unmodified' ? true : false )
+						( $this->filter == 'unmodified' )
 					) .
 					Xml::radioLabel( wfMsg( 'allmessages-filter-all' ),
 						'filter',
 						'all',
 						'mw-allmessages-form-filter-all',
-						( $this->filter == 'all' ? true : false )
+						( $this->filter == 'all' )
 					) .
 					Xml::radioLabel( wfMsg( 'allmessages-filter-modified' ),
 						'filter',
 						'modified',
 						'mw-allmessages-form-filter-modified',
-					( $this->filter == 'modified' ? true : false )
+					( $this->filter == 'modified' )
 				) .
 				"</td>\n
 			</tr>
@@ -124,7 +124,7 @@ class SpecialAllmessages extends SpecialPage {
 					Xml::openElement( 'select', array( 'id' => 'mw-allmessages-form-lang', 'name' => 'lang' ) );
 
 		foreach( $languages as $lang => $name ) {
-			$selected = $lang == $this->langCode ? true : false;
+			$selected = $lang == $this->langCode;
 			$out .= Xml::option( $lang . ' - ' . $name, $lang, $selected ) . "\n";
 		}
 		$out .= Xml::closeElement( 'select' ) .
