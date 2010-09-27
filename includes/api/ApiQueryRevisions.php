@@ -575,7 +575,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				' flags          - Revision flags (minor)',
 				' timestamp      - The timestamp of the revision',
 				' user           - User that made the revision',
-				' userid		 - User id of revision creator',
+				' userid         - User id of revision creator',
 				' size           - Length of the revision',
 				' comment        - Comment by the user for revision',
 				' parsedcomment  - Parsed comment by the user for the revision',
