@@ -1179,7 +1179,7 @@ class DatabasePostgres extends DatabaseBase {
 			. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
 		$res = $this->query( $SQL );
 		$count = $res ? $res->numRows() : 0;
-		return $count ? true : false;
+		return (bool)$count;
 	}
 
 	/**

@@ -659,7 +659,7 @@ class SkinTemplate extends Skin {
 		self::checkTitle( $title, $name );
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0 ? true : false
+			'exists' => $title->getArticleID() != 0,
 		);
 	}
 
@@ -669,7 +669,7 @@ class SkinTemplate extends Skin {
 		self::checkTitle( $title, $name );
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0 ? true : false
+			'exists' => $title->getArticleID() != 0,
 		);
 	}
 

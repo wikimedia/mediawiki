@@ -346,9 +346,9 @@ class SpecialContributions extends SpecialPage {
 
 		$f .= 	Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ),
-				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ? true : false ) . '<br />' .
+				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ) . '<br />' .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parsemag' ) ),
-				'contribs' , 'user', 'user', $this->opts['contribs'] == 'user' ? true : false ) . ' ' .
+				'contribs' , 'user', 'user', $this->opts['contribs'] == 'user' ) . ' ' .
 			Html::input( 'target', $this->opts['target'], 'text', array(
 				'size' => '20',
 				'required' => ''

@@ -2046,7 +2046,7 @@ class Skin extends Linker {
 
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0 ? true : false
+			'exists' => $title->getArticleID() != 0;
 		);
 	}
 
