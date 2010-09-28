@@ -111,7 +111,7 @@ class SearchEngine {
 			$allSearchTerms = array_merge( $allSearchTerms, $wgContLang->autoConvertToAllVariants( $searchterm ) );
 		}
 
-        $titleResult = '';
+		$titleResult = null;
 		if ( !wfRunHooks( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
 			return $titleResult;
 		}
