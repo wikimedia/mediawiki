@@ -32,15 +32,10 @@ class DeleteDefaultMessages extends Maintenance {
 
 	public function execute() {
 
-		$this->output( 'Deleting old default messages (this may take a long time!)...', 'msg' );
-
 		$user = 'MediaWiki default';
 		$reason = 'No longer required';
-
-		global $wgUser;
-		$wgUser = User::newFromName( $user );
-		$wgUser->addGroup( 'bot' );
-
+		
+		$this->output( "Checking existence of old default messages..." );
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'page', 'revision' ),
 			array( 'page_namespace', 'page_title' ),
@@ -51,6 +46,20 @@ class DeleteDefaultMessages extends Maintenance {
 			)
 		);
 
+		if( $dbr->numRows( $res ) == 0 ) {
+			# No more messages left
+			$this->output( "done.\n" );
+			return;
+		}
+
+		# Deletions will be made by $user temporarly added to the bot group
+		# in order to hide it in RecentChanges.
+		global $wgUser;
+		$wgUser = User::newFromName( $user );
+		$wgUser->addGroup( 'bot' );
+
+		# Handle deletion
+		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
 		$dbw = wfGetDB( DB_MASTER );
 
 		foreach ( $res as $row ) {
