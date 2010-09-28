@@ -142,9 +142,9 @@ class ApiHelp extends ApiBase {
 			'  api.php?action=help&modules=protect',
 			'Query (list) modules help page:',
 			'  api.php?action=help&querymodules=categorymembers',
-            'Query (prop) modules help page:',
+			'Query (prop) modules help page:',
 			'  api.php?action=help&querymodules=info',
-            'Query (meta) modules help page:',
+			'Query (meta) modules help page:',
 			'  api.php?action=help&querymodules=siteinfo',
 		);
 	}
