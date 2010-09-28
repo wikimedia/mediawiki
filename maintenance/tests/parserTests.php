@@ -25,8 +25,7 @@
 $options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled' );
 $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 
-require_once( dirname( __FILE__ ) . '/commandLine.inc' );
-require_once( dirname( __FILE__ ) . '/parserTests.inc' );
+require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 if ( isset( $options['help'] ) ) {
     echo <<<ENDS

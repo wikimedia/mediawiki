@@ -24,7 +24,7 @@ class MediaWikiParserTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgMemc = new FakeMemCachedClient;
 		$this->backend->setupDatabase();
 
-		$iter = new TestFileIterator( "$IP/maintenance/parserTests.txt" );
+		$iter = new TestFileIterator( "$IP/maintenance/tests/parser/parserTests.txt" );
 		$iter->setParser( $this->backend );
 		$this->count = 0;
 

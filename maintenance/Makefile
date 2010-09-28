@@ -3,7 +3,7 @@ help:
 	@echo "Run 'make doc' to run the doxygen generation."
 
 test:
-	php parserTests.php --quiet
+	php tests/parserTests.php --quiet
 
 doc:
 	php mwdocgen.php --all
