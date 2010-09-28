@@ -37,8 +37,8 @@ class ApiWatchTest extends ApiTestSetup {
 	function testLogin() {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
-			'lgname' => 'WikiSysop',
-			'lgpassword' => 'none' ), $data );
+			'lgname' => self::$userName,
+			'lgpassword' => self::$passWord ), $data );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -48,8 +48,8 @@ class ApiWatchTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
 			"lgtoken" => $token,
-			"lgname" => 'WikiSysop',
-			"lgpassword" => 'none' ), $data );
+			"lgname" => self::$userName,
+			"lgpassword" => self::$passWord ), $data );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -183,7 +183,7 @@ class ApiWatchTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'rollback',
 			'title' => 'Main Page',
-			'user' => 'WikiSysop',
+			'user' => self::$userName,
 			'token' => $pageinfo['rollbacktoken'],
 			'watchlist' => 'watch' ), $data );
 
