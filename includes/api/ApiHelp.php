@@ -138,10 +138,14 @@ class ApiHelp extends ApiBase {
 		return array(
 			'Whole help page:',
 			'  api.php?action=help',
-			'Module help page:',
+			'Module (action) help page:',
 			'  api.php?action=help&modules=protect',
-			'Query modules help page:',
+			'Query (list) modules help page:',
 			'  api.php?action=help&querymodules=categorymembers',
+            'Query (prop) modules help page:',
+			'  api.php?action=help&querymodules=info',
+            'Query (meta) modules help page:',
+			'  api.php?action=help&querymodules=siteinfo',
 		);
 	}
 
