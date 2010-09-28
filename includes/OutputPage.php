@@ -1992,10 +1992,10 @@ class OutputPage {
 		if ( !empty( $reasons ) ) {
 			// Permissions error
 			if( $source ) {
-				$this->setPageTitle( wfMsg( 'viewsource' ) );
-				$this->setSubtitle(
-					wfMsg( 'viewsourcefor', $skin->linkKnown( $this->getTitle() ) )
-				);
+				$title = $this->getTitle();
+				$link = $skin->linkKnown( $title );
+				$this->mPagetitle = wfMessage( 'viewsourceheader' )->rawParams( $link )->escaped();
+				$this->mHTMLtitle = wfMessage( 'viewsourcetitle', $title->getPrefixedText() )->escaped();
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
 			}
