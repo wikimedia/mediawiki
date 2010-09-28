@@ -551,7 +551,7 @@ abstract class ApiBase {
 	 * Return true if we're to watch the page, false if not, null if no change.
 	 * @param $watchlist String Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param $titleObj Title the page under consideration
-	 * @param $userOption The user option to consider when $watchlist=preferences.
+	 * @param $userOption String The user option to consider when $watchlist=preferences.
 	 * 	If not set will magically default to either watchdefault or watchcreations
 	 * @returns mixed
 	 */

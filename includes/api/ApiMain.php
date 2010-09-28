@@ -530,7 +530,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Set up the module for response
-	 * @return Object the module that will handle this action
+	 * @return ApiBase The module that will handle this action
 	 */
 	protected function setupModule() {
 		// Instantiate the module requested by the user
