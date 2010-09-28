@@ -5,20 +5,8 @@ require_once dirname( __FILE__ ) . '/ApiSetup.php';
 class ApiWatchTest extends ApiTestSetup {
 
 	function setUp() {
-		ini_set( 'log_errors', 1 );
-		ini_set( 'error_reporting', 1 );
-		ini_set( 'display_errors', 1 );
-
-		global $wgMemc;
-		$wgMemc = new FakeMemCachedClient;
+		parent::setUp();
 	}
-
-	function tearDown() {
-		global $wgMemc;
-
-		$wgMemc = null;
-	}
-
 
 	function doApiRequest( $params, $data = null ) {
 		$_SESSION = isset( $data[2] ) ? $data[2] : array();
@@ -38,7 +26,7 @@ class ApiWatchTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
 			'lgname' => self::$userName,
-			'lgpassword' => self::$passWord ), $data );
+			'lgpassword' => self::$passWord ) );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -65,11 +53,12 @@ class ApiWatchTest extends ApiTestSetup {
 			'action' => 'query',
 			'titles' => 'Main Page',
 			'intoken' => 'edit|delete|protect|move|block|unblock',
-			'prop' => 'info' ), $data );
+			'prop' => 'info' ) );
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$key = array_pop( array_keys( $data[0]['query']['pages'] ) );
+		$keys = array_keys( $data[0]['query']['pages'] );
+		$key = array_pop( $keys );
 
 		$this->assertArrayHasKey( $key, $data[0]['query']['pages'] );
 		$this->assertArrayHasKey( 'edittoken', $data[0]['query']['pages'][$key] );
@@ -86,7 +75,8 @@ class ApiWatchTest extends ApiTestSetup {
 	 * @depends testGetToken
 	 */
 	function testWatchEdit( $data ) {
-		$key = array_pop( array_keys( $data[0]['query']['pages'] ) );
+		$keys = array_keys( $data[0]['query']['pages'] );
+		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];
 
 		$data = $this->doApiRequest( array(
@@ -135,7 +125,8 @@ class ApiWatchTest extends ApiTestSetup {
 	 * @depends testGetToken
 	 */
 	function testWatchProtect( $data ) {
-		$key = array_pop( array_keys( $data[0]['query']['pages'] ) );
+		$keys = array_keys( $data[0]['query']['pages'] );
+		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];
 
 		$data = $this->doApiRequest( array(
@@ -163,7 +154,8 @@ class ApiWatchTest extends ApiTestSetup {
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$key = array_pop( array_keys( $data[0]['query']['pages'] ) );
+		$keys = array_keys( $data[0]['query']['pages'] );
+		$key = array_pop( $keys );
 
 		$this->assertArrayHasKey( 'pageid', $data[0]['query']['pages'][$key] );
 		$this->assertArrayHasKey( 'revisions', $data[0]['query']['pages'][$key] );
@@ -177,7 +169,8 @@ class ApiWatchTest extends ApiTestSetup {
 	 * @depends testGetRollbackToken
 	 */
 	function testWatchRollback( $data ) {
-		$key = array_pop( array_keys( $data[0]['query']['pages'] ) );
+		$keys = array_keys( $data[0]['query']['pages'] );
+		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key]['revisions'][0];
 
 		$data = $this->doApiRequest( array(
@@ -195,7 +188,8 @@ class ApiWatchTest extends ApiTestSetup {
 	 * @depends testGetToken
 	 */
 	function testWatchDelete( $data ) {
-		$key = array_pop( array_keys( $data[0]['query']['pages'] ) );
+		$keys = array_keys( $data[0]['query']['pages'] );
+		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];
 
 		$data = $this->doApiRequest( array(
