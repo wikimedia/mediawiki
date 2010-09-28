@@ -321,8 +321,11 @@ class DatabaseMysql extends DatabaseBase {
 			return $this->mFakeSlaveLag;
 		}
 		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
+		if( !$res ) {
+			return false;
+		}
 		# Find slave SQL thread
-		while ( $row = $this->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			/* This should work for most situations - when default db
 			 * for thread is not specified, it had no events executed,
 			 * and therefore it doesn't know yet how lagged it is.
