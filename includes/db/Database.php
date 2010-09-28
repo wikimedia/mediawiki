@@ -2322,7 +2322,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return Database replication lag in seconds
 	 */
 	function getLag() {
-		return $this->mFakeSlaveLag;
+		return intval( $this->mFakeSlaveLag );
 	}
 
 	/**
