@@ -115,6 +115,10 @@ class RecentChange {
 		$this->mExtra = $extra;
 	}
 
+    /**
+     *
+     * @return Title
+     */
 	public function &getTitle() {
 		if( $this->mTitle === false ) {
 			$this->mTitle = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
@@ -579,7 +583,7 @@ class RecentChange {
 	/**
 	 * Get an attribute value
 	 *
-	 * @param $name Attribute name
+	 * @param $name String Attribute name
 	 * @return mixed
 	 */
 	public function getAttribute( $name ) {
