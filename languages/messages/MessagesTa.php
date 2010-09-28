@@ -351,7 +351,7 @@ $1',
 'nstab-user'      => 'பயனர் பக்கம்',
 'nstab-media'     => 'ஊடகப் பக்கம்',
 'nstab-special'   => 'சிறப்புப் பக்கம்',
-'nstab-project'   => 'திட்டப் பக்கம்',
+'nstab-project'   => 'திட்டத்தின் பக்கம்',
 'nstab-image'     => 'கோப்பு',
 'nstab-mediawiki' => 'தகவல்',
 'nstab-template'  => 'வார்ப்புரு',
@@ -1177,6 +1177,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'action-browsearchive'      => 'அழிக்கப்பட்ட  பக்கங்களை தேடு',
 'action-undelete'           => 'அழித்த பக்கத்தை மறுபடியும் கொண்டு வா',
 'action-block'              => 'இப்பயனரை மேலும் தொகுக்க அனுமதிக்க வேண்டாம்',
+'action-userrights'         => 'எல்லாப் பயனர் உரிமைகளையும் தொகுக்கவும்',
 'action-revisionmove'       => 'திருத்தங்களை நகர்த்தவும்',
 
 # Recent changes
@@ -1185,6 +1186,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'recentchanges-legend'              => 'அண்மைய மாற்றங்களின் தேர்வுகள்',
 'recentchangestext'                 => 'இந்த விக்கிக்கு மிக அண்மையில் செய்யப்பட்ட மாற்றங்களை, இந்தப் பக்கத்தில் காணலாம்.',
 'recentchanges-feed-description'    => 'இவ்வுள்ளீட்டில் இந்த விக்கியில் செய்யப்பட்ட் மிக அண்மைய மாற்றங்கள் கவனிக்கப்படுகின்றன.',
+'recentchanges-label-newpage'       => 'இந்தத் தொகுப்பு ஒரு புதிய பக்கத்தை உருவாக்கியுள்ளது',
 'recentchanges-label-minor'         => 'இது ஒரு சிறு தொகுப்பு',
 'recentchanges-label-bot'           => 'இந்த தொகுப்பானது ஒரு தானியங்கியால் செய்யப்பட்டதாகும்',
 'rcnote'                            => "கீழே காணப்படுவது $4 ஆம் தேதி $5 மணிக்கு் உள்ளபடி கடைசி {{PLURAL:$2|24 மணித்தியாலங்களில்|'''$2''' நாட்களில்}} செய்யப்பட்ட {{PLURAL:$1|'''ஒரு''' மாற்றம்|'''$1''' கடைசி மாற்றங்கள்}} ஆகும்.",
@@ -1371,6 +1373,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'nolinkstoimage'            => 'இப் படிமத்துக்கு இணைக்கப்பட்டுள்ள பக்கங்கள் எதுவும் இல்லை.',
 'sharedupload'              => 'இக்கோப்பு $1 இலிருந்தானது. ஏனைய திட்டங்களிலும் பயன்படுத்தப்படலாம்.',
 'uploadnewversion-linktext' => 'இப்படிமத்தின் புதிய பதிப்பை பதிவேற்று',
+'shared-repo-from'          => '$1-ல் இருந்து',
 
 # File reversion
 'filerevert'                => '$1 ஐ முன்நிலையாக்கு',
@@ -1426,7 +1429,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'randomredirect-nopages' => '"$1" பெயர்வெளியில் வழிமாற்றுப் பக்கங்கள் எதுவுமில்லை.',
 
 # Statistics
-'statistics'               => 'புள்ளி விபரங்கள்',
+'statistics'               => 'புள்ளிவிவரங்கள்',
 'statistics-header-pages'  => 'பக்கங்களின் புள்ளிவிவரங்கள்',
 'statistics-header-edits'  => 'தொகுப்புக்கள் பற்றிய புள்ளிவிவரங்கள்',
 'statistics-header-views'  => 'எத்தனைத்தடவை பார்க்கப்பட்டது எனபது பற்றிய புள்ளிவிவரங்கள்',
@@ -1565,24 +1568,30 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'sp-deletedcontributions-contribs' => 'பங்களிப்புக்கள்',
 
 # Special:LinkSearch
-'linksearch'    => 'வெளி இணைப்புகள்',
-'linksearch-ns' => 'பெயர்வெளி:',
-'linksearch-ok' => 'தேடுக',
+'linksearch'      => 'வெளி இணைப்புகள்',
+'linksearch-ns'   => 'பெயர்வெளி:',
+'linksearch-ok'   => 'தேடுக',
+'linksearch-line' => '$1-ஆனது $2-லிருந்து இணைக்கப்பட்டுள்ளது',
 
 # Special:ListUsers
 'listusersfrom'      => 'பின்வரும் எழுத்துடன் தொடங்கும் பயனர்களைக் காட்டு:',
 'listusers-submit'   => 'காட்டு',
 'listusers-noresult' => 'ஒரு பயனரும் இல்லை.',
+'listusers-blocked'  => '(தடை செய்யப்பட்டுள்ளது)',
 
 # Special:ActiveUsers
 'activeusers'            => 'தொடர்பங்களிப்பாளர்களின் பட்டியல்',
 'activeusers-from'       => 'பின்வரும் எழுத்துடன் தொடங்கும் பயனர்களைக் காட்டு:',
 'activeusers-hidebots'   => 'தானியங்கிகளை மறை',
 'activeusers-hidesysops' => 'நிர்வாகிகளை மறை',
+'activeusers-noresult'   => 'எந்தவொரு பயனர்களும் காணப்படவில்லை.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'பயனர் உருவாக்கம் பற்றிய குறிப்பு',
-'newuserlog-create-entry' => 'புதிய பயனர் கணக்கு',
+'newuserlogpage'              => 'பயனர் உருவாக்கம் பற்றிய குறிப்பு',
+'newuserlog-byemail'          => 'மின்னஞ்சல் மூலம் கடவுச்சொல் அனுப்பப்பட்டுவிட்டது',
+'newuserlog-create-entry'     => 'புதிய பயனர் கணக்கு',
+'newuserlog-create2-entry'    => '$1-என்ற புதிய கணக்குத் தொடங்கப்பட்டுவிட்டது',
+'newuserlog-autocreate-entry' => 'கணக்கு தானாக உருவாக்கப்பட்டுவிட்டது',
 
 # Special:ListGroupRights
 'listgrouprights'          => 'பயனர் குழு உரிமைகள்',
@@ -1695,6 +1704,7 @@ $NEWPAGE
 'confirmdeletetext'      => 'நீங்கள் இப்பக்கத்தை அதன் வரலாற்றுடன் சேர்த்து நீக்க விழைகிறிர்கள்.
 அருள் கூர்ந்து உங்கள் செய்கையின் விளைவுகளை நீங்கள் விள்ங்கிக் கொண்டீர்கள் என்பதையும் இது [[{{MediaWiki:Policy-url}}|கொள்கைகளுடன்]] ஒத்துப்போவதையும் உறுதிப் படுத்தவும்.',
 'actioncomplete'         => 'செயற்பாடு நிறைவுற்றது',
+'actionfailed'           => 'செயல் வெற்றியடையவில்லை',
 'deletedtext'            => '"<nowiki>$1</nowiki>" நீக்கப்பட்டு விட்டது. அண்மைய நீக்குதல்களின் பதிவுக்கு $2 ஐப் பார்க்க.',
 'deletedarticle'         => '"[[$1]]" நீக்கப்பட்டது',
 'dellogpage'             => 'நீக்கல் பதிவு',
@@ -1798,6 +1808,7 @@ $NEWPAGE
 'undelete-nodiff'              => 'முந்தைய திருத்தங்கள் காணப்படவில்லை.',
 'undeletebtn'                  => 'மீட்டெடு',
 'undeletelink'                 => 'பார்க்க/மீட்டெடு',
+'undeleteviewlink'             => 'பார்வையிடு',
 'undeletereset'                => 'மீட்டமைக்க',
 'undeletecomment'              => 'காரணம்:',
 'undeletedarticle'             => '"$1" மீட்டெடுக்கப்பட்டது',
@@ -2255,6 +2266,8 @@ $1',
 'newimages'             => 'புதிய படிமங்கள் பக்கம்',
 'imagelisttext'         => 'கீழ் வருவது $2 பாகுபடுத்தப்பட்ட $1 {{PLURAL:$1|படிமத்தின்|படிமங்களின்}} பட்டியலாகும்.',
 'newimages-summary'     => 'இச்சிறப்புப் பக்கம் கடைசியாக பதிவேற்றப்பட்ட பக்கங்களைப் பட்டியலிடுகிறது.',
+'newimages-legend'      => 'வடிகட்டி',
+'newimages-label'       => 'கோப்பின் பெயர் (அல்லது அதன் பகுதி):',
 'showhidebots'          => '(தானியங்கிகளை $1)',
 'noimages'              => 'பார்வைக்கு ஓன்றுமில்லை.',
 'ilsubmit'              => 'தேடுக',

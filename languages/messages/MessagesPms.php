@@ -519,9 +519,9 @@ Për piasì speta prima ëd prové torna.",
 'loginlanguagelabel'         => 'Lenga: $1',
 'suspicious-userlogout'      => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
 'ratelimit-excluded-ips'     => " #<!-- leave this line exactly as it is --> <pre>
-# La sintass a l'é com ch'a ven:
-#   * Minca ròba da un caràter \"#\" a la fin ëd la linia a l'é un coment
-#   * Minca linia pa-bianca a l'é n'adrëssa IP gavà dal lìmit ëd valutassion
+# La sintassi a l'é parèj:
+#   * Tut lòn ch'a part da 'n caràter \"#\" a la fin ëd la linia a l'é un coment
+#   * Minca linia nen veuida a l'é n'adrëssa IP gavà dal lìmit ëd frequensa
  #</pre> <!-- leave this line exactly as it is -->",
 
 # JavaScript password checks
@@ -971,8 +971,8 @@ Ch'a varda mach che a-i ven-a nen fòra un rabel ant la continuità stòrica.",
 'compareselectedversions'  => 'Paragon-a le version selessionà',
 'showhideselectedversions' => 'Smon-e/stërmé le version selessionà',
 'editundo'                 => "buta 'me ch'a l'era",
-'diff-multi'               => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} da {{PLURAL:$2|n'utent|$2 utent}} pa mostrà.)",
-'diff-multi-manyusers'     => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} da pi che $2 {{PLURAL:$2|n'utent|$2 utent}} pa mostrà.)",
+'diff-multi'               => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} ëd {{PLURAL:$2|n'utent|$2 utent}} pa mostrà)",
+'diff-multi-manyusers'     => "({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} da pi che $2 {{PLURAL:$2|n'utent|utent}} pa mostrà)",
 
 # Search results
 'searchresults'                    => "Arzultà dl'arserca",
@@ -1563,15 +1563,15 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé l'ó
 'listfiles_user'        => 'Utent',
 'listfiles_size'        => 'Amzura an otet',
 'listfiles_description' => 'Descrission',
-'listfiles_count'       => 'Vërsion',
+'listfiles_count'       => 'Version',
 
 # File description page
-'file-anchor-link'                  => 'Figura',
+'file-anchor-link'                  => 'Archivi',
 'filehist'                          => "Stòria dl'archivi",
-'filehist-help'                     => "Ch'a-i daga un colp col rat ant sna cobia data/ora për ës-ciairé coma restèissa l'archivi ant col moment-là.",
+'filehist-help'                     => "Ch'a-i daga un colp col rat ant sna cobia data/ora për ës-ciairé coma a restèissa l'archivi ant col moment-là.",
 'filehist-deleteall'                => 'dëscancelé tut',
-'filehist-deleteone'                => 'scansela',
-'filehist-revert'                   => "buté torna 'me ch'a lera",
+'filehist-deleteone'                => 'scancelé',
+'filehist-revert'                   => "buté torna 'me ch'a l'era",
 'filehist-current'                  => "dël dì d'ancheuj",
 'filehist-datetime'                 => 'Data e Ora',
 'filehist-thumb'                    => 'Miniatura',

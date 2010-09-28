@@ -979,14 +979,14 @@ Vos devriâd utilisar un navigator ples novél.",
 'editingold'                       => "'''ATENCION : vos éte aprés changiér una vielye vèrsion de cela pâge.'''
 Se vos la sôvâd, tôs los changements fêts dês ceta vèrsion seront pèrdues.",
 'yourdiff'                         => 'Difèrences',
-'copyrightwarning'                 => "Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot les condicions de la $2 (vêde $1 por més de dètalys).
-Se vos voléd pas que voutros ècrits seyont changiês et rebalyês a volontât, adonc los volyéd pas sometre ique.<br />
+'copyrightwarning'                 => "Volyéd notar que totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys).
+Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion et pués rebalyês a volontât, adonc los volyéd pas sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada.
-'''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
-'copyrightwarning2'                => "Totes les contribucions a {{SITENAME}} pôvont étre changiês ou ben suprimâs per d’ôtros utilisators.
-Se vos voléd pas que voutros ècrits seyont changiês et rebalyês a volontât, adonc los volyéd pas sometre ique.<br />
+'''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
+'copyrightwarning2'                => "Volyéd notar que totes les contribucions a {{SITENAME}} pôvont étre changiês ou ben suprimâs per d’ôtros utilisators.
+Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion, adonc los volyéd pas sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada (vêde $1 por més de dètalys).
-'''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
+'''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
 'longpagewarning'                  => "'''ATENCION :''' ceta pâge at una longior de $1 Kio ;
 quârques navigators administront mâl lo changement de les pâges aprochient ou ben dèpassent 32 Kio.
 Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.",
@@ -1765,7 +1765,7 @@ Volyéd controlar lo chouèx de configuracion « file_uploads ».',
 'upload-source'               => 'Fichiér sôrsa',
 'sourcefilename'              => 'Nom du fichiér sôrsa :',
 'sourceurl'                   => 'URL sôrsa :',
-'destfilename'                => 'Nom desot loquint lo fichiér serat encartâ :',
+'destfilename'                => 'Nom du fichiér de dèstinacion :',
 'upload-maxfilesize'          => 'Talye la ples granta du fichiér : $1',
 'upload-description'          => 'Dèscripcion du fichiér',
 'upload-options'              => 'Chouèx de tèlèchargement',
