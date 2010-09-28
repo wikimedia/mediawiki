@@ -157,9 +157,6 @@ class AllmessagesTablePager extends TablePager {
 		$this->mPage = $page;
 		$this->mConds = $conds;
 		$this->mDefaultDirection = true; // always sort ascending
-		// We want to have an option for people to view *all* the messages, 
-		// so they can use Ctrl+F to search them.  5000 is the maximum that 
-		// will get through WebRequest::getLimitOffset().
 		$this->mLimitsShown = array( 20, 50, 100, 250, 500, 5000 );
 
 		global $wgLang, $wgContLang, $wgRequest;
