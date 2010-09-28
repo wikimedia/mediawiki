@@ -1002,8 +1002,8 @@ Data here will not presently be refreshed.',
 'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
 Query: $2',
-'viewsourcetitle'      => 'Source for page $1',
-'viewsourceheader'     => 'Source for page $1',
+'viewsource'           => 'View source',
+'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Action throttled',
 'actionthrottledtext'  => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
 Please try again in a few minutes.',
