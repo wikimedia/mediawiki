@@ -330,7 +330,9 @@ class EditPage {
 		$permErrors = $this->getEditPermissionErrors();
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
-			$this->readOnlyPage( $this->getContent( false ), true, $permErrors, 'edit' );
+			$content = $this->getContent( null );
+			$content = $content === '' ? null : $content;
+			$this->readOnlyPage( $content, true, $permErrors, 'edit' );
 			wfProfileOut( __METHOD__ );
 			return;
 		} else {
@@ -1173,7 +1175,7 @@ class EditPage {
 	 *                      parameter; will be called during form output
 	 *                      near the top, for captchas and the like.
 	 */
-	function showEditForm( $formCallback=null ) {
+	function showEditForm( $formCallback = null ) {
 		global $wgOut, $wgUser, $wgTitle;
 
 		# If $wgTitle is null, that means we're in API mode.
