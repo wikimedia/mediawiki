@@ -138,7 +138,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   because it encourages edits to be marked minor accidentally and it can be
   easily replicated by custom user scripts for those who really want it.
 * Non-file pages can no longer be moved to the file namespace, nor vice versa.
-* (bug 671) The <dfn> element has been whitelisted in user input.
+* (bug 671) The <dfn>, <kbd> and <samp> elements have been whitelisted in user input
 * (bug 24563) Entries on Special:WhatLinksHere now have a link to their history
 * (bug 21503) There's now a "reason" field when creating account for other users
 * (bug 24418) action=markpatrolled now requires a token
