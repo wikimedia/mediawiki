@@ -138,7 +138,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		$count = 0;
-		while ( $row = $res->fetchObject() ) {
+		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've had enough
 				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->ipb_timestamp ) );

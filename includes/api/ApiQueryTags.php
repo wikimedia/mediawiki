@@ -71,7 +71,7 @@ class ApiQueryTags extends ApiQueryBase {
 
 		$ok = true;
 
-		while ( $row = $res->fetchObject() ) {
+		foreach ( $res as $row ) {
 			if ( !$ok ) {
 				break;
 			}
