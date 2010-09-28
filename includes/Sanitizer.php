@@ -1449,8 +1449,8 @@ class Sanitizer {
 			'cite'       => $common,
 			'dfn'        => $common,
 			'code'       => $common,
-			# samp
-			# kbd
+			'samp'       => $common,
+			'kbd'        => $common,
 			'var'        => $common,
 			'abbr'       => $common,
 			# acronym
