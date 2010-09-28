@@ -872,7 +872,7 @@ Labda umeshafutwa, au umebadilishwa jina.
 Jaribu [[Special:Search|kutafuta kurasa mpya zinazohusika kwenye wiki]].',
 
 # Revision deletion
-'rev-deleted-comment'         => '(muhtasari ilifutwa)',
+'rev-deleted-comment'         => '(maelezo yalifutwa)',
 'rev-deleted-user'            => '(jina la mtumiaji lilifutwa)',
 'rev-deleted-event'           => '(ingizo lilifutwa)',
 'rev-deleted-user-contribs'   => '[jina la mtumiaji au anwani wa IP umetolewa - sahihisho lilifichwa kutoka kwa orodha ya michango]',
