@@ -546,6 +546,7 @@ class ParserTest {
 				'transformVia404' => false,
 			),
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
+			'wgStylePath' => '/skins',
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgServerName' => 'Britney-Spears',
