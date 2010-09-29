@@ -50,6 +50,7 @@ further.
 * (bug 24166) API error when using rvprop=tags
 * For wikis setup in French language, Special:Téléchargement works again 
   as an alias for Special:Upload
+* (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16.0)
 
 == Changes since 1.16 beta 3 ==
 
