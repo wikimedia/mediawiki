@@ -188,6 +188,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Get the ApiResult object associated with current request
+	 *
+	 * @return ApiResult
 	 */
 	public function getResult() {
 		return $this->mResult;
@@ -202,6 +204,8 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Get the result formatter object. Only works after setupExecuteAction()
+	 *
+	 * @return ApiFormatBase
 	 */
 	public function getPrinter() {
 		return $this->mPrinter;
