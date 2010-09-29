@@ -88,7 +88,7 @@ class DatabaseSqlite extends DatabaseBase {
 		} catch ( PDOException $e ) {
 			$err = $e->getMessage();
 		}
-		if ( !$this->mConn ) {
+		if ( $this->mConn === false ) {
 			wfDebug( "DB connection error: $err\n" );
 			if ( !$this->mFailFunction ) {
 				throw new DBConnectionError( $this, $err );
