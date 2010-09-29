@@ -141,6 +141,7 @@ class ApiTest extends ApiTestSetup {
 		$sxe = simplexml_load_string( $req->getContent() );
 		$this->assertNotType( "bool", $sxe );
 		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
+		$this->assertNotType( "null", $sxe->login[0] );
 
 		$a = $sxe->login[0]->attributes()->result[0];
 		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
@@ -179,6 +180,7 @@ class ApiTest extends ApiTestSetup {
 		$sxe = simplexml_load_string( $req->getContent() );
 		$this->assertNotType( "bool", $sxe );
 		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
+		$this->assertNotType( "null", $sxe->login[0] );
 
 		$a = $sxe->login[0]->attributes()->result[0];
 		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
@@ -191,8 +193,9 @@ class ApiTest extends ApiTestSetup {
 		$req->execute();
 
 		$cj = $req->getCookieJar();
-		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$userName . '; .*Token=/',
-							 $cj->serializeToHttpRequest( $wgScriptPath, $wgServerName ) );
+		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $wgServerName );
+		$this->assertNotEquals( '', $serializedCookie );
+		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$userName . '; .*Token=/', $serializedCookie );
 
 
 		return $cj;
