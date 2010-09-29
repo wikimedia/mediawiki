@@ -25,7 +25,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		}
 	}
 
-	protected function doApiRequest( $params ) {
+	protected function doApiRequest( $params, $unused = null ) {
 		$sessionId = session_id();
 		session_write_close();
 		
