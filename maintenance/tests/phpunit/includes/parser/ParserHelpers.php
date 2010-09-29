@@ -19,7 +19,13 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 
 		$backend = $this->suite->getBackend();
 		$result->startTest( $this );
-		PHPUnit_Util_Timer::start();
+		
+		// Support the transition to PHPUnit 3.5 where PHPUnit_Util_Timer is replaced with PHP_Timer
+		if ( class_exists( 'PHP_Timer' ) ) {
+			PHP_Timer::start();
+		} else {
+			PHPUnit_Util_Timer::start();
+		}
 
 		$r = false;
 		try {
@@ -35,13 +41,29 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 			);
 		}
 		catch ( PHPUnit_Framework_AssertionFailedError $e ) {
-			$result->addFailure( $this, $e, PHPUnit_Util_Timer::stop() );
+			
+			// PHPUnit_Util_Timer -> PHP_Timer support (see above)
+			if ( class_exists( 'PHP_Timer' ) ) {
+				$result->addFailure( $this, $e, PHP_Timer::stop() );
+			} else {
+				$result->addFailure( $this, $e, PHPUnit_Util_Timer::stop() );
+			}
 		}
 		catch ( Exception $e ) {
-			$result->addError( $this, $e, PHPUnit_Util_Timer::stop() );
+			// PHPUnit_Util_Timer -> PHP_Timer support (see above)
+			if ( class_exists( 'PHP_Timer' ) ) {
+				$result->addFailure( $this, $e, PHP_Timer::stop() );
+			} else {
+				$result->addFailure( $this, $e, PHPUnit_Util_Timer::stop() );
+			}
 		}
 
-		$result->endTest( $this, PHPUnit_Util_Timer::stop() );
+		// PHPUnit_Util_Timer -> PHP_Timer support (see above)
+		if ( class_exists( 'PHP_Timer' ) ) {
+			$result->endTest( $this, PHP_Timer::stop() );
+		} else {
+			$result->endTest( $this, PHPUnit_Util_Timer::stop() );
+		}
 
 		$backend->recorder->record( $this->test['test'], $r );
 		$this->addToAssertionCount( PHPUnit_Framework_Assert::getCount() );
