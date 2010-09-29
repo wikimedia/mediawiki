@@ -853,7 +853,7 @@ class Article {
 				$wgOut->setETag( $parserCache->getETag( $this, $parserOptions ) );
 			}
 
-			# Is is client cached?
+			# Is it client cached?
 			if ( $wgOut->checkLastModified( $this->getTouched() ) ) {
 				wfDebug( __METHOD__ . ": done 304\n" );
 				wfProfileOut( __METHOD__ );
