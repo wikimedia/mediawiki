@@ -253,7 +253,7 @@ $messages = array(
 'tog-editsection'             => 'Modifica delle sezioni tramite il collegamento [modifica]',
 'tog-editsectiononrightclick' => 'Modifica delle sezioni tramite clic destro sul titolo (richiede JavaScript)',
 'tog-showtoc'                 => "Mostra l'indice per le pagine con più di 3 sezioni",
-'tog-rememberpassword'        => 'Ricorda la password su questo computer (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
+'tog-rememberpassword'        => 'Ricorda la password su questo browser (per un massimo di $1 {{PLURAL:$1|giorno|giorni}})',
 'tog-watchcreations'          => 'Aggiungi le pagine create agli osservati speciali',
 'tog-watchdefault'            => 'Aggiungi le pagine modificate agli osservati speciali',
 'tog-watchmoves'              => 'Aggiungi le pagine spostate agli osservati speciali',
@@ -3385,5 +3385,9 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'htmlform-submit'              => 'Invia',
 'htmlform-reset'               => 'Annulla modifiche',
 'htmlform-selectorother-other' => 'Altro',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 con la possibilità di ricerca completa nel testo',
+'sqlite-no-fts'  => '$1 senza la possibilità di ricerca completa nel testo',
 
 );
