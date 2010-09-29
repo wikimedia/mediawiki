@@ -173,13 +173,18 @@ class ApiWatchTest extends ApiTestSetup {
 		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key]['revisions'][0];
 
-		$data = $this->doApiRequest( array(
-			'action' => 'rollback',
-			'title' => 'Main Page',
-			'user' => self::$userName,
-			'token' => $pageinfo['rollbacktoken'],
-			'watchlist' => 'watch' ), $data );
-
+		try {
+			$data = $this->doApiRequest( array(
+				'action' => 'rollback',
+				'title' => 'Main Page',
+				'user' => self::$userName,
+				'token' => $pageinfo['rollbacktoken'],
+				'watchlist' => 'watch' ), $data );
+		} catch( UsageException $ue ) {
+			if( $ue->getCodeString() == 'onlyauthor' ) {
+				$this->markTestIncomplete( "Only one author to 'Main Page', cannot test rollback" );
+			}
+		}
 		$this->assertArrayHasKey( 'rollback', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
 	}
