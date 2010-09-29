@@ -2495,7 +2495,7 @@ class Parser {
 	 * @private
 	 */
 	function getVariableValue( $index, $frame=false ) {
-		global $wgContLang, $wgSitename, $wgServer, $wgServerName;
+		global $wgContLang, $wgSitename, $wgServer;
 		global $wgArticlePath, $wgScriptPath, $wgStylePath;
 
 		/**
@@ -2777,7 +2777,10 @@ class Parser {
 			case 'server':
 				return $wgServer;
 			case 'servername':
-				return $wgServerName;
+				wfSuppressWarnings(); # May give an E_WARNING in PHP < 5.3.3
+				$serverName = parse_url( $wgServer, PHP_URL_HOST );
+				wfRestoreWarnings();
+				return $serverName ? $serverName : $wgServer;
 			case 'scriptpath':
 				return $wgScriptPath;
 			case 'stylepath':

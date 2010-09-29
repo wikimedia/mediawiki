@@ -54,11 +54,10 @@ class ApiTest extends ApiTestSetup {
 	}
 
 	function testApi() {
-		global $wgServerName, $wgServer;
+		global $wgServer;
 
-		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
-			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
-									  'be set in LocalSettings.php' );
+		if ( !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 		/* Haven't thought about test ordering yet -- but this depends on HttpTest.php */
 		$resp = Http::get( self::$apiUrl . "?format=xml" );
@@ -70,11 +69,10 @@ class ApiTest extends ApiTestSetup {
 	}
 
 	function testApiLoginNoName() {
-		global $wgServerName, $wgServer;
+		global $wgServer;
 
-		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
-			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
-									  'be set in LocalSettings.php' );
+		if ( !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
 						   array( "postData" => array(
@@ -89,11 +87,10 @@ class ApiTest extends ApiTestSetup {
 	}
 
 	function testApiLoginBadPass() {
-		global $wgServerName, $wgServer;
+		global $wgServer;
 
-		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
-			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
-									  'be set in LocalSettings.php' );
+		if ( !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
 						   array( "postData" => array(
@@ -124,11 +121,10 @@ class ApiTest extends ApiTestSetup {
 	}
 
 	function testApiLoginGoodPass() {
-		global $wgServerName, $wgServer;
+		global $wgServer;
 
-		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
-			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
-									  'be set in LocalSettings.php' );
+		if ( !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 		$req = HttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 			array( "method" => "POST",
@@ -163,11 +159,10 @@ class ApiTest extends ApiTestSetup {
 	}
 
 	function testApiGotCookie() {
-		global $wgServerName, $wgServer, $wgScriptPath;
+		global $wgServer, $wgScriptPath;
 
-		if ( !isset( $wgServerName ) || !isset( $wgServer ) ) {
-			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
-									  'be set in LocalSettings.php' );
+		if ( !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 		$req = HttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 			array( "method" => "POST",
@@ -193,7 +188,9 @@ class ApiTest extends ApiTestSetup {
 		$req->execute();
 
 		$cj = $req->getCookieJar();
-		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $wgServerName );
+		$serverName = parse_url( $wgServer, PHP_URL_HOST );
+		$this->assertNotEquals( false, $serverName );
+		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
 		$this->assertNotEquals( '', $serializedCookie );
 		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$userName . '; .*Token=/', $serializedCookie );
 
@@ -206,11 +203,10 @@ class ApiTest extends ApiTestSetup {
 	 */
 	function testApiListPages( CookieJar $cj ) {
 		$this->markTestIncomplete( "Not done with this yet" );
-		global $wgServerName, $wgServer;
+		global $wgServer;
 
-		if ( $wgServerName == "localhost" || $wgServer == "http://localhost" ) {
-			$this->markTestIncomplete( 'This test needs $wgServerName and $wgServer to ' .
-									  'be set in LocalSettings.php' );
+		if ( $wgServer == "http://localhost" ) {
+			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 		$req = HttpRequest::factory( self::$apiUrl . "?action=query&format=xml&prop=revisions&" .
 									 "titles=Main%20Page&rvprop=timestamp|user|comment|content" );
