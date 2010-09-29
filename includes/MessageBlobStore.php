@@ -35,7 +35,7 @@ class MessageBlobStore {
 	 * @param $lang string Language code
 	 * @return array An array mapping module names to message blobs
 	 */
-	public static function get( $modules, $lang ) {
+	public static function get( ResourceLoader $resourceLoader, $modules, $lang ) {
 		// TODO: Invalidate blob when module touched
 		wfProfileIn( __METHOD__ );
 		if ( !count( $modules ) ) {
@@ -43,7 +43,7 @@ class MessageBlobStore {
 			return array();
 		}
 		// Try getting from the DB first
-		$blobs = self::getFromDB( array_keys( $modules ), $lang );
+		$blobs = self::getFromDB( $resourceLoader, array_keys( $modules ), $lang );
 
 		// Generate blobs for any missing modules and store them in the DB
 		$missing = array_diff( array_keys( $modules ), array_keys( $blobs ) );
@@ -311,7 +311,7 @@ class MessageBlobStore {
 	 * @param $lang string Language code
 	 * @return array Array mapping module names to blobs
 	 */
-	private static function getFromDB( $modules, $lang ) {
+	private static function getFromDB( ResourceLoader $resourceLoader, $modules, $lang ) {
 		$retval = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'msg_resource',
@@ -321,7 +321,7 @@ class MessageBlobStore {
 		);
 
 		foreach ( $res as $row ) {
-			$module = ResourceLoader::getModule( $row->mr_resource );
+			$module = $resourceLoader->getModule( $row->mr_resource );
 			if ( !$module ) {
 				// This shouldn't be possible
 				throw new MWException( __METHOD__ . ' passed an invalid module name' );

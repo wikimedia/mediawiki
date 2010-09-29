@@ -299,7 +299,7 @@ class ResourceLoader {
 	public function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = null ) {
 		// Pre-fetch blobs
 		$blobs = $context->shouldIncludeMessages() ?
-			MessageBlobStore::get( $modules, $context->getLanguage() ) : array();
+			MessageBlobStore::get( $this, $modules, $context->getLanguage() ) : array();
 
 		// Generate output
 		$out = '';
