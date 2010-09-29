@@ -30,6 +30,7 @@ class ResourceLoaderContext {
 
 	/* Protected Members */
 
+	protected $resourceLoader;
 	protected $request;
 	protected $modules;
 	protected $language;
@@ -43,9 +44,10 @@ class ResourceLoaderContext {
 
 	/* Methods */
 
-	public function __construct( WebRequest $request ) {
+	public function __construct( ResourceLoader $resourceLoader, WebRequest $request ) {
 		global $wgLang, $wgDefaultSkin, $wgResourceLoaderDebug;
 
+		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
 		// Interperet request
 		$this->modules = explode( '|', $request->getVal( 'modules' ) );
@@ -71,6 +73,10 @@ class ResourceLoaderContext {
 		}
 	}
 
+	public function getResourceLoader() {
+		return $this->resourceLoader;
+	}
+	
 	public function getRequest() {
 		return $this->request;
 	}
