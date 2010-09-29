@@ -56,23 +56,23 @@ $wgServer = '';
 
 /** @cond file_level_code */
 if( isset( $_SERVER['SERVER_NAME'] ) ) {
-	$wgServerName = $_SERVER['SERVER_NAME'];
+	$serverName = $_SERVER['SERVER_NAME'];
 } elseif( isset( $_SERVER['HOSTNAME'] ) ) {
-	$wgServerName = $_SERVER['HOSTNAME'];
+	$serverName = $_SERVER['HOSTNAME'];
 } elseif( isset( $_SERVER['HTTP_HOST'] ) ) {
-	$wgServerName = $_SERVER['HTTP_HOST'];
+	$serverName = $_SERVER['HTTP_HOST'];
 } elseif( isset( $_SERVER['SERVER_ADDR'] ) ) {
-	$wgServerName = $_SERVER['SERVER_ADDR'];
+	$serverName = $_SERVER['SERVER_ADDR'];
 } else {
-	$wgServerName = 'localhost';
+	$serverName = 'localhost';
 }
 
 $wgProto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
 
-$wgServer = $wgProto.'://' . $wgServerName;
+$wgServer = $wgProto.'://' . $serverName;
 # If the port is a non-standard one, add it to the URL
 if(    isset( $_SERVER['SERVER_PORT'] )
-	&& !strpos( $wgServerName, ':' )
+	&& !strpos( $serverName, ':' )
     && (    ( $wgProto == 'http' && $_SERVER['SERVER_PORT'] != 80 )
 	 || ( $wgProto == 'https' && $_SERVER['SERVER_PORT'] != 443 ) ) ) {
 
@@ -968,14 +968,16 @@ $wgDjvuOutputExtension = 'jpg';
 /**
  * Site admin email address.
  */
-$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
+$wgEmergencyContact = 'wikiadmin@' . $serverName;
 
 /**
  * Password reminder email address.
  *
  * The address we should use as sender when a user is requesting his password.
  */
-$wgPasswordSender	= 'MediaWiki Mail <apache@' . $wgServerName . '>';
+$wgPasswordSender	= 'MediaWiki Mail <apache@' . $serverName . '>';
+
+unset($serverName); # Don't leak local variables to global scope
 
 /**
  * Dummy address which should be accepted during mail send action.

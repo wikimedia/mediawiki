@@ -2090,7 +2090,7 @@ Magic Word: {{SERVER}}
 !! input
 {{SERVER}}
 !! result
-<p><a href="http://localhost" class="external free" rel="nofollow">http://localhost</a>
+<p><a href="http://Britney-Spears" class="external free" rel="nofollow">http://Britney-Spears</a>
 </p>
 !! end
 

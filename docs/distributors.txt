@@ -96,9 +96,10 @@ Some configuration options that distributors might be in a position to set
 intelligently:
 
   * $wgEmergencyContact: An e-mail address that can be used to contact the wiki
-  administrator.  By default, "wikiadmin@$wgServerName".
+  administrator.  By default, "wikiadmin@ServerName".
   * $wgPasswordSender: The e-mail address to use when sending password e-mails.
-  By default, "MediaWiki Mail <apache@$wgServerName>".
+  By default, "MediaWiki Mail <apache@ServerName>".
+	(with ServerName guessed from the http request)
   * $wgSMTP: Can be configured to use SMTP for mail sending instead of PHP
   mail().
 

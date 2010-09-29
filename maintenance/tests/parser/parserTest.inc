@@ -532,7 +532,7 @@ class ParserTest {
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
 		$settings = array(
-			'wgServer' => 'http://localhost',
+			'wgServer' => 'http://Britney-Spears',
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
@@ -549,7 +549,6 @@ class ParserTest {
 			'wgStylePath' => '/skins',
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
-			'wgServerName' => 'Britney-Spears',
 			'wgLanguageCode' => $lang,
 			'wgDBprefix' => $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_',
 			'wgRawHtml' => isset( $opts['rawhtml'] ),
