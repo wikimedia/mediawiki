@@ -132,7 +132,6 @@ class UploadFromUrlTest extends ApiTestSetup {
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
-		self::$user->addGroup( '*' );
 		self::$user->addGroup( 'sysop' );
 		$exception = false;
 		$data = $this->doApiRequest( array(
