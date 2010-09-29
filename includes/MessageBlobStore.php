@@ -31,7 +31,7 @@
 class MessageBlobStore {
 	/**
 	 * Get the message blobs for a set of modules
-	 * @param $modules array Array of module names
+	 * @param $modules array Array of module objects keyed by module name
 	 * @param $lang string Language code
 	 * @return array An array mapping module names to message blobs
 	 */
@@ -43,14 +43,14 @@ class MessageBlobStore {
 			return array();
 		}
 		// Try getting from the DB first
-		$blobs = self::getFromDB( $modules, $lang );
+		$blobs = self::getFromDB( array_keys( $modules ), $lang );
 
 		// Generate blobs for any missing modules and store them in the DB
-		$missing = array_diff( $modules, array_keys( $blobs ) );
-		foreach ( $missing as $module ) {
-			$blob = self::insertMessageBlob( $module, $lang );
+		$missing = array_diff( array_keys( $modules ), array_keys( $blobs ) );
+		foreach ( $missing as $name ) {
+			$blob = self::insertMessageBlob( $name, $modules[$name], $lang );
 			if ( $blob ) {
-				$blobs[$module] = $blob;
+				$blobs[$name] = $blob;
 			}
 		}
 
@@ -66,8 +66,8 @@ class MessageBlobStore {
 	 * @param $lang string Language code
 	 * @return mixed Message blob or false if the module has no messages
 	 */
-	public static function insertMessageBlob( $module, $lang ) {
-		$blob = self::generateMessageBlob( $module, $lang );
+	public static function insertMessageBlob( $name, ResourceLoaderModule $module, $lang ) {
+		$blob = self::generateMessageBlob( $name, $module, $lang );
 
 		if ( !$blob ) {
 			return false;
@@ -76,7 +76,7 @@ class MessageBlobStore {
 		$dbw = wfGetDB( DB_MASTER );
 		$success = $dbw->insert( 'msg_resource', array(
 				'mr_lang' => $lang,
-				'mr_resource' => $module,
+				'mr_resource' => $name,
 				'mr_blob' => $blob,
 				'mr_timestamp' => $dbw->timestamp()
 			),
@@ -88,7 +88,7 @@ class MessageBlobStore {
 			if ( $dbw->affectedRows() == 0 ) {
 				// Blob was already present, fetch it
 				$blob = $dbw->selectField( 'msg_resource', 'mr_blob', array(
-						'mr_resource' => $module,
+						'mr_resource' => $name,
 						'mr_lang' => $lang,
 					),
 					__METHOD__
@@ -96,11 +96,10 @@ class MessageBlobStore {
 			} else {
 				// Update msg_resource_links
 				$rows = array();
-				$mod = ResourceLoader::getModule( $module );
 
-				foreach ( $mod->getMessages() as $key ) {
+				foreach ( $module->getMessages() as $key ) {
 					$rows[] = array(
-						'mrl_resource' => $module,
+						'mrl_resource' => $name,
 						'mrl_message' => $key
 					);
 				}
@@ -120,14 +119,14 @@ class MessageBlobStore {
 	 * @return mixed If $lang is set, the new message blob for that language is 
 	 *    returned if present. Otherwise, null is returned.
 	 */
-	public static function updateModule( $module, $lang = null ) {
+	public static function updateModule( $name, ResourceLoaderModule $module, $lang = null ) {
 		$retval = null;
 
 		// Find all existing blobs for this module
 		$dbw = wfGetDB( DB_MASTER );
 		$res = $dbw->select( 'msg_resource',
 			array( 'mr_lang', 'mr_blob' ),
-			array( 'mr_resource' => $module ),
+			array( 'mr_resource' => $name ),
 			__METHOD__
 		);
 
@@ -139,13 +138,13 @@ class MessageBlobStore {
 
 		foreach ( $res as $row ) {
 			$oldBlob = $row->mr_blob;
-			$newBlob = self::generateMessageBlob( $module, $row->mr_lang );
+			$newBlob = self::generateMessageBlob( $name, $module, $row->mr_lang );
 
 			if ( $row->mr_lang === $lang ) {
 				$retval = $newBlob;
 			}
 			$newRows[] = array(
-				'mr_resource' => $module,
+				'mr_resource' => $name,
 				'mr_lang' => $row->mr_lang,
 				'mr_blob' => $newBlob,
 				'mr_timestamp' => $now
@@ -166,7 +165,7 @@ class MessageBlobStore {
 		// Delete removed messages, insert added ones
 		if ( $removed ) {
 			$dbw->delete( 'msg_resource_links', array(
-					'mrl_resource' => $module,
+					'mrl_resource' => $name,
 					'mrl_message' => $removed
 				), __METHOD__
 			);
@@ -176,7 +175,7 @@ class MessageBlobStore {
 
 		foreach ( $added as $message ) {
 			$newLinksRows[] = array(
-				'mrl_resource' => $module,
+				'mrl_resource' => $name,
 				'mrl_message' => $message
 			);
 		}
@@ -343,11 +342,10 @@ class MessageBlobStore {
 	 * @param $lang string Language code
 	 * @return string JSON object
 	 */
-	private static function generateMessageBlob( $module, $lang ) {
-		$mod = ResourceLoader::getModule( $module );
+	private static function generateMessageBlob( $name, ResourceLoaderModule $module, $lang ) {
 		$messages = array();
 
-		foreach ( $mod->getMessages() as $key ) {
+		foreach ( $module->getMessages() as $key ) {
 			$messages[$key] = wfMsgExt( $key, array( 'language' => $lang ) );
 		}
 

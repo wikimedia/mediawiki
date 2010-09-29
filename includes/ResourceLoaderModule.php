@@ -1054,7 +1054,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		
 		$out = '';
 		$registrations = array();
-		foreach ( ResourceLoader::getModules() as $name => $module ) {
+		foreach ( $context->getResourceLoader()->getModules() as $name => $module ) {
 			// Support module loader scripts
 			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
 				$deps = FormatJson::encode( $module->getDependencies() );
@@ -1104,8 +1104,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				'skin' => $context->getSkin(),
 				'debug' => $context->getDebug() ? 'true' : 'false',
 				'version' => wfTimestamp( TS_ISO_8601, round( max(
-					ResourceLoader::getModule( 'jquery' )->getModifiedTime( $context ),
-					ResourceLoader::getModule( 'mediawiki' )->getModifiedTime( $context )
+					$context->getResourceLoader()->getModule( 'jquery' )->getModifiedTime( $context ),
+					$context->getResourceLoader()->getModule( 'mediawiki' )->getModifiedTime( $context )
 				), -2 ) )
 			);
 			// Ensure uniform query order
@@ -1132,10 +1132,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			return $this->modifiedTime[$hash];
 		}
 		$this->modifiedTime[$hash] = filemtime( "$IP/resources/startup.js" );
-		
+
 		// ATTENTION!: Because of the line above, this is not going to cause infinite recursion - think carefully
 		// before making changes to this code!
-		return $this->modifiedTime[$hash] = ResourceLoader::getHighestModifiedTime( $context );
+		$time = 1; // wfTimestamp() treats 0 as 'now', so that's not a suitable choice
+		foreach ( $context->getResourceLoader()->getModules() as $module ) {
+			$time = max( $time, $module->getModifiedTime( $context ) );
+		}
+		return $this->modifiedTime[$hash] = $time;
 	}
 
 	public function getFlip( $context ) {

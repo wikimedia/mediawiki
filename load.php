@@ -45,7 +45,8 @@ if ( $wgRequest->isPathInfoBad() ) {
 }
 
 // Respond to resource loading request
-ResourceLoader::respond( new ResourceLoaderContext( $wgRequest ) );
+$resourceLoader = new ResourceLoader();
+$resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
 
 wfProfileOut( 'load.php' );
 wfLogProfilingData();

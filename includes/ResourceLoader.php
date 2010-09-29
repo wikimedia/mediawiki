@@ -30,30 +30,11 @@ class ResourceLoader {
 	/* Protected Static Members */
 
 	// @var array list of module name/ResourceLoaderModule object pairs
-	protected static $modules = array();
-	protected static $initialized = false;
+	protected $modules = array();
 
-	/* Protected Static Methods */
-
-	/**
-	 * Registers core modules and runs registration hooks
-	 */
-	protected static function initialize() {
-		global $IP;
-		
-		// Safety check - this should never be called more than once
-		if ( !self::$initialized ) {
-			wfProfileIn( __METHOD__ );
-			// This needs to be first, because hooks might call ResourceLoader 
-			// public interfaces which will call this
-			self::$initialized = true;
-			self::register( include( "$IP/resources/Resources.php" ) );
-			wfRunHooks( 'ResourceLoaderRegisterModules' );
-			wfProfileOut( __METHOD__ );
-		}
-	}
+	/* Protected Methods */
 	
-	/*
+	/**
 	 * Loads information stored in the database about modules
 	 * 
 	 * This is not inside the module code because it's so much more performant to request all of the information at once
@@ -62,7 +43,7 @@ class ResourceLoader {
 	 * @param $modules array list of module names to preload information for
 	 * @param $context ResourceLoaderContext context to load the information within
 	 */
-	protected static function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
+	protected function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
 		$dbr = wfGetDb( DB_SLAVE );
 		$skin = $context->getSkin();
 		$lang = $context->getLanguage();
@@ -76,21 +57,21 @@ class ResourceLoader {
 		
 		$modulesWithDeps = array();
 		foreach ( $res as $row ) {
-			self::$modules[$row->md_module]->setFileDependencies( $skin,
+			$this->modules[$row->md_module]->setFileDependencies( $skin,
 				FormatJson::decode( $row->md_deps, true )
 			);
 			$modulesWithDeps[] = $row->md_module;
 		}
 		// Register the absence of a dependencies row too
 		foreach ( array_diff( $modules, $modulesWithDeps ) as $name ) {
-			self::$modules[$name]->setFileDependencies( $skin, array() );
+			$this->modules[$name]->setFileDependencies( $skin, array() );
 		}
 		
 		// Get message blob mtimes. Only do this for modules with messages
 		$modulesWithMessages = array();
 		$modulesWithoutMessages = array();
 		foreach ( $modules as $name ) {
-			if ( count( self::$modules[$name]->getMessages() ) ) {
+			if ( count( $this->modules[$name]->getMessages() ) ) {
 				$modulesWithMessages[] = $name;
 			} else {
 				$modulesWithoutMessages[] = $name;
@@ -103,11 +84,11 @@ class ResourceLoader {
 				), __METHOD__
 			);
 			foreach ( $res as $row ) {
-				self::$modules[$row->mr_resource]->setMsgBlobMtime( $lang, $row->mr_timestamp );
+				$this->modules[$row->mr_resource]->setMsgBlobMtime( $lang, $row->mr_timestamp );
 			}
 		}
 		foreach ( $modulesWithoutMessages as $name ) {
-			self::$modules[$name]->setMsgBlobMtime( $lang, 0 );
+			$this->modules[$name]->setMsgBlobMtime( $lang, 0 );
 		}
 	}
 
@@ -119,7 +100,7 @@ class ResourceLoader {
 	 * @param $file String: path to file being filtered, (optional: only required for CSS to resolve paths)
 	 * @return String: filtered data
 	 */
-	protected static function filter( $filter, $data ) {
+	protected function filter( $filter, $data ) {
 		global $wgMemc;
 		wfProfileIn( __METHOD__ );
 
@@ -166,7 +147,23 @@ class ResourceLoader {
 		return $result;
 	}
 
-	/* Static Methods */
+	/* Methods */
+
+	/**
+	 * Registers core modules and runs registration hooks
+	 */
+	public function __construct() {
+		global $IP;
+		
+		wfProfileIn( __METHOD__ );
+		
+		// Register core modules
+		$this->register( include( "$IP/resources/Resources.php" ) );
+		// Register extension modules
+		wfRunHooks( 'ResourceLoaderRegisterModules', array( &$this ) );
+		
+		wfProfileOut( __METHOD__ );
+	}
 
 	/**
 	 * Registers a module with the ResourceLoader system.
@@ -184,14 +181,13 @@ class ResourceLoader {
 	 *    happened, but in bringing errors to the client in a way that they can 
 	 *    easily see them if they want to, such as by using FireBug
 	 */
-	public static function register( $name, ResourceLoaderModule $object = null ) {
+	public function register( $name, ResourceLoaderModule $object = null ) {
 		wfProfileIn( __METHOD__ );
-		self::initialize();
 		
 		// Allow multiple modules to be registered in one call
 		if ( is_array( $name ) && !isset( $object ) ) {
 			foreach ( $name as $key => $value ) {
-				self::register( $key, $value );
+				$this->register( $key, $value );
 			}
 
 			wfProfileOut( __METHOD__ );
@@ -199,13 +195,14 @@ class ResourceLoader {
 		}
 
 		// Disallow duplicate registrations
-		if ( isset( self::$modules[$name] ) ) {
+		if ( isset( $this->modules[$name] ) ) {
 			// A module has already been registered by this name
 			throw new MWException( 'Another module has already been registered as ' . $name );
 		}
 		// Attach module
-		self::$modules[$name] = $object;
+		$this->modules[$name] = $object;
 		$object->setName( $name );
+		
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -214,11 +211,8 @@ class ResourceLoader {
 	 *
 	 * @return Array: array( modulename => ResourceLoaderModule )
 	 */
-	public static function getModules() {
-		
-		self::initialize();
-		
-		return self::$modules;
+	public function getModules() {
+		return $this->modules;
 	}
 
 	/**
@@ -227,31 +221,8 @@ class ResourceLoader {
 	 * @param $name String: module name
 	 * @return mixed ResourceLoaderModule or null if not registered
 	 */
-	public static function getModule( $name ) {
-		
-		self::initialize();
-		
-		return isset( self::$modules[$name] ) ? self::$modules[$name] : null;
-	}
-
-	/**
-	 * Get the highest modification time of all modules, based on a given 
-	 * combination of language code, skin name and debug mode flag.
-	 *
-	 * @param $context ResourceLoaderContext object
-	 * @return Integer: UNIX timestamp
-	 */
-	public static function getHighestModifiedTime( ResourceLoaderContext $context ) {
-		
-		self::initialize();
-		
-		$time = 1; // wfTimestamp() treats 0 as 'now', so that's not a suitable choice
-
-		foreach ( self::$modules as $module ) {
-			$time = max( $time, $module->getModifiedTime( $context ) );
-		}
-
-		return $time;
+	public function getModule( $name ) {
+		return isset( $this->modules[$name] ) ? $this->modules[$name] : null;
 	}
 
 	/**
@@ -259,19 +230,18 @@ class ResourceLoader {
 	 *
 	 * @param $context ResourceLoaderContext object
 	 */
-	public static function respond( ResourceLoaderContext $context ) {
+	public function respond( ResourceLoaderContext $context ) {
 		global $wgResourceLoaderMaxage;
 
 		wfProfileIn( __METHOD__ );
-		self::initialize();
 		
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
 		$missing = array();
 		
 		foreach ( $context->getModules() as $name ) {
-			if ( isset( self::$modules[$name] ) ) {
-				$modules[$name] = self::$modules[$name];
+			if ( isset( $this->modules[$name] ) ) {
+				$modules[$name] = $this->modules[$name];
 			} else {
 				$missing[] = $name;
 			}
@@ -291,7 +261,7 @@ class ResourceLoader {
 		}
 
 		// Preload information needed to the mtime calculation below
-		self::preloadModuleInfo( array_keys( $modules ), $context );
+		$this->preloadModuleInfo( array_keys( $modules ), $context );
 
 		// To send Last-Modified and support If-Modified-Since, we need to detect 
 		// the last modified time
@@ -326,10 +296,10 @@ class ResourceLoader {
 		wfProfileOut( __METHOD__ );
 	}
 
-	public static function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = null ) {
+	public function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = null ) {
 		// Pre-fetch blobs
 		$blobs = $context->shouldIncludeMessages() ?
-			MessageBlobStore::get( array_keys( $modules ), $context->getLanguage() ) : array();
+			MessageBlobStore::get( $modules, $context->getLanguage() ) : array();
 
 		// Generate output
 		$out = '';
@@ -349,9 +319,9 @@ class ResourceLoader {
 				( count( $styles = $module->getStyles( $context ) ) )
 			) {
 				// Flip CSS on a per-module basis
-				if ( self::$modules[$name]->getFlip( $context ) ) {
+				if ( $this->modules[$name]->getFlip( $context ) ) {
 					foreach ( $styles as $media => $style ) {
-						$styles[$media] = self::filter( 'flip-css', $style );
+						$styles[$media] = $this->filter( 'flip-css', $style );
 					}
 				}
 			}
@@ -374,7 +344,7 @@ class ResourceLoader {
 					// Minify CSS before embedding in mediaWiki.loader.implement call (unless in debug mode)
 					if ( !$context->getDebug() ) {
 						foreach ( $styles as $media => $style ) {
-							$styles[$media] = self::filter( 'minify-css', $style );
+							$styles[$media] = $this->filter( 'minify-css', $style );
 						}
 					}
 					$out .= self::makeLoaderImplementScript( $name, $scripts, $styles, $messages );
@@ -400,14 +370,14 @@ class ResourceLoader {
 			return $out;
 		} else {
 			if ( $context->getOnly() === 'styles' ) {
-				return self::filter( 'minify-css', $out );
+				return $this->filter( 'minify-css', $out );
 			} else {
-				return self::filter( 'minify-js', $out );
+				return $this->filter( 'minify-js', $out );
 			}
 		}
 	}
 	
-	// Client code generation methods
+	/* Static Methods */
 	
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_array( $scripts ) ) {
