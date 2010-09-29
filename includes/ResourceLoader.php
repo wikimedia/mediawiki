@@ -327,8 +327,6 @@ class ResourceLoader {
 	}
 
 	public static function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = null ) {
-		global $wgUser;
-		
 		// Pre-fetch blobs
 		$blobs = $context->shouldIncludeMessages() ?
 			MessageBlobStore::get( array_keys( $modules ), $context->getLanguage() ) : array();
