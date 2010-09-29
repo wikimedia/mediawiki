@@ -712,7 +712,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'gotaccountlink'             => 'Bejelentkezés',
 'createaccountmail'          => 'e-mailben',
 'createaccountreason'        => 'Indoklás:',
-'badretype'                  => 'Az általad megadott jelszavak nem egyeznek.',
+'badretype'                  => 'A megadott jelszavak nem egyeznek.',
 'userexists'                 => 'A megadott szerkesztőnév már foglalt.
 Kérlek, válassz másikat!',
 'loginerror'                 => 'Hiba történt a bejelentkezés során',
@@ -3521,7 +3521,7 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'htmlform-selectorother-other' => 'egyéb',
 
 # SQLite database support
-'sqlite-has-fts' => '$1 a teljes szöveges keresés támogatásával',
-'sqlite-no-fts'  => '$1 a teljes szöveges keresés támogatása nélkül',
+'sqlite-has-fts' => '$1 teljes szöveges keresés támogatásával',
+'sqlite-no-fts'  => '$1 teljes szöveges keresés támogatása nélkül',
 
 );

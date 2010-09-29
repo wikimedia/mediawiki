@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ganesh
  * @author ne.wikipedia.org sysops
  * @author सरोज कुमार ढकाल
  */
@@ -40,7 +41,7 @@ $messages = array(
 'tog-editsection'             => '[परिवर्तन्]सम्बन्ध मार्फत हुने खण्ड सम्पादनलाई सक्षमपार्ने',
 'tog-editsectiononrightclick' => 'शीर्षकमा दाहिने क्लिकद्वारा खण्ड सम्पादन सक्षम पार्ने ( जाभा स्क्रिप्ट चाहिने )',
 'tog-showtoc'                 => 'विषय सुची देखाउने (तीन भन्दा बढी शीर्षक भएमा)',
-'tog-rememberpassword'        => 'मेरो यस कम्प्युटर प्रवेशलाई सम्झनुहोस् (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'यस ब्राउजरमा मेरो प्रवेशलाई सम्झनुहोस् (अधिकतम $1 {{PLURAL:$1|दिन|दिनहरु}} सम्म)',
 'tog-watchcreations'          => 'मेरो निगरानीसूचिमा मैले शृजना गरेको पृष्ठ थप्नुहोस्',
 'tog-watchdefault'            => 'मैले सम्पादन गरेको पृष्ठ निगरानीसूचीमा थप्ने',
 'tog-watchmoves'              => 'मैले सारेको पृष्ठहरुलाई निगरानीसूचीमा थप्ने',

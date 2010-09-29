@@ -281,7 +281,7 @@ lcont nek  tuyskar .
 'yourname'                => 'smiyt o-msxdam:',
 'yourpassword'            => 'awal iḥdan:',
 'yourpasswordagain'       => 'Зawd ara awal iḥdan:',
-'remembermypassword'      => 'Askti nu ukcum ɣ lurdinaturad (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Askti nu ukcum ɣ Urdinaturad (Iɣ kullu tggut $1 {{PLURAL:$1|Ass|Ass}})',
 'yourdomainname'          => 'Taɣult nek',
 'externaldberror'         => 'Imma tlla ɣin kra lafut ɣu ukcumnk ulla urak ittuyskar at tsbddelt lkontnk nbrra.',
 'login'                   => 'Kcm ɣid',
@@ -554,6 +554,9 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 # Special:LinkSearch
 'linksearch' => 'Izdayn n brra',
 
+# Special:Log/newusers
+'newuserlogpage' => '↓ Aɣmis n willi mmurzmn imiḍan amsqdac',
+
 # Watchlist
 'mywatchlist' => 'Umuɣ inu lli tsaggaɣ',
 'watch'       => 'zaydtin i tochwafin-niw',
@@ -595,11 +598,25 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'mycontris'     => 'Tiwuriwin inu',
 'year'          => 'Z usggas (d urbur):',
 
-'sp-contributions-talk' => 'assays',
+'sp-contributions-newbies'             => '↓ Ad ur tmlt abla tiwuriwin n wiyyaḍ',
+'sp-contributions-newbies-sub'         => '↓ Z imiḍan (comptes) imaynutn',
+'sp-contributions-newbies-title'       => '↓ Tiwuriwin n umqdac z imḍan imaynutn',
+'sp-contributions-blocklog'            => '↓ Tinɣmas n willi ttuyqqanin (blocage)',
+'sp-contributions-deleted'             => '↓ Tiwuriwin lli ittuykkasnin',
+'sp-contributions-logs'                => '↓ Iɣmisn',
+'sp-contributions-talk'                => '↓ Sgdl (discuter)',
+'sp-contributions-userrights'          => '↓ Sgiddi izrfan',
+'sp-contributions-blocked-notice'      => '↓ Amsqdac ad ittuysbddad. Maf ittuysbddad illa ɣ uɣmmis n n willi n sbid. Mayad ɣ trit ad tsnt maɣ',
+'sp-contributions-blocked-notice-anon' => '↓ Tansa yad IP ttuysbddad. Maf ittuysbddad illa ɣ uɣmmis n n willi n sbid. Mayad ɣ trit ad tsnt maɣ',
+'sp-contributions-search'              => '↓ Cnubc f tiwuriwin',
+'sp-contributions-username'            => '↓ Tansa IP niɣ assaɣ nu umsqdac:',
+'sp-contributions-toponly'             => '↓ Ad urtmlt adla mat ittuyẓran tigira yad',
+'sp-contributions-submit'              => '↓ Cabba (Sigl)',
+'sp-contributions-explain'             => '↓',
 
 # What links here
 'whatlinkshere'            => 'May izdayn ɣid',
-'whatlinkshere-title'      => 'Tasniwin li izdayn d "$1"',
+'whatlinkshere-title'      => 'Tisniwin li izdayn d "$1"',
 'whatlinkshere-page'       => 'Tasna:',
 'whatlinkshere-backlink'   => '← $1',
 'linkshere'                => "Tasnawinad ar slkamnt i '''[[:$1]]''':",

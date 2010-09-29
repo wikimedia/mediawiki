@@ -583,6 +583,21 @@ Ha probléma merülne fel a telepítés során, meg kell adnia mások számára 
 	'config-env-latest-old' => "'''Figyelmeztetés:''' A MediaWiki elavult változatát telepíti.",
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.
 Ha nagy látogatottságú oldalt üzemeltet, itt találhat információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
+	'config-db-wiki-help' => 'Adja meg azt a felhasználónevet és jelszót, amivel a wiki fog csatlakozni az adatbázishoz működés közben.
+Ha a fiók nem létezik és a telepítést végző fiók rendelkezik megfelelő jogosultsággal, egy új fiók készül a megadott a névvel, azon minimális jogosultságkörrel, ami a wiki működéséhez szükséges.',
+	'config-charset-help' => "'''Figyelmezetés:''' Ha a '''visszafelé kompatibilis UTF-8''' beállítást használja MySQL 4.1 vagy újabb verziók esetén, és utána a <code>mysqldump</code> programmal készít róla biztonsági másolatot, az tönkreteheti az összes nem ASCII-karaktert, visszafordíthatatlanul károsítva a másolatokban tárolt adatokat!
+
+'''Bináris''' módban a MediaWiki az UTF-8-ban kódolt szöveget bináris mezőkben tárolja az adatbázisban.
+Ez sokkal hatékonyabb a MySQL UTF-8-módjától, és lehetővé teszi, hogy a teljes Unicode-karakterkészletet használja.
+'''UTF-8-módban''' MySQL tudja, hogy milyen karakterkészlettel van kódolva az adat, megfelelően van megjelenítve és konvertálva, de
+nem használhatja a [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane] feletti karaktereket.",
+	'config-db-schema-help' => 'A fenti sémák általában megfelelőek.
+Csak akkor módosítson rajta, ha szükség van rá.',
+	'config-ns-other' => 'Más (adja meg)',
+	'config-admin-name-blank' => 'Adja meg az adminisztrátor felhasználónevét!',
+	'config-admin-name-invalid' => 'A megadott felhasználónév (<nowiki>$1</nowiki>) érvénytelen.
+Adjon meg egy másik felhasználónevet.',
+	'config-admin-password-blank' => 'Adja meg az adminisztrátori fiók jelszavát!',
 );
 
 /** Afrikaans (Afrikaans)
@@ -3442,6 +3457,7 @@ Móžeš to manuelnje činić.",
 $messages['hu'] = array(
 	'config-title' => 'MediaWiki $1 telepítése',
 	'config-information' => 'Információ',
+	'config-session-path-bad' => 'A <code>session.save_path</code> könyvtár (<code>$1</code>) érvénytelen vagy nem írható.',
 	'config-show-help' => 'Segítség',
 	'config-hide-help' => 'Segítség elrejtése',
 	'config-your-language' => 'Nyelv:',
@@ -3489,14 +3505,88 @@ Ajánlott a legutóbbi kiadás használata, ami a [http://www.mediawiki.org/wiki
 	'config-unicode-using-intl' => 'A rendszer Unicode normalizálására az [http://pecl.php.net/intl intl PECL kiterjesztést] használja.',
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.
 Ha nagy látogatottságú oldalt üzemeltetsz, itt találhatsz információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
+	'config-xml-bad' => 'A PHP XML-modulja hiányzik.
+Egyes MediaWiki-funkciók, melyek ezt a modult igénylik, nem fognak működni ilyen beállítások mellett.
+Ha Madrake-et futtatsz, telepítsd a php-xml csomagot.',
+	'config-pcre' => 'Úgy tűnik, hogy a PCRE támogató modul hiányzik.
+A MediaWikinek Perl-kompatibilis reguláriskifejezés-függvényekre van szüksége a működéshez.',
+	'config-memory-none' => 'A PHP-nek nincs <code>memory_limit</code> beállítása',
+	'config-memory-ok' => 'A PHP <code>memory_limit</code> beállításának értéke $1.
+Rendben.',
+	'config-memory-raised' => 'A PHP <code>memory_limit</code> beállításának értéke $1, megnövelve a következő értékre: $2.',
+	'config-memory-bad' => "'''Figyelmeztetés:''' A PHP <code>memory_limit</code> beállításának értéke $1.
+Ez az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
+	'config-xcache' => 'Az [http://trac.lighttpd.net/xcache/ XCache] telepítve van',
+	'config-apc' => 'Az [http://www.php.net/apc APC] telepítve van',
+	'config-eaccel' => 'Az [http://eaccelerator.sourceforge.net/ eAccelerator] telepítve van',
+	'config-wincache' => 'A [http://www.iis.net/download/WinCacheForPhp WinCache] telepítve van',
 	'config-db-name' => 'Adatbázisnév:',
+	'config-db-wiki-help' => 'Add meg azt a felhasználónevet és jelszót, amivel a wiki fog csatlakozni az adatbázishoz működés közben.
+Ha a fiók nem létezik és a telepítést végző fiók rendelkezik megfelelő jogosultsággal, egy új fiók készül a megadott a névvel, azon minimális jogosultságkörrel, ami a wiki működéséhez szükséges.',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0, bináris',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0, visszafelé kompatibilis UTF-8',
+	'config-charset-help' => "'''Figyelmezetés:''' Ha a '''visszafelé kompatibilis UTF-8''' beállítást használod MySQL 4.1 vagy újabb verziók esetén, és utána a <code>mysqldump</code> programmal készítesz róla biztonsági másolatot, az tönkreteheti az összes nem ASCII-karaktert, visszafordíthatatlanul károsítva a másolatokban tárolt adatokat!
+
+'''Bináris''' módban a MediaWiki az UTF-8-ban kódolt szöveget bináris mezőkben tárolja az adatbázisban.
+Ez sokkal hatékonyabb a MySQL UTF-8-módjától, és lehetővé teszi, hogy a teljes Unicode-karakterkészletet használd.
+'''UTF-8-módban''' MySQL tudja, hogy milyen karakterkészlettel van kódolva az adat, és megfelelően tárolja és konvertálja, de
+nem használhatod a [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane] feletti karaktereket.",
+	'config-db-port' => 'Adatbázisport:',
+	'config-db-schema' => 'MediaWiki-séma',
+	'config-db-ts2-schema' => 'Tsearch2-séma',
+	'config-db-schema-help' => 'A fenti sémák általában megfelelőek.
+Csak akkor módosíts rajta, ha szükség van rá.',
+	'config-sqlite-dir' => 'SQLite-adatkönyvtár:',
+	'config-header-mysql' => 'MySQL-beállítások',
+	'config-header-postgres' => 'PostgreSQL-beállítások',
+	'config-header-sqlite' => 'SQLite-beállítások',
+	'config-header-oracle' => 'Oracle-beállítások',
+	'config-invalid-db-type' => 'Érvénytelen adatbázistípus',
+	'config-sqlite-readonly' => 'A következő fájl nem írható: <code>$1</code>.',
+	'config-regenerate' => 'LocalSettings.php elkészítése újra →',
+	'config-show-table-status' => 'A SHOW TABLE STATUS lekérdezés nem sikerült!',
+	'config-mysql-engine' => 'Tárolómotor:',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-charset' => 'Adatbázis karakterkészlete:',
+	'config-mysql-binary' => 'Bináris',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => 'A wiki neve:',
+	'config-site-name-help' => 'A böngésző címsorában és még számos más helyen jelenik meg.',
+	'config-project-namespace' => 'Projektnévtér:',
 	'config-ns-generic' => 'Projekt',
+	'config-ns-site-name' => 'Ugyanaz, mint a wiki neve: $1',
+	'config-ns-other' => 'Más (add meg)',
+	'config-ns-other-default' => 'SajátWiki',
 	'config-admin-name' => 'Neved:',
 	'config-admin-password' => 'Jelszó:',
+	'config-admin-name-blank' => 'Add meg az adminisztrátor felhasználónevét!',
+	'config-admin-name-invalid' => 'A megadott felhasználónév (<nowiki>$1</nowiki>) érvénytelen.
+Adj meg egy másik felhasználónevet.',
+	'config-admin-password-blank' => 'Add meg az adminisztrátori fiók jelszavát!',
+	'config-admin-password-same' => 'A jelszó nem lehet ugyanaz, mint a felhasználónév.',
+	'config-admin-password-mismatch' => 'A megadott jelszavak nem egyeznek.',
+	'config-admin-email' => 'E-mail cím:',
+	'config-profile-wiki' => 'Hagyományos wiki',
+	'config-profile-no-anon' => 'Felhasználói fiók létrehozása szükséges',
+	'config-profile-fishbowl' => 'Csak engedélyezett szerkesztők',
+	'config-profile-private' => 'Privát wiki',
 	'config-email-settings' => 'Email beállítások',
+	'config-upload-settings' => 'Képek és fájlok feltöltése',
+	'config-upload-enable' => 'Fájlfeltöltés engedélyezése',
+	'config-upload-deleted' => 'Törölt fájlok könyvtára:',
+	'config-logo' => 'Logó URL-címe:',
+	'config-memcached-servers' => 'Memcached-szerverek:',
 	'config-extensions' => 'Kiterjesztések',
 	'config-install-step-done' => 'kész',
 	'config-install-step-failed' => 'sikertelen',
+	'config-install-database' => 'Adatbázis felállítása',
+	'config-install-tables' => 'Táblák létrehozása',
+	'config-install-tables-exist' => "'''Figyelmeztetés''': úgy tűnik, hogy a MediaWiki táblái már léteznek.
+Létrehozás kihagyása.",
+	'config-install-tables-failed' => "'''Hiba''': a tábla létrehozása nem sikerült a következő miatt: $1",
+	'config-install-interwiki-sql' => 'Az <code>interwiki.sql</code> fájl nem található.',
 );
 
 /** Interlingua (Interlingua)
@@ -7342,7 +7432,7 @@ $1
 Если вы не видите своей системы хранения данных в этом списке, следуйте инструкциям, на которые есть ссылка выше, чтобы получить поддержку.',
 	'config-support-mysql' => '* $1 — основная база данных для MediaWiki, и лучше поддерживается ([http://www.php.net/manual/en/mysql.installation.php инструкция, как собрать PHP с поддержкой MySQL])',
 	'config-support-postgres' => '* $1 — популярная открытая СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL])',
-	'config-support-sqlite' => '* $1 — это лёгковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php Инструкция, как скомпилировать PHP с поддержкой SQLite], работающей посредством PDO)',
+	'config-support-sqlite' => '* $1 — это лёгковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php инструкция, как собрать PHP с поддержкой SQLite], работающей посредством PDO)',
 	'config-header-mysql' => 'Настройки MySQL',
 	'config-header-postgres' => 'Настройки PostgreSQL',
 	'config-header-sqlite' => 'Настройки SQLite',
