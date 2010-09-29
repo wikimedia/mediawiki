@@ -83,6 +83,8 @@ class profile_point {
 	var $time;
 	var $children;
 
+	static $totaltime, $totalmemory, $totalcount;
+
 	function __construct( $name, $count, $time, $memory ) {
 		$this->name = $name;
 		$this->count = $count;
@@ -95,8 +97,7 @@ class profile_point {
 		$this->children[] = $child;
 	}
 
-	function display($indent = 0.0) {
-		global $expand, $totaltime, $totalmemory, $totalcount;
+	function display( $expand, $indent = 0.0 ) {
 		usort( $this->children, 'compare_point' );
 
 		$extet = '';
@@ -121,19 +122,19 @@ class profile_point {
 		<td class="name" style="padding-left: <?php echo $indent ?>em;">
 			<?php echo htmlspecialchars( $this->name() ) . $extet ?>
 		</td>
-		<td class="timep"><?php echo @wfPercent( $this->time() / $totaltime * 100 ) ?></td>
-		<td class="memoryp"><?php echo @wfPercent( $this->memory() / $totalmemory * 100 ) ?></td>
+		<td class="timep"><?php echo @wfPercent( $this->time() / self::$totaltime * 100 ) ?></td>
+		<td class="memoryp"><?php echo @wfPercent( $this->memory() / self::$totalmemory * 100 ) ?></td>
 		<td class="count"><?php echo $this->count() ?></td>
 		<td class="cpr"><?php echo round( sprintf( '%.2f', $this->callsPerRequest() ), 2 ) ?></td>
 		<td class="tpc"><?php echo round( sprintf( '%.2f', $this->timePerCall() ), 2 ) ?></td>
 		<td class="mpc"><?php echo round( sprintf( '%.2f' ,$this->memoryPerCall() / 1024 ), 2 ) ?></td>
-		<td class="tpr"><?php echo @round( sprintf( '%.2f', $this->time() / $totalcount ), 2 ) ?></td>
-		<td class="mpr"><?php echo @round( sprintf( '%.2f' ,$this->memory() / $totalcount / 1024 ), 2 ) ?></td>
+		<td class="tpr"><?php echo @round( sprintf( '%.2f', $this->time() / self::$totalcount ), 2 ) ?></td>
+		<td class="mpr"><?php echo @round( sprintf( '%.2f' ,$this->memory() / self::$totalcount / 1024 ), 2 ) ?></td>
 		</tr>
 		<?php
 		if ( $ex ) {
 			foreach ( $this->children as $child ) {
-				$child->display( $indent + 2 );
+				$child->display( $expand, $indent + 2 );
 			}
 		}
 	}
@@ -163,18 +164,15 @@ class profile_point {
 	}
 	
 	function callsPerRequest() {
-		global $totalcount;
-		return @( $this->count / $totalcount );
+		return @( $this->count / self::$totalcount );
 	}
 	
 	function timePerRequest() {
-		global $totalcount;
-		return @( $this->time / $totalcount );
+		return @( $this->time / self::$totalcount );
 	}
 	
 	function memoryPerRequest() {
-		global $totalcount;
-		return @( $this->memory / $totalcount );
+		return @( $this->memory / self::$totalcount );
 	}
 
 	function fmttime() {
@@ -244,9 +242,9 @@ else
 <th><a href="<?php echo getEscapedProfileUrl( false, 'memory_per_req' ) ?>">kb/req</a></th>
 </tr>
 <?php
-$totaltime = 0.0;
-$totalcount = 0;
-$totalmemory = 0.0;
+profile_point::$totaltime = 0.0;
+profile_point::$totalcount = 0;
+profile_point::$totalmemory = 0.0;
 
 function getEscapedProfileUrl( $_filter = false, $_sort = false, $_expand = false ) {
 	global $filter, $sort, $expand;
@@ -272,9 +270,9 @@ $last = false;
 foreach( $res as $o ) {
 	$next = new profile_point( $o->pf_name, $o->pf_count, $o->pf_time, $o->pf_memory );
 	if( $next->name() == '-total' ) {
-		$totaltime = $next->time();
-		$totalcount = $next->count();
-		$totalmemory = $next->memory();
+		profile_point::$totaltime = $next->time();
+		profile_point::$totalcount = $next->count();
+		profile_point::$totalmemory = $next->memory();
 	}
 	if ( $last !== false ) {
 		if ( preg_match( "/^".preg_quote( $last->name(), "/" )."/", $next->name() ) ) {
@@ -302,12 +300,12 @@ foreach ( $points as $point ) {
 	if ( strlen( $filter ) && !strstr( $point->name(), $filter ) )
 		continue;
 
-	$point->display();
+	$point->display( $expand );
 }
 ?>
 </table>
 
-<p>Total time: <tt><?php printf("%5.02f", $totaltime) ?></tt></p>
-<p>Total memory: <tt><?php printf("%5.02f", $totalmemory / 1024 ) ?></tt></p>
+<p>Total time: <tt><?php printf("%5.02f", profile_point::$totaltime) ?></tt></p>
+<p>Total memory: <tt><?php printf("%5.02f", profile_point::$totalmemory / 1024 ) ?></tt></p>
 </body>
 </html>
