@@ -217,7 +217,10 @@ abstract class ResourceLoaderModule {
 	 * @param $context ResourceLoaderContext object
 	 * @return int UNIX timestamp
 	 */
-	public abstract function getModifiedTime( ResourceLoaderContext $context );
+	public function getModifiedTime( ResourceLoaderContext $context ) {
+		// 0 would mean now
+		return 1;
+	}
 }
 
 /**
