@@ -86,7 +86,7 @@ class CoreParserFunctions {
 	static function intFunction( $parser, $part1 = '' /*, ... */ ) {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
-			$message = wfMsgGetKey( $part1, true, $parser->mOptions->getUserLang(), false );
+			$message = wfMsgGetKey( $part1, true, $parser->getOptions()->getUserLang(), false );
 			$message = wfMsgReplaceArgs( $message, $args );
 			$message = $parser->replaceVariables( $message ); // like $wgMessageCache->transform()
 			return $message;

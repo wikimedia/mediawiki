@@ -103,9 +103,11 @@ class ParserOptions {
 		return $this->mTimestamp;
 	}
 
-	# You shouldn't use this. Really. $parser->getFunctionLang() is all you need.
-	# Using this fragments the cache and is discouraged. Yes, {{int: }} uses this,
-	# producing inconsistent tables (Bug 14404).
+	/**
+	 * You shouldn't use this. Really. $parser->getFunctionLang() is all you need.
+	 * Using this fragments the cache and is discouraged. Yes, {{int: }} uses this,
+	 * producing inconsistent tables (Bug 14404).
+	 */
 	function getUserLang() {
 		$this->accessedOptions['userlang'] = true;
 		return $this->mUserLang;
