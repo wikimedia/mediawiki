@@ -53,14 +53,20 @@ class ApiTest extends ApiTestSetup {
 													   "enablechunks" => true ), "filename", "enablechunks" ) );
 	}
 
+	/**
+	 * Test that the API will accept a FauxRequest and execute. The help action
+	 * (default) throws a UsageException. Just validate we're getting proper XML
+	 *
+	 * @expectedException UsageException
+	 */
 	function testApi() {
-		global $wgServer;
-
-		if ( !isset( $wgServer ) ) {
-			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
-		}
-		/* Haven't thought about test ordering yet -- but this depends on HttpTest.php */
-		$resp = Http::get( self::$apiUrl . "?format=xml" );
+		$api = new ApiMain(
+			new FauxRequest( array( 'action' => 'help', 'format' => 'xml' ) )
+		);
+		$api->execute();
+		$api->getPrinter()->setBufferResult( true );
+		$api->printResult( false );
+		$resp = $api->getPrinter()->getBuffer();
 
 		libxml_use_internal_errors( true );
 		$sxe = simplexml_load_string( $resp );
@@ -68,22 +74,14 @@ class ApiTest extends ApiTestSetup {
 		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
 	}
 
+	/**
+	 * Test result of attempted login with an empty username
+	 */
 	function testApiLoginNoName() {
-		global $wgServer;
-
-		if ( !isset( $wgServer ) ) {
-			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
-		}
-		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
-						   array( "postData" => array(
-									 "lgname" => "",
-									 "lgpassword" => self::$passWord ) ) );
-		libxml_use_internal_errors( true );
-		$sxe = simplexml_load_string( $resp );
-		$this->assertNotType( "bool", $sxe );
-		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
-		$a = $sxe->login[0]->attributes()->result;
-		$this->assertEquals( ' result="NoName"', $a->asXML() );
+		$data = $this->doApiRequest( array( 'action' => 'login',
+			'lgname' => '', 'lgpassword' => self::$passWord
+		) );
+		$this->assertEquals( 'NoName', $data[0]['login']['result'] );
 	}
 
 	function testApiLoginBadPass() {

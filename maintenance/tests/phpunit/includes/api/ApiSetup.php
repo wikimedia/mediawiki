@@ -18,6 +18,20 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 		self::setupUser();
 	}
 
+	protected function doApiRequest( $params, $data = null ) {
+		$_SESSION = isset( $data[2] ) ? $data[2] : array();
+
+		$req = new FauxRequest( $params, true, $_SESSION );
+		$module = new ApiMain( $req, true );
+		$module->execute();
+
+		$data[0] = $module->getResultData();
+		$data[1] = $req;
+		$data[2] = $_SESSION;
+
+		return $data;
+	}
+
 	static function setupUser() {
 		if ( self::$user == NULL ) {
 			self::$userName = "Useruser";

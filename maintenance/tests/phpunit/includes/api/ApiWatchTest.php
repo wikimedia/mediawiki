@@ -8,20 +8,6 @@ class ApiWatchTest extends ApiTestSetup {
 		parent::setUp();
 	}
 
-	function doApiRequest( $params, $data = null ) {
-		$_SESSION = isset( $data[2] ) ? $data[2] : array();
-
-		$req = new FauxRequest( $params, true, $_SESSION );
-		$module = new ApiMain( $req, true );
-		$module->execute();
-
-		$data[0] = $module->getResultData();
-		$data[1] = $req;
-		$data[2] = $_SESSION;
-
-		return $data;
-	}
-
 	function testLogin() {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
