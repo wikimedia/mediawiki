@@ -340,6 +340,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * SQLite system table names are now never prefixed.
 * (bug 25292) SkinSubPageSubtitle hook now passes the Skin object as second
   parameter
+* (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16)
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

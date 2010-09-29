@@ -41,7 +41,7 @@ if (clientPC.indexOf('opera') != -1) {
 // avoiding false positives from moronic extensions that append to the IE UA
 // string (bug 23171)
 window.ie6_bugs = false;
-if ( /MSIE ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
+if ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
 && parseFloat( RegExp.$1 ) <= 6.0 ) {
 	ie6_bugs = true;
 }
