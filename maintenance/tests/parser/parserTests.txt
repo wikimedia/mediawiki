@@ -427,6 +427,59 @@ Bug 6200: Preformatted in <blockquote>
 
 !! end
 
+!! test
+<nowiki> inside <pre> (bug 13238)
+!! input
+<pre>
+<nowiki>
+</pre>
+<pre>
+<nowiki></nowiki>
+</pre>
+<pre><nowiki><nowiki></nowiki>Foo<nowiki></nowiki></nowiki></pre>
+!! result
+<pre>
+&lt;nowiki&gt;
+</pre>
+<pre>
+
+</pre>
+<pre>&lt;nowiki&gt;Foo&lt;/nowiki&gt;</pre>
+
+!! end
+
+!! test
+<nowiki> and <pre> preference (first one wins)
+!! input
+<pre>
+<nowiki>
+</pre>
+</nowiki>
+</pre>
+
+<nowiki>
+<pre>
+<nowiki>
+</pre>
+</nowiki>
+</pre>
+
+!! result
+<pre>
+&lt;nowiki&gt;
+</pre>
+<p>&lt;/nowiki&gt;
+&lt;/pre&gt;
+</p><p>
+&lt;pre&gt;
+&lt;nowiki&gt;
+&lt;/pre&gt;
+
+&lt;/pre&gt;
+</p>
+!! end
+
+
 ###
 ### Definition lists
 ###
