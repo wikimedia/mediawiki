@@ -2111,6 +2111,9 @@ HTML
 	 */
 	static function getEditToolbar() {
 		global $wgStylePath, $wgContLang, $wgLang, $wgOut;
+		global $wgUseTeX, $wgEnableUploads, $wgForeignFileRepos;
+
+		$imagesAvailable = $wgEnableUploads || count( $wgForeignFileRepos );
 
 		/**
 
@@ -2170,7 +2173,7 @@ HTML
 				'tip'    => wfMsg( 'headline_tip' ),
 				'key'    => 'H'
 			),
-			array(
+			$imagesAvailable ? array(
 				'image'  => $wgLang->getImageFile( 'button-image' ),
 				'id'     => 'mw-editbutton-image',
 				'open'   => '[[' . $wgContLang->getNsText( NS_FILE ) . ':',
@@ -2178,8 +2181,8 @@ HTML
 				'sample' => wfMsg( 'image_sample' ),
 				'tip'    => wfMsg( 'image_tip' ),
 				'key'    => 'D'
-			),
-			array(
+			) : false,
+			$imagesAvailable ? array(
 				'image'  => $wgLang->getImageFile( 'button-media' ),
 				'id'     => 'mw-editbutton-media',
 				'open'   => '[[' . $wgContLang->getNsText( NS_MEDIA ) . ':',
@@ -2187,8 +2190,8 @@ HTML
 				'sample' => wfMsg( 'media_sample' ),
 				'tip'    => wfMsg( 'media_tip' ),
 				'key'    => 'M'
-			),
-			array(
+			) : false,
+			$wgUseTeX ?	array(
 				'image'  => $wgLang->getImageFile( 'button-math' ),
 				'id'     => 'mw-editbutton-math',
 				'open'   => "<math>",
@@ -2196,7 +2199,7 @@ HTML
 				'sample' => wfMsg( 'math_sample' ),
 				'tip'    => wfMsg( 'math_tip' ),
 				'key'    => 'C'
-			),
+			) : false,
 			array(
 				'image'  => $wgLang->getImageFile( 'button-nowiki' ),
 				'id'     => 'mw-editbutton-nowiki',
@@ -2229,6 +2232,8 @@ HTML
 
 		$script = '';
 		foreach ( $toolarray as $tool ) {
+			if ( !$tool ) continue;
+
 			$params = array(
 				$image = $wgStylePath . '/common/images/' . $tool['image'],
 				// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
