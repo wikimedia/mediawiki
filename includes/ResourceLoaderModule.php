@@ -1031,13 +1031,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgNamespaceIds' => $wgContLang->getNamespaceIds(),
 			'wgSiteName' => $wgSitename,
 			'wgFileExtensions' => $wgFileExtensions,
+			'wgDBname' => $wgDBname,
 		);
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
 		}
 		if ( $wgUseAjax && $wgEnableMWSuggest ) {
 			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
-			$vars['wgDBname'] = $wgDBname;
 		}
 		
 		return $vars;
