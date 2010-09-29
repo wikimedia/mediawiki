@@ -1,17 +1,14 @@
 <?php
 
-/**
- * @group Broken
- */
 class LicensesTest extends PHPUnit_Framework_TestCase {
 
 	function testLicenses() {
 		$str = "
 * Free licenses:
-** GFLD|Debian disagrees
+** GFDL|Debian disagrees
 ";
 
-		$lc = new Licenses( $str );
+		$lc = new Licenses( array( 'licenses' => $str ) );
 		$this->assertTrue( is_a( $lc, 'Licenses' ), 'Correct class' );
 	}
 }
