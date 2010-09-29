@@ -1339,6 +1339,7 @@ $out: OutputPage object
 
 'ResourceLoaderRegisterModules': Right before modules information is required, such as when responding to a resource
 loader request or generating HTML output.
+&$resourceLoader: ResourceLoader object
 
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw
 &$obj: RawPage object
