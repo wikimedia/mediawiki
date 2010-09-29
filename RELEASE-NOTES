@@ -167,6 +167,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   limit for IP addresses: [[MediaWiki:Ratelimit-excluded-ips]]
 * Special:Version now displays whether a SQLite database supports full-text
   search.
+* (bug 24343) New parser hook {{linkurl:}}, same as {{localurl:}} with fragment
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
