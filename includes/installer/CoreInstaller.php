@@ -141,11 +141,6 @@ abstract class CoreInstaller extends Installer {
 	 * @var array
 	 */
 	public $licenses = array(
-		'none' => array(
-			'url' => '',
-			'icon' => '',
-			'text' => ''
-		),
 		'cc-by-sa' => array(
 			'url' => 'http://creativecommons.org/licenses/by-sa/3.0/',
 			'icon' => '{$wgStylePath}/common/images/cc-by-sa.png',
@@ -165,6 +160,11 @@ abstract class CoreInstaller extends Installer {
 		'gfdl-current' => array(
 			'url' => 'http://www.gnu.org/copyleft/fdl.html',
 			'icon' => '{$wgStylePath}/common/images/gnu-fdl.png',
+		),
+		'none' => array(
+			'url' => '',
+			'icon' => '',
+			'text' => ''
 		),
 		'cc-choose' => array(
 			// Details will be filled in by the selector.
