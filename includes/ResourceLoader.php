@@ -199,6 +199,12 @@ class ResourceLoader {
 			// A module has already been registered by this name
 			throw new MWException( 'Another module has already been registered as ' . $name );
 		}
+		
+		// Validate the input (type hinting lets null through)
+		if ( !( $object instanceof ResourceLoaderModule ) ) {
+			throw new MWException( 'Invalid ResourceLoader module error. Instances of ResourceLoaderModule expected.' );
+		}
+		
 		// Attach module
 		$this->modules[$name] = $object;
 		$object->setName( $name );
