@@ -1062,7 +1062,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
 				$deps = FormatJson::encode( $module->getDependencies() );
 				$group = FormatJson::encode( $module->getGroup() );
-				$version = wfTimestamp( TS_ISO_8601, round( $module->getModifiedTime( $context ), -2 ) );
+				$version = wfTimestamp( TS_ISO_8601_BASIC, round( $module->getModifiedTime( $context ), -2 ) );
 				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $loader );
 			}
 			// Automatically register module
@@ -1106,7 +1106,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				'lang' => $context->getLanguage(),
 				'skin' => $context->getSkin(),
 				'debug' => $context->getDebug() ? 'true' : 'false',
-				'version' => wfTimestamp( TS_ISO_8601, round( max(
+				'version' => wfTimestamp( TS_ISO_8601_BASIC, round( max(
 					$context->getResourceLoader()->getModule( 'jquery' )->getModifiedTime( $context ),
 					$context->getResourceLoader()->getModule( 'mediawiki' )->getModifiedTime( $context )
 				), -2 ) )
