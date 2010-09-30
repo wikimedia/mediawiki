@@ -341,6 +341,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25292) SkinSubPageSubtitle hook now passes the Skin object as second
   parameter
 * (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16)
+* (bug 25367) wfShellExec() is more explicit when failing due to disabled passthru()
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
