@@ -153,6 +153,10 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 			'2001-01-15 12:34:56',
 			wfTimestamp( TS_DB, $t ),
 			'TS_UNIX to TS_DB' );
+		$this->assertEquals(
+			'20010115T123456Z',
+			wfTimestamp( TS_ISO_8601_BASIC, $t ),
+			'TS_ISO_8601_BASIC to TS_DB' );
 
 		$this->assertEquals(
 			'20010115123456',
@@ -166,6 +170,10 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 			'2001-01-15 12:34:56',
 			wfTimestamp( TS_DB, '20010115123456' ),
 			'TS_MW to TS_DB' );
+		$this->assertEquals(
+			'20010115T123456Z',
+			wfTimestamp( TS_ISO_8601_BASIC, '20010115123456' ),
+			'TS_MW to TS_ISO_8601_BASIC' );
 
 		$this->assertEquals(
 			'20010115123456',
@@ -179,6 +187,10 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 			'2001-01-15 12:34:56',
 			wfTimestamp( TS_DB, '2001-01-15 12:34:56' ),
 			'TS_DB to TS_DB' );
+		$this->assertEquals(
+			'20010115T123456Z',
+			wfTimestamp( TS_ISO_8601_BASIC, '2001-01-15 12:34:56' ),
+			'TS_DB to TS_ISO_8601_BASIC' );
 	}
 	
 	function testBasename() {
