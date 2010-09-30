@@ -230,24 +230,18 @@ window.mediaWiki = new ( function( $ ) {
 		/* Private Methods */
 		
 		/**
-		 * Generates an ISO8601 string from a UNIX timestamp
+		 * Generates an ISO8601 "basic" string from a UNIX timestamp
 		 */
 		function formatVersionNumber( timestamp ) {
-			var date = new Date();
-			date.setTime( timestamp * 1000 );
-			function pad1( n ) {
-				return n < 10 ? '0' + n : n
+			function pad( a, b, c ) {
+				return [a < 10 ? '0' + a : a, b < 10 ? '0' + b : b, c < 10 ? '0' + c : c].join();
 			}
-			function pad2( n ) {
-				return n < 10 ? '00' + n : ( n < 100 ? '0' + n : n );     
-			}
-			return date.getUTCFullYear() + '-' +
-				pad1( date.getUTCMonth() + 1 ) + '-' +
-				pad1( date.getUTCDate() ) + 'T' +
-				pad1( date.getUTCHours() ) + ':' +
-				pad1( date.getUTCMinutes() ) + ':' +
-				pad1( date.getUTCSeconds() ) +
-				'Z';
+			var d = new Date()
+			d.setTime( timestamp * 1000 );
+			return [
+				pad( d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate() ), 'T',
+				pad( d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds() ), 'Z'
+			].join();
 		}
 		
 		/**

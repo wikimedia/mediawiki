@@ -168,6 +168,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Version now displays whether a SQLite database supports full-text
   search.
 * (bug 24343) New parser hook {{linkurl:}}, same as {{localurl:}} with fragment
+* TS_ISO_8691_BASIC was added as a time format, which is used by ResourceLoader for versioning
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

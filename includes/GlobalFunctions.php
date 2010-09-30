@@ -1957,6 +1957,13 @@ define( 'TS_POSTGRES', 7 );
 define( 'TS_DB2', 8 );
 
 /**
+ * ISO 8601 basic format with no timezone: 19860209T200000Z
+ *
+ * This is used by ResourceLoader
+ */
+define( 'TS_ISO_8601_BASIC', 9 );
+
+/**
  * @param $outputtype Mixed: A timestamp in one of the supported formats, the
  *                    function will autodetect which format is supplied and act
  *                    accordingly.
@@ -1983,6 +1990,8 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 				str_replace( '+00:00', 'UTC', $ts ) ) );
 	} elseif ( preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.*\d*)?Z$/', $ts, $da ) ) {
 		# TS_ISO_8601
+	} elseif ( preg_match( '/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(?\.*\d*)?Z$/', $ts, $da ) ) {
+		#TS_ISO_8601_BASIC
 	} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)\.*\d*[\+\- ](\d\d)$/', $ts, $da ) ) {
 		# TS_POSTGRES
 	} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)\.*\d* GMT$/', $ts, $da ) ) {
@@ -2014,6 +2023,8 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 			return gmdate( 'Y-m-d H:i:s', $uts );
 		case TS_ISO_8601:
 			return gmdate( 'Y-m-d\TH:i:s\Z', $uts );
+		case TS_ISO_8601_BASIC:
+			return gmdate( 'Ymd\THis\Z', $uts );
 		// This shouldn't ever be used, but is included for completeness
 		case TS_EXIF:
 			return gmdate( 'Y:m:d H:i:s', $uts );

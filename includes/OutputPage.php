@@ -2343,12 +2343,12 @@ class OutputPage {
 				// Create a fake request based on the one we are about to make so modules return correct times
 				$context = new ResourceLoaderContext( $this->mResourceLoader, new FauxRequest( $query ) );
 				// Get the maximum timestamp
-				$timestamp = 0;
+				$timestamp = 1;
 				foreach ( $modules as $module ) {
 					$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
 				}
 				// Add a version parameter so cache will break when things change
-				$query['version'] = wfTimestamp( TS_ISO_8601, round( $timestamp, -2 ) );
+				$query['version'] = wfTimestamp( TS_ISO_8601_BASIC, round( $timestamp, -2 ) );
 			}
 			// Make queries uniform in order
 			ksort( $query );
