@@ -215,7 +215,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection' => 'தலைப்பைச் சேர்',
-'vector-action-delete'     => 'நீக்கவும்',
+'vector-action-delete'     => 'நீக்குக',
 'vector-action-move'       => 'நகர்த்தவும்',
 'vector-action-protect'    => 'காக்கவும்',
 'vector-action-undelete'   => 'நீக்கத்தை நிறுத்து',
@@ -954,7 +954,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'powersearch-redir'                => 'வழிமாற்றுகளைப் பட்டியலிடவும்',
 'powersearch-field'                => 'தேடு',
 'powersearch-togglelabel'          => 'சரிபார்க்கவும்:',
-'powersearch-toggleall'            => 'அனைத்து',
+'powersearch-toggleall'            => 'அனைத்தும்',
 'powersearch-togglenone'           => 'ஏதுமில்லை',
 'search-external'                  => 'வெளித்தேடல்',
 'searchdisabled'                   => '{{SITENAME}} தளத்தின் தேடல் வசதிகள் தற்காலிகமாக முடக்கப்பட்டுள்ளது. அதுவரை நீங்கள் கீழேயுள்ள கூகிள் தேடலைப் பயன்படுத்தலாம். இது சில சமயம் இற்றைப்படுத்தப்படாததாய் இருக்கக்கூடும்.',
@@ -1035,7 +1035,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'prefs-custom-css'              => 'தனிப்பட்ட சி.எஸ்.எஸ்(CSS)',
 'prefs-emailconfirm-label'      => 'மின்னஞ்சலை உறுதிசெய்தல்:',
 'prefs-textboxsize'             => 'தொகுக்கும் சாளரத்தின் அளவு',
-'youremail'                     => 'உங்கள் மின்னஞ்சல்:',
+'youremail'                     => 'மின்னஞ்சல்:',
 'username'                      => 'பயனர்பெயர்:',
 'uid'                           => 'பயனர் அடையாள எண்:',
 'prefs-memberingroups'          => 'பின்வரும் {{PLURAL:$1|குழு|குழுக்களில்}} உறுப்பினர்:',
@@ -1065,9 +1065,9 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'prefs-advancedrendering'       => 'மேம்பட்ட விருப்பத்தேர்வுகள்',
 'prefs-advancedsearchoptions'   => 'மேம்பட்ட விருப்பத்தேர்வுகள்',
 'prefs-advancedwatchlist'       => 'மேம்பட்ட விருப்பத்தேர்வுகள்',
-'prefs-displayrc'               => 'காட்டப்படவேண்டிய விருப்பத்தேர்வுகள்',
-'prefs-displaysearchoptions'    => 'காட்டப்படவேண்டிய விருப்பத்தேர்வுகள்',
-'prefs-displaywatchlist'        => 'காட்டப்படவேண்டிய விருப்பத்தேர்வுகள்',
+'prefs-displayrc'               => 'விருப்பத்தேர்வுகளைக் காட்டு',
+'prefs-displaysearchoptions'    => 'விருப்பத்தேர்வுகளைக் காட்டு',
+'prefs-displaywatchlist'        => 'விருப்பத்தேர்வுகளைக் காட்டு',
 'prefs-diffs'                   => 'வித்தியாசங்கள்',
 
 # User rights
@@ -1366,7 +1366,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'filehist-user'             => 'பயனர்',
 'filehist-dimensions'       => 'பரிமாணங்கள்',
 'filehist-filesize'         => 'கோப்பின் அளவு',
-'filehist-comment'          => 'குறிப்பு',
+'filehist-comment'          => 'கருத்து',
+'filehist-missing'          => 'கோப்பைக் காணவில்லை',
 'imagelinks'                => 'கோப்பு இணைப்புகள்',
 'linkstoimage'              => 'பின்வரும் {{PLURAL:$1|பக்க இணைப்புகள்|$1 பக்கங்கள் இணைப்பு}}
 இப் படிமத்துக்கு இணைக்கபட்டுள்ளது(ளன):',
@@ -1454,7 +1455,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'brokenredirects'        => 'முறிந்த வழிமாற்றுகள்',
 'brokenredirectstext'    => 'இல்லாத பக்கங்களை பின்வரும் வழிமாற்றுக்கள் இணைக்கின்றன:',
 'brokenredirects-edit'   => 'தொகு',
-'brokenredirects-delete' => 'நீக்கு',
+'brokenredirects-delete' => 'நீக்குக',
 
 'withoutinterwiki'         => 'பிற மொழி இணைப்பற்ற பக்கங்கள்',
 'withoutinterwiki-summary' => 'பின்வரும் பக்கங்கள் வேறு மொழிப் பதிப்புக்களுக்கு இணைக்கப்படவில்லை:',
@@ -1509,7 +1510,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'newpages'                => 'புதிய பக்கங்கள்',
 'newpages-username'       => 'பயனர் பெயர்:',
 'ancientpages'            => 'மிகப்பழைய கட்டுரைகள்',
-'move'                    => 'நகர்த்துக',
+'move'                    => 'நகர்த்தவும்',
 'movethispage'            => 'இப்பக்கத்தை நகர்த்து',
 'unusedimagestext'        => 'இப்படிமம் ஏனைய இணையத்தளங்களினால் நேரடியான இணையமுகவரியை பயன்படுத்தி இனைக்கப்பட்டிருக்கக் கூடுமென்பதுடன், செயல்படு பயன்பாட்டில் இருந்தும் கூட இங்கே பட்டியலிடப்பட்டிருக்கக்கூடும் என்பதையும் கவனிக்கவும்.',
 'unusedcategoriestext'    => 'பின்வரும் பகுப்புகள் உருவாக்கப்பட்டுள்ளன எனினும் வேறு எந்தப் பக்கமோ அல்லது பகுப்போ இதைப் பயன்படுத்தவில்லை.',
@@ -1563,7 +1564,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'special-categories-sort-abc'   => 'அகரவரிசைப்படி ஒழுங்குப் படுத்துக',
 
 # Special:DeletedContributions
-'deletedcontributions'             => 'பயனரின நீக்கப்பட்ட பங்களிப்புக்கள்',
+'deletedcontributions'             => 'பயனரின் நீக்கப்பட்ட பங்களிப்புகள்',
 'deletedcontributions-title'       => 'பயனரின நீக்கப்பட்ட பங்களிப்புக்கள்',
 'sp-deletedcontributions-contribs' => 'பங்களிப்புக்கள்',
 
@@ -1767,8 +1768,11 @@ $NEWPAGE
 'protect-level-sysop'         => 'நிர்வாகிகள் மட்டும்',
 'protect-summary-cascade'     => 'படிநிலை',
 'protect-expiring'            => '$1 (UTC) மணிக்கு காலாவதியாகிறது',
+'protect-expiry-indefinite'   => 'காலவரையறையற்ற',
 'protect-cascade'             => 'இப்பக்கத்தில் இணைக்கப்பட்ட பக்கங்களைக் காப்புச் செய் (படிநிலைக் காப்பு)',
 'protect-cantedit'            => 'இப்பக்கத்தின் காப்பு நிலையை நீங்கள் மாற்ற முடியாது. உங்களுக்கு காப்பு நிலையை தொகுப்பதற்கான அனுமதி கிடையாது.',
+'protect-othertime'           => 'வேறு நேரம்:',
+'protect-othertime-op'        => 'வேறு நேரம்',
 'protect-otherreason'         => 'வேறு மேலதிக காரணம்:',
 'protect-otherreason-op'      => 'வேறு காரணம்',
 'protect-expiry-options'      => '2 மணித்தியாலங்கள்:2 hours,1 நாள்:1 day,3 நாட்கள்:3 days,1 வாரம்:1 week,2 வாரங்கள்:2 weeks,1 மாதம்:1 month,3 மாதங்கள்:3 months,6 மாதங்கள்:6 months,1 ஆண்டு:1 year,முடிவிலி:infinite',
@@ -1795,6 +1799,7 @@ $NEWPAGE
 'undeletepagetitle'            => "'''[[:$1]] பக்கத்துக்கான நீக்கப்பட்ட திருத்தங்கள் கீழே தரப்பட்டுள்ளன'''.",
 'viewdeletedpage'              => 'நீக்க்கப்பட்ட பக்கங்களைப் பார்',
 'undeletepagetext'             => 'பின்வரும் {{PLURAL:$1|பக்கம் நீக்கப்பட்டுவிட்டது எனினும் அது|$1 பக்கங்கள் நீக்கப்பட்டுவிட்டன எனினும் அவை}} காப்பகத்தில் உள்ளதால், மீட்டெடுக்க முடியும். காப்பகம் காலத்துக்குக் காலம் சுத்தப்படுத்தப்படலாம்.',
+'undelete-fieldset-title'      => 'மாற்றங்களை பழையபடிக்கு கொண்டுவரவும்',
 'undeleterevisions'            => '{{PLURAL:$1|ஒரு திருத்தம் பரணிடப்பட்டது|$1 திருத்தங்கள் பரணிடப்பட்டன}}',
 'undeletehistory'              => 'இந்தப் பக்கத்தை நீங்கள் மீள்வித்தால், எல்லாத் திருத்தங்களும் வரலாற்றுக்கு மீள்விக்கப்படும்.
 நீக்குதலின் பின்னர், அதே பெயருடைய வேறொரு புதிய பக்கம் உருவாக்கப்பட்டிருந்தால், மீள்விக்கப்பட்ட திருத்தங்கள் முன்னைய வரலாற்றிலேயே காணப்படும்.',
@@ -1876,7 +1881,7 @@ $1',
 'whatlinkshere-hideredirs' => 'வழிமாற்றுகளை $1',
 'whatlinkshere-hidetrans'  => 'உள்ளிடப்பட்டவைகளை $1',
 'whatlinkshere-hidelinks'  => 'இணைப்புகள் $1',
-'whatlinkshere-filters'    => 'வடிகள்',
+'whatlinkshere-filters'    => 'வடிகட்டிகள்',
 
 # Block/unblock
 'blockip'                     => 'பயனரைத் தடு',
@@ -1993,7 +1998,7 @@ $1',
 *நீங்கள் கீழேயுள்ள கட்டத்தில் குறியிடாமல் விடுகிறீர்கள் என்றோ.
 '''இல்லாவிடில்''' சேர்ந்திருக்கும் பேச்சுப் பக்கம், ஏதாவது இருந்தால், தன்னியக்கமாக அதனுடன் நகர்த்தப்படும்.
 இப்படியான சந்தர்ப்பங்களில், விரும்பினால், நகர்த்தலையோ அல்லது ஒன்றிணைத்தலையோ நீங்கள் கைவினையாகச் செய்யவேண்டியிருக்கும்.",
-'movearticle'               => 'பக்கத்தை நகர்து',
+'movearticle'               => 'பக்கத்தை நகர்த்து',
 'movenologin'               => 'புகுபதிகை செய்யப்படவில்லை',
 'movenologintext'           => 'இப் பக்கத்தை நகர்த்துவதற்கு, நீங்கள் ஒரு பதிவு செய்யப்பட்ட பயனராயும் [[Special:UserLogin|புகுபதிகை செய்தும்]] இருக்க வேண்டும்.',
 'movenotallowed'            => 'உங்களுக்கு பக்கங்களை நகர்த்த அனுமதி கிடையாது.',
@@ -2052,7 +2057,7 @@ $1',
 மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [http://translatewiki.net பீட்டாவிக்கி], [http://www.mediawiki.org/wiki/Localisation மீடியாவிக்கி மொழியாக்க]  தளங்களுக்குச் செல்லவும்.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' முடக்கப்பட்டுள்ளப் படியால் இப்பக்கததை பயன்படுத்த முடியாது.",
 'allmessages-filter-unmodified' => 'மாற்றம் செய்யப்படாதது',
-'allmessages-filter-all'        => 'அனைத்து',
+'allmessages-filter-all'        => 'அனைத்தும்',
 'allmessages-filter-modified'   => 'மாற்றப்பட்டுள்ளது',
 'allmessages-language'          => 'மொழி:',
 'allmessages-filter-submit'     => 'செல்',
@@ -2401,6 +2406,7 @@ $1',
 'exif-componentsconfiguration-0' => 'இல்லை',
 
 'exif-exposureprogram-0' => 'வரையறுக்கப்படவில்லை',
+'exif-exposureprogram-1' => 'மனிதச்செயல்',
 'exif-exposureprogram-2' => 'வழக்கமான நிரல்',
 'exif-exposureprogram-3' => 'துவார முன்னுரிமை',
 'exif-exposureprogram-4' => 'மூடி முன்னுரிமை',
@@ -2683,7 +2689,8 @@ $5
 'intentionallyblankpage' => 'இந்த பக்கம் திட்டமிட்டே வெற்றாக விடப்பட்டுள்ளது',
 
 # Special:Tags
-'tags-edit' => 'தொகு',
+'tag-filter-submit' => 'வடிகட்டி',
+'tags-edit'         => 'தொகு',
 
 # HTML forms
 'htmlform-required'            => 'இதன் உட்பொருள் தேவையானது (கொடுக்கப்பட வேண்டும்)',

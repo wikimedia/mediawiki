@@ -734,6 +734,7 @@ Apzīmējumi:
 "ar iepriekšējo" = salīdzināt ar iepriekšējo versiju,
 m = maznozīmīgs labojums.',
 'history-fieldset-title' => 'Meklēt hronoloģijā',
+'history-show-deleted'   => 'Tikai dzēstās',
 'histfirst'              => 'Senākās',
 'histlast'               => 'Jaunākās',
 'historysize'            => '({{PLURAL:$1|1 baits|$1 baiti}})',
@@ -1724,9 +1725,11 @@ Viņa bloķēšanas iemesls bija: "$2"',
 'blocklog-showlog'             => 'Šis lietotājs ir bijis bloķēts jau agrāk.
 Te apakšā var apskatīties bloķēšanas reģistru:',
 'blocklogentry'                => 'nobloķēja [[$1]] uz $2 $3',
+'reblock-logentry'             => 'izmainīja bloķēšanas iestatījumus [[$1]] ar beigu termiņu $2 $3',
 'blocklogtext'                 => 'Šajā lapā ir pēdējo nobloķēto un atbloķēto lietotāju un IP adrešu saraksts. Te neparādās automātiski nobloķētās IP adreses.
 Šobrīd aktīvos blokus var apskatīties [[Special:IPBlockList|bloķēto lietotāju un IP adrešu sarakstā]].',
 'unblocklogentry'              => 'atbloķēja $1',
+'block-log-flags-anononly'     => 'tikai anonīmiem lietotājiem',
 'block-log-flags-nocreate'     => 'kontu veidošana atslēgta',
 'ipb_expiry_invalid'           => 'Nederīgs beigu termiņš',
 'ipb_already_blocked'          => '"$1" jau ir bloķēts',
@@ -1743,9 +1746,9 @@ Tā ir bloķēta kā daļa no IP adrešu diapazona $2, kuru var atbloķēt.',
 'cant-block-while-blocked'     => 'Tu nevari bloķēt citus lietotājus, kamēr pats esi bloķēts.',
 
 # Move page
-'move-page'               => 'Pārvietot $1',
-'move-page-legend'        => 'Pārvietot lapu',
-'movepagetext'            => "Šajā lapā tu vari pārdēvēt vai pārvietot lapu, kopā tās izmaiņu hronoloģiju pārvietojot to uz citu nosaukumu.
+'move-page'                => 'Pārvietot $1',
+'move-page-legend'         => 'Pārvietot lapu',
+'movepagetext'             => "Šajā lapā tu vari pārdēvēt vai pārvietot lapu, kopā tās izmaiņu hronoloģiju pārvietojot to uz citu nosaukumu.
 Iepriekšējā lapa kļūs par lapu, kas pāradresēs uz jauno lapu.
 Šeit var automātiski izmainīt visas pāradresācijas (redirektus) uz šo lapu (2. ķeksis apakšā).
 Saites pārējās lapās uz iepriekšējo lapu netiks mainītas. Ja izvēlies neizmainīt pāradresācijas automātiski, noteikti pārbaudi un izlabo, izskaužot [[Special:DoubleRedirects|dubultu pāradresāciju]] vai [[Special:BrokenRedirects|pāradresāciju uz neesošu lapu]].
@@ -1757,53 +1760,54 @@ Tas nozīmē, ka tu vari pārvietot lapu atpakaļ, no kurienes tu jau reiz to es
 '''BRĪDINĀJUMS!'''
 Populārām lapām tā var būt krasa un negaidīta pārmaiņa;
 pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas.",
-'movepagetalktext'        => "Saistītā diskusiju lapa, ja tāda eksistē, tiks automātiski pārvietota, '''izņemot gadījumus, kad''':
+'movepagetalktext'         => "Saistītā diskusiju lapa, ja tāda eksistē, tiks automātiski pārvietota, '''izņemot gadījumus, kad''':
 *tu pārvieto lapu uz citu palīglapu,
 *ar jauno nosaukumu jau eksistē diskusiju lapa, vai arī
 *atzīmēsi zemāk atrodamo lauciņu.
 
 Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvieno pašam.",
-'movearticle'             => 'Pārvietot lapu',
-'movenologin'             => 'Neesi iegājis kā reģistrēts lietotājs',
-'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:UserLogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
-'movenotallowed'          => 'Tev nav atļaujas pārvietot lapas.',
-'movenotallowedfile'      => 'Tev nav atļaujas pārvietot failus.',
-'cant-move-user-page'     => 'Tev nav atļaujas pārvietot lietotāju lapas (neskaitot apakšlapas).',
-'cant-move-to-user-page'  => 'Tev nav atļaujas pārvietot lapu uz lietotāja lapu (neskaitot lietotāja lapas apakšlapu).',
-'newtitle'                => 'Uz šādu lapu',
-'move-watch'              => 'Uzraudzīt šo lapu',
-'movepagebtn'             => 'Pārvietot lapu',
-'pagemovedsub'            => 'Pārvietošana notikusi veiksmīgi',
-'movepage-moved'          => '\'\'\'"$1" tika pārvietots uz "$2"\'\'\'',
-'movepage-moved-redirect' => 'Tika izveidota pāradresācija.',
-'articleexists'           => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
-'cantmove-titleprotected' => 'Tu nevari pārvietot lapu uz šo nosaukumu, tāpēc, ka jaunais nosaukums (lapa) ir aizsargāta pret izveidošanu',
-'talkexists'              => "'''Šī lapa pati tika pārvietota veiksmīgi, bet tās diskusiju lapu nevarēja pārvietot, tapēc, ka jaunā nosaukuma lapai jau ir diskusiju lapa. Lūdzu apvieno šīs diskusiju lapas manuāli.'''",
-'movedto'                 => 'pārvietota uz',
-'movetalk'                => 'Pārvietot arī diskusiju lapu, ja tāda ir.',
-'move-subpages'           => 'Pārvietot apakšlapas (līdz $1 gab.)',
-'move-talk-subpages'      => 'Pārvietot diskusiju lapas apakšlapas (līdz $1 gab.)',
-'movepage-page-exists'    => 'Lapa $1 jau eksistē un to nevar pārrakstīt automātiski.',
-'movepage-page-moved'     => 'Lapa $1 tika pārvietota uz $2.',
-'movepage-page-unmoved'   => 'Lapu $1 nevarēja pārvietot uz $2.',
-'1movedto2'               => '"[[$1]]" pārdēvēju par "[[$2]]"',
-'1movedto2_redir'         => '[[$1]] tika pārdēvēts par [[$2]], izmantojot pāradresāciju',
-'movelogpage'             => 'Pārvietošanas reģistrs',
-'movelogpagetext'         => 'Lapu pārvietošanas (pārdēvēšanas) reģistrs.',
-'movesubpage'             => '{{PLURAL:$1|Apakšlapa|Apakšlapas}}',
-'movesubpagetext'         => 'Šai lapai ir $1 {{PLURAL:$1|apakšlapa|apakšlapas}}, kas redzamas zemāk.',
-'movenosubpage'           => 'Šai lapai nav apakšlapu.',
-'movereason'              => 'Iemesls:',
-'revertmove'              => 'atcelt',
-'delete_and_move'         => 'Dzēst un pārvietot',
-'delete_and_move_text'    => '==Nepieciešama dzēšana==
+'movearticle'              => 'Pārvietot lapu',
+'movenologin'              => 'Neesi iegājis kā reģistrēts lietotājs',
+'movenologintext'          => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:UserLogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
+'movenotallowed'           => 'Tev nav atļaujas pārvietot lapas.',
+'movenotallowedfile'       => 'Tev nav atļaujas pārvietot failus.',
+'cant-move-user-page'      => 'Tev nav atļaujas pārvietot lietotāju lapas (neskaitot apakšlapas).',
+'cant-move-to-user-page'   => 'Tev nav atļaujas pārvietot lapu uz lietotāja lapu (neskaitot lietotāja lapas apakšlapu).',
+'newtitle'                 => 'Uz šādu lapu',
+'move-watch'               => 'Uzraudzīt šo lapu',
+'movepagebtn'              => 'Pārvietot lapu',
+'pagemovedsub'             => 'Pārvietošana notikusi veiksmīgi',
+'movepage-moved'           => '\'\'\'"$1" tika pārvietots uz "$2"\'\'\'',
+'movepage-moved-redirect'  => 'Tika izveidota pāradresācija.',
+'articleexists'            => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
+'cantmove-titleprotected'  => 'Tu nevari pārvietot lapu uz šo nosaukumu, tāpēc, ka jaunais nosaukums (lapa) ir aizsargāta pret izveidošanu',
+'talkexists'               => "'''Šī lapa pati tika pārvietota veiksmīgi, bet tās diskusiju lapu nevarēja pārvietot, tapēc, ka jaunā nosaukuma lapai jau ir diskusiju lapa. Lūdzu apvieno šīs diskusiju lapas manuāli.'''",
+'movedto'                  => 'pārvietota uz',
+'movetalk'                 => 'Pārvietot arī diskusiju lapu, ja tāda ir.',
+'move-subpages'            => 'Pārvietot apakšlapas (līdz $1 gab.)',
+'move-talk-subpages'       => 'Pārvietot diskusiju lapas apakšlapas (līdz $1 gab.)',
+'movepage-page-exists'     => 'Lapa $1 jau eksistē un to nevar pārrakstīt automātiski.',
+'movepage-page-moved'      => 'Lapa $1 tika pārvietota uz $2.',
+'movepage-page-unmoved'    => 'Lapu $1 nevarēja pārvietot uz $2.',
+'1movedto2'                => '"[[$1]]" pārdēvēju par "[[$2]]"',
+'1movedto2_redir'          => '[[$1]] tika pārdēvēts par [[$2]], izmantojot pāradresāciju',
+'move-redirect-suppressed' => 'pāradresācija netika izveidota',
+'movelogpage'              => 'Pārvietošanas reģistrs',
+'movelogpagetext'          => 'Lapu pārvietošanas (pārdēvēšanas) reģistrs.',
+'movesubpage'              => '{{PLURAL:$1|Apakšlapa|Apakšlapas}}',
+'movesubpagetext'          => 'Šai lapai ir $1 {{PLURAL:$1|apakšlapa|apakšlapas}}, kas redzamas zemāk.',
+'movenosubpage'            => 'Šai lapai nav apakšlapu.',
+'movereason'               => 'Iemesls:',
+'revertmove'               => 'atcelt',
+'delete_and_move'          => 'Dzēst un pārvietot',
+'delete_and_move_text'     => '==Nepieciešama dzēšana==
 Mērķa lapa "[[:$1]]" jau eksistē.
 Vai tu to gribi izdzēst, lai atbrīvotu vietu pārvietošanai?',
-'delete_and_move_confirm' => 'Jā, dzēst lapu',
-'delete_and_move_reason'  => 'Izdzēsts, lai atbrīvotu vietu pārvietošanai',
-'selfmove'                => 'Izejas un mērķa lapu nosaukumi ir vienādi;
+'delete_and_move_confirm'  => 'Jā, dzēst lapu',
+'delete_and_move_reason'   => 'Izdzēsts, lai atbrīvotu vietu pārvietošanai',
+'selfmove'                 => 'Izejas un mērķa lapu nosaukumi ir vienādi;
 nevar pārvietot lapu uz sevi.',
-'fix-double-redirects'    => 'Automātiski izmainīt visas pāradresācijas, kas ved uz sākotnējo nosaukumu',
+'fix-double-redirects'     => 'Automātiski izmainīt visas pāradresācijas, kas ved uz sākotnējo nosaukumu',
 
 # Export
 'export'            => 'Eksportēt lapas',
