@@ -1096,7 +1096,7 @@ class ParserTest {
 			wfDie( "invalid title at line $line\n" );
 		}
 
-		$aid = $title->getArticleID( GAID_FOR_UPDATE );
+		$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $aid != 0 ) {
 			wfDie( "duplicate article '$name' at line $line\n" );
