@@ -3111,7 +3111,7 @@ class Article {
 	public function doDelete( $reason, $suppress = false ) {
 		global $wgOut, $wgUser;
 
-		$id = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
+		$id = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
 		$error = '';
 		if ( wfRunHooks( 'ArticleDelete', array( &$this, &$wgUser, &$reason, &$error ) ) ) {
@@ -3171,7 +3171,7 @@ class Article {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$t = $this->mTitle->getDBkey();
-		$id = $id ? $id : $this->mTitle->getArticleID( GAID_FOR_UPDATE );
+		$id = $id ? $id : $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $t === '' || $id == 0 ) {
 			return false;
