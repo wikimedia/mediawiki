@@ -1,6 +1,7 @@
 .PHONY: help test phpunit install coverage
 
-CONFIG_FILE = suite.xml
+SHELL = /bin/sh
+CONFIG_FILE = $(shell pwd)/suite.xml
 FLAGS = 
 PU = phpunit --configuration ${CONFIG_FILE}
 
