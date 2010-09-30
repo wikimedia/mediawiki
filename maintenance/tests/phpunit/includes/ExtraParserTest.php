@@ -2,12 +2,16 @@
 /**
  * Parser-related tests that don't suit for parserTests.txt
  */
- 
+
 class ExtraParserTest extends PHPUnit_Framework_TestCase {
 
 	function setUp() {
 		global $wgMemc;
+		global $wgContLang;
+		global $wgShowDBErrorBacktrace;
 
+		$wgShowDBErrorBacktrace = true;
+		if ( $wgContLang === null ) $wgContLang = new Language;
 		$wgMemc = new FakeMemCachedClient;
 	}
 
@@ -24,7 +28,7 @@ class ExtraParserTest extends PHPUnit_Framework_TestCase {
 		$parser = new Parser();
 		$t = Title::newFromText( 'Unit test' );
 		$options = new ParserOptions();
-		$this->assertEquals( "<p>$longLine</p>", 
+		$this->assertEquals( "<p>$longLine</p>",
 			$parser->parse( $longLine, $t, $options )->getText() );
 	}
  }
