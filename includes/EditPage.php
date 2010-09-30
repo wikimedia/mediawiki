@@ -869,7 +869,7 @@ class EditPage {
 		wfProfileOut( __METHOD__ . '-checks' );
 
 		# If article is new, insert it.
-		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
+		$aid = $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 		if ( 0 == $aid ) {
 			// Late check for create permission, just in case *PARANOIA*
 			if ( !$this->mTitle->userCan( 'create' ) ) {

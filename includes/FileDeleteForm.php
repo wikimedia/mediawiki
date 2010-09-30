@@ -116,7 +116,7 @@ class FileDeleteForm {
 				$log->addEntry( 'delete', $title, $logComment );
 			}
 		} else {
-			$id = $title->getArticleID( GAID_FOR_UPDATE );
+			$id = $title->getArticleID( Title::GAID_FOR_UPDATE );
 			$article = new Article( $title );
 			$error = '';
 			$dbw = wfGetDB( DB_MASTER );

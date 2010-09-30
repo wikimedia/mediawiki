@@ -13,8 +13,6 @@ if ( !class_exists( 'UtfNormal' ) ) {
 	require_once( dirname( __FILE__ ) . '/normal/UtfNormal.php' );
 }
 
-define ( 'GAID_FOR_UPDATE', 1 );
-
 /**
  * Represents a title within MediaWiki.
  * Optionally may contain an interwiki designation or namespace.
@@ -35,6 +33,12 @@ class Title {
 	 * if not bounded. After hitting this many titles reset the cache.
 	 */
 	const CACHE_MAX = 1000;
+
+	/**
+	 * Used to be GAID_FOR_UPDATE define. Used with getArticleId() and friends
+	 * to use the master DB
+	 */
+	const GAID_FOR_UPDATE = 1;
 
 
 	/**
@@ -193,11 +197,11 @@ class Title {
 	 * Create a new Title from an article ID
 	 *
 	 * @param $id \type{\int} the page_id corresponding to the Title to create
-	 * @param $flags \type{\int} use GAID_FOR_UPDATE to use master
+	 * @param $flags \type{\int} use Title::GAID_FOR_UPDATE to use master
 	 * @return \type{Title} the new object, or NULL on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
-		$db = ( $flags & GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$row = $db->selectRow( 'page', '*', array( 'page_id' => $id ), __METHOD__ );
 		if ( $row !== false ) {
 			$title = Title::newFromRow( $row );
@@ -2326,7 +2330,7 @@ class Title {
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary
 	 *
-	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select
+	 * @param $flags \type{\int} a bit field; may be Title::GAID_FOR_UPDATE to select
 	 *  for update
 	 * @return \type{\int} the ID
 	 */
@@ -2335,7 +2339,7 @@ class Title {
 			return $this->mArticleID = 0;
 		}
 		$linkCache = LinkCache::singleton();
-		if ( $flags & GAID_FOR_UPDATE ) {
+		if ( $flags & self::GAID_FOR_UPDATE ) {
 			$oldUpdate = $linkCache->forUpdate( true );
 			$linkCache->clearLink( $this );
 			$this->mArticleID = $linkCache->addLinkObj( $this );
@@ -2352,7 +2356,7 @@ class Title {
 	 * Is this an article that is a redirect page?
 	 * Uses link cache, adding it if necessary
 	 *
-	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select for update
+	 * @param $flags \type{\int} a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return \type{\bool}
 	 */
 	public function isRedirect( $flags = 0 ) {
@@ -2373,7 +2377,7 @@ class Title {
 	 * What is the length of this page?
 	 * Uses link cache, adding it if necessary
 	 *
-	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select for update
+	 * @param $flags \type{\int} a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return \type{\bool}
 	 */
 	public function getLength( $flags = 0 ) {
@@ -2393,7 +2397,7 @@ class Title {
 	/**
 	 * What is the page_latest field for this page?
 	 *
-	 * @param $flags \type{\int} a bit field; may be GAID_FOR_UPDATE to select for update
+	 * @param $flags \type{\int} a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return \type{\int} or 0 if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
@@ -3610,11 +3614,11 @@ class Title {
 	 * Get the revision ID of the previous revision
 	 *
 	 * @param $revId \type{\int} Revision ID. Get the revision that was before this one.
-	 * @param $flags \type{\int} GAID_FOR_UPDATE
+	 * @param $flags \type{\int} Title::GAID_FOR_UPDATE
 	 * @return \twotypes{\int,\bool} Old revision ID, or FALSE if none exists
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
-		$db = ( $flags & GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $this->getArticleId( $flags ),
@@ -3629,11 +3633,11 @@ class Title {
 	 * Get the revision ID of the next revision
 	 *
 	 * @param $revId \type{\int} Revision ID. Get the revision that was after this one.
-	 * @param $flags \type{\int} GAID_FOR_UPDATE
+	 * @param $flags \type{\int} Title::GAID_FOR_UPDATE
 	 * @return \twotypes{\int,\bool} Next revision ID, or FALSE if none exists
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
-		$db = ( $flags & GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $this->getArticleId( $flags ),
@@ -3647,11 +3651,11 @@ class Title {
 	/**
 	 * Get the first revision of the page
 	 *
-	 * @param $flags \type{\int} GAID_FOR_UPDATE
+	 * @param $flags \type{\int} Title::GAID_FOR_UPDATE
 	 * @return Revision (or NULL if page doesn't exist)
 	 */
 	public function getFirstRevision( $flags = 0 ) {
-		$db = ( $flags & GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$pageId = $this->getArticleId( $flags );
 		if ( !$pageId ) {
 			return null;
