@@ -2449,19 +2449,21 @@ function wfShellExec( $cmd, &$retval = null ) {
 		$disabled = false;
 		if( wfIniGetBool( 'safe_mode' ) ) {
 			wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
-			$disabled = true;
+			$disabled = 'safemode';
 		}
 		$functions = explode( ',', ini_get( 'disable_functions' ) );
 		$functions = array_map( 'trim', $functions );
 		$functions = array_map( 'strtolower', $functions );
 		if ( in_array( 'passthru', $functions ) ) {
 			wfDebug( "passthru is in disabled_functions\n" );
-			$disabled = true;
+			$disabled = 'passthru';
 		}
 	}
 	if ( $disabled ) {
 		$retval = 1;
-		return 'Unable to run external programs in safe mode.';
+		return $disabled == 'safemode' ?
+			'Unable to run external programs in safe mode.' :
+			'Unable to run external programs, passthru() is disabled.';
 	}
 
 	wfInitShellLocale();
