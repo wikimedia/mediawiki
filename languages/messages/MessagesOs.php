@@ -169,7 +169,7 @@ $messages = array(
 
 # Vector skin
 'vector-view-create'     => 'Скæн æй',
-'vector-view-edit'       => 'Фен æй',
+'vector-view-edit'       => 'Баив æй',
 'vector-view-history'    => 'Истори',
 'vector-view-view'       => 'Кæс',
 'vector-view-viewsource' => 'Йæ код фен',
