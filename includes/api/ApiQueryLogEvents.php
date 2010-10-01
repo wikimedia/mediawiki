@@ -40,6 +40,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'le' );
 	}
 
+	private $fld_ids = false, $fld_title = false, $fld_type = false,
+		$fld_action = false, $fld_user = false, $fld_userid = false,
+		$fld_timestamp = false, $fld_comment = false, $fld_parsedcomment = false,
+		$fld_details = false, $fld_tags = false;
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
