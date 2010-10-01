@@ -115,10 +115,10 @@ TEXT;
 				'IGNORE'
 			)
 		) {
-			wfOut( "Category population complete.\n" );
+			$this->output( "Category population complete.\n" );
 			return true;
 		} else {
-			wfOut( "Could not insert category population row.\n" );
+			$this->output( "Could not insert category population row.\n" );
 			return false;
 		}
 	}
