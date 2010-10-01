@@ -119,11 +119,10 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $p[ApiBase::PARAM_DEPRECATED] ) && $p[ApiBase::PARAM_DEPRECATED] ) {
 				$a['deprecated'] = '';
 			}
-			
 			if ( isset( $p[ApiBase::PARAM_REQUIRED] ) && $p[ApiBase::PARAM_REQUIRED] ) {
 				$a['required'] = '';
 			}
-			
+
 			if ( !is_array( $p ) ) {
 				if ( is_bool( $p ) ) {
 					$a['type'] = 'bool';

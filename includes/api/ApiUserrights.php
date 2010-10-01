@@ -122,9 +122,7 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingparam', 'user' ),
-		) );
+		return parent::getPossibleErrors();
 	}
 
 	public function getTokenSalt() {
