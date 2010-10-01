@@ -44,6 +44,7 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 					"real_name" => "Test User" ) );
 			}
 			self::$user->setPassword( self::$passWord );
+			self::$user->addGroup( 'sysop' );
 			self::$user->saveSettings();
 		}
 		
