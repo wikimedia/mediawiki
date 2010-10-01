@@ -90,36 +90,32 @@ class ApiTest extends ApiTestSetup {
 		if ( !isset( $wgServer ) ) {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
-		$ret = $this->doApiRequest( array(
-			"action" => "login",
-			"lgname" => self::$userName,
-			"lgpassword" => "bad",
-			)
-		);
+		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
+						   array( "postData" => array(
+									 "lgname" => self::$userName,
+									 "lgpassword" => "bad" ) ) );
+		libxml_use_internal_errors( true );
+		$sxe = simplexml_load_string( $resp );
+		$this->assertNotType( "bool", $sxe );
+		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
+		$a = $sxe->login[0]->attributes()->result[0];
+		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
 
-		$result = $ret[0];
+		$token = (string)$sxe->login[0]->attributes()->token;
 
-		$this->assertNotType( "bool", $result );
+		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
+						   array( "postData" => array(
+									"lgtoken" => $token,
+									"lgname" => self::$userName,
+									"lgpassword" => "bad" ) ) );
 
-		$a = $result["login"]["result"];
-		$this->assertEquals( "NeedToken", $a );
 
-		$token = $result["login"]["token"];
+		$sxe = simplexml_load_string( $resp );
+		$this->assertNotType( "bool", $sxe );
+		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
+		$a = $sxe->login[0]->attributes()->result[0];
 
-		$ret = $this->doApiRequest( array(
-			"action" => "login",
-			"lgtoken" => $token,
-			"lgname" => self::$userName,
-			"lgpassword" => "bad",
-			)
-		);
-
-		$result = $ret[0];
-
-		$this->assertNotType( "bool", $result );
-		$a = $result["login"]["result"];
-
-		$this->assertEquals( "NeedToken", $a );
+		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
 	}
 
 	function testApiLoginGoodPass() {
@@ -136,6 +132,7 @@ class ApiTest extends ApiTestSetup {
 			)
 		);
 
+		libxml_use_internal_errors( true );
 		$result = $ret[0];
 		$this->assertNotType( "bool", $result );
 		$this->assertNotType( "null", $result["login"] );
