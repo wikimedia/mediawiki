@@ -297,7 +297,7 @@ class ResourceLoader {
 			return;
 		}
 
-		echo self::makeModuleResponse( $context, $modules, $missing );
+		echo $this->makeModuleResponse( $context, $modules, $missing );
 
 		wfProfileOut( __METHOD__ );
 	}
