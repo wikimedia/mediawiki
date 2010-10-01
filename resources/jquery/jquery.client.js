@@ -56,7 +56,7 @@ jQuery.client = new ( function() {
 				'msie', 'safari', 'ps3'
 			];
 			// Used as matches 2, 3 and 4 in version extraction - 3 is used as actual version number
-			var versionSuffix = '(\/|\;?\s|)([a-z0-9\.\+]*?)(\;|dev|rel|\\)|\s|$)';
+			var versionSuffix = '(\\/|\\;?\\s|)([a-z0-9\\.\\+]*?)(\\;|dev|rel|\\)|\\s|$)';
 			// Names of known browsers
 			var names = [
 			 	'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera', 'safari', 'ipod',
