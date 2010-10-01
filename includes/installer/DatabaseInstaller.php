@@ -156,7 +156,7 @@ abstract class DatabaseInstaller {
 		ob_start( array( $this, 'outputHandler' ) );
 		try {
 			$up = DatabaseUpdater::newForDB( $this->db );
-			$up->execute();
+			$up->doUpdates();
 		} catch ( MWException $e ) {
 			echo "\nAn error occured:\n";
 			echo $e->getText();
