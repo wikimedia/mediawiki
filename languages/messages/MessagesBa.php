@@ -1466,16 +1466,63 @@ $1',
 'upload-warning-subj'         => 'Файл күсереү ваҡытында киҫәтеү',
 'upload-warning-msg'          => '[$2] адресынан тейәгән ваҡытта ҡыйынлыҡтар тыуҙы. Хатаны төҙәтеү өсөн [[Special:Upload/stash/$1|файл тейәү формаһына]] кире ҡайта алаһығыҙ.',
 
-'upload-proto-error'  => 'Протокол дөрөҫ түгел',
-'upload-file-error'   => 'Эске хата',
-'upload-misc-error'   => 'Файл күсергәндә билдәһеҙ хата',
-'upload-unknown-size' => 'Билдәһеҙ дәүмәл',
+'upload-proto-error'        => 'Протокол дөрөҫ түгел',
+'upload-proto-error-text'   => 'Ситтән тейәү өсөн <code>http://</code> йәки <code>ftp://</code> менән башланған адрес кәрәк.',
+'upload-file-error'         => 'Эске хата',
+'upload-file-error-text'    => 'Серверҙа ваҡытлы файл булдырған ваҡытта эске хата сыҡты.
+Зинһар, [[Special:ListUsers/sysop|хәкимгә]] мөрәжәғәт итегеҙ.',
+'upload-misc-error'         => 'Файл күсергәндә билдәһеҙ хата',
+'upload-misc-error-text'    => 'Файл тейәгәндә билдәһеҙ хата килеп сыҡты.
+Зинһар, URL адрестың дөрөҫлөгөн тикшерегеҙ һәм яңынан ҡабатлап ҡарағыҙ.
+Әгәр хата шул килеш ҡалһа, [[Special:ListUsers/sysop|хәкимгә]] мөрәжәғәт итегеҙ.',
+'upload-too-many-redirects' => 'URL бигерәк күп йүнәлтмәләр яһай.',
+'upload-unknown-size'       => 'Билдәһеҙ дәүмәл',
+'upload-http-error'         => 'HTTP хата килеп сыҡты: $1',
 
-'license'        => 'Лицензиялау:',
-'license-header' => 'Лицензиялау',
-'nolicense'      => 'Бер нимә лә һайланмаған',
+# img_auth script messages
+'img-auth-accessdenied' => 'Керергә рөхсәт ителмәй',
+'img-auth-nopathinfo'   => 'PATH_INFO юҡ.
+Һеҙҙең сервер был мәғлүмәтте ебәреү өсөн көйләнмәгән.
+Ул CGI нигеҙендә эшләй һәм img_auth ҡулланмай, булырға тейеш.
+Тулыраҡ мәғлүмәт: http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-nologinnWL'   => 'Һеҙ танылыу үтмәнегеҙ, "$1" аҡ исемлеккә кермәй.',
+'img-auth-nofile'       => '"$1" файлы юҡ.',
+'img-auth-public'       => 'img_auth.php файлдарҙы ябыҡ викинан сығарыу өсөн тәғәйенләнгән.
+Был вики асыҡ тип көйләнгән.
+Хәүефһеҙлек маҡсаттарында img_auth.php һүндерелгән.',
+'img-auth-noread'       => 'Ҡатнашыусыға "$1" файлын уҡыу рөхсәт ителмәй.',
+
+# HTTP errors
+'http-invalid-url'      => 'URL адрес дөрөҫ түгел: $1',
+'http-invalid-scheme'   => '"$1" схемалы URL адрестары ҡулланылмай.',
+'http-request-error'    => 'HTTP-һорау билдәһеҙ хата арҡаһында эшкәртелмәне.',
+'http-read-error'       => 'HTTP уҡыу хатаһы.',
+'http-timed-out'        => 'HTTP-һорауҙы көтөү ваҡыты үтте.',
+'http-curl-error'       => 'URL адрес буйынса мөрәжәғәт итеү хатаһы: $1',
+'http-host-unreachable' => 'URL адрес буйынса мөрәжәғәт итеү мөмкин түгел.',
+'http-bad-status'       => 'HTTP-һорауҙы эшкәрткән ваҡытта ҡыйынлыҡтар тыуҙы: $1 $2',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'URL адресҡа мөрәжәғәт итеү мөмкин түгел.',
+'upload-curl-error6-text'  => 'URL адрес буйынса мөрәжәғәт итеү мөмкин түгел.
+Зинһар, URL адрестың дөрөҫлөгөн һәм сайттың эшләүен тикшерегеҙ.',
+'upload-curl-error28'      => 'Көтөү ваҡыты үтте',
+'upload-curl-error28-text' => '
+Сайт бигерәк оҙаҡ яуап бирмәй.
+Зинһар, сайттың эшләүен тикшерегеҙ һәм, бер аҙ көткәндән һуң, яңынан ҡабатлап ҡарағыҙ.
+Бәлки, һеҙгә сайт бушыраҡ саҡта ҡабатлап ҡарарға кәрәктер.',
+
+'license'            => 'Лицензиялау:',
+'license-header'     => 'Лицензиялау',
+'nolicense'          => 'Бер нимә лә һайланмаған',
+'license-nopreview'  => '(Ҡарап сығыу мөмкин түгел)',
+'upload_source_url'  => '(Дөрөҫ, дөйөм ҡулланыу өсөн асыҡ URL-адрес)',
+'upload_source_file' => '(һеҙҙең компьютерҙағы файл)',
 
 # Special:ListFiles
+'listfiles-summary'     => 'Был махсус бит бөтә тейәлгән файлдарҙы күрһәтә.
+Һуңғы тейәлгән файлдар ғәҙәттә исемлектең башында күрһәтелә.
+Бағананың башлығына баҫыу тәртипкә килтереү йүнәлешен үҙгәртә.',
 'listfiles_search_for'  => 'Файл исеме буйынса эҙләү:',
 'imgfile'               => 'файл',
 'listfiles'             => 'Файлдар исемлеге',
@@ -1505,8 +1552,21 @@ $1',
 'filehist-missing'          => 'Файл юҡ',
 'imagelinks'                => 'Файлға һылтанмалар',
 'linkstoimage'              => 'Был файлға {{PLURAL:$1|бит|$1 бит}} һылтана:',
+'linkstoimage-more'         => 'Был файлға кәмендә $1 {{PLURAL:$1|бит}} һылтанма яһай.
+Түбәндәге исемлектә был файлға $1 {{PLURAL:$1|һылтанма}} ғына килтерелгән.
+Шулай уҡ [[Special:WhatLinksHere/$2|тулы исемлекте]] ҡарарға мөмкин.',
+'nolinkstoimage'            => 'Был файлға һылтанма яһаған бит юҡ.',
+'morelinkstoimage'          => 'Был файлға [[Special:WhatLinksHere/$1|башҡа һылтанмаларҙы]] ҡарарға.',
+'redirectstofile'           => 'Түбәндәге {{PLURAL:$1|файлдан|$1 файлдарҙан}} был файлға йүнәлтмә яһалған:',
+'duplicatesoffile'          => 'Түбәндәге {{PLURAL:$1|файл|файлдар}} был файл менән тап килә ([[Special:FileDuplicateSearch/$2|тулыраҡ мәғлүмәт]])',
 'sharedupload'              => 'Был файл $1 базаһынан һәм башҡа проектарҙа ҡулланылырға мөмкин.',
+'sharedupload-desc-there'   => 'Был файл $1 базаһынан һәм башҡа проекттарҙа ҡулланыла ала.
+Тулыраҡ мәғлүмәтте [$2 файл тасуирламаһы битендә] ҡарарға мөмкин.',
+'sharedupload-desc-here'    => 'Был файл $1 базаһынан һәм башҡа проекттарҙа ҡулланыла ала.
+[$2 файл тасуирламаһы битенән] тулыраҡ мәғлүмәт түбәндә килтерелгән.',
+'filepage-nofile'           => 'Бындай исемле файл юҡ.',
 'uploadnewversion-linktext' => 'Был файлдың яңы версияһын тейәргә',
+'shared-repo-from'          => '$1 базаһынан',
 
 # File reversion
 'filerevert-comment' => 'Сәбәп:',
@@ -1572,7 +1632,9 @@ $1',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт}}',
+'ncategories'             => '{{PLURAL:$1|Категория|Категория}}',
 'nmembers'                => '$1 {{PLURAL:$1|объект}}',
+'nrevisions'              => '$1 {{PLURAL:$1|өлгө|өлгө}}',
 'lonelypages'             => 'Етем биттәр',
 'uncategorizedpages'      => 'Категорияланмаған биттәр',
 'uncategorizedcategories' => 'Категорияланмаған категориялар',

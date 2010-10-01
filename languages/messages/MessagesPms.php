@@ -275,8 +275,8 @@ Tròpi utent a son an camin ch'a preuvo a lese sta pàgina-sì.
 Për piasì, speta un pòch prima ëd prové torna a vardé sta pàgina-sì.
 
 $1",
-'pool-timeout'      => 'Timeout an spetand ël lock',
-'pool-queuefull'    => "La coa dël pool a l'é pien-a",
+'pool-timeout'      => "Ël temp a l'é finì antramentre ch'a së spetava la saradura",
+'pool-queuefull'    => "La coa ëd travaj a l'é pien-a",
 'pool-errorunknown' => 'Eror pa conossù',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1583,10 +1583,10 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé l'ó
 'filehist-comment'                  => 'Coment',
 'filehist-missing'                  => 'Archivi mancant',
 'imagelinks'                        => "Anliure a l'archivi",
-'linkstoimage'                      => "{{PLURAL:$1|La pàgina sì sota a l'ha |$1 Le pàgine sì sota a l'han }} andrinta dj'anliure a cost file-sì:",
-'linkstoimage-more'                 => "Pì che $1 {{PLURAL:$1|pàgina a colega|pàgine a colego}} sto file-sì.
-La lista sota a mosta mach {{PLURAL:$1|la prima pàgina ch'a colega|le prime $1 pàgine ch'acolego}} sto file-sì.
-A-i é n'[[Special:WhatLinksHere/$2|elench complet]].",
+'linkstoimage'                      => "{{PLURAL:$1|La pàgina sì-sota a l'ha|Le $1 pàgine sì-sota a l'han}} andrinta dj'anliure a cost archivi:",
+'linkstoimage-more'                 => "Pì che $1 {{PLURAL:$1|pàgina|pàgine}} a l'han dj'anliure a cost archivi.
+La lista sì-sota a smon mach {{PLURAL:$1|la prima pàgina ch'a l'ha|le prime $1 pàgine ch'a l'han}} d'anliure a s'archivi.
+A l'é disponìbil [[Special:WhatLinksHere/$2|lista completa]].",
 'nolinkstoimage'                    => "Pa gnun-a pàgina che a l'abia n'anliura a sta figura-sì.",
 'morelinkstoimage'                  => 'Varda [[Special:WhatLinksHere/$1|àutri colegament]] a sto file sì.',
 'redirectstofile'                   => 'Sota a-i {{PLURAL:$1|é un|son $1}} redirect a sto file-sì:',
