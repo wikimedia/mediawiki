@@ -2323,9 +2323,7 @@ class OutputPage {
 				$context = new ResourceLoaderContext( $this->mResourceLoader, new FauxRequest( $query ) );
 				if ( $only == 'styles' ) {
 					$links .= Html::inlineStyle(
-						ResourceLoader::makeLoaderConditionalScript(
-							$this->mResourceLoader->makeModuleResponse( $context, $modules )
-						)
+						$this->mResourceLoader->makeModuleResponse( $context, $modules )
 					);
 				} else {
 					$links .= Html::inlineScript(
