@@ -5,8 +5,8 @@
  */
 jQuery.fn.firstTabIndex = function() {
 	var minTabIndex = 0;
-	$(this).find( '[tabindex]' ).each( function() {
-		var tabIndex = parseInt( $(this).attr( 'tabindex' ) );
+	jQuery(this).find( '[tabindex]' ).each( function() {
+		var tabIndex = parseInt( jQuery(this).attr( 'tabindex' ) );
 		if ( tabIndex > minTabIndex ) {
 			minTabIndex = tabIndex;
 		}
@@ -20,8 +20,8 @@ jQuery.fn.firstTabIndex = function() {
  */
 jQuery.fn.lastTabIndex = function() {
 	var maxTabIndex = 0;
-	$(this).find( '[tabindex]' ).each( function() {
-		var tabIndex = parseInt( $(this).attr( 'tabindex' ) );
+	jQuery(this).find( '[tabindex]' ).each( function() {
+		var tabIndex = parseInt( jQuery(this).attr( 'tabindex' ) );
 		if ( tabIndex > maxTabIndex ) {
 			maxTabIndex = tabIndex;
 		}
