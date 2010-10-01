@@ -61,12 +61,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   responses from ResourceLoader based on whether the request's URL contained a
   version parameter or not.
 * $wgResourceLoaderDebug was added to specify the default state of debug mode;
-  this will still be overridden with the debug URL parameter a la $wgLanguageCode.
+  this will still be overridden with the debug URL parameter a la
+  $wgLanguageCode.
 * $wgResourceLoaderInlinePrivateModules was added to specify whether private
-  modules such as user.options should be embedded in the HTML output or delivered
-  through a resource loader request, which bypasses server cache (like squid) and
-  checks the user parameter against $wgUser. The former adds more data to all
-  pages, while the latter adds a request which cannot be cached server side.
+  modules such as user.options should be embedded in the HTML output or
+  delivered through a resource loader request, which bypasses server cache (like
+  squid) and checks the user parameter against $wgUser. The former adds more
+  data to all pages, while the latter adds a request which cannot be cached
+  server side.
 * Removed $wgUpdates for database updates; extension should use
   DatabaseUpdater::addExtensionUpdate().
 
@@ -140,7 +142,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   because it encourages edits to be marked minor accidentally and it can be
   easily replicated by custom user scripts for those who really want it.
 * Non-file pages can no longer be moved to the file namespace, nor vice versa.
-* (bug 671) The <dfn>, <kbd> and <samp> elements have been whitelisted in user input
+* (bug 671) The <dfn>, <kbd> and <samp> elements have been whitelisted in user
+  input
 * (bug 24563) Entries on Special:WhatLinksHere now have a link to their history
 * (bug 21503) There's now a "reason" field when creating account for other users
 * (bug 24418) action=markpatrolled now requires a token
@@ -170,7 +173,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Version now displays whether a SQLite database supports full-text
   search.
 * (bug 24343) New parser hook {{linkurl:}}, same as {{localurl:}} with fragment
-* TS_ISO_8691_BASIC was added as a time format, which is used by ResourceLoader for versioning
+* TS_ISO_8691_BASIC was added as a time format, which is used by ResourceLoader
+  for versioning
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
@@ -344,7 +348,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25292) SkinSubPageSubtitle hook now passes the Skin object as second
   parameter
 * (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16)
-* (bug 25367) wfShellExec() is more explicit when failing due to disabled passthru()
+* (bug 25367) wfShellExec() is more explicit when failing due to disabled
+  passthru()
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
@@ -387,7 +392,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to the local alias.
 * (bug 24296) Added converttitles parameter to convert titles to their
   canonical language variant.
-* (bug 17398) Fixed "link" parameter in image links with "thumb" or "frame" parameter.
+* (bug 17398) Fixed "link" parameter in image links with "thumb" or "frame"
+  parameter.
 * (bug 23936) Add "displaytitle" to query/info API
 * (bug 24485) Make iwbacklinks a generator, optionally display iwprefix and
   iwtitle
