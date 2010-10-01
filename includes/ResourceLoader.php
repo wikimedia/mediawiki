@@ -419,7 +419,7 @@ class ResourceLoader {
 			return "mediaWiki.loader.state( $statuses );\n";
 		} else {
 			$name = Xml::escapeJsString( $name );
-			$name = Xml::escapeJsString( $state );
+			$state = Xml::escapeJsString( $state );
 			return "mediaWiki.loader.state( '$name', '$state' );\n";
 		}
 	}
