@@ -421,6 +421,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAllowAsyncCopyUploads to be true.
 * sinumberingroup correctly gives size of 'user' group, and omits size of
   implicit groups rather than showing 0.
+* (bug 25248) API: paraminfo errors with certain modules
 
 === Languages updated in 1.17 ===
 
