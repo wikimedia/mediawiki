@@ -21,18 +21,17 @@ class TitleTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Test originally wrote to investigate bug 24343
-	 * FIXME : some tests might fail depending on local settings.
 	 */
 	function testGetURLS() {
-		global $wgArticlePath, $wgScript;
-	
+		global $wgArticlePath;
+
 		$title = Title::newFromText( 'User:Bob#section' );
-	
-		$this->assertEquals( "$wgScript/User:Bob", $title->getLocalURL(),
+
+		$this->assertEquals( str_replace( '$1', 'User:Bob', $wgArticlePath ), $title->getLocalURL(),
 			'Title::getLocalURL() does NOT have fragment' );
-		$this->assertEquals( "$wgScript/User:Bob", $title->escapeLocalURL(),
+		$this->assertEquals( str_replace( '$1', 'User:Bob', $wgArticlePath ), $title->escapeLocalURL(),
 			'Title::escapeLocalURL() does NOT have fragment' );
-		$this->assertEquals( "$wgScript/User:Bob#section", $title->getLinkURL(),
+		$this->assertEquals( str_replace( '$1', 'User:Bob#section', $wgArticlePath ), $title->getLinkURL(),
 			'Title::getLinkURL() does have fragment' );
 		
 		#$this->assertEquals( 'toto', $title->getFullURL()     );
