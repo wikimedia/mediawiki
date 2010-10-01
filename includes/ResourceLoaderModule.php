@@ -1060,8 +1060,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		foreach ( $context->getResourceLoader()->getModules() as $name => $module ) {
 			// Support module loader scripts
 			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
-				$deps = FormatJson::encode( $module->getDependencies() );
-				$group = FormatJson::encode( $module->getGroup() );
+				$deps = $module->getDependencies();
+				$group = $module->getGroup();
 				$version = wfTimestamp( TS_ISO_8601_BASIC, round( $module->getModifiedTime( $context ), -2 ) );
 				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $loader );
 			}
