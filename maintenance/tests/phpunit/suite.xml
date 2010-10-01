@@ -11,9 +11,6 @@
 		<testsuite name="includes">
 			<directory>./includes</directory>
 		</testsuite>
-		<testsuite name="includes">
-			<directory>./includes</directory>
-		</testsuite>
 		<testsuite name="languages">
 			<directory>./languages</directory>
 		</testsuite>
