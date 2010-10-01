@@ -675,12 +675,12 @@ window.mediaWiki = new ( function( $ ) {
 				if ( modules.substr( 0, 7 ) == 'http://' || modules.substr( 0, 8 ) == 'https://' ) {
 					if ( type === 'text/css' ) {
 						setTimeout(  function() {
-							$( 'head' ).append( '<link rel="stylesheet" type="text/css" href="' + modules + '" />' );
+							$( 'head' ).append( '<link rel="stylesheet" type="text/css" />' ).attr( 'href', modules );
 						}, 0 );
 						return true;
 					} else if ( type === 'text/javascript' || typeof type === 'undefined' ) {
 						setTimeout(  function() {
-							$( 'body' ).append( '<script type="text/javascript" src="' + modules + '"></script>' );
+							$( 'body' ).append( '<script type="text/javascript"></script>'  ).attr( 'src', modules )
 						}, 0 );
 						return true;
 					}
