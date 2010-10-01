@@ -9,6 +9,7 @@
  *
  * @author Alison
  * @author D.de.loinsigh
+ * @author Evertype
  * @author Kwekubo
  * @author Moilleadóir
  * @author Moydow
@@ -958,6 +959,7 @@ do chuid dreachtaí a chur i leith tusa.',
 'recentchangeslinked-summary'  => "Seo liosta na n-athruithe atá deanta is déanaí le leathanaigh atá naiscthe as leathanach sonraithe (nó baill an chatagóir sonraithe).
 Tá na leathanaigh ar do [[Special:Watchlist|liosta faire]] i '''gcló trom'''.",
 'recentchangeslinked-page'     => 'Ainm leathanaigh:',
+'recentchangeslinked-to'       => 'Taispeáin athruithe do leathanaigh nasctha leis an leathanach áirithe sin ina áit.',
 
 # Upload
 'upload'               => 'Uaslódaigh comhad',
@@ -1709,6 +1711,7 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 'tooltip-diff'                    => 'Taispeáin na difríochtaí áirithe a rinne tú don téacs',
 'tooltip-compareselectedversions' => 'Féach na difríochtaí idir an dhá leagain roghnaithe den leathanach seo.',
 'tooltip-watch'                   => 'Cuir an leathanach seo le do liosta faire',
+'tooltip-undo'                    => 'Cuirtear "Cealaigh" an t-athrú seo ar cheal agus osclaítear an fhoirm eagair i mód réamhamhairc. Is féidir cúis na hathruithe a chur san achoimre.',
 
 # Stylesheets
 'monobook.css' => '/* athraigh an comhad seo chun an craiceann MonoBook a athrú don suíomh ar fad */',
