@@ -440,7 +440,7 @@ class ResourceLoader {
 			$group = 'null';
 		}
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
-		return "( function( name, version, dependencies ) {\n\t$script\n} )" .
+		return "( function( name, version, dependencies, group ) {\n\t$script\n} )" .
 			"( '$name', $version, $dependencies, $group );\n";
 	}
 
