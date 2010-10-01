@@ -822,7 +822,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				__METHOD__ );
 
 			if ( $latest ) {
-				$modifiedTime = wfTimestamp( TS_UNIX, $modifiedTime );
+				$modifiedTime = wfTimestamp( TS_UNIX, $latest );
 			}
 		}
 
