@@ -36,6 +36,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryUserInfo extends ApiQueryBase {
 
+	private $prop = array();
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ui' );
 	}
@@ -46,8 +48,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( !is_null( $params['prop'] ) ) {
 			$this->prop = array_flip( $params['prop'] );
-		} else {
-			$this->prop = array();
 		}
 
 		$r = $this->getCurrentUserInfo();
