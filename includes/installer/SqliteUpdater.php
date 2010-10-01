@@ -57,27 +57,27 @@ class SqliteUpdater extends DatabaseUpdater {
 	protected function sqliteInitialIndexes() {
 		// initial-indexes.sql fails if the indexes are already present, so we perform a quick check if our database is newer.
 		if ( $this->updateRowExists( 'initial_indexes' ) || $this->db->indexExists( 'user', 'user_name' ) ) {
-			wfOut( "...have initial indexes\n" );
+			$this->output( "...have initial indexes\n" );
 			return;
 		}
-		wfOut( "Adding initial indexes..." );
+		$this->output( "Adding initial indexes..." );
 		$this->applyPatch( 'initial-indexes.sql' );
-		wfOut( "done\n" );
+		$this->output( "done\n" );
 	}
 
 	protected function sqliteSetupSearchindex() {
 		$module = $this->db->getFulltextSearchModule();
 		$fts3tTable = $this->updateRowExists( 'fts3' );
 		if ( $fts3tTable &&  !$module ) {
-			wfOut( '...PHP is missing FTS3 support, downgrading tables...' );
+			$this->output( '...PHP is missing FTS3 support, downgrading tables...' );
 			$this->applyPatch( 'searchindex-no-fts.sql' );
-			wfOut( "done\n" );
+			$this->output( "done\n" );
 		} elseif ( !$fts3tTable && $module == 'FTS3' ) {
-			wfOut( '...adding FTS3 search capabilities...' );
+			$this->output( '...adding FTS3 search capabilities...' );
 			$this->applyPatch( 'searchindex-fts3.sql' );
-			wfOut( "done\n" );
+			$this->output( "done\n" );
 		} else {
-			wfOut( "...fulltext search table appears to be in order.\n" );
+			$this->output( "...fulltext search table appears to be in order.\n" );
 		}
 	}
 }

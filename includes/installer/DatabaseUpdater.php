@@ -87,6 +87,16 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Output some text. Right now this is a wrapper for wfOut, but hopefully
+	 * that function can go away some day :)
+	 *
+	 * @param $str String: Text to output
+	 */
+	protected function output( $str ) {
+		wfOut( $str );
+	}
+
+	/**
 	 * Add a new update coming from an extension. This should be called by
 	 * extensions while executing the LoadExtensionSchemaUpdates hook.
 	 *
@@ -272,11 +282,11 @@ abstract class DatabaseUpdater {
 	 */
 	protected function addTable( $name, $patch, $fullpath = false ) {
 		if ( $this->db->tableExists( $name ) ) {
-			wfOut( "...$name table already exists.\n" );
+			$this->output( "...$name table already exists.\n" );
 		} else {
-			wfOut( "Creating $name table..." );
+			$this->output( "Creating $name table..." );
 			$this->applyPatch( $patch, $fullpath );
-			wfOut( "ok\n" );
+			$this->output( "ok\n" );
 		}
 	}
 
@@ -289,13 +299,13 @@ abstract class DatabaseUpdater {
 	 */
 	protected function addField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->db->tableExists( $table ) ) {
-			wfOut( "...$table table does not exist, skipping new field patch\n" );
+			$this->output( "...$table table does not exist, skipping new field patch\n" );
 		} elseif ( $this->db->fieldExists( $table, $field ) ) {
-			wfOut( "...have $field field in $table table.\n" );
+			$this->output( "...have $field field in $table table.\n" );
 		} else {
-			wfOut( "Adding $field field to table $table..." );
+			$this->output( "Adding $field field to table $table..." );
 			$this->applyPatch( $patch, $fullpath );
-			wfOut( "ok\n" );
+			$this->output( "ok\n" );
 		}
 	}
 
@@ -308,11 +318,11 @@ abstract class DatabaseUpdater {
 	 */
 	function addIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
-			wfOut( "...$index key already set on $table table.\n" );
+			$this->output( "...$index key already set on $table table.\n" );
 		} else {
-			wfOut( "Adding $index key to table $table... " );
+			$this->output( "Adding $index key to table $table... " );
 			$this->applyPatch( $patch, $fullpath );
-			wfOut( "ok\n" );
+			$this->output( "ok\n" );
 		}
 	}
 
@@ -326,11 +336,11 @@ abstract class DatabaseUpdater {
 	 */
 	function dropField( $table, $field, $patch, $fullpath = false ) {
 		if ( $this->db->fieldExists( $table, $field ) ) {
-			wfOut( "Table $table contains $field field. Dropping... " );
+			$this->output( "Table $table contains $field field. Dropping... " );
 			$this->applyPatch( $patch, $fullpath );
-			wfOut( "ok\n" );
+			$this->output( "ok\n" );
 		} else {
-			wfOut( "...$table table does not contain $field field.\n" );
+			$this->output( "...$table table does not contain $field field.\n" );
 		}
 	}
 
@@ -344,11 +354,11 @@ abstract class DatabaseUpdater {
 	 */
 	function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
-			wfOut( "Dropping $index from table $table... " );
+			$this->output( "Dropping $index from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
-			wfOut( "ok\n" );
+			$this->output( "ok\n" );
 		} else {
-			wfOut( "...$index key doesn't exist.\n" );
+			$this->output( "...$index key doesn't exist.\n" );
 		}
 	}
 
@@ -362,13 +372,13 @@ abstract class DatabaseUpdater {
 	 */
 	public function modifyField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->db->tableExists( $table ) ) {
-			wfOut( "...$table table does not exist, skipping modify field patch\n" );
+			$this->output( "...$table table does not exist, skipping modify field patch\n" );
 		} elseif ( !$this->db->fieldExists( $table, $field ) ) {
-			wfOut( "...$field field does not exist in $table table, skipping modify field patch\n" );
+			$this->output( "...$field field does not exist in $table table, skipping modify field patch\n" );
 		} else {
-			wfOut( "Modifying $field field of table $table..." );
+			$this->output( "Modifying $field field of table $table..." );
 			$this->applyPatch( $patch, $fullpath );
-			wfOut( "ok\n" );
+			$this->output( "ok\n" );
 		}
 	}
 
@@ -378,23 +388,23 @@ abstract class DatabaseUpdater {
 	protected function purgeCache() {
 		# We can't guarantee that the user will be able to use TRUNCATE,
 		# but we know that DELETE is available to us
-		wfOut( "Purging caches..." );
+		$this->output( "Purging caches..." );
 		$this->db->delete( 'objectcache', '*', __METHOD__ );
-		wfOut( "done.\n" );
+		$this->output( "done.\n" );
 	}
 
 	/**
 	 * Check the site_stats table is not properly populated.
 	 */
 	protected function checkStats() {
-		wfOut( "Checking site_stats row..." );
+		$this->output( "Checking site_stats row..." );
 		$row = $this->db->selectRow( 'site_stats', '*', array( 'ss_row_id' => 1 ), __METHOD__ );
 		if ( $row === false ) {
-			wfOut( "data is missing! rebuilding...\n" );
+			$this->output( "data is missing! rebuilding...\n" );
 		} elseif ( isset( $row->site_stats ) && $row->ss_total_pages == -1 ) {
-			wfOut( "missing ss_total_pages, rebuilding...\n" );
+			$this->output( "missing ss_total_pages, rebuilding...\n" );
 		} else {
-			wfOut( "done.\n" );
+			$this->output( "done.\n" );
 			return;
 		}
 		SiteStatsInit::doAllAndCommit( false );
@@ -414,33 +424,33 @@ abstract class DatabaseUpdater {
 				array( 'ss_row_id' => 1 ), __METHOD__, array( 'LIMIT' => 1 )
 			);
 		}
-		wfOut( "...ss_active_users user count set...\n" );
+		$this->output( "...ss_active_users user count set...\n" );
 	}
 
 	protected function doLogSearchPopulation() {
 		if ( $this->updateRowExists( 'populate log_search' ) ) {
-			wfOut( "...log_search table already populated.\n" );
+			$this->output( "...log_search table already populated.\n" );
 			return;
 		}
 
-		wfOut(
+		$this->output(
 			"Populating log_search table, printing progress markers. For large\n" .
 			"databases, you may want to hit Ctrl-C and do this manually with\n" .
 			"maintenance/populateLogSearch.php.\n" );
 		$task = new PopulateLogSearch();
 		$task->execute();
-		wfOut( "Done populating log_search table.\n" );
+		$this->output( "Done populating log_search table.\n" );
 	}
 
 	function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
-			wfOut( "...transcache tc_time already converted.\n" );
+			$this->output( "...transcache tc_time already converted.\n" );
 			return;
 		}
 
-		wfOut( "Converting tc_time from UNIX epoch to MediaWiki timestamp... " );
+		$this->output( "Converting tc_time from UNIX epoch to MediaWiki timestamp... " );
 		$this->applyPatch( 'patch-tc-timestamp.sql' );
-		wfOut( "ok\n" );
+		$this->output( "ok\n" );
 	}
 
 	protected function doCollationUpdate() {
@@ -451,7 +461,7 @@ abstract class DatabaseUpdater {
 			'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
 			__METHOD__
 		) == 0 ) {
-			wfOut( "...collations up-to-date.\n" );
+			$this->output( "...collations up-to-date.\n" );
 			return;
 		}
 
