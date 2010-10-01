@@ -233,7 +233,7 @@ class ApiMove extends ApiBase {
 		) );
 	}
 
-		public function needsToken() {
+	public function needsToken() {
 		return true;
 	}
 

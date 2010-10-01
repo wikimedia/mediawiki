@@ -121,10 +121,6 @@ class ApiUserrights extends ApiBase {
 		return 'Add/remove a user to/from groups';
 	}
 
-	public function getPossibleErrors() {
-		return parent::getPossibleErrors();
-	}
-
 	public function needsToken() {
 		return true;
 	}
