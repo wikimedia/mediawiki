@@ -55,9 +55,8 @@ window.mediaWiki = new ( function( $ ) {
 		 * An object which allows single and multiple get/set/exists functionality on a list of key / value pairs
 		 * 
 		 * @param {boolean} global whether to get/set/exists values on the window object or a private object
-		 * @param {function} parser function to perform extra processing before while getting a value which accepts
-		 * value and options parameters where value is a string to be parsed and options is an object of options for the
-		 * parser
+		 * @param {function} parser function to perform extra processing; in the form of function( value, options )
+		 * where value is the data to be parsed and options is additional data passed through to the parser
 		 */
 		'configuration': function( global, parser ) {
 			
@@ -87,7 +86,7 @@ window.mediaWiki = new ( function( $ ) {
 			this.get = function( selection, options ) {
 				if ( typeof selection === 'object' ) {
 					var results = {};
-					for ( s in selection ) {
+					for ( var s in selection ) {
 						if ( selection.hasOwnProperty( s ) ) {
 							if ( typeof s === 'string' ) {
 								return that.get( values[s], selection[s] );
