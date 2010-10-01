@@ -1234,7 +1234,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			chdir( ".." );
 			flush();
 
-			define( 'MW_NO_SETUP', true );
 			$updater = DatabaseUpdater::newForDb( $wgDatabase, false );
 			$updater->doUpdates();
 			foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
