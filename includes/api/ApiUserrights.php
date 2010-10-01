@@ -125,6 +125,10 @@ class ApiUserrights extends ApiBase {
 		return parent::getPossibleErrors();
 	}
 
+	public function needsToken() {
+		return true;
+	}
+
 	public function getTokenSalt() {
 		return $this->getUser()->getName();
 	}
