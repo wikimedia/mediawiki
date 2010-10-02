@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ganesh
+ * @author RajeshPandey
  * @author ne.wikipedia.org sysops
  * @author सरोज कुमार ढकाल
  */
@@ -409,7 +410,7 @@ Database returned error "<tt>$3: $4</tt>".',
 'yourname'                   => 'प्रयोगकर्ता-नाम',
 'yourpassword'               => 'पासवर्ड',
 'yourpasswordagain'          => 'पासवर्ड फेरी टाईप गर्नुहोस्',
-'remembermypassword'         => 'यो कम्प्युटरमा मेरो प्रवेश याद गर्ने । (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'         => 'यो कम्प्युटरमा मेरो प्रवेश याद गर । (धेरैमा $1 {{PLURAL:$1|दिन|दिनहरु}})',
 'yourdomainname'             => 'तपाइको कार्यक्षेत्र(डोमेन)',
 'login'                      => 'प्रवेश (लग ईन)',
 'nav-login-createaccount'    => 'प्रवेश गर्नुहोस्  / नयँ खाता खोल्नुहोस्',
@@ -563,6 +564,10 @@ Database returned error "<tt>$3: $4</tt>".',
 'newarticletext'                   => "तपाईँले अहिले सम्म नभएको पृष्ठको लिंङ्क पहिल्याउनु भएको छ।
 यो पृष्ठ निर्माण गर्न तलको बाक्सामा टाइप गर्नुहोस्  ।(थप जानकारीको लागि [[{{MediaWiki:Helppage}}|help page]] हेर्नुहोस् )।
 यहाँ त्यत्तिकै आइपुग्नु भएको हो भने , ब्राउजरको  '''back''' बटन थिच्नुहोस ।",
+'noarticletext'                    => 'यस लेखमा अहिले केहि पनि पाठ छैन ।
+तपाईले अन्य पृष्ठमा [[Special:Search/{{PAGENAME}}|यस पृष्ठको शीर्षकको लागि खोज]] गर्न सक्नुहुन्छ ।
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} पृष्ठ संबंधित ढड्डामा खोज],
+वा [{{fullurl:{{FULLPAGENAME}}|action=edit}}  यसै पृष्ठलाई संपादन गर्ने]</span>.',
 'userpage-userdoesnotexist'        => 'प्रयोगकर्ताको खाता  "$1" दर्ता गरिएको छैन ।
 तपाईँले पृष्ठ निर्माण/सम्पादन गर्न चाहनु भएको भए जाँच गर्नुहोस् ।',
 'usercssyoucanpreview'             => "'''काइदा:'''  'पूर्वावलोकन देखाउनुहोस् ' थिची तपाईँको नयाँ CSS सङ्ग्रहगर्नु अगि जाँच्नुहोस् ।",
@@ -583,8 +588,8 @@ Database returned error "<tt>$3: $4</tt>".',
 'yourdiff'                         => 'भिन्नताहरु',
 'semiprotectedpagewarning'         => "'''सुचना:''' यो पृष्ठमा ताल्चा मारिएको छ त्यसैले दर्ता भएका प्रयोगकर्ताहरुले मात्र यसलाई सम्पादन गर्ने सक्छन् ।",
 'titleprotectedwarning'            => "'''चेतावनी: यो पृष्ठमा ताल्चा मारिएको छ र यसलाई शृजना गर्न  [[Special:ListGroupRights|विशेष अधिकारहरु]] चाहिन्छ ।'''",
-'templatesused'                    => 'यस पृष्ठमा प्रयोग भएको टेम्प्लेट(नमूना):',
-'templatesusedpreview'             => 'यो पूर्वावलोकनमा प्रयोग भएका टेम्प्लेट(नमूना) हरु:',
+'templatesused'                    => 'यस पृष्ठमा प्रयोग भएका {{PLURAL:$1|Template|टेम्प्लेट(नमूना)हरु}} :',
+'templatesusedpreview'             => 'यस पृष्ठमा प्रयोग भएका {{PLURAL:$1|Template|टेम्प्लेट(नमूना)हरु}} :',
 'templatesusedsection'             => 'यो खण्डमा प्रयोग गरिएको टेम्प्लेटहरु :',
 'template-protected'               => '(सुरक्षित)',
 'template-semiprotected'           => '(अर्ध-सुरक्षित)',
@@ -1066,6 +1071,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'recentchanges-label-minor'       => 'यो साधारण सम्पादन हो',
 'recentchanges-label-bot'         => 'यो सम्पादन बोट द्वारा गरिएको थियो',
 'recentchanges-label-unpatrolled' => 'यो सम्पादन अहिले सम्म पट्रोल गरिएको छैन',
+'rcnote'                          => "तल पछिल्ला {{PLURAL:$2|day|'''$2''' दिनहरु}} मा  $5, $4 सम्म भएका {{PLURAL:$1|is '''1''' change|पछिल्ला '''$1''' परिवर्तनहरु}} देखाइएको छ ।",
 'rclistfrom'                      => '$1 देखिका नयाँ परिवर्तनहरू देखाउनु',
 'rcshowhideminor'                 => '$1 सामान्य सम्पादन',
 'rcshowhidebots'                  => '$1 बोटहरू',

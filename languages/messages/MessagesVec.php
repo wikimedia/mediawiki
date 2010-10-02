@@ -554,6 +554,7 @@ L'acount el xè sta creà coretamente. No dismentegare de personałizare łe [[S
 'gotaccount'                 => "Te ghe zà n'aceso? '''$1'''.",
 'gotaccountlink'             => 'Entra',
 'createaccountmail'          => 'par e-mail',
+'createaccountreason'        => 'Motivassion:',
 'badretype'                  => 'Łe password inserie no e coinside tra loro.',
 'userexists'                 => 'El nome utente inserio xè zà utiłizà.
 Sceji on nome utente difarente.',
@@ -607,6 +608,15 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 'suspicious-userlogout'      => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
+
+# JavaScript password checks
+'password-strength'            => 'Stima de la robusteza de la password: $1',
+'password-strength-bad'        => 'TRISTA',
+'password-strength-mediocre'   => 'cussì cussì',
+'password-strength-acceptable' => "pole 'ndar ben",
+'password-strength-good'       => 'bona',
+'password-retype'              => 'Scrivi da novo la password',
+'password-retype-mismatch'     => 'La password no le corisponde',
 
 # Password reset dialog
 'resetpass'                 => 'Cànbia la password',
@@ -944,6 +954,8 @@ $1",
 'logdelete-failure'           => "'''No se riesse a inpostar la visibilità 'ntel registro:'''
 $1",
 'revdel-restore'              => 'Canbia ła visibilità',
+'revdel-restore-deleted'      => 'revision scancelà',
+'revdel-restore-visible'      => 'revision visibili',
 'pagehist'                    => 'Cronologia de la pagina',
 'deletedhist'                 => 'Cronologia scancelà',
 'revdelete-content'           => 'contenuto',
@@ -975,6 +987,14 @@ No ti gà acesso su de ela.',
 # Suppression log
 'suppressionlog'     => 'Registro dei ocultamenti',
 'suppressionlogtext' => "Qua soto se cata na lista de le ultime scancelazioni e blochi che riguarda contenuti sconti dai aministradori. Varda la [[Special:IPBlockList|lista dei IP blocà]] par védar l'elenco dei blochi atualmente ativi.",
+
+# Revision move
+'moverevlogentry'        => 'gà spostà {{PLURAL:$3|na revision|$3 revision}} da $1 a $2',
+'revisionmove'           => 'Sposta revision da "$1"',
+'revmove-reasonfield'    => 'Motivassion:',
+'revmove-titlefield'     => 'Pagina de destinassion:',
+'revmove-badparam-title' => 'Parametri mia validi',
+'revmove-nullmove-title' => 'Titolo mia valido',
 
 # History merging
 'mergehistory'                     => 'Union cronologie',
@@ -3084,6 +3104,13 @@ Doparar l\'anteprima standard.',
 'version-hook-subscribedby'        => 'Sotoscrizioni',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licensa',
+'version-poweredby-credits'        => "Sta wiki la va con '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'altri',
+'version-license-info'             => "MediaWiki xe un software lìbaro; te pol redistribuirlo e/o modificarlo secondo i termini de la Licensa Publica Zeneral GNU publicà da la Free Software Foundation; secondo la version 2 de la Licensa, o (a scelta tua) una qualunque altra version sucessiva.
+
+MediaWiki el xe distribuìo sperando che el possa vegner utile, ma SENSA NISSUNA GARANSIA; sensa gnanca la garansia inplicita de COMERCIALIZASSION o de ADATAMENTO A UN USO PARTICOLARE. Varda la Licensa Publica Zeneral GNU par ulteriori detagli.
+
+Insieme co sto programa te dovaressi 'ver ricevùo na copia de la Licensa Publica Zeneral GNU; se nò, scrìveghe a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html và a lèzartela online].",
 'version-software'                 => 'Software instalà',
 'version-software-product'         => 'Prodoto',
 'version-software-version'         => 'Version',
@@ -3154,6 +3181,7 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'tags-hitcount'           => '$1 {{PLURAL:$1|modìfega|modìfeghe}}',
 
 # Special:ComparePages
+'comparepages'   => 'Confronta le pagine',
 'compare-page1'  => 'Pagina 1',
 'compare-page2'  => 'Pagina 2',
 'compare-rev1'   => 'Revisión 1',

@@ -708,7 +708,7 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'yourpasswordagain'          => 'Confirmâd lo mot de pâssa :',
 'remembermypassword'         => 'Sè rapelar de mon branchement sur ceti navigator (por $1 jorn{{PLURAL:$1||s}} u més)',
 'yourdomainname'             => 'Voutron domêno :',
-'externaldberror'            => 'Ou ben una èrror est arrevâ avouéc la bâsa de balyês d’ôtentificacion de defôr, ou ben vos éte pas ôtorisâ a betar a jorn voutron compto de defôr.',
+'externaldberror'            => 'Ou ben una èrror est arrevâ avouéc la bâsa de balyês d’ôtenticacion de defôr, ou ben vos éte pas ôtorisâ a betar a jorn voutron compto de defôr.',
 'login'                      => 'Branchement',
 'nav-login-createaccount'    => 'Fâre un compto ou sè branchiér',
 'loginprompt'                => "Vos dête activar los tèmouens (''cookies'') por vos branchiér a {{SITENAME}}.",
@@ -773,8 +773,8 @@ Por èvitar los abus, solament yon mèssâjo de rapèl serat mandâ per {{PLURAL
 'mailerror'                  => 'Èrror pendent l’èxpèdicion du mèssâjo : $1',
 'acct_creation_throttle_hit' => 'Quârqu’un qu’utilise voutra adrèce IP at fêt {{PLURAL:$1|yon compto|$1 comptos}} pendent les 24 hores passâs, cen qu’est la limita ôtorisâ dens ceti temps.
 Du côp, la crèacion de compto at étâ dèsactivâ temporèrament por cela adrèce IP.',
-'emailauthenticated'         => 'Voutra adrèce èlèctronica at étâ ôtentifiâ lo $2 a $3.',
-'emailnotauthenticated'      => 'Voutra adrèce èlèctronica est p’oncor ôtentifiâ.
+'emailauthenticated'         => 'Voutra adrèce èlèctronica at étâ ôtenticâ lo $2 a $3.',
+'emailnotauthenticated'      => 'Voutra adrèce èlèctronica est p’oncor ôtenticâ.
 Nion mèssâjo serat mandâ por châcuna de cetes fonccions.',
 'noemailprefs'               => 'Endicâd una adrèce èlèctronica dens voutres prèferences por utilisar cetes fonccions.',
 'emailconfirmlink'           => 'Confirmâd voutra adrèce èlèctronica',
@@ -1943,7 +1943,7 @@ La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
 'mimesearch'         => 'Rechèrche per tipo de contegnu MIME',
 'mimesearch-summary' => "Ceta pâge vos pèrmèt de listar los fichiérs accèssiblos per ceti vouiqui d’aprés lor tipo de contegnu MIME.
 Entrâ : ''tipo de contegnu''/''sot-tipo'', per ègzemplo <tt>image/jpeg</tt>.",
-'mimetype'           => 'Tipo de contegnu MIME :',
+'mimetype'           => 'Tipo MIME :',
 'download'           => 'Tèlèchargiér',
 
 # Unwatched pages

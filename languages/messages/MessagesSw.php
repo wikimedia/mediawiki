@@ -1193,7 +1193,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'prefs-diffs'                   => 'Tofauti',
 
 # User rights
-'userrights'                   => 'Usimamizi wa haki za mtumiaji',
+'userrights'                   => 'Usimamizi wa wezo za mtumiaji',
 'userrights-lookup-user'       => 'Kusimamia kundi za watumiaji',
 'userrights-user-editname'     => 'Andika jina la mtumiaji:',
 'editusergroup'                => 'Kuhariri vikundi vya watumiaji',
@@ -1283,7 +1283,7 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 # User rights log
 'rightslog'      => 'Kumbukumbu za vyeo vya watumiaji',
 'rightslogtext'  => 'Hii ni kumbukumbu za mabadiliko za wezo za watumiaji.',
-'rightslogentry' => 'alibadilisha wezo za $1 aliyekuwa na uwezo wa kundi $2 awe $3',
+'rightslogentry' => 'alibadilisha wezo za $1 aliyekuwa na wezo za kundi $2 awe mwanachama wa $3',
 'rightsnone'     => '(hana)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2068,8 +2068,10 @@ huenda ikawa mtu mwingine ameurudisha tayari.',
 'sp-contributions-newbies'     => 'Onyesha michango ya akaunti mpya tu',
 'sp-contributions-newbies-sub' => 'Kwa akaunti mpya',
 'sp-contributions-blocklog'    => 'Kumbukumbu ya uzuio',
+'sp-contributions-deleted'     => 'michango iliyofutwa ya mtumiaji',
 'sp-contributions-logs'        => 'kumbukumbu',
 'sp-contributions-talk'        => 'majadiliano',
+'sp-contributions-userrights'  => 'usimamizi wa wezo za mtumiaji',
 'sp-contributions-search'      => 'Tafuta michango',
 'sp-contributions-username'    => 'Anwani ya IP au jina la mtumiaji:',
 'sp-contributions-submit'      => 'Tafuta',
@@ -2208,7 +2210,7 @@ Chagua jina lengine.',
 'imagenocrossnamespace'        => 'Faili linaweza kuhamishwa katika eneo la wiki la faili tu.',
 'nonfile-cannot-move-to-file'  => 'Ni mafaili tu yanayoweza kuhamishwa katika eneo la faili',
 'imageinvalidfilename'         => 'Jina la faili la mwishilio ni batili',
-'fix-double-redirects'         => 'Sasisha maelekezo yanayoelekeza jina la zamani la faili',
+'fix-double-redirects'         => 'Sasisha maelekezo yanayoelekeza jina la awali la faili',
 'move-leave-redirect'          => 'Weka elekezo mahali pake',
 'protectedpagemovewarning'     => "'''Ilani:''' Ukurasa huu umelindwa, kwa hiyo ni watumiaji wenye wezo za wakabidhi tu wanaoweza  kuuhamisha.
 Kumbukumbu ya mwisho inaandikwa chini:",

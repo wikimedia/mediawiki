@@ -547,7 +547,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'userlogout'                 => 'Clauder session',
 'notloggedin'                => 'Tu non ha aperite un session',
 'nologin'                    => "Tu non ha un conto? '''$1'''.",
-'nologinlink'                => 'Crea un conto',
+'nologinlink'                => 'Crear un conto',
 'createaccount'              => 'Crear conto',
 'gotaccount'                 => "Tu jam ha un conto? '''$1'''.",
 'gotaccountlink'             => 'Aperi un session',
