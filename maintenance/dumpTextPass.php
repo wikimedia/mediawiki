@@ -482,7 +482,7 @@ Options:
   --stub=<type>:<file> To load a compressed stub dump instead of stdin
   --prefetch=<type>:<file> Use a prior dump file as a text source, to save
 			  pressure on the database.
-			  (Requires PHP 5.0+ and the XMLReader PECL extension)
+			  (Requires the XMLReader PECL extension)
   --quiet	  Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
 			  (Default: 100)
