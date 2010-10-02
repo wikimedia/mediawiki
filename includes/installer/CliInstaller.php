@@ -31,6 +31,7 @@ class CliInstaller extends CoreInstaller {
 		'dbschema' => 'wgDBmwschema',
 		'dbts2schema' => 'wgDBts2schema',
 		'dbpath' => 'wgSQLiteDataDir',
+		'scriptpath' => 'wgScriptPath',
 	);
 
 	/**
