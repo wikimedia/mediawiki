@@ -50,7 +50,8 @@ class ResourceLoaderContext {
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
 		// Interperet request
-		$this->modules = explode( '|', $request->getVal( 'modules' ) );
+		$modules = $request->getVal( 'modules' );
+		$this->modules = $modules ? explode( '|', $modules ) : array();
 		$this->language = $request->getVal( 'lang' );
 		$this->direction = $request->getVal( 'dir' );
 		$this->skin = $request->getVal( 'skin' );
