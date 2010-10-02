@@ -618,9 +618,8 @@ class Language {
 	 * escaping format.
 	 *
 	 * Supported format characters are dDjlNwzWFmMntLoYyaAgGhHiscrU. See the
-	 * PHP manual for definitions. "o" format character is supported since
-	 * PHP 5.1.0, previous versions return literal o.
-	 * There are a number of extensions, which start with "x":
+	 * PHP manual for definitions. There are a number of extensions, which
+	 * start with "x":
 	 *
 	 *    xn   Do not translate digits of the next numeric format character
 	 *    xN   Toggle raw digit (xn) flag, stays set until explicitly unset
