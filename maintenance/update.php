@@ -72,7 +72,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		# Don't try to access the database
 		# This needs to be disabled early since extensions will try to use the l10n
-		# cache from $wgExtensionSetupFunctions (bug 20471)
+		# cache from $wgExtensionFunctions (bug 20471)
 		$wgLocalisationCacheConf = array(
 			'class' => 'LocalisationCache',
 			'storeClass' => 'LCStore_Null',
