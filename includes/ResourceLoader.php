@@ -293,7 +293,7 @@ class ResourceLoader {
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		$ims = $context->getRequest()->getHeader( 'If-Modified-Since' );
-		if ( $ims !== false && $mtime >= wfTimestamp( TS_UNIX, $ims ) ) {
+		if ( $ims !== false && $mtime <= wfTimestamp( TS_UNIX, $ims ) ) {
 			header( 'HTTP/1.0 304 Not Modified' );
 			header( 'Status: 304 Not Modified' );
 			wfProfileOut( __METHOD__ );
