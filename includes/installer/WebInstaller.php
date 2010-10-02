@@ -8,32 +8,32 @@
 
 /**
  * Class for the core installer web interface.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
 class WebInstaller extends CoreInstaller {
-	
+
 	/**
 	 * @var WebInstallerOutput
 	 */
-	public $output;	
-	
+	public $output;
+
 	/**
 	 * WebRequest object.
-	 * 
+	 *
 	 * @var WebRequest
 	 */
 	public $request;
 
 	/**
 	 * Cached session array.
-	 * 
+	 *
 	 * @var array
 	 */
 	public $session;
 
-	/** 
+	/**
 	 * Captured PHP error text. Temporary.
 	 */
 	public $phpErrors;
@@ -90,9 +90,9 @@ class WebInstaller extends CoreInstaller {
 
 	public $currentPageName;
 
-	/** 
+	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param $request WebRequest
 	 */
 	public function __construct( WebRequest $request ) {
@@ -103,18 +103,18 @@ class WebInstaller extends CoreInstaller {
 
 	/**
 	 * Main entry point.
-	 * 
+	 *
 	 * @param $session Array: initial session array
-	 * 
+	 *
 	 * @return Array: new session array
 	 */
 	public function execute( array $session ) {
 		$this->session = $session;
-		
+
 		if ( isset( $session['settings'] ) ) {
 			$this->settings = $session['settings'] + $this->settings;
 		}
-		
+
 		$this->exportVars();
 		$this->setupLanguage();
 
@@ -122,11 +122,11 @@ class WebInstaller extends CoreInstaller {
 		{
 			$ls = new LocalSettingsGenerator( $this );
 			$this->request->response()->header('Content-type: text/plain');
-			
+
 			$this->request->response()->header(
 				'Content-Disposition: attachment; filename="LocalSettings.php"'
 			);
-			
+
 			echo $ls->getText();
 			return $this->session;
 		}
@@ -136,13 +136,13 @@ class WebInstaller extends CoreInstaller {
 		} else {
 			$this->happyPages = array();
 		}
-		
+
 		if ( isset( $session['skippedPages'] ) ) {
 			$this->skippedPages = $session['skippedPages'];
 		} else {
 			$this->skippedPages = array();
 		}
-		
+
 		$lowestUnhappy = $this->getLowestUnhappy();
 
 		# Special case for Creative Commons partner chooser box.
@@ -152,7 +152,7 @@ class WebInstaller extends CoreInstaller {
 			$page->submitCC();
 			return $this->finish();
 		}
-		
+
 		if ( $this->request->getVal( 'ShowCC' ) ) {
 			$page = $this->getPageByName( 'Options' );
 			$this->output->useShortHeader();
@@ -183,7 +183,7 @@ class WebInstaller extends CoreInstaller {
 					$this->showSessionWarning = true;
 				}
 			}
-			
+
 			$pageName = $this->pageSequence[$pageId];
 			$page = $this->getPageByName( $pageName );
 		}
@@ -196,7 +196,7 @@ class WebInstaller extends CoreInstaller {
 				# Main sequence page
 				# Skip the skipped pages
 				$nextPageId = $pageId;
-				
+
 				do {
 					$nextPageId--;
 					$nextPage = $this->pageSequence[$nextPageId];
@@ -204,7 +204,7 @@ class WebInstaller extends CoreInstaller {
 			} else {
 				$nextPage = $this->pageSequence[$lowestUnhappy];
 			}
-			
+
 			$this->output->redirect( $this->getUrl( array( 'page' => $nextPage ) ) );
 			return $this->finish();
 		}
@@ -213,14 +213,14 @@ class WebInstaller extends CoreInstaller {
 		$this->currentPageName = $page->getName();
 		$this->startPageWrapper( $pageName );
 		$localSettings = $this->getLocalSettingsStatus();
-		
+
 		if( !$localSettings->isGood() ) {
 			$this->showStatusBox( $localSettings );
 			$result = 'output';
 		} else {
 			$result = $page->execute();
 		}
-		
+
 		$this->endPageWrapper();
 
 		if ( $result == 'skip' ) {
@@ -237,7 +237,7 @@ class WebInstaller extends CoreInstaller {
 			if ( $pageId !== false ) {
 				$this->happyPages[$pageId] = true;
 			}
-			
+
 			$lowestUnhappy = $this->getLowestUnhappy();
 
 			if ( $this->request->getVal( 'lastPage' ) ) {
@@ -247,14 +247,14 @@ class WebInstaller extends CoreInstaller {
 			} else {
 				$nextPage = $this->pageSequence[$lowestUnhappy];
 			}
-			
+
 			if ( array_search( $nextPage, $this->pageSequence ) > $lowestUnhappy ) {
 				$nextPage = $this->pageSequence[$lowestUnhappy];
 			}
-			
+
 			$this->output->redirect( $this->getUrl( array( 'page' => $nextPage ) ) );
 		}
-		
+
 		return $this->finish();
 	}
 
@@ -271,7 +271,7 @@ class WebInstaller extends CoreInstaller {
 	 */
 	public function startSession() {
 		$sessPath = $this->getSessionSavePath();
-		
+
 		if( $sessPath != '' ) {
 			if( strval( ini_get( 'open_basedir' ) ) != '' ) {
 				// we need to skip the following check when open_basedir is on.
@@ -285,7 +285,7 @@ class WebInstaller extends CoreInstaller {
 			// If the path is unset it'll default to some system bit, which *probably* is ok...
 			// not sure how to actually get what will be used.
 		}
-		
+
 		if( wfIniGetBool( 'session.auto_start' ) || session_id() ) {
 			// Done already
 			return true;
@@ -295,12 +295,12 @@ class WebInstaller extends CoreInstaller {
 		set_error_handler( array( $this, 'errorHandler' ) );
 		session_start();
 		restore_error_handler();
-		
+
 		if ( $this->phpErrors ) {
 			$this->showError( 'config-session-error', $this->phpErrors[0] );
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -340,41 +340,41 @@ class WebInstaller extends CoreInstaller {
 
 	/**
 	 * Clean up from execute()
-	 * 
+	 *
 	 * @return array
 	 */
 	public function finish() {
 		$this->output->output();
-		
+
 		$this->session['happyPages'] = $this->happyPages;
 		$this->session['skippedPages'] = $this->skippedPages;
 		$this->session['settings'] = $this->settings;
-		
+
 		return $this->session;
 	}
 
 	/**
 	 * Get a URL for submission back to the same script.
-	 * 
+	 *
 	 * @param $query: Array
 	 */
 	public function getUrl( $query = array() ) {
 		$url = $this->request->getRequestURL();
 		# Remove existing query
 		$url = preg_replace( '/\?.*$/', '', $url );
-		
+
 		if ( $query ) {
 			$url .= '?' . wfArrayToCGI( $query );
 		}
-		
+
 		return $url;
 	}
 
 	/**
 	 * Get a WebInstallerPage from the main sequence, by ID.
-	 * 
+	 *
 	 * @param $id Integer
-	 * 
+	 *
 	 * @return WebInstallerPage
 	 */
 	public function getPageById( $id ) {
@@ -383,23 +383,23 @@ class WebInstaller extends CoreInstaller {
 
 	/**
 	 * Get a WebInstallerPage by name.
-	 * 
+	 *
 	 * @param $pageName String
-	 * 
+	 *
 	 * @return WebInstallerPage
 	 */
 	public function getPageByName( $pageName ) {
 		// Totally lame way to force autoload of WebInstallerPage.php
 		class_exists( 'WebInstallerPage' );
-		
+
 		$pageClass = 'WebInstaller_' . $pageName;
-		
+
 		return new $pageClass( $this );
 	}
 
 	/**
 	 * Get a session variable.
-	 * 
+	 *
 	 * @param $name String
 	 * @param $default
 	 */
@@ -430,7 +430,7 @@ class WebInstaller extends CoreInstaller {
 	 */
 	public function setupLanguage() {
 		global $wgLang, $wgContLang, $wgLanguageCode;
-		
+
 		if ( $this->getSession( 'test' ) === null && !$this->request->wasPosted() ) {
 			$wgLanguageCode = $this->getAcceptLanguage();
 			$wgLang = $wgContLang = Language::factory( $wgLanguageCode );
@@ -445,7 +445,7 @@ class WebInstaller extends CoreInstaller {
 
 	/**
 	 * Retrieves MediaWiki language from Accept-Language HTTP header.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getAcceptLanguage() {
@@ -453,45 +453,45 @@ class WebInstaller extends CoreInstaller {
 
 		$mwLanguages = Language::getLanguageNames();
 		$headerLanguages = array_keys( $wgRequest->getAcceptLang() );
-		
+
 		foreach ( $headerLanguages as $lang ) {
 			if ( isset( $mwLanguages[$lang] ) ) {
 				return $lang;
 			}
 		}
-		
+
 		return $wgLanguageCode;
 	}
 
 	/**
 	 * Called by execute() before page output starts, to show a page list.
-	 * 
+	 *
 	 * @param $currentPageName String
 	 */
 	public function startPageWrapper( $currentPageName ) {
 		$s = "<div class=\"config-page-wrapper\">\n" .
 			"<div class=\"config-page-list\"><ul>\n";
 		$lastHappy = -1;
-		
+
 		foreach ( $this->pageSequence as $id => $pageName ) {
 			$happy = !empty( $this->happyPages[$id] );
-			$s .= $this->getPageListItem( 
+			$s .= $this->getPageListItem(
 				$pageName,
 				$happy || $lastHappy == $id - 1,
 				$currentPageName
 			);
-				
+
 			if ( $happy ) {
 				$lastHappy = $id;
 			}
 		}
-		
+
 		$s .= "</ul><br/><ul>\n";
-		
+
 		foreach ( $this->otherPages as $pageName ) {
 			$s .= $this->getPageListItem( $pageName, true, $currentPageName );
 		}
-		
+
 		$s .= "</ul></div>\n". // end list pane
 			"<div class=\"config-page\">\n" .
 			Xml::element( 'h2', array(),
@@ -502,25 +502,25 @@ class WebInstaller extends CoreInstaller {
 
 	/**
 	 * Get a list item for the page list.
-	 * 
+	 *
 	 * @param $pageName String
 	 * @param $enabled Boolean
 	 * @param $currentPageName String
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getPageListItem( $pageName, $enabled, $currentPageName ) {
 		$s = "<li class=\"config-page-list-item\">";
 		$name = wfMsg( 'config-page-' . strtolower( $pageName ) );
-		
+
 		if ( $enabled ) {
 			$query = array( 'page' => $pageName );
-			
+
 			if ( !in_array( $pageName, $this->pageSequence ) ) {
 				if ( in_array( $currentPageName, $this->pageSequence ) ) {
 					$query['lastPage'] = $currentPageName;
 				}
-				
+
 				$link = Xml::element( 'a',
 					array(
 						'href' => $this->getUrl( $query )
@@ -530,7 +530,7 @@ class WebInstaller extends CoreInstaller {
 			} else {
 				$link = htmlspecialchars( $name );
 			}
-			
+
 			if ( $pageName == $currentPageName ) {
 				$s .= "<span class=\"config-page-current\">$link</span>";
 			} else {
@@ -544,9 +544,9 @@ class WebInstaller extends CoreInstaller {
 				$name
 			);
 		}
-		
+
 		$s .= "</li>\n";
-		
+
 		return $s;
 	}
 
@@ -642,7 +642,7 @@ class WebInstaller extends CoreInstaller {
 	/**
 	 * Show a short informational message.
 	 * Output looks like a list.
-	 * 
+	 *
 	 * @param $msg string
 	 */
 	public function showMessage( $msg /*, ... */ ) {
@@ -653,7 +653,7 @@ class WebInstaller extends CoreInstaller {
 			"</div>\n";
 		$this->output->addHTML( $html );
 	}
-	
+
 	/**
 	 * @param $status Status
 	 */
@@ -676,13 +676,13 @@ class WebInstaller extends CoreInstaller {
 		} else {
 			$labelText = wfMsgHtml( $msg );
 		}
-		
+
 		$attributes = array( 'class' => 'config-label' );
-		
+
 		if ( $forId ) {
 			$attributes['for'] = $forId;
 		}
-		
+
 		return
 			"<div class=\"config-input\">\n" .
 			Xml::tags( 'label',
@@ -707,15 +707,15 @@ class WebInstaller extends CoreInstaller {
 		if ( !isset( $params['controlName'] ) ) {
 			$params['controlName'] = 'config_' . $params['var'];
 		}
-		
+
 		if ( !isset( $params['value'] ) ) {
 			$params['value'] = $this->getVar( $params['var'] );
 		}
-		
+
 		if ( !isset( $params['attribs'] ) ) {
 			$params['attribs'] = array();
 		}
-		
+
 		return
 			$this->label(
 				$params['label'],
@@ -749,14 +749,14 @@ class WebInstaller extends CoreInstaller {
 		if ( !isset( $params['value'] ) ) {
 			$params['value'] = $this->getVar( $params['var'] );
 		}
-		
+
 		if ( !isset( $params['attribs'] ) ) {
 			$params['attribs'] = array();
 		}
-		
+
 		$params['value'] = $this->getFakePassword( $params['value'] );
 		$params['attribs']['type'] = 'password';
-		
+
 		return $this->getTextBox( $params );
 	}
 
@@ -775,21 +775,21 @@ class WebInstaller extends CoreInstaller {
 		if ( !isset( $params['controlName'] ) ) {
 			$params['controlName'] = 'config_' . $params['var'];
 		}
-		
+
 		if ( !isset( $params['value'] ) ) {
 			$params['value'] = $this->getVar( $params['var'] );
 		}
-		
+
 		if ( !isset( $params['attribs'] ) ) {
 			$params['attribs'] = array();
 		}
-		
+
 		if( isset( $params['rawtext'] ) ) {
 			$labelText = $params['rawtext'];
 		} else {
 			$labelText = $this->parse( wfMsg( $params['label'] ) );
 		}
-		
+
 		return
 			"<div class=\"config-input-check\">\n" .
 			"<label>\n" .
@@ -825,37 +825,37 @@ class WebInstaller extends CoreInstaller {
 		if ( !isset( $params['controlName']  ) ) {
 			$params['controlName'] = 'config_' . $params['var'];
 		}
-		
+
 		if ( !isset( $params['value'] ) ) {
 			$params['value'] = $this->getVar( $params['var'] );
 		}
-		
+
 		if ( !isset( $params['label'] ) ) {
 			$label = '';
 		} else {
 			$label = $this->parse( wfMsgNoTrans( $params['label'] ) );
 		}
-		
+
 		$s = "<label class=\"config-label\">\n" .
 			$label .
 			"</label>\n" .
 			"<ul class=\"config-settings-block\">\n";
 		foreach ( $params['values'] as $value ) {
 			$itemAttribs = array();
-			
+
 			if ( isset( $params['commonAttribs'] ) ) {
 				$itemAttribs = $params['commonAttribs'];
 			}
-			
+
 			if ( isset( $params['itemAttribs'][$value] ) ) {
 				$itemAttribs = $params['itemAttribs'][$value] + $itemAttribs;
 			}
-			
+
 			$checked = $value == $params['value'];
 			$id = $params['controlName'] . '_' . $value;
 			$itemAttribs['id'] = $id;
 			$itemAttribs['tabindex'] = $this->nextTabIndex();
-			
+
 			$s .=
 				'<li>' .
 				Xml::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
@@ -865,7 +865,7 @@ class WebInstaller extends CoreInstaller {
 				) ) .
 				"</li>\n";
 		}
-		
+
 		$s .= "</ul>\n";
 		return $s;
 	}
@@ -876,13 +876,13 @@ class WebInstaller extends CoreInstaller {
 	public function showStatusBox( $status ) {
 		if( !$status->isGood() ) {
 			$text = $status->getWikiText();
-			
+
 			if( $status->isOk() ) {
 				$box = $this->getWarningBox( $text );
 			} else {
 				$box = $this->getErrorBox( $text );
 			}
-			
+
 			$this->output->addHTML( $box );
 		}
 	}
@@ -897,11 +897,11 @@ class WebInstaller extends CoreInstaller {
 	 */
 	public function setVarsFromRequest( $varNames, $prefix = 'config_' ) {
 		$newValues = array();
-		
+
 		foreach ( $varNames as $name ) {
 			$value = trim( $this->request->getVal( $prefix . $name ) );
 			$newValues[$name] = $value;
-			
+
 			if ( $value === null ) {
 				// Checkbox?
 				$this->setVar( $name, false );
@@ -913,7 +913,7 @@ class WebInstaller extends CoreInstaller {
 				}
 			}
 		}
-		
+
 		return $newValues;
 	}
 
@@ -938,12 +938,12 @@ class WebInstaller extends CoreInstaller {
 	 */
 	public function getDocUrl( $page ) {
 		$url = "{$_SERVER['PHP_SELF']}?page=" . urlencode( $page );
-		
+
 		if ( in_array( $this->currentPageName, $this->pageSequence ) ) {
 			$url .= '&lastPage=' . urlencode( $this->currentPageName );
 		}
-		
+
 		return $url;
 	}
-	
+
 }
