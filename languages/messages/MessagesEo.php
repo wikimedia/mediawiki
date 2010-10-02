@@ -294,7 +294,7 @@ $messages = array(
 'tog-editsection'             => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc'                 => 'Montri liston de enhavoj (por paĝojn kun pli ol 3 sekciojn)',
-'tog-rememberpassword'        => 'Memori mian ensalutadon ĉe ĉi tiu komputilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',
+'tog-rememberpassword'        => 'Memori mian ensalutadon ĉe ĉi tiu retumilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',
 'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
 'tog-watchdefault'            => 'Priatenti redaktintajn paĝojn de vi',
 'tog-watchmoves'              => 'Aldoni paĝojn, kiujn mi movas, al mia atentaro',
@@ -515,6 +515,7 @@ Tro da uzantoj provas vidi ĉi tiun paĝon.
 Bonvolu atendi iom antaŭ vi provas atingi ĝin denove.
 
 $1',
+'pool-errorunknown' => 'Nekonata eraro',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Pri {{SITENAME}}',
@@ -1203,11 +1204,12 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 # Diffs
 'history-title'            => 'Redakto-historio de "$1"',
 'difference'               => '(Malsamoj inter versioj)',
+'difference-multipage'     => '(Diferenco inter paĝoj)',
 'lineno'                   => 'Linio $1:',
 'compareselectedversions'  => 'Kompari la elektitajn versiojn',
 'showhideselectedversions' => 'Montri/kaŝi elektitajn versiojn',
 'editundo'                 => 'malfari',
-'diff-multi'               => '({{PLURAL:$1|Unu meza versio|$1 mezaj versioj}} ne montrata.)',
+'diff-multi'               => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
 
 # Search results
 'searchresults'                    => 'Serĉrezultoj',
@@ -1707,7 +1709,7 @@ jen la protokolo pri forigado por ĉi tiu dosiero por via oportuneco:",
 'upload-success-subj'         => 'Alŝuto sukcesis!',
 'upload-success-msg'          => 'Via alŝuto el [$2] sukcesis. Ĝi disponeblas ĉi tie [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Alŝuta problemo',
-'upload-failure-msg'          => 'Estis problemo kun via alŝuto:
+'upload-failure-msg'          => 'Estis problemo kun via alŝuto de [$2]:
 
 $1',
 'upload-warning-subj'         => 'Averto pri alŝutado',
@@ -2420,7 +2422,7 @@ Jen la lasta ero de la forbara protokolo:',
 'ipbcreateaccount'                => 'Preventi kreadon de konto',
 'ipbemailban'                     => 'Malebligi al uzanto sendi retpoŝton.',
 'ipbenableautoblock'              => 'Aŭtomate forbaru la lastan IP-adreson uzitan de la uzanto, kaj ĉiajn subsekvantajn adresojn el kiuj tiu provos redakti',
-'ipbsubmit'                       => 'Forbari ĉi tiun uzanton',
+'ipbsubmit'                       => 'Bloki la uzanton',
 'ipbother'                        => 'Alia daŭro:',
 'ipboptions'                      => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite',
 'ipbotheroption'                  => 'alia',
@@ -3359,6 +3361,8 @@ Vi povas ankaŭ [[Special:Watchlist/edit|redakti norme]].',
 'version-hook-subscribedby'        => 'Abonita de',
 'version-version'                  => '(Versio $1)',
 'version-license'                  => 'Permesilo',
+'version-poweredby-credits'        => "Ĉi tiu vikio funkcias per '''[http://www.mediawiki.org/ MediaWiki]''', kopirajto © 2001-$1 $2.",
+'version-poweredby-others'         => 'aliaj',
 'version-software'                 => 'Instalita programaro',
 'version-software-product'         => 'Produkto',
 'version-software-version'         => 'Versio',

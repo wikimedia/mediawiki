@@ -16,6 +16,7 @@
  * @author Myanmars
  * @author Myolay
  * @author Parabaik
+ * @author Purodha
  * @author Thanlwin
  * @author Thitaung
  * @author Umherirrender
@@ -115,16 +116,17 @@ $messages = array(
 'dec'           => 'ဒီ',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|အမျိုးအစား|အမျိုးအစား}}',
-'subcategories'  => 'အုပ်စုခွဲ',
-'category-empty' => 'ဗလာအုပ်စု',
+'pagecategories'    => '{{PLURAL:$1|အမျိုးအစား|အမျိုးအစား}}',
+'subcategories'     => 'အုပ်စုခွဲ',
+'category-empty'    => 'ဗလာအုပ်စု',
+'hidden-categories' => '{{PLURAL:$1|ဝှက်ထားသော အမျိုးအစား|ဝှက်ထားသော အမျိုးအစားများ}}',
 
 'about'      => 'အကြောင်း',
 'article'    => 'စာမျက်နှာ',
-'newwindow'  => '(ဝင်းဒိုးအသစ်တခုကိုဖွင့်ပါ)',
+'newwindow'  => '(ဝင်းဒိုးအသစ်တခုကိုဖွင့်ရန်)',
 'cancel'     => 'မ​လုပ်​တော့​ပါ​',
 'mypage'     => 'ကျွန်ုပ် စာမျက်နှာ',
-'mytalk'     => 'ကျွန်​တော့် ဆွေးနွေးချက်',
+'mytalk'     => 'ဆွေးနွေးချက်',
 'navigation' => 'အ​ညွှန်း​',
 'and'        => 'နဲ့',
 
@@ -135,7 +137,7 @@ $messages = array(
 
 # Vector skin
 'vector-action-move' => 'ရွှေ့ပါ',
-'vector-view-edit'   => 'ပြင်ပါ',
+'vector-view-edit'   => 'ပြင်ရန်',
 'vector-view-view'   => 'ဖတ်ရန်',
 
 'tagline'          => '{{SITENAME}} မှ',
@@ -160,11 +162,12 @@ $messages = array(
 'talkpagelinktext' => 'ဆွေးနွေးရန်',
 'personaltools'    => 'ကိုယ်ပိုင် ကိရိယာများ',
 'talk'             => 'ဆွေးနွေးချက်များ',
-'views'            => 'ပုံပန်းသွင်ြပင်',
+'views'            => 'ပုံပန်းသွင်ပြင်',
 'toolbox'          => 'တန်​ဆာ​ပ​လာ​',
 'mediawikipage'    => 'မီဒီယာဝီကီစာမျက်နှာ',
 'viewhelppage'     => 'ကူညီမယ့် စာမျက်နှာကိုကြည့်ရန်',
 'otherlanguages'   => 'အခြား ဘာသာစကားများဖြင့်',
+'redirectedfrom'   => '($1 မှ ပြန်ညွှန်းထားသည်)',
 'lastmodifiedat'   => 'ဤစာမျက်နှာကို $1 ရက် $2 အချိန်တွင် နောက်ဆုံး ပြင်ဆင်ခဲ့သည်။',
 'jumpto'           => 'ဤနေရာသို့သွားရန် -',
 'jumptonavigation' => 'အ​ညွှန်း​',
@@ -174,26 +177,27 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}}အကြောင်း',
 'aboutpage'            => 'Project: အကြောင်းအရာ',
 'copyright'            => '$1 အောက်တွင် ဤအကြောင်းအရာကို ရရှိနိုင်သည်။',
-'copyrightpage'        => 'မူပိုင်ခွင့်',
+'copyrightpage'        => '{{ns:project}}: မူပိုင်ခွင့်',
 'currentevents'        => 'လက်​ရှိ​လုပ်​ငန်း​များ​',
 'currentevents-url'    => 'Project:လက်​ရှိ​လုပ်​ငန်း​များ​',
 'disclaimers'          => 'သ​တိ​ပေး​ချက်​များ​',
 'disclaimerpage'       => 'Project: အထွေထွေ သတိပေးချက်',
-'edithelp'             => 'ပြင်​ဆင်​ခြင်း​အ​ကူ​အ​ညီ​',
-'edithelppage'         => 'အကူအညီ:တည်းဖြတ်ခြင်း',
+'edithelp'             => 'ပြင်​ဆင်​ရန် အ​ကူ​အ​ညီ​',
+'edithelppage'         => 'Help: တည်းဖြတ်ခြင်း',
 'mainpage'             => 'ဗ​ဟို​စာ​မျက်​နှာ​',
 'mainpage-description' => 'ဗ​ဟို​စာ​မျက်​နှာ​',
 'portal'               => 'ပြော​ရေး​ဆို​ရာ​',
-'privacy'              => 'ကိုယ်ပိုင်ပေါ်လစီ',
+'privacy'              => 'ကိုယ်ပိုင်ရေးရာ မူဝါဒ',
 'privacypage'          => 'Project: ကိုယ်ပိုင် ပေါ်လစီ',
 
 'retrievedfrom'           => '"$1" မှ ရယူရန်',
-'newmessageslink'         => 'သ​တင်း​အ​သစ်​',
+'newmessageslink'         => 'မက်ဆေ့ အသစ်',
 'newmessagesdifflink'     => 'နောက်ဆုံးအပြောင်းအလဲ',
 'youhavenewmessagesmulti' => 'You have new messages on $1',
 'editsection'             => 'ပြင်​ဆင်​ရန်​',
 'editold'                 => 'ပြင်​ဆင်​ရန်​',
 'editlink'                => 'ပြင်​ဆင်​ရန်',
+'viewsourcelink'          => 'ရင်းမြစ်ကို ကြည့်ရန်',
 'editsectionhint'         => 'ဤအပိုင်းကို တည်းဖြတ်ရန် - $1',
 'toc'                     => 'မာတိကာ',
 'showtoc'                 => 'ပြ',
@@ -215,7 +219,7 @@ $messages = array(
 ယင်းသည် ဖျက်ထားပြီးသား diff သို့မဟုတ် မှတ်တမ်းလင့် တစ်ခုကြောင့် ဖြစ်လေ့ရှိသည်။
 
 ယင်းသို့မဟုတ်ပါက သင်သည် ဤဆော့ဝဲအတွင်းမှ အမှားတစ်ခုကို တွေ့နေခြင်းဖြစ်ကောင်းဖြစ်မည်။ ဤသည်ကို [[Special:ListUsers/sysop|administrator]] သို့ ကျေးဇူးပြု၍ သတင်းပို့ပေးပါ။ URL လင့်ကိုပါ ထည့်သွင်းဖော်ပြပေးပါရန်။',
-'viewsource'      => 'ဆို့​ကို​ပြ​ပါ​',
+'viewsource'      => 'ရင်းမြစ်ကို ကြည့်ရန်',
 
 # Login and logout pages
 'welcomecreation'         => 'မင်္ဂ​လာ​ပါ​ $1။ သင့်​အား​မှတ်​ပုံ​တင်​ပြီး​ပါ​ပြီ။​ ဝီ​ကီ​အ​တွက်​သင့်​စိတ်​ကြိုက်​များ​ကို​ရွေး​ချယ်​နိုင်​ပါ​သည်။​',
@@ -241,36 +245,45 @@ $messages = array(
 'retypenew'   => 'ဝှက်​စ​ကား​လုံးပအသစ်ကိုထပ်ရိုက်ပါ:',
 
 # Edit page toolbar
-'bold_tip'      => 'စာလုံးမည်း',
-'italic_sample' => 'စာလုံးဆောင်း',
-'italic_tip'    => 'စာသားဆောင်း',
-'math_sample'   => 'သည်မှာသင်္ချာပုံသေနည်းအားထည့်',
-'math_tip'      => 'သင်္ချာပုံသေနည်း (LaTeX)',
-'hr_tip'        => 'မျဉ်းလဲ',
+'bold_sample'    => 'စာလုံးမည်း',
+'bold_tip'       => 'စာလုံးမည်း',
+'italic_sample'  => 'စာလုံးဆောင်း',
+'italic_tip'     => 'စာသားဆောင်း',
+'extlink_sample' => 'http://www.example.com လင့် ခေါင်းစဉ်�',
+'math_sample'    => 'သည်မှာသင်္ချာပုံသေနည်းအားထည့်',
+'math_tip'       => 'သင်္ချာပုံသေနည်း (LaTeX)',
+'hr_tip'         => 'မျဉ်းလဲ',
 
 # Edit pages
-'summary'            => 'အ​ကျဉ်း​ချုပ်​:',
-'subject'            => 'အကြောင်းအရာ/ခေါင်းကြီးပိုင်း :',
-'minoredit'          => 'သာ​မန်​ပြင်​ဆင်​မှု​ဖြစ်​ပါ​သည်​',
-'watchthis'          => 'ဤစာမျက်နှာကိုစောင့်ကြည့်ပါ',
+'summary'            => 'အ​ကျဉ်း​ချုပ်​ -',
+'subject'            => 'အကြောင်းအရာ/ခေါင်းကြီးပိုင်း -',
+'minoredit'          => 'သာ​မန် ​ပြင်​ဆင်​မှု ​ဖြစ်​သည်​',
+'watchthis'          => 'ဤစာမျက်နှာကို စောင့်ကြည့်ရန်',
 'savearticle'        => 'ဤစာမျက်နှာကို သိမ်းရန်',
 'preview'            => 'နမူနာ',
-'showpreview'        => 'န​မူ​နာ​ပြ​ပါ​',
+'showpreview'        => 'န​မူ​နာ​ပြ​ရန်',
 'showlivepreview'    => 'နမူနာအရှင်',
-'showdiff'           => 'ပြင်​ဆင်​ထား​သည်​များ​ကို​ပြ​ပါ​',
+'showdiff'           => 'ပြင်​ဆင်​ထား​သည်​များ​ကို​ ပြရန်',
 'summary-preview'    => 'အ​ကျဉ်း​ချုပ်​န​မူ​နာ:',
 'whitelistedittitle' => 'ပြင်​ဆင်​ခြင်း​သည်​မှတ်​ပုံ​တင်​ရန်​လို​သည်​',
 'loginreqtitle'      => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ဖို့လိုပါတယ်',
 'loginreqlink'       => 'log in',
 'accmailtitle'       => 'ဝှက်​စ​ကား​လုံးကိုပို့ပြီးပြီ',
 'newarticle'         => '(အသစ်)',
+'noarticletext'      => 'ဤစာမျက်နှာတွင် ယခုလက်ရှိတွင် ဘာစာသားမှ မရှိပါ။
+သင်သည် အခြားစာမျက်နှာများတွင် [[Special:Search/{{PAGENAME}}|ဤစာမျက်နှာ၏ ခေါင်းစဉ်ကို ရှာနိုင်သည်]]၊ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ဆက်စပ်ရာ Logs များကို ရှာနိုင်သည်]၊ သို့မဟုတ် [{{fullurl:{{FULLPAGENAME}}|action=edit}} ဤစာမျက်နှာကို တည်းဖြတ်နိုင်သည်]</span>။',
 'editing'            => 'တည်းဖြတ်ရန်',
-'copyrightwarning'   => 'ကျေးဇူးပြု၍ {{SITENAME}}တွင် ရေးသားမှုအားလုံးကို $2 အောက်တွင် ထုတ်လုပ်ရန် ဆုံးဖြတ်ပြီး ဖြစ်သည်။ (အသေးစိတ်ကို $1 ကိုကြည့်ပါ။',
-'template-protected' => '(ကာကွယ်ထားပြီး)',
+'copyrightwarning'   => "{{SITENAME}} တွင် ရေးသားမှုအားလုံးကို $2 အောက်တွင် ဖြန့်ဝေရန် ဆုံးဖြတ်ပြီး ဖြစ်သည်ကို ကျေးဇူးပြု၍ သတိပြုပါ။။ (အသေးစိတ်ကို $1 တွင်ကြည့်ပါ။)
+အကယ်၍ သင့်ရေးသားချက်များကို အညှာအတာမရှိ တည်းဖြတ်ခံရခြင်း၊ စိတ်တိုင်းကျ ဖြန့်ဝေခံရခြင်းတို့ကို အလိုမရှိပါက ဤနေရာတွင် မတင်ပါနှင့်။<br />
+သင်သည် ဤဆောင်းပါးကို သင်ကိုယ်တိုင်ရေးသားခြင်း၊ သို့မဟုတ် အများပြည်သူဆိုင်ရာဒိုမိန်းများ၊ ယင်းကဲ့သို့ လွတ်လပ်သည့် ရင်းမြစ်မှ ကူးယူထားခြင်း ဖြစ်ကြောင်းလည်း ဝန်ခံ ကတိပြုပါသည်။
+'''မူပိုင်ခွင့်ရှိသော စာ၊ပုံများကို ခွင့်ပြုချက်မရှိဘဲ မတင်ပါနှင့်။'''",
+'template-protected' => '(ကာကွယ်ထားသည်)',
 
 # History pages
 'revisionasof'     => '$1 ရက်နေ့က မူ',
 'previousrevision' => 'မူဟောင်း',
+'cur'              => 'လက်ရှိ',
+'last'             => 'ယခုမတိုင်မီ',
 'page_first'       => 'ပထမဆုံး',
 'page_last'        => 'အနောက်ဆုံး',
 'histfirst'        => '​အစောဆုံး',
@@ -284,24 +297,30 @@ $messages = array(
 'revertmerge' => 'ပြန်ခွဲထုတ်ရန်',
 
 # Diffs
-'lineno'   => 'စာကြောင်းး $1:',
-'editundo' => 'နောက်ပြန် ပြန်ပြင်ရန်',
+'difference' => 'တည်းဖြတ်မူများ အကြား ကွဲပြားမှုများ',
+'lineno'     => 'စာကြောင်း $1:',
+'editundo'   => 'နောက်ပြန် ပြန်ပြင်ရန်',
 
 # Search results
-'searchresults'             => 'ရှာဖွေမှု ရလာဒ်များ',
-'searchresults-title'       => '"$1" အတွက် ရှာတွေ့သည့် ရလာဒ်များ',
+'searchresults'             => 'ရှာဖွေမှု ရလဒ်များ',
+'searchresults-title'       => '"$1" အတွက် ရှာတွေ့သည့် ရလဒ်များ',
 'searchresulttext'          => '{{SITENAME}} ကို ရှာရာတွင် နောက်ထပ် သတင်းအချက်အလက်များအတွက် [[{{MediaWiki:Helppage}}|{{int:help}}]] ကို ကြည့်ပါ။',
 'searchsubtitle'            => 'သင်သည် \'\'\'[[:$1]]\'\'\' ကို ရှာဖွေခဲ့သည်။ ([[Special:Prefixindex/$1|"$1" ဖြင့်စသော စာမျက်နှာအားလုံး]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" ကို လမ်းညွှန်ထားသော စာမျက်နှာအားလုံး]])',
 'notitlematches'            => 'ဤခေါင်းစဉ်နှင့် ကိုက်ညီသောစာမျက်နှာမရှိပါ',
+'notextmatches'             => 'ဤခေါင်းစဉ်နှင့် ကိုက်ညီသောစာမျက်နှာမရှိပါ',
 'prevn'                     => 'နောက်သို့ {{PLURAL:$1|$1}}',
 'nextn'                     => 'ရှေ့သို့ {{PLURAL:$1|$1}}',
-'viewprevnext'              => '($1 {{int:မှ}} $2) အထိကြား ရလာဒ် ($3) ခုကို ကြည့်ရန်',
+'viewprevnext'              => '($1 {{int:မှ}} $2) အထိကြား ရလဒ် ($3) ခုကို ကြည့်ရန်',
 'search-result-size'        => '$1 ({{PLURAL:$2|စကားလုံး 1 လုံး|စကားလုံး $2 လုံး}})',
 'search-redirect'           => '($1 သို့ ပြန်ညွှန်းသည်)',
 'search-section'            => '(အပိုင်း $1)',
 'search-suggest'            => '$1 ဟု ဆိုလိုပါသလား။',
 'search-mwsuggest-enabled'  => 'အကြံပြုချက်များနှင့်တကွ',
 'search-mwsuggest-disabled' => 'အကြံပြုချက် မရှိပါ',
+'nonefound'                 => "'''Note''': Only some namespaces are searched by default.
+ပုံမှန်အားဖြင့် အမည်ညွှန်းအချို့ကိုသာ ရှာပေးမည်ဖြစ်သည်။
+Try prefixing your query with ''all:'' to search all content (including talk pages, templates, etc), or use the desired namespace as prefix.
+ရှာရာတွင် ''all:''ကို ရှေ့ဆုံးမှ prefix ထည့်ပြီး ရှာဖွေခြင်းဖြင့် ရှိရှိသမျှ စာမျက်နှာများတွင် (ဆွေးနွေးချက်များ၊ တမ်းပလိတ်များ စသည်) ရှာနိုင်သည်။ သို့မဟုတ် သင်အလိုရှိရာ အမည်ညွှန်းကို prefix ထည့်ပြီး ရှာပါ။",
 'powersearch'               => 'အထူးပြု ရှာ​ဖွေ​ရန်​',
 'powersearch-legend'        => 'အထူးပြု ရှာဖွေရန်',
 'powersearch-ns'            => 'အမည်ညွှန်းတို့တွင် ရှာရန် -',
@@ -326,24 +345,31 @@ $messages = array(
 'email'             => 'အီ​မေး​',
 
 # Groups
-'group-all' => '(အားလုံး)',
+'group-sysop' => 'အက်ဒမင်များ',
+'group-all'   => '(အားလုံး)',
+
+# Rights
+'right-move'   => 'စာမျက်နှာကိုရွှေ့ပြောင်းပါ',
+'right-upload' => 'ဖိုင်တင်ရန်ပါ',
+'right-delete' => 'စာမျက်နှာများကိုဖျက်ပါ။',
 
 # Recent changes
-'recentchanges'      => 'လတ်​တ​လော​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchanges'      => 'လတ်​တ​လော ​အ​ပြောင်း​အ​လဲ​များ​',
 'rcshowhideminor'    => 'အသေးအမွှာပြင်ဆင်ရန်$1',
 'rcshowhidebots'     => 'စက်ရုပ်များ$1',
+'diff'               => 'ကွဲပြားမှု',
 'hist'               => 'မှတ်တမ်း',
 'hide'               => 'ဝှက်',
 'show'               => 'ပြ',
 'minoreditletter'    => 'သေး',
-'newpageletter'      => 'သစ်',
+'newpageletter'      => 'အသစ်',
 'boteditletter'      => 'ဆ',
 'rc-enhanced-expand' => 'အသေးစိတ်ပြပါ(JavaScript ဖြင့်သာ)',
 
 # Recent changes linked
 'recentchangeslinked'         => 'ဆက်​စပ်သော​ အ​ပြောင်း​အ​လဲ​များ​',
-'recentchangeslinked-feed'    => 'ဆက်​ဆပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
-'recentchangeslinked-toolbox' => 'ဆက်​ဆပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchangeslinked-feed'    => 'ဆက်စပ်သော ​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchangeslinked-toolbox' => 'ဆက်​စပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
 'recentchangeslinked-summary' => 'ဤသည်မှာ သီးသန့်ပြထားသော စာမျက်နှာ (သို့ သီးသန့်အမျိုးအစားဝင်များ) မှ ညွှန်းထားသော စာမျက်နှာများ၏ လတ်တလော ပြောင်းလဲမှုများ၏ စာရင်းဖြစ်သည်။ [[Special:Watchlist|your watchlist]] မှ စာမျက်နှာများကို စာလုံးမည်းဖြင့် ပြထားသည်။',
 
 # Upload
@@ -362,16 +388,21 @@ $messages = array(
 'listfiles_date' => 'နေ့စွဲ',
 
 # File description page
-'file-anchor-link'   => 'ဖိုင်',
-'filehist'           => 'ဖိုင်မှတ်တမ်း',
-'filehist-deleteall' => 'အားလုံးဖျက်',
-'filehist-deleteone' => 'ဖျက်',
-'filehist-current'   => 'ကာလပေါ်',
-'filehist-datetime'  => 'နေ့စွဲ/အချိန်',
-'filehist-user'      => 'အသုံးပြုသူ',
-'filehist-filesize'  => 'ဖိုင်ဆိုက်',
-'filehist-comment'   => 'မှတ်ချက်',
-'imagelinks'         => 'ဖိုင်အဆက်အသွယ်များ',
+'file-anchor-link'    => 'ဖိုင်',
+'filehist'            => 'ဖိုင်မှတ်တမ်း',
+'filehist-help'       => 'ဖိုင်ကို ယင်းနေ့စွဲ အတိုင်း မြင်နိုင်ရန် နေ့စွဲ/အချိန် တစ်ခုခုပေါ်တွင် ကလစ်နှိပ်ပါ။',
+'filehist-deleteall'  => 'အားလုံးဖျက်',
+'filehist-deleteone'  => 'ဖျက်',
+'filehist-current'    => 'ကာလပေါ်',
+'filehist-datetime'   => 'နေ့စွဲ/အချိန်',
+'filehist-thumb'      => 'နမူနာပုံငယ်',
+'filehist-thumbtext'  => '$1 ရက်က မူအတွက် နမူနာပုံငယ်',
+'filehist-user'       => 'အသုံးပြုသူ',
+'filehist-dimensions' => 'မှတ်တမ်း ဒိုင်မန်းရှင်းများ',
+'filehist-filesize'   => 'ဖိုင်ဆိုက်',
+'filehist-comment'    => 'မှတ်ချက်',
+'imagelinks'          => 'ဖိုင်အဆက်အသွယ်များ',
+'linkstoimage'        => 'ဤဖိုင်သို့ အောက်ပါ {{PLURAL:$1|စာမျက်နှာလင့်|စာမျက်နှာလင့် $1 ခု}} -',
 
 # File deletion
 'filedelete'        => '$1 ကိုဖျက်ပါ',
@@ -400,6 +431,8 @@ $messages = array(
 'ancientpages'      => 'အဟောင်းဆုံးစာမျက်နှာ',
 'move'              => 'ရွေ့​ပြောင်း​ပါ​',
 'movethispage'      => 'ဤစာမျက်နှာအားရွှေ့ပြောင်းပါ',
+'pager-newer-n'     => '{{PLURAL:$1|ပိုသစ်သော တစ်ခု|ပိုသစ်သော $1 ခု}}',
+'pager-older-n'     => '{{PLURAL:$1|ပိုဟောင်းသော တစ်ခု|ပိုဟောင်းသော $1 ခု}}',
 
 # Book sources
 'booksources'    => 'မှီငြမ်း စာအုပ်များ',
@@ -407,6 +440,7 @@ $messages = array(
 
 # Special:AllPages
 'allpages'       => 'စာမျက်နှာအားလုံး',
+'alphaindexline' => '$1 မှ $2 အထိ',
 'allarticles'    => 'စာမျက်နှာအားလုံး',
 'allpagessubmit' => 'သွား​ပါ​',
 
@@ -437,6 +471,9 @@ $messages = array(
 'delete-legend'  => 'ဖျက်',
 'deletedarticle' => '[[$1]] ကို ဖျက်လိုက်သည်',
 
+# Rollback
+'rollbacklink' => 'နောက်ပြန် ပြန်သွားရန်',
+
 # Protect
 'prot_1movedto2'         => '[[$1]]  မှ​ [[$2]] သို့​',
 'protect-level-sysop'    => 'အက်ဒမင်များသာ',
@@ -459,7 +496,7 @@ $messages = array(
 'blanknamespace' => '(ပင်မ)',
 
 # Contributions
-'contributions' => 'မှတ်​ပုံ​တင်​အ​သုံး​ပြု​သူ​:ပံ​ပိုး​မှု​များ​',
+'contributions' => 'အသုံးပြုသူတို့၏ ပံ့ပိုးပေးမှုများ',
 'mycontris'     => 'ကျွန်​တော့် ရေးသားချက်များ',
 'contribsub2'   => '$1အတွက် ($2)',
 'uctop'         => '(အထိပ်)',
@@ -504,6 +541,8 @@ $messages = array(
 'tooltip-pt-userpage'            => 'ကိုယ်ပိုင်စာမျက်နှာ',
 'tooltip-pt-mytalk'              => 'ကျွနု်ပ်၏ ဆွေးနွေးချက်များ',
 'tooltip-pt-preferences'         => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
+'tooltip-pt-watchlist'           => 'အပြောင်းအလဲများအတွက် စောင့်ကြည့်နေသော စာမျက်နှာများ၏ စာရင်း',
+'tooltip-pt-mycontris'           => 'သင့်ရေးသားပြုစုချက်များ၏ စာရင်း',
 'tooltip-pt-login'               => 'မှတ်ပုံတင်ဖြင့် ဝင်ရန် အားပေးပါသည်။ သို့သော် မှတ်ပုံမတင်မနေရ မဟုတ်ပါ။',
 'tooltip-pt-logout'              => 'ထွက်​ပါ​',
 'tooltip-ca-talk'                => 'မာတိကာ စာမျက်နှာအတွက် ဆွေးနွေးချက်များ',
@@ -512,11 +551,12 @@ $messages = array(
 'tooltip-ca-protect'             => 'ဤစာမျက်နှာကို ထိန်းသိမ်းပါ',
 'tooltip-ca-delete'              => 'ဤစာမျက်နှာဖျက်ပါ',
 'tooltip-ca-move'                => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'tooltip-ca-watch'               => 'ဤစာမျက်နှာကို စောင့်ကြည့်စာရင်းသို့ ထည့်ရန်',
 'tooltip-search'                 => '{{SITENAME}} ကို ရှာရန်',
 'tooltip-search-go'              => 'ဤအမည်နှင့် ထပ်တူညီသော စာမျက်နှာရှိပါက ယင်းသို့ သွားရန်',
 'tooltip-search-fulltext'        => 'ဤစာလုံးများပါသော စာမျက်နှာကို ရှာရန်',
-'tooltip-n-mainpage'             => 'ဗဟို စာမျက်နှာသို့ သွားရန်',
-'tooltip-n-mainpage-description' => 'ဗဟို စာမျက်နှာသို့ သွားရန်',
+'tooltip-n-mainpage'             => 'ဗဟိုစာမျက်နှာသို့ သွားရန်',
+'tooltip-n-mainpage-description' => 'ဗဟိုစာမျက်နှာသို့ သွားရန်',
 'tooltip-n-portal'               => 'ပရောဂျက်အကြောင်း၊ သင်ဘာလုပ်ပေးနိုင်သည် နှင့် ဘယ်နေရာတွင် ရှာဖွေရန်များ',
 'tooltip-n-currentevents'        => 'လက်ရှိ အဖြစ်အပျက်များမှ နောက်ခံ အချက်အလက်များကို ရှာရန်',
 'tooltip-n-recentchanges'        => 'ဝီကီမှ လတ်တလောအပြောင်းအလဲများ စာရင်း',
@@ -531,7 +571,14 @@ $messages = array(
 'tooltip-ca-nstab-main'          => 'မာတိကာ ကြည့်ရန်',
 'tooltip-ca-nstab-special'       => 'ဤသည်မှာ အထူးစာမျက်နှာဖြစ်သည်။ ဤစာမျက်နှာကို ပြင်ဆင် မရနိုင်ပါ။',
 'tooltip-ca-nstab-image'         => 'ဖိုင်စာမျက်နှာကိုကြည့်ပါ။',
-'tooltip-save'                   => 'ပြင်ဆင်ရန်သိမ်းပါ',
+'tooltip-save'                   => 'ပြောင်းလဲထားသည်များကို သိမ်းရန်',
+'tooltip-preview'                => 'သင်ပြင်ထားသည်များကို နမူနာကြည့်ရန်ဖြစ်သည်။ ကျေးဇူးပြု၍ မသိမ်းခင် သုံးပေးပါ။',
+'tooltip-diff'                   => 'ဘယ်စာသား ​ပြောင်းလိုက်သည်ကို ြပရန်',
+'tooltip-rollback'               => '"နောက်ပြန် ပြန်သွားခြင်း" သည် ဤစာမျက်နှာ၏ နောက်ဆုံး တည်းဖြတ်မူသို့ ကလစ် တစ်ချက်ဖြင့် ပြန်ပြောင်းပေးသည်။',
+'tooltip-undo'                   => '"နောက်ပြန် ပြန်သွားခြင်း" သည် ဤ တည်းဖြတ်ခြင်းကို နောက်ပြန်ပြန်ဆုတ်ပြီး နမူနာပုံနှင့်တကွ တည်းဖြတ်ရန် ပြန်ဖွင့်မည် ဖြစ်သည်။ အဘယ်ကြောင့် နောက်ပြန်သွားသည်ကို အကျဉ်းချုပ် အကြောင်းပြချက် ရေးနိုင်သည်။',
+
+# Media information
+'file-info-size' => '($1 × $2 pixels, ဖိုင်အရွယ်အစား - $3, MIME အမျိုးအစား $4)',
 
 # Special:NewFiles
 'ilsubmit' => 'ရှာ​ဖွေ​ရန်​',
