@@ -351,8 +351,6 @@ class LinksUpdate {
 	function getLinkInsertions( $existing = array() ) {
 		$arr = array();
 		foreach( $this->mLinks as $ns => $dbkeys ) {
-			# array_diff_key() was introduced in PHP 5.1, there is a compatibility function
-			# in GlobalFunctions.php
 			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
@@ -515,8 +513,6 @@ class LinksUpdate {
 	function getInterwikiInsertions( $existing = array() ) {
 		$arr = array();
 		foreach( $this->mInterwikis as $prefix => $dbkeys ) {
-			# array_diff_key() was introduced in PHP 5.1, there is a compatibility function
-			# in GlobalFunctions.php
 			$diffs = isset( $existing[$prefix] ) ? array_diff_key( $dbkeys, $existing[$prefix] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
@@ -528,8 +524,6 @@ class LinksUpdate {
 		}
 		return $arr;
 	}
-
-
 
 	/**
 	 * Given an array of existing links, returns those links which are not in $this
