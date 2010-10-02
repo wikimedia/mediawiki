@@ -1610,10 +1610,10 @@ class OutputPage {
 		}
 
 		$sk = $wgUser->getSkin();
-		
+
 		// Add base resources
 		$this->addModules( array( 'mediawiki.legacy.wikibits' ) );
-		
+
 		// Add various resources if required
 		if ( $wgUseAjax ) {
 			$this->addModules( 'mediawiki.legacy.ajax' );
@@ -2280,7 +2280,7 @@ class OutputPage {
 
 		return $ret;
 	}
-	
+
 	// TODO: Document
 	protected function makeResourceLoaderLink( $skin, $modules, $only, $useESI = false ) {
 		global $wgUser, $wgLang, $wgRequest, $wgLoadScript, $wgResourceLoaderDebug, $wgResourceLoaderUseESI,
@@ -2350,7 +2350,7 @@ class OutputPage {
 			}
 			// Make queries uniform in order
 			ksort( $query );
-			
+
 			$url = wfAppendQuery( $wgLoadScript, $query );
 			if ( $useESI && $wgResourceLoaderUseESI ) {
 				$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
@@ -2370,7 +2370,7 @@ class OutputPage {
 		}
 		return $links;
 	}
-	
+
 	/**
 	 * Gets the global variables and mScripts; also adds userjs to the end if
 	 * enabled. Despite the name, these scripts are no longer put in the
@@ -2381,14 +2381,14 @@ class OutputPage {
 	 */
 	function getHeadScripts( Skin $sk ) {
 		global $wgUser, $wgRequest, $wgUseSiteJs, $wgResourceLoaderDebug;
-		
+
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( $sk, 'startup', 'scripts', true );
-		
+
 		// Configuration -- This could be merged together with the load and go, but makeGlobalVariablesScript returns a
 		// whole script tag -- grumble grumble...
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
-		
+
 		// Script and Messages "only"
 		if ( $wgRequest->getFuzzyBool( 'debug', $wgResourceLoaderDebug ) ) {
 			// Scripts
@@ -2409,7 +2409,7 @@ class OutputPage {
 				$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleMessages(), 'messages' );
 			}
 		}
-		
+
 		// Modules - let the client calculate dependencies and batch requests as it likes
 		if ( $this->getModules() ) {
 			$modules = FormatJson::encode( $this->getModules() );
@@ -2417,7 +2417,7 @@ class OutputPage {
 				"if ( window.mediaWiki ) { mediaWiki.loader.load( {$modules} ); mediaWiki.loader.go(); }"
 			) . "\n";
 		}
-		
+
 		// Add user JS if enabled - trying to load user.options as a bundle if possible
 		$userOptionsAdded = false;
 		if ( $this->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
@@ -2434,12 +2434,12 @@ class OutputPage {
 			$scripts .= $this->makeResourceLoaderLink( $sk, 'user.options', 'scripts' );
 		}
 		$scripts .= "\n" . $this->mScripts;
-		
+
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
 			$scripts .= $this->makeResourceLoaderLink( $sk, 'site', 'scripts' );
 		}
-		
+
 		return $scripts;
 	}
 
@@ -2568,7 +2568,7 @@ class OutputPage {
 				$tags[] = $this->makeResourceLoaderLink( $sk, $this->getModuleStyles(), 'styles' );
 			}
 		}
-		
+
 		return implode( "\n", $tags );
 	}
 
