@@ -1117,7 +1117,7 @@ class Preferences {
 
 	static function cleanSignature( $signature, $alldata ) {
 		global $wgParser;
-		if ( $alldata['fancysig'] ) {
+		if ( !empty( $alldata['fancysig'] ) ) {
 			$signature = $wgParser->cleanSig( $signature );
 		} else {
 			// When no fancy sig used, make sure ~{3,5} get removed.
