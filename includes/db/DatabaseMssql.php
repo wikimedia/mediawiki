@@ -830,7 +830,11 @@ class DatabaseMssql extends DatabaseBase {
 		}
 		$this->doQuery( "DROP TABLE $ctest" );
 
-		$res = dbsource( "../maintenance/mssql/tables.sql", $this );
+		$res = $this->sourceFile( "../maintenance/mssql/tables.sql" );
+		if ( $err !== true ) {
+			echo " <b>FAILED</b></li>";
+			dieout( htmlspecialchars( $err ) );
+		}
 
 		# # Update version information
 		$mwv = $this->addQuotes( $wgVersion );

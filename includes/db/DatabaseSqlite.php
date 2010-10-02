@@ -555,7 +555,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Called by the installer script (when modified according to the MediaWikiLite installation instructions)
-	 * - this is the same way PostgreSQL works, MySQL reads in tables.sql and interwiki.sql using dbsource (which calls db->sourceFile)
+	 * - this is the same way PostgreSQL works, MySQL reads in tables.sql and interwiki.sql using DatabaseBase::sourceFile()
 	 */
 	public function setup_database() {
 		global $IP;
