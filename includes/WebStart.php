@@ -89,16 +89,6 @@ if ( !function_exists( 'version_compare' )
 	exit;
 }
 
-# Test for PHP bug which breaks PHP 5.0.x on 64-bit...
-# As of 1.8 this breaks lots of common operations instead
-# of just some rare ones like export.
-$borked = str_replace( 'a', 'b', array( -1 => -1 ) );
-if( !isset( $borked[-1] ) ) {
-	echo "PHP 5.0.x is buggy on your 64-bit system; you must upgrade to PHP 5.1.x\n" .
-	     "or higher. ABORTING. (http://bugs.php.net/bug.php?id=34879 for details)\n";
-	exit;
-}
-
 # Start the autoloader, so that extensions can derive classes from core files
 require_once( "$IP/includes/AutoLoader.php" );
 
