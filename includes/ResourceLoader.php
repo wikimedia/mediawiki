@@ -44,6 +44,9 @@ class ResourceLoader {
 	 * @param $context ResourceLoaderContext context to load the information within
 	 */
 	protected function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
+		if ( !count( $modules ) ) {
+			return; # or Database*::select() will explode
+		}
 		$dbr = wfGetDb( DB_SLAVE );
 		$skin = $context->getSkin();
 		$lang = $context->getLanguage();
