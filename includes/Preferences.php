@@ -1107,7 +1107,8 @@ class Preferences {
 					$wgLang->formatNum( $wgMaxSigChars )
 				)
 			);
-		} elseif ( !empty( $alldata['fancysig'] ) &&
+		} elseif ( isset( $alldata['fancysig'] ) &&
+				$alldata['fancysig'] &&
 				false === $wgParser->validateSig( $signature ) ) {
 			return Xml::element( 'span', array( 'class' => 'error' ), wfMsg( 'badsig' ) );
 		} else {
@@ -1117,7 +1118,7 @@ class Preferences {
 
 	static function cleanSignature( $signature, $alldata ) {
 		global $wgParser;
-		if ( !empty( $alldata['fancysig'] ) ) {
+		if ( isset( $alldata['fancysig'] ) && $alldata['fancysig'] ) {
 			$signature = $wgParser->cleanSig( $signature );
 		} else {
 			// When no fancy sig used, make sure ~{3,5} get removed.
