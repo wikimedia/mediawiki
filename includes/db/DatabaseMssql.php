@@ -68,7 +68,7 @@ class DatabaseMssql extends DatabaseBase {
 
 		global $wgDBport;
 
-		if ( !strlen( $user ) ) { # # e.g. the class is being loaded
+		if ( !strlen( $user ) ) { # e.g. the class is being loaded
 			return;
 		}
 
@@ -836,12 +836,12 @@ class DatabaseMssql extends DatabaseBase {
 			dieout( htmlspecialchars( $res ) );
 		}
 
-		# # Avoid the non-standard "REPLACE INTO" syntax
+		# Avoid the non-standard "REPLACE INTO" syntax
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
 		if ( $f == false ) {
 			dieout( "<li>Could not find the interwiki.sql file" );
 		}
-		# # We simply assume it is already empty as we have just created it
+		# We simply assume it is already empty as we have just created it
 		$SQL = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
 		while ( ! feof( $f ) ) {
 			$line = fgets( $f, 1024 );
@@ -983,7 +983,7 @@ class DatabaseMssql extends DatabaseBase {
 		return implode( ' ', array( $straightJoins, $otherJoins ) );
 	}
 
-	function strencode( $s ) { # # Should not be called by us
+	function strencode( $s ) { # Should not be called by us
 		return str_replace( "'", "''", $s );
 	}
 
