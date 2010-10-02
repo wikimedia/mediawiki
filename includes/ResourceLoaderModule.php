@@ -933,9 +933,9 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		if ( $wgAllowUserCssPrefs ) {
 			// Verify identity -- this is a private module
 			if ( $context->getUser() === $wgUser->getName() ) {
-				$options = FormatJson::encode( $wgUser->getOptions() );
+				$options = $wgUser->getOptions();
 			} else {
-				$options = FormatJson::encode( User::getDefaultOptions() );
+				$options = User::getDefaultOptions();
 			}
 
 			// Build CSS rules
