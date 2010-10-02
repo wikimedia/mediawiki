@@ -836,13 +836,6 @@ class DatabaseMssql extends DatabaseBase {
 			dieout( htmlspecialchars( $res ) );
 		}
 
-		# # Update version information
-		$mwv = $this->addQuotes( $wgVersion );
-		$pgv = $this->addQuotes( $this->getServerVersion() );
-		$pgu = $this->addQuotes( $this->mUser );
-		$pgp = $this->addQuotes( $wgDBport );
-		$dbn = $this->addQuotes( $this->mDBname );
-
 		# # Avoid the non-standard "REPLACE INTO" syntax
 		$f = fopen( "../maintenance/interwiki.sql", 'r' );
 		if ( $f == false ) {
