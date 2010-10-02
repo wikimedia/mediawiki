@@ -50,7 +50,7 @@ class TextPassDumper extends BackupDumper {
 	var $spawnRead = false;
 	var $spawnErr = false;
 
-	function dump() {
+	function dump( $history, $text = WikiExporter::TEXT ) {
 		# This shouldn't happen if on console... ;)
 		header( 'Content-type: text/html; charset=UTF-8' );
 
@@ -467,8 +467,8 @@ class TextPassDumper extends BackupDumper {
 
 $dumper = new TextPassDumper( $argv );
 
-if ( true ) {
-	$dumper->dump();
+if ( !isset( $options['help'] ) ) {
+	$dumper->dump( true );
 } else {
 	$dumper->progress( <<<ENDS
 This script postprocesses XML dumps from dumpBackup.php to add
@@ -489,6 +489,7 @@ Options:
   --server=h  Force reading from MySQL server h
   --current	  Base ETA on number of pages in database instead of all revisions
   --spawn	  Spawn a subprocess for loading text records
+  --help      Display this help message
 ENDS
 );
 }
