@@ -152,7 +152,7 @@ class DatabaseMssql extends DatabaseBase {
 		if ( $stmt == false ) {
 			$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 				"Query: " . htmlentities( $sql ) . "\n" .
-				"Function: " . __FUNCTION__ . "\n";
+				"Function: " . __METHOD__ . "\n";
 			// process each error (our driver will give us an array of errors unlike other providers)
 			foreach ( sqlsrv_errors() as $error ) {
 				$message .= $message . "ERROR[" . $error['code'] . "] " . $error['message'] . "\n";

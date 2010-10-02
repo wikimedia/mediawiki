@@ -53,7 +53,7 @@ class ORAResult {
 
 		if ( ( $this->nrows = oci_fetch_all( $stmt, $this->rows, 0, - 1, OCI_FETCHSTATEMENT_BY_ROW | OCI_NUM ) ) === false ) {
 			$e = oci_error( $stmt );
-			$db->reportQueryError( $e['message'], $e['code'], '', __FUNCTION__ );
+			$db->reportQueryError( $e['message'], $e['code'], '', __METHOD__ );
 			return;
 		}
 
@@ -305,14 +305,14 @@ class DatabaseOracle extends DatabaseBase {
 
 		if ( ( $this->mLastResult = $stmt = oci_parse( $this->mConn, $sql ) ) === false ) {
 			$e = oci_error( $this->mConn );
-			$this->reportQueryError( $e['message'], $e['code'], $sql, __FUNCTION__ );
+			$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 			return false;
 		}
 
 		if ( !oci_execute( $stmt, $this->execFlags() ) ) {
 			$e = oci_error( $stmt );
 			if ( !$this->ignore_DUP_VAL_ON_INDEX || $e['code'] != '1' ) {
-				$this->reportQueryError( $e['message'], $e['code'], $sql, __FUNCTION__ );
+				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 				return false;
 			}
 		}
