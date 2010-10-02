@@ -16,7 +16,7 @@ require_once dirname( __FILE__ ) . '/normal/UtfNormalUtil.php';
 /**
  * Compatibility functions
  *
- * We more or less support PHP 5.0.x and up.
+ * We support PHP 5.1.x and up.
  * Re-implementations of newer functions or functions in non-standard
  * PHP extensions may be included here.
  */

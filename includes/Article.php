@@ -4492,7 +4492,6 @@ class Article {
 		}
 
 		# Get the diff
-		# Note that we simulate array_diff_key in PHP <5.0.x
 		$templates_diff = array_diff_key( $poTemplates, $tlTemplates );
 
 		if ( count( $templates_diff ) > 0 ) {

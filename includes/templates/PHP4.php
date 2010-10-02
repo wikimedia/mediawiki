@@ -58,7 +58,7 @@ if ( preg_match( '!^(.*)/config/[^/]*.php$!', $scriptUrl, $m ) ) {
 		<h1>MediaWiki <?php echo htmlspecialchars( $wgVersion ); ?></h1>
 		<div class='error'>
 <p>
-			MediaWiki requires PHP 5.0.0 or higher. You are running PHP
+			MediaWiki requires PHP 5.1.x or higher. You are running PHP
 			<?php echo htmlspecialchars( phpversion() ); ?>.
 </p>
 <?php
