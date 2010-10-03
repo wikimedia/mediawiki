@@ -3,6 +3,12 @@
 Some quickie unit tests done with the PHPUnit testing framework. To run the
 test suite, run 'make test' in this (maintenance/tests/phpunit) directory.
 
+=== WARNING ===
+
+The current versions of some of these tests are DESTRUCTIVE AND WILL ALTER
+YOUR WIKI'S CONTENTS. DO NOT RUN ON A PRODUCTION SYSTEM OR ONE WHERE YOU
+NEED TO RETAIN YOUR DATA.
+
 === Installation ===
 
 PHPUnit is no longer maintained by PEAR. To get the current version of
