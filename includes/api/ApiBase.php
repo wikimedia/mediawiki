@@ -52,6 +52,7 @@ abstract class ApiBase {
 	const PARAM_ALLOW_DUPLICATES = 6; // Boolean, do we allow the same value to be set more than once when ISMULTI=true
 	const PARAM_DEPRECATED = 7; // Boolean, is the parameter deprecated (will show a warning)
 	const PARAM_REQUIRED = 8; // Boolean, is the parameter required?
+	const PARAM_RANGE_ENFORCE = 9; // Boolean, if MIN/MAX are set, enforce (die) these? Only applies if TYPE='integer' Use with extreme caution
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -676,16 +677,21 @@ abstract class ApiBase {
 
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
-
 						$value = is_array( $value ) ? array_map( 'intval', $value ) : intval( $value );
+
 						$min = isset ( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : null;
 						$max = isset ( $paramSettings[self::PARAM_MAX] ) ? $paramSettings[self::PARAM_MAX] : null;
+						$enforceLimits = isset ( $paramSettings[self::PARAM_RANGE_ENFORCE] )
+								? $paramSettings[self::PARAM_RANGE_ENFORCE] : false;
 
 						if ( !is_null( $min ) || !is_null( $max ) ) {
-							$value = is_array( $value ) ? $value : array( $value );
-							foreach ( $value as &$v ) {
-								$this->validateLimit( $paramName, $v, $min, $max );
-							}
+						    if ( is_array( $value ) ) {
+							    foreach ( $value as &$v ) {
+									$this->validateLimit( $paramName, $v, $min, $max, $enforceLimits );
+								}
+						    } else {
+							    $this->validateLimit( $paramName, $value, $min, $max, $enforceLimits );							    
+						    }
 						}
 						break;
 					case 'limit':
@@ -820,10 +826,13 @@ abstract class ApiBase {
 	 * @param $min int Minimum value
 	 * @param $max int Maximum value for users
 	 * @param $botMax int Maximum value for sysops/bots
+	 * @param $enforceLimits Boolean Whether to enforce (die) if value is outside limits
 	 */
-	function validateLimit( $paramName, &$value, $min, $max, $botMax = null ) {
+	function validateLimit( $paramName, &$value, $min, $max, $botMax = null, $enforceLimits = false ) {
 		if ( !is_null( $min ) && $value < $min ) {
-			$this->setWarning( $this->encodeParamName( $paramName ) . " may not be less than $min (set to $value)" );
+
+			$msg = $this->encodeParamName( $paramName ) . " may not be less than $min (set to $value)";
+			$this->warnOrDie( $msg, $enforceLimits );
 			$value = $min;
 		}
 
@@ -837,13 +846,29 @@ abstract class ApiBase {
 		if ( !is_null( $max ) && $value > $max ) {
 			if ( !is_null( $botMax ) && $this->getMain()->canApiHighLimits() ) {
 				if ( $value > $botMax ) {
-					$this->setWarning( $this->encodeParamName( $paramName ) . " may not be over $botMax (set to $value) for bots or sysops" );
+					$msg = $this->encodeParamName( $paramName ) . " may not be over $botMax (set to $value) for bots or sysops";
+					$this->warnOrDie( $msg, $enforceLimits );
 					$value = $botMax;
 				}
 			} else {
-				$this->setWarning( $this->encodeParamName( $paramName ) . " may not be over $max (set to $value) for users" );
+				$msg = $this->encodeParamName( $paramName ) . " may not be over $max (set to $value) for users";
+				$this->warnOrDie( $msg, $enforceLimits );
 				$value = $max;
 			}
+		}
+	}
+
+	/**
+	 * Adds a warning to the output, else dies
+	 *
+	 * @param  $msg String Message to show as a warning, or error message if dying
+	 * @param  $enforceLimits Boolean Whether this is an enforce (die)
+	 */
+	private function warnOrDie( $msg, $enforceLimits = false ) {
+		if ( $enforceLimits ) {
+			$this->dieUsageMsg( $msg );
+		} else {
+			$this->setWarning( $msg );
 		}
 	}
 
