@@ -182,6 +182,8 @@ class ApiWatchTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'list' => 'watchlist' ), $data );
+
+	    $this->markTestIncomplete( 'This test needs to verify the deleted article was added to the users watchlist' );
 	}
 
 }
