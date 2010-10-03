@@ -324,7 +324,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 21052) Fix link color for stubs in NewPages
 * (bug 24714) Usage of {{#dateformat: }} in wikis without $wgUseDynamicDates no
   longer pollutes the parser cache.
-* (bug 17031) Correct which characters the parser allows in tag attributes.
+* (bug 17031) Correct which characters the parser allows in tag attributes (a
+  letter, colon or underscore followed by 0 or more letters, numbers, colons,
+  underscores, hyphens, and/or periods).
 * Save 200 useless queries on each category page view
 * Shell commands will now work on Linux in filesystems mounted noexec
 * (bug 24804) Corrected commafying in Polish and Ukrainian
