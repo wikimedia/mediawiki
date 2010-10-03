@@ -32,9 +32,9 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 	}
 
 	static function setupUser() {
-		if ( self::$user == NULL || self::$sysopUser == NULL ) {
+		if ( self::$user == null || self::$sysopUser == null ) {
 			self::$user = new UserWrapper( 'Useruser', 'Passpass' );
-		    self::$sysopUser = new UserWrapper( 'Useruser1', 'Passpass1', 'sysop' );
+			self::$sysopUser = new UserWrapper( 'Useruser1', 'Passpass1', 'sysop' );
 		}
 		
 		$GLOBALS['wgUser'] = self::$user->user;
@@ -47,7 +47,7 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 }
 
 class UserWrapper {
-	var $userName, $password, $user;
+	public $userName, $password, $user;
 
 	public function __construct( $userName, $password, $group = '' ) {
 		$this->userName = $userName;
