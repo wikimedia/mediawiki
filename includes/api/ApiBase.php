@@ -677,8 +677,6 @@ abstract class ApiBase {
 
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
-						$value = is_array( $value ) ? array_map( 'intval', $value ) : intval( $value );
-
 						$min = isset ( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : null;
 						$max = isset ( $paramSettings[self::PARAM_MAX] ) ? $paramSettings[self::PARAM_MAX] : null;
 						$enforceLimits = isset ( $paramSettings[self::PARAM_RANGE_ENFORCE] )
@@ -686,11 +684,13 @@ abstract class ApiBase {
 
 						if ( !is_null( $min ) || !is_null( $max ) ) {
 						    if ( is_array( $value ) ) {
+							    $value = array_map( 'intval', $value );
 							    foreach ( $value as &$v ) {
-									$this->validateLimit( $paramName, $v, $min, $max, $enforceLimits );
+									$this->validateLimit( $paramName, $v, $min, $max, null, $enforceLimits );
 								}
 						    } else {
-							    $this->validateLimit( $paramName, $value, $min, $max, $enforceLimits );							    
+							    $value = intval( $value );
+							    $this->validateLimit( $paramName, $value, $min, $max, null, $enforceLimits );
 						    }
 						}
 						break;
@@ -866,7 +866,7 @@ abstract class ApiBase {
 	 */
 	private function warnOrDie( $msg, $enforceLimits = false ) {
 		if ( $enforceLimits ) {
-			$this->dieUsageMsg( $msg );
+			$this->dieUsage( 'integeroutofrange', $msg );
 		} else {
 			$this->setWarning( $msg );
 		}

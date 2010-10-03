@@ -97,6 +97,11 @@ class ApiDelete extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
 
+	/**
+	 *
+	 * @param &$title Title
+	 * @param $token String
+	 */
 	private static function getPermissionsError( &$title, $token ) {
 		global $wgUser;
 
