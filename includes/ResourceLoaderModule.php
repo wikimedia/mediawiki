@@ -915,28 +915,34 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		}
 	}
 
-	public function getScript( ResourceLoaderContext $context ) {
+	/**
+	 * Fetch the context's user options, or if it doesn't match current user,
+	 * the default options.
+	 * 
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	protected function contextUserOptions( ResourceLoaderContext $context ) {
 		global $wgUser;
 
 		// Verify identity -- this is a private module
 		if ( $context->getUser() === $wgUser->getName() ) {
-			$options = FormatJson::encode( $wgUser->getOptions() );
+			return $wgUser->getOptions();
 		} else {
-			$options = FormatJson::encode( User::getDefaultOptions() );
+			return User::getDefaultOptions();
 		}
-		return "mediaWiki.user.options.set( $options );";
+	}
+
+	public function getScript( ResourceLoaderContext $context ) {
+		$encOptions = FormatJson::encode( $this->contextUserOptions( $context ) );
+		return "mediaWiki.user.options.set( $encOptions );";
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
-		global $wgUser, $wgAllowUserCssPrefs;
+		global $wgAllowUserCssPrefs;
 
 		if ( $wgAllowUserCssPrefs ) {
-			// Verify identity -- this is a private module
-			if ( $context->getUser() === $wgUser->getName() ) {
-				$options = $wgUser->getOptions();
-			} else {
-				$options = User::getDefaultOptions();
-			}
+			$options = $this->contextUserOptions( $context );
 
 			// Build CSS rules
 			$rules = array();
