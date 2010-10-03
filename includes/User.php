@@ -42,7 +42,7 @@ class PasswordError extends MWException {
  */
 class User {
 	/**
-	 * Global constants made accessable as class constants so that autoloader
+	 * Global constants made accessible as class constants so that autoloader
 	 * magic can be used.
 	 */
 	const USER_TOKEN_LENGTH = USER_TOKEN_LENGTH;
