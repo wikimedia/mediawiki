@@ -1,9 +1,8 @@
 <?php
 
 abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
-	protected static $userName;
-	protected static $passWord;
 	protected static $user;
+	protected static $sysopUser;
 	protected static $apiUrl;
 
 	function setUp() {
@@ -33,26 +32,38 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 	}
 
 	static function setupUser() {
-		if ( self::$user == NULL ) {
-			self::$userName = "Useruser";
-			self::$passWord = 'Passpass';
-
-			self::$user = User::newFromName( self::$userName );
-			if ( !self::$user->getID() ) {
-				self::$user = User::createNew( self::$userName, array(
-					"email" => "test@example.com",
-					"real_name" => "Test User" ) );
-			}
-			self::$user->setPassword( self::$passWord );
-			self::$user->addGroup( 'sysop' );
-			self::$user->saveSettings();
+		if ( self::$user == NULL || self::$sysopUser == NULL ) {
+			self::$user = new UserWrapper( 'Useruser', 'Passpass' );
+		    self::$sysopUser = new UserWrapper( 'Useruser1', 'Passpass1', 'sysop' );
 		}
 		
-		$GLOBALS['wgUser'] = self::$user;
+		$GLOBALS['wgUser'] = self::$user->user;
 	}
 
 	function tearDown() {
 		global $wgMemc;
 		$wgMemc = null;
+	}
+}
+
+class UserWrapper {
+	var $userName, $password, $user;
+
+	public function __construct( $userName, $password, $group = '' ) {
+		$this->userName = $userName;
+	    $this->password = $password;
+
+	    $this->user = User::newFromName( $this->userName );
+		if ( !$this->user->getID() ) {
+			$this->user = User::createNew( $this->userName, array(
+				"email" => "test@example.com",
+				"real_name" => "Test User" ) );
+		}
+		$this->user->setPassword( $this->password );
+
+		if ( $group !== '' ) {
+			$this->user->addGroup( $group );
+		}
+		$this->user->saveSettings();
 	}
 }

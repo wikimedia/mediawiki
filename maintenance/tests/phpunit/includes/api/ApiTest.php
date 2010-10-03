@@ -79,7 +79,7 @@ class ApiTest extends ApiTestSetup {
 	 */
 	function testApiLoginNoName() {
 		$data = $this->doApiRequest( array( 'action' => 'login',
-			'lgname' => '', 'lgpassword' => self::$passWord
+			'lgname' => '', 'lgpassword' => self::$user->password,
 		) );
 		$this->assertEquals( 'NoName', $data[0]['login']['result'] );
 	}
@@ -90,32 +90,35 @@ class ApiTest extends ApiTestSetup {
 		if ( !isset( $wgServer ) ) {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
-		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
-						   array( "postData" => array(
-									 "lgname" => self::$userName,
-									 "lgpassword" => "bad" ) ) );
-		libxml_use_internal_errors( true );
-		$sxe = simplexml_load_string( $resp );
-		$this->assertNotType( "bool", $sxe );
-		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
-		$a = $sxe->login[0]->attributes()->result[0];
-		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
+		$ret = $this->doApiRequest( array(
+			"action" => "login",
+			"lgname" => self::$sysopUser->userName,
+			"lgpassword" => "bad",
+			)
+		);
+		
+		$result = $ret[0];
 
-		$token = (string)$sxe->login[0]->attributes()->token;
+		$this->assertNotType( "bool", $result );
+		$a = $result["login"]["result"];
+		$this->assertEquals( "NeedToken", $a );
 
-		$resp = Http::post( self::$apiUrl . "?action=login&format=xml",
-						   array( "postData" => array(
-									"lgtoken" => $token,
-									"lgname" => self::$userName,
-									"lgpassword" => "bad" ) ) );
+		$token = $result["login"]["token"];
 
+		$ret = $this->doApiRequest( array(
+			"action" => "login",
+			"lgtoken" => $token,
+			"lgname" => self::$sysopUser->userName,
+			"lgpassword" => "bad",
+			)
+		);
 
-		$sxe = simplexml_load_string( $resp );
-		$this->assertNotType( "bool", $sxe );
-		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
-		$a = $sxe->login[0]->attributes()->result[0];
+		$result = $ret[0];
 
-		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
+		$this->assertNotType( "bool", $result );
+		$a = $result["login"]["result"];
+
+		$this->assertEquals( "WrongPass", $a );
 	}
 
 	function testApiLoginGoodPass() {
@@ -127,12 +130,11 @@ class ApiTest extends ApiTestSetup {
 
 		$ret = $this->doApiRequest( array(
 			"action" => "login",
-			"lgname" => self::$userName,
-			"lgpassword" => self::$passWord,
+			"lgname" => self::$user->userName,
+			"lgpassword" => self::$user->password,
 			)
 		);
 
-		libxml_use_internal_errors( true );
 		$result = $ret[0];
 		$this->assertNotType( "bool", $result );
 		$this->assertNotType( "null", $result["login"] );
@@ -144,8 +146,8 @@ class ApiTest extends ApiTestSetup {
 		$ret = $this->doApiRequest( array(
 			"action" => "login",
 			"lgtoken" => $token,
-			"lgname" => self::$userName,
-			"lgpassword" => self::$passWord,
+			"lgname" => self::$user->userName,
+			"lgpassword" => self::$user->password,
 			)
 		);
 
@@ -166,8 +168,8 @@ class ApiTest extends ApiTestSetup {
 		$req = HttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 			array( "method" => "POST",
 				"postData" => array(
-				"lgname" => self::$userName,
-				"lgpassword" => self::$passWord ) ) );
+				"lgname" => self::$user->userName,
+				"lgpassword" => self::$user->password ) ) );
 		$req->execute();
 
 		libxml_use_internal_errors( true );
@@ -182,8 +184,8 @@ class ApiTest extends ApiTestSetup {
 
 		$req->setData( array(
 			"lgtoken" => $token,
-			"lgname" => self::$userName,
-			"lgpassword" => self::$passWord ) );
+			"lgname" => self::$user->userName,
+			"lgpassword" => self::$user->password ) );
 		$req->execute();
 
 		$cj = $req->getCookieJar();
@@ -191,7 +193,7 @@ class ApiTest extends ApiTestSetup {
 		$this->assertNotEquals( false, $serverName );
 		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
 		$this->assertNotEquals( '', $serializedCookie );
-		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$userName . '; .*Token=/', $serializedCookie );
+		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$user->userName . '; .*Token=/', $serializedCookie );
 
 		return $cj;
 	}
