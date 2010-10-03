@@ -340,6 +340,7 @@ ulla cabba  [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 Ẓr [[Special:Search/{{PAGENAME}}|search for this page title]] ɣ tisnatin yaḍnin,
 ulla <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}search the related logs]</span>.',
 'editing'                    => 'taẓṛgt $1',
+'editingsection'             => '↓ Ẓrig $1 (tagzumt)',
 'copyrightwarning'           => "ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
 iɣ ortrit ayg ɣayli torit ḥor artisbadal wnna ka-iran, attid ortgt ɣid.<br />
 ikhssak ola kiyi ador tnqilt ɣtamani yadni.
@@ -348,14 +349,16 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'template-semiprotected'     => 'Azin-ugdal',
 
 # History pages
-'currentrev-asof'     => 'Amseggar amǧuru  n $1',
-'revisionasof'        => 'Askttay yaḍn f $1',
-'previousrevision'    => 'Iẓṛi daɣ aqbur',
-'currentrevisionlink' => 'Amcggr amggaṛu',
-'cur'                 => 'Ɣilad',
-'last'                => 'Amzwaru',
-'histfirst'           => 'Amzwaru',
-'histlast'            => 'Amggaru',
+'viewpagelogs'           => '↓ Ẓr timhlin lli ittuskarn ɣ tasna yad',
+'currentrev-asof'        => 'Amseggar amǧuru  n $1',
+'revisionasof'           => 'Askttay yaḍn f $1',
+'previousrevision'       => 'Iẓṛi daɣ aqbur',
+'currentrevisionlink'    => 'Amcggr amggaṛu',
+'cur'                    => 'Ɣilad',
+'last'                   => 'Amzwaru',
+'history-fieldset-title' => '↓ sigel ɣ umzruy',
+'histfirst'              => 'Amzwaru',
+'histlast'               => 'Amggaru',
 
 # Revision deletion
 'rev-delundel'   => 'Mel/ĥbu',
@@ -444,11 +447,13 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
 # Recent changes
 'recentchanges'                     => 'Imbddeln imggura',
+'rclistfrom'                        => '↓ Mel imbdeltn imaynutn z $1',
 'rcshowhideminor'                   => '$1 iẓṛign fssusnin',
 'rcshowhidebots'                    => '$1 butn',
 'rcshowhideliu'                     => '$1 midn li ttuyqqiyadnin',
 'rcshowhideanons'                   => '$1 midn ur ttuyssan nin',
 'rcshowhidemine'                    => '$1 iẓṛign inu',
+'rclinks'                           => '↓ Ml id  $1 n imbddltn immgura li ittuyskarn n id $2 ussan ad gguranin<br />$3.',
 'diff'                              => 'Gar',
 'hist'                              => 'Amzruy',
 'hide'                              => 'Ḥbu',
@@ -558,6 +563,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'newuserlogpage' => '↓ Aɣmis n willi mmurzmn imiḍan amsqdac',
 
 # Watchlist
+'watchlist'   => '↓ Umuɣ n imtfrn',
 'mywatchlist' => 'Umuɣ inu lli tsaggaɣ',
 'watch'       => 'zaydtin i tochwafin-niw',
 'unwatch'     => 'Ur rast tsaggaɣ',
@@ -575,7 +581,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 Ẓṛ $2 inɣmas imggura n ma ittuykkasn',
 'deletedarticle'        => 'Kkiss "[[$1]]"',
 'dellogpage'            => 'Qqiyd akkas ad',
-'deletecomment'         => 'Maf ittuykkas:',
+'deletecomment'         => '! Maɣ:',
 'deleteotherreason'     => 'Wayyaḍ/ maf ittuykkas yaḍn',
 'deletereasonotherlist' => 'Maf ittuykkas yaḍn',
 
@@ -583,7 +589,9 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'rollbacklink' => 'Rard',
 
 # Protect
-'protect-default' => 'Immurzm i kullu imsxdamn',
+'protectlogpage'   => '↓ Iɣmisn n ugdal',
+'protectedarticle' => '↓ ay gdl  "[[$1]]"',
+'protect-default'  => 'Immurzm i kullu imsxdamn',
 
 # Undelete
 'undeletelink' => 'mel/rard',
@@ -635,13 +643,15 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'whatlinkshere-filters'    => 'Istayn',
 
 # Block/unblock
+'ipboptions'       => '↓ 2 ikudn:2 ikudn,1 as:1 as,3 ussan:3 ussan,1 imalas:1 imalas,2 imalasn:2 imalasn,1 ayur:1 ayur,3 irn:3 irn,6 irn:6 irns,1 aasggas:1 asggas,tusut ur iswuttan:tusut ur iswwutan',
 'blocklink'        => 'Adur tajt',
 'unblocklink'      => 'kkis agdal',
 'change-blocklink' => 'Sbadl agdal',
 'contribslink'     => 'tikkin',
 
 # Move page
-'revertmove' => 'Rard',
+'movelogpage' => '↓ Iɣmisn n ismmattrayn',
+'revertmove'  => 'Rard',
 
 # Export
 'export' => 'assufɣ n tasniwin',
@@ -717,6 +727,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 
 # Media information
 'file-info-size'       => '($1 × $2 piksil, asdaw tugut: $3, MIME anaw: $4)',
+'file-nohires'         => '↓<small>Ur tlli tabudut tamqrant.</small>',
 'show-big-image'       => 'balak',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 
@@ -744,6 +755,7 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'kullu',
+'monthsall'     => '↓ kullu',
 
 # Multipage image navigation
 'imgmultigo' => 'ballak !',

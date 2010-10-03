@@ -262,8 +262,8 @@ $messages = array(
 'viewdeleted'         => '$1 фенын дæ фæнды?',
 'site-rss-feed'       => '$1 — RSS-уадздзаг',
 'site-atom-feed'      => '$1 — Atom-уадздзаг',
-'page-rss-feed'       => '«$1» — RSS-уадздзаг',
-'page-atom-feed'      => '«$1» — Atom-уадздзаг',
+'page-rss-feed'       => '$1 — RSS-лæсæн',
+'page-atom-feed'      => '$1 — Atom-лæсæн',
 'red-link-title'      => '$1 (фыст нæма у)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -724,7 +724,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'protect-othertime'      => 'Æндæр рæстæг:',
 'protect-othertime-op'   => 'æндæр рæстæг',
 'protect-otherreason'    => 'Æндæр аххос/уæлæмхасæн:',
-'protect-otherreason-op' => 'æндæр кæнæ уæлæмхасæн аххос',
+'protect-otherreason-op' => 'Æндæр аххос',
 'restriction-type'       => 'Бартæ:',
 
 # Restrictions (nouns)
@@ -741,7 +741,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'uctop'               => '(уæле баззад)',
 
 'sp-contributions-blocklog' => 'Хъодыты лог',
-'sp-contributions-talk'     => 'Ныхас',
+'sp-contributions-talk'     => 'Дискусси',
 
 # What links here
 'whatlinkshere'            => 'Цавæр æрвитæнтæ цæуынц ардæм',

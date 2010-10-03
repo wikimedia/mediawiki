@@ -1852,7 +1852,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'brokenredirects-edit'   => 'rediger',
 'brokenredirects-delete' => 'slett',
 
-'withoutinterwiki'         => 'Sider uten lenker til andre språk',
+'withoutinterwiki'         => 'Sider uten språklenker',
 'withoutinterwiki-summary' => 'Følgende sider lenker ikke til andre språkversjoner:',
 'withoutinterwiki-legend'  => 'Prefiks',
 'withoutinterwiki-submit'  => 'Vis',
