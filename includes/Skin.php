@@ -568,6 +568,15 @@ class Skin extends Linker {
 
 		return "$numeric $type $name";
 	}
+	
+	/**
+	 * This will be called by OutputPage::headElement when it is creating the
+	 * <body> tag, skins can override it if they have a need to add in any
+	 * body attributes or classes of their own.
+	 */
+	function bodyAttributes( $out, &$bodyAttrs ) {
+		// does nothing by default
+	}
 
 	/**
 	 * URL to the logo
