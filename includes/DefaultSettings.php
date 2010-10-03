@@ -3533,7 +3533,7 @@ $wgSessionName = false;
  */
 $wgUseTeX = false;
 /** Location of the texvc binary */
-$wgTexvc = './math/texvc';
+$wgTexvc = $IP . '/math/texvc';
 /**
   * Texvc background color
   * use LaTeX color format as used in \special function
