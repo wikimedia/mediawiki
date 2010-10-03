@@ -388,7 +388,7 @@ function wfExceptionHandler( $e ) {
 
 	wfReportException( $e );
 
-	// Final cleanup, similar to wfErrorExit()
+	// Final cleanup
 	if ( $wgFullyInitialised ) {
 		try {
 			wfLogProfilingData(); // uses $wgRequest, hence the $wgFullyInitialised condition
