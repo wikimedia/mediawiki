@@ -246,7 +246,7 @@ class ApiResult extends ApiBase {
 
 	/**
 	 * Add value to the output data at the given path.
-	 * Path is an indexed array, each element specifing the branch at which to add the new value
+	 * Path is an indexed array, each element specifying the branch at which to add the new value
 	 * Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value
 	 * If $name is empty, the $value is added as a next list element data[] = $value
 	 * @return bool True if $value fits in the result, false if not
