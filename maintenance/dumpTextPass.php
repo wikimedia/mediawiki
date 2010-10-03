@@ -1,5 +1,7 @@
 <?php
 /**
+ * Script that postprocesses XML dumps from dumpBackup.php to add page text
+ *
  * Copyright (C) 2005 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
