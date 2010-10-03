@@ -132,7 +132,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
-	 * @param $request object - if this is an instance of FauxRequest, errors are thrown and no printing occurs
+	 * @param $request WebRequest - if this is an instance of FauxRequest, errors are thrown and no printing occurs
 	 * @param $enableWrite bool should be set to true if the api may modify data
 	 */
 	public function __construct( $request, $enableWrite = false ) {
@@ -181,6 +181,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Return the request object that contains client's request
+	 * @return WebRequest
 	 */
 	public function getRequest() {
 		return $this->mRequest;
