@@ -1,11 +1,23 @@
-.PHONY: help test phpunit install coverage
+.PHONY: help test phpunit install coverage warning destructive
 
 SHELL = /bin/sh
 CONFIG_FILE = $(shell pwd)/suite.xml
 FLAGS = 
 PU = phpunit --configuration ${CONFIG_FILE}
 
-all test: phpunit
+all test: warning
+
+warning:
+	@echo "WARNING -- these tests are DESTRUCTIVE and will alter your wiki."
+	@echo "DO NOT RUN THESE TESTS on a production wiki."
+	@echo ""
+	@echo "Until the default suites are made non-destructive, you can run"
+	@echo "the destructive tests like so:"
+	@echo ""
+	@echo "  make destructive"
+	@echo ""
+
+destructive: phpunit
 
 phpunit:
 	${PU}

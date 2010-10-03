@@ -1,5 +1,9 @@
 == Things To Do ==
 
+* DEFAULT TESTS NEED TO MADE NON-DESTRUCTIVE. Any destructive tests which alter the contents of the live wiki need to
+be protected with an explicit confirmation so people exploring their system don't accidentally destroy their main page
+or register user accounts with default passwords.
+
 * Most of the tests are named poorly; naming should describe a use case in story-like language, not simply identify the
 unit under test. An example would be the difference between testCalculate and testAddingIntegersTogetherWorks.
 * Many of the tests make multiple assertions, and are thus not unitary tests. By using data-providers and more use-case
