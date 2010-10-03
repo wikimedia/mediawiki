@@ -928,7 +928,8 @@ function wfMsgExt( $key, $options ) {
  * Just like exit() but makes a note of it.
  * Commits open transactions except if the error parameter is set
  *
- * @deprecated Please return control to the caller or throw an exception
+ * @deprecated Please return control to the caller or throw an exception. Will
+ *             be removed in 1.19.
  */
 function wfAbruptExit( $error = false ) {
 	static $called = false;
@@ -958,7 +959,8 @@ function wfAbruptExit( $error = false ) {
 }
 
 /**
- * @deprecated Please return control the caller or throw an exception
+ * @deprecated Please return control the caller or throw an exception. Will
+ *             be removed in 1.19.
  */
 function wfErrorExit() {
 	wfDeprecated( __FUNCTION__ );
