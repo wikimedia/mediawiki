@@ -937,6 +937,7 @@ function wfAbruptExit( $error = false ) {
 	}
 	$called = true;
 
+	wfDeprecated( __FUNCTION__ );
 	$bt = wfDebugBacktrace();
 	if( $bt ) {
 		for( $i = 0; $i < count( $bt ); $i++ ) {
@@ -960,6 +961,7 @@ function wfAbruptExit( $error = false ) {
  * @deprecated Please return control the caller or throw an exception
  */
 function wfErrorExit() {
+	wfDeprecated( __FUNCTION__ );
 	wfAbruptExit( true );
 }
 
