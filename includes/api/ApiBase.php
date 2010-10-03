@@ -682,8 +682,8 @@ abstract class ApiBase {
 						$max = isset ( $paramSettings[self::PARAM_MAX] ) ? $paramSettings[self::PARAM_MAX] : null;
 
 						if ( !is_null( $min ) || !is_null( $max ) ) {
-							$values = is_array( $value ) ? $value : array( $value );
-							foreach ( $values as &$v ) {
+							$value = is_array( $value ) ? $value : array( $value );
+							foreach ( $value as &$v ) {
 								$this->validateLimit( $paramName, $v, $min, $max );
 							}
 						}
