@@ -426,6 +426,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * sinumberingroup correctly gives size of 'user' group, and omits size of
   implicit groups rather than showing 0.
 * (bug 25248) API: paraminfo errors with certain modules
+* (bug 25303) API: integer parameter validation does not actually validate, 
+  only warn (breaking change!)
 
 === Languages updated in 1.17 ===
 
