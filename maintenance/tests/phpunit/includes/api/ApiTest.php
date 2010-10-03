@@ -87,12 +87,14 @@ class ApiTest extends ApiTestSetup {
 	function testApiLoginBadPass() {
 		global $wgServer;
 
+		$user = self::$sysopUser;
+
 		if ( !isset( $wgServer ) ) {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 		$ret = $this->doApiRequest( array(
 			"action" => "login",
-			"lgname" => self::$sysopUser->userName,
+			"lgname" => $user->userName,
 			"lgpassword" => "bad",
 			)
 		);
@@ -108,7 +110,7 @@ class ApiTest extends ApiTestSetup {
 		$ret = $this->doApiRequest( array(
 			"action" => "login",
 			"lgtoken" => $token,
-			"lgname" => self::$sysopUser->userName,
+			"lgname" => $user->userName,
 			"lgpassword" => "bad",
 			)
 		);
@@ -128,10 +130,12 @@ class ApiTest extends ApiTestSetup {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 
+		$user = self::$sysopUser;
+
 		$ret = $this->doApiRequest( array(
 			"action" => "login",
-			"lgname" => self::$user->userName,
-			"lgpassword" => self::$user->password,
+			"lgname" => $user->userName,
+			"lgpassword" => $user->password,
 			)
 		);
 
@@ -146,8 +150,8 @@ class ApiTest extends ApiTestSetup {
 		$ret = $this->doApiRequest( array(
 			"action" => "login",
 			"lgtoken" => $token,
-			"lgname" => self::$user->userName,
-			"lgpassword" => self::$user->password,
+			"lgname" => $user->userName,
+			"lgpassword" => $user->password,
 			)
 		);
 
