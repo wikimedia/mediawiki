@@ -164,6 +164,8 @@ class ApiTest extends ApiTestSetup {
 	}
 
 	function testApiGotCookie() {
+		$this->markTestIncomplete( "The server can't do external HTTP requests, and the internal one won't give cookies"  );
+
 		global $wgServer, $wgScriptPath;
 
 		if ( !isset( $wgServer ) ) {
