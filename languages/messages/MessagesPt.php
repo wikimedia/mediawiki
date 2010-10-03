@@ -1906,7 +1906,7 @@ A descrição na [$2 página de descrição] é mostrada abaixo.',
 'filedelete-success'          => "'''$1''' foi eliminado.",
 'filedelete-success-old'      => "A versão de '''[[Media:$1|$1]]''' tal como $3, $2 foi eliminada.",
 'filedelete-nofile'           => "'''$1''' não existe.",
-'filedelete-nofile-old'       => "Não há nehuma versão de '''$1''' em arquivo com os parâmetros especificados.",
+'filedelete-nofile-old'       => "Não há nenhuma versão de '''$1''' em arquivo com os parâmetros especificados.",
 'filedelete-otherreason'      => 'Outro/motivo adicional:',
 'filedelete-reason-otherlist' => 'Outro motivo',
 'filedelete-reason-dropdown'  => '*Motivos comuns para eliminação
@@ -1970,8 +1970,9 @@ Considera-se que uma página é de desambiguação se nela for utilizada uma pre
 'doubleredirectstext'        => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
 Cada linha contém links para o primeiro e segundo redireccionamentos, bem como o destino do segundo redireccionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redireccionamento.
 <del>Entradas cortadas</del> já foram solucionadas.',
-'double-redirect-fixed-move' => '[[$1]] foi movido, passando a redirecionar para [[$2]]',
-'double-redirect-fixer'      => 'Corretor de redirecionamentos',
+'double-redirect-fixed-move' => '[[$1]] foi movido.
+Agora redirecciona para [[$2]].',
+'double-redirect-fixer'      => 'Corrector de redireccionamentos',
 
 'brokenredirects'        => 'Redireccionamentos quebrados',
 'brokenredirectstext'    => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',
@@ -2022,10 +2023,10 @@ Cada linha contém links para o primeiro e segundo redireccionamentos, bem como 
 'protectedpages-indef'    => 'Apenas protecções infinitas',
 'protectedpages-cascade'  => 'Apenas protecções em cascata',
 'protectedpagestext'      => 'As seguintes páginas encontram-se protegidas contra edições ou movimentações',
-'protectedpagesempty'     => 'Neste momento, nenhuma página está protegida com estes parâmetros.',
+'protectedpagesempty'     => 'Neste momento, nenhuma das páginas está protegida com estes parâmetros.',
 'protectedtitles'         => 'Títulos protegidos',
 'protectedtitlestext'     => 'Os títulos a seguir encontram-se protegidos contra criação',
-'protectedtitlesempty'    => 'Neste momento, nenhum título está protegido com estes parâmetros.',
+'protectedtitlesempty'    => 'Neste momento, nenhum dos títulos está protegido com estes parâmetros.',
 'listusers'               => 'Utilizadores',
 'listusers-editsonly'     => 'Mostrar apenas utilizadores com edições',
 'listusers-creationsort'  => 'Ordenar por data de criação',

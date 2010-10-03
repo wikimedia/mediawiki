@@ -1250,6 +1250,7 @@ $messages['br'] = array(
 	'config-your-language' => 'Ho yezh :',
 	'config-your-language-help' => 'Dibabit ur yezh da implijout e-pad an argerzh staliañ.',
 	'config-wiki-language' => 'Yezh ar wiki :',
+	'config-wiki-language-help' => 'Diuzañ ar yezh a vo implijet ar muiañ er wiki.',
 	'config-back' => '← Distreiñ',
 	'config-continue' => "Kenderc'hel →",
 	'config-page-language' => 'Yezh',
@@ -1273,20 +1274,20 @@ $messages['br'] = array(
 	'config-env-php' => 'Staliet eo PHP $1.',
 	'config-env-latest-ok' => "O staliañ stumm diwezhañ Mediawiki emaoc'h.",
 	'config-env-latest-new' => "'''Notenn :''' O staliañ emaoc'h ur stumm da zioreiñ eus MediaWiki.",
-	'config-memory-none' => 'PHP zo kefluniet hep <code>memory_limit</code>',
+	'config-memory-none' => 'Kefluniet eo PHP hep arventenn <code>memory_limit</code>',
 	'config-memory-ok' => 'Arventenn PHP <code>memory_limit</code> zo $1.
 Mat eo.',
 	'config-memory-raised' => '<code>memory_limit</code> ar PHP zo $1, kemmet e $2.',
 	'config-xcache' => 'Staliet eo [http://trac.lighttpd.net/xcache/ XCache]',
 	'config-apc' => 'Staliet eo [http://www.php.net/apc APC]',
 	'config-eaccel' => 'Staliet eo [http://eaccelerator.sourceforge.net/ eAccelerator]',
-	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] zo staliet',
+	'config-wincache' => 'Staliet eo [http://www.iis.net/download/WinCacheForPhp WinCache]',
 	'config-diff3-good' => 'GNU diff3 kavet : <code>$1</code>.',
 	'config-diff3-bad' => "N'eo ket bet kavet GNU diff3.",
 	'config-dir' => "Kavlec'h staliañ : <code>$1</code>.",
 	'config-uri' => "Chomlec'h URI ar skript : <code>$1</code>.",
-	'config-no-uri' => "'''Fazi :''' N'eus ket tu da gouzout URI ar skript.
-Staliadur diforc'het.",
+	'config-no-uri' => "'''Fazi :''' N'eus ket tu da anavezout URI ar skript red.
+Staliadur nullet.",
 	'config-db-type' => 'Doare an diaz roadennoù :',
 	'config-db-host' => 'Anv implijer an diaz roadennoù :',
 	'config-db-wiki-settings' => 'Anavezout ar wiki-mañ',
@@ -1300,7 +1301,7 @@ Staliadur diforc'het.",
 	'config-db-prefix' => 'Rakrann taolennoù an diaz roadennoù :',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binarel',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
-	'config-mysql-old' => 'MySQL $1 pe eilstummoù diwezhañ zo ret, $2 ho peus.',
+	'config-mysql-old' => "Rekis eo MySQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
 	'config-db-port' => 'Porzh an diaz roadennoù :',
 	'config-db-schema' => 'Brastres evit MediaWiki',
 	'config-db-ts2-schema' => 'Brastres evit tsearch2',
@@ -1313,14 +1314,16 @@ Staliadur diforc'het.",
 	'config-header-postgres' => 'Arventennoù PostgreSQL',
 	'config-header-sqlite' => 'Arventennoù SQLite',
 	'config-header-oracle' => 'Arventennoù Oracle',
-	'config-invalid-db-type' => 'Doare diaz roadennoù fall',
+	'config-invalid-db-type' => 'Direizh eo ar seurt diaz roadennoù',
 	'config-missing-db-name' => 'Rediet oc\'h da reiñ un talvoud evit "Anv an diaz roadennoù"',
-	'config-sqlite-readonly' => "N'eus ket tu skrivañ en diell <code>$1</code>.",
-	'config-sqlite-cant-create-db' => "N'eus ket tu krouiñ restr an diaz roadennoù <code>$1</code>.",
-	'config-regenerate' => 'Adlañsañ LocalSettings.php →',
+	'config-sqlite-readonly' => "N'haller ket skrivañ er restr <code>$1</code>.",
+	'config-sqlite-cant-create-db' => "N'haller ket krouiñ restr an diaz roadennoù <code>$1</code>.",
+	'config-regenerate' => 'Adgenel LocalSettings.php →',
 	'config-show-table-status' => "C'hwitet ar reked SHOW TABLE STATUS !",
 	'config-db-web-account' => 'Kont an diaz roadennoù evit ar voned Kenrouedad',
-	'config-mysql-engine' => 'Keflusker berniañ :',
+	'config-db-web-account-same' => 'Ober gant an hevelep kont hag an hini implijet evit ar staliañ',
+	'config-db-web-create' => "Krouiñ ar gont ma n'eus ket anezhi c'hoazh",
+	'config-mysql-engine' => 'Lusker stokañ :',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-binary' => 'Binarel',
@@ -3731,6 +3734,8 @@ Si tu sito usa un servitor partite (shared hosting), demanda a tu providitor de 
 Si tu compilava PHP tu mesme, reconfigura lo con un cliente de base de datos activate, per exemplo usante <code>./configure --with-mysql</code>.
 Si tu installava PHP ex un pacchetto Debian o Ubuntu, tu debe installar equalmente le modulo php5-mysql.',
 	'config-have-db' => '{{PLURAL:$2|Driver|Drivers}} de base de datos trovate: $1.',
+	'config-have-fts3' => 'SQLite es compilate con le modulo [http://sqlite.org/fts3.html FTS3]; functionalitate de recerca essera disponibile in iste back-end.',
+	'config-no-fts3' => "'''Attention''': SQLite es compilate sin modulo [http://sqlite.org/fts3.html FTS3]; functionalitate de recerca non essera disponibile in iste back-end.",
 	'config-register-globals' => "'''Attention: le option <code>[http://php.net/register_globals register_globals]</code> de PHP es activate.'''
 '''Disactiva lo si tu pote.'''
 MediaWiki functionara, ma tu servitor es exponite a potential vulnerabilitates de securitate.",
@@ -7371,8 +7376,8 @@ $messages['ru'] = array(
 Программа установки приостановлена по соображениям безопасности.",
 	'config-session-error' => 'Ошибка при запуске сессии: $1',
 	'config-session-expired' => 'Ваша сессия истекла. 
-Сессии настроены на длительность: $1. 
-Вы можете увеличить, установив <code>session.gc_maxlifetime</code> в php.ini. 
+Сессии настроены на длительность $1. 
+Вы её можете увеличить, изменив <code>session.gc_maxlifetime</code> в php.ini. 
 Перезапустите процесс установки.',
 	'config-no-session' => 'Данные сессии потеряны! 
 Проверьте ваш php.ini и убедитесь, что <code>session.save_path</code> установлен в соответствующий каталог.',
