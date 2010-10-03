@@ -29,6 +29,8 @@ class ApiWatchTest extends ApiTestSetup {
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
 		$this->assertEquals( "Success", $data[0]['login']['result'] );
 		$this->assertArrayHasKey( 'lgtoken', $data[0]['login'] );
+
+		return $data;
 	}
 
 	function testGetToken() {
@@ -67,6 +69,8 @@ class ApiWatchTest extends ApiTestSetup {
 		}
 
 	    $GLOBALS['wgUser'] = self::$user->user;
+
+		return $data;
 	}
 
 	/**
@@ -86,7 +90,10 @@ class ApiWatchTest extends ApiTestSetup {
 		$this->assertArrayHasKey( 'edit', $data[0] );
 		$this->assertArrayHasKey( 'result', $data[0]['edit'] );
 		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
+
+		return $data;
 	}
+
 
 	/**
 	 * @depends testWatchEdit
@@ -112,6 +119,8 @@ class ApiWatchTest extends ApiTestSetup {
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'watchlist', $data[0]['query'] );
 		$this->assertEquals( 0, count( $data[0]['query']['watchlist'] ) );
+
+		return $data;
 	}
 
 	/**
@@ -154,6 +163,8 @@ class ApiWatchTest extends ApiTestSetup {
 		$this->assertArrayHasKey( 'revisions', $data[0]['query']['pages'][$key] );
 		$this->assertArrayHasKey( 0, $data[0]['query']['pages'][$key]['revisions'] );
 		$this->assertArrayHasKey( 'rollbacktoken', $data[0]['query']['pages'][$key]['revisions'][0] );
+
+		return $data;
 	}
 
 	/**
