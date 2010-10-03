@@ -101,6 +101,10 @@ class ApiUserrights extends ApiBase {
 			array( 'missingparam', 'user' ),
         ) );
 	}
+
+	public function needsToken() {
+		return true;
+	}
 	
 	public function getTokenSalt() {
 		$params = $this->extractRequestParams();

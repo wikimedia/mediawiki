@@ -184,8 +184,12 @@ class ApiProtect extends ApiBase {
 		) );
 	}
 	
+	public function needsToken() {
+		return true;
+	}
+
 	public function getTokenSalt() {
-		return null;
+		return '';
 	}
 
 	protected function getExamples() {
