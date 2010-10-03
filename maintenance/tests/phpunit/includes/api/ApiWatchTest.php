@@ -11,8 +11,8 @@ class ApiWatchTest extends ApiTestSetup {
 	function testLogin() {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
-			'lgname' => self::$userName,
-			'lgpassword' => self::$passWord ) );
+			'lgname' => self::$user->userName,
+			'lgpassword' => self::$user->password ) );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -22,8 +22,8 @@ class ApiWatchTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
 			"lgtoken" => $token,
-			"lgname" => self::$userName,
-			"lgpassword" => self::$passWord ), $data );
+			"lgname" => self::$user->userName,
+			"lgpassword" => self::$user->password ), $data );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -163,7 +163,7 @@ class ApiWatchTest extends ApiTestSetup {
 			$data = $this->doApiRequest( array(
 				'action' => 'rollback',
 				'title' => 'Main Page',
-				'user' => self::$userName,
+				'user' => self::$user->userName,
 				'token' => $pageinfo['rollbacktoken'],
 				'watchlist' => 'watch' ), $data );
 		} catch( UsageException $ue ) {
