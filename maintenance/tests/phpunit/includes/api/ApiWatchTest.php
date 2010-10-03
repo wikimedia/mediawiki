@@ -32,25 +32,41 @@ class ApiWatchTest extends ApiTestSetup {
 	}
 
 	function testGetToken() {
+		foreach ( array( self::$user, self::$sysopUser ) as $user ) {
+			$GLOBALS['wgUser'] = $user->user;
 
-		$data = $this->doApiRequest( array(
-			'action' => 'query',
-			'titles' => 'Main Page',
-			'intoken' => 'edit|delete|protect|move|block|unblock',
-			'prop' => 'info' ) );
+			$data = $this->doApiRequest( array(
+				'action' => 'query',
+				'titles' => 'Main Page',
+				'intoken' => 'edit|delete|protect|move|block|unblock',
+				'prop' => 'info' ) );
 
-		$this->assertArrayHasKey( 'query', $data[0] );
-		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$keys = array_keys( $data[0]['query']['pages'] );
-		$key = array_pop( $keys );
+			$this->assertArrayHasKey( 'query', $data[0] );
+			$this->assertArrayHasKey( 'pages', $data[0]['query'] );
+			$keys = array_keys( $data[0]['query']['pages'] );
+			$key = array_pop( $keys );
 
-		$this->assertArrayHasKey( $key, $data[0]['query']['pages'] );
-		$this->assertArrayHasKey( 'edittoken', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 'movetoken', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 'deletetoken', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 'blocktoken', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 'unblocktoken', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 'protecttoken', $data[0]['query']['pages'][$key] );
+			$rights = $user->user->getRights();
+
+			$this->assertArrayHasKey( $key, $data[0]['query']['pages'] );
+			$this->assertArrayHasKey( 'edittoken', $data[0]['query']['pages'][$key] );
+			$this->assertArrayHasKey( 'movetoken', $data[0]['query']['pages'][$key] );
+
+			if ( isset( $rights['delete'] ) ) {
+				$this->assertArrayHasKey( 'deletetoken', $data[0]['query']['pages'][$key] );
+			}
+
+			if ( isset( $rights['block'] ) ) {
+				$this->assertArrayHasKey( 'blocktoken', $data[0]['query']['pages'][$key] );
+				$this->assertArrayHasKey( 'unblocktoken', $data[0]['query']['pages'][$key] );
+			}
+
+			if ( isset( $rights['protect'] ) ) {
+				$this->assertArrayHasKey( 'protecttoken', $data[0]['query']['pages'][$key] );
+			}
+		}
+
+	    $GLOBALS['wgUser'] = self::$user->user;
 	}
 
 	/**
