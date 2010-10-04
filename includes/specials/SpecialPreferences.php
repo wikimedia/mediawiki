@@ -51,8 +51,9 @@ class SpecialPreferences extends SpecialPage {
 			$this->showResetForm();
 			return;
 		}
-		
+
 		$wgOut->addModules( 'mediawiki.legacy.prefs' );
+		$wgOut->addModuleScripts( 'mediawiki.specials.preferences' );
 
 		if ( $wgRequest->getCheck( 'success' ) ) {
 			$wgOut->wrapWikiMsg(
