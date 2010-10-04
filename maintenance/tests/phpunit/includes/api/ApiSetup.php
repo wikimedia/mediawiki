@@ -37,7 +37,7 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 			self::$sysopUser = new UserWrapper( 'Useruser1', 'Passpass1', 'sysop' );
 		}
 		
-		$GLOBALS['wgUser'] = self::$user->user;
+		$GLOBALS['wgUser'] = self::$sysopUser->user;
 	}
 
 	function tearDown() {
