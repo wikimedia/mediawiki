@@ -115,7 +115,6 @@ class BackupReader {
 	}
 
 	function importFromFile( $filename ) {
-		$t = true;
 		if ( preg_match( '/\.gz$/', $filename ) ) {
 			$filename = 'compress.zlib://' . $filename;
 		}
@@ -124,10 +123,9 @@ class BackupReader {
 		}
 		elseif ( preg_match( '/\.7z$/', $filename ) ) {
 			$filename = 'mediawiki.compress.7z://' . $filename;
-			$t = false;
 		}
 
-		$file = fopen( $filename, $t ? 'rt' : 't' ); // our 7zip wrapper uses popen, which seems not to like two-letter modes
+		$file = fopen( $filename, 'rt' );
 		return $this->importFromHandle( $file );
 	}
 
