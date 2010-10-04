@@ -866,7 +866,7 @@ abstract class ApiBase {
 	 */
 	private function warnOrDie( $msg, $enforceLimits = false ) {
 		if ( $enforceLimits ) {
-			$this->dieUsage( 'integeroutofrange', $msg );
+			$this->dieUsage( $msg, 'integeroutofrange' );
 		} else {
 			$this->setWarning( $msg );
 		}

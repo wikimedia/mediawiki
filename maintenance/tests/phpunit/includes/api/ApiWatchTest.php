@@ -94,7 +94,6 @@ class ApiWatchTest extends ApiTestSetup {
 		return $data;
 	}
 
-
 	/**
 	 * @depends testWatchEdit
 	 */
