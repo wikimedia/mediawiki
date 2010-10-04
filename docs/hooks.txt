@@ -1193,7 +1193,7 @@ the resulting HTML is about to be displayed.
 $parserOutput: the parserOutput (object) that corresponds to the page
 $text: the text that will be displayed, in HTML (string)
 
-'OutputPageBodyAttrs': called when OutputPage::headElement is creating the body
+'OutputPageBodyAttributes': called when OutputPage::headElement is creating the body
 tag to allow for extensions to add attributes to the body of the page they might
 need. Or to allow building extensions to add body classes that aren't of high
 enough demand to be included in core.

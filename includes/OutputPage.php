@@ -2276,8 +2276,8 @@ class OutputPage {
 		$bodyAttrs['class'] .= ' ' . Sanitizer::escapeClass( 'page-' . $this->getTitle()->getPrefixedText() );
 		$bodyAttrs['class'] .= ' skin-' . Sanitizer::escapeClass( $wgUser->getSkin()->getSkinName() );
 
-		$sk->bodyAttributes( $this, $bodyAttrs ); // Allow skins to add body attributes they need
-		wfRunHooks( 'OutputPageBodyAttrs', array( $this, $sk, &$bodyAttrs ) );
+		$sk->addToBodyAttributes( $this, $bodyAttrs ); // Allow skins to add body attributes they need
+		wfRunHooks( 'OutputPageBodyAttributes', array( $this, $sk, &$bodyAttrs ) );
 
 		$ret .= Html::openElement( 'body', $bodyAttrs ) . "\n";
 
