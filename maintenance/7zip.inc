@@ -35,7 +35,7 @@ class SevenZipStream {
 			// Suppress the stupid messages on stderr
 			$command .= ' 2>/dev/null';
 		}
-		$this->stream = popen( $command, $mode );
+		$this->stream = popen( $command, $mode[0] ); // popen() doesn't like two-letter modes
 		return ( $this->stream !== false );
 	}
 	
