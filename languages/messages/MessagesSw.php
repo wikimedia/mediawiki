@@ -2403,6 +2403,7 @@ Tafadhali jaribu tena.',
 # Media information
 'mediawarning'         => 'Ilani: Huenda faili hili lina msimbo mbaya.
 Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
+'imagemaxsize'         => "Kikomo cha ukubwa wa picha:<br />''(cha kurasa za maelezo ya mafaili)''",
 'thumbsize'            => 'Ukubwa wa picha ndogo:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
 'file-info'            => '(ukubwa wa faili: $1, aina ya MIME: $2)',

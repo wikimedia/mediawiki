@@ -301,20 +301,21 @@ I seguenti cołegamenti i xé en łengua inglese:
 'faqpage'        => 'Project:Domande frequenti',
 
 # Vector skin
-'vector-action-addsection' => 'Zonta discusion',
-'vector-action-delete'     => 'Scanseła',
-'vector-action-move'       => 'Sposta',
-'vector-action-protect'    => 'Protezi',
-'vector-action-undelete'   => 'Recupera',
-'vector-action-unprotect'  => 'Sbloca',
-'vector-view-create'       => 'Crea',
-'vector-view-edit'         => 'Modifega',
-'vector-view-history'      => 'Visuałiza cronołosia',
-'vector-view-view'         => 'Lezi',
-'vector-view-viewsource'   => 'Visuałiza sorzente',
-'actions'                  => 'Asion',
-'namespaces'               => 'Namespace',
-'variants'                 => 'Varianse',
+'vector-action-addsection'       => 'Zonta discusion',
+'vector-action-delete'           => 'Scanseła',
+'vector-action-move'             => 'Sposta',
+'vector-action-protect'          => 'Protezi',
+'vector-action-undelete'         => 'Recupera',
+'vector-action-unprotect'        => 'Sbloca',
+'vector-simplesearch-preference' => "Intaca i sugerimenti di ricerca avansadi (solo par l'interfacia Vector)",
+'vector-view-create'             => 'Crea',
+'vector-view-edit'               => 'Modifega',
+'vector-view-history'            => 'Visuałiza cronołosia',
+'vector-view-view'               => 'Lezi',
+'vector-view-viewsource'         => 'Visuałiza sorzente',
+'actions'                        => 'Asion',
+'namespaces'                     => 'Namespace',
+'variants'                       => 'Varianse',
 
 'errorpagetitle'    => 'Erore',
 'returnto'          => 'Torna a $1.',
@@ -375,6 +376,7 @@ Tropi utenti i sta tentando de visuałisare sta pajina.
 Atendare qualche minudo prima de riprovare a cargare ła pajina.
 
 $1',
+'pool-errorunknown' => 'Eror sconossùo',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Se parla de {{SITENAME}}',
@@ -514,7 +516,8 @@ Query: $2',
 'editinginterface'     => "'''Ocio:''' El testo de sta pajina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałizà par tuti i utenti.
 Par łe tradusion, considera ła posibiłità de usare [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el projeto MediaWiki par ła localizasion.",
 'sqlhidden'            => '(ła query SQL ła xè sta sconta)',
-'cascadeprotected'     => 'So sta pajina no xè posibiłe efetuare modifeghe parché xè sta inclusa {{PLURAL:$1|ne ła pajina indicà de seguito, che xè sta proteta|ne łe pajine indicae de seguito, che e xè sta protete}} sełesionando ła protesion "ricorsiva":',
+'cascadeprotected'     => 'So sta pajina no xè posibiłe efetuare modifeghe parché xè sta inclusa {{PLURAL:$1|ne ła pajina indicà de seguito, che xè sta proteta|ne łe pajine indicae de seguito, che e xè sta protete}} sełesionando ła protesion "ricorsiva":
+$2',
 'namespaceprotected'   => "No se dispone de i parmesi nesesari par modifegare łe pajine del namespace '''$1'''.",
 'customcssjsprotected' => "No se dispone de i parmesi nesesari a ła modifega de ła pajina, en quanto contien łe inpostasion parsonałi de n'altro utente.",
 'ns-specialprotected'  => 'No xè posibiłe modifegare łe pajine spesałi.',
@@ -672,7 +675,7 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'anonpreviewwarning'               => '"No te ghe eseguio el login. Salvando el to indiriso IP sarà rejistrà ne ła cronołosia de sta voxe."',
 'missingsummary'                   => "'''Ocio:''' No te ghè indicà l'ogeto de la modifica. Macando de novo 'Salva la pagina' la modifica la vegnerà con l'ogeto vodo.",
 'missingcommenttext'               => 'Inserissi un comento qua soto.',
-'missingcommentheader'             => "'''Ocio:''' No te ghè specificà l'intestazion de sto commento. Macando de novo '''Salva la pagina''' la modifica la vegnarà salvà senza intestazion.",
+'missingcommentheader'             => "'''Ocio:''' No te ghè fornìo un ogeto par sto comento. Macando da novo \"{{int:savearticle}}\" la modifica la vegnarà salvà sensa ogeto.",
 'summary-preview'                  => "Anteprima de l'ojeto:",
 'subject-preview'                  => 'Anteprima ogeto/intestazion:',
 'blockedtitle'                     => 'Utente blocà',
@@ -738,8 +741,8 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => "Sto utente xè atualmente blocà.
 L'ultimo ełemento del rejistro de i blochi xè riportà de seguito par informasion:",
 'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Sugerimento:''' se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
-'userjsyoucanpreview'              => "'''Sugerimento:''' se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
+'usercssyoucanpreview'             => "'''Sugerimento:''' se consiglia de doparar el boton \"{{int:showpreview}} par proàr i novi CSS prima de salvarli.",
+'userjsyoucanpreview'              => "'''Sugerimento:''' se consiglia de doparar el boton \"{{int:showpreview}}\" par proàr i novi JavaScript prima de salvarli.",
 'usercsspreview'                   => "'''Sta qua la xe solo n'anteprima del proprio CSS personal.
 Le modifiche no le xe gnancora stà salvà!'''",
 'userjspreview'                    => "'''Sta qua la xe solo n'anteprima par proar el proprio JavaScript personal; le modifiche no le xe gnancora stà salvà!'''",
@@ -989,12 +992,13 @@ No ti gà acesso su de ela.',
 'suppressionlogtext' => "Qua soto se cata na lista de le ultime scancelazioni e blochi che riguarda contenuti sconti dai aministradori. Varda la [[Special:IPBlockList|lista dei IP blocà]] par védar l'elenco dei blochi atualmente ativi.",
 
 # Revision move
-'moverevlogentry'        => 'gà spostà {{PLURAL:$3|na revision|$3 revision}} da $1 a $2',
-'revisionmove'           => 'Sposta revision da "$1"',
-'revmove-reasonfield'    => 'Motivassion:',
-'revmove-titlefield'     => 'Pagina de destinassion:',
-'revmove-badparam-title' => 'Parametri mia validi',
-'revmove-nullmove-title' => 'Titolo mia valido',
+'moverevlogentry'              => 'gà spostà {{PLURAL:$3|na revision|$3 revision}} da $1 a $2',
+'revisionmove'                 => 'Sposta revision da "$1"',
+'revisionmoveselectedversions' => 'Sposta le revision selessionà',
+'revmove-reasonfield'          => 'Motivassion:',
+'revmove-titlefield'           => 'Pagina de destinassion:',
+'revmove-badparam-title'       => 'Parametri mia validi',
+'revmove-nullmove-title'       => 'Titolo mia valido',
 
 # History merging
 'mergehistory'                     => 'Union cronologie',
@@ -1142,6 +1146,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'contextlines'                  => 'Righe de testo par ciascun risultato',
 'contextchars'                  => 'Caratteri par linea:',
 'stub-threshold'                => 'Valor minimo par i <a href="#" class="stub">colegamenti ai stub</a>:',
+'stub-threshold-disabled'       => 'Disativà',
 'recentchangesdays'             => 'Nùmaro de giòrni da mostrar ne le ultime modifiche:',
 'recentchangesdays-max'         => '($1 {{PLURAL:$1|zorno|zorni}} massimo)',
 'recentchangescount'            => 'Nùmaro de modìfeghe da far védar (valor predefinìo):',
@@ -1321,6 +1326,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'right-reset-passwords'       => 'Reinposta la password de altri utenti',
 'right-override-export-depth' => 'Esporta le pàxene, includendo le pàxene ligàe fin a na profondità de 5',
 'right-sendemail'             => 'Mandarghe e-mail a cheialtri utenti',
+'right-revisionmove'          => 'Sposta le revision',
 
 # User rights log
 'rightslog'      => 'Diriti de i utenti',
@@ -1363,6 +1369,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'action-userrights'           => 'canbiar tuti i diriti dei utenti',
 'action-userrights-interwiki' => 'canbiar i diriti dei utenti su altre wiki',
 'action-siteadmin'            => 'blocar e desblocar el database',
+'action-revisionmove'         => 'spostar revision',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modifega|modifeghe}}',
@@ -1452,6 +1459,8 @@ Varda la [[Special:NewFiles|galerìa dei file nóvi]] par na vision de insieme.'
 'filetype-unwanted-type'      => "Cargar file de tipo '''\".\$1\"''' xe sconsiglià. {{PLURAL:\$3|El tipo de file consiglià el|I tipi de file consiglià i}} xe \$2.",
 'filetype-banned-type'        => "Cargar file de tipo '''\".\$1\"''' no xe mìa consentìo. {{PLURAL:\$3|El tipo de file consentìo el|I tipi de file consentìi i}} xe \$2.",
 'filetype-missing'            => 'El file no\'l gà nissuna estension (ad es. ".jpg").',
+'filename-tooshort'           => 'El nome del file el xe massa curto.',
+'tmp-create-error'            => 'Inpussibile creare el file tenporaneo.',
 'large-file'                  => 'Se racomanda de no superar mìa le dimension de $1 par ciascun file; sto file el xe grando $2.',
 'largefileserver'             => 'El file el supera le dimension consentìe da la configurazion del server.',
 'emptyfile'                   => 'El file che te ghè caricà el xè aparentemente vodo. Podarìa èssar par un eror nel nome del file. Par piaser controla se te vol dal bon caricar sto file.',
@@ -1482,6 +1491,7 @@ Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che t
 'uploadedimage'               => 'ga cargà "[[$1]]"',
 'overwroteimage'              => 'gà cargà na version nova de "[[$1]]"',
 'uploaddisabled'              => 'Semo spiacenti, ma el caricamento de file el xe tenporaneamente sospeso.',
+'uploadfromurl-queued'        => 'El to caricamento el xe stà messo in coa.',
 'uploaddisabledtext'          => "El caricamento dei file no'l xe mìa ativo.",
 'php-uploaddisabledtext'      => 'El caricamento de file tramite PHP el xe disabilità. Contròla la configurassion de file_uploads.',
 'uploadscripted'              => 'Sto file contegne codexe HTML o de script, che podaria essere interpretà eroneamente da un browser web.',
@@ -1501,6 +1511,7 @@ Verifica par piaser se xe el caso de continuare col caricamento de sto file.
 Par to comodità qua ghe xe la registrazion de la scancelazion:",
 'filename-bad-prefix'         => "El nome del file che te sì drio cargar el scuminsia con '''\"\$1\"''', che el xe un nome non-descritivo tipicamente assegnà automaticamente da le fotocàmare digitali. Par piaser siegli un nome piassè descritivo par el to file.",
 'upload-success-subj'         => 'Caricamento conpletà',
+'upload-failure-subj'         => 'Problema nel caricamento',
 
 'upload-proto-error'        => 'Protocòl mìa giusto',
 'upload-proto-error-text'   => 'Par el caricamento remoto bisogna specificar URL che scuminsia con <code>http://</code> opure <code>ftp://</code>.',
@@ -2013,7 +2024,8 @@ L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]{
 'rollback-success'  => 'Anulà le modifiche de $1; riportà a la version precedente de $2.',
 
 # Edit tokens
-'sessionfailure' => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
+'sessionfailure-title' => 'Eròr de session',
+'sessionfailure'       => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
 
 # Protect
 'protectlogpage'              => 'Protesion',
@@ -2151,6 +2163,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => "Sto indiriso IP xè atualmente blocà. De seguito xè riportà l'ultimo ełemento del rejistro de i blochi:",
 'sp-contributions-search'              => 'Riserca contribui',
 'sp-contributions-username'            => 'Indirixo IP o nome utente:',
+'sp-contributions-toponly'             => "Mostra solo i contributi che i xe l'ultima revision de la pagina",
 'sp-contributions-submit'              => 'Riserca',
 
 # What links here
@@ -2370,6 +2383,7 @@ La voxe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarla
 'immobile-source-page'         => 'Sta pàxena no la pol vegner spostà.',
 'immobile-target-page'         => 'No te pol spostar a sto titolo.',
 'imagenocrossnamespace'        => 'No se pol spostar un file verso un namespace diverso da quelo dei file.',
+'nonfile-cannot-move-to-file'  => 'Tuto quel che no xe un file, no se pode spostarlo al namespace dei file.',
 'imagetypemismatch'            => "L'estension nova del file no la corisponde mìa al tipo de file",
 'imageinvalidfilename'         => "El nome file de destinassion no'l xe mia valido",
 'fix-double-redirects'         => 'Agiorna tuti quanti i redirect che ponta al titolo originàl',
@@ -2448,6 +2462,7 @@ Salvalo sul to computer e càrghelo qua.',
 'importstart'                => 'Inportazion de łe pàxene in corso...',
 'import-revision-count'      => '{{PLURAL:$1|una revixion importà|$1 revixion importae}}',
 'importnopages'              => 'Nissuna pàxena da inportar.',
+'imported-log-entries'       => 'Inportà $1 {{PLURAL:$1|evento|eventi}} del registro.',
 'importfailed'               => 'Inportassion falía: $1',
 'importunknownsource'        => "Tipo de origine sconossiùo par l'inportassion",
 'importcantopen'             => 'Impossibiłe vèrzar el file de inportassion',
@@ -2541,6 +2556,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-rollback'                => '"Rollback" anuła łe me modifeghe a sta pajina de l\'ultimo contribudore co on soło clic.',
 'tooltip-undo'                    => '"Anuła" parmete de anułare sta modifega e apre el moduło de modifega en modałità de anteprima. Parmete de inserire na modivasion ne l\'ojeto de ła modifega.',
 'tooltip-preferences-save'        => 'Salve le preferense',
+'tooltip-summary'                 => 'Inserissi un breve riassunto',
 
 # Metadata
 'nodublincore'      => 'Metadati Dublin Core RDF non ativi su sto server.',
@@ -2643,6 +2659,9 @@ La so esecuzion la podarìa danegiar el to computer.",
 'show-big-image-thumb' => '<small>Dimension de sta anteprima: $1 × $2 pixel</small>',
 'file-info-gif-looped' => 'ripetù',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
+'file-info-png-looped' => 'ripetù',
+'file-info-png-repeat' => 'ripetù $1 {{PLURAL:$1|olta|olte}}',
+'file-info-png-frames' => '$1 {{PLURAL:$1|fotograma|fotogrami}}',
 
 # Special:NewFiles
 'newimages'             => 'Galeria dei file novi',
@@ -3040,6 +3059,7 @@ Par piaser, conferma che te vołi dal bon ricrear sta voxe.",
 'table_pager_first'        => 'Prima pagina',
 'table_pager_last'         => 'Ultima pagina',
 'table_pager_limit'        => 'Mostra $1 file par pagina',
+'table_pager_limit_label'  => 'Elementi par pagina:',
 'table_pager_limit_submit' => 'Và',
 'table_pager_empty'        => 'Nissun risultato',
 
@@ -3066,12 +3086,17 @@ Doparar l\'anteprima standard.',
 'watchlistedit-noitems'        => 'La lista dei osservati speciali la xe voda.',
 'watchlistedit-normal-title'   => 'Modifica osservati speciali',
 'watchlistedit-normal-legend'  => 'Elimina de pagine dai osservati speciali',
-'watchlistedit-normal-explain' => "De seguito xe elencà tute le pagine tegnùe d'ocio. Par cavar una o più pagine da la lista, seleziona le casele relative e struca el boton 'Elimina pagine' in fondo a l'elenco. Nota che se pol anca [[Special:Watchlist/raw|modificar la lista in formato testual]].",
+'watchlistedit-normal-explain' => 'De seguito xe elencà tute le pagine tegnùe d\'ocio. 
+Par cavar una o più pagine da la lista, seleziona le casele relative e struca el boton "{{int:Watchlistedit-normal-submit}}". 
+Nota che se pol anca [[Special:Watchlist/raw|modificar la lista in formato testual]].',
 'watchlistedit-normal-submit'  => 'Elimina pagine',
 'watchlistedit-normal-done'    => 'Da la lista dei osservati speciali xe stà eliminà {{PLURAL:$1|una pagina|$1 pagine}}:',
 'watchlistedit-raw-title'      => 'Modifica dei osservati speciali in forma testual',
 'watchlistedit-raw-legend'     => 'Modifica testual osservati speciali',
-'watchlistedit-raw-explain'    => "De seguito xe elencàe tute le pagine tegnùe d'ocio. Par modificar la lista, zónteghe o càveghe i rispetivi titoli, uno par riga. Na olta che the ghè finìo, struca el boton 'Agiorna la lista' in fondo all'elenco. Nota che te pol anca [[Special:Watchlist/edit|modificar la lista con l'interfacia standard]].",
+'watchlistedit-raw-explain'    => "De seguito xe elencàe tute le pagine tegnùe d'ocio. 
+Par modificar la lista, zónteghe o càveghe i rispetivi titoli, uno par riga. 
+Na olta che the ghè finìo, struca el boton \"{{int:Watchlistedit-raw-submit}}\" in fondo all'elenco. 
+Nota che te pol anca [[Special:Watchlist/edit|modificar la lista con l'interfacia standard]].",
 'watchlistedit-raw-titles'     => 'Pagine:',
 'watchlistedit-raw-submit'     => 'Agiorna la lista',
 'watchlistedit-raw-done'       => 'La lista dei osservati speciali la xe stà agiornà.',
@@ -3181,12 +3206,13 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'tags-hitcount'           => '$1 {{PLURAL:$1|modìfega|modìfeghe}}',
 
 # Special:ComparePages
-'comparepages'   => 'Confronta le pagine',
-'compare-page1'  => 'Pagina 1',
-'compare-page2'  => 'Pagina 2',
-'compare-rev1'   => 'Revisión 1',
-'compare-rev2'   => 'Revisión 2',
-'compare-submit' => 'Confronta',
+'comparepages'     => 'Confronta le pagine',
+'compare-selector' => 'Confronta le revision de na pagina',
+'compare-page1'    => 'Pagina 1',
+'compare-page2'    => 'Pagina 2',
+'compare-rev1'     => 'Revisión 1',
+'compare-rev2'     => 'Revisión 2',
+'compare-submit'   => 'Confronta',
 
 # Database error messages
 'dberr-header'      => 'Sta wiki la ga un problema',

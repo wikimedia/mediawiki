@@ -390,7 +390,7 @@ $1',
 'filedeleteerror'      => '«$1» файлын юйып булмай.',
 'directorycreateerror' => '«$1» директорияһын яһап булмай.',
 'filenotfound'         => '«$1» файлын табып булмай.',
-'fileexistserror'      => '«$1» файлына яҙып булмый: файл былай ҙа бар.',
+'fileexistserror'      => '«$1» файлына яҙып булмай: файл былай ҙа бар.',
 'unexpected'           => 'Көтөлмәгән ҡиммәт: «$1»=«$2».',
 'formerror'            => 'Хата: форма мәғлүмәттәрен ебәреп булмай',
 'badarticleerror'      => 'Был биттә ундай ғәмәл үтәргә ярамай',
@@ -503,7 +503,7 @@ $2',
 'accountcreated'             => 'Иҫәп яҙыуы яһалды',
 'accountcreatedtext'         => '$1 исемле ҡулланыусы өсөн исәп яҙыуы яһалды.',
 'createaccount-title'        => '{{SITENAME}}: теркәлеү',
-'createaccount-text'         => 'Кемдер, электрон почта адресығыҙҙ күрһәтеп, {{SITENAME}} ($4) проектында «$3» пароле менән «$2» исемле иҫәп яҙыуы теркәне. Һеҙҙең кереүегеҙ һәм паролегеҙҙе алмаштырыуығыҙ кәрәк.
+'createaccount-text'         => 'Кемдер, электрон почта адресығыҙҙы күрһәтеп, {{SITENAME}} ($4) проектында «$3» пароле менән «$2» исемле иҫәп яҙыуы теркәне. Һеҙҙең кереүегеҙ һәм паролегеҙҙе алмаштырыуығыҙ кәрәк.
 
 Иҫәп яҙыуы яңылыш яһалһа был хатҡа иғтибар итмәгеҙ.',
 'usernamehasherror'          => 'Ҡулланыусы исемендә "#" символы була алмай',
@@ -1565,25 +1565,46 @@ $1',
 'sharedupload-desc-here'    => 'Был файл $1 базаһынан һәм башҡа проекттарҙа ҡулланыла ала.
 [$2 файл тасуирламаһы битенән] тулыраҡ мәғлүмәт түбәндә килтерелгән.',
 'filepage-nofile'           => 'Бындай исемле файл юҡ.',
+'filepage-nofile-link'      => 'Бындай исемле файл юҡ. һеҙ уны [$1 тейәй алаһығыҙ].',
 'uploadnewversion-linktext' => 'Был файлдың яңы версияһын тейәргә',
 'shared-repo-from'          => '$1 базаһынан',
+'shared-repo'               => 'дөйөм һаҡлағыс',
 
 # File reversion
-'filerevert-comment' => 'Сәбәп:',
-'filerevert-submit'  => 'Кире алырға',
+'filerevert'                => '$1 өлгөһөнә ҡайтыу',
+'filerevert-legend'         => 'Файлдың элекке өлгөһөнә ҡайтыу',
+'filerevert-intro'          => "Һеҙ '''[[Media:$1|$1]]''' файлын [$2 $3 булдырылған $4 өлгөһөнә] ҡайтараһығыҙ.",
+'filerevert-comment'        => 'Сәбәп:',
+'filerevert-defaultcomment' => '$1 $2 өлгөһөнә ҡайтыу',
+'filerevert-submit'         => 'Кире алырға',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' [$2 $3 булдырылған $4 өлгөһөнә] ҡайтарылды.",
+'filerevert-badversion'     => 'Файлдың күрһәтелгән ваҡыт билдәһе менән алдағы урындағы өлгөһө юҡ.',
 
 # File deletion
 'filedelete'                  => '$1 юйырға',
 'filedelete-legend'           => 'Файлды юйырға',
+'filedelete-intro'            => "Һеҙ '''[[Media:$1|$1]]''' файлын бөтә тарихы менән бергә юйырға йыйынаһығыҙ.",
+'filedelete-intro-old'        => "Һеҙ '''[[Media:$1|$1]]''' файлының [$4 $2 $3] өлгөһөн юяһығыҙ.",
 'filedelete-comment'          => 'Сәбәп:',
 'filedelete-submit'           => 'Юйырға',
+'filedelete-success'          => "'''$1''' юйылды.",
+'filedelete-success-old'      => "'''[[Media:$1|$1]]''' файлының $2 $3 өлгөһө юйылды.",
+'filedelete-nofile'           => "'''$1''' файлы юҡ.",
+'filedelete-nofile-old'       => "'''$1''' файлының күрһәтелгән атрибуттар менән архив өлгөһө юҡ.",
 'filedelete-otherreason'      => 'Башҡа/өҫтәмә сәбәп:',
 'filedelete-reason-otherlist' => 'Башҡа сәбәп',
+'filedelete-reason-dropdown'  => '*Киң таралған юйыу сәбәптәре: 
+** авторлыҡ хоҡуҡтарын боҙоу
+** икенсе файл менән тап килгән файл',
 'filedelete-edit-reasonlist'  => 'Сәбәптәр исемлеген мөхәррирләргә',
+'filedelete-maintenance'      => 'Файлдарҙы юйыу һәм тергеҙеү техник эштәр ваҡытында ваҡытлыса һундерелгән.',
 
 # MIME search
-'mimesearch' => 'MIME буйынса эҙләү',
-'download'   => 'күсереп яҙырға',
+'mimesearch'         => 'MIME буйынса эҙләү',
+'mimesearch-summary' => 'Был бит файлдарҙы MIME-төрҙәре аша һайларға мөмкинлек бирә.
+Эҙләү форматы: эстәлек_төрө/икенсе_быуын_төрө, мәҫәлән, <tt>image/jpeg</tt>',
+'mimetype'           => 'MIME-төр:',
+'download'           => 'күсереп яҙырға',
 
 # Unwatched pages
 'unwatchedpages' => 'Бер кем дә күҙәтмәгән биттәр',
@@ -1592,14 +1613,18 @@ $1',
 'listredirects' => 'Йүнәлтеүҙәр исемлеге',
 
 # Unused templates
-'unusedtemplates'    => 'Ҡулланылмаған ҡалыптар',
-'unusedtemplateswlh' => 'Башҡа һылтанмалар',
+'unusedtemplates'     => 'Ҡулланылмаған ҡалыптар',
+'unusedtemplatestext' => 'Был биттә {{ns:template}} исемдәр арауығының бөтә башҡа биттәргә индерелмәгән биттәре исемлеге килтерелгән.
+Ҡалыпты юйыр алдынан, уға башҡа һылтанмалар юҡлығын тикшерергә онотмағыҙ.',
+'unusedtemplateswlh'  => 'Башҡа һылтанмалар',
 
 # Random page
-'randompage' => 'Осраҡлы мәҡәлә',
+'randompage'         => 'Осраҡлы мәҡәлә',
+'randompage-nopages' => 'Түбәндәге {{PLURAL:$2|исемдәр арауығында|исемдәр арауыҡтарында}} биттәр юҡ: $1.',
 
 # Random redirect
-'randomredirect' => 'Осраҡлы биткә күсеү',
+'randomredirect'         => 'Осраҡлы биткә күсеү',
+'randomredirect-nopages' => '"$1" исемдәр арауығында йүнәлтеүҙәр юҡ.',
 
 # Statistics
 'statistics'                   => 'Статистика',
@@ -1610,32 +1635,53 @@ $1',
 'statistics-header-hooks'      => 'Башҡа статистика',
 'statistics-articles'          => 'Мәҡәләләр',
 'statistics-pages'             => 'Биттәр',
+'statistics-pages-desc'        => 'Вики проекттағы бөтә биттәр, фекер алышыу биттәрен, йүнәлтеүҙәрҙе һ.б. үҙ эсенә ала.',
 'statistics-files'             => 'Рәсем йәки тауыш эстәлекле күсереп яҙылған файлдар',
+'statistics-edits'             => '{{SITENAME}} проекты булдырылған ваҡыттан башлап үҙгәртеүҙәр һаны',
 'statistics-edits-average'     => 'Уртаса бер биткә тура килгән төҙәтеүҙәр һаны',
+'statistics-views-total'       => 'Ҡарап сығыуҙар',
+'statistics-views-peredit'     => 'Бер үҙгәртеүгә ҡарап сығыуҙар',
 'statistics-users'             => 'Теркәлгән [[Special:ListUsers|ҡатнашыусылар]]',
 'statistics-users-active'      => 'Әүҙем ҡатнашыусылар',
 'statistics-users-active-desc' => 'Һуңғы {{PLURAL:$1|көндә|$1 көндә}} ниндәйҙер эшмәкәрлек башҡарған ҡатнашыусылар',
 'statistics-mostpopular'       => 'Иң күп ҡаралған биттәр',
 
-'disambiguations' => 'Күп мәғәнәле төшөнсәләр',
+'disambiguations'      => 'Күп мәғәнәле төшөнсәләр',
+'disambiguationspage'  => 'Template:Күп_мәғәнәлелек',
+'disambiguations-text' => "Түбәндәге биттәрҙән '''күп мәғәнәле биттәргә''' һылтанма яһалған.
+Бының урынына улар фәҡәт үҙенә кәрәкле мәҡәләгә һылтанырға тейеш.<br />
+Әгәр биттә исеме [[MediaWiki:Disambiguationspage]] битендә күрһәтелгән ҡалып ҡулланылһа, ул күп мәғәнәле тип иҫәпләнә.",
 
-'doubleredirects' => 'Икеле йүнәлтеүҙәр',
+'doubleredirects'            => 'Икеле йүнәлтеүҙәр',
+'doubleredirectstext'        => 'Был биттә икенсе йүнәлтеү биттәренә йүнәлткән биттәр исемлеге килтерелгән.
+Һәр юл беренсе һәм икенсе йүнәлтеүгә һылтанманан, шулай уҡ икенсе һылтанма йүнәлткән һәм беренсе йүнәлтмә һылтанма яһарға тейеш булған биттән  тора.
+<del>Һыҙылған</del> яҙыуҙар төҙәтелгән.',
+'double-redirect-fixed-move' => '[[$1]] битенең исеме үҙгәртелгән.
+Хәҙер ул [[$2]] битенә йүнәлтелгән.',
+'double-redirect-fixer'      => 'Йүнәлтеүҙәрҙе төҙәтеүсе',
 
-'brokenredirects'        => 'Өҙөлгән юнәлтеүҙәр',
+'brokenredirects'        => 'Өҙөлгән йүнәлтеүҙәр',
+'brokenredirectstext'    => 'Түбәндәге йүнәлтеүҙәр булмаған биттәргә һылтанма яһай:',
 'brokenredirects-edit'   => 'төҙәтеү',
 'brokenredirects-delete' => 'юйырға',
 
-'withoutinterwiki'        => 'Телдәр араһы һылтанмаһы булмаған биттәр',
-'withoutinterwiki-submit' => 'Күрһәтергә',
+'withoutinterwiki'         => 'Телдәр араһы һылтанмаһы булмаған биттәр',
+'withoutinterwiki-summary' => 'Түбәндәге биттәр башҡа телдәрҙәге өлгөләргә һылтанма яһамай.',
+'withoutinterwiki-legend'  => 'Ҡушылма',
+'withoutinterwiki-submit'  => 'Күрһәтергә',
 
 'fewestrevisions' => 'Иң әҙ үҙгәртелгән биттәр',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт}}',
 'ncategories'             => '{{PLURAL:$1|Категория|Категория}}',
+'nlinks'                  => '$1 {{PLURAL:$1|һылтанма}}',
 'nmembers'                => '$1 {{PLURAL:$1|объект}}',
 'nrevisions'              => '$1 {{PLURAL:$1|өлгө|өлгө}}',
+'nviews'                  => '$1 {{PLURAL:$1|ҡарап сығыу}}',
+'specialpage-empty'       => 'Был һорау өсөн һөҙөмтәләр юҡ.',
 'lonelypages'             => 'Етем биттәр',
+'lonelypagestext'         => 'Түбәндәге биттәргә {{SITENAME}} проектының башҡа биттәренән һылтанмалар юҡ һәм улар башҡа биттәргә индерелмәгән.',
 'uncategorizedpages'      => 'Категорияланмаған биттәр',
 'uncategorizedcategories' => 'Категорияланмаған категориялар',
 'uncategorizedimages'     => 'Категорияланмаған файлдар',
@@ -1645,6 +1691,7 @@ $1',
 'popularpages'            => 'Популяр биттәр',
 'wantedcategories'        => 'Кәрәкле категориялар',
 'wantedpages'             => 'Кәрәкле биттәр',
+'wantedpages-badtitle'    => 'Һорау һөҙөмтәләрендә дөрөҫ булмаған исем: $1',
 'wantedfiles'             => 'Кәрәкле файлдар',
 'wantedtemplates'         => 'Кәрәкле ҡалыптар',
 'mostlinked'              => 'Иң күп һылтанма яһалған биттәр',
