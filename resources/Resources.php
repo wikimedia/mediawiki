@@ -304,6 +304,9 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.js',
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 	) ),
+	'mediawiki.specials.preferences' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki/mediawiki.specials.preferences.js',
+	) ),
 	
 	/* MediaWiki Legacy */
 	
