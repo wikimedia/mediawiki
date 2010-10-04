@@ -68,7 +68,7 @@ class ApiWatchTest extends ApiTestSetup {
 			}
 		}
 
-	    $GLOBALS['wgUser'] = self::$user->user;
+		$GLOBALS['wgUser'] = self::$user->user;
 
 		return $data;
 	}
