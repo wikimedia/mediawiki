@@ -58,7 +58,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွန်​တော့်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
+'tog-rememberpassword' => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွနု်ပ်ကို​မှတ်​ထား​ရန်် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
 'tog-watchcreations'   => 'ကျွန်တော်ထွင်သည့်စာမျက်နှာများကို စောင့်​ကြည့်​စာ​ရင်း​ထဲ ပေါင်းထည့်ပါ',
 
 'underline-always' => 'အမြဲ',
@@ -129,7 +129,7 @@ $messages = array(
 'about'      => 'အကြောင်း',
 'article'    => 'စာမျက်နှာ',
 'newwindow'  => '(ဝင်းဒိုးအသစ်တခုကိုဖွင့်ရန်)',
-'cancel'     => 'မ​လုပ်​တော့​ပါ​',
+'cancel'     => 'မ​လုပ်​တော့​',
 'mypage'     => 'ကျွန်ုပ် စာမျက်နှာ',
 'mytalk'     => 'ဆွေးနွေးချက်',
 'navigation' => 'အ​ညွှန်း​',
@@ -160,7 +160,7 @@ $messages = array(
 'history'          => 'စာမျက်နှာ မှတ်တမ်း',
 'history_short'    => 'မှတ်​တမ်း​',
 'info_short'       => 'သတင်းအချက်အလက်',
-'printableversion' => 'ပ​ရင်​တာ​ ထုတ်​ရန်​',
+'printableversion' => 'ပရင့်ထုတ်ရန်',
 'permalink'        => 'ပုံ​သေ​လိပ်​စာ​',
 'print'            => 'ပရင့်',
 'edit'             => 'ပြင်​ဆင်​ရန်​',
@@ -176,7 +176,7 @@ $messages = array(
 'personaltools'    => 'ကိုယ်ပိုင် ကိရိယာများ',
 'talk'             => 'ဆွေးနွေးချက်များ',
 'views'            => 'ပုံပန်းသွင်ပြင်',
-'toolbox'          => 'တန်​ဆာ​ပ​လာ​',
+'toolbox'          => 'လက်စွဲ ကိရိယာများ',
 'mediawikipage'    => 'မီဒီယာဝီကီစာမျက်နှာ',
 'viewhelppage'     => 'ကူညီမယ့် စာမျက်နှာကိုကြည့်ရန်',
 'otherlanguages'   => 'အခြား ဘာသာစကားများဖြင့်',
@@ -188,22 +188,22 @@ $messages = array(
 'jumptosearch'     => 'ရှာ​ဖွေ​ရန်​',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}}အကြောင်း',
+'aboutsite'            => '{{SITENAME}} အကြောင်း',
 'aboutpage'            => 'Project: အကြောင်းအရာ',
 'copyright'            => '$1 အောက်တွင် ဤအကြောင်းအရာကို ရရှိနိုင်သည်။',
 'copyrightpage'        => '{{ns:project}}: မူပိုင်ခွင့်',
 'currentevents'        => 'လက်​ရှိ​လုပ်​ငန်း​များ​',
 'currentevents-url'    => 'Project:လက်​ရှိ​လုပ်​ငန်း​များ​',
-'disclaimers'          => 'သ​တိ​ပေး​ချက်​များ​',
-'disclaimerpage'       => 'Project: အထွေထွေ သတိပေးချက်',
+'disclaimers'          => 'သတိပြုစရာများ',
+'disclaimerpage'       => 'Project: အထွေထွေ သတိပြုဖွယ်',
 'edithelp'             => 'ပြင်​ဆင်​ရန် အ​ကူ​အ​ညီ​',
 'edithelppage'         => 'Help: တည်းဖြတ်ခြင်း',
 'helppage'             => 'Help: မာတိကာ',
 'mainpage'             => 'ဗ​ဟို​စာ​မျက်​နှာ​',
 'mainpage-description' => 'ဗ​ဟို​စာ​မျက်​နှာ​',
-'portal'               => 'ပြော​ရေး​ဆို​ရာ​',
+'portal'               => 'စုစည်းဆွေးနွေးရာ',
 'privacy'              => 'ကိုယ်ပိုင်ရေးရာ မူဝါဒ',
-'privacypage'          => 'Project: ကိုယ်ပိုင် ပေါ်လစီ',
+'privacypage'          => 'Project: ကိုယ်ပိုင်ရေးရာ မူဝါဒ',
 
 'badaccess' => 'ခွင့်ပြုချက်မှ အမှား',
 
@@ -211,7 +211,7 @@ $messages = array(
 'youhavenewmessages'      => 'သင့်တွင် $1 ($2) ခု ရှိသည်။',
 'newmessageslink'         => 'မက်ဆေ့ အသစ်',
 'newmessagesdifflink'     => 'နောက်ဆုံးအပြောင်းအလဲ',
-'youhavenewmessagesmulti' => 'You have new messages on $1',
+'youhavenewmessagesmulti' => '$1 မှာ မက်ဆေ့အသစ်များ ရှိသည်',
 'editsection'             => 'ပြင်​ဆင်​ရန်​',
 'editold'                 => 'ပြင်​ဆင်​ရန်​',
 'viewsourceold'           => 'ရင်းမြစ်ကို ကြည့်ရန်',
@@ -228,13 +228,14 @@ $messages = array(
 'red-link-title'          => '$1 (ဤစာမျက်နှာ မရှိပါ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'စာ​မျက်​နှာ​',
-'nstab-user'     => 'အ​သုံး​ပြု​သူ​၏ ​စာ​မျက်​နှာ​',
-'nstab-special'  => 'အထူး စာမျက်နှာ',
-'nstab-project'  => 'ပရောဂျက်စာမျက်နှာ',
-'nstab-image'    => 'ဖိုင်',
-'nstab-template' => 'တမ်းပလိတ်',
-'nstab-category' => 'ကဏ္ဍ',
+'nstab-main'      => 'စာ​မျက်​နှာ​',
+'nstab-user'      => 'အ​သုံး​ပြု​သူ​၏ ​စာ​မျက်​နှာ​',
+'nstab-special'   => 'အထူး စာမျက်နှာ',
+'nstab-project'   => 'ပရောဂျက်စာမျက်နှာ',
+'nstab-image'     => 'ဖိုင်',
+'nstab-mediawiki' => 'မက်ဆေ့',
+'nstab-template'  => 'တမ်းပလိတ်',
+'nstab-category'  => 'ကဏ္ဍ',
 
 # General errors
 'missing-article'    => 'စာမျက်နှာ "$1" မှ $2 ကို ရှာတွေ့သင့်သည်ဖြစ်သော်လည်း ဒေတာဘေ့(စ်) သည် ရှာမတွေ့ပါ။
@@ -243,21 +244,24 @@ $messages = array(
 
 ယင်းသို့မဟုတ်ပါက သင်သည် ဤဆော့ဝဲအတွင်းမှ အမှားတစ်ခုကို တွေ့နေခြင်းဖြစ်ကောင်းဖြစ်မည်။ ဤသည်ကို [[Special:ListUsers/sysop|administrator]] သို့ ကျေးဇူးပြု၍ သတင်းပို့ပေးပါ။ URL လင့်ကိုပါ ထည့်သွင်းဖော်ပြပေးပါရန်။',
 'missingarticle-rev' => '(တည်းဖြတ်မူ#: $1)',
+'badtitletext'       => 'တောင်းဆိုထားသော စာမျက်နှာ ခေါင်းစဉ်သည် တရားမဝင်ပါ (သို့) ဗလာဖြစ်နေသည် (သို့) အခြားဘာသာများ(inter-language or inter-wiki title)သို့ မှားယွင်းစွာ လင့်ချိတ်ထားသည်။',
 'viewsource'         => 'ရင်းမြစ်ကို ကြည့်ရန်',
 
 # Login and logout pages
-'welcomecreation'         => 'မင်္ဂ​လာ​ပါ​ $1။ သင့်​အား​မှတ်​ပုံ​တင်​ပြီး​ပါ​ပြီ။​ ဝီ​ကီ​အ​တွက်​သင့်​စိတ်​ကြိုက်​များ​ကို​ရွေး​ချယ်​နိုင်​ပါ​သည်။​',
+'welcomecreation'         => '== မင်္ဂလာပါ $1! ==
+သင့်အကောင့်ကို ဖန်တီးပြီးပါပြီ။
+[[Special:Preferences|{{SITENAME}} စိတ်​ကြိုက်​ရွေးချယ်စရာတို့]]ကို ပြောင်းရန် မမေ့ပါနှင့်။',
 'yourname'                => 'မှတ်​ပုံ​တင်​အ​မည်:',
-'yourpassword'            => 'လှို့​ဝှက်​စ​ကား​လုံး:',
+'yourpassword'            => 'စကားဝှက် -',
 'yourpasswordagain'       => 'ပြန်​ရိုက်​ပါ:',
-'remembermypassword'      => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွန်​တော့်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
+'remembermypassword'      => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွနု်ပ်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
 'login'                   => 'Log in ဝင်ရန်',
-'nav-login-createaccount' => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ရန်​ / မှတ်​ပုံ​တင်​ပြု​လုပ်​ရန်',
+'nav-login-createaccount' => 'Log in ၀င်ရန်/ အကောင့် လုပ်ရန်',
 'userlogin'               => 'မှတ်ပုံတင်ဖြင့် ၀င်ပါ၊ မှတ်ပုံတင်ပြုလုပ်ပါ။',
 'userloginnocreate'       => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
 'logout'                  => 'ထွက်​ပါ​',
 'userlogout'              => 'Log out ထွက်ရန်',
-'notloggedin'             => 'Not logged in',
+'notloggedin'             => 'logged in ဝင်မထားပါ',
 'nologinlink'             => 'မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
 'createaccount'           => 'မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
 'gotaccountlink'          => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
@@ -267,9 +271,9 @@ $messages = array(
 'loginlanguagelabel'      => 'ဘာသာ: $1',
 
 # Password reset dialog
-'oldpassword' => 'ဝှက်​စ​ကား​လုံးအဟောင်း:',
-'newpassword' => 'ဝှက်​စ​ကား​လုံးအသစ်:',
-'retypenew'   => 'ဝှက်​စ​ကား​လုံးပအသစ်ကိုထပ်ရိုက်ပါ:',
+'oldpassword' => 'စကားဝှက် အဟောင်း -',
+'newpassword' => 'စကားဝှက် အသစ် -',
+'retypenew'   => 'စကားဝှက် အသစ်ကို ထပ်ရိုက်ပါ -',
 
 # Edit page toolbar
 'bold_sample'     => 'စာလုံးမည်း',
@@ -304,10 +308,10 @@ $messages = array(
 'anoneditwarning'                  => "'''သတိပေးချက် - ''' သင်သည် logged in ဝင်မထားပါ။
 ဤစာမျက်နှာ၏ တည်းဖြတ်မှတ်တမ်းတွင် သင့် IP address ကို မှတ်သားထားမည် ဖြစ်သည်။",
 'summary-preview'                  => 'အ​ကျဉ်း​ချုပ်​န​မူ​နာ:',
-'whitelistedittitle'               => 'ပြင်​ဆင်​ခြင်း​သည်​မှတ်​ပုံ​တင်​ရန်​လို​သည်​',
-'loginreqtitle'                    => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ဖို့လိုပါတယ်',
-'loginreqlink'                     => 'log in',
-'accmailtitle'                     => 'ဝှက်​စ​ကား​လုံးကိုပို့ပြီးပြီ',
+'whitelistedittitle'               => 'ျပင္ဆင္ရန္ log in ဝင္ထားဖုိ႕ လုိသည္',
+'loginreqtitle'                    => 'login ဝင်ထားရန် လိုသည်',
+'loginreqlink'                     => 'log in ဝင္ရန္',
+'accmailtitle'                     => 'စကားဝှက်ကို ပို့ပြီးပြီ',
 'newarticle'                       => '(အသစ်)',
 'newarticletext'                   => "သင်သည် မရှိသေးသော စာမျက်နှာလင့် ကို ရောက်လာခြင်းဖြစ်သည်။
 စာမျက်နှာအသစ်စတင်ရန် အောက်မှ သေတ္တာထဲတွင် စတင်ရိုက်ထည့်ပါ (နောက်ထပ် သတင်းအချက်အလက်များအတွက်[[{{MediaWiki:Helppage}}|အကူအညီ စာမျက်နှာ]]ကို ကြည့်ပါ)။
@@ -340,7 +344,7 @@ $messages = array(
 'last'                   => 'ယခုမတိုင်မီ',
 'page_first'             => 'ပထမဆုံး',
 'page_last'              => 'အနောက်ဆုံး',
-'histlegend'             => "↓ Diff selection: mark the radio boxes of the revisions to compare and hit enter or the button at the bottom.တည်းဖြတ်မူများကို နှိုင်းယှဥ်ရန် radio boxes လေးများကို မှတ်သားပြီးနောက် Enter ရိုက်ချပါ သို့ အောက်ခြေမှ ခလုတ်ကို နှိပ်ပါ။<br />
+'histlegend'             => "တည်းဖြတ်မူများကို နှိုင်းယှဥ်ရန် radio boxes လေးများကို မှတ်သားပြီးနောက် Enter ရိုက်ချပါ သို့ အောက်ခြေမှ ခလုတ်ကို နှိပ်ပါ။<br />
 Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် ကွဲပြားချက် '''({{int:last}})''' = ယင်းရှေ့မူနှင့် ကွဲပြားချက်, '''{{int:minoreditletter}}''' = အရေးမကြီးသော ပြုပြင်မှု.",
 'history-fieldset-title' => 'မှတ်တမ်းရှာကြည့်ရန်',
 'histfirst'              => '​အစောဆုံး',
@@ -397,11 +401,11 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'preferences'       => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
 'mypreferences'     => '​ရွေး​ချယ်​စ​ရာ​များ​',
 'prefsnologin'      => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
-'changepassword'    => 'ဝှက်​စ​ကား​လုံးကိုပြောင်းပါ',
+'changepassword'    => 'စကားဝှက် ပြောင်းရန်',
 'skin-preview'      => 'နမူနာ',
 'prefs-math'        => 'သင်္ချာ',
 'prefs-datetime'    => 'နေ့စွဲနှင့် အချိန်',
-'prefs-resetpass'   => 'ဝှက်​စ​ကား​လုံးကိုပြောင်းပါ',
+'prefs-resetpass'   => 'စကားဝှက် ပြောင်းရန်',
 'searchresultshead' => 'ရှာ​ဖွေ​ရန်​',
 'youremail'         => 'အီ​မေး:',
 'username'          => 'မှတ်​ပုံ​တင်​အ​မည်:',
@@ -436,13 +440,15 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'recentchanges'                  => 'လတ်​တ​လော ​အ​ပြောင်း​အ​လဲ​များ​',
 'recentchanges-legend'           => 'လတ်တလော အပြောင်းအလဲများအတွက် ရွေးချယ်စရာများ',
 'recentchanges-feed-description' => 'ဤ feed ထဲတွင် ဝီကီ၏ လတ်တလောပြောင်းလဲမှုများကို နောက်ကြောင်းခံလိုက်ရန်',
-'rcnote'                         => "↓ အောက်ပါတို့သည် ပြီးခဲ့သော {{PLURAL:$2|ရက်|'''$2''' ရက်}}, $5, $4 ရက်စွဲအရ နောက်ဆုံး{{PLURAL:$1|ပြောင်းလဲမှု '''တစ်''' ခု|ပြောင်းလဲမှု '''$1''' ခု}}ဖြစ်သည်။",
+'rcnote'                         => "အောက်ပါတို့သည် ပြီးခဲ့သော {{PLURAL:$2|ရက်|'''$2''' ရက်}}, $5, $4 ရက်စွဲအရ နောက်ဆုံး{{PLURAL:$1|ပြောင်းလဲမှု '''တစ်''' ခု|ပြောင်းလဲမှု '''$1''' ခု}}ဖြစ်သည်။",
+'rcnotefrom'                     => "အောက်ပါတို့သည် '''$2''' ကတည်းက အ​ပြောင်းအလဲများ ြဖစ်သည် ('''$1''' ခု ြပထားသည်)။",
 'rclistfrom'                     => '$1 မှစသော အပြောင်းအလဲအသစ်များကို ပြရန်',
-'rcshowhideminor'                => 'အရေးမကြီးသော ပြင်ဆင်မှု $1 ခု',
-'rcshowhidebots'                 => 'ဘော့ $1 ခု',
-'rcshowhideliu'                  => 'logged-in ဝင်နေသော အသုံးပြုသူ $1 ယောက်',
-'rcshowhideanons'                => 'အမည်မသိ အသုံးပြုသူ $1 ယောက်',
-'rcshowhidemine'                 => 'ကျွနု်ပ်တည်းဖြတ်ထားသည်များ $1 ခု',
+'rcshowhideminor'                => 'အရေးမကြီးသော ပြင်ဆင်မှု $1ရန်',
+'rcshowhidebots'                 => 'ဘော့ $1ရန်',
+'rcshowhideliu'                  => 'logged-in ဝင်နေသော အသုံးပြုသူ $1ရန်',
+'rcshowhideanons'                => 'အမည်မသိ အသုံးပြုသူ $1ရန်',
+'rcshowhidepatr'                 => 'စောင့်ြကပ်တည်းဖြတ်မှု $1ရန်',
+'rcshowhidemine'                 => 'ကျွနု်ပ်တည်းဖြတ်ထားသည်များ $1ရန်',
 'rclinks'                        => '$2 ရက်အတွင်းမှ နောက်ဆုံးပြင်ဆင်ချက် $1 ခုကို ပြရန်</br> $3',
 'diff'                           => 'ကွဲပြားမှု',
 'hist'                           => 'မှတ်တမ်း',
@@ -459,20 +465,20 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'recentchangeslinked-feed'    => 'ဆက်စပ်သော ​အ​ပြောင်း​အ​လဲ​များ​',
 'recentchangeslinked-toolbox' => 'ဆက်​စပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
 'recentchangeslinked-title'   => '"$1" နှင့် ဆက်စပ်သော အပြောင်းအလဲများ',
-'recentchangeslinked-summary' => 'ဤသည်မှာ သီးသန့်ပြထားသော စာမျက်နှာ (သို့ သီးသန့်ကဏ္ဍများ) မှ ညွှန်းထားသော စာမျက်နှာများ၏ လတ်တလော ပြောင်းလဲမှုများ၏ စာရင်းဖြစ်သည်။ [[Special:Watchlist|your watchlist]] မှ စာမျက်နှာများကို စာလုံးမည်းဖြင့် ပြထားသည်။',
+'recentchangeslinked-summary' => 'ဤသည်မှာ သီးသန့်ပြထားသော စာမျက်နှာ (သို့ သီးသန့်ကဏ္ဍများ) မှ ညွှန်းထားသော စာမျက်နှာများ၏ လတ်တလော ပြောင်းလဲမှုများ၏ စာရင်းဖြစ်သည်။ [[Special:Watchlist|စောင့်ကြည့်စာရင်း]] မှ စာမျက်နှာများကို စာလုံးမည်းဖြင့် ပြထားသည်။',
 'recentchangeslinked-page'    => 'စာမျက်နှာ အမည် -',
 'recentchangeslinked-to'      => 'ပေးထားသော စာမျက်နှာများအစား လင့်များနှင့် ဆက်စပ်နေသာ စာမျက်နှာများ၏ အပြောင်းအလဲများကို ပြရန်',
 
 # Upload
 'upload'            => 'ဖိုင်​တင်​ရန်​',
 'uploadbtn'         => 'ဖိုင်​တင်​ရန်​',
-'uploadnologin'     => 'Not logged in',
+'uploadnologin'     => 'logged in ဝင်မထားပါ',
 'uploadlogpage'     => 'မှတ်တမ်းကို Upload တင်ရန်',
 'filename'          => 'ဖိုင်အမည်',
 'filedesc'          => 'အ​ကျဉ်း​ချုပ်​',
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
 'uploadedimage'     => '"[[$1]]" ပုံကို တင်ပြီးပြီဖြစ်သည်',
-'watchthisupload'   => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
+'watchthisupload'   => 'ဤဖိုင်အား စောင့်ကြည့်ရန်',
 
 # Special:ListFiles
 'imgfile'        => 'ဖိုင်',
@@ -575,6 +581,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'watchlist'         => 'စောင့်ကြည့်စာရင်း',
 'mywatchlist'       => 'စောင့်ကြည့်စာရင်း',
 'addedwatch'        => 'စောင့်ကြည့်စာရင်းသို့ ပေါင်းထည့်ပြီး',
+'addedwatchtext'    => '"[[:$1]]" စာမျက်နှာကို [[Special:Watchlist|စောင့်ကြည့်စာရင်း]]ထဲ ပေါင်းထည့်ပြီးဖြစ်သည်။ နောက်ပိုင်းအပြောင်းအလဲများနှင့် ၎င်းနှင့် ဆက်နွယ်နေသော ဆွေးနွေးချက် စာမျက်နှာကို ယင်းနေရာတွင် စာရင်းပြုစုထားမည် ဖြစ်သည်။ ရွေးချယ်ရ လွယ်ကူစေရန် စာမျက်နှာသည် [[Special:RecentChanges|လတ်တလော အပြောင်းအလဲများစာရင်း]]တွင် စာလုံးမည်းဖြင့် ပေါ်လာမည်ဖြစ်သည်။',
 'removedwatch'      => 'စောင့်ကြည့်စာရင်းမှ ဖယ်ရန်',
 'removedwatchtext'  => '"[[:$1]]" စာမျက်နှာကို [[Special:Watchlist|စောင့်ကြည့်စာရင်း]] မှ ဖယ်ထုတ်ပြီး ဖြစ်သည်။',
 'watch'             => 'စောင့်ကြည့်ရန်',
@@ -593,12 +600,14 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'confirm'               => 'အတည်ပြု',
 'delete-confirm'        => '"$1"ကို ဖျက်ပါ',
 'delete-legend'         => 'ဖျက်',
+'confirmdeletetext'     => '↓ သင်သည် စာမျက်နှာတစ်ခုကို ယင်း၏ မှတ်တမ်းများနှင့်တကွ ဖျက်ပစ်တော့မည် ဖြစ်သည်။
+ဤသို့ ဖျက်ပစ်ရန် သင် အမှန်တကယ် ရည်ရွယ်လျက်  နောက်ဆက်တွဲ အကျိုးဆက်များကို သိရှိနားလည်ပြီး [[{{MediaWiki:Policy-url}}|မူဝါဒ]] အတိုင်းလုပ်ဆောင်နေခြင်းဖြစ်ကြောင်းကို အတည်ပြုပေးပါ။',
 'actioncomplete'        => 'လုပ်ဆောင်ချက် ပြီးပြီ',
 'deletedtext'           => '"<nowiki>$1</nowiki>" ကို ဖျက်ပစ်လိုက်ပြီးဖြစ်သည်။
 လတ်တလောဖျက်ထားသည်များ၏ မှတ်တမ်းကို $2 တွင် ကြည့်ပါ။',
 'deletedarticle'        => '[[$1]] ကို ဖျက်လိုက်သည်',
 'dellogpage'            => 'ဖျက်ထားသည်များ မှတ်တမ်း',
-'deletecomment'         => 'အ​ကြောင်း​ပြ​ချက်:',
+'deletecomment'         => 'အ​ကြောင်း​ပြ​ချက် -',
 'deleteotherreason'     => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
 'deletereasonotherlist' => 'အခြား အကြောင်းပြချက်',
 
@@ -614,6 +623,11 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'protectexpiry'               => 'သက်တမ်းကုန်လွန်မည် -',
 'protect_expiry_invalid'      => 'သက်တမ်းကုန်လွန်မည့် အချိန်သည် တရားမဝင်ပါ။',
 'protect_expiry_old'          => 'သက်တမ်းသည် အတိတ်ကာလတွင် ကုန်လွန်ခဲ့ပြီး ဖြစ်သည်။',
+'protect-text'                => "'''<nowiki>$1</nowiki>''' စာမျက်နှာအတွက် ကာကွယ်မှုအဆင့်ကို ဤနေရာတွင် ကြည့်ရှုပြောင်းလဲနိုင်သည်။",
+'protect-locked-access'       => "သင့်အကောင့်သည် စာမျက်နှာ၏ ကာကွယ်မှုအဆင့်ကို ပြောင်းလဲနိုင်ရန် ခွင့်ပြုချက် မရှိပါ။
+ဤသည်မှာ '''$1''' စာမျက်နှာအတွက် လက်ရှိ settings သတ်မှတ်ချက်များ ဖြစ်သည်။",
+'protect-cascadeon'           => 'ပြန်စီစဉ်ခြင်း cascading ကို ကာကွယ်ထားသော အောက်ပါ{{PLURAL:$1|စာမျက်နှာ|စာမျက်နှာများ}} ပါဝင်နေသောကြောင့် ဤစာမျက်နှာကို လက်ရှိတွင် ကာကွယ်ထားသည်။
+ဤစာမျက်နှာ၏ ကာကွယ်မှုအဆင့်ကို ပြောင်းလဲသော်လည်း ပြန်စီစဉ်ခြင်းကို အကျိုးသက်ရောက်လိမ့်မည် မဟုတ်။',
 'protect-default'             => 'အသုံးပြုသူ အားလုံးကို ခွင့်ပြုရန်',
 'protect-fallback'            => '"$1" ခွင့်ပြုချက် လိုအပ်သည်',
 'protect-level-autoconfirmed' => 'အသုံးပြုသူ အသစ်နှင့် မှတ်ပုံမတင်ရသေးသူများကို ပိတ်ပင်တားဆီးထားရန်',
@@ -625,7 +639,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'protect-otherreason'         => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
 'protect-otherreason-op'      => 'အခြား အကြောင်းပြချက်',
 'protect-expiry-options'      => '၁ နာရီ:1 hour,၁ နေ့:1 day,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite',
-'restriction-type'            => 'အခွင့်:',
+'restriction-type'            => 'ခွင့်ပြုချက် -',
 'restriction-level'           => 'ကန့်သတ်ထားသော level:',
 
 # Restrictions (nouns)
@@ -647,9 +661,9 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 # Contributions
 'contributions'       => 'အသုံးပြုသူတို့၏ ပံ့ပိုးပေးမှုများ',
 'contributions-title' => '$1 အတွက် အသုံးပြုသူ၏ ပံ့ပိုးမှုများ',
-'mycontris'           => 'ကျွန်​တော့် ရေးသားချက်များ',
+'mycontris'           => 'ပံ့ပိုးထားမှုများ',
 'contribsub2'         => '$1အတွက် ($2)',
-'uctop'               => '(အထိပ်)',
+'uctop'               => '(ထိပ်)',
 'month'               => 'အဆိုပါ လမှစ၍ ( အဆိုပါလထက်လည်း စောသော) :',
 'year'                => 'အဆိုပါ နှစ်မှစ၍ ( အဆိုပါနှစ်ထက်လည်း စောသော) :',
 
@@ -679,7 +693,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'blockip'                  => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
 'ipbreason'                => 'အ​ကြောင်း​ပြ​ချက်:',
 'ipbother'                 => 'အခြားအချိန်:',
-'ipboptions'               => '၂ နာရီ:2 hours,၁ နေ့:1 day,၃ နေ့:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite',
+'ipboptions'               => '၂ နာရီ:2 hours,၁ ရက်:1 day,၃ ရက်:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite',
 'ipbotheroption'           => 'အခြား',
 'ipbotherreason'           => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
 'ipblocklist'              => 'IP addresses နှင့် အသုံးပြုသူအမည်ကို ပိတ်ပင်တားဆီးထားသည်။',
@@ -688,7 +702,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'blocklink'                => 'တားဆီးကန့်သတ်ရန်',
 'unblocklink'              => 'လင့် ပြန်ဖြေရန်',
 'change-blocklink'         => 'စာကြောင်းအမည် ပြောင်းရန်',
-'contribslink'             => 'ရေးသားချက်များ',
+'contribslink'             => 'ပံ့ပိုး',
 'blocklogpage'             => 'ပိတ်ပင်တားဆီးမှု မှတ်တမ်း',
 'blocklogentry'            => '[[$1]] ကို $2 ကြာအောင် ပိတ်ပင် တားဆီးလိုက်သည် $3',
 'unblocklogentry'          => '$1 ကို ပိတ်ထားရာမှ ပြန်ဖွင့်ရန်',
@@ -696,6 +710,23 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 
 # Move page
 'move-page-legend' => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'movepagetext'     => "အောက်ပါပုံစံကို အသုံးပြုပါက စာမျက်နှာကို အမည်ပြောင်းလဲပေးမည် ဖြစ်ပြီး အမည်သစ်သို့ ယင်း၏ မှတ်တမ်းနှင့်တကွ ရွှေ့ပေးမည် ဖြစ်သည်။
+အမည်ဟောင်းသည် အမည်သစ်သို့ ပြန်ညွှန်းပေးမည် ဖြစ်သည်။
+သင်သည် မူလခေါင်းစဉ်သို့ ပြန်ညွှန်းများကို အလိုအလျောက် အပ်ဒိတ် update လုပ်နိုင်သည်။
+အကယ်၍ မပြုလုပ်လိုပါက [[Special:DoubleRedirects|နှစ်ခါထပ်]][[Special:BrokenRedirects|ပြန်ညွှန်း အပျက်များ]] ကို မှတ်သားရန် မမေ့ပါနှင့်။
+လင့်များ ညွှန်းလိုသည့် နေရာသို့ ညွှန်ပြနေရန် သင့်တွင် တာဝန် ရှိသည်။
+
+အကယ်၍ ခေါင်းစဉ်အသစ်တွင် စာမျက်နှာတစ်ခု ရှိနှင့်ပြီး ဖြစ်ပါက (သို့) ယင်းစာမျက်နှာသည် အလွတ်မဖြစ်ပါက (သို့) ပြန်ညွှန်းတစ်ခု မရှိပါက (သို့) ယခင်က ပြုပြင်ထားသော မှတ်တမ်း မရှိပါက စာမျက်နှာသည် '''ရွေ့မည်မဟုတ်''' သည်ကို သတိပြုပါ။ 
+ဆိုလိုသည်မှာ သင်သည် အမှားတစ်ခု ပြုလုပ်မိပါက စာမျက်နှာကို ယခင်အမည်ကို ပြန်လည် ပြောင်းလဲပေးနိုင်သည်။ ရှိပြီသားစာမျက်နှာတစ်ခုကို စာမျက်နှာ အသစ်နှင့် ပြန်အုပ် overwrite ခြင်း မပြုနိုင်။
+
+'''သတိပေးချက်!'''
+ဤသည်မှာ လူဖတ်များသော စာမျက်နှာတစ်ခုဖြစ်ပါက မမျှော်လင့်ထားသော၊ ကြီးမားသော အပြောင်းအလဲတစ်ခု ဖြစ်ပေါ်လာနိုင်သည်။
+ထို့ကြောင့် ဆက်လက် မဆောင်ရွက်မီ သင်သည် နောက်ဆက်တွဲ အကျိုးဆက်များကို နားလည်ကြောင်း ကျေးဇူးပြု၍ သေချာပါစေ။",
+'movepagetalktext' => "↓ ဆက်နွယ်နေသော ဆွေးနွေးချက် စာမျက်နှာကို '''အောက်ပါအကြောင်းများ မရှိခဲ့ပါက''' အလိုအလျောက် ရွှေ့ပစ်မည် ဖြစ်သည်။
+*အကယ်၍ ဗလာမဟုတ်သော ဆွေးနွေးချက်စာမျက်နှာသည် အမည်အသစ်အောက်တွင် ရှိနှင့်ပြီး ဖြစ်ခြင်း (သို့)
+*အောက်ပါ သေတ္တာငယ် box ကို မှတ်သားခြင်း။
+
+ဤကိစ္စမျိုး ကြုံလာခဲ့ပါက သင် ဆန္ဒရှိလျှင် စာမျက်နှာကို မိမိကိုယ်တိုင် သွားရောက်ရွှေ့ပြောင်း ပေါင်းစပ်နိုင်သည်။",
 'movearticle'      => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
 'movenologin'      => 'Not logged in',
 'newtitle'         => 'ခေါင်းစဉ်အသစ်သို့:',
@@ -705,14 +736,14 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'movepage-moved'   => '\'\'\'"$1" ကို "$2" သို့ ရွှေ့ပြီးဖြစ်သည်\'\'\'',
 'articleexists'    => 'ထိုအမည်ဖြင့် စာမျက်နှာတစ်ခု ရှိနှင့်ပြီးဖြစ်သည် (သို့) သင်ရွေးလိုက်သော အမည်သည် တရားမဝင်ပါ။
 ကျေးဇူးပြု၍ အခြားအမည်တစ်ခုကို ရွေးပေးပါ။',
-'talkexists'       => "↓ '''စာမျက်နှာကို အောင်မြင်စွာ ရွှေ့ပြီးဖြစ်သည်။ သို့သော် ဆွေးနွေးချက် စာမျက်နှာကိုမူ ရွေ့မရနိုင်ပါ။ အကြောင်းမှာ ခေါင်းစဥ်အသစ်တွင် ရှိပြီးဖြစ်သောကြောင့် ဖြစ်သည်။
+'talkexists'       => "'''စာမျက်နှာကို အောင်မြင်စွာ ရွှေ့ပြီးဖြစ်သည်။ သို့သော် ဆွေးနွေးချက် စာမျက်နှာကိုမူ ရွေ့မရနိုင်ပါ။ အကြောင်းမှာ ခေါင်းစဥ်အသစ်တွင် ရှိပြီးဖြစ်သောကြောင့် ဖြစ်သည်။
 ကျေးဇူးပြု၍ ယင်းတို့ကို မိမိဘာသာ ပြန်ပေါင်းပေးပါ။'''",
 'movedto'          => 'ရွေ့​ပြောင်း​ရန်​နေ​ရာ​',
 'movetalk'         => 'ယှက်နွယ်နေသော ဆွေးနွေးချက်စာမျက်နှာများကို ရွှေ့ရန်',
 '1movedto2'        => '[[$1]]  မှ​ [[$2]] သို့​',
 '1movedto2_redir'  => 'redirect ပြန်ညွှန်းရာတွင် [[$1]] မှ [[$2]] သို့ ရွှေ့ပြီးဖြစ်သည်',
 'movelogpage'      => 'မှတ်တမ်းရွှေ့ရန်',
-'movereason'       => 'အ​ကြောင်း​ပြ​ချက်:',
+'movereason'       => 'အ​ကြောင်း​ပြ​ချက် -',
 'revertmove'       => 'ပြောင်းရန်',
 
 # Export
@@ -730,8 +761,8 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'tooltip-pt-mytalk'               => 'ကျွနု်ပ်၏ ဆွေးနွေးချက်များ',
 'tooltip-pt-preferences'          => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
 'tooltip-pt-watchlist'            => 'အပြောင်းအလဲများအတွက် စောင့်ကြည့်နေသော စာမျက်နှာများ၏ စာရင်း',
-'tooltip-pt-mycontris'            => 'သင့်ရေးသားပြုစုချက်များ၏ စာရင်း',
-'tooltip-pt-login'                => 'မှတ်ပုံတင်ဖြင့် ဝင်ရန် အားပေးပါသည်။ သို့သော် မှတ်ပုံမတင်မနေရ မဟုတ်ပါ။',
+'tooltip-pt-mycontris'            => 'သင့်ပံ့ပိုးမှုများ၏ စာရင်း',
+'tooltip-pt-login'                => 'မှတ်ပုံတင်ဖြင့် log in ဝင်ရန် အားပေးပါသည်။ သို့သော် မှတ်ပုံမတင်မနေရ မဟုတ်ပါ။',
 'tooltip-pt-logout'               => 'ထွက်​ပါ​',
 'tooltip-ca-talk'                 => 'မာတိကာ စာမျက်နှာအတွက် ဆွေးနွေးချက်များ',
 'tooltip-ca-edit'                 => 'ဤစာမျက်နှာကို တည်းဖြတ်နိုင်သည်။ ကျေးဇူးပြု၍ မသိမ်းခင် နမူနာ ခလုတ်ကိုနှိပ်ပြီး ကြည့်ပေးပါ။',
@@ -754,7 +785,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'tooltip-n-recentchanges'         => 'ဝီကီမှ လတ်တလောအပြောင်းအလဲများ စာရင်း',
 'tooltip-n-randompage'            => 'ကျပန်းစာမျက်နှာ ပြရန်',
 'tooltip-n-help'                  => 'ရှာဖွေဖော်ထုတ်ရန်နေရာ',
-'tooltip-t-whatlinkshere'         => 'ဤနေရာသို့ လမ်းညွှန်ထားသည့် စာမျက်နှာများ၏ စာရင်း',
+'tooltip-t-whatlinkshere'         => 'ဤနေရာသို့ လမ်းညွှန် လင့်ထားသည့် ဝီကီစာမျက်နှာများ၏ စာရင်း',
 'tooltip-t-recentchangeslinked'   => 'ဤစာမျက်နှာမှ ညွှန်းထားသည့် စာမျက်နှာများမှ လတ်တလော အပြောင်းအလဲများ',
 'tooltip-feed-rss'                => 'ဤစာမျက်နှာအတွက် RSS feed',
 'tooltip-feed-atom'               => 'ဤစာမျက်နှာအတွက် Atom feed',
@@ -807,7 +838,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 အကယ်၍ ဖိုင်ကို မူရင်းအခြေအနေမှ ပြုပြင်လိုက်ပါက အသေးစိတ်အချို့သည် ပြုပြင်ထားသောဖိုင်တွင် အပြည့်အစုံ ပြန်ပါလာမည်မဟုတ်။',
 'metadata-expand'   => 'ချဲ့ထားသော အသေးစိတ်များကို ပြရန်',
 'metadata-collapse' => 'ချဲ့ထားသော အသေးစိတ်များကို ပြရန်',
-'metadata-fields'   => '↓ metadata table ကို ဖွင့်ချလိုက်သောအခါ ဤမက်ဆေ့တွင် စာရင်းလုပ်ထားသော EXIF metadata fields သည် ပုံစာမျက်နှာပြရာတွင် ပါဝင်မည်ဖြစ်သည်။
+'metadata-fields'   => 'metadata table ကို ဖွင့်ချလိုက်သောအခါ ဤမက်ဆေ့တွင် စာရင်းလုပ်ထားသော EXIF metadata fields သည် ပုံစာမျက်နှာပြရာတွင် ပါဝင်မည်ဖြစ်သည်။
 အခြားအရာများကိုမူ ပုံမှန်အားဖြင့် ဝှက်ထားမည် ဖြစ်သည်။
 * make
 * model
@@ -850,7 +881,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'table_pager_limit_submit' => 'သွား​ပါ​',
 
 # Auto-summaries
-'autosumm-new' => 'စာမျက်နှာအသစ်: $1',
+'autosumm-new' => 'စာလုံး "$1" လုံးႏွင့္ စာမ်က္ႏွာအသစ္ စလုပ္ရန္',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ကိုက်ညီသော အပြောင်းအလဲများကို ကြည့်ရန်',

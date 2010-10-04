@@ -19,6 +19,11 @@ $messages = array(
 'tog-showtoolbar'      => "Amapeesa g'ebiyamba mu kuwandika galabikenga (kino kyetaagisa JavaScript)",
 'tog-showtoc'          => 'Teekawo endagiriro (singa ku lupapula kubaako emitwe gisukka mu esatu)',
 'tog-rememberpassword' => 'Tereka ekigambo kyange ekikuumi ku kompyuta eno (okumala {{PLURAL:$1|olunaku|ennaku ezitasukka mu}} $1)',
+'tog-watchcreations'   => "Empapula zenkolawo ziteekebwenga ku lukalala lw'ezo zengoberera",
+'tog-watchdefault'     => "Empapula zenkyusamu ziteekebwenga ku lukalala lw'ezo zengoberera",
+'tog-watchmoves'       => "Empapula zenkyusa erinnya ziteekebwenga ku lukalala lw'ezo zengoberera",
+'tog-watchdeletion'    => "Empapula zenzigyawo ziteekebwenga ku lukalala lw'ezo zengoberera",
+'tog-nocache'          => "Ekyandaaza kiremenga kutereka koppi z'empapula z'okebera",
 'tog-norollbackdiff'   => 'Okujjulula nga kuwedde, tolaga bigerageranya ebikyuse',
 
 # Dates

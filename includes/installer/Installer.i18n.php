@@ -850,6 +850,8 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 Калі Вы кампілявалі PHP самастойна, пераканфігуруйце і сабярыце яго з уключаным кліентам базаў зьвестак, напрыклад, <code>./configure --with-mysql</code>.
 Калі Вы ўсталёўвалі PHP з Debian/Ubuntu-рэпазытарыя, то вам трэба ўсталяваць дадаткова пакет <code>php5-mysql</code>',
 	'config-have-db' => '{{PLURAL:$2|Знойдзены драйвэр|Знойдзеныя драйвэры}} базы зьвестак: $1.',
+	'config-have-fts3' => 'SQLite створаны з модулем [http://sqlite.org/fts3.html FTS3], для гэтага ўнутранага інтэрфэйсу будзе даступная магчымасьць пошуку.',
+	'config-no-fts3' => "'''Папярэджаньне''': SQLite створаны без модуля [http://sqlite.org/fts3.html FTS3], для гэтага ўнутранага інтэрфэйсу ня будзе даступная магчымасьць пошуку.",
 	'config-register-globals' => "'''Папярэджаньне: устаноўка PHP <code>[http://php.net/register_globals register_globals]</code> уключаная.'''
 '''Адключыце яе, калі можаце.'''
 MediaWiki будзе працаваць, але сэрвэр будзе ўтрымліваць прабалемы з бясьпекай.",
@@ -5049,7 +5051,9 @@ OK.',
 	'config-apc' => '[http://www.php.net/apc APC] ass installéiert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] ass installéiert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ass installéiert',
+	'config-diff3-good' => 'GNU diff3 gouf fonnt: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 gouf net fonnt.',
+	'config-dir' => 'Installationsrepertoire: <code>$1</code>.',
 	'config-no-uri' => "'''Feeler:''' Déi aktuell URI konnt net festgestallt ginn.
 Installatioun ofgebrach.",
 	'config-file-extension' => 'MediaWiki mat <code>$1</code> Fichiers-Erweiderungen installéieren',
@@ -5069,6 +5073,8 @@ Installatioun ofgebrach.",
 	'config-db-port' => 'Port vun der Datebank:',
 	'config-db-schema' => 'Schema fir MediaWiki',
 	'config-db-ts2-schema' => 'Schema fir tsearch2',
+	'config-db-schema-help' => "D'Schemaen hei driwwer si gewéinlech korrekt.
+Ännert se nëmme wann Dir wësst datt et néideg ass.",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -5080,6 +5086,9 @@ Installatioun ofgebrach.",
 	'config-invalid-db-type' => 'Net valabelen Datebank-Typ',
 	'config-missing-db-name' => 'Dir musst en Numm fir de Wäert "Numm vun der Datebank" uginn',
 	'config-postgres-old' => 'PostgreSQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.',
+	'config-sqlite-name-help' => 'Sicht en Numm deen Är wiki identifizéiert.
+Benotzt keng Espacen a Bindestrécher.
+E gëtt fir den Numm vum SQLite Date-Fichier benotzt.',
 	'config-sqlite-readonly' => 'An de Fichier <code>$1</code> Kann net geschriwwe ginn.',
 	'config-sqlite-cant-create-db' => 'Den Datebank-Fichier <code>$1</code> konnt net ugeluecht ginn.',
 	'config-db-web-account' => 'Datebankkont fir den Accès iwwer de Web',
@@ -5233,6 +5242,8 @@ $1
 Ако вие самите го составивте ова PHP, сменете ги поставките така што ќе овозможите клиент на базата - на пр. со кодот <code>./configure --with-mysql</code>.
 Ако инсталиравте PHP од пакет на Debian или Ubuntu, тогаш ќе треба да го инсталирате и модулот php5-mysql.',
 	'config-have-db' => '{{PLURAL:$2|Пронајден двигател|Пронајдени двигатели}} за базата: $1.',
+	'config-have-fts3' => 'SQLite е составен со модулот [http://sqlite.org/fts3.html FTS3] - за оваа база ќе има можност за пребарување.',
+	'config-no-fts3' => "'''Предупредување''': SQLite iе составен без модулот [http://sqlite.org/fts3.html FTS3] - за оваа база нема да има можност за пребарување.",
 	'config-register-globals' => "'''Предупредување: Можноста <code>[http://php.net/register_globals register_globals]</code> за PHP е овозможена.'''
 '''Оневозможете ја ако е можно.'''
 МедијаВики ќе работи, но опслужувачот ви е изложен на безбедносни ризици.",
@@ -6684,159 +6695,159 @@ Cost senari d'agiornament a peul pa convertilo, parèj a restrà $2.",
 	'config-ns-site-name' => 'Midem com ël nom dla wiki: $1',
 	'config-ns-other' => 'Àutr (specìfica)',
 	'config-ns-other-default' => 'MyWiki',
-	'config-project-namespace-help' => "Andasend daré a l'esempi ëd Wikipedia, vàire wiki a manten-o soe pàgine ëd plicy separà da soe pàgine ëd contnù, ant në \"'''spassi nominal ëd proget'''\".
-Tùit ij tìtoj ëd pàgina ant cost spassi nominal a parto con un sert prefiss, che it peule cpecifiché ambelessì.
-Tradissionalment, sto prefiss a l'é derivà dal nòm ëd la wiki, ma a peul pa conten-e caràter ëd pontegiatura cpm \"#\" o \":\".",
+	'config-project-namespace-help' => "Andasend daré a l'esempi ëd Wikipedia, vàire wiki a manten-o soe pàgine ëd regolament separà da soe pàgine ëd contnù, ant në \"'''spassi nominal ëd proget'''\".
+Tùit ij tìtoj ëd pàgina ant cost ëspassi nominal a parto con un sert prefiss, che a peul specifiché ambelessì.
+Tradissionalment, sto prefiss a l'é derivà dal nòm ëd la wiki, ma a peul pa conten-e caràter ëd pontegiatura coma \"#\" o \":\".",
 	'config-ns-invalid' => 'Lë spassi nominal specificà "<nowiki>$1</nowiki>" a l\'é pa bon.
 Specìfica në spassi nominal ëd proget diferent.',
-	'config-admin-box' => "Cont ëd l'Anministrador",
+	'config-admin-box' => "Cont ëd l'Aministrator",
 	'config-admin-name' => 'Tò nòm:',
 	'config-admin-password' => 'Ciav:',
-	'config-admin-password-confirm' => 'Torna ciav:',
-	'config-admin-help' => 'Ansëriss ambelessì tò nòm utent preferì, për esempi "Joe Bloggs".
-Sto sì a l\'é ël nòm ch\'it dovrerai për intré ant la wiki.',
-	'config-admin-name-blank' => "Ansëriss un nòm utent dl'aministrador.",
+	'config-admin-password-confirm' => 'Buté torna la ciav:',
+	'config-admin-help' => "Ch'a butà ambelessì tò stranòm d'utent preferì, për esempi \"Gioann Scriv\".
+Cost-sì a l'é lë stranòm ch'a dovrërà për intré ant la wiki.",
+	'config-admin-name-blank' => "Ch'a anserissa në stranòm d'aministrator.",
 	'config-admin-name-invalid' => 'Ël nòm utent specificà "<nowiki>$1</nowiki>" a l\'é pa bon.
 Specìfica un nòm utent diferent.',
-	'config-admin-password-blank' => "Ansëriss na ciav për ël cont ëd l'aministrador",
-	'config-admin-password-same' => 'La ciav a deuv pa esse istessa al nòm utent',
-	'config-admin-password-mismatch' => "Le doe ciav che a l'ha scrivù a resto diferente antra lor.",
+	'config-admin-password-blank' => "Ch'a anserissa na ciav për ël cont d'aministrator.",
+	'config-admin-password-same' => "La ciav a dev nen esse l'istessa ëd lë stranòm d'utent.",
+	'config-admin-password-mismatch' => "Le doe ciav che a l'ha scrivù a son diferente antra 'd lor.",
 	'config-admin-email' => 'Adrëssa ëd pòsta eletrònica:',
-	'config-admin-email-help' => "Ansëriss n'adrëssa e-mail ambelessì për përmëtt-te d'arseive e-mail da àutr utent an sla wiki, riamposté toa ciav, e esse notificà ëd cambi a pàgine ch'it ten-e sot euj.",
-	'config-admin-error-user' => 'Eror antern an creand n\'admin con ël nòm "<nowiki>$1</nowiki>".',
+	'config-admin-email-help' => "Ch'a anserissa ambelessì n'adrëssa ëd pòsta eletrònica për përmëtt-je d'arsèive ëd mëssagi da d'àutri utent an sla wiki, riamposté soa ciav, e esse anformà ëd camgiament a le pàgine ch'a ten sot-euj.",
+	'config-admin-error-user' => 'Eror antern an creand n\'aministrator con lë stranòm "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Eror antern an ampostand na ciav për l\'admin "<nowiki>$1</nowiki>": <pre>$2</pre>',
-	'config-subscribe' => "Sotscriv la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailing list ëd j'anonsi ëd release].",
-	'config-subscribe-help' => "Sossì a l'é na mailing list a bass-volum dovrà për j'anonsi ëd release, compreis amportant anonsi ëd sicurëssa.
-It dovrìe sotscrivla e agiorné toa instalassion mediaWiki quand che vërsion neuve a rivo.",
-	'config-almost-done' => "It l'has già falo!
-It peule adess sauté le configurassion rimanenta e instalé la wiki propi adess.",
-	'config-optional-continue' => "Ciam-me anco' custion.",
+	'config-subscribe' => "Ch'a sot-scriva la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista ëd discussion ëd j'anonsi ëd publicassion].",
+	'config-subscribe-help' => "Costa a l'é na lista ëd discussion a bass tràfich dovrà për j'anonsi ëd publicassion, comprèis d'amportant anonsi ëd sicurëssa.
+A dovrìa sot-ëscrivla e agiorné soa instalassion mediaWiki quand che ëd version neuve a rivo.",
+	'config-almost-done' => "A l'ha bele che fàit!
+A peul adess sauté la configurassion rimanenta e instalé dlongh la wiki.",
+	'config-optional-continue' => "Ciameme d'àutre chestion.",
 	'config-optional-skip' => 'I son già anojà, instala mach la wiki.',
-	'config-profile' => 'Profil dij drit utent:',
+	'config-profile' => "Profil dij drit d'utent:",
 	'config-profile-wiki' => 'Wiki tradissional',
-	'config-profile-no-anon' => "A l'é ciamà la creassion d'un cont",
+	'config-profile-no-anon' => 'A venta creé un cont',
 	'config-profile-fishbowl' => 'Mach editor autorisà',
 	'config-profile-private' => 'Wiki privà',
-	'config-profile-help' => "Le wiki a travajo mej quand it lasse che motobin ëd përson-e aj modìfico ël pi possìbil.
-An MediaWiki, a l'é bel fé revisiné ij cambi recent, e buté andré minca dann che a sia fàit da utent noviss o malissios.
+	'config-profile-help' => "Le wiki a marcio mej quand ch'a lassa che pì përsone possìbij a-j modìfico.
+An MediaWiki, a l'é bel fé revisioné ij cambi recent, e buté andré minca dann che a sia fàit da utent noviss o malissios.
 
-An tùit ij cas, tant a l'han trovà che MediaWiki a sia ùtil ant na gran varietà ëd manere, e quaich vire a l'é pa bel fé convinse quidun dij benefit dla wiki.
-Parej it l'has doe possibilità.
+An tùit ij cas, an tanti a l'han trovà che MediaWiki a sia ùtil ant na gran varietà ëd manere, e dle vire a l'é pa bel fé convince cheidun dij vantagi dla wiki.
+Parèj a l'ha doe possibilità.
 
-Un '''{{int:config-profile-wiki}}''' a përmëtt a mincadun ëd modifiché, fin-a sensa intré.
-Na wiki con  '''{{int:config-profile-no-anon}}''' a dà contabilità extra, ma a peul slontané contribudor casuaj.
+Un '''{{int:config-profile-wiki}}''' a përmët a chicassìa ëd modifiché, bele sensa intré ant ël sistema.
+Na wiki con  '''{{int:config-profile-no-anon}}''' a dà pì 'd contròl, ma a peul slontané dij contribudor casuaj.
 
-Lë scenari '''{{int:config-profile-fishbowl}}''' a përmëtt a j'utent aprovà ëd modifiché, ma ël pùblich a peul vëdde le pàgine, compreisa la stòria.
-Un '''{{int:config-profile-private}}''' a përmëtt mach a j'utent aprovà ëd vëdde le pàgine, com la midema partìa ch'a peul modifiché.
+Ël senari '''{{int:config-profile-fishbowl}}''' a përmët a j'utent aprovà ëd modifiché, ma ël pùblich a peul vëdde le pàgine, comprèisa la stòria.
+Un '''{{int:config-profile-private}}''' a përmët mach a j'utent aprovà ëd vëdde le pàgine, con la midema partìa ch'a peul modifiché.
 
-Configurassion ëd drit utent pi complicà a son disponìbij d'apress ëd l'instalassion, varda la [http://www.mediawiki.org/wiki/Manual:User_rights relevant manual entry].",
+Configurassion ëd drit d'utent pi complicà a son disponìbij apress l'instalassion, vëdde la [http://www.mediawiki.org/wiki/Manual:User_rights pàgina a pòsta dël manual].",
 	'config-license' => "Drit d'autor e licensa",
-	'config-license-none' => 'Pa gnun pé ëd licensa',
-	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike (Wikipedia-compatibla)',
-	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-none' => 'Gnun-a licensa an nòta an bass',
+	'config-license-cc-by-sa' => 'Creative Commons atribussion an part uguaj (compatìbil con Wikipedia)',
+	'config-license-cc-by-nc-sa' => 'Creative Commons atribussion nen comersial an part uguaj',
 	'config-license-gfdl-old' => 'Licensa ëd documentassion lìbera GNU 1.2',
 	'config-license-gfdl-current' => 'Licensa ëd documentassion lìbera GNU 1.3 o pi recenta',
 	'config-license-pd' => 'Domini Pùblich',
-	'config-license-cc-choose' => 'Selession-a na licensa utent Creative Commons',
-	'config-license-help' => "Vàire wiki pùbliche a but tute le contribussion sota na [http://freedomdefined.org/Definition licensa libra]. Sossì a giuta a creé un sens d'apartenensa a la comunità e a ancoragia contribussion a longh andé.
-A l'é generalment pa necessari për na wiki privà o d'asienda.
+	'config-license-cc-choose' => 'Selessioné na licensa Creative Commons përsonalisà',
+	'config-license-help' => "Vàire wiki pùbliche a buto tute le contribussion sota na [http://freedomdefined.org/Definition licensa lìbera]. Sòn a giuta a creé un sens d'apartenensa a la comunità e a ancoragia ëd contribussion ëd longa durà.
+A l'é generalment nen necessari për na wiki privà o d'asienda.
 
-S'it veule podèj dovré test da Wikipedia, e it vole che Wikipedia a peussa aceté test copià da àutre wiki, it dovrìe serne '''Creative Commons Attribution Share Alike'''.
+S'a veul podèj dovré dij test da Wikipedia, e a veul che Wikipedia a aceta dij test copià da soa wiki, a dovrìa serne '''Creative Commons Attribution Share Alike'''.
 
 La GNU Free Documentation License a l'era la veja licensa dont sota a-i era Wikipedia.
-A l'é anco' na licensa bon-a, an tùit ij cas, sta licensa a l'ha quaich funsion ch'a peulo esse riusà e antërpretassion mal fé.",
-	'config-email-settings' => 'Ampostassion e-mail',
-	'config-enable-email' => 'Abìlita e-mail an surtìa',
-	'config-enable-email-help' => "S'it veule che j'e-mail a travajo, j'[http://www.php.net/manual/en/mail.configuration.php ampostassion dla mail PHP] a deuv esse configurà da bin.
-S'it veule pa minca funsion e-mail, it deuve disabiliteje ambelessì.",
-	'config-email-user' => 'Abìlita e-mail utent-a-utent',
-	'config-email-user-help' => "A përmëtt a tùit j'utent ëd mandé e-mail un a l'àutr se lor a l'han abilitàlo an soe preferense.",
-	'config-email-usertalk' => 'Abìlita notificassion dle pàgine ëd discussion utent',
-	'config-email-usertalk-help' => "A përmëtt a j'utent d'arseive notificassion an sij cambi dle pàgine ëd discussion utent, s'a l'han abilitalo ant soe preferense.",
-	'config-email-watchlist' => "Abìlita notificassion ëd lòn ch'as ten sot euj",
-	'config-email-watchlist-help' => "A përmëtt a j'utent d'arseive notificassion an sle pàgine ch'a ten-o sot euj s'a l'han abilitalo ant soe preferense.",
-	'config-email-auth' => 'Abìlita autenticassion e-mail',
-	'config-email-auth-help' => "Se st'opsion a l'é abilità, j'utent a deuvo confirmé soe adrësse e-mail an dovrand un colegament mandà a lor quand ch'a l'han ampostala o cambiala.
-Mach adrësse e-mail autenticà a peulo arseive e-mail da àutr utent o cangé e-mail ëd notificassion.
-Amposté st'opsion a l'é '''arcomandà''' për wiki pùbliche a càusa ëd possìbij abus ëd le funsion e-mail.",
-	'config-email-sender' => "Artorna l'adrëssa ëd pòsta eletrònica:",
-	'config-email-sender-help' => "Ansëriss l'adrëssa e-mail da dovré com adrëssa d'artorn ant l'e-mail surtìa.
-Sossì a l'é andova j'arspòste a saran mandà.
-Motobin ëd servent ëd pòsta a ciamo che almanch la part dël nòm ëd domini a sia bon.",
-	'config-upload-settings' => 'Carie ëd figure e file',
-	'config-upload-enable' => 'Abìlita carie ëd file',
-	'config-upload-help' => 'Le carie ëd file potensialment a espon-o tò servent a risch ëd sicurëssa.
-Per pi anformassion, les la [http://www.mediawiki.org/wiki/Manual:Security session ëd sicurëssa] an st manual.
+A l'é anco' na licensa bon-a, an tùit ij cas, sta licensa a l'ha chèich funsion ch'a rendo difìcij l'utilisassion e l'antërpretassion.",
+	'config-email-settings' => 'Ampostassion ëd pòsta eletrònica',
+	'config-enable-email' => 'Abilité ij mëssagi ëd pòsta eletrònica an surtìa',
+	'config-enable-email-help' => "S'a veul che la pòsta eletrònica a marcia, j'[http://www.php.net/manual/en/mail.configuration.php ampostassion ëd pòsta eletrònica PHP] a devo esse configurà për da bin.
+S'a veul pa 'd funsion ëd pòsta eletrònica, a dev disabiliteje ambelessì.",
+	'config-email-user' => 'Abilité ij mëssagi ëd pòsta eletrònica da utent a utent',
+	'config-email-user-help' => "A përmët a tùit j'utent ëd mandesse ëd mëssagi ëd pòsta eletrònica se lor a l'han abilità sòn an soe preferense.",
+	'config-email-usertalk' => "Abilité notìfica dle pàgine ëd discussion dj'utent",
+	'config-email-usertalk-help' => "A përmët a j'utent d'arsèive na notìfica dle modìfiche dle pàgine ëd discussion d'utent, s'a l'han abilitalo ant soe preferense.",
+	'config-email-watchlist' => "Abilité la notìfica ëd lòn ch'as ten sot euj",
+	'config-email-watchlist-help' => "A përmët a j'utent d'arsèive dle notificassion a propòsit dle pàgine ch'a ten-o sot euj s'a l'han abilitalo ant soe preferense.",
+	'config-email-auth' => "Abilité l'autenticassion për pòsta eletrònica",
+	'config-email-auth-help' => "Se st'opsion a l'é abilità, j'utent a devo confirmé soe adrësse ëd pòsta eletrònica an dovrand un colegament mandà a lor quand ch'a l'han ampostala o cambiala.
+Mach j'adrësse ëd pòsta eletrònica autenticà a peulo arsèive ëd mëssagi da j'àutri utent o cangé adrëssa ëd notìfica.
+Amposté st'opsion a l'é '''arcomandà''' për le wiki pùbliche a càusa ëd possìbij abus ëd le funsion ëd pòsta eletrònica.",
+	'config-email-sender' => 'Adrëssa ëd pòsta eletrònica ëd ritorn:',
+	'config-email-sender-help' => "Ch'a anserissa l'adrëssa ëd pòsta eletrònica da dovré com adrëssa d'artorn dij mëssagi an surtìa.
+Ambelessì a l'é andova j'arspòste a saran mandà.
+Motobin ëd servent ëd pòsta a ciamo che almanch la part dël nòm ëd domini a sia bon-a.",
+	'config-upload-settings' => 'Cariament ëd figure e archivi',
+	'config-upload-enable' => "Abilité ël cariament d'archivi",
+	'config-upload-help' => "Carié d'archivi potensialment a espon sò servent a d'arzigh ëd sicurëssa.
+Per pi d'anformassion, ch'a lesa la [http://www.mediawiki.org/wiki/Manual:Security session ëd sicurëssa] d'ës manual.
 
-Për abilité carie ëd file, cangia la manera dla sotdirectory dle <code>figure</code> sota la directory radis ëd MediaWiki an manera che ël servent web a peussa scrivla.
-Peui abìlita sta opsion.',
-	'config-upload-deleted' => 'Directory për file scanselà:',
-	'config-upload-deleted-help' => 'Sern na directory andova archivié ij file scanselà.
-Idealment, costa a dovrìa pa esse acessibla via web.',
-	'config-logo' => 'Anliura dël Logo:',
-	'config-logo-help' => "Lë skin ëd default ëd MediaWiki a comprend spassi për un logo ëd 135x160 pixel ant ël canton àut a snista.
-Caria na figura ëd la dimension aproprià, e ansëriss l'anliura ambelessì.
+Për abilité ël cariament d'archivi, ch'a modìfica la manera dël sot-dossié dle <code>figure</code> sota al dossié rèis ëd MediaWiki an manera che ël servent dl'aragnà a peussa scrivlo.
+Peui ch'a abìlita costa opsion.",
+	'config-upload-deleted' => "Dossié për j'archivi scancelà:",
+	'config-upload-deleted-help' => "ch'a serna un dossié andova goerné j'archivi scancelà.
+Idealment, sòn a dovrìa pa esse acessìbil an sl'aragnà.",
+	'config-logo' => 'Anliura dla marca:',
+	'config-logo-help' => "La pel dë stàndard ëd MediaWiki a comprend lë spassi për na marca ëd 135x160 pontin ant ël canton an àut a snista.
+Ch'a dëscaria na figura ëd la dimension aproprià, e ch'a anserissa l'anliura ambelessì.
 
-S'it veule pa un logo, lassa sto camp bianch.",
+S'a veul gnun-e marche, ch'a lassa ës camp bianch.",
 	'config-instantcommons' => 'Abìlita Instant Commons',
-	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] a l\'é na funsion ch\'a përmëtt a le wiki ëd dovré figure, son e àutr mojen trovà an sël sit [http://commons.wikimedia.org/ Wikimedia Commons].
-Për dovré sossì, MediaWiki a ciama acess a la ragnà. $1
+	'config-instantcommons-help' => "[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] a l'é na funsion ch'a përmët a le wiki ëd dovré dle figure, dij son e d'àutri mojen trovà an sël sit [http://commons.wikimedia.org/ Wikimedia Commons].
+Për dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà. \$1
 
-Për pi anformassion su sta funsion, compreis istrussion su com ampostela për wiki diferente da Wikimedia Commons, consulta [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos ël manual].',
-	'config-instantcommons-good' => "L'instalador a peul prové la conetività Internet an mente dij cntròj d'ambient. 
-It peule abilité sta funsion s'it veule.",
-	'config-instantcommons-bad' => "''Për maleur, l'instalador a peul pa determiné la conetività Internet an mente dij contròj d'ambient, parèj it podrìe pa podèj dovré sta funsion.
-Se tò servent a l'é daré a un proxy, it podrìe dovèj fé quaich [http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy configurassion adissionaj].''",
-	'config-cc-error' => "Ël sernidor ëd la licensa Creative Commons a l'ha pa dàit gnun arzultà.
-Ansëriss ël nòm dla licensa manualment.",
+Për pi d'anformassion su sta funsion, comprèise j'istrussion ëd com ampostela për wiki diferente da Wikimedia Commons, ch'a consulta [http://mediawiki.org/wiki/Manual:\$wgForeignFileRepos ël manual].",
+	'config-instantcommons-good' => "L'instalador a l'ha trovà na conession a l'aragnà durant ij contròj d'ambient. 
+A peul abilité sta funsion s'a veul.",
+	'config-instantcommons-bad' => "''Për maleur, l'instalador a l'ha pa podù trové na conession a l'aragnà durant ij contròj d'ambient, parèj a podrìa pa podèj dovré sta funsion.
+Se sò servent a l'é daré a un proxy, a podrìa avèj da manca ëd fé chèiche [http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy configurassion adissionaj].''",
+	'config-cc-error' => "La selession ëd la licensa Creative Commons a l'ha dàit gnun arzultà.
+Ch'a anserissa ël nòm dla licensa a man.",
 	'config-cc-again' => 'Torna cheuje...',
 	'config-cc-not-chosen' => 'Sern che licensa Creative Commons it veule e sgnaca "anans".',
-	'config-advanced-settings' => 'Configurassin avansà',
-	'config-cache-options' => "Ampostassion për caching d'oget:",
-	'config-cache-help' => "Ël caching d'oget a l'é dovrà për mejoré la velocità ëd MediaWiki an fasend cashing dij dat dovrà soens.
-Ij sit da medi a gròss a son motobin ancoragià a abilité sossì, e ij sit cit a vëddran ëdcò dij benefissi.",
-	'config-cache-none' => 'Pa gnente caching (gnun-a funsionalità gavà, ma la velocità a peul esse tocà su  sit ëd gròsse wiki)',
-	'config-cache-accel' => "Caching d'oget PHP (APC, eAccelerator, XCache o WinCache)",
-	'config-cache-memcached' => 'Dòvra Memcached (a ciama ampostassion e configurassion adissionaj)',
+	'config-advanced-settings' => 'Configurassion avansà',
+	'config-cache-options' => "Ampostassion për la memorisassion local d'oget:",
+	'config-cache-help' => "La memorisassion loca d'oget a l'é dovrà për amelioré l'andi ëd MediaWiki an butant an local dij dat dovrà 'd soens.
+Ij sit da mesan a gròss a son motobin ancoragià a abilité sòn, e ij sit cit a l'avran ëdcò dij benefissi.",
+	'config-cache-none' => "Gnun-a memorisassion local (gnun-a funsionalità gavà, ma l'andi a peul esse anfluensà an sij sit ëd wiki gròsse)",
+	'config-cache-accel' => "Memorisassion local d'oget PHP (APC, eAccelerator, XCache o WinCache)",
+	'config-cache-memcached' => "Dovré Memcached (a ciama n'ampostassion e na configurassion adissionaj)",
 	'config-memcached-servers' => 'Servent Memcached:',
 	'config-memcached-help' => "Lista d'adrësse IP da dovré për Memcached.
-A dovrìa esse separà cn vìrgole e specifiché la pòrta da dovré (për esempi: 127.0.0.1:11211, 192.168.1.25:11211).",
+A dovrìa esse separà con dle vìrgole e specifiché la pòrta da dovré (për esempi: 127.0.0.1:11211, 192.168.1.25:11211).",
 	'config-extensions' => 'Estension',
-	'config-extensions-help' => "J'estension listà sota a son ëstàite trovà ant toa directory <code>./extensions</code>.
+	'config-extensions-help' => "J'estension listà dì-sota a son ëstàite trovà ant sò dossié <code>./extensions</code>.
 
-A peulo ciamé configurassion adissionaj, ma it peule abiliteje adess",
-	'config-install-alreadydone' => "'''Avis''' A smija ch'it l'abie già instalà MediaWiki e it preuve torna a instalelo.
-Për piasì va a la pàgina ch'i ven.",
+A peulo avèj da manca ëd configurassion adissionaj, ma a peul abiliteje adess",
+	'config-install-alreadydone' => "'''Avis''' A smija ch'a l'abie già instalà MediaWiki e ch'a preuva a instalelo torna.
+Për piasì, ch'a vada a la pàgina ch'a-i ven.",
 	'config-install-step-done' => 'fàit',
 	'config-install-step-failed' => 'falì',
-	'config-install-extensions' => 'Compreise estension',
-	'config-install-database' => 'Amposté databse',
+	'config-install-extensions' => "Comprende j'estension",
+	'config-install-database' => 'Creassion ëd la base ëd dàit',
 	'config-install-pg-schema-failed' => 'Creassion dle tàule falìa.
 Sigurte che l\'utent "$1" a peussa scrive lë schema "$2".',
-	'config-install-user' => "Creé l'utent dël database",
+	'config-install-user' => "Creassion ëd n'utent ëd la base ëd dàit",
 	'config-install-user-failed' => 'Falì a dé ij përmess a l\'utent "$1": $2',
-	'config-install-tables' => 'Creé tàule',
+	'config-install-tables' => 'Creassion dle tàule',
 	'config-install-tables-exist' => "'''Avis''': A smija che le tàule ëd mediaWiki a esisto già.
 Sauté la creassion.",
-	'config-install-tables-failed' => "'''Eror''': Creassion ëd le tàule falìa con l'eror ch'a ven: $1",
-	'config-install-interwiki' => 'Popolé le tàule interwiki ëd default',
-	'config-install-interwiki-sql' => 'As peul pa trovesse ël file <code>interwiki.sql</code>.',
-	'config-install-interwiki-exists' => "'''Avis''': La tàula interwiki a smija ch'a l'abia già dle righe.
-Sauté la lista ëd default.",
-	'config-install-secretkey' => 'Generé ciav segreta',
-	'config-insecure-secretkey' => "'''Avis:''' As peul pa creesse na <code>\$wgSecretKey</code>. segura.
-Considra ëd cangela manualment.",
-	'config-install-sysop' => "Creé ël cont ëd l'utent aministrador",
+	'config-install-tables-failed' => "'''Eror''': Creassion ëd le tàule falìa con l'eror sì-dapress: $1",
+	'config-install-interwiki' => "Ampiniment dë stàndard ëd le tàule dj'anliure interwiki",
+	'config-install-interwiki-sql' => "As peul pa trovesse l'archivi <code>interwiki.sql</code>.",
+	'config-install-interwiki-exists' => "'''Avis''': La tàula interwiki a smija ch'a l'abia già dj'element.
+Për stàndard, la lista a sarà sautà.",
+	'config-install-secretkey' => 'Generassion ëd la ciav segreta',
+	'config-insecure-secretkey' => "'''Avis:''' As peul pa creesse na <code>\$wgSecretKey</code>. sigura.
+Ch'a consìdera ëd cangela a man.",
+	'config-install-sysop' => "Creassion dël cont ëd l'utent aministrator",
 	'config-install-done' => "'''Congratulassion!'''
-It l'has instalà da bin mediaWiki.
+A l'ha instalà për da bin mediaWiki.
 
-L'instalador a l'ha generà un file <code>LocalSettings.php</code>.
-A conten tuta toa configurassion.
+L'instalador a l'ha generà n'archivi <code>LocalSettings.php</code>.
+A conten tuta soa configurassion.
 
-It dovras [$1 dëscarié]lo e butelo ant la bas ëd l'instalassion ëd toa wiki (la midema directory com index.php).
-'''Nòta''': S'it fas pa sossì adess, sto file ëd configurassion generà a sarà pa disponìbil për ti pi tard s'it finisse l'instalassion sensa dëscarielo.
+A dovrà [$1 dëscarielo] e butelo ant la bas ëd l'instalassion ëd soa wiki (ël midem dossié d'index.php).
+'''Nòta''': S'a lo fa nen adess, cost archivi ëd configurassion generà a sarà pa disponìbil për chiel pi tard s'a chita l'instalassion sensa dëscarielo.
 
-Quand che a l'é stàit fàit, it peule '''[$2 intré an toa wiki]'''.",
+Quand che a l'é stàit fàit, a peul '''[$2 intré an soa wiki]'''.",
 );
 
 /** Pashto (پښتو)
@@ -7732,6 +7743,14 @@ chmod a+w $3</pre>',
 	'config-license-gfdl-current' => 'GNU Free Documentation License 1.3 или более поздней версии',
 	'config-license-pd' => 'Общественное достояние',
 	'config-license-cc-choose' => 'Выберите одну из лицензий Creative Commons',
+	'config-license-help' => "Многие общедоступные вики разрешают использовать свои материалы на условиях [http://freedomdefined.org/Definition/Ru свободных лицензий].
+Это помогает созданию чувства общности, стимулирует долгосрочное участие.
+Но в этом нет необходимости для частных или корпоративных вики. 
+
+Если вы хотите использовать тексты из Википедии или хотите, что в Википедию можно было копировать тексты из вашей вики, вам следует выбрать '''Creative Commons Attribution Share Alike'''. 
+
+GNU Free Documentation License раньше была основной лицензией Википедии.
+Она все ещё используется, однако, она имеет некоторые особенности, осложняющие повторное использование и интерпретацию её материалов.",
 	'config-email-settings' => 'Настройки электронной почты',
 	'config-enable-email' => 'Включить исходящие e-mail',
 	'config-enable-email-help' => 'Если вы хотите, чтобы электронная почта работала, необходимо выполнить [http://www.php.net/manual/en/mail.configuration.php соответствующие настройки PHP].
@@ -7766,9 +7785,15 @@ chmod a+w $3</pre>',
 
 Если вам не нужен логотип, оставьте это поле пустым.',
 	'config-instantcommons' => 'Включить Instant Commons',
+	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] — это функция, позволяющая использовать изображения, звуки и другие медиафайлы с Викисклада ([http://commons.wikimedia.org/ Wikimedia Commons]). 
+Для работы этой функции MediaWiki необходим доступ к Интернету. $1 
+
+Дополнительную информацию об Instant Commons, в том числе указания о том, как её настроить для других вики, отличных от Викисклада, можно найти в [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos руководстве].',
 	'config-instantcommons-good' => 'Программа установки нашла соединение с Интернетом во время проверки окружения. Вы можете включить эту функцию, если захотите.',
 	'config-instantcommons-bad' => "''К сожалению, программа установки не смогла обнаружить подключение к Интернету во время проверки окружения. Видимо, вы не сможете использовать данную функцию. 
 Если ваш сервер находится за прокси-сервером, вам может потребоваться сделать некоторые [http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy дополнительные настройки].''",
+	'config-cc-error' => 'Механизм выбора лицензии Creative Commons не вернул результата.
+Введите название лицензии вручную.',
 	'config-cc-again' => 'Выберите ещё раз…',
 	'config-cc-not-chosen' => 'Выберите, какую лицензию Creative Commons Вы хотите использовать, и нажмите кнопку "Продолжить".',
 	'config-advanced-settings' => 'Дополнительные настройки',
@@ -7899,6 +7924,9 @@ $messages['tl'] = array(
 	'config-title' => '$1 na pagluluklok ng MediaWiki',
 	'config-information' => 'Kabatiran',
 	'config-session-error' => 'Kamalian sa pagsisimula ng sesyon: $1',
+	'config-no-session' => 'Nawala ang iyong dato ng sesyon!
+Suriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nakatakda sa angkop na direktoryo.',
+	'config-session-path-bad' => 'Tila ang iyong <code>session.save_path</code> (<code>$1</code>) ay hindi tanggap o hindi maisusulat.',
 	'config-show-help' => 'Tulong',
 	'config-hide-help' => 'Itago ang tulong',
 	'config-your-language' => 'Ang wika mo:',
@@ -7923,14 +7951,45 @@ $messages['tl'] = array(
 	'config-page-upgradedoc' => 'Itinataas ang uri',
 	'config-help-restart' => 'Nais mo bang hawiin ang lahat ng nasagip na datong ipinasok mo at muling simulan ang proseso ng pagluluklok?',
 	'config-restart' => 'Oo, muling simulan ito',
+	'config-welcome' => '=== Pagsusuring pangkapaligiran ===
+Isinasagawa ang payak na mga pagsusuri upang makita kung ang kapaligirang ito ay angkop para sa pagluluklok ng MediaWiki.
+Dapat mong ibigay ang mga kinalabasan ng mga pagsusuring ito kung kailangan mo ng tulong habang nagluluklok.',
+	'config-sidebar' => '* [http://www.mediawiki.org Tahanan ng MediaWiki]
+* [http://www.mediawiki.org/wiki/Help:Contents Gabay ng Tagagamit]
+* [http://www.mediawiki.org/wiki/Manual:Contents Gabay ng Tagapangasiwa]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Mga Malimit Itanong]',
+	'config-env-good' => '<span class="success-message">Nasuri na ang kapaligiran.
+Mailuluklok mo ang MediaWiki.</span>',
+	'config-env-bad' => 'Nasuri na ang kapaligiran.
+Hindi mo mailuklok ang MediaWiki.',
 	'config-env-php' => 'Naitalaga ang PHP na $1.',
 	'config-env-latest-ok' => 'Itinatalaga mo ang pinakabagong bersyon ng MediaWiki.',
 	'config-env-latest-new' => "'''Paunawa:''' Itinatalaga mo ang isang pinauunlad pang bersyon ng MediaWiki.",
+	'config-env-latest-can-not-check' => "'''Babala:''' Ang tagapagluklok ay hindi nagawang kuhaning muli ang kabatiran ukol sa pinakahuling labas ng MediaWiki mula sa [$1].",
 	'config-env-latest-old' => "'''Babala:''' Itinatalaga mo ang isang lipas nang bersyon ng MediaWiki.",
+	'config-env-latest-help' => 'Iniluluklok mo ang bersyong $1, subalit ang pinakahuling bersyon ay $2.
+Pinapayuhan kang gamitin ang pinakahuling labas, na maikakargang paibaba mula sa [http://www.mediawiki.org/wiki/Download mediawiki.org]',
+	'config-unicode-using-php' => 'Ginagamit ang mabagal na pagpapatupad ng PHP para sa normalisasyon ng Unikodigo.',
 	'config-unicode-using-utf8' => 'Ginagamit ang utf8_normalize.so ni Brion Vibber para sa pagpapanormal ng Unikodigo.',
 	'config-unicode-using-intl' => 'Ginagamit ang [http://pecl.php.net/intl intl dugtong na PECL] para sa pagsasanormal ng Unikodigo.',
 	'config-no-db' => 'Hindi matagpuan ang isang angkop na tagapagmaneho ng kalipunan ng dato!',
 	'config-have-db' => 'Nakatagpo ng {{PLURAL:$2|tagapagmaneho|mga tagapagmaneho}} ng kalipunan ng dato: $1.',
+	'config-xml-good' => 'May suportang pampalit ng XML / Latin1-UTF-8.',
+	'config-memory-none' => 'Inayos ang PHP na walang <code>hangganan_ng_alaala</code>',
+	'config-memory-ok' => 'Ang <code>hangganan_ng_alaala</code> ng PHP ay $1.
+OK.',
+	'config-memory-raised' => 'Ang <code>hangganan_ng_alaala</code> ng PHP ay $1, itinaas sa $2.',
+	'config-memory-bad' => "'''Babala:''' Ang <code>hangganan_ng_alaala</code> ng PHP ay $1.
+Ito ay maaaring napakababa.
+Maaaring mabigo ang pagluluklok!",
+	'config-xcache' => 'Nakaluklok na ang [http://trac.lighttpd.net/xcache/ XCache]',
+	'config-apc' => 'Nakaluklok na ang [http://www.php.net/apc APC]',
+	'config-eaccel' => 'Nakaluklok na ang [http://eaccelerator.sourceforge.net/ eAccelerator]',
+	'config-wincache' => 'Nakaluklok na ang [http://www.iis.net/download/WinCacheForPhp WinCache]',
+	'config-diff3-good' => 'Natagpuan ang GNU diff3: <code>$1</code>.',
+	'config-diff3-bad' => 'Hindi natagpuan ang GNU diff3.',
+	'config-imagemagick' => 'Natagpuan ang ImageMagick: <code>$1</code>.
+Papaganahin ang pagkakagyat ng larawan kapag pinagana mo ang mga pagkakargang paitaas.',
 	'config-dir' => 'Direktoryo ng pagluluklok: <code>$1</code>.',
 	'config-uri' => 'Landas na URI ng panitik: <code>$1</code>.',
 	'config-no-uri' => "'''Kamalian:''' Hindi matukoy ang pangkasalukuyang URI.
@@ -7946,6 +8005,7 @@ Pinigilan ang pagluluklok.",
 	'config-db-install-help' => 'Ipasok ang pangalan ng tagagamit at hudyat na gagamitin upang umugnay sa kalipunan ng dato habang isinasagawa ang pagluluklok.',
 	'config-db-account-lock' => 'Gamitin ang gayun ding pangalan ng tagagamit at hudyat habang nasa normal na operasyon',
 	'config-db-wiki-account' => 'Akawnt ng tagagamit para sa pangkaraniwang pagpapaandar',
+	'config-db-prefix' => 'Unlapi ng talahanayan ng kalipunan ng dato:',
 	'config-db-charset' => 'Pangkat ng panitik ng kalipunan ng dato',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binaryo',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
@@ -7956,6 +8016,16 @@ Pinigilan ang pagluluklok.",
 	'config-db-schema-help' => 'Ang nasa itaas na mga panukala ay karaniwang tama.
 Baguhin lamang sila kung alam mong kailangan mo.',
 	'config-sqlite-dir' => 'Direktoryo ng dato ng SQLite:',
+	'config-header-mysql' => 'Mga katakdaan ng MySQL',
+	'config-header-postgres' => 'Mga katakdaan ng PostgreSQL',
+	'config-header-sqlite' => 'Mga katakdaan ng SQLite',
+	'config-header-oracle' => 'Mga katakdaan ng Oracle',
+	'config-invalid-db-type' => 'Hindi tanggap na uri ng kalipunan ng dato',
+	'config-missing-db-name' => 'Dapat kang magpasok ng isang halaga para sa "pangalan ng Kalipunan ng Dao"',
+	'config-invalid-db-name' => 'Hindi tanggap na pangalan ng kalipunan ng dato na "$1".
+Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9) at mga salangguhit (_).',
+	'config-invalid-db-prefix' => 'Hindi tanggap na unlapi ng kalipunan ng dato na "$1". 
+Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9) at mga salangguhit (_).',
 	'config-postgres-old' => 'Kailangan ang PostgreSQL $1 o mas bago, mayroon kang $2.',
 	'config-regenerate' => 'Muling likhain ang LocalSettings.php →',
 	'config-show-table-status' => 'Nabigo ang pagtatanong na IPAKITA ANG KALAGAYAN NG TALAHANAYAN!',
@@ -7963,6 +8033,9 @@ Baguhin lamang sila kung alam mong kailangan mo.',
 	'config-db-web-help' => 'Piliin ang pangalan ng tagagamit at hudyat na gagamitin ng tagapaghain ng web upang umugnay sa tagapaghain ng kalipunan ng dato, habang nasa pangkaraniwang pagtakbo ng wiki.',
 	'config-db-web-account-same' => 'Gamitin ang gayun din akawnt katulad ng sa pagluluklok',
 	'config-db-web-create' => 'Likhain ang akawnt kung hindi pa ito umiiral',
+	'config-mysql-engine' => 'Makinang imbakan:',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
 	'config-site-name' => 'Pangalan ng wiki:',
 	'config-site-name-help' => "Lilitaw ito sa bareta ng pamagat ng pantingin-tingin at sa samu't saring ibang mga lugar.",
 	'config-site-name-blank' => 'Magpasok ng isang pangalan ng sityo.',
@@ -8016,6 +8089,8 @@ Ipasok na kinakamay ang pangalan ng lisensiya.',
 	'config-install-step-failed' => 'nabigo',
 	'config-install-extensions' => 'Isinasama ang mga karugtong',
 	'config-install-database' => 'Inihahanda ang kalipunan ng dato',
+	'config-install-pg-schema-failed' => 'Nabigo ang paglikha ng mga talahanayan.
+Tiyakin na ang tagagamit na "$1" ay maaaring makasulat sa balangkas na "$2".',
 	'config-install-user' => 'Nililikha ang tagagamit ng kalipunan ng dato',
 	'config-install-user-failed' => 'Nabigo ang pagbibigay ng pahintulot sa tagagamit na "$1": $2',
 	'config-install-tables' => 'Nililikha ang mga talahanayan',
@@ -8030,6 +8105,16 @@ Nilalaktawan ang likas na nakatakdang talaan.",
 	'config-insecure-secretkey' => "'''Babala:''' Hindi nalikha ang ligtas na <code>\$wgSecretKey</code>.
 Isaalang-alang ang pagbabago nito na kinakamay.",
 	'config-install-sysop' => 'Nililikha ang akawnt ng tagagamit na tagapangasiwa',
+	'config-install-done' => "'''Maligayang bati!'''
+Matagumpay mong nailuklok ang MediaWiki.
+
+Ang tagapagluklok ay nakagawa ng isang talaksan ng <code>LocalSettings.php</code>.
+Naglalaman ito ng lahat ng iyong mga pagkakaayos.
+
+Kailangan mong [$1 ikargang paibaba] ito at ilagay ito sa kampo ng iyong pagluluklok ng wiki (ang katulad na direktoryo ng index.php).
+'''Paunawa''': Kapag hindi ito ginawa ngayon, ang ginawang talaksan ng pagkakaayos na ito ay hindi mo makukuha paglaon kapag lumabas ka mula sa pagluluklok nang hindi ikinakarga itong paibaba.
+
+Kapag nagawa na iyan, maaari ka nang '''[$2 pumasok sa iyong wiki]'''.",
 );
 
 /** Ukrainian (Українська)
