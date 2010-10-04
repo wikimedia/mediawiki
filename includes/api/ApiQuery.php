@@ -642,7 +642,7 @@ class ApiQuery extends ApiBase {
 					'NOTE: generator parameter names must be prefixed with a \'g\', see examples' ),
 			'redirects' => 'Automatically resolve redirects',
 			'converttitles' => array( "Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion.",
-					'Languages that support variant conversion are kk, ku, gan, tg, sr, zh' ),
+					'Languages that support variant conversion include kk, ku, gan, tg, sr, zh' ),
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs',
 			'export' => 'Export the current revisions of all given or generated pages',
 			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
