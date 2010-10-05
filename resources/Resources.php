@@ -48,6 +48,9 @@ return array(
 	'jquery.highlightText' => new ResourceLoaderFileModule(
 		array( 'scripts' => 'resources/jquery/jquery.highlightText.js' )
 	),
+	'jquery.placeholder' => new ResourceLoaderFileModule(
+		array( 'scripts' => 'resources/jquery/jquery.placeholder.js' )
+	),
 	'jquery.suggestions' => new ResourceLoaderFileModule(
 		array(
 			'scripts' => 'resources/jquery/jquery.suggestions.js',
