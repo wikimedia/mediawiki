@@ -1199,7 +1199,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'compareselectedversions'  => 'Bandingkan versi terpilih',
 'showhideselectedversions' => 'Tampilkan/sembunyikan versi terpilih',
 'editundo'                 => 'batalkan',
-'diff-multi'               => '({{PLURAL:$1|Satu|$1}} revisi antara tak ditampilkan.)',
+'diff-multi'               => '({{PLURAL:$1|Satu|$1}} revisi antara oleh {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
 
 # Search results
 'searchresults'                    => 'Hasil pencarian',

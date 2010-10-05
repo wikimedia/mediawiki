@@ -6470,6 +6470,8 @@ S'a l'é ospità ëd fasson partagià, ch'a ciama al fornidor d'ospitalità d'in
 S'a l'ha compilà chiel-midem PHP, ch'a lo configura torna con un client ëd base ëd dàit abilità, për esempi an dovrand <code>./configure --with-mysql</code>.
 S'a l'ha instalà PHP da un pachet Debian o Ubuntu, antlora a dev ëdcò instalé ël mòdul php5-mysql.",
 	'config-have-db' => '{{PLURAL:$2|Pilòta|Pilòta}} ëd base ëd dàit trovà: $1.',
+	'config-have-fts3' => "SQLite a l'é compilà con ël mòdul [http://sqlite.org/fts3.html FTS3], le funsion d'arserca a saran disponìbij su cost backend.",
+	'config-no-fts3' => "'''Avis''': SQLite a l'é compilà sensa ël mòdul [http://sqlite.org/fts3.html FTS3], le funsion d'arserca a saran pa disponìbij su cost backend.",
 	'config-register-globals' => "'''Avis: L'opsion <code>[http://php.net/register_globals register_globals]</code> ëd PHP a l'é abilità.'''
 '''Ch'a la disabìlita s'a peul.'''
 MediaWiki a marcërà, ma sò servent a l'é espòst a 'd possìbij vunerabilità ëd sicurëssa.",

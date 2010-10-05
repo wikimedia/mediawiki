@@ -504,6 +504,7 @@ Liiga palju kasutajaid üritab korraga seda lehte vaadata.
 Palun oota hetk enne kui uuesti proovid.
 
 $1',
+'pool-errorunknown' => 'Teadmata tõrge',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{GRAMMAR:genitive|{{SITENAME}}}} tiitelandmed',
@@ -744,6 +745,11 @@ Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt eirata
 Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
 'suspicious-userlogout'      => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
+'ratelimit-excluded-ips'     => '  #<!-- Jäta see rida muutmata kujule. --> <pre>
+# Süntaks:
+#  * Kõik alates märgist "#" kuni rea lõpuni on kommentaar.
+#  * Iga rida, mis ei ole tühi, on IP-aadress, millele piirang ei kehti.
+  #</pre> <!-- Jäta see rida muutmata kujule. -->',
 
 # JavaScript password checks
 'password-strength'            => 'Parooli tugevuse hinnang: $1',
