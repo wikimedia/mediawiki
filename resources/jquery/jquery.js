@@ -6230,7 +6230,7 @@ jQuery.each([ "Height", "Width" ], function( i, name ) {
 					jQuery.css( elem, type ) :
 
 					// Set the width or height on the element (default to pixels if value is unitless)
-					this.css( type, typeof size === "string" ? size : size + "px" );
+					this.css( type, typeof size === "string" ? size : ( parseInt( size ) || 0 ) + "px" );
 	};
 
 });
