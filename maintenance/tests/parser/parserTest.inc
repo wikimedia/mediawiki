@@ -57,9 +57,6 @@ class ParserTest {
 	private $fuzzSeed = 0;
 	private $memoryLimit = 50;
 
-	public $regex = "";
-	private $savedGlobals = array();
-
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
@@ -85,13 +82,14 @@ class ParserTest {
 			: new DummyTermColorer();
 
 		$this->showDiffs = !isset( $options['quick'] );
-		$this->showProgress = false; #!isset( $options['quiet'] );
-		$this->showFailure = false; /* !( */
-			/* isset( $options['quiet'] ) */
-			/* && ( isset( $options['record'] ) */
-			/* 	|| isset( $options['compare'] ) ) ); // redundant output */
+		$this->showProgress = !isset( $options['quiet'] );
+		$this->showFailure = !(
+			isset( $options['quiet'] )
+			&& ( isset( $options['record'] )
+				|| isset( $options['compare'] ) ) ); // redundant output
 
 		$this->showOutput = isset( $options['show-output'] );
+
 
 		if ( isset( $options['regex'] ) ) {
 			if ( isset( $options['record'] ) ) {
@@ -106,7 +104,6 @@ class ParserTest {
 
 		$this->setupRecorder( $options );
 		$this->keepUploads = isset( $options['keep-uploads'] );
-		$this->uploadDir = $this->setupUploadDir();
 
 		if ( isset( $options['seed'] ) ) {
 			$this->fuzzSeed = intval( $options['seed'] ) - 1;
@@ -129,6 +126,18 @@ class ParserTest {
 			$this->recorder = new RemoteTestRecorder( $this );
 		} else {
 			$this->recorder = new TestRecorder( $this );
+		}
+	}
+
+	/**
+	 * Remove last character if it is a newline
+	 */
+	public function chomp( $s ) {
+		if ( substr( $s, -1 ) === "\n" ) {
+			return substr( $s, 0, -1 );
+		}
+		else {
+			return $s;
 		}
 	}
 
@@ -413,12 +422,12 @@ class ParserTest {
 		}
 
 
-		if ( method_exists( $this->recorder, "showTestResult" ) ) {
-			return $this->recorder->showTestResult( $desc, $result, $out );
-		} else if ( $result === $out && ( $noxml === true || $this->wellFormed( $out ) ) ) {
-			return ParserTestSuiteBackend::showSuccess( $desc, $result, $out );
+		$this->teardownGlobals();
+
+		if ( $result === $out && ( $noxml === true || $this->wellFormed( $out ) ) ) {
+			return $this->showSuccess( $desc );
 		} else {
-			return ParserTestSuiteBackend::showFailure( $desc, $result, $out );
+			return $this->showFailure( $desc, $result, $out );
 		}
 	}
 
@@ -541,6 +550,7 @@ class ParserTest {
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => $lang,
+			'wgDBprefix' => $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_',
 			'wgRawHtml' => isset( $opts['rawhtml'] ),
 			'wgLang' => null,
 			'wgContLang' => null,
@@ -702,10 +712,7 @@ class ParserTest {
 		if ( $wgDBtype == 'oracle' )
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 
-		if ( ( $wgDBtype != 'oracle' && $wgDBprefix != 'parsertest_' )
-			&& $wgDBprefix != 'pt_' ) {
-			$this->changePrefix( $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_' );
-		}
+		$this->changePrefix( $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_' );
 
 		# Hack: insert a few Wikipedia in-project interwiki prefixes,
 		# for testing inter-language links
@@ -762,6 +769,7 @@ class ParserTest {
 		global $wgMessageCache, $wgMemc;
 		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
 
+		$this->uploadDir = $this->setupUploadDir();
 		$user = User::createNew( 'WikiSysop' );
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
 		$image->recordUpload2( '', 'Upload of some lame file', 'Some lame file', array(
@@ -812,7 +820,6 @@ class ParserTest {
 		global $wgDBtype;
 
 		if ( !$this->databaseSetupDone ) {
-			$this->teardownGlobals();
 			return;
 		}
 		$this->teardownUploadDir( $this->uploadDir );
@@ -822,7 +829,6 @@ class ParserTest {
 
 		if ( $this->useTemporaryTables ) {
 			# Don't need to do anything
-			$this->teardownGlobals();
 			return;
 		}
 
@@ -836,8 +842,6 @@ class ParserTest {
 
 		if ( $wgDBtype == 'oracle' )
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
-
-		$this->teardownGlobals();
 	}
 
 	/**

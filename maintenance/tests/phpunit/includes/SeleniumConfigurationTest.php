@@ -4,29 +4,29 @@ class SeleniumConfigurationTest extends PHPUnit_Framework_TestCase {
 
 	/*
 	 * The file where the test temporarity stores the selenium config.
-	 * This should be cleaned up as part of teardown.
+	 * This should be cleaned up as part of teardown. 
 	 */
 	private $tempFileName;
-
+	
 	/*
 	 * String containing the a sample selenium settings
 	 */
-	private $testConfig0 =
+	private $testConfig0 = 
 '
 [SeleniumSettings]
-browsers[firefox]	= "*firefox"
+browsers[firefox] 	= "*firefox"
 browsers[iexplorer] = "*iexploreproxy"
-browsers[chrome]	= "*chrome"
-host				= "localhost"
-port				= "foobarr"
-wikiUrl				= "http://localhost/deployment"
-username			= "xxxxxxx"
-userPassword		= ""
-testBrowser			= "chrome"
+browsers[chrome] 	= "*chrome"
+host 				= "localhost"
+port 				= "foobarr"
+wikiUrl 			= "http://localhost/deployment"
+username 			= "xxxxxxx"
+userPassword 		= ""
+testBrowser 		= "chrome"
 
 [SeleniumTests]
 testSuite[SimpleSeleniumTestSuite] = "maintenance/tests/selenium/SimpleSeleniumTestSuite.php"
-testSuite[TestSuiteName] = "testSuitePath"
+testSuite[TestSuiteName] = "testSuitePath"		
 ';
 	/*
 	 * Array of expected browsers from $testConfig0
@@ -41,28 +41,28 @@ testSuite[TestSuiteName] = "testSuitePath"
 	private $testSettings0 = array(
 		'host'			=> 'localhost',
 		'port'			=> 'foobarr',
-		'wikiUrl'		=> 'http://localhost/deployment',
-		'username'		=> 'xxxxxxx',
-		'userPassword'	=> '',
-		'testBrowser'	=> 'chrome'
+		'wikiUrl' 		=> 'http://localhost/deployment',
+		'username' 		=> 'xxxxxxx',
+		'userPassword' 	=> '',
+		'testBrowser' 	=> 'chrome'
 	);
 	/*
 	 * Array of expected testSuites from $testConfig0
 	 */
 	private $testSuites0 = array(
-		'SimpleSeleniumTestSuite'	=> 'maintenance/tests/selenium/SimpleSeleniumTestSuite.php',
-		'TestSuiteName'				=> 'testSuitePath'
+		'SimpleSeleniumTestSuite' 	=> 'maintenance/tests/selenium/SimpleSeleniumTestSuite.php',
+		'TestSuiteName' 			=> 'testSuitePath'	
 	);
-
-
+	
+	
 	/*
 	 * Another sample selenium settings file contents
 	 */
-	private $testConfig1 =
+	private $testConfig1 = 
 '
 [SeleniumSettings]
-host				= "localhost"
-testBrowser			= "firefox"
+host 				= "localhost"
+testBrowser 		= "firefox"
 ';
 	/*
 	 * Expected browsers from $testConfig1
@@ -74,23 +74,23 @@ testBrowser			= "firefox"
 	private $testSettings1 = array(
 		'host'			=> 'localhost',
 		'port'			=> null,
-		'wikiUrl'		=> null,
-		'username'		=> null,
-		'userPassword'	=> null,
-		'testBrowser'	=> 'firefox'
+		'wikiUrl' 		=> null,
+		'username' 		=> null,
+		'userPassword' 	=> null,
+		'testBrowser' 	=> 'firefox'
 	);
 	/*
 	 * Expected test suites from $testConfig1
 	 */
-	private $testSuites1 = null;
-
-
+	private $testSuites1 = null;		
+	
+	
 	public function setUp() {
 		if ( !defined( 'SELENIUMTEST' ) ) {
 			define( 'SELENIUMTEST', true );
 		}
 	}
-
+	 
 	/*
 	 * Clean up the temporary file used to store the selenium settings.
 	 */
@@ -101,90 +101,90 @@ testBrowser			= "firefox"
 		}
 		parent::tearDown();
 	}
-
+	
 	/**
-	 * @expectedException MWException
-	 * @group SeleniumFramework
-	 */
-	public function testErrorOnIncorrectConfigFile() {
+     * @expectedException MWException
+     * @group SeleniumFramework
+     */
+	public function testErrorOnIncorrectConfigFile() {		
 		$seleniumSettings;
 		$seleniumBrowsers;
 		$seleniumTestSuites;
 
-		SeleniumConfig::getSeleniumSettings($seleniumSettings,
-			$seleniumBrowsers,
+		SeleniumConfig::getSeleniumSettings($seleniumSettings, 
+			$seleniumBrowsers, 
 			$seleniumTestSuites,
 			"Some_fake_settings_file.ini" );
 
 	}
-
+	
 	/**
-	 * @expectedException MWException
-	 * @group SeleniumFramework
-	 */
-	public function testErrorOnMissingConfigFile() {
+     * @expectedException MWException
+     * @group SeleniumFramework
+     */
+	public function testErrorOnMissingConfigFile() {		
 		$seleniumSettings;
 		$seleniumBrowsers;
 		$seleniumTestSuites;
 		global $wgSeleniumConfigFile;
 		$wgSeleniumConfigFile = '';
-		SeleniumConfig::getSeleniumSettings($seleniumSettings,
-			$seleniumBrowsers,
+		SeleniumConfig::getSeleniumSettings($seleniumSettings, 
+			$seleniumBrowsers, 
 			$seleniumTestSuites);
 	}
-
+	
 	/**
-	 * @group SeleniumFramework
-	 */
-	public function testUsesGlobalVarForConfigFile() {
+     * @group SeleniumFramework
+     */
+	public function testUsesGlobalVarForConfigFile() {		
 		$seleniumSettings;
 		$seleniumBrowsers;
 		$seleniumTestSuites;
 		global $wgSeleniumConfigFile;
 		$this->writeToTempFile( $this->testConfig0 );
 		$wgSeleniumConfigFile = $this->tempFileName;
-		SeleniumConfig::getSeleniumSettings($seleniumSettings,
-			$seleniumBrowsers,
+		SeleniumConfig::getSeleniumSettings($seleniumSettings, 
+			$seleniumBrowsers, 
 			$seleniumTestSuites);
 		$this->assertEquals($seleniumSettings, $this->testSettings0 ,
 		'The selenium settings should have been read from the file defined in $wgSeleniumConfigFile'
 		);
-		$this->assertEquals($seleniumBrowsers, $this->testBrowsers0,
+		$this->assertEquals($seleniumBrowsers, $this->testBrowsers0, 
 		'The available browsers should have been read from the file defined in $wgSeleniumConfigFile'
 		);
-		$this->assertEquals($seleniumTestSuites, $this->testSuites0,
+		$this->assertEquals($seleniumTestSuites, $this->testSuites0, 
 		'The test suites should have been read from the file defined in $wgSeleniumConfigFile'
-		);
+		);								  		
 	}
 	
 	/**
-	 * @group SeleniumFramework
-	 * @dataProvider sampleConfigs
-	 */
-	public function testgetSeleniumSettings($sampleConfig, $expectedSettings, $expectedBrowsers, $expectedSuites ) {
+     * @group SeleniumFramework
+     * @dataProvider sampleConfigs
+     */
+	public function testgetSeleniumSettings($sampleConfig, $expectedSettings, $expectedBrowsers, $expectedSuites ) {	
 		$this->writeToTempFile( $sampleConfig );
 		$seleniumSettings;
 		$seleniumBrowsers;
 		$seleniumTestSuites;
 
-		SeleniumConfig::getSeleniumSettings($seleniumSettings,
-			$seleniumBrowsers,
+		SeleniumConfig::getSeleniumSettings($seleniumSettings, 
+			$seleniumBrowsers, 
 			$seleniumTestSuites,
 			$this->tempFileName );
-
-		$this->assertEquals($seleniumSettings, $expectedSettings,
+					
+		$this->assertEquals($seleniumSettings, $expectedSettings, 
 		"The selenium settings for the following test configuration was not retrieved correctly" . $sampleConfig
 		);
-		$this->assertEquals($seleniumBrowsers, $expectedBrowsers,
+		$this->assertEquals($seleniumBrowsers, $expectedBrowsers, 
 		"The available browsers for the following test configuration was not retrieved correctly" . $sampleConfig
 		);
-		$this->assertEquals($seleniumTestSuites, $expectedSuites,
+		$this->assertEquals($seleniumTestSuites, $expectedSuites, 
 		"The test suites for the following test configuration was not retrieved correctly" . $sampleConfig
 		);
-
-
+	
+				
 	}
-
+	
 	/*
 	 * create a temp file and write text to it.
 	 * @param $testToWrite the text to write to the temp file
@@ -195,13 +195,13 @@ testBrowser			= "firefox"
 		fwrite($tempFile , $textToWrite);
 		fclose($tempFile);
 	}
-
+	
 	/*
 	 * Returns an array containing:
-	 *	The contents of the selenium cingiguration ini file
-	 *	The expected selenium configuration array that getSeleniumSettings should return
-	 *	The expected available browsers array that getSeleniumSettings should return
-	 *	The expected test suites arrya that getSeleniumSettings should return
+	 * 	The contents of the selenium cingiguration ini file
+	 *  The expected selenium configuration array that getSeleniumSettings should return 
+	 *  The expected available browsers array that getSeleniumSettings should return
+	 *  The expected test suites arrya that getSeleniumSettings should return
 	 */
 	public function sampleConfigs() {
 		return array(
@@ -209,6 +209,6 @@ testBrowser			= "firefox"
 			array($this->testConfig1, $this->testSettings1, $this->testBrowsers1, $this->testSuites1 )
 		);
 	}
-
+	
 
 }

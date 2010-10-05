@@ -28,31 +28,31 @@ $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 if ( isset( $options['help'] ) ) {
-	echo <<<ENDS
+    echo <<<ENDS
 MediaWiki $wgVersion parser test suite
 Usage: php parserTests.php [options...]
 
 Options:
-  --quick		   Suppress diff output of failed tests
-  --quiet		   Suppress notification of passed tests (shows only failed tests)
-  --show-output	   Show expected and actual output
+  --quick          Suppress diff output of failed tests
+  --quiet          Suppress notification of passed tests (shows only failed tests)
+  --show-output    Show expected and actual output
   --color[=yes|no] Override terminal detection and force color output on or off
-				   use wgCommandLineDarkBg = true; if your term is dark
-  --regex		   Only run tests whose descriptions which match given regex
+                   use wgCommandLineDarkBg = true; if your term is dark 
+  --regex          Only run tests whose descriptions which match given regex
   --file=<testfile> Run test cases from a custom file instead of parserTests.txt
-  --record		   Record tests in database
-  --compare		   Compare with recorded results, without updating the database.
-  --setversion	   When using --record, set the version string to use (useful
-				   with git-svn so that you can get the exact revision)
+  --record         Record tests in database
+  --compare        Compare with recorded results, without updating the database.
+  --setversion     When using --record, set the version string to use (useful
+                   with git-svn so that you can get the exact revision)
   --keep-uploads   Re-use the same upload directory for each test, don't delete it
-  --fuzz		   Do a fuzz test instead of a normal test
-  --seed <n>	   Start the fuzz test from the specified seed
-  --help		   Show this help message
+  --fuzz           Do a fuzz test instead of a normal test
+  --seed <n>       Start the fuzz test from the specified seed
+  --help           Show this help message
   --run-disabled   run disabled tests
-  --upload		   Upload test results to remote wiki (per \$wgParserTestRemote)
+  --upload         Upload test results to remote wiki (per \$wgParserTestRemote)
 
 ENDS;
-	exit( 0 );
+    exit( 0 );
 }
 
 # Cases of weird db corruption were encountered when running tests on earlyish
