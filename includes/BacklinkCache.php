@@ -208,6 +208,7 @@ class BacklinkCache {
 
 		// Try memcached
 		global $wgMemc;
+		global $wgContLang;
 
 		$memcKey = wfMemcKey(
 			'backlinks',
@@ -215,6 +216,9 @@ class BacklinkCache {
 			$table,
 			$batchSize
 		);
+
+		if ( $wgContLang === null ) $wgContLang = new Language;
+		if ( $wgMemc === null ) $wgMemc =& wfGetMainCache();
 
 		$memcValue = $wgMemc->get( $memcKey );
 

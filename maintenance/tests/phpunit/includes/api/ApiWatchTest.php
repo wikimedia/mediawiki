@@ -217,7 +217,7 @@ class ApiWatchTest extends ApiTestSetup {
 			'action' => 'query',
 			'list' => 'watchlist' ), $data );
 
-	    $this->markTestIncomplete( 'This test needs to verify the deleted article was added to the users watchlist' );
+		$this->markTestIncomplete( 'This test needs to verify the deleted article was added to the users watchlist' );
 	}
 
 }

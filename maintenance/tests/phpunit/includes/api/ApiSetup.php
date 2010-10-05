@@ -36,8 +36,9 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 			self::$user = new UserWrapper( 'Useruser', 'Passpass' );
 			self::$sysopUser = new UserWrapper( 'Useruser1', 'Passpass1', 'sysop' );
 		}
-		
+
 		$GLOBALS['wgUser'] = self::$sysopUser->user;
+
 	}
 
 	function tearDown() {
@@ -51,9 +52,10 @@ class UserWrapper {
 
 	public function __construct( $userName, $password, $group = '' ) {
 		$this->userName = $userName;
-	    $this->password = $password;
+		$this->password = $password;
 
-	    $this->user = User::newFromName( $this->userName );
+		$this->user = User::newFromName( $this->userName );
+
 		if ( !$this->user->getID() ) {
 			$this->user = User::createNew( $this->userName, array(
 				"email" => "test@example.com",
@@ -64,6 +66,7 @@ class UserWrapper {
 		if ( $group !== '' ) {
 			$this->user->addGroup( $group );
 		}
+
 		$this->user->saveSettings();
 	}
 }
