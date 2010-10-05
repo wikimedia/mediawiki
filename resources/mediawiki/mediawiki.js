@@ -758,10 +758,9 @@ window.mediaWiki = new ( function( $ ) {
 	
 } )( jQuery );
 
-
 /* Auto-register from pre-loaded startup scripts */
 
-if ( typeof window['startUp'] === 'function' ) {
-	window['startUp']();
-	delete window['startUp'];
+if ( typeof startUp === 'function' ) {
+	startUp();
+	delete startUp;
 }
