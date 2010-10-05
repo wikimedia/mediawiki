@@ -23,10 +23,10 @@ class LoadBalancer {
 
 	/**
 	 * @param $params Array with keys:
-	 *    servers           Required. Array of server info structures.
-	 *    failFunction      Deprecated, use exceptions instead.
-	 *    masterWaitTimeout Replication lag wait timeout
-	 *    loadMonitor       Name of a class used to fetch server lag and load.
+	 *	  servers			Required. Array of server info structures.
+	 *	  failFunction		Deprecated, use exceptions instead.
+	 *	  masterWaitTimeout Replication lag wait timeout
+	 *	  loadMonitor		Name of a class used to fetch server lag and load.
 	 */
 	function __construct( $params )
 	{
@@ -57,7 +57,7 @@ class LoadBalancer {
 		$this->mLaggedSlaveMode = false;
 		$this->mErrorConnection = false;
 		$this->mAllowLag = false;
-		$this->mLoadMonitorClass = isset( $params['loadMonitor'] ) 
+		$this->mLoadMonitorClass = isset( $params['loadMonitor'] )
 			? $params['loadMonitor'] : 'LoadMonitor_MySQL';
 
 		foreach( $params['servers'] as $i => $server ) {
@@ -230,7 +230,7 @@ class LoadBalancer {
 					$i = $this->pickRandom( $currentLoads );
 				} else {
 					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
-					if ( $i === false && count( $currentLoads ) != 0 )  {
+					if ( $i === false && count( $currentLoads ) != 0 )	{
 						# All slaves lagged. Switch to read-only mode
 						$wgReadOnly = wfMsgNoDBForContent( 'readonly_lag' );
 						$i = $this->pickRandom( $currentLoads );
@@ -240,7 +240,7 @@ class LoadBalancer {
 
 				if ( $i === false ) {
 					# pickRandom() returned false
-					# This is permanent and means the configuration or the load monitor 
+					# This is permanent and means the configuration or the load monitor
 					# wants us to return false.
 					wfDebugLog( 'connect', __METHOD__.": pickRandom() returned false\n" );
 					wfProfileOut( __METHOD__ );
@@ -258,7 +258,7 @@ class LoadBalancer {
 				}
 
 				// Perform post-connection backoff
-				$threshold = isset( $this->mServers[$i]['max threads'] ) 
+				$threshold = isset( $this->mServers[$i]['max threads'] )
 					? $this->mServers[$i]['max threads'] : false;
 				$backoff = $this->getLoadMonitor()->postConnectionBackoff( $conn, $threshold );
 
@@ -267,7 +267,7 @@ class LoadBalancer {
 				if ( $wiki !== false ) {
 					$this->reuseConnection( $conn );
 				}
-				
+
 				if ( $backoff ) {
 					# Post-connection overload, don't use this server for now
 					$totalThreadsConnected += $backoff;
@@ -399,11 +399,11 @@ class LoadBalancer {
 	/**
 	 * Get a connection by index
 	 * This is the main entry point for this class.
-	 * 
+	 *
 	 * @param $i Integer: server index
 	 * @param $groups Array: query groups
 	 * @param $wiki String: wiki ID
-	 * 
+	 *
 	 * @return DatabaseBase
 	 */
 	public function &getConnection( $i, $groups = array(), $wiki = false ) {
@@ -481,11 +481,11 @@ class LoadBalancer {
 			wfDebug( __METHOD__.": this connection was not opened as a foreign connection\n" );
 			/**
 			 * This can happen in code like:
-			 *   foreach ( $dbs as $db ) {
-			 *     $conn = $lb->getConnection( DB_SLAVE, array(), $db );
-			 *     ...
-			 *     $lb->reuseConnection( $conn );
-			 *   }
+			 *	 foreach ( $dbs as $db ) {
+			 *	   $conn = $lb->getConnection( DB_SLAVE, array(), $db );
+			 *	   ...
+			 *	   $lb->reuseConnection( $conn );
+			 *	 }
 			 * When a connection to the local DB is opened in this way, reuseConnection()
 			 * should be ignored
 			 */
@@ -770,7 +770,7 @@ class LoadBalancer {
 	 */
 	function closeAll() {
 		foreach ( $this->mConns as $conns2 ) {
-			foreach  ( $conns2 as $conns3 ) {
+			foreach	 ( $conns2 as $conns3 ) {
 				foreach ( $conns3 as $conn ) {
 					$conn->close();
 				}

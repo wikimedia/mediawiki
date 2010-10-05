@@ -62,9 +62,12 @@ class TestRecorder {
 		$this->success = 0;
 	}
 
-	function record( $test, $result ) {
+	function record( $test, $result, $recorder ) {
 		$this->total++;
-		$this->success += ( $result ? 1 : 0 );
+		if( $result ) {
+			$recorder->recordTest( $test );
+			$this->success += ( $result ? 1 : 0 );
+		}
 	}
 
 	function end() {
@@ -96,10 +99,10 @@ class TestRecorder {
 	}
 }
 
-class DbTestPreviewer extends TestRecorder  {
-	protected $lb;      // /< Database load balancer
-	protected $db;      // /< Database connection to the main DB
-	protected $curRun;  // /< run ID number for the current run
+class DbTestPreviewer extends TestRecorder	{
+	protected $lb;		// /< Database load balancer
+	protected $db;		// /< Database connection to the main DB
+	protected $curRun;	// /< run ID number for the current run
 	protected $prevRun; // /< run ID number for the previous run, if any
 	protected $results; // /< Result array
 
@@ -202,7 +205,7 @@ class DbTestPreviewer extends TestRecorder  {
 					printf( "\n%4d %s\n", $count, $label );
 
 					foreach ( $breakdown[$code] as $differing_test_name => $statusInfo ) {
-						print "      * $differing_test_name  [$statusInfo]\n";
+						print "		 * $differing_test_name	 [$statusInfo]\n";
 					}
 				}
 			}
@@ -239,7 +242,7 @@ class DbTestPreviewer extends TestRecorder  {
 		// Otherwise, this test has previous recorded results.
 		// See when this test last had a different result to what we're seeing now.
 		$conds = array(
-			'ti_name'    => $testname,
+			'ti_name'	 => $testname,
 			'ti_success' => ( $after == 'f' ? "1" : "0" ) );
 
 		if ( $this->curRun ) {
@@ -278,7 +281,7 @@ class DbTestPreviewer extends TestRecorder  {
 		}
 
 		return ( $after == "f" ? "Introduced" : "Fixed" ) . " between "
-				. date( "d-M-Y H:i:s",  strtotime ( $pre->tr_date ) ) .  ", " . $pre->tr_mw_version
+				. date( "d-M-Y H:i:s",	strtotime ( $pre->tr_date ) ) .	 ", " . $pre->tr_mw_version
 				. " and $postDate";
 
 	}
@@ -324,11 +327,11 @@ class DbTestRecorder extends DbTestPreviewer  {
 
 		$this->db->insert( 'testrun',
 			array(
-				'tr_date'        => $this->db->timestamp(),
-				'tr_mw_version'  => $this->version,
+				'tr_date'		 => $this->db->timestamp(),
+				'tr_mw_version'	 => $this->version,
 				'tr_php_version' => phpversion(),
-				'tr_db_version'  => $this->db->getServerVersion(),
-				'tr_uname'       => php_uname()
+				'tr_db_version'	 => $this->db->getServerVersion(),
+				'tr_uname'		 => php_uname()
 			),
 			__METHOD__ );
 			if ( $wgDBtype === 'postgres' ) {
@@ -349,8 +352,8 @@ class DbTestRecorder extends DbTestPreviewer  {
 
 		$this->db->insert( 'testitem',
 			array(
-				'ti_run'     => $this->curRun,
-				'ti_name'    => $test,
+				'ti_run'	 => $this->curRun,
+				'ti_name'	 => $test,
 				'ti_success' => $result ? 1 : 0,
 			),
 			__METHOD__ );
@@ -379,8 +382,8 @@ class RemoteTestRecorder extends TestRecorder {
 	 * Inform a CodeReview instance that we've started or completed a test run...
 	 *
 	 * @param $status string: "running" - tell it we've started
-	 *                        "complete" - provide test results array
-	 *                        "abort" - something went horribly awry
+	 *						  "complete" - provide test results array
+	 *						  "abort" - something went horribly awry
 	 * @param $results array of test name => true/false
 	 */
 	function ping( $status, $results = false ) {
@@ -411,11 +414,11 @@ class RemoteTestRecorder extends TestRecorder {
 		$postData = array(
 			'action' => 'codetestupload',
 			'format' => 'json',
-			'repo'   => $remote['repo'],
-			'suite'  => $remote['suite'],
-			'rev'    => $revId,
+			'repo'	 => $remote['repo'],
+			'suite'	 => $remote['suite'],
+			'rev'	 => $revId,
 			'status' => $status,
-			'hmac'   => $hmac,
+			'hmac'	 => $hmac,
 		);
 
 		if ( $status == "complete" ) {
@@ -478,7 +481,7 @@ class TestFileIterator implements Iterator {
 		$this->lineNum = $this->index = 0;
 	}
 
-	function setParser( ParserTest $parser ) {
+	function setParser( MediaWikiParserTest $parser ) {
 		$this->parser = $parser;
 	}
 
