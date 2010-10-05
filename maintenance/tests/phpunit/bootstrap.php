@@ -1,7 +1,7 @@
-<?php
+<?php 
 /**
  * Bootstrapping for MediaWiki PHPUnit tests
- *
+ * 
  * @file
  */
 
@@ -44,80 +44,21 @@ EOF;
 /* Classes */
 
 abstract class MediaWikiTestSetup extends PHPUnit_Framework_TestCase {
-	protected $suite;
-	public $regex = '';
-	public $runDisabled = false;
 
-
-	function __construct( PHPUnit_Framework_TestSuite $suite = null ) {
-	    if ( null !== $suite ) {
-			$this->suite = $suite;
-		}
-	}
-
-	function __call( $func, $args ) {
-		if ( method_exists( $this->suite, $func ) ) {
-			return call_user_func_array( array( $tohis->suite, $func ), $args);
-		} else {
-			throw new MWException( "Called non-existant $func method on "
-				. get_class( $this ) );
-		}
-		return false;
-	}
-
-    /**
-     * @group utility
-     */
-	function getSuite() {
-		return $this->suite;
-	}
-
-	/**
-	 * Remove last character if it is a newline
-     * @group utility
-	 */
-	public function chomp( $s ) {
-		if ( substr( $s, -1 ) === "\n" ) {
-			return substr( $s, 0, -1 );
-		}
-		else {
-			return $s;
-		}
-	}
-
-	public function addArticle( $name, $text, $line ) {
-		global $wgCapitalLinks;
-		$oldCapitalLinks = $wgCapitalLinks;
-		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
-
-		$title = Title::newFromText( $name );
-
-		if ( is_null( $title ) ) {
-			wfDie( "invalid title at line $line\n" );
-		}
-
-		$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
-
-		if ( $aid != 0 ) {
-			wfDie( "duplicate article '$name' at line $line\n" );
-		}
-
-		$art = new Article( $title );
-		$art->insertNewArticle( $text, '', false, false );
-
-		$wgCapitalLinks = $oldCapitalLinks;
-	}
-
-    /**
-     * @group utility
-     */
-	 function buildTestDatabase( $tables ) {
+	protected function buildTestDatabase( $tables ) {
 		global $wgDBprefix;
 
 		$db = wfGetDB( DB_MASTER );
 		$oldTableNames = array();
 		foreach ( $tables as $table )
 			$oldTableNames[$table] = $db->tableName( $table );
+		if ( $db->getType() == 'oracle' ) {
+			$wgDBprefix = 'pt_';
+		} else {
+			$wgDBprefix = 'parsertest_';
+		}
+
+		$db->tablePrefix( $wgDBprefix );
 
 		if ( $db->isOpen() ) {
 			foreach ( $tables as $tbl ) {

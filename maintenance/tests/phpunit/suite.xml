@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit bootstrap="./bootstrap.php"
-         colors="false"
+		 colors="false"
          backupGlobals="false"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         stopOnFailure="false"
-         strict="true">
+		 stopOnFailure="false">
 	<testsuites>
 		<testsuite name="includes">
 			<directory>./includes</directory>
@@ -24,7 +23,6 @@
 	</testsuites>
 	<groups>
 		<exclude>
-                  	<group>Utility</group>
 			<group>Broken</group>
 			<group>Stub</group>
 		</exclude>

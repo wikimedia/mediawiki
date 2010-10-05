@@ -32,8 +32,8 @@ class ApiTest extends ApiTestSetup {
 	}
 
 	/**
-	 * @expectedException UsageException
-	 */
+     * @expectedException UsageException
+     */
 	function testRequireOnlyOneParameterZero() {
 		$mock = new MockApi();
 
@@ -43,8 +43,8 @@ class ApiTest extends ApiTestSetup {
 	}
 
 	/**
-	 * @expectedException UsageException
-	 */
+     * @expectedException UsageException
+     */
 	function testRequireOnlyOneParameterTrue() {
 		$mock = new MockApi();
 
@@ -98,7 +98,7 @@ class ApiTest extends ApiTestSetup {
 			"lgpassword" => "bad",
 			)
 		);
-
+		
 		$result = $ret[0];
 
 		$this->assertNotType( "bool", $result );
@@ -180,7 +180,6 @@ class ApiTest extends ApiTestSetup {
 
 		libxml_use_internal_errors( true );
 		$sxe = simplexml_load_string( $req->getContent() );
-
 		$this->assertNotType( "bool", $sxe );
 		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
 		$this->assertNotType( "null", $sxe->login[0] );
@@ -201,6 +200,7 @@ class ApiTest extends ApiTestSetup {
 		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
 		$this->assertNotEquals( '', $serializedCookie );
 		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$user->userName . '; .*Token=/', $serializedCookie );
+
 		return $cj;
 	}
 
