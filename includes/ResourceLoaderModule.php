@@ -1123,11 +1123,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Startup function
 			$configuration = FormatJson::encode( $this->getConfig( $context ) );
 			$registrations = self::getModuleRegistrations( $context );
-			$out .= "window.startUp = function() {\n\t$registrations\n\tmediaWiki.config.set( $configuration );\n};";
+			$out .= "var startUp = function() {\n\t$registrations\n\tmediaWiki.config.set( $configuration );\n};";
 			
 			// Conditional script injection
 			$scriptTag = Xml::escapeJsString( Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) ) );
-			$out .= "if ( isCompatible() ) {\n\tdocument.write( '$scriptTag' );\n}\ndelete window['isCompatible'];";
+			$out .= "if ( isCompatible() ) {\n\tdocument.write( '$scriptTag' );\n}\ndelete isCompatible;";
 		}
 
 		return $out;
