@@ -1700,18 +1700,36 @@ $1',
 'mostcategories'          => 'Күп категорияларға кертелгән биттәр',
 'mostimages'              => 'Иң күп һылтанма яһалған рәсемдәр',
 'mostrevisions'           => 'Иң күп үҙгәртеү яһалған биттәр',
-'prefixindex'             => 'Бит исемдәренә буйынса күрһәткес',
+'prefixindex'             => 'Исемдәре башында ҡушымта торған биттәр',
 'shortpages'              => 'Ҡыҫҡа биттәр',
 'longpages'               => 'Оҙон биттәр',
 'deadendpages'            => 'Көрсөк биттәр',
+'deadendpagestext'        => 'Түбәндәге биттәр {{SITENAME}} проектының башҡа биттәренә һылтанма яһамай.',
 'protectedpages'          => 'Һаҡланған биттәр',
+'protectedpages-indef'    => 'Сикләнмәгән һаҡлауҙар ғына',
+'protectedpages-cascade'  => 'Эҙмә-эҙлекле һаҡлауҙар ғына',
+'protectedpagestext'      => 'Түбәндәге биттәр исемен үҙгәртеүҙән йәки мөхәррирләүҙән һаҡланған.',
+'protectedpagesempty'     => 'Әлеге ваҡытта күрһәтелгән шарттар менән һаҡланған биттәр юҡ.',
 'protectedtitles'         => 'Тыйылған исемдәр',
+'protectedtitlestext'     => 'Түбәндәге исемдәрҙе ҡулланыу рөхсәт ителмәй.',
+'protectedtitlesempty'    => 'Әлеге ваҡытта күрһәтелгән шарттар менән һаҡланған исемдәр юҡ.',
 'listusers'               => 'Ҡатнашыусылар исемлеге',
+'listusers-editsonly'     => 'Кәмендә бер үҙгәртеү индергән ҡатнашыусыларҙы ғына күрһәтергә',
+'listusers-creationsort'  => 'Булдырыу көнө буйынса тәртипкә килтерергә',
+'usereditcount'           => '$1 {{PLURAL:$1|үҙгәртеү}}',
+'usercreated'             => '$1 $2 булдырылған',
 'newpages'                => 'Яңы биттәр',
 'newpages-username'       => 'Ҡатнашыусы:',
 'ancientpages'            => 'Иң иҫке мәҡәләләр',
 'move'                    => 'Яңы исем биреү',
 'movethispage'            => 'Биттең исемен үҙгәртергә',
+'unusedimagestext'        => 'Түбәндәге файлдар бер биттә лә ҡулланылмай.
+Зинһар, икенсе веб-сайттар был файлға уның URL адресы аша һылтана ала һәм, шулай итеп, файл был исемлеккә кергән хәлдә лә ҡулланыла ала, икәнен иҫәпкә алығыҙ.',
+'unusedcategoriestext'    => 'Түбәндәге категорияларҙы башҡа биттәр йәки категориялар ҡулланмай.',
+'notargettitle'           => 'Кәрәкле бит исеме күрһәтелмәгән',
+'notargettext'            => 'Һеҙ был ғәмәл өсөн кәрәкле битте йәки ҡатнашыусыны күрһәтмәгәнһегеҙ.',
+'nopagetitle'             => 'Бындай бит юҡ',
+'nopagetext'              => 'Һеҙ күрһәткән бит юҡ.',
 'pager-newer-n'           => '{{PLURAL:$1|1 яңыраҡ|$1 яңыраҡ}}',
 'pager-older-n'           => '{{PLURAL:$1|1 иҫкерәк|$1 иҫкерәк}}',
 
@@ -1719,16 +1737,22 @@ $1',
 'booksources'               => 'Китап сығанаҡтары',
 'booksources-search-legend' => 'Китап сығанаҡтарын эҙлә',
 'booksources-go'            => 'Эҙлә',
+'booksources-text'          => 'Түбәндәге исемлектә — китаптар һатыу менән шөғөлләнеүсе сайттарға һәм китапханаларҙың эҙләү системаларына һылтанмалар, һәм уларҙа һеҙ эҙләгән китаптар тураһында өҫтәмә мәғлүмәт булыуы мөмкин.',
+'booksources-invalid-isbn'  => 'Күрһәтелгән ISBN номерҙа хата булырға тейеш. Зинһар, номерҙы сығанаҡтан дөрөҫ күсереүегеҙҙе тикшерегеҙ.',
 
 # Special:Log
 'specialloguserlabel'  => 'Ҡатнашыусы:',
 'speciallogtitlelabel' => 'Исеме:',
 'log'                  => 'Журналдар',
 'all-logs-page'        => 'Барлыҡ асыҡ журналдар',
+'alllogstext'          => '{{SITENAME}} проектының дөйөм яҙмалар журналы исемлеге. Һеҙ һөҙөмтәләрҙе журнал төрө буйынса, ҡатаншыусы исеме буйынса (регистр иҫәпкә алына) йәки ҡағылған бит исеме буйынса (шулай уҡ регистр иҫәпкә алына) һайлап ала алаһығыҙ.',
+'logempty'             => 'Журнал яҙмаларында һайланған юлдар юҡ.',
+'log-title-wildcard'   => 'Керетелгән хәрефтәр менән башланған исемдәрҙе табырға',
 
 # Special:AllPages
 'allpages'          => 'Бөтә биттәр',
 'alphaindexline'    => '$1 алып $2 тиклем',
+'nextpage'          => 'Киләһе бит ($1)',
 'prevpage'          => 'Алдағы бит ($1)',
 'allpagesfrom'      => 'Ошондай хәрефтәрҙән башланған биттәрҙе күрһәтергә:',
 'allpagesto'        => 'Ошоға бөткән биттәрҙе күрһәтергә:',
@@ -1738,45 +1762,98 @@ $1',
 'allpagesprev'      => 'Алдағы',
 'allpagesnext'      => 'Киләһе',
 'allpagessubmit'    => 'Үтәргә',
+'allpagesprefix'    => 'Ошо хәрефтәр менән башланған биттәрҙе күрһәтергә:',
+'allpagesbadtitle'  => 'Күрһәтелгән бит исеме дөрөҫ түгел йәки телдәр араһы йәки интервики ҡушымтаһы менән башлана.
+Исемдә тыйылған символдар булыуы ла мөмкин.',
+'allpages-bad-ns'   => '{{SITENAME}} проектында "$1" исемдәр арауығы юҡ.',
 
 # Special:Categories
-'categories' => 'Категориялар',
+'categories'                    => 'Категориялар',
+'categoriespagetext'            => 'Түбәндәге {{PLURAL:$1|категорияла|категорияларҙа}} биттәр йәки файлдар бар.
+[[Special:UnusedCategories|Ҡулланылмаған категориялар]] бында күрһәтелмәгән.
+Шулай уҡ [[Special:WantedCategories|кәрәкле категориялар исемлеген]] ҡарағыҙ.',
+'categoriesfrom'                => 'Ошондай хәрефтәрҙән башланған категорияларҙы күрһәтергә:',
+'special-categories-sort-count' => 'күләме буйынса тәртипкә килтерергә',
+'special-categories-sort-abc'   => 'алфавит буйынса тәртипкә килтерергә',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Ҡулланыусыларҙың юйылған өлөшө',
-'deletedcontributions-title' => 'Ҡулланыусыларҙың юйылған өлөшө',
+'deletedcontributions'             => 'Ҡулланыусыларҙың юйылған өлөшө',
+'deletedcontributions-title'       => 'Ҡулланыусыларҙың юйылған өлөшө',
+'sp-deletedcontributions-contribs' => 'ҡылған эштәр',
 
 # Special:LinkSearch
-'linksearch'     => 'Тышҡы һылтанмалар',
-'linksearch-pat' => 'Эҙләү өсөн ҡалып',
-'linksearch-ns'  => 'Исемдәр арауығы:',
-'linksearch-ok'  => 'Эҙләү',
+'linksearch'       => 'Тышҡы һылтанмалар',
+'linksearch-pat'   => 'Эҙләү өсөн ҡалып',
+'linksearch-ns'    => 'Исемдәр арауығы:',
+'linksearch-ok'    => 'Эҙләү',
+'linksearch-text'  => '"*.wikipedia.org" һымаҡ төркөм билдәләре ҡулланыла ала.<br />
+Ҡулланылған протоколдар: <tt>$1</tt>',
+'linksearch-line'  => '$1 адресына $2 битенән һылтанма яһалған',
+'linksearch-error' => 'Төркөм билдәләре URL адрестың башында ғына ҡулланыла ала.',
 
 # Special:ListUsers
+'listusersfrom'      => 'Ошондай хәрефтәрҙән башланған ҡатнашыусыларҙы күрһәтергә:',
 'listusers-submit'   => 'Күрһәтергә',
-'listusers-noresult' => 'Ҡатнашыусылыр табылманы',
+'listusers-noresult' => 'Ҡатнашыусылар табылманы',
+'listusers-blocked'  => '(бикләнгән)',
 
 # Special:ActiveUsers
-'activeusers' => 'Әүҙем ҡатнашыусылыр исемлеге',
+'activeusers'            => 'Әүҙем ҡатнашыусылар исемлеге',
+'activeusers-intro'      => 'Был — һуңғы $1 {{PLURAL:$1|көн}} эсендә ниҙер башҡарған ҡатнашыусылар исемлеге.',
+'activeusers-count'      => 'һуңғы $3 {{PLURAL:$3|көн}} эсендә $1 {{PLURAL:$1|үҙгәртеү}}',
+'activeusers-from'       => 'Ошондай хәрефтәрҙән башланған ҡатнашыусыларҙы күрһәтергә:',
+'activeusers-hidebots'   => 'Боттарҙы йәшерергә',
+'activeusers-hidesysops' => 'Хәкимдәрҙе йәшерергә',
+'activeusers-noresult'   => 'Ҡатнашыусылар табылманы',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Яңы ҡулланыусы яҙмалары',
-'newuserlog-create-entry' => 'Яңы ҡулланыусы',
+'newuserlogpage'              => 'Яңы ҡулланыусы яҙмалары',
+'newuserlogpagetext'          => 'Яңы теркәлгән ҡатнашыусылар яҙмалары журналы.',
+'newuserlog-byemail'          => 'пароль электрон почта адресы аша ебәрелде',
+'newuserlog-create-entry'     => 'Яңы ҡулланыусы',
+'newuserlog-create2-entry'    => 'яңы $1 иҫәп яҙмаһын булдырған',
+'newuserlog-autocreate-entry' => 'Иҫәп яҙмаһы үҙенән-үҙе булдырылған',
 
 # Special:ListGroupRights
-'listgrouprights'          => 'Ҡатнашыусылар төркөмө хоҡуҡтары',
-'listgrouprights-group'    => 'Төркөм',
-'listgrouprights-rights'   => 'Хоҡуҡтар',
-'listgrouprights-helppage' => 'Белешмә: Төркөмдәр хоҡуҡтары',
-'listgrouprights-members'  => '(ағзалар исемлеге)',
+'listgrouprights'                      => 'Ҡатнашыусылар төркөмө хоҡуҡтары',
+'listgrouprights-summary'              => 'Түбәндә был вики-проектта билдәләнгән ҡатнашыусы төркөмдәре килтерелгән һәм уларҙың хоҡуҡтары күрһәтелгән.
+Шәхси хоҡуҡтар тураһында [[{{MediaWiki:Listgrouprights-helppage}}|өҫтәмә мәғлүмәт]] булыуы мөмкин.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Бирелгән хоҡуҡтар</span>
+* <span class="listgrouprights-revoked">Алынған хоҡуҡтар</span>',
+'listgrouprights-group'                => 'Төркөм',
+'listgrouprights-rights'               => 'Хоҡуҡтар',
+'listgrouprights-helppage'             => 'Help:Төркөмдәр хоҡуҡтары',
+'listgrouprights-members'              => '(ағзалар исемлеге)',
+'listgrouprights-addgroup'             => '$1 {{PLURAL:$2|төркөмөнә|төркөмдәренә}} өҫтәү',
+'listgrouprights-removegroup'          => '$1 {{PLURAL:$2|төркөмөнән|төркөмдәренән}} сығарыу',
+'listgrouprights-addgroup-all'         => 'Бөтә төркөмдәргә өҫтәү',
+'listgrouprights-removegroup-all'      => 'Бөтә төркөмдәрҙән сығарыу',
+'listgrouprights-addgroup-self'        => 'Үҙенең иҫәп яҙмаһына $1 {{PLURAL:$2|төркөмөн|төркөмдәрен}} өҫтәү',
+'listgrouprights-removegroup-self'     => 'Үҙенең иҫәп яҙмаһынан $1 {{PLURAL:$2|төркөмөн|төркөмдәрен}} юйыу',
+'listgrouprights-addgroup-self-all'    => 'Үҙенең иҫәп яҙмаһына бөтә төркөмдәрҙе өҫтәү',
+'listgrouprights-removegroup-self-all' => 'Үҙенең иҫәп яҙмаһынан бөтә төркөмдәрҙе юйыу',
 
 # E-mail user
-'emailuser'    => 'Ҡатнашыусыға хат',
-'emailfrom'    => 'Кемдән:',
-'emailto'      => 'Кемгә:',
-'emailsubject' => 'Тема:',
-'emailmessage' => 'Хәбәр:',
-'emailsend'    => 'Ебәреү',
+'mailnologin'          => 'Хат ебәреү өсөн адрес юҡ',
+'mailnologintext'      => 'Башҡа ҡатнашыусыларға хат ебәреү өсөн, һеҙ [[Special:UserLogin|танылырға]] һәм [[Special:Preferences|көйләүҙәрегеҙҙә]] ысын электрон адрес почтаһы кереткән булырға тейешһегеҙ.',
+'emailuser'            => 'Ҡатнашыусыға хат',
+'emailpage'            => 'Ҡатнашыусыға хат',
+'emailpagetext'        => 'Был ҡатнашыусыға электрон почта аша хат ебәреү өсөн, һеҙ түбәндәге форманы ҡуллана алаһығыҙ.
+Яуап өсөн адрес булараҡ һеҙ [[Special:Preferences|көйләүҙәрегеҙҙә]] күрһәткән электрон почта адресы күрһәтеләсәк, шулай итеп, хатты алыусы һеҙгә тура яуап ебәрә аласаҡ.',
+'usermailererror'      => 'Хат ебәргән ваҡытта хата килеп сыҡты:',
+'defemailsubject'      => '{{SITENAME}} проектынан хат',
+'usermaildisabled'     => 'Ҡатнашыусының электрон почтаһы һүндерелгән',
+'usermaildisabledtext' => 'Һеҙ был вики-проекттың башҡа ҡатнашыусыларына электрон хат ебәрә алмайһығыҙ',
+'noemailtitle'         => 'Электрон почта адресы юҡ',
+'noemailtext'          => 'Был ҡатнашыусы дөрөҫ электрон почта адресы күрһәтмәгән',
+'nowikiemailtitle'     => 'Электрон хат ебәреү өсөн рөхсәт юҡ',
+'nowikiemailtext'      => 'Был ҡатнашыусы башҡа ҡатнашыусыларҙан электрон хат алырға теләмәүен күрһәткән.',
+'email-legend'         => '{{SITENAME}} проектының башҡа ҡатнашыусыһына электрон хат ебәрергә',
+'emailfrom'            => 'Кемдән:',
+'emailto'              => 'Кемгә:',
+'emailsubject'         => 'Тема:',
+'emailmessage'         => 'Хәбәр:',
+'emailsend'            => 'Ебәреү',
 
 # Watchlist
 'watchlist'            => 'Күҙәтеү исемлеге',
@@ -1879,6 +1956,8 @@ $NEWPAGE
 'protect-cantedit'            => 'Һеҙ был биттең һаҡлау дәрәжәһен үҙгәртә алмайһығыҙ, сөнки уны үҙгәртеү хоҡуғығыҙ юҡ.',
 'protect-othertime'           => 'Башҡа ваҡыт:',
 'protect-othertime-op'        => 'башҡа ваҡыт',
+'protect-otherreason'         => 'Башҡа/өҫтәмә сәбәп:',
+'protect-otherreason-op'      => 'Башҡа сәбәп',
 'protect-expiry-options'      => '1 сәғәт:1 hour,1 көн:1 day,1 аҙна:1 week,2 аҙна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 йыл:1 year,сикләүһеҙ:infinite',
 'restriction-type'            => 'Хоҡуҡ:',
 'restriction-level'           => 'Ирешеү дәрәжәһе:',
@@ -1965,7 +2044,7 @@ $NEWPAGE
 'ipbother'                 => 'Башҡа ваҡыт:',
 'ipboptions'               => '2 сәғәт:2 hours,1 көн:1 day,3 көн:3 days,1 аҙна:1 week,2 аҙна:2 weeks,1 ай:1 month,3ай:3 months,6 ай:6 months,1 йыл:1 year,сикләнмәгән:infinite',
 'ipbotheroption'           => 'башҡа',
-'ipblocklist'              => 'Тыйылған IP-адрестар һәм ҡатнашыусылыр',
+'ipblocklist'              => 'Тыйылған IP-адрестар һәм ҡатнашыусылар',
 'ipblocklist-submit'       => 'Эҙләү',
 'blocklink'                => 'ябып ҡуйырға',
 'unblocklink'              => 'Тыйыуҙы кире алырға',
@@ -2029,10 +2108,14 @@ $NEWPAGE
 'allmessagescurrent'        => 'Хәҙерге яҙма',
 'allmessages-filter-legend' => 'Иләк',
 'allmessages-filter-all'    => 'Бөтә',
+'allmessages-language'      => 'Тел:',
 'allmessages-filter-submit' => 'Күсергә',
 
 # Thumbnails
 'thumbnail-more' => 'Ҙурайтырға',
+
+# Special:Import
+'import-upload-filename' => 'Файл исеме:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ҡулланыусы битегеҙ',
@@ -2232,7 +2315,7 @@ $NEWPAGE
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Бер төрлө файлдарҙы эҙләргә',
-'fileduplicatesearch-filename' => 'Файл исеме',
+'fileduplicatesearch-filename' => 'Файл исеме:',
 'fileduplicatesearch-submit'   => 'Эҙләү',
 
 # Special:SpecialPages

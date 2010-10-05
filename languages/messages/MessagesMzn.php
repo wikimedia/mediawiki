@@ -275,7 +275,7 @@ $messages = array(
 'viewtalkpage'      => 'گپ ئون ره نشون هدائن',
 'otherlanguages'    => 'دیـگـه زیوون‌ئون',
 'redirectedfrom'    => '(به‌مونه   $1   جه)',
-'redirectpagesub'   => 'گجگی‌بایری',
+'redirectpagesub'   => 'گجگی‌بَیتـِن',
 'lastmodifiedat'    => 'ای ولـگ ره پایانی جور هکاردن ره بنه وخت ره وند بونه:
 $2، $1',
 'jumpto'            => 'کـأپـتـه تـا:',
