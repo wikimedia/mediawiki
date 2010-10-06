@@ -221,7 +221,6 @@ class SpecialSearch {
 
 		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
 		if( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
-			$wgOut->addHTML( $this->searchFocus() );
 			$wgOut->addHTML( $this->formHeader($term, 0, 0));
 			if( $this->searchAdvanced ) {
 				$wgOut->addHTML( $this->powerSearchBox( $term ) );
@@ -307,9 +306,6 @@ class SpecialSearch {
 			$this->showCreateLink( $t );
 		}
 		$wgOut->addHtml( "</div>" );
-		if( $num === 0 ) {
-			$wgOut->addHTML( $this->searchFocus() );
-		}
 
 		if( $num || $this->offset ) {
 			$wgOut->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
@@ -367,9 +363,7 @@ class SpecialSearch {
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		// add javascript specific to special:search
 		$wgOut->addModules( 'mediawiki.legacy.search' );
-
-		// Bug #16886: Sister projects box moves down the first extract on IE7  
-		$wgOut->addStyle( 'common/IE70Fixes.css', 'screen', 'IE 7' );
+		$wgOut->addModules( 'mediawiki.specials.search' );
 	}
 
 	/**
@@ -831,14 +825,6 @@ class SpecialSearch {
 			Xml::hidden( 'advanced', $this->searchAdvanced ) .
 			Xml::hidden( 'fulltext', 'Advanced search' ) .
 			Xml::closeElement( 'fieldset' );
-	}
-
-	protected function searchFocus() {
-		$id = $this->searchAdvanced ? 'powerSearchText' : 'searchText';
-		return Html::inlineScript(
-			"hookEvent(\"load\", function() {" .
-				"document.getElementById('$id').focus();" .
-			"});" );
 	}
 	
 	protected function getSearchProfiles() {

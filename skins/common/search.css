@@ -6,7 +6,9 @@
  * where there was space for the extracts and the 
  * sister projects and thus it showed like in any 
  * other browser.
+ *
+ * This will only affect IE 7 and lower
  */
-.searchresult {
+html > body .searchresult {
 	display: inline;
 }

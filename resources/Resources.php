@@ -310,6 +310,9 @@ return array(
 	'mediawiki.specials.preferences' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki/mediawiki.specials.preferences.js',
 	) ),
+	'mediawiki.specials.search' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki/mediawiki.specials.search.js',
+	) ),
 	
 	/* MediaWiki Legacy */
 	
@@ -395,6 +398,7 @@ return array(
 	) ),
 	'mediawiki.legacy.search' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/search.js',
+		'styles' => 'skins/common/search.css',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	) ),
 	'mediawiki.legacy.shared' => new ResourceLoaderFileModule( array(
