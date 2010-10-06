@@ -324,8 +324,6 @@ class EditPage {
 			$wgOut->includeJQuery();
 			$wgOut->addModules( 'mediawiki.legacy.preview' );
 		}
-		// Bug #19334: textarea jumps when editing articles in IE8
-		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
 
 		$permErrors = $this->getEditPermissionErrors();
 		if ( $permErrors ) {
