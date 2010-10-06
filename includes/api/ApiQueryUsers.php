@@ -36,6 +36,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
  class ApiQueryUsers extends ApiQueryBase {
 
+	private $tokenFunctions;
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'us' );
 	}

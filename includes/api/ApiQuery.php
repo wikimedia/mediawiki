@@ -44,7 +44,7 @@ class ApiQuery extends ApiBase {
 
 	private $mPropModuleNames, $mListModuleNames, $mMetaModuleNames;
 	private $mPageSet;
-	private $params;
+	private $params, $redirects, $convertTitles;
 
 	private $mQueryPropModules = array(
 		'info' => 'ApiQueryInfo',
@@ -492,6 +492,7 @@ class ApiQuery extends ApiBase {
 	/**
 	 * Create a generator object of the given type and return it
 	 * @param $generatorName string Module name
+	 * @return ApiQueryGeneratorBase
 	 */
 	public function newGenerator( $generatorName ) {
 		// Find class that implements requested generator
@@ -513,7 +514,7 @@ class ApiQuery extends ApiBase {
 	/**
 	 * For generator mode, execute generator, and use its output as new
 	 * ApiPageSet
-	 * @param $generator string Module name
+	 * @param $generator ApiQueryGeneratorBase Generator Module
 	 * @param $modules array of module objects
 	 */
 	protected function executeGeneratorModule( $generator, $modules ) {
