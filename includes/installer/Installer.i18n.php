@@ -285,7 +285,6 @@ Check the data directory and database name below and try again.',
 	'config-sqlite-readonly'          => 'The file <code>$1</code> is not writeable.',
 	'config-sqlite-cant-create-db'    => 'Could not create database file <code>$1</code>.',
 	'config-sqlite-fts3-downgrade'    => 'PHP is missing FTS3 support, downgrading tables',
-	'config-sqlite-fts3-add'          => 'Adding FTS3 search capabilities',
 	'config-can-upgrade'              => "There are MediaWiki tables in this database.
 To upgrade them to MediaWiki $1, click '''Continue'''.",
 	'config-upgrade-done'             => "Upgrade complete.
@@ -1039,7 +1038,6 @@ chmod a+w $3</pre>',
 	'config-sqlite-readonly' => 'Файл <code>$1</code> недаступны для запісу.',
 	'config-sqlite-cant-create-db' => 'Немагчыма стварыць файл базы зьвестак <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'PHP бракуе падтрымкі FTS3 — табліцы пагаршаюцца',
-	'config-sqlite-fts3-add' => 'Дадаюцца пошукавыя магчымасьці FTS3',
 	'config-can-upgrade' => "У гэтай базе зьвестак ёсьць табліцы MediaWiki.
 Каб абнавіць іх да MediaWiki $1, націсьніце '''Працягнуць'''.",
 	'config-upgrade-done' => "Абнаўленьне завершанае.
@@ -1728,7 +1726,6 @@ Bitte unten angegebenes Datenverzeichnis sowie den Datenbanknamen überprüfen u
 	'config-sqlite-readonly' => 'Die Datei <code>$1</code> ist nicht beschreibbar.',
 	'config-sqlite-cant-create-db' => 'Die Datenbankdatei <code>$1</code> konnte nicht erzeugt werden.',
 	'config-sqlite-fts3-downgrade' => 'PHP verfügt nicht über FTS3-Unterstützung. Die Tabellen wurden zurückgestuft.',
-	'config-sqlite-fts3-add' => 'Hinzufügen der FTS3-Suchfunktionen',
 	'config-can-upgrade' => "Es wurden MediaWiki-Tabellen in dieser Datenbank gefunden.
 Um sie auf MediaWiki $1 zu aktualisieren, bitte auf '''Weiter''' klicken.",
 	'config-upgrade-done' => "Die Aktualisierung ist abgeschlossen.
@@ -2503,7 +2500,6 @@ Vérifier le répertoire des données et le nom de la base de données ci-dessou
 	'config-sqlite-readonly' => "Le fichier <code>$1</code> n'est pas accessible en écriture.",
 	'config-sqlite-cant-create-db' => 'Impossible de créer le fichier de base de données <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'PHP ne vient pas avec FTS3, les tables sont diminuées.',
-	'config-sqlite-fts3-add' => 'Ajout des services de recherche FTS3',
 	'config-can-upgrade' => "Il y a des tables MediaWiki dans cette base de données. 
 Pour les mettre au niveau de MediaWiki $1, cliquez sur '''Continuer'''.",
 	'config-upgrade-done' => "Mise à jour complétée. 
@@ -2977,7 +2973,6 @@ Comprobe o directorio de datos e o nome da base de datos que hai a continuación
 	'config-sqlite-readonly' => 'Non se pode escribir no ficheiro <code>$1</code>.',
 	'config-sqlite-cant-create-db' => 'Non se puido crear o ficheiro da base de datos <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'Falta o soporte FTS3 para o PHP; diminuíndo as táboas',
-	'config-sqlite-fts3-add' => 'Engadindo as capacidades de procura FTS3',
 	'config-can-upgrade' => "Existen táboas MediaWiki nesta base de datos.
 Para actualizalas a MediaWiki \$1, prema sobre \"'''Continuar'''\".",
 	'config-upgrade-done' => "Actualización completada.
@@ -3403,7 +3398,6 @@ Skontroluj datowy zapis a mjeno datoweje banki kaj spytaj hišće raz.',
 	'config-sqlite-readonly' => 'Do dataje <code>$1</code> njeda so pisać.',
 	'config-sqlite-cant-create-db' => 'Dataja <code>$1</code> datoweje banki njeda so wutworić.',
 	'config-sqlite-fts3-downgrade' => 'PHP wo podpěrje FTS3 k dispoziciji njesteji, table so znižuja',
-	'config-sqlite-fts3-add' => 'Pytanske funkcije FTS3 přidać',
 	'config-can-upgrade' => "Su tabele MediaWiki w tutej datowej bance.
 Zo by je na MediaWiki $1 aktualizował, klikń na '''Dale'''.",
 	'config-regenerate' => 'LocalSettings.php znowa wutworić →',
@@ -3925,7 +3919,6 @@ Verifica le directorio de datos e le nomine de base de datos hic infra e reproba
 	'config-sqlite-readonly' => 'Le file <code>$1</code> non es accessibile pro scriptura.',
 	'config-sqlite-cant-create-db' => 'Non poteva crear le file de base de datos <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'PHP non ha supporto pro FTS3. Le tabellas es retrogradate.',
-	'config-sqlite-fts3-add' => 'Adde capabilitates de recerca de FTS3',
 	'config-can-upgrade' => "Il ha tabellas MediaWiki in iste base de datos.
 Pro actualisar los a MediaWiki $1, clicca super '''Continuar'''.",
 	'config-upgrade-done' => "Actualisation complete.
@@ -4231,7 +4224,6 @@ Penembolokan obyek tidak dinonaktifkan.",
 Periksa direktori data dan nama basis data di bawah dan coba lagi.',
 	'config-sqlite-readonly' => 'Berkas <code>$1</code> tidak dapat ditulisi.',
 	'config-sqlite-cant-create-db' => 'Tidak dapat membuat berkas basis data <code>$1</code>.',
-	'config-sqlite-fts3-add' => 'Menambahkan kemampuan pencarian FTS3',
 	'config-can-upgrade' => "Ada tabel MediaWiki di basis dataini.
 Untuk memperbaruinya ke MediaWiki $1, klik '''Lanjut'''.",
 	'config-regenerate' => 'Regenerasi LocalSettings.php →',
@@ -4594,7 +4586,6 @@ chmod a+w $3</pre>',
 	'config-sqlite-readonly' => 'ファイル<code>$1</code>は書き込み不能です。',
 	'config-sqlite-cant-create-db' => 'データベースファイル<code>$1</code>を作成できませんでした。',
 	'config-sqlite-fts3-downgrade' => 'PHPはFTS3のサポート、テーブルのダウングレードが無効です。',
-	'config-sqlite-fts3-add' => 'FTS3の検索機能を追加する',
 	'config-can-upgrade' => 'このデータベースにはメディアウィキテーブルが存在します。
 それらをメディアウィキ$1にアップグレードするために「続行」をクリックしてください。',
 	'config-upgrade-done' => "更新は完了しました。
@@ -5431,7 +5422,6 @@ chmod a+w $3</pre>',
 	'config-sqlite-readonly' => 'Податотеката <code>$1</code> е незапислива.',
 	'config-sqlite-cant-create-db' => 'Не можев да ја создадам податотеката <code>$1</code> за базата.',
 	'config-sqlite-fts3-downgrade' => 'PHP нема поддршка за FTS3 — ја поништувам надградбата за табелите',
-	'config-sqlite-fts3-add' => 'Додавам пребарувачки способности FTS3',
 	'config-can-upgrade' => "Во оваа база има табели на МедијаВики.
 За да ги надградите на МедијаВики $1, кликнете на '''Продолжи'''.",
 	'config-upgrade-done' => "Надградбата заврши.
@@ -5925,7 +5915,6 @@ Controleer de map voor gegevens en de databasenaam hieronder en probeer het opni
 	'config-sqlite-cant-create-db' => 'Het was niet mogelijk het databasebestand <code>$1</code> aan te maken.',
 	'config-sqlite-fts3-downgrade' => 'PHP heeft geen ondersteuning voor FTS3.
 De tabellen worden gedowngrade.',
-	'config-sqlite-fts3-add' => 'FTS3 zoekmogelijkheden aan het toevoegen',
 	'config-can-upgrade' => "Er staan al tabellen voor MediaWiki in deze database.
 Klik op '''Doorgaan''' om ze bij te werken naar MediaWiki $1.",
 	'config-upgrade-done' => "Het bijwerken is afgerond.
@@ -6653,7 +6642,6 @@ Controlé ël dossié ëd dat e ël nòm ëd la base ëd dàit ambelessì-sota e
 	'config-sqlite-readonly' => "L'archivi <code>$1</code> a l'é nen scrivìbil.",
 	'config-sqlite-cant-create-db' => "As peul pa cresse l'archivi ëd base ëd dàit <code>$1</code>.",
 	'config-sqlite-fts3-downgrade' => "PHP a l'ha pa ël supòrt ëd FTS3, le tàule a son degradà",
-	'config-sqlite-fts3-add' => "Gionta dle capassità d'arserca FTS3",
 	'config-can-upgrade' => "A-i é dle tàule MediaWiki an costa base ëd dàit.
 Për agiorneje a MediaWiki $1, ch'a sgnaca su '''Continué'''.",
 	'config-upgrade-done' => "Agiornament completà.
@@ -7144,7 +7132,6 @@ Verifique o directório de dados e o nome da base de dados abaixo e tente novame
 	'config-sqlite-readonly' => 'Não é possivel escrever no ficheiro <code>$1</code>.',
 	'config-sqlite-cant-create-db' => 'Não foi possível criar o ficheiro da base de dados <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'O PHP não tem suporte FTS3; a reverter o esquema das tabelas para o anterior',
-	'config-sqlite-fts3-add' => 'A adicionar as capacidades de pesquisa FTS3',
 	'config-can-upgrade' => "Esta base de dados contém tabelas do MediaWiki.
 Para actualizá-las para o MediaWiki $1, clique '''Continuar'''.",
 	'config-upgrade-done' => "Actualização terminada.
@@ -7650,7 +7637,6 @@ chmod a+w $3</pre>',
 	'config-sqlite-readonly' => 'Файл <code>$1</code> недоступен для записи.',
 	'config-sqlite-cant-create-db' => 'Не удаётся создать файл базы данных <code>$1</code> .',
 	'config-sqlite-fts3-downgrade' => 'У PHP отсутствует поддержка FTS3 — сбрасываем таблицы',
-	'config-sqlite-fts3-add' => 'Добавление возможности поиска через FTS3',
 	'config-can-upgrade' => "В базе данных найдены таблицы MediaWiki. 
 Чтобы обновить их до MediaWiki $1, нажмите на кнопку '''«Продолжить»'''.",
 	'config-upgrade-done' => "Обновление завершено. 
