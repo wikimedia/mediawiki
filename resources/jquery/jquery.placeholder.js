@@ -16,7 +16,7 @@ jQuery.fn.placeholder = function( text ) {
 	// Otherwise, use a combination of blur and focus event handlers and a placeholder class
 	else {
 		jQuery(this).each( function() {
-			$input = jQuery(this);
+			var $input = jQuery(this);
 			$input
 				// Show on blur if empty
 				.bind( 'blur', function() {

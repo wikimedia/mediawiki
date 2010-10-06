@@ -2,14 +2,14 @@
  * JavaScript for Special:Preferences
  */
 
-$( '#prefsubmit' ).attr( 'id', 'prefcontrol' ).end()
+$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
 $( '#preferences' )
 	.addClass( 'jsprefs' )
 	.before( $( '<ul id="preftoc"></ul>' ) )
-	.find( '> fieldset' )
+	.children( 'fieldset' )
 	.hide()
 	.addClass( 'prefsection' )
-	.find( '> legend' )
+	.children( 'legend' )
 	.addClass( 'mainLegend' )
 	.each( function( i ) {
 		$(this).parent().attr( 'id', 'prefsection-' + i );
