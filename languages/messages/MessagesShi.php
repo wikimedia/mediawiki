@@ -498,6 +498,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'uploadnologintext'        => 'Mel zwar mat git [[Special:UserLogin|Mel mat git]] iɣ trit ad tsrbut isddawn.',
 'upload_directory_missing' => '↓ Akaram n w-affay ($1) ur ittyufa d urt iskr uqadac web (serveur)',
 'uploadlogpage'            => '↓ Anɣmis n isrbuṭn',
+'uploadedimage'            => '↓ Issrba "[[$1]]"',
 
 # File description page
 'filehist'                  => 'Amzry n usdaw',
@@ -572,6 +573,9 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Special:Log/newusers
 'newuserlogpage' => '↓ Aɣmis n willi mmurzmn imiḍan amsqdac',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '↓ Umuɣ n  midn',
 
 # E-mail user
 'emailuser' => '↓ Azn tabrat umsqdac ad',
@@ -676,6 +680,11 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'blocklogentry'            => '↓ tqn [[$1]] s tizi izrin n $2 $3',
 
 # Move page
+'newtitle'                 => '↓ dar w-assaɣ amaynu:',
+'movepagebtn'              => '↓ Smmatti tasna niɣ as tsbudlt assaɣ',
+'pagemovedsub'             => '↓ tmmutti bla tamukrist',
+'movepage-moved'           => '↓ \'\'\'"$1" tmmutti s "$2"\'\'\'',
+'movedto'                  => '↓ Tmmuti s',
 '1movedto2'                => '↓ ad tmmatti z [[$1]] s [[$2]]',
 '1movedto2_redir'          => '↓ ad tmmatti [[$1]] s [[$2]] trẓ asurriti ns',
 'move-redirect-suppressed' => '↓ asuritti n ittuykkasn',

@@ -1630,7 +1630,7 @@ Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih
 'uploadlogpage'               => 'Protokol postavljanja',
 'uploadlogpagetext'           => 'Ispod je spisak najskorijih slanja.',
 'filename'                    => 'Ime datoteke',
-'filedesc'                    => 'Opis',
+'filedesc'                    => 'Sažetak',
 'fileuploadsummary'           => 'Sažetak:',
 'filereuploadsummary'         => 'Izmjene datoteke:',
 'filestatus'                  => 'Status autorskih prava:',

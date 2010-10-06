@@ -427,6 +427,7 @@ $2',
 'gotaccount'                 => "ಈಗಾಗಲೇ ಖಾತೆಯಿದೆಯೇ? '''$1'''.",
 'gotaccountlink'             => 'ಲಾಗ್ ಇನ್',
 'createaccountmail'          => 'ಇ-ಅಂಚೆಯ ಮೂಲಕ',
+'createaccountreason'        => 'ಕಾರಣ:',
 'badretype'                  => 'ನೀವು ಕೊಟ್ಟ ಪ್ರವೇಶಪದಗಳು ಬೇರೆಬೇರೆಯಾಗಿವೆ.',
 'userexists'                 => 'ನೀವು ನೀಡಿದ ಸದಸ್ಯರ ಹೆಸರು ಆಗಲೆ ಬಳಕೆಯಲ್ಲಿದೆ. ದಯವಿಟ್ಟು ಬೇರೊಂದು ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.',
 'loginerror'                 => 'ಲಾಗಿನ್ ದೋಷ',
@@ -722,6 +723,9 @@ $2',
 'revdelete-unrestricted'     => 'ನಿರ್ವಾಹಕರ ನಿಬಂಧನೆಗಳನ್ನು ತೆಗೆಯಲಾಯಿತು',
 'revdelete-hid'              => '$1 ಅಡಗಿಸಲಾಯಿತು',
 'revdelete-edit-reasonlist'  => 'ಅಳಿಸುವಿಕೆಯ ಕಾರಣಗಳನ್ನು ಸಂಪಾದಿಸು',
+
+# Revision move
+'revmove-reasonfield' => 'ಕಾರಣ:',
 
 # History merging
 'mergehistory'                     => 'ಪುಟ ಇತಿಹಾಸಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು',
@@ -2005,6 +2009,9 @@ $5
 
 # Special:Tags
 'tags-edit' => 'ಸಂಪಾದಿಸಿ',
+
+# Special:ComparePages
+'compare-page1' => 'ಪುಟ ೧',
 
 # HTML forms
 'htmlform-selectorother-other' => 'ಇತರ',

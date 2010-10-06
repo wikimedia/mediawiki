@@ -62,8 +62,16 @@ $messages = array(
 'tog-watchcreations'   => 'ကျွန်တော်ထွင်သည့်စာမျက်နှာများကို စောင့်​ကြည့်​စာ​ရင်း​ထဲ ပေါင်းထည့်ပါ',
 'tog-watchdefault'     => 'ကျွန်ုပ် တည်းဖြတ်ခဲ့သည့် စာမျက်နှာများကို စောင့်ကြည့်စာရင်းသို့  ပေါင်းထည့်ပါ။',
 
-'underline-always' => 'အမြဲ',
-'underline-never'  => 'ဘယ်သောအခါမျှ',
+'underline-always'  => 'အမြဲ',
+'underline-never'   => 'ဘယ်သောအခါမျှ',
+'underline-default' => 'ဘရောက်ဆာ default အတိုင်း',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'ဖောင့်စတိုင်ကို ပြုပြင်ရန် -',
+'editfont-default'   => 'ဘရောက်ဆာ default အတိုင်း',
+'editfont-monospace' => 'စာလုံးတိုင်းအရွယ်ညီသောဖောင့်',
+'editfont-sansserif' => 'အတက်မပါသောဖောင့်',
+'editfont-serif'     => 'အတက်ပါသောဖောင့်',
 
 # Dates
 'sunday'        => 'တ​နင်္ဂ​နွေ​',
@@ -577,7 +585,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'listusers-submit' => 'ပြ',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'အသုံးပြုသူ၏ ဖန်တီးမှုများ မှတ်တမ်း',
+'newuserlogpage'          => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
 'newuserlog-create-entry' => 'အသုံးပြုသူအသစ်',
 
 # Special:ListGroupRights
