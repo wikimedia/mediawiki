@@ -164,7 +164,6 @@ class SqliteInstaller extends DatabaseInstaller {
 			$status->warning( 'config-sqlite-fts3-downgrade' );
 			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-no-fts.sql" );
 		} elseif ( !$fts3tTable && $module == 'FTS3' ) {
-			$status->warning( 'config-sqlite-fts3-add' );
 			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-fts3.sql" );
 		}
 		return $status;
