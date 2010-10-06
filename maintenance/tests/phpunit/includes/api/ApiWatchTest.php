@@ -8,7 +8,7 @@ class ApiWatchTest extends ApiTestSetup {
 		parent::setUp();
 	}
 
-	function testLogin() {	
+	function testLogin() {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
 			'lgname' => self::$sysopUser->userName,
@@ -164,6 +164,10 @@ class ApiWatchTest extends ApiTestSetup {
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
+		
+		if ( isset( $data[0]['query']['pages'][$key]['missing'] ) ) {
+			$this->markTestIncomplete( "Target page (Main Page) doesn't exist" );
+		}
 
 		$this->assertArrayHasKey( 'pageid', $data[0]['query']['pages'][$key] );
 		$this->assertArrayHasKey( 'revisions', $data[0]['query']['pages'][$key] );
@@ -219,5 +223,4 @@ class ApiWatchTest extends ApiTestSetup {
 
 	    $this->markTestIncomplete( 'This test needs to verify the deleted article was added to the users watchlist' );
 	}
-
 }
