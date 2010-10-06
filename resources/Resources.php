@@ -313,6 +313,10 @@ return array(
 	'mediawiki.specials.search' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki/mediawiki.specials.search.js',
 	) ),
+	'mediawiki.views.history' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki/mediawiki.views.history.js',
+		'dependencies' => 'mediawiki.legacy.history',
+	) ),
 	
 	/* MediaWiki Legacy */
 	

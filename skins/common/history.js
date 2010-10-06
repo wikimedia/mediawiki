@@ -75,20 +75,3 @@ window.diffcheck = function() {
 	}
 	return true;
 }
-
-// Attach event handlers to the input elements on history page
-window.histrowinit = function() {
-	var hf = document.getElementById('pagehistory');
-	if (!hf) return;
-	var lis = hf.getElementsByTagName('li');
-	for (var i = 0; i < lis.length; i++) {
-		var inputs = historyRadios(lis[i]);
-		if (inputs[0] && inputs[1]) {
-			inputs[0].onclick = diffcheck;
-			inputs[1].onclick = diffcheck;
-		}
-	}
-	diffcheck();
-}
-
-hookEvent("load", histrowinit);

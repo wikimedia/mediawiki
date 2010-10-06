@@ -81,7 +81,7 @@ class HistoryPage {
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setSyndicated( true );
 		$wgOut->setFeedAppendQuery( 'action=history' );
-		$wgOut->addModules( array( 'mediawiki.legacy.history' ) );
+		$wgOut->addModules( array( 'mediawiki.legacy.history', 'mediawiki.views.history' ) );
 
 		$logPage = SpecialPage::getTitleFor( 'Log' );
 		$logLink = $this->skin->link(
