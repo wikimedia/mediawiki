@@ -2315,6 +2315,8 @@ Si vous êtes en hébergement mutualisé, demandez à votre fournisseur d'héber
 Si vous avez compilé PHP vous-même, reconfigurez-le en activant un client de base de données, par exemple en utilisant <code>./configure --with-mysql</code>. 
 Si vous avez installé PHP à partir d'un paquet Debian ou Ubuntu, vous devez également installer le module php5-mysql.",
 	'config-have-db' => '{{PLURAL:$2|Pilote|Pilotes}} de base de données {{PLURAL:$2|trouvé|trouvés}} : $1.',
+	'config-have-fts3' => 'SQLite est compilé avec le module [http://sqlite.org/fts3.html FTS3] ; les fonctions de recherche seront disponibles sur ce moteur.',
+	'config-no-fts3' => "'''Attention :''' SQLite est compilé sans le module [http://sqlite.org/fts3.html FTS3] ; les fonctions de recherche ne seront pas disponibles sur ce moteur.",
 	'config-register-globals' => "'''Attention : l'option <code>[http://php.net/register_globals register_globals]</code> de PHP est activée.'''
 '''Désactivez-la si vous le pouvez.'''
 MediaWiki fonctionnera, mais votre serveur sera exposé à de potentielles failles de sécurité.",
@@ -6459,8 +6461,8 @@ S'a l'é ospità ëd fasson partagià, ch'a ciama al fornidor d'ospitalità d'in
 S'a l'ha compilà chiel-midem PHP, ch'a lo configura torna con un client ëd base ëd dàit abilità, për esempi an dovrand <code>./configure --with-mysql</code>.
 S'a l'ha instalà PHP da un pachet Debian o Ubuntu, antlora a dev ëdcò instalé ël mòdul php5-mysql.",
 	'config-have-db' => '{{PLURAL:$2|Pilòta|Pilòta}} ëd base ëd dàit trovà: $1.',
-	'config-have-fts3' => "SQLite a l'é compilà con ël mòdul [http://sqlite.org/fts3.html FTS3], le funsion d'arserca a saran disponìbij su cost backend.",
-	'config-no-fts3' => "'''Avis''': SQLite a l'é compilà sensa ël mòdul [http://sqlite.org/fts3.html FTS3], le funsion d'arserca a saran pa disponìbij su cost backend.",
+	'config-have-fts3' => "SQLite a l'é compilà con ël mòdul [http://sqlite.org/fts3.html FTS3], le funsion d'arserca a saran disponìbij su cost motor.",
+	'config-no-fts3' => "'''Avis''': SQLite a l'é compilà sensa ël mòdul [http://sqlite.org/fts3.html FTS3], le funsion d'arserca a saran pa disponìbij su cost motor.",
 	'config-register-globals' => "'''Avis: L'opsion <code>[http://php.net/register_globals register_globals]</code> ëd PHP a l'é abilità.'''
 '''Ch'a la disabìlita s'a peul.'''
 MediaWiki a marcërà, ma sò servent a l'é espòst a 'd possìbij vunerabilità ëd sicurëssa.",
@@ -7978,6 +7980,8 @@ Maaaring mabigo ang pagluluklok!",
 	'config-diff3-bad' => 'Hindi natagpuan ang GNU diff3.',
 	'config-imagemagick' => 'Natagpuan ang ImageMagick: <code>$1</code>.
 Papaganahin ang pagkakagyat ng larawan kapag pinagana mo ang mga pagkakargang paitaas.',
+	'config-no-scaling' => 'Hindi matagpuan ang aklatang GD o ImageMagick.
+Hindi papaganahin ang pagkakagyat ng larawan.',
 	'config-dir' => 'Direktoryo ng pagluluklok: <code>$1</code>.',
 	'config-uri' => 'Landas na URI ng panitik: <code>$1</code>.',
 	'config-no-uri' => "'''Kamalian:''' Hindi matukoy ang pangkasalukuyang URI.
@@ -7998,6 +8002,7 @@ Pinigilan ang pagluluklok.",
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binaryo',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 paurong-kabagay UTF-8',
+	'config-mysql-old' => 'Hindi kailangan ang MySQL na $1 o mas bago, mayroon kang $2.',
 	'config-db-port' => 'Daungan ng kalipunan ng dato:',
 	'config-db-schema' => 'Panukala para sa MediaWiki',
 	'config-db-ts2-schema' => 'Panukala para sa tsearch2',
@@ -8056,8 +8061,11 @@ Tumukoy ng ibang pangalan ng tagagamit.',
 	'config-email-settings' => 'Mga katakdaan ng e-liham',
 	'config-enable-email' => 'Paganahin ang palabas na e-liham',
 	'config-email-user' => 'Paganahin ang tagagamit-sa-tagagamit na e-liham',
+	'config-email-user-help' => 'Payagan ang lahat ng mga tagagamit na magpadala ng e-liham sa bawat isa kapag pinagana nila ito sa kanilang mga nais.',
 	'config-email-usertalk' => 'Paganahin ang pabatid na pampahina ng usapan ng tagagamit',
+	'config-email-usertalk-help' => 'Payagan ang mga tagagamit na tumanggap ng mga pabatid sa mga pagbabago ng pahina ng usapan ng tagagamit, kapag pinagana nila ito sa kanilang mga nais.',
 	'config-email-watchlist' => 'Paganahin ang pabatid ng talaan ng bantayan',
+	'config-email-watchlist-help' => 'Payagan ang mga tagagamit na tumanggap ng mga pabatid tungkol sa kanilang binabantayang mga pahina kapag pinagana nila ito sa kanilang mga nais.',
 	'config-email-auth' => 'Paganahin ang pagpapatunay ng e-liham',
 	'config-email-sender' => 'Pabalik na tirahan ng e-liham:',
 	'config-upload-settings' => 'Mga pagkakarga ng mga larawan at talaksan',
@@ -8165,6 +8173,13 @@ $messages['uk'] = array(
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
 	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду. 
 Якщо ваш сайт має високий трафік, вам варто почитати про [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормалізацію Юнікоду].",
+);
+
+/** Yiddish (ייִדיש)
+ * @author פוילישער
+ */
+$messages['yi'] = array(
+	'config-admin-name' => 'אײַער נאָמען:',
 );
 
 /** Simplified Chinese (‪中文(简体)‬) */

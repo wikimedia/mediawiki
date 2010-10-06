@@ -1594,9 +1594,9 @@ A l'é disponìbil na [[Special:WhatLinksHere/$2|lista completa]].",
 'sharedupload'                      => "St'archivi-sì a ven da $1 e a peul esse dovrà da d'àutri proget.",
 'sharedupload-desc-there'           => "Cost archivi a riva da $1 e a peul esse dovrà da d'àutri proget.
 Për piasì, vëdde la [$2 pàgina ëd descrission ëd l'archivi] per d'àutre anformassion.",
-'sharedupload-desc-here'            => "Sto file-sì a riva da $1 e a peul esse dovrà për dj'àutri proget.
-La descrission an sla soa [$2 pàgina ëd dëscrission dël file] a l'é mostà sota.",
-'filepage-nofile'                   => 'Un file con sto nòm-sì a esist pa.',
+'sharedupload-desc-here'            => "Cost archivi a riva da $1 e a peul esse dovrà da dj'àutri proget.
+La descrission an soa [$2 pàgina ëd dëscrission ëd l'archivi] a l'é smonùa sì-sota.",
+'filepage-nofile'                   => 'A esist gnun archivi con ës nòm.',
 'filepage-nofile-link'              => 'Un file con sto nòm-sì a esist pa, ma it peule [$1 carielo].',
 'uploadnewversion-linktext'         => "Carié na version neuva dë st'archivi-sì",
 'shared-repo-from'                  => 'da $1',

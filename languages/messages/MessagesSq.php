@@ -335,10 +335,10 @@ $messages = array(
 'faqpage'        => 'Project:Pyetje e Përgjigje',
 
 # Vector skin
-'vector-action-addsection'       => 'Shtoe temën',
-'vector-action-delete'           => 'Fshij',
+'vector-action-addsection'       => 'Fillo një temë të re',
+'vector-action-delete'           => 'Grise',
 'vector-action-move'             => 'Zhvendose',
-'vector-action-protect'          => 'Mbrojtëje',
+'vector-action-protect'          => 'Mbroje',
 'vector-action-undelete'         => 'Jo e grisur',
 'vector-action-unprotect'        => 'Liroje',
 'vector-simplesearch-preference' => 'Aktivizoni kërkim të avancuar (vetë për Vektor)',

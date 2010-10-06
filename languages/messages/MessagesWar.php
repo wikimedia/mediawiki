@@ -453,6 +453,7 @@ Alayon pagutro pagbutang.',
 'editing'               => 'Ginliliwat an $1',
 'editingsection'        => 'Ginliliwat an $1 (bahin)',
 'editingcomment'        => 'Ginliliwat an $1 (bag-o nga bahin)',
+'storedversion'         => 'Nakahipos nga pagbag-o',
 'yourdiff'              => 'Mga kaibhan',
 'copyrightwarning'      => "Iginpapasabot nga an ngatanan nga imo gin-amot ha {{SITENAME}} iginhatag mo ha ilarom han $2 (kitaa an $1 para han mga detalye).  Kun diri mo igkakalipay nga an imo ginsurat waray kalooy nga liliwaton ngan igpapakalat hit bisan hin-o nga it may gusto, alayon ayaw hiton igsumitir dinhi. <br />
 Nasaad ka liwat nga imo ini kalugaringon nga ginsurat, o ginkopya nimo ini tikang ha panimongto nga dominyo o kapareho nga waray-sabit nga kuruhaon.
@@ -465,23 +466,28 @@ Nasaad ka liwat nga imo ini kalugaringon nga ginsurat, o ginkopya nimo ini tikan
 Aada na ito.',
 
 # History pages
-'viewpagelogs'        => 'Kitaa an mga log para hini nga pakli',
-'currentrev'          => 'Giuurhii nga pagliwat',
-'previousrevision'    => '← Durudaan nga pagliwat',
-'nextrevision'        => 'Burubag-o nga pagliwat →',
-'currentrevisionlink' => 'Giuurhii nga pagliwat',
-'cur'                 => 'yana',
-'next'                => 'sunod',
-'last'                => 'kataposan',
-'page_first'          => 'syahan',
-'page_last'           => 'kataposan',
+'viewpagelogs'         => 'Kitaa an mga log para hini nga pakli',
+'currentrev'           => 'Giuurhii nga pagliwat',
+'previousrevision'     => '← Durudaan nga pagliwat',
+'nextrevision'         => 'Burubag-o nga pagliwat →',
+'currentrevisionlink'  => 'Giuurhii nga pagliwat',
+'cur'                  => 'yana',
+'next'                 => 'sunod',
+'last'                 => 'kataposan',
+'page_first'           => 'syahan',
+'page_last'            => 'kataposan',
+'history-show-deleted' => 'Ginpara la',
+'histfirst'            => 'Giuunhani',
+'histlast'             => 'Giuurhii',
 
 # Revision deletion
 'rev-deleted-user'            => '(gintanggal an agnay-hit-nagamit)',
 'rev-delundel'                => 'igpakita/igtago',
 'revdelete-show-file-confirm' => 'Sigurado ka nga gusto mo makita an ginpara nga pagliwat han file "<nowiki>$1</nowiki>" tikang $2 ha $3?',
 'revdelete-show-file-submit'  => 'Oo',
+'revdelete-radio-same'        => '(ayaw balyu-e)',
 'revdelete-radio-set'         => 'Oo',
+'revdelete-radio-unset'       => 'Ayaw',
 'revdelete-uname'             => 'Agnay-hit-nagamit',
 'revdelete-otherreason'       => 'Lain/dugang nga katadungan:',
 
@@ -489,6 +495,7 @@ Aada na ito.',
 'revmove-reasonfield' => 'Katadungan:',
 
 # History merging
+'mergehistory'                  => 'Igtampo an mga kasaysayan han pakli',
 'mergehistory-from'             => 'Ginkuhaan nga pakli:',
 'mergehistory-into'             => 'Kakadtoan nga pakli:',
 'mergehistory-same-destination' => 'An gintikangan ngan kakadtoan nga mga pakli in diri puydi magkaparo',
@@ -661,11 +668,11 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'statistics-header-views'      => 'Mga estadistika han nakita',
 'statistics-header-users'      => 'Mga estadistika hit nagamit',
 'statistics-header-hooks'      => 'Lain nga mga estadistika',
-'statistics-articles'          => 'An iginsulod nga mga pakli',
+'statistics-articles'          => 'Unod nga mga pakli',
 'statistics-pages'             => 'Mga pakli',
 'statistics-pages-desc'        => 'Ngatanan nga mga pakli ha sulod hini nga wiki, lakip an hiruhimangraw nga mga pakli, mga redirect, ngan iba pa',
 'statistics-files'             => 'Ginkarga nga mga file',
-'statistics-edits'             => 'Mga pagliwat hit pakli tikang han gintukod an {{SITENAME}}',
+'statistics-edits'             => 'Mga pagliwat hit pakli tikang gintukod hini nga {{SITENAME}}',
 'statistics-edits-average'     => 'Average nga mga pagliwat kada pakli',
 'statistics-views-total'       => 'Ngatanan nga mga panginano',
 'statistics-views-peredit'     => 'Mga panginano kada pagliwat',
@@ -779,6 +786,10 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # Move page
 'movearticle'          => 'Balhina an pakli:',
 'moveuserpage-warning' => "'''Bantayi:''' Tibalhin ka hin pakli hin nágámit. Alayon pagtigaman nga an pakli là an mababalhin ngan an nágámit ''diri'' mababalyoan hin ngaran.",
+
+# Namespace 8 related
+'allmessagesname'        => 'Ngaran',
+'allmessages-filter-all' => 'Ngatanan',
 
 # Thumbnails
 'thumbnail-more' => 'Padako-a',

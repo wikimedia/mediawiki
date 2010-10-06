@@ -181,7 +181,7 @@ $messages = array(
 'tog-editsection'             => 'ערמעגליכט אפטייל ענדערן דורך [ענדערן] לינקס',
 'tog-editsectiononrightclick' => 'באמעגליך פאראגראף ענדערונגען דורכן קוועטשן אויפן רעכטן<br />אויף אפטייל קעפל (JavaScript)',
 'tog-showtoc'                 => 'ווייז דאס אינהאלט קעסטל<br />(פאר בלעטער מיט מער ווי 3 קעפלעך)',
-'tog-rememberpassword'        => 'געדענק מיין לאגירן אין דעם קאמפיוטער (ביז $1 {{PLURAL:$1|טאָג|טעג}})',
+'tog-rememberpassword'        => 'געדענק מיין אריינלאגירן אין דעם בלעטערער (ביז $1 {{PLURAL:$1|טאָג|טעג}})',
 'tog-watchcreations'          => 'לייג צו בלעטער וואס איך באשאף צו מיין אכטונג ליסטע',
 'tog-watchdefault'            => 'אויפפאסן אױטאָמאַטיש די ארטיקלען װאָס איך באַאַרבעט',
 'tog-watchmoves'              => 'לייג צו בלעטער וואס איך באוועג צו מיין אכטונג ליסטע',
@@ -400,6 +400,7 @@ $messages = array(
 ביטע ווארטן א ביסל צייט בעפאר איר פרובירט ווידער אריינגיין אינעם בלאט.
 
 $1',
+'pool-errorunknown' => 'אומבאַקאַנטער פֿעלער',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'וועגן {{SITENAME}}',
@@ -1011,11 +1012,12 @@ $1",
 'suppressionlog' => 'באהאלטונגען לאג',
 
 # Revision move
-'revisionmove'           => ' באַוועגן ווערסיעס פון "$1"',
-'revmove-reasonfield'    => 'אורזאַך:',
-'revmove-titlefield'     => 'ציל בלאַט:',
-'revmove-badparam-title' => 'פֿאַלשע פאַראַמעטערס',
-'revmove-nullmove-title' => 'אומגילדיגער טיטל',
+'revisionmove'                 => ' באַוועגן ווערסיעס פון "$1"',
+'revisionmoveselectedversions' => 'באַוועגן סעלעקטירטע ווערסיעס',
+'revmove-reasonfield'          => 'אורזאַך:',
+'revmove-titlefield'           => 'ציל בלאַט:',
+'revmove-badparam-title'       => 'פֿאַלשע פאַראַמעטערס',
+'revmove-nullmove-title'       => 'אומגילדיגער טיטל',
 
 # History merging
 'mergehistory'                     => 'צונויפֿגיסן בלאט היסטאריעס',
@@ -1050,7 +1052,7 @@ $1",
 'compareselectedversions'  => 'פארגלייך סעלעקטירטע ווערסיעס',
 'showhideselectedversions' => 'ווײַזן/באַהאַלטן געקליבענע רעוויזיעס',
 'editundo'                 => 'אַנולירן',
-'diff-multi'               => '({{PLURAL:$1|איין מיטלסטע ווערסיע |$1 מיטלסטע ווערסיעס}}  נישט געוויזן.)',
+'diff-multi'               => '({{PLURAL:$1|איין מיטלסטע ווערסיע |$1 מיטלסטע ווערסיעס}} של {{PLURAL:$2|איין באַניצער|$2 באַניצער}} נישט געוויזן.)',
 
 # Search results
 'searchresults'                    => 'זוכן רעזולטאטן',
