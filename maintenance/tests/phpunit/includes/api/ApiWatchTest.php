@@ -154,6 +154,10 @@ class ApiWatchTest extends ApiTestSetup {
 	 * @depends testGetToken
 	 */
 	function testGetRollbackToken( $data ) {
+		if ( !Title::newFromText( 'Main Page' )->exists() ) {
+			$this->markTestIncomplete( "The article [[Main Page]] does not exist" );
+		}
+		
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'prop' => 'revisions',
