@@ -377,7 +377,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$vals['user'] = $revision->getUserText();
 				}
 				if ( $this->fld_userid ) {
-					$user = User::newFromText( $revision->getUserText() );
+					$user = User::newFromName( $revision->getUserText() );
 					$vals['userid'] = $user->getId();
 				}
 				if ( !$revision->getUser() ) {
