@@ -858,10 +858,6 @@ $result: User permissions error to add. If none, return true.
 'getUserPermissionsErrorsExpensive': Absolutely the same, but is called only
 	if expensive checks are enabled.
 
-'HTMLCacheUpdate::doUpdate': After cache invalidation updates are inserted
-into the job queue.
-$title: Title object, pages linked to this title are purged.
-
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 	image insertion.  You can skip the default logic entirely by returning
 	false, or just modify a	few things using call-by-reference.

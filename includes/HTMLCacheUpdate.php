@@ -63,7 +63,6 @@ class HTMLCacheUpdate
 				$this->invalidateTitles( $titleArray );
 			}
 		}
-		wfRunHooks( 'HTMLCacheUpdate::doUpdate', array($this->mTitle) );
 	}
 
 	/**
