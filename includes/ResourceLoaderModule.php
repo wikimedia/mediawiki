@@ -280,43 +280,48 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 		'group' => 'stuff',
 	 * 	)
 	 */
-	public function __construct( $options = array() ) {
+	public function __construct( $options = array(), $basePath = null ) {
 		foreach ( $options as $option => $value ) {
 			switch ( $option ) {
 				case 'scripts':
-					$this->scripts = (array)$value;
+				case 'debugScripts':
+				case 'languageScripts':
+				case 'skinScripts':
+				case 'loaders':
+					$this->{$option} = (array)$value;
+					// Automatically prefix script paths
+					if ( is_string( $basePath ) ) {
+						foreach ( $this->{$option} as $key => $value ) {
+							$this->{$option}[$key] = $basePath . $value;
+						}
+					}
 					break;
 				case 'styles':
-					$this->styles = (array)$value;
+				case 'skinStyles':
+					$this->{$option} = (array)$value;
+					// Automatically prefix style paths
+					if ( is_string( $basePath ) ) {
+						foreach ( $this->{$option} as $key => $value ) {
+							if ( is_array( $value ) ) {
+								$this->{$option}[$basePath . $key] = $value;
+								unset( $this->{$option}[$key] );
+							} else {
+								$this->{$option}[$key] = $basePath . $value;
+							}
+						}
+					}
 					break;
+				case 'dependencies':
 				case 'messages':
-					$this->messages = (array)$value;
+					$this->{$option} = (array)$value;
 					break;
 				case 'group':
 					$this->group = (string)$value;
 					break;
-				case 'dependencies':
-					$this->dependencies = (array)$value;
-					break;
-				case 'debugScripts':
-					$this->debugScripts = (array)$value;
-					break;
-				case 'languageScripts':
-					$this->languageScripts = (array)$value;
-					break;
-				case 'skinScripts':
-					$this->skinScripts = (array)$value;
-					break;
-				case 'skinStyles':
-					$this->skinStyles = (array)$value;
-					break;
-				case 'loaders':
-					$this->loaders = (array)$value;
-					break;
 			}
 		}
 	}
-
+	
 	/**
 	 * Add script files to this module. In order to be valid, a module
 	 * must contain at least one script file.
