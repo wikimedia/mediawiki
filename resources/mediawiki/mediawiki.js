@@ -764,3 +764,6 @@ if ( typeof startUp === 'function' ) {
 	startUp();
 	delete startUp;
 }
+
+// Alias $j to jQuery for backwards compatibility
+window.$j = jQuery;
