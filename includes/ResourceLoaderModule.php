@@ -488,12 +488,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					'md_deps' => $encFiles,
 				)
 			);
-			
-			// Save into memcached
-			global $wgMemc;
-			
-			$key = wfMemcKey( 'resourceloader', 'module_deps', $this->getName(), $context->getSkin() );
-			$wgMemc->set( $key, $encFiles );
 		}
 		
 		return $styles;
