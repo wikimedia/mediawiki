@@ -311,6 +311,7 @@ class MessageBlobStore {
 	 * @return array Array mapping module names to blobs
 	 */
 	private static function getFromDB( ResourceLoader $resourceLoader, $modules, $lang ) {
+		global $wgCacheEpoch;
 		$retval = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'msg_resource',
@@ -325,7 +326,10 @@ class MessageBlobStore {
 				// This shouldn't be possible
 				throw new MWException( __METHOD__ . ' passed an invalid module name' );
 			}
-			if ( array_keys( FormatJson::decode( $row->mr_blob, true ) ) !== $module->getMessages() ) {
+			// Update the module's blobs if the set of messages changed or if the blob is
+			// older than $wgCacheEpoch
+			if ( array_keys( FormatJson::decode( $row->mr_blob, true ) ) !== $module->getMessages() ||
+					wfTimestamp( TS_MW, $row->mr_timestamp ) <= $wgCacheEpoch ) {
 				$retval[$row->mr_resource] = self::updateModule( $row->mr_resource, $lang );
 			} else {
 				$retval[$row->mr_resource] = $row->mr_blob;

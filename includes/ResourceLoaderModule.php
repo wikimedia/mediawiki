@@ -1059,6 +1059,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return String: JavaScript code for registering all modules with the client loader
 	 */
 	public static function getModuleRegistrations( ResourceLoaderContext $context ) {
+		global $wgCacheEpoch;
 		wfProfileIn( __METHOD__ );
 		
 		$out = '';
@@ -1073,22 +1074,23 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 			// Automatically register module
 			else {
+				$mtime = max( $module->getModifiedTime( $context ), $wgCacheEpoch );
 				// Modules without dependencies or a group pass two arguments (name, timestamp) to 
 				// mediaWiki.loader.register()
 				if ( !count( $module->getDependencies() && $module->getGroup() === null ) ) {
-					$registrations[] = array( $name, $module->getModifiedTime( $context ) );
+					$registrations[] = array( $name, $mtime );
 				}
 				// Modules with dependencies but no group pass three arguments (name, timestamp, dependencies) 
 				// to mediaWiki.loader.register()
 				else if ( $module->getGroup() === null ) {
 					$registrations[] = array(
-						$name, $module->getModifiedTime( $context ),  $module->getDependencies() );
+						$name, $mtime,  $module->getDependencies() );
 				}
 				// Modules with dependencies pass four arguments (name, timestamp, dependencies, group) 
 				// to mediaWiki.loader.register()
 				else {
 					$registrations[] = array(
-						$name, $module->getModifiedTime( $context ),  $module->getDependencies(), $module->getGroup() );
+						$name, $mtime,  $module->getDependencies(), $module->getGroup() );
 				}
 			}
 		}
@@ -1134,7 +1136,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		global $IP;
+		global $IP, $wgCacheEpoch;
 
 		$hash = $context->getHash();
 		if ( isset( $this->modifiedTime[$hash] ) ) {
@@ -1144,7 +1146,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// ATTENTION!: Because of the line above, this is not going to cause infinite recursion - think carefully
 		// before making changes to this code!
-		$time = 1; // wfTimestamp() treats 0 as 'now', so that's not a suitable choice
+		$time = $wgCacheEpoch;
 		foreach ( $context->getResourceLoader()->getModules() as $module ) {
 			$time = max( $time, $module->getModifiedTime( $context ) );
 		}

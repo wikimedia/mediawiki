@@ -240,7 +240,7 @@ class ResourceLoader {
 	 * @param $context ResourceLoaderContext object
 	 */
 	public function respond( ResourceLoaderContext $context ) {
-		global $wgResourceLoaderMaxage;
+		global $wgResourceLoaderMaxage, $wgCacheEpoch;
 
 		wfProfileIn( __METHOD__ );
 		
@@ -275,7 +275,7 @@ class ResourceLoader {
 		// To send Last-Modified and support If-Modified-Since, we need to detect 
 		// the last modified time
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
-		$mtime = 1;
+		$mtime = $wgCacheEpoch;
 		foreach ( $modules as $module ) {
 			// Bypass squid cache if the request includes any private modules
 			if ( $module->getGroup() === 'private' ) {
