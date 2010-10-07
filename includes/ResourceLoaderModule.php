@@ -728,12 +728,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string Remapped CSS
 	 */
 	protected static function remapStyle( $file ) {
-		global $wgUseDataURLs, $wgScriptPath;
+		global $wgScriptPath;
 		return CSSMin::remap(
 			file_get_contents( self::remapFilename( $file ) ),
 			dirname( $file ),
 			$wgScriptPath . '/' . dirname( $file ),
-			$wgUseDataURLs
+			true
 		);
 	}
 }
