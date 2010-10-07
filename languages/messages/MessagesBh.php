@@ -189,6 +189,8 @@ $1',
 'currentevents-url'    => 'Project:हाल के घटना',
 'disclaimers'          => 'अस्विकरण',
 'disclaimerpage'       => 'Project:सामान्य अस्विकरण',
+'edithelp'             => 'मदद सम्पादन',
+'edithelppage'         => 'Help:सम्पादन',
 'mainpage'             => 'मुख्य पन्ना',
 'mainpage-description' => 'पहिलका पन्ना',
 'portal'               => 'सामुदायिक पन्ना',
@@ -306,11 +308,15 @@ $1',
 'retypenew'   => 'नया गुप्त-शब्द पुन: डालीं:',
 
 # Edit page toolbar
-'math_tip'     => 'गणितिय सूत्र (LaTeX)',
-'image_sample' => 'उदाहरण.jpg',
-'media_sample' => 'उदाहरण.ogg',
-'media_tip'    => 'फाईल लिंक',
-'sig_tip'      => 'timestamp के साथ राउर हस्ताक्षर',
+'bold_tip'        => 'मोट पाठ्य',
+'italic_sample'   => 'इटालिक पाठ्य',
+'italic_tip'      => 'इटालिक पाठ्य',
+'headline_sample' => 'शिर्षक पाठ्य',
+'math_tip'        => 'गणितिय सूत्र (LaTeX)',
+'image_sample'    => 'उदाहरण.jpg',
+'media_sample'    => 'उदाहरण.ogg',
+'media_tip'       => 'फाईल लिंक',
+'sig_tip'         => 'timestamp के साथ राउर हस्ताक्षर',
 
 # Edit pages
 'summary'              => 'सारांश:',
@@ -341,6 +347,7 @@ $1',
 पन्ना बनावे खातिर, नीचे के बाकस में टाईप करे के शुरु करीं (ज्यादा जानकारी खातिर देखीं [[{{MediaWiki:Helppage}}|मदद पन्ना]])।
 यदि रउआ अहिजा गलती से आ गईल बानी त, आपन ब्राउजर के '''back''' (बैक) बटन दबाईं",
 'yourdiff'             => 'अंतर',
+'template-protected'   => '(संरक्षित)',
 
 # History pages
 'revisionasof'           => '$1 के रुप में संशोधन',

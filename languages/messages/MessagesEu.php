@@ -975,6 +975,7 @@ Begira itzazu erregistroak.',
 Ikusi [[Special:IPBlockList|IP blokeoen zerrenda]] orain dauden blokeoak ikusi ahal izateko.',
 
 # Revision move
+'revmove-legend'               => 'Xede-orrialdea eta laburpena ezarri',
 'revisionmoveselectedversions' => 'Aukeratutako berrikuspenak mugitu',
 'revmove-reasonfield'          => 'Arrazoia:',
 'revmove-titlefield'           => 'Xede-orrialdea:',
@@ -2151,6 +2152,7 @@ $1',
 Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 'sp-contributions-search'         => 'Ekarpenentzako bilaketa',
 'sp-contributions-username'       => 'IP helbidea edo erabiltzaile izena:',
+'sp-contributions-toponly'        => 'Azken aldaketak direnak soilik erakutsi',
 'sp-contributions-submit'         => 'Bilatu',
 
 # What links here
