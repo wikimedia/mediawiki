@@ -36,7 +36,6 @@ class MessageBlobStore {
 	 * @return array An array mapping module names to message blobs
 	 */
 	public static function get( ResourceLoader $resourceLoader, $modules, $lang ) {
-		// TODO: Invalidate blob when module touched
 		wfProfileIn( __METHOD__ );
 		if ( !count( $modules ) ) {
 			wfProfileOut( __METHOD__ );
