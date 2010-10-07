@@ -606,7 +606,9 @@ class DatabaseSqlite extends DatabaseBase {
 			// no such thing as unsigned
 			$s = preg_replace( '/\b(un)?signed\b/i', '', $s );
 			// INT -> INTEGER
-			$s = preg_replace( '/\b(tiny|small|medium|big|)int(\s*\([\s\d]*\)|\b)/i', 'INTEGER', $s );
+			$s = preg_replace( '/\b(tiny|small|medium|big|)int(\s*\(\s*\d+\s*\)|\b)/i', 'INTEGER', $s );
+			// floating point types -> REAL
+			$s = preg_replace( '/\b(float|double(\s+precision)?)(\s*\(\s*\d+\s*(,\s*\d+\s*)?\)|\b)/i', 'REAL', $s );
 			// varchar -> TEXT
 			$s = preg_replace( '/\b(var)?char\s*\(.*?\)/i', 'TEXT', $s );
 			// TEXT normalization
