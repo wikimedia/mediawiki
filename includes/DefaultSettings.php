@@ -1681,12 +1681,6 @@ $wgResourceLoaderDebug = false;
  */
 $wgResourceLoaderUseESI = false;
 
-/**
- * Enable data URL embedding (experimental). This variable is very temporary and
- * will be removed once we get this feature stable.
- */
-$wgUseDataURLs = false;
-
 /** @} */ # end of cache settings
 
 /************************************************************************//**
