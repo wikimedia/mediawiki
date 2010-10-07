@@ -1100,7 +1100,3 @@ if ( ie6_bugs ) {
 }
 
 showTocToggle();
-
-// jQuery alias
-
-window.$j = jQuery;
