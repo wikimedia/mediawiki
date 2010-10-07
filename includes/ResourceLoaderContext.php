@@ -49,7 +49,7 @@ class ResourceLoaderContext {
 
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
-		// Interperet request
+		// Interpret request
 		$modules = $request->getVal( 'modules' );
 		$this->modules = $modules ? explode( '|', $modules ) : array();
 		$this->language = $request->getVal( 'lang' );
