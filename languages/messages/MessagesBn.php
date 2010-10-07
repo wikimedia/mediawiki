@@ -11,6 +11,7 @@
  * @author Bellayet
  * @author Jayantanth
  * @author Prometheus.pyrphoros
+ * @author Samritmaity
  * @author Wikitanvir
  * @author Zaheen
  * @author לערי ריינהארט
@@ -518,6 +519,10 @@ $2',
 'login-throttled'            => 'আপনি সাম্প্রতিক পরপর বেশ কয়েকবার প্রবেশের চেষ্টা করেছেন।
 পুনরায় চেষ্টা করার পূর্বে অনুগ্রহ করে কিছুক্ষণ অপেক্ষা করুন।',
 'loginlanguagelabel'         => 'ভাষা: $1',
+
+# JavaScript password checks
+'password-strength-bad'      => 'অতি-দুর্বল শব্দচাবি',
+'password-strength-mediocre' => 'সামান্য দুর্বল শব্দচাবি',
 
 # Password reset dialog
 'resetpass'                 => 'শব্দচাবি পরিবর্তন',

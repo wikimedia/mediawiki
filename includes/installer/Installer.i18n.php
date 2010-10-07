@@ -1538,6 +1538,8 @@ Sofern ein gemeinschaftlich genutzter Server für das Hosting verwendet wird, mu
 Sofern PHP selbst kompiliert wurde, muss es mit es neu konfiguriert werden, wobei der Datenbankclient zu aktivierten ist. Hierzu kann beispielsweise <code>./configure --with-mysql</code> ausgeführt werden.
 Sofern PHP über die Paketverwaltung einer Debian- oder Ubuntu-Installation installiert wurde, muss das „php5-mysql“-Paket nachinstalliert werden.',
 	'config-have-db' => '{{PLURAL:$2|Datenbanktreiber|Datenbanktreiber}} gefunden: $1.',
+	'config-have-fts3' => 'SQLite wurde zusammen mit dem [http://sqlite.org/fts3.html FTS3-Modul] kompiliert, so dass Suchfunktionen zur Verfügung stehen.',
+	'config-no-fts3' => "'''Warnung:''' SQLite wurde ohne das [http://sqlite.org/fts3.html FTS3-Modul] kompiliert, so dass keine Suchfunktionen zur Verfügung stehen.",
 	'config-register-globals' => "'''Warnung: Der Parameter <code>[http://php.net/register_globals register_globals]</code> von PHP ist aktiviert.'''
 '''Sie sollte deaktiviert werden, sofern dies möglich ist.'''
 Die MediaWiki-Installation wird zwar laufen, wobei aber der Server für potentielle Sicherheitsprobleme anfällig ist.",
@@ -5727,6 +5729,8 @@ Als u op een gedeelde omgeving zit, vraag dan aan uw hostingprovider een geschik
 Als u PHP zelf hebt gecompileerd, wijzig dan uw instellingen zodat een databasedriver wordt geactiveerd, bijvoorbeeld via <code>./configure --with-mysql</code>.
 Als u PHP hebt geïnstalleerd via een Debian- of Ubuntu-package, installeer dan ook de module php5-mysql.',
 	'config-have-db' => 'Gevonden {{PLURAL:$2|databasedriver|databasedrivers}}: $1.',
+	'config-have-fts3' => 'SQLite is gecompileerd met de module [http://sqlite.org/fts3.html FTS3] waarin zoekfuncties beschikbaar zijn.',
+	'config-no-fts3' => "'''Waarschuwing''': SQLite is gecompileerd zonder de module [http://sqlite.org/fts3.html FTS3]; er zijn geen zoekfuncties niet beschikbaar.",
 	'config-register-globals' => "'''Waarschuwing: De PHP-optie <code>[http://php.net/register_globals register_globals]</code> is ingeschakeld.'''
 '''Schakel deze uit als dat mogelijk is.'''
 MediaWiki kan ermee werken, maar uw server is dan meer kwetsbaar voor beveiligingslekken.",
@@ -6947,6 +6951,8 @@ Se o seu site está alojado num servidor partilhado, peça ao fornecedor do aloj
 Se fez a compilação do PHP você mesmo, reconfigure-o com um cliente de base de dados activado, usando, por exemplo, <code>./configure --with-mysql</code>.
 Se instalou o PHP a partir de um pacote Debian ou Ubuntu, então precisa de instalar também o módulo php5-mysql.",
 	'config-have-db' => "{{PLURAL:$2|Controlador ''(driver)'' de base de dados encontrado|Controladores ''(drivers)'' de base de dados encontrados}}: $1.",
+	'config-have-fts3' => 'O SQLite foi compilado com o módulo [http://sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa estarão disponíveis nesta instalação.',
+	'config-no-fts3' => "'''Aviso''': O SQLite foi compilado sem o módulo [http://sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
 	'config-register-globals' => "'''Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está activada.'''
 '''Desactive-a, se puder.'''
 O MediaWiki funciona mesmo assim, mas o seu servidor está exposto a potenciais vulnerabilidades de segurança.",
