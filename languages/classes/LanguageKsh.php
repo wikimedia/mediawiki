@@ -55,6 +55,12 @@ class LanguageKsh extends Language {
 	 *	Male                  a singular male object follows
 	 *	-omitted-             a non-male or plural object follows
 	 *
+	 * We currently handle definite articles of the singular only.
+	 * There is a full set of test cases at:
+	 * http://translatewiki.net/wiki/Portal:Ksh#GRAMMAR_Pr%C3%B6%C3%B6fe
+	 * Contents of the leftmost table column can be copied and pasted as
+	 * "case" values.
+	 *
 	 */
 	function convertGrammar( $word, $case )
 	{
