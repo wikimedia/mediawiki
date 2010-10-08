@@ -275,7 +275,7 @@ class ResourceLoader {
 		// To send Last-Modified and support If-Modified-Since, we need to detect 
 		// the last modified time
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
-		$mtime = $wgCacheEpoch;
+		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $modules as $module ) {
 			// Bypass squid cache if the request includes any private modules
 			if ( $module->getGroup() === 'private' ) {
