@@ -4098,6 +4098,54 @@ But just in case it doesn't...
 !! end
 
 !! test
+Header with special characters (bug 25462)
+!! input
+The tooltips shall not show entities to the user (ie. be double escaped)
+
+== text > text ==
+section 1
+
+== text < text ==
+section 2
+
+== text & text ==
+section 3
+
+== text ' text ==
+section 4
+
+== text " text ==
+section 5
+!! result
+<p>The tooltips shall not show entities to the user (ie. be double escaped)
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#text_.3E_text"><span class="tocnumber">1</span> <span class="toctext">text &gt; text</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#text_.3C_text"><span class="tocnumber">2</span> <span class="toctext">text &lt; text</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#text_.26_text"><span class="tocnumber">3</span> <span class="toctext">text &amp; text</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#text_.27_text"><span class="tocnumber">4</span> <span class="toctext">text ' text</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#text_.22_text"><span class="tocnumber">5</span> <span class="toctext">text " text</span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: text > text">edit</a>]</span> <span class="mw-headline" id="text_.3E_text"> text &gt; text </span></h2>
+<p>section 1
+</p>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: text &lt; text">edit</a>]</span> <span class="mw-headline" id="text_.3C_text"> text &lt; text </span></h2>
+<p>section 2
+</p>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: text &amp; text">edit</a>]</span> <span class="mw-headline" id="text_.26_text"> text &amp; text </span></h2>
+<p>section 3
+</p>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: text ' text">edit</a>]</span> <span class="mw-headline" id="text_.27_text"> text ' text </span></h2>
+<p>section 4
+</p>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: text &quot; text">edit</a>]</span> <span class="mw-headline" id="text_.22_text"> text " text </span></h2>
+<p>section 5
+</p>
+!! end
+
+!! test
 BUG 1219 URL next to image (broken)
 !! input
 http://example.com[[Image:foobar.jpg]]
