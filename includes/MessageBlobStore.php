@@ -66,7 +66,7 @@ class MessageBlobStore {
 	 * @return mixed Message blob or false if the module has no messages
 	 */
 	public static function insertMessageBlob( $name, ResourceLoaderModule $module, $lang ) {
-		$blob = self::generateMessageBlob( $name, $module, $lang );
+		$blob = self::generateMessageBlob( $module, $lang );
 
 		if ( !$blob ) {
 			return false;
@@ -137,7 +137,7 @@ class MessageBlobStore {
 
 		foreach ( $res as $row ) {
 			$oldBlob = $row->mr_blob;
-			$newBlob = self::generateMessageBlob( $name, $module, $row->mr_lang );
+			$newBlob = self::generateMessageBlob( $module, $row->mr_lang );
 
 			if ( $row->mr_lang === $lang ) {
 				$retval = $newBlob;
@@ -330,7 +330,7 @@ class MessageBlobStore {
 			// older than $wgCacheEpoch
 			if ( array_keys( FormatJson::decode( $row->mr_blob, true ) ) !== $module->getMessages() ||
 					wfTimestamp( TS_MW, $row->mr_timestamp ) <= $wgCacheEpoch ) {
-				$retval[$row->mr_resource] = self::updateModule( $row->mr_resource, $lang );
+				$retval[$row->mr_resource] = self::updateModule( $module, $lang );
 			} else {
 				$retval[$row->mr_resource] = $row->mr_blob;
 			}
@@ -345,7 +345,7 @@ class MessageBlobStore {
 	 * @param $lang string Language code
 	 * @return string JSON object
 	 */
-	private static function generateMessageBlob( $name, ResourceLoaderModule $module, $lang ) {
+	private static function generateMessageBlob( ResourceLoaderModule $module, $lang ) {
 		$messages = array();
 
 		foreach ( $module->getMessages() as $key ) {
