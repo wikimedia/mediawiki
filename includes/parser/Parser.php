@@ -3895,9 +3895,10 @@ class Parser {
 					'noninitial' );
 			}
 
-			# HTML names must be case-insensitively unique (bug 10721).  FIXME:
-			# Does this apply to Unicode characters?  Because we aren't
-			# handling those here.
+			# HTML names must be case-insensitively unique (bug 10721). 
+			# This does not apply to Unicode characters per 
+			# http://dev.w3.org/html5/spec/infrastructure.html#case-sensitivity-and-string-comparison
+			# FIXME: We may be changing them depending on the current locale.
 			$arrayKey = strtolower( $safeHeadline );
 			if ( $legacyHeadline === false ) {
 				$legacyArrayKey = false;
