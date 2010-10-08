@@ -175,9 +175,10 @@ window.mediaWiki = new ( function( $ ) {
 	 */
 	this.parser = function( text, options ) {
 		if ( typeof options === 'object' && typeof options.parameters === 'object' ) {
-			for ( var p = 0; p < options.parameters.length; p++ ) {
-				text = text.replace( '\$' + ( parseInt( p ) + 1 ), options.parameters[p] );
-			}
+			text = text.replace( /\$(\d+)/g, function( str, match ) {
+				var index = parseInt( match, 10 ) - 1;
+				return index in options.parameters ? options.parameters[index] : '$' + match;
+			} );
 		}
 		return text;
 	};
