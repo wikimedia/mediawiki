@@ -253,6 +253,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'gotaccountlink'          => 'Kumm nei',
 'createaccountmail'       => 'iwwer E-Mail',
 'createaccountreason'     => 'Grund:',
+'mailmypassword'          => 'Neies Paesswadd eposchde',
 'noemail'                 => 'Yuuser „$1“ hot ken E-Mail aagewwe.',
 'loginlanguagelabel'      => 'Schprooch: $1',
 
@@ -270,6 +271,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # Edit page toolbar
 'bold_sample'     => 'Wadde fett gmarrickt',
 'bold_tip'        => 'Wadde fett gmarrickt',
+'link_sample'     => 'Gleecher-Titel',
 'link_tip'        => 'Gleecher',
 'extlink_sample'  => 'http://www.example.com Gleecher-Text',
 'extlink_tip'     => 'Gewebbgleecher (acht uff http://)',
@@ -301,10 +303,12 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # History pages
 'revisionasof'     => 'Version vum $2, $3 Uhr',
 'previousrevision' => '← letscht Version',
+'nextrevision'     => 'Neiere Version →',
 'next'             => 'Neegscht',
 'last'             => 'Letscht',
 'page_first'       => 'Aafang',
 'page_last'        => 'End',
+'histfirst'        => 'Eldescht',
 'histlast'         => 'Letscht',
 'historysize'      => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
 'historyempty'     => '(leer)',
@@ -745,6 +749,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'delete_and_move_confirm' => 'Ya, es Blatt lösche',
 
 # Export
+'export'        => 'Bledder exportiere',
 'export-addcat' => 'Dezu duh',
 'export-addns'  => 'Dezu duh',
 

@@ -4404,6 +4404,8 @@ Unicodeを少しでも利用する可能性があるなら、[http://www.mediawi
 PHPを自分自身でコンパイルした場合、<code>./configure --with-mysql</code>などを利用して、データベースクライアントを有効化する設定をしてください。
 DebianもしくはUbuntuパッケージからPHPをインストールした場合、php5-mysqlモジュールもインストールする必要があります。',
 	'config-have-db' => '見つかったデータベース{{PLURAL:$2|ドライバ}}：$1。',
+	'config-have-fts3' => 'SQLiteは[http://sqlite.org/fts3.html FTS3]モジュールでコンパイルされており、検索機能はこのバックエンドで利用可能になります。',
+	'config-no-fts3' => "'''警告'''：SQLiteは[http://sqlite.org/fts3.html FTS3]モジュール以外でコンパイルされており、検索機能はこのバックエンドで利用不可能になります。",
 	'config-register-globals' => "'''警告：PHPの<code>[http://php.net/register_globals register_globals]</code>オプションが有効になっています。'''
 '''可能なら無効化してください。'''
 MediaWikiは動作しますが、サーバーは、潜在的なセキュリティ脆弱性を露呈します。",
@@ -7874,6 +7876,21 @@ $messages['sr-ec'] = array(
 	'config-page-language' => 'Језик',
 );
 
+/** Tamil (தமிழ்)
+ * @author TRYPPN
+ */
+$messages['ta'] = array(
+	'config-information' => 'தகவல்',
+	'config-show-help' => 'உதவி',
+	'config-hide-help' => 'உதவியை மறை',
+	'config-your-language' => 'தங்களது மொழி:',
+	'config-back' => '← முந்தைய',
+	'config-continue' => 'தொடரவும் →',
+	'config-page-language' => 'மொழி',
+	'config-page-name' => 'பெயர்',
+	'config-page-options' => 'விருப்பத்தேர்வுகள்',
+);
+
 /** Telugu (తెలుగు)
  * @author Veeven
  */
@@ -8026,6 +8043,9 @@ Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9) at mga salangg
 	'config-invalid-db-prefix' => 'Hindi tanggap na unlapi ng kalipunan ng dato na "$1". 
 Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9) at mga salangguhit (_).',
 	'config-postgres-old' => 'Kailangan ang PostgreSQL $1 o mas bago, mayroon kang $2.',
+	'config-sqlite-readonly' => 'Ang talaksang <code>$1</code> ay hindi maisusulat.',
+	'config-sqlite-cant-create-db' => 'Hindi malikha ang talaksang <code>$1</code> ng kalipunan ng dato.',
+	'config-sqlite-fts3-downgrade' => 'Nawawala ang suportang FTS3 ng PHP, ibinababa ang uri ng mga talahanayan',
 	'config-regenerate' => 'Muling likhain ang LocalSettings.php →',
 	'config-show-table-status' => 'Nabigo ang pagtatanong na IPAKITA ANG KALAGAYAN NG TALAHANAYAN!',
 	'config-db-web-account' => 'Akawnt ng kalipunan ng dato para sa pagpunta sa web',
@@ -8035,6 +8055,9 @@ Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9) at mga salang
 	'config-mysql-engine' => 'Makinang imbakan:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-charset' => 'Pangkat ng panitik ng kalipunan ng dato:',
+	'config-mysql-binary' => 'Binaryo',
+	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Pangalan ng wiki:',
 	'config-site-name-help' => "Lilitaw ito sa bareta ng pamagat ng pantingin-tingin at sa samu't saring ibang mga lugar.",
 	'config-site-name-blank' => 'Magpasok ng isang pangalan ng sityo.',
@@ -8054,6 +8077,16 @@ Tumukoy ng ibang pangalan ng tagagamit.',
 	'config-admin-password-same' => 'Ang hudyat ay hindi dapat na katulad ng pangalan ng tagagamit.',
 	'config-admin-password-mismatch' => 'Hindi magkatugma ang ipinasok mong dalawang mga hudyat.',
 	'config-admin-email' => 'Tirahan ng e-liham:',
+	'config-admin-error-user' => 'Panloob na kamalian kapag nililikha ang isang tagapangasiwa na may pangalang "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Panloob na kamalian kapag nagtatakda ng isang hudyat na para sa tagapangasiwang "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-subscribe' => 'Tumanggap mula sa [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce talaan ng mga pinadadalhan ng mga nilalabas na mga pabatid].',
+	'config-almost-done' => 'Halos tapos ka na!
+Maaari mo ngayong laktawan ang natitira pang pag-aayos at iluklok na ang wiki ngayon.',
+	'config-optional-continue' => 'Magtanong sa akin ng marami pang mga tanong.',
+	'config-optional-skip' => 'Naiinip na ako, basta iluklok na lang ang wiki.',
+	'config-profile' => 'Balangkas ng mga karapatan ng tagagamit:',
+	'config-profile-wiki' => 'Tradisyonal na wiki',
+	'config-profile-no-anon' => 'Kailangan ang paglikha ng akawnt',
 	'config-profile-fishbowl' => 'Pinahintulutang mga patnugot lamang',
 	'config-profile-private' => 'Pribadong wiki',
 	'config-license' => 'Karapatang-ari at lisensiya:',

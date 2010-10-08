@@ -515,6 +515,8 @@ Tro da uzantoj provas vidi ĉi tiun paĝon.
 Bonvolu atendi iom antaŭ vi provas atingi ĝin denove.
 
 $1',
+'pool-timeout'      => 'Tempolimo atingis atendante ŝlosadon',
+'pool-queuefull'    => 'Atendovico de servilaro estas plena.',
 'pool-errorunknown' => 'Nekonata eraro',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -762,6 +764,11 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel'         => 'Lingvo: $1',
 'suspicious-userlogout'      => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
+'ratelimit-excluded-ips'     => ' # <!-- leave this line exactly as it is --><pre>
+# Jen la sintakso:
+#  * Ĉiu de la karaktero "#" ĝis la fino de la linio estas komento
+#  * Ĉiu nemalplena linio estas IP-adreso ekskludita de la rapidlimo
+ # </pre><!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Taksita pasvorta forteco: $1',
@@ -3462,5 +3469,8 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'htmlform-submit'              => 'Ek!',
 'htmlform-reset'               => 'Malfari ŝanĝojn',
 'htmlform-selectorother-other' => 'Alia',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 kun tut-teksta subteno',
 
 );

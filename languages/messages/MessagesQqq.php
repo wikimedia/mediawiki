@@ -1715,6 +1715,7 @@ Text displayed when uploading a file using [[Special:Upload]].",
 'filename'                    => '{{Identical|Filename}}',
 'filedesc'                    => '{{Identical|Summary}}',
 'fileuploadsummary'           => '{{Identical|Summary}}',
+'filereuploadsummary'         => 'Label of textearea in Special:Upload when uploading a new version of existing file.',
 'filesource'                  => 'On page [[Special:Upload]] if defined $wgUseCopyrightUpload for detailed copyright information forms. This is source of file.
 
 {{Identical|Source}}',
