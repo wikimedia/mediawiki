@@ -354,6 +354,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16)
 * (bug 25367) wfShellExec() is more explicit when failing due to disabled
   passthru()
+* (bug 25462) Fix double-escaping for section edit link tooltips
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

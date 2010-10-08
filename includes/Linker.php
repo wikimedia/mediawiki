@@ -1377,6 +1377,8 @@ class Linker {
 		// added to it for LTR text on RTL pages
 		$attribs = array();
 		if ( !is_null( $tooltip ) ) {
+			# Bug 25462: undo double-escaping.
+			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
 			$attribs['title'] = wfMsgReal( 'editsectionhint', array( $tooltip ), true, $lang );
 		}
 		$link = $this->link( $nt, wfMsgExt( 'editsection', array( 'language' => $lang ) ),
