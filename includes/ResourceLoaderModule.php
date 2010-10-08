@@ -1073,7 +1073,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 			// Automatically register module
 			else {
-				$mtime = max( $module->getModifiedTime( $context ), $wgCacheEpoch );
+				$mtime = max( $module->getModifiedTime( $context ), wfTimestamp( TS_UNIX, $wgCacheEpoch ) );
 				// Modules without dependencies or a group pass two arguments (name, timestamp) to 
 				// mediaWiki.loader.register()
 				if ( !count( $module->getDependencies() && $module->getGroup() === null ) ) {
@@ -1145,7 +1145,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// ATTENTION!: Because of the line above, this is not going to cause infinite recursion - think carefully
 		// before making changes to this code!
-		$time = $wgCacheEpoch;
+		$time = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $context->getResourceLoader()->getModules() as $module ) {
 			$time = max( $time, $module->getModifiedTime( $context ) );
 		}
