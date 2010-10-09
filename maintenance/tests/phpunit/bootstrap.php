@@ -1,31 +1,18 @@
-<?php 
+<?php
 /**
  * Bootstrapping for MediaWiki PHPUnit tests
- * 
+ * This file is included by phpunit and is NOT in the global scope.
+ *
  * @file
  */
 
-/* Configuration */
-
-// This file is not included in the global scope, but rather within a function, so we must global anything we need to
-// have access to in the global scope explicitly
-global $wgCommandLineMode, $IP, $optionsWithArgs, $wgProfiler, $wgAutoloadClasses;
-
-// Evaluate the include path relative to this file
-$IP = dirname( dirname( dirname( dirname( __FILE__ ) ) ) );
-
-// Set a flag which can be used to detect when other scripts have been entered through this entry point or not
-define( 'MW_PHPUNIT_TEST', true );
-
-// Start up MediaWiki in command-line mode
-require_once( "$IP/maintenance/commandLine.inc" );
-
-// Assume UTC for testing purposes
-$wgLocaltimezone = 'UTC';
-
-// To prevent tests from failing with SQLite, we need to turn database caching off
-global $wgCaches;
-$wgCaches[CACHE_DB] = false;
+if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+	echo <<<EOF
+You are running these tests directly from phpunit. You may not have all globals correctly set.
+Running phpunit.php instead is recommended.
+EOF;
+	require_once ( dirname( __FILE__ ) . "/phpunit.php" );
+}
 
 // Output a notice when running with older versions of PHPUnit
 if ( !version_compare( PHPUnit_Runner_Version::id(), "3.4.1", ">" ) ) {
@@ -74,3 +61,4 @@ abstract class MediaWikiTestSetup extends PHPUnit_Framework_TestCase {
 		}
 	}
 }
+
