@@ -448,7 +448,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Replace the result data with the information about an exception.
 	 * Returns the error code
-	 * @param $e MWException
+	 * @param $e Exception
 	 */
 	protected function substituteResultWithError( $e ) {
 		// Printer may not be initialized if the extractRequestParams() fails for the main module

@@ -180,6 +180,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
 	}
 
+	/**
+	 * @static
+	 * @param $result ApiResult
+	 * @param $vals
+	 * @param $params
+	 * @param $type
+	 * @param $ts
+	 * @return array
+	 */
 	public static function addLogParams( $result, &$vals, $params, $type, $ts ) {
 		$params = explode( "\n", $params );
 		switch ( $type ) {
