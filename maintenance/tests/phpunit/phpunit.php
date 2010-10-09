@@ -23,5 +23,18 @@ $wgLocaltimezone = 'UTC';
 // To prevent tests from failing with SQLite, we need to turn database caching off
 $wgCaches[CACHE_DB] = false;
 
-require_once "/usr/bin/phpunit";
+$targetFile = wfIsWindows() ? 'phpunit.php' : 'phpunit';
+$pathSeparator = wfIsWindows() ? ';' : ':';
+
+$folders = explode( $pathSeparator, getenv('PATH') );
+foreach ( $folders as $folder ) {
+	if ( file_exists( "$folder/$targetFile" ) ) {
+		require_once "$folder/$targetFile";
+		exit(0);
+	}
+}
+
+echo "I couldn't find PHPUnit\nTry adding its folder to your PATH\n";
+
+die( 1 );
 
