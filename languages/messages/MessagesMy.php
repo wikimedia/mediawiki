@@ -482,7 +482,12 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'rightslog' => 'အသုံးပြုသူ၏ အခွင့်အရေးများ မှတ်တမ်း',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'ဤစာမျက်နှာကို ပြင်ရန်',
+'action-edit'          => 'ဤစာမျက်နှာကို ပြင်ရန်',
+'action-createpage'    => 'စာမျက်နှာများ စတင်ရေးသားရန်',
+'action-createtalk'    => 'ဆွေးနွေးချက်စာမျက်နှာများ စတင်ရေးသားရန်',
+'action-createaccount' => 'ဤအသုံးပြုသူအကောင့်ကို ဖန်တီးရန်',
+'action-minoredit'     => 'ဤတည်းြဖတ်မှုကို အရေးမကြီးဟု မှတ်သားရန်',
+'action-move'          => 'ဤစာမျက်နှာကို ရွှေ့ပြောင်းရန်',
 
 # Recent changes
 'nchanges'                       => 'ပြောင်းလဲချက် $1 {{PLURAL:$1|ခု|ခု}}',
@@ -522,7 +527,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'upload'            => 'ဖိုင်​တင်​ရန်​',
 'uploadbtn'         => 'ဖိုင်​တင်​ရန်​',
 'uploadnologin'     => 'logged in ဝင်မထားပါ',
-'uploadlogpage'     => 'မှတ်တမ်းကို Upload တင်ရန်',
+'uploadlogpage'     => 'Upload တင်သည့် မှတ်တမ်း',
 'filename'          => 'ဖိုင်အမည်',
 'filedesc'          => 'အ​ကျဉ်း​ချုပ်​',
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
@@ -587,8 +592,8 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'newpages'          => 'စာမျက်နှာအသစ်',
 'newpages-username' => 'မှတ်​ပုံ​တင်​အ​မည်:',
 'ancientpages'      => 'အဟောင်းဆုံးစာမျက်နှာ',
-'move'              => 'ရွေ့​ပြောင်း​ပါ​',
-'movethispage'      => 'ဤစာမျက်နှာအားရွှေ့ပြောင်းပါ',
+'move'              => 'ရွှေ့ရန်',
+'movethispage'      => 'ဤစာမျက်နှာကို ရွှေ့ပြောင်းရန်',
 'pager-newer-n'     => '{{PLURAL:$1|ပိုသစ်သော တစ်ခု|ပိုသစ်သော $1 ခု}}',
 'pager-older-n'     => '{{PLURAL:$1|ပိုဟောင်းသော တစ်ခု|ပိုဟောင်းသော $1 ခု}}',
 
@@ -693,7 +698,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 
 # Restrictions (nouns)
 'restriction-edit'   => 'ပြင်​ဆင်​ရန်​',
-'restriction-move'   => 'ရွေ့​ပြောင်း​ပါ​',
+'restriction-move'   => 'ရွှေ့ရန်',
 'restriction-create' => 'ထွင်',
 
 # Undelete
@@ -758,7 +763,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'block-log-flags-nocreate' => 'အကောင့်ဖန်တီးခြင်းကို ပိတ်ထားသည်',
 
 # Move page
-'move-page-legend' => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'move-page-legend' => 'စာ​မျက်​နှာ​ကို ရွှေ့ပြောင်းရန်',
 'movepagetext'     => "အောက်ပါပုံစံကို အသုံးပြုပါက စာမျက်နှာကို အမည်ပြောင်းလဲပေးမည် ဖြစ်ပြီး အမည်သစ်သို့ ယင်း၏ မှတ်တမ်းနှင့်တကွ ရွှေ့ပေးမည် ဖြစ်သည်။
 အမည်ဟောင်းသည် အမည်သစ်သို့ ပြန်ညွှန်းပေးမည် ဖြစ်သည်။
 သင်သည် မူလခေါင်းစဉ်သို့ ပြန်ညွှန်းများကို အလိုအလျောက် အပ်ဒိတ် update လုပ်နိုင်သည်။
@@ -776,11 +781,11 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 *အောက်ပါ သေတ္တာငယ် box ကို မှတ်သားခြင်း။
 
 ဤကိစ္စမျိုး ကြုံလာခဲ့ပါက သင် ဆန္ဒရှိလျှင် စာမျက်နှာကို မိမိကိုယ်တိုင် သွားရောက်ရွှေ့ပြောင်း ပေါင်းစပ်နိုင်သည်။",
-'movearticle'      => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'movearticle'      => 'စာ​မျက်​နှာ​ကို ရွှေ့ပြောင်းရန် -',
 'movenologin'      => 'logged in ဝင်မထားပါ',
 'newtitle'         => 'ခေါင်းစဉ်အသစ်သို့:',
 'move-watch'       => 'မူရင်းစာမျက်နှာနှင့် ဦးတည်ထားသော စာမျက်နှာတို့ကို စောင့်ကြည့်ရန်',
-'movepagebtn'      => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'movepagebtn'      => 'စာ​မျက်​နှာ​ကို ရွှေ့ပြောင်းရန်',
 'pagemovedsub'     => 'ပြောင်းရွှေ့ခြင်းအောင်မြင်သည်',
 'movepage-moved'   => '\'\'\'"$1" ကို "$2" သို့ ရွှေ့ပြီးဖြစ်သည်\'\'\'',
 'articleexists'    => 'ထိုအမည်ဖြင့် စာမျက်နှာတစ်ခု ရှိနှင့်ပြီးဖြစ်သည် (သို့) သင်ရွေးလိုက်သော အမည်သည် တရားမဝင်ပါ။
@@ -812,6 +817,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'tooltip-pt-watchlist'            => 'အပြောင်းအလဲများအတွက် စောင့်ကြည့်နေသော စာမျက်နှာများ၏ စာရင်း',
 'tooltip-pt-mycontris'            => 'သင့်ပံ့ပိုးမှုများ၏ စာရင်း',
 'tooltip-pt-login'                => 'မှတ်ပုံတင်ဖြင့် log in ဝင်ရန် အားပေးပါသည်။ သို့သော် မှတ်ပုံမတင်မနေရ မဟုတ်ပါ။',
+'tooltip-pt-anonlogin'            => 'မှတ်ပုံတင်ဖြင့် log in ဝင်ရန် အားပေးပါသည်။ သို့သော် မှတ်ပုံမတင်မနေရ မဟုတ်ပါ။',
 'tooltip-pt-logout'               => 'ထွက်​ပါ​',
 'tooltip-ca-talk'                 => 'မာတိကာ စာမျက်နှာအတွက် ဆွေးနွေးချက်များ',
 'tooltip-ca-edit'                 => 'ဤစာမျက်နှာကို တည်းဖြတ်နိုင်သည်။ ကျေးဇူးပြု၍ မသိမ်းခင် နမူနာ ခလုတ်ကိုနှိပ်ပြီး ကြည့်ပေးပါ။',
@@ -820,13 +826,15 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 ရင်းမြစ် စာသားများကို ကြည့်ရှုနိုင်သည်။',
 'tooltip-ca-history'              => 'ဤစာမျက်နှာ၏ ယခင်မူများ',
 'tooltip-ca-protect'              => 'ဤစာမျက်နှာကို ထိန်းသိမ်းပါ',
+'tooltip-ca-unprotect'            => 'ဤစာမျက်နှာကို မကာကွယ်တော့ရန်',
 'tooltip-ca-delete'               => 'ဤစာမျက်နှာဖျက်ပါ',
-'tooltip-ca-move'                 => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'tooltip-ca-move'                 => 'ဤစာမျက်နှာကို ရွှေ့ပြောင်းရန်',
 'tooltip-ca-watch'                => 'ဤစာမျက်နှာကို စောင့်ကြည့်စာရင်းသို့ ထည့်ရန်',
 'tooltip-ca-unwatch'              => 'ဤစာမျက်နှာကို စောင့်ကြည့်စာရင်းမှ ဖြုတ်ရန်',
 'tooltip-search'                  => '{{SITENAME}} ကို ရှာရန်',
 'tooltip-search-go'               => 'ဤအမည်နှင့် ထပ်တူညီသော စာမျက်နှာရှိပါက ယင်းသို့ သွားရန်',
 'tooltip-search-fulltext'         => 'ဤစာလုံးများပါသော စာမျက်နှာကို ရှာရန်',
+'tooltip-p-logo'                  => 'ဗဟိုစာမျက်နှာသို့ သွားရန်',
 'tooltip-n-mainpage'              => 'ဗဟိုစာမျက်နှာသို့ သွားရန်',
 'tooltip-n-mainpage-description'  => 'ဗဟိုစာမျက်နှာသို့ သွားရန်',
 'tooltip-n-portal'                => 'ပရောဂျက်အကြောင်း၊ သင်ဘာလုပ်ပေးနိုင်သည် နှင့် ဘယ်နေရာတွင် ရှာဖွေရန်များ',

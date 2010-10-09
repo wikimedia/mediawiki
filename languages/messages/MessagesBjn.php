@@ -242,7 +242,7 @@ $messages = array(
 Nangkaya ini biasanya dimargakan tautan lawas ka sabuah tungkaran nang halamnya sudah dihapus.
 
 Munnya lainan ini pasalnya, Pian mungkin batamu bug dalam perangkat lunak.
-Silakan lapurakan ini ka saurang [[Special:ListUsers/sysop|pangirak]], ulah catatan URL nang ditulaki',
+Silakan lapurakan ini ka saurang [[Special:ListUsers/sysop|pambakal]], ulah catatan URL nang ditulaki',
 'missingarticle-rev'   => '(ralatan#: $1)',
 'fileappenderror'      => 'Kada kawa mamasukakan "$1" ka "$2".',
 'filecopyerror'        => 'Kada kawa manyalin "$1" ka "$2".',
@@ -437,14 +437,14 @@ Tarai pamintaan Pian lawan ''all:'' gasan manggagai samunyaan isi (tamasuk tungk
 # Groups
 'group'       => 'Galambang:',
 'group-bot'   => 'Bot',
-'group-sysop' => 'Pangirak',
+'group-sysop' => 'Pambakal',
 
 'group-user-member'  => 'Pamuruk',
 'group-bot-member'   => 'Bot',
 'group-sysop-member' => 'Pambakal',
 
 'grouppage-bot'   => '{{ns:project}}:Bot',
-'grouppage-sysop' => '{{ns:project}}:Pangirak',
+'grouppage-sysop' => '{{ns:project}}:Pambakal',
 
 # Rights
 'right-read'          => 'Mambaca tungkaran',
@@ -630,7 +630,7 @@ Pian kawa maubah tingkatan palindungan gasan tungkaran ini, tagal ini kada pacan
 'protect-default'             => 'Bulihakan samua pamuruk',
 'protect-fallback'            => 'Mamarluakan ijin "$1"',
 'protect-level-autoconfirmed' => 'Blukir pamuruk hanyar wan kada tadaptar',
-'protect-level-sysop'         => 'Hanya pangirak',
+'protect-level-sysop'         => 'Hanya pambakal',
 'protect-summary-cascade'     => 'barénténg',
 'protect-expiring'            => 'kadaluwarsa $1 (UTC)',
 'protect-cascade'             => 'Lindungi tungkaran-tungkaran nang tamasuk dalam tungkaran ini (palindungan barénténg)',

@@ -401,6 +401,8 @@ For mange brugere prøver at vise denne side.
 Vent et øjeblik, før du prøver at vise denne side ige.
 
 $1',
+'pool-timeout'      => 'Timeout mens man venter på låsningen',
+'pool-queuefull'    => 'Pool køen er fuld',
 'pool-errorunknown' => 'Ukendt fejl',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -3328,5 +3330,9 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'htmlform-submit'              => 'Gem',
 'htmlform-reset'               => 'Annuller ændringer',
 'htmlform-selectorother-other' => 'Anden',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
+'sqlite-no-fts'  => '$1 uden fuld-tekst søgnings support',
 
 );

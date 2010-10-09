@@ -1403,14 +1403,14 @@ Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'filetype-bad-ie-mime'        => 'Haiwezi kupakia faili hili kwa sababu Internet Explorer ingefikiri kwamba ni "$1". Mafaili ya aina hii hayaruhusiwa, na huenda ni ya hatari.',
 'filetype-unwanted-type'      => "Aina la faili '''\".\$1\"''' halitakiwi.
 {{PLURAL:\$3|Aina ya faili inayopendelewa|Aina za faili zinazopendelewa}} ni \$2.",
-'filetype-banned-type'        => "Aina la faili '''\".\$1\"''' hairuhusiwi.
-{{PLURAL:\$3|Aina ya faili inayoruhusiwa|Aina za faili zinazoruhusiwa}} ni \$2.",
-'filetype-missing'            => 'Faili halina tawi (kama ".jpg").',
+'filetype-banned-type'        => "'''\".\$1\"''' sio aina la faili linaloruhusiwa.
+{{PLURAL:\$3|Aina ya faili linaloruhusiwa|Aina za faili zinazoruhusiwa}} ni \$2.",
+'filetype-missing'            => 'Faili halina mnyambuliko (kama ".jpg").',
 'empty-file'                  => 'Faili ulilowasilisha ni tupu.',
 'file-too-large'              => 'Faili ulilowasilisha ni kubwa mno.',
 'filename-tooshort'           => 'Jina la faili ni fupi mno.',
 'filetype-banned'             => 'Aina hili la faili haliruhusiwi.',
-'verification-error'          => 'Faili hili halikupitishwa wakati lilipohakikishwa.',
+'verification-error'          => 'Faili hili halikupitishwa katika ukaguzi wa faili.',
 'illegal-filename'            => 'Jina hilo la faili haliruhusiwi.',
 'overwrite'                   => 'Kuandikiza faili lililopo tayari hairuhusiwi.',
 'unknown-error'               => 'Ilitokea hitilafu isiyojulikana.',
@@ -1418,14 +1418,14 @@ Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
 'tmp-write-error'             => 'Hitilafu ya kuandika faili la muda.',
 'large-file'                  => 'Tunashauri mafaili yasizidi $1;
 faili hili lina $2.',
-'largefileserver'             => 'Faili hili ni kubwa kuliko linavyoweza kuwekwa, kwa jinsi seva inavyopangaliwa',
+'largefileserver'             => 'Faili hili ni kubwa kuliko seva ilivyopangwa kuruhusu.',
 'emptyfile'                   => 'Faili ulilolipakia linaonekana kuwa tupu.
-Labda jina lake limeandikwa vibaya.
-Tafadhali uhakikishe kwamba unataka kupakia faili hili.',
+Hii huenda ikawa jina lake limeandikwa vibaya.
+Tafadhali uhakikishe kwamba ni kweli unataka kupakia faili hili.',
 'fileexists'                  => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.",
-'filepageexists'              => "Ukurasa wa maelezo ya faili hili limeshaanzishwa hapo '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili.
+'filepageexists'              => "Maelezo ya ukurasa kwa ajili ya faili hili tayari yameshaanzishwa katika '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili kwa sasa.
 Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
-Ili muhtasari uonekana pale, itabidi uhariri ukurasa.
+Kufanya muhtasari wako uonekana pale, utahitajika uhariri ukurasa kwa mikono.
 [[$1|thumb]]",
 'fileexists-extension'        => "Faili lenye jina linalofanana nalo lipo tayari:[[$2|thumb]]
 * Jina la faili linalopakiwa: '''<tt>[[:$1]]</tt>'''
@@ -1435,29 +1435,29 @@ Tafadhali chagua jina lingine.",
 [[$1|thumb]]
 Tafadhali utazame faili la '''<tt>[[:$1]]</tt>'''.
 Ikiwa faili hili linaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
-'file-thumbnail-no'           => "Jina la faili linaanza na '''<tt>$1</tt>'''.
-Huwa ukubwa wake ulipunguzwa ''(ni picha ndogo)''.
-Ikiwa unao picha hii kwa ukubwa wa kawaida tafadhali upakie picha ile, la sivyo tafadhali badilisha jina la faili.",
+'file-thumbnail-no'           => "Jina la faili linaloanza na '''<tt>$1</tt>'''.
+Inaonekana kuwa ni picha iliyopunguzwa kubwa''(thumbnail)''.
+Ikiwa unaoyo picha hii kwa ukubwa wa kawaida tafadhali pakia picha hii, vinginevyo tafadhali badilisha jina la faili.",
 'fileexists-forbidden'        => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
 Kama unataka kupakia faili lako, tafadhali rudia kwa kutumia jina lingine. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Faili lenye jina hili tayari lipo katika hifadhi ya pamoja ya faili.
-Kama bado unataka kupakia faili lako, tafadhali rudie kwa kutumia jina jipya.
+Kama bado unataka kupakia faili lako, tafadhali rudi na utumie jina jipya.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Faili hili ni nakala ya {{PLURAL:$1|faili lifuatalo|mafaili yafuatayo}}:',
-'file-deleted-duplicate'      => 'Faili sawa sawa na faili hili ([[$1]]) limeshafutwa.
-Tazama kumbukumbu za kufuta faili lile kabla hujalipakia upya.',
+'file-deleted-duplicate'      => 'Faili linalofanana na faili hili ([[$1]]) limeshafutwa hapo awali.
+Tazama kumbukumbu za kufuta faili lile kabla hujaendelea kulipakia upya.',
 'uploadwarning'               => 'Ilani kuhusu kupakia',
 'uploadwarning-text'          => 'Tafadhali ubadilishe maelezo ya faili hapo chini, halafu jaribu tena.',
 'savefile'                    => 'Hifadhi faili',
 'uploadedimage'               => 'ameipakia "[[$1]]"',
 'overwroteimage'              => 'alipakia toleo jipya la "[[$1]]"',
 'uploaddisabled'              => 'Upakiaji umelemazwa.',
-'copyuploaddisabled'          => 'Kupakia kwa kupitia URL umelemazwa.',
+'copyuploaddisabled'          => 'Kupakia kwa kupitia URL kumelemazwa.',
 'uploadfromurl-queued'        => 'Upakiaji wako umewekwa kwenye foleni.',
 'uploaddisabledtext'          => 'Upakiaji wa mafaili umelemazwa.',
 'php-uploaddisabledtext'      => 'Upakiaji wa mafaili umelemazwa katika PHP.
 Tafadhali utazame kipimo cha file_uploads.',
-'uploadscripted'              => 'Faili hili lina HTML au kodi ambaye labda itaeleweka vibaya na kivinjari.',
+'uploadscripted'              => 'Faili hili lina HTML au kodi ambazo labda itaeleweka vibaya na kivinjari.',
 'uploadvirus'                 => 'Faili lina kirusi!
 Maelezo mengine: $1',
 'upload-source'               => 'Faili la chanzo',
@@ -1483,13 +1483,13 @@ Tafadhali chagua jina linaloeleweka kirahisi kwa ajili ya faili lako.",
 
 $1',
 'upload-warning-subj'         => 'Ilani ya kupakia',
-'upload-warning-msg'          => 'Kulitokea tatizo wakati wa kupakia kutoka kwa [$2]. Unaweza kurudi katika [[Special:Upload/stash/$1|fomu ya kupakia]] ili kurekebisha tatizo.',
+'upload-warning-msg'          => 'Kulitokea tatizo na upakiaji wako kuanzia [$2]. Unaweza kurudi katika [[Special:Upload/stash/$1|fomu ya kupakia]] ili kurekebisha tatizo hili.',
 
 'upload-proto-error'        => 'Itifaki isio sahihi',
-'upload-proto-error-text'   => 'Ili kupakia kutoka mbali lazima URL ianze na <code>http://</code> or <code>ftp://</code>.',
+'upload-proto-error-text'   => 'Upakiaji wa mbali lazima URL ianze na <code>http://</code> au <code>ftp://</code>.',
 'upload-file-error'         => 'Hitilafu ya ndani',
-'upload-file-error-text'    => 'Hitilafu ya ndani ilitokea ulipojaribu kuanzisha faili la muda kwenye seva.
-Tafadhali uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
+'upload-file-error-text'    => 'Hitilafu ya ndani ilitokea wakati unajaribu kuanzisha faili la muda kwenye seva.
+Tafadhali wasiliana na [[Special:ListUsers/sysop|mkabidhi]].',
 'upload-misc-error'         => 'Hitilafu ya kupakia isiyojulikana',
 'upload-misc-error-text'    => 'Hitilafu isiyojulikana ilitokea wakati wa kupakia.
 Tafadhali uhakikishe kwamba URL ni halali na inafikika, halafu jaribu tena.
@@ -1501,11 +1501,11 @@ Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
 # img_auth script messages
 'img-auth-accessdenied' => 'Ruksa imekataliwa',
 'img-auth-nofile'       => 'Hakuna faili la "$1".',
-'img-auth-noread'       => 'Mtumiaji hana ruhusa kusoma "$1".',
+'img-auth-noread'       => 'Mtumiaji hana fursa ya kusoma "$1".',
 
 # HTTP errors
 'http-invalid-url'      => 'URL batili: $1',
-'http-request-error'    => 'Ombi la HTTP lilishindwa kutokana na hitilafu isiyojulikana.',
+'http-request-error'    => 'Ombi la HTTP limeshindikana kutokana na hitilafu isiyojulikana.',
 'http-read-error'       => 'Hitilafu ya kusoma HTTP.',
 'http-timed-out'        => 'Ombi la HTTP muda umepita.',
 'http-curl-error'       => 'Hitilafu ya kuleta URL: $1',
