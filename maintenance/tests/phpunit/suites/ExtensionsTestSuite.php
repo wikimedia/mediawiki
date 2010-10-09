@@ -9,7 +9,6 @@
 		parent::__construct();
 		$files = array();
 		wfRunHooks( 'UnitTestsList', array( &$files ) );
-		var_dump($files);
 		foreach ( $files as $file ) {
 			$this->addTestFile( $file );
 		}
