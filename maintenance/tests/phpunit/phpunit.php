@@ -28,7 +28,7 @@ $pathSeparator = wfIsWindows() ? ';' : ':';
 
 $folders = explode( $pathSeparator, getenv('PATH') );
 
-require 'PHPUnit/TextUI/Command.php';
-define('PHPUnit_MAIN_METHOD', 'PHPUnit_TextUI_Command::main');
+require_once( 'PHPUnit/TextUI/Command.php' );
+define( 'PHPUnit_MAIN_METHOD', 'PHPUnit_TextUI_Command::main' );
 PHPUnit_TextUI_Command::main();
 
