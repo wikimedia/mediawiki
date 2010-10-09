@@ -67,5 +67,5 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 class ResourceLoaderTestModule extends ResourceLoaderModule { }
 
 /* Hooks */
-
+global $wgHooks;
 $wgHooks['ResourceLoaderRegisterModules'][] = 'ResourceLoaderTest::resourceLoaderRegisterModules';
