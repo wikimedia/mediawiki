@@ -27,6 +27,14 @@ $targetFile = wfIsWindows() ? 'phpunit.php' : 'phpunit';
 $pathSeparator = wfIsWindows() ? ';' : ':';
 
 $folders = explode( $pathSeparator, getenv('PATH') );
+
+# We may not have PHPUnit folder in the path, but have 
+# PEAR folder in the include path.
+$includeFolders = explode( $pathSeparator, get_include_path() );
+foreach ( $includeFolders as $includeFolder ) {
+	$folders[] =  "$includeFolder/PHPUnit";
+}
+
 foreach ( $folders as $folder ) {
 	if ( file_exists( "$folder/$targetFile" ) ) {
 		require_once "$folder/$targetFile";
