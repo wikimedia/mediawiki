@@ -521,8 +521,8 @@ $2',
 'loginlanguagelabel'         => 'ভাষা: $1',
 
 # JavaScript password checks
-'password-strength-bad'      => 'অতি-দুর্বল শব্দচাবি',
-'password-strength-mediocre' => 'সামান্য দুর্বল শব্দচাবি',
+'password-strength-bad'      => 'খুব দুর্বল',
+'password-strength-mediocre' => 'দুর্বল',
 
 # Password reset dialog
 'resetpass'                 => 'শব্দচাবি পরিবর্তন',

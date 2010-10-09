@@ -3331,7 +3331,7 @@ O sistema de correio devolveu o erro: $1',
 'confirmemail_invalid'      => 'Código de confirmação inválido. O código poderá ter expirado.',
 'confirmemail_needlogin'    => 'Precisa de $1 para confirmar o seu endereço de correio electrónico.',
 'confirmemail_success'      => 'O seu endereço de correio electrónico foi confirmado.
-Pode agora [[Special:UserLogin|autenticar-se]] e disfrutar da wiki.',
+Pode agora [[Special:UserLogin|autenticar-se]] e desfrutar da wiki.',
 'confirmemail_loggedin'     => 'O seu endereço de correio electrónico foi confirmado.',
 'confirmemail_error'        => 'Alguma coisa correu mal ao gravar a sua confirmação.',
 'confirmemail_subject'      => 'Confirmação de endereço de correio electrónico da {{SITENAME}}',

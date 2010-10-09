@@ -88,7 +88,7 @@ $messages = array(
 'tog-underline'          => 'ܪܫܘܡ ܣܪܛܐ ܬܚܝܬ ܐܣܘܪܐ:',
 'tog-justify'            => 'ܫܘܐ ܦܬܓܡ̈ܐ',
 'tog-hideminor'          => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ ܒܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
-'tog-rememberpassword'   => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܚܫܘܒܬܐ ܗܕܐ (ܠܡܬܚܐ ܥܠܝܐ ܕ $1 {{PLURAL:$1|ܝܘܡܐ|ܝܘܡܬ̈ܐ}})',
+'tog-rememberpassword'   => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܡܦܐܬܢܐ ܗܢܐ (ܠܡܬܚܐ ܥܠܝܐ ܕ $1 {{PLURAL:$1|ܝܘܡܐ|ܝܘܡܬ̈ܐ}})',
 'tog-watchcreations'     => 'ܐܘܣܦ ܦܐܬܬ̈ܐ ܕܒܪܐ ܐܢܐ ܠܪ̈ܗܝܬܝ',
 'tog-watchdefault'       => 'ܐܘܣܦ ܦܐܬܬ̈ܐ ܕܫܚܠܦ ܐܢܐ ܠܪ̈ܗܝܬܝ',
 'tog-watchmoves'         => 'ܐܘܣܦ ܦܐܬܬ̈ܐ ܕܫܢܐ ܐܢܐ ܠܪ̈ܗܝܬܝ',
@@ -326,14 +326,14 @@ $messages = array(
 
 ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܬܚܫܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܬܚܫܚܢܐ ܐܚܪܢܐ.
 
-Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
+ܚܕ ܟܡܐ ܡܢ ܦܐܬܬ̈ܐ ܡܬܚܙܝܢ ܐܝܟ ܕܗܘ ܐܢܬ ܥܠܝܠܐ ܥܕܡܐ ܕܐܣܦܩܬ ܠܦܐܬܬ̈ܐ ܠܒܝܟ̈ܐ ܕܡܦܐܬܢܐ ܕܝܠܟ",
 'welcomecreation'         => '== ܒܫܝܢܐ, $1! ==
 ܐܬܒܪܝ ܚܘܫܒܢܟ.
 ܠܐ ܢܫܐ ܐܢܬ ܠܫܚܠܦܬܐ ܕ[[Special:Preferences|ܓܒܝܬ̈ܐ ܒ {{SITENAME}}]].',
 'yourname'                => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'yourpassword'            => 'ܡܠܬܐ ܕܥܠܠܐ:',
 'yourpasswordagain'       => 'ܟܬܘܒ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܬܐ ܐܚܪܬܐ:',
-'remembermypassword'      => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܚܫܘܒܬܐ ܗܕܐ (ܠܡܬܚܐ ܥܠܝܐ ܕ $1 {{PLURAL:$1|ܝܘܡܐ|ܝܘܡܬ̈ܐ}})',
+'remembermypassword'      => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܡܦܐܬܢܐ ܗܢܐ (ܠܡܬܚܐ ܥܠܝܐ ܕ $1 {{PLURAL:$1|ܝܘܡܐ|ܝܘܡܬ̈ܐ}})',
 'login'                   => 'ܥܘܠ',
 'nav-login-createaccount' => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
 'userlogin'               => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',

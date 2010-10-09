@@ -2696,7 +2696,7 @@ Vous avez réussi à installer MediaWiki.
 Le programme d'installation a généré un fichier <code>LocalSettings.php</code>. 
 Il contient tous les paramètres de configuration.
 
-Vous devez le [télécharger $1] et le mettre dans le répertoire de base de l'installation (c'est le même répertoire que celui de <code>index.php</code>). 
+Vous devez le [$1 télécharger] et le mettre dans le répertoire de base de l'installation (c'est le même répertoire que celui de <code>index.php</code>). 
 '''Note''': Si vous ne le faites pas maintenant, ce fichier de configuration généré ne sera pas disponible plus tard si vous quittez l'installation sans le télécharger. 
 
 Lorsque cela a été fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
@@ -5024,6 +5024,7 @@ Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
 	'config-page-releasenotes' => 'Informatiounen zur Versioun',
 	'config-page-copying' => 'Kopéieren',
 	'config-page-upgradedoc' => 'Aktualiséieren',
+	'config-help-restart' => 'Wëllt dir all gespäichert Donnéeë läschen déi dir bis elo aginn hutt an den Installatiounsprozess nei starten?',
 	'config-restart' => 'Jo, neistarten',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Haaptsäit]
 * [http://www.mediawiki.org/wiki/Help:Contents Benotzerguide]
@@ -5063,6 +5064,8 @@ Installatioun ofgebrach.",
 	'config-db-install-help' => 'Gitt de Benotzernumm an Passwuert an dat wàhrend der Installatioun benotzt gëtt fir sech mat der Datebank ze verbannen.',
 	'config-db-account-lock' => 'De selwechte Benotzernumm a Passwuert fir déi normal Operatioune benotzen',
 	'config-db-wiki-account' => 'Benotzerkont fir normal Operatiounen',
+	'config-db-wiki-help' => "Gitt de Benotzernumm an d'Passwuert an dat benotzt wäert gi fir sech bei den normale Wiki-Operatiounen mat der Datebank ze connectéieren.
+Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, gëtt dëse Benotzerkont opgemaach mat dem Minimum vu Rechter déi gebraucht gi fir dës Wiki bedreiwen ze kënnen.",
 	'config-db-charset' => 'Zeechesaz (character set) vun der Datebank',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binair',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',

@@ -116,14 +116,14 @@ $messages = array(
 'tog-editsection'             => 'Bölüklerni [deñiştir] bağlantılarnı ile deñiştirme aqqı ber',
 'tog-editsectiononrightclick' => 'Bölük serlevasına oñ basıp bölükte deñişiklikke ruhset ber. (JavaScript)',
 'tog-showtoc'                 => 'Münderice cedveli köster (3 daneden ziyade serlevası olğan saifeler içün)',
-'tog-rememberpassword'        => 'Parolni hatırla (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Kirişinmi bu brauzerde hatırla (eñ çoq $1 {{PLURAL:$1|kün|kün}} içün)',
 'tog-watchcreations'          => 'Men yaratqan saifelerni közetüv cedvelime kirset',
 'tog-watchdefault'            => 'Men deñiştirgen saifelerni közetüv cedvelime kirset',
 'tog-watchmoves'              => 'Menim tarafımdan adı deñiştirilgen saifelerni közetüv cedvelime kirset',
 'tog-watchdeletion'           => 'Men yoq etken saifelerni közetüv cedvelime kirset',
 'tog-previewontop'            => 'Baqıp çıquvnı yazuv pencereniñ üstünde köster',
 'tog-previewonfirst'          => 'Deñiştirmede baqıp çıquvnı köster',
-'tog-nocache'                 => 'Saifelerni hatırlama',
+'tog-nocache'                 => 'Brauzer saifelerni afızasında tutmasın',
 'tog-enotifwatchlistpages'    => 'Saife deñişikliklerinde maña e-mail yolla',
 'tog-enotifusertalkpages'     => 'Qullanıcı saifemde deñişiklik olğanda maña e-mail yolla',
 'tog-enotifminoredits'        => 'Saifelerde kiçik deñişiklik olğanda da de maña e-mail yolla',
@@ -153,8 +153,10 @@ $messages = array(
 'underline-default' => 'Brauzer qarar bersin',
 
 # Font style option in Special:Preferences
-'editfont-style'   => 'Yazuv penceresinde şrift türü:',
-'editfont-default' => 'Brauzerge köre',
+'editfont-style'     => 'Yazuv penceresinde şrift türü:',
+'editfont-default'   => 'Brauzerge köre',
+'editfont-sansserif' => 'Kertiksiz urufat',
+'editfont-serif'     => 'Kertikli urufat',
 
 # Dates
 'sunday'        => 'Bazar',
@@ -330,6 +332,7 @@ $messages = array(
 'view-pool-error'   => 'Afu etiñiz, server şimdi adden-aşır yüklendi. Pek çoq qullanıcı bu saifeni açmağa tırışa. Lütfen, bu saifeni bir daa açmaqtan evel biraz bekleñiz.
 
 $1',
+'pool-errorunknown' => 'Bilinmegen hata',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} aqqında',
@@ -488,13 +491,14 @@ Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñi
 'yourname'                   => 'Qullanıcı adıñız',
 'yourpassword'               => 'Paroliñiz',
 'yourpasswordagain'          => 'Parolni bir daa yazıñız:',
-'remembermypassword'         => 'Bu kompyuterde meni hatırla (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'         => 'Kirişimni bu kompyuterde hatırla (eñ çoq $1 {{PLURAL:$1|kün|kün}} içün)',
 'yourdomainname'             => 'Domen adıñız',
 'externaldberror'            => 'Oturımıñız açılğanda bir hata oldı. Bu tış esabıñızğa deñişiklik yapmağa aqqıñız olmayuvından meydanğa kelip ola.',
 'login'                      => 'Kiriş',
 'nav-login-createaccount'    => 'Kiriş / Qayd oluv',
 'loginprompt'                => 'Oturım açmaq içün "cookies"ge izin bermelisiñiz.',
 'userlogin'                  => 'Kiriş / Qayd oluv',
+'userloginnocreate'          => 'Kiriş',
 'logout'                     => 'Çıqış',
 'userlogout'                 => 'Çıqış',
 'notloggedin'                => 'Oturım açmadıñız.',
@@ -504,6 +508,7 @@ Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñi
 'gotaccount'                 => "Daa evel esap açqan ediñizmi? '''$1'''.",
 'gotaccountlink'             => 'Oturım açıñız',
 'createaccountmail'          => 'e-mail vastasınen',
+'createaccountreason'        => 'Sebep:',
 'badretype'                  => 'Kirsetken parolleriñiz aynı degil.',
 'userexists'                 => 'Kirsetken qullanıcı adıñız endi qullanıla.
 Başqa bir qullanıcı adı saylañız.',
@@ -558,6 +563,15 @@ Siz şimdi oturım açıp paroliñizni deñiştirmek kereksiñiz.
 Lütfen, qayta kirmezden evel biraz bekleñiz.',
 'loginlanguagelabel'         => 'Til: $1',
 
+# JavaScript password checks
+'password-strength'            => 'Tahminiy parol quveti: $1',
+'password-strength-bad'        => 'YARAMAY',
+'password-strength-mediocre'   => 'orta qarar',
+'password-strength-acceptable' => 'qabul etile bile',
+'password-strength-good'       => 'yahşı',
+'password-retype'              => 'Parolni mında bir daa yazıñız',
+'password-retype-mismatch'     => 'Paroller aynı degil',
+
 # Password reset dialog
 'resetpass'                 => 'Parolni deñiştir',
 'resetpass_announce'        => 'Muvaqqat kod vastasınen kirdiñiz. Kirişni tamamlamaq içün yañı parolni mında qoyuñız:',
@@ -570,6 +584,7 @@ Lütfen, qayta kirmezden evel biraz bekleñiz.',
 'resetpass_forbidden'       => 'Parol deñiştirmek yasaq',
 'resetpass-no-info'         => 'Bu saifege doğrudan irişmek içün oturım açmaq kereksiñiz.',
 'resetpass-submit-loggedin' => 'Parolni deñiştir',
+'resetpass-submit-cancel'   => 'Lâğu',
 'resetpass-wrong-oldpass'   => 'Ruhsetsiz muvaqqat ya da şimdiki parоl.
 Parоliñizni endi muvafaqiyetnen deñiştirdiñiz ya da yañı bir muvaqqat parоl istediñiz.',
 'resetpass-temp-password'   => 'Muvaqqat parol:',
@@ -642,7 +657,7 @@ IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, idarecilerge 
 'whitelistedittitle'               => 'Deñiştirmek içün oturım açmalısıñız',
 'whitelistedittext'                => 'Saifeni deñiştirmek içün $1 kereksiñiz.',
 'confirmedittext'                  => 'Saifeni deñiştirmeden evel e-mail adresiñizni tasdıqlamalısıñız. Lütfen, [[Special:Preferences|sazlamalar saifesinde]] e-mail adresiñizni kirsetiñiz ve tasdıqlañız.',
-'nosuchsectiontitle'               => 'Öyle bölük yoq',
+'nosuchsectiontitle'               => 'Bölük tapılamadı',
 'nosuchsectiontext'                => 'Bar olmağan bölükni deñiştirip baqtıñız.',
 'loginreqtitle'                    => 'Oturım açmalısıñız',
 'loginreqlink'                     => 'kiriş',
@@ -1189,7 +1204,7 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 'filerevert'                => '$1 faylını eski alına qaytar',
 'filerevert-legend'         => 'Faylnı eski alına qaytar',
 'filerevert-intro'          => "'''[[Media:$1|$1]]''' faylınıñ [$4 $2, $3 tarihındaki versiyası]nı keri ketirmektesiñiz.",
-'filerevert-comment'        => 'İzaat:',
+'filerevert-comment'        => 'Sebep:',
 'filerevert-defaultcomment' => '$1, $2 tarihındaki versiyağa keri qaytarıldı',
 
 # MIME search
@@ -1446,7 +1461,7 @@ Yardım ve teklifler içün:
 'exblank'               => 'saife metini boş',
 'delete-confirm'        => '"$1" saifesini yoq etmektesiñiz',
 'delete-legend'         => 'Yoq etüv',
-'historywarning'        => "'''Tenbi:''' Siz yoq etmege istegen saifeñizniñ $1 {{PLURAL:$1|versiyalı|versiyalı}} keçmişi bardır:",
+'historywarning'        => "'''Tenbi:''' Siz yoq etmege istegen saifeñizniñ qararnen $1 {{PLURAL:$1|versiyalı|versiyalı}} keçmişi bardır:",
 'confirmdeletetext'     => 'Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
 Lütfen, neticelerini añlağanıñıznı ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
 'actioncomplete'        => 'Areket tamamlandı',
@@ -1518,7 +1533,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'undeletebtn'        => 'Keri ketir!',
 'undeletelink'       => 'köster/keri ketir',
 'undeletereset'      => 'Vazgeç',
-'undeletecomment'    => 'İzaat:',
+'undeletecomment'    => 'Sebep:',
 'undeletedarticle'   => '"[[$1]]" keri ketirildi.',
 'undeletedrevisions' => 'Toplam {{PLURAL:$1|1 qayd|$1 qayd}} keri ketirildi.',
 'undelete-header'    => 'Keçenlerde yоq etilgen saifelerni körmek içün [[Special:Log/delete|yоq etüv jurnalına]] baqıñız.',

@@ -2884,7 +2884,7 @@ kontrollige oma ''latex'', ''dvips'', ''gs'', ''convert'' installatsioonide korr
 'log-show-hide-patrol' => '$1 kontrollimislogi',
 
 # Image deletion
-'deletedrevision'                 => 'Kustutatud vanem variant $1',
+'deletedrevision'                 => 'Kustutatud vanem versioon $1',
 'filedeleteerror-short'           => 'Faili $1 kustutamine ebaõnnestus',
 'filedeleteerror-long'            => 'Faili kustutamine ebaõnnestus:
 
