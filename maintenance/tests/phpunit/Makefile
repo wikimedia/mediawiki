@@ -3,7 +3,7 @@
 SHELL = /bin/sh
 CONFIG_FILE = $(shell pwd)/suite.xml
 FLAGS = 
-PU = phpunit --configuration ${CONFIG_FILE}
+PU = php phpunit.php --configuration ${CONFIG_FILE}
 
 all test: warning
 
