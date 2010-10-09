@@ -26,12 +26,13 @@ class CacheStats extends Maintenance {
 
 	public function __construct() {
 		$this->mDescription = "Show statistics from the cache";
+		parent::__construct();
 	}
 
 	public function execute() {
 		global $wgMemc;
-		
-		// Can't do stats if 
+
+		// Can't do stats if
 		if ( get_class( $wgMemc ) == 'FakeMemCachedClient' ) {
 			$this->error( "You are running FakeMemCachedClient, I can not provide any statistics.", true );
 		}
@@ -45,8 +46,8 @@ class CacheStats extends Maintenance {
 		$this->output( sprintf( "with session:      %-10d %6.2f%%\n", $session, $session / $total * 100 ) );
 		$this->output( sprintf( "without session:   %-10d %6.2f%%\n", $noSession, $noSession / $total * 100 ) );
 		$this->output( sprintf( "total:             %-10d %6.2f%%\n", $total, 100 ) );
-	
-	
+
+
 		$this->output( "\nParser cache\n" );
 		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_hit' ) ) );
 		$invalid = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_invalid' ) ) );
@@ -60,7 +61,7 @@ class CacheStats extends Maintenance {
 		$this->output( sprintf( "absent:            %-10d %6.2f%%\n", $absent, $absent / $total * 100 ) );
 		$this->output( sprintf( "stub threshold:    %-10d %6.2f%%\n", $stub, $stub / $total * 100 ) );
 		$this->output( sprintf( "total:             %-10d %6.2f%%\n", $total, 100 ) );
-	
+
 		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'image_cache_hit' ) ) );
 		$misses = intval( $wgMemc->get( wfMemcKey( 'stats', 'image_cache_miss' ) ) );
 		$updates = intval( $wgMemc->get( wfMemcKey( 'stats', 'image_cache_update' ) ) );
@@ -69,7 +70,7 @@ class CacheStats extends Maintenance {
 		$this->output( sprintf( "hits:              %-10d %6.2f%%\n", $hits, $hits / $total * 100 ) );
 		$this->output( sprintf( "misses:            %-10d %6.2f%%\n", $misses, $misses / $total * 100 ) );
 		$this->output( sprintf( "updates:           %-10d\n", $updates ) );
-	
+
 		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'diff_cache_hit' ) ) );
 		$misses = intval( $wgMemc->get( wfMemcKey( 'stats', 'diff_cache_miss' ) ) );
 		$uncacheable = intval( $wgMemc->get( wfMemcKey( 'stats', 'diff_uncacheable' ) ) );
@@ -83,7 +84,3 @@ class CacheStats extends Maintenance {
 
 $maintClass = "CacheStats";
 require_once( DO_MAINTENANCE );
-
-
-
-
