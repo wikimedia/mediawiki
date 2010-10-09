@@ -28,21 +28,7 @@ $pathSeparator = wfIsWindows() ? ';' : ':';
 
 $folders = explode( $pathSeparator, getenv('PATH') );
 
-# We may not have PHPUnit folder in the path, but have 
-# PEAR folder in the include path.
-$includeFolders = explode( $pathSeparator, get_include_path() );
-foreach ( $includeFolders as $includeFolder ) {
-	$folders[] =  "$includeFolder/PHPUnit";
-}
-
-foreach ( $folders as $folder ) {
-	if ( file_exists( "$folder/$targetFile" ) ) {
-		require_once "$folder/$targetFile";
-		exit(0);
-	}
-}
-
-echo "I couldn't find PHPUnit\nTry adding its folder to your PATH\n";
-
-die( 1 );
+require 'PHPUnit/TextUI/Command.php';
+define('PHPUnit_MAIN_METHOD', 'PHPUnit_TextUI_Command::main');
+PHPUnit_TextUI_Command::main();
 
