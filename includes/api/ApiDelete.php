@@ -228,7 +228,10 @@ class ApiDelete extends ApiBase {
 					'nochange'
 				),
 			),
-			'unwatch' => false,
+			'unwatch' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
 			'oldimage' => null
 		);
 	}
