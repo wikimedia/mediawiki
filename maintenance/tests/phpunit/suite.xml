@@ -20,6 +20,9 @@
 		<testsuite name="uploadfromurl">
 			<file>./suites/UploadFromUrlTestSuite.php</file>
 		</testsuite>
+		<testsuite name="extensions">
+			<file>./suites/ExtensionsTestSuite.php</file>
+		</testsuite>
 	</testsuites>
 	<groups>
 		<exclude>

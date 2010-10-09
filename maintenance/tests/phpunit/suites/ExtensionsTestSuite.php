@@ -1,4 +1,34 @@
 <?php 
 /**
- * This is where a PHPUnit_Framework_TestSuite that runs extension tests through a hook or something should go.
+ * This test suite runs unit tests registered by extensions.
+ * See http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList for details of how to register your tests.
  */
+
+ class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
+	public function __construct() {
+		parent::__construct();
+		$files = array();
+		wfRunHooks( 'UnitTestsList', array( &$files ) );
+		var_dump($files);
+		foreach ( $files as $file ) {
+			$this->addTestFile( $file );
+		}
+		if ( !count( $files ) ) {
+			$this->addTest( new DummyExtensionsTest( 'testNothing' ) );
+		}
+	}
+
+	public static function suite() {
+		return new self;
+	}
+}
+
+/**
+ * Needed to avoid warnings like 'No tests found in class "ExtensionsTestSuite".'
+ * when no extensions with tests are used.
+ */
+class DummyExtensionsTest extends PHPUnit_Framework_TestCase {
+	public function testNothing() {
+		
+	}
+}
