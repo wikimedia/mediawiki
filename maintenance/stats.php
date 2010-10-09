@@ -29,6 +29,10 @@ class CacheStats extends Maintenance {
 		parent::__construct();
 	}
 
+	public function getDbType() {
+		return Maintenance::DB_NONE;
+	}
+
 	public function execute() {
 		global $wgMemc;
 
