@@ -63,9 +63,8 @@ CREATE TABLE /*_*/user (
   -- Optional 'real name' to be displayed in credit listings
   user_real_name varchar(255) binary NOT NULL default '',
   
-  -- Password hashes, normally hashed like so:
-  -- MD5(CONCAT(user_id,'-',MD5(plaintext_password))), see
-  -- wfEncryptPassword() in GlobalFunctions.php
+  -- Password hashes, see User::crypt() and User::comparePasswords()
+  -- in User.php for the algorithm
   user_password tinyblob NOT NULL,
   
   -- When using 'mail me a new password', a random
