@@ -279,7 +279,7 @@ class TextPassDumper extends BackupDumper {
 		$row = $this->db->selectRow( 'text',
 			array( 'old_text', 'old_flags' ),
 			array( 'old_id' => $id ),
-			'TextPassDumper::getText' );
+			__METHOD__ );
 		$text = Revision::getRevisionText( $row );
 		if ( $text === false ) {
 			return false;
