@@ -41,6 +41,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$fld_readable = false, $fld_watched = false,
 		$fld_preload = false, $fld_displaytitle = false;
 
+	private $tokenFunctions;
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'in' );
 	}

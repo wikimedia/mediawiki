@@ -158,6 +158,15 @@ class ApiDelete extends ApiBase {
 		return array( array( 'cannotdelete', $article->mTitle->getPrefixedText() ) );
 	}
 
+	/**
+	 * @static
+	 * @param $token
+	 * @param $title
+	 * @param $oldimage
+	 * @param $reason
+	 * @param $suppress bool
+	 * @return \type|array|Title
+	 */
 	public static function deleteFile( $token, &$title, $oldimage, &$reason = null, $suppress = false ) {
 		$errors = self::getPermissionsError( $title, $token );
 		if ( count( $errors ) ) {
