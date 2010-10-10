@@ -3734,8 +3734,8 @@ Si tu sito usa un servitor partite (shared hosting), demanda a tu providitor de 
 Si tu compilava PHP tu mesme, reconfigura lo con un cliente de base de datos activate, per exemplo usante <code>./configure --with-mysql</code>.
 Si tu installava PHP ex un pacchetto Debian o Ubuntu, tu debe installar equalmente le modulo php5-mysql.',
 	'config-have-db' => '{{PLURAL:$2|Driver|Drivers}} de base de datos trovate: $1.',
-	'config-have-fts3' => 'SQLite es compilate con le modulo [http://sqlite.org/fts3.html FTS3]; functionalitate de recerca essera disponibile in iste back-end.',
-	'config-no-fts3' => "'''Attention''': SQLite es compilate sin modulo [http://sqlite.org/fts3.html FTS3]; functionalitate de recerca non essera disponibile in iste back-end.",
+	'config-have-fts3' => 'SQLite es compilate con le [http://sqlite.org/fts3.html modulo FTS3]; functionalitate de recerca essera disponibile in iste back-end.',
+	'config-no-fts3' => "'''Attention''': SQLite es compilate sin [http://sqlite.org/fts3.html modulo FTS3]; functionalitate de recerca non essera disponibile in iste back-end.",
 	'config-register-globals' => "'''Attention: le option <code>[http://php.net/register_globals register_globals]</code> de PHP es activate.'''
 '''Disactiva lo si tu pote.'''
 MediaWiki functionara, ma tu servitor es exponite a potential vulnerabilitates de securitate.",

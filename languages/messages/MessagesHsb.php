@@ -148,7 +148,7 @@ $messages = array(
 'tog-editsection'             => 'Wobdźěłowanje jednotliwych wotrězkow přez wotkazy [wobdźěłać] zmóžnić',
 'tog-editsectiononrightclick' => 'Wobdźěłowanje jednotliwych wotrězkow přez kliknjenje z prawej tastu<br />na nadpisma wotrězkow zmóžnić (JavaScript)',
 'tog-showtoc'                 => 'Zapis wobsaha pokazać (za strony z wjace hač 3 nadpismami)',
-'tog-rememberpassword'        => 'Na tutym ličaku přizjewjeny wostać (za maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
+'tog-rememberpassword'        => 'Přizjewjenje na tutym wobhladowaku sej spomjatkować (za maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'tog-watchcreations'          => 'Strony, kotrež wutworjam, swojim wobkedźbowankam přidać',
 'tog-watchdefault'            => 'Strony, kotrež wobdźěłuju, swojim wobkedźbowankam přidać',
 'tog-watchmoves'              => 'Sam přesunjene strony wobkedźbowankam přidać',
@@ -368,6 +368,9 @@ Přewjele wužiwarjow pospytuje sej tutu stronu wobhladać.
 Prošu wočakń chwilku, prjedy hač pospytuješ sej tutu stronu hišće raz wobhladać.
 
 $1',
+'pool-timeout'      => 'Timeout, doniž zawrjenje skónčene njeje.',
+'pool-queuefull'    => 'Poolowa čakanska rynka je połna',
+'pool-errorunknown' => 'Njeznaty zmylk:',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',
@@ -598,6 +601,11 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'login-throttled'            => 'Sy přehusto spytał so přizjewić. Počakaj prošu, prjedy hač znowa spytaš.',
 'loginlanguagelabel'         => 'Rěč: $1',
 'suspicious-userlogout'      => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
+'ratelimit-excluded-ips'     => ' #<!-- wostaj linku njezměnjenu --> <pre>
+# Syntaksa je slědowaca:
+# * Wšo wot znamješka "#" hač do kónca linki je komentar
+# * Kóžda popisana linka je IP-adresa, kotraž je z limita wuwzata
+ #</pre> <!-- wostaj linku njezměnjenu -->',
 
 # JavaScript password checks
 'password-strength'            => 'Trochowana hesłowa sylnosć: $1',
@@ -1014,11 +1022,13 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 # Diffs
 'history-title'            => 'Stawizny wersijow strony „$1“',
 'difference'               => '(rozdźěl mjez wersijomaj)',
+'difference-multipage'     => '(Rozdźěl mjez stronami)',
 'lineno'                   => 'Rjadka $1:',
 'compareselectedversions'  => 'Wubranej wersiji přirunać',
 'showhideselectedversions' => 'Wubrane wersije pokazać/schować',
 'editundo'                 => 'cofnyć',
-'diff-multi'               => '<small>(Přirunanje wersijow zapřija {{PLURAL:$1|jednu mjez nimaj ležacu wersiju|dwě mjez nimaj ležacej wersiji|$1 mjez nimaj ležace wersije|$1 mjez nimaj ležacych wersijow}}.)</small>',
+'diff-multi'               => '({{PLURAL:$1|Jedna mjezywersija|$1 mjezywersiji|$1 mjezywersije|$1 mjezywersijow}} wot {{PLURAL:$2|jednoho wužiwarja|$2 wužiwarjow|$2 wužiwarjow|$2 wužiwarjow}} {{PLURAL:$1|njepokazana|njepokazanej|njepokazane|njepokazane}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Jedna mjezywersija|$1 mjezywersiji|$1 mjezywersije|$1 mjezywersijow}} wot wjace hač {{PLURAL:$2|jednoho wužiwarja|$2 wužiwarjow|$2 wužiwarjow|$2 wužiwarjow}} {{PLURAL:$1|njepokazana|njepokazanej|njepokazane|njepokazane}})',
 
 # Search results
 'searchresults'                    => 'Pytanske wuslědki',
@@ -1532,7 +1542,7 @@ PICT # misc.
 'upload-success-subj'         => 'Dataja bu wuspěšnje nahrata',
 'upload-success-msg'          => 'Twoje nahraće z [$2] je wuspěšne było: Steji tu k dispoziciji: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Nahrawanski problem',
-'upload-failure-msg'          => 'Bě problem z twojim nahraćom:
+'upload-failure-msg'          => 'Bě problem z twojim nahraćom [$2]:
 
 $1',
 'upload-warning-subj'         => 'Nahraćowe warnowanje',
@@ -3150,6 +3160,8 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 'version-hook-subscribedby'        => 'Abonowany wot',
 'version-version'                  => '(Wersija $1)',
 'version-license'                  => 'Licenca',
+'version-poweredby-credits'        => "Tutón wiki so wot  '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2 podpěruje.",
+'version-poweredby-others'         => 'druzy',
 'version-software'                 => 'Instalowana software',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Wersija',
@@ -3248,5 +3260,9 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Wotpósłać',
 'htmlform-reset'               => 'Změny cofnyć',
 'htmlform-selectorother-other' => 'Druhe',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 połnotekstowe pytanje podpěruje.',
+'sqlite-no-fts'  => '$1 połnotekstowe pytanje njepodpěruje',
 
 );
