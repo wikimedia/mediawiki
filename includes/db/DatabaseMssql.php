@@ -815,7 +815,7 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	function setup_database() {
-		global $wgVersion, $wgDBport, $wgDBuser;
+		global $wgDBuser;
 
 		// Make sure that we can write to the correct schema
 		$ctest = "mediawiki_test_table";
@@ -825,7 +825,7 @@ class DatabaseMssql extends DatabaseBase {
 		$SQL = "CREATE TABLE $ctest (a int)";
 		$res = $this->doQuery( $SQL );
 		if ( !$res ) {
-			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the database</li>\n";
+			print "<b>FAILED</b>. Make sure that the user " . htmlspecialchars( $wgDBuser ) . " can write to the database</li>\n";
 			dieout( "</ul>" );
 		}
 		$this->doQuery( "DROP TABLE $ctest" );
