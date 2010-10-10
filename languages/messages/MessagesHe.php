@@ -151,6 +151,7 @@ $magicWords = array(
 	'nse'                   => array( '0', 'מרחב שם מקודד:', 'NSE:' ),
 	'localurl'              => array( '0', 'כתובת יחסית:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'כתובת יחסית מקודד:', 'LOCALURLE:' ),
+	'linkurl'               => array( '0', 'כתובת קישור:', 'LINKURL:' ),
 	'articlepath'           => array( '0', 'נתיב הדפים', 'ARTICLEPATH' ),
 	'server'                => array( '0', 'כתובת השרת', 'שרת', 'SERVER' ),
 	'servername'            => array( '0', 'שם השרת', 'SERVERNAME' ),
@@ -3622,5 +3623,9 @@ $1',
 'htmlform-submit'              => 'שליחה',
 'htmlform-reset'               => 'ביטול השינויים',
 'htmlform-selectorother-other' => 'אחר',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 עם תמיכה בחיפוש בטקסט מלא',
+'sqlite-no-fts'  => '$1 ללא תמיכה בחיפוש בטקסט מלא',
 
 );
