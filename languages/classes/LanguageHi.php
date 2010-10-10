@@ -1,5 +1,6 @@
 <?php
 /**
+ * Hindi (हिन्दी)
  *
  * @ingroup Language
  */

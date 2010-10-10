@@ -150,6 +150,8 @@ class SrConverter extends LanguageConverter {
 }
 
 /**
+ * Serbian (Српски / Srpski)
+ *
  * @ingroup Language
  */
 class LanguageSr extends LanguageSr_ec {

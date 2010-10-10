@@ -2,8 +2,8 @@
 require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
 require_once( dirname( __FILE__ ) . '/LanguageKu_ku.php' );
 
-/** Kurdish
- * converter routines
+/**
+ * Kurdish converter routines
  *
  * @ingroup Language
  */
@@ -214,6 +214,8 @@ class KuConverter extends LanguageConverter {
 }
 
 /**
+ * Kurdish (Kurdî / كوردی)
+ *
  * @ingroup Language
  */
 class LanguageKu extends LanguageKu_ku {

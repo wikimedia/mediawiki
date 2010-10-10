@@ -1,5 +1,6 @@
 <?php
 /**
+ * Serbo-Croatian (Srpskohrvatski / Српскохрватски)
  *
  * @ingroup Language
  */

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Northern Sami (Sámegiella)
  *
  * @ingroup Language
  */

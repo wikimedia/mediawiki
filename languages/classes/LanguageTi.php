@@ -1,5 +1,6 @@
 <?php
 /**
+ * Tigrinya (ትግርኛ)
  *
  * @ingroup Language
  */

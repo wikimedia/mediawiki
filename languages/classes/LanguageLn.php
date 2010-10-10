@@ -1,5 +1,6 @@
 <?php
 /**
+ * Lingala (Lingála)
  *
  * @ingroup Language
  */

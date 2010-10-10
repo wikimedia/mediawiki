@@ -1,5 +1,6 @@
 <?php
 /**
+ * Northern Sotho (Sesotho sa Leboa)
  *
  * @ingroup Language
  */
