@@ -1595,8 +1595,6 @@ HTML
 	 * be it a form, or simply wpTextbox1 with a modified content that will be
 	 * reverse modified when extracted from the post data.
 	 * Note that this is basically the inverse for importContentFormData
-	 *
-	 * @param $request WebRequest
 	 */
 	protected function showContentForm() {
 		$this->showTextbox1();
