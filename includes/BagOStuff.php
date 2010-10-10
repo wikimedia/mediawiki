@@ -356,14 +356,14 @@ class SqlBagOStuff extends BagOStuff {
 				// Missing
 				$db->commit();
 
-				return false;
+				return null;
 			}
 			$db->delete( 'objectcache', array( 'keyname' => $key ), __METHOD__ );
 			if ( $this->isExpired( $row->exptime ) ) {
 				// Expired, do not reinsert
 				$db->commit();
 
-				return false;
+				return null;
 			}
 
 			$oldValue = intval( $this->unserialize( $db->decodeBlob( $row->value ) ) );
@@ -378,7 +378,7 @@ class SqlBagOStuff extends BagOStuff {
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
 
-			return false;
+			return null;
 		}
 
 		return $newValue;
