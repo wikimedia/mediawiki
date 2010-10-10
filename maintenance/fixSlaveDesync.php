@@ -28,9 +28,8 @@ class FixSlaveDesync extends Maintenance {
 	}
 	
 	public function execute() {
-		global $wgDBservers;
 		$this->slaveIndexes = array();
-		for ( $i = 1; $i < count( $wgDBservers ); $i++ ) {
+		for ( $i = 1; $i < wfGetLB()->getServerCount(); $i++ ) {
 			if ( wfGetLB()->isNonZeroLoad( $i ) ) {
 				$this->slaveIndexes[] = $i;
 			}
