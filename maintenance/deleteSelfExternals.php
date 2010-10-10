@@ -45,7 +45,7 @@ class DeleteSelfExternals extends Maintenance {
 				. $db->buildLike( $wgServer . '/', $db->anyString() ), $this->mBatchSize );
 			$this->output( "Deleting a batch\n" );
 			$db->query( $q );
-			if ( !$db->affectedRows() ) exit( 0 );
+			if ( !$db->affectedRows() ) return;
 		}
 	}
 }
