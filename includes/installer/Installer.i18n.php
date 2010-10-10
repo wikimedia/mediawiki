@@ -96,8 +96,8 @@ If you are on shared hosting, ask your hosting provider to install a suitable da
 If you compiled PHP yourself, reconfigure it with a database client enabled, for example using <code>./configure --with-mysql</code>.
 If you installed PHP from a Debian or Ubuntu package, then you also need install the php5-mysql module.',
 	'config-have-db'                  => 'Found database {{PLURAL:$2|driver|drivers}}: $1.',
-	'config-have-fts3'                => 'SQLite is compiled with the [http://sqlite.org/fts3.html FTS3] module, search features will be available on this backend.',
-	'config-no-fts3'                  => "'''Warning''': SQLite is compiled without the [http://sqlite.org/fts3.html FTS3] module, search features will be unavailable on this backend.",
+	'config-have-fts3'                => 'SQLite is compiled with the [http://sqlite.org/fts3.html FTS3 module], search features will be available on this backend.',
+	'config-no-fts3'                  => "'''Warning''': SQLite is compiled without the [http://sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
 	'config-register-globals'         => "'''Warning: PHP's <code>[http://php.net/register_globals register_globals]</code> option is enabled.'''
 '''Disable it if you can.'''
 MediaWiki will work, but your server is exposed to potential security vulnerabilities.",
