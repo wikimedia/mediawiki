@@ -1217,6 +1217,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'showhideselectedversions' => 'Montri/kaŝi elektitajn versiojn',
 'editundo'                 => 'malfari',
 'diff-multi'               => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de pli ol {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
 
 # Search results
 'searchresults'                    => 'Serĉrezultoj',
@@ -3370,6 +3371,11 @@ Vi povas ankaŭ [[Special:Watchlist/edit|redakti norme]].',
 'version-license'                  => 'Permesilo',
 'version-poweredby-credits'        => "Ĉi tiu vikio funkcias per '''[http://www.mediawiki.org/ MediaWiki]''', kopirajto © 2001-$1 $2.",
 'version-poweredby-others'         => 'aliaj',
+'version-license-info'             => 'MediaWiki estas libera programaro. Vi povas redistribui ĝin kaj/aŭ modifi ĝin sub la kondiĉoj de la GNU General Public Licens (GNU Ĝenerala Publika Permesilo) en ties eldono de la Free Software Foundation (Libera Softvara Fondaĵo) - aŭ versio 2 de la Permesilo, aŭ (laŭ via elekto) iu ajn posta versio.
+
+Tiun ĉi verkon ni distribuas esperante, ke ĝi utilos, sed SEN IA AJN GARANTIO; eĉ sen la implica garantio de SURMERKATIGEBLECO aŭ TAŬGECO POR IA DIFINITA CELO. Vidu GNU General Public License por pliaj detaloj.
+
+Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU General Public License] kune kun tiu ĉi programo; se ne, skribu al Free Software Foundation, Inc., 59 Temple Place, Suite 350, Boston, MA 02111-1307 USA aŭ [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html legu ĝin interrete].',
 'version-software'                 => 'Instalita programaro',
 'version-software-product'         => 'Produkto',
 'version-software-version'         => 'Versio',
@@ -3472,5 +3478,6 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 kun tut-teksta subteno',
+'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
 
 );

@@ -330,6 +330,7 @@ lcont nek  tuyskar .
 'minoredit'                  => 'Imbddel ad fssusn',
 'watchthis'                  => 'Sagg tasna yad',
 'savearticle'                => 'Ḥbu tasna',
+'preview'                    => '↓ Ammal',
 'showpreview'                => 'Iẓṛi amzwaru',
 'showdiff'                   => 'Mel imbddeln',
 'anoneditwarning'            => "Balak ''' ur tkcmt ''' rad ibayn IP nk ɣ umzrut n tasna yad, ur sul  iḥba tamagit nk",
@@ -664,6 +665,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'whatlinkshere-filters'    => 'Istayn',
 
 # Block/unblock
+'blockip'                  => '↓ Qn f umsqdac',
 'ipboptions'               => '↓ 2 ikudn:2 hours,1 as:1 day,3 ussan:3 days,1 imalas:1 week,2 imalasn:2 weeks,1 ayur:1 month,3 irn:3 months,6 irn:6 months,1 asggas:1 year,tusut ur iswuttan:infinite',
 'ipbotheroption'           => '↓ wayya',
 'ipbhidename'              => '↓ ḥbu assaɣ n umsqdac ɣ imbdln d umuɣn',
@@ -795,6 +797,7 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn
 'edit-externally-help' => '(Ẓṛ [http://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] bac ad taf uggar n inɣmisn)',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => '↓ kraygat (kullu)',
 'namespacesall' => 'kullu',
 'monthsall'     => '↓ kullu',
 
@@ -805,6 +808,9 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn
 'table_pager_first'        => 'tawriqt tamzwarut',
 'table_pager_last'         => 'tawriqt tamgrut',
 'table_pager_limit_submit' => 'ballak',
+
+# Watchlist editing tools
+'watchlisttools-raw' => '↓ Ẓṛig umuɣ n tisniwin',
 
 # Special:SpecialPages
 'specialpages' => 'tiwriqin tesbtarin',

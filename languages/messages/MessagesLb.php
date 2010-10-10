@@ -3340,4 +3340,8 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'htmlform-reset'               => 'Ännerungen zrécksetzen',
 'htmlform-selectorother-other' => 'Anerer',
 
+# SQLite database support
+'sqlite-has-fts' => "$1 ënnerstëtzt d'Volltextsich",
+'sqlite-no-fts'  => "$1 ënnerstëtzt d'Volltextsich net",
+
 );
