@@ -3270,7 +3270,9 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
 		if( isset( $callerfunc['class'] ) ) {
 			$func .= $callerfunc['class'] . '::';
 		}
-		$func .= @$callerfunc['function'];
+		if( isset( $callerfunc['function'] ) ) {
+			$func .= $callerfunc['function'];
+		}
 		$msg .= " [Called from $func in $file]";
 	}
 
@@ -3301,7 +3303,9 @@ function wfWaitForSlaves( $maxLag, $wiki = false ) {
 		$lb = wfGetLB( $wiki );
 		list( $host, $lag ) = $lb->getMaxLag( $wiki );
 		while( $lag > $maxLag ) {
-			$name = @gethostbyaddr( $host );
+			wfSuppressWarnings();
+			$name = gethostbyaddr( $host );
+			wfRestoreWarnings();
 			if( $name !== false ) {
 				$host = $name;
 			}
