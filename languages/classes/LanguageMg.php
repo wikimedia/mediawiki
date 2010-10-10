@@ -1,5 +1,6 @@
 <?php
 /**
+ * Malagasy (Malagasy)
  *
  * @ingroup Language
  */

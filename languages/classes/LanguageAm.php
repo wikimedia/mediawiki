@@ -1,5 +1,6 @@
 <?php
 /**
+ * Amharic (አማርኛ)
  *
  * @ingroup Language
  */

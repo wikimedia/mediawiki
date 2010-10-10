@@ -1,5 +1,6 @@
 <?php
 /**
+ * Tagalog (Tagalog)
  *
  * @ingroup Language
  */

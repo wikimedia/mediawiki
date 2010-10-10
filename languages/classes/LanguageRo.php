@@ -1,5 +1,6 @@
 <?php
 /**
+ * Romanian (Română)
  *
  * @ingroup Language
  */

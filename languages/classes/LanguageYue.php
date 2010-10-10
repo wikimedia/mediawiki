@@ -1,5 +1,7 @@
 <?php
 /**
+ * Cantonese (粵語)
+ *
  * @ingroup Language
  */
 class LanguageYue extends Language {

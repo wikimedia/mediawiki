@@ -1,5 +1,6 @@
 <?php
 /**
+ * Bihari (भोजपुरी)
  *
  * @ingroup Language
  */

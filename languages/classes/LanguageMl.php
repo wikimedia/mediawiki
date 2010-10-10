@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Malayalam (മലയാളം)
+ *
+ * @ingroup Language
+ */
 class LanguageMl extends Language {
 	/**
 	 * Temporary hack for the issue described at

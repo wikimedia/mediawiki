@@ -93,6 +93,8 @@ class TgConverter extends LanguageConverter {
 }
 
 /**
+ * Tajik (Тоҷикӣ)
+ *
  * @ingroup Language
  */
 class LanguageTg extends Language {

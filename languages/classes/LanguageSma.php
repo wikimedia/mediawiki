@@ -1,5 +1,6 @@
 <?php
 /**
+ * Southern Sami (Åarjelsaemien)
  *
  * @ingroup Language
  */

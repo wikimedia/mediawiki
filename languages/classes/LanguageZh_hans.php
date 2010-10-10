@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Simplified Chinese
+ *
  * @ingroup Language
  */
 class LanguageZh_hans extends Language {

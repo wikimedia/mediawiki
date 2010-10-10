@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Serbian (cyrillic script)
+ *
  * @ingroup Language
  */
 class LanguageSr_ec extends Language {

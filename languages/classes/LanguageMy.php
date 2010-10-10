@@ -1,12 +1,11 @@
 <?php
+
 /** Burmese (Myanmasa)
  *
  * @ingroup Language
- * @file
  *
  * @author Niklas Laxström, 2008
  */
-
 class LanguageMy extends Language {
 	function commafy( $_ ) {
 		/* NO-op. Cannot use
