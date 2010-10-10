@@ -133,7 +133,7 @@ class Title {
 		}
 
 		/**
-		 * Convert things like &eacute; &#257; or &#x3017; into normalized(bug 14952) text
+		 * Convert things like &eacute; &#257; or &#x3017; into normalized (bug 14952) text
 		 */
 		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
 
