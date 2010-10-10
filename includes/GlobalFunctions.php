@@ -2278,7 +2278,8 @@ function wfIncrStats( $key ) {
 			);
 		}
 		$statline = "stats/{$wgDBname} - 1 1 1 1 1 {$key}\n";
-		@socket_sendto(
+		wfSuppressWarnings();
+		socket_sendto(
 			$socket,
 			$statline,
 			strlen( $statline ),
@@ -2286,6 +2287,7 @@ function wfIncrStats( $key ) {
 			$wgUDPProfilerHost,
 			$wgUDPProfilerPort
 		);
+		wfRestoreWarnings();
 	} elseif( $wgStatsMethod == 'cache' ) {
 		global $wgMemc;
 		$key = wfMemcKey( 'stats', $key );
