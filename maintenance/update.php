@@ -10,7 +10,7 @@
  */
 
 $wgUseMasterForMaintenance = true;
-require_once( 'Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UpdateMediaWiki extends Maintenance {
 
