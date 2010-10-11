@@ -2412,11 +2412,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $patch String The name of the patch, like patch-something.sql
 	 * @return String Full path to patch file
 	 */
-	public static function patchPath( $patch ) {
-		global $wgDBtype, $IP;
+	public function patchPath( $patch ) {
+		global $IP;
 
-		if ( file_exists( "$IP/maintenance/$wgDBtype/archives/$patch" ) ) {
-			return "$IP/maintenance/$wgDBtype/archives/$patch";
+		$dbType = $this->getType();
+		if ( file_exists( "$IP/maintenance/$dbType/archives/$patch" ) ) {
+			return "$IP/maintenance/$dbType/archives/$patch";
 		} else {
 			return "$IP/maintenance/archives/$patch";
 		}
