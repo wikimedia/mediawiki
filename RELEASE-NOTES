@@ -73,6 +73,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   DatabaseUpdater::addExtensionUpdate().
 * Removed $wgServerName. It doesn't need to be set anymore and is no longer 
   available as input for other configuration items, either.
+* Remove $wgRemoteUploads. It was not well supported and superseded by
+  $wgUploadNavigationUrl.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
