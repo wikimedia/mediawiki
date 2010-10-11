@@ -2411,7 +2411,9 @@ class User {
 		$this->mOptionsLoaded = true;
 		$this->mOptionOverrides = array();
 
-		$this->mOptions = array();
+		// If an option is not set in $str, use the default value
+		$this->mOptions = self::getDefaultOptions();
+		
 		$a = explode( "\n", $str );
 		foreach ( $a as $s ) {
 			$m = array();
