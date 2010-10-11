@@ -31,7 +31,11 @@ $messages = array(
 'tog-watchdefault'            => "Empapula zenkyusamu ziteekebwenga ku lukalala lw'ezo zengoberera",
 'tog-watchmoves'              => "Empapula zenkyusa erinnya ziteekebwenga ku lukalala lw'ezo zengoberera",
 'tog-watchdeletion'           => "Empapula zenzigyawo ziteekebwenga ku lukalala lw'ezo zengoberera",
+'tog-previewontop'            => "Okulagako kubeerenga waggulu w'ekifo w'owandikira",
+'tog-previewonfirst'          => 'Buli lwensooka okukyusa olupapula, ndagangako byenkoze',
 'tog-nocache'                 => "Ekyandaaza kiremenga kutereka koppi z'empapula z'okebera",
+'tog-enotifwatchlistpages'    => "Nsindikiranga 'E-mail' empapula zengoberera buli lwe zikolebwako enkyukakyuka",
+'tog-enotifusertalkpages'     => "Nsindikiranga 'E-mail' olupapula lwange olwa 'Yogera nange' buli lwe lukyusibwamu",
 'tog-norollbackdiff'          => 'Okujjulula nga kuwedde, tolaga bigerageranya ebikyuse',
 
 # Dates
