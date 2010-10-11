@@ -1,41 +1,34 @@
 <?php
 
 require_once( dirname( __FILE__ ) . '/ParserHelpers.php' );
+require_once( dirname(dirname(dirname( __FILE__ ))) . '/bootstrap.php' );
 
-class MediaWikiParserTest extends PHPUnit_Framework_TestSuite {
-	private $count;
+class MediaWikiParserTest extends MediaWikiTestSetup {
+	public $count;
 	public $backend;
 
-	public static function suite() {
-		return new self;
-	}
-
 	public function __construct() {
+		$suite = new PHPUnit_Framework_TestSuite('Parser Tests');
+		parent::__construct($suite);
 		$this->backend = new ParserTestSuiteBackend;
-		parent::__construct();
 		$this->setName( 'Parser tests' );
 	}
 
-	public function run( PHPUnit_Framework_TestResult $result = null, $filter = false, 
-		array $groups = array(), array $excludeGroups = array(), $processIsolation = false
-	) {
-		global $IP, $wgContLang, $wgMemc;
-		$wgContLang = Language::factory( 'en' );
-		$wgMemc = new FakeMemCachedClient;
-		$this->backend->setupDatabase();
+	public static function suite() {
+		global $IP;
+
+		$tester = new self;
 
 		$iter = new TestFileIterator( "$IP/maintenance/tests/parser/parserTests.txt" );
-		$iter->setParser( $this->backend );
-		$this->count = 0;
+		$iter->setParser( $tester );
+		$tester->count = 0;
 
 		foreach ( $iter as $test ) {
-			$this->addTest( new ParserUnitTest( $this, $test ) );
-			$this->count++;
+			$tester->suite->addTest( new ParserUnitTest( $tester, $test ) );
+			$tester->count++;
 		}
 
-		parent::run( $result, $filter, $groups, $excludeGroups, $processIsolation );
-
-		$this->backend->teardownDatabase();
+		return $tester->suite;
 	}
 
 	public function count() {

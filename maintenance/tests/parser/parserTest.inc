@@ -57,6 +57,8 @@ class ParserTest {
 	private $fuzzSeed = 0;
 	private $memoryLimit = 50;
 
+	public $regex = "";
+	private $savedGlobals = array();
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
@@ -113,6 +115,57 @@ class ParserTest {
 
 		$this->hooks = array();
 		$this->functionHooks = array();
+		self::setUp();
+	}
+
+	static function setUp() {
+		global $wgParser,  $wgParserConf, $IP, $messageMemc, $wgMemc, $wgDeferredUpdateList,
+			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
+			$wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $parserMemc,
+			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
+			$wgThumbnailScriptPath, $wgScriptPath,
+			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
+
+		$wgScript = '/index.php';
+		$wgScriptPath = '/';
+		$wgArticlePath = '/wiki/$1';
+		$wgStyleSheetPath = '/skins';
+		$wgStylePath = '/skins';
+		$wgThumbnailScriptPath = false;
+		$wgLocalFileRepo = array(
+			'class' => 'LocalRepo',
+			'name' => 'local',
+			'directory' => wfTempDir() . '/test-repo',
+			'url' => 'http://example.com/images',
+			'deletedDir' => wfTempDir() . '/test-repo/delete',
+			'hashLevels' => 2,
+			'transformVia404' => false,
+		);
+		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
+		$wgNamespaceAliases['Image'] = NS_FILE;
+		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
+
+
+		$wgEnableParserCache = false;
+		$wgDeferredUpdateList = array();
+		$wgMemc =& wfGetMainCache();
+		$messageMemc =& wfGetMessageCacheStorage();
+		$parserMemc =& wfGetParserCacheStorage();
+
+		// $wgContLang = new StubContLang;
+		$wgUser = new User;
+		$wgLang = new StubUserLang;
+		$wgOut = new StubObject( 'wgOut', 'OutputPage' );
+		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
+		$wgRequest = new WebRequest;
+
+		$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
+										  array( $messageMemc, $wgUseDatabaseMessages,
+												 $wgMsgCacheExpiry ) );
+		if ( $wgStyleDirectory === false ) {
+			$wgStyleDirectory   = "$IP/skins";
+		}
+
 	}
 
 	public function setupRecorder ( $options ) {
@@ -131,8 +184,9 @@ class ParserTest {
 
 	/**
 	 * Remove last character if it is a newline
+	 * @group utility
 	 */
-	public function chomp( $s ) {
+	static public function chomp( $s ) {
 		if ( substr( $s, -1 ) === "\n" ) {
 			return substr( $s, 0, -1 );
 		}
@@ -421,13 +475,20 @@ class ParserTest {
 			$result = $this->tidy( $result );
 		}
 
-
 		$this->teardownGlobals();
+		return $this->showTestResult( $desc, $result, $out );
+	}
 
-		if ( $result === $out && ( $noxml === true || $this->wellFormed( $out ) ) ) {
-			return $this->showSuccess( $desc );
+	/**
+	 *
+	 */
+	function showTestResult( $desc, $result, $out ) {
+		if ( $result === $out ) {
+			$this->showSuccess( $desc );
+			return true;
 		} else {
-			return $this->showFailure( $desc, $result, $out );
+			$this->showFailure( $desc, $result, $out );
+			return false;
 		}
 	}
 
@@ -820,6 +881,7 @@ class ParserTest {
 		global $wgDBtype;
 
 		if ( !$this->databaseSetupDone ) {
+			$this->teardownGlobals();
 			return;
 		}
 		$this->teardownUploadDir( $this->uploadDir );
@@ -829,6 +891,7 @@ class ParserTest {
 
 		if ( $this->useTemporaryTables ) {
 			# Don't need to do anything
+			$this->teardownGlobals();
 			return;
 		}
 
@@ -842,6 +905,8 @@ class ParserTest {
 
 		if ( $wgDBtype == 'oracle' )
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+
+		$this->teardownGlobals();
 	}
 
 	/**
@@ -1085,20 +1150,26 @@ class ParserTest {
 	 * @param $text String: the article text
 	 * @param $line Integer: the input line number, for reporting errors
 	 */
-	public function addArticle( $name, $text, $line ) {
+	static public function addArticle( $name, $text, $line ) {
 		global $wgCapitalLinks;
+
+		$text = self::chomp($text);
+
 		$oldCapitalLinks = $wgCapitalLinks;
 		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
 
-		$title = Title::newFromText( $name );
+		$title = Title::newFromText( self::chomp($name) );
 
 		if ( is_null( $title ) ) {
-			wfDie( "invalid title at line $line\n" );
+			wfDie( "invalid title ('$name' => '$title') at line $line\n" );
 		}
 
 		$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $aid != 0 ) {
+			foreach(debug_backtrace() as $bt) {
+				echo "{$bt['file']}::{$bt['line']}\n";
+			}
 			wfDie( "duplicate article '$name' at line $line\n" );
 		}
 

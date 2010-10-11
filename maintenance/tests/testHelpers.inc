@@ -478,7 +478,7 @@ class TestFileIterator implements Iterator {
 		$this->lineNum = $this->index = 0;
 	}
 
-	function setParser( ParserTest $parser ) {
+	function setParser( MediaWikiParserTest $parser ) {
 		$this->parser = $parser;
 	}
 
@@ -536,11 +536,10 @@ class TestFileIterator implements Iterator {
 						wfDie( "'endarticle' without 'article' at line {$this->lineNum} of $this->file\n" );
 					}
 
-					if ( $this->parser ) {
-						$this->parser->addArticle( $this->parser->chomp( $data['article'] ), $this->parser->chomp( $data['text'] ),
-							$this->lineNum );
-					}
-
+					$title = Title::newFromText( ParserTest::chomp( $data['article'] ) );
+					$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
+					if ( $aid == 0 )
+						ParserTest::addArticle( $data['article'], $data['text'], $this->lineNum );
 					$data = array();
 					$section = null;
 
@@ -632,11 +631,11 @@ class TestFileIterator implements Iterator {
 
 					if ( $this->parser ) {
 						$this->test = array(
-							'test' => $this->parser->chomp( $data['test'] ),
-							'input' => $this->parser->chomp( $data['input'] ),
-							'result' => $this->parser->chomp( $data['result'] ),
-							'options' => $this->parser->chomp( $data['options'] ),
-							'config' => $this->parser->chomp( $data['config'] ) );
+							'test' => ParserTest::chomp( $data['test'] ),
+							'input' => ParserTest::chomp( $data['input'] ),
+							'result' => ParserTest::chomp( $data['result'] ),
+							'options' => ParserTest::chomp( $data['options'] ),
+							'config' => ParserTest::chomp( $data['config'] ) );
 					} else {
 						$this->test['test'] = $data['test'];
 					}
