@@ -1,5 +1,21 @@
 <?php
 
+class PHPUnitParserTest extends ParserTest {
+	function showTesting( $desc ) {
+		/* Do nothing since we don't want to show info during PHPUnit testing. */
+	}
+
+	public function showSuccess( $desc ) {
+		PHPUnit_Framework_Assert::assertTrue( true, $desc );
+		return true;
+	}
+
+	public function showFailure( $desc, $expected, $got ) {
+		PHPUnit_Framework_Assert::assertEquals( $expected, $got, $desc );
+		return false;
+	}
+}
+
 class ParserUnitTest extends PHPUnit_Framework_TestCase {
 	private $test = "";
 	private $suite;
@@ -17,9 +33,9 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 			$result = new PHPUnit_Framework_TestResult;
 		}
 
-		$backend = $this->suite->getBackend();
+		$backend = new ParserTestSuiteBackend;
 		$result->startTest( $this );
-		
+
 		// Support the transition to PHPUnit 3.5 where PHPUnit_Util_Timer is replaced with PHP_Timer
 		if ( class_exists( 'PHP_Timer' ) ) {
 			PHP_Timer::start();
@@ -32,16 +48,13 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 			# Run the test.
 			# On failure, the subclassed backend will throw an exception with
 			# the details.
-			$r = $backend->runTest(
-				$this->test['test'],
-				$this->test['input'],
-				$this->test['result'],
-				$this->test['options'],
-				$this->test['config']
+			$pt = new PHPUnitParserTest;
+			$r =  $pt->runTest( $this->test['test'], $this->test['input'],
+				$this->test['result'], $this->test['options'], $this->test['config']
 			);
 		}
 		catch ( PHPUnit_Framework_AssertionFailedError $e ) {
-			
+
 			// PHPUnit_Util_Timer -> PHP_Timer support (see above)
 			if ( class_exists( 'PHP_Timer' ) ) {
 				$result->addFailure( $this, $e, PHP_Timer::stop() );
@@ -77,20 +90,29 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 
 }
 
-class ParserTestSuiteBackend extends ParserTest {
+class ParserTestSuiteBackend extends PHPUnit_FrameWork_TestSuite {
+	public $recorder;
+	public $term;
+	static $usePHPUnit = false;
+
+	function __construct() {
+		parent::__construct();
+		$this->setupRecorder(null);
+		self::$usePHPUnit = method_exists('PHPUnit_Framework_Assert', 'assertEquals');
+	}
+
 	function showTesting( $desc ) {
 	}
 
 	function showRunFile( $path ) {
 	}
 
-	function showSuccess( $desc ) {
-		PHPUnit_Framework_Assert::assertTrue( true, $desc );
-		return true;
+	function showTestResult( $desc, $result, $out ) {
+		if ( $result === $out ) {
+			return self::showSuccess( $desc, $result, $out );
+		} else {
+			return self::showFailure( $desc, $result, $out );
 	}
-
-	function showFailure( $desc, $expected, $got ) {
-		PHPUnit_Framework_Assert::assertEquals( $expected, $got, $desc );
 	}
 
 	public function setupRecorder( $options ) {
@@ -107,4 +129,3 @@ class PHPUnitTestRecorder extends TestRecorder {
 
 	function reportPercentage( $success, $total ) { }
 }
-
