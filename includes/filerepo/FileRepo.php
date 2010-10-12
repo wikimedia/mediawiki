@@ -163,7 +163,7 @@ abstract class FileRepo {
 	 */
 	function findFiles( $items ) {
 		$result = array();
-		foreach ( $items as $index => $item ) {
+		foreach ( $items as $item ) {
 			if ( is_array( $item ) ) {
 				$title = $item['title'];
 				$options = $item;
@@ -173,8 +173,9 @@ abstract class FileRepo {
 				$options = array();
 			}
 			$file = $this->findFile( $title, $options );
-			if ( $file )
+			if ( $file ) {
 				$result[$file->getTitle()->getDBkey()] = $file;
+			}
 		}
 		return $result;
 	}
