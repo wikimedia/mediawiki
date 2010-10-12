@@ -56,6 +56,7 @@ class ParserTest {
 	private $maxFuzzTestLength = 300;
 	private $fuzzSeed = 0;
 	private $memoryLimit = 50;
+	private $uploadDir = null;
 
 	public $regex = "";
 	private $savedGlobals = array();
