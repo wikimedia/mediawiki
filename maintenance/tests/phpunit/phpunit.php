@@ -23,12 +23,6 @@ $wgLocaltimezone = 'UTC';
 // To prevent tests from failing with SQLite, we need to turn database caching off
 $wgCaches[CACHE_DB] = false;
 
-$targetFile = wfIsWindows() ? 'phpunit.php' : 'phpunit';
-$pathSeparator = wfIsWindows() ? ';' : ':';
-
-$folders = explode( $pathSeparator, getenv('PATH') );
-
 require_once( 'PHPUnit/TextUI/Command.php' );
-define( 'PHPUnit_MAIN_METHOD', 'PHPUnit_TextUI_Command::main' );
 PHPUnit_TextUI_Command::main();
 
