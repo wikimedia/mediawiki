@@ -58,7 +58,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွနု်ပ်ကို​မှတ်​ထား​ရန်် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
+'tog-rememberpassword' => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွန်ုပ်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
 'tog-watchcreations'   => 'ကျွန်တော်ထွင်သည့်စာမျက်နှာများကို စောင့်​ကြည့်​စာ​ရင်း​ထဲ ပေါင်းထည့်ပါ',
 'tog-watchdefault'     => 'ကျွန်ုပ် တည်းဖြတ်ခဲ့သည့် စာမျက်နှာများကို စောင့်ကြည့်စာရင်းသို့  ပေါင်းထည့်ပါ။',
 
@@ -352,6 +352,7 @@ $messages = array(
 'anoneditwarning'                  => "'''သတိပေးချက် - ''' သင်သည် logged in ဝင်မထားပါ။
 ဤစာမျက်နှာ၏ တည်းဖြတ်မှတ်တမ်းတွင် သင့် IP address ကို မှတ်သားထားမည် ဖြစ်သည်။",
 'summary-preview'                  => 'အ​ကျဉ်း​ချုပ်​န​မူ​နာ:',
+'blockednoreason'                  => 'အကြောင်းပြချက် မပေးထားပါ',
 'whitelistedittitle'               => 'ပြင်ဆင်ရန် log in ဝင်ထားဖို့ လိုသည်',
 'loginreqtitle'                    => 'login ဝင်ထားရန် လိုသည်',
 'loginreqlink'                     => 'log in ဝင်ရန်',
@@ -561,22 +562,33 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'filehist-help'             => 'ဖိုင်ကို ယင်းနေ့စွဲ အတိုင်း မြင်နိုင်ရန် နေ့စွဲ/အချိန် တစ်ခုခုပေါ်တွင် ကလစ်နှိပ်ပါ။',
 'filehist-deleteall'        => 'အားလုံးဖျက်',
 'filehist-deleteone'        => 'ဖျက်',
+'filehist-revert'           => 'ပြန်ပြောင်းရန်',
 'filehist-current'          => 'ကာလပေါ်',
 'filehist-datetime'         => 'နေ့စွဲ/အချိန်',
 'filehist-thumb'            => 'နမူနာပုံငယ်',
 'filehist-thumbtext'        => '$1 ရက်က မူအတွက် နမူနာပုံငယ်',
+'filehist-nothumb'          => 'နမူနာပုံငယ်မပါ',
 'filehist-user'             => 'အသုံးပြုသူ',
 'filehist-dimensions'       => 'မှတ်တမ်း ဒိုင်မန်းရှင်းများ',
 'filehist-filesize'         => 'ဖိုင်ဆိုက်',
 'filehist-comment'          => 'မှတ်ချက်',
+'filehist-missing'          => 'ဖိုင်ပျောက်နေသည်',
 'imagelinks'                => 'ဖိုင်အဆက်အသွယ်များ',
 'linkstoimage'              => 'ဤဖိုင်သို့ အောက်ပါ {{PLURAL:$1|စာမျက်နှာလင့်|စာမျက်နှာလင့် $1 ခု}} -',
+'nolinkstoimage'            => 'ဤဖိုင်သို့လင့်ထားသော စာမျက်နှာမရှိပါ။',
+'morelinkstoimage'          => 'ဤဖိုင်သို့[[Special:WhatLinksHere/$1|နောက်ထပ်လင့်များ]] ကိုကြည့်ပါ။',
 'sharedupload'              => 'ဤဖိုင်သည် $1 မှဖြစ်ပြီး အခြားပရောဂျက်များတွင် သုံးကောင်းသုံးလိမ့်မည်။',
+'filepage-nofile'           => 'ဤအမည်ဖြင့် မည်သည့်ဖိုင်မှ မရှိပါ။',
+'filepage-nofile-link'      => 'ဤအမည်ဖြင့် မည်သည့်ဖိုင်မှ မရှိပါ။ သိုရာတွင် ယင်းကို [$1 upload တင်]နိုင်သည်။',
 'uploadnewversion-linktext' => 'ဤဖိုင်၏ နောက်ဆုံး version ကို upload တင်ရန်',
+'shared-repo-from'          => '$1 ထံမှ',
 
 # File reversion
-'filerevert-comment' => 'အ​ကြောင်း​ပြ​ချက်:',
-'filerevert-submit'  => 'ပြောင်းရန်',
+'filerevert'                => '$1 ကို ပြန်ပြောင်းရန်',
+'filerevert-legend'         => 'ဖိုင်ကို ပြန်ပြောင်းရန်',
+'filerevert-comment'        => 'အ​ကြောင်း​ပြ​ချက် -',
+'filerevert-defaultcomment' => '$2 ရက်နေ့ $1 အချိန်မှ မူသို့ ပြန်ပြောင်းရန်',
+'filerevert-submit'         => 'ပြောင်းရန်',
 
 # File deletion
 'filedelete'                  => '$1 ကိုဖျက်ပါ',
@@ -591,6 +603,9 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 
 # Random page
 'randompage' => 'ကျ​ပန်း​စာ​မျက်​နှာ​',
+
+# Random redirect
+'randomredirect' => 'ကျပန်းပြန်ညွှန်း',
 
 # Statistics
 'statistics' => 'စာရင်းအင်း',

@@ -1431,9 +1431,9 @@ Kufanya muhtasari wako uonekana pale, utahitajika uhariri ukurasa kwa mikono.
 * Jina la faili linalopakiwa: '''<tt>[[:$1]]</tt>'''
 * Jina la faili lililopo tayari: '''<tt>[[:$2]]</tt>'''
 Tafadhali chagua jina lingine.",
-'fileexists-thumbnail-yes'    => "Faili huwa ni ''picha ndogo''.
+'fileexists-thumbnail-yes'    => "Faili linaonekana kuwa ni ''picha'' iliyopunguzwa ukubwa.
 [[$1|thumb]]
-Tafadhali utazame faili la '''<tt>[[:$1]]</tt>'''.
+Tafadhali tazama faili la '''<tt>[[:$1]]</tt>'''.
 Ikiwa faili hili linaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
 'file-thumbnail-no'           => "Jina la faili linaloanza na '''<tt>$1</tt>'''.
 Inaonekana kuwa ni picha iliyopunguzwa kubwa''(thumbnail)''.
@@ -1510,12 +1510,12 @@ Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
 'http-timed-out'        => 'Ombi la HTTP muda umepita.',
 'http-curl-error'       => 'Hitilafu ya kuleta URL: $1',
 'http-host-unreachable' => 'KISARA (URL) haikupatikana',
-'http-bad-status'       => 'Ilitokea tatizo wakati wa kutekeleza ombi la HTTP: $1 $2',
+'http-bad-status'       => 'Kulikuwa na tatizo wakati wa kutekeleza ombi la HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'KISARA (URL) haikupatikana',
-'upload-curl-error6-text'  => 'URL iliyotajwa haikupatikana.
-Tafadhali uhakikishe kwamba URL ni sahihi na kwamba tovuti inafanya kazi.',
+'upload-curl-error6-text'  => 'URL iliyotajwa haikuweza kupatikana.
+Tafadhali hakikisha kwamba URL ni sahihi na tovuti inafanya kazi.',
 'upload-curl-error28'      => 'Muda wa upakiaji umeisha',
 'upload-curl-error28-text' => 'Tovuti imechelewa mno kuitikia.
 Tafadhali uhakikishe kwamba tovuti inafanya kazi, subiri kidogo halafu jaribu tena.
@@ -1525,13 +1525,13 @@ Unaweza kujaribu wakati tovuti haina kazi nyingi.',
 'license-header'     => 'Hatimiliki',
 'nolicense'          => 'Haikuchaguliwa',
 'license-nopreview'  => '(Hakikisho hakipatikani)',
-'upload_source_url'  => ' (URL halali, inayofifika kadamnasi)',
+'upload_source_url'  => '(URL halali, inayopatikana kwa umma)',
 'upload_source_file' => '(faili kwenye tarakilishi yako)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Ukurasa maalum huu unaonyesha mafaili yote yaliyopakiwa.
-Unapofika ukurasa orodha ya mafaili inapangwa ianze na mafaili yaliyopakiwa hivi karibuni.
-Ukibofya kichwa cha safu mtindo wa kupanga orodha utabadili.',
+'listfiles-summary'     => 'Ukurasa huu maalum unaonyesha mafaili yote yaliyopakiwa.
+Kwa kawaida mafaili ya mwisho kupakiwa yanaonekana juu kabisa ya orodha.
+Ukibofya kichwa cha safu mtindo wa kupanga orodha utabadilika.',
 'listfiles_search_for'  => 'Tafuta jina la faili:',
 'imgfile'               => 'faili',
 'listfiles'             => 'Orodha ya mafaili',
@@ -1561,17 +1561,17 @@ Ukibofya kichwa cha safu mtindo wa kupanga orodha utabadili.',
 'filehist-missing'          => 'Faili halipo',
 'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu umeunganishwa|Kurasa hizi $1 zimeunganishwa}} na faili hili:',
-'linkstoimage-more'         => 'Zipo {{PLURAL:$1|kurasa|kurasa}} zaidi na $1 zinazounga na faili hili.
-Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}} tu vinavyounga na faili hili.
+'linkstoimage-more'         => 'Zipo {{PLURAL:$1|kurasa|kurasa}} zaidi ya $1 zinazounga na faili hili.
+Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}} tu vinavyoungana na faili hili.
 [[Special:WhatLinksHere/$2|Orodha nzima]] inapatikana.',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
 'morelinkstoimage'          => 'Tazama [[Special:WhatLinksHere/$1|viungo vingine]] vinavyoelekeza faili hili.',
 'redirectstofile'           => '{{PLURAL:$1|Faili linalofuata linaelekeza|Mafaili $1 yanayofuata yanaelekeza}} faili hili:',
 'duplicatesoffile'          => '{{PLURAL:$1|Faili linalofuata ni nakala ya|Mafaili $1 yanayofuata ni nakala za}} faili hili ([[Special:FileDuplicateSearch/$2|maelezo mengine]]):',
 'sharedupload'              => 'Faili hili linatoka $1 na linaweza kushirikiwa na miradi mingine.',
-'sharedupload-desc-there'   => 'Faili hili linatoka $1 na linaweza kutumika na miradi mingine.
-Tafadhali tazama [$2 ukurasa wa maelezo ya faili] ukitaka maelezo mengine.',
-'sharedupload-desc-here'    => 'Faili hili linatoka $1 na linaweza kutumika na miradi mingine.
+'sharedupload-desc-there'   => 'Faili hili linatoka $1 na huenda likawa limetumika na miradi mingine.
+Tafadhali tazama [$2 ukurasa wa maelezo ya faili] kwa maelezo zaidi.',
+'sharedupload-desc-here'    => 'Faili hili linatoka $1 na huenda likawa limetumika na miradi mingine.
 Maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] linaonyeshwa hapa.',
 'filepage-nofile'           => 'Hakuna faili yenye jina hili.',
 'filepage-nofile-link'      => 'Hakuna faili lenye jina hili, lakini unaweza [$1 kulipakia].',
@@ -1589,7 +1589,7 @@ Maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] linaonyeshwa hapa.',
 # File deletion
 'filedelete'                  => 'Futa $1',
 'filedelete-legend'           => 'Futa faili',
-'filedelete-intro'            => "Unakaribia kufuta faili la '''[[Media:$1|$1]]''' pamoja na historia yake yote.",
+'filedelete-intro'            => "Unataka kufuta faili la '''[[Media:$1|$1]]''' pamoja na historia yake yote.",
 'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
 'filedelete-comment'          => 'Sababu:',
 'filedelete-submit'           => 'Futa',
