@@ -739,6 +739,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 /**
  * Abstraction for resource loader modules which pull from wiki pages
+ * 
+ * This can only be used for wiki pages in the MediaWiki and User namespaces, because of it's dependence on the
+ * functionality of Title::isValidCssJsSubpage.
  */
 abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	
@@ -768,13 +771,11 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/* Methods */
 
 	public function getScript( ResourceLoaderContext $context ) {
-		global $wgCanonicalNamespaceNames;
-		
 		$scripts = '';
 		foreach ( $this->getPages( $context ) as $page => $options ) {
 			if ( $options['type'] === 'script' ) {
 				if ( $script = $this->getContent( $page, $options['ns'] ) ) {
-					$ns = $wgCanonicalNamespaceNames[$options['ns']];
+					$ns = MWNamespace::getCanonicalName( $options['ns'] );
 					$scripts .= "/*$ns:$page */\n$script\n";
 				}
 			}
@@ -783,7 +784,6 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
-		global $wgCanonicalNamespaceNames;
 		
 		$styles = array();
 		foreach ( $this->getPages( $context ) as $page => $options ) {
@@ -793,7 +793,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 					if ( !isset( $styles[$media] ) ) {
 						$styles[$media] = '';
 					}
-					$ns = $wgCanonicalNamespaceNames[$options['ns']];
+					$ns = MWNamespace::getCanonicalName( $options['ns'] );
 					$styles[$media] .= "/* $ns:$page */\n$style\n";
 				}
 			}
