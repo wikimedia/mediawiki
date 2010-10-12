@@ -45,17 +45,16 @@ $.extend( mw, {
 					} )
 					.appendTo( $( 'body' ) );
 			}
-			if ( $log.length ) {
-				$log.append(
-					$( '<div>' + string + '</div>' )
-						.css( {
-							'border-bottom': 'solid 1px #DDDDDD',
-							'font-size': 'small',
-							'font-family': 'monospace',
-							'padding': '0.125em 0.25em'
-						} )
-				);
-			}
+			$log.append(
+				$( '<div></div>' )
+					.text( string )
+					.css( {
+						'border-bottom': 'solid 1px #DDDDDD',
+						'font-size': 'small',
+						'font-family': 'monospace',
+						'padding': '0.125em 0.25em'
+					} )
+			);
 		}
 	}
 } );

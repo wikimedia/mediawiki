@@ -252,7 +252,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Resolves dynamic loader function and replaces it with it's own results
 			if ( typeof registry[module].dependencies === 'function' ) {
 				registry[module].dependencies = registry[module].dependencies();
-				// Gaurantees the module's dependencies are always in an array 
+				// Ensures the module's dependencies are always in an array 
 				if ( typeof registry[module].dependencies !== 'object' ) {
 					registry[module].dependencies = [registry[module].dependencies];
 				}
