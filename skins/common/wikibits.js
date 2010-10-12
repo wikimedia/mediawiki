@@ -1056,9 +1056,9 @@ window.runOnloadHook = function() {
  * @param callable handler Event handler callback
  */
 window.addHandler = function( element, attach, handler ) {
-	if( window.addEventListener ) {
+	if( element.addEventListener ) {
 		element.addEventListener( attach, handler, false );
-	} else if( window.attachEvent ) {
+	} else if( element.attachEvent ) {
 		element.attachEvent( 'on' + attach, handler );
 	}
 }
