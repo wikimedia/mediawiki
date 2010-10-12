@@ -1367,7 +1367,7 @@ Ovdje su navedene neke nasumično odabrane vrijednosti koje možete koristiti: $
 Ovo se ne može vratiti unazad.',
 'prefs-emailconfirm-label'      => 'E-mail potvrda:',
 'prefs-textboxsize'             => 'Veličina prozora za uređivanje',
-'youremail'                     => 'E-pošta:',
+'youremail'                     => 'E-mail:',
 'username'                      => 'Korisničko ime:',
 'uid'                           => 'Korisnički ID:',
 'prefs-memberingroups'          => 'Član {{PLURAL:$1|grupe|grupa}}:',
