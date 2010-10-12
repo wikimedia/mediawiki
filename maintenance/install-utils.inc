@@ -191,7 +191,8 @@ function dbsource( $fname, $db = false ) {
 
 function archive( $name ) {
 	wfDeprecated( __METHOD__ );
-	return DatabaseBase::patchPath( $name );
+	$dbr = wfGetDB( DB_SLAVE );
+	return $dbr->patchPath( $name );
 }
 
 /**
