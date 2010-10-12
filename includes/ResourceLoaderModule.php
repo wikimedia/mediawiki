@@ -949,10 +949,10 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 				$rules[] = "a { text-decoration: " . ( $options['underline'] ? 'underline' : 'none' ) . "; }";
 			}
 			if ( $options['highlightbroken'] ) {
-				$rules[] = "a.new, #quickbar a.new { color: #CC2200; }\n";
+				$rules[] = "a.new, #quickbar a.new { color: #ba0000; }\n";
 			} else {
 				$rules[] = "a.new, #quickbar a.new, a.stub, #quickbar a.stub { color: inherit; }";
-				$rules[] = "a.new:after, #quickbar a.new:after { content: '?'; color: #CC2200; }";
+				$rules[] = "a.new:after, #quickbar a.new:after { content: '?'; color: #ba0000; }";
 				$rules[] = "a.stub:after, #quickbar a.stub:after { content: '!'; color: #772233; }";
 			}
 			if ( $options['justify'] ) {
