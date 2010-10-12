@@ -12,3 +12,11 @@ The extensions are available through svn at:
 
 You can find documentation and additional extensions on MediaWiki website:
     http://www.mediawiki.org/wiki/Category:Extensions
+
+
+Please note that under POSIX systems (Linux...), parent of a symbolic path
+refers to the link source, NOT to the target! If you need to include a
+file from mediawiki/, you will want to set and use MW_INSTALL_PATH env.
+
+ $IP = getenv( 'MW_INSTALL_PATH' );  // points to mediawiki/
+ require( "$IP/maintenance/Maintenance.php" ); // a MediaWiki file
