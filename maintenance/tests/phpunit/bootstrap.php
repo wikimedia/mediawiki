@@ -35,12 +35,11 @@ abstract class MediaWikiTestSetup extends PHPUnit_Framework_TestCase {
 	public $regex = '';
 	public $runDisabled = false;
 
-
 	function __construct( PHPUnit_Framework_TestSuite $suite = null ) {
 		if ( null !== $suite ) {
 			$this->suite = $suite;
 		}
-			}
+	}
 
 	function __call( $func, $args ) {
 		if ( method_exists( $this->suite, $func ) ) {
