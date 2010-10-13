@@ -1,0 +1,19 @@
+[browsers]
+
+firefox			= "*firefox"
+iexploreproxy	= "*iexploreproxy"
+chrome			= "*chrome"
+
+[SeleniumSettings]
+
+host			= "localhost"
+port			= "4444"
+wikiUrl			= "http://localhost/mediawiki/latest_trunk/trunk/phase3"
+username		= "Wikiadmin"
+userPassword	= "Wikiadminpw"
+testBrowser		= "firefox"
+
+[testSuite]
+
+SimpleSeleniumTestSuite	= "maintenance/tests/selenium/SimpleSeleniumTestSuite.php"
+PagedTiffHandlerSeleniumTestSuite = "extensions/PagedTiffHandler/selenium/PagedTiffHandlerTestSuite.php"
