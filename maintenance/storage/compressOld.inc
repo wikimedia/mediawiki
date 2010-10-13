@@ -169,7 +169,7 @@ function compressWithConcat( $startId, $maxChunkSize, $beginDate,
 			$revLoadOptions
 		);
 		$revs = array();
-		foreach ( $res as $row ) {
+		foreach ( $revRes as $revRow ) {
 			$revs[] = $revRow;
 		}
 
