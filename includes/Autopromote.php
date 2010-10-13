@@ -74,7 +74,7 @@ class Autopromote {
 				}
 
 				return $res;
-			} elseif ( $cond[0] = '!' ) {
+			} elseif ( $cond[0] == '!' ) {
 				foreach ( array_slice( $cond, 1 ) as $subcond ) {
 					if ( self::recCheckCondition( $subcond, $user ) ) {
 						return false;
