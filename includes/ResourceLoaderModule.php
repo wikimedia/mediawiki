@@ -583,7 +583,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Get the primary CSS for this module. This is pulled from the CSS
 	 * files added through addStyles()
 	 *
-	 * @return String: JS
+	 * @return Array
 	 */
 	protected function getPrimaryStyles() {
 		return self::concatStyles( $this->styles );
