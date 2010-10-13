@@ -196,7 +196,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$this->mResult->seek( 0 );
 		$lb = new LinkBatch;
 
-		while ( $row = $this->mResult->fetchObject() ) {
+		foreach ( $this->mResult as $row ) {
 			$lb->add( $row->pt_namespace, $row->pt_title );
 		}
 

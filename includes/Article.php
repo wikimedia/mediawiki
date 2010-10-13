@@ -1590,7 +1590,7 @@ class Article {
 		}
 
 		$tbtext = "";
-		while ( $o = $dbr->fetchObject( $tbs ) ) {
+		foreach ( $tbs as $o ) {
 			$rmvtxt = "";
 
 			if ( $wgUser->isAllowed( 'trackback' ) ) {
@@ -2992,7 +2992,7 @@ class Article {
 
 		$authors = array( $row->rev_user_text );
 
-		while ( $row = $db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$authors[] = $row->rev_user_text;
 		}
 

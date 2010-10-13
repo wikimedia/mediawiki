@@ -69,7 +69,7 @@ class DisambiguationsPage extends PageQueryPage {
 						'page_namespace' => $disPageObj->getNamespace(), 'page_title' => $disPageObj->getDBkey()),
 					__METHOD__ );
 
-				while ( $row = $dbr->fetchObject( $res ) ) {
+				foreach ( $res as $row ) {
 					$linkBatch->addObj( Title::makeTitle( NS_TEMPLATE, $row->pl_title ));
 				}
 		}

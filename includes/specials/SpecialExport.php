@@ -315,7 +315,7 @@ class SpecialExport extends SpecialPage {
 
 		$pages = array();
 		
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$n = $row->page_title;
 			if ($row->page_namespace) {
 				$ns = $wgContLang->getNsText( $row->page_namespace );
@@ -341,7 +341,7 @@ class SpecialExport extends SpecialPage {
 
 		$pages = array();
 		
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$n = $row->page_title;
 			
 			if ( $row->page_namespace ) {

@@ -227,7 +227,7 @@ class AllmessagesTablePager extends TablePager {
 
 		$pageFlags = $talkFlags = array();
 		
-		while( $s = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $s ) {
 			if( $s->page_namespace == NS_MEDIAWIKI ) {
 				if( $this->foreign ) {
 					$title = explode( '/', $s->page_title );

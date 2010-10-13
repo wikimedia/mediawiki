@@ -976,7 +976,7 @@ class User {
 				array( 'ug_user' => $this->mId ),
 				__METHOD__ );
 			$this->mGroups = array();
-			while( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$this->mGroups[] = $row->ug_group;
 			}
 		}
@@ -3633,7 +3633,7 @@ class User {
 				__METHOD__
 			);
 
-			while( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$this->mOptionOverrides[$row->up_property] = $row->up_value;
 				$this->mOptions[$row->up_property] = $row->up_value;
 			}

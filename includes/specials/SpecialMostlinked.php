@@ -73,8 +73,9 @@ class MostlinkedPage extends QueryPage {
 	function preprocessResults( $db, $res ) {
 		if( $db->numRows( $res ) > 0 ) {
 			$linkBatch = new LinkBatch();
-			while( $row = $db->fetchObject( $res ) )
+			foreach ( $res as $row ) {
 				$linkBatch->add( $row->namespace, $row->title );
+			}
 			$db->dataSeek( $res, 0 );
 			$linkBatch->execute();
 		}

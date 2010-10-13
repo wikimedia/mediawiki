@@ -181,15 +181,16 @@ class ChangeTags {
 		global $wgMemc;
 		$key = wfMemcKey( 'valid-tags' );
 
-		if ( $tags = $wgMemc->get( $key ) )
+		if ( $tags = $wgMemc->get( $key ) ) {
 			return $tags;
+		}
 
 		$emptyTags = array();
 
 		// Some DB stuff
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'valid_tag', 'vt_tag', array(), __METHOD__ );
-		while( $row = $res->fetchObject() ) {
+		foreach ( $res as $row ) {
 			$emptyTags[] = $row->vt_tag;
 		}
 

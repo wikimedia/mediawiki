@@ -544,7 +544,7 @@ class IPBlocklistPager extends ReverseChronologicalPager {
 		# Faster way
 		# Usernames and titles are in fact related by a simple substitution of space -> underscore
 		# The last few lines of Title::secureAndSplit() tell the story.
-		while ( $row = $this->mResult->fetchObject() ) {
+		foreach ( $this->mResult as $row ) {
 			$name = str_replace( ' ', '_', $row->ipb_by_text );
 			$lb->add( NS_USER, $name );
 			$lb->add( NS_USER_TALK, $name );

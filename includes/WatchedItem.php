@@ -143,7 +143,7 @@ class WatchedItem {
 		);
 		# Construct array to replace into the watchlist
 		$values = array();
-		while ( $s = $dbw->fetchObject( $res ) ) {
+		foreach ( $res as $s ) {
 			$values[] = array(
 				'wl_user' => $s->wl_user,
 				'wl_namespace' => $newnamespace,

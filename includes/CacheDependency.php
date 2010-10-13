@@ -280,7 +280,7 @@ class TitleListDependency extends CacheDependency {
 				__METHOD__
 			);
 
-			while ( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$timestamps[$row->page_namespace][$row->page_title] = $row->page_touched;
 			}
 		}

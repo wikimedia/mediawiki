@@ -104,7 +104,7 @@ class CategoryPager extends AlphabeticPager {
 
 		$this->mResult->rewind();
 
-		while ( $row = $this->mResult->fetchObject() ) {
+		foreach ( $this->mResult as $row ) {
 			$batch->addObj( Title::makeTitleSafe( NS_CATEGORY, $row->cat_title ) );
 		}
 		$batch->execute();

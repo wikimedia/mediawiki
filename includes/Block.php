@@ -531,7 +531,7 @@ class Block {
 				# No results, don't autoblock anything
 				wfDebug( "No IP found to retroactively autoblock\n" );
 			} else {
-				while ( $row = $dbr->fetchObject( $res ) ) {
+				foreach ( $res as $row ) {
 					if ( $row->rc_ip ) {
 						$this->doAutoblock( $row->rc_ip );
 					}

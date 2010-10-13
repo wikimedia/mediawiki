@@ -50,7 +50,7 @@ class SpecialTags extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'change_tag', array( 'ct_tag', 'count(*) as hitcount' ), array(), __METHOD__, array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ) );
 
-		while ( $row = $res->fetchObject() ) {
+		foreach ( $res as $row ) {
 			$html .= $this->doTagRow( $row->ct_tag, $row->hitcount );
 		}
 

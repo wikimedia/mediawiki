@@ -280,7 +280,7 @@ END;
 		}
 
 		$cols = array();
-		while ( $r = $this->db->fetchRow( $res ) ) {
+		foreach ( $res as $r ) {
 			$cols[] = array(
 					"name" => $r[0],
 					"ord" => $r[1],

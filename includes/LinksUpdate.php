@@ -247,7 +247,7 @@ class LinksUpdate {
 				'page_touched < ' . $this->mDb->addQuotes( $now )
 			), __METHOD__
 		);
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$ids[] = $row->page_id;
 		}
 		if ( !count( $ids ) ) {
@@ -628,7 +628,7 @@ class LinksUpdate {
 		$res = $this->mDb->select( 'pagelinks', array( 'pl_namespace', 'pl_title' ),
 			array( 'pl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( !isset( $arr[$row->pl_namespace] ) ) {
 				$arr[$row->pl_namespace] = array();
 			}
@@ -645,7 +645,7 @@ class LinksUpdate {
 		$res = $this->mDb->select( 'templatelinks', array( 'tl_namespace', 'tl_title' ),
 			array( 'tl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( !isset( $arr[$row->tl_namespace] ) ) {
 				$arr[$row->tl_namespace] = array();
 			}
@@ -662,7 +662,7 @@ class LinksUpdate {
 		$res = $this->mDb->select( 'imagelinks', array( 'il_to' ),
 			array( 'il_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$arr[$row->il_to] = 1;
 		}
 		return $arr;
@@ -676,7 +676,7 @@ class LinksUpdate {
 		$res = $this->mDb->select( 'externallinks', array( 'el_to' ),
 			array( 'el_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$arr[$row->el_to] = 1;
 		}
 		return $arr;
@@ -690,7 +690,7 @@ class LinksUpdate {
 		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_sortkey' ),
 			array( 'cl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$arr[$row->cl_to] = $row->cl_sortkey;
 		}
 		return $arr;
@@ -705,7 +705,7 @@ class LinksUpdate {
 		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ),
 			array( 'll_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$arr[$row->ll_lang] = $row->ll_title;
 		}
 		return $arr;
@@ -719,7 +719,7 @@ class LinksUpdate {
 		$res = $this->mDb->select( 'iwlinks', array( 'iwl_prefix', 'iwl_title' ),
 			array( 'iwl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( !isset( $arr[$row->iwl_prefix] ) ) {
 				$arr[$row->iwl_prefix] = array();
 			}
@@ -736,7 +736,7 @@ class LinksUpdate {
 		$res = $this->mDb->select( 'page_props', array( 'pp_propname', 'pp_value' ),
 			array( 'pp_page' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
-		while ( $row = $this->mDb->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$arr[$row->pp_propname] = $row->pp_value;
 		}
 		return $arr;

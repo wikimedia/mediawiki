@@ -1079,7 +1079,7 @@ class EditPage {
 			),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ) );
-		while( $row = $res->fetchObject() ) {
+		foreach ( $res as $row ) {
 			if( $row->rev_user != $id ) {
 				return false;
 			}

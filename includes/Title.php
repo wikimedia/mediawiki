@@ -2106,9 +2106,8 @@ class Title {
 	 */
 	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
 		$rows = array();
-		$dbr = wfGetDB( DB_SLAVE );
 
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$rows[] = $row;
 		}
 

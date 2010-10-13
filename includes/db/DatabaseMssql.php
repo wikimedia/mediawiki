@@ -347,7 +347,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 
 		$result = array();
-		while ( $row = $res->FetchNextObj() ) {
+		foreach ( $res as $row ) {
 			if ( $row->index_name == $index ) {
 				$row->Non_unique = !stristr( $row->index_description, "unique" );
 				$cols = explode( ", ", $row->index_keys );
@@ -784,8 +784,9 @@ class DatabaseMssql extends DatabaseBase {
 			print( "Error in fieldInfo query: " . $this->getErrors() );
 			return false;
 		}
-		if ( $meta = $this->fetchRow( $res ) )
+		if ( $meta = $this->fetchRow( $res ) ) {
 			return new MssqlField( $meta );
+		}
 		return false;
 	}
 

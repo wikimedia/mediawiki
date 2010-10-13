@@ -117,7 +117,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	 * We have to flip things around to get the last N after a certain date
 	 */
 	$images = array();
-	while ( $s = $dbr->fetchObject( $res ) ) {
+	foreach ( $res as $s ) {
 		if( $invertSort ) {
 			array_unshift( $images, $s );
 		} else {

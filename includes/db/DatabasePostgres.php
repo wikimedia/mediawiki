@@ -737,7 +737,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( !$res ) {
 			return null;
 		}
-		while ( $row = $this->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( $row->indexname == $this->indexName( $index ) ) {
 				return $row;
 			}
@@ -754,7 +754,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( !$res ) {
 			return null;
 		}
-		while ( $row = $this->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			return true;
 		}
 		return false;
