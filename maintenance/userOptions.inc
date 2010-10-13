@@ -111,7 +111,7 @@ class userOptions {
 			__METHOD__
 			);
 
-		while ( $id = $dbr->fetchObject( $result ) ) {
+		foreach ( $result as $id ) {
 
 			$user = User::newFromId( $id->user_id );
 
@@ -161,7 +161,7 @@ class userOptions {
 			__METHOD__
 			);
 
-		while ( $id = $dbr->fetchObject( $result ) ) {
+		foreach ( $result as $id ) {
 
 			$user = User::newFromId( $id->user_id );
 

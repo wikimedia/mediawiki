@@ -59,7 +59,7 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 				"old_id BETWEEN $blockStart AND $blockEnd",
 				'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 			), $fname );
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			# Resolve stubs
 			$text = $row->old_text;
 			$id = $row->old_id;
