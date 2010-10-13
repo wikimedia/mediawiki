@@ -38,7 +38,7 @@ function resolveStubs() {
 			"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' " .
 			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
 			$fname );
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			resolveStub( $row->old_id, $row->old_text, $row->old_flags );
 		}		
 	}

@@ -190,7 +190,7 @@ class UserDupes {
 			  HAVING n > 1", $fname );
 
 		$list = array();
-		while ( $row = $this->db->fetchObject( $result ) ) {
+		foreach ( $res as $row ) {
 			$list[] = $row->user_name;
 		}
 		return $list;
@@ -215,7 +215,7 @@ class UserDupes {
 		$firstId  = $firstRow->user_id;
 		wfOut( "Record that will be used for '$name' is user_id=$firstId\n" );
 
-		while ( $row = $this->db->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {		
 			$dupeId = $row->user_id;
 			wfOut( "... dupe id $dupeId: " );
 			$edits = $this->editCount( $dupeId );

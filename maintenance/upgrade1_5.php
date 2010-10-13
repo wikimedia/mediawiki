@@ -344,7 +344,7 @@ class FiveUpgrade extends Maintenance {
 			__METHOD__ );
 
 		$add = array();
-		while ( $row = $this->dbr->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {
 			$copy = array();
 			foreach ( $fields as $field => $source ) {
 				if ( $source === MW_UPGRADE_COPY ) {
@@ -455,7 +455,7 @@ class FiveUpgrade extends Maintenance {
   			FROM $cur
   			ORDER BY cur_id", __METHOD__ );
   		$add = array();
-		while ( $row = $this->dbr->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {
 			$add[] = array(
 				'old_namespace'  => $row->cur_namespace,
 				'old_title'      => $row->cur_title,
@@ -488,7 +488,7 @@ class FiveUpgrade extends Maintenance {
 			__METHOD__ );
 
 		$add = array();
-		while ( $row = $this->dbr->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {
 			$add[] = array(
 				'rev_id'         =>              $row->old_id,
 				'rev_page'       =>              $row->cur_id,
@@ -516,7 +516,7 @@ class FiveUpgrade extends Maintenance {
   			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}
   			ORDER BY cur_id", __METHOD__ );
 		$add = array();
-		while ( $row = $this->dbr->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {
 			$add[] = array(
 				'page_id'           =>              $row->cur_id,
 				'page_namespace'    =>              $row->cur_namespace,
@@ -578,7 +578,7 @@ CREATE TABLE $pagelinks (
 				FROM $links, $cur
 				WHERE l_to=cur_id", __METHOD__ );
 			$add = array();
-			while ( $row = $this->dbr->fetchObject( $result ) ) {
+			foreach ( $result as $row ) {
 				$add[] = array(
 					'pl_from'      =>              $row->l_from,
 					'pl_namespace' =>              $row->cur_namespace,
@@ -598,7 +598,7 @@ CREATE TABLE $pagelinks (
 				"SELECT bl_from, bl_to FROM $brokenlinks",
 				__METHOD__ );
 			$add = array();
-			while ( $row = $this->dbr->fetchObject( $result ) ) {
+			foreach ( $result as $row ) {
 				$pagename = $this->conv( $row->bl_to );
 				$title = Title::newFromText( $pagename );
 				if ( is_null( $title ) ) {
@@ -905,7 +905,7 @@ END;
 			__METHOD__ );
 
 		$add = array();
-		while ( $row = $this->dbr->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {
 			$add[] = array(
 				'wl_user'      =>                          $row->wl_user,
 				'wl_namespace' => MWNamespace::getSubject( $row->wl_namespace ),
@@ -1214,7 +1214,7 @@ END
 		echo "Found $n titles with duplicate entries.\n";
 		if ( $n > 0 ) {
 			echo "Correcting...\n";
-			while ( $row = $dbw->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$ns = intval( $row->cur_namespace );
 				$title = $dbw->addQuotes( $row->cur_title );
 

@@ -86,7 +86,7 @@ class RollbackEdits extends Maintenance {
 			array( 'page_latest = rev_id', 'rev_user_text' => $user ),
 			__METHOD__
 		);
-		while ( $row = $dbr->fetchObject( $results ) ) {
+		foreach ( $results as $row ) {
 			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
 		return $titles;

@@ -18,7 +18,7 @@ function compressOldPages( $start = 0, $extdb = '' ) {
 			break;
 		}
 		$last = $start;
-		while( $row = $dbw->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			# print "  {$row->old_id} - {$row->old_namespace}:{$row->old_title}\n";
 			compressPage( $row, $extdb );
 			$last = $row->old_id;
@@ -169,7 +169,7 @@ function compressWithConcat( $startId, $maxChunkSize, $beginDate,
 			$revLoadOptions
 		);
 		$revs = array();
-		while ( $revRow = $dbw->fetchObject( $revRes ) ) {
+		foreach ( $res as $row ) {
 			$revs[] = $revRow;
 		}
 

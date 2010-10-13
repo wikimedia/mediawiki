@@ -113,7 +113,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$res = $dbw->query( "SELECT cur_namespace,cur_title,cur_id FROM $cur" );
 			$ids = array();
 
-			while ( $row = $dbw->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$title = $row->cur_title;
 				if ( $row->cur_namespace ) {
 					$title = $wgContLang->getNsText( $row->cur_namespace ) . ":$title";
@@ -154,7 +154,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 				}
 	
 				$tuplesAdded = 0; # no tuples added to INSERT yet
-				while ( $row = $dbw->fetchObject( $res ) ) {
+				foreach ( $res as $row ) {
 					$fromTitle = $row->l_from;
 					if ( array_key_exists( $fromTitle, $ids ) ) { # valid title
 						$from = $ids[$fromTitle];
