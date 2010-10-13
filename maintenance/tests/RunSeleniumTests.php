@@ -5,7 +5,8 @@
  * @ingroup Maintenance
  * @copyright Copyright © Wikimedia Deuschland, 2009
  * @author Hallo Welt! Medienwerkstatt GmbH
- * @author Markus Glaser, Dan Nessett
+ * @author Markus Glaser, Dan Nessett, Priyanka Dhanda
+ * initial idea by Daniel Kinzler
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
