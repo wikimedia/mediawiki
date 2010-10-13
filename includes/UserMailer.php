@@ -306,7 +306,7 @@ class EmailNotification {
 					'wl_notificationtimestamp IS NULL',
 				), __METHOD__
 			);
-			while ($row = $dbw->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$watchers[] = intval( $row->wl_user );
 			}
 			if ($watchers) {

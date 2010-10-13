@@ -341,7 +341,7 @@ function wfSpecialWatchlist( $par ) {
 
 	/* Do link batch query */
 	$linkBatch = new LinkBatch;
-	while ( $row = $dbr->fetchObject( $res ) ) {
+	foreach ( $res as $row ) {
 		$userNameUnderscored = str_replace( ' ', '_', $row->rc_user_text );
 		if ( $row->rc_user != 0 ) {
 			$linkBatch->add( NS_USER, $userNameUnderscored );
@@ -358,7 +358,7 @@ function wfSpecialWatchlist( $par ) {
 	
 	$s = $list->beginRecentChangesList();
 	$counter = 1;
-	while ( $obj = $dbr->fetchObject( $res ) ) {
+	foreach ( $res as $obj ) {
 		# Make RC entry
 		$rc = RecentChange::newFromRow( $obj );
 		$rc->counter = $counter++;

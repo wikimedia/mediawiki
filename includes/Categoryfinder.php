@@ -154,7 +154,7 @@ class Categoryfinder {
 			/* WHERE  */ array( 'cl_from' => $this->next ),
 			__METHOD__ . '-1'
 		);
-		while ( $o = $this->dbr->fetchObject( $res ) ) {
+		foreach ( $res as $o ) {
 			$k = $o->cl_to;
 
 			# Update parent tree
@@ -186,7 +186,7 @@ class Categoryfinder {
 				/* WHERE  */ array( 'page_namespace' => NS_CATEGORY , 'page_title' => $layer ),
 				__METHOD__ . '-2'
 			);
-			while ( $o = $this->dbr->fetchObject( $res ) ) {
+			foreach ( $res as $o ) {
 				$id = $o->page_id;
 				$name = $o->page_title;
 				$this->name2id[$name] = $id;

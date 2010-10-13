@@ -1217,7 +1217,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 		$result = array();
 
-		while ( $row = $this->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( $row->Key_name == $index ) {
 				$result[] = $row;
 			}
@@ -2332,7 +2332,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$res = $this->query( "SHOW STATUS LIKE '{$which}'" );
 		$status = array();
 
-		while ( $row = $this->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$status[$row->Variable_name] = $row->Value;
 		}
 

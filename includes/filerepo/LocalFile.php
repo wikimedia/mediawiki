@@ -713,7 +713,7 @@ class LocalFile extends File {
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
 		$r = array();
 
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( $this->repo->oldFileFromRowFactory ) {
 				$r[] = call_user_func( $this->repo->oldFileFromRowFactory, $row, $this->repo );
 			} else {
@@ -1127,7 +1127,7 @@ class LocalFile extends File {
 		$result = $dbw->select( 'oldimage',
 			array( 'oi_archive_name' ),
 			array( 'oi_name' => $this->getName() ) );
-		while ( $row = $dbw->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {
 			$batch->addOld( $row->oi_archive_name );
 		}
 		$status = $batch->execute();
@@ -1341,7 +1341,7 @@ class LocalFileDeleteBatch {
 				__METHOD__
 			);
 
-			while ( $row = $dbw->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				if ( rtrim( $row->oi_sha1, "\0" ) === '' ) {
 					// Get the hash from the file
 					$oldUrl = $this->file->getArchiveVirtualUrl( $row->oi_archive_name );
@@ -1504,7 +1504,7 @@ class LocalFileDeleteBatch {
 					$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ),
 				__METHOD__ );
 
-			while ( $row = $dbw->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$privateFiles[$row->oi_archive_name] = 1;
 			}
 		}
@@ -1674,7 +1674,7 @@ class LocalFileRestoreBatch {
 		$first = true;
 		$archiveNames = array();
 
-		while ( $row = $dbw->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {
 			$idsPresent[] = $row->fa_id;
 
 			if ( $row->fa_name != $this->file->getName() ) {
@@ -1958,7 +1958,7 @@ class LocalFileMoveBatch {
 			__METHOD__
 		);
 
-		while ( $row = $this->db->fetchObject( $result ) ) {
+		foreach ( $result as $row ) {
 			$oldName = $row->oi_archive_name;
 			$bits = explode( '!', $oldName, 2 );
 

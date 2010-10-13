@@ -232,7 +232,7 @@ class ApiDelete extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			),
-			'oldimage' => null
+			'oldimage' => null,
 		);
 	}
 

@@ -278,7 +278,7 @@ class SpecialStatistics extends SpecialPage {
 				$text .= Xml::openElement( 'tr' );
 				$text .= Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-mostpopular', array( 'parseinline' ) ) );
 				$text .= Xml::closeElement( 'tr' );
-				while( $row = $res->fetchObject() ) {
+				foreach ( $res as $row ) {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 					if( $title instanceof Title ) {
 						$text .= $this->formatRow( $sk->link( $title ),

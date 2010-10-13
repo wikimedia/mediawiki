@@ -109,7 +109,7 @@ class LinkBatch {
 
 		$ids = array();
 		$remaining = $this->data;
-		while ( $row = $res->fetchObject() ) {
+		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$cache->addGoodLinkObj( $row->page_id, $title, $row->page_len, $row->page_is_redirect, $row->page_latest );
 			$ids[$title->getPrefixedDBkey()] = $row->page_id;

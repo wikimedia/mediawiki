@@ -157,7 +157,7 @@ class UserRightsProxy {
 			array( 'ug_user' => $this->id ),
 			__METHOD__ );
 		$groups = array();
-		while( $row = $this->db->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$groups[] = $row->ug_group;
 		}
 		return $groups;

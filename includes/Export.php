@@ -300,7 +300,7 @@ class WikiExporter {
 	 */
 	protected function outputPageStream( $resultset ) {
 		$last = null;
-		while( $row = $resultset->fetchObject() ) {
+		foreach ( $resultset as $row ) {
 			if( is_null( $last ) ||
 				$last->page_namespace != $row->page_namespace ||
 				$last->page_title     != $row->page_title ) {
@@ -331,7 +331,7 @@ class WikiExporter {
 	}
 	
 	protected function outputLogStream( $resultset ) {
-		while( $row = $resultset->fetchObject() ) {
+		foreach ( $resultset as $row ) {
 			$output = $this->writer->writeLogItem( $row );
 			$this->sink->writeLogItem( $row, $output );
 		}

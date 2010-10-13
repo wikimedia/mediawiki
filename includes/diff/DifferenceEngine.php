@@ -312,12 +312,13 @@ class _DiffEngine {
 				continue;
 				$matches = $ymatches[$line];
 				reset($matches);
-				while (list ($junk, $y) = each($matches))
-				if (empty($this->in_seq[$y])) {
-					$k = $this->_lcs_pos($y);
-					assert($k > 0);
-					$ymids[$k] = $ymids[$k-1];
-					break;
+				while ( list( $junk, $y ) = each( $matches ) ) {
+					if ( empty( $this->in_seq[$y] ) ) {
+						$k = $this->_lcs_pos( $y );
+						assert( $k > 0 );
+						$ymids[$k] = $ymids[$k-1];
+						break;
+					}
 				}
 				while (list ( /* $junk */, $y) = each($matches)) {
 					if ($y > $this->seq[$k-1]) {

@@ -482,9 +482,11 @@ class QueryPage {
 			$sql = $this->getSQL() . $this->getOrder();
 			$sql = $dbr->limitResult( $sql, $limit, 0 );
 			$res = $dbr->query( $sql, 'QueryPage::doFeed' );
-			while( $obj = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $obj ) {
 				$item = $this->feedResult( $obj );
-				if( $item ) $feed->outItem( $item );
+				if( $item ) {
+					$feed->outItem( $item );
+				}
 			}
 
 			$feed->outFooter();
@@ -567,8 +569,9 @@ abstract class WantedQueryPage extends QueryPage {
 	 */
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
-		while ( $row = $db->fetchObject( $res ) )
+		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
+		}
 		$batch->execute();
 
 		// Back to start for display

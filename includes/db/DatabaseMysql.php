@@ -260,7 +260,7 @@ class DatabaseMysql extends DatabaseBase {
 		}
 
 		$rows = 1;
-		while( $plan = $this->fetchObject( $res ) ) {
+		foreach ( $res as $plan ) {
 			$rows *= $plan->rows > 0 ? $plan->rows : 1; // avoid resetting to zero
 		}
 		return $rows;

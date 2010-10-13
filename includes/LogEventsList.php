@@ -971,7 +971,7 @@ class LogPager extends ReverseChronologicalPager {
 		# Do a link batch query
 		if( $this->getNumRows() > 0 ) {
 			$lb = new LinkBatch;
-			while( $row = $this->mResult->fetchObject() ) {
+			foreach ( $this->mResult as $row ) {
 				$lb->add( $row->log_namespace, $row->log_title );
 				$lb->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
 				$lb->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );

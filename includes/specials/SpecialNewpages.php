@@ -511,7 +511,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	function getStartBody() {
 		# Do a batch existence check on pages
 		$linkBatch = new LinkBatch();
-		while( $row = $this->mResult->fetchObject() ) {
+		foreach ( $this->mResult as $row ) {
 			$linkBatch->add( NS_USER, $row->rc_user_text );
 			$linkBatch->add( NS_USER_TALK, $row->rc_user_text );
 			$linkBatch->add( $row->rc_namespace, $row->rc_title );

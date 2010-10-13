@@ -40,8 +40,7 @@ class SquidUpdate {
 			__METHOD__ );
 		$blurlArr = $title->getSquidURLs();
 		if ( $dbr->numRows( $res ) <= $wgMaxSquidPurgeTitles ) {
-			while ( $BL = $dbr->fetchObject ( $res ) )
-			{
+			foreach ( $res as $BL ) {
 				$tobj = Title::makeTitle( $BL->page_namespace, $BL->page_title ) ;
 				$blurlArr[] = $tobj->getInternalURL();
 			}

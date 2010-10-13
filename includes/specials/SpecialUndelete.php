@@ -739,7 +739,7 @@ class UndeleteForm extends SpecialPage {
 		$sk = $wgUser->getSkin();
 		$undelete = $this->getTitle();
 		$wgOut->addHTML( "<ul>\n" );
-		while( $row = $result->fetchObject() ) {
+		foreach ( $result as $row ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
 			$link = $sk->linkKnown(
 				$undelete,
@@ -1059,7 +1059,7 @@ class UndeleteForm extends SpecialPage {
 		# Batch existence check on user and talk pages
 		if( $haveRevisions ) {
 			$batch = new LinkBatch();
-			while( $row = $revisions->fetchObject() ) {
+			foreach ( $revisions as $row ) {
 				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->ar_user_text ) );
 				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->ar_user_text ) );
 			}
@@ -1068,7 +1068,7 @@ class UndeleteForm extends SpecialPage {
 		}
 		if( $haveFiles ) {
 			$batch = new LinkBatch();
-			while( $row = $files->fetchObject() ) {
+			foreach ( $files as $row ) {
 				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->fa_user_text ) );
 				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->fa_user_text ) );
 			}
@@ -1146,7 +1146,7 @@ class UndeleteForm extends SpecialPage {
 			$remaining = $revisions->numRows();
 			$earliestLiveTime = $this->mTargetObj->getEarliestRevTime();
 
-			while( $row = $revisions->fetchObject() ) {
+			foreach ( $revisions as $row ) {
 				$remaining--;
 				$wgOut->addHTML( $this->formatRevisionRow( $row, $earliestLiveTime, $remaining, $sk ) );
 			}
@@ -1159,7 +1159,7 @@ class UndeleteForm extends SpecialPage {
 		if( $haveFiles ) {
 			$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'filehist' ) ) . "\n" );
 			$wgOut->addHTML( "<ul>" );
-			while( $row = $files->fetchObject() ) {
+			foreach ( $files as $row ) {
 				$wgOut->addHTML( $this->formatFileRow( $row, $sk ) );
 			}
 			$files->free();

@@ -204,7 +204,7 @@ class LinkHolderArray {
 
 			# Fetch data and form into an associative array
 			# non-existent = broken
-			while ( $s = $dbr->fetchObject($res) ) {
+			foreach ( $res as $s ) {
 				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				$pdbk = $title->getPrefixedDBkey();
 				$linkCache->addGoodLinkObj( $s->page_id, $title, $s->page_len, $s->page_is_redirect, $s->page_latest );
@@ -337,9 +337,9 @@ class LinkHolderArray {
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
 		}
-		
+		$l = count( $titlesAttrs );
 		// Then add variants of links to link batch
-		for ( $i = 0; $l = count( $titlesAttrs ), $i < $l; $i ++ ) {
+		for ( $i = 0; $i < $l; $i ++ ) {
 			foreach ( $allVariantsName as $variantName ) {
 				$textVariant = $titlesAllVariants[$variantName][$i];
 				extract( $titlesAttrs[$i] );
@@ -381,7 +381,7 @@ class LinkHolderArray {
 			$linkcolour_ids = array();
 
 			// for each found variants, figure out link holders and replace
-			while ( $s = $dbr->fetchObject($varRes) ) {
+			foreach ( $varRes as $s ) {
 
 				$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
 				$varPdbk = $variantTitle->getPrefixedDBkey();

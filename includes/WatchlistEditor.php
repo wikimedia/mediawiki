@@ -186,7 +186,7 @@ class WatchlistEditor {
 			__METHOD__
 		);
 		if( $res->numRows() > 0 ) {
-			while( $row = $res->fetchObject() ) {
+			foreach ( $res as $row ) {
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
 				if( $title instanceof Title && !$title->isTalkPage() )
 					$list[] = $title->getPrefixedText();
@@ -218,7 +218,7 @@ class WatchlistEditor {
 		$res = $dbr->query( $sql, __METHOD__ );
 		if( $res && $dbr->numRows( $res ) > 0 ) {
 			$cache = LinkCache::singleton();
-			while( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {			
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
 				if( $title instanceof Title ) {
 					// Update the link cache while we're at it

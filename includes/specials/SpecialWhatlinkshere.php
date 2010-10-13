@@ -187,21 +187,21 @@ class SpecialWhatLinksHere extends SpecialPage {
 		// templatelinks comes second so that the templatelinks row overwrites the
 		// pagelinks row, so we get (inclusion) rather than nothing
 		if( $fetchlinks ) {
-			while ( $row = $dbr->fetchObject( $plRes ) ) {
+			foreach ( $plRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
 		}
 		if( !$hidetrans ) {
-			while ( $row = $dbr->fetchObject( $tlRes ) ) {
+			foreach ( $tlRes as $row ) {
 				$row->is_template = 1;
 				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
 		}
 		if( !$hideimages ) {
-			while ( $row = $dbr->fetchObject( $ilRes ) ) {
+			foreach ( $ilRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 1;
 				$rows[$row->page_id] = $row;
