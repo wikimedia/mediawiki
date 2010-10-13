@@ -323,10 +323,7 @@ class ResourceLoader {
 
 			// Styles
 			$styles = array();
-			if (
-				$context->shouldIncludeStyles() &&
-				( count( $styles = $module->getStyles( $context ) ) )
-			) {
+			if ( $context->shouldIncludeStyles() && ( count( $styles = $module->getStyles( $context ) ) ) ) {
 				// Flip CSS on a per-module basis
 				if ( $this->modules[$name]->getFlip( $context ) ) {
 					foreach ( $styles as $media => $style ) {
