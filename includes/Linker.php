@@ -1410,7 +1410,7 @@ class Linker {
 		$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language' => $lang ), $link );
 		$result = "<span class=\"editsection\">$result</span>";
 
-		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result ) );
+		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result , $lang) );
 		return $result;
 	}
 
