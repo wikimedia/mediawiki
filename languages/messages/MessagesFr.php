@@ -52,6 +52,7 @@
  * @author The Evil IP address
  * @author Urhixidur
  * @author Verdy p
+ * @author Wyz
  * @author Yumeki
  * @author Zetud
  * @author Горан Анђелковић
@@ -1989,7 +1990,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 'fewestrevisions' => 'Pages les moins modifiées',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 octet{{PLURAL:$1||s}}',
+'nbytes'                  => '$1 {{PLURAL:$1|octet|octets}}',
 'ncategories'             => '$1 catégorie{{PLURAL:$1||s}}',
 'nlinks'                  => '$1 lien{{PLURAL:$1||s}}',
 'nmembers'                => '$1 membre{{PLURAL:$1||s}}',
