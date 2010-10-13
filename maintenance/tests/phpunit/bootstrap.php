@@ -44,12 +44,11 @@ abstract class MediaWikiTestSetup extends PHPUnit_Framework_TestCase {
 
 	function __call( $func, $args ) {
 		if ( method_exists( $this->suite, $func ) ) {
-			return call_user_func_array( array( $tohis->suite, $func ), $args);
+			return call_user_func_array( array( $this->suite, $func ), $args);
 		} else {
 			throw new MWException( "Called non-existant $func method on "
 				. get_class( $this ) );
 		}
-		return false;
 	}
 }
 
