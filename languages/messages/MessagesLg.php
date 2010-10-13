@@ -36,6 +36,12 @@ $messages = array(
 'tog-nocache'                 => "Ekyandaaza kiremenga kutereka koppi z'empapula z'okebera",
 'tog-enotifwatchlistpages'    => "Nsindikiranga 'E-mail' empapula zengoberera buli lwe zikolebwako enkyukakyuka",
 'tog-enotifusertalkpages'     => "Nsindikiranga 'E-mail' olupapula lwange olwa 'Yogera nange' buli lwe lukyusibwamu",
+'tog-enotifminoredits'        => "Nsindikiranga 'E-mail' enkyukakyuka ne bwe ziba ntono",
+'tog-enotifrevealaddr'        => "Mu 'E-mail' ez'amawulire, endagiriro eyange eya 'E-mail' erabikenga",
+'tog-shownumberswatching'     => "Ndaganga obungi bw'abagoberera olupapula",
+'tog-oldsig'                  => 'Omukono gwo kakano:',
+'tog-fancysig'                => 'Omukono gubemu obubonero bwa ki-wiki (naye nga tegufuuka nyunzi)',
+'tog-externaleditor'          => 'Wandikisanga puloguramu eri ku kompyuta yo (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo)',
 'tog-norollbackdiff'          => 'Okujjulula nga kuwedde, tolaga bigerageranya ebikyuse',
 
 # Dates

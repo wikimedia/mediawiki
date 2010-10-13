@@ -733,9 +733,15 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'restriction-create' => 'ထွင်',
 
 # Undelete
+'undelete-nodiff'        => 'မည်သည့် ယခင်မူကိုမှ မတွေ့ပါ။',
+'undeletebtn'            => 'ပြန်လည် ထိန်းသိမ်းရန်',
 'undeletelink'           => 'စောင့်ကြည့်ရန်/ပြန်လည်ထိန်းသိမ်းရန်',
-'undeletecomment'        => 'အ​ကြောင်း​ပြ​ချက်:',
+'undeleteviewlink'       => 'ကြည့်ရန်',
+'undeletereset'          => 'Reset ချရန်',
+'undeleteinvert'         => 'selection ကို ပြောင်းပြန်လှန်ရန်',
+'undeletecomment'        => 'အ​ကြောင်း​ပြ​ချက် -',
 'undeletedarticle'       => '"[[$1]]" ကို ပြန်လည် ပြောင်းလဲလိုက်ပြီး',
+'undeletedrevisions'     => '{{PLURAL:$1|မူတစ်ခု|မူ $1 ခု}} ကိုပြန်လည် ထိန်းသိမ်းပြီး',
 'undelete-search-submit' => 'ရှာ​ဖွေ​ရန်​',
 
 # Namespace form on various pages
@@ -772,11 +778,19 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'whatlinkshere-hideredirs' => 'redirect ပြန်ညွှန်း $1 ခု',
 'whatlinkshere-hidetrans'  => 'ထည့်သွင်းကူးယူချက် $1 ခု',
 'whatlinkshere-hidelinks'  => 'လင့် $1 ခု',
+'whatlinkshere-hideimages' => 'ပုံလင့် $1 ခု',
 'whatlinkshere-filters'    => 'စိစစ်မှုများ',
 
 # Block/unblock
 'blockip'                  => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
+'blockip-title'            => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
+'blockip-legend'           => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
+'ipaddress'                => 'အိုင်ပီလိပ်စာ -',
+'ipadressorusername'       => 'အိုင်ပီလိပ်စာ သို့ အသုံးပြုသူအမည် -',
 'ipbreason'                => 'အ​ကြောင်း​ပြ​ချက်:',
+'ipbanononly'              => 'အမည်မသိ အသုံးပြုသူများကိုသာ ပိတ်ပင်ရန်',
+'ipbcreateaccount'         => 'အကောင့်အသစ်ပြုလုပ်ခြင်းကို တားဆီးရန်',
+'ipbemailban'              => 'အီးမေးပို့ခြင်းမှ အသုံးပြုသူကို တားဆီးရန်',
 'ipbother'                 => 'အခြားအချိန်:',
 'ipboptions'               => '၂ နာရီ:2 hours,၁ ရက်:1 day,၃ ရက်:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite',
 'ipbotheroption'           => 'အခြား',
