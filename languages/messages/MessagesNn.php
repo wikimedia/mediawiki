@@ -295,7 +295,7 @@ $messages = array(
 'tog-editsection'             => 'Endre avsnitt ved hjelp av [endre]-lenkje',
 'tog-editsectiononrightclick' => 'Endre avsnitt ved å høgreklikke på avsnittsoverskrift (JavaScript)',
 'tog-showtoc'                 => 'Vis innhaldsliste (for sider med meir enn tre bolkar)',
-'tog-rememberpassword'        => 'Hugs innlogginga mi på denne datamaskinen (for høgst {{PLURAL:$1|éin dag|$1 dagar}})',
+'tog-rememberpassword'        => 'Hugs innlogginga mi med denne nettlesaren (for høgst {{PLURAL:$1|éin dag|$1 dagar}})',
 'tog-watchcreations'          => 'Legg til sidene eg opprettar på overvakingslista mi',
 'tog-watchdefault'            => 'Legg til sidene eg endrar på overvakingslista mi',
 'tog-watchmoves'              => 'Legg til sidene eg flyttar på overvakingslista mi',
@@ -2266,7 +2266,7 @@ Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er
 'undelete-error-long'          => 'Feil ved attoppretting av fila:
 
 $1',
-'undelete-show-file-confirm'   => 'Er du sikker på at du vil visa ein sletta versjon av fila "<nowiki>$1</nowiki>" frå den $2 klokka $3?',
+'undelete-show-file-confirm'   => 'Er du sikker på at du vil visa ein sletta versjon av fila «<nowiki>$1</nowiki>» frå den $2 klokka $3?',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
@@ -2284,18 +2284,20 @@ $1',
 'month'               => 'Månad:',
 'year'                => 'År:',
 
-'sp-contributions-newbies'        => 'Vis berre bidrag frå nye brukarar',
-'sp-contributions-newbies-sub'    => 'Frå nye brukarkontoar',
-'sp-contributions-newbies-title'  => 'Brukarbidrag av nye brukarar',
-'sp-contributions-blocklog'       => 'Blokkeringslogg',
-'sp-contributions-deleted'        => 'sletta brukarbidrag',
-'sp-contributions-logs'           => 'loggar',
-'sp-contributions-talk'           => 'diskusjon',
-'sp-contributions-userrights'     => 'administrering av brukartilgang',
-'sp-contributions-blocked-notice' => 'Brukaren er i for tida blokkert. Loggen over den siste blokkeringa kan sjåast nedanfor:',
-'sp-contributions-search'         => 'Søk etter bidrag',
-'sp-contributions-username'       => 'IP-adresse eller brukarnamn:',
-'sp-contributions-submit'         => 'Søk',
+'sp-contributions-newbies'             => 'Vis berre bidrag frå nye brukarar',
+'sp-contributions-newbies-sub'         => 'Frå nye brukarkontoar',
+'sp-contributions-newbies-title'       => 'Brukarbidrag av nye brukarar',
+'sp-contributions-blocklog'            => 'blokkeringslogg',
+'sp-contributions-deleted'             => 'sletta brukarbidrag',
+'sp-contributions-logs'                => 'loggar',
+'sp-contributions-talk'                => 'diskusjon',
+'sp-contributions-userrights'          => 'administrering av brukartilgang',
+'sp-contributions-blocked-notice'      => 'Denne brukaren er for tida blokkert. Den siste oppføringa i blokkeringsloggen er synt nedanfor:',
+'sp-contributions-blocked-notice-anon' => 'Denne IP-adressa er for tida blokkert. Den siste oppføringa i blokkeringsloggen er synt nedanfor:',
+'sp-contributions-search'              => 'Søk etter bidrag',
+'sp-contributions-username'            => 'IP-adresse eller brukarnamn:',
+'sp-contributions-toponly'             => 'Einast vis endringar som er dei siste på sida.',
+'sp-contributions-submit'              => 'Søk',
 
 # What links here
 'whatlinkshere'            => 'Lenkjer hit',
@@ -2546,7 +2548,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'allmessagescurrent'            => 'Noverande tekst',
 'allmessagestext'               => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
 Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [http://translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
-'allmessagesnotsupportedDB'     => "Denne sida er ikkje brukande fordi \"'''\$wgUseDatabaseMessages'''\" er slått av.",
+'allmessagesnotsupportedDB'     => "Denne sida kan ein ikkje bruka fordi «'''\$wgUseDatabaseMessages'''» er slått av.",
 'allmessages-filter-legend'     => 'Filtrér',
 'allmessages-filter'            => 'Filtrér etter tilpassingsgrad:',
 'allmessages-filter-unmodified' => 'Ikkje endra',
@@ -2793,7 +2795,7 @@ $1',
 'filedelete-missing'              => 'Det finst ikkje noko fil som heiter «$1», og difor går det heller ikkje å slette noko slik fil.',
 'filedelete-old-unregistered'     => 'Filversjonen «$1» finst ikkje i databasen.',
 'filedelete-current-unregistered' => 'Fila «$1» finst ikkje i databasen.',
-'filedelete-archive-read-only'    => 'Webserveraren har ikkje skrivetilgang til arkivkatalogen "$1".',
+'filedelete-archive-read-only'    => 'Tenaren har ikkje skrivetilgang til arkivkatalogen «$1».',
 
 # Browsing diffs
 'previousdiff' => '← Eldre endring',
