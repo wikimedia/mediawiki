@@ -48,6 +48,7 @@ class SeleniumConfig {
 			$seleniumSettings['startserver'] = $configArray['SeleniumSettings']['startserver'];
 			$seleniumSettings['stopserver'] = $configArray['SeleniumSettings']['stopserver'];
 			$seleniumSettings['seleniumserverexecpath'] = $configArray['SeleniumSettings']['seleniumserverexecpath'];
+			$seleniumSettings['jUnitLogFile'] = $configArray['SeleniumSettings']['jUnitLogFile'];
 
 			wfRestoreWarnings();
 		}

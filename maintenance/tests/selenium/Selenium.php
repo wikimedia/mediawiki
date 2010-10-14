@@ -21,6 +21,7 @@ class Selenium {
 	protected $pass;
 	protected $timeout = 30000;
 	protected $verbose;
+	protected $junitlogfile; //processed by phpUnderControl
 
 	/**
 	 * @todo this shouldn't have to be static
@@ -136,6 +137,14 @@ class Selenium {
 		$this->browsers = $availableBrowsers;
 	}
 
+	public function setJUnitLogfile( $junitlogfile ) {
+		$this->junitlogfile = $junitlogfile;
+	}
+	
+	public function getJUnitLogfile( ) {
+		return $this->junitlogfile;
+	}	
+	
 	public function setBrowser( $b ) {
 		if ( !isset( $this->browsers[$b] ) ) {
 			throw new MWException( "Invalid Browser: $b.\n" );
