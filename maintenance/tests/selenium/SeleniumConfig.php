@@ -44,7 +44,11 @@ class SeleniumConfig {
 			$seleniumSettings['wikiUrl'] = $configArray['SeleniumSettings']['wikiUrl'];
 			$seleniumSettings['username'] = $configArray['SeleniumSettings']['username'];
 			$seleniumSettings['userPassword'] = $configArray['SeleniumSettings']['userPassword'];
-			$seleniumSettings['testBrowser'] = $configArray['SeleniumSettings']['testBrowser'];	
+			$seleniumSettings['testBrowser'] = $configArray['SeleniumSettings']['testBrowser'];
+			$seleniumSettings['startserver'] = $configArray['SeleniumSettings']['startserver'];
+			$seleniumSettings['stopserver'] = $configArray['SeleniumSettings']['stopserver'];
+			$seleniumSettings['seleniumserverexecpath'] = $configArray['SeleniumSettings']['seleniumserverexecpath'];
+
 			wfRestoreWarnings();
 		}
 		if ( array_key_exists( 'SeleniumTests', $configArray)  ) {
