@@ -137,7 +137,6 @@ abstract class BagOStuff {
 
 		$value = intval( $value );
 
-		$n = false;
 		if ( ( $n = $this->get( $key ) ) !== false ) {
 			$n += $value;
 			$this->set( $key, $n ); // exptime?

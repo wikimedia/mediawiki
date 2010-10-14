@@ -863,7 +863,6 @@ class User {
 			return false;
 		}
 
-		$passwordCorrect = FALSE;
 		$this->mId = $sId;
 		if ( !$this->loadFromId() ) {
 			# Not a valid ID, loadFromId has switched the object to anon for us
@@ -1173,7 +1172,6 @@ class User {
 		wfProfileIn( __METHOD__ );
 
 		$found = false;
-		$host = '';
 		// FIXME: IPv6 ???  (http://bugs.php.net/bug.php?id=33170)
 		if( IP::isIPv4( $ip ) ) {
 			# Reverse IP, bug 21255

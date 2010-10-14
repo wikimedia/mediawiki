@@ -201,7 +201,6 @@ class IPUnblockForm extends SpecialPage {
 			}
 			$ip = $block->getRedactedName();
 		} else {
-			$block = new Block();
 			$ip = trim( $ip );
 			if ( substr( $ip, 0, 1 ) == "#" ) {
 				$id = substr( $ip, 1 );
@@ -484,7 +483,6 @@ class IPUnblockForm extends SpecialPage {
 
 		$line = wfMsgReplaceArgs( $msg['blocklistline'], array( $formattedTime, $blocker, $target, $properties ) );
 
-		$unblocklink = '';
 		$changeblocklink = '';
 		$toolLinks = '';
 		if ( $wgUser->isAllowed( 'block' ) ) {

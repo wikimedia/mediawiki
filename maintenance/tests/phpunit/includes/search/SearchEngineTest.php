@@ -15,7 +15,6 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	function setup() {
 		// Get database type and version
 		$dbType    = $this->db->getType();
-		$dbVersion = $this->db->getServerVersion();
 
 		// will skip unless mysql or sqlite with FTS
 		$dbSupported =

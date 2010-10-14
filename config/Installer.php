@@ -2106,8 +2106,9 @@ function aField( &$conf, $field, $text, $type = "text", $value = "", $onclick = 
 	$id = $field;
 	$nolabel = ($type == "radio") || ($type == "hidden");
 
-	if ($type == 'radio')
+	if ($type == 'radio') {
 		$id .= $radioCount++;
+	}
 
 	if( !$nolabel ) {
 		echo "<label class='column' for=\"$id\">$text</label>";

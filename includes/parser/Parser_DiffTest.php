@@ -107,7 +107,7 @@ class Parser_DiffTest
 
 	function setFunctionHook( $id, $callback, $flags = 0 ) {
 		$this->init();
-		foreach  ( $this->parsers as $i => $parser ) {
+		foreach  ( $this->parsers as $parser ) {
 			$parser->setFunctionHook( $id, $callback, $flags );
 		}
 	}

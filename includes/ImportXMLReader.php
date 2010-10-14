@@ -608,7 +608,6 @@ class WikiImporter {
 	private function processTitle( $text ) {
 		$workTitle = $text;
 		$origTitle = Title::newFromText( $workTitle );
-		$title = null;
 
 		if( !is_null( $this->mTargetNamespace ) && !is_null( $origTitle ) ) {
 			$title = Title::makeTitle( $this->mTargetNamespace,

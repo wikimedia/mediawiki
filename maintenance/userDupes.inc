@@ -190,7 +190,7 @@ class UserDupes {
 			  HAVING n > 1", $fname );
 
 		$list = array();
-		foreach ( $res as $row ) {
+		foreach ( $result as $row ) {
 			$list[] = $row->user_name;
 		}
 		return $list;

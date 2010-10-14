@@ -185,7 +185,6 @@ class LanguageConverter {
 	 */
 	protected function getURLVariant() {
 		global $wgRequest;
-		$ret = null;
 
 		if ( $this->mURLVariant ) {
 			return $this->mURLVariant;
@@ -208,7 +207,6 @@ class LanguageConverter {
 	 */
 	protected function getUserVariant() {
 		global $wgUser;
-		$ret = null;
 
 		// memoizing this function wreaks havoc on parserTest.php
 		/* if ( $this->mUserVariant ) { */
@@ -229,7 +227,6 @@ class LanguageConverter {
 
 		return $this->mUserVariant = $this->validateVariant( $ret );
 	}
-
 
 	/**
 	 * Determine the language variant from the Accept-Language header.
@@ -561,7 +558,6 @@ class LanguageConverter {
 			if ( $pos === false ) {
 				// No more markup, append final segment
 				$out .= $this->autoConvert( substr( $text, $startPos ), $variant );
-				$startPos = $length;
 				return $out;
 			}
 

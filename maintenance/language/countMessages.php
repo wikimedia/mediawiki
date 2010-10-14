@@ -38,7 +38,7 @@ class CountMessages extends Maintenance {
 			if ( !preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $baseName, $m ) ) {
 				continue;
 			}
-			$code = str_replace( '_', '-', strtolower( $m[1] ) );
+
 			$numMessages = $this->getNumMessages( $file );
 			// print "$code: $numMessages\n";
 			$total += $numMessages;

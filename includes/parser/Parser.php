@@ -1129,7 +1129,6 @@ class Parser {
 			return $this->makeFreeExternalLink( $m[0] );
 		} elseif ( isset( $m[4] ) && $m[4] !== '' ) {
 			# RFC or PMID
-			$CssClass = '';
 			if ( substr( $m[0], 0, 3 ) === 'RFC' ) {
 				$keyword = 'RFC';
 				$urlmsg = 'rfcurl';
@@ -3755,7 +3754,6 @@ class Parser {
 		$head = array();
 		$sublevelCount = array();
 		$levelCount = array();
-		$toclevel = 0;
 		$level = 0;
 		$prevlevel = 0;
 		$toclevel = 0;

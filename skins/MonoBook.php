@@ -328,7 +328,7 @@ if($this->data['copyrightico']) { ?>
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
 			<ul>
-<?php 			foreach($cont as $key => $val) { ?>
+<?php 			foreach($cont as $val) { ?>
 				<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
 					if ( $val['active'] ) { ?> class="active" <?php }
 				?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>

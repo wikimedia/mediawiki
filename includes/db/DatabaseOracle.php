@@ -37,7 +37,7 @@ class ORAResult {
 		$array_out = array();
 		$array_hashes = array();
 
-		foreach ( $array_in as $key => $item ) {
+		foreach ( $array_in as $item ) {
 			$hash = md5( serialize( $item ) );
 			if ( !isset( $array_hashes[$hash] ) ) {
 				$array_hashes[$hash] = $hash;
@@ -531,7 +531,7 @@ class DatabaseOracle extends DatabaseBase {
 		wfRestoreWarnings();
 
 		if ( isset( $lob ) ) {
-			foreach ( $lob as $lob_i => $lob_v ) {
+			foreach ( $lob as $lob_v ) {
 				$lob_v->free();
 			}
 		}
@@ -565,7 +565,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		// count-alias subselect fields to avoid abigious definition errors
 		$i = 0;
-		foreach ( $varMap as $key => &$val ) {
+		foreach ( $varMap as &$val ) {
 			$val = $val . ' field' . ( $i++ );
 		}
 
@@ -861,7 +861,6 @@ class DatabaseOracle extends DatabaseBase {
 	 * @param $field String
 	 */
 	private function fieldInfoMulti( $table, $field ) {
-		$tableWhere = '';
 		$field = strtoupper( $field );
 		if ( is_array( $table ) ) {
 			$table = array_map( array( &$this, 'tableName' ), $table );

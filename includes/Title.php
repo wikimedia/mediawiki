@@ -1264,8 +1264,6 @@ class Title {
 				$errors[] = array( 'cant-move-to-user-page' );
 			}
 		} elseif ( !$user->isAllowed( $action ) ) {
-			$return = null;
-
 			// We avoid expensive display logic for quickUserCan's and such
 			$groups = false;
 			if ( !$short ) {

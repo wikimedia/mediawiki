@@ -674,7 +674,6 @@ class LanguageKk_cyrl extends Language {
 
 	function lastLetter( $word, $allVowels ) {
 		$lastLetter = array();
-		$ar = array();
 
 		// Put the word in a form we can play with since we're using UTF-8
 		$ar = preg_split( '//u', parent::lc( $word ), -1, PREG_SPLIT_NO_EMPTY );

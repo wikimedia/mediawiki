@@ -301,7 +301,6 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 				array( 'page_id = ' . $this->mOldTitle->getArticleID() ),
 				__METHOD__
 			);
-			$deletedOldPage = true;
 		} else {
 			# page_latest has to be updated
 			$currentOldPageRev = Revision::newFromId( $this->mOldTitle->getLatestRevID() );

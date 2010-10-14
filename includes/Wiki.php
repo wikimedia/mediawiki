@@ -181,7 +181,6 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 		global $wgContLang, $wgUser;
 		$action = $this->getVal( 'Action' );
-		$perferred = $wgContLang->getPreferredVariant( false );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if( is_null($title) || ( ( $title->getDBkey() == '' ) && ( $title->getInterwiki() == '' ) ) ) {

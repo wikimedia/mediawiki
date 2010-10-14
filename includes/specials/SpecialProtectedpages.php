@@ -98,7 +98,6 @@ class SpecialProtectedpages extends SpecialPage {
 			$description_items[] = wfMsg( 'protect-summary-cascade' );
 		}
 
-		$expiry_description = '';
 		$stxt = '';
 
 		if( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {

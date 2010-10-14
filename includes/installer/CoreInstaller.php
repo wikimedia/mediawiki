@@ -332,7 +332,6 @@ abstract class CoreInstaller extends Installer {
 		foreach( $this->getInstallSteps() as $stepObj ) {
 			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
 			call_user_func_array( $startCB, array( $step ) );
-			$status = null;
 
 			# Call our working function
 			if ( is_array( $stepObj ) ) {

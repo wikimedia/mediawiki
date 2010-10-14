@@ -997,7 +997,6 @@ class Revision {
 	public static function userCanBitfield( $bitfield, $field ) {
 		if( $bitfield & $field ) { // aspect is deleted
 			global $wgUser;
-			$permission = '';
 			if ( $bitfield & self::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
 			} elseif ( $field & self::DELETED_TEXT ) {

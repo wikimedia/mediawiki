@@ -405,7 +405,7 @@ class DatabaseMssql extends DatabaseBase {
 		}
 		unset( $res );
 
-		foreach ( $arrToInsert as $blah => $a ) {
+		foreach ( $arrToInsert as $a ) {
 			// start out with empty identity column, this is so we can return it as a result of the insert logic
 			$sqlPre = '';
 			$sqlPost = '';
@@ -457,7 +457,7 @@ class DatabaseMssql extends DatabaseBase {
 				" INTO $table (" . implode( ',', $keys ) . ") $identityClause VALUES (";
 
 			$first = true;
-			foreach ( $a as $key => $value ) {
+			foreach ( $a as $value ) {
 				if ( $first ) {
 					$first = false;
 				} else {
@@ -1131,11 +1131,12 @@ class MssqlResult {
   }
 
   public function fetch( $mode = SQLSRV_FETCH_BOTH, $object_class = 'stdClass' ) {
-	if ( $this->mCursor >= $this->mRowCount || $this->mRowCount == 0 ) return false;
-	$ret = false;
+	if ( $this->mCursor >= $this->mRowCount || $this->mRowCount == 0 ) {
+		return false;
+	}
 	$arrNum = array();
 	if ( $mode == SQLSRV_FETCH_NUMERIC || $mode == SQLSRV_FETCH_BOTH ) {
-		foreach ( $this->mRows[$this->mCursor] as $key => $value ) {
+		foreach ( $this->mRows[$this->mCursor] as $value ) {
 			$arrNum[] = $value;
 		}
 	}

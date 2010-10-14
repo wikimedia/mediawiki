@@ -232,7 +232,7 @@ class RepoGroup {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
-		foreach ( $this->foreignRepos as $key => $repo ) {
+		foreach ( $this->foreignRepos as $repo ) {
 			if ( $repo->name == $name)
 				return $repo;
 		}

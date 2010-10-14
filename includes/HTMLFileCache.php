@@ -32,11 +32,7 @@ class HTMLFileCache {
 		if( !$this->mFileCache ) {
 			global $wgCacheDirectory, $wgFileCacheDirectory;
 
-			if ( $wgFileCacheDirectory ) {
-				$dir = $wgFileCacheDirectory;
-			} elseif ( $wgCacheDirectory ) {
-				$dir = "$wgCacheDirectory/html";
-			} else {
+			if ( !$wgFileCacheDirectory && !$wgCacheDirectory ) {
 				throw new MWException( 'Please set $wgCacheDirectory in LocalSettings.php if you wish to use the HTML file cache' );
 			}
 
@@ -51,8 +47,9 @@ class HTMLFileCache {
 			$hash2 = substr( $hash, 0, 2 );
 			$this->mFileCache = "{$wgFileCacheDirectory}/{$subdir}{$hash1}/{$hash2}/{$key}.html";
 
-			if( $this->useGzip() )
+			if( $this->useGzip() ) {
 				$this->mFileCache .= '.gz';
+			}
 
 			wfDebug( __METHOD__ . ": {$this->mFileCache}\n" );
 		}

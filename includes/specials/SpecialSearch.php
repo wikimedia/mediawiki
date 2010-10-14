@@ -868,7 +868,7 @@ class SpecialSearch {
 		
 		wfRunHooks( 'SpecialSearchProfiles', array( &$profiles ) );
 
-		foreach( $profiles as $key => &$data ) {
+		foreach( $profiles as &$data ) {
 			sort($data['namespaces']);
 		}
 		

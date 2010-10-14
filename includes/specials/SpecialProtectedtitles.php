@@ -90,7 +90,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$description_items[] = $protType;
 
-		$expiry_description = ''; $stxt = '';
+		$stxt = '';
 
 		if ( $row->pt_expiry != 'infinity' && strlen($row->pt_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pt_expiry );

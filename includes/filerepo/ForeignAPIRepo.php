@@ -149,7 +149,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	function getImageInfo( $data ) {
 		if( $data && isset( $data['query']['pages'] ) ) {
-			foreach( $data['query']['pages'] as $pageid => $info ) {
+			foreach( $data['query']['pages'] as $info ) {
 				if( isset( $info['imageinfo'][0] ) ) {
 					return $info['imageinfo'][0];
 				}

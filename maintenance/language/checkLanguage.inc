@@ -444,8 +444,8 @@ EOL;
 	 * @return True if there are any results, false if not.
 	 */
 	protected function isEmpty() {
-		foreach( $this->results as $code => $results ) {
-			foreach( $results as $check => $messages ) {
+		foreach( $this->results as $results ) {
+			foreach( $results as $messages ) {
 				if( !empty( $messages ) ) {
 					return false;
 				}

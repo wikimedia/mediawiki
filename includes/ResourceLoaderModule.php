@@ -477,7 +477,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		
 		// Collect referenced files
 		$files = array();
-		foreach ( $styles as $media => $style ) {
+		foreach ( $styles as $style ) {
 			// Extract and store the list of referenced files
 			$files = array_merge( $files, CSSMin::getLocalFileReferences( $style ) );
 		}
@@ -537,13 +537,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		
 		// Sort of nasty way we can get a flat list of files depended on by all styles
 		$styles = array();
-		foreach ( self::organizeFilesByOption( $this->styles, 'media', 'all' ) as $media => $styleFiles ) {
+		foreach ( self::organizeFilesByOption( $this->styles, 'media', 'all' ) as $styleFiles ) {
 			$styles = array_merge( $styles, $styleFiles );
 		}
 		$skinFiles = (array) self::getSkinFiles(
 			$context->getSkin(), self::organizeFilesByOption( $this->skinStyles, 'media', 'all' )
 		);
-		foreach ( $skinFiles as $media => $styleFiles ) {
+		foreach ( $skinFiles as $styleFiles ) {
 			$styles = array_merge( $styles, $styleFiles );
 		}
 		

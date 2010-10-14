@@ -2387,7 +2387,7 @@ class Language {
 		$tagType = 0; // 0-open, 1-close
 		$bracketState = 0; // 1-tag start, 2-tag name, 0-neither
 		$entityState = 0; // 0-not entity, 1-entity
-		$tag = $ret = $ch = '';
+		$tag = $ret = '';
 		$openTags = array();
 		$textLen = strlen( $text );
 		for ( $pos = 0; $pos < $textLen; ++$pos ) {

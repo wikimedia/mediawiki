@@ -76,7 +76,6 @@ class RevisionDeleter {
 		$lang = $forContent ? $wgContLang : $wgLang;
 		$msgFunc = $forContent ? "wfMsgForContent" : "wfMsg";
 		
-		$s = '';
 		$changes = self::getChanges( $nbitfield, $obitfield );
 		array_walk($changes, 'RevisionDeleter::expandMessageArray', $forContent);
 		

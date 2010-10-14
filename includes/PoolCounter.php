@@ -145,8 +145,6 @@ abstract class PoolCounterWork {
 			$status = $this->poolCounter->acquireForMe();
 		}
 		
-		$result = false;
-		
 		if ( $status->isOK() ) {
 			switch ( $status->value ) {
 				case PoolCounter::LOCKED:
