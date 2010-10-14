@@ -5,7 +5,7 @@
 -- changes are also incorporated into patch-categorylinks-better-collation2.sql,
 -- for the benefit of trunk users who applied the original.
 ALTER TABLE /*$wgDBprefix*/categorylinks
-	CHANGE COLUMN cl_sortkey cl_sortkey varbinary(255) NOT NULL default '',
+	CHANGE COLUMN cl_sortkey cl_sortkey varbinary(230) NOT NULL default '',
 	ADD COLUMN cl_sortkey_prefix varchar(255) binary NOT NULL default '',
 	ADD COLUMN cl_collation varbinary(32) NOT NULL default '',
 	ADD COLUMN cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page',
