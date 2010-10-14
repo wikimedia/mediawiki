@@ -44,12 +44,33 @@ class SearchEngineTest extends MediaWikiTestSetup {
 		}*/
  	}
 
+	/*
+	 * Checks for database type & version.
+	 * Will skip current test if DB does not support search.
+	 */
+	function skipIfUnsupportedByDatabase() {
+		static $dbSupported;
+
+		if( $dbSupported === null ) {
+			// Get database type and version
+			$dbType    = $this->db->getType();
+			$dbVersion = $this->db->getServerVersion();
+			
+			// will skip unless mysql or sqlite 3.6+
+			$dbSupported =
+			  ($dbType === 'mysql')
+			  || (   $dbType === 'sqlite' && version_compare( $dbVersion, '3.6') > 0 )
+			;
+		}
+
+		if( !$dbSupported ) {
+			$this->markTestSkipped( "MySQL or SQLite > 3.6 only" );
+		}
+	}
+
 	function fetchIds( $results ) {
 		$this->assertTrue( is_object( $results ) );
 
-		if ( $this->db->getType() !== 'mysql' && $this->db->getType() !== 'sqlite' ) {
-			$this->markTestSkipped( "MySQL or SQLite only" );
-		}
 		$matches = array();
 		while ( $row = $results->next() ) {
 			$matches[] = $row->getTitle()->getPrefixedText();
@@ -117,6 +138,7 @@ class SearchEngineTest extends MediaWikiTestSetup {
         }
 
 	function testFullWidth() {
+			$this->skipIfUnsupportedByDatabase();
             $this->assertEquals(
                 array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
                 $this->fetchIds( $this->search->searchText( 'AZ' ) ),
@@ -136,6 +158,7 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function testTextSearch() {
+		$this->skipIfUnsupportedByDatabase();
 		$this->assertEquals(
                 array( 'Smithee' ),
                 $this->fetchIds( $this->search->searchText( 'smithee' ) ),
@@ -143,6 +166,7 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function testTextPowerSearch() {
+		$this->skipIfUnsupportedByDatabase();
 		$this->search->setNamespaces( array( 0, 1, 4 ) );
 		$this->assertEquals(
 			array(
@@ -154,6 +178,7 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function testTitleSearch() {
+		$this->skipIfUnsupportedByDatabase();
 		$this->assertEquals(
 			array(
 				'Alan Smithee',
@@ -164,6 +189,7 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function testTextTitlePowerSearch() {
+		$this->skipIfUnsupportedByDatabase();
 		$this->search->setNamespaces( array( 0, 1, 4 ) );
 		$this->assertEquals(
 			array(
