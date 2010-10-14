@@ -8,6 +8,25 @@ require_once dirname(dirname(dirname(__FILE__))). '/bootstrap.php';
 class SearchEngineTest extends MediaWikiTestSetup {
 	var $db, $search, $pageList;
 
+	/*
+	 * Checks for database type & version.
+	 * Will skip current test if DB does not support search.
+	 */
+	function setup() {
+		// Get database type and version
+		$dbType    = $this->db->getType();
+		$dbVersion = $this->db->getServerVersion();
+
+		// will skip unless mysql or sqlite with FTS
+		$dbSupported =
+			($dbType === 'mysql')
+			|| (   $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
+
+		if( !$dbSupported ) {
+			$this->markTestIgnored( "MySQL or SQLite with FTS3 only" );
+		}
+	}
+
 	function pageExists( $title ) {
 		return false;
 	}
@@ -43,30 +62,6 @@ class SearchEngineTest extends MediaWikiTestSetup {
 			$article->doDeleteArticle( "Search Test" );
 		}*/
  	}
-
-	/*
-	 * Checks for database type & version.
-	 * Will skip current test if DB does not support search.
-	 */
-	function skipIfUnsupportedByDatabase() {
-		static $dbSupported;
-
-		if( $dbSupported === null ) {
-			// Get database type and version
-			$dbType    = $this->db->getType();
-			$dbVersion = $this->db->getServerVersion();
-			
-			// will skip unless mysql or sqlite 3.6+
-			$dbSupported =
-			  ($dbType === 'mysql')
-			  || (   $dbType === 'sqlite' && version_compare( $dbVersion, '3.6') > 0 )
-			;
-		}
-
-		if( !$dbSupported ) {
-			$this->markTestSkipped( "MySQL or SQLite > 3.6 only" );
-		}
-	}
 
 	function fetchIds( $results ) {
 		$this->assertTrue( is_object( $results ) );
@@ -138,7 +133,6 @@ class SearchEngineTest extends MediaWikiTestSetup {
         }
 
 	function testFullWidth() {
-			$this->skipIfUnsupportedByDatabase();
             $this->assertEquals(
                 array( 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ),
                 $this->fetchIds( $this->search->searchText( 'AZ' ) ),
@@ -158,7 +152,6 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function testTextSearch() {
-		$this->skipIfUnsupportedByDatabase();
 		$this->assertEquals(
                 array( 'Smithee' ),
                 $this->fetchIds( $this->search->searchText( 'smithee' ) ),
@@ -166,7 +159,6 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function testTextPowerSearch() {
-		$this->skipIfUnsupportedByDatabase();
 		$this->search->setNamespaces( array( 0, 1, 4 ) );
 		$this->assertEquals(
 			array(
@@ -178,7 +170,6 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function testTitleSearch() {
-		$this->skipIfUnsupportedByDatabase();
 		$this->assertEquals(
 			array(
 				'Alan Smithee',
@@ -189,7 +180,6 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	}
 
 	function testTextTitlePowerSearch() {
-		$this->skipIfUnsupportedByDatabase();
 		$this->search->setNamespaces( array( 0, 1, 4 ) );
 		$this->assertEquals(
 			array(
