@@ -1,9 +1,10 @@
 <?php
-
-class SimpleSeleniumTestCase extends SeleniumTestCase
-{
-	public function testBasic()
-	{
+/* 
+ * This test case is part of the SimpleSeleniumTestSuite.
+ * Configuration for these tests are dosumented as part of SimpleSeleniumTestSuite.php
+ */
+class SimpleSeleniumTestCase extends SeleniumTestCase {
+	public function testBasic() {
 		$this->open( $this->getUrl() . 
 			'/index.php?title=Selenium&action=edit' );
 		$this->type( "wpTextbox1", "This is a basic test" );
@@ -14,19 +15,12 @@ class SimpleSeleniumTestCase extends SeleniumTestCase
 		$source = $this->getText( "//div[@id='wikiPreview']/p" );
 		$correct = strstr( $source, "This is a basic test" );
 		$this->assertEquals( $correct, true );
-
 	}
 	
-	/*
-	 * Needs the following in your LocalConfig or an alternative method of configuration (coming soon)
-	 * require_once( "$IP/extensions/UsabilityInitiative/Vector/Vector.php" );
-	 * $wgDefaultSkin='vector';
-	 */
-	public function testGlobalVariable1()
-	{
+	public function testGlobalVariableForDefaultSkin() {
 		$this->open( $this->getUrl() . '/index.php?&action=purge' );
 		$bodyClass = $this->getAttribute( "//body/@class" );
-		$this-> assertContains('skin-vector', $bodyClass, 'Vector skin not set');
+		$this-> assertContains('skin-chick', $bodyClass, 'Chick skin not set');
 	}
 
 }
