@@ -114,6 +114,11 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
 	require_once( "$IP/LocalSettings.php" );
 }
+
+if ( $wgEnableSelenium ) {
+	require_once( "$IP/includes/SeleniumWebSettings.php" );
+}
+
 wfProfileOut( 'WebStart.php-conf' );
 
 wfProfileIn( 'WebStart.php-ob_start' );
@@ -135,3 +140,4 @@ wfProfileOut( 'WebStart.php-ob_start' );
 if ( !defined( 'MW_NO_SETUP' ) ) {
 	require_once( "$IP/includes/Setup.php" );
 }
+

@@ -120,6 +120,7 @@ class SeleniumTester extends Maintenance {
 		foreach ( $seleniumTestSuites as $testSuiteName => $testSuiteFile ) {
 			require( $testSuiteFile );
  			$suite = new $testSuiteName();
+ 			$suite->setName( $testSuiteName );
 			$suite->addTests();
 			
 			try {

@@ -3,6 +3,7 @@
 abstract class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 	private $selenium;
 	private $isSetUp = false;
+	private $loginBeforeTests = true;
 
 	// Do not add line break after test output
 	const CONTINUE_LINE = 1;
@@ -20,12 +21,14 @@ abstract class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 		$this->isSetUp = true;
 		$this->selenium = Selenium::getInstance();
 		$this->selenium->start();
-		//$this->selenium->open( $this->selenium->getUrl() . '/index.php?setupTestSuite=' . $this->getName() );
-		$this->login();
+		$this->selenium->open( $this->selenium->getUrl() . '/index.php?setupTestSuite=' . $this->getName() );
+		if ( $this->loginBeforeTests ) {
+			$this->login();
+		}
 	}
 
 	public function tearDown() {
-		//$this->selenium->open( $this->selenium->getUrl() . '/index.php?clearTestSuite=' . $this->getName() );
+		$this->selenium->open( $this->selenium->getUrl() . '/index.php?clearTestSuite=' . $this->getName() );
 		$this->selenium->stop();
 	}
 
@@ -35,5 +38,9 @@ abstract class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 
 	public function loadPage( $title, $action ) {
 		$this->selenium->loadPage( $title, $action );
+	}
+	
+	protected function setLoginBeforeTests( $loginBeforeTests = true ) {
+		$this->loginBeforeTests = $loginBeforeTests;
 	}
 }
