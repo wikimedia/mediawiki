@@ -637,8 +637,9 @@ $section: The designation of the section being pointed to, to be included in
   the link, like "&section=$section"
 $tooltip: The default tooltip.  Escape with htmlspecialchars() before using.
   By default, this is wrapped in the 'editsectionhint' message.
-$result: The HTML to return, prefilled with the default plus whatever other
+&$result: The HTML to return, prefilled with the default plus whatever other
   changes earlier hooks have made
+$lang: The language code to use for the link in the wfMsg* functions
 
 'EditFilter': Perform checks on an edit
 $editor: Edit form (see includes/EditPage.php)
@@ -737,7 +738,8 @@ $skin: Skin rendering the UI
 $title: Title being linked to
 $section: Section to link to
 $link: Default link
-$result: Result (alter this to override the generated links)
+&$result: Result (alter this to override the generated links)
+$lang: The language code to use for the link in the wfMsg* functions
 
 'EmailConfirmed': When checking that the user's email address is "confirmed"
 $user: User being checked
