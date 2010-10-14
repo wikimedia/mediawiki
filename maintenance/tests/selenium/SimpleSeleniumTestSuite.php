@@ -7,7 +7,6 @@
  * $wgSeleniumTestConfigs['SimpleSeleniumTestSuite'] = 'SimpleSeleniumConfig::getSettings';
  * OR
  * 2) Add the following to your Localsettings.php
- * require_once( "$IP/skins/Chick.php" );
  * $wgDefaultSkin = 'chick';
  */
 class SimpleSeleniumTestSuite extends SeleniumTestSuite
