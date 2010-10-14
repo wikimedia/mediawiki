@@ -7,6 +7,6 @@
 -- large table unnecessarily for people upgrading from 1.16, so this will be
 -- skipped if unneeded.
 ALTER TABLE /*$wgDBprefix*/categorylinks
-	CHANGE COLUMN cl_sortkey cl_sortkey varbinary(255) NOT NULL default '',
+	CHANGE COLUMN cl_sortkey cl_sortkey varbinary(230) NOT NULL default '',
 	CHANGE COLUMN cl_collation cl_collation varbinary(32) NOT NULL default '';
 INSERT IGNORE INTO /*$wgDBprefix*/updatelog (ul_key) VALUES ('cl_fields_update');

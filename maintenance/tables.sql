@@ -492,7 +492,7 @@ CREATE TABLE /*_*/categorylinks (
   -- A binary string obtained by applying a sortkey generation algorithm
   -- (Language::convertToSortkey()) to page_title, or cl_sortkey_prefix . "\0"
   -- . page_title if cl_sortkey_prefix is nonempty.
-  cl_sortkey varbinary(255) NOT NULL default '',
+  cl_sortkey varbinary(230) NOT NULL default '',
 
   -- A prefix for the raw sortkey manually specified by the user, either via
   -- [[Category:Foo|prefix]] or {{defaultsort:prefix}}.  If nonempty, it's
