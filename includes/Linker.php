@@ -1395,7 +1395,7 @@ class Linker {
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
-		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $link, &$result ) );
+		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $link, &$result, $lang ) );
 		if ( !is_null( $result ) ) {
 			# For reverse compatibility, add the brackets *after* the hook is
 			# run, and even add them to hook-provided text.  (This is the main
@@ -1410,7 +1410,7 @@ class Linker {
 		$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language' => $lang ), $link );
 		$result = "<span class=\"editsection\">$result</span>";
 
-		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result , $lang) );
+		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );
 		return $result;
 	}
 
