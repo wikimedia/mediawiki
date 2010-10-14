@@ -29,7 +29,7 @@
 	'az' => 'Azərbaycanca',	# Azerbaijani
 	'ba' => 'Башҡорт',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
-	'bat-smg' => 'Žemaitėška', # Samogitian
+	'bat-smg' => 'Žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 693-3 since 2010-06-30 )
 	'bcc' => 'بلوچی مکرانی', # Southern Balochi
 	'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 	'be' => 'Беларуская',	#  Belarusian normative
@@ -288,6 +288,7 @@
 	'se' => 'Sámegiella',	# Northern Sami
 	'sei' => 'Cmique Itom',	# Seri
 	'sg' => 'Sängö',		# Sango/Sangho
+	'sgs' => 'Žemaitėška', # Samogitian
 	'sh' => 'Srpskohrvatski / Српскохрватски', # Serbocroatian
 	'shi' => 'Tašlḥiyt',    # Tachelhit
 	'si' => 'සිංහල',	# Sinhalese
