@@ -1496,6 +1496,7 @@ class Language {
 	 * @return string
 	 */
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		$ts = wfTimestamp( TS_MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
@@ -1514,6 +1515,7 @@ class Language {
 	 * @return string
 	 */
 	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
+		$ts = wfTimestamp( TS_MW, $ts );
 		if ( $adj ) {
 			$ts = $this->userAdjust( $ts, $timecorrection );
 		}
