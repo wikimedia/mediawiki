@@ -27,7 +27,7 @@
 	</testsuites>
 	<groups>
 		<exclude>
-                  	<group>Utility</group>
+			<group>Utility</group>
 			<group>Broken</group>
 			<group>Stub</group>
 		</exclude>
