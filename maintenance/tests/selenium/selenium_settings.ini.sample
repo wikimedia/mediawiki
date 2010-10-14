@@ -11,6 +11,7 @@ userPassword 		= "wikipass"
 testBrowser 		= "firefox"
 startserver			=
 stopserver			=
+jUnitLogFile		=
 
 [SeleniumTests]
 

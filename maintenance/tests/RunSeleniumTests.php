@@ -29,8 +29,8 @@ define( 'SELENIUMTEST', true );
 require_once( dirname( dirname( __FILE__ ) )."/Maintenance.php" );
 require_once( 'PHPUnit/Framework.php' );
 require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
+require_once( 'PHPUnit/Util/Log/JUnit.php' );
 require_once( dirname( __FILE__ ) . "/selenium/SeleniumServerManager.php" );
-
 
 class SeleniumTester extends Maintenance {
 	protected $selenium;
@@ -51,6 +51,7 @@ class SeleniumTester extends Maintenance {
 		$this->addOption( 'verbose', 'Be noisier.' );
 		$this->addOption( 'startserver', 'Start Selenium Server (on localhost) before the run.' );
 		$this->addOption( 'stopserver', 'Stop Selenium Server (on localhost) after the run.' );
+		$this->addOption( 'jUnitLogFile', 'Log results in a specified JUnit log file.', false, true );
 		$this->deleteOption( 'dbpass' );
 		$this->deleteOption( 'dbuser' );
 		$this->deleteOption( 'globals' );
@@ -111,9 +112,13 @@ class SeleniumTester extends Maintenance {
 	protected function runTests( $seleniumTestSuites = array() ) {
 		$result = new PHPUnit_Framework_TestResult;
 		$result->addListener( new SeleniumTestListener( $this->selenium->getLogger() ) );
+		if ( $this->selenium->getJUnitLogFile() ) {
+			$jUnitListener = new PHPUnit_Util_Log_JUnit( $this->selenium->getJUnitLogFile(), true );
+			$result->addListener( $jUnitListener );
+		}
 		
 		foreach ( $seleniumTestSuites as $testSuiteName => $testSuiteFile ) {
-			require( $testSuiteFile ); 		
+			require( $testSuiteFile );
  			$suite = new $testSuiteName();
 			$suite->addTests();
 			
@@ -123,6 +128,10 @@ class SeleniumTester extends Maintenance {
 				$suite->tearDown(); 
 				throw new MWException( $e->getMessage() );
 			}
+		}
+		
+		if ( $this->selenium->getJUnitLogFile() ) {
+			$jUnitListener->flush();
 		}
 	}
 
@@ -169,6 +178,7 @@ class SeleniumTester extends Maintenance {
 		if ( !isset( $seleniumSettings['username'] ) ) $seleniumSettings['username'] = '';
 		if ( !isset( $seleniumSettings['userPassword'] ) ) $seleniumSettings['userPassword'] = '';
 		if ( !isset( $seleniumSettings['testBrowser'] ) ) $seleniumSettings['testBrowser'] = 'firefox';
+		if ( !isset( $seleniumSettings['jUnitLogFile'] ) ) $seleniumSettings['jUnitLogFile'] = false;
 
 		// Setup Selenium class
 		$this->selenium = new Selenium( );
@@ -180,6 +190,7 @@ class SeleniumTester extends Maintenance {
 		$this->selenium->setUser( $this->getOption( 'username', $seleniumSettings['username'] ) );
 		$this->selenium->setPass( $this->getOption( 'userPassword', $seleniumSettings['userPassword'] ) );
 		$this->selenium->setVerbose( $this->hasOption( 'verbose' ) );
+		$this->selenium->setJUnitLogFile( $this->getOption( 'jUnitLogFile', $seleniumSettings['jUnitLogFile'] ) );
 
 		if( $this->hasOption( 'list-browsers' ) ) {
 			$this->listBrowsers();
