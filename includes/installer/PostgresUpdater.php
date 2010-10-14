@@ -254,7 +254,7 @@ class PostgresUpdater extends DatabaseUpdater {
 		}
 
 		# Add missing extension indexes
-		foreach ( $wgExtNewIndexes as $ni ) {
+		foreach ( $wgExtNewIndexes as $fieldRecord ) {
 			$updates[] = array(
 					'addPgExtIndex', $fieldRecord[0], $fieldRecord[1],
 					$fieldRecord[2]
