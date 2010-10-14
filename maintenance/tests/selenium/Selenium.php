@@ -112,6 +112,10 @@ class Selenium {
 		$this->port = $port;
 	}
 
+	public function getPort() {
+		return $this->port;
+	}
+
 	public function setUser( $user ) {
 		$this->user = $user;
 	}
