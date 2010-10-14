@@ -99,7 +99,6 @@ class SpecialBookSources extends SpecialPage {
 		return false;
 	}
 
-
 	/**
 	 * Trim ISBN and remove characters which aren't required
 	 *

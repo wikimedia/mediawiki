@@ -98,7 +98,7 @@ class Preferences {
 			$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
 			$val = array();
 
-			foreach ( $options as $label => $value ) {
+			foreach ( $options as $value ) {
 				if ( $user->getOption( "$prefix$value" ) ) {
 					$val[] = $value;
 				}
@@ -1218,7 +1218,6 @@ class Preferences {
 				return $tz;
 			default:
 				$data = explode( ':', $tz, 2 );
-				$minDiff = 0;
 				if ( count( $data ) == 2 ) {
 					$data[0] = intval( $data[0] );
 					$data[1] = intval( $data[1] );

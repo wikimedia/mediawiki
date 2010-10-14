@@ -512,7 +512,6 @@ class Preprocessor_Hash implements Preprocessor {
 
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
-				$matchingCount = 0;
 				$rule = $rules[$piece->open];
 				if ( $count > $rule['max'] ) {
 					# The specified maximum exists in the callback array, unless the caller
@@ -559,7 +558,7 @@ class Preprocessor_Hash implements Preprocessor {
 					$titleNode->lastChild = $titleAccum->lastNode;
 					$element->addChild( $titleNode );
 					$argIndex = 1;
-					foreach ( $parts as $partIndex => $part ) {
+					foreach ( $parts as $part ) {
 						if ( isset( $part->eqpos ) ) {
 							// Find equals
 							$lastNode = false;

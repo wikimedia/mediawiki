@@ -336,7 +336,7 @@ class ConfEditor {
 		// Split all copy operations with a source corresponding to the region
 		// in question.
 		$newEdits = array();
-		foreach ( $this->edits as $i => $edit ) {
+		foreach ( $this->edits as $edit ) {
 			if ( $edit[0] !== 'copy' ) {
 				$newEdits[] = $edit;
 				continue;

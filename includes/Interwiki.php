@@ -143,7 +143,7 @@ class Interwiki {
 		global $wgMemc, $wgInterwikiExpiry;
 		$key = wfMemcKey( 'interwiki', $prefix );
 		$mc = $wgMemc->get( $key );
-		$iw = false;
+
 		if( $mc && is_array( $mc ) ) { // is_array is hack for old keys
 			$iw = Interwiki::loadFromArray( $mc );
 			if( $iw ) {

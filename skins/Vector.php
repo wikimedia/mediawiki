@@ -640,7 +640,7 @@ class VectorTemplate extends QuickTemplate {
 	<div class="body">
 		<?php if ( is_array( $content ) ): ?>
 		<ul>
-		<?php foreach( $content as $key => $val ): ?>
+		<?php foreach( $content as $val ): ?>
 			<li id="<?php echo Sanitizer::escapeId( $val['id'] ) ?>"<?php if ( $val['active'] ): ?> class="active" <?php endif; ?>><a href="<?php echo htmlspecialchars( $val['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( $val['id'] ) ?>><?php echo htmlspecialchars( $val['text'] ) ?></a></li>
 		<?php endforeach; ?>
 		</ul>
@@ -715,7 +715,7 @@ class VectorTemplate extends QuickTemplate {
 <div id="p-views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('views') ?></h5>
 	<ul<?php $this->html('userlangattributes') ?>>
-		<?php foreach ( $this->data['view_urls'] as $key => $link ): ?>
+		<?php foreach ( $this->data['view_urls'] as $link ): ?>
 			<li<?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo (array_key_exists('img',$link) ?  '<img src="'.$link['img'].'" alt="'.$link['text'].'" />' : htmlspecialchars( $link['text'] ) ) ?></a></span></li>
 		<?php endforeach; ?>
 	</ul>
@@ -728,7 +728,7 @@ class VectorTemplate extends QuickTemplate {
 	<h5><span><?php $this->msg('actions') ?></span><a href="#"></a></h5>
 	<div class="menu">
 		<ul<?php $this->html('userlangattributes') ?>>
-			<?php foreach ($this->data['action_urls'] as $key => $link ): ?>
+			<?php foreach ($this->data['action_urls'] as $link ): ?>
 				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 			<?php endforeach; ?>
 		</ul>
@@ -741,7 +741,7 @@ class VectorTemplate extends QuickTemplate {
 <div id="p-personal" class="<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('personaltools') ?></h5>
 	<ul<?php $this->html('userlangattributes') ?>>
-		<?php foreach($this->data['personal_urls'] as $key => $item): ?>
+		<?php foreach($this->data['personal_urls'] as $item): ?>
 			<li <?php echo $item['attributes'] ?>><a href="<?php echo htmlspecialchars($item['href']) ?>"<?php echo $item['key'] ?><?php if(!empty($item['class'])): ?> class="<?php echo htmlspecialchars($item['class']) ?>"<?php endif; ?>><?php echo htmlspecialchars($item['text']) ?></a></li>
 		<?php endforeach; ?>
 	</ul>

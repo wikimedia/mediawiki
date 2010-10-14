@@ -546,7 +546,6 @@ class Preprocessor_DOM implements Preprocessor {
 
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
-				$matchingCount = 0;
 				$rule = $rules[$piece->open];
 				if ( $count > $rule['max'] ) {
 					# The specified maximum exists in the callback array, unless the caller
@@ -591,7 +590,7 @@ class Preprocessor_DOM implements Preprocessor {
 					$element = "<$name$attr>";
 					$element .= "<title>$title</title>";
 					$argIndex = 1;
-					foreach ( $parts as $partIndex => $part ) {
+					foreach ( $parts as $part ) {
 						if ( isset( $part->eqpos ) ) {
 							$argName = substr( $part->out, 0, $part->eqpos );
 							$argValue = substr( $part->out, $part->eqpos + 1 );

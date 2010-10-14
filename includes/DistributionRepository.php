@@ -139,11 +139,9 @@ class DistributionRepository extends PackageRepository {
 	 * @since 1.17
 	 */		
 	public function getLatestCoreVersion() {
-		global $wgRepositoryPackageStates;
-		
-		$states = urlencode( implode( '|', $wgRepositoryPackageStates ) );
-		
 		// TODO: use $states
+		//global $wgRepositoryPackageStates;
+		//$states = urlencode( implode( '|', $wgRepositoryPackageStates ) );
 		
 		$response = Http::get(
 			"$this->location?format=json&action=mwreleases",

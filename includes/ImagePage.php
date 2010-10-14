@@ -300,7 +300,6 @@ class ImagePage extends Article {
 		$this->loadFile();
 
 		$full_url  = $this->displayImg->getURL();
-		$linkAttribs = false;
 		$sizeSel = intval( $wgUser->getOption( 'imagesize' ) );
 		if ( !isset( $wgImageLimits[$sizeSel] ) ) {
 			$sizeSel = User::getDefaultOption( 'imagesize' );
@@ -331,7 +330,7 @@ class ImagePage extends Article {
 			$width = $width_orig;
 			$height_orig = $this->displayImg->getHeight( $page );
 			$height = $height_orig;
-			$mime = $this->displayImg->getMimeType();
+
 			$showLink = false;
 			$linkAttribs = array( 'href' => $full_url );
 			$longDesc = $this->displayImg->getLongDesc();

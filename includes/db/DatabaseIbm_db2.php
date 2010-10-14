@@ -1019,7 +1019,7 @@ EOF;
 		}
 		// remove primary keys
 		foreach ( $args as $ai => $row ) {
-			foreach ( $keys as $ki => $key ) {
+			foreach ( $keys as $key ) {
 				if ( $row[$key] == null ) {
 					unset( $row[$key] );
 				}
@@ -1260,7 +1260,6 @@ EOF;
 				$offset = $options['OFFSET'];
 			}
 		}
-
 
 		// DB2 does not have a proper num_rows() function yet, so we must emulate
 		// DB2 9.5.4 and the corresponding ibm_db2 driver will introduce

@@ -64,7 +64,7 @@ class nextJobDB extends Maintenance {
 			$dbsByMaster[$lb->getServerName( 0 )][] = $db;
 		}
 
-		foreach ( $dbsByMaster as $master => $dbs ) {
+		foreach ( $dbsByMaster as $dbs ) {
 			$dbConn = wfGetDB( DB_MASTER, array(), $dbs[0] );
 			$stype = $dbConn->addQuotes( $type );
 

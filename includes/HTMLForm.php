@@ -921,7 +921,7 @@ abstract class HTMLFormField {
 	public static function flattenOptions( $options ) {
 		$flatOpts = array();
 
-		foreach ( $options as $key => $value ) {
+		foreach ( $options as $value ) {
 			if ( is_array( $value ) ) {
 				$flatOpts = array_merge( $flatOpts, self::flattenOptions( $value ) );
 			} else {

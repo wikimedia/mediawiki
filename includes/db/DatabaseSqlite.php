@@ -399,7 +399,7 @@ class DatabaseSqlite extends DatabaseBase {
 		# SQLite can't handle multi-row inserts, so divide up into multiple single-row inserts
 		if ( isset( $a[0] ) && is_array( $a[0] ) ) {
 			$ret = true;
-			foreach ( $a as $k => $v ) {
+			foreach ( $a as $v ) {
 				if ( !parent::insert( $table, $v, "$fname/multi-row", $options ) ) {
 					$ret = false;
 				}
@@ -417,7 +417,7 @@ class DatabaseSqlite extends DatabaseBase {
 		# SQLite can't handle multi-row replaces, so divide up into multiple single-row queries
 		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
 			$ret = true;
-			foreach ( $rows as $k => $v ) {
+			foreach ( $rows as $v ) {
 				if ( !parent::replace( $table, $uniqueIndexes, $v, "$fname/multi-row" ) ) {
 					$ret = false;
 				}

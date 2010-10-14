@@ -321,7 +321,6 @@ class LogEventsList {
 	}
 
 	private function logUserLinks( $row ) {
-		$userLinks = '';
 		if( self::isDeleted( $row, LogPage::DELETED_USER ) ) {
 			$userLinks = '<span class="history-deleted">' .
 				wfMsgHtml( 'rev-deleted-user' ) . '</span>';
@@ -337,7 +336,6 @@ class LogEventsList {
 	}
 
 	private function logAction( $row, $title, $paramArray ) {
-		$action = '';
 		if( self::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 			$action = '<span class="history-deleted">' .
 				wfMsgHtml( 'rev-deleted-event' ) . '</span>';
@@ -350,7 +348,6 @@ class LogEventsList {
 	
 	private function logComment( $row ) {
 		global $wgContLang;
-		$comment = '';
 		if( self::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' .
 				wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
@@ -582,7 +579,7 @@ class LogEventsList {
 	public static function userCanBitfield( $bitfield, $field ) {
 		if( $bitfield & $field ) {
 			global $wgUser;
-			$permission = '';
+
 			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
 			} else {

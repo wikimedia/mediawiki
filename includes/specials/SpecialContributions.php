@@ -614,7 +614,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$page->isRedirect() ? array( 'redirect' => 'no' ) : array()
 		);
 		# Mark current revisions
-		$difftext = $topmarktext = '';
+		$topmarktext = '';
 		if( $row->rev_id == $row->page_latest ) {
 			$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 			# Add rollback link

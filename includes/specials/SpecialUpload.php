@@ -368,7 +368,6 @@ class SpecialUpload extends SpecialPage {
 		$warningHtml = '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n"
 			. '<ul class="warning">';
 		foreach( $warnings as $warning => $args ) {
-			$msg = '';
 			if( $warning == 'exists' ) {
 				$msg = "\t<li>" . self::getExistsWarning( $args ) . "</li>\n";
 			} elseif( $warning == 'duplicate' ) {
@@ -777,7 +776,7 @@ class UploadForm extends HTMLForm {
 
 		# Build a list of IDs for javascript insertion
 		$this->mSourceIds = array();
-		foreach ( $sourceDescriptor as $key => $field ) {
+		foreach ( $sourceDescriptor as $field ) {
 			if ( !empty( $field['id'] ) ) {
 				$this->mSourceIds[] = $field['id'];
 			}

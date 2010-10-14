@@ -898,7 +898,6 @@ class MimeMagic {
 		}
 
 		# Check for entry for file extension
-		$e = null;
 		if ( $path ) {
 			$i = strrpos( $path, '.' );
 			$e = strtolower( $i ? substr( $path, $i + 1 ) : '' );

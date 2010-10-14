@@ -52,7 +52,6 @@ class PopulateSha1 extends Maintenance {
 			$res = $dbw->select( 'image', array( 'img_name' ), array( 'img_sha1' => '' ), __METHOD__ );
 		}
 		$imageTable = $dbw->tableName( 'image' );
-		$oldimageTable = $dbw->tableName( 'oldimage' );
 
 		if ( $method == 'pipe' ) {
 			// @fixme kill this and replace with a second unbuffered DB connection.

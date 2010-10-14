@@ -71,7 +71,7 @@ class RenameDbPrefix extends Maintenance {
 			// sort of message. Best not to try $row->x stuff...
 			$fields = get_object_vars( $row );
 			// Silly for loop over one field...
-			foreach ( $fields as $resName => $table ) {
+			foreach ( $fields as $table ) {
 				// $old should be regexp safe ([a-zA-Z_])
 				$newTable = preg_replace( '/^' . $old . '/', $new, $table );
 				$this->output( "Renaming table $table to $newTable\n" );

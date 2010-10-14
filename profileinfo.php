@@ -100,20 +100,22 @@ class profile_point {
 	function display( $expand, $indent = 0.0 ) {
 		usort( $this->children, 'compare_point' );
 
-		$extet = '';
-		if ( isset( $expand[$this->name()] ) )
-			$ex = true;
-		else	$ex = false;
+		$ex = isset( $expand[$this->name()] );
+
 		if ( !$ex ) {
 			if ( count( $this->children ) ) {
 				$url = getEscapedProfileUrl( false, false, $expand + array( $this->name() => true ) );
 				$extet = " <a href=\"$url\">[+]</a>";
-			} else $extet = '';
+			} else {
+				$extet = '';
+			}
 		} else {
 			$e = array();
-			foreach ( $expand as $name => $ep )
-				if ( $name != $this->name() )
+			foreach ( $expand as $name => $ep ) {
+				if ( $name != $this->name() ) {
 					$e += array( $name => $ep );
+				}
+			}
 
 			$extet = " <a href=\"" . getEscapedProfileUrl( false, false, $e ) . "\">[–]</a>";
 		}

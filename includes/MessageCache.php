@@ -868,7 +868,7 @@ class MessageCache {
 
 		$list = array();
 
-		foreach( $data as $date => $messages ) {
+		foreach( $data as $messages ) {
 			foreach( $messages as $message => $count ) {
 				$key = $message;
 				if ( !isset( $list[$key] ) ) $list[$key] = 0;

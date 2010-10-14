@@ -357,7 +357,7 @@ class ParserTest {
 	function runTests( $tests ) {
 		$ok = true;
 
-		foreach ( $tests as $i => $t ) {
+		foreach ( $tests as $t ) {
 			$result =
 				$this->runTest( $t['test'], $t['input'], $t['result'], $t['options'], $t['config'] );
 			$ok = $ok && $result;

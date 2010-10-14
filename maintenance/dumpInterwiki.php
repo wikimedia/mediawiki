@@ -125,7 +125,7 @@ class DumpInterwiki extends Maintenance {
 			if ( preg_match( '/^\|\s*(.*?)\s*\|\|\s*(.*?)\s*$/', $line, $matches ) ) {
 				$prefix = $wgContLang->lc( $matches[1] );
 				$prefix = str_replace( ' ', '_', $prefix );
-				$prefix = strtolower( $matches[1] );
+
 				$url = $matches[2];
 				if ( preg_match( '/(wikipedia|wiktionary|wikisource|wikiquote|wikibooks|wikimedia)\.org/', $url ) ) {
 					$local = 1;
@@ -147,7 +147,6 @@ class DumpInterwiki extends Maintenance {
 		foreach ( $sites as $site ) {
 			$this->makeLanguageLinks ( $site, "_" . $site->suffix );
 		}
-
 
 		foreach ( $dblist as $db ) {
 			if ( isset( $this->specials[$db] ) ) {

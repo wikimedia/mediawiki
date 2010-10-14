@@ -451,7 +451,6 @@ class Xml {
 	 * @return string
 	 */
 	public static function listDropDown( $name= '', $list = '', $other = '', $selected = '', $class = '', $tabindex = Null ) {
-		$options = '';
 		$optgroup = false;
 
 		$options = self::option( $other, 'other', $selected === 'other' );

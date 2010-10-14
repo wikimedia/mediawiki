@@ -248,7 +248,6 @@ class KkConverter extends LanguageConverter {
 		global $wgLanguageCode;
 		$text = parent::translate( $text, $toVariant );
 
-		$letters = '';
 		switch( $toVariant ) {
 			case 'kk-cyrl':
 			case 'kk-kz':

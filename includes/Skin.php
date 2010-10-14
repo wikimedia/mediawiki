@@ -836,7 +836,6 @@ class Skin extends Linker {
 		$ret = '<li>';
 
 		foreach ( $lines as $line ) {
-			$m = array();
 			$display = ltrim( $line );
 			$ident = strlen( $line ) - strlen( $display );
 			$diff = $ident - $curIdent;

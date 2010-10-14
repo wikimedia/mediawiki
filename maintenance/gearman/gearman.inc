@@ -72,7 +72,7 @@ class NonScaryGearmanWorker extends Net_Gearman_Worker {
 		if (isset($resp['data']['arg']) && 
 			Net_Gearman_Connection::stringLength($resp['data']['arg'])) {
 				$arg = json_decode($resp['data']['arg'], true);
-			}
+		}
 
 		### START MW DIFFERENT BIT
 		if ( $name != 'mw_job' ) {
