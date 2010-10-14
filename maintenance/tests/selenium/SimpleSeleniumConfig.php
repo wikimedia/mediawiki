@@ -3,7 +3,7 @@ class SimpleSeleniumConfig {
 	
 	public static function getSettings(&$includeFiles, &$globalConfigs) {
 		$includes = array(
-			'skins/Chick.php'
+			//files that needed to be included would go here
 		);
 		$configs = array(
 			'wgDefaultSkin' => 'chick'
