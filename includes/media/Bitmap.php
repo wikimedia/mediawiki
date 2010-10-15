@@ -147,16 +147,13 @@ class BitmapHandler extends ImageHandler {
 				}
 			}
 
+			// Use one thread only, to avoid deadlock bugs on OOM
+			$tempEnv = 'OMP_NUM_THREADS=1 ';
 			if ( strval( $wgImageMagickTempDir ) !== '' ) {
-				$tempEnv = 'MAGICK_TMPDIR=' . wfEscapeShellArg( $wgImageMagickTempDir ) . ' ';
-			} else {
-				$tempEnv = '';
+				$tempEnv .= 'MAGICK_TMPDIR=' . wfEscapeShellArg( $wgImageMagickTempDir ) . ' ';
 			}
 
 			$cmd  = 
-				$tempEnv .
-				// Use one thread only, to avoid deadlock bugs on OOM
-				'OMP_NUM_THREADS=1 ' .
 				wfEscapeShellArg( $wgImageMagickConvertCommand ) .
 				// Specify white background color, will be used for transparent images
 				// in Internet Explorer/Windows instead of default black.
@@ -173,6 +170,12 @@ class BitmapHandler extends ImageHandler {
 				" -depth 8 $sharpen" .
 				" {$animation_post} " .
 				wfEscapeShellArg( $this->escapeMagickOutput( $dstPath ) ) . " 2>&1";
+
+			if ( !wfIsWindows() ) {
+				// Assume we have a POSIX compliant shell which accepts variable assignments preceding the command
+				$cmd = $tempEnv . $cmd;
+			}
+
 			wfDebug( __METHOD__.": running ImageMagick: $cmd\n" );
 			wfProfileIn( 'convert' );
 			$err = wfShellExec( $cmd, $retval );
