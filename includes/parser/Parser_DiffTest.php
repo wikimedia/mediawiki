@@ -13,14 +13,13 @@ class Parser_DiffTest
 	var $parsers, $conf;
 	var $shortOutput = false;
 
-	var $dfUniqPrefix;
+	var $dtUniqPrefix;
 
 	function __construct( $conf ) {
 		if ( !isset( $conf['parsers'] ) ) {
 			throw new MWException( __METHOD__ . ': no parsers specified' );
 		}
 		$this->conf = $conf;
-		$this->dtUniqPrefix = "\x7fUNIQ" . Parser::getRandomString();
 	}
 
 	function init() {
@@ -114,7 +113,11 @@ class Parser_DiffTest
 
 	function onClearState( &$parser ) {
 		// hack marker prefixes to get identical output
-		$parser->mUniqPrefix = $this->dtUniqPrefix;
+		if ( !isset( $this->dtUniqPrefix ) ) {
+			$this->dtUniqPrefix = $parser->mUniqPrefix;
+		} else {
+			$parser->mUniqPrefix = $this->dtUniqPrefix;
+		}
 		return true;
 	}
 }

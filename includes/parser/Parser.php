@@ -494,7 +494,7 @@ class Parser {
 	 * @private
 	 * @static
 	 */
-	static function getRandomString() {
+	static private function getRandomString() {
 		return dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 	}
 
