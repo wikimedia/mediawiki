@@ -299,7 +299,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a fatal error
 * (bug 23465) Don't ignore the predefined destination filename on
   Special:Upload after following a red link
-* Correct the escaping of the autosummary URI fragments.
 * (bug 23642) Recognize mime types of MS OpenXML documents.
 * (bug 22784) Normalise underscores and spaces in autocomments.
 * (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings
