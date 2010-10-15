@@ -101,7 +101,7 @@ class CoreParserFunctions {
 
 		$date = trim( $date );
 
-		$pref = $parser->mOptions->getDateFormat();
+		$pref = $parser->getOptions()->getDateFormat();
 
 		// Specify a different default date format other than the the normal default
 		// iff the user has 'default' for their setting
@@ -250,7 +250,7 @@ class CoreParserFunctions {
 		$user = User::newFromName( $user );
 		if ( $user ) {
 			$gender = $user->getOption( 'gender' );
-		} elseif ( $parser->mOptions->getInterfaceMessage() ) {
+		} elseif ( $parser->getOptions()->getInterfaceMessage() ) {
 			global $wgUser;
 			$gender = $wgUser->getOption( 'gender' );
 		}
