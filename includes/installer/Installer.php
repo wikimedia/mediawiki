@@ -445,7 +445,7 @@ abstract class Installer {
 		$this->showMessage( 'config-have-db', $wgLang->listToText( $goodNames ), count( $goodNames ) );
 
 		// Check for FTS3 full-text search module
-		$sqlite = $this->getDBInstaller( $name );
+		$sqlite = $this->getDBInstaller( 'sqlite' );
 		if ( $sqlite->isCompiled() ) {
 			$db = new DatabaseSqliteStandalone( ':memory:' );
 			$this->showMessage( $db->getFulltextSearchModule() == 'FTS3'
