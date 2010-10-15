@@ -2484,7 +2484,7 @@ $NEWPAGE
 'undeletereset'                => 'از نو',
 'undeleteinvert'               => 'وارونه کردن انتخاب',
 'undeletecomment'              => 'دلیل:',
-'undeletedarticle'             => '«$1» احیا {{PLURAL:$1|شد|شدند}}',
+'undeletedarticle'             => '«[[$1]]» را احیا کرد',
 'undeletedrevisions'           => '$1 نسخه احیا {{PLURAL:$1|شد|شدند}}',
 'undeletedrevisions-files'     => '$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'undeletedfiles'               => '$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.',

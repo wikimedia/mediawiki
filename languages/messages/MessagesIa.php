@@ -2227,7 +2227,7 @@ Tu pote cambiar le nivello de protection de iste pagina, ma isto non cambiara le
 # Undelete
 'undelete'                     => 'Vider paginas delite',
 'undeletepage'                 => 'Vider e restaurar paginas delite',
-'undeletepagetitle'            => "'''Lo sequente consiste de versiones delite de [[:$1|$1]]'''.",
+'undeletepagetitle'            => "'''Le lista sequente contine le versiones delite de [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Vider paginas delite',
 'undeletepagetext'             => 'Le {{PLURAL:$1|pagina|paginas}} sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
 Le archivo pote esser vacuate periodicamente.',

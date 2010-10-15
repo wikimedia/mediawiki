@@ -195,7 +195,7 @@ $messages = array(
 'about'         => 'விவரம்',
 'article'       => 'உள்ளடக்கப் பக்கம்',
 'newwindow'     => '(புதிய சாளரத்துள் திறக்கும்)',
-'cancel'        => 'விடு',
+'cancel'        => 'விட்டுவிடு',
 'moredotdotdot' => 'மேலும்...',
 'mypage'        => 'எனது பக்கம்',
 'mytalk'        => 'என் பேச்சு',
@@ -462,7 +462,7 @@ MySQL returned error "$3: $4".',
 'nologinlink'                => 'கணக்கு ஒன்றை உருவாக்கவும்',
 'createaccount'              => 'புதிய கணக்கை உருவாக்கு',
 'gotaccount'                 => "ஏற்கனவே பயனர் கணக்கு உள்ளதா? '''$1'''.",
-'gotaccountlink'             => 'புகுபதிகை செய்யவும்',
+'gotaccountlink'             => 'புகுபதிகை',
 'createaccountmail'          => 'மின்னஞ்சல் மூலம்',
 'createaccountreason'        => 'காரணம்:',
 'badretype'                  => 'நீங்கள் பதிந்த கடவுச்சொல் பொருத்தமாக இல்லை.',
@@ -542,7 +542,7 @@ MySQL returned error "$3: $4".',
 'resetpass_forbidden'       => 'கடவுச்சொற்கள் மாற்றப்பட முடியாது',
 'resetpass-no-info'         => 'இப்பக்கத்தை நேரடியாக அணுகுவதற்கு நீங்கள் புகுபதிகை செய்திருக்கவேண்டும்.',
 'resetpass-submit-loggedin' => 'கடவுச்சொல்லை மாற்று',
-'resetpass-submit-cancel'   => 'விடு',
+'resetpass-submit-cancel'   => 'விட்டுவிடு',
 'resetpass-wrong-oldpass'   => 'செல்லுபடியற்ற தற்காலிகமான அல்லது நடப்புக் கடவுச்சொல்.
 உங்கள் கடவுச் சொல்லை நீங்கள் வெற்றிகரமாக மாற்றிவிட்டீர்கள் அல்லது புதிய தற்காலிகக் கடவுச்சொல்லைக் கோரியுள்ளீர்கள்.',
 'resetpass-temp-password'   => 'தற்காலிக கடவுச்சொல்:',
@@ -756,7 +756,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'currentrevisionlink'    => 'நடப்பிலுள்ள திருத்தம்',
 'cur'                    => 'நடப்பு',
 'next'                   => 'அடுத்தது',
-'last'                   => 'கடைசி',
+'last'                   => 'முந்தைய',
 'page_first'             => 'முதல்',
 'page_last'              => 'கடைசி',
 'histlegend'             => 'வேறுபாட்டைக் காண வேண்டிய இரண்டு பத்திப்புக்களை தெரிவுச் செய்து கீழுள்ள பொத்தானை அழுத்தவும்.<br />
@@ -1626,11 +1626,12 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'newuserlog-autocreate-entry' => 'கணக்கு தானாக உருவாக்கப்பட்டுவிட்டது',
 
 # Special:ListGroupRights
-'listgrouprights'          => 'பயனர் குழு உரிமைகள்',
-'listgrouprights-group'    => 'குழு',
-'listgrouprights-rights'   => 'உரிமைகள்',
-'listgrouprights-helppage' => 'Help:குழு உரிமைகள்',
-'listgrouprights-members'  => '(அங்கத்தவர் பட்டியல்)',
+'listgrouprights'                 => 'பயனர் குழு உரிமைகள்',
+'listgrouprights-group'           => 'குழு',
+'listgrouprights-rights'          => 'உரிமைகள்',
+'listgrouprights-helppage'        => 'Help:குழு உரிமைகள்',
+'listgrouprights-members'         => '(அங்கத்தவர் பட்டியல்)',
+'listgrouprights-removegroup-all' => 'எல்லா குழுக்களையும் நீக்கு',
 
 # E-mail user
 'mailnologin'     => 'அனுப்பும் முகவரி இல்லை',
@@ -2033,6 +2034,7 @@ $1',
 'movenologin'               => 'புகுபதிகை செய்யப்படவில்லை',
 'movenologintext'           => 'இப் பக்கத்தை நகர்த்துவதற்கு, நீங்கள் ஒரு பதிவு செய்யப்பட்ட பயனராயும் [[Special:UserLogin|புகுபதிகை செய்தும்]] இருக்க வேண்டும்.',
 'movenotallowed'            => 'உங்களுக்கு பக்கங்களை நகர்த்த அனுமதி கிடையாது.',
+'movenotallowedfile'        => 'உங்களுக்கு கோப்புக்களை நகர்த்த அனுமதி கிடையாது.',
 'newtitle'                  => 'புதிய தலைப்பு',
 'move-watch'                => 'இப்பக்கத்தைக் கவனி',
 'movepagebtn'               => 'பக்கத்தை நகர்த்து',
@@ -2723,6 +2725,14 @@ $5
 # Special:Tags
 'tag-filter-submit' => 'வடிகட்டி',
 'tags-edit'         => 'தொகு',
+'tags-hitcount'     => '$1 {{PLURAL:$1|மாற்றம்|மாற்றங்கள்}}',
+
+# Special:ComparePages
+'compare-page1'  => 'பக்கம் 1',
+'compare-page2'  => 'பக்கம் 2',
+'compare-rev1'   => 'திருத்தம் 1',
+'compare-rev2'   => 'திருத்தம் 2',
+'compare-submit' => 'ஒப்பிடு',
 
 # HTML forms
 'htmlform-required'            => 'இதன் உட்பொருள் தேவையானது (கொடுக்கப்பட வேண்டும்)',
