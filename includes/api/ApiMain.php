@@ -805,10 +805,10 @@ class ApiMain extends ApiBase {
 	 * Override the parent to generate help messages for all available modules.
 	 */
 	public function makeHelpMsg() {
-		global $wgMemc, $wgAPICacheHelp, $wgAPICacheHelpTimeout;
+		global $wgMemc, $wgAPICacheHelp, $wgAPICacheHelpTimeout, $wgUser;
 		$this->setHelp();
 		// Get help text from cache if present
-		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
+		$key = wfMemcKey( 'apihelp', $this->getModuleName(), $wgUser->isAnon(),
 			SpecialVersion::getVersion( 'nodb' ) .
 			$this->getMain()->getShowVersions() );
 		if ( $wgAPICacheHelp ) {

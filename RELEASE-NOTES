@@ -374,7 +374,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23548) Allow access of another users watchlist through watchlistraw
   using token and username.
 * (bug 23524) Api Modules as followup to bug 14473 (Add iwlinks table to
-  track inline interwiki link usage.
+  track inline interwiki link usage).
 * Add pltitles and tltemplates to prop=links and prop=templates respectively,
   similar to prop=categories's clcategorie
 * (bug 23834) Invalid "thumbwidth" and "thumbheight" in "imageinfo" query when
@@ -432,6 +432,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25303) Fix API parameter integer validation to actually enforce validation
   on the input values in addition to giving a warning. Also add flag to enforce (die)
   if integer out of range (breaking change!)
+* (bug 24792) API help caching doesn't vary on $wgUser->isAnon(), causes staleness
 
 === Languages updated in 1.17 ===
 
