@@ -376,6 +376,7 @@ Tropi utenti i sta tentando de visuałisare sta pajina.
 Atendare qualche minudo prima de riprovare a cargare ła pajina.
 
 $1',
+'pool-queuefull'    => 'La cóa de laorassion la xe piena',
 'pool-errorunknown' => 'Eror sconossùo',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1217,6 +1218,8 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'prefs-advancedsearchoptions'   => 'Preferense avansade',
 'prefs-advancedwatchlist'       => 'Preferense avansade',
 'prefs-displayrc'               => 'Preferense de visualixassion',
+'prefs-displaysearchoptions'    => 'Opzioni de visualixassion',
+'prefs-displaywatchlist'        => 'Opzioni de visualixassion',
 'prefs-diffs'                   => 'Difarense',
 
 # User rights
@@ -1459,8 +1462,15 @@ Varda la [[Special:NewFiles|galerìa dei file nóvi]] par na vision de insieme.'
 'filetype-unwanted-type'      => "Cargar file de tipo '''\".\$1\"''' xe sconsiglià. {{PLURAL:\$3|El tipo de file consiglià el|I tipi de file consiglià i}} xe \$2.",
 'filetype-banned-type'        => "Cargar file de tipo '''\".\$1\"''' no xe mìa consentìo. {{PLURAL:\$3|El tipo de file consentìo el|I tipi de file consentìi i}} xe \$2.",
 'filetype-missing'            => 'El file no\'l gà nissuna estension (ad es. ".jpg").',
+'empty-file'                  => 'El file che te ghè cargà el xe vodo.',
+'file-too-large'              => 'El file che te ghè cargà el xe massa grando.',
 'filename-tooshort'           => 'El nome del file el xe massa curto.',
+'filetype-banned'             => 'Sto tipo de file el xe vietà.',
+'verification-error'          => "Sto file no'l gà passà la verifica.",
+'illegal-filename'            => 'El nome del file no xe parmesso.',
+'unknown-error'               => 'Se gà verifica un eror sconossùo.',
 'tmp-create-error'            => 'Inpussibile creare el file tenporaneo.',
+'tmp-write-error'             => 'Eror de scritura del file temporaneo.',
 'large-file'                  => 'Se racomanda de no superar mìa le dimension de $1 par ciascun file; sto file el xe grando $2.',
 'largefileserver'             => 'El file el supera le dimension consentìe da la configurazion del server.',
 'emptyfile'                   => 'El file che te ghè caricà el xè aparentemente vodo. Podarìa èssar par un eror nel nome del file. Par piaser controla se te vol dal bon caricar sto file.',
@@ -1491,6 +1501,7 @@ Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che t
 'uploadedimage'               => 'ga cargà "[[$1]]"',
 'overwroteimage'              => 'gà cargà na version nova de "[[$1]]"',
 'uploaddisabled'              => 'Semo spiacenti, ma el caricamento de file el xe tenporaneamente sospeso.',
+'copyuploaddisabled'          => 'El caricamento tramite URL el xe disabilità.',
 'uploadfromurl-queued'        => 'El to caricamento el xe stà messo in coa.',
 'uploaddisabledtext'          => "El caricamento dei file no'l xe mìa ativo.",
 'php-uploaddisabledtext'      => 'El caricamento de file tramite PHP el xe disabilità. Contròla la configurassion de file_uploads.',
@@ -1511,7 +1522,13 @@ Verifica par piaser se xe el caso de continuare col caricamento de sto file.
 Par to comodità qua ghe xe la registrazion de la scancelazion:",
 'filename-bad-prefix'         => "El nome del file che te sì drio cargar el scuminsia con '''\"\$1\"''', che el xe un nome non-descritivo tipicamente assegnà automaticamente da le fotocàmare digitali. Par piaser siegli un nome piassè descritivo par el to file.",
 'upload-success-subj'         => 'Caricamento conpletà',
+'upload-success-msg'          => "El to caricamento da [$2] el xe 'ndà ben. Te lo cati qua: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => 'Problema nel caricamento',
+'upload-failure-msg'          => 'Ghe xe stà un problema col caricamento da [$2]:
+
+$1',
+'upload-warning-subj'         => 'Aviso de caricamento',
+'upload-warning-msg'          => 'Ghe xe stà un problema col caricamento da [$2]. Torna al [[Special:Upload/stash/$1|modulo de caricamento]] par sistemarlo.',
 
 'upload-proto-error'        => 'Protocòl mìa giusto',
 'upload-proto-error-text'   => 'Par el caricamento remoto bisogna specificar URL che scuminsia con <code>http://</code> opure <code>ftp://</code>.',
@@ -1904,6 +1921,10 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 'emailsent'            => 'E-mail invià',
 'emailsenttext'        => 'La to e-mail la xè stà invià.',
 'emailuserfooter'      => 'Sta e-mail la xe stà mandà da $1 a $2 \'traverso la funsion "Manda na e-mail a l\'utente" su {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Messajo de sistema.',
+'usermessage-editor'  => 'Messagero de sistema',
 
 # Watchlist
 'watchlist'            => 'Oservai spesałi',
@@ -3234,5 +3255,9 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'htmlform-submit'              => 'Manda',
 'htmlform-reset'               => 'Scancèla modifiche',
 'htmlform-selectorother-other' => 'Altro',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 con la possibilità de riserca completa nel testo',
+'sqlite-no-fts'  => '$1 sensa la possibilità de riserca completa nel testo',
 
 );

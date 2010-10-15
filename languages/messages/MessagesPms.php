@@ -1633,13 +1633,13 @@ La descrission an soa [$2 pàgina ëd dëscrission ëd l'archivi] a l'é smonùa
 'filedelete-maintenance'      => "Lë scancelament e la restaurassion d'archivi a l'é al moment disabilità durant la manutension.",
 
 # MIME search
-'mimesearch'         => 'Arsërca për sòrt MIME',
+'mimesearch'         => 'Arserca për sòrt MIME',
 'mimesearch-summary' => "Sta pàgina-sì a lassa filtré j'archivi për sòrt MIME. Buté: sòrt/sotasòrt, pr'es. <tt>image/jpeg</tt>.",
 'mimetype'           => 'Sòrt MIME:',
 'download'           => 'dëscarié',
 
 # Unwatched pages
-'unwatchedpages' => 'Pàgine che as ten-o pì nen sot euj',
+'unwatchedpages' => 'Pàgine che gnun a ten sot-euj',
 
 # List redirects
 'listredirects' => 'Lista dle ridiression',

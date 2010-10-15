@@ -795,19 +795,19 @@ $3 белдергән сәбәп: ''$2''",
 'rev-deleted-user'            => '(автор исеме юйылған)',
 'rev-deleted-event'           => '(яҙма юйылған)',
 'rev-deleted-user-contribs'   => '[ҡулланыусы исеме йәки IP-адрес юйылған — төҙәтеү өлөш битенән йәшерелде]',
-'rev-deleted-text-permission' => "Биттең был версияһы '''юйылған'''.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Юйыу яҙмаларында] аңлатмалар ҡалдырылыуы мөмкин.",
+'rev-deleted-text-permission' => "Биттең был өлгөһө '''юйылған'''.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Юйыу яҙмалары журналында] аңлатмалар ҡалдырылыуы мөмкин.",
 'rev-deleted-text-unhide'     => "Биттең был версияһы '''юйылған'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Юйыу яҙмаларында] аңлатмалар ҡалдырылыуы мөмкин.
 Һеҙ хәким булғанлыҡтан [был версияны $1] ҡарай алаһығыҙ.",
 'rev-suppressed-text-unhide'  => "Биттең был версияһы '''тыйылған'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Тыйыу яҙмаларында] аңлатмалар ҡалдырылыуы мөмкин.
 Һеҙ хәким булғанлыҡтан [был версияны $1] ҡарай алаһығыҙ.",
-'rev-deleted-text-view'       => "Биттең был версияһы '''юйылған'''.
-Һеҙ хәким булғанлыҡтан уны ҡарай алаһығыҙ. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Юйыу яҙмаларында] аңлатмалар ҡалдырылыуы мөмкин.",
-'rev-suppressed-text-view'    => "Биттең был версияһы '''тыйылған'''.
+'rev-deleted-text-view'       => "Биттең был өлгөһө '''юйылған'''.
+Һеҙ хәким булғанлыҡтан уны ҡарай алаһығыҙ. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Юйыу яҙмалары журналында] аңлатмалар ҡалдырылыуы мөмкин.",
+'rev-suppressed-text-view'    => "Биттең был өлгөһө '''тыйылған'''.
 Һеҙ хәким булғанлыҡтан уны ҡарай алаһығыҙ.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Тыйыу яҙмаларында] аңлатмалар ҡалдырылыуы мөмкин.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Тыйыу яҙмалары журналында] аңлатмалар ҡалдырылыуы мөмкин.",
 'rev-deleted-no-diff'         => "Һеҙ версиялар араһындағы айырманы ҡарай алмайһығыҙ, сөнки бит версияларының береһе '''юйылған'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Юйыу яҙмаларында] аңлатмалар ҡалдырылыуы мөмкин.",
 'rev-suppressed-no-diff'      => "Һеҙ был версияляр араһындағы айырманы ҡарай алмайһығыҙ, сөнки уларҙың береһе '''юйылған'''.",
@@ -820,9 +820,9 @@ $3 белдергән сәбәп: ''$2''",
 'rev-deleted-diff-view'       => "Был сағыштырыу версияларының береһе '''юйылған'''.
 Һеҙ хәким булғанлыҡтан был сағыштырыуҙы ҡарай алаһығыҙ.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Юйыу яҙмаларында] аңлатмалар ҡалдырылыуы мөмкин.",
-'rev-suppressed-diff-view'    => "Был сағыштырыу версияларының береһе '''тыйылған'''.
+'rev-suppressed-diff-view'    => "Был сағыштырыу өлгөләренең береһе '''тыйылған'''.
 Һеҙ хәким булғанлыҡтан был сағыштырыуҙы ҡарай алаһығыҙ.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Тыйыу яҙмаларында] аңлатмалар ҡалдырылыуы мөмкин.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Тыйыу яҙмалары журналында] аңлатмалар ҡалдырылыуы мөмкин.",
 'rev-delundel'                => 'күрһәт/йәшер',
 'rev-showdeleted'             => 'күрһәтергә',
 'revisiondelete'              => 'Бит версияларын юйырға/тергеҙергә',
@@ -1236,6 +1236,7 @@ $1",
 'right-proxyunbannable'       => 'Прокси серверҙарҙы авто-блоклауҙы үтеп сығыу',
 'right-unblockself'           => 'Үҙҙәрен биктән (блоклауҙан) сығарыу',
 'right-protect'               => 'Биттәрҙең һаҡланыу дәрәжәһен үҙгәртеү һәм һаҡланған биттәрҙе мөхәррирләү',
+'right-editprotected'         => 'Һаҡланған биттәрҙе мөхәррирләү(эҙмә-эҙлекле һаҡлауһыҙ)',
 'right-editinterface'         => 'Ҡулланыусы интерфейсын үҙгәртеү',
 'right-editusercssjs'         => 'Башҡа ҡатнашыусыларҙың CSS һәм JS файлдарын мөхәррирләү',
 'right-editusercss'           => 'Башҡа ҡатнашыусыларҙың CSS файлдарын мөхәррирләү',
@@ -1245,6 +1246,9 @@ $1",
 'right-noratelimit'           => 'Тиҙлек сикләнмәгән',
 'right-import'                => 'Башҡа вики-проекттарҙан биттәрҙе күсереү',
 'right-importupload'          => 'Файл күсереү аша биттәрҙе тейәү',
+'right-patrol'                => 'Үҙгәртеүҙәрҙе тикшерелгән тип билдәләү',
+'right-autopatrol'            => 'Үҙгәртеүҙәр үҙҙәренән-үҙҙәре тикшерелгән тип билдәләнә',
+'right-patrolmarks'           => 'Һуңғы үҙгәртеүҙәрҙә тикшереү билдәләрен ҡарау',
 'right-unwatchedpages'        => 'Күҙәтелмәгән биттәр исемлеген ҡарау',
 'right-trackback'             => 'Trackback ебәреү',
 'right-mergehistory'          => 'Биттәр тарихын берләштереү',
@@ -1289,6 +1293,8 @@ $1",
 'action-protect'              => 'Был биттең һаҡланыу дәрәжәһен үҙгәртеү',
 'action-import'               => 'Был битте башҡа вики-проекттан күсереү',
 'action-importupload'         => 'Был битте файл күсереү аша тейәү',
+'action-patrol'               => 'Башҡаларҙың үҙгәртеүҙәрен тикшерелгән тип билдәләү',
+'action-autopatrol'           => 'Үҙ үҙгәртеүҙәрен тикшерелгән тип билдәләү',
 'action-unwatchedpages'       => 'Күҙәтелмәгән биттәр исемлеген ҡарау',
 'action-trackback'            => 'Trackback ебәреү',
 'action-mergehistory'         => 'Был биттең тарихын берләштереү',
@@ -1485,8 +1491,13 @@ $1',
 Һеҙҙең сервер был мәғлүмәтте ебәреү өсөн көйләнмәгән.
 Ул CGI нигеҙендә эшләй һәм img_auth ҡулланмай, булырға тейеш.
 Тулыраҡ мәғлүмәт: http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Һоралған юл көйләнгән тейәүҙәр директорияһына ҡарамай.',
+'img-auth-badtitle'     => '"$1" исеменән дөрөҫ исем төҙөп булмай.',
 'img-auth-nologinnWL'   => 'Һеҙ танылыу үтмәнегеҙ, "$1" аҡ исемлеккә кермәй.',
 'img-auth-nofile'       => '"$1" файлы юҡ.',
+'img-auth-isdir'        => 'Һеҙ "$1" директорияһына керергә тырышаһығыҙ.
+Файлдарҙы асырға ғына рөхсәт бар.',
+'img-auth-streaming'    => '"$1" файлын эҙмә-эҙлекле тапшырыу.',
 'img-auth-public'       => 'img_auth.php файлдарҙы ябыҡ викинан сығарыу өсөн тәғәйенләнгән.
 Был вики асыҡ тип көйләнгән.
 Хәүефһеҙлек маҡсаттарында img_auth.php һүндерелгән.',
@@ -1732,6 +1743,7 @@ $1',
 'nopagetext'              => 'Һеҙ күрһәткән бит юҡ.',
 'pager-newer-n'           => '{{PLURAL:$1|1 яңыраҡ|$1 яңыраҡ}}',
 'pager-older-n'           => '{{PLURAL:$1|1 иҫкерәк|$1 иҫкерәк}}',
+'suppress'                => 'Йәшереү',
 
 # Book sources
 'booksources'               => 'Китап сығанаҡтары',
@@ -2264,6 +2276,7 @@ $1 бикләнгән инде.
 'ipb_blocked_as_range'            => 'Хата: $1 IP адресы бикләнгән һәм туранан-тура биген алып булмай.
 Әммә ул $2 бикләү арауығына керә һәм был арауыҡтың биге алына ала.',
 'ip_range_invalid'                => 'IP адрестар арауығы дөрөҫ түгел.',
+'ip_range_toolarge'               => '/$1 арауығынан ҙурыраҡ адрестар арауығын бикләү рөхсәт ителмәй.',
 'blockme'                         => 'Мине биклә',
 'proxyblocker'                    => 'Проксины бикләү',
 'proxyblocker-disabled'           => 'Был мөмкинлек һүндерелгән.',
@@ -2296,6 +2309,8 @@ $1 бикләнгән инде.
 'lockdbsuccesstext'   => 'Мәғлүмәттәр базаһы бикләнде. <br />
 Хеҙмәтләндереү тамамланғас та [[Special:UnlockDB|бикте алырға]] онотмағыҙ.',
 'unlockdbsuccesstext' => 'Мәғлүмәттәр базаһының биге алынды.',
+'lockfilenotwritable' => 'Мәғлүмәттәр базаһын бикләү файлына яҙыуға рөхсәт юҡ.
+Мәғлүмәттәр базаһын бикләү һәм бикте алыу өсөн, веб-серверҙың был файлға яҙырға рөхсәте булырға тейеш.',
 'databasenotlocked'   => 'Мәғлүмәттәр базаһы бикләнмәгән.',
 
 # Move page
@@ -2339,6 +2354,8 @@ $1 бикләнгән инде.
 'talkexists'                   => "'''Бит исеме үҙгәртелде, ләкин фекер алышыу битенең исемен үҙгәртеп булмай, сөнки ундай исемле бит бар инде. Зинһар, уларҙы үҙегеҙ берләштерегеҙ.'''",
 'movedto'                      => 'яңы исеме',
 'movetalk'                     => 'Бәйле фекер алышыу бите исемен үҙгәртергә',
+'move-subpages'                => 'Биткә кергән биттәрҙе күсереү ($1 битенә тиклем)',
+'move-talk-subpages'           => 'Фекер алышыу битенә кергән биттәрҙе күсереү ($1 битенә тиклем)',
 'movepage-page-exists'         => '$1 бите бар инде һәм уның өҫтөнә автоматик рәүештә яҙҙырыу мөмкин түгел.',
 'movepage-page-moved'          => '$1 битенең исеме $2 тип үҙгәртелде.',
 'movepage-page-unmoved'        => '$1 битенең исеме $2 тип үҙгәртелә алмай.',
@@ -2348,6 +2365,9 @@ $1 бикләнгән инде.
 'move-redirect-suppressed'     => 'йүнәлтеү тыйылды',
 'movelogpage'                  => 'Исем үҙгәртеү яҙмалары',
 'movelogpagetext'              => 'Түбәндә — исемдәре үҙгәртелгән биттәр.',
+'movesubpage'                  => '{{PLURAL:$1|кергән бит}}',
+'movesubpagetext'              => 'Был биткә түбәндә килтерелгән $1 {{PLURAL:$1|бит}} кергән.',
+'movenosubpage'                => 'Был биткә бер бит тә кермәгән.',
 'movereason'                   => 'Сәбәп:',
 'revertmove'                   => 'кирегә',
 'delete_and_move'              => 'Юйырға һәм исемен үҙгәртергә',
@@ -2377,7 +2397,7 @@ $1 бикләнгән инде.
 
 # Export
 'export'            => 'Биттәрҙе сығарыу',
-'exporttext'        => 'Һеҙ кәрәкле биттең йәки биттәр йыйынтығының эстәлеген йәки үҙгәртеү тарихын  XML файлына сығара алаһығыҙ. Ул артабан MediaWiki нигеҙендә эшләгән башҡа вики проектҡа индерелә ала.
+'exporttext'        => 'Һеҙ кәрәкле биттең йәки биттәр йыйынтығының эстәлеген йәки үҙгәртеү тарихын  XML файлына сығара алаһығыҙ. Ул артабан MediaWiki нигеҙендә эшләгән башҡа вики проектҡа [[Special:Import|индерелә ала]].
 
 Биттәрҙе сығарыу өсөн, түбәндәге мөхәррирләү формаһына бер юлға бер бит исеме керетегеҙ һәм биттең хәҙерге өлгөһө менән бергә бөтә элекке өлгөләрҙе һәм үҙгәртеү тарихын сығарырға теләйһегеҙме, әллә хәҙерге өлгөһөн һәм һуңғы үҙгәртеү тураһында мәғлүмәтте сығарырға теләйһегеҙме икәнен һайлағыҙ.
 
@@ -2419,6 +2439,7 @@ $1 бикләнгән инде.
 'thumbnail_invalid_params' => 'Шартлы рәсем шарттары дөрөҫ түгел',
 'thumbnail_dest_directory' => 'Кәрәкле директорияны булдырып булмай',
 'thumbnail_image-type'     => 'Был рәсем төрө ҡулланылмай',
+'thumbnail_gd-library'     => 'GD йыйынтығының төҙөлөшө тулы түгел, $1 функцияһы юҡ',
 'thumbnail_image-missing'  => '$1 файлы юҡ, булырға тейеш',
 
 # Special:Import
@@ -2604,6 +2625,25 @@ latex, dvips, gs һәм convert дөрөҫ ҡуйылыуын тикшереге
 'math_bad_output'       => 'Математика директорияһы булдырып йәки директорияға яҙҙырып булмай',
 'math_notexvc'          => 'Башҡарыла торған texvc файлы юҡ. Көйләүҙәр буйынса белешмәне — math/README уҡығыҙ.',
 
+# Patrolling
+'markaspatrolleddiff'                 => 'Тикшерелгән, тип билдәләргә',
+'markaspatrolledtext'                 => 'Бил битте тикшерелгән, тип билдәләргә',
+'markedaspatrolled'                   => 'Тикшерелгән тип билдәнгән',
+'markedaspatrolledtext'               => '[[:$1]] битенең һайланған өлгөһө тикшерелгән тип билдәләнгән.',
+'rcpatroldisabled'                    => 'Һуңғы үҙгәртеүҙәрҙе тикшереү рөхсәт ителмәй',
+'rcpatroldisabledtext'                => 'Һуңғы үҙгәртеүҙәрҙе тикшереү мөмкинлеге әлеге ваҡытта һүндерелгән.',
+'markedaspatrollederror'              => 'Тикшерелгән тип билдәләп булмай',
+'markedaspatrollederrortext'          => 'Һеҙ тикшерелгән тип билдәләнәсәк биттең өлгөһөн күрһәтергә тейешһегеҙ.',
+'markedaspatrollederror-noautopatrol' => 'Һеҙгә үҙегеҙҙең үҙгәртеүҙәрегеҙҙе тикшерелгән тип билдәләргә рөхсәт ителмәй.',
+
+# Patrol log
+'patrol-log-page'      => 'Тикшереү яҙмалары журналы',
+'patrol-log-header'    => 'Был — тикшерелгән өлгөләр яҙмалары журналы.',
+'patrol-log-line'      => '$2 битенең $1 тикшерелгән тип билдәләгән $3',
+'patrol-log-auto'      => '(автоматик рәүештә)',
+'patrol-log-diff'      => '$1 өлгөһөн',
+'log-show-hide-patrol' => 'тикшереү яҙмалары журналын $1',
+
 # Image deletion
 'deletedrevision'                 => 'Иҫке $1 өлгөһө юйылды',
 'filedeleteerror-short'           => 'Файлды юйыу хатаһы: $1',
@@ -2716,10 +2756,10 @@ $1',
 'exif-subsectime'                  => 'Файл үҙгәреү ваҡытының секунд бүлкәттәре',
 'exif-subsectimeoriginal'          => 'Төп ваҡыттың секунд бүлкәттәре',
 'exif-subsectimedigitized'         => 'Һанлаштырыу ваҡытының секунд бүлкәттәре',
-'exif-exposuretime'                => 'Ҡуйылыу ваҡыты',
+'exif-exposuretime'                => 'Экспозиция ваҡыты',
 'exif-exposuretime-format'         => '$1 сек. ($2)',
 'exif-fnumber'                     => 'Диафрагма һаны',
-'exif-exposureprogram'             => 'Экспозиция программаһы',
+'exif-exposureprogram'             => 'Экспозиция режимы',
 'exif-spectralsensitivity'         => 'Спектраль һиҙгерлек',
 'exif-isospeedratings'             => 'ISO буйынса яҡтыға һиҙгерлек',
 'exif-oecf'                        => 'Оптоэлектрик үҙгәртеү коэффициенты',
@@ -2810,16 +2850,128 @@ $1',
 'exif-componentsconfiguration-0' => 'юҡ',
 
 'exif-exposureprogram-0' => 'Билдәһеҙ',
-'exif-exposureprogram-1' => 'Ҡул менән',
-'exif-exposureprogram-2' => 'Программа ярҙамында (ғәҙәти)',
+'exif-exposureprogram-1' => 'Ҡул режимы',
+'exif-exposureprogram-2' => 'Программа режимы (ғәҙәти)',
 'exif-exposureprogram-3' => 'Диафрагма өҫтөнлөгө',
 'exif-exposureprogram-4' => 'Затвор тиҙлеге өҫтөнлөгө',
-'exif-exposureprogram-5' => 'Ижад программаһы (кәрәкле киҫкенлек тәрәнлеге нигеҙендә)',
+'exif-exposureprogram-5' => 'Ижад режимы (кәрәкле киҫкенлек тәрәнлеге нигеҙендә)',
+'exif-exposureprogram-6' => 'Спорт режимы (юғары затвор тиҙлеге нигеҙендә)',
+'exif-exposureprogram-7' => 'Портрет режимы (яҡындан төшөрөү өсөн, артҡы фон фокуста түгел)',
+'exif-exposureprogram-8' => 'Пейзаж режимы (пейзаждарҙы төшөрөү өсөн, артҡы фон фокуста)',
+
+'exif-subjectdistance-value' => '$1 метр',
 
 'exif-meteringmode-0'   => 'Билдәһеҙ',
+'exif-meteringmode-1'   => 'Уртаса',
+'exif-meteringmode-2'   => 'Үҙәге әһәмиәтле',
+'exif-meteringmode-3'   => 'Нөктәле',
+'exif-meteringmode-4'   => 'Күп нөктәле',
+'exif-meteringmode-5'   => 'Ҡалып нигеҙендә',
+'exif-meteringmode-6'   => 'Өлөшләтә',
 'exif-meteringmode-255' => 'Икенсе',
 
+'exif-lightsource-0'   => 'Билдәһеҙ',
+'exif-lightsource-1'   => 'Көн яҡтылығы',
+'exif-lightsource-2'   => 'Көн яҡтылығы лампаһы',
+'exif-lightsource-3'   => 'Ҡыҙҙырыу лампаһы',
+'exif-lightsource-4'   => 'Балҡыш (вспышка)',
+'exif-lightsource-9'   => 'Асыҡ көн торошо',
+'exif-lightsource-10'  => 'Болотло көн торошо',
+'exif-lightsource-11'  => 'Күләгә',
+'exif-lightsource-12'  => 'Көн яҡтылығы лампаһы (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Көн яҡтылығы лампаһы (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Көн яҡтылығы лампаһы (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Көн яҡтылығы лампаһы (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'A ғәҙәти яҡтылыҡ сығанағы',
+'exif-lightsource-18'  => 'B ғәҙәти яҡтылыҡ сығанағы',
+'exif-lightsource-19'  => 'C ғәҙәти яҡтылыҡ сығанағы',
+'exif-lightsource-24'  => 'ISO студия лампаһы',
+'exif-lightsource-255' => 'Башҡа яҡтылыҡ сығанағы',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Балҡыш (вспышка) эшләмәне',
+'exif-flash-fired-1'    => 'Балҡыш (вспышка) эшләмәне',
+'exif-flash-return-0'   => 'алдан балҡыш режимы юҡ',
+'exif-flash-return-2'   => 'алдан балҡыштан сағылған яҡтылыҡ булманы',
+'exif-flash-return-3'   => 'алдан балҡыштан сағылған яҡтылыҡ булды',
+'exif-flash-mode-1'     => 'мәжбүри балҡыш импульсы',
+'exif-flash-mode-2'     => 'мәжбүри балҡышты баҫтырыу',
+'exif-flash-mode-3'     => 'автоматик режим',
+'exif-flash-function-1' => 'Балҡыш юҡ',
+'exif-flash-redeye-1'   => 'ҡыҙыл күҙҙәр тәҫьирен юҡ итеү режимы',
+
+'exif-focalplaneresolutionunit-2' => 'дюйм',
+
+'exif-sensingmethod-1' => 'Билдәһеҙ',
+'exif-sensingmethod-2' => 'Бер кристаллы төҫлө матрицалы сенсор',
+'exif-sensingmethod-3' => 'Ике кристаллы төҫлө матрицалы сенсор',
+'exif-sensingmethod-4' => 'Өс кристаллы төҫлө матрицалы сенсор',
+'exif-sensingmethod-5' => 'Эҙмә-эҙлекле төҫлө матрицалы сенсор',
+'exif-sensingmethod-7' => 'Өс төҫлө һыҙма сенсор',
+'exif-sensingmethod-8' => 'Эҙмә-эҙлекле төҫлө һыҙма сенсор',
+
+'exif-scenetype-1' => 'Туранан-тура төшөрөлгән һүрәт',
+
+'exif-customrendered-0' => 'Ғәҙәти',
+'exif-customrendered-1' => 'Өҫтәмә эшкәртелгән',
+
+'exif-exposuremode-0' => 'Автоматик экспозиция',
+'exif-exposuremode-1' => 'Ҡул менән көйләнгән экспозиция',
+'exif-exposuremode-2' => 'Автоматик тотҡос',
+
+'exif-whitebalance-0' => 'Автоматик аҡ төҫ тигеҙләнеше',
+'exif-whitebalance-1' => 'Ҡул менән көйләнгән аҡ төҫ тигеҙләнеше',
+
+'exif-scenecapturetype-0' => 'Ғәҙәти',
+'exif-scenecapturetype-1' => 'Тәбиғәт күренеше',
+'exif-scenecapturetype-2' => 'Портрет',
+'exif-scenecapturetype-3' => 'Төнгө сәхнә',
+
 'exif-gaincontrol-0' => 'Юҡ',
+'exif-gaincontrol-1' => 'Аҙға ҙурайтыу',
+'exif-gaincontrol-2' => 'Күпкә ҙурайтыу',
+'exif-gaincontrol-3' => 'Аҙға кәметеү',
+'exif-gaincontrol-4' => 'Күпкә кәметеү',
+
+'exif-contrast-0' => 'Ғәҙәти',
+'exif-contrast-1' => 'Йомшаҡ',
+'exif-contrast-2' => 'Ныҡ',
+
+'exif-saturation-0' => 'Ғәҙәти',
+'exif-saturation-1' => 'Түбән ҡуйылыҡ',
+'exif-saturation-2' => 'Юғары ҡуйылыҡ',
+
+'exif-sharpness-0' => 'Ғәҙәти',
+'exif-sharpness-1' => 'Йомшаҡ',
+'exif-sharpness-2' => 'Ныҡ',
+
+'exif-subjectdistancerange-0' => 'Билдәһеҙ',
+'exif-subjectdistancerange-1' => 'Макро',
+'exif-subjectdistancerange-2' => 'Яҡындан төшөрөү',
+'exif-subjectdistancerange-3' => 'Йыраҡтан төшөрөү',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Төньяҡ киңлек',
+'exif-gpslatitude-s' => 'Көньяҡ киңлек',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Көнсығыш оҙонлоҡ',
+'exif-gpslongitude-w' => 'Көнбайыш оҙонлоҡ',
+
+'exif-gpsstatus-a' => 'Үлсәү бара',
+'exif-gpsstatus-v' => 'Үлсәү мәғлүмәттәре тапшырыла ала',
+
+'exif-gpsmeasuremode-2' => '2 күсәр буйынса үлсәү',
+'exif-gpsmeasuremode-3' => '3 күсәр буйынса үлсәү',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'км/сәғ',
+'exif-gpsspeed-m' => 'миль/сәғ',
+'exif-gpsspeed-n' => 'Узел',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Ысын йүнәлеш',
+'exif-gpsdirection-m' => 'Магнитлы йүнәлеш',
 
 # External editor support
 'edit-externally'      => 'Был файлды тышҡы программа ҡулланып мөхәррирләргә',
@@ -2833,11 +2985,82 @@ $1',
 'monthsall'        => 'бөтә',
 'limitall'         => 'бөтә',
 
+# E-mail address confirmation
+'confirmemail'              => 'Электрон почта адресын раҫлау',
+'confirmemail_noemail'      => 'Һеҙҙең [[Special:Preferences|көйләүҙәрегеҙҙә]] дөрөҫ электрон почта адресы юҡ.',
+'confirmemail_text'         => '{{SITENAME}} проекты электрон почта мөмкинлектәрен ҡулланыр алдынан электрон почта адресының раҫланыуын талап итә.
+Электрон адресты раҫлау хаты һеҙҙең почтағыҙға ебәрелһен өсөн, түбәндәге төймәгә баҫығыҙ.
+Хатта махсус биткә һылтанма буласаҡ, был һылтанманы браузерығыҙҙа асҡандан һуң, һеҙҙең электрон почта адресығыҙ раҫланған, тип һаналасаҡ.',
+'confirmemail_pending'      => 'Электрон почта адресын раҫлау хаты һеҙгә ебәрелгән ине инде.
+Әгәр һеҙ иҫәп яҙмаһын яңыраҡ булдырһағыҙ, һеҙгә был хатты яңынан һорар алдынан, хат килгәнсе, бер нисә минут көтөргә кәрәк.',
+'confirmemail_send'         => 'Электрон почта адресын раҫлау хатын ебәрергә',
+'confirmemail_sent'         => 'Электрон почта адресын раҫлау хаты ебәрелде.',
+'confirmemail_oncreate'     => 'Электрон почта адресын раҫлау хаты һеҙ күрһәткән адрес буйынса ебәрелде.
+Хатта күрһәтелгән һылтанма системала танылыу талап итмәй, ләкин элетрон почта мөмкинлектәрен вики проектта ҡулланыр өсөн, һеҙгә танылырға кәрәк.',
+'confirmemail_sendfailed'   => '{{SITENAME}} электрон почта адресын раҫлау хатын ебәрә алмай.
+Зинһар, адресығыҙҙың дөрөҫлөгөн тикшерегеҙ.
+Почта хеҙмәтенең яуабы: $1',
+'confirmemail_invalid'      => 'Раҫлау коды дөрөҫ түгел йәки уның ҡүлланыу ваҡыты үткән.',
+'confirmemail_needlogin'    => 'Электрон почта адресын раҫлау өсөн $1 кәрәк.',
+'confirmemail_success'      => 'Һеҙҙең электрон почта адресығыҙ раҫланды.
+Хәҙер һеҙ [[Special:UserLogin|танылыу үтеп]], вики проект менән ҡуллана алаһығыҙ.',
+'confirmemail_loggedin'     => 'Һеҙҙең электрон почта адресығыҙ раҫланды.',
+'confirmemail_error'        => 'Электрон почта адресын раҫлаған ваҡытта хата килеп сыҡты.',
+'confirmemail_subject'      => '{{SITENAME}} электрон почта адресын раҫлау',
+'confirmemail_body'         => 'Кемдер, бәлки һеҙҙер, $1 IP адресынан 
+{{SITENAME}}  проектында ошо электрон почта адресы менән "$2" иҫәп яҙмаһын теркәгән.
+
+Был иҫәп яҙмаһы ысынлап та һеҙҙеке икәнен раҫлау өсөн һәм
+{{SITENAME}} проектында элетрон почта мөмкинлектәрен тоҡандырыу өсөн, браузерығыҙҙа түбәндәге һылтанманы асығыҙ:
+
+$3
+
+Әгәр һеҙ иҫәп яҙмаһын *булдырмағанһығыҙ* икән,
+электрон почта адресын раҫлауҙы үтҡәрмәү өсөн т үбәндәге һылтанманы асығыҙ:
+
+$5
+
+Был раҫлау коды $4 ғәмәлдән сыға.',
+'confirmemail_body_changed' => 'Кемдер, бәлки һеҙҙер, $1 IP адресынан 
+{{SITENAME}}  проектында "$2" иҫәп яҙмаһының электрон почта адресын ошо адресҡа үҙгәрткән.
+
+Был иҫәп яҙмаһы ысынлап та һеҙҙеке икәнен раҫлау өсөн һәм
+{{SITENAME}} проектында элетрон почта мөмкинлектәрен яңынан тоҡандырыу өсөн, браузерығыҙҙа түбәндәге һылтанманы асығыҙ:
+
+$3
+
+Әгәр һеҙ иҫәп яҙмаһын *булдырмағанһығыҙ* икән,
+электрон почта адресын раҫлауҙы үтҡәрмәү өсөн т үбәндәге һылтанманы асығыҙ:
+
+$5
+
+Был раҫлау коды $4 ғәмәлдән сыға.',
+'confirmemail_invalidated'  => 'Электрон почта адресын раҫлау туҡтатылды',
+'invalidateemail'           => 'Электрон почта адресын раҫлауҙы туҡтатыу',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Интервики индереү мөмкинлеге һүндерелгән]',
+'scarytranscludefailed'   => '[$1 ҡалыбына мөрәжәғәт итеү хатаһы]',
+'scarytranscludetoolong'  => '[URL адрес бигерәк оҙон]',
+
+# Trackbacks
+'trackbackbox'      => 'Был мәҡәлә өсөн Trackback:<br />
+$1',
+'trackbackremove'   => '([$1 Юйырға])',
+'trackbacklink'     => 'Trackback',
+'trackbackdeleteok' => 'Trackback уңышлы юйылды.',
+
 # Delete conflict
-'recreate' => 'Яңынан булдырыу',
+'deletedwhileediting' => "'''Иғтибар''': Был бит һеҙ мөхәррирләй башлар алдынан юйылған ине!",
+'confirmrecreate'     => "[[User:$1|$1]] ([[User talk:$1|фекер алышыу]]) был битте һеҙ мөхәррирләй башлағандан һуң юйған, сәбәбе:
+: ''$2''
+Зинһар, был битте ысынлап та яңынан булдырырға теләүегеҙҙе раҫлағыҙ.",
+'recreate'            => 'Яңынан булдырырға',
 
 # action=purge
 'confirm_purge_button' => 'Тамам',
+'confirm-purge-top'    => 'Был биттең кэшын таҙартырғамы?',
+'confirm-purge-bottom' => 'Биттең кэшы таҙартылғандан һун, уның һуңғы өлгөһө күрһәтеләсәк.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← алдағы бит',
@@ -2846,11 +3069,34 @@ $1',
 'imgmultigoto'     => '$1 биткә күсеү',
 
 # Table pager
+'ascending_abbrev'         => 'үҫеүгә табан',
+'descending_abbrev'        => 'кәмеүгә табан',
 'table_pager_next'         => 'Киләһе бит',
 'table_pager_prev'         => 'Алдағы бит',
 'table_pager_first'        => 'Беренсе бит',
 'table_pager_last'         => 'Һуңғы бит',
+'table_pager_limit'        => 'Бер биткә $1 есем күрһәтергә',
+'table_pager_limit_label'  => 'Бер биттә есемдәр һаны:',
 'table_pager_limit_submit' => 'Күсеү',
+'table_pager_empty'        => 'Табылманы',
+
+# Auto-summaries
+'autosumm-blank'   => 'Биттең эстәлеге юйылған',
+'autosumm-replace' => 'Биттең эстәлеге "$1" менән алыштырылған',
+'autoredircomment' => '[[$1]] битенә йүнәлтелгән',
+'autosumm-new'     => '"$1" исемле яңы бит булдырылған',
+
+# Live preview
+'livepreview-loading' => 'Сығарыу...',
+'livepreview-ready'   => 'Сығарыу... Әҙер!',
+'livepreview-failed'  => 'Тиҙ ҡарап сығыу ваҡытында хата килеп сыҡты.
+Ғәҙәти ҡарап сығыуҙы ҡулланып ҡарағыҙ.',
+'livepreview-error'   => 'Бәйләнеш булдырып булманы: $1 "$2".
+Ғәҙәти ҡарап сығыуҙы ҡулланып ҡарағыҙ.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 {{PLURAL:$1|секундтан}} кәмерәк ваҡыт элек эшләнгән үҙгәртеүҙәр был исемлектә күрһәтелә алмай.',
+'lag-warn-high'   => 'Мәғлүмәттәр базаларын синхронлаштырыуҙың күпкә артта ҡалыуы сәбәпле, $1 {{PLURAL:$1|секундтан}} кәмерәк ваҡыт элек эшләнгән үҙгәртеүҙәр был исемлектә күрһәтелә алмай.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Һеҙҙең күҙәтеү исемлегегеҙҙә фекер алышыу биттәрен иҫәпләмәгәндә - {{PLURAL:$1|$1 бит|$1 бит}} бар.',
@@ -2878,40 +3124,137 @@ $1',
 'watchlisttools-edit' => 'Күҙәтеү исемлеген ҡарарға/төҙәтергә',
 'watchlisttools-raw'  => 'Текст һымаҡ үҙгәртеү',
 
+# Core parser functions
+'unknown_extension_tag' => 'Билдәһеҙ "$1" киңәйтеү тегы',
+'duplicate-defaultsort' => '\'\'\'Иҫкәртеү:\'\'\' "$2" ғәҙәттәге тәпртипкә килтереү асҡысы элекке "$1" ғәҙәттәге тәртипкә килтереү асҡысын үҙгәртә.',
+
 # Special:Version
-'version-specialpages'     => 'Махсус биттәр',
-'version-other'            => 'Башҡалар',
-'version-software-version' => 'Версия',
+'version'                          => 'MediaWiki өлгөһө',
+'version-extensions'               => 'Ҡуйылған киңәйтеүҙәр',
+'version-specialpages'             => 'Махсус биттәр',
+'version-parserhooks'              => 'Уҡыу ҡоралдары',
+'version-variables'                => 'Үҙгәреүсән дәүмәлдәр',
+'version-other'                    => 'Башҡалар',
+'version-mediahandlers'            => 'Медия эшкәртеүсе ҡоралдар',
+'version-hooks'                    => 'Эләктереп алыусылар',
+'version-extension-functions'      => 'Киңәйтеү функциялары',
+'version-parser-extensiontags'     => 'Уҡыу ҡоралдары киңәйтеүҙәре тегтары',
+'version-parser-function-hooks'    => 'Уҡыу ҡоралдары функцияларын эләктереп алыусылар',
+'version-skin-extension-functions' => 'Күренеш киңәйтеүҙәре функциялары',
+'version-hook-name'                => 'Эләктереп алыусы исеме',
+'version-hook-subscribedby'        => 'Яҙҙырылған',
+'version-version'                  => '($1 өлгөһө)',
+'version-license'                  => 'Лицензиялау',
+'version-poweredby-credits'        => "Был вики проект '''[http://www.mediawiki.org/ MediaWiki]''' нигеҙендә эшләй, copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'башҡалар',
+'version-license-info'             => 'MediaWiki — ирекле программа, һеҙ уны Ирекле программалар фонды тарафынан баҫтырылған GNU General Public License лицензияһына ярашлы тарата һәм/йәки үҙгәртә алаһығыҙ (лицензияның йә исенсе өлгөһө, йә унан һуңғы өлгөләре).
+
+MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР НИДӘЙ ҘӘ ЯУАПЛЫЛЫҠ ЙӨКЛӘМӘҺЕҘ, хатта фараз ителгән ҺАТЫУ ӨСӨН ЯРАҠЛЫЛЫҠ йәки БИЛДӘЛӘНГӘН МАҠСАТ ӨСӨН ЯРАҠЛЫТЫҠ тураһында яуаплылыҡ йөкләмәһеҙ таратыла. Ентекле мәғлүмәт алыр өсөн, GNU General Public License лицензияһы тураһында уҡығыҙ.
+
+Был программа менән ҡуша һеҙ [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License лицензияһының күсермәһен] алырға тейеш инегеҙ, әгәр юҡ икән, Ирекле программалар фондына 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA адресы буйынса яҙығыҙ, йәки лицензияның [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html онлайн өлгөһөн] уҡығыҙ.',
+'version-software'                 => 'Ҡуйылған программалар',
+'version-software-product'         => 'Продукт',
+'version-software-version'         => 'Өлгөһө',
 
 # Special:FilePath
-'filepath'        => 'Файлға юл',
-'filepath-page'   => 'Файл:',
-'filepath-submit' => 'Күсеү',
+'filepath'         => 'Файлға юл',
+'filepath-page'    => 'Файл:',
+'filepath-submit'  => 'Күсеү',
+'filepath-summary' => 'Был махсус бит файлдың тулы юлын ҡайтара.
+Рәсемдәр тулы асыҡлыҡта күрһәтелә, башҡа файлдар билдәләнгән программалары аша турана-тура асыла.
+
+Файлдың исемен "{{ns:file}}:" ҡушылмаһын өҫтәмәйенсә керетегеҙ.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Бер төрлө файлдарҙы эҙләргә',
+'fileduplicatesearch'          => 'Бер иш файлдарҙы эҙләү',
+'fileduplicatesearch-summary'  => 'Бер иш файлдарҙы хэш-кодтары буйынса эҙләү.
+
+Файлдың исемен "{{ns:file}}:" ҡушылмаһын өҫтәмәйенсә керетегеҙ.',
+'fileduplicatesearch-legend'   => 'Бер иш файлдарҙы эҙләү',
 'fileduplicatesearch-filename' => 'Файл исеме:',
 'fileduplicatesearch-submit'   => 'Эҙләү',
+'fileduplicatesearch-info'     => '$1 × $2 пиксел<br />Файлдың дәүмәле: $3<br />MIME төрө: $4',
+'fileduplicatesearch-result-1' => '"$1" файлы менән тап килеүсе файлдар юҡ.',
+'fileduplicatesearch-result-n' => '"$1" файлы менән $2 {{PLURAL:$2|файл}} тап килә.',
 
 # Special:SpecialPages
-'specialpages'               => 'Махсус биттәр',
-'specialpages-note'          => '----
+'specialpages'                   => 'Махсус биттәр',
+'specialpages-note'              => '----
 * Ябай махсус биттәр.
 * <strong class="mw-specialpagerestricted">Сикләнгән махсус биттәр.</strong>',
-'specialpages-group-other'   => 'Башҡа махсус биттәр',
-'specialpages-group-login'   => 'Танышыу йәки теркәлеү',
-'specialpages-group-users'   => 'Ҡатнашыусылар һәм хоҡуҡтар',
-'specialpages-group-highuse' => 'Йыш ҡулланылған биттәр',
+'specialpages-group-maintenance' => 'Техник хеҙмәтләндереү хисапламалары',
+'specialpages-group-other'       => 'Башҡа махсус биттәр',
+'specialpages-group-login'       => 'Танышыу йәки теркәлеү',
+'specialpages-group-changes'     => 'Һуңғы үҙгәртеүҙәр һәм журналдар',
+'specialpages-group-media'       => 'Медиа хисапламалары һәм тейәүҙәр',
+'specialpages-group-users'       => 'Ҡатнашыусылар һәм хоҡуҡтар',
+'specialpages-group-highuse'     => 'Йыш ҡулланылған биттәр',
+'specialpages-group-pages'       => 'Биттәр исемлеге',
+'specialpages-group-pagetools'   => 'Биттәр өсөн ҡоралдар',
+'specialpages-group-wiki'        => 'Вики мәғлүмәт һәм ҡоралдар',
+'specialpages-group-redirects'   => 'Йүнәлтеүсе махсус биттәр',
+'specialpages-group-spam'        => 'Спамға ҡаршы ҡоралдар',
 
 # Special:BlankPage
-'blankpage' => 'Буш бит',
+'blankpage'              => 'Буш бит',
+'intentionallyblankpage' => 'Был бит аңлы рәүештә буш ҡалдырылған.',
+
+# External image whitelist
+'external_image_whitelist' => '#Был юлды нисек бар, шудай ҡалдырығыҙ<pre>
+#Бында регуляр аңлатма өлөштәрен ҡуйығыҙ(// араһында булған өлөштәрен)
+#Улар тышҡы рәсемдәрҙең URL адрестары менән сағыштырыласаҡ.
+#Яраҡлылары рәсем рәүешендә күрһәтеләсәк, ҡалғандары рәсемгә һылтанма рәүешендә күрһәтеләсәк.
+# # менән башланған юлдар иҫкәрмә тип иҫәпләнә.
+#Юлдар регистрға һиҙгер 
+
+# Регуляр аңлатма өлөштәрен ошо юл өҫтөнә ҡуйығыҙ. Был юлды нисек бар, шудай ҡалдырығыҙ.</pre>',
 
 # Special:Tags
-'tags-title' => 'Билдәләр',
-'tags-tag'   => 'Билдә исеме',
-'tags-edit'  => 'үҙгәртергә',
+'tags'                    => 'Ҡулланылған үҙгәртеү билдәләре',
+'tag-filter'              => '[[Special:Tags|Билдәләрҙе]] һайлау:',
+'tag-filter-submit'       => 'Һайлау',
+'tags-title'              => 'Билдәләр',
+'tags-intro'              => 'Был биттә программа үҙгәртеүҙәрҙе билдәләү өсөн ҡулланған билдәләр һәм уларҙың мәғәнәләре исемлеге килтерелгән.',
+'tags-tag'                => 'Билдә исеме',
+'tags-display-header'     => 'Үҙгәртеүҙәр исемлегендә күрһәтеү',
+'tags-description-header' => 'Мәғәнәһенең тулы тасуирламаһы',
+'tags-hitcount-header'    => 'Билдәләнгән үҙгәртеүҙәр',
+'tags-edit'               => 'үҙгәртергә',
+'tags-hitcount'           => '$1 {{PLURAL:$1|үҙгәртеү|үҙгәртеү}}',
+
+# Special:ComparePages
+'comparepages'     => 'Биттәрҙе сағыштырыу',
+'compare-selector' => 'Биттәрҙең өлгөләрен сағыштырыу',
+'compare-page1'    => 'Беренсе бит',
+'compare-page2'    => 'Икенсе бит',
+'compare-rev1'     => 'Беренсе өлгө',
+'compare-rev2'     => 'Икенсе өлгө',
+'compare-submit'   => 'Сағыштырырға',
+
+# Database error messages
+'dberr-header'      => 'Был вики проектта ҡыйынлыҡтар бар',
+'dberr-problems'    => 'Ғәфү итегеҙ!
+Был сайтта техник ҡыйынлыҡтар тыуҙы.',
+'dberr-again'       => 'Битте бер нисә минуттан яңыртып ҡарағыҙ.',
+'dberr-info'        => '(Мәғлүмәттәр базаһы серверы менән тоташтырылып булмай: $1)',
+'dberr-usegoogle'   => 'Әлегә һеҙ Google ярҙамында эҙләп ҡарай алһығыҙ.',
+'dberr-outofdate'   => 'Әммә уның индекстары иҫекргән булыуы мөмкинлеген күҙ уңында тотоғоҙ.',
+'dberr-cachederror' => 'Түбәндә һоралған биттең кэшта һаҡланған өлгөһө күрһәтелгән, унда аҙаҡҡы үҙгәртеүҙәр булмауы мөмкин.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Һеҙ кереткән мәғлүмәттең ниндәйҙер өлөшө ҡыйынлыҡтар тыуҙыра',
+'htmlform-select-badoption'    => 'Һеҙ керетҡән мәғәнә дөрөҫ түгел',
+'htmlform-int-invalid'         => 'Һеҙ бөтөн һан керетмәгәнһегеҙ.',
+'htmlform-float-invalid'       => 'Һеҙ һан керетмәгәнһегеҙ.',
+'htmlform-int-toolow'          => 'Һеҙ кереткән мәғәнә аҫҡы сиктән түбәнерәк — $1',
+'htmlform-int-toohigh'         => 'Һеҙ кереткән мәғәнә өҫкө сиктән юғарыраҡ — $1',
+'htmlform-required'            => 'Был мәғәнә билдәләнгән булырға тейеш',
+'htmlform-submit'              => 'Ебәрергә',
+'htmlform-reset'               => 'Үҙгәртеүҙәрҙе кире алырға',
 'htmlform-selectorother-other' => 'Башҡа',
+
+# SQLite database support
+'sqlite-has-fts' => '$1, тулы текст буйынса эҙләү мөмкинлеге менән',
+'sqlite-no-fts'  => '$1, тулы текст буйынса эҙләү мөмкинлекһеҙ',
 
 );

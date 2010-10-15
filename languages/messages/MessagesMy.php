@@ -342,7 +342,7 @@ $messages = array(
 # Edit pages
 'summary'                          => 'အ​ကျဉ်း​ချုပ်​ -',
 'subject'                          => 'အကြောင်းအရာ/ခေါင်းကြီးပိုင်း -',
-'minoredit'                        => 'သာ​မန် ​ပြင်​ဆင်​မှု ​ဖြစ်​သည်​',
+'minoredit'                        => 'အရေးမကြီးသော ​ပြင်​ဆင်​မှု ​ဖြစ်​သည်​',
 'watchthis'                        => 'ဤစာမျက်နှာကို စောင့်ကြည့်ရန်',
 'savearticle'                      => 'ဤစာမျက်နှာကို သိမ်းရန်',
 'preview'                          => 'နမူနာ',
@@ -520,7 +520,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'action-createpage'    => 'စာမျက်နှာများ စတင်ရေးသားရန်',
 'action-createtalk'    => 'ဆွေးနွေးချက်စာမျက်နှာများ စတင်ရေးသားရန်',
 'action-createaccount' => 'ဤအသုံးပြုသူအကောင့်ကို ဖန်တီးရန်',
-'action-minoredit'     => 'ဤတည်းြဖတ်မှုကို အရေးမကြီးဟု မှတ်သားရန်',
+'action-minoredit'     => 'ဤတည်းဖြတ်မှုကို အရေးမကြီးဟု မှတ်သားရန်',
 'action-move'          => 'ဤစာမျက်နှာကို ရွှေ့ပြောင်းရန်',
 
 # Recent changes
@@ -542,7 +542,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'hist'                           => 'မှတ်တမ်း',
 'hide'                           => 'ဝှက်',
 'show'                           => 'ပြ',
-'minoreditletter'                => 'အသေး',
+'minoreditletter'                => 'အရေးမကြီး',
 'newpageletter'                  => 'အသစ်',
 'boteditletter'                  => 'ဘော့',
 'rc-enhanced-expand'             => 'အသေးစိတ် ပြရန် (JavaScript လိုအပ်သည်)',

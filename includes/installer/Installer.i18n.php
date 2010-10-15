@@ -4316,6 +4316,23 @@ $messages['ig'] = array(
 	'config-admin-password-confirm' => 'Okwúngáfè mgbe ozor:',
 );
 
+/** Italian (Italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'config-information' => 'Informazioni',
+	'config-show-help' => 'Aiuto',
+	'config-back' => '← Indietro',
+	'config-continue' => 'Continua →',
+	'config-page-language' => 'Lingua',
+	'config-page-name' => 'Nome',
+	'config-page-options' => 'Opzioni',
+	'config-page-install' => 'Installa',
+	'config-page-complete' => 'Completa!',
+	'config-page-readme' => 'Leggimi',
+	'config-page-releasenotes' => 'Note di versione',
+);
+
 /** Japanese (日本語)
  * @author Aphaia
  * @author Whym
