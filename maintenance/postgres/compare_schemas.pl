@@ -273,7 +273,7 @@ rc_log_type     varbinary(255) TEXT
 ## Simple text-only strings:
 ar_flags          tinyblob       TEXT
 cl_collation      varbinary(32)  TEXT
-cl_sortkey        varbinary(255) TEXT
+cl_sortkey        varbinary(230) TEXT
 ct_params         blob           TEXT
 fa_minor_mime     varbinary(100) TEXT
 fa_storage_group  varbinary(16)  TEXT # Just 'deleted' for now, should stay plain text
