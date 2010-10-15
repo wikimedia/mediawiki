@@ -49,7 +49,7 @@ class CoreTagHooks {
 
 	static function math( $content, $attributes, $parser ) {
 		global $wgContLang;
-		return $wgContLang->armourMath( MathRenderer::renderMath( $content, $attributes, $parser->mOptions ) );
+		return $wgContLang->armourMath( MathRenderer::renderMath( $content, $attributes, $parser->getOptions() ) );
 	}
 
 	static function gallery( $content, $attributes, $parser ) {
