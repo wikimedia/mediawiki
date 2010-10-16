@@ -279,6 +279,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 		'messages' => array( 'message1', 'message2' ... ),
 	 * 		'group' => 'stuff',
 	 * 	)
+	 *
+	 * @param $basePath String: base path to prepend to all paths in $options
 	 */
 	public function __construct( $options = array(), $basePath = null ) {
 		foreach ( $options as $option => $value ) {
@@ -692,7 +694,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Get the contents of a set of CSS files, remap then and concatenate
 	 * them, with newlines in between. Each file is used only once.
 	 *
-	 * @param $files Array of file names
+	 * @param $styles Array of file names
 	 * @return Array: list of concatenated and remapped contents of $files keyed by media type
 	 */
 	protected static function concatStyles( $styles ) {
@@ -918,7 +920,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * Fetch the context's user options, or if it doesn't match current user,
 	 * the default options.
 	 * 
-	 * @param ResourceLoaderContext $context
+	 * @param $context ResourceLoaderContext
 	 * @return array
 	 */
 	protected function contextUserOptions( ResourceLoaderContext $context ) {
