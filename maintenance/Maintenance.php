@@ -351,6 +351,7 @@ abstract class Maintenance {
 		$this->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
 		$this->addOption( 'wiki', 'For specifying the wiki ID', false, true );
 		$this->addOption( 'globals', 'Output globals at the end of processing for debugging' );
+		$this->addOption( 'memory-limit', 'Set a specific memory limit for the script' );
 		// If we support a DB, show the options
 		if ( $this->getDbType() > 0 ) {
 			$this->addOption( 'dbuser', 'The DB user to use for this script', false, true );
@@ -461,10 +462,13 @@ abstract class Maintenance {
 	/**
 	 * Normally we disable the memory_limit when running admin scripts.
 	 * Some scripts may wish to actually set a limit, however, to avoid
-	 * blowing up unexpectedly.
+	 * blowing up unexpectedly. We also support a --memory-limit option,
+	 * to allow sysadmins to explicitly set one if they'd prefer to override
+	 * defaults (or for people using Suhosin which yells at you for trying
+	 * to disable the limits)
 	 */
 	public function memoryLimit() {
-		return -1;
+		return $this->getOption( 'memory-limit', -1 );
 	}
 
 	/**
