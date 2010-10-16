@@ -383,6 +383,21 @@ abstract class Installer {
 	}
 
 	/**
+	 * Get an array of likely places we can find executables. Check a bunch
+	 * of known Unix-like defaults, as well as the PATH environment variable
+	 * (which should maybe make it work for Windows?)
+	 *
+	 * @return Array
+	 */
+	protected function getPossibleBinPaths() {
+		return array_merge(
+			array( '/usr/bin', '/usr/local/bin', '/opt/csw/bin',
+				'/usr/gnu/bin', '/usr/sfw/bin', '/sw/bin', '/opt/local/bin' ),
+			explode( PATH_SEPARATOR, getenv( 'PATH' ) )
+		);
+	}
+
+	/**
 	 * Check if we're installing the latest version.
 	 */
 	public function envLatestVersion() {
@@ -590,23 +605,12 @@ abstract class Installer {
 	 * Search for GNU diff3.
 	 */
 	public function envCheckDiff3() {
-		$paths = array_merge(
-			array(
-				"/usr/bin",
-				"/usr/local/bin",
-				"/opt/csw/bin",
-				"/usr/gnu/bin",
-				"/usr/sfw/bin"
-			),
-			explode( PATH_SEPARATOR, getenv( "PATH" ) )
-		);
-
 		$names = array( "gdiff3", "diff3", "diff3.exe" );
 		$versionInfo = array( '$1 --version 2>&1', 'diff3 (GNU diffutils)' );
 
 		$haveDiff3 = false;
 
-		foreach ( $paths as $path ) {
+		foreach ( $this->getPossibleBinPaths() as $path ) {
 			$exe = $this->locateExecutable( $path, $names, $versionInfo );
 
 			if ($exe !== false) {
@@ -628,28 +632,28 @@ abstract class Installer {
 	 * Environment check for ImageMagick and GD.
 	 */
 	public function envCheckGraphics() {
-		$imcheck = array( "/usr/bin", "/opt/csw/bin", "/usr/local/bin", "/sw/bin", "/opt/local/bin" );
+		$names = array( 'convert', 'convert.exe' );
+		$haveConvert = false;
 
-		foreach( $imcheck as $dir ) {
-			$im = "$dir/convert";
+		foreach ( $this->getPossibleBinPaths() as $path ) {
+			$exe = $this->locateExecutable( $path, $names );
 
-			wfSuppressWarnings();
-			$file_exists = file_exists( $im );
-			wfRestoreWarnings();
-
-			if( $file_exists ) {
-				$this->showMessage( 'config-imagemagick', $im );
-				$this->setVar( 'wgImageMagickConvertCommand', $im );
-				return true;
+			if ($exe !== false) {
+				$this->setVar( 'wgImageMagickConvertCommand', $exe );
+				$haveConvert = true;
+				break;
 			}
 		}
 
-		if ( function_exists( 'imagejpeg' ) ) {
+		if ( $haveConvert ) {
+			$this->showMessage( 'config-imagemagick', $exe );
+			return true;
+		} elseif ( function_exists( 'imagejpeg' ) ) {
 			$this->showMessage( 'config-gd' );
 			return true;
+		} else {
+			$this->showMessage( 'no-scaling' );
 		}
-
-		$this->showMessage( 'no-scaling' );
 	}
 
 	/**
