@@ -3,6 +3,7 @@
 require_once dirname(dirname(dirname(__FILE__))). '/bootstrap.php';
 
 /**
+ * This class is not directly tested. Instead it is extended by SearchDbTest.
  * @group Stub
  */
 class SearchEngineTest extends MediaWikiTestSetup {
@@ -13,16 +14,15 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	 * Will skip current test if DB does not support search.
 	 */
 	function setup() {
-		// Get database type and version
+		// Search tests require MySQL or SQLite with FTS
+		# Get database type and version
 		$dbType    = $this->db->getType();
-
-		// will skip unless mysql or sqlite with FTS
 		$dbSupported =
 			($dbType === 'mysql')
 			|| (   $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
 
 		if( !$dbSupported ) {
-			$this->markTestIgnored( "MySQL or SQLite with FTS3 only" );
+			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
 		}
 	}
 
