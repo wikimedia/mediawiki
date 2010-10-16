@@ -35,6 +35,7 @@
  * @author OsamaK
  * @author Ouda
  * @author Oxydo
+ * @author Rami.Awad
  * @author Riadismet
  * @author Samer
  * @author Sami Lab
@@ -660,6 +661,7 @@ $messages = array(
 من فضلك انتظر قليلا قبل أن تحاول الوصول إلى هذه الصفحة مجددا.
 
 $1',
+'pool-errorunknown' => 'خطأ غير معروف',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'عن {{SITENAME}}',

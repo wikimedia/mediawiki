@@ -89,8 +89,15 @@ $messages = array(
 'and'        => '&#32;mpé',
 
 # Cologne Blue skin
+'qbfind'         => 'Koluka',
+'qbbrowse'       => 'Kolúka',
 'qbedit'         => 'kobalusa',
 'qbspecialpages' => 'Nkásá ya ndéngé isúsu',
+'faq'            => 'Mitúná Mizóngelaka (MM)',
+
+# Vector skin
+'vector-action-delete' => 'Kolímwisa',
+'vector-view-history'  => 'Emɔ́niselí mokóló',
 
 'errorpagetitle'   => 'Mbéba',
 'tagline'          => 'Artíclɛ ya {{SITENAME}}.',

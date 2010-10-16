@@ -9,6 +9,7 @@
  *
  * @author Bharata
  * @author Hemant wikikosh1
+ * @author Hrishikesh.kb
  * @author Kaustubh
  * @author Mahitgar
  * @author Naveen Sankar
@@ -324,7 +325,7 @@ $messages = array(
 'fri'           => 'शुक्रः',
 'sat'           => 'शनिः',
 'january'       => 'जनुवरि',
-'february'      => 'फे़ब्रुवरि',
+'february'      => 'फेब्रुवरि',
 'march'         => 'मार्च्',
 'april'         => 'एप्रिल्',
 'may_long'      => 'मेय्',
@@ -927,6 +928,7 @@ $messages = array(
 'ipblocklist'              => 'निरोधिताः आइ.पी. संकेताः, प्रयोक्तृ-नामानि च',
 'blocklink'                => 'अवरुध्नातु',
 'unblocklink'              => 'अनिरुध्नातु',
+'change-blocklink'         => 'परिच्छेदम् परिवर्तयतु',
 'contribslink'             => 'योगदानम्',
 'blocklogpage'             => 'निरोधानां सूचिका',
 'blocklogentry'            => '[[$1]] इत्येतद् निरोधितं, $2 $3 इति अवसान-समयेन सह',

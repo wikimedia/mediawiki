@@ -386,21 +386,37 @@ $messages = array(
 'nextrevision'           => 'ပိုသစ်သော တည်းဖြတ်မူ →',
 'currentrevisionlink'    => 'နောက်ဆုံး မူ',
 'cur'                    => 'လက်ရှိ',
+'next'                   => 'နောက်ထပ်',
 'last'                   => 'ယခုမတိုင်မီ',
 'page_first'             => 'ပထမဆုံး',
 'page_last'              => 'အနောက်ဆုံး',
 'histlegend'             => "တည်းဖြတ်မူများကို နှိုင်းယှဥ်ရန် radio boxes လေးများကို မှတ်သားပြီးနောက် Enter ရိုက်ချပါ သို့ အောက်ခြေမှ ခလုတ်ကို နှိပ်ပါ။<br />
 Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် ကွဲပြားချက် '''({{int:last}})''' = ယင်းရှေ့မူနှင့် ကွဲပြားချက်, '''{{int:minoreditletter}}''' = အရေးမကြီးသော ပြုပြင်မှု.",
 'history-fieldset-title' => 'မှတ်တမ်းရှာကြည့်ရန်',
+'history-show-deleted'   => 'ဖျက်ထားသည်များသာ',
 'histfirst'              => '​အစောဆုံး',
 'histlast'               => 'နောက်ဆုံး',
+'historyempty'           => '(ဘာမှမရှိ)',
+
+# Revision feed
+'history-feed-title'          => 'မူမှတ်တမ်း',
+'history-feed-item-nocomment' => '$2 က $1',
 
 # Revision deletion
-'rev-delundel'              => 'ပြရန်/ဝှက်ရန်',
-'revdelete-log'             => 'အ​ကြောင်း​ပြ​ချက်:',
-'revdel-restore'            => 'မည်မျှ ရှုမြင်နိုင်သည်ကို ပြောင်းရန်',
-'revdelete-otherreason'     => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
-'revdelete-reasonotherlist' => 'အခြား အကြောင်းပြချက်',
+'rev-deleted-comment'        => '(မှတ်ချက်ဖယ်ရှားပြီး)',
+'rev-deleted-user'           => '(အသုံပြုသူအမည် ဖယ်ရှားပြီး)',
+'rev-delundel'               => 'ပြရန်/ဝှက်ရန်',
+'rev-showdeleted'            => 'ပြ',
+'revisiondelete'             => 'မူများကို ဖျက်ရန်/မဖျက်တော့ရန်',
+'revdelete-nooldid-title'    => 'တရားမဝင်သော မူအမည်',
+'revdelete-nologtype-title'  => 'မှတ်တမ်းအမျိုးအစား ပေးမထားပါ',
+'revdelete-nologid-title'    => 'တရားမဝင်သော မှတ်တမ်းရေးသွင်းချက်',
+'revdelete-no-file'          => 'ဖော်ပြထားသောဖိုင် မရှိပါ။',
+'revdelete-show-file-submit' => 'မှန်',
+'revdelete-log'              => 'အ​ကြောင်း​ပြ​ချက်:',
+'revdel-restore'             => 'မည်မျှ ရှုမြင်နိုင်သည်ကို ပြောင်းရန်',
+'revdelete-otherreason'      => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',
+'revdelete-reasonotherlist'  => 'အခြား အကြောင်းပြချက်',
 
 # Merge log
 'revertmerge' => 'ပြန်ခွဲထုတ်ရန်',

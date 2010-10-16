@@ -1423,7 +1423,7 @@ faili hili lina $2.',
 Hii huenda ikawa jina lake limeandikwa vibaya.
 Tafadhali uhakikishe kwamba ni kweli unataka kupakia faili hili.',
 'fileexists'                  => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.",
-'filepageexists'              => "Maelezo ya ukurasa kwa ajili ya faili hili tayari yameshaanzishwa katika '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili kwa sasa.
+'filepageexists'              => "Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili kwa sasa.
 Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
 Kufanya muhtasari wako uonekana pale, utahitajika uhariri ukurasa kwa mikono.
 [[$1|thumb]]",
@@ -1436,7 +1436,7 @@ Tafadhali chagua jina lingine.",
 Tafadhali tazama faili la '''<tt>[[:$1]]</tt>'''.
 Ikiwa faili hili linaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
 'file-thumbnail-no'           => "Jina la faili linaloanza na '''<tt>$1</tt>'''.
-Inaonekana kuwa ni picha iliyopunguzwa kubwa''(thumbnail)''.
+Inaonekana kuwa ni picha iliyopunguzwa ukubwa''(thumbnail)''.
 Ikiwa unaoyo picha hii kwa ukubwa wa kawaida tafadhali pakia picha hii, vinginevyo tafadhali badilisha jina la faili.",
 'fileexists-forbidden'        => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
 Kama unataka kupakia faili lako, tafadhali rudia kwa kutumia jina lingine. [[File:$1|thumb|center|$1]]',
@@ -2177,8 +2177,8 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'movenologintext'              => 'Lazima uwe mtumiaji uliyesajiliwa na [[Special:UserLogin|uliyeingizwa]] ili uhamishe ukurasa.',
 'movenotallowed'               => 'Huna ruhusa ya kuhamisha kurasa.',
 'movenotallowedfile'           => 'Huna ruhusa ya kuhamisha mafaili.',
-'cant-move-user-page'          => 'Huna ruhusa kuhamisha ukurasa wa mtumiaji (isopokuwa ukurasa tanzu).',
-'cant-move-to-user-page'       => 'Huna ruhusa ya kuhamisha ukurasa katika ukurasa wa mtumiaji (isipokuwa katika ukurasa tanzu wa mtumiaji).',
+'cant-move-user-page'          => 'Huna fursa ya kuhamisha ukurasa wa mtumiaji (isopokuwa kurasa ndogo).',
+'cant-move-to-user-page'       => 'Huna ruhusa ya kuhamisha ukurasa katika ukurasa wa mtumiaji (isipokuwa katika ukurasa mdogo wa mtumiaji).',
 'newtitle'                     => 'Kuelekeza jina jipya:',
 'move-watch'                   => 'Fuatilia ukurasa huu',
 'movepagebtn'                  => 'Hamisha ukurasa',
@@ -2191,15 +2191,15 @@ Chagua jina lengine.',
 'talkexists'                   => "'''Ukurasa wenyewe ulisogezwa salama, lakini ukurasa wake wa majadiliano haujasogezwa kwa sababu tayari kuna ukurasa wenye jina lake.  Tafadhali ziunganishe kwa mkono.'''",
 'movedto'                      => 'imesogezwa hadi',
 'movetalk'                     => 'Hamisha ukurasa wake wa majadiliano',
-'move-subpages'                => 'Hamisha kurasa tanzu (hadi $1)',
-'move-talk-subpages'           => 'Hamisha kurasa tanzu za ukurasa wa majadiliano (hadi $1)',
+'move-subpages'                => 'Hamisha kurasa ndogo (hadi $1)',
+'move-talk-subpages'           => 'Hamisha kurasa ndogo za ukurasa wa majadiliano (hadi $1)',
 '1movedto2'                    => '[[$1]] umesogezwa hapa [[$2]]',
 '1movedto2_redir'              => 'alihamisha [[$1]] kwenda [[$2]] kwa kutengeneza elekezo',
 'movelogpage'                  => 'Kumbukumbu ya uhamiaji',
 'movelogpagetext'              => 'Hapo chini panaorodheshwa kurasa zote zilizohamishwa.',
-'movesubpage'                  => '{{PLURAL:$1|Ukurasa tanzu|Kurasa tanzu}}',
-'movesubpagetext'              => 'Ukurasa huu una {{PLURAL:$1|ukurasa tanzu unao|kurasa tanzu $1 zinazo}}onyeshwa hapo.',
-'movenosubpage'                => 'Ukurasa huu hauna kurasa tanzu.',
+'movesubpage'                  => '{{PLURAL:$1|Ukurasa mdogo|Kurasa ndogo}}',
+'movesubpagetext'              => 'Ukurasa huu una {{PLURAL:$1|ukurasa mdogo unao|kurasa ndogo $1 zinazo}}onyeshwa hapo.',
+'movenosubpage'                => 'Ukurasa huu hauna kurasa ndogo.',
 'movereason'                   => 'Sababu:',
 'revertmove'                   => 'rejesha',
 'delete_and_move'              => 'Kufuta na kuhamisha',
@@ -2629,7 +2629,7 @@ Tafadhali uthibitishe kwamba kweli unataka kuanzisha ukurasa huu upya.",
 'table_pager_empty'        => 'Hakuna matokeo',
 
 # Auto-summaries
-'autosumm-blank'   => 'Ukurasa ulimwagika',
+'autosumm-blank'   => 'Kaondosha yaliyomo',
 'autosumm-replace' => "Maandishi yaliyokuwepo yalichukuliwa nafasi na '$1'",
 'autoredircomment' => 'Ukurasa umeelekezwa kwenda [[$1]]',
 'autosumm-new'     => "Ukurasa ulianzishwa kwa kuandika '$1'",

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Auwris
  * @author Break Through Pain
  * @author Garas
  * @author Homo
@@ -405,6 +406,7 @@ Pernelyg daug naudotojų skaito šį puslapį.
 Prašome palaukti ir bandyti į šį puslapį patekti dar kartą.
 
 $1',
+'pool-errorunknown' => 'Nežinoma klaida',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Apie {{SITENAME}}',

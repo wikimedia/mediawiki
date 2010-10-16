@@ -5045,6 +5045,9 @@ Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
 	'config-page-upgradedoc' => 'Aktualiséieren',
 	'config-help-restart' => 'Wëllt dir all gespäichert Donnéeë läschen déi dir bis elo aginn hutt an den Installatiounsprozess nei starten?',
 	'config-restart' => 'Jo, neistarten',
+	'config-welcome' => "=== Iwwerpréifung vum Installatiounsenvironnement ===
+Et gi grondsätzlech Iwwerpréifunge gemaach fir ze kucken ob den Environnment gëeegent ass fir MediaWiki z'installéieren.
+Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Installatioun Hëllef braucht.",
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Haaptsäit]
 * [http://www.mediawiki.org/wiki/Help:Contents Benotzerguide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guide fir Administrateuren]
@@ -6149,10 +6152,19 @@ Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+ * @author Jon Harald Søby
  * @author Nghtwlkr
  */
 $messages['no'] = array(
+	'config-desc' => 'Installasjonsprogrammet for MediaWiki',
+	'config-title' => 'Installasjon av MediaWiki $1',
 	'config-information' => 'Informasjon',
+	'config-localsettings-upgrade' => "'''Advarsel''': En <code>LocalSettings.php</code>-fil har blitt oppdaget.
+Programvaren kan oppgraderes.
+Flytt <code>LocalSettings.php</code> til et trygt sted og kjør installasjonsprogrammet på nytt.",
+	'config-localsettings-noupgrade' => "'''Feil''': En <code>LocalSettings.php</code> fil har blitt oppdaget. 
+Programvaren kan ikke oppgraderes nå.
+Installasjonsprogrammet har blitt deaktivert av sikkerhetsmessige grunner.",
 	'config-show-help' => 'Hjelp',
 	'config-hide-help' => 'Skjul hjelp',
 	'config-your-language' => 'Ditt språk:',
@@ -6171,7 +6183,6 @@ $messages['no'] = array(
 	'config-page-readme' => 'Les meg',
 	'config-page-copying' => 'Kopiering',
 	'config-page-upgradedoc' => 'Oppgradering',
-	'config-authors' => 'MediaWiki er opphavsrettslig beskyttet © 2001-2010 av Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe og andre.',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki hjem]
 * [http://www.mediawiki.org/wiki/Help:Contents Brukerguide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorguide]

@@ -19,6 +19,7 @@
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author KaiesTse
+ * @author Kuailong
  * @author Liangent
  * @author Mark85296341
  * @author MarkAHershberger
@@ -225,7 +226,7 @@ $messages = array(
 'tog-editsection'             => '允许点击[编辑]链接编辑段落',
 'tog-editsectiononrightclick' => '允许右击标题编辑段落（JavaScript）',
 'tog-showtoc'                 => '显示目录（针对超过3个标题的页面）',
-'tog-rememberpassword'        => '在本计算机上记住我的登录信息（最长$1{{PLURAL:$1|日|日}}）',
+'tog-rememberpassword'        => '在本浏览器上记住我的登录信息（最长$1日）',
 'tog-watchcreations'          => '将我创建的页面添加到我的监视列表',
 'tog-watchdefault'            => '将我编辑的页面添加到我的监视列表',
 'tog-watchmoves'              => '将我移动的页面添加到我的监视列表',
@@ -445,6 +446,9 @@ $messages = array(
 请在再次尝试访问本页面之前稍等片刻。
 
 $1',
+'pool-timeout'      => '等待锁死时超时',
+'pool-queuefull'    => '请求池已满。',
+'pool-errorunknown' => '未知错误',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '关于{{SITENAME}}',
@@ -668,6 +672,11 @@ $2',
 请稍等多一会再试。',
 'loginlanguagelabel'         => '语言：$1',
 'suspicious-userlogout'      => '您登出的要求已经被拒绝，因为它可能是由已损坏的浏览器或者缓存代理传送。',
+'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
+# 所用参数如下：
+#   * "#" 字符后的内容全部是注释内容
+#   * 非空白行中为频率限制（rate limit）例外的IP地址
+ #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => '预估密码强度： $1',
@@ -1102,7 +1111,8 @@ $1",
 'compareselectedversions'  => '比较选定的修订版本',
 'showhideselectedversions' => '显示／隐藏选定的修订版本',
 'editundo'                 => '撤销',
-'diff-multi'               => '（$1个中途的修订版本没有显示）',
+'diff-multi'               => '（由{{PLURAL:$2|1名用户|$2名用户}}作出的{{PLURAL:$1|1个中途修订版本|$1个中途修订版本}}未被显示）',
+'diff-multi-manyusers'     => '（由多于$2名用户作出的{{PLURAL:$1|1个中途修订版本|$1中途修订版本}} 未被显示）',
 
 # Search results
 'searchresults'                    => '搜索结果',
@@ -1593,7 +1603,7 @@ $1",
 'upload-success-subj'         => '上传成功',
 'upload-success-msg'          => '您的自[$2]的上传可以在这里找到：[[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '上传错误',
-'upload-failure-msg'          => '有一个问题与您的上传有关：
+'upload-failure-msg'          => '您上传的 [$2] 出现了问题：
 
 $1',
 'upload-warning-subj'         => '上传警告',
@@ -3286,6 +3296,11 @@ $1',
 'version-license'                  => '授权',
 'version-poweredby-credits'        => "这个 Wiki 由 '''[http://www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 'version-poweredby-others'         => '其他',
+'version-license-info'             => 'MediaWiki为自由软件；您可依据自由软件基金会所发表的GNU通用公共授权条款规定，就本程序再为发布与／或修改；无论您依据的是本授权的第二版或（您自行选择的）任一日后发行的版本。
+
+MediaWiki是基于使用目的而加以发布，然而不负任何担保责任；亦无对适售性或特定目的适用性所为的默示性担保。详情请参照GNU通用公共授权。
+
+您应已收到附随于本程序的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授权的副本]；如果没有，请写信至自由软件基金会：59 Temple Place - Suite 330, Boston, Ma 02111-1307, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读]。',
 'version-software'                 => '已安装软件',
 'version-software-product'         => '产品',
 'version-software-version'         => '版本',
@@ -3385,5 +3400,9 @@ $1',
 'htmlform-submit'              => '提交',
 'htmlform-reset'               => '撤销更改',
 'htmlform-selectorother-other' => '其他',
+
+# SQLite database support
+'sqlite-has-fts' => '带全文搜索的版本$1',
+'sqlite-no-fts'  => '不带全文搜索的版本$1',
 
 );
