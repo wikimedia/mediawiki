@@ -376,6 +376,7 @@ Tropi utenti i sta tentando de visuałisare sta pajina.
 Atendare qualche minudo prima de riprovare a cargare ła pajina.
 
 $1',
+'pool-timeout'      => "Timeout durante l'atesa de lo sbloco",
 'pool-queuefull'    => 'La cóa de laorassion la xe piena',
 'pool-errorunknown' => 'Eror sconossùo',
 
@@ -612,6 +613,11 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 'suspicious-userlogout'      => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
+'ratelimit-excluded-ips'     => '#<!-- no sta modificar in alcun modo sta riga --> <pre>
+# La sintassi la xe la seguente:
+#  * Tuto quel che segue un caràtere "#" el xe un comento, fin a la fine de la riga
+#  * Tute le righe mìa vode le xe un indirisso IP escluso dal limite de velocità
+   #</pre> <!-- no sta modificar in alcun modo sta riga -->',
 
 # JavaScript password checks
 'password-strength'            => 'Stima de la robusteza de la password: $1',
@@ -995,11 +1001,21 @@ No ti gà acesso su de ela.',
 # Revision move
 'moverevlogentry'              => 'gà spostà {{PLURAL:$3|na revision|$3 revision}} da $1 a $2',
 'revisionmove'                 => 'Sposta revision da "$1"',
+'revmove-explain'              => 'Le seguenti revision le vegnarà spostà da $1 a la pagina de destinassion specificà. Se questa no la esiste la vegnarà creà. Se no, se revision le sarà unìe a la cronologia de la pagina.',
+'revmove-legend'               => "Inposta la pagina de destinassion e l'ogeto",
+'revmove-submit'               => 'Sposta revision a la pagina selessionà',
 'revisionmoveselectedversions' => 'Sposta le revision selessionà',
 'revmove-reasonfield'          => 'Motivassion:',
 'revmove-titlefield'           => 'Pagina de destinassion:',
 'revmove-badparam-title'       => 'Parametri mia validi',
+'revmove-badparam'             => 'La to richiesta la contien parametri sbalià o insuficienti. Struca "indrio" e proa da novo.',
+'revmove-norevisions-title'    => 'Revision mia valida',
+'revmove-norevisions'          => 'No te ghè indicà nissuna revision su cui eseguir sta funsion o la revision indicà no la esiste.',
 'revmove-nullmove-title'       => 'Titolo mia valido',
+'revmove-nullmove'             => 'La pagine de partensa e quela de arivo le xe la stessa.
+Torna indrio e metighe un nome pagina difarente da "$1".',
+'revmove-success-existing'     => '{{PLURAL:$1|Una revision de [[$2]] la xe stà spostà|$1 revision de [[$2]] le xe stà spostà}} ne la pagina esistente [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|Una revision de [[$2]] la xe stà spostà|$1 revisioni de [[$2]] le xe stà spostà}} ne la nova pagina creà [[$3]].',
 
 # History merging
 'mergehistory'                     => 'Union cronologie',
@@ -1039,6 +1055,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'showhideselectedversions' => 'Mostra/scondi version selessionà',
 'editundo'                 => 'anuła',
 'diff-multi'               => '({{PLURAL:$1|Una revision intermedia|$1 revision intermedie}} de {{PLURAL:$2|un utente|$2 utenti}} mia mostrà)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Una revision intermedia|$1 revision intermedie}} de pi de {{PLURAL:$2|un utente|$2 utenti}} mia mostrà)',
 
 # Search results
 'searchresults'                    => 'Risultati de ła riserca',
@@ -1073,6 +1090,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'searchprofile-everything-tooltip' => 'Serca dapartuto (conprese le pàxene de discussion)',
 'searchprofile-advanced-tooltip'   => 'Serca nei namespace personalixài',
 'search-result-size'               => '$1 ({{PLURAL:$2|na paroła|$2 parołe}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 utente|$1 utenti}} ({{PLURAL:$2|1 sotocategoria|$2 sotocategorie}}, {{PLURAL:$3|1 file|$3 file}})',
 'search-result-score'              => 'Rilevansa: $1%',
 'search-redirect'                  => '(redirect $1)',
 'search-section'                   => '(sesion $1)',
@@ -1430,6 +1448,9 @@ par poder cargar dei file.',
 'upload_directory_missing'    => 'La cartèla de caricamento ($1) no la esiste mìa e no la pode vegner creàda dal browser web.',
 'upload_directory_read_only'  => "El server web no l'è bon de scrìvar ne la directory de caricamento ($1).",
 'uploaderror'                 => 'Eror nel caricamento',
+'upload-recreate-warning'     => "'''Ocio: Un file co sto nome el xe stà scancelà o spostà.'''
+
+Qua ghe xe el registro de le scancelassion e dei spostamenti:",
 'uploadtext'                  => "Par cargar novi file, dopara el modulo qua soto.
 Par védar o sercar i file zà caricà, consulta la [[Special:FileList|lista dei file caricà]]. I caricamenti de file te pol védarli nel [[Special:Log/upload|registro dei caricamenti]], le scancelasion nel [[Special:Log/delete|registro de le scancelasion]].
 
@@ -1467,7 +1488,9 @@ Varda la [[Special:NewFiles|galerìa dei file nóvi]] par na vision de insieme.'
 'filename-tooshort'           => 'El nome del file el xe massa curto.',
 'filetype-banned'             => 'Sto tipo de file el xe vietà.',
 'verification-error'          => "Sto file no'l gà passà la verifica.",
+'hookaborted'                 => 'La modifica che te voli fare la xe stà interota da un hook de na estension.',
 'illegal-filename'            => 'El nome del file no xe parmesso.',
+'overwrite'                   => 'No xe parmesso de sorascrìvar un file esistente.',
 'unknown-error'               => 'Se gà verifica un eror sconossùo.',
 'tmp-create-error'            => 'Inpussibile creare el file tenporaneo.',
 'tmp-write-error'             => 'Eror de scritura del file temporaneo.',

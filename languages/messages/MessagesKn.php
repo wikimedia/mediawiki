@@ -60,7 +60,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'ಪಹರೆಯಲ್ಲಿ ಆದ ಸಂಪಾದನೆಗಳನ್ನು ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳಲ್ಲಿ ಅಡಗಿಸು',
 'tog-newpageshidepatrolled'   => 'ಪಹರೆಯಲ್ಲಿ ಆದ ಪುಟಗಳನ್ನು ಹೊಸ ಪುಟಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ಅಡಗಿಸು',
 'tog-extendwatchlist'         => 'ಕೇವಲ ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳಲ್ಲದೆ, ಸಂಬಂಧಿತ ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳನ್ನು ತೋರುವಂತೆ ಪಟ್ಟಿಯನ್ನು ವಿಸ್ತರಿಸಿ',
-'tog-usenewrc'                => "ಹೆಚ್ಚು ಮಾಹಿತಿಯುಳ್ಳ 'ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳು' ಪುಟ (JavaScript)",
+'tog-usenewrc'                => 'ಹೆಚ್ಚು ವರ್ಧಿಸಲಾದ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳು ಪುಟ ಬಳಸು(ಜಾವಸ್ಕ್ರಿಪ್ಟ್ ಬೇಕಾಗುತ್ತದೆ)',
 'tog-numberheadings'          => 'ತಲೆಬರಹಗಳಿಗೆ ಅಂಕಿಗಳನ್ನು ತೋರಿಸು',
 'tog-showtoolbar'             => 'ಸಂಪಾದನೆಯ ಉಪಕರಣಗಳ ಪಟ್ಟಿಯನ್ನು ತೋರು (JavaScript)',
 'tog-editondblclick'          => 'ಎರಡು ಬಾರಿ ಕ್ಲಿಕ್ ಮಾಡಿದಾಗ ಪುಟವು ಸಂಪಾದಿಸುವಂತಾಗಲಿ (JavaScript)',
@@ -98,6 +98,10 @@ $messages = array(
 'underline-always'  => 'ಯಾವಾಗಲೂ',
 'underline-never'   => 'ಎಂದಿಗೂ ಇಲ್ಲ',
 'underline-default' => 'ಬ್ರೌಸರ್‍ನ ಯಥಾಸ್ಥಿತಿ',
+
+# Font style option in Special:Preferences
+'editfont-sansserif' => 'ಸಾನ್ಸ್-ಸೆರಿಫ಼್ ಮುದ್ರಲಿಪಿ',
+'editfont-serif'     => 'ಸೆರಿಫ಼್ ಮುದ್ರಲಿಪಿ',
 
 # Dates
 'sunday'        => 'ಭಾನುವಾರ',
@@ -483,6 +487,13 @@ $2',
 ಆ ಖಾತೆ ತಪ್ಪಾಗಿ ತೆಗೆದಿದ್ದಲ್ಲಿ, ಈ ಸಂದೇಶವನ್ನು ನೀವು ಅಲಕ್ಷಿಸಬಹುದು.',
 'loginlanguagelabel'         => 'ಭಾಷೆ: $1',
 
+# JavaScript password checks
+'password-strength'            => 'ಅಂದಾಜಿಸಲ್ಪಟ್ಟ ಪ್ರವೇಶಪದ ಬಲ: $1',
+'password-strength-bad'        => 'ದುರ್ಬಲ',
+'password-strength-mediocre'   => 'ಸಾಧಾರಣ',
+'password-strength-acceptable' => 'ಸ್ವೀಕಾರಾರ್ಹ',
+'password-strength-good'       => 'ಉತ್ತಮ',
+
 # Password reset dialog
 'resetpass'                 => 'ಪ್ರವೇಶಪದವನ್ನು ಬದಲಾಯಿಸಿ',
 'resetpass_announce'        => 'ನೀವು ತಾತ್ಕಾಲಿಕ ಇ-ಅಂಚೆ ಕೋಡ್ ಅನ್ನು ಉಪಯೋಗಿಸಿ ಲಾಗ್ ಇನ್ ಆಗಿರುವಿರಿ.
@@ -495,6 +506,7 @@ $2',
 'resetpass_success'         => 'ನಿಮ್ಮ ಪ್ರವೇಶ ಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಯಿಸಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮನ್ನು ಲಾಗ್ ಇನ್ ಮಾಡಲಾಗುತ್ತಿದೆ...',
 'resetpass_forbidden'       => 'ಪ್ರವೇಶಪದಗಳನ್ನು ಬದಲಾಯಿಸುವಂತಿಲ್ಲ.',
 'resetpass-submit-loggedin' => 'ಪ್ರವೇಶಪದ ಬದಲಾಯಿಸು',
+'resetpass-submit-cancel'   => 'ರದ್ದು ಮಾಡು',
 'resetpass-temp-password'   => 'ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶಪದ:',
 
 # Edit page toolbar
@@ -722,6 +734,8 @@ $2',
 'revdelete-restricted'       => 'ನಿರ್ವಾಹಕರಿಗೆ ನಿಬಂಧನೆಗಳನ್ನು ಅನ್ವಯಿಸಲಾಯಿತು',
 'revdelete-unrestricted'     => 'ನಿರ್ವಾಹಕರ ನಿಬಂಧನೆಗಳನ್ನು ತೆಗೆಯಲಾಯಿತು',
 'revdelete-hid'              => '$1 ಅಡಗಿಸಲಾಯಿತು',
+'revdelete-otherreason'      => 'ಇತರ/ಹೆಚ್ಚುವರಿ ಕಾರಣ:',
+'revdelete-reasonotherlist'  => 'ಇತರ ಕಾರಣ',
 'revdelete-edit-reasonlist'  => 'ಅಳಿಸುವಿಕೆಯ ಕಾರಣಗಳನ್ನು ಸಂಪಾದಿಸು',
 
 # Revision move
@@ -782,6 +796,7 @@ $2',
 'searchhelp-url'            => 'Help:ಪರಿವಿಡಿ',
 'searchprofile-project'     => 'ಸಹಾಯ ಮತ್ತು ಯೋಜನೆ ಪುಟಗಳು',
 'searchprofile-images'      => 'ಬಹುಮಾಧ್ಯಮ',
+'searchprofile-everything'  => 'ಪ್ರತಿಯೊಂದು',
 'searchprofile-advanced'    => 'ಪರಿಣತ',
 'search-result-size'        => '$1 ({{PLURAL:$2|೧ ಪದ|$2 ಪದಗಳು}})',
 'search-result-score'       => 'ಸಂಬದ್ಧತೆ: $1%',
@@ -883,12 +898,16 @@ $2',
 'prefs-help-email'            => 'ಇ-ಅಂಚೆ ವಿಳಾಸ ಕಡ್ಡಾಯವಲ್ಲ, ಆದರೆ ನೀವು ಅದನ್ನು ನೀಡಿದರೆ ನೀವು ನಿಮ್ಮ ಪ್ರವೇಶ ಪದವನ್ನು ಮರೆತರೆ ಅದನ್ನು ನಿಮಗೆ ಇ-ಅಂಚೆಯಿಂದ ಕಳುಹಿಸಿಬಹುದು.
 ಅಲ್ಲದೆ ಬೇರೆಯವರು ನಿಮ್ಮನ್ನು ಇತರರಿಗೆ ತಿಳಿಯದಂತೆ ನಿಮ್ಮ ಸದಸ್ಯ ಪುಟ ಅಥವ ಚರ್ಚೆ ಪುಟದ ಮೂಲಕ ಸಂಪರ್ಕಿಸಬಹುದು.',
 'prefs-help-email-required'   => 'ಇ-ಅಂಚೆ ವಿಳಾಸ ಬೇಕಾಗಿದೆ.',
+'prefs-i18n'                  => 'ಅಂತರರಾಷ್ಟ್ರೀಕರಣ',
 'prefs-signature'             => 'ಸಹಿ',
 'prefs-advancedediting'       => 'ಪರಿಣತ ಇಚ್ಛೆಗಳು',
 'prefs-advancedrc'            => 'ಪರಿಣತ ಇಚ್ಛೆಗಳು',
 'prefs-advancedrendering'     => 'ಪರಿಣತ ಇಚ್ಛೆಗಳು',
 'prefs-advancedsearchoptions' => 'ಪರಿಣತ ಇಚ್ಛೆಗಳು',
 'prefs-advancedwatchlist'     => 'ಪರಿಣತ ಇಚ್ಛೆಗಳು',
+'prefs-displayrc'             => 'ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳು',
+'prefs-displaysearchoptions'  => 'ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳು',
+'prefs-displaywatchlist'      => 'ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳು',
 
 # User rights
 'userrights'                  => 'ಬಳಕೆದಾರ ಹಕ್ಕುಗಳ ನಿರ್ವಹಣೆ',
@@ -1060,6 +1079,7 @@ $2',
 'uploaddisabled'              => 'ಅಪ್ಲೋಡ್‍ಗಳು ನಿರ್ಬಂಧಿತವಾಗಿದೆ',
 'uploaddisabledtext'          => '{{SITENAME}} ತಾಣದಲ್ಲಿ ಫೈಲುಗಳ ಅಪ್ಲೋಡ್ ಮಾಡುವಿಕೆ ತಡೆಗಟ್ಟಲ್ಪಟ್ಟಿದೆ.',
 'uploadvirus'                 => 'ಈ ಫೈಲಿನಲ್ಲಿ ಒಂದು ವೈರಸ್ ಇದೆ! ಮಾಹಿತಿ: $1',
+'upload-source'               => 'ಮೂಲ ಕಡತ',
 'sourcefilename'              => 'ಮೂಲ ಫೈಲಿನ ಹೆಸರು:',
 'upload-maxfilesize'          => 'ಗರಿಷ್ಠ ಫೈಲು ಗಾತ್ರ: $1',
 'watchthisupload'             => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ',
@@ -1164,7 +1184,11 @@ $2',
 
 # Statistics
 'statistics'              => 'ಅಂಕಿ ಅಂಶಗಳು',
+'statistics-header-pages' => 'ಪುಟಗಳ ಅಂಕಿಅಂಶಗಳು',
+'statistics-header-edits' => 'ಸಂಪಾದನಾ ಅಂಕಿಅಂಶಗಳು',
+'statistics-header-views' => 'ವೀಕ್ಷಣಾ ಅಂಕಿಅಂಶಗಳು',
 'statistics-header-users' => 'ಸದಸ್ಯರ ಅಂಕಿ ಅಂಶ',
+'statistics-header-hooks' => 'ಇತರ ಅಂಕಿಅಂಶಗಳು',
 'statistics-pages'        => 'ಪುಟಗಳು',
 'statistics-mostpopular'  => 'ಅತ್ಯಂತ ಹೆಚ್ಚು ವೀಕ್ಷಿತ ಪುಟಗಳು',
 
@@ -1399,8 +1423,11 @@ $2',
 'protect-level-sysop'         => 'ನಿರ್ವಾಹಕರು ಮಾತ್ರ',
 'protect-summary-cascade'     => 'ತಡಸಲು (cascading)',
 'protect-expiring'            => 'ಮುಕ್ತಾಯ $1 (UTC)',
+'protect-expiry-indefinite'   => 'ಅನಿರ್ದಿಷ್ಟ',
 'protect-cascade'             => 'ಈ ಪುಟದಲ್ಲಿ ಸೇರಿಸಲಾಗಿರುವ ಪುಟಗಳನ್ನು ಸಂರಕ್ಷಿಸು (ತಡಸಲು ಸಂರಕ್ಷಣೆ - cascading protection)',
 'protect-cantedit'            => 'ನೀವು ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟವನ್ನು ಬದಲಾಯಿಸುವ ಅನುಮತಿಯನ್ನು ಹೊಂದಿಲ್ಲ.',
+'protect-otherreason'         => 'ಇತರ/ಹೆಚ್ಚುವರಿ ಕಾರಣ:',
+'protect-otherreason-op'      => 'ಇತರ ಕಾರಣ',
 'protect-expiry-options'      => '೨ ಗಂಟೆಗಳು:2 hours,೧ ದಿನ:1 day,೩ ದಿನಗಳು:3 days,೧ ವಾರ:1 week,೨ ವಾರಗಳು:2 weeks,೧ ತಿಂಗಳು:1 month,೩ ತಿಂಗಳುಗಳು:3 months,೬ ತಿಂಗಳುಗಳು:6 months,೧ ವರ್ಷ:1 year,ಅನಿರ್ಧಿಷ್ಟ:infinite',
 'restriction-type'            => 'ಅನುಮತಿ:',
 'restriction-level'           => 'ನಿರ್ಬಂಧನೆಯ ಮಟ್ಟ:',

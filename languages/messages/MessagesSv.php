@@ -538,6 +538,9 @@ För många användare försöker visa denna sida.
 Vänta en liten stund och försök igen lite senare.
 
 $1',
+'pool-timeout'      => 'Timeout i väntan på låsning',
+'pool-queuefull'    => 'Kön är full',
+'pool-errorunknown' => 'Okänt fel',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Om {{SITENAME}}',
@@ -3539,5 +3542,9 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'htmlform-submit'              => 'Spara',
 'htmlform-reset'               => 'Ogör ändringar',
 'htmlform-selectorother-other' => 'Andra',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 med stöd för fulltextsökning',
+'sqlite-no-fts'  => '$1 utan stöd för fulltextsökning',
 
 );

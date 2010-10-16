@@ -13,6 +13,7 @@
  * @author Aleksandrit
  * @author Alex Khimich
  * @author AlexSm
+ * @author Arturyatsko
  * @author Dubyk
  * @author EugeneZelenko
  * @author Gutsul (Gutsul.ua at Google Mail)
@@ -477,6 +478,9 @@ $messages = array(
 Будь ласка, почекайте і повторіть спробу отримати доступ пізніше.
 
 $1',
+'pool-timeout'      => 'Час очыкування блокування вичерпано',
+'pool-queuefull'    => 'Сервер запитів заповнений',
+'pool-errorunknown' => 'Невідома помилка',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Про {{grammar:accusative|{{SITENAME}}}}',
@@ -725,6 +729,11 @@ $1',
 Будь ласка, зачекайте перед повторною спробою.',
 'loginlanguagelabel'         => 'Мова: $1',
 'suspicious-userlogout'      => 'Ваш запит на завершення сеанса відхилений, оскільки він схожий на запит, відправлений зіпсованим веб-оглядачем або кешуючим проксі-сервером.',
+'ratelimit-excluded-ips'     => '#<!-- leave this line exactly as it is --> <pre>
+# Опис синтаксису:
+#  * Все, що починається з символу "#" до кінця рядка, вважається коментарем
+#  * Кожний непорожній рядок вважається фрагментом регулярного виразу відповідної назви вузла в URL
+   #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Оцінка стійкості пароля: $1',
@@ -1178,6 +1187,7 @@ $1",
 'showhideselectedversions' => 'Показати/приховати обрані версії',
 'editundo'                 => 'скасувати',
 'diff-multi'               => '({{PLURAL:$1|Одна проміжна версія одного користувача не показана|$1 проміжні версії {{PLURAL:$2|одного користувача|$2 користувачів}} не показані|$1 проміжних версій {{PLURAL:$2|одного користувача|$2 користувачів}} не показані}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|не показана $1 проміжна я версія|не показані $1 проміжні версії|не показано $1 проміжних версій}}, зроблених більш, ніж {{PLURAL:$2|$1 користувачем|$2 користувачами}})',
 
 # Search results
 'searchresults'                    => 'Результати пошуку',
@@ -3482,5 +3492,9 @@ $1',
 'htmlform-submit'              => 'Відправити',
 'htmlform-reset'               => 'Відкотити зміни',
 'htmlform-selectorother-other' => 'Інше',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 з підтримкою повнотекстового пошуку',
+'sqlite-no-fts'  => '$1 без підтримки повнотекстового пошуку',
 
 );

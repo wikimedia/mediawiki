@@ -189,6 +189,7 @@ $messages = array(
 'tog-shownumberswatching'    => 'د کتونکو کارنانو شمېر ښکاره کول',
 'tog-oldsig'                 => 'د شته لاسليک مخليدنه:',
 'tog-uselivepreview'         => 'ژوندۍ مخليدنه کارول (جاوا سکرېپټ ته اړتيا) (آزمېښتي)',
+'tog-forceeditsummary'       => 'د يوه تش سمون لنډيز په ورکولو سره دې خبر راکړل شي',
 'tog-watchlisthideown'       => 'په کتنلړ کې زما سمونې پټول',
 'tog-watchlisthidebots'      => 'په کتنلړ کې د روباټ سمونې پټول',
 'tog-watchlisthideminor'     => 'په کتنلړ کې وړې سمونې پټول',
@@ -462,6 +463,7 @@ $1',
 # General errors
 'error'                => 'تېروتنه',
 'databaseerror'        => 'د ډاټابېز تېروتنه',
+'laggedslavemode'      => "'''ګواښنه:''' په دې مخ کې کېدای شي تازه اوسمهالېدنې نه وي.",
 'readonly'             => 'توکبنسټ تړل شوی',
 'missing-article'      => 'توکبنسټ د "$1" $2 په نامه د ورکړ شوي مخ متن چې بايد موندلی يې وای، و نه موند.
 
@@ -480,6 +482,7 @@ $1',
 'directorycreateerror' => 'د "$1" په نامه ليکلړ جوړ نه شو.',
 'filenotfound'         => '"$1" په نوم دوتنه مو و نه شوه موندلای.',
 'fileexistserror'      => 'د "$1" په نامه دوتنه نه ليکل کېږي: دوتنه د پخوا نه دلته شته',
+'unexpected'           => 'نا اټکله شمېره: "$1"="$2".',
 'formerror'            => 'ستونزه: فورمه مو و نه سپارل شوه',
 'badarticleerror'      => 'دا کړنه پدې مخ نه شي ترسره کېدلای.',
 'cannotdelete'         => 'د "$1" مخ يا دوتنې ړنګېدنه ترسره نه شوه.
@@ -589,12 +592,15 @@ $1',
 تاسې بايد غونډال ته ورننوځۍ او همدا اوس خپل پټنوم بدل کړی.
 
 که چېرته دا کړنه په تېروتنه کې شوی وي نو تاسې کولای شی چې دا پيغام بابېزه وګڼۍ.',
+'usernamehasherror'          => 'کارن-نوم نشي کېدلای چې کرښکې لوښې ولري',
 'loginlanguagelabel'         => 'ژبه: $1',
 
 # JavaScript password checks
 'password-strength'            => 'د پټنوم اټکليز سېک: $1',
 'password-strength-bad'        => 'بد',
+'password-strength-mediocre'   => 'منځګوړی',
 'password-strength-acceptable' => 'د منلو وړ',
+'password-strength-good'       => 'ښه',
 'password-retype'              => 'پټنوم بيا وليکه',
 'password-retype-mismatch'     => 'پټنوم مو کټ مټ د يو بل سره سمون نه خوري',
 
@@ -960,7 +966,7 @@ $1',
 'timezoneregion-europe'       => 'اروپا',
 'timezoneregion-indian'       => 'هندی سمندر',
 'timezoneregion-pacific'      => 'آرام سمندر',
-'allowemail'                  => 'د نورو کارونکو لخوا د برېښليک رالېږل چارن کړه',
+'allowemail'                  => 'د نورو کارنانو لخوا د برېښليک رالېږل چارن کړه',
 'prefs-searchoptions'         => 'د پلټلو خوښنې',
 'prefs-namespaces'            => 'نوم-تشيالونه',
 'defaultns'                   => 'او يا هم په دغو نوم-تشيالونو کې پلټل:',

@@ -529,6 +529,8 @@ Prea multi utilizatori încearcă să vizualizeze această pagină.
 Vă rugăm să așteptați un moment înainte să încercați să accesați pagina din nou.
 
 $1',
+'pool-timeout'      => 'Timeout de așteptare pentru blocare',
+'pool-queuefull'    => 'Coada de așteptare este plină',
 'pool-errorunknown' => 'Eroare necunoscută',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -763,6 +765,11 @@ Ignorați acest mesaj dacă crearea contului s-a produs în urma unei greșeli.'
 Vă rugăm să așteptați până să mai încercați.',
 'loginlanguagelabel'         => 'Limba: $1',
 'suspicious-userlogout'      => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
+'ratelimit-excluded-ips'     => '↓  #<!-- lăsați această linie așa cum este --> <pre>
+# Sintaxa este după cum urmează:
+#  * Totul de la caracterul "#" până la sfârșitul liniei este un comentariu
+#  * Fiecare linie ocupată este o adresă IP exclusă de la limita de frecvență
+ #</pre> <!-- lăsați această linie așa cum este -->',
 
 # JavaScript password checks
 'password-strength'            => 'Nivelul de securitate al parolei: $1',
@@ -1206,6 +1213,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'showhideselectedversions' => 'Arată/ascunde reviziile marcate',
 'editundo'                 => 'anulează',
 'diff-multi'               => '({{PLURAL:$1|O revizie intermediară|$1 revizii intermediare}} efectuată de {{PLURAL:$2|un utilizator|$2 utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|O versiune intermediară efectuată de|$1 (de) versiuni intermediare efectuate de peste}} $2 {{PLURAL:$2|utilizator|utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
 
 # Search results
 'searchresults'                    => 'Rezultatele căutării',
@@ -3398,6 +3406,11 @@ Puteți folosi în schimb [[Special:Watchlist/edit|editorul standard]].',
 'version-license'                  => 'Licență',
 'version-poweredby-credits'        => "Acest wiki este dezvoltat de '''[http://www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
 'version-poweredby-others'         => 'alții',
+'version-license-info'             => 'MediaWiki este software liber, îl puteți redistribui și / sau modifica sub termenii GNU General Public License publicate de Free Software Foundation; fie versiunea 2 a Licenței, sau (la opțiunea dumneavoastră) orice versiune ulterioară. 
+
+MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ NICI O GARANȚIE, nici chiar garanția implicită de VANDABILITATE sau POTRIVIRE PENTRU UN SCOP ANUME. Vezi GNU General Public License pentru mai multe detalii. 
+
+Trebuie să fi primit [{{SERVER}}{{SCRIPTPATH}}/COPYING o copie a GNU General Public License], împreună cu acest program, dacă nu, scrieţi la Free Software Foundation, Inc, 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, Statele Unite ale Americii sau [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html citiți-o online].',
 'version-software'                 => 'Software instalat',
 'version-software-product'         => 'Produs',
 'version-software-version'         => 'Versiune',
@@ -3497,5 +3510,9 @@ Introdu numele fișierului fără prefixul "{{ns:file}}:".',
 'htmlform-submit'              => 'Trimite',
 'htmlform-reset'               => 'Anulează modificările',
 'htmlform-selectorother-other' => 'Altul',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 cu suport de căutare în tot textul',
+'sqlite-no-fts'  => '$1 fără suport de căutare în tot textul',
 
 );

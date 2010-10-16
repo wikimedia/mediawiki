@@ -180,20 +180,21 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => "Aggiunge 'na discussiona",
-'vector-action-delete'     => 'Scangille',
-'vector-action-move'       => 'Spuèste',
-'vector-action-protect'    => 'Protegge',
-'vector-action-undelete'   => 'Repristine',
-'vector-action-unprotect'  => 'Sprotegge',
-'vector-view-create'       => 'Ccreje',
-'vector-view-edit'         => 'Cange',
-'vector-view-history'      => "Vide 'u cunde",
-'vector-view-view'         => 'Ligge',
-'vector-view-viewsource'   => "Vide 'u sorgende",
-'actions'                  => 'Aziune',
-'namespaces'               => 'Namespace',
-'variants'                 => 'Variande',
+'vector-action-addsection'       => "Aggiunge 'na discussiona",
+'vector-action-delete'           => 'Scangille',
+'vector-action-move'             => 'Spuèste',
+'vector-action-protect'          => 'Protegge',
+'vector-action-undelete'         => 'Repristine',
+'vector-action-unprotect'        => 'Sprotegge',
+'vector-simplesearch-preference' => "Abbilete le suggereminde d'a ricerche avanzate (Sulamende pe le scheme a vettore)",
+'vector-view-create'             => 'Ccreje',
+'vector-view-edit'               => 'Cange',
+'vector-view-history'            => "Vide 'u cunde",
+'vector-view-view'               => 'Ligge',
+'vector-view-viewsource'         => "Vide 'u sorgende",
+'actions'                        => 'Aziune',
+'namespaces'                     => 'Namespace',
+'variants'                       => 'Variande',
 
 'errorpagetitle'    => 'Errore',
 'returnto'          => 'Tuerne a $1.',
@@ -254,6 +255,7 @@ Troppe utinde stonne a provene a vedè sta pàgene.
 Pe piacere aspitte 'nu picche e pò pruève 'n'otra vote a trasè jndr'à sta pàgene.
 
 $1",
+'pool-timeout'      => "Tiembe d'attese scadute pu 'u blocche",
 'pool-queuefull'    => "'A code de le sondagge jè chiene",
 'pool-errorunknown' => 'Errore scanusciute',
 
@@ -514,6 +516,11 @@ Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore
 Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel'         => 'Lénga: $1',
 'suspicious-userlogout'      => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
+'ratelimit-excluded-ips'     => "#<!-- leave this line exactly as it is --> <pre>
+# 'A sindasse jè 'a seguende:
+#  * Ogneccose apprisse 'u carattere \"#\" 'mbonde 'a fine d'a linèe jè 'nu commende
+#  * Ogne linèe non vacande jè 'n'indirizze IP escluse da 'u limite de vote
+ #</pre> <!-- leave this line exactly as it is -->",
 
 # JavaScript password checks
 'password-strength'            => "Lunghezze d'a passuord stimate: $1",
@@ -522,6 +529,7 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'password-strength-acceptable' => 'pò scè',
 'password-strength-good'       => 'bbuène',
 'password-retype'              => "Rescrive 'a passuord aqquà",
+'password-retype-mismatch'     => 'Le passuord no ge sonde uguale',
 
 # Password reset dialog
 'resetpass'                 => "Cange 'a password",
@@ -922,11 +930,24 @@ Pe piacere condrolle l'archivije.",
 Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
 
 # Revision move
-'revmove-legend'         => "'Mboste 'a pàgene de destinazione e 'u riepileghe",
-'revmove-reasonfield'    => 'Mutive:',
-'revmove-titlefield'     => 'Pàgene de destinazione:',
-'revmove-badparam-title' => 'Parametre sbagliate',
-'revmove-nullmove-title' => 'Titele sbagliate',
+'moverevlogentry'              => "spustate {{PLURAL:$3|'na revisione|$3 revisiune}} da $1 a $2",
+'revisionmove'                 => 'Spuèste revisiune da "$1"',
+'revmove-explain'              => "Le revisiune successive onna essere spustate da $1 a 'a pàgene de destinazione specificate. Ce 'a destinazione non g'esiste, avène ccrejate. A 'u condrarie, ste revisiune avenene scuagghiate jndr'à 'u cunde d'a pàgene.",
+'revmove-legend'               => "'Mboste 'a pàgene de destinazione e 'u riepileghe",
+'revmove-submit'               => "Spuèste le revisiune jndr'à pàgene scacchiate",
+'revisionmoveselectedversions' => 'Spuèste le revisiune scacchiate',
+'revmove-reasonfield'          => 'Mutive:',
+'revmove-titlefield'           => 'Pàgene de destinazione:',
+'revmove-badparam-title'       => 'Parametre sbagliate',
+'revmove-badparam'             => "'A richiesta toje tène parametre non valide o insufficiende.
+Tuèrne rrete a 'a pàgene precedende e pruève arrete.",
+'revmove-norevisions-title'    => 'Revisione de destinazione invalide',
+'revmove-norevisions'          => "Tu non g'è specificate une o cchiù revisiune de destinazione pe fà sta funzione o 'a revisione specificate non g'esiste.",
+'revmove-nullmove-title'       => 'Titele sbagliate',
+'revmove-nullmove'             => "'A pàgene de destinazione non ge pò essere 'a stesse d'à pàgene de origgene.
+Tuèrne rrete a 'a pàgene precedende e scacchie 'nu nome diverse da \"\$1\".",
+'revmove-success-existing'     => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene esistende [[$3]].",
+'revmove-success-created'      => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene appene ccrejate [[$3]].",
 
 # History merging
 'mergehistory'                     => "Scuagghie 'a storie de le pàggene",
@@ -968,6 +989,7 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'showhideselectedversions' => 'Fà vedè/scunne le revisiune selezionate',
 'editundo'                 => 'annulle',
 'diff-multi'               => "({{PLURAL:$1|'na versione de mmienze|$1 cchiù versiune de mmienze}} de {{PLURAL:$2|'n'utende|$2 utinde}} non ge se vèdene)",
+'diff-multi-manyusers'     => "({{PLURAL:$1|'Na revisione de 'mmienze|$1 revisiune de 'mmienze}} non g'è viste da cchiù de $2 {{PLURAL:$2|utende|utinde}})",
 
 # Search results
 'searchresults'                    => "Resultete d'a ricerche",
@@ -1002,6 +1024,7 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'searchprofile-everything-tooltip' => "Cirche jndr'à tutte le vosce (combrese le vosce de le 'ngazzaminde)",
 'searchprofile-advanced-tooltip'   => "Cirche jndr'à le namespace personalizzete",
 'search-result-size'               => '$1 ({{PLURAL:$2|1 parole|$2 parole}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 membre|$1 membre}} ({{PLURAL:$2|1 sottecategorije|$2 sottecategorije}}, {{PLURAL:$3|1 file|$3 file}})',
 'search-result-score'              => "'Mbortanze: $1%",
 'search-redirect'                  => '(Redirette $1)',
 'search-section'                   => '(sezione $1)',
@@ -1367,6 +1390,9 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'upload_directory_missing'    => "'A cartelle de le carecaminde ($1) s'à perdute o pò essere ca non g'à state ccreate da 'u webserver.",
 'upload_directory_read_only'  => "'A cartelle d'u carecamende ($1) non ge se pò fà scrivere da 'u webserver.",
 'uploaderror'                 => 'Errore de carecamende',
+'upload-recreate-warning'     => "'''Attenziò: 'Nu file cu stu nome ha state scangellate o spustate.'''
+
+L'archivije de de scangellaminde e de le spustaminde pe sta pàgene le puè acchià aqquà:",
 'uploadtext'                  => "Ause 'u module aqquà sotte pe carecà le file.
 Pe vedè o cercà le file carecate precedendemende veje a 'a [[Special:FileList|liste de le file carecate]], le carecaminde sonde pure reggistrate jndr'à l'[[Special:Log/upload|archivije de le carecaminde]], le scangellazziune jndr'à l'[[Special:Log/delete|archivije de le scangellaminde]].
 
@@ -1404,9 +1430,12 @@ Pe piacere vide ce renomene 'u file e pruève a carecarle 'n'otra vote.",
 'filetype-missing'            => '\'U file non ge tène l\'estenzione (cumme a ".jpg").',
 'empty-file'                  => "'U file ca tu è mannate ere vacande.",
 'file-too-large'              => "'U file ca tu è mannate ere troppe luènghe.",
+'filename-tooshort'           => "'U nome d'u file jè troppe curte.",
 'filetype-banned'             => 'Stu tipe de file jè vietate.',
 'verification-error'          => "Stu file non g'à passate 'a verifeche de le file.",
+'hookaborted'                 => "'U cangiamende ca tu stè pruève a ffà ha state inderrotte da 'nu gange estese.",
 'illegal-filename'            => "'U nome d'u file non g'è permesse.",
+'overwrite'                   => "'A sovrascritture de 'nu file ca esiste non ge se pò fà.",
 'unknown-error'               => "'N'errore scanusciute s'a verificate.",
 'tmp-create-error'            => 'Non ge pozze ccrejà file temboranèe.',
 'tmp-write-error'             => "Errore scrivenne 'u file temboranèe.",
@@ -1469,8 +1498,13 @@ L'archivije de le scangellaminde pe stu file 'u iacchije aqquà pe convenienze:"
 'filename-bad-prefix'         => "'U nome d'u file ca tu ste careche accumenze pe '''\"\$1\"''', ca normalmende jè 'u nome ca assegne a machena fotografeche e non 'nu nome descrittive d'u file ca vuè ccu careche.
 Pe piacere scacchie 'n'otre nome ca jè cchiù descrittive.",
 'upload-success-subj'         => 'Carecamende sciute apposte',
+'upload-success-msg'          => "'U carecamende tue da [$2] ha riuscite. Mò jè disponibbele aqquà: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => 'Careche le probbleme',
+'upload-failure-msg'          => "Stave 'nu probbleme cu 'u carecamende tune da [$2]:
+
+$1",
 'upload-warning-subj'         => 'Avvise de carecamende',
+'upload-warning-msg'          => "Stave 'nu probbleme cu 'u carecamende tune da [$2]. Tu puè turnà rrete a 'u [[Special:Upload/stash/$1|module de carecamende]] pe aggiustà stu probbleme.",
 
 'upload-proto-error'        => 'Protocolle scorrette',
 'upload-proto-error-text'   => "Le carecaminde remote onne abbesogne de le URL ca accumenzene cu 'a parole <code>http://</code> o <code>ftp://</code>.",
@@ -2160,6 +2194,7 @@ $1",
 L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'sp-contributions-search'              => 'Ricerche pe condrebbute',
 'sp-contributions-username'            => "Indirizze IP o nome de l'utende:",
+'sp-contributions-toponly'             => "Sulamende facenne vedè le cangiaminde de l'urteme revisiune",
 'sp-contributions-submit'              => 'Cirche',
 
 # What links here
@@ -2397,6 +2432,7 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'immobile-source-page'         => 'Sta pàgene non ge se pò spustà.',
 'immobile-target-page'         => 'Non ge puè spustà sus a stu titele de destinazione.',
 'imagenocrossnamespace'        => "Non ge pozze spustà 'nu file jndr'à 'nu namespace senza file",
+'nonfile-cannot-move-to-file'  => "Non ge pozze spustà 'nu file jndr'à 'nu namespace senza file",
 'imagetypemismatch'            => "L'estenziona nove d'u file non ge se accocchie cu 'u tipe sue",
 'imageinvalidfilename'         => "'U nome d'u file de destinazzione jè invalide",
 'fix-double-redirects'         => "Aggiorne ogne redirezionamende ca apponde a 'u titele origginale",
@@ -3155,7 +3191,13 @@ Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
 'version-hook-subscribedby'        => 'Sottoscritte da',
 'version-version'                  => '(Versione $1)',
 'version-license'                  => 'Licenze',
+'version-poweredby-credits'        => "Sta Uicchi jè fatte da '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'         => 'otre',
+'version-license-info'             => "MediaUicchi jè 'nu softuare libbere, tu 'u puè redestribbuì  e/o cangiarle sotte le termine d'a GNU (Licenze Pubbleche Generale) cumme pubblecate da 'a Free Software Foundation; endrambe le versiune 2 d'a Licenze, o (a scelta toje) 'le versiune cchiù nnove.
+
+Mediauicchi jè destribbuite cu 'a speranze ca jè utile, ma SENZE NISCIUNA GARANZIE; senze nemmanghe 'a garanzie imblicite de COMMERCIABBELETÀ o IDONIETÀ PE 'NU SCOPE PARTICOLARE. Vatte a vide 'a GNU (Licenze Pubbleche Generale) pe cchiù 'mbormaziune.
+
+Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenze Pubbleche Generale)] 'nzieme a stu programme, ce none, scrive a 'a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liggele sus a Indernette].",
 'version-software'                 => 'Softuer installete',
 'version-software-product'         => 'Prodotte',
 'version-software-version'         => 'Versione',
@@ -3255,5 +3297,9 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'htmlform-submit'              => 'Conferme',
 'htmlform-reset'               => 'Annulle le cangiaminde',
 'htmlform-selectorother-other' => 'Otre',
+
+# SQLite database support
+'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
+'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
 
 );

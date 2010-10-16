@@ -35,6 +35,7 @@
  * @author Red Baron
  * @author Remember the dot
  * @author Revolus
+ * @author SVG
  * @author Spacebirdy
  * @author Srhat
  * @author Tbleher
@@ -1546,8 +1547,8 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-editprotected'         => 'Geschützte Seiten bearbeiten (ohne Kaskadenschutz)',
 'right-editinterface'         => 'Benutzeroberfläche bearbeiten',
 'right-editusercssjs'         => 'Fremde CSS- und JavaScript-Dateien bearbeiten',
-'right-editusercss'           => 'Fremde CSS-Datei bearbeiten',
-'right-edituserjs'            => 'Fremde JavaScript-Datei bearbeiten',
+'right-editusercss'           => 'Fremde CSS-Dateien bearbeiten',
+'right-edituserjs'            => 'Fremde JavaScript-Dateien bearbeiten',
 'right-rollback'              => 'Schnelles Zurücksetzen',
 'right-markbotedits'          => 'Schnell zurückgesetzte Bearbeitungen als Bot-Bearbeitung markieren',
 'right-noratelimit'           => 'Keine Beschränkung durch Limits',
@@ -2142,7 +2143,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 * <span class="listgrouprights-revoked">Entzogenes Recht</span>',
 'listgrouprights-group'                => 'Gruppe',
 'listgrouprights-rights'               => 'Rechte',
-'listgrouprights-helppage'             => 'Help:Gruppenrechte',
+'listgrouprights-helppage'             => '{{ns:help}}:Gruppenrechte',
 'listgrouprights-members'              => '(Mitgliederliste)',
 'listgrouprights-addgroup'             => 'Benutzer zu {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} hinzufügen: $1',
 'listgrouprights-removegroup'          => 'Benutzer aus {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} entfernen: $1',

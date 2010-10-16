@@ -270,6 +270,7 @@ $messages = array(
 'jumpto'            => 'Bae a:',
 'jumptonavigation'  => 'navigadura',
 'jumptosearch'      => 'chirca',
+'pool-errorunknown' => 'Faddina disconnota',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A propòsitu de {{SITENAME}}',
