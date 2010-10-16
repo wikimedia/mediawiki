@@ -27,7 +27,7 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 
 	var $test_posturl = array( "http://www.comp.leeds.ac.uk/cgi-bin/Perl/environment-example" => "review=test" );
 
-	function setup() {
+	function setUp() {
 		putenv( "http_proxy" ); /* Remove any proxy env var, so curl doesn't get confused */
 		if ( is_array( self::$content ) ) {
 			return;

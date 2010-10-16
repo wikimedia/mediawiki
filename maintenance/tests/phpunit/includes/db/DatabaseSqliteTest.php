@@ -23,7 +23,7 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 	var $db;
 
-	public function setup() {
+	public function setUp() {
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
