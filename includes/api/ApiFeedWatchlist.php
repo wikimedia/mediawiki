@@ -70,7 +70,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'list' => 'watchlist',
 				'wlprop' => 'title|user|comment|timestamp',
 				'wldir' => 'older', // reverse order - from newest to oldest
-				'wlend' => wfTimestamp( TS_MW, $endTime ),	// stop at this time
+				'wlend' => $endTime, // stop at this time
 				'wllimit' => ( 50 > $wgFeedLimit ) ? $wgFeedLimit : 50
 			);
 
