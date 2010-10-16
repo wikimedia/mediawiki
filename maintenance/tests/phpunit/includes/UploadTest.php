@@ -8,7 +8,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 
 	function setUp() {
 		global $wgContLang;
-		parent::setup();
+		parent::setUp();
 		$wgContLang = Language::factory( 'en' );
 		$this->upload = new UploadTestHandler;
 	}

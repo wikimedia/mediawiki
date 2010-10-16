@@ -6,7 +6,7 @@
 
 class CdbTest extends PHPUnit_Framework_TestCase {
 
-	public function setup() {
+	public function setUp() {
 		if ( !CdbReader::haveExtension() ) {
 			$this->markTestIncomplete( 'This test requires native CDB support to be present.' );
 		}

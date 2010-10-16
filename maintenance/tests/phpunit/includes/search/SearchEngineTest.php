@@ -13,7 +13,7 @@ class SearchEngineTest extends MediaWikiTestSetup {
 	 * Checks for database type & version.
 	 * Will skip current test if DB does not support search.
 	 */
-	function setup() {
+	function setUp() {
 		// Search tests require MySQL or SQLite with FTS
 		# Get database type and version
 		$dbType    = $this->db->getType();

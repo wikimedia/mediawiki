@@ -19,10 +19,6 @@ class MockApi extends ApiBase {
 
 class ApiTest extends ApiTestSetup {
 
-	function setup() {
-		parent::setup();
-	}
-
 	function testRequireOnlyOneParameterDefault() {
 		$mock = new MockApi();
 
