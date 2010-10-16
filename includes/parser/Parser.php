@@ -538,7 +538,7 @@ class Parser {
 	 *
 	 * @return Title object
 	 */
-	function &getTitle() {
+	function getTitle() {
 		return $this->mTitle;
 	}
 
@@ -647,7 +647,7 @@ class Parser {
 	 *
 	 * @param $elements list of element names. Comments are always extracted.
 	 * @param $text Source text string.
-	 * @param $matches Out parameter, Array: extarcted tags
+	 * @param $matches Out parameter, Array: extracted tags
 	 * @param $uniq_prefix
 	 * @return String: stripped text
 	 *
@@ -4034,7 +4034,7 @@ class Parser {
 	 * conversion, substitting signatures, {{subst:}} templates, etc.
 	 *
 	 * @param $text String: the text to transform
-	 * @param &$title Title: the Title object for the current article
+	 * @param $title Title: the Title object for the current article
 	 * @param $user User: the User object describing the current user
 	 * @param $options ParserOptions: parsing options
 	 * @param $clearState Boolean: whether to clear the parser state first
