@@ -2143,7 +2143,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 * <span class="listgrouprights-revoked">Entzogenes Recht</span>',
 'listgrouprights-group'                => 'Gruppe',
 'listgrouprights-rights'               => 'Rechte',
-'listgrouprights-helppage'             => '{{ns:help}}:Gruppenrechte',
+'listgrouprights-helppage'             => 'Help:Gruppenrechte',
 'listgrouprights-members'              => '(Mitgliederliste)',
 'listgrouprights-addgroup'             => 'Benutzer zu {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} hinzufügen: $1',
 'listgrouprights-removegroup'          => 'Benutzer aus {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} entfernen: $1',

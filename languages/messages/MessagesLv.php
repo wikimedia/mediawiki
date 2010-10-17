@@ -353,6 +353,12 @@ Derīgo īpašo lapu saraksts atrodas te: [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error'                => 'Kļūda',
 'databaseerror'        => 'Datu bāzes kļūda',
+'dberrortext'          => 'Konstatēta sintakses kļūda datubāzes pieprasījumā.
+Iespējams, tā radusies dēļ kļūdas programmatūrā.
+Pēdējais datubāzes pieprasījums bija:
+<blockquote><tt>$1</tt></blockquote>
+no funkcijas "<tt>$2</tt>".
+Datubāzes atgrieztais kļūdas paziņojums: "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Datubāzes vaicājumā pieļauta sintakses kļūda.
 Pēdējais priekšraksts:
 "$1"
@@ -373,6 +379,7 @@ Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot
 'missingarticle-diff'  => '(Salīdz.: $1, $2)',
 'internalerror'        => 'Iekšēja kļūda',
 'internalerror_info'   => 'Iekšējā kļūda: $1',
+'fileappenderror'      => 'Neizdevās pievienot "$1" pie "$2".',
 'filecopyerror'        => 'Nav iespējams nokopēt failu "$1" uz "$2"',
 'filerenameerror'      => 'Neizdevās pārdēvēt failu "$1" par "$2".',
 'filedeleteerror'      => 'Nevar izdzēst failu "$1".',
@@ -549,7 +556,7 @@ Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis
 'missingsummary'                   => "'''Atgādinājums''': Tu neesi norādījis izmaiņu kopsavilkumu. Vēlreiz klikšķinot uz \"Saglabāt lapu\", Tavas izmaiņas tiks saglabātas bez kopsavilkuma.",
 'missingcommenttext'               => 'Lūdzu, ievadi tekstu zemāk redzamajā logā!',
 'missingcommentheader'             => "'''Atgādinājums:''' Tu šim komentāram neesi norādījis virsrakstu/tematu.
-Ja tu vēlreiz uzspiedīsi uz Saglabāt, tavas izmaiņas tiks saglabātas bez tā virsraksta.",
+Ja tu vēlreiz spiedīsi uz \"{{int:savearticle}}\", tavas izmaiņas tiks saglabātas bez virsraksta.",
 'summary-preview'                  => 'Kopsavilkuma pirmskats:',
 'subject-preview'                  => 'Kopsavilkuma/virsraksta pirmskats:',
 'blockedtitle'                     => 'Lietotājs ir bloķēts.',
@@ -615,8 +622,8 @@ Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
 
 Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 'clearyourcache'                   => "'''Piezīme - Pēc saglabāšanas, lai būtu redzamas izmaiņas, var būt nepieciešamas iztīrīt pārlūka kešatmiņu.''' '''Mozilla / Firefox / Safari:''' turi nospiestu ''Shift'' un klikšķini ''Reload,'' vai arī spied ''Ctrl-F5'' vai ''Ctrl-R'' (''Command-R'' uz Macintosh); '''Konqueror: '''klikšķini ''Reload'' vai spied uz ''F5;'' '''Opera:''' kešu var iztīrīt ''Tools → Preferences;'' '''Internet Explorer:''' turi nospiestu ''Ctrl'' un klikšķini ''Refresh,'' vai spied ''Ctrl-F5.''",
-'usercssyoucanpreview'             => "'''Ieteikums:''' Lieto pirmsskata pogu, lai pārbaudītu savu jauno CSS pirms saglabāšanas.",
-'userjsyoucanpreview'              => "'''Ieteikums:''' Lieto pirmsskata pogu, lai pārbaudītu savu jauno JS pirms saglabāšanas.",
+'usercssyoucanpreview'             => "'''Ieteikums:''' Lieto pogu \"{{int:showpreview}}\", lai pārbaudītu savu jauno CSS pirms saglabāšanas.",
+'userjsyoucanpreview'              => "'''Ieteikums:''' Lieto pogu \"{{int:showpreview}}\", lai pārbaudītu savu jauno JavaScript pirms saglabāšanas.",
 'usercsspreview'                   => "'''Atceries, ka šis ir tikai tava lietotāja CSS pirmskats, lapa vēl nav saglabāta!'''",
 'userjspreview'                    => "'''Atceries, ka šis ir tikai tava lietotāja JavaScript pirmskats/tests, lapa vēl nav saglabāta!'''",
 'updated'                          => '(Atjaunots)',
@@ -758,6 +765,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'revdelete-nooldid-title'    => 'Nederīga mērķa versija',
 'revdelete-nologtype-title'  => 'Nav dots reģistra veids.',
 'revdelete-nologid-title'    => 'Nederīgs reģistra ieraksts',
+'revdelete-no-file'          => 'Norādītais fails neeksistē.',
 'revdelete-show-file-submit' => 'Jā',
 'revdelete-legend'           => 'Uzstādīt redzamības ierobežojumus',
 'revdelete-hide-text'        => 'Paslēpt versijas tekstu',
@@ -786,6 +794,7 @@ $1",
 'revdelete-uname'            => 'lietotāja vārds',
 'revdelete-hid'              => 'paslēpa $1',
 'revdelete-unhid'            => 'atjaunoja $1',
+'revdelete-otherreason'      => 'Cits/papildu iemesls:',
 'revdelete-reasonotherlist'  => 'Cits iemesls',
 'revdelete-edit-reasonlist'  => 'Izmainīt dzēšanas iemeslus',
 
@@ -1354,7 +1363,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 
 # Special:Log
 'specialloguserlabel'  => 'Lietotājs:',
-'speciallogtitlelabel' => 'Virsraksts:',
+'speciallogtitlelabel' => 'Nosaukums:',
 'log'                  => 'Reģistri',
 'all-logs-page'        => 'Visi publiski pieejamie reģistri',
 'alllogstext'          => 'Visi pieejamie {{grammar:akuzatīvs{{SITENAME}}}} reģistri.

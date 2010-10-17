@@ -3395,7 +3395,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da maneira convencion
 'version-extension-functions'      => 'Funções de extensão',
 'version-parser-extensiontags'     => 'Etiquetas de extensões de tipo "parser"',
 'version-parser-function-hooks'    => 'Funções "hooks" de "parser"',
-'version-skin-extension-functions' => 'Funções de extensão de skins',
+'version-skin-extension-functions' => 'Funções de extensão de temas',
 'version-hook-name'                => 'Nome do hook',
 'version-hook-subscribedby'        => 'Subscrito por',
 'version-version'                  => '(Versão $1)',
