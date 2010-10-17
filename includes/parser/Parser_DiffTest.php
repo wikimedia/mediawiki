@@ -114,7 +114,7 @@ class Parser_DiffTest
 	function onClearState( &$parser ) {
 		// hack marker prefixes to get identical output
 		if ( !isset( $this->dtUniqPrefix ) ) {
-			$this->dtUniqPrefix = $parser->mUniqPrefix;
+			$this->dtUniqPrefix = $parser->uniqPrefix();
 		} else {
 			$parser->mUniqPrefix = $this->dtUniqPrefix;
 		}
