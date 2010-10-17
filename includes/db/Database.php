@@ -654,7 +654,7 @@ abstract class DatabaseBase implements DatabaseType {
 		# Add a comment for easy SHOW PROCESSLIST interpretation
 		# if ( $fname ) {
 			global $wgUser;
-			if ( is_object( $wgUser ) && !( $wgUser instanceof StubObject ) ) {
+			if ( is_object( $wgUser ) && $wgUser->mDataLoaded ) {
 				$userName = $wgUser->getName();
 				if ( mb_strlen( $userName ) > 15 ) {
 					$userName = mb_substr( $userName, 0, 15 ) . '...';
