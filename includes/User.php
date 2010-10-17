@@ -2669,6 +2669,7 @@ class User {
 	 * which will give them a chance to modify this key based on their own
 	 * settings.
 	 *
+	 * @deprecated use the ParserOptions object to get the relevant options
 	 * @return \string Page rendering hash
 	 */
 	function getPageRenderingHash() {
@@ -2676,6 +2677,7 @@ class User {
 		if( $this->mHash ){
 			return $this->mHash;
 		}
+		wfDeprecated( __METHOD__ );
 
 		// stubthreshold is only included below for completeness,
 		// since it disables the parser cache, its value will always 
