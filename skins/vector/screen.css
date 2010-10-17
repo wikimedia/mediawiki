@@ -1026,37 +1026,37 @@ div#content a.external,
 div#content a[href ^="gopher://"] {
 	/* @embed */
 	background: url(images/external-link-ltr-icon.png) center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 div#content a[href ^="https://"],
 .link-https {
 	/* @embed */
 	background: url(images/lock-icon.png) center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 div#content a[href ^="mailto:"],
 .link-mailto {
 	/* @embed */
 	background: url(images/mail-icon.png) center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 div#content a[href ^="news://"] {
 	/* @embed */
 	background: url(images/news-icon.png) center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 div#content a[href ^="ftp://"],
 .link-ftp {
 	/* @embed */
 	background: url(images/file-icon.png) center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 div#content a[href ^="irc://"],
 div#content a.extiw[href ^="irc://"],
 .link-irc {
 	/* @embed */
 	background: url(images/talk-icon.png) center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 div#content a.external[href $=".ogg"], div#content a.external[href $=".OGG"],
 div#content a.external[href $=".mid"], div#content a.external[href $=".MID"],
@@ -1067,7 +1067,7 @@ div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
 .link-audio {
 	/* @embed */
 	background: url("images/audio-icon.png?2") center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"],
 div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"],
@@ -1076,7 +1076,7 @@ div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
 .link-video {
 	/* @embed */
 	background: url("images/video-icon.png?2") center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
 div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
@@ -1084,7 +1084,7 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 .link-document {
 	/* @embed */
 	background: url("images/document-icon.png?2") center right no-repeat;
-	padding: 0 13px 0 0;
+	padding-right: 13px;
 }
 /* Interwiki Styling  (Disabled) */
 div#content a.extiw,
