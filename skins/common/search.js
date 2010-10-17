@@ -11,7 +11,7 @@ window.mwSearchHeaderClick = function( obj ) {
 	}
 
 	var searchterm = searchbox.value;
-	var parts = obj.href.split( 'search=' );
+	var parts = obj.getAttribute( 'href', 2).split( 'search=' );
 	var lastpart = '';
 	var prefix = 'search=';
 	if( parts.length > 1 && parts[1].indexOf('&') >= 0 ) {
