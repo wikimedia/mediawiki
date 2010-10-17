@@ -491,27 +491,29 @@ $messages = array(
 
 'badaccess' => 'अनुज्ञा-विभ्रमः',
 
-'ok'                  => 'आम्',
-'pagetitle'           => '',
-'retrievedfrom'       => '"$1" इत्यस्मात् गृहीतम्',
-'youhavenewmessages'  => 'भवदर्थम् $1 सन्ति। ($2).',
-'newmessageslink'     => 'नूतनाः संदेशाः',
-'newmessagesdifflink' => 'अन्तिमपरिवर्तनम्',
-'editsection'         => 'संपादयतु',
-'editold'             => 'संपादनम्',
-'viewsourceold'       => 'स्रोतः पश्यतु',
-'editlink'            => 'संपादयतु',
-'viewsourcelink'      => 'स्रोतसम् दर्शयतु',
-'editsectionhint'     => 'विभागं संपादयतु: $1',
-'toc'                 => 'अन्तर्विषयाः',
-'showtoc'             => 'दर्शयतु',
-'hidetoc'             => 'गोपयतु',
-'feedlinks'           => 'अनुबन्ध:',
-'site-rss-feed'       => '$1 आरएसएस पूरणम्',
-'site-atom-feed'      => '$1 ऍटम पूरणम्',
-'page-rss-feed'       => '"$1" आरएसएस-पूरणम्',
-'page-atom-feed'      => '"$1" ऍटम अनुबन्ध',
-'red-link-title'      => '$1 (पृष्ठं इदानीं यावत् न रचितम्)',
+'ok'                      => 'आम्',
+'pagetitle'               => '',
+'retrievedfrom'           => '"$1" इत्यस्मात् गृहीतम्',
+'youhavenewmessages'      => 'भवदर्थम् $1 सन्ति। ($2).',
+'newmessageslink'         => 'नूतनाः संदेशाः',
+'newmessagesdifflink'     => 'अन्तिमपरिवर्तनम्',
+'youhavenewmessagesmulti' => 'भवतः कृते $1 मध्ये नूतन सन्देशम् अस्ति',
+'editsection'             => 'संपादयतु',
+'editold'                 => 'संपादनम्',
+'viewsourceold'           => 'स्रोतः पश्यतु',
+'editlink'                => 'संपादयतु',
+'viewsourcelink'          => 'स्रोतसम् दर्शयतु',
+'editsectionhint'         => 'विभागं संपादयतु: $1',
+'toc'                     => 'अन्तर्विषयाः',
+'showtoc'                 => 'दर्शयतु',
+'hidetoc'                 => 'गोपयतु',
+'viewdeleted'             => '$1 पश्यतु?',
+'feedlinks'               => 'अनुबन्ध:',
+'site-rss-feed'           => '$1 आरएसएस पूरणम्',
+'site-atom-feed'          => '$1 ऍटम पूरणम्',
+'page-rss-feed'           => '"$1" आरएसएस-पूरणम्',
+'page-atom-feed'          => '"$1" ऍटम अनुबन्ध',
+'red-link-title'          => '$1 (पृष्ठं इदानीं यावत् न रचितम्)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'पृष्ठम्',
@@ -526,11 +528,13 @@ $messages = array(
 'nstab-category'  => 'श्रेणी',
 
 # Main script and global functions
-'nosuchaction' => 'तथाविध न कर्म',
+'nosuchaction'      => 'तथाविध न कर्म',
+'nosuchspecialpage' => 'एतादृश विशेष पृष्टम् नास्ति',
 
 # General errors
 'error'               => 'विभ्रम',
 'databaseerror'       => 'दत्ताधार-विभ्रमः',
+'readonly'            => 'डाटाबेस बन्धितमस्ति',
 'missing-article'     => 'दत्ताधारेण(डाटाबेस् इत्यनेन) "$1" $2 इतिनामकं पृष्ठं नैव प्राप्तम्, यत्तु प्राप्तीभवितव्यमासीत्।
 
 कदाचित् एवं तु अवसिते सति अंतरे अथवा अपाकृतस्य पृष्ठस्य इतिहास-संबंधनात् भवति।
@@ -540,13 +544,15 @@ $messages = array(
 कृपया केनचित् [[Special:ListUsers/sysop|प्रचालकेन]] सह अस्य पृष्ठस्य URL इत्येतद्- ज्ञापनपूर्वकं संभाषताम्।',
 'missingarticle-rev'  => '(आवृत्तिः# :$1)',
 'missingarticle-diff' => '(व्यतिरेक: $1, $2)',
+'unexpected'          => 'अप्रतीक्षितमूल्यम् : "$1"="$2"।',
 'badtitletext'        => 'प्रार्थितं पृष्ठ-शीर्षकं अमान्यं वा, रिक्तं वा, अथवा अशुद्धतया संबंद्धं आंतर्भाषिकं, आंतर्विकीयं वा शीर्षकमस्ति। अस्मिन् एकं एकाधिकानि वा एतादृशाणि अक्षराणि विद्यन्ते येषां प्रयोगं शीर्षकेषु अशक्यम्।',
 'viewsource'          => 'स्रोतः दर्शयतु',
 'viewsourcefor'       => '$1 कृते',
 
 # Login and logout pages
-'welcomecreation'         => '<h2>स्वागतम्‌, $1!</h2><p>भवतः/भवत्याः लेखा सृष्टाऽस्ति।
-भवान्/भवती स्वकीयानि {{SITENAME}} वरीयांसि (प्रिफ़रेन्सेस्)  स्वच्छानुसारं कर्तुं शक्नोति।',
+'welcomecreation'         => '==स्वागतम्‌, $1!==
+भवतः/भवत्याः लेखा सृष्टितमस्ति।
+भवतः/भवत्याः [[Special:Preferences|{{SITENAME}} इष्टतमानि]]  स्वच्छानुसारं कर्तुं स्मरणा करोतु।',
 'yourname'                => 'प्रयोक्तृ-नाम :',
 'yourpassword'            => 'रहस्यवाक् :',
 'yourpasswordagain'       => 'रहस्यवाक् पुनः लिखतु।',
@@ -554,14 +560,20 @@ $messages = array(
 'login'                   => 'प्रविशतु',
 'nav-login-createaccount' => 'प्रविशतु / लेखां सृजतु',
 'userlogin'               => 'प्रविशतु / लेखां सृजतु',
+'userloginnocreate'       => 'प्रविशतु',
 'logout'                  => 'बहिर्गच्छतु',
 'userlogout'              => 'बहिर्गच्छति',
+'notloggedin'             => 'भवान् प्रविशितवान् नास्ति',
 'nologinlink'             => 'लेखां रचयतु',
 'createaccount'           => 'लेखां रचयतु',
 'gotaccountlink'          => 'प्रविशतु',
+'createaccountreason'     => 'कारणम्',
 'loginsuccesstitle'       => 'सुस्वागतम्‌। प्रवेशः सिद्धः।',
 'mailmypassword'          => 'नूतनं रहस्यवाक् विद्युत्पत्रेण प्रेषयतु',
 'loginlanguagelabel'      => 'भाषा : $1',
+
+# JavaScript password checks
+'password-strength-good' => 'उत्तमम्',
 
 # Password reset dialog
 'resetpass_text'            => '<!-- पाठं अत्र लिखतु -->',
@@ -569,6 +581,7 @@ $messages = array(
 'newpassword'               => 'नूतन रहस्यवाक् :',
 'retypenew'                 => 'नूतन रहस्यवाक् पुनर्लिखतु :',
 'resetpass-submit-loggedin' => 'रहस्यवाक् परिवर्तयतु',
+'resetpass-submit-cancel'   => 'निरसनम् करोतु',
 'resetpass-temp-password'   => 'अस्थिर रहस्यवाक् :',
 
 # Edit page toolbar
@@ -605,6 +618,7 @@ $messages = array(
 'anoneditwarning'                  => "'''सावधानो भवतु:''' भवता प्रवेशं न कृतम्।
 अस्य पृष्ठस्य इतिहासे भवतः आइ-पी-संकेतः अंकितः भविष्यति।",
 'summary-preview'                  => 'सारांशस्य प्राग्दृश्यम् :',
+'loginreqlink'                     => 'प्रविशतु',
 'newarticle'                       => '(नवीनम्)',
 'newarticletext'                   => "भवता एतादृशमेकं पृष्टं प्रति संबंधनम् अनुसृतम्, यत्पृष्ठं न इदानींयावत् विद्यते।
 
@@ -928,7 +942,7 @@ $messages = array(
 'ipblocklist'              => 'निरोधिताः आइ.पी. संकेताः, प्रयोक्तृ-नामानि च',
 'blocklink'                => 'अवरुध्नातु',
 'unblocklink'              => 'अनिरुध्नातु',
-'change-blocklink'         => 'परिच्छेदम् परिवर्तयतु',
+'change-blocklink'         => 'विरोध दशा परिवर्तयतु',
 'contribslink'             => 'योगदानम्',
 'blocklogpage'             => 'निरोधानां सूचिका',
 'blocklogentry'            => '[[$1]] इत्येतद् निरोधितं, $2 $3 इति अवसान-समयेन सह',

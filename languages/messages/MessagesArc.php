@@ -1165,12 +1165,6 @@ Do you want to change the settings?',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|ܬܢܝܬܐ |ܬܢܝܬ̈ܐ}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ܬܢܝܬܐ |ܬܢܝܬ̈ܐ}} ܡܢ $2',
 
-# Tooltip help for the actions
-'tooltip-pt-userpage' => '',
-'tooltip-pt-mytalk'   => '',
-'tooltip-search'      => 'Search {{SITENAME}}',
-'tooltip-t-print'     => 'Printable version of this page',
-
 # Attribution
 'anonymous'   => '{{PLURAL:$1|ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ|ܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ}} ܕ {{SITENAME}}',
 'siteuser'    => '{{SITENAME}} ܡܦܠܚܢܐ $1',

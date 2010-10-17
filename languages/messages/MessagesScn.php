@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aushulz
  * @author Gmelfi
  * @author Melos
  * @author Omnipaedista
@@ -365,6 +366,7 @@ $messages = array(
 'view-pool-error'   => "Ci spiaci, li server ni stu mumentu sunu troppu carichi. Troppi utenti stannu circannu di taliari sta pàggina. Aspetta n'anticchia prima di pruvari a ritaliari sta pàggina.
 
 $1",
+'pool-errorunknown' => 'Erruri scanusciutu',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Àutri nfurmazzioni supra {{SITENAME}}',
@@ -541,6 +543,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li [
 'gotaccount'                 => "Hai già nu cuntu? '''$1'''.",
 'gotaccountlink'             => 'Trasi',
 'createaccountmail'          => 'via e-mail',
+'createaccountreason'        => 'Mutivu:',
 'badretype'                  => "La ''password'' chi mittisti nun è bona.",
 'userexists'                 => 'Lu nomu utenti nzeritu è già usatu. Ti prijamu pirciò di vuliri scègghiri nu nomu utenti diversu.',
 'loginerror'                 => "Erruri nta l'accessu",
@@ -591,6 +594,10 @@ Si l\'accessu fu criatu pi sbagghiu, si può gnurari stu missaggiu.',
 Aspetta tanticchia prima di pruvari  n'àutra vota.",
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'La tò dumanna di discunnissioni fu niàta prichì pari ca veni di nu browser nun funziunanti o nu proxy di caching.',
+
+# JavaScript password checks
+'password-retype'          => "Scrivi la password n'àutra vota",
+'password-retype-mismatch' => 'Li password nun currispunninu',
 
 # Password reset dialog
 'resetpass'                 => "Scrivi n'àutra vota la password",
@@ -851,6 +858,7 @@ Cunzurtari lu [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log di
 Cunzurtari lu [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log di cancillazzioni] pi ultiriuri dittagghi.
 All'amministratura è ancora possibili [$1 talìari lu confrontu] si nicissariu.",
 'rev-delundel'                => 'ammustra/ammuccia',
+'rev-showdeleted'             => 'ammustra',
 'revisiondelete'              => 'Cancella o riprìstina virsioni',
 'revdelete-nooldid-title'     => 'Virsioni nun spicificata',
 'revdelete-nooldid-text'      => 'Nun hà statu spicificata arcuna virsioni dâ pàggina supra cui esèquiri sta funzioni.',
@@ -875,6 +883,9 @@ L'àutri amministratura dû situ ponnu accèdiri comu è gghiè a li cuntinuti a
 'revdelete-hide-comment'      => "Ammuccia l'uggettu dû canciamentu",
 'revdelete-hide-user'         => "Ammuccia lu nomu o lu ndirizzu IP di l'auturi",
 'revdelete-hide-restricted'   => "Ammuccia l'informazioni innicati macari a li amministratura",
+'revdelete-radio-same'        => '(nun canciari)',
+'revdelete-radio-set'         => 'Sè',
+'revdelete-radio-unset'       => 'Nò',
 'revdelete-suppress'          => "Ammuccia nformazioni puru all'amministratura",
 'revdelete-unsuppress'        => 'Elìmina le limitazzioni su li rivisioni ripristinati',
 'revdelete-log'               => 'Mutivu:',
@@ -907,11 +918,15 @@ $1",
 'revdelete-concurrent-change' => "Impussibili canciari l'oggettu cu data $1 $2 in quantu lu sò statu fu canciatu da n'autru utenti mentri si tintava lu canciamentu.
 Cuntrolla lu log.",
 'revdelete-only-restricted'   => "Nun poi ammucciari â vista di l'amministraturi senza silizziunari l'autri opzioni di supprissioni.",
+'revdelete-reasonotherlist'   => 'Àutru mutivu',
 'revdelete-edit-reasonlist'   => 'Cancia li mutivazioni pi la cancillazzioni',
 
 # Suppression log
 'suppressionlog'     => 'Log dê supprissioni',
 'suppressionlogtext' => "Ccà veni prisintatu n'elencu dê cancillazioni e dê blocchi cchiù ricenti supra cuntinuti ammucciati d'amministraturi. Vidi l'[[Special:IPBlockList|elenco d'IP bloccati]] pi l'elencu dî ban e dî blocchi attivi.",
+
+# Revision move
+'revmove-reasonfield' => 'Mutivu:',
 
 # History merging
 'mergehistory'                     => 'Unioni storie',
@@ -1058,6 +1073,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'contextlines'                  => 'Righi di testu pi ognunu risurtatu:',
 'contextchars'                  => 'Nùmmaru di caràttiri di cuntestu:',
 'stub-threshold'                => 'Valuri minimu pî <a href="#" class="stub">liami a li stub</a>:',
+'stub-threshold-disabled'       => 'Disabbìlitatu',
 'recentchangesdays'             => "Nùmmuru di jorna a ammustrari nte l'urtimi cancaiamenti:",
 'recentchangesdays-max'         => '(màssimu $1 {{PLURAL:$1|jornu|jorna}})',
 'recentchangescount'            => 'Nùmmiru di canciamenti da ammustrari di default:',
@@ -1356,6 +1372,7 @@ Pi nziriri nu file nta na pàggina, fai nu lijami accussì:
 'filetype-unwanted-type'      => "Caricari file di tipu '''\".\$1\"''' è scunsigghiatu. {{PLURAL:\$3|Lu tipu di file cunsigghiatu è|Li tipi di file cunsigghiati sunnu}} \$2.",
 'filetype-banned-type'        => "Caricari file di tipu '''\".\$1\"''' non è cunzintitu. {{PLURAL:\$3|Lu tipu di file cunzintitu è|Li tipi di file cunzintiti sunnu}} \$2.",
 'filetype-missing'            => 'Lu file è privu d\'estinzioni (p\'asèmpiu ".jpg").',
+'unknown-error'               => 'Ci fù un erruri scanusciutu',
 'large-file'                  => 'Si raccumanna di nun supirari li diminzioni di $1 pi ognunu file; stu file è granni $2.',
 'largefileserver'             => 'Lu file sùpira li diminzioni cunzintiti dâ cunfigurazzioni dû server.',
 'emptyfile'                   => "Lu file appena carricatu pari èssiri vacanti. Chistu putissi èssiri duvutu a n'erruri ntô nomu dû file. Virificari ca si ntenni riarmenti carricari stu file.",
@@ -1377,6 +1394,7 @@ Siddu si disponi dâ mmàggini ntâ risuluzzioni urigginali, si prega di carric�
 'file-exists-duplicate'       => 'Stu file è na copia duppiuni {{PLURAL:$1|dû|dî}} file ccà di sècutu:',
 'file-deleted-duplicate'      => "Nu file lu stissu comu a chistu file ([[$1]]) vinni scanciallatu prima di ora. S'aviss'a cuntrullari la stòria e lu picchì dâ scancillazzioni dû file prima di ri-caricàrilu.",
 'uploadwarning'               => 'Avvisu di Upload',
+'uploadwarning-text'          => 'Cancia cà sutta la discrizzioni di lu file e prova arré',
 'savefile'                    => 'Sarva file',
 'uploadedimage'               => 'hà carricatu "[[$1]]"',
 'overwroteimage'              => 'carricata na nova virsioni di "[[$1]]"',
@@ -1420,6 +1438,9 @@ PICT # arcuni
 'upload-too-many-redirects' => "L'URL cuntineva troppi redirect",
 'upload-unknown-size'       => 'Diminsioni scunusciuta',
 'upload-http-error'         => "Ci fù n'erruri HTTP: $1",
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Nun pò trasiri',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL nun ragghiuncìbbili',
@@ -1708,10 +1729,12 @@ Protucolli suppurtati: <tt>$1</tt>',
 'listusers-blocked'  => '(bloccatu)',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista dî utenti attivi',
-'activeusers-count'    => '$1 recent {{PLURAL:$1|canciamento|canciamenti ricenti}}',
-'activeusers-from'     => 'Ammustra li utenti a pàrtiri da:',
-'activeusers-noresult' => 'Nussun utenti truvatu.',
+'activeusers'            => 'Lista dî utenti attivi',
+'activeusers-count'      => '$1 recent {{PLURAL:$1|canciamento|canciamenti ricenti}}',
+'activeusers-from'       => 'Ammustra li utenti a pàrtiri da:',
+'activeusers-hidebots'   => 'Bot ammucciati',
+'activeusers-hidesysops' => 'Amministratura ammucciati',
+'activeusers-noresult'   => 'Nussun utenti truvatu.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Novi utenti',
@@ -2368,6 +2391,7 @@ Visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [ht
 'tooltip-upload'                  => 'Ncigna carricamentu',
 'tooltip-rollback'                => '"Rollback" annulla li canci di l\'ùrtinu cuntribbuturi â sta pâggina cu nu sulu clic.',
 'tooltip-undo'                    => '"Annulla" pirmetti di annullari sta mudìfica e grapi lu mòdulu di mudifica ntâ mudalità di antiprima. Pirmetti di nsiriri na mutivazziopni nti l\'uggettu dâ mudifica.',
+'tooltip-preferences-save'        => 'Sarva prifirenzi',
 
 # Stylesheets
 'common.css'   => "/* Li stili CSS nziriti ccà s'àpplicanu a tutti li skin */",

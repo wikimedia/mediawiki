@@ -302,7 +302,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Legg til sidene eg slettar på overvakingslista mi',
 'tog-previewontop'            => 'Vis førehandsvisinga før endringsboksen',
 'tog-previewonfirst'          => 'Førehandsvis første endring',
-'tog-nocache'                 => "Ikkje bruk nettlesaren sitt mellomlager (''cache'')",
+'tog-nocache'                 => 'Deaktiver nettlesaren sitt mellomlager («cache»)',
 'tog-enotifwatchlistpages'    => 'Send e-post når dei overvaka sidene mine vert endra',
 'tog-enotifusertalkpages'     => 'Send e-post når brukarsida mi vert endra',
 'tog-enotifminoredits'        => 'Send e-post også for småplukk',
@@ -516,6 +516,7 @@ For mange brukarar prøver å sjå denne sida.
 Vent ei lita stund, før du prøver å sjå på sida.
 
 $1',
+'pool-errorunknown' => 'Ukjend feil',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Om {{SITENAME}}',
@@ -615,6 +616,7 @@ Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgj
 'readonly_lag'         => 'Databasen er mellombels skriveverna for at databasetenarane skal kunna synkronisere seg mot kvarandre',
 'internalerror'        => 'Intern feil',
 'internalerror_info'   => 'Intern feil: $1',
+'fileappenderrorread'  => 'Klarte ikkje å lese «$1» når data skulle leggast til.',
 'fileappenderror'      => 'Kunne ikkje leggja "$1" til "$2".',
 'filecopyerror'        => 'Kunne ikkje kopiere fila frå «$1» til «$2».',
 'filerenameerror'      => 'Kunne ikkje døype om fila frå «$1» til «$2».',
@@ -734,6 +736,12 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'usernamehasherror'          => 'Brukarnamn kan ikkje innehalda nummerteikn.',
 'login-throttled'            => 'Du har prøvd å logge inn for mange gonger. Ver venleg og vent før du prøver igjen.',
 'loginlanguagelabel'         => 'Språk: $1',
+'suspicious-userlogout'      => 'Forespurnaden din om å logge ut vart nekta fordi han såg ut til å være sendt av ein øydelagt nettlesar eller mellomtenar.',
+'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
+# Syntaksen er slik:
+#   * Alt frå teiknet «#» til enden av lina er ein kommentar
+#   * Alle liner som ikkje er tomme er ei IP-adresse som er utelukka frå bregrensninga på hastigheita
+ #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Utrekna passordstyrke: $1',
@@ -951,6 +959,7 @@ Desse parameterane har vorte utelatne.',
 'post-expand-template-argument-category'  => 'Sider med utelatne malparameterar',
 'parser-template-loop-warning'            => 'Malløkka oppdaga: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Malen er inkludert for mange gonger ($1)',
+'language-converter-depth-warning'        => 'Språkomformaren si djubdegrense vart overstege ($1)',
 
 # "Undo" feature
 'undo-success' => 'Endringa kan attenderullast. Ver venleg og sjå over skilnadene nedanfor for å vere sikker på at du vil attenderulle. Deretter kan du lagre attenderullinga.',
@@ -1114,6 +1123,7 @@ Elles vil desse versjonane verta fletta inn i sidehistorikken.',
 'revisionmoveselectedversions' => 'Flytt dei valde versjonane',
 'revmove-reasonfield'          => 'Årsak:',
 'revmove-titlefield'           => 'Målsida:',
+'revmove-badparam-title'       => 'Dårlege parametrar',
 'revmove-norevisions-title'    => 'Ugyldig målversjon',
 'revmove-nullmove-title'       => 'Feil i tittelen',
 
@@ -1149,6 +1159,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 # Diffs
 'history-title'            => 'Historikken til «$1»',
 'difference'               => '(Skilnad mellom versjonar)',
+'difference-multipage'     => '(Skilnad mellom sider)',
 'lineno'                   => 'Line $1:',
 'compareselectedversions'  => 'Samanlikn valde versjonar',
 'showhideselectedversions' => 'Syn/skjul valde versjonar',
@@ -1265,6 +1276,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'contextlines'                  => 'Liner per resultat',
 'contextchars'                  => 'Teikn per line i resultatet',
 'stub-threshold'                => 'Grense (i byte) for at frø/spirer skal formaterast <a href="#" class="stub">slik</a>:',
+'stub-threshold-disabled'       => 'Deaktivert',
 'recentchangesdays'             => 'Tal på dagar som viser på siste endringar:',
 'recentchangesdays-max'         => '(høgst $1 {{PLURAL:$1|dag|dagar}})',
 'recentchangescount'            => 'Tal på endringar som viser som standard:',
@@ -1336,6 +1348,8 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'prefs-advancedsearchoptions'   => 'Avanserte val',
 'prefs-advancedwatchlist'       => 'Avanserte val',
 'prefs-displayrc'               => 'Val for vising',
+'prefs-displaysearchoptions'    => 'Val for vising',
+'prefs-displaywatchlist'        => 'Val for vising',
 'prefs-diffs'                   => 'Skilnader',
 
 # User rights
@@ -1651,7 +1665,7 @@ MGP # Pentax
 PICT # div.
   #</pre> <!-- leave this line exactly as it is -->',
 'upload-success-subj'         => 'Opplastinga er ferdig',
-'upload-success-msg'          => 'Opplastinga di er tilgjengeleg her: [[:{{ns:file}}:$1]]',
+'upload-success-msg'          => 'Opplastinga di frå [$2] var vellukka. Han er tilgjengeleg her: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Opplastingsproblem',
 'upload-failure-msg'          => 'Det oppstod eit problem med opplastinga di frå [$2]:
 
@@ -2043,6 +2057,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 # Watchlist
 'watchlist'            => 'Overvakingsliste',
 'mywatchlist'          => 'Overvakingslista mi',
+'watchlistfor2'        => 'For $1 $2',
 'nowatchlist'          => 'Du har ikkje noko i overvakingslista di.',
 'watchlistanontext'    => 'Du lyt $1 for å vise eller endre sider på overvakingslista di.',
 'watchnologin'         => 'Ikkje innlogga',
@@ -2117,7 +2132,7 @@ Tilbakemeldingar og anna hjelp:
 'deletepage'             => 'Slett sida',
 'confirm'                => 'Stadfest',
 'excontent'              => 'innhaldet var: «$1»',
-'excontentauthor'        => 'innhaldet var: «$1» (og den einaste bidragsytaren var «$2»)',
+'excontentauthor'        => 'innhaldet var: «$1» (og den einaste bidragsytaren var «[[Special:Contributions/$2|$2]]»)',
 'exbeforeblank'          => 'innhaldet før sida vart tømd var: «$1»',
 'exblank'                => 'sida var tom',
 'delete-confirm'         => 'Slett «$1»',
@@ -3270,6 +3285,7 @@ Du kan òg [[Special:Watchlist/edit|nytte standardverktøyet]].',
 'version-hook-subscribedby'        => 'Brukt av',
 'version-version'                  => '(versjon $1)',
 'version-license'                  => 'Lisens',
+'version-poweredby-credits'        => "Denne wikien er dreven av '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'         => 'andre',
 'version-software'                 => 'Installert programvare',
 'version-software-product'         => 'Produkt',
@@ -3369,5 +3385,9 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'htmlform-submit'              => 'Lagre',
 'htmlform-reset'               => 'Gjer om endringar',
 'htmlform-selectorother-other' => 'Andre',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
+'sqlite-no-fts'  => '$1 utan støtte for fulltekstsøk',
 
 );

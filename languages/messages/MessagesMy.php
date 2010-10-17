@@ -265,6 +265,8 @@ $messages = array(
 'toc'                     => 'မာတိကာ',
 'showtoc'                 => 'ပြ',
 'hidetoc'                 => 'ဝှက်',
+'thisisdeleted'           => '$1 ကို ကြည့်မည်လော (သို့) restore ပြန်သိမ်းမည်လော။',
+'viewdeleted'             => '$1 ကို ကြည့်မည်လော။',
 'site-rss-feed'           => 'RSS feed $1 ခု',
 'site-atom-feed'          => 'Atom feed $1 ခု',
 'page-rss-feed'           => 'RSS feed "$1" ခု',
@@ -274,22 +276,38 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'စာ​မျက်​နှာ​',
 'nstab-user'      => 'အ​သုံး​ပြု​သူ​၏ ​စာ​မျက်​နှာ​',
+'nstab-media'     => 'မီဒီယာ စာမျက်နှာ',
 'nstab-special'   => 'အထူး စာမျက်နှာ',
 'nstab-project'   => 'ပရောဂျက်စာမျက်နှာ',
 'nstab-image'     => 'ဖိုင်',
 'nstab-mediawiki' => 'မက်ဆေ့',
 'nstab-template'  => 'တမ်းပလိတ်',
+'nstab-help'      => 'အကူအညီ စာမျက်နှာ',
 'nstab-category'  => 'ကဏ္ဍ',
 
+# Main script and global functions
+'nosuchaction'      => 'ဤကဲ့သို့ ဆောင်ရွက်ချက်မျိုး မရှိပါ။',
+'nosuchspecialpage' => 'ဤကဲ့သို့သော အထူးစာမျက်နှာ မရှိပါ',
+
 # General errors
-'missing-article'    => 'စာမျက်နှာ "$1" မှ $2 ကို ရှာတွေ့သင့်သည်ဖြစ်သော်လည်း ဒေတာဘေ့(စ်) သည် ရှာမတွေ့ပါ။
+'error'                => 'အမှား',
+'databaseerror'        => 'ဒေတာဘေ့စ် အမှား',
+'missing-article'      => 'စာမျက်နှာ "$1" မှ $2 ကို ရှာတွေ့သင့်သည်ဖြစ်သော်လည်း ဒေတာဘေ့(စ်) သည် ရှာမတွေ့ပါ။
 
 ယင်းသည် ဖျက်ထားပြီးသား diff သို့မဟုတ် မှတ်တမ်းလင့် တစ်ခုကြောင့် ဖြစ်လေ့ရှိသည်။
 
 ယင်းသို့မဟုတ်ပါက သင်သည် ဤဆော့ဝဲအတွင်းမှ အမှားတစ်ခုကို တွေ့နေခြင်းဖြစ်ကောင်းဖြစ်မည်။ ဤသည်ကို [[Special:ListUsers/sysop|administrator]] သို့ ကျေးဇူးပြု၍ သတင်းပို့ပေးပါ။ URL လင့်ကိုပါ ထည့်သွင်းဖော်ပြပေးပါရန်။',
-'missingarticle-rev' => '(တည်းဖြတ်မူ#: $1)',
-'badtitletext'       => 'တောင်းဆိုထားသော စာမျက်နှာ ခေါင်းစဉ်သည် တရားမဝင်ပါ (သို့) ဗလာဖြစ်နေသည် (သို့) အခြားဘာသာများ(inter-language or inter-wiki title)သို့ မှားယွင်းစွာ လင့်ချိတ်ထားသည်။',
-'viewsource'         => 'ရင်းမြစ်ကို ကြည့်ရန်',
+'missingarticle-rev'   => '(တည်းဖြတ်မူ#: $1)',
+'missingarticle-diff'  => '(ကွဲပြားချက် - $1, $2)',
+'internalerror'        => 'အတွင်းပိုင်းအမှား',
+'internalerror_info'   => 'အတွင်းပိုင်းအမှား - $1',
+'filecopyerror'        => 'ဖိုင် "$1" ကို "$2" သို့ ကော်ပီကူးမရပါ။',
+'filerenameerror'      => 'ဖိုင် "$1" ကို "$2" သို့ အမည်ပြောင်းမရပါ။',
+'filedeleteerror'      => 'ဖိုင် "$1" ကို ဖျက်မရပါ။',
+'directorycreateerror' => 'လမ်းညွှန် "$1" ကို ဖန်တီးမရနိုင်ပါ။',
+'filenotfound'         => 'ဖိုင် "$1" ကို ရှာမတွေ့ပါ။',
+'badtitletext'         => 'တောင်းဆိုထားသော စာမျက်နှာ ခေါင်းစဉ်သည် တရားမဝင်ပါ (သို့) ဗလာဖြစ်နေသည် (သို့) အခြားဘာသာများ(inter-language or inter-wiki title)သို့ မှားယွင်းစွာ လင့်ချိတ်ထားသည်။',
+'viewsource'           => 'ရင်းမြစ်ကို ကြည့်ရန်',
 
 # Login and logout pages
 'welcomecreation'         => '== မင်္ဂလာပါ $1! ==
@@ -649,17 +667,28 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'withoutinterwiki-submit' => 'ပြ',
 
 # Miscellaneous special pages
-'nbytes'            => '$1 {{PLURAL:$1|ဘိုက်|ဘိုက်}}',
-'nmembers'          => '$1 {{PLURAL:$1|မန်ဘာ|မန်ဘာ}} ယောက်',
-'prefixindex'       => 'ရှေ့ဆုံးမှ prefix ပါသော စာမျက်နှာ အားလုံး',
-'shortpages'        => 'စာမျက်နှာတို',
-'newpages'          => 'စာမျက်နှာအသစ်',
-'newpages-username' => 'မှတ်​ပုံ​တင်​အ​မည်:',
-'ancientpages'      => 'အဟောင်းဆုံးစာမျက်နှာ',
-'move'              => 'ရွှေ့ရန်',
-'movethispage'      => 'ဤစာမျက်နှာကို ရွှေ့ပြောင်းရန်',
-'pager-newer-n'     => '{{PLURAL:$1|ပိုသစ်သော တစ်ခု|ပိုသစ်သော $1 ခု}}',
-'pager-older-n'     => '{{PLURAL:$1|ပိုဟောင်းသော တစ်ခု|ပိုဟောင်းသော $1 ခု}}',
+'nbytes'                  => '$1 {{PLURAL:$1|ဘိုက်|ဘိုက်}}',
+'nmembers'                => '$1 {{PLURAL:$1|မန်ဘာ|မန်ဘာ}} ယောက်',
+'uncategorizedpages'      => 'အမျိုးအစား ခွဲမထားသော စာမျက်နှာများ',
+'uncategorizedcategories' => 'အမျိုးအစားခွဲမထားသော ကဏ္ဍများ',
+'uncategorizedimages'     => 'အမျိုးအစား ခွဲမထားသော ဖိုင်များ',
+'uncategorizedtemplates'  => 'အမျိုးအစား ခွဲမထားသော တမ်းပလိတ်များ',
+'unusedcategories'        => 'အသုံးပြုမထားသော ကဏ္ဍများ',
+'unusedimages'            => 'အသုံးပြုမထားသော ဖိုင်များ',
+'popularpages'            => 'လူကြိုက်များသော စာမျက်နှာများ',
+'wantedcategories'        => 'အလိုရှိသော ကဏ္ဍများ',
+'wantedpages'             => 'အလိုရှိသော စာမျက်နှာများ',
+'wantedfiles'             => 'အလိုရှိသော ဖိုင်များ',
+'wantedtemplates'         => 'အလိုရှိသော တမ်းပလိတ်များ',
+'prefixindex'             => 'ရှေ့ဆုံးမှ prefix ပါသော စာမျက်နှာ အားလုံး',
+'shortpages'              => 'စာမျက်နှာတို',
+'newpages'                => 'စာမျက်နှာအသစ်',
+'newpages-username'       => 'မှတ်​ပုံ​တင်​အ​မည်:',
+'ancientpages'            => 'အဟောင်းဆုံးစာမျက်နှာ',
+'move'                    => 'ရွှေ့ရန်',
+'movethispage'            => 'ဤစာမျက်နှာကို ရွှေ့ပြောင်းရန်',
+'pager-newer-n'           => '{{PLURAL:$1|ပိုသစ်သော တစ်ခု|ပိုသစ်သော $1 ခု}}',
+'pager-older-n'           => '{{PLURAL:$1|ပိုဟောင်းသော တစ်ခု|ပိုဟောင်းသော $1 ခု}}',
 
 # Book sources
 'booksources'               => 'မှီငြမ်း စာအုပ်များ',

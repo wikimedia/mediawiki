@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Iketsi
  * @author Wantok
  * @author Wytukaze
  * @author לערי ריינהארט
@@ -71,6 +72,30 @@ $messages = array(
 'thu'       => 'Fon',
 'fri'       => 'Frai',
 'sat'       => 'Sar',
+'january'   => 'Janueri',
+'february'  => 'Februeri',
+'march'     => 'Mas',
+'april'     => 'Epril',
+'may_long'  => 'Me',
+'june'      => 'Jun',
+'july'      => 'Julai',
+'august'    => 'Ogas',
+'september' => 'Septemba',
+'october'   => 'Oktoba',
+'november'  => 'Novemba',
+'december'  => 'Disemba',
+'jan'       => 'Jan',
+'feb'       => 'Feb',
+'mar'       => 'Mas',
+'apr'       => 'Epr',
+'may'       => 'Me',
+'jun'       => 'Jun',
+'jul'       => 'Jul',
+'aug'       => 'Oga',
+'sep'       => 'Sep',
+'oct'       => 'Okt',
+'nov'       => 'Nov',
+'dec'       => 'Dis',
 
 # Categories related messages
 'pagecategories'        => '{{PLURAL:$1|Grup|Ol grup}}',
@@ -89,9 +114,11 @@ $messages = array(
 'qbedit'         => 'Senisim',
 'qbspecialpages' => 'Ol sipesol pes',
 
+'errorpagetitle'   => 'Samting i kranki',
 'help'             => 'Halivim mi',
 'search'           => 'Painim',
 'searchbutton'     => 'Painim',
+'searcharticle'    => 'Go',
 'history'          => 'Ol senis long dispela pes',
 'history_short'    => 'Ol senis',
 'edit'             => 'Senisim',
@@ -103,6 +130,7 @@ $messages = array(
 'categorypage'     => 'Lukim pes bilong grup',
 'otherlanguages'   => 'Long ol narapela tokples',
 'jumptonavigation' => 'ol bikpela pes',
+'jumptosearch'     => 'painim',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'        => 'Karen afeas',
@@ -113,17 +141,29 @@ $messages = array(
 'portal'               => 'Bung ples',
 'portal-url'           => 'Project:Bung ples',
 
+'badaccess' => 'Kranki long tok orait.',
+
+'site-atom-feed' => '$1 Atom fid',
+'page-rss-feed'  => '"$1" RSS fid',
+'page-atom-feed' => '"$1" Atom fid',
+
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Stori',
 'nstab-user'      => 'Pes bilong yusa',
 'nstab-media'     => 'Media pes',
-'nstab-special'   => 'Sipesol',
+'nstab-special'   => 'Sipesol pes',
+'nstab-image'     => 'Fail',
 'nstab-mediawiki' => 'Toksave',
 'nstab-category'  => 'Grup',
 
 # Login and logout pages
 'logout'     => 'Logaut',
 'userlogout' => 'Logaut',
+
+# Edit page toolbar
+'link_sample'    => 'Link taitel',
+'extlink_sample' => 'http://www.example.com link taitel',
+'media_tip'      => 'Link bilong fail',
 
 # Edit pages
 'summary'           => 'Liklik toksave bilong senis:',
@@ -137,6 +177,7 @@ $messages = array(
 'showdiff'          => 'Soim ol senis',
 'summary-preview'   => 'Toksave bilong senis bai luk olsem:',
 'subject-preview'   => 'Nem bilong pes (o hap bilong pes) bai olsem:',
+'newarticle'        => '(Nupela)',
 'copyrightwarning'  => "Toksave: olgeta senis yu wokim long long {{SITENAME}} bai stap ananit long tokorait $2 (lukim $1 long painimaut moa long dispela). Sapos yu no laikim narapela manmeri long senisim olgeta, o salim dispela i go long ol kainkain hap, noken raitim long hia.<br />
 Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap we lo i tok olsem i orait long kisim (Tok Inglis: <i>public domain</i>).
 '''YU NOKEN RAITIM WANPELA SAMTING SAPOS YU NO WOKIM YU YET, O YU KISIM TOKORAIT LONG PUTIM LONG HIA!'''",
@@ -144,6 +185,12 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap we lo i tok olsem i orait long kisim (Tok Inglis: <i>public domain</i>). Lukim $1 long painimaut moa long dispela.<br />
 '''YU NOKEN RAITIM WANPELA SAMTING IGAT COPYRIGHT LONG EN (NARAPELA MANMERI I RAITIM)!'''",
 'templatesused'     => 'Dispela pes i yusim ol templet:',
+
+# Search results
+'powersearch'        => 'Mobeta Painim',
+'powersearch-legend' => 'Mobeta Painim',
+'powersearch-ns'     => 'Painim long ol nem',
+'powersearch-field'  => 'Painim long',
 
 # Preferences page
 'mypreferences'   => 'Ol laik bilong mi',
@@ -155,6 +202,8 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 # Recent changes
 'recentchanges'     => 'Nupela senis',
 'rcnote'            => "Ananit yu lukim '''$1 senis''' long '''$2 de''' igo pinis, na i olsem long $3.",
+'newpageletter'     => 'N',
+'boteditletter'     => 'b',
 'rc_categories'     => 'Soim ol senis insait long ol dispela grup tasol (raitim wantaim "|" namel long wanwan)',
 'rc_categories_any' => 'Olgeta',
 
@@ -165,6 +214,10 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 
 # Upload
 'upload' => 'Salim media fail',
+
+# File description page
+'filehist-user' => 'Yusa',
+'imagelinks'    => 'Ol fail link',
 
 # Random page
 'randompage' => 'Soim wanpela pes',
@@ -189,7 +242,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'unusedcategoriestext'    => 'Ol dispela grup istap yet, tasol i no gat wanpela pes o grup i stap insait long ol.',
 
 # Special:AllPages
-'allpages' => 'Olgeta pes',
+'allpages'       => 'Olgeta pes',
+'allarticles'    => 'Ol pes',
+'allpagessubmit' => 'Go',
 
 # Special:Categories
 'categories'         => 'Ol grup',
@@ -219,6 +274,9 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'watchlist-details'    => '$1 pes istap long lukautbuk (dispela namba i no kaunim ol pes bilong toktok).',
 'wlheader-showupdated' => "* Ol pes i senis pinis bihain long taim yu lukim ol igat nem i '''strongpela'''",
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching' => 'Luklukim...',
+
 'enotif_reset' => 'Makim olgeta pes olsem mi lukim pinis',
 
 # Protect
@@ -228,10 +286,13 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'contributions' => 'Ol senis yusa i wokim',
 'mycontris'     => 'Ol senis mi wokim',
 
-'sp-contributions-talk' => 'Toktok',
+'sp-contributions-talk'   => 'Toktok',
+'sp-contributions-submit' => 'Painim',
 
 # What links here
-'whatlinkshere' => 'Ol link ikam long hia',
+'whatlinkshere'       => 'Ol link ikam long hia',
+'whatlinkshere-page'  => 'Pes:',
+'whatlinkshere-links' => '← ol link',
 
 # Move page
 'movepagebtn'     => 'Surikim',
@@ -249,7 +310,16 @@ Yu mas painim narapela nem.',
 'allmessages' => 'Ol toksave bilong sistem',
 
 # Tooltip help for the actions
+'tooltip-pt-logout'         => 'Logaut',
+'tooltip-feed-rss'          => 'RSS fid bilong dispela pes',
+'tooltip-feed-atom'         => 'Atom fid bilong dispela pes',
 'tooltip-ca-nstab-category' => 'Lukim grup',
+
+# Metadata
+'metadata' => 'Metadata',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'ol',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Igat {{PLURAL:$1|1 samting|$1 samting}} insait long lukautbuk bilong yu (ol pes bilong toktok i no stap long dispela namba).',

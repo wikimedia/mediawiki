@@ -525,11 +525,11 @@ pe titlul secțiunii (JavaScript)',
 'jumptonavigation'  => 'navigare',
 'jumptosearch'      => 'căutare',
 'view-pool-error'   => 'Ne pare rău, dar serverele sunt supraîncărcare în acest moment.
-Prea multi utilizatori încearcă să vizualizeze această pagină.
-Vă rugăm să așteptați un moment înainte să încercați să accesați pagina din nou.
+Prea mulți utilizatori încearcă să vizualizeze această pagină.
+Vă rugăm să așteptați un moment înainte de a reîncerca accesarea paginii.
 
 $1',
-'pool-timeout'      => 'Timeout de așteptare pentru blocare',
+'pool-timeout'      => 'Timpul alocat așteptării pentru blocare a expirat',
 'pool-queuefull'    => 'Coada de așteptare este plină',
 'pool-errorunknown' => 'Eroare necunoscută',
 
@@ -765,11 +765,11 @@ Ignorați acest mesaj dacă crearea contului s-a produs în urma unei greșeli.'
 Vă rugăm să așteptați până să mai încercați.',
 'loginlanguagelabel'         => 'Limba: $1',
 'suspicious-userlogout'      => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
-'ratelimit-excluded-ips'     => '↓  #<!-- lăsați această linie așa cum este --> <pre>
+'ratelimit-excluded-ips'     => '  #<!-- nu modificați această linie --> <pre>
 # Sintaxa este după cum urmează:
-#  * Totul de la caracterul "#" până la sfârșitul liniei este un comentariu
+#  * Totul, de la caracterul „#” până la sfârșitul liniei, este un comentariu
 #  * Fiecare linie ocupată este o adresă IP exclusă de la limita de frecvență
- #</pre> <!-- lăsați această linie așa cum este -->',
+ #</pre> <!-- nu modificați această linie -->',
 
 # JavaScript password checks
 'password-strength'            => 'Nivelul de securitate al parolei: $1',
@@ -3406,11 +3406,11 @@ Puteți folosi în schimb [[Special:Watchlist/edit|editorul standard]].',
 'version-license'                  => 'Licență',
 'version-poweredby-credits'        => "Acest wiki este dezvoltat de '''[http://www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
 'version-poweredby-others'         => 'alții',
-'version-license-info'             => 'MediaWiki este software liber, îl puteți redistribui și / sau modifica sub termenii GNU General Public License publicate de Free Software Foundation; fie versiunea 2 a Licenței, sau (la opțiunea dumneavoastră) orice versiune ulterioară. 
+'version-license-info'             => 'MediaWiki este un software liber pe care îl puteți redistribui și/sau modifica sub termenii Licenței Publice Generale GNU publicată de Free Software Foundation – fie a doua versiune a acesteia, fie, la alegerea dumneavoastră, orice altă versiune ulterioară. 
 
-MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ NICI O GARANȚIE, nici chiar garanția implicită de VANDABILITATE sau POTRIVIRE PENTRU UN SCOP ANUME. Vezi GNU General Public License pentru mai multe detalii. 
+MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GARANȚIE, nici măcar cea implicită de COMERCIALIZARE sau de ADAPTARE PENTRU UN UN SCOP ANUME. Vedeți Licența Publică Generală GNU pentru mai multe detalii. 
 
-Trebuie să fi primit [{{SERVER}}{{SCRIPTPATH}}/COPYING o copie a GNU General Public License], împreună cu acest program, dacă nu, scrieţi la Free Software Foundation, Inc, 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, Statele Unite ale Americii sau [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html citiți-o online].',
+În cazul în care nu ați primit [{{SERVER}}{{SCRIPTPATH}}/COPYING o copie a  Licenței Publice Generale GNU] împreună cu acest program, scrieți la Free Software Foundation, Inc, 51, Strada Franklin, etajul cinci, Boston, MA 02110-1301, Statele Unite ale Americii sau [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html citiți-o online].',
 'version-software'                 => 'Software instalat',
 'version-software-product'         => 'Produs',
 'version-software-version'         => 'Versiune',

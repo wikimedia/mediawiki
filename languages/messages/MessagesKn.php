@@ -821,6 +821,7 @@ $2',
 'powersearch-ns'            => 'ಈ ಪುಟ ಪ್ರಬೇಧಗಳಲ್ಲಿ ಹುಡುಕು:',
 'powersearch-redir'         => 'ಪುನರ್ನಿರ್ದೇಶನಗಳ ಪಟ್ಟಿ',
 'powersearch-field'         => 'ಇದನ್ನು ಹುಡುಕು',
+'powersearch-toggleall'     => 'ಎಲ್ಲಾ',
 'search-external'           => 'ಬಾಹ್ಯ ಹುಡುಕಾಟ',
 'searchdisabled'            => '{{SITENAME}} ಹುಡುಕಾಟ ಸದ್ಯಕ್ಕೆ ಸ್ಥಗಿತವಾಗಿದೆ.
 ಈ ವೇಳೆಯಲ್ಲಿ ನೀವು ಗೂಗಲ್ ಉಪಯೋಗಿಸಿ ಹುಡುಕಾಟ ನಡೆಸಬಹುದು.
@@ -1304,6 +1305,9 @@ $2',
 'listusers-submit'   => 'ತೋರು',
 'listusers-noresult' => 'ಯಾವ ಬಳಕೆದಾರರೂ ಸಿಗಲಿಲ್ಲ.',
 
+# Special:ActiveUsers
+'activeusers' => 'ಸಕ್ರಿಯ ಸದಸ್ಯರ ಪಟ್ಟಿ',
+
 # Special:Log/newusers
 'newuserlogpage'          => 'ಸದಸ್ಯತ್ವ ಸೃಷ್ಟಿಗಳ ದಾಖಲೆ',
 'newuserlog-create-entry' => 'ಹೊಸ ಸದಸ್ಯತ್ವ ಖಾತೆ',
@@ -1364,12 +1368,13 @@ $2',
 'watching'   => 'ವೀಕ್ಷಣೆಗೆ ಸೇರಿಸಲಾಗುತ್ತಿದೆ...',
 'unwatching' => 'ವೀಕ್ಷಣೆಯಿಂದ ತೆಗೆಯಲಾಗುತ್ತಿದೆ...',
 
-'enotif_reset'       => 'ಭೇಟಿಯಿತ್ತ ಎಲ್ಲಾ ಪುಟಗಳನ್ನು ಗುರುತು ಮಾಡಿ',
-'enotif_newpagetext' => 'ಇದೊಂದು ಹೊಸ ಪುಟ.',
-'changed'            => 'ಬದಲಾಯಿಸಲಾಗಿದೆ',
-'created'            => 'ಸೃಷ್ಟಿಸಲ್ಪಟ್ಟಿದೆ',
-'enotif_lastvisited' => 'ನಿಮ್ಮ ಕಳೆದ ಭೇಟಿಯ ನಂತರದ ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳಿಗೆ $1 ನೋಡಿ.',
-'enotif_anon_editor' => 'ಅನಾಮಧೇಯ ಸದಸ್ಯ $1',
+'enotif_reset'                 => 'ಭೇಟಿಯಿತ್ತ ಎಲ್ಲಾ ಪುಟಗಳನ್ನು ಗುರುತು ಮಾಡಿ',
+'enotif_newpagetext'           => 'ಇದೊಂದು ಹೊಸ ಪುಟ.',
+'enotif_impersonal_salutation' => '{{SITENAME}} ಸದಸ್ಯ',
+'changed'                      => 'ಬದಲಾಯಿಸಲಾಗಿದೆ',
+'created'                      => 'ಸೃಷ್ಟಿಸಲ್ಪಟ್ಟಿದೆ',
+'enotif_lastvisited'           => 'ನಿಮ್ಮ ಕಳೆದ ಭೇಟಿಯ ನಂತರದ ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳಿಗೆ $1 ನೋಡಿ.',
+'enotif_anon_editor'           => 'ಅನಾಮಧೇಯ ಸದಸ್ಯ $1',
 
 # Delete
 'deletepage'             => 'ಪುಟವನ್ನು ಅಳಿಸಿ',
@@ -1426,6 +1431,8 @@ $2',
 'protect-expiry-indefinite'   => 'ಅನಿರ್ದಿಷ್ಟ',
 'protect-cascade'             => 'ಈ ಪುಟದಲ್ಲಿ ಸೇರಿಸಲಾಗಿರುವ ಪುಟಗಳನ್ನು ಸಂರಕ್ಷಿಸು (ತಡಸಲು ಸಂರಕ್ಷಣೆ - cascading protection)',
 'protect-cantedit'            => 'ನೀವು ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟವನ್ನು ಬದಲಾಯಿಸುವ ಅನುಮತಿಯನ್ನು ಹೊಂದಿಲ್ಲ.',
+'protect-othertime'           => 'ಇತರ ಸಮಯ:',
+'protect-othertime-op'        => 'ಇತರ ಸಮಯ',
 'protect-otherreason'         => 'ಇತರ/ಹೆಚ್ಚುವರಿ ಕಾರಣ:',
 'protect-otherreason-op'      => 'ಇತರ ಕಾರಣ',
 'protect-expiry-options'      => '೨ ಗಂಟೆಗಳು:2 hours,೧ ದಿನ:1 day,೩ ದಿನಗಳು:3 days,೧ ವಾರ:1 week,೨ ವಾರಗಳು:2 weeks,೧ ತಿಂಗಳು:1 month,೩ ತಿಂಗಳುಗಳು:3 months,೬ ತಿಂಗಳುಗಳು:6 months,೧ ವರ್ಷ:1 year,ಅನಿರ್ಧಿಷ್ಟ:infinite',
@@ -1454,6 +1461,7 @@ $2',
 'undelete-nodiff'        => 'ಯಾವ ಪೂರ್ವ ಬದಲಾವಣೆಯೂ ಸಿಗಲಿಲ್ಲ.',
 'undeletebtn'            => 'ಹಿಂದೆ ಇದ್ದಂತೆ ಮಾಡು',
 'undeletelink'           => 'ವೀಕ್ಷಿಸು/ಹಿಂದಿನಂತಾಗಿಸು',
+'undeleteviewlink'       => 'ನೋಡು',
 'undeletecomment'        => 'ಕಾರಣ:',
 'undeletedarticle'       => '"[[$1]]" ಅನ್ನು ಹಿಂದಿನಂತೆ ಮಾಡು',
 'undelete-header'        => 'ಇತ್ತೀಚೆಗೆ ಅಳಿಸಲಾದ ಪುಟಗಳಿಗೆ [[Special:Log/delete|ಅಳಿಸುವಿಕೆ ದಿನಚರಿ]] ಅನ್ನು ನೋಡಿ.',
@@ -1523,7 +1531,7 @@ $2',
 'ipbcreateaccount'         => 'ಖಾತೆ ಸೃಷ್ಟಿಯನ್ನು ನಿರ್ಬಂಧಿಸು',
 'ipbemailban'              => 'ಬಳಕೆದಾರನು ಇ-ಅಂಚೆ ಕಳುಹಿಸುವುದನ್ನು ತಡೆಗಟ್ಟು',
 'ipbsubmit'                => 'ಈ ಸದಸ್ಯರನ್ನು ತಡೆಹಿಡಿಯಿರಿ',
-'ipbother'                 => 'ಇತರ ಕಾಲಾವಧಿ:',
+'ipbother'                 => 'ಇತರ ಸಮಯ:',
 'ipboptions'               => '೨ ಗಂಟೆಗಳು:2 hours,೧ ದಿನ:1 day,೩ ದಿನಗಳು:3 days,೧ ವಾರ:1 week,೨ ವಾರಗಳು:2 weeks,೧ ತಿಂಗಳು:1 month,೩ ತಿಂಗಳುಗಳು:3 months,೬ ತಿಂಗಳುಗಳು:6 months,೧ ವರ್ಷ:1 year,ಅನಿರ್ಧಿಷ್ಟ:infinite',
 'ipbotheroption'           => 'ಇತರ',
 'ipbotherreason'           => 'ಇತರ/ಹೆಚ್ಚುವರಿ ಕಾರಣ:',
@@ -1635,14 +1643,17 @@ $2',
 'export-submit'     => 'ರಫ್ತು',
 'export-addcattext' => 'ಈ ವರ್ಗದಿಂದ ಪುಟಗಳನ್ನು ಸೇರಿಸು:',
 'export-addcat'     => 'ಸೇರಿಸು',
+'export-addns'      => 'ಸೇರಿಸು',
 'export-download'   => 'ಫೈಲಾಗಿ ಉಳಿಸು',
 'export-templates'  => 'ಟೆಂಪ್ಲೇಟುಗಳನ್ನು ಸೇರಿಸು',
 
 # Namespace 8 related
-'allmessages'               => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
-'allmessagesname'           => 'ಹೆಸರು',
-'allmessages-language'      => 'ಭಾಷೆ:',
-'allmessages-filter-submit' => 'ಹೋಗು',
+'allmessages'                 => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
+'allmessagesname'             => 'ಹೆಸರು',
+'allmessages-filter-all'      => 'ಎಲ್ಲಾ',
+'allmessages-filter-modified' => 'ಬದಲಾಯಿಸಲಾದ',
+'allmessages-language'        => 'ಭಾಷೆ:',
+'allmessages-filter-submit'   => 'ಹೋಗು',
 
 # Thumbnails
 'thumbnail-more'  => 'ದೊಡ್ಡದಾಗಿಸು',
@@ -2004,6 +2015,7 @@ $5
 'version-other'            => 'ಇತರ',
 'version-version'          => '(ಆವೃತ್ತಿ $1)',
 'version-software'         => 'ಸಂಸ್ಥಾಪಿಸಲಾಗಿರುವ ತಂತ್ರಾಂಶ',
+'version-software-product' => 'ಉತ್ಪನ್ನ',
 'version-software-version' => 'ಆವೃತ್ತಿ',
 
 # Special:FilePath
@@ -2038,7 +2050,8 @@ $5
 'tags-edit' => 'ಸಂಪಾದಿಸಿ',
 
 # Special:ComparePages
-'compare-page1' => 'ಪುಟ ೧',
+'compare-page1'  => 'ಪುಟ ೧',
+'compare-submit' => 'ಹೋಲಿಸು',
 
 # HTML forms
 'htmlform-selectorother-other' => 'ಇತರ',
