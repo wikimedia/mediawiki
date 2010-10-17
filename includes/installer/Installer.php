@@ -383,21 +383,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Get an array of likely places we can find executables. Check a bunch
-	 * of known Unix-like defaults, as well as the PATH environment variable
-	 * (which should maybe make it work for Windows?)
-	 *
-	 * @return Array
-	 */
-	protected function getPossibleBinPaths() {
-		return array_merge(
-			array( '/usr/bin', '/usr/local/bin', '/opt/csw/bin',
-				'/usr/gnu/bin', '/usr/sfw/bin', '/sw/bin', '/opt/local/bin' ),
-			explode( PATH_SEPARATOR, getenv( 'PATH' ) )
-		);
-	}
-
-	/**
 	 * Check if we're installing the latest version.
 	 */
 	public function envLatestVersion() {
@@ -608,20 +593,11 @@ abstract class Installer {
 		$names = array( "gdiff3", "diff3", "diff3.exe" );
 		$versionInfo = array( '$1 --version 2>&1', 'diff3 (GNU diffutils)' );
 
-		$haveDiff3 = false;
+		$diff3 = $this->locateExecutableInDefaultPaths( $names, $versionInfo );
 
-		foreach ( $this->getPossibleBinPaths() as $path ) {
-			$exe = $this->locateExecutable( $path, $names, $versionInfo );
-
-			if ($exe !== false) {
-				$this->setVar( 'wgDiff3', $exe );
-				$haveDiff3 = true;
-				break;
-			}
-		}
-
-		if ( $haveDiff3 ) {
-			$this->showMessage( 'config-diff3-good', $exe );
+		if ( $diff3 ) {
+			$this->showMessage( 'config-diff3-good', $diff3 );
+			$this->setVar( 'wgDiff3', $diff3 );
 		} else {
 			$this->setVar( 'wgDiff3', false );
 			$this->showMessage( 'config-diff3-bad' );
@@ -633,20 +609,11 @@ abstract class Installer {
 	 */
 	public function envCheckGraphics() {
 		$names = array( 'convert', 'convert.exe' );
-		$haveConvert = false;
+		$convert = $this->locateExecutableInDefaultPaths( $names );
 
-		foreach ( $this->getPossibleBinPaths() as $path ) {
-			$exe = $this->locateExecutable( $path, $names );
-
-			if ($exe !== false) {
-				$this->setVar( 'wgImageMagickConvertCommand', $exe );
-				$haveConvert = true;
-				break;
-			}
-		}
-
-		if ( $haveConvert ) {
-			$this->showMessage( 'config-imagemagick', $exe );
+		if ( $convert ) {
+			$this->setVar( 'wgImageMagickConvertCommand', $convert );
+			$this->showMessage( 'config-imagemagick', $convert );
 			return true;
 		} elseif ( function_exists( 'imagejpeg' ) ) {
 			$this->showMessage( 'config-gd' );
@@ -889,6 +856,20 @@ abstract class Installer {
 		}
 	}
 
+	/**
+	 * Get an array of likely places we can find executables. Check a bunch
+	 * of known Unix-like defaults, as well as the PATH environment variable
+	 * (which should maybe make it work for Windows?)
+	 *
+	 * @return Array
+	 */
+	protected function getPossibleBinPaths() {
+		return array_merge(
+			array( '/usr/bin', '/usr/local/bin', '/opt/csw/bin',
+				'/usr/gnu/bin', '/usr/sfw/bin', '/sw/bin', '/opt/local/bin' ),
+			explode( PATH_SEPARATOR, getenv( 'PATH' ) )
+		);
+	}
 
 	/**
 	 * Search a path for any of the given executable names. Returns the
@@ -932,7 +913,20 @@ abstract class Installer {
 				}
 			}
 		}
+		return false;
+	}
 
+	/**
+	 * Same as locateExecutable(), but checks in getPossibleBinPaths() by default
+	 * @see locateExecutable()
+	 */
+	protected function locateExecutableInDefaultPaths( $names, $versionInfo = false ) {
+		foreach( $this->getPossibleBinPaths() as $path ) {
+			$exe = $this->locateExecutable( $path, $names, $versionInfo );
+			if( $exe !== false ) {
+				return $exe;
+			}
+		}
 		return false;
 	}
 
