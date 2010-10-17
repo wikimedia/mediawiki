@@ -351,7 +351,7 @@ abstract class Maintenance {
 		$this->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
 		$this->addOption( 'wiki', 'For specifying the wiki ID', false, true );
 		$this->addOption( 'globals', 'Output globals at the end of processing for debugging' );
-		$this->addOption( 'memory-limit', 'Set a specific memory limit for the script, -1 for no limit or "default" to avoid changing it' );
+		$this->addOption( 'memory-limit', 'Set a specific memory limit for the script, "max" for no limit or "default" to avoid changing it' );
 		// If we support a DB, show the options
 		if ( $this->getDbType() > 0 ) {
 			$this->addOption( 'dbuser', 'The DB user to use for this script', false, true );
@@ -469,15 +469,21 @@ abstract class Maintenance {
 	 * to disable the limits)
 	 */
 	public function memoryLimit() {
-		return $this->getOption( 'memory-limit', -1 );
+		$limit = $this->getOption( 'memory-limit', 'max' );
+		$limit = trim( $limit, "\" '" ); // trim quotes in case someone misunderstood
+		return $limit;
 	}
 
 	/**
 	 * Adjusts PHP's memory limit to better suit our needs, if needed.
 	 */
 	protected function adjustMemoryLimit() {
-		if ( $this->memoryLimit() != 'default' ) {
-			ini_set( 'memory_limit', $this->memoryLimit() );
+		$limit = $this->memoryLimit();
+		if ( $limit == 'max' ) {
+			$limit = -1; // no memory limit
+		}
+		if ( $limit != 'default' ) {
+			ini_set( 'memory_limit', $limit );
 		}
 	}
 
