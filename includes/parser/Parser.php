@@ -5256,7 +5256,7 @@ class Parser {
 	 */
 	function unserialiseHalfParsedText( $data, $intPrefix = null ) {
 		if ( !$intPrefix ) {
-			$intPrefix = $this->getRandomString();
+			$intPrefix = self::getRandomString();
 		}
 
 		# First, extract the strip state.
