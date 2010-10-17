@@ -328,6 +328,7 @@ abstract class CoreInstaller extends Installer {
 	public function performInstallation( $startCB, $endCB ) {
 		$installResults = array();
 		$installer = $this->getDBInstaller();
+		$installer->preInstall();
 
 		foreach( $this->getInstallSteps() as $stepObj ) {
 			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
