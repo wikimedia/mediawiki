@@ -78,9 +78,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		// Try to connect
-		if ( $status->isOK() ) {
-			$status->merge( $this->getConnection() );
-		}
+		$status->merge( $this->getConnection() );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
