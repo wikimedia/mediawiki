@@ -701,7 +701,7 @@ abstract class Installer {
 
 		# Get a list of available locales.
 		$lines = $ret = false;
-		$lines = wfShellExec( '/usr/bin/locale -a', $ret, true );
+		$lines = wfShellExec( '/usr/bin/locale -a', $ret );
 
 		if ( $ret ) {
 			return true;
