@@ -448,6 +448,9 @@ abstract class CoreInstaller extends Installer {
 
 		// Allow multiple ob_flush() calls
 		$GLOBALS['wgDisableOutputCompression'] = true;
+
+		// Some of the environment checks make shell requests, remove limits
+		$GLOBALS['wgMaxShellMemory'] = 0;
 	}
 
 	/**

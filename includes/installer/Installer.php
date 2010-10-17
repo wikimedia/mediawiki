@@ -692,14 +692,8 @@ abstract class Installer {
 	 * TODO: document
 	 */
 	public function envCheckShellLocale() {
-		# Give up now if we're in safe mode or open_basedir.
-		# It's theoretically possible but tricky to work with.
-		if ( wfIniGetBool( "safe_mode" ) || ini_get( 'open_basedir' ) || !function_exists( 'exec' ) ) {
-			return true;
-		}
-
 		$os = php_uname( 's' );
-		$supported = array( 'Linux', 'SunOS', 'HP-UX' ); # Tested these
+		$supported = array( 'Linux', 'SunOS', 'HP-UX', 'Darwin' ); # Tested these
 
 		if ( !in_array( $os, $supported ) ) {
 			return true;
@@ -707,13 +701,13 @@ abstract class Installer {
 
 		# Get a list of available locales.
 		$lines = $ret = false;
-		exec( '/usr/bin/locale -a', $lines, $ret );
+		$lines = wfShellExec( '/usr/bin/locale -a', $ret, true );
 
 		if ( $ret ) {
 			return true;
 		}
 
-		$lines = wfArrayMap( 'trim', $lines );
+		$lines = wfArrayMap( 'trim', explode( "\n", $lines ) );
 		$candidatesByLocale = array();
 		$candidatesByLang = array();
 
@@ -905,10 +899,7 @@ abstract class Installer {
 				}
 
 				$file = str_replace( '$1', $command, $versionInfo[0] );
-
-				# Should maybe be wfShellExec( $file), but runs into a ulimit, see
-				# http://www.mediawiki.org/w/index.php?title=New-installer_issues&diff=prev&oldid=335456
-				if ( strstr( `$file`, $versionInfo[1]) !== false ) {
+				if ( strstr( wfShellExec( $file ), $versionInfo[1]) !== false ) {
 					return $command;
 				}
 			}
