@@ -1,8 +1,8 @@
 -- defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}';
 define wiki_user='{$wgDBuser}';
 define wiki_pass='{$wgDBpassword}';
-define def_ts='{$wgDBOracleDefTS}';
-define temp_ts='{$wgDBOracleTempTS}';
+define def_ts='{$_OracleDefTS}';
+define temp_ts='{$_OracleTempTS}';
 
 create user &wiki_user. identified by &wiki_pass. default tablespace &def_ts. temporary tablespace &temp_ts. quota unlimited on &def_ts.;
 grant connect, resource to &wiki_user.;

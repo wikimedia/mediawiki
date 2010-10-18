@@ -177,12 +177,15 @@ Although MediaWiki checks all uploaded files for security threats, it is highly 
 If you are using shared web hosting, your hosting provider should give you the correct host name in their documentation.
 
 If you are installing on a Windows server and using MySQL, using "localhost" may not work for the server name. If it does not, try "127.0.0.1" for the local IP address.',
+	'config-db-host-oracle'           => 'Database TNS:',
+	'config-db-host-oracle-help'      => 'TODO!:',
 	'config-db-wiki-settings'         => 'Identify this wiki',
 	'config-db-name'                  => 'Database name:',
 	'config-db-name-help'             => 'Choose a name that identifies your wiki.
 It should not contain spaces or hyphens.
 
 If you are using shared web hosting, your hosting provider will either give you a specific database name to use, or lets you create databases via a control panel.',
+	'config-db-name-oracle'           => 'Database schema:',
 	'config-db-install-account'       => 'User account for installation',
 	'config-db-username'              => 'Database username:',
 	'config-db-password'              => 'Database password:',
@@ -223,6 +226,8 @@ The installer will write a <code>.htaccess</code> file along with it, but if tha
 That includes raw user data (e-mail addresses, hashed passwords) as well as deleted revisions and other restricted data on the wiki.
 
 Consider putting the database somewhere else altogether, for example in <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts'            => 'Default tablespace:',
+	'config-oracle-temp-ts'           => 'Temporary tablespace:',
 	'config-type-mysql'               => 'MySQL',
 	'config-type-postgres'            => 'PostgreSQL',
 	'config-type-sqlite'              => 'SQLite',
@@ -235,12 +240,16 @@ If you do not see the database system you are trying to use listed below, then f
 	'config-support-mysql'            => '* $1 is the primary target for MediaWiki and is best supported ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])',
 	'config-support-postgres'         => '* $1 is a popular open source database system as an alternative to MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support])',
 	'config-support-sqlite'           => '* $1 is a lightweight database system which is very well supported. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], uses PDO)',
+	'config-support-oracle'           => '* $1 is a comercial enterprise database. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
 	'config-header-mysql'             => 'MySQL settings',
 	'config-header-postgres'          => 'PostgreSQL settings',
 	'config-header-sqlite'            => 'SQLite settings',
 	'config-header-oracle'            => 'Oracle settings',
 	'config-invalid-db-type'          => 'Invalid database type',
 	'config-missing-db-name'          => 'You must enter a value for "Database name"',
+	'config-missing-db-server-oracle' => 'You must enter a value for "Database TNS"',
+	'config-invalid-db-server-oracle' => 'Invalid database TNS "$1".
+Use only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_) and dots (.).',
 	'config-invalid-db-name'          => 'Invalid database name "$1".
 Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).',
 	'config-invalid-db-prefix'        => 'Invalid database prefix "$1".

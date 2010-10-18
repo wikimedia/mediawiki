@@ -23,8 +23,9 @@ class OracleInstaller extends DatabaseInstaller {
 	);
 
 	protected $internalDefaults = array(
-		'_InstallUser' => 'sys',
-		'_InstallPassword' => '',
+		'_OracleDefTS' => 'USERS',
+		'_OracleTempTS' => 'TEMP',
+		'_OracleUseSysdba' => true
 	);
 
 	public function getName() {
@@ -35,54 +36,75 @@ class OracleInstaller extends DatabaseInstaller {
 		return self::checkExtension( 'oci8' );
 	}
 
+	public function getWebUserBox( $noCreateMsg = false ) {
+		$name = $this->getName();
+		$this->parent->setVar( '_SameAccount', false );
+		$this->parent->setVar( '_CreateDBAccount', true );
+		$this->parent->setVar( 'wgDBname', '' );
+		return Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
+			Xml::openElement( 'div', array( 'id' => 'dbOtherAccount' ) ) .
+			$this->getTextBox( 'wgDBuser', 'config-db-username' ) .
+			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
+			$this->parent->getHelpBox( 'config-db-web-help' ).
+			$this->getCheckBox( '_CreateDBAccount', 'config-db-web-create', array( 'disabled' => true ) ).
+			Xml::closeElement( 'div' ) . Xml::closeElement( 'fieldset' );
+	}
+
 	public function getConnectForm() {
+		$this->parent->setVar( '_InstallUser', 'sys' );
+		$this->parent->setVar( 'wgDBserver', '' );
 		return
+			$this->getTextBox( 'wgDBserver', 'config-db-host-oracle' ) .
+			$this->parent->getHelpBox( 'config-db-host-oracle-help' ) . 
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
-			$this->getTextBox( 'wgDBname', 'config-db-name' ) .
-			$this->parent->getHelpBox( 'config-db-name-help' ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix' ) .
-			$this->parent->getHelpBox( 'config-db-prefix-help' ) .
+			$this->getTextBox( '_OracleDefTS', 'config-oracle-def-ts' ) .
+			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts' ) .
+			$this->parent->getHelpBox( 'config-db-oracle-help' ) .
 			Xml::closeElement( 'fieldset' ) .
-			$this->getInstallUserBox();
+			$this->getInstallUserBox().
+			$this->getWebUserBox();
 	}
 
 	public function submitConnectForm() {
 		// Get variables from the request
-		$newValues = $this->setVarsFromRequest( array( 'wgDBname', 'wgDBprefix' ) );
+		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBprefix', 'wgDBuser', 'wgDBpassword' ) );
+		$this->parent->setVar( 'wgDBname', $this->getVar( 'wgDBuser' ) );
 
 		// Validate them
 		$status = Status::newGood();
-		if ( !strlen( $newValues['wgDBname'] ) ) {
-			$status->fatal( 'config-missing-db-name' );
-		} elseif ( !preg_match( '/^[a-zA-Z0-9_]+$/', $newValues['wgDBname'] ) ) {
-			$status->fatal( 'config-invalid-db-name', $newValues['wgDBname'] );
+		if ( !strlen( $newValues['wgDBserver'] ) ) {
+			$status->fatal( 'config-missing-db-server-oracle' );
+		} elseif ( !preg_match( '/^[a-zA-Z0-9_\.]+$/', $newValues['wgDBserver'] ) ) {
+			$status->fatal( 'config-invalid-db-server-oracle', $newValues['wgDBserver'] );
 		}
 		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBprefix'] ) ) {
 			$status->fatal( 'config-invalid-schema', $newValues['wgDBprefix'] );
 		}
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 
 		// Submit user box
-		if ( $status->isOK() ) {
-			$status->merge( $this->submitInstallUserBox() );
-		}
+		$status = $this->submitInstallUserBox();
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 
 		// Try to connect
-		if ( $status->isOK() ) {
-			$status->merge( $this->attemptConnection() );
-		}
+		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		$conn = $status->value;
 
-		// Check version
 /*
-		$version = $this->conn->getServerVersion();
+		// Check version
+		$version = $conn->getServerVersion();
 		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
-			return Status::newFatal( 'config-postgres-old', $this->minimumVersion, $version );
+			return Status::newFatal( 'config-mysql-old', $this->minimumVersion, $version );
 		}
 */
 		return $status;
@@ -91,15 +113,27 @@ class OracleInstaller extends DatabaseInstaller {
 	public function getConnection() {
 		$status = Status::newGood();
 		try {
-			$this->db = new DatabaseOracle(
-				$this->getVar( 'wgDBserver' ),
-				$this->getVar( '_InstallUser' ),
-				$this->getVar( '_InstallPassword' ),
-				false,
-				false,
-				0,
-				$this->getVar( 'wgDBprefix' )
-			);
+			if ( $this->getVar( '_OracleUseSysdba' ) ) {
+				$this->db = new DatabaseOracle(
+					$this->getVar( 'wgDBserver' ),
+					$this->getVar( '_InstallUser' ),
+					$this->getVar( '_InstallPassword' ),
+					$this->getVar( 'wgDBname' ),
+					false,
+					DBO_SYSDBA,
+					$this->getVar( 'wgDBprefix' )
+				);
+			} else {
+				$this->db = new DatabaseOracle(
+					$this->getVar( 'wgDBserver' ),
+					$this->getVar( 'wgDBuser' ),
+					$this->getVar( 'wgDBpassword' ),
+					$this->getVar( 'wgDBname' ),
+					false,
+					0,
+					$this->getVar( 'wgDBprefix' )
+				);
+			}
 			$status->value = $this->db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
@@ -107,10 +141,54 @@ class OracleInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	public function setupDatabase() {
-		// TODO
+	public function needsUpgrade() {
+		$tempDBname = $this->getVar( 'wgDBname' );
+		$this->parent->setVar( 'wgDBname', $this->getVar( 'wgDBuser' ) );
+		$retVal = parent::needsUpgrade();
+		$this->parent->setVar( 'wgDBname', $tempDBname );
+		return $retVal;
 	}
 
+	public function preInstall() {
+		# Add our user callback to installSteps, right before the tables are created.
+		$callback = array(
+			array(
+				'name' => 'user',
+				'callback' => array( $this, 'setupUser' ),
+			)
+		);
+		$this->parent->addInstallStepFollowing( "database", $callback );
+	}
+
+
+	public function setupDatabase() {
+		$this->parent->setVar( '_OracleUseSysdba', false );
+		$status = Status::newGood();
+		return $status;
+	}
+
+	public function setupUser() {
+		global $IP;
+
+		if ( !$this->getVar( '_CreateDBAccount' ) ) {
+			return Status::newGood();
+		}
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		global $_OracleDefTS, $_OracleTempTS;
+		$_OracleDefTS = $this->getVar( '_OracleDefTS' );
+		$_OracleTempTS = $this->getVar( '_OracleTempTS' );
+		$error = $this->db->sourceFile( "$IP/maintenance/oracle/user.sql" );
+		if ( $error !== true || !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
+			$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $error );
+		}
+
+		return $status;
+	}
+		
 	public function getLocalSettings() {
 		$prefix = $this->getVar( 'wgDBprefix' );
 		return
