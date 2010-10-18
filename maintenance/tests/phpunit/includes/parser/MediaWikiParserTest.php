@@ -24,7 +24,7 @@ class MediaWikiParserTest extends MediaWikiTestSetup {
 		$tester->count = 0;
 
 		foreach ( $iter as $test ) {
-			$tester->suite->addTest( new ParserUnitTest( $tester, $test ) );
+			$tester->suite->addTest( new ParserUnitTest( $tester, $test ), array( 'Parser' ) );
 			$tester->count++;
 		}
 
