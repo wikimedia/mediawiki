@@ -456,23 +456,21 @@ CONTROL;
 				$wgOut->addHTML( htmlspecialchars( $this->mNewtext ) );
 				$wgOut->addHTML( "\n</pre>\n" );
 			}
-		} elseif( wfRunHooks( 'ArticleContentOnDiff', array( $this, &$wgOut ) ) ) {
-			if( $pCache ) {
-				$article = new Article( $this->mTitle, 0 );
-				$pOutput = ParserCache::singleton()->get( $article, $wgOut->parserOptions() );
-				if( $pOutput ) {
-					$wgOut->addParserOutput( $pOutput );
-				} else {
-					$article->doViewParse();
-				}
+		} elseif( $pCache ) {
+			$article = new Article( $this->mTitle, 0 );
+			$pOutput = ParserCache::singleton()->get( $article, $wgOut->parserOptions() );
+			if( $pOutput ) {
+				$wgOut->addParserOutput( $pOutput );
 			} else {
-				$wgOut->addWikiTextTidy( $this->mNewtext );
+				$article->doViewParse();
 			}
-			if( is_object( $this->mNewRev ) && !$this->mNewRev->isCurrent() ) {
-				$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
-			}
-		} 
+		} else {
+			$wgOut->addWikiTextTidy( $this->mNewtext );
+		}
 
+		if( is_object( $this->mNewRev ) && !$this->mNewRev->isCurrent() ) {
+			$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
+		}
 		# Add redundant patrol link on bottom...
 		if( $this->mRcidMarkPatrolled && $this->mTitle->quickUserCan('patrol') ) {
 			$sk = $wgUser->getSkin();
