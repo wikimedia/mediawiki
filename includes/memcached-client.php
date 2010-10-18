@@ -273,7 +273,11 @@ class MWMemcached {
 	 *
 	 * @param $key String: key to set with data
 	 * @param $val Mixed: value to store
-	 * @param $exp Integer: (optional) time to expire data at
+	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
+	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
+	 * longer must be the timestamp of the time at which the mapping should expire. It
+	 * is safe to use timestamps in all cases, regardless of exipration
+	 * eg: strtotime("+3 hour")
 	 *
 	 * @return Boolean
 	 */
@@ -506,7 +510,9 @@ class MWMemcached {
 	 * @param $key String: key to increment
 	 * @param $amt Integer: (optional) amount to increment
 	 *
-	 * @return Integer: new key value?
+	 * @return Integer: null if the key does not exist yet (this does NOT
+	 * create new mappings if the key does not exist). If the key does
+	 * exist, this returns the new value for that key.
 	 */
 	public function incr( $key, $amt = 1 ) {
 		return $this->_incrdecr( 'incr', $key, $amt );
@@ -520,7 +526,11 @@ class MWMemcached {
 	 *
 	 * @param $key String: key to set value as
 	 * @param $value Mixed: value to store
-	 * @param $exp Integer: (optional) experiation time
+	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
+	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
+	 * longer must be the timestamp of the time at which the mapping should expire. It
+	 * is safe to use timestamps in all cases, regardless of exipration
+	 * eg: strtotime("+3 hour")
 	 *
 	 * @return Boolean
 	 */
@@ -577,7 +587,11 @@ class MWMemcached {
 	 *
 	 * @param $key String: key to set value as
 	 * @param $value Mixed: value to set
-	 * @param $exp Integer: (optional) Experiation time
+	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
+	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
+	 * longer must be the timestamp of the time at which the mapping should expire. It
+	 * is safe to use timestamps in all cases, regardless of exipration
+	 * eg: strtotime("+3 hour")
 	 *
 	 * @return Boolean: TRUE on success
 	 */
@@ -907,7 +921,11 @@ class MWMemcached {
 	 * @param $cmd String: command to perform
 	 * @param $key String: key to act on
 	 * @param $val Mixed: what we need to store
-	 * @param $exp Integer: when it should expire
+	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
+	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
+	 * longer must be the timestamp of the time at which the mapping should expire. It
+	 * is safe to use timestamps in all cases, regardless of exipration
+	 * eg: strtotime("+3 hour")
 	 *
 	 * @return Boolean
 	 * @access private
