@@ -218,9 +218,9 @@ class DatabaseOracle extends DatabaseBase {
 		return true;
 	}
 
-	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 )
+	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0, $tablePrefix )
 	{
-		return new DatabaseOracle( $server, $user, $password, $dbName, $failFunction, $flags );
+		return new DatabaseOracle( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
 	}
 
 	/**
@@ -233,10 +233,23 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		$this->close();
-		$this->mServer = $server;
 		$this->mUser = $user;
 		$this->mPassword = $password;
-		$this->mDBname = $dbName;
+		// changed internal variables functions
+		// mServer now holds the TNS endpoint
+		// mDBname is schema name if different from username
+		if ($server == null || $server == false) {
+			// backward compatibillity (server used to be null and TNS was supplied in dbname)
+			$this->mServer = $dbName;
+			$this->mDBname = $user;
+		} else {
+			$this->mServer = $server;
+			if ( $dbName == null || $dbName == false ) {
+				$this->mDBname = $user;
+			} else {	
+				$this->mDBname = $dbName;
+			}
+		}
 
 		if ( !strlen( $user ) ) { # e.g. the class is being loaded
 			return;
@@ -244,9 +257,14 @@ class DatabaseOracle extends DatabaseBase {
 
 		$session_mode = $this->mFlags & DBO_SYSDBA ? OCI_SYSDBA : OCI_DEFAULT;
 		if ( $this->mFlags & DBO_DEFAULT ) {
-			$this->mConn = oci_new_connect( $user, $password, $dbName, $this->defaultCharset, $session_mode );
+			$this->mConn = oci_new_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
 		} else {
-			$this->mConn = oci_connect( $user, $password, $dbName, $this->defaultCharset, $session_mode );
+			$this->mConn = oci_connect( $this->mUser, $this->mPassword, $this->mServer, $this->defaultCharset, $session_mode );
+		}
+
+		if ( $this->mUser != $this->mDBname ) {
+			//change current schema in session
+			$this->selectDB( $this->mDBname );
 		}
 
 		if ( !$this->mConn ) {
@@ -1027,6 +1045,21 @@ class DatabaseOracle extends DatabaseBase {
 		echo "<li>Table interwiki successfully populated</li>\n";
 	}
 
+	function selectDB( $db ) {
+		if ( $db == null || $db == $this->mUser ) { return true; }
+		$sql = 'ALTER SESSION SET CURRENT_SCHEMA='.strtoupper($db);
+		$stmt = oci_parse( $this->mConn, 'ALTER SESSION SET CURRENT_SCHEMA='.strtoupper($db) );
+		if ( !oci_execute( $stmt ) ) {
+			$e = oci_error( $stmt );
+//			wfDebugDieBacktrace(print_r($e, true));
+			if ( $e['code'] != '1435' ) {
+				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
+			}
+			return false;
+		}
+		return true;
+	}
+
 	function strencode( $s ) {
 		return str_replace( "'", "''", $s );
 	}
@@ -1109,7 +1142,7 @@ class DatabaseOracle extends DatabaseBase {
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
 		global $wgContLang;
 
-		if ( $wgContLang != null ) {
+		if ( $wgContLang != null && $conds != '*' ) {
 			$conds2 = array();
 			$conds = ( $conds != null && !is_array( $conds ) ) ? array( $conds ) : $conds;
 			foreach ( $conds as $col => $val ) {
@@ -1161,8 +1194,8 @@ class DatabaseOracle extends DatabaseBase {
 	public function replaceVars( $ins ) {
 		$varnames = array( 'wgDBprefix' );
 		if ( $this->mFlags & DBO_SYSDBA ) {
-			$varnames[] = 'wgDBOracleDefTS';
-			$varnames[] = 'wgDBOracleTempTS';
+			$varnames[] = '_OracleDefTS';
+			$varnames[] = '_OracleTempTS';
 		}
 
 		// Ordinary variables

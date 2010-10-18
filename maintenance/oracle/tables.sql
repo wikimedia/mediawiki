@@ -127,7 +127,7 @@ CREATE TABLE &mw_prefix.archive (
 );
 CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX &mw_prefix.archive_i02 ON &mw_prefix.archive (ar_user_text,ar_timestamp);
-
+CREATE INDEX &mw_prefix.archive_i03 ON &mw_prefix.archive (ar_namespace, ar_title, ar_rev_id);
 
 CREATE TABLE &mw_prefix.pagelinks (
   pl_from       NUMBER   NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
@@ -156,12 +156,16 @@ CREATE UNIQUE INDEX &mw_prefix.imagelinks_u02 ON &mw_prefix.imagelinks (il_to,il
 CREATE TABLE &mw_prefix.categorylinks (
   cl_from       NUMBER      NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
   cl_to         VARCHAR2(255)         NOT NULL,
-  cl_sortkey    VARCHAR2(255),
-  cl_timestamp  TIMESTAMP(6) WITH TIME ZONE  NOT NULL
+  cl_sortkey    VARCHAR2(230),
+  cl_sortkey_prefix VARCHAR2(255) DEFAULT '' NOT NULL,
+  cl_timestamp  TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
+  cl_collation	VARCHAR2(32) DEFAULT '' NOT NULL,
+  cl_type 		VARCHAR2(6) DEFAULT 'page' NOT NULL
 );
 CREATE UNIQUE INDEX &mw_prefix.categorylinks_u01 ON &mw_prefix.categorylinks (cl_from,cl_to);
-CREATE INDEX &mw_prefix.categorylinks_i01 ON &mw_prefix.categorylinks (cl_to,cl_sortkey,cl_from);
+CREATE INDEX &mw_prefix.categorylinks_i01 ON &mw_prefix.categorylinks (cl_to,cl_type,cl_sortkey,cl_from);
 CREATE INDEX &mw_prefix.categorylinks_i02 ON &mw_prefix.categorylinks (cl_to,cl_timestamp);
+CREATE INDEX &mw_prefix.categorylinks_i03 ON &mw_prefix.categorylinks (cl_collation);
 
 CREATE SEQUENCE category_cat_id_seq;
 CREATE TABLE &mw_prefix.category (
@@ -199,6 +203,14 @@ CREATE TABLE &mw_prefix.langlinks (
 );
 CREATE UNIQUE INDEX &mw_prefix.langlinks_u01 ON &mw_prefix.langlinks (ll_from, ll_lang);
 CREATE INDEX &mw_prefix.langlinks_i01 ON &mw_prefix.langlinks (ll_lang, ll_title);
+
+CREATE TABLE &mw_prefix.iwlinks (
+  iwl_from NUMBER DEFAULT 0 NOT NULL,
+  iwl_prefix VARCHAR2(20) DEFAULT '' NOT NULL,
+  iwl_title VARCHAR2(255) DEFAULT '' NOT NULL
+);
+CREATE UNIQUE INDEX &mw_prefix.iwlinks_ui01 ON &mw_prefix.iwlinks (iwl_from, iwl_prefix, iwl_title);
+CREATE UNIQUE INDEX &mw_prefix.iwlinks_ui02 ON &mw_prefix.iwlinks (iwl_prefix, iwl_title, iwl_from);
 
 CREATE TABLE &mw_prefix.site_stats (
   ss_row_id         NUMBER  NOT NULL ,
@@ -388,6 +400,8 @@ CREATE UNIQUE INDEX &mw_prefix.searchindex_u01 ON &mw_prefix.searchindex (si_pag
 CREATE TABLE &mw_prefix.interwiki (
   iw_prefix  VARCHAR2(32)   NOT NULL,
   iw_url     VARCHAR2(127)  NOT NULL,
+  iw_api 	BLOB NOT NULL,
+  iw_wikiid VARCHAR2(64),
   iw_local   CHAR(1)  NOT NULL,
   iw_trans   CHAR(1)  DEFAULT '0' NOT NULL
 );
@@ -531,7 +545,8 @@ CREATE UNIQUE INDEX &mw_prefix.page_props_u01 ON &mw_prefix.page_props (pp_page,
 
 
 CREATE TABLE &mw_prefix.updatelog (
-  ul_key VARCHAR2(255) NOT NULL
+  ul_key VARCHAR2(255) NOT NULL,
+  ul_value BLOB
 );
 ALTER TABLE &mw_prefix.updatelog ADD CONSTRAINT &mw_prefix.updatelog_pk PRIMARY KEY (ul_key);
 
@@ -580,6 +595,27 @@ CREATE TABLE &mw_prefix.l10n_cache (
   lc_value clob NOT NULL
 );
 CREATE INDEX &mw_prefix.l10n_cache_u01 ON &mw_prefix.l10n_cache (lc_lang, lc_key);
+
+CREATE TABLE &mw_prefix.msg_resource (
+  mr_resource VARCHAR2(255) NOT NULL,
+  mr_lang varchar2(32) NOT NULL,
+  mr_blob BLOB NOT NULL,
+  mr_timestamp TIMESTAMP(6) WITH TIME ZONE NOT NULL
+) ;
+CREATE UNIQUE INDEX &mw_prefix.msg_resource_u01 ON &mw_prefix.msg_resource (mr_resource, mr_lang);
+
+CREATE TABLE &mw_prefix.msg_resource_links (
+  mrl_resource VARCHAR2(255) NOT NULL,
+  mrl_message VARCHAR2(255) NOT NULL
+);
+CREATE UNIQUE INDEX &mw_prefix.msg_resource_links_u01 ON &mw_prefix.msg_resource_links (mrl_message, mrl_resource);
+
+CREATE TABLE &mw_prefix.module_deps (
+  md_module VARCHAR2(255) NOT NULL,
+  md_skin VARCHAR2(32) NOT NULL,
+  md_deps BLOB NOT NULL
+);
+CREATE UNIQUE INDEX &mw_prefix.module_deps_u01 ON &mw_prefix.module_deps (md_module, md_skin);
 
 -- do not prefix this table as it breaks parserTests
 CREATE TABLE wiki_field_info_full (
