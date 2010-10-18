@@ -178,7 +178,7 @@ If you are using shared web hosting, your hosting provider should give you the c
 
 If you are installing on a Windows server and using MySQL, using "localhost" may not work for the server name. If it does not, try "127.0.0.1" for the local IP address.',
 	'config-db-host-oracle'           => 'Database TNS:',
-	'config-db-host-oracle-help'      => 'TODO!:',
+	#'config-db-host-oracle-help'      => 'TODO!:', // Re-enable this message when the help text is ready
 	'config-db-wiki-settings'         => 'Identify this wiki',
 	'config-db-name'                  => 'Database name:',
 	'config-db-name-help'             => 'Choose a name that identifies your wiki.
