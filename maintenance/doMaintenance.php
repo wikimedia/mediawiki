@@ -67,6 +67,7 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	require_once( "$IP/includes/DefaultSettings.php" );
 
 	$callback = MW_CONFIG_CALLBACK;
+	# PHP 5.1 doesn't support "class::method" for call_user_func, so split it
 	if ( strpos( $callback, '::' ) !== false ) {
 		$callback = explode( '::', $callback, 2);
 	}
