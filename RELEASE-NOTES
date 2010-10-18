@@ -433,7 +433,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25303) Fix API parameter integer validation to actually enforce validation
   on the input values in addition to giving a warning. Also add flag to enforce (die)
   if integer out of range (breaking change!)
-* (bug 24792) API help caching doesn't vary on $wgUser->isAnon(), causes staleness
+* (bug 24792) API help for action=purge sometimes wrongly stated whether a
+  POST request was needed due to cache pollution
 
 === Languages updated in 1.17 ===
 
