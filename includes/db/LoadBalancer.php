@@ -647,12 +647,12 @@ class LoadBalancer {
 		$class = 'Database' . ucfirst( $type );
 
 		# Create object
-		wfDebug( "Connecting to $host $dbname...\n" );
+		wfDebug( "Connecting to $host $dbname... " );
 		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
 		if ( $db->isOpen() ) {
-			wfDebug( "Connected\n" );
+			wfDebug( "Connected.\n" );
 		} else {
-			wfDebug( "Failed\n" );
+			wfDebug( "Failed.\n" );
 		}
 		$db->setLBInfo( $server );
 		if ( isset( $server['fakeSlaveLag'] ) ) {
