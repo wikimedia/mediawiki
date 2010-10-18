@@ -45,8 +45,9 @@ class ApiPurge extends ApiBase {
 	public function execute() {
 		global $wgUser;
 		$params = $this->extractRequestParams();
-		if ( !$wgUser->isAllowed( 'purge' ) ) {
-			$this->dieUsageMsg( array( 'cantpurge' ) );
+		if ( !$wgUser->isAllowed( 'purge' ) && !$this->getMain()->isInternalMode() &&
+				!$this->getMain()->getRequest()->wasPosted() ) {
+			$this->dieUsageMsg( array( 'mustbeposted', $this->getModuleName() ) );
 		}
 		$result = array();
 		foreach ( $params['titles'] as $t ) {
@@ -73,11 +74,6 @@ class ApiPurge extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
-	public function mustBePosted() {
-		global $wgUser;
-		return $wgUser->isAnon();
-	}
-
 	public function isWriteMode() {
 		return true;
 	}
@@ -98,7 +94,9 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Purge the cache for the given titles';
+		return array( 'Purge the cache for the given titles.',
+			'This module requires a POST request if the user is not logged in.'
+		);
 	}
 
 	public function getPossibleErrors() {
