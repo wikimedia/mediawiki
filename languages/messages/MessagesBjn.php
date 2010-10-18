@@ -25,6 +25,12 @@ $messages = array(
 'tog-watchdefault'          => 'Tambahi tungkaran nang ulun babak ka daptar itihan ulun',
 'tog-watchmoves'            => 'Tambahi tungkaran nang ulun pindah ka daptar itihan ulun',
 'tog-watchdeletion'         => 'Tambahi tungkaran nang ulun hapus ka daptar itihan ulun',
+'tog-previewontop'          => 'Tampaiakan titilikan sabalum kutak babak',
+'tog-previewonfirst'        => 'Tampaiakan titilikan pada babakan kaasa',
+'tog-enotifwatchlistpages'  => 'Surili ulun amun sabuah tungkaran dalam daptar itihan ulun baubah',
+'tog-enotifusertalkpages'   => 'Surili ulun amun tungkaran pamandiran ulun baubah',
+'tog-enotifminoredits'      => 'Surili ulun jua amun ada babakan sapalih matan tungkaran-tungkaran',
+'tog-watchlisthideown'      => 'Sungkupakan babakan ulun di daptar itihan',
 
 'underline-never' => 'Kada suah',
 

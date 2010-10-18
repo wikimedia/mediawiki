@@ -573,7 +573,9 @@ $messages = array(
 'loginlanguagelabel'      => 'भाषा : $1',
 
 # JavaScript password checks
-'password-strength-good' => 'उत्तमम्',
+'password-strength-bad'        => 'नीचम्',
+'password-strength-acceptable' => 'स्वीकार्यम्',
+'password-strength-good'       => 'उत्तमम्',
 
 # Password reset dialog
 'resetpass_text'            => '<!-- पाठं अत्र लिखतु -->',
@@ -618,7 +620,10 @@ $messages = array(
 'anoneditwarning'                  => "'''सावधानो भवतु:''' भवता प्रवेशं न कृतम्।
 अस्य पृष्ठस्य इतिहासे भवतः आइ-पी-संकेतः अंकितः भविष्यति।",
 'summary-preview'                  => 'सारांशस्य प्राग्दृश्यम् :',
+'blockednoreason'                  => 'न किमपि कारणम् दत्तम्।',
+'loginreqtitle'                    => 'प्रवेशनम् आविश्यकम्',
 'loginreqlink'                     => 'प्रविशतु',
+'accmailtitle'                     => 'पास्वेड् पप्रेषितम्',
 'newarticle'                       => '(नवीनम्)',
 'newarticletext'                   => "भवता एतादृशमेकं पृष्टं प्रति संबंधनम् अनुसृतम्, यत्पृष्ठं न इदानींयावत् विद्यते।
 
@@ -633,6 +638,7 @@ $messages = array(
 भवता कृतानि परिवर्तनानि इदानींयावत् न रक्षितानि सन्ति!",
 'editing'                          => '$1 संपाद्यते',
 'editingsection'                   => '$1 संपादनम् (विभागः)',
+'yourdiff'                         => 'अन्तरानि',
 'copyrightwarning'                 => "कृपया संस्मर्तव्यं यत् {{SITENAME}} इत्येतद् प्रति कृतानि सर्वाणि योगदानानि $2 इत्यस्य प्रतिबंधांतर्गतानि सन्ति (अधिकाय ज्ञानाय $1 इत्येतद् पश्यतु)।
 
 यदि भवान् स्वकीयानि लिखितानि परिवर्तमन्तश्च, पुनः वितर्यमन्तश्च न द्रष्टुमिच्छति तदा मा कृपया माऽत्र योगदानं करोतु। <br />
@@ -646,6 +652,7 @@ $messages = array(
 'template-semiprotected'           => '(अर्धसंरक्षितम्)',
 'hiddencategories'                 => 'इदं पृष्ठं {{PLURAL:$1|1 निगूढस्य श्रेण्याः |$1 निगूढानां श्रेणीनां}} सदस्यत्वेन विद्यते :',
 'permissionserrorstext-withaction' => 'भवान् $2 इत्येतदर्थम् अनुज्ञां न धारयति, अस्य {{PLURAL:$1|कारणम्|कारणानि}}:',
+'log-fulllog'                      => 'पूर्ण प्रवर्तनरेख पश्यतु',
 
 # History pages
 'viewpagelogs'           => 'अस्य पृष्ठस्य लॉंग् इत्येतद् दर्शयतु',
@@ -663,11 +670,26 @@ $messages = array(
 'histlast'               => 'नूतनतमम्',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 उप $2',
+'history-feed-item-nocomment' => '$2 मद्ये $1',
 
 # Revision deletion
-'rev-delundel'   => 'दर्शयतु/गोपयतु',
-'revdel-restore' => 'दृश्यतां परिवर्तयतु',
+'rev-delundel'               => 'दर्शयतु/गोपयतु',
+'rev-showdeleted'            => 'दर्शयतु',
+'revdelete-show-file-submit' => 'हाँ',
+'revdelete-radio-set'        => 'हाँ',
+'revdelete-log'              => 'कारणम् :',
+'revdel-restore'             => 'दृश्यतां परिवर्तयतु',
+'pagehist'                   => 'पुटस्य चरित्रम्',
+'revdelete-uname'            => 'उपयोक्तृ-नाम',
+'revdelete-otherreason'      => 'अन्य/अधिक कारणम् :',
+'revdelete-reasonotherlist'  => 'अन्य कारणानि',
+
+# Revision move
+'revmove-reasonfield' => 'कारणम्',
+'revmove-titlefield'  => 'लक्ष्य पुटम्',
+
+# History merging
+'mergehistory-reason' => 'कारणम् :',
 
 # Merge log
 'revertmerge' => 'पृथक् करोतु',
@@ -690,6 +712,7 @@ $messages = array(
 'prevn'                     => 'पूर्वतनानि {{PLURAL:$1|$1}}',
 'nextn'                     => 'आगामि{{PLURAL:$1|$1}}',
 'viewprevnext'              => 'दर्शयतु ($1 {{int:pipe-separator}} $2) ($3)',
+'searchprofile-everything'  => 'सर्वम्',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
 'search-redirect'           => '($1 इतीदं अनुप्रेषितम्)',
 'search-section'            => '(विभागः $1)',
@@ -699,6 +722,7 @@ $messages = array(
 'search-interwiki-more'     => '(अधिकानि)',
 'search-mwsuggest-enabled'  => 'उपक्षेपेभ्यः सह',
 'search-mwsuggest-disabled' => 'नात्र उपक्षेपाः',
+'searchall'                 => 'सर्वाणि',
 'nonefound'                 => "'''सूचना''': स्वतः अत्र केषुचिदेव नामाकाशेषु अन्वेषणं क्रियते।
 
 सकले घटके अन्वेषणं कर्तुं स्व अन्वेषणपदेभ्यः पूर्वं ''all:'' इति योजयतु, अथवा इष्टं नामाकाशं पूर्वलग्नरूपेण योजयतु।",
@@ -707,6 +731,7 @@ $messages = array(
 'powersearch-ns'            => 'नामाकाशेषु अन्विष्यतु :',
 'powersearch-redir'         => 'अनुप्रेषणानां सूचिकां दर्शयतु।',
 'powersearch-field'         => 'इत्यस्मै अन्विष्यतु',
+'powersearch-toggleall'     => 'सर्वम्',
 
 # Preferences page
 'preferences'   => 'इष्टतमानि',

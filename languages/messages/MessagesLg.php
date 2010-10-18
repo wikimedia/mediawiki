@@ -42,6 +42,8 @@ $messages = array(
 'tog-oldsig'                  => 'Omukono gwo kakano:',
 'tog-fancysig'                => 'Omukono gubemu obubonero bwa ki-wiki (naye nga tegufuuka nyunzi)',
 'tog-externaleditor'          => 'Wandikisanga puloguramu eri ku kompyuta yo (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo)',
+'tog-externaldiff'            => "Kozesanga puloguramu ey'oku kompyuta yo okukebera njawulo wakati w'ebiwandike (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo)",
+'tog-showjumplinks'           => 'Wabeerewo enyunzi eza "Genda ku"',
 'tog-norollbackdiff'          => 'Okujjulula nga kuwedde, tolaga bigerageranya ebikyuse',
 
 # Dates

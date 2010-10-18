@@ -203,15 +203,18 @@ $messages = array(
 'faqpage'        => 'Project:ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು',
 
 # Vector skin
-'vector-action-delete'    => 'ಅಳಿಸು',
-'vector-action-move'      => 'ಸ್ಥಳಾಂತರಿಸಿ',
-'vector-action-protect'   => 'ಸಂರಕ್ಷಿಸು',
-'vector-action-unprotect' => 'ಸಂರಕ್ಷಣೆಯನ್ನು ತೆಗೆ',
-'vector-view-create'      => 'ಸೃಷ್ಟಿಸು',
-'vector-view-edit'        => 'ಸಂಪಾದಿಸಿ',
-'vector-view-history'     => 'ಇತಿಹಾಸವನ್ನು ನೋಡಿ',
-'vector-view-view'        => 'ಓದು',
-'vector-view-viewsource'  => 'ಆಕರ ವೀಕ್ಷಿಸು',
+'vector-action-addsection' => 'ವಿಷಯ ಸೇರಿಸಿ',
+'vector-action-delete'     => 'ಅಳಿಸು',
+'vector-action-move'       => 'ಸ್ಥಳಾಂತರಿಸಿ',
+'vector-action-protect'    => 'ಸಂರಕ್ಷಿಸು',
+'vector-action-unprotect'  => 'ಸಂರಕ್ಷಣೆಯನ್ನು ತೆಗೆ',
+'vector-view-create'       => 'ಸೃಷ್ಟಿಸು',
+'vector-view-edit'         => 'ಸಂಪಾದಿಸಿ',
+'vector-view-history'      => 'ಇತಿಹಾಸವನ್ನು ನೋಡಿ',
+'vector-view-view'         => 'ಓದು',
+'vector-view-viewsource'   => 'ಆಕರ ವೀಕ್ಷಿಸು',
+'actions'                  => 'ಕ್ರಿಯೆಗಳು',
+'namespaces'               => 'ನಾಮವರ್ಗಗಳು',
 
 'errorpagetitle'    => 'ದೋಷ',
 'returnto'          => '$1 ಗೆ ಹಿಂತಿರುಗಿ.',
@@ -267,6 +270,7 @@ $messages = array(
 'jumpto'            => 'ಇಲ್ಲಿಗೆ ಹೋಗು:',
 'jumptonavigation'  => 'ಸಂಚರಣೆ',
 'jumptosearch'      => 'ಹುಡುಕು',
+'pool-errorunknown' => 'ಅಪರಿಚಿತ ದೋಷ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'ಕನ್ನಡ {{SITENAME}} ಬಗ್ಗೆ',
@@ -404,6 +408,9 @@ $2',
 'ns-specialprotected'  => 'ವಿಶೇಷ ಪುಟಗಳನ್ನು ಸಂಪಾದಿಸಲು ಆಗುವುದಿಲ್ಲ.',
 'titleprotected'       => "ಈ ಹೆಸರಿನ ಪುಟವನ್ನು ಸೃಷ್ಟಿಸಲಾಗದಂತೆ [[User:$1|$1]] ಅವರು ಸಂರಕ್ಷಿಸಿದ್ದಾರೆ.
 ಸಂರಕ್ಷಣೆಗೆ ನೀಡಿರುವ ಕಾರಣ: ''$2''.",
+
+# Virus scanner
+'virus-unknownscanner' => 'ಅಪರಿಚಿತ ವೈರಾಣುನಾಶಕ:',
 
 # Login and logout pages
 'logouttext'                 => "'''ನೀವು ಈಗ ಲಾಗ್ ಔಟ್ ಆಗಿರುವಿರಿ.'''
@@ -656,6 +663,7 @@ $2',
 ಪುಟದ ಅಳಿಸುವಿಕೆ ದಿನಚರಿಯನ್ನು ಈ ಕೆಳಗೆ ನೀಡಲಾಗಿದೆ:",
 'moveddeleted-notice'              => 'ಈ ಪುಟವು ಅಳಿಸಲ್ಪಟ್ಟಿದೆ.
 ಈ ಪುಟದ ಅಳಿಸುವಿಕೆಯ ದಾಖಲೆಯನ್ನು ಕೆಳಗೆ ತೋರಿಸಲಾಗಿದೆ.',
+'edit-conflict'                    => 'ಸಂಪಾದನಾ ಘರ್ಷಣೆ.',
 'edit-already-exists'              => 'ಹೊಸ ಪುಟವನ್ನು ಸೃಷ್ಟಿಸಲಾಗಲಿಲ್ಲ.
 ಅದು ಆಗಲೆ ಅಸ್ಥಿತ್ವದಲ್ಲಿದೆ.',
 
@@ -664,6 +672,7 @@ $2',
 
 ಈಗ {{PLURAL:$1|$1 ಕರೆ|$1 ಕರೆಗಳು}} ಇದ್ದು, $2 {{PLURAL:$2|ಕರೆಗಿಂತ|ಕರೆಗಳಿಗಿಂತ}} ಕಡಿಮೆ ಇರಬೇಕು.',
 'expensive-parserfunction-category' => 'ಬಹುತೇಕ ದುಬಾರಿ parser function ಕರೆಗಳಿರುವ ಪುಟಗಳು',
+'parser-template-loop-warning'      => 'ಟೆಂಪ್ಲೇಟು ಆವರ್ತನೆ ಪತ್ತೆಯಾಗಿದೆ: [[$1]]',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ಖಾತೆಯನ್ನು ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿಲ್ಲ',
@@ -687,6 +696,7 @@ $2',
 ಆಖ್ಯಾನ: (ಈಗಿನ) = ಪ್ರಸಕ್ತ ಆವೃತ್ತಿಯೊಂದಿಗೆ ವ್ಯತ್ಯಾಸಗಳು,
 (ಕೊನೆಯ) = ಹಿಂದಿನ ಆವೃತ್ತಿಯೊಂದಿಗೆ ವ್ಯತ್ಯಾಸಗಳು, ಚು = ಚುಟುಕಾದ ಬದಲಾವಣೆ.',
 'history-fieldset-title' => 'ಇತಿಹಾಸವನ್ನು ವಿಹರಿಸಿ',
+'history-show-deleted'   => 'ಅಳಿಸಿದ್ದು ಮಾತ್ರ',
 'histfirst'              => 'ಅತ್ಯಂತ ಮುಂಚಿನ',
 'histlast'               => 'ಅತ್ಯಂತ ಇತ್ತೀಚಿನ',
 'historysize'            => '({{PLURAL:$1|೧ ಬೈಟ್|$1 ಬೈಟ್‍ಗಳು}})',
@@ -726,6 +736,8 @@ $2',
 'revdelete-submit'           => 'ಆಯ್ಕೆ ಮಾಡಿದ ಬದಲಾವಣೆಗೆ ಅನ್ವಯಿಸು',
 'revdelete-logentry'         => '[[$1]] ರ ಸಂಪಾದನೆಯ ಕಾಣಿಸುವಿಕೆಯನ್ನು ಬದಲಾಯಿಸಲಾಯಿತು',
 'revdel-restore'             => 'ಕಾಣಿಸುವಿಕೆಯನ್ನು ಬದಲಾಯಿಸು',
+'revdel-restore-deleted'     => 'ಅಳಿಸಿಹಾಕಲಾದ ಆವೃತ್ತಿಗಳು',
+'revdel-restore-visible'     => 'ಕಾಣುವ ಆವೃತ್ತಿಗಳು',
 'pagehist'                   => 'ಪುಟದ ಇತಿಹಾಸ',
 'deletedhist'                => 'ಅಳಿಸಲ್ಪಟ್ಟ ಇತಿಹಾಸ',
 'revdelete-content'          => 'ಮಾಹಿತಿ',
@@ -737,9 +749,12 @@ $2',
 'revdelete-otherreason'      => 'ಇತರ/ಹೆಚ್ಚುವರಿ ಕಾರಣ:',
 'revdelete-reasonotherlist'  => 'ಇತರ ಕಾರಣ',
 'revdelete-edit-reasonlist'  => 'ಅಳಿಸುವಿಕೆಯ ಕಾರಣಗಳನ್ನು ಸಂಪಾದಿಸು',
+'revdelete-offender'         => 'ಆವೃತ್ತಿಯ ಸಂಪಾದಕ:',
 
 # Revision move
-'revmove-reasonfield' => 'ಕಾರಣ:',
+'revmove-submit'               => 'ಆವೃತ್ತಿಗಳನ್ನು ಆಯ್ದ ಪುಟಕ್ಕೆ ವರ್ಗಾಯಿಸಿ',
+'revisionmoveselectedversions' => 'ಆಯ್ಕೆ ಮಾಡಿದ ಆವೃತ್ತಿಗಳನ್ನು ವರ್ಗಾಯಿಸಿ',
+'revmove-reasonfield'          => 'ಕಾರಣ:',
 
 # History merging
 'mergehistory'                     => 'ಪುಟ ಇತಿಹಾಸಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು',
@@ -772,12 +787,13 @@ $2',
 'mergelogpagetext'   => 'ಒಂದು ಪುಟದ ಇತಿಹಾಸವನ್ನು ಇನ್ನೊಂದರೊಳಗೆ ಇತ್ತೀಚೆಗೆ ಸೇರ್ಪಡೆ ಮಾಡಲಾಗಿರುವ ಪಟ್ಟಿ ಕೆಳಗಿದೆ.',
 
 # Diffs
-'history-title'           => '"$1" ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
-'difference'              => '(ಆವೃತ್ತಿಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸ)',
-'lineno'                  => '$1 ನೇ ಸಾಲು:',
-'compareselectedversions' => 'ಆಯ್ಕೆ ಮಾಡಿದ ಆವೃತ್ತಿಗಳನ್ನು ಹೊಂದಾಣಿಕೆ ಮಾಡಿ ನೋಡಿ',
-'editundo'                => 'ಹಿಂದಿನಂತೆ',
-'diff-multi'              => '(ಮಧ್ಯದಲ್ಲಿ ಆಗಿರುವ {{PLURAL:$1|೧ ಬದಲಾವಣೆಯನ್ನು|$1 ಬದಲಾವಣೆಗಳನ್ನು}} ತೋರಿಸಲಾಗಿಲ್ಲ.)',
+'history-title'            => '"$1" ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ',
+'difference'               => '(ಆವೃತ್ತಿಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸ)',
+'lineno'                   => '$1 ನೇ ಸಾಲು:',
+'compareselectedversions'  => 'ಆಯ್ಕೆ ಮಾಡಿದ ಆವೃತ್ತಿಗಳನ್ನು ಹೊಂದಾಣಿಕೆ ಮಾಡಿ ನೋಡಿ',
+'showhideselectedversions' => 'ಆಯ್ದ ಆವೃತ್ತಿಗಳನ್ನು ತೋರಿಸು/ಅಡಗಿಸು',
+'editundo'                 => 'ಹಿಂದಿನಂತೆ',
+'diff-multi'               => '(ಮಧ್ಯದಲ್ಲಿ ಆಗಿರುವ {{PLURAL:$1|೧ ಬದಲಾವಣೆಯನ್ನು|$1 ಬದಲಾವಣೆಗಳನ್ನು}} ತೋರಿಸಲಾಗಿಲ್ಲ.)',
 
 # Search results
 'searchresults'             => 'ಶೋಧನೆಯ ಫಲಿತಾಂಶಗಳು',
@@ -879,6 +895,7 @@ $2',
 'timezoneregion-indian'       => 'ಹಿಂದೂ ಮಹಾಸಾಗರ',
 'timezoneregion-pacific'      => 'ಪೆಸಿಫಿಕ್ ಮಹಾಸಾಗರ',
 'allowemail'                  => 'ಬೇರೆ ಸದಸ್ಯರಿಂದ ಈ-ಮೈಲ್‍ಗಳನ್ನು ಸ್ವೀಕರಿಸು',
+'prefs-namespaces'            => 'ನಾಮವರ್ಗಗಳು',
 'defaultns'                   => 'ಮೂಲಸ್ಥಿತಿಯಲ್ಲಿ ಈ ಪುಟಪ್ರಬೇಧಗಳಲ್ಲಿ ಹುಡುಕಿ:',
 'default'                     => 'ಮೂಲಸ್ಥಿತಿ',
 'prefs-files'                 => 'ಫೈಲುಗಳು',
@@ -963,7 +980,9 @@ $2',
 'right-delete'         => 'ಪುಟಗಳನ್ನು ಅಳಿಸಿ',
 'right-bigdelete'      => 'ಜಾಸ್ತಿ ಇತಿಹಾಸವಿರುವ ಪುಟಗಳನ್ನು ಅಳಿಸಿ',
 'right-deleterevision' => 'ಪುಟದ ಕೆಲ ಆವೃತ್ತಿಗಳನ್ನು ಅಳಿಸಿ ಹಾಗು ಉಳಿಸಿ',
+'right-deletedtext'    => 'ಆಳಿಸಿದ ಪಠ್ಯ ಮತ್ತು ಅಳಿಸಿದ ಆವೃತ್ತಿಗಳ ನಡುವಿನ ಬದಲಾವಣೆಗಳನ್ನು ನೋಡಿ',
 'right-browsearchive'  => 'ಅಳಿಸಲಾಗಿರುವ ಪುಟಗಳನ್ನು ಹುಡುಕಿ',
+'right-revisionmove'   => 'ಆವೃತ್ತಿಗಳನ್ನು ವರ್ಗಾಯಿಸಿ',
 
 # User rights log
 'rightslog'      => 'ಸದಸ್ಯರ ಹಕ್ಕುಗಳ ದಾಖಲೆಗಳು',
@@ -972,10 +991,16 @@ $2',
 'rightsnone'     => '(ಯಾವೂ ಇಲ್ಲ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'    => 'ಈ ಪುಟವನ್ನು ಓದಿ',
-'action-edit'    => 'ಪುಟದ ಸಂಪಾದನೆ',
-'action-block'   => 'ಈ ಸದಸ್ಯರನ್ನು ಸಂಪಾದಿಸಲು ಆಗದಂತೆ ನಿರ್ಭಂಧಿಸಿ',
-'action-protect' => 'ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟಗಳನ್ನು ಬದಲಾಯಿಸಲು',
+'action-read'           => 'ಈ ಪುಟವನ್ನು ಓದಿ',
+'action-edit'           => 'ಪುಟದ ಸಂಪಾದನೆ',
+'action-createpage'     => 'ಪುಟಗಳನ್ನು ಸೃಷ್ಟಿಸು',
+'action-createtalk'     => 'ಚರ್ಚಾ ಪುಟಗಳನ್ನು ಸೃಷ್ಟಿಸು',
+'action-delete'         => 'ಈ ಪುಟವನ್ನು ಅಳಿಸು',
+'action-deleterevision' => 'ಈ ಆವೃತ್ತಿಯನ್ನು ಅಳಿಸು',
+'action-browsearchive'  => 'ಅಳಿಸಲಾಗಿರುವ ಪುಟಗಳನ್ನು ಹುಡುಕು',
+'action-block'          => 'ಈ ಸದಸ್ಯರನ್ನು ಸಂಪಾದಿಸಲು ಆಗದಂತೆ ನಿರ್ಭಂಧಿಸಿ',
+'action-protect'        => 'ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟಗಳನ್ನು ಬದಲಾಯಿಸಲು',
+'action-revisionmove'   => 'ಆವೃತ್ತಿಗಳನ್ನು ವರ್ಗಾಯಿ',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಗಳು}}',
@@ -983,6 +1008,7 @@ $2',
 'recentchanges-legend'              => 'ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳ ಆಯ್ಕೆಗಳು',
 'recentchangestext'                 => 'ವಿಕಿಗೆ ಮಾಡಲ್ಪಟ್ಟ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳನ್ನು ಈ ಪುಟದಲ್ಲಿ ನೀವು ಕಾಣಬಹುದು.',
 'recentchanges-feed-description'    => 'ವಿಕಿಯಲ್ಲಿ ಆಗುವ ಹೊಸ ಬದಲಾವಣೆಗಳ ಮೇಲೆ ನಿಗ ಇಡಲು ಉಪಯೋಗವಾಗುವ ಫೀಡು.',
+'recentchanges-label-minor'         => 'ಇದು ಚುಟುಕಾದ ಬದಲಾವಣೆ',
 'rcnote'                            => "$5, $4 ವರೆಗೆ ಹಿಂದಿನ {{PLURAL:$2|ದಿನದಲ್ಲಿ|'''$2''' ದಿನಗಳಲ್ಲಿ}} ಮಾಡಲಾಗಿರುವ {{PLURAL:$1|'''೧''' ಬದಲಾವಣೆ|'''$1''' ಬದಲಾವಣೆಗಳು}} ಕೆಳಗಿವೆ.",
 'rcnotefrom'                        => "'''$2''' ಇಂದ ಆಗಿರುವ ಬದಲಾವಣೆಗಳು ಕೆಳಗಿವೆ (ಕೊನೆಯ '''$1'''ರವರೆಗೆ ತೋರಿಸಲಾಗಿದೆ).",
 'rclistfrom'                        => '$1 ಇಂದ ಪ್ರಾರಂಭಿಸಿ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ನೋಡಿ',
@@ -1048,6 +1074,7 @@ $2',
 'filetype-unwanted-type'      => "'''\".\$1\"''' ಒಂದು ಬೇಡವಾದ ಫೈಲಿನ ಮಾದರಿ. ಐಚ್ಛಿಕ ಫೈಲಿನ {{PLURAL:\$3|ಮಾದರಿಯು|ಮಾದರಿಗಳು}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' ಒಂದು ನಿರ್ಬಂಧಿತ ಫೈಲಿನ ಮಾದರಿ.  ನಿರ್ಬಂಧನೆಯಿಲ್ಲದ ಫೈಲಿನ {{PLURAL:\$3|ಮಾದರಿಯು|ಮಾದರಿಗಳು}} \$2.",
 'filetype-missing'            => 'ಈ ಫೈಲಿಗೆ ಉಪನಾಮ (extension ಉದಾ ".jpg") ಇಲ್ಲ.',
+'empty-file'                  => 'ನೀವು ಸಮರ್ಪಿಸಿದ ಕಡತವು ಖಾಲಿಯಾಗಿತ್ತು.',
 'large-file'                  => 'ಫೈಲುಗಳು $1 ಗಿಂತ ದೊಡ್ಡದಾಗಿರಬಾರದೆಂದು ಶಿಫಾರಿತ;
 ಈ ಫೈಲಿನ ಗಾತ್ರ $2.',
 'largefileserver'             => 'ಈ ಫೈಲು ಸರ್ವರ್‍ನಲ್ಲಿ ಸೇರ್ಪಡೆ ಮಾಡಲು ಶಿಫಾರಿತ ಗಾತ್ರಕ್ಕಿಂತ ದೊಡ್ಡದಾಗಿದೆ.',
@@ -1096,6 +1123,11 @@ $2',
 'upload-file-error-text' => 'ಸರ್ವರ್‍ನಲ್ಲಿ ತಾತ್ಕಾಲಿಕ ಫೈಲನ್ನು ಸೃಷ್ಟಿಸುವಲ್ಲಿ ಒಂದು ಆಂತರಿಕ ದೋಷವಾಯಿತು.
 ದಯವಿಟ್ಟು ವ್ಯವಸ್ಥಾಪಕರೊಬ್ಬರನ್ನು ಸಂಪರ್ಕಿಸಿ.',
 'upload-misc-error'      => 'ತಿಳಿದಿಲ್ಲದ ಅಪ್ಲೋಡ್ ದೋಷ',
+'upload-unknown-size'    => 'ಅಪರಿಚಿತ ಗಾತ್ರ',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ',
+'img-auth-nofile'       => 'ಕಡತ "$1" ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'      => 'URL ಅನ್ನು ತಲುಪಲು ಆಗಲಿಲ್ಲ',
@@ -1125,6 +1157,7 @@ $2',
 'filehist-help'             => 'ದಿನ/ಕಾಲ ಒತ್ತಿದರೆ ಆ ಸಮಯದಲ್ಲಿ ಈ ಕಡತದ ವಸ್ತುಸ್ಥಿತಿ ತೋರುತ್ತದೆ.',
 'filehist-deleteall'        => 'ಎಲ್ಲವನ್ನೂ ಅಳಿಸು',
 'filehist-deleteone'        => 'ಅಳಿಸು',
+'filehist-revert'           => 'ಹಿಂದಿನಂತಾಗಿಸು',
 'filehist-current'          => 'ಪ್ರಸಕ್ತ',
 'filehist-datetime'         => 'ದಿನ/ಕಾಲ',
 'filehist-thumb'            => 'ಕಿರುನೋಟ',
@@ -1140,7 +1173,9 @@ $2',
 'uploadnewversion-linktext' => 'ಈ ಫೈಲಿನ ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
 
 # File reversion
+'filerevert'         => '$1 ಹಿಂದಿನಂತಾಗಿಸು',
 'filerevert-comment' => 'ಕಾರಣ:',
+'filerevert-submit'  => 'ಹಿಂದಿನಂತಾಗಿಸು',
 
 # File deletion
 'filedelete'                  => '$1 ಅನ್ನು ಅಳಿಸು',
@@ -1298,6 +1333,7 @@ $2',
 
 # Special:LinkSearch
 'linksearch'    => 'ಹೊರಗಿನ ಸಂಪರ್ಕಗಳು',
+'linksearch-ns' => 'ನಾಮವರ್ಗ:',
 'linksearch-ok' => 'ಹುಡುಕು',
 
 # Special:ListUsers
@@ -1568,6 +1604,7 @@ $2',
 'block-log-flags-nocreate' => 'ಖಾತೆ ಸೃಷ್ಟಿ ತಡೆಹಿಡಿಯಲಾಗಿದೆ',
 'block-log-flags-noemail'  => 'ಇ-ಅಂಚೆ ತಡೆಹಿಡಿಯಲಾಗಿದೆ',
 'ipb_already_blocked'      => '"$1" ಆಗಲೆ ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ',
+'blockme'                  => 'ನನ್ನನ್ನು ತಡೆಹಿಡಿ',
 'proxyblocksuccess'        => 'ಮುಗಿಯಿತು.',
 
 # Developer tools
@@ -1848,7 +1885,12 @@ $1',
 'exif-fnumber'                   => 'F ಸಂಖ್ಯೆ',
 'exif-brightnessvalue'           => 'ಪ್ರಕಾಶತೆ',
 'exif-lightsource'               => 'ಬೆಳಕಿನ ಮೂಲ',
+'exif-flash'                     => 'ಫ್ಲಾಶ್',
 'exif-filesource'                => 'ಫೈಲಿನ ಮೂಲ',
+'exif-gpslatituderef'            => 'ಉತ್ತರ ಅಥವಾ ದಕ್ಷಿಣ ಅಕ್ಷಾಂಶ',
+'exif-gpslatitude'               => 'ಅಕ್ಷಾಂಶ',
+'exif-gpslongituderef'           => 'ಪೂರ್ವ ಅಥವಾ ಪಶ್ಚಿಮ ರೇಖಾಂಶ',
+'exif-gpslongitude'              => 'ರೇಖಾಂಶ',
 'exif-gpsaltitude'               => 'ಎತ್ತರ',
 'exif-gpstimestamp'              => 'GPS ಕಾಲ (ಅಣು ಗಡಿಯಾರ)',
 'exif-gpssatellites'             => 'ಅಳತೆಗೆ ಉಪಯೋಗಿಸಲಾದ ಉಪಗ್ರಹಗಳು',
@@ -1870,6 +1912,7 @@ $1',
 'exif-lightsource-0'   => 'ತಿಳಿದಿಲ್ಲ',
 'exif-lightsource-1'   => 'ದಿನದ ಬೆಳಕು',
 'exif-lightsource-3'   => 'ಟಂಗ್ಸ್ಟನ್ (ಪ್ರಕಾಶಮಾನ ಬೆಳಕು)',
+'exif-lightsource-4'   => 'ಫ್ಲಾಶ್',
 'exif-lightsource-11'  => 'ನೆರಳು',
 'exif-lightsource-17'  => 'ನಿರ್ದಿಷ್ಟ ಬೆಳಕು A',
 'exif-lightsource-18'  => 'ನಿರ್ದಿಷ್ಟ ಬೆಳಕು B',
@@ -1884,6 +1927,11 @@ $1',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'ಉತ್ತರ ಆಕಾಂಕ್ಷ',
+'exif-gpslatitude-s' => 'ದಕ್ಷಿಣ ಅಕ್ಷಾಂಶ',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'ಪೂರ್ವ ರೇಖಾಂಶ',
+'exif-gpslongitude-w' => 'ಪಶ್ಚಿಮ ರೇಖಾಂಶ',
 
 'exif-gpsstatus-a' => 'ಅಳತೆ ಪ್ರಗತಿಯಲ್ಲಿದೆ',
 
@@ -1909,6 +1957,7 @@ $1',
 'watchlistall2'    => 'ಎಲ್ಲಾ',
 'namespacesall'    => 'ಎಲ್ಲಾ',
 'monthsall'        => 'ಎಲ್ಲಾ',
+'limitall'         => 'ಎಲ್ಲಾ',
 
 # E-mail address confirmation
 'confirmemail'             => 'ಇ-ಅಂಚೆ ವಿಳಾಸವನ್ನು ಖಾತ್ರಿ ಮಾಡಿ',
@@ -2050,7 +2099,11 @@ $5
 'tags-edit' => 'ಸಂಪಾದಿಸಿ',
 
 # Special:ComparePages
+'comparepages'   => 'ಪುಟಗಳನ್ನು ಹೋಲಿಸು',
 'compare-page1'  => 'ಪುಟ ೧',
+'compare-page2'  => 'ಪುಟ ೨',
+'compare-rev1'   => 'ಆವೃತ್ತಿ ೧',
+'compare-rev2'   => 'ಆವೃತ್ತಿ ೨',
 'compare-submit' => 'ಹೋಲಿಸು',
 
 # HTML forms
