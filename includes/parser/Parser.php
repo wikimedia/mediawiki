@@ -3767,6 +3767,7 @@ class Parser {
 		$node = $root->getFirstChild();
 		$byteOffset = 0;
 		$tocraw = array();
+		$refers = array();
 
 		foreach ( $matches[3] as $headline ) {
 			$isTemplate = false;
@@ -3941,8 +3942,9 @@ class Parser {
 			while ( $node && !$isTemplate ) {
 				if ( $node->getName() === 'h' ) {
 					$bits = $node->splitHeading();
-					if ( $bits['i'] == $sectionIndex )
+					if ( $bits['i'] == $sectionIndex ) {
 						break;
+					}
 				}
 				$byteOffset += mb_strlen( $this->mStripState->unstripBoth(
 					$frame->expand( $node, PPFrame::RECOVER_ORIG ) ) );
