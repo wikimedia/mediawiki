@@ -102,7 +102,7 @@ class CSSMin {
 				// Try a couple of different ways to get the mime-type of a file, in order of preference
 				if ( function_exists( 'finfo_file' ) && function_exists( 'finfo_open' ) ) {
 					// As of PHP 5.3, this is how you get the mime-type of a file; it uses the Fileinfo PECL extension
-					$type = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $file );
+					$type = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), realpath( $file ) );
 				} else if ( function_exists( 'mime_content_type' ) ) {
 					// Before this was deprecated in PHP 5.3, this used to be how you get the mime-type of a file
 					$type = mime_content_type( $file );
