@@ -9,11 +9,6 @@
 define( 'DO_MAINTENANCE', dirname( __FILE__ ) . '/doMaintenance.php' );
 $maintClass = false;
 
-function wfRunMaintenance( $class ) {
-	$maintClass = $class;
-	require_once( DO_MAINTENANCE );
-}
-
 // Make sure we're on PHP5 or better
 if ( version_compare( PHP_VERSION, '5.1.0' ) < 0 ) {
 	die ( "Sorry! This version of MediaWiki requires PHP 5.1.x; you are running " .
