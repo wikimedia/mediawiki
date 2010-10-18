@@ -4,19 +4,26 @@
  * For details on how to configure a wiki for a Selenium test, see:
  * http://www.mediawiki.org/wiki/SeleniumFramework#Test_Wiki_configuration
  */
-if ( !$wgEnableSelenium ) {
-	return;
+if ( !defined( 'MEDIAWIKI' ) ) {
+	die( 1 );
 }
+
+$fname = 'SeleniumWebSettings.php';
+wfProfileIn( $fname );
+
 $cookiePrefix = $wgSitename . "-";
-$name = $cookiePrefix . "Selenium";
+$cookieName = $cookiePrefix . "Selenium";
 
 //if we find a request parameter containing the test name, set a cookie with the test name
-if ( array_key_exists( 'setupTestSuite', $_GET) ) {
-	//TODO: do a check for valid testsuite names
+if ( isset( $_GET['setupTestSuite'] ) ) {
 	$setupTestSuiteName = $_GET['setupTestSuite'];
+	
+	if ( preg_match( '/[^a-zA-Z0-9_-]/', $setupTestSuiteName ) || !isset( $wgSeleniumTestConfigs[$setupTestSuiteName] ) ) {
+		return;
+	}
 	if ( strlen( $setupTestSuiteName) > 0 ) {
 		$expire = time() + 600;
-		setcookie( $name,
+		setcookie( $cookieName,
 			$setupTestSuiteName,
 			$expire,
 			$wgCookiePath,
@@ -26,9 +33,9 @@ if ( array_key_exists( 'setupTestSuite', $_GET) ) {
 	}
 }
 //clear the cookie based on a request param
-if ( array_key_exists( 'clearTestSuite', $_GET) ) {
+if ( isset( $_GET['clearTestSuite'] ) ) {
 		$expire = time() - 600; 
-		setcookie( $name,
+		setcookie( $cookieName,
 			'',
 			$expire,
 			$wgCookiePath,
@@ -38,32 +45,28 @@ if ( array_key_exists( 'clearTestSuite', $_GET) ) {
 }
 
 //if a cookie is found, run the appropriate callback to get the config params.
-if ( array_key_exists( $name, $_COOKIE) ) {		
-	$testSuiteName = $_COOKIE[$name];
+if ( isset( $_COOKIE[$cookieName] ) ) {		
+	$testSuiteName = $_COOKIE[$cookieName];
+	if ( !isset( $wgSeleniumTestConfigs[$testSuiteName] ) ) {
+		return;
+	}
 	$testIncludes = array(); //array containing all the includes needed for this test
-      $testGlobalConfigs = array(); //an array containg all the global configs needed for this test
-      if ( isset( $wgSeleniumTestConfigs ) && array_key_exists($testSuiteName, $wgSeleniumTestConfigs) ) {
-      	$callback = $wgSeleniumTestConfigs[$testSuiteName]; 
-      	call_user_func_array( $callback, array( &$testIncludes, &$testGlobalConfigs));
-      }
+	$testGlobalConfigs = array(); //an array containg all the global configs needed for this test
+	$callback = $wgSeleniumTestConfigs[$testSuiteName]; 
+	call_user_func_array( $callback, array( &$testIncludes, &$testGlobalConfigs));
       
 	foreach ( $testIncludes as $includeFile ) {
 		$file = $IP . '/' . $includeFile;
 		require_once( $file );
 	}
 	foreach ( $testGlobalConfigs as $key => $value ) {
-		if ( is_array( $value ) ) {
+		if ( is_array( $value ) ) {		
+			$GLOBALS[$key] = array_merge( $GLOBALS[$key], $value );
 			
-			$configArray = array();
-			if ( isset( $GLOBALS[$key] ) ) {
-				$configArray = $GLOBALS[$key];
-			}
-			foreach ( $value as $configKey => $configValue ) {
-				$configArray[$configKey] = $configValue;
-			}
-			$GLOBALS[$key] = $configArray;
 		} else {
 			$GLOBALS[$key] = $value;
 		}
 	}
 }
+
+wfProfileOut( $fname );
