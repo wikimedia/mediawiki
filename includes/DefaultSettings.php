@@ -5121,6 +5121,7 @@ $wgRepositoryPackageStates = array(
  */
 $wgEnableSelenium = false;
 $wgSeleniumTestConfigs = array();
+$wgSeleniumConfigFile = null;
 
 
 
