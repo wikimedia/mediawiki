@@ -248,7 +248,7 @@ class User {
 		}
 
 		if ( !$data ) {
-			wfDebug( "Cache miss for user {$this->mId}\n" );
+			wfDebug( "User: cache miss for user {$this->mId}\n" );
 			# Load from DB
 			if ( !$this->loadFromDatabase() ) {
 				# Can't load from ID, user is anonymous
@@ -256,7 +256,7 @@ class User {
 			}
 			$this->saveToCache();
 		} else {
-			wfDebug( "Got user {$this->mId} from cache\n" );
+			wfDebug( "User: got user {$this->mId} from cache\n" );
 			# Restore from cache
 			foreach ( self::$mCacheVars as $name ) {
 				$this->$name = $data[$name];
@@ -890,11 +890,11 @@ class User {
 
 		if ( ( $sName == $this->mName ) && $passwordCorrect ) {
 			$_SESSION['wsToken'] = $this->mToken;
-			wfDebug( "Logged in from $from\n" );
+			wfDebug( "User: logged in from $from\n" );
 			return true;
 		} else {
 			# Invalid credentials
-			wfDebug( "Can't log in from $from, invalid credentials\n" );
+			wfDebug( "User: can't log in from $from, invalid credentials\n" );
 			$this->loadDefaults();
 			return false;
 		}
@@ -3617,12 +3617,12 @@ class User {
 
 		// Maybe load from the object
 		if ( !is_null( $this->mOptionOverrides ) ) {
-			wfDebug( "Loading options for user " . $this->getId() . " from override cache.\n" );
+			wfDebug( "User: loading options for user " . $this->getId() . " from override cache.\n" );
 			foreach( $this->mOptionOverrides as $key => $value ) {
 				$this->mOptions[$key] = $value;
 			}
 		} else {
-			wfDebug( "Loading options for user " . $this->getId() . " from database.\n" );
+			wfDebug( "User: loading options for user " . $this->getId() . " from database.\n" );
 			// Load from database
 			$dbr = wfGetDB( DB_SLAVE );
 
