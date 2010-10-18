@@ -5120,6 +5120,7 @@ $wgRepositoryPackageStates = array(
  * Allows running of selenium tests via maintenance/tests/RunSeleniumTests.php
  */
 $wgEnableSelenium = false;
+$wgSeleniumTestConfigs = array();
 
 
 
