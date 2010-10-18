@@ -760,7 +760,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	
 	protected function getContent( $page, $ns ) {
 		if ( $ns === NS_MEDIAWIKI ) {
-			return wfMsgExt( $page, 'content' );
+			return wfEmptyMsg( $page ) ? '' : wfMsgExt( $page, 'content' );
 		}
 		if ( $title = Title::newFromText( $page, $ns ) ) {
 			if ( $title->isValidCssJsSubpage() && $revision = Revision::newFromTitle( $title ) ) {
