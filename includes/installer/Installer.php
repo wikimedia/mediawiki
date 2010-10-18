@@ -609,8 +609,8 @@ abstract class Installer {
 	 * Environment check for ImageMagick and GD.
 	 */
 	public function envCheckGraphics() {
-		$names = array( 'convert', 'convert.exe' );
-		$convert = $this->locateExecutableInDefaultPaths( $names );
+		$names = array( wfIsWindows() ? 'convert.exe' : 'convert' );
+		$convert = $this->locateExecutableInDefaultPaths( $names, array( '$1 -version', 'ImageMagick' ) );
 
 		if ( $convert ) {
 			$this->setVar( 'wgImageMagickConvertCommand', $convert );
@@ -888,7 +888,7 @@ abstract class Installer {
 		}
 
 		foreach ( $names as $name ) {
-			$command = "$path/$name";
+			$command = $path . DIRECTORY_SEPARATOR . $name;
 
 			wfSuppressWarnings();
 			$file_exists = file_exists( $command );
@@ -899,6 +899,9 @@ abstract class Installer {
 					return $command;
 				}
 
+				if ( wfIsWindows() ) {
+					$command = "\"$command\"";
+				}
 				$file = str_replace( '$1', $command, $versionInfo[0] );
 				if ( strstr( wfShellExec( $file ), $versionInfo[1]) !== false ) {
 					return $command;
