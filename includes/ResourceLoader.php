@@ -300,7 +300,10 @@ class ResourceLoader {
 			return;
 		}
 
-		echo $this->makeModuleResponse( $context, $modules, $missing );
+		$response = $this->makeModuleResponse( $context, $modules, $missing );
+		// Clear any warnings from the buffer
+		ob_clean();
+		echo $response;
 
 		wfProfileOut( __METHOD__ );
 	}
