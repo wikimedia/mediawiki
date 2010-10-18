@@ -99,10 +99,11 @@ class CSSMin {
 				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $file ), -2 ) );
 				// If we the mime-type can't be determined, no embedding will take place
 				$type = false;
+				$realpath = realpath( $file );
 				// Try a couple of different ways to get the mime-type of a file, in order of preference
-				if ( function_exists( 'finfo_file' ) && function_exists( 'finfo_open' ) ) {
+				if ( $realpath && function_exists( 'finfo_file' ) && function_exists( 'finfo_open' ) ) {
 					// As of PHP 5.3, this is how you get the mime-type of a file; it uses the Fileinfo PECL extension
-					$type = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), realpath( $file ) );
+					$type = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
 				} else if ( function_exists( 'mime_content_type' ) ) {
 					// Before this was deprecated in PHP 5.3, this used to be how you get the mime-type of a file
 					$type = mime_content_type( $file );
