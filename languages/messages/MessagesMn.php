@@ -653,7 +653,7 @@ $2',
 'userpage-userdoesnotexist'        => '"$1" хэрэглэгчийн бүртгэл бүртгэгдээгүй байна. Та энэ хуудсыг үүсгэх/засварлах тухайгаа дахин тунгааж бодно уу.',
 'userpage-userdoesnotexist-view'   => '"$1" гэсэн хэрэглэгч бүртгэгдээгүй байна.',
 'blocked-notice-logextract'        => 'Энэхүү хэрэглэгч одоогоор түгжигдсэн байна.
-Лавлагааны зориулалтаар түгжээний лог дээрх хамгийн сүүлийн нэмэлт доор бичигдсэн байгаа:',
+Лавлагааны зориулалтаар түгжээний лог дээрх хамгийн сүүлийн нэмэлтийг доор оруулав:',
 'clearyourcache'                   => "'''Санамж - Хадгалсныхаа дараа шинэ тохиргоогоо харахын тулд вэб хөтөчийнхөө хийсвэр санах ойг орхих хэрэгтэй болж магадгүй.'''
 '''Мозилла / Файрфокс / Сафари:''' ''Shift''-г дарж байхдаа ''Reload'' дээр дарах, эсвэл ''Ctrl-F5'' буюу ''Ctrl-R'' гэж дарах （Макинтош дээр ''Command-R''）;
 '''Конкерор: ''' ''Reload'' товч дээр дар, эсвэл ''F5''-г дар;
@@ -1462,16 +1462,42 @@ file_uploads тохиргоогоо шалгана уу.',
 
 $1',
 'upload-warning-subj'         => 'Оруулах үеийн анхааруулга',
+'upload-warning-msg'          => '[$2]-с хийсэн оруулалтад асуудал үүсэв. [[Special:Upload/stash/$1|Оруулах талбар]] руу буцаж энэ асуудлыг шийдвэрлэж болно.',
 
-'upload-proto-error'      => 'Буруу протокол',
-'upload-proto-error-text' => 'Файл оруулахад хэрэгтэй URL-үүд нь <code>http://</code> эсвэл <code>ftp://</code>-р эхлэсэн байх шаардлагатай.',
-'upload-file-error'       => 'Дотоод алдаа',
-'upload-file-error-text'  => 'Серверт түр зуурын файл үүсгэх явцад дотоод алдаа гарлаа.
+'upload-proto-error'        => 'Буруу протокол',
+'upload-proto-error-text'   => 'Файл оруулахад хэрэгтэй URL-үүд нь <code>http://</code> эсвэл <code>ftp://</code>-р эхлэсэн байх шаардлагатай.',
+'upload-file-error'         => 'Дотоод алдаа',
+'upload-file-error-text'    => 'Серверт түр зуурын файл үүсгэх явцад дотоод алдаа гарлаа.
 [[Special:ListUsers/sysop|администраторт]] хандана уу.',
-'upload-misc-error'       => 'Мэдэгдэхгүй файл оруулалтын алдаа',
-'upload-misc-error-text'  => 'Файл оруулахад үл мэдэгдэх алдаа гарлаа.
+'upload-misc-error'         => 'Мэдэгдэхгүй файл оруулалтын алдаа',
+'upload-misc-error-text'    => 'Файл оруулахад үл мэдэгдэх алдаа гарлаа.
 URL нь хүчинтэй, мөн түүн руу орж болж байгаа эсэхийг шалган, дахин оролдож үзнэ үү.
 Энэ асуудал үргэлжилсээр байвал [[Special:ListUsers/sysop|администраторт]] хандана уу.',
+'upload-too-many-redirects' => 'URL-д хэт олон чиглүүлэгч байв',
+'upload-unknown-size'       => 'Үл мэдэгдэх хэмжээ',
+'upload-http-error'         => 'HTTP алдаа гарав: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Хандах эрхгүй байна',
+'img-auth-nopathinfo'   => 'PATH_INFO байхгүй байна.
+Энэхүү мэдээллийг явуулахад сервер тань тохирогдоогүй байна.
+CGI-д тулгуурласан ба img_auth-г дэмжихгүй байж магадгүй.
+http://www.mediawiki.org/wiki/Manual:Image_Authorization -г харна уу.',
+'img-auth-notindir'     => 'Тохируулсан оруулалтын директорид таны хүссэн зам байхгүй байна.',
+'img-auth-badtitle'     => '"$1"-с хүчинтэй гарчиг үүсгэж чадсангүй.',
+'img-auth-nologinnWL'   => 'Та нэвтрээгүй байгаа бөгөөд "$1" нь цагаан дансанд байхгүй байна.',
+'img-auth-nofile'       => '"$1" гэсэн файл байхгүй байна.',
+'img-auth-isdir'        => 'Та "$1" гэсэн директорид хандах гэж оролдож байна.
+Файлын хандалт л зөвшөөрөгдөнө.',
+'img-auth-noread'       => '"$1"-г унших эрх хэрэглэгчид байхгүй байна.',
+
+# HTTP errors
+'http-invalid-url'    => 'Хүчингүй URL: $1',
+'http-invalid-scheme' => '"$1" угтвартай URL-үүд дэмжигддэггүй.',
+'http-request-error'  => 'Үл мэдэгдэх алдаанаас үүдэн HTTP-н хүсэлт ажилласангүй.',
+'http-read-error'     => 'HTTP-г унших алдаа.',
+'http-timed-out'      => 'HTTP хүсэлтийн хугацаа дуусав.',
+'http-curl-error'     => 'Дараах URL-г авчрахад алдаа гарав: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-д хүрч чадсангүй',
@@ -1657,6 +1683,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'popularpages'            => 'Эрэлттэй хуудсууд',
 'wantedcategories'        => 'Хэрэгцээт ангиллууд',
 'wantedpages'             => 'Хэрэгцээтэй хуудсууд',
+'wantedpages-badtitle'    => 'Үр дүнд хүчингүй гарчиг байв: $1',
 'wantedfiles'             => 'Хэрэгцээтэй файлууд',
 'wantedtemplates'         => 'Хэрэгцээтэй загварууд',
 'mostlinked'              => 'Хамгийн их холбогдсон хуудсууд',
@@ -1680,13 +1707,16 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'protectedtitlesempty'    => 'Эдгээр параметрээр хамгаалагдсан гарчиг байхгүй байна.',
 'listusers'               => 'Хэрэглэгчдийн жагсаалт',
 'listusers-editsonly'     => 'Засвар хийсэн хэрэглэгчдийг л үзүүлэх',
+'listusers-creationsort'  => 'Үүсгэсэн огноогоор эрэмбэлэх',
 'usereditcount'           => '$1 засвар',
+'usercreated'             => '$1, $2-д үүсгэв',
 'newpages'                => 'Шинэ хуудсууд',
 'newpages-username'       => 'Хэрэглэгчийн нэр:',
 'ancientpages'            => 'Хамгийн хуучин хуудсууд',
 'move'                    => 'Зөөх',
 'movethispage'            => 'Энэ хуудсыг зөөх',
-'unusedimagestext'        => '<p>Бусад веб хуудаснуудаас зураг руу шууд хаягаар нь хандаж болох учраас идэвхтэй хэрэглэгдэж буй эсэхээс үл хамааран энэ жагсаалтанд бүртгэгдсэн байж болно гэдгийг анзаарна уу.</p>',
+'unusedimagestext'        => 'Дараах файлууд нь байгаа ч гэсэн ямар ч хуудсанд эмбэдлэгдээгүй байна.
+Бусад вэб хуудаснуудаас зураг руу шууд URL-р нь холбогдож болох учраас идэвхтэй хэрэглэгдэж буй эсэхээс үл хамааран энд жагсагдсан байж болно гэдгийг анхаарна уу.</p>',
 'unusedcategoriestext'    => 'Дараах категори нь ямар нэг өгүүлэл эсвэл категорит хэрэглэгдээгүй боловч категорийн хуудас оршин байна.',
 'notargettitle'           => 'чиглэлгүй',
 'notargettext'            => 'Та энэ функцийг биелүүлэх хуудас буюу хэрэглэгчийг тодорхойлоогүй байна.',
@@ -1707,8 +1737,9 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'specialloguserlabel'  => 'Хэрэглэгч:',
 'speciallogtitlelabel' => 'Гарчиг:',
 'log'                  => 'Логууд',
-'all-logs-page'        => 'Бүх лог',
-'alllogstext'          => 'Энэ нь аплоуд, устгал, хамгаалалт, түгжигдсэн хэрэглэгч, зөөлт, шинэ хэрэглэгчийн үүсгэл, хэрэглэгчийн нэрний өөрчлөл, хэрэглэгчийн эрхний логуудыг багтаасан хуудас юм. Та логийн төрөл, хэрэглэгчийн нэр, нөлөөлөгдсөн хуудасны нэрийг оруулснаар хайж буй зүйл тань илүү амар олдогдоно. Оруулсан үгнийхээ том ба жижиг үсгийг яг зөв оруулахгүй бол болохгүй.',
+'all-logs-page'        => 'Нийтийн Бүх лог',
+'alllogstext'          => '{{SITENAME}}-д байгаа бүх логуудыг үзүүлж байна.
+Та логийн төрөл, хэрэглэгчийн нэр (оруулсан үгнийхээ том ба жижиг үсгийг яг зөв оруулахгүй бол болохгүй), эсвэл нөлөөлөгдсөн хуудсаа сонгож (мөн оруулсан үгнийхээ том ба жижиг үсгийг яг зөв оруулах ёстой) үзэгдэх зйүлсийг багасгаж болно.',
 'logempty'             => 'Логт тохирох зүйл алга.',
 'log-title-wildcard'   => 'Энэ текстээр эхлэсэн гарчигуудыг хайх',
 
@@ -1717,7 +1748,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'alphaindexline'    => '$1-с $2 хүртэл',
 'nextpage'          => 'Дараагийн хуудас （$1）',
 'prevpage'          => 'Өмнөх хуудас （$1）',
-'allpagesfrom'      => 'Дараах гэж эхэлж хуудсуудыг үзүүлэх:',
+'allpagesfrom'      => 'Хамгийн эхэлж харуулах хуудас:',
 'allpagesto'        => 'Дараах гэж дуусах хуудсуудыг үзүүлэх:',
 'allarticles'       => 'Бүх хуудас',
 'allinnamespace'    => 'Бүх хуудас ($1 namespace)',
@@ -1731,16 +1762,17 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 
 # Special:Categories
 'categories'                    => 'Ангиллууд',
-'categoriespagetext'            => 'Дараах ангиллуудад хуудас эсвэл медиа файл агуулагдаж байна.
-[[Special:UnusedCategories|Unused categories]] are not shown here.
-Also see [[Special:WantedCategories|wanted categories]].',
-'categoriesfrom'                => 'Дараах гэж эхлэх ангиллуудыг үзүүлэх:',
+'categoriespagetext'            => 'Дараах {{PLURAL:$1|ангилалд|ангиллуудад}} хуудас эсвэл медиа файл агуулагдаж байна.
+[[Special:UnusedCategories|Хэрэглэгдэхгүй байгаа]] ангиллуудыг энд харуулсангүй.
+[[Special:WantedCategories|Хэрэгтэй ангиллууд]] гэдгийг харна уу.',
+'categoriesfrom'                => 'Хамгийн эхэлж харуулах ангилал:',
 'special-categories-sort-count' => 'тоогоор ялгах',
 'special-categories-sort-abc'   => 'үсгийн дарааллаар ялгах',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Устгагдсан хэрэглэгчийн хувь нэмэр',
-'deletedcontributions-title' => 'Устгагдсан хэрэглэгчийн хувь нэмэр',
+'deletedcontributions'             => 'Устгагдсан хэрэглэгчийн хувь нэмэр',
+'deletedcontributions-title'       => 'Устгагдсан хэрэглэгчийн хувь нэмэр',
+'sp-deletedcontributions-contribs' => 'хувь нэмэр',
 
 # Special:LinkSearch
 'linksearch'       => 'Гадаад холбоос',
@@ -1753,9 +1785,19 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch-error' => 'Орлуулагч тэмдэгт хост нэрийн эхлэлд л гарах боломжтой.',
 
 # Special:ListUsers
-'listusersfrom'      => 'Дараахь тэмдэгтээр эхэлсэн нэртэй хэрэглэгчдийг харуул:',
+'listusersfrom'      => 'Хамгийн эхэлж харуулах хэрэглэгч:',
 'listusers-submit'   => 'Үзүүлэх',
 'listusers-noresult' => 'Хэрэглэгч олдсонгүй.',
+'listusers-blocked'  => '(түгжигдсэн)',
+
+# Special:ActiveUsers
+'activeusers'            => 'Идэвхитэй хэрэглэгчдийн жагсаалт',
+'activeusers-intro'      => 'Энэ нь сүүлийн $1 {{PLURAL:$1|өдөрт|өдөрт}} ямар нэг байдлаар үйлдэл хийсэн хэрэглэгчдийн жагсаалт юм.',
+'activeusers-count'      => 'Сүүлийн {{PLURAL:$3|нэг өдөрт|$3 өдөрт}} $1 {{PLURAL:$1|засвар|засвар}}',
+'activeusers-from'       => 'Хамгийн эхэлж харуулах хэрэглэгч:',
+'activeusers-hidebots'   => 'Ботуудыг нуух',
+'activeusers-hidesysops' => 'Администраторуудыг нуух',
+'activeusers-noresult'   => 'Хэрэглэгч олдсонгүй.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Хэрэглэгч үүсгэлтийн лог',
@@ -1766,45 +1808,59 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'newuserlog-autocreate-entry' => 'Автоматаар үүсгэгдсэн бүртгэл',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Хэрэглэгчийн бүлгийн эрхүүд',
-'listgrouprights-summary'         => 'Дараах нь энэ вики дээрх хэрэглэгчийн бүлгүүд болон тэдгээрийн эрх, зөвшөөрлүүдийн жагсаалт юм.',
-'listgrouprights-group'           => 'Бүлэг',
-'listgrouprights-rights'          => 'Эрхүүд',
-'listgrouprights-helppage'        => 'Help:Бүлгийн эрхүүд',
-'listgrouprights-members'         => '(гишүүдийн жагсаалт)',
-'listgrouprights-addgroup'        => '{{PLURAL:$2|Бүлгийг|Бүлгүүдийг}} нэмэх: $1',
-'listgrouprights-removegroup'     => '{{PLURAL:$2|Бүлгийг|Бүлгүүдийг}} хасах: $1',
-'listgrouprights-addgroup-all'    => 'Бүх бүлгийг нэмэх',
-'listgrouprights-removegroup-all' => 'Бүх бүлгийг хасах',
+'listgrouprights'                      => 'Хэрэглэгчийн бүлгийн эрхүүд',
+'listgrouprights-summary'              => 'Дараах нь энэ вики дээрх хэрэглэгчийн бүлгүүд болон тэдгээрийн эрх, зөвшөөрлүүдийн жагсаалт юм.
+Эрх бүрийн талаар [[{{MediaWiki:Listgrouprights-helppage}}|нэмэлт мэдээлэл]] байж магадгүй.',
+'listgrouprights-key'                  => ' * <span class="listgrouprights-granted">Өгсөн эрх</span>
+* <span class="listgrouprights-revoked">Хурааж авсан эрх</span>',
+'listgrouprights-group'                => 'Бүлэг',
+'listgrouprights-rights'               => 'Эрхүүд',
+'listgrouprights-helppage'             => 'Help:Бүлгийн эрхүүд',
+'listgrouprights-members'              => '(гишүүдийн жагсаалт)',
+'listgrouprights-addgroup'             => '{{PLURAL:$2|Бүлгийг|Бүлгүүдийг}} нэмэх: $1',
+'listgrouprights-removegroup'          => '{{PLURAL:$2|Бүлгийг|Бүлгүүдийг}} хасах: $1',
+'listgrouprights-addgroup-all'         => 'Бүх бүлгийг нэмэх',
+'listgrouprights-removegroup-all'      => 'Бүх бүлгийг хасах',
+'listgrouprights-addgroup-self'        => 'Өөрийн бүртгэлд дараах {{PLURAL:$2|бүлгийг|бүлгүүдийг}} нэмэх: $1',
+'listgrouprights-removegroup-self'     => 'Өөрийн бүртгэлээс дараах {{PLURAL:$2|бүлгийг|бүлгүүдийг}} хасах: $1',
+'listgrouprights-addgroup-self-all'    => 'Бүх бүлгийг өөрийн бүртгэлд нэмэх',
+'listgrouprights-removegroup-self-all' => 'Өөрийн бүртгэлээс бүх бүлгийг хасах',
 
 # E-mail user
-'mailnologin'      => 'илгээх хаяг байхгүй',
-'mailnologintext'  => 'Та бусад хэрэглэгчдэд мэйл явуулахын тулд өөрийн [[Special:Preferences|хувийн тохируулгадаа]] мэйлээ оруулсан, мөн [[Special:UserLogin|нэвтэрсэн]] байх шаардлагатай.',
-'emailuser'        => 'Энэ хэрэглэгчид мэйл илгээх',
-'emailpage'        => 'Хэрэглэгчид мэйл илгээх',
-'emailpagetext'    => 'Энэ хэрэглэгч рүү мэйл илгээхэд доорхийг бөглөнө.
+'mailnologin'          => 'илгээх хаяг байхгүй',
+'mailnologintext'      => 'Та бусад хэрэглэгчдэд мэйл явуулахын тулд өөрийн [[Special:Preferences|хувийн тохируулгадаа]] мэйлээ оруулсан, мөн [[Special:UserLogin|нэвтэрсэн]] байх шаардлагатай.',
+'emailuser'            => 'Энэ хэрэглэгчид мэйл илгээх',
+'emailpage'            => 'Хэрэглэгчид мэйл илгээх',
+'emailpagetext'        => 'Энэ хэрэглэгч рүү мэйл илгээхэд доорхийг бөглөнө.
 Таны өөрийн [[Special:Preferences|хэрэглэгчийн тохиргоонд]] оруулсан мэйл хаяг нь "Хэнээс" гэсэн хэсэгт гарах тул хүлээн авагч хариугаа тань руу шууд илгээх боломжтой.',
-'usermailererror'  => 'Мэйл нь буцаж ирсэн шалтгаан:',
-'defemailsubject'  => '{{SITENAME}} и-мэйл',
-'noemailtitle'     => 'Мэйл хаяггүй байна',
-'noemailtext'      => 'Энэ хэрэглэгч нь хүчинтэй мэйл хаяг бүртгүүлээгүй эсвэл энэ хаягаар бусдаас мэйл хүлээн авахгүй байна.',
-'nowikiemailtitle' => 'Мэйл зөвшөөрөгдөхгүй',
-'nowikiemailtext'  => 'Энэ хэрэглэгч бусад хэрэглэгчдээс мэйл хүлээж авахгүй гэсэн байна.',
-'email-legend'     => '{{SITENAME}}-н өөр хэрэглэгч руу мэйл явуулах',
-'emailfrom'        => 'Хэнээс:',
-'emailto'          => 'Хэнд:',
-'emailsubject'     => 'Сэдэв:',
-'emailmessage'     => 'Мессэж:',
-'emailsend'        => 'Илгээх',
-'emailccme'        => 'Миний мессэжний хуулбарыг надад мэйлээр явуулна уу.',
-'emailccsubject'   => '$1: $2 руух таны хуулсан мэйл',
-'emailsent'        => 'И-мэйл илгээгдлээ',
-'emailsenttext'    => 'Таны мэйл илгээгдлээ.',
-'emailuserfooter'  => 'Энэ мэйл нь {{SITENAME}} дахь "Энэ хэрэглэгчид мэйл илгээх" функцийг ашиглан $1-с $2-д илгээгдсэн байна.',
+'usermailererror'      => 'Мэйл нь буцаж ирсэн шалтгаан:',
+'defemailsubject'      => '{{SITENAME}} и-мэйл',
+'usermaildisabled'     => 'Хэрэглэгчийн и-мэйлийг идэвхигүйжүүлэв',
+'usermaildisabledtext' => 'Та энэ викигийн бусад хэрэглэгч руу и-мэйл явуулах боломжгүй',
+'noemailtitle'         => 'Мэйл хаяггүй байна',
+'noemailtext'          => 'Энэ хэрэглэгч хүчинтэй и-мэйл хаяг тохируулаагүй байна.',
+'nowikiemailtitle'     => 'Мэйл зөвшөөрөгдөхгүй',
+'nowikiemailtext'      => 'Энэ хэрэглэгч бусад хэрэглэгчдээс мэйл хүлээж авахгүй гэсэн байна.',
+'email-legend'         => '{{SITENAME}}-н өөр хэрэглэгч руу мэйл явуулах',
+'emailfrom'            => 'Хэнээс:',
+'emailto'              => 'Хэнд:',
+'emailsubject'         => 'Сэдэв:',
+'emailmessage'         => 'Мессэж:',
+'emailsend'            => 'Илгээх',
+'emailccme'            => 'Миний мессэжний хуулбарыг надад мэйлээр явуулна уу.',
+'emailccsubject'       => '$1: $2 руух таны хуулсан мэйл',
+'emailsent'            => 'И-мэйл илгээгдлээ',
+'emailsenttext'        => 'Таны мэйл илгээгдлээ.',
+'emailuserfooter'      => 'Энэ мэйл нь {{SITENAME}} дахь "Энэ хэрэглэгчид мэйл илгээх" функцийг ашиглан $1-с $2-д илгээгдсэн байна.',
+
+# User Messenger
+'usermessage-summary' => 'Системийн мессеж үлдээв.',
+'usermessage-editor'  => 'Системийн мессежийг засварлагч',
 
 # Watchlist
 'watchlist'            => 'Миний хянаж буй хуудсууд',
 'mywatchlist'          => 'Миний хянаж буй хуудсуудын жагсаалт',
+'watchlistfor2'        => 'Хэрэглэгч: $1 $2',
 'nowatchlist'          => 'Танд хянаж буй зүйл байхгүй.',
 'watchlistanontext'    => 'Та өөрийн хянах листийг өөрчлөх буюу үзэхийг хүсвэл $1 хэрэгтэй.',
 'watchnologin'         => 'Нэвтрээгүй байна.',
@@ -1883,6 +1939,7 @@ $NEWPAGE
 'confirmdeletetext'      => 'Та энэ хуудсыг түүхтэй нь бүхлээр нь устгах гэж байна.
 Энэхүү үйлдлийг хийснээр ямар үр дүнд хүрэхийг бүрэн гүйцэд ойлгож хийж байгаа гэдгээ, мөн [[{{MediaWiki:Policy-url}}|дүрэм журмынх нь дагуу]] хийж байнаагаа илтгэнэ үү.',
 'actioncomplete'         => 'Үйлдлийг гүйцэтгэлээ.',
+'actionfailed'           => 'Үйлдлийг гүйцэтгэж чадсангүй',
 'deletedtext'            => '"<nowiki>$1</nowiki>" нь устгагдлаа.
 Сүүлд устгагдсан зүйлсийг $2-с харна уу.',
 'deletedarticle'         => '"[[$1]]" нь устгагдлаа',
@@ -2004,9 +2061,10 @@ $NEWPAGE
 'undelete-nodiff'              => 'Өмнөх засвар олдсонгүй.',
 'undeletebtn'                  => 'Сэргээх',
 'undeletelink'                 => 'үзэх/сэргээх',
+'undeleteviewlink'             => 'харах',
 'undeletereset'                => 'Дахин эхлүүлэх',
 'undeleteinvert'               => 'Эсрэгээр нь болгох',
-'undeletecomment'              => 'Тайлбар:',
+'undeletecomment'              => 'Шалтгаан:',
 'undeletedarticle'             => '"[[$1]]"-ийг сэргээв',
 'undeletedrevisions'           => '{{PLURAL:$1|1 хувилбар|$1 хувилбар}}  сэргээгдлээ',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 засвар|$1 засвар}} ба {{PLURAL:$2|1 файл|$2 файл}} сэргээгдлээ',
@@ -2047,15 +2105,22 @@ $1',
 'month'               => 'Дараах сараас （өмнөх засварууд нь ч орно）:',
 'year'                => 'Дараах жилээс （өмнөх засварууд нь ч орно）:',
 
-'sp-contributions-newbies'       => 'Зөвхөн шинэ бүртгэлүүдийн хувь нэмрийг харуулах',
-'sp-contributions-newbies-sub'   => 'Шинээр бүртгүүлсэн хэрэглэгчид',
-'sp-contributions-newbies-title' => 'Шинэ бүртгэлүүдийн хувь нэмэр',
-'sp-contributions-blocklog'      => 'Түгжээний лог',
-'sp-contributions-talk'          => 'Яриа',
-'sp-contributions-userrights'    => 'Хэрэглэгчдийн эрхийн удирдлага',
-'sp-contributions-search'        => 'Хувь нэмрийг хайх',
-'sp-contributions-username'      => 'IP хаяг эсвэл хэрэглэгчийн нэр:',
-'sp-contributions-submit'        => 'Хайх',
+'sp-contributions-newbies'             => 'Зөвхөн шинэ бүртгэлүүдийн хувь нэмрийг харуулах',
+'sp-contributions-newbies-sub'         => 'Шинээр бүртгүүлсэн хэрэглэгчид',
+'sp-contributions-newbies-title'       => 'Шинэ бүртгэлүүдийн хувь нэмэр',
+'sp-contributions-blocklog'            => 'Түгжээний лог',
+'sp-contributions-deleted'             => 'устгагдсан хэрэглэгчийн хувь нэмэр',
+'sp-contributions-logs'                => 'логууд',
+'sp-contributions-talk'                => 'яриа',
+'sp-contributions-userrights'          => 'хэрэглэгчдийн эрхийн удирдлага',
+'sp-contributions-blocked-notice'      => 'Энэхүү хэрэглэгч одоогоор түгжигдсэн байна.
+Лавлагааны зориулалтаар түгжээний лог дээрх хамгийн сүүлийн нэмэлтийг доор оруулав:',
+'sp-contributions-blocked-notice-anon' => 'Энэхүү IP хаягыг одоогоор түгжигдсэн байна.
+Лавлагааны зориулалтаар түгжээний лог дээрх хамгийн сүүлийн нэмэлтийг доор оруулав:',
+'sp-contributions-search'              => 'Хувь нэмрийг хайх',
+'sp-contributions-username'            => 'IP хаяг эсвэл хэрэглэгчийн нэр:',
+'sp-contributions-toponly'             => 'Хамгийн сүүлийн засваруудыг л үзүүлэх',
+'sp-contributions-submit'              => 'Хайх',
 
 # What links here
 'whatlinkshere'            => 'Энд холбогдсон хуудсууд',
@@ -2078,6 +2143,7 @@ $1',
 
 # Block/unblock
 'blockip'                         => 'Хэрэглэгчийг түгжих',
+'blockip-title'                   => 'Хэрэглэгчийг түгжих',
 'blockip-legend'                  => 'Хэрэглэгчийг түгжих',
 'blockiptext'                     => 'Доорх маягтыг ашиглан тодорхой IP хаяг эсвэл хэрэглэгчийн нэрийг засвар хийхээс түгжинэ үү.
 Энэ нь зөвхөн вандализм үйлдэх явдлаас сэргийлэхийн тулд, [[{{MediaWiki:Policy-url}}|бодлого, баримтлалын]] дагуу хийгдэх ёстой.
@@ -2292,6 +2358,8 @@ $1 нь аль хэдийнээ түгжигдсэн байна.
 МедиаВикиг орчуулах тухай мэдээллийг [http://www.mediawiki.org/wiki/Localisation МедиаВикигийн орчуулга], мөн [http://translatewiki.net translatewiki.net]-с авна уу.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' нь унтарсан байгаа тул '''Special:Allmessages'''-г хэрэглэж болохгүй.",
 'allmessages-filter-legend' => 'Шүүлтүүр',
+'allmessages-prefix'        => 'Угтвараар нь шүүх:',
+'allmessages-language'      => 'Хэл:',
 
 # Thumbnails
 'thumbnail-more'           => 'Томруулах',

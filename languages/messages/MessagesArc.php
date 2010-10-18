@@ -10,6 +10,7 @@
  * @author 334a
  * @author A2raya07
  * @author Basharh
+ * @author Michaelovic
  * @author The Thadman
  */
 
@@ -275,6 +276,8 @@ $messages = array(
 'mainpage-description' => 'ܦܐܬܐ ܪܫܝܬܐ',
 'portal'               => 'ܬܪܥܐ ܕܟܢܫܐ',
 'portal-url'           => 'Project:ܬܪܥܐ ܕܟܢܫܐ',
+'privacy'              => 'ܦܘܪܢܣܐ ܕܕܝܠܢܝܘܬܐ',
+'privacypage'          => 'Project:ܦܘܪܢܣܐ ܕܕܝܠܢܝܘܬܐ',
 
 'badaccess' => 'ܦܘܕܐ ܒܦܣܣܐ',
 
@@ -777,7 +780,8 @@ $messages = array(
 'filedelete-edit-reasonlist'  => 'ܫܚܠܦ ܥܠܠܬ̈ܐ ܕܫܝܦܐ',
 
 # MIME search
-'download' => 'ܢܚܬ',
+'mimesearch' => 'MIME ܒܨܝܐ',
+'download'   => 'ܢܚܬ',
 
 # Unwatched pages
 'unwatchedpages' => 'ܦܐܬܬ̈ܐ ܠܐ ܪ̈ܗܝܬܐ',
@@ -834,6 +838,7 @@ $messages = array(
 'wantedpages'             => 'ܦܐܬܬ̈ܐ ܒܥܝܬ̈ܐ',
 'wantedfiles'             => 'ܠܦܦ̈ܐ ܒܥܝ̈ܐ',
 'wantedtemplates'         => 'ܩܠܒ̈ܐ ܒܥܝ̈ܐ',
+'prefixindex'             => 'ܟܠ ܦܐܬܬ̈ܐ ܥܡ ܫܪܘܝܐ',
 'shortpages'              => 'ܦܐܬܬ̈ܐ ܟܪ̈ܝܬܐ',
 'longpages'               => 'ܦܐܬܬ̈ܐ ܐܪ̈ܝܟܬܐ',
 'deadendpages'            => 'ܦܐܬܬ̈ܐ ܥܡ ܚܪܬܐ ܡܝܬܬܐ',
@@ -1049,7 +1054,7 @@ $messages = array(
 'sp-contributions-submit'        => 'ܒܨܝ',
 
 # What links here
-'whatlinkshere'            => 'ܡܐ ܐܣܪ ܠܟܐ',
+'whatlinkshere'            => 'ܡܐ ܐܣܪ ܠܗܪܟܐ',
 'whatlinkshere-title'      => 'ܦܐܬܬ̈ܐ ܕܐܣܝܪܝܢ ܥܡ "$1"',
 'whatlinkshere-page'       => 'ܦܐܬܐ:',
 'linkshere'                => "ܦܐܬܬ̈ܐ ܗܠܝܢ ܐܣܝܪܝܢ ܥܡ '''[[:$1]]''':",

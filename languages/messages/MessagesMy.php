@@ -58,9 +58,20 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွန်ုပ်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
-'tog-watchcreations'   => 'ကျွန်တော်ထွင်သည့်စာမျက်နှာများကို စောင့်​ကြည့်​စာ​ရင်း​ထဲ ပေါင်းထည့်ပါ',
-'tog-watchdefault'     => 'ကျွန်ုပ် တည်းဖြတ်ခဲ့သည့် စာမျက်နှာများကို စောင့်ကြည့်စာရင်းသို့  ပေါင်းထည့်ပါ။',
+'tog-underline'            => 'လင့်ကို မျဉ်းသားသည့် ပုံစံ -',
+'tog-justify'              => 'အတိုအရှည်ညှိထားသော စာပိုဒ်များ',
+'tog-hideminor'            => 'လတ်တလော အပြောင်းအလဲများတွင် အရေးမကြီးသည်များကို ဝှက်ရန်',
+'tog-rememberpassword'     => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွန်ုပ်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
+'tog-watchcreations'       => 'ကျွန်တော်ထွင်သည့်စာမျက်နှာများကို စောင့်​ကြည့်​စာ​ရင်း​ထဲ ပေါင်းထည့်ပါ',
+'tog-watchdefault'         => 'ကျွန်ုပ် တည်းဖြတ်ခဲ့သည့် စာမျက်နှာများကို စောင့်ကြည့်စာရင်းသို့  ပေါင်းထည့်ပါ။',
+'tog-watchmoves'           => 'ကျွနု်ပ်ရွှေ့လိုက်သော စာမျက်နှာများကို စောင့်ကြည့်စာရင်းသို့ ပေါင်းထည့်ရန်',
+'tog-watchdeletion'        => 'ဖျက်လိုက်သောစာမျက်နှာများကို စောင့်ကြည့်စာရင်သို့ ပေါင်းထည့်ရန်',
+'tog-previewontop'         => 'တည်းဖြတ်သည့်အကွက်မတိုင်မီ နမူနာကို ပြရန်',
+'tog-previewonfirst'       => 'ပထမတည်းဖြတ်မှုတွင် နမူနာကို ပြရန်',
+'tog-nocache'              => 'ဘရောက်ဇာ၏ page caching သိမ်းဆည်းမှုကို ပိတ်ထားရန်',
+'tog-enotifwatchlistpages' => 'ကျွနု်ပ်၏စောင့်ကြည့်စာရင်းမှ စာမျက်နှာတစ်ခုကို ပြောင်းလဲလိုက်ပါက ကျွနုပ်ဆီ အီးမေးလို့ရန်',
+'tog-enotifusertalkpages'  => 'ကျွနု်ပ်၏ဆွေးနွေးချက်စာမျက်နှာ ပြောင်းလဲမှုရှိပါက ကျွနု်ပ်ထံ အီးမေးပို့ရန်',
+'tog-enotifminoredits'     => 'စာမျက်နှာများ၏ အရေးမကြီးသော တည်းဖြတ်မှုများကိုလည်း အီးမေးပို့ရန်',
 
 'underline-always'  => 'အမြဲ',
 'underline-never'   => 'ဘယ်သောအခါမျှ',
@@ -332,10 +343,28 @@ $messages = array(
 'mailmypassword'          => 'စကားဝှက်အသစ်ကို အီးမေး ပို့ရန်',
 'loginlanguagelabel'      => 'ဘာသာ: $1',
 
+# JavaScript password checks
+'password-strength'            => 'စကားဝှက်၏ ခန့်မှန်းခြေ လုံခြံုမှု - $1',
+'password-strength-bad'        => 'မကောင်း',
+'password-strength-mediocre'   => 'ဆိုးရွား',
+'password-strength-acceptable' => 'လက်ခံနိုင်',
+'password-strength-good'       => 'ကောင်း၏',
+'password-retype'              => 'ဤနေရာတွင် စကားဝှက်ပြန်ရိုက်ရန်',
+'password-retype-mismatch'     => 'စကားဝှက်နှစ်ခု  မကိုက်ညီပါ',
+
 # Password reset dialog
-'oldpassword' => 'စကားဝှက် အဟောင်း -',
-'newpassword' => 'စကားဝှက် အသစ် -',
-'retypenew'   => 'စကားဝှက် အသစ်ကို ထပ်ရိုက်ပါ -',
+'resetpass'                 => 'စကားဝှက်ပြောင်းရန်',
+'resetpass_header'          => 'အကောင့်စကားဝှက်ပြောင်းရန်',
+'oldpassword'               => 'စကားဝှက် အဟောင်း -',
+'newpassword'               => 'စကားဝှက် အသစ် -',
+'retypenew'                 => 'စကားဝှက် အသစ်ကို ထပ်ရိုက်ပါ -',
+'resetpass_submit'          => 'စကားဝှက်ကို သတ်မှတ်ပြီးနောက် Log in ဝင်ရန်',
+'resetpass_success'         => 'သင့်စကားဝှက်ကို အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ။ အခု Log in ဝင်နေပါပြီ...',
+'resetpass_forbidden'       => 'စကားဝှက် ပြောင်းမရနိုင်ပါ',
+'resetpass-no-info'         => 'ဤစာမျက်နှာကို တိုက်ရိုက်အသုံးပြုနိုင်ရန်အတွက် Log in ဝင်ထားရပါမည်။',
+'resetpass-submit-loggedin' => 'စကားဝှက်ပြောင်းရန်',
+'resetpass-submit-cancel'   => 'မလုပ်တော့ပါ',
+'resetpass-temp-password'   => 'ယာယီစကားဝှက် -',
 
 # Edit page toolbar
 'bold_sample'     => 'စာလုံးမည်း',
@@ -369,6 +398,7 @@ $messages = array(
 'showdiff'                         => 'ပြင်​ဆင်​ထား​သည်​များ​ကို​ ပြရန်',
 'anoneditwarning'                  => "'''သတိပေးချက် - ''' သင်သည် logged in ဝင်မထားပါ။
 ဤစာမျက်နှာ၏ တည်းဖြတ်မှတ်တမ်းတွင် သင့် IP address ကို မှတ်သားထားမည် ဖြစ်သည်။",
+'missingcommenttext'               => 'ကျေးဇူးပြု၍ အောက်တွင် မှတ်ချက်တစ်ခုရေးပါ။',
 'summary-preview'                  => 'အ​ကျဉ်း​ချုပ်​န​မူ​နာ:',
 'blockednoreason'                  => 'အကြောင်းပြချက် မပေးထားပါ',
 'whitelistedittitle'               => 'ပြင်ဆင်ရန် log in ဝင်ထားဖို့ လိုသည်',
@@ -431,6 +461,11 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'revdelete-nologid-title'    => 'တရားမဝင်သော မှတ်တမ်းရေးသွင်းချက်',
 'revdelete-no-file'          => 'ဖော်ပြထားသောဖိုင် မရှိပါ။',
 'revdelete-show-file-submit' => 'မှန်',
+'revdelete-legend'           => 'မြင်နိုင်စွမ်းရှိမှုတို့အား ကန့်သတ်ခြင်းကို သတ်မှတ်ရန်',
+'revdelete-hide-text'        => 'တည်းဖြတ်မူမှ စာသားများကို ဝှက်ရန်',
+'revdelete-hide-image'       => 'ဖိုင်ပါ အေကြာင်းအရာများကို ဝှက်ရန်',
+'revdelete-hide-comment'     => 'တည်းဖြတ်မှုအကျဉ်းချုပ်ကို ဝှက်ရန်',
+'revdelete-hide-user'        => 'တည်းဖြတ်သူ၏ အသုံးပြုသူအမည်/IP address တို့ကို ဝှက်ရန်',
 'revdelete-log'              => 'အ​ကြောင်း​ပြ​ချက်:',
 'revdel-restore'             => 'မည်မျှ ရှုမြင်နိုင်သည်ကို ပြောင်းရန်',
 'revdelete-otherreason'      => 'အခြားသော/နောက်ထပ် အကြောင်းပြချက် -',

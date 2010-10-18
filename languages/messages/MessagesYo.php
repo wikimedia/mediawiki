@@ -82,6 +82,7 @@ $messages = array(
 'tog-shownumberswatching'     => "S'àfihàn iye àwọn oníṣe tí wọn tẹjú mọ́ọ",
 'tog-oldsig'                  => 'Ìgbéwò ìtọwọ́bọ̀wé tó wà:',
 'tog-fancysig'                => 'Ṣe ìtọwọ́bọ̀wé bíi ìkọ wiki (láìní ìjápọ̀ fúnrararẹ̀)',
+'tog-uselivepreview'          => 'Ìlo àkọ́kọ́yẹ̀wò lẹ́ṣẹ̀kẹṣẹ̀ (JavaScript pọndandan) (aládànhánwò)',
 'tog-forceeditsummary'        => 'Kìlọ̀ fún mi tí àkótán àtúnṣe bá jẹ́ òfo',
 'tog-watchlisthideown'        => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe mi nínú ìmójútó',
 'tog-watchlisthidebots'       => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe bot nínú ìmójútó',
@@ -97,6 +98,7 @@ $messages = array(
 'underline-default' => 'Ti agbétàkùn',
 
 # Font style option in Special:Preferences
+'editfont-style'     => 'Oge fọ́ntì ààlà àtúnṣe:',
 'editfont-default'   => 'Ti agbétàkùn',
 'editfont-sansserif' => 'Fọnti san-sẹrif',
 'editfont-serif'     => 'Fọnti sẹrif',
@@ -357,6 +359,9 @@ $1',
 'laggedslavemode'      => "'''Ìkìlọ̀:''' Ojúewé náà le mọ́ nìí àwọn àtúnṣe tuntun.",
 'readonly'             => 'Títìpa ibùdó dátà',
 'enterlockreason'      => 'Ẹ ṣàlàyé ìtìpa náà, àti ìgbàtí ẹ rò pé ìtìpa náà yíò kúrò.',
+'readonlytext'         => 'Ibùdó dátà jẹ́ títìpa sí àwọn ìkówọlé tuntun àti sí àwọn àtúnṣe míràn, bóyá fún ìtọ́jú ibùdó dátà gbogbo ìgbà, lẹ́yìn èyí yíò padà sí ní ṣiṣẹ́.
+
+Olùmójútó tó tìípa ṣe àlàyé yìí: $1',
 'missing-article'      => 'Ibùdó dátà kò rí ìkọ̀wé fún ojúewé kan tóyẹ kí ó rí, pẹ̀lú orúkọ "$1" $2.
 
 Ohun tó ún fa èyí ní ìtẹ̀lé ìjapọ̀ "ìyàtọ́" tótipẹ́ tàbí ìjápọ̀ ìtàn ojúewé tí a ti parẹ́.
@@ -365,6 +370,7 @@ Tí kì bá ṣe bẹ́ẹ̀, ó lè jẹ́ pé ẹ ti rí àsìṣe nínú atò
 Ẹjọ̀wọ́ ẹ fi èyí tó [[Special:ListUsers/sysop|alámùójútó]] kan létí, kí ẹ sí mọ́ gbàgbé láti fúun ní URL ọ̀hún.',
 'missingarticle-rev'   => '(àtúnyẹ̀wò#: $1)',
 'missingarticle-diff'  => '(Ìyàtọ̀: $1, $2)',
+'readonly_lag'         => 'Ibùdó dátà ti jẹ́ títìpa fúnrararẹ̀ kí àwọn ẹ̀rọ awọ̀fà ẹrú ibùdó dátà le baà yára bíi ti àwọn ẹ̀rọ awọ̀fà ọ̀gà.',
 'internalerror'        => 'Àsìṣe inú',
 'internalerror_info'   => 'Àsìṣe inú: $1',
 'fileappenderror'      => 'Kò le so "$1" pọ̀ mọ́ "$2".',
@@ -648,6 +654,8 @@ T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́y
 '''Kò tíì jẹ́ mímúpamọ́!'''",
 'userjspreview'                    => "''''Ẹ mọ́ gbàgbé pé àdánwò/àkọ́yẹ̀wò JavaScript oníṣe yín nìyí.'''
 '''Kò tíì jẹ́ mímúpamọ́!'''",
+'userinvalidcssjstitle'            => "'''Ìkìlọ̀:''' Kò sí awọ-ìbojú \"\$1\".
+Ẹ rántí pé àwọn ojúewé àkànṣe .css àti .js únlo àkọlé onílẹ́tà kékeré, f.a. {{ns:user}}:Foo/monobook.css yàtò sí {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Sísọdọ̀tun)',
 'note'                             => "'''Àkíyèsí:'''",
 'previewnote'                      => "'''Ẹ rántí pé àyẹ̀wò lásán nì yí.'''
@@ -655,6 +663,12 @@ T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́y
 'session_fail_preview'             => "'''Àforíjìn! A kò le gbésẹ̀ àtúnṣe yín nítorí ìpòfo data ìsinsìyí.
 Ẹ jọ̀wọ́ ẹ gbìyànjú lẹ́ẹ̀kan si.
 Tí kò bá sì tún ṣiṣẹ́, ẹ gbìyànjú láti [[Special:UserLogout|bọ̀sòde]] kí ẹ sì padá wọlé.'''",
+'session_fail_preview_html'        => "'''Àforíjìn! A kò le gbéṣẹ̀ àtúnṣe yín nítorí ìpòfo dátà ìgbànáà.'''
+
+''Nítorípé {{SITENAME}} gba HTML àìgbéṣe láàyè, àkọ́kọ́yẹ̀wò jẹ́ bíbòmọ́lẹ̀ láti dínà àwọn ìkọlù JavaScript.''
+
+'''Tó bá ṣe pé ìgbìyànj ìṣàtúnṣe gidi nìyí, ẹ jọ̀wọ́ ẹ gbìyànjú lẹ́ẹ̀kansíi.'''
+Tí kò bá ṣiṣẹ́ síbẹ̀, ẹ gbìyànjú láti [[Special:UserLogout|jáde]] kí ẹ sì padà wọlé.",
 'editing'                          => 'Àtúnṣe sí $1',
 'editingsection'                   => 'Àtúnṣe sí $1 (abala)',
 'editingcomment'                   => 'Àtúnṣe sí $1 (abala tuntun)',
@@ -809,6 +823,7 @@ Gẹ́gẹ́ bíi olùmójútó ẹ ṣì le wo ìyàtọ̀ yìí; ẹ̀kúnrẹ
 'revdelete-radio-unset'       => 'Bẹ́ẹ̀kọ́',
 'revdelete-suppress'          => 'Ìbòmọ́lẹ̀ àwọn ìpèsè ti àwọn alámùójútó àti ti àwọn yìókù',
 'revdelete-log'               => 'Ìdíẹ̀:',
+'revdelete-submit'            => 'Ṣe é sí {{PLURAL:$1|àtúnyẹ̀wò|àwọn àtúnyẹ̀wò}} ṣíṣàyàn',
 'revdel-restore'              => 'ìyípadà ìríran',
 'revdel-restore-deleted'      => 'àwọn àtúnyẹ̀wò píparẹ́',
 'revdel-restore-visible'      => 'àwọn àtúnyẹ̀wò aṣeéfojúrí',

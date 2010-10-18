@@ -1205,7 +1205,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'mergelogpagetext'   => 'Mai jos este o listă a celor mai recente combinări ale istoricului unei pagini cu al alteia.',
 
 # Diffs
-'history-title'            => 'Istoria reviziilor pentru "$1"',
+'history-title'            => 'Istoricul versiunilor pentru „$1”',
 'difference'               => '(Diferența dintre versiuni)',
 'difference-multipage'     => '(Diferență între pagini)',
 'lineno'                   => 'Linia $1:',

@@ -10,6 +10,7 @@
  * @author Daoudata
  * @author Enzoreg
  * @author MassNssen
+ * @author Zanatos
  */
 
 $messages = array(
@@ -27,10 +28,32 @@ $messages = array(
 'tog-editondblclick'          => 'Baċ ṫṣayeb ṣ-ṣefḫa ĥaṣek ṫbrek 2 merraṫ (kayḫṫaj JavaScript)',
 'tog-editsection'             => 'Aktivé ṫ-ṫeĝdilaṫ dyal s-seksyon be l-lyanaṫ « [Ĝeddel] »',
 'tog-editsectiononrightclick' => 'Baċ ṫbeddel l-ĝonwan dyal ċi seksyon brek ĝlih be l-imniya (kayḫṫaj JavaScript)',
+'tog-showtoc'                 => 'biyn lfahras dyal lmo7tawayat (bnisba lsafahat li ktr mn 3 dl3anawin)',
 'tog-rememberpassword'        => 'Ĝqel ĝla smiyṫi fe had l-ordinaṫør (ġir limoddaṫ {{PLURAL:$1|yom waḫed|$1 iyyam}})',
+'tog-watchcreations'          => 'zid sfa7i li nch2tha f 9a2imat lmora9aba',
+'tog-watchdefault'            => 'zid sfa7i li 3dltha f 9a2imat lmora9aba',
+'tog-watchmoves'              => 'zid sfa7i li bdlt blasstha f 9a2imat lmora9aba',
+'tog-watchdeletion'           => 'zid sfa7i li ms7tha f 9a2imat lmora9aba',
+'tog-previewontop'            => 'biyn l3ard lmosba9 9bl sndo9 t7rir',
+'tog-previewonfirst'          => 'biyn mo3ayana m3a awal t3dil',
+'tog-nocache'                 => '3ttl takhzin lmotassafi7 lsf7a',
+'tog-enotifwatchlistpages'    => 'sift liya barid electroni ila tbdlat chi sf7a f 9a2imat lmoraqaba diali',
+'tog-enotifusertalkpages'     => 'sift liya rissala electronia ila tbdlat sf7t ni9ach dyali',
+'tog-enotifminoredits'        => 'sift liya risala electronia 7ta bnisba lt3dilat tafifa',
+'tog-enotifrevealaddr'        => 'biyn lbarid lelectroni dyali f 7alat rassa2il l2ikhtar',
+'tog-shownumberswatching'     => 'biyn 3adad lmostakhdimin lmora9ibin',
+'tog-oldsig'                  => 'mo3ayana litaw9i3 lmawjod',
+'tog-fancysig'                => '3aml nass b7al nass wiki (bla wsla otomatikia)',
+'tog-externaleditor'          => 'stakhdm mo7arrir khariji iftiradiyan(faqat lilkhobaraa, kaybghi iaadadat khassa f lordinator dyalk)',
+'tog-externaldiff'            => 'stakhdm farq khariji iftiradiyan(faqat lilkhobaraa, kaybghi iaadadat khassa f lordinator dyalk)',
+'tog-showjumplinks'           => 'mkkn wassalat "sir l" lmossa3ida',
+'tog-forceeditsummary'        => 'nbhni ila kandkhl molkhass taadil khawi',
 
 'underline-always' => 'Dima',
 'underline-never'  => 'Abadan',
+
+# Font style option in Special:Preferences
+'editfont-serif' => 'kht bzwayd',
 
 # Dates
 'sunday'        => 'L-Ḫed',
@@ -99,6 +122,8 @@ $messages = array(
 'category-file-count'            => 'Had l-katégori fiha {{PLURAL:$2|had l-fiċyé|$2 fiċyé, menhom {{PLURAL:$1|hada|$1}} li l-ṫeḫṫ}}.',
 'category-file-count-limited'    => '{{PLURAL:$1|Had l-fiċyé kayen|Had $1 dyal l-fiċyé kaynin}} fe had l-katégori.',
 'listingcontinuesabbrev'         => 'L-Kmala',
+'index-category'                 => 'sfahi mfhrssa',
+'noindex-category'               => 'shat mamfhtsach',
 
 'mainpagetext'      => "'''MediaWiki ṫ'instala be najaḫ.'''",
 'mainpagedocfooter' => 'Ila bġiṫiw meĝlomaṫ ĥrin baċ ṫesṫeĝmlo had l-lojisyél siro ċofo [http://meta.wikimedia.org/wiki/Aide:Contenu Gid dyal l-mosṫeĥdim]
@@ -108,25 +133,33 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ fe MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]',
 
+'about'         => '3la',
+'article'       => 'sfht mohtawa',
 'newwindow'     => '(kayṫḫell fe ċerjem weḫdaĥor)',
 'cancel'        => 'Bettel',
 'moredotdotdot' => 'Kṫer...',
 'mypage'        => "'Ṣ-Ṣefḫa dyali",
 'mytalk'        => 'Ṣefḫa dyal n-niqaċ',
+'anontalk'      => "hdr m3a had l'ip",
 'navigation'    => 'Navigasyon',
+'and'           => '&#32;o',
 
 # Cologne Blue skin
-'qbfind'        => 'Lqa',
-'qbbrowse'      => 'Qeleb',
-'qbedit'        => 'Ĝedel',
-'qbpageoptions' => "Had 'ṣ-ṣefḫa",
-'qbmyoptions'   => "'Ṣ-Ṣefḫaṫ dyawli",
+'qbfind'         => 'Lqa',
+'qbbrowse'       => 'Qeleb',
+'qbedit'         => 'Ĝedel',
+'qbpageoptions'  => "Had 'ṣ-ṣefḫa",
+'qbpageinfo'     => 'L-Meḍmon',
+'qbmyoptions'    => "'Ṣ-Ṣefḫaṫ dyawli",
+'qbspecialpages' => ' Ṣefḫaṫ ĥaṣṣin',
+'faqpage'        => 'Project:as2ila kayt3awdo',
 
 # Vector skin
 'vector-action-addsection' => 'Zid topic',
 'vector-action-delete'     => 'Suprimi',
 'vector-action-move'       => 'Neqel',
 'vector-action-protect'    => 'Ḫami',
+'vector-action-unprotect'  => 'Ḫiyed l-ḫimaya',
 'vector-view-create'       => 'Ĥṫareĝ',
 'vector-view-edit'         => 'Ĝedel',
 'vector-view-view'         => 'Qra',
@@ -549,7 +582,10 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'restriction-level'           => 'Mosṫawa ḍ-ḍwabet',
 
 # Undelete
+'undeletebtn'      => 'strj3',
 'undeletelink'     => 'Biyyen/Ĥebbi',
+'undeleteviewlink' => 'chof',
+'undeletereset'    => '3awd regli',
 'undeletedarticle' => 'sṫerjeĝ "[[$1]]"',
 
 # Namespace form on various pages
@@ -637,7 +673,9 @@ Imken hadċi y'eddi ṫeġyiraṫ hammin ila kaneṫ ċi ṣefḫa kayqrawha n-n
 'revertmove'       => 'Rejjeĝ',
 
 # Export
-'export' => 'Éxporté ċi ṣefḫaṫ',
+'export'            => 'Éxporté ċi ṣefḫaṫ',
+'export-submit'     => 'khrj',
+'export-addcattext' => 'zid sfa7i mn tsnif :',
 
 # Thumbnails
 'thumbnail-more' => 'Kebber',
@@ -747,5 +785,13 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 
 # Special:SpecialPages
 'specialpages' => 'Ṣefḫaṫ ĥaṣṣin',
+
+# Database error messages
+'dberr-problems' => 'sm7 lina had lmawqi3 3ndo chi machakil ti9niya',
+'dberr-again'    => 'jrb tssna 5 d9ay9 o3awd t7mil',
+'dberr-info'     => 'may9rch ittasl b 9a3idat lbayanat : $1',
+
+# HTML forms
+'htmlform-selectorother-other' => 'okhra',
 
 );
