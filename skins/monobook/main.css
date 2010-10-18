@@ -41,10 +41,13 @@ div#content {
 
 body {
 	font: x-small sans-serif;
+	/* @embed */
 	background: #f9f9f9 url(headbg.jpg) 0 0 no-repeat;
 	color: black;
 	margin: 0;
 	padding: 0;
+	direction: ltr; /* Needed for RTL flipping */
+	unicode-bidi: embed;
 }
 
 /* scale back up to a sane default */
@@ -143,6 +146,7 @@ ul {
 	list-style-type: square;
 	margin: .3em 0 0 1.5em;
 	padding: 0;
+	/* @embed */
 	list-style-image: url(bullet.gif);
 }
 ol {
@@ -376,6 +380,7 @@ table.small {
 }
 
 /* images */
+/* @noflip */
 div.floatright, table.floatright {
 	clear: right;
 	float: right;
@@ -388,6 +393,7 @@ div.floatright, table.floatright {
 */
 }
 div.floatright p { font-style: italic; }
+/* @noflip */
 div.floatleft, table.floatleft {
 	float: left;
 	clear: left;
@@ -436,11 +442,13 @@ div.magnify a, div.magnify img {
 	border: none !important;
 	background: none !important;
 }
+/* @noflip */
 div.tright {
 	clear: right;
 	float: right;
 	border-width: .5em 0 .8em 1.4em;
 }
+/* @noflip */
 div.tleft {
 	float: left;
 	clear: left;
@@ -492,36 +500,38 @@ table.rimage {
 */
 #bodyContent a.external,
 #bodyContent a.external[href ^="gopher://"] {
-	background: url(external.png) center right no-repeat;
-	padding: 0 13px;
-}
-.rtl #bodyContent a.external,
-.rtl #bodyContent a.external[href ^="gopher://"] {
-	background-image: url(external-rtl.png);
+	/* @embed */
+	background: url(external-ltr.png) center right no-repeat;
+	padding-right: 13px;
 }
 #bodyContent a.external[href ^="https://"],
 .link-https {
+	/* @embed */
 	background: url(lock_icon.gif) center right no-repeat;
-	padding: 0 16px;
+	padding-right: 16px;
 }
 #bodyContent a.external[href ^="mailto:"],
 .link-mailto {
+	/* @embed */
 	background: url(mail_icon.gif) center right no-repeat;
-	padding: 0 18px;
+	padding-right: 18px;
 }
 #bodyContent a.external[href ^="news://"] {
+	/* @embed */
 	background: url(news_icon.png) center right no-repeat;
-	padding: 0 18px;
+	padding-right: 18px;
 }
 #bodyContent a.external[href ^="ftp://"],
 .link-ftp {
+	/* @embed */
 	background: url(file_icon.gif) center right no-repeat;
-	padding: 0 18px;
+	padding-right: 18px;
 }
 #bodyContent a.external[href ^="irc://"],
 .link-irc {
+	/* @embed */
 	background: url(discussionitem_icon.gif) center right no-repeat;
-	padding: 0 18px;
+	padding-right: 18px;
 }
 #bodyContent a.external[href $=".ogg"], #bodyContent a.external[href $=".OGG"],
 #bodyContent a.external[href $=".mid"], #bodyContent a.external[href $=".MID"],
@@ -530,39 +540,26 @@ table.rimage {
 #bodyContent a.external[href $=".wav"], #bodyContent a.external[href $=".WAV"],
 #bodyContent a.external[href $=".wma"], #bodyContent a.external[href $=".WMA"],
 .link-audio {
+	/* @embed */
 	background: url("audio.png") center right no-repeat;
-	padding: 0 13px;
+	padding-right: 13px;
 }
 #bodyContent a.external[href $=".ogm"], #bodyContent a.external[href $=".OGM"],
 #bodyContent a.external[href $=".avi"], #bodyContent a.external[href $=".AVI"],
 #bodyContent a.external[href $=".mpeg"], #bodyContent a.external[href $=".MPEG"],
 #bodyContent a.external[href $=".mpg"], #bodyContent a.external[href $=".MPG"],
 .link-video {
+	/* @embed */
 	background: url("video.png") center right no-repeat;
-	padding: 0 13px;
+	padding-right: 13px;
 }
 #bodyContent a.external[href $=".pdf"], #bodyContent a.external[href $=".PDF"],
 #bodyContent a.external[href *=".pdf#"], #bodyContent a.external[href *=".PDF#"],
 #bodyContent a.external[href *=".pdf?"], #bodyContent a.external[href *=".PDF?"],
 .link-document {
+	/* @embed */
 	background: url("document.png") center right no-repeat;
-	padding: 0 12px;
-}
-
-/* for rtl wikis */
-.rtl #bodyContent a.external {
-	background-position: left;
-	padding-right: 0;
-}
-.rtl a.feedlink {
-	background-position: right;
-	padding-right: 16px;
-	padding-left: 0;
-}
-
-/* correction for ltr wikis */
-.ltr #bodyContent a.external {
-	padding-left: 0;
+	padding-right: 12px;
 }
 
 /* disable interwiki styling */
@@ -587,6 +584,15 @@ table.rimage {
 	float: none;
 	width: 11.6em;
 	overflow: hidden;
+}
+html > body .portlet {
+	float: left;
+	clear: left;
+}
+/* recover IEMac (might be fine with the float, but usually it's close to IE */
+*>body .portlet {
+	float: none;
+	clear: none;
 }
 .portlet h4 {
 	font-size: 95%;
@@ -633,6 +639,7 @@ table.rimage {
 .portlet ul {
 	line-height: 1.5em;
 	list-style-type: square;
+	/* @embed */
 	list-style-image: url(bullet.gif);
 	font-size: 95%;
 }
@@ -769,6 +776,7 @@ in bg url to hide it from iemac */
 li#pt-userpage,
 li#pt-anonuserpage,
 li#pt-login {
+	/* @embed */
 	background: url(user.gif) top left no-repeat;
 	padding-left: 20px;
 	text-transform: none;
@@ -1022,10 +1030,6 @@ div#userlogin form#userlogin2 {
 	padding: 1.5em 2em;
 	background-color: #f9f9f9;
 	float: left;
-}
-.rtl div#userloginForm form,
-.rtl div#userlogin form#userlogin2 {
-	float: right;
 }
 
 div#userloginForm table,
