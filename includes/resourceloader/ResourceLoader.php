@@ -23,7 +23,10 @@
 defined( 'MEDIAWIKI' ) || die( 1 );
 
 /**
- * Dynamic JavaScript and CSS resource loading system
+ * Dynamic JavaScript and CSS resource loading system.
+ *
+ * Most of the documention is on the MediaWiki documentation wiki starting at
+ *    http://www.mediawiki.org/wiki/ResourceLoader
  */
 class ResourceLoader {
 
@@ -39,9 +42,12 @@ class ResourceLoader {
 	 * 
 	 * This is not inside the module code because it's so much more performant to request all of the information at once
 	 * than it is to have each module requests it's own information.
-	 * 
-	 * @param $modules array list of module names to preload information for
-	 * @param $context ResourceLoaderContext context to load the information within
+	 *
+	 * This method grab modules dependencies from the database and initialize modules object.
+	 * A first pass compute dependencies, a second one the blob mtime.
+	 *
+	 * @param $modules Array List of module names to preload information for
+	 * @param $context ResourceLoaderContext Context to load the information within
 	 */
 	protected function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
 		if ( !count( $modules ) ) {
@@ -57,7 +63,8 @@ class ResourceLoader {
 				'md_skin' => $context->getSkin()
 			), __METHOD__
 		);
-		
+
+		// Set modules dependecies		
 		$modulesWithDeps = array();
 		foreach ( $res as $row ) {
 			$this->modules[$row->md_module]->setFileDependencies( $skin,
@@ -65,7 +72,7 @@ class ResourceLoader {
 			);
 			$modulesWithDeps[] = $row->md_module;
 		}
-		// Register the absence of a dependencies row too
+		// Register the absence of a dependency row too
 		foreach ( array_diff( $modules, $modulesWithDeps ) as $name ) {
 			$this->modules[$name]->setFileDependencies( $skin, array() );
 		}
@@ -96,7 +103,13 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Runs text through a filter, caching the filtered result for future calls
+	 * Runs text (js,CSS) through a filter, caching the filtered result for future calls.
+	 * 
+	 * Availables filters are:
+	 *  - minify-js \see JSMin::minify
+	 *  - minify-css \see CSSMin::minify
+	 *  - flip-css \see CSSJanus::transform
+	 * When the filter names does not exist, text is returned as is.
 	 *
 	 * @param $filter String: name of filter to run
 	 * @param $data String: text to filter, such as JavaScript or CSS text
@@ -108,6 +121,8 @@ class ResourceLoader {
 		wfProfileIn( __METHOD__ );
 
 		// For empty or whitespace-only things, don't do any processing
+		# FIXME: we should return the data unfiltered if $filter is not supported.
+		# that would save up a md5 computation and one memcached get.
 		if ( trim( $data ) === '' ) {
 			wfProfileOut( __METHOD__ );
 			return $data;
@@ -125,6 +140,7 @@ class ResourceLoader {
 		// Run the filter
 		try {
 			switch ( $filter ) {
+				# note: if adding a new filter. Please update method documentation above. 
 				case 'minify-js':
 					$result = JSMin::minify( $data );
 					break;
@@ -143,7 +159,7 @@ class ResourceLoader {
 			throw new MWException( 'Filter threw an exception: ' . $exception->getMessage() );
 		}
 
-		// Save to memcached
+		// Save filtered text to memcached
 		$wgMemc->set( $key, $result );
 
 		wfProfileOut( __METHOD__ );
@@ -259,13 +275,13 @@ class ResourceLoader {
 		// If a version wasn't specified we need a shorter expiry time for updates to 
 		// propagate to clients quickly
 		if ( is_null( $context->getVersion() ) ) {
-			$maxage = $wgResourceLoaderMaxage['unversioned']['client'];
+			$maxage  = $wgResourceLoaderMaxage['unversioned']['client'];
 			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
 		}
 		// If a version was specified we can use a longer expiry time since changing 
 		// version numbers causes cache misses
 		else {
-			$maxage = $wgResourceLoaderMaxage['versioned']['client'];
+			$maxage  = $wgResourceLoaderMaxage['versioned']['client'];
 			$smaxage = $wgResourceLoaderMaxage['versioned']['server'];
 		}
 
@@ -311,6 +327,12 @@ class ResourceLoader {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 *
+	 * @param $context ResourceLoaderContext
+	 * @param $modules Array array( modulename => ResourceLoaderModule )
+	 * @param $missing Unavailables modules (Default null)
+	 */
 	public function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = null ) {
 		// Pre-fetch blobs
 		$blobs = $context->shouldIncludeMessages() ?
