@@ -301,6 +301,9 @@ class ResourceLoader {
 		}
 
 		$response = $this->makeModuleResponse( $context, $modules, $missing );
+		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
+			$response .= "/*\n$warnings\n*/";
+		}
 		// Clear any warnings from the buffer
 		ob_clean();
 		echo $response;
