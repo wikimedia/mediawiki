@@ -11,6 +11,9 @@ return array(
 	
 	/* Skins */
 	
+	'vector2e2e2' => new ResourceLoaderFileModule(
+		array( 'styles' => array( 'skins/vector/screen2e2e2.css' => array( 'media' => 'screen' ) ) )
+	),
 	'vector' => new ResourceLoaderFileModule(
 		array( 'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) ) )
 	),
