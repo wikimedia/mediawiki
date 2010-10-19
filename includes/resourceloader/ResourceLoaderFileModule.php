@@ -226,22 +226,24 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		wfProfileIn( __METHOD__ );
 		
-		// Sort of nasty way we can get a flat list of files depended on by all styles
-		$styles = array();
-		foreach ( self::collateFilePathListByOption( $this->styles, 'media', 'all' ) as $styleFiles ) {
-			$styles = array_merge( $styles, $styleFiles );
+		$files = array();
+		
+		// Flatten style files into $files
+		$styles = self::collateFilePathListByOption( $this->styles, 'media', 'all' );
+		foreach ( $styles as $styleFiles ) {
+			$files = array_merge( $files, $styleFiles );
 		}
 		$skinFiles = self::tryForKey(
 			self::collateFilePathListByOption( $this->skinStyles, 'media', 'all' ), $context->getSkin(), 'default'
 		);
 		foreach ( $skinFiles as $styleFiles ) {
-			$styles = array_merge( $styles, $styleFiles );
+			$files = array_merge( $files, $styleFiles );
 		}
 		
 		// Final merge, this should result in a master list of dependent files
 		$files = array_merge(
+			$files,
 			$this->scripts,
-			$styles,
 			$context->getDebug() ? $this->debugScripts : array(),
 			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
 			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ),
