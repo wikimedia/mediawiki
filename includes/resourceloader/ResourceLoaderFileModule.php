@@ -142,10 +142,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return {string} JavaScript code to be added to startup module
 	 */
 	public function getLoaderScript() {
-		if ( count( $this->loaders ) == 0 ) {
+		if ( count( $this->loaderScripts ) == 0 ) {
 			return false;
 		}
-		return self::readScriptFiles( $this->loaders );
+		return self::readScriptFiles( $this->loaderScripts );
 	}
 
 	/**
