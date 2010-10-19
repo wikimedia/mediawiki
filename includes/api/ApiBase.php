@@ -532,13 +532,17 @@ abstract class ApiBase {
 		array_shift( $required );
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
-				create_function( '$x', 'return !is_null($x) && $x !== false;' )
-			) ), $required );
+				"validateParameter" ) ), $required );
+
 		if ( count( $intersection ) > 1 ) {
 			$this->dieUsage( 'The parameters ' . implode( ', ', $intersection ) . ' can not be used together', 'invalidparammix' );
 		} elseif ( count( $intersection ) == 0 ) {
 			$this->dieUsage( 'One of the parameters ' . implode( ', ', $required ) . ' is required', 'missingparam' );
 		}
+	}
+
+	private function validateParameter( $x ) {
+		return !is_null( $x ) && $x !== false;
 	}
 
 	/**
