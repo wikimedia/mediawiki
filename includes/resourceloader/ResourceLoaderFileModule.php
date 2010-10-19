@@ -23,26 +23,33 @@
 defined( 'MEDIAWIKI' ) || die( 1 );
 
 /**
- * Module based on local JS/CSS files. This is the most common type of module.
+ * ResourceLoader module based on local JS/CSS files
  */
 class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/* Protected Members */
-
+	
+	/** @var {array} List of paths to JavaScript files to always include */
 	protected $scripts = array();
-	protected $styles = array();
-	protected $messages = array();
-	protected $group;
-	protected $dependencies = array();
-	protected $debugScripts = array();
+	/** @var {array} List of paths to JavaScript files to include when using specific languages */
 	protected $languageScripts = array();
+	/** @var {array} List of paths to JavaScript files to include when using specific skins */
 	protected $skinScripts = array();
+	/** @var {array} List of paths to JavaScript files to include in debug mode */
+	protected $debugScripts = array();
+	/** @var {array} List of paths to JavaScript files to include in the startup module */
+	protected $loaderScripts = array();
+	/** @var {array} List of paths to CSS files to always include */
+	protected $styles = array();
+	/** @var {array} List of paths to CSS files to include when using specific skins */
 	protected $skinStyles = array();
-	protected $loaders = array();
-
-	// In-object cache for file dependencies
-	protected $fileDeps = array();
-	// In-object cache for mtime
+	/** @var {array} List of modules this module depends on */
+	protected $dependencies = array();
+	/** @var {array} List of message keys used by this module */
+	protected $messages = array();
+	/** @var {array} Name of group this module should be loaded in */
+	protected $group;
+	/** @var {array}  Cache for mtime */
 	protected $modifiedTime = array();
 
 	/* Methods */
@@ -68,7 +75,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 		// Scripts to include in debug contexts
 	 * 		'debugScripts' => [file path string or array of file path strings],
 	 * 		// Scripts to include in the startup module
-	 * 		'loaders' => [file path string or array of file path strings],
+	 * 		'loaderScripts' => [file path string or array of file path strings],
 	 * 		// Modules which must be loaded before this module
 	 * 		'dependencies' => [modile name string or array of module name strings],
 	 * 		// Styles to always load
@@ -89,16 +96,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				// Lists of file paths
 				case 'scripts':
 				case 'debugScripts':
-				case 'loaders':
+				case 'loaderScripts':
 				case 'styles':
-					$this->{$member} = $this->prefixFilePathList( (array) $option, $basePath );
+					$this->{$member} = self::prefixFilePathList( (array) $option, $basePath );
 					break;
 				// Collated lists of file paths
 				case 'languageScripts':
 				case 'skinScripts':
 				case 'skinStyles':
 					foreach ( (array) $option as $key => $value ) {
-						$this->{$member}[$key] = $this->prefixFilePathList( (array) $value, $basePath );
+						$this->{$member}[$key] = self::prefixFilePathList( (array) $value, $basePath );
 					}
 				// Lists of strings
 				case 'dependencies':
@@ -112,213 +119,106 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 	}
-	
-	/**
-	 * Add script files to this module. In order to be valid, a module
-	 * must contain at least one script file.
-	 *
-	 * @param $scripts Mixed: path to script file (string) or array of paths
-	 */
-	public function addScripts( $scripts ) {
-		$this->scripts = array_merge( $this->scripts, (array)$scripts );
-	}
 
 	/**
-	 * Add style (CSS) files to this module.
-	 *
-	 * @param $styles Mixed: path to CSS file (string) or array of paths
+	 * Gets all scripts for a given context concatenated together
+	 * 
+	 * @param {ResourceLoaderContext} $context Context in which to generate script
+	 * @return {string} JavaScript code for $context
 	 */
-	public function addStyles( $styles ) {
-		$this->styles = array_merge( $this->styles, (array)$styles );
-	}
-
-	/**
-	 * Add messages to this module.
-	 *
-	 * @param $messages Mixed: message key (string) or array of message keys
-	 */
-	public function addMessages( $messages ) {
-		$this->messages = array_merge( $this->messages, (array)$messages );
-	}
-	
-	/**
-	 * Sets the group of this module.
-	 *
-	 * @param $group string group name
-	 */
-	public function setGroup( $group ) {
-		$this->group = $group;
-	}
-	
-	/**
-	 * Add dependencies. Dependency information is taken into account when
-	 * loading a module on the client side. When adding a module on the
-	 * server side, dependency information is NOT taken into account and
-	 * YOU are responsible for adding dependent modules as well. If you
-	 * don't do this, the client side loader will send a second request
-	 * back to the server to fetch the missing modules, which kind of
-	 * defeats the point of using the resource loader in the first place.
-	 *
-	 * To add dependencies dynamically on the client side, use a custom
-	 * loader (see addLoaders())
-	 *
-	 * @param $dependencies Mixed: module name (string) or array of module names
-	 */
-	public function addDependencies( $dependencies ) {
-		$this->dependencies = array_merge( $this->dependencies, (array)$dependencies );
-	}
-
-	/**
-	 * Add debug scripts to the module. These scripts are only included
-	 * in debug mode.
-	 *
-	 * @param $scripts Mixed: path to script file (string) or array of paths
-	 */
-	public function addDebugScripts( $scripts ) {
-		$this->debugScripts = array_merge( $this->debugScripts, (array)$scripts );
-	}
-
-	/**
-	 * Add language-specific scripts. These scripts are only included for
-	 * a given language.
-	 *
-	 * @param $lang String: language code
-	 * @param $scripts Mixed: path to script file (string) or array of paths
-	 */
-	public function addLanguageScripts( $lang, $scripts ) {
-		$this->languageScripts = array_merge_recursive(
-			$this->languageScripts,
-			array( $lang => $scripts )
-		);
-	}
-
-	/**
-	 * Add skin-specific scripts. These scripts are only included for
-	 * a given skin.
-	 *
-	 * @param $skin String: skin name, or 'default'
-	 * @param $scripts Mixed: path to script file (string) or array of paths
-	 */
-	public function addSkinScripts( $skin, $scripts ) {
-		$this->skinScripts = array_merge_recursive(
-			$this->skinScripts,
-			array( $skin => $scripts )
-		);
-	}
-
-	/**
-	 * Add skin-specific CSS. These CSS files are only included for a
-	 * given skin. If there are no skin-specific CSS files for a skin,
-	 * the files defined for 'default' will be used, if any.
-	 *
-	 * @param $skin String: skin name, or 'default'
-	 * @param $scripts Mixed: path to CSS file (string) or array of paths
-	 */
-	public function addSkinStyles( $skin, $scripts ) {
-		$this->skinStyles = array_merge_recursive(
-			$this->skinStyles,
-			array( $skin => $scripts )
-		);
-	}
-
-	/**
-	 * Add loader scripts. These scripts are loaded on every page and are
-	 * responsible for registering this module using
-	 * mediaWiki.loader.register(). If there are no loader scripts defined,
-	 * the resource loader will register the module itself.
-	 *
-	 * Loader scripts are used to determine a module's dependencies
-	 * dynamically on the client side (e.g. based on browser type/version).
-	 * Note that loader scripts are included on every page, so they should
-	 * be lightweight and use mediaWiki.loader.register()'s callback
-	 * feature to defer dependency calculation.
-	 *
-	 * @param $scripts Mixed: path to script file (string) or array of paths
-	 */
-	public function addLoaders( $scripts ) {
-		$this->loaders = array_merge( $this->loaders, (array)$scripts );
-	}
-
 	public function getScript( ResourceLoaderContext $context ) {
-		$retval = $this->getPrimaryScript() . "\n" .
-			$this->getLanguageScript( $context->getLanguage() ) . "\n" .
-			$this->getSkinScript( $context->getSkin() );
-
+		$script = self::readScriptFiles( $this->scripts ) . "\n" .
+			self::readScriptFiles( self::tryForKey( $this->languageScripts, $context->getLanguage() ) ) . "\n" .
+			self::readScriptFiles( self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ) ) . "\n";
 		if ( $context->getDebug() ) {
-			$retval .= $this->getDebugScript();
+			$script .= "\n" . self::readScriptFiles( $this->debugScripts );
 		}
-
-		return $retval;
+		return $script;
 	}
 
+	/**
+	 * Gets loader script
+	 * 
+	 * @return {string} JavaScript code to be added to startup module
+	 */
+	public function getLoaderScript() {
+		if ( count( $this->loaders ) == 0 ) {
+			return false;
+		}
+		return self::readScriptFiles( $this->loaders );
+	}
+
+	/**
+	 * Gets all styles for a given context concatenated together
+	 * 
+	 * @param {ResourceLoaderContext} $context Context in which to generate styles
+	 * @return {string} CSS code for $context
+	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		$styles = array();
-		foreach ( $this->getPrimaryStyles() as $media => $style ) {
-			if ( !isset( $styles[$media] ) ) {
-				$styles[$media] = '';
+		// Merge general styles and skin specific styles, retaining media type collation
+		$styles = self::readStyleFiles( $this->styles );
+		$skinStyles = self::readStyleFiles( self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ) );
+		foreach ( $skinStyles as $media => $style ) {
+			if ( isset( $styles[$media] ) ) {
+				$styles[$media] .= $style;
+			} else {
+				$styles[$media] = $style;
 			}
-			$styles[$media] .= $style;
 		}
-		foreach ( $this->getSkinStyles( $context->getSkin() ) as $media => $style ) {
-			if ( !isset( $styles[$media] ) ) {
-				$styles[$media] = '';
-			}
-			$styles[$media] .= $style;
-		}
-		
 		// Collect referenced files
 		$files = array();
-		foreach ( $styles as $style ) {
-			// Extract and store the list of referenced files
+		foreach ( $styles as /* $media => */ $style ) {
 			$files = array_merge( $files, CSSMin::getLocalFileReferences( $style ) );
 		}
-		
-		// Only store if modified
+		// If the list has been modified since last time we cached it, update the cache
 		if ( $files !== $this->getFileDependencies( $context->getSkin() ) ) {
-			$encFiles = FormatJson::encode( $files );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->replace( 'module_deps',
 				array( array( 'md_module', 'md_skin' ) ), array(
 					'md_module' => $this->getName(),
 					'md_skin' => $context->getSkin(),
-					'md_deps' => $encFiles,
+					'md_deps' => FormatJson::encode( $files ),
 				)
 			);
 		}
-		
 		return $styles;
 	}
 
+	/**
+	 * Gets list of message keys used by this module
+	 * 
+	 * @return {array} List of message keys
+	 */
 	public function getMessages() {
 		return $this->messages;
 	}
 
+	/**
+	 * Gets the name of the group this module should be loaded in
+	 * 
+	 * @return {string} Group name
+	 */
 	public function getGroup() {
 		return $this->group;
 	}
 
+	/**
+	 * Gets list of names of modules this module depends on
+	 * 
+	 * @return {array} List of module names
+	 */
 	public function getDependencies() {
 		return $this->dependencies;
 	}
 
-	public function getLoaderScript() {
-		if ( count( $this->loaders ) == 0 ) {
-			return false;
-		}
-
-		return self::concatScripts( $this->loaders );
-	}
-
 	/**
-	 * Get the last modified timestamp of this module, which is calculated
-	 * as the highest last modified timestamp of its constituent files and
-	 * the files it depends on (see getFileDependencies()). Only files
-	 * relevant to the given language and skin are taken into account, and
-	 * files only relevant in debug mode are not taken into account when
-	 * debug mode is off.
-	 *
-	 * @param $context ResourceLoaderContext object
-	 * @return Integer: UNIX timestamp
+	 * Get the last modified timestamp of this module, which is calculated as the highest last modified timestamp of its
+	 * constituent files and the files it depends on. This function is context-sensitive, only performing calculations
+	 * on files relevant to the given language, skin and debug mode.
+	 * 
+	 * @param {ResourceLoaderContext} $context Context in which to calculate the modified time
+	 * @return {integer} UNIX timestamp
+	 * @see {ResourceLoaderModule::getFileDependencies}
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
@@ -331,8 +231,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( self::collateFilePathListByOption( $this->styles, 'media', 'all' ) as $styleFiles ) {
 			$styles = array_merge( $styles, $styleFiles );
 		}
-		$skinFiles = (array) self::getSkinFiles(
-			$context->getSkin(), self::collateFilePathListByOption( $this->skinStyles, 'media', 'all' )
+		$skinFiles = self::tryForKey(
+			self::collateFilePathListByOption( $this->skinStyles, 'media', 'all' ), $context->getSkin(), 'default'
 		);
 		foreach ( $skinFiles as $styleFiles ) {
 			$styles = array_merge( $styles, $styleFiles );
@@ -343,15 +243,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->scripts,
 			$styles,
 			$context->getDebug() ? $this->debugScripts : array(),
-			isset( $this->languageScripts[$context->getLanguage()] ) ?
-				(array) $this->languageScripts[$context->getLanguage()] : array(),
-			(array) self::getSkinFiles( $context->getSkin(), $this->skinScripts ),
-			$this->loaders,
+			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
+			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ),
+			$this->loaderScripts,
 			$this->getFileDependencies( $context->getSkin() )
 		);
 		
 		wfProfileIn( __METHOD__.'-filemtime' );
-		$filesMtime = max( array_map( 'filemtime', array_map( array( __CLASS__, 'remapFilename' ), $files ) ) );
+		$filesMtime = max( array_map( 'filemtime', array_map( array( __CLASS__, 'resolveFilePath' ), $files ) ) );
 		wfProfileOut( __METHOD__.'-filemtime' );
 		$this->modifiedTime[$context->getHash()] = max( $filesMtime, $this->getMsgBlobMtime( $context->getLanguage() ) );
 		wfProfileOut( __METHOD__ );
@@ -367,7 +266,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param {string} $prefix String to prepend to each file path in $list
 	 * @return {array} List of prefixed file paths
 	 */
-	protected function prefixFilePathList( array $list, $prefix ) {
+	protected static function prefixFilePathList( array $list, $prefix ) {
 		$prefixed = array();
 		foreach ( $list as $key => $value ) {
 			if ( is_array( $value ) ) {
@@ -385,6 +284,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Collates file paths by option (where provided)
 	 * 
 	 * @param {array} $list List of file paths in any combination of index/path or path/options pairs
+	 * @return {array} List of file paths, collated by $option
 	 */
 	protected static function collateFilePathListByOption( array $list, $option, $default ) {
 		$collatedFiles = array();
@@ -408,148 +308,96 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the primary JS for this module. This is pulled from the
-	 * script files added through addScripts()
+	 * Gets a list of element that match a key, optionally using a fallback key
 	 *
-	 * @return String: JS
+	 * @param {array} $map Map of lists to select from
+	 * @param {string} $key Key to look for in $map
+	 * @param {string} $fallback Key to look for in map if $key is not in $map
+	 * @return {array} List of elements from $map which matched $key or $fallback, or an empty list in case of no match
 	 */
-	protected function getPrimaryScript() {
-		return self::concatScripts( $this->scripts );
+	protected static function tryForKey( $list, $key, $fallback = null ) {
+		if ( isset( $list[$key] ) && is_array( $list[$key] ) ) {
+			return $list[$key];
+		} else if ( is_string( $fallback ) && isset( $list[$fallback] ) ) {
+			return $list[$fallback];
+		}
+		return array();
 	}
 
 	/**
-	 * Get the primary CSS for this module. This is pulled from the CSS
-	 * files added through addStyles()
-	 *
-	 * @return Array
+	 * Get the contents of a list of JavaScript files
+	 * 
+	 * @param {array} $scripts List of file paths to scripts to read, remap and concetenate
+	 * @return {string} Concatenated and remapped JavaScript data from $scripts
 	 */
-	protected function getPrimaryStyles() {
-		return self::concatStyles( $this->styles );
-	}
-
-	/**
-	 * Get the debug JS for this module. This is pulled from the script
-	 * files added through addDebugScripts()
-	 *
-	 * @return String: JS
-	 */
-	protected function getDebugScript() {
-		return self::concatScripts( $this->debugScripts );
-	}
-
-	/**
-	 * Get the language-specific JS for a given language. This is pulled
-	 * from the language-specific script files added through addLanguageScripts()
-	 *
-	 * @return String: JS
-	 */
-	protected function getLanguageScript( $lang ) {
-		if ( !isset( $this->languageScripts[$lang] ) ) {
+	protected static function readScriptFiles( array $scripts ) {
+		if ( empty( $scripts ) ) {
 			return '';
 		}
-		return self::concatScripts( $this->languageScripts[$lang] );
+		return implode( "\n", array_map( array( __CLASS__, 'readScriptFile' ), array_unique( $scripts ) ) );
 	}
 
 	/**
-	 * Get the skin-specific JS for a given skin. This is pulled from the
-	 * skin-specific JS files added through addSkinScripts()
-	 *
-	 * @return String: JS
+	 * Get the contents of a list of CSS files
+	 * 
+	 * @param {array} $styles List of file paths to styles to read, remap and concetenate
+	 * @return {array} List of concatenated and remapped CSS data from $styles, keyed by media type
 	 */
-	protected function getSkinScript( $skin ) {
-		return self::concatScripts( self::getSkinFiles( $skin, $this->skinScripts ) );
-	}
-
-	/**
-	 * Get the skin-specific CSS for a given skin. This is pulled from the
-	 * skin-specific CSS files added through addSkinStyles()
-	 *
-	 * @return Array: list of CSS strings keyed by media type
-	 */
-	protected function getSkinStyles( $skin ) {
-		return self::concatStyles( self::getSkinFiles( $skin, $this->skinStyles ) );
-	}
-
-	/**
-	 * Helper function to get skin-specific data from an array.
-	 *
-	 * @param $skin String: skin name
-	 * @param $map Array: map of skin names to arrays
-	 * @return $map[$skin] if set and non-empty, or $map['default'] if set, or an empty array
-	 */
-	protected static function getSkinFiles( $skin, $map ) {
-		$retval = array();
-
-		if ( isset( $map[$skin] ) && $map[$skin] ) {
-			$retval = $map[$skin];
-		} else if ( isset( $map['default'] ) ) {
-			$retval = $map['default'];
+	protected static function readStyleFiles( array $styles ) {
+		if ( empty( $styles ) ) {
+			return array();
 		}
-
-		return $retval;
-	}
-
-	/**
-	 * Get the contents of a set of files and concatenate them, with
-	 * newlines in between. Each file is used only once.
-	 *
-	 * @param $files Array of file names
-	 * @return String: concatenated contents of $files
-	 */
-	protected static function concatScripts( $files ) {
-		return implode( "\n", 
-			array_map( 
-				'file_get_contents', 
-				array_map( 
-					array( __CLASS__, 'remapFilename' ), 
-					array_unique( (array) $files ) ) ) );
-	}
-
-	/**
-	 * Get the contents of a set of CSS files, remap then and concatenate
-	 * them, with newlines in between. Each file is used only once.
-	 *
-	 * @param $styles Array of file names
-	 * @return Array: list of concatenated and remapped contents of $files keyed by media type
-	 */
-	protected static function concatStyles( $styles ) {
 		$styles = self::collateFilePathListByOption( $styles, 'media', 'all' );
 		foreach ( $styles as $media => $files ) {
-			$styles[$media] =
-				implode( "\n", 
-					array_map( 
-						array( __CLASS__, 'remapStyle' ), 
-						array_unique( (array) $files ) ) );
+			$styles[$media] = implode(
+				"\n", array_map( array( __CLASS__, 'readStyleFile' ), array_unique( $files ) )
+			);
 		}
 		return $styles;
 	}
 
 	/**
-	 * Remap a relative to $IP. Used as a callback for array_map()
-	 *
-	 * @param $file String: file name
-	 * @return string $IP/$file
+	 * Reads a script file
+	 * 
+	 * This method can be used as a callback for array_map()
+	 * 
+	 * @param {string} $path File path of script file to read
+	 * @return {string} JavaScript data in script file
 	 */
-	protected static function remapFilename( $file ) {
+	protected static function readScriptFile( $path ) {
 		global $IP;
-
-		return "$IP/$file";
+		
+		return file_get_contents( "$IP/$path" );
 	}
 
 	/**
-	 * Get the contents of a CSS file and run it through CSSMin::remap().
-	 * This wrapper is needed so we can use array_map() in concatStyles()
-	 *
-	 * @param $file String: file name
-	 * @return string Remapped CSS
+	 * Reads a style file
+	 * 
+	 * This method can be used as a callback for array_map()
+	 * 
+	 * @param {string} $path File path of script file to read
+	 * @return {string} CSS data in script file
 	 */
-	protected static function remapStyle( $file ) {
-		global $wgScriptPath;
+	protected static function readStyleFile( $path ) {
+		global $wgScriptPath, $IP;
+		
 		return CSSMin::remap(
-			file_get_contents( self::remapFilename( $file ) ),
-			dirname( $file ),
-			$wgScriptPath . '/' . dirname( $file ),
-			true
+			file_get_contents( "$IP/$path" ), dirname( $path ), $wgScriptPath . '/' . dirname( $path ), true
 		);
 	}
+
+	/**
+	 * Resolve a file name
+	 * 
+	 * This method can be used as a callback for array_map()
+	 * 
+	 * @param {string} $path File path to resolve
+	 * @return {string} Absolute file path
+	 */
+	protected static function resolveFilePath( $path ) {
+		global $IP;
+		
+		return "$IP/$path";
+	}
+	
 }
