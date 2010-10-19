@@ -18,7 +18,7 @@ return array(
 		array( 'styles' => array(
 				'skins/monobook/main.css' => array( 'media' => 'screen' ),
 				// Honor $wgHandheldStyle. This is kind of evil
-				$GLOBALS['wgHandheldStyle'] => array( 'media' => 'handheld' )
+				//$GLOBALS['wgHandheldStyle'] => array( 'media' => 'handheld' )
 			)
 		)
 	),
