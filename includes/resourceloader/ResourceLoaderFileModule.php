@@ -317,9 +317,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected static function tryForKey( $list, $key, $fallback = null ) {
 		if ( isset( $list[$key] ) && is_array( $list[$key] ) ) {
-			return $list[$key];
+			return (array) $list[$key];
 		} else if ( is_string( $fallback ) && isset( $list[$fallback] ) ) {
-			return $list[$fallback];
+			return (array) $list[$fallback];
 		}
 		return array();
 	}
