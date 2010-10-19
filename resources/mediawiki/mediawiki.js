@@ -56,9 +56,10 @@ window.mediaWiki = new ( function( $ ) {
 		 * 
 		 * @param {boolean} global whether to get/set/exists values on the window object or a private object
 		 * @param {function} parser function to perform extra processing; in the form of function( value, options )
+		 * @param {function} fallback function to format default fallback; in the form of function( key )
 		 * where value is the data to be parsed and options is additional data passed through to the parser
 		 */
-		'configuration': function( global, parser ) {
+		'map': function( global, parser, fallback ) {
 			
 			/* Private Members */
 			
@@ -98,8 +99,13 @@ window.mediaWiki = new ( function( $ ) {
 					return results;
 				} else if ( typeof selection === 'string' ) {
 					if ( typeof values[selection] === 'undefined' ) {
-						return typeof options === 'object' && 'fallback' in options ?
-							options.fallback : '<' + selection + '>';
+						if ( typeof options === 'object' && 'fallback' in options ) {
+							return options.fallback;
+						} else if ( typeof fallback === 'function' ) {
+							return fallback( selection );
+						} else {
+							return null;
+						}
 					} else {
 						if ( typeof parser === 'function' ) {
 							return parser( values[selection], options );
@@ -158,7 +164,7 @@ window.mediaWiki = new ( function( $ ) {
 	 * 
 	 * In legacy mode the values this object wraps will be in the global space
 	 */
-	this.config = new this.prototypes.configuration( LEGACY_GLOBALS );
+	this.config = new this.prototypes.map( LEGACY_GLOBALS );
 	
 	/*
 	 * Information about the current user
@@ -167,7 +173,7 @@ window.mediaWiki = new ( function( $ ) {
 		
 		/* Public Members */
 		
-		this.options = new that.prototypes.configuration();
+		this.options = new that.prototypes.map();
 	} )();
 	
 	/*
@@ -186,7 +192,7 @@ window.mediaWiki = new ( function( $ ) {
 	/*
 	 * Localization system
 	 */
-	this.msg = new that.prototypes.configuration( false, this.parser );
+	this.msg = new that.prototypes.map( false, this.parser, function( key ) { return '<' + key + '>'; } );
 	
 	/*
 	 * Client-side module loader which integrates with the MediaWiki ResourceLoader
