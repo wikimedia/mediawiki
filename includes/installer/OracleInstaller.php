@@ -28,6 +28,8 @@ class OracleInstaller extends DatabaseInstaller {
 		'_OracleUseSysdba' => true
 	);
 
+	public $minimumVersion = '9.0.1'; // 9iR1
+
 	public function getName() {
 		return 'oracle';
 	}
@@ -100,13 +102,12 @@ class OracleInstaller extends DatabaseInstaller {
 		}
 		$conn = $status->value;
 
-/*
 		// Check version
 		$version = $conn->getServerVersion();
 		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
-			return Status::newFatal( 'config-mysql-old', $this->minimumVersion, $version );
+			return Status::newFatal( 'config-oracle-old', $this->minimumVersion, $version );
 		}
-*/
+
 		return $status;
 	}
 

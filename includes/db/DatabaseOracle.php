@@ -238,13 +238,13 @@ class DatabaseOracle extends DatabaseBase {
 		// changed internal variables functions
 		// mServer now holds the TNS endpoint
 		// mDBname is schema name if different from username
-		if ($server == null || $server == false) {
+		if ( !$server ) {
 			// backward compatibillity (server used to be null and TNS was supplied in dbname)
 			$this->mServer = $dbName;
 			$this->mDBname = $user;
 		} else {
 			$this->mServer = $server;
-			if ( $dbName == null || $dbName == false ) {
+			if ( !$dbName ) {
 				$this->mDBname = $user;
 			} else {	
 				$this->mDBname = $dbName;
@@ -851,7 +851,12 @@ class DatabaseOracle extends DatabaseBase {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		return oci_server_version( $this->mConn );
+		//better version number, fallback on driver
+		$rset = $this->doQuery( 'SELECT version FROM product_component_version WHERE UPPER(product) LIKE \'ORACLE DATABASE%\'' );
+		if ( !( $row =  $rset->fetchRow() ) ) {
+			return oci_server_version( $this->mConn );
+		} 
+		return $row['version'];
 	}
 
 	/**
@@ -1047,11 +1052,10 @@ class DatabaseOracle extends DatabaseBase {
 
 	function selectDB( $db ) {
 		if ( $db == null || $db == $this->mUser ) { return true; }
-		$sql = 'ALTER SESSION SET CURRENT_SCHEMA='.strtoupper($db);
-		$stmt = oci_parse( $this->mConn, 'ALTER SESSION SET CURRENT_SCHEMA='.strtoupper($db) );
+		$sql = 'ALTER SESSION SET CURRENT_SCHEMA=' . strtoupper($db);
+		$stmt = oci_parse( $this->mConn, $sql );
 		if ( !oci_execute( $stmt ) ) {
 			$e = oci_error( $stmt );
-//			wfDebugDieBacktrace(print_r($e, true));
 			if ( $e['code'] != '1435' ) {
 				$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 			}
