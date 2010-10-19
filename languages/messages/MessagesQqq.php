@@ -401,7 +401,8 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 
 {{Identical|Search}}',
 'pool-timeout'      => 'Part of {{msg-mw|view-pool-error}}.',
-'pool-queuefull'    => 'Part of {{msg-mw|view-pool-error}}.',
+'pool-queuefull'    => 'Part of {{msg-mw|view-pool-error}}.
+"Pool" refers to a pool of processes.',
 'pool-errorunknown' => 'Part of {{msg-mw|view-pool-error}}.',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1163,7 +1164,7 @@ See also {{msg-mw|difference}}.',
 'diff-multi'               => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.
 
 *Parameter $1 is the number of revisions
-*Parameter $2 is the number of users making those revisions",
+*Parameter $2 is the number of distinct users who made those revisions",
 'diff-multi-manyusers'     => "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users. Parameters:
 * $1 is the number of revisions, will always be 101 or more.
 * $2 is the number of users that were found, which was limited at 100.",

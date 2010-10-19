@@ -20,7 +20,13 @@ $messages = array(
 'tog-highlightbroken'       => 'Bantuk tautan pagat <a href="" class="puga">nangkaya ini</a> (pilihan: nangkaya ini<a href="" class="internal">?</a>)',
 'tog-justify'               => 'Ratakan paragraf',
 'tog-hideminor'             => 'Sungkupakan babakan sapalih dalam parubahan tahanyar',
+'tog-hidepatrolled'         => 'Sungkupakan babakan taawasi dalam parubahan tahanyar',
 'tog-newpageshidepatrolled' => 'Sungkupakan tungkaran nang diitihi matan daptar tungkaran hanyar',
+'tog-usenewrc'              => 'Purukakan panampaian parubahan tahanyar tingkat tinggi  (parlu ada JavaScript)',
+'tog-numberheadings'        => 'Bari numur judul utumatis',
+'tog-showtoolbar'           => 'Tampaiakan bilah pakakas babak (parlu ada JavaScript)',
+'tog-editondblclick'        => 'Babak tungkaran-tungkaran wan klik ganda (parlu ada JavaScript)',
+'tog-editsection'           => 'Kawa-akan babakan hapat limpat tautan [babak]',
 'tog-watchcreations'        => 'Tambahi tungkaran nang ulun ulah ka daptar itihan',
 'tog-watchdefault'          => 'Tambahi tungkaran nang ulun babak ka daptar itihan ulun',
 'tog-watchmoves'            => 'Tambahi tungkaran nang ulun pindah ka daptar itihan ulun',
@@ -31,6 +37,9 @@ $messages = array(
 'tog-enotifusertalkpages'   => 'Surili ulun amun tungkaran pamandiran ulun baubah',
 'tog-enotifminoredits'      => 'Surili ulun jua amun ada babakan sapalih matan tungkaran-tungkaran',
 'tog-watchlisthideown'      => 'Sungkupakan babakan ulun di daptar itihan',
+'tog-watchlisthidebots'     => 'Sungkupakan babakan bot di daptar itihan',
+'tog-watchlisthideminor'    => 'Sungkupakan babakan sapalih di daptar itihan',
+'tog-watchlisthideliu'      => 'Sungkupakan babakan pamuruk babuat log di daptar itihan',
 
 'underline-never' => 'Kada suah',
 
@@ -260,6 +269,9 @@ Nangini bisa baisi satu atawa labih hurup nang saharusnya kadada di judul.',
 'querypage-no-updates' => 'Pamugaan matan tungkaran ini rahat dipajahkan. Data nang ada di sia wayahini kada akan dimuat ulang.',
 'viewsource'           => 'Tiringi asal mulanya',
 'viewsourcefor'        => 'gasan $1',
+'ns-specialprotected'  => 'Tungkaran istimiwa kada kawa dibabak',
+'titleprotected'       => 'Judul nang ini dilindungi matan paulahannya ulih [[User:$1|$1]].
+Wan alasan nang dibari adalah "\'\'$2\'\'".',
 
 # Login and logout pages
 'yourname'                => 'Ngaran pamuruk',

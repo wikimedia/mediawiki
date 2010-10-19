@@ -873,7 +873,7 @@ rocaneyan kontrol bıkere.',
 'revmove-norevisions'          => 'Seba kerdişê ena fonksiyon, ti hama yew ya zi yew ra zafyer revizyonê hedefi belli nikerd ya zi revizyonê ke belli biyo ey cini yo.',
 'revmove-nullmove-title'       => 'Sernameo xırabın',
 'revmove-nullmove'             => 'Peleyê hedefi u peleyê cimeyi eyni name nigene.
-Eka peyser şo pele verini u reyna "$1" ra yew nameya newe biwecine.',
+Eka peyser şo pele verini u reyna "[[$1]]" ra yew nameya newe biwecine.',
 'revmove-success-existing'     => '{{PLURAL:$1|Yew revizyon [[$2]] ra|$1 revizyonan from [[$2]] ra}} pele [[$3]] rê berda.',
 'revmove-success-created'      => '{{PLURAL:$1|Yew revizyon [[$2]] ra|$1 revizyonan from [[$2]] ra}} pele [[$3]] ke newe a biya o rê berda.',
 

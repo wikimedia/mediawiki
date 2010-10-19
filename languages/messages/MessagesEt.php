@@ -1155,7 +1155,7 @@ Mine eelmisele leheküljele tagasi ja proovi uuesti.',
 'revmove-norevisions'          => 'Selle toimingu sooritamiseks pole ühtegi sihtredaktsiooni määratud või määratud redaktsiooni pole olemas.',
 'revmove-nullmove-title'       => 'Halb pealkiri',
 'revmove-nullmove'             => 'Lähte- ja sihtlehekülg ei saa olla samad.
-Mine eelmisele leheküljele tagasi ja vali pealkirjast "$1" erinev pealkiri.',
+Mine eelmisele leheküljele tagasi ja vali pealkirjast "[[$1]]" erinev pealkiri.',
 'revmove-success-existing'     => '{{PLURAL:$1|Üks redaktsioon|$1 redaktsiooni}} leheküljelt [[$2]] on teisaldatud olemasolevale leheküljele [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Üks redaktsioon|$1 redaktsiooni}} leheküljelt [[$2]] on teisaldatud vastloodud leheküljele [[$3]].',
 

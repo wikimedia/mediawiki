@@ -1133,7 +1133,7 @@ Xem [[Special:IPBlockList|danh sách các IP bị cấm]] để xem danh sách c
 'revmove-norevisions-title'    => 'Phiên bản mục tiêu không hợp lệ',
 'revmove-norevisions'          => 'Chưa chọn ít nhất một phiên bản mục tiêu để thực hiện tác vụ này, hoặc phiên bản được chọn không tồn tại.',
 'revmove-nullmove-title'       => 'Tựa trang sai',
-'revmove-nullmove'             => 'Không thể di chuyển phiên bản từ một trang đến cùng trang. Xin hãy bấm “Lùi” và đổi “$1” thành tên trang khác.',
+'revmove-nullmove'             => 'Không thể di chuyển phiên bản từ một trang đến cùng trang. Xin hãy bấm “Lùi” và đổi “[[$1]]” thành tên trang khác.',
 'revmove-success-existing'     => '{{PLURAL:$1|Một phiên bản|$1 phiên bản}} [[$2]] đã được di chuyển đến trang tồn tại [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Một phiên bản|$1 phiên bản}} [[$2]] đã được di chuyển đên trang mới [[$3]].',
 

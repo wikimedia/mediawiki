@@ -97,6 +97,7 @@ $messages = array(
 'pagecategories'         => '{{PLURAL:$1|amggrd|imggrad}}',
 'category_header'        => 'tiwriqin ɣ-omggrd "$1"',
 'subcategories'          => 'imggrad-mzin',
+'category-media-header'  => 'tiwriqin ɣ-omggrd "$1"',
 'hidden-categories'      => '{{PLURAL:$1|taggayt igdln|taggayin gdlnin}}',
 'listingcontinuesabbrev' => 'Aḍfar',
 
@@ -630,6 +631,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'protectlogpage'            => '↓ Iɣmisn n ugdal',
 'protectedarticle'          => '↓ ay gdl  "[[$1]]"',
 'modifiedarticleprotection' => '↓ isbudl taskfalt n ugdal n « [[$1]] »',
+'protectcomment'            => 'Maɣ:',
 'protect-default'           => 'Immurzm i kullu imsxdamn',
 
 # Undelete
@@ -645,6 +647,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'mycontris'     => 'Tiwuriwin inu',
 'contribsub2'   => '↓ I $1 ($2)',
 'uctop'         => '↓ (tamgarut)',
+'month'         => 'Z usggas (d urbur):',
 'year'          => 'Z usggas (d urbur):',
 
 'sp-contributions-newbies'             => '↓ Ad ur tmlt abla tiwuriwin n wiyyaḍ',
@@ -701,6 +704,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'blocklogentry'            => '↓ tqn [[$1]] s tizi izrin n $2 $3',
 
 # Move page
+'movearticle'              => 'Smmatti tasna niɣ as tsbudlt assaɣ',
 'newtitle'                 => '↓ dar w-assaɣ amaynu:',
 'movepagebtn'              => '↓ Smmatti tasna niɣ as tsbudlt assaɣ',
 'pagemovedsub'             => '↓ tmmutti bla tamukrist',
@@ -712,6 +716,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'movelogpage'              => '↓ Iɣmisn n ismmattrayn',
 'movelogpagetext'          => '↓ Γid umuɣ n tisniwin lli sbadlnin assaɣ d tilli mmuttini.',
 'movesubpage'              => '↓ Ddu-tasna {{PLURAL:$1||s}}',
+'movereason'               => 'Maɣ:',
 'revertmove'               => 'Rard',
 
 # Export

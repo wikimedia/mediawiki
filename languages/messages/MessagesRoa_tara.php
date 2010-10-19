@@ -945,7 +945,7 @@ Tuèrne rrete a 'a pàgene precedende e pruève arrete.",
 'revmove-norevisions'          => "Tu non g'è specificate une o cchiù revisiune de destinazione pe fà sta funzione o 'a revisione specificate non g'esiste.",
 'revmove-nullmove-title'       => 'Titele sbagliate',
 'revmove-nullmove'             => "'A pàgene de destinazione non ge pò essere 'a stesse d'à pàgene de origgene.
-Tuèrne rrete a 'a pàgene precedende e scacchie 'nu nome diverse da \"\$1\".",
+Tuèrne rrete a 'a pàgene precedende e scacchie 'nu nome diverse da \"[[\$1]]\".",
 'revmove-success-existing'     => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene esistende [[$3]].",
 'revmove-success-created'      => "{{PLURAL:$1|'Na revisione da [[$2]] ha|$1 revisiune da [[$2]] onne}} state spustate sus 'a pàgene appene ccrejate [[$3]].",
 

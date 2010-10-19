@@ -1006,7 +1006,7 @@ $1",
 'revmove-norevisions'          => '你未指定一個或者多個目標修訂去做呢項功能或者所指定嘅修訂唔存在。',
 'revmove-nullmove-title'       => '壞標題',
 'revmove-nullmove'             => '目標頁嘅唔可以同埋來源版一模一樣。
-請返去上一版再輸入同 "$1" 唔同嘅名。',
+請返去上一版再輸入同 "[[$1]]" 唔同嘅名。',
 'revmove-success-existing'     => '由[[$2]]嘅{{PLURAL:$1|一次修訂|$1次修訂}}已經搬到去現有嘅頁[[$3]]。',
 'revmove-success-created'      => '由[[$2]]嘅{{PLURAL:$1|一次修訂|$1次修訂}}已經搬到去新開嘅頁[[$3]]。',
 

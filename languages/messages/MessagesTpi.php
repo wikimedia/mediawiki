@@ -58,44 +58,56 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Haitim ol liklik senis long lukautbuk bilong mi',
 
 # Dates
-'sunday'    => 'Sande',
-'monday'    => 'Mande',
-'tuesday'   => 'Tunde',
-'wednesday' => 'Trinde',
-'thursday'  => 'Fonde',
-'friday'    => 'Fraide',
-'saturday'  => 'Sarere',
-'sun'       => 'San',
-'mon'       => 'Man',
-'tue'       => 'Tun',
-'wed'       => 'Tri',
-'thu'       => 'Fon',
-'fri'       => 'Frai',
-'sat'       => 'Sar',
-'january'   => 'Janueri',
-'february'  => 'Februeri',
-'march'     => 'Mas',
-'april'     => 'Epril',
-'may_long'  => 'Me',
-'june'      => 'Jun',
-'july'      => 'Julai',
-'august'    => 'Ogas',
-'september' => 'Septemba',
-'october'   => 'Oktoba',
-'november'  => 'Novemba',
-'december'  => 'Disemba',
-'jan'       => 'Jan',
-'feb'       => 'Feb',
-'mar'       => 'Mas',
-'apr'       => 'Epr',
-'may'       => 'Me',
-'jun'       => 'Jun',
-'jul'       => 'Jul',
-'aug'       => 'Oga',
-'sep'       => 'Sep',
-'oct'       => 'Okt',
-'nov'       => 'Nov',
-'dec'       => 'Dis',
+'sunday'        => 'Sande',
+'monday'        => 'Mande',
+'tuesday'       => 'Tunde',
+'wednesday'     => 'Trinde',
+'thursday'      => 'Fonde',
+'friday'        => 'Fraide',
+'saturday'      => 'Sarere',
+'sun'           => 'San',
+'mon'           => 'Man',
+'tue'           => 'Tun',
+'wed'           => 'Tri',
+'thu'           => 'Fon',
+'fri'           => 'Frai',
+'sat'           => 'Sar',
+'january'       => 'Janueri',
+'february'      => 'Februeri',
+'march'         => 'Mas',
+'april'         => 'Epril',
+'may_long'      => 'Me',
+'june'          => 'Jun',
+'july'          => 'Julai',
+'august'        => 'Ogas',
+'september'     => 'Septemba',
+'october'       => 'Oktoba',
+'november'      => 'Novemba',
+'december'      => 'Disemba',
+'january-gen'   => 'Janueri',
+'february-gen'  => 'Februeri',
+'march-gen'     => 'Mas',
+'april-gen'     => 'Epril',
+'may-gen'       => 'Me',
+'june-gen'      => 'Jun',
+'july-gen'      => 'Julai',
+'august-gen'    => 'Ogas',
+'september-gen' => 'Septemba',
+'october-gen'   => 'Oktoba',
+'november-gen'  => 'Novemba',
+'december-gen'  => 'Disemba',
+'jan'           => 'Jan',
+'feb'           => 'Feb',
+'mar'           => 'Mas',
+'apr'           => 'Epr',
+'may'           => 'Me',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
+'aug'           => 'Oga',
+'sep'           => 'Sep',
+'oct'           => 'Okt',
+'nov'           => 'Nov',
+'dec'           => 'Dis',
 
 # Categories related messages
 'pagecategories'        => '{{PLURAL:$1|Grup|Ol grup}}',
@@ -104,27 +116,42 @@ $messages = array(
 'category-media-header' => 'Ol media (olsem piksa) insait long grup "$1"',
 'category-empty'        => "''Dispela grup i no gat wanpela pes o media (olsem piksa) insait long en nau.''",
 
-'newwindow'  => '(bai kamap long nupela windo)',
-'cancel'     => 'Toromwe senis',
-'mytalk'     => 'Toktok bilong mi',
-'navigation' => 'Ol bikpela pes',
+'newwindow'     => '(bai kamap long nupela windo)',
+'cancel'        => 'Toromwe senis',
+'moredotdotdot' => 'Moa...',
+'mypage'        => 'Pes bilong mi',
+'mytalk'        => 'Toktok bilong mi',
+'navigation'    => 'Ol bikpela pes',
+'and'           => '&#32;na',
 
 # Cologne Blue skin
 'qbfind'         => 'Painim',
 'qbedit'         => 'Senisim',
+'qbpageoptions'  => 'Dispela pes',
+'qbmyoptions'    => 'Ol pes bilong mi',
 'qbspecialpages' => 'Ol sipesol pes',
 
+# Vector skin
+'vector-action-delete' => 'Rausim',
+'vector-action-move'   => 'Surikim',
+'vector-view-edit'     => 'Senisim',
+'vector-view-history'  => 'Lukim histori',
+
 'errorpagetitle'   => 'Samting i kranki',
+'tagline'          => 'Long {{SITENAME}}',
 'help'             => 'Halivim mi',
 'search'           => 'Painim',
 'searchbutton'     => 'Painim',
+'go'               => 'Go',
 'searcharticle'    => 'Go',
 'history'          => 'Ol senis long dispela pes',
 'history_short'    => 'Ol senis',
 'edit'             => 'Senisim',
 'delete'           => 'Rausim',
 'deletethispage'   => 'Rausim dispela pes',
+'newpage'          => 'Nupela pes',
 'talkpagelinktext' => 'Toktok',
+'specialpage'      => 'Sipesol pes',
 'talk'             => 'Toktok',
 'toolbox'          => 'Sipesol bokis',
 'categorypage'     => 'Lukim pes bilong grup',
@@ -136,6 +163,7 @@ $messages = array(
 'currentevents'        => 'Karen afeas',
 'currentevents-url'    => 'Project:Karen afeas',
 'edithelp'             => 'Halivim mi long pasin bilong wokim senis',
+'edithelppage'         => 'Help:Senisim',
 'mainpage'             => 'Fran Pes',
 'mainpage-description' => 'Fran Pes',
 'portal'               => 'Bung ples',
@@ -143,6 +171,12 @@ $messages = array(
 
 'badaccess' => 'Kranki long tok orait.',
 
+'ok'             => 'OK',
+'editsection'    => 'senisim',
+'editold'        => 'senisim',
+'editlink'       => 'senisim',
+'feedlinks'      => 'Fid:',
+'site-rss-feed'  => '$1 RSS fid',
 'site-atom-feed' => '$1 Atom fid',
 'page-rss-feed'  => '"$1" RSS fid',
 'page-atom-feed' => '"$1" Atom fid',
@@ -156,9 +190,19 @@ $messages = array(
 'nstab-mediawiki' => 'Toksave',
 'nstab-category'  => 'Grup',
 
+# General errors
+'error'         => 'Samting i kranki',
+'badtitle'      => 'Nogutpela titel',
+'viewsourcefor' => 'long $1',
+
 # Login and logout pages
-'logout'     => 'Logaut',
-'userlogout' => 'Logaut',
+'logout'             => 'Logaut',
+'userlogout'         => 'Logaut',
+'loginlanguagelabel' => 'Toktok: $1',
+
+# JavaScript password checks
+'password-strength-bad'  => 'NOGUT',
+'password-strength-good' => 'gut',
 
 # Edit page toolbar
 'link_sample'    => 'Link taitel',
@@ -186,22 +230,67 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 '''YU NOKEN RAITIM WANPELA SAMTING IGAT COPYRIGHT LONG EN (NARAPELA MANMERI I RAITIM)!'''",
 'templatesused'     => 'Dispela pes i yusim ol templet:',
 
+# Revision deletion
+'revdelete-uname' => 'yusanem',
+
+# Revision move
+'revmove-nullmove-title' => 'Nogutpela titel',
+
 # Search results
-'powersearch'        => 'Mobeta Painim',
-'powersearch-legend' => 'Mobeta Painim',
-'powersearch-ns'     => 'Painim long ol nem',
-'powersearch-field'  => 'Painim long',
+'searchprofile-everything'       => 'Ol',
+'searchprofile-articles-tooltip' => 'Painim long $1',
+'searchprofile-project-tooltip'  => 'Painim long $1',
+'search-interwiki-more'          => '(moa)',
+'searchall'                      => 'ol',
+'powersearch'                    => 'Mobeta Painim',
+'powersearch-legend'             => 'Mobeta Painim',
+'powersearch-ns'                 => 'Painim long ol nem',
+'powersearch-field'              => 'Painim long',
 
 # Preferences page
-'mypreferences'   => 'Ol laik bilong mi',
-'prefs-edits'     => 'Hamas senis:',
-'skin-preview'    => 'pes mi senisim, pastaim long raitim',
-'prefs-rc'        => 'Nupela senis',
-'prefs-watchlist' => 'Lukautbuk',
+'preferences'              => 'Ol laik',
+'mypreferences'            => 'Ol laik bilong mi',
+'prefs-edits'              => 'Hamas senis:',
+'skin-preview'             => 'pes mi senisim, pastaim long raitim',
+'prefs-math'               => 'Matematiks',
+'prefs-rc'                 => 'Nupela senis',
+'prefs-watchlist'          => 'Lukautbuk',
+'searchresultshead'        => 'Painim',
+'timezoneregion-africa'    => 'Aprika',
+'timezoneregion-america'   => 'Amerika',
+'timezoneregion-asia'      => 'Esia',
+'timezoneregion-atlantic'  => 'Atlantik solwara',
+'timezoneregion-australia' => 'Ostrelia',
+'timezoneregion-europe'    => 'Yurop',
+'timezoneregion-pacific'   => 'Pasifik solwara',
+'prefs-files'              => 'Ol fail',
+'username'                 => 'Yusanem:',
+'yourlanguage'             => 'Toktok:',
+'gender-male'              => 'Man',
+'gender-female'            => 'Meri',
+
+# User rights
+'userrights-groupsmember' => 'Memba bilong:',
+
+# Groups
+'group-user' => 'Ol yusa',
+'group-bot'  => 'Ol bot',
+'group-all'  => '(ol)',
+
+'group-user-member' => 'yusa',
+'group-bot-member'  => 'bot',
+
+'grouppage-user' => '{{ns:project}}:Ol yusa',
+
+# Rights
+'right-move'     => 'Surikim ol pes',
+'right-movefile' => 'Surikim ol fail',
 
 # Recent changes
 'recentchanges'     => 'Nupela senis',
 'rcnote'            => "Ananit yu lukim '''$1 senis''' long '''$2 de''' igo pinis, na i olsem long $3.",
+'rcshowhidebots'    => '$1 ol bot',
+'minoreditletter'   => 'm',
 'newpageletter'     => 'N',
 'boteditletter'     => 'b',
 'rc_categories'     => 'Soim ol senis insait long ol dispela grup tasol (raitim wantaim "|" namel long wanwan)',
@@ -215,12 +304,25 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 # Upload
 'upload' => 'Salim media fail',
 
+# Special:ListFiles
+'imgfile'        => 'fail',
+'listfiles_user' => 'Yusa',
+
 # File description page
-'filehist-user' => 'Yusa',
-'imagelinks'    => 'Ol fail link',
+'file-anchor-link' => 'Fail',
+'filehist-user'    => 'Yusa',
+'imagelinks'       => 'Ol fail link',
+'shared-repo-from' => 'long $1',
+
+# File deletion
+'filedelete'        => 'Rausim $1',
+'filedelete-submit' => 'Rausim',
 
 # Random page
 'randompage' => 'Soim wanpela pes',
+
+# Statistics
+'statistics-pages' => 'Ol pes',
 
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|grup|grup}}',
@@ -237,12 +339,20 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'mostlinkedcategories'    => 'Ol grup igat planti link i kam long ol',
 'mostlinkedtemplates'     => 'Ol templet igat planti link i kam long ol',
 'mostcategories'          => 'Ol pes bilong buk istap insait long planti grup',
+'newpages'                => 'Ol nupela pes',
 'move'                    => 'Surikim',
 'movethispage'            => 'Surikim dispela pes',
 'unusedcategoriestext'    => 'Ol dispela grup istap yet, tasol i no gat wanpela pes o grup i stap insait long ol.',
 
+# Book sources
+'booksources-go' => 'Go',
+
+# Special:Log
+'specialloguserlabel' => 'Yusa:',
+
 # Special:AllPages
 'allpages'       => 'Olgeta pes',
+'alphaindexline' => '$1 long $2',
 'allarticles'    => 'Ol pes',
 'allpagessubmit' => 'Go',
 
@@ -251,6 +361,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'categoriespagetext' => 'Ol dispela grup istap.
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
+
+# Special:LinkSearch
+'linksearch-ok' => 'Painim',
 
 # Watchlist
 'watchlist'            => 'Lukautbuk bilong mi',
@@ -277,10 +390,18 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Luklukim...',
 
-'enotif_reset' => 'Makim olgeta pes olsem mi lukim pinis',
+'enotif_reset'                 => 'Makim olgeta pes olsem mi lukim pinis',
+'enotif_impersonal_salutation' => 'yusa long {{SITENAME}}',
+
+# Delete
+'delete-confirm' => 'Rausim $1',
+'delete-legend'  => 'Rausim',
 
 # Protect
 'prot_1movedto2' => '[[$1]] i surik i go long [[$2]] pinis',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Senisim',
 
 # Contributions
 'contributions' => 'Ol senis yusa i wokim',
@@ -290,11 +411,18 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'sp-contributions-submit' => 'Painim',
 
 # What links here
-'whatlinkshere'       => 'Ol link ikam long hia',
-'whatlinkshere-page'  => 'Pes:',
-'whatlinkshere-links' => '← ol link',
+'whatlinkshere'           => 'Ol link ikam long hia',
+'whatlinkshere-page'      => 'Pes:',
+'whatlinkshere-links'     => '← ol link',
+'whatlinkshere-hidelinks' => '$1 ol link',
+
+# Block/unblock
+'ipbotheroption'     => 'narapela',
+'ipblocklist-submit' => 'Painim',
 
 # Move page
+'movearticle'     => 'Surikim pes:',
+'newtitle'        => 'Long nupela titel:',
 'movepagebtn'     => 'Surikim',
 'pagemovedsub'    => 'Pes i surik pinis',
 'articleexists'   => 'Wanpela pes wantaim dispela nem i stap pinis, o dispela nem i no stret.
@@ -311,15 +439,40 @@ Yu mas painim narapela nem.',
 
 # Tooltip help for the actions
 'tooltip-pt-logout'         => 'Logaut',
+'tooltip-search'            => 'Painim {{SITENAME}}',
 'tooltip-feed-rss'          => 'RSS fid bilong dispela pes',
 'tooltip-feed-atom'         => 'Atom fid bilong dispela pes',
+'tooltip-t-upload'          => 'Salim media fail',
 'tooltip-ca-nstab-category' => 'Lukim grup',
+
+# Attribution
+'siteuser' => '{{SITENAME}} yusa $1',
+'others'   => 'ol narapela',
+
+# Special:NewFiles
+'ilsubmit' => 'Painim',
 
 # Metadata
 'metadata' => 'Metadata',
 
+# EXIF tags
+'exif-imagedescription' => 'Piksa titel',
+
+'exif-meteringmode-255' => 'Narapela',
+
 # 'all' in various places, this might be different for inflected languages
-'namespacesall' => 'ol',
+'recentchangesall' => 'ol',
+'imagelistall'     => 'ol',
+'watchlistall2'    => 'ol',
+'namespacesall'    => 'ol',
+'monthsall'        => 'ol',
+'limitall'         => 'ol',
+
+# Trackbacks
+'trackbackremove' => '([$1 Rausim])',
+
+# Table pager
+'table_pager_limit_submit' => 'Go',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Igat {{PLURAL:$1|1 samting|$1 samting}} insait long lukautbuk bilong yu (ol pes bilong toktok i no stap long dispela namba).',
@@ -346,7 +499,27 @@ Yu mas painim narapela nem.',
 'watchlisttools-edit' => 'Lukim na senisim lukautbuk',
 'watchlisttools-raw'  => 'Senisim lukautbuk insait long wanpela bokis',
 
+# Special:Version
+'version-other' => 'Narapela',
+
+# Special:FilePath
+'filepath-page'   => 'Fail:',
+'filepath-submit' => 'Go',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Painim',
+
 # Special:SpecialPages
 'specialpages' => 'Ol sipesol pes',
+
+# Special:Tags
+'tags-edit' => 'senisim',
+
+# Special:ComparePages
+'compare-page1' => 'Pes 1',
+'compare-page2' => 'Pes 2',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Narapela',
 
 );

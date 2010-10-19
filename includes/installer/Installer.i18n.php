@@ -586,6 +586,15 @@ $1 is for indicating whether or not we should be able to use the feature.',
  * @author Dani
  */
 $messages['hu-formal'] = array(
+	'config-localsettings-upgrade' => "'''Figyelmeztetés''': már létezik a <code>LocalSettings.php</code> fájl.
+A szoftver frissíthető.
+Helyezze át a <code>LocalSettings.php</code> fájlt egy másik helyre, majd indítsa újra a telepítőt.",
+	'config-session-expired' => 'Úgy tűnik, hogy a munkamenetadatok lejártak.
+A munkamenetek élettartama a következőre van beállítva: $1.
+Az érték növelhető a php.ini <code>session.gc_maxlifetime</code> beállításának módosításával.
+Indítsa újra a telepítési folyamatot.',
+	'config-no-session' => 'Elvesztek a munkamenetadatok!
+Ellenőrizze, hogy a php.ini-ben a <code>session.save_path</code> beállítás a megfelelő könyvtárra mutat-e.',
 	'config-your-language-help' => 'Válassza ki a telepítési folyamat során használandó nyelvet.',
 	'config-wiki-language-help' => 'Válassza ki azt a nyelvet, amin a wiki tartalmának legnagyobb része íródik.',
 	'config-page-welcome' => 'Üdvözli a MediaWiki!',
@@ -598,6 +607,9 @@ Ha probléma merülne fel a telepítés során, meg kell adnia mások számára 
 	'config-env-latest-old' => "'''Figyelmeztetés:''' A MediaWiki elavult változatát telepíti.",
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.
 Ha nagy látogatottságú oldalt üzemeltet, itt találhat információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
+	'config-register-globals' => "'''Figyelmeztetés: A PHP <code>[http://php.net/register_globals register_globals]</code> beállítása engedélyezve van.'''
+'''Tiltsa le, ha van rá lehetősége.'''
+A MediaWiki működőképes a beállítás használata mellett, de a szerver biztonsági kockázatnak lesz kitéve.",
 	'config-imagemagick' => 'Az ImageMagick megtalálható a rendszeren: <code>$1</code>.
 A bélyegképek készítése engedélyezve lesz, ha engedélyezi a feltöltéseket.',
 	'config-db-name-help' => 'Válassza ki a wikije azonosítására használt nevet.
@@ -615,11 +627,34 @@ Ez sokkal hatékonyabb a MySQL UTF-8-módjától, és lehetővé teszi, hogy a t
 nem használhatja a [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane] feletti karaktereket.",
 	'config-db-schema-help' => 'A fenti sémák általában megfelelőek.
 Csak akkor módosítson rajta, ha szükség van rá.',
+	'config-sqlite-parent-unwritable-nogroup' => 'Nem lehet létrehozni az adatok tárolásához szükséges <code><nowiki>$1</nowiki></code> könyvtárat, mert a webszerver nem írhat a szülőkönyvtárba (<code><nowiki>$2</nowiki></code>).
+
+A telepítő nem tudta megállapíteni, hogy melyik felhasználói fiókon fut a webszerver.
+A folytatáshoz tegye írhatóvá ezen fiók (és más fiókok!) számára a következő könyvtárat: <code><nowiki>$3</nowiki></code>.
+Unix/Linux rendszereken tedd a következőt:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-ns-other' => 'Más (adja meg)',
 	'config-admin-name-blank' => 'Adja meg az adminisztrátor felhasználónevét!',
 	'config-admin-name-invalid' => 'A megadott felhasználónév (<nowiki>$1</nowiki>) érvénytelen.
 Adjon meg egy másik felhasználónevet.',
 	'config-admin-password-blank' => 'Adja meg az adminisztrátori fiók jelszavát!',
+	'config-instantcommons-help' => 'Az [http://www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [http://commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat..
+A használatához a MediaWikinek internethozzáférésre van szüksége. $1
+
+A funkcióról és hogy hogyan állítható be más wikik esetén [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhat további információkat.',
+	'config-install-done' => "'''Gratulálunk!'''
+Sikeresen telepítette a MediaWikit.
+
+A telepítő készített egy <code>LocalSettings.php</code> fájlt.
+Ez tartalmazza az összes beállítást.
+
+[$1 Le kell töltenie], és el kell helyeznie a MediaWiki telepítési könyvtárába (az a könyvtár, ahol az index.php van).
+'''Megjegyzés''': Ha ezt most nem teszi meg, és kilép, a generált fájl nem lesz elérhető a későbbiekben.
+
+Ha ezzel készen van, '''[$2 beléphet a wikibe]'''.",
 );
 
 /** Afrikaans (Afrikaans)
@@ -1640,7 +1675,8 @@ Obzwar MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, w
 Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster den zutreffenden Servernamen in seiner Dokumentation angegeben haben.
 
 Sofern auf einem Windows-Server installiert und MySQL genutzt wird, funktioniert der Servername „localhost“ voraussichtlich nicht. Wenn nicht, sollte  „127.0.0.1“ oder die lokale IP-Adresse angegeben werden.',
-	'config-db-host-oracle' => 'TNS der Datenbank:',
+	'config-db-host-oracle' => 'Datenbank-TNS:',
+	'config-db-host-oracle-help' => 'Einen gültigen [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm „Local Connect“-Namen] angeben. Die „tnsnames.ora“-Datei muss von dieser Installation erkannt werden können.<br />Sofern die Client-Bibliotheken für Version 10g oder neuer verwendet werden, kann auch [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm „Easy Connect“] zur Namensgebung genutzt werden.',
 	'config-db-wiki-settings' => 'Bitte identifiziere dieses Wiki',
 	'config-db-name' => 'Datenbankname:',
 	'config-db-name-help' => 'Bitten einen Namen angeben, mit dem das Wiki identifiziert werden kann.
@@ -1700,15 +1736,16 @@ $1
 
 Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt es oben einen Link zur Anleitung mit Informationen, wie dieses aktiviert werden kann.',
 	'config-support-mysql' => '* $1 ist das von MediaWiki primär unterstützte Datenbanksystem ([http://www.php.net/manual/en/mysql.installation.php Anleitung zur Kompilierung von PHP mit MySQL-Unterstützung (en)])',
-	'config-support-postgres' => '* $1 ist ein beliebtes Open-Source-Datenbanksystem und eine Alternative zu MySQL ([http://www.php.net/manual/en/pgsql.installation.php Anleitung zur Kompilierung von PHP mit PostgreSQL-Unterstützung (en)])',
-	'config-support-sqlite' => '* $1 ist ein verschlanktes Datenbanksystem, das auch gut unterstützt wird ([http://www.php.net/manual/en/pdo.installation.php Anleitung zur Kompilierung von PHP mit SQLite-Unterstützung (en)], verwendet PHP Data Objects (PDO))',
+	'config-support-postgres' => '* $1 ist ein beliebtes Open-Source-Datenbanksystem und eine Alternative zu MySQL ([http://www.php.net/manual/de/pgsql.installation.php Anleitung zur Kompilierung von PHP mit PostgreSQL-Unterstützung])',
+	'config-support-sqlite' => '* $1 ist ein verschlanktes Datenbanksystem, das auch gut unterstützt wird ([http://www.php.net/manual/de/pdo.installation.php Anleitung zur Kompilierung von PHP mit SQLite-Unterstützung], verwendet PHP Data Objects (PDO))',
+	'config-support-oracle' => '* $1 ist eine kommerzielle Unternehmensdatenbank ([http://www.php.net/manual/en/oci8.installation.php Anleitung zur Kompilierung von PHP mit OCI8-Unterstützung (en)])',
 	'config-header-mysql' => 'MySQL-Einstellungen',
 	'config-header-postgres' => 'PostgreSQL-Einstellungen',
 	'config-header-sqlite' => 'SQLite-Einstellungen',
 	'config-header-oracle' => 'Oracle-Einstellungen',
 	'config-invalid-db-type' => 'Unzulässiges Datenbanksystem',
 	'config-missing-db-name' => 'Bei „Datenbankname“ muss ein Wert angegeben werden.',
-	'config-missing-db-server-oracle' => 'Für das „TNS der Datenbank“ muss ein Wert eingegeben werden',
+	'config-missing-db-server-oracle' => 'Für das „Datenbank-TNS“ muss ein Wert eingegeben werden',
 	'config-invalid-db-server-oracle' => 'Ungültiges Datenbank-TNS „$1“.
 Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) und Punkte (.) verwendet werden.',
 	'config-invalid-db-name' => 'Ungültiger Datenbankname „$1“.
@@ -3896,7 +3933,19 @@ $messages['hu'] = array(
 	'config-desc' => 'A MediaWiki telepítője',
 	'config-title' => 'MediaWiki $1 telepítése',
 	'config-information' => 'Információ',
+	'config-localsettings-upgrade' => "'''Figyelmeztetés''': már létezik a <code>LocalSettings.php</code> fájl.
+A szoftver frissíthető.
+Helyezd át a <code>LocalSettings.php</code> fájlt egy másik helyre, majd indítsd újra a telepítőt.",
+	'config-localsettings-noupgrade' => "'''Hiba''': már létezik a <code>LocalSettings.php</code> fájl.
+A szoftver jelenleg nem frissíthető.
+A telepítő le van tiltva biztonsági okok miatt.",
 	'config-session-error' => 'Nem sikerült elindítani a munkamenetet: $1',
+	'config-session-expired' => 'Úgy tűnik, hogy a munkamenetadatok lejártak.
+A munkamenetek élettartama a következőre van beállítva: $1.
+Az érték növelhető a php.ini <code>session.gc_maxlifetime</code> beállításának módosításával.
+Indítsd újra a telepítési folyamatot.',
+	'config-no-session' => 'Elvesztek a munkamenetadatok!
+Ellenőrizd, hogy a php.ini-ben a <code>session.save_path</code> a megfelelő könyvtárra mutat-e.',
 	'config-session-path-bad' => 'A <code>session.save_path</code> könyvtár (<code>$1</code>) érvénytelen vagy nem írható.',
 	'config-show-help' => 'Segítség',
 	'config-hide-help' => 'Segítség elrejtése',
@@ -3945,6 +3994,25 @@ Ajánlott a legutóbbi kiadás használata, ami a [http://www.mediawiki.org/wiki
 	'config-unicode-using-intl' => 'A rendszer Unicode normalizálására az [http://pecl.php.net/intl intl PECL kiterjesztést] használja.',
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.
 Ha nagy látogatottságú oldalt üzemeltetsz, itt találhatsz információkat [http://www.mediawiki.org/wiki/Unicode_normalization_considerations a témáról].",
+	'config-no-db' => 'Nem sikerült egyetlen használható adatbázismeghajtót sem találni.',
+	'config-have-db' => 'Elérhető adatbázismeghajtó{{PLURAL:$2||k}}: $1.',
+	'config-have-fts3' => 'Az SQLite [http://sqlite.org/fts3.html FTS3 modullal] lett fordítva, a keresési funkciók működni fognak ezen a rendszeren.',
+	'config-no-fts3' => "'''Figyelmeztetés''': Az SQLite [http://sqlite.org/fts3.html FTS3 modul] nélkül lett fordítva, a keresési funkciók nem fognak működni ezen a rendszeren.",
+	'config-register-globals' => "'''Figyelmeztetés: A PHP <code>[http://php.net/register_globals register_globals]</code> beállítása engedélyezve van.'''
+'''Tiltsd le, ha van rá lehetőséged.'''
+A MediaWiki működőképes a beállítás használata mellett, de a szerver biztonsági kockázatnak lesz kitéve.",
+	'config-magic-quotes-runtime' => "'''Kritikus hiba: a [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] aktív!'''
+Ez a beállítás kiszámíthatatlan károkat okoz a bevitt adatokban.
+A MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
+	'config-magic-quotes-sybase' => "'''Kritikus hiba: a [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] aktív!'''
+Ez a beállítás kiszámíthatatlan károkat okoz a bevitt adatokban.
+A MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
+	'config-mbstring' => "'''Kritikus hiba: az [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime mbstring.func_overload] aktív!'''
+Ez a beállítás hibákat okoz és kiszámíthatatlanul károsíthatja bevitt adatokat.
+A MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
+	'config-ze1' => "'''Kritikus hiba: a [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] aktív!'''
+Ez a beállítás borzalmas hibákat okoz a MediaWiki futása során.
+A MediaWiki csak akkor telepíthető, ha ki van kapcsolva.",
 	'config-xml-good' => 'Az XML / Latin1-UTF-8 átalakítás támogatott.',
 	'config-xml-bad' => 'A PHP XML-modulja hiányzik.
 Egyes MediaWiki-funkciók, melyek ezt a modult igénylik, nem fognak működni ilyen beállítások mellett.
@@ -4013,12 +4081,25 @@ Csak akkor módosíts rajta, ha szükség van rá.',
 	'config-header-sqlite' => 'SQLite-beállítások',
 	'config-header-oracle' => 'Oracle-beállítások',
 	'config-invalid-db-type' => 'Érvénytelen adatbázistípus',
+	'config-sqlite-parent-unwritable-nogroup' => 'Nem lehet létrehozni az adatok tárolásához szükséges <code><nowiki>$1</nowiki></code> könyvtárat, mert a webszerver nem írhat a szülőkönyvtárba (<code><nowiki>$2</nowiki></code>).
+
+A telepítő nem tudta megállapíteni, hogy melyik felhasználói fiókon fut a webszerver.
+A folytatáshoz tedd írhatóvá ezen fiók (és más fiókok!) számára a következő könyvtárat: <code><nowiki>$3</nowiki></code>.
+Unix/Linux rendszereken tedd a következőt:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-readonly' => 'A következő fájl nem írható: <code>$1</code>.',
 	'config-regenerate' => 'LocalSettings.php elkészítése újra →',
 	'config-show-table-status' => 'A SHOW TABLE STATUS lekérdezés nem sikerült!',
 	'config-mysql-engine' => 'Tárolómotor:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "Az '''InnoDB''' szinte mindig a legjobb beállítás, hiszen jól támogatja a párhuzamosságot.
+
+A '''MyISAM''' gyorsabb lehet egyfelhasználós vagy csak olvasható környezetben.
+A MyISAM adatbázisok sokkal gyakrabban sérülnek meg, mint az InnoDB adatbázisok.",
 	'config-mysql-charset' => 'Adatbázis karakterkészlete:',
 	'config-mysql-binary' => 'Bináris',
 	'config-mysql-utf8' => 'UTF-8',
@@ -4029,8 +4110,10 @@ Csak akkor módosíts rajta, ha szükség van rá.',
 	'config-ns-site-name' => 'Ugyanaz, mint a wiki neve: $1',
 	'config-ns-other' => 'Más (add meg)',
 	'config-ns-other-default' => 'SajátWiki',
+	'config-admin-box' => 'Adminisztrátori fiók',
 	'config-admin-name' => 'Neved:',
 	'config-admin-password' => 'Jelszó:',
+	'config-admin-password-confirm' => 'Jelszó újra:',
 	'config-admin-name-blank' => 'Add meg az adminisztrátor felhasználónevét!',
 	'config-admin-name-invalid' => 'A megadott felhasználónév (<nowiki>$1</nowiki>) érvénytelen.
 Adj meg egy másik felhasználónevet.',
@@ -4038,25 +4121,62 @@ Adj meg egy másik felhasználónevet.',
 	'config-admin-password-same' => 'A jelszó nem lehet ugyanaz, mint a felhasználónév.',
 	'config-admin-password-mismatch' => 'A megadott jelszavak nem egyeznek.',
 	'config-admin-email' => 'E-mail cím:',
+	'config-subscribe-help' => 'Ez egy alacsony forgalmú levelezőlista, ahol a kiadásokkal kapcsolatos bejelentések jelennek meg, a fontos biztonsági javításokkal egyetemben.
+Ajánlott feliratkozni rá, és frissíteni a MediaWikit, ha új verzió jön ki.',
 	'config-profile-wiki' => 'Hagyományos wiki',
 	'config-profile-no-anon' => 'Felhasználói fiók létrehozása szükséges',
 	'config-profile-fishbowl' => 'Csak engedélyezett szerkesztők',
 	'config-profile-private' => 'Privát wiki',
-	'config-email-settings' => 'Email beállítások',
+	'config-license-none' => 'Licenc nélkül',
+	'config-license-cc-by-sa' => 'Creative Commons Nevezd meg! - Így add tovább! (Wikipédia-kompatibilis)',
+	'config-license-cc-by-nc-sa' => 'Creative Commons Nevezd meg! - Ne add el! - Így add tovább!',
+	'config-license-gfdl-old' => 'GNU Szabad Dokumentációs Licenc 1.2',
+	'config-license-gfdl-current' => 'GNU Szabad Dokumentációs Licenc 1.3 vagy újabb',
+	'config-license-pd' => 'Közkincs',
+	'config-license-cc-choose' => 'Válassz egy egyedi Creative Commons licencet',
+	'config-email-settings' => 'E-mail beállítások',
 	'config-upload-settings' => 'Képek és fájlok feltöltése',
 	'config-upload-enable' => 'Fájlfeltöltés engedélyezése',
 	'config-upload-deleted' => 'Törölt fájlok könyvtára:',
-	'config-logo' => 'Logó URL-címe:',
+	'config-logo' => 'A logó URL-címe:',
+	'config-instantcommons' => 'Instant Commons engedélyezése',
+	'config-instantcommons-help' => 'Az [http://www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [http://commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat..
+A használatához a MediaWikinek internethozzáférésre van szüksége. $1
+
+A funkcióról és hogy hogyan állítható be más wikik esetén [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhatsz további információkat.',
+	'config-cc-again' => 'Válassz újra…',
+	'config-advanced-settings' => 'Haladó beállítások',
+	'config-cache-options' => 'Objektum-gyorsítótárazás beállításai:',
+	'config-cache-none' => 'Nincs gyorsítótárazás (minden funkció működik, de nagyobb wiki esetében lassabb sebességet eredményezhet)',
+	'config-cache-accel' => 'PHP-objektumok gyorsítótárazása (APC, eAccelerator, XCache or WinCache)',
+	'config-cache-memcached' => 'Memcached használata (további telepítés és konfigurálás szükséges)',
 	'config-memcached-servers' => 'Memcached-szerverek:',
+	'config-memcached-help' => 'A Memcached által használható IP-címek listája.
+Vesszővel kell elválasztani őket, és meg kell adni a használt portot is (például 127.0.0.1:11211 vagy 192.168.1.25:11211)',
 	'config-extensions' => 'Kiterjesztések',
 	'config-install-step-done' => 'kész',
 	'config-install-step-failed' => 'sikertelen',
+	'config-install-extensions' => 'Kiterjesztések beillesztése',
 	'config-install-database' => 'Adatbázis felállítása',
+	'config-install-user' => 'Adatbázis-felhasználó létrehozása',
 	'config-install-tables' => 'Táblák létrehozása',
 	'config-install-tables-exist' => "'''Figyelmeztetés''': úgy tűnik, hogy a MediaWiki táblái már léteznek.
 Létrehozás kihagyása.",
 	'config-install-tables-failed' => "'''Hiba''': a tábla létrehozása nem sikerült a következő miatt: $1",
+	'config-install-interwiki' => 'Alapértelmezett nyelvközihivatkozás-tábla feltöltése',
 	'config-install-interwiki-sql' => 'Az <code>interwiki.sql</code> fájl nem található.',
+	'config-install-secretkey' => 'Titkos kulcs generálása',
+	'config-install-sysop' => 'Az adminisztrátor felhasználói fiókjának létrehozása',
+	'config-install-done' => "'''Gratulálunk!'''
+Sikeresen telepítetted a MediaWikit.
+
+A telepítő készített egy <code>LocalSettings.php</code> fájlt.
+Ez tartalmazza az összes beállítást.
+
+[$1 Le kell töltened], és el kell helyezned a MediaWiki telepítési könyvtárába (az a könyvtár, ahol az index.php van).
+'''Megjegyzés''': Ha ezt most nem teszed meg, és kilépsz, a generált fájl nem lesz elérhető a későbbiekben.
+
+Ha ezzel megvagy, '''[$2 beléphetsz a wikibe]'''.",
 );
 
 /** Interlingua (Interlingua)
@@ -4228,6 +4348,7 @@ Ben que MediaWiki verifica tote le files incargate contra le menacias de securit
 Si tu usa un servitor web usate in commun, tu providitor deberea dar te le correcte nomine de servitor in su documentation.
 
 Si tu face le installation in un servitor Windows e usa MySQL, le nomine "localhost" possibilemente non functiona como nomine de servitor. Si non, essaya "127.0.0.1", i.e. le adresse IP local.',
+	'config-db-host-oracle' => 'TNS del base de datos:',
 	'config-db-wiki-settings' => 'Identificar iste wiki',
 	'config-db-name' => 'Nomine del base de datos:',
 	'config-db-name-help' => 'Selige un nomine que identifica tu wiki.
@@ -4275,6 +4396,8 @@ Le installator scribera un file <code>.htaccess</code> insimul a illo, ma si ist
 Isto include le crude datos de usator (adresses de e-mail, contrasignos codificate) assi como versiones delite e altere datos restringite super le wiki.
 
 Considera poner le base de datos in un loco completemente differente, per exemplo in <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts' => 'Spatio de tabellas predefinite:',
+	'config-oracle-temp-ts' => 'Spatio de tabellas temporari:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -4287,12 +4410,16 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-support-mysql' => '* $1 es le systema primari pro MediaWiki e le melio supportate ([http://www.php.net/manual/en/mysql.installation.php como compilar PHP con supporto de MySQL])',
 	'config-support-postgres' => '* $1 es un systema de base de datos popular e open source, alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP con supporto de PostgreSQL])',
 	'config-support-sqlite' => '* $1 es un systema de base de datos legier que es multo ben supportate. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP con supporto de SQLite], usa PDO)',
+	'config-support-oracle' => '* $1 es un banca de datos commercial pro interprisas. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con supporto de OCI8])',
 	'config-header-mysql' => 'Configuration de MySQL',
 	'config-header-postgres' => 'Configuration de PostgreSQL',
 	'config-header-sqlite' => 'Configuration de SQLite',
 	'config-header-oracle' => 'Configuration de Oracle',
 	'config-invalid-db-type' => 'Typo de base de datos invalide',
 	'config-missing-db-name' => 'Tu debe entrar un valor pro "Nomine de base de datos"',
+	'config-missing-db-server-oracle' => 'You must enter a value for "TNS del base de datos"',
+	'config-invalid-db-server-oracle' => 'TNS de base de datos "$1" invalide.
+Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineamento (_) e punctos (.).',
 	'config-invalid-db-name' => 'Nomine de base de datos "$1" invalide.
 Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
 	'config-invalid-db-prefix' => 'Prefixo de base de datos "$1" invalide.
@@ -5509,6 +5636,7 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-db-ts2-schema' => 'Schema fir tsearch2',
 	'config-db-schema-help' => "D'Schemaen hei driwwer si gewéinlech korrekt.
 Ännert se nëmme wann Dir wësst datt et néideg ass.",
+	'config-sqlite-dir' => 'Repertoire vun den SQLite-Donnéeën',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -5519,6 +5647,7 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-header-oracle' => 'Oracle-Astellungen',
 	'config-invalid-db-type' => 'Net valabelen Datebank-Typ',
 	'config-missing-db-name' => 'Dir musst en Numm fir de Wäert "Numm vun der Datebank" uginn',
+	'config-missing-db-server-oracle' => 'Dir musst e Wäert fir "Datebank-TNS" uginn',
 	'config-postgres-old' => 'PostgreSQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.',
 	'config-sqlite-name-help' => 'Sicht en Numm deen Är wiki identifizéiert.
 Benotzt keng Espacen a Bindestrécher.
@@ -5759,12 +5888,15 @@ chmod a+w config</pre>",
 Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител треба да го доде точното име на домаќинот и неговата документација.
 
 Ако инсталирате на опслужувач на Windows и користите MySQL, можноста „localhost“ може да не функционира за опслужувачкото име. Во тој случај, обидете се со внесување на „127.0.0.1“ како локална IP-адреса',
+	'config-db-host-oracle' => 'TNS на базата:',
+	'config-db-host-oracle-help' => 'Внесете важечко [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm локално име за поврзување]. На оваа инсталација мора да ѝ биде видлива податотеката tnsnames.ora.<br />Ако користите клиентски библиотеки 10g или понови, тогаш можете да го користите и методот на иметнување на [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Идентификувај го викиво',
 	'config-db-name' => 'Име на базата:',
 	'config-db-name-help' => 'Одберете име што ќе го претставува вашето вики.
 Името не смее да содржи празни простори или цртички.
 
 Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител ќе ви даде конкретно име на база за користење, или пак ви дава да создавате бази преку контролната табла.',
+	'config-db-name-oracle' => 'Шема на базата:',
 	'config-db-install-account' => 'Корисничка смета за инсталација',
 	'config-db-username' => 'Корисничко име за базата:',
 	'config-db-password' => 'Лозинка за базата:',
@@ -5805,6 +5937,8 @@ chmod a+w config</pre>",
 Тука спаѓаат необработени кориснички податоци (е-поштенски адреси, хеширани лозинки) како и избришани ревизии и други податоци за викито до кои се има ограничен пристап.
 
 Се препорачува целата база да ја сместите некаде, како на пр. <code>/var/lib/mediawiki/вашетовики</code>.",
+	'config-oracle-def-ts' => 'Стандарден таблеарен простор:',
+	'config-oracle-temp-ts' => 'Привремен табеларен простор:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -5817,12 +5951,16 @@ $1
 	'config-support-mysql' => '* $1 е главната цел на МедијаВики и најдобро се поддржува ([http://www.php.net/manual/en/mysql.installation.php како се составува PHP со поддршка за MySQL])',
 	'config-support-postgres' => '* $1 е популарен систем на бази на податоци со отворен код кој претставува алтернатива за MySQL ([http://www.php.net/manual/en/pgsql.installation.php како да составите PHP со поддршка за PostgreSQL])',
 	'config-support-sqlite' => '* $1 е лесен систем за бази на податоци кој е многу добро поддржан. ([http://www.php.net/manual/en/pdo.installation.php Како да составите PHP со поддршка за SQLite], користи PDO)',
+	'config-support-oracle' => '* $1 е база на податоци на комерцијално претпријатие. ([http://www.php.net/manual/en/oci8.installation.php Како да составите PHP со поддршка за OCI8])',
 	'config-header-mysql' => 'Нагодувања на MySQL',
 	'config-header-postgres' => 'Нагодувања на PostgreSQL',
 	'config-header-sqlite' => 'Нагодувања на SQLite',
 	'config-header-oracle' => 'Нагодувања на Oracle',
 	'config-invalid-db-type' => 'Неважечки тип на база',
 	'config-missing-db-name' => 'Мора да внесете значење за параметарот „Име на базата“',
+	'config-missing-db-server-oracle' => 'Мора да внесете вредност за „TNS на базата“',
+	'config-invalid-db-server-oracle' => 'Неважечки TNS „$1“ за базата.
+Користете само знаци по ASCII - букви (a-z, A-Z), бројки (0-9), долни црти (_) и точки (.).',
 	'config-invalid-db-name' => 'Неважечко име на базата „$1“.
 Може да содржи само бројки, букви и долни црти.',
 	'config-invalid-db-prefix' => 'Неважечки префикс за база „$1“.
@@ -6799,12 +6937,15 @@ Selv om MediaWiki sjekker alle opplastede filer for sikkerhetstrusler er det ste
 Hvis du bruker en delt nettvert bør verten din oppgi det korrekte vertsnavnet i deres dokumentasjon.
 
 Hvis du installerer på en Windowstjener og bruker MySQL kan det hende at «localhost» ikke virker som tjenernavnet. Hvis ikke, prøv «127.0.0.1» for den lokale IP-adressen.',
+	'config-db-host-oracle' => 'Database TNS:',
+	'config-db-host-oracle-help' => 'Skriv inn et gyldig [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name]; en tnsnames.ora-fil må være synlig for installasjonsprosessen.<br />Hvis du bruker klientbibliotek 10g eller nyere kan du også bruke navngivingsmetoden [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifiser denne wikien',
 	'config-db-name' => 'Databasenavn:',
 	'config-db-name-help' => 'Velg et navn som identifiserer wikien din.
 Det bør ikke inneholde mellomrom eller bindestreker.
 
 Hvis du bruker en delt nettvert vil verten din enten gi deg et spesifikt databasenavn å bruke, eller la deg opprette databaser via kontrollpanelet.',
+	'config-db-name-oracle' => 'Databaseskjema:',
 	'config-db-install-account' => 'Brukerkonto for installasjon',
 	'config-db-username' => 'Databasebrukernavn:',
 	'config-db-password' => 'Databasepassord:',
@@ -6844,6 +6985,8 @@ Den bør '''ikke''' være tilgjengelig fra nettet, dette er grunnen til at vi ik
 Installasjonsprogrammet vil skrive en <code>.htaccess</code>-fil sammen med det, men om det mislykkes kan noen få tilgang til din råe database. Dette inkluderer rå brukerdata (e-postadresser, hashede passord) samt slettede revisjoner og andre begrensede data på wikien.
 
 Vurder å plassere databasen et helt annet sted, for eksempel i <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts' => 'Standard tabellrom:',
+	'config-oracle-temp-ts' => 'Midlertidig tabellrom:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -6856,12 +6999,16 @@ Hvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg i
 	'config-support-mysql' => '* $1 er det primære målet for MediaWiki og er best støttet ([http://www.php.net/manual/en/mysql.installation.php hvordan kompilere PHP med MySQL-støtte])',
 	'config-support-postgres' => '* $1 er et populært åpen kildekode-databasesystem som er et alternativ til MySQL ([http://www.php.net/manual/en/pgsql.installation.php hvordan kompilere PHP med PostgreSQL-støtte])',
 	'config-support-sqlite' => '* $1 er et lettvekts-databasesystem som er veldig godt støttet. ([http://www.php.net/manual/en/pdo.installation.php hvordan kompilere PHP med SQLite-støtte], bruker PDO)',
+	'config-support-oracle' => '* $1 er en kommersiell bedriftsdatabase. ([http://www.php.net/manual/en/oci8.installation.php Hvordan kompilere PHP med OCI8-støtte])',
 	'config-header-mysql' => 'MySQL-innstillinger',
 	'config-header-postgres' => 'PostgreSQL-innstillinger',
 	'config-header-sqlite' => 'SQLite-innstillinger',
 	'config-header-oracle' => 'Oracle-innstillinger',
 	'config-invalid-db-type' => 'Ugyldig databasetype',
 	'config-missing-db-name' => 'Du må skrive inn en verdi for «Databasenavn»',
+	'config-missing-db-server-oracle' => 'Du må skrive inn en verdi for «Database TNS»',
+	'config-invalid-db-server-oracle' => 'Ugyldig database-TNS «$1».
+Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_) og punktum (.).',
 	'config-invalid-db-name' => 'Ugyldig databasenavn «$1».
 Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
 	'config-invalid-db-prefix' => 'Ugyldig databaseprefiks «$1».
@@ -7023,11 +7170,31 @@ Det er hit returmeldinger vil bli sendt.
 Mange e-posttjenere krever at minst domenenavnet må være gyldig.',
 	'config-upload-settings' => 'Bilde- og filopplastinger',
 	'config-upload-enable' => 'Aktiver filopplastinger',
+	'config-upload-help' => 'Filopplastinger kan potensielt utsette tjeneren din for sikkerhetsrisikoer.
+For mer informasjon, les [http://www.mediawiki.org/wiki/Manual:Security sikkerhetsseksjonen] i manualen.
+
+For å aktivere filopplastinger, endre modusen i <code>images</code>-undermappen i MediaWikis rotmappe slik at nettjeneren kan skrive til den.
+Aktiver så dette alternativet.',
 	'config-upload-deleted' => 'Mappe for slettede filer:',
 	'config-upload-deleted-help' => 'Velg en mappe for å arkivere slettede filer.
 Ideelt burde ikke denne være tilgjengelig for nettet.',
 	'config-logo' => 'Logo-URL:',
+	'config-logo-help' => 'MediaWikis standarddrakt inkluderer plass til en 135x160 pikslers logo i øvre venstre hjørne.
+Last opp et bilde i passende størrelse og skriv inn nettadressen her.
+
+Hvis du ikke ønsker en logo, la denne boksen være tom.',
+	'config-instantcommons' => 'Aktiver Instant Commons',
+	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [http://commons.wikimedia.org/ Wikimedia Commons].
+For å gjøre dette krever MediaWiki tilgang til internett. $1
+
+For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos manualen].',
+	'config-instantcommons-good' => 'Installasjonsprogrammet oppdaget en internettilkobling i løpet av miljøsjekkene.
+Du kan aktivere denne funksjonen nå hvis du vil.',
+	'config-instantcommons-bad' => "''Dessverre klarte ikke installasjonsprogrammet å oppdage noen internettilgang i løpet av miljøsjekkene, så det kan hende du ikke kan bruke denne funksjonen.
+Hvis tjeneren din er bak en mellomtjener må du kanskje sette opp noen [http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy ekstra konfigurasjoner].''",
 	'config-cc-again' => 'Velg igjen...',
+	'config-cc-not-chosen' => 'Velg hvilken Creative Commons-lisens du ønsker og klikk «fortsett».',
+	'config-advanced-settings' => 'Avansert konfigurasjon',
 	'config-extensions' => 'Utvidelser',
 	'config-install-step-done' => 'ferdig',
 	'config-install-step-failed' => 'mislyktes',
@@ -7156,13 +7323,91 @@ W systemie Linux lub innym Unix wydaj polecenia:
 chgrp $2 config
 chmod g+w config</pre>",
 	'config-file-extension' => 'Instalowanie MediaWiki z rozszerzeniem pliku <code>$1</code>.',
-	'config-mysql-engine' => 'Silnik bazy danych',
+	'config-shell-locale' => 'Wykryto lokalizację ustawioną w powłoce na „$1”',
+	'config-uploads-safe' => 'Domyślny katalog dla przesyłanych plików jest zabezpieczony przed samowolnym wykonywaniem skryptów.',
+	'config-db-type' => 'Typ bazy danych',
+	'config-db-host' => 'Adres serwera bazy danych',
+	'config-db-host-oracle' => 'TNS bazy danych',
+	'config-db-wiki-settings' => 'Zidentyfikuj tę wiki',
+	'config-db-name' => 'Nazwa bazy danych',
+	'config-db-name-oracle' => 'Schemat bazy danych',
+	'config-db-install-account' => 'Konto użytkownika dla instalatora',
+	'config-db-username' => 'Nazwa użytkownika bazy danych',
+	'config-db-password' => 'Hasło bazy danych',
+	'config-db-install-help' => 'Podaj nazwę użytkownika i jego hasło, które zostaną użyte do połączenia z bazą danych w czasie procesu instalacji.',
+	'config-db-account-lock' => 'Użyj tej samej nazwy użytkownika i hasła w czasie normalnej pracy.',
+	'config-db-wiki-account' => 'Konto użytkownika do normalnej pracy',
+	'config-db-prefix' => 'Przedrostek tabel bazy danych',
+	'config-db-charset' => 'Zestaw znaków bazy danych',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binarny',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 kompatybilny wstecz UTF-8',
+	'config-mysql-old' => 'Wymagany jest MySQL $1 lub nowszy; korzystasz z $2.',
+	'config-db-port' => 'Port bazy danych',
+	'config-db-schema' => 'Schemat dla MediaWiki',
+	'config-db-ts2-schema' => 'Schemat dla tsearch2',
+	'config-db-schema-help' => 'Powyższe schematy są zazwyczaj właściwe.
+Zmień je wyłącznie jeśli jesteś pewien, że powinieneś.',
+	'config-sqlite-dir' => 'Katalog danych SQLite',
+	'config-oracle-def-ts' => 'Domyślna przestrzeń tabel',
+	'config-oracle-temp-ts' => 'Przestrzeń tabel tymczasowych',
+	'config-support-mysql' => '* $1 jest domyślną bazą danych dla MediaWiki i jest najlepiej wspierane ([http://www.php.net/manual/en/mysql.installation.php jak skompilować PHP ze wsparciem dla MySQL])',
+	'config-support-postgres' => '* $1 jest popularnym systemem baz danych z otwartym kodem; jest alternatywą dla MySQL ([http://www.php.net/manual/en/pgsql.installation.php jak skompilować PHP ze wsparciem dla PostgreSQL])',
+	'config-support-sqlite' => '* $1 jest lekkim systemem bazy danych, który jest bardzo dobrze wspierany. ([http://www.php.net/manual/en/pdo.installation.php Jak skompilować PHP ze wsparciem dla SQLite], korzystając z PDO)',
+	'config-support-oracle' => '* $1 jest komercyjną profesjonalną bazą danych. ([http://www.php.net/manual/en/oci8.installation.php Jak skompilować PHP ze wsparciem dla OCI8])',
+	'config-header-mysql' => 'Ustawienia MySQL',
+	'config-header-postgres' => 'Ustawienia PostgreSQL',
+	'config-header-sqlite' => 'Ustawienia SQLite',
+	'config-header-oracle' => 'Ustawienia Oracle',
+	'config-invalid-db-type' => 'Nieprawidłowy typ bazy danych',
+	'config-missing-db-name' => 'Należy wpisać wartość w polu „Nazwa bazy danych”',
+	'config-missing-db-server-oracle' => 'Należy wpisać wartość w polu „Baza danych TNS”',
+	'config-invalid-db-server-oracle' => 'Nieprawidłowa baza danych TNS „$1”.
+Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i kropek (.).',
+	'config-invalid-db-name' => 'Nieprawidłowa nazwa bazy danych „$1”.
+Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
+	'config-invalid-db-prefix' => 'Nieprawidłowy prefiks bazy danych „$1”.
+Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
+	'config-connection-error' => '$1. 
+
+Sprawdź adres serwera, nazwę użytkownika i hasło, a następnie spróbuj ponownie.',
+	'config-invalid-schema' => 'Nieprawidłowy schemat dla MediaWiki „$1”.
+Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
+	'config-invalid-ts2schema' => 'Nieprawidłowy schemat dla TSearch2 „$1”.
+Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
+	'config-postgres-old' => 'Wymagany jest PostgreSQL $1 lub nowszy; korzystasz z $2.',
+	'config-sqlite-name-help' => 'Wybierz nazwę, która będzie identyfikować Twoją wiki.
+Nie wolno używać spacji ani myślników.
+Zostanie ona użyta jako nazwa pliku danych SQLite.',
+	'config-sqlite-mkdir-error' => 'Błąd podczas tworzenia katalogu dla danych „$1”. 
+Sprawdź lokalizację i spróbuj ponownie.',
+	'config-sqlite-dir-unwritable' => 'Nie można zapisać do katalogu „$1”.
+Zmień uprawnienia dostępu do katalogu tak, aby serwer WWW mógł pisać do niego, a następnie spróbuj ponownie.',
+	'config-sqlite-connection-error' => '$1. 
+
+Sprawdź katalog danych oraz nazwę bazy danych, a następnie spróbuj ponownie.',
+	'config-sqlite-readonly' => 'Plik <code>$1</code> nie jest zapisywalny.',
+	'config-sqlite-cant-create-db' => 'Nie można utworzyć pliku bazy danych <code>$1</code>.',
+	'config-sqlite-fts3-downgrade' => 'Brak wsparcia FTS3 dla PHP. Tabele zostały cofnięte',
+	'config-can-upgrade' => "W bazie danych są już tabele MediaWiki. 
+Aby uaktualnić je do MediaWiki $1, kliknij '''Dalej'''.",
+	'config-regenerate' => 'Ponowne generowanie LocalSettings.php →',
+	'config-show-table-status' => 'Zapytanie „SHOW TABLE STATUS” nie powiodło się!',
+	'config-unknown-collation' => "'''Uwaga''' – bazy danych używa nierozpoznanej metody porównywania.",
+	'config-db-web-account' => 'Konto bazy danych dla dostępu przez WWW',
+	'config-db-web-help' => 'Wybierz nazwę użytkownika i hasło, z których korzystać będzie serwer WWW do łączenia się z serwerem baz danych, podczas zwykłej pracy z wiki.',
+	'config-db-web-account-same' => 'Użyj tego samego konta, co dla instalacji',
+	'config-db-web-create' => 'Utwórz konto, jeśli jeszcze nie istnieje',
+	'config-db-web-no-create-privs' => 'Konto podane do wykonania instalacji nie ma wystarczających uprawnień, aby utworzyć nowe konto. 
+Konto, które wskazałeś tutaj musi już istnieć.',
+	'config-mysql-engine' => 'Silnik przechowywania',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-charset' => 'Zestaw znaków bazy danych',
 	'config-mysql-binary' => 'binarny',
 	'config-mysql-utf8' => 'UTF‐8',
 	'config-site-name' => 'Nazwa wiki',
+	'config-site-name-help' => 'Ten napis pojawi się w pasku tytułowym przeglądarki oraz w różnych innych miejscach.',
 	'config-site-name-blank' => 'Wprowadź nazwę witryny.',
 	'config-project-namespace' => 'Przestrzeń nazw projektu',
 	'config-ns-generic' => 'Projekt',
@@ -7173,7 +7418,11 @@ chmod g+w config</pre>",
 	'config-admin-name' => 'Administrator',
 	'config-admin-password' => 'Hasło',
 	'config-admin-password-confirm' => 'Hasło powtórnie',
+	'config-admin-help' => 'Wprowadź preferowaną nazwę użytkownika, na przykład „Jan Kowalski”. 
+Tej nazwy będziesz używać do logowania się do wiki.',
 	'config-admin-name-blank' => 'Wpisz nazwę użytkownika, który będzie administratorem.',
+	'config-admin-name-invalid' => 'Podana nazwa użytkownika „<nowiki>$1</nowiki>” jest nieprawidłowa.
+Podaj inną nazwę.',
 	'config-admin-password-blank' => 'Wprowadź hasło dla konta administratora.',
 	'config-admin-password-same' => 'Hasło nie może być takie samo jak nazwa użytkownika.',
 	'config-admin-password-mismatch' => 'Wprowadzone dwa hasła różnią się między sobą.',
@@ -7214,7 +7463,45 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-upload-settings' => 'Przesyłanie obrazków i plików',
 	'config-upload-enable' => 'Włącz przesyłanie plików na serwer',
 	'config-upload-deleted' => 'Katalog dla usuniętych plików',
+	'config-upload-deleted-help' => 'Wybierz katalog, w którym będzie archiwum usuniętych plików.
+Najlepiej, aby nie był on dostępny z internetu.',
 	'config-logo' => 'Adres URL logo',
+	'config-instantcommons' => 'Włącz Instant Commons',
+	'config-instantcommons-good' => 'Instalator wykrył połączenie z Internetem podczas sprawdzania środowiska. 
+Można włączyć tę funkcję, jeśli chcesz.',
+	'config-cc-error' => 'Wybieranie licencji Creative Commons nie dało wyniku.
+Wpisz nazwę licencji ręcznie.',
+	'config-cc-again' => 'Wybierz jeszcze raz...',
+	'config-cc-not-chosen' => 'Wybierz którą chcesz licencję Creative Commons i kliknij „Dalej”.',
+	'config-advanced-settings' => 'Konfiguracja zaawansowana',
+	'config-cache-options' => 'Ustawienia buforowania obiektów',
+	'config-cache-none' => 'Brak buforowania (wszystkie funkcje będą działać, ale mogą wystąpić kłopoty z wydajnością na dużych witrynach wiki)',
+	'config-cache-accel' => 'Buforowania obiektów PHP (APC, eAccelerator, XCache lub WinCache)',
+	'config-cache-memcached' => 'Użyj Memcached (wymaga dodatkowej instalacji i konfiguracji)',
+	'config-memcached-servers' => 'Serwery Memcached:',
+	'config-memcached-help' => 'Lista adresów IP do wykorzystania przez Memcached. 
+Adresy powinny być rozdzielone przecinkami i określać również wykorzystywany port (na przykład: 127.0.0.1:11211, 192.168.1.25:11211).',
+	'config-extensions' => 'Rozszerzenia',
+	'config-install-step-done' => 'gotowe',
+	'config-install-step-failed' => 'nieudane',
+	'config-install-extensions' => 'Włącznie z rozszerzeniami',
+	'config-install-database' => 'Konfigurowanie bazy danych',
+	'config-install-pg-schema-failed' => 'Utworzenie tabel nie powiodło się.
+Upewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.',
+	'config-install-user' => 'Tworzenie użytkownika bazy danych',
+	'config-install-user-failed' => 'Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2',
+	'config-install-tables' => 'Tworzenie tabel',
+	'config-install-tables-exist' => "'''Uwaga''' – wygląda na to, że tabele MediaWiki już istnieją. 
+Pomijam tworzenie tabel.",
+	'config-install-tables-failed' => "'''Błąd''' – tworzenie tabeli nie powiodło się z powodu błędu – $1",
+	'config-install-interwiki' => 'Wypełnianie tabeli domyślnymi interwiki',
+	'config-install-interwiki-sql' => 'Nie można odnaleźć pliku <code>interwiki.sql</code>.',
+	'config-install-interwiki-exists' => "'''Uwaga''' – wygląda na to, że tabela interwiki ma już jakieś wpisy. 
+Tworzenie domyślnej listy pominięto.",
+	'config-install-secretkey' => 'Generowanie tajnego klucza',
+	'config-insecure-secretkey' => "'''Uwaga''' – nie można utworzyć bezpiecznego <code>\$wgSecretKey</code>.
+Rozważ ręczne jego ustawienie.",
+	'config-install-sysop' => 'Tworzenie konta administratora',
 );
 
 /** Piedmontese (Piemontèis)
@@ -7387,12 +7674,15 @@ Bele che MediaWiki a contròla j'aspet ëd sicurëssa ëd tùit j'archivi carià
 S'a deuvra n'ospitalità partagià, sò fornidor d'ospitalità a dovrìa deje ël nòm dl'ospitant giust ant soa documentassion.
 
 Se a anstala su un servent Windows e a deuvra MySQL, dovré \"localhost\" a podrìa funsioné nen com nòm dël servent. S'a marcia nen, ch'a preuva \"127.0.0.1\" com adrëssa IP local.",
+	'config-db-host-oracle' => 'TNS dla base ëd dàit:',
+	'config-db-host-oracle-help' => "Anseriss un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name] bon; un file tnsnames.ora a deuv esse visìbil a sta anstalassion..<br />S'i të stas dovrand librerìe client 10g o pi neuve it peule ëdcò dovré ël métod ëd ciamada [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].",
 	'config-db-wiki-settings' => 'Identìfica sta wiki',
 	'config-db-name' => 'Nòm dla base ëd dàit:',
 	'config-db-name-help' => "Ch'a serna un nòm ch'a identìfica soa wiki.
 A dovrìa conten-e gnun ëspassi o tratin.
 
 S'a deuvra n'ospitalità partagià, sò fornidor ëd l'ospitalità a-j darà un nòm ëd base ëd dàit specìfich da dovré, o a lassrà ch'a lo crea via un panel ëd contròl.",
+	'config-db-name-oracle' => 'Schema dla base ëd dàit:',
 	'config-db-install-account' => "Cont d'utent për l'instalassion.",
 	'config-db-username' => "Nòm d'utent dla base ëd dàit:",
 	'config-db-password' => 'Ciav dla base ëd dàit:',
@@ -7432,6 +7722,8 @@ L'instalador a scriverà n'archivi <code>.htaccess</code> ansema con chiel, ma s
 Lòn a comprend ij dat brut ëd l'utent (adrëssa ëd pòsta eletrònica, ciav tërbola) e ëdcò le revision scancelà e d'àutri dat segret ëd la wiki.
 
 Ch'a consìdera ëd buté la base ëd dàit tuta antrega da n'àutra part, për esempi an <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts' => 'Spassi dla tàula dë stàndard:',
+	'config-oracle-temp-ts' => 'Spassi dla tàula temporani:',
 	'config-support-info' => "MediaWiki a manten ij sistema ëd base ëd dàit sì-dapress:
 
 $1
@@ -7440,12 +7732,16 @@ S'a vëd pa listà sì-sota ël sistema ëd base ëd dàit ch'a preuva a dovré,
 	'config-support-mysql' => "* $1 e l'é l'obietiv primari për MediaWiki e a l'é mej mantnù ([http://www.php.net/manual/en/mysql.installation.php com compilé PHP con ël manteniment MySQL])",
 	'config-support-postgres' => "* $1 e l'é un sistema ëd base ëd dàit popolar a sorgiss duverta com alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php com compilé PHP con ël manteniment ëd PostgreSQL])",
 	'config-support-sqlite' => "* $1 e l'é un sistema ëd base ëd dàit leger che a l'é motobin bin mantnù ([http://www.php.net/manual/en/pdo.installation.php com compilé PHP con ël manteniment ëd SQLite], a deuvra PDO)",
+	'config-support-oracle' => "* $1 a l'é na base ëd dàit comersial për j'amprèise. ([http://www.php.net/manual/en/oci8.installation.php Com compilé PHP con ël manteniment OCI8])",
 	'config-header-mysql' => 'Ampostassion MySQL',
 	'config-header-postgres' => 'Ampostassion PostgreSQL',
 	'config-header-sqlite' => 'Ampostassion SQLite',
 	'config-header-oracle' => 'Ampostassion Oracle',
 	'config-invalid-db-type' => 'Sòrt ëd ëd base ëd dàit pa bon-a',
 	'config-missing-db-name' => 'A dev buteje un valor për "Nòm ëd la base ëd dàit"',
+	'config-missing-db-server-oracle' => 'A dev buteje un valor për "TNS ëd la base ëd dat"',
+	'config-invalid-db-server-oracle' => 'TNS ëd la base ëd dat pa bon "$1".
+Dovré mach dle litre ASCII (a-z, A-Z), nùmer (0-9), sotlignadure (_) e pontin (.).',
 	'config-invalid-db-name' => 'Nòm ëd la base ëd dàit pa bon "$1".
 Dovré mach litre ASCII (a-z, A-Z), nùmer (0-9) e sotlignadure (_).',
 	'config-invalid-db-prefix' => 'Prefiss dla base ëd dàit pa bon "$1".
@@ -7872,12 +8168,14 @@ Embora o MediaWiki verifique a existência de ameaças de segurança em todos os
 Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve ter-lhe fornecido o nome do servidor na documentação.
 
 Se está a fazer a instalação num servidor Windows com MySQL, usar como nome do servidor "localhost" poderá não funcionar. Se não funcionar, tente usar "127.0.0.1" como endereço IP local.',
+	'config-db-host-oracle' => 'TNS (Transparent Network Substrate) da base de dados:',
 	'config-db-wiki-settings' => 'Identifique esta wiki',
 	'config-db-name' => 'Nome da base de dados:',
 	'config-db-name-help' => 'Escolha um nome para identificar a sua wiki.
 O nome não deve conter espaços nem hífens.
 
 Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve poder fornecer-lhe o nome de uma base de dados que possa usar, ou permite-lhe criar bases de dados através de um painel de controle.',
+	'config-db-name-oracle' => "Esquema ''(schema)'' da base de dados:",
 	'config-db-install-account' => 'Conta do utilizador para a instalação',
 	'config-db-username' => 'Nome do utilizador da base de dados:',
 	'config-db-password' => 'Palavra-chave do utilizador da base de dados:',
@@ -7918,6 +8216,8 @@ Juntamente com o directório, o instalador irá criar um ficheiro <code>.htacces
 Isto inclui acesso aos dados dos utilizadores (endereços de correio electrónico, palavras-chave encriptadas), às revisões eliminadas e a outros dados de acesso restrito na wiki.
 
 Considere colocar a base de dados num local completamente diferente, como, por exemplo, em <code>/var/lib/mediawiki/asuawiki</code>.",
+	'config-oracle-def-ts' => 'Tablespace padrão:',
+	'config-oracle-temp-ts' => 'Tablespace temporário:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -7930,12 +8230,16 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-support-mysql' => '* $1 é a plataforma primária do MediaWiki e a melhor suportada ([http://www.php.net/manual/en/mysql.installation.php como compilar PHP com suporte MySQL])',
 	'config-support-postgres' => '* $1 é uma plataforma de base de dados comum, de fonte aberta, alternativa ao MySQL. ([http://www.php.net/manual/en/pgsql.installation.php como compilar PHP com suporte PostgreSQL])',
 	'config-support-sqlite' => '* $1 é uma plataforma de base de dados ligeira muito bem suportada. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP com suporte SQLite], usa PDO)',
+	'config-support-oracle' => '* $1 é uma base de dados de uma empresa comercial. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
 	'config-header-mysql' => 'Definições MySQL',
 	'config-header-postgres' => 'Definições PostgreSQL',
 	'config-header-sqlite' => 'Definições SQLite',
 	'config-header-oracle' => 'Definições Oracle',
 	'config-invalid-db-type' => 'O tipo de base de dados é inválido',
 	'config-missing-db-name' => 'Tem de introduzir um valor para "Nome da base de dados"',
+	'config-missing-db-server-oracle' => 'Tem de introduzir um valor para "TNS da base de dados"',
+	'config-invalid-db-server-oracle' => 'O TNS da base de dados, "$1", é inválido.
+Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e pontos (.) dos caracteres ASCII.',
 	'config-invalid-db-name' => 'O nome da base de dados, "$1",  é inválido.
 Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.',
 	'config-invalid-db-prefix' => 'O prefixo da base de dados, "$1",  é inválido.
@@ -8210,6 +8514,7 @@ Se você não pretende usar um logotipo, deixe este campo em branco.',
  */
 $messages['ro'] = array(
 	'config-session-error' => 'Eroare la pornirea sesiunii: $1',
+	'config-session-path-bad' => '<code>session.save_path</code> (<code>$1</code>) pare să fie invalid sau imposibil de scris.',
 	'config-show-help' => 'Ajutor',
 	'config-hide-help' => 'Ascunde ajutorul',
 	'config-your-language' => 'Limba ta:',
@@ -8229,6 +8534,7 @@ $messages['ro'] = array(
 	'config-page-readme' => 'Citeşte-mă',
 	'config-page-releasenotes' => 'Note de lansare',
 	'config-db-type' => 'Tipul bazei de date:',
+	'config-db-host' => 'Gazdă bază de date:',
 	'config-header-mysql' => 'Setările MySQL',
 	'config-header-sqlite' => 'Setări SQLite',
 	'config-header-oracle' => 'Setări Oracle',
@@ -8409,12 +8715,14 @@ chmod a+w config</pre>",
 Если вы используете виртуальный хостинг, ваш провайдер должен указать правильное имя хоста в своей документации.
 
 Если вы устанавливаете систему на сервере под Windows и используете MySQL, имя сервера «localhost» может не работать. В этом случае попробуйте указать «127.0.0.1».',
+	'config-db-host-oracle' => 'TNS базы данных:',
 	'config-db-wiki-settings' => 'Идентификация этой вики',
 	'config-db-name' => 'Имя базы данных:',
 	'config-db-name-help' => 'Выберите название-идентификатор для вашей вики. 
 Оно не должно содержать пробелов и дефисов. 
 
 Если вы используете виртуальный хостинг, провайдер или выдаст вам конкретное имя базы данных, или позволит создавать базы данных с помощью панели управления.',
+	'config-db-name-oracle' => 'Схема базы данных:',
 	'config-db-install-account' => 'Учётная запись для установки',
 	'config-db-username' => 'Имя пользователя базы данных:',
 	'config-db-password' => 'Пароль базы данных:',
@@ -8455,6 +8763,8 @@ chmod a+w config</pre>",
 В этой базе находится в том числе и информация о пользователях (адреса электронной почты, хэши паролей), а также удалённые страницы и другие секретные данные о вики. 
 
 По возможности, расположите базу данных где-нибудь в стороне, например, в <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts' => 'Пространство таблиц по умолчанию:',
+	'config-oracle-temp-ts' => 'Временное пространство таблиц:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -8467,12 +8777,16 @@ $1
 	'config-support-mysql' => '* $1 — основная база данных для MediaWiki, и лучше поддерживается ([http://www.php.net/manual/en/mysql.installation.php инструкция, как собрать PHP с поддержкой MySQL])',
 	'config-support-postgres' => '* $1 — популярная открытая СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL])',
 	'config-support-sqlite' => '* $1 — это лёгковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php инструкция, как собрать PHP с поддержкой SQLite], работающей посредством PDO)',
+	'config-support-oracle' => '* $1 — это коммерческая база данных масштаба предприятия. ([http://www.php.net/manual/en/oci8.installation.php Как собрать PHP с поддержкой OCI8])',
 	'config-header-mysql' => 'Настройки MySQL',
 	'config-header-postgres' => 'Настройки PostgreSQL',
 	'config-header-sqlite' => 'Настройки SQLite',
 	'config-header-oracle' => 'Настройки Oracle',
 	'config-invalid-db-type' => 'Неверный тип базы данных',
 	'config-missing-db-name' => 'Вы должны ввести значение параметра «Имя базы данных»',
+	'config-missing-db-server-oracle' => 'Вы должны заполнить поле «TNS базы данных»',
+	'config-invalid-db-server-oracle' => 'Неверное имя TNS базы данных «$1».
+Используйте только символы ASCII (a-z, A-Z), цифры (0-9), знаки подчёркивания (_) и точки (.).',
 	'config-invalid-db-name' => 'Неверное имя базы данных «$1».
 Используйте только ASCII-символы (a-z, A-Z), цифры (0-9) и знак подчёркивания (_).',
 	'config-invalid-db-prefix' => 'Неверный префикс базы данных «$1».
@@ -8801,13 +9115,14 @@ $messages['te'] = array(
 
 /** Tagalog (Tagalog)
  * @author AnakngAraw
+ * @author Sky Harbor
  */
 $messages['tl'] = array(
-	'config-desc' => 'Ang panluklok para sa MediaWiki',
-	'config-title' => '$1 na pagluluklok ng MediaWiki',
+	'config-desc' => 'Ang instalador para sa MediaWiki',
+	'config-title' => 'Instalasyong $1 ng MediaWiki',
 	'config-information' => 'Kabatiran',
 	'config-session-error' => 'Kamalian sa pagsisimula ng sesyon: $1',
-	'config-no-session' => 'Nawala ang iyong dato ng sesyon!
+	'config-no-session' => 'Nawala ang iyong datos ng sesyon!
 Suriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nakatakda sa angkop na direktoryo.',
 	'config-session-path-bad' => 'Tila ang iyong <code>session.save_path</code> (<code>$1</code>) ay hindi tanggap o hindi maisusulat.',
 	'config-show-help' => 'Tulong',
@@ -8820,14 +9135,14 @@ Suriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nak
 	'config-continue' => 'Magpatuloy →',
 	'config-page-language' => 'Wika',
 	'config-page-welcome' => 'Maligayang pagdating sa MediaWiki!',
-	'config-page-dbconnect' => 'Umugnay sa kalipunan ng dato',
+	'config-page-dbconnect' => 'Umugnay sa kalipunan ng datos',
 	'config-page-upgrade' => 'Itaas ng uri ang umiiral na pagkakatalaga',
-	'config-page-dbsettings' => 'Mga katakdaan ng kalipunan ng dato',
+	'config-page-dbsettings' => 'Mga katakdaan ng kalipunan ng datos',
 	'config-page-name' => 'Pangalan',
 	'config-page-options' => 'Mga mapipili',
 	'config-page-install' => 'Italaga',
 	'config-page-complete' => 'Buo na!',
-	'config-page-restart' => 'Muling simulan ang pagluluklok',
+	'config-page-restart' => 'Simulan muli ang pag-iinstala',
 	'config-page-readme' => 'Basahin ako',
 	'config-page-releasenotes' => 'Pakawalan ang mga tala',
 	'config-page-copying' => 'Kinokopya',
@@ -8837,6 +9152,16 @@ Suriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nak
 	'config-welcome' => '=== Pagsusuring pangkapaligiran ===
 Isinasagawa ang payak na mga pagsusuri upang makita kung ang kapaligirang ito ay angkop para sa pagluluklok ng MediaWiki.
 Dapat mong ibigay ang mga kinalabasan ng mga pagsusuring ito kung kailangan mo ng tulong habang nagluluklok.',
+	'config-copyright' => "=== Karapatang-ari at Tadhana ===
+
+$1
+
+Ang programang ito ay malayang software; maaari mo itong ipamahagi at/o baguhin sa ilalim ng mga tadhana ng Pangkalahatang Pampublikong Lisensiyang GNU ayon sa pagkakalathala ng Free Software Foundation; na maaaring bersyong 2 ng Lisensiya, o (kung nais mo) anumang susunod na bersyon.
+
+Ipinamamahagi ang programang ito na umaasang magiging gamitin, subaliut '''walang anumang katiyakan'''; na walang pahiwatig ng '''pagiging mabenta''' o '''kaangkupan para sa isang tiyak na layunin'''.
+Tingnan ang Pangkalahatang Pampublikong Lisensiyang GNU para sa mas maraming detalye.
+
+Dapat nakatanggap ka ng <doclink href=Copying>isang sipi ng Pangkalahatang Pampublikong Lisensiyang GNU</doclink> kasama ng programang ito; kung hindi, sumulat sa Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, o [http://www.gnu.org/licenses//gpl.html basahin ito sa Internet].",
 	'config-sidebar' => '* [http://www.mediawiki.org Tahanan ng MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Gabay ng Tagagamit]
 * [http://www.mediawiki.org/wiki/Manual:Contents Gabay ng Tagapangasiwa]
@@ -8848,14 +9173,14 @@ Hindi mo mailuklok ang MediaWiki.',
 	'config-env-php' => 'Naitalaga ang PHP na $1.',
 	'config-env-latest-ok' => 'Itinatalaga mo ang pinakabagong bersyon ng MediaWiki.',
 	'config-env-latest-new' => "'''Paunawa:''' Itinatalaga mo ang isang pinauunlad pang bersyon ng MediaWiki.",
-	'config-env-latest-can-not-check' => "'''Babala:''' Ang tagapagluklok ay hindi nagawang kuhaning muli ang kabatiran ukol sa pinakahuling labas ng MediaWiki mula sa [$1].",
+	'config-env-latest-can-not-check' => "'''Babala:''' Hindi nagawang kuhanin ng instalador ang kabatiran ukol sa pinakahuling labas ng MediaWiki mula sa [$1].",
 	'config-env-latest-old' => "'''Babala:''' Itinatalaga mo ang isang lipas nang bersyon ng MediaWiki.",
-	'config-env-latest-help' => 'Iniluluklok mo ang bersyong $1, subalit ang pinakahuling bersyon ay $2.
+	'config-env-latest-help' => 'Ini-iinstala mo ang bersyong $1, subalit ang pinakahuling bersyon ay $2.
 Pinapayuhan kang gamitin ang pinakahuling labas, na maikakargang paibaba mula sa [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-php' => 'Ginagamit ang mabagal na pagpapatupad ng PHP para sa normalisasyon ng Unikodigo.',
 	'config-unicode-using-utf8' => 'Ginagamit ang utf8_normalize.so ni Brion Vibber para sa pagpapanormal ng Unikodigo.',
 	'config-unicode-using-intl' => 'Ginagamit ang [http://pecl.php.net/intl intl dugtong na PECL] para sa pagsasanormal ng Unikodigo.',
-	'config-no-db' => 'Hindi matagpuan ang isang angkop na tagapagmaneho ng kalipunan ng dato!',
+	'config-no-db' => 'Hindi matagpuan ang isang angkop na drayber ng kalipunan ng datos!',
 	'config-have-db' => 'Nakatagpo ng {{PLURAL:$2|tagapagmaneho|mga tagapagmaneho}} ng kalipunan ng dato: $1.',
 	'config-xml-good' => 'May suportang pampalit ng XML / Latin1-UTF-8.',
 	'config-memory-none' => 'Inayos ang PHP na walang <code>hangganan_ng_alaala</code>',
@@ -8865,23 +9190,25 @@ OK.',
 	'config-memory-bad' => "'''Babala:''' Ang <code>hangganan_ng_alaala</code> ng PHP ay $1.
 Ito ay maaaring napakababa.
 Maaaring mabigo ang pagluluklok!",
-	'config-xcache' => 'Nakaluklok na ang [http://trac.lighttpd.net/xcache/ XCache]',
-	'config-apc' => 'Nakaluklok na ang [http://www.php.net/apc APC]',
-	'config-eaccel' => 'Nakaluklok na ang [http://eaccelerator.sourceforge.net/ eAccelerator]',
-	'config-wincache' => 'Nakaluklok na ang [http://www.iis.net/download/WinCacheForPhp WinCache]',
+	'config-xcache' => 'Ininstala na ang [http://trac.lighttpd.net/xcache/ XCache]',
+	'config-apc' => 'Ininstala na ang [http://www.php.net/apc APC]',
+	'config-eaccel' => 'Ininstala na ang [http://eaccelerator.sourceforge.net/ eAccelerator]',
+	'config-wincache' => 'Ininstala na ang [http://www.iis.net/download/WinCacheForPhp WinCache]',
+	'config-no-cache' => "'''Babala:''' Hindi mahanap ang [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
+Hindi pinapagana ang pagbabaon ng mga bagay.",
 	'config-diff3-good' => 'Natagpuan ang GNU diff3: <code>$1</code>.',
 	'config-diff3-bad' => 'Hindi natagpuan ang GNU diff3.',
 	'config-imagemagick' => 'Natagpuan ang ImageMagick: <code>$1</code>.
 Papaganahin ang pagkakagyat ng larawan kapag pinagana mo ang mga pagkakargang paitaas.',
 	'config-no-scaling' => 'Hindi matagpuan ang aklatang GD o ImageMagick.
 Hindi papaganahin ang pagkakagyat ng larawan.',
-	'config-dir' => 'Direktoryo ng pagluluklok: <code>$1</code>.',
+	'config-dir' => 'Direktoryo ng pag-iinstala: <code>$1</code>.',
 	'config-uri' => 'Landas na URI ng panitik: <code>$1</code>.',
-	'config-no-uri' => "'''Kamalian:''' Hindi matukoy ang pangkasalukuyang URI.
-Pinigilan ang pagluluklok.",
+	'config-no-uri' => "'''Kamalian:''' Hindi matukoy ang kasalukuyang URI.
+Pinigilan ang pag-iinstala.",
 	'config-shell-locale' => 'Napansin ang kinalalagyan ng kabibe na "$1"',
-	'config-db-type' => 'Uri ng kalipunan ng dato:',
-	'config-db-host' => 'Tagapagpasinaya ng kalipunan ng dato:',
+	'config-db-type' => 'Uri ng kalipunan ng datos:',
+	'config-db-host' => 'Tagapagpasinaya ng kalipunan ng datos:',
 	'config-db-wiki-settings' => 'Kilalanin ang wiking ito',
 	'config-db-name' => 'Pangalan ng kalipunan ng dato:',
 	'config-db-install-account' => 'Akawnt ng tagagamit para sa pagluluklok',
@@ -9082,6 +9409,7 @@ $messages['uk'] = array(
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
 	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду. 
 Якщо ваш сайт має високий трафік, вам варто почитати про [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормалізацію Юнікоду].",
+	'config-admin-password' => 'Пароль:',
 );
 
 /** Yiddish (ייִדיש)

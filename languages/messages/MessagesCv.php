@@ -188,7 +188,7 @@ $messages = array(
 'vector-action-protect'    => 'Хӳтĕле',
 'vector-view-create'       => 'Çĕннине ту',
 'vector-view-edit'         => 'Тӳрлет',
-'vector-view-history'      => 'Истори',
+'vector-view-history'      => 'Кун-çул',
 'vector-view-view'         => 'Вула',
 
 'errorpagetitle'    => 'Йăнăш',
@@ -200,7 +200,7 @@ $messages = array(
 'go'                => 'Куç',
 'searcharticle'     => 'Куç',
 'history'           => 'Истори',
-'history_short'     => 'Истори',
+'history_short'     => 'Кун-çул',
 'updatedmarker'     => 'эпĕ юлашки хут кĕнĕ хыççăн çĕнелнĕ',
 'info_short'        => 'Информаци',
 'printableversion'  => 'Пичетлемелли верси',

@@ -586,9 +586,11 @@ Tungguan heula sakeudeung, laju cobaan deui.',
 'loginlanguagelabel'         => 'Basa: $1',
 
 # JavaScript password checks
+'password-strength-bad'        => 'AWON',
 'password-strength-acceptable' => 'meueusan',
 'password-strength-good'       => 'alus',
 'password-retype'              => 'Ketik deui sandi anjeun',
+'password-retype-mismatch'     => 'Sandi teu cocog',
 
 # Password reset dialog
 'resetpass'                 => 'Ganti kecap sandi rekening',
@@ -641,6 +643,7 @@ Bisa jadi anjeun geus ngaganti sandina atawa ménta sandi saheulaanan anu anyar.
 'showlivepreview'                  => 'Pramidang saharita',
 'showdiff'                         => 'Témbongkeun parobahan',
 'anoneditwarning'                  => "'''Perhatosan:''' Anjeun can asup log. IP anjeun kacatet dina jujutan kaca ieu",
+'anonpreviewwarning'               => '"Anjeun can asup log. Mun disimpen, alamat IP anjeun bakal kacatet dina jujutan ieu kaca."',
 'missingsummary'                   => "'''Pépéling:''' Anjeun can ngeusian sari éditan. Mun anjeun ngaklik deui Simpen, éditan anjeun bakal disimpen tanpa sari éditan",
 'missingcommenttext'               => 'Mangga tulis koméntar di handapeun ieu.',
 'missingcommentheader'             => "'''Pépéling:''' Anjeun can ngeusian judul pikeun ieu koméntar. Mun anjeun ngaklik deui Simpen, éditan anjeun bakal disimpen tanpa judul.",
@@ -895,6 +898,8 @@ Kuncén séjén bakalan bisa ngakses eusi nu nyumput sarta bisa ngabolaykeun hap
 'revdelete-success'           => 'Pangaturan nyumpukeun révisi junun dilarapkeun.',
 'logdelete-success'           => 'Log pangatur nyumputkeun junun dilarapkeun.',
 'revdel-restore'              => 'robah panémbong',
+'revdel-restore-deleted'      => 'révisi nu dihapus',
+'revdel-restore-visible'      => 'révisi nu katémbong',
 'pagehist'                    => 'Sajarah kaca',
 'deletedhist'                 => 'Sajarah nu dihapus',
 'revdelete-content'           => 'eusi',

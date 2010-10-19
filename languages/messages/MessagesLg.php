@@ -44,6 +44,8 @@ $messages = array(
 'tog-externaleditor'          => 'Wandikisanga puloguramu eri ku kompyuta yo (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo)',
 'tog-externaldiff'            => "Kozesanga puloguramu ey'oku kompyuta yo okukebera njawulo wakati w'ebiwandike (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo)",
 'tog-showjumplinks'           => 'Wabeerewo enyunzi eza "Genda ku"',
+'tog-uselivepreview'          => 'Enkyukakyuka ze nkoze zirabikirewo nga tekyetaagisiza kumala kunyiga ppeesa (kyetaagisa JavaScript)(Kikyagezesebwa)',
+'tog-watchlisthideown'        => "Nze bye nkyusizza bireme okulabikira mu lukalala lw'empapula ze ngoberera",
 'tog-norollbackdiff'          => 'Okujjulula nga kuwedde, tolaga bigerageranya ebikyuse',
 
 # Dates
