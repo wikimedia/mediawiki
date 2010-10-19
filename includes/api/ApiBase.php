@@ -532,7 +532,7 @@ abstract class ApiBase {
 		array_shift( $required );
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
-				"validateParameter" ) ), $required );
+				array( $this, "parameterNotEmpty" ) ) ), $required );
 
 		if ( count( $intersection ) > 1 ) {
 			$this->dieUsage( 'The parameters ' . implode( ', ', $intersection ) . ' can not be used together', 'invalidparammix' );
@@ -541,7 +541,13 @@ abstract class ApiBase {
 		}
 	}
 
-	private function validateParameter( $x ) {
+	/**
+	 * Callback function used in requireOnlyOneParameter to check whether reequired parameters are set
+	 *
+	 * @param  $x object Parameter to check is not null/false
+	 * @return bool
+	 */
+	private function parameterNotEmpty( $x ) {
 		return !is_null( $x ) && $x !== false;
 	}
 
