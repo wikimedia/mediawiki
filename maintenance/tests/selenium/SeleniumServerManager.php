@@ -179,12 +179,13 @@ class SeleniumServerManager {
 				// on its port. Note: this solution kinda
 				// stinks, since it uses a wait loop - dnessett
 
+				wfSuppressWarnings();
 				for ( $cnt = 1;
 				      $cnt <= $this->SeleniumServerStartTimeout;
 				      $cnt++ ) {
-					$fp = @fsockopen ( 'localhost',
+					$fp = fsockopen ( 'localhost',
 						$this->SeleniumServerPort,
-						&$errno, &$errstr, 0 );
+						$errno, $errstr, 0 );
 					if ( !$fp ) {
 						sleep( 1 );
 						continue;
@@ -194,6 +195,7 @@ class SeleniumServerManager {
 						return 'started';
 					}
 				}
+				wfRestoreWarnings();
 				echo ( "Starting Selenium server timed out.\n" );
 				return 'failed';
 			}
