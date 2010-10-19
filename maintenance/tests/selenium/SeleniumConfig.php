@@ -70,14 +70,14 @@ class SeleniumConfig {
 		// inserts the section arrays into the appropriate places in
 		// the SeleniumSettings and SeleniumTests arrays.
 
-		if ( isset( $configArray[browsers] ) ) {
-			$configArray[SeleniumSettings][browsers] = $configArray[browsers];
-			unset ( $configArray[browsers] );
+		if ( isset( $configArray['browsers'] ) ) {
+			$configArray['SeleniumSettings']['browsers'] = $configArray['browsers'];
+			unset ( $configArray['browsers'] );
 		}
 
-		if ( isset( $configArray[testSuite] ) ) {
-			$configArray[SeleniumTests][testSuite] = $configArray[testSuite];
-			unset ( $configArray[testSuite] );
+		if ( isset( $configArray['testSuite'] ) ) {
+			$configArray['SeleniumTests']['testSuite'] = $configArray['testSuite'];
+			unset ( $configArray['testSuite'] );
 		}
 
 		return $configArray;
