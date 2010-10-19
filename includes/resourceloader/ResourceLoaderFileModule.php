@@ -26,6 +26,7 @@ defined( 'MEDIAWIKI' ) || die( 1 );
  * Module based on local JS/CSS files. This is the most common type of module.
  */
 class ResourceLoaderFileModule extends ResourceLoaderModule {
+
 	/* Protected Members */
 
 	protected $scripts = array();
@@ -38,7 +39,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $skinScripts = array();
 	protected $skinStyles = array();
 	protected $loaders = array();
-	protected $parameters = array();
 
 	// In-object cache for file dependencies
 	protected $fileDeps = array();
@@ -49,75 +49,65 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Construct a new module from an options array.
-	 *
-	 * @param $options array Options array. If empty, an empty module will be constructed
-	 *
-	 * $options format:
-	 * 	array(
-	 * 		// Required module options (mutually exclusive)
-	 * 		'scripts' => 'dir/script.js' | array( 'dir/script1.js', 'dir/script2.js' ... ),
 	 * 
-	 * 		// Optional module options
+	 * @param {array} $options Options array. If not given or empty, an empty module will be constructed
+	 * @param {string} $basePath base path to prepend to all paths in $options
+	 * 
+	 * @format $options
+	 * 	array(
+	 * 		// Scripts to always include
+	 * 		'scripts' => [file path string or array of file path strings],
+	 * 		// Scripts to include in specific language contexts
 	 * 		'languageScripts' => array(
-	 * 			'[lang name]' => 'dir/lang.js' | '[lang name]' => array( 'dir/lang1.js', 'dir/lang2.js' ... )
-	 * 			...
+	 * 			[language code] => [file path string or array of file path strings],
 	 * 		),
-	 * 		'skinScripts' => 'dir/skin.js' | array( 'dir/skin1.js', 'dir/skin2.js' ... ),
-	 * 		'debugScripts' => 'dir/debug.js' | array( 'dir/debug1.js', 'dir/debug2.js' ... ),
-	 *
-	 * 		// Non-raw module options
-	 * 		'dependencies' => 'module' | array( 'module1', 'module2' ... )
-	 * 		'loaderScripts' => 'dir/loader.js' | array( 'dir/loader1.js', 'dir/loader2.js' ... ),
-	 * 		'styles' => 'dir/file.css' | array( 'dir/file1.css', 'dir/file2.css' ... ), |
-	 * 			array( 'dir/file1.css' => array( 'media' => 'print' ) ),
+	 * 		// Scripts to include in specific skin contexts
+	 * 		'skinScripts' => array(
+	 * 			[skin name] => [file path string or array of file path strings],
+	 * 		),
+	 * 		// Scripts to include in debug contexts
+	 * 		'debugScripts' => [file path string or array of file path strings],
+	 * 		// Scripts to include in the startup module
+	 * 		'loaders' => [file path string or array of file path strings],
+	 * 		// Modules which must be loaded before this module
+	 * 		'dependencies' => [modile name string or array of module name strings],
+	 * 		// Styles to always load
+	 * 		'styles' => [file path string or array of file path strings],
+	 * 		// Styles to include in specific skin contexts
 	 * 		'skinStyles' => array(
-	 * 			'[skin name]' => 'dir/skin.css' |  array( 'dir/skin1.css', 'dir/skin2.css' ... ) |
-	 * 				array( 'dir/file1.css' => array( 'media' => 'print' )
-	 * 			...
+	 * 			[skin name] => [file path string or array of file path strings],
 	 * 		),
-	 * 		'messages' => array( 'message1', 'message2' ... ),
-	 * 		'group' => 'stuff',
+	 * 		// Messages to always load
+	 * 		'messages' => [array of message key strings],
+	 * 		// Group which this module should be loaded together with
+	 * 		'group' => [group name string],
 	 * 	)
-	 *
-	 * @param $basePath String: base path to prepend to all paths in $options
 	 */
 	public function __construct( $options = array(), $basePath = null ) {
-		foreach ( $options as $option => $value ) {
-			switch ( $option ) {
+		foreach ( $options as $member => $option ) {
+			switch ( $member ) {
+				// Lists of file paths
 				case 'scripts':
 				case 'debugScripts':
+				case 'loaders':
+				case 'styles':
+					$this->{$member} = $this->prefixFilePathList( (array) $option, $basePath );
+					break;
+				// Collated lists of file paths
 				case 'languageScripts':
 				case 'skinScripts':
-				case 'loaders':
-					$this->{$option} = (array)$value;
-					// Automatically prefix script paths
-					if ( is_string( $basePath ) ) {
-						foreach ( $this->{$option} as $key => $value ) {
-							$this->{$option}[$key] = $basePath . $value;
-						}
-					}
-					break;
-				case 'styles':
 				case 'skinStyles':
-					$this->{$option} = (array)$value;
-					// Automatically prefix style paths
-					if ( is_string( $basePath ) ) {
-						foreach ( $this->{$option} as $key => $value ) {
-							if ( is_array( $value ) ) {
-								$this->{$option}[$basePath . $key] = $value;
-								unset( $this->{$option}[$key] );
-							} else {
-								$this->{$option}[$key] = $basePath . $value;
-							}
-						}
+					foreach ( (array) $option as $key => $value ) {
+						$this->{$member}[$key] = $this->prefixFilePathList( (array) $value, $basePath );
 					}
-					break;
+				// Lists of strings
 				case 'dependencies':
 				case 'messages':
-					$this->{$option} = (array)$value;
+					$this->{$member} = (array) $option;
 					break;
+				// Single strings
 				case 'group':
-					$this->group = (string)$value;
+					$this->group = (string) $option;
 					break;
 			}
 		}
@@ -338,11 +328,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		
 		// Sort of nasty way we can get a flat list of files depended on by all styles
 		$styles = array();
-		foreach ( self::organizeFilesByOption( $this->styles, 'media', 'all' ) as $styleFiles ) {
+		foreach ( self::collateFilePathListByOption( $this->styles, 'media', 'all' ) as $styleFiles ) {
 			$styles = array_merge( $styles, $styleFiles );
 		}
 		$skinFiles = (array) self::getSkinFiles(
-			$context->getSkin(), self::organizeFilesByOption( $this->skinStyles, 'media', 'all' )
+			$context->getSkin(), self::collateFilePathListByOption( $this->skinStyles, 'media', 'all' )
 		);
 		foreach ( $skinFiles as $styleFiles ) {
 			$styles = array_merge( $styles, $styleFiles );
@@ -369,6 +359,53 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/* Protected Members */
+
+	/**
+	 * Prefixes each file path in a list
+	 * 
+	 * @param {array} $list List of file paths in any combination of index/path or path/options pairs
+	 * @param {string} $prefix String to prepend to each file path in $list
+	 * @return {array} List of prefixed file paths
+	 */
+	protected function prefixFilePathList( array $list, $prefix ) {
+		$prefixed = array();
+		foreach ( $list as $key => $value ) {
+			if ( is_array( $value ) ) {
+				// array( [path] => array( [options] ) )
+				$prefixed[$prefix . $key] = $value;
+			} else {
+				// array( [path] )
+				$prefixed[$key] = $prefix . $value;
+			}
+		}
+		return $prefixed;
+	}
+
+	/**
+	 * Collates file paths by option (where provided)
+	 * 
+	 * @param {array} $list List of file paths in any combination of index/path or path/options pairs
+	 */
+	protected static function collateFilePathListByOption( array $list, $option, $default ) {
+		$collatedFiles = array();
+		foreach ( (array) $list as $key => $value ) {
+			if ( is_int( $key ) ) {
+				// File name as the value
+				if ( !isset( $collatedFiles[$default] ) ) {
+					$collatedFiles[$default] = array();
+				}
+				$collatedFiles[$default][] = $value;
+			} else if ( is_array( $value ) ) {
+				// File name as the key, options array as the value
+				$media = isset( $value[$option] ) ? $value[$option] : $default;
+				if ( !isset( $collatedFiles[$media] ) ) {
+					$collatedFiles[$media] = array();
+				}
+				$collatedFiles[$media][] = $key;
+			}
+		}
+		return $collatedFiles;
+	}
 
 	/**
 	 * Get the primary JS for this module. This is pulled from the
@@ -468,27 +505,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					array_unique( (array) $files ) ) ) );
 	}
 
-	protected static function organizeFilesByOption( $files, $option, $default ) {
-		$organizedFiles = array();
-		foreach ( (array) $files as $key => $value ) {
-			if ( is_int( $key ) ) {
-				// File name as the value
-				if ( !isset( $organizedFiles[$default] ) ) {
-					$organizedFiles[$default] = array();
-				}
-				$organizedFiles[$default][] = $value;
-			} else if ( is_array( $value ) ) {
-				// File name as the key, options array as the value
-				$media = isset( $value[$option] ) ? $value[$option] : $default;
-				if ( !isset( $organizedFiles[$media] ) ) {
-					$organizedFiles[$media] = array();
-				}
-				$organizedFiles[$media][] = $key;
-			}
-		}
-		return $organizedFiles;
-	}
-	
 	/**
 	 * Get the contents of a set of CSS files, remap then and concatenate
 	 * them, with newlines in between. Each file is used only once.
@@ -497,7 +513,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return Array: list of concatenated and remapped contents of $files keyed by media type
 	 */
 	protected static function concatStyles( $styles ) {
-		$styles = self::organizeFilesByOption( $styles, 'media', 'all' );
+		$styles = self::collateFilePathListByOption( $styles, 'media', 'all' );
 		foreach ( $styles as $media => $files ) {
 			$styles[$media] =
 				implode( "\n", 
