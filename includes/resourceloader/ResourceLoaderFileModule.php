@@ -28,7 +28,7 @@ defined( 'MEDIAWIKI' ) || die( 1 );
 class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/* Protected Members */
-	
+
 	/** @var {array} List of paths to JavaScript files to always include */
 	protected $scripts = array();
 	/** @var {array} List of paths to JavaScript files to include when using specific languages */
@@ -309,7 +309,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets a list of element that match a key, optionally using a fallback key
-	 *
+	 * 
 	 * @param {array} $map Map of lists to select from
 	 * @param {string} $key Key to look for in $map
 	 * @param {string} $fallback Key to look for in map if $key is not in $map
@@ -399,5 +399,4 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		
 		return "$IP/$path";
 	}
-	
 }
