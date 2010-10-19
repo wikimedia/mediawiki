@@ -994,7 +994,7 @@ $1",
 'search-result-size'               => '$1 （$2 үг）',
 'search-result-score'              => 'Холбоо хамаарал: $1%',
 'search-redirect'                  => '(чиглүүлэгч $1)',
-'search-section'                   => '（хэсэг $1）',
+'search-section'                   => '(Хэсэг $1)',
 'search-suggest'                   => 'Та $1 гэж хайя гэсэн үү?',
 'search-interwiki-caption'         => 'Ах дүү төслүүд',
 'search-interwiki-default'         => '$1 үр дүн:',
@@ -1018,7 +1018,7 @@ $1",
 'powersearch-redir'                => 'Чиглүүлэгч хуудсуудыг оролцуулах',
 'powersearch-field'                => 'Дараахыг хайх:',
 'powersearch-togglelabel'          => 'Сонгох:',
-'powersearch-toggleall'            => 'Бүгд',
+'powersearch-toggleall'            => 'Бүгдийг',
 'powersearch-togglenone'           => 'Байхгүй',
 'search-external'                  => 'Гадны хайлт',
 'searchdisabled'                   => '{{SITENAME}} хайлтыг түр хаасан байна.
@@ -1172,7 +1172,7 @@ $1 тэмдэгтээс богино байх ёстой.',
 'group-sysop'         => 'Системийн операторууд',
 'group-bureaucrat'    => 'Албаны ажилтангууд',
 'group-suppress'      => 'Хянан зохицуулагчид',
-'group-all'           => '(бүгд)',
+'group-all'           => '(бүх)',
 
 'group-user-member'          => 'Хэрэглэгч',
 'group-autoconfirmed-member' => 'Автоматаар батлагдсан хэрэглэгч',
@@ -2196,6 +2196,8 @@ $1',
 'ipblocklist-sh-tempblocks'       => 'Түр зуурын түгжээг $1',
 'ipblocklist-sh-addressblocks'    => 'Ганц IP-н түгжээг $1',
 'ipblocklist-submit'              => 'Хайх',
+'ipblocklist-localblock'          => 'Дотоодын түгжилт',
+'ipblocklist-otherblocks'         => 'Бусад {{PLURAL:$1|түгжээ|түгжээ}}',
 'blocklistline'                   => '$1, $2 нь $3 ($4)-г түгжив',
 'infiniteblock'                   => 'тодорхойгүй',
 'expiringblock'                   => '$1-ний $2-д хугацаа нь дуусна',
@@ -2212,6 +2214,10 @@ $1',
 'contribslink'                    => 'хувь нэмэр',
 'autoblocker'                     => 'Автоматаар түгжигдлээ. Учир нь таны IP хаягийг "[[User:$1|$1]]" нь хэрэглэж байжээ. "$1"-г түгжих болсон шалтгаан нь: "\'\'\'$2\'\'\'"',
 'blocklogpage'                    => 'Түгжээний лог',
+'blocklog-showlog'                => 'Энэхүү хэрэглэгч өмнө нь түгжигдэж байсан байна.
+Лавлагааны зориулалтаар түгжээний логийг доор оруулав:',
+'blocklog-showsuppresslog'        => 'Энэхүү хэрэглэгч өмнө нь түгжигдэж, далдлагдаж байна.
+Лавлагааны зориулалтаар далдлагааны логийг доор оруулав:',
 'blocklogentry'                   => '[[$1]] нь $2 $3 хугацаатайгаар түгжигдсэн',
 'reblock-logentry'                => '[[$1]]-н түгжээний тохиргоог $2 $3 хугацаатай болгож өөрчилсөн',
 'blocklogtext'                    => 'Энэ нь хэрэглэгчийг түгжсэн болон тайлсан үйлдлийн лог юм.
@@ -2224,17 +2230,21 @@ $1',
 'block-log-flags-noemail'         => 'и-мэйл түгжигдсэн',
 'block-log-flags-nousertalk'      => 'өөрийн ярианы хуудсыг засварлах боломжгүй байна',
 'block-log-flags-angry-autoblock' => 'сайжруулсан автомат түгжээг идэвхижүүлэв',
+'block-log-flags-hiddenname'      => 'хэрэглэгчийг нэрийг нуусан',
 'range_block_disabled'            => 'Системийн операторуудын хэсгийн түгжээ хийх чадварыг зогсоосон байна.',
 'ipb_expiry_invalid'              => 'Түгжээ нээгдэх хугацааг оруулаагүй байна.',
 'ipb_expiry_temp'                 => 'Нуугдсан хэрэглэгийн нэрсийн түгжээ нь үүрдийн байх ёстой',
+'ipb_hide_invalid'                => 'Энэхүү бүртгэлийг далдлах боломжгүй байна; хэтэрхий олон засвар үйлдсэн байж болзошгүй.',
 'ipb_already_blocked'             => '"$1" нь аль хэдийн түгжигдсэн байна.',
 'ipb-needreblock'                 => '== Аль хэдийнээ түгжигдсэн ==
 $1 нь аль хэдийнээ түгжигдсэн байна.
 Та тохиргоог өөрчилмөөр байна уу?',
+'ipb-otherblocks-header'          => ' Бусад {{PLURAL:$1|түгжээ|түгжээ}}',
 'ipb_cant_unblock'                => 'Алдаа: Түгжигдсэн ID $1 нь олдохгүй байна. Түгжээ нь аль хэдийн тайлагдсан байж болзошгүй.',
 'ipb_blocked_as_range'            => 'Алдаа: $1 гэсэн IP хаяг нь шууд түгжигдээгүй бөгөөд тайлах боломжгүй байна.
 Харин энэ нь $2 хэсгийн хэсэг болж түгжигдсэн байгаа бөгөөд үүнийг тайлах боломжтой.',
 'ip_range_invalid'                => 'Хүчингүй IP-н хүрээ.',
+'ip_range_toolarge'               => '/$1-с том хэмжээтэй түгжээ нь хориотой.',
 'blockme'                         => 'Намайг түгж',
 'proxyblocker'                    => 'Түгжигч прокси',
 'proxyblocker-disabled'           => 'Энэ функцийг хаасан байна.',
@@ -2245,6 +2255,10 @@ $1 нь аль хэдийнээ түгжигдсэн байна.
 'sorbs_create_account_reason'     => '{{SITENAME}}-н хэрэглэдэг DNSBL-д таны IP хаягийг чөлөөт прокси гэж тэмдэглэсэн байна.
 Та бүртгэл үүсгэх боломжгүй.',
 'cant-block-while-blocked'        => 'Өөрөө түгжигдсэн үед бусад хэрэглэгчдийг түгжих боломжгүй.',
+'cant-see-hidden-user'            => 'Таны түгжих гэж оролдож буй хэрэглэгчийг аль хэдийнээ түгжиж, нуусан байна.
+Таньд хэрэглэгчийг нуух эрх байхгүй тул та хэрэглэгчийн түгжээг харах буюу засварлах боломжгүй.',
+'ipbblocked'                      => 'Та өөрөө түгжигдсэн тул бусад хэрэглэгчдийг түгжих буюу тэдний түгжээг тайлах эрхгүй',
+'ipbnounblockself'                => 'Та өөрийнхөө түгжээг тайлах эрхгүй',
 
 # Developer tools
 'lockdb'              => 'Мэдээллийн баазыг түгжих',
@@ -2282,9 +2296,10 @@ $1 нь аль хэдийнээ түгжигдсэн байна.
 
 Эдгээр тохиолдлуудад уг хуудсыг гар аргаар зөөх эсвэл нэгтгэх шаардлагатай болно.",
 'movearticle'                  => 'Хуудсыг зөөх:',
+'moveuserpage-warning'         => "'''Анхаар:''' Та хэрэглэгчийн хуудсыг зөөх гэж байна. Зөвхөн хуудас нь л зөөгдөнө, харин хэрэглэгчийн нэр ''солигдохгүй'' гэдгийг анхаарана уу.",
 'movenologin'                  => 'нэвтрээгүй байна',
 'movenologintext'              => 'Та хуудсыг зөөхийн тулд бүртгэлтэй бөгөөд [[Special:UserLogin|холбогдсон]] байх ёстой.',
-'movenotallowed'               => 'Таньд {{SITENAME}} дээрх хуудсуудыг зөөх зөвшөөрөл байхгүй байна.',
+'movenotallowed'               => 'Таньд хуудас зөөх зөвшөөрөл байхгүй байна.',
 'movenotallowedfile'           => 'Таньд файл зөөх эрх байхгүй.',
 'cant-move-user-page'          => 'Таньд хэрэглэгчийн хуудас зөөх эрх байхгүй （дэд хуудсуудыг тооцохгүйгээр）.',
 'cant-move-to-user-page'       => 'Таньд хуудсыг хэрэглэгчийн хуудас руу зөөх эрх байхгүй （хэрэглэгчийн дэд хуудас руу зөөхийг тооцохгүйгээр）.',
@@ -2302,6 +2317,8 @@ $1 нь аль хэдийнээ түгжигдсэн байна.
 Хэлэлцүүлгийн хуудсуудыг гар аргаар нэгтгэнэ үү.'''",
 'movedto'                      => 'Зөөгдсөн газар:',
 'movetalk'                     => 'Харгалзах хэлэлцүүлгийн хуудсыг зөөх',
+'move-subpages'                => 'Дэд хуудсуудыг зөөх ($1 хүртэлх)',
+'move-talk-subpages'           => 'Хэлэлцүүлгийн хуудасны дэд хуудсуудыг зөөх ($1 хүртэл)',
 'movepage-page-exists'         => '$1 гэх хуудас оршиж байгаа бөгөөд дээрээс нь автоматаар дарж бичиж болохгүй байна.',
 'movepage-page-moved'          => '$1 гэх хуудас $2 руу зөөгдлөө.',
 'movepage-page-unmoved'        => '$1 гэх хуудас $2 руу зөөгдөх боломжгүй байна.',
@@ -2311,6 +2328,9 @@ $1 нь аль хэдийнээ түгжигдсэн байна.
 'move-redirect-suppressed'     => 'чиглүүлэгчийг хориглов',
 'movelogpage'                  => 'Зөөлтийн лог',
 'movelogpagetext'              => 'Доорх нь зөөвөрлөгдсөн хуудасны лист.',
+'movesubpage'                  => '{{PLURAL:$1|Дэд хуудас|Дэд хуудсууд}}',
+'movesubpagetext'              => 'Доор үзүүлснээр энэ хуудас нь $1 {{PLURAL:$1|дэд хуудастай|дэд хуудастай}}.',
+'movenosubpage'                => 'Энэ хуудас нь дэд хуудасгүй.',
 'movereason'                   => 'Шалтгаан:',
 'revertmove'                   => 'хуучин төлөвт шилжүүлэх',
 'delete_and_move'              => 'Устгаад зөөх',
@@ -2327,10 +2347,19 @@ $1 нь аль хэдийнээ түгжигдсэн байна.
 'immobile-source-page'         => 'Энэ хуудсыг зөөх боломжгүй.',
 'immobile-target-page'         => 'Энэ зорьсон гарчиг руу зөөх боломжгүй.',
 'imagenocrossnamespace'        => 'Файлыг файлаас өөр нэрний зай руу зөөх боломжгүй',
+'nonfile-cannot-move-to-file'  => 'Файлын нэрний зай руу файл биш зүйлийг зөөх боломжгүй.',
 'imagetypemismatch'            => 'Шинэ файлын өргөтгөл төрөлтэй нь таарахгүй байна',
 'imageinvalidfilename'         => 'Зорьсон файлын нэр хүчингүй',
 'fix-double-redirects'         => 'Анхны гарчиг руу чиглэх чиглүүлэгчдийг шинэчлэх',
 'move-leave-redirect'          => 'Чиглүүлэгч үлдээх',
+'protectedpagemovewarning'     => "'''Анхаар:''' Энэхүү хуудас нь администраторууд л зөөж болохоор хамгаалагдсан байна.
+Лавлагааны зориулалтаар лог дахь хамгийн сүүлийн нэмэлтийг доор оруулав:",
+'semiprotectedpagemovewarning' => "'''Анхаар:''' Энэхүү хуудас нь бүртгэлтэй хэрэглэгчид л зөөж болохоор хамгаалагдсан байна.
+Лавлагааны зориулалтаар лог дахь хамгийн сүүлийн нэмэлтийг доор оруулав:",
+'move-over-sharedrepo'         => '== Файл байна ==
+[[:$1]] нь хамтаар хэрэглэх санд байна. Файлыг энэхүү газар руу зөөвөл хамтаар хэрэглэж болох файлын дээгүүр бичнэ.',
+'file-exists-sharedrepo'       => 'Сонгогдсон файлын нэр нь хамтаар хэрэглэж болох санд аль хэдийнээ хэрэглэгдэж байна.
+Өөр нэр сонгоно уу.',
 
 # Export
 'export'            => 'Хуудсыг экспортлох',
@@ -2346,20 +2375,25 @@ $1 нь аль хэдийнээ түгжигдсэн байна.
 'export-submit'     => 'Экспортлох',
 'export-addcattext' => 'Дараах ангиллаас хуудсуудыг нэмэх:',
 'export-addcat'     => 'Нэмэх',
+'export-addnstext'  => 'Дараах нэрний зайнаас хуудас нэмэх:',
+'export-addns'      => 'Нэмэх',
 'export-download'   => 'Файл гэж хадгалах',
 'export-templates'  => 'Загваруудыг оруулах',
+'export-pagelinks'  => 'Холбогдсон хуудсуудыг дараах гүн хүртэл оруулах:',
 
 # Namespace 8 related
-'allmessages'               => 'Системийн мэдэгдлүүд',
-'allmessagesname'           => 'Нэр',
-'allmessagesdefault'        => 'Анхны',
-'allmessagescurrent'        => 'Одоогийн',
-'allmessagestext'           => 'Энэ бол МедиаВики дахь системийн мэдэгдлүүдийн жагсаалт юм.
+'allmessages'                   => 'Системийн мэдэгдлүүд',
+'allmessagesname'               => 'Нэр',
+'allmessagesdefault'            => 'Анхны',
+'allmessagescurrent'            => 'Одоогийн',
+'allmessagestext'               => 'Энэ бол МедиаВики дахь системийн мэдэгдлүүдийн жагсаалт юм.
 МедиаВикиг орчуулах тухай мэдээллийг [http://www.mediawiki.org/wiki/Localisation МедиаВикигийн орчуулга], мөн [http://translatewiki.net translatewiki.net]-с авна уу.',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' нь унтарсан байгаа тул '''Special:Allmessages'''-г хэрэглэж болохгүй.",
-'allmessages-filter-legend' => 'Шүүлтүүр',
-'allmessages-prefix'        => 'Угтвараар нь шүүх:',
-'allmessages-language'      => 'Хэл:',
+'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' нь унтарсан байгаа тул '''Special:Allmessages'''-г хэрэглэж болохгүй.",
+'allmessages-filter-legend'     => 'Шүүлтүүр',
+'allmessages-filter-unmodified' => 'Өөрчлөөгүй',
+'allmessages-filter-all'        => 'Бүгдийг',
+'allmessages-prefix'            => 'Угтвараар нь шүүх:',
+'allmessages-language'          => 'Хэл:',
 
 # Thumbnails
 'thumbnail-more'           => 'Томруулах',
@@ -2858,11 +2892,11 @@ $1',
 'edit-externally-help' => '(Нэмэлт мэдээллийг [http://www.mediawiki.org/wiki/Manual:External_editors тохируулгын зааврын] хуудаснаас харна уу)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'Бүгд',
-'imagelistall'     => 'бүх',
+'recentchangesall' => 'Бүгдийг',
+'imagelistall'     => 'бүгдийг',
 'watchlistall2'    => 'бүгдийг',
 'namespacesall'    => 'бүгдийг',
-'monthsall'        => 'бүгд',
+'monthsall'        => 'бүгдийг',
 
 # E-mail address confirmation
 'confirmemail'             => 'Мэйл хаягийг баталгаажуулах',
@@ -2902,9 +2936,12 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Интервики оруулалтыг идэвхижүүлээгүй]',
 'scarytranscludefailed'   => '[$1 загварыг авчирч чадсангүй]',
-'scarytranscludetoolong'  => '[URL хэт урт байна; уучлаарай]',
+'scarytranscludetoolong'  => '[URL хэт урт байна]',
 
 # Trackbacks
+'trackbackbox'      => 'Энэ хуудасны trackback:<br />
+$1',
+'trackbackremove'   => '([$1 устга])',
 'trackbacklink'     => 'Тракбак',
 'trackbackdeleteok' => 'Тракбакыг амжилттай устгалаа.',
 
@@ -2934,65 +2971,123 @@ $5
 'table_pager_first'        => 'Эхний хуудас',
 'table_pager_last'         => 'Сүүлийн хуудас',
 'table_pager_limit'        => 'Хуудас бүрт $1 зүйл үзүүлэх',
+'table_pager_limit_label'  => 'Хуудас бүр дахь зүйлийн тоо:',
 'table_pager_limit_submit' => 'Явах',
 'table_pager_empty'        => 'Үр дүн байхгүй байна',
 
 # Auto-summaries
-'autosumm-blank'   => 'Хуудасны агуулгыг устгаж байна.',
+'autosumm-blank'   => 'Хуудсыг хоослов',
 'autosumm-replace' => "Хуудсыг '$1'-р сольж байна.",
 'autoredircomment' => '[[$1]] руу чиглүүлэгдлээ',
-'autosumm-new'     => 'Шинэ хуудас: $1',
+'autosumm-new'     => 'Хуудас үүсгэв: "$1"',
 
 # Live preview
 'livepreview-loading' => 'Ушшиж байна...',
 'livepreview-ready'   => 'Ушшиж байна...Боллоо!',
 'livepreview-failed'  => 'Шууд урьдчилж харах боломжгүй байна! Ердийн аргаар урьдчилж харна уу.',
+'livepreview-error'   => 'Холбогдож чадсангүй: $1 "$2".
+Урьдчилж харах ердийн аргыг хэрэглэнэ үү.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 {{PLURAL:$1|секундээс|секундээс}}-с өмнөх шинэ өөрчлөлтүүд энэ жагсаалтанд ороогүй байж болзошгүй.',
+'lag-warn-high'   => 'Өгөгдлийн сангийн удаашралтаас үүдэн энэ жагсаалтанд $1 {{PLURAL:$1|секундээс|секундээс}}-с өмнөх шинэ өөрчлөлтүүд  ороогүй байж болзошгүй.',
 
 # Watchlist editor
-'watchlistedit-normal-title'  => 'Хянах жагсаалтаа засварлах',
-'watchlistedit-normal-submit' => 'Хуудсуудыг авч хаях',
-'watchlistedit-normal-done'   => 'Таны хянаж буй хуудсуудын жагсаалтаас {{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} авч хаялаа:',
-'watchlistedit-raw-title'     => 'Түүхий хянах жагсаалтыг засварлах',
-'watchlistedit-raw-legend'    => 'Түүхий хянах жагсаалтыг засварлах',
-'watchlistedit-raw-titles'    => 'Гарчигууд:',
-'watchlistedit-raw-submit'    => 'Хянаж буй хуудсуудын жагсаалтыг шинэчлэх',
-'watchlistedit-raw-done'      => 'Таны хянаж буй хуудсуудын жагсаалтыг шинэчлэлээ.',
-'watchlistedit-raw-added'     => '{{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} нэмлээ:',
-'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} авч хаялаа:',
+'watchlistedit-numitems'       => 'Таны хянаж буй хуудасны жагсаалтанд {PLURAL:$1|1 зүйл|$1 зүйл}} байна (хэлэлцүүлгийн хуудсуудыг оролцуулахгүйгээр).',
+'watchlistedit-noitems'        => 'Таны хянаж буй хуудсуудын жагсаалт хоосон байна.',
+'watchlistedit-normal-title'   => 'Хянах жагсаалтаа засварлах',
+'watchlistedit-normal-legend'  => 'Хянаж буй хуудсуудын жагсаалтаас зүйлс хасах',
+'watchlistedit-normal-explain' => 'Хянаж буй хуудсуудын жагсаалт дахь зүйлсийг доор үзүүлэв.
+Зүйлийг авч хаяхын тулд үүний хажуу дахь хайрцгийг сонгоод "{{int:Watchlistedit-normal-submit}}" дээр дарна уу.
+Мөн гар аргаар [[Special:Watchlist/raw|жагсаалтад засвар хийж болно]].',
+'watchlistedit-normal-submit'  => 'Хуудсуудыг авч хаях',
+'watchlistedit-normal-done'    => 'Таны хянаж буй хуудсуудын жагсаалтаас {{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} авч хаялаа:',
+'watchlistedit-raw-title'      => 'Түүхий хянах жагсаалтыг засварлах',
+'watchlistedit-raw-legend'     => 'Түүхий хянах жагсаалтыг засварлах',
+'watchlistedit-raw-explain'    => 'Таны хянаж буй хуудсуудын жагсаалт дахь зүйлсийг доор үзүүлэв, жагсаалтад зүйлс нэмж, үүнээс хасах маягаар засварлаж болно; ингэхдээ мөр бүрд ганц л зүйлийг засварлана.
+Дууссаныхаа дараа "{{int:Watchlistedit-raw-submit}}" дээр дарна уу.
+Та мөн [[Special:Watchlist/edit|стандарт засварлагчийг]] ашиглаж болно.',
+'watchlistedit-raw-titles'     => 'Гарчигууд:',
+'watchlistedit-raw-submit'     => 'Хянаж буй хуудсуудын жагсаалтыг шинэчлэх',
+'watchlistedit-raw-done'       => 'Таны хянаж буй хуудсуудын жагсаалтыг шинэчлэлээ.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} нэмлээ:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} авч хаялаа:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Холбогдох өөрчлөлтүүдийг үзэх',
 'watchlisttools-edit' => 'Хянаж буй хуудсуудын жагсаалтаа үзэж засварлах',
 'watchlisttools-raw'  => 'Хянаж буй хуудсуудын жагсаалтаа текстээр засварлах',
 
+# Core parser functions
+'unknown_extension_tag' => 'Үл мэдэгдэх өргөтгөл таг: "$1"',
+
 # Special:Version
-'version'                  => 'Хувилбар',
-'version-specialpages'     => 'Тусгай хуудсууд',
-'version-other'            => 'Бусад',
-'version-license'          => 'Лиценз',
-'version-software'         => 'Суулгасан программ',
-'version-software-version' => 'Хувилбар',
+'version'                          => 'Хувилбар',
+'version-extensions'               => 'Суулгасан өргөтгөлүүд',
+'version-specialpages'             => 'Тусгай хуудсууд',
+'version-variables'                => 'Хувьсагчууд',
+'version-other'                    => 'Бусад',
+'version-mediahandlers'            => 'Медиа боловсруулагч',
+'version-extension-functions'      => 'Өргөтгөлүүдийн функцууд',
+'version-skin-extension-functions' => 'Скины өргөтгөлийн функцууд',
+'version-hook-subscribedby'        => 'Захиалсан:',
+'version-version'                  => '(Хувилбар $1)',
+'version-license'                  => 'Лиценз',
+'version-software'                 => 'Суулгасан программ',
+'version-software-product'         => 'Бүтээгдэхүүн',
+'version-software-version'         => 'Хувилбар',
 
 # Special:FilePath
-'filepath'        => 'Файлын зам',
-'filepath-page'   => 'Файл:',
-'filepath-submit' => 'Зам',
+'filepath'         => 'Файлын зам',
+'filepath-page'    => 'Файл:',
+'filepath-submit'  => 'Явах',
+'filepath-summary' => 'Энэхүү тусгай хуудас нь файлын бүтэн замыг дуудна.
+Зургууд нь бүтэн хэмжээгээрээ гарах ба бусад файлын төрлүүд нь тохирох програмаараа шууд нээгдэнэ.
+
+Файлын нэрийг "{{ns:file}}:" угтваргүйгээр нь оруулна уу.',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Давхардсан файлуудыг хайх',
+'fileduplicatesearch-summary'  => 'Хэш кодыг ашиглан давхардсан файлуудын хайна.
+
+Файлын нэрийг "{{ns:file}}:" угтваргүйгээр оруулна уу.',
+'fileduplicatesearch-legend'   => 'Давхардалтыг хайх',
 'fileduplicatesearch-filename' => 'Файлын нэр:',
 'fileduplicatesearch-submit'   => 'Хайх',
 'fileduplicatesearch-info'     => '$1 × $2 пиксэл<br />Файлын хэмжээ: $3<br />MIME төрөл: $4',
+'fileduplicatesearch-result-1' => '"$1"-тай яг ижилхэн, давхардсан файл байхгүй байна.',
+'fileduplicatesearch-result-n' => '"$1" файлтай яг ижилхэн, давхардсан {{PLURAL:$2|1 файл|$2 файл}} байна.',
 
 # Special:SpecialPages
-'specialpages'                 => 'Тусгай хуудсууд',
-'specialpages-group-other'     => 'Бусад тусгай хуудсууд',
-'specialpages-group-login'     => 'Нэвтрэх / бүртгүүлэх',
-'specialpages-group-pages'     => 'Хуудсуудын жагсаалтууд',
-'specialpages-group-wiki'      => 'Вики мэдээлэл ба багаж хэрэгслүүд',
-'specialpages-group-redirects' => 'Чиглүүлдэг тусгай хуудсууд',
+'specialpages'                   => 'Тусгай хуудсууд',
+'specialpages-note'              => '----
+* Ердийн тусгай хуудсууд.
+* <strong class="mw-specialpagerestricted">Хориотой тусгай хуудсууд.</strong>',
+'specialpages-group-maintenance' => 'Засвар үйлчилгээний тайлангууд',
+'specialpages-group-other'       => 'Бусад тусгай хуудсууд',
+'specialpages-group-login'       => 'Нэвтрэх / бүртгүүлэх',
+'specialpages-group-changes'     => 'Сүүлийн өөрчлөлтүүд ба логууд',
+'specialpages-group-media'       => 'Медиагийн талаарх мэдээлэл ба оруулалтууд',
+'specialpages-group-users'       => 'Хэрэглэгчид ба тэдний эрх',
+'specialpages-group-highuse'     => 'Их хэрэглээтэй хуудсууд',
+'specialpages-group-pages'       => 'Хуудсуудын жагсаалтууд',
+'specialpages-group-pagetools'   => 'Хуудасны хэрэгслүүд',
+'specialpages-group-wiki'        => 'Вики мэдээлэл ба багаж хэрэгслүүд',
+'specialpages-group-redirects'   => 'Чиглүүлдэг тусгай хуудсууд',
+'specialpages-group-spam'        => 'Спамын хэрэгслүүд',
+
+# Special:BlankPage
+'blankpage'              => 'Хоосон хуудас',
+'intentionallyblankpage' => 'Энэхүү хуудсыг албаар хоосон үлдээв.',
 
 # Special:Tags
-'tag-filter-submit' => 'Шүүлтүүр',
+'tags'                    => 'Хүчинтэй өөрчлөлтийн тагууд',
+'tag-filter'              => '[[Special:Tags|Тагийн]] шүүлтүүр:',
+'tag-filter-submit'       => 'Шүүлтүүр',
+'tags-title'              => 'Тагууд',
+'tags-tag'                => 'Тагийн нэр',
+'tags-display-header'     => 'Өөрчлөлтийн жагсаалтад харагдах байдал',
+'tags-description-header' => 'Утгын бүрэн тайлбар',
 
 # HTML forms
 'htmlform-reset'               => 'Өөрчлөлтүүдийг цуцлах',

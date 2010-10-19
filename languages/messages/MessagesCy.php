@@ -990,7 +990,7 @@ Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:IPBlo
 'revmove-norevisions-title'    => 'Penwyd diwygiad annilys',
 'revmove-norevisions'          => "Nid ydych wedi nodi un neu ragor o ddiwygiadau i'w symud, ynteu nid yw'r diwygiad a nodwyd ar gael.",
 'revmove-nullmove-title'       => 'Teitl gwallus',
-'revmove-nullmove'             => 'Mae\'r un enw ar dudalennau\'r ffynhonnell a\'r cyrchfan. Pwyswch y botwm "Nôl" a phennwch enw tudalen heblaw "$1".',
+'revmove-nullmove'             => 'Mae\'r un enw ar dudalennau\'r ffynhonnell a\'r cyrchfan. Pwyswch y botwm "Nôl" a phennwch enw tudalen heblaw "[[$1]]".',
 'revmove-success-existing'     => "{{PLURAL:$1|Cafodd un diwygiad o [[$2]] ei|$1 diwygiad o [[$2]] eu}} symud i'r dudalen [[$3]].",
 'revmove-success-created'      => "{{PLURAL:$1|Cafodd un diwygiad o [[$2]] ei|$1 diwygiad o [[$2]] eu}} symud i'r dudalen sydd newydd gael ei chreu [[$3]].",
 

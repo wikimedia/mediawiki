@@ -1167,7 +1167,7 @@ $1",
 'revmove-norevisions-title'    => '無効な指定版',
 'revmove-norevisions'          => '指定した版が存在しないか、この機能を利用するために1つ以上の版を指定していません。',
 'revmove-nullmove-title'       => '不正なタイトル',
-'revmove-nullmove'             => '移動元と移動先のページが同一のものです。ページを戻り、「$1」とは違うページを入力してください。',
+'revmove-nullmove'             => '移動元と移動先のページが同一のものです。ページを戻り、「[[$1]]」とは違うページを入力してください。',
 'revmove-success-existing'     => '{{PLURAL:$1|$1版が、[[$2]]から}}既存のページ[[$3]]へ移動されました。',
 'revmove-success-created'      => '{{PLURAL:$1|$1版が、[[$2]]から}}新規作成されたページ[[$3]]へ移動されました。',
 

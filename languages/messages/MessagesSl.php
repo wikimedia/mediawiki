@@ -1076,7 +1076,7 @@ Oglejte si [[Special:IPBlockList|seznam blokiranih IP-jev]] za seznam trenutno a
 'revmove-norevisions-title'    => 'Neveljavna ciljna redakcija',
 'revmove-norevisions'          => 'Niste določili ene ali več ciljnih redakcij za izvedbo te funkcije ali pa izbrana redakcija ne obstaja.',
 'revmove-nullmove-title'       => 'Nepravilen naslov',
-'revmove-nullmove'             => 'Izvorna in ciljna stran sta isti. Prosimo, kliknite »nazaj« in vnesite ime strani drugačno od »$1«.',
+'revmove-nullmove'             => 'Izvorna in ciljna stran sta isti. Prosimo, kliknite »nazaj« in vnesite ime strani drugačno od »[[$1]]«.',
 'revmove-success-existing'     => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na obstoječo stran [[$3]].',
 'revmove-success-created'      => '$1 {{PLURAL:$1|redakcija je bila s strani [[$2]] prestavljena|redakciji sta bili s strani [[$2]] prestavljeni|redakcije so bile s strani [[$2]] prestavljene|redakcij je bilo s strani [[$2]] prestavljenih}} na novo ustvarjeno stran [[$3]].',
 

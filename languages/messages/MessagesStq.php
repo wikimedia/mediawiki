@@ -905,7 +905,7 @@ Wröigje do Logbouke.',
 'revmove-norevisions-title'    => 'Uunjäildige Sielversion',
 'revmove-norevisions'          => 'Du hääst neen Sielversion ounroat, uum disse Aktion truchtoufieren of ju ounroate Version bestoant nit.',
 'revmove-nullmove-title'       => 'Uungultigen Tittel',
-'revmove-nullmove'             => 'Wälle- un Sielsiede sunt identisk. Klik ap "tourääch" un reek n uur Siedennoome as "$1" ien.',
+'revmove-nullmove'             => 'Wälle- un Sielsiede sunt identisk. Klik ap "tourääch" un reek n uur Siedennoome as "[[$1]]" ien.',
 'revmove-success-existing'     => '{{PLURAL:$1|Ne Version fon [[$2]] wuud|$1 Versione fon [[$2]] wuuden}} tou ju existierende Siede [[$3]] ferschäuwen.',
 
 # History merging

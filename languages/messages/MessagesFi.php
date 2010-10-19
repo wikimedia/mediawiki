@@ -1140,7 +1140,7 @@ Sinulla ei ole oikeutta siihen.',
 'revmove-norevisions-title'    => 'Virheellinen kohdeversio',
 'revmove-norevisions'          => 'Et määrittänyt yhtä tai useampaa versiota tämän funktion suoritettavaksi, tai määritettyä versiota ei ole olemassa.',
 'revmove-nullmove-title'       => 'Virheellinen otsikko',
-'revmove-nullmove'             => 'Lähde- ja kohdesivu ovat samat. Palaa edelliselle sivulle ja valitse sivunimi, joka on eri kuin "$1".',
+'revmove-nullmove'             => 'Lähde- ja kohdesivu ovat samat. Palaa edelliselle sivulle ja valitse sivunimi, joka on eri kuin "[[$1]]".',
 'revmove-success-existing'     => '{{PLURAL:$1|Yksi versio|$1 versiota}} sivulta [[$2]] on siirretty olemassa olevalle sivulle [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Yksi versio|$1 versiota}} sivulta [[$2]] on siirretty juuri luodulle sivulle [[$3]].',
 

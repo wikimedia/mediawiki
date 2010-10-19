@@ -1117,7 +1117,7 @@ Ama hina kaspa, hallch'akunapi qhaway.",
 'revmove-norevisions-title'    => 'Akllasqa musuqchasqaqa manam allinchu',
 'revmove-norevisions'          => 'Taripana musuqchasqa sutikunataqa manam akllarqunki kayta ruranapaq icha akllasqayki musuqchasqa suti manam kanchu.',
 'revmove-nullmove-title'       => "P'anqap sutinqa manam allinchu",
-'revmove-nullmove'             => 'Pukyu p\'anqawan taripana p\'anqawanqa kaqllallam kachkan. "Ñawpaqman" ñit\'ispa mana "$1" hinalla kaq sutinta yaykuchiy.',
+'revmove-nullmove'             => 'Pukyu p\'anqawan taripana p\'anqawanqa kaqllallam kachkan. "Ñawpaqman" ñit\'ispa mana "[[$1]]" hinalla kaq sutinta yaykuchiy.',
 'revmove-success-existing'     => "{{PLURAL:$1|Huk musuqchasqaqa [[$2]]-manta|$1 musuqchasqaqa [[$2]]-manta}} [[$3]] sutiyuq kachkaqña p'anqaman astasqa.",
 'revmove-success-created'      => "{{PLURAL:$1|Huk musuqchasqaqa [[$2]]-manta|$1 musuqchasqaqa [[$2]]-manta}} [[$3]] sutiyuq musuq p'anqaman astasqa.",
 

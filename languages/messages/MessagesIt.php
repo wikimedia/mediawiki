@@ -1099,7 +1099,7 @@ $1",
 'revmove-norevisions-title'    => 'Versione non specificata',
 'revmove-norevisions'          => 'Non hai specificato una o più revisioni per eseguire questa funzione o la revisione specificata non esiste.',
 'revmove-nullmove-title'       => 'Titolo invalido',
-'revmove-nullmove'             => 'La pagina sorgente e di destinazione sono identiche. Premere "indietro" ed inserire il nome di una pagina diverso da "$1".',
+'revmove-nullmove'             => 'La pagina sorgente e di destinazione sono identiche. Premere "indietro" ed inserire il nome di una pagina diverso da "[[$1]]".',
 'revmove-success-existing'     => '{{PLURAL:$1|Una revisione di [[$2]] è stata spostata|$1 revisioni di [[$2]] sono state spostate}} nella pagina esistente [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Una revisione di [[$2]] è stata spostata|$1 revisioni di [[$2]] sono state spostate}} nella nuova pagina creata [[$3]].',
 

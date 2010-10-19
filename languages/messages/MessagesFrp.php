@@ -1223,7 +1223,7 @@ Volyéd clicar dessus « Devant » et pués tornâd èprovar.',
 'revmove-norevisions'          => 'Vos éd pas spècefiâ yona ou ben un mouél de vèrsions cibes por fâre cela fonccionalitât ou ben la vèrsion spècefiâ ègziste pas.',
 'revmove-nullmove-title'       => 'Crouyo titro',
 'revmove-nullmove'             => 'Les pâges sôrsa et ciba sont pariéres.
-Volyéd clicar dessus « Devant » et pués buchiéd un nom de pâge difèrent de « $1 ».',
+Volyéd clicar dessus « Devant » et pués buchiéd un nom de pâge difèrent de « [[$1]] ».',
 'revmove-success-existing'     => '{{PLURAL:$1|Yona vèrsion de [[$2]] at étâ dèplaciê|$1 vèrsions de [[$2]] ont étâ dèplaciês}} vers la pâge ègzistenta [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Yona vèrsion de [[$2]] at étâ dèplaciê|$1 vèrsions de [[$2]] ont étâ dèplaciês}} vers la pâge [[$3]] novèlament fêta.',
 

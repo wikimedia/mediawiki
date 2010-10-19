@@ -986,7 +986,7 @@ Prošu přepruwuj protokole.',
 'revmove-norevisions-title'    => 'Njepłaćiwa cilowa wersija',
 'revmove-norevisions'          => 'Njejsy jednu wersiju abo wjace wersijow podał, zo by tutu funkciju wuwjedł, abo podata wersija njeeksistuje.',
 'revmove-nullmove-title'       => 'Njepłaćiwy titul',
-'revmove-nullmove'             => 'Žórłowa a cilowa strona stej identiskej. Prošu klikń na  "wróćo" a zapodaj druhe mjeno strony hač "$1".',
+'revmove-nullmove'             => 'Žórłowa a cilowa strona stej identiskej. Prošu klikń na  "wróćo" a zapodaj druhe mjeno strony hač "[[$1]]".',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna wersija je so wot [[$2]]|$1 wersiji stej so wot [[$2]]|$1 wersije su so wot [[$2]]|$1 wersijow je so wot [[$2]]}} do eksistowaceje strony [[$3]] {{PLURAL:$1|přesunyła|přesunyłoj|přesunyli|přesunyło}}.',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna wersija je so wot [[$2]]|$1 wersiji stej so wot [[$2]]|$1 wersije su so wot [[$2]]|$1 wersijow je so wot [[$2]]}} do runje wutworjeneje strony [[$3]] {{PLURAL:$1|přesunyła|přesunyłoj|přesunyli|přesunyło}}.',
 

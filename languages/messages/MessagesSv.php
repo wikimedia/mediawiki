@@ -1193,7 +1193,7 @@ Se [[Special:IPBlockList|blockeringslistan]] för listan över gällande blocker
 'revmove-norevisions-title'    => 'Ogiltig målversion',
 'revmove-norevisions'          => 'Du har inte angivit en eller flera målversioner för att utföra denna funktion eller den angivna versionen finns inte.',
 'revmove-nullmove-title'       => 'Dålig titel',
-'revmove-nullmove'             => 'Källa och målsida är identiska. Klicka på "tillbaka" och ange ett sidnamn som skiljer sig från "$1".',
+'revmove-nullmove'             => 'Källa och målsida är identiska. Klicka på "tillbaka" och ange ett sidnamn som skiljer sig från "[[$1]]".',
 'revmove-success-existing'     => '{{PLURAL:$1|En version från [[$2]] har|$1 versioner från [[$2]] har}} flyttats till den befintliga sidan [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|En version från [[$2]] har|$1 versioner från [[$2]] har}} flyttats till den nyskapade sidan [[$3]].',
 

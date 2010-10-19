@@ -1035,7 +1035,7 @@ Sila lihat juga [[Special:IPBlockList|senarai sekatan IP]] yang sedang berkuatku
 'revmove-norevisions'          => 'Anda tidak menentukan mana-mana semakan atau semakan yang telah ditentukan tidak wujud.',
 'revmove-nullmove-title'       => 'Tajuk tidak sah',
 'revmove-nullmove'             => 'Laman sasaran tidak boleh sama dengan laman sumber.
-Kembali ke laman sebelumnya dan pilih nama yang berbeza daripada "$1".',
+Kembali ke laman sebelumnya dan pilih nama yang berbeza daripada "[[$1]]".',
 'revmove-success-existing'     => '1 {{PLURAL:$1|semakan|semakan}} telah dipindahkan dari ke laman [[$2]] ke laman wujud [[$3]].',
 'revmove-success-created'      => '1 {{PLURAL:$1|semakan|semakan}} telah dipindahkan dari ke laman [[$2]] ke laman baru [[$3]].',
 
