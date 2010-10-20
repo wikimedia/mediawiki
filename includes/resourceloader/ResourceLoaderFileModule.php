@@ -352,16 +352,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets a list of element that match a key, optionally using a fallback key.
 	 * 
-	 * @param {array} $map Map of lists to select from
+	 * @param {array} $list List of lists to select from
 	 * @param {string} $key Key to look for in $map
-	 * @param {string} $fallback Key to look for in map if $key is not in $map
+	 * @param {string} $fallback Key to look for in $list if $key doesn't exist
 	 * @return {array} List of elements from $map which matched $key or $fallback, or an empty list in case of no match
 	 */
-	protected static function tryForKey( $list, $key, $fallback = null ) {
+	protected static function tryForKey( array $list, $key, $fallback = null ) {
 		if ( isset( $list[$key] ) && is_array( $list[$key] ) ) {
-			return (array) $list[$key];
-		} else if ( is_string( $fallback ) && isset( $list[$fallback] ) ) {
-			return (array) $list[$fallback];
+			return $list[$key];
+		} else if ( is_string( $fallback ) && isset( $list[$fallback] ) && is_array( $list[$fallback] ) ) {
+			return $list[$fallback];
 		}
 		return array();
 	}
