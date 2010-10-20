@@ -43,15 +43,15 @@ class ActiveUsersPager extends UsersPager {
 				$this->requestedUser = $username->getText();
 			}
 		}
-		
+
 		$this->setupOptions();
-		
+
 		parent::__construct();
 	}
 
 	public function setupOptions() {
 		global $wgRequest;
-		
+
 		$this->opts = new FormOptions();
 
 		$this->opts->add( 'hidebots', false, FormOptions::BOOL );
@@ -60,10 +60,12 @@ class ActiveUsersPager extends UsersPager {
 		$this->opts->fetchValuesFromRequest( $wgRequest );
 
 		$this->groups = array();
-		if ($this->opts->getValue('hidebots') == 1)
+		if ( $this->opts->getValue( 'hidebots' ) == 1 ) {
 			$this->groups['bot'] = true;
-		if ($this->opts->getValue('hidesysops') == 1)
+		}
+		if ( $this->opts->getValue( 'hidesysops' ) == 1 ) {
 			$this->groups['sysop'] = true;
+		}
 	}
 
 	function getIndexField() {
@@ -76,7 +78,7 @@ class ActiveUsersPager extends UsersPager {
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
 		$conds[] = "rc_log_type IS NULL OR rc_log_type != 'newusers'";
 		$conds[] = "rc_timestamp >= '{$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 )}'";
-		
+
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
@@ -105,14 +107,15 @@ class ActiveUsersPager extends UsersPager {
 	function formatRow( $row ) {
 		global $wgLang;
 		$userName = $row->user_name;
-		
+
 		$ulinks = $this->getSkin()->userLink( $row->user_id, $userName );
 		$ulinks .= $this->getSkin()->userToolLinks( $row->user_id, $userName );
 
 		$list = array();
 		foreach( self::getGroups( $row->user_id ) as $group ) {
-			if (isset($this->groups[$group]))
+			if ( isset( $this->groups[$group] ) ) {
 				return;
+			}
 			$list[] = self::buildGroupLink( $group );
 		}
 		$groups = $wgLang->commaList( $list );
@@ -145,10 +148,10 @@ class ActiveUsersPager extends UsersPager {
 
 		$out .= Xml::checkLabel( wfMsg('activeusers-hidesysops'), 'hidesysops', 'hidesysops', $this->opts->getValue( 'hidesysops' ) ) . '<br />';
 
-		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .  "\n";# Submit button and form bottom
+		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n";# Submit button and form bottom
 		$out .= Xml::closeElement( 'fieldset' );
 		$out .= Xml::closeElement( 'form' );
-		
+
 		return $out;
 	}
 }
@@ -161,7 +164,7 @@ class SpecialActiveUsers extends SpecialPage {
 	/**
 	 * Constructor
 	 */
-	public function  __construct() {
+	public function __construct() {
 		parent::__construct( 'Activeusers' );
 	}
 
