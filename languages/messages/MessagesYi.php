@@ -1013,6 +1013,7 @@ $1",
 
 # Revision move
 'revisionmove'                 => ' באַוועגן ווערסיעס פון "$1"',
+'revmove-legend'               => 'שטעלן צילבלאַט און רעזומע',
 'revisionmoveselectedversions' => 'באַוועגן סעלעקטירטע ווערסיעס',
 'revmove-reasonfield'          => 'אורזאַך:',
 'revmove-titlefield'           => 'ציל בלאַט:',
@@ -1161,6 +1162,7 @@ $1",
 'contextlines'                  => 'שורות פער רעזולטאט',
 'contextchars'                  => 'קאנטעקסט פער שורה',
 'stub-threshold'                => 'שוועל פֿאַר <a href="#" class="stub">שטומף לינק</a> פֿאָרמאַטירונג (בייטן):',
+'stub-threshold-disabled'       => 'אַנולירט',
 'recentchangesdays'             => 'צאל פון טעג צו ווייזן אין די לעצטע ענדערונגן:',
 'recentchangesdays-max'         => 'מאַקסימום $1 {{PLURAL:$1|טאָג|טעג}}',
 'recentchangescount'            => 'די צאָל רעדאַקטירונגען צו ווײַזן גרונטלעך:',
@@ -1441,6 +1443,7 @@ $1",
 'badfilename'           => 'טעקע נאמען איז געטוישט צו "$1".',
 'filetype-missing'      => 'די טעקע האט נישט קיין פארברייטערונג (למשל ".jpg").',
 'filename-tooshort'     => 'דער טעקענאמען איז צו קורץ',
+'illegal-filename'      => 'דער טעקע־נאָמען איז נישט ערלויבט',
 'large-file'            => 'רעקאמענדירט אז טעקעס זאל נישט זײַן גרעסער פֿון$1;
 די טעקע איז $2.',
 'emptyfile'             => 'די טעקע וואס איר האט ארויפֿלגעלאָדן איז ליידיג.

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ganesh
+ * @author Lkhatiwada
  * @author RajeshPandey
  * @author ne.wikipedia.org sysops
  * @author सरोज कुमार ढकाल
@@ -556,7 +557,7 @@ $1',
 'blockededitsource'                => "'''$1'''को '''तपाईँको सम्पादन'''को पाठ तल देखाइएको छ:",
 'whitelistedittitle'               => 'सम्पादन गर्नको लागि प्रवेश (लग इन) आवश्यक छ',
 'whitelistedittext'                => 'पाना सम्पादन गर्न तपाँईले $1 गर्नु पर्दछ।',
-'nosuchsectiontitle'               => 'त्यस्तो खण्ड छैन',
+'nosuchsectiontitle'               => 'सेक्सन फेला परेन',
 'loginreqtitle'                    => 'प्रवेशगर्नु जरुरी छ।',
 'loginreqlink'                     => 'प्रवेश (लग ईन)',
 'loginreqpagetext'                 => 'अरु पृष्ठहेर्न तपाईले $1 गर्नुपर्छ ।',
@@ -1203,7 +1204,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'filedelete-nofile'           => "'''$1''' अस्तित्वमा छैन ।",
 'filedelete-otherreason'      => 'थप प्रवाह विकल्प',
 'filedelete-reason-otherlist' => 'अन्य कोडेक',
-'filedelete-edit-reasonlist'  => 'मेट्नको लागि अनुक्रमणिका',
+'filedelete-edit-reasonlist'  => 'मेट्नका कारण संपादन गर्नुहोस् ।',
 
 # MIME search
 'mimesearch' => 'MIME खोज',
@@ -1217,7 +1218,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'listredirects' => 'प्रभाव सूची',
 
 # Unused templates
-'unusedtemplates'    => 'प्याकेजबाट टेम्प्लेट उद्धरण गर्दैछ: %d%%',
+'unusedtemplates'    => 'प्रयोग नगरिएको टेम्प्लेट',
 'unusedtemplateswlh' => 'अन्य कोडेक',
 
 # Random page

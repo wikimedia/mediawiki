@@ -357,6 +357,9 @@ Masiaus usuarios son mirando d'acceder ta ista pachina.
 Aguarde una mica antes de tornar a acceder ta ista pachina.
 
 $1",
+'pool-timeout'      => "S'ha pasau o tiempo d'aspera limite ta o bloqueyo",
+'pool-queuefull'    => 'A coda de treballo ye plena',
+'pool-errorunknown' => 'Error desconoixida',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Información sobre {{SITENAME}}',
@@ -706,7 +709,7 @@ A contrasenya ta ista nueva cuenta la puet cambiar en a pachina ''[[Special:Chan
 Ta creyar a pachina, prencipie a escribir en a caixa d'abaixo (mire-se l'[[{{MediaWiki:Helppage}}|aduya]] ta más información).
 Si ye plegau por error, punche o botón \"enta zaga\" d'o suyo navegador.",
 'anontalkpagetext'                 => "----''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito servir. Por ixo, hemos d'emplegar a suya adreza IP ta identificar-lo/a.
-Barios usuarios pueden compartir una mesma adreza IP.
+Diferents usuarios pueden compartir una mesma adreza IP.
 Si vusté ye un usuario anonimo y creye que l'han escrito comentarios no relevants, [[Special:UserLogin/signup|creye una cuenta]] u [[Special:UserLogin/signup|identifique-se]] ta privar confusions futuras con atros usuarios anonimos.''",
 'noarticletext'                    => 'Por agora no bi ha garra texto en ista pachina. Puet [[Special:Search/{{PAGENAME}}|mirar o títol d\'ista pachina]] en atras pachinas, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mirar os rechistros relacionatos] u [{{fullurl:{{FULLPAGENAME}}|action=edit}} escribir ista pachina].',
 'noarticletext-nopermission'       => 'Por l\'inte no i hai garra texto en ista pachina.
@@ -3254,5 +3257,9 @@ Escriba o nombre d\'o fichero sin o prefixo "{{ns:file}}:".',
 'htmlform-submit'              => 'Ninviar',
 'htmlform-reset'               => 'Desfer cambios',
 'htmlform-selectorother-other' => 'Atros',
+
+# SQLite database support
+'sqlite-has-fts' => '$1, con soporte de busca de texto integro',
+'sqlite-no-fts'  => '$1, sin soporte de busca de texto integro',
 
 );
