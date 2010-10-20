@@ -38,6 +38,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryRevisions extends ApiQueryBase {
 
+	private $diffto, $difftotext, $expandTemplates, $generateXML, $section,
+		$token;
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rv' );
 	}
@@ -109,7 +112,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->dieUsage( 'titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start and end parameters may only be used on a single page.', 'multpages' );
 		}
 
-		$this->diffto = $this->difftotext = null;
 		if ( !is_null( $params['difftotext'] ) ) {
 			$this->difftotext = $params['difftotext'];
 		} elseif ( !is_null( $params['diffto'] ) ) {
