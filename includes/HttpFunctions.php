@@ -402,6 +402,19 @@ class HttpRequest {
 		}
 	}
 
+	/**
+	 * Get the member variable status for an HTTP Request
+	 *
+	 * @return Integer
+	 */
+	public function getStatus() {
+		if ( !$this->respHeaders ) {
+			$this->parseHeader();
+		}
+
+		return (int)$this->respStatus;
+	}
+
 
 	/**
 	 * Returns true if the last status code was a redirect.
