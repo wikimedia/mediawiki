@@ -26,7 +26,7 @@ class RawPage {
 	function __construct( Article $article, $request = false ) {
 		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType, $wgGroupPermissions;
 
-		$allowedCTypes = array('text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit');
+		$allowedCTypes = array( 'text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit' );
 		$this->mArticle = $article;
 		$this->mTitle = $article->mTitle;
 
@@ -57,7 +57,7 @@ class RawPage {
 				break;
 			case 'prev':
 				# output previous revision, or nothing if there isn't one
-				if( ! $oldid ) {
+				if( !$oldid ) {
 					# get the current revision so we can get the penultimate one
 					$this->mArticle->getTouched();
 					$oldid = $this->mArticle->mLatest;
@@ -76,17 +76,21 @@ class RawPage {
 
 		if( $gen == 'css' ) {
 			$this->mGen = $gen;
-			if( is_null( $smaxage ) ) $smaxage = $wgSquidMaxage;
-			if($ctype == '') $ctype = 'text/css';
+			if( is_null( $smaxage ) ) {
+				$smaxage = $wgSquidMaxage;
+			}
+			if( $ctype == '' ) {
+				$ctype = 'text/css';
+			}
 		} else {
 			$this->mGen = false;
 		}
 		$this->mCharset = $wgInputEncoding;
 
 		# Force caching for CSS and JS raw content, default: 5 minutes
-		if( is_null($smaxage) and ($ctype=='text/css' or $ctype==$wgJsMimeType) ) {
+		if( is_null( $smaxage ) && ( $ctype == 'text/css' || $ctype == $wgJsMimeType ) ) {
 			global $wgForcedRawSMaxage;
-			$this->mSmaxage = intval($wgForcedRawSMaxage);
+			$this->mSmaxage = intval( $wgForcedRawSMaxage );
 		} else {
 			$this->mSmaxage = intval( $smaxage );
 		}
@@ -94,13 +98,13 @@ class RawPage {
 
 		# Output may contain user-specific data;
 		# vary generated content for open sessions and private wikis
-		if( $this->mGen or !$wgGroupPermissions['*']['read'] ) {
+		if( $this->mGen || !$wgGroupPermissions['*']['read'] ) {
 			$this->mPrivateCache = $this->mSmaxage == 0 || session_id() != '';
 		} else {
 			$this->mPrivateCache = false;
 		}
 
-		if( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
+		if( $ctype == '' || !in_array( $ctype, $allowedCTypes ) ) {
 			$this->mContentType = 'text/x-wiki';
 		} else {
 			$this->mContentType = $ctype;
@@ -124,28 +128,28 @@ class RawPage {
 			#
 			# Just return a 403 Forbidden and get it over with.
 			wfHttpError( 403, 'Forbidden',
-				'Invalid file extension found in PATH_INFO. ' . 
+				'Invalid file extension found in PATH_INFO. ' .
 				'Raw pages must be accessed through the primary script entry point.' );
 			return;
 		}
 
-		header( "Content-type: ".$this->mContentType.'; charset='.$this->mCharset );
+		header( 'Content-type: ' . $this->mContentType . '; charset=' . $this->mCharset );
 		# allow the client to cache this for 24 hours
 		$mode = $this->mPrivateCache ? 'private' : 'public';
-		header( 'Cache-Control: '.$mode.', s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
-		
+		header( 'Cache-Control: ' . $mode . ', s-maxage=' . $this->mSmaxage . ', max-age=' . $this->mMaxage );
+
 		global $wgUseFileCache;
-		if( $wgUseFileCache and HTMLFileCache::useFileCache() ) {
+		if( $wgUseFileCache && HTMLFileCache::useFileCache() ) {
 			$cache = new HTMLFileCache( $this->mTitle, 'raw' );
 			if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
 				$cache->loadFromFileCache();
 				$wgOut->disable();
 				return;
 			} else {
-				ob_start( array(&$cache, 'saveToFileCache' ) );
+				ob_start( array( &$cache, 'saveToFileCache' ) );
 			}
 		}
-		
+
 		$text = $this->getRawText();
 
 		if( !wfRunHooks( 'RawPageViewBeforeOutput', array( &$this, &$text ) ) ) {
@@ -160,8 +164,9 @@ class RawPage {
 		global $wgUser, $wgOut;
 		if( $this->mGen ) {
 			$sk = $wgUser->getSkin();
-			if( !StubObject::isRealObject( $wgOut ) )
+			if( !StubObject::isRealObject( $wgOut ) ) {
 				$wgOut->_unstub( 2 );
+			}
 			$sk->initPage( $wgOut );
 			if( $this->mGen == 'css' ) {
 				return $sk->generateUserStylesheet();
@@ -180,8 +185,9 @@ class RawPage {
 				$key = $this->mTitle->getDBkey();
 				$text = wfMsgForContentNoTrans( $key );
 				# If the message doesn't exist, return a blank
-				if( wfEmptyMsg( $key, $text ) )
+				if( wfEmptyMsg( $key, $text ) ) {
 					$text = '';
+				}
 				$found = true;
 			} else {
 				// Get it from the DB
@@ -190,11 +196,12 @@ class RawPage {
 					$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 					header( "Last-modified: $lastmod" );
 
-					if( !is_null($this->mSection ) ) {
+					if( !is_null( $this->mSection ) ) {
 						global $wgParser;
-						$text = $wgParser->getSection ( $rev->getText(), $this->mSection );
-					} else
+						$text = $wgParser->getSection( $rev->getText(), $this->mSection );
+					} else {
 						$text = $rev->getText();
+					}
 					$found = true;
 				}
 			}
@@ -206,7 +213,7 @@ class RawPage {
 			# 404s aren't generally cached and it would create
 			# extra hits when user CSS/JS are on and the user doesn't
 			# have the pages.
-			header( "HTTP/1.0 404 Not Found" );
+			header( 'HTTP/1.0 404 Not Found' );
 		}
 
 		// Special-case for empty CSS/JS
@@ -218,22 +225,24 @@ class RawPage {
 		//
 		// Give it a comment...
 		if( strlen( $text ) == 0 &&
-			($this->mContentType == 'text/css' ||
+			( $this->mContentType == 'text/css' ||
 				$this->mContentType == 'text/javascript' ) ) {
-			return "/* Empty */";
+			return '/* Empty */';
 		}
 
 		return $this->parseArticleText( $text );
 	}
 
 	function parseArticleText( $text ) {
-		if( $text === '' )
+		if( $text === '' ) {
 			return '';
-		else
+		} else {
 			if( $this->mExpandTemplates ) {
 				global $wgParser;
 				return $wgParser->preprocess( $text, $this->mTitle, new ParserOptions() );
-			} else
+			} else {
 				return $text;
+			}
+		}
 	}
 }
