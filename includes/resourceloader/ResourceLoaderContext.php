@@ -51,10 +51,10 @@ class ResourceLoaderContext {
 		$this->request = $request;
 
 		// Interpret request
-		# list of modules
+		// List of modules
 		$modules = $request->getVal( 'modules' );
 		$this->modules   = $modules ? explode( '|', $modules ) : array();
-		# various parameters
+		// Various parameters
 		$this->language  = $request->getVal( 'lang' );
 		$this->direction = $request->getVal( 'dir' );
 		$this->skin      = $request->getVal( 'skin' );

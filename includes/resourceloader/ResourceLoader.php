@@ -43,10 +43,8 @@ class ResourceLoader {
 	 * This method grabs modules dependencies from the database and updates modules objects.
 	 * 
 	 * This is not inside the module code because it's so much more performant to request all of the information at once
-	 * than it is to have each module requests it's own information. This sacrifice of modularity yields a profound
+	 * than it is to have each module requests its own information. This sacrifice of modularity yields a profound
 	 * performance improvement.
-	 * 
-	 * A first pass calculates dependent file modified times, a second one calculates message blob modified times.
 	 * 
 	 * @param {array} $modules List of module names to preload information for
 	 * @param {ResourceLoaderContext} $context Context to load the information within
@@ -66,7 +64,7 @@ class ResourceLoader {
 			), __METHOD__
 		);
 
-		// Set modules dependecies		
+		// Set modules' dependecies		
 		$modulesWithDeps = array();
 		foreach ( $res as $row ) {
 			$this->modules[$row->md_module]->setFileDependencies( $skin,
@@ -108,12 +106,12 @@ class ResourceLoader {
 	/**
 	 * Runs JavaScript or CSS data through a filter, caching the filtered result for future calls.
 	 * 
-	 * Availables filters are:
+	 * Available filters are:
 	 *  - minify-js \see JSMin::minify
 	 *  - minify-css \see CSSMin::minify
 	 *  - flip-css \see CSSJanus::transform
 	 * 
-	 * If data is empty, only whitespace or the filter was unknown, data is returned unmodified.
+	 * If $data is empty, only contains whitespace or the filter was unknown, $data is returned unmodified.
 	 * 
 	 * @param {string} $filter Name of filter to run
 	 * @param {string} $data Text to filter, such as JavaScript or CSS text
@@ -327,10 +325,10 @@ class ResourceLoader {
 	 * 
 	 * @param {ResourceLoaderContext} $context Context in which to generate a response
 	 * @param {array} $modules List of module objects keyed by module name
-	 * @param {array} $missing List of unavailables modules (optional)
+	 * @param {array} $missing List of unavailable modules (optional)
 	 * @return {string} Response data
 	 */
-	public function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = null ) {
+	public function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = array() ) {
 		// Pre-fetch blobs
 		$blobs = $context->shouldIncludeMessages() ?
 			MessageBlobStore::get( $this, $modules, $context->getLanguage() ) : array();
