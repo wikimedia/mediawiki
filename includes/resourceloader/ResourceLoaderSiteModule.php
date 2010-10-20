@@ -29,9 +29,14 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 
 	/* Protected Methods */
 
+	/**
+	 * Gets list of pages used by this module
+	 * 
+	 * @return {array} List of pages
+	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		global $wgHandheldStyle;
-		
+
 		$pages = array(
 			'Common.js' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'script' ),
 			'Common.css' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'style' ),
@@ -44,9 +49,14 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		}
 		return $pages;
 	}
-	
+
 	/* Methods */
-	
+
+	/**
+	 * Gets group name
+	 * 
+	 * @return {string} Name of group
+	 */
 	public function getGroup() {
 		return 'site';
 	}
