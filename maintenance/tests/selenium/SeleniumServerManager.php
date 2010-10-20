@@ -82,7 +82,7 @@ class SeleniumServerManager {
 		switch ( $this->OS ) {
 			case "Linux":
 #			case' CYGWIN_NT-5.1':
-#			case 'Darwin':
+			case 'Darwin':
 #			case 'FreeBSD':
 #			case 'HP-UX':
 #			case 'IRIX64':
@@ -113,7 +113,7 @@ class SeleniumServerManager {
 		switch ( $this->OS ) {
 			case "Linux":
 #			case' CYGWIN_NT-5.1':
-#			case 'Darwin':
+			case 'Darwin':
 #			case 'FreeBSD':
 #			case 'HP-UX':
 #			case 'IRIX64':
@@ -140,8 +140,17 @@ class SeleniumServerManager {
 	private function startServerOnUnix() {
 
 		$output = array();
-                $user = $_ENV['USER'];
-		exec("ps -U " . $user . " w | grep -i selenium-server", $output);
+		$user = $_ENV['USER'];
+		// @fixme this should be a little more generalized :)
+		if (PHP_OS == 'Darwin') {
+			// Mac OS X's ps barfs on the 'w' param, but doesn't need it.
+			$ps = "ps -U %s";
+		} else {
+			// Good on Linux
+			$ps = "ps -U %s w";
+		}
+		$psCommand = sprintf($ps, escapeshellarg($user));
+		exec($psCommand . " | grep -i selenium-server", $output);
 
 		// Start server. If there is already a server running,
 		// return running.
@@ -164,7 +173,7 @@ class SeleniumServerManager {
 				$commandSuffix = ' > /dev/null 2>&1'. ' & echo $!';
 				$portText = ' -port ' . $this->SeleniumServerPort;
 				$command = "java -jar " . 
-					$this->SeleniumServerExecPath .
+					escapeshellarg($this->SeleniumServerExecPath) .
 					$portText . $commandSuffix;
 				exec($command ,$op); 
 				$pid = (int)$op[0]; 
