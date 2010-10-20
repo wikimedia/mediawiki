@@ -491,7 +491,7 @@ Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente 
 'cannotdelete'         => 'Le pagina o file "$1" non poteva esser delite.
 Es possibile que un altere persona lo ha ja delite.',
 'badtitle'             => 'Titulo invalide',
-'badtitletext'         => 'Le titulo de pagina requestate esseva invalide, vacue, o un titulo interlingual o interwiki incorrectemente ligate.
+'badtitletext'         => 'Le titulo de pagina requestate es invalide, vacue, o un titulo interlingual o interwiki incorrectemente ligate.
 Es possibile que illo contine un o plure characteres que non pote esser usate in titulos.',
 'perfcached'           => 'Le sequente datos se recuperava del cache e possibilemente non es actual.',
 'perfcachedts'         => 'Le sequente datos se recuperava del cache. Ultime actualisation: le $1.',
@@ -1922,7 +1922,7 @@ Pro restringer le presentation, selige un typo de registro, le nomine de usator 
 'allpagesnext'      => 'Sequente',
 'allpagessubmit'    => 'Ir',
 'allpagesprefix'    => 'Monstrar le paginas con prefixo:',
-'allpagesbadtitle'  => 'Le titulo de pagina date esseva invalide o habeva un prefixo interlingual o interwiki.
+'allpagesbadtitle'  => 'Le titulo de pagina date es invalide o ha un prefixo interlingual o interwiki.
 Es possibile que illo contine un o plus characteres que non pote esser usate in titulos.',
 'allpages-bad-ns'   => '{{SITENAME}} non ha un spatio e nomines "$1".',
 

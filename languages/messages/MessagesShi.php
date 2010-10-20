@@ -287,11 +287,11 @@ laffut d yurrin ɣ database "<tt>$3: $4</tt>".',
 'readonly'        => 'Tqqn tabase',
 'missing-article' => 'lqaa\'ida n lbayanat ortofa nass ad gh tawriqt  liss ikhssa asti taf limism "$1" $2.
 
-ghikad artitsbib  igh itab3a lfr9 a9dim nghd tarikh artawi skra nsf7a ityo7yadn.
+ghikad artitsbib  igh itabaa lfrq aqdim nghd tarikh artawi skra nsfha ityohyadn.
 
 ighor iga lhal ghika ati ran taft kra lkhata gh lbarnamaj.
 
-ini mayad ikra [[Special:ListUsers/sysop|lmodir]] tfktas ladriss ntwri9t an.',
+ini mayad ikra [[Special:ListUsers/sysop|lmodir]] tfktas ladriss ntwriqt an.',
 'viewsource'      => 'Mel iɣbula',
 
 # Login and logout pages
@@ -801,7 +801,7 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 # Bad image list
 'bad_image_list' => 'zud ghikad :
 
-ghir l7wayj n lista (stour libdounin s *) karaytyo7asab',
+ghir lhwayj n lista (stour libdounin s *) karaytyo7asab',
 
 # Metadata
 'metadata'          => 'isfka n mita',

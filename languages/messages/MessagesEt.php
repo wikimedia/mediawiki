@@ -1573,7 +1573,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'rc_categories_any'                 => 'Mistahes',
 'newsectionsummary'                 => '/* $1 */ uus alajaotus',
 'rc-enhanced-expand'                => 'Näita üksikasju (nõuab JavaScripti)',
-'rc-enhanced-hide'                  => 'Peida detailid',
+'rc-enhanced-hide'                  => 'Peida üksikasjad',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Seotud muudatused',

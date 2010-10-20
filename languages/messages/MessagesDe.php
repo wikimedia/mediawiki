@@ -3575,7 +3575,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'htmlform-selectorother-other' => 'Andere',
 
 # SQLite database support
-'sqlite-has-fts' => '$1 unterstützt die Volltextsuche',
-'sqlite-no-fts'  => '$1 unterstützt die Volltextsuche nicht',
+'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',
+'sqlite-no-fts'  => 'Version $1 ohne Unterstützung für die Volltextsuche',
 
 );

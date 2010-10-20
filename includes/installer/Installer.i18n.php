@@ -2555,6 +2555,7 @@ Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoitta
  * @author McDutchie
  * @author Peter17
  * @author Sherbrooke
+ * @author Verdy p
  * @author Yumeki
  */
 $messages['fr'] = array(
@@ -2723,12 +2724,15 @@ Bien que MediaWiki vérifie tous les fichiers téléchargés, il est fortement r
 Si vous utilisez un hébergement mutualisé, votre hébergeur doit vous avoir fourni le nom d’hôte correct dans sa documentation.
 
 Si vous installez sur un serveur Windows et utilisez MySQL, « localhost » peut ne pas fonctionner comme nom de serveur. S'il ne fonctionne pas, essayez « 127.0.0.1 » comme adresse IP locale.",
+	'config-db-host-oracle' => 'Nom TNS de la base de données :',
+	'config-db-host-oracle-help' => 'Entrez un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Nom de connexion locale] valide; un fichier tnsnames.ora doit être visible par cette installation. <br /> Si vous utilisez les bibliothèques clientes version 10g ou plus récentes, vous pouvez également utiliser la méthode de nommage [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifier ce wiki',
 	'config-db-name' => 'Nom de la base de données :',
 	'config-db-name-help' => "Choisissez un nom qui identifie votre wiki.
 Il ne doit pas contenir d'espaces ou de traits d'union.
 
 Si vous utilisez un hébergement web partagé, votre hébergeur vous fournira un nom spécifique de base de données à utiliser, ou bien vous permet de créer des bases de données via un panneau de contrôle.",
+	'config-db-name-oracle' => 'Schéma de base de données :',
 	'config-db-install-account' => "Compte d'utilisateur pour l'installation",
 	'config-db-username' => 'Nom d’utilisateur de la base de données :',
 	'config-db-password' => 'Mot de passe de la base de données :',
@@ -2767,6 +2771,8 @@ L'installateur écrira un fichier <code>.htaccess</code> en même temps, mais s'
 Cela comprend les données des utilisateurs (adresses de courriel, mots de passe hachés) ainsi que des révisions supprimées et d'autres données confidentielles du wiki.
 
 Envisagez de placer la base de données ailleurs, par exemple dans <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts' => "Espace de stockage (''tablespace'') par défaut :",
+	'config-oracle-temp-ts' => "Espace de stockage (''tablespace'') temporaire :",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -2779,12 +2785,16 @@ Si vous ne voyez pas le système de base de données que vous essayez d'utiliser
 	'config-support-mysql' => '* $1 est le premier choix pour MediaWiki et est mieux pris en charge ([http://www.php.net/manual/en/mysql.installation.php how to compile PHP with MySQL support])',
 	'config-support-postgres' => "* $1 est un système de base de données populaire et ''open source'' qui peut être une alternative à MySQL ([http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support])",
 	'config-support-sqlite' => '* $1 est un système de base de données léger qui est bien supporté. ([http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], utilise PDO)',
+	'config-support-oracle' => '* $1 est un système commercial de gestion de base de données d’entreprise. ([Http://www.php.net/manual/en/oci8.installation.php Comment compiler PHP avec le support OCI8])',
 	'config-header-mysql' => 'Paramètres de MySQL',
 	'config-header-postgres' => 'Paramètres de PostgreSQL',
 	'config-header-sqlite' => 'Paramètres de SQLite',
 	'config-header-oracle' => 'Paramètres d’Oracle',
 	'config-invalid-db-type' => 'Type de base de données non valide',
 	'config-missing-db-name' => 'Vous devez saisir une valeur pour « Nom de la base de données »',
+	'config-missing-db-server-oracle' => 'Vous devez saisir une valeur pour le « Nom TNS de la base de données »',
+	'config-invalid-db-server-oracle' => 'Le nom TNS de la base de données (« $1 ») est invalide.
+Il ne peut contenir que des lettres latines de base (a-z, A-Z), des chiffres (0-9), des caractères de soulignement (_) et des points (.).',
 	'config-invalid-db-name' => 'Nom de la base de données invalide (« $1 »).
 Il ne peut contenir que des lettres latines (a-z, A-Z), des chiffres (0-9) et des caractères de soulignement (_).',
 	'config-invalid-db-prefix' => 'Préfixe de la base de données non valide « $1 ». 
@@ -4349,6 +4359,7 @@ Si tu usa un servitor web usate in commun, tu providitor deberea dar te le corre
 
 Si tu face le installation in un servitor Windows e usa MySQL, le nomine "localhost" possibilemente non functiona como nomine de servitor. Si non, essaya "127.0.0.1", i.e. le adresse IP local.',
 	'config-db-host-oracle' => 'TNS del base de datos:',
+	'config-db-host-oracle-help' => 'Entra un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nomine Local Connect] valide; un file tnsnames.ora debe esser visibile a iste installation.<br />Si tu usa bibliothecas de cliente 10g o plus recente, tu pote anque usar le methodo de nomination [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identificar iste wiki',
 	'config-db-name' => 'Nomine del base de datos:',
 	'config-db-name-help' => 'Selige un nomine que identifica tu wiki.
@@ -6398,6 +6409,7 @@ Als u gebruik maakt van gedeelde webhosting, hoort uw provider u de juiste hostn
 Als u MediaWiki op een Windowsserver installeert en MySQL gebruikt, dan werkt "localhost" mogelijk niet als servernaam.
 Als het inderdaad niet werkt, probeer dan "127.0.0.1" te gebruiken als lokaal IP-adres.',
 	'config-db-host-oracle' => 'Database-TNS:',
+	'config-db-host-oracle-help' => 'Voer een geldige[http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name] in; een tnsnames.ora-bestand moet zichtbaar zijn voor deze installatie.<br />Als u gebruik maakt van clientlibraries 10g of een latere versie, kunt u ook gebruik maken van de naamgevingsmethode [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identificeer deze wiki',
 	'config-db-name' => 'Databasenaam:',
 	'config-db-name-help' => 'Kies een naam die uw wiki identificeert.
@@ -8169,6 +8181,7 @@ Se estiver a usar um servidor partilhado, o fornecedor do alojamento deve ter-lh
 
 Se está a fazer a instalação num servidor Windows com MySQL, usar como nome do servidor "localhost" poderá não funcionar. Se não funcionar, tente usar "127.0.0.1" como endereço IP local.',
 	'config-db-host-oracle' => 'TNS (Transparent Network Substrate) da base de dados:',
+	'config-db-host-oracle-help' => 'Introduza um [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Nome Local de Ligação] válido; tem de estar visível para esta instalação um ficheiro tnsnames.ora.<br />Se está a usar bibliotecas cliente versão 10g ou posterior, também pode usar o método [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Ligação Fácil] de atribuição do nome.',
 	'config-db-wiki-settings' => 'Identifique esta wiki',
 	'config-db-name' => 'Nome da base de dados:',
 	'config-db-name-help' => 'Escolha um nome para identificar a sua wiki.
@@ -8716,6 +8729,7 @@ chmod a+w config</pre>",
 
 Если вы устанавливаете систему на сервере под Windows и используете MySQL, имя сервера «localhost» может не работать. В этом случае попробуйте указать «127.0.0.1».',
 	'config-db-host-oracle' => 'TNS базы данных:',
+	'config-db-host-oracle-help' => 'Введите действительный [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name]; файл tnsnames.ora должен быть видимым для этой инсталляции. <br />При использовании клиентских библиотек версии 10g и старше также возможно использовать метод именования [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Идентификация этой вики',
 	'config-db-name' => 'Имя базы данных:',
 	'config-db-name-help' => 'Выберите название-идентификатор для вашей вики. 
@@ -9409,7 +9423,14 @@ $messages['uk'] = array(
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
 	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду. 
 Якщо ваш сайт має високий трафік, вам варто почитати про [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормалізацію Юнікоду].",
+	'config-site-name-blank' => 'Введіть назву сайту.',
+	'config-project-namespace' => 'Простір назв проекту:',
+	'config-ns-generic' => 'Проект',
+	'config-admin-name' => "Ваше ім'я:",
 	'config-admin-password' => 'Пароль:',
+	'config-admin-email' => 'Адреса електронної пошти:',
+	'config-extensions' => 'Розширення',
+	'config-install-step-done' => 'виконано',
 );
 
 /** Yiddish (ייִדיש)
