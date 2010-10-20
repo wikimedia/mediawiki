@@ -47,6 +47,8 @@ require_once( "$IP/includes/Exception.php" );
 require_once( "$IP/includes/json/Services_JSON.php" );
 require_once( "$IP/includes/json/FormatJson.php" );
 
+$wgMaxShellMemory = 0;
+
 # If we get an exception, the user needs to know
 # all the details
 $wgShowExceptionDetails = true;
@@ -2148,7 +2150,7 @@ function locate_executable($loc, $names, $versioninfo = false) {
 				return $command;
 
 			$file = str_replace('$1', $command, $versioninfo[0]);
-			if (strstr(`$file`, $versioninfo[1]) !== false)
+			if ( strstr( wfShellExec( $file ), $versioninfo[1]) !== false )
 				return $command;
 		}
 	}
@@ -2239,12 +2241,12 @@ function getShellLocale( $wikiLang ) {
 
 	# Get a list of available locales
 	$lines = $ret = false;
-	exec( '/usr/bin/locale -a', $lines, $ret );
+	$lines = wfShellExec( '/usr/bin/locale -a', $ret, true );
 	if ( $ret ) {
 		return false;
 	}
 
-	$lines = wfArrayMap( 'trim', $lines );
+	$lines = wfArrayMap( 'trim', explode( "\n", $lines ) );
 	$candidatesByLocale = array();
 	$candidatesByLang = array();
 	foreach ( $lines as $line ) {
