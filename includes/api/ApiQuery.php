@@ -576,15 +576,15 @@ class ApiQuery extends ApiBase {
 		$this->mPageSet = null;
 		$this->mAllowedGenerators = array(); // Will be repopulated
 
-		$asterisk = str_repeat( '--- ', 8 );
-		$asterisk2 = str_repeat( '*** ', 10 );
-		$msg .= "\n$asterisk Query: Prop  $asterisk\n\n";
+		$querySeparator = str_repeat( '--- ', 8 );
+		$moduleSeparator = str_repeat( '*** ', 10 );
+		$msg .= "\n$querySeparator Query: Prop  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryPropModules, 'prop' );
-		$msg .= "\n$asterisk Query: List  $asterisk\n\n";
+		$msg .= "\n$querySeparator Query: List  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryListModules, 'list' );
-		$msg .= "\n$asterisk Query: Meta  $asterisk\n\n";
+		$msg .= "\n$querySeparator Query: Meta  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryMetaModules, 'meta' );
-		$msg .= "\n\n$asterisk2 Modules: continuation  $asterisk2\n\n";
+		$msg .= "\n\n$moduleSeparator Modules: continuation  $moduleSeparator\n\n";
 
 		// Perform the base call last because the $this->mAllowedGenerators
 		// will be updated inside makeHelpMsgHelper()
