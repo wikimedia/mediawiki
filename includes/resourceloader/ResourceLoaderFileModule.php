@@ -29,27 +29,60 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/* Protected Members */
 
-	/** @var {array} List of paths to JavaScript files to always include */
+	/**
+	 * @var {array} List of paths to JavaScript files to always include
+	 * @format array( [file-path], [file-path], ... )
+	 */
 	protected $scripts = array();
-	/** @var {array} List of paths to JavaScript files to include when using specific languages */
+	/**
+	 * @var {array} List of JavaScript files to include when using a specific language
+	 * @format array( [language-code] => array( [file-path], [file-path], ... ), ... )
+	 */
 	protected $languageScripts = array();
-	/** @var {array} List of paths to JavaScript files to include when using specific skins */
+	/**
+	 * @var {array} List of JavaScript files to include when using a specific skin
+	 * @format array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 */
 	protected $skinScripts = array();
-	/** @var {array} List of paths to JavaScript files to include in debug mode */
+	/**
+	 * @var {array} List of paths to JavaScript files to include in debug mode
+	 * @format array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 */
 	protected $debugScripts = array();
-	/** @var {array} List of paths to JavaScript files to include in the startup module */
+	/**
+	 * @var {array} List of paths to JavaScript files to include in the startup module
+	 * @format array( [file-path], [file-path], ... )
+	 */
 	protected $loaderScripts = array();
-	/** @var {array} List of paths to CSS files to always include */
+	/**
+	 * @var {array} List of paths to CSS files to always include
+	 * @format array( [file-path], [file-path], ... )
+	 */
 	protected $styles = array();
-	/** @var {array} List of paths to CSS files to include when using specific skins */
+	/**
+	 * @var {array} List of paths to CSS files to include when using specific skins
+	 * @format array( [file-path], [file-path], ... )
+	 */
 	protected $skinStyles = array();
-	/** @var {array} List of modules this module depends on */
+	/**
+	 * @var {array} List of modules this module depends on
+	 * @format array( [file-path], [file-path], ... )
+	 */
 	protected $dependencies = array();
-	/** @var {array} List of message keys used by this module */
+	/**
+	 * @var {array} List of message keys used by this module
+	 * @format array( [module-name], [module-name], ... )
+	 */
 	protected $messages = array();
-	/** @var {array} Name of group this module should be loaded in */
+	/**
+	 * @var {string} Name of group this module should be loaded in
+	 * @format array( [message-key], [message-key], ... )
+	 */
 	protected $group;
-	/** @var {array}  Cache for mtime */
+	/**
+	 * @var {array}  Cache for mtime
+	 * @format array( [hash] => [mtime], [hash] => [mtime], ... )
+	 */
 	protected $modifiedTime = array();
 
 	/* Methods */
@@ -253,6 +286,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->getFileDependencies( $context->getSkin() )
 		);
 		
+		// If a module is nothing but a list of dependencies, we need to avoid giving max() an empty array
+		if ( count( $files ) === 0 ) {
+			return $this->modifiedTime[$context->getHash()] = 1;
+		}
+		
 		wfProfileIn( __METHOD__.'-filemtime' );
 		$filesMtime = max( array_map( 'filemtime', array_map( array( __CLASS__, 'resolveFilePath' ), $files ) ) );
 		wfProfileOut( __METHOD__.'-filemtime' );
@@ -301,11 +339,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$collatedFiles[$default][] = $value;
 			} else if ( is_array( $value ) ) {
 				// File name as the key, options array as the value
-				$media = isset( $value[$option] ) ? $value[$option] : $default;
-				if ( !isset( $collatedFiles[$media] ) ) {
-					$collatedFiles[$media] = array();
+				$optionValue = isset( $value[$option] ) ? $value[$option] : $default;
+				if ( !isset( $collatedFiles[$optionValue] ) ) {
+					$collatedFiles[$optionValue] = array();
 				}
-				$collatedFiles[$media][] = $key;
+				$collatedFiles[$optionValue][] = $key;
 			}
 		}
 		return $collatedFiles;
