@@ -46,6 +46,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 			$fld_content = false, $fld_tags = false;
 
+	private $tokenFunctions;
+
 	protected function getTokenFunctions() {
 		// tokenname => function
 		// function prototype is func($pageid, $title, $rev)

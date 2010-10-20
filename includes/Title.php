@@ -2740,7 +2740,7 @@ class Title {
 	/**
 	 * Get a Title object associated with the talk page of this article
 	 *
-	 * @return \type{Title} the object for the talk page
+	 * @return Title the object for the talk page
 	 */
 	public function getTalkPage() {
 		return Title::makeTitle( MWNamespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
@@ -2750,7 +2750,7 @@ class Title {
 	 * Get a title object associated with the subject page of this
 	 * talk page
 	 *
-	 * @return \type{Title} the object for the subject page
+	 * @return Title the object for the subject page
 	 */
 	public function getSubjectPage() {
 		// Is this the same title?

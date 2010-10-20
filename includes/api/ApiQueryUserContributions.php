@@ -40,7 +40,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'uc' );
 	}
 
-	private $params, $prefixMode, $userprefix, $multiUserMode;
+	private $params, $prefixMode, $userprefix, $multiUserMode, $usernames;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 			$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
 			$fld_patrolled = false, $fld_tags = false, $fld_size = false;
