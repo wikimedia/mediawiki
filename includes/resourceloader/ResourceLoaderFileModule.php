@@ -23,7 +23,7 @@
 defined( 'MEDIAWIKI' ) || die( 1 );
 
 /**
- * ResourceLoader module based on local JS/CSS files
+ * ResourceLoader module based on local JavaScript/CSS files.
  */
 class ResourceLoaderFileModule extends ResourceLoaderModule {
 
@@ -55,7 +55,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/* Methods */
 
 	/**
-	 * Construct a new module from an options array.
+	 * Constructs a new module from an options array.
 	 * 
 	 * @param {array} $options Options array. If not given or empty, an empty module will be constructed
 	 * @param {string} $basePath base path to prepend to all paths in $options
@@ -121,7 +121,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets all scripts for a given context concatenated together
+	 * Gets all scripts for a given context concatenated together.
 	 * 
 	 * @param {ResourceLoaderContext} $context Context in which to generate script
 	 * @return {string} JavaScript code for $context
@@ -137,7 +137,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets loader script
+	 * Gets loader script.
 	 * 
 	 * @return {string} JavaScript code to be added to startup module
 	 */
@@ -149,7 +149,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets all styles for a given context concatenated together
+	 * Gets all styles for a given context concatenated together.
 	 * 
 	 * @param {ResourceLoaderContext} $context Context in which to generate styles
 	 * @return {string} CSS code for $context
@@ -185,7 +185,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets list of message keys used by this module
+	 * Gets list of message keys used by this module.
 	 * 
 	 * @return {array} List of message keys
 	 */
@@ -194,7 +194,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets the name of the group this module should be loaded in
+	 * Gets the name of the group this module should be loaded in.
 	 * 
 	 * @return {string} Group name
 	 */
@@ -203,7 +203,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets list of names of modules this module depends on
+	 * Gets list of names of modules this module depends on.
 	 * 
 	 * @return {array} List of module names
 	 */
@@ -212,9 +212,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modified timestamp of this module, which is calculated as the highest last modified timestamp of its
-	 * constituent files and the files it depends on. This function is context-sensitive, only performing calculations
-	 * on files relevant to the given language, skin and debug mode.
+	 * Get the last modified timestamp of this module.
+	 * 
+	 * Last modified timestamps are calculated from the highest last modified timestamp of this module's constituent
+	 * files as well as the files it depends on. This function is context-sensitive, only performing calculations on
+	 * files relevant to the given language, skin and debug mode.
 	 * 
 	 * @param {ResourceLoaderContext} $context Context in which to calculate the modified time
 	 * @return {integer} UNIX timestamp
@@ -262,7 +264,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/* Protected Members */
 
 	/**
-	 * Prefixes each file path in a list
+	 * Prefixes each file path in a list.
 	 * 
 	 * @param {array} $list List of file paths in any combination of index/path or path/options pairs
 	 * @param {string} $prefix String to prepend to each file path in $list
@@ -283,7 +285,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Collates file paths by option (where provided)
+	 * Collates file paths by option (where provided).
 	 * 
 	 * @param {array} $list List of file paths in any combination of index/path or path/options pairs
 	 * @return {array} List of file paths, collated by $option
@@ -310,7 +312,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets a list of element that match a key, optionally using a fallback key
+	 * Gets a list of element that match a key, optionally using a fallback key.
 	 * 
 	 * @param {array} $map Map of lists to select from
 	 * @param {string} $key Key to look for in $map
@@ -327,7 +329,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the contents of a list of JavaScript files
+	 * Gets the contents of a list of JavaScript files.
 	 * 
 	 * @param {array} $scripts List of file paths to scripts to read, remap and concetenate
 	 * @return {string} Concatenated and remapped JavaScript data from $scripts
@@ -340,7 +342,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the contents of a list of CSS files
+	 * Gets the contents of a list of CSS files.
 	 * 
 	 * @param {array} $styles List of file paths to styles to read, remap and concetenate
 	 * @return {array} List of concatenated and remapped CSS data from $styles, keyed by media type
@@ -359,7 +361,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Reads a script file
+	 * Reads a script file.
 	 * 
 	 * This method can be used as a callback for array_map()
 	 * 
@@ -373,7 +375,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Reads a style file
+	 * Reads a style file.
 	 * 
 	 * This method can be used as a callback for array_map()
 	 * 
@@ -389,7 +391,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Resolve a file name
+	 * Resolves a file name.
 	 * 
 	 * This method can be used as a callback for array_map()
 	 * 
