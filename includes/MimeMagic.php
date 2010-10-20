@@ -402,6 +402,7 @@ class MimeMagic {
 			// Formats we recognize magic numbers for
 			'djvu', 'ogx', 'ogg', 'ogv', 'oga', 'spx',
 			'mid', 'pdf', 'wmf', 'xcf', 'webm', 'mkv', 'mka',
+			'webp',
 
 			// XML formats we sure hope we recognize reliably
 			'svg',
@@ -546,6 +547,12 @@ class MimeMagic {
 			}
 			wfDebug( __METHOD__ . ": unknown EBML file\n" );
 			return "unknown/unknown";
+		}
+
+		/* Look for WebP */
+		if( strncmp( $head, "RIFF", 4 ) == 0 && strncmp( substr( $head, 8, 8), "WEBPVP8 ", 8 ) == 0 ) {
+			wfDebug( __METHOD__ . ": recognized file as image/webp\n" );
+			return "image/webp";
 		}
 
 		/*

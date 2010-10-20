@@ -181,6 +181,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for versioning
 * Maintenance scripts get a --memory-limit option to override defaults (which
   is usually to set it to -1 to disable the limit)
+* (bug 25397) Allow uploading (not displaying) of WebP images, disabled by default
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
