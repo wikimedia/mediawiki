@@ -386,7 +386,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		global $wgScriptPath, $IP;
 		
 		return CSSMin::remap(
-			file_get_contents( "$IP/$path" ), dirname( $path ), $wgScriptPath . '/' . dirname( $path ), true
+			file_get_contents( "$IP/$path" ), dirname( "$IP/$path" ), $wgScriptPath . '/' . dirname( $path ), true
 		);
 	}
 
