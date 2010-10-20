@@ -301,9 +301,9 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Create instances of all modules requested by the client
-	 * @param $modules array to append instatiated modules to
+	 * @param $modules Array to append instantiated modules to
 	 * @param $param string Parameter name to read modules from
-	 * @param $moduleList array(modulename => classname)
+	 * @param $moduleList Array array(modulename => classname)
 	 */
 	private function instantiateModules( &$modules, $param, $moduleList ) {
 		$list = @$this->params[$param];
@@ -576,15 +576,15 @@ class ApiQuery extends ApiBase {
 		$this->mPageSet = null;
 		$this->mAllowedGenerators = array(); // Will be repopulated
 
-		$astriks = str_repeat( '--- ', 8 );
-		$astriks2 = str_repeat( '*** ', 10 );
-		$msg .= "\n$astriks Query: Prop  $astriks\n\n";
+		$asterisk = str_repeat( '--- ', 8 );
+		$asterisk2 = str_repeat( '*** ', 10 );
+		$msg .= "\n$asterisk Query: Prop  $asterisk\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryPropModules, 'prop' );
-		$msg .= "\n$astriks Query: List  $astriks\n\n";
+		$msg .= "\n$asterisk Query: List  $asterisk\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryListModules, 'list' );
-		$msg .= "\n$astriks Query: Meta  $astriks\n\n";
+		$msg .= "\n$asterisk Query: Meta  $asterisk\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryMetaModules, 'meta' );
-		$msg .= "\n\n$astriks2 Modules: continuation  $astriks2\n\n";
+		$msg .= "\n\n$asterisk2 Modules: continuation  $asterisk2\n\n";
 
 		// Perform the base call last because the $this->mAllowedGenerators
 		// will be updated inside makeHelpMsgHelper()
@@ -596,7 +596,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * For all modules in $moduleList, generate help messages and join them together
-	 * @param $moduleList array(modulename => classname)
+	 * @param $moduleList Array array(modulename => classname)
 	 * @param $paramName string Parameter name
 	 * @return string
 	 */

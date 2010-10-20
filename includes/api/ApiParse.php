@@ -34,6 +34,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiParse extends ApiBase {
 
+	private $section;
+
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 	}

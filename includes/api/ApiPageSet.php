@@ -347,7 +347,7 @@ class ApiPageSet extends ApiQueryBase {
 	/**
 	 * Populate this PageSet from a rowset returned from the database
 	 * @param $db Database object
-	 * @param $queryResult Query result object
+	 * @param $queryResult ResultWrapper Query result object
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
 		$this->profileIn();
@@ -468,7 +468,7 @@ class ApiPageSet extends ApiQueryBase {
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
 	 * @param $db Database
-	 * @param $res DB Query result
+	 * @param $res ResultWrapper DB Query result
 	 * @param $remaining array of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
 	 * @param $processTitles bool Must be provided together with $remaining.
