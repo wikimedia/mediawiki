@@ -25,7 +25,7 @@ return array(
 	
 	/* jQuery */
 	
-	'jquery' => new ResourceLoaderFileModule( array( 'scripts' => 'resources/jquery/jquery.js' ) ),
+	'jquery' => new ResourceLoaderFileModule( array( 'scripts' => 'resources/jquery/jquery.js', 'debugRaw' => false ) ),
 	
 	/* jQuery Plugins */
 	
@@ -314,6 +314,7 @@ return array(
 	'mediawiki' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki/mediawiki.js',
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
+		'debugRaw' => false
 	) ),
 	'mediawiki.specials.preferences' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki/mediawiki.specials.preferences.js',
