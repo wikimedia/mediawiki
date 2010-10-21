@@ -17,8 +17,9 @@ class Autopromote {
 		$promote = array();
 
 		foreach ( $wgAutopromote as $group => $cond ) {
-			if ( self::recCheckCondition( $cond, $user ) )
+			if ( self::recCheckCondition( $cond, $user ) ) {
 				$promote[] = $group;
+			}
 		}
 
 		wfRunHooks( 'GetAutoPromoteGroups', array( $user, &$promote ) );

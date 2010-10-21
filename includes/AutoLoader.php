@@ -748,8 +748,9 @@ class AutoLoader {
 			}
 
 			if ( !$filename ) {
-				if ( function_exists( 'wfDebug' ) )
+				if ( function_exists( 'wfDebug' ) ) {
 					wfDebug( "Class {$className} not found; skipped loading\n" );
+				}
 
 				# Give up
 				return false;
