@@ -386,8 +386,12 @@ class HttpRequest {
 	}
 
 	/**
-	 * Sets the member variable status to a fatal status if the HTTP
-	 * status code was not 200.
+	 * Sets HTTPRequest status member to a fatal value with the error
+	 * message if the returned integer value of the status code was
+	 * not successful (< 300) or a redirect (>=300 and < 400).  (see
+	 * RFC2616, section 10,
+	 * http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html for a
+	 * list of status codes.)
 	 *
 	 * @return nothing
 	 */
@@ -396,14 +400,16 @@ class HttpRequest {
 			$this->parseHeader();
 		}
 
-		if ( (int)$this->respStatus !== 200 ) {
+		if ( (int)$this->respStatus > 399 ) {
 			list( $code, $message ) = explode( " ", $this->respStatus, 2 );
 			$this->status->fatal( "http-bad-status", $code, $message );
 		}
 	}
 
 	/**
-	 * Get the member variable status for an HTTP Request
+	 * Get the integer value of the HTTP status code (e.g. 200 for "200 Ok")
+	 * (see RFC2616, section 10, http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+	 * for a list of status codes.)
 	 *
 	 * @return Integer
 	 */
