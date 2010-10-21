@@ -139,9 +139,20 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'languageScripts':
 				case 'skinScripts':
 				case 'skinStyles':
-					foreach ( (array) $option as $key => $value ) {
+					if ( !is_array( $option ) ) {
+						throw new MWException(
+							"Invalid collated file path list error. '$option' given, array expected."
+						);
+					}
+					foreach ( $option as $key => $value ) {
+						if ( !is_string( $key ) ) {
+							throw new MWException(
+								"Invalid collated file path list key error. '$key' given, string expected."
+							);
+						}
 						$this->{$member}[$key] = self::prefixFilePathList( (array) $value, $basePath );
 					}
+					break;
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
@@ -209,6 +220,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Merge general styles and skin specific styles, retaining media type collation
 		$styles = self::readStyleFiles( $this->styles );
 		$skinStyles = self::readStyleFiles( self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ) );
+		
 		foreach ( $skinStyles as $media => $style ) {
 			if ( isset( $styles[$media] ) ) {
 				$styles[$media] .= $style;
@@ -329,12 +341,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected static function prefixFilePathList( array $list, $prefix ) {
 		$prefixed = array();
 		foreach ( $list as $key => $value ) {
-			if ( is_array( $value ) ) {
+			if ( is_string( $key ) && is_array( $value ) ) {
 				// array( [path] => array( [options] ) )
 				$prefixed[$prefix . $key] = $value;
-			} else {
+			} else if ( is_int( $key ) && is_string( $value ) ) {
 				// array( [path] )
 				$prefixed[$key] = $prefix . $value;
+			} else {
+				throw new MWException( "Invalid file path list error. '$key' => '$value' given." );
 			}
 		}
 		return $prefixed;
