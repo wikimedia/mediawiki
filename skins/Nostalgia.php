@@ -71,7 +71,7 @@ class SkinNostalgia extends Skin {
 		$s .= $this->variantLinks();
 		$s .= $this->extensionTabLinks();
 		if ( $wgUser->isAnon() ) {
-			$s .= $sep . $this->specialLink( 'Watchlist' );
+			$s .= $sep . $this->specialLink( 'Userlogin' );
 		} else {
 			/* show user page and user talk links */
 			$s .= $sep . $this->link( $wgUser->getUserPage(), wfMsgHtml( 'mypage' ) );
