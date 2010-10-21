@@ -330,8 +330,8 @@ $messages = array(
 'yourpasswordagain'       => 'ပြန်​ရိုက်​ပါ:',
 'remembermypassword'      => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွနု်ပ်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
 'login'                   => 'Log in ဝင်ရန်',
-'nav-login-createaccount' => 'Log in ၀င်ရန်/ အကောင့် လုပ်ရန်',
-'userlogin'               => 'Log in ၀င်ရန်/ အကောင့် လုပ်ရန်',
+'nav-login-createaccount' => 'Log in ဝင်ရန်/ အကောင့် လုပ်ရန်',
+'userlogin'               => 'Log in ဝင်ရန်/ အကောင့် လုပ်ရန်',
 'userloginnocreate'       => 'Log in ဝင်ရန်',
 'logout'                  => 'Log out ထွက်ရန်',
 'userlogout'              => 'Log out ထွက်ရန်',
@@ -891,7 +891,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|ဘိုက်|ဘိုက်}}',
-'nmembers'                => '$1 {{PLURAL:$1|မန်ဘာ|မန်ဘာ}} ယောက်',
+'nmembers'                => 'အဖွဲ့ဝင် $1 {{PLURAL:$1|ခု|ခု}}',
 'uncategorizedpages'      => 'အမျိုးအစား ခွဲမထားသော စာမျက်နှာများ',
 'uncategorizedcategories' => 'အမျိုးအစားခွဲမထားသော ကဏ္ဍများ',
 'uncategorizedimages'     => 'အမျိုးအစား ခွဲမထားသော ဖိုင်များ',
@@ -946,11 +946,15 @@ HTML tags ကို စစ်ဆေးပါ။',
 # Special:ListUsers
 'listusers-submit' => 'ပြ',
 
+# Special:ActiveUsers
+'activeusers' => 'တက်ကြွလှုပ်ရှားသည့် အသုံးပြုသူစာရင်း',
+
 # Special:Log/newusers
 'newuserlogpage'          => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
 'newuserlog-create-entry' => 'အသုံးပြုသူအသစ်',
 
 # Special:ListGroupRights
+'listgrouprights'         => 'အသုံးပြုသူအုပ်စု အခွင့်အရေးများ',
 'listgrouprights-members' => '(မန်ဘာ စာရင်း)',
 
 # E-mail user
@@ -1281,6 +1285,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'show-big-image-thumb' => '<small>နမူနာကြည့်ရန် အရွယ်အစား - $1 × $2 pixels</small>',
 
 # Special:NewFiles
+'newimages'             => 'ပုံအသစ်များပြခန်း',
 'newimages-legend'      => 'စိစစ်မှု',
 'newimages-label'       => 'ဖိုင်အမည် (သို့ ယင်း၏အစိတ်အပိုင်း) -',
 'showhidebots'          => '(ဘော့ $1 ခု)',

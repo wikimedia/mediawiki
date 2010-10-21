@@ -126,7 +126,12 @@ $messages = array(
 'qbedit' => 'Aaqqissoruk',
 
 # Vector skin
-'vector-view-edit' => 'Aaqqissoruk',
+'vector-action-addsection' => 'Imm. nutaaq',
+'vector-action-move'       => 'Nuuguk',
+'vector-view-create'       => 'Pilersiguk',
+'vector-view-edit'         => 'Aaqqissoruk',
+'vector-view-history'      => 'Oqalutt.',
+'vector-view-view'         => 'Takuuk',
 
 'errorpagetitle'   => 'Kukkuneq',
 'returnto'         => '$1 -mut uterit',
@@ -416,9 +421,7 @@ Aamma takuuk [[Special:WantedCategories|sunut atassusinut kissaatigineqartut]].'
 'watchlist'      => 'Ersersimasut',
 'mywatchlist'    => 'Nuisatiffikka',
 'addedwatch'     => 'Nakkutilliinermi allattorsimaffimmut ilanngunneqarsimavoq',
-'addedwatchtext' => "Qupperneq \"[[:\$1]]\" ilanngunneqarsimavoq [[Special:Watchlist|nakkutilliinermut allattorsimaffimmut]] ilanngunneqarsimavoq. Matumani quppernermi siunissami allannguutit, aammalu oqallinnermi qupperneq, maani saqqummersinneqassapput, quppernerlu '''erseqqissagaasoq''' inisseqqassalluni [[Special:RecentChanges|allattorsimaffik kingullermi allannguutinik imalik]] ajornannginnerussammat nassaariniarnissaanut.
-
-Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taava quppernerup sinaatungaani \"Nakkutilliinermi allattorsimaffik peeruk\" tooruk.",
+'addedwatchtext' => 'Una qupperneq "[[:$1]]" ersersimatitannut ilanngunneqarpoq. Siunissami allannguutit ilinnut malugeqquneqartassapput aamma [[Special:RecentChanges|allannguutini kingullerni]] issusuumik allanneqartuusassallutik. Ersersimatikkusunngikkukku [[Special:Watchlist|piiginnassavat]] ersersimasuutitanni.',
 'watch'          => 'Ersilli',
 'watchthispage'  => 'Qupperneq ersersimatiguk',
 'unwatch'        => 'Ersitsinnagu',
@@ -432,7 +435,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'excontentauthor' => "imarivaa: '$1' (allattutuaavorlu '[[Special:Contributions/$2|$2]]')",
 'delete-confirm'  => 'Peeruk "$1"',
 'actioncomplete'  => 'Naammassivoq',
-'deletedtext'     => '"$1" peerpoq. Takuuk $2 peerneqarsimasut kingulliit.',
+'deletedtext'     => '"$1" peerpoq. Takukkit $2 peerneqarsimasut kingulliit.',
 'deletedarticle'  => 'peerpaa "[[$1]]"',
 
 # Rollback
@@ -443,8 +446,9 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'protect-expiry-options' => '1 tiimi:1 hour,ulloq 1:1 day,sap akunn 1:1 week,sap akunn 2:2 weeks,qaammat 1:1 month,qaammatit 3:3 months,qaammatit 6:6 months,ukioq 1:1 year,killeqanngitsoq:infinite',
 
 # Undelete
-'undeletebtn'      => 'Inisseqqiguk',
-'undeletedarticle' => 'inisseqqippaa "[[$1]]"',
+'undeletebtn'            => 'Inisseqqiguk',
+'undeletedarticle'       => 'inisseqqippaa "[[$1]]"',
+'undelete-search-submit' => 'Ujarlerit',
 
 # Namespace form on various pages
 'namespace'      => 'Quppernerup ilusia:',
@@ -475,6 +479,7 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'blockip-legend'     => 'Atuisoq asseruk',
 'ipadressorusername' => 'IP adresse imalt. atuisoq:',
 'ipboptions'         => '2 tiimit:2 hours,ulloq 1:1 day,ullut 3:3 days,sap akunn 1:1 week,sap akunn 2:2 weeks,qaammat 1:1 month,qaammatit 3:3 months,qaammatit 6:6 months,ukioq 1:1 year,killeqanngitsoq:infinite',
+'ipblocklist-submit' => 'Ujarlerit',
 'blocklistline'      => '$1, $2 asserpaa $3 ($4)',
 'infiniteblock'      => 'killeqanngitsoq',
 'expiringblock'      => 'atorunnaassaaq $1 $2-nngoruni',
@@ -539,6 +544,9 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 # Browsing diffs
 'previousdiff' => '← Assigiinngissut siulia',
 'nextdiff'     => 'Assigiinngissut tullia →',
+
+# Special:NewFiles
+'ilsubmit' => 'Ujarlerit',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tamarmik',

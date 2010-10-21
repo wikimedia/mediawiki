@@ -1937,7 +1937,7 @@ La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
 ** Violacion du drêt d’ôtor
 ** Fichiér en doblo',
 'filedelete-edit-reasonlist'  => 'Changiér les rêsons de suprèssion',
-'filedelete-maintenance'      => 'La suprèssion et la rèstoracion de fichiérs est temporèrament dèsactivâ pendent la mantegnence.',
+'filedelete-maintenance'      => 'La suprèssion et la rèstoracion de fichiérs est dèsactivâ temporèrament pendent la mantegnence.',
 
 # MIME search
 'mimesearch'         => 'Rechèrche per tipo de contegnu MIME',

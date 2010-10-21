@@ -352,6 +352,9 @@ Ila ma kanṫċ, imken ikon ċi bog fe l-program.
 'badtitle'             => 'aanwan mamzyanch',
 'badtitletext'         => 'L-Ĝonwan li tlebṫi ġalet, ĥawi, ola waqila hada ĝonwan fe bezzaf de l-loġaṫ ola fe bezzaf de l-maċariĝ. Imken ikon fih ċi ḫrof li ma imken lekċ ṫesṫeĝmelhom fe l-ĝanawin.',
 'viewsource'           => 'Ċof l-ĝin',
+'viewsourcefor'        => 'l  $1',
+'protectedpagetext'    => 'had sfha mhmiya bach mataadlch baqi',
+'viewsourcetext'       => 'imkn lik  tchof otcopie lmasdar dyak had sfha',
 
 # Login and logout pages
 'logouttext'              => "''' nta daba kharj.'''
@@ -379,18 +382,21 @@ matnsach tbddl[[Special:Preferences|{{SITENAME}} tfdilat dyal]].',
 'gotaccount'              => 'aandk deja cont ? $1',
 'gotaccountlink'          => 'Ṫkonékta',
 'createaccountmail'       => "b l'email",
+'loginerror'              => 'khataa f dokhol',
 'loginsuccesstitle'       => 'dkhlti mzyan',
 'nouserspecified'         => 'khassk tdkhl ism lmostakhdim.',
 'mailmypassword'          => 'Ṣifet li saroṫ jdid',
 'loginlanguagelabel'      => 'Loġa: $1',
 
 # Password reset dialog
-'resetpass'        => 'tbdl lmot de passe',
-'resetpass_text'   => '<!-- zid chi nass hna -->',
-'oldpassword'      => 'lmot de passe qdima :',
-'newpassword'      => 'lmot de passe jdida :',
-'retypenew'        => 'aaawd ktb lmot de passe jdida :',
-'resetpass_submit' => 'rigler lmot de pass odkhl',
+'resetpass'                 => 'tbdl lmot de passe',
+'resetpass_text'            => '<!-- zid chi nass hna -->',
+'oldpassword'               => 'lmot de passe qdima :',
+'newpassword'               => 'lmot de passe jdida :',
+'retypenew'                 => 'aaawd ktb lmot de passe jdida :',
+'resetpass_submit'          => 'rigler lmot de pass odkhl',
+'resetpass-submit-loggedin' => 'tbdl lmot de passe',
+'resetpass-temp-password'   => 'mot de passe moaqata',
 
 # Edit page toolbar
 'bold_sample'     => 'Kṫaba ġliḍa',
@@ -422,10 +428,15 @@ matnsach tbddl[[Special:Preferences|{{SITENAME}} tfdilat dyal]].',
 'savearticle'                      => 'Ċejjel ṣ-ṣefḫa',
 'preview'                          => 'L-Prévizualizasyon',
 'showpreview'                      => 'Werri l-prévizualizasyon',
+'showlivepreview'                  => 'aard mobachir',
 'showdiff'                         => 'Werri ṫ-ṫeġyiraṫ',
 'anoneditwarning'                  => "'''Ĝendak:''' Ma mkonéktéċ.
 Ġayṫċejjel l-ĝonwan IP dyalek fe ṫariĥ had ṣ-ṣefḫa.",
 'summary-preview'                  => 'Prévizualizasyon dyal l-moleĥĥaṣ:',
+'blockedtitle'                     => 'had lmostakhdim tbloka',
+'blockednoreason'                  => 'ta sabab mamaatich',
+'whitelistedittitle'               => 'khassk tdkhl bach thrr',
+'whitelistedittext'                => 'khassk  $1 bach taadl sfahi',
 'nosuchsectiontitle'               => 'maymknch nlgaw lqissm',
 'loginreqtitle'                    => 'khassk tsjl dokhol',
 'loginreqlink'                     => 'Ṫkonékta',
@@ -443,7 +454,9 @@ ola [{{fullurl:{{FULLPAGENAME}}|action=edit}} ṫsayeb ṣ-ṣefḫa]</span>.',
 Dakċi li beddelṫi mazal ma ṫċejjel !",
 'editing'                          => 'Ṫ-Ṫeĝdil dyal $1',
 'editingsection'                   => 'Ṣayeb $1 (séksyon)',
+'editconflict'                     => 'mdarba f thrir: $1',
 'yourtext'                         => 'N-Neṣ dyalek',
+'storedversion'                    => 'noskha msjla',
 'yourdiff'                         => 'lforoq',
 'copyrightwarning'                 => "L-Mosahamaṫ le {{SITENAME}} kollhom meĝṫabrin bḫal menċorin be ṫetbiq $2 (ċof $1 le mazid l-meĝlomaṫ). Ila ma bġiṫiċ belli n-nṣoṣ dyawlek ma iṫwezzĝoċ o ma iṫṣayboċ ki mma jab L-Lah, ĝafak ġir ma ṫḫetthomċ hnaya.<br />
 Ġadi ṫwaĝedna ayḍan belli nṫa li kṫebṫi hadċi kollo, o ma nqelṫihċ men ċi ĝin jayya men ḍ-ḍamn l-ĝomomi ola men meṣder mefṫoḫ weḫdaĥor.
@@ -455,6 +468,7 @@ Dakċi li beddelṫi mazal ma ṫċejjel !",
 'hiddencategories'                 => '{{PLURAL:$1|L-Katégori l-mĥebbya li kaṫmlek|L-Katégoriyaṫ l-mĥebbyin li kaymelko}} had ṣ-ṣefḫa :',
 'edittools'                        => '<!-- nass ghayban hna t7t t3dil ot7t istimarat raf3 sowar. -->',
 'permissionserrorstext-withaction' => "Ma ĝendekċ l-ḫaqq baċ $2, ĝlawed had {{PLURAL:$1|s-sabab|l-'asbiba}}",
+'edit-conflict'                    => 'mdarba f thrir',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'lcont maymknch tnchaa',
@@ -482,6 +496,8 @@ Dakċi li beddelṫi mazal ma ṫċejjel !",
 'rev-deleted-comment' => '(taaliq thiyd)',
 'rev-deleted-user'    => '(ism lmostkhdim thiyd)',
 'rev-delundel'        => 'Biyyen/Ĥebbi',
+'revdelete-hide-text' => 'khbbi nass lmorajaa',
+'revdelete-hide-user' => 'khbbi ism lmostakhdim/ip',
 'revdelete-log'       => 'S-Sbab:',
 'revdel-restore'      => 'Beddel ċ-ċofa',
 'pagehist'            => 'Ṫariĥ ṣ-ṣefḫa',
@@ -569,6 +585,8 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'prefs-edits'               => 'adad taadilat :',
 'prefsnologin'              => 'nta mamkoniktich',
 'changepassword'            => 'tbdl lmot de passe',
+'datedefault'               => 'la tafdil',
+'prefs-personal'            => 'milf lmostakhdim',
 'prefs-rc'                  => 'Ṫ-Ṫeĝdilaṫ l-leĥĥra',
 'prefs-watchlist'           => 'qaimat lmoraqaba',
 'prefs-resetpass'           => 'tbdl lmot de passe',
@@ -600,6 +618,7 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'gender-male'               => 'Dikr',
 'gender-female'             => "Mo'enaṫ",
 'email'                     => 'I-Méyl',
+'prefs-help-email-required' => "l'email darori",
 'prefs-signature'           => 'Sinyaṫur',
 
 # User rights
@@ -974,6 +993,10 @@ Imken lek ṫċof l-ĝin dyalha.',
 
 # Stylesheets
 'common.css' => '/* CSS placed here will be applied to all skins */',
+
+# Math errors
+'math_failure'      => 'khata flmat',
+'math_syntax_error' => 'khata fsiyagha',
 
 # Browsing diffs
 'previousdiff' => 'Ṫ-Ṫeĝdil li mbeĝd',

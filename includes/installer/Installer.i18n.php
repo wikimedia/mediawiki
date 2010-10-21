@@ -815,6 +815,13 @@ $messages['an'] = array(
 	'config-show-help' => 'Aduya',
 );
 
+/** Belarusian (Беларуская)
+ * @author Тест
+ */
+$messages['be'] = array(
+	'config-show-help' => 'Дапамога',
+);
+
 /** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
  * @author EugeneZelenko
  * @author Jim-by
@@ -986,12 +993,15 @@ chmod a+w config</pre>",
 Калі Вы набываеце shared-хостынг, Ваш хостынг-правайдэр мусіць даць Вам слушнае імя хоста базы зьвестак у сваёй дакумэнтацыі.
 
 Калі Вы усталёўваеце сэрвэр Windows з выкарыстаньнем MySQL, выкарыстаньне «localhost» можа не працаваць для назвы сэрвэра. У гэтым выпадку паспрабуйце пазначыць «127.0.0.1»  для лякальнага IP-адраса.',
+	'config-db-host-oracle' => 'TNS базы зьвестак:',
+	'config-db-host-oracle-help' => 'Увядзіце слушнае [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm лякальнае імя злучэньня]; файл tnsnames.ora павінен быць бачным для гэтага ўсталяваньня.<br />Калі Вы выкарыстоўваеце кліенцкія бібліятэкі 10g ці больш новыя, Вы можаце таксама выкарыстоўваць мэтад наданьня назваў [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm лёгкае злучэньне].',
 	'config-db-wiki-settings' => 'Ідэнтыфікацыя гэтай вікі',
 	'config-db-name' => 'Назва базы зьвестак:',
 	'config-db-name-help' => 'Выберыце імя, якое вызначыць Вашую вікі.
 Яно ня мусіць зьмяшчаць прагалаў ці злучкоў.
 
 Калі Вы набываеце shared-хостынг, Ваш хостынг-правайдэр мусіць надаць Вам ці пэўнае імя базы зьвестак для выкарыстаньня, ці магчымасьць ствараць базы зьвестак праз кантрольную панэль.',
+	'config-db-name-oracle' => 'Схема базы зьвестак:',
 	'config-db-install-account' => 'Імя карыстальніка для ўсталяваньня',
 	'config-db-username' => 'Імя карыстальніка базы зьвестак:',
 	'config-db-password' => 'Пароль базы зьвестак:',
@@ -1032,6 +1042,7 @@ chmod a+w config</pre>",
 Гэта ўключае як прыватныя зьвесткі ўдзельнікаў (адрасы электроннай пошты, хэшы пароляў), гэтак і выдаленыя вэрсіі старонак і іншыя зьвесткі, доступ да якіх маецца абмежаваны.
 
 Падумайце над тым, каб зьмяшчаць базу зьвестак у іншым месцы, напрыклад у <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts' => 'Прастора табліцаў па змоўчваньні:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -1437,6 +1448,8 @@ $messages['bs'] = array(
 Vaš softver je moguće unaprijediti.
 Molimo premjestite <code>LocalSettings.php</code> na sigurno mjesto a zatim ponovo pokrenite instalaciju.",
 	'config-session-error' => 'Greška pri pokretanju sesije: $1',
+	'config-no-session' => 'Vaši podaci sesije su izgubljeni!
+Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> postavljen na pravilni direktorijum.',
 	'config-session-path-bad' => 'Vaš <code>session.save_path</code> (<code>$1</code>) je nevaljan ili se u njega ne može pisati.',
 	'config-show-help' => 'Pomoć',
 	'config-hide-help' => 'Sakrij pomoć',
@@ -1460,6 +1473,7 @@ Molimo premjestite <code>LocalSettings.php</code> na sigurno mjesto a zatim pono
 	'config-page-releasenotes' => 'Bilješke izdanja',
 	'config-page-copying' => 'Kopiram',
 	'config-page-upgradedoc' => 'Nadograđujem',
+	'config-help-restart' => 'Da li želite očistiti sve spremljene podatke koje ste unijeli i da započnete ponovo proces instalacije?',
 	'config-restart' => 'Da, pokreni ponovo',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Početna strana]
 * [http://www.mediawiki.org/wiki/Help:Contents Vodič za korisnike]
@@ -2725,7 +2739,7 @@ Si vous utilisez un hébergement mutualisé, votre hébergeur doit vous avoir fo
 
 Si vous installez sur un serveur Windows et utilisez MySQL, « localhost » peut ne pas fonctionner comme nom de serveur. S'il ne fonctionne pas, essayez « 127.0.0.1 » comme adresse IP locale.",
 	'config-db-host-oracle' => 'Nom TNS de la base de données :',
-	'config-db-host-oracle-help' => 'Entrez un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Nom de connexion locale] valide; un fichier tnsnames.ora doit être visible par cette installation. <br /> Si vous utilisez les bibliothèques clientes version 10g ou plus récentes, vous pouvez également utiliser la méthode de nommage [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
+	'config-db-host-oracle-help' => 'Entrez un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nom de connexion locale] valide ; un fichier tnsnames.ora doit être visible par cette installation.<br /> Si vous utilisez les bibliothèques clientes version 10g ou plus récentes, vous pouvez également utiliser la méthode de nommage [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifier ce wiki',
 	'config-db-name' => 'Nom de la base de données :',
 	'config-db-name-help' => "Choisissez un nom qui identifie votre wiki.
@@ -4056,12 +4070,14 @@ A telepítés megszakadt.",
 	'config-file-extension' => 'MediaWiki telepítése <code>$1</code> fájlkiterjesztéssel.',
 	'config-db-type' => 'Adatbázis típusa:',
 	'config-db-host' => 'Adatbázis hosztneve:',
+	'config-db-host-oracle' => 'Adatbázis TNS:',
 	'config-db-wiki-settings' => 'Wiki azonosítása',
 	'config-db-name' => 'Adatbázisnév:',
 	'config-db-name-help' => 'Válaszd ki a wikid azonosítására használt nevet.
 Nem tartalmazhat szóközt vagy kötőjelet.
 
 Ha megosztott webtárhelyt használsz, a szolgáltatód vagy egy konkrét adatbázisnevet ad neked használatra, vagy létrehozhatsz te magad egyet a vezérlőpulton keresztül.',
+	'config-db-name-oracle' => 'Adatbázisséma:',
 	'config-db-install-account' => 'A telepítéshez használt felhasználói adatok',
 	'config-db-username' => 'Adatbázis felhasználóneve:',
 	'config-db-password' => 'Adatbázis jelszava:',
@@ -4071,6 +4087,7 @@ Ha megosztott webtárhelyt használsz, a szolgáltatód vagy egy konkrét adatb�
 	'config-db-wiki-help' => 'Add meg azt a felhasználónevet és jelszót, amivel a wiki fog csatlakozni az adatbázishoz működés közben.
 Ha a fiók nem létezik és a telepítést végző fiók rendelkezik megfelelő jogosultsággal, egy új fiók készül a megadott a névvel, azon minimális jogosultságkörrel, ami a wiki működéséhez szükséges.',
 	'config-db-prefix' => 'Adatbázistáblák nevének előtagja:',
+	'config-db-charset' => 'Adatbázis karakterkészlete',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0, bináris',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0, visszafelé kompatibilis UTF-8',
@@ -4080,17 +4097,36 @@ Ha a fiók nem létezik és a telepítést végző fiók rendelkezik megfelelő 
 Ez sokkal hatékonyabb a MySQL UTF-8-módjától, és lehetővé teszi, hogy a teljes Unicode-karakterkészletet használd.
 '''UTF-8-módban''' MySQL tudja, hogy milyen karakterkészlettel van kódolva az adat, és megfelelően tárolja és konvertálja, de
 nem használhatod a [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane] feletti karaktereket.",
+	'config-mysql-old' => 'A MySQL $1 vagy újabb verziója szükséges, a rendszeren $2 fut',
 	'config-db-port' => 'Adatbázisport:',
 	'config-db-schema' => 'MediaWiki-séma',
 	'config-db-ts2-schema' => 'Tsearch2-séma',
 	'config-db-schema-help' => 'A fenti sémák általában megfelelőek.
 Csak akkor módosíts rajta, ha szükség van rá.',
 	'config-sqlite-dir' => 'SQLite-adatkönyvtár:',
+	'config-oracle-def-ts' => 'Alapértelmezett táblatér:',
+	'config-oracle-temp-ts' => 'Ideiglenes táblatér:',
 	'config-header-mysql' => 'MySQL-beállítások',
 	'config-header-postgres' => 'PostgreSQL-beállítások',
 	'config-header-sqlite' => 'SQLite-beállítások',
 	'config-header-oracle' => 'Oracle-beállítások',
 	'config-invalid-db-type' => 'Érvénytelen adatbázistípus',
+	'config-missing-db-name' => 'Meg kell adnod az „adatbázis nevét”',
+	'config-missing-db-server-oracle' => 'Meg kell adnod az „Adatbázis TNS” értékét',
+	'config-invalid-db-server-oracle' => 'Érvénytelen adatbázis TNS: „$1”
+Csak ASCII-karakterek (a-z, A-Z), számok (0-9), alulvonás (_) és pont (.) használható.',
+	'config-invalid-db-name' => 'Érvénytelen adatbázisnév: „$1”.
+Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható.',
+	'config-invalid-db-prefix' => 'Érvénytelen adatbázis-előtag: „$1”.
+Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható.',
+	'config-connection-error' => '$1.
+
+Ellenőrizd a hosztot, felhasználónevet és jelszót, majd próbáld újra.',
+	'config-invalid-schema' => 'Érvénytelen MediaWiki séma: „$1”.
+Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható.',
+	'config-invalid-ts2schema' => 'Érvénytelen TSearch2 séma: „$1”.
+Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható.',
+	'config-postgres-old' => 'A PostgreSQL $1 vagy újabb verziója szükséges, a rendszeren $2 van.',
 	'config-sqlite-parent-unwritable-nogroup' => 'Nem lehet létrehozni az adatok tárolásához szükséges <code><nowiki>$1</nowiki></code> könyvtárat, mert a webszerver nem írhat a szülőkönyvtárba (<code><nowiki>$2</nowiki></code>).
 
 A telepítő nem tudta megállapíteni, hogy melyik felhasználói fiókon fut a webszerver.
@@ -4100,9 +4136,19 @@ Unix/Linux rendszereken tedd a következőt:
 <pre>cd $2
 mkdir $3
 chmod a+w $3</pre>',
+	'config-sqlite-mkdir-error' => 'Nem sikerült létrehozni a következő adatkönyvtárat: „$1”.
+Ellenőrizd a helyet, majd próbáld újra.',
+	'config-sqlite-dir-unwritable' => 'Nem sikerült írni a következő könyvtárba: „$1”.
+Módosítsd a jogosultságokat úgy, hogy a webszerver tudjon oda írni, majd próbáld újra.',
+	'config-sqlite-connection-error' => '$1.
+
+Ellenőrizd az adatkönyvtárat és az adatbázisnevet, majd próbáld újra.',
 	'config-sqlite-readonly' => 'A következő fájl nem írható: <code>$1</code>.',
 	'config-regenerate' => 'LocalSettings.php elkészítése újra →',
 	'config-show-table-status' => 'A SHOW TABLE STATUS lekérdezés nem sikerült!',
+	'config-unknown-collation' => "'''Figyelmeztetés:''' az adatbázis ismeretlen egybevetést használ.",
+	'config-db-web-account-same' => 'Ezen fiók használata a telepítéshez is',
+	'config-db-web-create' => 'Fiók létrehozása, ha még nem létezik.',
 	'config-mysql-engine' => 'Tárolómotor:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -4115,6 +4161,7 @@ A MyISAM adatbázisok sokkal gyakrabban sérülnek meg, mint az InnoDB adatbázi
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'A wiki neve:',
 	'config-site-name-help' => 'A böngésző címsorában és még számos más helyen jelenik meg.',
+	'config-site-name-blank' => 'Add meg az oldal nevét.',
 	'config-project-namespace' => 'Projektnévtér:',
 	'config-ns-generic' => 'Projekt',
 	'config-ns-site-name' => 'Ugyanaz, mint a wiki neve: $1',
@@ -7264,6 +7311,16 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-welcome' => '=== Sprawdzenie środowiska instalacji ===
 Wykonywane są podstawowe testy sprawdzające czy to środowisko jest odpowiednie dla instalacji MediaWiki. 
 Jeśli potrzebujesz pomocy podczas instalacji załącz wyniki tych testów.',
+	'config-copyright' => "=== Prawa autorskie i warunki użytkowania ===
+
+$1
+
+To oprogramowanie jest wolne; możesz je rozprowadzać dalej i modyfikować zgodnie z warunkami licencji GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 tej licencji lub (według Twojego wyboru) którejś z późniejszych jej wersji. 
+
+Niniejsze oprogramowanie jest rozpowszechniane w nadziei, że będzie użyteczne, ale '''bez żadnej gwarancji'''; nawet bez domniemanej gwarancji '''handlowej''' lub '''przydatności do określonego celu'''.
+Zobacz treść licencji GNU General Public License, aby uzyskać więcej szczegółów. 
+
+Razem z oprogramowaniem powinieneś otrzymać <doclink href=Copying>kopię licencji GNU General Public License</doclink>. Jeśli jej nie otrzymałeś, napisz do Free Software Foundation, Inc, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. lub [http://www.gnu.org/copyleft/gpl.html przeczytaj ją online].",
 	'config-sidebar' => '* [http://www.mediawiki.org Strona domowa MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Podręcznik użytkownika]
 * [http://www.mediawiki.org/wiki/Manual:Contents Podręcznik administratora]
@@ -8516,6 +8573,64 @@ Você pode aumentar esta duração configurando <code>session.gc_maxlifetime</co
 Reinicie o processo de instalação.',
 	'config-no-session' => 'Os seus dados de sessão foram perdidos!
 Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.',
+	'config-session-path-bad' => 'O seu <code>session.save_path</code> (<code>$1</code>) parece ser inválido ou estar sem acesso de escrita.',
+	'config-show-help' => 'Ajuda',
+	'config-hide-help' => 'Esconder ajuda',
+	'config-your-language' => 'A sua língua:',
+	'config-your-language-help' => 'Selecione a língua que será usada durante o processo de instalação.',
+	'config-wiki-language' => 'Língua da wiki:',
+	'config-wiki-language-help' => 'Selecione a língua que será predominante na wiki.',
+	'config-back' => '← Voltar',
+	'config-continue' => 'Continuar →',
+	'config-page-language' => 'Língua',
+	'config-page-welcome' => 'Bem-vindo(a) ao MediaWiki!',
+	'config-page-dbconnect' => 'Ligar à base de dados',
+	'config-page-upgrade' => 'Atualizar a instalação existente',
+	'config-page-dbsettings' => 'Configurações da base de dados',
+	'config-page-name' => 'Nome',
+	'config-page-options' => 'Opções',
+	'config-page-install' => 'Instalar',
+	'config-page-complete' => 'Terminado!',
+	'config-page-restart' => 'Reiniciar a instalação',
+	'config-page-readme' => 'Leia-me',
+	'config-page-releasenotes' => 'Notas de lançamento',
+	'config-page-copying' => 'Copiando',
+	'config-page-upgradedoc' => 'Atualizando',
+	'config-help-restart' => 'Deseja limpar todos os dados salvos que você introduziu e reiniciar o processo de instalação?',
+	'config-restart' => 'Sim, reiniciar',
+	'config-welcome' => '=== Verificações do ambiente ===
+São realizadas verificações básicas para determinar se este ambiente é apropriado para instalação do MediaWiki.
+Você deverá fornecer os resultados destas verificações se você precisar de ajuda durante a instalação.',
+	'config-copyright' => "=== Direitos autorais e Termos de uso ===
+
+$1
+
+Este programa é software livre; você pode redistribuí-lo e/ou modificá-lo nos termos da licença GNU General Public License, tal como publicada pela Free Software Foundation; tanto a versão 2 da Licença, como (por opção sua) qualquer versão posterior.
+
+Este programa é distribuído na esperança de que seja útil, mas '''sem qualquer garantia'''; inclusive, sem a garantia implícita da '''possibilidade de ser comercializado''' ou de '''adequação para qualquer finalidade específica'''.
+Consulte a licença GNU General Public License para mais detalhes.
+
+Em conjunto com este programa você deve ter recebido <doclink href=Copying>uma cópia da licença GNU General Public License</doclink>; se não a recebeu, peça-a por escrito para Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ou [http://www.gnu.org/copyleft/gpl.html leia-a na internet].",
+	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/pt Página principal do MediaWiki]
+* [http://www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
+* [http://www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
+* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
+	'config-env-good' => '<span class="success-message">O ambiente foi verificado.
+Você pode instalar o MediaWiki.</span>',
+	'config-env-bad' => 'O ambiente foi verificado.
+Você não pode instalar o MediaWiki.',
+	'config-env-php' => 'O PHP $1 está instalado.',
+	'config-env-latest-ok' => 'Você está instalando a versão mais recente do MediaWiki.',
+	'config-env-latest-new' => "'''Nota:''' Você está instalando uma versão em desenvolvimento do MediaWiki.",
+	'config-env-latest-can-not-check' => "'''Aviso:''' O instalador não conseguiu obter informações sobre a versão mais recente do MediaWiki de [$1].",
+	'config-env-latest-old' => "'''Aviso:''' Você está instalando uma versão desatualizada do Mediawiki.",
+	'config-env-latest-help' => 'Você está instalando a versão $1, mas a versão mais recente é a $2.
+Aconselhamos que você instale a versão mais recente, que pode ser descarregada a partir da [http://www.mediawiki.org/wiki/Download mediawiki.org]',
+	'config-unicode-using-php' => 'Usando a implementação lenta do PHP para a normalização Unicode.',
+	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, de Brian Viper, para a normalização Unicode.',
+	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
+	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode.
+Se o seu site tem um alto volume de tráfego, devia informar-se um pouco sobre a [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalização Unicode].",
 	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logotipo de 135x160 pixels no canto superior esquerdo.
 Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
 
@@ -9423,14 +9538,26 @@ $messages['uk'] = array(
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
 	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду. 
 Якщо ваш сайт має високий трафік, вам варто почитати про [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормалізацію Юнікоду].",
+	'config-no-db' => 'Не вдалося знайти відповідний драйвер бази даних!',
+	'config-have-db' => 'Знайдено {{PLURAL:$2|драйвер бази|драйвери баз}} даних: $1.',
+	'config-db-type' => 'Тип бази даних:',
+	'config-db-host' => 'Хост бази даних:',
+	'config-db-name' => 'Назва бази даних:',
+	'config-db-password' => 'Пароль бази даних:',
+	'config-db-charset' => 'Кодування бази даних',
+	'config-mysql-binary' => 'Двійкове',
+	'config-site-name' => 'Назва вікі:',
 	'config-site-name-blank' => 'Введіть назву сайту.',
 	'config-project-namespace' => 'Простір назв проекту:',
 	'config-ns-generic' => 'Проект',
 	'config-admin-name' => "Ваше ім'я:",
 	'config-admin-password' => 'Пароль:',
+	'config-admin-password-confirm' => 'Пароль ще раз:',
 	'config-admin-email' => 'Адреса електронної пошти:',
+	'config-email-settings' => 'Налаштування електронної пошти',
 	'config-extensions' => 'Розширення',
 	'config-install-step-done' => 'виконано',
+	'config-install-step-failed' => 'не вдалося',
 );
 
 /** Yiddish (ייִדיש)

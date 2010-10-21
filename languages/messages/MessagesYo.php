@@ -956,7 +956,11 @@ Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 Àkíyèsí pé àwọn atọ́ka wọn fún àkóónú {{SITENAME}} le mọ́ jẹ́ tuntun.',
 
 # Quickbar
-'qbsettings-none' => 'Ìkankan',
+'qbsettings-none'          => 'Ìkankan',
+'qbsettings-fixedleft'     => 'Kíkàn sí òsì',
+'qbsettings-fixedright'    => 'Kíkàn sí ọ̀tún',
+'qbsettings-floatingleft'  => 'Léfòó sí òsì',
+'qbsettings-floatingright' => 'Léfòó sí ọ̀tún',
 
 # Preferences page
 'preferences'                 => 'Àwọn ìfẹ́ràn',

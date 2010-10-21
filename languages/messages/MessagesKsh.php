@@ -1437,6 +1437,8 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'prefs-advancedsearchoptions'   => 'Extra Ußwahle',
 'prefs-advancedwatchlist'       => 'Extra Ußwahle',
 'prefs-displayrc'               => 'Ußwahle för et Leßte Aanzeje',
+'prefs-displaysearchoptions'    => 'Enstellunge för et Aanzeje',
+'prefs-displaywatchlist'        => 'Enstellunge för et Aanzeje',
 'prefs-diffs'                   => 'Ongerscheide un Verjliische',
 
 # User rights
@@ -1523,6 +1525,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-hideuser'              => 'Ene Metmaacher sperre un em singe Name versteiche',
 'right-ipblock-exempt'        => 'Es ußjenomme vun automatesche Sperre, vun Sperre fun IP-Adresse, un vun Sperre vun Bereiche vun IP-Adresse',
 'right-proxyunbannable'       => 'Es ußjenomme fun automatische Sperre fun Proxy-Servere',
+'right-unblockself'           => 'retuur nämme, wam_mer sellver jesperrt woode es',
 'right-protect'               => 'Sigge schöze, jeschözde Sigge änndere, un der iere Schoz widder ophevve',
 'right-editprotected'         => 'Jeschötzte Sigge ändere, ohne Kaskadeschoz',
 'right-editinterface'         => 'Sigge met de Texte ändere, die et Wiki kallt',
@@ -1743,6 +1746,7 @@ wann De se noch han wells.',
 'overwroteimage'              => 'hät en neue Version huhjelade vun: „[[$1]]“',
 'uploaddisabled'              => 'Huhlade jesperrt',
 'copyuploaddisabled'          => 'Et Huhlaade us URLs es afjeschalldt',
+'uploadfromurl-queued'        => 'Dat Huhlaade es jiz en de Waadeschlang.',
 'uploaddisabledtext'          => 'Et Huhlade es jesperrt.',
 'php-uploaddisabledtext'      => 'Et Dateie Huhlade es en PHP affjeschalldt.
 Bes esu joot un donn noh de Enshtellung <i lang="en">file_uploads</i> loore.',
@@ -1788,6 +1792,8 @@ PICT # - diverse -
 'upload-failure-msg'          => 'Mer hatte e Probleem met Dinge huhjelaade Dattei vun [$2]:
 
 $1',
+'upload-warning-subj'         => 'Warnung beim Huhlade',
+'upload-warning-msg'          => 'Met däm Huhlaade vun [$2] es jet donevve jejange, Do kanns retuur jon op et [[Special:Upload/stash/$1|Fommulaa zom Huhlaade]] öm dat ze repareere.',
 
 'upload-proto-error'        => 'Verkihrt Protokoll',
 'upload-proto-error-text'   => 'Ene URL för en Datei fun huhzelade moß met <code>http://</code> uder <code>ftp://</code> aafange.',
@@ -2219,7 +2225,11 @@ Alles klor?',
 'emailccsubject'       => 'En Kopie vun Dinger E-Mail aan $1: $2',
 'emailsent'            => 'E-Mail es ungerwähs',
 'emailsenttext'        => 'Ding E-Mail es jetz lossjescheck woode.',
-'emailuserfooter'      => 'Hee di e-mail hät dä „$1“ an „$2“ jescheck, un doför en de {{SITENAME}} dat „{{int:emailuser}}“ jebruch.',
+'emailuserfooter'      => 'Hee di e-mail hät {{GENDER:$1|dä|et|dä Metmaacher|di|dat}} „$1“ an {{GENDER:$2|dä|et|dä Metmaacher|di|dat}} „$2“ jescheck, un doför {{GRAMMAR:en dative|{{SITENAME}}}} dat „{{int:emailuser}}“ jebruch.',
+
+# User Messenger
+'usermessage-summary' => 'En Nohreesh vum Wiki afjelivvert.',
+'usermessage-editor'  => 'Name vum Metmaacher för de Täxte un Nohreshte vum Wiki ze beärbeide',
 
 # Watchlist
 'watchlist'            => 'ming Oppassliss',
@@ -2345,7 +2355,8 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 'rollback-success'  => 'De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.',
 
 # Edit tokens
-'sessionfailure' => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
+'sessionfailure-title' => 'Fähler met dä Daate vum Enlogge',
+'sessionfailure'       => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
 
 # Protect
 'protectlogpage'              => 'Logboch vum Sigge Schötze',
@@ -3038,6 +3049,7 @@ $1',
 'show-big-image-thumb' => '<small>Di Vör-Aansich es $1 × $2 Pixelle jroß</small>',
 'file-info-gif-looped' => 'läuf emmer widder vun vürre',
 'file-info-gif-frames' => '{{PLURAL:$1|ei einzel Beld|$1 einzel Belder|kei einzel Beld}}',
+'file-info-png-looped' => 'läuf emmer widder vun vürre',
 'file-info-png-repeat' => 'weed {{PLURAL:$1|eijmohl|$1 Mohl|keimohl}} affjespellt',
 'file-info-png-frames' => '{{PLURAL:$1|ei einzel Beld|$1 einzel Belder|kei einzel Beld}}',
 
@@ -3365,24 +3377,24 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'limitall'         => 'alle',
 
 # E-mail address confirmation
-'confirmemail'             => 'E-Mail Adress bestätije',
-'confirmemail_noemail'     => 'En [[Special:Preferences|Ding Enstellunge]] es kein öntlich E-Mail Adress.',
-'confirmemail_text'        => 'Ih datte en däm Wiki heh de E-Mail bruche kanns, muss De Ding E-Mail Adress bestätich han, dat se en Oodnung es un dat se och Ding eijene es. Klick op dä Knopp un Do kriss en E-Mail jescheck. Do steiht ene Link met enem Code dren. Wann De met Dingem Brauser op dä Link jeihs, dann deis De domet bestätije, dat et wirklich Ding E-Mail Adress es. Dat es nit allzo secher, alsu wör nix för Die Bankkonto oder bei de Sparkass, ävver et sorg doför, dat nit jede Peijaß met Dinger E-Mail oder Dingem Metmaachername eröm maache kann.',
-'confirmemail_pending'     => 'Do häs ald ene Kood för de Bestätijung med ene E-Mail zojeschek bekumme. Wann De Ding Aanmeldung eez jraad jemaat häs, dann donn noch ene Moment waade, ih dat De Der ene neue Kood hölls.',
-'confirmemail_send'        => 'Scheck en E-Mail zem Bestätije',
-'confirmemail_sent'        => 'En E-Mail, för Ding E-Mail Adress ze bestätije, es ungerwähs.',
-'confirmemail_oncreate'    => 'Do häs jetz ene Kood för de Bestätijung med ene E-Mail zojeschek bekumme. För em Wiki jet ze maache, un för et Enlogge, do bruchs De der Kode nit, ävver domet de e-Mail övver et Wiki schecke un krijje kanns, doför moß De en ejmool ens bestätijje, domet secher es, dat Ding E-Mail Adress och rechtich jetipp wohr.',
-'confirmemail_sendfailed'  => "Beim E-Mail Adress Bestätije es jet donevve jejange, künnt sin, en Dinger E-Mail Adress es e Zeiche verkihrt, oder esu jet.
+'confirmemail'              => 'E-Mail Adress bestätije',
+'confirmemail_noemail'      => 'En [[Special:Preferences|Ding Enstellunge]] es kein öntlich E-Mail Adress.',
+'confirmemail_text'         => 'Ih datte en däm Wiki heh de E-Mail bruche kanns, muss De Ding E-Mail Adress bestätich han, dat se en Oodnung es un dat se och Ding eijene es. Klick op dä Knopp un Do kriss en E-Mail jescheck. Do steiht ene Link met enem Code dren. Wann De met Dingem Brauser op dä Link jeihs, dann deis De domet bestätije, dat et wirklich Ding E-Mail Adress es. Dat es nit allzo secher, alsu wör nix för Die Bankkonto oder bei de Sparkass, ävver et sorg doför, dat nit jede Peijaß met Dinger E-Mail oder Dingem Metmaachername eröm maache kann.',
+'confirmemail_pending'      => 'Do häs ald ene Kood för de Bestätijung med ene E-Mail zojeschek bekumme. Wann De Ding Aanmeldung eez jraad jemaat häs, dann donn noch ene Moment waade, ih dat De Der ene neue Kood hölls.',
+'confirmemail_send'         => 'Scheck en E-Mail zem Bestätije',
+'confirmemail_sent'         => 'En E-Mail, för Ding E-Mail Adress ze bestätije, es ungerwähs.',
+'confirmemail_oncreate'     => 'Do häs jetz ene Kood för de Bestätijung med ene E-Mail zojeschek bekumme. För em Wiki jet ze maache, un för et Enlogge, do bruchs De der Kode nit, ävver domet de e-Mail övver et Wiki schecke un krijje kanns, doför moß De en ejmool ens bestätijje, domet secher es, dat Ding E-Mail Adress och rechtich jetipp wohr.',
+'confirmemail_sendfailed'   => "Beim E-Mail Adress Bestätije es jet donevve jejange, künnt sin, en Dinger E-Mail Adress es e Zeiche verkihrt, oder esu jet.
 
 Dä E-Mail-ẞööver hät jesaat: ''$1''",
-'confirmemail_invalid'     => 'Et es jet donevve jejange, Ding E-Mail Adress es un bliev nit bestätich. Mööchlech, dä Code wohr verkihrt, hä künnt avjelaufe jewäse sin, oder esu jet. Versöök et noch ens.',
-'confirmemail_needlogin'   => 'Do muss Dich $1, för de E-Mail Adress ze bestätije.',
-'confirmemail_success'     => 'Ding E-Mail Adress es jetz bestätich.
+'confirmemail_invalid'      => 'Et es jet donevve jejange, Ding E-Mail Adress es un bliev nit bestätich. Mööchlech, dä Code wohr verkihrt, hä künnt avjelaufe jewäse sin, oder esu jet. Versöök et noch ens.',
+'confirmemail_needlogin'    => 'Do muss Dich $1, för de E-Mail Adress ze bestätije.',
+'confirmemail_success'      => 'Ding E-Mail Adress es jetz bestätich.
 Jetz künns De och noch enlogge. Vill Spass!',
-'confirmemail_loggedin'    => 'Ding E-Mail Adress es jetz bestätich!',
-'confirmemail_error'       => 'Beim E-Mail Adress Bestätije es jet donevve jejange, de Bestätijung kunnt nit avjespeichert wääde.',
-'confirmemail_subject'     => 'Dun Ding E-Mail Adress bestätije för de {{SITENAME}}.',
-'confirmemail_body'        => 'Künnt jod sin, Do wors et selver, vun de IP_Adress $1 hät sich
+'confirmemail_loggedin'     => 'Ding E-Mail Adress es jetz bestätich!',
+'confirmemail_error'        => 'Beim E-Mail Adress Bestätije es jet donevve jejange, de Bestätijung kunnt nit avjespeichert wääde.',
+'confirmemail_subject'      => 'Dun Ding E-Mail Adress bestätije för de {{SITENAME}}.',
+'confirmemail_body'         => 'Künnt jod sin, Do wors et selver, vun de IP_Adress $1 hät sich
 jedenfalls einer jemeldt, un well dä Metmaacher "$2" op de {{SITENAME}}
 sin, un hät en E-Mail Adress aanjejovve.
 
@@ -3400,8 +3412,27 @@ bestätich es. Do kanns ävver och op he dä Link jon:
 $5
 
 Domet deiß De tirek sare, dat De di Adress nit bestätije wells.',
-'confirmemail_invalidated' => "Et Bestätijje för die E-Mail-Adress es afjebroche woode, un die Adress is '''nit''' bestätich.",
-'invalidateemail'          => 'E-Mail-Adress nit bestätich',
+'confirmemail_body_changed' => 'Künnt jod sin, Do wors et selver, vun de IP_Adress $1 hät sich
+jedenfalls einer jemeldt, un well dä Metmaacher "$2" op de {{SITENAME}}
+sin, un hät en neu Adress för de e-mail aanjejovve.
+
+Öm jetz klor ze krije, dat die neu Adress un dä Metmaacher och
+zosamme jehüre, un öm de e-mail op {{GRAMMAR:Akk bet|{{SITENAME}}}}
+widder aanzschallde, moss dä Metmaacher en singem Brauser dä Link:
+
+$3
+
+opmaache. Noch för em $6 öm $7 Uhr. Alsu dun dat, wann de et selver bes.
+
+Wann nit Do, sondern söns wä Ding E-Mail Adress aanjejovve hät, bruchs De
+jar nix ze don. Di Adress kann nit jebruch wääde, ih dat se nit bestätich
+es. Do kanns ävver och op he dä Link jon:
+
+$5
+
+Domet deiß De tirek sare, dat De di Adress nit bestätije wells.',
+'confirmemail_invalidated'  => "Et Bestätijje för die E-Mail-Adress es afjebroche woode, un die Adress is '''nit''' bestätich.",
+'invalidateemail'           => 'E-Mail-Adress nit bestätich',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Et Enbinge per Interwiki es avjeschalt]',
