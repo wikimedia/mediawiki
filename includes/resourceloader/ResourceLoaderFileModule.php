@@ -79,6 +79,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @format array( [message-key], [message-key], ... )
 	 */
 	protected $group;
+	/** @var {boolean} Link to raw files in debug mode */
+	protected $debugRaw = true;
 	/**
 	 * @var {array}  Cache for mtime
 	 * @format array( [hash] => [mtime], [hash] => [mtime], ... )
@@ -147,7 +149,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 				// Single strings
 				case 'group':
-					$this->group = (string) $option;
+					$this->{$member} = (string) $option;
+					break;
+				// Single booleans
+				case 'debugRaw':
+					$this->{$member} = (bool) $option;
 					break;
 			}
 		}
@@ -160,13 +166,24 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return {string} JavaScript code for $context
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$script = self::readScriptFiles( $this->scripts ) . "\n" .
-			self::readScriptFiles( self::tryForKey( $this->languageScripts, $context->getLanguage() ) ) . "\n" .
-			self::readScriptFiles( self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ) ) . "\n";
+		global $wgScriptPath;
+		
+		$files = array_merge(
+			$this->scripts,
+			self::tryForKey( $this->languageScripts, $context->getLanguage() ),
+			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' )
+		);
 		if ( $context->getDebug() ) {
-			$script .= "\n" . self::readScriptFiles( $this->debugScripts );
+			$files = array_merge( $files, $this->debugScripts );
+			if ( $this->debugRaw ) {
+				$tags = '';
+				foreach ( $files as $file ) {
+					$tags .= "<script type=\"text/javascript\" src=\"$wgScriptPath/$file\"></script>";
+				}
+				return "\n\tdocument.write( " . FormatJson::encode( $tags ) . ' );';
+			}
 		}
-		return $script;
+		return self::readScriptFiles( $files );
 	}
 
 	/**

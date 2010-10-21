@@ -495,34 +495,26 @@ window.mediaWiki = new ( function( $ ) {
 				};
 				// Extend request parameters with a list of modules in the batch
 				var requests = [];
-				if ( base.debug == '1' ) {
-					for ( var b = 0; b < batch.length; b++ ) {
-						requests[requests.length] = $.extend(
-							{ 'modules': batch[b], 'version': registry[batch[b]].version }, base
-						);
+				// Split into groups
+				var groups = {};
+				for ( var b = 0; b < batch.length; b++ ) {
+					var group = registry[batch[b]].group;
+					if ( !( group in groups ) ) {
+						groups[group] = [];
 					}
-				} else {
-					// Split into groups
-					var groups = {};
-					for ( var b = 0; b < batch.length; b++ ) {
-						var group = registry[batch[b]].group;
-						if ( !( group in groups ) ) {
-							groups[group] = [];
+					groups[group][groups[group].length] = batch[b];
+				}
+				for ( var group in groups ) {
+					// Calculate the highest timestamp
+					var version = 0;
+					for ( var g = 0; g < groups[group].length; g++ ) {
+						if ( registry[groups[group][g]].version > version ) {
+							version = registry[groups[group][g]].version;
 						}
-						groups[group][groups[group].length] = batch[b];
 					}
-					for ( var group in groups ) {
-						// Calculate the highest timestamp
-						var version = 0;
-						for ( var g = 0; g < groups[group].length; g++ ) {
-							if ( registry[groups[group][g]].version > version ) {
-								version = registry[groups[group][g]].version;
-							}
-						}
-						requests[requests.length] = $.extend(
-							{ 'modules': groups[group].join( '|' ), 'version': formatVersionNumber( version ) }, base
-						);
-					}
+					requests[requests.length] = $.extend(
+						{ 'modules': groups[group].join( '|' ), 'version': formatVersionNumber( version ) }, base
+					);
 				}
 				// Clear the batch - this MUST happen before we append the script element to the body or it's
 				// possible that the script will be locally cached, instantly load, and work the batch again,
