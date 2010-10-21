@@ -166,7 +166,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return {string} JavaScript code for $context
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		global $wgScriptPath;
+		global $wgServer, $wgScriptPath;
 		
 		$files = array_merge(
 			$this->scripts,
@@ -176,11 +176,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $context->getDebug() ) {
 			$files = array_merge( $files, $this->debugScripts );
 			if ( $this->debugRaw ) {
-				$tags = '';
+				$script = '';
 				foreach ( $files as $file ) {
-					$tags .= "<script type=\"text/javascript\" src=\"$wgScriptPath/$file\"></script>";
+					$path = FormatJson::encode( "$wgServer$wgScriptPath/$file" );
+					$script .= "\n\tmediaWiki.loader.load( $path );";
 				}
-				return "\n\tdocument.write( " . FormatJson::encode( $tags ) . ' );';
+				return $script;
 			}
 		}
 		return self::readScriptFiles( $files );
