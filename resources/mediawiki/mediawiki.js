@@ -673,14 +673,15 @@ window.mediaWiki = new ( function( $ ) {
 				// Support adding arbitrary external scripts
 				if ( modules.substr( 0, 7 ) == 'http://' || modules.substr( 0, 8 ) == 'https://' ) {
 					if ( type === 'text/css' ) {
-						setTimeout(  function() {
-							$( 'head' ).append( '<link rel="stylesheet" type="text/css" />' ).attr( 'href', modules );
-						}, 0 );
+						$( 'head' ).append( $( '<link rel="stylesheet" type="text/css" />' ).attr( 'href', modules ) );
 						return true;
 					} else if ( type === 'text/javascript' || typeof type === 'undefined' ) {
-						setTimeout(  function() {
-							$( 'body' ).append( '<script type="text/javascript"></script>'  ).attr( 'src', modules )
-						}, 0 );
+						var script = '<script type="text/javascript" src="' + modules + '"></script>';
+						if ( ready ) {
+							$( 'body' ).append( script );
+						} else {
+							document.write( script );
+						}
 						return true;
 					}
 					// Unknown type
