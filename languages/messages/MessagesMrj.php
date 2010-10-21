@@ -606,7 +606,7 @@ $messages = array(
 'export' => 'Артикльвлӓм экспортируйымаш',
 
 # Thumbnails
-'thumbnail-more' => 'Шукемдӓш',
+'thumbnail-more' => 'Когоэмдӓш',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Тӓмдӓн сирӹмӹ ӹлӹштӓшда',

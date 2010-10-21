@@ -2183,7 +2183,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 
 # User Messenger
 'usermessage-summary'  => 'Systemnachricht gespeichert.',
-'usermessage-editor'   => 'System-Messenger',
+'usermessage-editor'   => 'Systemnachrichtenbearbeiter',
 'usermessage-template' => 'MediaWiki:Benutzernachricht',
 
 # Watchlist
