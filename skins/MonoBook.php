@@ -28,7 +28,7 @@ class SkinMonoBook extends SkinTemplate {
 
 		parent::setupSkinUserCss( $out );
 
-		$out->addModuleStyles( 'monobook' );
+		$out->addModuleStyles( 'skins.monobook' );
 		
 		// TODO: Migrate all of these
 		//$out->addStyle( 'monobook/IE50Fixes.css', 'screen', 'lt IE 5.5000' );

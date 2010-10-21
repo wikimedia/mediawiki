@@ -11,10 +11,10 @@ return array(
 	
 	/* Skins */
 	
-	'vector' => new ResourceLoaderFileModule(
+	'skins.vector' => new ResourceLoaderFileModule(
 		array( 'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) ) )
 	),
-	'monobook' => new ResourceLoaderFileModule(
+	'skins.monobook' => new ResourceLoaderFileModule(
 		array( 'styles' => array(
 				'skins/monobook/main.css' => array( 'media' => 'screen' ),
 				// Honor $wgHandheldStyle. This is kind of evil
