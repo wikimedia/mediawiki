@@ -1043,6 +1043,7 @@ chmod a+w config</pre>",
 
 Падумайце над тым, каб зьмяшчаць базу зьвестак у іншым месцы, напрыклад у <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-oracle-def-ts' => 'Прастора табліцаў па змоўчваньні:',
+	'config-oracle-temp-ts' => 'Часовая прастора табліцаў:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -1055,12 +1056,16 @@ $1
 	'config-support-mysql' => '* $1 зьяўляецца галоўнай мэтай MediaWiki і падтрымліваецца лепей за ўсё ([http://www.php.net/manual/en/mysql.installation.php як кампіляваць PHP з падтрымкай MySQL])',
 	'config-support-postgres' => '* $1 — вядомая сыстэма базы зьвестак з адкрытым кодам, якая зьяўляецца альтэрнатывай MySQL ([http://www.php.net/manual/en/pgsql.installation.php як кампіляваць PHP з падтрымкай PostgreSQL])',
 	'config-support-sqlite' => '* $1 — невялікая сыстэма базы зьвестак, якая мае вельмі добрую падтрымку. ([http://www.php.net/manual/en/pdo.installation.php як кампіляваць PHP з падтрымкай SQLite], выкарыстоўвае PDO)',
+	'config-support-oracle' => '* $1 зьяўляецца камэрцыйнай прафэсійнай базай зьвестак. ([http://www.php.net/manual/en/oci8.installation.php Як скампіляваць PHP з падтрымкай OCI8])',
 	'config-header-mysql' => 'Устаноўкі MySQL',
 	'config-header-postgres' => 'Устаноўкі PostgreSQL',
 	'config-header-sqlite' => 'Устаноўкі SQLite',
 	'config-header-oracle' => 'Устаноўкі Oracle',
 	'config-invalid-db-type' => 'Няслушны тып базы зьвестак',
 	'config-missing-db-name' => 'Вы павінны ўвесьці значэньне парамэтру «Імя базы зьвестак»',
+	'config-missing-db-server-oracle' => 'Вы павінны ўвесьці значэньне парамэтру «TNS базы зьвестак»',
+	'config-invalid-db-server-oracle' => 'Няслушнае TNS базы зьвестак «$1».
+Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня(_) і кропкі (.).',
 	'config-invalid-db-name' => 'Няслушная назва базы зьвестак «$1».
 Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9) і сымбалі падкрэсьліваньня(_).',
 	'config-invalid-db-prefix' => 'Няслушны прэфікс базы зьвестак «$1».
@@ -3952,6 +3957,7 @@ Móžeš to manuelnje činić.",
 
 /** Hungarian (Magyar)
  * @author Dani
+ * @author Glanthor Reviol
  */
 $messages['hu'] = array(
 	'config-desc' => 'A MediaWiki telepítője',
@@ -4097,7 +4103,7 @@ Ha a fiók nem létezik és a telepítést végző fiók rendelkezik megfelelő 
 Ez sokkal hatékonyabb a MySQL UTF-8-módjától, és lehetővé teszi, hogy a teljes Unicode-karakterkészletet használd.
 '''UTF-8-módban''' MySQL tudja, hogy milyen karakterkészlettel van kódolva az adat, és megfelelően tárolja és konvertálja, de
 nem használhatod a [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane] feletti karaktereket.",
-	'config-mysql-old' => 'A MySQL $1 vagy újabb verziója szükséges, a rendszeren $2 fut',
+	'config-mysql-old' => 'A MySQL $1 vagy újabb verziója szükséges, a rendszeren $2 van.',
 	'config-db-port' => 'Adatbázisport:',
 	'config-db-schema' => 'MediaWiki-séma',
 	'config-db-ts2-schema' => 'Tsearch2-séma',
@@ -4114,7 +4120,7 @@ Csak akkor módosíts rajta, ha szükség van rá.',
 	'config-missing-db-name' => 'Meg kell adnod az „adatbázis nevét”',
 	'config-missing-db-server-oracle' => 'Meg kell adnod az „Adatbázis TNS” értékét',
 	'config-invalid-db-server-oracle' => 'Érvénytelen adatbázis TNS: „$1”
-Csak ASCII-karakterek (a-z, A-Z), számok (0-9), alulvonás (_) és pont (.) használható.',
+Csak ASCII betűk (a-z, A-Z), számok (0-9), alulvonás (_) és pont (.) használható.',
 	'config-invalid-db-name' => 'Érvénytelen adatbázisnév: „$1”.
 Csak ASCII-karakterek (a-z, A-Z), számok (0-9) és alulvonás (_) használható.',
 	'config-invalid-db-prefix' => 'Érvénytelen adatbázis-előtag: „$1”.
@@ -7744,7 +7750,7 @@ S'a deuvra n'ospitalità partagià, sò fornidor d'ospitalità a dovrìa deje ë
 
 Se a anstala su un servent Windows e a deuvra MySQL, dovré \"localhost\" a podrìa funsioné nen com nòm dël servent. S'a marcia nen, ch'a preuva \"127.0.0.1\" com adrëssa IP local.",
 	'config-db-host-oracle' => 'TNS dla base ëd dàit:',
-	'config-db-host-oracle-help' => "Anseriss un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name] bon; un file tnsnames.ora a deuv esse visìbil a sta anstalassion..<br />S'i të stas dovrand librerìe client 10g o pi neuve it peule ëdcò dovré ël métod ëd ciamada [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].",
+	'config-db-host-oracle-help' => "Anserì un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nòm ëd conession local] bon; n'archivi tnsnames.ora a dev esse visìbil da costa anstalassion..<br />S'a deuvra le librarìe cliente 10g o pi neuve a peul ëdcò dovré ël métod ëd nominassion [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].",
 	'config-db-wiki-settings' => 'Identìfica sta wiki',
 	'config-db-name' => 'Nòm dla base ëd dàit:',
 	'config-db-name-help' => "Ch'a serna un nòm ch'a identìfica soa wiki.
@@ -8655,6 +8661,7 @@ $messages['ro'] = array(
 	'config-page-welcome' => 'Bun venit la MediaWiki!',
 	'config-page-dbconnect' => 'Conectează la baza de date',
 	'config-page-upgrade' => 'Extinde instalarea existentă',
+	'config-page-dbsettings' => 'Setări ale bazei de date',
 	'config-page-name' => 'Nume',
 	'config-page-options' => 'Opţiuni',
 	'config-page-install' => 'Instalare',
@@ -9212,6 +9219,7 @@ $messages['te'] = array(
 	'config-title' => 'మీడియావికీ $1స్థాపన',
 	'config-information' => 'సమాచారం',
 	'config-show-help' => 'సహాయం',
+	'config-hide-help' => 'సహాయాన్ని దాచు',
 	'config-your-language' => 'మీ భాష:',
 	'config-wiki-language' => 'వికీ భాష:',
 	'config-back' => '← వెనక్కి',
@@ -9238,8 +9246,11 @@ $messages['te'] = array(
 	'config-profile-no-anon' => 'ఖాతా సృష్టింపు తప్పనిసరి',
 	'config-profile-private' => 'అంతరంగిక వికీ',
 	'config-license' => 'కాపీహక్కులు మరియు లైసెన్సు:',
+	'config-license-pd' => 'సార్వజనీనం',
 	'config-email-settings' => 'ఈ-మెయిల్ అమరికలు',
 	'config-upload-deleted' => 'తొలగించిన దస్త్రాల కొరకు సంచయం:',
+	'config-install-step-done' => 'పూర్తయింది',
+	'config-install-step-failed' => 'విఫలమైంది',
 );
 
 /** Tagalog (Tagalog)
@@ -9540,11 +9551,21 @@ $messages['uk'] = array(
 Якщо ваш сайт має високий трафік, вам варто почитати про [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормалізацію Юнікоду].",
 	'config-no-db' => 'Не вдалося знайти відповідний драйвер бази даних!',
 	'config-have-db' => 'Знайдено {{PLURAL:$2|драйвер бази|драйвери баз}} даних: $1.',
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] встановлено',
+	'config-apc' => '[http://www.php.net/apc APC] встановлено',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] встановлено',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] встановлено',
 	'config-db-type' => 'Тип бази даних:',
 	'config-db-host' => 'Хост бази даних:',
 	'config-db-name' => 'Назва бази даних:',
 	'config-db-password' => 'Пароль бази даних:',
 	'config-db-charset' => 'Кодування бази даних',
+	'config-invalid-db-type' => 'Невірний тип бази даних',
+	'config-invalid-db-name' => 'Неприпустима назва бази даних "$1".
+Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
+	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1". 
+Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
+	'config-db-web-create' => 'Створити обліковий запис, якщо його ще не існує',
 	'config-mysql-binary' => 'Двійкове',
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-blank' => 'Введіть назву сайту.',
@@ -9553,8 +9574,14 @@ $messages['uk'] = array(
 	'config-admin-name' => "Ваше ім'я:",
 	'config-admin-password' => 'Пароль:',
 	'config-admin-password-confirm' => 'Пароль ще раз:',
+	'config-admin-password-mismatch' => 'Два введені вами паролі не збігаються.',
 	'config-admin-email' => 'Адреса електронної пошти:',
+	'config-license' => 'Авторські права і ліцензія:',
+	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
+	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-email-settings' => 'Налаштування електронної пошти',
+	'config-upload-enable' => 'Дозволити завантаження файлів',
+	'config-cc-again' => 'Виберіть знову ...',
 	'config-extensions' => 'Розширення',
 	'config-install-step-done' => 'виконано',
 	'config-install-step-failed' => 'не вдалося',

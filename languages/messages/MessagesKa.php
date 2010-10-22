@@ -134,7 +134,7 @@ $messages = array(
 'tog-watchdeletion'           => 'ჩასვი გვერდები, რომლებსაც მე ვშლი, ჩემს კონტროლის სიაში',
 'tog-previewontop'            => 'წინასწარი გადახედვის ჩვენება რედაქტირების დაფამდე',
 'tog-previewonfirst'          => 'წინასწარი ჩვენება პირველივე რედაქტირებაზე',
-'tog-nocache'                 => 'გათიშეთ გვერდების ქეშირება',
+'tog-nocache'                 => 'გათიშეთ ბრაუზერში გვერდების ქეშირება',
 'tog-enotifwatchlistpages'    => 'მომწერე ელ. ფოსტით, როცა გვერდი, რომელსაც მე ვაკონტროლებ, შეიცვლება',
 'tog-enotifusertalkpages'     => 'მომწერე თუ ჩემი განხილვის გვერდი შეიცვლება',
 'tog-enotifminoredits'        => 'მომწერე ასევე გვერდების მცირე რედაქტირებისას',
@@ -346,6 +346,7 @@ $messages = array(
 გთხოვთ დაელოდოთ და გაიმეროთ მოთხოვნა ცოტა მოგვიანებით გაიმეორეთ.
 
 $1',
+'pool-errorunknown' => 'უცნობი შეცდომა',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}-ის შესახებ',
@@ -592,7 +593,10 @@ $1 საათში.',
 'suspicious-userlogout'      => 'თქვენი მოთხოვნა გასვლის შესახებ გაუქმებულია, რადგანაც იგი გავს ქეშირებადი პროქსის ან არაკორექტული ბრაუზერის მოთხოვნას.',
 
 # JavaScript password checks
-'password-strength-good' => 'კარგი',
+'password-strength-bad'    => 'ცუდი',
+'password-strength-good'   => 'კარგი',
+'password-retype'          => 'ხელმეორედ შეიყვანეთ პაროლი',
+'password-retype-mismatch' => 'პაროლები არ ემთხვევა',
 
 # Password reset dialog
 'resetpass'                 => 'შეცვალეთ პაროლი',
@@ -720,8 +724,8 @@ $1 საათში.',
 'blocked-notice-logextract'        => 'ეს მომხმარებელი უკვე დაიბლოკა.
 დაბლოკვის მიზეზი შემდეგშია:',
 'clearyourcache'                   => "'''შენიშვნა:''' შენახვის შემდეგ შესაძლოა დაგჭირდეთ ბრაუზერის ქეშის გაწმენდა ცვლილებების სანახავად. '''Mozilla / Firefox / Safari:''' დააჭირეთ ''Shift'' ''Reload''-ზე დაწკაპებისას, ან დააჭირეთ ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Apple Mac-ზე); '''IE:''' დააჭირეთ ''Ctrl'' ''Refresh''-ზე დაწკაპებისას, ან დააჭირეთ ''Ctrl-F5''; '''Konqueror:''': მხოლოდ დააწკაპეთ ''Reload'' ღილაკს, ან დააჭირეთ ''F5''; '''Opera''' შესაძლოა საჭირო გახდეს ქეშის სრულიად გაწმენდა ''Tools→Preferences''-დან.",
-'usercssyoucanpreview'             => "'''რჩევა:''' შენახვამდე გამოიყენეთ 'წინასწარი გადახედვის' ღილაკი თქვენი ახალი CSS ტესტირებისთვის.",
-'userjsyoucanpreview'              => "'''რჩევა:''' შენახვამდე გამოიყენეთ 'წინასწარი გადახედვის' ღილაკი თქვენი ახალი JS ტესტირებისთვის.",
+'usercssyoucanpreview'             => "'''რჩევა:''' შენახვამდე გამოიყენეთ ღილაკი \"{{int:showpreview}}\" თქვენი ახალი CSS ტესტირებისთვის.",
+'userjsyoucanpreview'              => "'''რჩევა:''' შენახვამდე გამოიყენეთ ღილაკი \"{{int:showpreview}}\" თქვენი ახალი JS ტესტირებისთვის.",
 'usercsspreview'                   => "'''გახსოვდეთ, რომ თქვენ მხოლოდ წინასწარ გადახედვას უყურებთ თქვენს მომხმარებლის CSS-ს, ის ჯერ შენახული არ არის!'''",
 'userjspreview'                    => "'''გახსოვდეთ, რომ თქვენ მხოლოდ ტესტირებას უკეთებთ ან აკვირდებით წინასწარ ხედს თქვენი მომხმარებლის ჯავასკრიპტს - ის ჯერ არ არის დამახსოვრებული!'''",
 'userinvalidcssjstitle'            => "'''ყურადღება:''' გაფორმების თემა «$1» არ არის ნაპოვნი. გახსოვდეთ, რომ .css და .js გვერდებს უნდა ჰქონდეს მხოლოდ ზეხაზური სათაური, მაგ. «{{ns:user}}:ვიღაცა/monobook.css», და არა «{{ns:user}}:ვიღაცა/Monobook.css».",
@@ -1013,7 +1017,7 @@ $1",
 'compareselectedversions'  => 'არჩეული ვერსიების შედარება',
 'showhideselectedversions' => 'ჩვენება/დამალვა არჩეული ვერსიებისა',
 'editundo'                 => 'გაუქმება',
-'diff-multi'               => '({{PLURAL:$1|ერთი|$1}} შუა ვერსია არ არის ნაჩვენები.)',
+'diff-multi'               => '({{PLURAL:$2|ერთი მომხმარებლის|$2 მომხმარებლების}} {{PLURAL:$1|ერთი შუალედური ვერსია|$1 შუალედური ვერსიები}} არ არის ნაჩვენები.)',
 
 # Search results
 'searchresults'                    => 'ძიების შედეგები',
@@ -1511,6 +1515,7 @@ $1",
 'upload-failure-msg'          => 'ატვირთვისას პრობლემა შეიქმნა:
 
 $1',
+'upload-warning-subj'         => 'ატვირთვისთვის გაფრთხილება',
 
 'upload-proto-error'        => 'არასწორი პროტოკოლი',
 'upload-proto-error-text'   => 'ატვირთვის წასაშლელად საჭიროა მისამართი, რომელიც იწყება <code>http://</code> or <code>ftp://</code>-ით.',
@@ -1916,6 +1921,7 @@ $1',
 # Watchlist
 'watchlist'            => 'ჩემი კონტროლის სია',
 'mywatchlist'          => 'ჩემი კონტროლის სია',
+'watchlistfor2'        => '$1 ($2) თვის',
 'nowatchlist'          => 'თქვენი კონტროლის სია ცარიელია.',
 'watchlistanontext'    => '$1
 
@@ -2633,7 +2639,7 @@ $1',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'მონიშნე როგორც პატროლირებული',
-'markaspatrolledtext'                 => 'მონიშნე ეს სტატია როგორც პატროლირებული',
+'markaspatrolledtext'                 => 'მონიშნე ეს სტატია როგორც პატრულირებული',
 'markedaspatrolled'                   => 'მონიშნულია როგორც პატროლირებული',
 'markedaspatrolledtext'               => 'არჩეული ვერსია მონიშნულია [[:$1]] როგორც შემოწმებული',
 'rcpatroldisabled'                    => 'ბოლო ცვლილებების პატრულირება აკრძალულია',
@@ -3013,7 +3019,7 @@ $1',
 სერვერის პასუხი: $1',
 'confirmemail_invalid'      => 'არასწორი კოდი. შესაძლოა კოდი ძალადაკარგული იყოს.',
 'confirmemail_needlogin'    => 'თქვენ გჭირდებათ $1 თქვენი ელ-ფოსტის მისამართის დასადასტურებლად.',
-'confirmemail_success'      => 'თქვენი ელ. ფოსტის მისამართის დადასტურება მიღებულია. შეგიძლიათ ვიკიში შესვლა.',
+'confirmemail_success'      => 'თქვენი ელ. ფოსტის მისამართი დადასტურებულია. ახლა შეგიძლიათ ვიკიში [[Special:UserLogin|შესვლა]].',
 'confirmemail_loggedin'     => 'თქვენი ელ. ფოსტის მისამართის დადასტურება მიღებულია.',
 'confirmemail_error'        => 'შეცდომა მოხდა თქვენი ელ. ფოსტის მისამართის დადასტურების დროს.',
 'confirmemail_subject'      => '{{SITENAME}} ელ. ფოსტის მისამართის დადასტურება',

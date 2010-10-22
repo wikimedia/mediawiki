@@ -63,6 +63,11 @@ $messages = array(
 'underline-always' => 'Oltaim',
 'underline-never'  => 'No gat',
 
+# Font style option in Special:Preferences
+'editfont-monospace' => 'Monospaced rait',
+'editfont-sansserif' => 'Sans-serif rait',
+'editfont-serif'     => 'Serif rait',
+
 # Dates
 'sunday'        => 'Sande',
 'monday'        => 'Mande',
@@ -121,10 +126,12 @@ $messages = array(
 'subcategories'            => 'Ol grup insait long grup',
 'category-media-header'    => 'Ol media (olsem piksa) insait long grup "$1"',
 'category-empty'           => "''Dispela grup i no gat wanpela pes o media (olsem piksa) insait long en nau.''",
+'hidden-categories'        => '{{PLURAL:$1|Hait pinis grup|Ol hait pinis grup}}',
 'hidden-category-category' => 'Ol grup i hait',
 'listingcontinuesabbrev'   => 'moa',
 
 'about'         => 'Long',
+'article'       => 'Stori',
 'newwindow'     => '(bai kamap long nupela windo)',
 'cancel'        => 'Toromwe senis',
 'moredotdotdot' => 'Moa...',
@@ -162,10 +169,12 @@ $messages = array(
 'searcharticle'    => 'Go',
 'history'          => 'Ol senis long dispela pes',
 'history_short'    => 'Ol senis',
+'info_short'       => 'Infomesen',
 'print'            => 'Prinim',
 'edit'             => 'Senisim',
 'create'           => 'Kirapim',
 'editthispage'     => 'Senisim dispela pes',
+'create-this-page' => 'Kirapim dispela pes',
 'delete'           => 'Rausim',
 'deletethispage'   => 'Rausim dispela pes',
 'protect'          => 'Haitim',
@@ -182,11 +191,15 @@ $messages = array(
 'userpage'         => 'Lukim pes bilong yusa',
 'projectpage'      => 'Lukim pes bilong projek',
 'imagepage'        => 'Lukim pes bilong fail',
+'mediawikipage'    => 'Lukim pes bilong mesej',
 'templatepage'     => 'Lukim long templet pes',
 'viewhelppage'     => 'Lukim pes long halivim',
 'categorypage'     => 'Lukim pes bilong grup',
 'viewtalkpage'     => 'Lukim toktok',
 'otherlanguages'   => 'Long ol narapela tokples',
+'redirectedfrom'   => '(Nupela rot i pinis long $1)',
+'redirectpagesub'  => 'Nupela rot',
+'protectedpage'    => 'Pes i haitim',
 'jumpto'           => 'Kalap long:',
 'jumptonavigation' => 'ol bikpela pes',
 'jumptosearch'     => 'painim',
@@ -209,6 +222,7 @@ $messages = array(
 'badaccess' => 'Kranki long tok orait.',
 
 'ok'                 => 'OK',
+'retrievedfrom'      => 'igat long "$1"',
 'youhavenewmessages' => 'Yu havim $1 ($2).',
 'newmessageslink'    => 'nupela tok',
 'editsection'        => 'senisim',
@@ -216,6 +230,7 @@ $messages = array(
 'viewsourceold'      => 'lukim as',
 'editlink'           => 'senisim',
 'viewsourcelink'     => 'lukim as',
+'editsectionhint'    => 'Senisim seksen: $1',
 'showtoc'            => 'soim',
 'hidetoc'            => 'hait',
 'viewdeleted'        => 'Lukim $1?',
@@ -246,10 +261,13 @@ $messages = array(
 
 # Login and logout pages
 'yourname'            => 'Yusanem:',
+'yourpassword'        => 'Paswot:',
 'logout'              => 'Logaut',
 'userlogout'          => 'Logaut',
+'gotaccountlink'      => 'Log in',
 'createaccountmail'   => 'Long e-mel',
 'createaccountreason' => 'As bilong en:',
+'mailmypassword'      => 'E-mel nupela paswot',
 'loginlanguagelabel'  => 'Toktok: $1',
 
 # JavaScript password checks
@@ -259,6 +277,7 @@ $messages = array(
 # Edit page toolbar
 'link_sample'    => 'Link taitel',
 'extlink_sample' => 'http://www.example.com link taitel',
+'math_tip'       => 'Matematik formula (LaTeX)',
 'media_tip'      => 'Link bilong fail',
 
 # Edit pages
@@ -290,6 +309,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap we lo i tok olsem i orait long kisim (Tok Inglis: <i>public domain</i>). Lukim $1 long painimaut moa long dispela.<br />
 '''YU NOKEN RAITIM WANPELA SAMTING IGAT COPYRIGHT LONG EN (NARAPELA MANMERI I RAITIM)!'''",
 'templatesused'          => '{{PLURAL:$1|Templet|Ol templet}} dispela pes i yusim:',
+'templatesusedpreview'   => '{{PLURAL:$1|Templet|Ol templet}} dispela pes wantaim senis:',
 'template-protected'     => '(haitim)',
 'template-semiprotected' => '(hap-haitim)',
 'hiddencategories'       => 'Dispela pes i stap memba long {{PLURAL:$1|1 grup hait|$1 ol grup hait}}',
@@ -321,22 +341,39 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'editundo' => 'go bek',
 
 # Search results
+'searchresults'                  => 'Ol painim',
+'searchresults-title'            => 'Ol painim long "$1"',
+'searchresulttext'               => 'Long moa infomesen bilong painim {{SITENAME}}, lukim [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitleinvalid'          => "Yu i painim long '''$1'''",
 'viewprevnext'                   => 'Lukluk ($1 {{int:pipe-separator}} $2) ($3)',
 'searchprofile-images'           => 'Media',
 'searchprofile-everything'       => 'Ol',
 'searchprofile-articles-tooltip' => 'Painim long $1',
 'searchprofile-project-tooltip'  => 'Painim long $1',
+'search-redirect'                => '(nupela rot long $1)',
+'search-section'                 => '(seksen $1)',
+'search-suggest'                 => 'Yu i min: $1',
+'search-interwiki-default'       => '$1 ol painim:',
 'search-interwiki-more'          => '(moa)',
+'search-mwsuggest-enabled'       => 'halivim mi',
+'search-mwsuggest-disabled'      => 'nogat halivim mi',
 'searchall'                      => 'ol',
 'powersearch'                    => 'Mobeta Painim',
 'powersearch-legend'             => 'Mobeta Painim',
 'powersearch-ns'                 => 'Painim long ol nem',
+'powersearch-redir'              => 'Soim ol nupela rot',
 'powersearch-field'              => 'Painim long',
+'powersearch-toggleall'          => 'Ol',
+'powersearch-togglenone'         => 'I nogat wanpela',
+
+# Quickbar
+'qbsettings-none' => 'I nogat wanpela',
 
 # Preferences page
 'preferences'               => 'Ol laik',
 'mypreferences'             => 'Ol laik bilong mi',
 'prefs-edits'               => 'Hamas senis:',
+'changepassword'            => 'Senis paswot',
 'prefs-skin'                => 'Skin',
 'skin-preview'              => 'pes mi senisim, pastaim long raitim',
 'prefs-math'                => 'Matematiks',
@@ -345,6 +382,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'prefs-watchlist'           => 'Lukautbuk',
 'prefs-watchlist-days-max'  => 'No moa long 7 de',
 'prefs-watchlist-edits-max' => 'No moa long: 1000',
+'prefs-resetpass'           => 'Senis paswot',
 'saveprefs'                 => 'Holim long tingting',
 'prefs-editing'             => 'Senisim',
 'searchresultshead'         => 'Painim',
@@ -358,18 +396,24 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'timezoneregion-europe'     => 'Yurop',
 'timezoneregion-pacific'    => 'Pasifik solwara',
 'prefs-files'               => 'Ol fail',
+'prefs-custom-css'          => 'Praivet CSS',
+'prefs-custom-js'           => 'Praivet JavaScript',
 'youremail'                 => 'E-mel:',
 'username'                  => 'Yusanem:',
+'uid'                       => 'Yusa ID:',
 'yourrealname'              => 'Tru nem:',
 'yourlanguage'              => 'Toktok:',
 'gender-male'               => 'Man',
 'gender-female'             => 'Meri',
 'email'                     => 'E-mel',
+'prefs-info'                => 'Liklik infomesen',
 
 # User rights
+'editusergroup'           => 'Sanisim ol grup bilong yusa',
 'userrights-groupsmember' => 'Memba bilong:',
 
 # Groups
+'group'      => 'Grup:',
 'group-user' => 'Ol yusa',
 'group-bot'  => 'Ol bot',
 'group-all'  => '(ol)',
@@ -381,14 +425,17 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'grouppage-bot'  => '{{ns:project}}:Ol bot',
 
 # Rights
-'right-read'     => 'Rid ol pes',
-'right-move'     => 'Surikim ol pes',
-'right-movefile' => 'Surikim ol fail',
-'right-upload'   => 'Salim media fail',
-'right-delete'   => 'Rausim ol pes',
+'right-read'           => 'Rid ol pes',
+'right-edit'           => 'Senisim ol pes',
+'right-move'           => 'Surikim ol pes',
+'right-movefile'       => 'Surikim ol fail',
+'right-upload'         => 'Salim media fail',
+'right-delete'         => 'Rausim ol pes',
+'right-suppressionlog' => 'Lukim ol praivet ripot',
 
 # User rights log
-'rightslog' => 'Ripot long ol pas bilong yusa',
+'rightslog'  => 'Ripot long ol pas bilong yusa',
+'rightsnone' => 'i nogat wanpela',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'   => 'rit dispela pes',
@@ -396,10 +443,12 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'action-delete' => 'rausim dispela pes',
 
 # Recent changes
+'nchanges'          => '$1 {{PLURAL:$1||ol}} senis',
 'recentchanges'     => 'Nupela senis',
 'rcnote'            => "Ananit yu lukim '''$1 senis''' long '''$2 de''' igo pinis, na i olsem long $3.",
 'rcshowhideminor'   => '$1 ol liklik senis',
 'rcshowhidebots'    => '$1 ol bot',
+'rcshowhideliu'     => '$1 ol yusa',
 'rcshowhideanons'   => '$1 ol IP yusa',
 'rcshowhidemine'    => '$1 ol senis bilong mi',
 'diff'              => 'arakain',
@@ -419,8 +468,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'recentchangeslinked-page'    => 'Nem bilong pes:',
 
 # Upload
-'upload'     => 'Salim media fail',
-'filesource' => 'As:',
+'upload'        => 'Salim media fail',
+'uploadlogpage' => 'Ripot long salim',
+'filesource'    => 'As:',
 
 'license'            => 'Laisens:',
 'license-header'     => 'Laisens',
@@ -440,6 +490,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'filehist-deleteone'  => 'rausim',
 'filehist-current'    => 'bilong nau',
 'filehist-datetime'   => 'De/Taim',
+'filehist-thumb'      => 'Liklik',
 'filehist-user'       => 'Yusa',
 'filehist-dimensions' => 'Ol meta',
 'filehist-comment'    => 'Tingting',
@@ -463,6 +514,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'withoutinterwiki-submit' => 'Soim',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|grup|grup}}',
 'nmembers'                => '$1 {{PLURAL:$1|memba|memba}}',
 'uncategorizedpages'      => 'Ol pes i no stap insait long grup',
@@ -528,6 +580,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'noemailtitle'    => 'Nogat e-mel',
 'emailfrom'       => 'Bilong:',
 'emailto'         => 'Long:',
+'emailmessage'    => 'Mesej:',
+'emailsend'       => 'Salim',
 
 # Watchlist
 'watchlist'            => 'Lukautbuk bilong mi',
@@ -544,16 +598,19 @@ na olsem bai isi long lukim em.
 
 Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis long lukautim\" taim yu lukim pes.",
 'removedwatch'         => 'Raus pinis long lukautbuk',
-'removedwatchtext'     => 'Pes "[[:$1]]" i raus pinis long lukautbuk bilong yu.',
+'removedwatchtext'     => 'Pes "[[:$1]]" i raus pinis long [[Special:Watchlist|lukautbuk bilong yu]].',
 'watch'                => 'Lukautim',
 'watchthispage'        => 'Lukautim dispela pes',
 'unwatch'              => 'Pinis long lukautim',
 'unwatchthispage'      => 'Pinis long lukautim',
 'watchlist-details'    => '$1 pes istap long lukautbuk (dispela namba i no kaunim ol pes bilong toktok).',
 'wlheader-showupdated' => "* Ol pes i senis pinis bihain long taim yu lukim ol igat nem i '''strongpela'''",
+'wlshowlast'           => 'Lukim moa nupela $1 awa $2 de $3',
+'watchlist-options'    => 'Ol laik bilong Lukautbuk',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'Luklukim...',
+'watching'   => 'Lukim...',
+'unwatching' => 'Nogat lukim...',
 
 'enotif_reset'                 => 'Makim olgeta pes olsem mi lukim pinis',
 'enotif_newpagetext'           => 'Dispela i nupela pes',
@@ -563,21 +620,24 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'enotif_anon_editor'           => 'IP yusa $1',
 
 # Delete
-'deletepage'     => 'Rausim dispela pes',
-'delete-confirm' => 'Rausim $1',
-'delete-legend'  => 'Rausim',
-'dellogpage'     => 'Ripot long ol rausim',
-'deletecomment'  => 'As bilong en:',
+'deletepage'            => 'Rausim dispela pes',
+'delete-confirm'        => 'Rausim $1',
+'delete-legend'         => 'Rausim',
+'deletedarticle'        => 'i rausim "[[$1]]"',
+'dellogpage'            => 'Ripot long ol rausim',
+'deletecomment'         => 'As bilong en:',
+'deletereasonotherlist' => 'Arapela as bilong en',
 
 # Protect
-'protectlogpage'         => 'Ripot long ol haitim',
-'protectedarticle'       => 'haitim "[[$1]]"',
-'prot_1movedto2'         => '[[$1]] i surik i go long [[$2]] pinis',
-'protectcomment'         => 'As bilong en:',
-'protect-othertime'      => 'Arapela taim:',
-'protect-othertime-op'   => 'arapela taim',
-'protect-otherreason'    => 'Arapela/moa as bilong en',
-'protect-otherreason-op' => 'Arapela as bilong en',
+'protectlogpage'            => 'Ripot long ol haitim',
+'protectedarticle'          => 'haitim "[[$1]]"',
+'modifiedarticleprotection' => 'senisim haitim long "[[$1]]"',
+'prot_1movedto2'            => '[[$1]] i surik i go long [[$2]] pinis',
+'protectcomment'            => 'As bilong en:',
+'protect-othertime'         => 'Arapela taim:',
+'protect-othertime-op'      => 'arapela taim',
+'protect-otherreason'       => 'Arapela/moa as bilong en',
+'protect-otherreason-op'    => 'Arapela as bilong en',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Senisim',
@@ -585,6 +645,7 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'restriction-create' => 'Kirapim',
 
 # Undelete
+'undeletelink'              => 'soim/restore',
 'undeletecomment'           => 'As bilong en:',
 'undelete-show-file-submit' => 'Yes',
 
@@ -593,29 +654,38 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'blanknamespace' => '(Nambawan)',
 
 # Contributions
-'contributions' => 'Ol senis yusa i wokim',
-'mycontris'     => 'Ol senis mi wokim',
-'contribsub2'   => 'Long $1 ($2)',
-'month'         => 'Long mun (na moa nupela)',
-'year'          => 'Long yia (na moa nupela)',
+'contributions'       => 'Ol senis yusa i wokim',
+'contributions-title' => 'Ol yusa senis long $1',
+'mycontris'           => 'Ol senis mi wokim',
+'contribsub2'         => 'Long $1 ($2)',
+'uctop'               => '(antap)',
+'month'               => 'Long mun (na moa nupela)',
+'year'                => 'Long yia (na moa nupela)',
 
 'sp-contributions-blocklog' => 'ripot long ol haitim',
 'sp-contributions-talk'     => 'toktok',
 'sp-contributions-submit'   => 'Painim',
 
 # What links here
-'whatlinkshere'           => 'Ol link ikam long hia',
-'whatlinkshere-page'      => 'Pes:',
-'isimage'                 => 'link bilong piksa',
-'whatlinkshere-links'     => '← ol link',
-'whatlinkshere-hidelinks' => '$1 ol link',
+'whatlinkshere'            => 'Ol link ikam long hia',
+'whatlinkshere-page'       => 'Pes:',
+'isredirect'               => 'nupela rot',
+'isimage'                  => 'link bilong piksa',
+'whatlinkshere-links'      => '← ol link',
+'whatlinkshere-hideredirs' => '$1 ol nupela rot',
+'whatlinkshere-hidelinks'  => '$1 ol link',
 
 # Block/unblock
+'blockip'            => 'Pasim yusa (Block user)',
 'ipaddress'          => 'IP adres:',
+'ipboptions'         => '2 awa:2 hours,1 de:1 day,3 de:3 days,1 wik:1 week,2 wik:2 weeks,1 mun:1 month,3 mun:3 months,6 mun:6 months,1 yia:1 year,oltaim:infinite',
 'ipbotheroption'     => 'narapela',
+'ipblocklist'        => 'Ol haitim pinis IP adres na yusanem',
 'ipblocklist-submit' => 'Painim',
 'blocklink'          => 'pasim',
 'unblocklink'        => 'larim',
+'change-blocklink'   => 'senis pasim',
+'contribslink'       => 'ol senisim',
 'blocklogpage'       => 'Ripot long ol haitim',
 
 # Move page
@@ -625,12 +695,14 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'newtitle'         => 'Long nupela titel:',
 'movepagebtn'      => 'Surikim',
 'pagemovedsub'     => 'Pes i surik pinis',
+'movepage-moved'   => '\'\'\'"$1" i surikim pinis long "$2"\'\'\'',
 'articleexists'    => 'Wanpela pes wantaim dispela nem i stap pinis, o dispela nem i no stret.
 Yu mas painim narapela nem.',
 'talkexists'       => "'''Pes bilong buk i surik pinis, tasol pes bilong toktok i no inap surik, bilong wanem wanpela pes bilong toktok istap pinis wantaim dispela nam.  Yu mas pasim wantaim tupela pes bilong toktok yu yet.'''",
 'movedto'          => 'i surik i go long',
 'movetalk'         => 'Surikim pes bilong toktok wantaim',
 '1movedto2'        => '[[$1]] i surik i go long [[$2]] pinis',
+'1movedto2_redir'  => 'surikim [[$1]] long [[$2]] bilong nupela rot',
 'movelogpage'      => 'Buk bilong ol surik',
 'movelogpagetext'  => 'Hia yumi lukim ol pes i surik pinis.',
 'movereason'       => 'As bilong en:',
@@ -640,26 +712,47 @@ Yu mas painim narapela nem.',
 'allmessages'     => 'Ol toksave bilong sistem',
 'allmessagesname' => 'Nem',
 
+# Thumbnails
+'thumbnail-more' => 'Moa bikpela',
+
 # Tooltip help for the actions
-'tooltip-pt-logout'         => 'Logaut',
-'tooltip-ca-viewsource'     => 'Dispela pes i stap haitim.
+'tooltip-pt-userpage'            => 'Pes bilong yu (Your user page)',
+'tooltip-pt-preferences'         => 'Ol laik bilong yu (Your preferences)',
+'tooltip-pt-mycontris'           => 'Lista long ol sanis bilong yu (List of your contributions)',
+'tooltip-pt-logout'              => 'Logaut',
+'tooltip-ca-talk'                => 'Toktok long dispela pes',
+'tooltip-ca-addsection'          => 'Kirapim nupela seksen',
+'tooltip-ca-viewsource'          => 'Dispela pes i stap haitim.
 Yu inap lukluk as bilong em.',
-'tooltip-ca-protect'        => 'Haitim dispela pes',
-'tooltip-ca-delete'         => 'Rausim dispela pes',
-'tooltip-ca-watch'          => 'Skruim dispela pes long lukautbuk bilong yu',
-'tooltip-search'            => 'Painim {{SITENAME}}',
-'tooltip-search-fulltext'   => 'Painim ol pes long dispela text',
-'tooltip-feed-rss'          => 'RSS fid bilong dispela pes',
-'tooltip-feed-atom'         => 'Atom fid bilong dispela pes',
-'tooltip-t-emailuser'       => 'Salim e-mel long dispela yusa',
-'tooltip-t-upload'          => 'Salim media fail',
-'tooltip-ca-nstab-user'     => 'Lukim pes bilong yusa',
-'tooltip-ca-nstab-image'    => 'Lukluk pes bilong fail',
-'tooltip-ca-nstab-category' => 'Lukim grup',
+'tooltip-ca-protect'             => 'Haitim dispela pes',
+'tooltip-ca-delete'              => 'Rausim dispela pes',
+'tooltip-ca-move'                => 'Surikim dispela pes (Move this page)',
+'tooltip-ca-watch'               => 'Skruim dispela pes long lukautbuk bilong yu',
+'tooltip-search'                 => 'Painim {{SITENAME}}',
+'tooltip-search-fulltext'        => 'Painim ol pes long dispela text',
+'tooltip-n-mainpage'             => 'Lukim long fran pes (Visit the main page)',
+'tooltip-n-mainpage-description' => 'Lukim long fran pes (Visit the main page)',
+'tooltip-n-help'                 => 'Ples long painim halivim',
+'tooltip-feed-rss'               => 'RSS fid bilong dispela pes',
+'tooltip-feed-atom'              => 'Atom fid bilong dispela pes',
+'tooltip-t-emailuser'            => 'Salim e-mel long dispela yusa',
+'tooltip-t-upload'               => 'Salim media fail',
+'tooltip-t-specialpages'         => 'Lista long ol sipesol pes (List of all special pages)',
+'tooltip-ca-nstab-main'          => 'Lukim stori (View the content page)',
+'tooltip-ca-nstab-user'          => 'Lukim pes bilong yusa',
+'tooltip-ca-nstab-media'         => 'Lukim media pes (View the media page)',
+'tooltip-ca-nstab-image'         => 'Lukluk pes bilong fail',
+'tooltip-ca-nstab-template'      => 'Lukim templet',
+'tooltip-ca-nstab-category'      => 'Lukim grup',
+'tooltip-save'                   => 'Raitim senis bilong yu (Save your changes)',
 
 # Attribution
 'siteuser' => '{{SITENAME}} yusa $1',
 'others'   => 'ol narapela',
+
+# Browsing diffs
+'previousdiff' => '← Moa olpela senis',
+'nextdiff'     => 'Moa nupela senis →',
 
 # Media information
 'show-big-image' => 'Bikpela piksa',
@@ -683,6 +776,9 @@ Yu inap lukluk as bilong em.',
 'namespacesall'    => 'ol',
 'monthsall'        => 'ol',
 'limitall'         => 'ol',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[URL too longpela]',
 
 # Trackbacks
 'trackbackremove' => '([$1 Rausim])',
