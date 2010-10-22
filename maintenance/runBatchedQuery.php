@@ -43,7 +43,7 @@ class BatchedQueryRunner extends Maintenance {
 		do {
 			$this->output( "Batch $n: " );
 			$n++;
-			$dbw->query( $query );
+			$dbw->query( $query, __METHOD__ );
 			$affected = $dbw->affectedRows();
 			$this->output( "$affected rows\n" );
 			wfWaitForSlaves( $wait );
