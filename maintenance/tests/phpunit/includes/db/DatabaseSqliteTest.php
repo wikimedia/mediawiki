@@ -4,7 +4,7 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 	var $lastQuery;
 
 	function __construct( ) {
-		parent::__construct( '' );
+		parent::__construct( ':memory:' );
 	}
 
 	function query( $sql, $fname = '', $tempIgnore = false ) {
