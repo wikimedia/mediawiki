@@ -988,6 +988,13 @@ Mety misy ny antsipirihany angamba ny [{{fullurl:{{#Special:Log}}/suppress|page=
 'rev-deleted-text-unhide'     => "Ity santiônan'ity pejy ity dia '''voafafa'''.
 Hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana] ny antsipirihany.
 Noho ianao mpandrindra mbola afaka [$1 mijery ilay santiôna] ianao raha tianao.",
+'rev-suppressed-text-unhide'  => "Ity santiônam-pejy ity dia efa '''voafafa'''.
+Azo jerena ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana] ny antsipirihany.
+Noho ianao mpandrindra, azonao [$1 jerena foana ilay santiôna] raha tianao.",
+'rev-deleted-text-view'       => "Ity santiônan'ny pejy ity dia '''voafafa'''.
+Noho ianao mpandrindra, azonao jerena ilay izy ; ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafàna pejy] ny antsipirihany.",
+'rev-suppressed-text-view'    => "Ity santiônan'ny pejy ity dia '''voafafa'''.
+Noho ianao mpandrindra, azonao jerena ilay izy ; ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafàna pejy] ny antsipirihany.",
 'rev-deleted-no-diff'         => "Tsy afaka mijery anio diff io ianao satria misy santôna '''voafafa''' ao aminy.
 Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME}}}} tatitr'asa momban'ny famafàna pejy] ny antsipirihany.",
 'rev-suppressed-no-diff'      => "Tsy azo jerenao io diff io satria '''voafafa''' ny iraika amin'ny reviziônany.",
@@ -1725,7 +1732,7 @@ Tsindrio eo amin'ny lohan-tsanganana raha hanova ny laharam-pisehoana.",
 'filedelete'                  => 'Hamafa $1',
 'filedelete-legend'           => 'Fafao ilay rakitra',
 'filedelete-intro'            => "Ampamafana ny rakitra '''[[Media:$1|$1]]''' ianao miaraka amin'ny tantarany rehetra.",
-'filedelete-intro-old'        => "Am-pamafana ny santiôna '''[[Media:$1|$1]]''' tamin'ny [$4 $2 tamin'ny $3].",
+'filedelete-intro-old'        => "Am-pamafana ny santiôna '''[[Media:$1|$1]]''' tamin'ny [$4 $2 tamin'ny $3] ianao.",
 'filedelete-comment'          => 'Antony :',
 'filedelete-submit'           => 'Hamafa',
 'filedelete-success'          => "voafafa '''$1'''.",
@@ -2323,6 +2330,7 @@ mihatra amin'ny adiresy IP na solonanarana iray.",
 'ipblocklist-sh-addressblocks'    => '$1 ny fanakanana adiresy IP mitokana',
 'ipblocklist-submit'              => 'Fikarohana',
 'ipblocklist-localblock'          => 'Fanakanana eo an-toerana',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1}}sakana hafa',
 'blocklistline'                   => '$1, $2 nisakana $3 ($4)',
 'infiniteblock'                   => 'mandrakizay',
 'expiringblock'                   => "tapitra amin'ny $1 amin'ny $2",
@@ -2572,6 +2580,7 @@ Tsy hita ny rakitra miserana.',
 'import-parse-failure'       => 'Tsy fetezana teo am-pandinihana ny XML ho ampidirina',
 'import-noarticle'           => 'Tsy misy pejy ho ampidirina !',
 'import-nonewrevisions'      => 'Efa nampidirina taloha daholo ny santiôna rehetra.',
+'xml-error-string'           => "$1 eo amin'ny andininy faha $2, tsanganana faha $3 (oktety $4) : $5",
 'import-upload'              => 'Fandrefasana data XML',
 'import-token-mismatch'      => "Very ny fampahalalàna momban'ny kaonty.
 Avereno fanindroany.",
@@ -2668,6 +2677,7 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'othercontribs'    => "Mifototra amin'ny asan'i $1.",
 'others'           => 'hafa',
 'siteusers'        => '{{SITENAME}} mpikambana $1 miisa $2{{PLURAL:}}',
+'anonusers'        => "Ny mpikambana tsy nisoratra anarana $1 ao amin'i {{SITENAME}}",
 
 # Spam protection
 'spamprotectiontitle' => "Sivana mpiaro amin'ny spam",
@@ -2819,6 +2829,17 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-fnumber'                   => 'Isa F',
 'exif-isospeedratings'           => 'ISO',
 'exif-aperturevalue'             => 'Sanasana',
+'exif-imageuniqueid'             => "ID an'io sary io manokana",
+'exif-gpslatituderef'            => 'Laharam-pehintany avaratra na atsimo',
+'exif-gpslatitude'               => 'Laharam-pehintany',
+'exif-gpslongituderef'           => 'Laharan-jarahasina andrefana na atsinanana',
+'exif-gpslongitude'              => 'Laharan-jarahasina',
+'exif-gpsaltituderef'            => 'Haambo tsiahy',
+'exif-gpsaltitude'               => 'Haambo',
+'exif-gpsspeedref'               => 'Mari-drefi-kafainganana',
+'exif-gpsimgdirection'           => "Fitodihan'ny sary",
+'exif-gpsdestlatitude'           => 'Laharam-pehintany tanjona',
+'exif-gpsareainformation'        => 'Anaram-paritra GPS',
 'exif-gpsdatestamp'              => 'Daty GPS',
 
 'exif-unknowndate' => 'Daty tsy fantatra',
@@ -2831,6 +2852,13 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 
 'exif-meteringmode-0' => 'Tsy fantatra',
 'exif-meteringmode-1' => 'Elanelana',
+
+# Flash modes
+'exif-flash-mode-3' => 'Toetra aotômatika',
+
+'exif-focalplaneresolutionunit-2' => 'Posy',
+
+'exif-subjectdistancerange-1' => 'Makrô',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Avaratra',
@@ -2849,6 +2877,9 @@ Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
 'exif-gpsspeed-k' => "Kilometatra isak'ora",
 'exif-gpsspeed-m' => "Maily isak'ora",
 'exif-gpsspeed-n' => 'Knot',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-m' => "Avaratra arak'andriamby",
 
 # External editor support
 'edit-externally'      => "Ovao amin'ny alalan'ny fampiasana fitaovana ivelan'ity Wiki ity io rakitra io",

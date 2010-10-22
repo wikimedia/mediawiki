@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ikiwaner
+ * @author Jagwar
  * @author Lloffiwr
  * @author Malangali
  * @author Marcos
@@ -773,6 +774,8 @@ Inabidi uingize mabadiliko yako ndani ya sanduku la juu.
 Ni maandiko yaliyopo ndani ya sanduku la juu '''tu''' ambayo yatahifadhiwa utakapobonyeza \"Hifadhi ukurasa\".",
 'yourtext'                         => 'Maandishi yako',
 'storedversion'                    => 'Pitio lililohifadhiwa mwishoni',
+'nonunicodebrowser'                => "'''Ilani: browser yako si Unicode inavyotakikana.''' 
+A workaround ni katika nafasi ya kuruhusu usalama hariri kurasa: non-ASCII characters itaonekana katika edit box kama hexadecimal codes.",
 'editingold'                       => "'''ANGALIA: Unakuwa unahariri toleo la zamani la ukurasa huu.
 Ukiendelea kulihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.'''",
 'yourdiff'                         => 'Tofauti',

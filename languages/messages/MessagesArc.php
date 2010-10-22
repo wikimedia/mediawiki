@@ -1115,6 +1115,7 @@ $messages = array(
 # Restriction levels
 'restriction-level-sysop'         => 'ܢܛܝܪܘܬܐ ܓܡܝܪܬܐ',
 'restriction-level-autoconfirmed' => 'ܕܡܘܬ ܢܛܝܪܘܬܐ',
+'restriction-level-all'           => 'ܐܝܢܐ ܫܘܝܐ',
 
 # Undelete
 'undelete'                  => 'ܚܙܝ ܦܐܬܬ̈ܐ ܫܝܦܬ̈ܐ',

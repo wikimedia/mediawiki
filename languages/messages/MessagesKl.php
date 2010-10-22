@@ -132,6 +132,7 @@ $messages = array(
 'vector-view-edit'         => 'Aaqqissoruk',
 'vector-view-history'      => 'Oqalutt.',
 'vector-view-view'         => 'Takuuk',
+'vector-view-viewsource'   => 'Toqqavia takuuk',
 
 'errorpagetitle'   => 'Kukkuneq',
 'returnto'         => '$1 -mut uterit',

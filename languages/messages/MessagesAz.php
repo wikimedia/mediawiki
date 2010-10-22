@@ -419,7 +419,7 @@ Hesabınız yaradıldı.
 'yourname'                   => 'İstifadəçi adı',
 'yourpassword'               => 'Parol',
 'yourpasswordagain'          => 'Parolu təkrar yazın',
-'remembermypassword'         => 'Məni xatırla(for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'         => 'Məni bu kompüterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
 'yourdomainname'             => 'Sizin domain',
 'login'                      => 'Daxil ol',
 'nav-login-createaccount'    => 'Daxil ol / hesab yarat',
@@ -568,6 +568,7 @@ və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ed�
 'semiprotectedpagewarning'         => "'''Qeyd:''' Bu səhifə mühafizəli olduğu üçün yalnız qeydiyyatdan keçmiş istifadəçilər redaktə edə bilərlər.",
 'titleprotectedwarning'            => "'''DİQQƏT:  Bu səhifə mühafizəlidir, yalnız [[Special:ListGroupRights|icazəsi olan]] istifadəçilər onu redaktə edə bilərlər.'''",
 'templatesused'                    => 'Bu səhifədə istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}:',
+'templatesusedpreview'             => 'Bu sınaq göstərişində istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}:',
 'templatesusedsection'             => 'Bu bölmədə istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}',
 'template-protected'               => '(mühafizə)',
 'template-semiprotected'           => '(yarım-mühafizə)',
@@ -596,6 +597,7 @@ Bəzi şablonlar əlavə olunmayacaq.",
 'viewpagelogs'           => 'Bu səhifə ilə bağlı qeydlərə bax',
 'nohistory'              => 'Bu səhifənin dəyişikliklər tarixçəsi mövcud deyil.',
 'currentrev'             => 'Hal-hazırkı versiya',
+'currentrev-asof'        => 'Səhifəsnin $1 tarixinə olan son halı',
 'revisionasof'           => '$1 versiyası',
 'previousrevision'       => '←Əvvəlki versiya',
 'nextrevision'           => 'Sonrakı versiya→',
@@ -677,6 +679,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'revertmerge' => 'Ayır',
 
 # Diffs
+'history-title'           => '"$1" səhifəsinin tarixçəsi',
 'difference'              => '(Versiyalar arasındakı fərq)',
 'lineno'                  => 'Sətir $1:',
 'compareselectedversions' => 'Seçilən versiyaları müqaisə et',
@@ -964,6 +967,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 # File description page
 'file-anchor-link'          => 'Fayl',
 'filehist'                  => 'Faylın tarixçəsi',
+'filehist-help'             => 'Faylın əvvəlki versiyasını görmək üçün gün/tarix bölməsindəki tarixləri tıqlayın.',
 'filehist-deleteone'        => 'sil',
 'filehist-current'          => 'indiki',
 'filehist-datetime'         => 'Tarix/Vaxt',
@@ -972,6 +976,8 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'filehist-dimensions'       => 'Ölçülər',
 'filehist-comment'          => 'Şərh',
 'imagelinks'                => 'Fayl keçidləri',
+'linkstoimage'              => '{{PLURAL:$1|səhifə|$1 səhifə}} bu fayla istinad edir:',
+'sharedupload'              => 'Bu fayl $1-dandır və ola bilsin ki, başqa layihələrdə də istifadə edilir.',
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
 
 # File deletion
@@ -1124,6 +1130,7 @@ Həmçinin [[Special:WantedCategories|xahiş edilmiş kateqoriyalara]] bax.',
 'activeusers' => 'Aktiv istifadəçilərin siyahısı',
 
 # Special:Log/newusers
+'newuserlogpage'              => 'Yeni istifadəçilərin qeydiyyatı',
 'newuserlog-create-entry'     => 'Yeni istifadəçi hesabı',
 'newuserlog-autocreate-entry' => 'Hesab avtomatik olaraq yaradıldı',
 
@@ -1271,11 +1278,14 @@ Sonuncu silinmələrə bax: $2.',
 'protect-locked-access'       => "Sizin hesabınızın mühafizə səviyyəsini dəyişməyə ixtiyarı yoxdur.
 '''$1''' səhifəsində hal-hazırda edə biləcəyiniz əməliyyatlar bunlardır:",
 'protect-cascadeon'           => 'Bu səhifə mühafizəlidir, çünki bu səhifə {{PLURAL:$1|başqa bir|başqa bir}} səhifədən kaskad mühafizə edilmişdir. Siz bu səhifənin mühafizə səviyyəsini dəyişdirə bilərsiniz, bu kaskad mühafizəyə təsir etməyəcək.',
+'protect-default'             => 'Bütün istifadəçilərə icazə ver',
+'protect-fallback'            => '"$1" icazəsi tələb olunur',
 'protect-level-autoconfirmed' => 'Yeni və anonim istifadəçiləri blok et',
 'protect-level-sysop'         => 'Yalnız idarəçilər',
 'protect-summary-cascade'     => 'kaskad mühafizə',
 'protect-expiring'            => '$1 (UTC)- tarixində vaxtı bitir',
 'protect-cascade'             => 'Kaskad mühafizəsi - bu səhifəyə daxil bütün səhifələri qoru',
+'protect-cantedit'            => 'Bu səhifənin mühafizə dərəcəsini dəyişdirə bilməzsiniz, çünki bu dəyişiklik üçün hüququnuz yoxdur.',
 'protect-expiry-options'      => '1 saat:1 hour,1 gün:1 day,1 həftə:1 week,2 həftə:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year,sonsuz:infinite',
 'restriction-type'            => 'Hüquqlar:',
 'restriction-level'           => 'Məhdudiyyət dərəcəsi:',
@@ -1331,6 +1341,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'whatlinkshere'            => 'Bu səhifəyə bağlantılar',
 'whatlinkshere-title'      => '"$1" məqaləsinə keçid verən səhifələr',
 'whatlinkshere-page'       => 'Səhifə:',
+'linkshere'                => "'''[[:$1]]''' səhifəsinə istinad edən səhifələr:",
 'isredirect'               => 'İstiqamətləndirmə səhifəsi',
 'istemplate'               => 'daxil olmuş',
 'isimage'                  => 'şəkil üçün keçid',
@@ -1341,6 +1352,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'whatlinkshere-hidetrans'  => 'Əlavələri $1',
 'whatlinkshere-hidelinks'  => 'keçidləri $1',
 'whatlinkshere-hideimages' => 'Şəkillərə keçidləri $1',
+'whatlinkshere-filters'    => 'Filtrlər',
 
 # Block/unblock
 'blockip'                     => 'İstifadəçini blokla',
@@ -1565,12 +1577,13 @@ $1',
 'nextdiff'     => 'Sonrakı redaktə →',
 
 # Media information
-'imagemaxsize'   => "Şəkilin maksimal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
-'thumbsize'      => 'Kiçik ölçü:',
-'file-info-size' => '($1 × $2 piksel, fayl həcmi: $3, MIME növü: $4)',
-'file-nohires'   => '<small>Daha dəqiq versiyası yoxdur.</small>',
-'svg-long-desc'  => '(SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3)',
-'show-big-image' => 'Daha yüksək keyfiyyətli şəkil',
+'imagemaxsize'         => "Şəkilin maksimal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
+'thumbsize'            => 'Kiçik ölçü:',
+'file-info-size'       => '($1 × $2 piksel, fayl həcmi: $3, MIME növü: $4)',
+'file-nohires'         => '<small>Daha dəqiq versiyası yoxdur.</small>',
+'svg-long-desc'        => '(SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3)',
+'show-big-image'       => 'Daha yüksək keyfiyyətli şəkil',
+'show-big-image-thumb' => '<small>Sınaq göstərişi ölçüsü: $1 × $2 piksel</small>',
 
 # Special:NewFiles
 'newimages'    => 'Yeni faylların siyahısı',
@@ -1601,6 +1614,9 @@ Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şə
 'exif-componentsconfiguration-0' => 'mövcud deyil',
 
 'exif-exposureprogram-1' => 'Əl ilə',
+
+# External editor support
+'edit-externally-help' => '(Daha ətraflı məlumat üçün [http://www.mediawiki.org/wiki/Manual:External_editors tətbiqetmə qaydalarına] baxa bilərsiniz)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'bütün',
@@ -1654,6 +1670,7 @@ Həmin sətirdəki sonrakı keçidlər istisnalar kimi qəbul edilir, yəni şə
 'watchlistedit-raw-titles'   => 'Başlıqlar:',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Siyahıdakı səhifələrdə edilən dəyişikliklər',
 'watchlisttools-edit' => 'İzlədiyim səhifələri göstər və redaktə et',
 
 # Special:Version
