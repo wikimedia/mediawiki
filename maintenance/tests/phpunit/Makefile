@@ -25,8 +25,7 @@ phpunit:
 	${PU}
 
 install:
-	pear channel-discover pear.phpunit.de
-	pear install phpunit/PHPUnit
+	php install-phpunit.sh
 
 tap:
 	${PU} --tap
