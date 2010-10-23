@@ -435,6 +435,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   if integer out of range (breaking change!)
 * (bug 24792) API help for action=purge sometimes wrongly stated whether a
   POST request was needed due to cache pollution
+* Added iiprop=parsedcomment to prop=imageinfo, similar to prop=revisions
 
 === Languages updated in 1.17 ===
 
