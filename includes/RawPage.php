@@ -82,6 +82,10 @@ class RawPage {
 			if( $ctype == '' ) {
 				$ctype = 'text/css';
 			}
+		} elseif( $gen == 'js' ) {
+			$this->mGen = $gen;
+			if( is_null( $smaxage ) ) $smaxage = $wgSquidMaxage;
+			if($ctype == '') $ctype = $wgJsMimeType;
 		} else {
 			$this->mGen = false;
 		}
@@ -170,6 +174,8 @@ class RawPage {
 			$sk->initPage( $wgOut );
 			if( $this->mGen == 'css' ) {
 				return $sk->generateUserStylesheet();
+			} else if( $this->mGen == 'js' ) {
+				return $sk->generateUserJs();
 			}
 		} else {
 			return $this->getArticleText();
