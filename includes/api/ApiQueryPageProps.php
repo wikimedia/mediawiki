@@ -2,9 +2,9 @@
 /**
  * API for MediaWiki 1.8+
  *
- * Created on Sep 25, 2006
+ * Created on Aug 7, 2010
  *
- * Copyright © 2010 Yuri Astrakhan <Firstname><Lastname>@gmail.com
+ * Copyright © 2010 soxred93, Bryan Tong Minh
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,130 +44,76 @@ class ApiQueryPageProps extends ApiQueryBase {
 
 	public function execute() {
 		$this->params = $this->extractRequestParams();
-
-		$pageSet = $this->getPageSet();
-		$this->titles = $pageSet->getGoodTitles();
-		$this->missing = $pageSet->getMissingTitles();
-		$this->everything = $this->titles + $this->missing;
-		$result = $this->getResult();
-
-		uasort( $this->everything, array( 'Title', 'compare' ) );
-		if ( !is_null( $this->params['continue'] ) ) {
-			// Throw away any titles we're gonna skip so they don't
-			// clutter queries
-			$cont = explode( '|', $this->params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the original ' .
-						'value returned by the previous query', '_badcontinue' );
-			}
-			$conttitle = Title::makeTitleSafe( $cont[0], $cont[1] );
-			foreach ( $this->everything as $pageid => $title ) {
-				if ( Title::compare( $title, $conttitle ) >= 0 ) {
-					break;
-				}
-				unset( $this->titles[$pageid] );
-				unset( $this->missing[$pageid] );
-				unset( $this->everything[$pageid] );
-			}
+		
+		$pages = $this->getPageSet()->getGoodTitles();
+		
+		$this->addTables( 'page_props' );
+		$this->addFields( array( 'pp_page', 'pp_propname', 'pp_value' ) );
+		$this->addWhereFld( 'pp_page',  array_keys( $pages ) );
+		
+		if ( $this->params['continue'] ) {
+			$this->addWhereFld( 'pp_page >=' . intval( $this->params['continue'] ) );
 		}
-
-		foreach ( $this->everything as $pageid => $title ) {
-			$pageInfo = $this->extractPageInfo( $pageid, $title, $this->params['prop'] );
-			$fit = $result->addValue( array(
-				'query',
-				'pages'
-			), $pageid, $pageInfo );
-			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'continue',
-						$title->getNamespace() . '|' .
-						$title->getText() );
-				break;
+		
+		$this->addOption( 'ORDER BY', 'pp_page' );
+		
+		$res = $this->select( __METHOD__ );
+		$currentPage = 0;
+		$props = array();
+		$result = $this->getResult();
+		foreach ( $res as $row ) {
+			if ( $currentPage != $row->pp_page ) {
+				if ( $currentPage ) {
+					if ( !$this->addPageProps( $result, $currentPage, $props ) ) {
+						break;
+					}
+					
+					$props = array();
+				} else {
+					$currentPage = $row->pp_page;
+				}
 			}
+			
+			$props[$row->pp_propname] = $row->pp_value;
+		}
+		
+		if ( count( $props ) ) {
+			$this->addPageProps( $result, $currentPage, $props );
 		}
 	}
 
 	/**
-	 * Get a result array with information about a title
-	 * @param $pageid int Page ID (negative for missing titles)
-	 * @param $title Title object
-	 * @return array
+	 * Add page properties to an ApiResult, adding a continue 
+	 * parameter if it doesn't fit.
+	 *
+	 * @param $result ApiResult
+	 * @param $page int
+	 * @param $props array
+	 * @return bool True if it fits in the result
 	 */
-	private function extractPageInfo( $pageid, $title, $prop ) {
-		global $wgPageProps;
+	private function addPageProps( $result, $page, $props ) {
+		$fit = $result->addValue( array( 'query', 'pages' ), $page, $props );
 		
-		$pageInfo = array();
-		if ( $title->exists() ) {
-		
-			$dbr = wfGetDB( DB_SLAVE );
-		
-			$res = $dbr->select(
-				'page_props',
-				array( 'pp_propname', 'pp_value' ),
-				array( 'pp_page' => $pageid ),
-				__METHOD__
-			);
-		
-			foreach( $res as $row ) {
-				if( isset( $wgPageProps[$row->pp_propname] ) ) {
-					if( !is_null( $prop ) && !in_array( $row->pp_propname, $prop ) ) {
-						continue;
-					}
-					$pageInfo[$row->pp_propname] = $row->pp_value;
-				}
-			}
-			
+		if ( !$fit ) {
+			$this->setContinueEnumParameter( 'continue', $page );
 		}
-
-		return $pageInfo;
+		return $fit;
 	}
 
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
-	public function getAllowedParams() {
-		global $wgPageProps;
-		
-		return array(
-			'prop' => array(
-				ApiBase::PARAM_DFLT => null,
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( $wgPageProps )
-			),
-			'continue' => null,
-		);
+	public function getAllowedParams() {		
+		return array( 'continue' => null );
 	}
 
 	public function getParamDescription() {
-		global $wgPageProps;
-		
-		$ret =  array(
-			'prop' => array(
-				'Which additional properties to get:',
-			),
-			'continue' => 'When more results are available, use this to continue',
-		);
-		
-		//This mess of code first gets the length of the biggest propname, and adds two onto it to make 
-		//the number of characters should be used before the dash. If the biggest propname is shorter than 12 characters, 
-		//the number of characters before the dash become 14. 
-		$maxLen = max( array_map( 'strlen', array_keys( $wgPageProps ) ) );
-		$matchLen = $maxLen + 2;
-		if( $maxLen < 12 ) {
-			$matchLen = 14;
-		}
-		
-		foreach( $wgPageProps as $propName => $desc ) {
-			$pretext = " $propName" . str_repeat( ' ', $matchLen - strlen( $propName ) );
-			
-			$ret['prop'][] = "$pretext- $desc";
-		}
-		
-		return $ret;
+		return  array( 'continue' => 'When more results are available, use this to continue' );
 	}
 
 	public function getDescription() {
-		return 'Get various properties about a page...';
+		return 'Get various properties defined in the page content';
 	}
 
 	public function getPossibleErrors() {
