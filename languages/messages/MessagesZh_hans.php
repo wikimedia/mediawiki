@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -226,7 +226,7 @@ $messages = array(
 'tog-editsection'             => '允许点击[编辑]链接编辑段落',
 'tog-editsectiononrightclick' => '允许右击标题编辑段落（JavaScript）',
 'tog-showtoc'                 => '显示目录（针对超过3个标题的页面）',
-'tog-rememberpassword'        => '在本浏览器上记住我的登录信息（最长$1日）',
+'tog-rememberpassword'        => '在这个浏览器上记住我的登录信息（最长$1日）',
 'tog-watchcreations'          => '将我创建的页面添加到我的监视列表',
 'tog-watchdefault'            => '将我编辑的页面添加到我的监视列表',
 'tog-watchmoves'              => '将我移动的页面添加到我的监视列表',
@@ -447,7 +447,7 @@ $messages = array(
 
 $1',
 'pool-timeout'      => '等待锁死时超时',
-'pool-queuefull'    => '请求池已满。',
+'pool-queuefull'    => '请求池已满',
 'pool-errorunknown' => '未知错误',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -603,7 +603,7 @@ $2',
 'yourname'                   => '用户名：',
 'yourpassword'               => '密码：',
 'yourpasswordagain'          => '再次输入密码：',
-'remembermypassword'         => '在这部电脑上记住我的密码（可维持$1{{PLURAL:$1|日|日}}）',
+'remembermypassword'         => '在这个浏览器上记住我的登入信息（可维持$1{{PLURAL:$1|日|日}}）',
 'yourdomainname'             => '您的域名：',
 'externaldberror'            => '这可能是由于验证数据库错误或您被禁止更新您的外部账号。',
 'login'                      => '登录',
@@ -620,7 +620,7 @@ $2',
 'gotaccount'                 => '已经拥有账户？$1。',
 'gotaccountlink'             => '登录',
 'createaccountmail'          => '通过电子邮件',
-'createaccountreason'        => '原因：',
+'createaccountreason'        => '理由：',
 'badretype'                  => '您所输入的密码并不相同。',
 'userexists'                 => '您所输入的用户名称已经存在，请另选一个名称。',
 'loginerror'                 => '登录错误',
@@ -739,7 +739,7 @@ $2',
 'anoneditwarning'                  => "'''警告：'''您没有登录。
 您的IP地址将记录在此页的编辑历史中。",
 'anonpreviewwarning'               => "''您没有登录。保存页面将会把您的IP地址记录在此页的编辑历史中。''",
-'missingsummary'                   => "'''提示：''' 您没有提供一个编辑摘要。如果您再次单击保存，您的编辑将不带编辑摘要保存。",
+'missingsummary'                   => "'''提示：''' 您没有提供一个编辑摘要。如果您再次单击“{{int:savearticle}}”，您的编辑将不带编辑摘要保存。",
 'missingcommenttext'               => '请在下面输入评论。',
 'missingcommentheader'             => "'''提示：''' 您没有为此评论提供一个标题。如果您再次单击“{{int:savearticle}}”，您的编辑将不带标题保存。",
 'summary-preview'                  => '摘要预览：',
@@ -1012,8 +1012,8 @@ $2',
 'revdelete-unsuppress'        => '在已恢复的修订中移除限制',
 'revdelete-log'               => '理由：',
 'revdelete-submit'            => '应用于选中的{{PLURAL:$1|修订}}',
-'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
-'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
+'revdelete-logentry'          => '“[[$1]]”的修订可见性已更改',
+'logdelete-logentry'          => '“[[$1]]”的事件可见性已更改',
 'revdelete-success'           => "'''修订的可见性已经成功更新。'''",
 'revdelete-failure'           => "'''修订的可见性无法更新：'''
 $1",
@@ -1105,14 +1105,14 @@ $1",
 
 # Diffs
 'history-title'            => '“$1”的修订历史',
-'difference'               => '（修订版本间差异）',
-'difference-multipage'     => '页面间的差异',
+'difference'               => '（修订版本间的差异）',
+'difference-multipage'     => '（页面间的差异）',
 'lineno'                   => '第$1行：',
 'compareselectedversions'  => '比较选定的修订版本',
 'showhideselectedversions' => '显示／隐藏选定的修订版本',
 'editundo'                 => '撤销',
-'diff-multi'               => '（由{{PLURAL:$2|1名用户|$2名用户}}作出的{{PLURAL:$1|1个中途修订版本|$1个中途修订版本}}未被显示）',
-'diff-multi-manyusers'     => '（由多于$2名用户作出的{{PLURAL:$1|1个中途修订版本|$1中途修订版本}} 未被显示）',
+'diff-multi'               => '（由{{PLURAL:$2|1名用户|$2名用户}}作出的{{PLURAL:$1|一个中途修订版本|$1个中途修订版本}}未被显示）',
+'diff-multi-manyusers'     => '（由多于$2名用户作出的{{PLURAL:$1|一个中途修订版本|$1个中途修订版本}} 未被显示）',
 
 # Search results
 'searchresults'                    => '搜索结果',
@@ -1132,7 +1132,7 @@ $1",
 'shown-title'                      => '每页显示$1项结果',
 'viewprevnext'                     => '查看（$1 {{int:pipe-separator}} $2）（$3）',
 'searchmenu-legend'                => '搜索选项',
-'searchmenu-exists'                => "'''在该wiki上已有页面名叫“[[:$1]]”'''",
+'searchmenu-exists'                => "'''在该wiki上已有页面名叫“[[:$1]]”。'''",
 'searchmenu-new'                   => "'''在该wiki上新建页面“[[:$1]]”！'''",
 'searchhelp-url'                   => 'Help:目录',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|去浏览以此为首的页面]]',
@@ -1601,13 +1601,13 @@ $1",
 为方便起见，这一个文件的删除记录已经在下面提供:",
 'filename-bad-prefix'         => '您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。',
 'upload-success-subj'         => '上传成功',
-'upload-success-msg'          => '您的自[$2]的上传可以在这里找到：[[:{{ns:file}}:$1]]',
-'upload-failure-subj'         => '上传错误',
-'upload-failure-msg'          => '您上传的 [$2] 出现了问题：
+'upload-success-msg'          => '您在[$2]的上传已经成功，可以在这里找到：[[:{{ns:file}}:$1]]',
+'upload-failure-subj'         => '上传问题',
+'upload-failure-msg'          => '您在[$2]的上传出现了问题：
 
 $1',
 'upload-warning-subj'         => '上传警告',
-'upload-warning-msg'          => '您自[$2]的上传出错了。您可以返回[[Special:Upload/stash/$1|上传表单]]并更正问题。',
+'upload-warning-msg'          => '您自[$2]的上传出错。您可以返回[[Special:Upload/stash/$1|上传表单]]并更正问题。',
 
 'upload-proto-error'        => '协议错误',
 'upload-proto-error-text'   => '远程上传要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 开头。',
@@ -2006,7 +2006,7 @@ Template:消除歧義',
 # Watchlist
 'watchlist'            => '监视列表',
 'mywatchlist'          => '监视列表',
-'watchlistfor2'        => '$1 用户的$2',
+'watchlistfor2'        => '$1的监视列表 $2',
 'nowatchlist'          => '您的监视列表为空。',
 'watchlistanontext'    => '请$1以查看或编辑您的监视列表。',
 'watchnologin'         => '未登录',
@@ -2197,7 +2197,7 @@ $UNWATCHURL
 'undeletepagetext'             => '以下的$1个页面已经被删除，但依然在存档中并可以被恢复。
 档案库可能被定时清理。',
 'undelete-fieldset-title'      => '恢复修订',
-'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击'''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击'''''恢复'''''。点击'''''重设'''''将清除评论内容及所有复选框。",
+'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击'''''{{int:undeletebtn}}'''''。恢复特定版本时，请选择相应版本前的复选框后点击'''''{{int:undeletebtn}}'''''。点击'''''{{int:undeletereset}}'''''将清除评论内容及所有复选框。",
 'undeleterevisions'            => '$1版本存档',
 'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
 如果本页删除后有一个同名的新页面建立，被恢复的版本将会出现在先前的历史中。',
@@ -2209,7 +2209,7 @@ $UNWATCHURL
 'undeletebtn'                  => '恢复',
 'undeletelink'                 => '查看／恢复',
 'undeleteviewlink'             => '查看',
-'undeletereset'                => '重置',
+'undeletereset'                => '重设',
 'undeleteinvert'               => '反向选择',
 'undeletecomment'              => '理由：',
 'undeletedarticle'             => '已恢复的"[[$1]]"',
@@ -2493,7 +2493,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'immobile-source-page'         => '此页面不能移动。',
 'immobile-target-page'         => '无法移动至该目标标题。',
 'imagenocrossnamespace'        => '无法将文件移动到非文件名字空间',
-'nonfile-cannot-move-to-file'  => '无法将非文件移动到文件命名空间',
+'nonfile-cannot-move-to-file'  => '无法将非文件移动到文件名字空间',
 'imagetypemismatch'            => '该新扩展名与其类型不匹配',
 'imageinvalidfilename'         => '目标文件名称无效',
 'fix-double-redirects'         => '更新所有指向原始标题的重定向',
@@ -3230,9 +3230,9 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => '清空页面',
-'autosumm-replace' => "以'$1'替换内容",
+'autosumm-replace' => '以“$1”替换内容',
 'autoredircomment' => '重定向页面到[[$1]]',
-'autosumm-new'     => "以内容'$1'创建新页面",
+'autosumm-new'     => '以内容“$1”创建新页面',
 
 # Size units
 'size-bytes' => '$1 字节',
@@ -3300,7 +3300,7 @@ $1',
 
 MediaWiki是基于使用目的而加以发布，然而不负任何担保责任；亦无对适售性或特定目的适用性所为的默示性担保。详情请参照GNU通用公共授权。
 
-您应已收到附随于本程序的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授权的副本]；如果没有，请写信至自由软件基金会：59 Temple Place - Suite 330, Boston, Ma 02111-1307, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读]。',
+您应已收到附随于本程序的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授权的副本]；如果没有，请写信至自由软件基金会：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读]。',
 'version-software'                 => '已安装软件',
 'version-software-product'         => '产品',
 'version-software-version'         => '版本',

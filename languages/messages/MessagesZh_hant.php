@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -205,7 +205,7 @@ $messages = array(
 'tog-editsection'             => '允許通過點擊[編輯]連結編輯段落',
 'tog-editsectiononrightclick' => '允許右擊標題編輯段落 （需要JavaScript）',
 'tog-showtoc'                 => '顯示目錄 （針對一頁超過3個標題的頁面）',
-'tog-rememberpassword'        => '在這部電腦上記住我的密碼（可維持$1{{PLURAL:$1|日|日}}）',
+'tog-rememberpassword'        => '在這個瀏覽器上記住我的登錄信息（可維持$1{{PLURAL:$1|日|日}}）',
 'tog-watchcreations'          => '將我建立的頁面添加到我的監視列表中',
 'tog-watchdefault'            => '將我更改的頁面添加到我的監視列表中',
 'tog-watchmoves'              => '將我移動的頁面加入我的監視列表',
@@ -426,6 +426,9 @@ $messages = array(
 在嘗試訪問這個頁面之前請再稍等一會。
 
 $1',
+'pool-timeout'      => '等待鎖死時超時',
+'pool-queuefull'    => '請求池已滿',
+'pool-errorunknown' => '未知錯誤',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '關於{{SITENAME}}',
@@ -587,7 +590,7 @@ $2',
 'yourname'                   => '您的用戶名:',
 'yourpassword'               => '您的密碼:',
 'yourpasswordagain'          => '再次輸入密碼:',
-'remembermypassword'         => '在這部電腦上記住我的密碼（可維持$1{{PLURAL:$1|日|日}}）',
+'remembermypassword'         => '在這個瀏覽器上記住我的登入資訊（可維持$1{{PLURAL:$1|日|日}}）',
 'yourdomainname'             => '您的網域:',
 'externaldberror'            => '這可能是由於驗證資料庫錯誤或您被禁止更新您的外部帳號。',
 'login'                      => '登入',
@@ -604,7 +607,7 @@ $2',
 'gotaccount'                 => '已經擁有賬號？$1。',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '通過電郵',
-'createaccountreason'        => '理由:',
+'createaccountreason'        => '理由：',
 'badretype'                  => '您所輸入的密碼並不相同。',
 'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個名稱。',
 'loginerror'                 => '登入錯誤',
@@ -660,7 +663,16 @@ $2',
 'loginlanguagelabel'         => '語言: $1',
 'suspicious-userlogout'      => '您登出的要求已經被拒絕，因為它可能是由已損壞的瀏覽器或者快取代理傳送。',
 
+'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
+# 所用參數如下：
+#   * "#" 字元後的內容全部是注釋內容
+#   * 非空白行中為頻率限制（rate limit）例外的IP地址
+ #</pre> <!-- leave this line exactly as it is -->',
+
 # JavaScript password checks
+'password-strength'            => '預估密碼強度： $1',
+'password-strength-bad'        => '差',
+'password-strength-mediocre'   => '一般',
 'password-strength-acceptable' => '可接受',
 'password-strength-good'       => '好',
 'password-retype'              => '再次輸入密碼',
@@ -718,7 +730,7 @@ $2',
 'anoneditwarning'                  => "'''警告：'''您沒有登入。
 您的IP位址將記錄在此頁的編輯歷史中。",
 'anonpreviewwarning'               => "''您沒有登入。保存頁面將會把您的IP位址記錄在此頁的編輯歷史中。''",
-'missingsummary'                   => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊儲存，您的編輯將不帶編輯摘要儲存。",
+'missingsummary'                   => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊「{{int:savearticle}}」，您的編輯將不帶編輯摘要儲存。",
 'missingcommenttext'               => '請在下面輸入評論。',
 'missingcommentheader'             => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊「{{int:savearticle}}」，您的編輯將不帶標題儲存。",
 'summary-preview'                  => '摘要預覽:',
@@ -995,8 +1007,8 @@ $2',
 'revdelete-unsuppress'        => '在已恢復的修訂中移除限制',
 'revdelete-log'               => '理由：',
 'revdelete-submit'            => '應用於選取的{{PLURAL:$1|修訂}}',
-'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
-'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
+'revdelete-logentry'          => '「[[$1]]」的修訂可見性已更改',
+'logdelete-logentry'          => '「[[$1]]」的事件可見性已更改',
 'revdelete-success'           => "'''修訂的可見性已經成功更新。'''",
 'revdelete-failure'           => "'''修訂的可見性無法更新：'''
 $1",
@@ -1088,12 +1100,14 @@ $1",
 
 # Diffs
 'history-title'            => '「$1」的修訂歷史',
-'difference'               => '（修訂版本間差異）',
+'difference'               => '（修訂版本間的差異）',
+'difference-multipage'     => '（頁面間的差異）',
 'lineno'                   => '第$1行：',
 'compareselectedversions'  => '比較選定的修訂版本',
 'showhideselectedversions' => '顯示／隱藏選定的修訂版本',
 'editundo'                 => '撤銷',
-'diff-multi'               => '（$1個中途的修訂版本沒有顯示）',
+'diff-multi'               => '（由{{PLURAL:$2|1名用戶|$2名用戶}}作出的{{PLURAL:$1|一個中途修訂版本|$1個中途修訂版本}}未被顯示）',
+'diff-multi-manyusers'     => '（由多於$2名用戶作出的{{PLURAL:$1|一個中途修訂版本|$1個中途修訂版本}} 未被顯示）',
 
 # Search results
 'searchresults'                    => '搜索結果',
@@ -1113,7 +1127,7 @@ $1",
 'shown-title'                      => '每頁顯示$1項結果',
 'viewprevnext'                     => '檢視 （$1 {{int:pipe-separator}} $2） （$3）',
 'searchmenu-legend'                => '搜尋選項',
-'searchmenu-exists'                => "'''在這個wiki上有一頁面叫做\"[[:\$1]]\"'''",
+'searchmenu-exists'                => "'''在這個wiki上有一頁面叫做\"[[:\$1]]\"。'''",
 'searchmenu-new'                   => "'''在這個wiki上新建這個頁面\"[[:\$1]]\"！'''",
 'searchhelp-url'                   => 'Help:目錄',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|去瀏覽以此為首的頁面]]',
@@ -1583,12 +1597,13 @@ $1",
 為方便起見，這一個檔案的刪除記錄已經在下面提供:",
 'filename-bad-prefix'         => "您上傳的檔案名稱是以'''「$1」'''作為開頭，通常這種沒有含意的檔案名稱是由數碼相機中自動編排。請在您的檔案中重新選擇一個更加有意義的檔案名稱。",
 'upload-success-subj'         => '上傳成功',
-'upload-success-msg'          => '你可以在這裡找到你的上傳：[[:{{ns:file}}:$1]]',
+'upload-success-msg'          => '您在[$2]的上传已经成功，可以在这里找到：[[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => '上傳問題',
-'upload-failure-msg'          => '有一個問題與您的上傳有關：
+'upload-failure-msg'          => '您在[$2]的上傳出現了問題：
 
 $1',
 'upload-warning-subj'         => '上傳警告',
+'upload-warning-msg'          => '您自[$2]的上傳出錯。您可以返回[[Special:Upload/stash/$1|上傳表單]]並更正問題。',
 
 'upload-proto-error'        => '協議錯誤',
 'upload-proto-error-text'   => '遠程上傳要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 開頭。',
@@ -1993,6 +2008,7 @@ Template:消除歧義',
 # Watchlist
 'watchlist'            => '監視列表',
 'mywatchlist'          => '我的監視列表',
+'watchlistfor2'        => '$1的監視列表 $2',
 'nowatchlist'          => '您的監視列表為空。',
 'watchlistanontext'    => '請$1以檢視或編輯您的監視列表。',
 'watchnologin'         => '未登入',
@@ -2065,9 +2081,9 @@ $UNWATCHURL
 # Delete
 'deletepage'             => '刪除頁面',
 'confirm'                => '確認',
-'excontent'              => '內容為: "$1"',
-'excontentauthor'        => '內容為：「$1」（而且唯一貢獻者為[[Special:Contributions/$2|$2]]）',
-'exbeforeblank'          => '被清空前的內容為：“$1”',
+'excontent'              => '內容為: 「$1」',
+'excontentauthor'        => '內容為：「$1」（而且唯一貢獻者為「[[Special:Contributions/$2|$2]]」）',
+'exbeforeblank'          => '被清空前的內容為：「$1」',
 'exblank'                => '頁面為空',
 'delete-confirm'         => '刪除「$1」',
 'delete-legend'          => '刪除',
@@ -2184,9 +2200,9 @@ $UNWATCHURL
 'undeletepagetext'             => '以下的$1個頁面已經被刪除，但依然在檔案中並可以被恢復。
 檔案庫可能被定時清理。',
 'undelete-fieldset-title'      => '恢復修訂',
-'undeleteextrahelp'            => "恢復整個頁面時，請清除所有複選框後按 '''''恢復''''' 。
-恢復特定版本時，請選擇相應版本前的複選框後按'''''恢復''''' 。
-按 '''''重設''''' 將清除評論內容及所有複選框。",
+'undeleteextrahelp'            => "恢復整個頁面時，請清除所有複選框後按 '''''{{int:undeletebtn}}''''' 。
+恢復特定版本時，請選擇相應版本前的複選框後按'''''{{int:undeletebtn}}''''' 。
+按 '''''{{int:undeletereset}}''''' 將清除評論內容及所有複選框。",
 'undeleterevisions'            => '$1版本存檔',
 'undeletehistory'              => '如果您恢復了該頁面，所有版本都會被恢復到修訂歷史中。
 如果本頁刪除後有一個同名的新頁面建立，被恢復的版本將會出現在先前的歷史中。',
@@ -2480,7 +2496,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'immobile-source-page'         => '這個頁面不能移動。',
 'immobile-target-page'         => '無法移動至目標標題中。',
 'imagenocrossnamespace'        => '不可以移動檔案到非檔案名字空間',
-'nonfile-cannot-move-to-file'  => '不可以移動檔案到非檔案名字空間',
+'nonfile-cannot-move-to-file'  => '不可以移動非檔案到檔案名字空間',
 'imagetypemismatch'            => '該新副檔名不匹配它的類型',
 'imageinvalidfilename'         => '目標檔案名稱是無效的',
 'fix-double-redirects'         => '更新指到原先標題的任何重新定向',
@@ -2703,7 +2719,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 
 # Spam protection
 'spamprotectiontitle' => '垃圾過濾器',
-'spamprotectiontext'  => '您要保存的文本被垃圾過濾器阻止。
+'spamprotectiontext'  => '您要保存的文字被垃圾過濾器阻止。
 這可能是由於一個鏈往匹配黑名單的外部站點的鏈接引起的。',
 'spamprotectionmatch' => '觸發了我們的垃圾過濾器的文本如下：$1',
 'spambot_username'    => 'MediaWiki 廣告清除',
@@ -3217,9 +3233,9 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => '清空頁面',
-'autosumm-replace' => "以'$1'替換內容",
+'autosumm-replace' => '以「$1」替換內容',
 'autoredircomment' => '重定向頁面到[[$1]]',
-'autosumm-new'     => "以內容'$1'創建新頁面",
+'autosumm-new'     => '以內容「$1」創建新頁面',
 
 # Size units
 'size-bytes' => '$1 位元組',
@@ -3279,6 +3295,13 @@ $1',
 'version-hook-subscribedby'        => '利用於',
 'version-version'                  => '（版本 $1）',
 'version-license'                  => '授權',
+'version-poweredby-credits'        => "這個 Wiki 由 '''[http://www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
+'version-poweredby-others'         => '其他',
+'version-license-info'             => 'MediaWiki為自由軟件；您可依據自由軟件基金會所發表的GNU通用公共授權條款規定，就本程式再為發佈與／或修改；無論您依據的是本授權的第二版或（您自行選擇的）任一日後發行的版本。
+
+MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任；亦無對適售性或特定目的適用性所為的默示性擔保。詳情請參照GNU通用公共授權。
+
+您應已收到附隨於本程式的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授權的副本]；如果沒有，請寫信至自由軟件基金會：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 線上閱讀]。',
 'version-software'                 => '已經安裝的軟件',
 'version-software-product'         => '產品',
 'version-software-version'         => '版本',
@@ -3378,5 +3401,9 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '撤銷更改',
 'htmlform-selectorother-other' => '其它',
+
+# SQLite database support
+'sqlite-has-fts' => '帶全文搜尋的版本$1',
+'sqlite-no-fts'  => '不帶全文搜尋的版本$1',
 
 );
