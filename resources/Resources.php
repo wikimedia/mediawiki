@@ -326,6 +326,9 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.views.history.js',
 		'dependencies' => 'mediawiki.legacy.history',
 	) ),
+	'mediawiki.util' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki/mediawiki.util.js',
+	) ),
 	
 	/* MediaWiki Legacy */
 	

@@ -3,7 +3,7 @@
  */
 
 // Make calling .indexOf() on an array work on older browsers
-if ( typeof Array.prototype.indexOf === 'undefined' ) { 
+if ( typeof Array.prototype.indexOf === 'undefined' ) {
 	Array.prototype.indexOf = function( needle ) {
 		for ( var i = 0; i < this.length; i++ ) {
 			if ( this[i] === needle ) {
@@ -14,13 +14,13 @@ if ( typeof Array.prototype.indexOf === 'undefined' ) {
 	};
 }
 // Add array comparison functionality
-if ( typeof Array.prototype.compare === 'undefined' ) { 
+if ( typeof Array.prototype.compare === 'undefined' ) {
 	Array.prototype.compare = function( against ) {
 		if ( this.length != against.length ) {
 			return false;
 		}
 		for ( var i = 0; i < against.length; i++ ) {
-			if ( this[i].compare ) { 
+			if ( this[i].compare ) {
 				if ( !this[i].compare( against[i] ) ) {
 					return false;
 				}
@@ -53,7 +53,7 @@ window.mediaWiki = new ( function( $ ) {
 	this.prototypes = {
 		/*
 		 * An object which allows single and multiple get/set/exists functionality on a list of key / value pairs
-		 * 
+		 *
 		 * @param {boolean} global whether to get/set/exists values on the window object or a private object
 		 * @param {function} parser function to perform extra processing; in the form of function( value, options )
 		 * @param {function} fallback function to format default fallback; in the form of function( key )
@@ -70,10 +70,10 @@ window.mediaWiki = new ( function( $ ) {
 			
 			/**
 			 * Gets one or more values
-			 * 
+			 *
 			 * If called with no arguments, all values will be returned. If a parser is in use, no parsing will take
 			 * place when calling with no arguments or calling with an array of names.
-			 * 
+			 *
 			 * @param {mixed} selection string name of value to get, array of string names of values to get, or object
 			 * of name/option pairs
 			 * @param {object} options optional set of options which are also passed to a parser if in use; only used
@@ -120,7 +120,7 @@ window.mediaWiki = new ( function( $ ) {
 			
 			/**
 			 * Sets one or multiple configuration values using a key and a value or an object of keys and values
-			 * 
+			 *
 			 * @param {mixed} key string of name by which value will be made accessible, or object of name/value pairs
 			 * @param {mixed} value optional value to set, only in use when key is a string
 			 */
@@ -161,7 +161,7 @@ window.mediaWiki = new ( function( $ ) {
 	
 	/*
 	 * List of configuration values
-	 * 
+	 *
 	 * In legacy mode the values this object wraps will be in the global space
 	 */
 	this.config = new this.prototypes.map( LEGACY_GLOBALS );
@@ -204,11 +204,11 @@ window.mediaWiki = new ( function( $ ) {
 		var that = this;
 		/*
 		 * Mapping of registered modules
-		 * 
+		 *
 		 * The jquery module is pre-registered, because it must have already been provided for this object to have
 		 * been built, and in debug mode jquery would have been provided through a unique loader request, making it
 		 * impossible to hold back registration of jquery until after mediawiki.
-		 * 
+		 *
 		 * Format:
 		 * 	{
 		 * 		'moduleName': {
@@ -258,7 +258,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Resolves dynamic loader function and replaces it with it's own results
 			if ( typeof registry[module].dependencies === 'function' ) {
 				registry[module].dependencies = registry[module].dependencies();
-				// Ensures the module's dependencies are always in an array 
+				// Ensures the module's dependencies are always in an array
 				if ( typeof registry[module].dependencies !== 'object' ) {
 					registry[module].dependencies = [registry[module].dependencies];
 				}
@@ -280,7 +280,7 @@ window.mediaWiki = new ( function( $ ) {
 		
 		/**
 		 * Gets a list of modules names that a module dependencies in their proper dependency order
-		 * 
+		 *
 		 * @param mixed string module name or array of string module names
 		 * @return list of dependencies
 		 * @throws Error if circular reference is detected
@@ -311,7 +311,7 @@ window.mediaWiki = new ( function( $ ) {
 		/**
 		 * Narrows a list of module names down to those matching a specific state. Possible states are 'undefined',
 		 * 'registered', 'loading', 'loaded', or 'ready'
-		 * 
+		 *
 		 * @param mixed string or array of strings of module states to filter by
 		 * @param array list of module names to filter (optional, all modules will be used by default)
 		 * @return array list of filtered module names
@@ -345,7 +345,7 @@ window.mediaWiki = new ( function( $ ) {
 		
 		/**
 		 * Executes a loaded module, making it ready to use
-		 * 
+		 *
 		 * @param string module name to execute
 		 */
 		function execute( module ) {
@@ -413,7 +413,7 @@ window.mediaWiki = new ( function( $ ) {
 		
 		/**
 		 * Adds a dependencies to the queue with optional callbacks to be run when the dependencies are ready or fail
-		 * 
+		 *
 		 * @param mixed string moulde name or array of string module names
 		 * @param function ready callback to execute when all dependencies are ready
 		 * @param function error callback to execute when any dependency fails
@@ -621,7 +621,7 @@ window.mediaWiki = new ( function( $ ) {
 		
 		/**
 		 * Executes a function as soon as one or more required modules are ready
-		 * 
+		 *
 		 * @param mixed string or array of strings of modules names the callback dependencies to be ready before
 		 * executing
 		 * @param function callback to execute when all dependencies are ready (optional)
@@ -658,7 +658,7 @@ window.mediaWiki = new ( function( $ ) {
 		
 		/**
 		 * Loads an external script or one or more modules for future use
-		 * 
+		 *
 		 * @param {mixed} modules either the name of a module, array of modules, or a URL of an external script or style
 		 * @param {string} type mime-type to use if calling with a URL of an external script or style; acceptable values
 		 * are "text/css" and "text/javascript"; if no type is provided, text/javascript is assumed
@@ -717,7 +717,7 @@ window.mediaWiki = new ( function( $ ) {
 		
 		/**
 		 * Changes the state of a module
-		 * 
+		 *
 		 * @param mixed module string module name or object of module name/state pairs
 		 * @param string state string state name
 		 */
@@ -736,7 +736,7 @@ window.mediaWiki = new ( function( $ ) {
 		
 		/**
 		 * Gets the version of a module
-		 * 
+		 *
 		 * @param string module name of module to get version for
 		 */
 		this.version = function( module ) {
@@ -753,7 +753,6 @@ window.mediaWiki = new ( function( $ ) {
 	
 	/* Extension points */
 	
-	this.util = {};
 	this.legacy = {};
 	
 } )( jQuery );
@@ -767,3 +766,4 @@ if ( typeof startUp === 'function' ) {
 
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;
+window.mw = mediaWiki;
