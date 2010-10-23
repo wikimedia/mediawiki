@@ -14,7 +14,14 @@ class TestSample extends PHPUnit_Framework_TestCase {
 	function tearDown() {
 	}
 
-	function testEqual() {
+	/**
+	 * Name tests so that PHPUnit can turn them into sentances when
+	 * they run.  While MediaWiki isn't strictly an Agile Programming
+	 * project, you are encouraged to use the naming described under
+	 * "Agile Documentation" at
+	 * http://www.phpunit.de/manual/3.4/en/other-uses-for-tests.html
+	 */
+	function testTitleObjectStringConversion() {
 		$title = Title::newFromText("text");
 		$this->assertEquals("Text", $title->__toString(), "Title creation");
 		$this->assertEquals("Text", "Text", "Automatic string conversion");
@@ -39,15 +46,15 @@ class TestSample extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider provideTitles()
+	 * @dataProvider provideTitles
 	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.dataProvider
 	 */
-	public function testTitleCreation($titleName, $ns, $text) {
+	public function testCreateBasicListOfTitles($titleName, $ns, $text) {
 		$title = Title::newFromText($titleName, $ns);
 		$this->assertEquals($text, "$title", "see if '$titleName' matches '$text'");
 	}
 
-	public function testInitialCreation() {
+	public function testSetUpMainPageTitleForNextTest() {
 		$title = Title::newMainPage();
 		$this->assertEquals("Main Page", "$title", "Test initial creation of a title");
 
@@ -66,23 +73,20 @@ class TestSample extends PHPUnit_Framework_TestCase {
 	 * testTitleDepends is whatever testInitialCreatiion returned.)
 	 */
 	/**
-	 * @depends testInitialCreation
+	 * @depends testSetUpMainPageTitleForNextTest
 	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.depends
 	 */
-	public function testTitleDepends( $title ) {
+	public function testCheckMainPageTitleIsConsideredLocal( $title ) {
 		$this->assertTrue( $title->isLocal() );
 	}
 
 	/**
-	 * If the code you're testing can produce Exceptions, you can also
-	 * test for them.  In the following example, the test expects a
-	 * MWException containing the string "object" in the message..
-	 */
-	/**
 	 * @expectedException MWException object
 	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
-	function testException() {
+	function testTitleObjectFromObject() {
 		$title = Title::newFromText(new Title("test"));
+		$this->assertEquals( "Test", $title->isLocal() );
 	}
-}
+  }
+
