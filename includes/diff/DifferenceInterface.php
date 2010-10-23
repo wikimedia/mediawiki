@@ -243,7 +243,7 @@ CONTROL;
 			}
 			// Build the link
 			if( $rcid ) {
-				$token = $wgUser->editToken();
+				$token = $wgUser->editToken( $rcid );
 				$patrol = ' <span class="patrollink">[' . $sk->link(
 					$this->mTitle, 
 					wfMsgHtml( 'markaspatrolleddiff' ),
@@ -474,7 +474,7 @@ CONTROL;
 		# Add redundant patrol link on bottom...
 		if( $this->mRcidMarkPatrolled && $this->mTitle->quickUserCan('patrol') ) {
 			$sk = $wgUser->getSkin();
-			$token = $wgUser->editToken();
+			$token = $wgUser->editToken( $this->mRcidMarkPatrolled );
 			$wgOut->addHTML(
 				"<div class='patrollink'>[" . $sk->link(
 					$this->mTitle,
