@@ -1,4 +1,4 @@
-/*jslint white: true, browser: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true */
+/*jslint white: true, browser: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true */
 /*
  * Utilities
  */
@@ -10,24 +10,44 @@
 		/* Initialisation */
 		'initialised' : false,
 		'init' : function () {
-			if (this.initialised === false){
+			if (this.initialised === false) {
 				this.initialised = true;
 
 
 				// Set tooltipAccessKeyPrefix
-				if ( is_opera ) {
+				if (is_opera) {
 					this.tooltipAccessKeyPrefix = 'shift-esc-';
-				} else if ( is_chrome ) {
+				} else if (is_chrome) {
 					this.tooltipAccessKeyPrefix = is_chrome_mac ? 'ctrl-option-' : 'alt-';
-				} else if ( !is_safari_win && is_safari && webkit_version > 526 ) {
+				} else if (!is_safari_win && is_safari && webkit_version > 526) {
 					this.tooltipAccessKeyPrefix = 'ctrl-alt-';
-				} else if ( !is_safari_win && ( is_safari
-						|| clientPC.indexOf('mac') != -1
-						|| clientPC.indexOf('konqueror') != -1 ) ) {
+				} else if (!is_safari_win &&
+					(is_safari || clientPC.indexOf('mac') !== -1 || clientPC.indexOf('konqueror') !== -1)) {
 					this.tooltipAccessKeyPrefix = 'ctrl-';
-				} else if ( is_ff2 ) {
+				} else if (is_ff2) {
 					this.tooltipAccessKeyPrefix = 'alt-shift-';
 				}
+				
+				// Setup CheckboxShiftClick
+				$.fn.enableCheckboxShiftClick = function () {
+					var prevCheckbox = null;
+					var $box = this;
+					$box.click(function (e) {
+						if (prevCheckbox !== null && e.shiftKey) {
+							$box.slice(
+							  Math.min($box.index(prevCheckbox), $box.index(e.target)),
+							  Math.max($box.index(prevCheckbox), $box.index(e.target)) + 1
+							).attr({checked: e.target.checked ? 'checked' : ''});
+						}
+						prevCheckbox = e.target;
+					});
+					return $box;
+				};
+				
+				// Any initialisation after the DOM is ready
+				$(function () {
+					$('input[type=checkbox]:not(.noshiftselect)').enableCheckboxShiftClick();				
+				});
 
 
 				return true;
@@ -59,6 +79,15 @@
 			return this.rawurlencode(str).replace(/%20/g, '_').replace(/%3A/g, ':').replace(/%2F/g, '/');
 		},
 
+		/**
+		* Get the full url to a pagename
+		*
+		* @param String str		pagename to link to
+		*/
+		'getWikilink' : function (str) {
+			return wgServer + wgArticlePath.replace('$1', this.wikiUrlencode(str));
+		},
+
 
 		/**
 		* Grabs the url parameter value for the given parameter
@@ -80,7 +109,7 @@
 		/**
 		* Converts special characters to their HTML entities
 		*
-		* @param String		str text to escape
+		* @param String			str text to escape
 		* @param Bool			quotes if true escapes single and double quotes aswell (by default false)
 		*/
 		'htmlEscape' : function (str, quotes) {
@@ -126,7 +155,7 @@
 				$nodes = $(nodeList);
 			} else {
 				// Rather than scanning all links, just
-				$("#column-one a, #mw-head a, #mw-panel a, #p-logo a");
+				$('#column-one a, #mw-head a, #mw-panel a, #p-logo a');
 
 				// these are rare enough that no such optimization is needed
 				this.updateTooltipAccessKeys($('input'));
@@ -137,7 +166,7 @@
 			$nodes.each(function (i) {
 				var tip = $(this).attr('title');
 				if (!!tip && mw.util.tooltipAccessKeyRegexp.exec(tip)) {
-					tip = tip.replace(mw.util.tooltipAccessKeyRegexp, '[' + tooltipAccessKeyPrefix + "$5]");
+					tip = tip.replace(mw.util.tooltipAccessKeyRegexp, '[' + mw.util.tooltipAccessKeyPrefix + "$5]");
 					$(this).attr('title', tip);
 				}
 			});
@@ -157,13 +186,13 @@
 		 *
 		 * @example mw.util.addPortletLink('p-tb', 'http://mediawiki.org/', 'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print')
 		 *
-		 * @param String portlet	id of the target portlet ("p-cactions" or "p-personal" etc.)
+		 * @param String portlet	id of the target portlet ('p-cactions' or 'p-personal' etc.)
 		 * @param String href		link URL
 		 * @param String text		link text (will be automatically lowercased by CSS for p-cactions in Monobook)
-		 * @param String id			id of the new item, should be unique and preferably have the appropriate prefix ("ca-", "pt-", "n-" or "t-")
+		 * @param String id			id of the new item, should be unique and preferably have the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
 		 * @param String tooltip	text to show when hovering over the link, without accesskey suffix
-		 * @param String accesskey	accesskey to activate this link (one character, try to avoid conflicts)
-		 * @param mixed nextnode	DOM node or jQuery-selector of the item that the new item should be added before, should be another item in the same list
+		 * @param String accesskey	accesskey to activate this link (one character, try to avoid conflicts. Use $('[accesskey=x').get() in the console to see if 'x' is already used.
+		 * @param mixed nextnode	DOM node or jQuery-selector of the item that the new item should be added before, should be another item in the same list will be ignored if not the so
 		 *
 		 * @return Node				the DOM node of the new item (a LI element) or null
 		 */
