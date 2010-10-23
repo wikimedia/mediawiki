@@ -95,7 +95,8 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getTokenSalt() {
-		return '';
+		$params = $this->extractRequestParams();
+		return $params['rcid'];
 	}
 
 	protected function getExamples() {
