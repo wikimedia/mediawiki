@@ -15,6 +15,7 @@ testBrowser		= "firefox"
 startserver		=
 stopserver		=
 jUnitLogFile	=
+runAgainstGrid	= false
 
 [testSuite]
 

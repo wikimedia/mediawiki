@@ -19,6 +19,7 @@ testBrowser 		= "firefox"
 startserver			=
 stopserver			=
 jUnitLogFile		=
+runAgainstGrid		= false
 
 ; To let the test runner start and stop the selenium server, it needs the full
 ; path to selenium-server.jar from the selenium-remote-control package.
