@@ -232,6 +232,8 @@ abstract class CoreInstaller extends Installer {
 	/**
 	 * Register tag hook below.
 	 *
+	 * @todo Move this to WebInstaller with the two things below?
+	 *
 	 * @param $parser Parser
 	 */
 	public function registerDocLink( Parser &$parser ) {
@@ -288,7 +290,7 @@ abstract class CoreInstaller extends Installer {
 	 *
 	 * @return Status
 	 */
-	public function installExtensions() {
+	protected function installExtensions() {
 		$exts = $this->getVar( '_Extensions' );
 		$path = $this->getVar( 'IP' ) . '/extensions';
 
@@ -305,7 +307,7 @@ abstract class CoreInstaller extends Installer {
 	 *
 	 * @return array
 	 */
-	public function getInstallSteps() {
+	protected function getInstallSteps() {
 		if( $this->getVar( '_UpgradeDone' ) ) {
 			$this->installSteps = array( 'localsettings' );
 		}
@@ -369,7 +371,7 @@ abstract class CoreInstaller extends Installer {
 	 *
 	 * @return Status
 	 */
-	public function installSecretKey() {
+	protected function installSecretKey() {
 		if ( wfIsWindows() ) {
 			$file = null;
 		} else {
@@ -403,7 +405,7 @@ abstract class CoreInstaller extends Installer {
 	 *
 	 * @return Status
 	 */
-	public function installSysop() {
+	protected function installSysop() {
 		$name = $this->getVar( '_AdminName' );
 		$user = User::newFromName( $name );
 
