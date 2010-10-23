@@ -30,7 +30,7 @@
 class SpecialStatistics extends SpecialPage {
 	
 	private $views, $edits, $good, $images, $total, $users,
-			$activeUsers, $admins, $numJobs = 0;
+			$activeUsers, $admins = 0;
 	
 	public function __construct() {
 		parent::__construct( 'Statistics' );
@@ -50,7 +50,6 @@ class SpecialStatistics extends SpecialPage {
 		$this->users = SiteStats::users();
 		$this->activeUsers = SiteStats::activeUsers();
 		$this->admins = SiteStats::numberingroup('sysop');
-		$this->numJobs = SiteStats::jobs();
 		$this->hook = '';
 	
 		# Staticic - views
@@ -68,11 +67,6 @@ class SpecialStatistics extends SpecialPage {
 				SiteStatsUpdate::cacheUpdate( $dbw );
 				$wgMemc->set( $key, '1', 24*3600 ); // don't update for 1 day
 			}
-		}
-	
-		# Do raw output
-		if( $wgRequest->getVal( 'action' ) == 'raw' ) {
-			$this->doRawOutput();
 		}
 
 		$text = Xml::openElement( 'table', array( 'class' => 'wikitable mw-statistics-table' ) );
@@ -309,21 +303,5 @@ class SpecialStatistics extends SpecialPage {
 		}
 		
 		return $return;
-	}
-	
-	/**
-	 * Do the action=raw output for this page. Legacy, but we support
-	 * it for backwards compatibility
-	 * http://lists.wikimedia.org/pipermail/wikitech-l/2008-August/039202.html
-	 */
-	private function doRawOutput() {
-		global $wgOut;
-		$wgOut->disable();
-		header( 'Pragma: nocache' );
-		echo "total=" . $this->total . ";good=" . $this->good . ";views=" . 
-				$this->views . ";edits=" . $this->edits . ";users=" . $this->users . ";";
-		echo "activeusers=" . $this->activeUsers . ";admins=" . $this->admins . 
-				";images=" . $this->images . ";jobs=" . $this->numJobs . "\n";
-		return;
 	}
 }
