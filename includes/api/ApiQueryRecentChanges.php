@@ -79,14 +79,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			return false;
 		}
 
-		// The patrol token is always the same, let's exploit that
-		static $cachedPatrolToken = null;
-		if ( !is_null( $cachedPatrolToken ) ) {
-			return $cachedPatrolToken;
-		}
-
-		$cachedPatrolToken = $wgUser->editToken();
-		return $cachedPatrolToken;
+		return $wgUser->editToken( $rc->getAttribute( 'rc_id' ) );
 	}
 
 	/**
@@ -192,7 +185,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'rc_cur_id',
 			'rc_type',
 			'rc_moved_to_ns',
-			'rc_moved_to_title'
+			'rc_moved_to_title',
+			'rc_deleted'
 		) );
 
 		/* Determine what properties we need to display. */
