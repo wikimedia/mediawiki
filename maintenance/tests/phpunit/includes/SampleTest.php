@@ -32,6 +32,7 @@ class TestSample extends PHPUnit_Framework_TestCase {
 		return array(
 			array( 'Text', NS_MEDIA, 'Media:Text' ),
 			array( 'Text', null, 'Text' ),
+			array( 'text', null, 'Text' ),
 			array( 'Text', NS_USER, 'User:Text' ),
 			array( 'Text', NS_USER, 'Blah' )
 		);
