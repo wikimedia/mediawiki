@@ -1798,7 +1798,18 @@ $wgExtraLanguageNames = array();
  * These codes are leftoffs from renames, or other legacy things.
  * Also, qqq is a dummy "language" for documenting messages.
  */
-$wgDummyLanguageCodes = array( 'qqq', 'als', 'be-x-old', 'dk', 'fiu-vro', 'iu', 'nb', 'simple', 'tp' );
+$wgDummyLanguageCodes = array(
+	'als',
+	'bat-smg',
+	'be-x-old',
+	'dk',
+	'fiu-vro',
+	'iu',
+	'nb',
+	'qqq',
+	'simple',
+	'tp',
+);
 
 /** @deprecated Since MediaWiki 1.5, this must always be set to UTF-8. */
 $wgInputEncoding  = 'UTF-8';
