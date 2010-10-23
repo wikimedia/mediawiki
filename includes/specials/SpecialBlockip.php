@@ -54,7 +54,7 @@ class IPBlockForm extends SpecialPage {
 	
 		# bug 15810: blocked admins should have limited access here
 		if ( $wgUser->isBlocked() ) {
-			$status = IPBlockForm::checkUnblockSelf( $ipb->BlockAddress );
+			$status = IPBlockForm::checkUnblockSelf( $this->BlockAddress );
 			if ( $status !== true ) {
 				throw new ErrorPageError( 'badaccess', $status );
 			}
