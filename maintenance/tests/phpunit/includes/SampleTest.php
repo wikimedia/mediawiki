@@ -26,7 +26,7 @@ class TestSample extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * If you want to run a the same test with a variety of data. use a data provider.
-	 * See: http://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
+	 * see: http://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
 	 */
 	public function provideTitles() {
 		return array(
@@ -40,6 +40,7 @@ class TestSample extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideTitles()
+	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.dataProvider
 	 */
 	public function testTitleCreation($titleName, $ns, $text) {
 		$title = Title::newFromText($titleName, $ns);
@@ -66,17 +67,20 @@ class TestSample extends PHPUnit_Framework_TestCase {
 	 */
 	/**
 	 * @depends testInitialCreation
+	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.depends
 	 */
 	public function testTitleDepends( $title ) {
 		$this->assertTrue( $title->isLocal() );
 	}
 
 	/**
+	 * If the code you're testing can produce Exceptions, you can also
+	 * test for them.  In the following example, the test expects a
+	 * MWException containing the string "object" in the message..
+	 */
+	/**
 	 * @expectedException MWException object
-	 *
-	 * Above comment tells PHPUnit to expect an exception of the
-	 * MWException class containing the string "object" in the
-	 * message.
+	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
 	function testException() {
 		$title = Title::newFromText(new Title("test"));
