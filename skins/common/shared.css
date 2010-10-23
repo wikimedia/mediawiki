@@ -904,7 +904,12 @@ ol:lang(mzn) li {
 	list-style-type: persian;
 }
 
-ol:lang(ckb-arab) li {
+ol:lang(ckb) li {
 	list-style-type: -moz-arabic-indic;
 	list-style-type: arabic-indic;
+}
+
+ol:lang(bn) li {
+	list-style-type: -moz-bengali;
+	list-style-type: bengali;
 }
