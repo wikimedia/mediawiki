@@ -51,7 +51,8 @@ class SeleniumTester extends Maintenance {
 		$this->addOption( 'verbose', 'Be noisier.' );
 		$this->addOption( 'startserver', 'Start Selenium Server (on localhost) before the run.' );
 		$this->addOption( 'stopserver', 'Stop Selenium Server (on localhost) after the run.' );
-		$this->addOption( 'jUnitLogFile', 'Log results in a specified JUnit log file.', false, true );
+		$this->addOption( 'jUnitLogFile', 'Log results in a specified JUnit log file. Default: empty', false, true );
+		$this->addOption( 'runAgainstGrid', 'The test will be run against a Selenium Grid. Default: false.', false, true );
 		$this->deleteOption( 'dbpass' );
 		$this->deleteOption( 'dbuser' );
 		$this->deleteOption( 'globals' );
@@ -180,10 +181,12 @@ class SeleniumTester extends Maintenance {
 		if ( !isset( $seleniumSettings['userPassword'] ) ) $seleniumSettings['userPassword'] = '';
 		if ( !isset( $seleniumSettings['testBrowser'] ) ) $seleniumSettings['testBrowser'] = 'firefox';
 		if ( !isset( $seleniumSettings['jUnitLogFile'] ) ) $seleniumSettings['jUnitLogFile'] = false;
+		if ( !isset( $seleniumSettings['runAgainstGrid'] ) ) $seleniumSettings['runAgainstGrid'] = false;
 
 		// Setup Selenium class
 		$this->selenium = new Selenium( );
 		$this->selenium->setAvailableBrowsers( $seleniumBrowsers );
+		$this->selenium->setRunAgainstGrid( $this->getOption( 'runAgainstGrid', $seleniumSettings['runAgainstGrid'] ) );		
 		$this->selenium->setUrl( $this->getOption( 'wikiUrl', $seleniumSettings['wikiUrl'] ) );
 		$this->selenium->setBrowser( $this->getOption( 'testBrowser', $seleniumSettings['testBrowser'] ) );
 		$this->selenium->setPort( $this->getOption( 'port', $seleniumSettings['port'] ) );

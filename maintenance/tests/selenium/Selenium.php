@@ -22,6 +22,7 @@ class Selenium {
 	protected $timeout = 30000;
 	protected $verbose;
 	protected $junitlogfile; //processed by phpUnderControl
+	protected $runagainstgrid = false;
 
 	/**
 	 * @todo this shouldn't have to be static
@@ -145,7 +146,15 @@ class Selenium {
 		return $this->junitlogfile;
 	}	
 	
+	public function setRunAgainstGrid( $runagainstgrid ) {
+		$this->runagainstgrid = $runagainstgrid;
+	}
+	
 	public function setBrowser( $b ) {
+		if ($this->runagainstgrid) {
+			$this->browser = $b;
+			return true;
+		}
 		if ( !isset( $this->browsers[$b] ) ) {
 			throw new MWException( "Invalid Browser: $b.\n" );
 		}
