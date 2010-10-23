@@ -308,16 +308,17 @@ class WebInstaller extends CoreInstaller {
 	 * Get the value of session.save_path
 	 *
 	 * Per http://www.php.net/manual/en/session.configuration.php#ini.session.save-path,
-	 * this might have some additional preceding parts which need to be
-	 * ditched
+	 * this may have an initial integer value to indicate the depth of session
+	 * storage (eg /tmp/a/b/c). Explode on ; and check and see if this part is
+	 * there or not. Should also allow paths with semicolons in them (if you
+	 * really wanted your session files stored in /tmp/some;dir) which PHP
+	 * supposedly supports.
 	 *
 	 * @return String
 	 */
 	private function getSessionSavePath() {
-		$path = ini_get( 'session.save_path' );
-		$path = ltrim( substr( $path, strrpos( $path, ';' ) ), ';');
-
-		return $path;
+		$parts = explode( ';', ini_get( 'session.save_path' ), 2 );
+		return count( $parts ) == 1 ? $parts[0] : $parts[1];
 	}
 
 	/**
