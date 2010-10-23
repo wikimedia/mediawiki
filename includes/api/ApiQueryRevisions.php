@@ -161,6 +161,15 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// Possible indexes used
 		$index = array();
 
+		$userMax = ( $this->fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
+		$botMax  = ( $this->fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
+		$limit = $params['limit'];
+		if ( $limit == 'max' ) {
+			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
+			$this->getResult()->setParsedLimit( $this->getModuleName(), $limit );
+		}
+
+		
 		if ( !is_null( $this->token ) || $pageCount > 0 ) {
 			$this->addFields( Revision::selectPageFields() );
 		}
@@ -199,6 +208,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			$this->expandTemplates = $params['expandtemplates'];
 			$this->generateXML = $params['generatexml'];
+			$this->parseContent = $params['parse'];
+			if ( $this->parseContent ) {
+				// We are only going to parse 1 revision per request
+				$this->validateLimit( 'limit', $limit, 1, 1, 1 );
+			}
 			if ( isset( $params['section'] ) ) {
 				$this->section = $params['section'];
 			} else {
@@ -209,13 +223,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		//Bug 24166 - API error when using rvprop=tags
 		$this->addTables( 'revision' );
 
-		$userMax = ( $this->fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
-		$botMax  = ( $this->fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
-		$limit = $params['limit'];
-		if ( $limit == 'max' ) {
-			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$this->getResult()->setParsedLimit( $this->getModuleName(), $limit );
-		}
 
 		if ( $enumRevMode ) {
 			// This is mostly to prevent parameter errors (and optimize SQL?)
@@ -464,8 +471,31 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['parsetree'] = $xml;
 
 			}
-			if ( $this->expandTemplates ) {
+			if ( $this->expandTemplates && !$this->parseContent ) {
 				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
+			}
+			if ( $this->parseContent ) {
+				global $wgEnableParserCache;
+			
+				$popts = new ParserOptions();
+				$popts->setTidy( true );
+				
+				$articleObj = new Article( $title );
+
+				$p_result = false;
+				$pcache = ParserCache::singleton();
+				if ( $wgEnableParserCache ) {
+					$p_result = $pcache->get( $articleObj, $popts );
+				}
+				if ( !$p_result ) {
+					$p_result = $wgParser->parse( $text, $title, $popts );
+
+					if ( $wgEnableParserCache ) {
+						$pcache->save( $p_result, $articleObj, $popts );
+					}
+				}
+				
+				$text = $p_result->getText();
 			}
 			ApiResult::setContent( $vals, $text );
 		} elseif ( $this->fld_content ) {
@@ -560,6 +590,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'tag' => null,
 			'expandtemplates' => false,
 			'generatexml' => false,
+			'parse' => false,
 			'section' => null,
 			'token' => array(
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
@@ -597,6 +628,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'excludeuser' => 'Exclude revisions made by user',
 			'expandtemplates' => 'Expand templates in revision content',
 			'generatexml' => 'Generate XML parse tree for revision content',
+			'parse' => 'Parse revision content. For performance reasons if this option is used, rvlimit is enforced to 1.',
 			'section' => 'Only retrieve the content of this section number',
 			'token' => 'Which tokens to obtain for each revision',
 			'continue' => 'When more results are available, use this to continue',

@@ -436,6 +436,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 24792) API help for action=purge sometimes wrongly stated whether a
   POST request was needed due to cache pollution
 * Added iiprop=parsedcomment to prop=imageinfo, similar to prop=revisions
+* Added rvparse to parse revisions. For performance reasons if this option is 
+  used, rvlimit is enforced to 1.
 
 === Languages updated in 1.17 ===
 
