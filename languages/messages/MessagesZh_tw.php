@@ -22,7 +22,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( '消歧義頁' ),
 	'Recentchanges'             => array( '近期變動' ),
 	'Ancientpages'              => array( '最舊頁面' ),
-	'Unblock'                   => array( '解除封锁' ),
+	'Unblock'                   => array( '解除封鎖' ),
 	'Blockme'                   => array( '封禁我' ),
 	'Blockip'                   => array( '查封用戶' ),
 	'Lockdb'                    => array( '鎖定數據庫' ),
@@ -483,11 +483,6 @@ $messages = array(
 # Special:Log
 'specialloguserlabel' => '使用者:',
 'alllogstext'         => '綜合顯示上傳、刪除、保護、封鎖以及站務日誌。',
-
-# Special:Categories
-'categoriespagetext' => '以下列出所有的頁面分類。
-[[Special:UnusedCategories|Unused categories]] are not shown here.
-Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:ListUsers
 'listusersfrom'      => '給定顯示使用者條件:',
