@@ -31,7 +31,6 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'localurle',        array( __CLASS__, 'localurle'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'fullurl',          array( __CLASS__, 'fullurl'          ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'fullurle',         array( __CLASS__, 'fullurle'         ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'linkurl',          array( __CLASS__, 'linkurl'          ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'formatnum',        array( __CLASS__, 'formatnum'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'grammar',          array( __CLASS__, 'grammar'          ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'gender',           array( __CLASS__, 'gender'           ), SFH_NO_HASH );
@@ -195,7 +194,6 @@ class CoreParserFunctions {
 	static function localurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeLocalURL', $s, $arg ); }
 	static function fullurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getFullURL', $s, $arg ); }
 	static function fullurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeFullURL', $s, $arg ); }
-	static function linkurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getLinkUrl', $s, $arg ); }
 
 	static function urlFunction( $func, $s = '', $arg = null ) {
 		$title = Title::newFromText( $s );
