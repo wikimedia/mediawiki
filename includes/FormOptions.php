@@ -2,8 +2,9 @@
 /**
  * Helper class to keep track of options when mixing links and form elements.
  *
+ * Copyright © 2008, Niklas Laxström
+ *
  * @author Niklas Laxström
- * @copyright Copyright © 2008, Niklas Laxström
  */
 
 class FormOptions implements ArrayAccess {
