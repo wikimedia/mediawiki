@@ -1,4 +1,3 @@
-/*jslint white: true, browser: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true */
 /*
  * Utilities
  */
@@ -44,6 +43,13 @@
 					return $box;
 				};
 				
+				// Prototype enhancements
+				if (typeof String.prototype.ucFirst === 'undefined') {
+					String.prototype.ucFirst = function () {
+						return this.substr(0, 1).toUpperCase() + this.substr(1, this.length);
+					};
+				}
+				
 				// Any initialisation after the DOM is ready
 				$(function () {
 					$('input[type=checkbox]:not(.noshiftselect)').enableCheckboxShiftClick();				
@@ -86,6 +92,29 @@
 		*/
 		'getWikilink' : function (str) {
 			return wgServer + wgArticlePath.replace('$1', this.wikiUrlencode(str));
+		},
+
+		/**
+		* Check is a variable is empty. Support for strings, booleans, arrays and objects.
+		* String "0" is considered empty. String containing only whitespace (ie. "  ") is considered not empty. 
+		*
+		* @param Mixed v	the variable to check for empty ness
+		*/
+		'isEmpty' : function (v) {
+			var key;
+			if (v === "" || v === 0 || v === "0" || v === null || v === false || typeof v === 'undefined') {
+				return true;
+			}
+			if (v.length === 0) {
+				return true;
+			}
+			if (typeof v === 'object') {
+				for (key in v) {
+					return false;
+				}
+				return true;
+			}
+			return false;
 		},
 
 

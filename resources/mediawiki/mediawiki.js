@@ -2,34 +2,55 @@
  * JavaScript backwards-compatibility and support
  */
 
-// Make calling .indexOf() on an array work on older browsers
-if ( typeof Array.prototype.indexOf === 'undefined' ) {
-	Array.prototype.indexOf = function( needle ) {
-		for ( var i = 0; i < this.length; i++ ) {
-			if ( this[i] === needle ) {
-				return i;
-			}
-		}
-		return -1;
+// New fallback String trimming functionality, was introduced natively in JavaScript 1.8.1
+if (typeof String.prototype.trimx === 'undefined') {
+// Add removing trailing and leading whitespace functionality cross-browser
+// See also: http://blog.stevenlevithan.com/archives/faster-trim-javascript
+	String.prototype.trim = function () {
+		return this.replace(/^\s+|\s+$/g, ''); 
 	};
 }
+if (typeof String.prototype.trimLeft === 'undefined') {
+	String.prototype.trimLeft = function () {
+		return this.replace(/^\s\s*/, "");
+	};
+}
+ 
+if (typeof String.prototype.trimRight === 'undefined') {
+	String.prototype.trimRight = function () {
+		return this.replace(/\s\s*$/, "");
+	};
+}
+
 // Add array comparison functionality
-if ( typeof Array.prototype.compare === 'undefined' ) {
-	Array.prototype.compare = function( against ) {
-		if ( this.length != against.length ) {
+if (typeof Array.prototype.compare === 'undefined') {
+	Array.prototype.compare = function (against) {
+		if (this.length !== against.length) {
 			return false;
 		}
-		for ( var i = 0; i < against.length; i++ ) {
-			if ( this[i].compare ) {
-				if ( !this[i].compare( against[i] ) ) {
+		for (var i = 0; i < against.length; i++) {
+			if (this[i].compare) {
+				if (!this[i].compare(against[i])) {
 					return false;
 				}
 			}
-			if ( this[i] !== against[i] ) {
+			if (this[i] !== against[i]) {
 				return false;
 			}
 		}
 		return true;
+	};
+}
+
+// Make calling .indexOf() on an array work on older browsers
+if (typeof Array.prototype.indexOf === 'undefined') {
+	Array.prototype.indexOf = function (needle) {
+		for (var i = 0; i < this.length; i++) {
+			if (this[i] === needle) {
+				return i;
+			}
+		}
+		return -1;
 	};
 }
 
