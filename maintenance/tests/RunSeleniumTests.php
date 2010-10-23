@@ -29,7 +29,7 @@ define( 'SELENIUMTEST', true );
 require_once( dirname( dirname( __FILE__ ) )."/Maintenance.php" );
 require_once( 'PHPUnit/Framework.php' );
 require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
-require_once( 'PHPUnit/Util/Log/JUnit.php' );
+include_once( 'PHPUnit/Util/Log/JUnit.php' );
 require_once( dirname( __FILE__ ) . "/selenium/SeleniumServerManager.php" );
 
 class SeleniumTester extends Maintenance {
