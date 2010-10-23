@@ -12,7 +12,9 @@ class TitlePermissionTest extends PHPUnit_Framework_TestCase {
 	function setUp() {
 		global $wgLocaltimezone, $wgLocalTZoffset, $wgMemc, $wgContLang, $wgLang, $wgMessageCache;
 
-		$wgMemc = new FakeMemCachedClient;
+		if(!$wgMemc) {
+			$wgMemc = new FakeMemCachedClient;
+		}
 		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
 		$wgContLang = $wgLang = Language::factory( 'en' );
 
@@ -45,8 +47,8 @@ class TitlePermissionTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function tearDown() {
-		global $wgMemc, $wgContLang, $wgLang;
-		$wgMemc = $wgContLang = $wgLang = null;
+		global $wgContLang, $wgLang;
+		$wgContLang = $wgLang = null;
 	}
 
 	function setUserPerm( $perm ) {
