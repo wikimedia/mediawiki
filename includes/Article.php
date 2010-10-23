@@ -1308,7 +1308,7 @@ class Article {
 		}
 
 		$sk = $wgUser->getSkin();
-		$token = $wgUser->editToken();
+		$token = $wgUser->editToken( $rcid );
 
 		$wgOut->addHTML(
 			"<div class='patrollink'>" .
@@ -2348,7 +2348,7 @@ class Article {
 		# If we haven't been given an rc_id value, we can't do anything
 		$rcid = (int) $wgRequest->getVal( 'rcid' );
 
-		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'token' ) ) ) {
+		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'token' ), $rcid ) ) {
 			$wgOut->showErrorPage( 'sessionfailure-title', 'sessionfailure' );
 			return;
 		}
