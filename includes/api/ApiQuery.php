@@ -462,7 +462,7 @@ class ApiQuery extends ApiBase {
 			// output with an ob
 			ob_start();
 			$exporter->openStream();
-			foreach ( @$pageSet->getGoodTitles() as $title ) {
+			foreach ( $pageSet->getGoodTitles() as $title ) {
 				if ( $title->userCanRead() ) {
 					$exporter->pageByTitle( $title );
 				}
