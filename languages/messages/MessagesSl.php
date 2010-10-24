@@ -1654,7 +1654,7 @@ $1',
 'upload-file-error'         => 'Notranja napaka',
 'upload-file-error-text'    => 'Prišlo je do notranje napake pri poskusu ustvariti začasne datoteke na strežnik.
 Prosimo obrnite se na [[Special:ListUsers/sysop|administrator]]ja.',
-'upload-misc-error'         => 'Neznana napaka nalaganja',
+'upload-misc-error'         => 'Neznana napaka pri nalaganju',
 'upload-misc-error-text'    => 'Med nalaganjem je prišlo do neznane napake.
 Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 Če se težava ponavlja, kontaktirajte [[Special:ListUsers/sysop|administratorja]].',
@@ -3322,7 +3322,7 @@ Uporabite lahko tudi [[Special:Watchlist/edit|standardni urejevalnik]].',
 'version-extension-functions'      => 'Funkcije razširitev',
 'version-parser-extensiontags'     => 'Etikete razširitev razčlenjevalnika',
 'version-parser-function-hooks'    => 'Funkcije razširitev razčlenjevalnika',
-'version-skin-extension-functions' => 'Funkcije razširitev kože',
+'version-skin-extension-functions' => 'Funkcije razširitve kože',
 'version-hook-name'                => 'Ime razširitve',
 'version-hook-subscribedby'        => 'Naročen s strani',
 'version-version'                  => '(Različica $1)',

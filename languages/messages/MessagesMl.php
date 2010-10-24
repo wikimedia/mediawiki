@@ -1930,7 +1930,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 
 # Miscellaneous special pages
 'nbytes'                  => '{{PLURAL:$1|ഒരു ബൈറ്റ്|$1 ബൈറ്റുകൾ}}',
-'ncategories'             => '$1 {{PLURAL:$1|വർഗ്ഗം|വർഗ്ഗങ്ങൾ}}',
+'ncategories'             => '{{PLURAL:$1|ഒരു വർഗ്ഗം|$1 വർഗ്ഗങ്ങൾ}}',
 'nlinks'                  => '{{PLURAL:$1|ഒരു കണ്ണി|$1 കണ്ണികൾ}}',
 'nmembers'                => '{{PLURAL:$1|ഒരു അംഗം|$1 അംഗങ്ങൾ}}',
 'nrevisions'              => '{{PLURAL:$1|ഒരു പതിപ്പ്|$1 പതിപ്പുകൾ}}',

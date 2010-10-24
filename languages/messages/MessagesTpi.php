@@ -211,6 +211,7 @@ $messages = array(
 'currentevents'        => 'Karen afeas',
 'currentevents-url'    => 'Project:Karen afeas',
 'disclaimers'          => 'Ol tok warn long lo',
+'disclaimerpage'       => 'Project:Ol tok warn long lo',
 'edithelp'             => 'Halivim mi long pasin bilong wokim senis',
 'edithelppage'         => 'Help:Senisim',
 'mainpage'             => 'Fran Pes',
@@ -218,6 +219,7 @@ $messages = array(
 'portal'               => 'Bung ples',
 'portal-url'           => 'Project:Bung ples',
 'privacy'              => 'Polisi long praivet',
+'privacypage'          => 'Project:Polisi long praivet',
 
 'badaccess' => 'Kranki long tok orait.',
 
@@ -240,6 +242,7 @@ $messages = array(
 'site-atom-feed'     => '$1 Atom fid',
 'page-rss-feed'      => '"$1" RSS fid',
 'page-atom-feed'     => '"$1" Atom fid',
+'red-link-title'     => '$1 (pes i nogat stap)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Stori',
@@ -324,11 +327,12 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'histlast'         => 'Tru nupela',
 
 # Revision deletion
-'rev-delundel'    => 'soim/hait',
-'pagehist'        => 'Histori long pes',
-'revdelete-uname' => 'yusanem',
-'revdelete-hid'   => 'bin hait $1',
-'revdelete-unhid' => 'bin soim $1',
+'rev-delundel'               => 'soim/hait',
+'revdelete-show-file-submit' => 'Yes',
+'pagehist'                   => 'Histori long pes',
+'revdelete-uname'            => 'yusanem',
+'revdelete-hid'              => 'bin hait $1',
+'revdelete-unhid'            => 'bin soim $1',
 
 # Revision move
 'revmove-nullmove-title' => 'Nogutpela titel',
@@ -350,6 +354,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'searchprofile-everything'       => 'Ol',
 'searchprofile-articles-tooltip' => 'Painim long $1',
 'searchprofile-project-tooltip'  => 'Painim long $1',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 wot|ol $2 wot}})',
 'search-redirect'                => '(nupela rot long $1)',
 'search-section'                 => '(seksen $1)',
 'search-suggest'                 => 'Yu i min: $1',
@@ -610,7 +615,7 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Lukim...',
-'unwatching' => 'Nogat lukim...',
+'unwatching' => 'I pinis long lukautim...',
 
 'enotif_reset'                 => 'Makim olgeta pes olsem mi lukim pinis',
 'enotif_newpagetext'           => 'Dispela i nupela pes',
@@ -728,6 +733,7 @@ Yu inap lukluk as bilong em.',
 'tooltip-ca-delete'              => 'Rausim dispela pes',
 'tooltip-ca-move'                => 'Surikim dispela pes (Move this page)',
 'tooltip-ca-watch'               => 'Skruim dispela pes long lukautbuk bilong yu',
+'tooltip-ca-unwatch'             => 'Rausim dispela pes long lukautbuk bilong yu (Remove this page from your watchlist)',
 'tooltip-search'                 => 'Painim {{SITENAME}}',
 'tooltip-search-fulltext'        => 'Painim ol pes long dispela text',
 'tooltip-n-mainpage'             => 'Lukim long fran pes (Visit the main page)',

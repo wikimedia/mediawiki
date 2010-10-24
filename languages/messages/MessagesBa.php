@@ -1685,7 +1685,7 @@ $1',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|байт}}',
-'ncategories'             => '{{PLURAL:$1|Категория|Категория}}',
+'ncategories'             => '$1 {{PLURAL:$1|Категория|Категория}}',
 'nlinks'                  => '$1 {{PLURAL:$1|һылтанма}}',
 'nmembers'                => '$1 {{PLURAL:$1|объект}}',
 'nrevisions'              => '$1 {{PLURAL:$1|өлгө|өлгө}}',

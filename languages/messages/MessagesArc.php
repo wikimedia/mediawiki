@@ -259,6 +259,7 @@ $messages = array(
 'jumpto'            => 'ܫܘܪ ܠ:',
 'jumptonavigation'  => 'ܐܠܦܪܘܬܐ',
 'jumptosearch'      => 'ܒܨܝܐ',
+'pool-errorunknown' => 'ܦܘܕܐ ܠܐ ܝܕܝܥܐ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'ܡܢܘ {{SITENAME}}',
@@ -274,6 +275,7 @@ $messages = array(
 'helppage'             => 'Help:ܚܒܝܫܬ̈ܐ',
 'mainpage'             => 'ܦܐܬܐ ܪܫܝܬܐ',
 'mainpage-description' => 'ܦܐܬܐ ܪܫܝܬܐ',
+'policy-url'           => 'Project:ܦܘܪܢܣܐ',
 'portal'               => 'ܬܪܥܐ ܕܟܢܫܐ',
 'portal-url'           => 'Project:ܬܪܥܐ ܕܟܢܫܐ',
 'privacy'              => 'ܦܘܪܢܣܐ ܕܕܝܠܢܝܘܬܐ',
@@ -321,6 +323,7 @@ $messages = array(
 'missingarticle-diff' => '(ܦܪܝܫܘܬܐ: $1, $2)',
 'internalerror'       => 'ܦܘܕܐ ܓܘܝܐ',
 'internalerror_info'  => 'ܦܘܕܐ ܓܘܝܐ: $1',
+'badtitle'            => 'ܟܘܢܝܐ ܠܐ ܛܒܐ',
 'viewsource'          => 'ܚܙܝ ܥܩܪܐ',
 'viewsourcefor'       => 'ܕ $1',
 'namespaceprotected'  => "ܠܝܬ ܠܟ ܦܣܣܐ ܠܫܚܠܦܬܐ ܕܦܐܬܬ̈ܐ ܒܚܩܠܐ ܕ'''$1'''.",
@@ -371,7 +374,7 @@ $messages = array(
 'loginlanguagelabel'      => 'ܠܫܢܐ: $1',
 
 # JavaScript password checks
-'password-strength'            => 'ܚܝܠܐ ܩܘܪܒܢܝܐ ܕܡܠܬܐ ܕܥܠܠܐ',
+'password-strength'            => 'ܚܝܠܐ ܩܘܪܒܢܝܐ ܕܡܠܬܐ ܕܥܠܠܐ: $1',
 'password-strength-bad'        => 'ܠܐ ܛܒܬܐ',
 'password-strength-mediocre'   => 'ܡܨܥܝܬܐ',
 'password-strength-acceptable' => 'ܡܬܩܒܠܢܬܐ',
@@ -419,6 +422,7 @@ $messages = array(
 'blockedoriginalsource'            => "ܥܩܪܐ ܕ'''$1''' ܓܠܝܚܐ ܠܬܚܬ:",
 'nosuchsectiontitle'               => 'ܠܐ ܡܨܐ ܐܫܟܚ ܡܢܬܐ',
 'loginreqlink'                     => 'ܥܘܠ',
+'accmailtitle'                     => 'ܡܠܬܐ ܕܥܠܠܐ ܫܕܪܬ',
 'newarticle'                       => '(ܚܕܬܐ)',
 'updated'                          => '(ܐܬܚܕܬ)',
 'note'                             => "'''ܡܥܝܪܢܘܬܐ:'''",
@@ -791,6 +795,11 @@ $messages = array(
 'upload-options'      => 'ܓܒܝܬ̈ܐ ܕܐܣܩܬܐ ܕܠܦܦܐ',
 'watchthisupload'     => 'ܪܗܝ ܗܢܐ ܠܦܦܐ',
 'upload-success-subj' => 'ܠܦܦܐ ܐܣܩܬ ܢܨܝܚܐܝܬ',
+'upload-failure-subj' => 'ܩܛܪܐ ܒܐܣܩܬܐ ܕܠܦܦܐ',
+'upload-failure-msg'  => 'ܐܝܬ ܗܘܐ ܩܛܪܐ ܒܠܦܦܐ ܕܐܣܩܬ ܡܢ [$2]:
+
+$1',
+'upload-warning-subj' => 'ܙܘܗܪܐ ܥܠ ܐܣܩܬܐ ܕܠܦܦܐ',
 
 'upload-proto-error'  => 'ܦܪܘܛܘܩܘܠ ܠܐ ܬܪܝܨܐ',
 'upload-file-error'   => 'ܦܘܕܐ ܓܘܝܐ',
@@ -1105,6 +1114,7 @@ $messages = array(
 'restriction-type'            => 'ܦܣܣܐ:',
 'minimum-size'                => 'ܡܬܚܐ ܬܚܬܝܐ  ܕܥܓܪܐ',
 'maximum-size'                => 'ܡܬܚܐ ܥܠܝܐ ܕܥܓܪܐ',
+'pagesize'                    => '(ܒܐܝܛ)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'ܫܚܠܦ',
@@ -1468,6 +1478,7 @@ $1',
 'filepath-submit' => 'ܙܠ',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'ܒܨܝ ܥܠ ܠܦܦ̈ܐ ܥܦܝܦ̈ܐ',
 'fileduplicatesearch-filename' => 'ܫܡܐ ܕܠܦܦܐ:',
 'fileduplicatesearch-submit'   => 'ܒܨܝ',
 
