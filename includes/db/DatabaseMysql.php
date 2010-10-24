@@ -76,10 +76,10 @@ class DatabaseMysql extends DatabaseBase {
 				# Create a new connection...
 				$this->mConn = mysql_connect( $realServer, $user, $password, true );
 			}
-			if ($this->mConn === false) {
+			#if ( $this->mConn === false ) {
 				#$iplus = $i + 1;
 				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n");
-			}
+			#}
 		}
 		$phpError = $this->restoreErrorHandler();
 		# Always log connection errors
