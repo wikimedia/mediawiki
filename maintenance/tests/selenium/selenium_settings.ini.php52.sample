@@ -19,5 +19,5 @@ runAgainstGrid	= false
 
 [testSuite]
 
-SimpleSeleniumTestSuite	= "maintenance/tests/selenium/SimpleSeleniumTestSuite.php"
-PagedTiffHandlerSeleniumTestSuite = "extensions/PagedTiffHandler/selenium/PagedTiffHandlerTestSuite.php"
+SimpleSeleniumTestSuite	= "maintenance/tests/selenium/suites/SimpleSeleniumTestSuite.php"
+WikiEditorTestSuite = "extensions/WikiEditor/selenium/WikiEditorTestSuite.php"

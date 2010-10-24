@@ -27,6 +27,6 @@ seleniumserverexecpath = "/opt/local/selenium-remote-control-1.0.3/selenium-serv
 
 [SeleniumTests]
 
-testSuite[SimpleSeleniumTestSuite] = "maintenance/tests/selenium/SimpleSeleniumTestSuite.php"
-testSuite[PagedTiffHandlerSeleniumTestSuite] = "extensions/PagedTiffHandler/selenium/PagedTiffHandlerTestSuite.php"
+testSuite[SimpleSeleniumTestSuite] = "maintenance/tests/selenium/suites/SimpleSeleniumTestSuite.php"
+testSuite[WikiEditorTestSuite] = "extensions/WikiEditor/selenium/WikiEditorTestSuite.php"
 
