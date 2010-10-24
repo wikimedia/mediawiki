@@ -60,7 +60,11 @@ class SpecialListGroupRights extends SpecialPage {
 				'</tr>'
 		);
 
-		foreach( $wgGroupPermissions as $group => $permissions ) {
+		$allGroups = array_merge( array_keys( $wgGroupPermissions ), 
+				array_keys( $wgRevokePermissions ) );
+		foreach ( $allGroups as $group ) {
+			$permissions = isset( $wgGroupPermissions[$group] ) ? 
+					$wgGroupPermissions[$group] : array();
 			$groupname = ( $group == '*' ) ? 'all' : $group; // Replace * with a more descriptive groupname
 
 			$msg = wfMsg( 'group-' . $groupname );
