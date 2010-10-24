@@ -1,5 +1,6 @@
 /*
- * mediaWiki Debug Test Suit on [[Special:MWUtilJSTest]] (only when ?debug=true)
+ * mediaWiki Debug Test Suit.
+ * Available on "/Special:BlankPage?action=mwutiltest&debug=true")
  */
 
 (function ($, mw) {
@@ -30,7 +31,7 @@
 			if (this.initialised === false) {
 				this.initialised = true;
 				$(function () {
-					if (wgTitle == 'MWUtilJSTest' && wgCanonicalNamespace == 'Special') {
+					if (wgCanonicalSpecialPageName == 'Blankpage' && mw.util.getParamValue('action') === 'mwutiltest') {
 
 						// Build page
 						document.title = 'mediaWiki.util JavaScript Test - ' + wgSiteName;
@@ -76,8 +77,8 @@
 							'function (string)');
 						mw.test.addTest('typeof mw.util.getParamValue',
 							'function (string)');
-						mw.test.addTest('mw.util.getParamValue(\'debug\')',
-							'true (string)');
+						mw.test.addTest('mw.util.getParamValue(\'action\')',
+							'mwutiltest (string)');
 						mw.test.addTest('typeof mw.util.htmlEscape',
 							'function (string)');
 						mw.test.addTest('mw.util.htmlEscape(\'<a href="http://mw.org/?a=b&c=d">link</a>\')',
