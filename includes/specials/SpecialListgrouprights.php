@@ -60,8 +60,8 @@ class SpecialListGroupRights extends SpecialPage {
 				'</tr>'
 		);
 
-		$allGroups = array_merge( array_keys( $wgGroupPermissions ), 
-				array_keys( $wgRevokePermissions ) );
+		$allGroups = array_unique( array_merge( array_keys( $wgGroupPermissions ),
+				array_keys( $wgRevokePermissions ) ) );
 		foreach ( $allGroups as $group ) {
 			$permissions = isset( $wgGroupPermissions[$group] ) ? 
 					$wgGroupPermissions[$group] : array();
