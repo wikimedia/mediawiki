@@ -32,7 +32,6 @@ interface DatabaseType {
 
 	/**
 	 * Open a connection to the database. Usually aborts on failure
-	 * If the failFunction is set to a non-zero integer, returns success
 	 *
 	 * @param $server String: database server host
 	 * @param $user String: database user name
@@ -210,7 +209,6 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
 	protected $mOpened = false;
 
-	protected $mFailFunction;
 	protected $mTablePrefix;
 	protected $mFlags;
 	protected $mTrxLevel = 0;
@@ -479,12 +477,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $user String: database user name
 	 * @param $password String: database user password
 	 * @param $dbName String: database name
-	 * @param $failFunction
 	 * @param $flags
 	 * @param $tablePrefix String: database table prefixes. By default use the prefix gave in LocalSettings.php
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global'
+		$flags = 0, $tablePrefix = 'get from global'
 	) {
 		global $wgOut, $wgDBprefix, $wgCommandLineMode;
 
@@ -527,12 +524,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $user String: database user name
 	 * @param $password String: database user password
 	 * @param $dbName String: database name
-	 * @param failFunction
 	 * @param $flags
 	 */
-	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 ) {
+	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
 		wfDeprecated( __METHOD__ );
-		return new DatabaseMysql( $server, $user, $password, $dbName, $failFunction, $flags );
+		return new DatabaseMysql( $server, $user, $password, $dbName, $flags );
 	}
 
 	protected function installErrorHandler() {
