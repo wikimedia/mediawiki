@@ -236,14 +236,6 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Fail function, takes a Database as a parameter
-	 * Set to false for default, 1 for ignore errors
-	 */
-	function failFunction( $function = null ) {
-		return wfSetVar( $this->mFailFunction, $function );
-	}
-
-	/**
 	 * Boolean, controls output of large amounts of debug information
 	 */
 	function debug( $debug = null ) {
@@ -500,8 +492,6 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( !isset( $wgOut ) ) {
 			$wgOut = null;
 		}
-
-		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 
 		if ( $this->mFlags & DBO_DEFAULT ) {
@@ -589,16 +579,8 @@ abstract class DatabaseBase implements DatabaseType {
 			$error = $myError;
 		}
 
-		if ( $this->mFailFunction ) {
-			# Legacy error handling method
-			if ( !is_int( $this->mFailFunction ) ) {
-				$ff = $this->mFailFunction;
-				$ff( $this, $error );
-			}
-		} else {
-			# New method
-			throw new DBConnectionError( $this, $error );
-		}
+		# New method
+		throw new DBConnectionError( $this, $error );
 	}
 
 	/**

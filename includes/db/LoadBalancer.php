@@ -35,11 +35,6 @@ class LoadBalancer {
 		}
 		$this->mServers = $params['servers'];
 
-		if ( isset( $params['failFunction'] ) ) {
-			$this->mFailFunction = $params['failFunction'];
-		} else {
-			$this->mFailFunction = false;
-		}
 		if ( isset( $params['waitTimeout'] ) ) {
 			$this->mWaitTimeout = $params['waitTimeout'];
 		} else {
@@ -671,19 +666,9 @@ class LoadBalancer {
 			// No last connection, probably due to all servers being too busy
 			wfLogDBError( "LB failure with no last connection\n" );
 			$conn = new Database;
-			if ( $this->mFailFunction ) {
-				$conn->failFunction( $this->mFailFunction );
-				$conn->reportConnectionError( $this->mLastError );
-			} else {
-				// If all servers were busy, mLastError will contain something sensible
-				throw new DBConnectionError( $conn, $this->mLastError );
-			}
+			// If all servers were busy, mLastError will contain something sensible
+			throw new DBConnectionError( $conn, $this->mLastError );
 		} else {
-			if ( $this->mFailFunction ) {
-				$conn->failFunction( $this->mFailFunction );
-			} else {
-				$conn->failFunction( false );
-			}
 			$server = $conn->getProperty( 'mServer' );
 			wfLogDBError( "Connection error: {$this->mLastError} ({$server})\n" );
 			$conn->reportConnectionError( "{$this->mLastError} ({$server})" );

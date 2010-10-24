@@ -273,7 +273,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 			$wgOut = null;
 		}
 		$this->mOut =& $wgOut;
-		$this->mFailFunction = $failFunction;
 		$this->mFlags = DBO_TRX | $flags;
 
 		if ( $schema == self::USE_GLOBAL ) {
