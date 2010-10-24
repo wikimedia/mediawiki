@@ -26,7 +26,7 @@
 				} else if (is_ff2) {
 					this.tooltipAccessKeyPrefix = 'alt-shift-';
 				}
-				
+
 				// Setup CheckboxShiftClick
 				$.fn.enableCheckboxShiftClick = function () {
 					var prevCheckbox = null;
@@ -42,17 +42,17 @@
 					});
 					return $box;
 				};
-				
+
 				// Prototype enhancements
 				if (typeof String.prototype.ucFirst === 'undefined') {
 					String.prototype.ucFirst = function () {
 						return this.substr(0, 1).toUpperCase() + this.substr(1, this.length);
 					};
 				}
-				
+
 				// Any initialisation after the DOM is ready
 				$(function () {
-					$('input[type=checkbox]:not(.noshiftselect)').enableCheckboxShiftClick();				
+					$('input[type=checkbox]:not(.noshiftselect)').enableCheckboxShiftClick();
 				});
 
 
@@ -96,7 +96,7 @@
 
 		/**
 		* Check is a variable is empty. Support for strings, booleans, arrays and objects.
-		* String "0" is considered empty. String containing only whitespace (ie. "  ") is considered not empty. 
+		* String "0" is considered empty. String containing only whitespace (ie. "  ") is considered not empty.
 		*
 		* @param Mixed v	the variable to check for empty ness
 		*/
@@ -281,6 +281,6 @@
 
 	};
 
-})(jQuery, mediaWiki);
+	mediaWiki.util.init();
 
-mediaWiki.util.init();
+})(jQuery, mediaWiki);
