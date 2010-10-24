@@ -362,6 +362,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   available via the API
 * (bug 23934) Groups defined in $wgRevokePermissions but not in
   $wgGroupPermissions now appear on Special:ListGroupRights
+* (bug 23923) Special:Prefixindex no longer shows results if nothing was
+  requested.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
