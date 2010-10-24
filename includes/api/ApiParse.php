@@ -89,15 +89,36 @@ class ApiParse extends ApiBase {
 					$this->dieUsage( "You don't have permission to view deleted revisions", 'permissiondenied' );
 				}
 
-				$text = $rev->getText( Revision::FOR_THIS_USER );
 				$titleObj = $rev->getTitle();
+
 				$wgTitle = $titleObj;
 
-				if ( $this->section !== false ) {
-					$text = $this->getSectionText( $text, 'r' . $rev );
-				}
+				//If for some reason the "oldid" is actually the current revision, it may be cached
+				if ( $titleObj->getLatestRevID() === $oldid ) {
+					$p_result = false;
+					$pcache = ParserCache::singleton();
+					if ( $wgEnableParserCache ) {
+						$p_result = $pcache->get( $titleObj, $popts );
+					}
+					if ( !$p_result ) {
+						$text = $rev->getText( Revision::FOR_THIS_USER );
+						$p_result = $wgParser->parse( $text, $titleObj, $popts );
 
-				$p_result = $wgParser->parse( $text, $titleObj, $popts );
+						if ( $wgEnableParserCache ) {
+							$pcache->save( $p_result, $titleObj, $popts );
+						}
+					}
+				} else {
+					$text = $rev->getText( Revision::FOR_THIS_USER );
+
+					$wgTitle = $titleObj;
+
+					if ( $this->section !== false ) {
+						$text = $this->getSectionText( $text, 'r' . $rev );
+					}
+
+					$p_result = $wgParser->parse( $text, $titleObj, $popts );
+				}
 			} else {
 				if ( !is_null ( $pageid ) ) {
 					$titleObj = Title::newFromID( $pageid );
