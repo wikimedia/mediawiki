@@ -12,7 +12,6 @@
 			if (this.initialised === false) {
 				this.initialised = true;
 
-
 				// Set tooltipAccessKeyPrefix
 				if (is_opera) {
 					this.tooltipAccessKeyPrefix = 'shift-esc-';
@@ -52,7 +51,18 @@
 
 				// Any initialisation after the DOM is ready
 				$(function () {
+				
+					// Enable CheckboxShiftClick
 					$('input[type=checkbox]:not(.noshiftselect)').enableCheckboxShiftClick();
+					
+					// Fill bodyContant var
+					if ($('#bodyContent').length) {
+						mw.util.$content = $('#bodyContent');
+					} else if ($('#article').length) {
+						mw.util.$content = $('#article');
+					} else {
+						mw.util.$content = $('#content');
+					}
 				});
 
 
@@ -200,6 +210,10 @@
 				}
 			});
 		},
+		
+		// jQuery object that refers to the page-content element
+		// Populated by init()
+		'$content' : null,
 
 
 		/**
@@ -223,60 +237,74 @@
 		 * @param String accesskey	accesskey to activate this link (one character, try to avoid conflicts. Use $('[accesskey=x').get() in the console to see if 'x' is already used.
 		 * @param mixed nextnode	DOM node or jQuery-selector of the item that the new item should be added before, should be another item in the same list will be ignored if not the so
 		 *
-		 * @return Node				the DOM node of the new item (a LI element) or null
+		 * @return Node				the DOM node of the new item (a LI element, or A element for older skins) or null
 		 */
 		'addPortletLink' : function (portlet, href, text, id, tooltip, accesskey, nextnode) {
-			var $portlet = $('#' + portlet);
-			if ($portlet.length === 0) {
-				return null;
-			}
-			var $ul = $portlet.find('ul').eq(0);
-			if ($ul.length === 0) {
-				if ($portlet.find('div').length === 0) {
-					$portlet.append('<ul />');
-				} else {
-					$portlet.find('div').eq(-1).append('<ul />');
-				}
-				$ul = $portlet.find('ul').eq(0);
-			}
-			if ($ul.length === 0) {
-				return null;
-			}
-
-			// unhide portlet if it was hidden before
-			$portlet.removeClass('emptyPortlet');
-
 			var $link = $('<a />').attr('href', href).text(text);
-			var $item = $link.wrap('<li><span /></li>').parent().parent();
-
-			if (id) {
-				$item.attr('id', id);
-			}
-			if (accesskey) {
-				$link.attr('accesskey', accesskey);
-				tooltip += ' [' + accesskey + ']';
-			}
-			if (tooltip) {
-				$link.attr('title', tooltip);
-			}
-			if (accesskey && tooltip) {
-				this.updateTooltipAccessKeys($link);
-			}
-
-			// Append using DOM-element passing
-			if (nextnode && nextnode.parentNode == $ul.get(0)) {
-				$(nextnode).before($item);
-			} else {
-				// If the jQuery selector isn't found within the <ul>, just append it at the end
-				if ($ul.find(nextnode).length === 0) {
-					$ul.append($item);
-				} else {
-					// Append using jQuery CSS selector
-					$ul.find(nextnode).eq(0).before($item);
+			
+			// Some skins don't have portlets
+			// Just add it to the bottom of their 'sidebar' element ignoring the specified portlet target
+			switch (skin) {
+			case 'standard' :
+			case 'cologneblue' :
+				$("#quickbar").append($link.after('<br />'));
+				return $link.get(0);
+			case 'nostalgia' :
+				$("#searchform").before($link).before(' &#124; ');
+				return $link.get(0);
+			default : // chick, modern, monobook, myskin, simple, vector...
+				
+				var $portlet = $('#' + portlet);
+				if ($portlet.length === 0) {
+					return null;
 				}
-			}
+				var $ul = $portlet.find('ul').eq(0);
+				if ($ul.length === 0) {
+					if ($portlet.find('div').length === 0) {
+						$portlet.append('<ul />');
+					} else {
+						$portlet.find('div').eq(-1).append('<ul />');
+					}
+					$ul = $portlet.find('ul').eq(0);
+				}
+				if ($ul.length === 0) {
+					return null;
+				}
+	
+				// unhide portlet if it was hidden before
+				$portlet.removeClass('emptyPortlet');
+				
+				var $item = $link.wrap('<li><span /></li>').parent().parent();
 
-			return $item.get(0);
+				if (id) {
+					$item.attr('id', id);
+				}
+				if (accesskey) {
+					$link.attr('accesskey', accesskey);
+					tooltip += ' [' + accesskey + ']';
+				}
+				if (tooltip) {
+					$link.attr('title', tooltip);
+				}
+				if (accesskey && tooltip) {
+					this.updateTooltipAccessKeys($link);
+				}
+	
+				// Append using DOM-element passing
+				if (nextnode && nextnode.parentNode == $ul.get(0)) {
+					$(nextnode).before($item);
+				} else {
+					// If the jQuery selector isn't found within the <ul>, just append it at the end
+					if ($ul.find(nextnode).length === 0) {
+						$ul.append($item);
+					} else {
+						// Append using jQuery CSS selector
+						$ul.find(nextnode).eq(0).before($item);
+					}
+				}
+	
+				return $item.get(0);
+			}
 		}
 
 	};
