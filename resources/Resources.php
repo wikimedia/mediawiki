@@ -328,6 +328,7 @@ return array(
 	) ),
 	'mediawiki.util' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki/mediawiki.util.js',
+		'debugScripts' => 'resources/mediawiki/mediawiki.utiltest.js',
 	) ),
 	
 	/* MediaWiki Legacy */

@@ -3,11 +3,11 @@
  */
 
 // New fallback String trimming functionality, was introduced natively in JavaScript 1.8.1
-if (typeof String.prototype.trimx === 'undefined') {
+if (typeof String.prototype.trim === 'undefined') {
 // Add removing trailing and leading whitespace functionality cross-browser
 // See also: http://blog.stevenlevithan.com/archives/faster-trim-javascript
 	String.prototype.trim = function () {
-		return this.replace(/^\s+|\s+$/g, ''); 
+		return this.replace(/^\s+|\s+$/g, '');
 	};
 }
 if (typeof String.prototype.trimLeft === 'undefined') {
@@ -15,7 +15,7 @@ if (typeof String.prototype.trimLeft === 'undefined') {
 		return this.replace(/^\s\s*/, "");
 	};
 }
- 
+
 if (typeof String.prototype.trimRight === 'undefined') {
 	String.prototype.trimRight = function () {
 		return this.replace(/\s\s*$/, "");
@@ -59,18 +59,18 @@ if (typeof Array.prototype.indexOf === 'undefined') {
  */
 // Attach to window
 window.mediaWiki = new ( function( $ ) {
-	
+
 	/* Constants */
-	
+
 	// This will not change until we are 100% ready to turn off legacy globals
 	var LEGACY_GLOBALS = true;
-	
+
 	/* Private Members */
-	
+
 	var that = this;
-	
+
 	/* Prototypes */
-	
+
 	this.prototypes = {
 		/*
 		 * An object which allows single and multiple get/set/exists functionality on a list of key / value pairs
@@ -81,14 +81,14 @@ window.mediaWiki = new ( function( $ ) {
 		 * where value is the data to be parsed and options is additional data passed through to the parser
 		 */
 		'map': function( global, parser, fallback ) {
-			
+
 			/* Private Members */
-			
+
 			var that = this;
 			var values = global === true ? window : {};
-			
+
 			/* Public Methods */
-			
+
 			/**
 			 * Gets one or more values
 			 *
@@ -138,7 +138,7 @@ window.mediaWiki = new ( function( $ ) {
 					return values;
 				}
 			};
-			
+
 			/**
 			 * Sets one or multiple configuration values using a key and a value or an object of keys and values
 			 *
@@ -154,7 +154,7 @@ window.mediaWiki = new ( function( $ ) {
 					values[selection] = value;
 				}
 			};
-			
+
 			/**
 			 * Checks if one or multiple configuration fields exist
 			 */
@@ -172,31 +172,31 @@ window.mediaWiki = new ( function( $ ) {
 			};
 		}
 	};
-	
+
 	/* Methods */
-	
+
 	/*
 	 * Dummy function which in debug mode can be replaced with a function that does something clever
 	 */
 	this.log = function() { };
-	
+
 	/*
 	 * List of configuration values
 	 *
 	 * In legacy mode the values this object wraps will be in the global space
 	 */
 	this.config = new this.prototypes.map( LEGACY_GLOBALS );
-	
+
 	/*
 	 * Information about the current user
 	 */
 	this.user = new ( function() {
-		
+
 		/* Public Members */
-		
+
 		this.options = new that.prototypes.map();
 	} )();
-	
+
 	/*
 	 * Basic parser, can be replaced with something more robust
 	 */
@@ -209,19 +209,19 @@ window.mediaWiki = new ( function( $ ) {
 		}
 		return text;
 	};
-	
+
 	/*
 	 * Localization system
 	 */
 	this.msg = new that.prototypes.map( false, this.parser, function( key ) { return '<' + key + '>'; } );
-	
+
 	/*
 	 * Client-side module loader which integrates with the MediaWiki ResourceLoader
 	 */
 	this.loader = new ( function() {
-		
+
 		/* Private Members */
-		
+
 		var that = this;
 		/*
 		 * Mapping of registered modules
@@ -253,9 +253,9 @@ window.mediaWiki = new ( function( $ ) {
 		var suspended = true;
 		// Flag inidicating that document ready has occured
 		var ready = false;
-		
+
 		/* Private Methods */
-		
+
 		/**
 		 * Generates an ISO8601 "basic" string from a UNIX timestamp
 		 */
@@ -270,7 +270,7 @@ window.mediaWiki = new ( function( $ ) {
 				pad( d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds() ), 'Z'
 			].join( '' );
 		}
-		
+
 		/**
 		 * Recursively resolves dependencies and detects circular references
 		 */
@@ -298,7 +298,7 @@ window.mediaWiki = new ( function( $ ) {
 			resolved[resolved.length] = module;
 			unresolved.splice( unresolved.indexOf( module ), 1 );
 		}
-		
+
 		/**
 		 * Gets a list of modules names that a module dependencies in their proper dependency order
 		 *
@@ -328,7 +328,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			throw new Error( 'Invalid module argument: ' + module );
 		};
-		
+
 		/**
 		 * Narrows a list of module names down to those matching a specific state. Possible states are 'undefined',
 		 * 'registered', 'loading', 'loaded', or 'ready'
@@ -363,7 +363,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return list;
 		}
-		
+
 		/**
 		 * Executes a loaded module, making it ready to use
 		 *
@@ -418,7 +418,7 @@ window.mediaWiki = new ( function( $ ) {
 			} catch ( e ) {
 				mediaWiki.log( 'Exception thrown by ' + module + ': ' + e.message );
 				mediaWiki.log( e );
-				registry[module].state = 'error';				
+				registry[module].state = 'error';
 				// Run error callbacks of jobs affected by this condition
 				for ( var j = 0; j < jobs.length; j++ ) {
 					if ( jobs[j].dependencies.indexOf( module ) !== -1 ) {
@@ -431,7 +431,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 			}
 		}
-		
+
 		/**
 		 * Adds a dependencies to the queue with optional callbacks to be run when the dependencies are ready or fail
 		 *
@@ -467,7 +467,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Work the queue
 			that.work();
 		}
-		
+
 		function sortQuery(o) {
 			var sorted = {}, key, a = [];
 			for ( key in o ) {
@@ -481,9 +481,9 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return sorted;
 		}
-		
+
 		/* Public Methods */
-		
+
 		/**
 		 * Requests dependencies from server, loading and executing when things when ready.
 		 */
@@ -560,7 +560,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 			}
 		};
-		
+
 		/**
 		 * Registers a module, letting the system know about it and it's dependencies. loader.js files contain calls
 		 * to this function.
@@ -599,7 +599,7 @@ window.mediaWiki = new ( function( $ ) {
 				registry[module].dependencies = dependencies;
 			}
 		};
-		
+
 		/**
 		 * Implements a module, giving the system a course of action to take upon loading. Results of a request for
 		 * one or more modules contain calls to this function.
@@ -639,7 +639,7 @@ window.mediaWiki = new ( function( $ ) {
 				request( module );
 			}
 		};
-		
+
 		/**
 		 * Executes a function as soon as one or more required modules are ready
 		 *
@@ -676,7 +676,7 @@ window.mediaWiki = new ( function( $ ) {
 				request( dependencies, ready, error );
 			}
 		};
-		
+
 		/**
 		 * Loads an external script or one or more modules for future use
 		 *
@@ -727,7 +727,7 @@ window.mediaWiki = new ( function( $ ) {
 				return true;
 			}
 		};
-		
+
 		/**
 		 * Flushes the request queue and begin executing load requests on demand
 		 */
@@ -735,7 +735,7 @@ window.mediaWiki = new ( function( $ ) {
 			suspended = false;
 			that.work();
 		};
-		
+
 		/**
 		 * Changes the state of a module
 		 *
@@ -754,7 +754,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			registry[module].state = state;
 		};
-		
+
 		/**
 		 * Gets the version of a module
 		 *
@@ -766,16 +766,16 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			return null;
 		}
-		
+
 		/* Cache document ready status */
-		
+
 		$(document).ready( function() { ready = true; } );
 	} )();
-	
+
 	/* Extension points */
-	
+
 	this.legacy = {};
-	
+
 } )( jQuery );
 
 /* Auto-register from pre-loaded startup scripts */
