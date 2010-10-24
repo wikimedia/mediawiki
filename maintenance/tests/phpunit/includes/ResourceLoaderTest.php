@@ -3,7 +3,7 @@
 class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 
 	protected static $resourceLoaderRegisterModulesHook;
-	
+
 	/* Hook Methods */
 
 	/**
@@ -15,7 +15,6 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/* Provider Methods */
-
 	public function provideValidModules() {
 		return array(
 			array( 'TEST.validModule1', new ResourceLoaderTestModule() ),
@@ -23,7 +22,7 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/* Test Methods */
-	
+
 	/**
 	 * Ensures that the ResourceLoaderRegisterModules hook is called when a new ResourceLoader object is constructed
 	 * @covers ResourceLoader::__construct
@@ -47,11 +46,11 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 		$resourceLoader->register( $name, $module );
 		$this->assertEquals( $module, $resourceLoader->getModule( $name ) );
 	}
-	
+
 	/**
 	 * Allthough ResourceLoader::register uses type hinting to prevent arbitrary information being passed through as a
 	 * ResourceLoaderModule object, null can still get through.
-	 * 
+	 *
 	 * @depends testCreatingNewResourceLoaderCallsRegistrationHook
 	 * @covers ResourceLoader::register
 	 * @covers ResourceLoader::getModule

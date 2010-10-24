@@ -2,7 +2,7 @@
 <?php
 /**
  * Bootstrapping for MediaWiki PHPUnit tests
- * 
+ *
  * @file
  */
 
@@ -30,5 +30,5 @@ if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
 } else {
 	# Keep the old pre PHPUnit 3.5.0 behaviour for compatibility
 	require_once( 'PHPUnit/TextUI/Command.php' );
-}	
+}
 PHPUnit_TextUI_Command::main();
