@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -662,7 +662,6 @@ $2',
 請稍等多一會再試。',
 'loginlanguagelabel'         => '語言: $1',
 'suspicious-userlogout'      => '您登出的要求已經被拒絕，因為它可能是由已損壞的瀏覽器或者快取代理傳送。',
-
 'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
 # 所用參數如下：
 #   * "#" 字元後的內容全部是注釋內容

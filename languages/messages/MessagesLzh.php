@@ -515,7 +515,6 @@ $2',
 請候再試之。',
 'loginlanguagelabel'         => '語：$1',
 'suspicious-userlogout'      => '爾欲無離也，可由壞瀏覽器或快枝代理呈送之。',
-
 'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
 # 參數可用之：
 #   * "#" 字元後乃注釋
@@ -583,9 +582,8 @@ $2',
 'anoneditwarning'                  => "'''警示：'''子未登簿，IP將誌。",
 'anonpreviewwarning'               => "''子未登簿，IP將誌。''",
 'missingsummary'                   => "'''醒示：'''子未概之，復「{{int:savearticle}}」則文倍焉。",
-'missingcommenttext'               => '在下輸入評。',
-'missingcommentheader'             => "'''醒示：'''子未概標之，復「{{int:savearticle}}」則文倍焉。",
 'missingcommenttext'               => '請贊之',
+'missingcommentheader'             => "'''醒示：'''子未概標之，復「{{int:savearticle}}」則文倍焉。",
 'summary-preview'                  => '覽概：',
 'subject-preview'                  => '覽題：',
 'blockedtitle'                     => '子見禁',
@@ -1374,8 +1372,8 @@ $1",
 'upload-failure-msg'         => '爾自[$2]之貢現問也：
 
 $1',
-'upload-warning-subj'         => '貢警',
-'upload-warning-msg'          => '爾自[$2]之貢出問。爾可回[[Special:Upload/stash/$1|貢表]]修此問。',
+'upload-warning-subj'        => '貢警',
+'upload-warning-msg'         => '爾自[$2]之貢出問。爾可回[[Special:Upload/stash/$1|貢表]]修此問。',
 
 'upload-too-many-redirects' => '網址含多轉',
 'upload-unknown-size'       => '未知之積',
@@ -2191,7 +2189,6 @@ $1已被禁矣。爾是否改此置？',
 'immobile-target-namespace-iw' => '無移至垮維基，此乃無效也。',
 'immobile-source-page'         => '此頁無動也。',
 'immobile-target-page'         => '無動至標之標題。',
-'imagenocrossnamespace'        => '非動檔至非檔名間',
 'imagenocrossnamespace'        => '非動非檔至檔名間',
 'imagetypemismatch'            => '其新副檔名非配其類也',
 'imageinvalidfilename'         => '標之檔名乃無效也',

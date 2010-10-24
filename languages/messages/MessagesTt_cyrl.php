@@ -1270,7 +1270,7 @@ $3 күрсәткән сәбәп: ''$2''",
 # Recent changes linked
 'recentchangeslinked'          => 'Бәйләнешле үзгәртүләр',
 'recentchangeslinked-feed'     => 'Бәйләнешле үзгәртүләр',
-'recentchangeslinked-toolbox'  => 'Бәйләнешле үзгәртүәләр',
+'recentchangeslinked-toolbox'  => 'Бәйләнешле үзгәртүләр',
 'recentchangeslinked-title'    => '"$1" битенә бәйләнешле үзгәртүләр',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Күрсәтелгән вакытта сылташкан битләрнең үзгәртелмәләре юк иде.',
@@ -1794,6 +1794,14 @@ $1',
 'ipbexpiry'                  => 'Бетә:',
 'ipbreason'                  => 'Сәбәп:',
 'ipbreasonotherlist'         => 'Башка сәбәп',
+'ipbreason-dropdown'         => '↓ * Кысуның гадәттәге сәбәпләре
+** Ялган мәгълүмат кертү
+** Битләрнең эчтәлеген сөртү
+** Тышкы сайтларга спам-сылтамалар
+** Мәгънәсез текст/чүп өстәү
+** Катнашучыларны эзәрлекләү/янаулар
+** Берничә хисап язмасы белән исәпләшмәү
+** Катнашучы исеменең яраксыз булуы',
 'ipbsubmit'                  => 'Бу юлламаны/кулланучыны чикләргә',
 'ipbother'                   => 'Башка вакыт:',
 'ipboptions'                 => '2 сәгать:2 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3ай:3 months,6 ай:6 months,1 ел:1 year,чикләнмәгән:infinite',

@@ -157,6 +157,15 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind' => 'Кӹчӓлӓш',
+'qbedit' => 'Торлӓш',
+
+# Vector skin
+'vector-action-delete'   => 'Карангдаш',
+'vector-action-protect'  => 'Ӹшӹклӓш',
+'vector-view-create'     => 'Ӹштӓш',
+'vector-view-edit'       => 'Торлӓш',
+'vector-view-history'    => 'Историм анжалаш',
+'vector-view-viewsource' => 'Сек пӹтӓриш кодым анжалаш',
 
 'errorpagetitle'   => 'Самынь',
 'returnto'         => 'Мӹнгеш ӹлӹштӓшӹш $1.',

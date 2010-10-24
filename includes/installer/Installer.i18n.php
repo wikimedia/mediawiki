@@ -815,6 +815,29 @@ $messages['an'] = array(
 	'config-show-help' => 'Aduya',
 );
 
+/** Aramaic (ܐܪܡܝܐ)
+ * @author Basharh
+ */
+$messages['arc'] = array(
+	'config-information' => 'ܝܕ̈ܥܬܐ',
+	'config-show-help' => 'ܥܘܕܪܢܐ',
+	'config-hide-help' => 'ܛܫܝ ܥܘܕܪܢܐ',
+	'config-your-language' => 'ܠܫܢܐ ܕܝܠܟ:',
+	'config-wiki-language' => 'ܠܫܢܐ ܕܘܝܩܝ:',
+	'config-page-language' => 'ܠܫܢܐ',
+	'config-page-name' => 'ܫܡܐ',
+	'config-page-options' => 'ܓܒܝܬ̈ܐ',
+	'config-page-install' => 'ܢܨܘܒ',
+	'config-ns-other-default' => 'ܘܝܩܝ ܕܝܠܝ',
+	'config-admin-box' => 'ܚܘܫܒܢܐ ܕܡܕܒܪܢܐ',
+	'config-admin-name' => 'ܫܡܐ ܕܝܠܟ:',
+	'config-admin-password' => 'ܡܠܬܐ ܕܥܠܠܐ:',
+	'config-admin-password-confirm' => 'ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܬܐ ܐܚܪܬܐ:',
+	'config-admin-email' => 'ܦܪܫܓܢܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ:',
+	'config-profile-private' => 'ܘܝܩܝ ܦܪܨܘܦܝܐ',
+	'config-email-settings' => 'ܛܘܝܒ̈ܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
+);
+
 /** Belarusian (Беларуская)
  * @author Тест
  */
@@ -2005,6 +2028,24 @@ Sie enthält alle Konfigurationseinstellungen.
 Diese Datei muss [$1 heruntergeladen] und in das Stammverzeichnis der MediaWiki-Installation hochgeladen werden. Dieses ist dasselbe Verzeichnis, in dem sich die Datei <code>index.php</code> befindet.
 
 Sobald dies erledigt ist, kann auf das '''[$2 Wiki zugegriffen werden]'''.",
+);
+
+/** Esperanto (Esperanto)
+ * @author Yekrats
+ */
+$messages['eo'] = array(
+	'config-show-help' => 'Helpo',
+	'config-hide-help' => 'Kaŝi helpon',
+	'config-your-language' => 'Via lingvo:',
+	'config-your-language-help' => 'Elekti lingvon uzi dum la instalada procezo.',
+	'config-wiki-language' => 'Lingvo de la vikio:',
+	'config-wiki-language-help' => 'Elekti la ĉefe skribotan lingvon de la vikio.',
+	'config-page-welcome' => 'Bonvenon al MediaWiki!',
+	'config-page-dbsettings' => 'Agordoj de la datumbazo',
+	'config-page-name' => 'Nomo',
+	'config-page-options' => 'Agordoj',
+	'config-page-install' => 'Instali',
+	'config-page-complete' => 'Farita!',
 );
 
 /** Spanish (Español)
@@ -3225,12 +3266,15 @@ Aínda que MediaWiki comproba todos os ficheiros cargados por se houbese ameazas
 Se está usando un aloxamento web compartido, o seu provedor de hospedaxe debe darlle o nome de servidor correcto na súa documentación.
 
 Se está a realizar a instalación nun servidor de Windows con MySQL, o nome "localhost" pode non valer como servidor. Se non funcionase, inténteo con "127.0.0.1" como enderezo IP local.',
+	'config-db-host-oracle' => 'TNS da base de datos:',
+	'config-db-host-oracle-help' => 'Insira un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nome de conexión local] válido; cómpre que haxa visible un ficheiro tnsnames.ora para esta instalación.<br />Se está a empregar bibliotecas cliente versión 10g ou máis recentes, tamén pode usar o método de atribución de nomes [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identificar o wiki',
 	'config-db-name' => 'Nome da base de datos:',
 	'config-db-name-help' => 'Escolla un nome que identifique o seu wiki.
 Non debe conter espazos ou guións.
 
 Se está usando un aloxamento web compartido, o seu provedor de hospedaxe daralle un nome específico para a base de datos ou deixaralle crear unha a través do panel de control.',
+	'config-db-name-oracle' => 'Esquema da base de datos:',
 	'config-db-install-account' => 'Conta de usuario para a instalación',
 	'config-db-username' => 'Nome de usuario da base de datos:',
 	'config-db-password' => 'Contrasinal da base de datos:',
@@ -3271,6 +3315,8 @@ Asemade, o instalador escribirá un ficheiro <code>.htaccess</code>, pero se err
 Isto inclúe datos de usuario (enderezos de correo electrónico, contrasinais codificados), así como revisións borradas e outros datos restrinxidos no wiki.
 
 Considere poñer a base de datos nun só lugar, por exemplo en <code>/var/lib/mediawiki/oseuwiki</code>.",
+	'config-oracle-def-ts' => 'Espazo de táboas por defecto:',
+	'config-oracle-temp-ts' => 'Espazo de táboas temporal:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -3283,12 +3329,16 @@ Se non ve listado a continuación o sistema de base de datos que intenta usar, s
 	'config-support-mysql' => '* $1 é o obxectivo principal para MediaWiki e está mellor soportado ([http://www.php.net/manual/en/mysql.installation.php como compilar o PHP con soporte MySQL])',
 	'config-support-postgres' => '* $1 é un sistema de base de datos popular e de código aberto como alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar o PHP con soporte PostgreSQL])',
 	'config-support-sqlite' => '* $1 é un sistema de base de datos lixeiro moi ben soportado. ([http://www.php.net/manual/en/pdo.installation.php Como compilar o PHP con soporte SQLite], emprega PDO)',
+	'config-support-oracle' => '* $1 é un sistema comercial de xestión de base de datos de empresa. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con soporte OCI8])',
 	'config-header-mysql' => 'Configuración do MySQL',
 	'config-header-postgres' => 'Configuración do PostgreSQL',
 	'config-header-sqlite' => 'Configuración do SQLite',
 	'config-header-oracle' => 'Configuración do Oracle',
 	'config-invalid-db-type' => 'Tipo de base de datos incorrecto',
 	'config-missing-db-name' => 'Debe escribir un valor "Nome da base de datos"',
+	'config-missing-db-server-oracle' => 'Debe escribir un valor "TNS da base de datos"',
+	'config-invalid-db-server-oracle' => 'O TNS da base de datos, "$1", é incorrecto.
+Só pode conter letras ASCII (a-z, A-Z), números (0-9), guións baixos (_) e puntos (.).',
 	'config-invalid-db-name' => 'O nome da base de datos, "$1", é incorrecto.
 Só pode conter letras ASCII (a-z, A-Z), números (0-9) e guións baixos (_).',
 	'config-invalid-db-prefix' => 'O prefixo da base de datos, "$1", é incorrecto.
@@ -9226,16 +9276,29 @@ $messages['te'] = array(
 	'config-continue' => 'కొనసాగించు →',
 	'config-page-language' => 'భాష',
 	'config-page-welcome' => 'మీడియావికీకి స్వాగతం!',
+	'config-page-dbsettings' => 'డాటాబేసు అమరికలు',
 	'config-page-name' => 'పేరు',
 	'config-page-options' => 'ఎంపికలు',
 	'config-page-install' => 'స్థాపించు',
 	'config-page-complete' => 'పూర్తయ్యింది!',
 	'config-page-readme' => 'నన్ను చదవండి',
+	'config-page-releasenotes' => 'విడుదల విశేషాలు',
+	'config-env-latest-old' => "'''హెచ్చరిక:''' మీరు మీడియావికీ యొక్క పాతబడిన సంచికని స్థాపిస్తున్నారు.",
+	'config-db-type' => 'డాటాబేసు రకం:',
+	'config-db-name' => 'డాటాబేసు పేరు:',
+	'config-db-install-account' => 'స్థాపనకి వాడుకరి ఖాతా',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-header-mysql' => 'MySQL అమరికలు',
 	'config-header-postgres' => 'PostgreSQL అమరికలు',
 	'config-header-sqlite' => 'SQLite అమరికలు',
 	'config-header-oracle' => 'Oracle అమరికలు',
 	'config-invalid-db-type' => 'తప్పుడు డాటాబేసు రకం',
+	'config-connection-error' => '$1.
+
+క్రింది హోస్టు, వాడుకరిపేరు మరియు సంకేతపదాలను ఒకసారి సరిచూసుకుని అప్పుడు ప్రయత్నించండి.',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'వికీ యొక్క పేరు:',
 	'config-ns-other' => 'ఇతర (ఇవ్వండి)',
 	'config-admin-name' => 'మీ పేరు:',
@@ -9560,12 +9623,15 @@ $messages['uk'] = array(
 	'config-db-name' => 'Назва бази даних:',
 	'config-db-password' => 'Пароль бази даних:',
 	'config-db-charset' => 'Кодування бази даних',
+	'config-db-port' => 'Порт бази даних:',
 	'config-invalid-db-type' => 'Невірний тип бази даних',
 	'config-invalid-db-name' => 'Неприпустима назва бази даних "$1".
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
 	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1". 
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
+	'config-sqlite-cant-create-db' => 'Не вдалося створити файл бази даних <code>$1</code>.',
 	'config-db-web-create' => 'Створити обліковий запис, якщо його ще не існує',
+	'config-mysql-charset' => 'Кодування бази даних:',
 	'config-mysql-binary' => 'Двійкове',
 	'config-site-name' => 'Назва вікі:',
 	'config-site-name-blank' => 'Введіть назву сайту.',
@@ -9581,10 +9647,12 @@ $messages['uk'] = array(
 	'config-license-gfdl-old' => 'GNU Free Documentation License 1.2',
 	'config-email-settings' => 'Налаштування електронної пошти',
 	'config-upload-enable' => 'Дозволити завантаження файлів',
+	'config-upload-deleted' => 'Каталог для вилучених файлів:',
 	'config-cc-again' => 'Виберіть знову ...',
 	'config-extensions' => 'Розширення',
 	'config-install-step-done' => 'виконано',
 	'config-install-step-failed' => 'не вдалося',
+	'config-install-interwiki-sql' => 'Не вдалося знайти файл <code>interwiki.sql</code>.',
 );
 
 /** Yiddish (ייִדיש)

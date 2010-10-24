@@ -2355,9 +2355,13 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'mw_math_mathml' => 'MathML, ja iespējams (eksperimentāla iespēja)',
 
 # Math errors
+'math_failure'          => 'Pārsēšanas kļūda',
 'math_unknown_error'    => 'nezināma kļūda',
 'math_unknown_function' => 'nezināma funkcija',
+'math_lexing_error'     => 'leksikas kļūda',
 'math_syntax_error'     => 'sintakses kļūda',
+'math_image_error'      => 'Kļūda konvertējot uz PNG formātu;
+pārbaudi vai ir korekti uzinstalēti latex, dvips, gs, un convert',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Atzīmēt kā pārbaudītu',
@@ -2630,6 +2634,9 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-gpslongitude-e' => 'Austrumu garums',
 'exif-gpslongitude-w' => 'Rietumu garums',
 
+'exif-gpsmeasuremode-2' => 'Divdimensionāls mērījums',
+'exif-gpsmeasuremode-3' => 'Trīsdimensionāls mērījums',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometri stundā',
 'exif-gpsspeed-m' => 'Jūdzes stundā',
@@ -2649,6 +2656,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'watchlistall2'    => 'visas',
 'namespacesall'    => 'visas',
 'monthsall'        => 'visi',
+'limitall'         => 'visas',
 
 # E-mail address confirmation
 'confirmemail'             => 'Apstiprini e-pasta adresi',
@@ -2713,11 +2721,14 @@ Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'imgmultigoto'     => 'Iet uz lapu $1',
 
 # Table pager
+'ascending_abbrev'         => 'pieaug.',
+'descending_abbrev'        => 'dilst.',
 'table_pager_next'         => 'Nākamā lapa',
 'table_pager_prev'         => 'Iepriekšējā lapa',
 'table_pager_first'        => 'Pirmā lapa',
 'table_pager_last'         => 'Pēdējā lapa',
 'table_pager_limit'        => 'Rādīt $1 ierakstus vienā lapā',
+'table_pager_limit_label'  => 'Skaits vienā lapā:',
 'table_pager_limit_submit' => 'Parādīt',
 'table_pager_empty'        => 'Neko neatrada',
 
@@ -2825,7 +2836,9 @@ Ievadi faila nosaukumu bez "{{ns:file}}:" prefiksa.',
 'tags-tag'                => 'Taga nosaukums',
 'tags-display-header'     => 'Izmainīto sarakstu izskats',
 'tags-description-header' => 'Nozīmes pilns apraksts',
+'tags-hitcount-header'    => 'Iezīmētās izmaiņas',
 'tags-edit'               => 'labot',
+'tags-hitcount'           => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
 
 # Special:ComparePages
 'comparepages'     => 'Salīdzināt lapas',
