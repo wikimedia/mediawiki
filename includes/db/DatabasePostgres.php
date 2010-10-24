@@ -103,7 +103,6 @@ class DatabasePostgres extends DatabaseBase {
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0 )
 	{
-		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 		$this->open( $server, $user, $password, $dbName );
 	}
@@ -192,11 +191,7 @@ class DatabasePostgres extends DatabaseBase {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError() . "\n" );
-			if ( !$this->mFailFunction ) {
-				throw new DBConnectionError( $this, $phpError );
-			} else {
-				return false;
-			}
+			throw new DBConnectionError( $this, $phpError );
 		}
 
 		$this->mOpened = true;

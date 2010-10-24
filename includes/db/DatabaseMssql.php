@@ -20,10 +20,8 @@ class DatabaseMssql extends DatabaseBase {
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0 )
 	{
-		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 		$this->open( $server, $user, $password, $dbName );
-
 	}
 
 	function cascadingDeletes() {

@@ -25,7 +25,6 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0 ) {
 		global $wgSharedDB;
-		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 		$this->mName = $dbName;
 
@@ -80,12 +79,7 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 		if ( !$this->mConn ) {
 			wfDebug( "DB connection error: $err\n" );
-			if ( !$this->mFailFunction ) {
-				throw new DBConnectionError( $this, $err );
-			} else {
-				return false;
-			}
-
+			throw new DBConnectionError( $this, $err );
 		}
 		$this->mOpened = !!$this->mConn;
 		# set error codes only, don't raise exceptions
