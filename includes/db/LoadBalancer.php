@@ -14,7 +14,7 @@
  */
 class LoadBalancer {
 	/* private */ var $mServers, $mConns, $mLoads, $mGroupLoads;
-	/* private */ var $mFailFunction, $mErrorConnection;
+	/* private */ var $mErrorConnection;
 	/* private */ var $mReadIndex, $mAllowLagged;
 	/* private */ var $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
@@ -24,7 +24,6 @@ class LoadBalancer {
 	/**
 	 * @param $params Array with keys:
 	 *    servers           Required. Array of server info structures.
-	 *    failFunction      Deprecated, use exceptions instead.
 	 *    masterWaitTimeout Replication lag wait timeout
 	 *    loadMonitor       Name of a class used to fetch server lag and load.
 	 */
@@ -68,9 +67,8 @@ class LoadBalancer {
 		}
 	}
 
-	static function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
-	{
-		return new LoadBalancer( $servers, $failFunction, $waitTimeout );
+	static function newFromParams( $servers, $waitTimeout = 10 ) {
+		return new LoadBalancer( $servers, $waitTimeout );
 	}
 
 	/**
@@ -643,7 +641,7 @@ class LoadBalancer {
 
 		# Create object
 		wfDebug( "Connecting to $host $dbname...\n" );
-		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
+		$db = new $class( $host, $user, $password, $dbname, $flags );
 		if ( $db->isOpen() ) {
 			wfDebug( "Connected to $host $dbname.\n" );
 		} else {

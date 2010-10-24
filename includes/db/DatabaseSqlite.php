@@ -23,7 +23,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Constructor.
 	 * Parameters $server, $user and $password are not used.
 	 */
-	function __construct( $server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0 ) {
+	function __construct( $server = false, $user = false, $password = false, $dbName = false, $flags = 0 ) {
 		global $wgSharedDB;
 		$this->mFlags = $flags;
 		$this->mName = $dbName;
@@ -42,8 +42,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function implicitGroupby()   { return false; }
 
-	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 ) {
-		return new DatabaseSqlite( $server, $user, $password, $dbName, $failFunction, $flags );
+	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
+		return new DatabaseSqlite( $server, $user, $password, $dbName, $flags );
 	}
 
 	/** Open an SQLite database and return a resource handle to it
