@@ -26,10 +26,6 @@ class SearchDbTest extends SearchEngineTest {
 
 	function tearDown() {
 		$this->removeSearchData();
-		if ( !is_null( $this->db ) ) {
-			wfGetLB()->closeConnecton( $this->db );
-		}
-		unset( $this->db );
 		unset( $this->search );
 		$GLOBALS['wgContLang'] = null;
 	}
