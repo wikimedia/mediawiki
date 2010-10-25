@@ -440,11 +440,14 @@ abstract class CoreInstaller extends Installer {
 	public function installMainpage( DatabaseInstaller &$installer ) {
 		$status = Status::newGood();
 		try {
-			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
+			$titleobj = Title::newFromText( wfMsgForContent( "mainpage" ) );
 			$article = new Article( $titleobj );
-			$article->doEdit(	wfMsg( 'mainpagetext' ) . "\n\n" . wfMsgNoTrans( 'mainpagedocfooter' ),
+			$article->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
+								wfMsgForContent( 'mainpagedocfooter' ),
 								'',
-								EDIT_NEW );
+								EDIT_NEW,
+								false,
+								User::newFromName( 'MediaWiki Default' ) );
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() ); 
