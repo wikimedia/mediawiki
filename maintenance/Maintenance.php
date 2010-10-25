@@ -633,44 +633,56 @@ abstract class Maintenance {
 	 * @param $force boolean Whether to force the help to show, default false
 	 */
 	protected function maybeHelp( $force = false ) {
+		if( !$force && !$this->hasOption( 'help' ) ) {
+			return;
+		}
+
 		$screenWidth = 80; // TODO: Caculate this!
 		$tab = "    ";
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
 
 		ksort( $this->mParams );
-		if ( $this->hasOption( 'help' ) || $force ) {
-			$this->mQuiet = false;
+		$this->mQuiet = false;
 
-			if ( $this->mDescription ) {
-				$this->output( "\n" . $this->mDescription . "\n" );
-			}
-			$output = "\nUsage: php " . basename( $this->mSelf );
-			if ( $this->mParams ) {
-				$output .= " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]";
-			}
-			if ( $this->mArgList ) {
-				$output .= " <";
-				foreach ( $this->mArgList as $k => $arg ) {
-					$output .= $arg['name'] . ">";
-					if ( $k < count( $this->mArgList ) - 1 )
-						$output .= " <";
-				}
-			}
-			$this->output( "$output\n" );
-			foreach ( $this->mParams as $par => $info ) {
-				$this->output(
-					wordwrap( "$tab$par : " . $info['desc'], $descWidth,
-							"\n$tab$tab" ) . "\n"
-				);
-			}
-			foreach ( $this->mArgList as $info ) {
-				$this->output(
-					wordwrap( "$tab<" . $info['name'] . "> : " .
-						$info['desc'], $descWidth, "\n$tab$tab" ) . "\n"
-				);
-			}
-			die( 1 );
+		// Description ...
+		if ( $this->mDescription ) {
+			$this->output( "\n" . $this->mDescription . "\n" );
 		}
+		$output = "\nUsage: php " . basename( $this->mSelf );
+		
+		// ... append parameters ...
+		if ( $this->mParams ) {
+			$output .= " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]";
+		}
+
+		// ... and append arguments.
+		if ( $this->mArgList ) {
+			$output .= " <";
+			foreach ( $this->mArgList as $k => $arg ) {
+				$output .= $arg['name'] . ">";
+				if ( $k < count( $this->mArgList ) - 1 )
+					$output .= " <";
+			}
+		}
+		$this->output( "$output\n\n" );
+
+		// Parameters description
+		foreach ( $this->mParams as $par => $info ) {
+			$this->output(
+				wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
+						"\n$tab$tab" ) . "\n"
+			);
+		}
+
+		// Arguments description
+		foreach ( $this->mArgList as $info ) {
+			$this->output(
+				wordwrap( "$tab<" . $info['name'] . ">: " .
+					$info['desc'], $descWidth, "\n$tab$tab" ) . "\n"
+			);
+		}
+
+		die( 1 );
 	}
 
 	/**

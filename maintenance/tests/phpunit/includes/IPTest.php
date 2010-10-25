@@ -140,4 +140,14 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertNet( '10.128.0.0' , '10.135.0.0/9' );
 		$this->assertNet( '134.0.0.0'  , '134.0.5.1/8'  ); 
 	}
+
+	function testIPv6SpecialRanges() {
+		$this->assertTrue( IPv6::isULA( 'fdc1:9d57:401e::' ) );
+		$this->assertTrue( IPv6::isULA( 'FDC1:9D57:401E::' ) );
+		$this->assertTrue( IPv6::isULA( 'fc::' ) );
+		$this->assertTrue( IPv6::isULA( 'fdff:ffff:ffff::' ) );
+	
+		$this->assertFalse( IPv6::isULA( '2001:0DB8::A:1::' ) );
+		$this->assertFalse( IPv6::isULA( '::1' ) );
+	}
 }
