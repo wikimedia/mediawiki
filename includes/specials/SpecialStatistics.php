@@ -37,7 +37,7 @@ class SpecialStatistics extends SpecialPage {
 	}
 	
 	public function execute( $par ) {
-		global $wgOut, $wgRequest, $wgMemc;
+		global $wgOut, $wgMemc;
 		global $wgDisableCounters, $wgMiserMode;
 		
 		$this->setHeaders();
