@@ -189,16 +189,25 @@ class OracleInstaller extends DatabaseInstaller {
 
 		return $status;
 	}
+
+	/**
+	 * Overload: after this action field info table has to be rebuilt
+	 */
+	public function createTables() {
+		$status = parent::createTables();
+
+		$this->db->doQuery( 'BEGIN fill_wiki_info; END;' );
+
+		return $status;
+	}
+
 		
 	public function getLocalSettings() {
 		$prefix = $this->getVar( 'wgDBprefix' );
 		return
 "# Oracle specific settings
-\$wgDBprefix         = \"{$prefix}\";";
+\$wgDBprefix         = \"{$prefix}\";
+";
 	}
 
-	public function doUpgrade() {
-		// TODO
-		return false;
-	}
 }
