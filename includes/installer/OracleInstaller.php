@@ -120,7 +120,6 @@ class OracleInstaller extends DatabaseInstaller {
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
 					$this->getVar( 'wgDBname' ),
-					false,
 					DBO_SYSDBA,
 					$this->getVar( 'wgDBprefix' )
 				);
@@ -130,7 +129,6 @@ class OracleInstaller extends DatabaseInstaller {
 					$this->getVar( 'wgDBuser' ),
 					$this->getVar( 'wgDBpassword' ),
 					$this->getVar( 'wgDBname' ),
-					false,
 					0,
 					$this->getVar( 'wgDBprefix' )
 				);
