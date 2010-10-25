@@ -29,14 +29,14 @@ INSERT INTO &mw_prefix.mwuser
   VALUES (user_user_id_seq.nextval,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL, '', current_timestamp, current_timestamp, 0);
 
 CREATE TABLE &mw_prefix.user_groups (
-  ug_user   NUMBER      NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE,
+  ug_user   NUMBER      DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ug_group  VARCHAR2(16)     NOT NULL
 );
 CREATE UNIQUE INDEX &mw_prefix.user_groups_u01 ON &mw_prefix.user_groups (ug_user,ug_group);
 CREATE INDEX &mw_prefix.user_groups_i01 ON &mw_prefix.user_groups (ug_group);
 
 CREATE TABLE &mw_prefix.user_newtalk (
-  user_id  NUMBER NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE,
+  user_id  NUMBER DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   user_ip  VARCHAR2(40)        NULL,
   user_last_timestamp         TIMESTAMP(6) WITH TIME ZONE
 );
@@ -51,20 +51,19 @@ CREATE TABLE &mw_prefix.user_properties (
 CREATE UNIQUE INDEX &mw_prefix.user_properties_u01 on &mw_prefix.user_properties (up_user,up_property);
 CREATE INDEX &mw_prefix.user_properties_i01 on &mw_prefix.user_properties (up_property);
 
-
 CREATE SEQUENCE page_page_id_seq;
 CREATE TABLE &mw_prefix.page (
   page_id            NUMBER        NOT NULL,
-  page_namespace     NUMBER       NOT NULL,
+  page_namespace     NUMBER       DEFAULT 0 NOT NULL,
   page_title         VARCHAR2(255)           NOT NULL,
   page_restrictions  VARCHAR2(255),
   page_counter       NUMBER         DEFAULT 0 NOT NULL,
-  page_is_redirect   CHAR(1)           DEFAULT 0 NOT NULL,
-  page_is_new        CHAR(1)           DEFAULT 0 NOT NULL,
+  page_is_redirect   CHAR(1)           DEFAULT '0' NOT NULL,
+  page_is_new        CHAR(1)           DEFAULT '0' NOT NULL,
   page_random        NUMBER(15,14) NOT NULL,
   page_touched       TIMESTAMP(6) WITH TIME ZONE,
-  page_latest        NUMBER        NOT NULL, -- FK?
-  page_len           NUMBER        NOT NULL
+  page_latest        NUMBER        DEFAULT 0 NOT NULL, -- FK?
+  page_len           NUMBER        DEFAULT 0 NOT NULL
 );
 ALTER TABLE &mw_prefix.page ADD CONSTRAINT &mw_prefix.page_pk PRIMARY KEY (page_id);
 CREATE UNIQUE INDEX &mw_prefix.page_u01 ON &mw_prefix.page (page_namespace,page_title);
@@ -82,10 +81,10 @@ END;
 CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE &mw_prefix.revision (
   rev_id          NUMBER      NOT NULL,
-  rev_page        NUMBER          NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE,
+  rev_page        NUMBER      NOT NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   rev_text_id     NUMBER          NULL,
   rev_comment     VARCHAR2(255),
-  rev_user        NUMBER      NOT NULL  REFERENCES &mw_prefix.mwuser(user_id),
+  rev_user        NUMBER      DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) DEFERRABLE INITIALLY DEFERRED,
   rev_user_text   VARCHAR2(255)         NOT NULL,
   rev_timestamp   TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   rev_minor_edit  CHAR(1)         DEFAULT '0' NOT NULL,
@@ -109,18 +108,18 @@ CREATE TABLE &mw_prefix.pagecontent ( -- replaces reserved word 'text'
 ALTER TABLE &mw_prefix.pagecontent ADD CONSTRAINT &mw_prefix.pagecontent_pk PRIMARY KEY (old_id);
 
 CREATE TABLE &mw_prefix.archive (
-  ar_namespace   NUMBER    NOT NULL,
+  ar_namespace   NUMBER    DEFAULT 0 NOT NULL,
   ar_title       VARCHAR2(255)         NOT NULL,
   ar_text        CLOB,
   ar_comment     VARCHAR2(255),
-  ar_user        NUMBER          NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
+  ar_user        NUMBER          DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   ar_user_text   VARCHAR2(255)         NOT NULL,
   ar_timestamp   TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   ar_minor_edit  CHAR(1)         DEFAULT '0' NOT NULL,
   ar_flags       VARCHAR2(255),
   ar_rev_id      NUMBER,
   ar_text_id     NUMBER,
-  ar_deleted     NUMBER      DEFAULT '0' NOT NULL,
+  ar_deleted     CHAR(1)      DEFAULT '0' NOT NULL,
   ar_len         NUMBER,
   ar_page_id     NUMBER,
   ar_parent_id   NUMBER
@@ -130,23 +129,23 @@ CREATE INDEX &mw_prefix.archive_i02 ON &mw_prefix.archive (ar_user_text,ar_times
 CREATE INDEX &mw_prefix.archive_i03 ON &mw_prefix.archive (ar_namespace, ar_title, ar_rev_id);
 
 CREATE TABLE &mw_prefix.pagelinks (
-  pl_from       NUMBER   NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
-  pl_namespace  NUMBER  NOT NULL,
+  pl_from       NUMBER   NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  pl_namespace  NUMBER  DEFAULT 0 NOT NULL,
   pl_title      VARCHAR2(255)      NOT NULL
 );
 CREATE UNIQUE INDEX &mw_prefix.pagelinks_u01 ON &mw_prefix.pagelinks (pl_from,pl_namespace,pl_title);
 CREATE UNIQUE INDEX &mw_prefix.pagelinks_u02 ON &mw_prefix.pagelinks (pl_namespace,pl_title,pl_from);
 
 CREATE TABLE &mw_prefix.templatelinks (
-  tl_from       NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
-  tl_namespace  NUMBER     NOT NULL,
+  tl_from       NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  tl_namespace  NUMBER     DEFAULT 0 NOT NULL,
   tl_title      VARCHAR2(255)     NOT NULL
 );
 CREATE UNIQUE INDEX &mw_prefix.templatelinks_u01 ON &mw_prefix.templatelinks (tl_from,tl_namespace,tl_title);
 CREATE UNIQUE INDEX &mw_prefix.templatelinks_u02 ON &mw_prefix.templatelinks (tl_namespace,tl_title,tl_from);
 
 CREATE TABLE &mw_prefix.imagelinks (
-  il_from  NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
+  il_from  NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   il_to    VARCHAR2(255)     NOT NULL
 );
 CREATE UNIQUE INDEX &mw_prefix.imagelinks_u01 ON &mw_prefix.imagelinks (il_from,il_to);
@@ -154,7 +153,7 @@ CREATE UNIQUE INDEX &mw_prefix.imagelinks_u02 ON &mw_prefix.imagelinks (il_to,il
 
 
 CREATE TABLE &mw_prefix.categorylinks (
-  cl_from       NUMBER      NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
+  cl_from       NUMBER      NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   cl_to         VARCHAR2(255)         NOT NULL,
   cl_sortkey    VARCHAR2(230),
   cl_sortkey_prefix VARCHAR2(255) DEFAULT '' NOT NULL,
@@ -181,7 +180,7 @@ CREATE UNIQUE INDEX &mw_prefix.category_u01 ON &mw_prefix.category (cat_title);
 CREATE INDEX &mw_prefix.category_i01 ON &mw_prefix.category (cat_pages);
 
 CREATE TABLE &mw_prefix.externallinks (
-  el_from   NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
+  el_from   NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   el_to     VARCHAR2(2048) NOT NULL,
   el_index  VARCHAR2(2048) NOT NULL
 );
@@ -197,7 +196,7 @@ ALTER TABLE &mw_prefix.external_user ADD CONSTRAINT &mw_prefix.external_user_pk 
 CREATE UNIQUE INDEX &mw_prefix.external_user_u01 ON &mw_prefix.external_user (eu_external_id);
 
 CREATE TABLE &mw_prefix.langlinks (
-  ll_from    NUMBER  NOT NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE,
+  ll_from    NUMBER  NOT NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ll_lang    VARCHAR2(20),
   ll_title   VARCHAR2(255)
 );
@@ -233,8 +232,8 @@ CREATE SEQUENCE ipblocks_ipb_id_seq;
 CREATE TABLE &mw_prefix.ipblocks (
   ipb_id                NUMBER      NOT NULL,
   ipb_address           VARCHAR2(255)     NULL,
-  ipb_user              NUMBER          NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
-  ipb_by                NUMBER      NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE,
+  ipb_user              NUMBER      DEFAULT 0 NOT  NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  ipb_by                NUMBER      DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ipb_by_text           VARCHAR2(255)      NOT NULL,
   ipb_reason            VARCHAR2(255)         NOT NULL,
   ipb_timestamp         TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
@@ -258,19 +257,19 @@ CREATE INDEX &mw_prefix.ipblocks_i04 ON &mw_prefix.ipblocks (ipb_expiry);
 
 CREATE TABLE &mw_prefix.image (
   img_name         VARCHAR2(255)      NOT NULL,
-  img_size         NUMBER   NOT NULL,
-  img_width        NUMBER   NOT NULL,
-  img_height       NUMBER   NOT NULL,
+  img_size         NUMBER   DEFAULT 0 NOT NULL,
+  img_width        NUMBER   DEFAULT 0 NOT NULL,
+  img_height       NUMBER   DEFAULT 0 NOT NULL,
   img_metadata     CLOB,
-  img_bits         NUMBER,
+  img_bits         NUMBER   DEFAULT 0 NOT NULL,
   img_media_type   VARCHAR2(32),
   img_major_mime   VARCHAR2(32) DEFAULT 'unknown',
   img_minor_mime   VARCHAR2(100) DEFAULT 'unknown',
   img_description  VARCHAR2(255),
-  img_user         NUMBER       NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
+  img_user         NUMBER       DEFAULT 0 NOT NULL REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   img_user_text    VARCHAR2(255)      NOT NULL,
   img_timestamp    TIMESTAMP(6) WITH TIME ZONE,
-	img_sha1         VARCHAR2(32)
+  img_sha1         VARCHAR2(32)
 );
 ALTER TABLE &mw_prefix.image ADD CONSTRAINT &mw_prefix.image_pk PRIMARY KEY (img_name);
 CREATE INDEX &mw_prefix.image_i01 ON &mw_prefix.image (img_user_text,img_timestamp);
@@ -280,14 +279,14 @@ CREATE INDEX &mw_prefix.image_i04 ON &mw_prefix.image (img_sha1);
 
 
 CREATE TABLE &mw_prefix.oldimage (
-  oi_name          VARCHAR2(255)         NOT NULL  REFERENCES &mw_prefix.image(img_name),
+  oi_name          VARCHAR2(255)         DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.image(img_name) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   oi_archive_name  VARCHAR2(255),
-  oi_size          NUMBER      NOT NULL,
-  oi_width         NUMBER      NOT NULL,
-  oi_height        NUMBER      NOT NULL,
-  oi_bits          NUMBER     NOT NULL,
+  oi_size          NUMBER      DEFAULT 0 NOT NULL,
+  oi_width         NUMBER      DEFAULT 0 NOT NULL,
+  oi_height        NUMBER      DEFAULT 0 NOT NULL,
+  oi_bits          NUMBER      DEFAULT 0 NOT NULL,
   oi_description   VARCHAR2(255),
-  oi_user          NUMBER          NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
+  oi_user          NUMBER          DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   oi_user_text     VARCHAR2(255)         NOT NULL,
   oi_timestamp     TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   oi_metadata      CLOB,
@@ -310,22 +309,22 @@ CREATE TABLE &mw_prefix.filearchive (
   fa_archive_name       VARCHAR2(255),
   fa_storage_group      VARCHAR2(16),
   fa_storage_key        VARCHAR2(64),
-  fa_deleted_user       NUMBER          NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
+  fa_deleted_user       NUMBER          DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_deleted_timestamp  TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   fa_deleted_reason     CLOB,
-  fa_size               NUMBER     NOT NULL,
-  fa_width              NUMBER     NOT NULL,
-  fa_height             NUMBER     NOT NULL,
+  fa_size               NUMBER     DEFAULT 0 NOT NULL,
+  fa_width              NUMBER     DEFAULT 0 NOT NULL,
+  fa_height             NUMBER     DEFAULT 0 NOT NULL,
   fa_metadata           CLOB,
-  fa_bits               NUMBER,
+  fa_bits               NUMBER     DEFAULT 0 NOT NULL,
   fa_media_type         VARCHAR2(32) DEFAULT NULL,
   fa_major_mime         VARCHAR2(32) DEFAULT 'unknown',
   fa_minor_mime         VARCHAR2(100) DEFAULT 'unknown',
   fa_description        VARCHAR2(255),
-  fa_user               NUMBER          NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
+  fa_user               NUMBER          DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_user_text          VARCHAR2(255)         NOT NULL,
   fa_timestamp          TIMESTAMP(6) WITH TIME ZONE,
-  fa_deleted            NUMBER      DEFAULT '0' NOT NULL
+  fa_deleted            NUMBER      DEFAULT 0 NOT NULL
 );
 ALTER TABLE &mw_prefix.filearchive ADD CONSTRAINT &mw_prefix.filearchive_pk PRIMARY KEY (fa_id);
 CREATE INDEX &mw_prefix.filearchive_i01 ON &mw_prefix.filearchive (fa_name, fa_timestamp);
@@ -338,26 +337,26 @@ CREATE TABLE &mw_prefix.recentchanges (
   rc_id              NUMBER      NOT NULL,
   rc_timestamp       TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   rc_cur_time        TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
-  rc_user            NUMBER          NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
+  rc_user            NUMBER          DEFAULT 0 NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   rc_user_text       VARCHAR2(255)         NOT NULL,
-  rc_namespace       NUMBER     NOT NULL,
+  rc_namespace       NUMBER     DEFAULT 0 NOT NULL,
   rc_title           VARCHAR2(255)         NOT NULL,
   rc_comment         VARCHAR2(255),
   rc_minor           CHAR(1)         DEFAULT '0' NOT NULL,
   rc_bot             CHAR(1)         DEFAULT '0' NOT NULL,
   rc_new             CHAR(1)         DEFAULT '0' NOT NULL,
-  rc_cur_id          NUMBER          NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE SET NULL,
-  rc_this_oldid      NUMBER      NOT NULL,
-  rc_last_oldid      NUMBER      NOT NULL,
+  rc_cur_id          NUMBER          DEFAULT 0 NOT NULL,
+  rc_this_oldid      NUMBER      DEFAULT 0 NOT NULL,
+  rc_last_oldid      NUMBER      DEFAULT 0 NOT NULL,
   rc_type            CHAR(1)         DEFAULT '0' NOT NULL,
-  rc_moved_to_ns     NUMBER,
+  rc_moved_to_ns     NUMBER          DEFAULT 0 NOT NULL,
   rc_moved_to_title  VARCHAR2(255),
   rc_patrolled       CHAR(1)         DEFAULT '0' NOT NULL,
   rc_ip              VARCHAR2(15),
   rc_old_len         NUMBER,
   rc_new_len         NUMBER,
-  rc_deleted         NUMBER      DEFAULT '0' NOT NULL,
-  rc_logid           NUMBER      DEFAULT '0' NOT NULL,
+  rc_deleted         CHAR(1)      DEFAULT '0' NOT NULL,
+  rc_logid           NUMBER      DEFAULT 0 NOT NULL,
   rc_log_type        VARCHAR2(255),
   rc_log_action      VARCHAR2(255),
   rc_params          CLOB
@@ -372,7 +371,7 @@ CREATE INDEX &mw_prefix.recentchanges_i06 ON &mw_prefix.recentchanges (rc_namesp
 CREATE INDEX &mw_prefix.recentchanges_i07 ON &mw_prefix.recentchanges (rc_user_text, rc_timestamp);
 
 CREATE TABLE &mw_prefix.watchlist (
-  wl_user                   NUMBER     NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE,
+  wl_user                   NUMBER     NOT NULL  REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   wl_namespace              NUMBER    DEFAULT 0 NOT NULL,
   wl_title                  VARCHAR2(255)        NOT NULL,
   wl_notificationtimestamp  TIMESTAMP(6) WITH TIME ZONE
@@ -409,8 +408,8 @@ CREATE UNIQUE INDEX &mw_prefix.interwiki_u01 ON &mw_prefix.interwiki (iw_prefix)
 
 CREATE TABLE &mw_prefix.querycache (
   qc_type       VARCHAR2(32)      NOT NULL,
-  qc_value      NUMBER  NOT NULL,
-  qc_namespace  NUMBER  NOT NULL,
+  qc_value      NUMBER  DEFAULT 0 NOT NULL,
+  qc_namespace  NUMBER  DEFAULT 0 NOT NULL,
   qc_title      VARCHAR2(255)      NOT NULL
 );
 CREATE INDEX &mw_prefix.querycache_u01 ON &mw_prefix.querycache (qc_type,qc_value);
@@ -436,14 +435,14 @@ CREATE TABLE &mw_prefix.logging (
   log_type        VARCHAR2(10)         NOT NULL,
   log_action      VARCHAR2(10)         NOT NULL,
   log_timestamp   TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
-  log_user        NUMBER                REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL,
+  log_user        NUMBER                DEFAULT 0 NOT NULL REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   log_user_text 	VARCHAR2(255),
-  log_namespace   NUMBER     NOT NULL,
+  log_namespace   NUMBER     DEFAULT 0 NOT NULL,
   log_title       VARCHAR2(255)         NOT NULL,
 	log_page 				NUMBER,
   log_comment     VARCHAR2(255),
   log_params      CLOB,
-  log_deleted     NUMBER      DEFAULT '0' NOT NULL
+  log_deleted     CHAR(1)      DEFAULT '0' NOT NULL
 );
 ALTER TABLE &mw_prefix.logging ADD CONSTRAINT &mw_prefix.logging_pk PRIMARY KEY (log_id);
 CREATE INDEX &mw_prefix.logging_i01 ON &mw_prefix.logging (log_type, log_timestamp);
@@ -462,7 +461,7 @@ CREATE INDEX &mw_prefix.log_search_i01 ON &mw_prefix.log_search (ls_log_id);
 CREATE SEQUENCE trackbacks_tb_id_seq;
 CREATE TABLE &mw_prefix.trackbacks (
   tb_id     NUMBER   NOT NULL,
-  tb_page   NUMBER            REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
+  tb_page   NUMBER            REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   tb_title  VARCHAR2(255)     NOT NULL,
   tb_url    VARCHAR2(255)     NOT NULL,
   tb_ex     CLOB,
@@ -475,7 +474,7 @@ CREATE SEQUENCE job_job_id_seq;
 CREATE TABLE &mw_prefix.job (
   job_id         NUMBER   NOT NULL,
   job_cmd        VARCHAR2(60)      NOT NULL,
-  job_namespace  NUMBER  NOT NULL,
+  job_namespace  NUMBER  DEFAULT 0 NOT NULL,
   job_title      VARCHAR2(255)      NOT NULL,
   job_params     CLOB      NOT NULL
 );
@@ -489,8 +488,8 @@ CREATE TABLE &mw_prefix.querycache_info (
 CREATE UNIQUE INDEX &mw_prefix.querycache_info_u01 ON &mw_prefix.querycache_info (qci_type);
 
 CREATE TABLE &mw_prefix.redirect (
-  rd_from       NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
-  rd_namespace  NUMBER NOT NULL,
+  rd_from       NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  rd_namespace  NUMBER DEFAULT 0 NOT NULL,
   rd_title      VARCHAR2(255)     NOT NULL,
   rd_interwiki  VARCHAR2(32),
   rd_fragment   VARCHAR2(255)
@@ -512,7 +511,7 @@ CREATE INDEX &mw_prefix.querycachetwo_i03 ON &mw_prefix.querycachetwo (qcc_type,
 CREATE SEQUENCE page_restrictions_pr_id_seq;
 CREATE TABLE &mw_prefix.page_restrictions (
   pr_id      NUMBER      NOT NULL,
-  pr_page    NUMBER          NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE,
+  pr_page    NUMBER      NOT NULL  REFERENCES &mw_prefix.page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   pr_type    VARCHAR2(255)         NOT NULL,
   pr_level   VARCHAR2(255)         NOT NULL,
   pr_cascade NUMBER     NOT NULL,
@@ -525,7 +524,7 @@ CREATE INDEX &mw_prefix.page_restrictions_i02 ON &mw_prefix.page_restrictions (p
 CREATE INDEX &mw_prefix.page_restrictions_i03 ON &mw_prefix.page_restrictions (pr_cascade);
 
 CREATE TABLE &mw_prefix.protected_titles (
-  pt_namespace   NUMBER           NOT NULL,
+  pt_namespace   NUMBER           DEFAULT 0 NOT NULL,
   pt_title       VARCHAR2(255)    NOT NULL,
   pt_user        NUMBER	          NOT NULL,
   pt_reason      VARCHAR2(255),
@@ -689,6 +688,7 @@ CREATE OR REPLACE PROCEDURE duplicate_table(p_tabname   IN VARCHAR2,
                                             p_temporary IN BOOLEAN) IS
   e_table_not_exist EXCEPTION;
   PRAGMA EXCEPTION_INIT(e_table_not_exist, -00942);
+  l_temp_ei_sql VARCHAR2(2000);
 BEGIN
   BEGIN
     EXECUTE IMMEDIATE 'DROP TABLE ' || p_newprefix || p_tabname ||
@@ -712,7 +712,7 @@ BEGIN
                 AND data_default IS NOT NULL) LOOP
     EXECUTE IMMEDIATE 'ALTER TABLE ' || p_newprefix || p_tabname ||
                       ' MODIFY ' || rc.column_name || ' DEFAULT ' ||
-                      substr(rc.data_default, 1, 2000);
+                      SUBSTR(rc.data_default, 1, 2000);
   END LOOP;
   FOR rc IN (SELECT REPLACE(REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('CONSTRAINT',
                                                                           constraint_name),
@@ -726,11 +726,11 @@ BEGIN
                FROM user_constraints uc
               WHERE table_name = p_oldprefix || p_tabname
                 AND constraint_type = 'P') LOOP
-    dbms_output.put_line(SUBSTR(rc.ddlvc2,
-                                1,
-                                INSTR(rc.ddlvc2, 'PCTFREE') - 1));
-    EXECUTE IMMEDIATE SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE') - 1);
+    l_temp_ei_sql := SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE') - 1);
+    l_temp_ei_sql := SUBSTR(l_temp_ei_sql, 1, INSTR(l_temp_ei_sql, ')', INSTR(l_temp_ei_sql, 'PRIMARY KEY')+1)+1);
+    EXECUTE IMMEDIATE l_temp_ei_sql;
   END LOOP;
+  IF (NOT p_temporary) THEN
   FOR rc IN (SELECT REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('REF_CONSTRAINT',
                                                                   constraint_name),
                                             32767,
@@ -743,6 +743,7 @@ BEGIN
                 AND constraint_type = 'R') LOOP
     EXECUTE IMMEDIATE rc.ddlvc2;
   END LOOP;
+  END IF;
   FOR rc IN (SELECT REPLACE(REPLACE(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('INDEX',
                                                                           index_name),
                                                     32767,
@@ -751,16 +752,19 @@ BEGIN
                                     USER || '"."' || p_newprefix),
                             '"' || index_name || '"',
                             '"' || p_newprefix || index_name || '"') DDLVC2,
-                    index_name
+                    index_name,
+                    index_type
                FROM user_indexes ui
               WHERE table_name = p_oldprefix || p_tabname
-                AND index_type != 'LOB'
+                AND index_type NOT IN ('LOB', 'DOMAIN')
                 AND NOT EXISTS
               (SELECT NULL
                        FROM user_constraints
                       WHERE table_name = ui.table_name
                         AND constraint_name = ui.index_name)) LOOP
-    EXECUTE IMMEDIATE SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE') - 1);
+    l_temp_ei_sql := SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'PCTFREE') - 1);
+    l_temp_ei_sql := SUBSTR(l_temp_ei_sql, 1, INSTR(l_temp_ei_sql, ')', INSTR(l_temp_ei_sql, '"' || USER || '"."' || p_newprefix || '"')+1)+1);
+    EXECUTE IMMEDIATE l_temp_ei_sql;
   END LOOP;
   FOR rc IN (SELECT REPLACE(REPLACE(UPPER(DBMS_LOB.SUBSTR(DBMS_METADATA.get_ddl('TRIGGER',
                                                                                 trigger_name),
@@ -773,14 +777,10 @@ BEGIN
                     trigger_name
                FROM user_triggers
               WHERE table_name = p_oldprefix || p_tabname) LOOP
-    EXECUTE IMMEDIATE SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'ALTER ') - 1);
+    l_temp_ei_sql := SUBSTR(rc.ddlvc2, 1, INSTR(rc.ddlvc2, 'ALTER ') - 1);
+    dbms_output.put_line(l_temp_ei_sql);
+    EXECUTE IMMEDIATE l_temp_ei_sql;
   END LOOP;
-END;
-/*$mw$*/
-
-/*$mw$*/
-BEGIN 
-	fill_wiki_info;
 END;
 /*$mw$*/
 

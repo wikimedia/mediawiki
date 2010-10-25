@@ -6,6 +6,7 @@
  */
 
 define( 'MW_CONFIG_CALLBACK', 'CoreInstaller::overrideConfig' );
+define( 'MEDIAWIKI_INSTALL', true );
 
 chdir( ".." );
 require( './includes/WebStart.php' );

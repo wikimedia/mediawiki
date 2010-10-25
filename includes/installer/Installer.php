@@ -358,6 +358,20 @@ abstract class Installer {
 			LBFactory::enableBackend();
 		}
 
+		
+		$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
+		$article = new Article( $titleobj );
+		$newid = $article->insertOn( $installer->db );
+		$revision = new Revision( array(
+			'page'      => $newid,
+			'text'      => wfMsg( 'mainpagetext' ) . "\n\n" . wfMsgNoTrans( 'mainpagedocfooter' ),
+			'comment'   => '',
+			'user'      => 0,
+			'user_text' => 'MediaWiki default',
+			) );
+		$revid = $revision->insertOn( $installer->db );
+		$article->updateRevisionOn( $installer->db, $revision );
+
 		return $status;
 	}
 
