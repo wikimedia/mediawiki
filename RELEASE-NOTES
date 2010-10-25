@@ -75,6 +75,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   available as input for other configuration items, either.
 * Remove $wgRemoteUploads. It was not well supported and superseded by
   $wgUploadNavigationUrl.
+* $wgUpgradeKey allows unlocking the web installer for upgrades without having
+  to move LocalSettings.php
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via

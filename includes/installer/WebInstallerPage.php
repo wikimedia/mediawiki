@@ -102,6 +102,56 @@ abstract class WebInstallerPage {
 	
 }
 
+class WebInstaller_Locked extends WebInstallerPage {
+
+	// The status of Installer::getLocalSettingsStatus()
+	private $status;
+
+	public function setLocalSettingsStatus( Status $s ) {
+		$this->status = $s;
+	}
+
+	public function execute() {
+		$r = $this->parent->request;
+		if( !$r->wasPosted() || !$this->status->isOK() ) {
+			$this->display();
+			return 'output';
+		} else {
+			$key = $r->getText( 'config_wpUpgradeKey' );
+			if( !$key || $key !== $this->getVar( '_UpgradeKey' ) ) {
+				$this->display( true );
+				return 'output';
+			} else {
+				$this->setVar( '_LocalSettingsLocked', false );
+				return 'continue';
+			}
+		}
+	}
+
+	/**
+	 * Display stuff to the end user
+	 * @param $badKey bool Whether the key input by the user was bad
+	 */
+	private function display( $badKey = false ) {
+		$this->startForm();
+		if( $this->status->isOK() && !$this->status->isGood() ) {
+			if( $badKey ) {
+				$this->parent->showError( 'config-localsettings-badkey' );
+			}
+			$this->parent->output->addWikiText( wfMsg( 'config-localsettings-upgrade' )  );
+			$this->addHTML( "<br />" .
+				$this->parent->getTextBox( array(
+					'var' => 'wpUpgradeKey',
+					'label' => 'config-localsettings-key',
+				) )
+			);
+		} else {
+			$this->parent->showStatusBox( $this->status );
+		}
+		$this->endForm();
+	}
+}
+
 class WebInstaller_Language extends WebInstallerPage {
 	
 	public function execute() {

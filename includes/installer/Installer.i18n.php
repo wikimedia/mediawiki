@@ -16,8 +16,9 @@ $messages['en'] = array(
 	'config-title'                    => 'MediaWiki $1 installation',
 	'config-information'              => 'Information',
 	'config-localsettings-upgrade'    => "'''Warning''': A <code>LocalSettings.php</code> file has been detected.
-Your software is able to upgrade.
-Please move <code>LocalSettings.php</code> to somewhere safe and then run the installer again.",
+Your software is able to upgrade. Please fill in the value of <code>\$wgUpgradeKey.php</code> in the box",
+	'config-localsettings-key'        => 'Upgrade key:',
+	'config-localsettings-badkey'     => 'The key you provided is incorrect',
 	'config-localsettings-noupgrade'  => "'''Error''': A <code>LocalSettings.php</code> file has been detected.
 Your software is not able to upgrade at this time.
 The installer has been disabled for security reasons.",
@@ -51,6 +52,7 @@ Check your php.ini and make sure <code>session.save_path</code> is set to an app
 	'config-page-releasenotes'        => 'Release notes',
 	'config-page-copying'             => 'Copying',
 	'config-page-upgradedoc'          => 'Upgrading',
+	'config-page-locked'              => 'Permission denied',
 	'config-help-restart'             => 'Do you want to clear all saved data that you have entered and restart the installation process?',
 	'config-restart'                  => 'Yes, restart it',
 	'config-welcome'                  => "=== Environmental checks ===
