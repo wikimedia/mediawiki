@@ -74,13 +74,10 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 		$wgLBFactoryConf['class'] = 'LBFactory_Simple';
 		$wgDBservers = null;
 		$wgContLang = Language::factory( 'en' );
-		LBFactory::destroyInstance();
 	}
 
 	function tearDown() {
 		global $wgSearchType, $wgDBtype, $wgLBFactoryConf, $wgDBservers, $wgContLang;
-
-		LBFactory::destroyInstance();
 
 		$wgSearchType = self::$searchType;
 		$wgDBtype = self::$dbtype;
