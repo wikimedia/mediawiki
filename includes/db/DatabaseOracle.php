@@ -186,10 +186,10 @@ class DatabaseOracle extends DatabaseBase {
 	var $mFieldInfoCache = array();
 
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' )
+		$flags = 0, $tablePrefix = 'get from global' )
 	{
 		$tablePrefix = $tablePrefix == 'get from global' ? $tablePrefix : strtoupper( $tablePrefix );
-		parent::__construct( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
+		parent::__construct( $server, $user, $password, $dbName, $flags, $tablePrefix );
 		wfRunHooks( 'DatabaseOraclePostInit', array( &$this ) );
 	}
 
@@ -219,14 +219,13 @@ class DatabaseOracle extends DatabaseBase {
 		return true;
 	}
 
-	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0, $tablePrefix )
+	static function newFromParams( $server, $user, $password, $dbName, $flags = 0, $tablePrefix )
 	{
-		return new DatabaseOracle( $server, $user, $password, $dbName, $failFunction, $flags, $tablePrefix );
+		return new DatabaseOracle( $server, $user, $password, $dbName, $flags, $tablePrefix );
 	}
 
 	/**
 	 * Usually aborts on failure
-	 * If the failFunction is set to a non-zero integer, returns success
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		if ( !function_exists( 'oci_connect' ) ) {
