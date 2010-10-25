@@ -56,9 +56,9 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		if( isset( $par ) ){
 			$this->showPrefixChunk( $namespace, $par, $from );
-		} elseif( $prefix ){
+		} elseif( $prefix != '' ){
 			$this->showPrefixChunk( $namespace, $prefix, $from );
-		} elseif( $from ){
+		} elseif( $from != '' ){
 			$this->showPrefixChunk( $namespace, $from, $from );
 		} else {
 			$wgOut->addHTML( $this->namespacePrefixForm( $namespace, null ) );
