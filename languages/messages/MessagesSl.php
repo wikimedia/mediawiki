@@ -1652,8 +1652,8 @@ $1',
 'upload-proto-error'        => 'Nepravilni protokol',
 'upload-proto-error-text'   => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
 'upload-file-error'         => 'Notranja napaka',
-'upload-file-error-text'    => 'Prišlo je do notranje napake pri poskusu ustvariti začasne datoteke na strežnik.
-Prosimo obrnite se na [[Special:ListUsers/sysop|administrator]]ja.',
+'upload-file-error-text'    => 'Prišlo je do notranje napake pri poskusu ustvarjanja začasne datoteke na strežniku.
+Prosimo, obrnite se na [[Special:ListUsers/sysop|administratorja]].',
 'upload-misc-error'         => 'Neznana napaka pri nalaganju',
 'upload-misc-error-text'    => 'Med nalaganjem je prišlo do neznane napake.
 Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.

@@ -3521,7 +3521,7 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'htmlform-selectorother-other' => 'egyéb',
 
 # SQLite database support
-'sqlite-has-fts' => '$1 teljes szöveges keresés támogatásával',
+'sqlite-has-fts' => '$1 teljes szöveges keresés támogatással',
 'sqlite-no-fts'  => '$1 teljes szöveges keresés támogatása nélkül',
 
 );
