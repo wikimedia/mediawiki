@@ -268,10 +268,7 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		if ( !$this->mConn ) {
-			wfDebug( "DB connection error\n" );
-			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
-			wfDebug( $this->lastError() . "\n" );
-			return false;
+			throw new DBConnectionError( $this, $this->lastError() );
 		}
 
 		$this->mOpened = true;
@@ -1198,6 +1195,8 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function update( $table, $values, $conds, $fname = 'DatabaseOracle::update', $options = array() ) {
+		global $wgContLang;
+		
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET ";

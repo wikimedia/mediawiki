@@ -357,6 +357,8 @@ abstract class Installer {
 		if( $status->isOK() ) {
 			LBFactory::enableBackend();
 		}
+		
+		return $status;
 	}
 
 	/**
@@ -368,6 +370,17 @@ abstract class Installer {
 	 */
 	public function installInterwiki( DatabaseInstaller &$installer ) {
 		return $installer->populateInterwikiTable();
+	}
+
+	/**
+	 * TODO: document
+	 *
+	 * @param $installer DatabaseInstaller
+	 *
+	 * @return Status
+	 */
+	public function installMainpage( DatabaseInstaller &$installer ) {
+		return $installer->createMainpage();
 	}
 
 	/**

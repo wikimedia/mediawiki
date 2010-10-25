@@ -96,6 +96,7 @@ abstract class CoreInstaller extends Installer {
 		'interwiki',
 		'secretkey',
 		'sysop',
+		'mainpage',
 	);
 
 	/**
