@@ -3988,7 +3988,7 @@ $wgMaintenanceScripts = array();
  */
 $wgReadOnly             = null;
 
-/***
+/**
  * If this lock file exists (size > 0), the wiki will be forced into read-only mode.
  * Its contents will be shown to users as part of the read-only warning
  * message.
@@ -3996,6 +3996,12 @@ $wgReadOnly             = null;
  * Defaults to "{$wgUploadDirectory}/lock_yBgMBwiR".
  */
 $wgReadOnlyFile         = false;
+
+/**
+ * If this is set to some string, this opens up config/index.php for upgrades
+ * when needed. You will need to provide this key to use it
+ */
+$wgUpgradeKey = false;
 
 /** @} */ # End of maintenance }
 

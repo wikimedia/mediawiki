@@ -230,10 +230,13 @@ abstract class Installer {
 		wfRestoreWarnings();
 
 		if( $ls ) {
-			if( $this->getDBInstaller()->needsUpgrade() ) {
+			$wgCacheEpoch = $wgCommandLineMode = false;
+			require_once( "$IP/LocalSettings.php" );
+			$vars = get_defined_vars();
+			if( isset( $vars['wgUpgradeKey'] ) && $vars['wgUpgradeKey'] ) {
 				$status->warning( 'config-localsettings-upgrade' );
-			}
-			else {
+				$this->setVar( '_UpgradeKey', $vars['wgUpgradeKey' ] );
+			} else {
 				$status->fatal( 'config-localsettings-noupgrade' );
 			}
 		}

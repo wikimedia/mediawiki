@@ -163,7 +163,15 @@ class WebInstaller extends CoreInstaller {
 		# Get the page name.
 		$pageName = $this->request->getVal( 'page' );
 
-		if ( in_array( $pageName, $this->otherPages ) ) {
+		# Check LocalSettings status
+		$localSettings = $this->getLocalSettingsStatus();
+
+		if( !$localSettings->isGood() && $this->getVar( '_LocalSettingsLocked' ) ) {
+			$pageName = 'Locked';
+			$pageId = false;
+			$page = $this->getPageByName( $pageName );
+			$page->setLocalSettingsStatus( $localSettings );
+		} elseif ( in_array( $pageName, $this->otherPages ) ) {
 			# Out of sequence
 			$pageId = false;
 			$page = $this->getPageByName( $pageName );
@@ -212,14 +220,8 @@ class WebInstaller extends CoreInstaller {
 		# Execute the page.
 		$this->currentPageName = $page->getName();
 		$this->startPageWrapper( $pageName );
-		$localSettings = $this->getLocalSettingsStatus();
 
-		if( !$localSettings->isGood() ) {
-			$this->showStatusBox( $localSettings );
-			$result = 'output';
-		} else {
-			$result = $page->execute();
-		}
+		$result = $page->execute();
 
 		$this->endPageWrapper();
 
