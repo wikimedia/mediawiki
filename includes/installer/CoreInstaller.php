@@ -433,6 +433,27 @@ abstract class CoreInstaller extends Installer {
 	}
 
 	/**
+	 * Insert Main Page with default content.
+	 * 
+	 * @return Status
+	 */
+	public function installMainpage( DatabaseInstaller &$installer ) {
+		$status = Status::newGood();
+		try {
+			$titleobj = Title::newFromText( wfMsgNoDB( "mainpage" ) );
+			$article = new Article( $titleobj );
+			$article->doEdit(	wfMsg( 'mainpagetext' ) . "\n\n" . wfMsgNoTrans( 'mainpagedocfooter' ),
+								'',
+								EDIT_NEW );
+		} catch (MWException $e) {
+			//using raw, because $wgShowExceptionDetails can not be set yet
+			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() ); 
+		}
+		
+		return $status;
+	}
+
+	/**
 	 * Override the necessary bits of the config to run an installation.
 	 */
 	public static function overrideConfig() {

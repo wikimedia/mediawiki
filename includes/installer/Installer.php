@@ -373,17 +373,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * TODO: document
-	 *
-	 * @param $installer DatabaseInstaller
-	 *
-	 * @return Status
-	 */
-	public function installMainpage( DatabaseInstaller &$installer ) {
-		return $installer->createMainpage();
-	}
-
-	/**
 	 * Exports all wg* variables stored by the installer into global scope.
 	 */
 	public function exportVars() {
