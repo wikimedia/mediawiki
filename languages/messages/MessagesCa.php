@@ -1400,7 +1400,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
 'rightslogtext'  => "Aquest és un registre de canvis dels permisos d'usuari.",
-'rightslogentry' => "heu modificat els drets de l'usuari «$1» del grup $2 al de $3",
+'rightslogentry' => "ha modificat els drets de l'usuari «$1» del grup $2 al de $3",
 'rightsnone'     => '(cap)',
 
 # Associated actions - in the sentence "You do not have permission to X"

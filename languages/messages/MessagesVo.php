@@ -159,6 +159,9 @@ $messages = array(
 'underline-never'   => 'Neföro',
 'underline-default' => 'Ma bevüresodatävöm',
 
+# Font style option in Special:Preferences
+'editfont-default' => 'Ma bevüresodatävöm',
+
 # Dates
 'sunday'        => 'sudel',
 'monday'        => 'mudel',
@@ -270,6 +273,7 @@ $messages = array(
 'vector-view-history'      => 'Logön jenotemi',
 'vector-view-view'         => 'Reidön',
 'vector-view-viewsource'   => 'Logön fonäti',
+'actions'                  => 'Duns',
 'namespaces'               => 'Nemaspads',
 
 'errorpagetitle'    => 'Pöl',
@@ -326,6 +330,7 @@ $messages = array(
 'jumpto'            => 'Bunön lü:',
 'jumptonavigation'  => 'nafam',
 'jumptosearch'      => 'suk',
+'pool-errorunknown' => 'Pöl nesevädik',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tefü {{SITENAME}}',
@@ -431,6 +436,7 @@ Atos kösömiko jenon sekü difa- u jenotemayüm dädik (o.b. lü pad pemoüköl
 'readonly_lag'         => 'Vük pefärmükon itjäfidiko du dünanünöms slafik kosädons ko mastanünöm.',
 'internalerror'        => 'Pöl ninik',
 'internalerror_info'   => 'Pöl ninik: $1',
+'fileappenderror'      => 'No emögos ad lüükön ragivi "$1" ad "$2".',
 'filecopyerror'        => 'No emögos ad kopiedön ragivi "$1" ad "$2".',
 'filerenameerror'      => 'No eplöpos ad votanemön ragivi: "$1" ad: "$2".',
 'filedeleteerror'      => 'No emögos ad moükön ragivi "$1".',
@@ -552,9 +558,10 @@ Stebedolös büä osteifülol nogna.',
 'loginlanguagelabel'         => 'Pük: $1',
 
 # JavaScript password checks
-'password-strength-bad'      => 'BADIK',
-'password-strength-mediocre' => 'zänedöfik',
-'password-strength-good'     => 'gudik',
+'password-strength-bad'        => 'BADIK',
+'password-strength-mediocre'   => 'zänedöfik',
+'password-strength-acceptable' => 'zepabik',
+'password-strength-good'       => 'gudik',
 
 # Password reset dialog
 'resetpass'                 => 'Votükön letavödi',
@@ -816,6 +823,7 @@ As guvan, kanol logön oni; pats tefik ba binons in [{{fullurl:{{#Special:Log}}/
 'revisiondelete'              => 'Moükön/sädunön moükami fomamas',
 'revdelete-nooldid-title'     => 'Zeilafomam no lonöfon',
 'revdelete-nooldid-text'      => 'U no elevälol zeilafomami(s) pro dun at, u fomam pelevälöl no dabinon, u steifülol ad klänedön fomami anuik.',
+'revdelete-show-file-confirm' => 'Vilol-li fümiko logön revidi pemoüköl ragiva: „<nowiki>$1</nowiki>“ dätü $2 tü $3?',
 'revdelete-show-file-submit'  => 'Si',
 'revdelete-selected'          => "'''{{PLURAL:$2|Fomam|Fomams}} pevalöl pada: [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Lisedajenot|Lisedajenots}} pevälöl:'''",
@@ -861,6 +869,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}
 'suppressionlogtext' => 'Is palisedons moükams e blokams lätik, kels ätefons ninädi de guvans peklänedöli. Logolös [[Special:IPBlockList|lisedi ladetas-IP pebloköl]], kö pajonons blokams anu lonöföls.',
 
 # Revision move
+'moverevlogentry'        => 'petopätükon {{PLURAL:$3|revid bal|revids $3}} de "$1" lü "$2"',
 'revmove-reasonfield'    => 'Kod:',
 'revmove-nullmove-title' => 'Tiäd badik',
 
@@ -901,7 +910,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'compareselectedversions'  => 'Leigodolöd fomamis pevälöl',
 'showhideselectedversions' => 'Jonön/klänedön fomamis pevälöl',
 'editundo'                 => 'sädunön',
-'diff-multi'               => '({{PLURAL:$1|Revid vüik bal no pejonon|Revids vüik $1 no pejonons}}.)',
+'diff-multi'               => '({{PLURAL:$1|Revid vüik bal|Revids vüik $1}} fa {{PLURAL:$2|geban bal|gebans $2}} no {{PLURAL:$1|pejonon|pejonons}})',
 
 # Search results
 'searchresults'                    => 'Sukaseks',

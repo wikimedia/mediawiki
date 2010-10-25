@@ -25,10 +25,10 @@ $messages = array(
 'tog-extendwatchlist'         => 'Singkaiakan daptar itihan hagan manampaiakan samunyaan parubahan, kada nang hanyar haja.',
 'tog-usenewrc'                => 'Purukakan panampaian parubahan tahanyar tingkat tinggi  (parlu ada JavaScript)',
 'tog-numberheadings'          => 'Bari numur judul utumatis',
-'tog-showtoolbar'             => 'Tampaiakan bilah pakakas babak (parlu ada JavaScript)',
+'tog-showtoolbar'             => 'Tampaiakan bilah-pakakas babak (parlu ada JavaScript)',
 'tog-editondblclick'          => 'Babak tungkaran-tungkaran wan klik ganda (parlu ada JavaScript)',
-'tog-editsection'             => 'Kawa-akan babakan hapat lung tautan [babak]',
-'tog-editsectiononrightclick' => 'Kawa-akan mambabak hapat awan klik kanan pada judul hapat (parlu ada JavaScript)',
+'tog-editsection'             => "Kawa'akan babakan hapat lung tautan [babak]",
+'tog-editsectiononrightclick' => "Kawa'akan mambabak hapat awan klik kanan pada judul hapat (parlu ada JavaScript)",
 'tog-showtoc'                 => 'Tampaiakan tabil isi (gasan tungkaran-tungkaran awan judul kapala labih pada 3)',
 'tog-rememberpassword'        => 'Ingatakan babuat log ulun pada panjalajah web ini (gasan salawas $1{{PLURAL:$1|hari|hahari}})',
 'tog-watchcreations'          => 'Tambahi tungkaran nang ulun ulah ka daptar itihan',
@@ -37,7 +37,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Tambahi tungkaran nang ulun hapus ka daptar itihan ulun',
 'tog-previewontop'            => 'Tampaiakan titilikan sabalum kutak babak',
 'tog-previewonfirst'          => 'Tampaiakan titilikan pada babakan kaasa',
-'tog-nocache'                 => 'Kada kawa-akan tambuluk panjalajahan web tungkaran',
+'tog-nocache'                 => "Kada kawa'akan tambuluk panjalajahan web tungkaran",
 'tog-enotifwatchlistpages'    => 'Surili ulun amun sabuah tungkaran dalam daptar itihan ulun baubah',
 'tog-enotifusertalkpages'     => 'Surili ulun amun tungkaran pamandiran ulun baubah',
 'tog-enotifminoredits'        => 'Surili ulun jua amun ada babakan sapalih matan tungkaran-tungkaran',
@@ -47,7 +47,7 @@ $messages = array(
 'tog-fancysig'                => 'Tapsirakan tanda teken sawagai naskah wiki (kada batautan utumatis)',
 'tog-externaleditor'          => 'Puruk pambabak luar sawagai default (hagan nang harat haja, musti ada setelan istimiwa pada kumputir Pian)',
 'tog-externaldiff'            => 'Puruk palainan luar sawagai default (hagan nang harat haja, musti ada setelan istimiwa pada kumputir Pian)',
-'tog-showjumplinks'           => 'Kawa-akan "lacung ka" tautan kakawaanmasuk',
+'tog-showjumplinks'           => 'Kawa\'akan "lacung ka" tautan kakawaan-masuk',
 'tog-uselivepreview'          => 'Puruk titilikan langsung (parlu ada JavaScript) (cacubaan)',
 'tog-forceeditsummary'        => 'Ingatakan ulun wayah babuat sabuah kasimpulan babakan kusung',
 'tog-watchlisthideown'        => 'Sungkupakan babakan ulun di daptar itihan',
@@ -181,8 +181,8 @@ $messages = array(
 'vector-action-unprotect'        => 'Kada dilindungi',
 'vector-simplesearch-preference' => 'Kawa-akan saran panggagaian tingkat lanjut (Vector skin haja)',
 'vector-view-create'             => 'Ulah',
-'vector-view-edit'               => 'Ubah',
-'vector-view-history'            => 'Sajarah bahari',
+'vector-view-edit'               => 'Babak',
+'vector-view-history'            => 'Tiringi halam',
 'vector-view-view'               => 'Baca',
 'vector-view-viewsource'         => 'Tiringi asal mula',
 'actions'                        => 'Tindakan',
@@ -222,7 +222,7 @@ $messages = array(
 'specialpage'       => 'Tungkaran istimiwa',
 'personaltools'     => 'Pakakas surang',
 'postcomment'       => 'Hapat hanyar',
-'articlepage'       => 'Tiringi isi tulisan',
+'articlepage'       => 'Tiringi isi tungkaran',
 'talk'              => 'Pamandiran',
 'views'             => 'Titiringan',
 'toolbox'           => 'Wadah pakakas',
@@ -237,15 +237,15 @@ $messages = array(
 'otherlanguages'    => 'Dalam bahasa lain',
 'redirectedfrom'    => '(Diugahakan matan $1)',
 'redirectpagesub'   => 'Tungkaran paugahan',
-'lastmodifiedat'    => 'Tungkaran ini tarakhir diganti pada $2, $1.',
-'viewcount'         => 'Tungkaran ini kawa dibuati {{PLURAL:$1|sakali|$1 kali}}.',
+'lastmodifiedat'    => 'Tungkaran ini tarakhir digaganti pada $1. $2.',
+'viewcount'         => 'Tungkaran ini kawa diungkai {{PLURAL:$1|kali|$1 kakali}}.',
 'protectedpage'     => 'Tungkaran dilindungi',
 'jumpto'            => 'Malacung ka',
 'jumptonavigation'  => 'napigasi',
 'jumptosearch'      => 'gagai',
 'view-pool-error'   => 'Ampuni, server lagi limpuar kabaratan wayah ini.
 Kabanyakan pamuruk nang handak maniringi tungkaran ini.
-Muhun tunggui ha sapandang sabalum Pian cubai pulang babuat ka tungkaran ini.
+Muhun hadangi ha sapandang sabalum Pian cubai pulang maungkai tungkaran ini.
 
 $1',
 'pool-timeout'      => 'Habis waktu mahadangi gasan tasunduk',
@@ -257,8 +257,8 @@ $1',
 'aboutpage'            => 'Project:Pasal',
 'copyright'            => 'Isi tasadia sasuai lawan $1.',
 'copyrightpage'        => '{{ns:project}}:Hak cipta',
-'currentevents'        => 'Kajadian wayah ini',
-'currentevents-url'    => 'Project:Kajadian wayah ini',
+'currentevents'        => 'Paristiwa wayahini',
+'currentevents-url'    => 'Project:Paristiwa wayahini',
 'disclaimers'          => 'Panyangkalan',
 'disclaimerpage'       => 'Project:Panyangkalan umum',
 'edithelp'             => 'Patulung mambabak',
@@ -291,7 +291,7 @@ Lihati [[Special:Version|Tungkaran mudil]]',
 'viewsourceold'           => 'tiringi asal mulanya',
 'editlink'                => 'babak',
 'viewsourcelink'          => 'tiringi asal mulanya',
-'editsectionhint'         => 'Ubah hapat: $1',
+'editsectionhint'         => 'Babak hapat: $1',
 'toc'                     => 'Isi',
 'showtoc'                 => 'tampaiakan',
 'hidetoc'                 => 'sungkupakan',
@@ -320,7 +320,7 @@ Lihati [[Special:Version|Tungkaran mudil]]',
 'nstab-category'  => 'Tumbung',
 
 # Main script and global functions
-'nosuchaction'      => 'Kadada tindakan',
+'nosuchaction'      => 'Kadada palakuan nangkaitu',
 'nosuchactiontext'  => 'Palakuan nang diminta URL kada sah.
 Pian pinanya salah katik URL, atawa maumpati sabuah tautan nang kada bujur.
 Ini jua bisa ai ada bug di parangkat lunak nang dipuruk {{SITENAME}}.',
@@ -331,32 +331,32 @@ Daptar tungkaran istimiwa sah kawa diugai pada [[Special:SpecialPages|{{int:spec
 # General errors
 'error'                => 'Kasalahan',
 'databaseerror'        => 'Kasalahan Basisdata',
-'dberrortext'          => 'Ada kasalahan sintaks pada parmintaan basis data.
+'dberrortext'          => 'Ada kasalahan sintaks pada parmintaan basisdata.
 Kasalahan ini pina manandai adanya sabuah bug dalam parangkat lunak.
-Parmintaan basis data yang tadudi adalah:
+Parmintaan basisdata yang tadudi adalah:
 <blockquote><tt>$1</tt></blockquote>
-matan dalam fungsi "<tt>$2</tt>".
-Basis data babulik kasalahan "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ada kasalahan sintaks pada parmintaan basis data.
-Parmintaan basis data nang tadudi adalah:
+matan dalam pungsi "<tt>$2</tt>".
+Basisdata kasalahan  babulik "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Ada kasalahan sintaks pada parmintaan basisdata.
+Parmintaan basisdata nang tadudi adalah:
 "$1"
-matan dalam fungsi "$2".
-Basis data babulik kasalahan "$3: $4".',
+matan dalam pungsi "$2".
+Basisdata kasalahan  babulik "$3: $4".',
 'laggedslavemode'      => "'''Paringatan:''' Tungkaran ini pinanya kada baisi parubahan tahanyar.",
-'readonly'             => 'Basis data tasunduk',
+'readonly'             => 'Basisdata tasunduk',
 'enterlockreason'      => 'Buati sabuah alasan manyunduk, tamasuk jua wayah apa handak dibuka pulang sundukannya.',
-'readonlytext'         => 'Basis data lagi basunduk hagan masukan hanyar wan parubahan lain, pinanya pang lagi ada jadwal paharaguan basis data, habis ini akan babulik nangkaya biasa.
+'readonlytext'         => 'Basisdata lagi basunduk hagan masukan hanyar wan parubahan lain, pinanya pang lagi ada jadwal paharaguan basis data, imbah ini akan babulik nangkaya biasa.
 
 Pambakal nang manyunduk mamadahi nangkaini: $1',
-'missing-article'      => 'Basis data kada ulihan manggagai kata matan tungkaran nang saharusnya ada, ialah "$1" $2.
+'missing-article'      => 'Basisdata kada ulihan manggagai kata matan tungkaran nang saharusnya ada, bangaran "$1" $2.
 
-Nangkaya ini biasanya dimargakan tautan lawas ka sabuah tungkaran nang halamnya sudah dihapus.
+Nangkaini biasanya dimargakan tautan lawas ka sabuah tungkaran nang halamnya sudah dihapus.
 
 Munnya lainan ini pasalnya, Pian mungkin batamu bug dalam perangkat lunak.
 Silakan lapurakan ini ka saurang [[Special:ListUsers/sysop|pambakal]], ulah catatan URL nang ditulaki',
 'missingarticle-rev'   => '(ralatan#: $1)',
 'missingarticle-diff'  => '(Lain: $1, $2)',
-'readonly_lag'         => 'Basis data sudah utumatis tasunduk pas server basis data dua lagi marungkuti basis data tatambaian',
+'readonly_lag'         => 'Basisdata sudah utumatis tasunduk pas server basisdata dua lagi marungkuti basisdata tatambaian',
 'internalerror'        => 'Kasalahan di dalam',
 'internalerror_info'   => 'Kasalahan di dalam: $1',
 'fileappenderrorread'  => 'Kada kawa mambaca "$1" parhatan manambahi.',
@@ -392,8 +392,8 @@ Muhun cubai pulang dalam babarapa minit.',
 Parubahan ka tungkaran ini akan bapangaruh matan tampilan antarmuha gasan pamuruk lain.
 Gasan tarjamahan, muhun puruk [http://translatewiki.net/wiki/Main_Page?setlang=bjn translatewiki.net], paruyik palokalan MediaWiki.",
 'sqlhidden'            => '(Parmintaan SQL disungkupakan)',
-'cascadeprotected'     => 'Tungkaran ini sudah dilindungi matan pambabakan, karana nangini tamasuk dalam{{PLURAL:$1|tungkaran|tungkaran-tungkaran}}  dudi nang dilindungi "rentengan": $2',
-'namespaceprotected'   => "Pian kada baisi ijin hagan mambabak tungkaran dalam ngaran kamar '''$1'''.",
+'cascadeprotected'     => 'Tungkaran ini sudah dilindungi matan pambabakan, karana nangini tamasuk dalam{{PLURAL:$1|tungkaran|tutungkaran}}  dudi nang dilindungi "barenteng": $2',
+'namespaceprotected'   => "Pian kada baisi ijin hagan mambabak tutungkaran dalam ngaran kamar '''$1'''.",
 'customcssjsprotected' => 'Pian kada baisi ijin hagan mambabak tungkaran ini, karana ini mangandung setelan paribadi pamuruk lain.',
 'ns-specialprotected'  => 'Tungkaran istimiwa kada kawa dibabak',
 'titleprotected'       => 'Judul nang ini dilindungi matan paulahannya ulih [[User:$1|$1]].
@@ -408,18 +408,18 @@ Wan alasan nang dibari adalah "\'\'$2\'\'".',
 'logouttext'                 => "'''Pian parhatan ini sudah kaluar log.'''
 
 Pian kawa manyambung hagan mamuruk {{SITENAME}} kada bangaran, atawa Pian kawa [[Special:UserLogin|babuat log pulang]] sawagai pamuruk nang sama atawa sawagai pamuruk balain.
-Catatan bahwasa babarapa tungkaran pinanya masih ha tarus manampaiakan Pian masih babuat log, sampai Pian mahabisakan tibuluk panjalajah web Pian.",
+Catatan bahwasa babarapa tungkaran pinanya masih ha tarus manampaiakan Pian masih babuat log, sampai Pian mahabisakan timbuluk panjalajah web Pian.",
 'welcomecreation'            => '==Salamat datang, $1!==
 Akun Pian sudah diulah.
 Jangan kada ingat hagan maubah [[Special:Preferences|preferensi {{SITENAME}}]] Pian.',
 'yourname'                   => 'Ngaran pamuruk',
-'yourpassword'               => 'Kata sunduk:',
+'yourpassword'               => 'Katasunduk:',
 'yourpasswordagain'          => 'Katik pulang katasunduk:',
 'remembermypassword'         => 'Ingatan log babuat ulun dalam komputer ini (salawas $1{{PLURAL:$1|hari|hari}})',
 'yourdomainname'             => 'Dumain Pian:',
 'externaldberror'            => 'Ada kasalahan apakah kacucukan basis data atawa Pian kada bulih mamutakhirakan akun luar.',
 'login'                      => 'Babuat',
-'nav-login-createaccount'    => 'Babuat log/ulah akun',
+'nav-login-createaccount'    => 'Babuat log / ulah akun',
 'loginprompt'                => "Pian harus mengaktipakan ''cookies'' hagan kawa babuat log ka {{SITENAME}}.",
 'userlogin'                  => 'Babuat log / ulah akun',
 'userloginnocreate'          => 'Babuat log',
@@ -431,26 +431,26 @@ Jangan kada ingat hagan maubah [[Special:Preferences|preferensi {{SITENAME}}]] P
 'createaccount'              => 'Ulah akun',
 'gotaccount'                 => 'Sudah baisi sabuah akun? $1.',
 'gotaccountlink'             => 'Babuat log',
-'createaccountmail'          => 'Limpat suril',
+'createaccountmail'          => 'Lung suril',
 'createaccountreason'        => 'Alasan:',
-'badretype'                  => 'Kata sunduk nang Pian buati kada pas.',
-'userexists'                 => 'Ngaran pamuruk nang dimasukakan sudah dipuruk.
+'badretype'                  => 'Katasunduk nang Pian buati kada pas.',
+'userexists'                 => 'Ngaran pamuruk nang dibuati sudah dipuruk.
 Muhun pilih sabuah ngaran lain.',
 'loginerror'                 => 'Kasalahan babuat log',
 'createaccounterror'         => 'Kada kawa maulah akun: $1',
-'nocookiesnew'               => 'Akun pamuruk sudah diulah, tagal Pian kada babuat log lagi.
+'nocookiesnew'               => "Akun pamuruk sudah diulah, tagal Pian kada babuat log lagi.
 {{SITENAME}} mamuruk cookies hagan pamuruk babuat log.
 Cookies Pian lagi kada kawa.
-Muhun kawa-akan nang itu, hanyar babuat log awan ngaran pamuruk hanyar wan kata sunduk.',
-'nocookieslogin'             => '{{SITENAME}} mamuruk cookies hagan pamuruk babuat log.
+Muhun kawa'akan nangitu, hanyar babuat log awan ngaran pamuruk hanyar wan kata sunduk Pian.",
+'nocookieslogin'             => "{{SITENAME}} mamuruk cookies hagan pamuruk babuat log.
 Cookies Pian lagi kada kawa.
-Muhun kawa-akan nang itu wan cbai pulang.',
-'noname'                     => 'Ngaran pamuruk nang Pian ajukan kada sah.',
+Muhun kawa'akan nang itu wan cubai pulang.",
+'noname'                     => 'Ngaran pamuruk nang Pian ajuakan kada sah.',
 'loginsuccesstitle'          => 'Kulihan babuat log',
 'loginsuccess'               => "'''Pian parhatan ini babuat log dalam {{SITENAME}} sawagai \"\$1\".'''",
 'nosuchuser'                 => 'Kadada pamuruk bangaran "$1".
 Ngaran pamuruk adalah kasus marinci.
-Lihati pulang ijaan, atawa [[Special:UserLogin/signup|ulah akun hanyar]]',
+Lihati pulang ijaan, atawa [[Special:UserLogin/signup|ulah sabuah akun hanyar]]',
 'nosuchusershort'            => 'Kadada pamuruk bangaran "<nowiki>$1</nowiki>".
 Lihati pulang ijaan Pian.',
 'nouserspecified'            => 'Pian harus maajuakan sabuah ngaran pamuruk.',
@@ -463,9 +463,9 @@ Muhun cubai pulang.',
 'password-name-match'        => 'Kata sunduk Pian musri aabida lawan ngaran pamuruk Pian.',
 'mailmypassword'             => 'Kirimi kata sunduk hanyar',
 'passwordremindertitle'      => 'Kata sunduk samantara gasan {{SITENAME}}',
-'passwordremindertext'       => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuah kata sunduk hanyar gasan {{SITENAME}} ($4). sabuah kata sunduk samantara gasan pamuruk "$2" sudah diulah wan disetel ka "$3". Amun bujur Pian nang maminta, Pian parlu babuat log wan mamilih kata sunduk hanyar wayah ini jua. Kata sunduk samanta Pian akan kadaluarsa dalam {{PLURAL:$5|satu hari|$5 hari}}.
+'passwordremindertext'       => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuah katasunduk hanyar gasan {{SITENAME}} ($4). sabuah katasunduk samantara gasan pamuruk "$2" sudah diulah wan disetel ka "$3". Amun bujur Pian nang maminta, Pian parlu babuat log wan mamilih katasunduk hanyar wayah ini jua. Katasunduk samantara Pian akan kadaluarsa dalam {{PLURAL:$5|satu hari|$5 hahari}}.
 
-Amun urang lain nang maminta ini, atawa amun Pian sudah paingatan awan kata sunduk Pian, wan Pian kada handak maubahnya, Pian kawa kada mahuwal pasan ini wan manarusakan mamuruk kata sunduk lawas Pian.',
+Amun urang lain nang maminta ini, atawa amun Pian sudah paingatan awan katasunduk Pian, wan Pian kada handak maubahnya, Pian kawa kada mahuwal pasan ini wan manyambung mamuruk katasunduk lawas Pian.',
 'noemail'                    => 'Kadada alamat suril tarakam gasan pamuruk "$1".',
 'noemailcreate'              => 'Pian parlu manyadiakan sabuah alamat suril nang sah',
 'passwordsent'               => 'Sabuah kata sunduk hanyar sudah dikirim ka suril tadaptar gasan "$1".
@@ -502,10 +502,10 @@ Muhun hadangi dahulu sapandang hanyar cubai pulang.',
  #</pre> <!-- tinggalakan baris ini parsis kaini -->',
 
 # JavaScript password checks
-'password-strength'            => 'Manangguhi kakuatan kata sunduk: $1',
+'password-strength'            => 'Manangguhi kakuatan katasunduk: $1',
 'password-strength-bad'        => 'BURUK',
 'password-strength-mediocre'   => 'sadang',
-'password-strength-acceptable' => 'Kawa ditarima',
+'password-strength-acceptable' => 'kawa-ditarima',
 'password-strength-good'       => 'bengkeng',
 'password-retype'              => 'Katik pulang katasunduk di sia',
 'password-retype-mismatch'     => 'Katasunduk kada pas',
@@ -513,7 +513,7 @@ Muhun hadangi dahulu sapandang hanyar cubai pulang.',
 # Password reset dialog
 'resetpass'                 => 'Ubah katasunduk',
 'resetpass_announce'        => 'Pian babuat log awan sabuah kudi samantara nang disurili.
-Hagan manuntungakan babuat log, Pian musti manyetel sabuah kata sunduk hanyar di sia:',
+Hagan manuntungakan babuat log, Pian musti manyetel sabuah katasunduk hanyar di sia:',
 'resetpass_header'          => 'Ubah katasunduk akun',
 'oldpassword'               => 'Katasunduk lawas:',
 'newpassword'               => 'Katasunduk hanyar:',
@@ -608,14 +608,14 @@ Pinanya ini sudah diugahakan atawa dihapus parhatan Pian maniringi tungkaran nan
 'loginreqtitle'                    => 'Parlu babuat log',
 'loginreqlink'                     => 'Babuat log',
 'loginreqpagetext'                 => 'Pian musti $1 hagan maniringi rungkaran-tungkaran lain.',
-'accmailtitle'                     => 'Kata sunduk takirim.',
-'accmailtext'                      => "Sabuah kata sunduk babarang gasan [[User talk:$1|$1]] sudah dikirim ka $2.
+'accmailtitle'                     => 'Katasunduk takirim.',
+'accmailtext'                      => "Sabuah katasunduk babarang gasan [[User talk:$1|$1]] sudah dikirim ka $2.
 
-Kata sunduk gasan pamuruk hanyar nangini kawa diubah pintang tungkaran ''[[Special:ChangePassword|ubah kata sunduk]]'' wayah babuat log.",
+Katasunduk gasan pamuruk hanyar nangini kawa diubah pintang tungkaran ''[[Special:ChangePassword|ubah katasunduk]]'' wayah babuat log.",
 'newarticle'                       => '(Hanyar)',
-'newarticletext'                   => "Pian maumpati sabuah tautan ka tungkaran nang baluman ada lagi. Gasan maulah tungkaran, mulai ja mangatik pada kutak di bawah (lihati [[{{MediaWiki:Helppage}}|tungkaran patulung]] gasan panjalasan labih). Amun Pian ka sia cagaran tasalah, klik picikan '''back''' di panangadah web Pian.",
+'newarticletext'                   => "Pian maumpati sabuah tautan ka tungkaran nang baluman ada lagi. Gasan maulah tungkaran, mulai ja mangatik pada kutak di bawah (lihati [[{{MediaWiki:Helppage}}|tungkaran patulung]] gasan panjalasan labih). Amun Pian ka sia cagaran tasalah, klik picikan '''back''' di panjalajah web Pian.",
 'anontalkpagetext'                 => "----''Ini adalah tungkaran pamandiran gasan pamuruk kada bangaran nang baluman maulah akun pulang, atawa  kada mamuruknya. Kami tapaksa mamuruk numurik alamat IP hagan maminanduinya.
-Alamat Ip nangkaini kawaai dipuruk ulih babarapa pamuruk.
+Alamat IP nangkaini kawaai dipuruk ulih babarapa pamuruk.
 Amun Pian adalah pamuruk kada bangaran wan marasa kumin nang kada pas ta ka Pian, muhun [[Special:UserLogin/signup|ulah sabuah akun]] or [[Special:UserLogin|babuat log]] hagan mahindari kabingungan awan pamuruk kada bangaran lain kaina.",
 'noarticletext'                    => 'Parhatan ini kadada naskah di tungkaran ini.
 Pian kawa [[Special:Search/{{PAGENAME}}|manggagai gasan judul ini]] pintang tungkaran lain,
@@ -648,9 +648,9 @@ Inatakan bahwasa saragam  tungkaran-tungkaran .css wan .js mamuruk aksara halus,
 'session_fail_preview'             => "'''Ampun! Kami kada kawa manarusakan babakan Pian karana kahilangan wayah data.'''
 Cubai pang saasa pulang.
 Amun masih ham kada kulihan, cubai [[Special:UserLogout|lkaluar log]] wan abis itu babuat log pulang.",
-'session_fail_preview_html'        => "'''Ampun! Kami kada kawa manarusakan babakan Pian karana kahilangan wayah data.'''
+'session_fail_preview_html'        => "'''Kami kada kawa manarusakan babakan Pian karana kahilangan wayah data.'''
 
-''Karana {{SITENAME}} mangkawa-akan HTML mantah, titilikan disungkupakan sawagai pancahagahan sarangan Javascript.''
+''Marga {{SITENAME}} mangkawa'akan HTML mantah, titilikan disungkupakan sawagai pancahagahan sarangan Javascript.''
 
 '''Amun nangini adalah sabuah parcubaan babakan nang sabujurnya, muhun cubai lagi.'''
 Amun ini masih haja kada bagawi, cubai [[Special:UserLogout|kaluar log]] wan babuat log pulang.",
@@ -659,8 +659,8 @@ Babakan ini kada ditarima hagan mancagah kasalahan pada naskah tungkaran.
 Nangini ambahanu tajadi amun Pian mamuruk sabuah layanan proxy buggy bapandal web kada bangaran.",
 'editing'                          => 'Mambabak $1',
 'editingsection'                   => 'Mambabak $1 (hapat)',
-'editingcomment'                   => 'Mambaiki $1 (hapat hanyar)',
-'editconflict'                     => 'Babakan bacangkurahan: $1',
+'editingcomment'                   => 'Mambabak $1 (hapat hanyar)',
+'editconflict'                     => 'Babakan bacakut: $1',
 'explainconflict'                  => "Ada urang lain nang sudah maubah tungkaran ini parhatan Pian mula mambabak ini.
 Naskah atas baisi naskah tungkaran sawagai dimapa ini ada hahanyaran ini.
 Parubahan Pian ditampaiakan pada naskah di bawah.
@@ -765,7 +765,7 @@ Alasan nang dibari ulih $3 adalah ''$2''",
 'nextrevision'           => 'Ralatan salanjutnya→',
 'currentrevisionlink'    => 'Ralatan wayahini',
 'cur'                    => 'dmn',
-'next'                   => 'Dudi',
+'next'                   => 'dudi',
 'last'                   => 'sblm',
 'page_first'             => 'Panambaian',
 'page_last'              => 'Pauncitan',
@@ -774,7 +774,7 @@ Alasan nang dibari ulih $3 adalah ''$2''",
 'history-show-deleted'   => 'Nang dihapus haja',
 'histfirst'              => 'Palawasnya',
 'histlast'               => 'Pahanyarnya',
-'historysize'            => '($1 {{PLURAL:$1|bita|bita-bita}})',
+'historysize'            => '($1 {{PLURAL:$1|bita|bibita}})',
 'historyempty'           => '(kusung)',
 
 # Revision feed
@@ -826,11 +826,11 @@ Sawagai saurang pambakal Pian kawa nang balain ini; rarincian kawa diugai dalam 
 'revdelete-nologid-text'      => 'Pian kada maajuakan sabuah log kajadian tatuju hagan malakuakan pungsi ini atawa buat nang diajuakan kadada.',
 'revdelete-no-file'           => 'Barakas nang diajuakan kadada.',
 'revdelete-show-file-confirm' => 'Pian bujurkah handak maniringi sabuah ralatan tahapus matan barakas "<nowiki>$1</nowiki>" $2 pada $3?',
-'revdelete-show-file-submit'  => 'Ya',
+'revdelete-show-file-submit'  => 'Iya-ai',
 'revdelete-selected'          => "'''{{PLURAL:$2|Ralatan tapilih|Raralatan tapilih}} matan [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Log kajadian tapilih|Log kakajadian tapilih}}:'''",
-'revdelete-text'              => "Raralatan tahapus wan kakajadian akan amsih cungul dalam halam tungkaran wan lolog, tapi hapat matan isinya akan kada kawa diungkai umum.'''
-Papambakal lain pada {{SITENAME}} akan masih kawa maungkai isi tasungkup wan kawa mambulikakan hapusan pulang lung antarmuha sama, kacuali ada panambahan pambatasan lain disetel.",
+'revdelete-text'              => "Raralatan tahapus wan kakajadian akan magun cungul dalam halam tungkaran wan lolog, tagal hapat matan isinya akan kada kawa diungkai umum.'''
+Papambakal lain pada {{SITENAME}} akan masih kawa maungkai isi tasungkup wan kawa mambulikakan hapusan pulang lung antarmuha sama, kacuali ada panambahan pahalatan lain disitil.",
 'revdelete-confirm'           => 'Muhun yakinakan bahwasa Pian handak manggawi ini, bahwasa Pian paham sabab akibat, wan bahwasa Pian manggawi ini bapandal awan [[{{MediaWiki:Policy-url}}|kaaripan]].',
 'revdelete-suppress-text'     => "Panikinan parlu dipuruk gasan kakasus baumpat ini:
 * Pina kawa jadi panjalasan pitnah
@@ -844,7 +844,7 @@ Papambakal lain pada {{SITENAME}} akan masih kawa maungkai isi tasungkup wan kaw
 'revdelete-hide-user'         => 'Sungkupakan ngaran pamuruk/alamat IP pambabak',
 'revdelete-hide-restricted'   => 'Sungkupakan data matan pambakal nangkaya nang lain',
 'revdelete-radio-same'        => '(Ditangati maubah)',
-'revdelete-radio-set'         => 'Ya',
+'revdelete-radio-set'         => 'Iya-ai',
 'revdelete-radio-unset'       => 'Kada',
 'revdelete-suppress'          => 'Sungkupakan data matan pambakal nangkaya nang lain',
 'revdelete-unsuppress'        => 'Buang pambatasan pada ralatan-ralatan nang dibulikakan',
@@ -889,19 +889,19 @@ Muhun pariksa lolog.',
 ** Pina kawa jadi panjalasan pitnah',
 'revdelete-otherreason'       => 'Alasan lain/tatambahan:',
 'revdelete-reasonotherlist'   => 'Alasan lain',
-'revdelete-edit-reasonlist'   => 'Alasan-alasan pahapusan babakan',
-'revdelete-offender'          => 'Ralatan pananulis:',
+'revdelete-edit-reasonlist'   => 'Aalasan pahapusan babakan',
+'revdelete-offender'          => 'Ralatan panulis:',
 
 # Suppression log
 'suppressionlog'     => 'Log panikinan',
 'suppressionlogtext' => 'Nang di bawah adalah sabuah daptar matan pahahapusan wan Pamblublukiran tamasuk isi tasungkup matan papambakal. Lihati [[Special:IPBlockList|Daptar IP diblukir]] gasan daptar matan uprasi tahanyar tatangatan wan blublukir.',
 
 # Revision move
-'moverevlogentry'              => 'Ugahakan {{PLURAL:$3|asa ralatan|$3 ralatan-ralatan}} matan $1 ka $2',
-'revisionmove'                 => 'Ugahakan ralatan-ralatan matan "$1"',
+'moverevlogentry'              => 'Ugahakan {{PLURAL:$3|asa ralatan|$3 raralatan}} matan $1 ka $2',
+'revisionmove'                 => 'Ugahakan raralatan matan "$1"',
 'revmove-legend'               => 'setel tungkaran tatuju wan kasimpulan',
-'revmove-submit'               => 'Ugahakan ralatan-ralatan ka tungkaran tapilih',
-'revisionmoveselectedversions' => 'Ugahakan ralatan-ralatan tapilih',
+'revmove-submit'               => 'Ugahakan raralatan ka tungkaran tapilih',
+'revisionmoveselectedversions' => 'Ugahakan raralatan tapilih',
 'revmove-reasonfield'          => 'Alasan:',
 'revmove-titlefield'           => 'Tungkaran tatuju:',
 'revmove-badparam-title'       => 'Takaran buruk',
@@ -966,7 +966,7 @@ Bulik pulang ka tungkaran tadahulu wan cubai pulang.',
 'searchprofile-images-tooltip'     => 'Panggagaian barakas',
 'searchprofile-everything-tooltip' => 'Panggagaian sabarataan isi (tamasuk tutungkaran pamandiran)',
 'searchprofile-advanced-tooltip'   => 'Panggagaian pada ragam ngaran kakamar',
-'search-result-size'               => '$1 ({{PLURAL:$2|1 kata|$2 kata}})',
+'search-result-size'               => '$1 ({{PLURAL:$2|1 ujar|$2 uujar}})',
 'search-result-score'              => 'Kacucukan: $1%',
 'search-redirect'                  => '(Paugahan $1)',
 'search-section'                   => '(hapat $1)',
@@ -977,7 +977,7 @@ Bulik pulang ka tungkaran tadahulu wan cubai pulang.',
 'search-mwsuggest-enabled'         => 'awan saran',
 'search-mwsuggest-disabled'        => 'kadada saran',
 'search-relatedarticle'            => 'Bakulaan',
-'mwsuggest-disable'                => 'Kada kawa-akan sasaran AJAX',
+'mwsuggest-disable'                => "Kada kawa'akan sasaran AJAX",
 'searcheverything-enable'          => 'Panggagaian pada samunyaan ngaran kakamar',
 'searchrelated'                    => 'bakulaan',
 'searchall'                        => 'samunyaan',
@@ -1059,7 +1059,7 @@ Tarai pamintaan Pian lawan ''all:'' gasan manggagai samunyaan isi (tamasuk tungk
 'timezoneregion-europe'         => 'Irupa',
 'timezoneregion-indian'         => 'Lalautan Hindia',
 'timezoneregion-pacific'        => 'Lalautan Pasipik',
-'allowemail'                    => 'Kawa-akan surili papamuruk lain',
+'allowemail'                    => "Kawa'akan pamuruk lain mangirim suril",
 'prefs-searchoptions'           => 'Papilihan manggagai',
 'prefs-namespaces'              => 'Ngaran kamar',
 'defaultns'                     => 'Atawa-lah manggagai dalam ngaran kakamar nangini:',
@@ -1210,7 +1210,7 @@ Tungkaran-tungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''k
 'recentchangeslinked-to'      => 'Tampaiakan parubahan matan tungkaran-tungkaran nang tataut lawan tungkaran nang disurungakan',
 
 # Upload
-'upload'             => 'Buat naik barakas',
+'upload'             => 'Hunggahakan barakas',
 'uploadlogpage'      => 'Log mambuati',
 'verification-error' => 'Barakas nangini kada lulus paitihan.',
 'tmp-create-error'   => 'Kada kawa maulah barakas pahadangan.',
@@ -1357,10 +1357,10 @@ Pian kawa maubah tingkatan palindungan gasan tungkaran ini, tagal ini kada pacan
 # Undelete
 'undeletelink'              => 'tiring/bulikakan',
 'undeletedarticle'          => "''[[$1]]'' sudah dibulikakan",
-'undelete-show-file-submit' => 'Ya',
+'undelete-show-file-submit' => 'Iya-ai',
 
 # Namespace form on various pages
-'namespace'      => 'Ngaran kamar:',
+'namespace'      => 'Ngaran-kamar:',
 'invert'         => 'Bulikakan pilihan',
 'blanknamespace' => '(Tatambaian)',
 
@@ -1461,10 +1461,10 @@ Ini kawa maakibatakan parubahan kada taduga wan drastis gasan sabuah tungkaran r
 'tooltip-pt-login'                => 'Pian sabaiknya babuat ka dalam log; tagal ini kada kawajiban pang',
 'tooltip-pt-logout'               => 'Kaluar',
 'tooltip-ca-talk'                 => 'Pamandiran pasal isi tungkaran',
-'tooltip-ca-edit'                 => 'Pian kawa mambabak tungkaran ini. Sabaiknya puruk picikan titilikan sabalum manyimpan',
+'tooltip-ca-edit'                 => 'Pian kawa mambabak tungkaran ini. Tabéngkéng amun mamuruk picikan titilikan sabalum manyimpan',
 'tooltip-ca-addsection'           => 'Mulai sabuah hapat hanyar',
 'tooltip-ca-viewsource'           => 'Tungkaran ini dilindungi. Pian kawa maniring asal mulanya.',
-'tooltip-ca-history'              => 'Ralatan-ralatan bahari tungkaran ini',
+'tooltip-ca-history'              => 'Raralatan bahari tungkaran ini',
 'tooltip-ca-protect'              => 'Lindungi tungkaran ini',
 'tooltip-ca-delete'               => 'Hapus tungkaran ini',
 'tooltip-ca-move'                 => 'Pindahakan tungkaran ini',
@@ -1472,24 +1472,25 @@ Ini kawa maakibatakan parubahan kada taduga wan drastis gasan sabuah tungkaran r
 'tooltip-ca-unwatch'              => 'Buang tungkaran ini matan daptar itihan Pian',
 'tooltip-search'                  => 'Gagai {{SITENAME}}',
 'tooltip-search-go'               => 'Tulak ka sabuah tungkaran bangaran sama munnya sudah ada',
-'tooltip-search-fulltext'         => 'Gagai tungkaran nang baisi kata nangkaya ini',
+'tooltip-search-fulltext'         => 'Gagai tungkaran nang baisi naskah nangkaya ini',
+'tooltip-p-logo'                  => 'Ilangi tungkaran tatambaian',
 'tooltip-n-mainpage'              => 'Ilangi tungkaran tatambaian',
 'tooltip-n-mainpage-description'  => 'Ilangi Tungkaran Tatambaian',
 'tooltip-n-portal'                => 'Pasal rangka gawian, apa nang kawa pian gawi, di mana maugai sasuatu',
 'tooltip-n-currentevents'         => 'Gagai panjalasan prihal paristiwa wayahini',
 'tooltip-n-recentchanges'         => 'Daptar parubahan tahanyar dalam wiki',
 'tooltip-n-randompage'            => 'Tampaiakan sabuah babarang tungkaran',
-'tooltip-n-help'                  => 'Wadah maugai pangganian',
+'tooltip-n-help'                  => 'Wadah maugai patulung',
 'tooltip-t-whatlinkshere'         => 'Daptar samunyaan tungkaran wiki nang ada tautan ka sia',
-'tooltip-t-recentchangeslinked'   => 'Parubahan tahanyar dalam tungkaran-tungkaran tataut matan tungkaran ini',
+'tooltip-t-recentchangeslinked'   => 'Parubahan tahanyar dalam tutungkaran tataut matan tungkaran ini',
 'tooltip-feed-rss'                => 'Kitihan RSS gasan tungkaran ini',
 'tooltip-feed-atom'               => 'Kitihan Atum gasan tungkaran ini',
 'tooltip-t-contributions'         => 'Tiringi daptar sumbangan pamuruk ini',
 'tooltip-t-emailuser'             => 'Kirimi surel ka pamuruk ini',
-'tooltip-t-upload'                => 'Buat naikakan gambar atawa barakas média',
+'tooltip-t-upload'                => 'Hunggahakan babarakas',
 'tooltip-t-specialpages'          => 'Daptar samunyaan tungkaran istimiwa',
 'tooltip-t-print'                 => 'Nang kawa dicitaknya tungkaran ini',
-'tooltip-t-permalink'             => 'Tautan tatap gasan ralatan tungkaran ini',
+'tooltip-t-permalink'             => 'Tautan tatap ka raralatan tungkaran ini',
 'tooltip-ca-nstab-main'           => 'Tiringi tungkaran isi',
 'tooltip-ca-nstab-user'           => 'Tiring tungkaran pamuruk',
 'tooltip-ca-nstab-special'        => 'Nangini sabuah tungkaran istimiwa nang kada kawa dibabak.',

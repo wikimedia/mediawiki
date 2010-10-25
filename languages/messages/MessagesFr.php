@@ -1005,7 +1005,7 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’
 'longpagewarning'                  => "'''AVERTISSEMENT : cette page a une longueur de $1 Kio ;
 certains navigateurs Web gèrent mal la modification des pages approchant ou dépassant 32 Kio. Peut-être devriez-vous diviser la page en sections plus petites.'''",
 'longpageerror'                    => "'''ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.'''",
-'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l’instant.'''
+'readonlywarning'                  => "'''AVERTISSEMENT : la base de données a été verrouillée pour des opérations de maintenance. Vous ne pouvez donc pas publier vos modifications pour l’instant.'''
 Vous pouvez copier le texte dans un fichier texte et le conserver pour plus tard.
 
 L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1",
@@ -1265,7 +1265,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'compareselectedversions'  => 'Comparer les versions sélectionnées',
 'showhideselectedversions' => 'Afficher/masquer les versions sélectionnées',
 'editundo'                 => 'défaire',
-'diff-multi'               => '({{PLURAL:$1|Une révision intermédiaire|$1 révision intermédiaires}} par {{PLURAL:$2|un utilisateur|$2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
+'diff-multi'               => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par {{PLURAL:$2|un utilisateur|$2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
 'diff-multi-manyusers'     => "({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par plus {{PLURAL:$2|d'un utilisateur|de $2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})",
 
 # Search results
@@ -1990,7 +1990,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 'fewestrevisions' => 'Pages les moins modifiées',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|octet|octets}}',
+'nbytes'                  => '$1 octet{{PLURAL:$1||s}}',
 'ncategories'             => '$1 catégorie{{PLURAL:$1||s}}',
 'nlinks'                  => '$1 lien{{PLURAL:$1||s}}',
 'nmembers'                => '$1 membre{{PLURAL:$1||s}}',
@@ -3531,7 +3531,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'fileduplicatesearch-filename' => 'Nom du fichier :',
 'fileduplicatesearch-submit'   => 'Rechercher',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Taille du fichier : $3<br />Type MIME : $4',
-'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a pas de doublon.',
+'fileduplicatesearch-result-1' => 'Le fichier « $1 » n’a aucun doublon.',
 'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 doublon|$2 doublons}}.',
 
 # Special:SpecialPages
