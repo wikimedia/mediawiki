@@ -910,22 +910,6 @@ class WebInstaller extends CoreInstaller {
 	}
 
 	/**
-	 * Get the starting tags of a fieldset.
-	 *
-	 * @param $legend String: message name
-	 */
-	public function getFieldsetStart( $legend ) {
-		return "\n<fieldset><legend>" . wfMsgHtml( $legend ) . "</legend>\n";
-	}
-
-	/**
-	 * Get the end tag of a fieldset.
-	 */
-	public function getFieldsetEnd() {
-		return "</fieldset>\n";
-	}
-
-	/**
 	 * Helper for Installer::docLink()
 	 */
 	protected function getDocUrl( $page ) {

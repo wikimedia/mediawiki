@@ -99,7 +99,22 @@ abstract class WebInstallerPage {
 	public function setVar( $name, $value ) {
 		$this->parent->setVar( $name, $value );
 	}
-	
+
+	/**
+	 * Get the starting tags of a fieldset.
+	 *
+	 * @param $legend String: message name
+	 */
+	protected function getFieldsetStart( $legend ) {
+		return "\n<fieldset><legend>" . wfMsgHtml( $legend ) . "</legend>\n";
+	}
+
+	/**
+	 * Get the end tag of a fieldset.
+	 */
+	protected function getFieldsetEnd() {
+		return "</fieldset>\n";
+	}
 }
 
 class WebInstaller_Locked extends WebInstallerPage {
@@ -458,7 +473,7 @@ class WebInstaller_Name extends WebInstallerPage {
 				'attribs' => array( 'disabled' => '' ),
 			) ) .
 			$this->parent->getHelpBox( 'config-project-namespace-help' ) .
-			$this->parent->getFieldsetStart( 'config-admin-box' ) .
+			$this->getFieldSetStart( 'config-admin-box' ) .
 			$this->parent->getTextBox( array(
 				'var' => '_AdminName',
 				'label' => 'config-admin-name'
@@ -482,7 +497,7 @@ class WebInstaller_Name extends WebInstallerPage {
 				'label' => 'config-subscribe'
 			) ) .
 			$this->parent->getHelpBox( 'config-subscribe-help' ) .
-			$this->parent->getFieldsetEnd() .
+			$this->getFieldSetEnd() .
 			$this->parent->getInfoBox( wfMsg( 'config-almost-done' ) ) .
 			$this->parent->getRadioSet( array(
 				'var' => '_SkipOptional',
@@ -623,7 +638,7 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->parent->getHelpBox( 'config-license-help' ) .
 
 			# E-mail
-			$this->parent->getFieldsetStart( 'config-email-settings' ) .
+			$this->getFieldSetStart( 'config-email-settings' ) .
 			$this->parent->getCheckBox( array(
 				'var' => 'wgEnableEmail',
 				'label' => 'config-enable-email',
@@ -657,13 +672,13 @@ class WebInstaller_Options extends WebInstallerPage {
 			) ) .
 			$this->parent->getHelpBox( 'config-email-auth-help' ) .
 			"</div>" .
-			$this->parent->getFieldsetEnd()
+			$this->getFieldSetEnd()
 		);
 
 		$extensions = $this->parent->findExtensions();
 		
 		if( $extensions ) {
-			$extHtml = $this->parent->getFieldsetStart( 'config-extensions' );
+			$extHtml = $this->getFieldSetStart( 'config-extensions' );
 			
 			foreach( $extensions as $ext ) {
 				$extHtml .= $this->parent->getCheckBox( array(
@@ -673,13 +688,13 @@ class WebInstaller_Options extends WebInstallerPage {
 			}
 			
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
-				$this->parent->getFieldsetEnd();
+				$this->getFieldSetEnd();
 			$this->addHTML( $extHtml );
 		}
 
 		$this->addHTML(
 			# Uploading
-			$this->parent->getFieldsetStart( 'config-upload-settings' ) .
+			$this->getFieldSetStart( 'config-upload-settings' ) .
 			$this->parent->getCheckBox( array( 
 				'var' => 'wgEnableUploads',
 				'label' => 'config-upload-enable',
@@ -707,7 +722,7 @@ class WebInstaller_Options extends WebInstallerPage {
 				'label' => 'config-instantcommons',
 			) ) .
 			$this->parent->getHelpBox( 'config-instantcommons-help', wfMsgNoTrans( $canUse ) ) .
-			$this->parent->getFieldsetEnd()
+			$this->getFieldSetEnd()
 		);
 
 		$caches = array( 'none' );
@@ -718,7 +733,7 @@ class WebInstaller_Options extends WebInstallerPage {
 
 		$this->addHTML(
 			# Advanced settings
-			$this->parent->getFieldsetStart( 'config-advanced-settings' ) .
+			$this->getFieldSetStart( 'config-advanced-settings' ) .
 			# Object cache settings
 			$this->parent->getRadioSet( array(
 				'var' => 'wgMainCacheType',
@@ -734,7 +749,7 @@ class WebInstaller_Options extends WebInstallerPage {
 				'label' => 'config-memcached-servers',
 			) ) .
 			$this->parent->getHelpBox( 'config-memcached-help' ) . '</div>' .
-			$this->parent->getFieldsetEnd()
+			$this->getFieldSetEnd()
 		);
 		$this->endForm();
 	}
