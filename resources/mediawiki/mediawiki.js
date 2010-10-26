@@ -3,177 +3,199 @@
  */
 
 // New fallback String trimming functionality, was introduced natively in JavaScript 1.8.1
-if (typeof String.prototype.trim === 'undefined') {
-// Add removing trailing and leading whitespace functionality cross-browser
-// See also: http://blog.stevenlevithan.com/archives/faster-trim-javascript
-	String.prototype.trim = function () {
-		return this.replace(/^\s+|\s+$/g, '');
+if ( typeof String.prototype.trim === 'undefined' ) {
+	// Add removing trailing and leading whitespace functionality cross-browser
+	// See also: http://blog.stevenlevithan.com/archives/faster-trim-javascript
+	String.prototype.trim = function() {
+		return this.replace( /^\s+|\s+$/g, '' );
 	};
 }
-if (typeof String.prototype.trimLeft === 'undefined') {
-	String.prototype.trimLeft = function () {
-		return this.replace(/^\s\s*/, "");
+if ( typeof String.prototype.trimLeft === 'undefined' ) {
+	String.prototype.trimLeft = function() {
+		return this.replace( /^\s\s*/, "" );
 	};
 }
 
-if (typeof String.prototype.trimRight === 'undefined') {
-	String.prototype.trimRight = function () {
+if ( typeof String.prototype.trimRight === 'undefined' ) {
+	String.prototype.trimRight = function() {
 		return this.replace(/\s\s*$/, "");
-	};
-}
-
-// Add array comparison functionality
-if (typeof Array.prototype.compare === 'undefined') {
-	Array.prototype.compare = function (against) {
-		if (this.length !== against.length) {
-			return false;
-		}
-		for (var i = 0; i < against.length; i++) {
-			if (this[i].compare) {
-				if (!this[i].compare(against[i])) {
-					return false;
-				}
-			}
-			if (this[i] !== against[i]) {
-				return false;
-			}
-		}
-		return true;
-	};
-}
-
-// Make calling .indexOf() on an array work on older browsers
-if (typeof Array.prototype.indexOf === 'undefined') {
-	Array.prototype.indexOf = function (needle) {
-		for (var i = 0; i < this.length; i++) {
-			if (this[i] === needle) {
-				return i;
-			}
-		}
-		return -1;
 	};
 }
 
 /*
  * Core MediaWiki JavaScript Library
  */
+
 // Attach to window
 window.mediaWiki = new ( function( $ ) {
-
+	
 	/* Constants */
-
+	
 	// This will not change until we are 100% ready to turn off legacy globals
 	var LEGACY_GLOBALS = true;
-
+	
 	/* Private Members */
-
-	var that = this;
-
+	
+	// List of messages that have been requested to be loaded
+	var messageQueue = {};
+	
 	/* Prototypes */
-
-	this.prototypes = {
-		/*
-		 * An object which allows single and multiple get/set/exists functionality on a list of key / value pairs
-		 *
-		 * @param {boolean} global whether to get/set/exists values on the window object or a private object
-		 * @param {function} parser function to perform extra processing; in the form of function( value, options )
-		 * @param {function} fallback function to format default fallback; in the form of function( key )
-		 * where value is the data to be parsed and options is additional data passed through to the parser
-		 */
-		'map': function( global, parser, fallback ) {
-
-			/* Private Members */
-
-			var that = this;
-			var values = global === true ? window : {};
-
-			/* Public Methods */
-
-			/**
-			 * Gets one or more values
-			 *
-			 * If called with no arguments, all values will be returned. If a parser is in use, no parsing will take
-			 * place when calling with no arguments or calling with an array of names.
-			 *
-			 * @param {mixed} selection string name of value to get, array of string names of values to get, or object
-			 * of name/option pairs
-			 * @param {object} options optional set of options which are also passed to a parser if in use; only used
-			 * when selection is a string
-			 * @format options
-			 * 	{
-			 * 		// Value to use if key does not exist
-			 * 		'fallback': ''
-			 * 	}
-			 */
-			this.get = function( selection, options ) {
-				if ( typeof selection === 'object' ) {
-					var results = {};
-					for ( var s in selection ) {
-						if ( selection.hasOwnProperty( s ) ) {
-							if ( typeof s === 'string' ) {
-								return that.get( values[s], selection[s] );
-							} else {
-								return that.get( selection[s] );
-							}
-						}
-					}
-					return results;
-				} else if ( typeof selection === 'string' ) {
-					if ( typeof values[selection] === 'undefined' ) {
-						if ( typeof options === 'object' && 'fallback' in options ) {
-							return options.fallback;
-						} else if ( typeof fallback === 'function' ) {
-							return fallback( selection );
-						} else {
-							return null;
-						}
-					} else {
-						if ( typeof parser === 'function' ) {
-							return parser( values[selection], options );
-						} else {
-							return values[selection];
-						}
-					}
-				} else {
-					return values;
+	
+	/**
+	 * An object which allows single and multiple get/set/exists functionality on a list of key / value pairs.
+	 * 
+	 * @param {boolean} global Whether to get/set/exists values on the window object or a private object
+	 */
+	function Map( global ) {
+		this.values = ( global === true ) ? window : {};
+	};
+	
+	/**
+	 * Gets the value of a key, or a list of key/value pairs for an array of keys.
+	 * 
+	 * If called with no arguments, all values will be returned.
+	 * 
+	 * @param {mixed} selection Key or array of keys to get values for
+	 * @param {mixed} fallback Value to use in case key(s) do not exist (optional)
+	 */
+	Map.prototype.get = function( selection, fallback ) {
+		if ( typeof selection === 'object' ) {
+			selection = $.makeArray( selection );
+			var results = {};
+			for ( var i = 0; i < selection.length; i++ ) {
+				results[selection[i]] = this.get( selection[i], fallback );
+			}
+			return results;
+		} else if ( typeof selection === 'string' ) {
+			if ( typeof this.values[selection] === 'undefined' ) {
+				if ( typeof fallback !== 'undefined' ) {
+					return fallback;
 				}
-			};
-
-			/**
-			 * Sets one or multiple configuration values using a key and a value or an object of keys and values
-			 *
-			 * @param {mixed} key string of name by which value will be made accessible, or object of name/value pairs
-			 * @param {mixed} value optional value to set, only in use when key is a string
-			 */
-			this.set = function( selection, value ) {
-				if ( typeof selection === 'object' ) {
-					for ( var s in selection ) {
-						values[s] = selection[s];
-					}
-				} else if ( typeof selection === 'string' && typeof value !== 'undefined' ) {
-					values[selection] = value;
-				}
-			};
-
-			/**
-			 * Checks if one or multiple configuration fields exist
-			 */
-			this.exists = function( selection ) {
-				if ( typeof keys === 'object' ) {
-					for ( var s = 0; s < selection.length; s++ ) {
-						if ( !( selection[s] in values ) ) {
-							return false;
-						}
-					}
-					return true;
-				} else {
-					return selection in values;
-				}
-			};
+				return null;
+			}
+			return this.values[selection];
+		}
+		return this.values;
+	};
+	
+	/**
+	 * Sets one or multiple key/value pairs.
+	 * 
+	 * @param {mixed} selection Key or object of key/value pairs to set
+	 * @param {mixed} value Value to set (optional, only in use when key is a string)
+	 */
+	Map.prototype.set = function( selection, value ) {
+		if ( typeof selection === 'object' ) {
+			for ( var s in selection ) {
+				this.values[s] = selection[s];
+			}
+		} else if ( typeof selection === 'string' && typeof value !== 'undefined' ) {
+			this.values[selection] = value;
 		}
 	};
-
-	/* Methods */
+	
+	/**
+	 * Checks if one or multiple keys exist.
+	 * 
+	 * @param {mixed} key Key or array of keys to check
+	 * @return {boolean} Existence of key(s)
+	 */
+	Map.prototype.exists = function( selection ) {
+		if ( typeof keys === 'object' ) {
+			for ( var s = 0; s < selection.length; s++ ) {
+				if ( !( selection[s] in this.values ) ) {
+					return false;
+				}
+			}
+			return true;
+		} else {
+			return selection in this.values;
+		}
+	};
+	
+	/**
+	 * Message object, similar to Message in PHP 
+	 */
+	function Message( map, key, parameters ) {
+		this.format = 'parse';
+		this.map = map;
+		this.key = key;
+		this.parameters = typeof parameters === 'undefined' ? [] : $.makeArray( parameters );
+	};
+	
+	/**
+	 * Appends parameters for replacement
+	 * 
+	 * @param {mixed} args First in a list of variadic arguments to append as message parameters
+	 */
+	Message.prototype.params = function( parameters ) {
+		for ( var i = 0; i < parameters.length; i++ ) {
+			this.parameters[this.parameters.length] = parameters[i];
+		}
+		return this;
+	};
+	
+	/**
+	 * Converts message object to it's string form based on the state of format
+	 * 
+	 * @return {string} String form of message
+	 */
+	Message.prototype.toString = function() {
+		if ( !this.map.exists( this.key ) ) {
+			// Return <key> if key does not exist
+			return '<' + key + '>';
+		}
+		var text = this.map.get( this.key );
+		var parameters = this.parameters;
+		text = text.replace( /\$(\d+)/g, function( string, match ) {
+			var index = parseInt( match, 10 ) - 1;
+			return index in parameters ? parameters[index] : '$' + match;
+		} );
+		/* This should be fixed up when we have a parser
+		if ( this.format === 'parse' && 'language' in mediaWiki ) {
+			text = mediaWiki.language.parse( text );
+		}
+		*/
+		return text;
+	};
+	
+	/**
+	 * Changes format to parse and converts message to string
+	 * 
+	 * @return {string} String form of parsed message
+	 */
+	Message.prototype.parse = function() {
+		this.format = 'parse';
+		return this.toString();
+	};
+	
+	/**
+	 * Changes format to plain and converts message to string
+	 * 
+	 * @return {string} String form of plain message
+	 */
+	Message.prototype.plain = function() {
+		this.format = 'plain';
+		return this.toString();
+	};
+	
+	/**
+	 * Checks if message exists
+	 * 
+	 * @return {string} String form of parsed message
+	 */
+	Message.prototype.exists = function() {
+		return this.map.exists( this.key );
+	};
+	
+	/**
+	 * User object
+	 */
+	function User() {
+		this.options = new Map();
+	}
+	
+	/* Public Members */
 
 	/*
 	 * Dummy function which in debug mode can be replaced with a function that does something clever
@@ -185,37 +207,38 @@ window.mediaWiki = new ( function( $ ) {
 	 *
 	 * In legacy mode the values this object wraps will be in the global space
 	 */
-	this.config = new this.prototypes.map( LEGACY_GLOBALS );
+	this.config = new Map( LEGACY_GLOBALS );
 
 	/*
 	 * Information about the current user
 	 */
-	this.user = new ( function() {
-
-		/* Public Members */
-
-		this.options = new that.prototypes.map();
-	} )();
-
-	/*
-	 * Basic parser, can be replaced with something more robust
-	 */
-	this.parser = function( text, options ) {
-		if ( typeof options === 'object' && typeof options.parameters === 'object' ) {
-			text = text.replace( /\$(\d+)/g, function( str, match ) {
-				var index = parseInt( match, 10 ) - 1;
-				return index in options.parameters ? options.parameters[index] : '$' + match;
-			} );
-		}
-		return text;
-	};
-
+	this.user = new User();
+	
 	/*
 	 * Localization system
 	 */
-	this.msg = new that.prototypes.map( false, this.parser, function( key ) { return '<' + key + '>'; } );
-
-	/*
+	this.messages = new Map();
+	
+	/* Public Methods */
+	
+	/**
+	 * Gets a message object, similar to wfMessage()
+	 * 
+	 * @param {string} key Key of message to get
+	 * @param {mixed} params First argument in a list of variadic arguments, each a parameter for $ replacement
+	 */
+	this.message = function( key, parameters ) {
+		// Support variadic arguments
+		if ( typeof parameters !== 'undefined' ) {
+			parameters = $.makeArray( arguments);
+			parameters.shift();
+		} else {
+			parameters = [];
+		}
+		return new Message( mediaWiki.messages, key, parameters );
+	};
+	
+	/**
 	 * Client-side module loader which integrates with the MediaWiki ResourceLoader
 	 */
 	this.loader = new ( function() {
@@ -223,7 +246,7 @@ window.mediaWiki = new ( function( $ ) {
 		/* Private Members */
 
 		var that = this;
-		/*
+		/**
 		 * Mapping of registered modules
 		 *
 		 * The jquery module is pre-registered, because it must have already been provided for this object to have
@@ -256,6 +279,23 @@ window.mediaWiki = new ( function( $ ) {
 
 		/* Private Methods */
 
+		function compare( a, b ) {
+			if ( a.length != b.length ) {
+				return false;
+			}
+			for ( var i = 0; i < b.length; i++ ) {
+				if ( $.isArray( a[i] ) ) { 
+					if ( !compare( a[i], b[i] ) ) {
+						return false;
+					}
+				}
+				if ( a[i] !== b[i] ) {
+					return false;
+				}
+			}
+			return true;
+		};
+		
 		/**
 		 * Generates an ISO8601 "basic" string from a UNIX timestamp
 		 */
@@ -275,7 +315,9 @@ window.mediaWiki = new ( function( $ ) {
 		 * Recursively resolves dependencies and detects circular references
 		 */
 		function recurse( module, resolved, unresolved ) {
-			unresolved[unresolved.length] = module;
+			if ( typeof registry[module] === 'undefined' ) {
+				throw new Error( 'Unknown dependency: ' + module );
+			}
 			// Resolves dynamic loader function and replaces it with it's own results
 			if ( typeof registry[module].dependencies === 'function' ) {
 				registry[module].dependencies = registry[module].dependencies();
@@ -286,8 +328,8 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// Tracks down dependencies
 			for ( var n = 0; n < registry[module].dependencies.length; n++ ) {
-				if ( resolved.indexOf( registry[module].dependencies[n] ) === -1 ) {
-					if ( unresolved.indexOf( registry[module].dependencies[n] ) !== -1 ) {
+				if ( $.inArray( registry[module].dependencies[n], resolved ) === -1 ) {
+					if ( $.inArray( registry[module].dependencies[n], unresolved ) !== -1 ) {
 						throw new Error(
 							'Circular reference detected: ' + module + ' -> ' + registry[module].dependencies[n]
 						);
@@ -296,7 +338,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 			}
 			resolved[resolved.length] = module;
-			unresolved.splice( unresolved.indexOf( module ), 1 );
+			unresolved.splice( $.inArray( module, unresolved ), 1 );
 		}
 
 		/**
@@ -391,7 +433,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// Add localizations to message system
 			if ( typeof registry[module].messages === 'object' ) {
-				mediaWiki.msg.set( registry[module].messages );
+				mediaWiki.messages.set( registry[module].messages );
 			}
 			// Execute script
 			try {
@@ -399,7 +441,7 @@ window.mediaWiki = new ( function( $ ) {
 				registry[module].state = 'ready';
 				// Run jobs who's dependencies have just been met
 				for ( var j = 0; j < jobs.length; j++ ) {
-					if ( filter( 'ready', jobs[j].dependencies ).compare( jobs[j].dependencies ) ) {
+					if ( compare( filter( 'ready', jobs[j].dependencies ), jobs[j].dependencies ) ) {
 						if ( typeof jobs[j].ready === 'function' ) {
 							jobs[j].ready();
 						}
@@ -410,7 +452,7 @@ window.mediaWiki = new ( function( $ ) {
 				// Execute modules who's dependencies have just been met
 				for ( r in registry ) {
 					if ( registry[r].state == 'loaded' ) {
-						if ( filter( ['ready'], registry[r].dependencies ).compare( registry[r].dependencies ) ) {
+						if ( compare( filter( ['ready'], registry[r].dependencies ), registry[r].dependencies ) ) {
 							execute( r );
 						}
 					}
@@ -421,7 +463,7 @@ window.mediaWiki = new ( function( $ ) {
 				registry[module].state = 'error';
 				// Run error callbacks of jobs affected by this condition
 				for ( var j = 0; j < jobs.length; j++ ) {
-					if ( jobs[j].dependencies.indexOf( module ) !== -1 ) {
+					if ( $.inArray( module, jobs[j].dependencies ) !== -1 ) {
 						if ( typeof jobs[j].error === 'function' ) {
 							jobs[j].error();
 						}
@@ -460,7 +502,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Queue up any dependencies that are undefined or registered
 			dependencies = filter( ['undefined', 'registered'], dependencies );
 			for ( var n = 0; n < dependencies.length; n++ ) {
-				if ( queue.indexOf( dependencies[n] ) === -1 ) {
+				if ( $.inArray( dependencies[n], queue ) === -1 ) {
 					queue[queue.length] = dependencies[n];
 				}
 			}
@@ -493,7 +535,7 @@ window.mediaWiki = new ( function( $ ) {
 				// Only request modules which are undefined or registered
 				if ( !( queue[q] in registry ) || registry[queue[q]].state == 'registered' ) {
 					// Prevent duplicate entries
-					if ( batch.indexOf( queue[q] ) === -1 ) {
+					if ( $.inArray( queue[q], batch ) === -1 ) {
 						batch[batch.length] = queue[q];
 						// Mark registered modules as loading
 						if ( queue[q] in registry ) {
@@ -633,7 +675,7 @@ window.mediaWiki = new ( function( $ ) {
 				registry[module].messages = localization;
 			}
 			// Execute or queue callback
-			if ( filter( ['ready'], registry[module].dependencies ).compare( registry[module].dependencies ) ) {
+			if ( compare( filter( ['ready'], registry[module].dependencies ), registry[module].dependencies ) ) {
 				execute( module );
 			} else {
 				request( module );
@@ -660,7 +702,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Resolve entire dependency map
 			dependencies = resolve( dependencies );
 			// If all dependencies are met, execute ready immediately
-			if ( filter( ['ready'], dependencies ).compare( dependencies ) ) {
+			if ( compare( filter( ['ready'], dependencies ), dependencies ) ) {
 				if ( typeof ready === 'function' ) {
 					ready();
 				}
@@ -714,7 +756,7 @@ window.mediaWiki = new ( function( $ ) {
 			// Resolve entire dependency map
 			modules = resolve( modules );
 			// If all modules are ready, nothing dependency be done
-			if ( filter( ['ready'], modules ).compare( modules ) ) {
+			if ( compare( filter( ['ready'], modules ), modules ) ) {
 				return true;
 			}
 			// If any modules have errors return false
