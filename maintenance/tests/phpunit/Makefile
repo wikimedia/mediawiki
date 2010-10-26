@@ -37,7 +37,7 @@ parser:
 	${PU} --group Parser
 
 noparser:
-	${PU} --exclude-group Parser
+	${PU} --exclude-group Parser,Broken
 
 list-groups:
 	${PU} --list-groups
