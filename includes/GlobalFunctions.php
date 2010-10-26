@@ -2457,9 +2457,11 @@ function wfDl( $extension ) {
  * @param $cmd Command line, properly escaped for shell.
  * @param &$retval optional, will receive the program's exit code.
  *                 (non-zero is usually failure)
+ * @param $environ Array optional environment variables which should be 
+ *                 added to the executed command environment.
  * @return collected stdout as a string (trailing newlines stripped)
  */
-function wfShellExec( $cmd, &$retval = null ) {
+function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime;
 
 	static $disabled;
@@ -2487,6 +2489,25 @@ function wfShellExec( $cmd, &$retval = null ) {
 
 	wfInitShellLocale();
 
+	$envcmd = '';
+	foreach( $environ as $k => $v ) {
+		if ( wfIsWindows() ) {
+			/* Surrounding a set in quotes (method used by wfEscapeShellArg) makes the quotes themselves 
+			 * appear in the environment variable, so we must use carat escaping as documented in 
+			 * http://technet.microsoft.com/en-us/library/cc723564.aspx 
+			 * Note however that the quote isn't listed there, but is needed, and the parentheses 
+			 * are listed there but doesn't appear to need it.
+			 */
+			$envcmd .= "set $k=" . preg_replace( '/([&|()<>^"])/', '^\\1', $v ) . ' && ';
+		} else {
+			/* Assume this is a POSIX shell, thus required to accept variable assignments before the command 
+			 * http://www.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html#tag_02_09_01
+			 */
+			$envcmd .= "$k=" . escapeshellarg( $v ) . ' ';
+		}
+	}
+	$cmd = $envcmd . $cmd;
+	
 	if ( wfIsWindows() ) {
 		if ( version_compare( PHP_VERSION, '5.3.0', '<' ) && /* Fixed in 5.3.0 :) */
 			( version_compare( PHP_VERSION, '5.2.1', '>=' ) || php_uname( 's' ) == 'Windows NT' ) )

@@ -148,9 +148,9 @@ class BitmapHandler extends ImageHandler {
 			}
 
 			// Use one thread only, to avoid deadlock bugs on OOM
-			$tempEnv = 'OMP_NUM_THREADS=1 ';
+			$env = array( 'OMP_NUM_THREADS' => 1 );
 			if ( strval( $wgImageMagickTempDir ) !== '' ) {
-				$tempEnv .= 'MAGICK_TMPDIR=' . wfEscapeShellArg( $wgImageMagickTempDir ) . ' ';
+				$env['MAGICK_TMPDIR'] = $wgImageMagickTempDir;
 			}
 
 			$cmd  = 
@@ -171,14 +171,9 @@ class BitmapHandler extends ImageHandler {
 				" {$animation_post} " .
 				wfEscapeShellArg( $this->escapeMagickOutput( $dstPath ) ) . " 2>&1";
 
-			if ( !wfIsWindows() ) {
-				// Assume we have a POSIX compliant shell which accepts variable assignments preceding the command
-				$cmd = $tempEnv . $cmd;
-			}
-
 			wfDebug( __METHOD__.": running ImageMagick: $cmd\n" );
 			wfProfileIn( 'convert' );
-			$err = wfShellExec( $cmd, $retval );
+			$err = wfShellExec( $cmd, $retval, $env );
 			wfProfileOut( 'convert' );
 		} elseif( $scaler == 'custom' ) {
 			# Use a custom convert command
