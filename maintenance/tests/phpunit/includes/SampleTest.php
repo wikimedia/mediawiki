@@ -6,6 +6,9 @@ class TestSample extends PHPUnit_Framework_TestCase {
 	 * Anything that needs to happen before your tests should go here.
 	 */
 	function setUp() {
+		global $wgContLang;
+		/* For example, we need to set $wgContLang for creating a new Title */
+		$wgContLang = Language::factory( 'en' );
 	}
 
 	/**
