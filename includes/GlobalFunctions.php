@@ -2068,11 +2068,11 @@ function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
  * @return Bool: true if it's Windows, False otherwise.
  */
 function wfIsWindows() {
-	if ( substr( php_uname(), 0, 7 ) == 'Windows' ) {
-		return true;
-	} else {
-		return false;
+	static $isWindows = null;
+	if ( $isWindows === null ) {
+		$isWindows = substr( php_uname(), 0, 7 ) == 'Windows';
 	}
+	return $isWindows;
 }
 
 /**
