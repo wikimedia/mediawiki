@@ -2468,13 +2468,14 @@ function wfShellExec( $cmd, &$retval = null ) {
 		if( wfIniGetBool( 'safe_mode' ) ) {
 			wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
 			$disabled = 'safemode';
-		}
-		$functions = explode( ',', ini_get( 'disable_functions' ) );
-		$functions = array_map( 'trim', $functions );
-		$functions = array_map( 'strtolower', $functions );
-		if ( in_array( 'passthru', $functions ) ) {
-			wfDebug( "passthru is in disabled_functions\n" );
-			$disabled = 'passthru';
+		} else {
+			$functions = explode( ',', ini_get( 'disable_functions' ) );
+			$functions = array_map( 'trim', $functions );
+			$functions = array_map( 'strtolower', $functions );
+			if ( in_array( 'passthru', $functions ) ) {
+				wfDebug( "passthru is in disabled_functions\n" );
+				$disabled = 'passthru';
+			}
 		}
 	}
 	if ( $disabled ) {
