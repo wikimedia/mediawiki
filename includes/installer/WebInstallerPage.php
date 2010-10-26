@@ -119,7 +119,8 @@ class WebInstaller_Locked extends WebInstallerPage {
 		} else {
 			$key = $r->getText( 'config_wpUpgradeKey' );
 			if( !$key || $key !== $this->getVar( '_UpgradeKey' ) ) {
-				$this->display( true );
+				$this->parent->showError( 'config-localsettings-badkey' );
+				$this->display();
 				return 'output';
 			} else {
 				$this->setVar( '_LocalSettingsLocked', false );
@@ -130,23 +131,17 @@ class WebInstaller_Locked extends WebInstallerPage {
 
 	/**
 	 * Display stuff to the end user
-	 * @param $badKey bool Whether the key input by the user was bad
 	 */
-	private function display( $badKey = false ) {
+	private function display() {
 		$this->startForm();
+		$this->parent->showStatusBox( $this->status );
 		if( $this->status->isOK() && !$this->status->isGood() ) {
-			if( $badKey ) {
-				$this->parent->showError( 'config-localsettings-badkey' );
-			}
-			$this->parent->output->addWikiText( wfMsg( 'config-localsettings-upgrade' )  );
 			$this->addHTML( "<br />" .
 				$this->parent->getTextBox( array(
 					'var' => 'wpUpgradeKey',
 					'label' => 'config-localsettings-key',
 				) )
 			);
-		} else {
-			$this->parent->showStatusBox( $this->status );
 		}
 		$this->endForm();
 	}
