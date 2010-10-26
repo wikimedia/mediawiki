@@ -71,13 +71,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $dependencies = array();
 	/**
 	 * @var {array} List of message keys used by this module
-	 * @format array( [module-name], [module-name], ... )
-	 */
-	protected $messages = array();
-	/**
-	 * @var {string} Name of group this module should be loaded in
 	 * @format array( [message-key], [message-key], ... )
 	 */
+	protected $messages = array();
+	/** @var {string} Name of group to load this module in */
 	protected $group;
 	/** @var {boolean} Link to raw files in debug mode */
 	protected $debugRaw = true;
