@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryPageProps extends ApiQueryBase {
 
-	private $params, $titles, $missing, $everything;
+	private $params;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'pp' );
