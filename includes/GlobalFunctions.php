@@ -2487,7 +2487,16 @@ function wfShellExec( $cmd, &$retval = null ) {
 
 	wfInitShellLocale();
 
-	if ( php_uname( 's' ) == 'Linux' ) {
+	if ( wfIsWindows() ) {
+		if ( version_compare( PHP_VERSION, '5.3.0', '<' ) && /* Fixed in 5.3.0 :) */
+			( version_compare( PHP_VERSION, '5.2.1', '>=' ) || php_uname( 's' ) == 'Windows NT' ) )
+		{
+			# Hack to work around PHP's flawed invocation of cmd.exe
+			# http://news.php.net/php.internals/21796
+			# Windows 9x doesn't accept any kind of quotes
+			$cmd = '"' . $cmd . '"';
+		}
+	} elseif ( php_uname( 's' ) == 'Linux' ) {
 		$time = intval( $wgMaxShellTime );
 		$mem = intval( $wgMaxShellMemory );
 		$filesize = intval( $wgMaxShellFileSize );
@@ -2498,13 +2507,6 @@ function wfShellExec( $cmd, &$retval = null ) {
 				$cmd = '/bin/bash ' . escapeshellarg( $script ) . " $time $mem $filesize " . escapeshellarg( $cmd );
 			}
 		}
-	} elseif ( php_uname( 's' ) == 'Windows NT' &&
-		version_compare( PHP_VERSION, '5.3.0', '<' ) )
-	{
-		# This is a hack to work around PHP's flawed invocation of cmd.exe
-		# http://news.php.net/php.internals/21796
-		# Which is fixed in 5.3.0 :)
-		$cmd = '"' . $cmd . '"';
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
 
