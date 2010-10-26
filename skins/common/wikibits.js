@@ -156,7 +156,7 @@ window.showTocToggle = function() {
 		toggleLink.href = '#';
 		addClickHandler( toggleLink, function( evt ) { toggleToc(); return killEvt( evt ); } );
 		
-		toggleLink.appendChild( document.createTextNode( mediaWiki.msg.get( 'hidetoc' ) ) );
+		toggleLink.appendChild( document.createTextNode( mediaWiki.message( 'hidetoc' ) ) );
 
 		outerSpan.appendChild( document.createTextNode( '[' ) );
 		outerSpan.appendChild( toggleLink );
@@ -198,12 +198,12 @@ window.toggleToc = function() {
 	var toggleLink = document.getElementById( 'togglelink' );
 
 	if ( toc && toggleLink && toc.style.display == 'none' ) {
-		changeText( toggleLink, mediaWiki.msg.get( 'hidetoc' ) );
+		changeText( toggleLink, mediaWiki.message( 'hidetoc' ) );
 		toc.style.display = 'block';
 		document.cookie = "hidetoc=0";
 		tocmain.className = 'toc';
 	} else {
-		changeText( toggleLink, mediaWiki.msg.get( 'showtoc' ) );
+		changeText( toggleLink, mediaWiki.message( 'showtoc' ) );
 		toc.style.display = 'none';
 		document.cookie = "hidetoc=1";
 		tocmain.className = 'toc tochidden';
