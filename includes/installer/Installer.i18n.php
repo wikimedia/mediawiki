@@ -20,8 +20,7 @@ Your software is able to upgrade. Please fill in the value of <code>\$wgUpgradeK
 	'config-localsettings-key'        => 'Upgrade key:',
 	'config-localsettings-badkey'     => 'The key you provided is incorrect',
 	'config-localsettings-noupgrade'  => "'''Error''': A <code>LocalSettings.php</code> file has been detected.
-Your software is not able to upgrade at this time.
-The installer has been disabled for security reasons.",
+Your software is not able to upgrade at this time. The installer has been disabled for security reasons.",
 	'config-session-error'            => 'Error starting session: $1',
 	'config-session-expired'          => 'Your session data seems to have expired.
 Sessions are configured for a lifetime of $1.
