@@ -238,12 +238,6 @@ define( 'SLH_PATTERN', 1 );
  */
 define( 'RLH_FOR_UPDATE', 1 );
 
-/**
- * @deprecated This used to be a define in Title.php, but was moved to
- * Title::GAID_FOR_UPDATE in 1.17. This will probably be removed in 1.18
- */
-define( 'GAID_FOR_UPDATE', 1 );
-
 /**@{
  * Autopromote conditions (must be here and not in Autopromote.php, so that
  * they're loaded for DefaultSettings.php before AutoLoader.php)
