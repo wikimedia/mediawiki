@@ -374,17 +374,6 @@ class WebInstaller extends CoreInstaller {
 	}
 
 	/**
-	 * Get a WebInstallerPage from the main sequence, by ID.
-	 *
-	 * @param $id Integer
-	 *
-	 * @return WebInstallerPage
-	 */
-	public function getPageById( $id ) {
-		return $this->getPageByName( $this->pageSequence[$id] );
-	}
-
-	/**
 	 * Get a WebInstallerPage by name.
 	 *
 	 * @param $pageName String
