@@ -460,7 +460,7 @@ class WebInstaller extends CoreInstaller {
 	 *
 	 * @param $currentPageName String
 	 */
-	public function startPageWrapper( $currentPageName ) {
+	private function startPageWrapper( $currentPageName ) {
 		$s = "<div class=\"config-page-wrapper\">\n" .
 			"<div class=\"config-page-list\"><ul>\n";
 		$lastHappy = -1;
@@ -501,7 +501,7 @@ class WebInstaller extends CoreInstaller {
 	 *
 	 * @return string
 	 */
-	public function getPageListItem( $pageName, $enabled, $currentPageName ) {
+	private function getPageListItem( $pageName, $enabled, $currentPageName ) {
 		$s = "<li class=\"config-page-list-item\">";
 		$name = wfMsg( 'config-page-' . strtolower( $pageName ) );
 
@@ -545,7 +545,7 @@ class WebInstaller extends CoreInstaller {
 	/**
 	 * Output some stuff after a page is finished.
 	 */
-	public function endPageWrapper() {
+	private function endPageWrapper() {
 		$this->output->addHTMLNoFlush(
 			"</div>\n" .
 			"<br style=\"clear:both\"/>\n" .
@@ -928,7 +928,7 @@ class WebInstaller extends CoreInstaller {
 	/**
 	 * Helper for Installer::docLink()
 	 */
-	public function getDocUrl( $page ) {
+	protected function getDocUrl( $page ) {
 		$url = "{$_SERVER['PHP_SELF']}?page=" . urlencode( $page );
 
 		if ( in_array( $this->currentPageName, $this->pageSequence ) ) {
