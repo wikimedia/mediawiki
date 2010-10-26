@@ -55,9 +55,8 @@ LocalSettings.php, see there for more info.
 
 ==== From the web ====
 
-You will need to temporarily remove LocalSettings.php. This is to keep people
-from accessing the installer. Keep a backup copy of LocalSettings.php somewhere
-safe
+You will need to set $wgUpgradeKey in your LocalSettings.php in order to use
+the updater.
 
 If you browse to the web-based installation script (usually at /config/index.php)
 from your wiki installation you can follow the script and upgrade your database
@@ -66,8 +65,6 @@ in place.
 You may change some settings during the install, but be very careful!
 Changing the encoding in particular will generally leave you with a
 lot of corrupt pages, particularly if your wiki is not in English.
-
-Once you are done, you can move LocalSettings.php back to its proper place.
 
 ==== From the command line ====
 
@@ -218,13 +215,6 @@ For general help on pg_dump:
 http://www.postgresql.org/docs/current/static/app-pgdump.html
 
 == Caveats ==
-
-=== Postgres ===
-
-Postgres support is new, and much of the upgrade instructions may 
-not apply. The schema was changed significantly from 1.7 to 1.8, 
-so you will need to at least use the update.php or web installer, 
-as described above.
 
 === Upgrading from 1.4.2 or earlier ===
 
