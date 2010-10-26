@@ -22,7 +22,7 @@ abstract class Benchmarker extends Maintenance {
 
 	public function bench( array $benchs ) {
 		$bench_number = 0;
-		$count = $this->getOption( 'count' );
+		$count = $this->getOption( 'count', 100 );
 
 		foreach( $benchs as $bench ) {
 			// handle empty args
