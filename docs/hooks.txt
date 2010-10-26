@@ -373,6 +373,10 @@ $article: the article (object) being deleted
 $output: the OutputPage object ($wgOut)
 &$reason: the reason (string) the article is being deleted
 
+'ArticleContentOnDiff': before showing the article below a diff
+ $diffEngine: the DifferenceEngine
+ $output: the OutputPage object ($wgOut)
+
 'ArticleDelete': before an article is deleted
 $article: the article (object) being deleted
 $user: the user (object) deleting the article
