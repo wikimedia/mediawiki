@@ -1,19 +1,17 @@
 /*
- * Debug output logging
+ * Implementation for mediaWiki.log stub
  */
 
-( function( $ ) {
-
-/* Extension */
-
 /**
- * Log output to the console
+ * Log output to the console.
  * 
- * In the case that the browser does not have a console available, one is created by appending a <div> element to
- * the bottom of the body and then appending a <div> element to that for each message.
+ * In the case that the browser does not have a console available, one is created by appending a
+ * <div> element to the bottom of the body and then appending a <div> element to that for each
+ * message.
  *
- * @author Michael Dale <mdale@wikimedia.org>, Trevor Parscal <tparscal@wikimedia.org>
- * @param {string} string message to output to console
+ * @author Michael Dale <mdale@wikimedia.org>
+ * @author Trevor Parscal <tparscal@wikimedia.org>
+ * @param {string} string Message to output to console
  */
 mediaWiki.log = function( string ) {
 	// Allow log messages to use a configured prefix		
@@ -25,9 +23,9 @@ mediaWiki.log = function( string ) {
 		window.console.log( string );
 	} else {
 		// Show a log box for console-less browsers
-		var $log = $( '#mw_log_console' );
+		var $log = jQuery( '#mw_log_console' );
 		if ( !$log.length ) {
-			$log = $( '<div id="mw_log_console"></div>' )
+			$log = jQuery( '<div id="mw_log_console"></div>' )
 				.css( {
 					'position': 'absolute',
 					'overflow': 'auto',
@@ -39,10 +37,10 @@ mediaWiki.log = function( string ) {
 					'background-color': 'white',
 					'border-top': 'solid 1px #DDDDDD'
 				} )
-				.appendTo( $( 'body' ) );
+				.appendTo( jQuery( 'body' ) );
 		}
 		$log.append(
-			$( '<div></div>' )
+			jQuery( '<div></div>' )
 				.text( string )
 				.css( {
 					'border-bottom': 'solid 1px #DDDDDD',
@@ -53,5 +51,3 @@ mediaWiki.log = function( string ) {
 		);
 	}
 };
-
-} )( jQuery );
