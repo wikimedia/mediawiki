@@ -45,6 +45,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	public function execute() {
 		$this->params = $this->extractRequestParams();
 		
+		# Only operate on existing pages
 		$pages = $this->getPageSet()->getGoodTitles();
 		
 		$this->addTables( 'page_props' );
@@ -52,32 +53,43 @@ class ApiQueryPageProps extends ApiQueryBase {
 		$this->addWhereFld( 'pp_page',  array_keys( $pages ) );
 		
 		if ( $this->params['continue'] ) {
-			$this->addWhereFld( 'pp_page >=' . intval( $this->params['continue'] ) );
+			$this->addWhere( 'pp_page >=' . intval( $this->params['continue'] ) );
 		}
 		
+		# Force a sort order to ensure that properties are grouped by page
 		$this->addOption( 'ORDER BY', 'pp_page' );
 		
 		$res = $this->select( __METHOD__ );
-		$currentPage = 0;
+		$currentPage = 0; # Id of the page currently processed
 		$props = array();
 		$result = $this->getResult();
+		
 		foreach ( $res as $row ) {
 			if ( $currentPage != $row->pp_page ) {
+				# Different page than previous row, so add the properties to 
+				# the result and save the new page id
+				
 				if ( $currentPage ) {
 					if ( !$this->addPageProps( $result, $currentPage, $props ) ) {
+						# addPageProps() indicated that the result did not fit
+						# so stop adding data. Reset props so that it doesn't
+						# get added again after loop exit
+						
+						$props = array();
 						break;
 					}
 					
 					$props = array();
-				} else {
-					$currentPage = $row->pp_page;
 				}
+				
+				$currentPage = $row->pp_page;
 			}
 			
 			$props[$row->pp_propname] = $row->pp_value;
 		}
 		
 		if ( count( $props ) ) {
+			# Add any remaining properties to the results
 			$this->addPageProps( $result, $currentPage, $props );
 		}
 	}
