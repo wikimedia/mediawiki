@@ -14,6 +14,12 @@ if ( !class_exists( 'UtfNormal' ) ) {
 }
 
 /**
+ * @deprecated This used to be a define, but was moved to
+ * Title::GAID_FOR_UPDATE in 1.17. This will probably be removed in 1.18
+ */
+define( 'GAID_FOR_UPDATE', Title::GAID_FOR_UPDATE );
+
+/**
  * Represents a title within MediaWiki.
  * Optionally may contain an interwiki designation or namespace.
  * @note This class can fetch various kinds of data from the database;
