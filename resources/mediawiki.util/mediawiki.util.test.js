@@ -1,6 +1,9 @@
-/*
- * mediaWiki Debug Test Suit.
+/**
+ * mediaWiki.util Test Suit
+ *
  * Available on "/Special:BlankPage?action=mwutiltest&debug=true")
+ * 
+ * @author Krinkle <krinklemail@gmail.com>
  */
 
 (function ($, mw) {
