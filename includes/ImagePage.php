@@ -364,20 +364,15 @@ class ImagePage extends Article {
 					);
 				} else {
 					# Image is small enough to show full size on image page
-					$msgbig = htmlspecialchars( $this->displayImg->getName() );
 					$msgsmall = wfMsgExt( 'file-nohires', array( 'parseinline' ) );
 				}
 
 				$params['width'] = $width;
 				$thumbnail = $this->displayImg->transform( $params );
 
-				$anchorclose = "<br />";
-				if ( $this->displayImg->mustRender() ) {
-					$showLink = true;
-				} else {
-					$anchorclose .=
-						$msgsmall .
-						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . "$dirmark " . $longDesc;
+				$showLink = true;
+				if ( !$this->displayImg->mustRender() ) {
+					$anchorclose = "<br />" . $msgsmall;
 				}
 
 				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
@@ -469,7 +464,11 @@ class ImagePage extends Article {
 
 			if ( $showLink ) {
 				$filename = wfEscapeWikiText( $this->displayImg->getName() );
-				$medialink = "[[Media:$filename|$filename]]";
+				$linktext = $filename;
+				if ( isset( $msgbig ) ) {
+					$linktext = wfEscapeWikiText( $msgbig );
+				}
+				$medialink = "[[Media:$filename|$linktext]]";
 
 				if ( !$this->displayImg->isSafeFile() ) {
 					$warning = wfMsgNoTrans( 'mediawarning' );
