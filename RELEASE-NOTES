@@ -449,6 +449,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   used, rvlimit is enforced to 1.
 * If a action=parse request provides an oldid that is actually the current revision
   id, try the parser cache, and save it to it if necessary
+* (bug 25463) Export header should not be shown if no pages were requested, to
+  reduce confusion
 
 === Languages updated in 1.17 ===
 

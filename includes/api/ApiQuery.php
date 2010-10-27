@@ -457,15 +457,27 @@ class ApiQuery extends ApiBase {
 			$result->addValue( 'query', 'pages', $pages );
 		}
 		if ( $this->params['export'] ) {
+			$exportTitles = array();
+			$titles = $pageSet->getGoodTitles();
+			if( count( $titles ) ) {
+				foreach ( $titles as $title ) {
+					if ( $title->userCanRead() ) {
+						$exportTitles[] = $title;
+					}
+				}
+			}
+			//export, when there are titles
+			if ( !count( $exportTitles ) ) {
+				return;
+			}
+
 			$exporter = new WikiExporter( $this->getDB() );
 			// WikiExporter writes to stdout, so catch its
 			// output with an ob
 			ob_start();
 			$exporter->openStream();
-			foreach ( $pageSet->getGoodTitles() as $title ) {
-				if ( $title->userCanRead() ) {
-					$exporter->pageByTitle( $title );
-				}
+			foreach ( $exportTitles as $title ) {
+				$exporter->pageByTitle( $title );
 			}
 			$exporter->closeStream();
 			$exportxml = ob_get_contents();
