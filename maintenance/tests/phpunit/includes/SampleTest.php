@@ -44,7 +44,7 @@ class TestSample extends PHPUnit_Framework_TestCase {
 			array( 'Text', null, 'Text' ),
 			array( 'text', null, 'Text' ),
 			array( 'Text', NS_USER, 'User:Text' ),
-			array( 'Text', NS_USER, 'Blah' )
+			array( 'Photo.jpg', NS_IMAGE, 'File:Photo.jpg' )
 		);
 	}
 
