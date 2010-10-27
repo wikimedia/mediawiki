@@ -22,6 +22,7 @@ class PrefixSearch {
 		}
 		$namespaces = self::validateNamespaces( $namespaces );
 
+		// Find a Title which is not an interwiki and is in NS_MAIN
 		$title = Title::newFromText( $search );
 		if( $title && $title->getInterwiki() == '' ) {
 			$ns = array($title->getNamespace());
@@ -162,10 +163,12 @@ class PrefixSearch {
 	 * Validate an array of numerical namespace indexes
 	 *
 	 * @param $namespaces Array
-	 * @return Array
+	 * @return Array (default: contains only NS_MAIN)
 	 */
 	protected static function validateNamespaces($namespaces){
 		global $wgContLang;
+
+		// We will look at each given namespace against wgContLang namespaces
 		$validNamespaces = $wgContLang->getNamespaces();
 		if( is_array($namespaces) && count($namespaces)>0 ){
 			$valid = array();
@@ -173,8 +176,9 @@ class PrefixSearch {
 				if( is_numeric($ns) && array_key_exists($ns, $validNamespaces) )
 					$valid[] = $ns;
 			}
-			if( count($valid) > 0 )
+			if( count($valid) > 0 ) {
 				return $valid;
+			}
 		}
 
 		return array( NS_MAIN );
