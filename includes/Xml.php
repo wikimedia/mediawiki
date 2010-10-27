@@ -81,7 +81,7 @@ class Xml {
 	/**
 	 * This opens an XML element
 	 *
-	 * @param $element name of the element
+	 * @param $element String name of the element
 	 * @param $attribs array of attributes, see Xml::expandAttributes()
 	 * @return string
 	 */
@@ -91,7 +91,7 @@ class Xml {
 
 	/**
 	 * Shortcut to close an XML element
-	 * @param $element element name
+	 * @param $element String element name
 	 * @return string
 	 */
 	public static function closeElement( $element ) { return "</$element>"; }
@@ -100,7 +100,7 @@ class Xml {
 	 * Same as Xml::element(), but does not escape contents. Handy when the
 	 * content you have is already valid xml.
 	 *
-	 * @param $element element name
+	 * @param $element String element name
 	 * @param $attribs array of attributes
 	 * @param $contents content of the element
 	 * @return string
@@ -345,7 +345,7 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML form label
-	 * @param $label text of the label
+	 * @param $label String text of the label
 	 * @param $id
 	 * @param $attribs Array, other attributes
 	 * @return string HTML
@@ -360,9 +360,9 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML text input field with a label
-	 * @param $label text of the label
-	 * @param $name value of the name attribute
-	 * @param $id id of the input
+	 * @param $label String text of the label
+	 * @param $name String value of the name attribute
+	 * @param $id String id of the input
 	 * @param $size value of the size attribute
 	 * @param $value value of the value attribute
 	 * @param $attribs other attributes
