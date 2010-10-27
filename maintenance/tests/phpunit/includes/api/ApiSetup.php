@@ -33,8 +33,8 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 
 	static function setupUser() {
 		if ( self::$user == null || self::$sysopUser == null ) {
-			self::$user = new UserWrapper( 'Useruser', 'Passpass' );
-			self::$sysopUser = new UserWrapper( 'Useruser1', 'Passpass1', 'sysop' );
+			self::$user = new UserWrapper( 'User for MediaWiki automated tests', User::randomPassword() );
+			self::$sysopUser = new UserWrapper( 'Sysop for MediaWiki automated tests', User::randomPassword(), 'sysop' );
 		}
 		
 		$GLOBALS['wgUser'] = self::$sysopUser->user;
@@ -67,3 +67,4 @@ class UserWrapper {
 		$this->user->saveSettings();
 	}
 }
+
