@@ -26,22 +26,6 @@
 					this.tooltipAccessKeyPrefix = 'alt-shift-';
 				}
 
-				// Setup CheckboxShiftClick
-				$.fn.enableCheckboxShiftClick = function () {
-					var prevCheckbox = null;
-					var $box = this;
-					$box.click(function (e) {
-						if (prevCheckbox !== null && e.shiftKey) {
-							$box.slice(
-							  Math.min($box.index(prevCheckbox), $box.index(e.target)),
-							  Math.max($box.index(prevCheckbox), $box.index(e.target)) + 1
-							).attr({checked: e.target.checked ? 'checked' : ''});
-						}
-						prevCheckbox = e.target;
-					});
-					return $box;
-				};
-
 				// Prototype enhancements
 				if (typeof String.prototype.ucFirst === 'undefined') {
 					String.prototype.ucFirst = function () {
@@ -53,7 +37,7 @@
 				$(function () {
 				
 					// Enable CheckboxShiftClick
-					$('input[type=checkbox]:not(.noshiftselect)').enableCheckboxShiftClick();
+					$('input[type=checkbox]:not(.noshiftselect)').checkboxShiftClick();
 					
 					// Fill bodyContant var
 					if ($('#bodyContent').length) {

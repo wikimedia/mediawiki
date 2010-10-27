@@ -35,6 +35,9 @@ return array(
 	'jquery.autoEllipsis' => new ResourceLoaderFileModule(
 		array( 'scripts' => 'resources/jquery/jquery.autoEllipsis.js' )
 	),
+	'jquery.checkboxShiftClick' => new ResourceLoaderFileModule(
+		array( 'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js' )
+	),
 	'jquery.client' => new ResourceLoaderFileModule(
 		array( 'scripts' => 'resources/jquery/jquery.client.js' )
 	),
@@ -378,6 +381,7 @@ return array(
 	) ),
 	'mediawiki.util' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
+		'dependencies' => 'jquery.checkboxShiftClick',
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	) ),
 	
