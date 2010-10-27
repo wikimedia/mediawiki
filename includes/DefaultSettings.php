@@ -2954,6 +2954,19 @@ $wgAutocreatePolicy = 'login';
  */
 $wgAllowPrefChange = array();
 
+/**
+ * This is to let user authenticate using https when they come from http.
+ * Based on an idea by George Herbert on wikitech-l:
+ * http://lists.wikimedia.org/pipermail/wikitech-l/2010-October/050065.html
+ * @since 1.17
+ */
+$wgSecureLogin        = false;
+/**
+ * Default for 'use secure login' checkbox
+ * @since 1.17
+ */
+$wgSecureLoginStickHTTPS = false;
+
 /** @} */ # end user accounts }
 
 /************************************************************************//**

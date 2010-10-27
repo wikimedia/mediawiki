@@ -586,6 +586,21 @@ class SkinTemplate extends Skin {
 			$loginlink = $wgUser->isAllowed( 'createaccount' )
 				? 'nav-login-createaccount'
 				: 'login';
+
+			# anonlogin & login are the same
+			$login_url = array(
+				'text' => wfMsg( $loginlink ),
+				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
+				'active' => $title->isSpecial( 'Userlogin' )
+			);
+			global $wgProto, $wgSecureLogin;
+			if( $wgProto === 'http' && $wgSecureLogin ) {
+				$title = SpecialPage::getTitleFor( 'Userlogin' );
+				$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL() );
+				$login_url['href']  = $https_url;
+				$login_url['class'] = 'link-https';  # FIXME class depends on skin
+			}
+
 			if( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
 				$personal_urls['anonuserpage'] = array(
@@ -602,17 +617,9 @@ class SkinTemplate extends Skin {
 					'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 					'active' => ( $pageurl == $href )
 				);
-				$personal_urls['anonlogin'] = array(
-					'text' => wfMsg( $loginlink ),
-					'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-					'active' => $title->isSpecial( 'Userlogin' )
-				);
+				$personal_urls['anonlogin'] = $login_url;
 			} else {
-				$personal_urls['login'] = array(
-					'text' => wfMsg( $loginlink ),
-					'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-					'active' => $title->isSpecial( 'Userlogin' )
-				);
+				$personal_urls['login'] = $login_url;
 			}
 		}
 
