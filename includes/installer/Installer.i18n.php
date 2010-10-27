@@ -1544,6 +1544,8 @@ $messages['de'] = array(
 	'config-localsettings-upgrade' => "'''Warnung:''' Die Datei <code>LocalSettings.php</code> wurde gefunden.
 Die vorhandene Installation kann aktualisiert werden.
 Die Datei <code>LocalSettings.php</code> muss an einen sicheren Speicherort verschoben und dann das Installationsprogramm erneut ausgeführt werden.",
+	'config-localsettings-key' => 'Aktualisierungsschlüssel:',
+	'config-localsettings-badkey' => 'Der angegebene Aktualisierungsschlüssel ist falsch.',
 	'config-localsettings-noupgrade' => "'''Fehler''': Die Datei <code>LocalSettings.php</code> wurde gefunden.
 Die vorhandene Installation kann momentan nicht aktualisiert werden.
 Das Installationsprogramm wurde aus Sicherheitsgründen deaktiviert.",
@@ -1577,6 +1579,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-page-releasenotes' => 'Veröffentlichungsinformationen',
 	'config-page-copying' => 'Kopie der Lizenz',
 	'config-page-upgradedoc' => 'Aktualisiere',
+	'config-page-locked' => 'Zugriff verweigert',
 	'config-help-restart' => 'Sollen alle angegebenen Daten gelöscht und der Installationsvorgang erneut gestartet werden?',
 	'config-restart' => 'Ja, erneut starten',
 	'config-welcome' => '=== Prüfung der Installationsumgebung ===
@@ -1671,25 +1674,6 @@ Miniaturansichten von Bildern sind daher nicht möglich.',
 	'config-uri' => 'Der URI-Pfad des Skripts: <code>$1</code>.',
 	'config-no-uri' => "'''Fehler:''' Die aktuelle URL konnte nicht ermittelt werden.
 Der Installationsvorgang wurde daher abgebrochen.",
-	'config-dir-not-writable-group' => "'''Fehler:''' Kein Schreibzugriff auf die Config-Datei möglich.
-Der Installationsvorgang wurde abgebrochen.
-
-Das Installationsprogramm konnte den Benutzer bestimmen, mit dem Webserver ausgeführt wird.
-Schreibzugriff auf das <code><nowiki>./config</nowiki></code>-Verzeichnis muss für diesen ermöglicht werden, um den Installationsvorgang fortsetzen zu können..
-
-Auf einem Unix- oder Linux-System:
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Fehler:''' Kein Schreibzugriff auf die Config-Datei möglich.
-Der Installationsvorgang wurde abgebrochen.
-
-Das Installationsprogramm konnte nicht den Benutzer bestimmen, mit dem Webserver ausgeführt wird.
-Schreibzugriff auf das <code><nowiki>./config</nowiki></code>-Verzeichnis muss global für diesen und andere Benutzer ermöglicht werden, um den Installationsvorgang fortsetzen zu können.
-
-Auf einem Unix- oder Linux-System:
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => 'MediaWiki wurde mit den Dateierweiterungen <code>$1</code> installiert.',
 	'config-shell-locale' => 'Es wurde die Locale „$1“ für die Shell gefunden',
 	'config-uploads-safe' => 'Das Standardverzeichnis für hochgeladene Dateien ist von der willkürlichen Ausführung von Skripten geschützt.',
@@ -2004,6 +1988,8 @@ Die Standardliste wird übersprungen.",
 	'config-insecure-secretkey' => "'''Warnung:''' Die Erstellung des Geheimschlüssels <code>\$wgSecretKey</code> ist gescheitert.
 Sie muss manuell nachgeholt werden.",
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
+	'config-install-mainpage' => 'Erstellung der Hauptseite mit Standardinhalten',
+	'config-install-mainpage-failed' => 'Die Hauptseite konnte nicht erstellt werden.',
 	'config-install-done' => "'''Herzlichen Glückwunsch!'''
 MediaWiki wurde erfolgreich installiert.
 
@@ -2610,6 +2596,8 @@ $messages['fr'] = array(
 	'config-localsettings-upgrade' => "'''Attention''' : Un fichier <code>LocalSettings.php</code> a été détecté.
 Votre logiciel est capable de se mettre à jour.
 Veuillez déplacer <code>LocalSettings.php</code> en lieu sûr puis relancer le programme d’installation.",
+	'config-localsettings-key' => 'Clé de mise à jour :',
+	'config-localsettings-badkey' => 'La clé que vous avez fourni est incorrecte',
 	'config-localsettings-noupgrade' => "'''Erreur''': Un fichier <code>LocalSettings.php</code> a été détecté.
 Votre logiciel ne peut pas se mettre à jour actuellement.
 Le programme d’installation a été désactivé pour des raisons de sécurité.",
@@ -2643,6 +2631,7 @@ Vérifiez votre fichier php.ini et assurez-vous que <code>session.save_path</cod
 	'config-page-releasenotes' => 'Notes de version',
 	'config-page-copying' => 'Copie',
 	'config-page-upgradedoc' => 'Mise à jour',
+	'config-page-locked' => 'Permission refusée',
 	'config-help-restart' => "Voulez-vous effacer toutes les données enregistrées que vous avez entrées et relancer le processus d'installation ?",
 	'config-restart' => 'Oui, le relancer',
 	'config-welcome' => "=== Vérifications liées à l’environnement ===
@@ -2738,25 +2727,6 @@ La miniaturisation d'images sera désactivé.",
 	'config-uri' => 'Adresse URI du script : <code>$1</code>.',
 	'config-no-uri' => "'''Erreur :''' Impossible de déterminer l'URI du script actuel. 
 Installation avortée.",
-	'config-dir-not-writable-group' => "'''Erreur:''' Impossible d'écrire le fichier de configuration. 
-Installation avortée. 
-
-L'utilisateur du serveur web est connu.
-Rendre le répertoire <code><nowiki>config</nowiki></code> accessible en écriture pour continuer. 
-Sur un système d'exploitation UNIX/Linux :
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Erreur:''' Impossible d'écrire le fichier de configuration. 
-Installation avortée. 
-
-L'utilisateur du serveur web ne peut être déterminé.
-Rendez le dossier/répertoire <code><nowiki>config</nowiki></code> accessible en écriture globale pour continuer.
-Sur un système d'exploitation UNIX/Linux :
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => "Installation de MediaWiki avec l'extension de fichier <code>$1</code>.",
 	'config-shell-locale' => 'Paramètres régionaux du shell détectés : « $1 ».',
 	'config-uploads-safe' => "Le répertoire par défaut pour les téléversement est à l'abri de l'exécution de scripts arbitraires.",
@@ -3070,6 +3040,8 @@ La liste par défaut ne sera pas inscrite.",
 	'config-insecure-secretkey' => "'''Attention:''' Impossible de créer un <code>\$wgSecretKey</code> sécurisé. 
 Envisagez de le changer manuellement.",
 	'config-install-sysop' => 'Création du compte administrateur',
+	'config-install-mainpage' => 'Création de la page principale avec un contenu par défaut',
+	'config-install-mainpage-failed' => 'Impossible d’insérer la page principale.',
 	'config-install-done' => "'''Félicitations!''' 
 Vous avez réussi à installer MediaWiki. 
 
@@ -3092,6 +3064,8 @@ $messages['gl'] = array(
 	'config-localsettings-upgrade' => "'''Atención:''' Detectouse un ficheiro <code>LocalSettings.php</code>.
 O seu software está listo para a actualización.
 Traslade <code>LocalSettings.php</code> a un lugar seguro e execute o instalador de novo.",
+	'config-localsettings-key' => 'Clave de actualización:',
+	'config-localsettings-badkey' => 'A clave dada é incorrecta',
 	'config-localsettings-noupgrade' => "'''Erro:''' Detectouse un ficheiro <code>LocalSettings.php</code>.
 O seu software non está listo para a actualización nestes intres.
 O instalador foi desactivado por motivos de seguridade.",
@@ -3125,6 +3099,7 @@ Comprobe o seu php.ini e asegúrese de que en <code>session.save_path</code> est
 	'config-page-releasenotes' => 'Notas de lanzamento',
 	'config-page-copying' => 'Copiar',
 	'config-page-upgradedoc' => 'Actualizar',
+	'config-page-locked' => 'Permisos rexeitados',
 	'config-help-restart' => 'Quere eliminar todos os datos gardados e reiniciar o proceso de instalación?',
 	'config-restart' => 'Si, reiniciala',
 	'config-welcome' => '=== Comprobación do entorno ===
@@ -3220,25 +3195,6 @@ As miniaturas de imaxes estarán desactivadas.',
 	'config-uri' => 'Enderezo URI da escritura: <code>$1</code>.',
 	'config-no-uri' => "'''Erro:''' Non se puido determinar o URI actual.
 Instalación abortada.",
-	'config-dir-not-writable-group' => "'''Erro:''' Non se puido escribir o ficheiro de configuración.
-Instalación abortada.
-
-O instalador determinou o usuario que o servidor usa para a execución.
-Faga que o directorio <code><nowiki>config</nowiki></code> se poida escribir para cotinuar.
-Nun sistema Unix/Linux:
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Erro:''' Non se puido escribir o ficheiro de configuración.
-Instalación abortada.
-
-O instalador non puido determinar o usuario que o servidor usa para a execución.
-Faga que o directorio <code><nowiki>config</nowiki></code> se poida escribir globalmente para cotinuar.
-Nun sistema Unix/Linux:
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => 'Instalando MediaWiki coas extensións de ficheiro <code>$1</code>.',
 	'config-shell-locale' => 'Parámetros rexionais detectados do shell: "$1"',
 	'config-uploads-safe' => 'O directorio por defecto para as cargas está a salvo da execución arbitraria de escrituras.',
@@ -3555,6 +3511,8 @@ Saltando a lista por defecto.",
 	'config-insecure-secretkey' => "'''Atención:''' Non se puido crear a clave secreta <code>\$wgSecretKey</code>.
 Considere cambiala manualmente.",
 	'config-install-sysop' => 'Creando a conta de usuario de administrador',
+	'config-install-mainpage' => 'Creando a páxina principal co contido por defecto',
+	'config-install-mainpage-failed' => 'Non se puido inserir a páxina principal.',
 	'config-install-done' => "'''Parabéns!'''
 Instalou correctamente MediaWiki.
 
@@ -4287,6 +4245,8 @@ $messages['ia'] = array(
 	'config-localsettings-upgrade' => "'''Attention''': Un file <code>LocalSettings.php</code> ha essite detegite.
 Es possibile actualisar le software.
 Per favor displacia <code>LocalSettings.php</code> a un loco secur e postea re-executa le installator.",
+	'config-localsettings-key' => 'Clave de actualisation:',
+	'config-localsettings-badkey' => 'Le clave que tu forniva es incorrecte',
 	'config-localsettings-noupgrade' => "'''Error''': Un file <code>LocalSettings.php</code> ha essite detegite.
 Non es possibile actualisar tu software a iste momento.
 Le installator ha essite disactivate pro motivos de securitate.",
@@ -4320,6 +4280,7 @@ Verifica tu php.ini e assecura te que un directorio appropriate es definite in <
 	'config-page-releasenotes' => 'Notas del version',
 	'config-page-copying' => 'Copiar',
 	'config-page-upgradedoc' => 'Actualisar',
+	'config-page-locked' => 'Permission refusate',
 	'config-help-restart' => 'Vole tu rader tote le datos salveguardate que tu ha entrate e reinitiar le processo de installation?',
 	'config-restart' => 'Si, reinitia lo',
 	'config-welcome' => '=== Verificationes del ambiente ===
@@ -4415,25 +4376,6 @@ Le miniaturas de imagines essera disactivate.',
 	'config-uri' => 'Adresse URI del script: <code>$1</code>.',
 	'config-no-uri' => "'''Error:''' Non poteva determinar le URI actual.
 Installation abortate.",
-	'config-dir-not-writable-group' => "'''Error:''' Nulle accesso de scriptura in file de configuration.
-Installation abortate.
-
-Le installator ha determinate le nomine de usator sub le qual le servitor web es executate.
-Tu debe conceder a iste usator le accesso de scriptura in le directorio <code><nowiki>config</nowiki></code> pro poter continuar.
-In un systema Unix/Linux:
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Error:''' Nulle accesso de scriptura in file de configuration.
-Installation abortate.
-
-Le nomine de usator sub le qual le servitor web es executate non poteva esser determinate.
-Tu debe conceder a iste usator (e alteres!) le accesso de scriptura in le directorio <code><nowiki>config</nowiki></code> pro poter continuar.
-In un systema Unix/Linux:
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => 'MediaWiki es installate con <code>$1</code> extensiones de file.',
 	'config-shell-locale' => 'Region "$1" del shell detegite',
 	'config-uploads-safe' => 'Le directorio predefinite pro files incargate es protegite contra le execution arbitrari de scripts.',
@@ -4750,6 +4692,8 @@ Le lista predefinite es saltate.",
 	'config-insecure-secretkey' => "'''Aviso:''' Impossibile crear le clave secrete <code>\$wgSecretKey</code>.
 Considera cambiar lo manualmente.",
 	'config-install-sysop' => 'Crea conto de usator pro administrator',
+	'config-install-mainpage' => 'Crea pagina principal con contento predefinite',
+	'config-install-mainpage-failed' => 'Non poteva inserer le pagina principal.',
 	'config-install-done' => "'''Felicitationes!'''
 Tu ha installate MediaWiki con successo.
 
@@ -5828,6 +5772,8 @@ $messages['mk'] = array(
 	'config-localsettings-upgrade' => "'''Предупредување''': Востановена е податотека <code>LocalSettings.php</code>.
 Вашиот програм може да се надградува.
 Преместете го <code>LocalSettings.php</code> на некое безбедно место и пуштете ја инсталацијата повторно.",
+	'config-localsettings-key' => 'Надградбен клуч:',
+	'config-localsettings-badkey' => 'Клучот што го наведовте е погрешен',
 	'config-localsettings-noupgrade' => "'''Грешка''': Востановена е податотека <code>LocalSettings.php</code>.
 Вашиот програм засега не може да се надгради.
 Инсталаторот е оневозможен од безбедносни причини.",
@@ -5861,6 +5807,7 @@ $messages['mk'] = array(
 	'config-page-releasenotes' => 'Белешки за изданието',
 	'config-page-copying' => 'Копирање',
 	'config-page-upgradedoc' => 'Надградба',
+	'config-page-locked' => 'Дозволата е одбиена',
 	'config-help-restart' => 'Дали сакате да ги исчистите сите зачувани податоци што ги внесовте и да ја започнете инсталацијата одново?',
 	'config-restart' => 'Да, почни одново',
 	'config-welcome' => '=== Environmental checks ===
@@ -5956,25 +5903,6 @@ $1
 	'config-uri' => 'URI-патека на скриптата: <code>$1</code>.',
 	'config-no-uri' => "'''Грешка:''' Не можев да го утврдам тековниот URI.
 Инсталацијата е откажана.",
-	'config-dir-not-writable-group' => "'''Грешка:''' Не можам да запишам во податотеката за поставки (config).
-Инсталацијата е откажана.
-
-Инсталаторот го утврди корисникот под кој работи вашиот мрежен опслужувач.
-Наместете да може да запишува во папката <code><nowiki>config</nowiki></code>.
-На Unix/Linux систем:
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Грешка:''' е можам да запишам во податотеката за поставки (config).
-Инсталацијата е откажана.
-
-Не може да се утврди корисникот под кој работи вашиот мрежен опслужувач.
-За да продолжите, наместете тој (и други!) да може да запишува во папката <code><nowiki>config</nowiki></code>.
-На Unix/Linux систем направете го следново:
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => 'Инсталација на МедијаВики со <code>$1</code> податотечни наставки.',
 	'config-shell-locale' => 'Пронајден е локал за школката „$1“',
 	'config-uploads-safe' => 'Основата папка за подигања е безбедна од произволни извршувања (пуштања) на скрипти',
@@ -6291,6 +6219,8 @@ chmod a+w $3</pre>',
 	'config-insecure-secretkey' => "'''Предупредување:''' Не можам да создадам безбеден <code>\$wgSecretKey</code>.
 Ви препорачуваме да го смените рачно.",
 	'config-install-sysop' => 'Создавање на администраторска корисничка сметка',
+	'config-install-mainpage' => 'Создавам главна страница со стандардна содржина',
+	'config-install-mainpage-failed' => 'Не можев да вметнам главна страница.',
 	'config-install-done' => "'''Честитаме!'''
 Успешно го инсталиравте МедијаВики.
 
@@ -6336,6 +6266,8 @@ $messages['nl'] = array(
 	'config-localsettings-upgrade' => "'''Waarschuwing''': er is een bestaand bestand <code>LocalSettings.php</code> gevonden.
 Uw software kan bijgewerkt worden.
 Verplaats alstublieft het bestand <code>LocalSettings.php</code> naar een veilige plaatst en voer het installatieprogramma opnieuw uit.",
+	'config-localsettings-key' => 'Upgradesleutel:',
+	'config-localsettings-badkey' => 'De sleutel die u hebt opgegeven is onjuist',
 	'config-localsettings-noupgrade' => "'''Fout''': er is een bestaand bestand <code>LocalSettings.php</code> aangetroffen.
 Uw software kan op dit moment niet bijgewerkt worden.
 Om veiligheidsredenen is het installatieprogramma uitgeschakeld.",
@@ -6369,6 +6301,7 @@ Controleer uw php.ini en zorg dat er een juiste map is ingesteld voor <code>sess
 	'config-page-releasenotes' => 'Release notes',
 	'config-page-copying' => 'Kopiëren',
 	'config-page-upgradedoc' => 'Bijwerken',
+	'config-page-locked' => 'Toestemming geweigerd',
 	'config-help-restart' => 'Wilt u alle opgeslagen gegevens die u hebt ingevoerd wissen en het installatieproces opnieuw starten?',
 	'config-restart' => 'Ja, opnieuw starten',
 	'config-welcome' => '=== Controle ongeving ===
@@ -6464,25 +6397,6 @@ Het maken van miniaturen van afbeeldingen wordt uitgeschakeld.',
 	'config-uri' => 'Script URI-pad: <code>$1</code>.',
 	'config-no-uri' => "'''Fout:''' de huidige URI kon niet vastgesteld worden.
 De installatie is afgebroken.",
-	'config-dir-not-writable-group' => "'''Fout:''' het instellingenbestand kan niet weggeschreven worden.
-De installatie is afgebroken.
-
-Het installatieprogramma heeft vastgesteld onder welke gebruiker uw webserver draait.
-Zorg dat in de map <code><nowiki>config</nowiki></code> geschreven kan worden door die gebruiker om door te kunnen gaan.
-Op een Linux-systeem:
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Fout:''' het instellingenbestand kan niet weggeschreven worden.
-De installatie is afgebroken.
-
-Het installatieprogramma heeft niet vast kunnen stellen onder welke gebruiker uw webserver draait.
-Zorg dat in de map <code><nowiki>config</nowiki></code> geschreven kan worden door de webservergebruiker (en anderen!) om door te kunnen gaan.
-Op een Linux-systeem:
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => 'MediaWiki wordt geinstalleerd met <code>$1</code> als bestandsextensie.',
 	'config-shell-locale' => 'Als shelllocale is "$1" herkend',
 	'config-uploads-safe' => 'De uploadmap is beveiligd tegen het arbitrair uitvoeren van scripts.',
@@ -6804,6 +6718,8 @@ De standaardlijst wordt overgeslagen.",
 	'config-insecure-secretkey' => 'Waarschuwing: het was niet mogelijk een veilige <code>$wgSecretKey</code> aan te maken.
 Overweeg deze handmatig te wijzigen.',
 	'config-install-sysop' => 'Gebruiker voor beheerder aanmaken',
+	'config-install-mainpage' => 'Hoofdpagina aanmaken met standaard inhoud',
+	'config-install-mainpage-failed' => 'Het was niet mogelijk de hoofdpagina in te voegen.',
 	'config-install-done' => "'''Gefeliciteerd!'''
 U hebt MediaWiki met succes geïnstalleerd.
 

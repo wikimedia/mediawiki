@@ -2452,7 +2452,7 @@ Lueg au uf [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] u
 'allmessages-filter-submit'     => 'Gang',
 
 # Thumbnails
-'thumbnail-more'           => 'vergrösere',
+'thumbnail-more'           => 'Vergreßere',
 'filemissing'              => 'D Datei fäält',
 'thumbnail_error'          => 'Fähler bir Härstellig vo re Vorschou: $1',
 'djvu_page_error'          => 'DjVu-Syte isch uusserhalb vum Sytebereich',
