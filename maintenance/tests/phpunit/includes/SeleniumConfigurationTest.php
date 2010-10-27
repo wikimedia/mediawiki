@@ -23,6 +23,10 @@ wikiUrl 			= "http://localhost/deployment"
 username 			= "xxxxxxx"
 userPassword 		= ""
 testBrowser 		= "chrome"
+startserver		=
+stopserver		=
+jUnitLogFile	=
+runAgainstGrid	= false
 
 [SeleniumTests]
 testSuite[SimpleSeleniumTestSuite] = "maintenance/tests/selenium/SimpleSeleniumTestSuite.php"
@@ -44,7 +48,12 @@ testSuite[TestSuiteName] = "testSuitePath"
 		'wikiUrl' 		=> 'http://localhost/deployment',
 		'username' 		=> 'xxxxxxx',
 		'userPassword' 	=> '',
-		'testBrowser' 	=> 'chrome'
+		'testBrowser' 	=> 'chrome',
+		'startserver' => null,
+		'stopserver' => null,
+		'seleniumserverexecpath' => null,
+		'jUnitLogFile' => null,
+		'runAgainstGrid' => null
 	);
 	/*
 	 * Array of expected testSuites from $testConfig0
@@ -77,7 +86,12 @@ testBrowser 		= "firefox"
 		'wikiUrl' 		=> null,
 		'username' 		=> null,
 		'userPassword' 	=> null,
-		'testBrowser' 	=> 'firefox'
+		'testBrowser' 	=> 'firefox',
+		'startserver' => null,
+		'stopserver' => null,
+		'seleniumserverexecpath' => null,
+		'jUnitLogFile' => null,
+		'runAgainstGrid' => null
 	);
 	/*
 	 * Expected test suites from $testConfig1
