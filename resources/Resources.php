@@ -381,7 +381,7 @@ return array(
 	) ),
 	'mediawiki.util' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
-		'dependencies' => 'jquery.checkboxShiftClick',
+		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client' ),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	) ),
 	

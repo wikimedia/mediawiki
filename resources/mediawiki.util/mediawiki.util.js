@@ -68,7 +68,7 @@
 		*
 		* @param String str		string to be encoded
 		*/
-		'wikiUrlencode' : function( str ) {
+		'wfUrlencode' : function( str ) {
 			return this.rawurlencode(str).replace(/%20/g, '_').replace(/%3A/g, ':').replace(/%2F/g, '/');
 		},
 
@@ -77,8 +77,8 @@
 		*
 		* @param String str		pagename to link to
 		*/
-		'getWikilink' : function( str ) {
-			return wgServer + wgArticlePath.replace('$1', this.wikiUrlencode(str));
+		'wfGetlink' : function( str ) {
+			return wgServer + wgArticlePath.replace('$1', this.wfUrlencode(str));
 		},
 
 		/**
