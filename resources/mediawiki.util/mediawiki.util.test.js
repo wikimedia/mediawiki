@@ -2,7 +2,7 @@
  * mediaWiki.util Test Suit
  *
  * Available on "/Special:BlankPage?action=mwutiltest&debug=true")
- * 
+ *
  * @author Krinkle <krinklemail@gmail.com>
  */
 
@@ -23,7 +23,7 @@
 		* @param String result	Expected result in 'var (vartype)' form
 		* @param String contain	Important part of the result, if result is different but does contain this it will not return ERROR but PARTIALLY
 		*/
-		'addTest' : function (code, result, contain) {
+		'addTest' : function( code, result, contain ) {
 			if (!contain) {
 				contain = result;
 			}
@@ -82,7 +82,7 @@
 							'function (string)');
 						mw.test.addTest('mw.util.rawurlencode(\'Test: A&B/Here\')',
 							'Test%3A%20A%26B%2FHere (string)');
-						mw.test.addTest('typeof mw.util.getWikilink',
+						mw.test.addTest('typeof mw.util.wfGetlink',
 							'function (string)');
 						mw.test.addTest('typeof mw.util.getParamValue',
 							'function (string)');
@@ -118,9 +118,9 @@
 							numberoferrors = 0,
 							$testrows;
 						$testrows = mw.test.$table.find('tr');
-						$.each(mw.test.addedTests, (function (i) {
+						$.each(mw.test.addedTests, (function ( i ) {
 								numberoftests++;
-								
+
 								exec = mw.test.addedTests[i][0];
 								shouldreturn = mw.test.addedTests[i][1];
 								shouldcontain = mw.test.addedTests[i][2];
@@ -128,7 +128,7 @@
 								doesreturn = doesreturn + ' (' + typeof doesreturn + ')';
 								$thisrow = $testrows.eq(i + 1);
 								$thisrow.find('> td').eq(2).text(doesreturn);
-								
+
 								if (doesreturn.indexOf(shouldcontain) !== -1) {
 									if (doesreturn == shouldreturn){
 										$thisrow.find('> td').eq(3).css('background', '#EFE').text('OK');
