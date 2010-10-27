@@ -210,6 +210,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->generateXML = $params['generatexml'];
 			$this->parseContent = $params['parse'];
 			if ( $this->parseContent ) {
+				// Must manually initialize unset limit
+				if ( is_null( $limit ) ) {
+					$limit = 1;
+				}
 				// We are only going to parse 1 revision per request
 				$this->validateLimit( 'limit', $limit, 1, 1, 1 );
 			}
