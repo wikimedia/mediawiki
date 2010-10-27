@@ -12,35 +12,50 @@
 			if ( this.initialised === false ) {
 				this.initialised = true;
 
-				// Set tooltipAccessKeyPrefix
-				if ( is_opera ) {
-					this.tooltipAccessKeyPrefix = 'shift-esc-';
-				} else if ( is_chrome ) {
-					this.tooltipAccessKeyPrefix = is_chrome_mac ? 'ctrl-option-' : 'alt-';
-				} else if ( !is_safari_win && is_safari && webkit_version > 526 ) {
-					this.tooltipAccessKeyPrefix = 'ctrl-alt-';
-				} else if ( !is_safari_win && ( is_safari
-					|| clientPC.indexOf('mac') !== -1
-					|| clientPC.indexOf('konqueror') !== -1 ) ) {
-					this.tooltipAccessKeyPrefix = 'ctrl-';
-				} else if ( is_ff2 ) {
-					this.tooltipAccessKeyPrefix = 'alt-shift-';
-				}
-
 				// Any initialisation after the DOM is ready
 				$(function () {
+					
+					// Populate clientProfile var
+					mw.util.clientProfile = $.client.profile();
+
+					// Set tooltipAccessKeyPrefix
+					
+						// Opera on any platform
+						if ( mw.util.isBrowser('opera') ) {
+							this.tooltipAccessKeyPrefix = 'shift-esc-';
+						
+						// Chrome on any platform
+						} else if ( mw.util.isBrowser('chrome') ) {
+							// Chrome on Mac or Chrome on other platform ?
+							this.tooltipAccessKeyPrefix = mw.util.isPlatform('mac') ? 'ctrl-option-' : 'alt-';
+						
+						// Non-Windows Safari with webkit_version > 526
+						} else if ( !mw.util.isPlatform('win') && mw.util.isBrowser('safari') && webkit_version > 526 ) {
+							this.tooltipAccessKeyPrefix = 'ctrl-alt-';
+						
+						// Safari/Konqueror on any platform, or any browser on Mac (but not Safari on Windows)
+						} else if ( !( mw.util.isPlatform('win') && mw.util.isBrowser('safari') )
+										&& ( mw.util.isBrowser('safari')
+										  || mw.util.isPlatform('mac')
+										  || mw.util.isBrowser('konqueror') ) ) {
+							this.tooltipAccessKeyPrefix = 'ctrl-';
+						
+						// Firefox 2.x
+						} else if ( mw.util.isBrowser('firefox') && mw.util.isBrowserVersion('2') ) {
+							this.tooltipAccessKeyPrefix = 'alt-shift-';
+						}
 
 					// Enable CheckboxShiftClick
 					$('input[type=checkbox]:not(.noshiftselect)').checkboxShiftClick();
 
-					// Fill bodyContant var
+					// Fill $content var
 					if ( $('#bodyContent').length ) {
 						mw.util.$content = $('#bodyContent');
 					} else if ( $('#article').length ) {
 						mw.util.$content = $('#article');
 					} else {
 						mw.util.$content = $('#content');
-					}
+					} 
 				});
 
 
@@ -50,6 +65,57 @@
 		},
 
 		/* Main body */
+
+		// Holds result of $.client.profile()
+		// Populated by init()
+		'clientProfile' : {},
+
+		/**
+		* Checks if the current browser matches
+		*
+		* @example	mw.util.isBrowser( 'safari' );
+		* @param	String	str		name of a browser (case insensitive). Check jquery.client.js for possible values
+		* @return	Boolean			true of the browsername matches the clients browser
+		*/
+		'isBrowser' : function( str ) {
+			str = (str + '').toLowerCase();
+			return this.clientProfile.name == str;
+		},
+
+		/**
+		* Checks if the current layout matches
+		*
+		* @example	mw.util.isLayout( 'webkit' );
+		* @param	String	str		name of a layout engine (case insensitive). Check jquery.client.js for possible values
+		* @return	Boolean			true of the layout engine matches the clients browser
+		*/
+		'isLayout' : function( str ) {
+			str = (str + '').toLowerCase();
+			return this.clientProfile.layout == str;
+		},
+
+		/**
+		* Checks if the current layout matches
+		*
+		* @example	mw.util.isPlatform( 'mac' );
+		* @param	String	str		name of a platform (case insensitive). Check jquery.client.js for possible values
+		* @return	Boolean			true of the platform matches the clients platform
+		*/
+		'isPlatform' : function( str ) {
+			str = (str + '').toLowerCase();
+			return this.clientProfile.platform == str;
+		},
+
+		/**
+		* Checks if the current browser version matches
+		*
+		* @example	mw.util.isBrowserVersion( '5' );
+		* @param	String	str		version number without decimals
+		* @return	Boolean			true of the version number matches the clients browser
+		*/
+		'isBrowserVersion' : function( str ) {
+			return this.clientProfile.versionBase === str;
+		},
 
 		/**
 		* Encodes the string like PHP's rawurlencode
@@ -192,7 +258,6 @@
 		// jQuery object that refers to the page-content element
 		// Populated by init()
 		'$content' : null,
-
 
 		/**
 		 * Add a link to a portlet menu on the page, such as:

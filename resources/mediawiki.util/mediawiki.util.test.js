@@ -78,35 +78,42 @@
 							'\\.st\\{e\\}\\$st (string)');
 						mw.test.addTest('typeof $.fn.checkboxShiftClick',
 							'function (string)');
+						mw.test.addTest('typeof mw.util.isBrowser( \'safari\' )',
+							'boolean (string)');
+						mw.test.addTest('typeof mw.util.isLayout( \'webKit\' )',
+							'boolean (string)');
+						mw.test.addTest('typeof mw.util.isPlatform( \'MAC\' )',
+							'boolean (string)');
+						mw.test.addTest('typeof mw.util.isBrowserVersion( \'5\' )',
+							'boolean (string)');
 						mw.test.addTest('typeof mw.util.rawurlencode',
 							'function (string)');
-						mw.test.addTest('mw.util.rawurlencode(\'Test: A&B/Here\')',
+						mw.test.addTest('mw.util.rawurlencode( \'Test: A&B/Here\' )',
 							'Test%3A%20A%26B%2FHere (string)');
 						mw.test.addTest('typeof mw.util.wfGetlink',
 							'function (string)');
 						mw.test.addTest('typeof mw.util.getParamValue',
 							'function (string)');
-						mw.test.addTest('mw.util.getParamValue(\'action\')',
+						mw.test.addTest('mw.util.getParamValue( \'action\' )',
 							'mwutiltest (string)');
 						mw.test.addTest('typeof mw.util.htmlEscape',
 							'function (string)');
-						mw.test.addTest('mw.util.htmlEscape(\'<a href="http://mw.org/?a=b&c=d">link</a>\')',
+						mw.test.addTest('mw.util.htmlEscape( \'<a href="http://mw.org/?a=b&c=d">link</a>\' )',
 							'&lt;a href="http://mw.org/?a=b&amp;c=d"&gt;link&lt;/a&gt; (string)');
 						mw.test.addTest('typeof mw.util.htmlUnescape',
 							'function (string)');
-						mw.test.addTest('mw.util.htmlUnescape(\'&lt;a href="http://mw.org/?a=b&amp;c=d"&gt;link&lt;/a&gt;\')',
+						mw.test.addTest('mw.util.htmlUnescape( \'&lt;a href="http://mw.org/?a=b&amp;c=d"&gt;link&lt;/a&gt;\' )',
 							'<a href="http://mw.org/?a=b&c=d">link</a> (string)');
-						mw.test.addTest('typeof mw.util.tooltipAccessKeyRegexp',
-							'function (string)');
+						mw.test.addTest('mw.util.tooltipAccessKeyRegexp.constructor.name',
+							'RegExp (string)');
 						mw.test.addTest('typeof mw.util.updateTooltipAccessKeys',
 							'function (string)');
 						mw.test.addTest('typeof mw.util.addPortletLink',
 							'function (string)');
 						mw.test.addTest('typeof mw.util.addPortletLink("p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-print")',
 							'object (string)');
-						mw.test.addTest('a = mw.util.addPortletLink("p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-print"); if(a){ a.outerHTML; }',
-							'<li id="t-mworg"><span><a href="http://mediawiki.org/" accesskey="m" title="Go to MediaWiki.org  [ctrl-alt-m]">MediaWiki.org</a></span></li> (string)',
-							'href="http://mediawiki.org/"');
+						mw.test.addTest('a = mw.util.addPortletLink("p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-print"); $(a).text();',
+							'MediaWiki.org (string)');
 
 						// Run tests and compare results
 						var	exec,
