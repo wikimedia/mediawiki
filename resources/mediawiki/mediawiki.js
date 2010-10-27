@@ -2,7 +2,7 @@
  * JavaScript backwards-compatibility and support
  */
 
-// New fallback String trimming functionality, was introduced natively in JavaScript 1.8.1
+// Implementation of string trimming functionality introduced natively in JavaScript 1.8.1
 if ( typeof String.prototype.trim === 'undefined' ) {
 	// Add removing trailing and leading whitespace functionality cross-browser
 	// See also: http://blog.stevenlevithan.com/archives/faster-trim-javascript
@@ -15,7 +15,6 @@ if ( typeof String.prototype.trimLeft === 'undefined' ) {
 		return this.replace( /^\s\s*/, "" );
 	};
 }
-
 if ( typeof String.prototype.trimRight === 'undefined' ) {
 	String.prototype.trimRight = function() {
 		return this.replace(/\s\s*$/, "");
@@ -225,7 +224,8 @@ window.mediaWiki = new ( function( $ ) {
 	 * Gets a message object, similar to wfMessage()
 	 * 
 	 * @param {string} key Key of message to get
-	 * @param {mixed} params First argument in a list of variadic arguments, each a parameter for $ replacement
+	 * @param {mixed} params First argument in a list of variadic arguments, each a parameter for $
+	 * replacement
 	 */
 	this.message = function( key, parameters ) {
 		// Support variadic arguments
@@ -239,13 +239,23 @@ window.mediaWiki = new ( function( $ ) {
 	};
 	
 	/**
+	 * Gets a message string, similar to wfMsg()
+	 * 
+	 * @param {string} key Key of message to get
+	 * @param {mixed} params First argument in a list of variadic arguments, each a parameter for $
+	 * replacement
+	 */
+	this.msg = function( key, parameters ) {
+		return mediaWiki.message.apply( mediaWiki.message, arguments );
+	};
+	
+	/**
 	 * Client-side module loader which integrates with the MediaWiki ResourceLoader
 	 */
 	this.loader = new ( function() {
 
 		/* Private Members */
-
-		var that = this;
+		
 		/**
 		 * Mapping of registered modules
 		 *
@@ -507,7 +517,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 			}
 			// Work the queue
-			that.work();
+			mediaWiki.loader.work();
 		}
 
 		function sortQuery(o) {
@@ -612,9 +622,9 @@ window.mediaWiki = new ( function( $ ) {
 			if ( typeof module === 'object' ) {
 				for ( var m = 0; m < module.length; m++ ) {
 					if ( typeof module[m] === 'string' ) {
-						that.register( module[m] );
+						mediaWiki.loader.register( module[m] );
 					} else if ( typeof module[m] === 'object' ) {
-						that.register.apply( that, module[m] );
+						mediaWiki.loader.register.apply( mediaWiki.loader, module[m] );
 					}
 				}
 				return;
@@ -649,7 +659,7 @@ window.mediaWiki = new ( function( $ ) {
 		this.implement = function( module, script, style, localization ) {
 			// Automaically register module
 			if ( typeof registry[module] === 'undefined' ) {
-				that.register( module );
+				mediaWiki.loader.register( module );
 			}
 			// Validate input
 			if ( typeof script !== 'function' ) {
@@ -775,7 +785,7 @@ window.mediaWiki = new ( function( $ ) {
 		 */
 		this.go = function() {
 			suspended = false;
-			that.work();
+			mediaWiki.loader.work();
 		};
 
 		/**
@@ -787,12 +797,12 @@ window.mediaWiki = new ( function( $ ) {
 		this.state = function( module, state ) {
 			if ( typeof module === 'object' ) {
 				for ( var m in module ) {
-					that.state( m, module[m] );
+					mediaWiki.loader.state( m, module[m] );
 				}
 				return;
 			}
 			if ( !( module in registry ) ) {
-				that.register( module );
+				mediaWiki.loader.register( module );
 			}
 			registry[module].state = state;
 		};
