@@ -102,7 +102,7 @@ class Xml {
 	 *
 	 * @param $element String element name
 	 * @param $attribs array of attributes
-	 * @param $contents content of the element
+	 * @param $contents String content of the element
 	 * @return string
 	 */
 	public static function tags( $element, $attribs = null, $contents ) {
@@ -248,8 +248,8 @@ class Xml {
 
 	/**
 	 * Shortcut to make a span element
-	 * @param $text content of the element, will be escaped
-	 * @param $class class name of the span element
+	 * @param $text String content of the element, will be escaped
+	 * @param $class String class name of the span element
 	 * @param $attribs other attributes
 	 * @return string
 	 */
@@ -271,7 +271,7 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML text input field
-	 * @param $name value of the name attribute
+	 * @param $name String value of the name attribute
 	 * @param $size value of the size attribute
 	 * @param $value value of the value attribute
 	 * @param $attribs other attributes
@@ -313,9 +313,9 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML checkbox
-	 * @param $name value of the name attribute
-	 * @param $checked Whether the checkbox is checked or not
-	 * @param $attribs other attributes
+	 * @param $name String value of the name attribute
+	 * @param $checked Bool Whether the checkbox is checked or not
+	 * @param $attribs Array other attributes
 	 * @return string HTML
 	 */
 	public static function check( $name, $checked=false, $attribs=array() ) {
@@ -673,8 +673,8 @@ class Xml {
 	/**
 	* Generate a form (without the opening form element).
 	* Output optionally includes a submit button.
-	* @param $fields Associative array, key is message corresponding to a description for the field (colon is in the message), value is appropriate input.
-	* @param $submitLabel A message containing a label for the submit button.
+	* @param $fields Array Associative array, key is message corresponding to a description for the field (colon is in the message), value is appropriate input.
+	* @param $submitLabel String A message containing a label for the submit button.
 	* @return string HTML form.
 	*/
 	public static function buildForm( $fields, $submitLabel = null ) {

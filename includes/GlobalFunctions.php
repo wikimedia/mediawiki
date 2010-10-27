@@ -2454,7 +2454,7 @@ function wfDl( $extension ) {
 /**
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
- * @param $cmd Command line, properly escaped for shell.
+ * @param $cmd String Command line, properly escaped for shell.
  * @param &$retval optional, will receive the program's exit code.
  *                 (non-zero is usually failure)
  * @param $environ Array optional environment variables which should be 
