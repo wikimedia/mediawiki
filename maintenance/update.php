@@ -31,6 +31,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function getDbType() {
+		/* If we used the class constant PHP4 would give a parser error here */
 		return 2 /* Maintenance::DB_ADMIN */;
 	}
 
