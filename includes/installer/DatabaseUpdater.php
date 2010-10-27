@@ -37,14 +37,20 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param $db DatabaseBase object to perform updates on
 	 * @param $shared bool Whether to perform updates on shared tables
+	 * @param $maintenance Maintenance Maintenance object which created us
 	 *
 	 * @TODO @FIXME Make $wgDatabase go away.
 	 */
-	protected function __construct( DatabaseBase &$db, $shared ) {
+	protected function __construct( DatabaseBase &$db, $shared, Maintenance $maintenance = null ) {
 		global $wgDatabase;
 		$wgDatabase = $db;
 		$this->db = $db;
 		$this->shared = $shared;
+		if ( $maintenance ) {
+			$this->maintenance = $maintenance;
+		} else {
+			$this->maintenance = new FakeMaintenance;
+		}
 		$this->initOldGlobals();
 		wfRunHooks( 'LoadExtensionSchemaUpdates', array( $this ) );
 	}
@@ -67,11 +73,11 @@ abstract class DatabaseUpdater {
 		$wgExtModifiedFields = array(); // table, index, dir
 	}
 
-	public static function newForDB( &$db, $shared = false ) {
+	public static function newForDB( &$db, $shared = false, $maintenance = null ) {
 		$type = $db->getType();
 		if( in_array( $type, Installer::getDBTypes() ) ) {
 			$class = ucfirst( $type ) . 'Updater';
-			return new $class( $db, $shared );
+			return new $class( $db, $shared, $maintenance );
 		} else {
 			throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
 		}
@@ -93,6 +99,9 @@ abstract class DatabaseUpdater {
 	 * @param $str String: Text to output
 	 */
 	protected function output( $str ) {
+		if ( $this->maintenance->isQuiet() ) {
+			return;
+		}
 		wfOut( $str );
 	}
 
@@ -210,7 +219,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Before 1.17, we used to handle updates via stuff like
 	 * $wgExtNewTables/Fields/Indexes. This is nasty :) We refactored a lot
-	 * of this in 1.17 but we want to remain back-compatible for awhile. So
+	 * of this in 1.17 but we want to remain back-compatible for a while. So
 	 * load up these old global-based things into our update list.
 	 */
 	protected function getOldGlobalUpdates() {

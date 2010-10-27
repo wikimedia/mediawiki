@@ -253,7 +253,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doOldLinksUpdate() {
-		$cl = new ConvertLinks();
+		$cl = $this->maintenance->runChild( 'ConvertLinks' );
 		$cl->execute();
 	}
 
@@ -696,7 +696,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "ok\n" );
 
 		$this->output( "Migrating old restrictions to new table...\n" );
-		$task = new UpdateRestrictions();
+		$task = $this->maintenance->runChild( 'UpdateRestrictions' );
 		$task->execute();
 	}
 
@@ -719,7 +719,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			"may want to hit Ctrl-C and do this manually with maintenance/\n" .
 			"populateCategory.php.\n"
 		);
-		$task = new PopulateCategory();
+		$task = $this->maintenance->runChild( 'PopulateCategory' );
 		$task->execute();
 		$this->output( "Done populating category table.\n" );
 	}
@@ -730,7 +730,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$task = new PopulateParentId();
+		$task = $this->maintenance->runChild( 'PopulateParentId' );
 		$task->execute();
 	}
 
@@ -794,7 +794,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$task = new PopulateRevisionLength();
+		$task = $this->maintenance->runChild( 'PopulateRevisionLength' );
 		$task->execute();
 	}
 

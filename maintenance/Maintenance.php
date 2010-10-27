@@ -229,6 +229,10 @@ abstract class Maintenance {
 		return rtrim( $input );
 	}
 
+	public function isQuiet() {
+		return $this->mQuiet;
+	}
+
 	/**
 	 * Throw some output to the user. Scripts can call this with no fears,
 	 * as we handle all --quiet stuff here
@@ -366,7 +370,7 @@ abstract class Maintenance {
 	 * @param $classFile String: full path of where the child is
 	 * @return Maintenance child
 	 */
-	protected function runChild( $maintClass, $classFile = null ) {
+	public function runChild( $maintClass, $classFile = null ) {
 		// If we haven't already specified, kill setup procedures
 		// for child scripts, we've already got a sane environment
 		self::disableSetup();
@@ -1032,3 +1036,10 @@ abstract class Maintenance {
 	}
 
 }
+
+class FakeMaintenance extends Maintenance {
+	public function execute() {
+		return;
+	}
+}
+
