@@ -409,9 +409,9 @@ abstract class Installer {
 			$this->showHelpBox( 'config-env-latest-help', $wgVersion, $currentVersion );
 		} elseif( version_compare( $wgVersion, $currentVersion, '>' ) ) {
 			$this->showMessage( 'config-env-latest-new' );
+		} else {
+			$this->showMessage( 'config-env-latest-ok' );
 		}
-
-		$this->showMessage( 'config-env-latest-ok' );
 	}
 
 	/**
