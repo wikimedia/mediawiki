@@ -371,6 +371,7 @@ class ImagePage extends Article {
 				$thumbnail = $this->displayImg->transform( $params );
 
 				$showLink = true;
+				$anchorclose = '';
 				if ( !$this->displayImg->mustRender() ) {
 					$anchorclose = "<br />" . $msgsmall;
 				}
