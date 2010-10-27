@@ -26,13 +26,6 @@
 					this.tooltipAccessKeyPrefix = 'alt-shift-';
 				}
 
-				// Prototype enhancements
-				if (typeof String.prototype.ucFirst === 'undefined') {
-					String.prototype.ucFirst = function () {
-						return this.substr(0, 1).toUpperCase() + this.substr(1, this.length);
-					};
-				}
-
 				// Any initialisation after the DOM is ready
 				$(function () {
 				
@@ -62,7 +55,7 @@
 		*
 		* @param String str		string to be encoded
 		*/
-		'rawurlencode' : function (str) {
+		'rawurlencode' : function( str ) {
 			str = (str + '').toString();
 			return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28')
 				.replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/~/g, '%7E');
@@ -75,7 +68,7 @@
 		*
 		* @param String str		string to be encoded
 		*/
-		'wikiUrlencode' : function (str) {
+		'wikiUrlencode' : function( str ) {
 			return this.rawurlencode(str).replace(/%20/g, '_').replace(/%3A/g, ':').replace(/%2F/g, '/');
 		},
 
@@ -84,7 +77,7 @@
 		*
 		* @param String str		pagename to link to
 		*/
-		'getWikilink' : function (str) {
+		'getWikilink' : function( str ) {
 			return wgServer + wgArticlePath.replace('$1', this.wikiUrlencode(str));
 		},
 
@@ -94,7 +87,7 @@
 		*
 		* @param Mixed v	the variable to check for empty ness
 		*/
-		'isEmpty' : function (v) {
+		'isEmpty' : function( v ) {
 			var key;
 			if (v === "" || v === 0 || v === "0" || v === null || v === false || typeof v === 'undefined') {
 				return true;
@@ -119,7 +112,7 @@
 		* @param String	param	paramter name
 		* @param String url		url to search through (optional)
 		*/
-		'getParamValue' : function (param, url) {
+		'getParamValue' : function( param, url ) {
 			url = url ? url : document.location.href;
 			var re = new RegExp('[^#]*[&?]' + param + '=([^&#]*)'); // Get last match, stop at hash
 			var m = re.exec(url);
@@ -135,7 +128,7 @@
 		* @param String			str text to escape
 		* @param Bool			quotes if true escapes single and double quotes aswell (by default false)
 		*/
-		'htmlEscape' : function (str, quotes) {
+		'htmlEscape' : function( str, quotes ) {
 			str = $('<div/>').text(str).html();
 			if (typeof quotes === 'undefined') {
 				quotes = false;
@@ -151,7 +144,7 @@
 		*
 		* @param String str		text to unescape
 		*/
-		'htmlUnescape' : function (str) {
+		'htmlUnescape' : function( str ) {
 			return $('<div/>').html(str).text();
 		},
 
@@ -170,19 +163,19 @@
 		 *
 		 * @param Mixed nodeList	jQuery object, or array of elements
 		 */
-		'updateTooltipAccessKeys' : function (nodeList) {
+		'updateTooltipAccessKeys' : function( nodeList ) {
 			var $nodes;
 			if (nodeList instanceof jQuery) {
 				$nodes = nodeList;
 			} else if (nodeList) {
 				$nodes = $(nodeList);
 			} else {
-				// Rather than scanning all links, just
-				$('#column-one a, #mw-head a, #mw-panel a, #p-logo a');
+				// Rather than scanning all links, just the elements that contain the relevant links
+				this.updateTooltipAccessKeys( $('#column-one a, #mw-head a, #mw-panel a, #p-logo a') );
 
 				// these are rare enough that no such optimization is needed
-				this.updateTooltipAccessKeys($('input'));
-				this.updateTooltipAccessKeys($('label'));
+				this.updateTooltipAccessKeys( $('input') );
+				this.updateTooltipAccessKeys( $('label') );
 				return;
 			}
 
@@ -223,11 +216,13 @@
 		 *
 		 * @return Node				the DOM node of the new item (a LI element, or A element for older skins) or null
 		 */
-		'addPortletLink' : function (portlet, href, text, id, tooltip, accesskey, nextnode) {
+		'addPortletLink' : function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
+		
+			// Setup the anchor tag
 			var $link = $('<a />').attr('href', href).text(text);
 			
-			// Some skins don't have portlets
-			// Just add it to the bottom of their 'sidebar' element ignoring the specified portlet target
+			// Some skins don't have any portlets
+			// just add it to the bottom of their 'sidebar' element as a fallback
 			switch (skin) {
 			case 'standard' :
 			case 'cologneblue' :
@@ -236,30 +231,41 @@
 			case 'nostalgia' :
 				$("#searchform").before($link).before(' &#124; ');
 				return $link.get(0);
-			default : // chick, modern, monobook, myskin, simple, vector...
+			default : // Skins like chick, modern, monobook, myskin, simple, vector...
 				
+				// Select the specified portlet
 				var $portlet = $('#' + portlet);
 				if ($portlet.length === 0) {
 					return null;
 				}
+				// Select the first (most likely only) unordered list inside the portlet 
 				var $ul = $portlet.find('ul').eq(0);
+				
+				// If it didn't have an unordered list yet, create it
 				if ($ul.length === 0) {
+					// If there's no <div> inside, append it to the portlet directly
 					if ($portlet.find('div').length === 0) {
-						$portlet.append('<ul />');
+						$portlet.append('<ul/>');
 					} else {
-						$portlet.find('div').eq(-1).append('<ul />');
+						// otherwise if there's a div (such as div.body or div.pBody) append the <ul> to last (most likely only) div
+						$portlet.find('div').eq(-1).append('<ul/>');
 					}
+					// Select the created element
 					$ul = $portlet.find('ul').eq(0);
 				}
+				// Just in case..
 				if ($ul.length === 0) {
 					return null;
 				}
 	
-				// unhide portlet if it was hidden before
+				// Unhide portlet if it was hidden before
 				$portlet.removeClass('emptyPortlet');
 				
+				// Wrap the anchor tag in a <span> and create a list item for it
+				// and back up the selector to the list item
 				var $item = $link.wrap('<li><span /></li>').parent().parent();
 
+				// Implement the properties passed to the function
 				if (id) {
 					$item.attr('id', id);
 				}

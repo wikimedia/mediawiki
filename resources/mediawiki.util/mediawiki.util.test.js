@@ -69,7 +69,11 @@
 							'function (string)');
 						mw.test.addTest('\'mediawiki\'.ucFirst()',
 							'Mediawiki (string)');
-						mw.test.addTest('typeof $.fn.enableCheckboxShiftClick',
+						mw.test.addTest('typeof String.prototype.escapeRE',
+							'function (string)');
+						mw.test.addTest('\'.st{e}$st\'.escapeRE()',
+							'\\.st\\{e\\}\\$st (string)');
+						mw.test.addTest('typeof $.fn.checkboxShiftClick',
 							'function (string)');
 						mw.test.addTest('typeof mw.util.rawurlencode',
 							'function (string)');
