@@ -83,6 +83,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @format array( [hash] => [mtime], [hash] => [mtime], ... )
 	 */
 	protected $modifiedTime = array();
+	/**
+	 * @var {array} Place where readStyleFile() tracks file dependencies
+	 * @format array( [file-path], [file-path], ... )
+	 */
+	protected $localFileRefs = array();
 
 	/* Methods */
 
@@ -215,8 +220,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		// Merge general styles and skin specific styles, retaining media type collation
-		$styles = self::readStyleFiles( $this->styles );
-		$skinStyles = self::readStyleFiles( self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ) );
+		$styles = $this->readStyleFiles( $this->styles );
+		$skinStyles = $this->readStyleFiles( self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ) );
 		
 		foreach ( $skinStyles as $media => $style ) {
 			if ( isset( $styles[$media] ) ) {
@@ -226,18 +231,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 		// Collect referenced files
-		$files = array();
-		foreach ( $styles as /* $media => */ $style ) {
-			$files = array_merge( $files, CSSMin::getLocalFileReferences( $style ) );
-		}
+		$this->localFileRefs = array_unique( $this->localFileRefs );
 		// If the list has been modified since last time we cached it, update the cache
-		if ( $files !== $this->getFileDependencies( $context->getSkin() ) ) {
+		if ( $this->localFileRefs !== $this->getFileDependencies( $context->getSkin() ) ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->replace( 'module_deps',
 				array( array( 'md_module', 'md_skin' ) ), array(
 					'md_module' => $this->getName(),
 					'md_skin' => $context->getSkin(),
-					'md_deps' => FormatJson::encode( $files ),
+					'md_deps' => FormatJson::encode( $this->localFileRefs ),
 				)
 			);
 		}
@@ -414,14 +416,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param {array} $styles List of file paths to styles to read, remap and concetenate
 	 * @return {array} List of concatenated and remapped CSS data from $styles, keyed by media type
 	 */
-	protected static function readStyleFiles( array $styles ) {
+	protected function readStyleFiles( array $styles ) {
 		if ( empty( $styles ) ) {
 			return array();
 		}
 		$styles = self::collateFilePathListByOption( $styles, 'media', 'all' );
 		foreach ( $styles as $media => $files ) {
 			$styles[$media] = implode(
-				"\n", array_map( array( __CLASS__, 'readStyleFile' ), array_unique( $files ) )
+				"\n", array_map( array( $this, 'readStyleFile' ), array_unique( $files ) )
 			);
 		}
 		return $styles;
@@ -449,11 +451,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param {string} $path File path of script file to read
 	 * @return {string} CSS data in script file
 	 */
-	protected static function readStyleFile( $path ) {
+	protected function readStyleFile( $path ) {
 		global $wgScriptPath, $IP;
 		
+		$style = file_get_contents( "$IP/$path" );
+		$dir = dirname( "$IP/$path" );
+		// Get and register local file references
+		$this->localFileRefs = array_merge( $this->localFileRefs, CSSMin::getLocalFileReferences( $style, $dir ) );
 		return CSSMin::remap(
-			file_get_contents( "$IP/$path" ), dirname( "$IP/$path" ), $wgScriptPath . '/' . dirname( $path ), true
+			$style, $dir, $wgScriptPath . '/' . dirname( $path ), true
 		);
 	}
 
