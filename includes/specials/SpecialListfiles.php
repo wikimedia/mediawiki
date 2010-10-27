@@ -74,6 +74,7 @@ class ImageListPager extends TablePager {
 		if ( !$this->mFieldNames ) {
 			global $wgMiserMode;
 			$this->mFieldNames = array(
+				'thumb' => wfMsg( 'listfiles_thumb' ),
 				'img_timestamp' => wfMsg( 'listfiles_date' ),
 				'img_name' => wfMsg( 'listfiles_name' ),
 				'img_user_text' => wfMsg( 'listfiles_user' ),
@@ -100,6 +101,7 @@ class ImageListPager extends TablePager {
 		$tables = array( 'image' );
 		$fields = array_keys( $this->getFieldNames() );
 		$fields[] = 'img_user';
+		$fields[array_search('thumb', $fields)] = 'img_name as thumb';
 		$options = $join_conds = array();
 
 		# Depends on $wgMiserMode
@@ -107,9 +109,11 @@ class ImageListPager extends TablePager {
 			$tables[] = 'oldimage';
 
 			# Need to rewrite this one
-			foreach ( $fields as &$field )
-				if ( $field == 'count' )
+			foreach ( $fields as &$field ) {
+				if ( $field == 'count' ) {
 					$field = 'COUNT(oi_archive_name) as count';
+				}
+			}
 			unset( $field );
 
 			$dbr = wfGetDB( DB_SLAVE );
@@ -153,6 +157,10 @@ class ImageListPager extends TablePager {
 	function formatValue( $field, $value ) {
 		global $wgLang;
 		switch ( $field ) {
+			case 'thumb':
+				$file = wfLocalFile( $value );
+				$thumb = $file->transform( array( 'width' => 180 ) );
+				return $thumb->toHtml( array( 'desc-link' => true ) );
 			case 'img_timestamp':
 				return htmlspecialchars( $wgLang->timeanddate( $value, true ) );
 			case 'img_name':
