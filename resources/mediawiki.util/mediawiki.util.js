@@ -114,7 +114,7 @@
 		*/
 		'getParamValue' : function( param, url ) {
 			url = url ? url : document.location.href;
-			var re = new RegExp('[^#]*[&?]' + param + '=([^&#]*)'); // Get last match, stop at hash
+			var re = new RegExp('[^#]*[&?]' + param.escapeRE() + '=([^&#]*)'); // Get last match, stop at hash
 			var m = re.exec(url);
 			if (m && m.length > 1) {
 				return decodeURIComponent(m[1]);
