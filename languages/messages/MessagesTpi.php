@@ -329,6 +329,8 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 # Revision deletion
 'rev-delundel'               => 'soim/hait',
 'revdelete-show-file-submit' => 'Yes',
+'revdelete-radio-set'        => 'Yes',
+'revdelete-radio-unset'      => 'Nogat',
 'pagehist'                   => 'Histori long pes',
 'revdelete-uname'            => 'yusanem',
 'revdelete-hid'              => 'bin hait $1',
@@ -399,6 +401,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'timezoneregion-atlantic'   => 'Atlantik solwara',
 'timezoneregion-australia'  => 'Ostrelia',
 'timezoneregion-europe'     => 'Yurop',
+'timezoneregion-indian'     => 'Indian solwara',
 'timezoneregion-pacific'    => 'Pasifik solwara',
 'prefs-files'               => 'Ol fail',
 'prefs-custom-css'          => 'Praivet CSS',
@@ -408,6 +411,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'uid'                       => 'Yusa ID:',
 'yourrealname'              => 'Tru nem:',
 'yourlanguage'              => 'Toktok:',
+'yourgender'                => 'Man/Meri:',
 'gender-male'               => 'Man',
 'gender-female'             => 'Meri',
 'email'                     => 'E-mel',
@@ -416,6 +420,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 # User rights
 'editusergroup'           => 'Sanisim ol grup bilong yusa',
 'userrights-groupsmember' => 'Memba bilong:',
+'userrights-reason'       => 'As bilong en:',
 
 # Groups
 'group'      => 'Grup:',
@@ -443,28 +448,32 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'rightsnone' => 'i nogat wanpela',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'   => 'rit dispela pes',
-'action-edit'   => 'senisim dispela pes',
-'action-delete' => 'rausim dispela pes',
+'action-read'          => 'rit dispela pes',
+'action-edit'          => 'senisim dispela pes',
+'action-move'          => 'surikim dispela pes',
+'action-move-subpages' => 'surikim dispela pes, na subpes bilong em',
+'action-movefile'      => 'surikim dispela fail',
+'action-delete'        => 'rausim dispela pes',
 
 # Recent changes
-'nchanges'          => '$1 {{PLURAL:$1||ol}} senis',
-'recentchanges'     => 'Nupela senis',
-'rcnote'            => "Ananit yu lukim '''$1 senis''' long '''$2 de''' igo pinis, na i olsem long $3.",
-'rcshowhideminor'   => '$1 ol liklik senis',
-'rcshowhidebots'    => '$1 ol bot',
-'rcshowhideliu'     => '$1 ol yusa',
-'rcshowhideanons'   => '$1 ol IP yusa',
-'rcshowhidemine'    => '$1 ol senis bilong mi',
-'diff'              => 'arakain',
-'hist'              => 'hist',
-'hide'              => 'Hait',
-'show'              => 'Soim',
-'minoreditletter'   => 'm',
-'newpageletter'     => 'N',
-'boteditletter'     => 'b',
-'rc_categories'     => 'Soim ol senis insait long ol dispela grup tasol (raitim wantaim "|" namel long wanwan)',
-'rc_categories_any' => 'Olgeta',
+'nchanges'                  => '$1 {{PLURAL:$1||ol}} senis',
+'recentchanges'             => 'Nupela senis',
+'recentchanges-label-minor' => 'Dispela emi liklik senis',
+'rcnote'                    => "Ananit yu lukim '''$1 senis''' long '''$2 de''' igo pinis, na i olsem long $3.",
+'rcshowhideminor'           => '$1 ol liklik senis',
+'rcshowhidebots'            => '$1 ol bot',
+'rcshowhideliu'             => '$1 ol yusa',
+'rcshowhideanons'           => '$1 ol IP yusa',
+'rcshowhidemine'            => '$1 ol senis bilong mi',
+'diff'                      => 'arakain',
+'hist'                      => 'hist',
+'hide'                      => 'Hait',
+'show'                      => 'Soim',
+'minoreditletter'           => 'm',
+'newpageletter'             => 'N',
+'boteditletter'             => 'b',
+'rc_categories'             => 'Soim ol senis insait long ol dispela grup tasol (raitim wantaim "|" namel long wanwan)',
+'rc_categories_any'         => 'Olgeta',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Ol senis klostu',
@@ -473,9 +482,13 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'recentchangeslinked-page'    => 'Nem bilong pes:',
 
 # Upload
-'upload'        => 'Salim media fail',
-'uploadlogpage' => 'Ripot long salim',
-'filesource'    => 'As:',
+'upload'          => 'Salim media fail',
+'uploadbtn'       => 'Salim media fail',
+'uploaderror'     => 'Salim i kranki',
+'uploadlogpage'   => 'Ripot long salim',
+'filename'        => 'Failnem',
+'filesource'      => 'As:',
+'watchthisupload' => 'Lukautim dispela fail',
 
 'license'            => 'Laisens:',
 'license-header'     => 'Laisens',
@@ -506,6 +519,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 
 # File deletion
 'filedelete'                  => 'Rausim $1',
+'filedelete-legend'           => 'Rausim fail',
 'filedelete-comment'          => 'As bilong en:',
 'filedelete-submit'           => 'Rausim',
 'filedelete-reason-otherlist' => 'Arapela as bilong en',
@@ -652,6 +666,7 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 # Undelete
 'undeletelink'              => 'soim/restore',
 'undeletecomment'           => 'As bilong en:',
+'undelete-search-submit'    => 'Painim',
 'undelete-show-file-submit' => 'Yes',
 
 # Namespace form on various pages
@@ -714,8 +729,11 @@ Yu mas painim narapela nem.',
 'revertmove'       => 'go bek',
 
 # Namespace 8 related
-'allmessages'     => 'Ol toksave bilong sistem',
-'allmessagesname' => 'Nem',
+'allmessages'               => 'Ol toksave bilong sistem',
+'allmessagesname'           => 'Nem',
+'allmessages-filter-all'    => 'Ol',
+'allmessages-language'      => 'Tokples:',
+'allmessages-filter-submit' => 'Go',
 
 # Thumbnails
 'thumbnail-more' => 'Moa bikpela',
@@ -825,6 +843,7 @@ Yu inap lukluk as bilong em.',
 
 # Special:Version
 'version-other'            => 'Narapela',
+'version-license'          => 'Laisens',
 'version-poweredby-others' => 'ol narapela',
 
 # Special:FilePath

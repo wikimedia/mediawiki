@@ -28,7 +28,7 @@ $messages = array(
 'tog-editsection'             => "S't'vù l'abilitaziòn ad'cambié al seziòn cum e' link [mudèfica]",
 'tog-editsectiononrightclick' => "S't'vù l'abilitaziòn ad cambié al seziòn <br />scjazénd e tast a dèstra sora e titul (u j vò JavaScript)",
 'tog-showtoc'                 => "Fam avdé l'indiz (sol par al pàgin cun piò d'3 seziòn)",
-'tog-rememberpassword'        => "Arcurdam la parola d'ordin, par piasé (fèn a un masum $1 {{PLURAL:$1|dè|dè}})",
+'tog-rememberpassword'        => "↓ Arcurdam la parola d'ordin, par piasé (fèn a un masum $1 {{PLURAL:$1|dè|dè}})",
 'tog-watchcreations'          => "Mett insèn al pàgin ch't'e' fat adès, intla lèsta da tní sot'occ",
 'tog-watchdefault'            => "Mett insèn al pàgin ch'a j ò lavurè sora int la lèsta dal pàgin da tnì sot'òcc",
 'tog-watchmoves'              => "Mett insèn al pàgin ch'a j ò spustè int la lèsta dal pàgin da tnì sot'òcc",
@@ -59,8 +59,14 @@ $messages = array(
 'tog-showhiddencats'          => "↓ Fa'm avdé al categurèj nascosti",
 'tog-norollbackdiff'          => "↓ T'an fèga avdé al diferenzi dop d'avé recuperè l'ultma versiòn",
 
-'underline-always' => '↓ Sempar',
-'underline-never'  => '↓ Mai',
+'underline-always'  => '↓ Sempar',
+'underline-never'   => '↓ Mai',
+'underline-default' => "↓ Drova agl'impustaziòn d'e' browser",
+
+# Font style option in Special:Preferences
+'editfont-style'     => "↓ Stil d'e' font dl'àrea d'mudèfica",
+'editfont-default'   => "↓ Predefinì d'e' navigador",
+'editfont-monospace' => '↓ Font monospazi',
 
 # Dates
 'january'       => 'Znèr',

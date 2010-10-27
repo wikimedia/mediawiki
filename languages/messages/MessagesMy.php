@@ -1586,10 +1586,17 @@ HTML tags ကို စစ်ဆေးပါ။',
 'imgmultigo' => 'သွား​ပါ!',
 
 # Table pager
+'table_pager_next'         => 'နောက်စာမျက်နှာ',
+'table_pager_prev'         => 'ပြီးခဲ့သော စာမျက်နှာ',
+'table_pager_first'        => 'ပထမဆုံး စာမျက်နှာ',
+'table_pager_last'         => 'နောက်ဆုံးစာမျက်နှာ',
 'table_pager_limit_submit' => 'သွား​ပါ​',
 
 # Auto-summaries
 'autosumm-new' => 'စာလုံး "$1" လုံးႏွင့္ စာမ်က္ႏွာအသစ္ စလုပ္ရန္',
+
+# Watchlist editor
+'watchlistedit-raw-titles' => 'ခေါင်းစဉ်များ -',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ကိုက်ညီသော အပြောင်းအလဲများကို ကြည့်ရန်',
@@ -1597,7 +1604,10 @@ HTML tags ကို စစ်ဆေးပါ။',
 'watchlisttools-raw'  => 'စောင့်ကြည့်စာရင်း အကြမ်းကို တည်းဖြတ်ရန်',
 
 # Special:Version
+'version'                  => 'ဗားရှင်း',
+'version-specialpages'     => 'အ​ထူး ​စာ​မျက်​နှာ​များ',
 'version-other'            => 'အခြား',
+'version-license'          => 'လိုင်စင်',
 'version-software'         => 'သွင်းထားသော ဆော့ဝဲ',
 'version-software-product' => 'ထုတ်ကုန်',
 'version-software-version' => 'ဗားရှင်း',
@@ -1637,7 +1647,19 @@ HTML tags ကို စစ်ဆေးပါ။',
 'tag-filter-submit' => 'စိစစ်မှု',
 'tags-title'        => 'အမည်တွဲ',
 
+# Special:ComparePages
+'compare-page1'  => 'စာမျက်နှာတစ်',
+'compare-page2'  => 'စာမျက်နှာနှစ်',
+'compare-rev1'   => 'မူ တစ်',
+'compare-rev2'   => 'မူ နှစ်',
+'compare-submit' => 'နှိုင်းယှဉ်ရန်',
+
+# Database error messages
+'dberr-header' => 'ဤဝီကီတွင် ပြဿနာတစ်ခု ရှိနေသည်',
+
 # HTML forms
+'htmlform-submit'              => 'ထည့်သွင်းရန်',
+'htmlform-reset'               => 'ပြောင်းလဲထားသည်များ မလုပ်တော့ရန်',
 'htmlform-selectorother-other' => 'အခြား',
 
 );

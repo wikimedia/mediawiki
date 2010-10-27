@@ -323,7 +323,7 @@ $messages = array(
 'tog-watchdeletion'           => 'زوّد الصفح اللى بامسحها على ليستة الصفح اللى باراقبها',
 'tog-previewontop'            => 'بين الپروڤه قبل علبة التعديل',
 'tog-previewonfirst'          => 'بين البروفة عند أول تعديل',
-'tog-nocache'                 => 'عطل تخبية الصفحه',
+'tog-nocache'                 => 'عطّل تخزين البراوزر للصفحه',
 'tog-enotifwatchlistpages'    => 'ابعت لى ايميل لما تتغير صفحه فى لستة الصفحات اللى باراقبها',
 'tog-enotifusertalkpages'     => 'ابعتلى ايميل لما صفحة مناقشتى تتغيير',
 'tog-enotifminoredits'        => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
@@ -1213,7 +1213,7 @@ $1",
 'compareselectedversions'  => 'قارن بين النسختين المختارتين',
 'showhideselectedversions' => 'عرض/تخبية المراجعات المختاره.',
 'editundo'                 => 'استرجاع',
-'diff-multi'               => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخه متوسطه}} مش معروضه.)',
+'diff-multi'               => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخ متوسطه}} by {{PLURAL:$2|يوزر واحد |$2 يوزرات}}  مش معروضه)',
 
 # Search results
 'searchresults'                    => 'نتايج التدوير',
@@ -1608,11 +1608,11 @@ $1",
 'upload_directory_missing'    => 'مجلد التحميل($1) ضايع السيرفير وماقدرش يعمل واحد تاني.',
 'upload_directory_read_only'  => 'مجلد التحميل ($1) مش ممكن الكتابة عليه بواسطة سيرڨر الويب.',
 'uploaderror'                 => 'غلطه فى التحميل',
-'uploadtext'                  => "استخدم الاستمارة لتحميل الملفات.
-لعرض أو البحث ف الملفات المتحملة سابقا، راجع [[Special:FileList|قايمة الملفات المتحملة]]، عمليات التحميل والحذف موجودة فى [[Special:Log/upload|سجل التحميل]].
+'uploadtext'                  => "استخدم الاستمارة علشان تحميل الملفات.
+لعرض أو البحث ف الملفات المتحملة سابقا، راجع عمليات المسح [[Special:Log/delete|deletion log]] [[Special:FileList|لستة الملفات المتحملة]]، عمليات التحميل  موجودة فى [[Special:Log/upload|سجل التحميل]].
 
 علشان تحط صورة فى صفحة، استخدم الوصلات فى الصيغ التالية:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' لاستخدام النسخة الكاملة لملف
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' علشان استخدام النسخة الكاملة لملف
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|نص بديل]]</nowiki></tt>''' لاستخدام صورة عرضها 200 بكسل فى صندوق فى الجانب الأيسر مع 'نص بديل' كوصف
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' للوصل للملف مباشرة بدون عرض الملف.",
 'upload-permitted'            => 'أنواع الملفات المسموحة: $1.',

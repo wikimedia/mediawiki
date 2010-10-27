@@ -9,6 +9,7 @@
  *
  * @author Dario vet
  * @author Dedee
+ * @author Gastaz
  * @author Malafaya
  * @author Urhixidur
  * @author ZeneizeForesto
@@ -124,15 +125,25 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'            => 'Sottolineâ i collegamenti',
-'tog-justify'              => 'Alliniamento di paragrafi giustificòu',
-'tog-showtoolbar'          => 'Fâ vedde a barra de strumenti de modìffica (con JavaScript)',
-'tog-rememberpassword'     => "Arregorda a mæ paròlla d'ordine (for a maximum of $1 {{PLURAL:$1|day|days}})",
-'tog-previewontop'         => "Veddi l'anteprimma de d'äto a-o spaçio pe cangiâ",
-'tog-previewonfirst'       => "Veddi l'anteprimma a-o primmo cangiamento",
-'tog-enotifwatchlistpages' => "Fammelo savéi via e-mail quande 'na paggina inta mæ lista in osservassion a va cangiaa.",
-'tog-enotifusertalkpages'  => "Màndime un messaggio e-mail se gh'é de-e modìffiche inta pagina de discuscion da mæ pagina d'utente.",
-'tog-showhiddencats'       => 'Fa vedde e categorîe ascose',
+'tog-underline'               => 'Sottolineâ i collegamenti',
+'tog-highlightbroken'         => 'Evidensia <a href="" class="new">coscì</a> i collegamenti a-e paggine inexisténti (se disattivou: coscì<a href="" class="internal">?</a>)',
+'tog-justify'                 => 'Alliniamento di paragrafi giustificòu',
+'tog-hideminor'               => 'asconde e modifiche minori inte ùrtime modifiche',
+'tog-hidepatrolled'           => 'Ascondi e modifiche verifichè inte ùrtime modifiche',
+'tog-newpageshidepatrolled'   => 'Ascondi e paggine verifiché da-o elenco de paggine ciù reçenti',
+'tog-extendwatchlist'         => 'mostrâ tùtte e modifiche a-i òsserve speciali',
+'tog-usenewrc'                => 'Usâ e ùrtime modifiche avansê (serve Javascript)',
+'tog-numberheadings'          => 'Nùmeraçion aotomàtica di tìtoli de seçión',
+'tog-showtoolbar'             => 'Fâ vedde a barra de strumenti de modìffica (con JavaScript)',
+'tog-editondblclick'          => 'Modifica e paggine co-o dópio clic (serve Javascrpt)',
+'tog-editsection'             => 'Modifica e seçión co-o colegamento [modifica]',
+'tog-editsectiononrightclick' => 'Modifica e seçión co-o clic destro in sciô tìtolo (serve Javascipt)',
+'tog-rememberpassword'        => "Arregorda a mæ paròlla d'ordine (a-o màscimo pe $1 {{PLURAL:$1|day|days}})",
+'tog-previewontop'            => "Veddi l'anteprimma de d'äto a-o spaçio pe cangiâ",
+'tog-previewonfirst'          => "Veddi l'anteprimma a-o primmo cangiamento",
+'tog-enotifwatchlistpages'    => "Fammelo savéi via e-mail quande 'na paggina inta mæ lista in osservassion a va cangiaa.",
+'tog-enotifusertalkpages'     => "Màndime un messaggio e-mail se gh'é de-e modìffiche inta pagina de discuscion da mæ pagina d'utente.",
+'tog-showhiddencats'          => 'Fa vedde e categorîe ascose',
 
 'underline-always' => 'Sempre',
 'underline-never'  => 'Mâi',
