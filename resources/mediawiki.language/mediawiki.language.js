@@ -18,9 +18,9 @@ mediaWiki.language = {
 	 * @example {{Template:title|params}}
 	 */
 	'procPLURAL': function( template ) {
-		if( template.title && template.parameters && mediaWiki.language.convertPlural) {
+		if ( template.title && template.parameters && mediaWiki.language.convertPlural ) {
 			// Check if we have forms to replace
-			if ( template.parameters.length == 0 ) { 
+			if ( template.parameters.length == 0 ) {
 				return '';
 			}
 			// Restore the count into a Number ( if it got converted earlier )
@@ -29,7 +29,7 @@ mediaWiki.language = {
 			return mediaWiki.language.convertPlural( parseInt( count ), template.parameters );
 		}
 		// Could not process plural return first form or nothing
-		if( template.parameters[0] ) {
+		if ( template.parameters[0] ) {
 			return template.parameters[0];
 		}
 		return '';
@@ -41,10 +41,10 @@ mediaWiki.language = {
 	 * @param {array} forms List of plural forms
 	 * @return {string} Correct form for quantifier in this language
 	 */
-	'convertPlural': function( count, forms ){	
-		if ( !forms || forms.length == 0 ) { 
+	'convertPlural': function( count, forms ){
+		if ( !forms || forms.length == 0 ) {
 			return ''; 
-		}	
+		}
 		return ( parseInt( count ) == 1 ) ? forms[0] : forms[1];
 	},
 	/**
@@ -72,9 +72,9 @@ mediaWiki.language = {
 		}
 		// Set the target Transform table: 
 		var transformTable = mediaWiki.language.digitTransformTable;
-		// Check if the "restore" to Latin number flag is set: 
-		if ( integer ) {			
-			if ( parseInt( number ) == number )	{
+		// Check if the "restore" to Latin number flag is set:
+		if ( integer ) {
+			if ( parseInt( number ) == number ) {
 				return number;
 			}
 			var tmp = [];
@@ -92,7 +92,7 @@ mediaWiki.language = {
 				convertedNumber += numberString[i];
 			}
 		}
-		return integer ? parseInt( convertedNumber) : convertedNumber;
+		return integer ? parseInt( convertedNumber ) : convertedNumber;
 	},
 	// Digit Transform Table, populated by language classes where applicable
 	'digitTransformTable': null

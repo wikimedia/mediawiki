@@ -249,7 +249,7 @@ window.mediaWiki = new ( function( $ ) {
 	this.message = function( key, parameters ) {
 		// Support variadic arguments
 		if ( typeof parameters !== 'undefined' ) {
-			parameters = $.makeArray( arguments);
+			parameters = $.makeArray( arguments );
 			parameters.shift();
 		} else {
 			parameters = [];
