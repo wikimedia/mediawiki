@@ -97,7 +97,6 @@ abstract class Installer {
 		'envCheckDiff3',
 		'envCheckGraphics',
 		'envCheckPath',
-		'envCheckWriteableDir',
 		'envCheckExtension',
 		'envCheckShellLocale',
 		'envCheckUploadsDirectory',
@@ -655,26 +654,6 @@ abstract class Installer {
 		$uri = preg_replace( '{^(.*)/config.*$}', '$1', $path );
 		$this->setVar( 'wgScriptPath', $uri );
 		$this->showMessage( 'config-uri', $uri );
-	}
-
-	/**
-	 * Environment check for writable config/ directory.
-	 */
-	public function envCheckWriteableDir() {
-		$ipDir = $this->getVar( 'IP' );
-		$configDir = $ipDir . '/config';
-
-		if( !is_writeable( $configDir ) ) {
-			$webserverGroup = self::maybeGetWebserverPrimaryGroup();
-
-			if ( $webserverGroup !== null ) {
-				$this->showMessage( 'config-dir-not-writable-group', $ipDir, $webserverGroup );
-			} else {
-				$this->showMessage( 'config-dir-not-writable-nogroup', $ipDir, $webserverGroup );
-			}
-
-			return false;
-		}
 	}
 
 	/**
