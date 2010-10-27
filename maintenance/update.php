@@ -3,6 +3,7 @@
  * Run all updaters.
  *
  * This is used when the database schema is modified and we need to apply patches.
+ * It is kept compatible with php 4 parsing so that it can give out a meaningful error.
  *
  * @file
  * @todo document
@@ -30,7 +31,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function getDbType() {
-		return DB_ADMIN;
+		return 2 /* Maintenance::DB_ADMIN */;
 	}
 
 	function execute() {
