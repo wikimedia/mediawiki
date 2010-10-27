@@ -2771,6 +2771,12 @@ $wgMinimalPasswordLength = 1;
 $wgLivePasswordStrengthChecks = false;
 
 /**
+ * List of weak passwords which shouldn't be allowed.
+ * The items should be in lowercase. The check is case insensitive.
+ */
+$wgWeakPasswords = array( 'password', 'passpass', 'passpass1' );
+
+/**
  * Maximum number of Unicode characters in signature
  */
 $wgMaxSigChars		= 255;

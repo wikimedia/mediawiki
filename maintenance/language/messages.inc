@@ -430,6 +430,7 @@ $wgMessageStructure = array(
 		'wrongpasswordempty',
 		'passwordtooshort',
 		'password-name-match',
+		'password-too-weak',
 		'mailmypassword',
 		'passwordremindertitle',
 		'passwordremindertext',
