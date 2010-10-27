@@ -142,7 +142,7 @@ window.mediaWiki = new ( function( $ ) {
 	Message.prototype.toString = function() {
 		if ( !this.map.exists( this.key ) ) {
 			// Return <key> if key does not exist
-			return '<' + key + '>';
+			return '<' + this.key + '>';
 		}
 		var text = this.map.get( this.key );
 		var parameters = this.parameters;
@@ -246,7 +246,7 @@ window.mediaWiki = new ( function( $ ) {
 	 * replacement
 	 */
 	this.msg = function( key, parameters ) {
-		return mediaWiki.message.apply( mediaWiki.message, arguments );
+		return mediaWiki.message.apply( mediaWiki.message, arguments ).toString();
 	};
 	
 	/**
