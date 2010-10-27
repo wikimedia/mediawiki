@@ -601,18 +601,22 @@ class User {
 	 * @return mixed: true on success, string of error message on failure
 	 */
 	function getPasswordValidity( $password ) {
-		global $wgMinimalPasswordLength, $wgContLang;
+		global $wgMinimalPasswordLength, $wgWeakPasswords, $wgContLang;
 
 		$result = false; //init $result to false for the internal checks
 
 		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
 			return $result;
 
+		$lcPassword = $wgContLang->lc( $password );
+
 		if ( $result === false ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
-			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
+			} elseif ( $lcPassword == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
+			} elseif ( in_array( $lcPassword, $wgWeakPasswords ) ) {			
+				return 'password-too-weak';
 			} else {
 				//it seems weird returning true here, but this is because of the
 				//initialization of $result to false above. If the hook is never run or it
