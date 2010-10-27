@@ -148,25 +148,6 @@ Image thumbnailing will be disabled.',
 	'config-uri'                      => 'Script URI path: <code>$1</code>.',
 	'config-no-uri'                   => "'''Error:''' Could not determine the current URI.
 Installation aborted.",
-	'config-dir-not-writable-group'   => "'''Error:''' Cannot write config file.
-Installation aborted.
-
-The installer has determined the user your webserver is running as.
-Make the <code><nowiki>config</nowiki></code> directory writable by it to continue.
-On a Unix/Linux system:
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup'   => "'''Error:''' Cannot write config file.
-Installation aborted.
-
-The user your webserver is running as could not be determined.
-Make the <code><nowiki>config</nowiki></code> directory globally writable by it (and others!) to continue.
-On a Unix/Linux system do:
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension'           => 'Installing MediaWiki with <code>$1</code> file extensions.',
 	'config-shell-locale'             => 'Detected shell locale "$1"',
 	'config-uploads-safe'             => 'The default directory for uploads is safe from arbitrary scripts execution.',
