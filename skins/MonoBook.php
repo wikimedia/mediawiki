@@ -28,6 +28,12 @@ class SkinMonoBook extends SkinTemplate {
 
 		$out->addModuleStyles( 'skins.monobook' );
 		
+		// Ugh. Can't do this properly because $wgHandheldStyle may be a URL
+		if( $wgHandheldStyle ) {
+			// Currently in testing... try 'chick/main.css'
+			$out->addStyle( $wgHandheldStyle, 'handheld' );
+		}
+		
 		// TODO: Migrate all of these
 		//$out->addStyle( 'monobook/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
 		//$out->addStyle( 'monobook/IE55Fixes.css', 'screen', 'IE 5.5000' );
