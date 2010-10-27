@@ -996,6 +996,7 @@ class DatabaseOracle extends DatabaseBase {
 			if ( substr( $line, 0, 8 ) == '/*$mw$*/' ) {
 				if ( $dollarquote ) {
 					$dollarquote = false;
+					$line = str_replace( '/*$mw$*/', '', $line ); // remove dollarquotes
 					$done = true;
 				} else {
 					$dollarquote = true;
