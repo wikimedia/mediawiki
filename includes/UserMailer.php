@@ -112,7 +112,7 @@ class UserMailer {
 	 */
 	static function send( $to, $from, $subject, $body, $replyto=null, $contentType=null ) {
 		global $wgSMTP, $wgOutputEncoding, $wgEnotifImpersonal;
-		global $wgEnotifMaxRecips;
+		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
 		if ( is_array( $to ) ) {
 			// This wouldn't be necessary if implode() worked on arrays of
@@ -208,10 +208,10 @@ class UserMailer {
 
 			if (is_array($to)) {
 				foreach ($to as $recip) {
-					$sent = mail( $recip->toString(), wfQuotedPrintable( $subject ), $body, $headers );
+					$sent = mail( $recip->toString(), wfQuotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
 				}
 			} else {
-				$sent = mail( $to->toString(), wfQuotedPrintable( $subject ), $body, $headers );
+				$sent = mail( $to->toString(), wfQuotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
 			}
 
 			restore_error_handler();

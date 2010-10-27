@@ -1028,6 +1028,11 @@ $wgNewPasswordExpiry  = 3600 * 24 * 7;
  */
 $wgSMTP				= false;
 
+/**
+ * Additional email parameters, will be passed as the last argument to mail() call.
+ */
+$wgAdditionalMailParams = null;
+
 /** For email notification on page changes */
 $wgPasswordSender = $wgEmergencyContact;
 
