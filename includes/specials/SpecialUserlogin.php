@@ -59,7 +59,7 @@ class LoginForm {
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
-	var $mSkipCookieCheck, $mReturnToQuery, $mToken;
+	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
 
 	private $mExtUser = null;
 
@@ -89,6 +89,7 @@ class LoginForm {
 		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
+		$this->mStickHTTPS = $request->getCheck( 'wpStickHTTPS' );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
@@ -853,7 +854,12 @@ class LoginForm {
 			if ( !$titleObj instanceof Title ) {
 				$titleObj = Title::newMainPage();
 			}
-			$wgOut->redirect( $titleObj->getFullURL( $this->mReturnToQuery ) );
+			$redirectUrl = $titleObj->getFullURL( $this->mReturnToQuery );
+			global $wgSecureLogin;
+			if( $wgSecureLogin && !$this->mStickHTTPS ) {
+				$redirectUrl = preg_replace( '/^https:/', 'http:', $redirectUrl );
+			}
+			$wgOut->redirect( $redirectUrl );
 		}
 	}
 
@@ -941,6 +947,7 @@ class LoginForm {
 		global $wgUser, $wgOut, $wgHiddenPrefs, $wgEnableEmail;
 		global $wgRequest, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
+		global $wgSecureLogin, $wgSecureLoginStickHTTPS;
 
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 
@@ -1030,6 +1037,8 @@ class LoginForm {
 		$template->set( 'canremember', ( $wgCookieExpiration > 0 ) );
 		$template->set( 'usereason', $wgUser->isLoggedIn() );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) || $this->mRemember );
+		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
+		$template->set( 'stickHTTPS', $this->mStickHTTPS );
 
 		if ( $this->mType == 'signup' ) {
 			if ( !self::getCreateaccountToken() ) {

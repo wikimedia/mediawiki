@@ -105,6 +105,22 @@ class UserloginTemplate extends QuickTemplate {
 			</td>
 		</tr>
 <?php } ?>
+<?php if( $this->data['cansecurelogin'] ) { ?>
+		<tr>
+			<td></td>
+			<td class="mw-input">
+			<?php
+			echo Xml::checkLabel(
+				wfMsg( 'securelogin-stick-https' ),
+				'wpStickHTTPS',
+				'wpStickHTTPS',
+				$this->data['stickHTTPS'],
+				array( 'tabindex' => '9' )
+			);
+		?>
+			</td>
+		</tr>
+<?php } ?>
 		<tr>
 			<td></td>
 			<td class="mw-submit">
