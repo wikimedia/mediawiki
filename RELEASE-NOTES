@@ -113,7 +113,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20976) "searchmenu-new-nocreate" message now displayed when when there
   is no title match in search and the user has no rights to create pages.
 * (bug 23429) Added new hook WatchlistEditorBuildRemoveLine.
-* (bug 18488) Added maintenance script refreshCategoryCounts.php
 * (bug 22844) Added support for WinCache object caching.
 * (bug 23580) Add two new events to LivePreview so that scripts can be
   notified about the beginning and finishing of LivePreview actions.
