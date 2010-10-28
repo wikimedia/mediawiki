@@ -297,6 +297,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiPatrol' => 'includes/api/ApiPatrol.php',
 	'ApiProtect' => 'includes/api/ApiProtect.php',
 	'ApiPurge' => 'includes/api/ApiPurge.php',
+	'ApiRsd' => 'includes/api/ApiRsd.php',
 	'ApiQuery' => 'includes/api/ApiQuery.php',
 	'ApiQueryAllCategories' => 'includes/api/ApiQueryAllCategories.php',
 	'ApiQueryAllimages' => 'includes/api/ApiQueryAllimages.php',

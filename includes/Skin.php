@@ -216,6 +216,16 @@ class Skin extends Linker {
 			'title' => wfMsgForContent( 'opensearch-desc' ),
 		) );
 
+		# Real Simple Discovery link, provides auto-discovery information
+		# for the MediaWiki API (and potentially additional custom API
+		# support such as WordPress or Twitter-compatible APIs for a
+		# blogging extension, etc)
+		$out->addLink( array(
+			'rel' => 'EditURI',
+			'type' => 'application/rsd+xml',
+			'href' => wfExpandUrl( wfAppendQuery( wfScript( 'api' ), array( 'action' => 'rsd' ) ) ),
+		) );
+
 		$this->addMetadataLinks( $out );
 
 		$this->mRevisionId = $out->mRevisionId;
