@@ -1,0 +1,8 @@
+input.valid {
+	background-color: #C0FFC0;
+	color: black;
+}
+input.invalid {
+	background-color: #FFC0C0;
+	color: black;
+}
