@@ -321,6 +321,7 @@ return array(
 	) ),
 	'mediawiki.specials.preferences' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.specials/mediawiki.specials.preferences.js',
+		'styles' => 'resources/mediawiki.specials/mediawiki.specials.preferences.css',
 	) ),
 	'mediawiki.specials.search' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.specials/mediawiki.specials.search.js',

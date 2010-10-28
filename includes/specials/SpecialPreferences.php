@@ -54,6 +54,7 @@ class SpecialPreferences extends SpecialPage {
 
 		$wgOut->addModules( 'mediawiki.legacy.prefs' );
 		$wgOut->addModuleScripts( 'mediawiki.specials.preferences' );
+		$wgOut->addModuleStyles( 'mediawiki.specials.preferences' );
 
 		if ( $wgRequest->getCheck( 'success' ) ) {
 			$wgOut->wrapWikiMsg(

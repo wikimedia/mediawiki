@@ -38,3 +38,22 @@ $( '#preferences' )
 				)
 		);
 	} );
+
+// Lame tip to let user know if its email is valid. See bug 22449
+$( '#mw-input-emailaddress' )
+	.keyup( function() {
+		var mailtxt = $(this).val();
+		if( mailtxt == '' ) {
+			// mail is optional !
+			$(this).removeClass( "invalid" );
+			$(this).removeClass( "valid" );
+			return;
+		}
+		if( mailtxt.match( /.+@.+\..+/ ) ) {
+			$(this).addClass( "valid" );
+			$(this).removeClass( "invalid" );
+		} else {
+			$(this).addClass( "invalid" );
+			$(this).removeClass( "valid" );
+		}
+	} );
