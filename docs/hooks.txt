@@ -362,6 +362,13 @@ is the User object. In the hook, just add your callback to the
 $tokenFunctions array and return true (returning false makes no sense)
 $tokenFunctions: array(action => callback)
 
+'ApiRsdServiceApis': Add or remove APIs from the RSD services list.
+Each service should have its own entry in the $apis array and have a
+unique name, passed as key for the array that represents the service data.
+In this data array, the key-value-pair identified by the apiLink key is 
+required.
+&$apis: array of services
+
 'ArticleAfterFetchContent': after fetching content of an article from
 the database
 $article: the article (object) being loaded from the database

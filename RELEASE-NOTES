@@ -455,6 +455,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   id, try the parser cache, and save it to it if necessary
 * (bug 25463) Export header should not be shown if no pages were requested, to
   reduce confusion
+* (bug 25648) API discovery information has been added as RSD link in page 
+  <head> and by providing an API module action=rsd. Added hook 
+  ApiRsdServiceApis for extensions to add their own service to the services 
+  list.
 
 === Languages updated in 1.17 ===
 

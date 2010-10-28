@@ -63,6 +63,7 @@ class ApiMain extends ApiBase {
 		'feedwatchlist' => 'ApiFeedWatchlist',
 		'help' => 'ApiHelp',
 		'paraminfo' => 'ApiParamInfo',
+		'rsd' => 'ApiRsd',
 
 		// Write modules
 		'purge' => 'ApiPurge',
