@@ -1356,7 +1356,7 @@ $wgMessageStructure = array(
 		'listfiles_search_for',
 		'imgfile',
 		'listfiles',
-		'listfiles_thumbnail',
+		'listfiles_thumb',
 		'listfiles_date',
 		'listfiles_name',
 		'listfiles_user',
