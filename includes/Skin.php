@@ -249,12 +249,23 @@ class Skin extends Linker {
 	}
 
 	/**
-	 * Adds metadata links (Creative Commons/Dublin Core/copyright) to the HTML
-	 * output.
+	 * Adds metadata links below to the HTML output.
+	 * <ol>
+	 *  <li>Creative Commons
+	 *   <br />See http://wiki.creativecommons.org/Extend_Metadata.
+	 *  </li>
+	 *  <li>Dublin Core</li>
+	 *  <li>Use hreflang to specify canonical and alternate links
+	 *   <br />See http://www.google.com/support/webmasters/bin/answer.py?answer=189077
+	 *  </li>
+	 *  <li>Copyright</li>
+	 * <ol>
+	 * 
 	 * @param $out Object: instance of OutputPage
 	 */
 	function addMetadataLinks( OutputPage $out ) {
 		global $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
+		global $wgDisableLangConversion, $wgDisableLangCanonical, $wgContLang;
 		global $wgRightsPage, $wgRightsUrl;
 
 		if ( $out->isArticleRelated() ) {
@@ -275,6 +286,29 @@ class Skin extends Linker {
 				);
 			}
 		}
+
+		if ( !$wgDisableLangConversion && !$wgDisableLangCanonical
+			&& $wgContLang->hasVariants() ) {
+
+			$urlvar = $wgContLang->getURLVariant();
+
+			if ( !$urlvar ) {
+				$variants = $wgContLang->getVariants();
+				foreach ( $variants as $_v ) {
+					$out->addLink( array(
+						'rel' => 'alternate',
+						'hreflang' => $_v,
+						'href' => $this->mTitle->getLocalURL( '', $_v ) )
+					);
+				}
+			} else {
+				$out->addLink( array(
+					'rel' => 'canonical',
+					'href' => $this->mTitle->getFullURL() )
+				);
+			}
+		}
+		
 		$copyright = '';
 		if ( $wgRightsPage ) {
 			$copy = Title::newFromText( $wgRightsPage );

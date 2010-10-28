@@ -134,20 +134,18 @@ class LanguageConverter {
 
 	/**
 	 * Get preferred language variant.
-	 * @param $fromUser Boolean: get it from $wgUser's preferences
-	 * @param $fromHeader Boolean: get it from Accept-Language
 	 * @return String: the preferred language code
 	 */
-	public function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
-		global $wgDefaultLanguageVariant;
+	public function getPreferredVariant() {
+		global $wgDefaultLanguageVariant, $wgUser;
 
 		$req = $this->getURLVariant();
 
-		if ( $fromUser && !$req ) {
+		if ( $wgUser->isLoggedIn() && !$req ) {
 			$req = $this->getUserVariant();
 		}
 
-		if ( $fromHeader && !$req ) {
+		elseif ( !$req ) {
 			$req = $this->getHeaderVariant();
 		}
 
@@ -159,6 +157,26 @@ class LanguageConverter {
 		// not memoized (i.e. there return value is not cached) since
 		// new information might appear during processing after this
 		// is first called.
+		if ( $req ) {
+			return $req;
+		}
+		return $this->mMainLanguageCode;
+	}
+
+	/**
+	 * Get default variant.
+	 * This function would not be affected by user's settings or headers
+	 * @return String: the default variant code
+	 */
+	public function getDefaultVariant() {
+		global $wgDefaultLanguageVariant;
+
+		$req = $this->getURLVariant();
+
+		if ( $wgDefaultLanguageVariant && !$req ) {
+			$req = $this->validateVariant( $wgDefaultLanguageVariant );
+		}
+
 		if ( $req ) {
 			return $req;
 		}
@@ -183,7 +201,7 @@ class LanguageConverter {
 	 *
 	 * @return Mixed: variant if one found, false otherwise.
 	 */
-	protected function getURLVariant() {
+	public function getURLVariant() {
 		global $wgRequest;
 
 		if ( $this->mURLVariant ) {
