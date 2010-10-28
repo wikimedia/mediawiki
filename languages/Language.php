@@ -44,6 +44,8 @@ class FakeConverter {
 	function convertTitle( $t ) { return $t->getPrefixedText(); }
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() { return $this->mLang->getCode(); }
+	function getDefaultVariant() { return $this->mLang->getCode(); }
+	function getURLVariant() { return ''; }
 	function getConvRuleTitle() { return false; }
 	function findVariantLink( &$l, &$n, $ignoreOtherCond = false ) { }
 	function getExtraHashOptions() { return ''; }
@@ -2673,8 +2675,16 @@ class Language {
 		return $this->mConverter->getVariants();
 	}
 
-	function getPreferredVariant( $fromUser = true, $fromHeader = false ) {
-		return $this->mConverter->getPreferredVariant( $fromUser, $fromHeader );
+	function getPreferredVariant() {
+		return $this->mConverter->getPreferredVariant();
+	}
+	
+	function getDefaultVariant() {
+		return $this->mConverter->getDefaultVariant();
+	}
+	
+	function getURLVariant() {
+		return $this->mConverter->getURLVariant();
 	}
 
 	/**

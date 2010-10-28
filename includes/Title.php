@@ -869,14 +869,6 @@ class Title {
 			$query = wfArrayToCGI( $query );
 		}
 
-		// internal links should point to same variant as current page (only anonymous users)
-		if ( !$variant && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) {
-			$pref = $wgContLang->getPreferredVariant( false );
-			if ( $pref != $wgContLang->getCode() ) {
-				$variant = $pref;
-			}
-		}
-
 		if ( $this->isExternal() ) {
 			$url = $this->getFullURL();
 			if ( $query ) {

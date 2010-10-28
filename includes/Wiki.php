@@ -208,19 +208,11 @@ class MediaWiki {
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
-		} else if( $action == 'view' && !$request->wasPosted() &&
-			( ( !$request->getVal( 'title' ) || $title->getPrefixedDBKey() != $request->getText( 'title' ) ) ||
-			  // No valid variant in URL (if the main-language has multi-variants), to ensure
-			  // anonymous access would always be redirect to a URL with 'variant' parameter
-			  ( !$request->getVal( 'variant' ) && $wgContLang->hasVariants() && !$wgUser->isLoggedIn() ) ) &&
-			!count( array_diff( array_keys( $request->getValues() ), array( 'action', 'title' ) ) ) )
+		} else if( $action == 'view' && !$request->wasPosted()
+			&& ( ( !$request->getVal( 'title' ) || $title->getPrefixedDBKey() != $request->getText( 'title' ) ) )
+			&& !count( array_diff( array_keys( $request->getValues() ), array( 'action', 'title' ) ) ) )
 		{
-			if( !$wgUser->isLoggedIn() ) {
-				$pref = $wgContLang->getPreferredVariant( false, $fromHeader = true );
-				$targetUrl = $title->getFullURL( '', $variant = $pref );
-			}
-			else
-				$targetUrl = $title->getFullURL();
+			$targetUrl = $title->getFullURL();
 			// Redirect to canonical url, make it a 301 to allow caching
 			if( $targetUrl == $request->getFullRequestURL() ) {
 				$message = "Redirect loop detected!\n\n" .

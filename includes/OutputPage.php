@@ -1430,7 +1430,17 @@ class OutputPage {
 				if( $variant === $wgContLang->getCode() ) {
 					continue;
 				} else {
-					$aloption[] = "string-contains=$variant";
+					$aloption[] = 'string-contains=' . $variant;
+					
+					// IE and some other browsers use another form of language code
+					// in their Accept-Language header, like "zh-CN" or "zh-TW".
+					// We should handle these too.
+					$ievariant = explode( '-', $variant );
+					if ( count( $ievariant ) == 2 ) {
+						$ievariant[1] = strtoupper( $ievariant[1] );
+						$ievariant = implode( '-', $ievariant );
+						$aloption[] = 'string-contains=' . $ievariant;
+					}
 				}
 			}
 			$this->addVaryHeader( 'Accept-Language', $aloption );
