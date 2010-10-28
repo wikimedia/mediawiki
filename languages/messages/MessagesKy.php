@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author AidaBishkek
  * @author Aidabishkek
  */
 
@@ -15,39 +16,50 @@ $messages = array(
 'underline-never'  => 'Эч качан',
 
 # Dates
-'sunday'    => 'Жекшемби',
-'monday'    => 'Дүйшөмбү',
-'tuesday'   => 'Шейшемби',
-'wednesday' => 'Шаршемби',
-'thursday'  => 'Бейшемби',
-'friday'    => 'Жума',
-'saturday'  => 'Ишемби',
-'wed'       => 'Шарш.',
-'january'   => 'Январь (Үчтүн айы)',
-'february'  => 'Февраль (Бирдин айы)',
-'march'     => 'Март (Жалган куран)',
-'april'     => 'Апрель (Чын куран)',
-'may_long'  => 'Май (Бугу)',
-'june'      => 'Июнь (Кулжа)',
-'july'      => 'Июль (Теке)',
-'august'    => 'Август (Баш оона)',
-'september' => 'Сентябрь (Аяк оона)',
-'october'   => 'Октябрь (Тогуздун айы)',
-'november'  => 'Ноябрь (Жетинин айы)',
-'december'  => 'Декабрь (Бештин айы)',
-'april-gen' => 'Апрель',
-'jan'       => 'Янв',
-'feb'       => 'Фев',
-'mar'       => 'Март',
-'apr'       => 'Апр',
-'may'       => 'Май',
-'jun'       => 'Июнь',
-'jul'       => 'Июль',
-'aug'       => 'Авг',
-'sep'       => 'Сент',
-'oct'       => 'Окт',
-'nov'       => 'Ноя',
-'dec'       => 'Дек',
+'sunday'        => 'Жекшемби',
+'monday'        => 'Дүйшөмбү',
+'tuesday'       => 'Шейшемби',
+'wednesday'     => 'Шаршемби',
+'thursday'      => 'Бейшемби',
+'friday'        => 'Жума',
+'saturday'      => 'Ишемби',
+'wed'           => 'Шарш.',
+'january'       => 'Январь (Үчтүн айы)',
+'february'      => 'Февраль (Бирдин айы)',
+'march'         => 'Март (Жалган куран)',
+'april'         => 'Апрель (Чын куран)',
+'may_long'      => 'Май (Бугу)',
+'june'          => 'Июнь (Кулжа)',
+'july'          => 'Июль (Теке)',
+'august'        => 'Август (Баш оона)',
+'september'     => 'Сентябрь (Аяк оона)',
+'october'       => 'Октябрь (Тогуздун айы)',
+'november'      => 'Ноябрь (Жетинин айы)',
+'december'      => 'Декабрь (Бештин айы)',
+'january-gen'   => 'Январь (Үчтүн айы)',
+'february-gen'  => 'Февраль (Бирдин айы)',
+'march-gen'     => 'Март (Жалган куран)',
+'april-gen'     => 'Апрель',
+'may-gen'       => 'Май (Бугу)',
+'june-gen'      => 'Июнь (Кулжа)',
+'july-gen'      => 'Июль (Теке)',
+'august-gen'    => 'Август (Баш оона)',
+'september-gen' => 'Сентябрь (Аяк оона)',
+'october-gen'   => 'Октябрь (Тогуздун айы)',
+'november-gen'  => 'Ноябрь (Жетинин айы)',
+'december-gen'  => 'Декабрь (Бештин айы)',
+'jan'           => 'Янв',
+'feb'           => 'Фев',
+'mar'           => 'Март',
+'apr'           => 'Апр',
+'may'           => 'Май',
+'jun'           => 'Июнь',
+'jul'           => 'Июль',
+'aug'           => 'Авг',
+'sep'           => 'Сент',
+'oct'           => 'Окт',
+'nov'           => 'Ноя',
+'dec'           => 'Дек',
 
 'about'      => 'Тууралуу',
 'cancel'     => 'Жокко чыгаруу',
@@ -77,6 +89,7 @@ $messages = array(
 'deletethispage'   => 'Бул баракты өчүрүп кой',
 'protect'          => 'Коргоо',
 'newpage'          => 'Жаңы барак',
+'talkpagelinktext' => 'Талкуу',
 'personaltools'    => 'Жеке аспаптар',
 'talk'             => 'Баарлашуу',
 'toolbox'          => 'Аспап кутусу',
@@ -90,17 +103,26 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Автордук укуктар',
 'currentevents'        => 'Учурдагы окуялар',
 'currentevents-url'    => 'Project:Учурдагы окуялар',
+'disclaimers'          => 'Жоопкерчиликтен баш тартуу',
+'disclaimerpage'       => 'Project:Жалпы жоопкерчиликтен баш тартуу',
 'edithelppage'         => 'Help:Оңдоо',
 'mainpage'             => 'Башбарак',
 'mainpage-description' => 'Башбарак',
 'portal'               => 'Жамаат порталы',
 'portal-url'           => 'Project:Жамаат порталы',
+'privacy'              => 'Жашыруундуулук тартиби',
+'privacypage'          => 'Project:Жашыруундуулук тартиби',
 
+'retrievedfrom'           => '"$1" булагындан алынды',
 'youhavenewmessages'      => 'Сизге $1 ($2) бар.',
 'newmessageslink'         => 'жаңы билдирүүлөр',
 'youhavenewmessagesmulti' => 'Сизге $1 жаңы кат бар.',
 'editsection'             => 'оңдоо',
 'editold'                 => 'оңдоо',
+'editsectionhint'         => '$1 бөлүмүн оңдо',
+'site-rss-feed'           => '$1 RSS тилкеси',
+'site-atom-feed'          => '$1 Atom тилкеси',
+'red-link-title'          => '$1 (мындай барак жок)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Макала',
@@ -132,7 +154,7 @@ $messages = array(
 'createaccountmail'  => 'Электрондук дарек боюнча',
 'wrongpassword'      => 'Ката сырсөз киргизилди. Кайтадан аракет кылып көрүңүз.',
 'wrongpasswordempty' => 'Сырсөз киргизилген жок. Кайтадан аракет кылып көрүңүз.',
-'mailmypassword'     => 'Сырсөздү электрондук дарегиме жибер',
+'mailmypassword'     => 'Жаңы сырсөздү электрондук дарекке жибер',
 'emailconfirmlink'   => 'Электрондук дарегиңизди ырастаңыз',
 'accountcreated'     => 'Катталды',
 'loginlanguagelabel' => 'Тил: $1',
@@ -160,7 +182,8 @@ $messages = array(
 'difference' => '(Оңдоолордун айырмасы)',
 
 # Search results
-'powersearch' => 'Издөө',
+'search-result-size' => '$1 ({{PLURAL:$2|1 сөз|$2 сөз}})',
+'powersearch'        => 'Издөө',
 
 # Preferences page
 'preferences'       => 'Түзөө',
@@ -214,7 +237,7 @@ $messages = array(
 
 # File description page
 'file-anchor-link' => 'Файл',
-'imagelinks'       => 'Шилтемелер',
+'imagelinks'       => 'Файл шилтемелери',
 
 # Unused templates
 'unusedtemplates'    => 'Колдонулбаган нускалар',
@@ -301,6 +324,9 @@ $messages = array(
 'allmessagesname'    => 'Аталышы',
 'allmessagescurrent' => 'Учурдагы текст',
 
+# Tooltip help for the actions
+'tooltip-n-mainpage' => 'Башбаракка кайрыл',
+
 # Attribution
 'others' => 'башкалар',
 
@@ -308,7 +334,7 @@ $messages = array(
 'math_unknown_error' => 'белгисиз ката',
 
 # Browsing diffs
-'nextdiff' => 'Кийинки айырма →',
+'nextdiff' => 'Жаңы түзөтүү →',
 
 # Special:NewFiles
 'newimages' => 'Жаңы файлдардын галлереясы',

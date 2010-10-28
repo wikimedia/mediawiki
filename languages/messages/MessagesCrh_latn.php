@@ -155,6 +155,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'Yazuv penceresinde şrift türü:',
 'editfont-default'   => 'Brauzerge köre',
+'editfont-monospace' => 'Bir keñlikli urufat',
 'editfont-sansserif' => 'Kertiksiz urufat',
 'editfont-serif'     => 'Kertikli urufat',
 
@@ -332,6 +333,7 @@ $messages = array(
 'view-pool-error'   => 'Afu etiñiz, server şimdi adden-aşır yüklendi. Pek çoq qullanıcı bu saifeni açmağa tırışa. Lütfen, bu saifeni bir daa açmaqtan evel biraz bekleñiz.
 
 $1',
+'pool-timeout'      => 'Kilit içün vaqıt bitişi beklene',
 'pool-errorunknown' => 'Bilinmegen hata',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
