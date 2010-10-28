@@ -58,6 +58,9 @@ class ApiUserrights extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
 
+	/**
+	 * @return User
+	 */
 	private function getUser() {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;

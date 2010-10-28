@@ -154,6 +154,9 @@ class ApiRollback extends ApiBase {
 		return $this->mUser;
 	}
 
+	/**
+	 * @return Title
+	 */
 	private function getTitle() {
 		if ( $this->mTitleObj !== null ) {
 			return $this->mTitleObj;
