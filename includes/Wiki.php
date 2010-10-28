@@ -208,8 +208,8 @@ class MediaWiki {
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
-		} else if( $action == 'view' && !$request->wasPosted()
-			&& ( ( !$request->getVal( 'title' ) || $title->getPrefixedDBKey() != $request->getText( 'title' ) ) )
+		} else if ( $action == 'view' && !$request->wasPosted()
+			&& ( !$request->getVal( 'title' ) || $title->getPrefixedDBKey() != $request->getText( 'title' ) )
 			&& !count( array_diff( array_keys( $request->getValues() ), array( 'action', 'title' ) ) ) )
 		{
 			$targetUrl = $title->getFullURL();
