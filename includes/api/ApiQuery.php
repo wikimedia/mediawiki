@@ -383,9 +383,7 @@ class ApiQuery extends ApiBase {
 			$result->addValue( 'query', 'redirects', $redirValues );
 		}
 
-		//
 		// Missing revision elements
-		//
 		$missingRevIDs = $pageSet->getMissingRevisionIDs();
 		if ( count( $missingRevIDs ) ) {
 			$revids = array();
@@ -398,9 +396,7 @@ class ApiQuery extends ApiBase {
 			$result->addValue( 'query', 'badrevids', $revids );
 		}
 
-		//
 		// Page elements
-		//
 		$pages = array();
 
 		// Report any missing titles
@@ -457,48 +453,57 @@ class ApiQuery extends ApiBase {
 			$result->addValue( 'query', 'pages', $pages );
 		}
 		if ( $this->params['export'] ) {
-			$exportTitles = array();
-			$titles = $pageSet->getGoodTitles();
-			if( count( $titles ) ) {
-				foreach ( $titles as $title ) {
-					if ( $title->userCanRead() ) {
-						$exportTitles[] = $title;
-					}
+			$this->doExport( $pageSet, $result );
+		}
+	}
+
+	/**
+	 * @param  $pageSet ApiPageSet
+	 * @param  $result ApiResult
+	 * @return
+	 */
+	private function doExport( $pageSet, $result )	{
+		$exportTitles = array();
+		$titles = $pageSet->getGoodTitles();
+		if( count( $titles ) ) {
+			foreach ( $titles as $title ) {
+				if ( $title->userCanRead() ) {
+					$exportTitles[] = $title;
 				}
 			}
-			//export, when there are titles
-			if ( !count( $exportTitles ) ) {
-				return;
-			}
-
-			$exporter = new WikiExporter( $this->getDB() );
-			// WikiExporter writes to stdout, so catch its
-			// output with an ob
-			ob_start();
-			$exporter->openStream();
-			foreach ( $exportTitles as $title ) {
-				$exporter->pageByTitle( $title );
-			}
-			$exporter->closeStream();
-			$exportxml = ob_get_contents();
-			ob_end_clean();
-
-			// Don't check the size of exported stuff
-			// It's not continuable, so it would cause more
-			// problems than it'd solve
-			$result->disableSizeCheck();
-			if ( $this->params['exportnowrap'] ) {
-				$result->reset();
-				// Raw formatter will handle this
-				$result->addValue( null, 'text', $exportxml );
-				$result->addValue( null, 'mime', 'text/xml' );
-			} else {
-				$r = array();
-				ApiResult::setContent( $r, $exportxml );
-				$result->addValue( 'query', 'export', $r );
-			}
-			$result->enableSizeCheck();
 		}
+		// only export when there are titles
+		if ( !count( $exportTitles ) ) {
+			return;
+		}
+
+		$exporter = new WikiExporter( $this->getDB() );
+		// WikiExporter writes to stdout, so catch its
+		// output with an ob
+		ob_start();
+		$exporter->openStream();
+		foreach ( $exportTitles as $title ) {
+			$exporter->pageByTitle( $title );
+		}
+		$exporter->closeStream();
+		$exportxml = ob_get_contents();
+		ob_end_clean();
+
+		// Don't check the size of exported stuff
+		// It's not continuable, so it would cause more
+		// problems than it'd solve
+		$result->disableSizeCheck();
+		if ( $this->params['exportnowrap'] ) {
+			$result->reset();
+			// Raw formatter will handle this
+			$result->addValue( null, 'text', $exportxml );
+			$result->addValue( null, 'mime', 'text/xml' );
+		} else {
+			$r = array();
+			ApiResult::setContent( $r, $exportxml );
+			$result->addValue( 'query', 'export', $r );
+		}
+		$result->enableSizeCheck();
 	}
 
 	/**
