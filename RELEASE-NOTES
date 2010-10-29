@@ -373,6 +373,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 23923) Special:Prefixindex no longer shows results if nothing was
   requested.
 * (bug 22308) Search now finds text in default main page immediately after setup
+* (bug 25697) Make sure empty lines render in diff view.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
