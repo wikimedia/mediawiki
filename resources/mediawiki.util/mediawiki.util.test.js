@@ -90,7 +90,7 @@
 							'function (string)');
 						mw.test.addTest('mw.util.rawurlencode( \'Test: A&B/Here\' )',
 							'Test%3A%20A%26B%2FHere (string)');
-						mw.test.addTest('typeof mw.util.wfGetlink',
+						mw.test.addTest('typeof mw.util.wikiGetlink',
 							'function (string)');
 						mw.test.addTest('typeof mw.util.getParamValue',
 							'function (string)');
