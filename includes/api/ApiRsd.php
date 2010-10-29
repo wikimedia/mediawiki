@@ -41,7 +41,6 @@ class ApiRsd extends ApiBase {
 
 	public function execute() {
 		$result = $this->getResult();
-		
 
 		$result->addValue( null, 'version', '1.0' );
 		$result->addValue( null, 'xmlns', 'http://archipelago.phrasewise.com/rsd' );
