@@ -444,12 +444,13 @@ abstract class CoreInstaller extends Installer {
 		try {
 			$titleobj = Title::newFromText( wfMsgForContent( "mainpage" ) );
 			$article = new Article( $titleobj );
-			$article->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
-								wfMsgForContent( 'mainpagedocfooter' ),
-								'',
-								EDIT_NEW,
-								false,
-								User::newFromName( 'MediaWiki Default' ) );
+			$text = wfMsgForContent( 'mainpagetext' ) . "\n\n" .
+				wfMsgForContent( 'mainpagedocfooter' );
+			$article->doEdit( $text, '', EDIT_NEW, false,
+				User::newFromName( 'MediaWiki Default' ) );
+			$u = new SearchUpdate( $titleobj->getArticleID(),
+				$titleobj->getPrefixedDBkey(), $text );
+			$u->doUpdate();
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() ); 

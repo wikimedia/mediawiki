@@ -372,6 +372,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgGroupPermissions now appear on Special:ListGroupRights
 * (bug 23923) Special:Prefixindex no longer shows results if nothing was
   requested.
+* (bug 22308) Search now finds text in default main page immediately after setup
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
