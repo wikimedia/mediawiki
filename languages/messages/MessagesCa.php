@@ -583,6 +583,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'yourpassword'               => 'Contrasenya',
 'yourpasswordagain'          => 'Escriviu una altra vegada la contrasenya',
 'remembermypassword'         => 'Recorda la contrasenya entre sessions (per un màxim de $1 {{PLURAL:$1|dia|dies}})',
+'securelogin-stick-https'    => "Roman connectat via HTTPS desprès d'autenticar-se",
 'yourdomainname'             => 'El vostre domini',
 'externaldberror'            => "Hi ha hagut una fallida en el servidor d'autenticació externa de la base de dades i no teniu permís per a actualitzar el vostre compte d'accès extern.",
 'login'                      => 'Inici de sessió',

@@ -416,6 +416,7 @@ Jangan kada ingat hagan maubah [[Special:Preferences|preferensi {{SITENAME}}]] P
 'yourpassword'               => 'Katasunduk:',
 'yourpasswordagain'          => 'Katik pulang katasunduk:',
 'remembermypassword'         => 'Ingatan log babuat ulun dalam komputer ini (salawas $1{{PLURAL:$1|hari|hari}})',
+'securelogin-stick-https'    => 'Bagana tasambung awan HTTPS imbah babuat-log',
 'yourdomainname'             => 'Dumain Pian:',
 'externaldberror'            => 'Ada kasalahan apakah kacucukan basis data atawa Pian kada bulih mamutakhirakan akun luar.',
 'login'                      => 'Babuat',
@@ -1162,6 +1163,7 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-reupload'           => 'Manulistindih barakas nang ada',
 'right-reupload-own'       => 'Manulistindih barakas nang ada unggahan ulih urang nang sama',
 'right-delete'             => 'Mahapus tungkaran',
+'right-bigdelete'          => 'Hapus tutungkaran awan hahalam ganal',
 'right-browsearchive'      => 'Manggagai tungkaran nang sudah dihapus',
 'right-undelete'           => 'Mambulikakan sabuah tungkaran tahapus',
 'right-block'              => 'Blukir pamuruk lain mambabak',
@@ -1171,6 +1173,8 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-editusercss'        => 'Babak pamruk lain babarakas CSS',
 'right-edituserjs'         => 'Babak pamuruk lain babarakas JavaScript',
 'right-trackback'          => 'Mangirimakan sabuah panjajakan balik',
+'right-userrights'         => 'Babak sabarataan hak pamuruk',
+'right-sendemail'          => 'Mangirim suril ka papamuruk lain',
 'right-revisionmove'       => 'Pindahakan raralatan',
 
 # User rights log
@@ -1555,8 +1559,8 @@ Ini kawa maakibatakan parubahan kada taduga wan drastis gasan sabuah tungkaran r
 'others' => 'lainnya',
 
 # Browsing diffs
-'previousdiff' => 'Ralatan talawas',
-'nextdiff'     => 'Babakan tahanyar→',
+'previousdiff' => '← Ralatan talawas',
+'nextdiff'     => 'Ralatan tahanyar →',
 
 # Media information
 'file-info-size'       => '($1 × $2 piksel, ukuran barakas: $3, tipe MIME: $4)',

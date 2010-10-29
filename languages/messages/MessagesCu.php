@@ -529,7 +529,7 @@ $messages = array(
 'addedwatch'       => 'страни́ца нꙑнѣ по́дъ твоимь блюдє́ниѥмь ѥ́стъ',
 'addedwatchtext'   => "страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ по́дъ твоимь [[Special:Watchlist|блюдє́ниѥмь]] ѥ́стъ ⁙
 всꙗ ѥѩ и ѥѩжє бєсѣдꙑ мѣ́нꙑ страни́цѧ ⁖ [[Special:Watchlist|моꙗ́ блюдє́ниꙗ]] ⁖ покаꙁанꙑ сѫ́тъ и  [[Special:RecentChanges|послѣ́дьнъ мѣ́нъ]] ката́лоꙃѣ '''чрьнꙑимъ''' сѧ авлꙗѭтъ",
-'removedwatchtext' => 'страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ иꙁъ твоѥго [[Special:Watchlist|блюдє́ниꙗ]] иꙁнєсєна ѥ́стъ',
+'removedwatchtext' => 'страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ твоѥго [[Special:Watchlist|блюдє́ниꙗ]] иꙁнєсєна ѥ́стъ',
 'watch'            => 'блюдє́ниѥ',
 'watchthispage'    => 'си страни́цѧ блюдє́ниѥ',
 'unwatch'          => 'оста́ви блюдє́ниѥ',
@@ -623,7 +623,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'твоꙗ́ по́льꙃєватєл҄ьска страни́ца',
 'tooltip-pt-mytalk'              => 'твоꙗ́ бєсѣ́дꙑ страни́ца',
-'tooltip-pt-preferences'         => 'твоꙗ́ строи',
+'tooltip-pt-preferences'         => 'твои строи',
 'tooltip-pt-mycontris'           => 'твоꙗ́ добродѣꙗ́ниѩ ката́логъ',
 'tooltip-pt-logout'              => 'ис̾хо́дъ',
 'tooltip-ca-talk'                => 'си страни́цѧ бєсѣ́да',

@@ -3521,6 +3521,8 @@ $messages['gsw'] = array(
 	'config-localsettings-upgrade' => "'''Warnig:''' D Datei <code>LocalSettings.php</code> isch nit gfunde wore.
 Dyy Software cha aktualisiert wäre.
 D Datei <code>LocalSettings.php</code> mueß an e sichere Spycherort verschobe un derno s Inschtallationsprogramm nomol uusgfiert wäre.",
+	'config-localsettings-key' => 'Aktualisierigsschlissel:',
+	'config-localsettings-badkey' => 'Dr Aktualisierigsschlissel, wu du aagee hesch, isch falsch.',
 	'config-localsettings-noupgrade' => "'''Fähler''': D Datei <code>LocalSettings.php</code> isch it gfunde wore.
 Dyy Software cha zurzyt nit aktualisiert wäre.
 S Inschtallationsprogramm sich us Sicherheitsgrind deaktiviert wore.",
@@ -3554,6 +3556,7 @@ D Datei <code>php.ini</code> mueß prieft wäre un s mueß derby sichergstellt w
 	'config-page-releasenotes' => 'Hiiwys fir d Vereffentlichung',
 	'config-page-copying' => 'Am Kopiere',
 	'config-page-upgradedoc' => 'Am Aktualisiere',
+	'config-page-locked' => 'Zuegriff verweigeret',
 	'config-help-restart' => 'Witt alli Date, wu Du yygee hesch, lesche un d Inschtallation nomol aafange?',
 	'config-restart' => 'Jo, nomol aafange',
 	'config-welcome' => '=== Priefig vu dr Inschtallationsumgäbig ===
@@ -3568,7 +3571,6 @@ Des Programm isch e freji Software, d. h. s cha, no dr Bedingige vu dr GNU Gener
 Des Programm wird in dr Hoffnig verteilt, ass es nitzli isch, aber '''ohni jedi Garanti''' un sogar ohni di impliziert Garanti vun ere '''Märtgängigkeit''' oder '''Eignig fir e bstimmte Zwäck'''. Doderzue git meh Hiiwys in dr GNU General Public-Lizänz.
 
 E <doclink href=Copying>Kopi vu dr GNU General Public-Lizänz</doclink> sott zämme mit däm Programm verteilt wore syy. Wänn des nit eso isch, cha ne Kopi bi dr Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftli aagforderet oder [http://www.gnu.org/copyleft/gpl.html online gläse] wäre.",
-	'config-authors' => 'MediaWiki – Copyright © 2001-2010 Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Kirche, Yuri Astrachan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe un anderi.',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Websyte vu MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Nutzeraaleitig zue MediaWiki]
 * [http://www.mediawiki.org/wiki/Manual:Contents Adminischtratoreaaleitig zue MediaWiki]
@@ -3592,6 +3594,18 @@ Wänn Du ne Websyte mit ere große Bsuechrzahl bedrybsch, sottsch e weng ebis l�
 	'config-unicode-update-warning' => "'''Warnig:''' Di inschtalliert Version vum Unicode-Normalisierigswrapper verwändet e elteri Version vu dr Bibliothek vum [http://site.icu-project.org/ ICU-Projäkt].
 Du sottsch si [http://www.mediawiki.org/wiki/Unicode_normalization_considerations aktualisiere], wänn Dor d Verwändig vu Unicode wichtig isch.",
 	'config-no-db' => 'S isch kei adäquate Datebanktryyber gfunde wore!',
+	'config-no-db-help' => 'S mueß e Datebanktryyber fir PHP inschtalliert wäre.
+Die Datebanksyschtem wäre unterstitzt: $1
+
+Wänn Du ne gmeinschaftli gnutzte Server fir s Hosting bruchsch, muesch dr Hoster froge go ne adäquate Datebanktryyber inschtalliere.
+Wänn Du PHP sälber kumpiliert hesch, muesch s nej konfiguriere, dr Datebankclient mueß aktiviert wäre. Doderzue chasch zem Byschpel <code>./configure --with-mysql</code> uusfiere.
+Wänn Du PHP iber d Paketverwaltig vun ere Debian- oder Ubuntu-Inschtallation inschtalliert hesch, muesch s „php5-mysql“-Paket nooinschtalliere.',
+	'config-have-db' => '{{PLURAL:$2|Datebanktryyber|Datebanktryyber}} gfunde: $1.',
+	'config-have-fts3' => 'SQLite isch zämme mit em [http://sqlite.org/fts3.html FTS3-Modul] kumpiliert wore, ass d Suechfunktione z Verfiegig stehn.',
+	'config-no-fts3' => "'''Warnig:''' SQLite isch ohni s [http://sqlite.org/fts3.html FTS3-Modul] kumpiliert wore, s stehn kei Suechfunktione z Verfiegig.",
+	'config-register-globals' => "'''Warnig: Dr Parameter <code>[http://php.net/register_globals register_globals]</code> vu PHP isch aktiviert.'''
+'''Är sott deaktiviert wäre, wänn des megli isch.'''
+D MediaWiki-Inschtallation lauft einwäg, aber dr Server isch aafällig fi megligi Sicherheitsprobläm.",
 );
 
 /** Hebrew (עברית)
@@ -8607,6 +8621,8 @@ $messages['ru'] = array(
 	'config-localsettings-upgrade' => "'''Внимание''': обнаружен файл <code>LocalSettings.php</code>. 
 Ваше программное обеспечение возможно обновить. 
 Пожалуйста, переместите файл <code>LocalSettings.php</code> в другую безопасную директорию, а затем снова запустите программу установки.",
+	'config-localsettings-key' => 'Ключ обновления:',
+	'config-localsettings-badkey' => 'Вы указали неправильный ключ',
 	'config-localsettings-noupgrade' => "'''Ошибка''': обнаружен файл <code>LocalSettings.php</code>. 
 В его присутствии MediaWiki нельзя обновить.
 Программа установки приостановлена по соображениям безопасности.",
@@ -8640,6 +8656,7 @@ $messages['ru'] = array(
 	'config-page-releasenotes' => 'Информация о версии',
 	'config-page-copying' => 'Копирование',
 	'config-page-upgradedoc' => 'Обновление',
+	'config-page-locked' => 'Доступ запрещён',
 	'config-help-restart' => 'Вы хотите удалить все сохранённые данные, которые вы ввели, и запустить процесс установки заново?',
 	'config-restart' => 'Да, начать заново',
 	'config-welcome' => '=== Проверка окружения ===
@@ -8734,25 +8751,6 @@ MediaWiki не будет работать в этой конфигурации,
 	'config-uri' => 'URI скрипта: <code>$1</code>.',
 	'config-no-uri' => "'''Ошибка:''' Не могу определить текущий URI. 
 Установка прервана.",
-	'config-dir-not-writable-group' => "'''Ошибка.''' Невозможно записать файл конфигурации. 
-Установка прервана. 
-
-Установщик определил пользователя, от имени которого работает веб-сервер.
-Сделайте для него доступной на запись директорию <code><nowiki>config</nowiki></code>.
-В Unix/Linux системах: 
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Ошибка.''' Невозможно записать файл конфигурации. 
-Установка прервана. 
-
-Не удалось определить пользователя, от имени которого запущен веб-сервер.
-Для продолжения сделайте директорию <code><nowiki>config</nowiki></code> доступной на запись для всех пользователей.
-В Unix/Linux системах: 
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => 'Установка MediaWiki с расширениями файлов <code>$1</code>.',
 	'config-shell-locale' => 'Определена локаль оболочки — $1',
 	'config-uploads-safe' => 'Директория по умолчанию для загрузок безопасна от выполнения произвольных скриптов.',
@@ -9065,6 +9063,8 @@ GNU Free Documentation License раньше была основной лицен
 	'config-insecure-secretkey' => "'''Внимание:''' Не получилось создать безопасный секретный ключ (<code>\$wgSecretKey</code>).
 По возможности, смените его вручную.",
 	'config-install-sysop' => 'Создание учётной записи администратора',
+	'config-install-mainpage' => 'Создание главной страницы с содержимым по умолчанию',
+	'config-install-mainpage-failed' => 'Не удаётся вставить главную страницу.',
 	'config-install-done' => "'''Поздравляем!'''
 Вы успешно установили MediaWiki.
 
