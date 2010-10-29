@@ -1177,7 +1177,7 @@ class TableDiffFormatter extends DiffFormatter {
 
 	# HTML-escape parameter before calling this
 	function contextLine( $line ) {
-		return $this->wrapLine( ' ', 'diff-context', $line );
+		return $this->wrapLine( '&#160;', 'diff-context', $line );
 	}
 
 	private function wrapLine( $marker, $class, $line ) {
