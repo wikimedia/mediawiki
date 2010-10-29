@@ -74,8 +74,8 @@
 		* Checks if the current browser matches
 		*
 		* @example	mw.util.isBrowser( 'safari' );
-		* @param	String	str		name of a browser (case insensitive). Check jquery.client.js for possible values
-		* @return	Boolean			true of the browsername matches the clients browser
+		* @param	String	str	name of a browser (case insensitive). Check jquery.client.js for possible values
+		* @return	Boolean		true of the browsername matches the clients browser
 		*/
 		'isBrowser' : function( str ) {
 			str = (str + '').toLowerCase();
@@ -86,8 +86,8 @@
 		* Checks if the current layout matches
 		*
 		* @example	mw.util.isLayout( 'webkit' );
-		* @param	String	str		name of a layout engine (case insensitive). Check jquery.client.js for possible values
-		* @return	Boolean			true of the layout engine matches the clients browser
+		* @param	String	str	name of a layout engine (case insensitive). Check jquery.client.js for possible values
+		* @return	Boolean		true of the layout engine matches the clients browser
 		*/
 		'isLayout' : function( str ) {
 			str = (str + '').toLowerCase();
@@ -98,8 +98,8 @@
 		* Checks if the current layout matches
 		*
 		* @example	mw.util.isPlatform( 'mac' );
-		* @param	String	str		name of a platform (case insensitive). Check jquery.client.js for possible values
-		* @return	Boolean			true of the platform matches the clients platform
+		* @param	String	str	name of a platform (case insensitive). Check jquery.client.js for possible values
+		* @return	Boolean		true of the platform matches the clients platform
 		*/
 		'isPlatform' : function( str ) {
 			str = (str + '').toLowerCase();
@@ -110,8 +110,8 @@
 		* Checks if the current browser version matches
 		*
 		* @example	mw.util.isBrowserVersion( '5' );
-		* @param	String	str		version number without decimals
-		* @return	Boolean			true of the version number matches the clients browser
+		* @param	String	str	version number without decimals
+		* @return	Boolean		true of the version number matches the clients browser
 		*/
 		'isBrowserVersion' : function( str ) {
 			return this.clientProfile.versionBase === str;
@@ -135,24 +135,24 @@
 		*
 		* @param String str		string to be encoded
 		*/
-		'wfUrlencode' : function( str ) {
+		'wikiUrlencode' : function( str ) {
 			return this.rawurlencode( str ).replace( /%20/g, '_' ).replace( /%3A/g, ':' ).replace( /%2F/g, '/' );
 		},
 
 		/**
 		* Get the full url to a pagename
 		*
-		* @param String str		pagename to link to
+		* @param String	str		pagename to link to
 		*/
-		'wfGetlink' : function( str ) {
-			return wgServer + wgArticlePath.replace( '$1', this.wfUrlencode( str ) );
+		'wikiGetlink' : function( str ) {
+			return wgServer + wgArticlePath.replace( '$1', this.wikiUrlencode( str ) );
 		},
 
 		/**
 		* Check is a variable is empty. Support for strings, booleans, arrays and objects.
 		* String "0" is considered empty. String containing only whitespace (ie. " ") is considered not empty.
 		*
-		* @param Mixed v	the variable to check for empty ness
+		* @param Mixed	v	the variable to check for empty ness
 		*/
 		'isEmpty' : function( v ) {
 			var key;
@@ -246,7 +246,7 @@
 				return;
 			}
 
-			$nodes.each(function ( i ) {
+			$nodes.each( function ( i ) {
 				var tip = $(this).attr( 'title' );
 				if ( !!tip && mw.util.tooltipAccessKeyRegexp.exec( tip ) ) {
 					tip = tip.replace( mw.util.tooltipAccessKeyRegexp, '[' + mw.util.tooltipAccessKeyPrefix + "$5]" );
