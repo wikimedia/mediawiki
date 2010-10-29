@@ -14,33 +14,32 @@
 
 				// Any initialisation after the DOM is ready
 				$(function () {
-					
+
 					// Populate clientProfile var
 					mw.util.clientProfile = $.client.profile();
-					var webkit = navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
 
 					// Set tooltipAccessKeyPrefix
-					
+
 					// Opera on any platform
 					if ( mw.util.isBrowser('opera') ) {
 						this.tooltipAccessKeyPrefix = 'shift-esc-';
-					
+
 					// Chrome on any platform
 					} else if ( mw.util.isBrowser('chrome') ) {
 						// Chrome on Mac or Chrome on other platform ?
 						this.tooltipAccessKeyPrefix = mw.util.isPlatform('mac') ? 'ctrl-option-' : 'alt-';
-					
+
 					// Non-Windows Safari with webkit_version > 526
 					} else if ( !mw.util.isPlatform('win') && mw.util.isBrowser('safari') && webkit_version > 526 ) {
 						this.tooltipAccessKeyPrefix = 'ctrl-alt-';
-					
+
 					// Safari/Konqueror on any platform, or any browser on Mac (but not Safari on Windows)
 					} else if ( !( mw.util.isPlatform('win') && mw.util.isBrowser('safari') )
 									&& ( mw.util.isBrowser('safari')
 									  || mw.util.isPlatform('mac')
 									  || mw.util.isBrowser('konqueror') ) ) {
 						this.tooltipAccessKeyPrefix = 'ctrl-';
-					
+
 					// Firefox 2.x
 					} else if ( mw.util.isBrowser('firefox') && mw.util.isBrowserVersion('2') ) {
 						this.tooltipAccessKeyPrefix = 'alt-shift-';
@@ -56,7 +55,7 @@
 						mw.util.$content = $('#article');
 					} else {
 						mw.util.$content = $('#content');
-					} 
+					}
 				});
 
 
