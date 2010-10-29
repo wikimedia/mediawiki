@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -604,6 +604,7 @@ $2',
 'yourpassword'               => '密码：',
 'yourpasswordagain'          => '再次输入密码：',
 'remembermypassword'         => '在这个浏览器上记住我的登入信息（可维持$1{{PLURAL:$1|日|日}}）',
+'securelogin-stick-https'    => '登入后继续以HTTPS连接',
 'yourdomainname'             => '您的域名：',
 'externaldberror'            => '这可能是由于验证数据库错误或您被禁止更新您的外部账号。',
 'login'                      => '登录',
@@ -638,6 +639,7 @@ $2',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
 'passwordtooshort'           => '您的密码至少需要$1个字符。',
 'password-name-match'        => '您的密码必须和您的用户名不相同。',
+'password-too-weak'          => '所提供的密码过弱不能使用。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
 'passwordremindertext'       => '有人（可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。
@@ -1661,6 +1663,7 @@ $1',
 'listfiles_search_for'  => '按媒体名称搜索：',
 'imgfile'               => '文件',
 'listfiles'             => '文件列表',
+'listfiles_thumb'       => '缩图',
 'listfiles_date'        => '日期',
 'listfiles_name'        => '名称',
 'listfiles_user'        => '用户',

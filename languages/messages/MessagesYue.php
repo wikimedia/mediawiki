@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -541,6 +541,7 @@ $1',
 'yourpassword'               => '密碼:',
 'yourpasswordagain'          => '再輸入密碼:',
 'remembermypassword'         => '響呢個瀏覽器度記住我嘅登入資料 (最高維持$1{{PLURAL:$1|日|日}})',
+'securelogin-stick-https'    => '登入後繼續以HTTPS連接',
 'yourdomainname'             => '你嘅網域:',
 'externaldberror'            => '驗證資料庫出錯，或者唔允許你更新你嘅外部帳戶。',
 'login'                      => '登入',
@@ -577,6 +578,7 @@ $1',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
 'passwordtooshort'           => '你嘅密碼最少要有$1個半形字元。',
 'password-name-match'        => '你嘅密碼一定要同你嘅用戶名唔一樣。',
+'password-too-weak'          => '所提供嘅密碼太弱唔用得。',
 'mailmypassword'             => '寄個新密碼',
 'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
@@ -1614,6 +1616,7 @@ $1',
 'listfiles_search_for'  => '搵媒體名:',
 'imgfile'               => '檔案',
 'listfiles'             => '檔案清單',
+'listfiles_thumb'       => '縮圖',
 'listfiles_date'        => '日期',
 'listfiles_name'        => '名',
 'listfiles_user'        => '用戶',
