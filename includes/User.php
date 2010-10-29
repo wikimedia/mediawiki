@@ -648,8 +648,19 @@ class User {
 		if( !wfRunHooks( 'isValidEmailAddr', array( $addr, &$result ) ) ) {
 			return $result;
 		}
+		$rfc5322_atext   = "a-z0-9!#$%&'*+-\/=?^_`{|}—~" ;
+		$rfc1034_ldh_str = "a-z0-9-" ;
 
-		return strpos( $addr, '@' ) !== false;
+		$HTML5_email_regexp = "/
+		^                      # start of string
+		[$rfc5322_atext\\.]+    # user part which is liberal :p
+		@                      # 'apostrophe'
+		[$rfc1034_ldh_str]     # Domain first character
+		[$rfc1034_ldh_str\\.]+  # Second char and following can include dot
+		$                      # End of string
+		/ix" ; // case Insensitive, eXtended 
+
+		return (bool) preg_match( $HTML5_email_regexp, $addr );
 	}
 
 	/**
