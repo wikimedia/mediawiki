@@ -25,50 +25,35 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testGetPreferredVariantDefaults() {
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, true ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
 	function testGetPreferredVariantHeaders() {
 		global $wgRequest;
 		$wgRequest->setHeader( 'Accept-Language', 'tg-latn' );
 
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, true ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
 	function testGetPreferredVariantHeaderWeight() {
 		global $wgRequest;
 		$wgRequest->setHeader( 'Accept-Language', 'tg;q=1' );
 
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, true ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
 	function testGetPreferredVariantHeaderWeight2() {
 		global $wgRequest;
 		$wgRequest->setHeader( 'Accept-Language', 'tg-latn;q=1' );
 
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, true ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
 	function testGetPreferredVariantHeaderMulti() {
 		global $wgRequest;
 		$wgRequest->setHeader( 'Accept-Language', 'en, tg-latn;q=1' );
 
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, true ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true, true ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
 	function testGetPreferredVariantUserOption() {
@@ -79,10 +64,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$wgUser->mDataLoaded = true;
 		$wgUser->setOption( 'variant', 'tg-latn' );
 
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, true ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true,  false ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true,  true ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
 	function testGetPreferredVariantHeaderUserVsUrl() {
@@ -94,8 +76,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$wgUser->setId( 1 );
 		$wgUser->setOption( 'variant', 'tg-latn' ); // The user's data is ignored
 												  // because the variant is set in the URL.
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true,  false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( true,  true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
 
@@ -103,10 +84,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		global $wgDefaultLanguageVariant;
 
 		$wgDefaultLanguageVariant = 'tg-latn';
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, false ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( false, true ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true, false ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true, true ) );
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
 
 	function testGetPreferredVariantDefaultLanguageVsUrlVariant() {
@@ -115,10 +93,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$wgContLang = Language::factory( 'tg-latn' );
 		$wgDefaultLanguageVariant = 'tg';
 		$wgRequest->setVal( 'variant', null );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, false ) );
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant( false, true ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true, false ) );
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant( true, true ) );
+		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 }
 
