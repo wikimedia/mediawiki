@@ -78,14 +78,6 @@
 							'\\.st\\{e\\}\\$st (string)');
 						mw.test.addTest('typeof $.fn.checkboxShiftClick',
 							'function (string)');
-						mw.test.addTest('typeof mw.util.isBrowser( \'safari\' )',
-							'boolean (string)');
-						mw.test.addTest('typeof mw.util.isLayout( \'webKit\' )',
-							'boolean (string)');
-						mw.test.addTest('typeof mw.util.isPlatform( \'MAC\' )',
-							'boolean (string)');
-						mw.test.addTest('typeof mw.util.isBrowserVersion( \'5\' )',
-							'boolean (string)');
 						mw.test.addTest('typeof mw.util.rawurlencode',
 							'function (string)');
 						mw.test.addTest('mw.util.rawurlencode( \'Test: A&B/Here\' )',
