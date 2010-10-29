@@ -312,6 +312,9 @@ abstract class Maintenance {
 		$this->addOption( 'conf', "Location of LocalSettings.php, if not default", false, true );
 		$this->addOption( 'wiki', "For specifying the wiki ID", false, true );
 		$this->addOption( 'globals', "Output globals at the end of processing for debugging" );
+		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g.\n" .
+							"\t\thttp://en.wikipedia.org. This is sometimes necessary because\n" .
+							"\t\tserver name detection may fail in command line scripts.", false, true );
 		// If we support a DB, show the options
 		if( $this->getDbType() > 0 ) {
 			$this->addOption( 'dbuser', "The DB user to use for this script", false, true );
@@ -612,7 +615,7 @@ abstract class Maintenance {
 	 * Handle some last-minute setup here.
 	 */
 	public function finalSetup() {
-		global $wgCommandLineMode, $wgShowSQLErrors;
+		global $wgCommandLineMode, $wgShowSQLErrors, $wgServer;
 		global $wgTitle, $wgProfiling, $IP, $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
@@ -622,6 +625,11 @@ abstract class Maintenance {
 		}
 		# Same with these
 		$wgCommandLineMode = true;
+
+		# Override $wgServer
+		if( $this->hasOption( 'server') ) {
+			$wgServer = $this->getOption( 'server', $wgServer );
+		}
 
 		# If these were passed, use them
 		if( $this->mDbUser )
