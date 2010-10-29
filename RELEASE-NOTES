@@ -374,6 +374,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   requested.
 * (bug 22308) Search now finds text in default main page immediately after setup
 * (bug 25697) Make sure empty lines render in diff view.
+* Use an actual minus sign in diff views, instead of a hyphen.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
@@ -462,6 +463,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   <head> and by providing an API module action=rsd. Added hook 
   ApiRsdServiceApis for extensions to add their own service to the services 
   list.
+* The HTML of diff output markers has changed. Hyphens are now minus signs, 
+  empty markers are now filled with non-breaking-space characters.
 
 === Languages updated in 1.17 ===
 

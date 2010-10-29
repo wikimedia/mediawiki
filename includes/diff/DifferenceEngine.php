@@ -1172,7 +1172,7 @@ class TableDiffFormatter extends DiffFormatter {
 
 	# HTML-escape parameter before calling this
 	function deletedLine( $line ) {
-		return $this->wrapLine( '-', 'diff-deletedline', $line );
+		return $this->wrapLine( '&minus;', 'diff-deletedline', $line );
 	}
 
 	# HTML-escape parameter before calling this
