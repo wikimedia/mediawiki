@@ -30,7 +30,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
- * API interface for page purging
+ * API module for sending out RSD information
  * @ingroup API
  */
 class ApiRsd extends ApiBase {
