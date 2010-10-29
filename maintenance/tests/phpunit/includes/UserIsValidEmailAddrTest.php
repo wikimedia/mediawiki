@@ -2,7 +2,7 @@
 
 class UserIsValidEmailAddrTest extends PHPUnit_Framework_TestCase {
 
-	private function testEmail( $addr, $expected = true, $msg = '') {
+	private function checkEmail( $addr, $expected = true, $msg = '') {
 		$this->assertEquals(
 			$expected,
 			User::isValidEmailAddr( $addr ),
@@ -10,10 +10,10 @@ class UserIsValidEmailAddrTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 	private function valid( $addr, $msg = '' ) {
-		$this->testEmail( $addr, true, $msg );
+		$this->checkEmail( $addr, true, $msg );
 	}
 	private function invalid( $addr, $msg = '' ) {
-		$this->testEmail( $addr, false, $msg );
+		$this->checkEmail( $addr, false, $msg );
 	}
 
 	function testEmailWellKnownUserAtHostDotTldAreValid() {
