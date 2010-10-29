@@ -17,33 +17,34 @@
 					
 					// Populate clientProfile var
 					mw.util.clientProfile = $.client.profile();
+					var webkit = navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
 
 					// Set tooltipAccessKeyPrefix
 					
-						// Opera on any platform
-						if ( mw.util.isBrowser('opera') ) {
-							this.tooltipAccessKeyPrefix = 'shift-esc-';
-						
-						// Chrome on any platform
-						} else if ( mw.util.isBrowser('chrome') ) {
-							// Chrome on Mac or Chrome on other platform ?
-							this.tooltipAccessKeyPrefix = mw.util.isPlatform('mac') ? 'ctrl-option-' : 'alt-';
-						
-						// Non-Windows Safari with webkit_version > 526
-						} else if ( !mw.util.isPlatform('win') && mw.util.isBrowser('safari') && webkit_version > 526 ) {
-							this.tooltipAccessKeyPrefix = 'ctrl-alt-';
-						
-						// Safari/Konqueror on any platform, or any browser on Mac (but not Safari on Windows)
-						} else if ( !( mw.util.isPlatform('win') && mw.util.isBrowser('safari') )
-										&& ( mw.util.isBrowser('safari')
-										  || mw.util.isPlatform('mac')
-										  || mw.util.isBrowser('konqueror') ) ) {
-							this.tooltipAccessKeyPrefix = 'ctrl-';
-						
-						// Firefox 2.x
-						} else if ( mw.util.isBrowser('firefox') && mw.util.isBrowserVersion('2') ) {
-							this.tooltipAccessKeyPrefix = 'alt-shift-';
-						}
+					// Opera on any platform
+					if ( mw.util.isBrowser('opera') ) {
+						this.tooltipAccessKeyPrefix = 'shift-esc-';
+					
+					// Chrome on any platform
+					} else if ( mw.util.isBrowser('chrome') ) {
+						// Chrome on Mac or Chrome on other platform ?
+						this.tooltipAccessKeyPrefix = mw.util.isPlatform('mac') ? 'ctrl-option-' : 'alt-';
+					
+					// Non-Windows Safari with webkit_version > 526
+					} else if ( !mw.util.isPlatform('win') && mw.util.isBrowser('safari') && webkit_version > 526 ) {
+						this.tooltipAccessKeyPrefix = 'ctrl-alt-';
+					
+					// Safari/Konqueror on any platform, or any browser on Mac (but not Safari on Windows)
+					} else if ( !( mw.util.isPlatform('win') && mw.util.isBrowser('safari') )
+									&& ( mw.util.isBrowser('safari')
+									  || mw.util.isPlatform('mac')
+									  || mw.util.isBrowser('konqueror') ) ) {
+						this.tooltipAccessKeyPrefix = 'ctrl-';
+					
+					// Firefox 2.x
+					} else if ( mw.util.isBrowser('firefox') && mw.util.isBrowserVersion('2') ) {
+						this.tooltipAccessKeyPrefix = 'alt-shift-';
+					}
 
 					// Enable CheckboxShiftClick
 					$('input[type=checkbox]:not(.noshiftselect)').checkboxShiftClick();
@@ -75,7 +76,7 @@
 		*
 		* @example	mw.util.isBrowser( 'safari' );
 		* @param	String	str	name of a browser (case insensitive). Check jquery.client.js for possible values
-		* @return	Boolean		true of the browsername matches the clients browser
+		* @return	Boolean		true if the browsername matches the clients browser
 		*/
 		'isBrowser' : function( str ) {
 			str = (str + '').toLowerCase();
@@ -87,7 +88,7 @@
 		*
 		* @example	mw.util.isLayout( 'webkit' );
 		* @param	String	str	name of a layout engine (case insensitive). Check jquery.client.js for possible values
-		* @return	Boolean		true of the layout engine matches the clients browser
+		* @return	Boolean		true if the layout engine matches the clients browser
 		*/
 		'isLayout' : function( str ) {
 			str = (str + '').toLowerCase();
@@ -95,11 +96,22 @@
 		},
 
 		/**
+		* Checks if the current layout engine version matches
+		*
+		* @example	mw.util.isLayoutVersion( 533 );
+		* @param	Number	num	version number of a layout engine.
+		* @return	Boolean		true if the layout engine matches the clients browser
+		*/
+		'isLayoutVersion' : function( num ) {
+			return this.clientProfile.layoutVersion == num;
+		},
+
+		/**
 		* Checks if the current layout matches
 		*
 		* @example	mw.util.isPlatform( 'mac' );
 		* @param	String	str	name of a platform (case insensitive). Check jquery.client.js for possible values
-		* @return	Boolean		true of the platform matches the clients platform
+		* @return	Boolean		true if the platform matches the clients platform
 		*/
 		'isPlatform' : function( str ) {
 			str = (str + '').toLowerCase();
@@ -111,7 +123,7 @@
 		*
 		* @example	mw.util.isBrowserVersion( '5' );
 		* @param	String	str	version number without decimals
-		* @return	Boolean		true of the version number matches the clients browser
+		* @return	Boolean		true if the version number matches the clients browser
 		*/
 		'isBrowserVersion' : function( str ) {
 			return this.clientProfile.versionBase === str;

@@ -16,6 +16,7 @@ jQuery.client = new ( function() {
 	 *  {
 	 * 		'name': 'firefox',
 	 * 		'layout': 'gecko',
+	 * 		'layoutVersion': '20101026',
 	 * 		'platform': 'linux'
 	 * 		'version': '3.5.1',
 	 * 		'versionBase': '3',
@@ -68,6 +69,8 @@ jQuery.client = new ( function() {
 			var layouts = ['gecko', 'konqueror', 'msie', 'opera', 'webkit'];
 			// Translations for conforming layout names
 			var layoutTranslations = [['konqueror', 'khtml'], ['msie', 'trident'], ['opera', 'presto']];
+			// Names of supported layout engines for version number
+			var layoutVersions = ['applewebkit', 'gecko'];
 			// Names of known operating systems
 			var platforms = ['win', 'mac', 'linux', 'sunos', 'solaris', 'iphone'];
 			// Translations for conforming operating system names
@@ -85,7 +88,7 @@ jQuery.client = new ( function() {
 			
 			/* Pre-processing  */
 			
-			var userAgent = navigator.userAgent, match, name = uk, layout = uk, platform = uk, version = x;
+			var userAgent = navigator.userAgent, match, name = uk, layout = uk, layoutversion = uk, platform = uk, version = x;
 			if ( match = new RegExp( '(' + wildUserAgents.join( '|' ) + ')' ).exec( userAgent ) ) {
 				// Takes a userAgent string and translates given text into something we can more easily work with
 				userAgent = translate( userAgent, userAgentTranslations );
@@ -100,6 +103,9 @@ jQuery.client = new ( function() {
 			}
 			if ( match = new RegExp( '(' + layouts.join( '|' ) + ')' ).exec( userAgent ) ) {
 				layout = translate( match[1], layoutTranslations );
+			}
+			if ( match = new RegExp( '(' + layoutVersions.join( '|' ) + ')\\\/(\\d+)').exec( navigator.userAgent.toLowerCase() ) ) {
+				layoutversion = parseInt(match[2]);
 			}
 			if ( match = new RegExp( '(' + platforms.join( '|' ) + ')' ).exec( navigator.platform.toLowerCase() ) ) {
 				platform = translate( match[1], platformTranslations );
@@ -124,6 +130,7 @@ jQuery.client = new ( function() {
 			profile = {
 				'name': name,
 				'layout': layout,
+				'layoutVersion': layoutversion,
 				'platform': platform,
 				'version': version,
 				'versionBase': ( version !== x ? new String( version ).substr( 0, 1 ) : x ),
