@@ -443,7 +443,7 @@ class CategoryViewer {
 	 * @return String
 	 * @private
 	 */
-	function columnList( $articles, $articles_start_char ) {
+	static function columnList( $articles, $articles_start_char ) {
 		$columns = array_combine( $articles, $articles_start_char );
 		# Split into three columns
 		$columns = array_chunk( $columns, ceil( count( $columns ) / 3 ), true /* preserve keys */ );
@@ -495,7 +495,7 @@ class CategoryViewer {
 	 * @return String
 	 * @private
 	 */
-	function shortList( $articles, $articles_start_char ) {
+	static function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
 		$r .= '<ul><li>' . $articles[0] . '</li>';
 		for ( $index = 1; $index < count( $articles ); $index++ )
