@@ -7396,7 +7396,7 @@ language=sr variant=sr-ec
 !! input
 -{[[Main Page]]}-
 !! result
-<p><a href="/index.php?title=Main_Page&amp;variant=sr-ec" title="Main Page">Main Page</a>
+<p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
 !! end
 
