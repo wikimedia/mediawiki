@@ -15,8 +15,13 @@ You can find documentation and additional extensions on MediaWiki website:
 
 
 Please note that under POSIX systems (Linux...), parent of a symbolic path
-refers to the link source, NOT to the target! If you need to include a
-file from mediawiki/, you will want to set and use MW_INSTALL_PATH env.
+refers to the link source, NOT to the target! You should check the env
+variable MW_INSTALL_PATH in case the extension is not in the default location.
 
- $IP = getenv( 'MW_INSTALL_PATH' );  // points to mediawiki/
- require( "$IP/maintenance/Maintenance.php" ); // a MediaWiki file
+The following code snippet let you override the default path: 
+
+ $IP = getenv( 'MW_INSTALL_PATH' );
+ if( $IP === false ) {
+	$IP = dirname( __FILE__ ) . '/../..';
+ }
+ require( "$IP/maintenance/Maintenance.php" ); // a MediaWiki core file
