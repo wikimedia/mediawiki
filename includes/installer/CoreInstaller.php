@@ -442,8 +442,7 @@ abstract class CoreInstaller extends Installer {
 	public function installMainpage( DatabaseInstaller &$installer ) {
 		$status = Status::newGood();
 		try {
-			$titleobj = Title::newFromText( wfMsgForContent( "mainpage" ) );
-			$article = new Article( $titleobj );
+			$article = new Article( Title::newMainPage() );
 			$article->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
 								wfMsgForContent( 'mainpagedocfooter' ),
 								'',
