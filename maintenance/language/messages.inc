@@ -1518,6 +1518,7 @@ $wgMessageStructure = array(
 		'nrevisions',
 		'nviews',
 		'nchanges',
+		'nimagelinks',
 		'specialpage-empty',
 		'lonelypages',
 		'lonelypages-summary',
