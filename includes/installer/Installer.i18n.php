@@ -581,12 +581,12 @@ Indítsa újra a telepítési folyamatot.',
 	'config-no-session' => 'Elvesztek a munkamenetadatok!
 Ellenőrizze, hogy a php.ini-ben a <code>session.save_path</code> beállítás a megfelelő könyvtárra mutat-e.',
 	'config-your-language-help' => 'Válassza ki a telepítési folyamat során használandó nyelvet.',
-	'config-wiki-language-help' => 'Válassza ki azt a nyelvet, amin a wiki tartalmának legnagyobb része íródik.',
+	'config-wiki-language-help' => 'Az a nyelv, amin a wiki tartalmának legnagyobb része íródik.',
 	'config-page-welcome' => 'Üdvözli a MediaWiki!',
 	'config-help-restart' => 'Szeretné törölni az eddig megadott összes adatot és újraindítani a telepítési folyamatot?',
 	'config-welcome' => '=== Környezet ellenőrzése ===
 Alapvető ellenőrzés, ami megmondja, hogy a környezet alkalmas-e a MediaWiki számára.
-Ha probléma merülne fel a telepítés során, meg kell adnia mások számára ezeket az eredményeket.',
+Ha probléma merülne fel a telepítés során, meg kell adnia mások számára az alább megjelenő információkat.',
 	'config-env-latest-ok' => 'A MediaWiki legújabb verzióját telepíti.',
 	'config-env-latest-new' => "'''Megjegyzés:''' A MediaWiki fejlesztői változatát telepíti.",
 	'config-env-latest-old' => "'''Figyelmeztetés:''' A MediaWiki elavult változatát telepíti.",
@@ -3954,7 +3954,7 @@ Móžeš to manuelnje činić.",
  */
 $messages['hu'] = array(
 	'config-desc' => 'A MediaWiki telepítője',
-	'config-title' => 'MediaWiki $1 telepítése',
+	'config-title' => 'A MediaWiki $1 telepítése',
 	'config-information' => 'Információ',
 	'config-localsettings-upgrade' => "'''Figyelmeztetés''': már létezik a <code>LocalSettings.php</code> fájl.
 A szoftver frissíthető.
@@ -3973,9 +3973,9 @@ Ellenőrizd, hogy a php.ini-ben a <code>session.save_path</code> a megfelelő k�
 	'config-show-help' => 'Segítség',
 	'config-hide-help' => 'Segítség elrejtése',
 	'config-your-language' => 'Nyelv:',
-	'config-your-language-help' => 'Válaszd ki a telepítési folyamat során használandó nyelvet.',
+	'config-your-language-help' => 'A telepítési folyamat során használandó nyelv.',
 	'config-wiki-language' => 'A wiki nyelve:',
-	'config-wiki-language-help' => 'Válaszd ki azt a nyelvet, amin a wiki tartalmának legnagyobb része íródik.',
+	'config-wiki-language-help' => 'Az a nyelv, amin a wiki tartalmának legnagyobb része íródik.',
 	'config-back' => '← Vissza',
 	'config-continue' => 'Folytatás →',
 	'config-page-language' => 'Nyelv',
@@ -3996,7 +3996,7 @@ Ellenőrizd, hogy a php.ini-ben a <code>session.save_path</code> a megfelelő k�
 	'config-restart' => 'Igen, újraindítás',
 	'config-welcome' => '=== Környezet ellenőrzése ===
 Alapvető ellenőrzés, ami megmondja, hogy a környezet alkalmas-e a MediaWiki számára.
-Ha probléma merülne fel a telepítés során, meg kell adnod mások számára ezeket az eredményeket.',
+Ha probléma merülne fel a telepítés során, meg kell adnod mások számára az alább megjelenő információkat.',
 	'config-sidebar' => '* [http://www.mediawiki.org A MediaWiki honlapja]
 * [http://www.mediawiki.org/wiki/Help:Contents Felhasználói kézikönyv]
 * [http://www.mediawiki.org/wiki/Manual:Contents Útmutató adminisztrátoroknak]
@@ -4043,9 +4043,9 @@ Ha Madrake-et futtatsz, telepítsd a php-xml csomagot.',
 	'config-pcre' => 'Úgy tűnik, hogy a PCRE támogató modul hiányzik.
 A MediaWikinek Perl-kompatibilis reguláriskifejezés-függvényekre van szüksége a működéshez.',
 	'config-memory-none' => 'A PHP-nek nincs <code>memory_limit</code> beállítása',
-	'config-memory-ok' => 'A PHP <code>memory_limit</code> beállításának értéke $1.
+	'config-memory-ok' => 'A PHP <code>memory_limit</code> beállításának értéke: $1.
 Rendben.',
-	'config-memory-raised' => 'A PHP <code>memory_limit</code> beállításának értéke $1, megnövelve a következő értékre: $2.',
+	'config-memory-raised' => 'A PHP <code>memory_limit</code> beállításának értéke: $1. Meg lett növelve a következő értékre: $2.',
 	'config-memory-bad' => "'''Figyelmeztetés:''' A PHP <code>memory_limit</code> beállításának értéke $1.
 Ez az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
 	'config-xcache' => 'Az [http://trac.lighttpd.net/xcache/ XCache] telepítve van',
@@ -4057,16 +4057,18 @@ Az objektum-gyorsítótárazás nem lesz engedélyezve.",
 	'config-diff3-good' => 'A GNU diff3 megtalálható a rendszeren: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 nem található.',
 	'config-imagemagick' => 'Az ImageMagick megtalálható a rendszeren: <code>$1</code>.
-A bélyegképek készítése engedélyezve lesz, ha engedélyezed a feltöltéseket.',
+A bélyegképek készítése engedélyezve lesz a feltöltések engedélyezése esetén.',
 	'config-gd' => 'A GD grafikai könyvtár megtalálható.
-A bélyegképek készítése engedélyezve lesz, ha engedélyezed a feltöltéseket.',
-	'config-no-scaling' => 'Nem található GD-könyvtár vagy ImageMagick.
+A bélyegképek készítése engedélyezve lesz a feltöltések engedélyezése esetén.',
+	'config-no-scaling' => 'Nem található GD könyvtár vagy ImageMagick a rendszeren.
 A bélyegképek készítése le lesz tiltva.',
 	'config-dir' => 'Telepítés könyvtára: <code>$1</code>.',
 	'config-uri' => 'Parancsfájlok URI elérési útja: <code>$1</code>.',
 	'config-no-uri' => "'''Hiba:''' Nem sikerült megállapítani a jelenlegi URI-t.
 A telepítés megszakadt.",
 	'config-file-extension' => 'MediaWiki telepítése <code>$1</code> fájlkiterjesztéssel.',
+	'config-uploads-not-safe' => "'''Figyelmeztetés:''' a feltöltésekhez használt alapértelmezett könyvtárban (<code>$1</code>) tetszőleges külső szkript futtatható.
+Habár a MediaWiki ellenőrzi a feltöltött fájlokat az efféle biztonsági veszélyek megtalálása érdekében, erősen ajánlott a [http://www.mediawiki.org/wiki/Manual:Security#Upload_security probléma megszüntetése] a feltöltés engedélyezése előtt.",
 	'config-db-type' => 'Adatbázis típusa:',
 	'config-db-host' => 'Adatbázis hosztneve:',
 	'config-db-host-oracle' => 'Adatbázis TNS:',
@@ -7296,6 +7298,8 @@ Zaleca się pobranie najnowszej wersji z [http://www.mediawiki.org/wiki/Download
 	'config-unicode-using-intl' => 'Korzystanie z [http://pecl.php.net/intl rozszerzenia intl PECL] do normalizacji Unicode.',
 	'config-unicode-pure-php-warning' => "'''Uwaga!''' [http://pecl.php.net/intl Rozszerzenie intl PECL] do obsługi normalizacji Unicode nie jest dostępne.
 Jeśli prowadzisz stronę o dużym natężeniu ruchu, powinieneś zapoznać się z informacjami o [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalizacji Unicode].",
+	'config-unicode-update-warning' => "'''Uwaga''' – zainstalowana wersja normalizacji Unicode korzysta z nieaktualnej biblioteki [http://site.icu-project.org/ projektu ICU].
+Powinieneś [http://www.mediawiki.org/wiki/Unicode_normalization_considerations zrobić aktualizację] jeśli chcesz korzystać w pełni z Unicode.",
 	'config-no-db' => 'Nie można odnaleźć właściwego sterownika bazy danych!',
 	'config-no-db-help' => 'Należy zainstalować sterownik bazy danych dla PHP.
 Obsługiwane są następujące typy baz danych: $1. 
