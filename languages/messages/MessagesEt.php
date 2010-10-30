@@ -1934,7 +1934,7 @@ Igal real on 채ra toodud esimene ja teine 체mbersuunamisleht ning samuti teise �
 'uncategorizedimages'     => 'Kategoriseerimata failid',
 'uncategorizedtemplates'  => 'Kategoriseerimata mallid',
 'unusedcategories'        => 'Kasutamata kategooriad',
-'unusedimages'            => 'Kasutamata pildid',
+'unusedimages'            => 'Kasutamata failid',
 'popularpages'            => 'Loetumad lehek체ljed',
 'wantedcategories'        => 'K천ige oodatumad kategooriad',
 'wantedpages'             => 'K천ige oodatumad lehek체ljed',

@@ -642,7 +642,7 @@ Log blukir pahabisannya tasadia di bawah ini gasan rujukan:',
 '''Nangini baluman tasimpan pulang!'''",
 'userinvalidcssjstitle'            => "'''Paringatan:''' Kadada kulit \"\$1\".
 Inatakan bahwasa saragam  tungkaran-tungkaran .css wan .js mamuruk aksara halus, cuntuh {{ns:user}}:Foo/monobook.css sawagai tandingan {{ns:user}}:Foo/Monobook.css.",
-'updated'                          => '(Dimutakhirkan)',
+'updated'                          => '(Dihanyarakan)',
 'note'                             => "'''Catatan:'''",
 'previewnote'                      => "'''Ingatakanlah bahwasa ini titilikan haja nang balum disimpan!'''",
 'previewconflict'                  => 'Titilikan ini mancarminakan naskah dalam naskah wilayah atas babakan sawagai mana ini akan mancungul amun disimpan.',
@@ -900,6 +900,7 @@ Muhun pariksa lolog.',
 # Revision move
 'moverevlogentry'              => 'Ugahakan {{PLURAL:$3|asa ralatan|$3 raralatan}} matan $1 ka $2',
 'revisionmove'                 => 'Ugahakan raralatan matan "$1"',
+'revmove-explain'              => 'Ralatan taumpat ini akan dipindahakan matan $1 ka tungkaran tujuan nang ditatapakan. Jaka tujuan kadada, akan diulahakan. Amun sabaliknya, ralatan ini akan digabungakan dalam sajarah tungkaran.',
 'revmove-legend'               => 'setel tungkaran tatuju wan kasimpulan',
 'revmove-submit'               => 'Ugahakan raralatan ka tungkaran tapilih',
 'revisionmoveselectedversions' => 'Ugahakan raralatan tapilih',
@@ -909,11 +910,13 @@ Muhun pariksa lolog.',
 'revmove-badparam'             => 'Parmintaan Pian baisi takaran nang kada rasmi atawa kada cukup.
 Bulik pulang ka tungkaran tadahulu wan cubai pulang.',
 'revmove-norevisions-title'    => 'Ralatan tatuju kada sah',
+'revmove-norevisions'          => 'Pian balum manatapakan asa atawa labih ralatan tujuan gasan manjalanakan kagunaan atawa ralatan nang dibariakan kadada.',
 'revmove-nullmove-title'       => 'Judul buruk',
 
 # History merging
 'mergehistory-from'                => 'Tungkaran asal mula:',
 'mergehistory-into'                => 'Tungkaran tatuju:',
+'mergehistory-empty'               => 'Kadada raralatan nang kawa digabungakan',
 'mergehistory-no-source'           => 'Tungkaran asal mula $1 kadada.',
 'mergehistory-no-destination'      => 'Tungkaran tatuju $1 kadada.',
 'mergehistory-invalid-source'      => 'Asal mula tungkaran musti sabuah judul sah.',
@@ -1105,6 +1108,8 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'prefs-advancedsearchoptions'   => 'Pilihan harat',
 'prefs-advancedwatchlist'       => 'Pilihan harat',
 'prefs-displayrc'               => 'Pilihan tampilan',
+'prefs-displaysearchoptions'    => 'Pilihan tampilan',
+'prefs-displaywatchlist'        => 'Pilihan tampilan',
 'prefs-diffs'                   => 'Bida',
 
 # User rights
@@ -1197,8 +1202,8 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'rcshowhideanons'                => '$1 pamuruk kada bangaran',
 'rcshowhidemine'                 => '$1 babakan ulun',
 'rclinks'                        => 'Tampaiakan $1 parubahan tahanyar dalam $2 hari tauncit<br />$3',
-'diff'                           => 'lain',
-'hist'                           => 'hal',
+'diff'                           => 'bida',
+'hist'                           => 'halam',
 'hide'                           => 'Sungkupakan',
 'show'                           => 'Tampaiakan',
 'minoreditletter'                => 's',
@@ -1308,7 +1313,7 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Log pamuruk hanyar',
-'newuserlog-create-entry' => 'Akun pamuruk hanyar',
+'newuserlog-create-entry' => 'mandaptar sabagai pamuruk',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(daptar angguta)',

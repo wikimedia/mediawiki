@@ -239,7 +239,7 @@ $messages = array(
 'personaltools'     => 'ܡܐܢ̈ܐ ܦܪ̈ܨܘܦܝܐ',
 'postcomment'       => 'ܡܢܬܐ ܚܕܬܐ',
 'articlepage'       => 'ܚܘܝܝܐ ܕܦܐܬܐ ܕܚܒܝܫܬ̈ܐ',
-'talk'              => 'ܕܘܪܫܐ',
+'talk'              => 'ܡܡܠܠܐ',
 'views'             => 'ܚܙܝܬ̈ܐ',
 'toolbox'           => 'ܣܢܕܘܩܐ ܕܡܐܢ̈ܐ',
 'userpage'          => 'ܚܙܝ ܦܐܬܐ ܕܡܦܠܚܢܐ',
@@ -249,7 +249,7 @@ $messages = array(
 'templatepage'      => 'ܚܙܝ ܦܐܬܐ ܕܩܠܒܐ',
 'viewhelppage'      => 'ܚܙܝ ܦܐܬܐ ܕܥܘܕܪܢܐ',
 'categorypage'      => 'ܚܙܝ ܦܐܬܐ ܕܣܕܪܐ',
-'viewtalkpage'      => 'ܚܙܝ ܕܘܪܫܐ',
+'viewtalkpage'      => 'ܚܙܝ ܡܡܠܠܐ',
 'otherlanguages'    => 'ܠܫܢ̈ܐ ܐܚܪ̈ܢܐ',
 'redirectedfrom'    => '(ܨܝܒ ܡܢ $1)',
 'redirectpagesub'   => 'ܦܐܬܐ ܕܨܘܝܒܐ',
@@ -331,7 +331,7 @@ $messages = array(
 # Login and logout pages
 'logouttext'              => "'''ܗܫܐ ܦܠܛܠܟ ܡܢ ܚܘܫܒܢܟ.'''
 
-ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܬܚܫܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܬܚܫܚܢܐ ܐܚܪܢܐ.
+ܡܨܐ ܐܢܬ ܕܐܬܚܫܚ {{SITENAME}} ܐܝܟ ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ ܐܘ ܡܨܐ ܐܢܬ ܕ[[Special:UserLogin|ܬܥܘܠ]] ܒܚܘܫܒܢܐ ܥܝܢܗ ܐܘ ܐܝܟ ܡܦܠܚܢܐ ܐܚܪܢܐ.
 
 ܚܕ ܟܡܐ ܡܢ ܦܐܬܬ̈ܐ ܡܬܚܙܝܢ ܐܝܟ ܕܗܘ ܐܢܬ ܥܠܝܠܐ ܥܕܡܐ ܕܐܣܦܩܬ ܠܦܐܬܬ̈ܐ ܠܒܝܟ̈ܐ ܕܡܦܐܬܢܐ ܕܝܠܟ",
 'welcomecreation'         => '== ܒܫܝܢܐ, $1! ==
@@ -359,10 +359,10 @@ $messages = array(
 'userexists'              => 'ܫܡܐ ܕܡܦܠܚܢܐ ܫܩܝܠܐ.
 ܓܒܝ ܫܡܐ ܐܚܪܢܐ.',
 'loginerror'              => 'ܦܘܕܐ ܒܥܠܠܐ',
-'noname'                  => 'ܠܐ ܦܪܫ ܐܢܬ ܫܡܐ ܕܡܬܚܫܚܢܐ ܬܪܝܨܐ',
+'noname'                  => 'ܠܐ ܦܪܫ ܐܢܬ ܫܡܐ ܕܡܦܠܚܢܐ ܬܪܝܨܐ',
 'loginsuccesstitle'       => 'ܥܠܠܐ ܓܡܪ',
 'loginsuccess'            => "'''ܗܫܐ ܥܠܝܠܐ ܐܢܬ ܒ{{SITENAME}} ܒܫܡ \"\$1\".'''",
-'nouserspecified'         => 'ܘܠܐ ܠܟ ܕܬܚܡ ܫܡܐ ܕܡܬܚܫܚܢܐ',
+'nouserspecified'         => 'ܘܠܐ ܠܟ ܕܬܚܡ ܫܡܐ ܕܡܦܠܚܢܐ',
 'mailmypassword'          => 'ܫܕܪ ܠܝ ܡܠܬܐ ܚܕܬܐ ܕܥܠܠܐ',
 'passwordremindertitle'   => 'ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܢܝܬܐ ܚܕܬܐ ܠ{{SITENAME}}',
 'noemail'                 => 'ܠܝܬ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܠܡܦܠܚܢܐ "$1".',
@@ -443,7 +443,7 @@ $messages = array(
 ܦܐܬܐ ܐܝܬ ܡܢ ܟܕܘ.',
 
 # "Undo" feature
-'undo-summary' => 'ܠܐ ܥܒܘܕ $1 ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܕܘܪܫܐ]])',
+'undo-summary' => 'ܠܐ ܥܒܘܕ $1 ܒܝܕ [[Special:Contributions/$2|$2]] ([[User talk:$2|ܡܡܠܠܐ]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ܒܪܝܐ ܕܚܘܫܒܢܐ ܠܐ ܡܬܡܨܝܢܐ',
@@ -677,8 +677,8 @@ $messages = array(
 'group-suppress'   => 'ܚܝܘܪ̈ܐ',
 'group-all'        => '(ܟܠ)',
 
-'group-user-member'          => 'ܡܬܚܫܚܢܐ',
-'group-autoconfirmed-member' => 'ܡܬܚܫܚܢܐ ܚܬܝܬܐ ܝܬܐܝܬ',
+'group-user-member'          => 'ܡܦܠܚܢܐ',
+'group-autoconfirmed-member' => 'ܡܦܠܚܢܐ ܚܬܝܬܐ ܝܬܐܝܬ',
 'group-bot-member'           => 'ܒܘܬ (Bot)',
 'group-sysop-member'         => 'ܡܕܒܪܢܐ',
 'group-bureaucrat-member'    => 'ܒܝܪܘܩܪܛܐ',
@@ -694,7 +694,7 @@ $messages = array(
 # Rights
 'right-read'           => 'ܩܪܝ ܦܐܬܬ̈ܐ',
 'right-edit'           => 'ܫܚܠܦ ܦܐܬܬ̈ܐ',
-'right-createtalk'     => 'ܒܪܝ ܦܐܬܬ̈ܐ ܕܕܘܪܫܐ',
+'right-createtalk'     => 'ܒܪܝ ܦܐܬܬ̈ܐ ܕܡܡܠܠܐ',
 'right-createaccount'  => 'ܒܪܝ ܚܘܫܒܢ̈ܐ ܕܡܦܠܚܢܐ ܚܕܬܐ',
 'right-minoredit'      => 'ܫܘܕܥ ܥܠ ܫܘܚܠܦ̈ܐ ܐܝܟ ܙܥܘܪܐ',
 'right-move'           => 'ܫܢܝ ܦܐܬܬ̈ܐ',
@@ -719,7 +719,7 @@ $messages = array(
 'action-read'               => 'ܩܪܝ ܦܐܬܐ ܗܕܐ',
 'action-edit'               => 'ܫܚܠܦ ܦܐܬܐ ܗܕܐ',
 'action-createpage'         => 'ܒܪܝ ܦܐܬܬ̈ܐ',
-'action-createtalk'         => 'ܒܪܝ ܦܐܬܐ ܕܕܘܪܫܐ',
+'action-createtalk'         => 'ܒܪܝ ܦܐܬܐ ܕܡܡܠܠܐ',
 'action-createaccount'      => 'ܒܪܝ ܚܘܫܒܢܐ ܕܗܢܐ ܡܦܠܚܢܐ',
 'action-minoredit'          => 'ܫܘܕܥ ܥܠ ܫܘܚܠܦܐ ܗܢܐ ܐܝܟ ܙܥܘܪܐ',
 'action-move'               => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
@@ -992,7 +992,7 @@ $1',
 # Special:ListUsers
 'listusersfrom'      => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܝܢ ܒ:',
 'listusers-submit'   => 'ܚܘܝ',
-'listusers-noresult' => 'ܠܐ ܡܬܚܫܚܢܐ ܐܫܬܟܚ',
+'listusers-noresult' => 'ܠܐ ܡܦܠܚܢܐ ܐܫܬܟܚ',
 'listusers-blocked'  => '(ܚܪܝܡܐ)',
 
 # Special:ActiveUsers
@@ -1001,7 +1001,7 @@ $1',
 'activeusers-from'       => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܐ ܥܡ:',
 'activeusers-hidebots'   => 'ܛܫܝ ܒܘܬ̈ܐ (bots)',
 'activeusers-hidesysops' => 'ܛܫܝ ܡܕܒܪ̈ܢܐ',
-'activeusers-noresult'   => 'ܠܐ ܡܬܚܫܚܢܐ ܐܫܬܟܚ.',
+'activeusers-noresult'   => 'ܠܐ ܡܦܠܚܢܐ ܐܫܬܟܚ.',
 
 # Special:Log/newusers
 'newuserlogpage'           => 'ܣܓܠܐ ܕܒܪܝܬܐ ܕܡܦܠܚܢܐ',
@@ -1170,7 +1170,7 @@ $1',
 'sp-contributions-deleted'       => 'ܫܘܬܦܘܝܬ̈ܐ ܕܡܦܠܚܢܐ ܫܝܦܬ̈ܐ',
 'sp-contributions-logs'          => 'ܣܓܠ̈ܐ',
 'sp-contributions-talk'          => 'ܡܡܠܠܐ',
-'sp-contributions-userrights'    => 'ܕܘܒܪܐ ܕܙܕ̈ܩܐ ܕܡܬܚܫܚܢܐ',
+'sp-contributions-userrights'    => 'ܕܘܒܪܐ ܕܙܕ̈ܩܐ ܕܡܦܠܚܢܐ',
 'sp-contributions-search'        => 'ܒܨܝ ܫܘܬܦܘܝܬ̈ܐ',
 'sp-contributions-username'      => 'ܐܝ ܦܝ (IP) ܐܘ ܫܡܐ ܕܡܦܠܚܢܐ:',
 'sp-contributions-submit'        => 'ܒܨܝ',
@@ -1194,7 +1194,7 @@ $1',
 
 # Block/unblock
 'blockip'                    => 'ܚܪܘܡ ܡܦܠܚܢܐ',
-'blockip-title'              => 'ܚܪܘܡ ܡܬܚܫܚܢܐ',
+'blockip-title'              => 'ܚܪܘܡ ܡܦܠܚܢܐ',
 'blockip-legend'             => 'ܚܪܘܡ ܡܦܠܚܢܐ',
 'ipaddress'                  => 'ܐܝ ܦܝ (IP):',
 'ipadressorusername'         => 'ܐܝ ܦܝ (IP) ܐܘ ܫܡܐ ܕܡܦܠܚܢܐ:',
