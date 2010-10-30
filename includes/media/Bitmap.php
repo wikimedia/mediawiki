@@ -66,7 +66,7 @@ class BitmapHandler extends ImageHandler {
 			# The size to which the image will be resized
 			'physicalWidth' => $params['physicalWidth'],
 			'physicalHeight' => $params['physicalHeight'],
-			'physicalSize' => "{$params['physicalWidth']}x{$params['physicalHeight']}",
+			'physicalDimensions' => "{$params['physicalWidth']}x{$params['physicalHeight']}",
 			# The size of the image on the page
 			'clientWidth' => $params['width'],
 			'clientHeight' => $params['height'],
@@ -81,7 +81,7 @@ class BitmapHandler extends ImageHandler {
 			'dstPath' => $dstPath,
 		);
 
-		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalSize']} thumbnail at $dstPath\n" );
+		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} thumbnail at $dstPath\n" );
 
 		if ( !$image->mustRender() &&
 				$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
@@ -197,7 +197,7 @@ class BitmapHandler extends ImageHandler {
 				$sharpen = "-sharpen " . wfEscapeShellArg( $wgSharpenParameter );
 			}
 			// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
-			$decoderHint = "-define jpeg:size={$params['physicalSize']}";
+			$decoderHint = "-define jpeg:size={$params['physicalDimensions']}";
 
 		} elseif ( $params['mimeType'] == 'image/png' ) {
 			$quality = "-quality 95"; // zlib 9, adaptive filtering
@@ -237,7 +237,7 @@ class BitmapHandler extends ImageHandler {
 			// For the -thumbnail option a "!" is needed to force exact size,
 			// or ImageMagick may decide your ratio is wrong and slice off
 			// a pixel.
-			" -thumbnail " . wfEscapeShellArg( "{$params['physicalSize']}!" ) .
+			" -thumbnail " . wfEscapeShellArg( "{$params['physicalDimensions']}!" ) .
 			// Add the source url as a comment to the thumb.
 			" -set comment " . wfEscapeShellArg( $this->escapeMagickProperty( $params['comment'] ) ) .
 			" -depth 8 $sharpen" .
@@ -303,7 +303,11 @@ class BitmapHandler extends ImageHandler {
 					wfHostname(), $retval, trim( $err ), $cmd ) );
 	}
 	/**
-	 *
+	 * Get a MediaTransformError with error 'thumbnail_error'
+	 * 
+	 * @param $params array Paramter array as passed to the transform* functions
+	 * @param $errMsg string Error message
+	 * @return MediaTransformError
 	 */
 	protected function getMediaTransformError( $params, $errMsg ) {
 		return new MediaTransformError( 'thumbnail_error', $params['clientWidth'],
