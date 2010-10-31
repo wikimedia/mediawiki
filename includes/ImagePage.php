@@ -644,7 +644,7 @@ EOT
 		$sk = $wgUser->getSkin();
 		$count = 0;
 		$elements = array();
-		while ( $s = $res->fetchObject() ) {
+		foreach ( $res as $s ) {
 			$count++;
 			if ( $count <= $limit ) {
 				// We have not yet reached the extra one that tells us there is more to fetch
