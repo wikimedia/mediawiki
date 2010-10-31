@@ -179,7 +179,7 @@ class MediaWiki {
 	 */
 	function handleSpecialCases( &$title, &$output, $request ) {
 		wfProfileIn( __METHOD__ );
-		global $wgContLang, $wgUser;
+
 		$action = $this->getVal( 'Action' );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.

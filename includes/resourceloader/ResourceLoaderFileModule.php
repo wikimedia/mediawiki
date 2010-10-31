@@ -187,7 +187,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return {string} JavaScript code for $context
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		global $wgServer, $wgScriptPath;
+		global $wgServer;
 		
 		$files = array_merge(
 			$this->scripts,
@@ -432,9 +432,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param {string} $path File path of script file to read
 	 * @return {string} CSS data in script file
 	 */
-	protected function readStyleFile( $path ) {
-		global $wgScriptPath;
-		
+	protected function readStyleFile( $path ) {	
 		$style = file_get_contents( $this->getLocalPath( $path ) );
 		$dir = $this->getLocalPath( dirname( $path ) );
 		$remoteDir = $this->getRemotePath( dirname( $path ) );

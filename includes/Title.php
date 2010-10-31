@@ -863,7 +863,7 @@ class Title {
 	 */
 	public function getLocalURL( $query = '', $variant = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
-		global $wgVariantArticlePath, $wgContLang, $wgUser;
+		global $wgVariantArticlePath, $wgContLang;
 
 		if ( is_array( $query ) ) {
 			$query = wfArrayToCGI( $query );
