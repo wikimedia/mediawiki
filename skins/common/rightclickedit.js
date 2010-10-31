@@ -44,5 +44,3 @@ window.addRightClickEditHandler = function(el) {
 		}
 	}
 }
-
-hookEvent("load", setupRightClickEdit);
