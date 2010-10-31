@@ -267,6 +267,19 @@ abstract class File {
 	}
 
 	/**
+         * Get the duration of a media file in seconds
+         */
+        public function isVectorized() {
+                $handler = $this->getHandler();
+                if ( $handler ) {
+                        return $handler->isVectorized( $this );
+                } else {
+                        return false;
+                }
+        }
+
+
+	/**
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
