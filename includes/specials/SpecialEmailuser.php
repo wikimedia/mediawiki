@@ -86,6 +86,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	
 	public function execute( $par ) {
 		global $wgRequest, $wgOut, $wgUser;
+
+		$this->setHeaders();
+		$this->outputHeader();
+
 		$this->mTarget = is_null( $par )
 			? $wgRequest->getVal( 'wpTarget', '' )
 			: $par;
