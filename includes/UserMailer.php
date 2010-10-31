@@ -127,6 +127,17 @@ class UserMailer {
 		}
 
 		if (is_array( $wgSMTP )) {
+			$found = false;
+			$pathArray = explode( PATH_SEPARATOR, get_include_path() );
+			foreach ( $pathArray as $path ) {
+				if ( file_exists( $path . DIRECTORY_SEPARATOR . 'Mail.php' ) ) {
+					$found = true;
+					break;
+				}
+			}
+			if ( !$found ) {
+				throw new MWException( 'PEAR mail package is not installed' );
+			}
 			require_once( 'Mail.php' );
 
 			$msgid = str_replace(" ", "_", microtime());
