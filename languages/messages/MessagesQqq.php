@@ -2043,6 +2043,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'nmembers'                => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]]. $1 is the number of members of the category.',
 'nrevisions'              => 'Number of revisions.',
 'nviews'                  => 'This message is used on [[Special:PopularPages]] to say how many times each page has been viewed. Parameter $1 is the number of views.',
+'nimagelinks'             => 'Used on [[Special:MostLinkedFiles]] to indicate how often a specific file is used.',
+'ntransclusions'          => 'Used on [[Special:MostLinkedTemplates]] to indicate how often a template is in use.',
 'specialpage-empty'       => 'Used on a special page when there is no data. For example on [[Special:Unusedimages]] when all images are used.',
 'lonelypages'             => 'Name of [[Special:LonelyPages]] displayed in [[Special:SpecialPages]]',
 'lonelypagestext'         => 'Text displayed in [[Special:LonelyPages]]',

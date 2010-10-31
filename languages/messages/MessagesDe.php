@@ -2004,6 +2004,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'nrevisions'              => '{{PLURAL:$1|1 Bearbeitung|$1 Bearbeitungen}}',
 'nviews'                  => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
 'nimagelinks'             => 'Verwendet auf $1 {{PLURAL:$1|Seite|Seiten}}',
+'ntransclusions'          => 'verwendet auf $1 {{PLURAL:$1|Seite|Seiten}}',
 'specialpage-empty'       => 'Die Seite enthält aktuell keine Einträge.',
 'lonelypages'             => 'Verwaiste Seiten',
 'lonelypagestext'         => 'Die folgenden Seiten werden nicht eingebunden oder es wird nicht auf sie in {{SITENAME}} verwiesen.',

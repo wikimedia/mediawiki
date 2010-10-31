@@ -1562,7 +1562,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-page-complete' => 'Fertig!',
 	'config-page-restart' => 'Installationsvorgang erneut starten',
 	'config-page-readme' => 'Lies mich',
-	'config-page-releasenotes' => 'Veröffentlichungsinformationen',
+	'config-page-releasenotes' => 'Release-Notes',
 	'config-page-copying' => 'Kopie der Lizenz',
 	'config-page-upgradedoc' => 'Aktualisiere',
 	'config-page-locked' => 'Zugriff verweigert',
@@ -1663,8 +1663,8 @@ Der Installationsvorgang wurde daher abgebrochen.",
 	'config-file-extension' => 'MediaWiki wurde mit den Dateierweiterungen <code>$1</code> installiert.',
 	'config-shell-locale' => 'Es wurde die Locale „$1“ für die Shell gefunden',
 	'config-uploads-safe' => 'Das Standardverzeichnis für hochgeladene Dateien ist von der willkürlichen Ausführung von Skripten geschützt.',
-	'config-uploads-not-safe' => "''Warnung:''' Das Standardverzeichnis für hochgeladene Dateien <code>$1</code> ist für die willkürliche Ausführung von Skripten anfällig.
-Obzwar MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen diese [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
+	'config-uploads-not-safe' => "'''Warnung:''' Das Standardverzeichnis für hochgeladene Dateien <code>$1</code> ist für die willkürliche Ausführung von Skripten anfällig.
+Obwohl MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen diese [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
 	'config-db-type' => 'Datenbanksystem:',
 	'config-db-host' => 'Datenbankserver:',
 	'config-db-host-help' => 'Sofern sich die Datenbank auf einem anderen Server befindet, ist hier der Servername oder die entsprechende IP-Adresse anzugeben.
@@ -1812,14 +1812,14 @@ Das hier angegebene Konto muss bereits vorhanden sein.',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-engine-help' => "'''InnoDB''' ist fast immer die bessere Wahl, da es gleichzeitige Zugriffe gut unterstützt.
 
-'''MyISAM''' ist in Einzelnutzerumgebungen sowie bei schreibgeschützten Wikis.
-Bei MyISAM-Datenbanken treten tendenziell häufiger Fehler, auf als bei InnoDB-Datenbanken.",
+'''MyISAM''' ist in Einzelnutzerumgebungen sowie bei schreibgeschützten Wikis schneller.
+Bei MyISAM-Datenbanken treten tendenziell häufiger Fehler auf als bei InnoDB-Datenbanken.",
 	'config-mysql-egine-mismatch' => "'''Warnung:''' Als Speicher-Engine wurde $1 ausgewählt, während die Datenbank $2 verwendet.
 Das Aktualisierungsskript kann die Speicher-Engine nicht konvertieren, so dass weiterhin $2 verwendet wird.",
 	'config-mysql-charset' => 'Datenbankzeichensatz:',
 	'config-mysql-binary' => 'binär',
 	'config-mysql-utf8' => 'UTF-8',
-	'config-mysql-charset-help' => "Im '''binären Modus'' speichert MediaWiki UTF-8 Texte in der Datenbank in binär kodierte Datenfelder.
+	'config-mysql-charset-help' => "Im '''binären Modus''' speichert MediaWiki UTF-8 Texte in der Datenbank in binär kodierte Datenfelder.
 Dies ist effizienter als der UTF-8-Modus von MySQL und ermöglicht so die Verwendung jeglicher Unicode-Zeichen.
 
 Im '''UTF-8-Modus''' wird MySQL den Zeichensatz der Daten erkennen und sie richtig anzeigen und konvertieren,
@@ -1865,7 +1865,7 @@ Die verbliebenen Konfigurationseinstellungen können übersprungen und das Wiki 
 	'config-profile' => 'Profil der Benutzerberechtigungen:',
 	'config-profile-wiki' => 'offenes Wiki',
 	'config-profile-no-anon' => 'Erstellung eines Benutzerkontos erforderlich',
-	'config-profile-fishbowl' => 'ausschließlich berechtigten Bearbeitern',
+	'config-profile-fishbowl' => 'ausschließlich berechtigte Bearbeiter',
 	'config-profile-private' => 'geschlossenes Wiki',
 	'config-profile-help' => "Wikis sind am nützlichsten, wenn so viele Menschen als möglich Bearbeitungen vornehmen können.
 Mit MediaWiki ist es einfach die letzten Änderungen nachzuvollziehen und unbrauchbare Bearbeitungen, beispielsweise von unbedarften oder böswilligen Benutzern, rückgängig zu machen.
@@ -1876,7 +1876,7 @@ Ein '''{{int:config-profile-wiki}}''' ermöglicht es jedermann, sogar ohne über
 Ein Wiki bei dem die '''{{int:config-profile-no-anon}}''' ist, bietet höhere Verantwortlichkeit des Einzelnen für seine Bearbeitungen, könnte allerdings Personen mit gelegentlichen Bearbeitungen abschrecken. Ein Wiki mit '''{{int:config-profile-fishbowl}}''' gestattet es nur ausgewählten Benutzern Bearbeitungen vorzunehmen. Allerdings kann dabei die Allgemeinheit die Seiten immer noch betrachten und Änderungen nachvollziehen. Ein '''{{int:config-profile-private}}''' gestattet es nur ausgewählten Benutzern, Seiten zu betrachten sowie zu bearbeiten.
 
 Komplexere Konzepte zur Zugriffssteuerung können erst nach abgeschlossenem Installationsvorgang eingerichtet werden. Hierzu gibt es weitere Informationen auf der Website mit der [http://www.mediawiki.org/wiki/Manual:User_rights entsprechenden Anleitung].",
-	'config-license' => 'Copyright und Lizenz:',
+	'config-license' => 'Lizenz:',
 	'config-license-none' => 'Keine Lizenzangabe in der Fußzeile',
 	'config-license-cc-by-sa' => 'Creative Commons „Namensnennung, Weitergabe unter gleichen Bedingungen“ (kompatibel mit Wikipedia)',
 	'config-license-cc-by-nc-sa' => 'Creative Commons „Namensnennung, nicht kommerziell, Weitergabe unter gleichen Bedingungen“',
@@ -1942,7 +1942,7 @@ Die Lizenz ist daher jetzt manuell einzugeben.',
 	'config-cache-options' => 'Einstellungen für die Zwischenspeicherung von Objekten:',
 	'config-cache-help' => 'Objektcaching wird dazu genutzt die Geschwindigkeit von MediaWiki zu verbessern, indem häufig genutzte Daten zwischengespeichert werden.
 Mittelgroße bis große Wikis werden sehr ermutigt dies zu nutzen, aber auch für kleine Wikis ergeben sich erkennbare Vorteile.',
-	'config-cache-none' => 'Kein Objektcaching (Es wurde keine Funktion entfernt, allerdings kann die Geschwindigkeit größerer Wikis beeinflusst werden.)',
+	'config-cache-none' => 'Kein Objektcaching (es wird keine Funktion entfernt, allerdings kann die Geschwindigkeit größerer Wikis beeinflusst werden)',
 	'config-cache-accel' => 'Objektcaching von PHP (APC, eAccelerator, XCache or WinCache)',
 	'config-cache-memcached' => 'Memchached Cacheserver nutzen (erfordert einen zusätzliche Installationsvorgang mitsamt Konfiguration)',
 	'config-memcached-servers' => 'Memcached Cacheserver',
@@ -1972,7 +1972,7 @@ Die Erstellung wurde übersprungen.",
 Die Standardliste wird übersprungen.",
 	'config-install-secretkey' => 'Erstellung des Geheimschlüssels',
 	'config-insecure-secretkey' => "'''Warnung:''' Die Erstellung des Geheimschlüssels <code>\$wgSecretKey</code> ist gescheitert.
-Sie muss manuell nachgeholt werden.",
+Dies muss manuell nachgeholt werden.",
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
 	'config-install-mainpage' => 'Erstellung der Hauptseite mit Standardinhalten',
 	'config-install-mainpage-failed' => 'Die Hauptseite konnte nicht erstellt werden.',
@@ -4743,7 +4743,6 @@ Cek php.ini Anda dan pastikan bahwa <code>session.save_path</code> diatur ke dir
 	'config-page-upgradedoc' => 'Memerbarui',
 	'config-help-restart' => 'Apakah Anda ingin menghapus semua data tersimpan yang telah Anda masukkan dan mengulang proses instalasi?',
 	'config-restart' => 'Ya, nyalakan ulang',
-	'config-authors' => 'MediaWiki adalah Hak Cipta © 2001-2010 oleh Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber, Siebrand Mazeland, Chad Horohoe dan lainnya.',
 	'config-sidebar' => '* [http://www.mediawiki.org Halaman utama MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna]
 * [http://www.mediawiki.org/wiki/Manual:Contents Panduan Pengurus]
@@ -6919,25 +6918,6 @@ Bildeminiatyrisering vil være deaktivert.',
 	'config-uri' => 'URI-sti til skript: <code>$1</code>.',
 	'config-no-uri' => "'''Feil:''' Kunne ikke bestemme gjeldende URI.
 Installasjon avbrutt.",
-	'config-dir-not-writable-group' => "'''Feil:''' Kan ikke skrive config-fil.
-Installasjon avbrutt.
-
-Installasjonsprogrammet har bestemt brukeren nettjeneren din kjører som.
-Gjør <code><nowiki>config</nowiki></code>-mappen skrivbar for denne for å fortsette.
-På et Unix/Linux-system:
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Feil:''' Kan ikke skrive config-fil.
-Installasjon avbrutt.
-
-Brukeren nettjeneren din kjører som kunne ikke bestemmes.
-Gjør <code><nowiki>config</nowiki></code>-mappen globalt skrivbar for denne (og andre!) for å fortsette.
-På et Unix/Linux-system, gjør:
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => 'Installerer MediaWiki med <code>$1</code>-filendelser.',
 	'config-shell-locale' => 'Oppdaget shell-plasseringen «$1»',
 	'config-uploads-safe' => 'Standardmappen for opplastinger er trygg fra kjøring av vilkårlige skript.',
@@ -7663,27 +7643,6 @@ La miniaturisassion ëd figure a sarà disabilità.',
 	'config-uri' => "Senté l'URI dël senari: <code>$1</code>.",
 	'config-no-uri' => "'''Eror:''' As peul pa determiné l'URI corenta.
 Instalassion abortìa.",
-	'config-dir-not-writable-group' => "'''Eror:''' as peul pa scriv-se l'archivi ëd configurassion.
-Instalassion abortìa.
-
-L'instalador a l'ha determinà l'utent sota ël qual tò servent a gira.
-Fé an manera che ël dossié <code><nowiki>config</nowiki></code> a sia scrivìbil da chiel për continué.
-
-Su un sistem Unix/Linus:
-
-<pre>cd $1
-chgrp $2 config
-chmod g+w config</pre>",
-	'config-dir-not-writable-nogroup' => "'''Eror:''' as peul pa scriv-se l'archivi ëd configurassion.
-Instalassion abortìa.
-
-L'utent sota ël qual sò servent a gira a peul pa esse determinà.
-Fé che ël dossié <code><nowiki>config</nowiki></code> a sia scrivìbil globalment da chiel (e da d'àutri!) për continué.
-
-Ansima a un sistem Unix/Linus fé:
-
-<pre>cd $1
-chmod a+w config</pre>",
 	'config-file-extension' => "Instalé MediaWiki con <code>$1</code> estension d'archivi.",
 	'config-shell-locale' => 'Trovà cuchija local "$1"',
 	'config-uploads-safe' => "Ël dossié stàndard për carié a l'é al sigur da l'esecussion ëd senari arbitrari.",
@@ -8502,6 +8461,7 @@ $messages['pt-br'] = array(
 	'config-localsettings-upgrade' => "'''Aviso''': Foi detetada a existência de um arquivo <code>LocalSettings.php</code>.
 É possível atualizar o seu software.
 Mova o <code>LocalSettings.php</code> para um lugar seguro e execute o instalador novamente, por favor.",
+	'config-localsettings-key' => 'Chave de atualização:',
 	'config-localsettings-noupgrade' => "'''Erro''': Foi detetada a existência de um arquivo <code>LocalSettings.php</code>.
 Não é possível atualizar o seu software neste momento.
 Por razões de segurança, o instalador foi desativado.",

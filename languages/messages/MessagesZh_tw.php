@@ -547,7 +547,7 @@ $NEWPAGE
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'deletedtext'       => '「<nowiki>$1</nowiki>」已經被刪除。
 最近刪除的紀錄請參見$2。',
-'deletedarticle'    => '已刪除「$1」',
+'deletedarticle'    => '已刪除「[[$1]]」',
 'dellogpagetext'    => '以下是最近刪除的紀錄列表。
 所有的時間都是使用伺服器時間。',
 'reverted'          => '復原到早期版本',
