@@ -8,6 +8,7 @@
  * @file
  *
  * @author Agbad
+ * @author Drorsnir
  * @author Ijon
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
@@ -1996,6 +1997,7 @@ $1',
 'nrevisions'              => '{{PLURAL:$1|גרסה אחת|$1 גרסאות}}',
 'nviews'                  => '{{PLURAL:$1|צפייה אחת|$1 צפיות}}',
 'nimagelinks'             => 'בשימוש ב{{PLURAL:$1|דף אחד|$1 דפים}}',
+'ntransclusions'          => 'בשימוש ב{{PLURAL:$1|דף אחד|$1 דפים}}',
 'specialpage-empty'       => 'אין תוצאות.',
 'lonelypages'             => 'דפים יתומים',
 'lonelypagestext'         => 'הדפים הבאים אינם מקושרים מדפים אחרים באתר זה ואינם מוכללים בהם.',

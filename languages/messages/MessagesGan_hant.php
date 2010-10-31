@@ -1232,7 +1232,8 @@ $2',
 Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
-'linksearch' => '外部連結',
+'linksearch'    => '外部連結',
+'linksearch-ok' => '尋吖',
 
 # Special:ListUsers
 'listusersfrom'      => '顯示噉樣用戶條件:',

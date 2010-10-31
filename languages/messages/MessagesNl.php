@@ -2056,6 +2056,7 @@ Meestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou
 'nrevisions'              => '$1 {{PLURAL:$1|versie|versies}}',
 'nviews'                  => '{{PLURAL:$1|1 keer|$1 keer}} bekeken',
 'nimagelinks'             => "Gebruikt op {{PLURAL:$1|één pagina|$1 pagina's}}",
+'ntransclusions'          => "gebruikt op {{PLURAL:$1|één pagina|$1 pagina's}}",
 'specialpage-empty'       => 'Deze pagina is leeg.',
 'lonelypages'             => "Weespagina's",
 'lonelypagestext'         => "Naar de onderstaande pagina's wordt vanuit {{SITENAME}} niet verwezen.

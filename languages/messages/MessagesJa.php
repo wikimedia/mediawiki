@@ -1917,6 +1917,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization を参照してくだ�
 'nmembers'                => '$1{{PLURAL:$1|項目}}',
 'nrevisions'              => '$1{{PLURAL:$1|版}}',
 'nviews'                  => '$1{{PLURAL:$1|回}}表示',
+'nimagelinks'             => '{{PLURAL:$1|ページ}}で使用',
+'ntransclusions'          => '{{PLURAL:$1|ページ}}で使用',
 'specialpage-empty'       => '合致するものがありません。',
 'lonelypages'             => '孤立しているページ',
 'lonelypagestext'         => '以下のページは、{{SITENAME}}の他のページからリンクされておらず、また読み込まれてもいないページです。',

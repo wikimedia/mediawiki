@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bhawani Gautam Rhk
  * @author Ganesh
  * @author Lkhatiwada
  * @author RajeshPandey
@@ -29,10 +30,10 @@ $digitTransformTable = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'सम्बन्ध निम्न रेखाङ्ककन:',
-'tog-highlightbroken'         => 'ढाँचा टुटेको लिङ्क <a href="" class="new">यस्तो </a> (alternative: यस्तै<a href="" class="internal">?</a>)',
+'tog-underline'               => 'सम्बन्ध निम्न रेखाङ्कन:',
+'tog-highlightbroken'         => 'प्रारूप टुटेको लिङ्क <a href="" class="new">यस्तो </a> (alternative: यस्तै<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'अनुच्छेद जस्टिफाइ(justify) गर्ने',
-'tog-hideminor'               => 'तत्कालका सामान्य सम्पादनहरुलाई लुकाउनुहोस',
+'tog-hideminor'               => 'तत्कालका मामूली सम्पादनहरुलाई लुकाउनुहोस्',
 'tog-hidepatrolled'           => 'गस्ती(patrolled)सम्पादनहरु हालको परिवर्तनहरुबाट लुकाउने',
 'tog-newpageshidepatrolled'   => 'गस्ती(patrolled) पृष्ठहरु नयाँ पृष्ठ सूचीबाट लुकाउने',
 'tog-extendwatchlist'         => 'निगरानी सूचीलाई सबै परिवर्ताहरू देखाउने गरी बढाउने , हालैको  बाहेक',
@@ -56,9 +57,9 @@ $messages = array(
 'tog-enotifminoredits'        => 'पृष्ठहरुको सामान्य सम्पादनको लागि पनि मलाई ई-मेल गर्ने',
 'tog-enotifrevealaddr'        => 'जानकारी इ-मेलहरुमा मेरो इ-मेल खुलाउने',
 'tog-shownumberswatching'     => 'निगरानी गरिरहेका प्रयोगकर्ताहरुको संख्या देखाउने',
-'tog-oldsig'                  => 'हालको दस्तखतको पूर्वारूप :',
+'tog-oldsig'                  => 'हालको दस्तखतको पूर्वावलोकन:',
 'tog-fancysig'                => 'मेरो दस्तखतलाई विकि पाठको रुपमा लिने(स्वत सम्वन्ध बिना)',
-'tog-externaleditor'          => 'पूर्वनिर्धारित रुपमा बाह्य सम्पादक प्रयोग गर्नुहोस्(विज्ञहरुको लागि मात्र,तपाईको कम्प्युटरमा विशेष अनुकुलता आवश्यक हुन्छ )',
+'tog-externaleditor'          => 'पूर्वनिर्धारित रुपमा बाह्य सम्पादक प्रयोग गर्नुहोस् (विज्ञहरुको लागि मात्र,तपाईको कम्प्युटरमा विशेष अनुकुलता आवश्यक हुन्छ )',
 'tog-externaldiff'            => 'पूर्वनिर्धारित रुपमा बाह्य diff प्रयोग गर्नुहोस (विज्ञ प्रयोगकर्ताहरुको लागि मात्र, तपाईंको कम्प्युटरमा विशेष अनुकुलता आवश्यक हुन्छ)',
 'tog-showjumplinks'           => '"जानुहोस" पहुँच सम्वन्ध सक्रिय पर्नुहोस्',
 'tog-uselivepreview'          => 'प्रत्यक्ष पूर्वरुप प्रयोग गर्नुहोस् ( जाभा स्क्रिप्ट आवश्यक) (प्रयोगात्मक)',
@@ -74,11 +75,11 @@ $messages = array(
 'tog-diffonly'                => 'तलका पृष्टहरुको diffहरु सामग्री नदेखाउने',
 'tog-showhiddencats'          => 'लुकाइएको प्रकारहरु देखाउने',
 'tog-noconvertlink'           => 'सम्बन्ध शीर्षक रुपान्तरण निस्क्रिय पार्ने',
-'tog-norollbackdiff'          => 'पूर्वस्थितीमा फर्काएपछि  diff हटाउने',
+'tog-norollbackdiff'          => 'पूर्वस्थितिमा फर्काएपछि  diff हटाउने',
 
 'underline-always'  => 'सधैँ',
 'underline-never'   => 'कहिल्यै',
-'underline-default' => 'ब्राउजर पूर्वस्थिती',
+'underline-default' => 'ब्राउजर पूर्वस्थिति',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'फन्ट प्रकार क्षेत्र सम्पादन गर्नुहोस् :',
@@ -95,7 +96,7 @@ $messages = array(
 'thursday'      => 'बिहीबार',
 'friday'        => 'शुक्रबार',
 'saturday'      => 'शनिबार',
-'sun'           => 'आईत',
+'sun'           => 'आइत',
 'mon'           => 'सोम',
 'tue'           => 'मंगल',
 'wed'           => 'वुध',
@@ -194,7 +195,7 @@ $messages = array(
 'vector-action-protect'          => 'सुरक्षितगर्ने',
 'vector-action-undelete'         => 'हटाएको रद्द गर्ने',
 'vector-action-unprotect'        => 'सुरक्षित गरिएको रद्द गर्ने',
-'vector-simplesearch-preference' => 'विशिष्ठ खोज सुझावहरु सक्रिय पार्ने (भेक्टर पर्दाको लागि मात्र)',
+'vector-simplesearch-preference' => 'विशिष्ठ खोज सुझावहरु सक्रिय पार्ने (भेक्टर त्वचाको लागि मात्र)',
 'vector-view-create'             => 'शृजना गर्ने',
 'vector-view-edit'               => 'सम्पादन',
 'vector-view-history'            => 'इतिहास हेर्ने',
@@ -208,8 +209,8 @@ $messages = array(
 'returnto'          => '$1 मा फर्कनुहोस् ।',
 'tagline'           => '{{SITENAME}}बाट',
 'help'              => 'सहयोग',
-'search'            => 'खोज',
-'searchbutton'      => 'खोज',
+'search'            => 'खोज्नुहोस्',
+'searchbutton'      => 'खोज्नुहोस्',
 'go'                => 'जाउ',
 'searcharticle'     => 'जाउ',
 'history'           => 'पृष्ठको इतिहास',
@@ -218,9 +219,9 @@ $messages = array(
 'info_short'        => 'जानकारी',
 'printableversion'  => 'छाप्नमिल्ने संस्करण',
 'permalink'         => 'स्थायी लिंक',
-'print'             => 'प्रिन्ट (छाप्नुस)',
+'print'             => 'छाप्नुहोस्',
 'edit'              => 'परिवर्तन',
-'create'            => 'शृजना गर्ने',
+'create'            => 'सृजना गर्नुहोस्',
 'editthispage'      => 'यो पृष्ठ सम्पादन गर्नुहोस्',
 'create-this-page'  => 'यो पृष्ठ शृजना गर्नुहोस्',
 'delete'            => 'मेट्नुहोस्',
@@ -263,6 +264,9 @@ $messages = array(
 कृपया यो पृष्ठ पुन: हेर्नु अगाडि केही समय पर्खिदिनुहोस् ।
 
 $1',
+'pool-timeout'      => 'समय समाप्त बन्द गर्ने प्रतीक्षामा',
+'pool-queuefull'    => 'प्रतीक्षा पंक्ति भरियो',
+'pool-errorunknown' => 'अज्ञात त्रुटी',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} बारेमा',
@@ -355,19 +359,22 @@ $1',
 <blockquote><tt>$1</tt></blockquote>
  "<tt>$2</tt>" फङ्सन बाट बोलाइएको
 थियो "<tt>$3: $4</tt>" डेटावेस त्रुटि उत्पन्न ।',
-'laggedslavemode'      => "'''चेतावनी:''' पृष्ठमा हालैको अध्यावधिहरु नरहेका पनि हुनसक्छन ।",
-'readonly'             => 'डेटाबेस ताल्चामारिएको छ',
+'laggedslavemode'      => "'''चेतावनी:''' पृष्ठमा हालका अद्यतनहरु नहुनसक्छन् ।",
+'readonly'             => 'डेटाबेस बन्द गरिएको छ',
 'enterlockreason'      => 'ताल्चा मार्नुको कारण प्रविष्ठ गर्नुहोस्, साथै ताल्चा हटाउने समयको अबधि अन्दाज गर्नुहोस ।',
-'missing-article'      => 'डेटाबेसले पृष्ठको पाठ भेटाएन जुन भेटिनु पर्ने थियो , नाम "$1" $2.
+'readonlytext'         => 'सम्भवतः नियमित डेटाबेस रख-रखाउको कारण अहिलेलाई नयाँ डेटाबेस प्रविष्टी र अन्य संशोधनहरु  बन्द राखिएकोछ,, जसलाई पछिबाट सामान्य गरिनेछ। 
+प्रबन्धक जसले यो बन्द गरेकाछन्, यो स्पष्टीकरण दिएकाछन्: $1',
+'missing-article'      => 'डेटाबेसले पृष्ठको पाठ भेटाइएन जुन भेटिनु पर्ने थियो , नाम "$1" $2.
 
 यस्तो प्राय: मिति नाघिसकेको diff वा इतिहास वा कुनै मेटिसकेको पानाको लिंक पछ्याउनाले हुन्छ ।
 
-यदी यस्तो भएको होइन भने सफ्टवेयरको त्रुटी पनि हुनस्छ ।
+यदि यस्तो भएको होइन भने सफ्टवेयरको त्रुटी पनि हुनसक्छ ।
 कृपया यसको url खुलाइ यहाँ उजुरी गर्नुहोस्  [[Special:ListUsers/sysop|administrator]].',
 'missingarticle-rev'   => '(पुनरावलोकन #: $1)',
 'missingarticle-diff'  => '(डिफ diff: $1, $2)',
 'internalerror'        => 'आन्तरिक त्रुटि',
 'internalerror_info'   => 'आन्तरिक त्रुटि: $1',
+'fileappenderrorread'  => 'जोड़ने बेलामा "$1" पढ्न सकिएन।',
 'fileappenderror'      => ' "$2".लाई"$1" मा जोडन सकिएन ।',
 'filecopyerror'        => 'फाइल  "$1" लाई "$2" मा प्रतिलिपी गर्न सकिएन ।',
 'filerenameerror'      => 'फाइल "$1" को नाम "$2" मा परिवर्तन गर्न सकिएन ।',
@@ -534,8 +541,8 @@ $1',
 'missingsummary'                   => "'''यादगर्नुहोस् :''' तपाईले सम्पादन सारांश दिनुभएको छैन ।
 यदि तपाईले संग्रहगर्नुहोस्  थिच्नुभयो भने , सारांश बिना नै संग्रहित गरिने छ ।",
 'missingcommenttext'               => 'कृपया टिप्पणी प्रविष्ठ गर्नुहोस् ।',
-'missingcommentheader'             => "'''याद गर्नुहोस् :''' तपाईँले टिप्पणीमा विषय /शिर्ष पंक्ति  दिनुभएको छैन ।
-तपाईँले फेरि संग्रह गर्नुहोस्  थिच्नु भएमा , तपाईको सम्पादन यसै रुपमा संग्रहित हुनेछ ।",
+'missingcommentheader'             => "'''याद गर्नुहोस् :''' तपाईँले टिप्पणीमा विषय /शीर्ष पंक्ति  दिनुभएको छैन ।
+तपाईँले फेरि 'संग्रह गर्नुहोस्'  थिच्नु भएमा , तपाईको सम्पादन यसै रुपमा संग्रहित हुनेछ ।",
 'summary-preview'                  => 'सारांश पूर्वालोकन:',
 'subject-preview'                  => 'विषय/शिर्षपंंक्ति पूर्वरुप:',
 'blockedtitle'                     => 'प्रयोककर्तालाई रोक लगाइएको छ',

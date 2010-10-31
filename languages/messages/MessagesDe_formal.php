@@ -16,6 +16,7 @@
  * @author Michawiki
  * @author Pill
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
+ * @author SVG
  * @author The Evil IP address
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
  * @author Tischbeinahe
@@ -134,7 +135,7 @@ Möglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein ne
 
 # Edit pages
 'anoneditwarning'                  => "Sie bearbeiten diese Seite unangemeldet. Wenn Sie speichern, wird Ihre aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
-'missingsummary'                   => "'''Hinweis:''' Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut auf „Seite speichern“ klicken, wird Ihre Änderung ohne Zusammenfassung übernommen.",
+'missingsummary'                   => "'''Hinweis:''' Sie haben keine Zusammenfassung angegeben. Wenn Sie erneut auf „{{int:savearticle}}“ klicken, wird Ihre Änderung ohne Zusammenfassung übernommen.",
 'missingcommenttext'               => 'Ihr Abschnitt enthält keinen Text.',
 'missingcommentheader'             => "'''Achtung:''' Sie haben kein Betreff/Überschrift eingegeben. Wenn Sie erneut auf „{{int:savearticle}}“ klicken, wird Ihre Bearbeitung ohne Überschrift gespeichert.",
 'blockedtext'                      => "'''Ihr Benutzername oder Ihre IP-Adresse wurde gesperrt.'''
@@ -256,16 +257,20 @@ Als Administrator können Sie sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
 'rev-deleted-no-diff'         => "Sie können diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
 Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-suppressed-no-diff'      => "Sie können diesen Versionsunterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.",
 'rev-deleted-unhide-diff'     => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.
 Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
 Einem Administrator können Sie [$1 diesen Link zum Versionsunterschied] nennen.",
+'rev-suppressed-unhide-diff'  => "Eine der Versionen dieses Unterschieds wurde '''unterdrückt'''.
+Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].
+Als Administrator können Sie [$1 diese Version einsehen].",
 'rev-deleted-diff-view'       => "Eine Version dieses Versionsunterschiedes wurde '''gelöscht'''.
 Als Administrator können Sie diesen Versionsunterschied sehen. Details finden sich im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
 'rev-suppressed-diff-view'    => "Eine der Versionen dieses Versionsunterschiedes wurde '''unterdrückt'''.
 Als Administrator können Sie diesen Versionsunterschied sehen. Details finden sich im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].",
 'revdelete-nooldid-text'      => 'Sie haben entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder Sie versuchen, die aktuelle Version zu entfernen.',
 'revdelete-show-file-confirm' => 'Sind Sie sicher, dass Sie die gelöschte Version der Datei „<nowiki>$1</nowiki>“ vom $2 um $3 Uhr ansehen wollen?',
-'revdelete-confirm'           => 'Bitte bestätigen Sie, dass Sie beabsichtigen, dies zu tun, die Konsequenzen verstehen und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tuen.',
+'revdelete-confirm'           => 'Bitte bestätigen Sie, dass Sie beabsichtigen, dies zu tun, die Konsequenzen verstehen und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tun.',
 'revdelete-show-no-access'    => 'Fehler beim Anzeigen des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als „eingeschränkt“ markiert.
 Sie haben darauf keinen Zugriff.',
 'revdelete-modify-no-access'  => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als „eingeschränkt“ markiert.
@@ -277,7 +282,7 @@ Bitte prüfen Sie die Logbücher.',
 # Revision move
 'revmove-badparam'    => 'Ihre Anfrage enthält unerlaubte oder mangelhafte Parameter. Bitte klicken Sie auf „zurück“ und versuchen Sie es erneut.',
 'revmove-norevisions' => 'Sie haben keine Zielversion angegeben, um diese Aktion durchzuführen oder die angegebene Version existiert nicht.',
-'revmove-nullmove'    => 'Quell- und Zielseite sind identisch. Bitte klicken Sie auf „zurück“ und geben Sie einen anderen Seitennamen als „$1“ ein.',
+'revmove-nullmove'    => 'Quell- und Zielseite sind identisch. Bitte klicken Sie auf „zurück“ und geben Sie einen anderen Seitennamen als „[[$1]]“ ein.',
 
 # History merging
 'mergehistory-header' => 'Mit dieser Spezialseite können Sie die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
@@ -477,9 +482,9 @@ Bitte gehen Sie zurück und versuchen Sie den Vorgang erneut auszuführen.',
 'protect-cantedit'       => 'Sie können die Sperre dieser Seite nicht ändern, da Sie keine Berechtigung zum Bearbeiten der Seite haben.',
 
 # Undelete
-'undeleteextrahelp'          => '* Um die Seite komplett mit allen Versionen wiederherzustellen, wählen Sie keine Version aus, geben Sie eine Begründung an und klicken Sie auf „Wiederherstellen“.
-* Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln anhand der Markierungen aus, geben eine Begründung an und klicken dann auf „Wiederherstellen“.
-* „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
+'undeleteextrahelp'          => '* Um die Seite komplett mit allen Versionen wiederherzustellen, wählen Sie keine Version aus, geben Sie eine Begründung an und klicken Sie auf „{{int:undeletebtn}}“.
+* Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln anhand der Markierungen aus, geben eine Begründung an und klicken dann auf „{{int:undeletebtn}}“.
+* „{{int:undeletereset}}“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeletehistory'            => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten Versionen wiederhergestellt.
 Wenn seit der Löschung eine neue Seite gleichen Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.',
 'undeleterevdel'             => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.
