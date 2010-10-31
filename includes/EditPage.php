@@ -320,7 +320,6 @@ class EditPage {
 		$wgOut->addModules( 'mediawiki.legacy.edit' );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
-			$wgOut->includeJQuery();
 			$wgOut->addModules( 'mediawiki.legacy.preview' );
 		}
 
