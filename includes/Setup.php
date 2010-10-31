@@ -308,13 +308,15 @@ if( !wfIniGetBool( 'session.auto_start' ) )
 	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 
 if( !defined( 'MW_NO_SESSION' ) ) {
-	if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
-		wfIncrStats( 'request_with_session' );
-		wfSetupSession();
-		$wgSessionStarted = true;
-	} else {
-		wfIncrStats( 'request_without_session' );
-		$wgSessionStarted = false;
+	if ( !$wgCommandLineMode ) {
+		if( ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
+			wfIncrStats( 'request_with_session' );
+			wfSetupSession();
+			$wgSessionStarted = true;
+		} else {
+			wfIncrStats( 'request_without_session' );
+			$wgSessionStarted = false;
+		}
 	}
 }
 
