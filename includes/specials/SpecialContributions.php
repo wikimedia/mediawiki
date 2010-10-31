@@ -339,7 +339,7 @@ class SpecialContributions extends SpecialPage {
 			if( in_array( $name, $skipParameters ) ) {
 				continue;
 			}
-			$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
+			$f .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
 		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagFilter'] );

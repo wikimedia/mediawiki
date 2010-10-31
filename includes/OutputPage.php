@@ -2056,7 +2056,6 @@ class OutputPage {
 	 * @return none
 	 */
 	public function addPasswordSecurity( $passwordId, $retypeId ) {
-		$this->includeJQuery();
 		$data = array(
 			'password' => '#' . $passwordId,
 			'retype' => '#' . $retypeId,

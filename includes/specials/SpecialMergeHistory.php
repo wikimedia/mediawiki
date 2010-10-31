@@ -225,11 +225,11 @@ class SpecialMergeHistory extends SpecialPage {
 
 		# When we submit, go by page ID to avoid some nasty but unlikely collisions.
 		# Such would happen if a page was renamed after the form loaded, but before submit
-		$misc = Xml::hidden( 'targetID', $this->mTargetObj->getArticleID() );
-		$misc .= Xml::hidden( 'destID', $this->mDestObj->getArticleID() );
-		$misc .= Xml::hidden( 'target', $this->mTarget );
-		$misc .= Xml::hidden( 'dest', $this->mDest );
-		$misc .= Xml::hidden( 'wpEditToken', $wgUser->editToken() );
+		$misc = Html::hidden( 'targetID', $this->mTargetObj->getArticleID() );
+		$misc .= Html::hidden( 'destID', $this->mDestObj->getArticleID() );
+		$misc .= Html::hidden( 'target', $this->mTarget );
+		$misc .= Html::hidden( 'dest', $this->mDest );
+		$misc .= Html::hidden( 'wpEditToken', $wgUser->editToken() );
 		$misc .= Xml::closeElement( 'form' );
 		$wgOut->addHTML( $misc );
 

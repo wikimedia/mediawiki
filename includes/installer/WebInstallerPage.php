@@ -214,8 +214,7 @@ class WebInstaller_Language extends WebInstallerPage {
 			$contLang = $this->getVar( 'wgLanguageCode', 'en' );
 		}
 		$this->startForm();
-		$s =
-			Xml::hidden( 'LanguageRequestTime', time() ) .
+		$s = Html::hidden( 'LanguageRequestTime', time() ) .
 			$this->getLanguageSelector( 'UserLang', 'config-your-language', $userLang ) .
 			$this->parent->getHelpBox( 'config-your-language-help' ) .
 			$this->getLanguageSelector( 'ContLang', 'config-wiki-language', $contLang ) .

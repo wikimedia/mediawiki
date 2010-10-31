@@ -494,7 +494,7 @@ class DeletedContributionsPage extends SpecialPage {
 			if ( in_array( $name, array( 'namespace', 'target', 'contribs' ) ) ) {
 				continue;
 			}
-			$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
+			$f .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
 		$f .=  Xml::openElement( 'fieldset' ) .

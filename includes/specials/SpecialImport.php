@@ -206,9 +206,9 @@ class SpecialImport extends SpecialPage {
 				Xml::fieldset(  wfMsg( 'importinterwiki' ) ) .
 				Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'mw-import-interwiki-form' ) ) .
 				wfMsgExt( 'import-interwiki-text', array( 'parse' ) ) .
-				Xml::hidden( 'action', 'submit' ) .
-				Xml::hidden( 'source', 'interwiki' ) .
-				Xml::hidden( 'editToken', $wgUser->editToken() ) .
+				Html::hidden( 'action', 'submit' ) .
+				Html::hidden( 'source', 'interwiki' ) .
+				Html::hidden( 'editToken', $wgUser->editToken() ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
 				"<tr>
 					<td class='mw-label'>" .

@@ -384,9 +384,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$f = Xml::openElement( 'form', array( 'action' => $wgScript ) );
 		
 		# Values that should not be forgotten
-		$f .= Xml::hidden( 'title', $this->getTitle()->getPrefixedText() );
+		$f .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
 		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
-			$f .= Xml::hidden( $name, $value );
+			$f .= Html::hidden( $name, $value );
 		}
 
 		$f .= Xml::fieldset( wfMsg( 'whatlinkshere' ) );

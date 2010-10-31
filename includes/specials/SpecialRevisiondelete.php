@@ -414,10 +414,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'</td>' .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
-				Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
-				Xml::hidden( 'target', $this->targetObj->getPrefixedText() ) .
-				Xml::hidden( 'type', $this->typeName ) .
-				Xml::hidden( 'ids', implode( ',', $this->ids ) ) .
+				Html::hidden( 'wpEditToken', $wgUser->editToken() ) .
+				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
+				Html::hidden( 'type', $this->typeName ) .
+				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
 				Xml::closeElement( 'fieldset' ) . "\n";
 		} else {
 			$out = '';

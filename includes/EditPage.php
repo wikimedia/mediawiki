@@ -1274,11 +1274,11 @@ HTML
 		# automatic one and pass that in the hidden field wpAutoSummary.
 		if ( $this->missingSummary ||
 			( $this->section == 'new' && $this->nosummary ) )
-				$wgOut->addHTML( Xml::hidden( 'wpIgnoreBlankSummary', true ) );
+				$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
-		$wgOut->addHTML( Xml::hidden( 'wpAutoSummary', $autosumm ) );
+		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
-		$wgOut->addHTML( Xml::hidden( 'oldid', $this->mArticle->getOldID() ) );
+		$wgOut->addHTML( Html::hidden( 'oldid', $this->mArticle->getOldID() ) );
 
 		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
@@ -1567,7 +1567,7 @@ HTML
 HTML
 		);
 		if ( !$this->checkUnicodeCompliantBrowser() )
-			$wgOut->addHTML(Xml::hidden( 'safemode', '1' ));
+			$wgOut->addHTML(Html::hidden( 'safemode', '1' ));
 	}
 
 	protected function showFormAfterText() {
@@ -1584,7 +1584,7 @@ HTML
 		 * include the constant suffix to prevent editing from
 		 * broken text-mangling proxies.
 		 */
-		$wgOut->addHTML( "\n" . Xml::hidden( "wpEditToken", $wgUser->editToken() ) . "\n" );
+		$wgOut->addHTML( "\n" . Html::hidden( "wpEditToken", $wgUser->editToken() ) . "\n" );
 	}
 
 	/**

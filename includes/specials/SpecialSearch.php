@@ -821,9 +821,9 @@ class SpecialSearch {
 			$namespaceTables .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
 			$redirects .
-			Xml::hidden( 'title', SpecialPage::getTitleFor( 'Search' )->getPrefixedText() ) .
-			Xml::hidden( 'advanced', $this->searchAdvanced ) .
-			Xml::hidden( 'fulltext', 'Advanced search' ) .
+			Html::hidden( 'title', SpecialPage::getTitleFor( 'Search' )->getPrefixedText() ) .
+			Html::hidden( 'advanced', $this->searchAdvanced ) .
+			Html::hidden( 'fulltext', 'Advanced search' ) .
 			Xml::closeElement( 'fieldset' );
 	}
 	
