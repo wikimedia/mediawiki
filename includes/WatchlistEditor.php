@@ -351,7 +351,7 @@ class WatchlistEditor {
 			$self = SpecialPage::getTitleFor( 'Watchlist' );
 			$form  = Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $self->getLocalUrl( array( 'action' => 'edit' ) ) ) );
-			$form .= Xml::hidden( 'token', $wgUser->editToken( 'watchlistedit' ) );
+			$form .= Html::hidden( 'token', $wgUser->editToken( 'watchlistedit' ) );
 			$form .= "<fieldset>\n<legend>" . wfMsgHtml( 'watchlistedit-normal-legend' ) . "</legend>";
 			$form .= wfMsgExt( 'watchlistedit-normal-explain', 'parse' );
 			$form .= $this->buildRemoveList( $user, $wgUser->getSkin() );
@@ -460,9 +460,9 @@ class WatchlistEditor {
 		global $wgUser;
 		$this->showItemCount( $output, $user );
 		$self = SpecialPage::getTitleFor( 'Watchlist' );
-		$form  = Xml::openElement( 'form', array( 'method' => 'post',
+		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $self->getLocalUrl( array( 'action' => 'raw' ) ) ) );
-		$form .= Xml::hidden( 'token', $wgUser->editToken( 'watchlistedit' ) );
+		$form .= Html::hidden( 'token', $wgUser->editToken( 'watchlistedit' ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'watchlistedit-raw-legend' ) . '</legend>';
 		$form .= wfMsgExt( 'watchlistedit-raw-explain', 'parse' );
 		$form .= Xml::label( wfMsg( 'watchlistedit-raw-titles' ), 'titles' );

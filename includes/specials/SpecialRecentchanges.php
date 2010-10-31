@@ -493,11 +493,11 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		$unconsumed = $opts->getUnconsumedValues();
 		foreach( $unconsumed as $key => $value ) {
-			$out .= Xml::hidden( $key, $value );
+			$out .= Html::hidden( $key, $value );
 		}
 
 		$t = $this->getTitle();
-		$out .= Xml::hidden( 'title', $t->getPrefixedText() );
+		$out .= Html::hidden( 'title', $t->getPrefixedText() );
 		$form = Xml::tags( 'form', array( 'action' => $wgScript ), $out );
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );

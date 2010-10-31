@@ -442,7 +442,7 @@ class ImagePage extends Article {
 					$wgOut->addHTML(
 						'</td><td><div class="multipageimagenavbox">' .
 						Xml::openElement( 'form', $formParams ) .
-						Xml::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
+						Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
 						wfMsgExt( 'imgmultigoto', array( 'parseinline', 'replaceafter' ), $select ) .
 						Xml::submitButton( wfMsg( 'imgmultigo' ) ) .
 						Xml::closeElement( 'form' ) .

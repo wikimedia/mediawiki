@@ -205,7 +205,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
 
 		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
-			Xml::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 			Xml::fieldset( wfMsg( 'newpages' ) ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			"<tr>
