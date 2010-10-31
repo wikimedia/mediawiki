@@ -5,7 +5,9 @@
  * @file
  * @ingroup Deployment
  */
- 
+
+require_once( dirname(__FILE__) . '/../../maintenance/Maintenance.php' );
+
 /*
  * Class for handling database updates. Roughly based off of updaters.inc, with
  * a few improvements :)
