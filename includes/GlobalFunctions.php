@@ -2017,7 +2017,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 			(int)$da[2], (int)$da[3], (int)$da[1] );
 	}
 
-	static $formats = array (
+	static $formats = array(
 		TS_UNIX => 'U',
 		TS_MW => 'YmdHis',
 		TS_DB => 'Y-m-d H:i:s',
@@ -2025,24 +2025,25 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		TS_ISO_8601_BASIC => 'Ymd\THis\Z',
 		TS_EXIF => 'Y:m:d H:i:s', // This shouldn't ever be used, but is included for completeness
 		TS_RFC2822 => 'D, d M Y H:i:s',
-		TS_ORACLE => 'd-m-Y H:i:s.000000', //Was 'd-M-y h.i.s A' . ' +00:00' before r51500
+		TS_ORACLE => 'd-m-Y H:i:s.000000', // Was 'd-M-y h.i.s A' . ' +00:00' before r51500
 		TS_POSTGRES => 'Y-m-d H:i:s',
 		TS_DB2 => 'Y-m-d H:i:s',
 	);
-	
+
 	if ( !isset( $formats[$outputtype] ) ) {
 		throw new MWException( 'wfTimestamp() called with illegal output type.' );
 	}
-		
-	if ( TS_UNIX == $outputtype )
-			return $uts;
-	
- 	$output = gmdate( $formats[$outputtype], $uts );
- 	
- 	if ( ( $outputtype == TS_RFC2822 ) || ( $outputtype == TS_POSTGRES ) ) {
+
+	if ( TS_UNIX == $outputtype ) {
+		return $uts;
+	}
+
+	$output = gmdate( $formats[$outputtype], $uts );
+
+	if ( ( $outputtype == TS_RFC2822 ) || ( $outputtype == TS_POSTGRES ) ) {
 		$output .= ' GMT';
 	}
-	
+
 	return $output;
 }
 
