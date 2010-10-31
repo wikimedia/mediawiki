@@ -15,34 +15,34 @@
 				// Any initialisation after the DOM is ready
 				$(function () {
 
-					// Initiate jQuery.client.profile
-					$.client.profile();
+					// Shortcut
+					var profile = $.client.profile();
 
 					// Set tooltipAccessKeyPrefix
 
 					// Opera on any platform
-					if ( $.client.profile.name == 'opera' ) {
-						this.tooltipAccessKeyPrefix = 'shift-esc-';
+					if ( profile.name == 'opera' ) {
+						mw.util.tooltipAccessKeyPrefix = 'shift-esc-';
 
 					// Chrome on any platform
-					} else if ( $.client.profile.name == 'chrome' ) {
+					} else if ( profile.name == 'chrome' ) {
 						// Chrome on Mac or Chrome on other platform ?
-						this.tooltipAccessKeyPrefix = $.client.profile.platform == 'mac' ? 'ctrl-option-' : 'alt-';
+						mw.util.tooltipAccessKeyPrefix = profile.platform == 'mac' ? 'ctrl-option-' : 'alt-';
 
 					// Non-Windows Safari with webkit_version > 526
-					} else if ( $.client.profile.platform !== 'win' && $.client.profile.name == 'safari' && $.client.profile.layoutVersion > 526 ) {
-						this.tooltipAccessKeyPrefix = 'ctrl-alt-';
+					} else if ( profile.platform !== 'win' && profile.name == 'safari' && profile.layoutVersion > 526 ) {
+						mw.util.tooltipAccessKeyPrefix = 'ctrl-alt-';
 
 					// Safari/Konqueror on any platform, or any browser on Mac (but not Safari on Windows)
-					} else if ( !( $.client.profile.platform == 'win' && $.client.profile.name == 'safari' )
-									&& ( $.client.profile.name == 'safari'
-									  || $.client.profile.platform == 'mac'
-									  || $.client.profile.name == 'konqueror' ) ) {
-						this.tooltipAccessKeyPrefix = 'ctrl-';
+					} else if ( !( profile.platform == 'win' && profile.name == 'safari' )
+									&& ( profile.name == 'safari'
+									  || profile.platform == 'mac'
+									  || profile.name == 'konqueror' ) ) {
+						mw.util.tooltipAccessKeyPrefix = 'ctrl-';
 
 					// Firefox 2.x
-					} else if ( $.client.profile.name == 'firefox' && $.client.profile.versionBase == '2' ) {
-						this.tooltipAccessKeyPrefix = 'alt-shift-';
+					} else if ( profile.name == 'firefox' && profile.versionBase == '2' ) {
+						mw.util.tooltipAccessKeyPrefix = 'alt-shift-';
 					}
 
 					// Enable CheckboxShiftClick
@@ -57,7 +57,6 @@
 						mw.util.$content = $('#content');
 					}
 				});
-
 
 				return true;
 			}
