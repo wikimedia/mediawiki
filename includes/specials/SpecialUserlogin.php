@@ -947,7 +947,7 @@ class LoginForm {
 		global $wgUser, $wgOut, $wgHiddenPrefs, $wgEnableEmail;
 		global $wgRequest, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
-		global $wgSecureLogin, $wgSecureLoginStickHTTPS;
+		global $wgSecureLogin;
 
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 
