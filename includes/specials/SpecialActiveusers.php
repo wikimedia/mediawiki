@@ -136,11 +136,11 @@ class ActiveUsersPager extends UsersPager {
 		global $wgScript;
 
 		$self = $this->getTitle();
-		$limit = $this->mLimit ? Xml::hidden( 'limit', $this->mLimit ) : '';
+		$limit = $this->mLimit ? Html::hidden( 'limit', $this->mLimit ) : '';
 
-		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ); # Form tag
+		$out = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ); # Form tag
 		$out .= Xml::fieldset( wfMsg( 'activeusers' ) ) . "\n";
-		$out .= Xml::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
+		$out .= Html::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
 
 		$out .= Xml::inputLabel( wfMsg( 'activeusers-from' ), 'username', 'offset', 20, $this->requestedUser ) . '<br />';# Username field
 

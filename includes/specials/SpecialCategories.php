@@ -127,7 +127,7 @@ class CategoryPager extends AlphabeticPager {
 	
 		return
 			Xml::tags( 'form', array( 'method' => 'get', 'action' => $wgScript ),
-				Xml::hidden( 'title', $t->getPrefixedText() ) .
+				Html::hidden( 'title', $t->getPrefixedText() ) .
 				Xml::fieldset( wfMsg( 'categories' ),
 					Xml::inputLabel( wfMsg( 'categoriesfrom' ),
 						'from', 'from', 20, $from ) .

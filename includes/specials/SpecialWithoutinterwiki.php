@@ -48,7 +48,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 		return 	Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'withoutinterwiki-legend' ) ) .
-			Xml::hidden( 'title', $t->getPrefixedText() ) .
+			Html::hidden( 'title', $t->getPrefixedText() ) .
 			Xml::inputLabel( wfMsg( 'allpagesprefix' ), 'prefix', 'wiprefix', 20, $prefix ) . ' ' .
 			Xml::submitButton( wfMsg( 'withoutinterwiki-submit' ) ) .
 			Xml::closeElement( 'fieldset' ) .

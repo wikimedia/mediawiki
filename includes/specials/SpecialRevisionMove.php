@@ -149,11 +149,11 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 				'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ),
 				'id' => 'mw-revmove-form' ) ) .
 			Xml::fieldset( wfMsg( 'revmove-legend' ) ) .
-			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
-			Xml::hidden( 'oldTitle', $this->mOldTitle->getPrefixedText() ) .
+			Html::hidden( 'wpEditToken', $wgUser->editToken() ) .
+			Html::hidden( 'oldTitle', $this->mOldTitle->getPrefixedText() ) .
 			'<div>' . Xml::inputLabel( wfMsg( 'revmove-reasonfield' ), 'wpReason', 'revmove-reasonfield', 60 ) . '</div>' .
 			Xml::inputLabel( wfMsg( 'revmove-titlefield' ), 'newTitle', 'revmove-titlefield', 20, $this->mOldTitle->getPrefixedText() ) .
-			Xml::hidden( 'ids', implode( ',', $this->mIds ) ) .
+			Html::hidden( 'ids', implode( ',', $this->mIds ) ) .
 			Xml::submitButton( wfMsg( 'revmove-submit' ),
 							array( 'name' => 'wpSubmit' ) ) .
 			Xml::closeElement( 'fieldset' ) . "\n" .
