@@ -425,13 +425,11 @@ function wfErrorLog( $text, $file ) {
 		# Needs the sockets extension
 		if ( preg_match( '!^(tcp|udp):(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $file, $m ) ) {
 			// IPv6 bracketed host
-			$protocol = $m[1];
 			$host = $m[2];
 			$port = intval( $m[3] );
 			$prefix = isset( $m[4] ) ? $m[4] : false;
 			$domain = AF_INET6;
 		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
-			$protocol = $m[1];
 			$host = $m[2];
 			if ( !IP::isIPv4( $host ) ) {
 				$host = gethostbyname( $host );

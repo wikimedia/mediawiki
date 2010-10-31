@@ -693,7 +693,6 @@ class User {
 		}
 
 		# Reject various classes of invalid names
-		$name = $t->getText();
 		global $wgAuth;
 		$name = $wgAuth->getCanonicalName( $t->getText() );
 

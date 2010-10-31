@@ -471,13 +471,14 @@ class EmailNotification {
 			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'created' );
 		}
 
-		if ($wgEnotifImpersonal && $this->oldid)
+		if ($wgEnotifImpersonal && $this->oldid) {
 			/*
 			 * For impersonal mail, show a diff link to the last
 			 * revision.
 			 */
 			$keys['$NEWPAGE'] = wfMsgForContent('enotif_lastdiff',
 					$this->title->getFullURL("oldid={$this->oldid}&diff=next"));
+        }
 
 		$body = strtr( $body, $keys );
 		$pagetitle = $this->title->getPrefixedText();

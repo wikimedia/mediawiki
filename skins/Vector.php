@@ -680,7 +680,7 @@ class VectorTemplate extends QuickTemplate {
 <div id="p-namespaces" class="vectorTabs<?php if ( count( $this->data['namespace_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('namespaces') ?></h5>
 	<ul<?php $this->html('userlangattributes') ?>>
-		<?php foreach ($this->data['namespace_urls'] as $key => $link ): ?>
+		<?php foreach ($this->data['namespace_urls'] as $link ): ?>
 			<li <?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></span></li>
 		<?php endforeach; ?>
 	</ul>
@@ -692,7 +692,7 @@ class VectorTemplate extends QuickTemplate {
 <div id="p-variants" class="vectorMenu<?php if ( count( $this->data['variant_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<?php if ( $wgVectorShowVariantName ): ?>
 		<h4>
-		<?php foreach ( $this->data['variant_urls'] as $key => $link ): ?>
+		<?php foreach ( $this->data['variant_urls'] as $link ): ?>
 			<?php if ( stripos( $link['attributes'], 'selected' ) !== false ): ?>
 				<?php echo htmlspecialchars( $link['text'] ) ?>
 			<?php endif; ?>
@@ -702,7 +702,7 @@ class VectorTemplate extends QuickTemplate {
 	<h5><span><?php $this->msg('variants') ?></span><a href="#"></a></h5>
 	<div class="menu">
 		<ul<?php $this->html('userlangattributes') ?>>
-			<?php foreach ( $this->data['variant_urls'] as $key => $link ): ?>
+			<?php foreach ( $this->data['variant_urls'] as $link ): ?>
 				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 			<?php endforeach; ?>
 		</ul>

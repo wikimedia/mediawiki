@@ -531,17 +531,11 @@ class Skin extends Linker {
 	 */
 	function setupUserCss( OutputPage $out ) {
 		global $wgRequest;
-		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs, $wgSquidMaxage;
+		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs;
 
 		wfProfileIn( __METHOD__ );
 
 		$this->setupSkinUserCss( $out );
-
-		$siteargs = array(
-			'action' => 'raw',
-			'maxage' => $wgSquidMaxage,
-		);
-
 		// Add any extension CSS
 		foreach ( $out->getExtStyle() as $url ) {
 			$out->addStyle( $url );
