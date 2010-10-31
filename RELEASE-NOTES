@@ -376,6 +376,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25697) Make sure empty lines render in diff view.
 * Use an actual minus sign in diff views, instead of a hyphen.
 * (bug 23732) Clarified "n links" message on Special:MostLinkedFiles
+* (bug 23731) Clarified "n links" message on Special:MostLinkedTemplates
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
