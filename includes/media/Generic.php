@@ -162,6 +162,10 @@ abstract class MediaHandler {
 	 */
 	function pageCount( $file ) { return false; }
 	/**
+	 * The material is vectorized and thus scaling is lossless
+	 */
+	function isVectorized( $file ) { return false; }
+	/**
 	 * False if the handler is disabled for all files
 	 */
 	function isEnabled() { return true; }

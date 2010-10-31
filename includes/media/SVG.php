@@ -26,6 +26,10 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
+	function isVectorized( $file ) {
+		return true;
+	}
+
 	function normaliseParams( $image, &$params ) {
 		global $wgSVGMaxSize;
 		if ( !parent::normaliseParams( $image, $params ) ) {
