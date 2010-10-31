@@ -299,7 +299,7 @@ class Skin extends Linker {
 			}
 		}
 
-		if ( !$wgDisableLangConversion && !$wgCanonicalLanguageLinks
+		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks
 			&& $wgContLang->hasVariants() ) {
 
 			$urlvar = $wgContLang->getURLVariant();
