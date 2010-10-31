@@ -1323,7 +1323,7 @@ This sometimes happens when you are using a buggy web-based anonymous proxy serv
 The upper text area contains the page text as it currently exists.
 Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
-'''Only''' the text in the upper text area will be saved when you press \"Save page\".",
+'''Only''' the text in the upper text area will be saved when you press \"{{int:savearticle}}\".",
 'yourtext'                         => 'Your text',
 'storedversion'                    => 'Stored revision',
 'nonunicodebrowser'                => "'''Warning: Your browser is not unicode compliant.'''
