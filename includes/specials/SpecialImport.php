@@ -150,8 +150,8 @@ class SpecialImport extends SpecialPage {
 				Xml::fieldset( wfMsg( 'import-upload' ) ).
 				Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post',
 					'action' => $action, 'id' => 'mw-import-upload-form' ) ) .
-				Xml::hidden( 'action', 'submit' ) .
-				Xml::hidden( 'source', 'upload' ) .
+				Html::hidden( 'action', 'submit' ) .
+				Html::hidden( 'source', 'upload' ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
 
 				"<tr>
@@ -178,7 +178,7 @@ class SpecialImport extends SpecialPage {
 					"</td>
 				</tr>" .
 				Xml::closeElement( 'table' ).
-				Xml::hidden( 'editToken', $wgUser->editToken() ) .
+				Html::hidden( 'editToken', $wgUser->editToken() ) .
 				Xml::closeElement( 'form' ) .
 				Xml::closeElement( 'fieldset' )
 			);

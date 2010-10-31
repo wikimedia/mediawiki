@@ -158,7 +158,7 @@ class SpecialProtectedpages extends SpecialPage {
 		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'protectedpages' ) ) .
-			Xml::hidden( 'title', $title->getPrefixedDBkey() ) . "\n" .
+			Html::hidden( 'title', $title->getPrefixedDBkey() ) . "\n" .
 			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
 			$this->getTypeMenu( $type ) . "&#160;\n" .
 			$this->getLevelMenu( $level ) . "&#160;\n" .

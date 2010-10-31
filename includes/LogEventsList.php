@@ -95,8 +95,7 @@ class LogEventsList {
 
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
-		$html = '';
-		$html .= Xml::hidden( 'title', $special );
+		$html = Html::hidden( 'title', $special );
 
 		// Basic selectors
 		$html .= $this->getTypeMenu( $types ) . "\n";
@@ -163,7 +162,7 @@ class LogEventsList {
 			);
 
 			$links[$type] = wfMsgHtml( "log-show-hide-{$type}", $link );
-			$hiddens .= Xml::hidden( "hide_{$type}_log", $val ) . "\n";
+			$hiddens .= Html::hidden( "hide_{$type}_log", $val ) . "\n";
 		}
 		// Build links
 		return '<small>'.$wgLang->pipeList( $links ) . '</small>' . $hiddens;

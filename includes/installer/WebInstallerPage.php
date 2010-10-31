@@ -55,7 +55,7 @@ abstract class WebInstallerPage {
 		$id = $this->getId();
 		
 		if ( $id === false ) {
-			$s .= Xml::hidden( 'lastPage', $this->parent->request->getVal( 'lastPage' ) );
+			$s .= Html::hidden( 'lastPage', $this->parent->request->getVal( 'lastPage' ) );
 		}
 		
 		if ( $continue ) {

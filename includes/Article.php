@@ -2125,8 +2125,6 @@ class Article {
 				$userAbort = ignore_user_abort( true );
 			}
 
-			$revisionId = 0;
-
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
 
 			if ( $changed ) {

@@ -169,7 +169,7 @@ class ChangeTags {
 
 		$html = implode( '&#160;', $data );
 		$html .= "\n" . Xml::element( 'input', array( 'type' => 'submit', 'value' => wfMsg( 'tag-filter-submit' ) ) );
-		$html .= "\n" . Xml::hidden( 'title', $wgTitle-> getPrefixedText() );
+		$html .= "\n" . Html::hidden( 'title', $wgTitle-> getPrefixedText() );
 		$html = Xml::tags( 'form', array( 'action' => $wgTitle->getLocalURL(), 'method' => 'get' ), $html );
 
 		return $html;

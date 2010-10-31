@@ -1181,7 +1181,6 @@ class MssqlResult {
   public function fieldtype( $nr ) {
 	$i = 0;
 	$intType = -1;
-	$strType = '';
 	foreach ( $this->mFieldMeta as $meta ) {
 		if ( $nr == $i ) {
 			$intType = $meta['Type'];

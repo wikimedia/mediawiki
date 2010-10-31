@@ -977,7 +977,6 @@ class Language {
 				} else {
 					$s .= $this->formatNum( $num, true );
 				}
-				$num = false;
 			}
 		}
 		return $s;

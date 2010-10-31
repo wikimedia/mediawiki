@@ -140,9 +140,9 @@ class SpecialResetpass extends SpecialPage {
 					'method' => 'post',
 					'action' => $self->getLocalUrl(),
 					'id' => 'mw-resetpass-form' ) ) . "\n" .
-			Xml::hidden( 'token', $wgUser->editToken() ) . "\n" .
-			Xml::hidden( 'wpName', $this->mUserName ) . "\n" .
-			Xml::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) . "\n" .
+			Html::hidden( 'token', $wgUser->editToken() ) . "\n" .
+			Html::hidden( 'wpName', $this->mUserName ) . "\n" .
+			Html::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) . "\n" .
 			wfMsgExt( 'resetpass_text', array( 'parse' ) ) . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
 			$this->pretty( array(

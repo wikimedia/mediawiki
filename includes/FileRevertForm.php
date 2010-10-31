@@ -92,7 +92,7 @@ class FileRevertForm {
 		$timestamp = $this->getTimestamp();
 
 		$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) );
-		$form .= Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->archiveName ) );
+		$form .= Html::hidden( 'wpEditToken', $wgUser->editToken( $this->archiveName ) );
 		$form .= '<fieldset><legend>' . wfMsgHtml( 'filerevert-legend' ) . '</legend>';
 		$form .= wfMsgExt( 'filerevert-intro', 'parse', $this->title->getText(),
 			$wgLang->date( $timestamp, true ), $wgLang->time( $timestamp, true ),

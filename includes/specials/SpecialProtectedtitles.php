@@ -119,7 +119,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'protectedtitles' ) ) .
-			Xml::hidden( 'title', $special ) . "&#160;\n" .
+			Html::hidden( 'title', $special ) . "&#160;\n" .
 			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
 			$this->getLevelMenu( $level ) . "&#160;\n" .
 			"&#160;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .

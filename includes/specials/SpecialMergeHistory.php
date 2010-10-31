@@ -142,9 +142,9 @@ class SpecialMergeHistory extends SpecialPage {
 			'<fieldset>' .
 			Xml::element( 'legend', array(),
 				wfMsg( 'mergehistory-box' ) ) .
-			Xml::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
-			Xml::hidden( 'submitted', '1' ) .
-			Xml::hidden( 'mergepoint', $this->mTimestamp ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
+			Html::hidden( 'submitted', '1' ) .
+			Html::hidden( 'mergepoint', $this->mTimestamp ) .
 			Xml::openElement( 'table' ) .
 			"<tr>
 				<td>".Xml::label( wfMsg( 'mergehistory-from' ), 'target' )."</td>

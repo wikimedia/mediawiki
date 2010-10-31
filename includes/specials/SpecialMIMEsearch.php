@@ -107,7 +107,7 @@ function wfSpecialMIMEsearch( $par = null ) {
 	$wgOut->addHTML(
 		Xml::openElement( 'form', array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => SpecialPage::getTitleFor( 'MIMEsearch' )->getLocalUrl() ) ) .
 		Xml::openElement( 'fieldset' ) .
-		Xml::hidden( 'title', SpecialPage::getTitleFor( 'MIMEsearch' )->getPrefixedText() ) .
+		Html::hidden( 'title', SpecialPage::getTitleFor( 'MIMEsearch' )->getPrefixedText() ) .
 		Xml::element( 'legend', null, wfMsg( 'mimesearch' ) ) .
 		Xml::inputLabel( wfMsg( 'mimetype' ), 'mime', 'mime', 20, $mime ) . ' ' .
 		Xml::submitButton( wfMsg( 'ilsubmit' ) ) .

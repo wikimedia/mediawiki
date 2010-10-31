@@ -182,7 +182,7 @@ class UsersPager extends AlphabeticPager {
 		# Form tag
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' ) ) .
 			Xml::fieldset( wfMsg( 'listusers' ) ) .
-			Xml::hidden( 'title', $self->getPrefixedDbKey() );
+			Html::hidden( 'title', $self->getPrefixedDbKey() );
 
 		# Username field
 		$out .= Xml::label( wfMsg( 'listusersfrom' ), 'offset' ) . ' ' .
@@ -203,7 +203,7 @@ class UsersPager extends AlphabeticPager {
 		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
 
 		# Submit button and form bottom
-		$out .= Xml::hidden( 'limit', $this->mLimit );
+		$out .= Html::hidden( 'limit', $this->mLimit );
 		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
 		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
 		$out .= Xml::closeElement( 'fieldset' ) .

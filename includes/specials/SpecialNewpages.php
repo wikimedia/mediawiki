@@ -196,7 +196,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		// Store query values in hidden fields so that form submission doesn't lose them
 		$hidden = array();
 		foreach ( $this->opts->getUnconsumedValues() as $key => $value ) {
-			$hidden[] = Xml::hidden( $key, $value );
+			$hidden[] = Html::hidden( $key, $value );
 		}
 		$hidden = implode( "\n", $hidden );
 

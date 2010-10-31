@@ -146,8 +146,8 @@ class HistoryPage {
 				false,
 				array( 'id' => 'mw-history-search' )
 			) .
-			Xml::hidden( 'title', $this->title->getPrefixedDBKey() ) . "\n" .
-			Xml::hidden( 'action', 'history' ) . "\n" .
+			Html::hidden( 'title', $this->title->getPrefixedDBKey() ) . "\n" .
+			Html::hidden( 'action', 'history' ) . "\n" .
 			Xml::dateMenu( $year, $month ) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
