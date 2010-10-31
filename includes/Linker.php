@@ -2068,7 +2068,6 @@ class Linker {
 		return Xml::expandAttributes( $this->tooltipAndAccesskeyAttribs( $name ) );
 	}
 
-
 	/** @deprecated Returns raw bits of HTML, use titleAttrib() */
 	public function tooltip( $name, $options = null ) {
 		global $wgEnableTooltipsAndAccesskeys;

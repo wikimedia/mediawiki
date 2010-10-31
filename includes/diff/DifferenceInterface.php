@@ -1010,7 +1010,7 @@ CONTROL;
 				'undo' => $this->mNewid
 			) );
 			$htmlLink = htmlspecialchars( wfMsg( 'editundo' ) );
-			$htmlTitle = $wgUser->getSkin()->tooltip( 'undo' );
+			$htmlTitle = $wgUser->getSkin()->titleAttrib( 'undo' );
 			if( $editable && !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) && !$this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$this->mNewtitle .= " (<a href='$newUndo' $htmlTitle>" . $htmlLink . "</a>)";
 			}
