@@ -112,7 +112,7 @@ class ApiUpload extends ApiBase {
 		$this->requireOnlyOneParameter( $this->mParams,
 			'sessionkey', 'file', 'url', 'statuskey' );
 
-		if ( $this->mParams['statuskey'] ) {
+		if ( isset( $this->mParams['statuskey'] ) ) {
 			// Status request for an async upload
 			$sessionData = UploadFromUrlJob::getSessionData( $this->mParams['statuskey'] );
 			if ( !isset( $sessionData['result'] ) ) {
