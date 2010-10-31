@@ -46,8 +46,8 @@ class ResourceLoader {
 	 * than it is to have each module requests its own information. This sacrifice of modularity yields a profound
 	 * performance improvement.
 	 * 
-	 * @param {array} $modules List of module names to preload information for
-	 * @param {ResourceLoaderContext} $context Context to load the information within
+	 * @param $modules Array: list of module names to preload information for
+	 * @param $context ResourceLoaderContext: context to load the information within
 	 */
 	protected function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
 		if ( !count( $modules ) ) {
@@ -113,9 +113,9 @@ class ResourceLoader {
 	 * 
 	 * If $data is empty, only contains whitespace or the filter was unknown, $data is returned unmodified.
 	 * 
-	 * @param {string} $filter Name of filter to run
-	 * @param {string} $data Text to filter, such as JavaScript or CSS text
-	 * @return {string} Filtered data
+	 * @param $filter String: name of filter to run
+	 * @param $data String: text to filter, such as JavaScript or CSS text
+	 * @return String: filtered data
 	 */
 	protected function filter( $filter, $data ) {
 		global $wgMemc;
@@ -181,11 +181,11 @@ class ResourceLoader {
 	/**
 	 * Registers a module with the ResourceLoader system.
 	 * 
-	 * @param {mixed} $name string of name of module or array of name/object pairs
-	 * @param {ResourceLoaderModule} $object module object (optional when using multiple-registration calling style)
-	 * @throws {MWException} If a duplicate module registration is attempted
-	 * @throws {MWException} If something other than a ResourceLoaderModule is being registered
-	 * @return {bool} false if there were any errors, in which case one or more modules were not registered
+	 * @param $name Mixed: string of name of module or array of name/object pairs
+	 * @param $object ResourceLoaderModule: module object (optional when using multiple-registration calling style)
+	 * @throws MWException If a duplicate module registration is attempted
+	 * @throws MWException If something other than a ResourceLoaderModule is being registered
+	 * @return Boolean: false if there were any errors, in which case one or more modules were not registered
 	 */
 	public function register( $name, ResourceLoaderModule $object = null ) {
 
@@ -225,7 +225,7 @@ class ResourceLoader {
 	/**
 	 * Gets a map of all modules and their options
 	 *
-	 * @return {array} array( modulename => ResourceLoaderModule )
+	 * @return Array: array( modulename => ResourceLoaderModule )
 	 */
 	public function getModules() {
 		return $this->modules;
@@ -234,8 +234,8 @@ class ResourceLoader {
 	/**
 	 * Get the ResourceLoaderModule object for a given module name.
 	 *
-	 * @param {string} $name module name
-	 * @return {mixed} ResourceLoaderModule if module has been registered, null otherwise
+	 * @param $name String: module name
+	 * @return Mixed: ResourceLoaderModule if module has been registered, null otherwise
 	 */
 	public function getModule( $name ) {
 		return isset( $this->modules[$name] ) ? $this->modules[$name] : null;
@@ -244,7 +244,7 @@ class ResourceLoader {
 	/**
 	 * Outputs a response to a resource load-request, including a content-type header.
 	 *
-	 * @param {ResourceLoaderContext} $context Context in which a response should be formed
+	 * @param $context ResourceLoaderContext: context in which a response should be formed
 	 */
 	public function respond( ResourceLoaderContext $context ) {
 		global $wgResourceLoaderMaxage, $wgCacheEpoch;
@@ -323,10 +323,10 @@ class ResourceLoader {
 	/**
 	 * Generates code for a response
 	 * 
-	 * @param {ResourceLoaderContext} $context Context in which to generate a response
-	 * @param {array} $modules List of module objects keyed by module name
-	 * @param {array} $missing List of unavailable modules (optional)
-	 * @return {string} Response data
+	 * @param $context ResourceLoaderContext: context in which to generate a response
+	 * @param $modules Array: list of module objects keyed by module name
+	 * @param $missing Array: list of unavailable modules (optional)
+	 * @return String: response data
 	 */
 	public function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = array() ) {
 		// Pre-fetch blobs
