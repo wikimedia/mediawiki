@@ -460,7 +460,6 @@ class LogEventsList {
 			if( count($paramArray) >= 1 ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// $paramArray[1] is a CSV of the IDs
-				$Ids = explode( ',', $paramArray[0] );
 				$query = $paramArray[0];
 				// Link to each hidden object ID, $paramArray[1] is the url param
 				$revert = '(' . $this->skin->link(

@@ -683,7 +683,7 @@ abstract class Installer {
 		}
 
 		# Get a list of available locales.
-		$lines = $ret = false;
+		$ret = false;
 		$lines = wfShellExec( '/usr/bin/locale -a', $ret );
 
 		if ( $ret ) {

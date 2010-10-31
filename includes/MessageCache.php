@@ -634,7 +634,6 @@ class MessageCache {
 	 */
 	function getMsgFromNamespace( $title, $code ) {
 		global $wgAdaptiveMessageCache;
-		$big = false;
 
 		$this->load( $code );
 		if ( isset( $this->mCache[$code][$title] ) ) {

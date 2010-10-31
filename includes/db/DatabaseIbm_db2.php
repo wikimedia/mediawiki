@@ -607,7 +607,6 @@ EOF;
 			} else {
 				print '<li>Foreign keys done</li>';
 			}
-			$res = null;
 
 			// TODO: populate interwiki links
 

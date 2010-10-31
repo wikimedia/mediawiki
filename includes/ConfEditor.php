@@ -510,7 +510,6 @@ class ConfEditor {
 			$indent = false;
 		}
 		if ( $indent !== false && $arrowPos !== false ) {
-			$textToInsert = "$indent$key ";
 			$arrowIndentLength = $arrowPos - $pos - $indentLength - strlen( $key );
 			if ( $arrowIndentLength > 0 ) {
 				$arrowIndent = str_repeat( ' ', $arrowIndentLength );

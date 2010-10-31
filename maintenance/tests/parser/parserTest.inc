@@ -515,7 +515,6 @@ class ParserTest {
 
 	private function parseOptions( $instring ) {
 		$opts = array();
-		$lines = explode( "\n", $instring );
 		// foo
 		// foo=bar
 		// foo="bar baz"
@@ -554,7 +553,7 @@ class ParserTest {
 
 		if ( preg_match_all( $regex, $instring, $matches, PREG_SET_ORDER ) ) {
 			foreach ( $matches as $bits ) {
-				$match = array_shift( $bits );
+				array_shift( $bits );
 				$key = strtolower( array_shift( $bits ) );
 				if ( count( $bits ) == 0 ) {
 					$opts[$key] = true;
