@@ -937,7 +937,7 @@ class SpecialSearch {
 		// Adds hidden namespace fields
 		if ( !$this->searchAdvanced ) {
 			foreach( $this->namespaces as $ns ) {
-				$out .= Xml::hidden( "ns{$ns}", '1' );
+				$out .= Html::hidden( "ns{$ns}", '1' );
 			}
 		}
 		
