@@ -274,8 +274,8 @@ $datePreferences = false;
 $defaultDateFormat = 'dmy';
 $dateFormats = array(
 	'dmy time' => 'H:i',
-	'dmy date' => 'j. M Y',
-	'dmy both' => 'H:i, j. M Y',
+	'dmy date' => 'j M. Y',
+	'dmy both' => 'H:i, j M. Y',
 );
 
 $messages = array(
