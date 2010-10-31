@@ -492,7 +492,7 @@ class PageArchive {
 		$revision = null;
 		$restored = 0;
 
-		while( $row = $ret->fetchObject() ) {
+		foreach ( $ret as $row ) {
 			// Check for key dupes due to shitty archive integrity.
 			if( $row->ar_rev_id ) {
 				$exists = $dbw->selectField( 'revision', '1', array('rev_id' => $row->ar_rev_id), __METHOD__ );

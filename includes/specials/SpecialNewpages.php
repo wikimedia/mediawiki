@@ -366,7 +366,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$feed->outHeader();
 		if( $pager->getNumRows() > 0 ) {
-			while( $row = $pager->mResult->fetchObject() ) {
+			foreach (  $pager->mResult->fetchObject() as $row ) {
 				$feed->outItem( $this->feedItem( $row ) );
 			}
 		}

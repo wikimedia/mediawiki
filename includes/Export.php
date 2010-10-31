@@ -167,7 +167,7 @@ class WikiExporter {
 		WHERE page_id=rev_page AND $nothidden AND " . $cond ;
 		$result = $this->db->query( $sql, __METHOD__ );
 		$resultset = $this->db->resultObject( $result );
-		while( $row = $resultset->fetchObject() ) {
+		foreach ( $resultset as $row ) {
 			$this->author_list .= "<contributor>" .
 				"<username>" .
 				htmlentities( $row->rev_user_text )  .
