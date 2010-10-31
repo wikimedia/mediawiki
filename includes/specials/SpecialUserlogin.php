@@ -291,7 +291,7 @@ class LoginForm {
 
 		# Check permissions
 		if ( !$wgUser->isAllowed( 'createaccount' ) ) {
-			$this->userNotPrivilegedMessage();
+			$this->userNotPrivilegedMessage( 'createaccount' );
 			return false;
 		} elseif ( $wgUser->isBlockedFromCreateAccount() ) {
 			$this->userBlockedMessage();
