@@ -185,7 +185,7 @@ class ForeignAPIRepo extends FileRepo {
 			'prop' => 'imageinfo' ) );
 		$info = $this->getImageInfo( $data );
 
-		if( $data && $info && $info['thumburl'] ) {
+		if( $data && $info && isset( $info['thumburl'] ) ) {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
 			return $info['thumburl'];
 		} else {
