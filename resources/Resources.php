@@ -319,6 +319,9 @@ return array(
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 		'debugRaw' => false
 	) ),
+	'mediawiki.advanced.rightclickedit' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki.advanced/mediawiki.advanced.rightclickedit.js',
+	) ),
 	'mediawiki.specials.preferences' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.specials/mediawiki.specials.preferences.js',
 		'styles' => 'resources/mediawiki.specials/mediawiki.specials.preferences.css',
