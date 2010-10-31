@@ -296,7 +296,7 @@ class SpecialVersion extends SpecialPage {
 		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
 			for ( $i = 0; $i < $cnt; ++$i ) {
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
-            }
+			}
 			$out .= $this->openExtType( wfMsg( 'version-parser-extensiontags' ), 'parser-tags' );
 			$out .= '<tr><td colspan="4">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
