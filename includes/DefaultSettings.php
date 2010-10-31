@@ -1971,8 +1971,8 @@ $wgDisableLangConversion = false;
 /** Whether to enable language variant conversion for links. */
 $wgDisableTitleConversion = false;
 
-/** Whether to enable language cononical in meta data. */
-$wgDisableLangCanonical = false;
+/** Whether to enable cononical language links in meta data. */
+$wgCanonicalLanguageLinks = true;
 
 /** Default variant code, if false, the default will be the language code */
 $wgDefaultLanguageVariant = false;
