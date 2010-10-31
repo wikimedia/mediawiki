@@ -277,7 +277,7 @@ class Skin extends Linker {
 	 */
 	function addMetadataLinks( OutputPage $out ) {
 		global $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
-		global $wgDisableLangConversion, $wgDisableLangCanonical, $wgContLang;
+		global $wgDisableLangConversion, $wgCanonicalLanguageLinks, $wgContLang;
 		global $wgRightsPage, $wgRightsUrl;
 
 		if ( $out->isArticleRelated() ) {
@@ -299,7 +299,7 @@ class Skin extends Linker {
 			}
 		}
 
-		if ( !$wgDisableLangConversion && !$wgDisableLangCanonical
+		if ( !$wgDisableLangConversion && !$wgCanonicalLanguageLinks
 			&& $wgContLang->hasVariants() ) {
 
 			$urlvar = $wgContLang->getURLVariant();
