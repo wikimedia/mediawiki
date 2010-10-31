@@ -433,6 +433,7 @@ class Linker {
 	 *       to transform(). Typical keys are "width" and "page".
 	 * @param $time String: timestamp of the file, set as false for current
 	 * @param $query String: query params for desc url
+	 * @param $widthOption: Used by the parser to remember the user preference thumbnailsize
 	 * @return String: HTML for an image, with links, wrappers, etc.
 	 */
 	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false, $query = "", $widthOption = null ) {
@@ -442,7 +443,6 @@ class Linker {
 			return $res;
 		}
 
-		global $wgContLang, $wgThumbLimits, $wgThumbUpright;
 		if ( $file && !$file->allowInlineDisplay() ) {
 			wfDebug( __METHOD__ . ': ' . $title->getPrefixedDBkey() . " does not allow inline display\n" );
 			return $this->link( $title );
@@ -469,28 +469,31 @@ class Linker {
 			$hp['width'] = $file->getWidth( $page );
 
 			if ( isset( $fp['thumbnail'] ) || isset( $fp['framed'] ) || isset( $fp['frameless'] ) || !$hp['width'] ) {
+				global $wgThumbLimits, $wgThumbUpright;
 				if ( !isset( $widthOption ) || !isset( $wgThumbLimits[$widthOption] ) ) {
-					 $widthOption = User::getDefaultOption( 'thumbsize' );
+					$widthOption = User::getDefaultOption( 'thumbsize' );
 				}
 
 				// Reduce width for upright images when parameter 'upright' is used
 				if ( isset( $fp['upright'] ) && $fp['upright'] == 0 ) {
 					$fp['upright'] = $wgThumbUpright;
 				}
-				// Use width which is smaller: real image width or user preference width
 				// For caching health: If width scaled down due to upright parameter, round to full __0 pixel to avoid the creation of a lot of odd thumbs
 				$prefWidth = isset( $fp['upright'] ) ?
 					round( $wgThumbLimits[$widthOption] * $fp['upright'], -1 ) :
 					$wgThumbLimits[$widthOption];
-				if ( $hp['width'] <= 0 || $prefWidth < $hp['width'] ) {
-					if ( !isset( $hp['height'] ) ) {
-						$hp['width'] = $prefWidth;
-					}
+
+				// Use width which is smaller: real image width or user preference width
+				// Unless image is scalable vector.
+				if ( !isset( $hp['height'] ) && ( $hp['width'] <= 0 ||
+						$prefWidth < $hp['width'] || $file->isVectorized() ) ) {
+					$hp['width'] = $prefWidth;
 				}
 			}
 		}
 
-		if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) ) {
+		if ( $file && ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) ) ) {
+			global $wgContLang;
 			# Create a thumbnail. Alignment depends on language
 			# writing direction, # right aligned for left-to-right-
 			# languages ("Western languages"), left-aligned
@@ -513,7 +516,7 @@ class Linker {
 			}
 		}
 
-		if ( $file && $hp['width'] ) {
+		if ( $file && isset( $hp['width'] ) ) {
 			# Create a resized image, without the additional thumbnail features
 			$thumb = $file->transform( $hp );
 		} else {
