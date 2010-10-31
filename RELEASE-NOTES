@@ -495,6 +495,7 @@ changes to languages because of Bugzilla reports.
 * (bug 24628) Generic translations for NS_USER/NS_USER_TALK for Esperanto.
 * (bug 24917) Polish as fallback for Kashubia.
 * (bug 24794) Tatar link trail updated.
+* Esperanto date format corrected.
 
 == Compatibility ==
 
