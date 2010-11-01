@@ -444,6 +444,7 @@ return array(
 	'mediawiki.legacy.metadata' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/metadata.js',
 		'dependencies' => 'mediawiki.legacy.wikibits',
+		'messages' => array( 'metadata-expand', 'metadata-collapse' ),
 	) ),
 	'mediawiki.legacy.mwsuggest' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/mwsuggest.js',
