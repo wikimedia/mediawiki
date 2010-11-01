@@ -308,7 +308,7 @@ class UtfNormal {
 			$len = $chunk + 1; # Counting down is faster. I'm *so* sorry.
 
 			for( $i = -1; --$len; ) {
-				$remaining = $tailBytes[$c = $str{++$i}]
+				$remaining = $tailBytes[$c = $str{++$i}];
 				if( $remaining ) {
 					# UTF-8 head byte!
 					$sequence = $head = $c;
