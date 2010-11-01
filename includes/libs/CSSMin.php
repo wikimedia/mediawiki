@@ -34,7 +34,7 @@ class CSSMin {
 	 * result in a 1/3 increase in size.
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
-	const URL_REGEX = 'url\([\'"]?(?<file>[^\?\)\:\'"]*)\??[^\)\'"]*[\'"]?\)';
+	const URL_REGEX = 'url\([\'"]?(?P<file>[^\?\)\:\'"]*)\??[^\)\'"]*[\'"]?\)';
 	
 	/* Protected Static Members */
 	
@@ -84,7 +84,7 @@ class CSSMin {
 	 * @return string Remapped CSS data
 	 */
 	public static function remap( $source, $local, $remote, $embed = true ) {
-		$pattern = '/((?<embed>\s*\/\*\s*\@embed\s*\*\/)(?<pre>[^\;\}]*))?' . self::URL_REGEX . '(?<post>[^;]*)[\;]?/';
+		$pattern = '/((?P<embed>\s*\/\*\s*\@embed\s*\*\/)(?P<pre>[^\;\}]*))?' . self::URL_REGEX . '(?P<post>[^;]*)[\;]?/';
 		$offset = 0;
 		while ( preg_match( $pattern, $source, $match, PREG_OFFSET_CAPTURE, $offset ) ) {
 			// Shortcuts
