@@ -8,7 +8,7 @@
 
 /**
  * Class for setting up the MediaWiki database using MySQL.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
@@ -59,14 +59,11 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public function getConnectForm() {
 		return
-			$this->getTextBox( 'wgDBserver', 'config-db-host' ) .
-			$this->parent->getHelpBox( 'config-db-host-help' ) . 
+			$this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
-			$this->getTextBox( 'wgDBname', 'config-db-name' ) .
-			$this->parent->getHelpBox( 'config-db-name-help' ) .
-			$this->getTextBox( 'wgDBprefix', 'config-db-prefix' ) .
-			$this->parent->getHelpBox( 'config-db-prefix-help' ) .
+			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-db-name-help' ) ) .
+			$this->getTextBox( 'wgDBprefix', 'config-db-prefix', array(), $this->parent->getHelpBox( 'config-db-prefix-help' ) ) .
 			Xml::closeElement( 'fieldset' ) .
 			$this->getInstallUserBox();
 	}
@@ -120,7 +117,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				$this->getVar( '_InstallPassword' ),
 				false,
 				false,
-				0, 
+				0,
 				$this->getVar( 'wgDBprefix' )
 			);
 			$status->value = $this->db;
@@ -252,12 +249,12 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( count( $parts ) != 2 ) {
 			return false;
 		}
-		$quotedUser = $conn->addQuotes( $parts[0] ) . 
+		$quotedUser = $conn->addQuotes( $parts[0] ) .
 			'@' . $conn->addQuotes( $parts[1] );
 
 		// The user needs to have INSERT on mysql.* to be able to CREATE USER
 		// The grantee will be double-quoted in this query, as required
-		$res = $conn->select( 'INFORMATION_SCHEMA.USER_PRIVILEGES', '*', 
+		$res = $conn->select( 'INFORMATION_SCHEMA.USER_PRIVILEGES', '*',
 			array( 'GRANTEE' => $quotedUser ), __METHOD__ );
 		$insertMysql = false;
 		$grantOptions = array_flip( $this->webUserPrivs );
@@ -273,7 +270,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		// Check for DB-specific privs for mysql.*
 		if ( !$insertMysql ) {
 			$row = $conn->selectRow( 'INFORMATION_SCHEMA.SCHEMA_PRIVILEGES', '*',
-				array( 
+				array(
 					'GRANTEE' => $quotedUser,
 					'TABLE_SCHEMA' => 'mysql',
 					'PRIVILEGE_TYPE' => 'INSERT',
@@ -288,7 +285,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		// Check for DB-level grant options
-		$res = $conn->select( 'INFORMATION_SCHEMA.SCHEMA_PRIVILEGES', '*', 
+		$res = $conn->select( 'INFORMATION_SCHEMA.SCHEMA_PRIVILEGES', '*',
 			array(
 				'GRANTEE' => $quotedUser,
 				'IS_GRANTABLE' => 1,
@@ -322,9 +319,9 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 		if ( count( $engines ) >= 2 ) {
 			$s .= $this->getRadioSet( array(
-				'var' => '_MysqlEngine', 
-				'label' => 'config-mysql-engine', 
-				'itemLabelPrefix' => 'config-mysql-', 
+				'var' => '_MysqlEngine',
+				'label' => 'config-mysql-engine',
+				'itemLabelPrefix' => 'config-mysql-',
 				'values' => $engines
 			));
 			$s .= $this->parent->getHelpBox( 'config-mysql-engine-help' );
@@ -369,13 +366,13 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$create ) {
 			// Test the web account
 			try {
-				$webConn = new Database( 
+				$webConn = new Database(
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( 'wgDBuser' ),
 					$this->getVar( 'wgDBpassword' ),
 					false,
 					false,
-					0, 
+					0,
 					$this->getVar( 'wgDBprefix' )
 				);
 			} catch ( DBConnectionError $e ) {

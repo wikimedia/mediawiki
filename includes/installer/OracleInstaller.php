@@ -8,7 +8,7 @@
  
 /**
  * Class for setting up the MediaWiki database using Oracle.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
@@ -47,8 +47,7 @@ class OracleInstaller extends DatabaseInstaller {
 			Xml::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
 			Xml::openElement( 'div', array( 'id' => 'dbOtherAccount' ) ) .
 			$this->getTextBox( 'wgDBuser', 'config-db-username' ) .
-			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
-			$this->parent->getHelpBox( 'config-db-web-help' ).
+			$this->getPasswordBox( 'wgDBpassword', 'config-db-password', array(), $this->parent->getHelpBox( 'config-db-web-help' ) ) .
 			$this->getCheckBox( '_CreateDBAccount', 'config-db-web-create', array( 'disabled' => true ) ).
 			Xml::closeElement( 'div' ) . Xml::closeElement( 'fieldset' );
 	}
@@ -57,14 +56,12 @@ class OracleInstaller extends DatabaseInstaller {
 		$this->parent->setVar( '_InstallUser', 'sys' );
 		$this->parent->setVar( 'wgDBserver', '' );
 		return
-			$this->getTextBox( 'wgDBserver', 'config-db-host-oracle' ) .
-			$this->parent->getHelpBox( 'config-db-host-oracle-help' ) . 
+			$this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix' ) .
 			$this->getTextBox( '_OracleDefTS', 'config-oracle-def-ts' ) .
-			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts' ) .
-			$this->parent->getHelpBox( 'config-db-oracle-help' ) .
+			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts', array(), $this->parent->getHelpBox( 'config-db-oracle-help' ) ) .
 			Xml::closeElement( 'fieldset' ) .
 			$this->getInstallUserBox().
 			$this->getWebUserBox();
