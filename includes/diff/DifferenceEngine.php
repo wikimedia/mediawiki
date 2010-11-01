@@ -1045,7 +1045,7 @@ class _HWLDF_WordAccumulator {
 
 	function getLines() {
 		$this->_flushLine('~done');
-		return $this->_lines;
+		return preg_replace( '/\n/m', '', $this->_lines);
 	}
 }
 

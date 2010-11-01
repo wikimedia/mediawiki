@@ -380,6 +380,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25642) A exception is now thrown instead of a fatal error when using
   $wgSMTP without PEAR mail package
 * (bug 19633) When possible, Upscale small SVGs when creating thumbnails.
+* (bug 25725) Unwanted linebreaks in diffs.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
