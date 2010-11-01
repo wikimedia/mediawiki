@@ -284,7 +284,7 @@ class ParserOptions {
 			$confstr .= '!*' ;
 
 		if ( in_array( 'dateformat', $forOptions ) )
-			$confstr .= '!' . $this->mDateFormat;
+			$confstr .= '!' . $this->getDateFormat();
 		
 		if ( in_array( 'numberheadings', $forOptions ) )
 			$confstr .= '!' . ( $this->mNumberHeadings ? '1' : '' );
