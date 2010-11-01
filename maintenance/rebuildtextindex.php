@@ -48,9 +48,18 @@ class RebuildTextIndex extends Maintenance {
 		}
 	
 		$this->db = wfGetDB( DB_MASTER );
+		if ( $this->db->getType() == 'sqlite' ) {
+			if ( !$this->db->getFulltextSearchModule() ) {
+				$this->error( "Your version of SQLite module for PHP doesn't support full-text search (FTS3).\n" );
+			}
+			if ( !$this->db->checkForEnabledSearch() ) {
+				$this->error( "Your database schema is not configured for full-text search support. Run update.php.\n" );
+			}
+		}
+		
 		$wgTitle = Title::newFromText( "Rebuild text index script" );
 	
-		if ( $wgDBtype == 'mysql' ) {
+		if ( $this->db->getType() == 'mysql' ) {
 			$this->dropMysqlTextIndex();
 			$this->populateSearchIndex();
 			$this->createMysqlTextIndex();

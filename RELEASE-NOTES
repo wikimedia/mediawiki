@@ -186,6 +186,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use hreflang to specify canonical and alternate links, search engine friendly
   when a wiki has multiple variant languages.
 * (bug 19593) Specifying --server in now works for all maintenance scripts
+* Now rebuildtextindex.php warns if SQLite doesn't support full-text search.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
