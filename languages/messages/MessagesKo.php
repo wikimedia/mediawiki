@@ -306,7 +306,7 @@ $messages = array(
 'tog-watchdefault'            => '내가 편집하는 문서를 주시문서 목록에 추가',
 'tog-watchmoves'              => '내가 이동하는 문서를 주시문서 목록에 추가',
 'tog-watchdeletion'           => '내가 삭제하는 문서를 주시문서 목록에 추가',
-'tog-minordefault'            => '‘사소한 편집’을 항상 선택',
+'tog-minordefault'            => '‘사소한 편집’을 기본적으로 선택하기',
 'tog-previewontop'            => '편집상자 앞에 미리보기 보이기',
 'tog-previewonfirst'          => '처음 편집할 때 미리보기 보기',
 'tog-nocache'                 => '브라우저의 문서 캐시 끄기',
@@ -907,7 +907,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'explainconflict'                  => "문서를 편집하는 도중에 누군가 이 문서를 고쳤습니다.
 위쪽의 문서가 지금 바뀐 문서이고, 아래쪽의 문서가 당신이 편집한 문서입니다.
 아래쪽의 내용을 위쪽에 적절히 합쳐 주시기 바랍니다.
-\"저장\"을 누르면 '''위쪽의 편집 내역만''' 저장됩니다.",
+\"{{int:savearticle}}\"을 누르면 '''위쪽의 편집 내역만''' 저장됩니다.",
 'yourtext'                         => '당신의 편집',
 'storedversion'                    => '현재 문서',
 'nonunicodebrowser'                => "'''주의: 당신의 웹 브라우저가 유니코드를 완벽하게 지원하지 않습니다. 몇몇 문자가 16진수 코드로 나타날 수 있습니다.'''",

@@ -867,7 +867,7 @@ Isto pode acontecer porque estea a empregar un servizo de ''proxy'' anónimo def
 A área de texto superior contén o texto da páxina tal e como existe na actualidade.
 Os seus cambios móstranse na área inferior.
 Pode mesturar os seus cambios co texto existente.
-'''Só''' se gardará o texto na área superior cando prema \"Gardar a páxina\".",
+'''Só''' se gardará o texto na área superior cando prema \"{{int:savearticle}}\".",
 'yourtext'                         => 'O seu texto',
 'storedversion'                    => 'Versión gardada',
 'nonunicodebrowser'                => "'''ATENCIÓN: o seu navegador non soporta Unicode.'''
@@ -1899,6 +1899,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'nrevisions'              => '$1 {{PLURAL:$1|revisión|revisións}}',
 'nviews'                  => 'vista {{PLURAL:$1|unha vez|$1 veces}}',
 'nimagelinks'             => 'Empregada {{PLURAL:$1|nunha páxina|en $1 páxinas}}',
+'ntransclusions'          => 'empregado en $1 {{PLURAL:$1|páxina|páxinas}}',
 'specialpage-empty'       => 'Non hai resultados para o que solicitou.',
 'lonelypages'             => 'Páxinas orfas',
 'lonelypagestext'         => 'As seguintes páxinas non teñen ningunha ligazón que apunte cara a elas desde outra páxina de {{SITENAME}}.',

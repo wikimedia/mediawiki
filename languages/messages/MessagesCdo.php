@@ -294,7 +294,11 @@ Nṳ̄ gì IP dê-cī â̤ ké̤ṳk gé diŏh ciā hiĕk-miêng siŭ-gāi lĭk-
 'editingsection'             => 'Siŭ-gāi $1 (dâung)',
 'editingcomment'             => 'Siŭ-gāi $1 (pàng-lâung)',
 'editconflict'               => 'Siŭ-gāi dó̤i-chṳ̆ng: $1',
-'explainconflict'            => 'Bĕk-nè̤ng diŏh nṳ̄ tā-sĕng siŭ-gāi cī miêng hiĕk gì sèng-âu ô có̤ gì-tă siŭ-gāi. Gà̤-dēng gì bēng-bēng hiēng-sê gì sê hiêng-câi có̤i sĭng gì bēng-buōng. Nṳ̄ sū có̤ gì gāi-biéng găk â-dā̤ gì bēng-bēng diē-sié. Nṳ̄ sṳ̆-iéu găk gà̤-dēng gì bēng-bēng diē-sié cīng-hăk nṳ̄ lâng ciáh nè̤ng sū có̤ gì gāi-biéng. Iŏk-guō nṳ̄ dĭk-ciék áik "Bō̤-còng ciā hiĕk", <b>nâ ô</b> gà̤-dēng bēng-bēng diē-sié gì ùng-cê â̤ ké̤ṳk bō̤-còng.',
+'explainconflict'            => "Bĕk-nè̤ng diŏh nṳ̄ tā-sĕng siŭ-gāi cī miêng hiĕk gì sèng-âu ô có̤ gì-tă siŭ-gāi.
+Gà̤-dēng gì bēng-bēng hiēng-sê gì sê hiêng-câi có̤i sĭng gì bēng-buōng.
+Nṳ̄ sū có̤ gì gāi-biéng găk â-dā̤ gì bēng-bēng diē-sié.
+Nṳ̄ sṳ̆-iéu găk gà̤-dēng gì bēng-bēng diē-sié cīng-hăk nṳ̄ lâng ciáh nè̤ng sū có̤ gì gāi-biéng.
+Iŏk-guō nṳ̄ dĭk-ciék áik \"{{int:savearticle}}\", '''nâ ô''' gà̤-dēng bēng-bēng diē-sié gì ùng-cê â̤ ké̤ṳk bō̤-còng.",
 'yourtext'                   => 'Nṳ̄ gì ùng-cê',
 'editingold'                 => "'''GĪNG-GÓ̤: Nṳ̄ hiêng-câi lā̤ siŭ-gāi ciā hiĕk-miêng ī-gĭng guó-gĭ gì bēng-buōng. Nṳ̄ nâ bō̤-còng ĭ, cī ciáh gô bēng-buōng cĭ-hâiu gì siŭ-gāi cêu mò̤ lāu.'''",
 'yourdiff'                   => 'Chă-biék',

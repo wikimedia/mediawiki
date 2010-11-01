@@ -843,11 +843,11 @@ Dit gebeur soms as 'n webgebaseerde instaandiens (proxy) gebruik word wat foute 
 'editingsection'                   => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment'                   => 'Besig om $1 te wysig (nuwe opskrif)',
 'editconflict'                     => 'Wysigingskonflik: $1',
-'explainconflict'                  => 'Iemand anders het hierdie bladsy gewysig sedert u dit begin wysig het.
+'explainconflict'                  => "Iemand anders het hierdie bladsy gewysig sedert u dit begin wysig het.
 Die boonste invoerboks het die teks wat tans bestaan.
 U wysigings word in die onderste invoerboks gewys.
 U sal u wysigings moet saamsmelt met die huidige teks.
-<strong>Slegs</strong> die teks in die boonste invoerboks sal gestoor word wanneer u "Stoor bladsy" druk.<br />',
+'''Slegs''' die teks in die boonste invoerboks sal gestoor word wanneer u \"{{int:savearticle}}\" druk.",
 'yourtext'                         => 'U teks',
 'storedversion'                    => 'Gestoorde weergawe',
 'nonunicodebrowser'                => "'''Waarskuwing: U webblaaier ondersteun nie Unikode nie.'''

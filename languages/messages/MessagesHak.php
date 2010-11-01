@@ -496,7 +496,7 @@ Tshiáng chhai kien-li̍p／piên-sip liá-ke vùn-tsông tshièn siên kiám-ts
 Song-mien ke vùn-sṳ khiông-nui he hién-sṳ muk-chhièn pún-chông ke nui-yùng.
 Ngì só-cho ke siù-chho hién-sṳ chhai ha-mien ke vùn-sṳ khiông-chûng.
 Ngì yin-tông chiông ngì só-cho ke siù-chho kâ-ngi̍p hien-yû ke nui-yùng chûng.
-'''Chṳ́-yû''' chhai song-mien vùn-sṳ khiông-chûng ke nui-yùng chiông-voi chhai ngì tiám-kit \"Pó-chhùn pún-chông\" heu pûn pó-chhùn.",
+'''Chṳ́-yû''' chhai song-mien vùn-sṳ khiông-chûng ke nui-yùng chiông-voi chhai ngì tiám-kit \"{{int:savearticle}}\" heu pûn pó-chhùn.",
 'yourtext'                         => 'Ngì-ke vùn-sṳ',
 'storedversion'                    => 'Yí-kîn pó-chhùn ke pán-pún',
 'nonunicodebrowser'                => "'''Kín-ko: Ngì-ke hi-khí put-nèn kiâm-yùng Unicode phiên-ho. Liá-piên yû yit-ke kûng-chok-khî chiông-voi hó-sṳ́ ngì nèn ôn-chhiòn-thi phiên-siá vùn-chông: fi ASCII sṳ-kûng chiông-yung sṳ̍p-liuk chin-chṳ phiên-ho mù-hìn chhut-hien chhai phiên-siá khiông-chûng.'''",

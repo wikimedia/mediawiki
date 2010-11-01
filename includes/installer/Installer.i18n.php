@@ -1449,6 +1449,7 @@ $messages['bs'] = array(
 	'config-localsettings-upgrade' => "'''Upozorenje''': Otkrivena je datoteka <code>LocalSettings.php</code>.
 Vaš softver je moguće unaprijediti.
 Molimo premjestite <code>LocalSettings.php</code> na sigurno mjesto a zatim ponovo pokrenite instalaciju.",
+	'config-localsettings-key' => 'Ključ za nadgradnju:',
 	'config-session-error' => 'Greška pri pokretanju sesije: $1',
 	'config-no-session' => 'Vaši podaci sesije su izgubljeni!
 Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> postavljen na pravilni direktorijum.',
@@ -1475,6 +1476,7 @@ Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> pos
 	'config-page-releasenotes' => 'Bilješke izdanja',
 	'config-page-copying' => 'Kopiram',
 	'config-page-upgradedoc' => 'Nadograđujem',
+	'config-page-locked' => 'Pristup onemogućen',
 	'config-help-restart' => 'Da li želite očistiti sve spremljene podatke koje ste unijeli i da započnete ponovo proces instalacije?',
 	'config-restart' => 'Da, pokreni ponovo',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Početna strana]
@@ -1488,6 +1490,11 @@ Možete instalirati MediaWiki.</span>',
 	'config-env-latest-new' => "'''Napomena:''' Instalirate razvojnu veziju MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Upozorenje:''' Instalacija ne može pronaći podatke o posljednjem izdanju MediaWiki sa [$1].",
 	'config-no-db' => 'Nije mogao biti pronađen podgodan drajver za bazu podataka!',
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je instaliran',
+	'config-apc' => '[http://www.php.net/apc APC] je instaliran',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] je instaliran',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] je instaliran',
+	'config-diff3-good' => 'Pronađen GNU diff3: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 nije pronađen.',
 	'config-uri' => 'Putanja URI skripte: <code>$1</code>.',
 	'config-db-name' => 'Naziv baze podataka:',
@@ -1552,6 +1559,8 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-your-language-help' => 'Bitte die Sprache auswählen, die während des Installationsvorgangs verwendet werden soll.',
 	'config-wiki-language' => 'Sprache des Wikis:',
 	'config-wiki-language-help' => 'Bitte die Hauptbearbeitungssprache des Wikis auswählen',
+	'config-allow-requests' => 'Externe Zugriffe auf „MediaWiki.org“ gestatten',
+	'config-allow-requests-help' => 'Sofern aktiviert, kann das Installationsprogramm auf „MediaWiki.org“ überprüfen, ob tatsächlich die aktuelle Version installiert wird.',
 	'config-back' => '← Zurück',
 	'config-continue' => 'Weiter →',
 	'config-page-language' => 'Sprache',
@@ -1574,7 +1583,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-welcome' => '=== Prüfung der Installationsumgebung ===
 Basisprüfungen werden durchgeführt, um festzustellen, ob die Installationsumgebung für die Installation von MediaWiki geeignet ist.
 Die Ergebnisse dieser Prüfung sollten angegeben werden, sofern während des Installationsvorgangs Hilfe benötigt und erfragt wird.',
-	'config-copyright' => "=== Copyright und Nutzungsbedingungen ===
+	'config-copyright' => "=== Lizenz und Nutzungsbedingungen ===
 
 $1
 
@@ -1592,6 +1601,7 @@ MediaWiki kann installiert werden.</span>',
 	'config-env-bad' => 'Die Installationsumgebung wurde geprüft.
 MediaWiki kann nicht installiert werden.',
 	'config-env-php' => 'PHP $1 ist installiert.',
+	'config-env-latest-disabled' => 'Externe HTTP-Anfragen sind nicht gestattet. Versionsüberprüfung wird übersprungen',
 	'config-env-latest-ok' => 'Die neueste Programmversion von MediaWiki wird installiert.',
 	'config-env-latest-new' => "'''Hinweis:''' Eine Entwicklungsversion von MediaWiki wird installiert.",
 	'config-env-latest-can-not-check' => "'''Warnung:''' Das Installationsprogramm konnte keine Informationen zur neuesten Programmversion von MediaWiki von [$1] abrufen.",
@@ -2435,6 +2445,7 @@ $messages['eu'] = array(
 );
 
 /** Finnish (Suomi)
+ * @author Centerlink
  * @author Nike
  * @author Olli
  * @author Str4nd
@@ -2511,10 +2522,10 @@ MediaWiki vaatii toimiakseen Perl-yhteensopivat säännölliset lausekkeet.',
 	'config-memory-none' => 'PHP-asetusta <code>memory_limit</code> ei ole asetettu.',
 	'config-memory-ok' => 'PHP:n <code>memory_limit</code>-asetuksen arvo on $1.
 OK.',
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] on asennettu.',
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] on asennettu',
 	'config-apc' => '[http://www.php.net/apc APC] on asennettu.',
-	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] on asennettu.',
-	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] on asennettu.',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] on asennettu',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] on asennettu',
 	'config-diff3-good' => 'GNU diff3 löytyi: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3:a ei löytynyt.',
 	'config-db-type' => 'Tietokannan tyyppi',
@@ -2539,9 +2550,9 @@ OK.',
 	'config-invalid-db-type' => 'Virheellinen tietokantatyyppi',
 	'config-missing-db-name' => 'Kenttä »Tietokannan nimi» on pakollinen',
 	'config-invalid-db-name' => '”$1” ei kelpaa tietokannan nimeksi.
-Se voi sisältää vain numeroita, kirjaimia ja alaviivan.',
+Se voi sisältää vain kirjaimia (a-z, A-Z), numeroita (0-9) ja alaviivan (_).',
 	'config-invalid-db-prefix' => '”$1” ei kelpaa tietokannan etuliitteeksi.
-Se voi sisältää vain numeroita, kirjaimia ja alaviivan.',
+Se voi sisältää vain kirjaimia (a-z, A-Z), numeroita (0-9) ja alaviivan (_).',
 	'config-postgres-old' => 'MediaWiki tarvitsee PostgreSQL:n version $1 tai uudemman. Nykyinen versio on $2.',
 	'config-sqlite-name-help' => 'Valitse nimi joka yksilöi tämän wikin.
 Älä käytä välilyöntejä tai viivoja.
@@ -2557,6 +2568,8 @@ Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoitta
 	'config-mysql-binary' => 'Binääri',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Wikin nimi',
+	'config-project-namespace' => 'Projektinimiavaruus:',
+	'config-ns-generic' => 'Projekti',
 	'config-admin-name' => 'Nimesi',
 	'config-admin-password' => 'Salasana',
 	'config-admin-password-confirm' => 'Salasana uudelleen',
@@ -4269,6 +4282,8 @@ Verifica tu php.ini e assecura te que un directorio appropriate es definite in <
 	'config-your-language-help' => 'Selige un lingua a usar durante le processo de installation.',
 	'config-wiki-language' => 'Lingua del wiki:',
 	'config-wiki-language-help' => 'Selige le lingua in que le wiki essera predominantemente scribite.',
+	'config-allow-requests' => 'Permitter requestas externe a MediaWiki.org',
+	'config-allow-requests-help' => 'Si activate, permitter que le installator contacta MediaWiki.org pro verificar que tu installa le ultime version stabile',
 	'config-back' => '← Retro',
 	'config-continue' => 'Continuar →',
 	'config-page-language' => 'Lingua',
@@ -4310,6 +4325,7 @@ Tu pote installar MediaWiki.</span>',
 	'config-env-bad' => 'Le ambiente ha essite verificate.
 Tu non pote installar MediaWiki.',
 	'config-env-php' => 'PHP $1 es installate.',
+	'config-env-latest-disabled' => 'Requestas HTTP externe disactivate; le verification del version es saltate',
 	'config-env-latest-ok' => 'Tu pote installar le version le plus recente de MediaWiki.',
 	'config-env-latest-new' => "'''Nota:''' Tu installa un version in disveloppamento de MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Aviso:''' Le installator non poteva obtener information super le ultime version de MediaWiki de [$1].",
@@ -6284,6 +6300,8 @@ Controleer uw php.ini en zorg dat er een juiste map is ingesteld voor <code>sess
 	'config-your-language-help' => 'Selecteer een taal om tijdens het installatieproces te gebruiken.',
 	'config-wiki-language' => 'Wikitaal:',
 	'config-wiki-language-help' => 'Selecteer de taal waar de wiki voornamelijk in wordt geschreven.',
+	'config-allow-requests' => 'Externe verzoeken naar MediaWiki.org toestaan',
+	'config-allow-requests-help' => 'Staat, als ingeschakeld, het installatieprogramma toe om contact te zoeken met MediaWiki.org om vast te stellen dat u de meest recente stabiele versie installeert',
 	'config-back' => '← Terug',
 	'config-continue' => 'Doorgaan →',
 	'config-page-language' => 'Taal',
@@ -6325,6 +6343,7 @@ U kunt MediaWiki installeren.</span>',
 	'config-env-bad' => 'De omgeving is gecontroleerd.
 U kunt MediaWiki niet installeren.',
 	'config-env-php' => 'PHP $1 is op dit moment geïnstalleerd.',
+	'config-env-latest-disabled' => 'Externe HTTP-verzoeken zijn uitgeschakeld, dus de versiecontrole wordt overgeslagen',
 	'config-env-latest-ok' => 'U bent bezig de meest recente versie van MediaWiki te installeren.',
 	'config-env-latest-new' => "'''Let op:''' U bent bezig een ontwikkelversie van MediaWiki te installeren.",
 	'config-env-latest-can-not-check' => "'''Waarschuwing:''' het installatieprogramma was niet in staat om informatie over de nieuwste release van MediaWiki op te halen van [$1].",
@@ -7229,6 +7248,8 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-your-language-help' => 'Wybierz język używany podczas procesu instalacji.',
 	'config-wiki-language' => 'Język wiki',
 	'config-wiki-language-help' => 'Wybierz język, w którym będzie tworzona większość treści wiki',
+	'config-allow-requests' => 'Zezwalaj na zewnętrzne żądania do MediaWiki.org',
+	'config-allow-requests-help' => 'Włączenie umożliwia instalatorowi sprawdzanie na MediaWiki.org czy instalowana wersja jest ostatnią stabilną',
 	'config-back' => '← Wstecz',
 	'config-continue' => 'Dalej →',
 	'config-page-language' => 'Język',
@@ -7270,6 +7291,7 @@ Możesz teraz zainstalować MediaWiki.</span>',
 	'config-env-bad' => 'Środowisko oprogramowania zostało sprawdzone.
 Nie możesz zainstalować MediaWiki.',
 	'config-env-php' => 'Zainstalowane jest PHP w wersji $1.',
+	'config-env-latest-disabled' => 'Zewnętrzne odwołania HTTP zostały wyłączone, pomijam sprawdzenie aktualności wersji',
 	'config-env-latest-ok' => 'Instalujesz najnowszą wersję oprogramowania MediaWiki.',
 	'config-env-latest-new' => "'''Uwaga!''' Instalujesz roboczą wersję oprogramowania MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Uwaga –''' instalator nie może pobrać informacji o najnowszej wersji MediaWiki z [$1].",

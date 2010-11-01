@@ -806,8 +806,11 @@ C'hoarvezout a ra a-wechoù pa implijit ur servijer proksi dreinek dizanav.'''",
 'editingsection'                   => "Oc'h aozañ $1 (rann)",
 'editingcomment'                   => "Oc'h aozañ $1 (rann nevez)",
 'editconflict'                     => 'tabut kemmañ : $1',
-'explainconflict'                  => "<b>Enrollet eo bet ar bajenn-mañ war-lerc'h m'ho pefe kroget d'he c'hemmañ.
-E-krec'h an takad aozañ emañ an destenn evel m'emañ enrollet bremañ er bank roadennoù. Ho kemmoù deoc'h a zeu war wel en takad aozañ traoñ. Ret e vo deoc'h degas ho kemmoù d'an destenn zo evit poent. N'eus nemet an destenn zo en takad krec'h a vo saveteet.</b><br />",
+'explainconflict'                  => "Enrollet eo bet ar bajenn-mañ war-lerc'h m'ho pefe kroget d'he c'hemmañ.
+E-krec'h an takad aozañ emañ an destenn evel m'emañ enrollet bremañ er bank roadennoù.
+Ho kemmoù deoc'h a zeu war wel en takad aozañ traoñ.
+Ret e vo deoc'h degas ho kemmoù d'an destenn zo evit poent.
+N'eus nemet an destenn zo en takad krec'h a vo saveteet.",
 'yourtext'                         => 'Ho testenn',
 'storedversion'                    => 'Stumm enrollet',
 'nonunicodebrowser'                => "'''DIWALLIT: N'eo ket skoret an Unicode gant ho merdeer. Un diskoulm da c'hortoz zo bet kavet evit ma c'hallfec'h degas kemmoù er pennadoù : dont a raio war wel an arouezennoù an-ASCII er prenestr skridaozañ evel kodoù eizhdekvedennel.'''",

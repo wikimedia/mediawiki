@@ -920,7 +920,11 @@ Hal ini kadang terjadi jika Anda menggunakan layanan proxy anonim berbasis web y
 'editingsection'                   => 'Menyunting $1 (bagian)',
 'editingcomment'                   => 'Menyunting $1 (bagian baru)',
 'editconflict'                     => 'Konflik penyuntingan: $1',
-'explainconflict'                  => 'Orang lain telah menyunting halaman ini sejak Anda mulai menyuntingnya. Bagian atas teks ini mengandung teks halaman saat ini. Perubahan yang Anda lakukan ditunjukkan pada bagian bawah teks. Anda hanya perlu menggabungkan perubahan Anda dengan teks yang telah ada. <strong>Hanya</strong> teks pada bagian atas halamanlah yang akan disimpan apabila Anda menekan "Simpan halaman".<p>',
+'explainconflict'                  => "Orang lain telah menyunting halaman ini sejak Anda mulai menyuntingnya.
+Bagian atas teks ini mengandung teks halaman saat ini.
+Perubahan yang Anda lakukan ditunjukkan pada bagian bawah teks.
+Anda hanya perlu menggabungkan perubahan Anda dengan teks yang telah ada.
+'''Hanya''' teks pada bagian atas halamanlah yang akan disimpan apabila Anda menekan \"{{int:savearticle}}\".",
 'yourtext'                         => 'Teks Anda',
 'storedversion'                    => 'Versi tersimpan',
 'nonunicodebrowser'                => "'''Peringatan: Penjelajah web Anda tidak mendukung unicode.'''

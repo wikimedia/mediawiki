@@ -494,7 +494,7 @@ G leɛnayek ɛreḍ tikelt nniḍen. Lukan mazal yella ugur, ffeɣ umbeɛd kcem.
 Aḍris deg usawen yesɛa asebter am yella tura.
 Ibeddlen inek ahaten deg ukessar.
 Yesfek ad txelṭeḍ ibeddlen inek akk d usebter i yellan.
-'''Ala''' aḍris deg usawen i yettusmekta asmi twekkiḍ \"Smekti asebter\".",
+'''Ala''' aḍris deg usawen i yettusmekta asmi twekkiḍ \"{{int:savearticle}}\".",
 'yourtext'                  => 'Aḍris inek',
 'storedversion'             => 'Tasiwelt yettusmketen',
 'nonunicodebrowser'         => "'''AƔTAL: Browser/Explorateur inek ur yebil ara unicode. Nexdem akken ad tzemreḍ ad tbeddleḍ mebla amihi: isekkilin i mačči ASCII ttbanen deg tankult ubeddel s ungilen hexadecimal.'''",

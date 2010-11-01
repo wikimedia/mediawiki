@@ -507,8 +507,7 @@ Li boesse di tecse do dzeur mostere li tecse del pådje come il est
 pol moumint sol sierveu. Li tecse da vosse est sol boesse di tecse do dzo.
 Les diferinces sont håynêyes å mitan. Vos dvoz mete vos candjmints dins
 l' tecse d' asteure (å dzeur) si vos lez vloz co evoyî.
-<b>Seulmint</b> li tecse do dzeur serè candjî cwand vos clitchroz sol
-boton «Schaper l' pådje».<br />",
+'''Seulmint''' li tecse do dzeur serè candjî cwand vos clitchroz sol boton «{{int:savearticle}}».",
 'yourtext'                   => 'Li tecse da vosse',
 'storedversion'              => 'Modêye sol sierveu',
 'nonunicodebrowser'          => "'''ASTEME: li betchteu waibe da vosse ni sopoite nén l' ecôdaedje unicôde, cåze di çoula les caracteres nén-ASCII vont aparexhe dins l' boesse di tecse come des côdes hecsadecimås, insi vos pôroz tot l' minme candjî l' pådje.'''",

@@ -35,6 +35,7 @@ $messages = array(
 'tog-watchdefault'            => 'Tambahi tungkaran nang ulun babak ka daptar itihan ulun',
 'tog-watchmoves'              => 'Tambahi tungkaran nang ulun pindah ka daptar itihan ulun',
 'tog-watchdeletion'           => 'Tambahi tungkaran nang ulun hapus ka daptar itihan ulun',
+'tog-minordefault'            => 'Tandai samunyaan babakan sawagai babakan sapalih sacara baku',
 'tog-previewontop'            => 'Tampaiakan titilikan sabalum kutak babak',
 'tog-previewonfirst'          => 'Tampaiakan titilikan pada babakan kaasa',
 'tog-nocache'                 => "Kada kawa'akan tambuluk panjalajahan web tungkaran",
@@ -666,7 +667,7 @@ Nangini ambahanu tajadi amun Pian mamuruk sabuah layanan proxy buggy bapandal we
 Naskah atas baisi naskah tungkaran sawagai dimapa ini ada hahanyaran ini.
 Parubahan Pian ditampaiakan pada naskah di bawah.
 Pian pinanya harus manggabungakan parubahan Pian ka dalam naskah nang ada.
-Naskah nang di atas '''haja''' nang akan tasimpan amung Pian manikin \"Simpan tungkaran\".",
+Naskah nang di atas '''haja''' nang akan tasimpan amung Pian manikin \"{{int:savearticle}}\".",
 'yourtext'                         => 'Naskah Pian',
 'storedversion'                    => 'Ralatan tasimpan',
 'nonunicodebrowser'                => "'''Paringatan: Panjalajah web Pian kada manyukung unicode.'''

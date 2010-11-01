@@ -644,7 +644,11 @@ Yèn isih tetep ora kasil, cobanen metu log lan mlebu manèh.'''",
 'editingsection'                   => 'Nyunting $1 (bagian)',
 'editingcomment'                   => 'Nyunting $1 (bagéyan anyar)',
 'editconflict'                     => 'Konflik panyuntingan: $1',
-'explainconflict'                  => 'Wong liya wis nyunting kaca iki wiwit panjenengan mau nyunting. Bagian dhuwur tèks iki ngamot tèks kaca vèrsi saiki. Pangowahan sing panjenengan lakoni dituduhaké ing bagian ngisor tèks. Panjenengan namung prelu nggabungaké pangowahan panjenengan karo tèks sing wis ana. <strong>Namung</strong> tèks ing bagian dhuwur kaca sing bakal kasimpen menawa panjenengan mencèt "Simpen kaca".<p>',
+'explainconflict'                  => "Wong liya wis nyunting kaca iki wiwit panjenengan mau nyunting.
+Bagian dhuwur tèks iki ngamot tèks kaca vèrsi saiki.
+Pangowahan sing panjenengan lakoni dituduhaké ing bagian ngisor tèks.
+Panjenengan namung prelu nggabungaké pangowahan panjenengan karo tèks sing wis ana.
+'''Namung''' tèks ing bagian dhuwur kaca sing bakal kasimpen menawa panjenengan mencèt \"{{int:savearticle}}\".",
 'yourtext'                         => 'Tèks panjenengan',
 'storedversion'                    => 'Versi sing kasimpen',
 'nonunicodebrowser'                => "'''PÈNGET: Panjlajah wèb panjenengan ora ndhukung Unicode, mangga gantènana panjlajah wèb panjenengan sadurungé nyunting artikel.'''",

@@ -637,7 +637,11 @@ Eke şıma servisê proksi yo anonim şuxulneni sebebê ey noyo.'''",
 'editingsection'                   => 'Vurneno $1 (qısım)',
 'editingcomment'                   => '$1 vuryeno (qısmo newe)',
 'editconflict'                     => 'Vurnayişê ke yewbini nêtepışeni: $1',
-'explainconflict'                  => 'Wexta ke şıma pel vurneyene yewna ten zi pel vurna. Nuşteyo corin; halê pelo nıkayin mocneno. Vurnayişê şıma cêr de mocya ( musya). Vurnayişanê peyinan şıma gani qayd bıkeri. Wexta ke şıma butonê "pel qayd ker" tıkna <b>teyna</b> nuşteyo corin qayd beno. <br />',
+'explainconflict'                  => "Wexta ke şıma pel vurneyene yewna ten zi pel vurna.
+Nuşteyo corin; halê pelo nıkayin mocneno.
+Vurnayişê şıma cêr de mocya ( musya).
+Vurnayişanê peyinan şıma gani qayd bıkeri.
+Wexta ke şıma butonê \"{{int:savearticle}}\" tıkna '''teyna''' nuşteyo corin qayd beno.",
 'yourtext'                         => 'nuşteyê şıma',
 'storedversion'                    => 'Nuşteyo qaydbiyaye',
 'nonunicodebrowser'                => "'''DİQET: Browserê şıma u unicode yewbini nêgeni. Qey izin dayişê vurnayişê pelan: Karakteri ke ASCII niyê; zerreyê qutiyê vurnayişi de kodi (cod) şiyes-şiyes aseni.'''",

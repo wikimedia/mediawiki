@@ -928,12 +928,11 @@ La redakto estis malpermesita por preventi koruptado de la teksto de la paĝo.
 'editingsection'                   => 'Redaktante $1 (sekcion)',
 'editingcomment'                   => 'Redaktante $1 (nova sekcio)',
 'editconflict'                     => 'Redakta konflikto: $1',
-'explainconflict'                  => 'Iu alia ŝanĝis la paĝon post kiam vi ekredaktis.
+'explainconflict'                  => "Iu alia ŝanĝis la paĝon post kiam vi ekredaktis.
 La supra tekstujo enhavas la aktualan tekston de la artikolo.
 Viaj ŝanĝoj estas en la malsupra tekstujo.
 Vi devas mem kunfandi viajn ŝanĝojn kaj la jaman tekston.
-<b>Nur</b> la teksto en la supra tekstujo estos konservita kiam
-vi alklakos "Konservi".<br />',
+'''Nur''' la teksto en la supra tekstujo estos konservita kiam vi alklakos \"{{int:savearticle}}\".",
 'yourtext'                         => 'Via teksto',
 'storedversion'                    => 'Registrita versio',
 'nonunicodebrowser'                => "'''ATENTU: Via foliumilo ne eltenas unikodon, bonvolu ŝanĝi ĝin antaŭ ol redakti artikolon.'''",

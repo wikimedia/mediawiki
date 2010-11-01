@@ -752,7 +752,11 @@ Składowanje móže wobsah strony zničić. Móže so to na přikład přez wopa
 'editingsection'                   => 'Wobdźěłanje strony $1 (wotrězk)',
 'editingcomment'                   => '$1 so wobdźěłuje (nowy wotrězk)',
 'editconflict'                     => 'Wobdźěłowanski konflikt: $1',
-'explainconflict'                  => 'Něchtó druhi je stronu změnił w samsnym času, hdyž sy spytał ju wobdźěłować. Hornje tekstowe polo wobsahuje tekst strony kaž tuchwilu eksistuje. Twoje změny so w delnim tekstowym polu pokazuja. Dyrbiš swoje změny do eksistowaceho teksta zadźěłać. <b>Jenož</b> tekst w hornim tekstowym polu so składuje hdyž znowa na „Składować” kliknješ.<br />',
+'explainconflict'                  => "Něchtó druhi je stronu změnił w samsnym času, hdyž sy spytał ju wobdźěłować.
+Hornje tekstowe polo wobsahuje tekst strony kaž tuchwilu eksistuje.
+Twoje změny so w delnim tekstowym polu pokazuja.
+Dyrbiš swoje změny do eksistowaceho teksta zadźěłać.
+'''Jenož''' tekst w hornim tekstowym polu so składuje hdyž znowa na „{{int:savearticle}}” kliknješ.",
 'yourtext'                         => 'Twój tekst',
 'storedversion'                    => 'Składowana wersija',
 'nonunicodebrowser'                => "'''KEDŹBU: Twój wobhladowak z Unikodu kompatibelny njeje. Prošu wužiwaj hinaši wobhladowak.'''",

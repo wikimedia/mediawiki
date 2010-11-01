@@ -576,7 +576,11 @@ This whiles happens when ye are uisin a bruken web-based anonymous proxy service
 'editingsection'                   => 'Editin $1 (section)',
 'editingcomment'                   => 'Editin $1 (comment)',
 'editconflict'                     => 'Edit conflict: $1',
-'explainconflict'                  => 'Some ither body haes chynged this page syne ye stertit editin it. The upper text area hauds the page text as it currently exists. Yer chynges is shawn in the lower text area. Ye\'ll hae tae merge yer chynges intae the existin text. <b>Juist</b> the text in the upper text area will be hained whan ye press "Hain page". <p>',
+'explainconflict'                  => "Some ither body haes chynged this page syne ye stertit editin it.
+The upper text area hauds the page text as it currently exists.
+Yer chynges is shawn in the lower text area.
+Ye'll hae tae merge yer chynges intae the existin text.
+'''Juist''' the text in the upper text area will be hained whan ye press \"{{int:savearticle}}\".",
 'yourtext'                         => 'Yer text',
 'storedversion'                    => 'Storit version',
 'nonunicodebrowser'                => "'''WARNIN: Yer brouser isna unicode compliant.  The'r a wirkaroond tae allou ye tae sauflie edit airticles: non-ASCII characters will kythe in the edit box as hexadecimal codes.'''",

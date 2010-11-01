@@ -838,7 +838,7 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'previewnote'                      => 'Note displayed when clicking on Show preview',
 'editing'                          => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
 'editingsection'                   => 'The variable $1 is the page name.  This message displays at the top of the page when a user is editing a page section.',
-'explainconflict'                  => 'The text "Save page" is in {{msg-mw|savearticle}}.',
+'explainconflict'                  => 'Appears at the top of a page when there is an edit conflict.',
 'storedversion'                    => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version that has not been stored which is shown at the bottom of the page.',
 'yourdiff'                         => '',
 'copyrightwarning'                 => 'Copyright warning displayed under the edit box in editor',
@@ -1815,6 +1815,7 @@ If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.'
 'imgfile'               => '{{Identical|File}}',
 'listfiles'             => 'Page title and grouping label for the form displayed on [[Special:ListFiles]].
 {{Identical|File list}}',
+'listfiles_thumb'       => '{{Identical|Thumbnail}}',
 'listfiles_date'        => 'Column header for the result table displayed on [[Special:ListFiles]].
 {{Identical|Date}}',
 'listfiles_name'        => 'Column header for the result table displayed on [[Special:ListFiles]].
@@ -1845,7 +1846,8 @@ If \'scheme\' is difficult to translate, then you could use \'prefix\' instead.'
 {{Identical|Date}}',
 'filehist-thumb'                    => 'Shown in the file history list of a file description page.
 
-Example: [[:Image:Addon-icn.png]]',
+Example: [[:Image:Addon-icn.png]]
+{{Identical|Thumbnail}}',
 'filehist-thumbtext'                => "Shown in the file history list of a file description page.
 * '''$1''' is a time followed by a date, e.g. ''10:23, 18 april 2007''.
 * '''$2''' is the date,
@@ -3027,7 +3029,7 @@ The message appears after the name of the patroller.',
 'file-info'            => 'File info displayed on file description page.',
 'file-info-size'       => 'File info displayed on file description page.',
 'file-nohires'         => 'File info displayed on file description page. For example of message in use see [[:File:Mouse10.gif]].',
-'svg-long-desc'        => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:Image:Wiki.svg]].',
+'svg-long-desc'        => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].',
 'show-big-image'       => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-thumb' => 'File info displayed on file description page.',
 'file-info-gif-looped' => 'Part of the information provided about a [http://en.wikipedia.org/wiki/Gif .gif file] on its file description page. Looped means repeating in the context of an animated gif. It is a sequence of images, each displayed after the other, and the first one displayed after the last, in a never ending loop. For example of message in use see [[:File:Mouse10.gif]].',

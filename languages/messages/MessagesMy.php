@@ -1431,11 +1431,23 @@ HTML tags ကို စစ်ဆေးပါ။',
 'export-submit' => 'Export ထုတ်ရန်',
 
 # Namespace 8 related
-'allmessages'     => 'စ​နစ်​၏​သ​တင်း​များ​',
-'allmessagesname' => 'အမည်',
+'allmessages'                   => 'စ​နစ်​၏​သ​တင်း​များ​',
+'allmessagesname'               => 'အမည်',
+'allmessages-filter-legend'     => 'စစ်ထုတ်ခြင်း',
+'allmessages-filter-unmodified' => 'မပြုပြင်ထားသော',
+'allmessages-filter-all'        => 'အားလုံး',
+'allmessages-filter-modified'   => 'ပြုပြင်ထားသော',
+'allmessages-language'          => 'ဘာသာ -',
+'allmessages-filter-submit'     => 'သွား',
 
 # Thumbnails
-'thumbnail-more' => 'ပုံကြီးချဲ့ရန်',
+'thumbnail-more'  => 'ပုံကြီးချဲ့ရန်',
+'filemissing'     => 'ဖိုင်ပျောက်နေသည်',
+'thumbnail_error' => 'ပုံစံငယ်ဖန်တီးရာတွင် အမှားပြနေသည် - $1',
+
+# Special:Import
+'import-upload-filename' => 'ဖိုင်အမည် -',
+'import-comment'         => 'မှတ်ချက် -',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'ကိုယ်ပိုင်စာမျက်နှာ',

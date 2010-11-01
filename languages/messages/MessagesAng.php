@@ -48,6 +48,7 @@ $messages = array(
 'tog-watchdefault'            => 'Sīdan þe iċ ādihte ēacian tō mīnre ƿæccȝetale',
 'tog-watchmoves'              => 'Sīdan þe iċ hƿeorfe ēacian tō mīnre ƿæccȝetale',
 'tog-watchdeletion'           => 'Sīdan þe iċ forlēose ēacian tō mīnre ƿæccȝetale',
+'tog-minordefault'            => 'Ealle ādihtende mearcian tōlas ȝeƿunelīċe',
 'tog-previewontop'            => 'Forescēaƿe sēon fore ādihtbox',
 'tog-previewonfirst'          => 'Forescēaƿe sēon on formestum ādihte',
 'tog-nocache'                 => 'Ne þafa trameta settunȝe',
@@ -75,7 +76,6 @@ $messages = array(
 'tog-showhiddencats'          => 'Ēoƿa ȝehȳdede floccas',
 'tog-noconvertlink'           => 'Ne lǣt hlencena titula āwendunge',
 'tog-norollbackdiff'          => 'Forlǣt scādunȝe æfter edƿeorc is ȝedōn',
-'tog-minordefault'           => 'Ealle ādihtende mearcian tōlas ȝeƿunelīċe',
 
 'underline-always'  => 'Ǣfre',
 'underline-never'   => 'Nǣfre',

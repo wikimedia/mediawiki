@@ -981,7 +981,7 @@ Toto se může někdy stát pokud používáte chybující webový anonymizér.'
 Výše vidíte aktuální text stránky.
 Vaše změny jsou uvedeny dole.
 Musíte sloučit své změny se stávajícím textem.
-'''Pouze''' výše uvedený text zůstane uchován po kliknutí na „Uložit“.",
+'''Pouze''' výše uvedený text zůstane uchován po kliknutí na „{{int:savearticle}}“.",
 'yourtext'                         => 'Váš text',
 'storedversion'                    => 'Uložená verze',
 'nonunicodebrowser'                => "'''UPOZORNĚNÍ: Váš prohlížeč není schopen pracovat se znaky Unicode. Abyste mohli tuto stránku bezpečně editovat, je použita pomůcka: všechny znaky mimo ASCII jsou zobrazeny v hexadecimálních kódech.'''",
@@ -1981,7 +1981,8 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'nmembers'                => '$1 {{PLURAL:$1|stránka|stránky|stránek}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'nviews'                  => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
-'nimagelinks'             => 'Používá se na $1 {{PLURAL:$1|stránce|stránkách}}',
+'nimagelinks'             => 'Použit na $1 {{PLURAL:$1|stránce|stránkách}}',
+'ntransclusions'          => 'použita na $1 {{PLURAL:$1|stránce|stránkách}}',
 'specialpage-empty'       => 'Tomuto požadavku neodpovídají žádné záznamy.',
 'lonelypages'             => 'Sirotčí stránky',
 'lonelypagestext'         => 'Následující stránky nejsou odkazovány z jiných stránek na {{grammar:6sg|{{SITENAME}}}} ani do nich vloženy.',

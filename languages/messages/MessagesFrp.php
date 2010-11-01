@@ -320,7 +320,7 @@ $messages = array(
 'tog-watchdefault'            => 'Apondre les pâges que chanjo a ma lista de survelyence',
 'tog-watchmoves'              => 'Apondre les pâges que renomo a ma lista de survelyence',
 'tog-watchdeletion'           => 'Apondre les pâges que suprimo a ma lista de survelyence',
-'tog-minordefault'            => 'Marcar mos changements coment petiôts per dèfôt',
+'tog-minordefault'            => 'Marcar per dèfôt mos changements coment petiôts',
 'tog-previewontop'            => 'Montrar la prèvisualisacion en-dessus de la bouèta d’èdicion',
 'tog-previewonfirst'          => 'Montrar la prèvisualisacion pendent la premiére èdicion',
 'tog-nocache'                 => 'Dèsactivar lo cache de les pâges per lo navigator',
@@ -971,7 +971,7 @@ Ceti problèmo arreve quand vos utilisâd un sèrvor mandatèro (''proxy'') anon
 La bouèta d’èdicion de d’amont contint lo tèxto coment il est encartâ ora dens la bâsa de balyês.
 Voutros changements aparèssont dens la bouèta d’èdicion de desot.
 Vos voléd devêr fusionar voutros changements dens lo tèxto ègzistent.
-'''Solament''' lo tèxto de la bouèta de d’amont serat sôvâ quand vos cliqueréd dessus « Sôvar ceta pâge ».",
+'''Solament''' lo tèxto de la bouèta de d’amont serat sôvâ quand vos cliqueréd dessus « {{int:savearticle}} ».",
 'yourtext'                         => 'Voutron tèxto',
 'storedversion'                    => 'Vèrsion encartâ',
 'nonunicodebrowser'                => "'''ATENCION : voutron navigator recognêt pas l’Unicode.'''

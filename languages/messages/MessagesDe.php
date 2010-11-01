@@ -993,7 +993,7 @@ Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durc
 Das obere Textfeld enthält den aktuellen Stand.
 Das untere Textfeld enthält deine Änderungen.
 Bitte füge deine Änderungen in das obere Textfeld ein.
-'''Nur''' der Inhalt des oberen Textfeldes wird gespeichert, wenn du auf „Seite speichern“ klickst!",
+'''Nur''' der Inhalt des oberen Textfeldes wird gespeichert, wenn du auf „{{int:savearticle}}“ klickst!",
 'yourtext'                         => 'Dein Text',
 'storedversion'                    => 'Gespeicherte Version',
 'nonunicodebrowser'                => "'''Achtung:''' Dein Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwende einen anderen Browser um Seiten zu bearbeiten.",
@@ -1058,7 +1058,7 @@ Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} 
 'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden.',
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
-'post-expand-template-argument-warning'   => 'Warnung: Diese Seite enthält mindestens ein Argument in einer Vorlage, das expandiert zu groß ist. Diese Argumente werden ignoriert.',
+'post-expand-template-argument-warning'   => "'''Warnung:''' Diese Seite enthält mindestens ein Argument in einer Vorlage, das expandiert zu groß ist. Diese Argumente werden ignoriert.",
 'post-expand-template-argument-category'  => 'Seiten, die ignorierte Vorlagenargumente enthalten',
 'parser-template-loop-warning'            => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
@@ -2575,7 +2575,7 @@ Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernam
 'ipb_cant_unblock'                => 'Fehler: Sperr-ID $1 nicht gefunden. Die Sperre wurde bereits aufgehoben.',
 'ipb_blocked_as_range'            => 'Fehler: Die IP-Adresse $1 wurde als Teil der Bereichssperre $2 indirekt gesperrt. Eine Entsperrung von $1 alleine ist nicht möglich.',
 'ip_range_invalid'                => 'Ungültiger IP-Adressbereich.',
-'ip_range_toolarge'               => 'Adressbereiche, die größer sind als /$1, sind nicht erlaubt.',
+'ip_range_toolarge'               => 'Adressbereiche, die größer als /$1 sind, sind nicht erlaubt.',
 'blockme'                         => 'Sperre mich',
 'proxyblocker'                    => 'Proxy blocker',
 'proxyblocker-disabled'           => 'Diese Funktion ist deaktiviert.',
@@ -3508,7 +3508,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # Special:SpecialPages
 'specialpages'                   => 'Spezialseiten',
 'specialpages-note'              => '----
-* Spezialseiten für Jedermann
+* Spezialseiten für jedermann
 * <strong class="mw-specialpagerestricted">Spezialseiten für Benutzer mit erweiterten Rechten</strong>',
 'specialpages-group-maintenance' => 'Wartungslisten',
 'specialpages-group-other'       => 'Andere Spezialseiten',

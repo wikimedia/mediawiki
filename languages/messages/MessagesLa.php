@@ -659,7 +659,7 @@ aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare]</span>.',
 Capsa superior paginae verba recentissima continet.
 Mutationes tuae in capsa inferiore monstrantur.
 Mutationes tuae in verba superiora adiungare debes.
-'''Solum''' verba capsae superioris servabuntur quando \"Servare hanc rem\" premes.",
+'''Solum''' verba capsae superioris servabuntur quando \"{{int:savearticle}}\" premes.",
 'yourtext'                         => 'Sententia tua',
 'storedversion'                    => 'Emendatio recentissima',
 'nonunicodebrowser'                => "'''CAVETO: Navigatorium retiale tuum systemati UNICODE morem non gerit. Modum habemus quo commentationes sine damno recenseas: litterae non-ASCII in capsa sub veste hexadecimali ostendentur.'''",

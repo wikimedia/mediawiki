@@ -660,7 +660,7 @@ Quai po capitar sche ti utiliseschas in survetsch da proxy anonim che na funcziu
 Il champ d'endataziun sura cuntegna il text sco che la pagina vesa ora actualmain. 
 Tias midadas èn mussadas en il champ d'endataziun sut. 
 Ti stos integrar tias midadas en il text existent. 
-'''Mo''' il text en il champ d'endataziun sura vegn memorià sche ti cliccas sin \"Memorisar l'artitgel\".",
+'''Mo''' il text en il champ d'endataziun sura vegn memorià sche ti cliccas sin \"{{int:savearticle}}\".",
 'yourtext'                         => 'Voss text',
 'storedversion'                    => 'Versiun memorisada',
 'nonunicodebrowser'                => "'''Attenziun: Tes navigatur na sustegna betg unicode.'''

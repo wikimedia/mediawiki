@@ -74,6 +74,7 @@ $messages = array(
 'tog-watchdefault'            => 'Pridietė poslapius, katrūs taisau, i keravuojamu sāraša',
 'tog-watchmoves'              => 'Pridietė poslapius, katrūs parkelio, i keravuojamu sāraša',
 'tog-watchdeletion'           => 'Pridietė poslapius, katrūs ėštrino, i keravuojamu sāraša',
+'tog-minordefault'            => 'Palē nutīliejėma pažīmietė redagavėmus kāp mažus',
 'tog-previewontop'            => 'Ruodītė parvaiza vėrš redagavėma lauka',
 'tog-previewonfirst'          => 'Ruodītė straipsnė parvėiza pėrmu redagavėmu',
 'tog-nocache'                 => "Nenauduotė poslapiu kaupėma (''caching'')",
@@ -560,7 +561,7 @@ Prašuom pamiegintė vielēk. Jei šėtā napaded, pamieginkėt atsėjongtė ėr
 Vėršotėniamė tekstėniamė laukė pateikta šėtu čiesu esontė poslapė versėjė.
 Tamstas pakeitėmā pateiktė žemiau esontiamė laukė.
 Tamstā rēk sojongtė Tamstas pakeitėmus so esontė versėjė.
-Kumet paspausėte „Irašītė“, bus irašīts '''tėktās''' teksts vėršotėniam tekstėniam laukė.",
+Kumet paspausėte „{{int:savearticle}}“, bus irašīts '''tėktās''' teksts vėršotėniam tekstėniam laukė.",
 'yourtext'                         => 'Tamstas teksts',
 'storedversion'                    => 'Ėšsauguota versėjė',
 'editingold'                       => "'''ISPIEJIMS: Tamsta keitat ne naujausė poslapė versėjė.

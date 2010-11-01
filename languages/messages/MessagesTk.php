@@ -686,11 +686,11 @@ Bu ýagdaý kämahal içi ýalňyşly anonim web proksileri ulanylanda ýüze ç
 'editingsection'                   => '"$1" sahypasynda bölüm redaktirleýärsiňiz',
 'editingcomment'                   => '$1 redaktirlenýär (täze bölüm)',
 'editconflict'                     => 'Özgerdiş çaknyşmasy: $1',
-'explainconflict'                  => 'Siz bu sahypany redaktirleýärkäňiz başga biri ony üýtgedipdir.
+'explainconflict'                  => "Siz bu sahypany redaktirleýärkäňiz başga biri ony üýtgedipdir.
 Ýokardaky redaktirleme penjiresinde häzirki bar bolan tekst görkezilýär.
 Siziň üýtgeşmeleriňiz aşakdaky redaktirleme penjiresinde görkezilýär.
 Öz üýtgeşmeleriňizi bar bolan tekst bilen birleşdirmeli bolduňyz.
-"Sahypany ýazdyr" düwmesine basanyňyzda <b>diňe</b> ýokardaky tekst ýazdyrylar.',
+\"{{int:savearticle}}\" düwmesine basanyňyzda '''diňe''' ýokardaky tekst ýazdyrylar.",
 'yourtext'                         => 'Siziň tekstiňiz',
 'storedversion'                    => 'Ýazdyrylan wersiýa',
 'nonunicodebrowser'                => "'''Duvduryş: Brauzeriňiz unicode kodirowkasyny goldamaýar.'''

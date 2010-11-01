@@ -334,7 +334,10 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'editingsection'             => 'Pian-chi̍p $1 (section)',
 'editingcomment'             => 'Teh pian-chi̍p $1 (lâu-oē)',
 'editconflict'               => 'Siu-kái sio-chhiong: $1',
-'explainconflict'            => 'Ū lâng tī lí tng teh siu-kái pún-ia̍h ê sî-chūn oân-sêng kî-tha ê siu-kái. Téng-koân ê bûn-jī-keh hián-sī hiān-chhú-sî siōng sin ê lōe-iông. Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê kái-piàn kap siōng sin ê lōe-iông chéng-ha̍p. <b>Kan-na</b> téng-koân keh-á ê bûn-jī ē tī lí chhi̍h "Pó-chûn" liáu-āu pó-chûn khí lâi.<br />',
+'explainconflict'            => "Ū lâng tī lí tng teh siu-kái pún-ia̍h ê sî-chūn oân-sêng kî-tha ê siu-kái.
+Téng-koân ê bûn-jī-keh hián-sī hiān-chhú-sî siōng sin ê lōe-iông.
+Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê kái-piàn kap siōng sin ê lōe-iông chéng-ha̍p.
+'''Kan-na''' téng-koân keh-á ê bûn-jī ē tī lí chhi̍h \"{{int:savearticle}}\" liáu-āu pó-chûn khí lâi.",
 'yourtext'                   => 'Lí ê bûn-jī',
 'storedversion'              => 'Chu-liāu-khò· ê pán-pún',
 'editingold'                 => "'''KÉNG-KÒ: Lí tng teh siu-kái chit ia̍h ê 1 ê kū siu-tēng-pún. Lí nā kā pó-chûn khí lâi, chit ê siu-tēng-pún sòa-āu ê jīm-hô kái-piàn ē bô khì.'''",

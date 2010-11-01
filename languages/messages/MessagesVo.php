@@ -697,8 +697,12 @@ Atos jenon ömna ven geboy düni pladulöma nennemik bevüresodik säkädik.'''"
 'editingsection'                   => 'Redakam pada: $1 (diläd)',
 'editingcomment'                   => 'Redakam pada: $1 (diläd nulik)',
 'editconflict'                     => 'Redakamakonflit: $1',
-'explainconflict'                  => 'Ek evotükon padi at sisä äprimol ad redakön oni. Vödem balid jonon padi soäsä dabinon anu. Votükams olik pajonons in vödem telid. Sludolös, vio fomams tel at mutons pabalön. Kanol kopiedön se vödem telid ini balid.
-<b>Te vödem balid podakipon!</b><br />',
+'explainconflict'                  => "Ek evotükon padi at sisä äprimol ad redakön oni.
+Vödem balid jonon padi soäsä dabinon anu.
+Votükams olik pajonons in vödem telid.
+Sludolös, vio fomams tel at mutons pabalön.
+Kanol kopiedön se vödem telid ini balid.
+'''Te''' vödem balid podakipon ven knopol knopi: \"{{int:savearticle}}\".",
 'yourtext'                         => 'Vödem olik',
 'storedversion'                    => 'Fomam pedakipöl',
 'nonunicodebrowser'                => "'''NÜNED: Bevüresodatävöm olik no kanon gebön eli Unicode.
@@ -1517,6 +1521,8 @@ Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWi
 'nmembers'                => '{{PLURAL:$1|liman|limans}} $1',
 'nrevisions'              => '{{PLURAL:$1|fomam|fomams}} $1',
 'nviews'                  => '{{PLURAL:$1|logam|logams}} $1',
+'nimagelinks'             => 'Pageböl in {{PLURAL:$1|pad|pads}} $1',
+'ntransclusions'          => 'pageböl in {{PLURAL:$1|pad|pads}} $1',
 'specialpage-empty'       => 'Pad at vagon.',
 'lonelypages'             => 'Pads, lü kels yüms nonik dugons',
 'lonelypagestext'         => 'Pads nonik in vük at peyümons ad pads sököl in {{SITENAME}}.',

@@ -488,7 +488,7 @@ Pot fabot chagi ta'lo. Yanggen ti siña u såtba ta'lo, chagi muna'logout yan na
 Ma'annok i tinige' gi hilo' komu på'go.
 Ma'annok i tinilaika-mu gi papa'.
 Para un nesita muna'daña i tinilaika-mu yan i guinaha.
-'''I tinige' gi hilo' ha'''' para u såtba annai un yemme' \"Såtba i påhina\".",
+'''I tinige' gi hilo' ha'''' para u såtba annai un yemme' \"{{int:savearticle}}\".",
 'yourtext'                         => "Tinige'-mu",
 'storedversion'                    => 'Tinilaika masåtba',
 'editingold'                       => "'''ADAHI: Un tulalaika un ribision påhina gus bihu.

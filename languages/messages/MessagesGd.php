@@ -471,11 +471,11 @@ Cha deach na mùthaidhean agad a shàbhaladh fhathast!",
 'editing'                => "A' deasachadh $1",
 'editingsection'         => "A' deasachadh $1 (earrann)",
 'editconflict'           => 'Mì-chòrdadh deasachaidh: $1',
-'explainconflict'        => 'Tha cuideigin eile air an duilleag seo a mhùthadh on a thòisich thu fhèin air a dheasachadh.
-Tha am bogsa teacsa gu h-àrd a\' nochdadh na duilleige mar a tha i an-dràsta.
+'explainconflict'        => "Tha cuideigin eile air an duilleag seo a mhùthadh on a thòisich thu fhèin air a dheasachadh.
+Tha am bogsa teacsa gu h-àrd a' nochdadh na duilleige mar a tha i an-dràsta.
 Tha na mùthaidhean agadsa sa bhogsa gu h-ìosal.
 Bidh agad ris na mùthaidhean agad fhilleadh a-steach san teacsa làithreach.
-Cha dèid <b>ach an teacsa gu h-àrd</b> a shàbhaladh nuair a bhriogas tu air "Sàbhail an duilleag".<p>',
+Cha dèid '''ach an teacsa gu h-àrd''' a shàbhaladh nuair a bhriogas tu air \"{{int:savearticle}}\".",
 'yourtext'               => 'An teacsa agad',
 'storedversion'          => 'Lethbhreac taisgte',
 'editingold'             => "'''RABHADH: Tha thu a' deasachadh lethbhreac seann-aimsireil na duilleige seo.

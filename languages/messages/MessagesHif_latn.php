@@ -670,7 +670,7 @@ Ii kabhi kabhi hoe hai jab aap ek buggy web-based anonymous proxy service ke use
 Uppar ke text area panna ke text jaise abhi hai ke dekhawa jae hai.
 Aap ke badlao ke lower text area me dekawa jae hai.
 Aap ke aapan badlao ke existing text me merge kare ke parri.
-'''Khali''' text in the upper text area  ke save karaa jai jab aap \"Save page\" ke press karega.",
+'''Khali''' text in the upper text area  ke save karaa jai jab aap \"{{int:savearticle}}\" ke press karega.",
 'yourtext'                         => 'Aap ke text',
 'storedversion'                    => 'Bachawa gais version',
 'nonunicodebrowser'                => "'''CHETAUNI: Aap ke browser unicode ke nai maane hae.

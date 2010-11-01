@@ -295,8 +295,8 @@ $messages = array(
 'tog-watchdefault'            => 'Jälgi uusi ja muudetud artikleid',
 'tog-watchmoves'              => 'Lisa minu teisaldatud leheküljed jälgimisloendisse',
 'tog-watchdeletion'           => 'Lisa minu kustutatud leheküljed jälgimisloendisse',
-'tog-previewontop'            => 'Näita eelvaadet enne toimetamisakent',
 'tog-minordefault'            => 'Märgi kõik parandused vaikimisi pisiparandusteks',
+'tog-previewontop'            => 'Näita eelvaadet enne toimetamisakent',
 'tog-previewonfirst'          => 'Näita eelvaadet esimesel redigeerimisel',
 'tog-nocache'                 => 'Keela võrgulehitsejal lehekülgede puhverdamine',
 'tog-enotifwatchlistpages'    => 'Teata e-posti teel minu jälgitava lehekülje muutmisest',
@@ -916,7 +916,7 @@ See juhtub mõnikord siis, kui kasutatakse vigast veebipõhist anonüümsusserve
 Ülemine toimetamiskast sisaldab teksti viimast versiooni.
 Sinu muudatused on alumises kastis.
 Sul tuleb need viimasesse versiooni üle viia.
-Kui klõpsad nupule \"Salvesta\", salvestub '''ainult''' ülemises toimetamiskastis olev tekst.",
+Kui klõpsad nupule \"{{int:savearticle}}\", salvestub '''ainult''' ülemises toimetamiskastis olev tekst.",
 'yourtext'                         => 'Sinu tekst',
 'storedversion'                    => 'Salvestatud redaktsioon',
 'nonunicodebrowser'                => "'''HOIATUS: Sinu brauser ei toeta unikoodi.'''

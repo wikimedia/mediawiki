@@ -579,7 +579,7 @@ This sometimes happens when you are using a buggy web-based anonymous proxy serv
 Makabili ya king espasiung pirinan sulat king babo (upper text area)  ing kasalungsungan nang itsura niti.
 Atyu la king espasiung pirinan sulat king lalam (lower text area) deng kekang elilan.
 Kailangan mong piyabe deng elilan mu ketang kasalungsungan a makasulat.
-Bukud mung ing makasulat king babo ing ma-save katimid mu ketang   "I-save ya ining bulung" ("Save page").',
+Bukud mung ing makasulat king babo ing ma-save katimid mu ketang   "{{int:savearticle}}".',
 'yourtext'                         => 'Ing kekang sinulat',
 'storedversion'                    => 'Bersion a makasimpan',
 'nonunicodebrowser'                => "'''BABALA: E ya unicode compliant ing kekang browser.

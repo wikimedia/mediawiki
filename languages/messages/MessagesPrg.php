@@ -616,7 +616,7 @@ Ik sta aīnat ni dīlilai, bāndais [[Special:UserLogout|izēitwei]] be etkūmps
 Tekstas laūks aūktais turri ēn sen pāusas tekstan, kawīds bigāntei ekzistijja.
 Twajjas kitawīdinsnas ast waidīntan en zemmaišasmu tekstas laūkan.
 Tebbei prawerru wīrstwei senlaīwuns(si) twajjans kitawīdinsnans sen ekzistīntin tekstan.
-'''Tēr''' teksts en aūktaišasmu tekstas laūkan wīrst būwuns enpeisātan, kaddan tu wīrst gnettuns \"Enpeisāis pāusan\".",
+'''Tēr''' teksts en aūktaišasmu tekstas laūkan wīrst būwuns enpeisātan, kaddan tu wīrst gnettuns \"{{int:savearticle}}\".",
 'yourtext'                         => 'Twājs teksts',
 'storedversion'                    => 'Enpeisāta wersiōni',
 'nonunicodebrowser'                => '"Empirssergīsenis: Twajā lasātla ni erzinna tikrōmiskai UTF-8 kōdisnan (Unicode).

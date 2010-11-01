@@ -930,7 +930,7 @@ Acest fapt se poate întâmpla atunci când folosești un serviciu proxy anonim.
 Caseta de text de sus conține pagina așa cum este ea acum (după editarea celeilalte persoane).
 Pagina cu modificările tale (așa cum ai încercat să o salvezi) se află în caseta de jos.
 Va trebui să editezi manual caseta de sus pentru a reflecta modificările pe care tocmai le-ai făcut în cea de jos.
-'''Numai''' textul din caseta de sus va fi salvat atunci când vei apăsa pe \"Salvează pagina\".",
+'''Numai''' textul din caseta de sus va fi salvat atunci când vei apăsa pe \"{{int:savearticle}}\".",
 'yourtext'                         => 'Textul tău',
 'storedversion'                    => 'Versiunea curentă',
 'nonunicodebrowser'                => "'''ATENŢIE: Browser-ul dumneavoastră nu este compilant unicode, vă rugăm să îl schimbați înainte de a începe modificarea unui articol.'''",

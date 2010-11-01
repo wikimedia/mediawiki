@@ -585,8 +585,11 @@ oke [{{fullurl:{{FULLPAGENAME}}|action=edit}} va batu bu robetal]</span>.',
 'editingsection'                   => 'betara va $1 (gabot)',
 'editingcomment'                   => 'Betara va $1 (warzaf gabot)',
 'editconflict'                     => 'Betarakoboda : $1',
-'explainconflict'                  => "<b>Cette page a été sauvegardée après que vous avez commencé à la modifier.
-La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.<br />",
+'explainconflict'                  => "Cette page a été sauvegardée après que vous avez commencé à la modifier.
+La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données.
+Vos modifications apparaissent dans la zone d'édition inférieure.
+Vous allez devoir apporter vos modifications au texte existant.
+Seul le texte de la zone supérieure sera sauvegardé.",
 'yourtext'                         => 'Rinaf krent',
 'storedversion'                    => 'Koverteyen siatos',
 'editingold'                       => "'''Obral : rin va savsaf siatos ke batu bu betal. Ede giwal, kot betaks skuyun mali bat siatos di zo deokar.'''",

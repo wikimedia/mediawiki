@@ -884,8 +884,10 @@ Din il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal
 'editingsection'                   => "Modifika ta' $1 (sezzjoni)",
 'editingcomment'                   => 'Qed jiġi editjat $1 (sezzjoni ġdida)',
 'editconflict'                     => "Kunflitt t'editjar: $1",
-'explainconflict'                  => "Xi ħadd modifika din il-paġna sakemm int kont qiegħed tagħmel il-modifiki. <br />
-Fiż-Żona tal-modifika superjuri jinsab il-kliem tal-paġna kif teżisti bħalissa, kif ġiet modifikata mill-utent l-ieħor. Il-Verżjoni bil-modifiki tiegħek jinsab fiż-żona ta' modifika inferjuri. Jekk trid il-modifiki tiegħek jiġu salvati, inti trid tgħaqqad il-modifiki tiegħek mat-test kif jeżisti bħalissa fiż-żona superjuri.
+'explainconflict'                  => "Xi ħadd modifika din il-paġna sakemm int kont qiegħed tagħmel il-modifiki.
+Fiż-Żona tal-modifika superjuri jinsab il-kliem tal-paġna kif teżisti bħalissa, kif ġiet modifikata mill-utent l-ieħor.
+Il-Verżjoni bil-modifiki tiegħek jinsab fiż-żona ta' modifika inferjuri.
+Jekk trid il-modifiki tiegħek jiġu salvati, inti trid tgħaqqad il-modifiki tiegħek mat-test kif jeżisti bħalissa fiż-żona superjuri.
 Meta tagħfas ''Modifika'', se jiġi salvat '''biss''' it-test li jinsab fiż-żona superjuri.",
 'yourtext'                         => 'It-test tiegħek',
 'storedversion'                    => 'Il-verżjoni maħżuna',

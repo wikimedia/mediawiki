@@ -564,11 +564,11 @@ Jeli ježeś anůnimowym užytkowńikym a wydowo Ći śe, aže zamjyščůne sam
 'editingsection'                   => 'Sprowjosz $1 (sekcyjo)',
 'editingcomment'                   => 'Sprowjosz "$1" (kůmyntorz)',
 'editconflict'                     => 'Kůnflikt sprowjyń: $1',
-'explainconflict'                  => 'Ktoś zdůnžyu wćepać swoja wersyjo artikla ńim žeś naškryflou sprowjyńy.
+'explainconflict'                  => "Ktoś zdůnžyu wćepać swoja wersyjo artikla ńim žeś naškryflou sprowjyńy.
 We polu edycyji na wjyrchu moš tekst zajty aktůalńy naškryflany w baźe danych.
 Twoje pomjyńańo sům we polu edycyji půnižyj.
 By wćepać swoje pomjyńańo muśiš pomjyńać tekst w polu na wjyrchu.
-<b>Tylko</b> tekst z pola na wjyrchu bydźe naškryflany we baźe jak wciśńeš "Škryflej".<br />',
+'''Tylko''' tekst z pola na wjyrchu bydźe naškryflany we baźe jak wciśńeš \"{{int:savearticle}}\".",
 'yourtext'                         => 'Twůj tekst',
 'storedversion'                    => 'Naškryflano wersyjo',
 'nonunicodebrowser'                => "'''Pozůr! Twoja přeglůndorka ńy umje poprowńy rozpoznować kodowańo UTF-8 (Unicode). Bestož wšyjske znoki, kerych Twoja přeglůndorka ńy umje rozpoznować, zamjeńůno na jejich kody heksadecymalne.'''",

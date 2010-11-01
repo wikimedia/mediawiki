@@ -1000,7 +1000,7 @@ Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten 
 In het bovenste deel van het venster staat de tekst van de huidige pagina.
 Uw bewerking staat in het onderste gedeelte.
 U dient uw bewerkingen in te voegen in de bestaande tekst.
-'''Alleen''' de tekst in het bovenste gedeelte wordt opgeslagen als u op \"Pagina opslaan\" klikt.",
+'''Alleen''' de tekst in het bovenste gedeelte wordt opgeslagen als u op \"{{int:savearticle}}\" klikt.",
 'yourtext'                         => 'Uw tekst',
 'storedversion'                    => 'Opgeslagen versie',
 'nonunicodebrowser'                => "'''WAARSCHUWING: Uw browser kan niet goed overweg met unicode.

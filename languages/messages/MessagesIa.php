@@ -802,8 +802,7 @@ ha comenciate a modificar lo.
 Le area de texto superior contine le texto del pagina como illo existe actualmente.
 Tu modificationes se monstra in le area de texto inferior.
 Tu debera incorporar tu modificationes in le texto existente.
-'''Solmente''' le texto del area superior essera publicate
-quando tu clicca super \"Publicar articulo\".",
+'''Solmente''' le texto del area superior essera publicate quando tu clicca super \"{{int:savearticle}}\".",
 'yourtext'                         => 'Tu texto',
 'storedversion'                    => 'Version immagazinate',
 'nonunicodebrowser'                => "'''Attention: Tu utilisa un navigator non compatibile con le characteres Unicode.'''

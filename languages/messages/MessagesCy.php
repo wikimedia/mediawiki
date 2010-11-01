@@ -749,7 +749,7 @@ Weithiau fe ddigwydd hyn wrth ddefnyddio dirprwy-wasanaeth anhysbys gwallus yn s
 Mae'r blwch testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan.
 Mae eich newidiadau chi yn ymddangos yn y blwch testun isaf.
 Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisoes.
-'''Dim ond''' y testun yn y blwch testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
+'''Dim ond''' y testun yn y blwch testun '''uchaf''' fydd yn cael ei roi ar gadw pan wasgwch y botwm \"{{int:savearticle}}\".",
 'yourtext'                         => 'Eich testun',
 'storedversion'                    => 'Y golygiad diweddaraf yn y storfa',
 'nonunicodebrowser'                => "'''RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn rhan o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.'''",

@@ -654,8 +654,8 @@ $2',
 'editingsection'                   => '纂節$1',
 'editingcomment'                   => '贊$1',
 'editconflict'                     => '纂沖$1',
-'explainconflict'                  => '子纂與他人沖，上者時也，下者子也，望子合之。
-註，<b>惟</b>上文儲焉<br />',
+'explainconflict'                  => "子纂與他人沖，上者時也，下者子也，望子合之。
+註，'''惟'''上文儲焉",
 'yourtext'                         => '子也',
 'storedversion'                    => '時也',
 'nonunicodebrowser'                => "'''警示：覽器不識萬國碼，以十六進位數代之，以保纂可也。'''",

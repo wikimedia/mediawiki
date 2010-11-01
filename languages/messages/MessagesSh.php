@@ -686,12 +686,11 @@ To se događa ponekad kad korisite problematični anonimni proxy koji je baziran
 'editingsection'                   => 'Uređujete $1 (sekciju)',
 'editingcomment'                   => 'Uređujete $1 (nova sekcija)',
 'editconflict'                     => 'Sukobljenje izmjene: $1',
-'explainconflict'                  => 'Neko drugi je promujenio ovu stranicu otkad ste Vi počeli da je mijenjate.
+'explainconflict'                  => "Neko drugi je promujenio ovu stranicu otkad ste Vi počeli da je mijenjate.
 Gornje tekstualno polje sadrži tekst stranice koji trenutno postoji.
 Vaše izmjene su prikazane u donjem tekstu.
 Moraćete da unesete svoje promjene u postojeći tekst.
-<b>Samo</b> tekst u gornjem tekstualnom polju će biti snimljen kad
-pritisnete "Snimi stranicu".<br />',
+'''Samo''' tekst u gornjem tekstualnom polju će biti snimljen kad pritisnete \"{{int:savearticle}}\".",
 'yourtext'                         => 'Vaš tekst',
 'storedversion'                    => 'Uskladištena verzija',
 'nonunicodebrowser'                => "'''UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova.

@@ -692,7 +692,11 @@ Si se paske ou komèt yon erè ke ou ap twouve ou nan paj sa a, klike anlè bout
 'editingsection'                   => 'Modifikasyon pou $1 (seksyon)',
 'editingcomment'                   => 'Modifikasyon pou $1 (komantè)',
 'editconflict'                     => 'Batay ant modifikasyon : $1',
-'explainconflict'                  => '<b>Paj sa te anrejistre apre ou te komanse modifye l.Zòn modifikasyon an nan pati ki sitye anwo, jan l anrejistre nan sistèm nou an kounye a. Modifikasyon ou pòte yo ap parèt anba. Ou dwèt fè modifikasyon ou fè yo nan tèks ki te deja anrejistre a. Sèl tèks ki nan pati siperyè a, anwo ke ap anrejistre toutbon.</b><br />',
+'explainconflict'                  => 'Paj sa te anrejistre apre ou te komanse modifye l.
+Zòn modifikasyon an nan pati ki sitye anwo, jan l anrejistre nan sistèm nou an kounye a.
+Modifikasyon ou pòte yo ap parèt anba.
+Ou dwèt fè modifikasyon ou fè yo nan tèks ki te deja anrejistre a.
+Sèl tèks ki nan pati siperyè a, anwo ke ap anrejistre toutbon.',
 'yourtext'                         => 'Tèks ou an',
 'storedversion'                    => 'Vèsyon ki anrejistre',
 'editingold'                       => "'''Avètisman : Ou ap edite yon vye vèsyon paj sa a.''' 
