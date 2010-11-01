@@ -349,6 +349,7 @@ div#mw-head h5 {
 		position: relative;
 		min-height: 1px; /* Gotta trigger hasLayout for IE7 */
 		border: solid 1px #AAAAAA;
+		color: black;
 		background-color: white;
 		/* @embed */
 		background-image: url(images/search-fade.png);
