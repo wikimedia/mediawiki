@@ -105,7 +105,8 @@ class CheckSyntax extends Maintenance {
 			if ( !$f ) {
 				$this->error( "Can't open file $file\n", true );
 			}
-			while ( $path = trim( fgets( $f ) ) ) {
+			$path = trim( fgets( $f ) );
+			while ( $path ) {
 				$this->addPath( $path );
 			}
 			fclose( $f );
@@ -113,6 +114,7 @@ class CheckSyntax extends Maintenance {
 		} elseif ( $this->hasOption( 'modified' ) ) {
 			$this->output( "Retrieving list from Subversion... " );
 			$parentDir = wfEscapeShellArg( dirname( __FILE__ ) . '/..' );
+			$retval = null;
 			$output = wfShellExec( "svn status --ignore-externals $parentDir", $retval );
 			if ( $retval ) {
 				$this->error( "Error retrieving list from Subversion!\n", true );

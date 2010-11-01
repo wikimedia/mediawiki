@@ -308,8 +308,9 @@ class _DiffEngine {
 			$x1 = $xoff + (int)(($numer + ($xlim-$xoff)*$chunk) / $nchunks);
 			for ( ; $x < $x1; $x++) {
 				$line = $flip ? $this->yv[$x] : $this->xv[$x];
-				if (empty($ymatches[$line]))
-				continue;
+				if (empty($ymatches[$line])) {
+					continue;
+				}
 				$matches = $ymatches[$line];
 				reset($matches);
 				while ( list( $junk, $y ) = each( $matches ) ) {

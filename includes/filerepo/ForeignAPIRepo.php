@@ -201,7 +201,8 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $name );
-		if ( $thumbUrl = $wgMemc->get($key) ) {
+		$thumbUrl = $wgMemc->get($key);
+		if ( $thumbUrl ) {
 			wfDebug("Got thumb from local cache. $thumbUrl \n");
 			return $thumbUrl;
 		}

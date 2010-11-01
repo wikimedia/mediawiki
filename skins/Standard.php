@@ -186,7 +186,8 @@ class SkinStandard extends Skin {
 					}
 
 					$link = $this->mTitle->getText();
-					if( $nstext = $wgContLang->getNsText( $tns ) ) { # add namespace if necessary
+					$nstext = $wgContLang->getNsText( $tns );
+					if( $nstext ) { # add namespace if necessary
 						$link = $nstext . ':' . $link;
 					}
 

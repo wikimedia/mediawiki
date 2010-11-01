@@ -74,8 +74,8 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	# Hardcode this for now.
 	$limit = 48;
-
-	if ( $parval = intval( $par ) ) {
+	$parval = intval( $par );
+	if ( $parval ) {
 		if ( $parval <= $limit && $parval > 0 ) {
 			$limit = $parval;
 		}
@@ -92,10 +92,12 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	}
 
 	$invertSort = false;
-	if( $until = $wgRequest->getVal( 'until' ) ) {
+	$until = $wgRequest->getVal( 'until' );
+	if( $until ) {
 		$where[] = "img_timestamp < '" . $dbr->timestamp( $until ) . "'";
 	}
-	if( $from = $wgRequest->getVal( 'from' ) ) {
+	$from = $wgRequest->getVal( 'from' );
+	if( $from ) {
 		$where[] = "img_timestamp >= '" . $dbr->timestamp( $from ) . "'";
 		$invertSort = true;
 	}

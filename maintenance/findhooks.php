@@ -145,7 +145,8 @@ class FindHooks extends Maintenance {
 	 */
 	private function getHooksFromPath( $path ) {
 		$hooks = array();
-		if ( $dh = opendir( $path ) ) {
+		$dh = opendir( $path );
+		if ( $dh ) {
 			while ( ( $file = readdir( $dh ) ) !== false ) {
 				if ( filetype( $path . $file ) == 'file' ) {
 					$hooks = array_merge( $hooks, $this->getHooksFromFile( $path . $file ) );
@@ -180,7 +181,8 @@ class FindHooks extends Maintenance {
 	 */
 	private function getBadHooksFromPath( $path ) {
 		$hooks = array();
-		if ( $dh = opendir( $path ) ) {
+		$dh = opendir( $path );
+		if ( $dh ) {
 			while ( ( $file = readdir( $dh ) ) !== false ) {
 				# We don't want to read this file as it contains bad calls to wfRunHooks()
 				if ( filetype( $path . $file ) == 'file' && !$path . $file == __FILE__ ) {

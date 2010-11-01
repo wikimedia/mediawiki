@@ -45,7 +45,8 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		if ( $ns === NS_MEDIAWIKI ) {
 			return wfEmptyMsg( $page ) ? '' : wfMsgExt( $page, 'content' );
 		}
-		if ( $title = Title::newFromText( $page, $ns ) ) {
+		$title = Title::newFromText( $page, $ns );
+		if ( $title ) {
 			if ( $title->isValidCssJsSubpage() && $revision = Revision::newFromTitle( $title ) ) {
 				return $revision->getRawText();
 			}
@@ -59,7 +60,8 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$scripts = '';
 		foreach ( $this->getPages( $context ) as $page => $options ) {
 			if ( $options['type'] === 'script' ) {
-				if ( $script = $this->getContent( $page, $options['ns'] ) ) {
+				$script = $this->getContent( $page, $options['ns'] );
+				if ( $script ) {
 					$ns = MWNamespace::getCanonicalName( $options['ns'] );
 					$scripts .= "/*$ns:$page */\n$script\n";
 				}
@@ -74,7 +76,8 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		foreach ( $this->getPages( $context ) as $page => $options ) {
 			if ( $options['type'] === 'style' ) {
 				$media = isset( $options['media'] ) ? $options['media'] : 'all';
-				if ( $style = $this->getContent( $page, $options['ns'] ) ) {
+				$style = $this->getContent( $page, $options['ns'] );
+				if ( $style ) {
 					if ( !isset( $styles[$media] ) ) {
 						$styles[$media] = '';
 					}

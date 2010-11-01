@@ -229,8 +229,8 @@ class SpecialExport extends SpecialPage {
 		if( $this->templates ) {
 			$pageSet = $this->getTemplates( $inputPages, $pageSet );
 		}
-
-		if( $linkDepth = $this->pageLinkDepth ) {
+		$linkDepth = $this->pageLinkDepth;
+		if( $linkDepth ) {
 			$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
 		}
 

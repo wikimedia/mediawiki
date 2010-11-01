@@ -179,7 +179,8 @@ class MWException extends Exception {
 			$wgOut->redirect( '' );
 			$wgOut->clearHTML();
 
-			if ( $hookResult = $this->runHooks( get_class( $this ) ) ) {
+			$hookResult = $this->runHooks( get_class( $this ) );
+			if ( $hookResult ) {
 				$wgOut->addHTML( $hookResult );
 			} else {
 				$wgOut->addHTML( $this->getHTML() );
@@ -187,7 +188,8 @@ class MWException extends Exception {
 
 			$wgOut->output();
 		} else {
-			if ( $hookResult = $this->runHooks( get_class( $this ) . "Raw" ) ) {
+			$hookResult = $this->runHooks( get_class( $this ) . "Raw" );
+			if ( $hookResult ) {
 				die( $hookResult );
 			}
 

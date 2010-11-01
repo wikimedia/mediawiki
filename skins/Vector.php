@@ -226,7 +226,8 @@ class SkinVector extends SkinTemplate {
 					$wgUser->isAllowed( 'deletedhistory' ) &&
 					$wgUser->isAllowed( 'undelete' )
 				) {
-					if( $n = $this->mTitle->isDeleted() ) {
+					$n = $this->mTitle->isDeleted();
+					if( $n ) {
 						$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
 						$links['actions']['undelete'] = array(
 							'class' => false,
