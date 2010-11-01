@@ -36,6 +36,8 @@ Check your php.ini and make sure <code>session.save_path</code> is set to an app
 	'config-your-language-help'       => 'Select a language to use during the installation process.',
 	'config-wiki-language'            => 'Wiki language:',
 	'config-wiki-language-help'       => 'Select the language that the wiki will predominantly be written in.',
+	'config-allow-requests'           => 'Allow external requests to MediaWiki.org',
+	'config-allow-requests-help'      => 'If enabled, allow the installer to check MediaWiki.org to make sure you are installing the latest stable version',
 	'config-back'                     => '← Back',
 	'config-continue'                 => 'Continue →',
 	'config-page-language'            => 'Language',
@@ -77,6 +79,7 @@ You can install MediaWiki.</span>', // FIXME: take span out of message.
 	'config-env-bad'                  => 'The environment has been checked.
 You cannot install MediaWiki.',
 	'config-env-php'                  => 'PHP $1 is installed.',
+	'config-env-latest-disabled'      => 'External HTTP requests disabled, skipping version check',
 	'config-env-latest-ok'            => 'You are installing the latest version of MediaWiki.',
 	'config-env-latest-new'           => "'''Note:''' You are installing a development version of MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Warning:''' The installer was unable to retrieve information about the latest MediaWiki release from [$1].",
