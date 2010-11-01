@@ -9,11 +9,11 @@
 /**
  * Output class modelled on OutputPage.
  *
- * I've opted to use a distinct class rather than derive from OutputPage here in 
- * the interests of separation of concerns: if we used a subclass, there would be 
- * quite a lot of things you could do in OutputPage that would break the installer, 
- * that wouldn't be immediately obvious. 
- * 
+ * I've opted to use a distinct class rather than derive from OutputPage here in
+ * the interests of separation of concerns: if we used a subclass, there would be
+ * quite a lot of things you could do in OutputPage that would break the installer,
+ * that wouldn't be immediately obvious.
+ *
  * @ingroup Deployment
  * @since 1.17
  */
@@ -21,9 +21,9 @@ class WebInstallerOutput {
 	
 	/**
 	 * The WebInstaller object this WebInstallerOutput is used by.
-	 * 
+	 *
 	 * @var WebInstaller
-	 */	
+	 */
 	public $parent;
 	
 	public $contents = '';
@@ -35,7 +35,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param $parent WebInstaller
 	 */
 	public function __construct( WebInstaller $parent ) {
@@ -145,6 +145,7 @@ class WebInstallerOutput {
 	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
 	<?php echo Html::inlineScript(  "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
+	<?php echo $this->getJQueryTipsy() . "\n"; ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ) . "\n"; ?>
 </head>
 
@@ -209,6 +210,7 @@ class WebInstallerOutput {
 	<?php echo Html::linkedStyle( '../skins/monobook/main.css' ) . "\n"; ?>
 	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
 	<?php echo $this->getJQuery(); ?>
+	<?php echo $this->getJQueryTipsy() . "\n"; ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ); ?>
 </head>
 
@@ -224,7 +226,10 @@ class WebInstallerOutput {
 	public function getJQuery() {
 		return Html::linkedScript( "../resources/jquery/jquery.js" );
 	}
-
+	public function getJQueryTipsy() {
+		return Html::linkedScript( "../resources/jquery/jquery.tipsy.js" );
+	}
+	
 	public function outputWarnings() {
 		$this->addHTML( $this->warnings );
 		$this->warnings = '';

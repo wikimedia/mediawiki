@@ -6,17 +6,23 @@
 .config-section {
 	margin-top: 2em;
 }
-
-.config-label {
-	clear: left;
+.config-block {
+	margin-top: 2em;
+	display: block;
+	
+}
+.config-block-label {
+	display: block;
+	margin-bottom: .2em;
+}
+.config-block-label label, .config-label {
 	font-weight: bold;
-	width: 10em;
-	float: left;
-	text-align: right;
-	padding-right: 1em;
+	padding-right: .5em;
 	padding-top: .2em;
 }
-
+.config-block-elements {
+	margin-left: 2em;
+}
 .config-input {
 	clear: left;
 	zoom: 100%; /* IE hack */
@@ -38,7 +44,7 @@
 	padding: 0.5em 2em 0.5em 2em;
 	/* 15em right margin to leave space for 12em page list */
 	margin: 0.5em 15em 0.5em 0.5em;
-	border: 1px solid #aaa;
+	background: #EEEEEE;
 }
 
 .config-submit {

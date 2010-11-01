@@ -8,7 +8,7 @@
  
 /**
  * Class for setting up the MediaWiki database using Postgres.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
@@ -36,23 +36,20 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	function getConnectForm() {
 		return
-			$this->getTextBox( 'wgDBserver', 'config-db-host' ) .
-			$this->parent->getHelpBox( 'config-db-host-help' ) . 
+			$this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
 			$this->getTextBox( 'wgDBport', 'config-db-port' ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
-			$this->getTextBox( 'wgDBname', 'config-db-name' ) .
-			$this->parent->getHelpBox( 'config-db-name-help' ) .
-			$this->getTextBox( 'wgDBmwschema', 'config-db-schema' ) .
+			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-db-name-help' ) ) .
+			$this->getTextBox( 'wgDBmwschema', 'config-db-schema', array(), $this->parent->getHelpBox( 'config-db-schema-help' ) ) .
 			$this->getTextBox( 'wgDBts2schema', 'config-db-ts2-schema' ) .
-			$this->parent->getHelpBox( 'config-db-schema-help' ) .
 			Xml::closeElement( 'fieldset' ) .
 			$this->getInstallUserBox();
 	}
 
 	function submitConnectForm() {
 		// Get variables from the request
-		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBport', 
+		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBport',
 			'wgDBname', 'wgDBmwschema', 'wgDBts2schema' ) );
 
 		// Validate them
