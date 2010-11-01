@@ -293,8 +293,12 @@ class ResourceLoader {
 
 		header( 'Content-Type: ' . ( $context->getOnly() === 'styles' ? 'text/css' : 'text/javascript' ) );
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
-		header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
-		header( 'Expires: ' . wfTimestamp( TS_RFC2822, min( $maxage, $smaxage ) + time() ) );
+		if ( $context->getDebug() ) {
+			header( 'Cache-Control: must-revalidate' );
+		} else {
+			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
+			header( 'Expires: ' . wfTimestamp( TS_RFC2822, min( $maxage, $smaxage ) + time() ) );
+		}
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		$ims = $context->getRequest()->getHeader( 'If-Modified-Since' );
