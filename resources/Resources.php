@@ -468,10 +468,6 @@ return array(
 		'scripts' => 'skins/common/protect.js',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	) ),
-	'mediawiki.legacy.rightclickedit' => new ResourceLoaderFileModule( array(
-		'scripts' => 'skins/common/rightclickedit.js',
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	) ),
 	'mediawiki.legacy.search' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/search.js',
 		'styles' => 'skins/common/search.css',
