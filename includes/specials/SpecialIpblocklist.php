@@ -71,10 +71,10 @@ class IPUnblockForm extends SpecialPage {
 	
 			# bug 15810: blocked admins should have limited access here
 			if ( $wgUser->isBlocked() ) {
-				if ( $id ) {
+				if ( $this->id ) {
 					# This doesn't pick up on autoblocks, but admins
 					# should have the ipblock-exempt permission anyway
-					$block = Block::newFromID( $id );
+					$block = Block::newFromID( $this->id );
 					$user = User::newFromName( $block->mAddress );
 				} else {
 					$user = User::newFromName( $ip );
@@ -284,7 +284,8 @@ class IPUnblockForm extends SpecialPage {
 			$conds['ipb_id'] = substr( $this->ip, 1 );
 		// Single IPs
 		} elseif ( IP::isIPAddress( $this->ip ) && strpos( $this->ip, '/' ) === false ) {
-			if( $iaddr = IP::toHex( $this->ip ) ) {
+			$iaddr = IP::toHex( $this->ip );
+			if( $iaddr ) {
 				# Only scan ranges which start in this /16, this improves search speed
 				# Blocks should not cross a /16 boundary.
 				$range = substr( $iaddr, 0, 4 );
