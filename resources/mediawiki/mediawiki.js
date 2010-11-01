@@ -625,7 +625,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 				// Load asynchronously after doumument ready
 				if ( ready ) {
-					setTimeout(  function() { $( 'body' ).append( request() ); }, 0 )
+					setTimeout( function() { $( 'body' ).append( request() ); }, 0 )
 				} else {
 					document.write( request() );
 				}
