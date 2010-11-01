@@ -62,6 +62,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$wgUser = new User;
 		$wgUser->setId( 1 );
 		$wgUser->mDataLoaded = true;
+		$wgUser->mOptionsLoaded = true;
 		$wgUser->setOption( 'variant', 'tg-latn' );
 
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
@@ -74,6 +75,8 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$wgRequest->setVal( 'variant', 'tg' );
 		$wgUser = User::newFromId( "admin" );
 		$wgUser->setId( 1 );
+		$wgUser->mDataLoaded = true;
+		$wgUser->mOptionsLoaded = true;
 		$wgUser->setOption( 'variant', 'tg-latn' ); // The user's data is ignored
 												  // because the variant is set in the URL.
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );

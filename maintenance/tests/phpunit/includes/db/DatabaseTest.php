@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class DatabaseTest extends PHPUnit_Framework_TestCase {
 	var $db;
 
