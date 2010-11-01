@@ -29,7 +29,7 @@ abstract class RdfMetaData {
 	 * Constructor
 	 * @param $article Article object
 	 */
-	public function __construct( Article $article ){
+	public function __construct( Article $article ) {
 		$this->mArticle = $article;
 	}
 
@@ -94,7 +94,7 @@ abstract class RdfMetaData {
 		  . substr($timestamp, 6, 2);
 	}
 
-	protected function pageOrString( $name, $page, $str ){
+	protected function pageOrString( $name, $page, $str ) {
 		if( $page instanceof Title )
 			$nt = $page;
 		else
@@ -107,7 +107,7 @@ abstract class RdfMetaData {
 		}
 	}
 
-	protected function page( $name, $title ){
+	protected function page( $name, $title ) {
 		$this->url( $name, $title->getFullUrl() );
 	}
 
@@ -116,7 +116,7 @@ abstract class RdfMetaData {
 		print "\t\t<dc:{$name} rdf:resource=\"{$url}\" />\n";
 	}
 
-	protected function person($name, User $user ){
+	protected function person( $name, User $user ) {
 		if( $user->isAnon() ){
 			$this->element( $name, wfMsgExt( 'anonymous', array( 'parsemag' ), 1 ) );
 		} else {
