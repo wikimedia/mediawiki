@@ -73,7 +73,9 @@ class RebuildTextIndex extends Maintenance {
 		$n = 0;
 	
 		while ( $n < $count ) {
-			$this->output( $n . "\n" );
+			if ( $n ) {
+				$this->output( $n . "\n" );
+			}
 			$end = $n + self::RTI_CHUNK_SIZE - 1;
 
 			$res = $this->db->select( array( 'page', 'revision', 'text' ),
