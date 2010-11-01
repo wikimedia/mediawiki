@@ -39,6 +39,7 @@ $messages = array(
 'tog-ccmeonemails'           => 'sifd yi noskha n tibratin liyid safdn wiyad',
 'tog-showhiddencats'         => 'sbaynd tsnifat ihbanin',
 'tog-norollbackdiff'         => 'hiyd lfarq baad lqiyam bstirjaa',
+'tog-minordefault'     => 'Rcm kullu iẓṛign li fssusni sɣiklli gan.',
 
 'underline-always'  => 'dima',
 'underline-never'   => 'ḥtta manak',

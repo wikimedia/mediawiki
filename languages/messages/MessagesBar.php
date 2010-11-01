@@ -61,6 +61,7 @@ $messages = array(
 'tog-watchlisthidepatrolled'  => 'Kontrollirde Endarungen in da Beowochtungslisten ausblenden',
 'tog-ccmeonemails'            => 'Schick ma Kopiin vo de E-Mäils, de i åndre Benytzer send',
 'tog-showhiddencats'          => 'Vasteckte Kategoriin åzoang',
+'tog-minordefault'           => 'De eigenen Ändarungen standardmäßig åis geringfügig markian',
 
 'underline-always'  => 'oiwai',
 'underline-never'   => 'nia',

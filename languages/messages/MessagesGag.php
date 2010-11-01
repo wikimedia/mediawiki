@@ -32,6 +32,7 @@ $messages = array(
 'tog-watchdefault'            => 'Diişmäk yapılan sayfayı bakmaa listasına ekle',
 'tog-watchmoves'              => 'Bakmaa listama ekle o sayfaları angılarını taşıdım',
 'tog-watchdeletion'           => 'Sildiim sayfaları bakmaa listama ekle',
+'tog-minordefault'            => "Hepsi diişmäkleri 'küçük diişmäk' olarak nışanna",
 'tog-previewontop'            => 'Öni siiri diiştirmää penceräsi üstünde göster',
 'tog-previewonfirst'          => 'İlk kerä diiştirär känä ön siiri göster',
 'tog-nocache'                 => 'Sayfaları keş etmää yasakla',

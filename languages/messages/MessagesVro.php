@@ -59,6 +59,7 @@ $messages = array(
 'tog-watchdefault'            => 'Kaeq vahtsidõ ja muudõtuidõ artiklidõ perrä',
 'tog-watchmoves'              => 'Panõq mu ümbrenõstõduq leheküleq mu perräkaemisnimekirjä',
 'tog-watchdeletion'           => 'Panõq mu kistutõduq leheküleq mu perräkaemisnimekirjä',
+'tog-minordefault'            => 'Märgiq kõik parandusõq vaikimiisi väikeisis paranduisis',
 'tog-previewontop'            => 'Näütäq proovikaehust inne, mitte perän toimõnduskasti',
 'tog-previewonfirst'          => 'Näütäq edimädse toimõndusõ aigo proovikaehust',
 'tog-nocache'                 => '↓ Pästku-i lehekülgi võrgokaeja vaihõmällo',

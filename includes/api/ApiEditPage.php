@@ -207,7 +207,7 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpStarttime'] = wfTimestampNow();	// Fake wpStartime
 		}
 
-		if ( $params['minor'] )	{
+		if ( $params['minor'] || ( !$params['notminor'] && $wgUser->getOption( 'minordefault' ) ) )	{
 			$reqArr['wpMinoredit'] = '';
 		}
 

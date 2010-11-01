@@ -75,6 +75,7 @@ $messages = array(
 'tog-showhiddencats'          => 'Ēoƿa ȝehȳdede floccas',
 'tog-noconvertlink'           => 'Ne lǣt hlencena titula āwendunge',
 'tog-norollbackdiff'          => 'Forlǣt scādunȝe æfter edƿeorc is ȝedōn',
+'tog-minordefault'           => 'Ealle ādihtende mearcian tōlas ȝeƿunelīċe',
 
 'underline-always'  => 'Ǣfre',
 'underline-never'   => 'Nǣfre',

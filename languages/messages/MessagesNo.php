@@ -249,6 +249,7 @@ $messages = array(
 'tog-watchdefault'            => 'Overvåk alle sider jeg redigerer',
 'tog-watchmoves'              => 'Overvåk sider jeg flytter',
 'tog-watchdeletion'           => 'Overvåk sider jeg sletter',
+'tog-minordefault'            => 'Merk i utgangspunktet alle redigeringer som mindre',
 'tog-previewontop'            => 'Flytt forhåndsvisningen foran redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning ved første redigering av en side',
 'tog-nocache'                 => 'Deaktiver nettlesermellomlagring av sider («caching»)',

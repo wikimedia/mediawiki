@@ -32,6 +32,7 @@ $messages = array(
 'tog-watchdefault'            => 'Lasit čuovvunlistui siidduid maid lean ođasmahttán',
 'tog-watchmoves'              => 'Lasit čuovvunlistui siidduid maid lean sirdán',
 'tog-watchdeletion'           => 'Lasit čuovvunlistui siidduid maid lean sihkkon',
+'tog-minordefault'            => 'Rievdadusat leat unnit, jus ii eará álmmuhuvvo',
 'tog-previewontop'            => 'Čájet siidduid rievdadusaid ovdalgihtii geahččama ođasmahttin lođá bajábealde',
 'tog-previewonfirst'          => 'Čájehisgoađe siidduid rievdadusaid ovdalgihtii, go siiddu rievdadeapmi álggahuvvo',
 'tog-nocache'                 => 'Ále vurke siidduid gaskabottasašmuitui',

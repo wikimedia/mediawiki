@@ -306,6 +306,7 @@ $messages = array(
 'tog-watchdefault'            => '내가 편집하는 문서를 주시문서 목록에 추가',
 'tog-watchmoves'              => '내가 이동하는 문서를 주시문서 목록에 추가',
 'tog-watchdeletion'           => '내가 삭제하는 문서를 주시문서 목록에 추가',
+'tog-minordefault'            => '‘사소한 편집’을 항상 선택',
 'tog-previewontop'            => '편집상자 앞에 미리보기 보이기',
 'tog-previewonfirst'          => '처음 편집할 때 미리보기 보기',
 'tog-nocache'                 => '브라우저의 문서 캐시 끄기',

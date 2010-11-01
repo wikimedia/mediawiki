@@ -61,6 +61,7 @@ $messages = array(
 'tog-watchdefault'            => "Pahina's die ak bewerk automaotisch volhen",
 'tog-watchmoves'              => "Pahina's die ak verplekke automaotisch volhen",
 'tog-watchdeletion'           => "Pahina's die ak verwieder automaotisch volhen",
+'tog-minordefault'            => "Al mien bewerkiengen as 'kleine' markeern",
 'tog-previewontop'            => 'Voevertoônienge boven bewerkiengsveld weerheven',
 'tog-previewonfirst'          => 'Voevertoônienge bie eêste bewerkieng weerheven',
 'tog-nocache'                 => 'Hin caching gebruken',

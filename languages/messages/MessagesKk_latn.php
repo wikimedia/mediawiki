@@ -382,6 +382,7 @@ $messages = array(
 'tog-watchdefault'            => 'Men öñdegen betterdi baqılaw tizimime üste',
 'tog-watchmoves'              => 'Men jıljıtqan betterdi baqılaw tizimime üste',
 'tog-watchdeletion'           => 'Men joýğan betterdi baqılaw tizimime üste',
+'tog-minordefault'            => 'Ädepkiden barlıq öñdemelerdi şağın dep belgile',
 'tog-previewontop'            => 'Qarap şığw awmağı kiristirw ornı aldında',
 'tog-previewonfirst'          => 'Birinşi öñdegende qarap şığw',
 'tog-nocache'                 => 'Bet bürkemelewin öşir',

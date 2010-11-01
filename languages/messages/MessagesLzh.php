@@ -85,6 +85,7 @@ $messages = array(
 'tog-rememberpassword'        => '符節通越（達至$1日）',
 'tog-watchcreations'          => '哨己撰',
 'tog-watchdefault'            => '哨己纂',
+'tog-minordefault'            => '慣為校',
 'tog-previewontop'            => '頂草覽',
 'tog-previewonfirst'          => '覽首修',
 'tog-nocache'                 => '莫謄文',

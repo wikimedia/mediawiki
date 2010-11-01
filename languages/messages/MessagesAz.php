@@ -82,6 +82,7 @@ $messages = array(
 'tog-watchdefault'            => 'Redaktə etdiyim səhifələri izlədiyim səhifələrə əlavə et',
 'tog-watchmoves'              => 'Adlarını dəyişdiyim səhifələri izlədiyim səhifələrə əlavə et',
 'tog-watchdeletion'           => 'Sildiyim səhifələri izlədiyim səhifələrə əlavə et',
+'tog-minordefault'            => 'Default olaraq bütün redaktələri kiçik redaktə kimi nişanla',
 'tog-previewontop'            => 'Sınaq göstərişi yazma sahəsindən əvvəl göstər',
 'tog-previewonfirst'          => 'İlkin redaktədə sınaq göstərişi',
 'tog-nocache'                 => 'Səhifəni keşdə (cache) saxlama',

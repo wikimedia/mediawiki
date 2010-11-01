@@ -31,6 +31,7 @@ $messages = array(
 'tog-watchdefault'            => 'Sahifahoi eçodkardaamro ba fehristi pajgiriam ilova kuned',
 'tog-watchmoves'              => 'Sahifahoi kūconidaamro ba fehristi pajgirihojam ilova kuned',
 'tog-watchdeletion'           => 'Sahifahoi eçodkardai manro ba fehristi pajgirihojam ilova kuned',
+'tog-minordefault'            => "Peşfarzi hamai viroişhoro çuz'i işora kuned",
 'tog-previewontop'            => 'Namoişi peşnamoişi qablī peş az quttiji viroiş va na pas az on',
 'tog-previewonfirst'          => 'Nişon dodani peşnamoiş dar naxustin viroiş',
 'tog-nocache'                 => 'Az kor andoxtani hofizai nihoniji sahifa',

@@ -42,6 +42,7 @@ $messages = array(
 'tog-watchdefault'            => 'Salber geänderte on neu erstellte Seyta automatisch beobachta (zu menner Beobachtungsliste hinzufügen)',
 'tog-watchmoves'              => 'Vo merr salber verschobene Seyta autoatisch beobachta',
 'tog-watchdeletion'           => 'Salber geläschte Seyta automatisch beobachta',
+'tog-minordefault'            => 'Eegene Änderunga standardmäßig als geringfiegich markiern',
 'tog-previewontop'            => 'Vurschau uberhoalb voo dam Beoarbeetungsfanster oazäan',
 'tog-previewonfirst'          => 'Beim irscha Beoarbeeta emmer de Vurschau oazeega',
 'tog-nocache'                 => 'Zwischaspeicharn derr Seyte (eim cache) deaktiviern',

@@ -98,6 +98,7 @@ $messages = array(
 'tog-watchdefault'            => 'Yokk ci sama limu toppte xët yi may soppi',
 'tog-watchmoves'              => 'Yokk ci sama limu toppte xët yi may tuddaat',
 'tog-watchdeletion'           => 'Yokk ci sama limu toppte xët yi may far',
+'tog-minordefault'            => 'jàppe samay coppite ni yu néewal saa su ne',
 'tog-previewontop'            => 'Tegal wonendi gi ci kaw balaa boyotu coppite bi',
 'tog-previewonfirst'          => 'wone wonendi gi su dee soppi gu njëkk la',
 'tog-nocache'                 => 'Doxadil ndenciti xët yi',

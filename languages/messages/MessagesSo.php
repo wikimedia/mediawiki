@@ -30,6 +30,7 @@ $messages = array(
 'tog-watchdefault'            => 'Boggaga aan wax ka bedelo kudar liiska-waardiyaha',
 'tog-watchmoves'              => 'Boggaga aan wareejiyo ku dar liiska-waardiyaha',
 'tog-watchdeletion'           => 'Boggaga aan tirtiro ku dar liiska-waardiyaha',
+'tog-minordefault'            => 'Isbedelada yaryar marwalba calaamadey',
 'tog-previewontop'            => "Horfiirinta kahor i'tus sanduuqa wax ka bedelida",
 'tog-previewonfirst'          => 'Horfiirinta itus marka ugu horeeyso oo aan wax ka bedelo',
 'tog-enotifwatchlistpages'    => 'E-boosto ii soo dir markii uu isbedelo bog aan waardiyeynaayey',

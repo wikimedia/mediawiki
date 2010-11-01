@@ -35,6 +35,7 @@ $messages = array(
 'tog-watchdefault'            => "Unch'ukit waruchatajana nayaxa uñstawix turkajata yapxataña",
 'tog-watchmoves'              => "Unch'ukit waruchatajana nayaxa uñstawix sutiyarajata yapxataña",
 'tog-watchdeletion'           => "Unch'ukit waruchatajana nayaxa uñstawix phiskhurajata yapxataña",
+'tog-minordefault'            => 'Sullka askiptawpacha chimpuriña',
 'tog-previewontop'            => 'Askiptawit llataxa nayraxa uñtawikar uñachayaña',
 'tog-previewonfirst'          => 'Mayïri askiptawina uñtawikar uñachayaña',
 'tog-nocache'                 => "Uñstawita kachiñar jark'aña",

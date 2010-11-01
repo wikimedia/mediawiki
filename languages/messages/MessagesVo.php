@@ -129,6 +129,7 @@ $messages = array(
 'tog-watchdefault'            => 'Läükön padis fa ob peredakölis la galädalised obik',
 'tog-watchmoves'              => 'Läükön padis fa ob petopätükölis lä galädalised obik',
 'tog-watchdeletion'           => 'Läükön padis fa ob pemoükölis lä galädalised obik',
+'tog-minordefault'            => 'Bepenön redakamis no pebepenölis valikis asä pülikis',
 'tog-previewontop'            => 'Jonön büologedi bü redakaspad',
 'tog-previewonfirst'          => 'Jonön büologedi pö redakam balid',
 'tog-nocache'                 => 'Nejäfidükön el caché padas',

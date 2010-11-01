@@ -34,6 +34,7 @@ $messages = array(
 'tog-watchdefault'            => 'Additionner les pages que je change à ma liste des pages guettées',
 'tog-watchmoves'              => 'Additionner les pages que je renomme à ma liste des pages guettées',
 'tog-watchdeletion'           => "Additionner les pages que j'ôte à ma liste des pages guettées",
+'tog-minordefault'            => "Marquer tous les petits changements d'après le réglage",
 'tog-previewontop'            => "Montrer la vue d'avance au-dessus la boëte de changement",
 'tog-previewonfirst'          => "Montrer la vue d'avance au temps du premier changement",
 'tog-nocache'                 => 'Arrêter le cache des pages',

@@ -52,6 +52,7 @@ $messages = array(
 'tog-watchdefault'            => 'Rûpelan, yê min guhart, têke lîsteya min ya şopandinê',
 'tog-watchmoves'              => 'Rûpelan, yê min navî wan guhart, têke lîsteya min ya şopandinê',
 'tog-watchdeletion'           => 'Rûpelan, yê min jêbir, têke lîsteya min ya şopandinê',
+'tog-minordefault'            => 'Her guherandinekê min bike wek guherandinekî biçûk be',
 'tog-previewontop'            => 'Pêşdîtinê gotarê li jorî cihê guherandinê nîşan bide',
 'tog-previewonfirst'          => 'Li cem guherandinê yekemîn hercaran pêşdîtinê nîşan bide',
 'tog-nocache'                 => "Cache'ê rûpelan biskînîne",

@@ -97,6 +97,7 @@ $messages = array(
 'tog-watchdefault'            => 'Ajuntar las páiginas que you eiditar a las minhas páiginas begiadas',
 'tog-watchmoves'              => ' Ajuntar las páiginas que you mober a las minhas páiginas begiadas',
 'tog-watchdeletion'           => ' Ajuntar las páiginas que you eileminar a las minhas páiginas begiadas',
+'tog-minordefault'            => 'Por oumisson, marcar todas las eidiçones cumo menores',
 'tog-previewontop'            => "Amostrar l'antebison antes de la caixa d'eidiçon",
 'tog-previewonfirst'          => "Amostrar l'antebison na purmeira eidiçon",
 'tog-nocache'                 => 'Zatibar caching de páiginas',

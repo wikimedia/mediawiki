@@ -322,6 +322,7 @@ $messages = array(
 'tog-watchdefault'            => '自分が編集したページをウォッチリストに追加する',
 'tog-watchmoves'              => '自分が移動したページをウォッチリストに追加する',
 'tog-watchdeletion'           => '自分が削除したページをウォッチリストに追加する',
+'tog-minordefault'            => '細部の編集をデフォルトでチェックする',
 'tog-previewontop'            => 'プレビューをテキストボックスの前に配置する',
 'tog-previewonfirst'          => '編集開始時にもプレビューを表示する',
 'tog-nocache'                 => 'ブラウザによるページのキャッシュを無効にする',

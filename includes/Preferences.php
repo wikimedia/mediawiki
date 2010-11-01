@@ -705,6 +705,11 @@ class Preferences {
 			'section' => 'editing/advancedediting',
 			'label-message' => 'tog-showtoolbar',
 		);
+		$defaultPreferences['minordefault'] = array(
+			'type' => 'toggle',
+			'section' => 'editing/advancedediting',
+			'label-message' => 'tog-minordefault',
+		);
 
 		if ( $wgUseExternalEditor ) {
 			$defaultPreferences['externaleditor'] = array(

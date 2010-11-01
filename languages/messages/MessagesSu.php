@@ -146,6 +146,7 @@ $messages = array(
 'tog-watchdefault'            => 'Tambahkeun kaca nu diédit ku anjeun kana awaskeuneun anjeun',
 'tog-watchmoves'              => 'Awaskeun kaca nu dipindahkeun ku kuring',
 'tog-watchdeletion'           => 'Awaskeun kaca nu dihapus ku kuring',
+'tog-minordefault'            => 'Tandaan sadaya éditan salaku minor luyu jeung ti dituna',
 'tog-previewontop'            => 'Témbongkeun sawangan méméh kotak édit (lain sanggeusna)',
 'tog-previewonfirst'          => 'Témbongkeun sawangan dina éditan munggaran',
 'tog-nocache'                 => 'Tumpurkeun <em>cache</em> kaca',

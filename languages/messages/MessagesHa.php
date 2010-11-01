@@ -31,6 +31,7 @@ $messages = array(
 'tog-watchdefault'            => 'A daɗa shafunan da na gyara a cikin jerina na kan ido',
 'tog-watchmoves'              => 'A daɗa shafunan da na gusar a cikin jerina na kan ido',
 'tog-watchdeletion'           => 'A daɗa shafunan da na shafe a cikin jerina na kan ido',
+'tog-minordefault'            => 'A alamta gyare-gyarena a matsayin ƙanana bisa manufa',
 'tog-previewontop'            => 'A nuna filin rigya-gani sama ga filin gyare-gyare',
 'tog-previewonfirst'          => 'A nuna rigya-gani tun gyaran farin',
 'tog-nocache'                 => 'A tsayar da kacin shafi',

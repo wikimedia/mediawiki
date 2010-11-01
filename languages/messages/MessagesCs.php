@@ -363,6 +363,7 @@ $messages = array(
 'tog-watchdefault'            => 'Přidávat mnou editované stránky ke sledovaným',
 'tog-watchmoves'              => 'Přidávat přesouvané stránky mezi sledované',
 'tog-watchdeletion'           => 'Přidávat stránky, které smažu, mezi sledované',
+'tog-minordefault'            => 'Označit editaci implicitně jako malá editace',
 'tog-previewontop'            => 'Zobrazovat náhled před editačním oknem (ne za ním)',
 'tog-previewonfirst'          => 'Zobrazit při první editaci náhled',
 'tog-nocache'                 => 'Vypnout cachování v prohlížeči',

@@ -172,6 +172,7 @@ $messages = array(
 'tog-watchdefault'            => 'Boki, kótarež změnijom, awtomatiski wobglědowaś',
 'tog-watchmoves'              => 'Boki, kótarež som pśesunuł, awtomatiski wobglědowaś',
 'tog-watchdeletion'           => 'Boki, kótarež som wulašował, awtomatiski wobglědowaś',
+'tog-minordefault'            => 'Wšykne móje změny ako małe markěrowaś',
 'tog-previewontop'            => 'Zespominanje wušej wobźěłowańskego póla pokazaś',
 'tog-previewonfirst'          => 'Pśi prědnem wobźěłanju pśecej zespominanje pokazaś',
 'tog-nocache'                 => 'Cache bokow wobglědowaka znjemóžniś',

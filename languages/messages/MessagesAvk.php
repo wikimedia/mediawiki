@@ -116,6 +116,7 @@ $messages = array(
 'tog-watchdefault'            => 'Va jinon reduyun ik betayan telizeem suzdá',
 'tog-watchmoves'              => 'Kosuzdasikira va jinon arrundayan bueem',
 'tog-watchdeletion'           => 'Kosuzdasikira va jinon sulayan bueem',
+'tog-minordefault'            => 'Jinaf betakseem omavon mezolonon zo torigid',
 'tog-previewontop'            => 'Abdinedira nediwer vamoe sutelaxo',
 'tog-previewonfirst'          => 'Nedira va abdinedira bal taneafa betara',
 'tog-nocache'                 => 'Gritegirara va bupreyutasiki',

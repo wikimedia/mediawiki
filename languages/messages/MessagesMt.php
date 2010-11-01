@@ -289,6 +289,7 @@ $messages = array(
 'tog-watchdefault'            => "Żid il-paġni li nimmodifika fil-lista ta' osservazzjoni personali",
 'tog-watchmoves'              => "Żid il-paġni li mmexxi fil-lista ta' osservazzjoni tiegħi",
 'tog-watchdeletion'           => "Żid il-paġni li nħassar mal-lista ta' osservazzjoni tiegħi",
+'tog-minordefault'            => 'Immarka awtomatikament kull modifika bħala waħda minuri',
 'tog-previewontop'            => 'Uri dehra proviżorja tal-paġna fuq il-kaxxa tal-immodifikar',
 'tog-previewonfirst'          => 'Uri dehra proviżorja mal-ewwel modifika',
 'tog-nocache'                 => 'Iddiżattiva l-cache tal-paġni tal-browser',
