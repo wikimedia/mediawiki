@@ -4,7 +4,7 @@
  * See http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList for details of how to register your tests.
  */
 
- class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
+class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
 	public function __construct() {
 		parent::__construct();
 		$files = array();

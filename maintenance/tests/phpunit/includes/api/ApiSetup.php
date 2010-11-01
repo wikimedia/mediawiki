@@ -51,9 +51,9 @@ class UserWrapper {
 
 	public function __construct( $userName, $password, $group = '' ) {
 		$this->userName = $userName;
-	    $this->password = $password;
+		$this->password = $password;
 
-	    $this->user = User::newFromName( $this->userName );
+		$this->user = User::newFromName( $this->userName );
 		if ( !$this->user->getID() ) {
 			$this->user = User::createNew( $this->userName, array(
 				"email" => "test@example.com",
