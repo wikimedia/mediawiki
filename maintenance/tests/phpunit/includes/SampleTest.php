@@ -88,8 +88,8 @@ class TestSample extends PHPUnit_Framework_TestCase {
 	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
 	function testTitleObjectFromObject() {
-		$title = Title::newFromText(new Title("test"));
+		$title = Title::newFromText( new Title( "test" ) );
 		$this->assertEquals( "Test", $title->isLocal() );
 	}
-  }
+}
 
