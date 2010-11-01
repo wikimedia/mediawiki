@@ -2304,9 +2304,13 @@ class OutputPage {
 		}
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
+		// Determine whether we're in debug mode
+		// Order of priority is 1) request param, 2) cookie, 3) $wg setting
+		$debug = $wgRequest->getFuzzyBool( 'debug',
+			$wgRequest->getCookie( 'resourceLoaderModule', '', $wgResourceLoaderDebug ) );
 		$query = array(
 			'lang' => $wgLang->getCode(),
-			'debug' => $wgRequest->getFuzzyBool( 'debug', $wgResourceLoaderDebug ) ? 'true' : 'false',
+			'debug' => $debug ? 'true' : 'false',
 			'skin' => $wgUser->getSkin()->getSkinName(),
 			'only' => $only,
 		);
