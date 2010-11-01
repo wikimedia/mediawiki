@@ -391,10 +391,13 @@ abstract class Installer {
 	public function envLatestVersion() {
 		global $wgVersion;
 
+		if( !$this->getVar( '_ExternalHTTP' ) ) {
+			$this->showMessage( 'config-env-latest-disabled' );
+			return;
+		}
+
 		$repository = wfGetRepository();
 		$currentVersion = $repository->getLatestCoreVersion();
-
-		$this->setVar( '_ExternalHTTP', true );
 
 		if ( $currentVersion === false ) {
 			# For when the request is successful but there's e.g. some silly man in
