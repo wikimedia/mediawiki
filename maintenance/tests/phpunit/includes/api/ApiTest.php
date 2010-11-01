@@ -18,7 +18,7 @@ class MockApi extends ApiBase {
 }
 
 /**
- * @group destructive
+ * @group Destructive
  */
 class ApiTest extends ApiTestSetup {
 
