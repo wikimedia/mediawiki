@@ -73,6 +73,9 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 		$wgDBtype = 'mock';
 		$wgLBFactoryConf['class'] = 'LBFactory_Simple';
 		$wgDBservers = null;
+
+		# We need to reset the LoadBalancer in order to bypass its cache and get the mock db
+		wfGetLBFactory()->destroyInstance();
 		$wgContLang = Language::factory( 'en' );
 	}
 

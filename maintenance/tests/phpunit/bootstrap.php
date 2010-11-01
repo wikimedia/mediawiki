@@ -28,6 +28,18 @@ dependencies.
 EOF;
 }
 
+global $wgLocalisationCacheConf, $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
+global $wgMessageCache, $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry;
+$wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
+$wgMainCacheType = CACHE_NONE;
+$wgMessageCacheType = CACHE_NONE;
+$wgParserCacheType = CACHE_NONE;
+$wgUseDatabaseMessages = false; # Set for future resets
+
+# The message cache was already created in Setup.php
+$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
+	array( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry ) );
+
 /* Classes */
 
 abstract class MediaWikiTestSetup extends PHPUnit_Framework_TestCase {

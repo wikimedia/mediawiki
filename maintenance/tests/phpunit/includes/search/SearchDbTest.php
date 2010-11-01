@@ -2,6 +2,10 @@
 
 require_once( dirname( __FILE__ ) . '/SearchEngineTest.php' );
 
+/**
+ * @group Database
+ * @group Destructive
+ */
 class SearchDbTest extends SearchEngineTest {
 	var $db;
 

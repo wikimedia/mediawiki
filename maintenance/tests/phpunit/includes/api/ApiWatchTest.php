@@ -3,6 +3,7 @@
 require_once dirname( __FILE__ ) . '/ApiSetup.php';
 
 /**
+ * @group Database
  * @group Destructive
  */
 class ApiWatchTest extends ApiTestSetup {

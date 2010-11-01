@@ -1,4 +1,4 @@
-.PHONY: help test phpunit install coverage warning destructive parser noparser list-groups
+.PHONY: help test phpunit install coverage warning destructive parser noparser safe databaseless list-groups
 .DEFAULT: warning
 
 SHELL = /bin/sh
@@ -10,13 +10,20 @@ all test: warning
 
 warning:
 	# Use 'make help' to get usage
-	@echo "WARNING -- these tests are DESTRUCTIVE and will alter your wiki."
+	@echo "WARNING -- some tests are DESTRUCTIVE and will alter your wiki."
 	@echo "DO NOT RUN THESE TESTS on a production wiki."
 	@echo ""
 	@echo "Until the default suites are made non-destructive, you can run"
 	@echo "the destructive tests like so:"
-	@echo ""
 	@echo "  make destructive"
+	@echo ""
+	@echo "Some tests are expected to be safe, you can run them with"
+	@echo "  make safe"
+	@echo ""
+	@echo "You are recommended to run them with read-only credentials, though."
+	@echo ""
+	@echo "If you don't have a database running, you can still run"
+	@echo "  make databaseless"
 	@echo ""
 
 destructive: phpunit
@@ -38,6 +45,12 @@ parser:
 
 noparser:
 	${PU} --exclude-group Parser,Broken
+
+safe:
+	${PU} --exclude-group Broken,Destructive
+
+databaseless:
+	${PU} --exclude-group Broken,Destructive,Database
 
 list-groups:
 	${PU} --list-groups
