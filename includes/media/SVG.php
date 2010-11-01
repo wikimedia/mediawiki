@@ -12,6 +12,8 @@
  * @ingroup Media
  */
 class SvgHandler extends ImageHandler {
+	const SVG_METADATA_VERSION = 1;
+
 	function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
@@ -28,6 +30,11 @@ class SvgHandler extends ImageHandler {
 
 	function isVectorized( $file ) {
 		return true;
+	}
+
+	function isAnimatedImage( $image ) {
+		# TODO: detect animated SVGs
+		return false;
 	}
 
 	function normaliseParams( $image, &$params ) {
@@ -111,8 +118,16 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
-	function getImageSize( $image, $path ) {
-		return wfGetSVGsize( $path );
+	function getImageSize( $file, $path, $metadata = false ) {
+		if ( $metadata === false ) {
+			$metadata = $file->getMetaData();
+		}
+		$metadata = $this->unpackMetaData( $metadata );
+
+		if ( isset( $metadata['width'] ) && isset( $metadata['height'] ) ) {
+			return array( $metadata['width'], $metadata['height'], 'SVG',
+					"width=\"{$metadata['width']}\" height=\"{$metadata['height']}\"" );
+		}
 	}
 
 	function getThumbType( $ext, $mime, $params = null ) {
@@ -125,5 +140,39 @@ class SvgHandler extends ImageHandler {
 			$wgLang->formatNum( $file->getWidth() ),
 			$wgLang->formatNum( $file->getHeight() ),
 			$wgLang->formatSize( $file->getSize() ) );
+	}
+
+	function formatMetadata( $file ) {
+		return false;
+	}
+	
+	function getMetadata( $file, $filename ) {
+		$metadata = array();
+		try {
+			$metadata = SVGMetadataExtractor::getMetadata( $filename );
+		} catch( Exception $e ) {
+ 			// Broken file?
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			return '0';
+		}
+		$metadata['version'] = self::SVG_METADATA_VERSION;
+		return serialize( $metadata );
+	}
+	
+	function unpackMetadata( $metadata ) {
+		$unser = @unserialize( $metadata );
+		if ( isset( $unser['version'] ) && $unser['version'] == self::SVG_METADATA_VERSION ) {
+			return $unser;
+		} else {
+			return false;
+		}
+	}
+
+	function getMetadataType( $image ) {
+		return 'parsed-svg';
+	}
+
+	function isMetadataValid( $image, $metadata ) {
+		return $this->unpackMetadata( $metadata ) !== false;
 	}
 }

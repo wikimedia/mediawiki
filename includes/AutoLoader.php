@@ -483,6 +483,7 @@ $wgAutoloadLocalClasses = array(
 	'PNGHandler' => 'includes/media/PNG.php',
 	'PNGMetadataExtractor' => 'includes/media/PNGMetadataExtractor.php',
 	'SvgHandler' => 'includes/media/SVG.php',
+	'SVGMetadataExtractor' => 'includes/media/SVGMetadataExtractor.php',
 	'ThumbnailImage' => 'includes/media/MediaTransformOutput.php',
 	'TiffHandler' => 'includes/media/Tiff.php',
 	'TransformParameterError' => 'includes/media/MediaTransformOutput.php',
