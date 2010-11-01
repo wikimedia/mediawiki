@@ -139,6 +139,35 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
 				}
+				if ( !is_null( $result->getScore() ) ) {
+					if ( isset( $prop['score'] ) ) {
+						$vals['score'] = $result->getScore();
+					}
+				}
+				if ( isset( $prop['titlesnippet'] ) ) {
+					$vals['titlesnippet'] = $result->getTitleSnippet( $terms );
+				}
+				if ( !is_null( $result->getRedirectTitle() ) ) {
+					if ( isset( $prop['redirecttitle'] ) ) {
+						$vals['redirecttitle'] = $result->getRedirectTitle();
+					}
+					if ( isset( $prop['redirectsnippet'] ) ) {
+						$vals['redirectsnippet'] = $result->getRedirectSnippet( $terms );
+					}
+				}
+				if ( !is_null( $result->getSectionTitle() ) ) {
+					if ( isset( $prop['sectiontitle'] ) ) {
+						$vals['sectiontitle'] = $result->getSectionTitle();
+					}
+					if ( isset( $prop['sectionsnippet'] ) ) {
+						$vals['sectionsnippet'] = $result->getSectionSnippet();
+					}
+				}
+				if ( isset( $prop['hasrelated'] ) ) {
+					if ( $result->hasRelated() ) {
+						$vals['hasrelated'] = "";
+					}
+				}
 
 				// Add item to results and see whether it fits
 				$fit = $this->getResult()->addValue( array( 'query', $this->getModuleName() ),
@@ -198,7 +227,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'size',
 					'wordcount',
 					'timestamp',
+					'score',
 					'snippet',
+					'titlesnippet',
+					'redirecttitle',
+					'redirectsnippet',
+					'sectiontitle',
+					'sectionsnippet',
+					'hasrelated',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
@@ -222,10 +258,17 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			'info' => 'What metadata to return',
 			'prop' => array(
 				'What properties to return',
-				' size    - Adds the size of the page in bytes',
-				' wordcount  - Adds the word count of the page',
-				' timestamp  - Adds the timestamp of when the page was last edited',
-				' snippet    - Adds a parsed snippet of the page',
+				' size             - Adds the size of the page in bytes',
+				' wordcount        - Adds the word count of the page',
+				' timestamp        - Adds the timestamp of when the page was last edited',
+				' score            - Adds the score (if any) from the search engine',
+				' snippet          - Adds a parsed snippet of the page',
+				' titlesnippet     - Adds a parsed snippet of the page title',
+				' redirectsnippet  - Adds a parsed snippet of the redirect',
+				' redirecttitle    - Adds a parsed snippet of the redirect title',
+				' sectionsnippet   - Adds a parsed snippet of the matching section',
+				' sectiontitle     - Adds a parsed snippet of the matching section title',
+				' hasrelated       - Indicates whether a related search is available',
 			),
 			'redirects' => 'Include redirect pages in the search',
 			'offset' => 'Use this value to continue paging (return by query)',
