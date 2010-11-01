@@ -99,7 +99,8 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		$query_options = array();
 
 		// left join with watchlist table to highlight watched rows
-		if( $uid = $wgUser->getId() ) {
+		$uid = $wgUser->getId();
+		if( $uid ) {
 			$tables[] = 'watchlist';
 			$select[] = 'wl_user';
 			$join_conds['watchlist'] = array( 'LEFT JOIN', "wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace" );

@@ -263,11 +263,12 @@ class NamespaceConflictChecker extends Maintenance {
 				$row->title .= $suffix;
 				$this->output( "...  *** new title {$row->title}\n" );
 				$title = Title::makeTitleSafe( $row->namespace, $row->title );
-				if ( ! $title ) {
+				if ( !$title ) {
 					$this->output( "... !!! invalid title\n" );
 					return false;
 				}
-				if ( $id = $title->getArticleId() ) {
+				$id = $title->getArticleId();
+				if ( $id ) {
 					$this->output( "...  *** page exists with ID $id ***\n" );
 				} else {
 					break;

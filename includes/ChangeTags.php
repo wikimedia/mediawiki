@@ -180,8 +180,8 @@ class ChangeTags {
 		// Caching...
 		global $wgMemc;
 		$key = wfMemcKey( 'valid-tags' );
-
-		if ( $tags = $wgMemc->get( $key ) ) {
+		$tags = $wgMemc->get( $key );
+		if ( $tags ) {
 			return $tags;
 		}
 

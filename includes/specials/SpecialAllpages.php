@@ -188,7 +188,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 					array ('LIMIT' => 2, 'OFFSET' => $maxPerSubpage - 1, 'ORDER BY' => 'page_title ASC')
 				);
 
-				if( $s = $dbr->fetchObject( $res ) ) {
+				$s = $dbr->fetchObject( $res );
+				if( $s ) {
 					array_push( $lines, $s->page_title );
 				} else {
 					// Final chunk, but ended prematurely. Go back and find the end.
@@ -198,7 +199,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 					array_push( $lines, $endTitle );
 					$done = true;
 				}
-				if( $s = $res->fetchObject() ) {
+				$s = $res->fetchObject();
+				if( $s ) {
 					array_push( $lines, $s->page_title );
 					$lastTitle = $s->page_title;
 				} else {

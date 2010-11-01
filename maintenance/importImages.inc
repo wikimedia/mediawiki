@@ -18,7 +18,8 @@
  */
 function findFiles( $dir, $exts ) {
 	if ( is_dir( $dir ) ) {
-		if ( $dhl = opendir( $dir ) ) {
+		$dhl = opendir( $dir );
+		if ( $dhl ) {
 			$files = array();
 			while ( ( $file = readdir( $dhl ) ) !== false ) {
 				if ( is_file( $dir . '/' . $file ) ) {

@@ -119,11 +119,14 @@ abstract class RdfMetaData {
 	protected function person($name, User $user ){
 		if( $user->isAnon() ){
 			$this->element( $name, wfMsgExt( 'anonymous', array( 'parsemag' ), 1 ) );
-		} else if( $real = $user->getRealName() ) {
-			$this->element( $name, $real );
 		} else {
-			$userName = $user->getName();
-			$this->pageOrString( $name, $user->getUserPage(), wfMsgExt( 'siteuser', 'parsemag', $userName, $userName ) );
+			$real = $user->getRealName();
+			if( $real ) {
+				$this->element( $name, $real );
+			} else {
+				$userName = $user->getName();
+				$this->pageOrString( $name, $user->getUserPage(), wfMsgExt( 'siteuser', 'parsemag', $userName, $userName ) );
+			}
 		}
 	}
 

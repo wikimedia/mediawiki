@@ -793,7 +793,8 @@ class SkinTemplate extends Skin {
 			} else {
 				//article doesn't exist or is deleted
 				if( $wgUser->isAllowed( 'deletedhistory' ) && $wgUser->isAllowed( 'deletedtext' ) ) {
-					if( $n = $this->mTitle->isDeleted() ) {
+					$n = $this->mTitle->isDeleted();
+					if( $n ) {
 						$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
 						$content_actions['undelete'] = array(
 							'class' => false,

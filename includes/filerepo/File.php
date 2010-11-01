@@ -906,7 +906,8 @@ abstract class File {
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
 			foreach ( $res as $row ) {
-				if ( $titleObj = Title::newFromRow( $row ) ) {
+				$titleObj = Title::newFromRow( $row )
+				if ( $titleObj ) {
 					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redirect, $row->page_latest );
 					$retVal[] = $titleObj;
 				}

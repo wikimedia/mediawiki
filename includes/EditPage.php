@@ -1867,38 +1867,40 @@ HTML
 			$parserOptions->setTidy( true );
 			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
 			$previewHTML = $parserOutput->mText;
-		} elseif ( $rt = Title::newFromRedirectArray( $this->textbox1 ) ) {
-			$previewHTML = $this->mArticle->viewRedirect( $rt, false );
 		} else {
-			$toparse = $this->textbox1;
+			$rt = Title::newFromRedirectArray( $this->textbox1 );
+			if ( $rt ) {
+				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
+			} else {
+				$toparse = $this->textbox1;
 
-			# If we're adding a comment, we need to show the
-			# summary as the headline
-			if ( $this->section == "new" && $this->summary != "" ) {
-				$toparse = "== {$this->summary} ==\n\n" . $toparse;
-			}
+				# If we're adding a comment, we need to show the
+				# summary as the headline
+				if ( $this->section == "new" && $this->summary != "" ) {
+					$toparse = "== {$this->summary} ==\n\n" . $toparse;
+				}
 
-			wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
+				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
 
-			// Parse mediawiki messages with correct target language
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				list( /* $unused */, $lang ) = $wgMessageCache->figureMessage( $this->mTitle->getText() );
-				$obj = wfGetLangObj( $lang );
-				$parserOptions->setTargetLanguage( $obj );
-			}
+				// Parse mediawiki messages with correct target language
+				if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+					list( /* $unused */, $lang ) = $wgMessageCache->figureMessage( $this->mTitle->getText() );
+					$obj = wfGetLangObj( $lang );
+					$parserOptions->setTargetLanguage( $obj );
+				}
 
-
-			$parserOptions->setTidy( true );
-			$parserOptions->enableLimitReport();
-			$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ),
+				$parserOptions->setTidy( true );
+				$parserOptions->enableLimitReport();
+				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ),
 					$this->mTitle, $parserOptions );
 
-			$previewHTML = $parserOutput->getText();
-			$this->mParserOutput = $parserOutput;
-			$wgOut->addParserOutputNoText( $parserOutput );
+				$previewHTML = $parserOutput->getText();
+				$this->mParserOutput = $parserOutput;
+				$wgOut->addParserOutputNoText( $parserOutput );
 
-			if ( count( $parserOutput->getWarnings() ) ) {
-				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+				if ( count( $parserOutput->getWarnings() ) ) {
+					$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+				}
 			}
 		}
 

@@ -780,7 +780,8 @@ class DatabaseMssql extends DatabaseBase {
 			print( "Error in fieldInfo query: " . $this->getErrors() );
 			return false;
 		}
-		if ( $meta = $this->fetchRow( $res ) ) {
+		$meta = $this->fetchRow( $res );
+		if ( $meta ) {
 			return new MssqlField( $meta );
 		}
 		return false;

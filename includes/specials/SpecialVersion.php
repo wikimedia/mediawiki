@@ -293,7 +293,10 @@ class SpecialVersion extends SpecialPage {
 			$out .= '<tr><td colspan="4">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
 		}
 
-		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
+		$tags = $wgParser->getTags();
+		$cnt = count( $tags );
+
+		if ( $cnt ) {
 			for ( $i = 0; $i < $cnt; ++$i ) {
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
 			}

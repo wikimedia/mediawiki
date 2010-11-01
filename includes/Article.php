@@ -984,15 +984,18 @@ class Article {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
-					} else if ( $rt = Title::newFromRedirectArray( $text ) ) {
-						wfDebug( __METHOD__ . ": showing redirect=no page\n" );
-						# Viewing a redirect page (e.g. with parameter redirect=no)
-						# Don't append the subtitle if this was an old revision
-						$wgOut->addHTML( $this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() ) );
-						# Parse just to get categories, displaytitle, etc.
-						$this->mParserOutput = $wgParser->parse( $text, $this->mTitle, $parserOptions );
-						$wgOut->addParserOutputNoText( $this->mParserOutput );
-						$outputDone = true;
+					} else {
+						$rt = Title::newFromRedirectArray( $text );
+						if ( $rt ) {
+							wfDebug( __METHOD__ . ": showing redirect=no page\n" );
+							# Viewing a redirect page (e.g. with parameter redirect=no)
+							# Don't append the subtitle if this was an old revision
+							$wgOut->addHTML( $this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() ) );
+							# Parse just to get categories, displaytitle, etc.
+							$this->mParserOutput = $wgParser->parse( $text, $this->mTitle, $parserOptions );
+							$wgOut->addParserOutputNoText( $this->mParserOutput );
+							$outputDone = true;
+						}
 					}
 					break;
 				case 4:

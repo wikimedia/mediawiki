@@ -119,7 +119,8 @@ class RebuildRecentchanges extends Maintenance {
 					"AND rev_timestamp<'{$emit}' ORDER BY rev_timestamp DESC";
 				$sql2 = $dbw->limitResult( $sql2, 1, false );
 				$res2 = $dbw->query( $sql2 );
-				if ( $row = $dbw->fetchObject( $res2 ) ) {
+				$row = $dbw->fetchObject( $res2 );
+				if ( $row ) {
 					$lastOldId = intval( $row->rev_id );
 					# Grab the last text size if available
 					$lastSize = !is_null( $row->rev_len ) ? intval( $row->rev_len ) : 'NULL';
