@@ -126,6 +126,7 @@ $messages = array(
 'tog-watchdefault'            => 'Adjuntez pagini redaktota da me ad mea surveyaji',
 'tog-watchmoves'              => 'Adjuntez pagini movota da me ad mea surveyaji',
 'tog-watchdeletion'           => 'Adjuntez pagini efacota da me ad mea surveyaji',
+'tog-minordefault'            => 'Markizez kustume omna redaktajo kom mikra',
 'tog-previewontop'            => 'Montrez prevido avan la redakto-buxo',
 'tog-previewonfirst'          => 'Montrez prevido pos la unesma redakto',
 'tog-nocache'                 => 'Nekapableskez cache-ar pagini',

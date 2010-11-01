@@ -50,6 +50,7 @@ $messages = array(
 'tog-watchdefault'            => 'Putim ol pes mi senisim long lukautbuk bilong mi',
 'tog-watchmoves'              => 'Putim ol pes mi surikim long lukautbuk bilong mi',
 'tog-watchdeletion'           => 'Putim ol pes mi rausim long lukautbuk bilong mi',
+'tog-minordefault'            => 'Makim ol senis mi wokim olsem ol i liklik, sapos mi no makim',
 'tog-previewontop'            => 'Soim pes mi senisim (pastaim long raitim) antap long bokis bilong wokim senis',
 'tog-previewonfirst'          => 'Soim pes mi senisim pastaim long raitim',
 'tog-enotifwatchlistpages'    => 'Salim imel (e-mail) long mi taim wanpela pes mi lukautim i senis',

@@ -208,6 +208,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Las copias de las letras electrónicas que mandí a otros usuarios, ¡Mándamelas!',
 'tog-diffonly'                => 'No mostres el contenido de las hojas debaxo de las diferencias.',
 'tog-showhiddencats'          => 'Amostrár kategorías eskondidas',
+'tog-minordefault'          => 'Va marcando todos los trocamientos como chiquiticos.',
 
 'underline-always' => 'Siempre',
 'underline-never'  => 'Nunka',

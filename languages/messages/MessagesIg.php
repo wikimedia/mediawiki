@@ -79,6 +79,7 @@ $messages = array(
 'tog-watchdefault'            => 'Tinyé ihü m na rüoru élu na ndetu ihem ne lé',
 'tog-watchmoves'              => 'Tinyé ihü m na puzié na ndetu ihe m ne lé',
 'tog-watchdeletion'           => 'Tinyé ihü m na gbakashia na ndetu ihe m ne lé',
+'tog-minordefault'            => 'Me ka nhoro da na orü ntakịrị níle',
 'tog-previewontop'            => 'Zitú ntàkịrị mgbe opuzọr zi igbe orü',
 'tog-previewonfirst'          => 'Zitú nke takírí orü mbu',
 'tog-nocache'                 => 'Bì-chi cache na otúzọr intaneti gi',

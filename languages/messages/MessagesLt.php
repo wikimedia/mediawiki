@@ -191,6 +191,7 @@ $messages = array(
 'tog-watchdefault'            => 'Pridėti puslapius, kuriuos redaguoju, į stebimų sąrašą',
 'tog-watchmoves'              => 'Pridėti puslapius, kuriuos perkeliu, į stebimų sąrašą',
 'tog-watchdeletion'           => 'Pridėti puslapius, kuriuos ištrinu, į stebimų sąrašą',
+'tog-minordefault'            => 'Pagal nutylėjimą pažymėti redagavimus kaip smulkius',
 'tog-previewontop'            => 'Rodyti peržiūrą virš redagavimo lauko',
 'tog-previewonfirst'          => 'Rodyti peržiūrą pirmą kartą pakeitus',
 'tog-nocache'                 => 'Išjungti interneto naršyklės puslapių podėlį',

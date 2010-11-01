@@ -44,6 +44,7 @@ $messages = array(
 'tog-watchdefault'        => 'Cur duillagyn ta reaghit aym lesh my rolley arrey',
 'tog-watchmoves'          => 'Cur duillagyn ta scughit aym lesh my rolley arrey',
 'tog-watchdeletion'       => 'Cur duillagyn ta scryssit aym lesh my rolley arrey',
+'tog-minordefault'        => 'Myr roie-hoieaghey, cowraghey dagh reaghey myr myn-reaghey',
 'tog-previewontop'        => 'Taishbyney roie-haishbynys roish y chishtey reaghey',
 'tog-previewonfirst'      => 'Taishbyney roie-haishbynys ec y chied reaghey',
 'tog-enotifusertalkpages' => 'Cur post-l dou my vees y duillag ymmydeyr aym caghlaa',

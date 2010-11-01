@@ -32,6 +32,7 @@ $messages = array(
 'tog-watchdefault'            => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
 'tog-watchmoves'              => 'Inayon dagiti inyakarko a pampanid iti listaan ti bambantayak',
 'tog-watchdeletion'           => 'Inayon dagiti inikkatko a pampanid iti listaan ti bambantayak',
+'tog-minordefault'            => 'Markaan amin a panangbaliw kas minor a kas kasisigud',
 'tog-previewontop'            => 'Ipakita ti preview sakbay ti kahon ti edit',
 'tog-previewonfirst'          => 'Ipakita ti preview iti umuna a baliw',
 'tog-nocache'                 => 'Iddepen ti caching ti page',

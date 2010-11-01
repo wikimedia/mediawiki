@@ -230,6 +230,7 @@ $messages = array(
 'tog-watchdefault'            => 'Dodaj stranice koje menjam u moj spisak nadgledanja',
 'tog-watchmoves'              => 'Dodaj stranice koje premeštam u moj spisak nadgledanja',
 'tog-watchdeletion'           => 'Dodaj stranice koje brišem u moj spisak nadgledanja',
+'tog-minordefault'            => 'Označi sve izmene malim isprva',
 'tog-previewontop'            => 'Prikaži pretpregled pre polja za izmenu',
 'tog-previewonfirst'          => 'Prikaži pretpregled pri prvoj izmeni',
 'tog-nocache'                 => 'Onemogući keširanje stranica',

@@ -47,6 +47,7 @@ $messages = array(
 'tog-watchdefault'            => 'Dodaj stranice koje uređujem u moj spisak praćenja',
 'tog-watchmoves'              => 'Dodaj stranice koje premještam u moj spisak praćenja',
 'tog-watchdeletion'           => 'Stranice koje brišem dodaj na moj spisak praćenja',
+'tog-minordefault'            => 'Označi da su sve izmjene u pravilu manje',
 'tog-previewontop'            => 'Prikaži pretpregled prije kutije za uređivanje',
 'tog-previewonfirst'          => 'Prikaži pretpregled na prvoj izmjeni',
 'tog-nocache'                 => 'Onemogući keš (cache) stranica u pregledniku',

@@ -123,6 +123,7 @@ $messages = array(
 'tog-watchdefault'            => "Aggiungi li pàgini mudìfiggaddi a l'abbaidaddi ippiziari",
 'tog-watchmoves'              => "Aggiungi li pàgini ippusthaddi a l'abbaidaddi ippiziari",
 'tog-watchdeletion'           => "Aggiungi li pàgini canzilladdi a l'abbaidaddi ippiziari",
+'tog-minordefault'            => "Indica tutti li mudìfigghi cumenti 'minori' in otomàtiggu",
 'tog-previewontop'            => "Musthra l'antiprimma sobra la casella di mudìfigga",
 'tog-previewonfirst'          => "Musthra l'antiprimma pa la primma mudìfigga",
 'tog-nocache'                 => 'Disattiba la mimória cache pa li pàgini',

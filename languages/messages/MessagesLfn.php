@@ -52,6 +52,7 @@ $messages = array(
 'tog-watchdefault'            => 'Junta pajes ce me ia edita a me lista de pajes oservada',
 'tog-watchmoves'              => 'Junta pajes ce me ia moveda a me lista de pajes oservada',
 'tog-watchdeletion'           => 'Junta pajes ce me ia sutrae a me lista de pajes oservada',
+'tog-minordefault'            => 'Marca costumal tota editas como minor',
 'tog-previewontop'            => 'Mostra la previde ante la caxa de editas',
 'tog-previewonfirst'          => 'Mostra la previde a la edita prima',
 'tog-nocache'                 => 'Desengana la reserva de pajes',

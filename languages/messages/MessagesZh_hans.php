@@ -231,6 +231,7 @@ $messages = array(
 'tog-watchdefault'            => '将我编辑的页面添加到我的监视列表',
 'tog-watchmoves'              => '将我移动的页面添加到我的监视列表',
 'tog-watchdeletion'           => '将我删除的页面添加到我的监视列表',
+'tog-minordefault'            => '默认将编辑设置为小编辑',
 'tog-previewontop'            => '在编辑框上方显示预览',
 'tog-previewonfirst'          => '在首次编辑时显示预览',
 'tog-nocache'                 => '禁止浏览器页面缓存',

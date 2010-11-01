@@ -234,6 +234,7 @@ $messages = array(
 'tog-watchdefault'            => "Atsofohy ao amin'ny lisitry ny pejy arahinao maso ny pejy izay ovainao na foroninao",
 'tog-watchmoves'              => "Ampina ao anatin'ny pejiko fanaraha-maso ny pejy soloiko anarana",
 'tog-watchdeletion'           => "Ampina anatin'ny pejy fanaraha-maso ny pejy nofafako",
+'tog-minordefault'            => 'Mariho ho madinika foana aloha ny fanovana rehetra',
 'tog-previewontop'            => "Asehoy alohan'ny boaty fanovana ny tsipalotra",
 'tog-previewonfirst'          => "Asehoy ny tsipalotra amin'ny fanovana voalohany",
 'tog-nocache'                 => 'Tsy alefa ny fanehoana ny pejy voasitriky ny mpitety',

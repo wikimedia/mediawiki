@@ -258,6 +258,7 @@ $messages = array(
 'tog-watchdefault'            => 'Aggiungi le pagine modificate agli osservati speciali',
 'tog-watchmoves'              => 'Aggiungi le pagine spostate agli osservati speciali',
 'tog-watchdeletion'           => 'Aggiungi le pagine cancellate agli osservati speciali',
+'tog-minordefault'            => 'Indica ogni modifica come minore (solo come predefinito)',
 'tog-previewontop'            => "Mostra l'anteprima sopra la casella di modifica e non sotto",
 'tog-previewonfirst'          => "Mostra l'anteprima per la prima modifica",
 'tog-nocache'                 => 'Disabilitare la cache delle pagine del browser',

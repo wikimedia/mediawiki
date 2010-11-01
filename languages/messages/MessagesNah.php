@@ -85,6 +85,7 @@ $messages = array(
 'tog-watchdefault'         => 'Tiquintlachiyāz zāzaniltin tiquimpatla',
 'tog-watchmoves'           => 'Tiquintlachiyāz zāzaniltin tiquinzaca',
 'tog-watchdeletion'        => 'Tiquintlachiyāz zāzaniltin tiquimpoloa',
+'tog-minordefault'         => 'Ticmachiyōtīz mochīntīn tlapatlalitzintli ic default',
 'tog-previewontop'         => 'Tiquittāz achtochīhualiztli achtopa tlapatlaliztli caxitl',
 'tog-previewonfirst'       => 'Xiquitta achtochīhualiztli inic cē tlapatlalizpan',
 'tog-enotifwatchlistpages' => 'Timitz-e-mailīzqueh ihcuāc mopatla cē zāzanilli tictlachiya.',

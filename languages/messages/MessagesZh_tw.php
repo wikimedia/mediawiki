@@ -103,6 +103,7 @@ $messages = array(
 'tog-underline'            => '連結標注底線',
 'tog-hideminor'            => '近期變動中隱藏細微修改',
 'tog-usenewrc'             => '增強版近期變動 (JavaScript)',
+'tog-minordefault'         => '預設將編輯設定為細微修改',
 'tog-enotifwatchlistpages' => '當我監視的頁面改變時發電子郵件給我',
 'tog-shownumberswatching'  => '顯示監視數目',
 'tog-uselivepreview'       => '使用即時預覽 (JavaScript) (試驗中)',

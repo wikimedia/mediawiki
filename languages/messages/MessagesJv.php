@@ -65,6 +65,7 @@ $messages = array(
 'tog-watchdefault'            => 'Tambahna kaca sing tak-sunting ing daftar pangawasan',
 'tog-watchmoves'              => 'Tambahkan kaca sing tak-pindhah ing daftar pangawasan',
 'tog-watchdeletion'           => 'Tambahkan kaca sing tak-busak ing daftar pangawasan',
+'tog-minordefault'            => 'Tandhanana kabèh suntingan dadi suntingan cilik secara baku',
 'tog-previewontop'            => 'Tuduhna pratayang sadurungé kothak sunting lan ora sawisé',
 'tog-previewonfirst'          => 'Tuduhna pratayang ing suntingan kapisan',
 'tog-nocache'                 => 'Patènana <em>cache</em> kaca',

@@ -32,6 +32,7 @@ $messages = array(
 'tog-watchdefault'            => 'Plusöx páhinám he ticpatlöx he listade cáminot',
 'tog-watchmoves'              => 'Plusöx páhinám he yacom he listade cáminot',
 'tog-watchdeletion'           => 'Plusöx páhinám he delatöx he listade cáminot',
+'tog-minordefault'            => 'Jömde ticpatlöx coccebj bajlöxamde auto',
 'tog-previewontop'            => "Cohuatlöx cuáxiit boxde ticpatlöx 'pre",
 'tog-previewonfirst'          => 'Cohuatlöx cuáxiitde 1. ticpatlöx',
 'tog-nocache'                 => 'Necoccebj cachede páhinám',

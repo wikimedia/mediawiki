@@ -313,6 +313,7 @@ $messages = array(
 'tog-watchdefault'            => "Pagina's dee-k wiezig op de volglieste zetten",
 'tog-watchmoves'              => "Pagina's dee-k herneume op de volglieste zetten",
 'tog-watchdeletion'           => "Pagina's dee-k vortdo op de volglieste zetten",
+'tog-minordefault'            => "Markeer alle veraanderingen as 'kleine wieziging'",
 'tog-previewontop'            => "De naokiekpagina boven 't bewarkingsveld zetten",
 'tog-previewonfirst'          => 'Naokieken bie eerste wieziging',
 'tog-nocache'                 => 'De tussenopslag van de webkieker uutzetten',

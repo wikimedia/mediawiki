@@ -192,6 +192,7 @@ $messages = array(
 'tog-watchdefault'            => 'Tilføj sider jeg redigerer til min overvågningsliste',
 'tog-watchmoves'              => 'Tilføj sider jeg flytter til min overvågningsliste',
 'tog-watchdeletion'           => 'Tilføj sider jeg sletter til min overvågningsliste',
+'tog-minordefault'            => 'Markér som standard alle redigering som mindre',
 'tog-previewontop'            => 'Vis forhåndsvisning over redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning når du starter med at redigere',
 'tog-nocache'                 => 'Slå browsercaching af sider fra',

@@ -151,6 +151,7 @@ $messages = array(
 'tog-watchdefault'            => 'Idagdag ang mga pahinang binago ko sa aking tala ng mga binabantayan',
 'tog-watchmoves'              => 'Idagdag ang mga pahinang inilipat ko sa aking tala ng mga binabantayan',
 'tog-watchdeletion'           => 'Idagdag mga pahinang ibinura ko sa aking tala ng mga binabantayan',
+'tog-minordefault'            => 'Markahan ang lahat ng pagbabago bilang maliit nang nakatakda',
 'tog-previewontop'            => 'Ipakita ang paunang tingin bago ang kahon ng pagbabago',
 'tog-previewonfirst'          => 'Ipakita ang paunang tingin sa unang pagbabago',
 'tog-nocache'                 => 'Huwag paganahin ang pagtatago ng pahinang pantingintingin',

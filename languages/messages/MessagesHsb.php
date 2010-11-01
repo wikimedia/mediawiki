@@ -153,6 +153,7 @@ $messages = array(
 'tog-watchdefault'            => 'Strony, kotrež wobdźěłuju, swojim wobkedźbowankam přidać',
 'tog-watchmoves'              => 'Sam přesunjene strony wobkedźbowankam přidać',
 'tog-watchdeletion'           => 'Sam wušmórnjene strony wobkedźbowankam přidać',
+'tog-minordefault'            => 'Wšě změny zwoprědka jako snadne woznamjenić',
 'tog-previewontop'            => 'Přehlad nad wobdźěłanskim polom pokazać',
 'tog-previewonfirst'          => 'Do składowanja přeco přehlad pokazać',
 'tog-nocache'                 => 'Pufrowanje stronow wobhladowaka znjemóžnić',

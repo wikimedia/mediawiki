@@ -224,6 +224,7 @@ $messages = array(
 'tog-watchdefault'            => 'Lys nuwe en gewysigde bladsye.',
 'tog-watchmoves'              => 'Voeg die bladsye wat ek skuif by my dophoulys',
 'tog-watchdeletion'           => 'Voeg bladsye wat ek verwyder by my dophoulys',
+'tog-minordefault'            => 'Merk alle wysigings automaties as klein by verstek.',
 'tog-previewontop'            => 'Wys voorskou bo wysigingsboks.',
 'tog-previewonfirst'          => 'Wys voorskou met eerste wysiging',
 'tog-nocache'                 => 'Deaktiveer blaaier se bladsykas',

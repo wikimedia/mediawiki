@@ -135,6 +135,7 @@ $messages = array(
 'tog-watchdefault'            => 'Ychwanegu tudalennau at fy rhestr wylio wrth i mi eu golygu',
 'tog-watchmoves'              => 'Ychwanegu tudalennau at fy rhestr wylio wrth i mi eu symud',
 'tog-watchdeletion'           => 'Ychwanegu tudalennau at fy rhestr wylio wrth i mi eu dileu',
+'tog-minordefault'            => 'Marcio pob golygiad fel un bach yn ddiofyn',
 'tog-previewontop'            => 'Dangos y rhagolwg cyn y blwch golygu',
 'tog-previewonfirst'          => 'Dangos rhagolwg ar y golygiad cyntaf',
 'tog-nocache'                 => 'Analluogi storio tudalennau yng nghelc y porydd',

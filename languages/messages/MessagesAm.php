@@ -66,6 +66,7 @@ $messages = array(
 'tog-watchdefault'            => 'ያረምኳቸውን ገጾች ወደምከታተላቸው ገጾች ዝርዝር ውስጥ ጨምር',
 'tog-watchmoves'              => 'ያዛወርኳቸውን ገጾች ወደምከታተላቸው ገጾች ዝርዝር ውስጥ ጨምር',
 'tog-watchdeletion'           => 'የሰረዝኳቸውን ገጾች ወደምከታተላቸው ገጾች ዝርዝር ውስጥ ጨምር',
+'tog-minordefault'            => 'ሁሉም እርማቶች በቀዳሚነት አነስተኛ ይባሉ',
 'tog-previewontop'            => 'ከማረሚያው ሳጥን በፊት ቅድመ-ዕይታ አሳይ',
 'tog-previewonfirst'          => 'በመጀመሪያ እርማት ቅድመ-ዕይታ ይታይ',
 'tog-nocache'                 => 'ገጽ መቆጠብን አታስችል',

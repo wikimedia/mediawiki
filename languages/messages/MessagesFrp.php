@@ -320,6 +320,7 @@ $messages = array(
 'tog-watchdefault'            => 'Apondre les pâges que chanjo a ma lista de survelyence',
 'tog-watchmoves'              => 'Apondre les pâges que renomo a ma lista de survelyence',
 'tog-watchdeletion'           => 'Apondre les pâges que suprimo a ma lista de survelyence',
+'tog-minordefault'            => 'Marcar mos changements coment petiôts per dèfôt',
 'tog-previewontop'            => 'Montrar la prèvisualisacion en-dessus de la bouèta d’èdicion',
 'tog-previewonfirst'          => 'Montrar la prèvisualisacion pendent la premiére èdicion',
 'tog-nocache'                 => 'Dèsactivar lo cache de les pâges per lo navigator',

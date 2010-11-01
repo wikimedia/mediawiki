@@ -42,6 +42,7 @@ $messages = array(
 'tog-watchdefault'            => 'Add pages ye edit tae yer watchleet',
 'tog-watchmoves'              => 'Eik pages A move tae ma watchleet',
 'tog-watchdeletion'           => 'Eik pages A get rid o tae ma watchleet',
+'tog-minordefault'            => 'Mairk aa edits "smaa" bi defaut',
 'tog-previewontop'            => 'Shaw scance afore edit box an no efter it',
 'tog-previewonfirst'          => 'Shaw scance on first edit',
 'tog-nocache'                 => 'Disable page cachin',
