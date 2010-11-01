@@ -26,6 +26,7 @@ $messages = array(
 'tog-watchdefault'           => 'Zaydn tasniwin lli tżrigɣ i umuɣ n tilli tsaggaɣ',
 'tog-watchmoves'             => 'Zayd tisniwin lli smattayɣ i tilli tsggaɣ.',
 'tog-watchdeletion'          => 'Zaydn tasniwin lli kkesɣ i tilli tsaggaɣ',
+'tog-minordefault'           => 'Rcm kullu iẓṛign li fssusni sɣiklli gan.',
 'tog-nocache'                => 'ador itsjjal lmtasaffih tawriqt ad',
 'tog-enotifwatchlistpages'   => 'sifd yi tabrat  igh ibdl kra yat twriqt ghomdfor inu',
 'tog-enotifusertalkpages'    => 'sifd yi tabrat  igh tbdl tawriqt ohokko-no',
@@ -39,7 +40,6 @@ $messages = array(
 'tog-ccmeonemails'           => 'sifd yi noskha n tibratin liyid safdn wiyad',
 'tog-showhiddencats'         => 'sbaynd tsnifat ihbanin',
 'tog-norollbackdiff'         => 'hiyd lfarq baad lqiyam bstirjaa',
-'tog-minordefault'     => 'Rcm kullu iẓṛign li fssusni sɣiklli gan.',
 
 'underline-always'  => 'dima',
 'underline-never'   => 'ḥtta manak',

@@ -511,7 +511,7 @@ Anne Speicherung koan dann Seytainhalt zerstiera. Dies geschieht bisweilen durch
 Doas obere Textfeld enthält dann aktuellen Stand.
 Doas undere Textfeld enthält denne Änderungen.
 Bitte fiege denne Änderungen ei doas obere Textfeld a.
-'''Ock''' dar Inhalt des oberen Textfeldes werd gespeichert, wenn du uff „Seyte speichern“ klickst!",
+'''Ock''' dar Inhalt des oberen Textfeldes werd gespeichert, wenn du uff „{{int:savearticle}}“ klickst!",
 'yourtext'                         => 'Deen Text',
 'nonunicodebrowser'                => "'''Ochtiche:''' Dei Browser koan Unicode-Zeicha ne richtig veroarbeeta. Bitte verwende a'n andern Browser im Seyta zu beoarbeeta.",
 'editingold'                       => "'''OCHTICHE: Du beoarbeetest anne aale Version dieser Seyte. Wenn du speicherst, waan olle neueren Versionen ieberschrieba.'''",

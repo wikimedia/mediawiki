@@ -726,7 +726,7 @@ Kjo ndodh nganjiherë, kur jeni tue përdorë shërbime ndërmjetësash anonimiz
 Kutia e sipërme tregon tekstin aktual të faqes.
 Ndryshimet tueja gjinden në kutinë e poshtme redaktuese.
 Ju duheni me i bashkue ndryshimet tueja në tekstin aktual.
-'''Vetëmse''' nëse shtypni \"Regjistro faqen\" ka me u ruejtë teksti në kutinë e sipërme redaktuese.",
+'''Vetëmse''' nëse shtypni \"{{int:savearticle}}\" ka me u ruejtë teksti në kutinë e sipërme redaktuese.",
 'yourtext'                         => 'Teksti juej',
 'storedversion'                    => 'Rishikim i ruejtun',
 'nonunicodebrowser'                => "'''Kujdes: Shfletuesi juej nuk e përkrah unicodein.'''

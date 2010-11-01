@@ -738,7 +738,7 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'explainconflict'                  => "Aya nu geus ngarobah kaca ieu saprak anjeun mimiti ngédit.
 Téks béh luhur ngandung téks kaca nu aya kiwari, parobahan anjeun ditémbongkeun di béh handap.
 Anjeun kudu ngagabungkeun parobahan anjeun kana téks nu kiwari.
-'''Ngan''' téks nu béh luhur nu bakal disimpen nalika anjeun mencét \"Simpen\".",
+'''Ngan''' téks nu béh luhur nu bakal disimpen nalika anjeun mencét \"{{int:savearticle}}\".",
 'yourtext'                         => 'Tulisan anjeun',
 'storedversion'                    => 'Vérsi nu disimpen',
 'nonunicodebrowser'                => "'''AWAS: Panyungsi anjeung teu maké unicode, mangga robah heula méméh ngédit artikel.'''",

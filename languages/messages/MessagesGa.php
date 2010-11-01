@@ -639,7 +639,7 @@ thuas mar a taispeáinfear é má sábháilfear é.',
 Tá téacs an leathanaigh mar atá sé faoi láthair le feiceáil thuas.
 Tá do chuid athruithe le feiceáil thíos.
 Caithfidh tú do chuid athruithe a chumasc leis an leagan reatha.
-Ní shábhálfar '''ach''' an téacs thuas nuair a bhrúnn tú ar an gcnaipe \"Sábháil an lch\".",
+Ní shábhálfar '''ach''' an téacs thuas nuair a bhrúnn tú ar an gcnaipe \"{{int:savearticle}}\".",
 'yourtext'                         => 'Do chuid téacs',
 'storedversion'                    => 'Eagrán sábháilte',
 'editingold'                       => "'''Rabhadh: Tá tú ag athrú leagan an leathanaigh seo atá as dáta.

@@ -211,7 +211,7 @@ Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten 
 In het bovenste deel van het venster staat de tekst van de huidige pagina.
 Je bewerking staat in het onderste gedeelte.
 Je dient je bewerkingen in te voegen in de bestaande tekst.
-'''Alleen''' de tekst in het bovenste gedeelte wordt opgeslagen als je op \"Pagina opslaan\" klikt.",
+'''Alleen''' de tekst in het bovenste gedeelte wordt opgeslagen als je op \"{{int:savearticle}}\" klikt.",
 'yourtext'                         => 'Je tekst',
 'nonunicodebrowser'                => "'''WAARSCHUWING: Je browser kan niet goed overweg met unicode.
 Hiermee wordt door de MediaWiki-software rekening gehouden zodat je toch zonder problemen pagina's kunt bewerken: niet-ASCII karakters worden in het bewerkingsveld weergegeven als hexadecimale codes.'''",

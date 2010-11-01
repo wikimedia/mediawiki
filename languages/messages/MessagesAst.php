@@ -624,7 +624,7 @@ que pasa cuando tas usando un proxy anónimu basáu en web que seya problemátic
 Na área de testu d'enriba ta'l testu de la páxina como ta nestos momentos.
 Los tos cambeos amuésense na área de testu d'embaxo.
 Vas tener que fusionar los tos cambeos dientro del testu esistente.
-'''Namái''' va guardase'l testu de l'área d'enriba cuando calques en \"Guardar páxina\".",
+'''Namái''' va guardase'l testu de l'área d'enriba cuando calques en \"{{int:savearticle}}\".",
 'yourtext'                         => 'El to testu',
 'storedversion'                    => 'Versión almacenada',
 'nonunicodebrowser'                => "'''AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.'''",

@@ -777,7 +777,7 @@ Se no funsiona gnancora, te pol proár a [[Special:UserLogout|scolegarte]] e efe
 La casela de modifica de sora contegne el testo de la voxe ne ła so forma atuałe (el testo atualmente online).
 Le to modifiche łe xè invese contegnue ne ła caseła de modifica de soto.
 Te dovarè inserire, se te vołi, le to modifiche nel testo esistente, e perciò scrivarle ne ła caseła de sora.
-'''Soltanto''' el testo ne ła caseła de sora el sarà salvà se te struchi el botón \"Salva\".",
+'''Soltanto''' el testo ne ła caseła de sora el sarà salvà se te struchi el botón \"{{int:savearticle}}\".",
 'yourtext'                         => 'El to testo',
 'storedversion'                    => 'Version in archivio',
 'nonunicodebrowser'                => "'''OCIO: Te stè doparando un browser mìa conpatibile coi caràteri Unicode. Par consentir la modifica de le pagine senza crear inconvenienti, i caràteri non ASCII i vien mostrà ne la casela de modifica soto forma de codici esadecimali.'''",

@@ -58,18 +58,6 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 'minimum-size' => 'Mindestgrösse',
 'maximum-size' => 'Maximalgrösse:',
 
-# Block/unblock
-'ipbreason-dropdown' => '* Allgemeine Sperrgründe
-** Löschen von Seiten
-** Einstellen unsinniger Seiten
-** Fortgesetzte Verstösse gegen die Richtlinien für Weblinks
-** Verstoss gegen den Grundsatz „Keine persönlichen Angriffe“
-* Benutzerspezifische Sperrgründe
-** Ungeeigneter Benutzername
-** Neuanmeldung eines unbeschränkt gesperrten Benutzers
-* IP-spezifische Sperrgründe
-** Proxy, wegen Vandalismus einzelner Benutzer längerfristig gesperrt',
-
 # Thumbnails
 'djvu_page_error' => 'DjVu-Seite ausserhalb des Seitenbereichs',
 

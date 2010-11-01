@@ -16,6 +16,7 @@
  * @author Gaoxuewei
  * @author Gzdavidwong
  * @author Horacewai2
+ * @author Hydra
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author KaiesTse
@@ -640,7 +641,7 @@ $2',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
 'passwordtooshort'           => '您的密码至少需要$1个字符。',
 'password-name-match'        => '您的密码必须和您的用户名不相同。',
-'password-too-weak'          => '所提供的密码过弱不能使用。',
+'password-too-weak'          => '所提供的密码过弱，所以不能使用。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
 'passwordremindertext'       => '有人（可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。
@@ -832,7 +833,7 @@ $2',
 上面的文字框内显示的是目前本页的内容。
 你所做的修改显示在下面的文字框中。
 你应当将你所做的修改加入现有的内容中。
-<b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。<br />',
+<b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。',
 'yourtext'                         => '您的文字',
 'storedversion'                    => '已保存修订版本',
 'nonunicodebrowser'                => "'''警告：您的浏览器不兼容Unicode编码。'''这里有一个工作区将使您能安全地编辑页面：非ASCII字符将以十六进制编码方式出现在编辑框中。",

@@ -39,6 +39,7 @@ $messages = array(
 'tog-watchdefault'            => 'Vo mir soywer genderde Seiten autómaatisch bówochten',
 'tog-watchmoves'              => 'Vo mir soywer vaschówane Seiten autómaatisch bówochten',
 'tog-watchdeletion'           => 'Vo mir soywer gleschde Seiten autómaatisch bówochten',
+'tog-minordefault'            => 'De eigenen Ändarungen standardmäßig åis geringfügig markian',
 'tog-previewontop'            => 'Vurschau ówerhoib vom Beorweitungsfenster åzoang',
 'tog-previewonfirst'          => "Ban ersten Beorweiten oiwei d'Vurschau åzoang",
 'tog-nocache'                 => 'Saitencache vom Browser deaktiviarn',
@@ -61,7 +62,6 @@ $messages = array(
 'tog-watchlisthidepatrolled'  => 'Kontrollirde Endarungen in da Beowochtungslisten ausblenden',
 'tog-ccmeonemails'            => 'Schick ma Kopiin vo de E-Mäils, de i åndre Benytzer send',
 'tog-showhiddencats'          => 'Vasteckte Kategoriin åzoang',
-'tog-minordefault'           => 'De eigenen Ändarungen standardmäßig åis geringfügig markian',
 
 'underline-always'  => 'oiwai',
 'underline-never'   => 'nia',
@@ -463,7 +463,7 @@ Soidad des Probleem bestee blaim, [[Special:UserLogout|möid de ob]] und danoch 
 Des owere Textföidl enthoit 'n aktuöin Stånd.
 Des untare Textföidl enthoit daine Enderungen.
 Bittschee fiag daine Enderungen ins owere Textföidl ai.
-'''Netter''' da Inhoit vom owern Textföidl werd gspaichert, wånn du auf  „Saiten spaichern“ druckst!",
+'''Netter''' da Inhoit vom owern Textföidl werd gspaichert, wånn du auf  „{{int:savearticle}}“ druckst!",
 'yourtext'                         => 'Dai Text',
 'editingold'                       => "'''Ochtung: Du beorwaitst a oide Version vo derer Saiten. Wånn du spaichertst, wern olle naichen Versionen ywerschriim!'''",
 'copyrightwarning'                 => "'''Bittschee kopiar koane Websaiten, dé néd daine oaganen san, benytz koane urhéwerrechtléch gschytzten Werke óne aner Dalaabnis vom Urhéwer!'''<br />

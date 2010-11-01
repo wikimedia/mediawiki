@@ -954,11 +954,11 @@ Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal
 'editingsection'                   => 'A editar $1 (secção)',
 'editingcomment'                   => 'A editar $1 (nova secção)',
 'editconflict'                     => 'Conflito de edição: $1',
-'explainconflict'                  => "Alguém mudou a página enquanto você a editava.
-A caixa de texto acima mostra o texto existente, na forma como está neste momento.
-As suas mudanças são mostradas na caixa abaixo.
-Terá de reintegrar as suas mudanças no texto da caixa acima.
-'''Só''' o texto na caixa acima será gravado quando clicar \"Gravar página\".<br />",
+'explainconflict'                  => "Alguém mudou a página desde que começou a editá-la.
+A caixa de texto abaixo mostra o texto existente neste momento.
+As suas mudanças são mostradas na área ao fundo da página.
+Terá de reintegrar as suas mudanças no texto da caixa abaixo.
+'''Só''' o texto desta caixa será gravado quando clicar \"{{int:savearticle}}\".",
 'yourtext'                         => 'O seu texto',
 'storedversion'                    => 'Versão guardada',
 'nonunicodebrowser'                => "'''Aviso: O seu browser não é compatível com as especificações Unicode.
@@ -1998,6 +1998,7 @@ Agora redirecciona para [[$2]].',
 'nrevisions'              => '$1 {{PLURAL:$1|edição|edições}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
 'nimagelinks'             => 'Usada {{PLURAL:$1|numa página|em $1 páginas}}',
+'ntransclusions'          => 'usada {{PLURAL:$1|numa página|em $1 páginas}}',
 'specialpage-empty'       => 'Não existem dados para apresentar.',
 'lonelypages'             => 'Páginas órfãs',
 'lonelypagestext'         => 'As seguintes páginas não são destino de links nem são transcluídas a partir de outras páginas na {{SITENAME}}.',

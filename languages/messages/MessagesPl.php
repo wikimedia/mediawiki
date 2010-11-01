@@ -898,7 +898,7 @@ Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych siec
 Górne pole zawiera tekst strony aktualnie zapisany w bazie danych.
 Twoje zmiany znajdują się w dolnym polu.
 By wprowadzić swoje zmiany, musisz zmodyfikować tekst z górnego pola.
-'''Tylko''' tekst z górnego pola zostanie zapisany w bazie, gdy wciśniesz „Zapisz”.",
+'''Tylko''' tekst z górnego pola zostanie zapisany w bazie, gdy wciśniesz „{{int:savearticle}}”.",
 'yourtext'                         => 'Twój tekst',
 'storedversion'                    => 'Zapisana wersja',
 'nonunicodebrowser'                => "'''Uwaga! Twoja przeglądarka nie rozpoznaje poprawnie kodowania UTF‐8 (Unicode).
@@ -1921,6 +1921,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'nrevisions'              => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'nviews'                  => 'odwiedzono $1 {{PLURAL:$1|raz|razy}}',
 'nimagelinks'             => 'Używane na $1 {{PLURAL:$1|stronie|stronach}}',
+'ntransclusions'          => 'używany na $1 {{PLURAL:$1|stronie|stronach}}',
 'specialpage-empty'       => 'Ta strona raportu jest pusta.',
 'lonelypages'             => 'Porzucone strony',
 'lonelypagestext'         => 'Do poniższych stron nie linkuje żadna inna strona lub nie są one dołączone do innych stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',

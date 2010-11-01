@@ -938,11 +938,11 @@ Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal
 'editingsection'                   => 'Editando $1 (seção)',
 'editingcomment'                   => 'Editando $1 (nova seção)',
 'editconflict'                     => 'Conflito de edição: $1',
-'explainconflict'                  => 'Alguém mudou a página enquanto você a estava editando.
+'explainconflict'                  => "Alguém mudou a página enquanto você a estava editando.
 A área de texto acima mostra o texto original.
 Suas mudanças são mostradas na área abaixo.
 Você terá que mesclar suas modificações no texto existente.
-<b>SOMENTE</b> o texto na área acima será salvo quando você pressionar "Salvar página".<br />',
+'''SOMENTE''' o texto na área acima será salvo quando você pressionar \"{{int:savearticle}}\".",
 'yourtext'                         => 'Seu texto',
 'storedversion'                    => 'Versão guardada',
 'nonunicodebrowser'                => "'''AVISO: O seu navegador não é compatível com as especificações unicode.'''

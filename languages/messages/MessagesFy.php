@@ -720,7 +720,11 @@ Dat bart soms as der in webbasearre proxytsjinst brûkt wurdt dy't flaters befet
 'editingsection'                   => 'Bewurkje $1 (seksje)',
 'editingcomment'                   => 'Dwaande mei bewurkjen fan $1 (opmerking)',
 'editconflict'                     => 'Tagelyk bewurke: "$1"',
-'explainconflict'                  => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen. It earste bewurkingsfjild is hoe't de tekst wilens wurden is. Jo feroarings stean yn it twadde fjild. Dy wurde allinnich tapast safier as jo se yn it earste fjild ynpasse. <b>Allinnich</b> de tekst út it earste fjild kin fêstlein wurde. <p>",
+'explainconflict'                  => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen.
+It earste bewurkingsfjild is hoe't de tekst wilens wurden is.
+Jo feroarings stean yn it twadde fjild.
+Dy wurde allinnich tapast safier as jo se yn it earste fjild ynpasse.
+'''Allinnich''' de tekst út it earste fjild kin fêstlein wurde.",
 'yourtext'                         => 'Jo tekst',
 'storedversion'                    => 'Fêstleine ferzje',
 'nonunicodebrowser'                => "'''WARSKOGING: Jo browser kin net goed oer de wei mei unicode.

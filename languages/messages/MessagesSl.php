@@ -834,7 +834,7 @@ Največkrat je razlog uporaba hroščato spletno anonimizacijsko storitev.",
 'explainconflict'                  => "Med vašim urejanjem je stran spremenil nekdo drug.
 Zgornje urejevalno polje vsebuje njeno trenutno vsebino.
 Vaše spremembe so prikazane v spodnjem polju, ki jih boste morali združiti z obstoječim besedilom.
-'''Samo''' besedilo v zgornjem polju bo shranjeno, ko boste izbrali ukaz »Shrani stran«.",
+'''Samo''' besedilo v zgornjem polju bo shranjeno, ko boste izbrali ukaz »{{int:savearticle}}«.",
 'yourtext'                         => 'Vaše besedilo',
 'storedversion'                    => 'Shranjena redakcija',
 'nonunicodebrowser'                => "'''Opozorilo: Vaš brskalnik ne podpira Unicode.'''
@@ -1871,6 +1871,7 @@ Sedaj je preusmeritev na [[$2]].',
 'nrevisions'              => '$1 {{PLURAL:$1|redakcija|redakciji|redakcije|redakcij|redakcij}}',
 'nviews'                  => '$1 {{PLURAL:$1|ogled|ogleda|ogledi|ogledov|ogledov}}',
 'nimagelinks'             => 'Uporabljeno na $1 {{PLURAL:$1|strani|straneh}}',
+'ntransclusions'          => 'uporabljeno na $1 {{PLURAL:$1|strani|straneh}}',
 'specialpage-empty'       => 'Za to poročilo ni rezultatov.',
 'lonelypages'             => 'Osirotele strani',
 'lonelypagestext'         => 'Naslednje strani niso povezane ali vključene v nobeno drugo stran na {{GRAMMAR:locative|{{SITENAME}}}}.',

@@ -772,7 +772,7 @@ Haya hutokea kwa muda ambao unatumia huduma ya seva ya wavu isiyotiwa jina na ye
 Sanduku la juu inaonyesha maandiko yaliyopo sasa hivi kwenye ukurasa.
 Mabadiliko yako yanaonyeshwa kwenye sanduku la chini.
 Inabidi uingize mabadiliko yako ndani ya sanduku la juu.
-Ni maandiko yaliyopo ndani ya sanduku la juu '''tu''' ambayo yatahifadhiwa utakapobonyeza \"Hifadhi ukurasa\".",
+Ni maandiko yaliyopo ndani ya sanduku la juu '''tu''' ambayo yatahifadhiwa utakapobonyeza \"{{int:savearticle}}\".",
 'yourtext'                         => 'Maandishi yako',
 'storedversion'                    => 'Pitio lililohifadhiwa mwishoni',
 'nonunicodebrowser'                => "'''Ilani: browser yako si Unicode inavyotakikana.''' 

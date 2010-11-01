@@ -491,7 +491,7 @@ Exemple:  {{ns:user}}:Foo/monobook.css (bon)  {{ns:user}}:Foo/Monobook.css (mauv
 La boëtte de changements en haut contient le texte de la page comme c'est asteur.
 Vos changements sont montrés dans la boëtte de changements en bas.
 Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
-'''Juste''' le texte dans la boëtte de changements en haut va être sauvé quand vous pèsez \"Sauvez\".",
+'''Juste''' le texte dans la boëtte de changements en haut va être sauvé quand vous pèsez \"{{int:savearticle}}\".",
 'yourtext'                   => 'Votre texte',
 'storedversion'              => 'Version sauvée',
 'nonunicodebrowser'          => "'''ATTENTION: Votre navigateur supporte pas les caractères unicode.  Une solution de peu de durée a été trouvée pour que vous peuvez changer des articles sans problèmes.  Les caractères qui sont pas ASCII va apparaître dans la boëte de changements comme des codes hexadécimaux.'''",

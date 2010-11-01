@@ -751,7 +751,7 @@ A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 O quatrón de texto superior contiene o texto d'a pachina como ye actualment.
 Os suyos cambeos s'amuestran en o quatrón de texto inferior.
 Habrá d'incorporar os suyos cambeos en o texto existent.
-'''Nomás''' o texto en o quatrón superior s'alzará quan prete o botón \"Alzar a pachina\".",
+'''Nomás''' o texto en o quatrón superior s'alzará quan prete o botón \"{{int:savearticle}}\".",
 'yourtext'                         => 'O texto suyo',
 'storedversion'                    => 'Versión almadazenata',
 'nonunicodebrowser'                => "'''Pare cuenta: O suyo navegador no cumple a norma Unicode. S'ha activato un sistema d'edición alternativo que li premitirá d'editar articlos con seguridat: os carácters no ASCII aparixerán en a caixa d'edición como codigos hexadecimals.'''",

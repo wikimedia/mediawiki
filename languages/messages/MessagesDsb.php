@@ -767,7 +767,7 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 Górjejcne tekstowe pólo wopśimjejo tekst boka, ako tuchylu eksistěrujo.
 Twóje změny pokazuju se w dołojcnem tekstowem pólu.
 Pšosym zapódaj twóje změny do górjejcnego tekstowego póla.
-'''Jano''' wopśimjeśe górjejcnego tekstowego póla se składujo, gaž tłocyš na \"składowaś\".",
+'''Jano''' wopśimjeśe górjejcnego tekstowego póla se składujo, gaž tłocyš na \"{{int:savearticle}}\".",
 'yourtext'                         => 'Twój tekst',
 'storedversion'                    => 'Składowana wersija',
 'nonunicodebrowser'                => "'''Glědaj:''' Twój browser njamóžo unicodowe znamuška pšawje pśeźěłaś. Pšosym wužywaj hynakšy browser.",

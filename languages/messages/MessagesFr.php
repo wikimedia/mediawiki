@@ -990,7 +990,7 @@ Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anon
 La zone de modification supérieure contient le texte tel qu’il est enregistré actuellement dans la base de données.
 Vos modifications apparaissent dans la zone de modification inférieure.
 Vous allez devoir fusionner vos modifications dans le texte existant.
-'''Seul''' le texte de la zone supérieure sera sauvegardé quand vous cliquerez sur « {{MediaWiki:Savearticle}} ».",
+'''Seul''' le texte de la zone supérieure sera sauvegardé quand vous cliquerez sur « {{int:savearticle}} ».",
 'yourtext'                         => 'Votre texte',
 'storedversion'                    => 'La version enregistrée',
 'nonunicodebrowser'                => "'''Attention : Votre navigateur ne supporte pas l’Unicode.'''

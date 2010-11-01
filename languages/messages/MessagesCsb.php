@@ -510,7 +510,11 @@ Mòżesz [[Special:Search/{{PAGENAME}}|szëkac za {{PAGENAME}} na jinych starnac
 'previewnote'                      => "'''To je blós pòdzérk - artikel jesz nie je zapisóny!'''",
 'editing'                          => 'Edicëjô $1',
 'editingsection'                   => 'Edicëjô $1 (dzél)',
-'explainconflict'                  => 'Chtos sfórtowôł wprowadzëc swòją wersëjã artikla òbczôs Twòji edicëji. Górné pòle edicëji zamëkô w se tekst starnë aktualno zapisóny w pòdôwkòwi baze. Twòje zmianë są w dólnym pòlu edicëji. Bë wprowadzëc swòje zmianë mùszisz zmòdifikòwac tekst z górnégò pòla. <b>Blós</b> tekst z górnégò pòla mdze zapisóny w baze czej wcësniesz "Zapiszë".',
+'explainconflict'                  => "Chtos sfórtowôł wprowadzëc swòją wersëjã artikla òbczôs Twòji edicëji.
+Górné pòle edicëji zamëkô w se tekst starnë aktualno zapisóny w pòdôwkòwi baze.
+Twòje zmianë są w dólnym pòlu edicëji.
+Bë wprowadzëc swòje zmianë mùszisz zmòdifikòwac tekst z górnégò pòla.
+'''Blós''' tekst z górnégò pòla mdze zapisóny w baze czej wcësniesz \"{{int:savearticle}}\".",
 'yourtext'                         => 'Twój tekst',
 'yourdiff'                         => 'Zjinaczi',
 'copyrightwarning'                 => "Bôczë, że wszëtczé edicëje w {{SITENAME}} są wprowadzané pòd zastrzégą $2 (òb. $1 dlô detalów). Jeżlë nie chcesz bë to co napiszesz bëło editowóné czë kòpijowóné, tedë nie zacwierdzôj nëch edicëjów.<br />Zacwierdzając zmianë dôwôsz parolã, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów. '''NIE DODÔWÔJ CËZËCH TEKSTÓW BEZ ZEZWÒLENIÔ!'''",

@@ -928,10 +928,11 @@ As 't dan nog preblemen geef, prebeer dan um [[Special:UserLogout|opniej an te m
 'editingcomment'                   => 'Bewark: $1 (niej onderwarp)',
 'editconflict'                     => 'Bewarkingskonflik: $1',
 'explainconflict'                  => "'''NB:''' een aander hef disse pagina ewiezig naoda-j an disse bewarking begunnen bin.
-
-'t Bovenste bewarkingsveld laot de pagina zien zoas 't noen is. Daoronder (bie \"Wiezigingen\") staon de verschillen tussen joew versie en de op-esleugen pagina. Helemaole onderan (bie \"Joew tekse\") steet nog een bewarkingsveld mit joew versie.
-
-Je zullen je eigen wiezigingen in de nieje tekse in mutten passen. Allinnig de tekse in 't bovenste veld wonnen beweerd a-j noen kiezen veur \"Pagina opslaon\".",
+'t Bovenste bewarkingsveld laot de pagina zien zoas 't noen is.
+Daoronder (bie \"Wiezigingen\") staon de verschillen tussen joew versie en de op-esleugen pagina.
+Helemaole onderan (bie \"Joew tekse\") steet nog een bewarkingsveld mit joew versie.
+Je zullen je eigen wiezigingen in de nieje tekse in mutten passen.
+'''Allinnig''' de tekse in 't bovenste veld wonnen beweerd a-j noen kiezen veur \"{{int:savearticle}}\".",
 'yourtext'                         => 'Joew tekse',
 'storedversion'                    => 'Op-esleugen versie',
 'nonunicodebrowser'                => "'''Waorschuwing: de webkieker kan neet goed overweg mit unicode, schakel over op een aandere webkieker um de wiezigingen an te brengen!'''",

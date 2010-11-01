@@ -794,7 +794,7 @@ Kjo ndodh ndonjëherë kur përdoren shërbime ndërjmetësash anonim.'''",
 Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani.
 Ndryshimet juaja janë treguar poshtë kutisë së redaktimit.
 Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues.
-'''Vetëm''' teksti në kutinë e sipërme të redaktimit do të ruhet kur të shtypni \"Ruaje faqen\".",
+'''Vetëm''' teksti në kutinë e sipërme të redaktimit do të ruhet kur të shtypni \"{{int:savearticle}}\".",
 'yourtext'                         => 'Teksti juaj',
 'storedversion'                    => 'Versioni i ruajtur',
 'nonunicodebrowser'                => "'''KUJDES: Shfletuesi juaj nuk përdor dot unikode, ju lutem ndryshoni shfletues para se të redaktoni artikuj.'''",

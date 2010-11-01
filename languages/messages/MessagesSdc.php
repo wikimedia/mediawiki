@@ -648,7 +648,7 @@ S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni 
 La casella di mudìfigga superiori cunteni lu testhu di la pàgina attuarmenti in lìnia, cumenti è isthadda mudìfiggadda da l'althru utenti.
 La versioni cu' li mudìfigghi tói è i' la casella di mudìfigga in giossu.
 Si vói cunfèimmalli, dévi arriggà li mudìfigghi tói i' lu testhu esisthenti (casella superiori).
-'''Soru''' lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"Sàivva la pàgina\".",
+'''Soru''' lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"{{int:savearticle}}\".",
 'yourtext'                         => 'Lu testhu tóiu',
 'storedversion'                    => 'La versioni mimurizadda',
 'nonunicodebrowser'                => "'''ATTINZIONI: Lu nabiggadori tóiu nò è cumpatìbiri cu' li caràtteri Unicode. Pa cunsintì la mudìfigga di li pàgini chena crià incunvinienti, i caràtteri nò ASCII so visuarizzaddi i' la casella di mudìfigga cumenti còdizi esadezimari.'''",

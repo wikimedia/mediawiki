@@ -657,7 +657,7 @@ Ja tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un
 Augšējā teksta logā ir lapas teksts tā pašreizējā versijā.
 Tevis veiktās izmaiņas ir redzamas apakšējā teksta logā.
 Lai saglabātu savas izmaiņas, tev ir jāapvieno savs teksts ar saglabāto pašreizējo variantu.
-Kad spiedīsi pogu \"Saglabāt lapu\", tiks saglabāts '''tikai''' teksts, kas ir augšējā teksta logā.",
+Kad spiedīsi pogu \"{{int:savearticle}}\", tiks saglabāts '''tikai''' teksts, kas ir augšējā teksta logā.",
 'yourtext'                         => 'Tavs teksts',
 'storedversion'                    => 'Saglabātā versija',
 'nonunicodebrowser'                => "'''Brīdinājums: Tavs pārlūks neatbalsta unikodu.

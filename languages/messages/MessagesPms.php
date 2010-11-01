@@ -441,6 +441,7 @@ Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENA
 'yourpassword'               => 'Soa ciav',
 'yourpasswordagain'          => 'Che a bata torna soa ciav',
 'remembermypassword'         => "↓ Vis-te mia ciav ansima a st'ordinator-sì (për al pi $1 {{PLURAL:$1|di|di}})",
+'securelogin-stick-https'    => "Stà colegà a HTTPS d'apress dël login",
 'yourdomainname'             => 'Sò domini',
 'externaldberror'            => "Ò che a l'é rivaje n'eror d'autenticassion esterna, ò pura a l'é chiel (chila) che a l'é nen autorisà a agiornesse sò cont estern.",
 'login'                      => 'Rintré ant ël sistema',
@@ -480,6 +481,7 @@ Controla ël nòm che it l\'has batù, o [[Special:UserLogin/signup|fà un neuv 
 'wrongpasswordempty'         => "A l'ha butà na ciav veujda. Për piasì, che a preuva torna.",
 'passwordtooshort'           => 'Le ciav a devo avèj almanch {{PLURAL:$1|1 caràter|$1 caràter}}.',
 'password-name-match'        => 'Toa ciav a deuv esse diferenta da tò stranòm.',
+'password-too-weak'          => "La ciav dàita a l'é tròp debla e a peul pa esse dovrà",
 'mailmypassword'             => 'Mandme na neuva ciav për pòsta eletrònica',
 'passwordremindertitle'      => 'Servissi për visé la paròla ciav ëd {{SITENAME}}',
 'passwordremindertext'       => "Cheidun (a l'é belfé che a sia stàit pròpe chiel, da 'nt l'adrëssa IP \$1) a l'ha ciamà che i-j mandèisso
@@ -681,10 +683,10 @@ test ch'a-i é già. Sossì dle vire a riva quand un a deuvra un programa proxy 
 'editingsection'                   => 'I soma dapress a modifiché $1 (session)',
 'editingcomment'                   => 'I soma dapress a modifiché $1 (neuva session)',
 'editconflict'                     => "Conflit d'edission: $1",
-'explainconflict'                  => "Cheidun d'àutr a l'ha salvà soa version dl'artìcol antramentré che chiel (chila) as prontava la soa.<br />
+'explainconflict'                  => "Cheidun d'àutr a l'ha salvà soa version dl'artìcol antramentré che chiel (chila) as prontava la soa.
 Ël quàder ëd modìfica dë dzora a mostra ël test ëd l'artìcol coma a resta adess (visadì, lòn che a-i é ant sla Ragnà). Soe modìfiche a stan ant ël quàder dë sota.
 Ën volend a peul gionté soe modìfiche ant ël quàder dë dzora.
-<b>Mach</b> ël test ant ël quàder dë dzora a sarà salvà, ën sgnacand ël boton \"Salva\".<br />",
+'''Mach''' ël test ant ël quàder dë dzora a sarà salvà, ën sgnacand ël boton \"{{int:savearticle}}\".",
 'yourtext'                         => 'Sò test',
 'storedversion'                    => 'Version memorisà',
 'nonunicodebrowser'                => "'''A L'EUJ! Sò programa ëd navigassion (browser) a travaja pa giust con lë stàndard unicode. I soma obligà a dovré dij truschin përchè a peula salvesse sò artìcoj sensa problema: ij caràter che a son nen ASCII a jë s-ciairerà ant ël quàder ëd modìfica test coma còdes esadecimaj.'''",
@@ -1559,6 +1561,7 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé l'ó
 'listfiles_search_for'  => "Arserché un nòm d'archivi multimojen:",
 'imgfile'               => 'archivi',
 'listfiles'             => "Lista d'archivi",
+'listfiles_thumb'       => 'Figurin-a',
 'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nòm',
 'listfiles_user'        => 'Utent',
@@ -1711,6 +1714,8 @@ Adess a l'é na rediression a [[$2]].",
 'nmembers'                => '$1 {{PLURAL:$1|element|element}}',
 'nrevisions'              => '{{PLURAL:$1|na revision|$1 revision}}',
 'nviews'                  => '{{PLURAL:$1|na consultassion|$1 consultassion}}',
+'nimagelinks'             => 'Dovrà dzora a $1 {{PLURAL:$1|pàgina|pàgine}}',
+'ntransclusions'          => 'dovrà dzora a $1 {{PLURAL:$1|pàgina|pàgine}}',
 'specialpage-empty'       => 'Pàgina veujda.',
 'lonelypages'             => 'Pàgine daspërlor',
 'lonelypagestext'         => "Le pàgine ambelessì sota a l'han pa gnun-a anliura che a-i riva da dj'àotre pàgine e a son nen anserìe An gnun-e àutre pàgine ëd {{SITENAME}}.",

@@ -856,13 +856,11 @@ Misy io olana io rehefa mamppiasa serveur mandataire tsy manana anarana sy manan
 'editingsection'                   => 'Fanovana $1 (fizaràna)',
 'editingcomment'                   => 'Fanovana $1 (fanamarihana)',
 'editconflict'                     => 'Fanovana mifandona: $1',
-'explainconflict'                  => "
-Nisy olon-kafa koa nanova ity pejy ity taorian'ny nanombohanao nanova azy.
+'explainconflict'                  => "Nisy olon-kafa koa nanova ity pejy ity taorian'ny nanombohanao nanova azy.
 Ireto ny votoatin'ny pejy, ilay eo ambony ny votoatiny araka izay endriny ankehitriny,
 ilay eo ambany no misy ny fanovana saika hataonao.
 Mila mampiditra ny fanovana nataonao ao anatin'ny votoatiny ankehitriny ianao.
-Ny lahatsoratra ao amin'ilay faritra ambony <b>ihany</b> no ho voatahiry rehefa manidry
-ilay bokotra \"Tehirizo\" ianao. <br />",
+Ny lahatsoratra ao amin'ilay faritra ambony '''ihany''' no ho voatahiry rehefa manidry ilay bokotra \"{{int:savearticle}}\" ianao.",
 'yourtext'                         => 'Lahatsoratrao',
 'storedversion'                    => 'Votoatiny voatahiry',
 'nonunicodebrowser'                => "'''FAMPITANDREMANA: Tsy mifanaraka tanteraka amin'ny unicode ny navigateur-nao. Misy ihany anefa fika napetraka hahafahanao manova ny lahatsoratra: Ny litera tsy ASCII dia hiseho amin'ny fango isa ta-enina ambin'ny folo.'''",

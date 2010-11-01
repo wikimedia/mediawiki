@@ -896,7 +896,7 @@ sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Phía trên là bản hiện tại.
 Phía dưới là sửa đổi của bạn.
 Bạn sẽ phải trộn thay đổi của bạn với bản hiện tại.
-'''Chỉ có''' phần văn bản ở phía trên là sẽ được lưu khi bạn nhất nút “Lưu trang”.",
+'''Chỉ có''' phần văn bản ở phía trên là sẽ được lưu khi bạn nhất nút “{{int:savearticle}}”.",
 'yourtext'                         => 'Nội dung bạn nhập',
 'storedversion'                    => 'Phiên bản lưu',
 'nonunicodebrowser'                => "'''CHU' Y': Tri`nh duye^.t cu?a ba.n kho^ng ho^~ tro+. unicode. Mo^.t ca'ch dde^? ba.n co' the^? su+?a ddo^?i an toa`n trang na`y: ca'c ky' tu+. kho^ng pha?i ASCII se~ xua^'t hie^.n trong ho^.p soa.n tha?o du+o+'i da.ng ma~ tha^.p lu.c pha^n.'''",
@@ -1562,7 +1562,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'recentchangeslinked-summary'  => "Đây là danh sách các thay đổi được thực hiện gần đây tại những trang được liên kết đến từ một trang nào đó (hoặc tại các trang thuộc một thể loại nào đó).
 Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''tô đậm'''.",
 'recentchangeslinked-page'     => 'Tên trang:',
-'recentchangeslinked-to'       => 'Hiển thị những thay đổi tại những trang trang được liên kết đến từ trang cho trước thay cho trang này',
+'recentchangeslinked-to'       => 'Hiện thay đổi tại những trang có liên kết đến trang này thay thế',
 
 # Upload
 'upload'                      => 'Tải tập tin lên',
@@ -1909,6 +1909,7 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 'nrevisions'              => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
 'nviews'                  => '$1 {{PLURAL:$1|lượt truy cập|lượt truy cập}}',
 'nimagelinks'             => 'Được sử dụng trong $1 trang',
+'ntransclusions'          => 'được sử dụng trong $1 trang',
 'specialpage-empty'       => 'Trang này đang trống.',
 'lonelypages'             => 'Trang mồ côi',
 'lonelypagestext'         => 'Chưa có trang nào liên kết đến hoặc nhúng vào các trang này tại {{SITENAME}}.',

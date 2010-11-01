@@ -801,11 +801,11 @@ Kadalasang nangyayari ito kapag gumagamit ka ng masurot na serbisyo ng hindi-nak
 'editingsection'                   => 'Binabago ang $1 (bahagi)',
 'editingcomment'                   => 'Binabago ang $1 (bagong seksyon)',
 'editconflict'                     => 'Alitan sa pagbabago: $1',
-'explainconflict'                  => 'Mayroon nagbago ng pahinang ito simula nang baguhin mo ito.
+'explainconflict'                  => "Mayroon nagbago ng pahinang ito simula nang baguhin mo ito.
 Naglalaman ang mga nasa taas na teksto ng mga pahinang teksto at kasalukuyang mayroon ito.
 Ipinapakita sa ibabang teksto ang mga binago mo.
 Kailangan mong pagsamahin ang mga binago mo sa kasalukuyang teksto.
-Maitatala <b>lamang</b> ang nasa taas na teksto kapag pinindot ang "Itala ang pahina".<br />',
+Maitatala '''lamang''' ang nasa taas na teksto kapag pinindot ang \"{{int:savearticle}}\".",
 'yourtext'                         => 'Teksto mo',
 'storedversion'                    => 'Nakatagong rebisyon',
 'nonunicodebrowser'                => "'''Babala: Hindi sumusunod sa unicode ang browser mo.'''

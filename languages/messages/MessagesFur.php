@@ -546,10 +546,10 @@ o ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} cambiâ cheste pagjine]</span>.'
 'editingsection'                   => 'Cambiament di $1 (sezion)',
 'editingcomment'                   => 'Cambiament di $1 (gnove sezion)',
 'editconflict'                     => 'Conflit inte modifiche: $1',
-'explainconflict'                  => 'Cualchidun altri al à cambiât cheste pagjine di cuant che tu âs començât a modificâle.
+'explainconflict'                  => "Cualchidun altri al à cambiât cheste pagjine di cuant che tu âs començât a modificâle.
 La aree di test disore e conten il test de pagjine che esist cumò, i tiei cambiaments a son mostrâts inte aree disot.
 Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
-<b>Dome</b> il test in alt al vignarà salvât cuant che tu frachis su "Salve pagjine".<br />',
+'''Dome''' il test in alt al vignarà salvât cuant che tu frachis su \"{{int:savearticle}}\".",
 'editingold'                       => "'''ATENZION: tu stâs cambiant une version vecje e no inzornade di cheste pagjine. Se tu la salvis, ducj i cambiaments fats di chê volte in ca a laran pierdûts.'''",
 'yourdiff'                         => 'Difarencis',
 'copyrightwarning'                 => "Note: ducj i contribûts a {{SITENAME}} a si considerin come dâts fûr sot de licence $2 (cjale $1 pai detais). Se no tu vuelis che i tiei tescj a podedin jessi modificâts e tornâts a dâ fûr di ognidun cence limits, no stâ mandâju a {{SITENAME}}.<br />

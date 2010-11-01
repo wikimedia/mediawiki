@@ -764,7 +764,7 @@ S Spichere cha dr Inhalt vu dr Syte hii mache. Des git s e mänkmol, wänn eber 
 Im obere Tekschtfäld steit der jitzig Artikel.
 Im untere Tekschtfält stöh dyni Änderige.
 Bitte überträg dyni Änderigen i ds obere Tekschtfäld.
-We du «Syte spychere» drücksch, de wird '''nume''' der Inhalt vom obere Tekschtfäld gspycheret.",
+We du «{{int:savearticle}}» drücksch, de wird '''nume''' der Inhalt vom obere Tekschtfäld gspycheret.",
 'yourtext'                         => 'Dyy Täxt',
 'storedversion'                    => 'Gspychereti Version',
 'nonunicodebrowser'                => "'''Obacht:''' Dyy Browser cha Unicode-Zeiche nid richtig verschaffe. Bitte verwänd e andere Browser zum Syte bearbeite.",

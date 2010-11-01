@@ -787,12 +787,11 @@ Hal ini kadangkala berlaku apabila anda menggunakan khidmat proksi tanpa nama be
 'editingsection'                   => 'Menyunting $1 (bahagian)',
 'editingcomment'                   => 'Menyunting $1 (bahagian baru)',
 'editconflict'                     => 'Percanggahan penyuntingan: $1',
-'explainconflict'                  => 'Pengguna lain telah menyunting laman ini ketika anda sedang menyuntingnya.
+'explainconflict'                  => "Pengguna lain telah menyunting laman ini ketika anda sedang menyuntingnya.
 Kawasan teks di atas mengandungi teks semasa.
 Perubahan anda dipaparkan dalam kawasan teks di bawah.
 Anda perlu menggabungkan perubahan anda dengan teks semasa.
-<b>Hanya</b> teks dalam kawasan teks di atas akan disimpan jika anda menekan
-"Simpan laman".<br />',
+'''Hanya''' teks dalam kawasan teks di atas akan disimpan jika anda menekan \"{{int:savearticle}}\".",
 'yourtext'                         => 'Teks anda',
 'storedversion'                    => 'Versi yang disimpan',
 'nonunicodebrowser'                => "'''AMARAN: Pelayar anda tidak mematuhi Unicode. Aksara-aksara bukan ASCII akan dipaparkan dalam kotak sunting sebagai kod perenambelasan.'''",

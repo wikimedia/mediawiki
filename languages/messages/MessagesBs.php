@@ -406,7 +406,7 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki najčešće postavljana pitanja]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]',
 
-'about'         => 'O...',
+'about'         => 'O',
 'article'       => 'Članak',
 'newwindow'     => '(otvara se u novom prozoru)',
 'cancel'        => 'Poništite',
@@ -923,12 +923,12 @@ To se događa ponekad kad korisite problematični anonimni proxy koji je baziran
 'editingsection'                   => 'Uređujete $1 (dio)',
 'editingcomment'                   => 'Uređujete $1 (nova sekcija)',
 'editconflict'                     => 'Sukobljenje izmjene: $1',
-'explainconflict'                  => 'Neko drugi je promjenio ovu stranicu otkad ste Vi počeli da je mjenjate.
+'explainconflict'                  => "Neko drugi je promjenio ovu stranicu otkad ste Vi počeli da je mjenjate.
 Gornje tekstualno polje sadrži tekst stranice koji trenutno postoji.
 Vaše izmjene su prikazane u donjem tekstu.
 Moraćete da unesete svoje promjene u postojeći tekst.
-<b>Samo</b> tekst u gornjem tekstualnom polju će biti snimljen kad
-pritisnete "Sačuvaj".<br />',
+'''Samo''' tekst u gornjem tekstualnom polju će biti snimljen kad
+pritisnete \"{{int:savearticle}}\".",
 'yourtext'                         => 'Vaš tekst',
 'storedversion'                    => 'Uskladištena verzija',
 'nonunicodebrowser'                => "'''UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova.
@@ -1584,7 +1584,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'rclinks'                           => 'Prikaži najskorijih $1 izmjena u posljednjih $2 dana<br />$3',
 'diff'                              => 'razl',
 'hist'                              => 'hist',
-'hide'                              => 'sakrij',
+'hide'                              => 'Sakrij',
 'show'                              => 'Pokaži',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',

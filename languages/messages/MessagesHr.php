@@ -932,8 +932,11 @@ To se ponekad događa kad rabite neispravan web-baziran anonimni posrednik (prox
 'editingsection'                   => 'Uređujete $1 (odlomak)',
 'editingcomment'                   => 'Uređujete $1 (novi odlomak)',
 'editconflict'                     => 'Istovremeno uređivanje: $1',
-'explainconflict'                  => 'Netko je u međuvremenu promijenio stranicu. Gornje polje sadrži sadašnji tekst stranice.
-U donjem polju prikazane su Vaše promjene. Morat ćete unijeti Vaše promjene u sadašnji tekst. <b>Samo</b> će tekst u gornjem polju biti sačuvan kad pritisnete "{{int:savearticle}}".',
+'explainconflict'                  => "Netko je u međuvremenu promijenio stranicu.
+Gornje polje sadrži sadašnji tekst stranice.
+U donjem polju prikazane su Vaše promjene.
+Morat ćete unijeti Vaše promjene u sadašnji tekst.
+'''Samo''' će tekst u gornjem polju biti sačuvan kad pritisnete \"{{int:savearticle}}\".",
 'yourtext'                         => 'Vaš tekst',
 'storedversion'                    => 'Pohranjena inačica',
 'nonunicodebrowser'                => "'''UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova, molimo promijenite ga prije sljedećeg uređivanja članaka.'''",

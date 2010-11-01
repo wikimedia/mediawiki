@@ -752,7 +752,11 @@ Hau batzuetan gertatzen da buggyan oinarritutako web proxy zerbitzua erabiltzean
 'editingsection'                   => '$1 aldatzen (atala)',
 'editingcomment'                   => '$1 aldatzen (atal berria)',
 'editconflict'                     => 'Aldaketa gatazka: $1',
-'explainconflict'                  => 'Zu orrialdea aldatzen hasi ondoren beste norbaitek ere aldaketak egin ditu. Goiko testu koadroan ikus daiteke orrialdeak uneotan duen edukia. Zure aldaketak beheko testu koadroan ikus daitezke. Zure testua dagoenarekin elkartu beharko duzu. Orrialdea gordetzeko erabakitzen duzun unean goiko koadroko edukia <b>bakarrik</b> gordeko da.<br />',
+'explainconflict'                  => "Zu orrialdea aldatzen hasi ondoren beste norbaitek ere aldaketak egin ditu.
+Goiko testu koadroan ikus daiteke orrialdeak uneotan duen edukia.
+Zure aldaketak beheko testu koadroan ikus daitezke.
+Zure testua dagoenarekin elkartu beharko duzu.
+Orrialdea gordetzeko erabakitzen duzun unean goiko koadroko edukia '''bakarrik''' gordeko da.",
 'yourtext'                         => 'Zure testua',
 'storedversion'                    => 'Gordetako bertsioa',
 'nonunicodebrowser'                => "'''OHARRA: Zure nabigatzailea ez dator Unicode arauarekin bat. Artikuluak modu seguruan aldatu ahal izateko beste sistema bat gaitu da: ASCII ez diren karaktereak kode hamaseitar bezala agertuko dira aldaketa koadroan.'''",

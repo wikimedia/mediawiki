@@ -585,7 +585,7 @@ Dit gebeur soms a der een webhebaseerde proxydienst wor gebruukt die a fout'n be
 In 't bovenste deêl van 't venster sti de tekst van de udihe pagina.
 Je bewerkieng sti in 't onderste hedeêlte.
 Je dien je bewerkiengen in te voehen in de bestaende tekst.
-<b>Alleên</b> de tekst in 't bovenste hedeêlte wor opeslogen a je op \"Pagina opslaen\" klik.<br />",
+'''Alleên''' de tekst in 't bovenste hedeêlte wor opeslogen a je op \"{{int:savearticle}}\" klik.",
 'yourtext'                   => 'Joe tekst',
 'storedversion'              => 'Opeslogen versie',
 'nonunicodebrowser'          => "'''WAERSCHUWIENG: Je browser kan nie hoed overwig mie unicode.

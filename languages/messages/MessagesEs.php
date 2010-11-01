@@ -962,7 +962,7 @@ Esto sucede en ocasiones cuando se usa un servicio de proxy anónimo defectuoso.
 El área de texto superior contiene el texto de la página como existe actualmente.
 Tus cambios se muestran en el área de texto inferior.
 Si quieres grabar tus cambios, has de trasladarlos al área superior.
-'''Sólo''' el texto en el área de texto superior será grabado cuando pulses «Grabar página».",
+'''Sólo''' el texto en el área de texto superior será grabado cuando pulses «{{int:savearticle}}».",
 'yourtext'                         => 'Tu texto',
 'storedversion'                    => 'Versión almacenada',
 'nonunicodebrowser'                => "'''Atención: Tu navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.'''",

@@ -919,9 +919,10 @@ Eğer sorunlu bir web-tabanlı anonim proksi servisi kullanıyorsanız bu olay b
 'editingsection'                   => '"$1" sayfasında bölüm değiştirmektesiniz',
 'editingcomment'                   => '$1 değiştiriliyor (yeni bölüm)',
 'editconflict'                     => 'Değişiklik çakışması: $1',
-'explainconflict'                  => 'Siz sayfayı değiştirirken başka biri de değişiklik yaptı.
+'explainconflict'                  => "Siz sayfayı değiştirirken başka biri de değişiklik yaptı.
 Yukarıdaki yazı sayfanın şu anki halini göstermektedir.
-Sizin değişiklikleriniz alta gösterilmiştir. Son değişiklerinizi yazının içine eklemeniz gerekecektir. "Sayfayı kaydet"e bastığınızda <b>sadece</b> yukarıdaki yazı kaydedilecektir. <br />',
+Sizin değişiklikleriniz alta gösterilmiştir. Son değişiklerinizi yazının içine eklemeniz gerekecektir.
+\"{{int:savearticle}}\"e bastığınızda '''sadece''' yukarıdaki yazı kaydedilecektir.",
 'yourtext'                         => 'Sizin metniniz',
 'storedversion'                    => 'Kaydedilmiş metin',
 'nonunicodebrowser'                => "'''UYARI: Tarayıcınız unicode uyumlu değil.
