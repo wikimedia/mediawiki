@@ -267,7 +267,7 @@ abstract class File {
 	}
 
 	/**
-         * Get the duration of a media file in seconds
+         *  Return true if the file is vectorized
          */
         public function isVectorized() {
                 $handler = $this->getHandler();
