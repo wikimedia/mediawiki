@@ -118,7 +118,8 @@ class DatabaseSqlite extends DatabaseBase {
 	function checkForEnabledSearch() {
 		if ( self::$fulltextEnabled === null ) {
 			self::$fulltextEnabled = false;
-			$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name = 'searchindex'", __METHOD__ );
+			$table = $this->tableName( 'searchindex' );
+			$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name = '$table'", __METHOD__ );
 			if ( $res ) {
 				$row = $res->fetchRow();
 				self::$fulltextEnabled = stristr($row['sql'], 'fts' ) !== false;
