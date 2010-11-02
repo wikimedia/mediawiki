@@ -27,6 +27,7 @@ require_once( dirname( dirname( __FILE__ ) )."/maintenance/Maintenance.php" );
 class CommandLineInstaller extends Maintenance {
 	public function __construct() {
 		parent::__construct();
+		global $IP;
 
 		$this->addArg( 'name', 'The name of the wiki', true);
 
@@ -47,18 +48,21 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'installdbpass', 'The pasword for the DB user to install as.', false, true );
 		$this->addOption( 'dbuser', 'The user to use for normal operations (wikiuser)', false, true );
 		$this->addOption( 'dbpass', 'The pasword for the DB user for normal operations', false, true );
+		$this->addOption( 'confpath', "Path to write LocalSettings.php to, default $IP", false, true );
 		/* $this->addOption( 'dbschema', 'The schema for the MediaWiki DB in pg (mediawiki)', false, true ); */
 		/* $this->addOption( 'dbtsearch2schema', 'The schema for the tsearch2 DB in pg (public)', false, true ); */
 		/* $this->addOption( 'namespace', 'The project namespace (same as the name)', false, true ); */
 	}
 
 	public function execute() {
+		global $IP;
 		$adminName = isset( $this->mArgs[1] ) ? $this->mArgs[1] : null;
 
 		$installer =
 			new CliInstaller( $this->mArgs[0], $adminName, $this->mOptions );
 
 		$installer->execute();
+		$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
 	}
 }
 

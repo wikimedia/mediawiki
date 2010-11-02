@@ -123,6 +123,15 @@ class LocalSettingsGenerator {
 	}
 
 	/**
+	 * Write the generated LocalSettings to a file
+	 *
+	 * @param $fileName String Full path to filename to write to
+	 */
+	public function writeFile( $fileName ) {
+		file_put_contents( $fileName, $ls->getText() );
+	}
+
+	/**
 	 * @return String
 	 */
 	private function buildMemcachedServerList() {
