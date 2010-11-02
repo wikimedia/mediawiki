@@ -663,6 +663,7 @@ $messages = array(
 من فضلك انتظر قليلا قبل أن تحاول الوصول إلى هذه الصفحة مجددا.
 
 $1',
+'pool-queuefull'    => 'طابور الاقتراع ملئ',
 'pool-errorunknown' => 'خطأ غير معروف',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1971,6 +1972,7 @@ $1',
 'listfiles_search_for'  => 'ابحث عن اسم الميديا:',
 'imgfile'               => 'ملف',
 'listfiles'             => 'قائمة الملفات',
+'listfiles_thumb'       => 'تصغير',
 'listfiles_date'        => 'تاريخ',
 'listfiles_name'        => 'اسم',
 'listfiles_user'        => 'مستخدم',

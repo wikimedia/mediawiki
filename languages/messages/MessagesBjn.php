@@ -463,6 +463,7 @@ Muhun cubai pulang.',
 Muhun cubai pulang.',
 'passwordtooshort'           => 'Kata sunduk musti paling sadikit {{PLURAL:$1|1 karaktir|$1 karaktir}}.',
 'password-name-match'        => 'Kata sunduk Pian musri aabida lawan ngaran pamuruk Pian.',
+'password-too-weak'          => 'Katasunduk nang disadiakan talalu lamah wan kada kawa dipuruk',
 'mailmypassword'             => 'Kirimi kata sunduk hanyar',
 'passwordremindertitle'      => 'Kata sunduk samantara gasan {{SITENAME}}',
 'passwordremindertext'       => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuah katasunduk hanyar gasan {{SITENAME}} ($4). sabuah katasunduk samantara gasan pamuruk "$2" sudah diulah wan disetel ka "$3". Amun bujur Pian nang maminta, Pian parlu babuat log wan mamilih katasunduk hanyar wayah ini jua. Katasunduk samantara Pian akan kadaluarsa dalam {{PLURAL:$5|satu hari|$5 hahari}}.
@@ -913,6 +914,10 @@ Bulik pulang ka tungkaran tadahulu wan cubai pulang.',
 'revmove-norevisions-title'    => 'Ralatan tatuju kada sah',
 'revmove-norevisions'          => 'Pian balum manatapakan asa atawa labih ralatan tujuan gasan manjalanakan kagunaan atawa ralatan nang dibariakan kadada.',
 'revmove-nullmove-title'       => 'Judul buruk',
+'revmove-nullmove'             => 'Tungkaran dituju kada kawa sama lawan tungkangkaran asal mula.
+Babulik ka tungkaran sabalumnya wan pilihi sabuah ngaran matan "[[$1]]".',
+'revmove-success-existing'     => '{{PLURAL:$1|sabuah ralatan matan[[$2]] sudah|$1 raralatan matan [[$2]] sudah}} dipindahakan ka tungkaran nang ada [[$3]].',
+'revmove-success-created'      => '{{PLURAL:$1|sabuah ralatan matan[[$2]] sudah|$1 raralatan matan [[$2]] sudah}} dipindahakan ka tungkaran nang hanyar diulah [[$3]].',
 
 # History merging
 'mergehistory-from'                => 'Tungkaran asal mula:',

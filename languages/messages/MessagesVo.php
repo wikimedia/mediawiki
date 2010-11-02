@@ -490,7 +490,7 @@ Kal olik pejafon.
 No glömolöd ad votükön [[Special:Preferences|buükamis olik in {{SITENAME}}]].',
 'yourname'                   => 'Gebananem:',
 'yourpassword'               => 'Letavöd:',
-'yourpasswordagain'          => 'Klavolös dönu letavödi',
+'yourpasswordagain'          => 'Klavolös dönu letavödi:',
 'remembermypassword'         => 'Dakipolöd ninädamanünis obik in nünöm at (muiko {{PLURAL:$1|del|dels}} $1)',
 'yourdomainname'             => 'Domen olik:',
 'externaldberror'            => 'U ejenon fümükamapöl plödik nünödema, u no dalol atimükön kali plödik ola.',
@@ -563,6 +563,7 @@ Stebedolös büä osteifülol nogna.',
 'password-strength-mediocre'   => 'zänedöfik',
 'password-strength-acceptable' => 'zepabik',
 'password-strength-good'       => 'gudik',
+'password-retype'              => 'Klavolös dönu letavödi is',
 
 # Password reset dialog
 'resetpass'                 => 'Votükön letavödi',
