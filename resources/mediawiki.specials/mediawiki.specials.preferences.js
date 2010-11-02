@@ -112,11 +112,11 @@ wfValidateEmail = function( mailtxt ) {
 		// "apostrophe"
 		'@'
 		+
-		// Domain first character
-		'[' + rfc1034_ldh_str + ']'
+		// Domain first part 
+		'[' + rfc1034_ldh_str + ']+'
 		+
-		// second char and following can include dot
-		'[' + rfc1034_ldh_str + '\\.' + ']' + '+'
+		// Second part and following are separated by a dot
+		'(\\.[' + rfc1034_ldh_str + ']+)+'
 		+
 		// End of string
 		'$',

@@ -27,7 +27,8 @@ class UserIsValidEmailAddrTest extends PHPUnit_Framework_TestCase {
 		$this->valid( 'USER@eXAMPLE.com' );
 	}
 	function testEmailWithAPlusInUserName() {
-		$this->valid( 'user+sub@localdomain' );
+		$this->valid( 'user+sub@example.com' );
+		$this->valid( 'user+@example.com' );
 	}
 	function testEmailWithWhiteSpacesBeforeOrAfterAreInvalids() {
 		$this->invalid( " user@host" );
@@ -43,10 +44,10 @@ class UserIsValidEmailAddrTest extends PHPUnit_Framework_TestCase {
 	function testEmailDomainCanNotBeginWithDot() {
 		$this->invalid( "user@." );
 		$this->invalid( "user@.localdomain" );
-		$this->valid( "user@localdomain." );
-		$this->valid( "user.@localdomain" );
-		$this->valid( ".@localdomain" );
-		$this->valid( ".@a............" );
+		$this->invalid( "user@localdomain." );
+		$this->invalid( "user.@localdomain" );
+		$this->invalid( ".@localdomain" );
+		$this->invalid( ".@a............" );
 	}
 	function testEmailWithFunnyCharacters() {
 		$this->valid( "\$user!ex{this}@123.com" );
