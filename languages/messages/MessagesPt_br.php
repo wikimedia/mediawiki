@@ -1451,8 +1451,8 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 
 'group-user-member'          => 'Usuário',
 'group-autoconfirmed-member' => 'Usuário auto-confirmado',
-'group-bot-member'           => 'Robô',
-'group-sysop-member'         => 'Administrador',
+'group-bot-member'           => 'robô',
+'group-sysop-member'         => 'administrador',
 'group-bureaucrat-member'    => 'Burocrata',
 'group-suppress-member'      => 'Oversight',
 
@@ -1956,6 +1956,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'nrevisions'              => '$1 {{PLURAL:$1|revisão|revisões}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
 'nimagelinks'             => 'Utilizada em $1 {{PLURAL:$1|página|páginas}}',
+'ntransclusions'          => 'usada {{PLURAL:$1|numa página|em $1 páginas}}',
 'specialpage-empty'       => 'Atualmente não há dados a serem exibidos nesta página.',
 'lonelypages'             => 'Páginas órfãs',
 'lonelypagestext'         => 'As seguintes páginas não recebem ligações nem são incluídas em outras páginas do {{SITENAME}}.',

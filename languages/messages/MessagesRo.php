@@ -926,11 +926,11 @@ Acest fapt se poate întâmpla atunci când folosești un serviciu proxy anonim.
 'editingsection'                   => 'modificare $1 (secțiune)',
 'editingcomment'                   => 'Modificare $1 (secțiune nouă)',
 'editconflict'                     => 'Conflict de modificare: $1',
-'explainconflict'                  => "Altcineva a modificat această pagină de când ai început să o editezi.
+'explainconflict'                  => "Altcineva a modificat această pagină de când ați început editarea.
 Caseta de text de sus conține pagina așa cum este ea acum (după editarea celeilalte persoane).
-Pagina cu modificările tale (așa cum ai încercat să o salvezi) se află în caseta de jos.
-Va trebui să editezi manual caseta de sus pentru a reflecta modificările pe care tocmai le-ai făcut în cea de jos.
-'''Numai''' textul din caseta de sus va fi salvat atunci când vei apăsa pe \"{{int:savearticle}}\".",
+Pagina cu modificările dumneavoastră (așa cum ați încercat să o salvați) se află în caseta de jos.
+Va trebui să editați manual caseta de sus pentru a reflecta modificările pe care tocmai le-ați făcut în cea de jos.
+'''Numai''' textul din caseta de sus va fi salvat atunci când veți apăsa pe „{{int:savearticle}}”.",
 'yourtext'                         => 'Textul tău',
 'storedversion'                    => 'Versiunea curentă',
 'nonunicodebrowser'                => "'''ATENŢIE: Browser-ul dumneavoastră nu este compilant unicode, vă rugăm să îl schimbați înainte de a începe modificarea unui articol.'''",

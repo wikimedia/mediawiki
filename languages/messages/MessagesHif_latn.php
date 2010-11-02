@@ -417,6 +417,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => 'Password fir se type karo:',
 'remembermypassword'         => 'Ii computer pe hamaar login yaad rakho (jaada se jaada $1 {{PLURAL:$1|din|din}} talak)',
+'securelogin-stick-https'    => 'Login kare ke baad HTTPS se connected raho',
 'yourdomainname'             => 'Aap ke domain:',
 'externaldberror'            => 'Koi bahaari database authentication error hai, nai to aap ke bahaari account badle ke adhikar nai hai.',
 'login'                      => 'Log in karo',
@@ -460,6 +461,7 @@ Aapan spelling check karo.',
 'wrongpasswordempty'         => 'Koi password nai likha gais hai. Fir se kosis karo.',
 'passwordtooshort'           => 'Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.',
 'password-name-match'        => 'Aap ke password ke aap ke username se different rahe ke chaahi.',
+'password-too-weak'          => 'Dewa gais password bahut kamjor hae aur kaam me lawa nai jaae sake hae.',
 'mailmypassword'             => 'Nawaa password ke E-mail karo',
 'passwordremindertitle'      => '{{SITENAME}} ke khatir nawaa temporary password',
 'passwordremindertext'       => 'Koi (hoe sake hai aap, IP address $1 se)
@@ -1534,6 +1536,7 @@ Column header me click kare se sorting badal jaai.',
 'listfiles_search_for'  => 'Media ke naam khojo:',
 'imgfile'               => 'file',
 'listfiles'             => 'Chapa ke suchi',
+'listfiles_thumb'       => 'Chhota chapa',
 'listfiles_date'        => 'Tarik',
 'listfiles_name'        => 'Naam',
 'listfiles_user'        => 'Sadasya',
@@ -1686,6 +1689,8 @@ Sab row me pahila aur duusra redirect ke jorr hae, aur isme duusra redirect ke n
 'nmembers'                => '$1 {{PLURAL:$1|sadasya|sadasya}}',
 'nrevisions'              => '$1 {{PLURAL:$1|badlao|badlao}}',
 'nviews'                  => '$1 {{PLURAL:$1|dafe dekha gais hai|dafe dekha gais hai}}',
+'nimagelinks'             => '$1 {{PLURAL:$1|panna|panna}} me kaam me lawa gais hae',
+'ntransclusions'          => '$1 {{PLURAL:$1|panna|panna}} me kaam me lawa gais hae',
 'specialpage-empty'       => 'Ii report khatir koi results nai hai.',
 'lonelypages'             => 'Akele waala panna',
 'lonelypagestext'         => 'Niche ke panna ke duusra paana jorre nai to  transclude nai kare hai {{SITENAME}} me.',
@@ -2469,6 +2474,7 @@ Aapan computer me save kar ke  hian pe upload karo.',
 'importstart'                => 'Panna ke import karta hai...',
 'import-revision-count'      => '$1 {{PLURAL:$1|badlao|badlao}}',
 'importnopages'              => 'Koi panna import kare ke nai hai.',
+'imported-log-entries'       => '$1 {{PLURAL:$1|log entry|log entry}} ke lawa gais hae.',
 'importfailed'               => 'Import fail hoe gais: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'Ayaat kare waala jagha ke rakam nai maalum.',
 'importcantopen'             => 'Import file ke khole nai sakaa',
@@ -2566,6 +2572,8 @@ Meharbani kar ke, fir se kosis karo.',
 'tooltip-rollback'                => '"Rollback" ii panna ke badlao ke isse pahile waala badlao pe, ek click me, kar dewe hai',
 'tooltip-undo'                    => '"Undo" ii badlao ke pahile jaise kar de hai aur edit form ke preview mode me khole hai.
 Ii summary me ek kaaran jorre ke ijajat de hai.',
+'tooltip-preferences-save'        => 'Pasand ke bachao',
+'tooltip-summary'                 => 'Thora sabd me likho',
 
 # Metadata
 'nodublincore'      => 'Ii server ke khatir Dublin Core RDF metadata ke disable kar dewa gais hai',
@@ -2670,6 +2678,9 @@ Iske execute kare se aap ke system me garrbarr hoe sake hae.",
 'show-big-image-thumb' => '<small>Ii preview ke size: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'Ghuum ghumae ke wahii jagha pe aawe hae',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frames}}',
+'file-info-png-looped' => 'ghum ghumae ke wahii jagha pe aae hae',
+'file-info-png-repeat' => '$1 {{PLURAL:$1|dafe|dafe}} bajawa gais hae',
+'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frames}}',
 
 # Special:NewFiles
 'newimages'             => 'Nawaa files ke gallery',
@@ -2749,14 +2760,33 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-subsectime'                  => 'Tarik aur time subseconds me',
 'exif-subsectimeoriginal'          => 'Pahila tarik aur time subseconds me',
 'exif-subsectimedigitized'         => 'Digitized tarik aur time subseconds me',
+'exif-exposuretime'                => 'Exposure time',
+'exif-exposuretime-format'         => '$1 sec ($2)',
+'exif-fnumber'                     => 'F Number',
+'exif-exposureprogram'             => 'Exposure Program',
+'exif-spectralsensitivity'         => 'Ketna achchhaa se ujaala ke pakrre sake hae',
+'exif-isospeedratings'             => 'ISO ke raftaar rating',
+'exif-oecf'                        => 'Optoelectronic conversion factor',
 'exif-shutterspeedvalue'           => 'Shutter ke raftaar',
 'exif-aperturevalue'               => 'Aperture',
 'exif-brightnessvalue'             => 'Chamak',
+'exif-subjectdistance'             => 'Chij se duuri',
+'exif-lightsource'                 => 'Ujala ke soti',
+'exif-flash'                       => 'Chamak',
 'exif-focallength'                 => 'Lens ke focal length',
+'exif-flashenergy'                 => 'Chamak ke taagat',
 'exif-focalplanexresolution'       => 'Focal plane X resolution',
 'exif-gpsaltitude'                 => 'Uunchai',
 'exif-gpsspeedref'                 => 'Raftar ke unit',
 'exif-gpsdatestamp'                => 'GPS ke taarik',
+
+'exif-orientation-2' => 'Baraabar ultawa gais hae',
+'exif-orientation-3' => '180° ghumawa gais hae',
+'exif-orientation-4' => 'Khrraa ultawa gais hae',
+'exif-orientation-5' => '90° CCW ghumawa aur kharraa ultawa gais hae',
+'exif-orientation-6' => '90° CW ghumawa gais hae',
+'exif-orientation-7' => '90° CW ghumawa aur kharraa ultawa gais hae',
+'exif-orientation-8' => '90° CCW ghumawa gais hae',
 
 'exif-meteringmode-0'   => 'Nai maluum',
 'exif-meteringmode-6'   => 'Puura nai',
@@ -2764,13 +2794,18 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 
 'exif-lightsource-0'  => 'Nai maluum',
 'exif-lightsource-1'  => 'Din',
+'exif-lightsource-4'  => 'Chamak',
 'exif-lightsource-9'  => 'Achchhaa mausam',
 'exif-lightsource-10' => 'Baadal ke mausam',
 'exif-lightsource-11' => 'Chhanhi',
 
 # Flash modes
-'exif-flash-fired-0'  => 'Flash nai chalaa',
-'exif-flash-redeye-1' => 'laal-aankhi ke kamti kare waala mode',
+'exif-flash-fired-0'    => 'Flash nai chalaa',
+'exif-flash-fired-1'    => 'Flash chal gais hae',
+'exif-flash-mode-1'     => 'flash ke kaam me laae ke jaruri hae',
+'exif-flash-mode-2'     => 'flash ke kaam me nai laae ke chaahi',
+'exif-flash-function-1' => 'Flash nai hae',
+'exif-flash-redeye-1'   => 'laal-aankhi ke kamti kare waala mode',
 
 'exif-contrast-1' => 'Naram',
 
@@ -2833,9 +2868,10 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'watchlisttools-raw'  => 'Dhyan suchi ke apne sampadan karo',
 
 # Special:Version
-'version'              => 'Badlao',
-'version-specialpages' => 'Khaas panna',
-'version-other'        => 'Duusra',
+'version'                  => 'Badlao',
+'version-specialpages'     => 'Khaas panna',
+'version-other'            => 'Duusra',
+'version-poweredby-others' => 'duusra waala',
 
 # Special:FilePath
 'filepath-submit' => 'Jaao',
@@ -2845,21 +2881,35 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'fileduplicatesearch-submit'   => 'Khojo',
 
 # Special:SpecialPages
-'specialpages'               => 'Khaas panna',
-'specialpages-group-login'   => 'Login karo/Nawaa account banao',
-'specialpages-group-highuse' => 'Jaada kaam me laae waala panna',
-'specialpages-group-pages'   => 'Panna ke suchi',
+'specialpages'                 => 'Khaas panna',
+'specialpages-group-other'     => 'Duusra khaas panna',
+'specialpages-group-login'     => 'Login karo/Nawaa account banao',
+'specialpages-group-highuse'   => 'Jaada kaam me laae waala panna',
+'specialpages-group-pages'     => 'Panna ke suchi',
+'specialpages-group-pagetools' => 'Panna ke aujar',
 
 # Special:BlankPage
-'blankpage' => 'Khaali panna',
+'blankpage'              => 'Khaali panna',
+'intentionallyblankpage' => 'Ii panna ke jaan ke khaliya chhorraa gais hae.',
 
 # Special:Tags
-'tags-edit' => 'badlo',
+'tags-edit'     => 'badlo',
+'tags-hitcount' => '$1 {{PLURAL:$1|badlao|badlao}}',
+
+# Special:ComparePages
+'comparepages'     => 'Panna ke biich me antar dekho',
+'compare-selector' => 'Panna ke badlao ke biih me antar dekho',
+'compare-page1'    => 'Panna 1',
+'compare-page2'    => 'Panna 2',
+'compare-rev1'     => 'Badlao 1',
+'compare-rev2'     => 'Badlao 2',
+'compare-submit'   => 'Antar dekho',
 
 # Database error messages
 'dberr-header' => 'Ii wiki me kuchh garrbarr hae',
 
 # HTML forms
+'htmlform-reset'               => 'Badlao ke pahile jaise karo',
 'htmlform-selectorother-other' => 'Duusra',
 
 );

@@ -1228,7 +1228,7 @@ $1',
 'listfiles_date'        => 'نېټه',
 'listfiles_name'        => 'نوم',
 'listfiles_user'        => 'کارن',
-'listfiles_size'        => 'کچه (bytes)',
+'listfiles_size'        => 'کچه (بايټونه)',
 'listfiles_description' => 'څرګندونه',
 'listfiles_count'       => 'بڼې',
 
