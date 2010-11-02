@@ -587,8 +587,8 @@ class CategoryViewer {
 
 		# Check if there's a "from" or "until" for anything
 		$fromOrUntil = false;
-		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
-			if ( $this->from[$type] !== null || $this->until[$type] !== null ) {
+		foreach ( array( 'page', 'subcat', 'file' ) as $t ) {
+			if ( $this->from[$t] !== null || $this->until[$t] !== null ) {
 				$fromOrUntil = true;
 				break;
 			}
