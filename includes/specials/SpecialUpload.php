@@ -911,11 +911,6 @@ class UploadForm extends HTMLForm {
 	protected function getDescriptionSection() {
 		global $wgUser, $wgOut;
 
-		$cols = intval( $wgUser->getOption( 'cols' ) );
-		if( $wgUser->getOption( 'editwidth' ) ) {
-			$wgOut->addInlineStyle( '#mw-htmlform-description { width: 100%; }' );
-		}
-
 		$descriptor = array(
 			'DestFile' => array(
 				'type' => 'text',
@@ -934,7 +929,7 @@ class UploadForm extends HTMLForm {
 				'label-message' => $this->mForReUpload
 					? 'filereuploadsummary'
 					: 'fileuploadsummary',
-				'cols' => $cols,
+				'cols' => intval( $wgUser->getOption( 'cols' ) ),
 				'rows' => 8,
 			)
 		);
