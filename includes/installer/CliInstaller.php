@@ -85,9 +85,16 @@ class CliInstaller extends CoreInstaller {
 			array( $this, 'startStage' ),
 			array( $this, 'endStage' )
 		);
+	}
 
+	/**
+	 * Write LocalSettings.php to a given path
+	 *
+	 * @param $path String Full path to write LocalSettings.php to
+	 */
+	public function writeConfigurationFile( $path ) {
 		$ls = new LocalSettingsGenerator( $this );
-		file_put_contents( "LocalSettings.php", $ls->getText() );
+		$ls->writeFile( "$path/LocalSettings.php" );
 	}
 
 	public function startStage( $step ) {
