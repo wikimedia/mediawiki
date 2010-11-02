@@ -655,8 +655,8 @@ class User {
 		^                      # start of string
 		[$rfc5322_atext\\.]+    # user part which is liberal :p
 		@                      # 'apostrophe'
-		[$rfc1034_ldh_str]     # Domain first character
-		[$rfc1034_ldh_str\\.]+  # Second char and following can include dot
+		[$rfc1034_ldh_str]+       # First domain part
+		(\\.[$rfc1034_ldh_str]+)+  # Following part prefixed with a dot
 		$                      # End of string
 		/ix" ; // case Insensitive, eXtended 
 
