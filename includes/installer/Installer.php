@@ -82,7 +82,7 @@ abstract class Installer {
 	 * @var array
 	 */
 	protected $envChecks = array(
-		'envLatestVersion',
+		'envCheckMediaWikiVersion',
 		'envCheckDB',
 		'envCheckRegisterGlobals',
 		'envCheckMagicQuotes',
@@ -388,7 +388,7 @@ abstract class Installer {
 	/**
 	 * Check if we're installing the latest version.
 	 */
-	public function envLatestVersion() {
+	public function envCheckMediaWikiVersion() {
 		global $wgVersion;
 
 		if( !$this->getVar( '_ExternalHTTP' ) ) {
