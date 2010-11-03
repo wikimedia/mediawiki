@@ -199,16 +199,16 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return array(
 			'prop' => array(
 				'What pieces of information to include',
-				'  blockinfo  - tags if the current user is blocked, by whom, and for what reason',
-				'  hasmsg     - adds a tag "message" if the current user has pending messages',
-				'  groups     - lists all the groups the current user belongs to',
-				'  rights     - lists all the rights the current user has',
-				'  changeablegroups - lists the groups the current user can add to and remove from',
-				'  options    - lists all preferences the current user has set',
-				'  editcount  - adds the current user\'s edit count',
-				'  ratelimits - lists all rate limits applying to the current user',
-				'  email      - adds the user\'s email address and email authentication date',
-				'  acceptlang - echoes the Accept-Language header sent by the client in a structured format',
+				'  blockinfo        - Tags if the current user is blocked, by whom, and for what reason',
+				'  hasmsg           - Adds a tag "message" if the current user has pending messages',
+				'  groups           - Lists all the groups the current user belongs to',
+				'  rights           - Lists all the rights the current user has',
+				'  changeablegroups - Lists the groups the current user can add to and remove from',
+				'  options          - Lists all preferences the current user has set',
+				'  editcount        - Adds the current user\'s edit count',
+				'  ratelimits       - Lists all rate limits applying to the current user',
+				'  email            - Adds the user\'s email address and email authentication date',
+				'  acceptlang       - Echoes the Accept-Language header sent by the client in a structured format',
 			)
 		);
 	}
