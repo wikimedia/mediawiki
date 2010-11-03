@@ -30,17 +30,17 @@ class ApiTestUser {
 	function __construct( $username, $realname = 'Real Name', $email = 'sample@sample.com', $groups = array() ) {
 		global $wgMinimalPasswordLength;
 
-	    	$this->username = $username; 
-	    	$this->realname = $realname; 
+		$this->username = $username; 
+		$this->realname = $realname; 
 		$this->email = $email;
 		$this->groups = $groups;
 
 		// don't allow user to hardcode or select passwords -- people sometimes run tests 	
 		// on live wikis. Sometimes we create sysop users in these tests. A sysop user with
 	 	// a known password would be a Bad Thing.
-	    	$this->password = User::randomPassword();
+		$this->password = User::randomPassword();
 
-	    	$this->user = User::newFromName( $this->username );
+		$this->user = User::newFromName( $this->username );
 		$this->user->load();
 
 		// In an ideal world we'd have a new wiki (or mock data store) for every single test.
@@ -145,6 +145,10 @@ abstract class ApiTestCase extends PHPUnit_Framework_TestCase {
 
 }
 
+/**
+ * @group Database
+ * @group Destructive
+ */
 class ApiUploadTest extends ApiTestCase {
 	/**
 	 * Fixture -- run before every test 
@@ -254,7 +258,13 @@ class ApiUploadTest extends ApiTestCase {
 		$extension = 'png';
 		$mimeType = 'image/png';
 
-		$randomImageGenerator = new RandomImageGenerator();
+		try {
+			$randomImageGenerator = new RandomImageGenerator();
+		}
+		catch ( Exception $e ) {
+			$this->markTestIncomplete( $e->getMessage() );
+		}
+
 		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
 		$filePath = $filePaths[0];
 		$fileName = basename( $filePath ); 
@@ -342,7 +352,13 @@ class ApiUploadTest extends ApiTestCase {
 		$extension = 'png';
 		$mimeType = 'image/png';
 
-		$randomImageGenerator = new RandomImageGenerator();
+		try {
+			$randomImageGenerator = new RandomImageGenerator();
+		}
+		catch ( Exception $e ) {
+			$this->markTestIncomplete( $e->getMessage() );
+		}
+
 		$filePaths = $randomImageGenerator->writeImages( 2, $extension, dirname( wfTempDir() ) );
 		// we'll reuse this filename
 		$fileName = basename( $filePaths[0] ); 
@@ -410,7 +426,12 @@ class ApiUploadTest extends ApiTestCase {
 		$extension = 'png';
 		$mimeType = 'image/png';
 
-		$randomImageGenerator = new RandomImageGenerator();
+		try {
+			$randomImageGenerator = new RandomImageGenerator();
+		}
+		catch ( Exception $e ) {
+			$this->markTestIncomplete( $e->getMessage() );
+		}
 		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
 		$fileNames[0] = basename( $filePaths[0] ); 
 		$fileNames[1] = "SameContentAs" . $fileNames[0];
@@ -488,7 +509,13 @@ class ApiUploadTest extends ApiTestCase {
 		$extension = 'png';
 		$mimeType = 'image/png';
 
-		$randomImageGenerator = new RandomImageGenerator();
+		try {
+			$randomImageGenerator = new RandomImageGenerator();
+		}
+		catch ( Exception $e ) {
+			$this->markTestIncomplete( $e->getMessage() );
+		}
+
 		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
 		$filePath = $filePaths[0];
 		$fileName = basename( $filePath ); 
