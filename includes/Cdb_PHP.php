@@ -97,7 +97,7 @@ class CdbReader_PHP extends CdbReader {
 	function __construct( $fileName ) {
 		$this->handle = fopen( $fileName, 'rb' );
 		if ( !$this->handle ) {
-			throw new MWException( 'Unable to open DB file "' . $fileName . '"' );
+			throw new MWException( 'Unable to open CDB file "' . $fileName . '"' );
 		}
 		$this->findStart();
 	}
@@ -138,7 +138,7 @@ class CdbReader_PHP extends CdbReader {
 
 		$buf = fread( $this->handle, $length );
 		if ( $buf === false || strlen( $buf ) !== $length ) {
-			throw new MWException( __METHOD__.': read from cdb file failed, file may be corrupted' );
+			throw new MWException( __METHOD__.': read from CDB file failed, file may be corrupted' );
 		}
 		return $buf;
 	}
@@ -224,7 +224,7 @@ class CdbWriter_PHP extends CdbWriter {
 		$this->tmpFileName = $fileName . '.tmp.' . mt_rand( 0, 0x7fffffff );
 		$this->handle = fopen( $this->tmpFileName, 'wb' );
 		if ( !$this->handle ) {
-			throw new MWException( 'Unable to open DB file for write "' . $fileName . '"' );
+			throw new MWException( 'Unable to open CDB file for write "' . $fileName . '"' );
 		}
 		$this->hplist = array();
 		$this->numentries = 0;
