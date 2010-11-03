@@ -607,6 +607,7 @@ $2',
 'wrongpasswordempty'         => 'פאסווארט אריינגעלייגט איז געווען ליידיג, ביטע פרובירט נאכאמאל.',
 'passwordtooshort'           => 'פאַסווערטער מוזן זײַן כאטש {{PLURAL:$1|איין כאַראַקטער|$1 כאַראַקטערס}}.',
 'password-name-match'        => 'אײַער פאַסווארט מוז זײַן אנדערש פון אײַער באַניצער נאָמען.',
+'password-too-weak'          => 'דאָס אויסגעקליבענע פאַסווארט איז צו שוואַך און מען קען עס נישט ניצן.',
 'mailmypassword'             => 'שיקט מיין נייע פאסווארט',
 'passwordremindertitle'      => 'ניי צייטווייליג פאסווארט פאר {{SITENAME}}',
 'passwordremindertext'       => 'עמעצער (מסתמא איר, פֿון IP אדרעס $1)
@@ -1021,6 +1022,7 @@ $1",
 'revmove-reasonfield'          => 'אורזאַך:',
 'revmove-titlefield'           => 'ציל בלאַט:',
 'revmove-badparam-title'       => 'פֿאַלשע פאַראַמעטערס',
+'revmove-norevisions-title'    => 'ציל ווערסיע נישט גילטיג',
 'revmove-nullmove-title'       => 'אומגילדיגער טיטל',
 
 # History merging
@@ -1052,6 +1054,7 @@ $1",
 # Diffs
 'history-title'            => 'רעוויזיע היסטאריע פֿון $1',
 'difference'               => '(אונטערשייד צווישן ווערסיעס)',
+'difference-multipage'     => '(אונטערשייד צווישן בלעטער)',
 'lineno'                   => 'שורה $1:',
 'compareselectedversions'  => 'פארגלייך סעלעקטירטע ווערסיעס',
 'showhideselectedversions' => 'ווײַזן/באַהאַלטן געקליבענע רעוויזיעס',
@@ -1234,6 +1237,8 @@ $1",
 'prefs-advancedsearchoptions'   => 'אדוואנסירטע אפציעס',
 'prefs-advancedwatchlist'       => 'אדוואנסירטע אפציעס',
 'prefs-displayrc'               => 'ווייז אפציעס',
+'prefs-displaysearchoptions'    => 'ווײַז אפציעס',
+'prefs-displaywatchlist'        => 'ווײַז אפציעס',
 'prefs-diffs'                   => 'צווישנשיידן',
 
 # User rights
@@ -1364,6 +1369,7 @@ $1",
 'action-userrights'           => 'רעדאַקטירן אלע באַניצער רעכטן',
 'action-userrights-interwiki' => 'רעדאַקטירן רעכטן פון באַניצער אויף אַנדערע וויקיס',
 'action-siteadmin'            => 'שליסן אדער אויפשליסן די דאטנבאזע',
+'action-revisionmove'         => 'באַוועגן ווערסיעס',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
@@ -1447,6 +1453,7 @@ $1",
 'filetype-missing'      => 'די טעקע האט נישט קיין פארברייטערונג (למשל ".jpg").',
 'filename-tooshort'     => 'דער טעקענאמען איז צו קורץ',
 'illegal-filename'      => 'דער טעקע־נאָמען איז נישט ערלויבט',
+'unknown-error'         => 'אַן אומבאַקאַנט טעות איז פֿארגעקומען.',
 'large-file'            => 'רעקאמענדירט אז טעקעס זאל נישט זײַן גרעסער פֿון$1;
 די טעקע איז $2.',
 'emptyfile'             => 'די טעקע וואס איר האט ארויפֿלגעלאָדן איז ליידיג.

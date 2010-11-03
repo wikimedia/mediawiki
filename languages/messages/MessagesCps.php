@@ -395,7 +395,7 @@ Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENA
 'yourname'                => 'Hayo (username):',
 'yourpassword'            => 'Password:',
 'yourpasswordagain'       => 'Liwata ka pindot ang password:',
-'remembermypassword'      => 'Dumduma ang pagsulod ko sa mini nga kompyuter (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Dumduma ang pagsulod ko sa mini nga kompyuter (pinakadamu na ang $1 {{PLURAL:$1|adlaw|mga adlaw}})',
 'yourdomainname'          => 'Imo domain:',
 'login'                   => 'Mag sulod',
 'nav-login-createaccount' => 'Magsulod / maghimo account',
