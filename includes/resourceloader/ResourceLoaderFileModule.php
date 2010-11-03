@@ -20,8 +20,6 @@
  * @author Roan Kattouw
  */
 
-defined( 'MEDIAWIKI' ) || die( 1 );
-
 /**
  * ResourceLoader module based on local JavaScript/CSS files.
  */
