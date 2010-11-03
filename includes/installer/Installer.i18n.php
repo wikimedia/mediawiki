@@ -86,10 +86,9 @@ You cannot install MediaWiki.',
 	'config-env-latest-old'           => "'''Warning:''' You are installing an outdated version of MediaWiki.",
 	'config-env-latest-help'          => 'You are installing version $1, but the latest version is $2.
 You are advised to use the latest release, which can be downloaded from [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php'        => 'Using the slow PHP implementation for Unicode normalization.',
 	'config-unicode-using-utf8'       => 'Using Brion Vibber\'s utf8_normalize.so for Unicode normalization.',
 	'config-unicode-using-intl'       => 'Using the [http://pecl.php.net/intl intl PECL extension] for Unicode normalization.',
-	'config-unicode-pure-php-warning' => "'''Warning''': The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization.
+	'config-unicode-pure-php-warning' => "'''Warning''': The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization, falling back to slow pure-PHP implementation.
 If you run a high-traffic site, you should read a little on [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
 	'config-unicode-update-warning'   => "'''Warning''': The installed version of the Unicode normalization wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.
 You should [http://www.mediawiki.org/wiki/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
@@ -916,7 +915,6 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 	'config-env-latest-old' => "'''Папярэджаньне:''' вы ўсталёўваеце састарэлую вэрсію MediaWiki.",
 	'config-env-latest-help' => 'Вы ўсталёўваеце вэрсію $1, у той час як актуальнай зьяўляецца $2.
 Пажадана ўсталяваць апошні выпуск, які можна загрузіць з [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Выкарыстоўваецца марудная рэалізацыя Unicode-нармалізацыі для PHP',
 	'config-unicode-using-utf8' => 'Выкарыстоўваецца бібліятэка Unicode-нармалізацыі Браяна Вібэра',
 	'config-unicode-using-intl' => 'Выкарыстоўваецца [http://pecl.php.net/intl intl пашырэньне з PECL] для Unicode-нармалізацыі',
 	'config-unicode-pure-php-warning' => "'''Папярэджаньне''': [http://pecl.php.net/intl Пашырэньне intl з PECL] ня слушнае для Unicode-нармалізацыі.
@@ -1615,7 +1613,6 @@ MediaWiki kann nicht installiert werden.',
 	'config-env-latest-old' => "'''Warnung:''' Es wird eine veraltete Programmversion von MediaWiki installiert.",
 	'config-env-latest-help' => 'Die Programmversion $1 wird installiert, wohingegen die neueste Programmversion $2 ist.
 Es wird empfohlen die neueste Programmversion zu verwenden, die bei [http://www.mediawiki.org/wiki/Download/de mediawiki.org] heruntergeladen werden kann.',
-	'config-unicode-using-php' => 'Zur Unicode-Normalisierung wird die langsame PHP-Implementierung eingesetzt.',
 	'config-unicode-using-utf8' => 'Zur Unicode-Normalisierung wird Brion Vibbers <code>utf8_normalize.so</code> eingesetzt.',
 	'config-unicode-using-intl' => 'Zur  Unicode-Normalisierung wird die [http://pecl.php.net/intl PECL-Erweiterung intl] eingesetzt.',
 	'config-unicode-pure-php-warning' => "'''Warnung:''' Die [http://pecl.php.net/intl PECL-Erweiterung intl] ist für die Unicode-Normalisierung nicht verfügbar.
@@ -2101,7 +2098,6 @@ No puedes instalar MediaWiki.',
 	'config-env-latest-old' => "'''Advertencia:''' Estás instalando una versión antigua de MediaWiki.",
 	'config-env-latest-help' => 'Estás instalando la versión $1, pero la versión más reciente es la $2.
 Te aconsejamos que instales la versión más reciente, que podrás descargar en [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Usando la implementación PHP lenta para la normalización Unicode.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando la [http://pecl.php.net/intl extensión intl PECL] para la normalización Unicode.',
 	'config-unicode-pure-php-warning' => "'''Advertencia''': La [http://*pecl.*php.*net/*intl extensión intl PECL] no está disponible para efectuar la normalización Unicode.
@@ -2514,7 +2510,6 @@ Et voi asentaa MediaWikiä.',
 	'config-env-latest-old' => "'''Varoitus:''' Olet asentamassa vanhentunut versiota MediaWikistä.",
 	'config-env-latest-help' => 'Olet asentamassa versiota $1, mutta viimeisin versio on $2.
 Sinun kannattaisi käyttää viimeisintä versiota, joka voidaan ladata osoitteesta [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Käytetään hidasta PHP-toteutusta Unicode-normalisoinnille.',
 	'config-no-db' => 'Sopivaa tietokanta-ajuria ei löytynyt!',
 	'config-no-db-help' => 'Sinun pitää asentaa tietokanta-ajuri PHP:lle.
 Seuraavat tietokantatyypit on tuettu: $1.
@@ -2671,7 +2666,6 @@ vous ne pouvez pas installer MediaWiki.',
 	'config-env-latest-old' => "'''Attention :''' Vous installez une version obsolète de MediaWiki.",
 	'config-env-latest-help' => 'Vous êtres en train d’installer la version $1, mais la dernière version est $2.
 Il est conseillé d’utiliser la dernière version, qui peut être téléchargée de [http://www.mediawiki.org/wiki/Download MediaWiki.org]',
-	'config-unicode-using-php' => 'La version lente de PHP est utilisée pour la normalisation Unicode.',
 	'config-unicode-using-utf8' => 'Utilisation de utf8_normalize.so par Brion Vibber pour la normalisation Unicode.',
 	'config-unicode-using-intl' => "Utilisation de [http://pecl.php.net/intl l'extension PECL intl] pour la normalisation Unicode.",
 	'config-unicode-pure-php-warning' => "'''Attention''': L'[http://pecl.php.net/intl extension PECL intl] n'est pas disponible pour la normalisation d'Unicode.
@@ -3142,7 +3136,6 @@ Non pode instalar MediaWiki.',
 	'config-env-latest-old' => "'''Atención:''' Está a instalar unha versión vella de MediaWiki.",
 	'config-env-latest-help' => 'Está a instalar a versión $1, pero a última versión é a $2.
 Aconséllase empregar o último lanzamento. Pódeo descargar en [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Usando a implementación PHP lenta para a normalización Unicode.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para a normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensión intl PECL] para a normalización Unicode.',
 	'config-unicode-pure-php-warning' => "'''Atención:''' A [http://pecl.php.net/intl extensión intl PECL] non está dispoñible para manexar a normalización Unicode.
@@ -3614,7 +3607,6 @@ Du chasch MediaWiki nit inschtalliere.',
 	'config-env-latest-old' => "'''Warnig:''' Du bisch am Ischtlaiiere vun ere veraltete Programmversion vu MediaWiki.",
 	'config-env-latest-help' => 'Du bisch am Ischtlaiiere vu dr Version $1, di nejscht Version isch aber $2.
 S wird empfohle die nejscht Version z verwände, wu vu [http://www.mediawiki.org/wiki/Download/de mediawiki.org] cha abeglade wäre.',
-	'config-unicode-using-php' => 'Fir d Unicode-Normalisierig wird di langsam PHP-Implementierig yygsetzt.',
 	'config-unicode-using-utf8' => 'Fir d Unicode-Normalisierig wird em Brion Vibber syy utf8_normalize.so yygsetzt.',
 	'config-unicode-using-intl' => 'For d Unicode-Normalisierig wird d [http://pecl.php.net/intl PECL-Erwyterig intl] yygsetzt.',
 	'config-unicode-pure-php-warning' => "'''Warnig:''' D [http://pecl.php.net/intl PECL-Erwyterig intl] isch fir d Unicode-Normalisierig nit verfiegbar.
@@ -3787,7 +3779,6 @@ Njemóžeš MediaWiki instalować.',
 	'config-env-latest-old' => "'''Warnowanje:''' Instaluješ zestarjenu wersiju MediaWiki.",
 	'config-env-latest-help' => 'Instaluješ wersiju $1, ale najnowša wersija je $2.
 Doporuča so, najnowšu wersiju wužiwać, kotruž móžeš wot [http://www.mediawiki.org/wiki/Download mediawiki.org] sćahnyć.',
-	'config-unicode-using-php' => 'Za normalizaciju Unicode so pomała PHP-implementacija wužiwa.',
 	'config-unicode-using-utf8' => 'Za normalizaciju Unicode so utf8_normalize.so Briona Vibbera wužiwa.',
 	'config-unicode-using-intl' => 'Za normalizaciju Unicode so [http://pecl.php.net/intl PECL-rozšěrjenje intl] wužiwa.',
 	'config-no-db' => 'Njeda so přihódny ćěrjak datoweje banki namakać!',
@@ -4040,7 +4031,6 @@ A MediaWiki nem telepíthető.',
 	'config-env-latest-old' => "'''Figyelmeztetés:''' A MediaWiki elavult változatát telepíted.",
 	'config-env-latest-help' => 'A telepítés alatt álló változat $1, míg a legújabb $2.
 Ajánlott a legutóbbi kiadás használata, ami a [http://www.mediawiki.org/wiki/Download mediawiki.org]-ról tölthető le.',
-	'config-unicode-using-php' => 'A rendszer Unicode normalizálására a PHP lassú implementációját használja.',
 	'config-unicode-using-utf8' => 'A rendszer Unicode normalizálására Brion Vibber utf8_normalize.so könyvtárát használja.',
 	'config-unicode-using-intl' => 'A rendszer Unicode normalizálására az [http://pecl.php.net/intl intl PECL kiterjesztést] használja.',
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.
@@ -4344,7 +4334,6 @@ Tu non pote installar MediaWiki.',
 	'config-env-latest-old' => "'''Aviso:''' Tu installa un version obsolete de MediaWiki.",
 	'config-env-latest-help' => 'Tu installa le version $1, ma le version le plus recente es $2.
 Es consiliate usar le version le plus recente, que pote esser discargate de [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Le implementation lente de PHP es usate pro le normalisation Unicode.',
 	'config-unicode-using-utf8' => 'utf8_normalize.so per Brion Vibber es usate pro le normalisation Unicode.',
 	'config-unicode-using-intl' => 'Le [http://pecl.php.net/intl extension PECL intl] es usate pro le normalisation Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': Le [http://pecl.php.net/intl extension PECL intl] non es disponibile pro exequer le normalisation Unicode.
@@ -4789,7 +4778,6 @@ Anda tidak dapat menginstal MediaWiki.',
 	'config-env-latest-old' => "'''Peringatan:''' Anda menginstal versi kadaluwarsa MediaWiki.",
 	'config-env-latest-help' => 'Anda menginstal versi $1, tetapi versi terbaru ialah $2.
 Anda disarankan untuk menggunakan versi terbaru yang dapat diunduh dari [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Menggunakan implementasi PHP lambat untuk normalisasi Unicode.',
 	'config-unicode-using-utf8' => 'Menggunakan utf8_normalize.so Brion Vibber untuk normalisasi Unicode.',
 	'config-unicode-using-intl' => 'Menggunakan [http://pecl.php.net/intl ekstensi PECL intl] untuk normalisasi Unicode.',
 	'config-xml-good' => 'Memiliki bantuan konversi XML / Latin1-UTF-8.',
@@ -5025,7 +5013,6 @@ MediaWikiをインストール出来ません。',
 	'config-env-latest-old' => "'''警告'''：MediaWikiの古いバージョンをインストールしようとしています。",
 	'config-env-latest-help' => 'バージョン$1をインストールしようとしていますが、最新版は$2です。
 最新のリリースを利用することが推奨されています。最新版は[http://www.mediawiki.org/wiki/Download mediawiki.org]からダウンロード可能です。',
-	'config-unicode-using-php' => 'Unicode正規化が遅いPHP実装を利用。',
 	'config-unicode-using-utf8' => 'Unicode正規化に、Brion Vibberのutf8_normalize.soを利用。',
 	'config-unicode-using-intl' => 'Unicode正規化に[http://pecl.php.net/intl intl PECL 拡張機能]を利用。',
 	'config-unicode-pure-php-warning' => "'''警告'''：[http://pecl.php.net/intl intl PECL 拡張機能]は、Unicode正規化の処理に利用されていません。
@@ -5505,7 +5492,6 @@ Do kanns MediaWiki nit opsäze.',
 	'config-env-latest-help' => 'Mer donn jraad de Version $1 opsäze, ävver de neuste Version es $2.
 Mer dääte vörschlonn, de neuste Versoin ze nämme, wann müjjelisch.
 Di kam_mer vun [http://www.mediawiki.org/wiki/Download/de mediawiki.org] erunger laade.',
-	'config-unicode-using-php' => 'För et <i lang="en">Unicode</i>-Nommaliseere nämme mer de lahme Ömsäzung en PHP.',
 	'config-unicode-using-utf8' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer däm <i lang="en">Brion Vibber</i> sing Projramm <code lang="en">utf8_normalize.so</code> nämme.',
 	'config-unicode-using-intl' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] nämme.',
 	'config-unicode-pure-php-warning' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] för et <i lang="en">Unicode</i>-Nommaliseere nit fenge.
@@ -5868,7 +5854,6 @@ $1
 	'config-env-latest-old' => "'''Предупредување:''' Инсталирате застарена верзија на МедијаВики.",
 	'config-env-latest-help' => 'Ја инсталирате верзијата $1, но најнова е верзијата $2.
 Ве советуваме да ја користите најновата верзија, која можете да ја преземете на [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Со бавното воспоставување на PHP за уникодна нормализација.',
 	'config-unicode-using-utf8' => 'Со utf8_normalize.so за уникодна нормализација од Брајон Вибер (Brion Vibber).',
 	'config-unicode-using-intl' => 'Со додатокот [http://pecl.php.net/intl intl PECL] за уникодна нормализација.',
 	'config-unicode-pure-php-warning' => "'''Предупредување''': Додатокот [http://pecl.php.net/intl intl PECL] не е достапен за врши уникодна нормализација.
@@ -6365,7 +6350,6 @@ U kunt MediaWiki niet installeren.',
 	'config-env-latest-old' => "'''Waarschuwing:''' U bent bezig een verouderde versie van MediaWiki te installeren.",
 	'config-env-latest-help' => 'U bent bezig versie $1 te installeren, maar de meest recente versie is $2.
 U wordt aangeraden de meest recente versie te gebruiken die u kunt downloaden van [http://www.mediawiki.org/wiki/Download mediawiki.org].',
-	'config-unicode-using-php' => 'Voor Unicode-normalisatie wordt de langzame PHP-implementatie gebruikt.',
 	'config-unicode-using-utf8' => 'Voor Unicode-normalisatie wordt utf8_normalize.so van Brion Vibber gebruikt.',
 	'config-unicode-using-intl' => 'Voor Unicode-normalisatie wordt de [http://pecl.php.net/intl PECL-extensie intl] gebruikt.',
 	'config-unicode-pure-php-warning' => "'''Waarschuwing''': De [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicode-normalisatie af te handelen.
@@ -6892,7 +6876,6 @@ Du kan installere MediaWiki.',
 	'config-env-latest-old' => "'''Advarsel:''' Du innstallerer en utdatert versjon av MediaWiki.",
 	'config-env-latest-help' => 'Du installerer versjon $1, men den siste versjonen er $2.
 Du rådes til å bruke den siste versjonen som kan lastes ned fra [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Bruker den langsomme PHP-implementasjonen for Unicode-normalisering.',
 	'config-unicode-using-utf8' => 'Bruker Brion Vibbers utf8_normalize.so for Unicode-normalisering.',
 	'config-unicode-using-intl' => 'Bruker [http://pecl.php.net/intl intl PECL-utvidelsen] for Unicode-normalisering.',
 	'config-unicode-pure-php-warning' => "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen.
@@ -7315,7 +7298,6 @@ Nie możesz zainstalować MediaWiki.',
 	'config-env-latest-old' => "'''Uwaga!''' Instalujesz nieaktualną wersję MediaWiki.",
 	'config-env-latest-help' => 'Instalujesz wersję $1, a najnowsza wersja to $2.
 Zaleca się pobranie najnowszej wersji z [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Korzystanie z powolnej implementacji w PHP normalizacji Unicode.',
 	'config-unicode-using-utf8' => 'Korzystanie z normalizacji Unicode utf8_normalize.so napisanej przez Brion Vibbera.',
 	'config-unicode-using-intl' => 'Korzystanie z [http://pecl.php.net/intl rozszerzenia intl PECL] do normalizacji Unicode.',
 	'config-unicode-pure-php-warning' => "'''Uwaga!''' [http://pecl.php.net/intl Rozszerzenie intl PECL] do obsługi normalizacji Unicode nie jest dostępne.
@@ -7621,7 +7603,6 @@ It peule pa instalé MediaWiki.",
 	'config-env-latest-old' => "'''Avis:''' A l'é an camin ch'a anstala na version veja ëd MediaWiki.",
 	'config-env-latest-help' => "A l'é an camin ch'a anstala la version $1, ma l'ùltima version a l'é $2.
 I-j consejoma ëd dovré l'ùltima version, che a peul esse dëscarià da [http://www.mediawiki.org/wiki/Download mediawiki.org]",
-	'config-unicode-using-php' => "As deuvra l'implementassion PHP meusia për la normalisassion Unicode.",
 	'config-unicode-using-utf8' => 'As deuvra utf8_normalize.so ëd Brion Vibber për la normalisassion Unicode.',
 	'config-unicode-using-intl' => "As deuvra l'[http://pecl.php.net/intl estension intl PECL] për la normalisassion Unicode.",
 	'config-unicode-pure-php-warning' => "'''Avis:''' L'[http://pecl.php.net/intl estension intl PECL] a l'é pa disponìbil për gestì la normalisassion Unicode.
@@ -8098,7 +8079,6 @@ Não pode instalar o MediaWiki.',
 	'config-env-latest-old' => "'''Aviso:''' Está a instalar uma versão desactualizada do Mediawiki.",
 	'config-env-latest-help' => 'Está a instalar a versão $1, mas a versão mais recente é a $2.
 Aconselhamos que instale a versão mais recente. Pode fazer o download a partir da [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'A usar a implementação lenta do PHP para a normalização Unicode.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, por Brian Viper, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'A usar a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efectuar a normalização Unicode.
@@ -8567,7 +8547,6 @@ Você não pode instalar o MediaWiki.',
 	'config-env-latest-old' => "'''Aviso:''' Você está instalando uma versão desatualizada do Mediawiki.",
 	'config-env-latest-help' => 'Você está instalando a versão $1, mas a versão mais recente é a $2.
 Aconselhamos que você instale a versão mais recente, que pode ser descarregada a partir da [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Usando a implementação lenta do PHP para a normalização Unicode.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, de Brian Viper, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode.
@@ -8692,7 +8671,6 @@ MediaWiki распространяется в надежде, что она бу
 	'config-env-latest-old' => "'''Внимание:''' Вы устанавливаете устаревшую версию MediaWiki.",
 	'config-env-latest-help' => 'Вы устанавливаете версию $1, однако, последняя версия: $2.
 Рекомендуем использовать последнюю версию MediaWiki, которую можно скачать с сайта: [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Использовать медленный вариант реализации PHP для нормализации Юникода.',
 	'config-unicode-using-utf8' => 'Использовать Brion Vibber utf8_normalize.so для нормализации Юникода.',
 	'config-unicode-using-intl' => 'Использовать [http://pecl.php.net/intl международный расширение PECL] для нормализации Юникода.',
 	'config-unicode-pure-php-warning' => "'''Внимание!''': [http://pecl.php.net/intl международное расширение PECL] недоступно для нормализации Юникода.
@@ -9251,7 +9229,6 @@ Hindi mo mailuklok ang MediaWiki.',
 	'config-env-latest-old' => "'''Babala:''' Itinatalaga mo ang isang lipas nang bersyon ng MediaWiki.",
 	'config-env-latest-help' => 'Ini-iinstala mo ang bersyong $1, subalit ang pinakahuling bersyon ay $2.
 Pinapayuhan kang gamitin ang pinakahuling labas, na maikakargang paibaba mula sa [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Ginagamit ang mabagal na pagpapatupad ng PHP para sa normalisasyon ng Unikodigo.',
 	'config-unicode-using-utf8' => 'Ginagamit ang utf8_normalize.so ni Brion Vibber para sa pagpapanormal ng Unikodigo.',
 	'config-unicode-using-intl' => 'Ginagamit ang [http://pecl.php.net/intl intl dugtong na PECL] para sa pagsasanormal ng Unikodigo.',
 	'config-no-db' => 'Hindi matagpuan ang isang angkop na drayber ng kalipunan ng datos!',
@@ -9478,7 +9455,6 @@ $messages['uk'] = array(
 	'config-env-latest-old' => "'''Увага:''' Ви встановлюєте застарілу версію MediaWiki.",
 	'config-env-latest-help' => 'Ви встановлюєте версію $1, але остання версія: $2.
 Рекомендуємо використовувати останню версію MediaWiki, яка може бути завантажена з сайту: [http://www.mediawiki.org/wiki/Download mediawiki.org]',
-	'config-unicode-using-php' => 'Використовувати повільний варіант реалізації PHP для нормалізації Юнікоду.',
 	'config-unicode-using-utf8' => 'Використовувати utf8_normalize.so Брайона Віббера для нормалізації Юнікоду.',
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
 	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду.
