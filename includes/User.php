@@ -2276,17 +2276,17 @@ class User {
 	private function createSkinObject() {
 		wfProfileIn( __METHOD__ );
 
-		global $wgHiddenPrefs, $wgRequest;
+		global $wgHiddenPrefs;
 		if( !in_array( 'skin', $wgHiddenPrefs ) ) {
+			global $wgRequest;
 			# get the user skin
 			$userSkin = $this->getOption( 'skin' );
+			$userSkin = $wgRequest->getVal( 'useskin', $userSkin );
 		} else {
 			# if we're not allowing users to override, then use the default
 			global $wgDefaultSkin;
 			$userSkin = $wgDefaultSkin;
 		}
-
-		$userSkin = $wgRequest->getVal( 'useskin', $userSkin );
 
 		$skin = Skin::newFromKey( $userSkin );
 		wfProfileOut( __METHOD__ );
