@@ -828,11 +828,13 @@ abstract class Installer {
 		}
 
 		// Uses messages 'config-unicode-using-php', 'config-unicode-using-utf8', 'config-unicode-using-intl'
-		$this->showMessage( 'config-unicode-using-' . $useNormalizer );
 		if( $useNormalizer === 'php' ) {
 			$this->showMessage( 'config-unicode-pure-php-warning' );
-		} elseif( $needsUpdate ) {
-			$this->showMessage( 'config-unicode-update-warning' );
+		} else {
+			$this->showMessage( 'config-unicode-using-' . $useNormalizer );
+			if( $needsUpdate ) {
+				$this->showMessage( 'config-unicode-update-warning' );
+			}
 		}
 	}
 
