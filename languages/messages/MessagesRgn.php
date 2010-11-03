@@ -68,8 +68,17 @@ $messages = array(
 'editfont-style'     => "↓ Stil d'e' font dl'àrea d'mudèfica",
 'editfont-default'   => "↓ Predefinì d'e' navigador",
 'editfont-monospace' => '↓ Font monospazi',
+'editfont-sansserif' => '↓ Font sans-serif',
+'editfont-serif'     => '↓ Font serif',
 
 # Dates
+'sunday'        => '↓  Dmènga',
+'monday'        => '↓ Lùn',
+'tuesday'       => '↓ Mért',
+'wednesday'     => '↓ Mircual',
+'thursday'      => '↓  Zuba',
+'friday'        => '↓ Vënar',
+'saturday'      => '↓ Sábat',
 'january'       => 'Znèr',
 'february'      => 'Febrér',
 'march'         => 'Mêrz',

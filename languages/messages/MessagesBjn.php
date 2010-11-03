@@ -240,7 +240,7 @@ $messages = array(
 'redirectpagesub'   => 'Tungkaran paugahan',
 'lastmodifiedat'    => 'Tungkaran ini tauncit diubah pada $1, $2.',
 'viewcount'         => 'Tungkaran ini sudah diungkai {{PLURAL:$1|kali|$1 kali}}.',
-'protectedpage'     => 'Tungkaran dilindungi',
+'protectedpage'     => 'Tungkaran nang dilindungi',
 'jumpto'            => 'Malacung ka',
 'jumptonavigation'  => 'napigasi',
 'jumptosearch'      => 'gagai',
@@ -696,7 +696,7 @@ Pambakal nang manyunduk manjalasakan kaini: $1",
 Log masuk pauncitan disadiakan di bawah gasan rujukan:",
 'semiprotectedpagewarning'         => "'''Catatan:''' Tungkaran ini sudah dilindungi laluai pamuruk tadaptar haja nang kawa mambabak.
 Log masuk pauncitan disadiakan di bawah gasan rujukan:",
-'cascadeprotectedwarning'          => "'''Paringatan:''' Tungkaran ini sudah dilindungi laluai pamuru awa hak istimiwa pambakal haja nang kawa mambabak, karana ini tamasuk dalam baumpat parlindungan barenteng {{PLURAL: $1|tungkaran|tutungkaran}}:",
+'cascadeprotectedwarning'          => "'''Paringatan:''' Tungkaran ini sudah dilindungi laluai pamuruk awan hak istimiwa pambakal haja nang kawa mambabak, karana ini tamasuk dalam baumpat parlindungan barénténg {{PLURAL: $1|tungkaran|tutungkaran}}:",
 'titleprotectedwarning'            => "'''Paringatan: Tungkaran ini sudah dilindungi laluai [[Special:ListGroupRights|hak khas]] diparluakan hagan maulah ini.'''
 Log masuk pauncitan disadiakan di bawah gasan rujukan:",
 'templatesused'                    => '{{PLURAL:$1|Citakan|Citakan}} nang digunakan di tungkaran ini:',
@@ -1365,13 +1365,19 @@ Muhun mamastiakan amun Pian handak manggawi ini, bahwasa Pian paham akibatnya, w
 pamuruk lain sudah mambabak atawa malakukan pambulikan lawan tungkaran ini.
 
 Babakan tauncit dilakukan ulih [[User:$3|$3]] ([[User talk:$3|pandir]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+'editcomment'       => "Kumintar pambabakan adalah: \"''\$1''\".",
 'revertpage'        => '←Babakan [[Special:Contributions/$2|$2]] ([[User talk:$2|pandir]]) dibulikakan ka ralatan tauncit ulih [[User:$1|$1]]',
 'revertpage-nouser' => 'Pambulikan babakan ulih (pamuruk dihapus) ka babakan tauncit ulih [[User:$1|$1]]',
 
 # Protect
 'protectlogpage'              => 'Log palindungan',
-'protectedarticle'            => "dilindungi ''[[$1]]''",
+'protectedarticle'            => "malindungi ''[[$1]]''",
 'modifiedarticleprotection'   => 'maubah tingkat perlindungan "[[$1]]"',
+'unprotectedarticle'          => 'mahilangakan palindungan "[[$1]]"',
+'movedarticleprotection'      => 'mamindahakan pangaturan protéksi matan "[[$2]]" ka "[[$1]]"',
+'protect-title'               => 'Malindungi "$1"',
+'prot_1movedto2'              => '[[$1]] dipindahakan ka [[$2]]',
+'protect-legend'              => 'Konpirmasi palindungan',
 'protectcomment'              => 'Alasan:',
 'protectexpiry'               => 'Kadaluwarsa:',
 'protect_expiry_invalid'      => 'Waktu kadaluwarsa kada sah.',
