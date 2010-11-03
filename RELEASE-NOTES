@@ -18,6 +18,12 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+=== New installer in 1.17 ===
+MediaWiki 1.17 is shipping with a completely redesigned installer to fix
+a lot of outstanding bugs, cleanup the code quality, and make it easier to
+use. Notably, you can now run upgrades from the web without having to move
+LocalSettings.php. The specific bugs are listed below in the general notes.
+
 === Configuration changes in 1.17 ===
 * DatabaseFunctions.php that was needed for compatibility with pre-1.3
   extensions has been removed.
@@ -75,8 +81,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   available as input for other configuration items, either.
 * Remove $wgRemoteUploads. It was not well supported and superseded by
   $wgUploadNavigationUrl.
-* $wgUpgradeKey allows unlocking the web installer for upgrades without having
-  to move LocalSettings.php
+* (bug 198) $wgUpgradeKey allows unlocking the web installer for upgrades
+  without having to move LocalSettings.php
 * The FailFunction "error handling" method has now been removed
 * $wgAdditionalMailParams added to allow setting extra options to mail() calls.
 * $wgSecureLogin & $wgSecureLoginStickHTTPS to optionaly login using HTTPS
@@ -187,6 +193,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   when a wiki has multiple variant languages.
 * (bug 19593) Specifying --server in now works for all maintenance scripts
 * Now rebuildtextindex.php warns if SQLite doesn't support full-text search.
+* (bug 10541) Front/backend separation of installation/upgrade code
+* (bug 10596) Allow installer to enable extensions already in extensions folder
+* (bug 17394) Make installer check for latest version against MediaWiki.org
+* (bug 20627) Installer should be in languages other than English
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
@@ -379,6 +389,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgSMTP without PEAR mail package
 * (bug 19633) When possible, Upscale small SVGs when creating thumbnails.
 * (bug 25725) Unwanted linebreaks in diffs.
+* (bug 11013) Database driver detection needs rewriting for robustness
+* (bug 13409) Installer prompts could use clarification--now has help boxes
+* (bug 16902) Installer spews warnings when exec() and dl() are not available
+* (bug 19129) Only show MyISAM/InnoDB when supported
+* (bug 17762) Only show other e-mail options when e-mail is globally enabled
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
