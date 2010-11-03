@@ -3,5 +3,5 @@
 -- installs if they ran update.php between it being added and being renamed
 --
 
-DROP INDEX /*i*/iwl_prefix;
+DROP INDEX IF EXISTS /*i*/iwl_prefix;
 
