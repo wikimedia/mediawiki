@@ -17,8 +17,9 @@ class ParserOptionsTest extends PHPUnit_Framework_TestCase {
 		parent::tearDown();
 	}
 	
-	/*
+	/**
 	 * ParserOptions::optionsHash was not giving consistent results when $wgUseDynamicDates was set
+	 * @group Database
 	 */
 	function testGetParserCacheKeyWithDynamicDates() {	
 		global $wgUseDynamicDates;
