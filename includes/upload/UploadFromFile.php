@@ -52,4 +52,14 @@ class UploadFromFile extends UploadBase {
 		
 		return parent::verifyUpload();
 	}
+
+	/** 
+	 * Get the path to the file underlying the upload
+	 * @return String path to file
+	 */
+	public function getFileTempname() {
+		return $this->mUpload->getTempname();
+	}
+
+	
 }
