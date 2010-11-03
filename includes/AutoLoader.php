@@ -634,6 +634,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialRecentChanges' => 'includes/specials/SpecialRecentchanges.php',
 	'SpecialRecentchangeslinked' => 'includes/specials/SpecialRecentchangeslinked.php',
 	'SpecialSearch' => 'includes/specials/SpecialSearch.php',
+	'SpecialUploadStash' => 'includes/specials/SpecialUploadStash.php',
 	'SpecialSpecialpages' => 'includes/specials/SpecialSpecialpages.php',
 	'SpecialStatistics' => 'includes/specials/SpecialStatistics.php',
 	'SpecialTags' => 'includes/specials/SpecialTags.php',
@@ -669,6 +670,7 @@ $wgAutoloadLocalClasses = array(
 	'UserloginTemplate' => 'includes/templates/Userlogin.php',
 
 	# includes/upload
+	'UploadStash' => 'includes/upload/UploadStash.php',
 	'UploadBase' => 'includes/upload/UploadBase.php',
 	'UploadFromStash' => 'includes/upload/UploadFromStash.php',
 	'UploadFromFile' => 'includes/upload/UploadFromFile.php',

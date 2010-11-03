@@ -4,7 +4,8 @@
 SHELL = /bin/sh
 CONFIG_FILE = $(shell pwd)/suite.xml
 FLAGS = 
-PU = php phpunit.php --configuration ${CONFIG_FILE}
+PHP = php
+PU = ${PHP} phpunit.php --configuration ${CONFIG_FILE}
 
 all test: warning
 
@@ -73,3 +74,4 @@ help:
 	#  Options:
 	#   CONFIG_FILE         Path to a PHPUnit configuration file (default: suite.xml)
 	#   FLAGS               Additional flags to pass to PHPUnit
+	#   PHP                 Path to php
