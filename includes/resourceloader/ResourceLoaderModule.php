@@ -20,8 +20,6 @@
  * @author Roan Kattouw
  */
 
-defined( 'MEDIAWIKI' ) || die( 1 );
-
 /**
  * Abstraction for resource loader modules, with name registration and maxage functionality.
  */
@@ -160,9 +158,11 @@ abstract class ResourceLoaderModule {
 			), __METHOD__
 		);
 		if ( !is_null( $deps ) ) {
-			return $this->fileDeps[$skin] = (array) FormatJson::decode( $deps, true );
+			$this->fileDeps[$skin] = (array) FormatJson::decode( $deps, true );
+		} else {
+			$this->fileDeps[$skin] = array();
 		}
-		return $this->fileDeps[$skin] = array();
+		return $this->fileDeps[$skin];
 	}
 	
 	/**

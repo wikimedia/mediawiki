@@ -20,8 +20,6 @@
  * @author Trevor Parscal
  */
 
-defined( 'MEDIAWIKI' ) || die( 1 );
-
 /**
  * Dynamic JavaScript and CSS resource loading system.
  *
@@ -40,10 +38,12 @@ class ResourceLoader {
 	/**
 	 * Loads information stored in the database about modules.
 	 * 
-	 * This method grabs modules dependencies from the database and updates modules objects.
+	 * This method grabs modules dependencies from the database and updates modules 
+	 * objects.
 	 * 
-	 * This is not inside the module code because it's so much more performant to request all of the information at once
-	 * than it is to have each module requests its own information. This sacrifice of modularity yields a profound
+	 * This is not inside the module code because it's so much more performant to 
+	 * request all of the information at once than it is to have each module 
+	 * requests its own information. This sacrifice of modularity yields a profound
 	 * performance improvement.
 	 * 
 	 * @param $modules Array: list of module names to preload information for
@@ -111,7 +111,8 @@ class ResourceLoader {
 	 *  - minify-css \see CSSMin::minify
 	 *  - flip-css \see CSSJanus::transform
 	 * 
-	 * If $data is empty, only contains whitespace or the filter was unknown, $data is returned unmodified.
+	 * If $data is empty, only contains whitespace or the filter was unknown, 
+	 * $data is returned unmodified.
 	 * 
 	 * @param $filter String: name of filter to run
 	 * @param $data String: text to filter, such as JavaScript or CSS text
@@ -122,17 +123,21 @@ class ResourceLoader {
 		
 		wfProfileIn( __METHOD__ );
 
-		// For empty/whitespace-only data or for unknown filters, don't perform any caching or processing
-		if ( trim( $data ) === '' || !in_array( $filter, array( 'minify-js', 'minify-css', 'flip-css' ) ) ) {
+		// For empty/whitespace-only data or for unknown filters, don't perform 
+		// any caching or processing
+		if ( trim( $data ) === '' 
+			|| !in_array( $filter, array( 'minify-js', 'minify-css', 'flip-css' ) ) ) 
+		{
 			wfProfileOut( __METHOD__ );
 			return $data;
 		}
 
 		// Try for Memcached hit
 		$key = wfMemcKey( 'resourceloader', 'filter', $filter, md5( $data ) );
-		if ( is_string( $cache = $wgMemc->get( $key ) ) ) {
+		$cacheEntry = $wgMemc->get( $key );
+		if ( is_string( $cacheEntry ) ) {
 			wfProfileOut( __METHOD__ );
-			return $cache;
+			return $cacheEntry;
 		}
 
 		// Run the filter - we've already verified one of these will work
@@ -149,7 +154,8 @@ class ResourceLoader {
 					break;
 			}
 		} catch ( Exception $exception ) {
-			throw new MWException( 'ResourceLoader filter error. Exception was thrown: ' . $exception->getMessage() );
+			throw new MWException( 'ResourceLoader filter error. ' . 
+				'Exception was thrown: ' . $exception->getMessage() );
 		}
 
 		// Save filtered text to Memcached
@@ -182,10 +188,13 @@ class ResourceLoader {
 	 * Registers a module with the ResourceLoader system.
 	 * 
 	 * @param $name Mixed: string of name of module or array of name/object pairs
-	 * @param $object ResourceLoaderModule: module object (optional when using multiple-registration calling style)
+	 * @param $object ResourceLoaderModule: module object (optional when using 
+	 *   multiple-registration calling style)
 	 * @throws MWException If a duplicate module registration is attempted
-	 * @throws MWException If something other than a ResourceLoaderModule is being registered
-	 * @return Boolean: false if there were any errors, in which case one or more modules were not registered
+	 * @throws MWException If something other than a ResourceLoaderModule is being 
+	 *   registered
+	 * @return Boolean: false if there were any errors, in which case one or more 
+	 *   modules were not registered
 	 */
 	public function register( $name, ResourceLoaderModule $object = null ) {
 
@@ -206,13 +215,15 @@ class ResourceLoader {
 		if ( isset( $this->modules[$name] ) ) {
 			// A module has already been registered by this name
 			throw new MWException(
-				'ResourceLoader duplicate registration error. Another module has already been registered as ' . $name
+				'ResourceLoader duplicate registration error. ' . 
+				'Another module has already been registered as ' . $name
 			);
 		}
 
 		// Validate the input (type hinting lets null through)
 		if ( !( $object instanceof ResourceLoaderModule ) ) {
-			throw new MWException( 'ResourceLoader invalid module error. Instances of ResourceLoaderModule expected.' );
+			throw new MWException( 'ResourceLoader invalid module error. ' . 
+				'Instances of ResourceLoaderModule expected.' );
 		}
 
 		// Attach module
@@ -262,12 +273,14 @@ class ResourceLoader {
 			}
 		}
 
-		// If a version wasn't specified we need a shorter expiry time for updates to propagate to clients quickly
+		// If a version wasn't specified we need a shorter expiry time for updates 
+		// to propagate to clients quickly
 		if ( is_null( $context->getVersion() ) ) {
 			$maxage  = $wgResourceLoaderMaxage['unversioned']['client'];
 			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
 		}
-		// If a version was specified we can use a longer expiry time since changing version numbers causes cache misses
+		// If a version was specified we can use a longer expiry time since changing 
+		// version numbers causes cache misses
 		else {
 			$maxage  = $wgResourceLoaderMaxage['versioned']['client'];
 			$smaxage = $wgResourceLoaderMaxage['versioned']['server'];
@@ -278,7 +291,8 @@ class ResourceLoader {
 
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
 
-		// To send Last-Modified and support If-Modified-Since, we need to detect the last modified time
+		// To send Last-Modified and support If-Modified-Since, we need to detect 
+		// the last modified time
 		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $modules as $module ) {
 			// Bypass squid cache if the request includes any private modules
@@ -291,7 +305,11 @@ class ResourceLoader {
 
 		wfProfileOut( __METHOD__.'-getModifiedTime' );
 
-		header( 'Content-Type: ' . ( $context->getOnly() === 'styles' ? 'text/css' : 'text/javascript' ) );
+		if ( $context->getOnly() === 'styles' ) {
+			header( 'Content-Type: text/css' );
+		} else {
+			header( 'Content-Type: text/javascript' );
+		}
 		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
 		if ( $context->getDebug() ) {
 			header( 'Cache-Control: must-revalidate' );
@@ -332,10 +350,15 @@ class ResourceLoader {
 	 * @param $missing Array: list of unavailable modules (optional)
 	 * @return String: response data
 	 */
-	public function makeModuleResponse( ResourceLoaderContext $context, array $modules, $missing = array() ) {
+	public function makeModuleResponse( ResourceLoaderContext $context, 
+		array $modules, $missing = array() ) 
+	{
 		// Pre-fetch blobs
-		$blobs = $context->shouldIncludeMessages() ?
-			MessageBlobStore::get( $this, $modules, $context->getLanguage() ) : array();
+		if ( $context->shouldIncludeMessages() ) {
+			$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
+		} else {
+			$blobs = array();
+		}
 
 		// Generate output
 		$out = '';
@@ -351,9 +374,10 @@ class ResourceLoader {
 
 			// Styles
 			$styles = array();
-			if ( $context->shouldIncludeStyles() && ( count( $styles = $module->getStyles( $context ) ) ) ) {
+			if ( $context->shouldIncludeStyles() ) {
+				$styles = $module->getStyles( $context );
 				// Flip CSS on a per-module basis
-				if ( $this->modules[$name]->getFlip( $context ) ) {
+				if ( $styles && $this->modules[$name]->getFlip( $context ) ) {
 					foreach ( $styles as $media => $style ) {
 						$styles[$media] = $this->filter( 'flip-css', $style );
 					}
@@ -375,7 +399,8 @@ class ResourceLoader {
 					$out .= self::makeMessageSetScript( $messages );
 					break;
 				default:
-					// Minify CSS before embedding in mediaWiki.loader.implement call (unless in debug mode)
+					// Minify CSS before embedding in mediaWiki.loader.implement call 
+					// (unless in debug mode)
 					if ( !$context->getDebug() ) {
 						foreach ( $styles as $media => $style ) {
 							$styles[$media] = $this->filter( 'minify-css', $style );
@@ -391,8 +416,11 @@ class ResourceLoader {
 		// Update module states
 		if ( $context->shouldIncludeScripts() ) {
 			// Set the state of modules loaded as only scripts to ready
-			if ( count( $modules ) && $context->getOnly() === 'scripts' && !isset( $modules['startup'] ) ) {
-				$out .= self::makeLoaderStateScript( array_fill_keys( array_keys( $modules ), 'ready' ) );
+			if ( count( $modules ) && $context->getOnly() === 'scripts' 
+				&& !isset( $modules['startup'] ) ) 
+			{
+				$out .= self::makeLoaderStateScript( 
+					array_fill_keys( array_keys( $modules ), 'ready' ) );
 			}
 			// Set the state of modules which were requested but unavailable as missing
 			if ( is_array( $missing ) && count( $missing ) ) {
@@ -462,7 +490,9 @@ class ResourceLoader {
 			"( '$name', $version, $dependencies, $group );\n";
 	}
 
-	public static function makeLoaderRegisterScript( $name, $version = null, $dependencies = null, $group = null ) {
+	public static function makeLoaderRegisterScript( $name, $version = null, 
+		$dependencies = null, $group = null ) 
+	{
 		if ( is_array( $name ) ) {
 			$registrations = FormatJson::encode( $name );
 			return "mediaWiki.loader.register( $registrations );\n";

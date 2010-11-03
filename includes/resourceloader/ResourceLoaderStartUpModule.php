@@ -20,8 +20,6 @@
  * @author Roan Kattouw
  */
 
-defined( 'MEDIAWIKI' ) || die( 1 );
-
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/* Protected Members */
 
@@ -107,7 +105,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
 				$deps = $module->getDependencies();
 				$group = $module->getGroup();
-				$version = wfTimestamp( TS_ISO_8601_BASIC, round( $module->getModifiedTime( $context ), -2 ) );
+				$version = wfTimestamp( TS_ISO_8601_BASIC, 
+					round( $module->getModifiedTime( $context ), -2 ) );
 				$out .= ResourceLoader::makeCustomLoaderScript( $name, $version, $deps, $group, $loader );
 			}
 			// Automatically register module
@@ -118,8 +117,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				if ( !count( $module->getDependencies() && $module->getGroup() === null ) ) {
 					$registrations[] = array( $name, $mtime );
 				}
-				// Modules with dependencies but no group pass three arguments (name, timestamp, dependencies) 
-				// to mediaWiki.loader.register()
+				// Modules with dependencies but no group pass three arguments 
+				// (name, timestamp, dependencies) to mediaWiki.loader.register()
 				else if ( $module->getGroup() === null ) {
 					$registrations[] = array(
 						$name, $mtime,  $module->getDependencies() );
@@ -163,11 +162,18 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Startup function
 			$configuration = FormatJson::encode( $this->getConfig( $context ) );
 			$registrations = self::getModuleRegistrations( $context );
-			$out .= "var startUp = function() {\n\t$registrations\n\tmediaWiki.config.set( $configuration );\n};";
+			$out .= "var startUp = function() {\n" . 
+				"\t$registrations\n" . 
+				"\tmediaWiki.config.set( $configuration );" . 
+				"\n};";
 			
 			// Conditional script injection
-			$scriptTag = Xml::escapeJsString( Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) ) );
-			$out .= "if ( isCompatible() ) {\n\tdocument.write( '$scriptTag' );\n}\ndelete isCompatible;";
+			$scriptTag = Xml::escapeJsString( 
+				Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) ) );
+			$out .= "if ( isCompatible() ) {\n" . 
+				"\tdocument.write( '$scriptTag' );\n" . 
+				"}\n" . 
+				"delete isCompatible;";
 		}
 
 		return $out;
@@ -182,8 +188,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 		$this->modifiedTime[$hash] = filemtime( "$IP/resources/startup.js" );
 
-		// ATTENTION!: Because of the line above, this is not going to cause infinite recursion - think carefully
-		// before making changes to this code!
+		// ATTENTION!: Because of the line above, this is not going to cause 
+		// infinite recursion - think carefully before making changes to this 
+		// code!
 		$time = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $context->getResourceLoader()->getModules() as $module ) {
 			$time = max( $time, $module->getModifiedTime( $context ) );

@@ -20,8 +20,6 @@
  * @author Roan Kattouw
  */
 
-defined( 'MEDIAWIKI' ) || die( 1 );
-
 /**
  * Module for user customizations
  */
@@ -36,9 +34,11 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 			$username = $context->getUser();
 			return array(
 				"$username/common.js" => array( 'ns' => NS_USER, 'type' => 'script' ),
-				"$username/" . $context->getSkin() . '.js' => array( 'ns' => NS_USER, 'type' => 'script' ),
+				"$username/" . $context->getSkin() . '.js' => 
+					array( 'ns' => NS_USER, 'type' => 'script' ),
 				"$username/common.css" => array( 'ns' => NS_USER, 'type' => 'style' ),
-				"$username/" . $context->getSkin() . '.css' => array( 'ns' => NS_USER, 'type' => 'style' ),
+				"$username/" . $context->getSkin() . '.css' => 
+					array( 'ns' => NS_USER, 'type' => 'style' ),
 			);
 		}
 		return array();

@@ -20,8 +20,6 @@
  * @author Roan Kattouw
  */
 
-defined( 'MEDIAWIKI' ) || die( 1 );
-
 /**
  * Module for site customizations
  */
@@ -45,7 +43,10 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 			'Print.css' => array( 'ns' => NS_MEDIAWIKI, 'type' => 'style', 'media' => 'print' ),
 		);
 		if ( $wgHandheldStyle ) {
-			$pages['Handheld.css'] = array( 'ns' => NS_MEDIAWIKI, 'type' => 'style', 'media' => 'handheld' );
+			$pages['Handheld.css'] = array( 
+				'ns' => NS_MEDIAWIKI, 
+				'type' => 'style', 
+				'media' => 'handheld' );
 		}
 		return $pages;
 	}
