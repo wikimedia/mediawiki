@@ -594,6 +594,8 @@ class Xml {
 				$s .= self::encodeJsVar( $elt );
 			}
 			$s .= ']';
+		} elseif ( $value instanceof XmlJsCode ) {
+			$s = $value->value;
 		} elseif ( is_object( $value ) || is_array( $value ) ) {
 			// Objects and associative arrays
 			$s = '{';
@@ -608,6 +610,29 @@ class Xml {
 		} else {
 			$s = '"' . self::escapeJsString( $value ) . '"';
 		}
+		return $s;
+	}
+
+	/**
+	 * Create a call to a JavaScript function. The supplied arguments will be 
+	 * encoded using Xml::encodeJsVar(). 
+	 *
+	 * @param $name The name of the function to call, or a JavaScript expression
+	 *    which evaluates to a function object which is called.
+	 * @param $args Array of arguments to pass to the function.
+	 */
+	public static function encodeJsCall( $name, $args ) {
+		$s = "$name(";
+		$first = true;
+		foreach ( $args as $arg ) {
+			if ( $first ) {
+				$first = false;
+			} else {
+				$s .= ', ';
+			}
+			$s .= Xml::encodeJsVar( $arg );
+		}
+		$s .= ");\n";
 		return $s;
 	}
 
@@ -812,4 +837,23 @@ class XmlSelect {
 		return Xml::tags( 'select', $this->attributes, implode( "\n", $this->options ) );
 	}
 
+}
+
+/**
+ * A wrapper class which causes Xml::encodeJsVar() and Xml::encodeJsCall() to 
+ * interpret a given string as being a JavaScript expression, instead of string 
+ * data.
+ *
+ * Example:
+ *
+ *    Xml::encodeJsVar( new XmlJsCode( 'a + b' ) );
+ *
+ * Returns "a + b".
+ */
+class XmlJsCode {
+	public $value;
+
+	function __construct( $value ) {
+		$this->value = $value;
+	}
 }

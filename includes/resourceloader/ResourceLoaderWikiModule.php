@@ -46,12 +46,14 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return wfEmptyMsg( $page ) ? '' : wfMsgExt( $page, 'content' );
 		}
 		$title = Title::newFromText( $page, $ns );
-		if ( $title ) {
-			if ( $title->isValidCssJsSubpage() && $revision = Revision::newFromTitle( $title ) ) {
-				return $revision->getRawText();
-			}
+		if ( !$title || !$title->isValidCssJsSubpage() ) {
+			return null;
 		}
-		return null;
+		$revision = Revision::newFromTitle( $title );
+		if ( !$revision ) {
+			return null;
+		}
+		return $revision->getRawText();
 	}
 	
 	/* Methods */
@@ -59,12 +61,13 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		$scripts = '';
 		foreach ( $this->getPages( $context ) as $page => $options ) {
-			if ( $options['type'] === 'script' ) {
-				$script = $this->getContent( $page, $options['ns'] );
-				if ( $script ) {
-					$ns = MWNamespace::getCanonicalName( $options['ns'] );
-					$scripts .= "/*$ns:$page */\n$script\n";
-				}
+			if ( $options['type'] !== 'script' ) {
+				continue;
+			}
+			$script = $this->getContent( $page, $options['ns'] );
+			if ( $script ) {
+				$ns = MWNamespace::getCanonicalName( $options['ns'] );
+				$scripts .= "/* $ns:$page */\n$script\n";
 			}
 		}
 		return $scripts;
@@ -74,17 +77,19 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		
 		$styles = array();
 		foreach ( $this->getPages( $context ) as $page => $options ) {
-			if ( $options['type'] === 'style' ) {
-				$media = isset( $options['media'] ) ? $options['media'] : 'all';
-				$style = $this->getContent( $page, $options['ns'] );
-				if ( $style ) {
-					if ( !isset( $styles[$media] ) ) {
-						$styles[$media] = '';
-					}
-					$ns = MWNamespace::getCanonicalName( $options['ns'] );
-					$styles[$media] .= "/* $ns:$page */\n$style\n";
-				}
+			if ( $options['type'] !== 'style' ) {
+				continue;
 			}
+			$media = isset( $options['media'] ) ? $options['media'] : 'all';
+			$style = $this->getContent( $page, $options['ns'] );
+			if ( !$style ) {
+				continue;
+			}
+			if ( !isset( $styles[$media] ) ) {
+				$styles[$media] = '';
+			}
+			$ns = MWNamespace::getCanonicalName( $options['ns'] );
+			$styles[$media] .= "/* $ns:$page */\n$style\n";
 		}
 		return $styles;
 	}

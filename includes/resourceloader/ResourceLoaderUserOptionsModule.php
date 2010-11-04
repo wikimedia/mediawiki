@@ -65,8 +65,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	}
 
 	public function getScript( ResourceLoaderContext $context ) {
-		$encOptions = FormatJson::encode( $this->contextUserOptions( $context ) );
-		return "mediaWiki.user.options.set( $encOptions );";
+		return Xml::encodeJsCall( 'mediaWiki.user.options.set', 
+			array( $this->contextUserOptions( $context ) ) );
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
