@@ -395,7 +395,7 @@ abstract class DatabaseInstaller {
 	 */
 	public function getWebUserBox( $noCreateMsg = false ) {
 		$name = $this->getName();
-		$s = Xml::openElement( 'fieldset' ) .
+		$s = Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
 			$this->getCheckBox(
 				'_SameAccount', 'config-db-web-account-same',
