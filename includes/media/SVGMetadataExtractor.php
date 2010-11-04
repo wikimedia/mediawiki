@@ -67,18 +67,21 @@ class SVGReader {
 	 * Read the SVG
 	 */
 	public function read() {
-		$this->reader->read();
+		$keepReading = $this->reader->read();
+
+		/* Skip until first element */
+		while( $keepReading && $this->reader->nodeType != XmlReader::ELEMENT ) {
+			$keepReading = $this->reader->read();
+		}
 
 		if ( $this->reader->name != 'svg' ) {
 			throw new MWException( "Expected <svg> tag, got ".
 				$this->reader->name );
 		}
 		$this->debug( "<svg> tag is correct." );
-
-		$this->debug( "Starting primary dump processing loop." );
 		$this->handleSVGAttribs();
-		$exitDepth =  $this->reader->depth;
 
+		$exitDepth =  $this->reader->depth;
 		$keepReading = $this->reader->read();
 		$skip = false;
 		while ( $keepReading ) {
