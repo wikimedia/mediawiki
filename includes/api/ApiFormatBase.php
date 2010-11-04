@@ -247,7 +247,7 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	 * @param $help bool
 	 */
 	public function setHelp( $help = true ) {
-		$this->mHelp = true;
+		$this->mHelp = $help;
 	}
 
 	/**
