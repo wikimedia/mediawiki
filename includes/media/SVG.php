@@ -12,7 +12,7 @@
  * @ingroup Media
  */
 class SvgHandler extends ImageHandler {
-	const SVG_METADATA_VERSION = 1;
+	const SVG_METADATA_VERSION = 2;
 
 	function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
@@ -32,8 +32,15 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
-	function isAnimatedImage( $image ) {
+	function isAnimatedImage( $file ) {
 		# TODO: detect animated SVGs
+		$metadata = $file->getMetadata();
+		if ( $metadata ) {
+			$metadata = $this->unpackMetadata( $metadata );
+			if( isset( $metadata['animated'] ) ) {
+				return $metadata['animated'];
+			}
+		}
 		return false;
 	}
 
@@ -72,7 +79,7 @@ class SvgHandler extends ImageHandler {
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight,
 				wfMsg( 'thumbnail_dest_directory' ) );
 		}
-		
+
 		$status = $this->rasterize( $srcPath, $dstPath, $physicalWidth, $physicalHeight );
 		if( $status === true ) {
 			return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
@@ -80,7 +87,7 @@ class SvgHandler extends ImageHandler {
 			return $status; // MediaTransformError
 		}
 	}
-	
+
 	/*
 	* Transform an SVG file to PNG
 	* This function can be called outside of thumbnail contexts
@@ -142,10 +149,6 @@ class SvgHandler extends ImageHandler {
 			$wgLang->formatSize( $file->getSize() ) );
 	}
 
-	function formatMetadata( $file ) {
-		return false;
-	}
-	
 	function getMetadata( $file, $filename ) {
 		$metadata = array();
 		try {
@@ -158,7 +161,7 @@ class SvgHandler extends ImageHandler {
 		$metadata['version'] = self::SVG_METADATA_VERSION;
 		return serialize( $metadata );
 	}
-	
+
 	function unpackMetadata( $metadata ) {
 		$unser = @unserialize( $metadata );
 		if ( isset( $unser['version'] ) && $unser['version'] == self::SVG_METADATA_VERSION ) {
@@ -174,5 +177,45 @@ class SvgHandler extends ImageHandler {
 
 	function isMetadataValid( $image, $metadata ) {
 		return $this->unpackMetadata( $metadata ) !== false;
+	}
+
+	function visibleMetadataFields() {
+		$fields = array( 'title', 'description', 'animated' );
+		return $fields;
+	}
+
+	function formatMetadata( $file ) {
+		$result = array(
+			'visible' => array(),
+			'collapsed' => array()
+		);
+		$metadata = $file->getMetadata();
+		if ( !$metadata ) {
+			return false;
+		}
+		$metadata = $this->unpackMetadata( $metadata );
+		if ( !$metadata ) {
+			return false;
+		}
+		unset( $metadata['version'] );
+		unset( $metadata['metadata'] ); /* non-formatted XML */
+
+		/* TODO: add a formatter
+		$format = new FormatSVG( $metadata );
+		$formatted = $format->getFormattedData();
+		*/
+
+		// Sort fields into visible and collapsed
+		$visibleFields = $this->visibleMetadataFields();
+		foreach ( $metadata as $name => $value ) {
+			$tag = strtolower( $name );
+			self::addMeta( $result,
+				in_array( $tag, $visibleFields ) ? 'visible' : 'collapsed',
+				'svg',
+				$tag,
+				$value
+			);
+		}
+		return $result;
 	}
 }

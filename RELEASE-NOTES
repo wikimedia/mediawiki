@@ -197,6 +197,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 10596) Allow installer to enable extensions already in extensions folder
 * (bug 17394) Make installer check for latest version against MediaWiki.org
 * (bug 20627) Installer should be in languages other than English
+* Support for metadata in SVG files (title, description).
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
