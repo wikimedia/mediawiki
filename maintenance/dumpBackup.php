@@ -97,6 +97,9 @@ Options:
   --skip-footer Don't output the </mediawiki> footer
   --stub      Don't perform old_text lookups; for 2-pass dump
   --uploads   Include upload records (experimental)
+  --conf=<file> Use the specified configuration file (LocalSettings.php)
+
+  --wiki=<wiki>  Only back up the specified <wiki>
 
 Fancy stuff: (Works? Add examples please.)
   --plugin=<class>[:<file>]   Load a dump plugin class
