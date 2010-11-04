@@ -310,7 +310,7 @@ class MessageBlobStore {
 		$decoded = FormatJson::decode( $blob, true );
 		$decoded[$key] = wfMsgExt( $key, array( 'language' => $lang ) );
 
-		return FormatJson::encode( $decoded );
+		return FormatJson::encode( (object)$decoded );
 	}
 
 	/**
@@ -365,6 +365,6 @@ class MessageBlobStore {
 			$messages[$key] = wfMsgExt( $key, array( 'language' => $lang ) );
 		}
 
-		return FormatJson::encode( $messages );
+		return FormatJson::encode( (object)$messages );
 	}
 }

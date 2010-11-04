@@ -53,7 +53,7 @@ class ResourceLoader {
 		if ( !count( $modules ) ) {
 			return; // or else Database*::select() will explode, plus it's cheaper!
 		}
-		$dbr = wfGetDb( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 		$skin = $context->getSkin();
 		$lang = $context->getLanguage();
 		
@@ -385,7 +385,7 @@ class ResourceLoader {
 			}
 
 			// Messages
-			$messages = isset( $blobs[$name] ) ? $blobs[$name] : '{}';
+			$messagesBlob = isset( $blobs[$name] ) ? $blobs[$name] : array();
 
 			// Append output
 			switch ( $context->getOnly() ) {
@@ -396,7 +396,7 @@ class ResourceLoader {
 					$out .= self::makeCombinedStyles( $styles );
 					break;
 				case 'messages':
-					$out .= self::makeMessageSetScript( $messages );
+					$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
 					break;
 				default:
 					// Minify CSS before embedding in mediaWiki.loader.implement call 
@@ -406,7 +406,8 @@ class ResourceLoader {
 							$styles[$media] = $this->filter( 'minify-css', $style );
 						}
 					}
-					$out .= self::makeLoaderImplementScript( $name, $scripts, $styles, $messages );
+					$out .= self::makeLoaderImplementScript( $name, $scripts, $styles, 
+						new XmlJsCode( $messagesBlob ) );
 					break;
 			}
 
@@ -441,26 +442,49 @@ class ResourceLoader {
 
 	/* Static Methods */
 
+	/**
+	 * Returns JS code to call to mediaWiki.loader.implement for a module with 
+	 * given properties.
+	 *
+	 * @param $name Module name
+	 * @param $scripts Array of JavaScript code snippets to be executed after the 
+	 *     module is loaded
+	 * @param $styles Associative array mapping media type to associated CSS string
+	 * @param $messages Messages associated with this module. May either be an 
+	 *     associative array mapping message key to value, or a JSON-encoded message blob
+	 *     containing the same data, wrapped in an XmlJsCode object.
+	 */
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_array( $scripts ) ) {
 			$scripts = implode( $scripts, "\n" );
 		}
-		if ( is_array( $styles ) ) {
-			$styles = count( $styles ) ? FormatJson::encode( $styles ) : 'null';
-		}
-		if ( is_array( $messages ) ) {
-			$messages = count( $messages ) ? FormatJson::encode( $messages ) : 'null';
-		}
-		return "mediaWiki.loader.implement( '$name', function() {{$scripts}},\n$styles,\n$messages );\n";
+		return Xml::encodeJsCall( 
+			'mediaWiki.loader.implement', 
+			array(
+				$name,
+				new XmlJsCode( "function() {{$scripts}}" ),
+				(object)$styles,
+				(object)$messages
+			) );
 	}
 
+	/**
+	 * Returns JS code which, when called, will register a given list of messages.
+	 *
+	 * @param $messages May either be an associative array mapping message key 
+	 *     to value, or a JSON-encoded message blob containing the same data, 
+	 *     wrapped in an XmlJsCode object.
+	 */
 	public static function makeMessageSetScript( $messages ) {
-		if ( is_array( $messages ) ) {
-			$messages = count( $messages ) ? FormatJson::encode( $messages ) : 'null';
-		}
-		return "mediaWiki.msg.set( $messages );\n";
+		return Xml::encodeJsCall( 'mediaWiki.messages.set', array( (object)$messages ) );
 	}
 
+	/**
+	 * Combines an associative array mapping media type to CSS into a 
+	 * single stylesheet with @media blocks.
+	 *
+	 * @param $styles Array of CSS strings
+	 */
 	public static function makeCombinedStyles( array $styles ) {
 		$out = '';
 		foreach ( $styles as $media => $style ) {
@@ -469,49 +493,95 @@ class ResourceLoader {
 		return $out;
 	}
 
+	/**
+	 * Returns a JS call to mediaWiki.loader.state, which sets the state of a 
+	 * module or modules to a given value. Has two calling conventions:
+	 *
+	 *    - ResourceLoader::makeLoaderStateScript( $name, $state ):
+	 *         Set the state of a single module called $name to $state
+	 *
+	 *    - ResourceLoader::makeLoaderStateScript( array( $name => $state, ... ) ):
+	 *         Set the state of modules with the given names to the given states
+	 */
 	public static function makeLoaderStateScript( $name, $state = null ) {
 		if ( is_array( $name ) ) {
-			$statuses = FormatJson::encode( $name );
-			return "mediaWiki.loader.state( $statuses );\n";
+			return Xml::encodeJsCall( 'mediaWiki.loader.state', array( $name ) );
 		} else {
-			$name = Xml::escapeJsString( $name );
-			$state = Xml::escapeJsString( $state );
-			return "mediaWiki.loader.state( '$name', '$state' );\n";
+			return Xml::encodeJsCall( 'mediaWiki.loader.state', array( $name, $state ) );
 		}
 	}
 
+	/**
+	 * Returns JS code which calls the script given by $script. The script will
+	 * be called with local variables name, version, dependencies and group, 
+	 * which will have values corresponding to $name, $version, $dependencies 
+	 * and $group as supplied. 
+	 *
+	 * @param $name The module name
+	 * @param $version The module version string
+	 * @param $dependencies Array of module names on which this module depends
+	 * @param $group The group which the module is in.
+	 * @param $script The JS loader script
+	 */
 	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $script ) {
-		$name = Xml::escapeJsString( $name );
-		$version = (int) $version > 1 ? (int) $version : 1;
-		$dependencies = FormatJson::encode( $dependencies );
-		$group = FormatJson::encode( $group );
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
-		return "( function( name, version, dependencies, group ) {\n\t$script\n} )" .
-			"( '$name', $version, $dependencies, $group );\n";
+		return Xml::encodeJsCall( 
+			"( function( name, version, dependencies, group ) {\n\t$script\n} )",
+			array( $name, $version, $dependencies, $group ) );
 	}
 
+	/**
+	 * Returns JS code which calls mediaWiki.loader.register with the given 
+	 * parameters. Has three calling conventions:
+	 *
+	 *   - ResourceLoader::makeLoaderRegisterScript( $name, $version, $dependencies, $group ):
+	 *       Register a single module.
+	 *
+	 *   - ResourceLoader::makeLoaderRegisterScript( array( $name1, $name2 ) ):
+	 *       Register modules with the given names.
+	 *
+	 *   - ResourceLoader::makeLoaderRegisterScript( array(
+	 *        array( $name1, $version1, $dependencies1, $group1 ),
+	 *        array( $name2, $version2, $dependencies1, $group2 ),
+	 *        ...
+	 *     ) ):
+	 *        Registers modules with the given names and parameters.
+	 *
+	 * @param $name The module name
+	 * @param $version The module version string
+	 * @param $dependencies Array of module names on which this module depends
+	 * @param $group The group which the module is in.
+	 */
 	public static function makeLoaderRegisterScript( $name, $version = null, 
 		$dependencies = null, $group = null ) 
 	{
 		if ( is_array( $name ) ) {
-			$registrations = FormatJson::encode( $name );
-			return "mediaWiki.loader.register( $registrations );\n";
+			return Xml::encodeJsCall( 'mediaWiki.loader.register', array( $name ) );
 		} else {
-			$name = Xml::escapeJsString( $name );
 			$version = (int) $version > 1 ? (int) $version : 1;
-			$dependencies = FormatJson::encode( $dependencies );
-			$group = FormatJson::encode( $group );
-			return "mediaWiki.loader.register( '$name', $version, $dependencies, $group );\n";
+			return Xml::encodeJsCall( 'mediaWiki.loader.register', 
+				array( $name, $version, $dependencies, $group ) );
 		}
 	}
 
+	/**
+	 * Returns JS code which runs given JS code if the client-side framework is 
+	 * present.
+	 *
+	 * @param $script JS code to run
+	 */
 	public static function makeLoaderConditionalScript( $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
 		return "if ( window.mediaWiki ) {\n\t$script\n}\n";
 	}
 
+	/**
+	 * Returns JS code which will set the MediaWiki configuration array to 
+	 * the given value.
+	 *
+	 * @param $configuration Associative array of configuration parameters
+	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		$configuration = FormatJson::encode( $configuration );
-		return "mediaWiki.config.set( $configuration );\n";
+		return Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) );
 	}
 }

@@ -102,7 +102,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$registrations = array();
 		foreach ( $context->getResourceLoader()->getModules() as $name => $module ) {
 			// Support module loader scripts
-			if ( ( $loader = $module->getLoaderScript() ) !== false ) {
+			$loader = $module->getLoaderScript();
+			if ( $loader !== false ) {
 				$deps = $module->getDependencies();
 				$group = $module->getGroup();
 				$version = wfTimestamp( TS_ISO_8601_BASIC, 
@@ -160,18 +161,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			ksort( $query );
 			
 			// Startup function
-			$configuration = FormatJson::encode( $this->getConfig( $context ) );
+			$configuration = $this->getConfig( $context );
 			$registrations = self::getModuleRegistrations( $context );
 			$out .= "var startUp = function() {\n" . 
 				"\t$registrations\n" . 
-				"\tmediaWiki.config.set( $configuration );" . 
-				"\n};";
+				"\t" . Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) ) . 
+				"};\n";
 			
 			// Conditional script injection
-			$scriptTag = Xml::escapeJsString( 
-				Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) ) );
+			$scriptTag = Html::linkedScript( $wgLoadScript . '?' . wfArrayToCGI( $query ) );
 			$out .= "if ( isCompatible() ) {\n" . 
-				"\tdocument.write( '$scriptTag' );\n" . 
+				"\t" . Xml::encodeJsCall( 'document.write', array( $scriptTag ) ) . 
 				"}\n" . 
 				"delete isCompatible;";
 		}

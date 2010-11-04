@@ -259,6 +259,7 @@ $wgAutoloadLocalClasses = array(
 	'XCacheBagOStuff' => 'includes/BagOStuff.php',
 	'XmlDumpWriter' => 'includes/Export.php',
 	'Xml' => 'includes/Xml.php',
+	'XmlJsCode' => 'includes/Xml.php',
 	'XmlSelect' => 'includes/Xml.php',
 	'XmlTypeCheck' => 'includes/XmlTypeCheck.php',
 	'ZhClient' => 'includes/ZhClient.php',
