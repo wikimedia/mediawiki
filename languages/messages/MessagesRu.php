@@ -37,6 +37,7 @@
  * @author Lockal
  * @author MaxSem
  * @author Putnik
+ * @author Rubin
  * @author Sk
  * @author TarzanASG
  * @author Temuri rajavi
@@ -2136,7 +2137,7 @@ $1',
 
 # Watchlist
 'watchlist'            => 'Список наблюдения',
-'mywatchlist'          => 'Cписок наблюдения',
+'mywatchlist'          => 'Список наблюдения',
 'watchlistfor2'        => 'Для $1 $2',
 'nowatchlist'          => 'Ваш список наблюдения пуст.',
 'watchlistanontext'    => 'Вы должны $1, чтобы просмотреть или отредактировать список наблюдения.',
