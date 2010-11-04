@@ -53,7 +53,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageSet->requestField( 'page_restrictions' );
 		$pageSet->requestField( 'page_is_redirect' );
 		$pageSet->requestField( 'page_is_new' );
-		if ( $wgDisablePageCounters ) {
+		if ( !$wgDisablePageCounters ) {
 			$pageSet->requestField( 'page_counter' );
 		}
 		$pageSet->requestField( 'page_touched' );
