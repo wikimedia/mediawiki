@@ -57,12 +57,12 @@ class OracleInstaller extends DatabaseInstaller {
 		$this->parent->setVar( 'wgDBserver', '' );
 		return
 			$this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
+			Html::openElement( 'fieldset' ) .
+			Html::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix' ) .
 			$this->getTextBox( '_OracleDefTS', 'config-oracle-def-ts' ) .
 			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts', array(), $this->parent->getHelpBox( 'config-db-oracle-help' ) ) .
-			Xml::closeElement( 'fieldset' ) .
+			Html::closeElement( 'fieldset' ) .
 			$this->getInstallUserBox().
 			$this->getWebUserBox();
 	}

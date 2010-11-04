@@ -486,7 +486,7 @@ class WebInstaller extends CoreInstaller {
 
 		$s .= "</ul></div>\n". // end list pane
 			"<div class=\"config-page\">\n" .
-			Xml::element( 'h2', array(),
+			Html::element( 'h2', array(),
 				wfMsg( 'config-page-' . strtolower( $currentPageName ) ) );
 
 		$this->output->addHTMLNoFlush( $s );
@@ -513,7 +513,7 @@ class WebInstaller extends CoreInstaller {
 					$query['lastPage'] = $currentPageName;
 				}
 
-				$link = Xml::element( 'a',
+				$link = Html::element( 'a',
 					array(
 						'href' => $this->getUrl( $query )
 					),
@@ -529,7 +529,7 @@ class WebInstaller extends CoreInstaller {
 				$s .= $link;
 			}
 		} else {
-			$s .= Xml::element( 'span',
+			$s .= Html::element( 'span',
 				array(
 					'class' => 'config-page-disabled'
 				),
@@ -581,7 +581,7 @@ class WebInstaller extends CoreInstaller {
 		$s =
 			"<div class=\"config-info $class\">\n" .
 				"<div class=\"config-info-left\">\n" .
-				Xml::element( 'img',
+				Html::element( 'img',
 					array(
 						'src' => '../skins/common/images/' . $icon,
 						'alt' => wfMsg( 'config-information' ),
