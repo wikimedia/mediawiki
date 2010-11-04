@@ -39,7 +39,7 @@ abstract class WebInstallerPage {
 	public function startForm() {
 		$this->addHTML(
 			"<div class=\"config-section\">\n" .
-			Xml::openElement(
+			Html::openElement(
 				'form',
 				array(
 					'method' => 'post',
@@ -235,7 +235,7 @@ class WebInstaller_Language extends WebInstallerPage {
 	 */
 	public function getLanguageSelector( $name, $label, $selectedCode ) {
 		global $wgDummyLanguageCodes;
-		$s = Xml::openElement( 'select', array( 'id' => $name, 'name' => $name ) ) . "\n";
+		$s = Html::openElement( 'select', array( 'id' => $name, 'name' => $name ) ) . "\n";
 
 		$languages = Language::getLanguageNames();
 		ksort( $languages );
@@ -314,8 +314,8 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 				"</li>\n";
 
 			$settings .=
-				Xml::openElement( 'div', array( 'id' => 'DB_wrapper_' . $type, 'class' => 'dbWrapper' ) ) .
-				Xml::element( 'h3', array(), wfMsg( 'config-header-' . $type ) ) .
+				Html::openElement( 'div', array( 'id' => 'DB_wrapper_' . $type, 'class' => 'dbWrapper' ) ) .
+				Html::element( 'h3', array(), wfMsg( 'config-header-' . $type ) ) .
 				$installer->getConnectForm() .
 				"</div>\n";
 		}
@@ -802,7 +802,7 @@ class WebInstaller_Options extends WebInstallerPage {
 
 		return
 			"<div class=\"config-cc-wrapper\" id=\"config-cc-wrapper\" style=\"display: none;\">\n" .
-			Xml::element( 'iframe', $iframeAttribs, '', false /* not short */ ) .
+			Html::element( 'iframe', $iframeAttribs, '', false /* not short */ ) .
 			"</div>\n";
 	}
 
@@ -813,12 +813,12 @@ class WebInstaller_Options extends WebInstallerPage {
 		$reduceJs = str_replace( '$1', '70px', $js );
 		return
 			'<p>'.
-			Xml::element( 'img', array( 'src' => $this->getVar( 'wgRightsIcon' ) ) ) .
+			Html::element( 'img', array( 'src' => $this->getVar( 'wgRightsIcon' ) ) ) .
 			'&#160;&#160;' .
 			htmlspecialchars( $this->getVar( 'wgRightsText' ) ) .
 			"</p>\n" .
 			"<p style=\"text-align: center\">" .
-			Xml::element( 'a',
+			Html::element( 'a',
 				array(
 					'href' => $this->getCCPartnerUrl(),
 					'onclick' => $expandJs,
