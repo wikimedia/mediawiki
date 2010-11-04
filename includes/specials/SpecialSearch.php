@@ -302,7 +302,8 @@ class SpecialSearch {
 			$textMatches->free();
 		}
 		if( $num === 0 ) {
-			$wgOut->addWikiMsg( 'search-nonefound', wfEscapeWikiText( $term ) );
+			#$wgOut->addWikiMsg( 'search-nonefound', wfEscapeWikiText( $term ) );
+			$wgOut->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
 			$this->showCreateLink( $t );
 		}
 		$wgOut->addHtml( "</div>" );
@@ -328,7 +329,7 @@ class SpecialSearch {
 			}
 		} 
 		if( $messageName ) {
-			$wgOut->addWikiMsg( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) );
+			$wgOut->wrapWikiMsg( "<p class=\"mw-search-createlink\">\n$1</p>", array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) ) );
 		} else {
 			// preserve the paragraph for margins etc...
 			$wgOut->addHtml( '<p></p>' );
