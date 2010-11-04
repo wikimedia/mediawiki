@@ -302,7 +302,6 @@ class SpecialSearch {
 			$textMatches->free();
 		}
 		if( $num === 0 ) {
-			#$wgOut->addWikiMsg( 'search-nonefound', wfEscapeWikiText( $term ) );
 			$wgOut->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
 			$this->showCreateLink( $t );
 		}
