@@ -3563,6 +3563,8 @@ D Datei <code>php.ini</code> mueß prieft wäre un s mueß derby sichergstellt w
 	'config-your-language-help' => 'Bitte d Sproch uuswehle, wu bim Inschtallationsvorgang soll brucht wäre.',
 	'config-wiki-language' => 'Wikisproch:',
 	'config-wiki-language-help' => 'Bitte d Sproch uuswehle, wu s Wiki in dr Hauptsach din gschribe wird.',
+	'config-allow-requests' => 'Extärni Zuegriff uf „MediaWiki.org“ zueloo',
+	'config-allow-requests-help' => 'Wänn aktiviert, cha s Inschtallationsprogramm uf „MediaWiki.org“ iberpriefe, eb tatsächli di aktuäll Version inschtalliert wird.',
 	'config-back' => '← Zruck',
 	'config-continue' => 'Wyter →',
 	'config-page-language' => 'Sproch',
@@ -3603,6 +3605,7 @@ Du chasch MediaWiki inschtalliere.</span>',
 	'config-env-bad' => 'D Inschtallationsumgäbigisch prieft wore.
 Du chasch MediaWiki nit inschtalliere.',
 	'config-env-php' => 'PHP $1 isch inschtalliert.',
+	'config-env-latest-disabled' => 'Extärni HTTP-Aafroge sin nit zuegloo. Versionsiberpriefig wird ibergumpt',
 	'config-env-latest-ok' => 'Du bisch am Inschtalliere vu dr nejschte Programmversion vu MediaWiki.',
 	'config-env-latest-new' => "'''Hiiwys:''' Du bisch am Inschtalliere vun ere Entwickligsversion vu MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Hiiwyys:''' S Inschtallationsprogramm het kei Informatione vu [$1] chenne abruefe zue dr nejschte Programmversion vu MediaWiki.",
@@ -3611,7 +3614,7 @@ Du chasch MediaWiki nit inschtalliere.',
 S wird empfohle die nejscht Version z verwände, wu vu [http://www.mediawiki.org/wiki/Download/de mediawiki.org] cha abeglade wäre.',
 	'config-unicode-using-utf8' => 'Fir d Unicode-Normalisierig wird em Brion Vibber syy utf8_normalize.so yygsetzt.',
 	'config-unicode-using-intl' => 'For d Unicode-Normalisierig wird d [http://pecl.php.net/intl PECL-Erwyterig intl] yygsetzt.',
-	'config-unicode-pure-php-warning' => "'''Warnig:''' D [http://pecl.php.net/intl PECL-Erwyterig intl] isch fir d Unicode-Normalisierig nit verfiegbar.
+	'config-unicode-pure-php-warning' => "'''Warnig:''' D [http://pecl.php.net/intl PECL-Erwyterig intl] isch fir d Unicode-Normalisierig nit verfiegbar. Wäge däm wird di langsam pure-PHP-Implementierig brucht.
 Wänn Du ne Websyte mit ere große Bsuechrzahl bedrybsch, sottsch e weng ebis läse iber [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-Normalisierig (en)].",
 	'config-unicode-update-warning' => "'''Warnig:''' Di inschtalliert Version vum Unicode-Normalisierigswrapper verwändet e elteri Version vu dr Bibliothek vum [http://site.icu-project.org/ ICU-Projäkt].
 Du sottsch si [http://www.mediawiki.org/wiki/Unicode_normalization_considerations aktualisiere], wänn Dor d Verwändig vu Unicode wichtig isch.",
@@ -3628,6 +3631,15 @@ Wänn Du PHP iber d Paketverwaltig vun ere Debian- oder Ubuntu-Inschtallation in
 	'config-register-globals' => "'''Warnig: Dr Parameter <code>[http://php.net/register_globals register_globals]</code> vu PHP isch aktiviert.'''
 '''Är sott deaktiviert wäre, wänn des megli isch.'''
 D MediaWiki-Inschtallation lauft einwäg, aber dr Server isch aafällig fi megligi Sicherheitsprobläm.",
+	'config-magic-quotes-runtime' => "'''Fatal: Dr Parameter <code>[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]</code> vu PHP isch aktiviert!'''
+Die Yystellig fiert zue nit vorhärsähbare Probläm bi dr Datenyygab.
+MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert woren isch.",
+	'config-magic-quotes-sybase' => "'''Fatal: Dr Parameter <code>[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]</code> vu PHP isch aktiviert!'''
+Die Yystellig fiert zue nit vorhärsähbare Probläm bi dr Datenyygab.
+MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert woren isch.",
+	'config-mbstring' => "'''Fatal: Dr Parameter <code>[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]</code> vu PHP isch aktiviert!'''
+Die Yystellig verursacht Fähler un fiert zue nit vorhärsähbare Probläm bi dr Datenyygab.
+MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert woren isch.",
 );
 
 /** Hebrew (עברית)
@@ -4971,6 +4983,8 @@ php.iniを確認し、<code>session.save_path</code>が適切なディレクト�
 	'config-your-language-help' => 'インストール作業中に利用する言語を選んで下さい。',
 	'config-wiki-language' => 'ウィキの言語：',
 	'config-wiki-language-help' => 'そのウィキで主に書き込まれる言語を選んで下さい。',
+	'config-allow-requests' => 'MediaWiki.orgへの外部要求を許可',
+	'config-allow-requests-help' => '有効になっている場合、最新の安定バージョンをインストールしていることを確認するため、インストーラーがMediaWiki.orgへ確認することを許可します。',
 	'config-back' => '←戻る',
 	'config-continue' => '続き→',
 	'config-page-language' => '言語',
@@ -5011,6 +5025,7 @@ MediaWikiをインストール出来ます。</span>',
 	'config-env-bad' => '環境が確認されました。
 MediaWikiをインストール出来ません。',
 	'config-env-php' => 'PHP $1がインストールされています。',
+	'config-env-latest-disabled' => '外部HTTP要求は無効で、バージョン確認を飛ばします。',
 	'config-env-latest-ok' => '最新バージョンのMediaWikiをインストールしています。',
 	'config-env-latest-new' => "'''注意：'''MediaWikiの開発版をインストールしています。",
 	'config-env-latest-can-not-check' => "'''警告：'''インストーラーは、[$1]から、MediaWikiの最新リリースに関する情報を取得できませんでした。",
@@ -5860,7 +5875,8 @@ $1
 Ве советуваме да ја користите најновата верзија, која можете да ја преземете на [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'Со utf8_normalize.so за уникодна нормализација од Брајон Вибер (Brion Vibber).',
 	'config-unicode-using-intl' => 'Со додатокот [http://pecl.php.net/intl intl PECL] за уникодна нормализација.',
-	'config-unicode-pure-php-warning' => "'''Предупредување''': Додатокот [http://pecl.php.net/intl intl PECL] не е достапен за врши уникодна нормализација.
+	'config-unicode-pure-php-warning' => "'''Предупредување''': Додатокот [http://pecl.php.net/intl intl PECL] не е достапен за врши уникодна нормализација, враќајќи се на бавна примена на чист PHP.
+
 Ако имате високопрометно мрежно место, тогаш ќе треба да прочитате повеќе за [http://www.mediawiki.org/wiki/Unicode_normalization_considerations уникодната нормализација].",
 	'config-unicode-update-warning' => "'''Предупредување''': Инсталираната верзија на обвивката за уникодна нормализација користи постара верзија на библиотеката на [http://site.icu-project.org/ проектот ICU].
 За да користите Уникод, ќе треба да направите [http://www.mediawiki.org/wiki/Unicode_normalization_considerations надградба].",
@@ -5946,6 +5962,8 @@ $1
 	'config-db-install-account' => 'Корисничка смета за инсталација',
 	'config-db-username' => 'Корисничко име за базата:',
 	'config-db-password' => 'Лозинка за базата:',
+	'config-db-install-username' => 'Внесете корисничко име што ќе се користи за поврзување со базата во текот на инсталацијата. Ова не е корисничкото име од сметката на МедијаВики, туку посебно корисничко име за вашата база на податоци.',
+	'config-db-install-password' => 'Внесете клозинка што ќе се користи за поврзување со базата во текот на инсталацијата. Ова не е лозинката од сметката на МедијаВики, туку посебна лозинка за вашата база на податоци.',
 	'config-db-install-help' => 'Внесете го корисничкото име и лозинката што ќе се користи за поврзување со базата на податоци во текот на инсталацијата.',
 	'config-db-account-lock' => 'Користи го истото корисничко име и лозинка за редовна работа',
 	'config-db-wiki-account' => 'Корисничко име за редовна работа',
@@ -6356,8 +6374,8 @@ U kunt MediaWiki niet installeren.',
 U wordt aangeraden de meest recente versie te gebruiken die u kunt downloaden van [http://www.mediawiki.org/wiki/Download mediawiki.org].',
 	'config-unicode-using-utf8' => 'Voor Unicode-normalisatie wordt utf8_normalize.so van Brion Vibber gebruikt.',
 	'config-unicode-using-intl' => 'Voor Unicode-normalisatie wordt de [http://pecl.php.net/intl PECL-extensie intl] gebruikt.',
-	'config-unicode-pure-php-warning' => "'''Waarschuwing''': De [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicode-normalisatie af te handelen.
-Als u een website met veel verkeer installeert, lees u dan in over [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-normalisatie].",
+	'config-unicode-pure-php-warning' => "'''Waarschuwing''': De [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicode-normalisatie af te handelen en daarom wordt de langzame PHP-implementatie gebruikt.
+Als u MediaWiki voor een website met veel verkeer installeert, lees u dan in over [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-normalisatie].",
 	'config-unicode-update-warning' => "'''Waarschuwing''': De geïnstalleerde versie van de Unicode-normalisatiewrapper maakt gebruik van een oudere versie van [http://site.icu-project.org/ de bibliotheek van het ICU-project].
 U moet [http://www.mediawiki.org/wiki/Unicode_normalization_considerations bijwerken] als Unicode voor u van belang is.",
 	'config-no-db' => 'Er kon geen geschikte databasedriver geladen worden!',
@@ -7304,7 +7322,7 @@ Nie możesz zainstalować MediaWiki.',
 Zaleca się pobranie najnowszej wersji z [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'Korzystanie z normalizacji Unicode utf8_normalize.so napisanej przez Brion Vibbera.',
 	'config-unicode-using-intl' => 'Korzystanie z [http://pecl.php.net/intl rozszerzenia intl PECL] do normalizacji Unicode.',
-	'config-unicode-pure-php-warning' => "'''Uwaga!''' [http://pecl.php.net/intl Rozszerzenie intl PECL] do obsługi normalizacji Unicode nie jest dostępne.
+	'config-unicode-pure-php-warning' => "'''Uwaga!''' [http://pecl.php.net/intl Rozszerzenie intl PECL] do obsługi normalizacji Unicode nie jest dostępne. Użyta zostanie mało wydajna zwykła implementacja w PHP.
 Jeśli prowadzisz stronę o dużym natężeniu ruchu, powinieneś zapoznać się z informacjami o [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalizacji Unicode].",
 	'config-unicode-update-warning' => "'''Uwaga''' – zainstalowana wersja normalizacji Unicode korzysta z nieaktualnej biblioteki [http://site.icu-project.org/ projektu ICU].
 Powinieneś [http://www.mediawiki.org/wiki/Unicode_normalization_considerations zrobić aktualizację] jeśli chcesz korzystać w pełni z Unicode.",
@@ -7545,6 +7563,7 @@ $messages['pms'] = array(
 	'config-localsettings-upgrade' => "'''Avis''': A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
 Sò programa a peul esse agiornà.
 Për piasì, ch'a tramuda <code>LocalSettings.php</code> an chèich pòst sigur e peui ch'a fasa marcé torna l'instalador.",
+	'config-localsettings-key' => "Ciav d'agiornament:",
 	'config-localsettings-noupgrade' => "'''Eror''': A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
 Sò programa a peul pa esse agiornà al moment.
 L'instalador a l'é stàit disabilità për dle rason ëd sicurëssa.",
@@ -7609,7 +7628,7 @@ It peule pa instalé MediaWiki.",
 I-j consejoma ëd dovré l'ùltima version, che a peul esse dëscarià da [http://www.mediawiki.org/wiki/Download mediawiki.org]",
 	'config-unicode-using-utf8' => 'As deuvra utf8_normalize.so ëd Brion Vibber për la normalisassion Unicode.',
 	'config-unicode-using-intl' => "As deuvra l'[http://pecl.php.net/intl estension intl PECL] për la normalisassion Unicode.",
-	'config-unicode-pure-php-warning' => "'''Avis:''' L'[http://pecl.php.net/intl estension intl PECL] a l'é pa disponìbil për gestì la normalisassion Unicode.
+	'config-unicode-pure-php-warning' => "'''Avis:''' L'[http://pecl.php.net/intl estension intl PECL] a l'é pa disponìbil për gestì la normalisassion Unicode, da già che l'implementassion an PHP pur a faliss për lentëssa.
 S'a gestiss un sit a àut tràfich, a dovrìa lese cheicòs an sla [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalisassion Unicode].",
 	'config-unicode-update-warning' => "'''Avis:''' La version instalà dlë spassiador ëd normalisassion Unicode a deuvra na version veja ëd la librarìa dël [http://site.icu-project.org/ proget ICU].
 A dovrìa fé n'[http://www.mediawiki.org/wiki/Unicode_normalization_considerations agiornament] s'a l'é anteressà a dovré Unicode.",
