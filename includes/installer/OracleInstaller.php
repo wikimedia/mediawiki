@@ -43,13 +43,13 @@ class OracleInstaller extends DatabaseInstaller {
 		$this->parent->setVar( '_SameAccount', false );
 		$this->parent->setVar( '_CreateDBAccount', true );
 		$this->parent->setVar( 'wgDBname', '' );
-		return Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
-			Xml::openElement( 'div', array( 'id' => 'dbOtherAccount' ) ) .
+		return Html::openElement( 'fieldset' ) .
+			Html::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
+			Html::openElement( 'div', array( 'id' => 'dbOtherAccount' ) ) .
 			$this->getTextBox( 'wgDBuser', 'config-db-username' ) .
 			$this->getPasswordBox( 'wgDBpassword', 'config-db-password', array(), $this->parent->getHelpBox( 'config-db-web-help' ) ) .
 			$this->getCheckBox( '_CreateDBAccount', 'config-db-web-create', array( 'disabled' => true ) ).
-			Xml::closeElement( 'div' ) . Xml::closeElement( 'fieldset' );
+			Html::closeElement( 'div' ) . Html::closeElement( 'fieldset' );
 	}
 
 	public function getConnectForm() {

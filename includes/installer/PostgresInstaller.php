@@ -38,12 +38,12 @@ class PostgresInstaller extends DatabaseInstaller {
 		return
 			$this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
 			$this->getTextBox( 'wgDBport', 'config-db-port' ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
+			Html::openElement( 'fieldset' ) .
+			Html::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
 			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-db-name-help' ) ) .
 			$this->getTextBox( 'wgDBmwschema', 'config-db-schema', array(), $this->parent->getHelpBox( 'config-db-schema-help' ) ) .
 			$this->getTextBox( 'wgDBts2schema', 'config-db-ts2-schema' ) .
-			Xml::closeElement( 'fieldset' ) .
+			Html::closeElement( 'fieldset' ) .
 			$this->getInstallUserBox();
 	}
 
