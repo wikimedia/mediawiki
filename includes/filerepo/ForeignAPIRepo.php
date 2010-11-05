@@ -255,7 +255,8 @@ class ForeignAPIRepo extends FileRepo {
 				wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
 				$modified = filemtime( $localFilename );
 				$remoteModified = strtotime( $metadata['timestamp'] );
-				$diff = abs( $modified - $remoteModified );
+				$current = time();
+				$diff = abs( $modified - $current );
 				if( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
 					/* Use our current and already downloaded thumbnail */
 					$wgMemc->set( $key, $localUrl, $this->apiThumbCacheExpiry );
