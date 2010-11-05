@@ -37,7 +37,12 @@
  */
 class WebRequest {
 	protected $data, $headers = array();
-	private $_response;
+
+	/**
+	 * Lazy-init response object
+	 * @var WebResponse
+	 */
+	private $response;
 
 	public function __construct() {
 		/// @todo Fixme: this preemptive de-quoting can interfere with other web libraries
@@ -665,11 +670,11 @@ class WebRequest {
 	 */
 	public function response() {
 		/* Lazy initialization of response object for this request */
-		if ( !is_object( $this->_response ) ) {
+		if ( !is_object( $this->response ) ) {
 			$class = ( $this instanceof FauxRequest ) ? 'FauxResponse' : 'WebResponse';
-			$this->_response = new $class();
+			$this->response = new $class();
 		}
-		return $this->_response;
+		return $this->response;
 	}
 
 	/**
