@@ -4,8 +4,13 @@
 $( function() {
 
 	// Select all h1-h6 elements that contain editsection links
-	$('h1:has(.editsection a), h2:has(.editsection a), h3:has(.editsection a), h4:has(.editsection a), h5:has(.editsection a), h6:has(.editsection a)').live( 'contextmenu', function( e ) {
-
+	$('h1:has(.editsection a), ' + 
+		'h2:has(.editsection a), ' + 
+		'h3:has(.editsection a), ' + 
+		'h4:has(.editsection a), ' + 
+		'h5:has(.editsection a), ' + 
+		'h6:has(.editsection a)'
+	).live( 'contextmenu', function( e ) {
 		// Get href of the [edit] link
 		var href = $(this).find( '.editsection a' ).attr( 'href' );
 

@@ -1,8 +1,9 @@
 /**
  * Base language object
  * 
- * Localized Language support attempts to mirror some of the functionality of Language.php in MediaWiki. This object
- * contains methods for loading and transforming message text.
+ * Localized Language support attempts to mirror some of the functionality of 
+ * Language.php in MediaWiki. This object contains methods for loading and 
+ * transforming message text.
  */
 
 mediaWiki.language = {
