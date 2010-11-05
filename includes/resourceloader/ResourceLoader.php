@@ -582,4 +582,18 @@ class ResourceLoader {
 	public static function makeConfigSetScript( array $configuration ) {
 		return Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) );
 	}
+	
+	/**
+	 * Determine whether debug mode was requested
+	 * Order of priority is 1) request param, 2) cookie, 3) $wg setting
+	 * @return bool
+	 */
+	public static function inDebugMode() {
+		global $wgRequest, $wgResourceLoaderDebug;
+		static $retval = null;
+		if ( !is_null( $retval ) )
+			return $retval;
+		return $retval = $wgRequest->getFuzzyBool( 'debug',
+			$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ) );
+	}
 }
