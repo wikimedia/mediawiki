@@ -48,12 +48,12 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	public function requestExtraData( $pageSet ) {
-		global $wgDisablePageCounters;
+		global $wgDisableCounters;
 
 		$pageSet->requestField( 'page_restrictions' );
 		$pageSet->requestField( 'page_is_redirect' );
 		$pageSet->requestField( 'page_is_new' );
-		if ( !$wgDisablePageCounters ) {
+		if ( !$wgDisableCounters ) {
 			$pageSet->requestField( 'page_counter' );
 		}
 		$pageSet->requestField( 'page_touched' );
@@ -250,9 +250,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->pageIsRedir = $pageSet->getCustomField( 'page_is_redirect' );
 		$this->pageIsNew = $pageSet->getCustomField( 'page_is_new' );
 
-		global $wgDisablePageCounters;
+		global $wgDisableCounters;
 
-		if ( !$wgDisablePageCounters ) {
+		if ( !$wgDisableCounters ) {
 			$this->pageCounter = $pageSet->getCustomField( 'page_counter' );
 		}
 		$this->pageTouched = $pageSet->getCustomField( 'page_touched' );
@@ -301,11 +301,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	private function extractPageInfo( $pageid, $title ) {
 		$pageInfo = array();
 		if ( $title->exists() ) {
-			global $wgDisablePageCounters;
+			global $wgDisableCounters;
 
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = intval( $this->pageLatest[$pageid] );
-			$pageInfo['counter'] = $wgDisablePageCounters
+			$pageInfo['counter'] = $wgDisableCounters
 				? ""
 				: intval( $this->pageCounter[$pageid] );
 			$pageInfo['length'] = intval( $this->pageLength[$pageid] );
