@@ -619,11 +619,11 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 
 # Recent changes linked
 'recentchangeslinked'          => 'Neuubah meuhubông',
-'recentchangeslinked-feed'     => 'Seundi meuhubông',
-'recentchangeslinked-toolbox'  => 'Seundi meuhubông',
+'recentchangeslinked-feed'     => 'Neuubah meuhubông',
+'recentchangeslinked-toolbox'  => 'Neuubah meuhubông',
 'recentchangeslinked-title'    => 'Neuubah nyang meuhubông ngön $1',
 'recentchangeslinked-noresult' => 'Hana neu’ubah bak ôn-ôn meuhubông silawét masa nyang ka geupeuteuntèë.',
-'recentchangeslinked-summary'  => "Ôn husôh nyoë geupeuleumah dapeuta neu’ubah keuneulheuëh bak ôn ôn meuhubông. Ôn nyang neukalön geubri tanda ngön '''citak teubay'''.",
+'recentchangeslinked-summary'  => "Ôn kusuih nyoë geupeuleumah dapeuta neu’ubah keuneulheuëh bak ôn ôn meuhubông. Ôn nyang neukalön geubri tanda ngön '''citak teubay'''.",
 'recentchangeslinked-page'     => 'Nan ôn:',
 'recentchangeslinked-to'       => 'Peuleumah neu’ubah nibak ôn-ôn nyang meusambông ngön ôn nyang geubri',
 
@@ -944,13 +944,13 @@ Droëneuh cit jeuët neu’eu nèjih.',
 'tooltip-t-contributions'         => 'Eu dapeuta nyang ka geutuléh lé ureuëng nguy nyoë',
 'tooltip-t-emailuser'             => 'Kirém surat-e u ureuëng nguy nyoë',
 'tooltip-t-upload'                => 'Peutamong gamba atawa beureukah alat',
-'tooltip-t-specialpages'          => 'Dapeuta ban dum ôn husôh',
+'tooltip-t-specialpages'          => 'Dapeuta ban dum ôn kusuih',
 'tooltip-t-print'                 => 'Seunalén citak ôn nyoë',
 'tooltip-t-permalink'             => '
 Hubông teutap keu revisi ôn nyoë',
 'tooltip-ca-nstab-main'           => 'Eu ôn asoë',
 'tooltip-ca-nstab-user'           => 'Eu ôn ureuëng nguy',
-'tooltip-ca-nstab-special'        => 'Nyoë nakeuh ôn husôh nyang h’an jeuët geu’andam.',
+'tooltip-ca-nstab-special'        => 'Nyoë nakeuh ôn kusuih nyang h’an jeuët geu’andam.',
 'tooltip-ca-nstab-project'        => 'Eu ôn buët',
 'tooltip-ca-nstab-image'          => 'Eu ôn beureukah',
 'tooltip-ca-nstab-template'       => 'Eu templat',
@@ -1017,6 +1017,6 @@ Hubông-hubông lheuëh nyan bak baréh nyang saban geukira sibagoë keucuali, n
 'version' => 'Curak',
 
 # Special:SpecialPages
-'specialpages' => 'Ôn husôh',
+'specialpages' => 'Ôn kusuih',
 
 );
