@@ -396,6 +396,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 16902) Installer spews warnings when exec() and dl() are not available
 * (bug 19129) Only show MyISAM/InnoDB when supported
 * (bug 17762) Only show other e-mail options when e-mail is globally enabled
+* Cache multiple sizes of InstantCommons thumbnails
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
