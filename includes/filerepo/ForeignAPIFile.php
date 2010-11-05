@@ -24,7 +24,7 @@ class ForeignAPIFile extends File {
 	
 	static function newFromTitle( $title, $repo ) {
 		$data = $repo->fetchImageQuery( array(
-                        'titles' => 'File:' . $title->getText(),
+                        'titles' => 'File:' . $title->getDBKey(),
                         'iiprop' => self::getProps(),
                         'prop' => 'imageinfo' ) );
 
@@ -155,7 +155,7 @@ class ForeignAPIFile extends File {
 	function getThumbPath( $suffix = '' ) {
 		if ( $this->repo->canCacheThumbs() ) {
 			global $wgUploadDirectory;
-			$path = $wgUploadDirectory . '/thumb/' . $this->getHashPath( $this->getName() );
+			$path = $this->repo->getZonePath('thumb') . '/' . $this->getHashPath( $this->getName() );
 			if ( $suffix ) {
 				$path = $path . $suffix . '/';
 			}
