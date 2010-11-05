@@ -25,15 +25,19 @@
  */
 class ForeignAPIRepo extends FileRepo {
 	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
+	/* Check back with Commons after a day */
 	var $apiThumbCacheExpiry = 86400;
+	/* Redownload thumbnail files after a month */
+	var $fileCacheExpiry = 2629743;
+
 	protected $mQueryCache = array();
 	protected $mFileExists = array();
 
 	function __construct( $info ) {
 		parent::__construct( $info );
-		
-		// http://commons.wikimedia.org/w/api.php		
-		$this->mApiBase = isset( $info['apibase'] ) ? $info['apibase'] : null; 
+
+		// http://commons.wikimedia.org/w/api.php
+		$this->mApiBase = isset( $info['apibase'] ) ? $info['apibase'] : null;
 
 		if( isset( $info['apiThumbCacheExpiry'] ) ) {
 			$this->apiThumbCacheExpiry = $info['apiThumbCacheExpiry'];
@@ -119,7 +123,7 @@ class ForeignAPIRepo extends FileRepo {
 			array(
 				'format' => 'json',
 				'action' => 'query',
-				'redirects' => 'true' 
+				'redirects' => 'true'
 			) );
 		if ( $this->mApiBase ) {
 			$url = wfAppendQuery( $this->mApiBase, $query );
@@ -176,10 +180,10 @@ class ForeignAPIRepo extends FileRepo {
 		return $ret;
 	}
 
-	function getThumbUrl( $name, $width=-1, $height=-1 ) {
+	function getThumbUrl( $name, $width=-1, $height=-1, &$result ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
-			'iiprop' => 'url',
+			'iiprop' => 'url|timestamp',
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
 			'prop' => 'imageinfo' ) );
@@ -187,12 +191,23 @@ class ForeignAPIRepo extends FileRepo {
 
 		if( $data && $info && isset( $info['thumburl'] ) ) {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
+			$result = $info;
 			return $info['thumburl'];
 		} else {
 			return false;
 		}
 	}
 
+	/*
+	 * Return the imageurl from cache if possible
+	 *
+	 * If the url has been requested today, get it from cache
+	 * Otherwise retrieve remote thumb url, check for local file.
+	 *
+	 * @param $name String is a dbkey form of a title
+	 * @param $width
+	 * @param $height
+	 */
 	function getThumbUrlFromCache( $name, $width, $height ) {
 		global $wgMemc, $wgUploadPath, $wgServer, $wgUploadDirectory;
 
@@ -201,35 +216,53 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $name, $width );
+
 		$thumbUrl = $wgMemc->get($key);
 		if ( $thumbUrl ) {
 			wfDebug("Got thumb from local cache. $thumbUrl \n");
 			return $thumbUrl;
 		}
 		else {
-			$foreignUrl = $this->getThumbUrl( $name, $width, $height );
+			$metadata = null;
+			$foreignUrl = $this->getThumbUrl( $name, $width, $height, $metadata );
+			// We need the same filename as the remote one :)
+			$fileName = rawurldecode( pathinfo( $foreignUrl, PATHINFO_BASENAME ) );
+			$path = 'thumb/' . $this->getHashPath( $name ) . $name . "/";
+			$localFilename = $wgUploadDirectory . '/' . $path . $fileName;
+			$localUrl =  $wgServer . $wgUploadPath . '/' . $path . $fileName;
+
 			if( !$foreignUrl ) {
 				wfDebug( __METHOD__ . " Could not find thumburl\n" );
 				return false;
+			}
+			if( file_exists( $localFilename ) && isset( $metadata['timestamp'] ) ) {
+				wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
+				$modified = filemtime( $localFilename );
+				$remoteModified = strtotime( $metadata['timestamp'] );
+				$diff = abs( $modified - $remoteModified );
+				if( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
+					/* Use our current already downloaded thumbnail */
+					$wgMemc->set( $key, $localUrl, $this->apiThumbCacheExpiry );
+					return $localUrl;
+				}
+				/* There is a new Commons file, or existing thumbnail older than a month */
+
 			}
 			$thumb = Http::get( $foreignUrl );
 			if( !$thumb ) {
 				wfDebug( __METHOD__ . " Could not download thumb\n" );
 				return false;
 			}
-			// We need the same filename as the remote one :)
-			$fileName = rawurldecode( pathinfo( $foreignUrl, PATHINFO_BASENAME ) );
-			$path = 'thumb/' . $this->getHashPath( $name ) . $name . "/";
 			if ( !is_dir($wgUploadDirectory . '/' . $path) ) {
 				if( !wfMkdirParents($wgUploadDirectory . '/' . $path) ) {
 					wfDebug(  __METHOD__ . " could not create directory for thumb\n" );
 					return $foreignUrl;
 				}
 			}
-			$localUrl =  $wgServer . $wgUploadPath . '/' . $path . $fileName;
+
 			# FIXME: Delete old thumbs that aren't being used. Maintenance script?
 			wfSuppressWarnings();
-			if( !file_put_contents($wgUploadDirectory . '/' . $path . $fileName, $thumb ) ) {
+			if( !file_put_contents($localFilename, $thumb ) ) {
 				wfRestoreWarnings();
 				wfDebug( __METHOD__ . " could not write to thumb path\n" );
 				return $foreignUrl;
