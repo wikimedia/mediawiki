@@ -1397,7 +1397,7 @@ CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
 -- Table for storing JSON message blobs for the resource loader
 CREATE TABLE /*_*/msg_resource (
   -- Resource name
-  mr_resource varchar(255) NOT NULL,
+  mr_resource varbinary(255) NOT NULL,
   -- Language code 
   mr_lang varbinary(32) NOT NULL,
   -- JSON blob
@@ -1409,9 +1409,9 @@ CREATE UNIQUE INDEX /*i*/mr_resource_lang ON /*_*/msg_resource (mr_resource, mr_
 
 -- Table for administering which message is contained in which resource
 CREATE TABLE /*_*/msg_resource_links (
-  mrl_resource varchar(255) NOT NULL,
+  mrl_resource varbinary(255) NOT NULL,
   -- Message key
-  mrl_message varchar(255) NOT NULL
+  mrl_message varbinary(255) NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/mrl_message_resource ON /*_*/msg_resource_links (mrl_message, mrl_resource);
 
@@ -1420,9 +1420,9 @@ CREATE UNIQUE INDEX /*i*/mrl_message_resource ON /*_*/msg_resource_links (mrl_me
 -- Currently only used for tracking images that CSS depends on
 CREATE TABLE /*_*/module_deps (
   -- Module name
-  md_module varchar(255) NOT NULL,
+  md_module varbinary(255) NOT NULL,
   -- Skin name
-  md_skin varchar(32) NOT NULL,
+  md_skin varbinary(32) NOT NULL,
   -- JSON blob with file dependencies
   md_deps mediumblob NOT NULL
 ) /*$wgDBTableOptions*/;
