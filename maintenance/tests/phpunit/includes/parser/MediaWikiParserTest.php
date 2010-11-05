@@ -20,8 +20,7 @@ class MediaWikiParserTest extends MediaWikiTestSetup {
 
 		$tester = new self;
 
-		$iter = new TestFileIterator( "$IP/maintenance/tests/parser/parserTests.txt" );
-		$iter->setParser( $tester );
+		$iter = new TestFileIterator( "$IP/maintenance/tests/parser/parserTests.txt", $tester );
 		$tester->count = 0;
 
 		foreach ( $iter as $test ) {
@@ -65,6 +64,10 @@ class MediaWikiParserTest extends MediaWikiTestSetup {
 
 	public function addArticle( $name, $text, $line ) {
 		$this->articles[$name] = $text;
+	}
+
+	public function showRunFile( $path ) {
+		/* Nothing shown when run from phpunit */
 	}
 }
 
