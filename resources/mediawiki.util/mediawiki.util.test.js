@@ -1,5 +1,5 @@
 /**
- * mediaWiki.util Test Suit
+ * mediaWiki.util Test Suite
  *
  * Available on "/Special:BlankPage?action=mwutiltest&debug=true")
  *
@@ -91,11 +91,7 @@
 						mw.test.addTest('typeof mw.util.htmlEscape',
 							'function (string)');
 						mw.test.addTest('mw.util.htmlEscape( \'<a href="http://mw.org/?a=b&c=d">link</a>\' )',
-							'&lt;a href="http://mw.org/?a=b&amp;c=d"&gt;link&lt;/a&gt; (string)');
-						mw.test.addTest('typeof mw.util.htmlUnescape',
-							'function (string)');
-						mw.test.addTest('mw.util.htmlUnescape( \'&lt;a href="http://mw.org/?a=b&amp;c=d"&gt;link&lt;/a&gt;\' )',
-							'<a href="http://mw.org/?a=b&c=d">link</a> (string)');
+							'&lt;a href=&quot;http://mw.org/?a=b&amp;c=d&quot;&gt;link&lt;/a&gt; (string)');
 						mw.test.addTest('mw.util.tooltipAccessKeyRegexp.constructor.name',
 							'RegExp (string)');
 						mw.test.addTest('typeof mw.util.updateTooltipAccessKeys',

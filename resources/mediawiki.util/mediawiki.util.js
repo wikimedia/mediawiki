@@ -27,13 +27,18 @@
 					// Chrome on any platform
 					} else if ( profile.name == 'chrome' ) {
 						// Chrome on Mac or Chrome on other platform ?
-						mw.util.tooltipAccessKeyPrefix = profile.platform == 'mac' ? 'ctrl-option-' : 'alt-';
+						mw.util.tooltipAccessKeyPrefix = ( profile.platform == 'mac' 
+							? 'ctrl-option-' : 'alt-' );
 
 					// Non-Windows Safari with webkit_version > 526
-					} else if ( profile.platform !== 'win' && profile.name == 'safari' && profile.layoutVersion > 526 ) {
+					} else if ( profile.platform !== 'win' 
+						&& profile.name == 'safari' 
+						&& profile.layoutVersion > 526 ) 
+					{
 						mw.util.tooltipAccessKeyPrefix = 'ctrl-alt-';
 
-					// Safari/Konqueror on any platform, or any browser on Mac (but not Safari on Windows)
+					// Safari/Konqueror on any platform, or any browser on Mac 
+					// (but not Safari on Windows)
 					} else if ( !( profile.platform == 'win' && profile.name == 'safari' )
 									&& ( profile.name == 'safari'
 									  || profile.platform == 'mac'
@@ -66,45 +71,50 @@
 		/* Main body */
 
 		/**
-		* Encodes the string like PHP's rawurlencode
-		*
-		* @param String str		string to be encoded
-		*/
+		 * Encode the string like PHP's rawurlencode
+		 *
+		 * @param str String to be encoded
+		 */
 		'rawurlencode' : function( str ) {
 			str = (str + '').toString();
-			return encodeURIComponent( str ).replace( /!/g, '%21' ).replace( /'/g, '%27' ).replace( /\(/g, '%28' )
+			return encodeURIComponent( str )
+				.replace( /!/g, '%21' ).replace( /'/g, '%27' ).replace( /\(/g, '%28' )
 				.replace( /\)/g, '%29' ).replace( /\*/g, '%2A' ).replace( /~/g, '%7E' );
 		},
 
 		/**
-		* Encode pagetitles for use in a URL
-		* We want / and : to be included as literal characters in our title URLs
-		* as they otherwise fatally break the title
-		*
-		* @param String str		string to be encoded
-		*/
+		 * Encode page titles for use in a URL
+		 * We want / and : to be included as literal characters in our title URLs
+		 * as they otherwise fatally break the title
+		 *
+		 * @param str String to be encoded
+		 */
 		'wikiUrlencode' : function( str ) {
-			return this.rawurlencode( str ).replace( /%20/g, '_' ).replace( /%3A/g, ':' ).replace( /%2F/g, '/' );
+			return this.rawurlencode( str )
+				.replace( /%20/g, '_' ).replace( /%3A/g, ':' ).replace( /%2F/g, '/' );
 		},
 
 		/**
-		* Get the full url to a pagename
-		*
-		* @param String	str		pagename to link to
-		*/
+		 * Get the full URL to a page name
+		 *
+		 * @param str Page name to link to
+		 */
 		'wikiGetlink' : function( str ) {
 			return wgServer + wgArticlePath.replace( '$1', this.wikiUrlencode( str ) );
 		},
 
 		/**
-		* Check is a variable is empty. Support for strings, booleans, arrays and objects.
-		* String "0" is considered empty. String containing only whitespace (ie. " ") is considered not empty.
-		*
-		* @param Mixed	v	the variable to check for empty ness
-		*/
+		 * Check is a variable is empty. Supports strings, booleans, arrays and 
+		 * objects. The string "0" is considered empty. A string containing only 
+		 * whitespace (ie. " ") is considered not empty.
+		 *
+		 * @param v The variable to check for emptyness
+		 */
 		'isEmpty' : function( v ) {
 			var key;
-			if ( v === "" || v === 0 || v === "0" || v === null || v === false || typeof v === 'undefined' ) {
+			if ( v === "" || v === 0 || v === "0" || v === null 
+				|| v === false || typeof v === 'undefined' ) 
+			{
 				return true;
 			}
 			if ( v.length === 0 ) {
@@ -121,15 +131,16 @@
 
 
 		/**
-		* Grabs the url parameter value for the given parameter
-		* Returns null if not found
-		*
-		* @param String	param	paramter name
-		* @param String url		url to search through (optional)
-		*/
+		 * Grab the URL parameter value for the given parameter.
+		 * Returns null if not found.
+		 *
+		 * @param param The parameter name
+		 * @param url URL to search through (optional)
+		 */
 		'getParamValue' : function( param, url ) {
 			url = url ? url : document.location.href;
-			var re = new RegExp( '[^#]*[&?]' + param.escapeRE() + '=([^&#]*)' ); // Get last match, stop at hash
+			// Get last match, stop at hash
+			var re = new RegExp( '[^#]*[&?]' + param.escapeRE() + '=([^&#]*)' ); 
 			var m = re.exec( url );
 			if ( m && m.length > 1 ) {
 				return decodeURIComponent( m[1] );
@@ -138,33 +149,32 @@
 		},
 
 		/**
-		* Converts special characters to their HTML entities
-		*
-		* @param String			str text to escape
-		* @param Bool			quotes if true escapes single and double quotes aswell (by default false)
-		*/
-		'htmlEscape' : function( str, quotes ) {
-			str = $('<div/>').text( str ).html();
-			if ( typeof quotes === 'undefined' ) {
-				quotes = false;
-			}
-			if ( quotes === true ) {
-				str = str.replace( /'/g, '&#039;' ).replace( /"/g, '&quot;' );
-			}
-			return str;
+		 * Convert special characters to their HTML entities
+		 *
+		 * @param str Text to escape
+		 */
+		'htmlEscape': function( str ) {
+			return str.replace( /['"<>&]/g, this.htmlEscape_callback );
 		},
 
-		/**
-		* Converts HTML entities back to text
-		*
-		* @param String str		text to unescape
-		*/
-		'htmlUnescape' : function( str ) {
-			return $('<div/>').html( str ).text();
+		'htmlEscape_callback': function( str ) {
+			switch ( str ) {
+				case "'":
+					return '&#039;';
+				case '"':
+					return '&quot;';
+				case '<':
+					return '&lt;';
+				case '>':
+					return '&gt;';
+				case '&':
+					return '&amp;';
+			}
 		},
 
-		// Access key prefix
-		// will be re-defined based on browser/operating system detection in mw.util.init()
+		// Access key prefix.
+		// Will be re-defined based on browser/operating system detection in 
+		// mw.util.init().
 		'tooltipAccessKeyPrefix' : 'alt-',
 
 		// Regex to match accesskey tooltips
@@ -176,7 +186,7 @@
 		 * otherwise, all the nodes that will probably have accesskeys by
 		 * default are updated.
 		 *
-		 * @param Mixed nodeList	jQuery object, or array of elements
+		 * @param nodeList jQuery object, or array of elements
 		 */
 		'updateTooltipAccessKeys' : function( nodeList ) {
 			var $nodes;
@@ -185,8 +195,10 @@
 			} else if ( nodeList ) {
 				$nodes = $(nodeList);
 			} else {
-				// Rather than scanning all links, just the elements that contain the relevant links
-				this.updateTooltipAccessKeys( $('#column-one a, #mw-head a, #mw-panel a, #p-logo a') );
+				// Rather than scanning all links, just the elements that 
+				// contain the relevant links
+				this.updateTooltipAccessKeys( 
+					$('#column-one a, #mw-head a, #mw-panel a, #p-logo a') );
 
 				// these are rare enough that no such optimization is needed
 				this.updateTooltipAccessKeys( $('input') );
@@ -197,7 +209,8 @@
 			$nodes.each( function ( i ) {
 				var tip = $(this).attr( 'title' );
 				if ( !!tip && mw.util.tooltipAccessKeyRegexp.exec( tip ) ) {
-					tip = tip.replace( mw.util.tooltipAccessKeyRegexp, '[' + mw.util.tooltipAccessKeyPrefix + "$5]" );
+					tip = tip.replace( mw.util.tooltipAccessKeyRegexp, 
+						'[' + mw.util.tooltipAccessKeyPrefix + "$5]" );
 					$(this).attr( 'title', tip );
 				}
 			});
@@ -210,25 +223,38 @@
 		/**
 		 * Add a link to a portlet menu on the page, such as:
 		 *
-		 * p-cactions (Content actions), p-personal (Personal tools), p-navigation (Navigation), p-tb (Toolbox)
+		 * p-cactions (Content actions), p-personal (Personal tools), 
+		 * p-navigation (Navigation), p-tb (Toolbox)
 		 *
 		 * The first three paramters are required, others are optionals. Though
 		 * providing an id and tooltip is recommended.
 		 *
-		 * By default the new link will be added to the end of the list. To add the link before a given existing item,
-		 * pass the DOM node (document.getElementById('foobar') or the jQuery-selector ('#foobar') of that item.
+		 * By default the new link will be added to the end of the list. To 
+		 * add the link before a given existing item, pass the DOM node 
+		 * (document.getElementById('foobar')) or the jQuery-selector 
+		 * ('#foobar') of that item.
 		 *
-		 * @example mw.util.addPortletLink('p-tb', 'http://mediawiki.org/', 'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print')
+		 * @example mw.util.addPortletLink(
+		 *     'p-tb', 'http://mediawiki.org/', 
+		 *     'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
+		 *   )
 		 *
-		 * @param String portlet	id of the target portlet ('p-cactions' or 'p-personal' etc.)
-		 * @param String href		link URL
-		 * @param String text		link text (will be automatically lowercased by CSS for p-cactions in Monobook)
-		 * @param String id			id of the new item, should be unique and preferably have the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
-		 * @param String tooltip	text to show when hovering over the link, without accesskey suffix
-		 * @param String accesskey	accesskey to activate this link (one character, try to avoid conflicts. Use $('[accesskey=x').get() in the console to see if 'x' is already used.
-		 * @param mixed nextnode	DOM node or jQuery-selector of the item that the new item should be added before, should be another item in the same list will be ignored if not the so
+		 * @param portlet ID of the target portlet ('p-cactions' or 'p-personal' etc.)
+		 * @param href Link URL
+		 * @param text Link text (will be automatically converted to lower 
+		 *     case by CSS for p-cactions in Monobook)
+		 * @param id ID of the new item, should be unique and preferably have 
+		 *     the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
+		 * @param tooltip Text to show when hovering over the link, without accesskey suffix
+		 * @param accesskey Access key to activate this link (one character, try 
+		 *     to avoid conflicts. Use $('[accesskey=x').get() in the console to 
+		 *     see if 'x' is already used.
+		 * @param nextnode DOM node or jQuery-selector of the item that the new 
+		 *     item should be added before, should be another item in the same 
+		 *     list will be ignored if not the so
 		 *
-		 * @return Node				the DOM node of the new item (a LI element, or A element for older skins) or null
+		 * @return The DOM node of the new item (a LI element, or A element for 
+		 *     older skins) or null.
 		 */
 		'addPortletLink' : function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 
@@ -261,7 +287,8 @@
 					if ($portlet.find( 'div' ).length === 0) {
 						$portlet.append( '<ul/>' );
 					} else {
-						// otherwise if there's a div (such as div.body or div.pBody) append the <ul> to last (most likely only) div
+						// otherwise if there's a div (such as div.body or div.pBody) 
+						// append the <ul> to last (most likely only) div
 						$portlet.find( 'div' ).eq( -1 ).append( '<ul/>' );
 					}
 					// Select the created element
@@ -298,7 +325,8 @@
 				if ( nextnode && nextnode.parentNode == $ul.get( 0 ) ) {
 					$(nextnode).before( $item );
 				} else {
-					// If the jQuery selector isn't found within the <ul>, just append it at the end
+					// If the jQuery selector isn't found within the <ul>, just 
+					// append it at the end
 					if ( $ul.find( nextnode ).length === 0 ) {
 						$ul.append( $item );
 					} else {
