@@ -25,7 +25,9 @@ return array(
 	
 	/* jQuery */
 	
-	'jquery' => new ResourceLoaderFileModule( array( 'scripts' => 'resources/jquery/jquery.js', 'debugRaw' => false ) ),
+	'jquery' => new ResourceLoaderFileModule( 
+		array( 'scripts' => 'resources/jquery/jquery.js', 'debugRaw' => false ) 
+	),
 	
 	/* jQuery Plugins */
 	
@@ -109,7 +111,9 @@ return array(
 	) ),
 	'jquery.ui.droppable' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.droppable.js',
-		'dependencies' => array( 'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget', 'jquery.ui.draggable' ),
+		'dependencies' => array( 
+			'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget', 'jquery.ui.draggable' 
+		),
 	) ),
 	'jquery.ui.resizable' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.resizable.js',
@@ -393,7 +397,10 @@ return array(
 	
 	'mediawiki.legacy.ajax' => new ResourceLoaderFileModule( array(
 		'scripts' => 'skins/common/ajax.js',
-		'messages' => array( 'watch', 'unwatch', 'watching', 'unwatching', 'tooltip-ca-watch', 'tooltip-ca-unwatch' ),
+		'messages' => array( 
+			'watch', 'unwatch', 'watching', 'unwatching', 'tooltip-ca-watch', 
+			'tooltip-ca-unwatch' 
+		),
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	) ),
 	'mediawiki.legacy.ajaxwatch' => new ResourceLoaderFileModule( array(

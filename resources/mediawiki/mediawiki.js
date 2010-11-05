@@ -60,9 +60,11 @@ window.mediaWiki = new ( function( $ ) {
 	/* Prototypes */
 	
 	/**
-	 * An object which allows single and multiple get/set/exists functionality on a list of key / value pairs.
+	 * An object which allows single and multiple get/set/exists functionality 
+	 * on a list of key / value pairs.
 	 * 
-	 * @param {boolean} global Whether to get/set/exists values on the window object or a private object
+	 * @param {boolean} global Whether to get/set/exists values on the window 
+	 *   object or a private object
 	 */
 	function Map( global ) {
 		this.values = ( global === true ) ? window : {};
@@ -216,7 +218,8 @@ window.mediaWiki = new ( function( $ ) {
 	/* Public Members */
 
 	/*
-	 * Dummy function which in debug mode can be replaced with a function that does something clever
+	 * Dummy function which in debug mode can be replaced with a function that 
+	 * does something clever
 	 */
 	this.log = function() { };
 
@@ -278,9 +281,11 @@ window.mediaWiki = new ( function( $ ) {
 		/**
 		 * Mapping of registered modules
 		 *
-		 * The jquery module is pre-registered, because it must have already been provided for this object to have
-		 * been built, and in debug mode jquery would have been provided through a unique loader request, making it
-		 * impossible to hold back registration of jquery until after mediawiki.
+		 * The jquery module is pre-registered, because it must have already 
+		 * been provided for this object to have been built, and in debug mode 
+		 * jquery would have been provided through a unique loader request, 
+		 * making it impossible to hold back registration of jquery until after 
+		 * mediawiki.
 		 *
 		 * Format:
 		 * 	{
@@ -347,7 +352,7 @@ window.mediaWiki = new ( function( $ ) {
 			if ( typeof registry[module] === 'undefined' ) {
 				throw new Error( 'Unknown dependency: ' + module );
 			}
-			// Resolves dynamic loader function and replaces it with it's own results
+			// Resolves dynamic loader function and replaces it with its own results
 			if ( typeof registry[module].dependencies === 'function' ) {
 				registry[module].dependencies = registry[module].dependencies();
 				// Ensures the module's dependencies are always in an array
@@ -360,7 +365,8 @@ window.mediaWiki = new ( function( $ ) {
 				if ( $.inArray( registry[module].dependencies[n], resolved ) === -1 ) {
 					if ( $.inArray( registry[module].dependencies[n], unresolved ) !== -1 ) {
 						throw new Error(
-							'Circular reference detected: ' + module + ' -> ' + registry[module].dependencies[n]
+							'Circular reference detected: ' + module + 
+							' -> ' + registry[module].dependencies[n]
 						);
 					}
 					recurse( registry[module].dependencies[n], resolved, unresolved );
@@ -371,7 +377,7 @@ window.mediaWiki = new ( function( $ ) {
 		}
 
 		/**
-		 * Gets a list of modules names that a module dependencies in their proper dependency order
+		 * Gets a list of module names that a module depends on in their proper dependency order
 		 *
 		 * @param mixed string module name or array of string module names
 		 * @return list of dependencies
@@ -401,11 +407,13 @@ window.mediaWiki = new ( function( $ ) {
 		};
 
 		/**
-		 * Narrows a list of module names down to those matching a specific state. Possible states are 'undefined',
-		 * 'registered', 'loading', 'loaded', or 'ready'
+		 * Narrows a list of module names down to those matching a specific 
+		 * state. Possible states are 'undefined', 'registered', 'loading', 
+		 * 'loaded', or 'ready'
 		 *
 		 * @param mixed string or array of strings of module states to filter by
-		 * @param array list of module names to filter (optional, all modules will be used by default)
+		 * @param array list of module names to filter (optional, all modules 
+		 *   will be used by default)
 		 * @return array list of filtered module names
 		 */
 		function filter( states, modules ) {
@@ -424,16 +432,25 @@ window.mediaWiki = new ( function( $ ) {
 			// Build a list of modules which are in one of the specified states
 			for ( var s = 0; s < states.length; s++ ) {
 				for ( var m = 0; m < modules.length; m++ ) {
-					if (
-						( states[s] == 'undefined' && typeof registry[modules[m]] === 'undefined' ) ||
-						( typeof registry[modules[m]] === 'object' && registry[modules[m]].state === states[s] )
-					) {
-						list[list.length] = modules[m];
+					if ( typeof registry[modules[m]] === 'undefined' ) {
+						// Module does not exist
+						if ( states[s] == 'undefined' ) {
+							// OK, undefined
+							list[list.length] = modules[m];
+						}
+					} else {
+						// Module exists, check state
+						if ( registry[modules[m]].state === states[s] ) {
+							// OK, correct state
+							list[list.length] = modules[m];
+						}
 					}
 				}
 			}
 			return list;
 		}
+
+		this.filter_ = filter;
 
 		/**
 		 * Executes a loaded module, making it ready to use
@@ -452,11 +469,16 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// Add style sheet to document
 			if ( typeof registry[module].style === 'string' && registry[module].style.length ) {
-				$( 'head' ).append( '<style type="text/css">' + registry[module].style + '</style>' );
-			} else if ( typeof registry[module].style === 'object' && !( registry[module].style instanceof Array ) ) {
+				$( 'head' )
+					.append( '<style type="text/css">' + registry[module].style + '</style>' );
+			} else if ( typeof registry[module].style === 'object' 
+				&& !( registry[module].style instanceof Array ) ) 
+			{
 				for ( var media in registry[module].style ) {
 					$( 'head' ).append(
-						'<style type="text/css" media="' + media + '">' + registry[module].style[media] + '</style>'
+						'<style type="text/css" media="' + media + '">' +
+						registry[module].style[media] +
+						'</style>'
 					);
 				}
 			}
@@ -470,7 +492,10 @@ window.mediaWiki = new ( function( $ ) {
 				registry[module].state = 'ready';
 				// Run jobs who's dependencies have just been met
 				for ( var j = 0; j < jobs.length; j++ ) {
-					if ( compare( filter( 'ready', jobs[j].dependencies ), jobs[j].dependencies ) ) {
+					if ( compare(
+						filter( 'ready', jobs[j].dependencies ), 
+						jobs[j].dependencies ) ) 
+					{
 						if ( typeof jobs[j].ready === 'function' ) {
 							jobs[j].ready();
 						}
@@ -481,7 +506,10 @@ window.mediaWiki = new ( function( $ ) {
 				// Execute modules who's dependencies have just been met
 				for ( r in registry ) {
 					if ( registry[r].state == 'loaded' ) {
-						if ( compare( filter( ['ready'], registry[r].dependencies ), registry[r].dependencies ) ) {
+						if ( compare( 
+							filter( ['ready'], registry[r].dependencies ), 
+							registry[r].dependencies ) ) 
+						{
 							execute( r );
 						}
 					}
@@ -504,7 +532,8 @@ window.mediaWiki = new ( function( $ ) {
 		}
 
 		/**
-		 * Adds a dependencies to the queue with optional callbacks to be run when the dependencies are ready or fail
+		 * Adds a dependencies to the queue with optional callbacks to be run 
+		 * when the dependencies are ready or fail
 		 *
 		 * @param mixed string moulde name or array of string module names
 		 * @param function ready callback to execute when all dependencies are ready
@@ -516,14 +545,17 @@ window.mediaWiki = new ( function( $ ) {
 				dependencies = [dependencies];
 				if ( dependencies[0] in registry ) {
 					for ( var n = 0; n < registry[dependencies[0]].dependencies.length; n++ ) {
-						dependencies[dependencies.length] = registry[dependencies[0]].dependencies[n];
+						dependencies[dependencies.length] = 
+							registry[dependencies[0]].dependencies[n];
 					}
 				}
 			}
 			// Add ready and error callbacks if they were given
 			if ( arguments.length > 1 ) {
 				jobs[jobs.length] = {
-					'dependencies': filter( ['undefined', 'registered', 'loading', 'loaded'], dependencies ),
+					'dependencies': filter( 
+						['undefined', 'registered', 'loading', 'loaded'], 
+						dependencies ),
 					'ready': ready,
 					'error': error
 				};
@@ -577,7 +609,8 @@ window.mediaWiki = new ( function( $ ) {
 			queue = [];
 			// After document ready, handle the batch
 			if ( !suspended && batch.length ) {
-				// Always order modules alphabetically to help reduce cache misses for otherwise identical content
+				// Always order modules alphabetically to help reduce cache 
+				// misses for otherwise identical content
 				batch.sort();
 				// Build a list of request parameters
 				var base = {
@@ -608,9 +641,11 @@ window.mediaWiki = new ( function( $ ) {
 						{ 'modules': groups[group].join( '|' ), 'version': formatVersionNumber( version ) }, base
 					);
 				}
-				// Clear the batch - this MUST happen before we append the script element to the body or it's
-				// possible that the script will be locally cached, instantly load, and work the batch again,
-				// all before we've cleared it causing each request to include modules which are already loaded
+				// Clear the batch - this MUST happen before we append the 
+				// script element to the body or it's possible that the script 
+				// will be locally cached, instantly load, and work the batch 
+				// again, all before we've cleared it causing each request to 
+				// include modules which are already loaded
 				batch = [];
 				// Asynchronously append a script tag to the end of the body
 				function request() {
@@ -633,8 +668,8 @@ window.mediaWiki = new ( function( $ ) {
 		};
 
 		/**
-		 * Registers a module, letting the system know about it and it's dependencies. loader.js files contain calls
-		 * to this function.
+		 * Registers a module, letting the system know about it and its 
+		 * dependencies. loader.js files contain calls to this function.
 		 */
 		this.register = function( module, version, dependencies, group ) {
 			// Allow multiple registration
@@ -666,14 +701,16 @@ window.mediaWiki = new ( function( $ ) {
 				// Allow dependencies to be given as a single module name
 				registry[module].dependencies = [dependencies];
 			} else if ( typeof dependencies === 'object' || typeof dependencies === 'function' ) {
-				// Allow dependencies to be given as an array of module names or a function which returns an array
+				// Allow dependencies to be given as an array of module names 
+				// or a function which returns an array
 				registry[module].dependencies = dependencies;
 			}
 		};
 
 		/**
-		 * Implements a module, giving the system a course of action to take upon loading. Results of a request for
-		 * one or more modules contain calls to this function.
+		 * Implements a module, giving the system a course of action to take 
+		 * upon loading. Results of a request for one or more modules contain 
+		 * calls to this function.
 		 */
 		this.implement = function( module, script, style, localization ) {
 			// Automaically register module
@@ -684,27 +721,39 @@ window.mediaWiki = new ( function( $ ) {
 			if ( typeof script !== 'function' ) {
 				throw new Error( 'script must be a function, not a ' + typeof script );
 			}
-			if ( typeof style !== 'undefined' && typeof style !== 'string' && typeof style !== 'object' ) {
+			if ( typeof style !== 'undefined' 
+				&& typeof style !== 'string' 
+				&& typeof style !== 'object' ) 
+			{
 				throw new Error( 'style must be a string or object, not a ' + typeof style );
 			}
-			if ( typeof localization !== 'undefined' && typeof localization !== 'object' ) {
+			if ( typeof localization !== 'undefined' 
+				&& typeof localization !== 'object' ) 
+			{
 				throw new Error( 'localization must be an object, not a ' + typeof localization );
 			}
-			if ( typeof registry[module] !== 'undefined' && typeof registry[module].script !== 'undefined' ) {
+			if ( typeof registry[module] !== 'undefined' 
+				&& typeof registry[module].script !== 'undefined' ) 
+			{
 				throw new Error( 'module already implemeneted: ' + module );
 			}
 			// Mark module as loaded
 			registry[module].state = 'loaded';
 			// Attach components
 			registry[module].script = script;
-			if ( typeof style === 'string' || typeof style === 'object' && !( style instanceof Array ) ) {
+			if ( typeof style === 'string' 
+				|| typeof style === 'object' && !( style instanceof Array ) ) 
+			{
 				registry[module].style = style;
 			}
 			if ( typeof localization === 'object' ) {
 				registry[module].messages = localization;
 			}
 			// Execute or queue callback
-			if ( compare( filter( ['ready'], registry[module].dependencies ), registry[module].dependencies ) ) {
+			if ( compare( 
+				filter( ['ready'], registry[module].dependencies ), 
+				registry[module].dependencies ) ) 
+			{
 				execute( module );
 			} else {
 				request( module );
@@ -714,7 +763,8 @@ window.mediaWiki = new ( function( $ ) {
 		/**
 		 * Executes a function as soon as one or more required modules are ready
 		 *
-		 * @param mixed string or array of strings of modules names the callback dependencies to be ready before
+		 * @param mixed string or array of strings of modules names the callback 
+		 *   dependencies to be ready before
 		 * executing
 		 * @param function callback to execute when all dependencies are ready (optional)
 		 * @param function callback to execute when if dependencies have a errors (optional)
@@ -722,7 +772,8 @@ window.mediaWiki = new ( function( $ ) {
 		this.using = function( dependencies, ready, error ) {
 			// Validate input
 			if ( typeof dependencies !== 'object' && typeof dependencies !== 'string' ) {
-				throw new Error( 'dependencies must be a string or an array, not a ' + typeof dependencies )
+				throw new Error( 'dependencies must be a string or an array, not a ' + 
+					typeof dependencies )
 			}
 			// Allow calling with a single dependency as a string
 			if ( typeof dependencies === 'string' ) {
@@ -751,21 +802,29 @@ window.mediaWiki = new ( function( $ ) {
 		/**
 		 * Loads an external script or one or more modules for future use
 		 *
-		 * @param {mixed} modules either the name of a module, array of modules, or a URL of an external script or style
-		 * @param {string} type mime-type to use if calling with a URL of an external script or style; acceptable values
-		 * are "text/css" and "text/javascript"; if no type is provided, text/javascript is assumed
+		 * @param {mixed} modules either the name of a module, array of modules, 
+		 *   or a URL of an external script or style
+		 * @param {string} type mime-type to use if calling with a URL of an 
+		 *   external script or style; acceptable values are "text/css" and 
+		 *   "text/javascript"; if no type is provided, text/javascript is 
+		 *   assumed
 		 */
 		this.load = function( modules, type ) {
 			// Validate input
 			if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
-				throw new Error( 'dependencies must be a string or an array, not a ' + typeof dependencies )
+				throw new Error( 'dependencies must be a string or an array, not a ' + 
+					typeof dependencies )
 			}
 			// Allow calling with an external script or single dependency as a string
 			if ( typeof modules === 'string' ) {
 				// Support adding arbitrary external scripts
-				if ( modules.substr( 0, 7 ) == 'http://' || modules.substr( 0, 8 ) == 'https://' ) {
+				if ( modules.substr( 0, 7 ) == 'http://' 
+					|| modules.substr( 0, 8 ) == 'https://' ) 
+				{
 					if ( type === 'text/css' ) {
-						$( 'head' ).append( $( '<link rel="stylesheet" type="text/css" />' ).attr( 'href', modules ) );
+						$( 'head' )
+							.append( $( '<link rel="stylesheet" type="text/css" />' )
+							.attr( 'href', modules ) );
 						return true;
 					} else if ( type === 'text/javascript' || typeof type === 'undefined' ) {
 						var script = '<script type="text/javascript" src="' + modules + '"></script>';

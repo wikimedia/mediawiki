@@ -25,8 +25,9 @@ defined( 'MEDIAWIKI' ) || die( 1 );
 /**
  * Abstraction for resource loader modules which pull from wiki pages
  * 
- * This can only be used for wiki pages in the MediaWiki and User namespaces, because of it's dependence on the
- * functionality of Title::isValidCssJsSubpage.
+ * This can only be used for wiki pages in the MediaWiki and User namespaces, 
+ * because of it's dependence on the functionality of 
+ * Title::isValidCssJsSubpage.
  */
 abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	
