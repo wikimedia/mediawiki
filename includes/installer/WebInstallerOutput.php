@@ -79,6 +79,33 @@ class WebInstallerOutput {
 		$this->outputFooter();
 	}
 
+	/**
+	 * Get the raw vector CSS, flipping if needed
+	 * @param $dir String 'ltr' or 'rtl'
+	 * @return String
+	 */
+	public function getCSS( $dir ) {
+		$vectorCssFile = dirname( __FILE__ ) . '/../../skins/vector/screen.css';
+		wfSuppressWarnings();
+		$css = file_get_contents( $vectorCssFile );
+		wfRestoreWarnings();
+		if( !$css ) {
+			return '';
+		} elseif( $dir == 'rtl' ) {
+			return CSSJanus::transform( $css, true );
+		} else {
+			return $css;
+		}
+	}
+
+	/**
+	 * URL for index.php?css=foobar
+	 * @return String
+	 */
+	private function getCssUrl( ) {
+		return $_SERVER['PHP_SELF'] . '?css=' . $this->getDir();
+	}
+
 	public function useShortHeader( $use = true ) {
 		$this->useShortHeader = $use;
 	}
@@ -147,7 +174,7 @@ class WebInstallerOutput {
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo Html::linkedStyle( '../skins/common/shared.css' ) . "\n"; ?>
-	<?php echo Html::linkedStyle( '../skins/monobook/main.css' ) . "\n"; ?>
+	<?php echo Html::linkedStyle( $this->getCssUrl() ) . "\n"; ?>
 	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
 	<?php echo Html::inlineScript(  "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
@@ -162,8 +189,8 @@ class WebInstallerOutput {
 .config-show-help { display: none; }
 </style>
 </noscript>
-<div id="globalWrapper">
-<div id="column-content">
+<div id="mw-page-base">
+<div id="mw-head-base">
 <div id="content">
 <div id="bodyContent">
 
@@ -211,7 +238,7 @@ class WebInstallerOutput {
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="noindex, nofollow" />
 	<title><?php $this->outputTitle(); ?></title>
-	<?php echo Html::linkedStyle( '../skins/monobook/main.css' ) . "\n"; ?>
+	<?php echo Html::linkedStyle( $this->getCssUrl() ) . "\n"; ?>
 	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
 	<?php echo $this->getJQuery(); ?>
 	<?php echo $this->getJQueryTipsy() . "\n"; ?>
