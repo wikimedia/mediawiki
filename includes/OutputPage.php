@@ -2296,7 +2296,7 @@ class OutputPage {
 
 	// TODO: Document
 	protected function makeResourceLoaderLink( $skin, $modules, $only, $useESI = false ) {
-		global $wgUser, $wgLang, $wgRequest, $wgLoadScript, $wgResourceLoaderDebug, $wgResourceLoaderUseESI,
+		global $wgUser, $wgLang, $wgLoadScript, $wgResourceLoaderUseESI,
 			$wgResourceLoaderInlinePrivateModules;
 		// Lazy-load ResourceLoader
 		if ( is_null( $this->mResourceLoader ) ) {
@@ -2393,7 +2393,7 @@ class OutputPage {
 	 * @return String: HTML fragment
 	 */
 	function getHeadScripts( Skin $sk ) {
-		global $wgUser, $wgRequest, $wgUseSiteJs, $wgResourceLoaderDebug;
+		global $wgUser, $wgRequest, $wgUseSiteJs;
 
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( $sk, 'startup', 'scripts', true );
@@ -2501,7 +2501,7 @@ class OutputPage {
 	 * @return string HTML tag links to be put in the header.
 	 */
 	public function getHeadLinks( $sk ) {
-		global $wgFeed, $wgRequest, $wgResourceLoaderDebug;
+		global $wgFeed;
 
 		// Ideally this should happen earlier, somewhere. :P
 		$this->addDefaultMeta();
