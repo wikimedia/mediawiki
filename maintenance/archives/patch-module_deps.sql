@@ -3,9 +3,9 @@
 -- Currently only used for tracking images that CSS depends on
 CREATE TABLE /*_*/module_deps (
   -- Module name
-  md_module varchar(255) NOT NULL,
+  md_module varbinary(255) NOT NULL,
   -- Skin name
-  md_skin varchar(32) NOT NULL,
+  md_skin varbinary(32) NOT NULL,
   -- JSON blob with file dependencies
   md_deps mediumblob NOT NULL
 ) /*$wgDBTableOptions*/;
