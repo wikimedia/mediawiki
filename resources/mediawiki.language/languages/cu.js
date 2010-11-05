@@ -1,5 +1,5 @@
 /**
- * Old Church Slavonic (—®–∑—ã–∫—ä —Å–ª–æ–≤—£–Ω—å—Å–∫—ä) language functions
+ * Old Church Slavonic (Словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

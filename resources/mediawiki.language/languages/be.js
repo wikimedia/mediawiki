@@ -1,5 +1,5 @@
 /**
- * Belarusian normative (–ë–µ–ª–∞—Ä—É—Å–∫–∞—è –º–æ–≤–∞) language functions
+ * Belarusian normative (Беларуская) language functions
  */
 
 mediaWiki.language.convertPlural = function convertPlural( count, forms ) {

@@ -1,5 +1,5 @@
 /**
- * Scots Gaelic (G√†idhlig) language functions
+ * Scots Gaelic (Gàidhlig) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

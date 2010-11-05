@@ -1,5 +1,5 @@
 /**
- * Armenian (’Ä’°’µ’•÷Ä’•’∂) language functions
+ * Armenian (Հայերեն) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

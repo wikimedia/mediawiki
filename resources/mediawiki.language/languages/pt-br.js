@@ -1,5 +1,5 @@
 /**
- * Brazilian Portugese (Portugu√™si do Brasil) language functions
+ * Brazilian Portugese (Portuguêsi do Brasil) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

@@ -1,5 +1,5 @@
 /**
- * Belarusian in Tara≈°kievica orthography (–ë–µ–ª–∞—Ä—É—Å–∫–∞—è —Ç–∞—Ä–∞—à–∫–µ–≤—ñ—Ü–∞) language functions
+ * Belarusian in Taraskievica orthography (Беларуская (тарашкевіца)) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

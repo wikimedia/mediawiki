@@ -1,5 +1,5 @@
 /**
- * Slovenian (Sloven≈°ƒçina) language functions
+ * Slovenian (Slovenščina) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

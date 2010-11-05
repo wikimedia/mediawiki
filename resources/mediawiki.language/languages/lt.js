@@ -1,5 +1,5 @@
 /**
- * Lithuanian (Lietuvi≈≥) language functions
+ * Lithuanian (Lietuvių) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

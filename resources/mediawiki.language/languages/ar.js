@@ -1,5 +1,5 @@
 /**
- * Arabic (ÿßŸÑÿπÿ±ÿ®Ÿäÿ©) language functions
+ * Arabic (العربية) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {
@@ -23,16 +23,16 @@ mediaWiki.language.convertPlural = function( count, forms ) {
 }
 
 mediaWiki.language.digitTransformTable = {
-    '0': 'Ÿ†', // &#x0660;
-    '1': 'Ÿ°', // &#x0661;
-    '2': 'Ÿ¢', // &#x0662;
-    '3': 'Ÿ£', // &#x0663;
-    '4': 'Ÿ§', // &#x0664;
-    '5': 'Ÿ•', // &#x0665;
-    '6': 'Ÿ¶', // &#x0666;
-    '7': 'Ÿß', // &#x0667;
-    '8': 'Ÿ®', // &#x0668;
-    '9': 'Ÿ©', // &#x0669;
-    '.': 'Ÿ´', // &#x066b; wrong table ?
-    ',': 'Ÿ¨' // &#x066c;
+    '0': '٠', // &#x0660;
+    '1': '١', // &#x0661;
+    '2': '٢', // &#x0662;
+    '3': '٣', // &#x0663;
+    '4': '٤', // &#x0664;
+    '5': '٥', // &#x0665;
+    '6': '٦', // &#x0666;
+    '7': '٧', // &#x0667;
+    '8': '٨', // &#x0668;
+    '9': '٩', // &#x0669;
+    '.': '٫', // &#x066b; wrong table ?
+    ',': '٬' // &#x066c;
 };

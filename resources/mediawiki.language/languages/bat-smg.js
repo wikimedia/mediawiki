@@ -1,5 +1,5 @@
 /**
- * Samogitian (≈Ωemaitƒó≈°ka) language functions
+ * Samogitian (Žemaitėška) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {
