@@ -1154,7 +1154,7 @@ class ParserTest {
 	 * @param $text String: the article text
 	 * @param $line Integer: the input line number, for reporting errors
 	 */
-	static public function addArticle( $name, $text, $line ) {
+	static public function addArticle( $name, $text, $line = 'unknown' ) {
 		global $wgCapitalLinks;
 
 		$text = self::chomp($text);

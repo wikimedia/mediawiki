@@ -33,6 +33,7 @@ class ParserUnitTest extends PHPUnit_Framework_TestCase {
 			$result = new PHPUnit_Framework_TestResult;
 		}
 
+		$this->suite->publishTestArticles(); // Add articles needed by the tests.
 		$backend = new ParserTestSuiteBackend;
 		$result->startTest( $this );
 
