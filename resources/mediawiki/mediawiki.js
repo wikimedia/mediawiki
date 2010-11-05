@@ -450,8 +450,6 @@ window.mediaWiki = new ( function( $ ) {
 			return list;
 		}
 
-		this.filter_ = filter;
-
 		/**
 		 * Executes a loaded module, making it ready to use
 		 *
