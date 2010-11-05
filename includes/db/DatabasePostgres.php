@@ -234,7 +234,7 @@ class DatabasePostgres extends DatabaseBase {
 		$PGMINVER = '8.1';
 		if ( $version < $PGMINVER ) {
 			print "<b>FAILED</b>. Required version is $PGMINVER. You have " . htmlspecialchars( $version ) . "</li>\n";
-			dieout( '</ul>' );
+			dieout( '' );
 		}
 		print 'version ' . htmlspecialchars( $this->numeric_version ) . " is OK.</li>\n";
 
@@ -251,7 +251,7 @@ class DatabasePostgres extends DatabaseBase {
 			$rows = $this->numRows( $res = $this->doQuery( $SQL ) );
 			if ( !$rows ) {
 				print '<li>ERROR: Could not read permissions for user "' . htmlspecialchars( $superuser ) . "\"</li>\n";
-				dieout( '</ul>' );
+				dieout( '' );
 			}
 			$perms = pg_fetch_result( $res, 0, 0 );
 
@@ -263,7 +263,7 @@ class DatabasePostgres extends DatabaseBase {
 				if ( $perms != 1 && $perms != 3 ) {
 					print '<li>ERROR: the user "' . htmlspecialchars( $superuser ) . '" cannot create other users. ';
 					print 'Please use a different Postgres user.</li>';
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 				print '<li>Creating user <b>' . htmlspecialchars( $wgDBuser ) . '</b>...';
 				$safepass = $this->addQuotes( $wgDBpassword );
@@ -281,7 +281,7 @@ class DatabasePostgres extends DatabaseBase {
 					if ( $perms < 1 ) {
 						print '<li>ERROR: the user "' . htmlspecialchars( $superuser ) . '" cannot create databases. ';
 						print 'Please use a different Postgres user.</li>';
-						dieout( '</ul>' );
+						dieout( '' );
 					}
 					print '<li>Creating database <b>' . htmlspecialchars( $wgDBname ) . '</b>...';
 					$safename = $this->quote_ident( $wgDBname );
@@ -309,7 +309,7 @@ class DatabasePostgres extends DatabaseBase {
 				@$this->mConn = pg_connect( $this->makeConnectionString( $connectVars ) );
 				if ( !$this->mConn ) {
 					print "<b>FAILED TO CONNECT!</b></li>";
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 				print "OK</li>\n";
 			}
@@ -323,7 +323,7 @@ class DatabasePostgres extends DatabaseBase {
 						htmlspecialchars( $wgDBname ) . '".';
 					print 'Please see <a href="http://www.devx.com/opensource/Article/21674/0/page/2">this article</a>';
 					print " for instructions or ask on #postgresql on irc.freenode.net</li>\n";
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 				print "OK</li>\n";
 				print '<li>Ensuring that user "' . htmlspecialchars( $wgDBuser ) .
@@ -343,7 +343,7 @@ class DatabasePostgres extends DatabaseBase {
 				$result = $this->doQuery( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
 				if ( !$result ) {
 					print "<b>FAILED</b>.</li>\n";
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 				print "OK</li>\n";
 			} else {
@@ -361,7 +361,7 @@ class DatabasePostgres extends DatabaseBase {
 				$res = $this->doQuery( $SQL );
 				if ( !$res ) {
 					print "<b>FAILED</b>. Could not set rights for the user.</li>\n";
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 				$this->doQuery( "SET search_path = $safeschema" );
 				$rows = $this->numRows( $res );
@@ -388,7 +388,7 @@ class DatabasePostgres extends DatabaseBase {
 					print '<b>FAILED</b>. Make sure tsearch2 is installed. See <a href="';
 					print 'http://www.devx.com/opensource/Article/21674/0/page/2">this article</a>';
 					print " for instructions.</li>\n";
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 				print "OK</li>\n";
 
@@ -406,7 +406,7 @@ class DatabasePostgres extends DatabaseBase {
 						print "<b>FAILED</b> to access " . htmlspecialchars( "pg_ts_$tname" ) .
 							". Make sure that the user \"". htmlspecialchars( $wgDBuser ) .
 							"\" has SELECT access to all four tsearch2 tables</li>\n";
-						dieout( '</ul>' );
+						dieout( '' );
 					}
 				}
 				$SQL = "SELECT ts_name FROM $safetsschema.pg_ts_cfg WHERE locale = " . $this->addQuotes( $ctype ) ;
@@ -443,7 +443,7 @@ class DatabasePostgres extends DatabaseBase {
 						print '<b>FAILED</b>. ';
 						print 'Please make sure that the locale in pg_ts_cfg for "default" is set to "' .
 							htmlspecialchars( $ctype ) . "\"</li>\n";
-						dieout( '</ul>' );
+						dieout( '' );
 					}
 					print 'OK</li>';
 				}
@@ -453,7 +453,7 @@ class DatabasePostgres extends DatabaseBase {
 				$res = $this->doQuery( $SQL );
 				if ( !$res ) {
 					print '<b>FAILED</b>. Specifically, "' . htmlspecialchars( $SQL ) . '" did not work.</li>';
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 				print 'OK</li>';
 			}
@@ -475,7 +475,7 @@ class DatabasePostgres extends DatabaseBase {
 						'You can try making them the owner of the database, or try creating the schema with a '.
 						'different user, and then grant access to the "' .
 						htmlspecialchars( $wgDBuser ) . "\" user.</li>\n";
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 				print "OK</li>\n";
 			} elseif ( $result != $wgDBuser ) {
@@ -492,7 +492,7 @@ class DatabasePostgres extends DatabaseBase {
 			$result = pg_query( $this->mConn, $SQL );
 			if ( !$result ) {
 				print "<b>FAILED</b>.</li>\n";
-				dieout( '</ul>' );
+				dieout( '' );
 			}
 			print "OK</li>\n";
 			// Set for the rest of this session
@@ -500,7 +500,7 @@ class DatabasePostgres extends DatabaseBase {
 			$result = pg_query( $this->mConn, $SQL );
 			if ( !$result ) {
 				print "<li>Failed to set timezone</li>\n";
-				dieout( '</ul>' );
+				dieout( '' );
 			}
 
 			print '<li>Setting the datestyle to ISO, YMD for user "' . htmlspecialchars( $wgDBuser ) . '" ...';
@@ -508,7 +508,7 @@ class DatabasePostgres extends DatabaseBase {
 			$result = pg_query( $this->mConn, $SQL );
 			if ( !$result ) {
 				print "<b>FAILED</b>.</li>\n";
-				dieout( '</ul>' );
+				dieout( '' );
 			}
 			print "OK</li>\n";
 			// Set for the rest of this session
@@ -516,7 +516,7 @@ class DatabasePostgres extends DatabaseBase {
 			$result = pg_query( $this->mConn, $SQL );
 			if ( !$result ) {
 				print "<li>Failed to set datestyle</li>\n";
-				dieout( '</ul>' );
+				dieout( '' );
 			}
 
 			// Fix up the search paths if needed
@@ -532,7 +532,7 @@ class DatabasePostgres extends DatabaseBase {
 			$result = pg_query( $this->mConn, $SQL );
 			if ( !$result ) {
 				print "<b>FAILED</b>.</li>\n";
-				dieout( '</ul>' );
+				dieout( '' );
 			}
 			print "OK</li>\n";
 			// Set for the rest of this session
@@ -540,7 +540,7 @@ class DatabasePostgres extends DatabaseBase {
 			$result = pg_query( $this->mConn, $SQL );
 			if ( !$result ) {
 				print "<li>Failed to set search_path</li>\n";
-				dieout( '</ul>' );
+				dieout( '' );
 			}
 			define( 'POSTGRES_SEARCHPATH', $path );
 		}
@@ -565,12 +565,12 @@ class DatabasePostgres extends DatabaseBase {
 				if ( !$result ) {
 					print '<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>' .
 						htmlspecialchars( $wgDBname ) . '</tt></li>';
-					dieout( '</ul>' );
+					dieout( '' );
 				}
 			} else {
 				print '<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>' .
 					htmlspecialchars( $wgDBname ) . '</tt></li>';
-				dieout( '</ul>' );
+				dieout( '' );
 			}
 		}
 		print "OK</li>\n";
