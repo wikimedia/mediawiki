@@ -50,7 +50,6 @@ abstract class WebInstallerPage {
 	}
 
 	public function endForm( $continue = 'continue' ) {
-		$this->parent->output->outputWarnings();
 		$s = "<div class=\"config-submit\">\n";
 		$id = $this->getId();
 		

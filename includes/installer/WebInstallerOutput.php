@@ -18,20 +18,32 @@
  * @since 1.17
  */
 class WebInstallerOutput {
-	
 	/**
 	 * The WebInstaller object this WebInstallerOutput is used by.
 	 *
 	 * @var WebInstaller
 	 */
 	public $parent;
-	
-	public $contents = '';
-	public $warnings = '';
-	public $headerDone = false;
+
+	/**
+	 * Buffered contents that haven't been output yet
+	 * @var String
+	 */
+	private $contents = '';
+
+	/**
+	 * Has the header (or short header) been output?
+	 * @var bool
+	 */
+	private $headerDone = false;
+
 	public $redirectTarget;
-	public $debug = true;
-	public $useShortHeader = false;
+
+	/**
+	 * Whether to use the limited header (used during CC license callbacks)
+	 * @var bool
+	 */
+	private $useShortHeader = false;
 
 	/**
 	 * Constructor.
@@ -53,16 +65,6 @@ class WebInstallerOutput {
 
 	public function addHTMLNoFlush( $html ) {
 		$this->contents .= $html;
-	}
-
-	public function addWarning( $msg ) {
-		$this->warnings .= "<p>$msg</p>\n";
-	}
-	
-	public function addWarningMsg( $msg /*, ... */ ) {
-		$params = func_get_args();
-		array_shift( $params );
-		$this->addWarning( wfMsg( $msg, $params ) );
 	}
 
 	public function redirect( $url ) {
@@ -115,6 +117,10 @@ class WebInstallerOutput {
 		);
 	}
 
+	/**
+	 * Get whether the header has been output
+	 * @return bool
+	 */
 	public function headerDone() {
 		return $this->headerDone;
 	}
@@ -166,8 +172,6 @@ class WebInstallerOutput {
 	}
 
 	public function outputFooter() {
-		$this->outputWarnings();
-
 		if ( $this->useShortHeader ) {
 ?>
 </body></html>
@@ -229,10 +233,4 @@ class WebInstallerOutput {
 	public function getJQueryTipsy() {
 		return Html::linkedScript( "../resources/jquery/jquery.tipsy.js" );
 	}
-	
-	public function outputWarnings() {
-		$this->addHTML( $this->warnings );
-		$this->warnings = '';
-	}
-	
 }
