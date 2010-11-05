@@ -50,8 +50,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * Fetch the context's user options, or if it doesn't match current user,
 	 * the default options.
 	 * 
-	 * @param $context ResourceLoaderContext
-	 * @return array
+	 * @param $context ResourceLoaderContext: Context object
+	 * @return Array: List of user options keyed by option name
 	 */
 	protected function contextUserOptions( ResourceLoaderContext $context ) {
 		global $wgUser;

@@ -30,7 +30,7 @@ class ResourceLoader {
 
 	/* Protected Static Members */
 
-	/** @var {array} List of module name/ResourceLoaderModule object pairs */
+	/** Array: List of module name/ResourceLoaderModule object pairs */
 	protected $modules = array();
 
 	/* Protected Methods */
@@ -46,8 +46,8 @@ class ResourceLoader {
 	 * requests its own information. This sacrifice of modularity yields a profound
 	 * performance improvement.
 	 * 
-	 * @param $modules Array: list of module names to preload information for
-	 * @param $context ResourceLoaderContext: context to load the information within
+	 * @param $modules Array: List of module names to preload information for
+	 * @param $context ResourceLoaderContext: Context to load the information within
 	 */
 	protected function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
 		if ( !count( $modules ) ) {
@@ -114,9 +114,9 @@ class ResourceLoader {
 	 * If $data is empty, only contains whitespace or the filter was unknown, 
 	 * $data is returned unmodified.
 	 * 
-	 * @param $filter String: name of filter to run
-	 * @param $data String: text to filter, such as JavaScript or CSS text
-	 * @return String: filtered data
+	 * @param $filter String: Name of filter to run
+	 * @param $data String: Text to filter, such as JavaScript or CSS text
+	 * @return String: Filtered data
 	 */
 	protected function filter( $filter, $data ) {
 		global $wgMemc;
@@ -187,14 +187,13 @@ class ResourceLoader {
 	/**
 	 * Registers a module with the ResourceLoader system.
 	 * 
-	 * @param $name Mixed: string of name of module or array of name/object pairs
-	 * @param $object ResourceLoaderModule: module object (optional when using 
-	 *   multiple-registration calling style)
-	 * @throws MWException If a duplicate module registration is attempted
-	 * @throws MWException If something other than a ResourceLoaderModule is being 
-	 *   registered
-	 * @return Boolean: false if there were any errors, in which case one or more 
-	 *   modules were not registered
+	 * @param $name Mixed: Name of module as a string or List of name/object pairs as an array
+	 * @param $object ResourceLoaderModule: Module object (optional when using 
+	 *     multiple-registration calling style)
+	 * @throws MWException: If a duplicate module registration is attempted
+	 * @throws MWException: If something other than a ResourceLoaderModule is being registered
+	 * @return Boolean: False if there were any errors, in which case one or more modules were not
+	 *     registered
 	 */
 	public function register( $name, ResourceLoaderModule $object = null ) {
 
@@ -236,7 +235,7 @@ class ResourceLoader {
 	/**
 	 * Gets a map of all modules and their options
 	 *
-	 * @return Array: array( modulename => ResourceLoaderModule )
+	 * @return Array: List of modules keyed by module name
 	 */
 	public function getModules() {
 		return $this->modules;
@@ -245,7 +244,7 @@ class ResourceLoader {
 	/**
 	 * Get the ResourceLoaderModule object for a given module name.
 	 *
-	 * @param $name String: module name
+	 * @param $name String: Module name
 	 * @return Mixed: ResourceLoaderModule if module has been registered, null otherwise
 	 */
 	public function getModule( $name ) {
@@ -255,7 +254,7 @@ class ResourceLoader {
 	/**
 	 * Outputs a response to a resource load-request, including a content-type header.
 	 *
-	 * @param $context ResourceLoaderContext: context in which a response should be formed
+	 * @param $context ResourceLoaderContext: Context in which a response should be formed
 	 */
 	public function respond( ResourceLoaderContext $context ) {
 		global $wgResourceLoaderMaxage, $wgCacheEpoch;
@@ -345,10 +344,10 @@ class ResourceLoader {
 	/**
 	 * Generates code for a response
 	 * 
-	 * @param $context ResourceLoaderContext: context in which to generate a response
-	 * @param $modules Array: list of module objects keyed by module name
-	 * @param $missing Array: list of unavailable modules (optional)
-	 * @return String: response data
+	 * @param $context ResourceLoaderContext: Context in which to generate a response
+	 * @param $modules Array: List of module objects keyed by module name
+	 * @param $missing Array: List of unavailable modules (optional)
+	 * @return String: Response data
 	 */
 	public function makeModuleResponse( ResourceLoaderContext $context, 
 		array $modules, $missing = array() ) 
@@ -447,12 +446,12 @@ class ResourceLoader {
 	 * given properties.
 	 *
 	 * @param $name Module name
-	 * @param $scripts Array of JavaScript code snippets to be executed after the 
+	 * @param $scripts Array: List of JavaScript code snippets to be executed after the 
 	 *     module is loaded
-	 * @param $styles Associative array mapping media type to associated CSS string
-	 * @param $messages Messages associated with this module. May either be an 
-	 *     associative array mapping message key to value, or a JSON-encoded message blob
-	 *     containing the same data, wrapped in an XmlJsCode object.
+	 * @param $styles Array: List of CSS strings keyed by media type
+	 * @param $messages Mixed: List of messages associated with this module. May either be an 
+	 *     associative array mapping message key to value, or a JSON-encoded message blob containing
+	 *     the same data, wrapped in an XmlJsCode object.
 	 */
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_array( $scripts ) ) {
@@ -471,9 +470,8 @@ class ResourceLoader {
 	/**
 	 * Returns JS code which, when called, will register a given list of messages.
 	 *
-	 * @param $messages May either be an associative array mapping message key 
-	 *     to value, or a JSON-encoded message blob containing the same data, 
-	 *     wrapped in an XmlJsCode object.
+	 * @param $messages Mixed: Either an associative array mapping message key to value, or a
+	 *     JSON-encoded message blob containing the same data, wrapped in an XmlJsCode object.
 	 */
 	public static function makeMessageSetScript( $messages ) {
 		return Xml::encodeJsCall( 'mediaWiki.messages.set', array( (object)$messages ) );
@@ -483,7 +481,7 @@ class ResourceLoader {
 	 * Combines an associative array mapping media type to CSS into a 
 	 * single stylesheet with @media blocks.
 	 *
-	 * @param $styles Array of CSS strings
+	 * @param $styles Array: List of CSS strings keyed by media type
 	 */
 	public static function makeCombinedStyles( array $styles ) {
 		$out = '';
@@ -517,11 +515,11 @@ class ResourceLoader {
 	 * which will have values corresponding to $name, $version, $dependencies 
 	 * and $group as supplied. 
 	 *
-	 * @param $name The module name
-	 * @param $version The module version string
-	 * @param $dependencies Array of module names on which this module depends
-	 * @param $group The group which the module is in.
-	 * @param $script The JS loader script
+	 * @param $name String: Module name
+	 * @param $version Integer: Module version number as a timestamp
+	 * @param $dependencies Array: List of module names on which this module depends
+	 * @param $group String: Group which the module is in.
+	 * @param $script String: JavaScript code
 	 */
 	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
@@ -547,10 +545,10 @@ class ResourceLoader {
 	 *     ) ):
 	 *        Registers modules with the given names and parameters.
 	 *
-	 * @param $name The module name
-	 * @param $version The module version string
-	 * @param $dependencies Array of module names on which this module depends
-	 * @param $group The group which the module is in.
+	 * @param $name String: Module name
+	 * @param $version Integer: Module version number as a timestamp
+	 * @param $dependencies Array: List of module names on which this module depends
+	 * @param $group String: group which the module is in.
 	 */
 	public static function makeLoaderRegisterScript( $name, $version = null, 
 		$dependencies = null, $group = null ) 
@@ -568,7 +566,7 @@ class ResourceLoader {
 	 * Returns JS code which runs given JS code if the client-side framework is 
 	 * present.
 	 *
-	 * @param $script JS code to run
+	 * @param $script String: JavaScript code
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
@@ -579,7 +577,7 @@ class ResourceLoader {
 	 * Returns JS code which will set the MediaWiki configuration array to 
 	 * the given value.
 	 *
-	 * @param $configuration Associative array of configuration parameters
+	 * @param $configuration Array: List of configuration values keyed by variable name
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
 		return Xml::encodeJsCall( 'mediaWiki.config.set', array( $configuration ) );
