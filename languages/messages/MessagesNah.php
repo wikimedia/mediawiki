@@ -10,6 +10,7 @@
  * @author Fluence
  * @author Ricardo gs
  * @author Rob Church <robchur@gmail.com>
+ * @author Teòtlalili
  */
 
 $fallback = 'es';
@@ -127,18 +128,18 @@ $messages = array(
 'thu'           => 'Tez',
 'fri'           => 'Quetz',
 'sat'           => 'Tlāl',
-'january'       => 'Tlacēnti',
-'february'      => 'Tlaōnti',
-'march'         => 'Tlayēti',
-'april'         => 'Tlanāuhti',
-'may_long'      => 'Tlamācuīlti',
-'june'          => 'Tlachicuazti',
-'july'          => 'Tlachicōnti',
-'august'        => 'Tlachicuēiti',
-'september'     => 'Tlachiucnāuhti',
-'october'       => 'Tlamahtlācti',
-'november'      => 'Tlamahtlāccēti',
-'december'      => 'Tlamahtlācōnti',
+'january'       => 'Àtemòstli',
+'february'      => 'Iskalli',
+'march'         => 'Àtlakàwalo',
+'april'         => 'Tlàkaxipèwalistli',
+'may_long'      => 'Tosostli',
+'june'          => 'Toxkatl',
+'july'          => 'Tèkòilwitl',
+'august'        => 'Tlaxòchimàko',
+'september'     => 'Xokowetzi',
+'october'       => 'Teòtlêko',
+'november'      => 'Tepèilwitl',
+'december'      => 'Pànketzalistli',
 'january-gen'   => 'Tlacēnti',
 'february-gen'  => 'Tlaōnti',
 'march-gen'     => 'Tlayēti',
