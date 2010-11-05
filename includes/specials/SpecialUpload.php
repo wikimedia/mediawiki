@@ -909,7 +909,7 @@ class UploadForm extends HTMLForm {
 	 * @return Array: descriptor array
 	 */
 	protected function getDescriptionSection() {
-		global $wgUser, $wgOut;
+		global $wgUser;
 
 		$descriptor = array(
 			'DestFile' => array(
