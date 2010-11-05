@@ -91,7 +91,7 @@ class WebInstallerOutput {
 		$css = file_get_contents( $vectorCssFile );
 		wfRestoreWarnings();
 		if( !$css ) {
-			return '/** Your webserver cannot read ' . $vectorCssFile . ', please check file permissions */';
+			return "/** Your webserver cannot read $vectorCssFile, please check file permissions */";
 		} elseif( $dir == 'rtl' ) {
 			return CSSJanus::transform( $css, true );
 		} else {
