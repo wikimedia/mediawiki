@@ -13,7 +13,7 @@
  * @since 1.17
  */
 abstract class WebInstallerPage {
-	
+
 	/**
 	 * The WebInstaller object this WebInstallerPage belongs to.
 	 *

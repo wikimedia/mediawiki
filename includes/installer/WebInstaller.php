@@ -120,14 +120,21 @@ class WebInstaller extends CoreInstaller {
 
 		if( $this->getVar( '_InstallDone' ) && $this->request->getVal( 'localsettings' ) )
 		{
-			$ls = new LocalSettingsGenerator( $this );
-			$this->request->response()->header('Content-type: text/plain');
-
+			$this->request->response()->header( 'Content-type: text/plain' );
 			$this->request->response()->header(
 				'Content-Disposition: attachment; filename="LocalSettings.php"'
 			);
 
+			$ls = new LocalSettingsGenerator( $this );
 			echo $ls->getText();
+			return $this->session;
+		}
+
+		$cssDir = $this->request->getVal( 'css' );
+		if( $cssDir ) {
+			$cssDir = ( $cssDir == 'rtl' ? 'rtl' : 'ltr' );
+			$this->request->response()->header( 'Content-type: text/css' );
+			echo $this->output->getCSS( $cssDir );
 			return $this->session;
 		}
 
