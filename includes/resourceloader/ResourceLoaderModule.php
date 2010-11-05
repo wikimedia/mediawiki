@@ -40,7 +40,7 @@ abstract class ResourceLoaderModule {
 	 * Get this module's name. This is set when the module is registered
 	 * with ResourceLoader::register()
 	 *
-	 * @return Mixed: name (string) or null if no name was set
+	 * @return Mixed: Name (string) or null if no name was set
 	 */
 	public function getName() {
 		return $this->name;
@@ -50,7 +50,7 @@ abstract class ResourceLoaderModule {
 	 * Set this module's name. This is called by ResourceLodaer::register()
 	 * when registering the module. Other code should not call this.
 	 *
-	 * @param $name String: name
+	 * @param $name String: Name
 	 */
 	public function setName( $name ) {
 		$this->name = $name;
@@ -67,8 +67,8 @@ abstract class ResourceLoaderModule {
 	 * Get all JS for this module for a given language and skin.
 	 * Includes all relevant JS except loader scripts.
 	 *
-	 * @param $context ResourceLoaderContext object
-	 * @return String: JS
+	 * @param $context ResourceLoaderContext: Context object
+	 * @return String: JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		// Stub, override expected
@@ -78,8 +78,8 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get all CSS for this module for a given skin.
 	 *
-	 * @param $context ResourceLoaderContext object
-	 * @return array: strings of CSS keyed by media type
+	 * @param $context ResourceLoaderContext: Context object
+	 * @return Array: List of CSS strings keyed by media type
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		// Stub, override expected
@@ -91,7 +91,7 @@ abstract class ResourceLoaderModule {
 	 *
 	 * To get a JSON blob with messages, use MessageBlobStore::get()
 	 *
-	 * @return array of message keys. Keys may occur more than once
+	 * @return Array: List of message keys. Keys may occur more than once
 	 */
 	public function getMessages() {
 		// Stub, override expected
@@ -101,7 +101,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get the group this module is in.
 	 * 
-	 * @return string of group name
+	 * @return String: Group name
 	 */
 	public function getGroup() {
 		// Stub, override expected
@@ -111,7 +111,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get the loader JS for this module, if set.
 	 *
-	 * @return Mixed: loader JS (string) or false if no custom loader set
+	 * @return Mixed: JavaScript loader code as a string or boolean false if no custom loader set
 	 */
 	public function getLoaderScript() {
 		// Stub, override expected
@@ -131,7 +131,7 @@ abstract class ResourceLoaderModule {
 	 *
 	 * To add dependencies dynamically on the client side, use a custom
 	 * loader script, see getLoaderScript()
-	 * @return Array of module names (strings)
+	 * @return Array: List of module names as strings
 	 */
 	public function getDependencies() {
 		// Stub, override expected
@@ -142,8 +142,8 @@ abstract class ResourceLoaderModule {
 	 * Get the files this module depends on indirectly for a given skin.
 	 * Currently these are only image files referenced by the module's CSS.
 	 *
-	 * @param $skin String: skin name
-	 * @return array of files
+	 * @param $skin String: Skin name
+	 * @return Array: List of files
 	 */
 	public function getFileDependencies( $skin ) {
 		// Try in-object cache first
@@ -168,8 +168,8 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Set preloaded file dependency information. Used so we can load this
 	 * information for all modules at once.
-	 * @param $skin string Skin name
-	 * @param $deps array Array of file names
+	 * @param $skin String: Skin name
+	 * @param $deps Array: Array of file names
 	 */
 	public function setFileDependencies( $skin, $deps ) {
 		$this->fileDeps[$skin] = $deps;
@@ -178,8 +178,8 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get the last modification timestamp of the message blob for this
 	 * module in a given language.
-	 * @param $lang string Language code
-	 * @return int UNIX timestamp, or 0 if no blob found
+	 * @param $lang String: Language code
+	 * @return Integer: UNIX timestamp, or 0 if no blob found
 	 */
 	public function getMsgBlobMtime( $lang ) {
 		if ( !count( $this->getMessages() ) )
@@ -198,8 +198,8 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Set a preloaded message blob last modification timestamp. Used so we
 	 * can load this information for all modules at once.
-	 * @param $lang string Language code
-	 * @param $mtime int UNIX timestamp or 0 if there is no such blob
+	 * @param $lang String: Language code
+	 * @param $mtime Integer: UNIX timestamp or 0 if there is no such blob
 	 */
 	public function setMsgBlobMtime( $lang, $mtime ) {
 		$this->msgBlobMtime[$lang] = $mtime;
@@ -214,8 +214,8 @@ abstract class ResourceLoaderModule {
 	 * timestamps. Whenever anything happens that changes the module's
 	 * contents for these parameters, the mtime should increase.
 	 *
-	 * @param $context ResourceLoaderContext object
-	 * @return int UNIX timestamp
+	 * @param $context ResourceLoaderContext: Context object
+	 * @return Integer: UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		// 0 would mean now

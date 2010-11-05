@@ -27,67 +27,67 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/* Protected Members */
 
-	/** @var {string} Local base path, see __construct() */
+	/** String: Local base path, see __construct() */
 	protected $localBasePath = '';
-	/** @var {string} Remote base path, see __construct() */
+	/** String: Remote base path, see __construct() */
 	protected $remoteBasePath = '';
 	/**
-	 * @var {array} List of paths to JavaScript files to always include
-	 * @format array( [file-path], [file-path], ... )
+	 * Array: List of paths to JavaScript files to always include
+	 * @example array( [file-path], [file-path], ... )
 	 */
 	protected $scripts = array();
 	/**
-	 * @var {array} List of JavaScript files to include when using a specific language
-	 * @format array( [language-code] => array( [file-path], [file-path], ... ), ... )
+	 * Array: List of JavaScript files to include when using a specific language
+	 * @example array( [language-code] => array( [file-path], [file-path], ... ), ... )
 	 */
 	protected $languageScripts = array();
 	/**
-	 * @var {array} List of JavaScript files to include when using a specific skin
-	 * @format array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 * Array: List of JavaScript files to include when using a specific skin
+	 * @example array( [skin-name] => array( [file-path], [file-path], ... ), ... )
 	 */
 	protected $skinScripts = array();
 	/**
-	 * @var {array} List of paths to JavaScript files to include in debug mode
-	 * @format array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 * Array: List of paths to JavaScript files to include in debug mode
+	 * @example array( [skin-name] => array( [file-path], [file-path], ... ), ... )
 	 */
 	protected $debugScripts = array();
 	/**
-	 * @var {array} List of paths to JavaScript files to include in the startup module
-	 * @format array( [file-path], [file-path], ... )
+	 * Array: List of paths to JavaScript files to include in the startup module
+	 * @example array( [file-path], [file-path], ... )
 	 */
 	protected $loaderScripts = array();
 	/**
-	 * @var {array} List of paths to CSS files to always include
-	 * @format array( [file-path], [file-path], ... )
+	 * Array: List of paths to CSS files to always include
+	 * @example array( [file-path], [file-path], ... )
 	 */
 	protected $styles = array();
 	/**
-	 * @var {array} List of paths to CSS files to include when using specific skins
-	 * @format array( [file-path], [file-path], ... )
+	 * Array: List of paths to CSS files to include when using specific skins
+	 * @example array( [file-path], [file-path], ... )
 	 */
 	protected $skinStyles = array();
 	/**
-	 * @var {array} List of modules this module depends on
-	 * @format array( [file-path], [file-path], ... )
+	 * Array: List of modules this module depends on
+	 * @example array( [file-path], [file-path], ... )
 	 */
 	protected $dependencies = array();
 	/**
-	 * @var {array} List of message keys used by this module
-	 * @format array( [message-key], [message-key], ... )
+	 * Array: List of message keys used by this module
+	 * @example array( [message-key], [message-key], ... )
 	 */
 	protected $messages = array();
-	/** @var {string} Name of group to load this module in */
+	/** String: Name of group to load this module in */
 	protected $group;
-	/** @var {boolean} Link to raw files in debug mode */
+	/** Boolean: Link to raw files in debug mode */
 	protected $debugRaw = true;
 	/**
-	 * @var {array}  Cache for mtime
-	 * @format array( [hash] => [mtime], [hash] => [mtime], ... )
+	 * Array: Cache for mtime
+	 * @example array( [hash] => [mtime], [hash] => [mtime], ... )
 	 */
 	protected $modifiedTime = array();
 	/**
-	 * @var {array} Place where readStyleFile() tracks file dependencies
-	 * @format array( [file-path], [file-path], ... )
+	 * Array: Place where readStyleFile() tracks file dependencies
+	 * @example array( [file-path], [file-path], ... )
 	 */
 	protected $localFileRefs = array();
 
@@ -96,14 +96,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Constructs a new module from an options array.
 	 * 
-	 * @param {array} $options Options array. If not given or empty, an empty 
-	 *     module will be constructed
-	 * @param {string} $localBasePath base path to prepend to all local paths 
-	 *     in $options. Defaults to $IP
-	 * @param {string} $remoteBasePath base path to prepend to all remote paths 
-	 *     in $options. Defaults to $wgScriptPath
+	 * @param $options Array: List of options; if not given or empty, an empty module will be
+	 *     constructed
+	 * @param $localBasePath String: Base path to prepend to all local paths in $options. Defaults
+	 *     to $IP
+	 * @param $remoteBasePath String: Base path to prepend to all remote paths in $options. Defaults
+	 *     to $wgScriptPath
 	 * 
-	 * @format $options
+	 * @example $options
 	 * 	array(
 	 * 		// Scripts to always include
 	 * 		'scripts' => [file path string or array of file path strings],
@@ -188,8 +188,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets all scripts for a given context concatenated together.
 	 * 
-	 * @param {ResourceLoaderContext} $context Context in which to generate script
-	 * @return {string} JavaScript code for $context
+	 * @param $context ResourceLoaderContext: Context in which to generate script
+	 * @return String: JavaScript code for $context
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		global $wgServer;
@@ -216,7 +216,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets loader script.
 	 * 
-	 * @return {string} JavaScript code to be added to startup module
+	 * @return String: JavaScript code to be added to startup module
 	 */
 	public function getLoaderScript() {
 		if ( count( $this->loaderScripts ) == 0 ) {
@@ -228,8 +228,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets all styles for a given context concatenated together.
 	 * 
-	 * @param {ResourceLoaderContext} $context Context in which to generate styles
-	 * @return {string} CSS code for $context
+	 * @param $context ResourceLoaderContext: Context in which to generate styles
+	 * @return String: CSS code for $context
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		// Merge general styles and skin specific styles, retaining media type collation
@@ -263,7 +263,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets list of message keys used by this module.
 	 * 
-	 * @return {array} List of message keys
+	 * @return Array: List of message keys
 	 */
 	public function getMessages() {
 		return $this->messages;
@@ -272,7 +272,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets the name of the group this module should be loaded in.
 	 * 
-	 * @return {string} Group name
+	 * @return String: Group name
 	 */
 	public function getGroup() {
 		return $this->group;
@@ -281,7 +281,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets list of names of modules this module depends on.
 	 * 
-	 * @return {array} List of module names
+	 * @return Array: List of module names
 	 */
 	public function getDependencies() {
 		return $this->dependencies;
@@ -296,10 +296,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * calculations on files relevant to the given language, skin and debug 
 	 * mode.
 	 * 
-	 * @param {ResourceLoaderContext} $context Context in which to calculate 
+	 * @param $context ResourceLoaderContext: Context in which to calculate 
 	 *     the modified time
-	 * @return {integer} UNIX timestamp
-	 * @see {ResourceLoaderModule::getFileDependencies}
+	 * @return Integer: UNIX timestamp
+	 * @see ResourceLoaderModule::getFileDependencies
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
@@ -365,9 +365,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Collates file paths by option (where provided).
 	 * 
-	 * @param {array} $list List of file paths in any combination of index/path 
+	 * @param $list Array: List of file paths in any combination of index/path 
 	 *     or path/options pairs
-	 * @return {array} List of file paths, collated by $option
+	 * @return Array: List of file paths, collated by $option
 	 */
 	protected static function collateFilePathListByOption( array $list, $option, $default ) {
 		$collatedFiles = array();
@@ -393,10 +393,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets a list of element that match a key, optionally using a fallback key.
 	 * 
-	 * @param {array} $list List of lists to select from
-	 * @param {string} $key Key to look for in $map
-	 * @param {string} $fallback Key to look for in $list if $key doesn't exist
-	 * @return {array} List of elements from $map which matched $key or $fallback, 
+	 * @param $list Array: List of lists to select from
+	 * @param $key String: Key to look for in $map
+	 * @param $fallback String: Key to look for in $list if $key doesn't exist
+	 * @return Array: List of elements from $map which matched $key or $fallback, 
 	 *     or an empty list in case of no match
 	 */
 	protected static function tryForKey( array $list, $key, $fallback = null ) {
@@ -414,8 +414,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets the contents of a list of JavaScript files.
 	 * 
-	 * @param {array} $scripts List of file paths to scripts to read, remap and concetenate
-	 * @return {string} Concatenated and remapped JavaScript data from $scripts
+	 * @param $scripts Array: List of file paths to scripts to read, remap and concetenate
+	 * @return String: Concatenated and remapped JavaScript data from $scripts
 	 */
 	protected function readScriptFiles( array $scripts ) {
 		if ( empty( $scripts ) ) {
@@ -436,8 +436,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Gets the contents of a list of CSS files.
 	 * 
-	 * @param {array} $styles List of file paths to styles to read, remap and concetenate
-	 * @return {array} List of concatenated and remapped CSS data from $styles, 
+	 * @param $styles Array: List of file paths to styles to read, remap and concetenate
+	 * @return Array: List of concatenated and remapped CSS data from $styles, 
 	 *     keyed by media type
 	 */
 	protected function readStyleFiles( array $styles ) {
@@ -458,8 +458,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 
 	 * This method can be used as a callback for array_map()
 	 * 
-	 * @param {string} $path File path of script file to read
-	 * @return {string} CSS data in script file
+	 * @param $path String: File path of script file to read
+	 * @return String: CSS data in script file
 	 */
 	protected function readStyleFile( $path ) {	
 		$localPath = $this->getLocalPath( $path );

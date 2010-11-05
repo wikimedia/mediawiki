@@ -30,7 +30,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	/**
 	 * Gets list of pages used by this module
 	 * 
-	 * @return {array} List of pages
+	 * @return Array: List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		global $wgHandheldStyle;
@@ -56,7 +56,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	/**
 	 * Gets group name
 	 * 
-	 * @return {string} Name of group
+	 * @return String: Name of group
 	 */
 	public function getGroup() {
 		return 'site';

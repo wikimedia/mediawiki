@@ -21,6 +21,7 @@
  */
 
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
+	
 	/* Protected Members */
 
 	protected $modifiedTime = array();
