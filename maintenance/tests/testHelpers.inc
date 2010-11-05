@@ -536,10 +536,11 @@ class TestFileIterator implements Iterator {
 						wfDie( "'endarticle' without 'article' at line {$this->lineNum} of $this->file\n" );
 					}
 
-					$title = Title::newFromText( ParserTest::chomp( $data['article'] ) );
-					$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
-					if ( $aid == 0 )
+					if ( $this->parser ) {
+						$this->parser->addArticle( ParserTest::chomp( $data['article'] ), $data['text'], $this->lineNum );
+					} else {
 						ParserTest::addArticle( $data['article'], $data['text'], $this->lineNum );
+					}
 					$data = array();
 					$section = null;
 
