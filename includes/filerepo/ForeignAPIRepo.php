@@ -36,6 +36,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	function __construct( $info ) {
 		parent::__construct( $info );
+		global $wgUploadDirectory;
 
 		// http://commons.wikimedia.org/w/api.php
 		$this->mApiBase = isset( $info['apibase'] ) ? $info['apibase'] : null;
