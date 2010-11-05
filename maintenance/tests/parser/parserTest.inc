@@ -1162,7 +1162,8 @@ class ParserTest {
 		$oldCapitalLinks = $wgCapitalLinks;
 		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
 
-		$title = Title::newFromText( self::chomp($name) );
+		$name = self::chomp( $name );
+		$title = Title::newFromText( $name );
 
 		if ( is_null( $title ) ) {
 			wfDie( "invalid title ('$name' => '$title') at line $line\n" );
@@ -1171,9 +1172,7 @@ class ParserTest {
 		$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $aid != 0 ) {
-			foreach(debug_backtrace() as $bt) {
-				echo "{$bt['file']}::{$bt['line']}\n";
-			}
+			debug_print_backtrace();
 			wfDie( "duplicate article '$name' at line $line\n" );
 		}
 
