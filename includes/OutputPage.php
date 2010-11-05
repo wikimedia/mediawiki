@@ -2304,13 +2304,9 @@ class OutputPage {
 		}
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
-		// Determine whether we're in debug mode
-		// Order of priority is 1) request param, 2) cookie, 3) $wg setting
-		$debug = $wgRequest->getFuzzyBool( 'debug',
-			$wgRequest->getCookie( 'resourceLoaderModule', '', $wgResourceLoaderDebug ) );
 		$query = array(
 			'lang' => $wgLang->getCode(),
-			'debug' => $debug ? 'true' : 'false',
+			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 			'skin' => $wgUser->getSkin()->getSkinName(),
 			'only' => $only,
 		);
@@ -2407,7 +2403,7 @@ class OutputPage {
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
 
 		// Script and Messages "only"
-		if ( $wgRequest->getFuzzyBool( 'debug', $wgResourceLoaderDebug ) ) {
+		if ( ResourceLoader::inDebugMode() ) {
 			// Scripts
 			foreach ( $this->getModuleScripts() as $name ) {
 				$scripts .= $this->makeResourceLoaderLink( $sk, $name, 'scripts' );
@@ -2576,7 +2572,7 @@ class OutputPage {
 		}
 
 		// Support individual script requests in debug mode
-		if ( $wgRequest->getFuzzyBool( 'debug', $wgResourceLoaderDebug ) ) {
+		if ( ResourceLoader::inDebugMode() ) {
 			foreach ( $this->getModuleStyles() as $name ) {
 				$tags[] = $this->makeResourceLoaderLink( $sk, $name, 'styles' );
 			}
