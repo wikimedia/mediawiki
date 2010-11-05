@@ -85,12 +85,13 @@ class WebInstallerOutput {
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
-		$vectorCssFile = dirname( __FILE__ ) . '/../../skins/vector/screen.css';
+		$vectorCssFile = dirname( dirname( dirname( __FILE__ ) ) ) .
+			'/skins/vector/screen.css';
 		wfSuppressWarnings();
 		$css = file_get_contents( $vectorCssFile );
 		wfRestoreWarnings();
 		if( !$css ) {
-			return '';
+			return '/** Your webserver cannot read ' . $vectorCssFile . ', please check file permissions */';
 		} elseif( $dir == 'rtl' ) {
 			return CSSJanus::transform( $css, true );
 		} else {
