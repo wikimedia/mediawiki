@@ -490,6 +490,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 25741) Add more data to list=search's srprop
 * (bug 25760) counter property still reported by the API when
   $wgDisableCounters enabled
+* (bug 25793) Session IDs no longer output by action=login to protect against
+  session hijacking
 
 === Languages updated in 1.17 ===
 
