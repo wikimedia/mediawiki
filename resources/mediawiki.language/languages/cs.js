@@ -1,5 +1,5 @@
 /**
- * Czech (ƒçe≈°tina [subst.], ƒçesk√Ω [adj.], ƒçesky [adv.]) language functions
+ * Czech (čeština [subst.], český [adj.], česky [adv.]) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

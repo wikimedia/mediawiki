@@ -1,5 +1,5 @@
 /**
- * Hebrew (◊¢◊ë◊®◊ô◊™) language functions
+ * Hebrew (עברית) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

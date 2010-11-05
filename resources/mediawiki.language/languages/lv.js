@@ -1,5 +1,5 @@
 /**
- * Latvian (Latvie≈°u) language functions
+ * Latvian (Latviešu) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

@@ -1,5 +1,5 @@
 /**
- * Russian (—Ä—É—Å—Å–∫–∏–π —è–∑—ã–∫) language functions
+ * Russian (Русский) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {

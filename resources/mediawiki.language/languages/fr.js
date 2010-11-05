@@ -1,5 +1,5 @@
 /**
- * French (Fran√ßais) language functions
+ * French (Français) language functions
  */
 
 mediaWiki.language.convertPlural = function( count, forms ) {
