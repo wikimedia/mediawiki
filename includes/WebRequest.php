@@ -660,6 +660,8 @@ class WebRequest {
 	/**
 	 * Return a handle to WebResponse style object, for setting cookies,
 	 * headers and other stuff, for Request being worked on.
+	 *
+	 * @return WebResponse
 	 */
 	public function response() {
 		/* Lazy initialization of response object for this request */
