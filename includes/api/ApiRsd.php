@@ -45,15 +45,9 @@ class ApiRsd extends ApiBase {
 		$result->addValue( null, 'version', '1.0' );
 		$result->addValue( null, 'xmlns', 'http://archipelago.phrasewise.com/rsd' );
 
-		$service = array(
-			 'engineName' => array(
-				 '*' => 'MediaWiki'
-			 ),
-			 'engineLink' => array(
-				 '*' => 'http://www.mediawiki.org/'
-			 ),
-			 'apis' => $this->formatRsdApiList()
-		);
+		$service = array( 'apis' => $this->formatRsdApiList() );
+		ApiResult::setContent( $service, 'MediaWiki', 'engineName' );
+		ApiResult::setContent( $service, 'http://www.mediawiki.org/', 'engineLink' );
 
 		$result->setIndexedTagName( $service['apis'], 'api' );
 
@@ -138,12 +132,11 @@ class ApiRsd extends ApiBase {
 				'name' => $name,
 				'preferred' => wfBoolToStr( $name == 'MediaWiki' ),
 				'apiLink' => $info['apiLink'],
-				'blogID' => isset( $info['blogID'] ) ? $info['blogID'] : ''
+				'blogID' => isset( $info['blogID'] ) ? $info['blogID'] : '',
 			);
+			$settings = array();
 			if ( isset( $info['docs'] ) ) {
-				$data['settings']['docs'] = array(
-					'*' => $info['docs'],
-				);
+				ApiResult::setContent( $settings, $info['docs'], 'docs' );
 			}
 			if ( isset( $info['settings'] ) ) {
 				foreach ( $info['settings'] as $setting => $val ) {
@@ -152,14 +145,14 @@ class ApiRsd extends ApiBase {
 					} else {
 						$xmlVal = $val;
 					}
-					$data['settings'][] = array(
-						'name' => $setting,
-						'*' => $xmlVal,
-					);
+					$setting = array( 'name' => $setting );
+					ApiResult::setContent( $setting, $xmlVal );
+					$settings[] = $setting;
 				}
 			}
-			if ( isset( $data['settings'] ) ) {
-				$data['settings']['_element'] = 'setting';
+			if ( count( $settings ) ) {
+				$this->getResult()->setIndexedTagName( $settings, 'setting' );
+				$data['settings'] = $settings;
 			}
 			$outputData[] = $data;
 		}
