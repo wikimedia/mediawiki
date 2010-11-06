@@ -12,8 +12,9 @@
  *
  * @ingroup JobQueue
  */
-class EmaillingJob extends Job {
+require_once dirname( __FILE__ ) . '/../UserMailer.php';
 
+class EmaillingJob extends Job {
 	function __construct( $title, $params, $id = 0 ) {
 		parent::__construct( 'sendMail', Title::newMainPage(), $params, $id );
 	}
