@@ -528,6 +528,7 @@ abstract class File {
 	 * @deprecated use transform()
 	 */
 	public function getThumbnail( $width, $height=-1, $render = true ) {
+		wfDeprecated( __METHOD__ );
 		$params = array( 'width' => $width );
 		if ( $height != -1 ) {
 			$params['height'] = $height;
@@ -886,6 +887,7 @@ abstract class File {
 	 * @deprecated Use HTMLCacheUpdate, this function uses too much memory
 	 */
 	function getLinksTo( $options = array() ) {
+		wfDeprecated( __METHOD__ );
 		wfProfileIn( __METHOD__ );
 
 		// Note: use local DB not repo DB, we want to know local links
