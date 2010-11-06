@@ -167,6 +167,7 @@ class LocalRepo extends FSRepo {
 		foreach ( $res as $row ) {
 			$result[] = $this->newFileFromRow( $row );
 		}
+		$res->free();
 
 		return $result;
 	}
