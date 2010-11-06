@@ -215,10 +215,6 @@ class SkinStandard extends Skin {
 					array( 'known', 'noclasses' )
 				);
 
-			#if( $tns%2 && $action!='edit' && !$wpPreview) {
-				#$s.= '<br />'.$this->linkKnown( Title::newFromText( $wgTitle->getPrefixedText() ),wfMsg('postcomment'),array(),array('action'=>'edit','section'=>'new'));
-			#}
-
 			/*
 			watching could cause problems in edit mode:
 			if user edits article, then loads "watch this article" in background and then saves
