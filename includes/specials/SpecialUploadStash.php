@@ -16,6 +16,8 @@
  * @ingroup Upload
  */
 
+require dirname( __FILE__ ) . '/../upload/UploadStash.php';
+
 class SpecialUploadStash extends SpecialPage {
 
 	static $HttpErrors = array( // FIXME: Use OutputPage::getStatusMessage() --RK
