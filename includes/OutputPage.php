@@ -2294,7 +2294,14 @@ class OutputPage {
 		return $ret;
 	}
 
-	// TODO: Document
+	/**
+	 * TODO: Document
+	 * @param $skin Skin
+	 * @param $modules Array/string with the module name
+	 * @param $only string May be styles, messages or scripts
+	 * @param $useESI boolean
+	 * @return string html <script> and <style> tags
+	 */
 	protected function makeResourceLoaderLink( $skin, $modules, $only, $useESI = false ) {
 		global $wgUser, $wgLang, $wgLoadScript, $wgResourceLoaderUseESI,
 			$wgResourceLoaderInlinePrivateModules;
@@ -2310,10 +2317,27 @@ class OutputPage {
 			'skin' => $wgUser->getSkin()->getSkinName(),
 			'only' => $only,
 		);
-		// Remove duplicate module requests
-		$modules = array_unique( (array) $modules );
-		// Sort module names so requests are more uniform
-		sort( $modules );
+		
+		if ( !count( $modules ) ) {
+			return '';
+		}
+		
+		if ( count( $modules ) > 1 ) {
+			// Remove duplicate module requests
+			$modules = array_unique( (array) $modules );
+			// Sort module names so requests are more uniform
+			sort( $modules );
+		
+			if ( ResourceLoader::inDebugMode() ) {
+				// Recursively call us for every item
+				$links = '';
+				foreach ( $modules as $name ) {
+					$links .= $this->makeResourceLoaderLink( $sk, $name, $only, $useESI );
+				}
+				return $links;
+			}
+		}
+		
 		// Create keyed-by-group list of module objects from modules list
 		$groups = array();
 		foreach ( (array) $modules as $name ) {
@@ -2403,25 +2427,12 @@ class OutputPage {
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
 
 		// Script and Messages "only"
-		if ( ResourceLoader::inDebugMode() ) {
-			// Scripts
-			foreach ( $this->getModuleScripts() as $name ) {
-				$scripts .= $this->makeResourceLoaderLink( $sk, $name, 'scripts' );
-			}
-			// Messages
-			foreach ( $this->getModuleMessages() as $name ) {
-				$scripts .= $this->makeResourceLoaderLink( $sk, $name, 'messages' );
-			}
-		} else {
-			// Scripts
-			if ( count( $this->getModuleScripts() ) ) {
-				$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleScripts(), 'scripts' );
-			}
-			// Messages
-			if ( count( $this->getModuleMessages() ) ) {
-				$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleMessages(), 'messages' );
-			}
-		}
+		
+		// Scripts
+		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleScripts(), 'scripts' );
+
+		// Messages
+		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleMessages(), 'messages' );
 
 		// Modules - let the client calculate dependencies and batch requests as it likes
 		if ( $this->getModules() ) {
@@ -2571,16 +2582,7 @@ class OutputPage {
 			}
 		}
 
-		// Support individual script requests in debug mode
-		if ( ResourceLoader::inDebugMode() ) {
-			foreach ( $this->getModuleStyles() as $name ) {
-				$tags[] = $this->makeResourceLoaderLink( $sk, $name, 'styles' );
-			}
-		} else {
-			if ( count( $this->getModuleStyles() ) ) {
-				$tags[] = $this->makeResourceLoaderLink( $sk, $this->getModuleStyles(), 'styles' );
-			}
-		}
+		$tags[] = $this->makeResourceLoaderLink( $sk, $this->getModuleStyles(), 'styles' );
 
 		return implode( "\n", $tags );
 	}
