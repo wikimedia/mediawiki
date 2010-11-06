@@ -231,7 +231,7 @@ abstract class Installer {
 		wfRestoreWarnings();
 
 		if( $ls ) {
-			$wgCacheEpoch = $wgCommandLineMode = false;
+			require( "$IP/includes/DefaultSettings.php" );
 			require_once( "$IP/LocalSettings.php" );
 			$vars = get_defined_vars();
 			if( isset( $vars['wgUpgradeKey'] ) && $vars['wgUpgradeKey'] ) {
