@@ -622,13 +622,18 @@ class EmailNotification {
 
 } # end of class EmailNotification
 
-/**
+/**@{
  * Backwards compatibility functions
+ *
+ * @deprecated Use UserMailer methods; will be removed in 1.19
  */
 function wfRFC822Phrase( $s ) {
+	wfDeprecated( __FUNCTION__ );
 	return UserMailer::rfc822Phrase( $s );
 }
 
 function userMailer( $to, $from, $subject, $body, $replyto=null ) {
+	wfDeprecated( __FUNCTION__ );
 	return UserMailer::send( $to, $from, $subject, $body, $replyto );
 }
+/**@}*/
