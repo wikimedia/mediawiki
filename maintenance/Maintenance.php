@@ -1072,7 +1072,7 @@ abstract class Maintenance {
 			return readline( $prompt );
 		} else {
 			if ( $isatty ) {
-				$st = readlineEmulation( $prompt );
+				$st = self::readlineEmulation( $prompt );
 			} else {
 				if ( feof( STDIN ) ) {
 					$st = false;
@@ -1092,7 +1092,7 @@ abstract class Maintenance {
 	 * @return String
 	 */
 	private static function readlineEmulation( $prompt ) {
-		$bash = array( 'bash' );
+		$bash = 'bash';
 		if ( !wfIsWindows() && Installer::locateExecutableInDefaultPaths( $bash ) ) {
 			$retval = false;
 			$encPrompt = wfEscapeShellArg( $prompt );
