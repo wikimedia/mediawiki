@@ -671,11 +671,16 @@ $wgAutoloadLocalClasses = array(
 	'UserloginTemplate' => 'includes/templates/Userlogin.php',
 
 	# includes/upload
-	'UploadStash' => 'includes/upload/UploadStash.php',
 	'UploadBase' => 'includes/upload/UploadBase.php',
 	'UploadFromStash' => 'includes/upload/UploadFromStash.php',
 	'UploadFromFile' => 'includes/upload/UploadFromFile.php',
 	'UploadFromUrl' => 'includes/upload/UploadFromUrl.php',
+	'UploadStash' => 'includes/upload/UploadStash.php',
+	'UploadStashNotAvailableException' => 'includes/upload/UploadStash.php',
+	'UploadStashFileNotFoundException' => 'includes/upload/UploadStash.php',
+	'UploadStashBadPathException' => 'includes/upload/UploadStash.php',
+	'UploadStashBadVersionException' => 'includes/upload/UploadStash.php',
+	'UploadStashFileException' => 'includes/upload/UploadStash.php',
 
 	# languages
 	'Language' => 'languages/Language.php',
