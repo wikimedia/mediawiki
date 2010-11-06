@@ -345,7 +345,7 @@ class ApiParse extends ApiBase {
 	private function formatIWLinks( $iw ) {
 		$result = array();
 		foreach ( $iw as $prefix => $titles ) {
-			foreach ( $titles as $title => $id ) {
+			foreach ( $titles as $title ) {
 				$entry = array();
 				$entry['prefix'] = $prefix;
 

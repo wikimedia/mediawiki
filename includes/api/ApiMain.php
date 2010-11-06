@@ -833,7 +833,7 @@ class ApiMain extends ApiBase {
 
 		$astriks = str_repeat( '*** ', 10 );
 		$msg .= "\n\n$astriks Modules  $astriks\n\n";
-		foreach ( $this->mModules as $moduleName => $unused ) {
+		foreach ( $this->mModules as $moduleName ) {
 			$module = new $this->mModules[$moduleName] ( $this, $moduleName );
 			$msg .= self::makeHelpMsgHeader( $module, 'action' );
 			$msg2 = $module->makeHelpMsg();
@@ -852,7 +852,7 @@ class ApiMain extends ApiBase {
 		}
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";
-		foreach ( $this->mFormats as $formatName => $unused ) {
+		foreach ( $this->mFormats as $formatName ) {
 			$module = $this->createPrinterByName( $formatName );
 			$msg .= self::makeHelpMsgHeader( $module, 'format' );
 			$msg2 = $module->makeHelpMsg();
