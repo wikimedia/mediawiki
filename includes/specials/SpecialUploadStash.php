@@ -113,8 +113,8 @@ class SpecialUploadStash extends SpecialPage {
 			// ok we're here so the original must exist. Generate the thumbnail. 
 			// because the file is a UploadStashFile, this thumbnail will also be stashed,
 			// and a thumbnailFile will be created in the thumbnailImage composite object
-			$thumbnailImage = null;
-			if ( !( $thumbnailImage = $origFile->getThumbnail( $width ) ) ) { 
+			$thumbnailImage = $origFile->transform( array( 'width' => $width ) );
+			if ( !$thumbnailImage ) { 
 				throw new MWException( 'Could not obtain thumbnail' );
 			}
 			$file = $thumbnailImage->thumbnailFile;
