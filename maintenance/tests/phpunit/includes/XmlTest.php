@@ -32,6 +32,13 @@ class XmlTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	function testElementInputCanHaveAValueOfZero() {
+		$this->assertEquals(
+			'<input name="name" value="0" />',
+			Xml::input( 'name', false, 0 ),
+			'Input with a value of 0 (bug 23797)'
+		);
+	}
 	function testElementEscaping() {
 		$this->assertEquals(
 			'<element>hello &lt;there&gt; you &amp; you</element>',
