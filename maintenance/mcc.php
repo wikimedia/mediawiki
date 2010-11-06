@@ -46,7 +46,7 @@ do {
 	$showhelp = false;
 	$quit = false;
 
-	$line = readconsole( '> ' );
+	$line = Maintenance::readconsole();
 	if ( $line === false ) exit;
 
 	$args = explode( ' ', $line );

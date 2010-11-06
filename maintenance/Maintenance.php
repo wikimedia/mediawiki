@@ -18,6 +18,15 @@ if ( version_compare( PHP_VERSION, '5.1.0' ) < 0 ) {
 		"administrator.\n" );
 }
 
+// Wrapper for posix_isatty()
+if ( !function_exists( 'posix_isatty' ) ) {
+	# We default as considering stdin a tty (for nice readline methods)
+	# but treating stout as not a tty to avoid color codes
+	function posix_isatty( $fd ) {
+		return !$fd;
+	}
+}
+
 /**
  * Abstract maintenance class for quickly writing and churning out
  * maintenance scripts with minimal effort. All that _must_ be defined
@@ -1044,6 +1053,72 @@ abstract class Maintenance {
 		return $title;
 	}
 
+	/**
+	 * Prompt the console for input
+	 * @param $prompt String what to begin the line with, like '> '
+	 * @return String response
+	 */
+	public static function readconsole( $prompt = '> ' ) {
+		static $isatty = null;
+		if ( is_null( $isatty ) ) {
+			if ( posix_isatty( 0 /*STDIN*/ ) ) {
+				$isatty = true;
+			} else {
+				$isatty = false;
+			}
+		}
+
+		if ( $isatty && function_exists( 'readline' ) ) {
+			return readline( $prompt );
+		} else {
+			if ( $isatty ) {
+				$st = readlineEmulation( $prompt );
+			} else {
+				if ( feof( STDIN ) ) {
+					$st = false;
+				} else {
+					$st = fgets( STDIN, 1024 );
+				}
+			}
+			if ( $st === false ) return false;
+			$resp = trim( $st );
+			return $resp;
+		}
+	}
+
+	/**
+	 * Emulate readline()
+	 * @param $prompt String what to begin the line with, like '> '
+	 * @return String
+	 */
+	private static function readlineEmulation( $prompt ) {
+		$bash = array( 'bash' );
+		if ( !wfIsWindows() && Installer::locateExecutableInDefaultPaths( $bash ) ) {
+			$retval = false;
+			$encPrompt = wfEscapeShellArg( $prompt );
+			$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
+			$encCommand = wfEscapeShellArg( $command );
+			$line = wfShellExec( "$bash -c $encCommand", $retval );
+
+			if ( $retval == 0 ) {
+				return $line;
+			} elseif ( $retval == 127 ) {
+				// Couldn't execute bash even though we thought we saw it.
+				// Shell probably spit out an error message, sorry :(
+				// Fall through to fgets()...
+			} else {
+				// EOF/ctrl+D
+				return false;
+			}
+		}
+
+		// Fallback... we'll have no editing controls, EWWW
+		if ( feof( STDIN ) ) {
+			return false;
+		}
+		print $prompt;
+		return fgets( STDIN, 1024 );
+	}
 }
 
 class FakeMaintenance extends Maintenance {
