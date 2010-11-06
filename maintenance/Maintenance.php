@@ -1092,8 +1092,8 @@ abstract class Maintenance {
 	 * @return String
 	 */
 	private static function readlineEmulation( $prompt ) {
-		$bash = 'bash';
-		if ( !wfIsWindows() && Installer::locateExecutableInDefaultPaths( $bash ) ) {
+		$bash = Installer::locateExecutableInDefaultPaths( array( 'bash' ) );
+		if ( !wfIsWindows() && $bash ) {
 			$retval = false;
 			$encPrompt = wfEscapeShellArg( $prompt );
 			$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
