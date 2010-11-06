@@ -19,7 +19,7 @@
  *
  * @file
  * @ingroup Maintenance
- * @author Rob Church <robchur@gmail.com>
+ * @author Roan Kattouw
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
