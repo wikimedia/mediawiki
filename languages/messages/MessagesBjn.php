@@ -1238,11 +1238,24 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'verification-error' => 'Barakas nangini kada lulus paitihan.',
 'tmp-create-error'   => 'Kada kawa maulah barakas pahadangan.',
 'tmp-write-error'    => 'Kasalahan sawaktu manulis barakas pahadangan.',
-'uploadedimage'      => "sudah dibuatakan ''[[$1]]''",
+'uploadedimage'      => 'mamuat "[[$1]]"',
 
 'upload-misc-error' => 'Tasalah buat nang kada dipinandui',
 
+# Special:ListFiles
+'listfiles_search_for'  => 'Gagai ngaran barakas:',
+'imgfile'               => 'barakas',
+'listfiles'             => 'Daptar barakas',
+'listfiles_thumb'       => 'Pahalusan',
+'listfiles_date'        => 'Tanggal',
+'listfiles_name'        => 'Ngaran',
+'listfiles_user'        => 'Pamuruk',
+'listfiles_size'        => 'Ukuran',
+'listfiles_description' => 'Pamaparan',
+'listfiles_count'       => 'Janis',
+
 # File description page
+'file-anchor-link'          => 'Barakas',
 'filehist'                  => 'Barakas halam',
 'filehist-help'             => 'Klik pada tanggal/waktu gasan maniringi barakas ini pada wayah itu.',
 'filehist-deleteall'        => 'hapus samunyaan',
@@ -1260,9 +1273,17 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'sharedupload'              => 'Barakas ini matan $1 wan mungkin dipuruk rangka-rangka gawian lain.',
 'uploadnewversion-linktext' => 'Buatakan bantuk nang labih hanyar matan barakas ini',
 'shared-repo-from'          => 'matan $1',
+'shared-repo'               => 'suatu repositori basama',
 
 # File reversion
-'filerevert' => 'Bulikakan $1',
+'filerevert'                => 'Bulikakan $1',
+'filerevert-legend'         => 'Bulikakan barakas',
+'filerevert-intro'          => "Pian mambulikakan '''[[Media:$1|$1]]''' ka macam [$4 pada $3, $2].",
+'filerevert-comment'        => 'Alasan:',
+'filerevert-defaultcomment' => 'Dibulikakan ka macam pada $2, $1',
+'filerevert-submit'         => 'Bulikakan',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' sudah dibulikakan ka macam [$4 pada $3, $2]",
+'filerevert-badversion'     => 'Kadada janis lokal bahari tumatan barakas ini lawan bacap waktu nang dimaksud.',
 
 # File deletion
 'filedelete'        => 'Mahapus $1',
@@ -1271,31 +1292,66 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 # MIME search
 'download' => 'hunduh',
 
+# Unwatched pages
+'unwatchedpages' => 'Tungkaran nang kada diitihi',
+
+# List redirects
+'listredirects' => 'Daptar paugahan',
+
+# Unused templates
+'unusedtemplates'     => 'Citakan nang kada dipuruk',
+'unusedtemplatestext' => "Daptar barikut adalah samua tungkaran pada ngaran kamar {{ns:template}} nang kada dipuruk di tungkaran manapun.
+Pariksa 'hulu tautan lain ka citakan itu sabalum mahapusnya.",
+'unusedtemplateswlh'  => 'tautan lain',
+
 # Random page
 'randompage'         => 'Tungkaran babarang',
 'randompage-nopages' => 'Kadada tungkaran pada {{PLURAL:$2||}}kamar ngaran ini: $1.',
 
 # Random redirect
-'randomredirect' => 'Paugahan babarang',
+'randomredirect'         => 'Paugahan babarang',
+'randomredirect-nopages' => 'Kada tadapat paugahan pada ngaran kamar "$1".',
 
 # Statistics
-'statistics'       => 'Statistik',
-'statistics-pages' => 'Jumlah tungkaran',
-'statistics-files' => 'Barakas nang dihunggahakan',
+'statistics'                   => 'Statistik',
+'statistics-header-pages'      => 'Statistik tungkaran',
+'statistics-header-edits'      => 'Statistik babakan',
+'statistics-header-views'      => 'Statistik panampaian',
+'statistics-header-users'      => 'Statistik pamuruk',
+'statistics-header-hooks'      => 'Statistik lainnya',
+'statistics-articles'          => 'Tungkaran isi',
+'statistics-pages'             => 'Jumlah tungkaran',
+'statistics-pages-desc'        => 'Sabarataan tungkaran di wiki ini, tamasuk tungkaran pamandiran, paugahan, wan lain-lain.',
+'statistics-files'             => 'Barakas nang dihunggahakan',
+'statistics-edits'             => 'Jumlah babakan tumatan {{SITENAME}} dimulai',
+'statistics-edits-average'     => 'Rata-rata babakan par tungkaran',
+'statistics-views-total'       => 'Jumlah panampaian tungkaran',
+'statistics-views-peredit'     => 'Jumlah panampaian par babakan',
+'statistics-users'             => 'Jumlah [[Special:ListUsers|pamuruk tadaptar]]',
+'statistics-users-active'      => 'Jumlah pamuruk aktip',
+'statistics-users-active-desc' => 'Pamuruk nang sudah malakukan suatu aksi dalam {{PLURAL:$1|sahari|$1 hari}} tauncit.',
+'statistics-mostpopular'       => 'Tungkaran nang paling banyak ditampaiakan',
 
+'brokenredirects-edit'   => 'babak',
 'brokenredirects-delete' => 'hapus',
 
 'withoutinterwiki-submit' => 'Tampaiakan',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|bit|bit}}',
-'nmembers'      => '$1 {{PLURAL:$1|angguta|angguta}}',
-'prefixindex'   => 'Samunyaan tungkaran wan awalan',
-'newpages'      => 'Tungkaran hanyar',
-'move'          => 'Pindahakan',
-'movethispage'  => 'Pindahakan tungkaran ini',
-'pager-newer-n' => '{{PLURAL:$1|tahanyar 1|tahanyar $1}}',
-'pager-older-n' => '{{PLURAL:$1|talawas 1|talawas $1}}',
+'nbytes'            => '$1 {{PLURAL:$1|bit|bit}}',
+'ncategories'       => '{{PLURAL:$1|tumbung|tutumbung}}',
+'nlinks'            => '$1 {{PLURAL:$1|tautan|tautan}}',
+'nmembers'          => '$1 {{PLURAL:$1|angguta|angguta}}',
+'nrevisions'        => '$1 {{PLURAL:$1|ralatan|raralatan}}',
+'nviews'            => 'dilihat $1 {{PLURAL:$1|kali|kali}}',
+'nimagelinks'       => "Diguna'akan pada $1 {{PLURAL:$1|tungkaran|tutungkaran}}",
+'prefixindex'       => 'Samunyaan tungkaran wan awalan',
+'newpages'          => 'Tungkaran hanyar',
+'newpages-username' => 'Ngaran pamuruk:',
+'move'              => 'Pindahakan',
+'movethispage'      => 'Pindahakan tungkaran ini',
+'pager-newer-n'     => '{{PLURAL:$1|tahanyar 1|tahanyar $1}}',
+'pager-older-n'     => '{{PLURAL:$1|talawas 1|talawas $1}}',
 
 # Book sources
 'booksources'               => 'Buku bamula',
@@ -1310,10 +1366,12 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 # Special:AllPages
 'allpages'       => 'Samunyaan tungkaran',
 'alphaindexline' => '$1 sampai $2',
+'nextpage'       => 'Tungkaran salanjutnya ($1)',
 'prevpage'       => 'Tungkaran sabalumnya ($1)',
 'allpagesfrom'   => 'Manampaiakan tungkaran mulai matan:',
 'allpagesto'     => 'Manampaiakan ujung pahabisan tungkaran:',
 'allarticles'    => 'Samunyaan tungkaran',
+'allpagesprev'   => 'Sabalumnya',
 'allpagesnext'   => 'Dudi',
 'allpagessubmit' => 'Tulak',
 
@@ -1658,7 +1716,27 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'fileduplicatesearch-submit' => 'Gagai',
 
 # Special:SpecialPages
-'specialpages' => 'Tungkaran istimiwa',
+'specialpages'                   => 'Tungkaran istimiwa',
+'specialpages-note'              => '----
+Pamaparan tampaian:
+* Tungkaran istimiwa normal
+* <strong class="mw-specialpagerestricted">Tungkaran istimiwa tahinggan</strong>',
+'specialpages-group-maintenance' => 'Lapuran pamaliharaan',
+'specialpages-group-other'       => 'Tungkaran istimiwa lainnya',
+'specialpages-group-login'       => 'Babuat log / mandaptar',
+'specialpages-group-changes'     => 'Parubahan tahanyar wan log',
+'specialpages-group-media'       => 'Lapuran wan pamuatan barakas',
+'specialpages-group-users'       => 'Pamuruk wan hak pamuruk',
+'specialpages-group-highuse'     => 'Tungkaran pamakaian tinggi',
+'specialpages-group-pages'       => 'Daptar tungkaran',
+'specialpages-group-pagetools'   => 'Pakakas tungkaran',
+'specialpages-group-wiki'        => 'Data wan pakakas wiki',
+'specialpages-group-redirects'   => 'Maugahakan tungkaran istimiwa',
+'specialpages-group-spam'        => 'Pakakas spam',
+
+# Special:BlankPage
+'blankpage'              => 'Tungkaran puang',
+'intentionallyblankpage' => "Tungkaran ini kurinah dibiarakan puang wan diguna'akan di antaranya gasan paukuran kinerja, wan lain-lain.",
 
 # Special:Tags
 'tags-edit' => 'babak',

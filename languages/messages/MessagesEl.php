@@ -17,6 +17,7 @@
  * @author Demmy
  * @author Flyax
  * @author Geraki
+ * @author Glavkos
  * @author Kiriakos
  * @author Lou
  * @author MF-Warburg
@@ -574,6 +575,7 @@ $messages = array(
 Παρακαλούμε περιμένετε λίγο πριν ξαναπροσπαθήσετε να μπείτε σε αυτή τη σελίδα.
 
 $1',
+'pool-errorunknown' => 'Άγνωστο σφάλμα',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Σχετικά με τον ιστότοπο {{SITENAME}}',
@@ -771,6 +773,7 @@ $2',
 'wrongpasswordempty'         => 'Ο κωδικός πρόσβασης που εισάχθηκε ήταν κενός. Παρακαλούμε προσπαθήστε ξανά.',
 'passwordtooshort'           => 'Οι κωδικοί πρέπει να περιέχουν τουλάχιστον {{PLURAL:$1|1 χαρακτήρα|$1 χαρακτήρες}}.',
 'password-name-match'        => 'Ο κωδικός σου θα πρέπει να είναι διαφορετικός από το όνομα χρήστη σου.',
+'password-too-weak'          => 'Ο προτεινόμενος  κωδικός πρόσβασης είναι πολύ αδύναμος και δεν μπορεί να χρησιμοποιηθεί.',
 'mailmypassword'             => 'Αποστολή νέου κωδικού',
 'passwordremindertitle'      => 'Καινούργιος προσωρινός κωδικός για το {{SITENAME}}',
 'passwordremindertext'       => 'Κάποιος (πιθανώς εσείς, από την διεύθυνση IP $1) ζήτησε να σας στείλουμε ένα νέο κωδικό πρόσβασης για τον ιστότοπο {{SITENAME}} ($4). Ο κωδικός πρόσβασης για το χρήστη "$2" είναι τώρα "$3". Αν το κάνατε εσείς, θα πρέπει να συνδεθείτε και να αλλάξετε τον κωδικό πρόσβασης σας τώρα. Ο προσωρινός σας κωδικός πρόσβασης θα λήξει σε {{PLURAL:$5|μια ημέρα|$5 ημέρες}}.
@@ -805,6 +808,11 @@ $2',
 Παρακαλούμε περιμένετε προτού ξαναδοκιμάσετε.',
 'loginlanguagelabel'         => 'Γλώσσα: $1',
 'suspicious-userlogout'      => 'Το αίτημα αποσύνδεσής σας απερρίφθη επειδή φαίνεται ότι στάλθηκε από ένα λανθασμένο φυλλομετρητή (browser) ή διακομιστή προσωρινής αποθήκευσης.',
+'ratelimit-excluded-ips'     => '↓ # <!-- leave this line exactly as it is --><pre>
+ # Η σύνταξη  έχει ως ακολούθως: 
+ # * Οτιδήποτε  από ένα "#" χαρακτήρα ως το  τέλος της γραμμής είναι ένα σχόλιο 
+ # * Κάθε μη κενή γραμμή είναι μια διεύθυνση IP που εξαιρείται  από το όριο του ποσοστού
+ # </pre><!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Εκτιμώμενη ισχύς κωδικού:  $1',
@@ -1243,6 +1251,9 @@ $1",
 'showhideselectedversions' => 'Εμφάνιση/απόκρυψη των επιλεγμένων εκδοχών',
 'editundo'                 => 'αναίρεση',
 'diff-multi'               => '({{PLURAL:$1|Μία ενδιάμεση αναθεώρηση|$1 ενδιάμεσες αναθεωρήσεις}} από {{PLURAL:$2|ένα χρήστη|$2 χρήστες}} δεν {{PLURAL:$1|εμφανίζεται|εμφανίζονται}})',
+'diff-multi-manyusers'     => '↓ ({{Πληθυντικός: $ 1 | Μία ενδιάμεση αναθεώρηση | $ 1 ενδιάμεσες αναθεωρήσεις}} από περισσότερο από $ 2 {{πληθυντικό: $ 2 | χρήστη | χρήστες}} δεν εμφανίζονται)
+
+({{Πληθυντικός: $ 1 | Μία ενδιάμεση αναθεώρηση | $ 1 ενδιάμεσες αναθεωρήσεις}} από περισσότερο από $ 2 {{πληθυντικό: $ 2 | χρήστη | χρηστών}} δεν εμφανίζονται)',
 
 # Search results
 'searchresults'                    => 'Αποτελέσματα αναζήτησης',
@@ -1815,6 +1826,7 @@ $1',
 'listfiles_search_for'  => 'Αναζήτηση για όνομα πολυμέσου:',
 'imgfile'               => 'αρχείο',
 'listfiles'             => 'Κατάλογος εικόνων',
+'listfiles_thumb'       => '↓ Μικρογραφία',
 'listfiles_date'        => 'Ημερομηνία',
 'listfiles_name'        => 'Όνομα',
 'listfiles_user'        => 'Χρήστης',
@@ -3522,5 +3534,8 @@ $1',
 'htmlform-submit'              => 'Υποβολή',
 'htmlform-reset'               => 'Αναστροφή αλλαγών',
 'htmlform-selectorother-other' => 'Άλλο',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 με υποστήριξη αναζήτησης πλήρους κειμένου',
 
 );

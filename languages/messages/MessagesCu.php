@@ -455,6 +455,9 @@ $messages = array(
 'mimetype' => 'MIME тѵ́пъ :',
 'download' => 'поѩ́ти',
 
+# List redirects
+'listredirects' => 'прѣнаправлѥ́ниꙗ',
+
 # Random page
 'randompage' => 'страни́ца въ нєꙁаа́пѫ',
 
@@ -479,6 +482,7 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|ба́итъ|ба́ита|ба́итъ}}',
 'nlinks'            => '$1 {{PLURAL:$1|съвѧ́ꙁь|съвѧ́ꙁѧ|съвѧ́ꙁи}}',
+'shortpages'        => 'кратъкꙑ страни́цѧ',
 'listusers'         => 'по́льꙃєватєлъ ката́логъ',
 'newpages'          => 'но́ви члѣ́ни',
 'newpages-username' => 'по́льꙃєватєлꙗ и́мѧ :',
@@ -637,7 +641,7 @@ $messages = array(
 'tooltip-p-logo'                 => 'гла́вьна страни́ца',
 'tooltip-n-mainpage'             => 'ви́ждь гла́вьнѫ страни́цѫ',
 'tooltip-n-mainpage-description' => 'ви́ждь гла́вьнѫ страни́цѫ',
-'tooltip-n-recentchanges'        => 'послѣ́дьнъ мѣ́нъ ката́логъ',
+'tooltip-n-recentchanges'        => 'послѣ́дьн҄ь мѣ́нъ ката́логъ',
 'tooltip-t-upload'               => 'положє́ниѥ дѣ́лъ',
 'tooltip-t-specialpages'         => 'вьсѣѩ наро́чьнъ страни́цѧ ката́логъ',
 'tooltip-t-print'                => 'сѥѩ страни́цѧ пєча́тьнъ о́браꙁъ',
