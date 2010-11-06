@@ -525,7 +525,7 @@ $1',
 'directorycreateerror' => '«$1» директориясен ясап булмый.',
 'filenotfound'         => '«$1» файлын табып булмый.',
 'fileexistserror'      => '«$1» файлына яздырып булмый: ул инде бар.',
-'unexpected'           => 'Көтелмәгән кыйммәт: «$1»=«$2».',
+'unexpected'           => 'Көтелмәгән кыймәт: «$1»=«$2».',
 'formerror'            => 'Хата: форма мәгълүматларын тапшырып булмый',
 'badarticleerror'      => 'Бу биттә мондый гамәл башкарып булмый.',
 'cannotdelete'         => '«$1» исемле битне яки файлны бетереп булмый. Аны бүтән кулланучы бетергән булырга мөмкин.',
@@ -972,7 +972,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdel-restore-visible'      => 'күрсәтелгән юрамалар',
 'pagehist'                    => 'битнең тарихы',
 'deletedhist'                 => 'Бетерүләр тарихы',
-'revdelete-content'           => 'контент',
+'revdelete-content'           => 'эчтәлек',
 'revdelete-summary'           => 'үзгәртүләр тасвирламасы',
 'revdelete-uname'             => 'кулланучы исеме',
 'revdelete-restricted'        => 'чикләүләр идарәчеләргә дә кулланыла',
@@ -1484,6 +1484,7 @@ PICT # төрле
 'doubleredirects' => 'Икеләтә юнәлтүләр',
 
 'brokenredirects'        => 'Бәйләнешсез юнәлтүләр',
+'brokenredirectstext'    => 'Бу юнәлтүләр булмаган битләргә сылтыйлар:',
 'brokenredirects-edit'   => 'үзгәртү',
 'brokenredirects-delete' => 'бетерү',
 
@@ -1617,10 +1618,14 @@ PICT # төрле
 'emailccme'       => 'Миңа хәбәрнең күчермәсене җибәрелсен.',
 'emailccsubject'  => '$1 өчен хәбәрегезнең күчермәсе: $2',
 'emailsent'       => 'Хат җибәрелгән',
+'emailsenttext'   => 'E-mail хатыгыз җиберелде.',
 
 # Watchlist
 'watchlist'         => 'Күзәтү исемлегем',
 'mywatchlist'       => 'Күзәтү исемлегем',
+'nowatchlist'       => 'Күзәтү исемлегегездә битләр юк.',
+'watchnologin'      => 'Кермәдегез',
+'watchnologintext'  => 'Күзәтү исемлегегезне үзгәртү өчен сез [[Special:UserLogin|керергә]] тиешсез.',
 'addedwatch'        => 'Күзәтү исемлегенә өстәгән',
 'addedwatchtext'    => "\"[[:\$1]]\" бите [[Special:Watchlist|күзәтү исемлегегезгә]] өстәлде.
 Бу биттә һәм аның бәхәслегендә барлык булачак үзгәртүләр шунда күрсәтелер, һәм, [[Special:RecentChanges|соңгы үзгәртүләр]] исемлегендә бу битне җиңелрәк табу өчен, ул '''калын мәтен''' белән күрсәтелер.",
@@ -1699,6 +1704,7 @@ $UNWATCHURL
 # Rollback
 'rollback_short' => 'Кире кайтару',
 'rollbacklink'   => 'кире кайтару',
+'editcomment'    => "Үзгәртү өчен тасвир: \"''\$1''\".",
 'revertpage'     => '[[Special:Contributions/$2|$2]] үзгәртүләре ([[User talk:$2|бәхәс]])  [[User:$1|$1]] юрамасына кире кайтарылды',
 
 # Protect
@@ -1836,6 +1842,7 @@ $1',
 'ipb-unblock-addr'           => '$1 кулланучысын тыюдан азат итү',
 'ipb-unblock'                => 'Кулланучы яки IP адресы тыюдан азат итү',
 'unblockip'                  => 'Кулланучыны тыюдан азат итү',
+'ipusubmit'                  => 'Бу тыюны туктату',
 'ipblocklist'                => 'Тыелган IP адреслары һәм кулланучы исемнәре',
 'ipblocklist-username'       => 'кулланучы исеме яки IP адресы:',
 'ipblocklist-submit'         => 'Эзләү',
@@ -1850,6 +1857,7 @@ $1',
 'block-log-flags-nocreate'   => 'яңа хисап язмасы теркәү тыелган',
 'block-log-flags-noemail'    => 'хат җибәрү тыелган',
 'block-log-flags-hiddenname' => 'кулланучының исеме яшерелгән',
+'proxyblocker'               => 'Прокси тыю',
 'proxyblocksuccess'          => 'Эшләнде',
 'sorbsreason'                => 'Сезнең IP адресыгыз DNSBLда ачык прокси дип санала.',
 
@@ -1877,6 +1885,7 @@ $1',
 
 Бу очракларда сезгә битләрне үз кулыгыз белән күчерергә яки кушарга туры килер.",
 'movearticle'               => 'Битне күчерү:',
+'movenologin'               => 'Кермәдегез',
 'movenotallowed'            => 'Сездә мәкаләләрне күчерү хокуклары юк.',
 'newtitle'                  => 'Яңа башлам:',
 'move-watch'                => 'Бу битне күзәтү',
@@ -1911,6 +1920,8 @@ $1',
 # Namespace 8 related
 'allmessages'                   => 'Система хәбәрләре',
 'allmessagesname'               => 'Исем',
+'allmessagestext'               => 'Бу исемлек MediaWiki исемнәр мәйданында булган система хәбәрләренең исемлеге.
+Гомуми MediaWiki локализациясендә катнашырга теләсәгез, зинһар [http://www.mediawiki.org/wiki/Localisation MediaWiki Локализациясе] һәм [http://translatewiki.net translatewiki.net] сәхифәләрне кулланыгыз.',
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter-unmodified' => 'Үзгәртелмәгән',
 'allmessages-filter-all'        => 'Барысы',
@@ -1928,6 +1939,7 @@ $1',
 'import-upload-filename'  => 'Файл исеме:',
 'import-comment'          => 'Искәрмә:',
 'importstart'             => 'Битләрне импортлау...',
+'importnotext'            => 'Буш яки текст юк',
 
 # Import log
 'importlogpage'             => 'Кертү көндәлеге',
@@ -1999,11 +2011,17 @@ $1',
 'common.css' => '/*  Монда урнаштырылган CSS башкаларында да урнашачак */',
 
 # Attribution
-'siteusers'   => '{{SITENAME}} {{PLURAL:$2|кулланучысы|кулланучылары}} $1',
-'creditspage' => 'Рәхмәтләр',
+'anonymous'     => '{{SITENAME}} сайтының аноним {{PLURAL:$1|кулланучысы|кулланучылары}}',
+'siteuser'      => '{{SITENAME}} кулланучысы $1',
+'othercontribs' => '«$1» эшенә нигезләнә.',
+'siteusers'     => '{{SITENAME}} {{PLURAL:$2|кулланучысы|кулланучылары}} $1',
+'creditspage'   => 'Рәхмәтләр',
 
 # Spam protection
 'spamprotectiontitle' => 'Спам фильтры',
+
+# Info page
+'numtalkedits' => 'Төзәтүләр саны (бәхәс бите): $1',
 
 # Skin names
 'skinname-standard'    => 'Классик',
@@ -2025,6 +2043,7 @@ $1',
 'mw_math_mathml' => 'Мөмкин булса MathML кулланылсын (эксперименталь)',
 
 # Math errors
+'math_failure'          => 'Укый алмадым',
 'math_unknown_error'    => 'беленмәгән хата',
 'math_unknown_function' => 'билгесез функция',
 'math_lexing_error'     => 'лексик хата',
@@ -2181,6 +2200,7 @@ $1',
 'exif-meteringmode-255' => 'Башка',
 
 'exif-lightsource-0' => 'Билгесез',
+'exif-lightsource-9' => 'Яхшы һава торышы',
 
 'exif-gaincontrol-0' => 'Юк',
 
@@ -2261,6 +2281,7 @@ $1',
 
 # Special:Version
 'version'                  => 'Юрама',
+'version-specialpages'     => 'Махсус битләр',
 'version-other'            => 'Башка',
 'version-license'          => 'Лицензия',
 'version-software'         => 'Урнаштырылган программа белән тәэмин ителешне',
@@ -2298,15 +2319,26 @@ $1',
 'intentionallyblankpage' => 'Бу бит махсус буш калдырылган',
 
 # Special:Tags
+'tags'              => 'Гамәлдә булучы үзгәртүләр билгеләре',
+'tag-filter'        => '[[Special:Tags|Tag]] фильтры:',
 'tag-filter-submit' => 'Фильтрлау',
+'tags-title'        => 'Теглар',
+'tags-intro'        => 'Әлеге сәхифәдә төзәтүләрне билгеләгән, программа тәэмин итә торган теглар исемлеге һәм шул тегларның аңламнары китерелгән.',
+'tags-tag'          => 'Тег исеме',
 'tags-edit'         => 'үзгәртү',
 
 # Special:ComparePages
+'compare-page1'  => 'Беренче сәхифә',
+'compare-page2'  => 'Икенче сәхифә',
+'compare-rev1'   => 'Беренче юрама',
+'compare-rev2'   => 'Икенче юрама',
 'compare-submit' => 'Чагыштыр',
 
 # Database error messages
 'dberr-header'   => 'Бу вики авырлык кичерә',
 'dberr-problems' => 'Гафу итегез! Сайтта техник кыенлыклар чыкты.',
+'dberr-again'    => 'Сәхифәне берничә минуттан соң яңартып карагыз.',
+'dberr-info'     => '(Мәгълүматлар базасы серверы белән тоташырга мөмкин түгел: $1)',
 
 # HTML forms
 'htmlform-submit'              => 'Җибәрү',

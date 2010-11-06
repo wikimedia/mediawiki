@@ -169,6 +169,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-edit' => 'Edita',
+
 'errorpagetitle'    => 'Sala',
 'returnto'          => 'Fali ba $1.',
 'tagline'           => 'Husi {{SITENAME}}',
