@@ -85,6 +85,8 @@ abstract class Installer {
 		'envCheckMediaWikiVersion',
 		'envCheckDB',
 		'envCheckRegisterGlobals',
+		'envCheckBrokenXML',
+		'envCheckPHP531',
 		'envCheckMagicQuotes',
 		'envCheckMagicSybase',
 		'envCheckMbstring',
@@ -471,6 +473,30 @@ abstract class Installer {
 	}
 
 	/**
+	 * Some versions of libxml+PHP break < and > encoding horribly
+	 */
+	public function envCheckBrokenXML() {
+		$test = new PhpXmlBugTester();
+		if ( !$test->ok ) {
+			$this->showMessage( 'config-brokenlibxml' );
+			return false;
+		}
+	}
+
+	/**
+	 * Test PHP (probably 5.3.1, but it could regress again) to make sure that
+	 * reference parameters to __call() are not converted to null
+	 */
+	public function envCheckPHP531() {
+		$test = new PhpRefCallBugTester;
+		$test->execute();
+		if ( !$test->ok ) {
+			$this->showMessage( 'config-using531' );
+			return false;
+		}
+	}
+
+	/**
 	 * Environment check for magic_quotes_runtime.
 	 */
 	public function envCheckMagicQuotes() {
@@ -845,7 +871,7 @@ abstract class Installer {
 	 *
 	 * @return Array
 	 */
-	protected function getPossibleBinPaths() {
+	protected static function getPossibleBinPaths() {
 		return array_merge(
 			array( '/usr/bin', '/usr/local/bin', '/opt/csw/bin',
 				'/usr/gnu/bin', '/usr/sfw/bin', '/sw/bin', '/opt/local/bin' ),
@@ -869,7 +895,7 @@ abstract class Installer {
 	 * If $versionInfo is not false, only executables with a version
 	 * matching $versionInfo[1] will be returned.
 	 */
-	protected function locateExecutable( $path, $names, $versionInfo = false ) {
+	public static function locateExecutable( $path, $names, $versionInfo = false ) {
 		if ( !is_array( $names ) ) {
 			$names = array( $names );
 		}
@@ -902,9 +928,9 @@ abstract class Installer {
 	 * Same as locateExecutable(), but checks in getPossibleBinPaths() by default
 	 * @see locateExecutable()
 	 */
-	protected function locateExecutableInDefaultPaths( $names, $versionInfo = false ) {
-		foreach( $this->getPossibleBinPaths() as $path ) {
-			$exe = $this->locateExecutable( $path, $names, $versionInfo );
+	public static function locateExecutableInDefaultPaths( $names, $versionInfo = false ) {
+		foreach( self::getPossibleBinPaths() as $path ) {
+			$exe = self::locateExecutable( $path, $names, $versionInfo );
 			if( $exe !== false ) {
 				return $exe;
 			}

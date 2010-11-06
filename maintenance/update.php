@@ -35,6 +35,30 @@ class UpdateMediaWiki extends Maintenance {
 		return 2 /* Maintenance::DB_ADMIN */;
 	}
 
+	private function compatChecks() {
+		$test = new PhpXmlBugTester();
+		if ( !$test->ok ) {
+			$this->error( 
+				"Your system has a combination of PHP and libxml2 versions which is buggy\n" .
+				"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
+				"Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later!\n" .
+				"ABORTING (see http://bugs.php.net/bug.php?id=45996).\n",
+				true );
+		}
+
+		$test = new PhpRefCallBugTester;
+		$test->execute();
+		if ( !$test->ok ) {
+			$ver = phpversion();
+			$this->error(
+				"PHP $ver is not compatible with MediaWiki due to a bug involving\n" .
+				"reference parameters to __call. Upgrade to PHP 5.3.2 or higher, or \n" .
+				"downgrade to PHP 5.3.0 to fix this.\n" .
+				"ABORTING (see http://bugs.php.net/bug.php?id=50394 for details)\n",
+				true );
+		}
+	}
+
 	function execute() {
 		global $wgVersion, $wgTitle, $wgLang;
 
@@ -44,7 +68,7 @@ class UpdateMediaWiki extends Maintenance {
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
 
 		if ( !$this->hasOption( 'skip-compat-checks' ) ) {
-			install_version_checks();
+			$this->compatChecks();
 		} else {
 			$this->output( "Skipping compatibility checks, proceed at your own risk (Ctrl+C to abort)\n" );
 			wfCountdown( 5 );

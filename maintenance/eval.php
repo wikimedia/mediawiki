@@ -53,7 +53,7 @@ if ( $useReadline ) {
 	readline_read_history( $historyFile );
 }
 
-while ( ( $line = readconsole( '> ' ) ) !== false ) {
+while ( ( $line = Maintenance::readconsole() ) !== false ) {
 	if ( $useReadline ) {
 		readline_add_history( $line );
 		readline_write_history( $historyFile );
