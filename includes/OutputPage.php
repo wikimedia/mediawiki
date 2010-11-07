@@ -2302,7 +2302,7 @@ class OutputPage {
 	 * @param $useESI boolean
 	 * @return string html <script> and <style> tags
 	 */
-	protected function makeResourceLoaderLink( $skin, $modules, $only, $useESI = false ) {
+	protected function makeResourceLoaderLink( Skin $skin, $modules, $only, $useESI = false ) {
 		global $wgUser, $wgLang, $wgLoadScript, $wgResourceLoaderUseESI,
 			$wgResourceLoaderInlinePrivateModules;
 		// Lazy-load ResourceLoader
@@ -2332,7 +2332,7 @@ class OutputPage {
 				// Recursively call us for every item
 				$links = '';
 				foreach ( $modules as $name ) {
-					$links .= $this->makeResourceLoaderLink( $sk, $name, $only, $useESI );
+					$links .= $this->makeResourceLoaderLink( $skin, $name, $only, $useESI );
 				}
 				return $links;
 			}
