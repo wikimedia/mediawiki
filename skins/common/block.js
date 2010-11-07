@@ -29,7 +29,15 @@ window.updateBlockOptions = function() {
 
 	var addy = target.value;
 	var isEmpty = addy.match(/^\s*$/);
-	var isIp = addy.match(/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7})(\/\d+)?$/);
+
+	// @TODO: get some core JS IP functions
+	// Match the first IP in each list (ignore other garbage)
+	var isIpV4 = addy.match(/^(\d+\.\d+\.\d+\.\d+)(\/\d+)?$/);
+	// Regexp has 3 cases: (starts with '::',ends with '::',neither)
+	var isIpV6 = !addy.match(/::.*::/) // not ambiguous
+		&& addy.match(/^(:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(::?[0-9A-Fa-f]{1,4}){0,6}::|[0-9A-Fa-f]{1,4}(::?[0-9A-Fa-f]{1,4}){1,7})(\/\d+)?$/);
+
+	var isIp = ( isIpV4 || isIpV6 );
 	var isIpRange = isIp && addy.match(/\/\d+$/);
 
 	var anonymousRow = document.getElementById( 'wpAnonOnlyRow' );
