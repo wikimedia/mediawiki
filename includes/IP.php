@@ -36,12 +36,15 @@ define( 'RE_IPV6_V4_PREFIX', '0*' . RE_IPV6_GAP . '(?:ffff:)?' );
 // An IPv6 block is an IP address and a prefix (d1 to d128)
 define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
 // An IPv6 IP is made up of 8 octets. However abbreviations like "::" can be used.
-// This is lax! Number of octets/double colons validation not done.
+// This is lax! The number of colon groups is checked (1 to 7) but
+// the number of double colons is not validated (must be 0 to 1).
 define( 'RE_IPV6_ADD',
 	'(' .
-		':(:' . RE_IPV6_WORD . '){1,7}' . // IPs that start with ":"
+		':(:' . RE_IPV6_WORD . '){1,7}' . // starts with "::"
 	'|' .
-		RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '|::$){1,7}' . // IPs that don't start with ":"
+		RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '){0,6}::' . // ends with "::"
+	'|' .
+		RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '){1,7}' . // neither of the above
 	')'
 );
 define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
@@ -60,9 +63,9 @@ define( 'IP_ADDRESS_STRING',
  */
 class IP {
 	/**
-	 * Given a string, determine if it as valid IP
-	 * Unlike isValid(), this looks for networks too
-	 * @param $ip IP address.
+	 * Given a string, determine if it as valid IP.
+	 * Note: Unlike isValid(), this looks for networks too.
+	 * @param $ip string possible IP address
 	 * @return string
 	 */
 	public static function isIPAddress( $ip ) {
@@ -70,30 +73,40 @@ class IP {
 			return false;
 		}
 		if ( is_array( $ip ) ) {
-		  throw new MWException( 'invalid value passed to ' . __METHOD__ );
+			throw new MWException( 'invalid value passed to ' . __METHOD__ );
 		}
-		// IPv6 IPs with two "::" strings are ambiguous and thus invalid
-		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip ) && ( substr_count( $ip, '::' ) < 2 );
+		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip )
+			&& ( substr_count( $ip, '::' ) <= 1 ); // IPv6 IPs with 2+ "::" are ambiguous
 	}
 
+	/**
+	 * Given a string, determine if it as valid IP in IPv6 only.
+	 * Note: Unlike isValid(), this looks for networks too.
+	 * @param $ip string possible IP address
+	 * @return string
+	 */
 	public static function isIPv6( $ip ) {
 		if ( !$ip ) {
 			return false;
 		}
-		if( is_array( $ip ) ) {
+		if ( is_array( $ip ) ) {
 			throw new MWException( 'invalid value passed to ' . __METHOD__ );
 		}
-		$doubleColons = substr_count( $ip, '::' );
-		// IPv6 IPs with two "::" strings are ambiguous and thus invalid
 		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip )
-			&& ( $doubleColons == 1 || substr_count( $ip, ':' ) == 7 );
+			&& ( substr_count( $ip, '::' ) <= 1 ); // IPv6 IPs with 2+ "::" are ambiguous
 	}
 
+	/**
+	 * Given a string, determine if it as valid IP in IPv4 only.
+	 * Note: Unlike isValid(), this looks for networks too.
+	 * @param $ip string possible IP address
+	 * @return string
+	 */
 	public static function isIPv4( $ip ) {
 		if ( !$ip ) {
 			return false;
 		}
-		return preg_match( '/^' . RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)$/', $ip);
+		return preg_match( '/^' . RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)$/', $ip );
 	}
 
 	/**
@@ -117,9 +130,10 @@ class IP {
 			if ( count( $parts ) != 2 ) {
 				return false;
 			}
-			$network = self::toUnsigned( $parts[0] );
-			if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 32 ) {
-				$bits = $parts[1] + 96;
+			list( $network, $bits ) = $parts;
+			$network = self::toUnsigned( $network );
+			if ( $network !== false && is_numeric( $bits ) && $bits >= 0 && $bits <= 32 ) {
+				$bits += 96;
 				return self::toOctet( $network ) . "/$bits";
 			} else {
 				return false;
@@ -186,7 +200,10 @@ class IP {
 				$extra = ':';
 				$pad = 8; // 6+2 (due to '::')
 			}
-			$ip = str_replace( '::', str_repeat( $repeat, $pad - substr_count( $ip, ':' ) ) . $extra, $ip );
+			$ip = str_replace( '::',
+				str_repeat( $repeat, $pad - substr_count( $ip, ':' ) ) . $extra,
+				$ip
+			);
 		}
 		// Remove leading zereos from each bloc as needed
 		$ip = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip );
@@ -213,21 +230,23 @@ class IP {
 
 	/**
 	 * Convert an IPv4 or IPv6 hexadecimal representation back to readable format
+	 * @param $hex string number, with "v6-" prefix if it is IPv6
+	 * @return string quad-dotted (IPv4) or octet notation (IPv6)
 	 */
 	public static function formatHex( $hex ) {
-		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
-			return self::hexToOctet( $hex );
-		} else {
+		if ( substr( $hex, 0, 3 ) == 'v6-' ) { // IPv6
+			return self::hexToOctet( substr( $hex, 3 ) );
+		} else { // IPv4
 			return self::hexToQuad( $hex );
 		}
 	}
 
 	/**
-	 * Given a hexadecimal number, returns to an IPv6 address in octet notation
+	 * Converts a hexadecimal number to an IPv6 address in octet notation
 	 * @param $ip_hex string hex IP
-	 * @return string
+	 * @return string (of format a:b:c:d:e:f:g:h)
 	 */
-	public static function hextoOctet( $ip_hex ) {
+	public static function hexToOctet( $ip_hex ) {
 		// Convert to padded uppercase hex
 		$ip_hex = str_pad( strtoupper( $ip_hex ), 32, '0' );
 		// Separate into 8 octets
@@ -241,12 +260,11 @@ class IP {
 	}
 
 	/**
-	 * Converts a hexadecimal number to an IPv4 address in octet notation
+	 * Converts a hexadecimal number to an IPv4 address in quad-dotted notation
 	 * @param $ip string Hex IP
-	 * @return string
+	 * @return string (of format a.b.c.d)
 	 */
 	public static function hexToQuad( $ip ) {
-		// Converts a hexadecimal IP to nnn.nnn.nnn.nnn format
 		$s = '';
 		for ( $i = 0; $i < 4; $i++ ) {
 			if ( $s !== '' ) {
@@ -258,34 +276,35 @@ class IP {
 	}
 
 	/**
-	 * Convert a network specification in IPv6 CIDR notation to an integer network and a number of bits
+	 * Convert a network specification in IPv6 CIDR notation to an
+	 * integer network and a number of bits
 	 * @return array(string, int)
 	 */
 	public static function parseCIDR6( $range ) {
-		# Expand any IPv6 IP
+		# Explode into <expanded IP,range>
 		$parts = explode( '/', IP::sanitizeIP( $range ), 2 );
 		if ( count( $parts ) != 2 ) {
 			return array( false, false );
 		}
-		$network = self::toUnsigned6( $parts[0] );
-		if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 128 ) {
-			$bits = $parts[1];
+		list( $network, $bits ) = $parts;
+		$network = self::toUnsigned6( $network );
+		if ( $network !== false && is_numeric( $bits ) && $bits >= 0 && $bits <= 128 ) {
 			if ( $bits == 0 ) {
-				$network = 0;
+				$network = "0";
 			} else {
-			# Native 32 bit functions WONT work here!!!
-			# Convert to a padded binary number
+				# Native 32 bit functions WONT work here!!!
+				# Convert to a padded binary number
 				$network = wfBaseConvert( $network, 10, 2, 128 );
-			# Truncate the last (128-$bits) bits and replace them with zeros
+				# Truncate the last (128-$bits) bits and replace them with zeros
 				$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
-			# Convert back to an integer
+				# Convert back to an integer
 				$network = wfBaseConvert( $network, 2, 10 );
 			}
 		} else {
 			$network = false;
 			$bits = false;
 		}
-		return array( $network, $bits );
+		return array( $network, (int)$bits );
 	}
 
 	/**
@@ -301,8 +320,8 @@ class IP {
 	public static function parseRange6( $range ) {
 		# Expand any IPv6 IP
 		$range = IP::sanitizeIP( $range );
+		// CIDR notation...
 		if ( strpos( $range, '/' ) !== false ) {
-			# CIDR
 			list( $network, $bits ) = self::parseCIDR6( $range );
 			if ( $network === false ) {
 				$start = $end = false;
@@ -318,8 +337,8 @@ class IP {
 				$start = "v6-$start";
 				$end = "v6-$end";
 			}
+		// Explicit range notation...
 		} elseif ( strpos( $range, '-' ) !== false ) {
-			# Explicit range
 			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
 			$start = self::toUnsigned6( $start );
 			$end = self::toUnsigned6( $end );
@@ -478,16 +497,16 @@ class IP {
 
 	/**
 	 * Convert a network specification in CIDR notation to an integer network and a number of bits
-	 * @return array(string, int)
+	 * @return array(int, int)
 	 */
 	public static function parseCIDR( $range ) {
 		$parts = explode( '/', $range, 2 );
 		if ( count( $parts ) != 2 ) {
 			return array( false, false );
 		}
-		$network = self::toSigned( $parts[0] );
-		if ( $network !== false && is_numeric( $parts[1] ) && $parts[1] >= 0 && $parts[1] <= 32 ) {
-			$bits = $parts[1];
+		list( $network, $bits ) = $parts;
+		$network = self::toSigned( $network );
+		if ( $network !== false && is_numeric( $bits ) && $bits >= 0 && $bits <= 32 ) {
 			if ( $bits == 0 ) {
 				$network = 0;
 			} else {
