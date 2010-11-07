@@ -148,30 +148,6 @@
 			return null;
 		},
 
-		/**
-		 * Convert special characters to their HTML entities
-		 *
-		 * @param str Text to escape
-		 */
-		'htmlEscape': function( str ) {
-			return str.replace( /['"<>&]/g, this.htmlEscape_callback );
-		},
-
-		'htmlEscape_callback': function( str ) {
-			switch ( str ) {
-				case "'":
-					return '&#039;';
-				case '"':
-					return '&quot;';
-				case '<':
-					return '&lt;';
-				case '>':
-					return '&gt;';
-				case '&':
-					return '&amp;';
-			}
-		},
-
 		// Access key prefix.
 		// Will be re-defined based on browser/operating system detection in 
 		// mw.util.init().
