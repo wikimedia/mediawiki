@@ -48,6 +48,12 @@ $namespaceAliases = array(
 	'Categoría_discusión' => NS_CATEGORY_TALK,
 );
 
+$specialPageAliases = array(
+	'Statistics'                => array( 'Estadístiques' ),
+	'Log'                       => array( 'Rexistru' ),
+	'Blockip'                   => array( 'Bloquiar', 'BloquiarIP', 'BloquiarUsuariu' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sorrayar enllaces:',

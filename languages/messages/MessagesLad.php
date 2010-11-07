@@ -159,7 +159,6 @@ $specialPageAliases = array(
 	'Activeusers'               => array( 'UsadoresActivos' ),
 	'RevisionMove'              => array( 'TashireaRēvizyón' ),
 	'ComparePages'              => array( 'ApariguarHojas' ),
-	'Selenium'                  => array( 'Selenyum' ),
 	'Badtitle'                  => array( 'TítůloNegro' ),
 );
 

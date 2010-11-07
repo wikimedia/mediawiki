@@ -90,6 +90,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'SveStranice' ),
 	'Prefixindex'               => array( 'IndeksPrefiksa' ),
 	'Ipblocklist'               => array( 'ListaBlokiranjaPrekoIP' ),
+	'Unblock'                   => array( 'Deblokada' ),
 	'Specialpages'              => array( 'SpecijalneStranice' ),
 	'Contributions'             => array( 'Doprinos' ),
 	'Emailuser'                 => array( 'EmailKorisnika' ),
@@ -134,6 +135,9 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'ObrisaniDoprinosi' ),
 	'Tags'                      => array( 'Oznake' ),
 	'Activeusers'               => array( 'AktivniKorisnici' ),
+	'RevisionMove'              => array( 'PremjestanjeRevizije' ),
+	'ComparePages'              => array( 'UporedjivanjeStranica' ),
+	'Badtitle'                  => array( 'Losnaslov' ),
 );
 
 $magicWords = array(

@@ -132,6 +132,7 @@ $specialPageAliases = array(
 	'Tags'                      => array( 'Taggen' ),
 	'Activeusers'               => array( 'Aktiv_Benotzer' ),
 	'ComparePages'              => array( 'Säite_vergkäichen' ),
+	'Badtitle'                  => array( 'Net_valabelen_Titel' ),
 );
 
 $magicWords = array(

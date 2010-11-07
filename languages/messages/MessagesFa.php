@@ -141,7 +141,6 @@ $specialPageAliases = array(
 	'Activeusers'               => array( 'کاربران_فعال' ),
 	'RevisionMove'              => array( 'انتقال_نسخه' ),
 	'ComparePages'              => array( 'مقایسه_صفحات' ),
-	'Selenium'                  => array( 'سلنیوم' ),
 	'Badtitle'                  => array( 'عنوان_نامناسب' ),
 );
 

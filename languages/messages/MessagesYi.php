@@ -112,6 +112,7 @@ $specialPageAliases = array(
 	'Log'                       => array( 'לאגביכער' ),
 	'Blockip'                   => array( 'בלאקירן' ),
 	'Import'                    => array( 'אימפארט' ),
+	'Userrights'                => array( 'באניצער_רעכטן' ),
 	'Unwatchedpages'            => array( 'נישט_אויפגעפאסטע_בלעטער' ),
 	'Listredirects'             => array( 'ווייטערפירונגען' ),
 	'Unusedtemplates'           => array( 'אומבאניצטע_מוסטערן' ),

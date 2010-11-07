@@ -133,6 +133,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'Todas', 'Todas_las_páginas' ),
 	'Prefixindex'               => array( 'PáginasPorPrefijo', 'Páginas_por_prefijo' ),
 	'Ipblocklist'               => array( 'UsuariosBloqueados', 'Lista_de_usuarios_bloqueados' ),
+	'Unblock'                   => array( 'Desbloquear' ),
 	'Specialpages'              => array( 'PáginasEspeciales', 'Páginas_especiales' ),
 	'Contributions'             => array( 'Contribuciones' ),
 	'Emailuser'                 => array( 'MandarEmailUsuario' ),
@@ -177,6 +178,8 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'ContribucionesBorradas', 'Contribuciones_Borradas' ),
 	'Tags'                      => array( 'Etiquetas' ),
 	'Activeusers'               => array( 'UsuariosActivos' ),
+	'RevisionMove'              => array( 'MoverRevision' ),
+	'ComparePages'              => array( 'CompararPáginas' ),
 );
 
 $magicWords = array(
