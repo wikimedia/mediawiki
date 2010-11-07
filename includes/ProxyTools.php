@@ -186,9 +186,12 @@ function wfProxyCheck() {
 
 /**
  * Convert a network specification in CIDR notation to an integer network and a number of bits
+ *
+ * @deprecated Call IP::parseCIDR() directly, will be removed in 1.19
  * @return array(string, int)
  */
 function wfParseCIDR( $range ) {
+	wfDeprecated( __FUNCTION__ );
 	return IP::parseCIDR( $range );
 }
 
