@@ -2957,12 +2957,13 @@ class User {
 	 */
 	function sendMail( $subject, $body, $from = null, $replyto = null ) {
 		if( is_null( $from ) ) {
-			global $wgPasswordSender;
-			$from = $wgPasswordSender;
+			global $wgPasswordSender, $wgPasswordSenderName;
+			$sender = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
+		} else {
+			$sender = new MailAddress( $from );
 		}
 
 		$to = new MailAddress( $this );
-		$sender = new MailAddress( $from );
 		return UserMailer::send( $to, $sender, $subject, $body, $replyto );
 	}
 

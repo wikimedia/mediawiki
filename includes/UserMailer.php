@@ -440,7 +440,7 @@ class EmailNotification {
 	 * @private
 	 */
 	function composeCommonMailtext() {
-		global $wgPasswordSender, $wgNoReplyAddress;
+		global $wgPasswordSender, $wgPasswordSenderName, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 		global $wgEnotifImpersonal, $wgEnotifUseRealName;
 
@@ -496,7 +496,7 @@ class EmailNotification {
 		# global configuration level.
 		$editor = $this->editor;
 		$name    = $wgEnotifUseRealName ? $editor->getRealName() : $editor->getName();
-		$adminAddress = new MailAddress( $wgPasswordSender, 'WikiAdmin' );
+		$adminAddress = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
 		$editorAddress = new MailAddress( $editor );
 		if( $wgEnotifRevealEditorAddress
 		    && ( $editor->getEmail() != '' )
