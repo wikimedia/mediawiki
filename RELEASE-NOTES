@@ -402,6 +402,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 25488) Disallowing anonymous users to read pages no longer throws error
   on discussion pages with vector as default skin
 * (bug 24833) Files name in includes/diff/ are now less confusing
+* (bug 25713) SpecialPage::resolveAlias() now normalise spaces to underscores
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

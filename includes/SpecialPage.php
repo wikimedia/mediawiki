@@ -272,6 +272,7 @@ class SpecialPage {
 		if ( !self::$mListInitialised ) self::initList();
 		if ( is_null( self::$mAliases ) ) self::initAliasList();
 		$caseFoldedAlias = $wgContLang->caseFold( $alias );
+		$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
 		if ( isset( self::$mAliases[$caseFoldedAlias] ) ) {
 			return self::$mAliases[$caseFoldedAlias];
 		} else {
