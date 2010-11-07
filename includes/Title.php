@@ -1602,6 +1602,10 @@ class Title {
 		return $this->mTitleProtection;
 	}
 
+	private function invalidateTitleProtectionCache() {
+		unset( $this->mTitleProtection );
+	}
+
 	/**
 	 * Update the title protection status
 	 *
@@ -1650,6 +1654,8 @@ class Title {
 			$dbw->delete( 'protected_titles', array( 'pt_namespace' => $namespace,
 				'pt_title' => $title ), __METHOD__ );
 		}
+		$this->invalidateTitleProtectionCache();
+
 		# Update the protection log
 		if ( $dbw->affectedRows() ) {
 			$log = new LogPage( 'protect' );
@@ -1676,6 +1682,7 @@ class Title {
 			array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
 			__METHOD__
 		);
+		$this->invalidateTitleProtectionCache();
 	}
 
 	/**
@@ -2058,6 +2065,7 @@ class Title {
 		}
 		if ( $purgeExpired ) {
 			Title::purgeExpiredRestrictions();
+			$this->invalidateTitleProtectionCache();
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -2177,6 +2185,7 @@ class Title {
 
 			if ( $purgeExpired ) {
 				Title::purgeExpiredRestrictions();
+				$this->invalidateTitleProtectionCache();
 			}
 		}
 
@@ -2211,6 +2220,7 @@ class Title {
 						$this->mRestrictions['create'] = explode( ',', trim( $title_protection['pt_create_perm'] ) );
 					} else { // Get rid of the old restrictions
 						Title::purgeExpiredRestrictions();
+						$this->invalidateTitleProtectionCache();
 					}
 				} else {
 					$this->mRestrictionsExpiry['create'] = Block::decodeExpiry( '' );
