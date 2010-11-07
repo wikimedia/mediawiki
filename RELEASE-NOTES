@@ -399,6 +399,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 19129) Only show MyISAM/InnoDB when supported
 * (bug 17762) Only show other e-mail options when e-mail is globally enabled
 * Cache multiple sizes of InstantCommons thumbnails
+* (bug 25488) Disallowing anonymous users to read pages no longer throws error
+  on discussion pages with vector as default skin
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
