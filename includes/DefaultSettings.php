@@ -968,16 +968,21 @@ $wgEmergencyContact = 'wikiadmin@' . $serverName;
  *
  * The address we should use as sender when a user is requesting his password.
  */
-$wgPasswordSender	= 'MediaWiki Mail <apache@' . $serverName . '>';
+$wgPasswordSender = 'apache@' . $serverName;
 
-unset($serverName); # Don't leak local variables to global scope
+unset( $serverName ); # Don't leak local variables to global scope
+
+/**
+ * Password reminder name
+ */
+$wgPasswordSenderName = 'MediaWiki Mail';
 
 /**
  * Dummy address which should be accepted during mail send action.
  * It might be necessary to adapt the address or to set it equal
  * to the $wgEmergencyContact address.
  */
-$wgNoReplyAddress	= 'reply@not.possible';
+$wgNoReplyAddress = 'reply@not.possible';
 
 /**
  * Set to true to enable the e-mail basic features:
@@ -1000,7 +1005,7 @@ $wgEnableUserEmail = true;
  * which can cause problems with SPF validation and leak recipient addressses
  * when bounces are sent to the sender.
  */
-$wgUserEmailUseReplyTo = false;
+$wgUserEmailUseReplyTo = true;
 
 /**
  * Minimum time, in hours, which must elapse between password reminder
@@ -1032,9 +1037,6 @@ $wgSMTP				= false;
  * Additional email parameters, will be passed as the last argument to mail() call.
  */
 $wgAdditionalMailParams = null;
-
-/** For email notification on page changes */
-$wgPasswordSender = $wgEmergencyContact;
 
 /**
  * True: from page editor if s/he opted-in. False: Enotif mails appear to come

@@ -86,6 +86,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * The FailFunction "error handling" method has now been removed
 * $wgAdditionalMailParams added to allow setting extra options to mail() calls.
 * $wgSecureLogin & $wgSecureLoginStickHTTPS to optionaly login using HTTPS
+* (bug 25728) Added $wgPasswordSenderName to allow customise the name associed
+  with $wgPasswordSender
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
