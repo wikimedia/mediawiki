@@ -93,6 +93,39 @@ class XmlTest extends PHPUnit_Framework_TestCase {
 	}
 
 	#
+	# input and label
+	#
+	function testLabelCreation() {
+		$this->assertEquals(
+			'<label for="id">name</label>',
+			Xml::label( 'name', 'id' ),
+			'label() with no attribs'
+		);
+	}
+	function testLabelAttributeCanOnlyBeClass() {
+		$this->assertEquals(
+			'<label for="id">name</label>',
+			Xml::label( 'name', 'id', array( 'generated' => true ) ),
+			'label() can not be given a generated attribute'
+		);
+		$this->assertEquals(
+			'<label for="id" class="nice">name</label>',
+			Xml::label( 'name', 'id', array( 'class' => 'nice' ) ),
+			'label() can get a class attribute'
+		);
+		$this->assertEquals(
+			'<label for="id" class="nice">name</label>',
+			Xml::label( 'name', 'id', array( 
+				'generated' => true,
+				'class' => 'nice',
+				'anotherattr' => 'value',
+				)
+			),
+			'label() skip all attributes but "class"'
+		);
+	}
+
+	#
 	# JS
 	#
 	function testEscapeJsStringSpecialChars() {
