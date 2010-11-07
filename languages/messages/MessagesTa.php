@@ -51,6 +51,18 @@ $namespaceAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#வழிமாற்று', '#REDIRECT' ),
+	'img_right'             => array( '1', 'வலது', 'right' ),
+	'img_left'              => array( '1', 'இடது', 'left' ),
+	'img_none'              => array( '1', 'ஒன்றுமில்லை', 'none' ),
+	'img_center'            => array( '1', 'மையம்', 'center', 'centre' ),
+	'img_top'               => array( '1', 'மேல்', 'top' ),
+	'img_middle'            => array( '1', 'மத்தியில்', 'middle' ),
+	'img_bottom'            => array( '1', 'கீழ்', 'bottom' ),
+	'plural'                => array( '0', 'பன்மை', 'PLURAL:' ),
+	'special'               => array( '0', 'சிறப்பு', 'special' ),
+	'pagesize'              => array( '1', 'பக்க_அளவு', 'PAGESIZE' ),
+	'url_path'              => array( '0', 'வழி', 'PATH' ),
+	'url_wiki'              => array( '0', 'விக்கி', 'WIKI' ),
 );
 
 $linkTrail = "/^([\xE0\xAE\x80-\xE0\xAF\xBF]+)(.*)$/sDu";
