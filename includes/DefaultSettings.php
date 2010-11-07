@@ -1005,7 +1005,7 @@ $wgEnableUserEmail = true;
  * which can cause problems with SPF validation and leak recipient addressses
  * when bounces are sent to the sender.
  */
-$wgUserEmailUseReplyTo = true;
+$wgUserEmailUseReplyTo = false;
 
 /**
  * Minimum time, in hours, which must elapse between password reminder
