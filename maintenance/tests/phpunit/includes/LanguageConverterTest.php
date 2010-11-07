@@ -11,7 +11,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		$wgRequest = new FauxRequest( array() );
 		$wgMemc = new FakeMemCachedClient;
 		$wgContLang = Language::factory( 'tg' );
-		$this->lang = new LanguageTest();
+		$this->lang = new LanguageToTest();
 		$this->lc = new TestConverter( $this->lang, 'tg',
 									   array( 'tg', 'tg-latn' ) );
 	}
@@ -119,7 +119,7 @@ class TestConverter extends LanguageConverter {
 
 }
 
-class LanguageTest extends Language {
+class LanguageToTest extends Language {
 	function __construct() {
 		parent::__construct();
 		$variants = array( 'tg', 'tg-latn' );
