@@ -802,10 +802,6 @@ class AutoLoader {
 	}
 }
 
-function wfLoadAllExtensions() {
-	AutoLoader::loadAllExtensions();
-}
-
 if ( function_exists( 'spl_autoload_register' ) ) {
 	spl_autoload_register( array( 'AutoLoader', 'autoload' ) );
 } else {
