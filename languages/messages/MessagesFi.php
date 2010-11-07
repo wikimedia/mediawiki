@@ -239,6 +239,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'Kaikki_sivut' ),
 	'Prefixindex'               => array( 'Etuliiteluettelo' ),
 	'Ipblocklist'               => array( 'Muokkausestot' ),
+	'Unblock'                   => array( 'Poista_esto' ),
 	'Specialpages'              => array( 'Toimintosivut' ),
 	'Contributions'             => array( 'Muokkaukset' ),
 	'Emailuser'                 => array( 'Lähetä_sähköpostia' ),
@@ -283,6 +284,9 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Poistetut_muokkaukset' ),
 	'Tags'                      => array( 'Merkinnät' ),
 	'Activeusers'               => array( 'Aktiiviset_käyttäjät' ),
+	'RevisionMove'              => array( 'Versioiden_siirto' ),
+	'ComparePages'              => array( 'Vertaa_sivuja' ),
+	'Badtitle'                  => array( 'Kelpaamaton_otsikko' ),
 );
 
 $linkTrail = '/^([a-zäö]+)(.*)$/sDu';

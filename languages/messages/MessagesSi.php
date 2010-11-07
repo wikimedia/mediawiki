@@ -140,6 +140,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'මකාදැමුණු_දායකත්වයන්' ),
 	'Tags'                      => array( 'ටැග' ),
 	'Activeusers'               => array( 'ක්‍රියාකාරී_පරිශීලකයන්' ),
+	'Badtitle'                  => array( 'නුසුසුදු_මාතෘකාව' ),
 );
 
 $magicWords = array(

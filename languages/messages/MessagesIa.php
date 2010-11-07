@@ -127,6 +127,9 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Contributiones_delite' ),
 	'Tags'                      => array( 'Etiquettas' ),
 	'Activeusers'               => array( 'Usatores_active' ),
+	'RevisionMove'              => array( 'Displaciar_versiones' ),
+	'ComparePages'              => array( 'Comparar_paginas' ),
+	'Badtitle'                  => array( 'Titulo_invalide' ),
 );
 
 $messages = array(

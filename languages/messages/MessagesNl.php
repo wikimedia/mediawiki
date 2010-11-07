@@ -312,6 +312,7 @@ $specialPageAliases = array(
 	'Activeusers'               => array( 'ActieveGebruikers' ),
 	'RevisionMove'              => array( 'VersieVerplaatsen' ),
 	'ComparePages'              => array( 'PaginasVergelijken', 'Pagina\'sVergelijken' ),
+	'Badtitle'                  => array( 'OnjuisteNaam' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';

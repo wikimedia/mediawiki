@@ -174,6 +174,8 @@ $specialPageAliases = array(
 	'Tags'                      => array( 'Tagger' ),
 	'Activeusers'               => array( 'Aktive_brukere' ),
 	'RevisionMove'              => array( 'Revisjonsflytting' ),
+	'ComparePages'              => array( 'Sammenlign_sider' ),
+	'Badtitle'                  => array( 'Ugyldig_tittel' ),
 );
 
 $magicWords = array(

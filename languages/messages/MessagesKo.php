@@ -138,7 +138,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( '외부링크찾기', '외부링크검색' ),
 	'DeletedContributions'      => array( '삭제된기여' ),
 	'Tags'                      => array( '태그' ),
-	'Activeusers'               => array( '활동중인사용자' ),
+	'Activeusers'               => array( '활동적인사용자', '활동중인사용자' ),
 );
 
 $magicWords = array(
