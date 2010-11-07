@@ -14,6 +14,31 @@
  * @author The Thadman
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'ܡܝܕܝܐ',
+	NS_SPECIAL          => 'ܕܝܠܢܝܐ',
+	NS_MAIN             => '',
+	NS_TALK             => 'ܡܡܠܠܐ',
+	NS_USER             => 'ܡܦܠܚܢܐ',
+	NS_USER_TALK        => 'ܡܡܠܠܐ_ܕܡܦܠܚܢܐ',
+	NS_PROJECT_TALK     => 'ܡܡܠܠܐ_ܕ$1',
+	NS_FILE             => 'ܠܦܦܐ',
+	NS_FILE_TALK        => 'ܡܡܠܠܐ_ܕܠܦܦܐ',
+	NS_MEDIAWIKI        => 'ܡܝܕܝܐܘܝܩܝ',
+	NS_MEDIAWIKI_TALK   => 'ܡܡܠܠܐ_ܕܡܝܕܝܐܘܝܩܝ',
+	NS_TEMPLATE         => 'ܩܠܒܐ',
+	NS_TEMPLATE_TALK    => 'ܡܡܠܠܐ_ܕܩܠܒܐ',
+	NS_HELP             => 'ܥܘܕܪܢܐ',
+	NS_HELP_TALK        => 'ܡܡܠܠܐ_ܕܥܘܕܪܢܐ',
+	NS_CATEGORY         => 'ܣܕܪܐ',
+	NS_CATEGORY_TALK    => 'ܡܡܠܠܐ_ܕܣܕܪܐ',
+);
+
+$namespaceAliases = array(
+	'ܡܬܚܫܚܢܐ'        => NS_USER,
+	'ܡܡܠܠܐ_ܕܡܬܚܫܚܢܐ' => NS_USER_TALK,
+);
+
 $specialPageAliases = array(
 	'CreateAccount'             => array( 'ܒܪܝ_ܚܘܫܒܢܐ' ),
 	'Preferences'               => array( 'ܓܒܝܬ̈ܐ' ),
@@ -63,26 +88,6 @@ $rtl = true;
 $defaultUserOptionOverrides = array(
 	# Swap sidebar to right side by default
 	'quickbar' => 2,
-);
-
-$namespaceNames = array(
-	NS_MEDIA            => 'ܡܝܕܝܐ',
-	NS_SPECIAL          => 'ܕܝܠܢܝܐ',
-	NS_MAIN             => '',
-	NS_TALK             => 'ܡܡܠܠܐ',
-	NS_USER             => 'ܡܬܚܫܚܢܐ',
-	NS_USER_TALK        => 'ܡܡܠܠܐ_ܕܡܬܚܫܚܢܐ',
-	NS_PROJECT_TALK     => 'ܡܡܠܠܐ_ܕ$1',
-	NS_FILE             => 'ܠܦܦܐ',
-	NS_FILE_TALK        => 'ܡܡܠܠܐ_ܕܠܦܦܐ',
-	NS_MEDIAWIKI        => 'ܡܝܕܝܐܘܝܩܝ',
-	NS_MEDIAWIKI_TALK   => 'ܡܡܠܠܐ_ܕܡܝܕܝܐܘܝܩܝ',
-	NS_TEMPLATE         => 'ܩܠܒܐ',
-	NS_TEMPLATE_TALK    => 'ܡܡܠܠܐ_ܕܩܠܒܐ',
-	NS_HELP             => 'ܥܘܕܪܢܐ',
-	NS_HELP_TALK        => 'ܡܡܠܠܐ_ܕܥܘܕܪܢܐ',
-	NS_CATEGORY         => 'ܣܕܪܐ',
-	NS_CATEGORY_TALK    => 'ܡܡܠܠܐ_ܕܣܕܪܐ',
 );
 
 $messages = array(

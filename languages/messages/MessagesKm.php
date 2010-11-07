@@ -34,8 +34,8 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK    => 'ការពិភាក្សាអំពីទំព័រគំរូ',
 	NS_HELP             => 'ជំនួយ',
 	NS_HELP_TALK        => 'ការពិភាក្សាអំពីជំនួយ',
-	NS_CATEGORY         => 'ចំនាត់ថ្នាក់ក្រុម',
-	NS_CATEGORY_TALK    => 'ការពិភាក្សាអំពីចំនាត់ថ្នាក់ក្រុម',
+	NS_CATEGORY         => 'ចំណាត់ថ្នាក់ក្រុម',
+	NS_CATEGORY_TALK    => 'ការពិភាក្សាអំពីចំណាត់ថ្នាក់ក្រុម',
 );
 
 $namespaceAliases = array(
@@ -54,6 +54,8 @@ $namespaceAliases = array(
 	'ចំណាត់ក្រុម' => NS_CATEGORY,
 	'ការពិភាក្សាអំពីចំណាត់ថ្នាក់ក្រុម' => NS_CATEGORY_TALK,
 	'ចំណាត់ក្រុម-ពិភាក្សា' => NS_CATEGORY_TALK,
+	'ចំនាត់ថ្នាក់ក្រុម' => NS_CATEGORY,
+	'ការពិភាក្សាអំពីចំនាត់ថ្នាក់ក្រុម' => NS_CATEGORY_TALK,
 );
 
 
