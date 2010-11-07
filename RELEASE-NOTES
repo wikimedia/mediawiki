@@ -55,6 +55,7 @@ further.
 * Installer now handles situations when safe_mode is active or exec()
   and similar functions are disabled better.
 * (bug 19593) Specifying --server in now works for all maintenance scripts.
+* Fixed $wgLicenseTerms register globals.
 
 == Changes since 1.16 beta 3 ==
 
