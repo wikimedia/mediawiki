@@ -337,6 +337,7 @@ class ParserTest {
 	 * @return Boolean: true if passed all tests, false if any tests failed.
 	 */
 	public function runTestsFromFiles( $filenames ) {
+		$ok = false;
 		$GLOBALS['wgContLang'] = Language::factory( 'en' );
 		$this->recorder->start();
 		try {
