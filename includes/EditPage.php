@@ -2313,7 +2313,7 @@ HTML
 	 *
 	 * @return array
 	 */
-	public function getEditButtons(&$tabindex) {
+	public function getEditButtons( &$tabindex ) {
 		$buttons = array();
 
 		$temp = array(
