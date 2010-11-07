@@ -8,6 +8,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
   one of the backlinks generators with limit=max.
 * (bug 24740) limit=max still causing problems on 1.15.5 (backport r70078,
   bug 24564)
+* Fixed $wgLicenseTerms register globals.
 
 == MediaWiki 1.15.5 ==
 

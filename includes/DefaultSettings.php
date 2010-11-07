@@ -2217,6 +2217,11 @@ $wgRightsUrl = NULL;
 $wgRightsText = NULL;
 $wgRightsIcon = NULL;
 
+/**
+ * Set to an array of metadata terms. Else they will be loaded based on $wgRightsUrl
+ */
+$wgLicenseTerms = false;
+
 /** Set this to some HTML to override the rights icon with an arbitrary logo */
 $wgCopyrightIcon = NULL;
 
