@@ -1283,9 +1283,9 @@ Provu prefiksi vian mendon kun ''all:'' por serĉi ĉiun enhavon (inkluzivante d
 'powersearch-ns'                   => 'Serĉi en nomspacoj:',
 'powersearch-redir'                => 'Listigi alidirektilojn',
 'powersearch-field'                => 'Serĉi',
-'powersearch-togglelabel'          => 'Kontroli:',
-'powersearch-toggleall'            => 'Ĉio',
-'powersearch-togglenone'           => 'Nenio',
+'powersearch-togglelabel'          => 'Elekti:',
+'powersearch-toggleall'            => 'Ĉion',
+'powersearch-togglenone'           => 'Nenion',
 'search-external'                  => 'Ekstera serĉo',
 'searchdisabled'                   => '<p>Oni provizore malŝaltis serĉadon per la plenteksta
 indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> aŭ per <i>jahu!</i>:</p>',

@@ -468,7 +468,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'rcshowhideliu'             => '$1 ol yusa',
 'rcshowhideanons'           => '$1 ol IP yusa',
 'rcshowhidemine'            => '$1 ol senis bilong mi',
-'diff'                      => 'senis',
+'diff'                      => 'dispela senis',
 'hist'                      => 'olgeta senis',
 'hide'                      => 'Haitim',
 'show'                      => 'Soim',

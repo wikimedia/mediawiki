@@ -623,7 +623,8 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'recentchangeslinked-toolbox'  => 'Neuubah meuhubông',
 'recentchangeslinked-title'    => 'Neuubah nyang meuhubông ngön $1',
 'recentchangeslinked-noresult' => 'Hana neu’ubah bak ôn-ôn meuhubông silawét masa nyang ka geupeuteuntèë.',
-'recentchangeslinked-summary'  => "Ôn kusuih nyoë geupeuleumah dapeuta neu’ubah keuneulheuëh bak ôn ôn meuhubông. Ôn nyang neukalön geubri tanda ngön '''citak teubay'''.",
+'recentchangeslinked-summary'  => "Nyoë nakeuh dapeuta neuubah nyang geupeugèt ban-ban nyoë keu halaman nyang meuhubông nibak ôn teuhubông (atawa keu anggèëta kawan teuhubông).
+Ôn-ôn bak [[Special:Watchlist|your watchlist]] geucitak '''teubay'''.",
 'recentchangeslinked-page'     => 'Nan ôn:',
 'recentchangeslinked-to'       => 'Peuleumah neu’ubah nibak ôn-ôn nyang meusambông ngön ôn nyang geubri',
 

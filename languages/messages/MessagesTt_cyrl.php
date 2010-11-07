@@ -999,6 +999,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-legend'            => 'Чикләүләр урнаштыр:',
 'revdelete-hide-text'         => 'Битнең бу юрамасы текстын яшер',
 'revdelete-hide-image'        => 'Файл эчендәгеләрне качыр',
+'revdelete-hide-user'         => 'Үзгәртүченең исемен/IP адресын яшер',
 'revdelete-radio-same'        => '(үзгәртмәү)',
 'revdelete-radio-set'         => 'Әйе',
 'revdelete-radio-unset'       => 'Юк',
@@ -1804,6 +1805,7 @@ $UNWATCHURL
 'undeleteinvert'            => 'Киресен сайлау',
 'undeletecomment'           => 'Сәбәп:',
 'undeletedarticle'          => '«[[$1]]» торгызылды',
+'undeletedrevisions'        => '{{PLURAL:$1|1 үзгәртү|$1 үзгәртү}} торгызылды',
 'undelete-search-submit'    => 'Эзләү',
 'undelete-error-long'       => 'Файлны торгызу вакытында хаталар чыкты:
 

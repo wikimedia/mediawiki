@@ -20,8 +20,6 @@ $specialPageAliases = array(
 );
 
 $messages = array(
-# Main script and global functions
-
 # Miscellaneous special pages
 'uncategorizedpages'      => 'Uncategorised pages',
 'uncategorizedcategories' => 'Uncategorised categories',

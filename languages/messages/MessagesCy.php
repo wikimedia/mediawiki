@@ -350,8 +350,8 @@ Mae gormod o ddefnyddwyr am weld y dudalen hon ar unwaith.
 Arhoswch ychydig cyn ceisio mynd at y dudalen hon eto.
 
 $1',
-'pool-timeout'      => "Daeth yr amser i'w ben wrth aros am y clo",
-'pool-queuefull'    => "Mae'r cwt gydgyfrannu'n llawn",
+'pool-timeout'      => 'Cafwyd goroedi wrth aros am y clo',
+'pool-queuefull'    => 'Mae cwt y gronfa brosesu yn llawn',
 'pool-errorunknown' => 'Gwall anhysbys',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -588,11 +588,11 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
 'suspicious-userlogout'      => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
-'ratelimit-excluded-ips'     => " #<!-- gadewch y llinell hwn yn union fel y mae --> <pre>
-# Dylai'r cystrawen fod fel hyn:
-#   * Sylw yw popeth o gymeriad \"#\" hyd at ddiwedd y llinell
-#   * Cyfeiriad IP sy'n cael ei gau allan o'r cyfyngiad cyfradd yw pob un llinell sydd ddim yn wag
- #</pre> <!-- gadewch y llinell hwn yn union fel y mae -->",
+'ratelimit-excluded-ips'     => " #<!-- gadewch y llinell hwn yn union fel ag y mae --> <pre>
+# Dylai'r gystrawen fod fel hyn:
+#   * Sylw yw popeth o'r nod \"#\" hyd at ddiwedd y llinell
+#   * Cyfeiriad IP sy'n cael ei eithrio o'r cyfyngiad ar y cyfradd yw pob un llinell nag yw'n wag
+ #</pre> <!-- gadewch y llinell hon yn union fel ag y mae -->",
 
 # JavaScript password checks
 'password-strength'            => 'Amcangyfrif o gryfder y cyfrinair: $1',
@@ -1594,7 +1594,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 
 'license'            => 'Trwyddedu:',
 'license-header'     => 'Trwyddedu',
-'nolicense'          => 'Dim un a ddewiswyd',
+'nolicense'          => 'Heb ddewis dim un',
 'license-nopreview'  => '(Dim rhagolwg ar gael)',
 'upload_source_url'  => " (URL dilys, ar gael i'r cyhoedd)",
 'upload_source_file' => ' (ffeil ar eich cyfrifiadur)',
