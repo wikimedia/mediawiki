@@ -172,10 +172,13 @@ class UserMailer {
 			$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>'; // FIXME
 			$headers['X-Mailer'] = 'MediaWiki mailer';
 
+			wfSuppressWarnings();
+
 			// Create the mail object using the Mail::factory method
 			$mail_object =& Mail::factory('smtp', $wgSMTP);
 			if( PEAR::isError( $mail_object ) ) {
 				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
+				wfRestoreWarnings();
 				return new WikiError( $mail_object->getMessage() );
 			}
 
@@ -183,9 +186,12 @@ class UserMailer {
 			$chunks = array_chunk( (array)$dest, $wgEnotifMaxRecips );
 			foreach ($chunks as $chunk) {
 				$e = self::sendWithPear($mail_object, $chunk, $headers, $body);
-				if( WikiError::isError( $e ) )
+				if( WikiError::isError( $e ) ) {
+					wfRestoreWarnings();
 					return $e;
+				}
 			}
+			wfRestoreWarnings();
 		} else	{
 			# In the following $headers = expression we removed "Reply-To: {$from}\r\n" , because it is treated differently
 			# (fifth parameter of the PHP mail function, see some lines below)
