@@ -468,16 +468,18 @@ window.mediaWiki = new ( function( $ ) {
 			// Add style sheet to document
 			if ( typeof registry[module].style === 'string' && registry[module].style.length ) {
 				$( 'head' )
-					.append( '<style type="text/css">' + registry[module].style + '</style>' );
+					.append( mediaWiki.html.element( 'style',
+						{ type: "text/css" },
+						new mediaWiki.html.Cdata( registry[module].style )
+					) );
 			} else if ( typeof registry[module].style === 'object' 
 				&& !( registry[module].style instanceof Array ) ) 
 			{
 				for ( var media in registry[module].style ) {
-					$( 'head' ).append(
-						'<style type="text/css" media="' + media + '">' +
-						registry[module].style[media] +
-						'</style>'
-					);
+					$( 'head' ).append( mediaWiki.html.element( 'style', 
+						{ type: 'text/css', media: media },
+						new mediaWiki.html.Cdata( registry[module].style[media] )
+					) );
 				}
 			}
 			// Add localizations to message system
@@ -652,7 +654,8 @@ window.mediaWiki = new ( function( $ ) {
 						requests[r] = sortQuery( requests[r] );
 						// Build out the HTML
 						var src = mediaWiki.config.get( 'wgLoadScript' ) + '?' + $.param( requests[r] );
-						html += '<script type="text/javascript" src="' + src + '"></script>';
+						html += mediaWiki.html.element( 'script', 
+							{ type: 'text/javascript', src: src }, '' );
 					}
 					return html;
 				}
@@ -711,7 +714,7 @@ window.mediaWiki = new ( function( $ ) {
 		 * calls to this function.
 		 */
 		this.implement = function( module, script, style, localization ) {
-			// Automaically register module
+			// Automatically register module
 			if ( typeof registry[module] === 'undefined' ) {
 				mediaWiki.loader.register( module );
 			}
@@ -825,7 +828,8 @@ window.mediaWiki = new ( function( $ ) {
 							.attr( 'href', modules ) );
 						return true;
 					} else if ( type === 'text/javascript' || typeof type === 'undefined' ) {
-						var script = '<script type="text/javascript" src="' + modules + '"></script>';
+						var script = mediaWiki.html.element( 'script', 
+							{ type: 'text/javascript', src: modules }, '' );
 						if ( ready ) {
 							$( 'body' ).append( script );
 						} else {
@@ -899,6 +903,97 @@ window.mediaWiki = new ( function( $ ) {
 
 		$(document).ready( function() { ready = true; } );
 	} )();
+
+	/** HTML construction helper functions */
+	this.html = new ( function () {
+		function escapeCallback( s ) {
+			switch ( s ) {
+				case "'":
+					return '&#039;';
+				case '"':
+					return '&quot;';
+				case '<':
+					return '&lt;';
+				case '>':
+					return '&gt;';
+				case '&':
+					return '&amp;';
+			}
+		}
+
+		/**
+		 * Escape a string for HTML. Converts special characters to HTML entities.
+		 * @param s The string to escape
+		 */
+		this.escape = function( s ) {
+			return s.replace( /['"<>&]/g, escapeCallback );
+		};
+
+		/**
+		 * Wrapper object for raw HTML passed to mediaWiki.html.element(). 
+		 */
+		this.Raw = function( value ) {
+			this.value = value;
+		};
+
+		/**
+		 * Wrapper object for CDATA element contents passed to mediaWiki.html.element()
+		 */
+		this.Cdata = function( value ) {
+			this.value = value;
+		}
+
+		/**
+		 * Create an HTML element string, with safe escaping.
+		 *
+		 * @param name The tag name.
+		 * @param attrs An object with members mapping element names to values
+		 * @param contents The contents of the element. May be either:
+		 *    - string: The string is escaped.
+		 *    - null or undefined: The short closing form is used, e.g. <br/>.
+		 *    - this.Raw: The value attribute is included without escaping.
+		 *    - this.Cdata: The value attribute is included, and an exception is 
+		 *      thrown if it contains an illegal ETAGO delimiter. 
+		 *      See http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2
+		 *
+		 * Example:
+		 *    var h = mediaWiki.html;
+		 *    return h.element( 'div', {}, 
+		 *        new h.Raw( h.element( 'img', {src: '<'} ) ) );
+		 * Returns <div><img src="&lt;"/></div>
+		 */
+		this.element = function( name, attrs, contents ) {
+			var s = '<' + name;
+			for ( attrName in attrs ) {
+				s += ' ' + attrName + '="' + this.escape( attrs[attrName] ) + '"';
+			}
+			if ( typeof contents == 'undefined' || contents === null ) {
+				// Short close tag
+				s += '/>';
+				return s;
+			}
+			// Regular close tag
+			s += '>';
+			if (typeof contents === 'string') {
+				// Escaped
+				s += this.escape( contents );
+			} else if ( contents instanceof this.Raw ) {
+				// Raw HTML inclusion
+				s += contents.value;
+			} else if ( contents instanceof this.Cdata ) {
+				// CDATA
+				if ( /<\/[a-zA-z]/.test( contents.value ) ) {
+					throw new Error( 'mw.html.element: Illegal end tag found in CDATA' );
+				}
+				s += contents.value;
+			} else {
+				throw new Error( 'mw.html.element: Invalid type of contents' );
+			}
+			s += '</' + name + '>';
+			return s;
+		};
+	} )();
+
 
 	/* Extension points */
 

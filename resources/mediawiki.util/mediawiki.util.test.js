@@ -28,7 +28,7 @@
 				contain = result;
 			}
 			this.addedTests.push([code, result, contain]);
-			this.$table.append('<tr><td>' + mw.util.htmlEscape(code) + '</td><td>' + mw.util.htmlEscape(result) + '<td></td></td><td>?</td></tr>');
+			this.$table.append('<tr><td>' + mw.html.escape(code) + '</td><td>' + mw.html.escape(result) + '<td></td></td><td>?</td></tr>');
 		},
 
 		/* Initialisation */
@@ -88,10 +88,6 @@
 							'function (string)');
 						mw.test.addTest('mw.util.getParamValue( \'action\' )',
 							'mwutiltest (string)');
-						mw.test.addTest('typeof mw.util.htmlEscape',
-							'function (string)');
-						mw.test.addTest('mw.util.htmlEscape( \'<a href="http://mw.org/?a=b&c=d">link</a>\' )',
-							'&lt;a href=&quot;http://mw.org/?a=b&amp;c=d&quot;&gt;link&lt;/a&gt; (string)');
 						mw.test.addTest('mw.util.tooltipAccessKeyRegexp.constructor.name',
 							'RegExp (string)');
 						mw.test.addTest('typeof mw.util.updateTooltipAccessKeys',
