@@ -234,7 +234,10 @@ $magicWords = array(
 	'language'              => array( '0', '#LINGUA', '#LANGUAGE:' ),
 	'numberofadmins'        => array( '1', 'NUMEROADMIN', 'NUMBEROFADMINS' ),
 	'special'               => array( '0', 'speciale', 'special' ),
+	'pagesincategory'       => array( '1', 'PAGINEINCAT', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( '1', 'DIMENSIONEPAGINA', 'PESOPAGINA', 'PAGESIZE' ),
+	'index'                 => array( '1', '__INDICE__', '__INDEX__' ),
+	'noindex'               => array( '1', '__NOINDICE__', '__NOINDEX__' ),
 	'protectionlevel'       => array( '1', 'LIVELLOPROTEZIONE', 'PROTECTIONLEVEL' ),
 );
 
