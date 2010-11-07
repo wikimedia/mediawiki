@@ -46,12 +46,13 @@ $namespaceNames = array(
 	NS_MEDIA            => 'میدیا',
 	NS_SPECIAL          => 'تایبەت',
 	NS_MAIN             => '',
-	NS_TALK             => 'لێدوان',
+	NS_TALK             => 'وتووێژ',
 	NS_USER             => 'بەکارھێنەر',
 	NS_USER_TALK        => 'لێدوانی_بەکارھێنەر',
 	NS_PROJECT_TALK     => 'لێدوانی_$1',
 	NS_FILE             => 'پەڕگە',
 	NS_FILE_TALK        => 'وتووێژی_پەڕگە',
+	NS_MEDIAWIKI        => 'میدیاویکی',
 	NS_MEDIAWIKI_TALK   => 'وتووێژی_میدیاویکی',
 	NS_TEMPLATE         => 'داڕێژە',
 	NS_TEMPLATE_TALK    => 'وتووێژی_داڕێژە',
@@ -62,14 +63,15 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'قسەی_بەکارھێنەر' => NS_USER_TALK,
-	'لێدوانی_پەڕگە' => NS_FILE_TALK,
+	'لێدوان'            => NS_TALK,
+	'قسەی_بەکارھێنەر'   => NS_USER_TALK,
+	'لێدوانی_پەڕگە'     => NS_FILE_TALK,
 	'لێدوانی_میدیاویکی' => NS_MEDIAWIKI_TALK,
-	'قاڵب' => NS_TEMPLATE,
-	'لێدوانی_قاڵب' => NS_TEMPLATE_TALK,
-	'لێدوانی_داڕێژە' => NS_TEMPLATE_TALK,
-	'لێدوانی_یارمەتی' => NS_HELP_TALK,
-	'لێدوانی_پۆل' => NS_CATEGORY_TALK,
+	'قاڵب'              => NS_TEMPLATE,
+	'لێدوانی_قاڵب'      => NS_TEMPLATE_TALK,
+	'لێدوانی_داڕێژە'    => NS_TEMPLATE_TALK,
+	'لێدوانی_یارمەتی'   => NS_HELP_TALK,
+	'لێدوانی_پۆل'       => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(

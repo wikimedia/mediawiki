@@ -35,27 +35,39 @@ $digitTransformTable = array(
 $linkPrefixExtension = false;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'माध्यम',
+	NS_MEDIA            => 'माध्यमम्',
 	NS_SPECIAL          => 'विशेष',
-	NS_TALK             => 'संभाषणं',
+	NS_TALK             => 'सम्भाषणम्',
 	NS_USER             => 'योजकः',
-	NS_USER_TALK        => 'योजकसंभाषणं',
-	NS_PROJECT_TALK     => '$1संभाषणं',
-	NS_FILE             => 'चित्रं',
-	NS_FILE_TALK        => 'चित्रसंभाषणं',
+	NS_USER_TALK        => 'योजकसम्भाषणम्',
+	NS_PROJECT_TALK     => '$1सम्भाषणम्',
+	NS_FILE             => 'चित्रम्',
+	NS_FILE_TALK        => 'चित्रसम्भाषणम्',
 	NS_MEDIAWIKI        => 'मिडीयाविकी',
-	NS_MEDIAWIKI_TALK   => 'मिडियाविकीसंभाषणं',
-	NS_TEMPLATE         => 'बिंबधर',
-	NS_TEMPLATE_TALK    => 'बिंबधर संभाषणं',
-	NS_HELP             => 'सहाय्य',
-	NS_HELP_TALK        => 'सहाय्यसंभाषणं',
+	NS_MEDIAWIKI_TALK   => 'मिडियाविकीसम्भाषणम्',
+	NS_TEMPLATE         => 'फलकम्',
+	NS_TEMPLATE_TALK    => 'फलकस्य_सम्भाषणम्',
+	NS_HELP             => 'सहाय्यम्',
+	NS_HELP_TALK        => 'सहाय्यस्य_सम्भाषणम्',
 	NS_CATEGORY         => 'वर्गः',
-	NS_CATEGORY_TALK    => 'वर्गसंभाषणं',
+	NS_CATEGORY_TALK    => 'वर्गसम्भाषणम्',
 );
 
 $namespaceAliases = array(
-	'उपकारः' => NS_HELP,
-	'उपकारसंभाषणं' => NS_HELP_TALK,
+	'माध्यम'             => NS_MEDIA,
+	'संभाषणं'            => NS_TALK,
+	'योजकसंभाषणं'        => NS_USER_TALK,
+	'$1संभाषणं'         => NS_PROJECT_TALK,
+	'चित्रं'             => NS_FILE,
+	'चित्रसंभाषणं'       => NS_FILE_TALK,
+	'मिडियाविकीसंभाषणं' => NS_MEDIAWIKI_TALK,
+	'बिंबधर'             => NS_TEMPLATE,
+	'बिंबधर संभाषणं'      => NS_TEMPLATE_TALK,
+	'सहाय्य'             => NS_HELP,
+	'सहाय्यसंभाषणं'      => NS_HELP_TALK,
+	'उपकारः'             => NS_HELP,
+	'उपकारसंभाषणं'        => NS_HELP_TALK,
+	'वर्गसंभाषणं'         => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(

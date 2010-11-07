@@ -42,6 +42,7 @@ $namespaceAliases = array(
 	'$1_Diskussion' => NS_PROJECT_TALK,
 	'Bild' => NS_FILE,
 	'Bild_Diskussion' => NS_FILE_TALK,
+	'Bild_Diskuschoon' => NS_FILE_TALK,
 	'MediaWiki_Diskussion' => NS_MEDIAWIKI_TALK,
 	'Vorlage' => NS_TEMPLATE,
 	'Vorlage_Diskussion' => NS_TEMPLATE_TALK,

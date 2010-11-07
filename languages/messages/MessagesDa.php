@@ -47,22 +47,25 @@ $namespaceNames = array(
 	NS_TALK             => 'Diskussion',
 	NS_USER             => 'Bruger',
 	NS_USER_TALK        => 'Brugerdiskussion',
-	NS_PROJECT_TALK     => '$1-diskussion',
+	NS_PROJECT_TALK     => '$1_diskussion',
 	NS_FILE             => 'Fil',
 	NS_FILE_TALK        => 'Fildiskussion',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki-diskussion',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskussion',
 	NS_TEMPLATE         => 'Skabelon',
 	NS_TEMPLATE_TALK    => 'Skabelondiskussion',
 	NS_HELP             => 'Hjælp',
-	NS_HELP_TALK        => 'Hjælp-diskussion',
+	NS_HELP_TALK        => 'Hjælp_diskussion',
 	NS_CATEGORY         => 'Kategori',
 	NS_CATEGORY_TALK    => 'Kategoridiskussion',
 );
 
 $namespaceAliases = array(
-	'Billede' => NS_FILE,
-	'Billeddiskussion' => NS_FILE_TALK,
+	'$1-diskussion'        => NS_PROJECT_TALK,
+	'Billede'              => NS_FILE,
+	'Billeddiskussion'     => NS_FILE_TALK,
+	'MediaWiki-diskussion' => NS_MEDIAWIKI_TALK,
+	'Hjælp-diskussion'     => NS_HELP_TALK,
 );
 
 $bookstoreList = array(

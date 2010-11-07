@@ -23,8 +23,8 @@ $namespaceNames = array(
 	NS_MEDIA            => 'მედია',
 	NS_SPECIAL          => 'სპეციალური',
 	NS_TALK             => 'განხილვა',
-	NS_USER             => 'მომხმარებელი',
-	NS_USER_TALK        => 'მომხმარებლის_განხილვა',
+	NS_USER             => 'მონაწილე',
+	NS_USER_TALK        => 'მონაწილის_განხილვა',
 	NS_PROJECT_TALK     => '$1_განხილვა',
 	NS_FILE             => 'ფაილი',
 	NS_FILE_TALK        => 'ფაილის_განხილვა',
@@ -40,12 +40,14 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'მომხმარებელი_განხილვა' => NS_USER_TALK,
-	'სურათი' => NS_FILE,
-	'სურათი_განხილვა' => NS_FILE_TALK,
-	'მედიავიკი_განხილვა' => NS_MEDIAWIKI_TALK,
-	'თარგი_განხილვა' => NS_TEMPLATE_TALK,
-	'დახმარება_განხილვა' => NS_HELP_TALK,
-	'კატეგორია_განხილვა' => NS_CATEGORY_TALK,
+	'მომხმარებელი'        => NS_USER,
+	'მომხმარებლის_განხილვა' => NS_USER_TALK,
+	'სურათი'            => NS_FILE,
+	'სურათი_განხილვა'     => NS_FILE_TALK,
+	'მედიავიკი_განხილვა'    => NS_MEDIAWIKI_TALK,
+	'თარგი_განხილვა'      => NS_TEMPLATE_TALK,
+	'დახმარება_განხილვა'    => NS_HELP_TALK,
+	'კატეგორია_განხილვა'    => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(

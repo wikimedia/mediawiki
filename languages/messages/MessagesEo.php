@@ -33,13 +33,13 @@ $namespaceNames = array(
 	NS_MEDIA            => 'Aŭdvidaĵo',
 	NS_SPECIAL          => 'Speciala',
 	NS_TALK             => 'Diskuto',
-	NS_USER             => 'Uzanto',
-	NS_USER_TALK        => 'Uzanta_diskuto',
+	NS_USER             => 'Uzulo',
+	NS_USER_TALK        => 'Uzula_diskuto',
 	NS_PROJECT_TALK     => '$1_diskuto',
 	NS_FILE             => 'Dosiero',
 	NS_FILE_TALK        => 'Dosiera_diskuto',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskuto',
+	NS_MEDIAWIKI        => 'MediaVikio',
+	NS_MEDIAWIKI_TALK   => 'MediaVikia_diskuto',
 	NS_TEMPLATE         => 'Ŝablono',
 	NS_TEMPLATE_TALK    => 'Ŝablona_diskuto',
 	NS_HELP             => 'Helpo',
@@ -49,8 +49,12 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Vikipediisto' => NS_USER,
+	'Vikipediisto'         => NS_USER,
 	'Vikipediista_diskuto' => NS_USER_TALK,
+	'Uzanto'               => NS_USER,
+	'Uzanta_diskuto'       => NS_USER_TALK,
+	'MediaWiki'            => NS_MEDIAWIKI,
+	'MediaWiki_diskuto'    => NS_MEDIAWIKI_TALK,
 );
 
 $specialPageAliases = array(
