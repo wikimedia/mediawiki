@@ -810,7 +810,7 @@ C'hoarvezout a ra a-wechoù pa implijit ur servijer proksi dreinek dizanav.'''",
 E-krec'h an takad aozañ emañ an destenn evel m'emañ enrollet bremañ er bank roadennoù.
 Ho kemmoù deoc'h a zeu war wel en takad aozañ traoñ.
 Ret e vo deoc'h degas ho kemmoù d'an destenn zo evit poent.
-N'eus nemet an destenn zo en takad krec'h a vo saveteet.",
+N'eus '''nemet''' an destenn zo en takad krec'h a vo saveteet pa klikot war \"{{int:savearticle}}\".",
 'yourtext'                         => 'Ho testenn',
 'storedversion'                    => 'Stumm enrollet',
 'nonunicodebrowser'                => "'''DIWALLIT: N'eo ket skoret an Unicode gant ho merdeer. Un diskoulm da c'hortoz zo bet kavet evit ma c'hallfec'h degas kemmoù er pennadoù : dont a raio war wel an arouezennoù an-ASCII er prenestr skridaozañ evel kodoù eizhdekvedennel.'''",
@@ -1822,6 +1822,8 @@ $1 {{PLURAL:$1|rummad|rummad}}',
 'nmembers'                => '$1 {{PLURAL:$1|elfenn|elfenn}}',
 'nrevisions'              => '$1 {{PLURAL:$1|stumm|stumm}}',
 'nviews'                  => '$1 {{PLURAL:$1|selladenn|selladenn}}',
+'nimagelinks'             => 'Implijet e $1 {{PLURAL:$1|pajenn|pajenn}}',
+'ntransclusions'          => 'implijet e $1 {{PLURAL:$1|pajenn|pajenn}}',
 'specialpage-empty'       => 'Goullo eo ar bajenn-mañ.',
 'lonelypages'             => 'Pajennoù hep liamm daveto',
 'lonelypagestext'         => "N'eo ket liammet pe enframmet ar pajennoù da-heul ouzh pajenn all ebet eus {{SITENAME}}.",
@@ -3135,7 +3137,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'confirmemail_pending'      => "Ur c'hod kadarnaat zo bet kaset deoc'h dre bostel c'hoazh;
 a-raok klask goulenn unan nevez, m'emaoc'h o paouez krouiñ ho kont, e vo fur eus ho perzh gortoz un nebeud munutoù ha leuskel amzer dezhañ d'en em gavout betek ennoc'h.",
 'confirmemail_send'         => "Kas ur c'hod kadarnaat",
-'confirmemail_sent'         => 'Postel kadarnaat kaset',
+'confirmemail_sent'         => 'Postel kadarnaat kaset.',
 'confirmemail_oncreate'     => "Kaset ez eus bet ur c'hod kadarnaat d'ho chomlec'h postel.
 N'eus ket ezhomm eus ar c'hod-mañ evit kevreañ met ret e vo deoc'h ober gantañ evit aotren hini pe hini eus arc'hwelioù postel ar wiki.",
 'confirmemail_sendfailed'   => "Dibosupl kas ar postel kadarnaat deoc'h gant {{SITENAME}}.

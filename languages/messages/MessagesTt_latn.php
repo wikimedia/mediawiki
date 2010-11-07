@@ -190,7 +190,7 @@ $messages = array(
 'november-gen'  => 'noyabr',
 'december-gen'  => 'dekabr',
 'jan'           => 'ğıy',
-'feb'           => 'few',
+'feb'           => 'fev',
 'mar'           => 'mar',
 'apr'           => 'apr',
 'may'           => 'may',
@@ -199,7 +199,7 @@ $messages = array(
 'aug'           => 'avg',
 'sep'           => 'sen',
 'oct'           => 'okt',
-'nov'           => 'noya',
+'nov'           => 'noy',
 'dec'           => 'dek',
 
 # Categories related messages

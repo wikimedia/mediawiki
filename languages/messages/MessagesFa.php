@@ -1663,7 +1663,7 @@ $1",
 # User rights log
 'rightslog'      => 'سیاههٔ اختیارات کاربر',
 'rightslogtext'  => 'این سیاههٔ تغییرات اختیارات کاربر است.',
-'rightslogentry' => 'عضویت $1 از گروه $2 به $3 تغییر داده شد.',
+'rightslogentry' => 'عضویت $1 را از گروه $2 به $3 تغییر داد.',
 'rightsnone'     => '(هیچ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3480,7 +3480,7 @@ $1',
 'autosumm-blank'   => 'صفحه را خالی کرد',
 'autosumm-replace' => "جایگزینی صفحه با '$1'",
 'autoredircomment' => 'تغییر مسیر به [[$1]]',
-'autosumm-new'     => "صفحه‌ای جدید با '$1' ایجاد کرد",
+'autosumm-new'     => "صفحه‌ای جدید حاوی '$1' ایجاد کرد",
 
 # Size units
 'size-bytes'     => '$1 بایت',
