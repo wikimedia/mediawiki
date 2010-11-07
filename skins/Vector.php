@@ -140,7 +140,7 @@ class SkinVector extends SkinTemplate {
 				);
 				// Checks if this is a current rev of talk page and we should show a new
 				// section link
-				if ( ( $isTalk && $wgArticle->isCurrent() ) || ( $wgOut->showNewSectionLink() ) ) {
+				if ( ( $isTalk && $wgArticle && $wgArticle->isCurrent() ) || ( $wgOut->showNewSectionLink() ) ) {
 					// Checks if we should ever show a new section link
 					if ( !$wgOut->forceHideNewSectionLink() ) {
 						// Adds new section link
