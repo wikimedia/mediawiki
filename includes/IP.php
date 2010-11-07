@@ -163,7 +163,7 @@ class IP {
 	/**
 	 * Given an IPv6 address in octet notation, returns the expanded octet.
 	 * IPv4 IPs will be trimmed, thats it...
-	 * @param $ip octet ipv6 IP address.
+	 * @param $ip string IP address in quad or octet form (CIDR or not).
 	 * @return string
 	 */
 	public static function sanitizeIP( $ip ) {
@@ -171,30 +171,31 @@ class IP {
 		if ( $ip === '' ) {
 			return null;
 		}
-		// Trim and return IPv4 addresses
-		if ( self::isIPv4( $ip ) ) {
-			return $ip;
-		}
-		// Only IPv6 addresses can be expanded
-		if ( !self::isIPv6( $ip ) ) {
-			return $ip;
+		if ( self::isIPv4( $ip ) || !self::isIPv6( $ip ) ) {
+			return $ip; // nothing else to do for IPv4 addresses or invalid ones
 		}
 		// Remove any whitespaces, convert to upper case
 		$ip = strtoupper( $ip );
 		// Expand zero abbreviations
 		$abbrevPos = strpos( $ip, '::' );
 		if ( $abbrevPos !== false ) {
+			// We know this is valid IPv6. Find the last index of the
+			// address before any CIDR number (e.g. "a:b:c::/24").
+			$CIDRStart = strpos( $ip, "/" );
+			$addressEnd = ( $CIDRStart !== false )
+				? $CIDRStart - 1
+				: strlen( $ip ) - 1;
 			// If the '::' is at the beginning...
 			if( $abbrevPos == 0 ) {
 				$repeat = '0:';
 				$extra = '';
 				$pad = 9; // 7+2 (due to '::')
 			// If the '::' is at the end...
-			} elseif( $abbrevPos == ( strlen( $ip ) - 2 ) ) {
+			} elseif( $abbrevPos == ( $addressEnd - 1 ) ) {
 				$repeat = ':0';
 				$extra = '';
 				$pad = 9; // 7+2 (due to '::')
-			// If the '::' is at the end...
+			// If the '::' is in the middle...
 			} else {
 				$repeat = ':0';
 				$extra = ':';
