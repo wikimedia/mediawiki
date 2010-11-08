@@ -118,7 +118,8 @@ class WebInstaller extends CoreInstaller {
 		$this->exportVars();
 		$this->setupLanguage();
 
-		if( $this->getVar( '_InstallDone' ) && $this->request->getVal( 'localsettings' ) )
+		if( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) ) 
+			&& $this->request->getVal( 'localsettings' ) )
 		{
 			$this->request->response()->header( 'Content-type: text/plain' );
 			$this->request->response()->header(
