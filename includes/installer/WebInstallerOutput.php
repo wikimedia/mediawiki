@@ -93,10 +93,9 @@ class WebInstallerOutput {
 		if( !$css ) {
 			return "/** Your webserver cannot read $vectorCssFile, please check file permissions */";
 		} elseif( $dir == 'rtl' ) {
-			return CSSJanus::transform( $css, true );
-		} else {
-			return $css;
+			$css = CSSJanus::transform( $css, true );
 		}
+		return str_replace( 'images/', '../skins/vector/images/', $css );
 	}
 
 	/**
