@@ -2314,7 +2314,7 @@ class OutputPage {
 		$query = array(
 			'lang' => $wgLang->getCode(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
-			'skin' => $wgUser->getSkin()->getSkinName(),
+			'skin' => $skin->getSkinName(),
 			'only' => $only,
 		);
 		
