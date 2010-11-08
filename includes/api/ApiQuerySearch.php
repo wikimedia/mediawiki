@@ -139,10 +139,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
 				}
-				if ( !is_null( $result->getScore() ) ) {
-					if ( isset( $prop['score'] ) ) {
-						$vals['score'] = $result->getScore();
-					}
+				if ( !is_null( $result->getScore() ) && isset( $prop['score'] ) ) {
+					$vals['score'] = $result->getScore();
 				}
 				if ( isset( $prop['titlesnippet'] ) ) {
 					$vals['titlesnippet'] = $result->getTitleSnippet( $terms );
@@ -163,10 +161,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 						$vals['sectionsnippet'] = $result->getSectionSnippet();
 					}
 				}
-				if ( isset( $prop['hasrelated'] ) ) {
-					if ( $result->hasRelated() ) {
-						$vals['hasrelated'] = "";
-					}
+				if ( isset( $prop['hasrelated'] ) && $result->hasRelated() ) {
+					$vals['hasrelated'] = "";
 				}
 
 				// Add item to results and see whether it fits
