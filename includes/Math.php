@@ -154,7 +154,10 @@ class MathRenderer {
 
 			$hashpath = $this->_getHashPath();
 			if( !file_exists( $hashpath ) ) {
-				if( !@wfMkdirParents( $hashpath, 0755 ) ) {
+				wfSuppressWarnings();
+				$ret = wfMkdirParents( $hashpath, 0755 );
+				wfRestoreWarnings();
+				if( !$ret ) {
 					return $this->_error( 'math_bad_output' );
 				}
 			} elseif( !is_dir( $hashpath ) || !is_writable( $hashpath ) ) {
@@ -232,7 +235,9 @@ class MathRenderer {
 			if( file_exists( $filename ) ) {
 				if( filesize( $filename ) == 0 ) {
 					// Some horrible error corrupted stuff :(
-					@unlink( $filename );
+					wfSuppressWarnings();
+					unlink( $filename );
+					wfRestoreWarnings();
 				} else {
 					return true;
 				}
@@ -242,7 +247,10 @@ class MathRenderer {
 				$hashpath = $this->_getHashPath();
 
 				if( !file_exists( $hashpath ) ) {
-					if( !@wfMkdirParents( $hashpath, 0755 ) ) {
+					wfSuppressWarnings();
+					$ret = wfMkdirParents( $hashpath, 0755 );
+					wfRestoreWarnings();
+					if( !$ret ) {
 						return false;
 					}
 				} elseif( !is_dir( $hashpath ) || !is_writable( $hashpath ) ) {
