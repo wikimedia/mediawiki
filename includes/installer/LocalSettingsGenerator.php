@@ -16,7 +16,6 @@ class LocalSettingsGenerator {
 	
 	private $extensions = array();
 	private $values = array();
-	private $configPath = '';
 	private $dbSettings = '';
 	private $safeMode = false;
 	
@@ -32,10 +31,9 @@ class LocalSettingsGenerator {
 	 */
 	public function __construct( Installer $installer ) {
 		$this->installer = $installer;
-		
-		$this->configPath = $installer->getVar( 'IP' ) . '/config';
+
 		$this->extensions = $installer->getVar( '_Extensions' );
-		
+
 		$db = $installer->getDBInstaller( $installer->getVar( 'wgDBtype' ) );
 
 		$confItems = array_merge(
