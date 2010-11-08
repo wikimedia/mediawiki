@@ -470,7 +470,7 @@ Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 'protect-text'           => "Hier kun je het beveiligingsniveau voor de pagina '''<nowiki>$1</nowiki>''' bekijken en wijzigen.",
 'protect-locked-blocked' => "Je kunt het beveiligingsniveau niet wijzigen terwijl je geblokkeerd bent.
 Hier zijn de huidige instellingen voor de pagina '''$1''':",
-'protect-locked-access'  => "'''Je hebt geen rechten om het beveiligingsniveau te wijzigen.'''
+'protect-locked-access'  => "Je hebt geen rechten om het beveiligingsniveau te wijzigen.
 Dit zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-cantedit'       => 'Je kunt het beveiligingsniveau van deze pagina niet wijzigen, omdat je geen rechten hebt om het te bewerken.',
 
