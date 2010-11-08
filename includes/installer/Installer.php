@@ -623,7 +623,7 @@ abstract class Installer {
 	 */
 	public function envCheckDiff3() {
 		$names = array( "gdiff3", "diff3", "diff3.exe" );
-		$versionInfo = array( '$1 --version 2>&1', 'diff3 (GNU diffutils)' );
+		$versionInfo = array( '$1 --version 2>&1', 'GNU diffutils' );
 
 		$diff3 = $this->locateExecutableInDefaultPaths( $names, $versionInfo );
 
@@ -916,7 +916,7 @@ abstract class Installer {
 					$command = "\"$command\"";
 				}
 				$file = str_replace( '$1', $command, $versionInfo[0] );
-				if ( strstr( wfShellExec( $file ), $versionInfo[1]) !== false ) {
+				if ( strstr( wfShellExec( $file ), $versionInfo[1] ) !== false ) {
 					return $command;
 				}
 			}
