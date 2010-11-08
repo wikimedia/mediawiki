@@ -25,7 +25,7 @@ class ForeignAPIRepo extends FileRepo {
 	/* This version string is used in the user agent for requests and will help
 	 * server maintainers in identify ForeignAPI usage.
 	 * Update the version every time you make breaking or significant changes. */
-	public static $foreignAPIRepoVersion = "2.0";
+	const VERSION = "2.0";
 
 	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
 	/* Check back with Commons after a day */
@@ -344,7 +344,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * The user agent the ForeignAPIRepo will use.
 	 */
 	public static function getUserAgent() {
-		return Http::userAgent() . " ForeignAPIRepo/" . self::$foreignAPIRepoVersion;
+		return Http::userAgent() . " ForeignAPIRepo/" . self::VERSION;
 	}
 
 	/**
