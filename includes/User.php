@@ -1224,34 +1224,10 @@ class User {
 			// Deprecated, but kept for backwards-compatibility config
 			return false;
 		}
-
-		wfDebug( "Checking the list of IP addresses excluded from rate limit..\n" );
-
-		// Read list of IP addresses from MediaWiki namespace
-		$message = wfMsgForContentNoTrans( 'ratelimit-excluded-ips' );
-		$lines = explode( "\n", $message );
-		foreach( $lines as $line ) {
-			// Remove comment lines
-			$comment = substr( trim( $line ), 0, 1 );
-			if ( $comment == '#' || $comment == '' ) {
-				continue;
-			}
-			// Remove additional comments after an IP address
-			$comment = strpos( $line, '#' );
-			if ( $comment > 0 ) {
-				$line = trim( substr( $line, 0, $comment-1 ) );
-				if ( IP::isValid( $line ) ) {
-					$wgRateLimitsExcludedIPs[] = IP::sanitizeIP( $line );
-				}
-			}
-		}
-
-		$ip = IP::sanitizeIP( wfGetIP() );
-		if( in_array( $ip, $wgRateLimitsExcludedIPs ) ) {
+		if( in_array( wfGetIP(), $wgRateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
-			wfDebug( "IP $ip matches the list of rate limit excluded IPs\n" );
 			return false;
 		}
 		return !$this->isAllowed('noratelimit');
