@@ -139,7 +139,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	function getUrlRel() {
-		return 'archive/' . $this->getHashPath() . urlencode( $this->getArchiveName() );
+		return 'archive/' . $this->getHashPath() . rawurlencode( $this->getArchiveName() );
 	}
 
 	function upgradeRow() {

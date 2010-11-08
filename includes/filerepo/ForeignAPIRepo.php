@@ -254,7 +254,7 @@ class ForeignAPIRepo extends FileRepo {
 			}
 			$localPath =  $this->getZonePath( 'thumb' ) . "/" . $this->getHashPath( $name ) . $name;
 			$localFilename = $localPath . "/" . $fileName;
-			$localUrl =  $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . urlencode( $name ) . "/" . urlencode( $fileName );
+			$localUrl =  $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
 
 			if( file_exists( $localFilename ) && isset( $metadata['timestamp'] ) ) {
 				wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
