@@ -381,7 +381,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 		}
 
 		// stash the thumbnail File, and provide our caller with a way to get at its properties
-		$stashedThumbFile = $this->sessionStash->stashFile( $thumb->path, array(), $key );
+		$stashedThumbFile = $this->sessionStash->stashFile( $thumb->getPath(), array(), $key );
 		$thumb->thumbnailFile = $stashedThumbFile;
 
 		return $thumb;	
