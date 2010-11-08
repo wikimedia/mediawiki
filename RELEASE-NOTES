@@ -199,6 +199,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 20627) Installer should be in languages other than English
 * Support for metadata in SVG files (title, description).
 * Special:Search: Add CSS classes to 'none found' and 'create link' messages
+* Add CSS classes (including namespace and pagename) to the enhanced recent
+  changes/watchlist entries
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

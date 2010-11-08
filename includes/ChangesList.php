@@ -593,7 +593,7 @@ class EnhancedChangesList extends ChangesList {
 			# Process current cache
 			$ret = $this->recentChangesBlock();
 			$this->rc_cache = array();
-			$ret .= Xml::element( 'h4', null, $date );
+			$ret .= Xml::element( 'h4', null, $date ) . "\n";
 			$this->lastdate = $date;
 		}
 
@@ -736,7 +736,15 @@ class EnhancedChangesList extends ChangesList {
 
 		wfProfileIn( __METHOD__ );
 
-		$r = '<table class="mw-enhanced-rc"><tr>';
+		# Add the namespace and title of the block as part of the class
+		if ( $block[0]->mAttribs['rc_log_type'] ) {
+			# Log entry
+			$classes = Sanitizer::escapeClass( 'mw-enhanced-rc mw-changeslist-log-' . $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
+		} else {
+			$classes = Sanitizer::escapeClass( 'mw-enhanced-rc mw-changeslist-ns' . $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
+		}
+		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
+			Html::openElement( 'tr' );
 
 		# Collate list of users
 		$userlinks = array();
@@ -1051,7 +1059,15 @@ class EnhancedChangesList extends ChangesList {
 		extract( $rcObj->mAttribs );
 		$query['curid'] = $rc_cur_id;
 
-		$r = '<table class="mw-enhanced-rc"><tr>';
+		if( $rc_log_type ) {
+			# Log entry
+			$classes = Sanitizer::escapeClass( 'mw-enhanced-rc mw-changeslist-log-' . $rc_log_type . '-' . $rcObj->mAttribs['rc_title'] );
+		} else {
+			$classes = Sanitizer::escapeClass( 'mw-enhanced-rc mw-changeslist-ns' . $rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
+		}
+		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
+			Html::openElement( 'tr' );
+
 		$r .= '<td class="mw-enhanced-rc">' . $this->spacerArrow() . '&#160;';
 		# Flag and Timestamp
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
