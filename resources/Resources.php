@@ -323,6 +323,11 @@ return array(
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 		'debugRaw' => false
 	) ),
+	'mediawiki.util' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
+		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client' ),
+		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
+	) ),
 	'mediawiki.advanced.rightclickedit' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.advanced/mediawiki.advanced.rightclickedit.js',
 	) ),
@@ -386,11 +391,6 @@ return array(
 			'uk' => 'resources/mediawiki.language/languages/uk.js',
 			'wa' => 'resources/mediawiki.language/languages/wa.js',
 		),
-	) ),
-	'mediawiki.util' => new ResourceLoaderFileModule( array(
-		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
-		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client' ),
-		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	) ),
 	
 	/* mediawiki Legacy */
