@@ -405,6 +405,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 25713) SpecialPage::resolveAlias() now normalise spaces to underscores
 * (bug 25829) Special:Mypage and Special:Mytalk now forward oldid, diff and dir
   parameters
+* (bug 25175) HTML file cache now honor $wgCacheDirectory if
+  $wgFileCacheDirectory is not set
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
