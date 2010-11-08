@@ -183,12 +183,6 @@ class WebInstallerOutput {
 </head>
 
 <?php echo Html::openElement( 'body', array( 'class' => $this->getDir() ) ) . "\n"; ?>
-<noscript>
-<style type="text/css">
-.config-help-message { display: block; }
-.config-show-help { display: none; }
-</style>
-</noscript>
 <div id="mw-page-base">
 <div id="mw-head-base">
 <div id="content">
