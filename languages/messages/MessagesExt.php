@@ -12,6 +12,10 @@
  * @author Urhixidur
  */
 
+$namespaceNames = array(
+	NS_TEMPLATE         => 'Prantilla',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal atihus:',
