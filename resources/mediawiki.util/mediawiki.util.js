@@ -95,6 +95,25 @@
 		},
 
 		/**
+		 * Append a new style block to the head
+		 *
+		 * @param text String CSS to be appended
+		 * @return the CSS stylesheet
+		 */
+		'addCSS' : function( text ) {
+			var s = document.createElement( 'style' );
+			s.type = 'text/css';
+			s.rel = 'stylesheet';
+			if ( s.styleSheet ) {
+				s.styleSheet.cssText = text; // IE
+			} else {
+				s.appendChild( document.createTextNode( text + '' ) ); // Safari sometimes borks on null
+			}
+			document.getElementsByTagName("head")[0].appendChild( s );
+			return s.sheet || s;
+		},
+
+		/**
 		 * Get the full URL to a page name
 		 *
 		 * @param str Page name to link to
