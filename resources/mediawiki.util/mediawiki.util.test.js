@@ -68,6 +68,8 @@
 							'object (string)');
 						mw.test.addTest('typeof mw.util',
 							'object (string)');
+						mw.test.addTest('typeof mw.html',
+							'object (string)');
 						mw.test.addTest('typeof String.prototype.ucFirst',
 							'function (string)');
 						mw.test.addTest('\'mediawiki\'.ucFirst()',
@@ -88,16 +90,22 @@
 							'function (string)');
 						mw.test.addTest('mw.util.getParamValue( \'action\' )',
 							'mwutiltest (string)');
+						mw.test.addTest('mw.util.getParamValue( \'foo\', \'http://mw.org/?foo=wrong&foo=right#&foo=bad\' )',
+							'right (string)');
 						mw.test.addTest('mw.util.tooltipAccessKeyRegexp.constructor.name',
 							'RegExp (string)');
 						mw.test.addTest('typeof mw.util.updateTooltipAccessKeys',
 							'function (string)');
 						mw.test.addTest('typeof mw.util.addPortletLink',
 							'function (string)');
-						mw.test.addTest('typeof mw.util.addPortletLink("p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-print")',
+						mw.test.addTest('typeof mw.util.addPortletLink( "p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-print" )',
 							'object (string)');
-						mw.test.addTest('a = mw.util.addPortletLink("p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-print"); $(a).text();',
+						mw.test.addTest('a = mw.util.addPortletLink( "p-tb", "http://mediawiki.org/", "MediaWiki.org", "t-mworg", "Go to MediaWiki.org ", "m", "#t-print" ); $(a).text();',
 							'MediaWiki.org (string)');
+						mw.test.addTest('mw.html.element( \'hr\' )',
+							'<hr/> (string)');
+						mw.test.addTest('mw.html.element( \'img\', { \'src\': \'http://mw.org/?title=Main page&action=edit\' } )',
+							'<img src="http://mw.org/?title=Main page&amp;action=edit"/> (string)');
 
 						// Run tests and compare results
 						var	exec,

@@ -968,11 +968,11 @@ window.mediaWiki = new ( function( $ ) {
 				s += ' ' + attrName + '="' + this.escape( attrs[attrName] ) + '"';
 			}
 			if ( typeof contents == 'undefined' || contents === null ) {
-				// Short close tag
+				// Self close tag
 				s += '/>';
 				return s;
 			}
-			// Regular close tag
+			// Regular open tag
 			s += '>';
 			if (typeof contents === 'string') {
 				// Escaped
