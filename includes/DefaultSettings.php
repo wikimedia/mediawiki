@@ -3446,8 +3446,6 @@ $wgRateLimitsExcludedGroups = array();
 /**
  * Array of IPs which should be excluded from rate limits.
  * This may be useful for whitelisting NAT gateways for conferences, etc.
- * Wiki administrators can add additional IP addresses via
- * [[MediaWiki:Ratelimit-excluded-ips]]
  */
 $wgRateLimitsExcludedIPs = array();
 

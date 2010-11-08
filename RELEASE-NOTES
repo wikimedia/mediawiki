@@ -181,8 +181,6 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 24007) Diff pages now mention the number of users having edited
   intermediate revisions
 * Added new hook GetIP
-* (bug 16574) Allow administrators to temporarily disable the account creation
-  limit for IP addresses: [[MediaWiki:Ratelimit-excluded-ips]]
 * Special:Version now displays whether a SQLite database supports full-text
   search.
 * TS_ISO_8691_BASIC was added as a time format, which is used by ResourceLoader
