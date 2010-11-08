@@ -16,7 +16,7 @@ $messages['en'] = array(
 	'config-title'                    => 'MediaWiki $1 installation',
 	'config-information'              => 'Information',
 	'config-localsettings-upgrade'    => "'''Warning''': A <code>LocalSettings.php</code> file has been detected.
-Your software is able to upgrade. Please fill in the value of <code>\$wgUpgradeKey.php</code> in the box",
+Your software is able to upgrade. Please fill in the value of <code>\$wgUpgradeKey</code> in the box",
 	'config-localsettings-key'        => 'Upgrade key:',
 	'config-localsettings-badkey'     => 'The key you provided is incorrect',
 	'config-localsettings-noupgrade'  => "'''Error''': A <code>LocalSettings.php</code> file has been detected.
