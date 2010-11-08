@@ -16,7 +16,8 @@ $messages['en'] = array(
 	'config-title'                    => 'MediaWiki $1 installation',
 	'config-information'              => 'Information',
 	'config-localsettings-upgrade'    => "'''Warning''': A <code>LocalSettings.php</code> file has been detected.
-Your software is able to upgrade. Please fill in the value of <code>\$wgUpgradeKey</code> in the box",
+Your software is able to upgrade.
+Please fill in the value of <code>\$wgUpgradeKey</code> in the box.",
 	'config-localsettings-key'        => 'Upgrade key:',
 	'config-localsettings-badkey'     => 'The key you provided is incorrect',
 	'config-localsettings-noupgrade'  => "'''Error''': A <code>LocalSettings.php</code> file has been detected.
@@ -180,8 +181,10 @@ If you are using shared web hosting, your hosting provider will either give you 
 	'config-db-install-account'       => 'User account for installation',
 	'config-db-username'              => 'Database username:',
 	'config-db-password'              => 'Database password:',
-    'config-db-install-username'	  => 'Enter the username that will be used to connect to the database during the installation process. This is not the username of the MediaWiki account; this is the username for your database.',
-    'config-db-install-password'	  => 'Enter the password that will be used to connect to the database during the installation process. This is not the password for the MediaWiki account; this is the password for your database.',
+    'config-db-install-username'	  => 'Enter the username that will be used to connect to the database during the installation process.
+This is not the username of the MediaWiki account; this is the username for your database.',
+    'config-db-install-password'	  => 'Enter the password that will be used to connect to the database during the installation process.
+This is not the password for the MediaWiki account; this is the password for your database.',
 	'config-db-install-help'          => 'Enter the username and password that will be used to connect to the database during the installation process.',
 	'config-db-account-lock'          => 'Use the same username and password during normal operation',
 	'config-db-wiki-account'          => 'User account for normal operation',
