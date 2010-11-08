@@ -407,6 +407,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   parameters
 * (bug 25175) HTML file cache now honor $wgCacheDirectory if
   $wgFileCacheDirectory is not set
+* (bug 13353) Diff3 version checks were too strict, did not detect working diff3
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
