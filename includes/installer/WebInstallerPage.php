@@ -480,12 +480,12 @@ class WebInstaller_Name extends WebInstallerPage {
 			$this->getFieldSetStart( 'config-admin-box' ) .
 			$this->parent->getTextBox( array(
 				'var' => '_AdminName',
-				'label' => 'config-admin-name'
+				'label' => 'config-admin-name',
+				'help' => $this->parent->getHelpBox( 'config-admin-help' )
 			) ) .
 			$this->parent->getPasswordBox( array(
 				'var' => '_AdminPassword',
 				'label' => 'config-admin-password',
-			    'help' => $this->parent->getHelpBox( 'config-admin-help' )
 			) ) .
 			$this->parent->getPasswordBox( array(
 				'var' => '_AdminPassword2',
