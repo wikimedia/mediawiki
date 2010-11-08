@@ -28,7 +28,7 @@
 				contain = result;
 			}
 			this.addedTests.push([code, result, contain]);
-			this.$table.append('<tr><td>' + mw.html.escape(code) + '</td><td>' + mw.html.escape(result) + '<td></td></td><td>?</td></tr>');
+			this.$table.append('<tr><td>' + mw.html.escape(code).replace(/  /g, '&nbsp;&nbsp;') + '</td><td>' + mw.html.escape(result).replace(/  /g, '&nbsp;&nbsp;') + '<td></td></td><td>?</td></tr>');
 		},
 
 		/* Initialisation */
@@ -45,21 +45,27 @@
 						mw.util.$content.html(
 							'<p>Below is a list of tests to confirm proper functionality of the mediaWiki.util functions</p>' +
 							'<hr />' +
-							'<table id="mw-mwutiltest-table" class="wikitable sortable"><tr><th>Exec</th><th>Should return</th><th>Does return</th><th>Equal ?</th></tr></table>'
+							'<table id="mw-mwutiltest-table" class="wikitable sortable" style="white-space:break; font-family:monospace,\'Courier New\'">' +
+							'<tr><th>Exec</th><th>Should return</th><th>Does return</th><th>Equal ?</th></tr>' +
+							'</table>'
 						);
 						mw.test.$table = $('table#mw-mwutiltest-table');
 
 						// Populate tests
-						mw.test.addTest('typeof String.prototype.trim',
+						mw.test.addTest('typeof $.trimLeft',
 							'function (string)');
-						mw.test.addTest('typeof String.prototype.trimLeft',
+						mw.test.addTest('$.trimLeft(\'  foo bar  \')',
+							'foo bar   (string)');
+						mw.test.addTest('typeof $.trimRight',
 							'function (string)');
-						mw.test.addTest('typeof String.prototype.trimRight',
+						mw.test.addTest('$.trimRight(\'  foo bar  \')',
+							'  foo bar (string)');
+						mw.test.addTest('typeof $.compareArray',
 							'function (string)');
-						mw.test.addTest('typeof Array.prototype.compare',
-							'function (string)');
-						mw.test.addTest('typeof Array.prototype.indexOf',
-							'function (string)');
+						mw.test.addTest('$.compareArray( [1, "a", [], [2, \'b\'] ], [1, \'a\', [], [2, "b"] ] )',
+							'true (boolean)');
+						mw.test.addTest('$.compareArray( [1], [2] )',
+							'false (boolean)');
 						mw.test.addTest('4',
 							'4 (number)');
 						mw.test.addTest('typeof mediaWiki',
@@ -70,13 +76,13 @@
 							'object (string)');
 						mw.test.addTest('typeof mw.html',
 							'object (string)');
-						mw.test.addTest('typeof String.prototype.ucFirst',
+						mw.test.addTest('typeof $.ucFirst',
 							'function (string)');
-						mw.test.addTest('\'mediawiki\'.ucFirst()',
+						mw.test.addTest('$.ucFirst( \'mediawiki\' )',
 							'Mediawiki (string)');
-						mw.test.addTest('typeof String.prototype.escapeRE',
+						mw.test.addTest('typeof $.escapeRE',
 							'function (string)');
-						mw.test.addTest('\'.st{e}$st\'.escapeRE()',
+						mw.test.addTest('$.escapeRE( \'.st{e}$st\' )',
 							'\\.st\\{e\\}\\$st (string)');
 						mw.test.addTest('typeof $.fn.checkboxShiftClick',
 							'function (string)');

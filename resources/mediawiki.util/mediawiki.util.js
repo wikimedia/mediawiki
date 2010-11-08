@@ -140,7 +140,7 @@
 		'getParamValue' : function( param, url ) {
 			url = url ? url : document.location.href;
 			// Get last match, stop at hash
-			var re = new RegExp( '[^#]*[&?]' + param.escapeRE() + '=([^&#]*)' ); 
+			var re = new RegExp( '[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ); 
 			var m = re.exec( url );
 			if ( m && m.length > 1 ) {
 				return decodeURIComponent( m[1] );

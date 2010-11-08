@@ -1,44 +1,37 @@
 /*
- * JavaScript backwards-compatibility and support
+ * JavaScript backwards-compatibility alternatives and convenience functions
  */
 
-// Implementation of string trimming functionality introduced natively in JavaScript 1.8.1
-if ( typeof String.prototype.trim === 'undefined' ) {
-	// Add removing trailing and leading whitespace functionality cross-browser
-	// See also: http://blog.stevenlevithan.com/archives/faster-trim-javascript
-	String.prototype.trim = function() {
-		return this.replace( /^\s+|\s+$/g, '' );
-	};
-}
-if ( typeof String.prototype.trimLeft === 'undefined' ) {
-	String.prototype.trimLeft = function() {
-		return this.replace( /^\s\s*/, "" );
-	};
-}
-if ( typeof String.prototype.trimRight === 'undefined' ) {
-	String.prototype.trimRight = function() {
-		return this.replace(/\s\s*$/, "");
-	};
-}
-
-/*
- * Prototype enhancements
- */
-
-// Capitalize the first character of the given string
-if ( typeof String.prototype.ucFirst === 'undefined' ) {
-	String.prototype.ucFirst = function() {
-		return this.substr(0, 1).toUpperCase() + this.substr(1, this.length);
-	};
-}
-
-// Escape all RegExp special characters such that the result can be safely used
-// in a RegExp as a literal.
-if ( typeof String.prototype.escapeRE === 'undefined' ) {
-	String.prototype.escapeRE = function() {
-		return this.replace (/([\\{}()|.?*+^$\[\]])/g, "\\$1");
-	};
-}
+jQuery.extend({
+	trimLeft : function( str ) {
+		return str == null ? '' : str.toString().replace( /^\s+/, '' );
+	},
+	trimRight : function( str ) {
+		return str == null ?
+				'' : str.toString().replace( /\s+$/, '' );
+	},
+	ucFirst : function( str ) {
+		return str.substr( 0, 1 ).toUpperCase() + str.substr( 1, str.length );
+	},
+	escapeRE : function( str ) {
+		return str.replace ( /([\\{}()|.?*+^$\[\]])/g, "\\$1" );
+	},
+	compareArray : function( arrThis, arrAgainst ) {
+		if ( arrThis.length != arrAgainst.length ) {
+			return false;
+		}
+		for ( var i = 0; i < arrThis.length; i++ ) {
+			if ( arrThis[i] instanceof Array ) { 
+				if ( !$.compareArray( arrThis[i], arrAgainst[i] ) ) {
+					return false;
+				}
+			} else if ( arrThis[i] !== arrAgainst[i] ) {
+				return false;
+			}
+		}
+		return true;
+	}
+});
 
 /*
  * Core MediaWiki JavaScript Library
