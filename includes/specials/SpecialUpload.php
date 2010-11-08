@@ -425,12 +425,13 @@ class SpecialUpload extends SpecialPage {
 			return;
 		}
 
-		// Deprecated backwards compatibility hook
 		if( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ) ) ) {
 			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
-			// Return without notifying the user of an error. This sucks, but 
-			// this was the previous behaviour as well, and as this hook is
-			// deprecated we're not going to do anything about it.
+			// This code path is deprecated. If you want to break upload processing
+			// do so by hooking into the appropriate hooks in UploadBase::verifyUpload
+			// and UploadBase::verifyFile.
+			// If you use this hook to break uploading, the user will be returned
+			// an empty form with no error message whatsoever.
 			return;
 		}
 

@@ -266,7 +266,6 @@ abstract class UploadBase {
 		$error = '';
 		if( !wfRunHooks( 'UploadVerification',
 				array( $this->mDestName, $this->mTempPath, &$error ) ) ) {
-			// @fixme This status needs another name...
 			return array( 'status' => self::HOOK_ABORTED, 'error' => $error );
 		}
 
