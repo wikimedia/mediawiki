@@ -22,6 +22,11 @@
  * @ingroup FileRepo
  */
 class ForeignAPIRepo extends FileRepo {
+	/* This version string is used in the user agent for requests and will help
+	 * server maintainers in identify ForeignAPI usage.
+	 * Update the version every time you make breaking or significant changes. */
+	public static $foreignAPIRepoVersion = "2.0";
+
 	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
 	/* Check back with Commons after a day */
 	var $apiThumbCacheExpiry = 86400;
@@ -146,7 +151,7 @@ class ForeignAPIRepo extends FileRepo {
 			$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
 			$data = $wgMemc->get( $key );
 			if( !$data ) {
-				$data = Http::get( $url );
+				$data = self::httpGet( $url );
 				if ( !$data ) {
 					return null;
 				}
@@ -264,7 +269,7 @@ class ForeignAPIRepo extends FileRepo {
 				}
 				/* There is a new Commons file, or existing thumbnail older than a month */
 			}
-			$thumb = Http::get( $foreignUrl );
+			$thumb = self::httpGet( $foreignUrl );
 			if( !$thumb ) {
 				wfDebug( __METHOD__ . " Could not download thumb\n" );
 				return false;
@@ -324,5 +329,38 @@ class ForeignAPIRepo extends FileRepo {
 	 */
 	public function canCacheThumbs() {
 		return ( $this->apiThumbCacheExpiry > 0 );
+	}
+
+	/**
+	 * The user agent the ForeignAPIRepo will use.
+	 */
+	public static function getUserAgent() {
+		return Http::userAgent() . " ForeignAPIRepo/" . self::$foreignAPIRepoVersion;
+	}
+
+	/**
+	 * Like a Http:get request, but with custom User-Agent.
+	 * @see Http:get
+	 */
+	public static function httpGet( $url, $timeout = 'default', $options = array() ) {
+		$options['timeout'] = $timeout;
+		/* Http::get */
+		$url = wfExpandUrl( $url );
+		wfDebug( "ForeignAPIRepo: HTTP GET: $url\n" );
+		$options['method'] = "GET";
+
+		if ( !isset( $options['timeout'] ) ) {
+		        $options['timeout'] = 'default';
+		}
+		
+		$req = HttpRequest::factory( $url, $options );
+		$req->setUserAgent( ForeignAPIRepo::getUserAgent() );
+		$status = $req->execute();
+		
+		if ( $status->isOK() ) {
+		        return $req->getContent();
+		} else {
+		        return false;
+		}
 	}
 }
