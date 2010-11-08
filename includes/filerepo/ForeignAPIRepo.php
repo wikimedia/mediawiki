@@ -240,7 +240,7 @@ class ForeignAPIRepo extends FileRepo {
 			$knownThumbUrls = array();
 		} else {
 			if( isset( $knownThumbUrls[$sizekey] ) ) {
-				wfDebug("Got thumburl from local cache. $thumbUrl \n");
+				wfDebug("Got thumburl from local cache. {$knownThumbUrls[$sizekey]} \n");
 				return $knownThumbUrls[$sizekey];
 			}
 			/* This size is not yet known */
