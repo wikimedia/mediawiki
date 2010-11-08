@@ -2402,7 +2402,7 @@ Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveil
 Hier zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-locked-dblock'       => "Het beveiligingsniveau kan niet worden gewijzigd, omdat de database gesloten is.
 Hier zijn de huidige instellingen voor de pagina '''$1''':",
-'protect-locked-access'       => "'''U hebt geen rechten om het beveiligingsniveau te wijzigen.'''
+'protect-locked-access'       => "U hebt geen rechten om het beveiligingsniveau te wijzigen.
 Dit zijn de huidige instellingen voor de pagina '''$1''':",
 'protect-cascadeon'           => "Deze pagina is beveiligd, omdat die in de volgende {{PLURAL:$1|pagina|pagina's}} is opgenomen, die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie.
 Het beveiligingsniveau wijzigen heeft geen enkel effect.",

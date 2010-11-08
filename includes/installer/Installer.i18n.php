@@ -585,7 +585,7 @@ $1 is for indicating whether or not we should be able to use the feature.',
 $messages['hu-formal'] = array(
 	'config-localsettings-upgrade' => "'''Figyelmeztetés''': már létezik a <code>LocalSettings.php</code> fájl.
 A szoftver frissíthető.
-Adja meg a <code>\$wgUpgradeKey.php</code>-ben található kulcsot a beviteli mezőben",
+Adja meg a <code>\$wgUpgradeKey</code>-ben található kulcsot a beviteli mezőben",
 	'config-session-expired' => 'Úgy tűnik, hogy a munkamenetadatok lejártak.
 A munkamenetek élettartama a következőre van beállítva: $1.
 Az érték növelhető a php.ini <code>session.gc_maxlifetime</code> beállításának módosításával.
@@ -867,8 +867,6 @@ $messages['be-tarask'] = array(
 	'config-no-session' => 'Зьвесткі сэсіі згубленыя!
 Праверце php.ini і ўпэўніцеся, што ўстаноўлены слушны шлях у <code>session.save_path</code>.',
 	'config-session-path-bad' => 'Шлях у <code>session.save_path</code> (<code>$1</code>) няслушны ці даступны толькі для чытаньня.',
-	'config-show-help' => 'Дапамога',
-	'config-hide-help' => 'Схаваць дапамогу',
 	'config-your-language' => 'Вашая мова:',
 	'config-your-language-help' => 'Выберыце мову для выкарыстаньня падчас усталяваньня.',
 	'config-wiki-language' => 'Мова вікі:',
@@ -1461,14 +1459,12 @@ $messages['bs'] = array(
 	'config-information' => 'Informacija',
 	'config-localsettings-upgrade' => "'''Upozorenje''': Otkrivena je datoteka <code>LocalSettings.php</code>.
 Vaš softver je moguće unaprijediti.
-Molimo premjestite <code>LocalSettings.php</code> na sigurno mjesto a zatim ponovo pokrenite instalaciju.",
+Molimo upišite vrijednost od <code>\$wgUpgradeKey</code> u okvir.",
 	'config-localsettings-key' => 'Ključ za nadgradnju:',
 	'config-session-error' => 'Greška pri pokretanju sesije: $1',
 	'config-no-session' => 'Vaši podaci sesije su izgubljeni!
 Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> postavljen na pravilni direktorijum.',
 	'config-session-path-bad' => 'Vaš <code>session.save_path</code> (<code>$1</code>) je nevaljan ili se u njega ne može pisati.',
-	'config-show-help' => 'Pomoć',
-	'config-hide-help' => 'Sakrij pomoć',
 	'config-your-language' => 'Vaš jezik:',
 	'config-your-language-help' => 'Odaberite jezik koji ćete koristiti tokom procesa instalacije.',
 	'config-wiki-language' => 'Wiki jezik:',
@@ -1552,7 +1548,7 @@ $messages['de'] = array(
 	'config-information' => 'Information',
 	'config-localsettings-upgrade' => "'''Warnung:''' Die Datei <code>LocalSettings.php</code> wurde gefunden.
 Die vorhandene Installation kann aktualisiert werden.
-Die Datei <code>LocalSettings.php</code> muss an einen sicheren Speicherort verschoben und dann das Installationsprogramm erneut ausgeführt werden.",
+Bitte den Wert des Parameters <code>\$wgUpgradeKey</code> im Feld angeben.",
 	'config-localsettings-key' => 'Aktualisierungsschlüssel:',
 	'config-localsettings-badkey' => 'Der angegebene Aktualisierungsschlüssel ist falsch.',
 	'config-localsettings-noupgrade' => "'''Fehler''': Die Datei <code>LocalSettings.php</code> wurde gefunden.
@@ -1566,8 +1562,6 @@ Den Installationsvorgang erneut starten.',
 	'config-no-session' => 'Die Sitzungsdaten sind verloren gegangen!
 Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt werden, dass der Parameter <code>session.save_path</code> auf das richtige Verzeichnis verweist.',
 	'config-session-path-bad' => 'Der Parameter <code>session.save_path</code> (<code>$1</code>) scheint ungültig zu sein oder das Verzeichnis ist nicht beschreibbar.',
-	'config-show-help' => 'Hilfe',
-	'config-hide-help' => 'Hilfe ausblenden',
 	'config-your-language' => 'Sprache:',
 	'config-your-language-help' => 'Bitte die Sprache auswählen, die während des Installationsvorgangs verwendet werden soll.',
 	'config-wiki-language' => 'Sprache des Wikis:',
@@ -1690,6 +1684,10 @@ Der Installationsvorgang wurde daher abgebrochen.",
 	'config-uploads-safe' => 'Das Standardverzeichnis für hochgeladene Dateien ist von der willkürlichen Ausführung von Skripten geschützt.',
 	'config-uploads-not-safe' => "'''Warnung:''' Das Standardverzeichnis für hochgeladene Dateien <code>$1</code> ist für die willkürliche Ausführung von Skripten anfällig.
 Obwohl MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen diese [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
+	'config-brokenlibxml' => 'Das System nutzt eine Kombination aus PHP- und libxml2-Versionen, die fehleranfällig ist und versteckte Datenfehler bei MediaWiki und anderen Webanwendungen verursachen kann.
+PHP muss auf Version 5.2.9 oder später sowie libxml2 auf die Version 2.7.3 oder später aktualisiert werden, um das Problem zu lösen. Installationsabbruch ([http://bugs.php.net/bug.php?id=45996 siehe hierzu die Fehlermeldung bei PHP]).',
+	'config-using531' => 'PHP $1 ist nicht mit MediaWiki kompatibel. Grund ist ein Fehler im Zusammenhang mit den Verweisparametern zu <code>__call()</code>.
+PHP muss auf Version 5.3.2 oder höher oder 5.3.0 oder niedriger aktualisiert werden, um das Problem zu lösen. Installationsabbruch ([http://bugs.php.net/bug.php?id=50394 siehe hierzu die Fehlermeldung bei PHP]).',
 	'config-db-type' => 'Datenbanksystem:',
 	'config-db-host' => 'Datenbankserver:',
 	'config-db-host-help' => 'Sofern sich die Datenbank auf einem anderen Server befindet, ist hier der Servername oder die entsprechende IP-Adresse anzugeben.
@@ -2056,8 +2054,6 @@ Reiniciar el proceso de instalación.',
 	'config-no-session' => 'Se han perdido los datos de sesión.
 Verifica tu php.ini y comprueba que <code>session.save_path</code> está establecido en un directorio apropiado.',
 	'config-session-path-bad' => 'Parece que tu <code>session.save_path</code> (<code>$1</code>) es incorrecta o no se tienen permisos de escritura.',
-	'config-show-help' => 'Ayuda',
-	'config-hide-help' => 'Ocultar ayuda',
 	'config-your-language' => 'Tu idioma:',
 	'config-your-language-help' => 'Seleccionar un idioma a usar durante el proceso de instalación.',
 	'config-wiki-language' => 'Idioma del wiki:',
@@ -2478,8 +2474,6 @@ Asennusohjelma on poistettu käytöstä turvallisuussyistä.",
 Istuntojen elinajaksi on määritelty $1.
 Voit muuttaa tätä asetusta vaihtamalla kohtaa <code>session.gc_maxlifetime</code> php.ini -tiedostossa.
 Käynnistä asennusprosessi uudelleen.',
-	'config-show-help' => 'Ohjet',
-	'config-hide-help' => 'Piilota ohje',
 	'config-your-language' => 'Asennuksen kieli',
 	'config-your-language-help' => 'Valitse kieli, jota haluat käyttää asennuksen ajan.',
 	'config-wiki-language' => 'Wikin kieli',
@@ -2609,7 +2603,7 @@ $messages['fr'] = array(
 	'config-information' => 'Informations',
 	'config-localsettings-upgrade' => "'''Attention''' : Un fichier <code>LocalSettings.php</code> a été détecté.
 Votre logiciel est capable de se mettre à jour.
-Veuillez déplacer <code>LocalSettings.php</code> en lieu sûr puis relancer le programme d’installation.",
+Veuillez saisir la valeur de <code>\$wgUpgradeKey</code> dans le champ.",
 	'config-localsettings-key' => 'Clé de mise à jour :',
 	'config-localsettings-badkey' => 'La clé que vous avez fourni est incorrecte',
 	'config-localsettings-noupgrade' => "'''Erreur''': Un fichier <code>LocalSettings.php</code> a été détecté.
@@ -2623,8 +2617,6 @@ Redémarrer le processus d'installation.",
 	'config-no-session' => 'Les données de votre session ont été perdues !
 Vérifiez votre fichier php.ini et assurez-vous que <code>session.save_path</code> contient le chemin d’un répertoire approprié.',
 	'config-session-path-bad' => 'Votre <code>session.save_path</code> (<code>$1</code>) semble invalide ou en lecture seule.',
-	'config-show-help' => 'Aide',
-	'config-hide-help' => 'Masquer l’aide',
 	'config-your-language' => 'Votre langue :',
 	'config-your-language-help' => "Sélectionnez la langue à utiliser pendant le processus d'installation.",
 	'config-wiki-language' => 'Langue du wiki :',
@@ -2681,8 +2673,8 @@ vous ne pouvez pas installer MediaWiki.',
 Il est conseillé d’utiliser la dernière version, qui peut être téléchargée de [http://www.mediawiki.org/wiki/Download MediaWiki.org]',
 	'config-unicode-using-utf8' => 'Utilisation de utf8_normalize.so par Brion Vibber pour la normalisation Unicode.',
 	'config-unicode-using-intl' => "Utilisation de [http://pecl.php.net/intl l'extension PECL intl] pour la normalisation Unicode.",
-	'config-unicode-pure-php-warning' => "'''Attention''': L'[http://pecl.php.net/intl extension PECL intl] n'est pas disponible pour la normalisation d'Unicode.
-Si vous utilisez un site web très fréquenté, vous devriez lire un peu sur celle-ci : [http://www.mediawiki.org/wiki/Unicode_normalization_considerations ''Unicode normalization''] (en anglais).",
+	'config-unicode-pure-php-warning' => "'''Attention''': L'[http://pecl.php.net/intl extension PECL intl] n'est pas disponible pour la normalisation d’Unicode, retour à la version lente implémentée en PHP.
+Si vous utilisez un site web très fréquenté, vous devriez lire ceci : [http://www.mediawiki.org/wiki/Unicode_normalization_considerations ''Unicode normalization''] (en anglais).",
 	'config-unicode-update-warning' => "'''Attention''': La version installée du ''wrapper'' de normalisation Unicode utilise une vieille version de la [http://site.icu-project.org/ bibliothèque logicielle ''ICU Project''].
 Vous devriez faire une [http://www.mediawiki.org/wiki/Unicode_normalization_considerations mise à jour] (texte en anglais) si l'usage d'Unicode vous semble important.",
 	'config-no-db' => 'Impossible de trouver un pilote de base de données approprié !',
@@ -2748,6 +2740,12 @@ Installation avortée.",
 	'config-uploads-safe' => "Le répertoire par défaut pour les téléversement est à l'abri de l'exécution de scripts arbitraires.",
 	'config-uploads-not-safe' => "'''Attention:''' Votre répertoire par défaut pour les téléchargements, <code>$1</code>, est vulnérable, car il peut exécuter n'importe quel script. 
 Bien que MediaWiki vérifie tous les fichiers téléchargés, il est fortement recommandé de [http://www.mediawiki.org/wiki/Manual:Security#Upload_security fermer cette vulnérabilité de sécurité] (texte en anglais) avant d'activer les téléchargements.",
+	'config-brokenlibxml' => 'Votre système utilise une combinaison de versions de PHP et libxml2 qui est boguée et peut engendrer des corruptions cachées de données dans MediaWiki et d’autres applications web.
+Veuillez mettre à jour votre système vers PHP 5.2.9 ou plus récent et libxml2 2.7.3 ou plus récent ([http://bugs.php.net/bug.php?id=45996 bogue déposé auprès de PHP]).
+Installation interrompue.',
+	'config-using531' => 'PHP $1 n’est pas compatible avec MediaWiki à cause d’un bogue affectant les paramètres de référence de <code>__call()</code>.
+Veuillez mettre à jour votre système vers PHP 5.3.2 ou plus récent ou revenir à PHP 5.3.0 pour résoudre ce problème ([http://bugs.php.net/bug.php?id=50394 bogue déposé auprès de PHP]).
+Installation interrompue.',
 	'config-db-type' => 'Type de base de données :',
 	'config-db-host' => 'Nom d’hôte de la base de données :',
 	'config-db-host-help' => "Si votre serveur de base de données est sur un serveur différent, saisissez ici son nom d’hôte ou son adresse IP.
@@ -3081,7 +3079,7 @@ $messages['gl'] = array(
 	'config-information' => 'Información',
 	'config-localsettings-upgrade' => "'''Atención:''' Detectouse un ficheiro <code>LocalSettings.php</code>.
 O seu software está listo para a actualización.
-Traslade <code>LocalSettings.php</code> a un lugar seguro e execute o instalador de novo.",
+Introduza o valor de <code>\$wgUpgradeKey</code> na caixa.",
 	'config-localsettings-key' => 'Clave de actualización:',
 	'config-localsettings-badkey' => 'A clave dada é incorrecta',
 	'config-localsettings-noupgrade' => "'''Erro:''' Detectouse un ficheiro <code>LocalSettings.php</code>.
@@ -3095,8 +3093,6 @@ Reinicie o proceso de instalación.',
 	'config-no-session' => 'Perdéronse os datos da súa sesión!
 Comprobe o seu php.ini e asegúrese de que en <code>session.save_path</code> está definido un directorio correcto.',
 	'config-session-path-bad' => 'O seu <code>session.save_path</code> (<code>$1</code>) semella incorrecto ou non se pode escribir nel.',
-	'config-show-help' => 'Axuda',
-	'config-hide-help' => 'Agochar a axuda',
 	'config-your-language' => 'A súa lingua:',
 	'config-your-language-help' => 'Seleccione a lingua que se empregará durante o proceso de instalación.',
 	'config-wiki-language' => 'Lingua do wiki:',
@@ -3570,8 +3566,6 @@ Dr Inschtallationsvorgang nomol starte.',
 	'config-no-session' => 'Dyyni Sitzigsdate sin verlore gange!
 D Datei <code>php.ini</code> mueß prieft wäre un s mueß derby sichergstellt wäre, ass dr Parameter <code>session.save_path</code> uf s richtig Verzeichnis verwyyst.',
 	'config-session-path-bad' => 'Dyy <code>session.save_path</code> (<code>$1</code>) isch schyns nit giltig oder nit bschryybbar.',
-	'config-show-help' => 'Hilf',
-	'config-hide-help' => 'Hilf uusblände',
 	'config-your-language' => 'Dyy Sproch:',
 	'config-your-language-help' => 'Bitte d Sproch uuswehle, wu bim Inschtallationsvorgang soll brucht wäre.',
 	'config-wiki-language' => 'Wikisproch:',
@@ -3767,8 +3761,6 @@ Startuj instalaciski proces znowa.',
 	'config-no-session' => 'Twoje posedźenske daty su so zhubili!
 Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na prawy zapis nastajeny.',
 	'config-session-path-bad' => 'Zda so, zo twój parameter <code>session.save_path</code> (<code>$1</code>) je njepłaćiwy abo njepopisujomny.',
-	'config-show-help' => 'Pomoc',
-	'config-hide-help' => 'Pomoc schować',
 	'config-your-language' => 'Twoja rěč:',
 	'config-your-language-help' => 'Wubjer rěč, kotraž ma so za instalaciski proces wužiwać.',
 	'config-wiki-language' => 'Wikirěč:',
@@ -3809,7 +3801,7 @@ Doporuča so, najnowšu wersiju wužiwać, kotruž móžeš wot [http://www.medi
 	'config-unicode-using-utf8' => 'Za normalizaciju Unicode so utf8_normalize.so Briona Vibbera wužiwa.',
 	'config-unicode-using-intl' => 'Za normalizaciju Unicode so [http://pecl.php.net/intl PECL-rozšěrjenje intl] wužiwa.',
 	'config-no-db' => 'Njeda so přihódny ćěrjak datoweje banki namakać!',
-	'config-have-db' => 'Namakane ćěrjaki datoweje banki: $1.',
+	'config-have-db' => '{{PLURAL:$2|Ćěrjak|Ćěrjakaj|Ćěrjaki|Ćěrjaki}} datoweje banki {{PLURAL:$2|namakany|namakanej|namakane|namakanych}}: $1.',
 	'config-xml-good' => 'Konwersija XML/Latin1-UTF-8 steji k dispoziciji.',
 	'config-memory-none' => 'PHP je bjez <code>memory_limit</code> skonfigurowany',
 	'config-memory-ok' => 'PHP-parameter <code>memory_limit</code> ma hódnotu $1.
@@ -3864,16 +3856,16 @@ Změń je jenož, jeli wěš, štož činiš.',
 	'config-invalid-db-type' => 'Njepłaćiwy typ datoweje banki',
 	'config-missing-db-name' => 'Dyrbiš hódnotu za "Mjeno datoweje banki" zapodać',
 	'config-invalid-db-name' => 'Njepłaćiwe mjeno "$1" datoweje banki.
-Smě jenož ličby, pismiki a podsmužki wobsahować.',
+Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
 	'config-invalid-db-prefix' => 'Njepłaćiwy prefiks "$1" datoweje banki.
-Smě jenož ličby, pismiki a podsmužki wobsahować.',
+Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
 	'config-connection-error' => '$1.
 
 Skontroluj serwer, wužiwarske a hesło a spytaj hišće raz.',
 	'config-invalid-schema' => 'Njepłaćiwe šema za MediaWiki "$1".
-Wužij jenož pismiki, ličby a podsmužki.',
+Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
 	'config-invalid-ts2schema' => 'Njepłaćiwe šema za TSearch2 "$1".
-Wužij jenož pismiki, ličby a podsmužki.',
+Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_)',
 	'config-postgres-old' => 'PostgreSQL $1 abo nowši trěbny, maš $2.',
 	'config-sqlite-name-help' => 'Wubjer mjeno, kotrež twój wiki identifikuje.
 Njewužij mjezery abo wjazawki.
@@ -4004,7 +3996,7 @@ $messages['hu'] = array(
 	'config-information' => 'Információ',
 	'config-localsettings-upgrade' => "'''Figyelmeztetés''': már létezik a <code>LocalSettings.php</code> fájl.
 A szoftver frissíthető.
-Add meg a <code>\$wgUpgradeKey.php</code>-ben található kulcsot a beviteli mezőben",
+Add meg a <code>\$wgUpgradeKey</code>-ben található kulcsot a beviteli mezőben",
 	'config-localsettings-noupgrade' => "'''Hiba''': már létezik a <code>LocalSettings.php</code> fájl.
 A szoftver jelenleg nem frissíthető.
 A telepítő le van tiltva biztonsági okok miatt.",
@@ -4016,8 +4008,6 @@ Indítsd újra a telepítési folyamatot.',
 	'config-no-session' => 'Elvesztek a munkamenetadatok!
 Ellenőrizd, hogy a php.ini-ben a <code>session.save_path</code> a megfelelő könyvtárra mutat-e.',
 	'config-session-path-bad' => 'A <code>session.save_path</code> könyvtár (<code>$1</code>) érvénytelen vagy nem írható.',
-	'config-show-help' => 'Segítség',
-	'config-hide-help' => 'Segítség elrejtése',
 	'config-your-language' => 'Nyelv:',
 	'config-your-language-help' => 'A telepítési folyamat során használandó nyelv.',
 	'config-wiki-language' => 'A wiki nyelve:',
@@ -4291,7 +4281,7 @@ $messages['ia'] = array(
 	'config-information' => 'Information',
 	'config-localsettings-upgrade' => "'''Attention''': Un file <code>LocalSettings.php</code> ha essite detegite.
 Es possibile actualisar le software.
-Per favor displacia <code>LocalSettings.php</code> a un loco secur e postea re-executa le installator.",
+Per favor completa le valor de <code>\$wgUpgradeKey</code> in le quadro.",
 	'config-localsettings-key' => 'Clave de actualisation:',
 	'config-localsettings-badkey' => 'Le clave que tu forniva es incorrecte',
 	'config-localsettings-noupgrade' => "'''Error''': Un file <code>LocalSettings.php</code> ha essite detegite.
@@ -4305,8 +4295,6 @@ Reinitia le processo de installation.',
 	'config-no-session' => 'Le datos de tu session es perdite!
 Verifica tu php.ini e assecura te que un directorio appropriate es definite in <code>session.save_path</code>.',
 	'config-session-path-bad' => 'Le configuration <code>session.save_path</code> (<code>$1</code>) pare esser invalide o non permitte accesso de scriptura.',
-	'config-show-help' => 'Adjuta',
-	'config-hide-help' => 'Celar adjuta',
 	'config-your-language' => 'Tu lingua:',
 	'config-your-language-help' => 'Selige un lingua a usar durante le processo de installation.',
 	'config-wiki-language' => 'Lingua del wiki:',
@@ -4430,6 +4418,12 @@ Installation abortate.",
 	'config-uploads-safe' => 'Le directorio predefinite pro files incargate es protegite contra le execution arbitrari de scripts.',
 	'config-uploads-not-safe' => "'''Aviso:''' Le directorio predefinite pro files incargate <code>$1</code> es vulnerabile al execution arbitrari de scripts.
 Ben que MediaWiki verifica tote le files incargate contra le menacias de securitate, il es altemente recommendate [http://www.mediawiki.org/wiki/Manual:Security#Upload_security remediar iste vulnerabilitate de securitate] ante de activar le incargamento de files.",
+	'config-brokenlibxml' => 'Vostre systema ha un combination de versiones de PHP e libxml2 que es defectuose e pote causar corruption celate de datos in MediaWiki e altere applicationes web.
+Actualisa a PHP 5.2.9 o plus recente e libxml2 2.7.3 o plus recente ([http://bugs.php.net/bug.php?id=45996 problema reportate presso PHP]).
+Installation abortate.',
+	'config-using531' => 'PHP $1 non es compatibile con MediaWiki a causa de un defecto involvente parametros de referentia a <code>__call()</code>.
+Actualisa a PHP 5.3.2 o plus recente, o retrograda a PHP 5.3.0 pro remediar isto ([http://bugs.php.net/bug.php?id=50394 problema reportate presso PHP]).
+Installation abortate.',
 	'config-db-type' => 'Typo de base de datos:',
 	'config-db-host' => 'Servitor de base de datos:',
 	'config-db-host-help' => 'Si tu servitor de base de datos es in un altere servitor, entra hic le nomine o adresse IP del servitor.
@@ -4991,8 +4985,6 @@ php.iniの<code>session.gc_maxlifetime</code>を設定することで、この�
 	'config-no-session' => 'セッションのデータが損失しました！
 php.iniを確認し、<code>session.save_path</code>が適切なディレクトリに設定されていることを確かめて下さい。',
 	'config-session-path-bad' => '<code>session.save_path</code>（<code>$1</code>）が、無効または書き込み不可となっています。',
-	'config-show-help' => 'ヘルプ',
-	'config-hide-help' => 'ヘルプを隠す',
 	'config-your-language' => 'あなたの言語：',
 	'config-your-language-help' => 'インストール作業中に利用する言語を選んで下さい。',
 	'config-wiki-language' => 'ウィキの言語：',
@@ -5484,8 +5476,6 @@ Don dat Projramm för et Opsäze norr_ens aanschmiiße.',
 	'config-no-session' => 'De Daate för Ding Setzung sinn verschött jejange.
 Donn en dä Dattei <code>php.ini</code> nohloore, ov dä <code lang="en">session.save_path</code> op e zopaß Verzeijschneß zeisch.',
 	'config-session-path-bad' => 'De Dattei uß däm <code lang="en">session.save_path</code>, dat es <code>$1</code>, schingk onjöltesch udder kappott ze sin, udder mer künne nit dren schriive.',
-	'config-show-help' => 'Hölp',
-	'config-hide-help' => 'Hölp afschallde',
 	'config-your-language' => 'Ding Shprooch:',
 	'config-your-language-help' => 'Donn heh di Shprooch ußsöhke, di dat Enshtallzjuhnsprojramm kalle sull.',
 	'config-wiki-language' => 'Dem Wiki sing Shprooch:',
@@ -5651,8 +5641,6 @@ Réckelt w.e.g. <code>LocalSettings.php</code> op eng sécher Plaz a loosst dann
 Är Software kann elo net aktualiséiert ginn.
 Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
 	'config-session-error' => 'Feeler beim Starte vun der Sessioun: $1',
-	'config-show-help' => 'Hëllef',
-	'config-hide-help' => 'Hëllef verstoppen',
 	'config-your-language' => 'Är Sprooch',
 	'config-your-language-help' => 'Sicht déi Sprooch eraus déi Dir während der Installatioun benotze wëllt',
 	'config-wiki-language' => 'Sprooch vun der Wiki:',
@@ -5833,8 +5821,6 @@ $messages['mk'] = array(
 	'config-no-session' => 'Вашите сесиски податоци се изгубени!
 Погледајте во php.ini дали <code>session.save_path</code> е поставен во правилна папка.',
 	'config-session-path-bad' => 'Вашиот <code>session.save_path</code> (<code>$1</code>) е неважечки или незапислив.',
-	'config-show-help' => 'Помош',
-	'config-hide-help' => 'Сокриј помош',
 	'config-your-language' => 'Вашиот јазик:',
 	'config-your-language-help' => 'Одберете на кој јазик да се одвива инсталацијата.',
 	'config-wiki-language' => 'Јазик на викито:',
@@ -6320,9 +6306,9 @@ $messages['nl'] = array(
 	'config-desc' => 'Het installatieprogramma voor MediaWiki',
 	'config-title' => 'Installatie MediaWiki $1',
 	'config-information' => 'Informatie',
-	'config-localsettings-upgrade' => "'''Waarschuwing''': er is een bestaand bestand <code>LocalSettings.php</code> gevonden.
+	'config-localsettings-upgrade' => "'''Waarschuwing''': er is een bestaand instellingenbestand <code>LocalSettings.php</code> gevonden.
 Uw software kan bijgewerkt worden.
-Verplaats alstublieft het bestand <code>LocalSettings.php</code> naar een veilige plaatst en voer het installatieprogramma opnieuw uit.",
+Voor de waarde van <code>\$wgUpgradeKey</code> in in het vakje.",
 	'config-localsettings-key' => 'Upgradesleutel:',
 	'config-localsettings-badkey' => 'De sleutel die u hebt opgegeven is onjuist',
 	'config-localsettings-noupgrade' => "'''Fout''': er is een bestaand bestand <code>LocalSettings.php</code> aangetroffen.
@@ -6336,8 +6322,6 @@ Begin het installatieproces opnieuw.',
 	'config-no-session' => 'Uw sessiegegevens zijn verloren gegaan.
 Controleer uw php.ini en zorg dat er een juiste map is ingesteld voor <code>session.save_path</code>.',
 	'config-session-path-bad' => 'Uw <code>session.save_path</code> (<code>$1</code>) lijkt onjuist of er kan niet in geschreven worden.',
-	'config-show-help' => 'Hulp',
-	'config-hide-help' => 'Hulp verbergen',
 	'config-your-language' => 'Uw taal:',
 	'config-your-language-help' => 'Selecteer een taal om tijdens het installatieproces te gebruiken.',
 	'config-wiki-language' => 'Wikitaal:',
@@ -6461,6 +6445,10 @@ De installatie is afgebroken.",
 	'config-uploads-safe' => 'De uploadmap is beveiligd tegen het arbitrair uitvoeren van scripts.',
 	'config-uploads-not-safe' => "'''Waarschuwing:''' uw uploadmap <code>$1</code> kan gebruikt worden voor het arbitrair uitvoeren van scripts.
 Hoewel MediaWiki alle toegevoegde bestanden  controleert op bedreigingen, is het zeer aan te bevelen het [http://www.mediawiki.org/wiki/Manual:Security#Upload_security beveiligingslek te verhelpen] alvorens uploads in te schakelen.",
+	'config-brokenlibxml' => 'Uw systeem heeft een combinatie van PHP- en libxml2-versies geïnstalleerd die is foutgevoelig is en kan leiden tot onzichtbare beschadiging van gegevens in MediaWiki en andere webapplicaties.
+Upgrade naar PHP 5.2.9 of hoger en libxml2 2.7.3 of hoger! De installatie wordt afgebroken ([http://bugs.php.net/bug.php?id=45996 bij PHP gerapporteerde fout]).',
+	'config-using531' => 'PHP $1 is niet compatibel met MediaWiki vanwege een fout met betrekking tot referentieparameters met <code>__call()</code>.
+Werk uw PHP bij naar PHP 5.3.2 of hoger of werk bij naar de lagere versie PHP 5.3.0 om dit op te lossen. De installatie wordt afgebroken ([http://bugs.php.net/bug.php?id=50394 bij PHP gerapporteerde fout]).',
 	'config-db-type' => 'Databasetype:',
 	'config-db-host' => 'Databasehost:',
 	'config-db-host-help' => 'Als uw databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.
@@ -6866,8 +6854,6 @@ Start installasjonsprosessen på nytt.',
 	'config-no-session' => 'Dine øktdata ble tapt!
 Sjekk din php.ini og sørg for at <code>session.save_path</code> er satt til en passende mappe.',
 	'config-session-path-bad' => 'Din <code>session.save_path</code> (<code>$1</code>) ser ut til å være ugyldig eller uskrivbar.',
-	'config-show-help' => 'Hjelp',
-	'config-hide-help' => 'Skjul hjelp',
 	'config-your-language' => 'Ditt språk:',
 	'config-your-language-help' => 'Velg et språk å bruke under installasjonsprosessen.',
 	'config-wiki-language' => 'Wikispråk:',
@@ -7270,7 +7256,7 @@ $messages['pl'] = array(
 	'config-information' => 'Informacja',
 	'config-localsettings-upgrade' => "'''Uwaga!''' Wykryto, że plik <code>LocalSettings.php</code> istnieje.
 Oprogramowanie może zostać zaktualizowane.
-Przenieś plik <code>LocalSettings.php</code> w bezpieczne miejsce i uruchom instalator ponownie.",
+Wstaw wartość <code>\$wgUpgradeKey</code> w poniższe pole.",
 	'config-localsettings-key' => 'Klucz aktualizacji',
 	'config-localsettings-badkey' => 'Podany klucz jest nieprawidłowy',
 	'config-localsettings-noupgrade' => "'''Błąd!''' Wykryto, że plik <code>LocalSettings.php</code> istnieje.
@@ -7284,8 +7270,6 @@ Uruchom ponownie proces instalacji.',
 	'config-no-session' => 'Dane sesji zostały utracone.
 Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuje na odpowiedni katalog.',
 	'config-session-path-bad' => 'Wartość <code>session.save_path</code> (<code>$1</code>) jest nieprawidłowa lub brak możliwości zapisu do tego katalogu,',
-	'config-show-help' => 'Pomoc',
-	'config-hide-help' => 'Ukryj pomoc',
 	'config-your-language' => 'Język',
 	'config-your-language-help' => 'Wybierz język używany podczas procesu instalacji.',
 	'config-wiki-language' => 'Język wiki',
@@ -7595,8 +7579,6 @@ Ch'a anandia torna ël process d'instalassion.",
 	'config-no-session' => "Ij sò dat ëd session a son përdù!
 Ch'a contròla sò php.ini e ch'as sigura che <code>session.save_path</code> a sia ampostà ant ël dossié giust.",
 	'config-session-path-bad' => 'Tò <code>session.save_path</code> (<code>$1</code>) a smija esse pa bon o pa scrivìbil.',
-	'config-show-help' => 'Agiut',
-	'config-hide-help' => "Stërmé l'agiut",
 	'config-your-language' => 'Toa lenga:',
 	'config-your-language-help' => "Selessioné na lenga da dovré durant ël process d'instalassion.",
 	'config-wiki-language' => 'Lenga dla Wiki:',
@@ -8069,8 +8051,6 @@ Reinicie o processo de instalação.',
 	'config-no-session' => 'Os seus dados de sessão foram perdidos!
 Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um directório apropriado.',
 	'config-session-path-bad' => 'O directório em <code>session.save_path</code> (<code>$1</code>) parece ser inválido ou não permite acesso de escrita.',
-	'config-show-help' => 'Ajuda',
-	'config-hide-help' => 'Esconder ajuda',
 	'config-your-language' => 'A sua língua:',
 	'config-your-language-help' => 'Seleccione a língua que será usada durante o processo de instalação.',
 	'config-wiki-language' => 'Língua da wiki:',
@@ -8194,6 +8174,12 @@ A instalação foi abortada.",
 	'config-uploads-safe' => 'O directório por omissão para uploads está protegido contra a execução arbitrária de scripts.',
 	'config-uploads-not-safe' => "'''Aviso:''' O directório por omissão para uploads <code>$1</code>, está vulnerável à execução arbitrária de scripts.
 Embora o MediaWiki verifique a existência de ameaças de segurança em todos os ficheiros enviados, é altamente recomendado que [http://www.mediawiki.org/wiki/Manual:Security#Upload_security vede esta vulnerabilidade de segurança] antes de possibilitar uploads.",
+	'config-brokenlibxml' => 'O seu sistema tem uma combinação de versões de PHP e libxml2 conhecida por ser problemática, podendo causar corrupção de dados no MediaWiki e outras aplicações da internet.
+Actualize para o PHP versão 5.2.9 ou posterior e libxml2 versão 2.7.3 ou posterior ([http://bugs.php.net/bug.php?id=45996 incidência reportada no PHP]).
+Instalação interrompida.',
+	'config-using531' => 'O PHP $1 não é compatível com o MediaWiki devido a um problema que envolve parâmetros de referência para <code>__call()</code>.
+Para resolver este problema ([http://bugs.php.net/bug.php?id=50394 incidência reportada no PHP]), actualize para o PHP 5.3.2 ou posterior, ou reverta para o PHP 5.3.0.
+Instalação interrompida.',
 	'config-db-type' => 'Tipo da base de dados:',
 	'config-db-host' => 'Servidor da base de dados:',
 	'config-db-host-help' => 'Se a base de dados estiver num servidor separado, introduza aqui o nome ou o endereço IP desse servidor.
@@ -8543,8 +8529,6 @@ Reinicie o processo de instalação.',
 	'config-no-session' => 'Os seus dados de sessão foram perdidos!
 Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.',
 	'config-session-path-bad' => 'O seu <code>session.save_path</code> (<code>$1</code>) parece ser inválido ou estar sem acesso de escrita.',
-	'config-show-help' => 'Ajuda',
-	'config-hide-help' => 'Esconder ajuda',
 	'config-your-language' => 'A sua língua:',
 	'config-your-language-help' => 'Selecione a língua que será usada durante o processo de instalação.',
 	'config-wiki-language' => 'Língua da wiki:',
@@ -8667,13 +8651,11 @@ $messages['ru'] = array(
 	'config-no-session' => 'Данные сессии потеряны! 
 Проверьте ваш php.ini и убедитесь, что <code>session.save_path</code> установлен в соответствующий каталог.',
 	'config-session-path-bad' => 'Ваш <code>session.save_path</code> (<code>$1</code>), недействителен или не перезаписываемый.',
-	'config-show-help' => 'Справка',
-	'config-hide-help' => 'Скрыть справку',
 	'config-your-language' => 'Ваш язык:',
 	'config-your-language-help' => 'Выберите язык, на котором будет происходить процесс установки.',
 	'config-wiki-language' => 'Язык, который будет использовать вики:',
 	'config-wiki-language-help' => 'Выберите язык, на котором будут отображаться вики.',
-	'config-allow-requests' => 'Разрешить внешние запросы к MediaWiki.org',
+	'config-allow-requests' => 'Разрешить исходящие запросы к MediaWiki.org',
 	'config-back' => '← Назад',
 	'config-continue' => 'Далее →',
 	'config-page-language' => 'Язык',
@@ -8858,7 +8840,7 @@ $1
 Если вы не видите своей системы хранения данных в этом списке, следуйте инструкциям, на которые есть ссылка выше, чтобы получить поддержку.',
 	'config-support-mysql' => '* $1 — основная база данных для MediaWiki, и лучше поддерживается ([http://www.php.net/manual/en/mysql.installation.php инструкция, как собрать PHP с поддержкой MySQL])',
 	'config-support-postgres' => '* $1 — популярная открытая СУБД, альтернатива MySQL ([http://www.php.net/manual/en/pgsql.installation.php инструкция, как собрать PHP с поддержкой PostgreSQL])',
-	'config-support-sqlite' => '* $1 — это лёгковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php инструкция, как собрать PHP с поддержкой SQLite], работающей посредством PDO)',
+	'config-support-sqlite' => '* $1 — это легковесная система баз данных, имеющая очень хорошую поддержку. ([http://www.php.net/manual/en/pdo.installation.php инструкция, как собрать PHP с поддержкой SQLite], работающей посредством PDO)',
 	'config-support-oracle' => '* $1 — это коммерческая база данных масштаба предприятия. ([http://www.php.net/manual/en/oci8.installation.php Как собрать PHP с поддержкой OCI8])',
 	'config-header-mysql' => 'Настройки MySQL',
 	'config-header-postgres' => 'Настройки PostgreSQL',
@@ -9463,8 +9445,6 @@ $messages['uk'] = array(
 Ваше програмне забезпечення може бути оновлено. 
 Будь-ласка, перемістіть файл <code>LocalSettings.php</code> в іншу безпечну директорію, а потім знову запустіть програму установки.",
 	'config-session-error' => 'Помилка початку сесії: $1',
-	'config-show-help' => 'Допомога',
-	'config-hide-help' => 'Сховати допомогу',
 	'config-your-language' => 'Ваша мова:',
 	'config-your-language-help' => 'Оберіть мову для використання в процесі установки.',
 	'config-wiki-language' => 'Мова для вікі:',

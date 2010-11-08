@@ -1451,6 +1451,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 # Special:Import
 'import-upload-filename' => 'ဖိုင်အမည် -',
 'import-comment'         => 'မှတ်ချက် -',
+'importbadinterwiki'     => 'ညံ့ဖျင်းသော အင်တာဝီကီလင့်',
+'importnotext'           => 'ဗလာဖြစ်နေသည် သို့မဟုတ် ဘာစာသားမှ မရှိပါ',
+'importsuccess'          => 'ထည့်သွင်းခြင်း ပြီးဆုံးပါပြီ။',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'ကိုယ်ပိုင်စာမျက်နှာ',
@@ -1600,9 +1603,21 @@ HTML tags ကို စစ်ဆေးပါ။',
 'exif-exposuretime-format' => '$1 စက္ကန့် ($2)',
 'exif-gpsaltitude'         => 'အမြင့်',
 
+'exif-subjectdistance-value' => '$1 မီတာ',
+
+'exif-meteringmode-0'   => 'မသိရှိပါ',
+'exif-meteringmode-1'   => 'ပျမ်းမျှ',
+'exif-meteringmode-5'   => 'အဆင်',
+'exif-meteringmode-6'   => 'တစ်စိတ်တစ်ပိုင်း',
 'exif-meteringmode-255' => 'အခြား',
 
-'exif-lightsource-1' => 'နေ့အလင်း',
+'exif-lightsource-0'  => 'မသိရှိပါ',
+'exif-lightsource-1'  => 'နေ့အလင်း',
+'exif-lightsource-2'  => 'မီးချောင်းအလင်းရောင်',
+'exif-lightsource-4'  => 'ဖလက်ရှ်',
+'exif-lightsource-9'  => 'ကောင်းမွန်သော ရာသီဥတု',
+'exif-lightsource-10' => 'တိမ်ထူသော ရာသီဥတု',
+'exif-lightsource-11' => 'အရိပ်',
 
 'exif-focalplaneresolutionunit-2' => 'လက်မှတ်',
 

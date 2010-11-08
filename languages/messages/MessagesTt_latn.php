@@ -93,7 +93,7 @@ $linkTrail = '/^([a-zäçğıñöşü“»]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sıltamalarnıñ astına sızu:',
-'tog-highlightbroken'         => 'Tözelmägän sıltamalarnı <a href="" class="new">şuşılay</a> (yuqsa <a href="" class="internal">bolay</a>) kürsätelsen',
+'tog-highlightbroken'         => 'Tözelmägän sıltamalar <a href="" class="new">şuşılay</a> (yuqsa <a href="" class="internal">bolay</a>) kürsätelsen',
 'tog-justify'                 => 'Tekst kiñlek buyınça tigezlänsen',
 'tog-hideminor'               => 'Soñğı üzgärtülär isemlegendä keçe üzgärtülär yäşerelsen',
 'tog-hidepatrolled'           => 'Tikşerelgän üzgärtülär yaña üzgärtülär isemlegennän yäşerelsen.',
@@ -263,7 +263,7 @@ $messages = array(
 'vector-view-edit'               => 'Üzgärtü',
 'vector-view-history'            => 'Tarixın qaraw',
 'vector-view-view'               => 'Uqu',
-'vector-view-viewsource'         => 'Çığanaqnı qaraw',
+'vector-view-viewsource'         => 'Çığanağın qaraw',
 'actions'                        => 'Xäräkät',
 'namespaces'                     => 'İsemnär mäydanı',
 'variants'                       => 'Törlär',
@@ -1062,7 +1062,7 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'timezoneregion-europe'         => 'Awrupa',
 'timezoneregion-indian'         => 'Hind okeanı',
 'timezoneregion-pacific'        => 'Tın okean',
-'allowemail'                    => 'Başqa qullanuçılardan xatlar alırğa röxsät itü',
+'allowemail'                    => 'Başqa qullanuçılardan xatlar alırğa röxsät itelsen',
 'prefs-searchoptions'           => 'Ezläw köylänmäläre',
 'prefs-namespaces'              => 'İsemnär mäydanı',
 'defaultns'                     => 'Alaysa menä bu isemnär mäydanında ezläw',
