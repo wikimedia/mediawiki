@@ -367,6 +367,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 
 	 * @param $list Array: List of file paths in any combination of index/path 
 	 *     or path/options pairs
+	 * @param $option String: option name
+	 * @param $default Mixed: default value if the option isn't set
 	 * @return Array: List of file paths, collated by $option
 	 */
 	protected static function collateFilePathListByOption( array $list, $option, $default ) {
