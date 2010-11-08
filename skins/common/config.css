@@ -88,29 +88,6 @@
 	font-weight: bold;
 }
 
-.config-help-wrapper {
-	clear: left;
-	margin: 0 0 2em 12em;
-	padding-top: 1em;
-}
-.config-show-help, .config-hide-help {
-	margin-left: 14em;
-}
-.config-hide-help { display: none; }
-.config-show-help a, .config-hide-help a {
-	background-image: url(images/help-22.png);
-	background-position: 0 0;
-	background-repeat: no-repeat;
-	display: inline-block;
-	height: 26px;
-	padding-left: 26px;
-}
-
-.config-help-message {
-	font-size: 85%;
-	display: none;
-}
-
 .config-message {
 	display: list-item;
 	line-height: 1.5em;
