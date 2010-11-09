@@ -1473,6 +1473,7 @@ $wgMessageStructure = array(
 		'statistics-edits',
 		'statistics-edits-average',
 		'statistics-views-total',
+		'statistics-views-total-desc'
 		'statistics-views-peredit',
 		'statistics-users',
 		'statistics-users-active',
