@@ -45,7 +45,7 @@ class LocalSettingsGenerator {
 				'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
 				'wgRightsText', 'wgRightsCode', 'wgMainCacheType', 'wgEnableUploads',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
-				'wgDBpassword', 'wgUseInstantCommons'
+				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey'
 			),
 			$db->getGlobalNames()
 		);
@@ -290,6 +290,10 @@ if ( \$wgCommandLineMode ) {
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 \$wgSecretKey = \"{$this->values['wgSecretKey']}\";
+
+# Site upgrade key. Must be set to a string (default provided) to turn on the
+# web installer while LocalSettings.php is in place
+#\$wgUpgradeKey = \"{$this->values['wgUpgradeKey']}\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook', 'vector':
