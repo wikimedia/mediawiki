@@ -309,14 +309,7 @@ class DbTestRecorder extends DbTestPreviewer  {
 			or ! $this->db->tableExists( 'testitem' ) )
 		{
 			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
-			if ( $wgDBtype === 'postgres' ) {
-				$this->db->sourceFile( dirname( __FILE__ ) . '/testRunner.postgres.sql' );
-			} elseif ( $wgDBtype === 'oracle' ) {
-				$this->db->sourceFile( dirname( __FILE__ ) . '/testRunner.ora.sql' );
-			} else {
-				$this->db->sourceFile( dirname( __FILE__ ) . '/testRunner.sql' );
-			}
-
+			$this->db->sourceFile( $this->db->patchPath( 'patch-testrun.sql' ) );
 			echo "OK, resuming.\n";
 		}
 
