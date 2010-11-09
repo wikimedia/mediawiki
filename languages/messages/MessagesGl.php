@@ -702,11 +702,6 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 Por favor, agarde antes de probar outra vez.',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'Rexeitouse a súa petición de saír do sistema porque semella que a enviou un navegador roto ou a caché dun proxy.',
-'ratelimit-excluded-ips'     => ' #<!-- Deixe esta liña tal e como está --> <pre>
-# A sintaxe é a seguinte:
-#   * Todo o que vaia despois dun carácter "#" ata o final da liña é un comentario
-#   * Toda liña que non estea en branco é un enderezo IP excluído do límite
-  #</pre> <!-- Deixe esta liña tal e como está -->',
 
 # JavaScript password checks
 'password-strength'            => 'Fortaleza estimada do contrasinal: $1',

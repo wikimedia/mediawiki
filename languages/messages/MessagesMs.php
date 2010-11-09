@@ -630,11 +630,6 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.',
-'ratelimit-excluded-ips'     => ' #<!-- jangan ubah baris ini --> <pre>
-# Sintaks:
-#  * Aksara "#" sampai akhir baris diabaikan
-#  * Ungkapan nalar dibaca daripada setiap baris dan dipadankan dengan nama hos sahaja
- #</pre> <!-- jangan ubah baris ini -->',
 
 # JavaScript password checks
 'password-strength'            => 'Anggaran kekebalan kata laluan: $1',

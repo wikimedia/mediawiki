@@ -3550,9 +3550,9 @@ $messages['gsw'] = array(
 	'config-desc' => 'S MediaWiki-Inschtallationsprogramm',
 	'config-title' => 'MediaWiki $1 inschtalliere',
 	'config-information' => 'Information',
-	'config-localsettings-upgrade' => "'''Warnig:''' D Datei <code>LocalSettings.php</code> isch nit gfunde wore.
+	'config-localsettings-upgrade' => "'''Warnig:''' D Datei <code>LocalSettings.php</code> isch gfunde wore.
 Dyy Software cha aktualisiert wäre.
-D Datei <code>LocalSettings.php</code> mueß an e sichere Spycherort verschobe un derno s Inschtallationsprogramm nomol uusgfiert wäre.",
+Bitte dr Wärt vum Parameter <code>\$wgUpgradeKey</code> im Fäld aagee.",
 	'config-localsettings-key' => 'Aktualisierigsschlissel:',
 	'config-localsettings-badkey' => 'Dr Aktualisierigsschlissel, wu du aagee hesch, isch falsch.',
 	'config-localsettings-noupgrade' => "'''Fähler''': D Datei <code>LocalSettings.php</code> isch it gfunde wore.
@@ -3647,6 +3647,10 @@ MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert wo
 	'config-mbstring' => "'''Fatal: Dr Parameter <code>[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]</code> vu PHP isch aktiviert!'''
 Die Yystellig verursacht Fähler un fiert zue nit vorhärsähbare Probläm bi dr Datenyygab.
 MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert woren isch.",
+	'config-ze1' => "'''Fatal: Dr Parameter <code>[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]</code> vu PHP isch aktiviert!'''
+Die Yystellig fiert zue große Fähler bi MediaWiki.
+MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert woren isch.",
+	'config-xml-good' => 'D XML/Latin1-UTF-8 Umwandlig isch verfiegbar.',
 );
 
 /** Hebrew (עברית)
@@ -3749,7 +3753,7 @@ $messages['hsb'] = array(
 	'config-information' => 'Informacije',
 	'config-localsettings-upgrade' => "'''Warnowanje''': Dataja <code>LocalSettings.php</code> je so wotkryła.
 Twoja softwara da so aktualizować.
-Prošu přesuń <code>LocalSettings.php</code> do wěsteho městna a startuj instalciski program znowa.",
+Prošu zapodaj hódnotu za <code>\$wgUpgradeKey</code> do pola.",
 	'config-localsettings-noupgrade' => "'''Zmylk''': Dataja <code>LocalSettings.php</code> je so namakała.
 Twoja softwara njeda so tuchwilu aktualizować.
 Instalaciski program je so z přičinow wěstosće znjemónił.",
@@ -5634,9 +5638,9 @@ $messages['lb'] = array(
 	'config-desc' => 'Den Installatiounsprogramm vu MediaWiki',
 	'config-title' => 'MediaWiki $1 Installatioun',
 	'config-information' => 'Informatioun',
-	'config-localsettings-upgrade' => "'''Opgepasst''': E Fichier  <code>LocalSettings.php</code> gouf fonnt.
+	'config-localsettings-upgrade' => "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
 Är Software kann aktualiséiert ginn.
-Réckelt w.e.g. <code>LocalSettings.php</code> op eng sécher Plaz a loosst dann den Installatiounsprogramm net emol lafen.",
+Setzt w.e.g. de Wäert vum <code\$wgUpgradeKey</code> an d'Këscht.",
 	'config-localsettings-noupgrade' => "'''Feeler''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
 Är Software kann elo net aktualiséiert ginn.
 Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
@@ -5807,7 +5811,7 @@ $messages['mk'] = array(
 	'config-information' => 'Информации',
 	'config-localsettings-upgrade' => "'''Предупредување''': Востановена е податотека <code>LocalSettings.php</code>.
 Вашиот програм може да се надградува.
-Преместете го <code>LocalSettings.php</code> на некое безбедно место и пуштете ја инсталацијата повторно.",
+Во полето пополнете ја вредноста на <code>\$wgUpgradeKey</code>.",
 	'config-localsettings-key' => 'Надградбен клуч:',
 	'config-localsettings-badkey' => 'Клучот што го наведовте е погрешен',
 	'config-localsettings-noupgrade' => "'''Грешка''': Востановена е податотека <code>LocalSettings.php</code>.
@@ -8037,7 +8041,7 @@ $messages['pt'] = array(
 	'config-information' => 'Informação',
 	'config-localsettings-upgrade' => "'''Aviso''': Foi detectada a existência de um ficheiro <code>LocalSettings.php</code>.
 É possível actualizar o seu software.
-Mova o <code>LocalSettings.php</code> para um sítio seguro e execute o instalador novamente, por favor.",
+Insira o valor de <code>\$wgUpgradeKey</code> na caixa, por favor.",
 	'config-localsettings-key' => 'Chave de actualização:',
 	'config-localsettings-badkey' => 'A chave que forneceu está incorreta',
 	'config-localsettings-noupgrade' => "'''Erro''': Foi detectada a existência de um ficheiro <code>LocalSettings.php</code>.
@@ -8635,9 +8639,9 @@ $messages['ru'] = array(
 	'config-desc' => 'Инсталлятор MediaWiki',
 	'config-title' => 'Установка MediaWiki $1',
 	'config-information' => 'Информация',
-	'config-localsettings-upgrade' => "'''Внимание''': обнаружен файл <code>LocalSettings.php</code>. 
+	'config-localsettings-upgrade' => "'''Внимание'''. Обнаружен файл <code>LocalSettings.php</code>. 
 Ваше программное обеспечение возможно обновить. 
-Пожалуйста, переместите файл <code>LocalSettings.php</code> в другую безопасную директорию, а затем снова запустите программу установки.",
+Пожалуйста, заполните значение <code>\$wgUpgradeKey</code> в данном поле.",
 	'config-localsettings-key' => 'Ключ обновления:',
 	'config-localsettings-badkey' => 'Вы указали неправильный ключ',
 	'config-localsettings-noupgrade' => "'''Ошибка''': обнаружен файл <code>LocalSettings.php</code>. 

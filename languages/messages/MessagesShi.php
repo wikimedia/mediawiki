@@ -920,6 +920,7 @@ Maya Iẓḍar ad iglb zzu uzddar ar aflla tasna yad lli bdda n nttagga. Illa fl
 'pagemovedsub'             => '↓ tmmutti bla tamukrist',
 'movepage-moved'           => '↓ \'\'\'"$1" tmmutti s "$2"\'\'\'',
 'articleexists'            => '↓ Tlla yad tasna illan assaɣ zund ɣwa niɣd assaɣ llid tiwid urt iga. Sti assaɣ yaḍn tarmt.',
+'talkexists'               => '↓ Tasna tmmutti mzyan, mac tasna n umsgdal (imdiwiln) ur tmmutti acku tlla f wassaɣ ad amaynu.Illa fllak aggisnt tskrt yat s ufus nk.',
 'movedto'                  => '↓ Tmmuti s',
 'movetalk'                 => '↓ Sbadl assaɣ tasna n imdiwiln lli izdin d ɣi.',
 '1movedto2'                => '↓ Ad tmmatti z [[$1]] s [[$2]]',

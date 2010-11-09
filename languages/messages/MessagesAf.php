@@ -686,11 +686,6 @@ Indien hierdie rekening foutief geskep is, kan u hierdie boodskap ignoreer.',
 Wag asseblief alvorens u weer probeer.",
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => "U versoek om af te teken is geïgnoreer omdat dit lyk asof dit deur 'n gebreekte webleser of instaanbediener gestuur is.",
-'ratelimit-excluded-ips'     => ' #<!-- los hierdie reël soos hy is --> <pre>
-# Die sintaks is as volg:
-#   * Alle teks vanaf die karakter "#" tot die einde van die reëls word as \'n opmerking gesien
-#   * Elke nie-leë reël is \'n IP-adres waarop geen snelheidsbeperkings van toepassing is nie
- #</pre> <!-- laat hierdie reël soos hy is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Geskatte wagwoordsterkte: $1',

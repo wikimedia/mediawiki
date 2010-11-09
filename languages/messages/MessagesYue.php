@@ -615,11 +615,6 @@ $1',
 'login-throttled'            => '你已經試咗太多次登入動作。請等多一陣再試過。',
 'loginlanguagelabel'         => '語言：$1',
 'suspicious-userlogout'      => '你去登出嘅要求已經拒絕咗，因為佢可能由壞咗嘅瀏覽器或者快取代理傳送。',
-'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
-# 所用參數列示響下面：
-#   * "#" 字元後嘅內容係注釋
-#   * 非空白行中係頻率限制（rate limit）例外嘅IP地址
- #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => '預計嘅密碼強度：$1',

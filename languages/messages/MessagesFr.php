@@ -824,11 +824,6 @@ Ignorez ce message si ce compte a été créé par erreur.',
 Veuillez attendre avant d’essayer à nouveau.',
 'loginlanguagelabel'         => 'Langue : $1',
 'suspicious-userlogout'      => 'Votre demande de déconnexion a été refusée car il semble qu’elle a été envoyée par un navigateur cassé ou la mise en cache d’un proxy.',
-'ratelimit-excluded-ips'     => ' # <!-- leave this line exactly as it is --><pre>
-# La syntaxe est comme suit: 
-#   * Tout ce qui est entre un caractère "#" et la fin de la ligne est un commentaire. 
-#   * Toute ligne non vide est une adresse IP exclue de la limitation de fréquence.
- # </pre><!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Niveau de sécurité du mot de passe : $1',

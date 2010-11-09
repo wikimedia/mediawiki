@@ -711,7 +711,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|p
 'createaccountmail'          => 'melalui surel',
 'createaccountreason'        => 'Alasan:',
 'badretype'                  => 'Kata sandi yang Anda masukkan salah.',
-'userexists'                 => 'Nama pengguna yang Anda masukkan sudah dipakai.
+'userexists'                 => 'Nama pengguna yang Anda pilih sudah dipakai oleh orang lain.
 Silakan pilih nama yang lain.',
 'loginerror'                 => 'Kesalahan masuk log',
 'createaccounterror'         => 'Tidak dapat membuat akun: $1',

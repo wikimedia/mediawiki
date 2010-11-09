@@ -765,11 +765,6 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 Odota ennen kuin yrität uudelleen.',
 'loginlanguagelabel'         => 'Kieli: $1',
 'suspicious-userlogout'      => 'Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.',
-'ratelimit-excluded-ips'     => '#<!-- älä tee muutoksia tähän riviin --> <pre>
-# Syntaksi on seuraava:
-#  * Teksti "#" -merkin jälkeen rivin loppuun asti on kommenttia
-#  * Jokainen ei-tyhjä rivi on IP-osoite jota ei oteta huomioon määrärajassa
- #</pre> <!-- älä tee muutoksia tähän riviin -->',
 
 # JavaScript password checks
 'password-strength'            => 'Arvioitu salasanan vahvuus: $1',

@@ -793,11 +793,6 @@ Ignorâd ceti mèssâjo se cél compto at étâ fêt per èrror.',
 Volyéd atendre devant que tornar èprovar.',
 'loginlanguagelabel'         => 'Lengoua : $1',
 'suspicious-userlogout'      => "Voutra demanda de dèbranchement at étâ refusâ perce que semble qu’el at étâ mandâ per un navigator câsso ou ben la misa en cache d’un sèrvor mandatèro (''proxy'').",
-'ratelimit-excluded-ips'     => ' #<!-- lèssiéd ceta legne justo d’ense --> <pre>
-# La sintaxa est ceta :
-#  * Tot caractèro dês « # » tant qu’a la fin de la legne est considèrâ coment un comentèro.
-#  * Tota legne pas voueda est una adrèce IP èxcllua de la limitacion de frèquence.
- #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 
 # JavaScript password checks
 'password-strength'            => 'Nivél de sècuritât du mot de pâssa : $1',

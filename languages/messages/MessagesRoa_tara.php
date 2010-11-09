@@ -519,11 +519,6 @@ Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore
 Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel'         => 'Lénga: $1',
 'suspicious-userlogout'      => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
-'ratelimit-excluded-ips'     => "#<!-- leave this line exactly as it is --> <pre>
-# 'A sindasse jè 'a seguende:
-#  * Ogneccose apprisse 'u carattere \"#\" 'mbonde 'a fine d'a linèe jè 'nu commende
-#  * Ogne linèe non vacande jè 'n'indirizze IP escluse da 'u limite de vote
- #</pre> <!-- leave this line exactly as it is -->",
 
 # JavaScript password checks
 'password-strength'            => "Lunghezze d'a passuord stimate: $1",

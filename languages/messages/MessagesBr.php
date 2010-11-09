@@ -642,11 +642,6 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 Gortozit a-raok klask en-dro.",
 'loginlanguagelabel'         => 'Yezh : $1',
 'suspicious-userlogout'      => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
-'ratelimit-excluded-ips'     => " #<!-- laoskit al linenn-mañ tre evel m'emañ --> <pre>
-# Setu penaos emañ an ereadur :
-#  * Kement tra war-lerc'h an arouezenn \"#\" zo un urzhiad, betek penn all al linenn
-#  * Kement linenn n'eo ket goullo zo ur chomlec'h IP argaset eus bevenn an aliested
-  #</pre> <!-- laoskit al linenn-mañ tre evel m'emañ -->",
 
 # JavaScript password checks
 'password-strength'            => 'Live surentez ar ger-tremen : $1',

@@ -755,11 +755,6 @@ $2',
 Почекајте малку пред да се обидете повторно.',
 'loginlanguagelabel'         => 'Јазик: $1',
 'suspicious-userlogout'      => 'Вашето барање за одјава е одбиено бидејќи се чини дека е испратено од расипан прелистувач или кеширачки застапник (proxy).',
-'ratelimit-excluded-ips'     => '↓  #<!-- leave this line exactly as it is --> <pre>
-# Синтаксата е следнава:
-#  * Сето она што стои по знакот „#“ па до крајот на редот е коментар
-#  * Секој непразен ред е IP-адреса изземена од ограничувањето на стапката
- #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Проценета отпорност на лозинката: $1',
@@ -1927,6 +1922,7 @@ $1',
 'statistics-edits'             => 'Број на уредувања од започнувањето на {{SITENAME}}',
 'statistics-edits-average'     => 'Просечен број на уредувања по страница',
 'statistics-views-total'       => 'Вкупно посети',
+'statistics-views-total-desc'  => 'Не се вклучени прегледувања на непостоечки и специјални страници',
 'statistics-views-peredit'     => 'Посети по уредување',
 'statistics-users'             => 'Регистрирани [[Special:ListUsers|корисници]]',
 'statistics-users-active'      => 'Активни корисници',

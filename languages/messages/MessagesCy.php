@@ -588,11 +588,6 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
 'suspicious-userlogout'      => 'Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.',
-'ratelimit-excluded-ips'     => " #<!-- gadewch y llinell hwn yn union fel ag y mae --> <pre>
-# Dylai'r gystrawen fod fel hyn:
-#   * Sylw yw popeth o'r nod \"#\" hyd at ddiwedd y llinell
-#   * Cyfeiriad IP sy'n cael ei eithrio o'r cyfyngiad ar y cyfradd yw pob un llinell nag yw'n wag
- #</pre> <!-- gadewch y llinell hon yn union fel ag y mae -->",
 
 # JavaScript password checks
 'password-strength'            => 'Amcangyfrif o gryfder y cyfrinair: $1',

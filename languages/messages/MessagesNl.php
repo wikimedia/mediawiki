@@ -825,11 +825,6 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 Wacht even voordat u het opnieuw probeert.',
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => 'Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
-'ratelimit-excluded-ips'     => ' #<!-- laat deze regel zoals hij is --> <pre>
-# De syntaxis is als volgt:
-#   * Alle tekst vanaf het karakter "#" tot het einde van de regels wordt gezien als opmerking
-#   * Iedere niet-lege regel is een IP-adres waarop geen snelheidsbeperkingen van toepassing zijn
- #</pre> <!-- laat deze regel zoals hij is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Geschatte wachtwoordsterkte: $1',

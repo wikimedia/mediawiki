@@ -499,11 +499,6 @@ Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
 Thora deri baad fir se kosis karna.',
 'loginlanguagelabel'         => 'Bhasa: $1',
 'suspicious-userlogout'      => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
-'ratelimit-excluded-ips'     => ' #<!-- ii line ke yahii rakam chhorr do --> <pre>
-# Syntax ii rakam hae:
-#  * Sab chij "#" character se lae ke line ke end talak comment hae
-#  * Sab line jon ki khaali nai hae, ek IP address hae, jiske rate limit se nikal dewa gais hae
- #</pre> <!-- ii line ke yahii rakam chhorr do -->',
 
 # JavaScript password checks
 'password-strength'            => 'Password ke lambai pe anumaan: $1',

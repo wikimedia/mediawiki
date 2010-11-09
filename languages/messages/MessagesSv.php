@@ -782,11 +782,6 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 Vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.',
-'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
-# Syntaxen är följande:
-#  * Allt från ett "#" tecken till slutet av raden är en kommentar
-#  * Varje icke-tom rad är en IP-adress som exkluderas från hastighetsbegränsningen
- #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Beräknad styrka på lösenord: $1',

@@ -628,11 +628,6 @@ Tu pote ignorar iste message si iste conto ha essite create in error.',
 Per favor attende ante de probar lo novemente.',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'Le requesta de clauder le session ha essite refusate proque illo pare haber essite inviate per un navigator o proxy de cache defectuose.',
-'ratelimit-excluded-ips'     => ' #<!-- non modificar in alcun modo iste linea --> <pre>
-# Le syntaxe es lo sequente:
-#  * Toto a partir de un character "#" usque al fin del linea es un commento
-#  * Omne linea non vacue es un adresse IP excludite del limite de frequentia
-  #</pre> <!-- non modificar in alcun modo iste linea -->',
 
 # JavaScript password checks
 'password-strength'            => 'Estimation del securitate del contrasigno: $1',

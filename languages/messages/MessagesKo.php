@@ -760,11 +760,6 @@ $2',
 잠시 후에 다시 시도해주세요.',
 'loginlanguagelabel'         => '언어: $1',
 'suspicious-userlogout'      => '브라우저의 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.',
-'ratelimit-excluded-ips'     => '  #<!-- 이 줄은 그대로 두십시오 --> <pre>
-# 문법은 다음과 같습니다:
-# * "#"로 시작하는 줄은 주석입니다.
-# * 빈 줄이 아닌 줄은 제한 속도의 영향을 받지 않는 IP 주소입니다.
- #</pre> <!-- 이 줄은 그대로 두십시오 -->',
 
 # JavaScript password checks
 'password-strength'            => '예상 비밀 번호 강도: $1',

@@ -627,11 +627,6 @@ Maaari mong huwag pansinin ang mensaheng ito, kung mali ang paglikha ng kuwentan
 Maghintay po muna bago subukan uli.',
 'loginlanguagelabel'         => 'Wika: $1',
 'suspicious-userlogout'      => "Tinanggihan ang inyong kahilingang umalis sa pagkalagda dahil tila ito ay ipinadala ng sirang pambasa-basa o apoderadong pambaon (''caching proxy'')",
-'ratelimit-excluded-ips'     => '  #<!-- iwanan ang guhit na ito na ganitong-ganito --> <pre>
-# Sumusunod ang palaugnayan:
-#  * Ang lahat ng bantas na "#" hanggang sa huli ay isang puna
-#  * Bawat guhit na hindi patlang ay isang tirahan ng IP na hindi kasali sa hangganan ng antas
- #</pre> <!-- iwanan ang guhit na ito na ganitong ganito -->',
 
 # JavaScript password checks
 'password-strength'            => 'Tinatayang lakas ng hudyat: $1',

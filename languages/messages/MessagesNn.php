@@ -738,11 +738,6 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'login-throttled'            => 'Du har prøvd å logge inn for mange gonger. Ver venleg og vent før du prøver igjen.',
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Forespurnaden din om å logge ut vart nekta fordi han såg ut til å være sendt av ein øydelagt nettlesar eller mellomtenar.',
-'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
-# Syntaksen er slik:
-#   * Alt frå teiknet «#» til enden av lina er ein kommentar
-#   * Alle liner som ikkje er tomme er ei IP-adresse som er utelukka frå bregrensninga på hastigheita
- #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Utrekna passordstyrke: $1',

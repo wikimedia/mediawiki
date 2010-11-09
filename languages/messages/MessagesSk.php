@@ -755,11 +755,6 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 Prosím, počkajte predtým, než to skúsite znova.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Vaša požiadavka odhlásiť sa bola zamietnutá, pretože to vyzerá, že ju poslal pokazený prehliadač alebo proxy server.',
-'ratelimit-excluded-ips'     => ' #<!-- ponechajte tento riadok presne tak, ako je --> <pre>
-# Syntax je nasledovná:
-#  * všetko od znaku „#“ po koniec riadka je komentár
-#  * každý neprázdny riadok je IP adresa vyňatá z obmedzení rýchlosti
- #</pre> <!-- ponechajte tento riadok presne tak, ako je -->',
 
 # JavaScript password checks
 'password-strength'            => 'Odhadovaná sila hesla: $1',

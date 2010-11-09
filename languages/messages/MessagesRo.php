@@ -768,11 +768,6 @@ Ignorați acest mesaj dacă crearea contului s-a produs în urma unei greșeli.'
 Vă rugăm să așteptați până să mai încercați.',
 'loginlanguagelabel'         => 'Limba: $1',
 'suspicious-userlogout'      => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
-'ratelimit-excluded-ips'     => '  #<!-- nu modificați această linie --> <pre>
-# Sintaxa este după cum urmează:
-#  * Totul, de la caracterul „#” până la sfârșitul liniei, este un comentariu
-#  * Fiecare linie ocupată este o adresă IP exclusă de la limita de frecvență
- #</pre> <!-- nu modificați această linie -->',
 
 # JavaScript password checks
 'password-strength'            => 'Nivelul de securitate al parolei: $1',

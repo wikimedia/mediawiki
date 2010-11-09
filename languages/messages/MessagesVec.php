@@ -616,11 +616,6 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 'suspicious-userlogout'      => 'Ła to richiesta de disconesion xè sta negà parché e a senbra invià da on browser non funsionante o on proxy de caching.',
-'ratelimit-excluded-ips'     => '#<!-- no sta modificar in alcun modo sta riga --> <pre>
-# La sintassi la xe la seguente:
-#  * Tuto quel che segue un caràtere "#" el xe un comento, fin a la fine de la riga
-#  * Tute le righe mìa vode le xe un indirisso IP escluso dal limite de velocità
-   #</pre> <!-- no sta modificar in alcun modo sta riga -->',
 
 # JavaScript password checks
 'password-strength'            => 'Stima de la robusteza de la password: $1',

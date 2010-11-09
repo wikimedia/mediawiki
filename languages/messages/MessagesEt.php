@@ -748,11 +748,6 @@ Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt eirata
 Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
 'suspicious-userlogout'      => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
-'ratelimit-excluded-ips'     => '  #<!-- Jäta see rida muutmata kujule. --> <pre>
-# Süntaks:
-#  * Kõik alates märgist "#" kuni rea lõpuni on kommentaar.
-#  * Iga rida, mis ei ole tühi, on IP-aadress, millele piirang ei kehti.
-  #</pre> <!-- Jäta see rida muutmata kujule. -->',
 
 # JavaScript password checks
 'password-strength'            => 'Parooli tugevuse hinnang: $1',
