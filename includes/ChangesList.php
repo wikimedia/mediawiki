@@ -739,9 +739,9 @@ class EnhancedChangesList extends ChangesList {
 		# Add the namespace and title of the block as part of the class
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
 			# Log entry
-			$classes = Sanitizer::escapeClass( 'mw-enhanced-rc mw-changeslist-log-' . $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
+			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-' . $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
 		} else {
-			$classes = Sanitizer::escapeClass( 'mw-enhanced-rc mw-changeslist-ns' . $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
+			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns' . $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
 		}
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
@@ -1061,9 +1061,9 @@ class EnhancedChangesList extends ChangesList {
 
 		if( $rc_log_type ) {
 			# Log entry
-			$classes = Sanitizer::escapeClass( 'mw-enhanced-rc mw-changeslist-log-' . $rc_log_type . '-' . $rcObj->mAttribs['rc_title'] );
+			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-' . $rc_log_type . '-' . $rcObj->mAttribs['rc_title'] );
 		} else {
-			$classes = Sanitizer::escapeClass( 'mw-enhanced-rc mw-changeslist-ns' . $rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
+			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns' . $rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
 		}
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
