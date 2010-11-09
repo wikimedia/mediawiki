@@ -410,6 +410,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 13353) Diff3 version checks were too strict, did not detect working diff3
 * (bug 25843) Links to special pages using link= attribute on images are now
   normalised like normal links to special pages
+* (bug 21364) External links using link= attribute on images now respect
+  $wgExternalLinkTarget
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
