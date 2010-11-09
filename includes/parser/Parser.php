@@ -4694,6 +4694,9 @@ class Parser {
 								if ( preg_match( "/^($prots)$chars+$/", $value, $m ) ) {
 									$paramName = 'link-url';
 									$this->mOutput->addExternalLink( $value );
+									if ( $this->mOptions->getExternalLinkTarget() ) {
+										$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
+									}
 									$validated = true;
 								}
 							} else {

@@ -428,6 +428,7 @@ class Linker {
 	 *          caption         HTML for image caption.
 	 *          link-url        URL to link to
 	 *          link-title      Title object to link to
+	 *          link-target     Value for the target attribue, only with link-url
 	 *          no-link         Boolean, suppress description link
 	 *
 	 * @param $handlerParams Array: associative array of media handler parameters, to be passed
@@ -552,6 +553,9 @@ class Linker {
 		$mtoParams = array();
 		if ( isset( $frameParams['link-url'] ) && $frameParams['link-url'] !== '' ) {
 			$mtoParams['custom-url-link'] = $frameParams['link-url'];
+			if ( isset( $frameParams['link-target'] ) ) {
+				$mtoParams['custom-target-link'] = $frameParams['link-target'];
+			}
 		} elseif ( isset( $frameParams['link-title'] ) && $frameParams['link-title'] !== '' ) {
 			$mtoParams['custom-title-link'] = $this->normaliseSpecialPage( $frameParams['link-title'] );
 		} elseif ( !empty( $frameParams['no-link'] ) ) {
