@@ -21,7 +21,7 @@
 			string = mw.config.get( 'mw.log.prefix' ) + '> ' + string;		
 		}
 		// Try to use an existing console
-		if ( typeof window.console !== 'undefined' && typeof window.console.log !== 'function' ) {
+		if ( typeof window.console !== 'undefined' && typeof window.console.log == 'function' ) {
 			window.console.log( string );
 		} else {
 			// Set timestamp
