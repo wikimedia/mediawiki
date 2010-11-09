@@ -1,4 +1,4 @@
-<?php
+v<?php
 /**
  * Base core installer.
  *
@@ -311,14 +311,9 @@ abstract class CoreInstaller extends Installer {
 	 * @return array
 	 */
 	protected function getInstallSteps() {
-		if( $this->getVar( '_UpgradeDone' ) ) {
-			$this->installSteps = array( 'localsettings' );
-		}
-
 		if( count( $this->getVar( '_Extensions' ) ) ) {
 			array_unshift( $this->installSteps, 'extensions' );
 		}
-
 		return $this->installSteps;
 	}
 
