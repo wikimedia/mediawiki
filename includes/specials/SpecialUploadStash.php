@@ -16,15 +16,7 @@
  * @ingroup Upload
  */
 
-class SpecialUploadStash extends SpecialPage {
-
-	static $HttpErrors = array( // FIXME: Use OutputPage::getStatusMessage() --RK
-		400 => 'Bad Request',
-		403 => 'Access Denied',
-		404 => 'File not found',
-		500 => 'Internal Server Error',
-	);
-
+class SpecialUploadStash extends UnlistedSpecialPage {
 	// UploadStash
 	private $stash;
 
@@ -35,7 +27,7 @@ class SpecialUploadStash extends SpecialPage {
 	// $subpage is everything in the URL after Special:UploadStash
 	// FIXME: These parameters don't match SpecialPage::__construct()'s params at all, and are unused --RK
 	public function __construct( $request = null, $subpage = null ) {
-                parent::__construct( 'UploadStash', 'upload' );
+		parent::__construct( 'UploadStash', 'upload' );
 		$this->stash = new UploadStash();
 	}
 
@@ -44,7 +36,7 @@ class SpecialUploadStash extends SpecialPage {
 	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
 	 * 
 	 * @param {String} $subPage: subpage, e.g. in http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
-  	 * @return {Boolean} success 
+	 * @return {Boolean} success 
 	 */
 	public function execute( $subPage ) {
 		global $wgOut, $wgUser;
@@ -73,7 +65,7 @@ class SpecialUploadStash extends SpecialPage {
 			$code = 500;
 		}
 			
-		wfHttpError( $code, self::$HttpErrors[$code], $e->getCode(), $e->getMessage() );
+		wfHttpError( $code, OutputPage::getStatusMessage( $code ), $e->getMessage() );
 		return false;
 	}
 
@@ -89,8 +81,8 @@ class SpecialUploadStash extends SpecialPage {
 		// the stash key doesn't have an extension 
 		$key = $subPage;
 		$n = strrpos( $subPage, '.' );
-                if ( $n !== false ) {
-                        $key = $n ? substr( $subPage, 0, $n ) : $subPage;
+		if ( $n !== false ) {
+			$key = $n ? substr( $subPage, 0, $n ) : $subPage;
 		}
 
 		try {
@@ -119,7 +111,7 @@ class SpecialUploadStash extends SpecialPage {
 			}
 			$file = $thumbnailImage->thumbnailFile;
 		}
- 
+
 		return $file;
 	}
 
@@ -127,7 +119,7 @@ class SpecialUploadStash extends SpecialPage {
 	 * Output HTTP response for file
 	 * Side effects, obviously, of echoing lots of stuff to stdout.
 	 * @param {File} file
-	 */		
+	 */
 	private function outputFile( $file ) { 
 		header( 'Content-Type: ' . $file->getMimeType(), true );
 		header( 'Content-Transfer-Encoding: binary', true );
@@ -137,4 +129,3 @@ class SpecialUploadStash extends SpecialPage {
 		readfile( $file->getPath() );
 	}
 }
-
