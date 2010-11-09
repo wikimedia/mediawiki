@@ -396,10 +396,8 @@ class MysqlInstaller extends DatabaseInstaller {
 	public function preInstall() {
 		# Add our user callback to installSteps, right before the tables are created.
 		$callback = array(
-			array(
-				'name' => 'user',
-				'callback' => array( $this, 'setupUser' ),
-			)
+			'name' => 'user',
+			'callback' => array( $this, 'setupUser' ),
 		);
 		$this->parent->addInstallStepFollowing( "tables", $callback );
 	}

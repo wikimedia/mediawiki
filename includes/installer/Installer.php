@@ -337,24 +337,6 @@ abstract class Installer {
 	 *
 	 * @return Status
 	 */
-	public function installDatabase( DatabaseInstaller &$installer ) {
-		if( !$installer ) {
-			$type = $this->getVar( 'wgDBtype' );
-			$status = Status::newFatal( "config-no-db", $type );
-		} else {
-			$status = $installer->setupDatabase();
-		}
-
-		return $status;
-	}
-
-	/**
-	 * TODO: document
-	 *
-	 * @param $installer DatabaseInstaller
-	 *
-	 * @return Status
-	 */
 	public function installTables( DatabaseInstaller &$installer ) {
 		$status = $installer->createTables();
 
@@ -363,17 +345,6 @@ abstract class Installer {
 		}
 		
 		return $status;
-	}
-
-	/**
-	 * TODO: document
-	 *
-	 * @param $installer DatabaseInstaller
-	 *
-	 * @return Status
-	 */
-	public function installInterwiki( DatabaseInstaller &$installer ) {
-		return $installer->populateInterwikiTable();
 	}
 
 	/**
