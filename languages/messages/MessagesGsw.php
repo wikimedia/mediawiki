@@ -595,11 +595,6 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
 'loginlanguagelabel'         => 'Sproch: $1',
 'suspicious-userlogout'      => 'Dyy Versuech di abzmälde isch abbroche wore, wel s uusgsäh het, wie wänn s vun eme bschedigte Browser oder eme Cacheproxy uus gsändet woren isch.',
-'ratelimit-excluded-ips'     => ' #<!-- Die Zyyle derf nit gänderet wäre! --> <pre>
-#  Syntax:
-#   * Alles vun eme #-Zeiche bis zum Änd vu dr Zyyle isch e Kommentar
-#   * Jedi nit-lääri Zyyle isch e IP-Adräss, wu vu dr Begränzig uusgnuu isch
- #</pre> <!-- Die Zyyle derf nit gänderet wäre! -->',
 
 # JavaScript password checks
 'password-strength'            => 'Gschätzti Passwortsterki: $1',

@@ -776,11 +776,6 @@ Možete zanemariti ovu poruku ako je suradnički račun stvoren nenamjerno.',
 Molimo Vas da pričekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaš zahtjev za odjavu je odbijen jer to izgleda kao da je poslan preko pokvarenog preglednika ili keširanog posrednika (proxyja).',
-'ratelimit-excluded-ips'     => '#<!-- leave this line exactly as it is --><pre>
-# Sintaksa je sljedeća: 
-# * Sve od "#" znaka do kraja linije je komentar 
-# * U svakom ne-prazni redak treba/može biti IP adresa isključena od vremenskog ograničenja pristupa
-#</pre><!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Procijenjena snaga lozinke: $1',

@@ -821,11 +821,6 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 Počkejte chvíli, než to zkusíte znovu.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
-'ratelimit-excluded-ips'     => ' #<!-- Nechte tento řádek přesně tak jak je --> <pre>
-# Syntaxe je následující:
-#  * Všechno od znaku „#“ do konce řádku je komentář
-#  * Každý neprázdný řádek je IP adresa, na kterou se nevztahuje rychlostní omezení
- #</pre> <!-- Nechte tento řádek přesně tak jak je -->',
 
 # JavaScript password checks
 'password-strength'            => 'Odhad síly hesla: $1',

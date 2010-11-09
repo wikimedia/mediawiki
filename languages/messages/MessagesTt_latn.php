@@ -567,11 +567,6 @@ Xisap yazması tözü xata bulsa, bu xatnı onıtığız.',
 Yañadan qabatlağançı beraz kötüegez sorala.',
 'loginlanguagelabel'         => 'Tel: $1',
 'suspicious-userlogout'      => 'Sezneñ eşçänlekne beterü sorawığız kire qağıldı, çönki ul yalğış brauzer yäisä keşlawçı proksi aşa cibärelerge mömkin.',
-'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
-# Sintaksis taswirlaması:
-#   *  "#" tamğısınnan başlanuçı yullar, bäxäsleklär dip sanalalar
-#   * Härber buş bulmağan yul IP-yullama dip sanala
- #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Sersüzneñ sıyfatın tikşerü: $1',

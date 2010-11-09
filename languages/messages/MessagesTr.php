@@ -766,11 +766,6 @@ Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoks
 Lütfen tekrar denemeden önce bekleyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
-'ratelimit-excluded-ips'     => ' #<!-- bu satırı olduğu gibi bırakın --> <pre>
-# Sözdizimi aşağıdaki gibidir:
-#   * Bir "#" karakterinden satır sonuna kadar her şey yorumdur
-#   * Her boş olmayan satır oran sınırı dışında tutulan bir IP adresidir
- #</pre> <!-- bu satırı olduğu gibi bırakın -->',
 
 # JavaScript password checks
 'password-strength'            => 'Tahmini şifre güçlüğü: $1',

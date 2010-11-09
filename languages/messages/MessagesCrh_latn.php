@@ -571,11 +571,6 @@ Siz şimdi oturım açıp paroliñizni deñiştirmek kereksiñiz.
 Lütfen, qayta kirmezden evel biraz bekleñiz.',
 'loginlanguagelabel'         => 'Til: $1',
 'suspicious-userlogout'      => 'Çıqış istegeniñiz red etildi, çünki bozuq bir brauzer ya da keşleyici proksi tarafından yollanğan kibi körüne.',
-'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
-# Sintaksis aşağıdaki kibi:
-#   * Bir "#" işaretinden satır soñunace er şey tefsirdir
-#   * Er boş olmağan satır surat sıñırı tışında tutulğan bir IP adresidir
- #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Tahminiy parol quveti: $1',

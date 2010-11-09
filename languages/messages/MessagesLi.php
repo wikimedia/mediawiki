@@ -628,11 +628,6 @@ Negeer dit berich as deze gebroeker zonger dien medewete is aangemaak.',
 Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'loginlanguagelabel'         => 'Taol: $1',
 'suspicious-userlogout'      => "Die verzeuk óm aaf te mèlje is genegeerdj gewaoren, ómdet 't liek det 't verzeuk is verzónje dórch 'ne browser of cacheproxy dae kepót is.",
-'ratelimit-excluded-ips'     => " #<!-- laot deze regel wie d'r is --> <pre>
-# De syntaxis is es volg:
-#   * Alle teks vanaaf 't \"#\"-teike toet 't ènj van de regels weurt gezeen es opmèrking
-#   * Edere neet-laege regel is 'n IP-adres woróp gein snelheidsbepèrkinge van toepassing zeen
- #</pre> <!-- laot deze regel wie d'r is -->",
 
 # JavaScript password checks
 'password-strength'            => 'Gesjatdje wachwaordjstèrkdje: $1',

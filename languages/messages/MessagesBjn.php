@@ -498,11 +498,6 @@ Pian kawa kada mahual pasan ini, amun paulahan akun ini adalah kasalahan.',
 Muhun hadangi dahulu sapandang hanyar cubai pulang.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Parmintaan Pian hagan kaluar log kada ditarima karana nangkaya dikirim matan panjalajah web rakai atawa tatangkap proxy.',
-'ratelimit-excluded-ips'     => ' #<!-- tinggalakan baris ini parsis kaini --> <pre>
-# Syntax adalah sawagai baumpat:
-#   * Satiap banda matan sabuah "#" karaktir ka pauncitan matan garis adalah sabuah kumin
-#   *Satiap garis kada-kusung adalah sabuah alamat IP kada tamasuk matan batas dabit
- #</pre> <!-- tinggalakan baris ini parsis kaini -->',
 
 # JavaScript password checks
 'password-strength'            => 'Manangguhi kakuatan katasunduk: $1',
@@ -1207,6 +1202,13 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'action-move'               => 'pindahakan tungkaran ini',
 'action-move-subpages'      => 'pindahakan tungkaran ini, wan sub-tutungkarannya',
 'action-move-rootuserpages' => 'mamindahakan akar tutungkaran pamuruk',
+'action-movefile'           => 'pindahakan barakas ini',
+'action-upload'             => 'hunggahakan barakas ini',
+'action-reupload'           => 'manulistindih barakas nang ada',
+'action-upload_by_url'      => 'hunggahakan barakas ini matan sabuah URL',
+'action-writeapi'           => 'puruk panulisan API',
+'action-delete'             => 'hapus tungkaran ini',
+'action-deleterevision'     => 'hapus ralatan ini',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|parubahan|parubahan}}',

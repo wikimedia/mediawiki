@@ -728,11 +728,6 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'login-throttled'            => 'Nisyu kutitachá kay rakiqunapaq yaykuna rimawan ñaqha yaykuykachanki. Ama hina kaspa, suyariy manaraq musuqmanta yaykuykachaspa.',
 'loginlanguagelabel'         => 'Rimay: $1',
 'suspicious-userlogout'      => "Lluqsiy mañakuyniykiqa mananchasqam karqan, waqllisqa wamp'unamanta icha pakaq proksimanta kachasqa kaspanchá.",
-'ratelimit-excluded-ips'     => "#<!-- leave this line exactly as it is --> <pre>
-# Sintaksisninqa kay hinam:
-#  * \"#\" sananchamanta siq'ip puchunkama tukuyqa willapunallam
-#  * Llapa mana ch'usaq siq'iqa IP huchham, achura saywachanamanta raqpasqa
- #</pre> <!-- leave this line exactly as it is -->",
 
 # JavaScript password checks
 'password-strength'            => 'Yaykuna rimap chhikaynasqa kallpan: $1',

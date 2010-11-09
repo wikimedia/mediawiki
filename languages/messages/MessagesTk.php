@@ -517,11 +517,6 @@ Eger-de ulanyjy hasabyny ýalňyşlyk bilen döreden bolsaňyz, onda bu habarla�
 Gaýtadan synanyşmankaňyz garaşmagyňyzy haýyş edýäris.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Sessiýa ýapmak boýunça talabyňyz ret edildi, sebäbi ol nädogry brauzer ýa-da keşleýji proksi tarapyndan iberilen ýaly-la.',
-'ratelimit-excluded-ips'     => ' #<!-- bu setiri şu durşuna goýuň --> <pre>
-# Sintaksis aşakdaky ýalydyr:
-#   * "#" simwolyndan setiriň soňuna çenli ähli zat teswir hasaplanylýar
-#   * Boş däl her bir setir tizlik çäginde däl bir IP adresidir
- #</pre> <!-- bu setiri şu durşuna goýuň -->',
 
 # JavaScript password checks
 'password-strength'            => 'Çak edilýän parol güýji: $1',

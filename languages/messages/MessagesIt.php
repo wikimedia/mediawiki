@@ -722,11 +722,6 @@ Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 Riprovare più tardi.',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
-'ratelimit-excluded-ips'     => ' # <!-- non modificare in alcun modo questa riga --><pre>
-# La sintassi è la seguente: 
-#   * Quanto compare tra un carattere "#" fino alla fine della riga è un commento 
-#   * Ogni riga non vuota è un indirizzo IP escluso dal limite di velocità 
- # </pre><!-- non modificare in alcun modo questa riga -->',
 
 # JavaScript password checks
 'password-strength'            => 'Robustezza stimata della password: $1',

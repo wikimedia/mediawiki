@@ -12,6 +12,7 @@
  * @author Church of emacs
  * @author DaSch
  * @author Duesentrieb
+ * @author Giftpflanze
  * @author Imre
  * @author Jan Luca
  * @author Jens Liebenau
@@ -536,7 +537,7 @@ $messages = array(
 'searcharticle'     => 'Seite',
 'history'           => 'Versionen',
 'history_short'     => 'Versionen/Autoren',
-'updatedmarker'     => 'geändert seit meinem letztem Besuch',
+'updatedmarker'     => 'geändert seit meinem letzten Besuch',
 'info_short'        => 'Information',
 'printableversion'  => 'Druckversion',
 'permalink'         => 'Permanenter Link',
@@ -830,11 +831,6 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 Bitte warte, bevor du es erneut probierst.',
 'loginlanguagelabel'         => 'Sprache: $1',
 'suspicious-userlogout'      => 'Deine Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.',
-'ratelimit-excluded-ips'     => ' #<!-- Diese Zeile darf nicht verändert werden! --> <pre>
-#  Syntax:
-#  * Alles von einem #-Zeichen bis zum Ende der Zeile ist ein Kommentar
-#  * Jede nicht-leere Zeile ist eine IP-Adresse, die von der Begrenzung ausgenommen ist
- #</pre> <!-- Diese Zeile darf nicht verändert werden! -->',
 
 # JavaScript password checks
 'password-strength'            => 'Geschätzte Passwortstärke: $1',
@@ -1965,6 +1961,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'statistics-edits'             => 'Seitenbearbeitungen',
 'statistics-edits-average'     => 'Bearbeitungen pro Seite im Durchschnitt',
 'statistics-views-total'       => 'Seitenaufrufe gesamt',
+'statistics-views-total-desc'  => 'Aufrufe von nich existierenden Seiten und Spezialseiten werden nicht berücksichtigt',
 'statistics-views-peredit'     => 'Seitenaufrufe pro Bearbeitung',
 'statistics-users'             => 'Registrierte [[Special:ListUsers|Benutzer]]',
 'statistics-users-active'      => 'Aktive Benutzer',

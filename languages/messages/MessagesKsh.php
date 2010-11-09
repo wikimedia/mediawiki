@@ -735,11 +735,6 @@ Waat e Wielsche, ih dat De et widder versöhks.',
 'loginlanguagelabel'         => 'Sproch: $1',
 'suspicious-userlogout'      => "Do bes '''nit''' ußjelogg.
 Et süht us, wi wann ene kappodde Brauser udder <i lang=\"en\">proxy</i>ẞööver met Zwescheschpeischer noh däm Ußlogge jefrooch hät.",
-'ratelimit-excluded-ips'     => ' #<!-- Lohß di Reih he jenou esu wi se es --> <pre>
-# Dä Opbou es:
-# * Alles fun enem #-Zeiche bes an et Engk fun ene Reih es ene Kommentaa för de Minsche
-# * Jede Reih met jet dren es en IP-Address, di vum xxxxxxxxx ußjeschloße es
-  #</pre> <!-- Lohß di Reih he jenou esu wi se es -->',
 
 # JavaScript password checks
 'password-strength'            => 'Dat Passwoot $1 (jeschäz)',

@@ -657,11 +657,6 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 Si us plau, esperi abans de tornar-ho a intentar.",
 'loginlanguagelabel'         => 'Llengua: $1',
 'suspicious-userlogout'      => "S'ha denegat la vostra petició per tancar la sessió ja què sembla que va ser enviada per un navegador defectuós o un proxy cau.",
-'ratelimit-excluded-ips'     => "#<!-- deixeu aquesta línia tal com està --> <pre>
-# La sintaxí és la següent:
-#   * Totes les línies que comencen amb un # es consideren comentaris
-#   * Tota línia no buida és una adreça IP que s'exclou del càlcul del límit de velocitat
-#</pre> <!-- deixeu aquesta línia tal com està -->",
 
 # JavaScript password checks
 'password-strength'            => 'Força estimada de la contrasenya: $1',

@@ -518,11 +518,6 @@ $2',
 請候再試之。',
 'loginlanguagelabel'         => '語：$1',
 'suspicious-userlogout'      => '爾欲無離也，可由壞瀏覽器或快枝代理呈送之。',
-'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
-# 參數可用之：
-#   * "#" 字元後乃注釋
-#   * 非空白行中乃頻率限制（rate limit）例外之IP地址
- #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => '預之符節強度：$1',

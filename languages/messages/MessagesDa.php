@@ -651,11 +651,6 @@ Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
 Vent venligst før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
 'suspicious-userlogout'      => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
-'ratelimit-excluded-ips'     => '#<!-- leave this line exactly as it is --> <pre>
-# Syntax er som følger:
-# * Alt fra et "#"-tegn til slutningen af linjen er en kommentar
-# * Alle ikke-tomme linjer er en IP-adresse udelukket fra hastigheds begrænsningen
-#</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Anslået passwordstyrke: $1',

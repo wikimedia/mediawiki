@@ -770,11 +770,6 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel'         => 'Lingvo: $1',
 'suspicious-userlogout'      => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
-'ratelimit-excluded-ips'     => ' # <!-- leave this line exactly as it is --><pre>
-# Jen la sintakso:
-#  * Ĉiu de la karaktero "#" ĝis la fino de la linio estas komento
-#  * Ĉiu nemalplena linio estas IP-adreso ekskludita de la rapidlimo
- # </pre><!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => 'Taksita pasvorta forteco: $1',

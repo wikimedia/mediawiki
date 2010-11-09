@@ -676,11 +676,6 @@ $2',
 请稍等多一会再试。',
 'loginlanguagelabel'         => '语言：$1',
 'suspicious-userlogout'      => '您登出的要求已经被拒绝，因为它可能是由已损坏的浏览器或者缓存代理传送。',
-'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
-# 所用参数如下：
-#   * "#" 字符后的内容全部是注释内容
-#   * 非空白行中为频率限制（rate limit）例外的IP地址
- #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => '预估密码强度： $1',

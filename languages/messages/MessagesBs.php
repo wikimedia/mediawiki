@@ -758,11 +758,6 @@ Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
 Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
-'ratelimit-excluded-ips'     => ' #<!-- ostavite ovaj red onakav kakav je  --> <pre>
-# Sintaksa je slijedeća:
-#   * Sve od znaka "#" do kraja reda je komentar
-#   * Svaki neprazni red je IP adresa isključena od ograničenja brzine
- #</pre> <!-- ostavite ovaj red onakav kakav je -->',
 
 # JavaScript password checks
 'password-strength'            => 'Procijenjena snaga šifre: $1',
@@ -1926,6 +1921,7 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'statistics-edits'             => 'Broj izmjena od kako je instalirana {{SITENAME}}',
 'statistics-edits-average'     => 'Prosječno izmjena po stranici',
 'statistics-views-total'       => 'Ukupno pregleda',
+'statistics-views-total-desc'  => 'Pregledi nepostojećih stranica i posebnih stranica nisu uključeni',
 'statistics-views-peredit'     => 'Pogleda po izmjeni',
 'statistics-users'             => 'Registrovani [[Special:ListUsers|korisnici]]',
 'statistics-users-active'      => 'Aktivni korisnici',

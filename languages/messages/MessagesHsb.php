@@ -604,11 +604,6 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'login-throttled'            => 'Sy přehusto spytał so přizjewić. Počakaj prošu, prjedy hač znowa spytaš.',
 'loginlanguagelabel'         => 'Rěč: $1',
 'suspicious-userlogout'      => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
-'ratelimit-excluded-ips'     => ' #<!-- wostaj linku njezměnjenu --> <pre>
-# Syntaksa je slědowaca:
-# * Wšo wot znamješka "#" hač do kónca linki je komentar
-# * Kóžda popisana linka je IP-adresa, kotraž je z limita wuwzata
- #</pre> <!-- wostaj linku njezměnjenu -->',
 
 # JavaScript password checks
 'password-strength'            => 'Trochowana hesłowa sylnosć: $1',

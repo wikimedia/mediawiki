@@ -796,11 +796,6 @@ Puedes ignorar este mensaje si esta cuenta fue creada erróneamente.',
 'login-throttled'            => 'Has intentado demasiadas veces iniciar sesión. Por favor espera antes de intentarlo nuevamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => 'Su solicitud de desconexión ha sido denegada debido a que parece que ésta ha sido envidada desde un navegador defectuoso o un proxy caché.',
-'ratelimit-excluded-ips'     => ' #<!-- Deja esta línea exactamente como esta --> <pre>
-# La sintaxis es la siguiente:
-#  * Todo desde el carácter "#" hasta el final de la línea es un comentario
-#  * Todo línea no vacía es una dirección IP excluida del límite de frecuencia
- #</pre> <!-- Deja esta línea exactamente como esta -->',
 
 # JavaScript password checks
 'password-strength'            => 'Dificultad estimada de la contraseña: $1',

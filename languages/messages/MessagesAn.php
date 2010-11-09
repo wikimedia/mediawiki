@@ -590,11 +590,6 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'login-throttled'            => 'Ha feito masiaus intentos ta encetar una sesión. Por favor, aspere antes de prebar de fer-lo unatra vegada.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => "S'ha denegau a suya demanda de zarrar a sesión ya que pareix que la ninvió un navegador defectuoso u bell proxy amagau.",
-'ratelimit-excluded-ips'     => ' #<!-- leave this line exactly as it is --> <pre>
-# A sintaxi ye asinas:
-#  * Tot o que bi ha dende un carácter "#" dica a fin d\'a linia ye un comentario
-#  * Qualsiquier linia que no sía en blanco corresponde a una adreza IP excluyida d\'o limite de velocidat
-   #</pre> <!-- leave this line exactly as it is -->',
 
 # JavaScript password checks
 'password-strength'            => "Livel de seguranza d'a contrasenya: $1",

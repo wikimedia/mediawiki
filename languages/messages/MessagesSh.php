@@ -515,11 +515,6 @@ Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
 Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.',
-'ratelimit-excluded-ips'     => ' #<!-- ostavite ovaj red onakav kakav je  --> <pre>
-# Sintaksa je slijedeća:
-#   * Sve od znaka "#" do kraja reda je komentar
-#   * Svaki neprazni red je IP adresa isključena od ograničenja brzine
- #</pre> <!-- ostavite ovaj red onakav kakav je -->',
 
 # JavaScript password checks
 'password-strength'            => 'Procijenjena snaga lozinke/zaporke: $1',
