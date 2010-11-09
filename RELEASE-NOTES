@@ -412,6 +412,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   normalised like normal links to special pages
 * (bug 21364) External links using link= attribute on images now respect
   $wgExternalLinkTarget
+* (bug 17789) Added a note to the total views on Special:Statistics saying that
+  is doesn't count non-existing pages and special pages
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

@@ -187,6 +187,7 @@ class SpecialStatistics extends SpecialPage {
 						'statistics-users-active-desc',
 						$wgLang->formatNum( $wgActiveUserDays ) );
 	}
+
 	private function getGroupStats() {
 		global $wgGroupPermissions, $wgImplicitGroups, $wgLang, $wgUser;
 		$sk = $wgUser->getSkin();
@@ -233,6 +234,7 @@ class SpecialStatistics extends SpecialPage {
 		}
 		return $text;
 	}
+
 	private function getViewsStats() {
 		global $wgLang;
 		return Xml::openElement( 'tr' ) .
@@ -240,12 +242,13 @@ class SpecialStatistics extends SpecialPage {
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( wfMsgExt( 'statistics-views-total', array( 'parseinline' ) ),
 					$wgLang->formatNum( $this->views ),
-						array ( 'class' => 'mw-statistics-views-total' ) ) .
+						array ( 'class' => 'mw-statistics-views-total' ), 'statistics-views-total-desc' ) .
 				$this->formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
 					$wgLang->formatNum( sprintf( '%.2f', $this->edits ? 
 						$this->views / $this->edits : 0 ) ),
 						array ( 'class' => 'mw-statistics-views-peredit' ) );
 	}
+
 	private function getMostViewedPages() {
 		global $wgLang, $wgUser;
 		$text = '';
@@ -284,7 +287,7 @@ class SpecialStatistics extends SpecialPage {
 			}
 		return $text;
 	}
-	
+
 	private function getOtherStats( $stats ) {
 		global $wgLang;
 
