@@ -88,18 +88,11 @@ abstract class CoreInstaller extends Installer {
 	);
 
 	/**
-	 * Steps for installation.
+	 * Extra steps for installation, for things like DatabaseInstallers to modify
 	 *
 	 * @var array
 	 */
-	protected $installSteps = array(
-		'database',
-		'tables',
-		'interwiki',
-		'secretkey',
-		'sysop',
-		'mainpage',
-	);
+	protected $extraInstallSteps = array();
 
 	/**
 	 * Known object cache types and the functions used to test for their existence.
@@ -288,12 +281,9 @@ abstract class CoreInstaller extends Installer {
 	/**
 	 * Installs the auto-detected extensions.
 	 *
-	 * @TODO: this only requires them? That's all it's supposed to do. Poorly
-	 * named step.
-	 *
 	 * @return Status
 	 */
-	protected function installExtensions() {
+	protected function includeExtensions() {
 		$exts = $this->getVar( '_Extensions' );
 		$path = $this->getVar( 'IP' ) . '/extensions';
 
@@ -308,13 +298,31 @@ abstract class CoreInstaller extends Installer {
 	 * Get an array of install steps. These could be a plain key like the defaults
 	 * in $installSteps, or could be an array with a name and a specific callback
 	 *
+	 * @param $installer DatabaseInstaller so we can make callbacks
 	 * @return array
 	 */
-	protected function getInstallSteps() {
+	protected function getInstallSteps( DatabaseInstaller &$installer ) {
+		$installSteps = array(
+			array( 'name' => 'database',  'callback' => array( $installer, 'setupDatabase' ) ),
+			array( 'name' => 'tables',    'callback' => array( $this, 'installTables' ) ),
+			array( 'name' => 'interwiki', 'callback' => array( $installer, 'populateInterwikiTable' ) ),
+			array( 'name' => 'secretkey', 'callback' => array( $this, 'generateSecretKey' ) ),
+			array( 'name' => 'sysop',     'callback' => array( $this, 'createSysop' ) ),
+			array( 'name' => 'mainpage',  'callback' => array( $this, 'createMainpage' ) ),
+		);
 		if( count( $this->getVar( '_Extensions' ) ) ) {
-			array_unshift( $this->installSteps, 'extensions' );
+			array_unshift( $installSteps, 
+				array( 'extensions', array( $this, 'includeExtensions' ) )
+			);
 		}
-		return $this->installSteps;
+		foreach( $installSteps as $idx => $stepObj ) {
+			if( isset( $this->extraInstallSteps[ $stepObj['name'] ] ) ) {
+				$tmp = array_slice( $installSteps, 0, $idx );
+				$tmp[] = $this->extraInstallSteps[ $stepObj['name'] ];
+				$installSteps = array_merge( $tmp, array_slice( $installSteps, $idx ) );
+			}
+		}
+		return $installSteps;
 	}
 
 	/**
@@ -329,37 +337,27 @@ abstract class CoreInstaller extends Installer {
 		$installResults = array();
 		$installer = $this->getDBInstaller();
 		$installer->preInstall();
+		$steps = $this->getInstallSteps( $installer );
+		foreach( $steps as $stepObj ) {
+			$name = $stepObj['name'];
+			call_user_func_array( $startCB, array( $name ) );
 
-		foreach( $this->getInstallSteps() as $stepObj ) {
-			$step = is_array( $stepObj ) ? $stepObj['name'] : $stepObj;
-			call_user_func_array( $startCB, array( $step ) );
+			// Perform the callback step
+			$status = call_user_func_array( $stepObj['callback'], array( &$installer ) );
 
-			# Call our working function
-			if ( is_array( $stepObj ) ) {
-				# A custom callaback
-				$callback = $stepObj['callback'];
-				$status = call_user_func_array( $callback, array( $installer ) );
-			} else {
-				# Boring implicitly named callback
-				$func = 'install' . ucfirst( $step );
-				$status = $this->{$func}( $installer );
-			}
-
-			call_user_func_array( $endCB, array( $step, $status ) );
-			$installResults[$step] = $status;
+			// Output and save the results
+			call_user_func_array( $endCB, array( $name, $status ) );
+			$installResults[$name] = $status;
 
 			// If we've hit some sort of fatal, we need to bail.
 			// Callback already had a chance to do output above.
 			if( !$status->isOk() ) {
 				break;
 			}
-
 		}
-
 		if( $status->isOk() ) {
 			$this->setVar( '_InstallDone', true );
 		}
-
 		return $installResults;
 	}
 
@@ -369,7 +367,7 @@ abstract class CoreInstaller extends Installer {
 	 *
 	 * @return Status
 	 */
-	protected function installSecretKey() {
+	protected function generateSecretKey() {
 		if ( wfIsWindows() ) {
 			$file = null;
 		} else {
@@ -403,7 +401,7 @@ abstract class CoreInstaller extends Installer {
 	 *
 	 * @return Status
 	 */
-	protected function installSysop() {
+	protected function createSysop() {
 		$name = $this->getVar( '_AdminName' );
 		$user = User::newFromName( $name );
 
@@ -434,7 +432,7 @@ abstract class CoreInstaller extends Installer {
 	 * 
 	 * @return Status
 	 */
-	public function installMainpage( DatabaseInstaller &$installer ) {
+	protected function createMainpage( DatabaseInstaller &$installer ) {
 		$status = Status::newGood();
 		try {
 			$article = new Article( Title::newMainPage() );
@@ -480,16 +478,9 @@ abstract class CoreInstaller extends Installer {
 	 * Add an installation step following the given step.
 	 *
 	 * @param $findStep String the step to find.  Use NULL to put the step at the beginning.
-	 * @param $callback array
+	 * @param $callback array A valid callback array, with name and callback given
 	 */
 	public function addInstallStepFollowing( $findStep, $callback ) {
-		$where = 0;
-
-		if( $findStep !== null ) {
-			$where = array_search( $findStep, $this->installSteps );
-		}
-
-		array_splice( $this->installSteps, $where, 0, $callback );
+		$this->extraInstallSteps[$findStep] = $callback;
 	}
-
 }
