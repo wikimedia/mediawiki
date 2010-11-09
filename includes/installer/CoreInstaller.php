@@ -48,6 +48,7 @@ abstract class CoreInstaller extends Installer {
 		'wgShellLocale',
 		'wgSecretKey',
 		'wgUseInstantCommons',
+		'wgUpgradeKey',
 	);
 
 	/**
@@ -307,6 +308,7 @@ abstract class CoreInstaller extends Installer {
 			array( 'name' => 'tables',    'callback' => array( $this, 'installTables' ) ),
 			array( 'name' => 'interwiki', 'callback' => array( $installer, 'populateInterwikiTable' ) ),
 			array( 'name' => 'secretkey', 'callback' => array( $this, 'generateSecretKey' ) ),
+			array( 'name' => 'upgradekey', 'callback' => array( $this, 'generateUpgradeKey' ) ),
 			array( 'name' => 'sysop',     'callback' => array( $this, 'createSysop' ) ),
 			array( 'name' => 'mainpage',  'callback' => array( $this, 'createMainpage' ) ),
 		);
@@ -394,6 +396,19 @@ abstract class CoreInstaller extends Installer {
 		$this->setVar( 'wgSecretKey', $secretKey );
 
 		return $status;
+	}
+
+	/**
+	 * Generate a default $wgUpradeKey, using a semi-random 8 character portion
+	 * of md5($wgSecretKey)
+	 *
+	 * @return Status
+	 */
+	protected function generateUpgradeKey() {
+		$secret = md5( $this->getVar( 'wgSecretKey' ) );
+		$randPos = mt_rand( 0, strlen( $secret ) - 8 );
+		$this->setVar( 'wgUpgradeKey', substr( $secret, $randPos, $randPos + 8 ) );
+		return Status::newGood();
 	}
 
 	/**
