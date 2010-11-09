@@ -1,4 +1,4 @@
-v<?php
+<?php
 /**
  * Base core installer.
  *
