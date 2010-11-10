@@ -87,7 +87,7 @@ abstract class WebInstallerPage {
 		return str_replace( 'WebInstaller_', '', get_class( $this ) );
 	}
 
-	public function getId() {
+	protected function getId() {
 		return array_search( $this->getName(), $this->parent->pageSequence );
 	}
 
@@ -117,12 +117,15 @@ abstract class WebInstallerPage {
 }
 
 class WebInstaller_Locked extends WebInstallerPage {
-
 	// The status of Installer::getLocalSettingsStatus()
 	private $status;
 
 	public function setLocalSettingsStatus( Status $s ) {
 		$this->status = $s;
+	}
+
+	protected function getId() {
+		return 0;
 	}
 
 	public function execute() {
@@ -157,7 +160,7 @@ class WebInstaller_Locked extends WebInstallerPage {
 				) )
 			);
 		}
-		$this->endForm();
+		$this->endForm( false );
 	}
 }
 
