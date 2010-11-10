@@ -85,13 +85,14 @@ class WebInstallerOutput {
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
-		$vectorCssFile = dirname( dirname( dirname( __FILE__ ) ) ) .
-			'/skins/vector/screen.css';
+		$skinDir = dirname( dirname( dirname( __FILE__ ) ) ) . '/skins';
+		$vectorCssFile = "$skinDir/vector/screen.css";
+		$configCssFile = "$skinDir/common/config.css";
 		wfSuppressWarnings();
-		$css = file_get_contents( $vectorCssFile );
+		$css = file_get_contents( $vectorCssFile ) . "\n" . file_get_contents( $configCssFile );
 		wfRestoreWarnings();
 		if( !$css ) {
-			return "/** Your webserver cannot read $vectorCssFile, please check file permissions */";
+			return "/** Your webserver cannot read $vectorCssFile or $configCssFile, please check file permissions */";
 		} elseif( $dir == 'rtl' ) {
 			$css = CSSJanus::transform( $css, true );
 		}
@@ -175,7 +176,6 @@ class WebInstallerOutput {
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo Html::linkedStyle( '../skins/common/shared.css' ) . "\n"; ?>
 	<?php echo Html::linkedStyle( $this->getCssUrl() ) . "\n"; ?>
-	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
 	<?php echo Html::inlineScript(  "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
 	<?php echo $this->getJQueryTipsy() . "\n"; ?>
@@ -233,7 +233,6 @@ class WebInstallerOutput {
 	<meta name="robots" content="noindex, nofollow" />
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo Html::linkedStyle( $this->getCssUrl() ) . "\n"; ?>
-	<?php echo Html::linkedStyle( '../skins/common/config.css' ) . "\n"; ?>
 	<?php echo $this->getJQuery(); ?>
 	<?php echo $this->getJQueryTipsy() . "\n"; ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ); ?>
