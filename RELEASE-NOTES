@@ -415,6 +415,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   $wgExternalLinkTarget
 * (bug 17789) Added a note to the total views on Special:Statistics saying that
   is doesn't count non-existing pages and special pages
+* (bug 17996) HTTP redirects are now combined when requesting a special page
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
