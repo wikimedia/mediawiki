@@ -97,7 +97,6 @@ class SpecialComparePages extends SpecialPage {
 		$this->form();
 
 		if( $this->opts->getValue( 'rev1' ) && $this->opts->getValue( 'rev2' ) ) {
-			$title = Title::newFromText( $this->opts->getValue( 'page2' ) );
 			$de = new DifferenceEngine( null,
 				$this->opts->getValue( 'rev1' ),
 				$this->opts->getValue( 'rev2' ),

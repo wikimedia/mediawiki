@@ -342,9 +342,9 @@ class SpecialSearch {
 		global $wgOut;
 		// Figure out the active search profile header
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
-		if( $this->searchAdvanced )
+		if( $this->searchAdvanced ) {
 			$this->active = 'advanced';
-		else {
+		} else {
 			$profiles = $this->getSearchProfiles();
 			
 			foreach( $profiles as $key => $data ) {
@@ -416,7 +416,6 @@ class SpecialSearch {
 		if( !is_null($infoLine) ) {
 			$out .= "\n<!-- {$infoLine} -->\n";
 		}
-		$off = $this->offset + 1;
 		$out .= "<ul class='mw-search-results'>\n";
 		while( $result = $matches->next() ) {
 			$out .= $this->showHit( $result, $terms );
@@ -623,7 +622,6 @@ class SpecialSearch {
 
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>".
 			wfMsg('search-interwiki-caption')."</div>\n";
-		$off = $this->offset + 1;
 		$out .= "<ul class='mw-search-iwresults'>\n";
 
 		// work out custom project captions

@@ -203,6 +203,7 @@ class RandomImageGenerator {
 		$args[] = $filename;
 
 		$command = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " . implode( " ", $args );
+		$retval = null;
 		$output = wfShellExec( $command, $retval );
 		return ( $retval === 0 );
 	}

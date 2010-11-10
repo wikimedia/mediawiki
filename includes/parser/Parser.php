@@ -789,7 +789,6 @@ class Parser {
 		wfProfileIn( __METHOD__ );
 		
 		$lines = StringUtils::explode( "\n", $text );
-		$text = null;
 		$out = '';
 		$td_history = array(); # Is currently a td tag open?
 		$last_tag_history = array(); # Save history of last lag activated (td, th or caption)
