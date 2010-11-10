@@ -1,10 +1,10 @@
 <?php
 /**
- * Special:UploadStash
+ * Implements Special:UploadStash
  *
  * Web access for files temporarily stored by UploadStash.
  *
- * For example -- files that were uploaded with the UploadWizard extension are stored temporarily 
+ * For example -- files that were uploaded with the UploadWizard extension are stored temporarily
  * before committing them to the db. But we want to see their thumbnails and get other information
  * about them.
  *
@@ -34,13 +34,13 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * If file available in stash, cats it out to the client as a simple HTTP response.
 	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
-	 * 
-	 * @param {String} $subPage: subpage, e.g. in http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
-	 * @return {Boolean} success 
+	 *
+	 * @param $subPage String: subpage, e.g. in http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
+	 * @return Boolean: success
 	 */
 	public function execute( $subPage ) {
 		global $wgOut, $wgUser;
-		
+
 		if ( !$this->userCanExecute( $wgUser ) ) {
 			$this->displayRestrictionError();
 			return;
@@ -49,7 +49,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// prevent callers from doing standard HTML output -- we'll take it from here
 		$wgOut->disable();
 
-		try { 
+		try {
 			$file = $this->getStashFile( $subPage );
 			if ( $file->getSize() > $this->maxServeFileSize ) {
 				throw new MWException( 'file size too large' );
@@ -64,21 +64,23 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		} catch( Exception $e ) {
 			$code = 500;
 		}
-			
+
 		wfHttpError( $code, OutputPage::getStatusMessage( $code ), $e->getMessage() );
 		return false;
 	}
 
 
-	/** 
-	 * Convert the incoming url portion (subpage of Special page) into a stashed file, if available.
-	 * @param {String} $subPage 
-	 * @return {File} file object
+	/**
+	 * Convert the incoming url portion (subpage of Special page) into a stashed file,
+	 * if available.
+	 *
+	 * @param $subPage String
+	 * @return File object
 	 * @throws MWException, UploadStashFileNotFoundException, UploadStashBadPathException
 	 */
 	private function getStashFile( $subPage ) {
-		// due to an implementation quirk (and trying to be compatible with older method) 
-		// the stash key doesn't have an extension 
+		// due to an implementation quirk (and trying to be compatible with older method)
+		// the stash key doesn't have an extension
 		$key = $subPage;
 		$n = strrpos( $subPage, '.' );
 		if ( $n !== false ) {
@@ -87,12 +89,12 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		try {
 			$file = $this->stash->getFile( $key );
-		} catch ( UploadStashFileNotFoundException $e ) { 
+		} catch ( UploadStashFileNotFoundException $e ) {
 			// if we couldn't find it, and it looks like a thumbnail,
 			// and it looks like we have the original, go ahead and generate it
 			$matches = array();
 			if ( ! preg_match( '/^(\d+)px-(.*)$/', $key, $matches ) ) {
-				// that doesn't look like a thumbnail. re-raise exception 
+				// that doesn't look like a thumbnail. re-raise exception
 				throw $e;
 			}
 
@@ -102,11 +104,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			// let exceptions propagate to caller.
 			$origFile = $this->stash->getFile( $origKey );
 
-			// ok we're here so the original must exist. Generate the thumbnail. 
+			// ok we're here so the original must exist. Generate the thumbnail.
 			// because the file is a UploadStashFile, this thumbnail will also be stashed,
 			// and a thumbnailFile will be created in the thumbnailImage composite object
 			$thumbnailImage = $origFile->transform( array( 'width' => $width ) );
-			if ( !$thumbnailImage ) { 
+			if ( !$thumbnailImage ) {
 				throw new MWException( 'Could not obtain thumbnail' );
 			}
 			$file = $thumbnailImage->thumbnailFile;
@@ -118,9 +120,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Output HTTP response for file
 	 * Side effects, obviously, of echoing lots of stuff to stdout.
-	 * @param {File} file
+	 *
+	 * @param $file File object
 	 */
-	private function outputFile( $file ) { 
+	private function outputFile( $file ) {
 		header( 'Content-Type: ' . $file->getMimeType(), true );
 		header( 'Content-Transfer-Encoding: binary', true );
 		header( 'Expires: Sun, 17-Jan-2038 19:14:07 GMT', true );
