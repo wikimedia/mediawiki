@@ -152,6 +152,7 @@ class WebInstaller_Locked extends WebInstallerPage {
 	private function display() {
 		$this->startForm();
 		$this->parent->showStatusBox( $this->status );
+		$continue = false;
 		if( $this->status->isOK() && !$this->status->isGood() ) {
 			$this->addHTML( "<br />" .
 				$this->parent->getTextBox( array(
@@ -159,8 +160,9 @@ class WebInstaller_Locked extends WebInstallerPage {
 					'label' => 'config-localsettings-key',
 				) )
 			);
+			$continue = 'continue';
 		}
-		$this->endForm( false );
+		$this->endForm( $continue );
 	}
 }
 
