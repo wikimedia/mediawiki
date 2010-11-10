@@ -124,6 +124,8 @@ MediaWiki requires functions in this module and will not work in this configurat
 If you're running Mandrake, install the php-xml package.",
 	'config-pcre'                     => 'The PCRE support module appears to be missing.
 MediaWiki requires the Perl-compatible regular expression functions to work.',
+	'config-pcre-no-utf8'             => "'''Fatal''': PHP's PCRE module seems to be compiled without PCRE_UTF8 support.
+MediaWiki requires UTF-8 support to function correctly.",
 	'config-memory-none'              => 'PHP is configured with no <code>memory_limit</code>',
 	'config-memory-ok'                => "PHP's <code>memory_limit</code> is $1.
 OK.",
