@@ -23,6 +23,9 @@
 .config-block-elements {
 	margin-left: 2em;
 }
+.config-block-elements li {
+	list-style: none;
+}
 .config-input {
 	clear: left;
 	zoom: 100%; /* IE hack */
