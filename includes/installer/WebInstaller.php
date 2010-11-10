@@ -802,7 +802,6 @@ class WebInstaller extends CoreInstaller {
 				$params['value'],
 				$params['attribs'] + array(
 					'id' => $params['controlName'],
-					'class' => 'config-input-text',
 					'tabindex' => $this->nextTabIndex(),
 				)
 			) .
