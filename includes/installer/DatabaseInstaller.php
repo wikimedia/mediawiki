@@ -97,9 +97,10 @@ abstract class DatabaseInstaller {
 	/**
 	 * Connect to the database using the administrative user/password currently
 	 * defined in the session. On success, return the connection, on failure,
-	 * return a Status object.
 	 *
 	 * This may be called multiple times, so the result should be cached.
+	 *
+	 * @return Status
 	 */
 	public abstract function getConnection();
 	
