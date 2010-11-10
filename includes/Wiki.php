@@ -211,7 +211,7 @@ class MediaWiki {
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} else if ( $action == 'view' && !$request->wasPosted()
-			&& ( !$request->getVal( 'title' ) || $title->getPrefixedDBKey() != $request->getText( 'title' ) )
+			&& ( $request->getVal( 'title' ) === null || $title->getPrefixedDBKey() != $request->getText( 'title' ) )
 			&& !count( array_diff( array_keys( $request->getValues() ), array( 'action', 'title' ) ) ) )
 		{
 			if ( $title->getNamespace() == NS_SPECIAL ) {
