@@ -416,6 +416,10 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 17789) Added a note to the total views on Special:Statistics saying that
   is doesn't count non-existing pages and special pages
 * (bug 17996) HTTP redirects are now combined when requesting a special page
+* (bug 19944) Link on image thumbnails no longer link to "Media:" namespace in
+  some cases
+* (bug 25670) wfFindFile() now checks the namespace of the given title, only
+  "File" and "Media" are allowed now
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
