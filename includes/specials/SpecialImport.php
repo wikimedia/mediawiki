@@ -307,7 +307,7 @@ class ImportReporter {
 		}
 	}
 
-	function reportPage( $title, $origTitle, $revisionCount, $successCount ) {
+	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		global $wgOut, $wgUser, $wgLang, $wgContLang;
 		
 		$args = func_get_args();
