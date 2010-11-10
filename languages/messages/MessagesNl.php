@@ -2015,6 +2015,7 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'statistics-edits'             => 'Paginabewerkingen sinds het begin van {{SITENAME}}',
 'statistics-edits-average'     => 'Gemiddeld aantal bewerkingen per pagina',
 'statistics-views-total'       => "Totaal aantal weergegeven pagina's",
+'statistics-views-total-desc'  => "Het bekijken van niet-bestaande pagina's en speciale pagina's is niet inbegrepen",
 'statistics-views-peredit'     => "Weergegeven pagina's per bewerking",
 'statistics-users'             => 'Geregistreerde [[Special:ListUsers|gebruikers]]',
 'statistics-users-active'      => 'Actieve gebruikers',

@@ -314,6 +314,7 @@ ini mayad ikra [[Special:ListUsers/sysop|lmodir]] tfktas ladriss ntwriqt an.',
 'fileappenderrorread' => 'orimkin anghr "$1"',
 'fileappenderror'     => 'orimkn anzayd "$1" s "$2".',
 'filecopyerror'       => 'orimkin ankopi "$1" s "$2".',
+'filerenameerror'     => '↓ ur as tufit ad tsmmut "$1" s "$2".',
 'filenotfound'        => 'orimkn anaf "$1"',
 'fileexistserror'     => 'orimkn anara "$1" lmilf ad illa yad',
 'formerror'           => "khata': orimkn anskr lform ad",
@@ -407,8 +408,8 @@ lcont nek  tuyskar .
 'summary-preview'                  => 'lmoayan n lmolkhass:',
 'blockedtitle'                     => 'lmostkhdim ad itbloka',
 'blockednoreason'                  => 'ta yan sabab oritfki',
-'loginreqtitle'                    => 'labod atkchmt',
-'loginreqlink'                     => 'Kcm ɣid',
+'loginreqtitle'                    => '↓ Labd ad tkclt zwar',
+'loginreqlink'                     => '↓ Kcm ɣid',
 'accmailtitle'                     => 'awal ihdan hatin yochayakn',
 'newarticle'                       => '↓ (Amaynu)',
 'newarticletext'                   => "↓ Tfrt yan uzday s yat tasna lli ur ta jju illan [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} ttuykkas].
@@ -787,6 +788,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'watchlist'         => '↓ Umuɣ n imtfrn',
 'mywatchlist'       => 'Umuɣ inu lli tsaggaɣ',
 'addedwatch'        => '↓ Zayd tin i umuɣ n umtfr',
+'addedwatchtext'    => '↓ tasna « [[:$1]] » tllan ɣ [[Special:Watchlist|umuɣ n umtfr]]. Imbdln lli dyuckan d tasna lli dis iṭṭuzn rad asn nskr agmmaḍ nsn. Tasna radd ttbayan s "uḍnay" ɣ [[Special:RecentChanges|Umuɣ n imbddeln imaynutn]]',
 'removedwatch'      => '↓ Kkist s umuɣ n umtfr',
 'removedwatchtext'  => '↓ Tasna "[[:$1]]" ḥra ttuykkas z [[Special:Watchlist|your watchlist]].',
 'watch'             => 'zaydtin i tochwafin-niw',
@@ -817,21 +819,27 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'rollbacklink' => 'Rard',
 
 # Protect
-'protectlogpage'            => '↓ Iɣmisn n ugdal',
-'protectedarticle'          => '↓ ay gdl  "[[$1]]"',
-'modifiedarticleprotection' => '↓ isbudl taskfalt n ugdal n « [[$1]] »',
-'protectcomment'            => 'Maɣ:',
-'protectexpiry'             => '↓ Tizi nu uzri n umzruy:',
-'protect_expiry_invalid'    => '↓ Tizi n uzri n umzruy urtti tga.',
-'protect_expiry_old'        => '↓ Tizi n uzri n umzruy n zrit.',
-'protect-default'           => 'Immurzm i kullu imsxdamn',
-'protect-fallback'          => '↓ Tra "$1" ajja (permission)',
-'protect-summary-cascade'   => '↓ Agdal n imuzzar',
-'protect-expiring'          => '↓ tzri $1 (UTC)',
-'protect-cascade'           => '↓ gdlnt wala tisniwin llin illan ɣ tasna yad (Agdal s imuzzar)',
-'protect-cantedit'          => '↓ Ur as tufit ad sbadlt tiskfal n ugdal n tasna yad acku urak ittuyskar',
-'restriction-type'          => '↓ Turagt',
-'restriction-level'         => '↓ Restriction level:',
+'protectlogpage'              => '↓ Iɣmisn n ugdal',
+'protectedarticle'            => '↓ ay gdl  "[[$1]]"',
+'modifiedarticleprotection'   => '↓ isbudl taskfalt n ugdal n « [[$1]] »',
+'protectcomment'              => 'Maɣ:',
+'protectexpiry'               => '↓ Tizi nu uzri n umzruy:',
+'protect_expiry_invalid'      => '↓ Tizi n uzri n umzruy urtti tga.',
+'protect_expiry_old'          => '↓ Tizi n uzri n umzruy n zrit.',
+'protect-text'                => "↓ Tzḍaṛt ad tẓṛt niɣ tbudlt taskflt n ugdal (protection) n tasna '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "↓ Ur tẓdart wala ittuyskarak ad tbadlt tiskfal n ugdal n tisniwin.
+Ha riglaj n ɣila lli f tlla tasna '''$1''' :",
+'protect-cascadeon'           => '↓ Tasna yad tgddl (protégé) t llan ɣ {{PLURAL:$1|Tasna llid yuckan, talli igddln| Tillid yuckan, lli igddln}} s tamatart ad « Agdl s imuzzar ». Tzḍart ad tsbadlt iswirn n ugdlns bla irza mayad aǧdl s imuzzar',
+'protect-default'             => 'Immurzm i kullu imsxdamn',
+'protect-fallback'            => '↓ Tra "$1" ajja (permission)',
+'protect-level-autoconfirmed' => '↓ Sbid tqqnt f imsqdacn imaynutn lli ur ittuyssanin',
+'protect-level-sysop'         => '↓ Imɣarn ṣafi.',
+'protect-summary-cascade'     => '↓ Agdal n imuzzar',
+'protect-expiring'            => '↓ tzri $1 (UTC)',
+'protect-cascade'             => '↓ gdlnt wala tisniwin llin illan ɣ tasna yad (Agdal s imuzzar)',
+'protect-cantedit'            => '↓ Ur as tufit ad sbadlt tiskfal n ugdal n tasna yad acku urak ittuyskar',
+'restriction-type'            => '↓ Turagt',
+'restriction-level'           => '↓ Restriction level:',
 
 # Undelete
 'undeletelink'     => 'mel/rard',
@@ -913,6 +921,12 @@ Smmem masd tasna ur rad tmmatti iɣ tlla kra n yat yaḍn lli ilan asw zund ntta
 
 ''' Han !'''
 Maya Iẓḍar ad iglb zzu uzddar ar aflla tasna yad lli bdda n nttagga. Illa fllak ad urtskr mara yigriẓ midn d kiyyin lli iswurn ɣ tasna yad. issin mara tskr urta titskrt..",
+'movepagetalktext'         => "↓ Tasna n umsgdal (imdiwiln) lli izdin d ɣta iɣ tlla, rad as ibadl w-assaɣ utumatik  '''abla iɣ :'''
+* tsmmuttim tasna s yan ugmmaḍ wassaɣ, niɣd
+* tasna n umsgdal( imdiwiln) tlla s wassaɣ ad amaynu, niɣd
+* iɣ tkrjm tasatmt ad n uzddar
+
+Γ Tiklayad illa flla tun ad tsbadlm assaɣ niɣt tsmun mayad s ufus ɣ yat, iɣ tram",
 'movearticle'              => 'Smmatti tasna niɣ as tsbudlt assaɣ',
 'newtitle'                 => '↓ dar w-assaɣ amaynu:',
 'move-watch'               => '↓ Tfr tisniwin timaynutin d timẓlay',

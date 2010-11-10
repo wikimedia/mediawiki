@@ -1245,12 +1245,22 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'recentchangeslinked-to'      => 'Tampaiakan parubahan matan tungkaran-tungkaran nang tataut lawan tungkaran nang disurungakan',
 
 # Upload
-'upload'             => 'Hunggahakan barakas',
-'uploadlogpage'      => 'Log mambuati',
-'verification-error' => 'Barakas nangini kada lulus paitihan.',
-'tmp-create-error'   => 'Kada kawa maulah barakas pahadangan.',
-'tmp-write-error'    => 'Kasalahan sawaktu manulis barakas pahadangan.',
-'uploadedimage'      => 'mamuat "[[$1]]"',
+'upload'              => 'Hunggahakan barakas',
+'uploadlogpage'       => 'Log mambuati',
+'filename'            => 'Ngaranbarakas',
+'filedesc'            => 'Kasimpulan',
+'fileuploadsummary'   => 'Kasimpulan:',
+'filereuploadsummary' => 'Parubahan barakas:',
+'filestatus'          => 'Satatus hakcipta:',
+'filesource'          => 'Asal mula:',
+'uploadedfiles'       => 'Babarakas tahunggah',
+'minlength1'          => 'Ngangaran barakas musti sahikitnya asa aksara.',
+'badfilename'         => 'Ngaran barakas sudah diganti ka "$1".',
+'verification-error'  => 'Barakas nangini kada lulus paitihan.',
+'tmp-create-error'    => 'Kada kawa maulah barakas pahadangan.',
+'tmp-write-error'     => 'Kasalahan sawaktu manulis barakas pahadangan.',
+'savefile'            => 'Simpan barakas',
+'uploadedimage'       => 'mamuat "[[$1]]"',
 
 'upload-misc-error' => 'Tasalah buat nang kada dipinandui',
 
@@ -1347,6 +1357,7 @@ Pariksa 'hulu tautan lain ka citakan itu sabalum mahapusnya.",
 'brokenredirects-edit'   => 'babak',
 'brokenredirects-delete' => 'hapus',
 
+'withoutinterwiki'        => 'Tutungkaran kada batatautan bahasa',
 'withoutinterwiki-submit' => 'Tampaiakan',
 
 # Miscellaneous special pages

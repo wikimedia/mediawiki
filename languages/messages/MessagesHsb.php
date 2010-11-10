@@ -1717,6 +1717,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'statistics-edits'             => 'Změny stronow wot załoženja {{SITENAME}}',
 'statistics-edits-average'     => 'Změny na stronu w přerězku',
 'statistics-views-total'       => 'Zwobraznjenja dohromady',
+'statistics-views-total-desc'  => 'Pohlady do njeeksistowacych stronow a specialnych stronow njejsu zapřijate',
 'statistics-views-peredit'     => 'Zwobraznjenja na změnu',
 'statistics-users'             => 'Zregistrowani [[Special:ListUsers|wužiwarjo]]',
 'statistics-users-active'      => 'Aktiwni wužiwarjo',

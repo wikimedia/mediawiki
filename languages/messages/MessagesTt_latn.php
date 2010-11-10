@@ -758,7 +758,7 @@ Asta bu bitne küzätü köndälege birelgän:",
 'cascadeprotectedwarning'          => "'''Kisätü:''' Bu bitne idaräçelär ğına üzgärtä ala. Säbäbe: ul {{PLURAL:$1|kaskadlı yaqlaw isemlegenä kertelgän}}:",
 'titleprotectedwarning'            => "'''Kisätü: Mondıy isemle bit yaqlanğan, anı üzgärtü öçen [[Special:ListGroupRights|tieşle xoquqqa]] iä bulu zarur.'''
 Asta küzätü köndälegendäge soñğı yazma birelgän:",
-'templatesused'                    => 'Bu bittä qullanılğan {{PLURAL:$1|şablon|şablonnar}}:',
+'templatesused'                    => 'Bu bittä qullanılğan {{PLURAL:$1|ürnäk|ürnäklär}}:',
 'templatesusedpreview'             => 'Aldan qaraluçı bittä qullanılğan {{PLURAL:$1|ürnäk|ürnäklär}}:',
 'templatesusedsection'             => 'Bu bülektä qullanılğan {{PLURAL:$1|ürnäk|ürnäklär}}:',
 'template-protected'               => '(yaqlanğan)',

@@ -1912,6 +1912,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization を参照してくだ�
 'statistics-edits'             => '編集回数の総計',
 'statistics-edits-average'     => '1ページあたりの編集回数',
 'statistics-views-total'       => '総閲覧回数',
+'statistics-views-total-desc'  => '存在しないページと特別ページに対する閲覧は含まれていません',
 'statistics-views-peredit'     => '閲覧回数に対する編集回数の割合',
 'statistics-users'             => '[[Special:ListUsers|登録利用者]]',
 'statistics-users-active'      => '活動中の利用者',

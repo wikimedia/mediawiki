@@ -1888,6 +1888,7 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'statistics-edits'             => 'Số sửa đổi trang từ khi {{SITENAME}} được thành lập',
 'statistics-edits-average'     => 'Số sửa đổi trung bình trên một trang',
 'statistics-views-total'       => 'Số lần xem tổng cộng',
+'statistics-views-total-desc'  => 'Không bao gồm số lần xem các trang không tồn tại và các trang đặc biệt',
 'statistics-views-peredit'     => 'Số lần xem trên một sửa đổi',
 'statistics-users'             => 'Số [[Special:ListUsers|thành viên]] đã đăng ký',
 'statistics-users-active'      => 'Số thành viên tích cực',

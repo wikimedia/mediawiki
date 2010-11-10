@@ -575,6 +575,8 @@ $messages = array(
 Παρακαλούμε περιμένετε λίγο πριν ξαναπροσπαθήσετε να μπείτε σε αυτή τη σελίδα.
 
 $1',
+'pool-timeout'      => 'Διάλειμμα αναμονής για το κλείδωμα',
+'pool-queuefull'    => 'Η δεξαμενή δεδομένων είναι πλήρης',
 'pool-errorunknown' => 'Άγνωστο σφάλμα',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -737,6 +739,7 @@ $2',
 'yourpassword'               => 'Κωδικός:',
 'yourpasswordagain'          => 'Πληκτρολογήστε ξανά τον κωδικό',
 'remembermypassword'         => 'Διατήρηση του κωδικού πρόσβασης σε αυτόν τον υπολογιστή (για μέγιστο $1 {{PLURAL:$1|ημέρα|ημέρες}})',
+'securelogin-stick-https'    => 'Μείνετε συνδεδεμένοι με HTTPS μετά την είσοδο',
 'yourdomainname'             => 'Το domain σας:',
 'externaldberror'            => 'Είτε συνέβη κάποιο σφάλμα εξωτερικής πιστοποίησης της βάσης δεδομένων είτε δεν σας έχει επιτραπεί να ενημερώσετε τον εξωτερικό σας λογαριασμό.',
 'login'                      => 'Είσοδος',
@@ -1934,6 +1937,7 @@ $1',
 'statistics-edits'             => 'Επεξεργασίες σελίδων από τη δημιουργία του εγχειρήματος {{SITENAME}}',
 'statistics-edits-average'     => 'Μέσος όρος επεξεργασιών ανά σελίδα',
 'statistics-views-total'       => 'Συνολικές εμφανίσεις',
+'statistics-views-total-desc'  => ' Επισκέψεις σε μη  υπάρχουσες σελίδες και ειδικές σελίδες δεν συμπεριλαμβάνονται',
 'statistics-views-peredit'     => 'Εμφανίσεις ανά επεξεργασία',
 'statistics-users'             => 'Εγγεγραμμένοι [[Special:ListUsers|χρήστες]]',
 'statistics-users-active'      => 'Ενεργοί χρήστες',
@@ -1970,6 +1974,8 @@ $1',
 'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
 'nrevisions'              => '$1 {{PLURAL:$1|αναθεώρηση|αναθεωρήσεις}}',
 'nviews'                  => '$1 {{PLURAL:$1|επίσκεψη|επισκέψεις}}',
+'nimagelinks'             => 'Χρησιμοποιείται στο  $1 {{PLURAL:$1|page|pages}}',
+'ntransclusions'          => 'χρησιμοποιείται στο $1 {{PLURAL:$1|page|pages}}',
 'specialpage-empty'       => 'Αυτή η σελίδα είναι κενή.',
 'lonelypages'             => 'Ορφανές σελίδες',
 'lonelypagestext'         => 'Οι ακόλουθες σελίδες δεν συνδέονται με ή δεν υπερκλείονται σε άλλες σελίδες στο {{SITENAME}}.',
@@ -3532,5 +3538,6 @@ $1',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 με υποστήριξη αναζήτησης πλήρους κειμένου',
+'sqlite-no-fts'  => '$1 χωρίς την υποστήριξη αναζήτησης πλήρους κειμένου',
 
 );

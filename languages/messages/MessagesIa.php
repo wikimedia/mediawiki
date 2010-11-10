@@ -1798,6 +1798,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-edits'             => 'Modificationes de paginas depost le installation de {{SITENAME}}',
 'statistics-edits-average'     => 'Media del modificationes per pagina',
 'statistics-views-total'       => 'Visitas total',
+'statistics-views-total-desc'  => 'Le visitas a paginas inexistente e special non es includite',
 'statistics-views-peredit'     => 'Visitas per modification',
 'statistics-users'             => '[[Special:ListUsers|Usatores]] registrate',
 'statistics-users-active'      => 'Usatores active',

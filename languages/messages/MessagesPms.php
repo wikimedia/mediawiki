@@ -1689,10 +1689,10 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda ridiression, ant s�
 Le ridiression <del>sganfà</del> a son stàite arzolvùe.",
 'double-redirect-fixed-move' => "[[$1]] a l'é stàit spostà.
 Adess a l'é na ridiression a [[$2]].",
-'double-redirect-fixer'      => 'Coretor ëd rediression',
+'double-redirect-fixer'      => 'Coretor ëd ridiression',
 
 'brokenredirects'        => 'Ridiression nen giuste',
-'brokenredirectstext'    => "Coste ridiression-sì a men-o a dj'articoj ancó pa creà:",
+'brokenredirectstext'    => "Coste ridiression-sì a men-o a d'artìcoj ch'a-i son pa:",
 'brokenredirects-edit'   => 'modìfica',
 'brokenredirects-delete' => 'scancela',
 
