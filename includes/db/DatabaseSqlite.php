@@ -538,36 +538,6 @@ class DatabaseSqlite extends DatabaseBase {
 		return parent::buildLike( $params ) . "ESCAPE '\' ";
 	}
 
-	/**
-	 * Called by the installer script
-	 * - this is the same way PostgreSQL works, MySQL reads in tables.sql and interwiki.sql using DatabaseBase::sourceFile()
-	 */
-	public function setup_database() {
-		global $IP;
-
-		# Process common MySQL/SQLite table definitions
-		$err = $this->sourceFile( "$IP/maintenance/tables.sql" );
-		if ( $err !== true ) {
-			echo " <b>FAILED</b></li>";
-			dieout( htmlspecialchars( $err ) );
-		}
-		echo " done.</li>";
-
-		# Use DatabasePostgres's code to populate interwiki from MySQL template
-		$f = fopen( "$IP/maintenance/interwiki.sql", 'r' );
-		if ( !$f ) {
-			dieout( "Could not find the interwiki.sql file." );
-		}
-
-		$sql = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local,iw_api,iw_wikiid) VALUES ";
-		while ( !feof( $f ) ) {
-			$line = fgets( $f, 1024 );
-			$matches = array();
-			if ( !preg_match( '/^\s*(\(.+?),(\d)\)/', $line, $matches ) ) continue;
-			$this->query( "$sql $matches[1],$matches[2],'','')" );
-		}
-	}
-
 	public function getSearchEngine() {
 		return "SearchSqlite";
 	}
