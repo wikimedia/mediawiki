@@ -214,6 +214,12 @@ class MediaWiki {
 			&& ( !$request->getVal( 'title' ) || $title->getPrefixedDBKey() != $request->getText( 'title' ) )
 			&& !count( array_diff( array_keys( $request->getValues() ), array( 'action', 'title' ) ) ) )
 		{
+			if ( $title->getNamespace() == NS_SPECIAL ) {
+				list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
+				if ( $name ) {
+					$title = SpecialPage::getTitleFor( $name, $subpage );
+				}
+			}
 			$targetUrl = $title->getFullURL();
 			// Redirect to canonical url, make it a 301 to allow caching
 			if( $targetUrl == $request->getFullRequestURL() ) {
