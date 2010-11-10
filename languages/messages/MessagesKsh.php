@@ -944,8 +944,7 @@ Do muss jetz Ding Änderunge och in dat <strong>bovvere</strong> Texxfeld eren b
 <strong>Nor wat em bovvere Texfeld steiht,</strong> dat weed üvvernomme un avjespeichert, wann De „<b
 style="padding:2px; background-color:#ddd; color:black">{{int:savearticle}}</b>“ klicks. Bes dohin kanns De esu off
 wie De wells op „<b style="padding:2px; background-color:#ddd; color:black">{{int:showdiff}}</b>“ un „<b
-style="padding:2px; background-color:#ddd; color:black">{{int:showpreview}}</b>“ klicke, öm ze pröfe, watte ald
-jods jemaat häs.
+style="padding:2px; background-color:#ddd; color:black">{{int:showpreview}}</b>“ klicke, öm ze pröfe, watte ald   jods jemaat häs.
 
 Alles Klor?<br /><br />',
 'yourtext'                         => 'Dinge Tex',

@@ -1637,16 +1637,16 @@ Sofern PHP über die Paketverwaltung einer Debian- oder Ubuntu-Installation inst
 	'config-register-globals' => "'''Warnung: Der Parameter <code>[http://php.net/register_globals register_globals]</code> von PHP ist aktiviert.'''
 '''Sie sollte deaktiviert werden, sofern dies möglich ist.'''
 Die MediaWiki-Installation wird zwar laufen, wobei aber der Server für potentielle Sicherheitsprobleme anfällig ist.",
-	'config-magic-quotes-runtime' => "'''Fatal: Der Parameter <code>[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]</code> von PHP ist aktiviert!'''
+	'config-magic-quotes-runtime' => "'''Fataler Fehler: Der Parameter <code>[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]</code> von PHP ist aktiviert!'''
 Diese Einstellung führt zu unvorhersehbaren Problemen bei der Dateneingabe.
 MediaWiki kann nicht installiert werden, solange dieser Parameter nicht deaktiviert wurde.",
-	'config-magic-quotes-sybase' => "'''Fatal: Der Parameter <code>[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]</code> von PHP ist aktiviert!'''
+	'config-magic-quotes-sybase' => "'''Fataler Fehler: Der Parameter <code>[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]</code> von PHP ist aktiviert!'''
 Diese Einstellung führt zu unvorhersehbaren Problemen bei der Dateneingabe.
 MediaWiki kann nicht installiert werden, solange dieser Parameter nicht deaktiviert wurde.",
-	'config-mbstring' => "'''Fatal: Der Parameter <code>[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]</code> von PHP ist aktiviert!'''
+	'config-mbstring' => "'''Fataler Fehler: Der Parameter <code>[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]</code> von PHP ist aktiviert!'''
 Diese Einstellung verursacht Fehler und führt zu unvorhersehbaren Problemen bei der Dateneingabe.
 MediaWiki kann nicht installiert werden, solange dieser Parameter nicht deaktiviert wurde.",
-	'config-ze1' => "'''Fatal: Der Parameter <code>[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]</code> von PHP ist aktiviert!'''
+	'config-ze1' => "'''Fataler Fehler: Der Parameter <code>[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]</code> von PHP ist aktiviert!'''
 Diese Einstellung führt zu großen Fehlern bei MediaWiki.
 MediaWiki kann nicht installiert werden, solange dieser Parameter nicht deaktiviert wurde.",
 	'config-safe-mode' => "'''Warnung:''' Der Funktion <code>[http://www.php.net/features.safe-mode Safe Mode]</code> von PHP ist aktiviert.
@@ -1655,8 +1655,10 @@ Dies kann zu Problemen führen, insbesondere wenn das Hochladen von Dateien mög
 	'config-xml-bad' => 'Das XML-Modul von PHP fehlt.
 MediaWiki benötigt Funktionen, die dieses Modul bereitstellt und wird in der bestehenden Konfiguration nicht funktionieren.
 Sofern Mandriva genutzt wird, muss noch das „php-xml“-Paket installiert werden.',
-	'config-pcre' => 'Das Modul für die PCRE-Unterstützung wurde nicht gefunden.
+	'config-pcre' => 'Das PHP-Modul für die PCRE-Unterstützung wurde nicht gefunden.
 MediaWiki benötigt allerdings perl-kompatible reguläre Ausdrücke, um lauffähig zu sein.',
+	'config-pcre-no-utf8' => "'''Fataler Fehler: Das PHP-Modul PCRE scheint ohne PCRE_UTF8-Unterstützung kompiliert worden zu sein.'''
+MediaWiki benötigt die UTF-8-Unterstützung, um fehlerfrei lauffähig zu sein.",
 	'config-memory-none' => 'PHP wurde ohne den Parameter <code>memory_limit</code> konfiguriert',
 	'config-memory-ok' => 'Der PHP-Parameter <code>memory_limit</code> hat den Wert $1.
 OK.',
@@ -1988,6 +1990,7 @@ Es muss daher mit den nächsten Seite weitergemacht werden.",
 	'config-install-database' => 'Datenbank wird eingerichtet',
 	'config-install-pg-schema-failed' => 'Das Erstellen der Datentabellen ist gescheitert.
 Es muss sichergestellt sein, dass der Benutzer „$1“ kann, um in das Datenschema zu „$2“ zu schreiben.',
+	'config-install-pg-commit' => 'Änderungen anwenden',
 	'config-install-user' => 'Datenbankbenutzer wird erstellt',
 	'config-install-user-failed' => 'Gewährung der Berechtigung für „$1“ ist gescheitert: $2',
 	'config-install-tables' => 'Datentabellen werden erstellt',
@@ -4730,6 +4733,7 @@ Per favor continua al proxime pagina.",
 	'config-install-database' => 'Configura le base de datos',
 	'config-install-pg-schema-failed' => 'Le creation del tabellas falleva.
 Assecura te que le usator "$1" pote scriber in le schema "$2".',
+	'config-install-pg-commit' => 'Committer cambiamentos',
 	'config-install-user' => 'Crea usator pro base de datos',
 	'config-install-user-failed' => 'Le concession de permission al usator "$1" falleva: $2',
 	'config-install-tables' => 'Crea tabellas',
@@ -7539,6 +7543,8 @@ Wpisz nazwę licencji ręcznie.',
 	'config-memcached-help' => 'Lista adresów IP do wykorzystania przez Memcached. 
 Adresy powinny być rozdzielone przecinkami i określać również wykorzystywany port (na przykład: 127.0.0.1:11211, 192.168.1.25:11211).',
 	'config-extensions' => 'Rozszerzenia',
+	'config-install-alreadydone' => "'''Uwaga''' – wydaje się, że MediaWiki jest już zainstalowane, a obecnie próbujesz zainstalować je ponownie.
+Przejdź do następnej strony.",
 	'config-install-step-done' => 'gotowe',
 	'config-install-step-failed' => 'nieudane',
 	'config-install-extensions' => 'Włącznie z rozszerzeniami',

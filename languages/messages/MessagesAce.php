@@ -270,7 +270,7 @@ $messages = array(
 'cancel'        => 'Peubateuë',
 'moredotdotdot' => 'Lom...',
 'mypage'        => 'Ôn lôn',
-'mytalk'        => 'Peugah haba lôn',
+'mytalk'        => 'Marit',
 'anontalk'      => 'Peugah haba IP nyoë.',
 'navigation'    => 'Navigasi',
 'and'           => '&#32;ngon',
@@ -372,7 +372,7 @@ $messages = array(
 'showtoc'             => 'peuleumah',
 'hidetoc'             => 'peusom',
 'site-rss-feed'       => 'Umpeuën RSS $1',
-'site-atom-feed'      => 'Eumpeuën Atôm $1',
+'site-atom-feed'      => 'Umpeuën Atôm $1',
 'page-rss-feed'       => 'Umpeuën RSS "$1"',
 'page-atom-feed'      => 'Umpeuën Atom "$1"',
 'red-link-title'      => '$1 (ôn goh na)',
@@ -428,7 +428,7 @@ Préksa keulayi neu’ija Droëneuh.',
 'wrongpassword'           => 'Lageuëm nyang neupasoë salah. Neubaci lom.',
 'wrongpasswordempty'      => 'Droëneuh hana neupasoë lageuëm. Neubaci lom.',
 'passwordtooshort'        => "Lageuëm paléng h'an haroh na {{PLURAL:$1|1 karakter|$1 karakter}}.",
-'mailmypassword'          => 'Kirém lageuëm barô',
+'mailmypassword'          => "Peu'ét lageuëm barô",
 'passwordremindertitle'   => 'Lageuëm seumeuntara barô keu {{SITENAME}}',
 'passwordremindertext'    => 'Salah sidroë (kadang Droëneuh, ngön alamat IP $1) geulakèë kamoë keu meukirém lageuëm rahsia nyang barô keu {{SITENAME}} ($4).
 Lageuëm rahsia keu ureuëng nguy "$2" jinoë nakeuh "$3".
@@ -575,7 +575,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 
 # Preferences page
 'preferences'         => 'Galak',
-'mypreferences'       => 'Lôn galak',
+'mypreferences'       => 'Atô',
 'prefs-rc'            => 'Ban meuubah',
 'yourrealname'        => 'Nan aseuli:',
 'prefs-help-realname' => '* Nan aseuli hana meucéh neupasoë.
@@ -755,7 +755,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 
 # Watchlist
 'watchlist'         => 'Dapeuta keunalön lôn',
-'mywatchlist'       => 'Keunalön lôn',
+'mywatchlist'       => 'Keunalön',
 'addedwatch'        => 'Ka geupeutamah u dapeuta kalön',
 'addedwatchtext'    => "Ôn \"[[:\$1]]\" ka geupeutamah u [[Special:Watchlist|dapeuta keunalön]] Droëneuh. Neu’ubah-neu’ubah bak masa u keuë bak ôn nyan ngön bak ôn peugah habajih, euntreuk leumah nyoë pat. Ôn nyan euntreuk geupeuleumah ''teubay'' bak [[Special:RecentChanges|dapeuta neu’ubah paléng barô]] mangat leubèh mudah leumah.",
 'removedwatch'      => 'Ka geusampôh nibak dapeuta keunalön',
@@ -912,7 +912,7 @@ Lam masalah nyoë, meunyo neuhawa, Droëneuh jeuët neupeupinah atawa neupeugab�
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ôn ureuëng nguy Droëneuh',
 'tooltip-pt-mytalk'               => 'Ôn peugah haba Droëneuh',
-'tooltip-pt-preferences'          => 'Geunalak lôn',
+'tooltip-pt-preferences'          => 'Atô',
 'tooltip-pt-watchlist'            => 'Dapeuta ôn nyang lôn kalön',
 'tooltip-pt-mycontris'            => 'Dapeuta peuneugöt Droëneuh',
 'tooltip-pt-login'                => 'Droën geupeusaran keu tamong log, bahpih nyan hana geupeuwajéb.',

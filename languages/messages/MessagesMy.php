@@ -1430,8 +1430,13 @@ HTML tags ကို စစ်ဆေးပါ။',
 'revertmove'       => 'ပြောင်းရန်',
 
 # Export
-'export'        => 'စာမျက်နှာများကို Export ထုတ်ရန်',
-'export-submit' => 'Export ထုတ်ရန်',
+'export'            => 'စာမျက်နှာများကို Export ထုတ်ရန်',
+'export-submit'     => 'Export ထုတ်ရန်',
+'export-addcattext' => 'ကဏ္ဍမှ စာမျက်နှာများကို ပေါင်းထည့်ရန် -',
+'export-addcat'     => 'ပေါင်းထည့်ရန်',
+'export-addnstext'  => 'အမည်ညွှန်းမှ စာမျက်နှာများကို ပေါင်းထည့်ရန်',
+'export-addns'      => 'ပေါင်းထည့်ရန်',
+'export-download'   => 'ဖိုင်အဖြစ် သိမ်းရန်',
 
 # Namespace 8 related
 'allmessages'                   => 'စ​နစ်​၏​သ​တင်း​များ​',
@@ -1537,8 +1542,15 @@ HTML tags ကို စစ်ဆေးပါ။',
 'mw_math_source' => 'TeX အဖြစ်ထားခဲ့ပါ (စာသားသာပြသည့် ဘရောက်ဇာများအတွက်)',
 'mw_math_modern' => 'ခေတ်ပေါ်ဘရောက်ဇာများအတွက် အကြံပြုသည်',
 
+# Math errors
+'math_unknown_error'    => 'အမည်မသိ အမှား',
+'math_unknown_function' => 'အမည်မသိ ဖန်ရှင်',
+
 # Patrol log
 'patrol-log-diff' => 'မူ $1',
+
+# Image deletion
+'filedeleteerror-short' => 'ဖိုင်ဖျက်ရာတွင် အမှားအယွင်း - $1',
 
 # Browsing diffs
 'previousdiff' => '← တည်းဖြတ်မူ အဟောင်း',
@@ -1601,6 +1613,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'exif-relatedsoundfile'    => 'ဆက်နွယ်သော အသံဖိုင်',
 'exif-datetimeoriginal'    => 'ဒေတာဖန်တီးခဲ့သော နေ့စွဲနှင့် အချိန်',
 'exif-exposuretime-format' => '$1 စက္ကန့် ($2)',
+'exif-flash'               => 'ဖလက်ရှ်',
 'exif-gpsaltitude'         => 'အမြင့်',
 
 'exif-subjectdistance-value' => '$1 မီတာ',
@@ -1631,6 +1644,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 
 'exif-saturation-0' => 'သာမန်',
 
+'exif-sharpness-0' => 'ပုံမှန်',
+
 # External editor support
 'edit-externally'      => 'ပြင်ပ application တစ်ခုခုကိုသုံး၍ ဤဖိုင်ကို ပြင်ရန်',
 'edit-externally-help' => '(နောက်ထပ်သတင်းအချက်အလက်များအတွက်[http://www.mediawiki.org/wiki/Manual:External_editors တပ်ဆင်မှု လမ်းညွှန်များ] ကို ကြည့်ရန်)',
@@ -1646,7 +1661,10 @@ HTML tags ကို စစ်ဆေးပါ။',
 'confirmemail' => 'အီးမေးကိုအတည်ပြုပါ',
 
 # Multipage image navigation
-'imgmultigo' => 'သွား​ပါ!',
+'imgmultipageprev' => '← ပြီးခဲ့သော စာမျက်နှာ',
+'imgmultipagenext' => 'နောက်စာမျက်နှာ →',
+'imgmultigo'       => 'သွား​ပါ!',
+'imgmultigoto'     => 'စာမျက်နှာ $1 ကို သွားရန်',
 
 # Table pager
 'table_pager_next'         => 'နောက်စာမျက်နှာ',
@@ -1711,11 +1729,13 @@ HTML tags ကို စစ်ဆေးပါ။',
 'tags-title'        => 'အမည်တွဲ',
 
 # Special:ComparePages
-'compare-page1'  => 'စာမျက်နှာတစ်',
-'compare-page2'  => 'စာမျက်နှာနှစ်',
-'compare-rev1'   => 'မူ တစ်',
-'compare-rev2'   => 'မူ နှစ်',
-'compare-submit' => 'နှိုင်းယှဉ်ရန်',
+'comparepages'     => 'စာမျက်နှာများကို နှုိင်းယှဉ်ရန်',
+'compare-selector' => 'စာမျက်နှာမူများကို နှုိင်းယှဉ်ရန်',
+'compare-page1'    => 'စာမျက်နှာတစ်',
+'compare-page2'    => 'စာမျက်နှာနှစ်',
+'compare-rev1'     => 'မူ တစ်',
+'compare-rev2'     => 'မူ နှစ်',
+'compare-submit'   => 'နှိုင်းယှဉ်ရန်',
 
 # Database error messages
 'dberr-header' => 'ဤဝီကီတွင် ပြဿနာတစ်ခု ရှိနေသည်',

@@ -12,6 +12,7 @@
  * @author Daemorris
  * @author Giro720
  * @author Hamilton Abreu
+ * @author Helder.wiki
  * @author Heldergeovane
  * @author Indech
  * @author Jens Liebenau
@@ -1953,6 +1954,7 @@ A descrição na [$2 página de descrição] é mostrada abaixo.',
 'statistics-edits'             => 'Edições de página desde que a {{SITENAME}} foi instalada',
 'statistics-edits-average'     => 'Média de edições por página',
 'statistics-views-total'       => 'Total de visionamentos',
+'statistics-views-total-desc'  => 'Não estão incluídos os visionamentos de páginas inexistentes e páginas especiais',
 'statistics-views-peredit'     => 'Visionamentos por edição',
 'statistics-users'             => '[[Special:ListUsers|Utilizadores]] registados',
 'statistics-users-active'      => 'Utilizadores activos',
