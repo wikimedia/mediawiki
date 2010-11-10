@@ -536,6 +536,13 @@ abstract class Installer {
 			$this->showMessage( 'config-pcre' );
 			return false;
 		}
+		wfSuppressWarnings();
+		$regexd = preg_replace( '/[\x{0400}-\x{04FF}]/u', '', '-АБВГД-' );
+		wfRestoreWarnings();
+		if ( $regexd != '--' ) {
+			$this->showMessage( 'config-pcre-no-utf8' );
+			return false;
+		}
 	}
 
 	/**
