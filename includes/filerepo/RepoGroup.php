@@ -100,10 +100,15 @@ class RepoGroup {
 			}
 		}
 
+		if ( $title->getNamespace() != NS_MEDIA && $title->getNamespace() != NS_FILE ) {
+			throw new MWException( __METHOD__ . ' recieved an Title object with incorrect namespace' );
+		}
+
 		# Check the cache
 		if ( empty( $options['ignoreRedirect'] )
 			&& empty( $options['private'] )
-			&& empty( $options['bypassCache'] ) )
+			&& empty( $options['bypassCache'] )
+			&& $title->getNamespace() == NS_FILE )
 		{
 			$useCache = true;
 			$time = isset( $options['time'] ) ? $options['time'] : '';

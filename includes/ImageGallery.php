@@ -244,9 +244,13 @@ class ImageGallery
 			$time = $descQuery = false;
 			wfRunHooks( 'BeforeGalleryFindFile', array( &$this, &$nt, &$time, &$descQuery ) );
 
-			$img = wfFindFile( $nt, array( 'time' => $time ) );
+			if ( $nt->getNamespace() == NS_FILE ) {
+				$img = wfFindFile( $nt, array( 'time' => $time ) );
+			} else {
+				$img = false;
+			}
 
-			if( $nt->getNamespace() != NS_FILE || !$img ) {
+			if( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
