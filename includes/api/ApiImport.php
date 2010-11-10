@@ -181,7 +181,7 @@ class ApiImport extends ApiBase {
 class ApiImportReporter extends ImportReporter {
 	private $mResultArr = array();
 
-	function reportPage( $title, $origTitle, $revisionCount, $successCount ) {
+	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry
 		$r = array();
 		ApiQueryBase::addTitleInfo( $r, $title );
@@ -189,7 +189,7 @@ class ApiImportReporter extends ImportReporter {
 		$this->mResultArr[] = $r;
 
 		// Piggyback on the parent to do the logging
-		parent::reportPage( $title, $origTitle, $revisionCount, $successCount );
+		parent::reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo );
 	}
 
 	function getData() {
