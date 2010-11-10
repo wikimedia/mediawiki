@@ -201,6 +201,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Special:Search: Add CSS classes to 'none found' and 'create link' messages
 * Add CSS classes (including namespace and pagename) to the enhanced recent
   changes/watchlist entries
+* (bug 22463) Add hook 'SkinGetPoweredBy' to make 'powered by' icon customizable
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
