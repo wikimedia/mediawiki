@@ -306,7 +306,6 @@ class ApiUploadTest extends ApiTestCase {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
 
-		$extension = 'png';
 		$mimeType = 'image/png';
 
 		$filePath = tempnam( wfTempDir(), "" );
@@ -617,7 +616,7 @@ class ApiUploadTest extends ApiTestCase {
 		$hash = File::sha1Base36( $filePath );
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$success = true;
-		foreach ( $dupes as $key => $dupe ) {
+		foreach ( $dupes as $dupe ) {
 			$success &= $this->deleteFileByTitle( $dupe->getTitle() );
 		}
 		return $success;

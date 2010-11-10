@@ -529,7 +529,9 @@ class HistoryPager extends ReverseChronologicalPager {
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ), false );
 			}
 		}
-		if( $del ) $s .= " $del ";
+		if( $del ) {
+			$s .= " $del ";
+		}
 
 		$s .= " $link";
 		$s .= " <span class='history-user'>" .

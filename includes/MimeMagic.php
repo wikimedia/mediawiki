@@ -826,7 +826,7 @@ class MimeMagic {
 			$m = trim( $m );
 			$m = strtolower( $m );
 
-			if ( strpos( $m, 'unknown' ) !== false ) {
+			if ( strpos( $m, 'unknown' ) === false ) {
 				$m = null;
 			} else {
 				wfDebug( __METHOD__.": magic mime type of $file: $m\n" );

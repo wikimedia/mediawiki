@@ -66,7 +66,6 @@ TEXT;
 	
 		$maxlag = intval( $maxlag );
 		$throttle = intval( $throttle );
-		$force = (bool)$force;
 		if ( $begin !== '' ) {
 			$where = 'cl_to > ' . $dbw->addQuotes( $begin );
 		} else {
