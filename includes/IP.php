@@ -35,16 +35,16 @@ define( 'RE_IPV6_GAP', ':(?:0+:)*(?::(?:0+:)*)?' );
 define( 'RE_IPV6_V4_PREFIX', '0*' . RE_IPV6_GAP . '(?:ffff:)?' );
 // An IPv6 block is an IP address and a prefix (d1 to d128)
 define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
-// An IPv6 IP is made up of 8 octets. However abbreviations like "::" can be used.
-// This is lax! The number of colon groups is checked (1 to 7) but
-// the number of double colons is not validated (must be 0 to 1).
+// An IPv6 address is made up of 8 octets. However, the "::" abbreviations can be used.
 define( 'RE_IPV6_ADD',
-	'(' .
-		':(:' . RE_IPV6_WORD . '){1,7}' . // starts with "::"
-	'|' .
-		RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '){0,6}::' . // ends with "::"
-	'|' .
-		RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '){1,7}' . // neither of the above
+	'(' . // starts with "::" (includes the address "::")
+		'(::|:(:' . RE_IPV6_WORD . '){1,7})' .
+	'|' . // ends with "::" (not including the address "::")
+		RE_IPV6_WORD . '(:' . RE_IPV6_WORD . '){0,6}::' .
+	'|' . // has no "::"
+		RE_IPV6_WORD . '(:' . RE_IPV6_WORD . '){7}' .
+	'|' . // contains one "::" in the middle ("^" check always fails if no "::" found)
+		RE_IPV6_WORD . '(:(?P<abbr>(?(abbr)|:))?' . RE_IPV6_WORD . '){1,6}(?(abbr)|^)' .
 	')'
 );
 define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
@@ -72,11 +72,7 @@ class IP {
 		if ( !$ip ) {
 			return false;
 		}
-		if ( is_array( $ip ) ) {
-			throw new MWException( 'invalid value passed to ' . __METHOD__ );
-		}
-		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip )
-			&& ( substr_count( $ip, '::' ) <= 1 ); // IPv6 IPs with 2+ "::" are ambiguous
+		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip );
 	}
 
 	/**
@@ -89,11 +85,7 @@ class IP {
 		if ( !$ip ) {
 			return false;
 		}
-		if ( is_array( $ip ) ) {
-			throw new MWException( 'invalid value passed to ' . __METHOD__ );
-		}
-		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip )
-			&& ( substr_count( $ip, '::' ) <= 1 ); // IPv6 IPs with 2+ "::" are ambiguous
+		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip );
 	}
 
 	/**
@@ -188,7 +180,7 @@ class IP {
 			// If the '::' is at the beginning...
 			if( $abbrevPos == 0 ) {
 				$repeat = '0:';
-				$extra = '';
+				$extra = ( $ip == '::' ) ? '0' : ''; // for the address '::'
 				$pad = 9; // 7+2 (due to '::')
 			// If the '::' is at the end...
 			} elseif( $abbrevPos == ( $addressEnd - 1 ) ) {
@@ -449,7 +441,9 @@ class IP {
 	public static function toHex( $ip ) {
 		$n = self::toUnsigned( $ip );
 		if ( $n !== false ) {
-			$n = self::isIPv6( $ip ) ? 'v6-' . wfBaseConvert( $n, 10, 16, 32, false ) : wfBaseConvert( $n, 10, 16, 8, false );
+			$n = self::isIPv6( $ip )
+				? 'v6-' . wfBaseConvert( $n, 10, 16, 32, false )
+				: wfBaseConvert( $n, 10, 16, 8, false );
 		}
 		return $n;
 	}
