@@ -65,47 +65,47 @@ class IP {
 	/**
 	 * Given a string, determine if it as valid IP.
 	 * Note: Unlike isValid(), this looks for networks too.
-	 * @param $ip string possible IP address
-	 * @return string
+	 * @param string $ip possible IP address
+	 * @return bool
 	 */
 	public static function isIPAddress( $ip ) {
 		if ( !$ip ) {
 			return false;
 		}
-		return preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip );
+		return (bool)preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip );
 	}
 
 	/**
 	 * Given a string, determine if it as valid IP in IPv6 only.
 	 * Note: Unlike isValid(), this looks for networks too.
-	 * @param $ip string possible IP address
-	 * @return string
+	 * @param string $ip possible IP address
+	 * @return bool
 	 */
 	public static function isIPv6( $ip ) {
 		if ( !$ip ) {
 			return false;
 		}
-		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip );
+		return (bool)preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip );
 	}
 
 	/**
 	 * Given a string, determine if it as valid IP in IPv4 only.
 	 * Note: Unlike isValid(), this looks for networks too.
-	 * @param $ip string possible IP address
-	 * @return string
+	 * @param string $ip possible IP address
+	 * @return bool
 	 */
 	public static function isIPv4( $ip ) {
 		if ( !$ip ) {
 			return false;
 		}
-		return preg_match( '/^' . RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)$/', $ip );
+		return (bool)preg_match( '/^' . RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)$/', $ip );
 	}
 
 	/**
 	 * Given an IP address in dotted-quad notation, returns an IPv6 octet.
 	 * See http://www.answers.com/topic/ipv4-compatible-address
 	 * IPs with the first 92 bits as zeros are reserved from IPv6
-	 * @param $ip quad-dotted IP address.
+	 * @param string $ip quad-dotted IP address.
 	 * @return string
 	 */
 	public static function IPv4toIPv6( $ip ) {
@@ -136,7 +136,7 @@ class IP {
 
 	/**
 	 * Given an IPv6 address in octet notation, returns an unsigned integer.
-	 * @param $ip octet ipv6 IP address.
+	 * @param string $ip octet ipv6 IP address.
 	 * @return string
 	 */
 	public static function toUnsigned6( $ip ) {
@@ -155,7 +155,7 @@ class IP {
 	/**
 	 * Given an IPv6 address in octet notation, returns the expanded octet.
 	 * IPv4 IPs will be trimmed, thats it...
-	 * @param $ip string IP address in quad or octet form (CIDR or not).
+	 * @param string $ip IP address in quad or octet form (CIDR or not).
 	 * @return string
 	 */
 	public static function sanitizeIP( $ip ) {
@@ -205,7 +205,7 @@ class IP {
 
 	/**
 	 * Given an unsigned integer, returns an IPv6 address in octet notation
-	 * @param $ip_int integer IP address.
+	 * @param int $ip_int IP address.
 	 * @return string
 	 */
 	public static function toOctet( $ip_int ) {
@@ -223,7 +223,7 @@ class IP {
 
 	/**
 	 * Convert an IPv4 or IPv6 hexadecimal representation back to readable format
-	 * @param $hex string number, with "v6-" prefix if it is IPv6
+	 * @param string $hex number, with "v6-" prefix if it is IPv6
 	 * @return string quad-dotted (IPv4) or octet notation (IPv6)
 	 */
 	public static function formatHex( $hex ) {
@@ -236,7 +236,7 @@ class IP {
 
 	/**
 	 * Converts a hexadecimal number to an IPv6 address in octet notation
-	 * @param $ip_hex string hex IP
+	 * @param string $ip_hex hex IP
 	 * @return string (of format a:b:c:d:e:f:g:h)
 	 */
 	public static function hexToOctet( $ip_hex ) {
@@ -254,7 +254,7 @@ class IP {
 
 	/**
 	 * Converts a hexadecimal number to an IPv4 address in quad-dotted notation
-	 * @param $ip string Hex IP
+	 * @param string $ip Hex IP
 	 * @return string (of format a.b.c.d)
 	 */
 	public static function hexToQuad( $ip ) {
@@ -357,6 +357,7 @@ class IP {
 
 	/**
 	 * Validate an IP address.
+	 * @param string $ip
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValid( $ip ) {
@@ -365,6 +366,7 @@ class IP {
 
 	/**
 	 * Validate an IP Block.
+	 * @param string $ipblock
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValidBlock( $ipblock ) {
@@ -375,6 +377,8 @@ class IP {
 	 * Determine if an IP address really is an IP address, and if it is public,
 	 * i.e. not RFC 1918 or similar
 	 * Comes from ProxyTools.php
+	 * @param string $ip
+	 * @return bool
 	 */
 	public static function isPublic( $ip ) {
 		$n = self::toUnsigned( $ip );
@@ -413,7 +417,7 @@ class IP {
 	 * Split out an IP block as an array of 4 bytes and a mask,
 	 * return false if it can't be determined
 	 *
-	 * @param $ipblock string A quad dotted/octet IP address
+	 * @param string $ipblock A quad dotted/octet IP address
 	 * @return array
 	 */
 	public static function toArray( $ipblock ) {
@@ -435,8 +439,8 @@ class IP {
 	 * function for an IPv6 address will be prefixed with "v6-", a non-
 	 * hexadecimal string which sorts after the IPv4 addresses.
 	 *
-	 * @param $ip Quad dotted/octet IP address.
-	 * @return hexidecimal
+	 * @param string $ip Quad dotted/octet IP address.
+	 * @return string
 	 */
 	public static function toHex( $ip ) {
 		$n = self::toUnsigned( $ip );
@@ -452,7 +456,7 @@ class IP {
 	 * Given an IP address in dotted-quad/octet notation, returns an unsigned integer.
 	 * Like ip2long() except that it actually works and has a consistent error return value.
 	 * Comes from ProxyTools.php
-	 * @param $ip Quad dotted IP address.
+	 * @param string $ip Quad dotted IP address.
 	 * @return integer
 	 */
 	public static function toUnsigned( $ip ) {
@@ -476,7 +480,8 @@ class IP {
 
 	/**
 	 * Convert a dotted-quad IP to a signed integer
-	 * Returns false on failure
+	 * @param string $ip
+	 * @return mixed (string/false)
 	 */
 	public static function toSigned( $ip ) {
 		if ( $ip == '255.255.255.255' ) {
@@ -492,6 +497,7 @@ class IP {
 
 	/**
 	 * Convert a network specification in CIDR notation to an integer network and a number of bits
+	 * @param string $range (CIDR IP)
 	 * @return array(int, int)
 	 */
 	public static function parseCIDR( $range ) {
@@ -530,6 +536,7 @@ class IP {
 	 *     2001:0db8:85a3::7344/96          			 CIDR
 	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
 	 *     2001:0db8:85a3::7344             			 Single IP
+	 * @param string $range IP range
 	 * @return array(string, int)
 	 */
 	public static function parseRange( $range ) {
