@@ -217,7 +217,7 @@ abstract class Installer {
 
 	/**
 	 * Determine if LocalSettings exists. If it does, return an appropriate
-	 * status for whether we should can upgrade or not.
+	 * status for whether upgrading is enabled or not.
 	 *
 	 * @return Status
 	 */
@@ -306,7 +306,7 @@ abstract class Installer {
 	 * external links work just fine.
 	 *
 	 * But in case a translator decides to throw in a #ifexist or internal link or
-	 * whatever, this function is guarded to catch attempted DB access and to present
+	 * whatever, this function is guarded to catch the attempted DB access and to present
 	 * some fallback text.
 	 *
 	 * @param $text String
@@ -867,7 +867,7 @@ abstract class Installer {
 	 * @param $path String: path to search
 	 * @param $names Array of executable names
 	 * @param $versionInfo Boolean false or array with two members:
-	 *		 0 => Command to run for version check, with $1 for the path
+	 *		 0 => Command to run for version check, with $1 for the full executable name
 	 *		 1 => String to compare the output with
 	 *
 	 * If $versionInfo is not false, only executables with a version
