@@ -44,10 +44,6 @@ class UploadStash {
 
 		$this->repo = $repo;
 
-		if ( ! isset( $_SESSION ) ) {
-			throw new UploadStashNotAvailableException( 'no session variable' );
-		}
-
 		if ( !isset( $_SESSION[UploadBase::SESSION_KEYNAME] ) ) {
 			$_SESSION[UploadBase::SESSION_KEYNAME] = array();
 		}
