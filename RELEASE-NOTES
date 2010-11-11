@@ -202,6 +202,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Add CSS classes (including namespace and pagename) to the enhanced recent
   changes/watchlist entries
 * (bug 22463) Add hook 'SkinGetPoweredBy' to make 'powered by' icon customizable
+* Added CSS print pagination to the print stylesheets
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

@@ -348,3 +348,15 @@ table.wikitable {
 a.sortheader {
 	margin: 0px 0.3em;
 }
+
+/* Some pagination options */
+.wikitable, .thumb, img {
+	page-break-inside: avoid;
+}
+h2, h3, h4, h5, h6, h7 {
+	page-break-after: avoid;
+}
+p {
+	widows: 3;
+	orpans: 3;
+}
