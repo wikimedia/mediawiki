@@ -358,5 +358,5 @@ h2, h3, h4, h5, h6, h7 {
 }
 p {
 	widows: 3;
-	orpans: 3;
+	orphans: 3;
 }
