@@ -34,7 +34,7 @@ class BenchmarkPurge extends Maintenance {
 	public function execute() {
 		global $wgUseSquid, $wgSquidServers;
 		if ( !$wgUseSquid ) {
-			$this->error( "Squid purge benchmark doesn't do much without squid support on." . true );
+			$this->error( "Squid purge benchmark doesn't do much without squid support on.", true );
 		} else {
 			$this->output( "There are " . count( $wgSquidServers ) . " defined squid servers:\n" );
 			if ( $this->hasOption( 'count' ) ) {
