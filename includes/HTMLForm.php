@@ -908,7 +908,7 @@ abstract class HTMLFormField {
 
 		global $wgUser;
 
-		return $wgUser->getSkin()->tooltipAndAccessKeyAttribs();
+		return $wgUser->getSkin()->tooltipAndAccessKeyAttribs( $this->mParams['tooltip'] );
 	}
 
 	/**
