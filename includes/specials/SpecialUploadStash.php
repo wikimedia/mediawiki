@@ -25,8 +25,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 	// $request is the request (usually wgRequest)
 	// $subpage is everything in the URL after Special:UploadStash
-	public function __construct( $name, $restriction = '', $function = false, $file = 'default' ) {
-		parent::__construct( $name, 'upload' );
+	public function __construct( ) {
+		parent::__construct( 'UploadStash', 'upload' );
 		try {
 			$this->stash = new UploadStash( );
 		} catch (UploadStashNotAvailableException $e) {
