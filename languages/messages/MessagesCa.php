@@ -1769,6 +1769,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 'statistics-edits'             => 'Edicions en pàgines des que el projecte {{SITENAME}} fou instaŀlat',
 'statistics-edits-average'     => 'Edicions per pàgina de mitjana',
 'statistics-views-total'       => 'Visualitzacions totals',
+'statistics-views-total-desc'  => "No hom inclou l'accès a pàgines inexistents o pàgines especials",
 'statistics-views-peredit'     => 'Visualitzacions per modificació',
 'statistics-users'             => '[[Special:ListUsers|Usuaris]] registrats',
 'statistics-users-active'      => 'Usuaris actius',
