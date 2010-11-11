@@ -66,7 +66,7 @@ class RebuildRecentchanges extends Maintenance {
 		$cutoff = time() - $wgRCMaxAge;
 		$dbw->insertSelect( 'recentchanges', array( 'page', 'revision' ),
 			array(
-				'rc_id'         => ( $dbw->nextSequenceValue( 'rc_rc_id_seq' ) > 0 ) ? $dbw->nextSequenceValue( 'rc_rc_id_seq' ) : 0,
+				'rc_id'         => ( $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' ) > 0 ) ? $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' ) : 0,
 				'rc_timestamp'  => 'rev_timestamp',
 				'rc_cur_time'   => 'rev_timestamp',
 				'rc_user'       => 'rev_user',
