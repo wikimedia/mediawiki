@@ -4398,6 +4398,8 @@ MediaWiki require functiones de iste modulo e non functionara in iste configurat
 Si tu usa Mandrake, installa le pacchetto php-xml.',
 	'config-pcre' => 'Le modulo de supporto PCRE pare esser mancante.
 MediaWiki require le functiones de expression regular compatibile con Perl pro poter functionar.',
+	'config-pcre-no-utf8' => "'''Fatal''': Le modulo PCRE de PHP pare haber essite compilate sin supporto de PCRE_UTF8.
+MediaWiki require supporto de UTF-8 pro functionar correctemente.",
 	'config-memory-none' => 'PHP es configurate sin <code>memory_limit</code>',
 	'config-memory-ok' => 'Le <code>memory_limit</code> de PHP es $1.
 OK.',
@@ -5926,6 +5928,8 @@ $1
 Ако работите со Mandrake, инсталирајте го php-xml пакетот.',
 	'config-pcre' => 'Недостасува модулот за поддршка на PCRE.
 МедијаВики не може да работи без функции за регуларни изрази соодветни на Perl.',
+	'config-pcre-no-utf8' => "'''Фатално''': PCRE-модулот на PHP е составен без поддршка за PCRE_UTF8.
+МедијаВики бара поддршка за UTF-8 за да може да работи правилно.",
 	'config-memory-none' => 'PHP е поставен без <code>memory_limit</code>',
 	'config-memory-ok' => '<code>memory_limit</code> за PHP изнесува $1.
 ОК.',
@@ -6259,6 +6263,7 @@ chmod a+w $3</pre>',
 	'config-install-database' => 'Ја поставувам базата на податоци',
 	'config-install-pg-schema-failed' => 'Создавањето натабелите не успеа.
 Проверете дали корисникот „$1“ може да запишува во шемата „$2“.',
+	'config-install-pg-commit' => 'Спроведување на промени',
 	'config-install-user' => 'Создавам корисник за базата',
 	'config-install-user-failed' => 'Доделувањето на дозвола на корисникот „$1“ не успеа: $2',
 	'config-install-tables' => 'Создавам табели',
@@ -6427,6 +6432,8 @@ MediaWiki heeft de functies van deze module nodig en werkt niet zonder deze modu
 Als u gebruik maakt van Mandrake, installeer dan het package php-xml.',
 	'config-pcre' => 'De ondersteuningsmodule PCRE lijkt te missen.
 MediaWiki vereist dat de met Perl compatibele reguliere expressies werken.',
+	'config-pcre-no-utf8' => "'''Fataal:''' de module PRCE van PHP lijkt te zijn gecompileerd zonder ondersteuning voor PCRE_UTF8.
+MediaWiki heeft ondersteuning voor UTF-8 nodig om correct te kunnen werken.",
 	'config-memory-none' => 'PHP is ingesteld zonder <code>memory_limit</code>',
 	'config-memory-ok' => "PHP's <code>memory_limit</code> is $1. In orde.",
 	'config-memory-raised' => "PHP's <code>memory_limit</code> is $1 en is verhoogd tot $2.",
@@ -6764,6 +6771,7 @@ Ga alstublieft door naar de volgende pagina.",
 	'config-install-database' => 'Database inrichten',
 	'config-install-pg-schema-failed' => 'Het aanmaken van de tabellen is mislukt.
 Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
+	'config-install-pg-commit' => 'Wijzigingen worden doorgevoerd',
 	'config-install-user' => 'Databasegebruiker aan het aanmaken',
 	'config-install-user-failed' => 'Het geven van rechten aan gebruiker "$1" is mislukt: $2',
 	'config-install-tables' => 'Tabellen aanmaken',
@@ -7395,6 +7403,8 @@ Instalacja została przerwana.",
 	'config-db-install-account' => 'Konto użytkownika dla instalatora',
 	'config-db-username' => 'Nazwa użytkownika bazy danych',
 	'config-db-password' => 'Hasło bazy danych',
+	'config-db-install-username' => 'Wprowadź nazwę użytkownika, który będzie używany do łączenia się z bazą danych podczas procesu instalacji.
+Nie jest to nazwa konta MediaWiki, a użytkownika bazy danych.',
 	'config-db-install-help' => 'Podaj nazwę użytkownika i jego hasło, które zostaną użyte do połączenia z bazą danych w czasie procesu instalacji.',
 	'config-db-account-lock' => 'Użyj tej samej nazwy użytkownika i hasła w czasie normalnej pracy.',
 	'config-db-wiki-account' => 'Konto użytkownika do normalnej pracy',
@@ -7475,6 +7485,8 @@ Konto, które wskazałeś tutaj musi już istnieć.',
 	'config-ns-site-name' => 'Taka sama jak nazwa wiki $1',
 	'config-ns-other' => 'Inna (należy określić)',
 	'config-ns-other-default' => 'MojaWiki',
+	'config-ns-invalid' => 'Podana przestrzeń nazw „<nowiki>$1</nowiki>” jest nieprawidłowa.
+Podaj inną przestrzeń nazw projektu.',
 	'config-admin-box' => 'Konto administratora',
 	'config-admin-name' => 'Administrator',
 	'config-admin-password' => 'Hasło',
@@ -7551,6 +7563,7 @@ Przejdź do następnej strony.",
 	'config-install-database' => 'Konfigurowanie bazy danych',
 	'config-install-pg-schema-failed' => 'Utworzenie tabel nie powiodło się.
 Upewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.',
+	'config-install-pg-commit' => 'Zatwierdzanie zmian',
 	'config-install-user' => 'Tworzenie użytkownika bazy danych',
 	'config-install-user-failed' => 'Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2',
 	'config-install-tables' => 'Tworzenie tabel',

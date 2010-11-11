@@ -163,7 +163,7 @@ $messages = array(
 'page-rss-feed'       => '"$1" RSS pādi',
 'page-atom-feed'      => '"$1" Atom pādi',
 'feed-rss'            => 'RSS',
-'red-link-title'      => '$1 (itaidys lopys navā)',
+'red-link-title'      => '$1 (taida puslopa naekzistē)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Rakstīņs',
@@ -189,7 +189,7 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 # Login and logout pages
 'yourname'                => 'Tovs lītuotuojvuords / Slāgvuords:',
 'yourpassword'            => 'Paroļs:',
-'remembermypassword'      => 'Atguoduot munu paroli iz ituo datora (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Atguoduot muni  iz ituo datora (na vaira kai $1 {{PLURAL:$1|dīnu|dīnom|dīnom}})',
 'login'                   => 'Dasaslāgt',
 'nav-login-createaccount' => 'Dasaslāgt / sataiseit jaunu lītuotuoju',
 'userlogin'               => 'Dasaslāgt / sataiseit jaunu lītuotuoju',

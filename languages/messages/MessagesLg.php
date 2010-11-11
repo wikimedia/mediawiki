@@ -31,6 +31,7 @@ $messages = array(
 'tog-watchdefault'            => "Empapula zenkyusamu ziteekebwenga ku lukalala lw'ezo zengoberera",
 'tog-watchmoves'              => "Empapula zenkyusa erinnya ziteekebwenga ku lukalala lw'ezo zengoberera",
 'tog-watchdeletion'           => "Empapula zenzigyawo ziteekebwenga ku lukalala lw'ezo zengoberera",
+'tog-minordefault'            => "Bulijjo, enkyukakyuka z'okola zirambibwe nti ntono",
 'tog-previewontop'            => "Okulagako kubeerenga waggulu w'ekifo w'owandikira",
 'tog-previewonfirst'          => 'Buli lwensooka okukyusa olupapula, ndagangako byenkoze',
 'tog-nocache'                 => "Ekyandaaza kiremenga kutereka koppi z'empapula z'okebera",
@@ -51,7 +52,19 @@ $messages = array(
 'tog-watchlisthideminor'      => "Nkyukakyuka ntono zireme okulabikira mu lukalala lw'empapula ze ngoberera",
 'tog-watchlisthideliu'        => "Ezikyusidwa abayingidde mu sisitemu zireme okulabikira mu lukalala lw'empapula ze ngoberera",
 'tog-watchlisthideanons'      => "Ezikyusidwa abat'emanyisizza zireme okulabikira mu lukalala lw'empapula ze ngoberera",
+'tog-watchlisthidepatrolled'  => "Ezirawunidwa zireme okulabikira mu lukalala lw'empapula ze ngoberera",
+'tog-ccmeonemails'            => 'Bwe nsindika email, nange nfunengako koppi',
+'tog-diffonly'                => "Bwe mba nga nkebera enjawulo wakati w'empandika z'olupapula, ebikyuse ku lupapula byokka bye biba birabika.",
+'tog-showhiddencats'          => 'Amatuluba agabeera makise mu bya bulijjo galabikenga',
 'tog-norollbackdiff'          => 'Okujjulula nga kuwedde, tolaga bigerageranya ebikyuse',
+
+'underline-always'  => 'Bulijjo',
+'underline-never'   => 'Nedda',
+'underline-default' => "Puloguramu y'esalawo",
+
+# Font style option in Special:Preferences
+'editfont-style'   => "Enkula y'ennukuta mu katundu w'owandikira:",
+'editfont-default' => "Puloguramu y'esalawo",
 
 # Dates
 'sunday'        => 'Sande',

@@ -1440,7 +1440,7 @@ $1",
 'group-user-member'          => 'Корисник',
 'group-autoconfirmed-member' => 'Автопотврден корисник',
 'group-bot-member'           => 'бот',
-'group-sysop-member'         => 'Систем оператор',
+'group-sysop-member'         => 'администратор',
 'group-bureaucrat-member'    => 'Бирократ',
 'group-suppress-member'      => 'Надгледувач',
 
@@ -2190,7 +2190,7 @@ $1',
 'enotif_reset'                 => 'Означи ги сите страници како посетени',
 'enotif_newpagetext'           => 'Ова е нова страница.',
 'enotif_impersonal_salutation' => 'Википедија корисник',
-'changed'                      => 'променета',
+'changed'                      => 'изменета',
 'created'                      => 'создадена',
 'enotif_subject'               => '{{SITENAME}} страницата $PAGETITLE беше $CHANGEDORCREATED од $PAGEEDITOR',
 'enotif_lastvisited'           => 'Видете $1 за сите промени од вашата последна посета.',
@@ -2199,7 +2199,7 @@ $1',
 'enotif_body'                  => 'Почитуван(а) $WATCHINGUSERNAME,
 
 
-На {{SITENAME}} страницата $PAGETITLE е $CHANGEDORCREATED на $PAGEEDITDATE од $PAGEEDITOR, видете $PAGETITLE_URL за тековната ревизија.
+На $PAGEEDITDATE е $CHANGEDORCREATED страницата „$PAGETITLE“ на проектот {{SITENAME}}. Измената ја изврши $PAGEEDITOR. Погледајте ја тековната верзија на $PAGETITLE_URL.
 
 $NEWPAGE
 
