@@ -124,15 +124,11 @@ class IP {
 	 * See http://www.answers.com/topic/ipv4-compatible-address
 	 * IPs with the first 92 bits as zeros are reserved from IPv6
 	 * @param string $ip quad-dotted IP address.
-	 * @return string
+	 * @return string IPv4 address
 	 */
 	public static function IPv4toIPv6( $ip ) {
-		if ( !$ip ) {
-			return null;
-		}
-		// Convert only if needed
-		if ( self::isIPv6( $ip ) ) {
-			return $ip;
+		if ( !self::isIPv4( $ip ) ) {
+			throw new MWException( "IPv4toIPv6() called on a non-IPv4 address." );
 		}
 		// IPv4 address with CIDR
 		if ( strpos( $ip, '/' ) !== false ) {
@@ -397,10 +393,13 @@ class IP {
 	/**
 	 * Convert a network specification in CIDR notation
 	 * to an integer network and a number of bits
-	 * @param string $range (CIDR IP)
+	 * @param string $range IP with CIDR prefix
 	 * @return array(int, int)
 	 */
 	public static function parseCIDR( $range ) {
+		if ( self::isIPv6( $range ) ) {
+			return self::parseCIDR6( $range );
+		}
 		$parts = explode( '/', $range, 2 );
 		if ( count( $parts ) != 2 ) {
 			return array( false, false );
@@ -425,8 +424,8 @@ class IP {
 	}
 
 	/**
-	 * Given a string range in a number of formats, return the start and end of
-	 * the range in hexadecimal.
+	 * Given a string range in a number of formats,
+	 * return the start and end of the range in hexadecimal.
 	 *
 	 * Formats are:
 	 *     1.2.3.4/24          CIDR
@@ -437,15 +436,14 @@ class IP {
 	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
 	 *     2001:0db8:85a3::7344             			 Single IP
 	 * @param string $range IP range
-	 * @return array(string, int)
+	 * @return array(string, string)
 	 */
 	public static function parseRange( $range ) {
-		// Use IPv6 functions if needed
-		if ( self::isIPv6( $range ) ) {
-			return self::parseRange6( $range );
-		}
+		// CIDR notation
 		if ( strpos( $range, '/' ) !== false ) {
-			# CIDR
+			if ( self::isIPv6( $range ) ) {
+				return self::parseRange6( $range );
+			}
 			list( $network, $bits ) = self::parseCIDR( $range );
 			if ( $network === false ) {
 				$start = $end = false;
@@ -453,10 +451,13 @@ class IP {
 				$start = sprintf( '%08X', $network );
 				$end = sprintf( '%08X', $network + pow( 2, ( 32 - $bits ) ) - 1 );
 			}
+		// Explicit range
 		} elseif ( strpos( $range, '-' ) !== false ) {
-			# Explicit range
 			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
-			if( self::isIPAddress( $start ) && self::isIPAddress( $end ) ) {
+			if ( self::isIPv6( $start ) && self::isIPv6( $end ) ) {
+				return self::parseRange6( $range );
+			}
+			if ( self::isIPv4( $start ) && self::isIPv4( $end ) ) {
 				$start = self::toUnsigned( $start );
 				$end = self::toUnsigned( $end );
 				if ( $start > $end ) {
@@ -593,26 +594,25 @@ class IP {
 		if ( self::isValid( $addr ) ) {
 			return $addr;
 		}
-
 		// Turn mapped addresses from ::ce:ffff:1.2.3.4 to 1.2.3.4
 		if ( strpos( $addr, ':' ) !== false && strpos( $addr, '.' ) !== false ) {
 			$addr = substr( $addr, strrpos( $addr, ':' ) + 1 );
-			if( self::isIPv4( $addr ) ) {
+			if ( self::isIPv4( $addr ) ) {
 				return $addr;
 			}
 		}
-
 		// IPv6 loopback address
 		$m = array();
 		if ( preg_match( '/^0*' . RE_IPV6_GAP . '1$/', $addr, $m ) ) {
 	   		return '127.0.0.1';
 		}
-
 		// IPv4-mapped and IPv4-compatible IPv6 addresses
 		if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . '(' . RE_IP_ADD . ')$/i', $addr, $m ) ) {
 			return $m[1];
 		}
-		if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . RE_IPV6_WORD . ':' . RE_IPV6_WORD . '$/i', $addr, $m ) ) {
+		if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . RE_IPV6_WORD .
+			':' . RE_IPV6_WORD . '$/i', $addr, $m ) )
+		{
 			return long2ip( ( hexdec( $m[1] ) << 16 ) + hexdec( $m[2] ) );
 		}
 
