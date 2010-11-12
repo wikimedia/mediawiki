@@ -34,7 +34,8 @@ class UploadStash {
 	/**
 	 * Represents the session which contains temporarily stored files.
 	 * Designed to be compatible with the session stashing code in UploadBase (should replace it eventually)
-	 * @param {FileRepo} $repo: optional -- repo in which to store files. Will choose LocalRepo if not supplied.
+	 *
+	 * @param $repo FileRepo: optional -- repo in which to store files. Will choose LocalRepo if not supplied.
 	 */
 	public function __construct( $repo = null ) { 
 
@@ -56,20 +57,22 @@ class UploadStash {
 	}
 
 	/**
-	 * Get the base of URLs by which one can access the files 
-	 * @return {String} url
+	 * Get the base of URLs by which one can access the files
+	 *
+	 * @return String: url
 	 */
 	public function getBaseUrl() { 
 		return $this->baseUrl;
 	}
 
-	/** 
+	/**
 	 * Get a file and its metadata from the stash.
 	 * May throw exception if session data cannot be parsed due to schema change, or key not found.
-	 * @param {Integer} $key: key
+	 *
+	 * @param $key Integer: key
 	 * @throws UploadStashFileNotFoundException
 	 * @throws UploadStashBadVersionException
-	 * @return {UploadStashItem} null if no such item or item out of date, or the item
+	 * @return UploadStashItem: null if no such item or item out of date, or the item
 	 */
 	public function getFile( $key ) {
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
@@ -104,12 +107,12 @@ class UploadStash {
 	 * We store data in a flat key-val namespace because that's how UploadBase did it. This also means we have to
 	 * ensure that the key-val pairs in $data do not overwrite other required fields.
 	 *
-	 * @param {String} $path: path to file you want stashed
-	 * @param {Array} $data: optional, other data you want associated with the file. Do not use 'mTempPath', 'mFileProps', 'mFileSize', or 'version' as keys here
-	 * @param {String} $key: optional, unique key for this file in this session. Used for directory hashing when storing, otherwise not important
+	 * @param $path String: path to file you want stashed
+	 * @param $data Array: optional, other data you want associated with the file. Do not use 'mTempPath', 'mFileProps', 'mFileSize', or 'version' as keys here
+	 * @param $key String: optional, unique key for this file in this session. Used for directory hashing when storing, otherwise not important
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
-	 * @return {null|UploadStashFile} file, or null on failure
+	 * @return UploadStashFile: file, or null on failure
 	 */
 	public function stashFile( $path, $data = array(), $key = null ) {
 		if ( ! file_exists( $path ) ) {
@@ -174,11 +177,12 @@ class UploadStashFile extends UnregisteredLocalFile {
 	/**
 	 * A LocalFile wrapper around a file that has been temporarily stashed, so we can do things like create thumbnails for it
 	 * Arguably UnregisteredLocalFile should be handling its own file repo but that class is a bit retarded currently
-	 * @param {UploadStash} $stash: UploadStash, useful for obtaining config, stashing transformed files
-	 * @param {FileRepo} $repo: repository where we should find the path
-	 * @param {String} $path: path to file
-	 * @param {String} $key: key to store the path and any stashed data under
-	 * @param {String} $data: any other data we want stored with this file
+	 *
+	 * @param $stash UploadStash: useful for obtaining config, stashing transformed files
+	 * @param $repo FileRepo: repository where we should find the path
+	 * @param $path String: path to file
+	 * @param $key String: key to store the path and any stashed data under
+	 * @param $data String: any other data we want stored with this file
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileNotFoundException
 	 */
@@ -218,7 +222,8 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * We do not necessarily care about doing the description at this point
 	 * However, we also can't return the empty string, as the rest of MediaWiki demands this (and calls to imagemagick
 	 * convert require it to be there)
-	 * @return {String} dummy value
+	 *
+	 * @return String: dummy value
 	 */
 	public function getDescriptionUrl() {
 		return $this->getUrl();
@@ -263,8 +268,8 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * The actual argument is the result of thumbName although we seem to have 
 	 * buggy code elsewhere that expects a boolean 'suffix'
 	 *
-	 * @param {String|false} $thumbName: name of thumbnail (e.g. "120px-123456.jpg" ), or false to just get the path
-	 * @return {String} path thumbnail should take on filesystem, or containing directory if thumbname is false
+	 * @param $thumbName String: name of thumbnail (e.g. "120px-123456.jpg" ), or false to just get the path
+	 * @return String: path thumbnail should take on filesystem, or containing directory if thumbname is false
 	 */
 	public function getThumbPath( $thumbName = false ) { 
 		$path = dirname( $this->path );
@@ -277,8 +282,8 @@ class UploadStashFile extends UnregisteredLocalFile {
 	/**
 	 * Return the file/url base name of a thumbnail with the specified parameters
 	 *
-	 * @param {Array} $params: handler-specific parameters
-	 * @return {String|null} base name for URL, like '120px-12345.jpg', or null if there is no handler
+	 * @param $params Array: handler-specific parameters
+	 * @return String: base name for URL, like '120px-12345.jpg', or null if there is no handler
 	 */
 	function thumbName( $params ) {
 		if ( !$this->getHandler() ) {
@@ -299,8 +304,8 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * the thumbnail urls be predictable. However, in our model the URL is not based on the filename
 	 * (that's hidden in the session)
 	 *
-	 * @param {String} $thumbName: basename of thumbnail file -- however, we don't want to use the file exactly
-	 * @return {String} URL to access thumbnail, or URL with partial path
+	 * @param $thumbName String: basename of thumbnail file -- however, we don't want to use the file exactly
+	 * @return String: URL to access thumbnail, or URL with partial path
 	 */
 	public function getThumbUrl( $thumbName = false ) { 
 		$path = $this->sessionStash->getBaseUrl();
@@ -313,7 +318,8 @@ class UploadStashFile extends UnregisteredLocalFile {
 	/** 
 	 * The basename for the URL, which we want to not be related to the filename.
 	 * Will also be used as the lookup key for a thumbnail file.
-	 * @return {String} base url name, like '120px-123456.jpg'
+	 *
+	 * @return String: base url name, like '120px-123456.jpg'
 	 */
 	public function getUrlName() { 
 		if ( ! $this->urlName ) {
@@ -324,8 +330,9 @@ class UploadStashFile extends UnregisteredLocalFile {
 
 	/**
 	 * Return the URL of the file, if for some reason we wanted to download it
- 	 * We tend not to do this for the original file, but we do want thumb icons
-	 * @return {String} url
+	 * We tend not to do this for the original file, but we do want thumb icons
+	 *
+	 * @return String: url
 	 */
 	public function getUrl() {
 		if ( !isset( $this->url ) ) {
@@ -338,7 +345,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * Parent classes use this method, for no obvious reason, to return the path (relative to wiki root, I assume). 
 	 * But with this class, the URL is unrelated to the path.
 	 *
-	 * @return {String} url
+	 * @return String: url
 	 */
 	public function getFullUrl() { 
 		return $this->getUrl();
@@ -347,7 +354,8 @@ class UploadStashFile extends UnregisteredLocalFile {
 
 	/**
 	 * Getter for session key (the session-unique id by which this file's location & metadata is stored in the session)
-	 * @return {String} session key
+	 *
+	 * @return String: session key
 	 */
 	public function getSessionKey() {
 		return $this->sessionKey;
@@ -360,9 +368,9 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * Here we override transform() to stash the thumbnail file, and then 
 	 * provide a way to get at the stashed thumbnail file to extract properties such as its URL
 	 *
-	 * @param {Array} $params: parameters suitable for File::transform()
-	 * @param {Bitmask} $flags: flags suitable for File::transform()
-	 * @return {ThumbnailImage} with additional File thumbnailFile property
+	 * @param $params Array: parameters suitable for File::transform()
+	 * @param $flags Integer: bitmask, flags suitable for File::transform()
+	 * @return ThumbnailImage: with additional File thumbnailFile property
 	 */
 	public function transform( $params, $flags = 0 ) { 
 
@@ -390,7 +398,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 
 	/**
 	 * Remove the associated temporary file
-	 * @return {Status} success
+	 * @return Status: success
 	 */
 	public function remove() {
 		return $this->repo->freeTemp( $this->path );
