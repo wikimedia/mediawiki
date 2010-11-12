@@ -135,10 +135,8 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	public function testip2longWrapper() {
 		// fixme : add more tests ?
 		$this->assertEquals( pow(2,32) - 1, IP::toUnsigned( '255.255.255.255' ));
-		$this->assertEquals( -1           , IP::toSigned( '255.255.255.255' )) ;
 		$i = 'IN.VA.LI.D';
 		$this->assertFalse( IP::toUnSigned( $i ) );
-		$this->assertFalse( IP::toSigned(   $i ) );
 	}
 
 	public function testPrivateIPs() {
@@ -199,8 +197,6 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	function testCIDRParsing() {
 		$this->assertFalseCIDR( '192.0.2.0' , "missing mask"    );	
 		$this->assertFalseCIDR( '192.0.2.0/', "missing bitmask" );
-		
-		// code calls IP::toSigned()
 
 		// Verify if statement
 		$this->assertFalseCIDR( '256.0.0.0/32', "invalid net"      );
