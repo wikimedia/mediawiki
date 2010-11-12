@@ -6,8 +6,9 @@
 class IPTest extends PHPUnit_Framework_TestCase {
 	// not sure it should be tested with boolean false. hashar 20100924 
 	public function testisIPAddress() {
-		$this->assertFalse( IP::isIPAddress( false ) );
-		$this->assertFalse( IP::isIPAddress( "" ) );
+		$this->assertFalse( IP::isIPAddress( false ), 'Boolean false is not an IP' );
+		$this->assertFalse( IP::isIPAddress( true  ), 'Boolean true is not an IP' );
+		$this->assertFalse( IP::isIPAddress( "" ), 'Empty string is not an IP' );
 		$this->assertFalse( IP::isIPAddress( 'abc' ) );
 		$this->assertFalse( IP::isIPAddress( ':' ) );
 		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1'), 'IPv6 with a double :: occurence' );
@@ -19,7 +20,8 @@ class IPTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertTrue( IP::isIPAddress( 'fc:100::' ) );
 		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac::' ) );
-		$this->assertTrue( IP::isIPAddress( '::' ), 'IPv6 zero address' );
+		$this->assertTrue( IP::isIPAddress( '::' ),  'RFC 4291 IPv6 Unspecified Address' );
+		$this->assertTrue( IP::isIPAddress( '::1' ), 'RFC 4291 IPv6 Loopback Address' );
 		$this->assertTrue( IP::isIPAddress( '::fc' ) );
 		$this->assertTrue( IP::isIPAddress( '::fc:100:a:d:1:e:ac' ) );
 		$this->assertTrue( IP::isIPAddress( 'fc::100' ) );
@@ -41,8 +43,8 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac::' ) );
-		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0::' ), 'IPv6 ending it "::" with 8 words' );
-		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0:1::' ), 'IPv6 with 9 words' );
+		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0::' ), 'IPv6 with 8 words ending with "::"' );
+		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0:1::' ), 'IPv6 with 9 words ending with "::"' );
 
 		$this->assertFalse( IP::isIPv6( ':::' ) );
 		$this->assertFalse( IP::isIPv6( '::0:' ), 'IPv6 ending in a lone ":"' );
@@ -55,11 +57,11 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1' ) );
 		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1:e' ) );
 		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1:e:ac' ) );
-		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 octets' );
-		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 octets' );
+		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 words' );
+		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 words' );
 
 		$this->assertFalse( IP::isIPv6( ':fc::100' ), 'IPv6 starting with lone ":"' );
-		$this->assertFalse( IP::isIPv6( 'fc::100:' ), 'IPv6 ending in lone ":"' );
+		$this->assertFalse( IP::isIPv6( 'fc::100:' ), 'IPv6 ending with lone ":"' );
 		$this->assertFalse( IP::isIPv6( 'fc:::100' ), 'IPv6 with ":::" in the middle' );
 		$this->assertTrue( IP::isIPv6( 'fc::100' ) );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a' ) );
@@ -67,8 +69,8 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1' ) );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e' ) );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e:ac' ) );
-		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 octets' );
-		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 octets' );
+		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 words' );
+		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 words' );
 
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac:0' ) );
 	}
@@ -83,7 +85,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 				$this->assertTrue( IP::isValid( $ip ) , "$ip is a valid IPv4 address" );
 			}
 		}
-		foreach ( range( 0, 65535 ) as $i ) {
+		foreach ( range( 0x0, 0xFFFF ) as $i ) {
 			$a = sprintf( "%04x", $i );
 			$b = sprintf( "%03x", $i );
 			$c = sprintf( "%02x", $i );
@@ -105,9 +107,9 @@ class IPTest extends PHPUnit_Framework_TestCase {
 			}
 		}
 		foreach ( range( 'g', 'z' ) as $i ) {
-			$a = sprintf( "%04", $i );
-			$b = sprintf( "%03", $i );
-			$c = sprintf( "%02", $i );
+			$a = sprintf( "%04s", $i );
+			$b = sprintf( "%03s", $i );
+			$c = sprintf( "%02s", $i );
 			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
 				$ip = "$f:$f:$f:$f:$f:$f:$f:$f";
 				$this->assertFalse( IP::isValid( $ip ) , "$ip is not a valid IPv6 address" );
