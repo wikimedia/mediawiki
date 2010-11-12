@@ -1328,8 +1328,7 @@ $messages['br'] = array(
 	'config-desc' => 'Poellad staliañ MediaWIki',
 	'config-title' => 'Staliadur MediaWiki $1',
 	'config-information' => 'Titouroù',
-	'config-show-help' => 'Skoazell',
-	'config-hide-help' => 'Kuzhat ar skoazell',
+	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
 	'config-your-language' => 'Ho yezh :',
 	'config-your-language-help' => 'Dibabit ur yezh da implijout e-pad an argerzh staliañ.',
 	'config-wiki-language' => 'Yezh ar wiki :',
@@ -2716,6 +2715,8 @@ MediaWiki requiert des fonctions de ce module et ne fonctionnera pas avec cette 
 Si vous êtes sous Mandrake, installez le paquet php-xml.',
 	'config-pcre' => "Le module de support PCRE semble manquer. 
 MediaWiki requiert les fonctions d'expression régulière compatible avec Perl.",
+	'config-pcre-no-utf8' => "'''Erreur fatale''': Le module PCRE de PHP semble être compilé sans le support PCRE_UTF8.
+MédiaWiki nécessite la gestion d’UTF-8 pour fonctionner correctement.",
 	'config-memory-none' => 'PHP est configuré sans paramètre <code>memory_limit</code>',
 	'config-memory-ok' => 'Le paramètre <code>memory_limit</code> de PHP est à $1.
 OK.',
@@ -3048,6 +3049,7 @@ S'il vous plaît, allez à la page suivante.",
 	'config-install-database' => 'Création de la base de données',
 	'config-install-pg-schema-failed' => "Échec lors de la création des tables. 
 Assurez-vous que l'utilisateur « $1 » peut écrire selon le schéma « $2 ».",
+	'config-install-pg-commit' => 'Validation des modifications',
 	'config-install-user' => "Création d'un utilisateur de la base de données",
 	'config-install-user-failed' => "Échec lors de l'ajout de permissions à l'utilisateur « $1 » : $2",
 	'config-install-tables' => 'Création des tables',
@@ -6292,6 +6294,96 @@ chmod a+w $3</pre>',
 Откога ќе завршите со тоа, можете да '''[$2 влезете на вашето вики]'''.",
 );
 
+/** Malayalam (മലയാളം)
+ * @author Praveenp
+ */
+$messages['ml'] = array(
+	'config-desc' => 'മീഡിയവിക്കി ഇൻസ്റ്റോളർ',
+	'config-title' => 'മീഡിയവിക്കി $1 ഇൻസ്റ്റലേഷൻ',
+	'config-information' => 'വിവരങ്ങൾ',
+	'config-localsettings-upgrade' => "'''അറിയിപ്പ്''': ഒരു <code>LocalSettings.php</code> ഫയൽ കാണുന്നു.
+സോഫ്റ്റ്‌വേർ അപ്‌ഗ്രേഡ് ചെയ്യുക സാദ്ധ്യമാണ്.
+ദയവായി പെട്ടിയിൽ <code>\$wgUpgradeKey</code> എന്നതിന്റെ വില നൽകുക.",
+	'config-localsettings-key' => 'അപ്‌ഗ്രേഡ് ചാവി:',
+	'config-localsettings-badkey' => 'താങ്കൾ നൽകിയ ചാവി തെറ്റാണ്',
+	'config-session-error' => 'സെഷൻ തുടങ്ങുന്നതിൽ പിഴവ്: $1',
+	'config-your-language' => 'താങ്കളുടെ ഭാഷ:',
+	'config-wiki-language' => 'വിക്കി ഭാഷ:',
+	'config-back' => '← പിന്നിലേയ്ക്ക്',
+	'config-continue' => 'തുടരുക →',
+	'config-page-language' => 'ഭാഷ',
+	'config-page-welcome' => 'മീഡിയവിക്കിയിലേയ്ക്ക് സ്വാഗതം!',
+	'config-page-dbconnect' => 'ഡേറ്റാബേസുമായി ബന്ധപ്പെടുക',
+	'config-page-upgrade' => 'നിലവിലുള്ള ഇൻസ്റ്റലേഷൻ അപ്‌ഗ്രേഡ് ചെയ്യുക',
+	'config-page-dbsettings' => 'ഡേറ്റാബേസ് സജ്ജീകരണങ്ങൾ',
+	'config-page-name' => 'പേര്',
+	'config-page-options' => 'ഐച്ഛികങ്ങൾ',
+	'config-page-install' => 'ഇൻസ്റ്റോൾ',
+	'config-page-complete' => 'സമ്പൂർണ്ണം!',
+	'config-page-restart' => 'ഇൻസ്റ്റലേഷൻ അടച്ച ശേഷം പുനർപ്രവർത്തിപ്പിക്കുക',
+	'config-page-readme' => 'ഇത് വായിക്കൂ',
+	'config-page-releasenotes' => 'പ്രകാശന കുറിപ്പുകൾ',
+	'config-page-copying' => 'പകർത്തൽ',
+	'config-page-upgradedoc' => 'അപ്‌ഗ്രേഡിങ്',
+	'config-page-locked' => 'അനുമതി നിഷേധിച്ചിരിക്കുന്നു',
+	'config-restart' => 'അതെ, പുനർപ്രവർത്തിപ്പിക്കുക',
+	'config-sidebar' => '* [http://www.mediawiki.org മീഡിയവിക്കി പ്രധാനതാൾ]
+* [http://www.mediawiki.org/wiki/Help:Contents ഉപയോക്തൃസഹായി]
+* [http://www.mediawiki.org/wiki/Manual:Contents കാര്യനിർവഹണസഹായി]
+* [http://www.mediawiki.org/wiki/Manual:FAQ പതിവുചോദ്യങ്ങൾ]',
+	'config-env-php' => 'പി.എച്ച്.പി. $1 ഇൻസ്റ്റോൾ ചെയ്തിട്ടുണ്ട്.',
+	'config-env-latest-ok' => 'മീഡിയവിക്കിയുടെ ഏറ്റവും പുതിയ പതിപ്പാണ് താങ്കൾ ഇൻസ്റ്റോൾ ചെയ്യുന്നത്.',
+	'config-env-latest-new' => "'''കുറിപ്പ്:''' മീഡിയവിക്കിയുടെ വികസനഘട്ടത്തിലിരിക്കുന്ന പതിപ്പാണ് താങ്കൾ ഇൻസ്റ്റോൾ ചെയ്യുന്നത്.",
+	'config-no-db' => 'അനുയോജ്യമായ ഡേറ്റാബേസ് ഡ്രൈവർ കണ്ടെത്താനായില്ല!',
+	'config-have-db' => 'കണ്ടെത്താനായ ഡേറ്റാബേസ് {{PLURAL:$2|ഡ്രൈവർ|ഡ്രൈവറുകൾ}}: $1.',
+	'config-db-type' => 'ഡേറ്റാബേസ് തരം:',
+	'config-db-host' => 'ഡേറ്റാബേസ് ഹോസ്റ്റ്:',
+	'config-db-name' => 'ഡേറ്റാബേസിന്റെ പേര്:',
+	'config-db-name-oracle' => 'ഡേറ്റാബേസ് സ്കീമ:',
+	'config-db-install-account' => 'ഇൻസ്റ്റലേഷനുള്ള ഉപയോക്തൃ അംഗത്വം',
+	'config-db-username' => 'ഡേറ്റാബേസ് ഉപയോക്തൃനാമം:',
+	'config-db-password' => 'ഡേറ്റാബേസ് രഹസ്യവാക്ക്:',
+	'config-mysql-old' => 'മൈഎസ്‌ക്യൂഎൽ $1 അഥവാ അതിലും പുതിയത് ആവശ്യമാണ്, താങ്കളുടെ പക്കൽ ഉള്ളത് $2 ആണ്.',
+	'config-db-port' => 'ഡേറ്റാബേസ് പോർട്ട്:',
+	'config-db-schema' => 'മീഡിയവിക്കിയ്ക്കായുള്ള സ്കീമ',
+	'config-header-mysql' => 'മൈഎസ്‌ക്യൂഎൽ സജ്ജീകരണങ്ങൾ',
+	'config-invalid-db-type' => 'അസാധുവായ ഡേറ്റാബേസ് തരം',
+	'config-mysql-engine' => 'സ്റ്റോറേജ് എൻജിൻ:',
+	'config-site-name' => 'വിക്കിയുടെ പേര്:',
+	'config-site-name-help' => 'ഇത് ബ്രൗസറിന്റെ ടൈറ്റിൽ ബാറിലും മറ്റനേകം ഇടങ്ങളിലും പ്രദർശിപ്പിക്കപ്പെടും.',
+	'config-site-name-blank' => 'സൈറ്റിന്റെ പേര് നൽകുക.',
+	'config-project-namespace' => 'പദ്ധതി നാമമേഖല:',
+	'config-ns-generic' => 'പദ്ധതി',
+	'config-ns-site-name' => 'വിക്കിയുടെ പേര് തന്നെ: $1',
+	'config-ns-other' => 'ഇതരം (വ്യക്തമാക്കുക)',
+	'config-ns-other-default' => 'എന്റെ‌വിക്കി',
+	'config-admin-box' => 'കാര്യനിർവാഹക അംഗത്വം',
+	'config-admin-name' => 'താങ്കളുടെ പേര്:',
+	'config-admin-password' => 'രഹസ്യവാക്ക്:',
+	'config-admin-password-confirm' => 'രഹസ്യവാക്ക് ഒരിക്കൽക്കൂടി:',
+	'config-admin-help' => 'ഇവിടെ താങ്കളുടെ ഇച്ഛാനുസരണമുള്ള ഉപയോക്തൃനാമം നൽകുക, ഉദാഹരണം "ശശി കൊട്ടാരത്തിൽ".
+ഈ പേരായിരിക്കണം വിക്കിയിൽ പ്രവേശിക്കാൻ താങ്കൾ ഉപയോഗിക്കേണ്ടത്.',
+	'config-admin-name-blank' => 'ഒരു കാര്യനിർവാഹക ഉപയോക്തൃനാമം നൽകുക.',
+	'config-admin-name-invalid' => 'നൽകിയിട്ടുള്ള ഉപയോക്തൃനാമം "<nowiki>$1</nowiki>" അസാധുവാണ്.
+മറ്റൊരു ഉപയോക്തൃനാമം നൽകുക.',
+	'config-admin-password-blank' => 'കാര്യനിർവാഹക അംഗത്വത്തിനുള്ള രഹസ്യവാക്ക് നൽകുക.',
+	'config-admin-password-same' => 'രഹസ്യവാക്കും ഉപയോക്തൃനാമവും ഒന്നാകരുത്.',
+	'config-admin-password-mismatch' => 'താങ്കൾ നൽകിയ രഹസ്യവാക്കുകൾ രണ്ടും തമ്മിൽ യോജിക്കുന്നില്ല.',
+	'config-admin-email' => 'ഇമെയിൽ വിലാസം:',
+	'config-optional-continue' => 'കൂടുതൽ ചോദ്യങ്ങൾ ചോദിക്കൂ.',
+	'config-optional-skip' => 'ഞാൻ മടുത്തു, ഇൻസ്റ്റോൾ ചെയ്ത് തീർക്ക്.',
+	'config-profile-wiki' => 'പരമ്പരാഗത വിക്കി',
+	'config-profile-no-anon' => 'അംഗത്വ സൃഷ്ടി ചെയ്യേണ്ടതുണ്ട്',
+	'config-profile-fishbowl' => 'അനുവാദമുള്ളവർ മാത്രം തിരുത്തുക',
+	'config-profile-private' => 'സ്വകാര്യ വിക്കി',
+	'config-license' => 'പകർപ്പവകാശവും അനുമതിയും:',
+	'config-license-cc-by-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ ഷെയർ എലൈക് (വിക്കിപീഡിയ-സമാനം)',
+	'config-license-cc-by-nc-sa' => 'ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ നോൺ-കൊമേഴ്സ്യൽ ഷെയർ എലൈക്',
+	'config-license-gfdl-old' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.2',
+	'config-license-gfdl-current' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.3 അഥവാ പുതിയത്',
+	'config-license-pd' => 'പൊതു സഞ്ചയം',
+);
+
 /** Mongolian (Монгол)
  * @author Chinneeb
  */
@@ -8169,7 +8261,9 @@ Este modo pode causar problemas, especialmente no upload de ficheiros e no supor
 O MediaWiki necessita de funções deste módulo e não funcionará com esta configuração.
 Se está a executar o Mandrake, instale o pacote php-xml.',
 	'config-pcre' => 'Parece faltar o módulo de suporte PCRE.
-O MediaWiki necessita que as funções de expressões regulares compatíveis com Perl estejam a funcionar.',
+Para funcionar, o MediaWiki necessita das funções de expressões regulares compatíveis com Perl.',
+	'config-pcre-no-utf8' => "'''Fatal''': O módulo PCRE do PHP parece ter sido compilado sem suporte PCRE_UTF8.
+O MediaWiki necessita do suporte UTF-8 para funcionar correctamente.",
 	'config-memory-none' => 'O PHP está configurado sem <code>memory_limit</code>',
 	'config-memory-ok' => 'A configuração <code>memory_limit</code> do PHP é $1.
 OK.',
@@ -8504,6 +8598,7 @@ Passe para a próxima página, por favor.",
 	'config-install-database' => 'A preparar a base de dados',
 	'config-install-pg-schema-failed' => 'A criação das tabelas falhou.
 Certifique-se de que o utilizador "$1" pode escrever no esquema \'\'(schema)\'\' "$2".',
+	'config-install-pg-commit' => 'A gravar as alterações',
 	'config-install-user' => 'A criar o utilizador da base de dados',
 	'config-install-user-failed' => 'A atribuição das permissões ao utilizador "$1" falhou: $2',
 	'config-install-tables' => 'A criar as tabelas',

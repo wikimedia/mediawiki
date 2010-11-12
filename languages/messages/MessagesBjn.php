@@ -1209,6 +1209,13 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'action-writeapi'           => 'puruk panulisan API',
 'action-delete'             => 'hapus tungkaran ini',
 'action-deleterevision'     => 'hapus ralatan ini',
+'action-deletedhistory'     => 'tiringi halam tahapus tungkaran ini',
+'action-browsearchive'      => 'gagai tutungkaran tahapus',
+'action-undelete'           => 'kada jadi mahapus tungkaran ini',
+'action-suppressrevision'   => 'tilik wan bulikakan ralatan tasungkup ini',
+'action-suppressionlog'     => 'tiringi log paribadi ini',
+'action-block'              => 'blukir pamuruk ini mambabak',
+'action-patrol'             => "tandai babakan nang lain sawagai ta'awasi",
 
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|parubahan|parubahan}}',

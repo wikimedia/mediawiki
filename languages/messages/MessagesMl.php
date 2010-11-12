@@ -444,8 +444,8 @@ $messages = array(
 
 == പ്രാരംഭസഹായികൾ ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings ക്രമീകരണങ്ങളുടെ പട്ടിക]
-* [http://www.mediawiki.org/wiki/Manual:FAQ മീഡിയവിക്കി സ്ഥിരംചോദ്യങ്ങൾ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce മീഡിയവിക്കി പ്രകാശന മെയിലിങ്ങ് ലിസ്റ്റ്]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ മീഡിയവിക്കി പതിവുചോദ്യങ്ങൾ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce മീഡിയവിക്കി പ്രകാശന മെയിലിങ് ലിസ്റ്റ്]',
 
 'about'         => 'വിവരണം',
 'article'       => 'ലേഖന താൾ',
@@ -497,7 +497,7 @@ $messages = array(
 'history'           => 'നാൾവഴി',
 'history_short'     => 'നാൾവഴി',
 'updatedmarker'     => 'എന്റെ കഴിഞ്ഞ സന്ദർശനത്തിനുശേഷം നവീകരിക്കപ്പെട്ടവ',
-'info_short'        => 'വൃത്താന്തം',
+'info_short'        => 'വിവരങ്ങൾ',
 'printableversion'  => 'അച്ചടിരൂപം',
 'permalink'         => 'സ്ഥിരംകണ്ണി',
 'print'             => 'അച്ചടിയ്ക്കുക',
