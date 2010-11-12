@@ -88,9 +88,9 @@ wfValidateEmail = function( mailtxt ) {
                        "`" / "{" /
                        "|" / "}" /
                        "~"
-	*/	
+	*/
 	var rfc5322_atext   = "a-z0-9!#$%&'*+-/=?^_`{|}—~" ;
-	
+
 	/**
 	 * Next define the RFC 1034 'ldh-str'
 	 *   <domain> ::= <subdomain> | " "
@@ -112,7 +112,7 @@ wfValidateEmail = function( mailtxt ) {
 		// "apostrophe"
 		'@'
 		+
-		// Domain first part 
+		// Domain first part
 		'[' + rfc1034_ldh_str + ']+'
 		+
 		// Second part and following are separated by a dot

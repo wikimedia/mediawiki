@@ -6,7 +6,7 @@
 
 	/**
 	 * Log output to the console.
-	 * 
+	 *
 	 * In the case that the browser does not have a console available, one is created by appending a
 	 * <div> element to the bottom of the body and then appending a <div> element to that for each
 	 * message.
@@ -16,9 +16,9 @@
 	 * @param {string} string Message to output to console
 	 */
 	mediaWiki.log = function( string ) {
-		// Allow log messages to use a configured prefix		
+		// Allow log messages to use a configured prefix
 		if ( mw.config.exists( 'mw.log.prefix' ) ) {
-			string = mw.config.get( 'mw.log.prefix' ) + '> ' + string;		
+			string = mw.config.get( 'mw.log.prefix' ) + '> ' + string;
 		}
 		// Try to use an existing console
 		if ( typeof window.console !== 'undefined' && typeof window.console.log == 'function' ) {
