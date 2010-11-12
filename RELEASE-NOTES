@@ -201,7 +201,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Special:Search: Add CSS classes to 'none found' and 'create link' messages
 * Add CSS classes (including namespace and pagename) to the enhanced recent
   changes/watchlist entries
-* (bug 22463) Add hook 'SkinGetPoweredBy' to make 'powered by' icon customizable
+* (bug 22463) Add hook 'SkinGetPoweredBy' to make 'powered by' icon/text
+  customizable
 * Added CSS print pagination to the print stylesheets
 
 === Bug fixes in 1.17 ===

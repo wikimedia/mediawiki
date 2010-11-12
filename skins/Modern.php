@@ -27,7 +27,9 @@ class SkinModern extends SkinTemplate {
 	 */
 	function getPoweredBy() {
 		global	$wgVersion;
-		return "<div class='mw_poweredby'>Powered by MediaWiki $wgVersion</div>";
+		$text = "<div class='mw_poweredby'>Powered by MediaWiki $wgVersion</div>";
+		wfRunHooks( 'SkinGetPoweredBy', array( &$text ) );
+		return $text;
 	}
 
 	function setupSkinUserCss( OutputPage $out ){
