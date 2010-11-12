@@ -676,6 +676,7 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'sp-contributions-blocklog' => 'jornal éd chés blotcåjhes',
 'sp-contributions-search'   => 'Tracher pou chés contérbuchons',
 'sp-contributions-username' => "Adérche IP ou nom d'uzeu",
+'sp-contributions-toponly'  => "n'montrer qu'chés darins canjemints",
 'sp-contributions-submit'   => 'Tracher',
 
 # What links here
@@ -683,6 +684,8 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'whatlinkshere-title'      => 'Paches qu\'il ont des loïens aveuc "$1"',
 'whatlinkshere-page'       => 'Pache:',
 'linkshere'                => "Chés paches-lo il sont érliées à '''[[:$1]]''':",
+'nolinkshere'              => "i n'y o poin d'pache aveuc un loïen vers  '''[[:$1]]'''.",
+'nolinkshere-ns'           => "i n'y o poin d'pache aveuc un loïen vers '''[[:$1]]''' dins echl'éspace d'noms coési.",
 'isredirect'               => 'pache érdirigée',
 'istemplate'               => 'transclusion',
 'isimage'                  => "Loïen aveuc l'imache",
@@ -692,11 +695,18 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'whatlinkshere-hideredirs' => '$1 érdireccions',
 'whatlinkshere-hidetrans'  => 'transclusions éd $1',
 'whatlinkshere-hidelinks'  => '$1 loïens',
+'whatlinkshere-hideimages' => '$1 chés loïés fichiés',
 'whatlinkshere-filters'    => 'Filtes',
 
 # Block/unblock
-'blockip'                  => 'uzeu blotché',
+'blockip'                  => "Blotcher l'uzeu",
+'blockip-title'            => "Blotcher l'uzeu",
+'blockip-legend'           => "Blotcher l'uzeu",
+'blockiptext'              => "Uzer dech teske-lo pour blotcher l’ahérse aux canjemints foaits dpui eune adrèche IP éspéchifique o bin d’un nom d’uzeu.
+I feut l'foaire seleumint pour inréyer ech vindalime et pi i feut ète acordant aveuc chés [[{{MediaWiki:Policy-url}}|usages intérnes]].
+Donner apré ch'motif  (pèr egzimpe chiter chés paches qu'ont té vindalisées).",
 'ipboptions'               => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 ésminne:1 week,2 ésminnes:2 weeks,1 moés:1 month,3 moés:3 months,6 moés:6 months,1 an:1 year,infini:infinite',
+'ipbotheroption'           => 'eute',
 'ipblocklist'              => "Adréches IP pi noms d'uzeu blotchés",
 'blocklink'                => 'blotcher',
 'unblocklink'              => 'déblotcher',
@@ -798,6 +808,10 @@ Os pouvez vir l'source",
 'tooltip-watch'                   => 'Ajouter chol pache-lo à vo lisse à suire',
 'tooltip-rollback'                => '« Racacher » cancéle aveuc un clic el (ou chés) modificachon(s) del pache-lo pèr sin darin contérbucheu.',
 'tooltip-undo'                    => "« Undo » ( ''démangler'' ) értire ch'canjemint-lo pi ouvre l' fénéte d'édichon din ch'mode ''prévir''. <br /> In put mette un motif din ch'résumé.",
+'tooltip-preferences-save'        => 'Warder chés préférinches.',
+
+# Info page
+'numedits' => 'Nombe ed canjemints (pache) : $1',
 
 # Browsing diffs
 'previousdiff' => '← Pu vieille édition',
@@ -839,12 +853,44 @@ Chés eutes cans is s'ront muchés pèr défeut.
 'namespacesall' => 'tous',
 'monthsall'     => 'tertous',
 
+# Multipage image navigation
+'imgmultipageprev' => '← pache édvant',
+
+# Table pager
+'table_pager_next'  => 'Pache apré',
+'table_pager_first' => 'Prumière pache',
+'table_pager_last'  => 'Darinne pache',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Vir chés consécants cangemints',
 'watchlisttools-edit' => "Vir pi éditer l'lisse à suire",
 'watchlisttools-raw'  => 'Éditer eune brute lisse à suire',
 
+# Special:Version
+'version-specialpages' => 'Paches éspéchiales',
+
+# Special:FilePath
+'filepath-page' => 'Fichié :',
+
 # Special:SpecialPages
-'specialpages' => 'Paches éspéchiales',
+'specialpages'             => 'Paches éspéchiales',
+'specialpages-group-users' => 'Uzeus pi leus droués',
+'specialpages-group-pages' => "Lisses d'chés paches",
+
+# Special:BlankPage
+'blankpage' => 'Blanke pache',
+
+# Special:ComparePages
+'compare-page1'  => 'Pache 1',
+'compare-page2'  => 'Pache 2',
+'compare-rev1'   => 'Canjemint 1',
+'compare-rev2'   => 'Canjemint 2',
+'compare-submit' => 'Aconparer',
+
+# Database error messages
+'dberr-header' => 'Ech wiki-lo il o dés problémes',
+
+# HTML forms
+'htmlform-reset' => "n'poin foaire chés canjemints",
 
 );

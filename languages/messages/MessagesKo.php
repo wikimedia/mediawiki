@@ -526,6 +526,7 @@ $messages = array(
 이 문서를 다시 열기 전에 잠시만 기다려주세요.
 
 $1',
+'pool-timeout'      => '잠금 대기 중 타임아웃',
 'pool-queuefull'    => '풀 큐가 가득 찼습니다.',
 'pool-errorunknown' => '알 수 없는 오류',
 
@@ -688,6 +689,7 @@ $2',
 'yourpassword'               => '비밀번호:',
 'yourpasswordagain'          => '암호 재입력:',
 'remembermypassword'         => '이 컴퓨터에서 로그인 상태를 저장하기 (최대 $1일)',
+'securelogin-stick-https'    => '로그인 후에도 HTTPS 연결 상태를 유지합니다.',
 'yourdomainname'             => '도메인 이름',
 'externaldberror'            => '외부 인증 데이터베이스에 오류가 있거나, 외부 계정을 갱신할 권한이 없습니다.',
 'login'                      => '로그인',
@@ -1885,6 +1887,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-edits'             => '{{SITENAME}} 설치 후 문서의 전체 편집 횟수',
 'statistics-edits-average'     => '문서당 평균 편집 횟수',
 'statistics-views-total'       => '총 방문 수',
+'statistics-views-total-desc'  => '존재하지 않는 문서나 특수 문서에 대한 방문수는 집계되지 않았습니다.',
 'statistics-views-peredit'     => '편집당 방문 횟수',
 'statistics-users'             => '등록된 [[Special:ListUsers|사용자]]',
 'statistics-users-active'      => '활동적인 사용자',

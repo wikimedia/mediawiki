@@ -1221,6 +1221,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 # Delete
 'deletepage'            => 'စာမျက်နှာကိုဖျက်ပါ',
 'confirm'               => 'အတည်ပြု',
+'exblank'               => 'စာမျက်နှာ ဗလာဖြစ်နေသည်',
 'delete-confirm'        => '"$1"ကို ဖျက်ပါ',
 'delete-legend'         => 'ဖျက်',
 'confirmdeletetext'     => '↓ သင်သည် စာမျက်နှာတစ်ခုကို ယင်း၏ မှတ်တမ်းများနှင့်တကွ ဖျက်ပစ်တော့မည် ဖြစ်သည်။
@@ -1466,9 +1467,11 @@ HTML tags ကို စစ်ဆေးပါ။',
 # Special:Import
 'import-upload-filename' => 'ဖိုင်အမည် -',
 'import-comment'         => 'မှတ်ချက် -',
+'importstart'            => 'စာမျက်နှာများကို ထည့်သွင်းနေသည်...',
 'importbadinterwiki'     => 'ညံ့ဖျင်းသော အင်တာဝီကီလင့်',
 'importnotext'           => 'ဗလာဖြစ်နေသည် သို့မဟုတ် ဘာစာသားမှ မရှိပါ',
 'importsuccess'          => 'ထည့်သွင်းခြင်း ပြီးဆုံးပါပြီ။',
+'import-noarticle'       => 'မည်သည့်စာမျက်နှာမှ ထည့်သွင်းခြင်းမရှိပါ။',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'ကိုယ်ပိုင်စာမျက်နှာ',
@@ -1623,8 +1626,12 @@ HTML tags ကို စစ်ဆေးပါ။',
 'exif-relatedsoundfile'    => 'ဆက်နွယ်သော အသံဖိုင်',
 'exif-datetimeoriginal'    => 'ဒေတာဖန်တီးခဲ့သော နေ့စွဲနှင့် အချိန်',
 'exif-exposuretime-format' => '$1 စက္ကန့် ($2)',
+'exif-shutterspeedvalue'   => 'ရှပ်တာ အမြန်နှုန်း',
 'exif-flash'               => 'ဖလက်ရှ်',
 'exif-gpsaltitude'         => 'အမြင့်',
+'exif-gpsdatestamp'        => 'ဂျီပီအက်စ်ရက်စွဲ',
+
+'exif-componentsconfiguration-0' => 'မတည်ရှိပါ',
 
 'exif-subjectdistance-value' => '$1 မီတာ',
 
@@ -1644,6 +1651,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 
 'exif-focalplaneresolutionunit-2' => 'လက်မှတ်',
 
+'exif-sensingmethod-1' => 'မသတ်မှတ်ထားသော',
+
 'exif-scenecapturetype-3' => 'ညနေပုံ',
 
 'exif-gaincontrol-0' => 'ဘာမှမရှိ',
@@ -1656,6 +1665,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 
 'exif-sharpness-0' => 'ပုံမှန်',
 
+'exif-subjectdistancerange-1' => 'မက်ကရို',
+
 # External editor support
 'edit-externally'      => 'ပြင်ပ application တစ်ခုခုကိုသုံး၍ ဤဖိုင်ကို ပြင်ရန်',
 'edit-externally-help' => '(နောက်ထပ်သတင်းအချက်အလက်များအတွက်[http://www.mediawiki.org/wiki/Manual:External_editors တပ်ဆင်မှု လမ်းညွှန်များ] ကို ကြည့်ရန်)',
@@ -1666,6 +1677,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'watchlistall2'    => 'အားလုံး',
 'namespacesall'    => 'အားလုံး',
 'monthsall'        => 'အားလုံး',
+'limitall'         => 'အားလုံး',
 
 # E-mail address confirmation
 'confirmemail' => 'အီးမေးကိုအတည်ပြုပါ',
@@ -1682,6 +1694,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'table_pager_first'        => 'ပထမဆုံး စာမျက်နှာ',
 'table_pager_last'         => 'နောက်ဆုံးစာမျက်နှာ',
 'table_pager_limit_submit' => 'သွား​ပါ​',
+'table_pager_empty'        => 'မည်သည့်ရလဒ်မှ မရှိပါ',
 
 # Auto-summaries
 'autosumm-new' => 'စာလုံး "$1" လုံးႏွင့္ စာမ်က္ႏွာအသစ္ စလုပ္ရန္',
@@ -1737,6 +1750,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 'tags'              => 'အသုံးပြုနေသော အပြောင်းအလဲစာတွဲများ',
 'tag-filter-submit' => 'စိစစ်မှု',
 'tags-title'        => 'အမည်တွဲ',
+'tags-tag'          => 'အမည်တွဲ အမည်',
+'tags-edit'         => 'ပြင်​ဆင်​ရန်',
 
 # Special:ComparePages
 'comparepages'     => 'စာမျက်နှာများကို နှုိင်းယှဉ်ရန်',
