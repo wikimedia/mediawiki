@@ -1,7 +1,7 @@
 <?php
 /**
  * Create a doxygen subgroup of Maintenance for benchmarks
- * @defgroup Benchmark
+ * @defgroup Benchmark Benchmark
  * @ingroup Maintenance
  */
 
