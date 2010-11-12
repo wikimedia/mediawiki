@@ -890,10 +890,7 @@ abstract class Installer {
 					return $command;
 				}
 
-				if ( wfIsWindows() ) {
-					$command = "\"$command\"";
-				}
-				$file = str_replace( '$1', $command, $versionInfo[0] );
+				$file = str_replace( '$1', wfEscapeShellArg( $command ), $versionInfo[0] );
 				if ( strstr( wfShellExec( $file ), $versionInfo[1] ) !== false ) {
 					return $command;
 				}
