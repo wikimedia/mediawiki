@@ -171,7 +171,7 @@ class ApiTest extends ApiTestSetup {
 		if ( !isset( $wgServer ) ) {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
-		$req = HttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
+		$req = MWHttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 			array( "method" => "POST",
 				"postData" => array(
 				"lgname" => self::$user->userName,
@@ -214,7 +214,7 @@ class ApiTest extends ApiTestSetup {
 		if ( $wgServer == "http://localhost" ) {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
-		$req = HttpRequest::factory( self::$apiUrl . "?action=query&format=xml&prop=revisions&" .
+		$req = MWHttpRequest::factory( self::$apiUrl . "?action=query&format=xml&prop=revisions&" .
 									 "titles=Main%20Page&rvprop=timestamp|user|comment|content" );
 		$req->setCookieJar( $cj );
 		$req->execute();

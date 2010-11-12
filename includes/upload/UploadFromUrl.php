@@ -100,7 +100,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Save the result of a HTTP request to the temporary file
 	 * 
-	 * @param $req HttpRequest 
+	 * @param $req MWHttpRequest 
 	 * @return Status
 	 */
 	private function saveTempFile( $req ) {
@@ -120,7 +120,7 @@ class UploadFromUrl extends UploadBase {
 	 * size and set $mRemoveTempFile to true.
 	 */
 	protected function reallyFetchFile() {
-		$req = HttpRequest::factory( $this->mUrl );
+		$req = MWHttpRequest::factory( $this->mUrl );
 		$status = $req->execute();
 
 		if ( !$status->isOk() ) {

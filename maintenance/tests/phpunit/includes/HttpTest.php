@@ -76,7 +76,7 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 	function testInstantiation() {
 		Http::$httpEngine = false;
 
-		$r = HttpRequest::factory( "http://www.example.com/" );
+		$r = MWHttpRequest::factory( "http://www.example.com/" );
 		if ( self::$has_curl ) {
 			$this->assertThat( $r, $this->isInstanceOf( 'CurlHttpRequest' ) );
 		} else {
@@ -88,7 +88,7 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 			$this->setExpectedException( 'MWException' );
 		}
 		Http::$httpEngine = 'php';
-		$r = HttpRequest::factory( "http://www.example.com/" );
+		$r = MWHttpRequest::factory( "http://www.example.com/" );
 		$this->assertThat( $r, $this->isInstanceOf( 'PhpHttpRequest' ) );
 		unset( $r );
 
@@ -96,7 +96,7 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 			$this->setExpectedException( 'MWException' );
 		}
 		Http::$httpEngine = 'curl';
-		$r = HttpRequest::factory( "http://www.example.com/" );
+		$r = MWHttpRequest::factory( "http://www.example.com/" );
 		if ( self::$has_curl ) {
 			$this->assertThat( $r, $this->isInstanceOf( 'CurlHttpRequest' ) );
 		}
@@ -117,7 +117,7 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( $r, "False on 404s" );
 
 
-		$r = HttpRequest::factory( "http://www.example.com/this-file-does-not-exist" );
+		$r = MWHttpRequest::factory( "http://www.example.com/this-file-does-not-exist" );
 		$er = $r->execute();
 		if ( is_a( $r, 'PhpHttpRequest' ) && version_compare( '5.2.10', phpversion(), '>' ) ) {
 			$this->assertRegexp( "/HTTP request failed/", $er->getWikiText() );
@@ -532,7 +532,7 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function runCookieRequests() {
-		$r = HttpRequest::factory( "http://www.php.net/manual", array( 'followRedirects' => true ) );
+		$r = MWHttpRequest::factory( "http://www.php.net/manual", array( 'followRedirects' => true ) );
 		$r->execute();
 
 		$jar = $r->getCookieJar();

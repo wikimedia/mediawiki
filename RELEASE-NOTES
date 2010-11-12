@@ -421,6 +421,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   some cases
 * (bug 25670) wfFindFile() now checks the namespace of the given title, only
   "File" and "Media" are allowed now
+* (bug 25872) Rename the HttpRequest class to MWHttpRequest to avoid conflict
+  with php extension that defines same class.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

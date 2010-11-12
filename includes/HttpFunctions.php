@@ -15,7 +15,7 @@ class Http {
 	 *
 	 * @param $method String: HTTP method. Usually GET/POST
 	 * @param $url String: full URL to act on
-	 * @param $options Array: options to pass to HttpRequest object.
+	 * @param $options Array: options to pass to MWHttpRequest object.
 	 *	Possible keys for the array:
 	 *    - timeout             Timeout length in seconds
 	 *    - postData            An array of key-value pairs or a url-encoded form data
@@ -40,7 +40,7 @@ class Http {
 			$options['timeout'] = 'default';
 		}
 
-		$req = HttpRequest::factory( $url, $options );
+		$req = MWHttpRequest::factory( $url, $options );
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
@@ -133,8 +133,11 @@ class Http {
 /**
  * This wrapper class will call out to curl (if available) or fallback
  * to regular PHP if necessary for handling internal HTTP requests.
+ *
+ * Renamed from HttpRequest to MWHttpRequst to avoid conflict with
+ * php's HTTP extension.
  */
-class HttpRequest {
+class MWHttpRequest {
 	protected $content;
 	protected $timeout = 'default';
 	protected $headersOnly = null;
@@ -195,7 +198,7 @@ class HttpRequest {
 
 	/**
 	 * Generate a new request object
-	 * @see HttpRequest::__construct
+	 * @see MWHttpRequest::__construct
 	 */
 	public static function factory( $url, $options = null ) {
 		if ( !Http::$httpEngine ) {
@@ -477,7 +480,7 @@ class HttpRequest {
 	}
 
 	/**
-	 * Tells the HttpRequest object to use this pre-loaded CookieJar.
+	 * Tells the MWHttpRequest object to use this pre-loaded CookieJar.
 	 *
 	 * @param $jar CookieJar
 	 */
@@ -792,9 +795,9 @@ class CookieJar {
 }
 
 /**
- * HttpRequest implemented using internal curl compiled into PHP
+ * MWHttpRequest implemented using internal curl compiled into PHP
  */
-class CurlHttpRequest extends HttpRequest {
+class CurlHttpRequest extends MWHttpRequest {
 	static $curlMessageMap = array(
 		6 => 'http-host-unreachable',
 		28 => 'http-timed-out'
@@ -907,7 +910,7 @@ class CurlHttpRequest extends HttpRequest {
 	}
 }
 
-class PhpHttpRequest extends HttpRequest {
+class PhpHttpRequest extends MWHttpRequest {
 	protected function urlToTcp( $url ) {
 		$parsedUrl = parse_url( $url );
 
