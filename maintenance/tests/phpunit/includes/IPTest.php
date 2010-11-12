@@ -7,22 +7,70 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	// not sure it should be tested with boolean false. hashar 20100924 
 	public function testisIPAddress() {
 		$this->assertFalse( IP::isIPAddress( false ) );
+		$this->assertFalse( IP::isIPAddress( "" ) );
+		$this->assertFalse( IP::isIPAddress( 'abc' ) );
+		$this->assertFalse( IP::isIPAddress( ':' ) );
 		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1'), 'IPv6 with a double :: occurence' );
 		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::'), 'IPv6 with a double :: occurence, last at end' );
 		$this->assertFalse( IP::isIPAddress( '::2001:0DB8::5:1'), 'IPv6 with a double :: occurence, firt at beginning' );
+		$this->assertFalse( IP::isIPAddress( '124.24.52' ), 'IPv4 not enough quads' );
+		$this->assertFalse( IP::isIPAddress( '24.324.52.13' ), 'IPv4 out of range' );
+		$this->assertFalse( IP::isIPAddress( '.24.52.13' ), 'IPv4 starts with period' );
+
+		$this->assertTrue( IP::isIPAddress( 'fc:100::' ) );
+		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac::' ) );
+		$this->assertTrue( IP::isIPAddress( '::' ), 'IPv6 zero address' );
+		$this->assertTrue( IP::isIPAddress( '::fc' ) );
+		$this->assertTrue( IP::isIPAddress( '::fc:100:a:d:1:e:ac' ) );
+		$this->assertTrue( IP::isIPAddress( 'fc::100' ) );
+		$this->assertTrue( IP::isIPAddress( 'fc::100:a:d:1:e:ac' ) );
+		$this->assertTrue( IP::isIPAddress( 'fc::100:a:d:1:e:ac/96', 'IPv6 range with "::"' ) );
+		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac:0' ) );
+		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac:0/24', 'IPv6 range' ) );
+		$this->assertTrue( IP::isIPAddress( '124.24.52.13' ) );
+		$this->assertTrue( IP::isIPAddress( '1.24.52.13' ) );
+		$this->assertTrue( IP::isIPAddress( '74.24.52.13/20', 'IPv4 range' ) );
 	}
 
-	/**
-	 * @expectedException MWException
-	 */
-	public function testArrayIsNotIPAddress() {
-		IP::isIPAddress( array('') );
-	}
-	/**
-	 * @expectedException MWException
-	 */
-	public function testArrayIsNotIPv6() {
-		IP::isIPv6( array('') );
+	public function testisIPv6() {
+		$this->assertFalse( IP::isIPv6( ':fc:100::' ), 'IPv6 starting with lone ":"' );
+		$this->assertFalse( IP::isIPv6( 'fc:100:::' ), 'IPv6 ending with a ":::"' );
+		$this->assertTrue( IP::isIPv6( 'fc:100::' ) );
+		$this->assertTrue( IP::isIPv6( 'fc:100:a::' ) );
+		$this->assertTrue( IP::isIPv6( 'fc:100:a:d::' ) );
+		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1::' ) );
+		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e::' ) );
+		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac::' ) );
+		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0::' ), 'IPv6 ending it "::" with 8 words' );
+		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0:1::' ), 'IPv6 with 9 words' );
+
+		$this->assertFalse( IP::isIPv6( ':::' ) );
+		$this->assertFalse( IP::isIPv6( '::0:' ), 'IPv6 ending in a lone ":"' );
+		$this->assertTrue( IP::isIPv6( '::' ), 'IPv6 zero address' );
+		$this->assertTrue( IP::isIPv6( '::0' ) );
+		$this->assertTrue( IP::isIPv6( '::fc' ) );
+		$this->assertTrue( IP::isIPv6( '::fc:100' ) );
+		$this->assertTrue( IP::isIPv6( '::fc:100:a' ) );
+		$this->assertTrue( IP::isIPv6( '::fc:100:a:d' ) );
+		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1' ) );
+		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1:e' ) );
+		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1:e:ac' ) );
+		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 octets' );
+		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 octets' );
+
+		$this->assertFalse( IP::isIPv6( ':fc::100' ), 'IPv6 starting with lone ":"' );
+		$this->assertFalse( IP::isIPv6( 'fc::100:' ), 'IPv6 ending in lone ":"' );
+		$this->assertFalse( IP::isIPv6( 'fc:::100' ), 'IPv6 with ":::" in the middle' );
+		$this->assertTrue( IP::isIPv6( 'fc::100' ) );
+		$this->assertTrue( IP::isIPv6( 'fc::100:a' ) );
+		$this->assertTrue( IP::isIPv6( 'fc::100:a:d' ) );
+		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1' ) );
+		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e' ) );
+		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e:ac' ) );
+		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 octets' );
+		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 octets' );
+
+		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac:0' ) );
 	}
 
 	public function testValidIPs() {
@@ -35,6 +83,15 @@ class IPTest extends PHPUnit_Framework_TestCase {
 				$this->assertTrue( IP::isValid( $ip ) , "$ip is a valid IPv4 address" );
 			}
 		}
+		foreach ( range( 0, 65535 ) as $i ) {
+			$a = sprintf( "%04x", $i );
+			$b = sprintf( "%03x", $i );
+			$c = sprintf( "%02x", $i );
+			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
+				$ip = "$f:$f:$f:$f:$f:$f:$f:$f";
+				$this->assertTrue( IP::isValid( $ip ) , "$ip is a valid IPv6 address" );
+			}
+		}
 	}
 
 	public function testInvalidIPs() {
@@ -45,6 +102,15 @@ class IPTest extends PHPUnit_Framework_TestCase {
 			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
 				$ip = "$f.$f.$f.$f";
 				$this->assertFalse( IP::isValid( $ip ), "$ip is not a valid IPv4 address" );
+			}
+		}
+		foreach ( range( 'g', 'z' ) as $i ) {
+			$a = sprintf( "%04", $i );
+			$b = sprintf( "%03", $i );
+			$c = sprintf( "%02", $i );
+			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
+				$ip = "$f:$f:$f:$f:$f:$f:$f:$f";
+				$this->assertFalse( IP::isValid( $ip ) , "$ip is not a valid IPv6 address" );
 			}
 		}
 	}
@@ -92,17 +158,36 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $expected, long2ip( $parse[0] ), "network shifting $CIDR" );
 	}
 
-
 	public function testHexToQuad() {
-		$this->assertEquals( '0.0.0.0'        , IP::hexToQuad( '0' ) );
 		$this->assertEquals( '0.0.0.1'        , IP::hexToQuad( '00000001' ) );
 		$this->assertEquals( '255.0.0.0'      , IP::hexToQuad( 'FF000000' ) );
 		$this->assertEquals( '255.255.255.255', IP::hexToQuad( 'FFFFFFFF' ) );
 		$this->assertEquals( '10.188.222.255' , IP::hexToQuad( '0ABCDEFF' ) );
-		
-		$this->assertNotEquals( '0.0.0.1'        , IP::hexToQuad( '1' ) );
-		$this->assertNotEquals( '0.0.0.255'      , IP::hexToQuad( 'FF' ) );
-		$this->assertNotEquals( '0.0.255.0'      , IP::hexToQuad( 'FF00' ) );
+		// hex not left-padded...
+		$this->assertEquals( '0.0.0.0'     , IP::hexToQuad( '0' ) );
+		$this->assertEquals( '0.0.0.1'     , IP::hexToQuad( '1' ) );
+		$this->assertEquals( '0.0.0.255'   , IP::hexToQuad( 'FF' ) );
+		$this->assertEquals( '0.0.255.0'   , IP::hexToQuad( 'FF00' ) );
+	}
+
+	public function testHexToOctet() {
+		$this->assertEquals( '0:0:0:0:0:0:0:1',
+			IP::hexToOctet( '00000000000000000000000000000001' ) );
+		$this->assertEquals( '0:0:0:0:0:0:FF:3',
+			IP::hexToOctet( '00000000000000000000000000FF0003' ) );
+		$this->assertEquals( '0:0:0:0:0:0:FF00:6',
+			IP::hexToOctet( '000000000000000000000000FF000006' ) );
+		$this->assertEquals( '0:0:0:0:0:0:FCCF:FAFF',
+			IP::hexToOctet( '000000000000000000000000FCCFFAFF' ) );
+		$this->assertEquals( 'FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF',
+			IP::hexToOctet( 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF' ) );
+		// hex not left-padded...
+		$this->assertEquals( '0:0:0:0:0:0:0:0'	 	, IP::hexToOctet( '0' ) );
+		$this->assertEquals( '0:0:0:0:0:0:0:1'	 	, IP::hexToOctet( '1' ) );
+		$this->assertEquals( '0:0:0:0:0:0:0:FF'  	, IP::hexToOctet( 'FF' ) );
+		$this->assertEquals( '0:0:0:0:0:0:0:FFD0'	, IP::hexToOctet( 'FFD0' ) );
+		$this->assertEquals( '0:0:0:0:0:0:FA00:0'	, IP::hexToOctet( 'FA000000' ) );
+		$this->assertEquals( '0:0:0:0:0:0:FCCF:FAFF', IP::hexToOctet( 'FCCFFAFF' ) );
 	}
 
 	/*

@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Ashar Voultoiz <hashar at free dot fr>
+ * @author Ashar Voultoiz <hashar at free dot fr>, Aaron Schulz
  */
 
 // Some regex definition to "play" with IP address and IP address blocks
@@ -69,9 +69,6 @@ class IP {
 	 * @return bool
 	 */
 	public static function isIPAddress( $ip ) {
-		if ( !$ip ) {
-			return false;
-		}
 		return (bool)preg_match( '/^' . IP_ADDRESS_STRING . '$/', $ip );
 	}
 
@@ -82,9 +79,6 @@ class IP {
 	 * @return bool
 	 */
 	public static function isIPv6( $ip ) {
-		if ( !$ip ) {
-			return false;
-		}
 		return (bool)preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip );
 	}
 
@@ -95,9 +89,6 @@ class IP {
 	 * @return bool
 	 */
 	public static function isIPv4( $ip ) {
-		if ( !$ip ) {
-			return false;
-		}
 		return (bool)preg_match( '/^' . RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)$/', $ip );
 	}
 
@@ -116,7 +107,7 @@ class IP {
 		if ( self::isIPv6( $ip ) ) {
 			return $ip;
 		}
-		// IPv4 CIDRs
+		// IPv4 address with CIDR
 		if ( strpos( $ip, '/' ) !== false ) {
 			$parts = explode( '/', $ip, 2 );
 			if ( count( $parts ) != 2 ) {
@@ -134,27 +125,17 @@ class IP {
 		return self::toOctet( self::toUnsigned( $ip ) );
 	}
 
-	/**
-	 * Given an IPv6 address in octet notation, returns an unsigned integer.
-	 * @param string $ip octet ipv6 IP address.
-	 * @return string
-	 */
-	public static function toUnsigned6( $ip ) {
-		if ( !$ip ) {
-			return null;
+	private static function toUnsigned6( $ip ) {
+		if ( self::isIPv6( $ip ) ) {
+			return wfBaseConvert( self::IPv6ToRawHex( $ip ), 16, 10 );
 		}
-		$ip = explode( ':', self::sanitizeIP( $ip ) );
-		$r_ip = '';
-		foreach ( $ip as $v ) {
-			$r_ip .= str_pad( $v, 4, 0, STR_PAD_LEFT );
-		}
-		$r_ip = wfBaseConvert( $r_ip, 16, 10 );
-		return $r_ip;
+		return false;
 	}
 
 	/**
-	 * Given an IPv6 address in octet notation, returns the expanded octet.
-	 * IPv4 IPs will be trimmed, thats it...
+	 * Convert an IP into a nice standard form.
+	 * IPv6 addresses in octet notation are expanded to 8 octets.
+	 * IPv4 addresses are just trimmed.
 	 * @param string $ip IP address in quad or octet form (CIDR or not).
 	 * @return string
 	 */
@@ -205,20 +186,12 @@ class IP {
 
 	/**
 	 * Given an unsigned integer, returns an IPv6 address in octet notation
-	 * @param int $ip_int IP address.
+	 * @param string $ip_int IP address.
 	 * @return string
 	 */
 	public static function toOctet( $ip_int ) {
-		// Convert to padded uppercase hex
-		$ip_hex = wfBaseConvert( $ip_int, 10, 16, 32, false );
-		// Separate into 8 octets
-		$ip_oct = substr( $ip_hex, 0, 4 );
-		for ( $n = 1; $n < 8; $n++ ) {
-			$ip_oct .= ':' . substr( $ip_hex, 4 * $n, 4 );
-		}
-		// NO leading zeroes
-		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
-		return $ip_oct;
+		$ip_hex = wfBaseConvert( $ip_int, 10, 16, 32, false ); // uppercase hex
+		return self::hexToOctet( $ip_hex );
 	}
 
 	/**
@@ -236,12 +209,12 @@ class IP {
 
 	/**
 	 * Converts a hexadecimal number to an IPv6 address in octet notation
-	 * @param string $ip_hex hex IP
+	 * @param string $ip_hex pure hex (no v6- prefix)
 	 * @return string (of format a:b:c:d:e:f:g:h)
 	 */
 	public static function hexToOctet( $ip_hex ) {
 		// Convert to padded uppercase hex
-		$ip_hex = str_pad( strtoupper( $ip_hex ), 32, '0' );
+		$ip_hex = str_pad( strtoupper( $ip_hex ), 32, '0', STR_PAD_LEFT );
 		// Separate into 8 octets
 		$ip_oct = substr( $ip_hex, 0, 4 );
 		for ( $n = 1; $n < 8; $n++ ) {
@@ -254,16 +227,19 @@ class IP {
 
 	/**
 	 * Converts a hexadecimal number to an IPv4 address in quad-dotted notation
-	 * @param string $ip Hex IP
+	 * @param string $ip_hex pure hex
 	 * @return string (of format a.b.c.d)
 	 */
-	public static function hexToQuad( $ip ) {
+	public static function hexToQuad( $ip_hex ) {
+		// Convert to padded uppercase hex
+		$ip_hex = str_pad( strtoupper( $ip_hex ), 8, '0', STR_PAD_LEFT );
+		// Separate into four quads
 		$s = '';
 		for ( $i = 0; $i < 4; $i++ ) {
 			if ( $s !== '' ) {
 				$s .= '.';
 			}
-			$s .= base_convert( substr( $ip, $i * 2, 2 ), 16, 10 );
+			$s .= base_convert( substr( $ip_hex, $i * 2, 2 ), 16, 10 );
 		}
 		return $s;
 	}
@@ -273,21 +249,21 @@ class IP {
 	 * integer network and a number of bits
 	 * @return array(string, int)
 	 */
-	public static function parseCIDR6( $range ) {
+	private static function parseCIDR6( $range ) {
 		# Explode into <expanded IP,range>
 		$parts = explode( '/', IP::sanitizeIP( $range ), 2 );
 		if ( count( $parts ) != 2 ) {
 			return array( false, false );
 		}
 		list( $network, $bits ) = $parts;
-		$network = self::toUnsigned6( $network );
+		$network = self::IPv6ToRawHex( $network );
 		if ( $network !== false && is_numeric( $bits ) && $bits >= 0 && $bits <= 128 ) {
 			if ( $bits == 0 ) {
 				$network = "0";
 			} else {
 				# Native 32 bit functions WONT work here!!!
 				# Convert to a padded binary number
-				$network = wfBaseConvert( $network, 10, 2, 128 );
+				$network = wfBaseConvert( $network, 16, 2, 128 );
 				# Truncate the last (128-$bits) bits and replace them with zeros
 				$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
 				# Convert back to an integer
@@ -301,8 +277,8 @@ class IP {
 	}
 
 	/**
-	 * Given a string range in a number of formats, return the start and end of
-	 * the range in hexadecimal. For IPv6.
+	 * Given a string range in a number of formats, return the
+	 * start and end of the range in hexadecimal. For IPv6.
 	 *
 	 * Formats are:
 	 *     2001:0db8:85a3::7344/96          			 CIDR
@@ -310,7 +286,7 @@ class IP {
 	 *     2001:0db8:85a3::7344/96             			 Single IP
 	 * @return array(string, int)
 	 */
-	public static function parseRange6( $range ) {
+	private static function parseRange6( $range ) {
 		# Expand any IPv6 IP
 		$range = IP::sanitizeIP( $range );
 		// CIDR notation...
@@ -356,21 +332,23 @@ class IP {
 	}
 
 	/**
-	 * Validate an IP address.
+	 * Validate an IP address. Ranges are NOT considered valid.
 	 * @param string $ip
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValid( $ip ) {
-		return ( preg_match( '/^' . RE_IP_ADD . '$/', $ip ) || preg_match( '/^' . RE_IPV6_ADD . '$/', $ip ) );
+		return ( preg_match( '/^' . RE_IP_ADD . '$/', $ip )
+			|| preg_match( '/^' . RE_IPV6_ADD . '$/', $ip ) );
 	}
 
 	/**
-	 * Validate an IP Block.
+	 * Validate an IP Block (valid address WITH a valid prefix).
 	 * @param string $ipblock
 	 * @return boolean True if it is valid.
 	 */
 	public static function isValidBlock( $ipblock ) {
-		return ( count( self::toArray( $ipblock ) ) == 1 + 5 );
+		return ( preg_match( '/^' . RE_IPV6_BLOCK . '$/', $ipblock )
+			|| preg_match( '/^' . RE_IPV4_BLOCK . '$/', $ipblock ) );
 	}
 
 	/**
@@ -381,6 +359,9 @@ class IP {
 	 * @return bool
 	 */
 	public static function isPublic( $ip ) {
+		if ( self::isIPv6( $ip ) ) {
+			return self::isPublic6( $ip );
+		}
 		$n = self::toUnsigned( $ip );
 		if ( !$n ) {
 			return false;
@@ -414,25 +395,32 @@ class IP {
 	}
 
 	/**
-	 * Split out an IP block as an array of 4 bytes and a mask,
-	 * return false if it can't be determined
-	 *
-	 * @param string $ipblock A quad dotted/octet IP address
-	 * @return array
+	 * Determine if an IPv6 address really is an IP address, and if it is public,
+	 * i.e. not RFC 4193 or similar
+	 * @param string $ip
+	 * @return bool
 	 */
-	public static function toArray( $ipblock ) {
-		$matches = array();
-		if( preg_match( '/^' . RE_IP_ADD . '(?:\/(?:' . RE_IP_PREFIX . '))?' . '$/', $ipblock, $matches ) ) {
-			return $matches;
-		} elseif ( preg_match( '/^' . RE_IPV6_ADD . '(?:\/(?:' . RE_IPV6_PREFIX . '))?' . '$/', $ipblock, $matches ) ) {
-			return $matches;
-		} else {
-			return false;
+	private static function isPublic6( $ip ) {
+		static $privateRanges = false;
+		if ( !$privateRanges ) {
+			$privateRanges = array(
+				array( 'fc::', 'fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff' ), # RFC 4193 (local)
+				array( '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1' ),  # loopback
+			);
 		}
+		$n = self::toHex( $ip );
+		foreach ( $privateRanges as $r ) {
+			$start = self::toHex( $r[0] );
+			$end = self::toHex( $r[1] );
+			if ( $n >= $start && $n <= $end ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
-	 * Return a zero-padded hexadecimal representation of an IP address.
+	 * Return a zero-padded upper case hexadecimal representation of an IP address.
 	 *
 	 * Hexadecimal addresses are used because they can easily be extended to
 	 * IPv6 support. To separate the ranges, the return value from this
@@ -443,11 +431,13 @@ class IP {
 	 * @return string
 	 */
 	public static function toHex( $ip ) {
-		$n = self::toUnsigned( $ip );
-		if ( $n !== false ) {
-			$n = self::isIPv6( $ip )
-				? 'v6-' . wfBaseConvert( $n, 10, 16, 32, false )
-				: wfBaseConvert( $n, 10, 16, 8, false );
+		if ( self::isIPv6( $ip ) ) {
+			$n = 'v6-' . self::IPv6ToRawHex( $ip );
+		} else {
+			$n = self::toUnsigned( $ip );
+			if ( $n !== false ) {
+				$n = wfBaseConvert( $n, 10, 16, 8, false );
+			}
 		}
 		return $n;
 	}
@@ -457,25 +447,42 @@ class IP {
 	 * Like ip2long() except that it actually works and has a consistent error return value.
 	 * Comes from ProxyTools.php
 	 * @param string $ip Quad dotted IP address.
-	 * @return integer
+	 * @return mixed (string/int/false)
 	 */
 	public static function toUnsigned( $ip ) {
-		// Use IPv6 functions if needed
 		if ( self::isIPv6( $ip ) ) {
-			return self::toUnsigned6( $ip );
-		}
-		if ( $ip == '255.255.255.255' ) {
-			$n = -1;
+			$n = wfBaseConvert( self::IPv6ToRawHex( $ip ), 16, 10 );
 		} else {
-			$n = ip2long( $ip );
-			if ( $n == -1 || $n === false ) { # Return value on error depends on PHP version
-				$n = false;
+			if ( $ip == '255.255.255.255' ) {
+				$n = -1;
+			} else {
+				$n = ip2long( $ip );
+				if ( $n == -1 || $n === false ) { # Return value on error depends on PHP version
+					$n = false;
+				}
+			}
+			if ( $n < 0 ) {
+				$n += pow( 2, 32 );
 			}
 		}
-		if ( $n < 0 ) {
-			$n += pow( 2, 32 );
-		}
 		return $n;
+	}
+
+	/**
+	 * Given an IPv6 address in octet notation, returns a pure hex string.
+	 * @param string $ip octet ipv6 IP address.
+	 * @return string hex (uppercase)
+	 */
+	private static function IPv6ToRawHex( $ip ) {
+		$ip = self::sanitizeIP( $ip );
+		if ( !$ip ) {
+			return null;
+		}
+		$r_ip = '';
+		foreach ( explode( ':', $ip ) as $v ) {
+			$r_ip .= str_pad( $v, 4, 0, STR_PAD_LEFT );
+		}
+		return $r_ip;
 	}
 
 	/**
@@ -586,7 +593,6 @@ class IP {
 	 * @return bool Whether or not the given address is in the given range.
 	 */
 	public static function isInRange( $addr, $range ) {
-		// Convert to IPv6 if needed
 		$hexIP = self::toHex( $addr );
 		list( $start, $end ) = self::parseRange( $range );
 		return ( strcmp( $hexIP, $start ) >= 0 &&
