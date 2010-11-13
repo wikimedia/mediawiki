@@ -35,10 +35,10 @@ class RefreshLinks extends Maintenance {
 	}
 
 	public function execute() {
+		$max = $this->getOption( 'm', 0 );
 		if ( !$this->hasOption( 'dfn-only' ) ) {
 			$start = $this->getArg( 0, 1 );
 			$new = $this->getOption( 'new-only', false );
-			$max = $this->getOption( 'm', false );
 			$end = $this->getOption( 'e', 0 );
 			$redir = $this->getOption( 'redirects-only', false );
 			$oldRedir = $this->getOption( 'old-redirects-only', false );
