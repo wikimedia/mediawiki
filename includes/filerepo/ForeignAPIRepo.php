@@ -196,7 +196,7 @@ class ForeignAPIRepo extends FileRepo {
 		return $ret;
 	}
 
-	function getThumbUrl( $name, $width=-1, $height=-1, &$result ) {
+	function getThumbUrl( $name, $width=-1, $height=-1, &$result=NULL ) {
 		$data = $this->fetchImageQuery( array(
 			'titles' => 'File:' . $name,
 			'iiprop' => 'url|timestamp',
