@@ -33,7 +33,7 @@ define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX );
 // An IPv6 block is an IP address and a prefix (d1 to d128)
 define( 'RE_IPV6_WORD', '([0-9A-Fa-f]{1,4})' );
 define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
-// An IPv6 address is made up of 8 words. However, the "::" abbreviations can be used.
+// An IPv6 address is made up of 8 words. However, the "::" abbreviation can be used.
 define( 'RE_IPV6_ADD',
 	'(' . // starts with "::" (includes the address "::")
 		'(::|:(:' . RE_IPV6_WORD . '){1,7})' .
@@ -175,12 +175,12 @@ class IP {
 				? $CIDRStart - 1
 				: strlen( $ip ) - 1;
 			// If the '::' is at the beginning...
-			if( $abbrevPos == 0 ) {
+			if ( $abbrevPos == 0 ) {
 				$repeat = '0:';
 				$extra = ( $ip == '::' ) ? '0' : ''; // for the address '::'
 				$pad = 9; // 7+2 (due to '::')
 			// If the '::' is at the end...
-			} elseif( $abbrevPos == ( $addressEnd - 1 ) ) {
+			} elseif ( $abbrevPos == ( $addressEnd - 1 ) ) {
 				$repeat = ':0';
 				$extra = '';
 				$pad = 9; // 7+2 (due to '::')
@@ -277,7 +277,7 @@ class IP {
 
 		// ip2long accepts incomplete addresses, as well as some addresses
 		// followed by garbage characters. Check that it's really valid.
-		if( $ip != long2ip( $n ) ) {
+		if ( $ip != long2ip( $n ) ) {
 			return false;
 		}
 
@@ -376,7 +376,7 @@ class IP {
 	 */
 	public static function toUnsigned( $ip ) {
 		if ( self::isIPv6( $ip ) ) {
-			$n = wfBaseConvert( self::IPv6ToRawHex( $ip ), 16, 10 );
+			$n = self::toUnsigned6( $ip );
 		} else {
 			$n = ip2long( $ip );
 			if ( $n < 0 ) {
@@ -394,7 +394,7 @@ class IP {
 	 * Convert a network specification in CIDR notation
 	 * to an integer network and a number of bits
 	 * @param string $range IP with CIDR prefix
-	 * @return array(int, int)
+	 * @return array(int or string, int)
 	 */
 	public static function parseCIDR( $range ) {
 		if ( self::isIPv6( $range ) ) {
@@ -520,7 +520,7 @@ class IP {
 	 *     2001:0db8:85a3::7344/96          			 CIDR
 	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
 	 *     2001:0db8:85a3::7344/96             			 Single IP
-	 * @return array(string, int)
+	 * @return array(string, string)
 	 */
 	private static function parseRange6( $range ) {
 		# Expand any IPv6 IP
