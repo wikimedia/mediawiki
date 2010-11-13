@@ -145,7 +145,8 @@ class MovePageForm extends UnlistedSpecialPage {
 			if ($this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
 				$wgOut->wrapWikiMsg( "<div class=\"error mw-moveuserpage-warning\">\n$1\n</div>", 'moveuserpage-warning' );
 			}
-			$wgOut->addWikiMsg( 'movepagetext' );
+			$wgOut->addWikiMsg( $wgFixDoubleRedirects ? 'movepagetext' :
+				'movepagetext-noredirectfixer' );
 			$movepagebtn = wfMsg( 'movepagebtn' );
 			$submitVar = 'wpMove';
 			$confirm = false;
