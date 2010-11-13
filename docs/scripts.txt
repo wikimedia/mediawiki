@@ -20,6 +20,9 @@ Primary scripts:
     Script that only serve images to logged in users. To configure the wiki
     to use that script, see http://www.mediawiki.org/wiki/Manual:Image_Authorisation.
 
+  load.php
+    Used by ResourceLoader to serve minified, concatenated and gzipped CSS and JS.
+
   opensearch_desc.php
     Returns a OpenSearch description document (see http://www.opensearch.org/)
     that points to the search engines of the wiki.
@@ -58,5 +61,5 @@ There is also a file with a .php5 extension for each script. They can be used if
 the web server needs a .php5 to run the file with the PHP 5 engine and runs .php
 scripts with PHP 4. To use these files, you have to modify $wgScriptExtension to
 '.php5' is LocalSettings.php but it is already done by the config script if you
-used the config/index.php5 script.
+used config/index.php5 for installation.
 
