@@ -36,7 +36,14 @@ if( isset( $_SERVER['argv'] ) && in_array( '--icu', $_SERVER['argv'] ) ) {
 
 #ini_set( 'memory_limit', '40M' );
 
-require_once 'PHPUnit/Framework.php';
+require_once( 'PHPUnit/Runner/Version.php' );
+if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
+    # PHPUnit 3.5.0 introduced a nice autoloader based on class name
+    require_once( 'PHPUnit/Autoload.php' );
+} else {
+	# Keep the old pre PHPUnit 3.5.0 behaviour for compatibility
+	require_once 'PHPUnit/Framework.php';
+}
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once 'UtfNormal.php';
