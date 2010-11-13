@@ -108,11 +108,6 @@ abstract class ApiTestCase extends PHPUnit_Framework_TestCase {
 
 	}
 
-	function tearDown() {
-		global $wgMemc;
-		$wgMemc = null;
-	}
-
 	protected function doApiRequest( $params, $session = null ) {
 		$_SESSION = isset( $session ) ? $session : array();
 

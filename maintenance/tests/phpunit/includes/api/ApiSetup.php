@@ -39,11 +39,6 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 		
 		$GLOBALS['wgUser'] = self::$sysopUser->user;
 	}
-
-	function tearDown() {
-		global $wgMemc;
-		$wgMemc = null;
-	}
 }
 
 class UserWrapper {

@@ -50,11 +50,6 @@ class TitlePermissionTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	function tearDown() {
-		global $wgContLang, $wgLang;
-		$wgContLang = $wgLang = null;
-	}
-
 	function setUserPerm( $perm ) {
 		if ( is_array( $perm ) ) {
 			self::$user->mRights = $perm;

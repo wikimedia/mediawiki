@@ -15,12 +15,6 @@ class ExtraParserTest extends PHPUnit_Framework_TestCase {
 		$wgMemc = new FakeMemCachedClient;
 	}
 
-	function tearDown() {
-		global $wgMemc;
-
-		$wgMemc = null;
-	}
-
 	// Bug 8689 - Long numeric lines kill the parser
 	function testBug8689() {
 		global $wgLang;
