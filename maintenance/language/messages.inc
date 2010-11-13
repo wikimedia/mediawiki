@@ -2105,6 +2105,7 @@ $wgMessageStructure = array(
 		'move-page-backlink',
 		'move-page-legend',
 		'movepagetext',
+		'movepagetext-noredirectfixer',
 		'movepagetalktext',
 		'movearticle',
 		'moveuserpage-warning',
