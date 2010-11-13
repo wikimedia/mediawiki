@@ -329,8 +329,8 @@ class Title {
 	 * This will only return the very next target, useful for
 	 * the redirect table and other checks that don't need full recursion
 	 *
-	 * @param $text \type{\string} Text with possible redirect
-	 * @return \type{Title} The corresponding Title
+	 * @param $text String: Text with possible redirect
+	 * @return Title: The corresponding Title
 	 */
 	public static function newFromRedirect( $text ) {
 		return self::newFromRedirectInternal( $text );
@@ -595,21 +595,21 @@ class Title {
 	/**
 	 * Get the main part with underscores
 	 *
-	 * @return \type{\string} Main part of the title, with underscores
+	 * @return Stromg: Main part of the title, with underscores
 	 */
 	public function getDBkey() { return $this->mDbkeyform; }
 
 	/**
 	 * Get the namespace index, i.e.\ one of the NS_xxxx constants.
 	 *
-	 * @return \type{\int} Namespace index
+	 * @return Integer: Namespace index
 	 */
 	public function getNamespace() { return $this->mNamespace; }
 
 	/**
 	 * Get the namespace text
 	 *
-	 * @return \type{\string} Namespace text
+	 * @return String: Namespace text
 	 */
 	public function getNsText() {
 		global $wgContLang;
@@ -4029,7 +4029,7 @@ class Title {
 	 * In other words, is this a content page, for the purposes of calculating
 	 * statistics, etc?
 	 *
-	 * @return \type{\bool}
+	 * @return Boolean
 	 */
 	public function isContentPage() {
 		return MWNamespace::isContent( $this->getNamespace() );

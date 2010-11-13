@@ -1758,7 +1758,7 @@ class Article {
 	/**
 	 * Update the page record to point to a newly saved revision.
 	 *
-	 * @param $dbw Database object
+	 * @param $dbw DatabaseBase: object
 	 * @param $revision Revision: For ID number, and text used to set
 	                    length and redirect status fields
 	 * @param $lastRevision Integer: if given, will not overwrite the page field
@@ -3609,12 +3609,12 @@ class Article {
 	 * Every 100th edit, prune the recent changes table.
 	 *
 	 * @private
-	 * @param $text New text of the article
-	 * @param $summary Edit summary
-	 * @param $minoredit Minor edit
+	 * @param $text String: New text of the article
+	 * @param $summary String: Edit summary
+	 * @param $minoredit Boolean: Minor edit
 	 * @param $timestamp_of_pagechange Timestamp associated with the page change
-	 * @param $newid rev_id value of the new revision
-	 * @param $changed Whether or not the content actually changed
+	 * @param $newid Integer: rev_id value of the new revision
+	 * @param $changed Boolean: Whether or not the content actually changed
 	 */
 	public function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid, $changed = true ) {
 		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgEnableParserCache;
