@@ -21,7 +21,7 @@ class LanguageConverterTest extends PHPUnit_Framework_TestCase {
 		unset( $wgMemc );
 		unset( $this->lc );
 		unset( $this->lang );
-		$wgContLang = null;
+		$wgContLang = Language::factory( 'en' );
 	}
 
 	function testGetPreferredVariantDefaults() {

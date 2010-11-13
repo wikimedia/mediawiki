@@ -91,7 +91,6 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 		$wgDBtype = self::$dbtype;
 		$wgLBFactoryConf = self::$factoryconf;
 		$wgDBservers = self::$dbservers;
-		$wgContLang = null;
 	}
 
 	function testUpdateText() {
