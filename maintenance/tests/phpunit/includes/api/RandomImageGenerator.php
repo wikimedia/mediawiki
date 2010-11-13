@@ -68,10 +68,10 @@ class RandomImageGenerator {
 	/**
 	 * Writes random images with random filenames to disk in the directory you specify, or current working directory
 	 * 
-	 * @param {Integer} number of filenames to write
-	 * @param {String} format, optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
-	 * @param {String} directory, optional (will default to current working directory)
-	 * @return {Array} filenames we just wrote
+	 * @param $number Integer: number of filenames to write
+	 * @param $format String: optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
+	 * @param $dir String: directory, optional (will default to current working directory)
+	 * @return Array: filenames we just wrote
 	 */
 	function writeImages( $number, $format = 'jpg', $dir = null ) {
 		$filenames = $this->getRandomFilenames( $number, $format, $dir );
@@ -85,10 +85,10 @@ class RandomImageGenerator {
 	 * Return a number of randomly-generated filenames
 	 * Each filename uses two words randomly drawn from the dictionary, like elephantine_spatula.jpg
  	 *
-	 * @param {Integer} number of filenames to generate
-	 * @param {String} extension, optional, defaults to 'jpg'
-	 * @param {String} directory, optional, defaults to current working directory
-	 * @return {Array} of filenames
+	 * @param $number Integer: of filenames to generate
+	 * @param $extension String: optional, defaults to 'jpg'
+	 * @param $dir String: optional, defaults to current working directory
+	 * @return Array: of filenames
 	 */
 	private function getRandomFilenames( $number, $extension = 'jpg', $dir = null ) {
 		if ( is_null( $dir ) ) {
@@ -226,8 +226,8 @@ class RandomImageGenerator {
 	/** 
 	 * Get an array of random pairs of random words, like array( array( 'foo', 'bar' ), array( 'quux', 'baz' ) );
 	 *
-	 * @param {Integer} number of pairs
-	 * @return {Array} of two-element arrays 
+	 * @param $number Integer: number of pairs
+	 * @return Array: of two-element arrays
 	 */
 	private function getRandomWordPairs( $number ) { 
 		$lines = $this->getRandomLines( $number * 2 );
@@ -246,9 +246,8 @@ class RandomImageGenerator {
 	 * 
 	 * Will throw exception if the file could not be read or if it had fewer lines than requested.
 	 * 
-	 * @param {Integer} number of lines desired
-	 * @string {String} path to file 
-	 * @return {Array} of exactly n elements, drawn randomly from lines the file
+	 * @param $number_desired Integer: number of lines desired
+	 * @return Array: of exactly n elements, drawn randomly from lines the file
 	 */
 	private function getRandomLines( $number_desired ) { 
 		$filepath = $this->dictionaryFile;
