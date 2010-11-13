@@ -578,7 +578,7 @@ class ApiUploadTest extends ApiTestCase {
 
 	/**
 	 * Helper function -- remove files and associated articles by Title
-	 * @param {Title} title to be removed
+	 * @param $title Title: title to be removed
 	 */
 	public function deleteFileByTitle( $title ) {
 		if ( $title->exists() ) { 
@@ -601,7 +601,7 @@ class ApiUploadTest extends ApiTestCase {
 
 	/**
 	 * Helper function -- remove files and associated articles with a particular filename 
-	 * @param {String} filename to be removed
+	 * @param $fileName String: filename to be removed
 	 */
 	public function deleteFileByFileName( $fileName ) {
 		return $this->deleteFileByTitle( Title::newFromText( $fileName, NS_FILE ) );
@@ -610,7 +610,7 @@ class ApiUploadTest extends ApiTestCase {
 
 	/**
 	 * Helper function -- given a file on the filesystem, find matching content in the db (and associated articles) and remove them.
-	 * @param {String} path to file on the filesystem
+	 * @param $filePath String: path to file on the filesystem
 	 */
 	public function deleteFileByContent( $filePath ) {
 		$hash = File::sha1Base36( $filePath );
@@ -625,10 +625,10 @@ class ApiUploadTest extends ApiTestCase {
 	/** 
 	 * Fake an upload by dumping the file into temp space, and adding info to $_FILES.
 	 * (This is what PHP would normally do).
-	 * @param {String}: fieldname - name this would have in the upload form 
-	 * @param {String}: fileName - name to title this 
-	 * @param {String}: mime type
-	 * @param {String}: filePath - path where to find file contents
+	 * @param $fieldName String: name this would have in the upload form 
+	 * @param $fileName String: name to title this
+	 * @param $type String: mime type
+	 * @param $filePath String: path where to find file contents
 	 */
 	function fakeUploadFile( $fieldName, $fileName, $type, $filePath ) {
 		$tmpName = tempnam( wfTempDir(), "" );

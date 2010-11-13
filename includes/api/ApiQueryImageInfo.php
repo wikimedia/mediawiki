@@ -180,8 +180,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * From parameters, construct a 'scale' array 
-	 * @param {Array} $params 
-	 * @return {null|Array} key-val array of 'width' and 'height', or null
+	 * @param $params Array: 
+	 * @return Array or Null: key-val array of 'width' and 'height', or null
 	 */	
 	public function getScale( $params ) {
 		$p = $this->getModulePrefix();
