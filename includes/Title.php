@@ -595,7 +595,7 @@ class Title {
 	/**
 	 * Get the main part with underscores
 	 *
-	 * @return Stromg: Main part of the title, with underscores
+	 * @return String: Main part of the title, with underscores
 	 */
 	public function getDBkey() { return $this->mDbkeyform; }
 
