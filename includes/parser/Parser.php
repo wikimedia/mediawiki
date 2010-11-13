@@ -1613,7 +1613,7 @@ class Parser {
 
 	/**
 	 * Process [[ ]] wikilinks
-	 * @return processed text
+	 * @return String: processed text
 	 *
 	 * @private
 	 */

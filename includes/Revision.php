@@ -798,7 +798,7 @@ class Revision {
 	 * Insert a new revision into the database, returning the new revision ID
 	 * number on success and dies horribly on failure.
 	 *
-	 * @param $dbw DatabaseBase (master connection)
+	 * @param $dbw DatabaseBase: (master connection)
 	 * @return Integer
 	 */
 	public function insertOn( $dbw ) {
