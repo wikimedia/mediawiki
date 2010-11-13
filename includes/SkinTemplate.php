@@ -217,7 +217,7 @@ class SkinTemplate extends Skin {
 			$tpl->setRef( 'xhtmldefaultnamespace', $wgXhtmlDefaultNamespace );
 			$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
 			$tpl->set( 'html5version', $wgHtml5Version );
-			$tpl->set( 'headlinks', $out->getHeadLinks( $this->getSkinName() ) );
+			$tpl->set( 'headlinks', $out->getHeadLinks( $this ) );
 			$tpl->set( 'csslinks', $out->buildCssLinks() );
 
 			if( $wgUseTrackbacks && $out->isArticleRelated() ) {
