@@ -290,12 +290,13 @@ Klik "Terug" en probeer het opnieuw.',
 Zorg dat deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
 
 # Search results
-'searchsubtitle' => 'Je zocht naar \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pagina\'s die beginnen met "$1"]] {{int:pipe-separator}}[[Special:WhatLinksHere/$1|pagina\'s die verwijzen naar "$1"]])',
-'search-suggest' => 'Bedoelde je: $1',
-'nonefound'      => "'''Opmerking''': standaard worden niet alle naamruimten doorzocht.
+'searchsubtitle'        => 'Je zocht naar \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pagina\'s die beginnen met "$1"]] {{int:pipe-separator}}[[Special:WhatLinksHere/$1|pagina\'s die verwijzen naar "$1"]])',
+'searchsubtitleinvalid' => "Je hebt gezocht naar '''$1'''",
+'search-suggest'        => 'Bedoelde je: $1',
+'nonefound'             => "'''Opmerking''': standaard worden niet alle naamruimten doorzocht.
 Als je in uw zoekopdracht als voorvoegsel \"''all:''\" gebruikt worden alle pagina's doorzocht (inclusief overlegpagina's, sjablonen, enzovoort).
 Je kunt ook een naamruimte als voorvoegsel gebruiken.",
-'searchdisabled' => 'Zoeken in {{SITENAME}} is niet mogelijk.
+'searchdisabled'        => 'Zoeken in {{SITENAME}} is niet mogelijk.
 Je kunt gebruik maken van Google.
 De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 
@@ -370,6 +371,8 @@ Kies een duidelijke naam voor je bestand.",
 'upload-failure-msg'          => 'Er was een probleem met je upload van [$2]:
 
 $1',
+'upload-warning-msg'          => 'Er was een probleem met je upload van [$2].
+Ga terug naar het [[Special:Upload/stash/$1|uploadformulier]] om dit probleem te verhelpen.',
 
 # img_auth script messages
 'img-auth-nopathinfo' => 'PATH_INFO mist.
@@ -554,10 +557,12 @@ Ga naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [h
 'tooltip-pt-userpage'      => 'Jouw gebruikerspagina',
 'tooltip-pt-anonuserpage'  => 'Gebruikerspagina voor je IP-adres',
 'tooltip-pt-mytalk'        => 'Jouw overlegpagina',
-'tooltip-pt-watchlist'     => 'Pagina',
+'tooltip-pt-watchlist'     => "Overzicht van pagina's die je volgt",
 'tooltip-pt-mycontris'     => 'Overzicht van je bijdragen',
 'tooltip-pt-login'         => 'Je wordt van harte uitgenodigd om je aan te melden als gebruiker, maar dit is niet verplicht',
 'tooltip-pt-anonlogin'     => 'Je wordt van harte uitgenodigd om je aan te melden als gebruiker, maar dit is niet verplicht',
+'tooltip-ca-edit'          => 'Je kunt deze pagina bewerken.
+Gebruik de voorbeeldweergaveknop alvorens te bewaren.',
 'tooltip-ca-viewsource'    => 'Deze pagina is beveiligd.
 Je kunt wel de broncode bekijken.',
 'tooltip-ca-nstab-special' => 'Dit is een speciale pagina, je kunt de pagina zelf niet bewerken',
@@ -640,6 +645,13 @@ Eén pagina per regel.
 Als je klaar bent, klik dan op "{{int:Watchlistedit-raw-submit}}".
 Je kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].',
 'watchlistedit-raw-done'       => 'Jr volglijst is bijgewerkt.',
+
+# Special:Version
+'version-license-info' => 'MediaWiki is vrije software; je kunt MediaWiki verspreiden en/of aanpassen onder de voorwaarden van de GNU General Public License zoals gepubliceerd door de Free Software Foundation; ofwel versie 2 van de Licentie, of - zo je wilt - enige latere versie.
+
+MediaWiki wordt verspreid in de hoop dat het nuttig is, maar ZONDER ENIGE GARANTIE; zonder zelfs de implicitiete garantie van VERKOOPBAARHEID of GESCHIKHEID VOOR ENIG DOEL IN HET BIJZONDER. Zie de GNU General Public License voor meer informatie.
+
+Samen met dit programma hoor je een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te hebben ontvangen; zo niet, schrijf dan naar de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees de licentie online].',
 
 # Database error messages
 'dberr-usegoogle' => 'Wellicht kun je in de tussentijd zoeken via Google.',

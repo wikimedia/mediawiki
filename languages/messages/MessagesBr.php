@@ -3223,7 +3223,7 @@ Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 'autosumm-blank'   => 'Riñset ar bajenn',
 'autosumm-replace' => "Oc'h erlec'hiañ ar bajenn gant '$1'",
 'autoredircomment' => 'Adkas war-du [[$1]]',
-'autosumm-new'     => 'Krouet pajenn gant : $1',
+'autosumm-new'     => 'Pajenn krouet gant : "$1"',
 
 # Size units
 'size-bytes'     => '$1 o',

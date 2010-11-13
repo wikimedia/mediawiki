@@ -3194,6 +3194,8 @@ MediaWiki necesita funcións neste módulo e non funcionará con esta configurac
 Se está executando o Mandrake, instale o paquete php-xml.',
 	'config-pcre' => 'Semella que falta o módulo de soporte PCRE.
 MediaWiki necesita que funcionen as expresións regulares compatibles co Perl.',
+	'config-pcre-no-utf8' => "'''Erro fatal:''' Semella que o módulo PCRE do PHP foi compilado sen o soporte PCRE_UTF8.
+MediaWiki necesita soporte UTF-8 para funcionar correctamente.",
 	'config-memory-none' => 'PHP está configurado sen o parámetro <code>memory_limit</code>',
 	'config-memory-ok' => 'O parámetro <code>memory_limit</code> do PHP é $1.
 De acordo.',
@@ -3224,6 +3226,12 @@ Instalación abortada.",
 	'config-uploads-safe' => 'O directorio por defecto para as cargas está a salvo da execución arbitraria de escrituras.',
 	'config-uploads-not-safe' => "'''Atención:''' O seu directorio por defecto para as cargas, <code>$1</code>, é vulnerable a execucións arbitrarias de escrituras.
 Aínda que MediaWiki comproba todos os ficheiros cargados por se houbese ameazas de seguridade, é amplamente recomendable [http://www.mediawiki.org/wiki/Manual:Security#Upload_security pechar esta vulnerabilidade de seguridade] antes de activar as cargas.",
+	'config-brokenlibxml' => 'O seu sistema ten unha combinación de versións de PHP e libxml2 que pode ser problemático e causar corrupción de datos en MediaWiki e outras aplicacións web.
+Actualice o sistema á versión 5.2.9 ou posterior do PHP e á 2.7.3 ou posterior de libxml2 ([http://bugs.php.net/bug.php?id=45996 erro presentado co PHP]).
+Instalación abortada.',
+	'config-using531' => 'O PHP $1 non é compatible con MediaWiki debido a un erro que afecta aos parámetros de referencia de <code>__call()</code>.
+Actualice o sistema á versión 5.3.2 ou posterior do PHP ou volva á versión 5.3.0 do PHP para arranxar o problema ([http://bugs.php.net/bug.php?id=50394 erro presentado co PHP]).
+Instalación abortada.',
 	'config-db-type' => 'Tipo de base de datos:',
 	'config-db-host' => 'Servidor da base de datos:',
 	'config-db-host-help' => 'Se o servidor da súa base de datos está nun servidor diferente, escriba o nome do servidor ou o enderezo IP aquí.
@@ -3523,6 +3531,7 @@ Vaia ata a seguinte páxina.",
 	'config-install-database' => 'Configurando a base de datos',
 	'config-install-pg-schema-failed' => 'Fallou a creación de táboas.
 Asegúrese de que o usuario "$1" pode escribir no esquema "$2".',
+	'config-install-pg-commit' => 'Validando os cambios',
 	'config-install-user' => 'Creando o usuario da base de datos',
 	'config-install-user-failed' => 'Fallou a concesión de permisos ao usuario "$1": $2',
 	'config-install-tables' => 'Creando as táboas',
@@ -6308,7 +6317,11 @@ $messages['ml'] = array(
 	'config-localsettings-badkey' => 'താങ്കൾ നൽകിയ ചാവി തെറ്റാണ്',
 	'config-session-error' => 'സെഷൻ തുടങ്ങുന്നതിൽ പിഴവ്: $1',
 	'config-your-language' => 'താങ്കളുടെ ഭാഷ:',
+	'config-your-language-help' => 'ഇൻസ്റ്റലേഷൻ പ്രക്രിയയിൽ ഉപയോഗിക്കേണ്ട ഭാഷ തിരഞ്ഞെടുക്കുക.',
 	'config-wiki-language' => 'വിക്കി ഭാഷ:',
+	'config-wiki-language-help' => 'വിക്കിയിൽ പ്രധാനമായി ഉപയോഗിക്കേണ്ട ഭാഷ തിരഞ്ഞെടുക്കുക.',
+	'config-allow-requests' => 'MediaWiki.org സൈറ്റിലോട്ടുള്ള ബാഹ്യ അഭ്യർത്ഥനകൾ അനുവദിക്കുക',
+	'config-allow-requests-help' => 'സജ്ജമാക്കി നൽകിയാൽ, താങ്കൾ ഏറ്റവും പുതിയ സ്ഥിരതയുള്ള പതിപ്പാണോ ഇൻസ്റ്റോൾ ചെയ്യുന്നതെന്ന് MediaWiki.org വെബ്സൈറ്റിൽ ഇൻസ്റ്റോളർ പരിശോധിക്കും',
 	'config-back' => '← പിന്നിലേയ്ക്ക്',
 	'config-continue' => 'തുടരുക →',
 	'config-page-language' => 'ഭാഷ',
@@ -6326,16 +6339,31 @@ $messages['ml'] = array(
 	'config-page-copying' => 'പകർത്തൽ',
 	'config-page-upgradedoc' => 'അപ്‌ഗ്രേഡിങ്',
 	'config-page-locked' => 'അനുമതി നിഷേധിച്ചിരിക്കുന്നു',
+	'config-help-restart' => 'ഇതുവരെ ഉൾപ്പെടുത്തിയ എല്ലാവിവരങ്ങളും ഒഴിവാക്കാനും ഇൻസ്റ്റലേഷൻ പ്രക്രിയ നിർത്തി-വീണ്ടുമാരംഭിക്കാനും താങ്കളാഗ്രഹിക്കുന്നുണ്ടോ?',
 	'config-restart' => 'അതെ, പുനർപ്രവർത്തിപ്പിക്കുക',
 	'config-sidebar' => '* [http://www.mediawiki.org മീഡിയവിക്കി പ്രധാനതാൾ]
 * [http://www.mediawiki.org/wiki/Help:Contents ഉപയോക്തൃസഹായി]
 * [http://www.mediawiki.org/wiki/Manual:Contents കാര്യനിർവഹണസഹായി]
 * [http://www.mediawiki.org/wiki/Manual:FAQ പതിവുചോദ്യങ്ങൾ]',
 	'config-env-php' => 'പി.എച്ച്.പി. $1 ഇൻസ്റ്റോൾ ചെയ്തിട്ടുണ്ട്.',
+	'config-env-latest-disabled' => 'ബാഹ്യ എച്ച്.റ്റി.റ്റി.പി. അഭ്യർത്ഥനകൾ പ്രവർത്തനരഹിതമാക്കിയിരിക്കുന്നു, പതിപ്പ് പരിശോധന നടത്തുന്നില്ല',
 	'config-env-latest-ok' => 'മീഡിയവിക്കിയുടെ ഏറ്റവും പുതിയ പതിപ്പാണ് താങ്കൾ ഇൻസ്റ്റോൾ ചെയ്യുന്നത്.',
 	'config-env-latest-new' => "'''കുറിപ്പ്:''' മീഡിയവിക്കിയുടെ വികസനഘട്ടത്തിലിരിക്കുന്ന പതിപ്പാണ് താങ്കൾ ഇൻസ്റ്റോൾ ചെയ്യുന്നത്.",
+	'config-env-latest-can-not-check' => "'''മുന്നറിയിപ്പ്:''' ഏറ്റവും പുതിയ മീഡിയവിക്കി പതിപ്പിനെ കുറിച്ചുള്ള വിവരങ്ങൾ [$1] എന്നയിടത്തുനിന്നും ശേഖരിക്കാൻ ഇൻസ്റ്റോളറിനു കഴിഞ്ഞില്ല.",
+	'config-env-latest-old' => "'''മുന്നറിയിപ്പ്:''' മീഡിയവിക്കിയുടെ കാലഹരണപ്പെട്ട പതിപ്പാണ് താങ്കൾ ഇൻസ്റ്റോൾ ചെയ്യുന്നത്.",
+	'config-env-latest-help' => 'താങ്കൾ ഇൻസ്റ്റോൾ ചെയ്യുന്ന പതിപ്പ് $1 ആണ്, $2 ആണ് ഏറ്റവും പുതിയ പതിപ്പ്.
+താങ്കൾ ഏറ്റവും പുതിയ പതിപ്പ് ഉപയോഗിക്കാൻ താത്പര്യപ്പെടുന്നു, അത് [http://www.mediawiki.org/wiki/Download മീഡിയവിക്കി.ഓർഗിൽ] നിന്നും ഡൗൺലോഡ് ചെയ്യാവുന്നതാണ്.',
 	'config-no-db' => 'അനുയോജ്യമായ ഡേറ്റാബേസ് ഡ്രൈവർ കണ്ടെത്താനായില്ല!',
 	'config-have-db' => 'കണ്ടെത്താനായ ഡേറ്റാബേസ് {{PLURAL:$2|ഡ്രൈവർ|ഡ്രൈവറുകൾ}}: $1.',
+	'config-memory-ok' => 'പി.എച്ച്.പി.യുടെ <code>memory_limit</code> $1 ആണ്.
+കുഴപ്പമില്ല.',
+	'config-memory-raised' => 'പി.എച്ച്.പി.യുടെ <code>memory_limit</code> $1 ആണ്, $2 ആയി ഉയർത്തിയിരിക്കുന്നു.',
+	'config-memory-bad' => "'''മുന്നറിയിപ്പ്:''' പി.എച്ച്.പി.യുടെ <code>memory_limit</code> $1 ആണ്.
+ഇത് മിക്കവാറും വളരെ കുറവാണ്.
+ഇൻസ്റ്റലേഷൻ പരാജയപ്പെട്ടേക്കാം!",
+	'config-dir' => 'ഇൻസ്റ്റലേഷൻ ഡയറക്റ്ററി: <code>$1</code>.',
+	'config-uri' => 'സ്ക്രിപ്റ്റ് യൂ.ആർ.ഐ. പഥം: <code>$1</code>.',
+	'config-file-extension' => '<code>$1</code>  ഫയൽ എക്സ്റ്റെൻഷനോട് മീഡിയവിക്കി ഇൻസ്റ്റോൾ ചെയ്യുന്നു.',
 	'config-db-type' => 'ഡേറ്റാബേസ് തരം:',
 	'config-db-host' => 'ഡേറ്റാബേസ് ഹോസ്റ്റ്:',
 	'config-db-name' => 'ഡേറ്റാബേസിന്റെ പേര്:',
@@ -6346,8 +6374,18 @@ $messages['ml'] = array(
 	'config-mysql-old' => 'മൈഎസ്‌ക്യൂഎൽ $1 അഥവാ അതിലും പുതിയത് ആവശ്യമാണ്, താങ്കളുടെ പക്കൽ ഉള്ളത് $2 ആണ്.',
 	'config-db-port' => 'ഡേറ്റാബേസ് പോർട്ട്:',
 	'config-db-schema' => 'മീഡിയവിക്കിയ്ക്കായുള്ള സ്കീമ',
+	'config-support-info' => 'മീഡിയവിക്കി താഴെ പറയുന്ന ഡേറ്റാബേസ് സിസ്റ്റംസ് പിന്തുണയ്ക്കുന്നു:
+
+$1
+
+താങ്കൾ ഉപയോഗിക്കാനാഗ്രഹിക്കുന്ന ഡേറ്റാബേസ് സിസ്റ്റം പട്ടികയിലില്ലെങ്കിൽ, ദയവായി പിന്തുണ സജ്ജമാക്കാനായി മുകളിൽ നൽകിയിട്ടുള്ള ലിങ്കിലെ നിർദ്ദേശങ്ങൾ ചെയ്യുക.',
 	'config-header-mysql' => 'മൈഎസ്‌ക്യൂഎൽ സജ്ജീകരണങ്ങൾ',
 	'config-invalid-db-type' => 'അസാധുവായ ഡേറ്റാബേസ് തരം',
+	'config-missing-db-name' => '"ഡേറ്റാബേസിന്റെ പേരി"ന് ഒരു വില നിർബന്ധമായും നൽകിയിരിക്കണം',
+	'config-connection-error' => '$1.
+
+താഴെ നൽകിയിരിക്കുന്ന ഹോസ്റ്റ്, ഉപയോക്തൃനാമം, രഹസ്യവാക്ക് എന്നിവ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.',
+	'config-regenerate' => 'LocalSettings.php പുനഃസൃഷ്ടിക്കുക →',
 	'config-mysql-engine' => 'സ്റ്റോറേജ് എൻജിൻ:',
 	'config-site-name' => 'വിക്കിയുടെ പേര്:',
 	'config-site-name-help' => 'ഇത് ബ്രൗസറിന്റെ ടൈറ്റിൽ ബാറിലും മറ്റനേകം ഇടങ്ങളിലും പ്രദർശിപ്പിക്കപ്പെടും.',
@@ -6370,6 +6408,13 @@ $messages['ml'] = array(
 	'config-admin-password-same' => 'രഹസ്യവാക്കും ഉപയോക്തൃനാമവും ഒന്നാകരുത്.',
 	'config-admin-password-mismatch' => 'താങ്കൾ നൽകിയ രഹസ്യവാക്കുകൾ രണ്ടും തമ്മിൽ യോജിക്കുന്നില്ല.',
 	'config-admin-email' => 'ഇമെയിൽ വിലാസം:',
+	'config-admin-error-user' => '"<nowiki>$1</nowiki>" എന്ന പേരിലുള്ള കാര്യനിർവഹണ അംഗത്വ നിർമ്മിതിയ്ക്കിടെ ആന്തരികമായ പിഴവുണ്ടായി.',
+	'config-admin-error-password' => '"<nowiki>$1</nowiki>" എന്ന പേരിലുള്ള കാര്യനിർവാഹക അംഗത്വത്തിനു രഹസ്യവാക്ക് സജ്ജീകരിച്ചപ്പോൾ ആന്തരികമായ പിഴവുണ്ടായി: <pre>$2</pre>',
+	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce പ്രകാശന അറിയിപ്പ് മെയിലിങ് ലിസ്റ്റിൽ] വരിക്കാരാകുക.',
+	'config-subscribe-help' => 'പുറത്തിറക്കൽ അറിയിപ്പുകളും, പ്രധാന സുരക്ഷാ അറിയിപ്പുകളും പ്രസിദ്ധീകരിക്കുന്ന വളരെ എഴുത്തുകളൊന്നും ഉണ്ടാകാറില്ലാത്ത മെയിലിങ് ലിസ്റ്റ് ആണിത്.
+പുതിയ പതിപ്പുകൾ പുറത്ത് വരുന്നതനുസരിച്ച് അവയെക്കുറിച്ചറിയാനും മീഡിയവിക്കി ഇൻസ്റ്റലേഷൻ പുതുക്കാനും ഇതിന്റെ വരിക്കാരൻ/വരിക്കാരി ആവുക.',
+	'config-almost-done' => 'മിക്കവാറും പൂർത്തിയായിരിക്കുന്നു!
+ബാക്കിയുള്ളവ അവഗണിച്ച് വിക്കി ഇൻസ്റ്റോൾ ചെയ്യാവുന്നതാണ്.',
 	'config-optional-continue' => 'കൂടുതൽ ചോദ്യങ്ങൾ ചോദിക്കൂ.',
 	'config-optional-skip' => 'ഞാൻ മടുത്തു, ഇൻസ്റ്റോൾ ചെയ്ത് തീർക്ക്.',
 	'config-profile-wiki' => 'പരമ്പരാഗത വിക്കി',
@@ -6382,6 +6427,45 @@ $messages['ml'] = array(
 	'config-license-gfdl-old' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.2',
 	'config-license-gfdl-current' => 'ഗ്നൂ സ്വതന്ത്ര പ്രസിദ്ധീകരണാനുമതി 1.3 അഥവാ പുതിയത്',
 	'config-license-pd' => 'പൊതു സഞ്ചയം',
+	'config-email-settings' => 'ഇമെയിൽ സജ്ജീകരണങ്ങൾ',
+	'config-enable-email-help' => "ഇമെയിൽ പ്രവർത്തിക്കണമെങ്കിൽ, [http://www.php.net/manual/en/mail.configuration.php PHP's മെയിൽ സജ്ജീകരണങ്ങൾ] ശരിയായി ക്രമീകരിക്കേണ്ടതുണ്ട്.
+ഇമെയിൽ സൗകര്യം ആവശ്യമില്ലെങ്കിൽ, ഇവിടെത്തന്നെ അത് നിർജ്ജീവമാക്കാം.",
+	'config-email-user' => 'ഉപയോക്താക്കൾ തമ്മിലുള്ള ഇമെയിൽ പ്രവർത്തനസജ്ജമാക്കുക',
+	'config-email-user-help' => 'സ്വന്തം ക്രമീകരണങ്ങളിൽ ഇമെയിൽ സജ്ജമാക്കിയിട്ടുണ്ടെങ്കിൽ ഉപയോക്താക്കളെ മറ്റുള്ളവർക്ക് ഇമെയിൽ അയയ്ക്കാൻ അനുവദിക്കുക.',
+	'config-email-usertalk' => 'ഉപയോക്തൃസംവാദം താളിൽ മാറ്റങ്ങളുണ്ടായാൽ അറിയിക്കുക',
+	'config-email-watchlist' => 'ശ്രദ്ധിക്കുന്നവയിൽ മാറ്റം വന്നാൽ അറിയിക്കുക',
+	'config-email-auth' => 'ഇമെയിലിന്റെ സാധുതാപരിശോധന സജ്ജമാക്കുക',
+	'config-email-sender' => 'മറുപടിയ്ക്കുള്ള ഇമെയിൽ വിലാസം:',
+	'config-upload-settings' => 'ചിത്രങ്ങളും പ്രമാണങ്ങളും അപ്‌ലോഡ് ചെയ്യൽ',
+	'config-upload-enable' => 'പ്രമാണ അപ്‌ലോഡുകൾ സജ്ജമാക്കുക',
+	'config-upload-deleted' => 'മായ്ക്കപ്പെട്ട ഫയലുകൾക്കുള്ള ഡയറക്റ്ററി:',
+	'config-logo' => 'ലോഗോയുടെ യൂ.ആർ.എൽ.:',
+	'config-logo-help' => 'മീഡിയവിക്കിയിൽ സ്വതേയുള്ള ദൃശ്യരൂപത്തിൽ 135x160 പിക്സലുള്ള ലോഗോ മുകളിൽ ഇടത് മൂലയിൽ കാണാം.
+അനുയോജ്യമായ വലിപ്പമുള്ള ഒരു ചിത്രം അപ്‌ലോഡ് ചെയ്തിട്ട്, അതിന്റെ യൂ.ആർ.എൽ. ഇവിടെ നൽകുക.
+
+താങ്കൾക്ക് ലോഗോ ആവശ്യമില്ലെങ്കിൽ, ഈ പെട്ടി ശൂന്യമായിടുക.',
+	'config-cc-again' => 'ഒന്നുകൂടി എടുക്കൂ...',
+	'config-advanced-settings' => 'വിപുലീകൃത ക്രമീകരണങ്ങൾ',
+	'config-extensions' => 'അനുബന്ധങ്ങൾ',
+	'config-install-step-done' => 'ചെയ്തു കഴിഞ്ഞു',
+	'config-install-step-failed' => 'പരാജയപ്പെട്ടു',
+	'config-install-extensions' => 'അനുബന്ധങ്ങൾ ഉൾപ്പെടുത്തുന്നു',
+	'config-install-database' => 'ഡേറ്റാബേസ് സജ്ജമാക്കുന്നു',
+	'config-install-pg-commit' => 'മാറ്റങ്ങൾ സ്വീകരിക്കുന്നു',
+	'config-install-user' => 'ഡേറ്റാബേസ് ഉപയോക്താവിനെ സൃഷ്ടിക്കുന്നു',
+	'config-install-sysop' => 'കാര്യനിർവാഹക അംഗത്വം സൃഷ്ടിക്കുന്നു',
+	'config-install-mainpage' => 'സ്വാഭാവിക ഉള്ളടക്കത്തോടുകൂടി പ്രധാനതാൾ സൃഷ്ടിക്കുന്നു',
+	'config-install-mainpage-failed' => 'പ്രധാന താൾ ഉൾപ്പെടുത്താൻ കഴിഞ്ഞില്ല.',
+	'config-install-done' => "'''അഭിനന്ദനങ്ങൾ!'''
+താങ്കൾ വിജയകരമായി മീഡിയവിക്കി ഇൻസ്റ്റോൾ ചെയ്തിരിക്കുന്നു.
+
+ഇൻസ്റ്റോളർ ഒരു <code>LocalSettings.php</code> ഫയൽ സൃഷ്ടിച്ചിട്ടുണ്ട്.
+അതിൽ താങ്കളുടെ എല്ലാ ക്രമീകരണങ്ങളുമുണ്ട്.
+
+താങ്കൾ അത് [$1 എടുത്ത്] താങ്കളുടെ വിക്കി ഇൻസ്റ്റലേഷന്റെ അടിസ്ഥാന ഡയറക്റ്ററിയിൽ ഇടുക (index.php കിടക്കുന്ന അതേ ഡയറക്റ്ററി).
+'''ശ്രദ്ധിക്കുക''': ഇത് ഇപ്പോൾ ചെയ്തില്ലെങ്കിൽ, സൃഷ്ടിക്കപ്പെട്ട കോൺഫിഗറേഷൻ ഫയൽ എടുക്കാതെ ഇൻസ്റ്റലേഷൻ പ്രക്രിയയിൽ നിന്ന് പുറത്തിറങ്ങിയാൽ പിന്നീട് ലഭ്യമായിരിക്കില്ല.
+
+ചെയ്തശേഷം, താങ്കൾക്ക് '''[$2 വിക്കിയിൽ പ്രവേശിക്കാം]'''.",
 );
 
 /** Mongolian (Монгол)

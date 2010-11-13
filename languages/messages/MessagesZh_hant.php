@@ -19,6 +19,7 @@
  * @author KaiesTse
  * @author Liangent
  * @author Mark85296341
+ * @author Pbdragonwang
  * @author PhiLiP
  * @author Philip
  * @author Shinjiman
@@ -400,7 +401,7 @@ $messages = array(
 'talkpagelinktext'  => '對話',
 'specialpage'       => '特殊頁面',
 'personaltools'     => '個人工具',
-'postcomment'       => '新小節',
+'postcomment'       => '新段落',
 'articlepage'       => '檢視內容頁面',
 'talk'              => '討論',
 'views'             => '檢視',
@@ -500,8 +501,8 @@ $1',
 # Main script and global functions
 'nosuchaction'      => '這個命令不存在',
 'nosuchactiontext'  => '該URL所指定的動作無效。
-您可能打錯URL，或跟隨不正確的連結。
-這又可能是{{SITENAME}}所使用的軟件出現臭蟲。',
+您可能打錯URL，或點了錯誤連結。
+這也可能是{{SITENAME}}所使用的軟件出現了錯誤。',
 'nosuchspecialpage' => '此特殊頁面不存在',
 'nospecialpagetext' => '<strong>您請求的特殊頁面無效。</strong>
 
@@ -1775,6 +1776,7 @@ $1',
 'statistics-edits'             => '自從{{SITENAME}}設定的頁面編輯數',
 'statistics-edits-average'     => '每一頁面的平均編輯數',
 'statistics-views-total'       => '檢視總數',
+'statistics-views-total-desc'  => '不包含未存在頁面的觀點與特殊頁面在內',
 'statistics-views-peredit'     => '每次編輯檢視數',
 'statistics-users'             => '已註冊[[Special:ListUsers|用戶]]',
 'statistics-users-active'      => '活躍用戶',
@@ -1817,6 +1819,7 @@ Template:消除歧義',
 'nrevisions'              => '$1個修訂',
 'nviews'                  => '$1次瀏覽',
 'nimagelinks'             => '用於$1個頁面中',
+'ntransclusions'          => '用於$1個{{PLURAL:$1|頁面|頁面}}中',
 'specialpage-empty'       => '這個報告的結果為空。',
 'lonelypages'             => '孤立頁面',
 'lonelypagestext'         => '以下頁面尚未被{{SITENAME}}中的其它頁面連結或被之包含。',

@@ -1897,6 +1897,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'statistics-edits'             => '{{SITENAME}} kurulduğundan beri yapılan sayfa değişiklikleri',
 'statistics-edits-average'     => 'Her sayfadaki ortalama değişiklik',
 'statistics-views-total'       => 'Toplam görüntüleme',
+'statistics-views-total-desc'  => 'Varolmayan ve özel sayfaların görüntülenmeleri dahil edilmemiştir.',
 'statistics-views-peredit'     => 'Değişiklik başına görüntüleme',
 'statistics-users'             => 'Kayıtlı [[Special:ListUsers|kullanıcılar]]',
 'statistics-users-active'      => 'Aktif kullanıcılar',
