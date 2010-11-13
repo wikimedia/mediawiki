@@ -424,6 +424,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   "File" and "Media" are allowed now
 * (bug 25872) Rename the HttpRequest class to MWHttpRequest to avoid conflict
   with php extension that defines same class.
+* (bug 20591) There's now a different message on Special:MovePage when
+  $wgFixDoubleRedirects is set to false.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
