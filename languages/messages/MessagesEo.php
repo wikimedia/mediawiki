@@ -1894,7 +1894,7 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'statistics-pages-desc'        => 'Ĉiuj paĝoj en la vikio, inkluzivante diskuto-paĝojn, alidirektilojn, ktp.',
 'statistics-files'             => 'Alŝutitaj dosieroj',
 'statistics-edits'             => 'Paĝaj redaktoj ekde {{SITENAME}} estis starigita',
-'statistics-edits-average'     => 'Averaĝaj redaktoj po paĝo',
+'statistics-edits-average'     => 'Averaĝa kvanto de redaktoj je paĝo',
 'statistics-views-total'       => 'Vidoj entutaj',
 'statistics-views-peredit'     => 'Vidoj po redakto',
 'statistics-users'             => 'Registritaj [[Special:ListUsers|uzantoj]]',
@@ -2867,9 +2867,9 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 # Patrol log
 'patrol-log-page'      => 'Protokolo pri patrolado',
 'patrol-log-header'    => 'Jen protokolo de patrolitaj versioj.',
-'patrol-log-line'      => 'markis $1 el $2 patrolitajn $3',
+'patrol-log-line'      => 'markis $1 de $2 patrolita $3',
 'patrol-log-auto'      => '(aŭtomata)',
-'patrol-log-diff'      => 'kontrolo $1',
+'patrol-log-diff'      => 'version $1',
 'log-show-hide-patrol' => '$1 protokolo pri patrolado',
 
 # Image deletion

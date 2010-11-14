@@ -2505,6 +2505,17 @@ To pomeni, da lahko, če se zmotite, strani vrnete prvotno ime, ne morete pa pre
 
 '''Opozorilo!'''
 Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprememba, zato pred izbiro ukaza dobro premislite.",
+'movepagetext-noredirectfixer' => "Z uporabo spodnjega obrazca lahko preimenujete stran tako, da prestavite vso njeno zgodovino na novo ime.
+Star naslov bo postal preusmeritvena stran na nov naslov.
+Ne pozabite preveriti [[Special:DoubleRedirects|dvojnih]] ali [[Special:BrokenRedirects|pretrganih preusmeritev]].
+Vi ste odgovorni, da vse povezave še naprej kažejo tja, kamor naj bi.
+
+Upoštevajte, da stran '''ne''' bo prestavljena, če že obstaja stran z novim naslovom, razen če je prazna ali preusmeritev brez pretekle zgodovine urejanj.
+To pomeni, da lahko stran preimenujete nazaj, če ste naredili napako, vendar ne morete prepisati obstoječe strani.
+
+'''Opozorilo!'''
+To je lahko velika in nepričakovana sprememba za priljubljeno stran;
+prosimo, pred nadaljevanjem se prepričajte, da razumete posledice tega dejanja.",
 'movepagetalktext'             => "Če obstaja, bo samodejno prestavljena tudi pripadajoča pogovorna stran, '''razen kadar'''
 *pod novim imenom že obstaja neprazna pogovorna stran ali
 *ste odkljukali spodnji okvirček.

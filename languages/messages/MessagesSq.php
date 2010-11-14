@@ -232,9 +232,11 @@ $messages = array(
 'underline-default' => 'sipas shfletuesit',
 
 # Font style option in Special:Preferences
-'editfont-style'   => 'Stili i shkrimit në faqen redaktuese:',
-'editfont-default' => 'Sipas shfletuesit',
-'editfont-serif'   => 'Stili shkrimit me dhëmbëza',
+'editfont-style'     => 'Stili i shkrimit në faqen redaktuese:',
+'editfont-default'   => 'Sipas shfletuesit',
+'editfont-monospace' => 'Shkrim me gjerësi fikse',
+'editfont-sansserif' => 'Shkrim pa serifa',
+'editfont-serif'     => 'Stili shkrimit me dhëmbëza',
 
 # Dates
 'sunday'        => 'E diel',
@@ -412,6 +414,9 @@ Shumë përdorues po përpiqen të shikojnë këtë faqe.
 Ju lutem prisni disa momente përpara se të hapni sërish këtë faqe.
 
 $1',
+'pool-timeout'      => 'Koha duke pritur për të bllokoet',
+'pool-queuefull'    => 'Radhja është e plotë',
+'pool-errorunknown' => 'Gabim i panjohur',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Rreth {{SITENAME}}',
@@ -607,6 +612,7 @@ Kontrolloni shkrimin ose [[Special:UserLogin/signup|hapni një llogari të re]].
 'wrongpasswordempty'         => 'Fjalëkalimi juaj ishte bosh. Ju lutemi provoni përsëri.',
 'passwordtooshort'           => 'Fjalëkalimi juaj është i pavlefshëm ose tepër i shkurtër. Ai duhet të ketë së paku {{PLURAL:$1|1 shkronjë|$1 shkronja}} dhe duhet të jetë i ndryshëm nga emri i përdoruesit.',
 'password-name-match'        => 'Fjalëkalimi juaj duhet të jetë i ndryshëm nga emri juaj.',
+'password-too-weak'          => 'Fjalëkalimin qe është dhënë nga ju është shumë e dobët dhe nuk mund të përdoret.',
 'mailmypassword'             => 'Më dërgo një fjalëkalim të ri tek adresa ime',
 'passwordremindertitle'      => 'Kërkesë për fjalëkalim të ri tek {{SITENAME}}',
 'passwordremindertext'       => 'Dikush (sigurisht ju, nga adresa IP adresa $1) kërkoi një fjalëkalim të ri për hyrje tek {{SITENAME}} ($4). U krijua fjalëkalimi i përkohshëm për përdoruesin "$2" dhe u dërgua tek "$3". Nëse ky ishte tentimi juaj duhet që të kyçeni dhe ndërroni fjalëkalimin tani. Fjalëkalimi juaj i përkohshëm do të skadojë {{PLURAL:$5|një dite|$5 ditësh}}.
@@ -739,7 +745,7 @@ Ju lutemi përfshini këto detaje në të gjitha kërkesat që i bëni.',
 'whitelistedittitle'               => 'Duhet të hyni brënda për të redaktuar',
 'whitelistedittext'                => 'Duhet të $1 për të redaktuar artikuj.',
 'confirmedittext'                  => 'Ju duhet së pari ta vërtetoni e-mail adresen para se të redaktoni. Ju lutem plotësoni dhe vërtetoni e-mailin tuaj  te [[Special:Preferences|parapëlqimet]] e juaja.',
-'nosuchsectiontitle'               => 'Asnjë seksion i tillë nuk ekziston',
+'nosuchsectiontitle'               => '!Asnjë seksion i tillë nuk ekziston',
 'nosuchsectiontext'                => "Keni provuar të redaktoni një seksion që s'ekziston.",
 'loginreqtitle'                    => 'Detyrohet hyrja',
 'loginreqlink'                     => 'hyni',
@@ -816,7 +822,7 @@ Administruesi që ka bërë mbylljen ka dhënë këtë sqarim: $1.",
 'protectedpagewarning'             => "'''KUJDES: Kjo faqe është mbyllur ashtu që vetëm përdoruesit me titullin administrator mund ta redaktojnë.'''",
 'semiprotectedpagewarning'         => "'''Shënim:''' Redaktimi i kësaj faqeje mund të bëhet vetëm nga përdorues të regjistruar.",
 'cascadeprotectedwarning'          => "'''Vini re:''' Kjo faqe është e mbrojtur dhe vetëm përdoruesit me privilegje administrative mund ta redaktojnë pasi është përfshirë në mbrotjen \"ujëvarë\" të {{PLURAL:\$1|faqes së|faqeve të}} mëposhtme:",
-'titleprotectedwarning'            => "'''VINI RE:  Kjo faqe është e mbrojtur dhe vetëm disa përdorues mund ta krijojnë.'''",
+'titleprotectedwarning'            => "'''Kujdes:  Kjo faqe është e mbrojtur dhe vetëm disa përdorues mund ta krijojnë.'''",
 'templatesused'                    => '{{PLURAL:$1|Stamp|Stampa}} të përdorura në këtë faqe:',
 'templatesusedpreview'             => '{{PLURAL:$1|Stamp|Stampa}} të përdorë në këtë parapâmje:',
 'templatesusedsection'             => '{{PLURAL:$1|Stamp|Stampa}} e përdoruna në këtë sekcion:',
@@ -832,7 +838,7 @@ Administruesi që ka bërë mbylljen ka dhënë këtë sqarim: $1.",
 'permissionserrors'                => 'Gabime privilegjesh',
 'permissionserrorstext'            => 'Nuk keni leje për të bërë këtë veprim për {{PLURAL:$1|këtë arsye|këto arsye}}:',
 'permissionserrorstext-withaction' => 'Ju nuk keni leje për $2, për {{PLURAL:$1|këtë arsye|këto arsye}}:',
-'recreate-moveddeleted-warn'       => "'''Vini re: Po rikrijoni një faqe që është grisur më parë.'''
+'recreate-moveddeleted-warn'       => "'''Kujdes: Po rikrijoni një faqe që është grisur më parë.'''
 
 Mendohuni nëse dëshironi të vazhdoni me veprimin tuaj në këtë faqe.
 Regjistri i grisjes për këtë faqe jepet më poshtë:",

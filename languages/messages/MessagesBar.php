@@ -15,6 +15,7 @@
  * @author The Evil IP address
  * @author Wikifan
  * @author bar.wikipedia.org administrators
+ * @author ✓
  */
 
 $fallback = 'de';
@@ -22,7 +23,7 @@ $fallback = 'de';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unterstreicha:',
-'tog-highlightbroken'         => 'Links auf néd vurhåndane Seiten virerheem<a href="" class="new">Beispuy</a> (Oiternatiave: wia der do<a href="" class="internal">?</a>)',
+'tog-highlightbroken'         => 'Links auf néd vurhåndane Seiten vireheem: <a href="" class="new">Beispuy</a> (sunst wia der do: <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Text ois Blócksootz',
 'tog-hideminor'               => 'Kloane Enderrungen ausblenden',
 'tog-hidepatrolled'           => 'Kóntróllirde Enderrungen in dé „Létzten Enderrungen“ ausblenden',
@@ -34,6 +35,7 @@ $messages = array(
 'tog-editondblclick'          => 'Seiten mid am Dóppedrucker beorweiten (JavaScript werd braucht)',
 'tog-editsection'             => 'Links zum beorweiten vo dé oazlnen Obschnitt åzoang',
 'tog-editsectiononrightclick' => 'Oazlne Obschnitt mid am Rechtsdruckerrer beorweiten (JavaScript werd braucht)',
+'tog-showtoc'                 => 'Ozeign vum Inhaltsvazeichnis bei Saitn mid mer ois drei Übaschriftn',
 'tog-rememberpassword'        => 'Mid dem Browser drauerhoft ågmoydt bleim (maximaal $1 {{PLURAL:$1|Tog|Tog}})',
 'tog-watchcreations'          => 'Vo mir soywer eigstoyde Seiten autómaatisch bówochten',
 'tog-watchdefault'            => 'Vo mir soywer genderde Seiten autómaatisch bówochten',
@@ -59,13 +61,18 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Beorweitungen durch Bots in da Bówochtungslisten ausblenden',
 'tog-watchlisthideminor'      => 'Kloane Beorweitunger in da Bówochtungslisten ausblenden',
 'tog-watchlisthideliu'        => 'Beorweitunger vo ågmoydte Bnutzer in da Bówochtungslisten ausblenden',
+'tog-watchlisthideanons'      => 'Ned ogmoidte Nutza in da Bówochtungslisten ausblenden',
 'tog-watchlisthidepatrolled'  => 'Kontrollirde Endarungen in da Beowochtungslisten ausblenden',
 'tog-ccmeonemails'            => 'Schick ma Kopiin vo de E-Mäils, de i åndre Benytzer send',
+'tog-diffonly'                => "D' Saitn unta Versiónsunterschiadn ned ozeign",
 'tog-showhiddencats'          => 'Vasteckte Kategoriin åzoang',
 
 'underline-always'  => 'oiwai',
 'underline-never'   => 'nia',
 'underline-default' => 'obhengig vo da Browseraistellung',
+
+# Font style option in Special:Preferences
+'editfont-style' => 'Schriftart fias Editfensta',
 
 # Dates
 'sunday'        => 'Sunndog',
