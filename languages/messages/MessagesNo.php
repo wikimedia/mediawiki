@@ -1829,6 +1829,7 @@ Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'statistics-edits'             => 'Redigeringer siden {{SITENAME}} ble opprettet',
 'statistics-edits-average'     => 'Gjennomsnittlig antall redigeringer per side',
 'statistics-views-total'       => 'Totalt antall visninger',
+'statistics-views-total-desc'  => 'Visninger av ikke-eksisterende sider og spesielsider inkluderes ikke',
 'statistics-views-peredit'     => 'Visninger per redigering',
 'statistics-users'             => 'Registrerte [[Special:ListUsers|brukere]]',
 'statistics-users-active'      => 'Aktive brukere',
@@ -2485,6 +2486,17 @@ Det betyr at du kan flytte en side tilbake dit den kom fra hvis du gjør en feil
 
 '''Advarsel!'''
 Dette kan være en drastisk og uventet endring for en populær side;
+vær sikker på at du forstår konsekvensene av dette før du fortsetter.",
+'movepagetext-noredirectfixer' => "Skjemaet nedenfor vil gi en side ny tittel og flytte historikken dens til det nye navnet.
+Den gamle tittelen vil bli en omdirigering til den nye.
+Sjekk om det blir [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|ødelagte omdirigeringer]].
+Du er ansvarlig for å sjekke at lenker fortsetter å gå dit de skal.
+
+Merk at sider '''ikke''' blir flyttet om det allerede finnes en side med den tittelen, med mindre siden er tom eller en omdirigering og ikke har noen redigeringshistorikk.
+Dette betyr at du kan endre tittelen til en tittel siden hadde tidligere, og at du ikke kan skrive over en eksisterende side.
+
+'''Advarsel!'''
+Dette kan være en drastisk og uventen endring for en populær side;
 vær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 'movepagetalktext'             => "Den tilhørende diskusjonssiden vil automatisk bli flyttet sammen med siden '''med mindre:'''
 *Det allerede finnes en diskusjonsside som ikke er tom under det nye navnet, eller

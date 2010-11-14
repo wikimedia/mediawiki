@@ -2594,6 +2594,7 @@ Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoitta
 /** French (Français)
  * @author Aadri
  * @author Crochet.david
+ * @author Hashar
  * @author IAlex
  * @author Jean-Frédéric
  * @author McDutchie
@@ -2669,7 +2670,7 @@ Vous pouvez installer MediaWiki.</span>',
 	'config-env-bad' => 'L’environnement a été vérifié.
 vous ne pouvez pas installer MediaWiki.',
 	'config-env-php' => 'PHP $1 est installé.',
-	'config-env-latest-disabled' => 'Requêtes externes HTTP désactivées, vérification de version omise',
+	'config-env-latest-disabled' => 'Requêtes externes HTTP désactivées, vérification de version omise.',
 	'config-env-latest-ok' => 'Vous installez la dernière version de MediaWiki.',
 	'config-env-latest-new' => "'''Remarque :''' Vous êtes en train d’installer une version de développement de MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Attention :''' Le programme d’installation n’a pas pu récupérer les informations sur la dernière version de MediaWiki depuis [$1].",
@@ -5661,6 +5662,8 @@ $messages['lb'] = array(
 	'config-localsettings-upgrade' => "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
 Är Software kann aktualiséiert ginn.
 Setzt w.e.g. de Wäert vum <code\$wgUpgradeKey</code> an d'Këscht.",
+	'config-localsettings-key' => 'Aktualisatiounsschlëssel:',
+	'config-localsettings-badkey' => 'De Schlëssel deen Dir aginn hutt ass net korrekt',
 	'config-localsettings-noupgrade' => "'''Feeler''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
 Är Software kann elo net aktualiséiert ginn.
 Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
@@ -5685,6 +5688,7 @@ Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
 	'config-page-releasenotes' => 'Informatiounen zur Versioun',
 	'config-page-copying' => 'Kopéieren',
 	'config-page-upgradedoc' => 'Aktualiséieren',
+	'config-page-locked' => 'Erlaabnis refuséiert',
 	'config-help-restart' => 'Wëllt dir all gespäichert Donnéeë läschen déi dir bis elo aginn hutt an den Installatiounsprozess nei starten?',
 	'config-restart' => 'Jo, neistarten',
 	'config-welcome' => "=== Iwwerpréifung vum Installatiounsenvironnement ===

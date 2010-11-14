@@ -684,7 +684,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'subject'                          => 'Subjecto/titulo:',
 'minoredit'                        => 'Isto es un modification minor',
 'watchthis'                        => 'Observar iste pagina',
-'savearticle'                      => 'Publicar articulo',
+'savearticle'                      => 'Publicar pagina',
 'preview'                          => 'Previsualisation',
 'showpreview'                      => 'Monstrar previsualisation',
 'showlivepreview'                  => 'Previsualisation directe',
@@ -2493,6 +2493,17 @@ Nota que le pagina '''non''' essera renominate si existe ja un pagina sub le nov
 Isto vole dicer que tu pote renominar un pagina retro a su titulo original si tu ha committite un error, ben que tu non pote superscriber un pagina existente.
 
 '''ATTENTION!'''
+Isto pote esser un cambio drastic e inexpectate pro un pagina popular;
+per favor assecura te de haber comprendite le consequentias de isto ante de continuar.",
+'movepagetext-noredirectfixer' => "Per medio del formulario infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
+Le titulo anterior devenira un pagina de redirection verso le nove titulo.
+Assecura te de reparar omne redirectiones [[Special:DoubleRedirects|duple]] o [[Special:BrokenRedirects|rupte]].
+Tu ha le responsabilitate de assecurar que le ligamines continua a punctar verso le paginas correcte.
+
+Nota que le pagina '''non''' essera renominate si existe ja un pagina sub le nove titulo, salvo si illo es vacue o un redirection e non ha un historia de modificationes passate.
+Isto vole dicer que tu pote renominar un pagina retro a su titulo original si tu ha committite un error, ben que tu non pote superscriber un pagina existente.
+
+'''Attention!'''
 Isto pote esser un cambio drastic e inexpectate pro un pagina popular;
 per favor assecura te de haber comprendite le consequentias de isto ante de continuar.",
 'movepagetalktext'             => "Le pagina de discussion associate essera automaticamente renominate conjunctemente con illo '''a minus que''':
