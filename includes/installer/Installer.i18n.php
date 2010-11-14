@@ -176,7 +176,7 @@ If you are installing on a Windows server and using MySQL, using "localhost" may
 	'config-db-name-help'             => 'Choose a name that identifies your wiki.
 It should not contain spaces or hyphens.
 
-If you are using shared web hosting, your hosting provider will either give you a specific database name to use, or lets you create databases via a control panel.',
+If you are using shared web hosting, your hosting provider will either give you a specific database name to use or let you create databases via a control panel.',
 	'config-db-name-oracle'           => 'Database schema:',
 	'config-db-install-account'       => 'User account for installation',
 	'config-db-username'              => 'Database username:',
