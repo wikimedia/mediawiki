@@ -26,9 +26,9 @@ class SkinModern extends SkinTemplate {
 	 * skin L&F.
 	 */
 	function getPoweredBy() {
-		global	$wgVersion;
+		global $wgVersion, $wgUser;
 		$text = "<div class='mw_poweredby'>Powered by MediaWiki $wgVersion</div>";
-		wfRunHooks( 'SkinGetPoweredBy', array( &$text ) );
+		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $wgUser->getSkin()->getSkinName() ) );
 		return $text;
 	}
 
