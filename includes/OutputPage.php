@@ -2506,7 +2506,7 @@ class OutputPage {
 	/**
 	 * @return string HTML tag links to be put in the header.
 	 */
-	public function getHeadLinks( $sk ) {
+	public function getHeadLinks( Skin $sk ) {
 		global $wgFeed;
 
 		// Ideally this should happen earlier, somewhere. :P
