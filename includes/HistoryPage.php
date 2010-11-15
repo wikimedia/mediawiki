@@ -313,7 +313,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	function __construct( $historyPage, $year = '', $month = '', $tagFilter = '', $conds = array() ) {
 		parent::__construct();
 		$this->historyPage = $historyPage;
-		$this->title = $this->historyPage->title;
+		$this->title = $this->historyPage->getTitle();
 		$this->tagFilter = $tagFilter;
 		$this->getDateCond( $year, $month );
 		$this->conds = $conds;
@@ -337,7 +337,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			'tables'  => array( 'revision' ),
 			'fields'  => Revision::selectFields(),
 			'conds'   => array_merge(
-				array( 'rev_page' => $this->historyPage->title->getArticleID() ),
+				array( 'rev_page' => $this->historyPage->getTitle()->getArticleID() ),
 				$this->conds ),
 			'options' => array( 'USE INDEX' => array( 'revision' => 'page_timestamp' ) ),
 			'join_conds' => array( 'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
