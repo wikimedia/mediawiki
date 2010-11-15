@@ -121,35 +121,6 @@ class IP {
 	}
 
 	/**
-	 * Given an IP address in dotted-quad notation, returns an IPv6 octet.
-	 * See http://www.answers.com/topic/ipv4-compatible-address
-	 * IPs with the first 92 bits as zeros are reserved from IPv6
-	 * @param string $ip quad-dotted IP address.
-	 * @return string IPv4 address
-	 */
-	public static function IPv4toIPv6( $ip ) {
-		if ( !self::isIPv4( $ip ) ) {
-			throw new MWException( "IPv4toIPv6() called on a non-IPv4 address." );
-		}
-		// IPv4 address with CIDR
-		if ( strpos( $ip, '/' ) !== false ) {
-			$parts = explode( '/', $ip, 2 );
-			if ( count( $parts ) != 2 ) {
-				return false;
-			}
-			list( $network, $bits ) = $parts;
-			$network = self::toUnsigned( $network );
-			if ( $network !== false && is_numeric( $bits ) && $bits >= 0 && $bits <= 32 ) {
-				$bits += 96;
-				return self::toOctet( $network ) . "/$bits";
-			} else {
-				return false;
-			}
-		}
-		return self::toOctet( self::toUnsigned( $ip ) );
-	}
-
-	/**
 	 * Convert an IP into a nice standard form.
 	 * IPv6 addresses in octet notation are expanded to 8 words.
 	 * IPv4 addresses are just trimmed.
