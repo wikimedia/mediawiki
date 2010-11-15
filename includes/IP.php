@@ -23,17 +23,17 @@
 
 // Some regex definition to "play" with IP address and IP address blocks
 
-// An IP is made of 4 bytes from x00 to xFF which is d0 to d255
+// An IPv4 address is made of 4 bytes from x00 to xFF which is d0 to d255
 define( 'RE_IP_BYTE', '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])' );
 define( 'RE_IP_ADD' , RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE );
 // An IPv4 block is an IP address and a prefix (d1 to d32)
 define( 'RE_IP_PREFIX', '(3[0-2]|[12]?\d)' );
 define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX );
 
-// An IPv6 block is an IP address and a prefix (d1 to d128)
+// An IPv6 address is made up of 8 words (each x0000 to xFFFF).
+// However, the "::" abbreviation can be used on consecutive x0000 words.
 define( 'RE_IPV6_WORD', '([0-9A-Fa-f]{1,4})' );
 define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
-// An IPv6 address is made up of 8 words. However, the "::" abbreviation can be used.
 define( 'RE_IPV6_ADD',
 	'(' . // starts with "::" (includes the address "::")
 		'(::|:(:' . RE_IPV6_WORD . '){1,7})' .
@@ -45,6 +45,7 @@ define( 'RE_IPV6_ADD',
 		RE_IPV6_WORD . '(:(?P<abbr>(?(abbr)|:))?' . RE_IPV6_WORD . '){1,6}(?(abbr)|^)' .
 	')'
 );
+// An IPv6 block is an IP address and a prefix (d1 to d128)
 define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
 // For IPv6 canonicalization (NOT for strict validation; these are quite lax!)
 define( 'RE_IPV6_GAP', ':(?:0+:)*(?::(?:0+:)*)?' );
@@ -116,7 +117,7 @@ class IP {
 	 */
 	public static function isValidBlock( $ipblock ) {
 		return ( preg_match( '/^' . RE_IPV6_BLOCK . '$/', $ipblock )
-			|| preg_match( '/^' . RE_IPV4_BLOCK . '$/', $ipblock ) );
+			|| preg_match( '/^' . RE_IP_BLOCK . '$/', $ipblock ) );
 	}
 
 	/**
