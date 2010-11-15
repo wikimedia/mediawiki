@@ -72,7 +72,7 @@ class UploadStash {
 	 * @param $key Integer: key
 	 * @throws UploadStashFileNotFoundException
 	 * @throws UploadStashBadVersionException
-	 * @return UploadStashItem: null if no such item or item out of date, or the item
+	 * @return UploadStashFile
 	 */
 	public function getFile( $key ) {
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
@@ -81,7 +81,7 @@ class UploadStash {
  
 		if ( !isset( $this->files[$key] ) ) {
 			if ( !isset( $_SESSION[UploadBase::SESSION_KEYNAME][$key] ) ) {
-				throw new UploadStashFileNotFoundException( "key '$key' not found in session" );
+				throw new UploadStashFileNotFoundException( "key '$key' not found in stash" );
 			}
 
 			$data = $_SESSION[UploadBase::SESSION_KEYNAME][$key];
@@ -116,7 +116,7 @@ class UploadStash {
 	 */
 	public function stashFile( $path, $data = array(), $key = null ) {
 		if ( ! file_exists( $path ) ) {
-			throw new UploadStashBadPathException( "path '$path' doesn't exist" );
+			throw new UploadStashBadPathException( "path doesn't exist" );
 		}
                 $fileProps = File::getPropsFromPath( $path );
 
@@ -200,12 +200,12 @@ class UploadStashFile extends UnregisteredLocalFile {
 		$repoTempPath = $repo->getZonePath( 'temp' );
 		if ( ( ! $repo->validateFilename( $path ) ) || 
 				( strpos( $path, $repoTempPath ) !== 0 ) ) {
-			throw new UploadStashBadPathException( "path '$path' is not valid or is not in repo temp area: '$repoTempPath'" );
+			throw new UploadStashBadPathException( 'path is not valid' );
 		}
 
 		// check if path exists! and is a plain file.
 		if ( ! $repo->fileExists( $path, FileRepo::FILES_ONLY ) ) {
-			throw new UploadStashFileNotFoundException( "cannot find path '$path'" );
+			throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
 		}
 
 		parent::__construct( false, $repo, $path, false );
@@ -257,7 +257,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 		}
 
 		if ( is_null( $extension ) ) {
-			throw new UploadStashFileException( "extension '$extension' is null" );
+			throw new UploadStashFileException( "extension is null" );
 		}
 
 		$this->extension = parent::normalizeExtension( $extension );
