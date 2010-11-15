@@ -19,7 +19,12 @@ class HistoryPage {
 	const DIR_PREV = 0;
 	const DIR_NEXT = 1;
 
-	var $article, $title, $skin;
+	/** Contains the Article object. Passed on construction. */
+	private $article;
+	/** The $article title object. Found on construction. */
+	private $title;
+	/** Shortcut to the user Skin object. */
+   	private $skin;
 
 	/**
 	 * Construct a new HistoryPage.
@@ -34,11 +39,13 @@ class HistoryPage {
 		$this->preCacheMessages();
 	}
 
-	function getArticle() {
+	/** Get the Article object we are working on. */
+	public function getArticle() {
 		return $this->article;
 	}
 
-	function getTitle() {
+	/** Get the Title object. */
+	public function getTitle() {
 		return $this->title;
 	}
 
@@ -46,7 +53,7 @@ class HistoryPage {
 	 * As we use the same small set of messages in various methods and that
 	 * they are called often, we call them once and save them in $this->message
 	 */
-	function preCacheMessages() {
+	private function preCacheMessages() {
 		// Precache various messages
 		if ( !isset( $this->message ) ) {
 			$msgs = array( 'cur', 'last', 'pipe-separator' );
@@ -63,7 +70,7 @@ class HistoryPage {
 	function history() {
 		global $wgOut, $wgRequest, $wgScript;
 
-		/*
+		/**
 		 * Allow client caching.
 		 */
 		if ( $wgOut->checkLastModified( $this->article->getTouched() ) )
@@ -71,9 +78,7 @@ class HistoryPage {
 
 		wfProfileIn( __METHOD__ );
 
-		/*
-		 * Setup page variables.
-		 */
+		// Setup page variables.
 		$wgOut->setPageTitle( wfMsg( 'history-title', $this->title->getPrefixedText() ) );
 		$wgOut->setPageTitleActionText( wfMsg( 'history_short' ) );
 		$wgOut->setArticleFlag( false );
@@ -83,6 +88,7 @@ class HistoryPage {
 		$wgOut->setFeedAppendQuery( 'action=history' );
 		$wgOut->addModules( array( 'mediawiki.legacy.history', 'mediawiki.views.history' ) );
 
+		// Creation of a subtitle link pointing to [[Special:Log]]
 		$logPage = SpecialPage::getTitleFor( 'Log' );
 		$logLink = $this->skin->link(
 			$logPage,
@@ -93,15 +99,14 @@ class HistoryPage {
 		);
 		$wgOut->setSubtitle( $logLink );
 
+		// Handle atom/RSS feeds.
 		$feedType = $wgRequest->getVal( 'feed' );
 		if ( $feedType ) {
 			wfProfileOut( __METHOD__ );
 			return $this->feed( $feedType );
 		}
 
-		/*
-		 * Fail if article doesn't exist.
-		 */
+		// Fail nicely if article doesn't exist.
 		if ( !$this->title->exists() ) {
 			$wgOut->addWikiMsg( 'nohistory' );
 			# show deletion/move log if there is an entry
@@ -123,10 +128,11 @@ class HistoryPage {
 		/**
 		 * Add date selector to quickly get to a certain time
 		 */
-		$year = $wgRequest->getInt( 'year' );
-		$month = $wgRequest->getInt( 'month' );
-		$tagFilter = $wgRequest->getVal( 'tagfilter' );
+		$year        = $wgRequest->getInt( 'year' );
+		$month       = $wgRequest->getInt( 'month' );
+		$tagFilter   = $wgRequest->getVal( 'tagfilter' );
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
+
 		/**
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
 		 */
@@ -138,6 +144,7 @@ class HistoryPage {
 		$checkDeleted = Xml::checkLabel( wfMsg( 'history-show-deleted' ),
 			'deleted', 'mw-show-deleted-only', $wgRequest->getBool( 'deleted' ) ) . "\n";
 
+		// Add the general form
 		$action = htmlspecialchars( $wgScript );
 		$wgOut->addHTML(
 			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
@@ -157,9 +164,7 @@ class HistoryPage {
 
 		wfRunHooks( 'PageHistoryBeforeList', array( &$this->article ) );
 
-		/**
-		 * Do the list
-		 */
+		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
 		$wgOut->addHTML(
 			$pager->getNavigationBar() .
@@ -232,6 +237,7 @@ class HistoryPage {
 		}
 		$items = $this->fetchRevisions( $limit, 0, HistoryPage::DIR_NEXT );
 
+		// Generate feed elements enclosed between header and footer.
 		$feed->outHeader();
 		if ( $items ) {
 			foreach ( $items as $row ) {
