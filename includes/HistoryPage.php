@@ -354,7 +354,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		if( $this->lastRow ) {
 			$latest = ($this->counter == 1 && $this->mIsFirst);
 			$firstInList = $this->counter == 1;
-			$s = $this->historyLine( $this->lastRow, $row, $this->counter++,
+			$this->counter++;
+			$s = $this->historyLine( $this->lastRow, $row,
 				$this->title->getNotificationTimestamp(), $latest, $firstInList );
 		} else {
 			$s = '';
@@ -441,7 +442,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				# The next row is the past-the-end row
 				$next = $this->mPastTheEndRow;
 			}
-			$s = $this->historyLine( $this->lastRow, $next, $this->counter++,
+			$this->counter++;
+			$s = $this->historyLine( $this->lastRow, $next,
 				$this->title->getNotificationTimestamp(), $latest, $firstInList );
 		} else {
 			$s = '';
@@ -478,13 +480,12 @@ class HistoryPager extends ReverseChronologicalPager {
 	 *
 	 * @param $row Object: the database row corresponding to the previous line.
 	 * @param $next Mixed: the database row corresponding to the next line.
-	 * @param $counter Integer: apparently a counter of what row number we're at, counted from the top row = 1.
 	 * @param $notificationtimestamp
 	 * @param $latest Boolean: whether this row corresponds to the page's latest revision.
 	 * @param $firstInList Boolean: whether this row corresponds to the first displayed on this history page.
 	 * @return String: HTML output for the row
 	 */
-	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false,
+	function historyLine( $row, $next, $notificationtimestamp = false,
 		$latest = false, $firstInList = false )
 	{
 		global $wgUser, $wgLang;
@@ -492,8 +493,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		$rev->setTitle( $this->title );
 
 		$curlink = $this->curLink( $rev, $latest );
-		$lastlink = $this->lastLink( $rev, $next, $counter );
-		$diffButtons = $this->diffButtons( $rev, $firstInList, $counter );
+		$lastlink = $this->lastLink( $rev, $next );
+		$diffButtons = $this->diffButtons( $rev, $firstInList );
 		$histLinks = Html::rawElement(
 				'span',
 				array( 'class' => 'mw-history-histlinks' ),
@@ -659,10 +660,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	 *
 	 * @param $prevRev Revision: the previous revision
 	 * @param $next Mixed: the newer revision
-	 * @param $counter Integer: what row on the history list this is
 	 * @return String
 	 */
-	function lastLink( $prevRev, $next, $counter ) {
+	function lastLink( $prevRev, $next ) {
 		$last = $this->historyPage->message['last'];
 		# $next may either be a Row, null, or "unkown"
 		$nextRev = is_object($next) ? new Revision( $next ) : $next;
@@ -704,10 +704,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	 *
 	 * @param $rev Revision object
 	 * @param $firstInList Boolean: is this version the first one?
-	 * @param $counter Integer: a counter of what row number we're at, counted from the top row = 1.
+	 *
 	 * @return String: HTML output for the radio buttons
 	 */
-	function diffButtons( $rev, $firstInList, $counter ) {
+	function diffButtons( $rev, $firstInList ) {
 		if( $this->getNumRows() > 1 ) {
 			$id = $rev->getId();
 			$radio = array( 'type'  => 'radio', 'value' => $id );
