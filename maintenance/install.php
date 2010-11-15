@@ -32,7 +32,7 @@ class CommandLineInstaller extends Maintenance {
 		$this->addArg( 'name', 'The name of the wiki', true);
 
 		$this->addArg( 'admin', 'The username of the wiki administrator (WikiSysop)', true );
-		$this->addOption( 'pass', 'The password for the wiki administrator.	 You will be prompted for this if it isn\'t provided', false, true );
+		$this->addOption( 'pass', 'The password for the wiki administrator. You will be prompted for this if it isn\'t provided', false, true );
 		$this->addOption( 'email', 'The email for the wiki administrator', false, true );
 		$this->addOption( 'scriptpath', 'The relative path of the wiki in the web server (/wiki)', false, true );
 
