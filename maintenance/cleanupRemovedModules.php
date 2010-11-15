@@ -1,6 +1,7 @@
 <?php
 /**
- * Maintenance script to create an account and grant it administrator rights
+ * Maintenance script to remove cache entries for removed ResourceLoader modules
+ * from the database
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
