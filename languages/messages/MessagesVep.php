@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Sura
  * @author Triple-ADHD-AS
  * @author Игорь Бродский
@@ -474,7 +475,7 @@ Algat unohtagoi [[Special:Preferences|järgeta personaližikš]] sait.',
 'yourname'                => 'Kävutajan nimi:',
 'yourpassword'            => 'Peitsana:',
 'yourpasswordagain'       => 'Kirjutagat peitsana udes:',
-'remembermypassword'      => 'Panda muštho minun tulendandmused neciš kompjuteras (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Panda muštho minun tulendandmused neciš kompjuteras (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'yourdomainname'          => 'Teiden domen:',
 'externaldberror'         => 'Ozaižihe petuz autentifikacijan, kudamb tehtihe andmusiden irdbazan turbiš, aigan, vai teile ei ulotu oiktusid toižetada ičetoi irdregistracijad.',
 'login'                   => 'Kirjutadas sistemha',

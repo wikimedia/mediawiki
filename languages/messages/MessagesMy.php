@@ -238,6 +238,7 @@ $messages = array(
 'jumpto'            => 'ဤနေရာသို့သွားရန် -',
 'jumptonavigation'  => 'အ​ညွှန်း​',
 'jumptosearch'      => 'ရှာ​ဖွေ​ရန်​',
+'pool-errorunknown' => 'အမည်မသိအမှား',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} အကြောင်း',
@@ -321,6 +322,9 @@ $messages = array(
 'viewsource'           => 'ရင်းမြစ်ကို ကြည့်ရန်',
 'viewsourcefor'        => '$1 အတွက်',
 
+# Virus scanner
+'virus-unknownscanner' => 'အမည်မသိအန်တီဗိုင်းရပ်စ် -',
+
 # Login and logout pages
 'welcomecreation'         => '== မင်္ဂလာပါ $1! ==
 သင့်အကောင့်ကို ဖန်တီးပြီးပါပြီ။
@@ -329,6 +333,7 @@ $messages = array(
 'yourpassword'            => 'စကားဝှက် -',
 'yourpasswordagain'       => 'ပြန်​ရိုက်​ပါ:',
 'remembermypassword'      => 'ဤ​ကွန်​ပျူ​တာ​တွင်​ ကျွနု်ပ်ကို​မှတ်​ထား​ရန် (အများဆုံး $1 {{PLURAL:$1|ရက်|ရက်}}ကြာ)',
+'yourdomainname'          => 'သင့်ဒိုမိန်း -',
 'login'                   => 'Log in ဝင်ရန်',
 'nav-login-createaccount' => 'Log in ဝင်ရန်/ အကောင့် လုပ်ရန်',
 'userlogin'               => 'Log in ဝင်ရန်/ အကောင့် လုပ်ရန်',
@@ -336,9 +341,12 @@ $messages = array(
 'logout'                  => 'Log out ထွက်ရန်',
 'userlogout'              => 'Log out ထွက်ရန်',
 'notloggedin'             => 'logged in ဝင်မထားပါ',
+'nologin'                 => 'အကောင့်မရှိဘဲ ဖြစ်နေပါသလား။ $1။',
 'nologinlink'             => 'အကောင့်လုပ်ရန်',
 'createaccount'           => 'အကောင့်လုပ်ရန်',
+'gotaccount'              => 'အကောင့်ရှိပြီးသားလား။ $1။',
 'gotaccountlink'          => 'Log in ဝင်ရန်',
+'createaccountmail'       => 'အီးမေးဖြင့်',
 'createaccountreason'     => 'အ​ကြောင်း​ပြ​ချက် -',
 'loginerror'              => 'Login ဝင်ခြင်း အမှား',
 'createaccounterror'      => 'ဤအကောင့်ကို မဖန်တီးနိုင်ပါ - $1',
@@ -965,6 +973,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 'img-auth-nofile'       => '"$1" ဟူသည့်ဖိုင် မရှိပါ။',
 'img-auth-streaming'    => '"$1" ကို စထရင်းမင်း ဆွဲနေသည်။',
 
+# HTTP errors
+'http-invalid-url' => 'တရားမဝင်သော URL လင့် - $1',
+
 'license'            => 'လိုင်စင်သတ်မှတ်ခြင်း -',
 'license-header'     => 'လိုင်စင်သတ်မှတ်ခြင်း',
 'nolicense'          => 'ဘာမှရွေးချယ်မထားပါ',
@@ -976,6 +987,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 'listfiles_search_for'  => 'မီဒီယာအမည်ကို ရှာရန် -',
 'imgfile'               => 'ဖိုင်',
 'listfiles'             => 'ဖိုင်စာရင်း',
+'listfiles_thumb'       => 'နမူနာပုံငယ်',
 'listfiles_date'        => 'နေ့စွဲ',
 'listfiles_name'        => 'အမည်',
 'listfiles_user'        => 'အသုံးပြုသူ',
@@ -1094,6 +1106,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 'wantedtemplates'         => 'အလိုရှိသော တမ်းပလိတ်များ',
 'prefixindex'             => 'ရှေ့ဆုံးမှ prefix ပါသော စာမျက်နှာ အားလုံး',
 'shortpages'              => 'စာမျက်နှာတို',
+'longpages'               => 'ရှည်လျားသောစာမျက်နှာများ',
+'protectedpages'          => 'ကာကွယ်ထားသော စာမျက်နှာများ',
 'protectedtitles'         => 'ကာကွယ်ထားသော ခေါင်းစဉ်များ',
 'protectedtitlestext'     => 'အောက်ပါခေါင်းစဉ်များကို ဖန်တီးမရအောင် ကာကွယ်ထားသည်',
 'listusers'               => 'အသုံးပြုသူစာရင်း',
@@ -1166,6 +1180,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
+'newuserlog-byemail'      => 'စကားဝှက်ကို အီးမေးဖြင့် ပို့လိုက်ပါပြီ။',
 'newuserlog-create-entry' => 'အသုံးပြုသူအသစ်',
 
 # Special:ListGroupRights

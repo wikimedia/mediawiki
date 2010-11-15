@@ -1739,9 +1739,10 @@ $1',
 'whatlinkshere-prev'       => '{{PLURAL:$1|aldağı|aldağı $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|çirattağı|çirattağı $1}}',
 'whatlinkshere-links'      => '← sıltamalar',
-'whatlinkshere-hideredirs' => 'Yünältülärne $1',
-'whatlinkshere-hidetrans'  => '$1 kertü',
-'whatlinkshere-hidelinks'  => '$1 sıltamalar',
+'whatlinkshere-hideredirs' => 'yünältülärne $1',
+'whatlinkshere-hidetrans'  => 'kertülärne $1',
+'whatlinkshere-hidelinks'  => 'sıltamalarnı $1',
+'whatlinkshere-hideimages' => 'räsem sıltamaların $1',
 'whatlinkshere-filters'    => 'Filtrlar',
 
 # Block/unblock
