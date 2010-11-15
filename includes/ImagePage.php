@@ -22,7 +22,11 @@ class ImagePage extends Article {
 		$this->dupes = null;
 		$this->repo = null;
 	}
-	
+
+	/**
+	 * @param  $file File:
+	 * @return void
+	 */
 	public function setFile( $file ) {
 		$this->displayImg = $file;
 		$this->img = $file;
