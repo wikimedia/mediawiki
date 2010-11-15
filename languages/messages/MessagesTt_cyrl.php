@@ -1842,9 +1842,10 @@ $1',
 'whatlinkshere-prev'       => '{{PLURAL:$1|алдагы|алдагы $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|чираттагы|чираттагы $1}}',
 'whatlinkshere-links'      => '← сылтамалар',
-'whatlinkshere-hideredirs' => 'Юнәлтүләрне $1',
-'whatlinkshere-hidetrans'  => '$1 кертү',
-'whatlinkshere-hidelinks'  => '$1 сылтамалар',
+'whatlinkshere-hideredirs' => 'юнәлтүләрне $1',
+'whatlinkshere-hidetrans'  => 'кертүләрне $1',
+'whatlinkshere-hidelinks'  => 'сылтамаларны $1',
+'whatlinkshere-hideimages' => 'рәсем сылтамаларын $1',
 'whatlinkshere-filters'    => 'Фильтрлар',
 
 # Block/unblock

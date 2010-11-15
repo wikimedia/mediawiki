@@ -854,9 +854,9 @@ $messages['be-tarask'] = array(
 	'config-desc' => 'Праграма ўсталяваньня MediaWiki',
 	'config-title' => 'Усталяваньне MediaWiki $1',
 	'config-information' => 'Інфармацыя',
-	'config-localsettings-upgrade' => "'''Папярэджаньне''': знойдзены файл <code>LocalSettings.php</code>.
+	'config-localsettings-upgrade' => "'''Увага''': знойдзены файл <code>LocalSettings.php</code>.
 Магчыма абнавіць існуючую ўстаноўку.
-Калі ласка, перамясьціце <code>LocalSettings.php</code> у іншае месца і запусьціце праграму ўсталяваньня зноў.",
+Калі ласка, пазначце значэньне <code>\$wgUpgradeKey</code> у полі.",
 	'config-localsettings-key' => 'Ключ паляпшэньня:',
 	'config-localsettings-badkey' => 'Пададзены Вамі ключ зьяўляецца няслушным',
 	'config-localsettings-noupgrade' => "'''Памылка''': знойдзены файл <code>LocalSettings.php</code>.
@@ -926,7 +926,7 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 Пажадана ўсталяваць апошні выпуск, які можна загрузіць з [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'Выкарыстоўваецца бібліятэка Unicode-нармалізацыі Браяна Вібэра',
 	'config-unicode-using-intl' => 'Выкарыстоўваецца [http://pecl.php.net/intl intl пашырэньне з PECL] для Unicode-нармалізацыі',
-	'config-unicode-pure-php-warning' => "'''Папярэджаньне''': [http://pecl.php.net/intl Пашырэньне intl з PECL] ня слушнае для Unicode-нармалізацыі.
+	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl Пашырэньне intl з PECL] ня слушнае для Unicode-нармалізацыі, цяпер выкарыстоўваецца марудная PHP-рэалізацыя.
 Калі ў вас сайт з высокай наведваемасьцю, раім пачытаць пра [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-нармалізацыю].",
 	'config-unicode-update-warning' => "'''Папярэджаньне''': усталяваная вэрсія бібліятэкі для Unicode-нармалізацыі выкарыстоўвае састарэлую вэрсію бібліятэкі з [http://site.icu-project.org/ праекту ICU].
 Раім [http://www.mediawiki.org/wiki/Unicode_normalization_considerations абнавіць], калі ваш сайт будзе працаваць зь Unicode.",
@@ -963,6 +963,8 @@ MediaWiki патрэбныя функцыі з гэтага модулю, там
 Калі Вы выкарыстоўваеце Mandrake, усталюйце пакет php-xml.',
 	'config-pcre' => 'Ня знойдзены модуль падтрымкі PCRE.
 MediaWiki для працы патрабуюцца функцыі рэгулярных выразаў у стылі Perl.',
+	'config-pcre-no-utf8' => "'''Крытычная памылка''': модуль PCRE для PHP скампіляваны без падтрымкі PCRE_UTF8.
+MediaWiki патрабуе падтрымкі UTF-8 для слушнай працы.",
 	'config-memory-none' => 'PHP сканфігураваны з устаноўкай <code>memory_limit</code>',
 	'config-memory-ok' => 'Устаноўка <code>memory_limit</code> роўная $1.
 Усё добра.',
@@ -993,6 +995,12 @@ MediaWiki для працы патрабуюцца функцыі рэгуляр
 	'config-uploads-safe' => 'У дырэкторыі для загрузак па змоўчваньні запуск скрыптоў забаронены.',
 	'config-uploads-not-safe' => "'''Папярэджаньне:''' дырэкторыя для загрузак па змоўчваньні <code>$1</code> уразьлівая да выкананьня адвольнага коду.
 Хоць MediaWiki і правярае ўсе файлы перад захаваньнем, вельмі рэкамэндуецца [http://www.mediawiki.org/wiki/Manual:Security#Upload_security закрыць гэтую ўразьлівасьць] перад уключэньнем магчымасьці загрузкі файлаў.",
+	'config-brokenlibxml' => 'У вашай сыстэме ўсталяваныя PHP і libxml2 зь несумяшчальнымі вэрсіямі, што можа прывесьці да пашкоджаньня зьвестак MediaWiki і іншых ўэб-прыладаў.
+Абнавіце PHP да вэрсіі 5.2.9 ці болей позьняй, а libxml2 да 2.7.3 ці болей позьняй ([http://bugs.php.net/bug.php?id=45996 баг на багтрэкеры PHP]).
+Усталяваньне перарванае.',
+	'config-using531' => 'PHP $1 не сумяшчальная з MediaWiki з-за памылкі ў перадачы парамэтраў па ўказальніку да <code>__call()</code>.
+Абнавіце PHP да 5.3.2 ці болей позьняй, ці адкаціце да 5.3.0 ([http://bugs.php.net/bug.php?id=50394 баг на багтрэкеры PHP]).
+Усталяваньне перарванае.',
 	'config-db-type' => 'Тып базы зьвестак:',
 	'config-db-host' => 'Хост базы зьвестак:',
 	'config-db-host-help' => 'Калі сэрвэр Вашай базы зьвестак знаходзіцца на іншым сэрвэры, увядзіце тут імя хоста ці IP-адрас.
@@ -1291,6 +1299,7 @@ chmod a+w $3</pre>',
 	'config-install-database' => 'Устаноўка базы зьвестак',
 	'config-install-pg-schema-failed' => 'Немагчыма стварыць табліцу.
 Упэўніцеся, што карыстальнік «$1» можа пісаць у схему «$2».',
+	'config-install-pg-commit' => 'Захаваньне зьменаў',
 	'config-install-user' => 'Стварэньне карыстальніка базы зьвестак',
 	'config-install-user-failed' => 'Немагчыма даць правы удзельніку «$1»: $2',
 	'config-install-tables' => 'Стварэньне табліцаў',
@@ -1650,7 +1659,7 @@ Diese Einstellung führt zu großen Fehlern bei MediaWiki.
 MediaWiki kann nicht installiert werden, solange dieser Parameter nicht deaktiviert wurde.",
 	'config-safe-mode' => "'''Warnung:''' Der Funktion <code>[http://www.php.net/features.safe-mode Safe Mode]</code> von PHP ist aktiviert.
 Dies kann zu Problemen führen, insbesondere wenn das Hochladen von Dateien möglich sein, bzw. der Auszeichner <code>math</code> genutzt werden soll.",
-	'config-xml-good' => 'Die XML/Latin1-UTF-8 Umwandlung ist verfügbar.',
+	'config-xml-good' => 'Die „XML/Latin1-UTF-8“-Umwandlung ist verfügbar.',
 	'config-xml-bad' => 'Das XML-Modul von PHP fehlt.
 MediaWiki benötigt Funktionen, die dieses Modul bereitstellt und wird in der bestehenden Konfiguration nicht funktionieren.
 Sofern Mandriva genutzt wird, muss noch das „php-xml“-Paket installiert werden.',
@@ -1709,8 +1718,8 @@ Dabei bitte keine Leerzeichen oder Bindestriche verwenden.
 Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster den Datenbanknamen angegeben oder aber die Erstellung einer Datenbank über ein entsprechendes Interface gestattet haben.',
 	'config-db-name-oracle' => 'Datenbankschema:',
 	'config-db-install-account' => 'Benutzerkonto für die Installation',
-	'config-db-username' => 'Benutzername der Datenbank:',
-	'config-db-password' => 'Passwort der Datenbank:',
+	'config-db-username' => 'Name des Datenbankbenutzers:',
+	'config-db-password' => 'Passwort des Datenbankbenutzers:',
 	'config-db-install-username' => 'Den Benutzernamen angeben, der für die Verbindung mit der Datenbank während des Installationsvorgangs genutzt werden soll. Es handelt sich dabei nicht um den Benutzernamen für das MediaWiki-Konto, sondern um den Benutzernamen der vorgesehenen Datenbank.',
 	'config-db-install-password' => 'Das Passwort angeben, das für die Verbindung mit der Datenbank während des Installationsvorgangs genutzt werden soll. Es handelt sich dabei nicht um das Passwort für das MediaWiki-Konto, sondern um das Passwort der vorgesehenen Datenbank.',
 	'config-db-install-help' => 'Benutzername und Passwort, die während des Installationsvorgangs, für die Verbindung mit der Datenbank, genutzt werden sollen, sind nun anzugeben.',
@@ -1827,7 +1836,7 @@ Das Wiki kann nun [$1 genutzt werden].
 
 Sofern die Datei <code>LocalSettings.php</code> neu erzeugt werden soll, bitte auf die Schaltfläche unten klicken.
 Dies wird '''nicht empfohlen''', es sei denn, es treten Probleme mit dem Wiki auf.",
-	'config-regenerate' => '<code>LocalSettings.php</code> neu erstellen →',
+	'config-regenerate' => 'LocalSettings.php neu erstellen →',
 	'config-show-table-status' => 'Die Abfrage SHOW TABLE STATUS ist gescheitert!',
 	'config-unknown-collation' => "'''Warnung:''' Die Datenbank nutzt eine unbekannte Kollation.",
 	'config-db-web-account' => 'Datenbankkonto für den Webzugriff',
@@ -1946,7 +1955,7 @@ Weitere Informationen hierzu sollen im [http://www.mediawiki.org/wiki/Manual:Sec
 
 Um das Hochladen von Dateien zu ermöglichen, muss der Zugriff auf das Unterverzeichnis <code>./images</code> so geändert werden, das es für den Webserver beschreibbar ist.
 Hernach kann diese Option aktiviert werden.',
-	'config-upload-deleted' => 'Das Verzeichnis für gelöschte Dateien:',
+	'config-upload-deleted' => 'Verzeichnis für gelöschte Dateien:',
 	'config-upload-deleted-help' => 'Bitte ein Verzeichnis auswählen, in dem gelöschte Dateien archiviert werden sollen.
 Idealerweise sollte es nicht über das Internet zugänglich sein.',
 	'config-logo' => 'URL des Logos:',
@@ -4996,7 +5005,7 @@ $messages['ja'] = array(
 	'config-information' => '情報',
 	'config-localsettings-upgrade' => "'''警告'''：<code>LocalSettings.php</code>ファイルが検出されました。
 ソフトウェアは更新できます。
-<code>LocalSettings.php</code>を他の安全な場所へ移動させ、再度インストーラーを実行してください。",
+ボックス中の<code>\$wgUpgradeKey</code>の値を入力してください。",
 	'config-localsettings-key' => 'アップグレードキー：',
 	'config-localsettings-badkey' => '与えられたキーが間違っています',
 	'config-localsettings-noupgrade' => "'''エラー'''：<code>LocalSettings.php</code>ファイルが検出されました。
@@ -5102,6 +5111,8 @@ MediaWikiは、このモジュールの関数を必要としているため、�
 Mandrakeを実行している場合、php-xmlパッケージをインストールしてください。',
 	'config-pcre' => 'PCREをサポートしているモジュールが不足しているようです。
 MediaWikiは、Perl互換の正規表現関数の動作が必要です。',
+	'config-pcre-no-utf8' => "'''致命的エラー''': PHPのPCREがPCRE_UTF8サポート無しでコンパイルされています。
+MediaWikiにはUTF-8サポートの関数が必要です。",
 	'config-memory-none' => 'PHPは<code>memory_limit</code>を設定していません。',
 	'config-memory-ok' => 'PHPの<code>memory_limit</code>は$1です。
 OK。',
@@ -5132,6 +5143,9 @@ OK。',
 	'config-uploads-safe' => 'アップロードの既定ディレクトリは、任意のスクリプト実行に対して安全です。',
 	'config-uploads-not-safe' => "'''警告：'''アップロードの既定ディレクトリ<code>$1</code>が、任意のスクリプト実行に関して脆弱性があります。
 MediaWikiはアップロードされたファイルのセキュリティ上の脅威を確認しますが、アップロードを有効化するまえに、[http://www.mediawiki.org/wiki/Manual:Security#Upload_security このセキュリティ上の脆弱性を閉じる]ことが強く推奨されます。",
+	'config-brokenlibxml' => 'このシステムで使われているPHPとlibxml2のバージョンのこの組み合わせにはバグがあります。具体的には、MediaWikiやその他のウェブアプリケーションでhiddenデータが破損する可能性があります。
+PHPを5.2.9かそれ以降のバージョンに、libxml2を2.7.3かそれ以降のバージョンにアップグレードしてください([http://bugs.php.net/bug.php?id=45996 PHPでのバグ情報])。
+インストールを終了します。',
 	'config-db-type' => 'データベースの種類：',
 	'config-db-host' => 'データベースのホスト：',
 	'config-db-host-help' => 'データベースサーバーが異なったサーバー上にある場合、ホスト名またはIPアドレスをここに入力してください。
@@ -8865,6 +8879,7 @@ $messages['ru'] = array(
 	'config-wiki-language' => 'Язык, который будет использовать вики:',
 	'config-wiki-language-help' => 'Выберите язык, на котором будут отображаться вики.',
 	'config-allow-requests' => 'Разрешить исходящие запросы к MediaWiki.org',
+	'config-allow-requests-help' => 'Если включено, позволяет установщику проверить на сайте MediaWiki.org, устанавливаете ли вы последнюю стабильную версию',
 	'config-back' => '← Назад',
 	'config-continue' => 'Далее →',
 	'config-page-language' => 'Язык',
@@ -8905,6 +8920,7 @@ MediaWiki распространяется в надежде, что она бу
 	'config-env-bad' => 'Была проведена проверка внешней среды. 
 Вы не можете установить MediaWiki.',
 	'config-env-php' => 'Установленная версия PHP: $1.',
+	'config-env-latest-disabled' => 'Внешние HTTP-запросы отключены — проверка версии не проводилась',
 	'config-env-latest-ok' => 'Вы устанавливаете последнюю версию MediaWiki.',
 	'config-env-latest-new' => "'''Внимание:''' Вы устанавливаете находящуюся в разработке версию MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Внимание:''' Инсталлятор не смог получить информацию о последней версии MediaWiki от [$1].",
@@ -8950,6 +8966,8 @@ MediaWiki не будет работать в этой конфигурации,
 Если вы работаете в Mandrake, установите PHP XML-пакет.',
 	'config-pcre' => 'Модуль поддержки PCRE не найден. 
 Для работы MediaWiki требуется поддержка Perl-совместимых регулярных выражений.',
+	'config-pcre-no-utf8' => "'''Фатальная ошибка'''. Модуль PCRE для PHP, похоже, собран без поддержки PCRE_UTF8. 
+MediaWiki требует поддержки UTF-8 для корректной работы.",
 	'config-memory-none' => 'PHP настроен без <code>memory_limit</code>',
 	'config-memory-ok' => 'Конфигурация PHP <code>memory_limit</code>: $1. 
 Всё хорошо.',

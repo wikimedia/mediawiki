@@ -2341,6 +2341,17 @@ Sòn a veul dì che, se a l'avèissa mai da fé n'operassion nen giusta, a podr�
 '''ATENSION!'''
 Un cambiament dràstich parej a podrìa dé dle gran-e an dzora a na pàgina motobin visità.
 Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima che fé che fé.",
+'movepagetext-noredirectfixer' => "Dovré ël formolari sota a arnominerà na pàgina, tramudand tuta soa stòria al nòm neuv.
+Ël tìtol vèj a vnirà na pàgina ëd rediression al tìtol neuv.
+Sigurte ëd controlé ij [[Special:DoubleRedirects|dobi]] o le [[Special:BrokenRedirects|rediression rote]].
+It ses responsàbil ëd sigurete che ij colegament a continuo a ponté andova as pensa ch'a vado.
+
+Nòta che la pàgina a sarà '''pa''' tramudà s'a-i é già na pàgina con ël tìtol neuv, a men ch'a sia veuida o na rediression e ch'a l'abia pa stòria ëd modìfiche passà.
+Sossì a veul dì ch'it peule arnominé na pàgina andré da andova it l'avìa arnominala s'it fas un eror, e ch'it peule pa covaté na pàgina esistenta.
+
+'''Avis!'''
+Sossì a peul esse un cambi dràstich e pa spetà për na pàgina popolar;
+për piasì sigurte ëd capì le conseguense ëd sossì prima d'andé anans.",
 'movepagetalktext'             => "La pàgina ëd discussion tacà a costa pàgina d'articol, se a-i é, a sarà tramudà n'automatich ansema a l'artìcol, '''gavà costi cas-sì''':
 *quand as tramuda la pàgina tra diferent spassi nominal,
 *quand na pàgina ëd discussion nen veujda a-i é già për ël nòm neuv, ò pura

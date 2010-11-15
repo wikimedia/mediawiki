@@ -624,8 +624,28 @@ $2',
 'powersearch-field'         => 'Лъыхъуэн',
 
 # Preferences page
-'preferences'   => 'Зэгъэзэхуэпхъэхэр',
-'mypreferences' => 'Си зэгъэзэхуэгъуэхэр',
+'preferences'               => 'Зэгъэзэхуэпхъэхэр',
+'mypreferences'             => 'Си зэгъэзэхуэгъуэхэр',
+'prefs-edits'               => 'Гъэтэрэзыгъуэхэм я бжыгъэр:',
+'prefsnologin'              => 'Системэм зыкъебгъэцӀыхуакъым',
+'prefsnologintext'          => 'ЦӀыхухэтым и зэгъэзэхуэгъуэхэм уелэжьын щхьэкӀэ системэм <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} зыкъебгъэцӀыхун хуэй]</span>',
+'prefs-skin'                => 'ЗэфӀэгъувэным и теухуапхъэ',
+'prefs-math'                => 'формулэхэр гъэлъэгъуэн',
+'prefs-datetime'            => 'Махуэмрэ зэманымрэ',
+'prefs-personal'            => 'Ныбжыгъуэ къэӀохугъуэ',
+'prefs-rc'                  => 'Гъэтэрэзыгъуэ щӀэхэр',
+'prefs-watchlist'           => 'ЩӀэлъыплъыгъуэхэм я тхылъ',
+'prefs-watchlist-days'      => 'Махуэхэм я бжыгъэр:',
+'prefs-watchlist-days-max'  => 'Махуибл мынэхъыбу',
+'prefs-watchlist-edits'     => 'Гъэтэрэзыгъуэхэр нэхъыбэдыду, кӀэлъыплъыгъуэ тхылъым гъэлъэгъуар:',
+'prefs-watchlist-edits-max' => 'Нэхъыбэдыду: 1000',
+'prefs-watchlist-token'     => 'КӀэлъыплъыгъуэ тхылъым и токен:',
+'prefs-misc'                => 'НэмыщӀ зэгъэзэхуэгъуэхэр',
+'prefs-resetpass'           => 'Паролыр зэхъуэкӀын',
+'prefs-email'               => 'Электронэ почтэм и опциэхэр',
+'prefs-rendering'           => 'Сурэтыр',
+'prefs-editing'             => 'Гъэтэрэзыгъуэ',
+'prefs-edit-boxsize'        => 'Гъэтэрэзыгъуэм и нэкӀубгъум и инагъыр',
 
 # Groups
 'group-sysop' => 'Тхьэмадэхэр',
@@ -663,6 +683,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'         => 'ЗэпыщӀа гъэтэрэзыгъуэхэр',
+'recentchangeslinked-feed'    => 'Гъэтэрэзыгъуэ зэпхахэр',
+'recentchangeslinked-toolbox' => 'Гъэтэрэзыгъуэ зэпхахэр',
 'recentchangeslinked-title'   => 'Гъэтэрэзыгъуэ зэпыщӀахэр $1 щхьэкӀэ',
 'recentchangeslinked-summary' => "НапэкӀуэцӀхэм я яужырей зэхъуэкӀыгъуэхэм я тхылъ, напэкӀуэцӀ гъэлъэгъуар зтехьэ (иэ категориэ гъэлъэгъуам хэхьэ).
 НапэкӀуэцӀ хэтхэр [[Special:Watchlist|уи щӀэлъыплъыгъуэм]] '''къыхэгэкӀауэ''' щытщ",
@@ -688,6 +710,9 @@ $2',
 'linkstoimage'              => '{{PLURAL:$1|Мы напэкӀуэцӀыр $1 тохьэ|Мы напэкӀуэцӀхэр $1 тохьэхэ}} мы файлым:',
 'sharedupload'              => 'Мы файлыр $1 ящыщ, нэмыщӀ проэктхэми къагъэсэбэпыфыну.',
 'uploadnewversion-linktext' => 'Файлым и версиэщӀэ илъхьэн',
+
+# Random page
+'randompage' => 'Тхыгъэ гуэрэ ухэмыду еплъын',
 
 # Statistics
 'statistics' => 'Статистикэ',

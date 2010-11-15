@@ -16,6 +16,7 @@
  * @author Aotake
  * @author Bangin
  * @author Bennylin
+ * @author Beta16
  * @author Boivie
  * @author Brest
  * @author BrokenArrow
@@ -2735,7 +2736,9 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 {{Identical|Move page}}',
 'movepagetext'                 => 'Introduction shown when moving a page ([[Special:MovePage]]).
 
-Special pages mentioned: {{msg-mw|Doubleredirects}}, {{msg-mw|Brokenredirects}}',
+Special pages mentioned: {{msg-mw|Doubleredirects}}, {{msg-mw|Brokenredirects}}
+
+See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 'movepagetext-noredirectfixer' => 'A variant of {{msg-mw|Movepagetext|notext=1}} displayed when the automatic redirect fixer is not enabled.',
 'movepagetalktext'             => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
 'movearticle'                  => 'The text before the name of the page that you are moving.
