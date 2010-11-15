@@ -75,6 +75,22 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac:0' ) );
 	}
 
+	public function testisIPv4() {
+		$this->assertFalse( IP::isIPv4( false ), 'Boolean false is not an IP' );
+		$this->assertFalse( IP::isIPv4( true  ), 'Boolean true is not an IP' );
+		$this->assertFalse( IP::isIPv4( "" ), 'Empty string is not an IP' );
+		$this->assertFalse( IP::isIPv4( 'abc' ) );
+		$this->assertFalse( IP::isIPv4( ':' ) );
+		$this->assertFalse( IP::isIPv4( '124.24.52' ), 'IPv4 not enough quads' );
+		$this->assertFalse( IP::isIPv4( '24.324.52.13' ), 'IPv4 out of range' );
+		$this->assertFalse( IP::isIPv4( '.24.52.13' ), 'IPv4 starts with period' );
+
+		$this->assertTrue( IP::isIPv4( '124.24.52.13' ) );
+		$this->assertTrue( IP::isIPv4( '1.24.52.13' ) );
+		$this->assertTrue( IP::isIPv4( '74.24.52.13/20', 'IPv4 range' ) );
+	}
+
+	// tests isValid()
 	public function testValidIPs() {
 		foreach ( range( 0, 255 ) as $i ) {
 			$a = sprintf( "%03d", $i );
@@ -96,7 +112,9 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	// tests isValid()
 	public function testInvalidIPs() {
+		// Out of range...	
 		foreach ( range( 256, 999 ) as $i ) {
 			$a = sprintf( "%03d", $i );
 			$b = sprintf( "%02d", $i );
@@ -115,9 +133,20 @@ class IPTest extends PHPUnit_Framework_TestCase {
 				$this->assertFalse( IP::isValid( $ip ) , "$ip is not a valid IPv6 address" );
 			}
 		}
-	}
-
-	public function testBogusIPs() {
+		// Have CIDR
+		$ipCIDRs = array(
+			'212.35.31.121/32',
+			'212.35.31.121/18',
+			'212.35.31.121/24',
+			'::ff:d:321:5/96',
+			'ff::d3:321:5/116',
+			'c:ff:12:1:ea:d:321:5/120',
+		);
+		foreach ( $ipCIDRs as $i ) {
+			$this->assertFalse( IP::isValid( $i ),
+				"$i is an invalid IP address because it is a block" );
+		}
+		// Incomplete/garbage
 		$invalid = array(
 			'www.xn--var-xla.net',
 			'216.17.184.G',
@@ -127,7 +156,49 @@ class IPTest extends PHPUnit_Framework_TestCase {
 			'256.17.184.1'
 		);
 		foreach ( $invalid as $i ) {
-			$this->assertFalse( IP::isValid( $i ), "$i is an invalid IPv4 address" );
+			$this->assertFalse( IP::isValid( $i ), "$i is an invalid IP address" );
+		}
+	}
+
+	// tests isValidBlock()
+	public function testValidBlocks() {
+		$valid = array(
+			'116.17.184.5/32',
+			'0.17.184.5/30',
+			'16.17.184.1/24',
+			'30.242.52.14/1',
+			'10.232.52.13/8',
+			'::e:f:2001/96',
+			'::c:f:2001/128',
+			'::10:f:2001/70',
+			'::fe:f:2001/1',
+			'::6d:f:2001/8',
+		);
+		foreach ( $invalid as $i ) {
+			$this->assertTrue( IP::isValidBlock( $i ), "$i is a valid IP block" );
+		}
+	}
+
+	// tests isValidBlock()
+	public function testInvalidBlocks() {
+		$valid = array(
+			'116.17.184.5/33',
+			'0.17.184.5/130',
+			'16.17.184.1/-1',
+			'30.242.52.14/0',
+			'10.232.52.13/*',
+			'7.232.52.13/ab',
+			'11.232.52.13/',
+			'::e:f:2001/129',
+			'::c:f:2001/228',
+			'::10:f:2001/-1',
+			'::fe:f:2001/0',
+			'::6d:f:2001/*',
+			'::86:f:2001/ab',
+			'::23:f:2001/',
+		);
+		foreach ( $invalid as $i ) {
+			$this->assertFalse( IP::isValidBlock( $i ), "$i is not a valid IP block" );
 		}
 	}
 
@@ -139,8 +210,9 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( IP::toUnSigned( $i ) );
 	}
 
+	// tests isPublic()
 	public function testPrivateIPs() {
-		$private = array( '10.0.0.1', '172.16.0.1', '192.168.0.1' );
+		$private = array( 'fc::3', 'fc::ff', '::1', '10.0.0.1', '172.16.0.1', '192.168.0.1' );
 		foreach ( $private as $p ) {
 			$this->assertFalse( IP::isPublic( $p ), "$p is not a public IP address" );
 		}
