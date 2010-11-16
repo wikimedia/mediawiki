@@ -308,6 +308,7 @@ abstract class CoreInstaller extends Installer {
 			array( 'name' => 'tables',    'callback' => array( $this, 'installTables' ) ),
 			array( 'name' => 'interwiki', 'callback' => array( $installer, 'populateInterwikiTable' ) ),
 			array( 'name' => 'secretkey', 'callback' => array( $this, 'generateSecretKey' ) ),
+			array( 'name' => 'upgradekey', 'callback' => array( $this, 'generateUpgradeKey' ) ),
 			array( 'name' => 'sysop',     'callback' => array( $this, 'createSysop' ) ),
 			array( 'name' => 'mainpage',  'callback' => array( $this, 'createMainpage' ) ),
 		);
@@ -369,6 +370,16 @@ abstract class CoreInstaller extends Installer {
 	 * @return Status
 	 */
 	protected function generateSecretKey() {
+		return $this->generateSecret( 'wgSecretKey' );
+	}
+	
+	/**
+	 * Generate a secret value for a variable using either 
+	 * /dev/urandom or mt_rand() Produce a warning in the later case.
+	 *
+	 * @return Status
+	 */
+	protected function generateSecret( $secretName ) {
 		if ( wfIsWindows() ) {
 			$file = null;
 		} else {
@@ -389,17 +400,22 @@ abstract class CoreInstaller extends Installer {
 				$secretKey .= dechex( mt_rand( 0, 0x7fffffff ) );
 			}
 
-			$status->warning( 'config-insecure-secretkey' );
+			$status->warning( 'config-insecure-secret', '$' . $secretName );
 		}
 
-		$this->setVar( 'wgSecretKey', $secretKey );
-
-		// Generate a $wgUpgradeKey from our secret key
-		$secretKey = md5( $secretKey );
-		$randPos = mt_rand( 0, strlen( $secretKey ) - 8 );
-		$this->setVar( 'wgUpgradeKey', substr( $secretKey, $randPos, $randPos + 8 ) );
+		$this->setVar( $secretName, $secretKey );
 
 		return $status;
+	}
+
+	/**
+	 * Generate a default $wgUpradeKey, Will warn if we had to use 
+	 * mt_rand() instead of /dev/urandom
+	 *
+	 * @return Status
+	 */
+	protected function generateUpgradeKey() {
+		return $this->generateSecret( 'wgUpgradeKey' );
 	}
 
 	/**
