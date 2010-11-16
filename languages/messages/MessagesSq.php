@@ -1968,7 +1968,7 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'sp-contributions-blocklog'      => 'Regjistri i bllokimeve',
 'sp-contributions-deleted'       => 'Kontribute të grisura',
 'sp-contributions-logs'          => 'Regjistrat',
-'sp-contributions-talk'          => 'Diskuto',
+'sp-contributions-talk'          => 'Diskutoni',
 'sp-contributions-userrights'    => 'Ndrysho privilegjet e përdoruesve',
 'sp-contributions-search'        => 'Kërko tek kontributet',
 'sp-contributions-username'      => 'IP Addresa ose Përdoruesi:',

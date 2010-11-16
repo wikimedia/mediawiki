@@ -1477,8 +1477,8 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'group-autoconfirmed-member' => 'Utilizador auto-confirmado',
 'group-bot-member'           => 'robô',
 'group-sysop-member'         => 'administrador',
-'group-bureaucrat-member'    => 'Burocrata',
-'group-suppress-member'      => 'Supervisor',
+'group-bureaucrat-member'    => 'burocrata',
+'group-suppress-member'      => 'supervisor',
 
 'grouppage-user'          => '{{ns:project}}:Utilizadores',
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',

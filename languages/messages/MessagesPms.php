@@ -1693,8 +1693,8 @@ Adess a l'é na ridiression a [[$2]].",
 
 'brokenredirects'        => 'Ridiression nen giuste',
 'brokenredirectstext'    => "Coste ridiression-sì a men-o a d'artìcoj ch'a-i son pa:",
-'brokenredirects-edit'   => 'modìfica',
-'brokenredirects-delete' => 'scancela',
+'brokenredirects-edit'   => 'modifiché',
+'brokenredirects-delete' => 'scancelé',
 
 'withoutinterwiki'         => "Pàgine ch'a l'han gnun-a anliura interwiki",
 'withoutinterwiki-summary' => "Le pàgine ambelessì sota a l'han gnun-a anliura a dj'àotre lenghe:",

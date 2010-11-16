@@ -1449,8 +1449,8 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'group-autoconfirmed-member' => 'Usuário auto-confirmado',
 'group-bot-member'           => 'robô',
 'group-sysop-member'         => 'administrador',
-'group-bureaucrat-member'    => 'Burocrata',
-'group-suppress-member'      => 'Oversight',
+'group-bureaucrat-member'    => 'burocrata',
+'group-suppress-member'      => 'supervisor',
 
 'grouppage-user'          => '{{ns:project}}:Usuários',
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',

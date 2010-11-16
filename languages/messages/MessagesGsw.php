@@ -2351,6 +2351,17 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'move-page'                    => '„$1“ verschiebe',
 'move-page-legend'             => 'Artikel verschiebe',
 'movepagetext'                 => 'Mit däm Formular chasch du en Artikel verschiebe, u zwar mit syre komplette Versionsgschicht. Der alt Titel leitet zum nöie wyter, aber Links ufen alt Titel blyben unveränderet.',
+'movepagetext-noredirectfixer' => "Mit däm Formular unte chasch e Syte umnänne, indäm Du si mitsamt allene Versione uf e neje Titel verschiebsch.
+Dr alt Titel leitet derno zum neje wyter.
+Stell sicher, ass Du im Aaschluss alli [[Special:DoubleRedirects|dopplete]] oder [[Special:BrokenRedirects|kaputtige Wyterleitige]] iberpriefsch.
+Du bisch derfir verantwortli, ass Link wyter uf s korräkt Ziil verwyyse.
+
+D Syte wird '''nit''' verschobe, wänn s scho ne Syte git mit em vorgsähne Titel, ußer sälli isch läär oder e Wyterletig ohni ne Versionsgschicht.
+Des bedytet, ass Du d Umnännig chasch ruckgängig mache, wänn Du ne Fähler gmacht hesch. Du chasch aber kei Syte iberschryybe.
+
+'''Warnig!'''
+D Verschiebig cha großi un nit erwarteti Folge haa fir hyfig bsuechti Syte.
+Du sottsch wäge däm d Konsequänze verstande haa, voreb Du jetz wytermachsch.",
 'movepagetalktext'             => "D Diskussionssyte wird mitverschobe, '''ussert:'''
 *Du verschiebsch d Syten i nen andere Namensruum, oder
 *es git scho ne Diskussionssyte mit däm Namen oder
