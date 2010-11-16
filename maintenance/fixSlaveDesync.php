@@ -24,7 +24,10 @@ class FixSlaveDesync extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "";
-		
+	}
+
+	public function getDbType() {
+		return self::DB_ADMIN;
 	}
 	
 	public function execute() {
