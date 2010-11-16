@@ -509,7 +509,7 @@ abstract class UploadBase {
 			$this->mTempPath, 
 			$comment, 
 			$pageText,
-			File::DELETE_SOURCE, i
+			File::DELETE_SOURCE,
 			$this->mFileProps, 
 			false, 
 			$user 
