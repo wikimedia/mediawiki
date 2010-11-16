@@ -937,7 +937,9 @@ abstract class TablePager extends IndexPager {
 	function getNavigationBar() {
 		global $wgStylePath, $wgContLang;
 
-		if ( !$this->isNavigationBarShown() ) return '';
+		if ( !$this->isNavigationBarShown() ) {
+			return '';
+		}
 
 		$path = "$wgStylePath/common/images";
 		$labels = array(
