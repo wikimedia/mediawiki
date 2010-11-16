@@ -596,7 +596,7 @@ class ApiUploadTest extends ApiTestCase {
 			// see if it now doesn't exist; reload	
 			$title = Title::newFromText( $fileName, NS_FILE );
 		}
-		return ! ( $title && is_a( $title, 'Title' ) && $title->exists() );
+		return ! ( $title && $title instanceof Title && $title->exists() );
 	}
 
 	/**
