@@ -9,6 +9,6 @@ class LicensesTest extends PHPUnit_Framework_TestCase {
 ";
 
 		$lc = new Licenses( array( 'licenses' => $str ) );
-		$this->assertThat( $r, $this->isInstanceOf( 'Licenses' ) );
+		$this->assertThat( $lc, $this->isInstanceOf( 'Licenses' ) );
 	}
 }
