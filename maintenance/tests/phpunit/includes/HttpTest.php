@@ -119,7 +119,7 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 
 		$r = MWHttpRequest::factory( "http://www.example.com/this-file-does-not-exist" );
 		$er = $r->execute();
-		if ( is_a( $r, 'PhpHttpRequest' ) && version_compare( '5.2.10', phpversion(), '>' ) ) {
+		if ( $r instanceof PhpHttpRequest && version_compare( '5.2.10', phpversion(), '>' ) ) {
 			$this->assertRegexp( "/HTTP request failed/", $er->getWikiText() );
 		} else {
 			$this->assertRegexp( "/404 Not Found/", $er->getWikiText() );
@@ -538,7 +538,7 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 		$jar = $r->getCookieJar();
 		$this->assertThat( $jar, $this->isInstanceOf( 'CookieJar' ) );
 
-		if ( is_a( $r, 'PhpHttpRequest' ) && version_compare( '5.1.7', phpversion(), '>' ) ) {
+		if ( $r instanceof PhpHttpRequest && version_compare( '5.1.7', phpversion(), '>' ) ) {
 			$this->markTestSkipped( 'Redirection fails or crashes PHP on 5.1.6 and prior' );
 		}
 		$serialized = $jar->serializeToHttpRequest( "/search?q=test", "www.php.net" );
