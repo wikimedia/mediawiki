@@ -4,6 +4,7 @@ require_once dirname(dirname(dirname(__FILE__))). '/bootstrap.php';
 
 /**
  * This class is not directly tested. Instead it is extended by SearchDbTest.
+ * @group Search
  * @group Stub
  * @group Destructive
  */
