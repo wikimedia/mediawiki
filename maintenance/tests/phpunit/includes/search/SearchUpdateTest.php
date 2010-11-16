@@ -1,33 +1,5 @@
 <?php
 
-class DatabaseMock extends DatabaseBase {
-	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$flags = 0, $tablePrefix = 'get from global' )
-	{
-		$this->mConn = true;
-		$this->mOpened = true;
-	}
-
-	function open( $server, $user, $password, $dbName ) { return true; }
-	function doQuery( $sql ) { }
-	function fetchObject( $res ) { }
-	function fetchRow( $res ) { }
-	function numRows( $res ) { }
-	function numFields( $res ) { }
-	function fieldName( $res, $n ) { }
-	function insertId() { }
-	function dataSeek( $res, $row ) { }
-	function lastErrno() { return 0; }
-	function lastError() { return ''; }
-	function affectedRows() { }
-	function fieldInfo( $table, $field ) { }
-	function strencode( $s ) { }
-	static function getSoftwareLink() { }
-	function getServerVersion() { }
-	function getType() { }
-	function getSearchEngine() { }
-}
-
 class MockSearch extends SearchEngine {
 	public static $id;
 	public static $title;
@@ -44,15 +16,11 @@ class MockSearch extends SearchEngine {
 }
 
 /**
- * @group Broken
  * Disabled until we're able to run it without messing with LoadBalancer and breaking 
  * other tests in a sneaky way
  */
 class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 	static $searchType;
-	static $dbtype;
-	static $factoryconf;
-	static $dbservers;
 
 	function update( $text, $title = 'Test', $id = 1 ) {
 		$u = new SearchUpdate( $id, $title, $text );
@@ -67,32 +35,16 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function setUp() {
-		global $wgSearchType, $wgDBtype, $wgLBFactoryConf, $wgDBservers, $wgContLang;
+		global $wgSearchType;
 
 		self::$searchType  = $wgSearchType;
-		self::$dbtype      = $wgDBtype;
-		self::$factoryconf = $wgLBFactoryConf;
-		self::$dbservers   = $wgDBservers;
-
 		$wgSearchType = 'MockSearch';
-		$wgDBtype = 'mock';
-		$wgLBFactoryConf['class'] = 'LBFactory_Simple';
-		$wgDBservers = null;
-
-		# We need to reset the LoadBalancer in order to bypass its cache and get the mock db
-		wfGetLBFactory()->destroyInstance();
-		$wgContLang = Language::factory( 'en' );
 	}
 
 	function tearDown() {
-		global $wgSearchType, $wgDBtype, $wgLBFactoryConf, $wgDBservers, $wgContLang;
+		global $wgSearchType;
 
 		$wgSearchType = self::$searchType;
-		$wgDBtype = self::$dbtype;
-		$wgLBFactoryConf = self::$factoryconf;
-		$wgDBservers = self::$dbservers;
-
-		wfGetLBFactory()->destroyInstance();
 	}
 
 	function testUpdateText() {
