@@ -171,14 +171,14 @@ class IPTest extends PHPUnit_Framework_TestCase {
 			'::fe:f:2001/1',
 			'::6d:f:2001/8',
 		);
-		foreach ( $invalid as $i ) {
+		foreach ( $valid as $i ) {
 			$this->assertTrue( IP::isValidBlock( $i ), "$i is a valid IP block" );
 		}
 	}
 
 	// tests isValidBlock()
 	public function testInvalidBlocks() {
-		$valid = array(
+		$invalid = array(
 			'116.17.184.5/33',
 			'0.17.184.5/130',
 			'16.17.184.1/-1',
