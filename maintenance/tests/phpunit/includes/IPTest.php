@@ -9,8 +9,8 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( IP::isIPAddress( false ), 'Boolean false is not an IP' );
 		$this->assertFalse( IP::isIPAddress( true  ), 'Boolean true is not an IP' );
 		$this->assertFalse( IP::isIPAddress( "" ), 'Empty string is not an IP' );
-		$this->assertFalse( IP::isIPAddress( 'abc' ) );
-		$this->assertFalse( IP::isIPAddress( ':' ) );
+		$this->assertFalse( IP::isIPAddress( 'abc' ), 'Garbage IP string' );
+		$this->assertFalse( IP::isIPAddress( ':' ), 'Single ":" is not an IP' );
 		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1'), 'IPv6 with a double :: occurence' );
 		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::'), 'IPv6 with a double :: occurence, last at end' );
 		$this->assertFalse( IP::isIPAddress( '::2001:0DB8::5:1'), 'IPv6 with a double :: occurence, firt at beginning' );
@@ -18,20 +18,17 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( IP::isIPAddress( '24.324.52.13' ), 'IPv4 out of range' );
 		$this->assertFalse( IP::isIPAddress( '.24.52.13' ), 'IPv4 starts with period' );
 
-		$this->assertTrue( IP::isIPAddress( 'fc:100::' ) );
-		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac::' ) );
-		$this->assertTrue( IP::isIPAddress( '::' ),  'RFC 4291 IPv6 Unspecified Address' );
+		$this->assertTrue( IP::isIPAddress( '::' ), 'RFC 4291 IPv6 Unspecified Address' );
 		$this->assertTrue( IP::isIPAddress( '::1' ), 'RFC 4291 IPv6 Loopback Address' );
-		$this->assertTrue( IP::isIPAddress( '::fc' ) );
-		$this->assertTrue( IP::isIPAddress( '::fc:100:a:d:1:e:ac' ) );
-		$this->assertTrue( IP::isIPAddress( 'fc::100' ) );
-		$this->assertTrue( IP::isIPAddress( 'fc::100:a:d:1:e:ac' ) );
-		$this->assertTrue( IP::isIPAddress( 'fc::100:a:d:1:e:ac/96', 'IPv6 range with "::"' ) );
-		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac:0' ) );
-		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac:0/24', 'IPv6 range' ) );
-		$this->assertTrue( IP::isIPAddress( '124.24.52.13' ) );
-		$this->assertTrue( IP::isIPAddress( '1.24.52.13' ) );
 		$this->assertTrue( IP::isIPAddress( '74.24.52.13/20', 'IPv4 range' ) );
+		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac:0/24' ), 'IPv6 range' );
+		$this->assertTrue( IP::isIPAddress( 'fc::100:a:d:1:e:ac/96' ), 'IPv6 range with "::"' );
+		
+		$validIPs = array( 'fc:100::', 'fc:100:a:d:1:e:ac::', 'fc::100', '::fc:100:a:d:1:e:ac',
+			'::fc', 'fc::100:a:d:1:e:ac', 'fc:100:a:d:1:e:ac:0', '124.24.52.13', '1.24.52.13' );
+		foreach ( $validIPs as $ip ) {
+			$this->assertTrue( IP::isIPAddress( $ip ), "$ip is a valid IP address" );
+		}
 	}
 
 	public function testisIPv6() {
