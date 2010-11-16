@@ -34,6 +34,13 @@ class MessageTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'Заглавная страница', wfMessage( 'mainpage' )->inLanguage( Language::factory( 'ru' ) )->text() );
 	}
 
+	function testMessagePararms() {
+		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto' )->text() );
+		$this->assertEquals( 'Return to $1.', wfMessage( 'returnto', array() )->text() );
+		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', 'foo', 'bar' )->text() );
+		$this->assertEquals( 'You have foo (bar).', wfMessage( 'youhavenewmessages', array( 'foo', 'bar' ) )->text() );
+	}
+
 	/**
 	 * @expectedException MWException
 	 */
