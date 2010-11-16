@@ -475,7 +475,7 @@ Skipping creation.",
 	'config-install-interwiki-exists' => "'''Warning''': The interwiki table seems to already have entries.
 Skipping default list.",
 	'config-install-secretkey'        => 'Generating secret key',
-	'config-insecure-secretkey'       => "'''Warning:''' Unable to create secure <code>\$wgSecretKey</code>.
+	'config-insecure-secret'          => "'''Warning:''' Unable to create a secure <code>$1</code>.
 Consider changing it manually.",
 	'config-install-sysop'            => 'Creating administrator user account',
 	'config-install-mainpage'         => 'Creating main page with default content',
