@@ -714,6 +714,7 @@ Kontrollige kirjapilti või [[Special:UserLogin/signup|looge uus kasutajakonto]]
 'passwordtooshort'           => 'Parool on liiga lühike.
 See peab koosnema vähemalt {{PLURAL:$1|ühest|$1}} tähemärgist.',
 'password-name-match'        => 'Parool peab kasutajanimest erinema.',
+'password-too-weak'          => 'See parool on liiga nõrk ja seda ei saa kasutada.',
 'mailmypassword'             => 'Saada e-posti teel uus parool',
 'passwordremindertitle'      => '{{SITENAME}} – ajutine parool',
 'passwordremindertext'       => 'Keegi IP-aadressiga $1, tõenäoliselt sa ise, palus, et talle saadetaks {{GRAMMAR:elative|{{SITENAME}}}} uus parool ($4). Kasutaja "$2" ajutiseks paroolis seati "$3". Kui soovid tõepoolest uut parooli, pead sisse logima ja uue parooli valima. Ajutine parool aegub {{PLURAL:$5|ühe päeva|$5 päeva}} pärast.
@@ -1924,6 +1925,8 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'nmembers'                => '$1 {{PLURAL:$1|liige|liiget}}',
 'nrevisions'              => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}',
 'nviews'                  => '$1 {{PLURAL:$1|külastus|külastust}}',
+'nimagelinks'             => 'Kasutuses {{PLURAL:$1|ühel leheküljel|$1 leheküljel}}',
+'ntransclusions'          => 'kasutuses {{PLURAL:$1|ühel leheküljel|$1 leheküljel}}',
 'specialpage-empty'       => 'Vasteid ei leidu.',
 'lonelypages'             => 'Viitamata leheküljed',
 'lonelypagestext'         => 'Järgmistele lehekülgedele ei ole linki ühelgi Viki leheküljel, samuti ei ole nad kasutusel teiste lehekülgede osana.',
@@ -2542,18 +2545,29 @@ Andmebaasi lukustamiseks ja avamiseks peavad veebiserveril olema sellele kirjutu
 # Move page
 'move-page'                    => 'Teisalda $1',
 'move-page-legend'             => 'Lehekülje teisaldamine',
-'movepagetext'                 => "Allolevat vormi kasutades saate lehekülje ümber nimetada.
-Lehekülje ajalugu tõstetakse uue pealkirja alla automaatselt.
-Praeguse pealkirjaga leheküljest saab ümbersuunamisleht uuele leheküljele.
-Teistes artiklites olevaid linke praeguse nimega leheküljele automaatselt ei muudeta.
-Teie kohuseks on hoolitseda, et ei tekiks topeltümbersuunamisi ning et kõik jääks toimima nagu enne ümbernimetamist.
+'movepagetext'                 => "Allolevat vormi kasutades saad lehekülje ümber nimetada. Lehekülje ajalugu tõstetakse uue pealkirja alla automaatselt.
+Praeguse pealkirjaga leheküljest saab ümbersuunamislehekülg uuele leheküljele.
+Saad senisele pealkirjale viitavad ümbersuunamised automaatselt parandada.
+Kui sa seda ei tee, kontrolli, et teisaldamise tõttu ei jää maha [[Special:DoubleRedirects|kahekordseid]] ega [[Special:BrokenRedirects|katkiseid ümbersuunamisi]].
+Sinu kohus on hoolitseda selle eest, et kõik jääks toimima, nagu ette nähtud.
 
-Lehekülge '''ei nimetata ümber''' juhul, kui uue nimega lehekülg on juba olemas. Erandiks on juhud, kui olemasolev lehekülg on tühi või ümbersuunamislehekülg ja sellel pole redigeerimisajalugu.
-See tähendab, et te ei saa kogemata üle kirjutada juba olemasolevat lehekülge, kuid saate ebaõnnestunud ümbernimetamise tagasi pöörata.
+Pane tähele, et lehekülge '''ei teisaldata''' juhul, kui uue pealkirjaga lehekülg on juba olemas. Erandiks on juhud, kui olemasolev lehekülg on tühi või redigeerimisajaloota ümbersuunamislehekülg.
+See tähendab, et kogemata ei saa üle kirjutada juba olemasolevat lehekülge, kuid saab ebaõnnestunud ümbernimetamise tagasi pöörata.
 
-'''ETTEVAATUST!'''
-Võimalik, et kavatsete teha ootamatut ning drastilist muudatust väga loetavasse artiklisse;
-enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks.",
+'''Hoiatus!'''
+Tegu võib olla väga loetava lehekülje jaoks tõsise ja ootamatu muudatusega;
+enne jätkamist teadvusta palun tagajärgi.",
+'movepagetext-noredirectfixer' => "Allolevat vormi kasutades saad lehekülje ümber nimetada. Lehekülje ajalugu tõstetakse uue pealkirja alla automaatselt.
+Praeguse pealkirjaga leheküljest saab ümbersuunamislehekülg uuele leheküljele.
+Kontrolli, et teisaldamise tõttu ei jää maha [[Special:DoubleRedirects|kahekordseid]] ega [[Special:BrokenRedirects|katkiseid ümbersuunamisi]].
+Sinu kohus on hoolitseda selle eest, et kõik jääks toimima, nagu ette nähtud.
+
+Pane tähele, et lehekülge '''ei teisaldata''' juhul, kui uue pealkirjaga lehekülg on juba olemas. Erandiks on juhud, kui olemasolev lehekülg on tühi või redigeerimisajaloota ümbersuunamislehekülg.
+See tähendab, et kogemata ei saa üle kirjutada juba olemasolevat lehekülge, kuid saab ebaõnnestunud ümbernimetamise tagasi pöörata.
+
+'''Hoiatus!'''
+Tegu võib olla väga loetava lehekülje jaoks tõsise ja ootamatu muudatusega;
+enne jätkamist teadvusta palun tagajärgi.",
 'movepagetalktext'             => "Koos artiklileheküljega teisaldatakse automaatselt ka arutelulehekülg, '''välja arvatud juhtudel, kui:'''
 *liigutate lehekülge ühest nimeruumist teise,
 *uue nime all on juba olemas mittetühi arutelulehekülg või

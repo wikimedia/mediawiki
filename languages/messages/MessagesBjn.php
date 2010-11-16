@@ -1186,6 +1186,8 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-edituserjs'         => 'Babak pamuruk lain babarakas JavaScript',
 'right-trackback'          => 'Mangirimakan sabuah panjajakan balik',
 'right-userrights'         => 'Babak sabarataan hak pamuruk',
+'right-siteadmin'          => 'Sunduk wan kadasudasunduk basisdata',
+'right-reset-passwords'    => 'Risit kakatasunduk pamuruk lain',
 'right-sendemail'          => 'Mangirim suril ka papamuruk lain',
 'right-revisionmove'       => 'Pindahakan raralatan',
 
@@ -1261,6 +1263,8 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'upload'              => 'Hunggahakan barakas',
 'uploadbtn'           => 'Hunggahakan barakas',
 'uploadnologin'       => 'Baluman babuat log',
+'uploaderror'         => 'Hunggah tasalah',
+'uploadlog'           => 'log hunggah',
 'uploadlogpage'       => 'Log mambuati',
 'filename'            => 'Ngaran barakas',
 'filedesc'            => 'Kasimpulan',
@@ -1278,8 +1282,13 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'unknown-error'       => 'Kasalahan kada dipinandui tajadi.',
 'tmp-create-error'    => 'Kada kawa maulah barakas pahadangan.',
 'tmp-write-error'     => 'Kasalahan sawaktu manulis barakas pahadangan.',
+'uploadwarning'       => 'Paringatan hunggah',
+'uploadwarning-text'  => 'Muhun magaganti katarangan barakas di bawah wan cubai pulang.',
 'savefile'            => 'Simpan barakas',
 'uploadedimage'       => 'mamuat "[[$1]]"',
+'overwroteimage'      => 'mahunggah sabuah pirsi hanyar matan "[[$1]]"',
+'uploaddisabled'      => 'Huhunggah pajah.',
+'copyuploaddisabled'  => 'Hunggah lawan URL pajah.',
 
 'upload-misc-error' => 'Tasalah buat nang kada dipinandui',
 

@@ -60,8 +60,8 @@ $messages = array(
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Kadegorie|Kadegorie}}',
 'category_header'        => 'Saire in de Kategorie "$1"',
-'subcategories'          => 'Unnerkategorie',
-'hidden-categories'      => '{{PLURAL:$1|Versteckelte Kategorie|Versteckelte Kategorie}}',
+'subcategories'          => 'Unnerkadegorie',
+'hidden-categories'      => '{{PLURAL:$1|Versteckelte Kadegorie|Versteckelte Kadegorie}}',
 'category-subcat-count'  => '{{PLURAL:$2|Die Kategorie hot die Unnerkategorie:|{{PLURAL:$1|Die Unnerkategori isch eni vun insgsamt $2 Unnerkategorie in derre Kategorie:|S werre $1 vun insgsamt $2 Unnerkategorie in derre Kategorie aagezeicht:}}}}',
 'category-article-count' => '{{PLURAL:$2|In derre Kategorie hot s numme die Said.|Die {{PLURAL:$1|Said|$1 Saire}} gebbt s in derre Kategoriey, vun insgsamt $2.}}',
 'listingcontinuesabbrev' => '(Forts.)',
@@ -69,11 +69,17 @@ $messages = array(
 'about'      => 'Iwwer',
 'newwindow'  => '(werd im e naie Fenschter uffgmacht)',
 'cancel'     => 'Abbreche',
-'mytalk'     => 'Gebabbel mit dir.',
+'mytalk'     => 'Gebabbel mit dir',
 'navigation' => 'Navigation',
 
 # Cologne Blue skin
-'qbfind' => 'Finne',
+'qbfind'      => 'Finne',
+'qbedit'      => 'Bearwaide',
+'qbmyoptions' => 'Mai Saire',
+
+# Vector skin
+'vector-action-move' => 'Verschiewe',
+'vector-view-edit'   => 'Bearwaide',
 
 'errorpagetitle'   => 'Fehler',
 'returnto'         => 'Zrick zu $1.',
@@ -91,7 +97,7 @@ $messages = array(
 'edit'             => 'Bearwaide',
 'create'           => 'Aaleche',
 'editthispage'     => 'Die Said bearwaide',
-'delete'           => 'lesche',
+'delete'           => 'Lesche',
 'undelete_short'   => '{{PLURAL:$1|ä Ännerung|$1 Ännerunge}} widderherschdelle',
 'protect'          => 'schitze',
 'protect_change'   => 'ännere',
@@ -380,11 +386,17 @@ Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'sharedupload'              => 'Die Datei isch vun $1 un s kann sai, dass se ach vun annere Projekt gebraucht werd.',
 'uploadnewversion-linktext' => 'E naiere Version vun derre Datei hochlare',
 
+# File deletion
+'filedelete-submit' => 'Lesche',
+
 # Random page
 'randompage' => 'Irnd en Adiggel',
 
 # Statistics
 'statistics' => 'Statischtike',
+
+'brokenredirects-edit'   => 'bearwaide',
+'brokenredirects-delete' => 'lesche',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|Byte|Bytes}}',
@@ -451,6 +463,7 @@ Zukimftiche Ännerunge an derre Said un de Dischbediersaid, wu dezu ghert, werre
 # Delete
 'deletepage'            => 'Seid lesche',
 'confirm'               => 'Bestädiche',
+'delete-legend'         => 'Lesche',
 'confirmdeletetext'     => 'Du bisch debai e Said z lesche mid alle Versione.
 Bitte du bstätiche, dass Du des wllscht du, dass Du verstehsch, was des hääßt, un dass Du des machscht in Iwweraistimmung mit de [[{{MediaWiki:Policy-url}}|Richtline]].',
 'actioncomplete'        => 'Aktion fertich',
@@ -488,6 +501,10 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot ken Aifluss uff 
 'protect-cantedit'            => 'Du kannscht de Schutzstatus vun derre Said nit ännere, wail Du nid d Berechdichung dezu hoscht.',
 'restriction-type'            => 'Berechdichung:',
 'restriction-level'           => 'Schutzewene:',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Bearwaide',
+'restriction-move' => 'Verschiewe',
 
 # Undelete
 'undelete'         => 'Widderherschdelle',
@@ -712,5 +729,8 @@ Annere Metadate sinn standardmäßig versteckelt.
 
 # Special:SpecialPages
 'specialpages' => 'Spezialsaire',
+
+# Special:Tags
+'tags-edit' => 'bearwaide',
 
 );

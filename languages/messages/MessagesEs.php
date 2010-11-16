@@ -1925,6 +1925,7 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 'statistics-edits'             => 'Ediciones en páginas desde que {{SITENAME}} fue instalado',
 'statistics-edits-average'     => 'Media de ediciones por página',
 'statistics-views-total'       => 'Visitas totales',
+'statistics-views-total-desc'  => 'No se incluyen accesos a páginas no existentes ni páginas especiales',
 'statistics-views-peredit'     => 'Visitas por edición',
 'statistics-users'             => '[[Special:ListUsers|Usuarios]] registrados',
 'statistics-users-active'      => 'Usuarios activos',
@@ -2580,6 +2581,17 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'movepagetext'                 => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Los enlaces al antiguo título de la página no se cambiarán.
+Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
+Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que deberían hacerlo.
+
+Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o una redirección sin historial.
+Esto significa que podrás renombrar una página a su título original si has cometido un error, pero que no podrás sobrescribir una página existente.
+
+'''¡Advertencia!'''
+Este puede ser un cambio drástico e inesperado para una página popular;
+por favor, asegúrate de entender las consecuencias del procedimiento antes de seguir adelante.",
+'movepagetext-noredirectfixer' => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
+El título anterior se convertirá en una redirección al nuevo título.
 Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
 Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que deberían hacerlo.
 

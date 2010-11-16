@@ -1807,6 +1807,8 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'nmembers'                => '$1 {{PLURAL:$1|medlem|medlemmer}}',
 'nrevisions'              => '{{PLURAL:$1|1 ændring|$1 ændringer}}',
 'nviews'                  => '{{PLURAL:$1|1 visning|$1 visninger}}',
+'nimagelinks'             => 'Brugt på $1 {{PLURAL:$1|side|sider}}',
+'ntransclusions'          => 'brugt på $1 {{PLURAL:$1|side|sider}}',
 'specialpage-empty'       => 'Der er ingen resultater at vise.',
 'lonelypages'             => 'Forældreløse sider',
 'lonelypagestext'         => 'Følgende sider er ikke henvist til eller inkluderet på andre sider på {{SITENAME}}:',
