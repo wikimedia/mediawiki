@@ -41,7 +41,7 @@ class nextJobDB extends Maintenance {
 		# If we didn't get it from the cache
 		if ( !$pendingDBs ) {
 			$pendingDBs = $this->getPendingDbs( $type );
-			$wgMemc->get( $mckey, $pendingDBs, 300 );
+			$wgMemc->set( $mckey, $pendingDBs, 300 );
 		}
 		# If we've got a pending job in a db, display it.
 		if ( $pendingDBs ) {
