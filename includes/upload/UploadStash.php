@@ -24,9 +24,6 @@ class UploadStash {
 	// array of initialized objects obtained from session (lazily initialized upon getFile())
 	private $files = array();  
 
-	// the base URL for files in the stash
-	private $baseUrl;
-	
 	// TODO: Once UploadBase starts using this, switch to use these constants rather than UploadBase::SESSION*
 	// const SESSION_VERSION = 2;
 	// const SESSION_KEYNAME = 'wsUploadData';
@@ -53,16 +50,6 @@ class UploadStash {
 			$_SESSION[UploadBase::SESSION_KEYNAME] = array();
 		}
 		
-		$this->baseUrl = SpecialPage::getTitleFor( 'UploadStash' )->getLocalURL(); 
-	}
-
-	/**
-	 * Get the base of URLs by which one can access the files
-	 *
-	 * @return String: url
-	 */
-	public function getBaseUrl() { 
-		return $this->baseUrl;
 	}
 
 	/**
@@ -298,6 +285,16 @@ class UploadStashFile extends UnregisteredLocalFile {
 		return $thumbName;
 	}
 
+	/**
+	 * Helper function -- given a 'subpage', return the local URL e.g. /wiki/Special:UploadStash/subpage
+	 * @param {String} $subPage
+	 * @return {String} local URL for this subpage in the Special:UploadStash space. 
+	 */
+	private function getSpecialUrl( $subPage ) {
+		return SpecialPage::getTitleFor( 'UploadStash', $subPage )->getLocalURL();
+	}
+
+
 	/** 
 	 * Get a URL to access the thumbnail 
 	 * This is required because the model of how files work requires that 
@@ -308,11 +305,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return String: URL to access thumbnail, or URL with partial path
 	 */
 	public function getThumbUrl( $thumbName = false ) { 
-		$path = $this->sessionStash->getBaseUrl();
-		if ( $thumbName !== false ) {
-			$path .= '/' . rawurlencode( $thumbName );
-		}
-		return $path;
+		return self::getSpecialUrl( $thumbName );
 	}
 
 	/** 
@@ -336,7 +329,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 */
 	public function getUrl() {
 		if ( !isset( $this->url ) ) {
-			$this->url = $this->sessionStash->getBaseUrl() . '/' . $this->getUrlName();
+			$this->url = self::getSpecialUrl( $this->getUrlName() );
 		}
 		return $this->url;
 	}
