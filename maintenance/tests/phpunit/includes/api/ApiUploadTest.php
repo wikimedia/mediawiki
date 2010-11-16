@@ -261,6 +261,7 @@ class ApiUploadTest extends ApiTestCase {
 
 		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
 		$filePath = $filePaths[0];
+		$fileSize = filesize( $filePath );
 		$fileName = basename( $filePath ); 
 
 		$this->deleteFileByFileName( $fileName );
@@ -286,6 +287,8 @@ class ApiUploadTest extends ApiTestCase {
 		}
 		$this->assertTrue( isset( $result['upload'] ) );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
+		$this->assertEquals( $fileSize, ( int )$result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 		$this->assertFalse( $exception );
 
 		// clean up
@@ -511,6 +514,7 @@ class ApiUploadTest extends ApiTestCase {
 
 		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
 		$filePath = $filePaths[0];
+		$fileSize = filesize( $filePath );
 		$fileName = basename( $filePath ); 
 
 		$this->deleteFileByFileName( $fileName );
@@ -538,6 +542,8 @@ class ApiUploadTest extends ApiTestCase {
 		$this->assertFalse( $exception );
 		$this->assertTrue( isset( $result['upload'] ) );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
+		$this->assertEquals( $fileSize, ( int )$result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 		$this->assertTrue( isset( $result['upload']['sessionkey'] ) );
 		$sessionkey = $result['upload']['sessionkey'];
 		
