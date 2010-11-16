@@ -1,3 +1,5 @@
+.PHONY: clean all
+
 OBJ=render_info.cmo tex.cmo texutil.cmo parser.cmo lexer.cmo texvc.cmo \
 render_info.cmx tex.cmx texutil.cmx parser.cmx lexer.cmx texvc.cmx \
 lexer.cmi parser.cmi render_info.cmi tex.cmi texutil.cmi texvc.cmi \
@@ -10,15 +12,41 @@ texvc_tex.o texvc_tex.cmi texvc_tex html.cmi html.cmo html.cmx \
 html.o mathml.cmi mathml.cmo mathml.cmx mathml.o
 CGIPATH=-I /usr/lib/ocaml/cgi -I /usr/lib/ocaml/netstring -I /usr/lib/ocaml/pcre
 
+COMMON_NATIVE_OBJ  =util.cmx parser.cmx html.cmx mathml.cmx texutil.cmx lexer.cmx
+COMMON_BYTECODE_OBJ=util.cmo parser.cmo html.cmo mathml.cmo texutil.cmo lexer.cmo
+
 all: texvc texvc_test texvc_tex
-texvc.bc: util.cmo parser.cmo html.cmo mathml.cmo texutil.cmo render.cmo lexer.cmo texvc.cmo
-	ocamlc -o $@ unix.cma $^
-texvc: util.cmx parser.cmx html.cmx mathml.cmx texutil.cmx render.cmx lexer.cmx texvc.cmx
+cgi: texvc_cgi.cmo texvc_cgi
+clean:
+	rm -f $(OBJ)
+
+# Native versions
+texvc: $(COMMON_NATIVE_OBJ) render.cmx texvc.cmx
 	ocamlopt -o $@ unix.cmxa $^
-texvc_test: util.cmx parser.cmx html.cmx mathml.cmx texutil.cmx lexer.cmx texvc_test.cmx
+texvc_test: $(COMMON_NATIVE_OBJ) lexer.cmx texvc_test.cmx
 	ocamlopt -o $@ $^
-texvc_tex: util.cmx parser.cmx html.cmx mathml.cmx texutil.cmx lexer.cmx texvc_tex.cmx
+texvc_tex: $(COMMON_NATIVE_OBJ) texvc_tex.cmx
 	ocamlopt -o $@ $^
+
+# Bytecode version
+texvc.bc: $(COMMON_BYTECODE_OBJ) render.cmo texvc.cmo
+	ocamlc -o $@ unix.cma $^
+
+# CGI related targets:
+texvc_cgi.cmo: texvc_cgi.ml
+	ocamlc -c $(CGIPATH) $<
+texvc_cgi: util.cmo parser.cmo texutil.cmo render.cmo lexer.cmo texvc_cgi.cmo
+	ocamlc -o $@ unix.cma $(CGIPATH) pcre.cma netstring.cma cgi.cma $^
+	chmod g-w $@
+
+#
+# Pattern rules
+#
+
+#  .ml source  .mli interface
+#  .cmi compiled interface
+#  .cmo object       .cma library object
+#  .cmx object file  .cmxa library object file
 %.ml: %.mll
 	ocamllex $<
 %.mli %.ml: %.mly
@@ -29,13 +57,8 @@ texvc_tex: util.cmx parser.cmx html.cmx mathml.cmx texutil.cmx lexer.cmx texvc_t
 	ocamlopt -c $<
 %.cmi: %.mli
 	ocamlc -c $<
-texvc_cgi.cmo: texvc_cgi.ml
-	ocamlc -c $(CGIPATH) $<
-texvc_cgi: util.cmo parser.cmo texutil.cmo render.cmo lexer.cmo texvc_cgi.cmo
-	ocamlc -o $@ unix.cma $(CGIPATH) pcre.cma netstring.cma cgi.cma $^
-	chmod g-w $@
-clean:
-	rm -f $(OBJ)
+
+# Various dependencies
 
 html.cmo: render_info.cmi tex.cmi util.cmo html.cmi 
 html.cmx: render_info.cmi tex.cmi util.cmx html.cmi 
