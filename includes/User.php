@@ -2191,8 +2191,9 @@ class User {
 	 * @return Boolean: True if action is allowed, else false
 	 */
 	function isAllowed( $action = '' ) {
-		if ( $action === '' )
+		if ( $action === '' ) {
 			return true; // In the spirit of DWIM
+		}
 		# Patrolling may not be enabled
 		if( $action === 'patrol' || $action === 'autopatrol' ) {
 			global $wgUseRCPatrol, $wgUseNPPatrol;
