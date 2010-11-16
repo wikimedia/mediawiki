@@ -120,7 +120,11 @@ class CliInstaller extends CoreInstaller {
 	}
 
 	public function showMessage( $msg /*, ... */ ) {
-		echo html_entity_decode( strip_tags( $msg ), ENT_QUOTES );
+		$params = func_get_args();
+		array_shift( $params );
+		$text = wfMsgExt( $msg, array( 'parseinline' ), $params );
+		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
+		echo html_entity_decode( strip_tags( $text ), ENT_QUOTES ) . "\n";
 		flush();
 	}
 

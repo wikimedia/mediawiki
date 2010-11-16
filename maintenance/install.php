@@ -52,17 +52,30 @@ class CommandLineInstaller extends Maintenance {
 		/* $this->addOption( 'dbschema', 'The schema for the MediaWiki DB in pg (mediawiki)', false, true ); */
 		/* $this->addOption( 'dbtsearch2schema', 'The schema for the tsearch2 DB in pg (public)', false, true ); */
 		/* $this->addOption( 'namespace', 'The project namespace (same as the name)', false, true ); */
+		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 	}
 
 	public function execute() {
-		global $IP;
+		global $IP, $wgTitle;
+		$siteName = isset( $this->mArgs[0] ) ? $this->mArgs[0] : "Don't care"; // Will not be set if used with --env-checks
 		$adminName = isset( $this->mArgs[1] ) ? $this->mArgs[1] : null;
+		$wgTitle = Title::newFromText( 'Installer script' );
 
 		$installer =
-			new CliInstaller( $this->mArgs[0], $adminName, $this->mOptions );
+			new CliInstaller( $siteName, $adminName, $this->mOptions );
 
-		$installer->execute();
-		$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
+		if ( $this->hasOption( 'env-checks' ) ) {
+			$installer->doEnvironmentChecks();
+		} else {
+			$installer->execute();
+			$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
+		}
+	}
+
+	protected function validateParamsAndArgs() {
+		if ( !$this->hasOption( 'env-checks' ) ) {
+			parent::validateParamsAndArgs();
+		}
 	}
 }
 
