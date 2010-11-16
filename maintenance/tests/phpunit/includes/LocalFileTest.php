@@ -25,11 +25,6 @@ class LocalFileTest extends PHPUnit_Framework_TestCase {
 		$this->file_lc = $this->repo_lc->newFile( 'test!' );
 	}
 
-	function tearDown() {
-		global $wgContLang;
-		unset( $wgContLang );
-	}
-
 	function testGetHashPath() {
 		$this->assertEquals( '', $this->file_hl0->getHashPath() );
 		$this->assertEquals( 'a/a2/', $this->file_hl2->getHashPath() );
