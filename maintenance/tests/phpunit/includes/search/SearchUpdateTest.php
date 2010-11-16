@@ -16,8 +16,7 @@ class MockSearch extends SearchEngine {
 }
 
 /**
- * Disabled until we're able to run it without messing with LoadBalancer and breaking 
- * other tests in a sneaky way
+ * @group Search
  */
 class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 	static $searchType;
