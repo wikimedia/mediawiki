@@ -20,11 +20,16 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	// UploadStash
 	private $stash;
 
-	// we should not be reading in really big files and serving them out
-	private $maxServeFileSize = 262144; // 256K
+	// Since we are directly writing the file to STDOUT, 
+	// we should not be reading in really big files and serving them out.
+	//
+	// We also don't want people using this as a file drop, even if they
+	// share credentials.
+	//
+	// This service is really for thumbnails and other such previews while
+	// uploading.
+	const MAX_SERVE_BYTES = 262144; // 256K
 
-	// $request is the request (usually wgRequest)
-	// $subpage is everything in the URL after Special:UploadStash
 	public function __construct( ) {
 		parent::__construct( 'UploadStash', 'upload' );
 		try {
@@ -52,23 +57,43 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// prevent callers from doing standard HTML output -- we'll take it from here
 		$wgOut->disable();
 
-		try {
-			$file = $this->getStashFile( $subPage );
-			if ( $file->getSize() > $this->maxServeFileSize ) {
-				throw new MWException( 'file size too large' );
-			}
-			$this->outputFile( $file );
-			return true;
+		$code = 500;
+		$message = 'Unknown error';
 
-		} catch( UploadStashFileNotFoundException $e ) {
-			$code = 404;
-		} catch( UploadStashBadPathException $e ) {
-			$code = 403;
-		} catch( Exception $e ) {
-			$code = 500;
+		if ( !isset( $subPage ) or $subPage === '' ) {
+			// the user probably visited the page just to see what would happen, so explain it a bit.
+			$code = '400';
+			$message = "Missing key\n\n" 
+				   . 'This page provides access to temporarily stashed files for the user that '
+				   . 'uploaded those files. See the upload API documentation. To access a stashed file, '
+				   . 'use the URL of this page, with a slash and the key of the stashed file appended.';
+		} else {
+			try {
+				$file = $this->getStashFile( $subPage );
+				$size = $file->getSize();
+				if ( $size === 0 ) {
+					$code = 500;
+					$message = 'File is zero length';
+				} else if ( $size > self::MAX_SERVE_BYTES ) {
+					$code = 500;
+					$message = 'Cannot serve a file larger than ' . self::MAX_SERVE_BYTES . ' bytes';
+				} else {
+					$this->outputFile( $file );
+					return true;
+				}
+			} catch( UploadStashFileNotFoundException $e ) {
+				$code = 404; 
+				$message = $e->getMessage();
+			} catch( UploadStashBadPathException $e ) {
+				$code = 500;
+				$message = $e->getMessage();
+			} catch( Exception $e ) {
+				$code = 500;
+				$message = $e->getMessage();
+			}
 		}
 
-		wfHttpError( $code, OutputPage::getStatusMessage( $code ), $e->getMessage() );
+		wfHttpError( $code, OutputPage::getStatusMessage( $code ), $message );
 		return false;
 	}
 
@@ -130,8 +155,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		header( 'Content-Type: ' . $file->getMimeType(), true );
 		header( 'Content-Transfer-Encoding: binary', true );
 		header( 'Expires: Sun, 17-Jan-2038 19:14:07 GMT', true );
-		header( 'Pragma: public', true );
-		header( 'Content-Length: ' . $file->getSize(), true ); // FIXME: PHP can handle Content-Length for you just fine --RK
+		header( 'Content-Length: ' . $file->getSize(), true ); 
 		readfile( $file->getPath() );
 	}
 }
