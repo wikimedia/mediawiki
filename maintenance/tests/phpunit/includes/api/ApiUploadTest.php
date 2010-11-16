@@ -148,14 +148,13 @@ class ApiUploadTest extends ApiTestCase {
 	 * Fixture -- run before every test 
 	 */
 	public function setUp() {
-		global $wgEnableUploads, $wgEnableAPI, $wgDebugLogFile;
+		global $wgEnableUploads, $wgEnableAPI;
 		parent::setUp();
 
 		$wgEnableUploads = true;
 		$wgEnableAPI = true;
 		wfSetupSession();
 
-		$wgDebugLogFile = '/private/tmp/mwtestdebug.log';
 		ini_set( 'log_errors', 1 );
 		ini_set( 'error_reporting', 1 );
 		ini_set( 'display_errors', 1 );
