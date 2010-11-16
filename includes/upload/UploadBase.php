@@ -1213,13 +1213,13 @@ abstract class UploadBase {
 		$file = $this->getLocalFile();
 		// TODO This cries out for refactoring. We really want to say $file->getAllInfo(); here. 
 		// Perhaps "info" methods should be moved into files, and the API should just wrap them in queries.
-		if ( is_a( $file, 'UploadStashFile' ) ) { 
+		if ( $file instanceof UploadStashFile ) {
 			$imParam = ApiQueryStashImageInfo::getPropertyNames();
 			$info = ApiQueryStashImageInfo::getInfo( $file, array_flip( $imParam ), $result );
 		} else {
 			$imParam = ApiQueryImageInfo::getPropertyNames();
 			$info = ApiQueryImageInfo::getInfo( $file, array_flip( $imParam ), $result );
-		} 
+		}
 		return $info;
 	}
 

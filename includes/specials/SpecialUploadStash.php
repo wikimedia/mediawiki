@@ -60,7 +60,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$code = 500;
 		$message = 'Unknown error';
 
-		if ( !isset( $subPage ) or $subPage === '' ) {
+		if ( !isset( $subPage ) || $subPage === '' ) {
 			// the user probably visited the page just to see what would happen, so explain it a bit.
 			$code = '400';
 			$message = "Missing key\n\n" 
