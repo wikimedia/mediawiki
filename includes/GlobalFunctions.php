@@ -609,6 +609,9 @@ function wfUILang() {
 function wfMessage( $key /*...*/) {
 	$params = func_get_args();
 	array_shift( $params );
+	if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+		$params = $params[0];
+	}
 	return new Message( $key, $params );
 }
 
@@ -1234,23 +1237,28 @@ function wfNumLink( $offset, $limit, $title, $query = '' ) {
  * @return bool Whereas client accept gzip compression
  */
 function wfClientAcceptsGzip() {
-	if( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
-		# FIXME: we may want to blacklist some broken browsers
-		$m = array();
-		if( preg_match(
-			'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
-			$_SERVER['HTTP_ACCEPT_ENCODING'],
-			$m )
-		)
-		{
-			if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) {
-				return false;
+	static $result = null;
+	if ( $result === null ) {
+		$result = false;
+		if( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
+			# FIXME: we may want to blacklist some broken browsers
+			$m = array();
+			if( preg_match(
+				'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
+				$_SERVER['HTTP_ACCEPT_ENCODING'],
+				$m )
+			)
+			{
+				if( isset( $m[2] ) && ( $m[1] == 'q' ) && ( $m[2] == 0 ) ) {
+					$result = false;
+					return $result;
+				}
+				wfDebug( " accepts gzip\n" );
+				$result = true;
 			}
-			wfDebug( " accepts gzip\n" );
-			return true;
 		}
 	}
-	return false;
+	return $result;
 }
 
 /**
