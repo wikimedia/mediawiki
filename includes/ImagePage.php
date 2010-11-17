@@ -518,6 +518,10 @@ EOT
 		$descUrl = $this->img->getDescriptionUrl();
 		$descText = $this->img->getDescriptionText();
 
+		if( $descUrl ) {
+			$wgOut->addLink( array( 'rel' => 'canonical', 'href' => $descUrl ) );
+		}
+
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
 		$repo = $this->img->getRepo()->getDisplayName();
 
