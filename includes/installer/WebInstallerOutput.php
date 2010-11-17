@@ -183,8 +183,8 @@ class WebInstallerOutput {
 </head>
 
 <?php echo Html::openElement( 'body', array( 'class' => $this->getDir() ) ) . "\n"; ?>
-<div id="mw-page-base">
-<div id="mw-head-base">
+<div id="mw-page-base"></div>
+<div id="mw-head-base"></div>
 <div id="content">
 <div id="bodyContent">
 
@@ -201,10 +201,10 @@ class WebInstallerOutput {
 		}
 ?>
 
-</div></div></div>
+</div></div>
 
 
-<div id="column-one">
+<div id="mw-panel">
 	<div class="portlet" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
 	    href="http://www.mediawiki.org/"
