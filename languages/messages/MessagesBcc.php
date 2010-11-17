@@ -8,6 +8,7 @@
  * @file
  *
  * @author Mostafadaneshvar
+ * @author ZxxZxxZ
  */
 
 $fallback = 'fa';
@@ -953,7 +954,7 @@ $1",
 'mergehistory-invalid-destination' => 'صفحه مقصد باید یک معتبرین عنوانی بیت.',
 'mergehistory-autocomment'         => 'چن و بند بوت  [[:$1]] په [[:$2]]',
 'mergehistory-comment'             => 'چن و بند بوت [[:$1]] په[[:$2]]: $3',
-'mergehistory-same-destination'    => 'صفحه مبدا و مقصد یکی نه بنت',
+'mergehistory-same-destination'    => 'صفحهٔ مبدأ و مقصد نمی‌تواند یکی باشد',
 'mergehistory-reason'              => 'دلیل:',
 
 # Merge log

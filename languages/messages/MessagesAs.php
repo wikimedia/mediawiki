@@ -284,7 +284,7 @@ $messages = array(
 'unprotectthispage' => 'এই পৃষ্ঠা সংৰক্ষণমুক্ত কৰক',
 'newpage'           => 'নতুন পৃষ্ঠা',
 'talkpage'          => 'এই পৃষ্ঠা সম্পৰ্কে কথা-বতৰা',
-'talkpagelinktext'  => 'বাৰ্তালাপ',
+'talkpagelinktext'  => 'আলোচনা',
 'specialpage'       => 'বিশেষ পৃষ্ঠা',
 'personaltools'     => 'ব্যক্তিগত সৰঞ্জাম',
 'postcomment'       => 'নতুন অনুচ্ছেদ',
@@ -311,13 +311,13 @@ $messages = array(
 'jumptosearch'      => 'সন্ধানাৰ্থে',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}}ৰ ইতিবৃত্ত',
+'aboutsite'            => '{{SITENAME}}ৰ বৃত্তান্ত',
 'aboutpage'            => 'Project:ইতিবৃত্ত',
 'copyright'            => 'এই লিখনী $1 ৰ অন্তর্গত উপলব্ধ।',
 'copyrightpage'        => '{{ns:project}}:স্বত্ব',
 'currentevents'        => 'সাম্প্রতিক ঘটনাৱলী',
 'currentevents-url'    => 'Project:শেহতীয়া ঘটনাৱলী',
-'disclaimers'          => 'দায়লুপ্তি',
+'disclaimers'          => 'ঘোষণা',
 'disclaimerpage'       => 'Project:সাধাৰণ দায়লুপ্তি',
 'edithelp'             => 'সম্পাদনাৰ বাবে সহায়',
 'edithelppage'         => 'Help:সম্পাদনা',
@@ -343,7 +343,7 @@ $messages = array(
 'newmessageslink'         => 'নতুন বার্তা',
 'newmessagesdifflink'     => 'শেহতিয়া সাল-সলনি',
 'youhavenewmessagesmulti' => '$1 ত আপোনাৰ কাৰণে নতুন বার্তা আছে',
-'editsection'             => 'সম্পাদন কৰক',
+'editsection'             => 'লিখক',
 'editold'                 => 'সম্পাদনা',
 'viewsourceold'           => 'অক্ষৰ-মূল দেখুওৱা হওক',
 'editlink'                => 'সম্পাদনা',
@@ -746,7 +746,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'difference'              => 'বিভিন্ন সংস্কৰণৰ প্রভেদ',
 'lineno'                  => 'পংক্তি $1:',
 'compareselectedversions' => 'নির্বাচিত কৰা সংকলন সমূহৰ মাজত পার্থক্য চাঁওক ।',
-'editundo'                => 'পূৰ্ববতাৰ্থে',
+'editundo'                => 'পূৰ্ববত কৰক',
 
 # Search results
 'searchresults'                  => 'অনুসন্ধানৰ ফলাফল',

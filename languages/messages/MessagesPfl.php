@@ -15,6 +15,9 @@
 $fallback = 'de';
 
 $messages = array(
+# User preference toggles
+'tog-showtoolbar' => "Werkzaich zum Bearwaide zaische (dodezu braucht's JavaScript)",
+
 'underline-always'  => 'Immer',
 'underline-never'   => 'Garnet',
 'underline-default' => 'Des nemme, was em Broweser gsaacht hoscht.',
@@ -59,11 +62,12 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Kadegorie|Kadegorie}}',
-'category_header'        => 'Saire in de Kategorie "$1"',
+'category_header'        => 'Saide in de Kadegorie „$1“',
 'subcategories'          => 'Unnerkadegorie',
+'category-media-header'  => 'Medie in de Kadegorie „$1“',
 'hidden-categories'      => '{{PLURAL:$1|Versteckelte Kadegorie|Versteckelte Kadegorie}}',
 'category-subcat-count'  => '{{PLURAL:$2|Die Kategorie hot die Unnerkategorie:|{{PLURAL:$1|Die Unnerkategori isch eni vun insgsamt $2 Unnerkategorie in derre Kategorie:|S werre $1 vun insgsamt $2 Unnerkategorie in derre Kategorie aagezeicht:}}}}',
-'category-article-count' => '{{PLURAL:$2|In derre Kategorie hot s numme die Said.|Die {{PLURAL:$1|Said|$1 Saire}} gebbt s in derre Kategoriey, vun insgsamt $2.}}',
+'category-article-count' => "{{PLURAL:$2|In derre Kadegorie hot's numme die Said.|Die {{PLURAL:$1|Said|$1 Saide}} gebbt's in derre Kadegorie, vun insgsamt $2.}}",
 'listingcontinuesabbrev' => '(Forts.)',
 
 'about'      => 'Iwwer',
@@ -75,7 +79,7 @@ $messages = array(
 # Cologne Blue skin
 'qbfind'      => 'Finne',
 'qbedit'      => 'Bearwaide',
-'qbmyoptions' => 'Mai Saire',
+'qbmyoptions' => 'Mai Saide',
 
 # Vector skin
 'vector-action-move' => 'Verschiewe',
@@ -89,7 +93,7 @@ $messages = array(
 'searchbutton'     => 'Suche',
 'go'               => 'Adiggel',
 'searcharticle'    => 'Suche',
-'history'          => 'Sairegschicht',
+'history'          => 'Gschicht vun de Said',
 'history_short'    => 'Versione',
 'printableversion' => 'Druck-Aasicht',
 'permalink'        => 'Permanentlink',
@@ -157,7 +161,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Said',
-'nstab-user'      => 'Benutzerseid',
+'nstab-user'      => 'Benutzersaid',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Spezialsaid',
 'nstab-project'   => 'Pordal',
@@ -175,8 +179,8 @@ Normalerwais hääßt des, dass die Said glescht woore isch.
 Wenn s des nit isch, hoscht villaicht en Fehler in de Datebank gfunne.
 Bitte meld des an e [[Special:ListUsers/sysop|Adminischtrator]], un gebb d URL dezu aa.',
 'missingarticle-rev' => '(Versionsnummer#: $1)',
-'badtitletext'       => 'De Titel vun de aageforderte Said isch nid giltich, leer, orrer e nid giltiche Link vun eme annere Wiki.
-S kann sai, dass es ää orrer meh Zaiche drin hot, wu in Sairetitel nid därfe gebraucht werre.',
+'badtitletext'       => 'De Titel vun de aageforderte Said isch nid giltich, leer, odder e nid giltiche Link vun eme annere Wiki.
+S kann sai, dass es ää odder meh Zaiche drin hot, wu im Titel vun de Said nid gebraucht werre därfe.',
 'viewsource'         => 'Quelltekschd betrachde',
 
 # Login and logout pages
@@ -216,18 +220,18 @@ S kann sai, dass es ää orrer meh Zaiche drin hot, wu in Sairetitel nid därfe 
 'subject'                          => 'Betreff:',
 'minoredit'                        => 'Des ischt e klänni Bearwaidung',
 'watchthis'                        => 'Die Said beowachde',
-'savearticle'                      => 'Seid schbeichere',
+'savearticle'                      => 'Said schbeichere',
 'preview'                          => 'Vorschau',
-'showpreview'                      => 'Vorschau zeiche',
+'showpreview'                      => 'Vorschau zaische',
 'showlivepreview'                  => 'Live-Vorschau',
-'showdiff'                         => 'Ännerunge zeiche',
+'showdiff'                         => 'Ännerunge zaische',
 'anoneditwarning'                  => "'''Warnung:''' Du bischt nit aagemeldt. Dai IP-Adress werd in de Gschicht vun dem Artikel gspaichert.",
 'summary-preview'                  => 'Zammefassung:',
 'newarticle'                       => '(Nai)',
 'newarticletext'                   => "Du bisch eme Link nogange zu re Said, wu s no gar nit gebbt.
 Zum die Said aaleche, kannscht do in dem Käschtel unne aafange mid schraiwe (guck[[{{MediaWiki:Helppage}}|Hilfe]] fer meh Informatione).
 Wenn do nid hin hoscht welle, no druck in Daim Browser uff '''Zrick'''.",
-'noarticletext'                    => 'Uff derre Said gebbt s noch ken Text. Du kannscht uff annere Saire [[Special:Search/{{PAGENAME}}|den Aitrach suche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de Logbuchaidrach suche, wu dezu ghert],
+'noarticletext'                    => 'Uff derre Said gebbt\'s noch kää Text. Du kannscht uff annere Saide [[Special:Search/{{PAGENAME}}|den Aitrach suche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de Logbuchaidrach suche, wu dezu ghert],
 orrer [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Said bearwaide]</span>.',
 'previewnote'                      => "'''Denk dran, dass des numme e Vorschau isch.'''
 Dai Ännerunge sinn no nid gspaichert worre!",
@@ -281,10 +285,10 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'searchresults'             => 'Ergebnis suche',
 'searchresults-title'       => 'Ergebnis suche fer "$1"',
 'searchresulttext'          => 'Fer mehr Informatione iwwer d Such in {{SITENAME}}, guck emol uff [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Du hoscht no \'\'\'[[:$1]]\'\'\' gesucht ([[Special:Prefixindex/$1|alle Saire wo mit "$1" aafange]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Saire wo uf "$1" verlinkt sin]])',
+'searchsubtitle'            => 'Du hoscht no \'\'\'[[:$1]]\'\'\' gesucht ([[Special:Prefixindex/$1|alle Saide wo mit "$1" aafange]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Saide wo uf "$1" verlinkt sin]])',
 'searchsubtitleinvalid'     => "Du hoscht '''$1''' gsucht",
-'notitlematches'            => 'Ken Sairetitel gfunne',
-'notextmatches'             => 'Ken Iwwerainstimmunge mit Inhalte',
+'notitlematches'            => 'Kää Saidetitel gfunne',
+'notextmatches'             => 'Kää Iwwerainstimmunge mit Inhalde',
 'prevn'                     => 'voriche {{PLURAL:$1|$1}}',
 'nextn'                     => 'negschte {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Gugg ($1 {{int:pipe-separator}} $2) ($3)',
@@ -297,7 +301,7 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'search-interwiki-more'     => '(meh)',
 'search-mwsuggest-enabled'  => 'mid Vorschläch',
 'search-mwsuggest-disabled' => 'ke Vorschläch',
-'nonefound'                 => "'''Hiiwais:''' S werre standardmäßich numme e Dail Namensraim durchsucht. Setz ''all:'' vor Dai Suchbegriff zum alle Saire (mit Dischbediersaire, Vorlache usw.) durchsuche orrer direkt de Name vum Namensraum, wu durchsucht werre sell.",
+'nonefound'                 => "'''Hiiwais:''' S werre standardmäßich numme e Dail Namensraim durchsucht. Setz ''all:'' vor Dai Suchbegriff zum alle Saide (mit Dischbediersaide, Voalaache usw.) durchsuche odder direkt de Name vum Namensraum, wu durchsucht werre sell.",
 'powersearch'               => 'Erwaiterte Such',
 'powersearch-legend'        => 'Erwaiterte Such',
 'powersearch-ns'            => 'In de Namensraim suche:',
@@ -337,38 +341,38 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'recentchanges-feed-description' => 'Di letschte Ännerunge vun {{SITENAME}} in des Feed aigewwe.',
 'rcnote'                         => "Aagezaicht {{PLURAL:$1|werd '''1''' Ännerung|werre die letschte '''$1''' Ännerunge}} {{PLURAL:$2|vum letschte Dach|in de letschte '''$2''' Dache}} (Stand: $4, $5)",
 'rclistfrom'                     => 'Zeich die letschte Ännerunge ab $1',
-'rcshowhideminor'                => '$1 klenne Ännerunge',
-'rcshowhidebots'                 => '$1 Bots',
-'rcshowhideliu'                  => '$1 aagemeldte Benutzer',
+'rcshowhideminor'                => 'Klenne Ännerunge $1',
+'rcshowhidebots'                 => 'Bots $1',
+'rcshowhideliu'                  => 'Aagemeldte Benutzer $1',
 'rcshowhideanons'                => 'Nit aagemeldte Benutzer $1',
-'rcshowhidemine'                 => '$1 mai Bearwaidunge',
+'rcshowhidemine'                 => 'Mai Bearwaidunge $1',
 'rclinks'                        => 'Zeich die letschte $1 Ännerunge in de letschte $2 Dache<br />$3',
 'diff'                           => 'Unnerschied',
 'hist'                           => 'Gschicht',
-'hide'                           => 'Versteckeln',
-'show'                           => 'Zääche',
+'hide'                           => 'versteggeln',
+'show'                           => 'zaiche',
 'minoreditletter'                => 'k',
 'newpageletter'                  => 'N',
-'boteditletter'                  => 'b',
-'rc-enhanced-expand'             => 'Details zaiche (dodezu braucht s JavaScript)',
+'boteditletter'                  => 'B',
+'rc-enhanced-expand'             => "Details zaische (dodezu braucht's JavaScript)",
 'rc-enhanced-hide'               => 'Details versteckeln',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Was on verlinkde Seide gemacht worre isch',
+'recentchangeslinked'         => 'Was on verlinkde Saide gemacht worre isch',
 'recentchangeslinked-feed'    => 'Was on verlinkde Seide gemacht worre isch',
 'recentchangeslinked-toolbox' => 'Was on verlinkde Seide gemacht worre isch',
-'recentchangeslinked-title'   => 'Ännerunge an Saire, wu „$1“ druf verlinkt',
-'recentchangeslinked-summary' => "Des isch e Lischt vun Ännerunge, wu erscht gmacht worre sin an Saire, die wu vun ere bstimmte Said verlinkt sin (orrer die wu zu ere bstimmte Kategorie ghere).
-Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
-'recentchangeslinked-page'    => 'Sairename:',
-'recentchangeslinked-to'      => 'Zeich Ännerunge uff Saire, wu do her verlinkt sinn',
+'recentchangeslinked-title'   => 'Ännerunge an Saide, wu „$1“ druf verlinkt',
+'recentchangeslinked-summary' => "Des isch e Lischt vun Ännerunge, wu erscht gmacht worre sin an Saide, die wu vun ere bstimmte Said verlinkt sin (odder die wu zu ere bstimmte Kadegorie ghere).
+Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
+'recentchangeslinked-page'    => 'Saide:',
+'recentchangeslinked-to'      => 'Zaisch Ännerunge uff Saide, wu do her verlinkt sinn',
 
 # Upload
 'upload'        => 'Hochlade',
 'uploadbtn'     => 'Datei hochlade',
 'uploadlogpage' => 'Dateie-Logbuch',
 'savefile'      => 'Datei schbeichere',
-'uploadedimage' => 'hot "[[$1]]" hochglare',
+'uploadedimage' => 'hot „[[$1]]“ hochglade',
 
 # File description page
 'file-anchor-link'          => 'Datei',
@@ -384,7 +388,7 @@ Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'imagelinks'                => 'Dateilinks',
 'linkstoimage'              => 'Die {{PLURAL:$1|Said verwaist|$1 Saire verwaise}} uff die Datei:',
 'sharedupload'              => 'Die Datei isch vun $1 un s kann sai, dass se ach vun annere Projekt gebraucht werd.',
-'uploadnewversion-linktext' => 'E naiere Version vun derre Datei hochlare',
+'uploadnewversion-linktext' => 'E naiere Version vun derre Datei hochlade',
 
 # File deletion
 'filedelete-submit' => 'Lesche',
@@ -401,8 +405,8 @@ Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'nmembers'      => '$1 {{PLURAL:$1|Mitglied|Mitglieder}}',
-'prefixindex'   => 'Alle Saire (mid Präfix)',
-'newpages'      => 'Naie Saire',
+'prefixindex'   => 'Alle Saide (mid Präfix)',
+'newpages'      => 'Naie Saide',
 'move'          => 'Verschiewe',
 'movethispage'  => 'Die Said verschiewe',
 'pager-newer-n' => '{{PLURAL:$1|negschte 1|negschte $1}}',
@@ -417,13 +421,13 @@ Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'log' => 'Logbiecher',
 
 # Special:AllPages
-'allpages'       => 'Alle Saire',
+'allpages'       => 'Alle Saide',
 'alphaindexline' => 'vun $1 bis $2',
 'prevpage'       => 'Voriche Said ($1)',
-'allpagesfrom'   => 'Saire aazaiche wu aafange mid:',
-'allpagesto'     => 'Saire aazaiche wu ufhere mid:',
-'allarticles'    => 'Alle Saire',
-'allpagessubmit' => 'Zeiche',
+'allpagesfrom'   => 'Saide aazaische wu aafange mid:',
+'allpagesto'     => 'Saide aazaische wu ufhere mid:',
+'allarticles'    => 'Alle Saide',
+'allpagessubmit' => 'Zaische',
 
 # Special:LinkSearch
 'linksearch' => 'Externe Links',
@@ -450,7 +454,7 @@ Zukimftiche Ännerunge an derre Said un de Dischbediersaid, wu dezu ghert, werre
 'watch'             => 'Beowachde',
 'watchthispage'     => 'Die Said beowachde',
 'unwatch'           => 'Nimmi beowachde',
-'watchlist-details' => 'S hot {{PLURAL:$1|$1 Said|$1 Saire}} uff Dainer Beowachdungslischt, Dischbediersaire zelle nid.',
+'watchlist-details' => 'S hot {{PLURAL:$1|$1 Said|$1 Saide}} uff Dainer Beowachdungslischt, Dischbediersaide zelle nid.',
 'wlshowlast'        => 'Die letschte $1 Stunne $2 Dache $3 zaiche',
 'watchlist-options' => 'Optione vun de Beowachdungslischt',
 
@@ -461,7 +465,7 @@ Zukimftiche Ännerunge an derre Said un de Dischbediersaid, wu dezu ghert, werre
 'enotif_reset' => 'Alle Seide als bsuchd margiere',
 
 # Delete
-'deletepage'            => 'Seid lesche',
+'deletepage'            => 'Said lesche',
 'confirm'               => 'Bestädiche',
 'delete-legend'         => 'Lesche',
 'confirmdeletetext'     => 'Du bisch debai e Said z lesche mid alle Versione.
@@ -479,7 +483,7 @@ Guck $2 fer e Lischt vun de letschte Leschunge.',
 'rollbacklink' => 'Zericksetze',
 
 # Protect
-'protectlogpage'              => 'Saireschutz-Logbuch',
+'protectlogpage'              => 'Saideschutz-Logbuch',
 'protectedarticle'            => 'hot "[[$1]]" gschitzt',
 'modifiedarticleprotection'   => 'hot de Schutzstatus vun "[[$1]]" gännert',
 'protectcomment'              => 'Grund:',
@@ -489,8 +493,8 @@ Guck $2 fer e Lischt vun de letschte Leschunge.',
 'protect-text'                => "Du kannscht de Schutzstatus vun de Said '''<nowiki>$1</nowiki>''' aagucke un ännere.",
 'protect-locked-access'       => "Dai Benutzerkonto hot ken Recht zum de Schutzstatus vun ener Said ze ännere.
 Do hot s di aktuelle Aistellunge vun de Said '''$1''':",
-'protect-cascadeon'           => 'Die Said isch gschitzt, wail se {{PLURAL:$1|zu derre Said ghert|zu denne Saire ghert}}, wu e Kaskadesperrung gelt.
-Der Schutzstatus vun derre Said kannscht ännere, awwer des hot ken Aifluss uff d Kaskadesperrung.',
+'protect-cascadeon'           => 'Die Said isch gschitzt, wail se {{PLURAL:$1|zu derre Said ghert|zu denne Saide ghert}}, wu e Kaskadesperrung gelt.
+Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uff d Kaskadesperrung.',
 'protect-default'             => 'Alle Benutzer erlääwe',
 'protect-fallback'            => '«$1»-Berechdichung nedich',
 'protect-level-autoconfirmed' => 'Naie un nid aagemeldte Benutzer sperre',
@@ -536,9 +540,9 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot ken Aifluss uff 
 
 # What links here
 'whatlinkshere'            => 'Was doher zeischt',
-'whatlinkshere-title'      => 'Saire wu uff "$1" verlinke',
+'whatlinkshere-title'      => 'Saide wu uff "$1" verlinke',
 'whatlinkshere-page'       => 'Said:',
-'linkshere'                => "Die Saire verlinke zu '''[[:$1]]''':",
+'linkshere'                => "Die Saide verlinke zu '''[[:$1]]''':",
 'isredirect'               => 'Wairerlaitungsaid',
 'istemplate'               => 'Vorlacheaibindung',
 'isimage'                  => 'Bildlink',
@@ -570,28 +574,29 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot ken Aifluss uff 
 'unlockbtn' => 'Dadebonk freigewwe',
 
 # Move page
+'move-page-legend' => 'Said verschiewe',
 'movepagetext'     => "Mid dem Format kannscht ener Said e naie Name gewwe, debai werre alle alde Versione uff de nai Name verschowe.
 Aus em Alde Name werd e Wairerlaidungssaid´zum naie Name.
 Wairerlaidungssaide, wu uff de ald Name umlaire, kannscht automatisch aktualisiere.
 Wenn De des nid willsch, no guck uff [[Special:DoubleRedirects|doppelte]] orrer [[Special:BrokenRedirects|kaputte Wairerlaidunge]].
-Du solltescht defer sorche, dass Links wairer zu de richdiche Saire fiehre.
+Du solltescht defer sorche, dass Links wairer zu de richdiche Saide fiehre.
 
 Gebb Acht, dass die Said '''nid''' verschowe werd, wenn s scho e Said mid em naie Name hot, außer wenn se leer isch orrer e Wairerlaidung.
 Des hääßt, Du kannscht ke Said, wu s schun gebbt, iwwerschraiwe.
 
 '''WARNUNG!'''
-Des isch e wichdiche Ännerung fer e Said un kann ziehmlich unerwartet sai fer wichdiche Saire;
+Des isch e wichdiche Ännerung fer e Said un kann ziehmlich unerwartet sai fer wichdiche Saide;
 bitte mach des numme, wenn Du die Folche vun derre Aktion kannsch abschätze.",
 'movepagetalktext' => "D Dischbediersaid werd ach mid verschowe, '''ausser:'''
-*Du verschiebsch die Saire in e annere Nasmensraum, orrer
-*s gebbt schun e Dischbediersaid mi dem Name, orrer
-*Du wählsch unne d Option, se nid z verschiewe.
+* Du verschiebsch die Saide in e annere Namensraum, odder
+* s gebbt schun e Dischbediersaid mi dem Name, orrer
+* Du wählsch unne d Option, se nid z verschiewe.
 
 In denne Fäll misst mer d Dischbediersaid vun Hand kopiere.",
 'movearticle'      => 'Said verschiewe:',
 'newtitle'         => 'Zum naie Titel:',
 'move-watch'       => 'Die Said beowachde',
-'movepagebtn'      => 'Seid verschiewe',
+'movepagebtn'      => 'Said verschiewe',
 'pagemovedsub'     => 'Verschiewung hot geklappt',
 'movepage-moved'   => '\'\'\'"$1" isch verschowe worre uff "$2"\'\'\'',
 'articleexists'    => 'E Said mid dem Name gebbt s schun, orrer de Name, wu du gewählt hoscht, isch nid gildich.
@@ -608,7 +613,7 @@ Bitte duu se vun Hand zammefiehre.'''",
 'delete_and_move'  => 'Lesche un Verschiewe',
 
 # Export
-'export'        => 'Saire exportiere',
+'export'        => 'Saide exportiere',
 'export-submit' => 'Seide exbordiere',
 
 # Thumbnails
@@ -621,13 +626,13 @@ Bitte duu se vun Hand zammefiehre.'''",
 'tooltip-pt-userpage'             => 'Dai Benutzersaid',
 'tooltip-pt-mytalk'               => 'Dai Dischbedier-Said',
 'tooltip-pt-preferences'          => 'Dai Aistellunge',
-'tooltip-pt-watchlist'            => 'D Lischt vun Saire, die wu du beowachde dusch',
+'tooltip-pt-watchlist'            => 'D Lischt vun Saide, die wu du beowachde dusch',
 'tooltip-pt-mycontris'            => 'Lischt vun Daine Baidräch',
 'tooltip-pt-login'                => 'Du kannscht Dich aamelde, awwer du muscht s nit',
 'tooltip-pt-logout'               => 'Abmelde',
 'tooltip-ca-talk'                 => 'Iwwer d Inhaltssaid dischbediere',
 'tooltip-ca-edit'                 => 'Du kannscht die Said bearwaide.
-Bitte brauch de Vorschau-Knopp vor em Spaichere',
+Bitte brauch de Vorschau-Knopp vor em Schbaichere',
 'tooltip-ca-addsection'           => 'E naie Abschnitt aaleche',
 'tooltip-ca-viewsource'           => 'Die Said isch gschitzt.
 Du kannscht awwer de Quelltext aagucke',
@@ -639,22 +644,23 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-ca-unwatch'              => 'Die Said aus Dainer Beowachdunschlischde rausnemme',
 'tooltip-search'                  => 'Durchsuch {{SITENAME}}',
 'tooltip-search-go'               => 'Geh zu ere Said mit genää dem Namme, wenn s se gebbt',
-'tooltip-search-fulltext'         => 'Such in de Saire noch dem Text',
+'tooltip-search-fulltext'         => 'Such in de Said noch dem Text',
+'tooltip-p-logo'                  => 'Haubdsaid',
 'tooltip-n-mainpage'              => 'Uff d Hääptsaid geh',
-'tooltip-n-mainpage-description'  => 'Hauptseide angucke',
+'tooltip-n-mainpage-description'  => 'Haubdsaid aagucke',
 'tooltip-n-portal'                => 'Iwwer s Projekt, was de duu kannscht, wo de ebbes finnscht',
 'tooltip-n-currentevents'         => 'hinnergundsinformatione finne iwwer naie Eraichnis',
 'tooltip-n-recentchanges'         => 'D Lischt vun de letschte Ännerunge in dem Wiki',
 'tooltip-n-randompage'            => 'E zufälliche Said lade',
 'tooltip-n-help'                  => 'De Ort zum rausfinne',
-'tooltip-t-whatlinkshere'         => 'Lischt vun alle Wikisaire, wo do her verlinkt sin',
-'tooltip-t-recentchangeslinked'   => 'Letschte Ännerunge in Saire, wu vun do verlinkt sin',
+'tooltip-t-whatlinkshere'         => 'Lischt vun alle Wikisaide, wo do her verlinkt sin',
+'tooltip-t-recentchangeslinked'   => 'Letschte Ännerunge in Saide, wu vun do verlinkt sin',
 'tooltip-feed-rss'                => 'RSS feed fer die Said',
 'tooltip-feed-atom'               => 'Atom feed fer die Said',
 'tooltip-t-contributions'         => 'Die letschte Baidräch vun däm Benutzer aagucke',
 'tooltip-t-emailuser'             => 'Dem Benutzer e E-Mail schicke',
 'tooltip-t-upload'                => 'Dateie nuflade',
-'tooltip-t-specialpages'          => 'Lischt vun alle Spezialsaire',
+'tooltip-t-specialpages'          => 'Lischt vun alle Spezialsaide',
 'tooltip-t-print'                 => 'Druckversion vun derre Said',
 'tooltip-t-permalink'             => 'E dauerhafte Link zu derre Version vun de Said',
 'tooltip-ca-nstab-main'           => 'D Inhaldssaid aagucke',
@@ -686,14 +692,15 @@ Du kannscht e Grund in dr Zammfassung aagewwe',
 'show-big-image-thumb' => '<small>Greß vun derre Vorschau: $1 × $2 Pixels</small>',
 
 # Special:NewFiles
-'ilsubmit' => 'Such',
+'showhidebots' => '(Bots $1)',
+'ilsubmit'     => 'Such',
 
 # Bad image list
 'bad_image_list' => 'Format:
 
 nur Zaile, die wu mit eme * aafange werre bericksichticht.
-De erscht Link muss e Link zu ere unerwisc nhte Datei sai.
-Annere Links in derglaiche Zail werre als Ausnahme behannelt, d. h. Saire, wu d Datei drin vorkumme därft',
+De erscht Link muss e Link zu ere unerwinschte Datei sai.
+Annere Links in der glaiche Zail werre als Ausnahme behannelt, d. h. Saide, wu d Datei drin vorkumme därft.',
 
 # Metadata
 'metadata'          => 'Metadata',
@@ -728,7 +735,7 @@ Annere Metadate sinn standardmäßig versteckelt.
 'watchlisttools-raw'  => 'ime große Textfeld bearwaide',
 
 # Special:SpecialPages
-'specialpages' => 'Spezialsaire',
+'specialpages' => 'Spezialsaide',
 
 # Special:Tags
 'tags-edit' => 'bearwaide',

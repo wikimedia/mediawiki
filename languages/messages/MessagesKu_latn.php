@@ -814,7 +814,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 
 # Groups
 'group'            => 'گرووپ:',
-'group-user'       => 'بەکارھێنەران',
+'group-user'       => 'Bikarhêneran',
 'group-bot'        => 'Bot',
 'group-sysop'      => 'Koordînatoran',
 'group-bureaucrat' => 'Bûrokrat',

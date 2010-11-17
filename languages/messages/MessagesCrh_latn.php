@@ -1617,7 +1617,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 
 # What links here
 'whatlinkshere'            => 'Bu saifege bağlantılar',
-'whatlinkshere-title'      => '$1 saifesine bağlantı olğan saifeler',
+'whatlinkshere-title'      => '$1 saifesine bağlantı bergen saifeler',
 'whatlinkshere-page'       => 'Saife:',
 'linkshere'                => "Bu saifeler '''[[:$1]]''' saifesine bağlantısı olğan:",
 'nolinkshere'              => "'''[[:$1]]''' saifesine bağlanğan saife yoq.",

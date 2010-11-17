@@ -7554,31 +7554,31 @@ Jeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zai
 	'config-have-db' => 'Odnaleziono {{PLURAL:$2|sterownik bazy danych|sterowniki bazy danych:}} $1.',
 	'config-have-fts3' => 'SQLite został skompilowany z [http://sqlite.org/fts3.html modułem FTS3] – funkcje wyszukiwania będą dostępne.',
 	'config-no-fts3' => "'''Uwaga''' – SQLite został skompilowany bez [http://sqlite.org/fts3.html modułu FTS3] – funkcje wyszukiwania nie będą dostępne.",
-	'config-register-globals' => "'''Ostrzeżenie: opcja <code>[http://php.net/register_globals register_globals]</code> jest włączona w konfiguracji PHP.'''
+	'config-register-globals' => "'''Uwaga –  w konfiguracji PHP włączona jest opcja <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Jeśli możesz, wyłącz ją.'''
-MediaWiki będzie działać, ale Twój serwer może być narażony na potencjalne luki w zabezpieczeniach.",
-	'config-magic-quotes-runtime' => "'''Błąd krytyczny: włączono [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]!'''
-Ta opcja powoduje nieprzewidywalne szkody podczas wprowadzania danych.
-Nie można zainstalować lub korzystać z MediaWiki, chyba że ta opcja jest wyłączona.",
-	'config-magic-quotes-sybase' => "'''Błąd krytyczny: włączono [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]!'''
-Ta opcja powoduje nieprzewidywalne szkody podczas wprowadzania danych.
-Nie można zainstalować lub korzystać z MediaWiki, chyba że ta opcja jest wyłączona.",
-	'config-mbstring' => "'''Błąd krytyczny: włączono [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]!'''
-Ta opcja powoduje błędy i może powodować nieprzewidywalne szkody podczas wprowadzania danych.
-Nie można zainstalować lub korzystać z MediaWiki, chyba że ta opcja jest wyłączona.",
-	'config-ze1' => "'''Błąd krytyczny: włączono [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]!'''
+MediaWiki będzie działać, ale Twój serwer może być narażony potencjalnymi lukami w zabezpieczeniach.",
+	'config-magic-quotes-runtime' => "'''Błąd krytyczny – włączono [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]!'''
+Ta opcja powoduje nieprzewidywalne uszkodzenia wprowadzanych danych.
+Zainstalować lub korzystać z MediaWiki można pod warunkiem, że ta opcja jest wyłączona.",
+	'config-magic-quotes-sybase' => "'''Błąd krytyczny – włączono [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]!'''
+Ta opcja powoduje nieprzewidywalne uszkodzenia wprowadzanych danych.
+Zainstalować lub korzystać z MediaWiki można pod warunkiem, że ta opcja jest wyłączona.",
+	'config-mbstring' => "'''Błąd krytyczny – włączono [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]!'''
+Ta opcja powoduje błędy i może wywołać nieprzewidywalne uszkodzenia wprowadzanych danych.
+Zainstalować lub korzystać z MediaWiki można pod warunkiem, że ta opcja jest wyłączona.",
+	'config-ze1' => "'''Błąd krytyczny – włączono [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]!'''
 Ta opcja powoduje okropne błędy podczas korzystania z MediaWiki.
-Nie można zainstalować lub korzystać z MediaWiki, chyba że ta opcja jest wyłączona.",
-	'config-safe-mode' => "'''Ostrzeżenie:''' uaktywniono [http://www.php.net/features.safe-mode tryb awaryjny] PHP.
-Opcja ta może powodować problemy, szczególnie w przypadku wysyłania plików i używania tagu <code>math</code>.",
+Zainstalować lub korzystać z MediaWiki można wyłącznie wtedy, gdy ta opcja jest wyłączona.",
+	'config-safe-mode' => "'''Ostrzeżenie''' – uaktywniono [http://www.php.net/features.safe-mode tryb awaryjny] PHP.
+Opcja ta może powodować problemy, szczególnie w przypadku korzystania z przesyłania plików i używania znacznika <code>math</code>.",
 	'config-xml-good' => 'Wsparcie dla konwersji XML / Latin1‐UTF‐8.',
 	'config-xml-bad' => 'Brak modułu XML dla PHP.
 MediaWiki wymaga funkcji z tego modułu i nie może działać w tej konfiguracji.
 Jeśli korzystasz z Mandrake, zainstaluj pakiet php-xml.',
 	'config-pcre' => 'Wygląda na to, że brak modułu PCRE.
 MediaWiki do pracy wymaga funkcji obsługi wyrażeń regularnych kompatybilnej z Perlem.',
-	'config-pcre-no-utf8' => "'''Błąd krytyczny''': Moduł PCRE w PHP wydaje się być skompilowany bez wsparcia dla UTF-8.
-MediaWiki wymaga UTF-8 do prawidłowego działania.",
+	'config-pcre-no-utf8' => "'''Błąd krytyczny''' – wydaje się, że moduł PCRE w PHP został skompilowany bez wsparcia dla UTF‐8.
+MediaWiki wymaga wsparcia dla UTF‐8 do prawidłowego działania.",
 	'config-memory-none' => 'PHP jest skonfigurowany bez <code>memory_limit</code>',
 	'config-memory-ok' => 'PHP <code>memory_limit</code> jest ustawione na $1.
 OK.',
@@ -9017,8 +9017,11 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-uploads-safe' => 'Директория по умолчанию для загрузок безопасна от выполнения произвольных скриптов.',
 	'config-uploads-not-safe' => "'''Внимание.''' Ваша директория по умолчанию для загрузок <code>$1</code> уязвима к выполнению произвольных скриптов. 
 Хотя MediaWiki проверяет все загружаемые файлы на наличие угроз, настоятельно рекомендуется [http://www.mediawiki.org/wiki/Manual:Security#Upload_security закрыть данную уязвимость] перед включением загрузки файлов.",
-	'config-brokenlibxml' => 'В вашей система имеется сочетание версия PHP и libxml2, вызывающее ошибки, способное вызвать скрытые повреждения данных в MediaWiki и других веб-приложениях. 
-Обновите программы до версий PHP 5.2.9 или старше и libxml2 2.7.3 или старше ([http://bugs.php.net/bug.php?id=45996 сведения об ошибке]). 
+	'config-brokenlibxml' => 'В вашей системе имеется сочетание версий PHP и libxml2, могущее привести к скрытым повреждениям данных в MediaWiki и других веб-приложениях. 
+Обновите PHP до версии 5.2.9 или старше и libxml2 до 2.7.3 или старше ([http://bugs.php.net/bug.php?id=45996 сведения об ошибке]). 
+Установка прервана.',
+	'config-using531' => 'PHP $1 не совместим с MediaWiki из-за ошибки с параметрами-ссылками при вызовах <code>__call()</code>.
+Обновитесь до PHP 5.3.2 и выше, или откатитесь до PHP 5.3.0, чтобы избежать этой проблемы ([http://bugs.php.net/bug.php?id=50394 см. баг-трекер PHP]).
 Установка прервана.',
 	'config-db-type' => 'Тип базы данных:',
 	'config-db-host' => 'Хост базы данных:',
@@ -9039,6 +9042,10 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-db-install-account' => 'Учётная запись для установки',
 	'config-db-username' => 'Имя пользователя базы данных:',
 	'config-db-password' => 'Пароль базы данных:',
+	'config-db-install-username' => 'Введите имя пользователя, которое будет использоваться для подключения к базе данных в процессе установки. 
+Это не имя участника MediaWiki, это имя пользователя для базы данных.',
+	'config-db-install-password' => 'Введите пароль, который будет использоваться для подключения к базе данных в процессе установки. 
+Это не пароль участника MediaWiki, это пароль для базы данных.',
 	'config-db-install-help' => 'Введите имя пользователя и пароль, которые будут использоваться для подключения к базе данных во время процесса установки.',
 	'config-db-account-lock' => 'Использовать то же имя пользователя и пароль для обычной работы',
 	'config-db-wiki-account' => 'Учётная запись для обычной работы',
@@ -9313,6 +9320,7 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-database' => 'Настройка базы данных',
 	'config-install-pg-schema-failed' => 'Не удалось создать таблицы.
 Убедитесь в том, что пользователь «$1» может писать в схему «$2».',
+	'config-install-pg-commit' => 'Внесение изменений',
 	'config-install-user' => 'Создание базы данных пользователей',
 	'config-install-user-failed' => 'Ошибка предоставления прав пользователю «$1»: $2',
 	'config-install-tables' => 'Создание таблиц',

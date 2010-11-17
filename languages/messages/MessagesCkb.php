@@ -235,7 +235,7 @@ $messages = array(
 'september'     => 'ئەیلوول',
 'october'       => 'تشرینی یەکەم',
 'november'      => 'تشرینی دووەم',
-'december'      => 'کانونی یەکەم',
+'december'      => 'کانوونی یەکەم',
 'january-gen'   => 'کانونی دووەمی',
 'february-gen'  => 'شوباتی',
 'march-gen'     => 'مارتی',
@@ -247,7 +247,7 @@ $messages = array(
 'september-gen' => 'ئەیلولی',
 'october-gen'   => 'تشرینی یەکەمی',
 'november-gen'  => 'تشرینی دووەمی',
-'december-gen'  => 'كانونی یەکەمی',
+'december-gen'  => 'کانوونی یەکەمی',
 'jan'           => 'كا١',
 'feb'           => 'شوب',
 'mar'           => 'مارت',
@@ -277,14 +277,13 @@ $messages = array(
 'category-file-count-limited'    => 'ئەم {{PLURAL:$1|پەڕگە|پەڕگانە}} لەم هاوپۆلەدایە.',
 'listingcontinuesabbrev'         => '(درێژە)',
 
-'mainpagetext'      => "'''ویكیمیدیا به‌سه‌ركه‌وتووی دامه‌زرا.'''",
-'mainpagedocfooter' => 'بكه‌ [http://meta.wikimedia.org/wiki/Help:ناوه‌ڕۆكی چۆنێتی به‌كارهێنان] بۆ وه‌ده‌ست هێنانی زانیاریی له‌سه‌ر چۆنێتی كارگێڕی نه‌رمه‌كاڵای ویكی، سه‌ردانی.
+'mainpagetext'      => "'''میدیاویکی بە سەرکەوتوویی دامەزرا.'''",
+'mainpagedocfooter' => 'پرس بکە بە [http://meta.wikimedia.org/wiki/Help:Contents ڕێنوێنی بەکارھێنەران] بۆ زانیاری سەبارەت بە بەکارھێنانی نەرمامێری ویکی.
 
-== ده‌ست به‌ كاركردن ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings لیسته‌ی هه‌ڵبژاردنه‌كان و ڕێكخستنه‌كان]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لیستی وه‌شانه‌كانی ویكیمیدیا]',
+== دەستپێکردن ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings لیستی ھەڵبژاردەکانی ڕێکخستنەکان]
+* [http://www.mediawiki.org/wiki/Manual:FAQ پرسیارە دوپاتکراوەکانی میدیاویکی (FAQ)]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لیستی ئیمەیڵەکانی وەشانی میدیاویکی]',
 
 'about'         => 'سه‌باره‌ت',
 'article'       => 'بابەت',
@@ -358,11 +357,11 @@ $messages = array(
 'specialpage'       => 'په‌ڕه‌ی تایبه‌ت',
 'personaltools'     => 'ئامڕازە تاکەکەسییەکان',
 'postcomment'       => 'بەشی نوێ',
-'articlepage'       => 'ناوه‌ڕۆكی بابه‌ت ببینه‌',
+'articlepage'       => 'پەڕەی ناوەڕۆک ببینە',
 'talk'              => 'وتووێژ',
 'views'             => 'بینینەکان',
 'toolbox'           => 'ئامرازدان',
-'userpage'          => 'دیتنی په‌ڕه‌ی به‌كارهێنه‌ری',
+'userpage'          => 'بینینی پەڕەی بەکارھێنەر',
 'projectpage'       => 'په‌ڕه‌ی پرۆژه‌ نیشانبده‌',
 'imagepage'         => 'پەڕەی پەڕگە نیشان بدە',
 'mediawikipage'     => 'په‌ڕه‌ی په‌یام نیشانبده‌',
@@ -453,7 +452,7 @@ $1',
 'nstab-category'  => 'ھاوپۆل',
 
 # Main script and global functions
-'nosuchaction'      => 'كرداری به‌م شێوه‌یه‌ نییه‌',
+'nosuchaction'      => 'کردارێک بەم شێوە نییە',
 'nosuchactiontext'  => 'ئەو چالاکییەی لە لایەن بەستەرەوە دیاریکراوە ناتەواوە.
 لەوانەیە بە هەڵە بەستەرەکەت نووسیبێت، یان بەستەرێکی هەڵەی بە دواوە بێت.
 لەوانەیە ئەمە نیشانەی هەڵەیەک بێت لەو نەرمەکاڵایەی کە بەکاردێت لە لایەن {{SITENAME}}.',
@@ -464,7 +463,7 @@ $1',
 
 # General errors
 'error'                => 'هه‌ڵه‌',
-'databaseerror'        => 'هه‌ڵه‌ له‌ بنكه‌دراوه‌دا هه‌یه‌',
+'databaseerror'        => 'ھەڵەی داتابەیس',
 'dberrortext'          => 'ھەڵەیەکی ڕستەنووسی لە داواکاریی بنکەیدراو ڕووی داوە.
 لەوانەیە ئەوە نیشاندەری کەلێنێک لە نەرمامێرەکەدا بێت.
 دوایین تێکۆشان بۆ داواکاری بنکەیدراو:
@@ -491,7 +490,7 @@ $1',
 'missingarticle-rev'   => '(پیاچوونەوە#: $1)',
 'missingarticle-diff'  => '(جیاوازی: $1، $2)',
 'readonly_lag'         => 'بنكه‌دراوه‌كه‌ به‌شێوه‌ی خۆكار به‌ندكراوه‌، له‌كاتێكدا بنكه‌دراوه‌ی ڕاژه‌كاره‌كه‌ ڕۆڵی له‌خۆگرتن ده‌گێڕێت',
-'internalerror'        => 'هه‌ڵه‌یه‌كی ناوخۆیی ڕویدا',
+'internalerror'        => 'ھەڵەی ناوخۆیی',
 'internalerror_info'   => 'هه‌ڵه‌ی ناوخۆیی: $1',
 'fileappenderror'      => 'نه‌تواندرا "$1" بخرێته‌سه‌ر "$2".',
 'filecopyerror'        => 'په‌ڕگه‌ی „$1“ ڕوونوس نابێت بۆ „$2“ .',
@@ -1027,7 +1026,7 @@ $1",
 'mergelogpagetext'   => 'لە خوارەوە دوایین مێژووی‌لاپەڕە خستنە سەر لاپەڕەیەکی‌تر، دەبینی.',
 
 # Diffs
-'history-title'            => 'مێژووی پیاچوونەوەکانی "$1"',
+'history-title'            => 'مێژووی پیاچوونەوەکانی «$1»',
 'difference'               => '(جیاوازی نێوان پێداچوونەوەکان)',
 'lineno'                   => 'ھێڵی  $1:',
 'compareselectedversions'  => 'ھەڵسەنگاندنی وەشانە ھەڵبژێردراوەکان',
