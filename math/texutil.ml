@@ -1,3 +1,4 @@
+(* vim: set sw=8 ts=8 et: *)
 open Parser
 open Render_info
 open Tex
@@ -10,6 +11,7 @@ let tex_part = function
   | MHTMLABLEC (_,t,_,_,_) -> t
   | HTMLABLE_BIG (t,_) -> t
   | TEX_ONLY t -> t
+
 let rec render_tex = function
     TEX_FQ (a,b,c) -> (render_tex a) ^ "_{" ^ (render_tex  b) ^ "}^{" ^ (render_tex  c) ^ "}"
   | TEX_DQ (a,b) -> (render_tex a) ^ "_{" ^ (render_tex  b) ^ "}"
@@ -38,28 +40,40 @@ let rec render_tex = function
 (* Dynamic loading*)
 type encoding_t = LATIN1 | LATIN2 | UTF8
 
+(* module properties *)
 let modules_ams = ref false
 let modules_nonascii = ref false
 let modules_encoding = ref UTF8
 let modules_color = ref false
 
+(* wrappers to easily set / reset module properties *)
 let tex_use_ams ()     = modules_ams := true
 let tex_use_nonascii () = modules_nonascii := true
 let tex_use_color ()  = modules_color := true
-let tex_mod_reset ()   = (modules_ams := false; modules_nonascii := false; modules_encoding := UTF8; modules_color := false)
+let tex_mod_reset ()   = (
+        modules_ams := false;
+        modules_nonascii := false;
+        modules_encoding := UTF8;
+        modules_color := false
+        )
 
+(* Return TeX fragment for one of the encodings in (UTF8,LATIN1,LATIN2) *)
 let get_encoding = function
     UTF8 -> "\\usepackage{ucs}\n\\usepackage[utf8]{inputenc}\n"
   | LATIN1 -> "\\usepackage[latin1]{inputenc}\n"
   | LATIN2 -> "\\usepackage[latin2]{inputenc}\n"
 
+(* TeX fragment inserted before the output *)
 let get_preface ()  = "\\nonstopmode\n\\documentclass[12pt]{article}\n" ^
               (if !modules_nonascii then get_encoding !modules_encoding else "") ^
               (if !modules_ams then "\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n" else "") ^
               (if !modules_color then "\\usepackage[dvips,usenames]{color}\n" else "") ^
               "\\usepackage{cancel}\n\\pagestyle{empty}\n\\begin{document}\n$$\n"
+
+(* TeX fragment appended after the content *)
 let get_footer  ()  = "\n$$\n\\end{document}\n"
 
+(* Default to UTF8 *)
 let set_encoding = function
     "ISO-8859-1" -> modules_encoding := LATIN1
   | "iso-8859-1" -> modules_encoding := LATIN1
