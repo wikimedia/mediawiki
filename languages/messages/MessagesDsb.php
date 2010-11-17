@@ -167,7 +167,7 @@ $messages = array(
 'tog-editsection'             => 'Wobźěłanje wótstawkow pśez wótkaze [wobźěłaś] zmóžniś',
 'tog-editsectiononrightclick' => 'Wobźěłanje wótstawkow pśez kliknjenje z pšaweju tastu myški zmóžniś (JavaScript)',
 'tog-showtoc'                 => 'Wopśimjeśe pokazaś, jolic ma bok wěcej nježli 3 nadpisma',
-'tog-rememberpassword'        => 'Na toś tom licadle pśizjawjony wóstaś (za maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',
+'tog-rememberpassword'        => 'Z toś tym wobglědowakom pśizjawjony wóstaś (za maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',
 'tog-watchcreations'          => 'Boki, kótarež załožyjom, awtomatiski wobglědowaś',
 'tog-watchdefault'            => 'Boki, kótarež změnijom, awtomatiski wobglědowaś',
 'tog-watchmoves'              => 'Boki, kótarež som pśesunuł, awtomatiski wobglědowaś',
@@ -388,6 +388,9 @@ Pśewjele wužywarjow wopytujo se toś ten bok woglědaś.
 Pšosym pócakaj chylu, nježli až wopytujoš znowego na toś ten bok pśistup měś.
 
 $1',
+'pool-timeout'      => 'Pśekšocenje casa wob cakanje na zastajenje',
+'pool-queuefull'    => 'Cakajucy rěd jo połny',
+'pool-errorunknown' => 'Njeznata zmólka',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Wó {{GRAMMAR:lokatiw|{{SITENAME}}}}',
@@ -548,6 +551,7 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'yourpassword'               => 'šćitne gronidło:',
 'yourpasswordagain'          => 'Šćitne gronidło hyšći raz zapódaś:',
 'remembermypassword'         => 'Na toś tom licadle pśizjawjony wóstaś (za maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',
+'securelogin-stick-https'    => 'Pó pśizjawjenju z HTTPS zwězany wóstaś',
 'yourdomainname'             => 'Twója domejna',
 'externaldberror'            => 'Abo jo wustupiła eksterna zmólka awtentifikacije datoweje banki, abo njesmějoš swójo eksterne wužywarske konto aktualizěrowaś.',
 'login'                      => 'Pśizjawiś se',
@@ -583,6 +587,7 @@ Pśeglěduj pšawopis abo [[Special:UserLogin/signup|załož nowe konto]].',
 'wrongpasswordempty'         => 'Šćitne gronidło jo było prozne. Pšosym zapódaj jo hyšći raz.',
 'passwordtooshort'           => 'Gronidła deje nanejmjenjej {{PLURAL:$|1 znamuško|$1 znamušce|$1 znamuška|$1 znamuškow}} měś.',
 'password-name-match'        => 'Twójo gronidło musy se wót swójogo wužywarskego mjenja rozeznaś.',
+'password-too-weak'          => 'Pódane gronidło jo pśesłabe a njedajo se wužywaś.',
 'mailmypassword'             => 'Nowe gronidło pśipósłaś',
 'passwordremindertitle'      => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
 'passwordremindertext'       => 'Něchten z IP-adresu $1 (nejskerjej ty) jo se wupšosył nowe gronidło za {{SITENAME}} ($4).
@@ -1039,11 +1044,13 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 # Diffs
 'history-title'            => 'Stawizny wersijow boka „$1“',
 'difference'               => '(rozdźěle mjazy wersijoma/wersijami)',
+'difference-multipage'     => '(Rozdźěl mjazy bokami)',
 'lineno'                   => 'Rědka $1:',
 'compareselectedversions'  => 'Wuzwólonej wersiji pśirownaś',
 'showhideselectedversions' => 'Wubrane wersije pokazaś/schowaś',
 'editundo'                 => 'wótwrośiś',
-'diff-multi'               => '(Pśirownanje wersijow(u) wopśimjejo teke {{PLURAL:$1|mjaz tutyma lažecu wersiju|$1 mjaz tutyma lažecej wersiji|$1 mjaz tutyma lažece wersije}}.)',
+'diff-multi'               => '({{PLURAL:$1|Jadna mjazywersija|$1 mjazywersiji|$1 mjazywersije|$1 mjazywersijow}} wót {{PLURAL:$2|jadnogo wužywarja|$2 wužywarjowu|$2 wužywarjow|$2 wužywarjow}} {{PLURAL:$1|njepokazana|njepokazanej|njepokazane|njepokazane}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Jadna mjazywersija|$1 mjazywersiji|$1 mjazywersije|$1 mjazywersijow}} wót wěcej ako {{PLURAL:$2|jadnogo wužywarja|$2 wužywarjowu|$2 wužywarjow|$2 wužywarjow}} {{PLURAL:$1|njepokazana|njepokazanej|njepokazane|njepokazane}})',
 
 # Search results
 'searchresults'                    => 'Wuslědki pytanja',
@@ -1440,7 +1447,7 @@ Boki na [[Special:Watchlist|wobglědowańce]] su '''tucne'''.",
 Protokola wulašowanjow a pśesunjenjow za toś ten bok stej how k twójej dispoziciji pódanej:",
 'uploadtext'                  => "Wužyj toś ten formular za nagraśe nowych datajow.
 
-Źi na [[Special:FileList|lisćinu nagratych datajow]], aby mógł južo nagrate dataje se wobglědaś abo pytaś, nagraśa protokolěruju se w [[Special:Log/upload|protokolu nagraśow]], wulašowanja w [[Special:Log/upload|protokolu wulašowanjow]].
+Źi na [[Special:FileList|lisćinu nagratych datajow]], aby mógł južo nagrate dataje se wobglědaś abo pytaś, nagraśa protokolěruju se w [[Special:Log/upload|protokolu nagraśow]], wulašowanja w [[Special:Log/delete|protokolu wulašowanjow]].
 
 Aby dataju do boka zapśimjeł, wužyj wótkaz slědujuceje formy
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', aby wužywał połnu wersiju dataje
@@ -1550,7 +1557,7 @@ PICT # misc.
 'upload-success-subj'         => 'Nagraśe jo było wuspěšne.',
 'upload-success-msg'          => 'Twójo nagraśe z [$2] jo wuspěšne było. Stoj how k dispoziciji: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Nagrawański problem',
-'upload-failure-msg'          => 'Jo był problem z twójim nagraśim:
+'upload-failure-msg'          => 'Jo był problem z twójim nagraśim wót [$2]:
 
 $1',
 'upload-warning-subj'         => 'Nagrawańske warnowanje',
@@ -1612,6 +1619,7 @@ Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
 'listfiles_search_for'  => 'Za medijowym mjenim pytaś:',
 'imgfile'               => 'dataja',
 'listfiles'             => 'Lisćina datajow',
+'listfiles_thumb'       => 'Pśeglědowy wobraz',
 'listfiles_date'        => 'datum',
 'listfiles_name'        => 'mě dataje',
 'listfiles_user'        => 'wužywaŕ',
@@ -1722,6 +1730,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'statistics-edits'             => 'Změny bokow wót załoženja {{SITENAME}}',
 'statistics-edits-average'     => 'Změny na bok w pśerězku',
 'statistics-views-total'       => 'Zwobraznjenja dogromady',
+'statistics-views-total-desc'  => 'Woglědanja na njeeksistěrujucych bokach a specialnych bokach njejsu zapśimjone',
 'statistics-views-peredit'     => 'Zwobraznjenja na změnu',
 'statistics-users'             => 'Zregistrěrowane [[Special:ListUsers|wužywarje]]',
 'statistics-users-active'      => 'Aktiwne wužywarje',
@@ -1759,6 +1768,8 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'nmembers'                => '$1 {{PLURAL:$1|zapis|zapisa|zapise}}',
 'nrevisions'              => '$1 {{PLURAL:$1|wobźěłanje|wobźěłani|wobźěłanja}}',
 'nviews'                  => '$1 {{PLURAL:$1|wótpšašanje|wótpšašani|wótpšašanja}}',
+'nimagelinks'             => 'Wužywa se na $1 {{PLURAL:$1|boku|bokoma|bokach|bokach}}',
+'ntransclusions'          => 'wužywa se na $1 {{PLURAL:$1|boku|bokoma|bokach|bokach}}',
 'specialpage-empty'       => 'Toś ten bok njewopśimjejo tuchylu žedne zapise.',
 'lonelypages'             => 'Wósyrośone boki',
 'lonelypagestext'         => 'Slědujuce boki njejsu wótkazowe cele drugich bokow abo njezapśimuju se do drugich bokow w
@@ -3191,6 +3202,8 @@ Móžoš teke [[Special:Watchlist/edit|standardny wobźěłowański bok wužywa�
 'version-hook-subscribedby'        => 'Aboněrowany wót',
 'version-version'                  => '(Wersija $1)',
 'version-license'                  => 'Licenca',
+'version-poweredby-credits'        => "Toś ten wiki spěchujo se wót '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-others'         => 'druge',
 'version-software'                 => 'Instalěrowana software',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Wersija',
@@ -3289,5 +3302,9 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'htmlform-submit'              => 'Wótpósłaś',
 'htmlform-reset'               => 'Změny anulěrowaś',
 'htmlform-selectorother-other' => 'Druge',
+
+# SQLite database support
+'sqlite-has-fts' => 'Wersija $1 z pódpěru za połnotekstowe pytanje',
+'sqlite-no-fts'  => 'Wersija $1 bźez pódpěry za połnotekstowe pytanje',
 
 );

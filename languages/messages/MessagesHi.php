@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aksi great
+ * @author Bhawani Gautam Rhk
  * @author Charu
  * @author Dineshjk
  * @author Hemant wikikosh1
@@ -71,7 +72,7 @@ $messages = array(
 'tog-editsection'             => '[संपादित करें] कड़ियों द्वारा विभाग संपादन करने की अनुमती दें',
 'tog-editsectiononrightclick' => 'विभाग शीर्षकपर दायाँ क्लीक करके संपादन करने की अनुमती दें (जावास्क्रीप्ट)',
 'tog-showtoc'                 => 'अनुक्रम दर्शायें (जिन पन्नोंपर तीन से ज्यादा विभाग हो)',
-'tog-rememberpassword'        => 'इस संगणक पर मेरा कूटशब्द याद रखें (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'इस ब्राउज़र पर मेरा कूटशब्द  (अधिकतम $1 {{PLURAL:$1|दिन तक|दिनों तक}}) याद रखें',
 'tog-watchcreations'          => 'मैंने तैयार किये हुए पन्नें मेरी ध्यानसूचीमें रखियें',
 'tog-watchdefault'            => 'मैंने संपादित किये हुए पन्नें मेरी ध्यानसूचीमें रखियें',
 'tog-watchmoves'              => 'मैंने नाम बदलें हुए पन्नें मेरी ध्यानसूचीमें रखियें',

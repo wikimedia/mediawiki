@@ -1289,8 +1289,11 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'overwroteimage'      => 'mahunggah sabuah pirsi hanyar matan "[[$1]]"',
 'uploaddisabled'      => 'Huhunggah pajah.',
 'copyuploaddisabled'  => 'Hunggah lawan URL pajah.',
+'watchthisupload'     => 'Itihi barakas ini',
+'upload-warning-subj' => 'Paringatan mahunggah',
 
-'upload-misc-error' => 'Tasalah buat nang kada dipinandui',
+'upload-misc-error'   => 'Tasalah buat nang kada dipinandui',
+'upload-unknown-size' => 'Ukuran kadaditahui',
 
 # Special:ListFiles
 'listfiles_search_for'  => 'Gagai ngaran barakas:',
@@ -1317,7 +1320,9 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'filehist-thumbtext'        => 'Pahalusan gasan bantuk per $1',
 'filehist-user'             => 'Pamuruk',
 'filehist-dimensions'       => 'Matra',
+'filehist-filesize'         => 'Ukuran barakas',
 'filehist-comment'          => 'Ulasan',
+'filehist-missing'          => 'Barakas hilang',
 'imagelinks'                => 'Tautan barakas',
 'linkstoimage'              => '{{PLURAL:$1|tautan tungkaran|$1 tautan tungkaran}} dudi ka barakas ini:',
 'sharedupload'              => 'Barakas ini matan $1 wan mungkin dipuruk rangka-rangka gawian lain.',
@@ -1336,8 +1341,9 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'filerevert-badversion'     => 'Kadada janis lokal bahari tumatan barakas ini lawan bacap waktu nang dimaksud.',
 
 # File deletion
-'filedelete'        => 'Mahapus $1',
-'filedelete-submit' => 'Hapus',
+'filedelete'                  => 'Mahapus $1',
+'filedelete-submit'           => 'Hapus',
+'filedelete-reason-otherlist' => 'Alasan nang lain',
 
 # MIME search
 'download' => 'hunduh',

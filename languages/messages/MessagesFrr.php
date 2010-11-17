@@ -33,7 +33,7 @@ $messages = array(
 'tog-editsection'             => 'Ferbininge tun wisen foon änkelte oufsnaase',
 'tog-editsectiononrightclick' => 'Änkelte stöögne ma ruchts kliken beårbe (brükt JavaScript)',
 'tog-showtoc'                 => 'Wis en inhåltsferteeknis for side ma mäs ås trii ouerschrafte',
-'tog-rememberpassword'        => 'Aw diheere komputer foon duur önjmälde (maksimool for {{PLURAL:$1|däi|deege}})',
+'tog-rememberpassword'        => 'Aw diheere komputer foon duur önjmälde (maksimool for $1 {{PLURAL:$1|däi|deege}})',
 'tog-watchcreations'          => 'Seelew måågede side automatisch bekiike',
 'tog-watchdefault'            => 'Seelew änrede side automaatisch bekiike',
 'tog-watchmoves'              => 'Seelew ferschääwene side automaatisch bekiike',
@@ -424,6 +424,7 @@ Ferjees ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'yourpassword'               => 'Pååsuurd:',
 'yourpasswordagain'          => 'Schriw pååsuurd nuch iinjsen:',
 'remembermypassword'         => 'Aw diheere komputer foon duur önjmälde (maksimool for {{PLURAL:$1|däi|deege}})',
+'securelogin-stick-https'    => 'Eefter önjmälding ma HTTPS ferbünen bliwe',
 'yourdomainname'             => 'Din domain:',
 'externaldberror'            => 'Önjtwider deer läit en fäägel bai jü äkstärn autentifisiiring for, unti dü möist din äkstärn brükerkonto äi aktualisiire.',
 'login'                      => 'Önjmälde',
@@ -463,14 +464,15 @@ Wees sü gödje än fersäk dåt nuch iinjsen.',
 'wrongpasswordempty'         => 'Deer wörd niinj pååsuurd önjjääwen. Fersäk dåt foon naien.',
 'passwordtooshort'           => 'Pååsuurde mönje tu t manst {{PLURAL:$1|1 tiiken|$1 tiikne}} lung weese.',
 'password-name-match'        => 'Din pååsuurd mätj ferschääle foon dan brükernoome.',
+'password-too-weak'          => 'Dåt pååsuurd as tu swåk än koon ei brükt wårde.',
 'mailmypassword'             => 'Nai pååsuurd tusiinje',
 'passwordremindertitle'      => 'Nai tidwise pååsuurd for {{SITENAME}}',
-'noemail'                    => 'Deer as niinj e-mail-adräs bekånd for brüker "$1".',
+'noemail'                    => 'Deer as niinj E-mail-adräs bekånd for brüker "$1".',
 'noemailcreate'              => 'Dü möist en gülti E-mail-adräs önjjeewe',
 'passwordsent'               => 'En nai pååsuurd as sånd tu jü E-mail-adräs registriird for "$1".
 Mälde wi önj eefter dü jü füngen heest.',
 'blocked-mailpassword'       => 'Jü foon de ferwånde IP-adräs as for dåt änren foon side späred. Am en masbrük tu ferhanern, wórd jü möölikhäid tu dåt önjfråågen foon en nai pååsuurd uk späred.',
-'eauthentsent'               => 'En bestääsiings-E-mäil wörd önj jü önjjääwen adräs sånd.
+'eauthentsent'               => 'En bestääsiings-E-mail wörd önj jü önjjääwen adräs sånd.
 
 Iir en E-mail foon oudere brükere ouer jü E-mail-funksjoon emfångd wårde koon, mötj jü adräs än har wörklike tuhiirihäid tu dåtheer brükerkonto jarst bestääsied wårde. Wees sü gödj än befülie da haanewisinge önj di bestääsiings-E-mail.',
 'throttled-mailpassword'     => 'Deer wörd önj da leeste {{PLURAL:$1|stün|$1 stüne}} ål en nai pååsuurd önjfrååged. Am en misbrük foon jüdeer funksjoon tu ferhanren, koon bloot {{PLURAL:$1|iinjsen pro stün|åle $1 stüne}} en nai pååsuurd önjfrååged wårde.',
@@ -478,11 +480,11 @@ Iir en E-mail foon oudere brükere ouer jü E-mail-funksjoon emfångd wårde koo
 'acct_creation_throttle_hit' => '↓ Besäkere foon j"heer Wiki, da din IP-adräse brüke, heewe önj e leeste däi {{PLURAL:$1|1 benutserkonto|$1 benutzerkonte}} mååged, wat jü maksimool tuleet tål önj jüdeer tidperioode as.
 
 Besäkere, da iüheer IP-adräse brüke, koone tu jü tutids niinj benutserkonte mör mrstellen.',
-'emailauthenticated'         => 'Din e-mail-adräs word di $2 am e klook $3 bestääsied.',
+'emailauthenticated'         => 'Din E-mail-adräs word di $2 am e klook $3 bestääsied.',
 'emailnotauthenticated'      => 'Din E-mail-adräs as nuch ai bestääsied. Da füliende E-mail-funksjoone stönje jarst eefter erfolchrike bestääsiing tu ferfäiging.',
 'noemailprefs'               => 'Jeew en E-mail-adräs önj da önjstalinge önj, deerma da füliende funksjoone tu ferfäiging stönje.',
 'emailconfirmlink'           => 'E-mail-adräs bestääsie (autäntifisiire).',
-'invalidemailaddress'        => 'Jü e-mail adräs wörd ai aksäptiird, ouerdåt jü en üngülti formoot (ewentuäl üngültie tiikne) tu heewen scheent.
+'invalidemailaddress'        => 'Jü E-mail adräs wörd ai aksäptiird, ouerdåt jü en üngülti formoot (ewentuäl üngültie tiikne) tu heewen scheent.
 Wees sü gödj än jeef en koräkt adräs önj unti mäág dåt fäalj lääsi.',
 'accountcreated'             => 'Benjüterkonto mååged',
 'accountcreatedtext'         => 'Dåt benjüteraccount for $1 as mååged wörden.',
@@ -686,11 +688,11 @@ Grün foon jü späre: ''$2''",
 # History pages
 'viewpagelogs'           => 'Logböke for jüdeer sid wise',
 'nohistory'              => 'Deer as niinj beårbingshistoori for jüdeer sid.',
-'currentrev'             => 'Aktäle Färsjoon.',
+'currentrev'             => 'Aktäle färsjoon.',
 'currentrev-asof'        => 'Aktuäl färsjoon foon $2 am e klook $3',
 'revisionasof'           => 'Färsjoon foon e klook $2, $3',
 'revision-info'          => 'Färsjoon foon di $4 am e klook $5 foon $2',
-'previousrevision'       => '← Näistålere Färsjoon',
+'previousrevision'       => '← Näistålere färsjoon',
 'nextrevision'           => 'Näistjunger färsjoon →',
 'currentrevisionlink'    => 'Aktuäle färsjoon',
 'cur'                    => 'aktuäl',
@@ -702,7 +704,7 @@ Grün foon jü späre: ''$2''",
 * (Aktuäl) = unerschiis tu e aktuäle färsjoon, (Leeste) = unerschiis tu e leeste färsjoon
 * Klook/dootem = färsjoon tu jüdeer tid, brükernoome/IP-adräs foon di beårber, L = latje änring.',
 'history-fieldset-title' => 'Säk önj e färsjoonshistoori',
-'history-show-deleted'   => 'bloot sleekede färsjoone',
+'history-show-deleted'   => 'bloot straagene färsjoone',
 'histfirst'              => 'Ålste',
 'histlast'               => 'Naiste',
 'historysize'            => '({{PLURAL:$1|1 Byte|$1 Bytes}})',
@@ -719,37 +721,37 @@ Grün foon jü späre: ''$2''",
 'rev-deleted-user'            => '(Brükernoome wächhååld)',
 'rev-deleted-event'           => '(Logbökaksjoon wächhååld)',
 'rev-deleted-user-contribs'   => '[Benjüternoome unti IP-adräs wächhååld - beårbing üt baidråge ferstäägen]',
-'rev-deleted-text-permission' => "Judeer Färsjoon wörd '''sleeked'''.
-Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
-'rev-deleted-text-unhide'     => "Jüdeer färsjoon wörd '''sleeked'''.
-Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].
+'rev-deleted-text-permission' => "Judeer Färsjoon wörd '''straagen'''.
+Näre önjgoowen tu di strikforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
+'rev-deleted-text-unhide'     => "Jüdeer färsjoon wörd '''straagen'''.
+Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].
 Ås en administraator koost dü  nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
-'rev-suppressed-text-unhide'  => " Jüdeer färsjoon wörd '''unerdrükt'''.
-Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sleek-logbök].
+'rev-suppressed-text-unhide'  => "Jüdeer färsjoon wörd '''unerdrükt'''.
+Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} strik-logbök].
 Ås en administraator koost dü  nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
-'rev-deleted-text-view'       => "Jüdeer Färsjoon wörd '''sleeked'''.
+'rev-deleted-text-view'       => "Jüdeer Färsjoon wörd '''straagen'''.
 Ås administraator koost dü da wider önjkiike.
-Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
+Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
 'rev-suppressed-text-view'    => "Jüdeer färsjoon wörd '''unerdruked'''.
 Administratoore koone da önjkiike; ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
-'rev-deleted-no-diff'         => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''sleeked'''. Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
-'rev-suppressed-no-diff'      => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''sleeked'''.",
-'rev-deleted-unhide-diff'     => "Iinj foon da änringe doon jüdeer ferschääl wörd '''sleeked'''.
-Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].
+'rev-deleted-no-diff'         => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''straagen'''. Näre önjgoowen tu di strikforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
+'rev-suppressed-no-diff'      => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''straagen'''.",
+'rev-deleted-unhide-diff'     => "Iinj foon da änringe doon jüdeer ferschääl wörd '''straagen'''.
+Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].
 Ås en administraator koost dü nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
 'rev-suppressed-unhide-diff'  => "Iinj foon da färsjoone foon dåtdeer ferschääl wörd '''unerdruked'''.
 Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} unerdruk-logbök].
 Ås en administraator koost dü  nuch [$1 dåtdeer ferschääl bekiike], wan dü wider gunge mååst.",
-'rev-deleted-diff-view'       => "En Färsjoon foon dåtdeer färsjoonsferschääl wörd '''sleeked'''.
+'rev-deleted-diff-view'       => "En Färsjoon foon dåtdeer färsjoonsferschääl wörd '''straagen'''.
 Ås administraator koost dü dåt färsjoonsferschääl siinj.
-Näre önjgoowen fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sleek-logbök].",
+Näre önjgoowen fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
 'rev-suppressed-diff-view'    => "Iinj foon da färsjoone foon dåtdeer färsjoonsferschääl wörd '''unerdruked'''.
 Administratoore koone dåtheer färsjoonsferschääl siinj; ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
 'rev-delundel'                => 'wis/fersteeg',
 'rev-showdeleted'             => 'wise',
-'revisiondelete'              => 'Färsjoone sleeke/widermååge',
+'revisiondelete'              => 'Färsjoone strike/wider mååge',
 'revdelete-nooldid-title'     => 'Niinj färsjoon önjjääwen',
-'revdelete-nologtype-title'   => 'Niinj logtyp önjjääwen',
+'revdelete-nologtype-title'   => 'Niinj logtüüp önjjääwen',
 'revdelete-nologtype-text'    => 'Deer wörd niinj logtüüp for jüheer aksjoon önjjääwen.',
 'revdelete-nologid-title'     => 'Üngülti logönjdråch',
 'revdelete-nologid-text'      => 'Deer wör niinj logtüüp ütkiisd unti di kiisde logtüüp bestoont ai.',
@@ -773,7 +775,8 @@ Administratoore koone dåtheer färsjoonsferschääl siinj; ainkelthäide stönj
 'revdelete-logentry'          => 'heet jü färsjoonsönjsicht foon "[[$1]]" änred',
 'logdelete-logentry'          => 'heet jü sachtboorhäid foon "[[$1]]" änred',
 'revdelete-success'           => "'''Jü färsjoonsönjsicht wörd aktualisiird.'''",
-'revdelete-failure'           => "'''Jü färsjoonsönjsicht köö ai aktualisiird wårde:'''",
+'revdelete-failure'           => "'''Jü färsjoonsönjsicht köö ai aktualisiird wårde:'''
+$1",
 'logdelete-success'           => "'''Logbökönjsicht ma erfolch aktualisiird.'''",
 'logdelete-failure'           => "'''Logböksachtboorhäid köö ai änred wårde:'''
 $1",
@@ -790,7 +793,7 @@ $1",
 'revdelete-hid'               => 'fersteegen $1',
 'revdelete-unhid'             => 'mååged $1 wi sachtboor',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|färsjoon|färsjoone}}',
-'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|logbökönjdräch|logbökönjdreege}',
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|logbökindräch|logbökindreege}}',
 'revdelete-hide-current'      => 'Fäägel bai t fersteegen foon di önjdråch foon e klook $1, $2; ditheer as jü aktuäl färsjoon,
 jü koon ai ferstäägen wårde.',
 'revdelete-show-no-access'    => 'Fäägel bai t wisen foon di önjdråch foon $1, e klook $2: diheer önjdråch wörd ås "begränsed" markiird.
@@ -798,6 +801,7 @@ Dü heest deeraw nåån tugraawe.',
 'revdelete-otherreason'       => 'Ouderen/tubaikaamenden grün:',
 'revdelete-reasonotherlist'   => 'Ouderen grün',
 'revdelete-edit-reasonlist'   => 'Strikgrüne beårbe',
+'revdelete-offender'          => 'Autoor foon jüdeer färsjoon:',
 
 # Suppression log
 'suppressionlog' => 'Oversight-logbök',
@@ -812,8 +816,9 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'mergehistory-list'                => 'Färsjoone, da feriind wårde koone',
 'mergehistory-go'                  => 'Wis färsjoone da feriind wårde koone',
 'mergehistory-submit'              => 'Feriinde färsjoone',
-'mergehistory-empty'               => 'Niinj färsjoone koone fereiind wårde.',
+'mergehistory-empty'               => 'Niinj färsjoone koone feriind wårde.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|färsjoon|färsjoone}} foon [[:$1]] ma erfolch feriind tu [[:$2]].',
+'mergehistory-fail'                => 'Färsjoone koone ai feriind wårde, wees sü gödj än kontroliir jü sid än da tidönjgoowe.',
 'mergehistory-no-source'           => 'Jurtkamstsid "$1" as ai deer.',
 'mergehistory-no-destination'      => 'Müüljsid „$1“ bestoont ai.',
 'mergehistory-invalid-source'      => 'Jurtkamstsid mötj en gülti sidnoome heewe.',
@@ -824,12 +829,15 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'mergehistory-reason'              => 'Grün:',
 
 # Merge log
-'revertmerge'      => 'Feriining tuninte mååge',
-'mergelogpagetext' => 'Dåtheer as dåt logbök foon da feriinde färsjoonshistoorie.',
+'mergelog'           => 'Feriin-logbök',
+'pagemerge-logentry' => 'feriind [[$1]] eefter [[$2]] (färsjoonen bit $3)',
+'revertmerge'        => 'Feriining tuninte mååge',
+'mergelogpagetext'   => 'Dåtheer as dåt logbök foon da feriinde färsjoonshistoorie.',
 
 # Diffs
 'history-title'            => 'Färsjoonshistoori foon "$1"',
 'difference'               => '(Ferschääl twasche Färsjoone)',
+'difference-multipage'     => '(Ferschääl twasche side)',
 'lineno'                   => 'Ra $1:',
 'compareselectedversions'  => 'Wäälde färsjoone ferglike',
 'showhideselectedversions' => 'Wäälde färsjoone wise/fersteege',
@@ -855,6 +863,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'searchmenu-exists'              => "'''Deer as en sid nååmd \"[[:\$1]]\" önj jüdeer Wiki'''",
 'searchmenu-new'                 => "'''Mååg jü sid „[[:$1|$1]]“ önj jüdeer Wiki.'''",
 'searchhelp-url'                 => 'Help:Inhåltsfertiiknis',
+'searchprofile-articles'         => 'Artiikle',
 'searchprofile-project'          => 'Heelp än Prujäktside',
 'searchprofile-articles-tooltip' => 'Säk önj $1',
 'searchprofile-project-tooltip'  => 'Säk önj $1',

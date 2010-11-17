@@ -259,7 +259,7 @@ $messages = array(
 'category-empty'                 => "''Sta categoria no la gà drento nissuna pagina o file.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria sconta|Categorie sconte}}',
 'hidden-category-category'       => 'Categorie sconte',
-'category-subcat-count'          => '{{PLURAL:$2|Sta categoria contien na unica sotocategoria, indicà de seguito.|Sta categoria contien {{PLURAL:$1|ła sotocategoria indicà|łe $1 sotocategorie indicae}} de seguito, so on totałe de $2.}}',
+'category-subcat-count'          => 'Sta categoria la gà drento {{PLURAL:$2|solo sta sotocategoria qua| {{PLURAL:$1|sta sotocategoria|ste $1 sotocategorie}}, su $2 in tuto.}}',
 'category-subcat-count-limited'  => 'Sta categoria ła contien {{PLURAL:$1|na sotocategoria, indicà|$1 sotocategorie, indicà}} de seguito.',
 'category-article-count'         => '{{PLURAL:$2|Sta categoria la gà drento solo sta pagina.|Sta categoria la gà drento {{PLURAL:$1|una pagina|ste $1 pagine}}, su $2 in tuto.}}',
 'category-article-count-limited' => 'Sta categoria ła contien {{PLURAL:$1|ła pajina indicà|łe $1 pajine indicae}} de seguito.',
@@ -338,7 +338,7 @@ I seguenti cołegamenti i xé en łengua inglese:
 'create'            => 'Crea',
 'editthispage'      => 'Canbia sta pagina',
 'create-this-page'  => 'Crea sta pajina',
-'delete'            => 'Scanseła',
+'delete'            => 'Scansela',
 'deletethispage'    => 'Scanseła sta pajina',
 'undelete_short'    => 'Recupera {{PLURAL:$1|na revision|$1 revision}}',
 'protect'           => 'Protezi',
@@ -350,7 +350,7 @@ I seguenti cołegamenti i xé en łengua inglese:
 'talkpage'          => 'Pagina de discussion',
 'talkpagelinktext'  => 'Discussion',
 'specialpage'       => 'Pajina spesałe',
-'personaltools'     => 'Strumenti personałi',
+'personaltools'     => 'Strumenti personali',
 'postcomment'       => 'Nova sesion',
 'articlepage'       => 'Varda ła voxe',
 'talk'              => 'Discussion',
@@ -413,7 +413,7 @@ $1',
 'retrievedfrom'           => 'Cavà fora da "$1"',
 'youhavenewmessages'      => 'Te ghè $1 ($2).',
 'newmessageslink'         => 'novi mesaji',
-'newmessagesdifflink'     => 'difarensa co ła revision presedente',
+'newmessagesdifflink'     => 'ultimo canbiamento',
 'youhavenewmessagesmulti' => 'Te ghe novi mesaji so $1',
 'editsection'             => 'canbia',
 'editold'                 => 'canbia',
@@ -484,7 +484,7 @@ De solito questo capita quando vien riciamà, a partir da la storia o dal confro
 
 En caso contrario, se ga probabilmente catà on erore del software MediaWiki.
 Se prega de dìrghelo a un [[Special:ListUsers/sysop|aministradore]] indicando l\'URL en question.',
-'missingarticle-rev'   => '(numaro de ła revision: $1)',
+'missingarticle-rev'   => '(numaro de la version: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'El database xè sta blocà automaticamente par consentire a i server co i database slave de sincronizarse con el master',
 'internalerror'        => 'Erore interno',
@@ -649,14 +649,14 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'bold_tip'        => 'Testo in grosso',
 'italic_sample'   => 'Corsivo',
 'italic_tip'      => 'Corsivo',
-'link_sample'     => 'Titoło del cołegamento',
+'link_sample'     => 'Titolo del colegamento',
 'link_tip'        => 'Cołegamento interno',
-'extlink_sample'  => 'http://www.example.com titoło del cołegamento',
-'extlink_tip'     => 'Cołegamento foresto (ricordate el prefiso http:// )',
+'extlink_sample'  => 'http://www.example.com titolo del colegamento',
+'extlink_tip'     => 'Colegamento foresto (tiente in mente el prefiso http:// )',
 'headline_sample' => 'Intestassion',
 'headline_tip'    => 'Intestasion de 2° liveło',
 'math_sample'     => 'Inserire qua ła formuła',
-'math_tip'        => 'Formuła matematega (LaTeX)',
+'math_tip'        => 'Formula matematega (LaTeX)',
 'nowiki_sample'   => 'Inserire qua el testo no formatà',
 'nowiki_tip'      => 'Ignora ła formatasion wiki',
 'image_sample'    => 'Esenpio.jpg',
@@ -783,9 +783,9 @@ Te dovarè inserire, se te vołi, le to modifiche nel testo esistente, e perciò
 'nonunicodebrowser'                => "'''OCIO: Te stè doparando un browser mìa conpatibile coi caràteri Unicode. Par consentir la modifica de le pagine senza crear inconvenienti, i caràteri non ASCII i vien mostrà ne la casela de modifica soto forma de codici esadecimali.'''",
 'editingold'                       => "'''Ocio: Te stè modificando na version de ła voxe non agiornà. Se te la salvi cussì, tuti i canbiamenti apportai dopo sta version i vegnarà persi.'''",
 'yourdiff'                         => 'Difarense',
-'copyrightwarning'                 => "Nota: tuti i contribui a {{SITENAME}} se considera riłassai ne i termini de ła licensa d'uso $2 (varda $1 par majori detaji). Se no te desidari che i to testi i posa esare modifegai e redistribuii da chiunque sensa alcuna limitasion, no sta inviarli a {{SITENAME}}.<br />
-Con l'invio del testo te dichiari inoltre, soto ła to responsabiłità, che el testo xè sta scrito da ti parsonalmente opure che xè sta copià da na fonte de publico dominio o anałogamente libara.
-'''NO STA INVIARE MATERIAŁE COPERTO DA DIRITO D'AUTORE SENSA AUTORIZASION!'''",
+'copyrightwarning'                 => "Ocio: tuti i contributi a {{SITENAME}} i se considera cedùi soto la licensa d'uso $2 (varda $1 par informassion). Se no te voli che i to testi i possa vegner canbià e redistribuii da chiunque sensa nissuna limitasion, no stà cargarli qua.<br />
+Cargando el testo te dichiari inoltre, soto la to responsabilità, che el testo te lo ghè scrito ti de persona, opure che el xe stà copià da na fonte de publico dominio o analogamente libara.
+'''NO STA CARGAR MATERIALE CUERTO DA DIRITO D'AUTOR SENSA AUTORIZASION!'''",
 'copyrightwarning2'                => "Ocio che tuti i contributi a {{SITENAME}} i pode èssar editai, alterai, o rimossi da altri contributori.
 Se no te voli che i to scriti i vegna modificà sensa pietà, alora no sta inserirli qua.<br />
 Sapi che te stè prometendo che te stè inserendo un testo scrito de to pugno, o copià da na fonte de publico dominio o similarmente lìbara (varda $1 par i detagli).
@@ -802,7 +802,7 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 'cascadeprotectedwarning'          => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
 'titleprotectedwarning'            => "'''OCIO:  Sta pàxena la xe stà blocà in modo che solo i utenti con [[Special:ListGroupRights|serti privilègi]] i la possa crear.'''  Sta qua la xe l'ultima operassion catà sul registro de la pagina:",
 'templatesused'                    => '{{PLURAL:$1|Modèl doparà|Modèi doparà}} su sta pagina:',
-'templatesusedpreview'             => '{{PLURAL:$1|Modeło|Modełi}} doparà en sta anteprima:',
+'templatesusedpreview'             => '{{PLURAL:$1|Modèl|Modèi}} doparà su sta anteprima:',
 'templatesusedsection'             => '{{PLURAL:$1|Modèl|Modèi}} doparà in sta sezion:',
 'template-protected'               => '(proteto)',
 'template-semiprotected'           => '(semiproteto)',
@@ -876,7 +876,7 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 'histlegend'             => "Confronto tra version: segna le casèle de le version che te voli confrontar e struca Invio o el boton in fondo.
 
 Legenda: '''({{int:cur}})''' = difarense co l'ultima version, '''({{int:last}})''' = difarense co la version subito prima, '''{{int:minoreditletter}}''' = canbiamento picenin",
-'history-fieldset-title' => 'Scori ła cronołosia',
+'history-fieldset-title' => 'Ruma in te la storia',
 'history-show-deleted'   => 'Solo quei scancelà',
 'histfirst'              => 'Prima',
 'histlast'               => 'Ultema',
@@ -1049,19 +1049,19 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 
 # Diffs
 'history-title'            => "Storia dei canbiamenti de ''$1''",
-'difference'               => '(Difarense fra łe revision)',
+'difference'               => '(Difarense fra le version)',
 'difference-multipage'     => '(Difarensa tra le pagine)',
 'lineno'                   => 'Riga $1:',
-'compareselectedversions'  => 'Confronta łe version sełesionae',
+'compareselectedversions'  => 'Confronta le version segnàe',
 'showhideselectedversions' => 'Mostra/scondi version selessionà',
-'editundo'                 => 'anuła',
+'editundo'                 => 'tira indrìo',
 'diff-multi'               => '({{PLURAL:$1|Una revision intermedia|$1 revision intermedie}} de {{PLURAL:$2|un utente|$2 utenti}} mia mostrà)',
 'diff-multi-manyusers'     => '({{PLURAL:$1|Una revision intermedia|$1 revision intermedie}} de pi de {{PLURAL:$2|un utente|$2 utenti}} mia mostrà)',
 
 # Search results
 'searchresults'                    => 'Risultati de la riserca',
 'searchresults-title'              => 'Risultati de la riserca de "$1"',
-'searchresulttext'                 => 'Par majori informasion so ła riserca interna de {{SITENAME}}, varda [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext'                 => 'Par informassion su la riserca drento de {{SITENAME}}, varda [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Te ghè sercà \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tute le pagine che taca con "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tute le pagine che ponta a "$1"]])',
 'searchsubtitleinvalid'            => "Riserca de '''$1'''",
 'toomanymatches'                   => 'Xe stà catà massa corispondense, par piaser próa a modificar la richiesta.',
@@ -1090,7 +1090,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'searchprofile-images-tooltip'     => 'Serca file',
 'searchprofile-everything-tooltip' => 'Serca dapartuto (conprese le pàxene de discussion)',
 'searchprofile-advanced-tooltip'   => 'Serca nei namespace personalixài',
-'search-result-size'               => '$1 ({{PLURAL:$2|na paroła|$2 parołe}})',
+'search-result-size'               => '$1 ({{PLURAL:$2|na parola|$2 parole}})',
 'search-result-category-size'      => '{{PLURAL:$1|1 utente|$1 utenti}} ({{PLURAL:$2|1 sotocategoria|$2 sotocategorie}}, {{PLURAL:$3|1 file|$3 file}})',
 'search-result-score'              => 'Rilevansa: $1%',
 'search-redirect'                  => '(redirect $1)',
@@ -1398,7 +1398,7 @@ In più te pol anca farte scrìvar da altri tramite la to pagina personale o la 
 'nchanges'                          => '$1 {{PLURAL:$1|canbiamento|canbiamenti}}',
 'recentchanges'                     => 'Ultimi canbiamenti',
 'recentchanges-legend'              => 'Prefarense par i ultimi canbiamenti',
-'recentchangestext'                 => 'Sta pàxena la presenta łe ultime modifeghe aportàe ai contenuti de el sito.',
+'recentchangestext'                 => 'Qua se vede i ultimi canbiamenti fati a sto sito',
 'recentchanges-feed-description'    => 'Tien tracia dei ultimi canbiamenti fati a sto sito',
 'recentchanges-label-newpage'       => 'Sta modifica la ga creà na pagina nova',
 'recentchanges-label-minor'         => 'Sta qua la xe na modifica picenina',
@@ -1649,7 +1649,7 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'morelinkstoimage'          => 'Varda i [[Special:WhatLinksHere/$1|altri colegamenti]] verso sto file.',
 'redirectstofile'           => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} redirige verso sto file:',
 'duplicatesoffile'          => '{{PLURAL:$1|El file seguente el xe un dopion|I $1 file seguenti i xe dei dopioni}} de sto file ([[Special:FileDuplicateSearch/$2|ulteriori detagli]]):',
-'sharedupload'              => 'Sto file el provien da $1 e poe esare utiłizà da altri projeti.',
+'sharedupload'              => 'Sto file el vien da $1 e se pole dopararlo anca su altri progeti.',
 'sharedupload-desc-there'   => 'Sto file el vien da $1 e se pode dopararlo su altri projeti.
 Consulta la [$2 pàxena de descrission del file] par ulteriori informassion.',
 'sharedupload-desc-here'    => 'Sto file el vien da $1 e se pode dopararlo su altri projeti.
@@ -1762,7 +1762,7 @@ Le righe <del>sbarà</del> le xe xà stà sistemà.',
 'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorie}}',
 'nlinks'                  => '$1 {{PLURAL:$1|colegamento|colegamenti}}',
-'nmembers'                => '$1 {{PLURAL:$1|ełemento|ełementi}}',
+'nmembers'                => '$1 {{PLURAL:$1|elemento|elementi}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revision|revision}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visite}}',
 'specialpage-empty'       => "Sto raporto no'l contien nissun risultato.",
@@ -1869,7 +1869,7 @@ Varda anca le [[Special:WantedCategories|categorie domandà]].',
 'sp-deletedcontributions-contribs' => 'contributi',
 
 # Special:LinkSearch
-'linksearch'       => 'Cołegamenti foresti',
+'linksearch'       => 'Colegamenti foresti',
 'linksearch-pat'   => 'Espression de riserca:',
 'linksearch-ns'    => 'Namespace:',
 'linksearch-ok'    => 'Serca',
@@ -2036,8 +2036,8 @@ Par riscontri e ulteriore assistensa:
 'confirmdeletetext'      => 'Te ste par scansełare na pajina co tuta ła so cronołosia. Par cortesia, conferma che xè to intension prosedere a tałe scansełasion, che te ghe piena consapevołeza de łe conseguense de ła to axion e che esa xè conforme a łe linee guida stabiłie en [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Axion conpletà',
 'actionfailed'           => 'Azion mia riussìa',
-'deletedtext'            => "Ła pajina ''<nowiki>$1</nowiki>'' xè sta scansełà.
-Consultare el rejistro de łe $2 par n'elenco de łe pajine scansełà de rexente.",
+'deletedtext'            => "''<nowiki>$1</nowiki>'' xe stà scanselà.
+Varda $2 par n'elenco de le ultime pagine scanselà.",
 'deletedarticle'         => 'gà scanselà "[[$1]]"',
 'suppressedarticle'      => 'sconto "[[$1]]"',
 'dellogpage'             => 'Registro de scancelassion',
@@ -2077,7 +2077,7 @@ L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]{
 'protectlogpage'              => 'Protesion',
 'protectlogtext'              => 'De seguito xe elencàe le azion de protezion e sbloco de le pagine.',
 'protectedarticle'            => 'ga proteto "[[$1]]"',
-'modifiedarticleprotection'   => "ga modifegà el liveło de protesion de ''[[$1]]''",
+'modifiedarticleprotection'   => "gà canbià el livèl de protession de ''[[$1]]''",
 'unprotectedarticle'          => 'gà sblocà "[[$1]]"',
 'movedarticleprotection'      => 'gà canbià la protesion da "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Canbia el livèl de protezion par "$1"',
@@ -2221,7 +2221,7 @@ $1',
 'nolinkshere-ns'           => "No ghe xe pagine che punta a '''[[:$1]]''' nel namespace selezionà.",
 'isredirect'               => '↓ Pagina de reindirisamento',
 'istemplate'               => 'inclusion',
-'isimage'                  => 'cołegamento imaxine',
+'isimage'                  => 'colegamento imagine',
 'whatlinkshere-prev'       => '{{PLURAL:$1|quel prima|i $1 prima}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|quel dopo|i $1 dopo}}',
 'whatlinkshere-links'      => '← colegamenti',
@@ -2363,18 +2363,18 @@ Tiente in mente de [[Special:UnlockDB|sblocarlo]] co te ghè finìo de far manut
 # Move page
 'move-page'                    => 'Spostamento de $1',
 'move-page-legend'             => 'Spostamento de pàxena',
-'movepagetext'                 => "Col modulo qua soto te podi rinominar na pagina, spostando anca tuta la so cronołogia al nome novo.
-El vecio titoło el deventarà automaticamente un rimando (redirect) che punta al novo titoło.
+'movepagetext'                 => "Col modulo qua soto te podi rinominar na pagina, spostando anca tuta la so storia al titolo novo.
+El vecio titolo el deventarà automaticamente un rimando (redirect) che punta al titolo novo.
 Te podi agiornar automaticamente i rimandi che punta al vecio titolo.
-Se te siegli de no farlo, tiente in mente de controłar con cura che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
-Resta ne la to responsabilità de controlar che i colegamenti i continua a puntar verso dove i deve dirìgiarse.
+Se te siegli de no farlo, tiente in mente de controlar ben che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
+Resta ne la to responsabilità de controlar che i colegamenti i continua a puntar dove che i deve.
 
-Nota ben: la pagina '''no''' la sarà spostà se ghe fusse xà na voxe col nome novo, a meno che no la sia na pagina voda o un rimando, e senpre che no la gabia cronologia.
-Questo significa che, se te fè un eror, te podi novamente rinominar na pagina col vecio titoło, ma no te podi sovrascrìvar na pagina xà esistente.
+Ocio: la pagina '''no''' la sarà spostà se ghe fusse zà na pagina col titolo novo, a meno che no la sia na pagina voda o un rimando, e senpre che no la gabia na storia.
+Questo significa che, se te fè un eror, te podi da novo rinominar na pagina col vecio titolo, ma no te podi sovrascrìvar na pagina zà esistente.
 
 '''OCIO!'''
-Sto canbiamento drastico el podarìa crear contratenpi che no se se speta, specialmente se se tratta de na pagina molto visità.
-Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.",
+Sto canbiamento drastico el podarìa dar problemi che no se se speta, specialmente se se trata de na pagina molto visità.
+Stà ben tento a le conseguense del spostamento, prima de farlo.",
 'movepagetalktext'             => "La corispondente pagina de discussion la sarà spostà automaticamente insieme a la pagina prinsipale, '''trane che nei seguenti casi:'''
 * El spostamento de la pagina el xe tra namespace diversi
 * In corispondenza del titolo novo ghe xe xà na pagina de discussion (mìa voda)
@@ -2566,7 +2566,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-p-logo'                  => 'Visita la pàxena prinsipałe',
 'tooltip-n-mainpage'              => 'Và su la pagina prinsipale del sito',
 'tooltip-n-mainpage-description'  => 'Và su la pagina prinsipale del sito',
-'tooltip-n-portal'                => 'Descrision del projeto, cossa te pui fare, dove trovare e robe',
+'tooltip-n-portal'                => 'Descrission del progeto, cossa te poli far, dove catar le robe',
 'tooltip-n-currentevents'         => 'Informassion su quel che xe capità de recente',
 'tooltip-n-recentchanges'         => 'Elenco dei ultimi canbiamenti al sito',
 'tooltip-n-randompage'            => 'Fame védar na pagina a caso',
@@ -2577,7 +2577,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-feed-atom'               => 'Feed Atom par sta pagina',
 'tooltip-t-contributions'         => 'Lista de i contribui de sto utente',
 'tooltip-t-emailuser'             => 'Invia on mesajo e-mail a sto utente',
-'tooltip-t-upload'                => 'Carga file multimediałi',
+'tooltip-t-upload'                => 'Carga file',
 'tooltip-t-specialpages'          => 'Lista de tute le pagine speciali',
 'tooltip-t-print'                 => 'Version stanpabile de sta pagina',
 'tooltip-t-permalink'             => 'Colegamento parmanente a sta version de la pagina',
@@ -2588,7 +2588,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-ca-nstab-project'        => 'Varda la pagina de progeto',
 'tooltip-ca-nstab-image'          => 'Varda la pagina del file',
 'tooltip-ca-nstab-mediawiki'      => 'Varda el messajo de sistema',
-'tooltip-ca-nstab-template'       => 'Varda el modeło',
+'tooltip-ca-nstab-template'       => 'Varda el modèl',
 'tooltip-ca-nstab-help'           => 'Varda la pàxena de ajuto',
 'tooltip-ca-nstab-category'       => 'Varda la pagina de la categoria',
 'tooltip-minoredit'               => 'Segna come canbiamento picenin',
@@ -2600,7 +2600,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-recreate'                => 'Ricrea ła pàxena anca se la xè stà scancełà',
 'tooltip-upload'                  => 'Intaca el caricamento',
 'tooltip-rollback'                => 'El "tira indrio" el desfa i canbiamenti a sta pagina fati de l\'ultimo che gà messo le mane.',
-'tooltip-undo'                    => '"Anuła" parmete de anułare sta modifega e apre el moduło de modifega en modałità de anteprima. Parmete de inserire na modivasion ne l\'ojeto de ła modifega.',
+'tooltip-undo'                    => 'El "Tira indrìo" el parmete de anular sto canbiamento e el verze la pagina da canbiar in modalità de anteprima. Se pole métarghe anca na motivassion.',
 'tooltip-preferences-save'        => 'Salve le preferense',
 'tooltip-summary'                 => 'Inserissi un breve riassunto',
 
@@ -2699,7 +2699,7 @@ La so esecuzion la podarìa danegiar el to computer.",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => 'Dimensioni: $1, tipo MIME: $2',
 'file-info-size'       => '($1 × $2 pixel, dimension del file: $3, tipo MIME: $4)',
-'file-nohires'         => '<small>No xè disponibiłi version a risołusion pì ełevada.</small>',
+'file-nohires'         => '<small>No ghe xe version a risolussion pì granda.</small>',
 'svg-long-desc'        => '(file en formato SVG, dimension nominałi $1 × $2 pixel, dimension del file: $3)',
 'show-big-image'       => 'Version ad alta risołusion',
 'show-big-image-thumb' => '<small>Dimension de sta anteprima: $1 × $2 pixel</small>',
