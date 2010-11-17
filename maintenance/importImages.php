@@ -196,7 +196,7 @@ if ( count( $args ) > 0 ) {
 				echo( " publishing {$file} by '" . $wgUser->getName() . "', comment '$commentText'... " );
 			} else {
 				$archive = $image->publish( $file );
-				if ( WikiError::isError( $archive ) || !$archive->isGood() ) {
+				if ( !$archive->isGood() ) {
 					echo( "failed.\n" );
 					$failed++;
 					continue;
