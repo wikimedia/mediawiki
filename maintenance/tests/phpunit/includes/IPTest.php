@@ -17,6 +17,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( IP::isIPAddress( '124.24.52' ), 'IPv4 not enough quads' );
 		$this->assertFalse( IP::isIPAddress( '24.324.52.13' ), 'IPv4 out of range' );
 		$this->assertFalse( IP::isIPAddress( '.24.52.13' ), 'IPv4 starts with period' );
+		$this->assertFalse( IP::isIPAddress( 'fc:100:300' ), 'IPv6 with only 3 words' );
 
 		$this->assertTrue( IP::isIPAddress( '::' ), 'RFC 4291 IPv6 Unspecified Address' );
 		$this->assertTrue( IP::isIPAddress( '::1' ), 'RFC 4291 IPv6 Loopback Address' );
@@ -34,6 +35,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	public function testisIPv6() {
 		$this->assertFalse( IP::isIPv6( ':fc:100::' ), 'IPv6 starting with lone ":"' );
 		$this->assertFalse( IP::isIPv6( 'fc:100:::' ), 'IPv6 ending with a ":::"' );
+		$this->assertFalse( IP::isIPv6( 'fc:100:300' ), 'IPv6 with only 3 words' );
 		$this->assertTrue( IP::isIPv6( 'fc:100::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d::' ) );
