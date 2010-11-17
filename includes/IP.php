@@ -25,7 +25,7 @@
 
 // An IPv4 address is made of 4 bytes from x00 to xFF which is d0 to d255
 define( 'RE_IP_BYTE', '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])' );
-define( 'RE_IP_ADD' , RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE );
+define( 'RE_IP_ADD', RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE );
 // An IPv4 block is an IP address and a prefix (d1 to d32)
 define( 'RE_IP_PREFIX', '(3[0-2]|[12]?\d)' );
 define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX );
@@ -35,14 +35,18 @@ define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX );
 define( 'RE_IPV6_WORD', '([0-9A-Fa-f]{1,4})' );
 define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
 define( 'RE_IPV6_ADD',
-	'(' . // starts with "::" (includes the address "::")
-		'(::|:(:' . RE_IPV6_WORD . '){1,7})' .
+	'(?:' . // starts with "::" (includes the address "::")
+		'::|:(?::' . RE_IPV6_WORD . '){1,7}' .
 	'|' . // ends with "::" (not including the address "::")
-		RE_IPV6_WORD . '(:' . RE_IPV6_WORD . '){0,6}::' .
+		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){0,6}::' .
 	'|' . // has no "::"
-		RE_IPV6_WORD . '(:' . RE_IPV6_WORD . '){7}' .
-	'|' . // contains one "::" in the middle ("^" check always fails if no "::" found)
-		RE_IPV6_WORD . '(:(?P<abbr>(?(abbr)|:))?' . RE_IPV6_WORD . '){1,6}(?(abbr)|^)' .
+		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){7}' .
+	'|' . // contains one "::" in the middle (awkward regex for PCRE 4.0+ compatibility)
+		RE_IPV6_WORD . '(?::(?!(?P=abn))(?P<abn>:(?P<iabn>))?' . RE_IPV6_WORD . '){1,6}(?P=iabn)' .
+		// NOTE: (?!(?P=abn)) fails iff "::" used twice; (?P=iabn) passes iff a "::" was found.
+		
+		// Better regexp (PCRE 7.2+ only), allows intuitive regex concatenation
+		#RE_IPV6_WORD . '(?::((?(-1)|:))?' . RE_IPV6_WORD . '){1,6}(?(-2)|^)' .
 	')'
 );
 // An IPv6 block is an IP address and a prefix (d1 to d128)
@@ -54,9 +58,9 @@ define( 'RE_IPV6_V4_PREFIX', '0*' . RE_IPV6_GAP . '(?:ffff:)?' );
 // This might be useful for regexps used elsewhere, matches any IPv6 or IPv6 address or network
 define( 'IP_ADDRESS_STRING',
 	'(?:' .
-		RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)' . // IPv4
+		RE_IP_ADD . '(?:\/' . RE_IP_PREFIX . ')?' . // IPv4
 	'|' .
-		RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)' . // IPv6
+		RE_IPV6_ADD . '(?:\/' . RE_IPV6_PREFIX . ')?' . // IPv6
 	')'
 );
 
@@ -85,7 +89,7 @@ class IP {
 	 * @return Boolean
 	 */
 	public static function isIPv6( $ip ) {
-		return (bool)preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip );
+		return (bool)preg_match( '/^' . RE_IPV6_ADD . '(?:\/' . RE_IPV6_PREFIX . ')?$/', $ip );
 	}
 
 	/**
@@ -96,7 +100,7 @@ class IP {
 	 * @return Boolean
 	 */
 	public static function isIPv4( $ip ) {
-		return (bool)preg_match( '/^' . RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)$/', $ip );
+		return (bool)preg_match( '/^' . RE_IP_ADD . '(?:\/' . RE_IP_PREFIX . ')?$/', $ip );
 	}
 
 	/**
@@ -174,7 +178,7 @@ class IP {
 			);
 		}
 		// Remove leading zereos from each bloc as needed
-		$ip = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip );
+		$ip = preg_replace( '/(^|:)0+(' . RE_IPV6_WORD . ')/', '$1$2', $ip );
 		return $ip;
 	}
 
@@ -217,7 +221,7 @@ class IP {
 			$ip_oct .= ':' . substr( $ip_hex, 4 * $n, 4 );
 		}
 		// NO leading zeroes
-		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
+		$ip_oct = preg_replace( '/(^|:)0+(' . RE_IPV6_WORD . ')/', '$1$2', $ip_oct );
 		return $ip_oct;
 	}
 
