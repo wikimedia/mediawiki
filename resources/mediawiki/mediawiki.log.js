@@ -29,7 +29,7 @@
 			var time = ( d.getHours() < 10 ? '0' + d.getHours() : d.getHours() ) +
 				 ':' + ( d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes() ) +
 				 ':' + ( d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds() ) +
-				 '.' + ( d.getMilliseconds() < 100 ? '0' + d.getMilliseconds() : d.getMilliseconds() );
+				 '.' + ( d.getMilliseconds() < 10 ? '00' + d.getMilliseconds() : ( d.getMilliseconds() < 100 ? '0' + d.getMilliseconds() : d.getMilliseconds() ) );
 			// Show a log box for console-less browsers
 			var $log = $( '#mw-log-console' );
 			if ( !$log.length ) {
