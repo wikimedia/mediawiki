@@ -337,12 +337,12 @@ return array(
 	'mediawiki.advanced.rightclickedit' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.advanced/mediawiki.advanced.rightclickedit.js',
 	) ),
-	'mediawiki.specials.preferences' => new ResourceLoaderFileModule( array(
-		'scripts' => 'resources/mediawiki.specials/mediawiki.specials.preferences.js',
-		'styles' => 'resources/mediawiki.specials/mediawiki.specials.preferences.css',
+	'mediawiki.special.preferences' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
 	) ),
-	'mediawiki.specials.search' => new ResourceLoaderFileModule( array(
-		'scripts' => 'resources/mediawiki.specials/mediawiki.specials.search.js',
+	'mediawiki.special.search' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
 	) ),
 	'mediawiki.action.history' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
