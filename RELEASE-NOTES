@@ -428,6 +428,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   with php extension that defines same class.
 * (bug 20591) There's now a different message on Special:MovePage when
   $wgFixDoubleRedirects is set to false.
+* Fixed PHP warnings when updating a broken MySQL database.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
