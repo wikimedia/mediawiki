@@ -798,12 +798,12 @@ CONTROL;
 
 	/**
 	 * If there are revisions between the ones being compared, return a note saying so.
+	 * @return string
 	 */
 	function getMultiNotice() {
-		if ( !is_object($this->mOldRev) || !is_object($this->mNewRev) )
-		return '';
-
-		if( !$this->mOldPage->equals( $this->mNewPage ) ) {
+		if ( !is_object( $this->mOldRev ) || !is_object( $this->mNewRev ) ) {
+			return '';
+		} elseif ( !$this->mOldPage->equals( $this->mNewPage ) ) {
 			// Comparing two different pages? Count would be meaningless.
 			return '';
 		}
@@ -814,37 +814,35 @@ CONTROL;
 			$tmp = $oldid; $oldid = $newid; $newid = $tmp;
 		}
 
-		$n = $this->mTitle->countRevisionsBetween( $oldid, $newid );
-		if ( !$n ) {
-			return '';
-		} else {
-			global $wgLang;
-			$dbr = wfGetDB( DB_SLAVE );
-			
-			// Actually, the limit is $limit + 1. We do this so we can detect
-			// if there are > 100 authors in a given revision range. If they
-			// are, $limit will be passed to diff-multi-manyusers for l10n.
+		$nEdits = $this->mTitle->countRevisionsBetween( $oldid, $newid );
+		if ( $nEdits> 0 ) {
 			$limit = 100;
-			$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
-				array(
-					'rev_page = ' . $this->mOldRev->getPage(),
-					'rev_id > ' . $this->mOldRev->getId(),
-					'rev_id < ' . $this->mNewRev->getId()
-				), __METHOD__,
-				array( 'LIMIT' => $limit + 1 )
-			);
-			$numUsers = $dbr->numRows( $res );
-			if( $numUsers > $limit ) {
-				$msg = 'diff-multi-manyusers';
-				$numUsers = $limit;
-			} else {
-				$msg = 'diff-multi';
-			}
-			return wfMsgExt( $msg, array( 'parseinline' ), $wgLang->formatnum( $n ),
-				$wgLang->formatnum( $numUsers ) );
+			// We use ($limit + 1) so we can detect if there are > 100 authors
+			// in a given revision range. In that case, diff-multi-manyusers is used.
+			$numUsers = $this->mTitle->countAuthorsBetween( $oldid, $newid, $limit+1 );
+			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit );
 		}
+		return ''; // nothing
 	}
 
+	/**
+	 * Get a notice about how many intermediate edits and users there are
+	 * @param $numEdits int
+	 * @param $numUsers int
+	 * @param $limit int
+	 * @return string
+	 */	
+	public static function intermediateEditsMsg( $numEdits, $numUsers, $limit ) {
+		global $wgLang;
+		if ( $numUsers > $limit ) {
+			$msg = 'diff-multi-manyusers';
+			$numUsers = $limit;
+		} else {
+			$msg = 'diff-multi';
+		}
+		return wfMsgExt( $msg, 'parseinline',
+			$wgLang->formatnum( $numEdits ), $wgLang->formatnum( $numUsers ) );
+	}
 
 	/**
 	 * Add the header to a diff body

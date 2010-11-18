@@ -3715,6 +3715,29 @@ class Title {
 	}
 
 	/**
+	 * Get the number of authors between the given revision IDs.
+	 * Used for diffs and other things that really need it.
+	 *
+	 * @param $fromRevId \type{\int} Revision ID (first before range)
+	 * @param $toRevId \type{\int} Revision ID (first after range)
+	 * @param $limit \type{\int} Maximum number of authors
+	 * @param $flags \type{\int} Title::GAID_FOR_UPDATE
+	 * @return \type{\int}
+	 */
+	public function countAuthorsBetween( $fromRevId, $toRevId, $limit, $flags = 0 ) {
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$res = $db->select( 'revision', 'DISTINCT rev_user_text',
+			array(
+				'rev_page = ' . $this->getArticleID(),
+				'rev_id > ' . (int)$fromRevId,
+				'rev_id < ' . (int)$toRevId
+			), __METHOD__,
+			array( 'LIMIT' => $limit )
+		);
+		return (int)$db->numRows( $res );
+	}
+
+	/**
 	 * Compare with another title.
 	 *
 	 * @param $title \type{Title}
