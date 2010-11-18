@@ -53,7 +53,7 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$wgOut->addModules( 'mediawiki.legacy.prefs' );
-		$wgOut->addModules( 'mediawiki.specials.preferences' );
+		$wgOut->addModules( 'mediawiki.special.preferences' );
 
 		if ( $wgRequest->getCheck( 'success' ) ) {
 			$wgOut->wrapWikiMsg(
