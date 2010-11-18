@@ -334,8 +334,8 @@ return array(
 		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client' ),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	) ),
-	'mediawiki.advanced.rightclickedit' => new ResourceLoaderFileModule( array(
-		'scripts' => 'resources/mediawiki.advanced/mediawiki.advanced.rightclickedit.js',
+	'mediawiki.action.view.rightClickEdit' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	) ),
 	'mediawiki.special.preferences' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
