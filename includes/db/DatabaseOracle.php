@@ -30,8 +30,9 @@ class ORABlob {
 class ORAResult {
 	private $rows;
 	private $cursor;
-	private $stmt;
 	private $nrows;
+	
+	private $columns = array();
 
 	private function array_unique_md( $array_in ) {
 		$array_out = array();
@@ -63,12 +64,18 @@ class ORAResult {
 			$this->nrows = count( $this->rows );
 		}
 
+		if ($this->nrows > 0) {
+			foreach ( $this->rows[0] as $k => $v ) {
+				$this->columns[$k] = strtolower( oci_field_name( $stmt, $k + 1 ) );
+			}
+		}
+
 		$this->cursor = 0;
-		$this->stmt = $stmt;
+		oci_free_statement( $stmt );
 	}
 
 	public function free() {
-		oci_free_statement( $this->stmt );
+		unset($this->db);
 	}
 
 	public function seek( $row ) {
@@ -80,7 +87,7 @@ class ORAResult {
 	}
 
 	public function numFields() {
-		return oci_num_fields( $this->stmt );
+		return count($this->columns);
 	}
 
 	public function fetchObject() {
@@ -90,7 +97,7 @@ class ORAResult {
 		$row = $this->rows[$this->cursor++];
 		$ret = new stdClass();
 		foreach ( $row as $k => $v ) {
-			$lc = strtolower( oci_field_name( $this->stmt, $k + 1 ) );
+			$lc = $this->columns[$k];
 			$ret->$lc = $v;
 		}
 
@@ -105,7 +112,7 @@ class ORAResult {
 		$row = $this->rows[$this->cursor++];
 		$ret = array();
 		foreach ( $row as $k => $v ) {
-			$lc = strtolower( oci_field_name( $this->stmt, $k + 1 ) );
+			$lc = $this->columns[$k];
 			$ret[$lc] = $v;
 			$ret[$k] = $v;
 		}
@@ -349,43 +356,43 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function freeResult( $res ) {
-		if ( $res instanceof ORAResult ) {
-			$res->free();
-		} else {
-			$res->result->free();
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
 		}
+		
+		$res->free();
 	}
 
 	function fetchObject( $res ) {
-		if ( $res instanceof ORAResult ) {
-			return $res->numRows();
-		} else {
-			return $res->result->fetchObject();
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
 		}
+		
+		return $res->fetchObject();
 	}
 
 	function fetchRow( $res ) {
-		if ( $res instanceof ORAResult ) {
-			return $res->fetchRow();
-		} else {
-			return $res->result->fetchRow();
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
 		}
+
+		return $res->fetchRow();
 	}
 
 	function numRows( $res ) {
-		if ( $res instanceof ORAResult ) {
-			return $res->numRows();
-		} else {
-			return $res->result->numRows();
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
 		}
+
+		return $res->numRows();
 	}
 
 	function numFields( $res ) {
-		if ( $res instanceof ORAResult ) {
-			return $res->numFields();
-		} else {
-			return $res->result->numFields();
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
 		}
+
+		return $res->numFields();
 	}
 
 	function fieldName( $stmt, $n ) {
