@@ -1,5 +1,5 @@
 /*
- * JavaScript for History view
+ * JavaScript for History action
  */
 
 // Replaces histrowinit

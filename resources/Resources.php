@@ -344,8 +344,8 @@ return array(
 	'mediawiki.specials.search' => new ResourceLoaderFileModule( array(
 		'scripts' => 'resources/mediawiki.specials/mediawiki.specials.search.js',
 	) ),
-	'mediawiki.views.history' => new ResourceLoaderFileModule( array(
-		'scripts' => 'resources/mediawiki.views/mediawiki.views.history.js',
+	'mediawiki.action.history' => new ResourceLoaderFileModule( array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',
 		'dependencies' => 'mediawiki.legacy.history',
 	) ),
 	'mediawiki.language' => new ResourceLoaderFileModule( array(

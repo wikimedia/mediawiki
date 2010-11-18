@@ -86,7 +86,7 @@ class HistoryPage {
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setSyndicated( true );
 		$wgOut->setFeedAppendQuery( 'action=history' );
-		$wgOut->addModules( array( 'mediawiki.legacy.history', 'mediawiki.views.history' ) );
+		$wgOut->addModules( array( 'mediawiki.legacy.history', 'mediawiki.action.history' ) );
 
 		// Creation of a subtitle link pointing to [[Special:Log]]
 		$logPage = SpecialPage::getTitleFor( 'Log' );
