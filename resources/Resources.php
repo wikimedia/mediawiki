@@ -76,6 +76,12 @@ return array(
 	'jquery.textSelection' => new ResourceLoaderFileModule(
 		array( 'scripts' => 'resources/jquery/jquery.textSelection.js' )
 	),
+	'jquery.tipsy' => new ResourceLoaderFileModule(
+		array(
+			'scripts' => 'resources/jquery.tipsy/jquery.tipsy.js',
+			'styles' => 'resources/jquery.tipsy/jquery.tipsy.css',
+		)
+	),
 	
 	/* jQuery UI */
 	
