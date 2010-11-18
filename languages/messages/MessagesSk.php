@@ -678,6 +678,7 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'yourpassword'               => 'Heslo:',
 'yourpasswordagain'          => 'Zopakujte heslo:',
 'remembermypassword'         => 'Pamätať si prihlásenie na tomto počítači (naviac $1 {{PLURAL:$1|deň|dni|dní}})',
+'securelogin-stick-https'    => 'Zostať pripojený cez HTTPS po prihlásení',
 'yourdomainname'             => 'Vaša doména:',
 'externaldberror'            => 'Buď nastala chyba externej autentifikačnej databázy alebo vám nie je povolené aktualizovať váš externý účet.',
 'login'                      => 'Prihlásiť',
@@ -715,6 +716,7 @@ Skontrolujte preklepy alebo sa [[Special:UserLogin/signup|zaregistrujte ako nov�
 'wrongpasswordempty'         => 'Zadané heslo bolo prázdne. Skúste prosím znova.',
 'passwordtooshort'           => 'Heslo musí mať dĺžku aspoň $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'password-name-match'        => 'Vaše heslo musí byť iné ako vaše používateľské meno.',
+'password-too-weak'          => 'Zadané heslo je príliš slabé a nemožno ho použiť.',
 'mailmypassword'             => 'Pošlite mi e-mailom dočasné heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo pre {{GRAMMAR:akuzatív|{{SITENAME}}}}',
 'passwordremindertext'       => 'Niekto (pravdepodobne vy, z IP adresy $1)
@@ -1784,6 +1786,7 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'listfiles_search_for'  => 'Hľadať názov súboru:',
 'imgfile'               => 'súbor',
 'listfiles'             => 'Zoznam obrázkov',
+'listfiles_thumb'       => 'Náhľad',
 'listfiles_date'        => 'Dátum',
 'listfiles_name'        => 'Názov',
 'listfiles_user'        => 'Používateľ',
@@ -1894,6 +1897,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'statistics-edits'             => 'Úprav stránok od založenia {{GRAMMAR:genitív|{{SITENAME}}}}',
 'statistics-edits-average'     => 'Priemerný počet úprav na stránku',
 'statistics-views-total'       => 'Celkom zobrazení',
+'statistics-views-total-desc'  => 'Zobrazenia neexistujúcich stránok a špeciálnych stránok nie sú zahrnuté',
 'statistics-views-peredit'     => 'Zobrazení na úpravu',
 'statistics-users'             => 'Registrovaných [[Special:ListUsers|používateľov]]',
 'statistics-users-active'      => 'Aktívnych používateľov',
@@ -1932,6 +1936,8 @@ Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riad
 'nmembers'                => '$1 {{PLURAL:$1|člen|členovia|členov}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revízia|revízie|revízií}}',
 'nviews'                  => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
+'nimagelinks'             => 'Použité na $1 {{PLURAL:$1|stránke|stránkach}}',
+'ntransclusions'          => 'použité na $1 {{PLURAL:$1|stránke|stránkach}}',
 'specialpage-empty'       => 'Táto správa neobsahuje žiadne položky.',
 'lonelypages'             => 'Opustené stránky',
 'lonelypagestext'         => 'Na nasledujúce stránky neodkazujú ani ich nepoužívajú ako šablónu žiadne iné stránky z {{GRAMMAR:genitív|{{SITENAME}}}}.',
@@ -2552,6 +2558,19 @@ Starý názov sa stane presmerovacou stránkou na nový názov.
 Môžete automaticky aktualizovať odkazy odkazujúce na pôvodný názov.
 Ak sa rozhodnete túto možnosť nevyužiť, ubezpečte sa, že ste skontrolovali
 výskyt [[Special:DoubleRedirects|dvojitých]] a [[Special:BrokenRedirects|pokazených]] presmerovaní.
+Vy ste zodpovedný za to, aby odkazy naďalej ukazovali tam, kam majú.
+
+Uvedomte si, že stránka sa '''nepremiestni''', ak pod novým názvom už stránka existuje.
+Toto neplatí iba ak je stránka prázdna alebo presmerovacia a nemá žiadne predchádzajúce verzie.
+To znamená, že môžete premenovať stránku späť na názov, ktorý mala pred premenovaním, ak ste sa pomýlili, a že nemôžete prepísať
+existujúcu stránku.
+
+'''UPOZORNENIE!'''
+Toto môže byť drastická a nečakaná zmena pre populárnu stránku;
+ubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojho činu.",
+'movepagetext-noredirectfixer' => "Pomocou tohto formulára premenujete stránku a premiestnite všetky jej predchádzajúce verzie pod zadaný nový názov.
+Starý názov sa stane presmerovacou stránkou na nový názov.
+Ubezpečte sa, že ste skontrolovali výskyt [[Special:DoubleRedirects|dvojitých]] a [[Special:BrokenRedirects|pokazených]] presmerovaní.
 Vy ste zodpovedný za to, aby odkazy naďalej ukazovali tam, kam majú.
 
 Uvedomte si, že stránka sa '''nepremiestni''', ak pod novým názvom už stránka existuje.

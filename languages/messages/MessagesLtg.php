@@ -209,7 +209,7 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'italic_tip'      => 'Sleipais roksts',
 'link_sample'     => 'Lopys nūsaukums/ viersroksts',
 'link_tip'        => 'Īškejuo saite',
-'extlink_sample'  => 'http://www.paraugs.com saitis aproksts',
+'extlink_sample'  => 'http://www.example.com saitis aproksts',
 'extlink_tip'     => 'Uorejuo saite (naaizmierst suokumā dalikt "http://")',
 'headline_sample' => 'Viersroksta teksts',
 'headline_tip'    => '2. leimiņa viersroksts',

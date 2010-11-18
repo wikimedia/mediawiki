@@ -1307,6 +1307,7 @@ Do you want to change the settings?',
 'import-upload'           => 'ܐܣܩ ܓܠܝܬ̈ܐ  ܕ XML',
 
 # Import log
+'importlogpage'                    => 'ܣܓܠܐ ܕܡܥܠܢܘܬܐ',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|ܬܢܝܬܐ |ܬܢܝܬ̈ܐ}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ܬܢܝܬܐ |ܬܢܝܬ̈ܐ}} ܡܢ $2',
 
@@ -1315,6 +1316,7 @@ Do you want to change the settings?',
 'siteuser'    => '{{SITENAME}} ܡܦܠܚܢܐ $1',
 'others'      => 'ܐܚܪ̈ܢܐ',
 'siteusers'   => '{{SITENAME}} {{PLURAL:$2|ܡܦܠܚܢܐ|ܡܦܠܚܢ̈ܐ}} $1',
+'anonusers'   => '{{SITENAME}} {{PLURAL:$2|ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ|ܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ}} $1',
 'creditspage' => 'ܙܕ̈ܩܐ ܕܦܐܬܐ',
 
 # Info page

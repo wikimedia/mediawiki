@@ -1449,7 +1449,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-import'                => 'Importere sider frå andre wikiar',
 'right-importupload'          => 'Importere sider via opplasting',
 'right-patrol'                => 'Markere endringar som godkjende',
-'right-autopatrol'            => 'Får sine eigne endringar merka som godkjende',
+'right-autopatrol'            => 'Få sine eigne endringar automatisk merkte som godkjende',
 'right-patrolmarks'           => 'Vis godkjende endringar i siste endringar',
 'right-unwatchedpages'        => 'Sjå lista over sider som ikkje er overvaka',
 'right-trackback'             => 'Gje tilbakemelding',
@@ -2797,7 +2797,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 # Patrol log
 'patrol-log-page'      => 'Patruljeringslogg',
 'patrol-log-header'    => 'Dette er ein logg over patruljerte sideversjonar.',
-'patrol-log-line'      => 'merka $1 av $2 godkjend $3',
+'patrol-log-line'      => 'merkte $1 av $2 godkjend $3',
 'patrol-log-auto'      => '(automatisk)',
 'patrol-log-diff'      => 'versjon $1',
 'log-show-hide-patrol' => '$1 patruljeringslogg',

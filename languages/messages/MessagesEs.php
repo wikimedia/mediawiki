@@ -1176,9 +1176,9 @@ No tiene acceso a él.',
 'revdelete-concurrent-change' => 'Error modificando el objeto de fecha $2, $1: su estado parece haber sido cambiado por alguien más cuando tratabas de modificarlo. Por favor verifica los registros.',
 'revdelete-only-restricted'   => 'Error ocultando el item de fecha $2, $1: no puedes suprimir elementos de vista de los administradores sin seleccionar asímismo una de las otras opciones de visibilidad.',
 'revdelete-reason-dropdown'   => '*Razones de borrado comunes
-** Violación de Copyright
+** Violación a los derechos de autor
 ** Información personal inapropiada
-** Difamación o libelo grave',
+** Información potencialmente injuriosa o calumniante',
 'revdelete-otherreason'       => 'Otra/adicional razón:',
 'revdelete-reasonotherlist'   => 'Otra razón',
 'revdelete-edit-reasonlist'   => 'Editar razones de borrado',
@@ -1476,10 +1476,10 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
-'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
-'grouppage-suppress'      => '{{ns:project}}:Supresores',
+'grouppage-suppress'      => '{{ns:project}}:Supresores de ediciones',
 
 # Rights
 'right-read'                  => 'Leer páginas',

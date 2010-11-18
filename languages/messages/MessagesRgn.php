@@ -252,7 +252,7 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 'italic_tip'      => 'Pàroli in cursìv',
 'link_sample'     => "Nòm d'e' culegamént",
 'link_tip'        => 'Culegamént intéran',
-'extlink_sample'  => "http://www.esempi.com Nòm d'e' culegamént",
+'extlink_sample'  => "http://www.example.com Nòm d'e' culegamént",
 'extlink_tip'     => 'Culegamént esteran (arcordat d\'scrivar dadnénz "http://")',
 'headline_sample' => 'Intestaziòn',
 'headline_tip'    => "Intestaziòn d'e' sgond livèl",
