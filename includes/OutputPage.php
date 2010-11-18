@@ -1636,7 +1636,7 @@ class OutputPage {
 		}
 
 		if( $wgUser->getBoolOption( 'editsectiononrightclick' ) ) {
-			$this->addModules( 'mediawiki.advanced.rightclickedit' );
+			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
 		}
 
 		if( $wgUniversalEditButton ) {
