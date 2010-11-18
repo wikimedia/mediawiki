@@ -607,26 +607,31 @@ CONTROL;
 	/**
 	 * Get the diff table body, without header
 	 *
-	 * @return mixed
+	 * @return mixed (string/false)
 	 */
-	function getDiffBody() {
+	public function getDiffBody() {
 		global $wgMemc;
 		wfProfileIn( __METHOD__ );
 		$this->mCacheHit = true;
 		// Check if the diff should be hidden from this user
-		if ( !$this->loadRevisionData() )
-			return '';
-		if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
-			return '';
-		} else if ( $this->mNewRev && !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-			return '';
-		} else if ( $this->mOldRev && $this->mNewRev && $this->mOldRev->getID() == $this->mNewRev->getID() ) {
+		if ( !$this->loadRevisionData() ) {
+			return false;
+		} elseif ( $this->mOldRev && !$this->mOldRev->userCan( Revision::DELETED_TEXT ) ) {
+			return false;
+		} elseif ( $this->mNewRev && !$this->mNewRev->userCan( Revision::DELETED_TEXT ) ) {
+			return false;
+		}
+		// Short-circuit
+		if ( $this->mOldRev && $this->mNewRev
+			&& $this->mOldRev->getID() == $this->mNewRev->getID() )
+		{
 			return '';
 		}
 		// Cacheable?
 		$key = false;
 		if ( $this->mOldid && $this->mNewid ) {
-			$key = wfMemcKey( 'diff', 'version', MW_DIFF_VERSION, 'oldid', $this->mOldid, 'newid', $this->mNewid );
+			$key = wfMemcKey( 'diff', 'version', MW_DIFF_VERSION,
+				'oldid', $this->mOldid, 'newid', $this->mNewid );
 			// Try cache
 			if ( !$this->mRefreshCache ) {
 				$difftext = $wgMemc->get( $key );
@@ -652,7 +657,7 @@ CONTROL;
 		// Save to cache for 7 days
 		if ( !wfRunHooks( 'AbortDiffCache', array( &$this ) ) ) {
 			wfIncrStats( 'diff_uncacheable' );
-		} else if ( $key !== false && $difftext !== false ) {
+		} elseif ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );
 			$wgMemc->set( $key, $difftext, 7*86400 );
 		} else {
