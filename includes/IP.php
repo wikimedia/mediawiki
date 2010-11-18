@@ -42,7 +42,7 @@ define( 'RE_IPV6_ADD',
 	'|' . // has no "::"
 		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){7}' .
 	'|' . // contains one "::" in the middle (awkward regex for PCRE 4.0+ compatibility)
-		RE_IPV6_WORD . '(?::(?!(?P=abn))(?P<abn>:(?P<iabn>))?' . RE_IPV6_WORD . '){1,6}(?P=iabn)' .
+		RE_IPV6_WORD . '(?::(?P<abn>(?!(?P=abn)):(?P<iabn>))?' . RE_IPV6_WORD . '){1,6}(?P=iabn)' .
 		// NOTE: (?!(?P=abn)) fails iff "::" used twice; (?P=iabn) passes iff a "::" was found.
 		
 		// Better regexp (PCRE 7.2+ only), allows intuitive regex concatenation
