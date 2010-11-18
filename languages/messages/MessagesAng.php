@@ -430,7 +430,7 @@ Scēawa þīne wrītunge eft, oþþe brūc þā cartan þe is hērunder tō [[Sp
 'italic_tip'      => 'Flōƿende traht',
 'link_sample'     => 'Hlenċnama',
 'link_tip'        => 'Innanƿeard hlenċe',
-'extlink_sample'  => 'http://www.bisen.com hlenċnama',
+'extlink_sample'  => 'http://www.example.com hlenċnama',
 'extlink_tip'     => 'Ūtanƿeard hlenċe (ȝemune http:// foredǣl)',
 'headline_sample' => 'Hēafodlīnan traht',
 'headline_tip'    => 'Emnet 2 hēafodlīn',

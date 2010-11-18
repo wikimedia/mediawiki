@@ -1671,7 +1671,7 @@ Pote esser preferite reprovar quando le sito es minus occupate.',
 
 'license'            => 'Licentia:',
 'license-header'     => 'Licentia',
-'nolicense'          => 'Necun licentia seligite',
+'nolicense'          => 'Nulle licentia seligite',
 'license-nopreview'  => '(Previsualisation non disponibile)',
 'upload_source_url'  => ' (un adresse URL valide e publicamente accessibile)',
 'upload_source_file' => ' (un file in tu computator)',
