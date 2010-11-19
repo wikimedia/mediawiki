@@ -6,7 +6,7 @@
  * Set of classes to help with test output and such. Right now pretty specific
  * to the parser tests but could be more useful one day :)
  *
- * @todo @fixme Make this more generic
+ * @todo Fixme: Make this more generic
  */
 
 class AnsiTermColorer {
