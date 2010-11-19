@@ -1663,8 +1663,9 @@ $wgResourceLoaderMaxage = array(
 );
 
 /**
- * Whether to embed private modules inline with HTML output or to bypass caching and check the user parameter against
- * $wgUser to prevent unauthorized access to private modules.
+ * Whether to embed private modules inline with HTML output or to bypass 
+ * caching and check the user parameter against $wgUser to prevent 
+ * unauthorized access to private modules.
  */
 $wgResourceLoaderInlinePrivateModules = true;
 
