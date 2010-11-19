@@ -593,29 +593,27 @@ class ApiQueryInfo extends ApiQueryBase {
 	private function getWatchedInfo() {
 		global $wgUser;
 
-		if ( $wgUser->isAnon() || count( $this->titles ) == 0 ) {
+		if ( $wgUser->isAnon() || count( $this->everything ) == 0 ) {
 			return;
 		}
 
 		$this->watched = array();
 		$db = $this->getDB();
 
-		$lb = new LinkBatch( $this->titles );
+		$lb = new LinkBatch( $this->everything );
 
 		$this->resetQueryParams();
-		$this->addTables( array( 'page', 'watchlist' ) );
-		$this->addFields( array( 'page_title', 'page_namespace' ) );
+		$this->addTables( array( 'watchlist' ) );
+		$this->addFields( array( 'wl_title', 'wl_namespace' ) );
 		$this->addWhere( array(
-			$lb->constructSet( 'page', $db ),
-			'wl_namespace=page_namespace',
-			'wl_title=page_title',
+			$lb->constructSet( 'wl', $db ),
 			'wl_user' => $wgUser->getID()
 		) );
 
 		$res = $this->select( __METHOD__ );
 
 		foreach ( $res as $row ) {
-			$this->watched[$row->page_namespace][$row->page_title] = true;
+			$this->watched[$row->wl_namespace][$row->wl_title] = true;
 		}
 	}
 
