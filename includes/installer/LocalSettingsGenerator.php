@@ -112,8 +112,9 @@ class LocalSettingsGenerator {
 		if( count( $this->extensions ) ) {
 			$localSettings .= "\n# The following extensions were automatically enabled:\n";
 			
-			foreach( $this->extensions as $ext ) {
-				$localSettings .= "require( 'extensions/$ext/$ext.php' );\n";
+			foreach( $this->extensions as $extName ) {
+				$encExtName = self::escapePhpString( $extName );
+				$localSettings .= "require( \"extensions/$encExtName/$encExtName.php\" );\n";
 			}
 		}
 
