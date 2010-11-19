@@ -182,16 +182,18 @@ abstract class ResourceLoaderModule {
 	 * @return Integer: UNIX timestamp, or 0 if no blob found
 	 */
 	public function getMsgBlobMtime( $lang ) {
-		if ( !count( $this->getMessages() ) )
-			return 0;
-		
-		$dbr = wfGetDB( DB_SLAVE );
-		$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
-				'mr_resource' => $this->getName(),
-				'mr_lang' => $lang
-			), __METHOD__
-		);
-		$this->msgBlobMtime[$lang] = $msgBlobMtime ? wfTimestamp( TS_UNIX, $msgBlobMtime ) : 0;
+		if ( !isset( $this->msgBlobMtime[$lang] ) ) {
+			if ( !count( $this->getMessages() ) )
+				return 0;
+			
+			$dbr = wfGetDB( DB_SLAVE );
+			$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
+					'mr_resource' => $this->getName(),
+					'mr_lang' => $lang
+				), __METHOD__
+			);
+			$this->msgBlobMtime[$lang] = $msgBlobMtime ? wfTimestamp( TS_UNIX, $msgBlobMtime ) : 0;
+		}
 		return $this->msgBlobMtime[$lang];
 	}
 	

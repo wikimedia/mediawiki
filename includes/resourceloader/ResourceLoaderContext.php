@@ -53,22 +53,11 @@ class ResourceLoaderContext {
 		$modules = $request->getVal( 'modules' );
 		$this->modules   = $modules ? explode( '|', $modules ) : array();
 		// Various parameters
-		$this->language  = $request->getVal( 'lang' );
-		$this->direction = $request->getVal( 'dir' );
 		$this->skin      = $request->getVal( 'skin' );
 		$this->user      = $request->getVal( 'user' );
 		$this->debug     = $request->getFuzzyBool( 'debug', $wgResourceLoaderDebug );
 		$this->only      = $request->getVal( 'only' );
 		$this->version   = $request->getVal( 'version' );
-
-		// Fallback on system defaults
-		if ( !$this->language ) {
-			$this->language = $wgLang->getCode();
-		}
-
-		if ( !$this->direction ) {
-			$this->direction = Language::factory( $this->language )->getDir();
-		}
 
 		if ( !$this->skin ) {
 			$this->skin = $wgDefaultSkin;
@@ -88,10 +77,23 @@ class ResourceLoaderContext {
 	}
 
 	public function getLanguage() {
+		if ( $this->language === null ) {
+			global $wgLang;
+			$this->language  = $this->request->getVal( 'lang' );
+			if ( !$this->language ) {
+				$this->language = $wgLang->getCode();
+			}
+		}
 		return $this->language;
 	}
 
 	public function getDirection() {
+		if ( $this->direction === null ) {
+			$this->direction = $this->request->getVal( 'dir' );
+			if ( !$this->direction ) {
+				$this->direction = Language::factory( $this->language )->getDir();
+			}
+		}
 		return $this->direction;
 	}
 
@@ -130,7 +132,7 @@ class ResourceLoaderContext {
 	public function getHash() {
 		if ( isset( $this->hash ) ) {
 			$this->hash = implode( '|', array(
-				$this->language, $this->direction, $this->skin, $this->user, 
+				$this->getLanguage(), $this->getDirection(), $this->skin, $this->user, 
 				$this->debug, $this->only, $this->version
 			) );
 		}

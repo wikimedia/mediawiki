@@ -41,9 +41,9 @@ class ResourceLoader {
 	 * This method grabs modules dependencies from the database and updates modules 
 	 * objects.
 	 * 
-	 * This is not inside the module code because it's so much more performant to 
+	 * This is not inside the module code because it is much faster to 
 	 * request all of the information at once than it is to have each module 
-	 * requests its own information. This sacrifice of modularity yields a profound
+	 * requests its own information. This sacrifice of modularity yields a substantial
 	 * performance improvement.
 	 * 
 	 * @param $modules Array: List of module names to preload information for
