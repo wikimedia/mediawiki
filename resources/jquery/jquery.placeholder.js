@@ -4,52 +4,58 @@
  * This will automatically use the HTML5 placeholder attribute if supported, or emulate this behavior if not.
  * 
  * @author Trevor Parscal <tparscal@wikimedia.org>
- * @version 0.1.0
+ * @author Krinkle <krinklemail@gmail.com>
+ * @version 0.2.0
  * @license GPL v2
  */
 
-jQuery.fn.placeholder = function( text ) {
-	// If the HTML5 placeholder attribute is supported, use it
-	if ( 'placeholder' in document.createElement( 'input' ) ) {
-		jQuery(this).attr( 'placeholder', text );
-	}
-	// Otherwise, use a combination of blur and focus event handlers and a placeholder class
-	else {
-		jQuery(this).each( function() {
-			var $input = jQuery(this);
-			$input
-				// Show on blur if empty
-				.bind( 'blur', function() {
-					if ( $input.val().length == 0 ) {
-						$input
-							.val( text )
-							.addClass( 'placeholder' );
-						}
-					} )
-				// Hide on focus
-				.bind( 'focus', function() {
-					if ( $input.hasClass( 'placeholder' ) ) {
-						$input
-							.val( '' )
-							.removeClass( 'placeholder' );
-					}
-				} )
-				// Blank on submit -- prevents submitting with unintended value
-				.parents( 'form' )
-					.bind( 'submit', function() {
-						// $input.trigger( 'focus' ); is problematic
-						// because it actually focuses $input, leading
-						// to nasty behavior in mobile browsers
-						if ( $input.hasClass( 'placeholder' ) ) {
-							$input
-								.val( '' )
-								.removeClass( 'placeholder' );
-						}
-					} );
-			// Show initially, if empty
-			if ( $input.val() == '' ) {
-				$input.trigger( 'blur' );
+jQuery.fn.placeholder = function() {
+
+	return this.each( function() {
+
+		// If the HTML5 placeholder attribute is supported, use it
+		if ( this.placeholder && 'placeholder' in document.createElement( this.tagName ) ) {
+			return;
+		}
+
+		var placeholder = this.getAttribute('placeholder');
+		var $input = jQuery(this);
+
+		// Show initially, if empty
+		if ( this.value === '' || this.value == placeholder ) {
+			$input.addClass( 'placeholder' ).val( placeholder );
+		}
+
+		$input
+			// Show on blur if empty
+			.blur( function() {
+				if ( this.value === '' ) {
+					this.value = placeholder;
+					$input.addClass( 'placeholder' );
+				} else {
+					$input.removeClass( 'placeholder' );
+				}
+			} )
+
+			// Hide on focus
+			.focus( function() {
+				if ($input.hasClass('placeholder')) {
+					this.value = '';
+					$input.removeClass( 'placeholder' );
+				}
+			} );
+
+		// Blank on submit -- prevents submitting with unintended value
+		this.form && $( this.form ).submit( function() {
+			// $input.trigger( 'focus' ); would be problematic
+			// because it actually focuses $input, leading
+			// to nasty behavior in mobile browsers
+			if ( $input.hasClass('placeholder') ) {
+				$input
+					.val( '' )
+					.removeClass( 'placeholder' );
 			}
-		} );
-	}
+		});
+
+	});
 };
