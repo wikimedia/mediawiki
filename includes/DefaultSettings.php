@@ -1646,42 +1646,6 @@ $wgUseETag = false;
  */
 $wgClockSkewFudge = 5;
 
-/**
- * Maximum time in seconds to cache resources served by the resource loader
- */
-$wgResourceLoaderMaxage = array(
-	'versioned' => array(
-		// Squid/Varnish but also any other public proxy cache between the client and MediaWiki
-		'server' => 30 * 24 * 60 * 60, // 30 days
-		// On the client side (e.g. in the browser cache).
-		'client' => 30 * 24 * 60 * 60, // 30 days
-	),
-	'unversioned' => array(
-		'server' => 5 * 60, // 5 minutes
-		'client' => 5 * 60, // 5 minutes
-	),
-);
-
-/**
- * Whether to embed private modules inline with HTML output or to bypass 
- * caching and check the user parameter against $wgUser to prevent 
- * unauthorized access to private modules.
- */
-$wgResourceLoaderInlinePrivateModules = true;
-
-/**
- * The default debug mode (on/off) for of ResourceLoader requests. This will still
- * be overridden when the debug URL parameter is used.
- */
-$wgResourceLoaderDebug = false;
-
-/**
- * Enable embedding of certain resources using Edge Side Includes. This will
- * improve performance but only works if there is something in front of the
- * web server (e..g a Squid or Varnish server) configured to process the ESI.
- */
-$wgResourceLoaderUseESI = false;
-
 /** @} */ # end of cache settings
 
 /************************************************************************//**
@@ -2318,6 +2282,65 @@ $wgBetterDirectionality = false;
 
 
 /** @} */ # End of output format settings }
+
+/*************************************************************************//**
+ * @name   Resource loader settings
+ * @{
+ */
+
+/**
+ * Client-side resource modules. Extensions should add their module definitions 
+ * here.
+ *
+ * Example:
+ *   $wgResourceModules['ext.myExtension'] = array(
+ *      'scripts' => 'myExtension.js',
+ *      'styles' => 'myExtension.css',
+ *      'dependencies' => array( 'jquery.cookie', 'jquery.tabIndex' ),
+ *      'localBasePath' => dirname( __FILE ),
+ *      'remoteExtPath' => 'MyExtension',
+ *   );
+ */
+$wgResourceModules = array();
+
+/**
+ * Maximum time in seconds to cache resources served by the resource loader
+ */
+$wgResourceLoaderMaxage = array(
+	'versioned' => array(
+		// Squid/Varnish but also any other public proxy cache between the client and MediaWiki
+		'server' => 30 * 24 * 60 * 60, // 30 days
+		// On the client side (e.g. in the browser cache).
+		'client' => 30 * 24 * 60 * 60, // 30 days
+	),
+	'unversioned' => array(
+		'server' => 5 * 60, // 5 minutes
+		'client' => 5 * 60, // 5 minutes
+	),
+);
+
+/**
+ * Whether to embed private modules inline with HTML output or to bypass 
+ * caching and check the user parameter against $wgUser to prevent 
+ * unauthorized access to private modules.
+ */
+$wgResourceLoaderInlinePrivateModules = true;
+
+/**
+ * The default debug mode (on/off) for of ResourceLoader requests. This will still
+ * be overridden when the debug URL parameter is used.
+ */
+$wgResourceLoaderDebug = false;
+
+/**
+ * Enable embedding of certain resources using Edge Side Includes. This will
+ * improve performance but only works if there is something in front of the
+ * web server (e..g a Squid or Varnish server) configured to process the ESI.
+ */
+$wgResourceLoaderUseESI = false;
+
+/** @} */ # End of resource loader settings }
+
 
 /*************************************************************************//**
  * @name   Page title and interwiki link settings

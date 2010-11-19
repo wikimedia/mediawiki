@@ -2290,6 +2290,16 @@ class OutputPage {
 	}
 
 	/**
+	 * Get a ResourceLoader object associated with this OutputPage
+	 */
+	public function getResourceLoader() {
+		if ( is_null( $this->mResourceLoader ) ) {
+			$this->mResourceLoader = new ResourceLoader();
+		}
+		return $this->mResourceLoader;
+	}		
+
+	/**
 	 * TODO: Document
 	 * @param $skin Skin
 	 * @param $modules Array/string with the module name
@@ -2301,9 +2311,6 @@ class OutputPage {
 		global $wgUser, $wgLang, $wgLoadScript, $wgResourceLoaderUseESI,
 			$wgResourceLoaderInlinePrivateModules;
 		// Lazy-load ResourceLoader
-		if ( is_null( $this->mResourceLoader ) ) {
-			$this->mResourceLoader = new ResourceLoader();
-		}
 		// TODO: Should this be a static function of ResourceLoader instead?
 		// TODO: Divide off modules starting with "user", and add the user parameter to them
 		$query = array(
@@ -2335,8 +2342,9 @@ class OutputPage {
 		
 		// Create keyed-by-group list of module objects from modules list
 		$groups = array();
+		$resourceLoader = $this->getResourceLoader();
 		foreach ( (array) $modules as $name ) {
-			$module = $this->mResourceLoader->getModule( $name );
+			$module = $resourceLoader->getModule( $name );
 			$group = $module->getGroup();
 			if ( !isset( $groups[$group] ) ) {
 				$groups[$group] = array();
@@ -2352,15 +2360,15 @@ class OutputPage {
 			}
 			// Support inlining of private modules if configured as such
 			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
-				$context = new ResourceLoaderContext( $this->mResourceLoader, new FauxRequest( $query ) );
+				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 				if ( $only == 'styles' ) {
 					$links .= Html::inlineStyle(
-						$this->mResourceLoader->makeModuleResponse( $context, $modules )
+						$resourceLoader->makeModuleResponse( $context, $modules )
 					);
 				} else {
 					$links .= Html::inlineScript(
 						ResourceLoader::makeLoaderConditionalScript(
-							$this->mResourceLoader->makeModuleResponse( $context, $modules )
+							$resourceLoader->makeModuleResponse( $context, $modules )
 						)
 					);
 				}
@@ -2371,7 +2379,7 @@ class OutputPage {
 			// we can ensure cache misses on change
 			if ( $group === 'user' || $group === 'site' ) {
 				// Create a fake request based on the one we are about to make so modules return correct times
-				$context = new ResourceLoaderContext( $this->mResourceLoader, new FauxRequest( $query ) );
+				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 				// Get the maximum timestamp
 				$timestamp = 1;
 				foreach ( $modules as $module ) {

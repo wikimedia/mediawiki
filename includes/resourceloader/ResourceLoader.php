@@ -32,6 +32,8 @@ class ResourceLoader {
 
 	/** Array: List of module name/ResourceLoaderModule object pairs */
 	protected $modules = array();
+	/** Associative array mapping module name to info associative array */
+	protected $moduleInfos = array();
 
 	/* Protected Methods */
 
@@ -67,7 +69,7 @@ class ResourceLoader {
 		// Set modules' dependecies		
 		$modulesWithDeps = array();
 		foreach ( $res as $row ) {
-			$this->modules[$row->md_module]->setFileDependencies( $skin,
+			$this->getModule( $row->md_module )->setFileDependencies( $skin,
 				FormatJson::decode( $row->md_deps, true )
 			);
 			$modulesWithDeps[] = $row->md_module;
@@ -75,14 +77,14 @@ class ResourceLoader {
 
 		// Register the absence of a dependency row too
 		foreach ( array_diff( $modules, $modulesWithDeps ) as $name ) {
-			$this->modules[$name]->setFileDependencies( $skin, array() );
+			$this->getModule( $name )->setFileDependencies( $skin, array() );
 		}
 		
 		// Get message blob mtimes. Only do this for modules with messages
 		$modulesWithMessages = array();
 		$modulesWithoutMessages = array();
 		foreach ( $modules as $name ) {
-			if ( count( $this->modules[$name]->getMessages() ) ) {
+			if ( count( $this->getModule( $name )->getMessages() ) ) {
 				$modulesWithMessages[] = $name;
 			} else {
 				$modulesWithoutMessages[] = $name;
@@ -95,11 +97,11 @@ class ResourceLoader {
 				), __METHOD__
 			);
 			foreach ( $res as $row ) {
-				$this->modules[$row->mr_resource]->setMsgBlobMtime( $lang, $row->mr_timestamp );
+				$this->getModule( $row->mr_resource )->setMsgBlobMtime( $lang, $row->mr_timestamp );
 			}
 		}
 		foreach ( $modulesWithoutMessages as $name ) {
-			$this->modules[$name]->setMsgBlobMtime( $lang, 0 );
+			$this->getModule( $name )->setMsgBlobMtime( $lang, 0 );
 		}
 	}
 
@@ -172,7 +174,7 @@ class ResourceLoader {
 	 * Registers core modules and runs registration hooks.
 	 */
 	public function __construct() {
-		global $IP;
+		global $IP, $wgResourceModules;
 		
 		wfProfileIn( __METHOD__ );
 		
@@ -180,6 +182,7 @@ class ResourceLoader {
 		$this->register( include( "$IP/resources/Resources.php" ) );
 		// Register extension modules
 		wfRunHooks( 'ResourceLoaderRegisterModules', array( &$this ) );
+		$this->register( $wgResourceModules );
 		
 		wfProfileOut( __METHOD__ );
 	}
@@ -188,30 +191,27 @@ class ResourceLoader {
 	 * Registers a module with the ResourceLoader system.
 	 * 
 	 * @param $name Mixed: Name of module as a string or List of name/object pairs as an array
-	 * @param $object ResourceLoaderModule: Module object (optional when using 
-	 *     multiple-registration calling style)
+	 * @param $info Module info array. For backwards compatibility with 1.17alpha, 
+	 *   this may also be a ResourceLoaderModule object. Optional when using 
+	 *   multiple-registration calling style.
 	 * @throws MWException: If a duplicate module registration is attempted
 	 * @throws MWException: If something other than a ResourceLoaderModule is being registered
 	 * @return Boolean: False if there were any errors, in which case one or more modules were not
 	 *     registered
 	 */
-	public function register( $name, ResourceLoaderModule $object = null ) {
-
+	public function register( $name, $info = null ) {
 		wfProfileIn( __METHOD__ );
 
 		// Allow multiple modules to be registered in one call
-		if ( is_array( $name ) && !isset( $object ) ) {
+		if ( is_array( $name ) ) {
 			foreach ( $name as $key => $value ) {
 				$this->register( $key, $value );
 			}
-
-			wfProfileOut( __METHOD__ );
-
 			return;
 		}
 
 		// Disallow duplicate registrations
-		if ( isset( $this->modules[$name] ) ) {
+		if ( isset( $this->moduleInfos[$name] ) ) {
 			// A module has already been registered by this name
 			throw new MWException(
 				'ResourceLoader duplicate registration error. ' . 
@@ -219,26 +219,32 @@ class ResourceLoader {
 			);
 		}
 
-		// Validate the input (type hinting lets null through)
-		if ( !( $object instanceof ResourceLoaderModule ) ) {
-			throw new MWException( 'ResourceLoader invalid module error. ' . 
-				'Instances of ResourceLoaderModule expected.' );
+		// Attach module
+		if ( is_object( $info ) ) {
+			// Old calling convention
+			// Validate the input
+			if ( !( $info instanceof ResourceLoaderModule ) ) {
+				throw new MWException( 'ResourceLoader invalid module error. ' . 
+					'Instances of ResourceLoaderModule expected.' );
+			}
+
+			$this->moduleInfos[$name] = array( 'object' => $info );
+			$this->modules[$name] = $info;
+		} else {
+			// New calling convention
+			$this->moduleInfos[$name] = $info;
 		}
 
-		// Attach module
-		$this->modules[$name] = $object;
-		$object->setName( $name );
-		
 		wfProfileOut( __METHOD__ );
 	}
 
-	/**
-	 * Gets a map of all modules and their options
+ 	/**
+	 * Get a list of module names
 	 *
-	 * @return Array: List of modules keyed by module name
+	 * @return Array: List of module names
 	 */
-	public function getModules() {
-		return $this->modules;
+	public function getModuleNames() {
+		return array_keys( $this->moduleInfos );
 	}
 
 	/**
@@ -248,7 +254,29 @@ class ResourceLoader {
 	 * @return Mixed: ResourceLoaderModule if module has been registered, null otherwise
 	 */
 	public function getModule( $name ) {
-		return isset( $this->modules[$name] ) ? $this->modules[$name] : null;
+		if ( !isset( $this->modules[$name] ) ) {
+			if ( !isset( $this->moduleInfos[$name] ) ) {
+				// No such module
+				return null;
+			}
+			// Construct the requested object
+			$info = $this->moduleInfos[$name];
+			if ( isset( $info['object'] ) ) {
+				// Object given in info array
+				$object = $info['object'];
+			} else {
+				if ( !isset( $info['class'] ) ) {
+					$class = 'ResourceLoaderFileModule';
+				} else {
+					$class = $info['class'];
+				}
+				$object = new $class( $info );
+			}
+			$object->setName( $name );
+			$this->modules[$name] = $object;
+		}
+
+		return $this->modules[$name];
 	}
 
 	/**
@@ -265,8 +293,8 @@ class ResourceLoader {
 		$modules = array();
 		$missing = array();
 		foreach ( $context->getModules() as $name ) {
-			if ( isset( $this->modules[$name] ) ) {
-				$modules[$name] = $this->modules[$name];
+			if ( isset( $this->moduleInfos[$name] ) ) {
+				$modules[$name] = $this->getModule( $name );
 			} else {
 				$missing[] = $name;
 			}
@@ -376,7 +404,7 @@ class ResourceLoader {
 			if ( $context->shouldIncludeStyles() ) {
 				$styles = $module->getStyles( $context );
 				// Flip CSS on a per-module basis
-				if ( $styles && $this->modules[$name]->getFlip( $context ) ) {
+				if ( $styles && $module->getFlip( $context ) ) {
 					foreach ( $styles as $media => $style ) {
 						$styles[$media] = $this->filter( 'flip-css', $style );
 					}

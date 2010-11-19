@@ -101,7 +101,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		
 		$out = '';
 		$registrations = array();
-		foreach ( $context->getResourceLoader()->getModules() as $name => $module ) {
+		$resourceLoader = $context->getResourceLoader();
+		foreach ( $resourceLoader->getModuleNames() as $name ) {
+			$module = $resourceLoader->getModule( $name );
 			// Support module loader scripts
 			$loader = $module->getLoaderScript();
 			if ( $loader !== false ) {
@@ -193,7 +195,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// infinite recursion - think carefully before making changes to this 
 		// code!
 		$time = wfTimestamp( TS_UNIX, $wgCacheEpoch );
-		foreach ( $context->getResourceLoader()->getModules() as $module ) {
+		$loader = $context->getResourceLoader();
+		foreach ( $loader->getModuleNames() as $name ) {
+			$module = $loader->getModule( $name );
 			$time = max( $time, $module->getModifiedTime( $context ) );
 		}
 		return $this->modifiedTime[$hash] = $time;
