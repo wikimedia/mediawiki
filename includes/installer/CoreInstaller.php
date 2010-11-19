@@ -314,7 +314,7 @@ abstract class CoreInstaller extends Installer {
 		);
 		if( count( $this->getVar( '_Extensions' ) ) ) {
 			array_unshift( $installSteps, 
-				array( 'extensions', array( $this, 'includeExtensions' ) )
+				array( 'name' => 'extensions', 'callback' => array( $this, 'includeExtensions' ) )
 			);
 		}
 		foreach( $installSteps as $idx => $stepObj ) {
