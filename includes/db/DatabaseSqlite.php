@@ -656,8 +656,7 @@ class SQLiteField {
 	}
 
 	function nullable() {
-		// SQLite dynamic types are always nullable
-		return true;
+		return !$this->info->notnull;
 	}
 
 	# isKey(),  isMultipleKey() not implemented, MySQL-specific concept.
