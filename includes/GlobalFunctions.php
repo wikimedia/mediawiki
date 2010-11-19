@@ -3451,8 +3451,8 @@ function wfObjectToArray( $object, $recursive = true ) {
 function wfMemoryLimit() {
 	global $wgMemoryLimit;
 	$memlimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
-	$conflimit = wfShorthandToInteger( $wgMemoryLimit );
 	if( $memlimit != -1 ) {
+		$conflimit = wfShorthandToInteger( $wgMemoryLimit );
 		if( $conflimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit\n" );
 			wfSuppressWarnings();
@@ -3477,17 +3477,22 @@ function wfMemoryLimit() {
  */
 function wfShorthandToInteger( $string = '' ) {
 	$string = trim( $string );
-	if( empty( $string ) ) {
+	if( $string === '' ) {
 		return -1;
 	}
-	$last = strtolower( $string[strlen( $string ) - 1] );
+	$last = $string[strlen( $string ) - 1];
 	$val = intval( $string );
 	switch( $last ) {
 		case 'g':
+		case 'G':
 			$val *= 1024;
+			// break intentionally missing
 		case 'm':
+		case 'M':
 			$val *= 1024;
+			// break intentionally missing
 		case 'k':
+		case 'K':
 			$val *= 1024;
 	}
 
