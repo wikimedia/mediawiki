@@ -105,6 +105,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 
 	 * @example $options
 	 * 	array(
+	 * 		// Base path to prepend to all local paths in $options. Defaults to $IP
+	 * 		'localBasePath' => [base path],
+	 * 		// Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath
+	 *      'remoteBasePath' => [base path],
+	 *      // Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath
+	 *      'remoteExtPath' => [base path],
 	 * 		// Scripts to always include
 	 * 		'scripts' => [file path string or array of file path strings],
 	 * 		// Scripts to include in specific language contexts
@@ -139,6 +145,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		global $IP, $wgScriptPath;
 		$this->localBasePath = $localBasePath === null ? $IP : $localBasePath;
 		$this->remoteBasePath = $remoteBasePath === null ? $wgScriptPath : $remoteBasePath;
+
+		if ( isset( $options['remoteExtPath'] ) ) {
+			global $wgExtensionAssetsPath;
+			$this->remoteBasePath = $wgExtensionAssetsPath . '/' . $options['remoteExtPath'];
+		}
+
 		foreach ( $options as $member => $option ) {
 			switch ( $member ) {
 				// Lists of file paths
@@ -175,6 +187,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 				// Single strings
 				case 'group':
+				case 'localBasePath':
+				case 'remoteBasePath':
 					$this->{$member} = (string) $option;
 					break;
 				// Single booleans
