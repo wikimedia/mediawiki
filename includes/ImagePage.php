@@ -518,7 +518,8 @@ EOT
 		$descUrl = $this->img->getDescriptionUrl();
 		$descText = $this->img->getDescriptionText();
 
-		if( $descUrl ) {
+		/* Add canonical to head if there is no local page for this shared file */
+		if( $descUrl && $this->getID() == 0 ) {
 			$wgOut->addLink( array( 'rel' => 'canonical', 'href' => $descUrl ) );
 		}
 
