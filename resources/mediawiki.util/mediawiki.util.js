@@ -54,7 +54,7 @@
 					$('input[type=checkbox]:not(.noshiftselect)').checkboxShiftClick();
 
 					// Emulate placeholder if not supported by browser
-					if ( !'placeholder' in document.createElement( 'input' ) ) {
+					if ( !( 'placeholder' in document.createElement( 'input' ) ) ) {
 						$('input[placeholder]').placeholder();
 					}
 
