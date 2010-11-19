@@ -206,6 +206,9 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Added CSS print pagination to the print stylesheets
 * (bug 25960) Add <link rel=canonical"> for File pages of shared/foreign
   file repositories.
+* When viewing a redirect, the redirect arrow and redirection target are both
+  wrapped in a div that has the class "redirectMsg" so that the redirection
+  arrow can be customized with CSS
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

@@ -1571,8 +1571,9 @@ class Article {
 		}
 
 		$imageUrl = $wgStylePath . '/common/images/redirect' . $imageDir . '.png';		
-		return Html::element( 'img', array( 'src' => $imageUrl, 'alt' => '#REDIRECT' ) ) .
-			'<span class="redirectText">' . $link . '</span>';
+		return '<div class="redirectMsg">' .
+			Html::element( 'img', array( 'src' => $imageUrl, 'alt' => '#REDIRECT' ) ) .
+			'<span class="redirectText">' . $link . '</span></div>';
 	}
 
 	/**
