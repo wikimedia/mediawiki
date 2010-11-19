@@ -4,16 +4,16 @@ window.isMSIE55 = ( window.showModalDialog && window.clipboardData && window.cre
 window.doneIETransform = undefined;
 window.doneIEAlphaFix = undefined;
 
-if ( document.attachEvent ) {
-	document.attachEvent( 'onreadystatechange', hookit );
-}
-
 window.hookit = function() {
 	if ( !doneIETransform && document.getElementById && document.getElementById( 'bodyContent' ) ) {
 		doneIETransform = true;
 		relativeforfloats();
 		fixalpha();
 	}
+}
+
+if ( document.attachEvent ) {
+	document.attachEvent( 'onreadystatechange', window.hookit );
 }
 
 // png alpha transparency fixes
