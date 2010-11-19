@@ -119,8 +119,6 @@ class ResourceLoader {
 	 * @return String: Filtered data
 	 */
 	protected function filter( $filter, $data ) {
-		global $wgMemc;
-		
 		wfProfileIn( __METHOD__ );
 
 		// For empty/whitespace-only data or for unknown filters, don't perform 
@@ -132,9 +130,11 @@ class ResourceLoader {
 			return $data;
 		}
 
-		// Try for Memcached hit
+		// Try for cache hit
+		// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
 		$key = wfMemcKey( 'resourceloader', 'filter', $filter, md5( $data ) );
-		$cacheEntry = $wgMemc->get( $key );
+		$cache = wfGetCache( CACHE_ANYTHING );
+		$cacheEntry = $cache->get( $key );
 		if ( is_string( $cacheEntry ) ) {
 			wfProfileOut( __METHOD__ );
 			return $cacheEntry;
@@ -159,7 +159,7 @@ class ResourceLoader {
 		}
 
 		// Save filtered text to Memcached
-		$wgMemc->set( $key, $result );
+		$cache->set( $key, $result );
 
 		wfProfileOut( __METHOD__ );
 		
