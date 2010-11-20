@@ -327,7 +327,7 @@ return array(
 	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
-		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client' ),
+		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client', 'jquery.placeholder' ),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
 	'mediawiki.action.view.rightClickEdit' => array(
