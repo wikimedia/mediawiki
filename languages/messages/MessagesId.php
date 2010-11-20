@@ -315,7 +315,7 @@ $messages = array(
 'tog-editsection'             => 'Fungsikan penyuntingan subbagian melalui pranala [sunting]',
 'tog-editsectiononrightclick' => 'Fungsikan penyuntingan subbagian dengan mengeklik kanan pada judul bagian (JavaScript)',
 'tog-showtoc'                 => 'Perlihatkan daftar isi (untuk halaman yang mempunyai lebih dari 3 subbagian)',
-'tog-rememberpassword'        => 'Ingat kata sandi saya di komputer ini (selama $1 {{PLURAL:$1|hari|hari}})',
+'tog-rememberpassword'        => 'Ingat kata sandi saya di peramban ini (selama $1 {{PLURAL:$1|hari|hari}})',
 'tog-watchcreations'          => 'Tambahkan halaman yang saya buat ke daftar pantauan',
 'tog-watchdefault'            => 'Tambahkan halaman yang saya sunting ke daftar pantauan',
 'tog-watchmoves'              => 'Tambahkan halaman yang saya pindahkan ke daftar pantauan',
@@ -329,7 +329,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Kirimkan saya surel juga pada perubahan kecil',
 'tog-enotifrevealaddr'        => 'Tampilkan alamat surel saya pada surel notifikasi',
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
-'tog-oldsig'                  => 'Pratayang tandatangan:',
+'tog-oldsig'                  => 'Pratayang tanda tangan:',
 'tog-fancysig'                => 'Perlakukan tanda tangan sebagai teks wiki (tanpa suatu pranala otomatis)',
 'tog-externaleditor'          => 'Gunakan perangkat lunak pengolah kata luar',
 'tog-externaldiff'            => 'Gunakan perangkat lunak luar untuk melihat perbedaan suntingan',
@@ -535,6 +535,9 @@ Terlalu banyak pengguna berusaha melihat halaman ini.
 Tunggu sebentar sebelum Anda mencoba lagi mengakses halaman ini.
 
 $1',
+'pool-timeout'      => 'Lewat waktu menunggu kunci',
+'pool-queuefull'    => 'Kumpulan antrean penuh',
+'pool-errorunknown' => 'Kesalahan yang tidak diketahui',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tentang {{SITENAME}}',
@@ -693,6 +696,7 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|p
 'yourpassword'               => 'Kata sandi:',
 'yourpasswordagain'          => 'Ulangi kata sandi:',
 'remembermypassword'         => 'Ingat kata sandi saya di komputer ini (selama $1 {{PLURAL:$1|hari|hari}})',
+'securelogin-stick-https'    => 'Tetap terhubung ke HTTPS setelah masuk',
 'yourdomainname'             => 'Domain Anda:',
 'externaldberror'            => 'Telah terjadi kesalahan otentikasi basis data eksternal atau Anda tidak diizinkan melakukan kemaskini terhadap akun eksternal Anda.',
 'login'                      => 'Masuk log',
@@ -731,6 +735,7 @@ Silakan periksa kembali ejaan Anda.',
 'wrongpasswordempty'         => 'Anda tidak memasukkan kata sandi. Silakan coba lagi.',
 'passwordtooshort'           => 'Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}}.',
 'password-name-match'        => 'Kata sandi Anda harus berbeda dari nama pengguna Anda.',
+'password-too-weak'          => 'Sandi yang diberikan terlalu lemah dan tidak dapat digunakan.',
 'mailmypassword'             => 'Kirim kata sandi baru',
 'passwordremindertitle'      => 'Peringatan kata sandi dari {{SITENAME}}',
 'passwordremindertext'       => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta kata sandi baru untuk {{SITENAME}} ($4). Kata sandi sementara untuk pengguna "$2" telah dibuatkan dan diset menjadi "$3". Jika memang Anda yang mengajukan permintaan ini, Anda perlu masuk log dan memilih kata sandi baru sekarang. Kata sandi sementara Anda akan kedaluwarsa dalam waktu {{PLURAL:$5|satu hari|$5 hari}}.
@@ -1205,6 +1210,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'showhideselectedversions' => 'Tampilkan/sembunyikan versi terpilih',
 'editundo'                 => 'batalkan',
 'diff-multi'               => '({{PLURAL:$1|Satu|$1}} revisi antara oleh {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Satu|$1}} revisi antara oleh lebih dari $2 {{PLURAL:$2|satu|$2}} pengguna tak ditampilkan)',
 
 # Search results
 'searchresults'                    => 'Hasil pencarian',
@@ -1363,7 +1369,7 @@ Pengembalian preferensi tidak dapat dibatalkan.',
 'yourlanguage'                  => 'Bahasa:',
 'yourvariant'                   => 'Varian bahasa',
 'yournick'                      => 'Tanda tangan:',
-'prefs-help-signature'          => 'Komentar pada halaman pembicaraan perlu ditandatangani dengan "<nowiki>~~~~</nowiki>" yang akan diubah menjadi tandatangan Anda dan waktu saat ini.',
+'prefs-help-signature'          => 'Komentar pada halaman pembicaraan perlu ditandatangani dengan "<nowiki>~~~~</nowiki>" yang akan diubah menjadi tanda tangan Anda dan waktu saat ini.',
 'badsig'                        => 'Tanda tangan mentah tak sah; periksa tag HTML.',
 'badsiglength'                  => 'Tanda tangan Anda terlalu panjang.
 Jangan lebih dari $1 {{PLURAL:$1|karakter|karakter}}.',
@@ -1764,6 +1770,7 @@ Klik pada kepala kolom untuk mengubah urutan.',
 'listfiles_search_for'  => 'Cari nama berkas:',
 'imgfile'               => 'berkas',
 'listfiles'             => 'Daftar berkas',
+'listfiles_thumb'       => 'Miniatur',
 'listfiles_date'        => 'Tanggal',
 'listfiles_name'        => 'Nama',
 'listfiles_user'        => 'Pengguna',
@@ -1877,6 +1884,7 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'statistics-edits'             => 'Jumlah suntingan sejak {{SITENAME}} dimulai',
 'statistics-edits-average'     => 'Rata-rata suntingan per halaman',
 'statistics-views-total'       => 'Jumlah penampilan halaman',
+'statistics-views-total-desc'  => 'Tampilan ke halaman yang tidak ada dan halaman khusus yang tidak dimasukkan',
 'statistics-views-peredit'     => 'Jumlah penampilan per suntingan',
 'statistics-users'             => 'Jumlah [[Special:ListUsers|pengguna terdaftar]]',
 'statistics-users-active'      => 'Jumlah pengguna aktif',
@@ -1915,6 +1923,8 @@ Nama yang telah <del>dicoret</del> berarti telah dibetulkan.',
 'nmembers'                => '$1 {{PLURAL:$1|isi|isi}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revisi|revisi}}',
 'nviews'                  => 'dilihat $1 {{PLURAL:$1|kali|kali}}',
+'nimagelinks'             => 'Digunakan pada $1 {{PLURAL:$1|halaman|halaman}}',
+'ntransclusions'          => 'digunakan pada $1 {{PLURAL:$1|halaman|halaman}}',
 'specialpage-empty'       => 'Tak ada yang perlu dilaporkan.',
 'lonelypages'             => 'Halaman tanpa pranala balik',
 'lonelypagestext'         => 'Halaman-halaman berikut tidak memiliki pranala dari atau ditransklusikan ke halaman manapun di {{SITENAME}}.',
@@ -2100,8 +2110,8 @@ Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] 
 'usermessage-editor'  => 'Penyampai pesan sistem',
 
 # Watchlist
-'watchlist'            => 'Daftar pantauan saya',
-'mywatchlist'          => 'Daftar pantauan saya',
+'watchlist'            => 'Daftar pantauan',
+'mywatchlist'          => 'Pantauan saya',
 'watchlistfor2'        => 'Untuk $1 $2',
 'nowatchlist'          => 'Daftar pantauan Anda kosong.',
 'watchlistanontext'    => 'Silakan $1 untuk melihat atau menyunting daftar pantauan Anda.',
@@ -2251,7 +2261,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-level-autoconfirmed' => 'Blokir pengguna baru dan tak terdaftar',
 'protect-level-sysop'         => 'Hanya pengurus',
 'protect-summary-cascade'     => 'runtun',
-'protect-expiring'            => 'kadaluwarsa $1 (UTC)',
+'protect-expiring'            => 'kedaluwarsa $1 (UTC)',
 'protect-expiry-indefinite'   => 'selamanya',
 'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun)',
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
@@ -2523,6 +2533,17 @@ Pastikan Anda [[Special:UnlockDB|membuka kuncinya]] setelah pemeliharaan selesai
 Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yang menggunakan judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan. Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
 
 '''Peringatan:''' Ini dapat mengakibatkan perubahan yang tak terduga dan drastis  bagi halaman yang populer. Pastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
+'movepagetext-noredirectfixer' => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru.
+Judul yang lama akan menjadi halaman peralihan menuju judul yang baru.
+Pastikan untuk memeriksa pengalihan [[Special:DoubleRedirects|ganda]] atau [[Special:BrokenRedirects|rusak]].
+Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
+
+Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yang menggunakan judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan.
+Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
+
+'''Peringatan:'''
+Hal ini dapat mengakibatkan perubahan yang tak terduga dan drastis bagi halaman yang populer;
+Pastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
 'movepagetalktext'             => "Halaman pembicaraan yang berkaitan juga akan dipindahkan secara otomatis '''kecuali apabila:'''
 
 *Sebuah halaman pembicaraan yang tidak kosong telah ada di bawah judul baru, atau
@@ -3226,7 +3247,7 @@ Sekarang Anda dapat [[Special:UserLogin|masuk log]] dan mulai menggunakan wiki.'
 'confirmemail_subject'      => 'Konfirmasi alamat surel {{SITENAME}}',
 'confirmemail_body'         => 'Seseorang, mungkin Anda, dari alamat IP $1, telah mendaftarkan akun "$2" dengan alamat surel ini di {{SITENAME}}.
 
-Untuk mengkonfirmasikan bahwa akun ini benar dimiliki oleh Anda sekaligus mengaktifkan fitur surel di {{SITENAME}}, ikuti pranala berikut pada penjelajah web Anda:
+Untuk mengonfirmasikan bahwa akun ini benar dimiliki oleh Anda sekaligus mengaktifkan fitur surel di {{SITENAME}}, ikuti pranala berikut pada penjelajah web Anda:
 
 $3
 
@@ -3235,7 +3256,7 @@ Klik pada pranala ini untuk membatalkan konfirmasi alamat surel:
 
 $5
 
-Kode konfirmasi ini akan kadaluwarsa pada $4.',
+Kode konfirmasi ini akan kedaluwarsa pada $4.',
 'confirmemail_body_changed' => 'Seseorang, mungkin anda, dari alamat IP $1,
 telah merubah surel dari akun "$2" pada alamat ini di {{SITENAME}}.
 
@@ -3507,5 +3528,9 @@ Keterangan tampilan:
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Batalkan perubahan',
 'htmlform-selectorother-other' => 'Lain-lain',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 dengan dukungan pencarian teks lengkap',
+'sqlite-no-fts'  => '$1 tanpa dukungan pencarian teks lengkap',
 
 );

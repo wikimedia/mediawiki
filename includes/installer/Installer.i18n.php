@@ -4785,28 +4785,41 @@ Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
 
 /** Indonesian (Bahasa Indonesia)
  * @author Farras
+ * @author IvanLanin
  */
 $messages['id'] = array(
 	'config-desc' => 'Penginstal untuk MediaWiki',
 	'config-title' => 'Instalasi MediaWiki $1',
 	'config-information' => 'Informasi',
+	'config-localsettings-upgrade' => "'''Peringatan''': Berkas <code>LocalSettings.php</code> telah ada.
+Perangkat lunak ini dapat memutakhirkannya.
+Masukkan <code>\$wgUpgradeKey</code> dalam kotak yang tersedia.",
+	'config-localsettings-key' => 'Kunci pemutakhiran:',
+	'config-localsettings-badkey' => 'Kunci yang Anda berikan tidak benar',
+	'config-localsettings-noupgrade' => "'''Kesalahan''': Berkas <code>LocalSettings.php</code> telah ada.
+Perangkat lunak tidak bisa memutakhirkannya saat ini.
+Penginstal telah dinonaktifkan demi alasan keamanan.",
 	'config-session-error' => 'Kesalahan sesi mulai: $1',
+	'config-session-expired' => 'Data sesi tampaknya telah kedaluwarsa.
+Sesi dikonfigurasi untuk berlaku selama $1.
+Anda dapat menaikkannya dengan menetapkan <code>session.gc_maxlifetime</code> dalam php.ini.
+Ulangi proses instalasi.',
 	'config-no-session' => 'Data sesi Anda hilang!
 Cek php.ini Anda dan pastikan bahwa <code>session.save_path</code> diatur ke direktori yang sesuai.',
 	'config-session-path-bad' => '<code>session.save_path</code> (<code>$1</code>) Anda sepertinya tidak sah atau tidak dapat ditulis.',
-	'config-show-help' => 'Bantuan',
-	'config-hide-help' => 'Sembunyikan bantuan',
 	'config-your-language' => 'Bahasa Anda:',
 	'config-your-language-help' => 'Pilih bahasa yang akan digunakan selama proses instalasi.',
 	'config-wiki-language' => 'Bahasa wiki:',
 	'config-wiki-language-help' => 'Pilih bahasa yang akan digunakan tulisan-tulisan wiki.',
+	'config-allow-requests' => 'Izinkan permintaan eksternal ke MediaWiki.org',
+	'config-allow-requests-help' => 'Jika diaktifkan, penginstal akan memeriksa MediaWiki.org untuk memastikan anda menginstal versi stabil terbaru',
 	'config-back' => '← Kembali',
 	'config-continue' => 'Lanjut →',
 	'config-page-language' => 'Bahasa',
 	'config-page-welcome' => 'Selamat datang di MediaWiki',
-	'config-page-dbconnect' => 'Hubungkan ke pusat data',
+	'config-page-dbconnect' => 'Hubungkan ke basis data',
 	'config-page-upgrade' => 'Perbarui instalasi yang ada',
-	'config-page-dbsettings' => 'Pengaturan pusat data',
+	'config-page-dbsettings' => 'Pengaturan basis data',
 	'config-page-name' => 'Nama',
 	'config-page-options' => 'Pilihan',
 	'config-page-install' => 'Instal',
@@ -4816,8 +4829,22 @@ Cek php.ini Anda dan pastikan bahwa <code>session.save_path</code> diatur ke dir
 	'config-page-releasenotes' => 'Catatan pelepasan',
 	'config-page-copying' => 'Menyalin',
 	'config-page-upgradedoc' => 'Memerbarui',
+	'config-page-locked' => 'Izin ditolak',
 	'config-help-restart' => 'Apakah Anda ingin menghapus semua data tersimpan yang telah Anda masukkan dan mengulang proses instalasi?',
 	'config-restart' => 'Ya, nyalakan ulang',
+	'config-welcome' => '=== Pengecekan lingkungan ===
+Pengecekan dasar dilakukan untuk melihat apakah lingkungan ini memadai untuk instalasi MediaWiki.
+Anda harus memberikan hasil pemeriksaan ini jika Anda memerlukan bantuan selama instalasi.',
+	'config-copyright' => "=== Hak cipta dan persyaratan ===
+
+\$1
+
+Program ini adalah perangkat lunak bebas; Anda dapat mendistribusikan dan/atau memodifikasi di bawah persyaratan GNU General Public License seperti yang diterbitkan oleh Free Software Foundation; baik versi 2 lisensi, atau (sesuai pilihan Anda) versi yang lebih baru.
+
+Program ini didistribusikan dengan harapan bahwa itu akan berguna, tetapi '''tanpa jaminan apa pun'''; bahkan tanpa jaminan tersirat untuk '''dapat diperjualbelikan ''' atau '''sesuai untuk tujuan tertentu'''.
+Lihat GNU General Public License untuk lebih jelasnya.
+
+Anda seharusnya telah menerima <doclink href=\"Copying\">salinan dari GNU General Public License</doclink> bersama dengan program ini; jika tidak, kirimkan surat untuk Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. atau [http://www.gnu.org/copyleft/gpl.html baca versi daring].",
 	'config-sidebar' => '* [http://www.mediawiki.org Halaman utama MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna]
 * [http://www.mediawiki.org/wiki/Manual:Contents Panduan Pengurus]
@@ -4827,6 +4854,7 @@ Anda dapat menginstal MediaWiki.</span>',
 	'config-env-bad' => 'Kondisi telah diperiksa.
 Anda tidak dapat menginstal MediaWiki.',
 	'config-env-php' => 'PHP $1 diinstal.',
+	'config-env-latest-disabled' => 'Permintaan HTTP eksternal dinonaktifkan, pemeriksaan versi dilewati',
 	'config-env-latest-ok' => 'Anda menginstal versi terbaru Mediawiki.',
 	'config-env-latest-new' => "'''Catatan:''' Anda menginstal versi pengembangan MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Peringatan:''' Penginstal tidak dapat memeroleh informasi mengenai rilis MediaWiki terbaru dari [$1].",
@@ -4835,10 +4863,45 @@ Anda tidak dapat menginstal MediaWiki.',
 Anda disarankan untuk menggunakan versi terbaru yang dapat diunduh dari [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'Menggunakan utf8_normalize.so Brion Vibber untuk normalisasi Unicode.',
 	'config-unicode-using-intl' => 'Menggunakan [http://pecl.php.net/intl ekstensi PECL intl] untuk normalisasi Unicode.',
+	'config-unicode-pure-php-warning' => "'''Peringatan''': [http://pecl.php.net/intl Ekstensi intl PECL] untuk menangani normalisasi Unicode tidak tersedia, kembali menggunakan implementasi murni PHP yang lambat. 
+ Jika Anda menjalankan situs berlalu lintas tinggi, Anda harus sedikit membaca [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalisasi Unicode].",
+	'config-unicode-update-warning' => "'''Peringatan''': Versi terinstal dari pembungkus normalisasi Unicode menggunakan versi lama pustaka [http://site.icu-project.org/ proyek ICU].
+Anda harus [http://www.mediawiki.org/wiki/Unicode_normalization_considerations memutakhirkannya] jika Anda ingin menggunakan Unicode.",
+	'config-no-db' => 'Tidak dapat menemukan pengandar basis data yang sesuai!',
+	'config-no-db-help' => 'Anda perlu menginstal pengandar basis data untuk PHP.
+Jenis basis data yang didukung: $1.
+
+Jika Anda menggunakan inang bersama, mintalah penyedia inang Anda untuk menginstal pengandar basis data yang cocok.
+Jika Anda mengompilasi sendiri PHP, ubahlah konfigurasinya dengan mengaktifkan klien basis data, misalnya menggunakan <code>./configure --with-mysql</code>.
+Jika Anda menginstal PHP dari paket Debian atau Ubuntu, maka Anda juga perlu menginstal modul php5-mysql.',
+	'config-have-db' => 'Ditemukan {{PLURAL:$2|pengandar|pengandar}} basis data: $1.',
+	'config-have-fts3' => 'SQLite dikompilasi dengan [http://sqlite.org/fts3.html modul FTS3]; fitur pencarian akan tersedia pada konfigurasi ini.',
+	'config-no-fts3' => "'''Peringatan''': SQLite dikompilasi tanpa [http://sqlite.org/fts3.html modul FTS3], fitur pencarian tidak akan tersedia pada konfigurasi ini.",
+	'config-register-globals' => "'''Peringatan: Opsi <code>[http://php.net/register_globals register_globals]</code> PHP diaktifkan.'''
+'''Nonaktifkan kalau bisa.'''
+MediaWiki akan bekerja, tetapi server Anda memiliki potensi kerentanan keamanan.",
+	'config-magic-quotes-runtime' => "'''Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] aktif!'''
+Pilihan ini dapat merusak masukan data secara tidak terduga.
+Anda tidak dapat menginstal atau menggunakan MediaWiki kecuali pilihan ini dinonaktifkan.",
+	'config-magic-quotes-sybase' => "'''Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic_quotes_sybase magic_quotes_sybase] aktif!'''
+Pilihan ini dapat merusak masukan data secara tidak terduga.
+Anda tidak dapat menginstal atau menggunakan MediaWiki kecuali pilihan ini dinonaktifkan.",
+	'config-mbstring' => "'''Fatal: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] aktif!'' '
+Pilihan ini dapat menyebabkan kesalahan dan kerusakan data yang tidak terduga.
+Anda tidak dapat menginstal atau menggunakan MediaWiki kecuali pilihan ini dinonaktifkan.",
+	'config-ze1' => "'''Fatal: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] aktif!'''
+Pilihan ini dapat menyebabkan bug yang mengerikan pada MediaWiki.
+Anda tidak dapat menginstal atau menggunakan MediaWiki kecuali pilihan ini dinonaktifkan.",
+	'config-safe-mode' => "''' Peringatan:''' [http://www.php.net/features.safe-mode Mode aman] PHP aktif.
+Hal ini akan menyebabkan masalah, terutama jika menggunakan pengunggahan berkas dan dukungan <code>math</code>.",
 	'config-xml-good' => 'Memiliki bantuan konversi XML / Latin1-UTF-8.',
 	'config-xml-bad' => 'Modul XML PHP hilang.
 MediaWiki membutuhkan fungsi dalam modul ini dan tidak akan bekerja dalam konfigurasi ini.
 Jika Anda menggunakan Mandrake, instal paket php-xml.',
+	'config-pcre' => 'Modul pendukung PCRE tampaknya hilang.
+MediaWiki memerlukan fungsi persamaan reguler kompatibel Perl untuk bekerja.',
+	'config-pcre-no-utf8' => "'''Fatal''': Modul PCRE PHP tampaknya dikompilasi tanpa dukungan PCRE_UTF8.
+MediaWiki memerlukan dukungan UTF-8 untuk berfungsi dengan benar.",
 	'config-memory-none' => 'PHP dikonfigurasi tanpa <code>memory_limit</code>',
 	'config-memory-ok' => '<code>memory_limit</code> PHP adalah $1.
 OK.',
@@ -4854,67 +4917,223 @@ Instalasi terancam gagal!",
 Penembolokan obyek tidak dinonaktifkan.",
 	'config-diff3-good' => 'Ditemukan diff3 GNU: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 tidak ditemukan.',
+	'config-imagemagick' => 'ImageMagick ditemukan: <code>$1</code> . 
+Pembuatan gambar mini akan diaktifkan jika Anda mengaktifkan pengunggahan.',
+	'config-gd' => 'Pustaka grafis GD terpasang ditemukan.
+Pembuatan gambar mini akan diaktifkan jika Anda mengaktifkan pengunggahan.',
+	'config-no-scaling' => 'Pustaka GD atau ImageMagick tidak ditemukan.
+Pembuatan gambar mini dinonaktifkan.',
 	'config-dir' => 'Direktori instalasi: <code>$1</code>.',
+	'config-uri' => 'Jalur URI Script: <code>$1</code> .',
+	'config-no-uri' => "'''Kesalahan:''' URI saat ini tidak dapat ditentukan.
+Instalasi dibatalkan.",
 	'config-file-extension' => 'Menginstal MediaWiki dengan ekstensi berkas <code>$1</code>.',
+	'config-shell-locale' => 'Shell locale "$1" terdeteksi',
+	'config-uploads-safe' => 'Direktori pengunggahan bawaan aman dari eksekusi skrip yang sewenang-wenang.',
+	'config-uploads-not-safe' => "'''Peringatan:''' Direktori bawaan pengunggahan <code>$1</code> Anda rentan terhadap eksekusi skrip yang sewenang-wenang.
+Meskipun MediaWiki memeriksa semua berkas unggahan untuk ancaman keamanan, sangat dianjurkan untuk [http://www.mediawiki.org/wiki/Manual:Security#Upload_security menutup kerentanan keamanan ini] sebelum mengaktifkan pengunggahan.",
+	'config-brokenlibxml' => 'Sistem Anda memiliki kombinasi versi PHP dan libxml2 yang memiliki bug dan dapat menyebabkan kerusakan data tersembunyi pada MediaWiki dan aplikasi web lain.
+Mutakhirkan ke PHP 5.2.9 atau yang lebih baru dan libxml2 2.7.3 atau yang lebih baru ([http://bugs.php.net/bug.php?id=45996 arsip bug di PHP]).
+Instalasi dibatalkan.',
+	'config-using531' => 'PHP $1 tidak kompatibel dengan MediaWiki karena bug yang melibatkan parameter referensi untuk <code>__call()</code> . 
+Tingkatkan ke PHP 5.3.2 atau yang lebih baru, atau turunkan ke PHP versi 5.3.0 untuk memperbaiki ini ([http://bugs.php.net/bug.php?id=50394 arsip bug di PHP]). 
+Instalasi dibatalkan.',
 	'config-db-type' => 'Jenis basis data:',
+	'config-db-host' => 'Inang basis data:',
+	'config-db-host-help' => 'Jika server basis data Anda berada di server yang berbeda, masukkan nama inang atau alamat IP di sini. 
+
+Jika Anda menggunakan inang web bersama, penyedia inang Anda harus memberikan nama inang yang benar di dokumentasi mereka. 
+
+Jika Anda menginstal pada server Windows dan menggunakan MySQL, "localhost" mungkin tidak dapat digunakan sebagai nama server. Jika demikian, coba "127.0.0.1" untuk alamat IP lokal.',
+	'config-db-host-oracle' => 'TNS basis data:',
+	'config-db-host-oracle-help' => 'Masukkan [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name] yang sah; berkas tnsnames.ora harus dapat diakses oleh instalasi ini.<br />Jika Anda menggunakan pustaka klien 10g atau lebih baru, Anda juga dapat menggunakan metode penamaan [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifikasi wiki ini',
 	'config-db-name' => 'Nama basis data:',
+	'config-db-name-help' => 'Pilih nama yang mengidentifikasikan wiki Anda. 
+Nama tersebut tidak boleh mengandung spasi atau tanda hubung. 
+
+Jika Anda menggunakan inang web bersama, penyedia inang Anda dapat memberikan Anda nama basis data khusus untuk digunakan atau mengizinkan Anda membuat basis data melalui panel kontrol.',
+	'config-db-name-oracle' => 'Skema basis data:',
 	'config-db-install-account' => 'Akun pengguna untuk instalasi',
 	'config-db-username' => 'Nama pengguna basis data:',
 	'config-db-password' => 'Kata sandi basis data:',
+	'config-db-install-username' => 'Masukkan nama pengguna yang akan digunakan untuk terhubung ke basis data selama proses instalasi. 
+Ini bukan nama pengguna akun MediaWiki, melainkan nama pengguna untuk basis data Anda.',
+	'config-db-install-password' => 'Masukkan sandi yang akan digunakan untuk terhubung ke basis data selama proses instalasi. 
+Ini bukan sandi untuk akun MediaWiki, melainkan sandi untuk basis data Anda.',
+	'config-db-install-help' => 'Masukkan nama pengguna dan sandi yang akan digunakan untuk terhubung ke basis data pada saat proses instalasi.',
 	'config-db-account-lock' => 'Gunakan nama pengguna dan kata sandi yang sama selama operasi normal',
 	'config-db-wiki-account' => 'Akun pengguna untuk operasi normal',
+	'config-db-wiki-help' => 'Masukkan nama pengguna dan sandi yang akan digunakan untuk terhubung ke basis data wiki selama operasi normal. 
+Jika akun tidak ada, akun instalasi memiliki hak yang memadai, akun pengguna ini akan dibuat dengan hak akses minimum yang diperlukan untuk mengoperasikan wiki.',
 	'config-db-prefix' => 'Prefiks tabel basis data:',
+	'config-db-prefix-help' => 'Jika Anda perlu berbagi satu basis data di antara beberapa wiki, atau antara MediaWiki dan aplikasi web lain, Anda dapat memilih untuk menambahkan prefiks terhadap semua nama tabel demi menghindari konflik.
+Jangan gunakan spasi atau tanda hubung.
+
+Prefiks ini biasanya dibiarkan kosong.',
+	'config-db-charset' => 'Set karakter basis data',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 biner',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'UTF-8 yang kompatibel balik dengan MySQL 4.0',
+	'config-charset-help' => "'''Peringatan:''' Jika Anda menggunakan '''UTF-8 kompatibel balik''' pada MySQL 4.1+, dan kemudian mencadangkan basis data dengan <code>mysqldump</code>, proses itu mungkin menghancurkan semua karakter non-ASCII dan merusak cadangan Anda tanpa dapat dikembalikan! 
+
+Dalam '''modus biner''', MediaWiki menyimpan teks UTF-8 ke basis data dalam bidang biner. 
+Ini lebih efisien dibandingkan modus UTF-8 MySQL dan memungkinkan Anda untuk menggunakan berbagai karakter Unicode.
+Dalam '''modus UTF-8''', MySQL akan tahu apa set karakter data anda dan dapat menyajikan dan mengubahnya denga tepat, namun tidak akan mengizinkan Anda menyimpan karakter di atas [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 	'config-mysql-old' => 'MySQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.',
+	'config-db-port' => 'Porta basis data:',
 	'config-db-schema' => 'Skema untuk MediaWiki',
 	'config-db-ts2-schema' => 'Skema untuk tsearch2',
+	'config-db-schema-help' => 'Skema di atas biasanya benar. 
+Ubah hanya jika Anda tahu Anda perlu mengubahnya.',
 	'config-sqlite-dir' => 'Direktori data SQLite:',
+	'config-sqlite-dir-help' => "SQLite menyimpan semua data dalam satu berkas.
+
+Direktori yang Anda berikan harus dapat ditulisi oleh server web selama instalasi.
+
+Direktori itu '''tidak''' boleh dapat diakses melalui web, inilah sebabnya kami tidak menempatkannya bersama dengan berkas PHP lain.
+
+Penginstal akan membuat berkas <code>.htaccess</code> bersamaan dengan itu, tetapi jika gagal, orang dapat memperoleh akses ke basis data mentah Anda.
+Itu termasuk data mentah pengguna (alamat surel, hash sandi) serta revisi yang dihapus dan data lainnya yang dibatasi pada wiki.
+
+Pertimbangkan untuk menempatkan basis data di tempat lain, misalnya di <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts' => 'Tablespace bawaan:',
+	'config-oracle-temp-ts' => 'Tablespace sementara:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-support-info' => 'MediaWiki mendukung sistem basis data berikut: 
+
+$1
+
+Jika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah ini, ikuti petunjuk terkait di atas untuk mengaktifkan dukungan.',
+	'config-support-mysql' => '* $1 adalah target utama MediaWiki dan memiliki dukungan terbaik ([http://www.php.net/manual/en/mysql.installation.php cara mengompilasi PHP dengan dukungan MySQL])',
+	'config-support-postgres' => '* $1 adalah sistem basis data sumber terbuka populer sebagai alternatif untuk MySQL ([http://www.php.net/manual/en/pgsql.installation.php cara mengompilasi PHP dengan dukungan PostgreSQL])',
+	'config-support-sqlite' => '* $1 adalah sistem basis data yang ringan yang sangat baik dukungannya. ([http://www.php.net/manual/en/pdo.installation.php cara mengompilasi PHP dengan dukungan SQLite], menggunakan PDO)',
+	'config-support-oracle' => '* $1 adalah basis data komersial untuka perusahaan. ([http://www.php.net/manual/en/oci8.installation.php cara mengompilasi PHP dengan dukungan OCI8])',
 	'config-header-mysql' => 'Pengaturan MySQL',
 	'config-header-postgres' => 'Pengaturan PostgreSQL',
 	'config-header-sqlite' => 'Pengaturan SQLite',
 	'config-header-oracle' => 'Pengaturan Oracle',
 	'config-invalid-db-type' => 'Jenis basis data tidak sah',
 	'config-missing-db-name' => 'Anda harus memasukkan nilai untuk "Nama basis data"',
+	'config-missing-db-server-oracle' => 'Anda harus memasukkan nilai untuk "TNS basis data"',
+	'config-invalid-db-server-oracle' => 'TNS basis data "$1" tidak sah.
+Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), garis bawah (_), dan titik (.).',
+	'config-invalid-db-name' => 'Nama basis data "$1" tidak sah.
+Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
+	'config-invalid-db-prefix' => 'Prefiks basis data "$1" tidak sah.
+Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
+	'config-connection-error' => '$1.
+
+Periksa nama inang, pengguna, dan sandi di bawah ini dan coba lagi.',
+	'config-invalid-schema' => 'Skema MediaWiki "$1" tidak sah.
+Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
+	'config-invalid-ts2schema' => 'Skema TSearch2 "$1" tidak sah.
+Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
 	'config-postgres-old' => 'PostgreSQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.',
+	'config-sqlite-name-help' => 'Pilih nama yang mengidentifikasi wiki Anda. 
+Jangan gunakan spasi atau tanda hubung. 
+Nama ini akan digunakan untuk nama berkas data SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'Tidak dapat membuat direktori data <code><nowiki>$1</nowiki></code>, karena direktori induk <code><nowiki>$2</nowiki></code> tidak bisa ditulisi oleh server web.
+
+Penginstal telah menentukan pengguna yang menjalankan server web Anda.
+Buat direktori <code><nowiki>$3</nowiki></code> menjadi dapat ditulisi olehnya.
+Pada sistem Unix/Linux lakukan hal berikut:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'Tidak dapat membuat direktori data <code><nowiki>$1</nowiki></code>, karena direktori induk <code><nowiki>$2</nowiki></code> tidak bisa ditulisi oleh server web.
+
+Penginstal tidak dapat menentukan pengguna yang menjalankan server web Anda.
+Buat direktori <code><nowiki>$3</nowiki></code> menjadi dapat ditulisi oleh semua orang.
+Pada sistem Unix/Linux lakukan hal berikut:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
+	'config-sqlite-mkdir-error' => 'Kesalahan saat membuat direktori data "$1". 
+Periksa lokasi dan coba lagi.',
+	'config-sqlite-dir-unwritable' => 'Tidak dapat menulisi direktori "$1".
+Ubah hak akses direktori sehingga server web dapat menulis ke sana, dan coba lagi.',
 	'config-sqlite-connection-error' => '$1.
 
 Periksa direktori data dan nama basis data di bawah dan coba lagi.',
 	'config-sqlite-readonly' => 'Berkas <code>$1</code> tidak dapat ditulisi.',
 	'config-sqlite-cant-create-db' => 'Tidak dapat membuat berkas basis data <code>$1</code>.',
+	'config-sqlite-fts3-downgrade' => 'PHP tidak memiliki dukungan FTS3, tabel dituruntarafkan.',
 	'config-can-upgrade' => "Ada tabel MediaWiki di basis dataini.
 Untuk memperbaruinya ke MediaWiki $1, klik '''Lanjut'''.",
+	'config-upgrade-done' => "Pemutakhiran selesai.
+
+Anda sekarang dapat [$1 mulai menggunakan wiki Anda].
+
+Jika Anda ingin membuat ulang berkas <code>LocalSettings.php</code>, klik tombol di bawah ini.
+Tindakan ini '''tidak dianjurkan''' kecuali jika Anda mengalami masalah dengan wiki Anda.",
 	'config-regenerate' => 'Regenerasi LocalSettings.php →',
 	'config-show-table-status' => 'Kueri SHOW TABLE STATUS gagal!',
+	'config-unknown-collation' => "'''Peringatan:''' basis data menggunakan kolasi yang tidak dikenal.",
 	'config-db-web-account' => 'Akun basis data untuk akses web',
+	'config-db-web-help' => 'Masukkan nama pengguna dan sandi yang akan digunakan server web untuk terhubung ke server basis data saat operasi normal wiki.',
 	'config-db-web-account-same' => 'Gunakan akun yang sama seperti untuk instalasi',
 	'config-db-web-create' => 'Buat akun jika belum ada',
+	'config-db-web-no-create-privs' => 'Akun Anda berikan untuk instalasi tidak memiliki hak yang cukup untuk membuat akun. 
+Akun yang Anda berikan harus sudah ada.',
 	'config-mysql-engine' => 'Mesin penyimpanan:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "'''InnoDB''' hampir selalu merupakan pilihan terbaik karena memiliki dukungan konkurensi yang baik.
+
+'''MyISAM''' mungkin lebih cepat dalam instalasi pengguna-tunggal atau hanya-baca.
+Basis data MyISAM cenderung lebih sering rusak daripada basis data InnoDB.",
+	'config-mysql-egine-mismatch' => "'''Peringatan:''' Anda meminta mesin penyimpanan $1, tapi basis data yang ada menggunakan mesin $2. 
+Skrip pemutakhiran ini tidak dapat mengubahnya, sehingga akan tetap $2.",
+	'config-mysql-charset' => 'Set karakter basis data:',
 	'config-mysql-binary' => 'Biner',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "Dalam '''modus biner''', MediaWiki menyimpan teks UTF-8 untuk basis data dalam bidang biner.
+Ini lebih efisien daripada modus UTF-8 MySQL dan memungkinkan Anda untuk menggunakan ragam penuh karakter Unicode.
+
+Dalam '''modus UTF-8''', MySQL akan tahu apa set karakter data dan dapat menampilkan dan mengubahnya sesuai keperluan, tetapi tidak akan mengizinkan Anda menyimpan karakter di atas [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+	'config-mysql-charset-mismatch' => "'''Peringatan:''' Anda meminta skema $1, tapi basis data yang ada menggunakan skema $2. 
+Skrip pemutakhiran ini tidak dapat mengubahnya, sehingga akan tetap $2.",
 	'config-site-name' => 'Nama wiki:',
+	'config-site-name-help' => 'Ini akan muncul di bilah judul peramban dan di berbagai tempat lainnya.',
 	'config-site-name-blank' => 'Masukkan nama situs.',
 	'config-project-namespace' => 'Ruang nama proyek:',
 	'config-ns-generic' => 'Proyek',
 	'config-ns-site-name' => 'Sama seperti nama wiki: $1',
 	'config-ns-other' => 'Lainnya (sebutkan)',
 	'config-ns-other-default' => 'MyWiki',
+	'config-project-namespace-help' => 'Mengikuti contoh Wikipedia, banyak wiki menyimpan halaman kebijakan mereka terpisah dari halaman konten mereka, dalam "\'\'\'ruang nama proyek\'\'\'". 
+Semua judul halaman dalam ruang nama ini diawali dengan prefiks tertentu yang dapat Anda tetapkan di sini. 
+Biasanya, prefiks ini berasal dari nama wiki, tetapi tidak dapat berisi karakter tanda baca seperti "#" atau ":".',
+	'config-ns-invalid' => 'Ruang nama "<nowiki>$1</nowiki>" yang ditentukan tidak sah. 
+Berikan ruang nama proyek lain.',
 	'config-admin-box' => 'Akun pengurus',
 	'config-admin-name' => 'Nama Anda:',
 	'config-admin-password' => 'Kata sandi:',
 	'config-admin-password-confirm' => 'Kata sandi lagi:',
+	'config-admin-help' => 'Masukkan nama pengguna pilihan Anda di sini, misalnya "Udin Wiki".
+Ini adalah nama yang akan Anda gunakan untuk masuk ke wiki.',
 	'config-admin-name-blank' => 'Masukkan nama pengguna pengurus.',
+	'config-admin-name-invalid' => 'Nama pengguna "<nowiki>$1</nowiki>" yang diberikan tidak sah. 
+Berikan nama pengguna lain.',
 	'config-admin-password-blank' => 'Masukkan kata sandi untuk akun pengurus.',
 	'config-admin-password-same' => 'Kata sandi harus tidak sama seperti nama pengguna.',
 	'config-admin-password-mismatch' => 'Dua kata sandi yang Anda masukkan tidak cocok.',
 	'config-admin-email' => 'Alamat surel:',
+	'config-admin-email-help' => 'Masukkan alamat surel untuk memungkinkan Anda menerima surel dari pengguna lain, menyetel ulang sandi, dan mendapat pemberitahuan tentang perubahan atas daftar pantauan Anda.',
+	'config-admin-error-user' => 'Kesalahan internal saat membuat admin dengan nama "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Kesalahan internal saat membuat sandi untuk admin "<nowiki>$1</nowiki>":<pre>$2</pre>',
+	'config-subscribe' => 'Berlangganan ke [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce milis pengumuman rilis].',
+	'config-subscribe-help' => 'Ini adalah milis bervolume rendah yang digunakan untuk pengumuman rilis, termasuk pengumuman keamanan penting.
+Anda sebaiknya berlangganan dan memperbarui instalasi MediaWiki saat versi baru keluar.',
+	'config-almost-done' => 'Anda hampir selesai! 
+Anda sekarang dapat melewati sisa konfigurasi dan menginstal wiki sekarang.',
 	'config-optional-continue' => 'Berikan saya pertanyaan lagi.',
 	'config-optional-skip' => 'Saya sudah bosan, instal saja wikinya.',
 	'config-profile' => 'Profil hak pengguna:',
@@ -4922,6 +5141,19 @@ Untuk memperbaruinya ke MediaWiki $1, klik '''Lanjut'''.",
 	'config-profile-no-anon' => 'Pembuatan akun diperlukan',
 	'config-profile-fishbowl' => 'Khusus penyunting terdaftar',
 	'config-profile-private' => 'Wiki pribadi',
+	'config-profile-help' => "Wiki paling baik bekerja jika Anda membiarkan sebanyak mungkin orang untuk menyunting.
+Dengan MediaWiki, sangat mudah meninjau perubahan terbaru dan mengembalikan kerusakan yang dilakukan oleh pengguna naif atau berbahaya.
+
+Namun, berbagai kegunaan lain dari MediaWiki telah ditemukan, dan kadang tidak mudah untuk meyakinkan semua orang manfaat dari cara wiki.
+Jadi, Anda yang menentukan.
+
+'''{{int:config-profil-wiki}}''' memungkinkan setiap orang untuk menyunting, bahkan tanpa masuk.
+'''{{int:config-profil-no-anon}}''' menyediakan akuntabilitas tambahan, tetapi dapat mencegah kontributor biasa.
+
+'''{{int:config-profil-fishbowl}}''' memungkinkan pengguna yang disetujui untuk menyunting, tetapi publik dapat melihat halaman, termasuk riwayatnya.
+'''{{int:config-profil-private}}''' hanya memungkinkan pengguna yang disetujui untuk melihat dan menyunting halaman.
+
+Konfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [http://www.mediawiki.org/wiki/Manual:User_rights/id entri manual terkait].",
 	'config-license' => 'Hak cipta dan lisensi:',
 	'config-license-none' => 'Tidak ada lisensi',
 	'config-license-cc-by-sa' => 'Creative Commons Atribusi Berbagi Serupa (cocok untuk Wikipedia)',
@@ -4930,39 +5162,109 @@ Untuk memperbaruinya ke MediaWiki $1, klik '''Lanjut'''.",
 	'config-license-gfdl-current' => 'Lisensi Dokumentasi Bebas GNU 1.3 atau versi terbaru',
 	'config-license-pd' => 'Domain Umum',
 	'config-license-cc-choose' => 'Pilih lisensi Creative Commons kustom',
+	'config-license-help' => "Banyak wiki publik meletakkan semua kontribusi di bawah [http://freedomdefined.org/Definition lisensi bebas]. 
+Hal ini membantu untuk menciptakan rasa kepemilikan komunitas dan mendorong kontribusi jangka panjang.
+Ini umumnya tidak diperlukan untuk wiki pribadi atau perusahaan.
+
+Jika Anda ingin dapat menggunakan teks dari Wikipedia dan Anda ingin Wikipedia untuk dapat menerima teks yang disalin dari wiki Anda, Anda harus memilih'''Creative Commons Attribution Share Alike'''.
+
+GNU Free Documentation License adalah lisensi sebelumnya dari Wikipedia.
+Lisensi ini masih sah, namun memiliki beberapa fitur yang menyulitkan pemakaian ulang dan interpretasi.",
 	'config-email-settings' => 'Pengaturan surel',
+	'config-enable-email' => 'Aktifkan surel keluar',
+	'config-enable-email-help' => 'Jika Anda ingin mengaktifkan surel, [http://www.php.net/manual/en/mail.configuration.php setelah surel PHP] perlu dikonfigurasi dengan benar.
+Jika Anda tidak perlu fitur surel, Anda dapat menonaktifkannya di sini.',
+	'config-email-user' => 'Aktifkan surel antarpengguna',
+	'config-email-user-help' => 'Memungkinkan semua pengguna untuk saling berkirim surel jika mereka mengaktifkan pilihan tersebut dalam preferensi mereka.',
+	'config-email-usertalk' => 'Aktifkan pemberitahuan perubahan halaman pembicaraan pengguna',
+	'config-email-usertalk-help' => 'Memungkinkan pengguna untuk menerima pemberitahuan tentang perubahan halaman pembicaraan pengguna, jika pilihan tersebut telah diaktifkan dalam preferensi mereka.',
 	'config-email-watchlist' => 'Aktifkan pemberitahuan daftar pantau',
+	'config-email-watchlist-help' => 'Memungkinkan pengguna untuk menerima pemberitahuan tentang perubahan halaman yang ada dalam daftar pantauan mereka, jika pilihan tersebut telah diaktifkan dalam preferensi mereka.',
 	'config-email-auth' => 'Aktifkan otentikasi surel',
+	'config-email-auth-help' => "Jika opsi ini diaktifkan, pengguna harus mengonfirmasi alamat surel dengan menggunakan pranala yang dikirim kepadanya setiap kali mereka mengatur atau mengubahnya.
+Hanya alamat surel yang dikonfirmasi yang dapat menerima surel dari pengguna lain atau surel pemberitahuan perubahan.
+Penetapan opsi ini '''direkomendasikan''' untuk wiki publik karena adanya potensi penyalahgunaan fitur surel.",
+	'config-email-sender' => 'Alamat surel balasan:',
+	'config-email-sender-help' => 'Masukkan alamat surel untuk digunakan sebagai alamat pengirim pada surel keluar.
+Alamat ini akan menerima pentalan.
+Banyak server surel mensyaratkan paling tidak bagian nama domain yang sah.',
 	'config-upload-settings' => 'Pengunggahan gambar dan berkas',
 	'config-upload-enable' => 'Aktifkan pengunggahan berkas',
+	'config-upload-help' => 'Pengunggahan berkas berpotensi memaparkan server Anda dengan risiko keamanan.
+Untuk informasi lebih lanjut, baca [http://www.mediawiki.org/wiki/Manual:Security/id manual keamanan].
+
+Untuk mengaktifkan pengunggahan berkas, ubah modus subdirektori <code>images</code> di bawah direktori akar MediaWiki agar server web dapat menulis ke sana.
+Kemudian aktifkan opsi ini.',
 	'config-upload-deleted' => 'Direktori untuk berkas terhapus:',
+	'config-upload-deleted-help' => 'Pilih direktori tempat mengarsipkan berkas yang dihapus.
+Idealnya, direktori ini tidak boleh dapat diakses dari web.',
 	'config-logo' => 'URL logo:',
+	'config-logo-help' => 'Kulit bawaan MediaWiki memberikan ruang untuk logo ukuran 135x160 pixel di sudut kiri atas. 
+Unggah gambar dengan ukuran yang sesuai, lalu masukkan URL di sini. 
+
+Jika Anda tidak ingin menyertakan logo, biarkan kotak ini kosong.',
 	'config-instantcommons' => 'Aktifkan Instant Commons',
+	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [http://commons.wikimedia.org/ Wikimedia Commons].
+Untuk melakukannya, MediaWiki memerlukan akses ke Internet. $1
+
+Untuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos manual].',
+	'config-instantcommons-good' => 'Penginstal dapat mendeteksi konektivitas internet selama pemeriksaan lingkungan. 
+Anda dapat mengaktifkan fitur ini jika mau.',
+	'config-instantcommons-bad' => "''Sayangnya, penginstal tidak dapat mendeteksi koneksi internet selama pemeriksaan lingkungan, sehingga Anda mungkin tidak dapat menggunakan fitur ini.
+Jika server Anda berada di balik proksi, Anda mungkin perlu melakukan beberapa [http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy tambahan konfigurasi].''",
 	'config-cc-error' => 'Pemilih lisensi Creative Commons tidak memberikan hasil.
 Masukkan nama lisensi secara manual.',
 	'config-cc-again' => 'Pilih lagi...',
 	'config-cc-not-chosen' => 'Pilih lisensi Creative Commons yang Anda inginkan dan klik "lanjutkan".',
 	'config-advanced-settings' => 'Konfigurasi lebih lanjut',
 	'config-cache-options' => 'Pengaturan untuk penembolokan objek:',
+	'config-cache-help' => 'Penyinggahan objek digunakan untuk meningkatkan kecepatan MediaWiki dengan menyinggahkan data yang sering digunakan.
+Situs berukuran sedang hingga besar sangat dianjurkan untuk mengaktifkan fitur ini, dan situs kecil juga akan merasakan manfaatnya.',
+	'config-cache-none' => 'Tidak ada penyinggahan (tidak ada fungsi yang dibuang, tetapi kecepatan dapat terpengaruh pada situs wiki yang besar)',
 	'config-cache-accel' => 'Penembolokan objek PHP (APC, eAccelerator, XCache atau WinCache)',
 	'config-cache-memcached' => 'Gunakan Memcached (memerlukan setup dan konfigurasi tambahan)',
 	'config-memcached-servers' => 'Server Memcached:',
 	'config-memcached-help' => 'Daftar alamat IP yang digunakan untuk Memcached.
 Harus dipisahkan dengan koma dan sebutkan port yang akan digunakan (contoh: 127.0.0.1:11211, 192.168.1.25:11211).',
 	'config-extensions' => 'Ekstensi',
+	'config-extensions-help' => 'Ekstensi yang tercantum di atas terdeteksi di direktori <code>./extensions</code>.
+
+Ekstensi tersebut mungkin memerlukan konfigurasi tambahan, tetapi Anda dapat mengaktifkannya sekarang.',
+	'config-install-alreadydone' => "'''Peringatan:''' Anda tampaknya telah menginstal MediaWiki dan mencoba untuk menginstalnya lagi.
+Lanjutkan ke halaman berikutnya.",
 	'config-install-step-done' => 'selesai',
 	'config-install-step-failed' => 'gagal',
 	'config-install-extensions' => 'Termasuk ekstensi',
 	'config-install-database' => 'Mendirikan basis data',
+	'config-install-pg-schema-failed' => 'Pembuatan tabel gagal. 
+Pastikan bahwa pengguna "$1" dapat menulis ke skema "$2".',
+	'config-install-pg-commit' => 'Melakukan perubahan',
 	'config-install-user' => 'Membuat pengguna basis data',
 	'config-install-user-failed' => 'Memberikan izin untuk pengguna "$1" gagal: $2',
 	'config-install-tables' => 'Membuat tabel',
 	'config-install-tables-exist' => "'''Peringatan''': Tabel MediaWiki sepertinya sudah ada.
 Melompati pembuatan.",
 	'config-install-tables-failed' => "'''Kesalahan''': Pembuatan tabel gagal dengan kesalahan berikut: $1",
+	'config-install-interwiki' => 'Mengisi tabel bawaan antarwiki',
 	'config-install-interwiki-sql' => 'Tidak dapat menemukan berkas <code>interwiki.sql</code>.',
+	'config-install-interwiki-exists' => "'''Peringatan''': Tabel antarwiki tampaknya sudah memiliki entri.
+Mengabaikan daftar bawaan.",
 	'config-install-secretkey' => 'Menciptakan kunci rahasia',
+	'config-insecure-secret' => "'''Peringatan:''' Gagal membuat <code>$1</code> aman.
+Pertimbangkan untuk mengubahnya secara manual.",
 	'config-install-sysop' => 'Membuat akun pengguna pengurus',
+	'config-install-mainpage' => 'Membuat halaman utama dengan konten bawaan',
+	'config-install-mainpage-failed' => 'Tidak dapat membuat halaman utama.',
+	'config-install-done' => "'''Selamat!'''
+Anda telah berhasil menginstal MediaWiki.
+
+Penginstal telah membuat berkas <code>LocalSettings.php</code>.
+Berkas itu berisi semua konfigurasi Anda.
+
+Anda perlu [$1 mengunduhnya] dan meletakkannya di basis instalasi wiki (direktori yang sama dengan index.php).
+'''Catatan''': Jika Anda tidak melakukannya sekarang, berkas konfigurasi yang dihasilkan ini tidak akan tersedia lagi setelah Anda keluar instalasi tanpa mengunduhnya.
+
+Setelah melakukannya, Anda dapat '''[$2 memasuki wiki Anda]'''.",
 );
 
 /** Igbo (Igbo)
@@ -5684,6 +5986,7 @@ Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
 	'config-your-language-help' => 'Sicht déi Sprooch eraus déi Dir während der Installatioun benotze wëllt',
 	'config-wiki-language' => 'Sprooch vun der Wiki:',
 	'config-wiki-language-help' => "Sicht d'Sprooch eraus an där d'Wiki haaptsächlech geschriwwe gëtt.",
+	'config-allow-requests' => 'Extern Ufroen op MediaWiki.org erlaben',
 	'config-back' => '← Zréck',
 	'config-continue' => 'Weider →',
 	'config-page-language' => 'Sprooch',

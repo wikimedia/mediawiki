@@ -15,6 +15,7 @@
  * @author Mdupont
  * @author MicroBoy
  * @author Mikullovci11
+ * @author Olsi
  * @author Puntori
  * @author Techlik
  * @author The Evil IP address
@@ -577,6 +578,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'yourpassword'               => 'Fusni fjalëkalimin tuaj',
 'yourpasswordagain'          => 'Fusni fjalëkalimin përsëri',
 'remembermypassword'         => 'Mbaj mënd fjalëkalimin tim për tërë vizitat e ardhshme (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'securelogin-stick-https'    => 'Qëndro i lidhur me HTTPS pas hyrjes me emrin përkatës',
 'yourdomainname'             => 'Faqja juaj',
 'externaldberror'            => 'Ose kishte një gabim tek regjistri i identifikimit të jashtëm, ose nuk ju lejohet të përtërini llogarinë tuaje të jashtme.',
 'login'                      => 'Hyni',
@@ -597,7 +599,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'badretype'                  => 'Fjalëkalimet nuk janë njësoj.',
 'userexists'                 => 'Nofka që kërkuat është në përdorim. Zgjidhni një nofkë tjetër.',
 'loginerror'                 => 'Gabim hyrje',
-'createaccounterror'         => 'Nuk mund të hapni një llogari: $ 1',
+'createaccounterror'         => 'Nuk mund të hapni një llogari: $1',
 'nocookiesnew'               => 'Llogaria e përdoruesit u hap, por nuk keni hyrë brenda akoma. {{SITENAME}} përdor "biskota" për të futur brenda përdoruesit. Prandaj, duhet të pranoni biskota dhe të provoni përsëri me nofkën dhe fjalëkalimin tuaj.',
 'nocookieslogin'             => '{{SITENAME}} përdor "biskota" për të futur brenda përdoruesit. Prandaj, duhet të pranoni "biskota" dhe të provoni përsëri.',
 'noname'                     => 'Nuk keni dhënë një emër të saktë.',
@@ -844,6 +846,8 @@ Mendohuni nëse dëshironi të vazhdoni me veprimin tuaj në këtë faqe.
 Regjistri i grisjes për këtë faqe jepet më poshtë:",
 'moveddeleted-notice'              => 'Kjo faqe është grisur. Të dhënat e grisjes për këtë faqe gjenden më poshtë, për referencë.',
 'log-fulllog'                      => 'Shihe ditaret të plota',
+'edit-hook-aborted'                => 'Redaktimi u ndërpre nga një goditje.
+Nuk dha asnjë shpjegim.',
 'edit-gone-missing'                => 'Faqja nuk mund t freskohet.
 Duket se është grisur.',
 'edit-conflict'                    => 'Konflikt në redaktim.',
@@ -911,6 +915,9 @@ Arsyeja e dhënë nga $3 është ''$2''.",
 'rev-deleted-event'           => '(veprimi në regjistër është hequr)',
 'rev-deleted-text-permission' => 'Ky version i faqes është shlyer nga arkivi publik i faqes.
 Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjendet atje më shumë informacion rreth kësaj faqeje.',
+'rev-deleted-text-unhide'     => "Ky version i faqes është '''fshirë'''.
+Detajet mund të gjenden tek [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAME}}}} regjistri i grisjeve].
+Si një administrator ju akoma mund ta [$1 shikoni këtë version] nëse doni të vazhdoni.",
 'rev-deleted-text-view'       => 'Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë.
 Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjenden atje më shumë informacione rreth kësaj.',
 'rev-delundel'                => 'trego/fshih',

@@ -502,11 +502,12 @@ Se prega de dìrghelo a un [[Special:ListUsers/sysop|aministradore]] indicando l
 'badarticleerror'      => 'Operasion no consentia par sta pajina.',
 'cannotdelete'         => 'No xè sta posibiłe scansełare el file "$1".
 Podaria esare sta zà scansełà da qualcun altro.',
-'badtitle'             => 'Titoło no coreto',
+'badtitle'             => 'Titolo mia giusto',
 'badtitletext'         => "El titoło de ła pajina richiesta xè vodo, erà o con carateri no amesi opure el deriva da n'erore ne i cołegamenti tra siti wiki diversi o version en łengue diverse de ło steso sito.",
-'perfcached'           => 'I dati che segue i xè estrati da na copia "cache" del database, no ajornà en tenpo reałe.',
-'perfcachedts'         => 'I dati che segue i xè estrati da na copia "cache" del database. Ultemo ajornamento: $1.',
-'querypage-no-updates' => 'I azornamenti de ła pajina i xè tenporaneamente sospesi. I dati en esa contegnui no i verà ajornà.',
+'perfcached'           => 'Sti dati qua no i vien mia azornà in tenpo reale, ma solo na olta ogni tanto.',
+'perfcachedts'         => "Sti dati qua i xe stà azornà l'ultima olta el $1.",
+'querypage-no-updates' => "L'azornamento periodico de sta pagina el xe sospeso. 
+I dati che ghè qua drento no i xe azornà.",
 'wrong_wfQuery_params' => 'Erore ne i parametri invià a ła funsion wfQuery()<br />
 Funsion: $1<br />
 Query: $2',
@@ -514,9 +515,9 @@ Query: $2',
 'viewsourcefor'        => 'de $1',
 'actionthrottled'      => 'Asion ritardà',
 'actionthrottledtext'  => "Come misura de sicuresa contro e o spam, l'esecusion de alcune asion e a xè limità a on numaro masimo de volte en on determinà periodo de tenpo, limite che en questo caso xè sta superà. Se prega de riprovare tra qualche minuto.",
-'protectedpagetext'    => 'Sta pajina xè sta proteta par inpedirne ła modifega.',
-'viewsourcetext'       => 'Xè posibiłe visuałizare e copiare el codexe sorzente de sta pajina:',
-'protectedinterface'   => "Sta pajina contien on elemento che fa parte de l'interfacia utente del software; xè quindi proteta par evitare posibiłi abusi.",
+'protectedpagetext'    => 'Sta pagina la xe stà proteta de modo che nissuni possa canbiarla.',
+'viewsourcetext'       => 'Se pole vardar e copiar el testo de sta pagina:',
+'protectedinterface'   => "Sta pagina la gà drento un testo de l'interfacia utente del software, quindi la xe proteta parché nissuni la strussia.",
 'editinginterface'     => "'''Ocio:''' El testo de sta pajina el fa parte de l'interfacia utente del sito. Tute łe modifeghe aportae a sta pajina se riflete so i mesaji visuałizà par tuti i utenti.
 Par łe tradusion, considera ła posibiłità de usare [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el projeto MediaWiki par ła localizasion.",
 'sqlhidden'            => '(ła query SQL ła xè sta sconta)',
@@ -545,6 +546,7 @@ L'acount el xè sta creà coretamente. No dismentegare de personałizare łe [[S
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => 'De novo la password:',
 'remembermypassword'         => 'Tiente in mente la password su sto conputer (par un massimo de $1 {{PLURAL:$1|zorno|zorni}})',
+'securelogin-stick-https'    => 'Resta tacà par HTTPS dopo èssar entrà',
 'yourdomainname'             => 'Spesifegare el dominio',
 'externaldberror'            => "Se xè verifegà n'erore con el server de autenticasion esterno, opure no se dispone de łe autorizasion nesesarie par ajornare el proprio aceso esterno.",
 'login'                      => 'Entra',
@@ -562,11 +564,11 @@ L'acount el xè sta creà coretamente. No dismentegare de personałizare łe [[S
 'gotaccountlink'             => 'Entra',
 'createaccountmail'          => 'Par e-mail',
 'createaccountreason'        => 'Motivassion:',
-'badretype'                  => 'Łe password inserie no e coinside tra loro.',
-'userexists'                 => 'El nome utente inserio xè zà utiłizà.
-Sceji on nome utente difarente.',
+'badretype'                  => 'Le do password le xe difarenti.',
+'userexists'                 => 'Sto nome utente se lo gà zà tolto qualchedun altro.
+Tòtene uno difarente.',
 'loginerror'                 => "Erore ne l'aceso",
-'createaccounterror'         => "Inposibiłe creare l'acount: $1",
+'createaccounterror'         => "No se pole crear l'utente: $1",
 'nocookiesnew'               => "Ła rejistrasion xè sta conpletà, ma no xè sta posibiłe asedare a {{SITENAME}} parché i cookie i xè disativai. Riprovare l'aceso con el nome utente e ła password pena creai dopo aver ativà i cookie nel proprio browser.",
 'nocookieslogin'             => "L'aceso a {{SITENAME}} richiede l'uso de i cookie, che i risulta disativai. Riprovare l'aceso dopo aver ativà i cookie nel proprio browser.",
 'noname'                     => 'El nome utente indicà no xè vałido.',
@@ -1069,8 +1071,8 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'notitlematches'                   => 'Nei titoli de pagina no gò catà gnente',
 'textmatches'                      => 'Corispondense nel testo de le pagine',
 'notextmatches'                    => 'Nei testi de le pagine no gò catà gnente',
-'prevn'                            => '{{PLURAL:quel prima|i $1 prima}} de sti qua',
-'nextn'                            => '{{PLURAL:quel dopo|i $1 dopo}} de sti qua',
+'prevn'                            => '{{PLURAL:quela prima|le $1 prima}} de ste qua',
+'nextn'                            => '{{PLURAL:quela dopo|le $1 dopo}} de ste qua',
 'prevn-title'                      => '{{PLURAL:$1|el risultato prima|i $1 risultati prima}}',
 'nextn-title'                      => '{{PLURAL:$1|el risultato dopo|i $1 risultati dopo}}',
 'shown-title'                      => 'Mostra {{PLURAL:$1|un risultato|$1 risultati}} par pàxena',
@@ -1616,6 +1618,7 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'listfiles_search_for'  => 'Serca file par nome:',
 'imgfile'               => 'file',
 'listfiles'             => 'Lista dei file',
+'listfiles_thumb'       => 'Miniadura',
 'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nome',
 'listfiles_user'        => 'Utente',
@@ -1728,6 +1731,7 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 'statistics-edits'             => "Modifiche a scuminsiar da l'istalassion de {{SITENAME}}",
 'statistics-edits-average'     => 'Canbiamenti in media par pàxena',
 'statistics-views-total'       => 'Visualizasion totali',
+'statistics-views-total-desc'  => 'Xe lassà fora le viste de pagine speciali o mia esistenti',
 'statistics-views-peredit'     => 'Visualizassion par modifica',
 'statistics-users'             => '[[Special:ListUsers|Utenti]] registrà',
 'statistics-users-active'      => 'Utenti atìvi',
@@ -1765,6 +1769,8 @@ Le righe <del>sbarà</del> le xe xà stà sistemà.',
 'nmembers'                => '$1 {{PLURAL:$1|elemento|elementi}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revision|revision}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visite}}',
+'nimagelinks'             => 'Doparà su $1 {{PLURAL:$1|pagina|pagine}}',
+'ntransclusions'          => 'doparà su $1 {{PLURAL:$1|pagina|pagine}}',
 'specialpage-empty'       => "Sto raporto no'l contien nissun risultato.",
 'lonelypages'             => 'Pagine solitarie',
 'lonelypagestext'         => 'Le pagine indicà de seguito no le gà colegamenti o trasclusioni che vegna da altre pagine de {{SITENAME}}.',
@@ -2367,6 +2373,17 @@ Tiente in mente de [[Special:UnlockDB|sblocarlo]] co te ghè finìo de far manut
 El vecio titolo el deventarà automaticamente un rimando (redirect) che punta al titolo novo.
 Te podi agiornar automaticamente i rimandi che punta al vecio titolo.
 Se te siegli de no farlo, tiente in mente de controlar ben che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
+Resta ne la to responsabilità de controlar che i colegamenti i continua a puntar dove che i deve.
+
+Ocio: la pagina '''no''' la sarà spostà se ghe fusse zà na pagina col titolo novo, a meno che no la sia na pagina voda o un rimando, e senpre che no la gabia na storia.
+Questo significa che, se te fè un eror, te podi da novo rinominar na pagina col vecio titolo, ma no te podi sovrascrìvar na pagina zà esistente.
+
+'''OCIO!'''
+Sto canbiamento drastico el podarìa dar problemi che no se se speta, specialmente se se trata de na pagina molto visità.
+Stà ben tento a le conseguense del spostamento, prima de farlo.",
+'movepagetext-noredirectfixer' => "Col modulo qua soto te podi rinominar na pagina, spostando anca tuta la so storia al titolo novo.
+El vecio titolo el deventarà automaticamente un rimando (redirect) che punta al titolo novo.
+Tiente in mente de controlar ben che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
 Resta ne la to responsabilità de controlar che i colegamenti i continua a puntar dove che i deve.
 
 Ocio: la pagina '''no''' la sarà spostà se ghe fusse zà na pagina col titolo novo, a meno che no la sia na pagina voda o un rimando, e senpre che no la gabia na storia.
