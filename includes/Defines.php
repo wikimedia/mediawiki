@@ -210,6 +210,9 @@ define( 'MW_SUPPORTS_PARSERFIRSTCALLINIT', 1 );
 define( 'MW_SUPPORTS_LOCALISATIONCACHE', 1 );
 /**@}*/
 
+/** Support for $wgResourceModules */
+define( 'MW_SUPPORTS_RESOURCE_MODULES', 1 );
+
 /**@{
  * Allowed values for Parser::$mOutputType
  * Parameter to Parser::startExternalParse().
