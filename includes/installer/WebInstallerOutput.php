@@ -211,13 +211,11 @@ class WebInstallerOutput {
 	    title="Main Page"></a>
 	</div>
 	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
-	<div class='portlet'><div class='pBody'>
+	<div class="portlet"><div class="body">
 <?php
 	echo $this->parent->parse( wfMsgNoTrans( 'config-sidebar' ), true );
 ?>
 	</div></div>
-</div>
-
 </div>
 
 </body>
