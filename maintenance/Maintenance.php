@@ -673,11 +673,15 @@ abstract class Maintenance {
 
 		// ... and append arguments.
 		if ( $this->mArgList ) {
-			$output .= " <";
+			$output .= ' ';
 			foreach ( $this->mArgList as $k => $arg ) {
-				$output .= $arg['name'] . ">";
+				if ( $arg['require'] ) {
+					$output .= '<' . $arg['name'] . '>';
+				} else {
+					$output .= '[' . $arg['name'] . ']';
+				}
 				if ( $k < count( $this->mArgList ) - 1 )
-					$output .= " <";
+					$output .= ' ';
 			}
 		}
 		$this->output( "$output\n\n" );
@@ -692,8 +696,10 @@ abstract class Maintenance {
 
 		// Arguments description
 		foreach ( $this->mArgList as $info ) {
+			$openChar = $info['require'] ? '<' : '[';
+			$closeChar = $info['require'] ? '>' : ']';
 			$this->output(
-				wordwrap( "$tab<" . $info['name'] . ">: " .
+				wordwrap( "$tab$openChar" . $info['name'] . "$closeChar: " .
 					$info['desc'], $descWidth, "\n$tab$tab" ) . "\n"
 			);
 		}
