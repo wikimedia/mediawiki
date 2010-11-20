@@ -1303,6 +1303,8 @@ Do you want to change the settings?',
 'import-upload-filename'  => 'ܫܡܐ ܕܠܦܦܐ:',
 'import-revision-count'   => '$1 {{PLURAL:$1|ܬܢܝܬܐ |ܬܢܝܬ̈ܐ}}',
 'importnopages'           => 'ܠܝܬ ܦܐܬܬ̈ܐ ܠܡܥܠܢܘܬܐ.',
+'importnotext'            => 'ܣܦܝܩܐ ܐܘ ܠܝܬ ܒܗ ܟܬܒܬܐ',
+'importsuccess'           => 'ܡܥܠܢܘܬܐ ܓܡܪܬ',
 'import-noarticle'        => 'ܠܝܬ ܦܐܬܬ̈ܐ ܠܡܥܠܢܘܬܐ!',
 'import-upload'           => 'ܐܣܩ ܓܠܝܬ̈ܐ  ܕ XML',
 
