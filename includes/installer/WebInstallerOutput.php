@@ -207,13 +207,13 @@ class WebInstallerOutput {
 
 
 <div id="mw-panel">
-	<div class="portlet" id="p-logo">
+	<div class="portal" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
 	    href="http://www.mediawiki.org/"
 	    title="Main Page"></a>
 	</div>
 	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
-	<div class="portlet"><div class="body">
+	<div class="portal"><div class="body">
 <?php
 	echo $this->parent->parse( wfMsgNoTrans( 'config-sidebar' ), true );
 ?>
