@@ -2297,7 +2297,7 @@ $wgBetterDirectionality = false;
  *      'scripts' => 'myExtension.js',
  *      'styles' => 'myExtension.css',
  *      'dependencies' => array( 'jquery.cookie', 'jquery.tabIndex' ),
- *      'localBasePath' => dirname( __FILE ),
+ *      'localBasePath' => dirname( __FILE__ ),
  *      'remoteExtPath' => 'MyExtension',
  *   );
  */
