@@ -298,6 +298,8 @@ abstract class CoreInstaller extends Installer {
 	/**
 	 * Get an array of install steps. These could be a plain key like the defaults
 	 * in $installSteps, or could be an array with a name and a specific callback
+	 * There must be a config-install-$step message defined per step, which are 
+	 * shown by the CliInstaller.
 	 *
 	 * @param $installer DatabaseInstaller so we can make callbacks
 	 * @return array
