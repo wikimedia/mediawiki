@@ -94,7 +94,7 @@
 .config-message {
 	display: list-item;
 	line-height: 1.5em;
-	list-style-image: url(../skins/common/images/bullet.gif);
+	list-style-image: url(images/bullet.gif);
 	list-style-type: square;
 }
 
