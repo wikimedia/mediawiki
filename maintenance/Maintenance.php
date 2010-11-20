@@ -360,9 +360,9 @@ abstract class Maintenance {
 		$this->addOption( 'wiki', 'For specifying the wiki ID', false, true );
 		$this->addOption( 'globals', 'Output globals at the end of processing for debugging' );
 		$this->addOption( 'memory-limit', 'Set a specific memory limit for the script, "max" for no limit or "default" to avoid changing it' );
-		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g.\n" .
-							"\t\thttp://en.wikipedia.org. This is sometimes necessary because\n" .
-							"\t\tserver name detection may fail in command line scripts.", false, true );
+		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
+				"http://en.wikipedia.org. This is sometimes necessary because " .
+				"server name detection may fail in command line scripts.", false, true );
 		// If we support a DB, show the options
 		if ( $this->getDbType() > 0 ) {
 			$this->addOption( 'dbuser', 'The DB user to use for this script', false, true );
