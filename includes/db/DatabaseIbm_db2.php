@@ -13,7 +13,7 @@
  * This represents a column in a DB2 database
  * @ingroup Database
  */
-class IBM_DB2Field {
+class IBM_DB2Field implements Field {
 	private $name = '';
 	private $tablename = '';
 	private $type = '';
@@ -75,7 +75,7 @@ SQL;
 	 * Can column be null?
 	 * @return bool true or false
 	 */
-	function nullable() { return $this->nullable; }
+	function isNullable() { return $this->nullable; }
 	/**
 	 * How much can you fit in the column per row?
 	 * @return int length

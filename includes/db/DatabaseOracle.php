@@ -124,7 +124,7 @@ class ORAResult {
  * Utility class.
  * @ingroup Database
  */
-class ORAField {
+class ORAField implements Field {
 	private $name, $tablename, $default, $max_length, $nullable,
 		$is_pk, $is_unique, $is_multiple, $is_key, $type;
 
@@ -157,7 +157,7 @@ class ORAField {
 		return $this->max_length;
 	}
 
-	function nullable() {
+	function isNullable() {
 		return $this->nullable;
 	}
 

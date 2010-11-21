@@ -6,7 +6,7 @@
  * @ingroup Database
  */
 
-class PostgresField {
+class PostgresField implements Field {
 	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname;
 
 	static function fromText($db, $table, $field) {
@@ -69,7 +69,7 @@ SQL;
 		return $this->type;
 	}
 
-	function nullable() {
+	function isNullable() {
 		return $this->nullable;
 	}
 

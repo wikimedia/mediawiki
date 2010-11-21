@@ -442,7 +442,7 @@ END;
 			$this->output( "... error: expected column $table.$field to exist\n" );
 			exit( 1 );
 		}
-		if ( $fi->nullable() ) {
+		if ( $fi->isNullable() ) {
 			# # It's NULL - does it need to be NOT NULL?
 			if ( 'NOT NULL' === $null ) {
 				$this->output( "Changing \"$table.$field\" to not allow NULLs\n" );
@@ -616,7 +616,7 @@ END;
 
 	protected function checkRcCurIdNullable(){
 		$fi = $this->db->fieldInfo( 'recentchanges', 'rc_cur_id' );
-		if ( !$fi->nullable() ) {
+		if ( !$fi->isNullable() ) {
 			$this->output( "Removing NOT NULL constraint from \"recentchanges.rc_cur_id\"\n" );
 			$this->applyPatch( 'patch-rc_cur_id-not-null.sql' );
 		} else {

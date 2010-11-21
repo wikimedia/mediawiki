@@ -1051,7 +1051,7 @@ class DatabaseMssql extends DatabaseBase {
  *
  * @ingroup Database
  */
-class MssqlField {
+class MssqlField implements Field {
 	private $name, $tablename, $default, $max_length, $nullable, $type;
 	function __construct ( $info ) {
 		$this->name = $info['COLUMN_NAME'];
@@ -1077,7 +1077,7 @@ class MssqlField {
 		return $this->max_length;
 	}
 
-	function nullable() {
+	function isNullable() {
 		return $this->nullable;
 	}
 
