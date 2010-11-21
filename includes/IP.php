@@ -35,17 +35,19 @@ define( 'RE_IP_BLOCK', RE_IP_ADD . '\/' . RE_IP_PREFIX );
 define( 'RE_IPV6_WORD', '([0-9A-Fa-f]{1,4})' );
 define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
 define( 'RE_IPV6_ADD',
-	'(?:' . // starts with "::" (includes the address "::")
-		'::|:(?::' . RE_IPV6_WORD . '){1,7}' .
-	'|' . // ends with "::" (not including the address "::")
+	'(?:' . // starts with "::" (including "::")
+		':(?::|(?::' . RE_IPV6_WORD . '){1,7})' .
+	'|' . // ends with "::" (except "::")
 		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){0,6}::' .
-	'|' . // has no "::"
+	'|' . // contains no "::"
 		RE_IPV6_WORD . '(?::' . RE_IPV6_WORD . '){7}' .
-	'|' . // contains one "::" in the middle (awkward regex for PCRE 4.0+ compatibility)
-		RE_IPV6_WORD . '(?::(?!(?P=abn))(?P<abn>:(?P<iabn>))?' . RE_IPV6_WORD . '){1,6}(?P=iabn)' .
+	'|' . // contains one "::" in the middle and 2 words
+		RE_IPV6_WORD . '::' . RE_IPV6_WORD .
+	'|' . // contains one "::" in the middle and 3+ words (awkward regex for PCRE 4.0+)
+		RE_IPV6_WORD . '(?::(?P<abn>:(?P<iabn>))?' . RE_IPV6_WORD . '(?!:(?P=abn))){1,5}' .
+			':' . RE_IPV6_WORD . '(?P=iabn)' .
 		// NOTE: (?!(?P=abn)) fails iff "::" used twice; (?P=iabn) passes iff a "::" was found.
-		
-		// Better regexp (PCRE 7.2+ only), allows intuitive regex concatenation
+		// RegExp (PCRE 7.2+ only) for last 2 cases that allows easy regex concatenation:
 		#RE_IPV6_WORD . '(?::((?(-1)|:))?' . RE_IPV6_WORD . '){1,6}(?(-2)|^)' .
 	')'
 );
