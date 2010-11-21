@@ -576,7 +576,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'logout'                     => 'Digevreañ',
 'userlogout'                 => 'Digevreañ',
 'notloggedin'                => 'Digevreet',
-'nologin'                    => "N'oc'h eus kont ebet ? '''$1'''.",
+'nologin'                    => "N'hoc'h eus kont ebet ? '''$1'''.",
 'nologinlink'                => 'Krouiñ ur gont',
 'createaccount'              => 'Krouiñ ur gont nevez',
 'gotaccount'                 => "Ur gont zo ganeoc'h dija ? '''$1'''.",
@@ -638,7 +638,7 @@ Mat e vefe deoc\'h kevreañ ha cheñch ho ker-tremen bremañ.
 
 Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'usernamehasherror'          => "N'haller ket ober gant an arouezenn # en anvioù an implijerien",
-'login-throttled'            => "Betek re oc'h eus klasket kevreañ en aner.
+'login-throttled'            => "Betek re oc'h heus klasket kevreañ en aner.
 Gortozit a-raok klask en-dro.",
 'loginlanguagelabel'         => 'Yezh : $1',
 'suspicious-userlogout'      => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
@@ -793,7 +793,7 @@ Ma ne'z a ket en-dro c'hoazh, klaskit [[Special:UserLogout|digevreañ]] hag adke
 
 ''Gweredekaet eo al linennoù HTML e {{SITENAME}}. Rak-se eo kuzh ar rakweledoù a-benn en em zifenn diouzh an tagadennoù JavaScript.''
 
-'''Mard e oa onest ar c'hemmoù oc'h eus klasket degas, klaskit en-dro. '''
+'''Mard e oa onest ar c'hemmoù hoc'h eus klasket degas, klaskit en-dro. '''
 Mar ned a ket en-dro, klaskit [[Special:UserLogout|digevreañ]] ha kevreañ en-dro.",
 'token_suffix_mismatch'            => "'''Distaolet eo bet ar c'hemmoù degaset ganeoc'h abalamour ma oa bet kemmesket an arouezennoù poentadur gant ho merdeer en daveer kemmañ. Distaolet eo bet ar c'hemmoù kuit na vije breinet ar bajennad skrid.
 C'hoarvezout a ra a-wechoù pa implijit ur servijer proksi dreinek dizanav.'''",

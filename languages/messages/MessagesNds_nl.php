@@ -1211,7 +1211,7 @@ Klik op "Weerumme" en geef een aandere pagina dan "[[$1]]" op.',
 'compareselectedversions'  => 'Vergeliek de ekeuzen versies',
 'showhideselectedversions' => 'Ekeuzen versies weergeven/verbargen',
 'editundo'                 => 'weerummedreien',
-'diff-multi'               => '(Hier {{PLURAL:$1|zit nog 1 versie|zitten nog $1 versies tussen}}.)',
+'diff-multi'               => '(Hier {{PLURAL:$1|zit nog 1 versie|zitten nog $1 versies}} van {{PLURAL:$2|1 gebruker|$2 gebrukers}} tussen dee der neet bie staon.)',
 
 # Search results
 'searchresults'                    => 'Zeukrisseltaoten',
@@ -1711,7 +1711,7 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand toe-evoeg wönnen.
 'upload-success-subj'         => 'Bestaanstoevoeging was succesvol',
 'upload-success-msg'          => "'t Bestaand [$2] steet derop. Je kunnen 't hier vienen: [[:{{ns:file}}:$1]]",
 'upload-failure-subj'         => "Prebleem bie 't toevoegen van 't bestaand",
-'upload-failure-msg'          => "Der was een prebleem bie 't toevoegen van 't bestaand:
+'upload-failure-msg'          => "Der was een prebleem bie 't toevoegen van [$2]:
 
 $1",
 'upload-warning-subj'         => "Waorschuwing veur 't toevoegen van bestanen",
@@ -3355,6 +3355,7 @@ Je kunnen oek [[Special:Watchlist/edit|'t standardbewarkingsscharm gebruken]].",
 'version-hook-subscribedby'        => 'In-eschreven deur',
 'version-version'                  => '(Versie $1)',
 'version-license'                  => 'Licentie',
+'version-poweredby-others'         => 'aanderen',
 'version-software'                 => 'Pregrammetuur dee eïnstalleerd is',
 'version-software-product'         => 'Preduk',
 'version-software-version'         => 'Versie',

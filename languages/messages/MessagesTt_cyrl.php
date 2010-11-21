@@ -1299,7 +1299,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'rcshowhidebots'                    => 'ботларны $1',
 'rcshowhideliu'                     => 'кергән кулланучыларны $1',
 'rcshowhideanons'                   => 'кермәгән кулланучыларны $1',
-'rcshowhidepatr'                    => 'тикшерергән үзгәртүләрне $1',
+'rcshowhidepatr'                    => 'тикшерелгән үзгәртүләрне $1',
 'rcshowhidemine'                    => 'минем үзгәртүләремне $1',
 'rclinks'                           => 'Соңгы $2 көн эчендә соңгы $1 үзгәртүне күрсәт<br />$3',
 'diff'                              => 'аерма',
@@ -1736,7 +1736,7 @@ $UNWATCHURL
 'rollback_short' => 'Кире кайтару',
 'rollbacklink'   => 'кире кайтару',
 'editcomment'    => "Үзгәртү өчен тасвир: \"''\$1''\".",
-'revertpage'     => '[[Special:Contributions/$2|$2]] үзгәртүләре ([[User talk:$2|бәхәс]])  [[User:$1|$1]] юрамасына кире кайтарылды',
+'revertpage'     => '[[Special:Contributions/$2|$2]] үзгәртүләре ([[User talk:$2|бәхәс]])  [[User:$1|$1]] юрамасына кадәр кире кайтарылды',
 
 # Protect
 'protectlogpage'              => 'Яклану көндәлеге',

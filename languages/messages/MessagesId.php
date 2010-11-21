@@ -323,7 +323,7 @@ $messages = array(
 'tog-minordefault'            => 'Tandai semua suntingan sebagai suntingan kecil secara baku',
 'tog-previewontop'            => 'Perlihatkan pratayang sebelum kotak sunting dan tidak sesudahnya',
 'tog-previewonfirst'          => 'Perlihatkan pratayang pada suntingan pertama',
-'tog-nocache'                 => 'Nonaktifkan pembuatan tembolok halaman peramban ini',
+'tog-nocache'                 => 'Nonaktifkan penyinggahan halaman peramban',
 'tog-enotifwatchlistpages'    => 'Kirimkan saya surel jika suatu halaman yang saya pantau berubah',
 'tog-enotifusertalkpages'     => 'Kirimkan saya surel jika halaman pembicaraan saya berubah',
 'tog-enotifminoredits'        => 'Kirimkan saya surel juga pada perubahan kecil',
@@ -1098,7 +1098,7 @@ Pengurus {{SITENAME}} lain akan tetap dapat mengakses isi yang tersembunyi ini d
 'revdelete-hide-text'         => 'Sembunyikan teks revisi',
 'revdelete-hide-image'        => 'Sembunyikan isi berkas',
 'revdelete-hide-name'         => 'Sembunyikan tindakan dan target',
-'revdelete-hide-comment'      => 'Tampilkan/sembunyikan ringkasan suntingan',
+'revdelete-hide-comment'      => 'Sembunyikan ringkasan suntingan',
 'revdelete-hide-user'         => 'Sembunyikan nama pengguna/IP penyunting',
 'revdelete-hide-restricted'   => 'Sembunyikan data dari opsis juga',
 'revdelete-radio-same'        => '(jangan diubah)',
@@ -1108,7 +1108,7 @@ Pengurus {{SITENAME}} lain akan tetap dapat mengakses isi yang tersembunyi ini d
 'revdelete-unsuppress'        => 'Hapus batasan pada revisi yang dikembalikan',
 'revdelete-log'               => 'Alasan:',
 'revdelete-submit'            => 'Terapkan pada {{PLURAL:$1|revisi|revisi}} terpilih',
-'revdelete-logentry'          => 'ubah tampilan revisi untuk [[$1]]',
+'revdelete-logentry'          => 'mengubah tampilan revisi untuk [[$1]]',
 'logdelete-logentry'          => 'mengubah aturan penyembunyian dari [[$1]]',
 'revdelete-success'           => "'''Keterlihatan revisi berhasil diperbarui.'''",
 'revdelete-failure'           => "'''Keterlihatan revisi tak dapat diperbarui:'''
@@ -1142,8 +1142,9 @@ Anda tidak memiliki akses ke revisi ini.',
 Silakan periksa catatan log.',
 'revdelete-only-restricted'   => 'Kesalahan sewaktu menyembunyikan butir bertanggal $2, $1: Anda tidak dapat menyembunyikan butir dari pengurus tanpa memilih juga salah satu opsi penyembunyian lainnya.',
 'revdelete-reason-dropdown'   => '*Alasan penghapusan
-** Pelanggaran hakcipta
-** Informasi pribadi tidak pantas',
+** Pelanggaran hak cipta
+** Informasi pribadi yang tidak pantas
+** Berpotensi mencemarkan nama baik',
 'revdelete-otherreason'       => 'Alasan lain/tambahan:',
 'revdelete-reasonotherlist'   => 'Alasan lain',
 'revdelete-edit-reasonlist'   => 'Alasan penghapusan suntingan',

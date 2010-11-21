@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Krinkle
  * @author Omnipaedista
  * @author Svetko
  * @author Wolliger Mensch
@@ -429,7 +430,8 @@ $messages = array(
 'watchthisupload'     => 'си дѣ́ла блюдє́ниѥ',
 'upload-success-subj' => 'дѣ́ло положєно ѥ́стъ',
 
-'license' => 'прощєниѥ :',
+'license'        => 'прощєниѥ :',
+'license-header' => 'прощєниѥ',
 
 # Special:ListFiles
 'imgfile'        => 'дѣ́ло',

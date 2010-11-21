@@ -1186,8 +1186,8 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-edituserjs'         => 'Babak pamuruk lain babarakas JavaScript',
 'right-trackback'          => 'Mangirimakan sabuah panjajakan balik',
 'right-userrights'         => 'Babak sabarataan hak pamuruk',
-'right-siteadmin'          => 'Sunduk wan kadasudasunduk basisdata',
-'right-reset-passwords'    => 'Risit kakatasunduk pamuruk lain',
+'right-siteadmin'          => 'Sunduk wan buka sunduk basis data',
+'right-reset-passwords'    => 'Risit katasunduk pamuruk lain',
 'right-sendemail'          => 'Mangirim suril ka papamuruk lain',
 'right-revisionmove'       => 'Pindahakan raralatan',
 
@@ -1219,6 +1219,7 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'action-suppressionlog'     => 'tiringi log paribadi ini',
 'action-block'              => 'blukir pamuruk ini matan mambabak',
 'action-patrol'             => "tandai babakan nang lain sawagai ta'awasi",
+'action-unwatchedpages'     => 'tiringi daptar tutungkaran nang kada diitihi',
 'action-revisionmove'       => 'pindahi raralatan',
 
 # Recent changes
@@ -1283,17 +1284,20 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'tmp-create-error'    => 'Kada kawa maulah barakas pahadangan.',
 'tmp-write-error'     => 'Kasalahan sawaktu manulis barakas pahadangan.',
 'uploadwarning'       => 'Paringatan hunggah',
-'uploadwarning-text'  => 'Muhun magaganti katarangan barakas di bawah wan cubai pulang.',
+'uploadwarning-text'  => 'Muhun mangganti katarangan barakas di bawah wan cubai pulang.',
 'savefile'            => 'Simpan barakas',
 'uploadedimage'       => 'mamuat "[[$1]]"',
-'overwroteimage'      => 'mahunggah sabuah pirsi hanyar matan "[[$1]]"',
-'uploaddisabled'      => 'Huhunggah pajah.',
+'overwroteimage'      => 'mahunggah sabuah pérsi hanyar matan "[[$1]]"',
+'uploaddisabled'      => 'Pahunggahan dipajahakan.',
 'copyuploaddisabled'  => 'Hunggah lawan URL pajah.',
 'watchthisupload'     => 'Itihi barakas ini',
 'upload-warning-subj' => 'Paringatan mahunggah',
 
 'upload-misc-error'   => 'Tasalah buat nang kada dipinandui',
-'upload-unknown-size' => 'Ukuran kadaditahui',
+'upload-unknown-size' => 'Ukuran kada dikatahui',
+
+# img_auth script messages
+'img-auth-nofile' => 'Barakas "$1" kadada.',
 
 # Special:ListFiles
 'listfiles_search_for'  => 'Gagai ngaran barakas:',

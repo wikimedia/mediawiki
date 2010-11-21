@@ -2295,7 +2295,7 @@ $UNWATCHURL
 'protect-legend'              => 'Потврдете ја заштитата',
 'protectcomment'              => 'Причина:',
 'protectexpiry'               => 'Истекува:',
-'protect_expiry_invalid'      => 'Времето на истекување не е добро дефинирано.',
+'protect_expiry_invalid'      => 'Времето на истекување е неважечко.',
 'protect_expiry_old'          => 'Времето на истекување е постаро од тековното време.',
 'protect-unchain-permissions' => 'Отклучи дополнителни можности за заштита',
 'protect-text'                => "Овде можете да го погледнете или смените нивото на заштита за страницата '''<nowiki>$1</nowiki>'''.",
