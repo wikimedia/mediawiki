@@ -90,7 +90,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			if ( !is_null( $params['url'] ) ) {
 				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
 				if ( $title ) {
-					$entry = array_merge( $entry, array( 'url' => $title->getFullURL() ) );
+					$entry['url'] = $title->getFullURL();
 				}
 			}
 			ApiResult::setContent( $entry, $row->ll_title );
