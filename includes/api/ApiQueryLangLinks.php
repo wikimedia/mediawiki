@@ -87,6 +87,12 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				break;
 			}
 			$entry = array( 'lang' => $row->ll_lang );
+			if ( !is_null( $params['url'] ) ) {
+				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
+				if ( $title ) {
+					$entry = array_merge( $entry, array( 'url' => $title->getFullURL() ) );
+				}
+			}
 			ApiResult::setContent( $entry, $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );
 			if ( !$fit ) {
@@ -110,6 +116,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'continue' => null,
+			'url' => null,
 		);
 	}
 
@@ -117,6 +124,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		return array(
 			'limit' => 'How many langlinks to return',
 			'continue' => 'When more results are available, use this to continue',
+			'url' => 'Whether to get the full URL',
 		);
 	}
 
