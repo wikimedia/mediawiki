@@ -2195,7 +2195,7 @@ function wfGetSiteNotice() {
 
 /**
  * BC wrapper for MimeMagic::singleton()
- * @deprecated
+ * @deprecated No longer needed as of 1.17 (r68836).
  */
 function &wfGetMimeMagic() {
 	wfDeprecated( __FUNCTION__ );
