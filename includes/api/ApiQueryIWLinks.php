@@ -96,7 +96,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			if ( !is_null( $params['url'] ) ) {
 				$title = Title::newFromText( "{$row->iwl_prefix}:{$row->iwl_title}" );
 				if ( $title ) {
-					$entry = array_merge( $entry, array( 'url' => $title->getFullURL() ) );
+					$entry['url'] = $title->getFullURL();
 				}
 			}
 
