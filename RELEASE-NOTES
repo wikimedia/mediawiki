@@ -77,7 +77,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   server side.
 * Removed $wgUpdates for database updates; extension should use
   DatabaseUpdater::addExtensionUpdate().
-* Removed $wgServerName. It doesn't need to be set anymore and is no longer 
+* Removed $wgServerName. It doesn't need to be set anymore and is no longer
   available as input for other configuration items, either.
 * Remove $wgRemoteUploads. It was not well supported and superseded by
   $wgUploadNavigationUrl.
@@ -187,7 +187,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   for versioning
 * Maintenance scripts get a --memory-limit option to override defaults (which
   is usually to set it to -1 to disable the limit)
-* (bug 25397) Allow uploading (not displaying) of WebP images, disabled by default
+* (bug 25397) Allow uploading (not displaying) of WebP images, disabled
+  by default
 * (bug 23194) Special:ListFiles now has thumbnails
 * Use hreflang to specify canonical and alternate links, search engine friendly
   when a wiki has multiple variant languages.
@@ -375,7 +376,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 20744) Wiki forgets about an uploaded file
 * (bug 17913) Don't show "older edit" when no older edit available
 * (bug 6204) TOC not properly rendered when using $wgMaxTocLevel
-* (bug 24977) The accesskey in history page now lead directly to the diff 
+* (bug 24977) The accesskey in history page now lead directly to the diff
   instead of alterning focus between the two buttons.
 * (bug 24987) Special:ListUsers does not take external groups into account
 * (bug 20633) update.php has mixed language output
@@ -500,28 +501,28 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   missing
 * (bug 24724) list=allusers is out by 1 (shows total users - 1)
 * (bug 24166) API error when using rvprop=tags
-* Introduced "asynchronous download" mode for upload-by-url. Requires 
+* Introduced "asynchronous download" mode for upload-by-url. Requires
   $wgAllowAsyncCopyUploads to be true.
 * sinumberingroup correctly gives size of 'user' group, and omits size of
   implicit groups rather than showing 0.
 * (bug 25248) API: paraminfo errors with certain modules
-* (bug 25303) Fix API parameter integer validation to actually enforce validation
-  on the input values in addition to giving a warning. Also add flag to enforce (die)
-  if integer out of range (breaking change!)
+* (bug 25303) Fix API parameter integer validation to actually enforce
+  validation on the input values in addition to giving a warning. Also add flag
+  to enforce (die) if integer out of range (breaking change!)
 * (bug 24792) API help for action=purge sometimes wrongly stated whether a
   POST request was needed due to cache pollution
 * Added iiprop=parsedcomment to prop=imageinfo, similar to prop=revisions
-* Added rvparse to parse revisions. For performance reasons if this option is 
+* Added rvparse to parse revisions. For performance reasons if this option is
   used, rvlimit is enforced to 1.
 * (bug 25748) If a action=parse request provides an oldid that is actually the
   current revision id, try the parser cache, and save it to it if necessary
 * (bug 25463) Export header should not be shown if no pages were requested, to
   reduce confusion
-* (bug 25648) API discovery information has been added as RSD link in page 
-  <head> and by providing an API module action=rsd. Added hook 
-  ApiRsdServiceApis for extensions to add their own service to the services 
+* (bug 25648) API discovery information has been added as RSD link in page
+  <head> and by providing an API module action=rsd. Added hook
+  ApiRsdServiceApis for extensions to add their own service to the services
   list.
-* The HTML of diff output markers has changed. Hyphens are now minus signs, 
+* The HTML of diff output markers has changed. Hyphens are now minus signs,
   empty markers are now filled with non-breaking-space characters
 * (bug 25741) Add more data to list=search's srprop
 * (bug 25760) counter property still reported by the API when
