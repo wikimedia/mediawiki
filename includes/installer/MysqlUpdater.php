@@ -601,7 +601,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	 */
 	protected function doWatchlistNull() {
 		$info = $this->db->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
-		if ( $info->nullable() ) {
+		if ( $info->isNullable() ) {
 			$this->output( "...wl_notificationtimestamp is already nullable.\n" );
 			return;
 		}

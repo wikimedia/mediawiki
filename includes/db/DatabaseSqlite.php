@@ -626,7 +626,7 @@ class DatabaseSqliteStandalone extends DatabaseSqlite {
 /**
  * @ingroup Database
  */
-class SQLiteField {
+class SQLiteField implements Field {
 	private $info, $tableName;
 	function __construct( $info, $tableName ) {
 		$this->info = $info;
@@ -651,16 +651,9 @@ class SQLiteField {
 		return $this->info->dflt_value;
 	}
 
-	function maxLength() {
-		return -1;
-	}
-
-	function nullable() {
+	function isNullable() {
 		return !$this->info->notnull;
 	}
-
-	# isKey(),  isMultipleKey() not implemented, MySQL-specific concept.
-	# Suggest removal from base class [TS]
 
 	function type() {
 		return $this->info->type;

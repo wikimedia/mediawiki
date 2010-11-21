@@ -503,6 +503,56 @@ class DatabaseMysql extends DatabaseBase {
  */
 class Database extends DatabaseMysql {}
 
+/**
+ * Utility class.
+ * @ingroup Database
+ */
+class MySQLField implements Field {
+	private $name, $tablename, $default, $max_length, $nullable,
+		$is_pk, $is_unique, $is_multiple, $is_key, $type;
+
+	function __construct ( $info ) {
+		$this->name = $info->name;
+		$this->tablename = $info->table;
+		$this->default = $info->def;
+		$this->max_length = $info->max_length;
+		$this->nullable = !$info->not_null;
+		$this->is_pk = $info->primary_key;
+		$this->is_unique = $info->unique_key;
+		$this->is_multiple = $info->multiple_key;
+		$this->is_key = ( $this->is_pk || $this->is_unique || $this->is_multiple );
+		$this->type = $info->type;
+	}
+
+	function name() {
+		return $this->name;
+	}
+
+	function tableName() {
+		return $this->tableName;
+	}
+
+	function type() {
+		return $this->type;
+	}
+
+	function isNullable() {
+		return $this->nullable;
+	}
+
+	function defaultValue() {
+		return $this->default;
+	}
+
+	function isKey() {
+		return $this->is_key;
+	}
+
+	function isMultipleKey() {
+		return $this->is_multiple;
+	}
+}
+
 class MySQLMasterPos {
 	var $file, $pos;
 
