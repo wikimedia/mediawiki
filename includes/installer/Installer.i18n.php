@@ -1336,6 +1336,14 @@ $messages['br'] = array(
 	'config-desc' => 'Poellad staliañ MediaWIki',
 	'config-title' => 'Staliadur MediaWiki $1',
 	'config-information' => 'Titouroù',
+	'config-localsettings-upgrade' => "'''Diwallit''': Kavet ez eus bet ur restr <code>LocalSettings.php</code>.
+gouest eo ho meziant d'en em hizivaat
+Merkit talvoudenn ar chod <code>\$wgUpgradeKey</code> er vaezienn.",
+	'config-localsettings-key' => "Alc'hwez hizivaat :",
+	'config-localsettings-badkey' => "Direizh eo an alc'hwez merket ganeoc'h",
+	'config-localsettings-noupgrade' => "'''Fazi''': Kavet ez eus bet ur restr <code>LocalSettings.php</code>.
+N'eo ket gouest ho meziant en em hizivaat evit ar poent
+Diweredekaet eo bet ar stalier evit abegoù surentez.",
 	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
 	'config-your-language' => 'Ho yezh :',
 	'config-your-language-help' => 'Dibabit ur yezh da implijout e-pad an argerzh staliañ.',
@@ -4914,8 +4922,7 @@ Instalasi terancam gagal!",
 	'config-apc' => '[http://www.php.net/apc APC] telah diinstal',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] telah diinstal',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] telah diinstal',
-	'config-no-cache' => "'''Peringatan:''' Tidak dapat menemukan [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] atau [http://www.iis.net/download/WinCacheForPhp WinCache].
-Penembolokan obyek tidak dinonaktifkan.",
+	'config-no-cache' => "'''Peringatan:''' Tidak dapat menemukan [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache], atau [http://www.iis.net/download/WinCacheForPhp WinCache]. Pinggahan obyek tidak dinonaktifkan.",
 	'config-diff3-good' => 'Ditemukan diff3 GNU: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 tidak ditemukan.',
 	'config-imagemagick' => 'ImageMagick ditemukan: <code>$1</code> . 
@@ -5218,11 +5225,11 @@ Masukkan nama lisensi secara manual.',
 	'config-cc-again' => 'Pilih lagi...',
 	'config-cc-not-chosen' => 'Pilih lisensi Creative Commons yang Anda inginkan dan klik "lanjutkan".',
 	'config-advanced-settings' => 'Konfigurasi lebih lanjut',
-	'config-cache-options' => 'Pengaturan untuk penembolokan objek:',
+	'config-cache-options' => 'Pengaturan untuk penyinggahan objek:',
 	'config-cache-help' => 'Penyinggahan objek digunakan untuk meningkatkan kecepatan MediaWiki dengan menyinggahkan data yang sering digunakan.
 Situs berukuran sedang hingga besar sangat dianjurkan untuk mengaktifkan fitur ini, dan situs kecil juga akan merasakan manfaatnya.',
 	'config-cache-none' => 'Tidak ada penyinggahan (tidak ada fungsi yang dibuang, tetapi kecepatan dapat terpengaruh pada situs wiki yang besar)',
-	'config-cache-accel' => 'Penembolokan objek PHP (APC, eAccelerator, XCache atau WinCache)',
+	'config-cache-accel' => 'Penyinggahan objek PHP (APC, eAccelerator, XCache atau WinCache)',
 	'config-cache-memcached' => 'Gunakan Memcached (memerlukan setup dan konfigurasi tambahan)',
 	'config-memcached-servers' => 'Server Memcached:',
 	'config-memcached-help' => 'Daftar alamat IP yang digunakan untuk Memcached.

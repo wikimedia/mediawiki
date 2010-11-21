@@ -17,6 +17,7 @@
  * @author Gzdavidwong
  * @author Horacewai2
  * @author Hydra
+ * @author Jding2010
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author KaiesTse
@@ -214,12 +215,12 @@ $bookstoreList = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '链接下划线：',
-'tog-highlightbroken'         => '无效链接显示为<a href="" class="new">这样</a>（否则显示为<a href="" class="internal">?</a>）',
+'tog-highlightbroken'         => '无效链接显示为<a href="" class="new">这样</a>（或者<a href="" class="internal">?</a>）',
 'tog-justify'                 => '段落对齐',
 'tog-hideminor'               => '在最近更改中隐藏小修改',
 'tog-hidepatrolled'           => '在最近更改中隐藏已巡查编辑',
 'tog-newpageshidepatrolled'   => '在新页面列表中隐藏已巡查页面',
-'tog-extendwatchlist'         => '展开监视列表以显示包括最近更改的所有更改',
+'tog-extendwatchlist'         => '展开监视列表以显示所有更改而不只是最近更改',
 'tog-usenewrc'                => '启用增强最近更改（JavaScript）',
 'tog-numberheadings'          => '标题自动编号',
 'tog-showtoolbar'             => '显示编辑工具条（JavaScript）',
@@ -2440,6 +2441,17 @@ $1已经被封锁。您是否想更改这个设置？',
 <b>警告！</b>
 对一个经常被访问的页面而言这可能是一个重大与唐突的更改；
 请在行动前先了结其所可能带来的后果。",
+'movepagetext-noredirectfixer' => '↓使用下面的表格将会重新命名一个页面，并将其所有修订历史同时移动到新页面。
+老的页面将成为新页面的重定向页。
+请检查[[Special:DoubleRedirects|双重重定向]]或[[Special:BrokenRedirects|损坏重定向]]链接。
+您应当负责确定所有链接依然会链到指定的页面。
+
+注意如果新页面的名字已经被使用的话，页面将<b>不会</b>被移动，除非使用该名字的页面无内容或是重定向页，而且没有修订历史。
+这意味着您在必要时可以将该页面重新命名为之前的名字，但是您不能够覆盖一个已经存在的页面。
+
+<b>警告！</b>
+对一个经常被访问的页面而言这可能是一个重大与意外的更改；
+请在行动前先确定您了解其所可能带来的后果。',
 'movepagetalktext'             => "有关的讨论页将被自动与该页面一起移动，'''除非''':
 *新页面已经有一个包含内容的讨论页，或者
 *您不勾选下面的复选框。

@@ -971,6 +971,7 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 'revisionmoveselectedversions' => 'Hamisha mapitio yaliyochaguliwa',
 'revmove-reasonfield'          => 'Sababu:',
 'revmove-titlefield'           => 'Ukurasa unaolengwa',
+'revmove-norevisions-title'    => 'Pitio lililolengwa ni batili',
 'revmove-nullmove-title'       => 'Jina halifai',
 'revmove-success-existing'     => '{{PLURAL:$1|Pitio moja kutoka [[$2]] limehamishwa|mapitio $1 kutoka kwa [[$2]] yamehamishwa}} kwenda ukurasa uliopo tayari unaoitwa [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Pitio moja kutoka [[$2]] limehamishwa|mapitio $1 kutoka [[$2]] yamehamishwa}} kwenda ukurasa mpya unaoitwa [[$3]].',

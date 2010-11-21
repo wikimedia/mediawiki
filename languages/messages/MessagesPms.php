@@ -1697,9 +1697,9 @@ Adess a l'é na ridiression a [[$2]].",
 'brokenredirects-delete' => 'scancelé',
 
 'withoutinterwiki'         => "Pàgine ch'a l'han gnun-a anliura interwiki",
-'withoutinterwiki-summary' => "Le pàgine ambelessì sota a l'han gnun-a anliura a dj'àotre lenghe:",
+'withoutinterwiki-summary' => "Le pàgine ambelessì-sota a l'han gnun-a anliura a dj'àotre lenghe:",
 'withoutinterwiki-legend'  => 'Prefiss',
-'withoutinterwiki-submit'  => 'Smon',
+'withoutinterwiki-submit'  => 'Smon-e',
 
 'fewestrevisions' => 'Artìcoj con manch ëd modìfiche',
 
