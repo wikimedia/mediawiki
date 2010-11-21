@@ -82,7 +82,7 @@ class CheckSyntax extends Maintenance {
 		$this->mNoStyleCheckPaths = array(
 			// Third-party code we don't care about
 			"/activemq_stomp/",
-			"EmailPage/phpMailer",
+			"EmailPage/PHPMailer",
 			"FCKeditor/fckeditor/",
 			'\bphplot-',
 			"/svggraph/",
