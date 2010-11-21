@@ -225,4 +225,35 @@
         return $(this).offset().left > ($(document).scrollLeft() + $(window).width() / 2) ? 'e' : 'w';
     };
 
+    /**
+     * yields a closure of the supplied parameters, producing a function that takes
+     * no arguments and is suitable for use as an autogravity function like so:
+     *
+     * @param margin (int) - distance from the viewable region edge that an
+     *        element should be before setting its tooltip's gravity to be away
+     *        from that edge.
+     * @param prefer (string, e.g. 'n', 'sw', 'w') - the direction to prefer
+     *        if there are no viewable region edges effecting the tooltip's
+     *        gravity. It will try to vary from this minimally, for example,
+     *        if 'sw' is preferred and an element is near the right viewable 
+     *        region edge, but not the top edge, it will set the gravity for
+     *        that element's tooltip to be 'se', preserving the southern
+     *        component.
+     */
+     $.fn.tipsy.autoBounds = function(margin, prefer) {
+        return function() {
+            var dir = {ns: prefer[0], ew: (prefer.length > 1 ? prefer[1] : false)},
+                boundTop = $(document).scrollTop() + margin,
+                boundLeft = $(document).scrollLeft() + margin,
+                $this = $(this);
+
+            if ($this.offset().top < boundTop) dir.ns = 'n';
+            if ($this.offset().left < boundLeft) dir.ew = 'w';
+            if ($(window).width() + $(document).scrollLeft() - $this.offset().left < margin) dir.ew = 'e';
+            if ($(window).height() + $(document).scrollTop() - $this.offset().top < margin) dir.ns = 's';
+
+            return dir.ns + (dir.ew ? dir.ew : '');
+        }
+    };
+
 })(jQuery);
