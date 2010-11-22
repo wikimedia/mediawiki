@@ -39,14 +39,15 @@
 	float: right;
 	width: 12em;
 	border: 1px solid #aaa;
+	background: #fff;
 	padding: 0.5em;
-	margin: 0.5em;
+	/* 3em left margin to leave space between the list and the page-content */
+	margin: 0.5em 0.5em 0.5em 3.5em;
 }
 
 .config-page {
-	padding: 0.5em 2em 0.5em 2em;
-	/* 15em right margin to leave space for 12em page list */
-	margin: 0.5em 15em 0.5em 0.5em;
+	padding: 0.5em 0.5em 0.5em 2em;
+	margin: 0.5em 0.5em 0.5em 0.5em;
 	background: #eee;
 }
 
