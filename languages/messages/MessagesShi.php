@@ -11,8 +11,6 @@
  * @author Zanatos
  */
 
-$fallback = 'ar';
-
 $messages = array(
 # User preference toggles
 'tog-underline'              => 'krrj du izdayn:',
