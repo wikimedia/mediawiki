@@ -22,6 +22,14 @@ class SearchEngine {
 	var $namespaces = array( NS_MAIN );
 	var $showRedirects = false;
 
+	function __construct($db = null) {
+		if ( $db ) {
+			$this->db = $db;
+		} else {
+			$this->db = wfGetDB( DB_SLAVE );
+		}
+	}
+
 	/**
 	 * Perform a full text search query and return a result set.
 	 * If title searches are not supported or disabled, return null.
@@ -383,10 +391,11 @@ class SearchEngine {
 	 */
 	public static function create() {
 		global $wgSearchType;
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = null;
 		if ( $wgSearchType ) {
 			$class = $wgSearchType;
 		} else {
+			$dbr = wfGetDB( DB_SLAVE );
 			$class = $dbr->getSearchEngine();
 		}
 		$search = new $class( $dbr );

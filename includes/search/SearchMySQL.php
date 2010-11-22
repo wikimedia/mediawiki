@@ -32,9 +32,12 @@ class SearchMySQL extends SearchEngine {
 	var $strictMatching = true;
 	static $mMinSearchLength;
 
-	/** @todo document */
+	/**
+	 * Creates an instance of this class
+	 * @param $db DatabaseMysql: database object
+	 */
 	function __construct( $db ) {
-		$this->db = $db;
+		parent::__construct( $db );
 	}
 
 	/** 
