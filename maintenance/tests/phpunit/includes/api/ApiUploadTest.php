@@ -123,7 +123,7 @@ abstract class ApiTestCase extends PHPUnit_Framework_TestCase {
 	 * This is cheating a bit -- we grab a token in the correct format and then add it to the pseudo-session and to the
 	 * request, without actually requesting a "real" edit token
 	 * @param $params: key-value API params
-	 * @param $data: a structure which also contains the session
+	 * @param $session: session array
 	 */
 	protected function doApiRequestWithToken( $params, $session ) {
 		if ( $session['wsToken'] ) {
