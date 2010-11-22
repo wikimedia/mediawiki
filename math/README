@@ -84,7 +84,7 @@ texvc output format is like this:
 
 == Troubleshooting ==
 
-Unforunately, many error conditions with rasterization are not well reported.
+Unfortunately, many error conditions with rasterization are not well reported.
 texvc will return as though everything is successful, and the only obvious
 sign of problems for the user is a big X on a wiki page where an equation
 should be.
