@@ -1312,6 +1312,7 @@ chmod a+w $3</pre>',
 	'config-install-secretkey' => 'Стварэньне сакрэтнага ключа',
 	'config-insecure-secret' => "'''Папярэджаньне:''' немагчыма стварыць <code>$1</code> бясьпекі.
 Верагодна трэба зьмяніць яго ўручную.",
+	'config-install-upgradekey' => 'Стварэньне ключа абнаўленьня па змоўчваньні',
 	'config-install-sysop' => 'Стварэньне рахунку адміністратара',
 	'config-install-mainpage' => 'Стварэньне галоўнай старонкі са зьместам па змоўчваньні',
 	'config-install-mainpage-failed' => 'Немагчыма ўставіць галоўную старонку.',
@@ -1599,7 +1600,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-page-complete' => 'Fertig!',
 	'config-page-restart' => 'Installationsvorgang erneut starten',
 	'config-page-readme' => 'Lies mich',
-	'config-page-releasenotes' => 'Release-Notes',
+	'config-page-releasenotes' => 'Release-Notesm (en)',
 	'config-page-copying' => 'Kopie der Lizenz',
 	'config-page-upgradedoc' => 'Aktualisiere',
 	'config-page-locked' => 'Zugriff verweigert',
@@ -1617,10 +1618,10 @@ Dieses Programm ist freie Software, d. h. es kann, gemäß den Bedingungen der v
 Dieses Programm wird in der Hoffnung verteilt, dass es nützlich sein wird, allerdings '''ohne jegliche Garantie''' und sogar ohne die implizierte Garantie einer '''Marktgängigkeit''' oder '''Eignung für einen bestimmten Zweck'''. Hierzu sind weitere Hinweise in der GNU General Public License enthalten.
 
 Eine <doclink href=Copying>Kopie der GNU General Public License</doclink> sollte zusammen mit diesem Programm verteilt worden sein. Sofern dies nicht der Fall war, kann eine Kopie bei der Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftlich angefordert oder auf deren Website [http://www.gnu.org/copyleft/gpl.html online gelesen] werden.",
-	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Website von MediaWiki]
-* [http://www.mediawiki.org/wiki/Help:Contents Nutzeranleitung zu MediaWiki]
-* [http://www.mediawiki.org/wiki/Manual:Contents Administratorenanleitung zu MediaWiki]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Häufige Fragen zu MediaWiki]',
+	'config-sidebar' => '* [http://www.mediawiki.org Website von MediaWiki]
+* [http://www.mediawiki.org/wiki/Help:Contents Nutzeranleitung]
+* [http://www.mediawiki.org/wiki/Manual:Contents Administratorenanleitung]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Häufig gestellte Fragen]',
 	'config-env-good' => '<span class="success-message">Die Installationsumgebung wurde geprüft.
 MediaWiki kann installiert werden.</span>',
 	'config-env-bad' => 'Die Installationsumgebung wurde geprüft.
@@ -1676,7 +1677,7 @@ MediaWiki benötigt allerdings perl-kompatible reguläre Ausdrücke, um lauffäh
 MediaWiki benötigt die UTF-8-Unterstützung, um fehlerfrei lauffähig zu sein.",
 	'config-memory-none' => 'PHP wurde ohne den Parameter <code>memory_limit</code> konfiguriert',
 	'config-memory-ok' => 'Der PHP-Parameter <code>memory_limit</code> hat den Wert $1.
-OK.',
+In Ordnung.',
 	'config-memory-raised' => 'Der PHP-Parameter <code>memory_limit</code> betrug $1 und wurde auf $2 erhöht.',
 	'config-memory-bad' => "'''Warnung:''' Der PHP-Parameter <code>memory_limit</code> beträgt $1.
 Dieser Wert ist wahrscheinlich zu niedrig.
@@ -2019,6 +2020,7 @@ Die Standardliste wird übersprungen.",
 	'config-install-secretkey' => 'Erstellung des Geheimschlüssels',
 	'config-insecure-secret' => "'''Warnung:''' Die Erstellung des Geheimschlüssels <code>$1</code> ist gescheitert.
 Dies muss manuell nachgeholt werden.",
+	'config-install-upgradekey' => 'Der Standardaktualisierungsschlüssel wird generiert',
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
 	'config-install-mainpage' => 'Erstellung der Hauptseite mit Standardinhalten',
 	'config-install-mainpage-failed' => 'Die Hauptseite konnte nicht erstellt werden.',
@@ -4777,6 +4779,7 @@ Le lista predefinite es saltate.",
 	'config-install-secretkey' => 'Genera clave secrete',
 	'config-insecure-secret' => "'''Aviso:''' Impossibile crear le clave secrete <code>$1</code>.
 Considera cambiar lo manualmente.",
+	'config-install-upgradekey' => 'Generation del clave de actualisation predefinite',
 	'config-install-sysop' => 'Crea conto de usator pro administrator',
 	'config-install-mainpage' => 'Crea pagina principal con contento predefinite',
 	'config-install-mainpage-failed' => 'Non poteva inserer le pagina principal.',
@@ -5260,6 +5263,7 @@ Mengabaikan daftar bawaan.",
 	'config-install-secretkey' => 'Menciptakan kunci rahasia',
 	'config-insecure-secret' => "'''Peringatan:''' Gagal membuat <code>$1</code> aman.
 Pertimbangkan untuk mengubahnya secara manual.",
+	'config-install-upgradekey' => 'Membuat kunci pemutakhiran bawaan',
 	'config-install-sysop' => 'Membuat akun pengguna pengurus',
 	'config-install-mainpage' => 'Membuat halaman utama dengan konten bawaan',
 	'config-install-mainpage-failed' => 'Tidak dapat membuat halaman utama.',
@@ -6615,6 +6619,7 @@ chmod a+w $3</pre>',
 	'config-install-secretkey' => 'Создавам таен клуч',
 	'config-insecure-secret' => "'''Предупредување:''' Не можам да создадам безбеден <code>$1</code>.
 Ви препорачуваме да го смените рачно.",
+	'config-install-upgradekey' => 'Создавам стандарден клуч за надградување',
 	'config-install-sysop' => 'Создавање на администраторска корисничка сметка',
 	'config-install-mainpage' => 'Создавам главна страница со стандардна содржина',
 	'config-install-mainpage-failed' => 'Не можев да вметнам главна страница.',
@@ -7289,6 +7294,7 @@ De standaardlijst wordt overgeslagen.",
 	'config-install-secretkey' => 'Geheime sleutel aanmaken',
 	'config-insecure-secret' => 'Waarschuwing: het was niet mogelijk een veilige <code>$1</code> aan te maken.
 Overweeg deze handmatig te wijzigen.',
+	'config-install-upgradekey' => 'De standaard upgradesleutel wordt aangemaakt',
 	'config-install-sysop' => 'Gebruiker voor beheerder aanmaken',
 	'config-install-mainpage' => 'Hoofdpagina aanmaken met standaard inhoud',
 	'config-install-mainpage-failed' => 'Het was niet mogelijk de hoofdpagina in te voegen.',

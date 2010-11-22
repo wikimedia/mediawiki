@@ -8,6 +8,7 @@
  * @file
  *
  * @author Don Alessandro
+ * @author Emperyan
  * @author Gulmammad
  * @author PrinceValiant
  * @author Sortilegus
@@ -85,7 +86,7 @@ $messages = array(
 'tog-minordefault'            => 'Default olaraq bütün redaktələri kiçik redaktə kimi nişanla',
 'tog-previewontop'            => 'Sınaq göstərişi yazma sahəsindən əvvəl göstər',
 'tog-previewonfirst'          => 'İlkin redaktədə sınaq göstərişi',
-'tog-nocache'                 => 'Səhifəni keşdə (cache) saxlama',
+'tog-nocache'                 => 'Səhifələri yaddaşlama',
 'tog-enotifwatchlistpages'    => 'İzləmə siyahısında olan məqalə redaktə olunsa, mənə e-məktub göndər',
 'tog-enotifusertalkpages'     => 'Müzakirə səhifəm redaktə olunsa, mənə e-məktub göndər',
 'tog-enotifminoredits'        => 'Hətta səhifələrdə kiçik dəyişikliklər olsa belə, mənə e-məktub göndər',
@@ -96,6 +97,7 @@ $messages = array(
 'tog-externaleditor'          => 'Default olaraq xarici redaktə proqramlarından istifadə et (Ekspertlər üçün, kompyuterinizin parametrlərində xüsusi dəyişikliklər tələb olunur)',
 'tog-externaldiff'            => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',
 'tog-showjumplinks'           => '"Gətir" ("jump to") linklərini aktivləşdir',
+'tog-uselivepreview'          => 'Canlı sınaq xüsusiyyətini naviqasiya (JavaScript tələb edir)  (daha sınaq mərhələsində)',
 'tog-forceeditsummary'        => 'Qısa məzmunu boş saxladıqda mənə bildir',
 'tog-watchlisthideown'        => 'Mənim redaktələrimi izləmə siyahısında gizlət',
 'tog-watchlisthidebots'       => 'Bot redaktələrini izləmə siyahısında gizlət',
@@ -375,14 +377,30 @@ Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhif
 # General errors
 'error'                => 'Xəta',
 'databaseerror'        => 'Verilənlər bazası xətası',
+'dberrortextcl'        => 'Verilənlər bazası sorğu söz səhvi yarandı.
+Son edilən verilənlər bazası sorğusu:
+"$1"
+İstifadə edilən funksiya "$2".
+Verilənlər bazasının verdiyi səhv mesajı "$3: $4"',
 'laggedslavemode'      => "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
 'readonly'             => 'Verilənlər bazası kilidli',
 'enterlockreason'      => 'Bloklamanın səbəbini və nəzərdə tutulan müddətini qeyd edin',
+'readonlytext'         => 'Verilənlər bazası adi baxım / təmir işləri səbəbiylə, müvəqqəti olaraq daxil olmağa və dəyişiklik etməyə bağlanmışdır.Qısa müddət sonra normala dönəcək.
+
+Bazasını kilidləyən operatorun şərhi: $1',
+'missing-article'      => 'Məlumat bazası, tapılması istənən "$1" $2 adlı səhifəyə aid mətni tapa bilmədi.
+
+Bu vəziyyət səhifənin, silinmiş bir səhifənin keçmiş versiyası olmasından qaynaqlana bilər.
+
+Əgər niyə bu deyilsə, proqramda bir səhv ilə qarşılaşmış ola bilərsiniz.
+Xahiş edirik bunu bir [[Special:ListUsers/sysop|İdarəçilərə]], URL not edərək göndərin.',
 'missingarticle-rev'   => '(təftiş#: $1)',
 'missingarticle-diff'  => '(fərq: $1, $2)',
 'readonly_lag'         => 'Məlumatlar bazasının ikinci dərəcəli serveri əsas serverlə əlaqə yaradanadək məlumatlar bazası avtomatik olaraq bloklanmışdır',
 'internalerror'        => 'Daxili xəta',
 'internalerror_info'   => 'Daxili xəta: $1',
+'fileappenderrorread'  => 'Daxil olmuş edilərkən "$1" oxuna bilmir.',
+'fileappenderror'      => '"$1" faylı "$2" faylına əlavə edilə bilmir.',
 'filecopyerror'        => '"$1" faylı "$2" faylına kopiyalanmır.',
 'filerenameerror'      => '«$1» faylının adını «$2» dəyişmək mümkün deyil',
 'filedeleteerror'      => '"$1" fayılını silə bilmədi.',
@@ -395,6 +413,10 @@ Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhif
 'cannotdelete'         => 'İstədiyiniz "$1" səhifə və ya faylını silmək mümkün deyil.
 Bu səhifə və ya fayl başqa bir istifadəçi tərəfindən silinmiş ola bilər.',
 'badtitle'             => 'Yanlış başlıq',
+'badtitletext'         => 'Girilən səhifə adı ya səhv və ya boş, ya da dillər arası keçid və ya vikidə arası keçid ehtiva etdiyindən etibarlı deyil. 
+Başlıqlarda istifadə edilməsi qadağan olan bir və ya daha çox xarakter ehtiva edir ola bilər.',
+'perfcached'           => 'Məlumatlar daha əvvəldən hazırlanmış ola bilər. Bu səbəblə aktual olmaya bilər!',
+'perfcachedts'         => 'Aşağıda saxlanmış məlumatlar vardır, sonuncu yeniləmə vaxti: $1.',
 'wrong_wfQuery_params' => 'wfQuery() funksiyası üçün qəbuledilməz parametrlər <br />
 Funksiya: $1<br />
 Sorğu: $2',
@@ -539,7 +561,7 @@ Yeni cəhd etməzdən əvvəl bir qədər gözləyin.',
 'blockededitsource'                => "Aşağıda '''$1''' səhifəsində etdiyiniz '''dəyişikliklərin''' mətni göstərilib:",
 'whitelistedittitle'               => 'Redaktə üçün daxil olmalısınız',
 'whitelistedittext'                => 'Dəyişiklik edə bilmək üçün $1.',
-'nosuchsectiontitle'               => 'Belə bölmə yoxdur',
+'nosuchsectiontitle'               => 'Belə bölmə yoxdur.',
 'loginreqtitle'                    => 'Daxil olmalısınız',
 'loginreqlink'                     => 'daxil olmalısınız',
 'accmailtitle'                     => 'Parol göndərildi.',
