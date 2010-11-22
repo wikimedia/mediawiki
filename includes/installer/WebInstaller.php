@@ -118,7 +118,7 @@ class WebInstaller extends CoreInstaller {
 		$this->exportVars();
 		$this->setupLanguage();
 
-		if( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) ) 
+		if( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) )
 			&& $this->request->getVal( 'localsettings' ) )
 		{
 			$this->request->response()->header( 'Content-type: text/plain' );
@@ -620,7 +620,7 @@ class WebInstaller extends CoreInstaller {
       	    "     title=\"" . $html . "\"\n" .
     	    "     original-title=\"" . $html . "\"></span>\n";
 	}
-	
+
 	/**
 	 * Output a help box.
 	 */
@@ -687,7 +687,7 @@ class WebInstaller extends CoreInstaller {
 			"  </div>\n" .
 			"</div>\n";
 	}
-	
+
 	/**
 	 * Get a labelled text box to configure a variable.
 	 *
@@ -732,7 +732,7 @@ class WebInstaller extends CoreInstaller {
 				$params['help']
 			);
 	}
-	
+
 	/**
 	 * Get a labelled password box to configure a variable.
 	 *

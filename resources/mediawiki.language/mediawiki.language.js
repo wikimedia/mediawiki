@@ -26,7 +26,7 @@ mediaWiki.language = {
 			}
 			// Restore the count into a Number ( if it got converted earlier )
 			var count = mediaWiki.language.convertNumber( template.title, true );
-			// Do convertPlural call 		
+			// Do convertPlural call 
 			return mediaWiki.language.convertPlural( parseInt( count ), template.parameters );
 		}
 		// Could not process plural return first form or nothing

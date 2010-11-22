@@ -9,7 +9,7 @@
 .config-block {
 	margin-top: 2em;
 	display: block;
-	
+
 }
 .config-block-label {
 	display: block;
@@ -142,7 +142,7 @@
 .config-cc-wrapper {
 	clear: left;
 	/* If you change this height, also change it in WebInstaller_Options::submitCC() */
-	height: 54em; 
+	height: 54em;
 }
 
 .config-plainlink a {

@@ -1,8 +1,8 @@
 /**
  * HTML5 placeholder emulation for jQuery plugin
- * 
+ *
  * This will automatically use the HTML5 placeholder attribute if supported, or emulate this behavior if not.
- * 
+ *
  * @author Trevor Parscal <tparscal@wikimedia.org>
  * @author Krinkle <krinklemail@gmail.com>
  * @version 0.2.0
