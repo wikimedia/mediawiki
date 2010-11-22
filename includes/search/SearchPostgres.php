@@ -29,9 +29,12 @@
  * @ingroup Search
  */
 class SearchPostgres extends SearchEngine {
-
+	/**
+	 * Creates an instance of this class
+	 * @param $db DatabaseSqlite: database object
+	 */
 	function __construct( $db ) {
-		$this->db = $db;
+		parent::__construct( $db );
 	}
 
 	/**

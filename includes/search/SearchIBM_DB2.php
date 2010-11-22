@@ -29,8 +29,13 @@
  * @ingroup Search
  */
 class SearchIBM_DB2 extends SearchEngine {
+
+	/**
+	 * Creates an instance of this class
+	 * @param $db DatabaseIbm_db2: database object
+	 */
 	function __construct($db) {
-		$this->db = $db;
+		parent::__construct( $db );
 	}
 
 	/**

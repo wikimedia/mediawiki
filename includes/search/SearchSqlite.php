@@ -31,7 +31,7 @@ class SearchSqlite extends SearchEngine {
 	 * @param $db DatabaseSqlite: database object
 	 */
 	function __construct( $db ) {
-		$this->db = $db;
+		parent::__construct( $db );
 	}
 
 	/**

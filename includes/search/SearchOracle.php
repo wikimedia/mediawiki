@@ -56,9 +56,13 @@ class SearchOracle extends SearchEngine {
 									'TRSYN' => 1, 
 									'TT' => 1, 
 									'WITHIN' => 1);
-	
+
+	/**
+	 * Creates an instance of this class
+	 * @param $db DatabasePostgres: database object
+	 */
 	function __construct($db) {
-		$this->db = $db;
+		parent::__construct( $db );
 	}
 
 	/**
