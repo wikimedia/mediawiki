@@ -258,6 +258,10 @@
 		 */
 		'addPortletLink' : function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 
+			// Check if there's atleast 3 arguments to prevent a TypeError
+			if ( arguments.length < 3 ) {
+				return null;
+			}
 			// Setup the anchor tag
 			var $link = $('<a />').attr( 'href', href ).text( text );
 
