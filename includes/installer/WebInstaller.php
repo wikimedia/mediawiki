@@ -469,8 +469,9 @@ class WebInstaller extends CoreInstaller {
 	 * @param $currentPageName String
 	 */
 	private function startPageWrapper( $currentPageName ) {
-		$s = "<div class=\"config-page-wrapper\">\n" .
-			"<div class=\"config-page-list\"><ul>\n";
+		$s = "<div class=\"config-page-wrapper\">\n";
+		$s .= "<div class=\"config-page\">\n";
+		$s .= "<div class=\"config-page-list\"><ul>\n";
 		$lastHappy = -1;
 
 		foreach ( $this->pageSequence as $id => $pageName ) {
@@ -492,9 +493,8 @@ class WebInstaller extends CoreInstaller {
 			$s .= $this->getPageListItem( $pageName, true, $currentPageName );
 		}
 
-		$s .= "</ul></div>\n". // end list pane
-			"<div class=\"config-page\">\n" .
-			Html::element( 'h2', array(),
+		$s .= "</ul></div>\n"; // end list pane
+		$s .= Html::element( 'h2', array(),
 				wfMsg( 'config-page-' . strtolower( $currentPageName ) ) );
 
 		$this->output->addHTMLNoFlush( $s );
