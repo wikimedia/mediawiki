@@ -307,6 +307,10 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'powersearch-ns'            => 'In de Namensraim suche:',
 'powersearch-redir'         => 'Wairerlaitunge aazaiche',
 'powersearch-field'         => 'Suche noch',
+'powersearch-togglenone'    => 'Kään',
+
+# Quickbar
+'qbsettings-none' => 'Kään',
 
 # Preferences page
 'preferences'   => 'Optione',
@@ -329,7 +333,8 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'grouppage-sysop' => '{{ns:project}}:Adminischtratore',
 
 # User rights log
-'rightslog' => 'Benutzerrecht-Logbuch',
+'rightslog'  => 'Benutzerrecht-Logbuch',
+'rightsnone' => '(-)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'die Said bearwaide',
@@ -717,6 +722,8 @@ Annere Metadate sinn standardmäßig versteckelt.
 * fnumber
 * isospeedratings
 * focallength',
+
+'exif-gaincontrol-0' => 'Kään',
 
 # External editor support
 'edit-externally'      => 'Die Datei bearwaide mit ener externe Aawendung',
