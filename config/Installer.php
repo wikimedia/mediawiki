@@ -1685,14 +1685,14 @@ if( count( $errs ) ) {
 	</div>
 	</fieldset>
 
-	
+
 	<?php database_switcher($ourdb, 'mssql' ); ?>
 	<div class="config-desc">
 		<p>No MS SQL Server specific options at this time.</p>
 	</div>
 	</fieldset>
-	
-	
+
+
 	<?php database_switcher($ourdb, 'ibm_db2'); ?>
 	<div class="config-input"><?php
 		aField( $conf, "DBport_db2", "Database port:" );

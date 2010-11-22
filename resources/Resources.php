@@ -3,15 +3,15 @@
 return array(
 
 	/* Special resources who have their own classes */
-	
+
 	'site' => array( 'class' => 'ResourceLoaderSiteModule' ),
 	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
 	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
-	
+
 	/* Skins */
-	
-	'skins.vector' => array( 
+
+	'skins.vector' => array(
 		'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) )
 	),
 	'skins.monobook' => array(
@@ -21,20 +21,20 @@ return array(
 			//$GLOBALS['wgHandheldStyle'] => array( 'media' => 'handheld' )
 		)
 	),
-	
+
 	/* jQuery */
-	
+
 	'jquery' => array(
-		'scripts' => 'resources/jquery/jquery.js', 
+		'scripts' => 'resources/jquery/jquery.js',
 		'debugRaw' => false
 	),
-	
+
 	/* jQuery Plugins */
-	
-	'jquery.async' => array( 
+
+	'jquery.async' => array(
 		'scripts' => 'resources/jquery/jquery.async.js'
 	),
-	'jquery.autoEllipsis' => array( 
+	'jquery.autoEllipsis' => array(
 		'scripts' => 'resources/jquery/jquery.autoEllipsis.js'
 	),
 	'jquery.checkboxShiftClick' => array(
@@ -78,9 +78,9 @@ return array(
 		'scripts' => 'resources/jquery.tipsy/jquery.tipsy.js',
 		'styles' => 'resources/jquery.tipsy/jquery.tipsy.css',
 	),
-	
+
 	/* jQuery UI */
-	
+
 	// Core
 	'jquery.ui.core' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.core.js',
@@ -113,8 +113,8 @@ return array(
 	),
 	'jquery.ui.droppable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.droppable.js',
-		'dependencies' => array( 
-			'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget', 'jquery.ui.draggable' 
+		'dependencies' => array(
+			'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget', 'jquery.ui.draggable'
 		),
 	),
 	'jquery.ui.resizable' => array(
@@ -317,9 +317,9 @@ return array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.transfer.js',
 		'dependencies' => 'jquery.effects.core',
 	),
-	
+
 	/* MediaWiki */
-	
+
 	'mediawiki' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.js',
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
@@ -394,14 +394,14 @@ return array(
 			'wa' => 'resources/mediawiki.language/languages/wa.js',
 		),
 	),
-	
+
 	/* mediawiki Legacy */
-	
+
 	'mediawiki.legacy.ajax' => array(
 		'scripts' => 'skins/common/ajax.js',
-		'messages' => array( 
-			'watch', 'unwatch', 'watching', 'unwatching', 'tooltip-ca-watch', 
-			'tooltip-ca-unwatch' 
+		'messages' => array(
+			'watch', 'unwatch', 'watching', 'unwatching', 'tooltip-ca-watch',
+			'tooltip-ca-unwatch'
 		),
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),

@@ -27,17 +27,17 @@
 					// Chrome on any platform
 					} else if ( profile.name == 'chrome' ) {
 						// Chrome on Mac or Chrome on other platform ?
-						mw.util.tooltipAccessKeyPrefix = ( profile.platform == 'mac' 
+						mw.util.tooltipAccessKeyPrefix = ( profile.platform == 'mac'
 							? 'ctrl-option-' : 'alt-' );
 
 					// Non-Windows Safari with webkit_version > 526
-					} else if ( profile.platform !== 'win' 
-						&& profile.name == 'safari' 
-						&& profile.layoutVersion > 526 ) 
+					} else if ( profile.platform !== 'win'
+						&& profile.name == 'safari'
+						&& profile.layoutVersion > 526 )
 					{
 						mw.util.tooltipAccessKeyPrefix = 'ctrl-alt-';
 
-					// Safari/Konqueror on any platform, or any browser on Mac 
+					// Safari/Konqueror on any platform, or any browser on Mac
 					// (but not Safari on Windows)
 					} else if ( !( profile.platform == 'win' && profile.name == 'safari' )
 									&& ( profile.name == 'safari'
@@ -128,16 +128,16 @@
 		},
 
 		/**
-		 * Check is a variable is empty. Supports strings, booleans, arrays and 
-		 * objects. The string "0" is considered empty. A string containing only 
+		 * Check is a variable is empty. Supports strings, booleans, arrays and
+		 * objects. The string "0" is considered empty. A string containing only
 		 * whitespace (ie. " ") is considered not empty.
 		 *
 		 * @param v The variable to check for emptyness
 		 */
 		'isEmpty' : function( v ) {
 			var key;
-			if ( v === "" || v === 0 || v === "0" || v === null 
-				|| v === false || typeof v === 'undefined' ) 
+			if ( v === "" || v === 0 || v === "0" || v === null
+				|| v === false || typeof v === 'undefined' )
 			{
 				return true;
 			}
@@ -164,7 +164,7 @@
 		'getParamValue' : function( param, url ) {
 			url = url ? url : document.location.href;
 			// Get last match, stop at hash
-			var re = new RegExp( '[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ); 
+			var re = new RegExp( '[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' );
 			var m = re.exec( url );
 			if ( m && m.length > 1 ) {
 				return decodeURIComponent( m[1] );
@@ -173,7 +173,7 @@
 		},
 
 		// Access key prefix.
-		// Will be re-defined based on browser/operating system detection in 
+		// Will be re-defined based on browser/operating system detection in
 		// mw.util.init().
 		'tooltipAccessKeyPrefix' : 'alt-',
 
@@ -195,9 +195,9 @@
 			} else if ( nodeList ) {
 				$nodes = $(nodeList);
 			} else {
-				// Rather than scanning all links, just the elements that 
+				// Rather than scanning all links, just the elements that
 				// contain the relevant links
-				this.updateTooltipAccessKeys( 
+				this.updateTooltipAccessKeys(
 					$('#column-one a, #mw-head a, #mw-panel a, #p-logo a') );
 
 				// these are rare enough that no such optimization is needed
@@ -209,7 +209,7 @@
 			$nodes.each( function ( i ) {
 				var tip = $(this).attr( 'title' );
 				if ( !!tip && mw.util.tooltipAccessKeyRegexp.exec( tip ) ) {
-					tip = tip.replace( mw.util.tooltipAccessKeyRegexp, 
+					tip = tip.replace( mw.util.tooltipAccessKeyRegexp,
 						'[' + mw.util.tooltipAccessKeyPrefix + "$5]" );
 					$(this).attr( 'title', tip );
 				}
@@ -223,37 +223,37 @@
 		/**
 		 * Add a link to a portlet menu on the page, such as:
 		 *
-		 * p-cactions (Content actions), p-personal (Personal tools), 
+		 * p-cactions (Content actions), p-personal (Personal tools),
 		 * p-navigation (Navigation), p-tb (Toolbox)
 		 *
 		 * The first three paramters are required, others are optionals. Though
 		 * providing an id and tooltip is recommended.
 		 *
-		 * By default the new link will be added to the end of the list. To 
-		 * add the link before a given existing item, pass the DOM node 
-		 * (document.getElementById('foobar')) or the jQuery-selector 
+		 * By default the new link will be added to the end of the list. To
+		 * add the link before a given existing item, pass the DOM node
+		 * (document.getElementById('foobar')) or the jQuery-selector
 		 * ('#foobar') of that item.
 		 *
 		 * @example mw.util.addPortletLink(
-		 *     'p-tb', 'http://mediawiki.org/', 
+		 *     'p-tb', 'http://mediawiki.org/',
 		 *     'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
 		 *   )
 		 *
 		 * @param portlet ID of the target portlet ('p-cactions' or 'p-personal' etc.)
 		 * @param href Link URL
-		 * @param text Link text (will be automatically converted to lower 
+		 * @param text Link text (will be automatically converted to lower
 		 *     case by CSS for p-cactions in Monobook)
-		 * @param id ID of the new item, should be unique and preferably have 
+		 * @param id ID of the new item, should be unique and preferably have
 		 *     the appropriate prefix ('ca-', 'pt-', 'n-' or 't-')
 		 * @param tooltip Text to show when hovering over the link, without accesskey suffix
-		 * @param accesskey Access key to activate this link (one character, try 
-		 *     to avoid conflicts. Use $('[accesskey=x').get() in the console to 
+		 * @param accesskey Access key to activate this link (one character, try
+		 *     to avoid conflicts. Use $('[accesskey=x').get() in the console to
 		 *     see if 'x' is already used.
-		 * @param nextnode DOM node or jQuery-selector of the item that the new 
-		 *     item should be added before, should be another item in the same 
+		 * @param nextnode DOM node or jQuery-selector of the item that the new
+		 *     item should be added before, should be another item in the same
 		 *     list will be ignored if not the so
 		 *
-		 * @return The DOM node of the new item (a LI element, or A element for 
+		 * @return The DOM node of the new item (a LI element, or A element for
 		 *     older skins) or null.
 		 */
 		'addPortletLink' : function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
@@ -291,7 +291,7 @@
 					if ($portlet.find( 'div' ).length === 0) {
 						$portlet.append( '<ul/>' );
 					} else {
-						// otherwise if there's a div (such as div.body or div.pBody) 
+						// otherwise if there's a div (such as div.body or div.pBody)
 						// append the <ul> to last (most likely only) div
 						$portlet.find( 'div' ).eq( -1 ).append( '<ul/>' );
 					}
@@ -329,7 +329,7 @@
 				if ( nextnode && nextnode.parentNode == $ul.get( 0 ) ) {
 					$(nextnode).before( $item );
 				} else {
-					// If the jQuery selector isn't found within the <ul>, just 
+					// If the jQuery selector isn't found within the <ul>, just
 					// append it at the end
 					if ( $ul.find( nextnode ).length === 0 ) {
 						$ul.append( $item );
