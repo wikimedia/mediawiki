@@ -147,7 +147,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->blocker_name ) ) {
 					$data[$name]['blockedby'] = $row->blocker_name;
 					$data[$name]['blockreason'] = $row->ipb_reason;
-				    $data[$name]['blockexpiry'] = $row->ipb_expiry;
+					$data[$name]['blockexpiry'] = $row->ipb_expiry;
 				}
 
 				if ( isset( $this->prop['emailable'] ) && $user->canReceiveEmail() ) {
