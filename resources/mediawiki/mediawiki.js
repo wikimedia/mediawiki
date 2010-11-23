@@ -1,5 +1,5 @@
 /*
- * JavaScript backwards-compatibility alternatives and convenience functions
+ * JavaScript backwards-compatibility alternatives and other convenience functions
  */
 
 jQuery.extend({
@@ -15,6 +15,26 @@ jQuery.extend({
 	},
 	escapeRE : function( str ) {
 		return str.replace ( /([\\{}()|.?*+^$\[\]])/g, "\\$1" );
+	},
+	isEmpty : function( v ) {
+		var key;
+		if ( v === "" || v === 0 || v === "0" || v === null
+			|| v === false || typeof v === 'undefined' )
+		{
+			return true;
+		}
+		// the for-loop could potentially contain prototypes
+		// to avoid that we check it's length first
+		if ( v.length === 0 ) {
+			return true;
+		}
+		if ( typeof v === 'object' ) {
+			for ( key in v ) {
+				return false;
+			}
+			return true;
+		}
+		return false;
 	},
 	compareArray : function( arrThis, arrAgainst ) {
 		if ( arrThis.length != arrAgainst.length ) {
