@@ -581,7 +581,7 @@ $wgMessageStructure = array(
 		'copyrightwarning',
 		'copyrightwarning2',
 		'editpage-tos-summary',
-		'longpagewarning',
+		'longpage-hint',
 		'longpageerror',
 		'readonlywarning',
 		'protectedpagewarning',
