@@ -210,6 +210,10 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * When viewing a redirect, the redirect arrow and redirection target are both
   wrapped in a div that has the class "redirectMsg" so that the redirection
   arrow can be customized with CSS
+* (bug 21911) Hard coded limit for long page warning removed. New message
+  [[MediaWiki:Longpage-hint]] (empty per default) can be used instead.
+  Parameters: $1 shows the formatted textsize in Byte/KB/MB, $2 is the raw
+  number of the textsize in Byte
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

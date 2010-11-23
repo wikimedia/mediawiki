@@ -1457,13 +1457,16 @@ HTML
 		}
 
 		if ( $this->tooBig || $this->kblength > $wgMaxArticleSize ) {
-			$wgOut->addHTML( "<div class='error' id='mw-edit-longpageerror'>\n" );
-			$wgOut->addWikiMsg( 'longpageerror', $wgLang->formatNum( $this->kblength ), $wgLang->formatNum( $wgMaxArticleSize ) );
-			$wgOut->addHTML( "</div>\n" );
-		} elseif ( $this->kblength > 29 ) {
-			$wgOut->addHTML( "<div id='mw-edit-longpagewarning'>\n" );
-			$wgOut->addWikiMsg( 'longpagewarning', $wgLang->formatNum( $this->kblength ) );
-			$wgOut->addHTML( "</div>\n" );
+			$wgOut->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
+				array( 'longpageerror', $wgLang->formatNum( $this->kblength ), $wgLang->formatNum( $wgMaxArticleSize ) ) );
+		} else {
+			$msg = 'longpage-hint';
+			$text = wfMsg( $msg );
+			if( !wfEmptyMsg( $msg, $text ) && $text !== '-' ) {
+				$wgOut->wrapWikiMsg( "<div id='mw-edit-longpage-hint'>\n$1\n</div>",
+					array( 'longpage-hint', $wgLang->formatSize( strlen( $this->textbox1 ) ), strlen( $this->textbox1 ) )
+				);
+			}
 		}
 	}
 
