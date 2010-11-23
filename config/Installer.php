@@ -237,7 +237,7 @@ if( file_exists( "../LocalSettings.php" ) ) {
 
 if( file_exists( "./LocalSettings.php" ) ) {
 	writeSuccessMessage();
-	dieout( '' );
+	dieout( );
 }
 
 if( !is_writable( "." ) ) {
@@ -340,7 +340,7 @@ if (!$phpdatabases) {
 			."or install the $comp.so module</li>\n";
 	}
 	echo '</ul>';
-	dieout( '' );
+	dieout( );
 }
 
 print "<li>Found database drivers for:";
@@ -2040,7 +2040,12 @@ if ( \$wgCommandLineMode ) {
 	return str_replace( "\r\n", "\n", $localsettings );
 }
 
-function dieout( $text ) {
+/**
+ * Wrapper around php die() but with HTML output.
+ * This function close remaining HTML tags.
+ * @param $text String: Text to output, can be pure HTML (Default: '')
+ */
+function dieout( $text = '' ) {
 	global $mainListOpened;
 	if( $mainListOpened ) echo( "</ul>" );
 	if( $text != '' && substr( $text, 0, 2 ) != '<p'  && substr( $text, 0, 2 ) != '<h' ){
