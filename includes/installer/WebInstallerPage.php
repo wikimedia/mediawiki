@@ -478,8 +478,8 @@ class WebInstaller_Name extends WebInstallerPage {
 			) ) .
 			$this->parent->getTextBox( array(
 				'var' => 'wgMetaNamespace',
-				'label' => '',
-				'attribs' => array( 'disabled' => '' ),
+				'label' => '', //TODO: Needs a label?
+				'attribs' => array( 'readonly' => 'readonly', 'class' => 'enabledByOther' ),
 			    
 			) ) .
 			$this->getFieldSetStart( 'config-admin-box' ) .

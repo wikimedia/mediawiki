@@ -47,14 +47,18 @@
 				$wrapper.show( 'slow' );
 			}
 		} );
-		
+
+		// Hide "other" textboxes by default
+		// Should not be done in CSS for javascript disabled compatibility
+		$( '.enabledByOther' ).closest( '.config-block' ).hide();
+
 		// Enable/disable "other" textboxes
 		$( '.enableForOther' ).click( function() {
 			var $textbox = $( '#' + $(this).attr( 'rel' ) );
 			if ( $(this).val() == 'other' ) { // FIXME: Ugh, this is ugly
-				$textbox.removeAttr( 'disabled' );
+				$textbox.removeAttr( 'readonly' ).closest( '.config-block' ).slideDown( 'fast' );
 			} else {
-				$textbox.attr( 'disabled', 'disabled' );
+				$textbox.attr( 'readonly', 'readonly' ).closest( '.config-block' ).slideUp( 'fast' );
 			}
 		} );
 		
