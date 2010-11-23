@@ -57,11 +57,11 @@ class GenerateSitemap extends Maintenance {
 	var $fspath;
 
 	/**
-	 * The path to append to the domain name
+	 * The URL path to prepend to filenames in the index; should resolve to the same directory as $fspath
 	 *
 	 * @var string
 	 */
-	var $path;
+	var $urlpath;
 
 	/**
 	 * Whether or not to use compression
@@ -126,8 +126,8 @@ class GenerateSitemap extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Creates a sitemap for the site";
-		$this->addOption( 'fspath', 'The file system path to save to, e.g. /tmp/sitemap' .
-									"\n\t\tdefaults to current directory", false, true );
+		$this->addOption( 'fspath', 'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory', false, true );
+		$this->addOption( 'urlpath', 'The URL path corresponding to --fspath, prepended to filenames in the index; defaults to an empty string', false, true );
 		$this->addOption( 'compress', 'Compress the sitemap files, can take value yes|no, default yes', false, true );
 	}
 
@@ -139,6 +139,8 @@ class GenerateSitemap extends Maintenance {
 		$this->url_limit = 50000;
 		$this->size_limit = pow( 2, 20 ) * 10;
 		$this->fspath = self::init_path( $this->getOption( 'fspath', getcwd() ) );
+		$this->urlpath = $this->getOption( 'urlpath', "" );
+		if ( $this->urlpath !== "" && substr( $this->urlpath, -1 ) !== '/' ) $this->urlpath .= '/';
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
 		$this->dbr = wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
@@ -384,7 +386,7 @@ class GenerateSitemap extends Maintenance {
 	function indexEntry( $filename ) {
 		return
 			"\t<sitemap>\n" .
-			"\t\t<loc>$filename</loc>\n" .
+			"\t\t<loc>{$this->urlpath}$filename</loc>\n" .
 			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" .
 			"\t</sitemap>\n";
 	}
