@@ -60,6 +60,14 @@
 							'function (string)');
 						mw.test.addTest('$.trimRight(\'  foo bar  \')',
 							'  foo bar (string)');
+						mw.test.addTest('typeof $.isEmpty',
+							'function (string)');
+						mw.test.addTest('$.isEmpty(\'string\')',
+							'false (boolean)');
+						mw.test.addTest('$.isEmpty(\'0\')',
+							'true (boolean)');
+						mw.test.addTest('$.isEmpty([])',
+							'true (boolean)');
 						mw.test.addTest('typeof $.compareArray',
 							'function (string)');
 						mw.test.addTest('$.compareArray( [1, "a", [], [2, \'b\'] ], [1, \'a\', [], [2, "b"] ] )',

@@ -128,33 +128,6 @@
 		},
 
 		/**
-		 * Check is a variable is empty. Supports strings, booleans, arrays and
-		 * objects. The string "0" is considered empty. A string containing only
-		 * whitespace (ie. " ") is considered not empty.
-		 *
-		 * @param v The variable to check for emptyness
-		 */
-		'isEmpty' : function( v ) {
-			var key;
-			if ( v === "" || v === 0 || v === "0" || v === null
-				|| v === false || typeof v === 'undefined' )
-			{
-				return true;
-			}
-			if ( v.length === 0 ) {
-				return true;
-			}
-			if ( typeof v === 'object' ) {
-				for ( key in v ) {
-					return false;
-				}
-				return true;
-			}
-			return false;
-		},
-
-
-		/**
 		 * Grab the URL parameter value for the given parameter.
 		 * Returns null if not found.
 		 *
