@@ -184,12 +184,6 @@ if ( isset( $args[0] ) ) {
 	$result = $reader->importFromStdin();
 }
 
-if ( WikiError::isError( $result ) ) {
-	echo $result->getMessage() . "\n";
-} else {
-	echo "Done!\n";
-	echo "You might want to run rebuildrecentchanges.php to regenerate\n";
-	echo "the recentchanges page.\n";
-}
-
-
+echo "Done!\n";
+echo "You might want to run rebuildrecentchanges.php to regenerate\n";
+echo "the recentchanges page.\n";
