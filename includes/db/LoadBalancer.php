@@ -67,10 +67,6 @@ class LoadBalancer {
 		}
 	}
 
-	static function newFromParams( $servers, $waitTimeout = 10 ) {
-		return new LoadBalancer( $servers, $waitTimeout );
-	}
-
 	/**
 	 * Get a LoadMonitor instance
 	 */
