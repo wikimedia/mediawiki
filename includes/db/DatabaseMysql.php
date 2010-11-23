@@ -282,6 +282,34 @@ class DatabaseMysql extends DatabaseBase {
 		return false;
 	}
 
+	/**
+	 * Get information about an index into an object
+	 * Returns false if the index does not exist
+	 */
+	function indexInfo( $table, $index, $fname = 'DatabaseMysql::indexInfo' ) {
+		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
+		# SHOW INDEX should work for 3.x and up:
+		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
+		$table = $this->tableName( $table );
+		$index = $this->indexName( $index );
+		$sql = 'SHOW INDEX FROM ' . $table;
+		$res = $this->query( $sql, $fname );
+
+		if ( !$res ) {
+			return null;
+		}
+
+		$result = array();
+
+		foreach ( $res as $row ) {
+			if ( $row->Key_name == $index ) {
+				$result[] = $row;
+			}
+		}
+
+		return empty( $result ) ? false : $result;
+	}
+
 	function selectDB( $db ) {
 		$this->mDBname = $db;
 		return mysql_select_db( $db, $this->mConn );

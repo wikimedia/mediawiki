@@ -149,6 +149,15 @@ interface DatabaseType {
 	public function fieldInfo( $table, $field );
 
 	/**
+	 * Get information about an index into an object
+	 * @param $table string: Table name
+	 * @param $index string: Index name
+	 * @param $fname string: Calling function name
+	 * @return Mixed: Database-specific index description class or false if the index does not exist
+	 */
+	function indexInfo( $table, $index, $fname );
+
+	/**
 	 * Get the number of rows affected by the last write query
 	 * @see http://www.php.net/mysql_affected_rows
 	 *
@@ -1173,35 +1182,6 @@ abstract class DatabaseBase implements DatabaseType {
 		} else {
 			return $info !== false;
 		}
-	}
-
-
-	/**
-	 * Get information about an index into an object
-	 * Returns false if the index does not exist
-	 */
-	function indexInfo( $table, $index, $fname = 'DatabaseBase::indexInfo' ) {
-		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
-		# SHOW INDEX should work for 3.x and up:
-		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
-		$table = $this->tableName( $table );
-		$index = $this->indexName( $index );
-		$sql = 'SHOW INDEX FROM ' . $table;
-		$res = $this->query( $sql, $fname );
-
-		if ( !$res ) {
-			return null;
-		}
-
-		$result = array();
-
-		foreach ( $res as $row ) {
-			if ( $row->Key_name == $index ) {
-				$result[] = $row;
-			}
-		}
-
-		return empty( $result ) ? false : $result;
 	}
 
 	/**
