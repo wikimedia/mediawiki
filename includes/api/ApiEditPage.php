@@ -514,7 +514,7 @@ class ApiEditPage extends ApiBase {
 			'Edit a page (anonymous user):',
 			'    api.php?action=edit&title=Test&summary=test%20summary&text=article%20content&basetimestamp=20070824123454&token=%2B\\',
 			'Prepend __NOTOC__ to a page (anonymous user):',
-			'    api.php?action=edit&title=Test&summary=NOTOC&minor&prependtext=__NOTOC__%0A&basetimestamp=20070824123454&token=%2B\\',
+			'    api.php?action=edit&title=Test&summary=NOTOC&minor=&prependtext=__NOTOC__%0A&basetimestamp=20070824123454&token=%2B\\',
 			'Undo r13579 through r13585 with autosummary (anonymous user):',
 			'    api.php?action=edit&title=Test&undo=13585&undoafter=13579&basetimestamp=20070824123454&token=%2B\\',
 		);

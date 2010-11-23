@@ -224,7 +224,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=query&list=alllinks&alunique&alfrom=B',
+			'api.php?action=query&list=alllinks&alunique=&alfrom=B',
 		);
 	}
 

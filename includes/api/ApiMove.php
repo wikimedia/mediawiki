@@ -243,7 +243,7 @@ class ApiMove extends ApiBase {
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=move&from=Exampel&to=Example&token=123ABC&reason=Misspelled%20title&movetalk&noredirect'
+			'api.php?action=move&from=Exampel&to=Example&token=123ABC&reason=Misspelled%20title&movetalk=&noredirect='
 		);
 	}
 

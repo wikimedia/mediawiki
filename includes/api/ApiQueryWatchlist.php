@@ -412,9 +412,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return array(
 			'api.php?action=query&list=watchlist',
 			'api.php?action=query&list=watchlist&wlprop=ids|title|timestamp|user|comment',
-			'api.php?action=query&list=watchlist&wlallrev&wlprop=ids|title|timestamp|user|comment',
+			'api.php?action=query&list=watchlist&wlallrev=&wlprop=ids|title|timestamp|user|comment',
 			'api.php?action=query&generator=watchlist&prop=info',
-			'api.php?action=query&generator=watchlist&gwlallrev&prop=revisions&rvprop=timestamp|user',
+			'api.php?action=query&generator=watchlist&gwlallrev=&prop=revisions&rvprop=timestamp|user',
 			'api.php?action=query&list=watchlist&wlowner=Bob_Smith&wltoken=d8d562e9725ea1512894cdab28e5ceebc7f20237'
 		);
 	}
