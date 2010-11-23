@@ -753,7 +753,7 @@ EOF;
 	function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
 			throw new DBUnexpectedError( $this,
-				'DatabaseBase::makeList called with incorrect parameters' );
+				'DatabaseIbm_db2::makeList called with incorrect parameters' );
 		}
 
 		// if this is for a prepared UPDATE statement
