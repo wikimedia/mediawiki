@@ -824,7 +824,7 @@ class DatabaseMssql extends DatabaseBase {
 		$res = $this->doQuery( $SQL );
 		if ( !$res ) {
 			print "<b>FAILED</b>. Make sure that the user " . htmlspecialchars( $wgDBuser ) . " can write to the database</li>\n";
-			dieout( "" );
+			dieout( );
 		}
 		$this->doQuery( "DROP TABLE $ctest" );
 
