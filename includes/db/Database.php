@@ -155,7 +155,7 @@ interface DatabaseType {
 	 * @param $fname string: Calling function name
 	 * @return Mixed: Database-specific index description class or false if the index does not exist
 	 */
-	function indexInfo( $table, $index, $fname );
+	function indexInfo( $table, $index, $fname = 'Database::indexInfo' );
 
 	/**
 	 * Get the number of rows affected by the last write query
