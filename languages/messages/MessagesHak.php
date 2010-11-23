@@ -507,7 +507,6 @@ Ngì yin-tông chiông ngì só-cho ke siù-chho kâ-ngi̍p hien-yû ke nui-yùn
 Kó-yèn ngì chhin-mò hî-mong ngì-ke ngì-ke vùn-sṳ pûn-ngìn ngim-yi chhùng-siû lâu chai san-pu, chhiáng mò-yeu thì-kâu.<br />
 Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-yùng he chhṳ-kí só chok，fe̍t-chá lòi-chhṳ yit-ke mò-su pán-khièn pó-fu fe̍t-he he siông-thùng chhṳ-yù ke lòi-ngièn （Chhâm-siòng $1 ke se-chiet）.
 ''' Mò-yeu chhai hàn-mò su-khièn ke chhìn-khóng-hâ fat-péu！'''",
-'longpagewarning'                  => "'''Kín-ko: Pún-chông chhòng-thu tha̍t-tó $1 kB；mêu-chúng hi-khí chiông-voi mò-fap phiên-chhut chhòng-ko 32 kB ke vùn-chông. Chhiáng kháu-li chiông pún-chông chhiet kot-sṳ̀n kí-ke séu thon-lo̍k.'''",
 'longpageerror'                    => "'''Chho-ngu: Ngì só thì-kâu ke vùn-sṳ chhòng-thu yû $1KB, liá thai-yî $2KB ke chui-thai chhṳ̍t, ke-vùn-chông put-nèn pûn tú-chhùn.'''",
 'readonlywarning'                  => "'''Kín-ko: chṳ̂-liau-khu pûn-ngìn fûng-só yîn-vi chin-hàng vì-fu, só-yî muk-chhièn mò-fap pó-chhùn ngì-ke siù-chho. Ngì fe̍t-hí hî-mong chhai-siên chiông pún-thon vùn-sṳ fu̍k-chṳ pin pó-chhùn to vùn-sṳ vùn-khien, yèn-heu tén-yit-ha chai siù-chho.'''",
 'protectedpagewarning'             => "'''Kín-ko: Pún-chông yí-kîn pûn pó-fu, chṳ́-yû yúng-yû Kón-lî-yèn hí-khó-khièn ke yung-fu chhòi-nèn siù-chho.'''",

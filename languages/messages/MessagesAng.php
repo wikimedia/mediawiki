@@ -491,9 +491,6 @@ Gif þu hider misfōn cōme, cnoca þā þīnne webbscēaweres '''on bæc''' cn�
 Þū behǣtst ēac þæt þū selfa þis ƿrite, oþþe efenlǣhtest of sumre
 folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 '''Ne forþsend efenlǣhtscielded ƿeorc būtan þafunge!'''",
-'longpagewarning'                  => 'WARNUNG: Þes tramet is $1 kilobyta lang; sume
-webbscēaweras hæbben earfoðu mid þȳ þe hīe ādihtaþ trametas nēa oþþe lengran þonne 32kb.
-Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'templatesused'                    => '{{PLURAL:$1|Bysen|Bysena}} brocen on þisre sīdan:',
 'templatesusedpreview'             => '{{PLURAL:$1|Bysen|Bysena}} brocen on þisre forescēaƿe:',
 'template-protected'               => '(borgen)',

@@ -3082,6 +3082,7 @@ La liste par défaut ne sera pas inscrite.",
 	'config-install-secretkey' => 'Génération de la clé secrète',
 	'config-insecure-secret' => "'''Attention:''' Impossible de créer un <code>$1</code> sécurisé. 
 Envisagez de le changer manuellement.",
+	'config-install-upgradekey' => 'Génération de la clé de mise à jour par défaut',
 	'config-install-sysop' => 'Création du compte administrateur',
 	'config-install-mainpage' => 'Création de la page principale avec un contenu par défaut',
 	'config-install-mainpage-failed' => 'Impossible d’insérer la page principale.',
@@ -9050,6 +9051,7 @@ O preenchimento padrão desta tabela será saltado.",
 	'config-install-secretkey' => 'A gerar a chave secreta',
 	'config-insecure-secret' => "'''Aviso:''' Não foi possível criar a chave secreta <code>$1</code>.
 Considere alterá-la manualmente.",
+	'config-install-upgradekey' => 'A gerar a chave padrão de actualização',
 	'config-install-sysop' => 'A criar a conta de administrador',
 	'config-install-mainpage' => 'A criar a página principal com o conteúdo padrão.',
 	'config-install-mainpage-failed' => 'Não foi possível inserir a página principal.',
@@ -9651,6 +9653,7 @@ GNU Free Documentation License раньше была основной лицен
 	'config-install-secretkey' => 'Создание секретного ключа',
 	'config-insecure-secret' => "'''Внимание:''' Не получилось создать безопасный секретный ключ (<code>$1</code>).
 По возможности, смените его вручную.",
+	'config-install-upgradekey' => 'Создание ключа обновления по умолчанию',
 	'config-install-sysop' => 'Создание учётной записи администратора',
 	'config-install-mainpage' => 'Создание главной страницы с содержимым по умолчанию',
 	'config-install-mainpage-failed' => 'Не удаётся вставить главную страницу.',

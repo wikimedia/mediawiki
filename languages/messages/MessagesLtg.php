@@ -175,7 +175,7 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS pādi',
 'page-atom-feed'          => '"$1" Atom pādi',
 'feed-rss'                => 'RSS',
-'red-link-title'          => '$1 (taida puslopa naekzistē)',
+'red-link-title'          => '$1 (itaidys puslopys navā)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Rakstīņs',

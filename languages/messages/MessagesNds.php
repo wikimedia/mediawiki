@@ -793,8 +793,6 @@ Wenn du dat nich wullst, dröffst du dien Text hier nich apentlich maken.<br />
 
 Du bestätigst ok, dat du den Text sülvst schreven hest oder ut en „Public Domain“-Born oder en annere fre'e Born kopeert hest (Kiek ok $1 för Details).
 '''Kopeer kene Warken, de enen Oorheverrecht ünnerliggt, ahn Verlööv vun de Copyright-Inhebbers!'''",
-'longpagewarning'                  => "'''Wohrschau: Disse Sied is $1 kB groot; en poor Browsers köönt Problemen hebben, Sieden to ännern, de grötter as 32 kB sünd.
-Överlegg, wat disse Sied nich villicht in lüttere Afsneed opdeelt warrn kann.'''",
 'longpageerror'                    => "'''Fehler: Dien Text is $1 Kilobytes lang. Dat is länger as dat Maximum vun $2 Kilobytes. Kann den Text nich spiekern.'''",
 'readonlywarning'                  => "'''Wohrscho: De Datenbank is för Pleegarbeiden sparrt worrn, so dat du de Sied en Stoot nich
 spiekern kannst. Seker di den Text un versöök dat later noch wedder.'''

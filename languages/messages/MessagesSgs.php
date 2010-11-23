@@ -574,9 +574,6 @@ Tamsta tēpuogi pasėžadat, kū tas īr Tamstas patėis rašīts torėnīs a ku
 Tēpuogi Tamsta pasėžadat, kū tas īr Tamstas rašīts teksts aba kuopėjouts
 ėš vėišū liousū šaltėniu (detaliau - $1).
 '''NEKUOPĖJOUKAT AUTUORĖNIEM TEISIEM APSAUGUOTU DARBŪ BA LEIDĖMA!'''",
-'longpagewarning'                  => "'''DIEMESĖ: Tas poslapis īr $1 kilobaitu ėlgoma; katruos nekatruos
-naršīklės gal torietė biedū redagounant poslapius bavēk a vėrš 32 kB.
-Prašuom pamiegītė poslapi padalėntė i keleta smolkesniū daliū.'''",
 'readonlywarning'                  => "'''DIEMESĖ: Doumenū bazė bova ožrakėnta teknėnē pruofilaktėkā,
 tudie negaliesėt ėšsauguotė sava pakeitėmu daba. Tamsta galėt nosėkopėjoutė teksta i tekstėni faila
 ė paskum ikeltė ana čė.'''",

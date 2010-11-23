@@ -492,9 +492,6 @@ Tu puodes [[Special:Search/{{PAGENAME}}|percurar pul títalo desta páigina]] no
 'copyrightwarning'                 => "Por fabor, bei que todas las tues cuntribuiçones an {{SITENAME}} son cunsideradas cumo feitas ne ls termos de la lhicença $2 (bei $1 pa detailhes). Se nun quieres que l tou testo seia eiditado sin piedade i reçtribuído cunsante la gana, nun l ambies.<br />
 Tu stás, al mesmo tiempo, a garantir-mos qu'esto ye algo screbido por ti, ó algo copiado d'ua fuonte de testos an domínio público ó parecido de teor lhibre.
 '''NUN AMBIES TRABALHO PORTEGIDO POR DREITOS D'OUTOR SIEN L DEBIDO PERMISSO!'''",
-'longpagewarning'                  => "'''Abiso: Esta páigina ten$1 kilobytes; alguns
-nabegadores de la anternete ténen porblemas al eiditar páiginas cun mais de 32 kb.
-Por fabor, pensa an scachar la páigina an cachos mais pequeinhos.'''",
 'templatesused'                    => '{{PLURAL:$1|Modelo ousado|Modelos ousados}} nesta páigina:',
 'templatesusedpreview'             => '{{PLURAL:$1|Modelo outelizado|Modelos outelizados}} neste amostra:',
 'template-protected'               => '(portegida)',

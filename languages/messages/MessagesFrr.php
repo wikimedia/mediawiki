@@ -621,8 +621,6 @@ Wan dü spiikerst, wårde åle naiere färsjoone ouerschraawen.",
 'yourdiff'                         => 'Ferschääle',
 'copyrightwarning'                 => "''' Hål kopiir niinj webside, da ai din äine san, brük niinj uurhääwerruchtlik schütsede wärke suner ferloof foon di uurhääwer!'''<br />
 Dü jeefst üs heerma dan tusååge, dåt dü di täkst '''seelew ferfooted''' hääst, dåt di täkst ålgemiingödj '''(public domain)''' as, unti dåt di '''uurhääwer''' sin '''tustiming''' jääwen heet. For di fål jüdeer täkst ål ouersweer ütdänj wörd, wis hål aw jü diskusjoonssid deeraw haane. <i>Beåcht hål, dåt åle {{SITENAME}}-tujeefte automaatisch uner jü „$2“ stönje (sii $1 for detaile). For di fål dü ai mååst, dåt diin årbe heer foon oudere feränred än språåt wårt, dan kröög ai aw „sid spikre“.</i>",
-'longpagewarning'                  => "'''Woorschauing:''' Jüheer sid as $1 KB grut; hu browsere köön probleeme heewe, side tu beårben, da gruter san as 32 KB.
- Ouerläi hål, weer en ouddiiling foon e sid önj latjere oufsnaase möölik as.",
 'longpageerror'                    => "'''FÄÄGEL: Di täkst, di dü tu spiikren ferseechst, as $11 KB grut. Dåt as gruter ås dåt tuleet maksimum foon $2 KB - spiikren ai möölik.'''",
 'readonlywarning'                  => "'''PÅÅS AW: Jü dootenbånk wörd for unerhult spärd, sü dåt din änringe tutids ai spiikerd wårde koone.
 Wees sü gödj än sääkre di täkst lokool aw din kompjuuter än fersäk tu n lääsern tidpunkt, da änringe tu ouerdreegen.'''.

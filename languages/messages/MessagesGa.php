@@ -653,9 +653,6 @@ Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur c
 Murar mian leat go gcuirfí do chuid scríbhinne in eagar go héadrócaireach, ná cuir isteach anseo í.<br />
 Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse san fhearann poiblí nó acmhainn eile saor ó chóipcheart (féach ar $1 le haghaidh tuilleadh eolais).
 '''NÁ CUIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!'''",
-'longpagewarning'                  => "'''Rabhadh:''' Tá an leathanach seo $1 cilibheart i bhfad;
-ní féidir le roinnt brabhsálaithe leathanaigh a athrú má tá siad thart ar 32kb, nó níos fada.
-Féach más féidir, le do thoil an leathanach a roinnt ina chodanna níos bige.",
 'longpageerror'                    => "'''EARRÁID: Tá an téacs a chuir isteach $1 cilibheart ar fad, sin níos faide ná $2 cilibheart, an uasmhéid.
 Ní féidir é a shábháil.'''",
 'readonlywarning'                  => "'''Rabhadh: Glasáladh an bunachar sonraí chun cothabháil a dhéanamh, agus mar sin ní féidir leat do chuid athruithe a shábháil go díreach anois.

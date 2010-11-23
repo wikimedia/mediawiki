@@ -632,9 +632,6 @@ Tū dīgi pataūkina, kāi tū peisāi din subs, anga kōpi iz \"public domain\"
 Ik tū ni kwaitēi, kāi twājs teksts būlai ebwīrpai kitawīdintan, be paplattintan pra eraīnan, ni endīs din stwi.
 Tū dīgi pataūkina, kāi tū peisāi din subs, anga kōpi iz \"public domain\" anga kittan pawīrpan appun (wīdais dīgi \$1).
 '''Ni endīs materiālin kūnstan sen autōras tikrōmin šlāit waldītajas preiwērpsenin!'''",
-'longpagewarning'                  => "'''Empirssergīsenis:''' Šin pāusan ast $1 kilōbaitan ilgan;
-ainuntas lasātlas mazzi turītun prōblamans redigīntei pāusans tāuwu, anga ilgaisins nikāi 32kb.
-Ik sta būlai mazīngi, spēllais pāusan en mazzaisins delīkans.",
 'longpageerror'                    => "'''Blānda!''' Teksts enwests prō tin turri {{PLURAL:$1|1 kilōbaitan|$1 kilōbaitans}}, ka ast ilgaisin nikāi preiwērptai {{PLURAL:$2|1 kilōbaits|$2 kilōbaitai}}.
 Teksts ni mazzi būtwei enpeisātan.",
 'protectedpagewarning'             => "'''Ēmpirssergīsenis: Šin pāusan pastāi pakūnstan. Tēr tērpautajai sen perwaldītajas enwarīnsenin mazzi din redigītun.'''",

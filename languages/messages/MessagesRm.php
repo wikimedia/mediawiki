@@ -676,9 +676,6 @@ Ti garanteschas che ti has scrit tez quai u copià dad ina funtauna ch'è 'publi
 Sche ti na vuls betg che tes texts pon vegnir modifitgads, na als endatescha betg qua.<br />
 Ti confermas era che ti has scrit sez quest text u al has copià d'ina funtaunda 'public domain' u semigliant libra (guarda $1 per detagls).
 '''Betg trametta ovras protegidas dal dretg d'autur senza lubientscha!'''",
-'longpagewarning'                  => "'''ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers
-han forsa problems cun modifitgar artitgels da la grondezza 32kb u pli grond.
-Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. '''",
 'longpageerror'                    => "'''Errur: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na po betg vegnir memorisà. '''",
 'readonlywarning'                  => "'''Attenziun: La banca da datas è vegnida bloccada per motivs da mantegniment, uschia che ti na sas betg memorisar tias modificaziuns gest ussa.'''
 Per betg perder las midadas ta recummandain nus da copiar il text en in editur da text sin tes computer ed al memorisar per pli tard. 

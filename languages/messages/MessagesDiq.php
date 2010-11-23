@@ -655,7 +655,6 @@ Tı ma ri soz dano ki tı nuşte xo oricinali nuşt, ya zi tı yew dokumantê um
 '''İTİYA DI METARİYALÊ \"COPYRIGHT\"İ NINUSİ!.'''",
 'copyrightwarning2'                => 'Ney bızane ke nuşteyê ke şıma ruşneni (şaweni) keyepelê {{SITENAME}} herkes eşkeno nê nuşteyanê şıma ser kay bıkero. Eke şıma qayil niye kes bıvurno, nuşetyanê xo meerze ita. <br />
 Wexta ke şıma nuşte zi erzeni ita; şıma gani taahhud bıde koti ra ardo (qey teferruati referans: $1).',
-'longpagewarning'                  => "'''DİQET: Gırdêyê no pel $1 kilobayto; tayê browsers 32 kb u zêdê ney gırdêyan de rey rey xeta keno. No sebeb ra pel qısm qısm kere.'''",
 'longpageerror'                    => "'''XETA: Dergêyê nuşteyi şıma benate (mabeynê) $1 kilobyte, u $2 kilobyte ra zêdo.
 Qayd biyayişê ey mumkin niyo..'''",
 'readonlywarning'                  => "'''DİQET: Semedê mıqayti, database kılit biyo. No sebeb ra vurnayişê şıma qayd nêbeno. Nuşteyanê şıma yewna serkar eşkeno wedaro u pey ra şıma eşkeni reyna ita de qayd bıker'''

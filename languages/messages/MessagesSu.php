@@ -749,7 +749,6 @@ Anjeun ogé jangji yén tulisan ieu dijieun ku sorangan, atawa disalin ti ''doma
 'copyrightwarning2'                => "Catet yén sadaya kontribusi ka {{SITENAME}} bisa diédit, dirobah, atawa dihapus ku kontributor séjén. Mun anjeun teu miharep tulisan anjeun dirobah, ulah ngintunkeun ka dieu.<br />
 Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti domain umum atawa sumberdaya bébas séjénna (tempo $1 pikeun écésna).
 '''ULAH NGINTUNKEUN KARYA NU MIBANDA HAK CIPTA TANPA WIDI!'''",
-'longpagewarning'                  => 'PERHATOSAN: Kaca ieu panjangna $1 kb; sababaraha panyungsi boga masalah dina ngédit kaca nu panjangna nepi ka 32 kb. Mun bisa mah bagi-bagi ieu kaca jadi sababaraha bab.',
 'longpageerror'                    => "'''SALAH: Téks anu dikirimkeun gedéna $1 kb, leuwih ti maksimum $2 kb. Téks teu bisa disimpen.'''",
 'readonlywarning'                  => "'''PERHATOSAN''': pangkalan data dikonci pikeun diropéa, anjeun moal bisa nyimpen éditan anjeun ayeuna. Cobi ''cut-n-paste'' téksna ka na koropak téks sarta simpen dina waktu séjén.
 

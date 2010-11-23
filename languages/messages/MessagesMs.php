@@ -804,9 +804,6 @@ Anda juga berjanji bahawa ini adalah hasil kerja tangan anda sendiri, atau disal
 Anda juga berjanji bahawa ini adalah hasil kerja tangan anda sendiri, atau
 disalin daripada domain awam atau mana-mana sumber bebas lain (lihat $1 untuk butiran lanjut).
 '''JANGAN KIRIM KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN!'''",
-'longpagewarning'                  => "'''AMARAN: Panjang laman ini ialah $1 kilobait.
-Terdapat beberapa pelayar web yang mempunyai masalah jika digunakan untuk menyunting laman yang menghampiri ataupun melebihi 32 kB.
-Sila bahagikan rencana ini, jika boleh.'''",
 'longpageerror'                    => "'''RALAT: Panjang teks yang dikirim ialah $1 kilobait,
 melebihi had maksimum $2 kilobait. Ia tidak boleh disimpan.'''",
 'readonlywarning'                  => "'''AMARAN: Pangkalan data telah dikunci untuk penyenggaraan. Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.

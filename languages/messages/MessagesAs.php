@@ -8,6 +8,7 @@
  * @file
  *
  * @author Chaipau
+ * @author Gahori
  * @author Priyankoo
  * @author Psneog
  * @author Rajuonline
@@ -271,14 +272,14 @@ $messages = array(
 'permalink'         => 'স্থায়ী সুত্র(লিংক)',
 'print'             => 'প্রিন্ট কৰিবলৈ',
 'edit'              => 'সম্পাদন',
-'create'            => 'প্রাৰম্ভন(ক্রিয়েট)',
+'create'            => 'সৃষ্টি কৰক',
 'editthispage'      => 'বৰ্তমান পৃষ্ঠাটো সম্পাদন কৰিবলৈ',
 'create-this-page'  => 'নতুন পৃষ্ঠা সৃষ্টি কৰক',
 'delete'            => 'বিলোপন(ডিলিট)',
 'deletethispage'    => 'বৰ্তমান পৃষ্ঠাৰ বিলোপন(ডিলিট)',
 'undelete_short'    => '{{PLURAL:$1|বিলোপিত পৃষ্ঠাৰ|$1 সংখ্যক বিলোপিত পৃষ্ঠাৰ}} পূৰ্ববৎকৰণ',
 'protect'           => 'সংৰক্ষ(প্রটেক্ট)',
-'protect_change'    => 'শলনি কৰক',
+'protect_change'    => 'সলাওক',
 'protectthispage'   => 'বৰ্তমান পৃষ্ঠাৰ সংৰক্ষণবিধিৰ পৰিবৰ্তন',
 'unprotect'         => 'সংৰক্ষণমুক্ত কৰক',
 'unprotectthispage' => 'এই পৃষ্ঠা সংৰক্ষণমুক্ত কৰক',
@@ -343,14 +344,14 @@ $messages = array(
 'newmessageslink'         => 'নতুন বার্তা',
 'newmessagesdifflink'     => 'শেহতিয়া সাল-সলনি',
 'youhavenewmessagesmulti' => '$1 ত আপোনাৰ কাৰণে নতুন বার্তা আছে',
-'editsection'             => 'লিখক',
+'editsection'             => 'সম্পাদনা কৰক',
 'editold'                 => 'সম্পাদনা',
 'viewsourceold'           => 'অক্ষৰ-মূল দেখুওৱা হওক',
 'editlink'                => 'সম্পাদনা',
 'viewsourcelink'          => 'উৎস চাওঁক',
 'editsectionhint'         => '$1 খণ্ডৰ সম্পাদনা',
 'toc'                     => 'সূচী',
-'showtoc'                 => 'দেখুৱাব লাগে',
+'showtoc'                 => 'দেখুওৱাওক',
 'hidetoc'                 => 'দেখুৱাব নালাগে',
 'thisisdeleted'           => '$1 চাওক বা সলনি কৰক?',
 'viewdeleted'             => '$1 চাওক?',
@@ -560,7 +561,7 @@ $messages = array(
 'subject'                          => 'বিষয় / শীর্ষক:',
 'minoredit'                        => 'এইটো নগন্য সম্পদনা',
 'watchthis'                        => 'এই পৃষ্ঠাটো অনুসৰণ-সূচীভুক্ত কৰক',
-'savearticle'                      => 'পৃষ্ঠা সংৰাক্ষিত কৰক',
+'savearticle'                      => 'পৃষ্ঠা সাঁচি থওক।',
 'preview'                          => 'খচৰা',
 'showpreview'                      => 'খচৰা',
 'showlivepreview'                  => 'জীৱন্ত খছৰা',
@@ -646,8 +647,6 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 ইয়াত আপোনাৰ লিখনি দিয়াৰ লগে লগে আপুনি আপোনা-আপুনি প্ৰতিশ্ৰুতি দিছে যে এই লিখনিটো আপোনাৰ মৌলিক লিখনি, বা কোনো স্বত্বাধিকাৰ নথকা বা কোনো ৰাজহুৱা ৱেবছাইট বা তেনে কোনো মুকলি উৎসৰ পৰা আহৰণ কৰা| (অধিক জানিবলৈ $1 চাঁওক)
 
 '''স্বত্বাধিকাৰযুক্ত কোনো সমল অনুমতি অবিহনে দাখিল নকৰে যেন!'''",
-'longpagewarning'                  => "'''সাবধান: এই পৃষ্ঠাটো $1 কিলোবাইট আকাৰৰ; কিছুমান ব্রাউজাৰে 32 kb বা তাতকৈ বেছি আকাৰৰ পৃষ্ঠা দেখুৱাবলৈ বা সম্পাদনা কৰিবলৈ অসুবিধা পাব পাৰে ।
-অনুগ্রহ কৰি এই পৃষ্ঠাটোক সৰু সৰু খণ্ডত বিভক্ত কৰাৰ কথা বিবেচনা কৰক ।'''",
 'longpageerror'                    => "'''ভুল: আপুনি দিয়া লিখনী $1 কিলো-বাইট আকাৰৰ, যি $2 কিলো-বাইট সীমাটকৈ বেছি।
 ইয়াক সঞ্চিত কৰিব পৰা নাযাব।'''",
 'protectedpagewarning'             => "'''সকীয়নি: এই পৃষ্ঠা বন্ধ ৰখা হৈছে; কেৱল এডমিনিষ্ট্ৰেটৰ মৰ্যদাৰ সদস্যই হে সম্পাদনা কৰিব পাৰিব ।'''",
@@ -683,7 +682,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'nohistory'              => 'এই পৃষ্ঠাৰ কোন সম্পাদনাৰ ইতিহাস নাই।',
 'currentrev'             => 'শেহতীয়া ভাষ্য',
 'currentrev-asof'        => '$1 অনুযায়ী বর্তমান সংস্কৰণ',
-'revisionasof'           => '$1 তম ভাষ্য',
+'revisionasof'           => '$1 ৰ সংস্কৰণ',
 'revision-info'          => '$1-লৈ $2-এ কৰা সংশোধন',
 'previousrevision'       => '← আগৰ সংশোধন',
 'nextrevision'           => 'সদ্যসংশোধিত',
@@ -714,8 +713,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 # Revision deletion
 'rev-deleted-comment'       => '(মন্তব্য আতৰোৱা হৈছে)',
 'rev-deleted-user'          => '(সদস্যনাম আতৰোৱা হৈছে)',
-'rev-delundel'              => 'দেখোৱা হওক / লুকুওৱা হওক',
-'rev-showdeleted'           => 'দেখোৱাওক',
+'rev-delundel'              => 'দেখুৱাওক/নেদেখুৱাব',
+'rev-showdeleted'           => 'দেখুওৱাওক',
 'revisiondelete'            => 'সংকলন বিলোপন কৰক / পুণর্স্থাপিত কৰক',
 'revdelete-hide-text'       => 'সংশোধিত পাঠ আঁতৰাওক',
 'revdelete-hide-image'      => 'ফাইলৰ বিষয়বস্তু আঁতৰাওক',
@@ -739,29 +738,29 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Merge log
 'mergelog'    => 'অভিলেখ একত্ৰিকৰণ',
-'revertmerge' => 'একত্ৰিকৰণ পন্ড',
+'revertmerge' => 'একত্ৰিকৰণ বাতিল কৰক',
 
 # Diffs
 'history-title'           => '"$1" ৰ সাল-সলনিৰ ইতিহাস',
 'difference'              => 'বিভিন্ন সংস্কৰণৰ প্রভেদ',
-'lineno'                  => 'পংক্তি $1:',
+'lineno'                  => '$1 নং শাৰীঃ',
 'compareselectedversions' => 'নির্বাচিত কৰা সংকলন সমূহৰ মাজত পার্থক্য চাঁওক ।',
 'editundo'                => 'পূৰ্ববত কৰক',
 
 # Search results
 'searchresults'                  => 'অনুসন্ধানৰ ফলাফল',
 'searchresults-title'            => '"$1" অনুসন্ধানৰ ফলাফল',
-'searchresulttext'               => '{{SITENAME}}ৰ বিষয়ে আৰু জানিবলৈ [[{{MediaWiki:Helppage}}|{{int:help}}]] চাওঁক ।',
+'searchresulttext'               => '{{SITENAME}}ৰ বিষয়ে বিতংকৈ জানিবলৈ [[{{MediaWiki:Helppage}}|{{int:help}}]] চাওঁক ।',
 'searchsubtitle'                 => 'আপুনি অনুসন্ধান কৰিছে \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" দি আৰম্ভ হোৱা পৃষ্ঠাসমূহ]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" লগত সংযুক্ত পৃষ্ঠাসমূহ]])',
 'searchsubtitleinvalid'          => "আপুনাৰ অনুসন্ধান হ'ল '''$1'''",
 'toomanymatches'                 => 'বহুত বেছি মিল পোৱা গৈছে, সন্ধাণ-শব্দ সলনি কৰিবলৈ অনুৰোধ কৰা হল',
 'titlematches'                   => 'পৃষ্ঠাৰ শিৰোণামা মিলিছে',
-'notitlematches'                 => 'এটাও পৃষ্ঠাৰ শিৰোণামা মিলা নাই',
+'notitlematches'                 => 'এটাও পৃষ্ঠাৰ শিৰোনামা মিলা নাই',
 'textmatches'                    => 'লিখনীৰ পাঠ্য মিলিছে',
 'notextmatches'                  => 'এটাও লিখনীৰ পাঠ্য মিলা নাই',
-'prevn'                          => 'পুর্ববর্তি {{PLURAL:$1|$1}}',
-'nextn'                          => 'পৰৱর্তি {{PLURAL:$1|$1}}',
-'viewprevnext'                   => 'চাওক ($1 {{int:pipe-separator}} $2) ($3)',
+'prevn'                          => 'পূর্ববর্ত্তী {{PLURAL:$1|$1}}টা',
+'nextn'                          => 'পৰবর্ত্তী {{PLURAL:$1|$1}}টা',
+'viewprevnext'                   => '($1 {{int:pipe-separator}} $2) ($3) চাওক।',
 'searchmenu-new'                 => "'''এই ৱিকিত \"[[:\$1]]\" পৃষ্ঠাখন সৃষ্টি কৰক!'''",
 'searchhelp-url'                 => 'Help:সুচী',
 'searchprofile-articles'         => 'সূচিপত্ৰসমূহ',
@@ -772,7 +771,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'search-result-size'             => '$1 ({{PLURAL:$2|1 শব্দ|$2 শব্দসমূহ}})',
 'search-redirect'                => '(পুনৰ্নিদেশনা $1)',
 'search-section'                 => '(অনুচ্ছেদ $1)',
-'search-suggest'                 => 'আপুনি বুজাব খোজিছে নেকি: $1',
+'search-suggest'                 => 'আপুনি $1 বুজাব খুজিছে নেকি?',
 'search-interwiki-caption'       => 'সহপ্ৰকল্পসমূহ',
 'search-interwiki-default'       => '$1 ফলাফলসমূহ:',
 'search-interwiki-more'          => '(আৰু)',
@@ -786,7 +785,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'powersearch'                    => 'অতিসন্ধান',
 'powersearch-legend'             => 'শক্তিশালী সন্ধান',
 'powersearch-ns'                 => 'নামস্থানবোৰত সন্ধান:',
-'powersearch-redir'              => 'পূণঃনির্দেশনা বোৰৰ তালিকা',
+'powersearch-redir'              => 'পুননির্দেশকৰ তালিকা',
 'powersearch-field'              => 'ৰ কাৰণে সন্ধান কৰক',
 'powersearch-togglelabel'        => 'চেক:',
 'powersearch-toggleall'          => 'সকলো',
@@ -942,7 +941,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'hist'                           => 'ইতিবৃত্ত',
 'hide'                           => 'দেখুৱাব নালাগে',
 'show'                           => 'দেখুওৱাওক',
-'minoreditletter'                => 'ন:',
+'minoreditletter'                => 'ন',
 'newpageletter'                  => 'ন:',
 'boteditletter'                  => 'য:',
 'rc_categories_any'              => 'যিকোনো',
@@ -1074,22 +1073,22 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Watchlist
 'watchlist'         => 'মই অনুসৰণ কৰা পৃষ্ঠাবিলাকৰ তালিকা',
-'mywatchlist'       => 'মোৰ অনুসৰণ-তালিকা',
+'mywatchlist'       => 'মই চকু ৰখা পৃষ্ঠাবোৰৰ তালিকা',
 'addedwatch'        => 'লক্ষ্য তালিকাত অন্তর্ভুক্তি কৰা হল',
 'addedwatchtext'    => 'আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]]  "<nowiki>$1</nowiki>" অন্তর্ভুক্তি কৰা হল ।
 ভৱিশ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সম্প্রতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাটো শকট আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে ।',
 'removedwatch'      => 'লক্ষ্য-তালিকাৰ পৰা আতৰোৱা হল',
 'removedwatchtext'  => '"[[:$1]]" পৃষ্ঠাখন [[Special:Watchlist|আপোনাৰ লক্ষ্য-তালিকা]]ৰ পৰা আতৰোৱা হৈছে ।',
-'watch'             => 'অনুসৰণাৰ্থে',
+'watch'             => 'চকু ৰাখক',
 'watchthispage'     => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
-'unwatch'           => 'অনুসৰণ কৰিব নালাগে',
+'unwatch'           => 'চকু দিব নালাগে',
 'watchlist-details' => 'আলোচনা পৃষ্ঠা সমূহ লেখত নধৰি {{PLURAL:$1|$1 খন পৃষ্ঠা|$1 খন পৃষ্ঠা}} আপোনাৰ লক্ষ্য-তালিকাত আছে।',
 'wlshowlast'        => 'যোৱা $1 ঘণ্টা $2 দিন $3 চাওক',
 'watchlist-options' => 'লক্ষ্য-তালিকা পছন্দসমূহ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'অনুসৰণভুক্ত কৰা হৈ আছে.....',
-'unwatching' => 'অনুসৰণমুক্ত কৰা হৈ আছে.....',
+'watching'   => 'চকু দিয়া হৈছে.....',
+'unwatching' => 'আঁতৰোৱা হৈ আছে.....',
 
 'enotif_impersonal_salutation' => '{{SITENAME}} সডস্য',
 'enotif_anon_editor'           => 'বেনামী সডস্য $1',
@@ -1169,7 +1168,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'sp-contributions-submit'      => 'সন্ধান কৰক',
 
 # What links here
-'whatlinkshere'            => 'এই পৃষ্ঠা ব্যৱ্হাৰ কৰিছে...',
+'whatlinkshere'            => 'এই পৃষ্ঠা ব্যৱহাৰ কৰিছে...',
 'whatlinkshere-title'      => '"$1"-লৈ সংযোগ কৰা পৃষ্ঠাসমূহ',
 'whatlinkshere-page'       => 'পৃষ্ঠা:',
 'linkshere'                => "এই পৃষ্ঠাটো '''[[:$1]]''' ৰ লগত সংযোজিত:",
@@ -1191,9 +1190,9 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'ipbreasonotherlist'       => 'অন্য কাৰণ',
 'ipboptions'               => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite',
 'ipblocklist'              => 'বাৰণ কৰা আই-পি ঠিকনা আৰু সদস্যৰ তালিকা',
-'blocklink'                => 'সদস্যভুক্তি ৰদ',
-'unblocklink'              => 'প্ৰতিৰোধ উঠাই লওঁক',
-'change-blocklink'         => 'ব্লক শলনি কৰক',
+'blocklink'                => 'সদস্য বাতিল কৰক',
+'unblocklink'              => 'বাধা উঠাই লওঁক',
+'change-blocklink'         => 'ব্লক সলনি কৰক',
 'contribslink'             => 'অবদান',
 'blocklogpage'             => 'বাৰণ কৰা সুচী',
 'blocklogentry'            => '"[[$1]]" ক $2 $3 লৈ সাল-সলনি কৰাৰ পৰা বাৰণ কৰা হৈছে।',
@@ -1241,18 +1240,18 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'allmessages-filter-submit' => 'যাওঁক',
 
 # Thumbnails
-'thumbnail-more'  => 'বিবৰ্ধনাৰ্থে',
+'thumbnail-more'  => 'ডাঙৰকৈ চাওক',
 'thumbnail_error' => 'থাম্বনেইল বনাব অসুবিধা হৈছে: $1',
 
 # Import log
 'importlogpage' => 'আমদানী সুচী',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'আপুনাৰ সদস্য পৃষ্ঠা',
-'tooltip-pt-mytalk'               => 'আপুনাৰ আলোচনা পৃষ্ঠা',
+'tooltip-pt-userpage'             => 'আপোনাৰ সদস্য পৃষ্ঠা',
+'tooltip-pt-mytalk'               => 'আপোনাৰ আলোচনা পৃষ্ঠা',
 'tooltip-pt-preferences'          => 'মোৰ পচন্দ',
-'tooltip-pt-watchlist'            => 'আপুনি সালসলনিৰ গতিবিধি লক্ষ কৰি থকা পৃষ্ঠাসমূহৰ সুচী',
-'tooltip-pt-mycontris'            => 'আপুনাৰ আৰিহনাৰ তালিকা',
+'tooltip-pt-watchlist'            => 'আপুনি সালসলনিৰ গতিবিধি লক্ষ্য কৰি থকা পৃষ্ঠাসমূহৰ সুচী',
+'tooltip-pt-mycontris'            => 'আপোনাৰ আৰিহনাৰ তালিকা',
 'tooltip-pt-login'                => 'অত্যাবশ্যক নহলেও লগ-ইন কৰা বাঞ্চনীয়',
 'tooltip-pt-logout'               => 'লগ-আউট',
 'tooltip-ca-talk'                 => 'সংশ্লিষ্ট প্রৱন্ধ সম্পৰ্কীয় আলোচনা',
@@ -1267,12 +1266,12 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'tooltip-ca-unwatch'              => 'এই পৃষ্ঠাটো আপোনাৰ লক্ষ-সূচীৰ পৰা আতৰোৱাওক',
 'tooltip-search'                  => '{{SITENAME}} -ত সন্ধানাৰ্থে',
 'tooltip-search-go'               => 'যদি আছে, তেহে ঠিক সেই নামৰ পৃষ্ঠালৈ যাওঁক',
-'tooltip-search-fulltext'         => 'এই পাঠ পৃষ্ঠাসমূহট অনুসন্ধান কৰক',
+'tooltip-search-fulltext'         => 'এই পাঠ পৃষ্ঠাসমূহত বিচাৰক',
 'tooltip-p-logo'                  => 'বেটুপাত খুলিবৰ কাৰণে',
 'tooltip-n-mainpage'              => 'বেটুপাত খুলিবৰ কাৰণে',
 'tooltip-n-mainpage-description'  => 'প্ৰথম পৃষ্ঠা পৰিদৰ্শন কৰক',
 'tooltip-n-portal'                => "এই প্রকল্পৰ ইতিবৃত্ত, আপুনি কেনেকৈ সহায় কৰিব পাৰে, ইত্যাদি (কি, ক'ত কিয় বিখ্যাত!!)।",
-'tooltip-n-currentevents'         => 'এতিয়াৰ ঘটনাৰাজীৰ পটভূমী',
+'tooltip-n-currentevents'         => 'সাম্প্রতিক ঘটনাৱলীৰ পটভূমি',
 'tooltip-n-recentchanges'         => 'শেহতীয়া সালসলনিসমূহৰ সূচী',
 'tooltip-n-randompage'            => 'অ-পূৰ্বনিৰ্ধাৰিতভাবে যিকোনো এটা পৃষ্ঠা দেখুৱাবৰ কাৰণে',
 'tooltip-n-help'                  => 'সহায়ৰ বাবে ইয়াত ক্লিক কৰক',
@@ -1282,11 +1281,11 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'tooltip-feed-atom'               => 'এই পৃষ্ঠাৰ বাবে এটম ফিড',
 'tooltip-t-contributions'         => 'এই সদস্যজনৰ অৰিহনাসমূহৰ সূচী চাঁওক ।',
 'tooltip-t-emailuser'             => 'এই সদস্যজনলৈ ই-মেইল পঠাওক',
-'tooltip-t-upload'                => "ফাইল আপল'ড-অৰ অৰ্থে",
+'tooltip-t-upload'                => "ফাইল আপল'ডৰ বাবে",
 'tooltip-t-specialpages'          => 'বিশেষ পৃষ্ঠাসমূ্হৰ সূচী',
 'tooltip-t-print'                 => 'এ পৃষ্ঠাৰ ছপা উপযোগী সংস্কৰণ',
 'tooltip-t-permalink'             => 'পৃষ্ঠাৰ এই সংস্কৰণৰ স্থায়ী সংযোগ',
-'tooltip-ca-nstab-main'           => 'এই ৱিকিৰ সূচি চাঁওক',
+'tooltip-ca-nstab-main'           => 'এই ৱিকিৰ সূচী চাওক',
 'tooltip-ca-nstab-user'           => 'সভ্যৰ ব্যক্তিগত পৃষ্ঠালৈ',
 'tooltip-ca-nstab-special'        => 'এইখন এখন বিশেষ পৃষ্ঠা, আপুনি সম্পাদনা কৰিব নোৱাৰে',
 'tooltip-ca-nstab-project'        => 'আচনী পৃষ্ঠা চাঁওক।',

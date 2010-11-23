@@ -983,9 +983,6 @@ Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’�
 Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion, adonc los volyéd pas sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada (vêde $1 por més de dètalys).
 '''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
-'longpagewarning'                  => "'''ATENCION :''' ceta pâge at una longior de $1 Kio ;
-quârques navigators administront mâl lo changement de les pâges aprochient ou ben dèpassent 32 Kio.
-Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.",
 'longpageerror'                    => "'''ÈRROR : lo tèxto que vos éd somês fât $1 Kio, cen que dèpâsse la limita fixâ a $2 Kio.'''
 Lo tèxto pôt pas étre sôvâ.",
 'readonlywarning'                  => "'''Atencion : la bâsa de balyês at étâ vèrrolyê por mantegnence, vos porréd vêr pas sôvar voutros changements d’abôrd.'''

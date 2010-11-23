@@ -701,9 +701,6 @@ Mundan hem başga, siz bu ýere goşant goşmak bilen bu goşandyň özüňiz ta
 Eger-de işiňiziň gypynç etmezden redaktirlenmegini islemeýän bolsaňyz, onda ony goşant etmäň.<br />
 Şeýle-de, siz ony özüňiziň ýazandygyňyza ýa-da jemgyýetçilige açyk bir çeşmeden ýa-da bolmasa şoňa meňzeş bir erkin çeşmeden göçürip alandygyňyza güwä geçýärsiňiz (jikme-jiklikler üçin serediň: $1).
 '''Awtorlyk hukugy bar bolan hiç biri işi rugsat almazdan goşmaň!'''",
-'longpagewarning'                  => "'''Duýduryş:''' Bu sahypanyň uzynlygy $1 kilobaýt;
-käbir brauzerlerde 32kb çemesi ýa-da ondanam uzyn sahypalar redaktirlenen mahaly problema ýüz çykmagy mümkin.
-Sahypany has kiçi böleklere bölmekligi göz öňünde tutmagyňyzy haýyş edýäris.",
 'longpageerror'                    => "'''Säwlik: Ýazan tekstiňiziň uzynlygy $1 kilobaýt bolup, ol maksimum uzynlykdan $2 kilobaýt artykmaç.'''
 Ýazdyrmaklyk mümkin däl.",
 'readonlywarning'                  => "'''Duýduryş: Maglumat bazasy tehniki işler sebäpli gulplanypdyr, Şonuň üçinem häzirlikçe özgerdişleriňizi ýazdyryp bilmersiňiz.'''

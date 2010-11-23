@@ -16,9 +16,7 @@ $separatorTransformTable = array( ',' => "'", '.' => ',' );
 
 $messages = array(
 # Edit pages
-'longpagewarning' => "'''Warnung:''' Diese Seite ist $1 KB gross; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die grösser als 32 KB sind.
-Überlege bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.",
-'longpageerror'   => "'''Fehler: Der Text, den du zu speichern versuchst, ist $1 KB gross. Das ist grösser als das erlaubte Maximum von $2 KB – Speicherung nicht möglich.'''",
+'longpageerror' => "'''Fehler: Der Text, den du zu speichern versuchst, ist $1 KB gross. Das ist grösser als das erlaubte Maximum von $2 KB – Speicherung nicht möglich.'''",
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Grösse eingebundener Vorlagen ist zu gross, einige Vorlagen können nicht eingebunden werden.',

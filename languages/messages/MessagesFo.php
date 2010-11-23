@@ -473,9 +473,6 @@ Ert tú ein dulnevndur brúkari, og kennir, at óvikomandi viðmerkingar eru ven
 'copyrightwarning'         => "Alt íkast til {{SITENAME}} er útgivið undir $2 (sí $1 fyri smálutir). Vilt tú ikki hava skriving tína broytta miskunnarleyst og endurspjadda frítt, so send hana ikki inn.<br />
 Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at tú hevur avritað tað frá tilfeingi ið er almenn ogn &mdash; hetta umfatar '''ikki''' flestu vevsíður.
 '''SEND IKKI UPPHAVSRÆTTARVART TILFAR UTTAN LOYVI!'''",
-'longpagewarning'          => "'''ÁVARING: Henda síðan er $1 kilobýt long.
-Summir sneytarar kunnu hava trupulleikar við at viðgerða síður upp ímóti ella longri enn 32 kb.
-Vinarliga umhugsa at býta síðuna sundur í styttri pettir.'''",
 'protectedpagewarning'     => "'''ÁVARING: Henda síðan er friðað, so at einans brúkarar við umboðsstjóraheimildum kunnu broyta hana.'''",
 'semiprotectedpagewarning' => "'''Viðmerking:''' Hendan grein er læst soleiðis at bert skrásetir brúkaris kunnu rætta hana.",
 'templatesused'            => 'Fyrimyndir brúktar á hesu síðu:',

@@ -593,9 +593,6 @@ yu kenki no kibri ete!'''",
 Efu yu no wani dati trawan e kenki noso panya san yu skrifi, no skrifi noti dyaso.<br />
 Yu e pramisi unu dati na yu skrifi disi yusrefi, noso yu teki en puru fu wan fri, opo presi.<br />
 '''NO KEBROIKI SANI DI KIBRI BAKA SKRIFIMAN-LETI, SONDRO FU ABI PRIMISI FU DU SO!'''",
-'longpagewarning'            => "'''WARSKOW: A papira disi de $1 kilobyte bigi;
-Son browser abi problema fu kenki papira di bigi moro leki 32 kb.
-Kande yu kan prati a papira disi ini moro pikin pisi.'''",
 'templatesused'              => 'Template di ben kebroiki tapu a papira disi:',
 'templatesusedpreview'       => 'Template di ben kebroiki ini a Luku-na-fesi disi:',
 'templatesusedsection'       => 'Ankra teki opo disi seksi:',

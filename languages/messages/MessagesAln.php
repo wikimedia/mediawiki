@@ -742,9 +742,6 @@ Gjithashtu po premtoni se këtë e keni shkrue vetë, ose e keni kopjue prej dom
 Nëse nuk doni që shkrimet tueja me u redaktue pamëshirshëm dhe me u shpërnda arbitrarisht, atëherë mâ mirë mos publikoni këtu.<br />
 Gjithashtu po premtoni se këtë e keni shkrue vetë, ose e keni kopjue prej domenës publike apo ndonji burimi tjetër të lirë (shih $1 për detaje).
 '''Mos publikoni vepra që janë e drejtë autoriale pa leje!'''",
-'longpagewarning'                  => "'''Kujdes:''' Kjo faqe i ka $1 kilobyte;
-disa shfletues mujnë me pasë problem me redaktue faqe që janë afër apo mâ shumë se 32kb.
-Konsideroni mundësinë me dâ faqen në sekcione mâ të vogla.",
 'longpageerror'                    => "'''Gabim: Teksti që po redaktoni i ka $1 kilobyte, që âsht mâ shumë se maksimumi prej $2 kilobytësh.'''
 Nuk mundet me u ruejtë.",
 'readonlywarning'                  => "'''Kujdes: Baza e të dhânave âsht mshelë për mirëmbajtje, kështuqë tashpërtash nuk keni me mujtë me i ruejtë redaktimet tueja.'''

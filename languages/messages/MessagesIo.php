@@ -573,9 +573,6 @@ Se vu gardus ol, la chanji facita pos ita revizo perdesos.'''",
 Se vu ne deziras ke altri modifikez vua artikli od oli distributesez libere, lore voluntez ne skribar oli hike.<br />
 Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesis de libera fonto.
 '''NE SENDEZ ARTIKLI KUN ''COPYRIGHT'' SEN PERMISO!'''",
-'longpagewarning'                  => "'''EGARDEZ''': Ica pagino esas $1 kilobicoki longa;
-Ula navigili posible havas problemi redaktante pagini proximeskanta o plu longa kam 32kb.
-Voluntez konsideras separar la pagino aden plu mikra secioni.",
 'protectedpagewarning'             => "'''AVERTO: Ica pagino esas blokusita, do nur ''sysop''-i povas redaktar olu.'''",
 'templatesused'                    => '{{PLURAL:$1|Shablono|Shabloni}} uzata en ica pagino:',
 'templatesusedpreview'             => '{{PLURAL:$1|Shablono|Shabloni}} uzata en ica prevido:',

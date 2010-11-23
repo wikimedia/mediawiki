@@ -398,8 +398,6 @@ A sa nca di bufosi, tampi '''back'''.",
 'copyrightwarning'           => "Xete kenki di {{SITENAME}} sa rilisi kwa $2 (fatukile $1 di pagu). A ni tokwezi zwa selt sa kenki a ridistributi kwa tokwi, ni bulukezi.<br />
 A sumekezi zwa selt sa dya, a kopisize di publiki domeni, a ike risorsi.
 '''NI BULUKEZI SELT KOPINITUMELELO E NI TUMELELO!'''",
-'longpagewarning'            => "'''AGTU: Bye petulo sa $1 kilobytes; browser sa di bufosikaku hloli ye ng'i petulo plusu di 32 kilobytes.
-Konsidisize takubikinalisize.'''",
 'templatesused'              => 'Yegani sebelize di bye petulo:',
 'templatesusedpreview'       => 'Yegani sebelize kwa bye PendiBe:',
 'template-protected'         => '(sa bukelezi)',
