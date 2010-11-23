@@ -36,7 +36,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
  class ApiQueryUsers extends ApiQueryBase {
 
-	private $tokenFunctions;
+	private $tokenFunctions, $prop;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'us' );
@@ -46,7 +46,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($user)
 	 * it should return a token or false (permission denied)
-	 * @return array(tokenname => function)
+	 * @return Array tokenname => function
 	 */
 	protected function getTokenFunctions() {
 		// Don't call the hooks twice
