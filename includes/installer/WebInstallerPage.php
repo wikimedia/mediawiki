@@ -60,7 +60,7 @@ abstract class WebInstallerPage {
 		if ( $continue ) {
 			// Fake submit button for enter keypress
 			$s .= Xml::submitButton( wfMsg( "config-$continue" ),
-				array( 'name' => "enter-$continue", 'style' => 'display:none' ) ) . "\n";
+				array( 'name' => "enter-$continue", 'style' => 'visibility:hidden;overflow:hidden;width:1px;margin:0' ) ) . "\n";
 		}
 		
 		if ( $id !== 0 ) {
