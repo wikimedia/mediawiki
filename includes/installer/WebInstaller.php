@@ -613,8 +613,8 @@ class WebInstaller extends CoreInstaller {
 		array_shift( $args );
 		$args = array_map( 'htmlspecialchars', $args );
 		$text = wfMsgReal( $msg, $args, false, false, false );
+		$html = htmlspecialchars( $text );
 		//$html = $this->parse( $text, true );
-    $html = $text;
 		return
             "<span class=\"mw-help-field-hint\"\n" .
       	    "     title=\"" . $html . "\"\n" .
