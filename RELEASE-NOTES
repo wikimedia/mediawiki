@@ -534,6 +534,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 25987) prop=info&inprop=watched now also works for missing pages
 * (bug 26006) prop=langlinks now allows obtaining full URL
 * (bug 26075) ApiDelete.php now calls correctly ArticleDelete hook
+* (bug 26089) add block expiration to blockinfo
 
 === Languages updated in 1.17 ===
 
