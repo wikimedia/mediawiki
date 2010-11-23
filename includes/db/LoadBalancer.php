@@ -325,14 +325,6 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Get a random server to use in a query group
-	 * @deprecated use getReaderIndex
-	 */
-	function getGroupIndex( $group ) {
-		return $this->getReaderIndex( $group );
-	}
-
-	/**
 	 * Set the master wait position
 	 * If a DB_SLAVE connection has been opened already, waits
 	 * Otherwise sets a variable telling it to wait if such a connection is opened
