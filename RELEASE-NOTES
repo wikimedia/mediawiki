@@ -529,6 +529,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   $wgDisableCounters enabled
 * (bug 25987) prop=info&inprop=watched now also works for missing pages
 * (bug 26006) prop=langlinks now allows obtaining full URL
+* (bug 26075) ApiDelete.php now calls correctly ArticleDelete hook
 
 === Languages updated in 1.17 ===
 
