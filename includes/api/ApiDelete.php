@@ -146,7 +146,7 @@ class ApiDelete extends ApiBase {
 		}
 
 		$error = '';
-		if ( !wfRunHooks( 'ArticleDelete', array( &$article, &$wgUser, &$reason, $error ) ) ) {
+		if ( !wfRunHooks( 'ArticleDelete', array( &$article, &$wgUser, &$reason, &$error ) ) ) {
 			return array( array( 'hookaborted', $error ) );
 		}
 
