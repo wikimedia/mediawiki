@@ -526,7 +526,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return array(
 			'api.php?action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics',
 			'api.php?action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local',
-			'api.php?action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb',
+			'api.php?action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb=',
 		);
 	}
 

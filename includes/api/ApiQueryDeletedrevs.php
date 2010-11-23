@@ -367,7 +367,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'List the first 50 deleted revisions in the main namespace (mode 3):',
 			'  api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50',
 			'List the first 50 deleted pages in the Talk namespace (mode 3):',
-			'  api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique',
+			'  api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique=',
 		);
 	}
 
