@@ -88,6 +88,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * $wgSecureLogin & $wgSecureLoginStickHTTPS to optionaly login using HTTPS
 * (bug 25728) Added $wgPasswordSenderName to allow customise the name associed
   with $wgPasswordSender
+* Sysops now have the "suppressredirect" right by default
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
