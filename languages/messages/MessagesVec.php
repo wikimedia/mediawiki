@@ -412,7 +412,7 @@ $1',
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Cavà fora da "$1"',
 'youhavenewmessages'      => 'Te ghè $1 ($2).',
-'newmessageslink'         => 'Messagi novi',
+'newmessageslink'         => 'dei messagi novi',
 'newmessagesdifflink'     => 'ultimo canbiamento',
 'youhavenewmessagesmulti' => 'Te ghè messagi novi su $1',
 'editsection'             => 'canbia',
@@ -793,7 +793,6 @@ Cargando el testo te dichiari inoltre, soto la to responsabilità, che el testo 
 Se no te voli che i to scriti i vegna modificà sensa pietà, alora no sta inserirli qua.<br />
 Sapi che te stè prometendo che te stè inserendo un testo scrito de to pugno, o copià da na fonte de publico dominio o similarmente lìbara (varda $1 par i detagli).
 '''NO STA INSERIR OPERE PROTETE DA COPYRIGHT SENSA PERMESSO!'''",
-'longpagewarning'                  => "'''OCIO: Sta pàxena la xè longa $1 kilobyte; serti browser i podarìa verghe dei problemi ne ła modifega de pàxene che se avisina o supera i 32 kB. Valuta l'oportunità de sudivìdar ła pàxena in sezion pìassè picenine.'''",
 'longpageerror'                    => "'''ERROR: The text you have submitted is $1 kilobytes
 long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''",
 'readonlywarning'                  => "'''OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento.
@@ -1700,7 +1699,7 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 'download'           => 'descarga',
 
 # Unwatched pages
-'unwatchedpages' => 'Pàxene mìa osservàe',
+'unwatchedpages' => "Pagine mìa tegnù d'ocio da nissun",
 
 # List redirects
 'listredirects' => 'Elenco dei redirect',
@@ -1852,8 +1851,8 @@ Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, el n
 'allpagesfrom'      => 'Mostra le pagine tacando da:',
 'allpagesto'        => 'Mostra le pagine fin a:',
 'allarticles'       => 'Tute le pagine',
-'allinnamespace'    => 'Tute łe pàxene ($1 namespace)',
-'allnotinnamespace' => 'Tute łe pàxene (via de quele nel namespace $1)',
+'allinnamespace'    => 'Tute le pagine del namespace $1',
+'allnotinnamespace' => 'Tute le pagine (via de quele nel namespace $1)',
 'allpagesprev'      => 'Quele prima',
 'allpagesnext'      => 'Quele dopo',
 'allpagessubmit'    => 'Va',
@@ -2119,8 +2118,8 @@ Le impostazion atuali par la pagina le xe '''$1''':",
 'protect-dropdown'            => '*Motivi piessè comuni de protession
 ** Guere de modifica (edit war)
 ** Inserimenti ripetùi de spam
-** Pàxena archivià
-** Pàxena doparà assè
+** Pagina archivià
+** Pagina doparà assè
 ** Vandalismi ripetùi',
 'protect-edit-reasonlist'     => 'Cànbia i motivi de la protesion',
 'protect-expiry-options'      => '1 ora:1 hour,1 zòrno:1 day,1 stimana:1 week,2 stimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 ano:1 year,infinito:infinite',
@@ -3244,7 +3243,7 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'specialpages-group-spam'        => 'Strumenti anti spam',
 
 # Special:BlankPage
-'blankpage'              => 'Pàxena voda',
+'blankpage'              => 'Pagina voda',
 'intentionallyblankpage' => 'Sta pagina la xe stà lassà voda aposta',
 
 # External image whitelist

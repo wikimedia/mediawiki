@@ -678,9 +678,6 @@ Pian jua bajanji ka kami amun Pian manulis ini saurangan, atawa manjumput ini ma
 Amun Pian kada hakun tulisan Pian dibabak kada baumpat lalu, lalu ai kada usah manyumbang di sia.<br />
 Pian jua bajanji ka kami amun Pian manulis ini saurangan, atawa manjumput ini matan sabuah asal mula ampun umum atawa nang samacam asal mula bibas (lihati $1 gasan rarincian).
 '''Jangan kirimkan gawian bahak cipta kada baijin!'''",
-'longpagewarning'                  => "'''Paringatan:''' Tungkaran ini panjangnya $1 kilubita;
-babarapa panjalajah web pinanya bamasalah mambabak tutungkaran nang parak atawa tapanjang pada 32kb.
-Muhun ditimbang-timbang marakai tungkaran ini ka dalam palih nang labih halus.",
 'longpageerror'                    => "'''Kasalahan: Naskah nang Pian kirim panjangnya $1 kilubita, nangapa tapanjang pada pamanjangnya nang kawa $2 kilubita.'''
 Nangini kada kawa disimpan.",
 'readonlywarning'                  => "'''Paringatan: Basis data sudah tasunduk gasan diharagu, jadinya Pian kada kawa manyimpan babakab Pian parhatan ini.'''
@@ -1175,6 +1172,8 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-autoconfirmed'        => 'Mambabak tutungkaran sami-dilindungi',
 'right-delete'               => 'Mahapus tungkaran',
 'right-bigdelete'            => 'Hapus tutungkaran awan hahalam ganal',
+'right-deletedhistory'       => 'Tiringi mamasukan halam tahapus, kada banaskah tarait',
+'right-deletedtext'          => 'Tiringi naskah tahapus wan parubahan antar raralatan tahapus',
 'right-browsearchive'        => 'Manggagai tungkaran nang sudah dihapus',
 'right-undelete'             => 'Mambulikakan sabuah tungkaran tahapus',
 'right-suppressionlog'       => 'Tiringi log paribadi',

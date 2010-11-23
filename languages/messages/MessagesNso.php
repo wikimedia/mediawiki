@@ -451,10 +451,6 @@ oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a man
 'copyrightwarning'                 => "Diabe kamoka go {{SITENAME}} di akanywa go ngwadiwa tlase ga $2 (lebelela $1 go hwetša taba ka bophara). Ge o sa nyake gore mengwalo ya gago e fetolwe ntle le kgaugelo goba e phatlalatšwe ntle le tumello ya gago, o seke wa fana ka mengwalo mo.<br />
 Gape o re holofetša  gore mengwalo ye e ngwadile ke wena, goba o e kopiša mothapong wa pepeneneng goba  ke mahala.
 '''O SE TSENYE MEŠOMO YA BATHO BA BANGWE NTLE LE TUMELLO YA BONA!'''",
-'longpagewarning'                  => "'''TEMOŠO: Letlakala le le $1 kilobytes ka botelele;
-di-''browser'' tše dingwe dika ba le bothata go fetola matlakala a golena goba gofeta 32 kb.
-
-Ka kgopela akanya ka go roba letlakala le goba le dikgaoe tše nnyenyane.'''",
 'templatesused'                    => '"{{PLURAL:$1|Template yeo e|Di-Template tšeo di}}\'\' šomišitšwego letlakaleng le:',
 'templatesusedpreview'             => '{{PLURAL:$1|"Template" yeo e|"DiTemplate" tšeo di}} šomišitšwego go taetšo ya sebopego sa letlakala:',
 'template-protected'               => '(e lotilwe)',

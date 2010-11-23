@@ -398,8 +398,6 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita esta paje].',
 'copyrightwarning'           => "Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
 Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un domina publica o otra orijin libre.
 '''NO SUMITA LABORA SU DIRETOS DE AUTOR SIN PERMITE!!'''",
-'longpagewarning'            => "'''AVISA: Esta paje usa $1 kilotetas; alga surfadores pote ave problemes con la edita de pajes plu grande ce 32 ko.
-Per favore, considera parti la paje en pesos plu poca.'''",
 'templatesused'              => '{{PLURAL:$1|Modele|Modeles}} usada en esta paje:',
 'templatesusedpreview'       => '{{PLURAL:$1|Modele|Modeles}} usada en esta previde:',
 'template-protected'         => '(protejeda)',

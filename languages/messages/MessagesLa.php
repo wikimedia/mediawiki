@@ -674,9 +674,6 @@ Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere
 Nisi vis verba tua crudelissime recenseri, noli ea submittere.<br />
 Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere in \"dominio publico\" vel ex  libere fonte simili exscripsisse (vide singula apud \$1).
 '''NOLI OPERIBUS SUB IURE DIVULGANDI UTI SINE POTESTATE!'''",
-'longpagewarning'                  => 'MONITIO: Haec pagina est $1 chilioctetis longa;
-aliquae navigatra paginas longiores quam 32 chiliocteti recensere non possunt.
-Considera paginam in partes minores frangere.',
 'protectedpagewarning'             => "'''CAVE: Haec pagina protecta est ut magistratus soli eam recenseant.'''",
 'templatesused'                    => '{{PLURAL:$1|Formula hac in pagina adhibita:|Formulae hac in pagina adhibitae:}}',
 'templatesusedpreview'             => '{{PLURAL:$1|Formula hoc in praeviso adhibita:|Formulae hoc in praeviso adhibitae:}}',

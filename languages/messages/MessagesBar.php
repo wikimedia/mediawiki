@@ -477,8 +477,6 @@ Bittschee fiag daine Enderungen ins owere Textföidl ai.
 
 Du gibst uns dodamid dai Zuasog, dass du dén Text '''söiwer vafosst''' host, das da Text a Oigmoaguat '''(public domain)''' is, óder das da '''Urhéwer''' sai '''Zuastimmung''' geem hod. Fois der Text beraits irngdwó ånderst vaéffmtlécht worn is, moch bittschee an Hiwais in da Diskussiónssaitn.
 <i>Bittschee beochtt, das olle {{SITENAME}}-Baitrég autómaatésch unter da „$2“ steengan (schau unter $1 fyr Details). Fois du néd mechst, das dai Orwait do vo ånderne vaéndert und vabroatt werd, dånn druck néd auf „Saiten spaichern“.</i>",
-'longpagewarning'                  => "'''Wornung:''' De Saiten is $1 kB grouss; ned a jeeder Browser kå Saiten beorwaiten, de greesser ois wia 32 kB san.
-Ywerleeg da bittschee, ob a Auftailung vo derer Saiten in koanare Obschnit meglich is.",
 'semiprotectedpagewarning'         => "'''Hoibsperrung:''' De Saiten is aso gsperrt worn, das netter registriarde Benytzer de endern kenna.",
 'titleprotectedwarning'            => "'''Ochtung: De Saitenerstöiung is aso gschytzt worn, das netter Benytzer mid [[Special:ListGroupRights|speziöie Rechte]] de Saiten erstöin kennan.'''
 Zur Informazion foigt da aktuöie Logbuachaitrog:",

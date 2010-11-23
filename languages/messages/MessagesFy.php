@@ -739,9 +739,6 @@ Hjirby sizze jo tagelyk ta, dat jo dizze tekst sels skreaun hawwe, of oernommen 
 As jo net wolle dat jo teksten yngeand oanpast wurde troch oaren, set se hjir dan net.<br />
 Jo sizze ek ta dat jo de oarspronklike auteur binne fan dit materiaal, of dat jo it kopiearre hawwe út in boarne yn it publike domein, of in soartgelikense frije boarne (sjuch $1 foar details).
 '''BRUK GJIN MATERIAAL DAT BESKERME WURDT TROCH AUTEURSRJOCHT, OF JO MOATTE DER TASTIMMING FOAR HAWWE!'''",
-'longpagewarning'                  => "'''Warskôging: Dizze side is $1 kilobyte lang;
-der binne blêders dy't problemen hawwe mei siden fan tsjin de 32 kb of langer.
-Besykje de side yn lytsere stikken te brekken.'''",
 'longpageerror'                    => "'''FOUT: de tekst dy't jo tafoege hawwe is $1 kilobyte grut, wat grutter is as it maksimum fan $2 kilobytes.
 Bewarjen is net mûglik.'''",
 'readonlywarning'                  => "'''Warskôging: De databank is ôfsletten foar ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze. Bewarje de tekst foar lettere pleatsing yn in teksttriem.'''

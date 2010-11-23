@@ -968,9 +968,6 @@ Garante-nos também que isto é algo escrito por si, ou copiado do domínio púb
 'copyrightwarning2'                => "Por favor, note que todas as suas contribuições na {{SITENAME}} podem ser editadas, alteradas ou removidas por outros utilizadores. Se não deseja que o seu texto seja inexoravelmente editado, não o envie.
 Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (veja $1 para detalhes).<br />
 '''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
-'longpagewarning'                  => "'''AVISO:''' Esta página possui $1 kilobytes; alguns
-browsers têm problemas em editar páginas maiores do que 32 kb.
-Tente dividir a página em secções de menor dimensão, por favor.",
 'longpageerror'                    => "'''Erro: O texto que submeteu ocupa $1 KB, um espaço superior ao máximo de $2 KB.
 A página não pode ser gravada.'''",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
@@ -1690,7 +1687,7 @@ Altere o nome do ficheiro e tente enviá-lo novamente, por favor.',
 'empty-file'                  => 'O ficheiro que enviou estava vazio.',
 'file-too-large'              => 'O ficheiro que enviou era demasiado grande.',
 'filename-tooshort'           => 'O nome do ficheiro é demasiado curto.',
-'filetype-banned'             => 'O tipo do ficheiro é proibido.',
+'filetype-banned'             => 'Este tipo de ficheiro é proibido.',
 'verification-error'          => 'O ficheiro não passou a verificação de ficheiros.',
 'hookaborted'                 => 'A modificação que pretendia foi abortada pelo hook de uma extensão.',
 'illegal-filename'            => 'O nome do ficheiro não é permitido.',

@@ -592,7 +592,6 @@ Gin ye dinna want yer writin tae be editit athoot mercy and redistribute at will
 YYe'r promisin us forbye that ye wrat this yersel, or copied it frae a
 public domain or siclike free resoorce (see $1 for details).
 '''DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!'''",
-'longpagewarning'                  => "WARNIN: This page is $1 kilobytes lang; some brousers micht hae trouble editin pages approachin or langer nor 32 kb. Please conseider brakkin the page intae smaa'er sections.",
 'longpageerror'                    => "'''ERROR: The text ye hae submitted is $1 kilobytes
 lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.'''",
 'readonlywarning'                  => "WARNIN: The database haes been lockit for maintenance, sae ye'll no can hain yer edits richt nou. Ye micht wish tae cut-n-paste the text intil a text file an hain it for later.",

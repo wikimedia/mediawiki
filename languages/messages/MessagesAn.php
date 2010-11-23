@@ -756,8 +756,6 @@ Habrá d'incorporar os suyos cambeos en o texto existent.
 '''NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!'''<br />",
 'copyrightwarning2'                => "Por favor, pare cuenta que todas as contrebucions a {{SITENAME}} pueden estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alavez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que vusté mesmo escribió iste texto y ye o duenyo d'os dreitos d'autor, u bien lo copió dende o dominio publico u qualsiquier atra fuent libre (veyer $1 ta más información). <br />
 '''NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!'''",
-'longpagewarning'                  => "'''Pare cuenta: Ista pachina tiene ya $1 kilobytes; bells navegadors pueden tener problemas en editar pachinas de 32 kB o más.
-Considere, por favor, a posibilidat de troxar ista pachina en trestallos más chicotz.'''",
 'longpageerror'                    => "'''ERROR: O texto que ha escrito ye de $1 kilobytes, que ye mayor que a grandaria maxima de $2 kilobytes. No se puede alzar.'''",
 'readonlywarning'                  => "'''Pare cuenta: A base de datos ye bloqueyata por custions de mantenimiento. Por ixo, en iste inte ye imposible d'alzar as suyas edicions. Puede copiar y apegar o texto en un fichero y alzar-lo ta dimpués.'''
 

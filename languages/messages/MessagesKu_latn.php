@@ -593,8 +593,6 @@ Eger tu qeyd bikî, hemû guhertinên ji vê revîzyonê piştre winda dibin.
 'copyrightwarning'                 => "Dîqat bike: Hemû tevkariyên {{SITENAME}} di bin $2 de tên belav kirin (ji bo hûragahiyan li $1 binêre). Eger tu nexwazî ku nivîsên te bê dilrehmî bên guherandin û li gora keyfa herkesî bên belavkirin, li vir neweşîne.<br />
 Tu soz didî ku te ev bi xwe nivîsand an jî ji çavkaniyekê azad an geliyane ''(public domain)'' girt.
 '''BERHEMÊN MAFÊN WAN PARASTÎ (©) BÊ DESTÛR NEWEŞÎNE!'''",
-'longpagewarning'                  => "HIŞYAR: Drêjahiya vê rûpelê $1 kB (kilobyte) e, ev pir e. Dibe ku çend ''browser''
-baş nikarin rûpelên ku ji 32 kB drêjtir in biguherînin. Eger tu vê rûpelê beş beş bikî gelo ne çêtir e?",
 'protectedpagewarning'             => "'''ŞIYARÎ:  Ev rûpel tê parastin. Bi tenê bikarhênerên ku xwediyên mafên \"sysop\" ne, dikarin vê rûpelê biguherînin.'''",
 'templatesused'                    => 'Şablon di van rûpelan da tê bikaranîn',
 'templatesusedpreview'             => 'Şablon yê di vê pêşdîtinê da tên bikaranîn:',

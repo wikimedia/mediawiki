@@ -342,7 +342,6 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'storedversion'              => 'Chu-liāu-khò· ê pán-pún',
 'editingold'                 => "'''KÉNG-KÒ: Lí tng teh siu-kái chit ia̍h ê 1 ê kū siu-tēng-pún. Lí nā kā pó-chûn khí lâi, chit ê siu-tēng-pún sòa-āu ê jīm-hô kái-piàn ē bô khì.'''",
 'yourdiff'                   => 'Chha-pia̍t',
-'longpagewarning'            => "'''SÈ-JĪ: Pún ia̍h $1 kilobyte tn̂g; ū-ê liû-lám-khì bô-hoat-tō· pian-chi̍p 32 kb chó-iū ia̍h-sī koh khah tn̂g ê ia̍h. Chhiáⁿ khó-lū kā chit ia̍h thiah chò khah sè ê toāⁿ-lo̍h.'''",
 'readonlywarning'            => "'''CHÙ-Ì: Chu-liāu-khò· taⁿ só tiâu leh thang pān î-siu khang-khòe, só·-í lí hiān-chú-sî bô thang pó-chûn jīn-hô phian-chi̍p hāng-bo̍k. Lí ē-sái kā siong-koan pō·-hūn tah--ji̍p-khì 1-ê bûn-jī tóng-àn pó-chûn, āu-chhiú chiah koh kè-sio̍k.'''",
 'protectedpagewarning'       => "'''KÉNG-KÒ: Pún ia̍h só tiâu leh. Kan-taⁿ ū hêng-chèng te̍k-koân ê iōng-chiá (sysop) ē-sái siu-kái.'''",
 'templatesused'              => 'Chit ia̍h iōng chia ê pang-bô·:',

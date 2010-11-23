@@ -743,9 +743,6 @@ Sez östämälärneñ avtorı bulırğa yäisä mäğlümatnıñ irekle çığan
 Ägär alarnıñ üzgärtelüen telämäsägez, monda östämäwegez sorala.<br />
 Sez östämälärneñ avtorı bulırğa yäisä mäğlümatnıñ irekle çığanaqlardan alınuın kürsätergä tieş (qarağız: $1).
 '''MAXSUS RÖXSÄTTÄN BAŞQA AVTORLIQ XOQUQI BUYINÇA SAQLANUÇI MÄĞLÜMATLAR URNAŞTIRMAĞIZ!'''",
-'longpagewarning'                  => "'''Kisätü:''' Bu bitneñ zurlığı - $1 kilobayt.
-32 Kb yäisä annan zurraq bitlär qayber brauzerlarda yalğış kürenergä mömkin.
-Tekstnı berniçä öleşkä bülärgä täğdim itelä.",
 'longpageerror'                    => "'''XATA: saqlanuçı tekst zurlığı - $1 kilobayt, bu $2 kilobayt çigennän kübräk. Bit saqlana almıy.'''",
 'readonlywarning'                  => "'''Kisätü: mäğlümatlar bazasında texnik eşlär başqarıla, sezneñ üzgärtülär xäzer ük saqlana almıy.
 Tekst yuğalmasın öçen anı kompyuterığızğa saqlap tora alasız.'''

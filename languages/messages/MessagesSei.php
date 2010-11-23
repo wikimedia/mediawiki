@@ -507,8 +507,6 @@ Jan lajxepe occuram me usadad proxy service anon web-based buggy.'''",
 'nonunicodebrowser'         => "'''ATTENCION: Mebrowser necoccebj compliantede 'unicode' (characterám sans huáp ti). Workaround coccebj hant itide me permiccion ticpatlöx páhinám: non-ASCII characterám coccebj codes hexidecimales.'''",
 'editingold'                => "'''ATTENCION: Me coccebj ticpatlöx revicion outdatenam zode jan páhina. Me xuniim zo, jömde quiíx hunde jan revicion coccebj delar poop.'''",
 'yourdiff'                  => 'Quiíx',
-'longpagewarning'           => "'''ATTENCION: Jan páhina coccebj $1 kilobynám; browserám pac pos-coccebj problemámde ticpatlöx páhinám necade jöx plusöxde 32 kb.
-Cahöx ticpatlöx jan páhina minöx seccion iti.'''",
 'longpageerror'             => "'''RÖMJ: Textua zo mexuniim coccebj $1 kilobytenám, jan coccebj plusöxde maxde $2 kilobytenám. Zo necoccebj xuniim.'''",
 'readonlywarning'           => "'''ATTENCION: Database zo coccebj lockomde kyépöx, zo necoccebj posde xuniim meticpatlöx cmaa. Me coccebj considerom ''cut-n-paste'' textua zo ciúchande textua iti ö xuniimde diijömdexepe.'''",
 'protectedpagewarning'      => "'''ATTENCION: Jan páhina coccebj lockomde sysopám coccebj ticpatlöx zo permiccional.'''",
