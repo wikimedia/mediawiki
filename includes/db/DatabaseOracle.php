@@ -973,7 +973,7 @@ class DatabaseOracle extends DatabaseBase {
 
 	function fieldInfo( $table, $field ) {
 		if ( is_array( $table ) ) {
-			throw new DBUnexpectedError( $this, 'Database::fieldInfo called with table array!' );
+			throw new DBUnexpectedError( $this, 'DatabaseOracle::fieldInfo called with table array!' );
 		}
 		return $this->fieldInfoMulti ($table, $field);
 	}
