@@ -249,7 +249,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * Returns estimated count, based on EXPLAIN output
 	 * Takes same arguments as Database::select()
 	 */
-	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
+	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'DatabaseMysql::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		if ( $res === false ) {

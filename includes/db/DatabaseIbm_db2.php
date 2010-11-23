@@ -1037,7 +1037,7 @@ EOF;
 	 *                 more of IGNORE, LOW_PRIORITY
 	 * @return Boolean
 	 */
-	public function update( $table, $values, $conds, $fname = 'Database::update',
+	public function update( $table, $values, $conds, $fname = 'DatabaseIbm_db2::update',
 		$options = array() )
 	{
 		$table = $this->tableName( $table );
@@ -1062,10 +1062,10 @@ EOF;
 	 *
 	 * Use $conds == "*" to delete all rows
 	 */
-	public function delete( $table, $conds, $fname = 'Database::delete' ) {
+	public function delete( $table, $conds, $fname = 'DatabaseIbm_db2::delete' ) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this,
-			'Database::delete() called with no conditions' );
+				'DatabaseIbm_db2::delete() called with no conditions' );
 		}
 		$table = $this->tableName( $table );
 		$sql = "DELETE FROM $table";
@@ -1463,7 +1463,7 @@ SQL;
 	 * @return Bool
 	 */
 	public function indexUnique ( $table, $index,
-		$fname = 'Database::indexUnique' )
+		$fname = 'DatabaseIbm_db2::indexUnique' )
 	{
 		$table = $this->tableName( $table );
 		$sql = <<<SQL
@@ -1518,7 +1518,7 @@ SQL;
 	{
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this,
-			'Database::deleteJoin() called with empty $conds' );
+				'DatabaseIbm_db2::deleteJoin() called with empty $conds' );
 		}
 
 		$delTable = $this->tableName( $delTable );
