@@ -3239,7 +3239,7 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'specialpages-group-pages'       => 'Liste de pagine',
 'specialpages-group-pagetools'   => 'Strumenti par le pagine',
 'specialpages-group-wiki'        => 'Dati e strumenti wiki',
-'specialpages-group-redirects'   => 'Reindirizamenti',
+'specialpages-group-redirects'   => 'Pagine speciali de rimando',
 'specialpages-group-spam'        => 'Strumenti anti spam',
 
 # Special:BlankPage

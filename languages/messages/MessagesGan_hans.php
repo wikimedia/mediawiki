@@ -8,6 +8,7 @@
  * @file
  *
  * @author Liangent
+ * @author Lokal Profil
  * @author PhiLiP
  * @author Philip <philip.npc@gmail.com>
  * @author Symane
@@ -915,9 +916,9 @@ $2',
 要眵或要寻先前上传𠮶图像请去[[Special:FileList|图像列表]]，上传同删除会记到[[Special:Log/upload|上传日志]]里度。
 
 要系想扻文件到页面，用得正下底𠮶方式链接:
-'''[[{{ns:file}}:File.jpg]]''',
-'''[[{{ns:file}}:File.png|alt text]]''' 或
-'''[[{{ns:media}}:File.ogg]]''' 直接连接到个只文件。",
+'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''',
+'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki></tt>''' 或
+'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' 直接连接到个只文件。",
 'upload-permitted'            => '容许𠮶文件类型：$1。',
 'upload-preferred'            => '优先𠮶文件类型：$1。',
 'upload-prohibited'           => '禁止𠮶文件类型：$1。',

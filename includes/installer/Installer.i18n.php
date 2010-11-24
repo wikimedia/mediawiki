@@ -3791,6 +3791,8 @@ $messages['hsb'] = array(
 	'config-localsettings-upgrade' => "'''Warnowanje''': Dataja <code>LocalSettings.php</code> je so wotkryła.
 Twoja softwara da so aktualizować.
 Prošu zapodaj hódnotu za <code>\$wgUpgradeKey</code> do pola.",
+	'config-localsettings-key' => 'Aktualizaciski kluč:',
+	'config-localsettings-badkey' => 'Kluč, kotryž sy podał, je wopak',
 	'config-localsettings-noupgrade' => "'''Zmylk''': Dataja <code>LocalSettings.php</code> je so namakała.
 Twoja softwara njeda so tuchwilu aktualizować.
 Instalaciski program je so z přičinow wěstosće znjemónił.",
@@ -3806,6 +3808,7 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 	'config-your-language-help' => 'Wubjer rěč, kotraž ma so za instalaciski proces wužiwać.',
 	'config-wiki-language' => 'Wikirěč:',
 	'config-wiki-language-help' => 'Wubjer rěč, w kotrejž wiki ma so zwjetša pisać.',
+	'config-allow-requests' => 'Eksterne naprašowanja na MediaWiki.org dowolić',
 	'config-back' => '← Wróćo',
 	'config-continue' => 'Dale →',
 	'config-page-language' => 'Rěč',
@@ -3822,6 +3825,7 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 	'config-page-releasenotes' => 'Wersijowe informacije',
 	'config-page-copying' => 'Kopěrowanje',
 	'config-page-upgradedoc' => 'Aktualizowanje',
+	'config-page-locked' => 'Dowolnosć zapowědźena',
 	'config-help-restart' => 'Chceš wšě składowane daty hašeć, kotrež sy zapodał a instalaciski proces znowa startować?',
 	'config-restart' => 'Haj, znowa startować',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Startowa strona MediaWiki]
@@ -3866,8 +3870,10 @@ Instalacija bu přetorhnjena.",
 	'config-uploads-safe' => 'Standardny zapis za nahraćow je přećiwo samowólnemu přewjedźenju skriptow škitany.',
 	'config-db-type' => 'Typ datoweje banki:',
 	'config-db-host' => 'Serwer datoweje banki:',
+	'config-db-host-oracle' => 'Datowa banka TNS:',
 	'config-db-wiki-settings' => 'Tutón wiki identifikować',
 	'config-db-name' => 'Mjeno datoweje banki:',
+	'config-db-name-oracle' => 'Šema datoweje banki:',
 	'config-db-install-account' => 'Wužiwarske konto za instalaciju',
 	'config-db-username' => 'Wužiwarske mjeno datoweje banki:',
 	'config-db-password' => 'Hesło datoweje banki:',
@@ -3886,6 +3892,8 @@ Instalacija bu přetorhnjena.",
 	'config-db-schema-help' => 'Hornje šemy su zwjetša korektne.
 Změń je jenož, jeli wěš, štož činiš.',
 	'config-sqlite-dir' => 'Zapis SQLite-datow:',
+	'config-oracle-def-ts' => 'Standardny tabelowy rum:',
+	'config-oracle-temp-ts' => 'Nachwilny tabelowy rum:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -3896,6 +3904,7 @@ Změń je jenož, jeli wěš, štož činiš.',
 	'config-header-oracle' => 'Nastajenja Oracle',
 	'config-invalid-db-type' => 'Njepłaćiwy typ datoweje banki',
 	'config-missing-db-name' => 'Dyrbiš hódnotu za "Mjeno datoweje banki" zapodać',
+	'config-missing-db-server-oracle' => 'Dyrbiš hódnotu za "Database TNS" zapodać',
 	'config-invalid-db-name' => 'Njepłaćiwe mjeno "$1" datoweje banki.
 Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
 	'config-invalid-db-prefix' => 'Njepłaćiwy prefiks "$1" datoweje banki.
@@ -4011,6 +4020,7 @@ Prošu pokročuj z přichodnej stronu.",
 	'config-install-database' => 'Datowa banka so připrawja',
 	'config-install-pg-schema-failed' => 'Wutworjenje tabelow je so njeporadźiło.
 Zawěsć, zo wužiwar "$1" móže do šemy "$2" pisać.',
+	'config-install-pg-commit' => 'Změny so wotesyłaja',
 	'config-install-user' => 'Tworjenje wužiwarja datoweje banki',
 	'config-install-user-failed' => 'Prawo njeda so wužiwarjej "$1" dać: $2',
 	'config-install-tables' => 'Tworjenje tabelow',
@@ -4024,7 +4034,10 @@ Standardna lisćina sp přeskakuje.",
 	'config-install-secretkey' => 'Tworjenje tajneho kluča',
 	'config-insecure-secret' => "'''Warnowanje:'''Wěsty kluč <code>$1</code> njeda so wutworić.
 Móžeš to manuelnje činić.",
+	'config-install-upgradekey' => 'Standardny aktualizacsiki kluč so wutworja',
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
+	'config-install-mainpage' => 'Hłowna strona so ze standardnym wobsahom wutworja',
+	'config-install-mainpage-failed' => 'Powěsć njeda so zasunyć.',
 );
 
 /** Hungarian (Magyar)

@@ -9,6 +9,7 @@
  *
  * @author Bhawani Gautam Rhk
  * @author Ganesh
+ * @author Indiver
  * @author Lkhatiwada
  * @author RajeshPandey
  * @author ne.wikipedia.org sysops
@@ -477,6 +478,7 @@ $2',
 'userexists'                 => 'तपाईले प्रविष्ट गर्नुभएको प्रयोगकर्ताको नाम पहिले देखिनै प्रयोगमा छ ।
 कृपया फरक नाम छान्नुहोला ।',
 'loginerror'                 => 'प्रवेश त्रुटी',
+'createaccounterror'         => 'खाता बनाउन सकिएन: $1',
 'nocookiesnew'               => 'तपाईँको खाता बनाइयो, तर तपाईँ प्रवेश गर्नुभएको छैन ।
 {{SITENAME}} ले प्रयोगकर्ता प्रवेश गराउन कुकीहरू प्रयोग गर्छ ।
 तपाईँको कुकीहरू निस्क्रिय गरिएको छ।
@@ -525,10 +527,20 @@ $2',
 'accountcreated'             => 'खाता खोलियो',
 'accountcreatedtext'         => '$1 कोलागि प्रयोगकर्ता खाता खोलियो।',
 'createaccount-title'        => '{{SITENAME}}कोलागि खाता खोल्ने काम',
+'createaccount-text'         => 'कसैले तपाईको इमेल ठेगानालाई {{SITENAME}} ($4) मा "$2" नामको खाता बनाएको छ, जसको पासवर्ड "$3" छ।',
+'usernamehasherror'          => 'प्रयोगकर्तानाममा ह्यास अक्षरहरु राख्न मिल्दैन।',
+'login-throttled'            => 'तपाँईले अति धेरै प्रबेश प्रयत्न गरिसक्नु भयो।
+कृपया केही समयपछि मात्र प्रयास गर्नुहोस्।',
 'loginlanguagelabel'         => 'भाषा: $1',
+'suspicious-userlogout'      => 'तपाँईको निर्गमन अनुरोध अस्विकार गरिन्छ किनकी यो खराब ब्राउजर वा क्यासिङ प्रोक्सिले पठाएको जस्तो देखिन्छ।',
 
 # JavaScript password checks
-'password-retype' => 'पासवर्ड फेरी टाईप गर्नुहोस्',
+'password-strength'            => 'पासवर्डको अनुमानित बल: $1',
+'password-strength-bad'        => 'नराम्रो',
+'password-strength-acceptable' => 'ठिकै',
+'password-strength-good'       => 'राम्रो',
+'password-retype'              => 'पासवर्ड फेरी टाईप गर्नुहोस्',
+'password-retype-mismatch'     => 'पासवर्डहरु मिलेनन्',
 
 # Password reset dialog
 'resetpass'                 => 'प्रवेशशव्द परिवर्तन गर्नुहोस्',
@@ -622,6 +634,9 @@ $2',
 वा [{{fullurl:{{FULLPAGENAME}}|action=edit}}  यसै पृष्ठलाई संपादन गर्ने]</span>.',
 'userpage-userdoesnotexist'        => 'प्रयोगकर्ताको खाता  "$1" दर्ता गरिएको छैन ।
 तपाईँले पृष्ठ निर्माण/सम्पादन गर्न चाहनु भएको भए जाँच गर्नुहोस् ।',
+'userpage-userdoesnotexist-view'   => 'प्रयोगकर्ता खाता "$1" दर्ता गरिएको छैन।',
+'blocked-notice-logextract'        => 'यो प्रयोगकर्ता हाल प्रतिबन्धित छ।
+The latest block log entry is provided below for reference:',
 'usercssyoucanpreview'             => "'''सुझाउ:''' तपाईंको नयाँ CSS संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिची जाँच्नुहोस् ।",
 'userjsyoucanpreview'              => "↓ '''सुझाउ:''' तपाईंको नयाँ जाभा स्क्रिप्ट (JavaScript)  संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिची जाँच्नुहोस् ।",
 'usercsspreview'                   => "'''याद राख्नुहोस तपाईँले आफ्नो प्रयोगकर्ता CSSको पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
@@ -712,6 +727,7 @@ $2',
 'histlegend'             => "अंतर चयन:संशोधनहरुको तुलनाको लागि रेडियो बक्समा क्लिक गरेर एण्टर गर्नुहोस् अथवा तल दिएको बटनमा थिच्नुहोस् <br />
 लिजेंड: (चालू): '''({{int:cur}})''' = अवतरणको बीचमा अंतर, '''({{int:last}})''' = पहिलाका अवतरणको बीचमा अंतर, '''{{int:minoreditletter}}''' = सानो परिवर्तन।",
 'history-fieldset-title' => 'इतिहासको विचरण गर्ने',
+'history-show-deleted'   => 'मेटिएका मात्र',
 'histfirst'              => 'पहिलो',
 'histlast'               => 'अन्तिम',
 'historysize'            => '({{PLURAL:$1|१ बाइट |$1 बाइटहरु}})',
@@ -746,6 +762,8 @@ $2',
 'revdelete-hide-comment'      => 'सम्पादन टिप्पणी लुकाउने',
 'revdelete-hide-user'         => 'सम्पादकको प्रयोगकर्ता नाम/IP लुकाउने',
 'revdelete-hide-restricted'   => 'प्रवन्धक वा अरुबाट डेटा कम लिने',
+'revdelete-radio-set'         => 'हुन्छ',
+'revdelete-radio-unset'       => 'हुदैन',
 'revdelete-suppress'          => 'प्रवन्धक वा अरुबाट डेटा कम लिने',
 'revdelete-unsuppress'        => 'पुनर्सथापित पुनरावलोकनबाट बन्देज हटाउने',
 'revdelete-log'               => 'कारण :',
@@ -780,6 +798,7 @@ $1",
 'suppressionlog' => 'कमगरेको लग',
 
 # Revision move
+'revmove-reasonfield'    => 'कारण:',
 'revmove-nullmove-title' => 'गलत शीर्षक',
 
 # History merging
@@ -923,6 +942,7 @@ $1",
 'resultsperpage'                => 'प्रति पृष्ठ खोज मेल(hits):',
 'contextlines'                  => 'प्रति पंक्ति  मेल :',
 'contextchars'                  => 'प्रति पंक्ति सन्दर्भ :',
+'stub-threshold-disabled'       => 'निरस्त',
 'recentchangesdays'             => 'हालको परिवर्तनमा देखाउने दिनहरु:',
 'recentchangesdays-max'         => 'उच्चतम $1 {{PLURAL:$1|दिन|दिनहरु}}',
 'recentchangescount'            => 'पूर्व निर्धारितरुपमा देखाउनुपर्ने सम्पादनहरू :',
@@ -999,6 +1019,8 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'prefs-advancedsearchoptions'   => 'उन्नत विकल्पहरू',
 'prefs-advancedwatchlist'       => 'उन्नत विकल्पहरू',
 'prefs-displayrc'               => 'प्रदर्शन विकल्पहरू',
+'prefs-displaysearchoptions'    => 'प्रदर्शन विकल्पहरू',
+'prefs-displaywatchlist'        => 'प्रदर्शन विकल्पहरू',
 'prefs-diffs'                   => 'diffs(भिन्नता)',
 
 # User rights
@@ -1010,6 +1032,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'saveusergroups'              => 'प्रयोगकर्ता समूहरू संग्रह गर्नुहोस्',
 'userrights-groupsmember'     => 'को सदस्य:',
 'userrights-reason'           => 'कारण :',
+'userrights-no-interwiki'     => 'तपाँईलाई अन्य विकिमा प्रयोगकर्ता अधिकार सम्पादन गर्ने अनुमति छैन।',
 'userrights-changeable-col'   => 'परिवर्तन गर्न सकिने समूहहरु',
 'userrights-unchangeable-col' => 'तपाईले परिवर्तन गर्न सक्नुनहुने समूहहरु',
 
@@ -1094,6 +1117,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'right-siteadmin'             => 'डेटाबेसको ताल्चामार्ने र ताल्चाखोल्ने',
 'right-reset-passwords'       => 'अरु प्रयोगकर्ताको प्रवेशशव्द पुनर्प्रविष्ठीगर्ने',
 'right-override-export-depth' => 'गहिराइ ५ सम्मको लिंकगरिएका पृष्ठहरु सहित निर्यात गर्ने',
+'right-sendemail'             => 'अन्य प्रयोगकर्ताहरुलाई इमेल गर्ने',
 
 # User rights log
 'rightslog'      => 'प्रयोगकर्ता अधिकार लग',
@@ -1129,6 +1153,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'action-import'             => 'यो पृष्ठ अर्को विकिबाट आयात गर्ने',
 'action-unwatchedpages'     => 'अवलोकन नगरिएका  पृष्ठहरुको सूची हेर्ने',
 'action-trackback'          => 'ट्र्याकब्याक (trackback) बुझाउने',
+'action-userrights'         => 'सबै प्रयोगकर्ताका अधिकारहरु सम्पादन गर्ने',
 'action-siteadmin'          => 'डेटाबेस बन्दगर्ने वा खोल्ने',
 
 # Recent changes
