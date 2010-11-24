@@ -85,15 +85,10 @@ class ApiImport extends ApiBase {
 			$params['summary']
 		);
 
-		$result = $importer->doImport();
-		if ( $result instanceof WikiXmlError ) {
-			$this->dieUsageMsg( array( 'import-xml-error',
-				$result->mLine,
-				$result->mColumn,
-				$result->mByte . $result->mContext,
-				xml_error_string( $result->mXmlError ) ) );
-		} elseif ( WikiError::isError( $result ) ) {
-			$this->dieUsageMsg( array( 'import-unknownerror', $result->getMessage() ) ); // This shouldn't happen
+		try {
+			$importer->doImport();
+		} catch ( MWException $e ) {
+			$this->dieUsageMsg( array( 'import-unknownerror', $e->getMessage() ) );
 		}
 
 		$resultData = $reporter->getData();
