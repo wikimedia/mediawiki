@@ -228,7 +228,7 @@ $messages = array(
 'tog-editsection'             => '允许点击[编辑]链接编辑段落',
 'tog-editsectiononrightclick' => '允许右击标题编辑段落（JavaScript）',
 'tog-showtoc'                 => '显示目录（针对超过3个标题的页面）',
-'tog-rememberpassword'        => '在这个浏览器上记住我的登录信息（最长$1日）',
+'tog-rememberpassword'        => '在此浏览器上保留我的登录信息（最长$1{{PLURAL:$1|日|日}}）',
 'tog-watchcreations'          => '将我创建的页面添加到我的监视列表',
 'tog-watchdefault'            => '将我编辑的页面添加到我的监视列表',
 'tog-watchmoves'              => '将我移动的页面添加到我的监视列表',
@@ -606,7 +606,7 @@ $2',
 'yourname'                   => '用户名：',
 'yourpassword'               => '密码：',
 'yourpasswordagain'          => '再次输入密码：',
-'remembermypassword'         => '在这个浏览器上记住我的登入信息（可维持$1{{PLURAL:$1|日|日}}）',
+'remembermypassword'         => '在此浏览器上保留我的登录信息（最长$1{{PLURAL:$1|日|日}}）',
 'securelogin-stick-https'    => '登陆后继续使用 HTTPS 连接',
 'yourdomainname'             => '您的域名：',
 'externaldberror'            => '这可能是由于验证数据库错误或您被禁止更新您的外部账号。',
@@ -2439,7 +2439,7 @@ $1已经被封锁。您是否想更改这个设置？',
 <b>警告！</b>
 对一个经常被访问的页面而言这可能是一个重大与唐突的更改；
 请在行动前先了结其所可能带来的后果。",
-'movepagetext-noredirectfixer' => '↓使用下面的表格将会重新命名一个页面，并将其所有修订历史同时移动到新页面。
+'movepagetext-noredirectfixer' => '使用下面的表格将会重新命名一个页面，并将其所有修订历史同时移动到新页面。
 老的页面将成为新页面的重定向页。
 请检查[[Special:DoubleRedirects|双重重定向]]或[[Special:BrokenRedirects|损坏重定向]]链接。
 您应当负责确定所有链接依然会链到指定的页面。

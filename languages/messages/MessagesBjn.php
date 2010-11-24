@@ -1221,6 +1221,8 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'action-block'              => 'blukir pamuruk ini matan mambabak',
 'action-patrol'             => "tandai babakan nang lain sawagai ta'awasi",
 'action-unwatchedpages'     => 'tiringi daptar tutungkaran nang kada diitihi',
+'action-userrights'         => 'babak sabarataan hak pamuruk',
+'action-siteadmin'          => 'sunduk atawa bukasunduk basisdata',
 'action-revisionmove'       => 'pindahi raralatan',
 
 # Recent changes

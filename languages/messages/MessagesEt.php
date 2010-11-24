@@ -955,10 +955,10 @@ Võid pöörduda tagasi ja toimetada olemasolevat lehekülge või [[Special:User
 'permissionserrors'                => 'Viga õigustes',
 'permissionserrorstext'            => 'Sul pole õigust seda teha {{PLURAL:$1|järgmisel põhjusel|järgmistel põhjustel}}:',
 'permissionserrorstext-withaction' => 'Sul pole lubatud {{lcfirst:$2}} {{PLURAL:$1|järgneval põhjusel|järgnevatel põhjustel}}:',
-'recreate-moveddeleted-warn'       => "'''Hoiatus: Te loote uuesti lehte, mis on varem kustutatud.'''
+'recreate-moveddeleted-warn'       => "'''Hoiatus: Lood uuesti lehekülge, mis on varem kustutatud.'''
 
-Kaaluge, kas lehe uuesti loomine on kohane.
-Lehe eelnevad kustutamised ja teisaldamised:",
+Kaalu, kas lehekülje uuesti loomine on kohane.
+Lehekülje eelnevad kustutamised ja teisaldamised:",
 'moveddeleted-notice'              => 'See lehekülg on kustutatud.
 Allpool on esitatud lehekülje kustutamis- ja teisaldamislogi.',
 'log-fulllog'                      => 'Vaata kogu logi',
