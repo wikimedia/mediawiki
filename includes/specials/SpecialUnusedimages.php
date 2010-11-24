@@ -40,25 +40,11 @@ class UnusedimagesPage extends ImageQueryPage {
 	function isSyndicated() { return false; }
 
 	function getSQL() {
-		global $wgCountCategorizedImagesAsUsed, $wgDBtype;
+		global $wgCountCategorizedImagesAsUsed;
+
 		$dbr = wfGetDB( DB_SLAVE );
 
-		switch ($wgDBtype) {
-			case 'mysql': 
-				$epoch = 'UNIX_TIMESTAMP(img_timestamp)'; 
-				break;
-			case 'oracle': 
-				$epoch = '((trunc(img_timestamp) - to_date(\'19700101\',\'YYYYMMDD\')) * 86400)'; 
-				break;
-			case 'sqlite':
-				$epoch = 'img_timestamp';
-				break;
-			case 'mssql':
-				$epoch = 'DATEDIFF(s,CONVERT(datetime,\'1/1/1970\'),img_timestamp)';
-				break;
-			default:
-				$epoch = 'EXTRACT(epoch FROM img_timestamp)';
-		}
+		$epoch = $db->unixTimestamp( 'rev_timestamp' );
 
 		if ( $wgCountCategorizedImagesAsUsed ) {
 			list( $page, $image, $imagelinks, $categorylinks ) = $dbr->tableNamesN( 'page', 'image', 'imagelinks', 'categorylinks' );

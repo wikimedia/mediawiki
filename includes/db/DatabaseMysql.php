@@ -474,6 +474,9 @@ class DatabaseMysql extends DatabaseBase {
 		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
 	}
 
+	public function unixTimestamp( $field ) {
+		return "UNIX_TIMESTAMP($field)";
+	}
 
 	/**
 	 * Determines if the last failure was due to a deadlock

@@ -39,31 +39,10 @@ class AncientPagesPage extends QueryPage {
 	function isSyndicated() { return false; }
 
 	function getSQL() {
-		global $wgDBtype;
 		$db = wfGetDB( DB_SLAVE );
 		$page = $db->tableName( 'page' );
 		$revision = $db->tableName( 'revision' );
-
-		switch ($wgDBtype) {
-			case 'mysql': 
-				$epoch = 'UNIX_TIMESTAMP(rev_timestamp)'; 
-				break;
-			case 'ibm_db2':
-				// TODO implement proper conversion to a Unix epoch
-				$epoch = 'rev_timestamp';
-				break;
-			case 'oracle': 
-				$epoch = '((trunc(rev_timestamp) - to_date(\'19700101\',\'YYYYMMDD\')) * 86400)'; 
-				break;
-			case 'sqlite':
-				$epoch = 'rev_timestamp';
-				break;
-			case 'mssql':
-				$epoch = 'DATEDIFF(s,CONVERT(datetime,\'1/1/1970\'),rev_timestamp)';
-				break;
-			default:
-				$epoch = 'EXTRACT(epoch FROM rev_timestamp)';
-		}
+		$epoch = $db->unixTimestamp( 'rev_timestamp' );
 
 		return
 			"SELECT 'Ancientpages' as type,
