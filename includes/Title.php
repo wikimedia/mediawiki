@@ -1475,7 +1475,7 @@ class Title {
 	 * @see checkQuickPermissions for parameter information
 	 */
 	private function checkUserBlock( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		if( $short ) {
+		if( $short && count( $errors ) > 0 ) {
 			return $errors;
 		}
 
