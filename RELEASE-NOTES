@@ -41,8 +41,6 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   which causes Vector to render the variants drop-down menu with a label
   showing the current variant name. This is off by default, pending further
   research into its user experience implications.
-* Added $wgJQueryVersion, $wgJQueryMinified and $wgJQueryOnEveryPage (true by
-  default) to configure loading of jQuery by MediaWiki.
 * XmlFunctions.php has been removed. Use the Xml or Html classes as appropriate.
 * Added $wgSQLMode for setting database SQL modes - either performance (null)
   or other reasons (such as enabling stricter checks)
