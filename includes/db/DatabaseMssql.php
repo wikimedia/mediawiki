@@ -787,6 +787,10 @@ class DatabaseMssql extends DatabaseBase {
 		return false;
 	}
 
+	public function unixTimestamp( $field ) {
+		return "DATEDIFF(s,CONVERT(datetime,'1/1/1970'),$field)";
+	}
+
 	/**
 	 * Begin a transaction, committing any previously open transaction
 	 */
