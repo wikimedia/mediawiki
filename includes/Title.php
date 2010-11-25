@@ -1898,21 +1898,12 @@ class Title {
 
 	/**
 	 * Is this a *valid* .css or .js subpage of a user page?
-	 * Check that the corresponding skin exists
 	 *
 	 * @return \type{\bool}
+	 * @deprecated
 	 */
 	public function isValidCssJsSubpage() {
-		if ( $this->isCssJsSubpage() ) {
-			$name = $this->getSkinFromCssJsSubpage();
-			if ( $name == 'common' ) {
-				return true;
-			}
-			$skinNames = Skin::getSkinNames();
-			return array_key_exists( $name, $skinNames );
-		} else {
-			return false;
-		}
+		return $this->isCssJsSubpage();
 	}
 
 	/**

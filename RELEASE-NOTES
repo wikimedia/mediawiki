@@ -438,6 +438,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Fixed PHP warnings when updating a broken MySQL database.
 * (bug 26023) Corrected deleteBacth.php's documentation
 * (bug 25451) Improved datetime representation in 32 bit php >= 5.2.
+* Show "skin does not exist error" only when the skin is inputted in the wrong
+  case.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

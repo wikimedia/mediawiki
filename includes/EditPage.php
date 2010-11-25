@@ -274,6 +274,24 @@ class EditPage {
 		return $this->deletedSinceEdit;
 	}
 
+	/**
+	 * Checks whether the user entered a skin name in uppercase,
+	 * e.g. "User:Example/Monobook.css" instead of "monobook.css"
+	 */
+	protected function isWrongCaseCssJsPage() {
+		if( $this->mTitle->isCssJsSubpage() ) {
+			$name = $this->mTitle->getSkinFromCssJsSubpage();
+			$skins = array_merge(
+				array_keys( Skin::getSkinNames() ),
+				array( 'common' )
+			);
+			return !in_array( $name, $skins )
+				&& in_array( strtolower( $name ), $skins );
+		} else {
+			return false;
+		}
+	}
+
 	function submit() {
 		$this->edit();
 	}
@@ -360,7 +378,7 @@ class EditPage {
 		$this->isCssJsSubpage      = $this->mTitle->isCssJsSubpage();
 		$this->isCssSubpage        = $this->mTitle->isCssSubpage();
 		$this->isJsSubpage         = $this->mTitle->isJsSubpage();
-		$this->isValidCssJsSubpage = $this->mTitle->isValidCssJsSubpage();
+		$this->isWrongCaseCssJsPage = $this->isWrongCaseCssJsPage();
 
 		# Show applicable editing introductions
 		if ( $this->formtype == 'initial' || $this->firsttime )
@@ -1407,7 +1425,7 @@ HTML
 		} else {
 			if ( $this->isCssJsSubpage ) {
 				# Check the skin exists
-				if ( !$this->isValidCssJsSubpage ) {
+				if ( $this->isWrongCaseCssJsPage ) {
 					$wgOut->wrapWikiMsg( "<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>", array( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() ) );
 				}
 				if ( $this->formtype !== 'preview' ) {
