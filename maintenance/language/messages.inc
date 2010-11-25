@@ -2012,7 +2012,6 @@ $wgMessageStructure = array(
 		'ipb-edit-dropdown',
 		'ipb-unblock-addr',
 		'ipb-unblock',
-		'ipb-blocklist-addr',
 		'ipb-blocklist',
 		'ipb-blocklist-contribs',
 		'unblockip',

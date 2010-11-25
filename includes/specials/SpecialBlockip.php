@@ -811,22 +811,9 @@ class IPBlockForm extends SpecialPage {
 	 * @return string
 	 */
 	private function getBlockListLink( $skin ) {
-		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
-		$query = array();
-
-		if( $this->BlockAddress ) {
-			$addr = strtr( $this->BlockAddress, '_', ' ' );
-			$message = wfMsg( 'ipb-blocklist-addr', $addr );
-			$query['ip'] = $this->BlockAddress;
-		} else {
-			$message = wfMsg( 'ipb-blocklist' );
-		}
-
 		return $skin->linkKnown(
-			$list,
-			htmlspecialchars( $message ),
-			array(),
-			$query
+			SpecialPage::getTitleFor( 'Ipblocklist' ),
+			wfMsg( 'ipb-blocklist' )
 		);
 	}
 
