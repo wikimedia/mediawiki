@@ -1783,7 +1783,6 @@ Přyńdź do [[Special:IPBlockList|listy zawartych adresůw IP]] coby přejřeć
 'ipb-edit-dropdown'               => 'Sprowjej powody zawjyrańo uod sprowjyń',
 'ipb-unblock-addr'                => 'Uodymknij $1',
 'ipb-unblock'                     => 'Uodymknij užytkowńika abo adres IP',
-'ipb-blocklist-addr'              => 'Istńejůnce zawarća uod sprowjyń lů $1',
 'ipb-blocklist'                   => 'Zoboč istńijůnce zawarća',
 'ipb-blocklist-contribs'          => 'Wkłod $1',
 'unblockip'                       => 'Uodymkńij sprowjyńo užytkowńikowi',

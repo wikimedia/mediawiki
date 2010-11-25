@@ -1542,7 +1542,6 @@ Baroi barrasī ba [[Special:IPBlockList|fehristi nişonahoi IP va nomhoi korbari
 'ipb-edit-dropdown'           => "Daleli qat'i dastrasī",
 'ipb-unblock-addr'            => 'Boz kardani $1',
 'ipb-unblock'                 => 'Boz kardani nomi korbarī jo nişonai IP',
-'ipb-blocklist-addr'          => 'Bastahoi mavçud baroi $1',
 'ipb-blocklist'               => 'Didani bastahoi mavçud',
 'unblockip'                   => 'Boz kardani korbar',
 'unblockiptext'               => 'Baroi barqaror kardan dastrasiji naviştan baroi nişonai IP jo nomi korbariji qablan basta şuda, az formi zerin istifoda kuned.',

@@ -2230,7 +2230,6 @@ Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypal
 'ipb-edit-dropdown'               => 'Blokirleme sebäplerini redaktirle',
 'ipb-unblock-addr'                => '$1 üçin blokirlemäni aýyr',
 'ipb-unblock'                     => 'Ulanyjy adynyň ýa-da IP adresiniň blokirlemesini aýyr',
-'ipb-blocklist-addr'              => '$1 üçin bar bolan blokirlemeler',
 'ipb-blocklist'                   => 'Bar bolan blokirlemeleri görkez',
 'ipb-blocklist-contribs'          => '$1 ulanyjysynyň goşantlary',
 'unblockip'                       => 'Ulanyjynyň blokirlemesini aýyr',

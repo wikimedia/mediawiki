@@ -2361,7 +2361,6 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipb-edit-dropdown'               => "Hark'aypa hamunta llamk'apuy",
 'ipb-unblock-addr'                => "Hark'asqa $1-ta qispichiy",
 'ipb-unblock'                     => "Hark'asqa ruraqta icha IP huchhata qispichiy",
-'ipb-blocklist-addr'              => "Kachkaq hark'asqakuna, $1-paq",
 'ipb-blocklist'                   => "Kachkaq hark'asqakunata qhaway",
 'ipb-blocklist-contribs'          => "$1-paq llamk'apusqakuna",
 'unblockip'                       => "Hark'asqa ruraqta qispichiy",

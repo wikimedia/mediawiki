@@ -1610,7 +1610,6 @@ Zur Uffhebung dar Sperre siehe ie [[Special:IPBlockList|Liste oller aktiven Sper
 'ipb-edit-dropdown'            => 'Sperrgrinde beoarbeeta',
 'ipb-unblock-addr'             => '„$1“ freigahn',
 'ipb-unblock'                  => 'IP-Atresse/Nutzer freigahn',
-'ipb-blocklist-addr'           => 'Aktuelle Sperre fier „$1“ onzeiga',
 'ipb-blocklist'                => 'Olle aktuellen Sperra oazeiga',
 'ipb-blocklist-contribs'       => 'Nutzerbeiträge fier „$1“',
 'unblockip'                    => 'IP-Atresse freigahn',

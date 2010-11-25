@@ -2208,7 +2208,6 @@ Ara l-[[Special:IPBlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.
 'ipb-edit-dropdown'               => 'Immodifika r-raġunijiet tal-imblukkar',
 'ipb-unblock-addr'                => 'Żblokkja $1',
 'ipb-unblock'                     => 'Żblokka isem tal-utent jew indirizz IP',
-'ipb-blocklist-addr'              => 'Uri l-blokki attivi għal $1',
 'ipb-blocklist'                   => 'Uri l-blokki eżistenti',
 'ipb-blocklist-contribs'          => "Kontribuzzjonijiet ta' $1",
 'unblockip'                       => 'Żblokkja l-utent',

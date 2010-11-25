@@ -844,7 +844,7 @@ Blokir dilakukan oleh $1.
 Alasan yang diberikan adalah ''$2''.
 
 * Diblokir sejak: $8
-* Blokir kadaluwarsa pada: $6
+* Blokir kedaluwarsa pada: $6
 * Sasaran pemblokiran: $7
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
@@ -858,7 +858,7 @@ Tolong sertakan salah satu atau kedua informasi ini pada setiap pertanyaan yang 
 :\'\'$2\'\'
 
 * Diblokir sejak: $8
-* Blokir kadaluwarsa pada: $6
+* Blokir kedaluwarsa pada: $6
 * Sasaran pemblokiran: $7
 
 Anda dapat menghubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pengurus lainnya]] untuk membicarakan hal ini.
@@ -2245,9 +2245,9 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'prot_1movedto2'              => '[[$1]] dipindahkan ke [[$2]]',
 'protect-legend'              => 'Konfirmasi perlindungan',
 'protectcomment'              => 'Alasan:',
-'protectexpiry'               => 'Kadaluwarsa:',
-'protect_expiry_invalid'      => 'Waktu kadaluwarsa tidak sah.',
-'protect_expiry_old'          => 'Waktu kadaluwarsa adalah pada masa lampau.',
+'protectexpiry'               => 'Kedaluwarsa:',
+'protect_expiry_invalid'      => 'Waktu kedaluwarsa tidak sah.',
+'protect_expiry_old'          => 'Waktu kedaluwarsa adalah pada masa lampau.',
 'protect-unchain-permissions' => 'Aktifkan opsi perlindungan lanjutan',
 'protect-text'                => "Anda dapat melihat atau mengganti tingkatan perlindungan untuk halaman '''<nowiki>$1</nowiki>''' di sini.",
 'protect-locked-blocked'      => "Anda tak dapat mengganti tingkat perlindungan selagi diblokir. Berikut adalah konfigurasi saat ini untuk halaman '''$1''':",
@@ -2265,7 +2265,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
 'protect-othertime'           => 'Waktu lain:',
 'protect-othertime-op'        => 'waktu lain',
-'protect-existing-expiry'     => 'Waktu kadaluwarsa saat ini: $3, $2',
+'protect-existing-expiry'     => 'Waktu kedaluwarsa saat ini: $2 $3',
 'protect-otherreason'         => 'Alasan lain/tambahan:',
 'protect-otherreason-op'      => 'Alasan lain',
 'protect-dropdown'            => '*Alasan umum perlindungan
@@ -2400,7 +2400,7 @@ Ini hanya boleh dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{Medi
 Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divandalisasi).',
 'ipaddress'                       => 'Alamat IP:',
 'ipadressorusername'              => 'Alamat IP atau nama pengguna:',
-'ipbexpiry'                       => 'Kadaluwarsa:',
+'ipbexpiry'                       => 'Kedaluwarsa:',
 'ipbreason'                       => 'Alasan:',
 'ipbreasonotherlist'              => 'Alasan lain',
 'ipbreason-dropdown'              => '*Alasan umum
@@ -2432,7 +2432,6 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'ipb-edit-dropdown'               => 'Sunting alasan pemblokiran',
 'ipb-unblock-addr'                => 'Hilangkan blokir $1',
 'ipb-unblock'                     => 'Hilangkan blokir seorang pengguna atau suatu alamat IP',
-'ipb-blocklist-addr'              => 'Blokir yang diterapkan untuk $1',
 'ipb-blocklist'                   => 'Lihat blokir yang diterapkan',
 'ipb-blocklist-contribs'          => 'Kontribusi untuk $1',
 'unblockip'                       => 'Hilangkan blokir terhadap alamat IP atau pengguna',
@@ -2451,7 +2450,7 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|pemblokiran|pemblokiran}} lain',
 'blocklistline'                   => '$1, $2 memblokir $3 ($4)',
 'infiniteblock'                   => 'tak terbatas',
-'expiringblock'                   => 'kadaluwarsa pada $2, $1',
+'expiringblock'                   => 'kedaluwarsa pada $1 $2',
 'anononlyblock'                   => 'hanya pengguna anonim',
 'noautoblockblock'                => 'pemblokiran otomatis dimatikan',
 'createaccountblock'              => 'pembuatan akun diblokir',
@@ -2468,8 +2467,8 @@ Alasan yang diberikan untuk pemblokiran $1 adalah: "$2"',
 'blocklogpage'                    => 'Log pemblokiran',
 'blocklog-showlog'                => 'Pengguna ini telah diblokir sebelumnya. Log pemblokiran di sediakan dibawah untuk referensi:',
 'blocklog-showsuppresslog'        => 'Pengguna ini telah diblokir dan disembunyikan sebelumnya. Log penekanan disediakan dibawah untuk referensi:',
-'blocklogentry'                   => 'memblokir [[$1]] dengan waktu kadaluwarsa $2 $3',
-'reblock-logentry'                => 'mengubah pemblokiran [[$1]] dengan waktu kadaluwarsa $2 $3',
+'blocklogentry'                   => 'memblokir [[$1]] dengan waktu kedaluwarsa $2 $3',
+'reblock-logentry'                => 'mengubah pemblokiran [[$1]] dengan waktu kedaluwarsa $2 $3',
 'blocklogtext'                    => 'Di bawah ini adalah log pemblokiran dan pembukaan blokir terhadap pengguna.
 Alamat IP yang diblokir secara otomatis tidak terdapat di dalam daftar ini.
 Lihat [[Special:IPBlockList|daftar alamat IP yang diblokir]] untuk daftar pemblokiran terkini.',
@@ -2482,7 +2481,7 @@ Lihat [[Special:IPBlockList|daftar alamat IP yang diblokir]] untuk daftar pemblo
 'block-log-flags-angry-autoblock' => 'peningkatan sistem pemblokiran otomatis telah diaktifkan',
 'block-log-flags-hiddenname'      => 'nama pengguna tersembunyi',
 'range_block_disabled'            => 'Kemampuan pengurus dalam membuat blokir blok IP dimatikan.',
-'ipb_expiry_invalid'              => 'Waktu kadaluwarsa tidak sah.',
+'ipb_expiry_invalid'              => 'Waktu kedaluwarsa tidak sah.',
 'ipb_expiry_temp'                 => 'Pemblokiran atas nama pengguna yang disembunyikan harus permanen.',
 'ipb_hide_invalid'                => 'Tak dapat menutup akun ini; mungkin akun tersebut memiliki terlalu banyak suntingan.',
 'ipb_already_blocked'             => '"$1" telah diblokir',
@@ -3236,7 +3235,7 @@ Salin alamat tersebut ke penjelajah web Anda dan buka alamat tersebut untuk mela
 Harap cek kemungkinan karakter ilegal pada alamat surel.
 
 Aplikasi pengiriman surel menginformasikan: $1',
-'confirmemail_invalid'      => 'Kode konfirmasi salah. Kode tersebut mungkin sudah kadaluwarsa.',
+'confirmemail_invalid'      => 'Kode konfirmasi salah. Kode tersebut mungkin sudah kedaluwarsa.',
 'confirmemail_needlogin'    => 'Anda harus melakukan $1 untuk mengkonfirmasikan alamat surel Anda.',
 'confirmemail_success'      => 'Alamat surel Anda telah dikonfirmasi.
 Sekarang Anda dapat [[Special:UserLogin|masuk log]] dan mulai menggunakan wiki.',
@@ -3255,20 +3254,20 @@ Klik pada pranala ini untuk membatalkan konfirmasi alamat surel:
 $5
 
 Kode konfirmasi ini akan kedaluwarsa pada $4.',
-'confirmemail_body_changed' => 'Seseorang, mungkin anda, dari alamat IP $1,
-telah merubah surel dari akun "$2" pada alamat ini di {{SITENAME}}.
+'confirmemail_body_changed' => 'Seseorang, mungkin Anda, dari alamat IP $1,
+telah mengubah surel dari akun "$2" pada alamat ini di {{SITENAME}}.
 
-Untuk mengkonfirmasi bahwa akun ini adalah benar milik anda sekaligus mengaktifkan
+Untuk mengkonfirmasi bahwa akun ini adalah benar milik Anda sekaligus mengaktifkan
 kembali fitur surel pada {{SITENAME}}, ikuti pranala berikut pada browser Anda:
 
 $3
 
-Jika akun ini *bukan* milik anda, ikuti pranala berikut
+Jika akun ini *bukan* milik Anda, ikuti pranala berikut
 untuk membatalkan konfirmasi alamat surel:
 
 $5
 
-Kode konfirmasi ini akan kadaluwarsa pada $4.',
+Kode konfirmasi ini akan kedaluwarsa pada $4.',
 'confirmemail_invalidated'  => 'Konfirmasi alamat surel dibatalkan',
 'invalidateemail'           => 'Batalkan konfirmasi surel',
 
@@ -3512,7 +3511,7 @@ Keterangan tampilan:
 'dberr-again'       => 'Cobalah menunggu beberapa menit dan muat ulang.',
 'dberr-info'        => '(Tak dapat tersambung dengan server basis data: $1)',
 'dberr-usegoogle'   => 'Anda dapat mencoba pencarian melalui Google untuk sementara waktu.',
-'dberr-outofdate'   => 'Harap diperhatikan bahwa indeks mereka terhadap isi kami mungkin sudah kadaluwarsa.',
+'dberr-outofdate'   => 'Harap diperhatikan bahwa indeks mereka terhadap isi kami mungkin sudah kedaluwarsa.',
 'dberr-cachederror' => 'Berikut adalah salinan tersimpan halaman yang diminta, dan mungkin bukan yang terbaru.',
 
 # HTML forms

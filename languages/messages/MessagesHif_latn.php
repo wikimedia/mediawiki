@@ -2214,7 +2214,6 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:IPBlockList|IP block list]]
 'ipb-edit-dropdown'               => 'Badlao ke roke ke kaaran',
 'ipb-unblock-addr'                => '$1 ke rukawat ke khalaas karo',
 'ipb-unblock'                     => 'Ek username nai to IP address ke rukawat ke khalaas karo',
-'ipb-blocklist-addr'              => '$1 ke abhi ke rukawat',
 'ipb-blocklist'                   => 'Abhi ke rukawat ke dekho',
 'ipb-blocklist-contribs'          => '$1 ke yogdaan',
 'unblockip'                       => 'Sadasya ke rukawat ke khalaas karo',

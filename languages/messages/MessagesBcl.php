@@ -1504,7 +1504,6 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipb-edit-dropdown'           => 'Hirahón an mga rasón sa pagbabagát',
 'ipb-unblock-addr'            => 'Paagihon $1',
 'ipb-unblock'                 => 'Bawion an pagbagat nin ngaran nin paragamit o direccion nin IP',
-'ipb-blocklist-addr'          => 'Hilingón an mga presenteng pagbagat ki $1',
 'ipb-blocklist'               => 'Hilingon an mga presenteng binagat',
 'unblockip'                   => 'Paagihon an parâgamit',
 'unblockiptext'               => 'Gamiton an pormulario sa baba para puede giraray suratan an dating binagat na direccion nin IP address o ngaran nin paragamit.',

@@ -992,7 +992,6 @@ Zur da Aufheewung vo da Sperrn schau unter da [[Special:IPBlockList|Listen vo ol
 'ipb-edit-dropdown'            => 'Sperrgrynd beorwaiten',
 'ipb-unblock-addr'             => '„$1“ fraigeem',
 'ipb-unblock'                  => 'IP-Adress/Benytzer fraigeem',
-'ipb-blocklist-addr'           => 'Aktuelle Sperrn fyr „$1“ åzoang',
 'ipb-blocklist'                => 'Olle aktuöin Sperrn åzaang',
 'ipb-blocklist-contribs'       => 'Benytzerbaiträg vo „$1“',
 'unblockip'                    => 'IP-Adress fraigeem',

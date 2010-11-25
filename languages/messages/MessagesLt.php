@@ -2327,7 +2327,6 @@ Aplankykite [[Special:IPBlockList|IP blokavimų istoriją]] norėdami jį perži
 'ipb-edit-dropdown'               => 'Redaguoti blokavimų priežastis',
 'ipb-unblock-addr'                => 'Atblokuoti $1',
 'ipb-unblock'                     => 'Atblokuoti naudotojo vardą arba IP adresą',
-'ipb-blocklist-addr'              => 'Egzistuojantys $1 blokavimai',
 'ipb-blocklist'                   => 'Rodyti egzistuončius blokavimus',
 'ipb-blocklist-contribs'          => '$1 indėlis',
 'unblockip'                       => 'Atblokuoti naudotoją',
