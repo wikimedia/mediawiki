@@ -751,6 +751,7 @@ class DatabasePostgres extends DatabaseBase {
 			return true;
 		}
 		return false;
+
 	}
 
 	/**

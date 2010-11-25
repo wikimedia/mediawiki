@@ -395,6 +395,7 @@ abstract class DatabaseInstaller {
 	 *   Set this to false to show a creation checkbox.
 	 */
 	public function getWebUserBox( $noCreateMsg = false ) {
+		$name = $this->getName();
 		$s = Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
 			$this->getCheckBox(

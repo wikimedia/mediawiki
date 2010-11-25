@@ -133,6 +133,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$this->assertTrue( $exception, "Got exception" );
 
 		self::$user->addGroup( 'sysop' );
+		$exception = false;
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',

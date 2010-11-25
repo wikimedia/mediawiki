@@ -563,6 +563,11 @@ class OutputPage {
 		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $name ) );
 		$this->mPagetitle = $nameWithTags;
 
+		$taction = $this->getPageTitleActionText();
+		if( !empty( $taction ) ) {
+			$name .= ' - '.$taction;
+		}
+
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
 		$this->setHTMLTitle( wfMsg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) ) );
 	}

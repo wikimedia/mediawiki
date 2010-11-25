@@ -347,8 +347,7 @@ class WatchlistEditor {
 	 */
 	private function showNormalForm( $output, $user ) {
 		global $wgUser;
-		$count = $this->showItemCount( $output, $user );
-		if( $count > 0 ) {
+		if( ( $count = $this->showItemCount( $output, $user ) ) > 0 ) {
 			$self = SpecialPage::getTitleFor( 'Watchlist' );
 			$form  = Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $self->getLocalUrl( array( 'action' => 'edit' ) ) ) );

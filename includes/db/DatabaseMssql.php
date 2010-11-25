@@ -552,9 +552,9 @@ class DatabaseMssql extends DatabaseBase {
 	 */
 	function nextSequenceValue( $seqName ) {
 		if ( !$this->tableExists( 'sequence_' . $seqName ) ) {
-			sqlsrv_query( $this->mConn, "CREATE TABLE [sequence_$seqName] (id INT NOT NULL IDENTITY PRIMARY KEY, junk varchar(10) NULL)" );
+			$ret = sqlsrv_query( $this->mConn, "CREATE TABLE [sequence_$seqName] (id INT NOT NULL IDENTITY PRIMARY KEY, junk varchar(10) NULL)" );
 		}
-		sqlsrv_query( $this->mConn, "INSERT INTO [sequence_$seqName] (junk) VALUES ('')" );
+		$ret = sqlsrv_query( $this->mConn, "INSERT INTO [sequence_$seqName] (junk) VALUES ('')" );
 		$ret = sqlsrv_query( $this->mConn, "SELECT TOP 1 id FROM [sequence_$seqName] ORDER BY id DESC" );
 		$row = sqlsrv_fetch_array( $ret, SQLSRV_FETCH_ASSOC );// KEEP ASSOC THERE, weird weird bug dealing with the return value if you don't
 

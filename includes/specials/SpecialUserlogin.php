@@ -176,6 +176,7 @@ class LoginForm {
 			$wgOut->addWikiMsg( 'accmailtext', $u->getName(), $u->getEmail() );
 			$wgOut->returnToMain( false );
 		}
+		$u = 0;
 	}
 
 	/**
@@ -619,7 +620,7 @@ class LoginForm {
 		}
 
 		wfDebug( __METHOD__ . ": creating account\n" );
-		$this->initUser( $user, true );
+		$user = $this->initUser( $user, true );
 		return self::SUCCESS;
 	}
 
