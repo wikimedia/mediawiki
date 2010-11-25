@@ -2089,7 +2089,6 @@ Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.
 'ipb-edit-dropdown'               => 'Blockgrünn ännern',
 'ipb-unblock-addr'                => '„$1“ freegeven',
 'ipb-unblock'                     => 'IP-Adress/Bruker freegeven',
-'ipb-blocklist-addr'              => 'Aktuelle Sperren för „$1“',
 'ipb-blocklist'                   => 'Aktuelle Sperren wiesen',
 'ipb-blocklist-contribs'          => 'Brukerbidrääg för „$1“',
 'unblockip'                       => 'IP-Adress freegeven',

@@ -2341,7 +2341,6 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'ipb-edit-dropdown'               => 'Kemmañ an abegoù stankañ',
 'ipb-unblock-addr'                => 'Distankañ $1',
 'ipb-unblock'                     => "Distankañ un implijer pe ur chomlec'h IP",
-'ipb-blocklist-addr'              => 'Stankadennoù zo evit $1',
 'ipb-blocklist'                   => 'Teuler ur sell ouzh roll an dud stanket evit poent',
 'ipb-blocklist-contribs'          => 'Degasadennoù evit $1',
 'unblockip'                       => "Distankañ ur chomlec'h IP",

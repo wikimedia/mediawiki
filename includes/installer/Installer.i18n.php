@@ -514,7 +514,6 @@ $messages['qqq'] = array(
 * $1 is the configured session lifetime.',
 	'config-session-path-bad' => 'Parameters:
 * $1 is the configured <code>session.save_path</code>.',
-	'config-show-help' => '{{Identical|Help}}',
 	'config-back' => '{{Identical|Back}}',
 	'config-continue' => '{{Identical|Continue}}',
 	'config-page-language' => '{{Identical|Language}}',
@@ -522,6 +521,7 @@ $messages['qqq'] = array(
 	'config-page-options' => '{{Identical|Options}}',
 	'config-page-install' => '{{Identical|Install}}',
 	'config-page-copying' => 'This is a link to the full GPL text',
+	'config-page-locked' => '{{Identical|Permission denied}}',
 	'config-restart' => 'Button text to confirm the installation procedure has to be restarted.',
 	'config-env-php' => 'Parameters:
 * $1 is the version of PHP that has been installed.',
@@ -689,6 +689,7 @@ Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geld
 	'config-page-releasenotes' => 'Vrystellingsnotas',
 	'config-page-copying' => 'Besig met kopiëring',
 	'config-page-upgradedoc' => 'Besig met opgradering',
+	'config-page-locked' => 'Toestemming geweier',
 	'config-restart' => 'Ja, herbegin dit',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki tuisblad]
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
@@ -4884,7 +4885,7 @@ Anda tidak dapat menginstal MediaWiki.',
 	'config-env-latest-ok' => 'Anda menginstal versi terbaru Mediawiki.',
 	'config-env-latest-new' => "'''Catatan:''' Anda menginstal versi pengembangan MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Peringatan:''' Penginstal tidak dapat memeroleh informasi mengenai rilis MediaWiki terbaru dari [$1].",
-	'config-env-latest-old' => "'''Peringatan:''' Anda menginstal versi kadaluwarsa MediaWiki.",
+	'config-env-latest-old' => "'''Peringatan:''' Anda menginstal versi kedaluwarsa MediaWiki.",
 	'config-env-latest-help' => 'Anda menginstal versi $1, tetapi versi terbaru ialah $2.
 Anda disarankan untuk menggunakan versi terbaru yang dapat diunduh dari [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'Menggunakan utf8_normalize.so Brion Vibber untuk normalisasi Unicode.',

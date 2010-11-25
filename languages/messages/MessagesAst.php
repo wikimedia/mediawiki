@@ -1881,7 +1881,6 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipb-edit-dropdown'               => 'Editar motivos de bloquéu',
 'ipb-unblock-addr'                => 'Desbloquiar $1',
 'ipb-unblock'                     => "Desbloquiar un nome d'usuariu o direición IP",
-'ipb-blocklist-addr'              => 'Bloqueos esistentes de $1',
 'ipb-blocklist'                   => 'Ver los bloqueos esistentes',
 'ipb-blocklist-contribs'          => 'Contribuciones de $1',
 'unblockip'                       => 'Desbloquiar usuariu',

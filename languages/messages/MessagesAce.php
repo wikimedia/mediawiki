@@ -381,14 +381,16 @@ $messages = array(
 'red-link-title'      => '$1 (ôn goh na)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Ôn',
-'nstab-user'     => 'Ureuëng nguy',
-'nstab-media'    => 'Ôn media',
-'nstab-special'  => 'Kusuih',
-'nstab-project'  => 'Buët ôn',
-'nstab-image'    => 'Beureukah',
-'nstab-template' => 'Seunaleuëk',
-'nstab-category' => 'Kawan',
+'nstab-main'      => 'Ôn',
+'nstab-user'      => 'Ureuëng nguy',
+'nstab-media'     => 'Ôn media',
+'nstab-special'   => 'Kusuih',
+'nstab-project'   => 'Buët ôn',
+'nstab-image'     => 'Beureukah',
+'nstab-mediawiki' => 'Peusan',
+'nstab-template'  => 'Seunaleuëk',
+'nstab-help'      => 'Beunantu',
+'nstab-category'  => 'Kawan',
 
 # General errors
 'error'              => 'Seunalah',
@@ -406,8 +408,12 @@ Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam softwa
 'viewsourcetext'     => 'Droëneuh  jeuët neu’eu',
 
 # Login and logout pages
-'yourname'                => 'Nan ureuëng nguy:',
+'welcomecreation'         => '== Seulamat trok teuka, $1! ==
+
+Nan Droeneuh ka teupeugot. Neuato laju [[Special:Preferences|peue nyang neugalak {{SITENAME}}]].',
+'yourname'                => 'Ureuëng nguy:',
 'yourpassword'            => 'Lageuëm:',
+'yourpasswordagain'       => 'Pasoë lom lageuëm:',
 'remembermypassword'      => 'Ingat lôn tamong bak peuramban nyoë (keu paleng trep $1 {{PLURAL:$1|uroë|uroë}})',
 'login'                   => 'Tamöng',
 'nav-login-createaccount' => 'Tamöng / dapeuta',
@@ -441,6 +447,7 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'noemail'                 => 'Hana alamat surat-e nyang teucatat keu ureuëng nguy "$1".',
 'passwordsent'            => 'Lageuëm barô ka geupeu\'ét u surat-e nyang geupeudapeuta keu "$1". Neutamong teuma lheuëh neuteurimong surat-e nyan.',
 'eauthentsent'            => 'Saboh surat èlèktronik keu peunyoë ka geukirém u alamat surat èlèktronik Droëneuh. Droëneuh beuneuseutöt préntah lam surat nyan keu neupeunyoë meunyo alamat nyan nakeuh beutôy atra Droëneuh. {{SITENAME}} h‘an geupeuudép surat Droëneuh meunyo langkah nyoë hana neupeulaku lom.',
+'loginlanguagelabel'      => 'Bahsa: $1',
 
 # Password reset dialog
 'retypenew' => 'Pasoë teuma lageuëm barô:',
@@ -581,6 +588,8 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'preferences'         => 'Galak',
 'mypreferences'       => 'Atô',
 'prefs-rc'            => 'Ban meuubah',
+'prefs-email'         => 'Peunileh surat-e',
+'youremail'           => 'Surat-e:',
 'yourrealname'        => 'Nan aseuli:',
 'prefs-help-realname' => '* Nan aseuli hana meucéh neupasoë.
 Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë nyang tuléh.',

@@ -1715,7 +1715,6 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'ipb-edit-dropdown'           => 'Eital las razonis el tarugu',
 'ipb-unblock-addr'            => 'Desatarugal $1',
 'ipb-unblock'                 => 'Desatarugal un nombri d´usuáriu u direción IP',
-'ipb-blocklist-addr'          => 'Tarugus dessistentis de $1',
 'ipb-blocklist'               => 'Vel tarugus desistentis',
 'ipb-blocklist-contribs'      => 'Contribucionis de $1',
 'unblockip'                   => 'Desatarugal usuáriu',

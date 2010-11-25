@@ -2441,7 +2441,6 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipb-edit-dropdown'               => 'Edytuj przyczynę blokady',
 'ipb-unblock-addr'                => 'Odblokuj $1',
 'ipb-unblock'                     => 'Odblokuj użytkownika lub adres IP',
-'ipb-blocklist-addr'              => 'Istniejące blokady dla $1',
 'ipb-blocklist'                   => 'Zobacz istniejące blokady',
 'ipb-blocklist-contribs'          => 'Wkład $1',
 'unblockip'                       => 'Odblokuj użytkownika',

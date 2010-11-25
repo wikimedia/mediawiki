@@ -2482,7 +2482,6 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'ipb-edit-dropdown'               => 'Editace seznamu důvodů zablokování',
 'ipb-unblock-addr'                => 'Odblokovat uživatele nebo IP $1',
 'ipb-unblock'                     => 'Odblokovat uživatele nebo IP adresu',
-'ipb-blocklist-addr'              => 'Probíhající bloky uživatele $1',
 'ipb-blocklist'                   => 'Zobrazit probíhající bloky',
 'ipb-blocklist-contribs'          => 'Příspěvky uživatele $1',
 'unblockip'                       => 'Odblokovat uživatele',

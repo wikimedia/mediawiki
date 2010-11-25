@@ -2421,7 +2421,6 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'ipb-edit-dropdown'               => 'Editar os motivos de bloqueo',
 'ipb-unblock-addr'                => 'Desbloquear a "$1"',
 'ipb-unblock'                     => 'Desbloquear un usuario ou enderezo IP',
-'ipb-blocklist-addr'              => 'Bloqueos vixentes de "$1"',
 'ipb-blocklist'                   => 'Ver os bloqueos vixentes',
 'ipb-blocklist-contribs'          => 'Contribucións de "$1"',
 'unblockip'                       => 'Desbloquear o usuario',

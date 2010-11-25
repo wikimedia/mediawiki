@@ -1294,7 +1294,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'ipb-edit-dropdown'           => 'Phiên-siá chhà-fûng ngièn-yîn',
 'ipb-unblock-addr'            => 'Kié-chhù fûng-kim $1',
 'ipb-unblock'                 => 'Kié-chhù kim-fûng yung-fu miàng fe̍t-chá IP thi-tiám',
-'ipb-blocklist-addr'          => 'Chhà-chhut $1-ke fûng-kim ki-liu̍k',
 'ipb-blocklist'               => 'Kiám-sṳ fûng-kim lie̍t-péu',
 'unblockip'                   => 'Kié-chhù kim-fûng IP thi-tiám',
 'unblockiptext'               => 'Yung ha-mien ke péu-tân lòi fî-fu̍k siên-chhièn pûn kim-fûng ke IP thi-tiám ke siá-sû-khièn.',

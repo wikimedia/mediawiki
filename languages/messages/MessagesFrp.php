@@ -2541,7 +2541,6 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipb-edit-dropdown'               => 'Changiér les rêsons de blocâjo',
 'ipb-unblock-addr'                => 'Dèblocar $1',
 'ipb-unblock'                     => 'Dèblocar un compto utilisator ou ben una adrèce IP',
-'ipb-blocklist-addr'              => 'Blocâjos ègzistents por $1',
 'ipb-blocklist'                   => 'Vêde los blocâjos ègzistents',
 'ipb-blocklist-contribs'          => 'Contribucions por $1',
 'unblockip'                       => 'Dèblocar un utilisator ou ben una adrèce IP',

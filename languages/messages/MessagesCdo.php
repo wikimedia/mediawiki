@@ -733,7 +733,6 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'ipb-edit-dropdown'        => 'Siŭ-gāi hŭng-sō̤ nguòng-ĭng',
 'ipb-unblock-addr'         => 'Gāi-hŭng $1',
 'ipb-unblock'              => 'Gāi-hŭng siŏh ciáh ê̤ṳng-hô hĕ̤k IP dê-cī',
-'ipb-blocklist-addr'       => 'Káng dó̤i $1 gì hŭng-sō̤ dăng-dăng',
 'ipb-blocklist'            => 'Káng hŭng-sō̤ dăng-dăng',
 'unblockip'                => 'Gāi-hŭng ê̤ṳng-hô',
 'ipusubmit'                => 'Gāi-hŭng ciā dê-cī',

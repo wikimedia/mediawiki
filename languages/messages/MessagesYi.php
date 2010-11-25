@@ -2160,7 +2160,6 @@ $UNWATCHURL
 'ipb-edit-dropdown'               => 'רעדאקטיר בלאקירונג סיבות',
 'ipb-unblock-addr'                => 'אויפֿבלאקירן $1',
 'ipb-unblock'                     => 'אויפֿבלאקירן א באַניצער נאמען אדער IP אדרעס',
-'ipb-blocklist-addr'              => 'אַקטועלע בלאקירונגען פֿאַר $1',
 'ipb-blocklist'                   => 'זעט עקזיסטירנדע בלאקירונגען',
 'ipb-blocklist-contribs'          => 'בײַשטײַערונגען פֿון $1',
 'unblockip'                       => 'אויפֿבלאקירן באניצער',

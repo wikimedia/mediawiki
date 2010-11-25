@@ -1475,7 +1475,6 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'ipb-edit-dropdown'           => 'Redagoutė blokavėmu prīžastis',
 'ipb-unblock-addr'            => 'Atblokoutė $1',
 'ipb-unblock'                 => 'Atblokoutė nauduotuojė varda a IP adresa',
-'ipb-blocklist-addr'          => 'Ruodītė esontius $1 bluokavėmus',
 'ipb-blocklist'               => 'Ruodītė asontius bluokavėmus',
 'ipb-blocklist-contribs'      => '$1 duovis',
 'unblockip'                   => 'Atbluokoutė nauduotuoja',

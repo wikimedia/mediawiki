@@ -930,10 +930,21 @@ Detajet mund të gjenden tek [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 Si një administrator ju akoma mund ta [$1 shikoni këtë version] nëse doni të vazhdoni.",
 'rev-deleted-text-view'       => 'Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë.
 Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjenden atje më shumë informacione rreth kësaj.',
+'rev-suppressed-text-view'    => 'Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë.
+Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjenden atje më shumë informacione rreth kësaj.',
 'rev-deleted-no-diff'         => "Ju nuk mund ta shikoni këtë ndryshim sepse një nga versionet është '''fshirë'''.
 Detajet mund të gjenden tek [{{fullurl:{{#Special:Log}}/delete={{FULLPAGENAME}}}} regjistri i grisjeve].",
+'rev-suppressed-no-diff'      => "Ju nuk mund ta shikoni këtë ndryshim sepse një nga versionet është '''grisur'''.",
+'rev-deleted-unhide-diff'     => "Një nga versionet e këtij ndryshimi është '''grisur'''.
+Detajet mund të gjenden tek [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAME}}}} regjistri i grisjeve].
+Si një administrator ju akoma mund ta [$1 shikoni këtë version] nëse doni të vazhdoni.",
+'rev-suppressed-unhide-diff'  => "Një nga versionet e këtij ndryshimi është '''grisur'''.
+Detajet mund të gjenden tek [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAME}}}} regjistri i grisjeve].
+Si një administrator ju akoma mund ta [$1 shikoni këtë version] nëse doni të vazhdoni.",
 'rev-deleted-diff-view'       => 'Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë.
 Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjenden atje më shumë informacione rreth kësaj.',
+'rev-suppressed-diff-view'    => "Një nga versionet e këtij ndryshimi është '''grisur'''.
+Si një administrator ju mund ta shikoni këtë ndryshim; detajet mund të gjenden tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistri i grisjeve].",
 'rev-delundel'                => 'trego/fshih',
 'rev-showdeleted'             => 'Trego',
 'revisiondelete'              => 'Shlyj/Reparo versionet',
@@ -942,25 +953,32 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'revdelete-nologtype-title'   => 'Nuk është dhënë asnjë lloj i të dhënave',
 'revdelete-nologtype-text'    => 'Nuk keni caktuar llojin e të dhënave për të realizuar veprimin.',
 'revdelete-nologid-title'     => 'Regjistër i pavlefshëm',
+'revdelete-nologid-text'      => 'Ju ose nuk keni specifikuar një ngjarje target kyçje për të kryer këtë funksion ose hyrja e specifikuar nuk ekziston.',
 'revdelete-no-file'           => 'Skeda e dhënë nuk ekziston.',
+'revdelete-show-file-confirm' => 'Jeni i/e sigurt se dëshironi të shikoni një version të grisur të skedës "<nowiki>$1</nowiki>" nga $2 tek $3?',
 'revdelete-show-file-submit'  => 'Po',
 'revdelete-selected'          => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
 'revdelete-text'              => "'''Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve.''' Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.",
+'revdelete-confirm'           => 'Ju lutem konfirmoni që keni ndër mënd ta bëni këtë, që i kuptoni pasojat, dhe që ju po veproni në përputhje me [[{{MediaWiki:Policy-url}}|politiken]].',
+'revdelete-suppress-text'     => "Shuarje duhet'''vetëm'''të përdoret për rastet e mëposhtme: 
+ * Potencialisht e informacionit shpifës 
+ * Informacion i pa kriter personal 
+ *: Adresat në shtëpi''dhe numrat e telefonit, numrat e sigurimeve shoqërore, etj''",
 'revdelete-legend'            => 'Vendosni kufizimet për versionin:',
 'revdelete-hide-text'         => 'Fshihe tekstin e versionit',
 'revdelete-hide-image'        => 'Fshih përmbajtjen skedare',
 'revdelete-hide-name'         => 'Fshihe veprimin dhe shënjestrën',
 'revdelete-hide-comment'      => 'fshih komentin e redaktimit',
 'revdelete-hide-user'         => 'Fshihe emrin/IP-në të redaktuesit',
-'revdelete-hide-restricted'   => 'Këto përkufizme vlejnë edhe për Admintratorët (jo vetëm për përdoruesit "normal")',
+'revdelete-hide-restricted'   => 'Ndalo të dhëna nga administrues si dhe të tjerë',
 'revdelete-radio-same'        => '(Mos ndryshoni)',
 'revdelete-radio-set'         => 'Po',
 'revdelete-radio-unset'       => 'Jo',
 'revdelete-suppress'          => 'Ndalo të dhëna nga administrues si dhe të tjerë',
 'revdelete-unsuppress'        => 'Hiq kufizimet nga versionet e restauruara',
 'revdelete-log'               => 'Arsyeja:',
-'revdelete-submit'            => 'Apliko te versionet e zgjedhura',
+'revdelete-submit'            => 'Apliko te {{PLURAL:$1|revision|versionet}} e zgjedhura',
 'revdelete-logentry'          => 'Pamja e versionit u ndryshua për [[$1]]',
 'logdelete-logentry'          => 'u ndryshua dukshmëria e ngjarjes së [[$1]]',
 'revdelete-success'           => "'''Dukshmëria e versioneve u vendos me sukses.'''",
@@ -2052,7 +2070,6 @@ Shiko te [[Special:IPBlockList|Lista e përdoruesve dhe e IP adresave të blloku
 'ipb-edit-dropdown'            => 'Redakto arsyet e bllokimit',
 'ipb-unblock-addr'             => 'Çblloko $1',
 'ipb-unblock'                  => 'Çblloko përdorues dhe IP të bllokuara',
-'ipb-blocklist-addr'           => 'Shikoni bllokime në fuqi për $1',
 'ipb-blocklist'                => 'Përdorues dhe IP adresa të bllokuara',
 'ipb-blocklist-contribs'       => 'Kontributet për $1',
 'unblockip'                    => 'Çblloko përdoruesin',

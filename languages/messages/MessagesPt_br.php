@@ -2468,7 +2468,6 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'ipb-edit-dropdown'               => 'Editar motivos de bloqueio',
 'ipb-unblock-addr'                => 'Desbloquear $1',
 'ipb-unblock'                     => 'Desbloquear um usuário ou endereço de IP',
-'ipb-blocklist-addr'              => 'Bloqueios existentes para $1',
 'ipb-blocklist'                   => 'Ver bloqueios em vigência',
 'ipb-blocklist-contribs'          => 'Contribuições de $1',
 'unblockip'                       => 'Desbloquear usuário',

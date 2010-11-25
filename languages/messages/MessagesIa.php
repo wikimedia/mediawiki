@@ -2374,7 +2374,6 @@ Vide le [[Special:IPBlockList|lista de adresses IP blocate]] pro revider le bloc
 'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',
 'ipb-unblock-addr'                => 'Disblocar $1',
 'ipb-unblock'                     => 'Disblocar un nomine de usator o un adresse IP',
-'ipb-blocklist-addr'              => 'Blocadas existente pro $1',
 'ipb-blocklist'                   => 'Vider blocadas existente',
 'ipb-blocklist-contribs'          => 'Contributiones de $1',
 'unblockip'                       => 'Disblocar adresse IP',

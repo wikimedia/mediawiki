@@ -2091,7 +2091,6 @@ Pi maggiuri nfurmazzioni, talìa la [[Special:IPBlockList|lista di l'IP bluccati
 'ipb-edit-dropdown'               => 'Mutivi pô bloccu',
 'ipb-unblock-addr'                => 'Sblocca $1',
 'ipb-unblock'                     => "Sblocca n'utenti o nu ndirizzu IP",
-'ipb-blocklist-addr'              => 'Alenca li blocchi attivi pi $1',
 'ipb-blocklist'                   => 'Alenca li blocchi attivi',
 'ipb-blocklist-contribs'          => 'Cuntribbuti di $1',
 'unblockip'                       => 'Sblocca ndirizzu IP',

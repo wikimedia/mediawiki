@@ -2400,7 +2400,6 @@ Podètz consultar la [[Special:IPBlockList|lista dels comptes e de las adreças 
 'ipb-edit-dropdown'               => 'Modificar los motius de blocatge per defaut',
 'ipb-unblock-addr'                => 'Desblocar $1',
 'ipb-unblock'                     => "Desblocar un compte d'utilizaire o una adreça IP",
-'ipb-blocklist-addr'              => 'Blocatges existents per $1',
 'ipb-blocklist'                   => 'Vejatz los blocatges existents',
 'ipb-blocklist-contribs'          => 'Contribucions per $1',
 'unblockip'                       => 'Desblocar un utilizaire o una adreça IP',

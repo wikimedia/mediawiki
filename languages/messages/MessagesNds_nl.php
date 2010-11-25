@@ -2440,7 +2440,6 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'ipb-edit-dropdown'               => 'Blokkeerredens bewarken',
 'ipb-unblock-addr'                => 'Deblokkeer $1',
 'ipb-unblock'                     => 'Deblokkeer een gebruker of IP-adres',
-'ipb-blocklist-addr'              => 'Bestaonde blokkeringen veur $1',
 'ipb-blocklist'                   => 'Bekiek bestaonde blokkeringen',
 'ipb-blocklist-contribs'          => 'Biedragen van $1',
 'unblockip'                       => 'Deblokkeer gebruker',

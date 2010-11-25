@@ -2459,7 +2459,6 @@ Vezi [[Special:IPBlockList|lista de adrese IP și conturi blocate]] pentru a rev
 'ipb-edit-dropdown'               => 'Modifică motivele blocării',
 'ipb-unblock-addr'                => 'Deblochează $1',
 'ipb-unblock'                     => 'Deblocați un nume de utilizator sau o adresă IP',
-'ipb-blocklist-addr'              => 'Blocări existente pentru $1',
 'ipb-blocklist'                   => 'Vezi blocările existente',
 'ipb-blocklist-contribs'          => 'Contribuții la $1',
 'unblockip'                       => 'Deblochează adresă IP',

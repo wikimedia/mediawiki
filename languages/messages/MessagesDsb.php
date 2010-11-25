@@ -2275,7 +2275,6 @@ Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokě
 'ipb-edit-dropdown'               => 'Pśicyny blokěrowanja wobźěłaś',
 'ipb-unblock-addr'                => '$1 dopušćiś',
 'ipb-unblock'                     => 'Wužywarske mě abo IP-adresu dopušćiś',
-'ipb-blocklist-addr'              => 'Eksistěrujuce blokěrowanja za $1',
 'ipb-blocklist'                   => 'Wšykne aktualne blokěrowanja pokazaś',
 'ipb-blocklist-contribs'          => 'Pśinoski za $1',
 'unblockip'                       => 'Wužywarja dopušćiś',

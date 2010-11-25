@@ -2037,7 +2037,6 @@ Pirsani [[Special:IPBlockList|Daftar blokir IP]] kanggo ninjo ulang pamblokiran.
 'ipb-edit-dropdown'               => 'Sunting alesan pamblokiran',
 'ipb-unblock-addr'                => 'Ilangna blokir $1',
 'ipb-unblock'                     => 'Ilangna blokir sawijining panganggo utawa alamat IP',
-'ipb-blocklist-addr'              => 'Blokir sing dipatrapaké kanggo $1',
 'ipb-blocklist'                   => 'Ndeleng blokir sing lagi ditrapaké',
 'ipb-blocklist-contribs'          => 'Kontribusi kanggo $1',
 'unblockip'                       => 'Jabel blokir marang alamat IP utawa panganggo',

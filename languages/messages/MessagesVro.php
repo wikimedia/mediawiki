@@ -1549,7 +1549,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ipb-edit-dropdown'           => 'Toimõndaq kinniqpidämise põhjuisi',
 'ipb-unblock-addr'            => 'Lõpõdaq pruukja $1 kinniqpidämine ärq',
 'ipb-unblock'                 => 'Lõpõdaq pruukja vai puutri võrgoaadrõasi kinniqpidämine ärq',
-'ipb-blocklist-addr'          => 'Näütäq pruukja $1 kinniqpidämiisi',
 'ipb-blocklist'               => 'Näütäq kinnniqpidämiisi',
 'unblockip'                   => 'Lõpõdaq puutri võrgoaadrõsi kinniqpidämine ärq',
 'unblockiptext'               => 'Täüdäq ärq taa vorm, et lõpõtaq ärq pruukja vai puutri võrgoaadrõsi kinniqpidämine',

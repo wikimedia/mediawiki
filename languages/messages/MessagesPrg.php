@@ -1900,7 +1900,6 @@ Jaīs en [[Special:IPBlockList|listin stēisan IP adressin]] kai widālai blōki
 'ipb-edit-dropdown'               => 'Redigīs blōkisenes brewīnslins',
 'ipb-unblock-addr'                => 'Etblōkis $1',
 'ipb-unblock'                     => 'Etblōkis tērpautajas pabilīsnan anga IP adressin',
-'ipb-blocklist-addr'              => 'Ekzistīntei $1 blōkisenei',
 'ipb-blocklist'                   => 'Wīdais ekzistīntins blōkisenins',
 'ipb-blocklist-contribs'          => '$1 endīja',
 'unblockip'                       => 'Etblōkis tērpautajan',

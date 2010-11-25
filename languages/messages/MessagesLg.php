@@ -63,8 +63,11 @@ $messages = array(
 'underline-default' => "Puloguramu y'esalawo",
 
 # Font style option in Special:Preferences
-'editfont-style'   => "Enkula y'ennukuta mu katundu w'owandikira:",
-'editfont-default' => "Puloguramu y'esalawo",
+'editfont-style'     => "Enkula y'ennukuta mu katundu w'owandikira:",
+'editfont-default'   => "Puloguramu y'esalawo",
+'editfont-monospace' => "Ennukuta n'obubonero eby'ebyenkanankana",
+'editfont-sansserif' => 'Embulaserifu',
+'editfont-serif'     => 'Serifu',
 
 # Dates
 'sunday'        => 'Sande',
@@ -119,16 +122,22 @@ $messages = array(
 'dec'           => 'Gw12',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Tuluba|Matuluba}}',
-'category_header'        => 'Empapula eziri mu ttuluba lya "$1"',
-'subcategories'          => 'Amatabi',
-'category-media-header'  => 'Mediya eziri mu ttuluba lya "$1"',
-'category-empty'         => "''Ettuluba lino temuli mpapula oba mediya.''",
-'hidden-categories'      => '{{PLURAL:$1|Ettuluba erikise|Amatuluba amakise}}',
-'category-subcat-count'  => '{{PLURAL:$2|Ettuluba lino lirimu ettabi lino lyokka:|Ettuluba lino lirimu {{PLURAL:$1|ettabi lino:|amatabi $1 gano}}, ku $2 awamu.}}',
-'category-article-count' => '{{PLURAL:$2|Olupapula olumenyedwa wano lwe lwokka oluli mu ttuluba lino.|{{PLURAL:$1|Olupapula luno lwe luli|Empapula $1 zino ze ziri}} mu ttuluba lino. Lirimu empapula $2 awamu.}}',
-'category-file-count'    => "{{PLURAL:$2|Fayiro emenyedwa wano ye yokka eri mu ttuluba lino.|{{PLURAL:$1|Fayiro eno y'eri|Fayiro $1 zino ze ziri}} mu ttuluba lino. Lirimu fayiro $2 awamu.}}",
-'listingcontinuesabbrev' => 'era...',
+'pagecategories'                 => '{{PLURAL:$1|Tuluba|Matuluba}}',
+'category_header'                => 'Empapula eziri mu ttuluba lya "$1"',
+'subcategories'                  => 'Amatabi',
+'category-media-header'          => 'Mediya eziri mu ttuluba lya "$1"',
+'category-empty'                 => "''Ettuluba lino temuli mpapula oba mediya.''",
+'hidden-categories'              => '{{PLURAL:$1|Ettuluba erikise|Amatuluba amakise}}',
+'hidden-category-category'       => 'Amatuluba agakisidwa',
+'category-subcat-count'          => '{{PLURAL:$2|Ettuluba lino lirimu ettabi lino lyokka:|Ettuluba lino lirimu {{PLURAL:$1|ettabi lino:|amatabi $1 gano}}, ku $2 awamu.}}',
+'category-subcat-count-limited'  => 'Ettuluba lino lirimu {{PLURAL:$1|ettabi lino|amatabi gano $1}}.',
+'category-article-count'         => '{{PLURAL:$2|Olupapula olumenyedwa wano lwe lwokka oluli mu ttuluba lino.|{{PLURAL:$1|Olupapula luno lwe luli|Empapula $1 zino ze ziri}} mu ttuluba lino. Lirimu empapula $2 awamu.}}',
+'category-article-count-limited' => '{{PLURAL:$1|Olupapula luno luli|Empapula zino $1 ziri}} mu ttuluba lino.',
+'category-file-count'            => "{{PLURAL:$2|Fayiro emenyedwa wano ye yokka eri mu ttuluba lino.|{{PLURAL:$1|Fayiro eno y'eri|Fayiro $1 zino ze ziri}} mu ttuluba lino. Lirimu fayiro $2 awamu.}}",
+'category-file-count-limited'    => '{{PLURAL:$1|Fayiro eno eri|Fayiro zino $1 ziri}} mu ttuluba lino.',
+'listingcontinuesabbrev'         => 'era...',
+'index-category'                 => "Empapula ezikkirizidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
+'noindex-category'               => "Empapula ezigaanidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
 
 'about'      => 'Okutangaaza',
 'newwindow'  => '(bijjira mu kadirisa kapya)',

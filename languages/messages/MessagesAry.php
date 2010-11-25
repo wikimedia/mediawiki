@@ -1466,7 +1466,6 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'ipb-edit-dropdown'               => 'Beddel asbab l-blokaj',
 'ipb-unblock-addr'                => 'Débloki $1',
 'ipb-unblock'                     => 'Débloki ċi ḫsab dyal l-mosṫeĥdim ola ĝonwan IP',
-'ipb-blocklist-addr'              => '$1 fayeṫ mbloki',
 'ipb-blocklist'                   => 'Ċof lé-blokaj li fayeṫ kaynin',
 'ipb-blocklist-contribs'          => 'L-Mosahamaṫ dyal $1',
 'unblockip'                       => 'Débloki ċi mosṫeĥdim ola ċi ĝonwan IP',

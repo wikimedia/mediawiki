@@ -2389,7 +2389,6 @@ Oglejte si [[Special:IPBlockList|seznam blokiranih IP-naslovov]] za pregled blok
 'ipb-edit-dropdown'               => 'Uredi razloge blokade',
 'ipb-unblock-addr'                => 'Deblokiraj $1',
 'ipb-unblock'                     => 'Odblokirajte uporabniško ime ali IP-naslov',
-'ipb-blocklist-addr'              => 'Obstoječe blokade za $1',
 'ipb-blocklist'                   => 'Ogled obstoječih blokad',
 'ipb-blocklist-contribs'          => 'Prispevki za $1',
 'unblockip'                       => 'Deblokirajte uporabnika',

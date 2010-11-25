@@ -1842,7 +1842,6 @@ Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'ipb-edit-dropdown'           => 'Breyta ástæðu fyrir banni',
 'ipb-unblock-addr'            => 'Afbanna $1',
 'ipb-unblock'                 => 'Afbanna notanda eða vistfang',
-'ipb-blocklist-addr'          => 'Núverandi bönn fyrir $1',
 'ipb-blocklist'               => 'Sjá núverandi bönn',
 'ipb-blocklist-contribs'      => 'Framlög fyrir $1',
 'unblockip'                   => 'Afbanna notanda',
