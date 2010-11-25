@@ -44,7 +44,7 @@ class UnusedimagesPage extends ImageQueryPage {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$epoch = $db->unixTimestamp( 'rev_timestamp' );
+		$epoch = $dbr->unixTimestamp( 'img_timestamp' );
 
 		if ( $wgCountCategorizedImagesAsUsed ) {
 			list( $page, $image, $imagelinks, $categorylinks ) = $dbr->tableNamesN( 'page', 'image', 'imagelinks', 'categorylinks' );
