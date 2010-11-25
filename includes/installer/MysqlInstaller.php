@@ -366,7 +366,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$create ) {
 			// Test the web account
 			try {
-				$webConn = new Database(
+				new Database(
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( 'wgDBuser' ),
 					$this->getVar( 'wgDBpassword' ),

@@ -313,7 +313,7 @@ class _DiffEngine {
 				}
 				$matches = $ymatches[$line];
 				reset($matches);
-				while ( list( $junk, $y ) = each( $matches ) ) {
+				while ( list( , $y ) = each( $matches ) ) {
 					if ( empty( $this->in_seq[$y] ) ) {
 						$k = $this->_lcs_pos( $y );
 						assert( $k > 0 );
@@ -321,7 +321,7 @@ class _DiffEngine {
 						break;
 					}
 				}
-				while (list ( /* $junk */, $y) = each($matches)) {
+				while (list ( , $y) = each($matches)) {
 					if ($y > $this->seq[$k-1]) {
 						assert($y < $this->seq[$k]);
 						// Optimization: this is a common case:

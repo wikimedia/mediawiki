@@ -39,7 +39,6 @@ class OracleInstaller extends DatabaseInstaller {
 	}
 
 	public function getWebUserBox( $noCreateMsg = false ) {
-		$name = $this->getName();
 		$this->parent->setVar( '_SameAccount', false );
 		$this->parent->setVar( '_CreateDBAccount', true );
 		$this->parent->setVar( 'wgDBname', '' );
