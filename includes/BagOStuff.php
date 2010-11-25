@@ -130,9 +130,12 @@ abstract class BagOStuff {
 		}
 	}
 
+	/**
+	 * @return null if lock is not possible. New value incremented by 1 
+	 */
 	public function incr( $key, $value = 1 ) {
 		if ( !$this->lock( $key ) ) {
-			return false;
+			return null;
 		}
 
 		$value = intval( $value );
