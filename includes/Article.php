@@ -1473,7 +1473,6 @@ class Article {
 		global $wgOut;
 
 		$oldid = $this->getOldID();
-		$useParserCache = $this->useParserCache( $oldid );
 		$parserOptions = $this->getParserOptions();
 
 		# Render printable version, use printable version cache

@@ -1055,7 +1055,7 @@ class EnhancedChangesList extends ChangesList {
 		# Extract fields from DB into the function scope (rc_xxxx variables)
 		// FIXME: Would be good to replace this extract() call with something
 		// that explicitly initializes variables.
-		$classes = array(); // TODO implement
+		// TODO implement
 		extract( $rcObj->mAttribs );
 		$query['curid'] = $rc_cur_id;
 

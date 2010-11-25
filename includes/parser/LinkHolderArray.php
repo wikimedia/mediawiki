@@ -159,7 +159,6 @@ class LinkHolderArray {
 		$current = null;
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as $index => $entry ) {
-				$key = "$ns:$index";
 				$title = $entry['title'];
 				$pdbk = $entry['pdbk'];
 
