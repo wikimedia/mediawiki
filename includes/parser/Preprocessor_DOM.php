@@ -511,9 +511,7 @@ class Preprocessor_DOM implements Preprocessor {
 				// another heading. Infinite loops are avoided because the next iteration MUST
 				// hit the heading open case above, which unconditionally increments the
 				// input pointer.
-			}
-
-			elseif ( $found == 'open' ) {
+			} elseif ( $found == 'open' ) {
 				# count opening brace characters
 				$count = strspn( $text, $curChar, $i );
 
@@ -536,9 +534,7 @@ class Preprocessor_DOM implements Preprocessor {
 					$accum .= htmlspecialchars( str_repeat( $curChar, $count ) );
 				}
 				$i += $count;
-			}
-
-			elseif ( $found == 'close' ) {
+			} elseif ( $found == 'close' ) {
 				$piece = $stack->top;
 				# lets check if there are enough characters for closing brace
 				$maxCount = $piece->count;
@@ -961,7 +957,9 @@ class PPFrame_DOM implements PPFrame {
 				$iteratorStack[$level] = false;
 			}
 
-			if ( $contextNode instanceof PPNode_DOM ) $contextNode = $contextNode->node;
+			if ( $contextNode instanceof PPNode_DOM ) {
+				$contextNode = $contextNode->node;
+			}
 
 			$newIterator = false;
 
