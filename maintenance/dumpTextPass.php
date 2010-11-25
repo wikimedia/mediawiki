@@ -263,7 +263,6 @@ class TextPassDumper extends BackupDumper {
 		while ( true ) {
 			try {
 				$text = $this->getTextDb( $id );
-				$ex = new MWException( "Graceful storage failure" );
 			} catch ( DBQueryError $ex ) {
 				$text = false;
 			}

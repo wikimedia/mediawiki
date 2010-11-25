@@ -358,7 +358,6 @@ class SkinTemplate extends Skin {
 
 			if( $wgPageShowWatchingUsers ) {
 				$dbr = wfGetDB( DB_SLAVE );
-				$watchlist = $dbr->tableName( 'watchlist' );
 				$res = $dbr->select( 'watchlist',
 					array( 'COUNT(*) AS n' ),
 					array( 'wl_title' => $dbr->strencode( $this->mTitle->getDBkey() ), 'wl_namespace' => $this->mTitle->getNamespace() ),
