@@ -536,7 +536,7 @@ class ConfEditor {
 
 			switch ( $state ) {
 			case 'file':
-				$this->expect( T_OPEN_TAG );
+				$token = $this->expect( T_OPEN_TAG );
 				$token = $this->skipSpace();
 				if ( $token->isEnd() ) {
 					break 2;

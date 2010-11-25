@@ -165,6 +165,7 @@ class Orphans extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$page     = $dbw->tableName( 'page' );
 		$revision = $dbw->tableName( 'revision' );
+		$text     = $dbw->tableName( 'text' );
 	
 		if ( $fix ) {
 			$dbw->lockTables( $dbw, 'text', __METHOD__ );

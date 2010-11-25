@@ -150,6 +150,7 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function getMetadata( $file, $filename ) {
+		$metadata = array();
 		try {
 			$metadata = SVGMetadataExtractor::getMetadata( $filename );
 		} catch( Exception $e ) {

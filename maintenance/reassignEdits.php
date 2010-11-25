@@ -108,7 +108,7 @@ class ReassignEdits extends Maintenance {
 				# Update recent changes if required
 				if ( $rc ) {
 					$this->output( "Updating recent changes..." );
-					$dbw->update( 'recentchanges', $this->userSpecification( $to, 'rc_user', 'rc_user_text' ), $this->userConditions( $from, 'rc_user', 'rc_user_text' ), __METHOD__ );
+					$res = $dbw->update( 'recentchanges', $this->userSpecification( $to, 'rc_user', 'rc_user_text' ), $this->userConditions( $from, 'rc_user', 'rc_user_text' ), __METHOD__ );
 					$this->output( "done.\n" );
 				}
 			}

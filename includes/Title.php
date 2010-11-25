@@ -3302,6 +3302,7 @@ class Title {
 		# Truncate for whole multibyte characters. +5 bytes for ellipsis
 		$comment = $wgContLang->truncate( $comment, 250 );
 
+		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$latest = $this->getLatestRevId();
 

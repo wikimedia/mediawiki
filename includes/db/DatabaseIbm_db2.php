@@ -1249,9 +1249,11 @@ EOF;
 			$join_conds );
 
 		// We must adjust for offset
-		if ( isset( $options['LIMIT'] ) && isset ( $options['OFFSET'] ) ) {
-			$limit = $options['LIMIT'];
-			$offset = $options['OFFSET'];
+		if ( isset( $options['LIMIT'] ) ) {
+			if ( isset ( $options['OFFSET'] ) ) {
+				$limit = $options['LIMIT'];
+				$offset = $options['OFFSET'];
+			}
 		}
 
 		// DB2 does not have a proper num_rows() function yet, so we must emulate
