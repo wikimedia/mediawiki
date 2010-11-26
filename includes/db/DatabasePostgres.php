@@ -598,7 +598,7 @@ class DatabasePostgres extends DatabaseBase {
 		return $this->mLastResult;
 	}
 
-	function queryIgnore( $sql, $fname = '' ) {
+	function queryIgnore( $sql, $fname = 'DatabasePostgres::queryIgnore' ) {
 		return $this->query( $sql, $fname, true );
 	}
 
