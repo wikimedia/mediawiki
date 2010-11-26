@@ -289,10 +289,10 @@ class MWMemcached {
 	// {{{ decr()
 
 	/**
-	 * Decrement a value stored on the memcache server
+	 * Decrease a value stored on the memcache server
 	 *
-	 * @param $key String: key to decriment
-	 * @param $amt Integer: (optional) amount to decriment
+	 * @param $key String: key to decrease
+	 * @param $amt Integer: (optional) amount to decrease
 	 *
 	 * @return Mixed: FALSE on failure, value on success
 	 */
