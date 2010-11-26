@@ -597,14 +597,6 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Database specific translations like MySQL's UNIX_TIMESTAMP() to
-	 * something the DB can use.
-	 */
-	function translateSQLFunctions( $vars ) {
-		return $vars;
-	}
-
-	/**
 	 * Usually aborts on failure.  If errors are explicitly ignored, returns success.
 	 *
 	 * @param  $sql        String: SQL query
@@ -658,7 +650,7 @@ abstract class DatabaseBase implements DatabaseType {
 			} else {
 				$userName = '';
 			}
-			$commentedSql = $this->translateSQLFunctions( preg_replace( '/\s/', " /* $fname $userName */ ", $sql, 1 ) );
+			$commentedSql = preg_replace( '/\s/', " /* $fname $userName */ ", $sql, 1 );
 		# } else {
 		#	$commentedSql = $sql;
 		# }
