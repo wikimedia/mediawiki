@@ -2020,7 +2020,8 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	} else {
 		# Bogus value; fall back to the epoch...
 		wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
-		$uts = 0;
+		
+		return "Invalid date";
 	}
 
 	
