@@ -2067,7 +2067,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 # Special:ActiveUsers
 'activeusers'            => 'സജീവ ഉപയോക്താക്കളുടെ പട്ടിക',
 'activeusers-intro'      => 'ഇത് കഴിഞ്ഞ {{PLURAL:$1|ദിവസം|$1 ദിവസങ്ങളിൽ}} ഏതെങ്കിലും വിധത്തിലുള്ള പ്രവർത്തനങ്ങൾ ചെയ്ത ഉപയോക്താക്കളുടെ പട്ടികയാണ്.',
-'activeusers-count'      => 'അവസാനത്തെ {{PLURAL:$3|ഒരു ദിവസം|$3 ദിവസങ്ങളിൽ}} നടത്തിയ {{PLURAL:$1|ഒരു തിരുത്തൽ|$1 തിരുത്തലുകൾ}}',
+'activeusers-count'      => 'അവസാനത്തെ {{PLURAL:$3|ഒരു ദിവസം|$3 ദിവസങ്ങളിൽ}} {{PLURAL:$1|ഒരു തിരുത്തൽ|$1 തിരുത്തലുകൾ}}',
 'activeusers-from'       => 'ഇങ്ങനെ തുടങ്ങുന്ന ഉപയോക്താക്കളെ കാട്ടുക:',
 'activeusers-hidebots'   => 'യന്ത്രങ്ങളെ മറയ്ക്കുക',
 'activeusers-hidesysops' => 'കാര്യനിർവാഹകരെ മറയ്ക്കുക',

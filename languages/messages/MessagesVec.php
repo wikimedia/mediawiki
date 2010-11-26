@@ -2063,8 +2063,8 @@ Varda $2 par n'elenco de le ultime pagine scanselà.",
 
 # Rollback
 'rollback'          => 'Anula le modifiche',
-'rollback_short'    => 'Tira indrìo',
-'rollbacklink'      => 'tira indrìo',
+'rollback_short'    => 'Rollback',
+'rollbacklink'      => 'rollback',
 'rollbackfailed'    => 'Ripristino mìa riussìo',
 'cantrollback'      => "No xè mia possibiłe tornar a na versión precedente: l'ultima modifica la xè stà aportà da l'unico utente che gà laorà a sto articoło.",
 'alreadyrolled'     => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voxe.

@@ -998,6 +998,9 @@ Tarai pamintaan Pian lawan ''all:'' gasan manggagai samunyaan isi (tamasuk tungk
 'powersearch-toggleall'            => 'Samunyaan',
 'powersearch-togglenone'           => 'Kadada',
 'search-external'                  => 'Panggagaian luar',
+'searchdisabled'                   => '{{SITENAME}} panggagaian kada kawa
+Pian kawa manggagai lung Google parhatan ini.
+Catatan nang dihaharnya matan isi {{SITENAME}} kawa-ai sudah kadaluarsa.',
 
 # Quickbar
 'qbsettings'               => 'Bilahhancap',
