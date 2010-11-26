@@ -2025,6 +2025,7 @@ HTML
 	 * Produce the stock "your edit contains spam" page
 	 *
 	 * @param $match Text which triggered one or more filters
+	 * @deprecated Use method spamPageWithContent() instead
 	 */
 	static function spamPage( $match = false ) {
 		global $wgOut, $wgTitle;
@@ -2042,6 +2043,38 @@ HTML
 
 		$wgOut->returnToMain( false, $wgTitle );
 	}
+
+	/**
+	 * Show "your edit contains spam" page with your diff and text
+	 *
+	 * @param $match Text which triggered one or more filters
+	 */
+	public function spamPageWithContent( $match = false ) {
+		global $wgOut, $wgTitle;
+		$this->textbox2 = $this->textbox1;
+
+		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$wgOut->setArticleRelated( false );
+
+		$wgOut->addHTML( '<div id="spamprotected">' );
+		$wgOut->addWikiMsg( 'spamprotectiontext' );
+		if ( $match ) {
+			$wgOut->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
+		}
+		$wgOut->addHTML( '</div>' );
+
+		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
+		$de = new DifferenceEngine( $this->mTitle );
+		$de->setText( $this->getContent(), $this->textbox2 );
+		$de->showDiff( wfMsg( "storedversion" ), wfMsg( "yourtext" ) );
+
+		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
+		$this->showTextbox2();
+
+		$wgOut->addReturnTo( $wgTitle, array( 'action' => 'edit' ) );
+	}
+
 
 	/**
 	 * @private
@@ -2618,7 +2651,7 @@ HTML
 				return false;
 
 			case self::AS_SPAM_ERROR:
-				self::spamPage( $resultDetails['spam'] );
+				$this->spamPageWithContent( $resultDetails['spam'] );
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
