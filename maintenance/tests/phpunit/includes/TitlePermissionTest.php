@@ -632,7 +632,7 @@ class TitlePermissionTest extends PHPUnit_Framework_TestCase {
 			self::$title->getUserPermissionsErrors( 'move-target',
 			self::$user ) );
 
-		$this->assertEquals( true,
+		$this->assertEquals( false,
 							 self::$title->userCan( 'move-target', self::$user ) );
 
 		global $wgLocalTZoffset;
