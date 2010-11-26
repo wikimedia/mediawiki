@@ -3566,6 +3566,7 @@ Saltando a lista por defecto.",
 	'config-install-secretkey' => 'Xerando a clave secreta',
 	'config-insecure-secret' => "'''Atención:''' Non se puido crear a clave secreta <code>$1</code>.
 Considere cambiala manualmente.",
+	'config-install-upgradekey' => 'Xerando a clave de actualización por defecto',
 	'config-install-sysop' => 'Creando a conta de usuario de administrador',
 	'config-install-mainpage' => 'Creando a páxina principal co contido por defecto',
 	'config-install-mainpage-failed' => 'Non se puido inserir a páxina principal.',
@@ -8137,7 +8138,7 @@ $messages['pms'] = array(
 	'config-information' => 'Anformassion',
 	'config-localsettings-upgrade' => "'''Avis''': A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
 Sò programa a peul esse agiornà.
-Për piasì, ch'a tramuda <code>LocalSettings.php</code> an chèich pòst sigur e peui ch'a fasa marcé torna l'instalador.",
+Për piasì, ch'a ansërissa ël valor ëd <code>\$wgUpgradeKey</code> ant la forma.",
 	'config-localsettings-key' => "Ciav d'agiornament:",
 	'config-localsettings-noupgrade' => "'''Eror''': A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
 Sò programa a peul pa esse agiornà al moment.
