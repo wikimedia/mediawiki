@@ -364,15 +364,6 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * Database specific translations like MySQL's UNIX_TIMESTAMP() to
-	 * something the DB can use.
-	 */
-	function translateSQLFunctions( $vars ) {
-		return preg_replace( '/UNIX_TIMESTAMP\(([^()]+)\)/', 'strftime("%s",\1)', $vars );
-	}
-
-
-	/**
 	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
 	 */
 	function insert( $table, $a, $fname = 'DatabaseSqlite::insert', $options = array() ) {
