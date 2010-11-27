@@ -230,6 +230,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['size'] = intval( $file->getSize() );
 			$vals['width'] = intval( $file->getWidth() );
 			$vals['height'] = intval( $file->getHeight() );
+			
+			$pageCount = $file->pageCount();
+			if ( $pageCount !== false ) {
+				$vals['pagecount'] = $pageCount;
+			}
 		}
 		if ( isset( $prop['url'] ) ) {
 			if ( !is_null( $scale ) && !$file->isOld() ) {

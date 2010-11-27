@@ -537,6 +537,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 26006) prop=langlinks now allows obtaining full URL
 * (bug 26075) ApiDelete.php now calls correctly ArticleDelete hook
 * (bug 26089) add block expiration to blockinfo
+* (bug 26125) prop=imageinfo&iiprop=size now returns the page count if the 
+  file is a multi-page file
 
 === Languages updated in 1.17 ===
 
