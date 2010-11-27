@@ -47,7 +47,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return wfEmptyMsg( $page ) ? '' : wfMsgExt( $page, 'content' );
 		}
 		$title = Title::newFromText( $page, $ns );
-		if ( !$title || !$title->isValidCssJsSubpage() ) {
+		if ( !$title || !$title->isCssJsSubpage() ) {
 			return null;
 		}
 		$revision = Revision::newFromTitle( $title );
