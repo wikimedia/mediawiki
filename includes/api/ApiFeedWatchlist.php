@@ -49,6 +49,8 @@ class ApiFeedWatchlist extends ApiBase {
 		return new ApiFormatFeedWrapper( $this->getMain() );
 	}
 
+	private $linkToDiffs = false;
+
 	/**
 	 * Make a nested call to the API to request watchlist items in the last $hours.
 	 * Wrap the result as an RSS/Atom feed.
@@ -79,6 +81,12 @@ class ApiFeedWatchlist extends ApiBase {
 			}
 			if ( !is_null( $params['wltoken'] ) ) {
 				$fauxReqArr['wltoken'] = $params['wltoken'];
+			}
+
+			// Support linking to diffs instead of article
+			if ( $params['linktodiffs'] ) {
+				$this->linkToDiffs = true;
+				$fauxReqArr['wlprop'] .= '|ids';
 			}
 
 			// Check for 'allrev' parameter, and if found, show all revisions to each page on wl.
@@ -135,7 +143,11 @@ class ApiFeedWatchlist extends ApiBase {
 	private function createFeedItem( $info ) {
 		$titleStr = $info['title'];
 		$title = Title::newFromText( $titleStr );
-		$titleUrl = $title->getFullURL();
+		if ( $this->linkToDiffs and isset( $info['revid'] ) ) {
+			$titleUrl = $title->getFullURL( array( 'diff' => $info['revid'] ) );
+		} else {
+			$titleUrl = $title->getFullURL();
+		}
 		$comment = isset( $info['comment'] ) ? $info['comment'] : null;
 		$timestamp = $info['timestamp'];
 		$user = $info['user'];
@@ -165,7 +177,8 @@ class ApiFeedWatchlist extends ApiBase {
 			),
 			'wltoken' => array(
 				ApiBase::PARAM_TYPE => 'string'
-			)
+			),
+			'linktodiffs' => false,
 		);
 	}
 
@@ -174,8 +187,9 @@ class ApiFeedWatchlist extends ApiBase {
 			'feedformat' => 'The format of the feed',
 			'hours'      => 'List pages modified within this many hours from now',
 			'allrev'     => 'Include multiple revisions of the same page within given timeframe',
-			'wlowner'     => "The user whose watchlist you want (must be accompanied by {$this->getModulePrefix()}token if it's not you)",
-			'wltoken'    => 'Security token that requested user set in their preferences'
+			'wlowner'    => "The user whose watchlist you want (must be accompanied by {$this->getModulePrefix()}token if it's not you)",
+			'wltoken'    => 'Security token that requested user set in their preferences',
+			'linktodiffs'      => 'Link to change differences instead of article pages'
 		);
 	}
 
@@ -185,7 +199,8 @@ class ApiFeedWatchlist extends ApiBase {
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=feedwatchlist'
+			'api.php?action=feedwatchlist',
+			'api.php?action=feedwatchlist&allrev=allrev&linktodiffs=&hours=6'
 		);
 	}
 
