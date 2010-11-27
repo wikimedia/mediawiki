@@ -26,6 +26,7 @@ class PurgeList extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Send purge requests for listed pages to squid";
+		$this->addOption( 'purge', 'Whether to update page touched.' , false, false );
 	}
 
 	public function execute() {
@@ -42,7 +43,7 @@ class PurgeList extends Maintenance {
 					$url = $title->getFullUrl();
 					$this->output( "$url\n" );
 					$urls[] = $url;
-					if ( isset( $options['purge'] ) ) {
+					if ( $this->getOptions( 'purge' ) ) {
 						$title->invalidateCache();
 					}
 				} else {

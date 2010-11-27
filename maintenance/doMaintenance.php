@@ -69,7 +69,7 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	$callback = MW_CONFIG_CALLBACK;
 	# PHP 5.1 doesn't support "class::method" for call_user_func, so split it
 	if ( strpos( $callback, '::' ) !== false ) {
-		$callback = explode( '::', $callback, 2);
+		$callback = explode( '::', $callback, 2 );
 	}
 	call_user_func( $callback );
 } elseif ( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
