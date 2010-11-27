@@ -978,7 +978,7 @@ Si një administrator ju mund ta shikoni këtë ndryshim; detajet mund të gjend
 'revdelete-suppress'          => 'Ndalo të dhëna nga administrues si dhe të tjerë',
 'revdelete-unsuppress'        => 'Hiq kufizimet nga versionet e restauruara',
 'revdelete-log'               => 'Arsyeja:',
-'revdelete-submit'            => 'Apliko te {{PLURAL:$1|revision|versionet}} e zgjedhura',
+'revdelete-submit'            => 'Apliko te versionet e zgjedhura',
 'revdelete-logentry'          => 'Pamja e versionit u ndryshua për [[$1]]',
 'logdelete-logentry'          => 'u ndryshua dukshmëria e ngjarjes së [[$1]]',
 'revdelete-success'           => "'''Dukshmëria e versioneve u vendos me sukses.'''",

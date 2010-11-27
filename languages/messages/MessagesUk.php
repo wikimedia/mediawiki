@@ -461,7 +461,7 @@ $messages = array(
 'projectpage'       => 'Переглянути сторінку проекту',
 'imagepage'         => 'Переглянути сторінку файлу',
 'mediawikipage'     => 'Переглянути сторінку повідомлення',
-'templatepage'      => 'Переглянути сторінку шаблону',
+'templatepage'      => 'Переглянути сторінку шаблона',
 'viewhelppage'      => 'Отримати довідку',
 'categorypage'      => 'Переглянути сторінку категорії',
 'viewtalkpage'      => 'Переглянути обговорення',
@@ -961,11 +961,11 @@ $1',
 'post-expand-template-inclusion-warning'  => 'Увага: розмір шаблонів для включення занадто великий.
 Деякі шаблони не будуть включені.',
 'post-expand-template-inclusion-category' => 'Сторінки з перевищеним розміром включених шаблонів',
-'post-expand-template-argument-warning'   => 'Увага: Ця сторінка містить принаймні один аргумент шаблону, який має надто великий розмір для розгортання.
-Такі аргументи були опущені.',
+'post-expand-template-argument-warning'   => "'''Увага:''' Ця сторінка містить принаймні один аргумент шаблона, який має надто великий розмір для розгортання.
+Такі аргументи були опущені.",
 'post-expand-template-argument-category'  => 'Сторінки, які містять пропущені аргументи шаблонів',
 'parser-template-loop-warning'            => 'Виявлена петля у шаблонах: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Перевищена границя глибини рекурсії шаблону ($1)',
+'parser-template-recursion-depth-warning' => 'Перевищене обмеження глибини рекурсії шаблона ($1)',
 'language-converter-depth-warning'        => 'Перевищене обмеження глибини мовного конвертора ($1)',
 
 # "Undo" feature
@@ -2769,7 +2769,7 @@ IP-адреси, що блокуються автоматично тут не в
 'tooltip-ca-nstab-project'        => 'Сторінка проекту',
 'tooltip-ca-nstab-image'          => 'Сторінка зображення',
 'tooltip-ca-nstab-mediawiki'      => 'Сторінка повідомлення MediaWiki',
-'tooltip-ca-nstab-template'       => 'Сторінка шаблону',
+'tooltip-ca-nstab-template'       => 'Сторінка шаблона',
 'tooltip-ca-nstab-help'           => 'Сторінка довідки',
 'tooltip-ca-nstab-category'       => 'Сторінка категорії',
 'tooltip-minoredit'               => 'Позначити це редагування як незначне',
@@ -3286,7 +3286,7 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[«Interwiki transcluding» вимкнено]',
-'scarytranscludefailed'   => '[Помилка звертання до шаблону $1]',
+'scarytranscludefailed'   => '[Помилка звертання до шаблона $1]',
 'scarytranscludetoolong'  => '[URL дуже довгий]',
 
 # Trackbacks

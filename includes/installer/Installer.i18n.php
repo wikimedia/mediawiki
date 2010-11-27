@@ -3689,7 +3689,33 @@ MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert wo
 	'config-ze1' => "'''Fatal: Dr Parameter <code>[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]</code> vu PHP isch aktiviert!'''
 Die Yystellig fiert zue große Fähler bi MediaWiki.
 MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert woren isch.",
+	'config-safe-mode' => "'''Warnig:''' D Funktion <code>[http://www.php.net/features.safe-mode Safe Mode]</code> vu PHP isch aktiviert.
+Des cha zue Probläm fiere, vor allem wänn s Uffelade vu Dateie soll megli syy bzw. dr Uuszeichner <code>math</code> soll brucht wäre.",
 	'config-xml-good' => 'D XML/Latin1-UTF-8 Umwandlig isch verfiegbar.',
+	'config-xml-bad' => 'S XML-Modul vu PHP fählt.
+MediaWiki brucht Funktione, wu au des Modul z Verfiegig stellt, un funktioniert in däre Konfiguration nit.
+Wänn Mandriva brucht wird, mueß no s „php-xml“-Paket inschtalliert wäre.',
+	'config-pcre' => 'S PHP-Modul fir d PCRE-Unterstitzig isch nit gfunde wore.
+MediaWiki brucht aber perl-kompatibli reguläri Uusdruck zum lauffähig syy.',
+	'config-pcre-no-utf8' => "'''Fatale Fähler: S PHP-Modul PCRE isch schyns ohni PCRE_UTF8-Unterstitzig kompiliert wore.'''
+MediaWiki brucht d UTF-8-Unterstitzi zum fählerfrej lauffähig syy.",
+	'config-memory-none' => 'PHP isch ohni dr Parameter <code>memory_limit</code> konfiguriert wore',
+	'config-memory-ok' => 'Dr PHP-Parameter <code>memory_limit</code> het dr Wärt $1.
+In Ornig.',
+	'config-memory-raised' => 'Dr PHP-Parameter <code>memory_limit</code> lyt bi $1 un isch uf $2 uffegsetzt wore.',
+	'config-memory-bad' => "'''Warnig:''' Dr PHP-Parameter <code>memory_limit</code> lyt bi $1.
+Dää Wärt isch wahrschyns z nider.
+Dr Inschtallationsvorgang chennt wäge däm fählschlaa!",
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] isch inschtalliert',
+	'config-apc' => '[http://www.php.net/apc APC] isch inschtalliert',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] isch inschtalliert',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] isch inschtalliert',
+	'config-no-cache' => "'''Warnig:''' [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] hän nit chenne gfunde wäre.
+S Objäktcaching isch wäge däm nit aktiviert.",
+	'config-diff3-good' => 'GNU diff3 isch gfunde wore: <code>$1</code>.',
+	'config-diff3-bad' => 'GNU diff3 isch nit gfunde wore.',
+	'config-imagemagick' => 'ImageMagick isch gfunde wore: <code>$1</code>.
+Miniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch.',
 );
 
 /** Hebrew (עברית)
