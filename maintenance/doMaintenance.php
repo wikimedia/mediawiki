@@ -40,16 +40,6 @@ if ( defined( 'MW_NO_SETUP' ) ) {
 	return;
 }
 
-// Get an object to start us off
-$maintenance = new $maintClass();
-
-// Basic sanity checks and such
-$maintenance->setup();
-
-// We used to call this variable $self, but it was moved
-// to $maintenance->mSelf. Keep that here for b/c
-$self = $maintenance->getName();
-
 # Setup the profiler
 global $IP;
 if ( file_exists( "$IP/StartProfiler.php" ) ) {
@@ -61,6 +51,16 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 // Some other requires
 require_once( "$IP/includes/AutoLoader.php" );
 require_once( "$IP/includes/Defines.php" );
+
+// Get an object to start us off
+$maintenance = new $maintClass();
+
+// Basic sanity checks and such
+$maintenance->setup();
+
+// We used to call this variable $self, but it was moved
+// to $maintenance->mSelf. Keep that here for b/c
+$self = $maintenance->getName();
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
