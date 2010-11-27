@@ -50,7 +50,7 @@ class LoadBalancer {
 		$this->mWaitForPos = false;
 		$this->mLaggedSlaveMode = false;
 		$this->mErrorConnection = false;
-		$this->mAllowLag = false;
+		$this->mAllowLagged = false;
 		$this->mLoadMonitorClass = isset( $params['loadMonitor'] ) 
 			? $params['loadMonitor'] : 'LoadMonitor_MySQL';
 
