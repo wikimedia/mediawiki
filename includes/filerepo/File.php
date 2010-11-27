@@ -1049,7 +1049,7 @@ abstract class File {
 	}
 
 	/**
-	 * Returns the number of pages of a multipage document, or NULL for
+	 * Returns the number of pages of a multipage document, or false for
 	 * documents which aren't multipage documents
 	 */
 	function pageCount() {
