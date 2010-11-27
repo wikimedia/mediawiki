@@ -23,6 +23,7 @@ $messages = array(
 'tog-usenewrc'                => '↓ Skr s imbddln imaynutn lli n sastwa (ira mayad JavaScript)',
 'tog-numberheadings'          => 'nmra n nsmiat wahdot',
 'tog-showtoolbar'             => 'sbaynd tizikrt n tbddil(JavaScript)',
+'tog-editondblclick'          => 'Ẓrig tisniwin ad s uklik snat wal ( ira mayad JavaScript)',
 'tog-editsectiononrightclick' => 'yan uklik f ufasi f uzwl n w-ayyaw bac ad tsbadlt ɣtad (ira JavaScript)',
 'tog-rememberpassword'        => '↓ Askti nu ukcum ɣ Urdinaturad (Iɣ kullu tggut $1 {{PLURAL:$1|Ass|Ass}})',
 'tog-watchcreations'          => 'Zaydn tasniwin lli skrɣ i umuɣ n tilli ssuġiɣ.',

@@ -651,7 +651,7 @@ Za preprečevanje zlorab je lahko na {{PLURAL:$1|uro|$1 uri|$1 ure|$1 ur}} posla
 == Urejate prek posredniškega strežnika? ==
 
 Če urejate prek AOL ali iz Bližnjega vzhoda, Afrike, Avstralije, Nove Zelandije ali iz šole, knjižnice ali podjetja, si IP-naslov morda delite z drugimi uporabniki. Če je tako, ste to sporočilo morda prejeli, čeprav niste ustvarili še nobenega računa. Znova se lahko poskusite registrirati po nekaj urah.',
-'emailauthenticated'         => 'Vaš e-poštni naslov je bil potrjen $2 ob $3.',
+'emailauthenticated'         => 'Vaš e-poštni naslov je bil potrjen dne $2 ob $3.',
 'emailnotauthenticated'      => 'Vaš e-poštni naslov še ni potrjen. Za navedene
 možnosti se e-pošte ne bo pošiljalo.',
 'noemailprefs'               => 'E-poštnega naslova niste vnesli, zato naslednje možnosti ne bodo delovale.',
@@ -1265,7 +1265,7 @@ Tukaj je naključno ustvarjena vrednost, ki jo lahko uporabite: $1',
 Tega ni mogoče razveljaviti.',
 'prefs-emailconfirm-label'      => 'Potrditev e-pošte:',
 'prefs-textboxsize'             => 'Velikost urejevalnega polja',
-'youremail'                     => 'E-pošta:',
+'youremail'                     => 'E-poštni naslov:',
 'username'                      => 'Uporabniško ime:',
 'uid'                           => 'ID uporabnika:',
 'prefs-memberingroups'          => 'Član {{PLURAL:$1|naslednje skupine|naslednjih skupin|naslednjih skupin|naslednjih skupin|naslednjih skupin}}:',
@@ -1289,7 +1289,7 @@ Podatek bo javno prikazan.',
 'prefs-help-realname'           => 'Pravo ime je neobvezno.
 Če se ga odločite navesti, bo uporabljeno za priznavanje vašega dela.',
 'prefs-help-email'              => 'E-poštni naslov ni obvezen, vendar vam omogoča, da vam v primeru pozabljenega gesla pošljemo novo.
-Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elektronsko pošto brez razkritja vaše identitete.',
+Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elektronsko pošto brez razkritja vaše istovetnosti.',
 'prefs-help-email-required'     => 'E-poštni naslov je obvezen.',
 'prefs-info'                    => 'Osnovni podatki',
 'prefs-i18n'                    => 'Internacionalizacija',

@@ -1301,7 +1301,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'group-autoconfirmed' => 'Implijerien bet kadarnaet ent emgefre',
 'group-bot'           => 'Botoù',
 'group-sysop'         => 'Merourien',
-'group-bureaucrat'    => 'Pennoù-bras',
+'group-bureaucrat'    => 'Burevidi',
 'group-suppress'      => 'Dindan evezh',
 'group-all'           => '(pep tra)',
 
@@ -1309,14 +1309,14 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'group-autoconfirmed-member' => 'Implijer bet kadarnaet ent emgefre',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Merour',
-'group-bureaucrat-member'    => 'Penn-bras',
+'group-bureaucrat-member'    => 'bureviad',
 'group-suppress-member'      => 'Dindan evezh',
 
 'grouppage-user'          => '{{ns:project}}:Implijerien',
 'grouppage-autoconfirmed' => '{{ns:project}}: Implijerien bet kadarnaet ent emgefre',
 'grouppage-bot'           => '{{ns:project}}:Botoù',
 'grouppage-sysop'         => '{{ns:project}}:Merourien',
-'grouppage-bureaucrat'    => '{{ns:project}}: Pennoù-bras',
+'grouppage-bureaucrat'    => '{{ns:project}}: Burevidi',
 'grouppage-suppress'      => '{{ns:project}}: Dindan evezh',
 
 # Rights

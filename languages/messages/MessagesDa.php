@@ -611,6 +611,7 @@ Kontrollér stavemåden, eller [[Special:UserLogin/signup|opret en ny konto]].',
 'wrongpasswordempty'         => 'Du glemte at indtaste password. Prøv igen.',
 'passwordtooshort'           => 'Adgangskoden skal mindst være på $1 {{PLURAL:$1|tegn|tegn}}.',
 'password-name-match'        => 'Kodeordet må ikke være det samme som brugernavnet.',
+'password-too-weak'          => 'Det angivne password er for svagt og kan ikke bruges.',
 'mailmypassword'             => 'Send nyt password',
 'passwordremindertitle'      => 'Nyt password til {{SITENAME}}',
 'passwordremindertext'       => 'Nogen (sandsynligvis dig, fra IP-adressen $1)
@@ -1655,6 +1656,7 @@ For optimal sikkerhed er img_auth.php deaktiveret.",
 'listfiles_search_for'  => 'Søge efter fil:',
 'imgfile'               => 'Fil',
 'listfiles'             => 'Filliste',
+'listfiles_thumb'       => 'Thumbnail',
 'listfiles_date'        => 'Dato',
 'listfiles_name'        => 'Navn',
 'listfiles_user'        => 'Bruger',
@@ -1769,6 +1771,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'statistics-edits'             => 'Redigeringer siden {{SITENAME}} blev oprettet',
 'statistics-edits-average'     => 'Gennemsnitligt antal redigeringer per side',
 'statistics-views-total'       => 'Visninger i alt',
+'statistics-views-total-desc'  => 'Visninger på ikke-eksisterende sider og special sider er ikke inkluderet',
 'statistics-views-peredit'     => 'Visninger per redigering',
 'statistics-users'             => 'Registrerede [[Special:ListUsers|brugere]]',
 'statistics-users-active'      => 'Aktive brugere',
@@ -2411,6 +2414,17 @@ $1 er allerede blokkeret. Vil du ændre indstillingene?',
 'move-page'                    => 'Flyt $1',
 'move-page-legend'             => 'Flyt side',
 'movepagetext'                 => "Når du bruger formularen herunder vil du få omdøbt en side og flyttet hele sidens historie til det nye navn. Den gamle titel vil blive en omdirigeringsside til den nye titel. Henvisninger til den gamle titel vil ikke blive ændret. Sørg for at tjekke for dobbelte eller dårlige omdirigeringer. Du er ansvarlig for, at alle henvisninger stadig peger derhen, hvor det er meningen de skal pege. Bemærk at siden '''ikke''' kan flyttes hvis der allerede er en side med den nye titel, medmindre den side er tom eller er en omdirigering uden nogen historie. Det betyder at du kan flytte en side tilbage hvor den kom fra, hvis du kommer til at lave en fejl. <b>ADVARSEL!</b> Dette kan være en drastisk og uventet ændring for en populær side; vær sikker på, at du forstår konsekvenserne af dette før du fortsætter.",
+'movepagetext-noredirectfixer' => "Brug formularen herunder du vil omdøbe en side og flyttet hele sidens historie til det nye navn.
+Den gamle titel vil blive en omdirigeringsside til den nye titel.
+Vær sikker på at tjekke for [[Special:DoubleRedirects|dobbelte]] eller [[Special:BrokenRedirects|ødelagte omdirigeringer]].
+Du er ansvarlig for at sikre, at alle henvisninger stadig peger på et sted hvor det giver meningen at gå.
+
+Bemærk, at siden '''ikke''' kan flyttes hvis der allerede er en side med den nye titel, medmindre den er tom eller er en omdirigering, og har ingen historie.
+Det betyder at du kan omdøbe en side tilbage hvor den kom fra, hvis du laver en fejl, og du kan ikke overskrive en eksisterende side.
+
+'''Advarsel!'''
+Dette kan være en drastisk og uventet ændring for en populær side;
+du skal være sikker på at du forstår konsekvenserne af dette før du fortsætter.",
 'movepagetalktext'             => "Den tilhørende diskussionsside, hvis der er en, vil automatisk blive flyttet med siden '''medmindre:''' *Du flytter siden til et andet navnerum,
 *En ikke-tom diskussionsside allerede eksisterer under det nye navn, eller
 *Du fjerner markeringen i boksen nedenunder.

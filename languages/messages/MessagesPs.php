@@ -433,7 +433,7 @@ $1',
 'toc'                     => 'نيوليک',
 'showtoc'                 => 'ښکاره کول',
 'hidetoc'                 => 'پټول',
-'thisisdeleted'           => '$1 کتل او يا بيا پر ځايول؟',
+'thisisdeleted'           => '$1 کتل او يا بيازېرمل؟',
 'viewdeleted'             => '$1 کتل؟',
 'restorelink'             => '{{PLURAL:$1|يو ړنګ شوی سمون|$1 ړنګ شوي سمونونه}}',
 'feedlinks'               => 'کتنه:',
@@ -692,6 +692,8 @@ $1',
 'whitelistedittitle'               => 'که د سمادولو تکل لری نو بايد غونډال ته ورننوځۍ.',
 'whitelistedittext'                => 'ددې لپاره چې سمادول ترسره کړی تاسو بايد $1.',
 'nosuchsectiontitle'               => 'برخه و نه موندل شوه',
+'nosuchsectiontext'                => 'تاسې د يوې داسې برخې د سمون هڅه کړې چې تر اوسه پورې نشته.
+کېدای هغه مهال چې تاسې د دې مخ نه کتنه کوله، همدا برخه کوم بل ځای ته لېږدل شوې او يا هم ړنګه شوې وي.',
 'loginreqtitle'                    => 'غونډال کې ننوتنه پکار ده',
 'loginreqlink'                     => 'ننوتل',
 'loginreqpagetext'                 => 'د نورو مخونو د کتلو لپاره تاسو بايد $1 وکړۍ.',
@@ -814,6 +816,7 @@ $1',
 'revdelete-selected'         => "'''د [[:$1]] {{PLURAL:$2|ټاکلې بڼه|ټاکلې بڼې}}:'''",
 'revdelete-hide-text'        => 'د مخکتنې متن پټول',
 'revdelete-hide-image'       => 'د دوتنې مېنځپانګه پټول',
+'revdelete-hide-name'        => 'کړنه او موخه پټول',
 'revdelete-hide-comment'     => 'د سمون لنډيز پټول',
 'revdelete-radio-same'       => '(مه بدلوه)',
 'revdelete-radio-set'        => 'هو',
@@ -841,6 +844,7 @@ $1',
 # Revision move
 'revmove-reasonfield'    => 'سبب:',
 'revmove-titlefield'     => 'د موخې مخ:',
+'revmove-badparam-title' => 'بد پاراميترونه',
 'revmove-nullmove-title' => 'بد سرليک',
 
 # History merging
@@ -863,7 +867,7 @@ $1',
 'compareselectedversions'  => 'ټاکلې بڼې سره پرتلل',
 'showhideselectedversions' => 'ټاکلې بڼې ښکاره کول/پټول',
 'editundo'                 => 'ناکړ',
-'diff-multi'               => '({{PLURAL:$1|يوه منځګړې مخليدنه نه ده ښکاره شوې|$1 منځګړې مخليدنې نه دي ښکاره شوي}}.)',
+'diff-multi'               => ' د ({{PLURAL:$2| يو کارن|$2 کارنانو}} لخوا {{PLURAL:$1|يوه منځګړې بڼه|$1 منځګړې بڼې}}د  نه ده ښکاره شوې)',
 
 # Search results
 'searchresults'                    => 'د پلټنې پايلې',
@@ -925,6 +929,8 @@ $1',
 
 # Quickbar
 'qbsettings-none'          => 'هېڅ',
+'qbsettings-fixedleft'     => 'ثابته کيڼ',
+'qbsettings-fixedright'    => 'ثابته ښي',
 'qbsettings-floatingleft'  => 'کيڼه لامبا',
 'qbsettings-floatingright' => 'ښي لامبا',
 
@@ -1043,17 +1049,20 @@ $1',
 'group-bot'        => 'روباټونه',
 'group-sysop'      => 'پازوالان',
 'group-bureaucrat' => 'بيوروکراټان',
+'group-suppress'   => 'څارونکي',
 'group-all'        => '(ټول)',
 
 'group-user-member'       => 'کارن',
 'group-bot-member'        => 'روباټ',
 'group-sysop-member'      => 'پازوال',
 'group-bureaucrat-member' => 'بيوروکراټ',
+'group-suppress-member'   => 'څارن',
 
 'grouppage-user'       => '{{ns:project}}:کارنان',
 'grouppage-bot'        => '{{ns:project}}:روباټان',
 'grouppage-sysop'      => '{{ns:project}}:پازوالان',
 'grouppage-bureaucrat' => '{{ns:project}}:بيوروکراټان',
+'grouppage-suppress'   => '{{ns:project}}:څارن',
 
 # Rights
 'right-read'                 => 'مخونه لوستل',
@@ -1163,6 +1172,7 @@ $1',
 * د يوې دوتنې د بشپړې بڼې د کارولو په موخه د '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' کوډ وکاروۍ.
 * د '۲۰۰ پېکسل' په کچه د 'بټنوک' په توګه د يوې دوتنې کارول چې د مخ کيڼې څنډې کې او ترلاندې 'د انځور څرګندونې' ولري، نو د دې موخې لپاره د '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|بټنوک|کيڼ|د انځور څرګندونې]]</nowiki></tt>''' کوډ وکاروۍ.
 * د انځور د ښودلو نه پرته، د دوتنې سره د سيخې تړنې لپاره د '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' کوډ وکاروۍ.",
+'uploadlog'             => 'د پورته شويو دوتنو يادښت',
 'uploadlogpage'         => 'د پورته شويو دوتنو يادښت',
 'uploadlogpagetext'     => 'دا لاندې د نوو پورته شوو دوتنو لړليک دی.',
 'filename'              => 'د دوتنې نوم',
@@ -1203,17 +1213,22 @@ $1',
 'upload-options'        => 'د پورته کولو خوښنې',
 'watchthisupload'       => 'همدا دوتنه کتل',
 'upload-success-subj'   => 'دوتنه پورته کېدل په برياليتوب سره ترسره شو',
+'upload-failure-subj'   => 'د پورته کېدو ستونزه',
 
 'upload-file-error'   => 'کورنۍ ستونزه',
 'upload-unknown-size' => 'ناڅرګنده کچه',
 'upload-http-error'   => 'د HTTP يوه ستونزه رامېنځ ته شوې: $1',
 
 # img_auth script messages
-'img-auth-nofile' => 'د $1 په نوم کومه دوتنه نشته.',
+'img-auth-accessdenied' => 'لاسرسی رد شو',
+'img-auth-nofile'       => 'د $1 په نوم کومه دوتنه نشته.',
 
 # HTTP errors
 'http-invalid-url' => 'ناسم URL: $1',
 'http-read-error'  => 'د HTTP د لوستلو ستونزه.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'URL ته لاسرسی و نه شو',
 
 'license'            => 'منښتليک:',
 'license-header'     => 'منښتليک:',
@@ -1256,6 +1271,7 @@ $1',
 'duplicatesoffile'          => 'دا لاندينۍ {{PLURAL:$1| دوتنه د همدې دوتنې غبرګونې لمېسه ده|$1 دوتنې د همدې دوتنې غبرګونې لمېسې دي}} ([[Special:FileDuplicateSearch/$2|نور تفصيل]]):',
 'sharedupload'              => 'دا دوتنه د $1 لخوا نه ده او کېدای شي چې نورې پروژې به يې هم کاروي.',
 'uploadnewversion-linktext' => 'د همدغې دوتنې نوې بڼه پورته کول',
+'shared-repo-from'          => 'د $1 لخوا',
 
 # File reversion
 'filerevert-comment' => 'سبب:',
@@ -1373,6 +1389,7 @@ $1',
 'notargettitle'           => 'بې موخې',
 'pager-newer-n'           => '{{PLURAL:$1|نوی 1|نوي $1}}',
 'pager-older-n'           => '{{PLURAL:$1|زوړ 1|زاړه $1}}',
+'suppress'                => 'څارن',
 
 # Book sources
 'booksources'               => 'د کتاب سرچينې',
@@ -1608,11 +1625,12 @@ $1',
 'undeletepage'              => 'ړنګ شوي مخونه کتل او بېرته پرځای کول',
 'viewdeletedpage'           => 'ړنګ شوي مخونه کتل',
 'undeletebtn'               => 'بېرته پرځای کول',
-'undeletelink'              => 'کتل/بيا پر ځای کول',
+'undeletelink'              => 'کتل/بيازېرمل',
 'undeleteviewlink'          => 'کتل',
 'undeletereset'             => 'بياايښودل',
 'undeletecomment'           => 'سبب:',
 'undeletedarticle'          => '"[[$1]]" بېرته پرځای شو',
+'undeletedfiles'            => '{{PLURAL:$1|1 دوتنه بيازېرمه شوه|$1 دوتنې بيازېرمه شوې}}',
 'undelete-search-box'       => 'ړنګ شوي مخونه لټول',
 'undelete-search-prefix'    => 'هغه مخونه ښکاره کړه چې پېلېږي په:',
 'undelete-search-submit'    => 'پلټل',

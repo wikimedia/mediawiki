@@ -1608,8 +1608,8 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'upload-recreate-warning'     => "'''Peringatan: Berkas dengan nama itu telah dihapus atau dipindahkan.'''
 
 Log penghapusan dan pemindahan laman ini adalah sebagai berikut:",
-'uploadtext'                  => "Gunakan formulir di bawah untuk memuat berkas.
-Untuk menampilkan atau mencari berkas-berkas yang sebelumnya dimuat, gunakan [[Special:FileList|daftar pemuatan berkas]]. Pemuatan (kembali) juga tercatat dalam [[Special:Log/upload|log pemuatan]], sementara penghapusan tercatat dalam [[Special:Log/delete|log penghapusan]].
+'uploadtext'                  => "Gunakan formulir di bawah untuk mengunggah berkas.
+Untuk menampilkan atau mencari berkas yang sebelumnya dimuat, gunakan [[Special:FileList|daftar berkas]]. Pengunggahan (ulang) juga tercatat dalam [[Special:Log/upload|log pengunggahan]], sementara penghapusan tercatat dalam [[Special:Log/delete|log penghapusan]].
 
 Untuk menampilkan atau menyertakan berkas di dalam suatu halaman, gunakan pranala dengan salah satu format di bawah ini:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' untuk menampilkan berkas dalam ukuran aslinya
@@ -1618,9 +1618,9 @@ Untuk menampilkan atau menyertakan berkas di dalam suatu halaman, gunakan pranal
 'upload-permitted'            => 'Jenis berkas yang diperbolehkan: $1.',
 'upload-preferred'            => 'Jenis berkas yang disarankan: $1.',
 'upload-prohibited'           => 'Jenis berkas yang dilarang: $1.',
-'uploadlog'                   => 'log pemuatan',
-'uploadlogpage'               => 'Log pemuatan',
-'uploadlogpagetext'           => 'Di bawah ini adalah log pemuatan berkas. Semua waktu yang ditunjukkan adalah waktu server.',
+'uploadlog'                   => 'log pengunggahan',
+'uploadlogpage'               => 'Log pengunggahan',
+'uploadlogpagetext'           => 'Di bawah ini adalah log pengunggahan berkas. Semua waktu yang ditunjukkan adalah waktu server.',
 'filename'                    => 'Nama berkas',
 'filedesc'                    => 'Ringkasan',
 'fileuploadsummary'           => 'Ringkasan:',
