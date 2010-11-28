@@ -57,9 +57,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// prevent callers from doing standard HTML output -- we'll take it from here
 		$wgOut->disable();
 
-		$code = 500;
-		$message = 'Unknown error';
-
 		if ( !isset( $subPage ) || $subPage === '' ) {
 			// the user probably visited the page just to see what would happen, so explain it a bit.
 			$code = '400';
@@ -126,7 +123,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 				throw $e;
 			}
 
-			list( $dummy, $width, $origKey ) = $matches;
+			list( , $width, $origKey ) = $matches;
 
 			// do not trap exceptions, if key is in bad format, or file not found,
 			// let exceptions propagate to caller.

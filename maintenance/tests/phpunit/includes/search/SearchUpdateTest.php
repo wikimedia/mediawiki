@@ -28,7 +28,7 @@ class SearchUpdateTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function updateText( $text ) {
-		list( $title, $resultText ) = $this->update( $text );
+		list( , $resultText ) = $this->update( $text );
 		$resultText = trim( $resultText ); // abstract from some implementation details
 		return $resultText;
 	}
