@@ -39,9 +39,7 @@ class UpdateDoubleWidthSearch extends Maintenance {
 	}
 
 	public function execute() {
-		$quiet = $this->hasOption( 'q' );
 		$maxLockTime = $this->getOption( 'l', 20 );
-		$lockTime = time();
 
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $dbw->getType() !== 'mysql' ) {

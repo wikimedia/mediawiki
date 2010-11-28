@@ -69,7 +69,6 @@ class SpecialBookSources extends SpecialPage {
 	public static function isValidISBN( $isbn ) {
 		$isbn = self::cleanIsbn( $isbn );
 		$sum = 0;
-		$check = -1;
 		if( strlen( $isbn ) == 13 ) {
 			for( $i = 0; $i < 12; $i++ ) {
 				if($i % 2 == 0) {

@@ -120,9 +120,9 @@ class ParserTest {
 	}
 
 	static function setUp() {
-		global $wgParser,  $wgParserConf, $IP, $messageMemc, $wgMemc, $wgDeferredUpdateList,
+		global $wgParser,  $wgParserConf, $IP, $wgDeferredUpdateList,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-			$wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $parserMemc,
+			$wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry,
 			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$wgThumbnailScriptPath, $wgScriptPath,
 			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;

@@ -43,7 +43,7 @@ class ResourceLoaderContext {
 	/* Methods */
 
 	public function __construct( ResourceLoader $resourceLoader, WebRequest $request ) {
-		global $wgLang, $wgDefaultSkin, $wgResourceLoaderDebug;
+		global $wgDefaultSkin, $wgResourceLoaderDebug;
 
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;

@@ -128,7 +128,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 			$namespace = NS_MAIN;
 		} else {
 			list( $namespace, $prefixKey, $prefix ) = $prefixList;
-			list( /* $fromNs */, $fromKey, $from ) = $fromList;
+			list( , $fromKey, ) = $fromList;
 
 			### FIXME: should complain if $fromNs != $namespace
 
