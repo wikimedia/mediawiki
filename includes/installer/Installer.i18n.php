@@ -3837,6 +3837,7 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 	'config-wiki-language' => 'Wikirěč:',
 	'config-wiki-language-help' => 'Wubjer rěč, w kotrejž wiki ma so zwjetša pisać.',
 	'config-allow-requests' => 'Eksterne naprašowanja na MediaWiki.org dowolić',
+	'config-allow-requests-help' => 'Jeli to je zmóžnjene, móže instalacisiki program na Mediawiki.org kontrolować, hač woprawdźe najnowšu stabilnu wersiju instaluješ',
 	'config-back' => '← Wróćo',
 	'config-continue' => 'Dale →',
 	'config-page-language' => 'Rěč',
@@ -3865,6 +3866,7 @@ Móžeš MediaWiki instalować.</span>',
 	'config-env-bad' => 'Wokolina je so skontrolowała.
 Njemóžeš MediaWiki instalować.',
 	'config-env-php' => 'PHP $1 je instalowany.',
+	'config-env-latest-disabled' => 'Eksterne HTTP-naprašowanja su znjemóžnjene, wersijowa kontrola so přeskakuje',
 	'config-env-latest-ok' => 'Instaluješ najnowšu wersiju MediaWiki.',
 	'config-env-latest-new' => "'''Kedźbu:''' Instaluješ wuwiwansku wersiju MediaWiki.",
 	'config-env-latest-can-not-check' => "'''Kedźbu:''' Instalaciski program njemóžeše žane informacije wo najnowšej wersiji MediaWiki wot [$1] wotwołać.",
@@ -3875,6 +3877,11 @@ Doporuča so, najnowšu wersiju wužiwać, kotruž móžeš wot [http://www.medi
 	'config-unicode-using-intl' => 'Za normalizaciju Unicode so [http://pecl.php.net/intl PECL-rozšěrjenje intl] wužiwa.',
 	'config-no-db' => 'Njeda so přihódny ćěrjak datoweje banki namakać!',
 	'config-have-db' => '{{PLURAL:$2|Ćěrjak|Ćěrjakaj|Ćěrjaki|Ćěrjaki}} datoweje banki {{PLURAL:$2|namakany|namakanej|namakane|namakanych}}: $1.',
+	'config-register-globals' => "'''Warnowanje: Funkcija <code>[http://php.net/register_globals register_globals]</code> PHP je zmóžnjena.'''
+'''Znjemóžń ju, jeli móžeš.'''
+MediaWiki budźe fungować, ale twój serwer je potencielnym wěstotnym njedostatkam wustajeny.",
+	'config-safe-mode' => "'''Warnowanje:''' [http://www.php.net/features.safe-mode wěsty modus] PHP je aktiwny.
+To móže problemy zawinować, předewšěm, jeli so datajowe nahraća a podpěra <code>math</code> wužiwaja.",
 	'config-xml-good' => 'Konwersija XML/Latin1-UTF-8 steji k dispoziciji.',
 	'config-memory-none' => 'PHP je bjez <code>memory_limit</code> skonfigurowany',
 	'config-memory-ok' => 'PHP-parameter <code>memory_limit</code> ma hódnotu $1.
@@ -3933,6 +3940,8 @@ Změń je jenož, jeli wěš, štož činiš.',
 	'config-invalid-db-type' => 'Njepłaćiwy typ datoweje banki',
 	'config-missing-db-name' => 'Dyrbiš hódnotu za "Mjeno datoweje banki" zapodać',
 	'config-missing-db-server-oracle' => 'Dyrbiš hódnotu za "Database TNS" zapodać',
+	'config-invalid-db-server-oracle' => 'Njepłaćiwa datowa banka TNS "$1".
+Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9), podsmužki (_) a dypki (.).',
 	'config-invalid-db-name' => 'Njepłaćiwe mjeno "$1" datoweje banki.
 Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
 	'config-invalid-db-prefix' => 'Njepłaćiwy prefiks "$1" datoweje banki.

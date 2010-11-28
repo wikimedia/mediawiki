@@ -1354,7 +1354,7 @@ Không có thể lùi lại tác động này.',
 'prefs-help-signature'          => 'Các ý kiến tại trang thảo luận nên được ký tên bằng cách gõ "<nowiki>~~~~</nowiki>", nó sẽ được đổi thành chữ ký của bạn cùng với thời điểm thảo luận.',
 'badsig'                        => 'Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.',
 'badsiglength'                  => 'Chữ ký của bạn quá dài.
-Nó không được dài quá $1 {{PLURAL:$1|ký tự|ký tự}}.',
+Nó không được dài quá $1 ký tự.',
 'yourgender'                    => 'Giới tính:',
 'gender-unknown'                => 'Không chỉ rõ',
 'gender-male'                   => 'Nam',
