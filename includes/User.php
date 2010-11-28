@@ -2573,12 +2573,13 @@ class User {
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
+
 		$fields = array(
 			'user_id' => $seqVal,
 			'user_name' => $name,
 			'user_password' => $user->mPassword,
 			'user_newpassword' => $user->mNewpassword,
-			'user_newpass_time' => $dbw->timestamp( $user->mNewpassTime ),
+			'user_newpass_time' => $dbw->timestampOrNull( $user->mNewpassTime ),
 			'user_email' => $user->mEmail,
 			'user_email_authenticated' => $dbw->timestampOrNull( $user->mEmailAuthenticated ),
 			'user_real_name' => $user->mRealName,
@@ -2612,7 +2613,7 @@ class User {
 				'user_name' => $this->mName,
 				'user_password' => $this->mPassword,
 				'user_newpassword' => $this->mNewpassword,
-				'user_newpass_time' => $dbw->timestamp( $this->mNewpassTime ),
+				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_real_name' => $this->mRealName,
