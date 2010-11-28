@@ -1990,7 +1990,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	
 	if ( $ts === 0 ) {
 		$uts = time();
-		$strtime = "@$ts";
+		$strtime = "@$uts";
 	} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/D', $ts, $da ) ) {
 		# TS_DB
 	} elseif ( preg_match( '/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/D', $ts, $da ) ) {
