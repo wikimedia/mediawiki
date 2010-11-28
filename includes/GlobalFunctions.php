@@ -1981,7 +1981,7 @@ define( 'TS_ISO_8601_BASIC', 9 );
  *                    function will autodetect which format is supplied and act
  *                    accordingly.
  * @param $ts Mixed: the timestamp to convert or 0 for the current timestamp
- * @return String: in the format specified in $outputtype
+ * @return Mixed: String / false The same date in the format specified in $outputtype or false
  */
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	$uts = 0;
@@ -2014,14 +2014,23 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		# TS_POSTGRES
 	} elseif (preg_match('/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)\.\d\d\d$/',$ts,$da)) {
 		# TS_DB2
-	} elseif ( preg_match( '/^[A-Z][a-z]{2}, \d\d [A-Z][a-z]{2} \d{4} \d\d:\d\d:\d\d/', $ts ) ) {
-		# TS_RFC2822
+	} elseif ( preg_match( '/^[ \t\r\n]*([A-Z][a-z]{2},[ \t\r\n]*)?' . # Day of week
+							'\d\d?[ \t\r\n]*[A-Z][a-z]{2}[ \t\r\n]*\d{2}(?:\d{2})?' .  # dd Mon yyyy
+							'[ \t\r\n]*\d\d[ \t\r\n]*:[ \t\r\n]*\d\d[ \t\r\n]*:[ \t\r\n]*\d\d/S', $ts ) ) { # hh:mm:ss
+		# TS_RFC2822, accepting a trailing comment. See http://www.squid-cache.org/mail-archive/squid-users/200307/0122.html / r77171
+		# The regex is a superset of rfc2822 for readability 
+		$strtime = strtok( $ts, ';' );
+	} elseif ( preg_match( '/^[A-Z][a-z]{5,8}, \d\d-[A-Z][a-z]{2}-\d{2} \d\d:\d\d:\d\d/', $ts ) ) {
+		# TS_RFC850
+		$strtime = $ts;
+	} elseif ( preg_match( '/^[A-Z][a-z]{2} [A-Z][a-z]{2} +\d{1,2} \d\d:\d\d:\d\d \d{4}/', $ts ) ) {
+		# asctime
 		$strtime = $ts;
 	} else {
 		# Bogus value; fall back to the epoch...
 		wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
 		
-		return "Invalid date";
+		return null;
 	}
 
 	
@@ -2050,9 +2059,17 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 				(int)$da[4], (int)$da[5], (int)$da[6]);
 			
 			$d = date_create( $ds, new DateTimeZone( 'GMT' ) );
-		} else {
+		} elseif ( $strtime ) {
 			$d = date_create( $strtime, new DateTimeZone( 'GMT' ) );
+		} else {
+			return false;
 		}
+		
+		if ( !$d ) {
+			wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
+			return false;
+		}
+		
 		$output = $d->format( $formats[$outputtype] );
 	} else {
 		if ( count( $da ) ) {
@@ -2065,7 +2082,8 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		}
 		
 		if ( $uts === false ) {
-			return "Can't handle date";
+			wfDebug("wfTimestamp() can't parse the timestamp (non 32-bit time? Update php): $outputtype; $ts\n");
+			return false;
 		}
 		
 		if ( TS_UNIX == $outputtype ) {
