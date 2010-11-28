@@ -308,7 +308,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return String: URL to access thumbnail, or URL with partial path
 	 */
 	public function getThumbUrl( $thumbName = false ) { 
-		return self::getSpecialUrl( $thumbName );
+		return $this->getSpecialUrl( $thumbName );
 	}
 
 	/** 
@@ -332,7 +332,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 */
 	public function getUrl() {
 		if ( !isset( $this->url ) ) {
-			$this->url = self::getSpecialUrl( $this->getUrlName() );
+			$this->url = $this->getSpecialUrl( $this->getUrlName() );
 		}
 		return $this->url;
 	}

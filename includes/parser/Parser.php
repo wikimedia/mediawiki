@@ -354,7 +354,7 @@ class Parser {
 		$uniq_prefix = $this->mUniqPrefix;
 		$matches = array();
 		$elements = array_keys( $this->mTransparentTagHooks );
-		$text = self::extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
+		$text = $this->extractTagsAndParams( $elements, $text, $matches, $uniq_prefix );
 
 		foreach ( $matches as $marker => $data ) {
 			list( $element, $content, $params, $tag ) = $data;

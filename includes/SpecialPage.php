@@ -573,7 +573,7 @@ class SpecialPage {
 		$page->including( $including );
 
 		// Execute special page
-		$profName = 'Special:' . $page->getName();
+		$profName = 'Special:' . $page->name();
 		wfProfileIn( $profName );
 		$page->execute( $par );
 		wfProfileOut( $profName );
