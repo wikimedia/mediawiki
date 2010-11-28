@@ -2030,7 +2030,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		# Bogus value; fall back to the epoch...
 		wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
 		
-		return null;
+		return false;
 	}
 
 	
