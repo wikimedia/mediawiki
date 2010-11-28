@@ -1620,7 +1620,8 @@ Untuk menampilkan atau menyertakan berkas di dalam suatu halaman, gunakan pranal
 'upload-prohibited'           => 'Jenis berkas yang dilarang: $1.',
 'uploadlog'                   => 'log pengunggahan',
 'uploadlogpage'               => 'Log pengunggahan',
-'uploadlogpagetext'           => 'Di bawah ini adalah log pengunggahan berkas. Semua waktu yang ditunjukkan adalah waktu server.',
+'uploadlogpagetext'           => 'Berikut adalah daftar unggahan berkas terbaru. 
+Lihat [[Special:NewFiles|galeri berkas baru]] untuk tampilan visual.',
 'filename'                    => 'Nama berkas',
 'filedesc'                    => 'Ringkasan',
 'fileuploadsummary'           => 'Ringkasan:',

@@ -358,6 +358,7 @@ Watumiaji wengi mno wanajaribu kutazama ukurasa huu.
 Tafadhali subiri kwa muda kadhaa kabla ya kujaribu kufungua tena.
 
 $1',
+'pool-queuefull'    => 'Foleni ya michakato imejaa',
 'pool-errorunknown' => 'Hitilafu isiyojulikana',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -1276,6 +1277,9 @@ Pia unaweza kuchagua kuwawezesha watumiaji wengine wawasiliane nawe kwa kupitia 
 'right-blockemail'           => 'Kumzuia mtumiaji asitume barua-pepe',
 'right-hideuser'             => 'Kuzuia jina la mtumiaji, lisionekane mbele ya kadamnasi',
 'right-editinterface'        => 'Kuhariri kusano ya mtumiaji',
+'right-editusercssjs'        => 'Kuhariri mafaili ya CSS na JavaScript ya watumiaji wengine',
+'right-editusercss'          => 'Kuhariri mafaili ya CSS ya watumiaji wengine',
+'right-edituserjs'           => 'Kuhariri mafaili ya JavaScript ya watumiaji wengine',
 'right-import'               => 'Kuleta kurasa kutoka kwa wiki zingine',
 'right-unwatchedpages'       => 'Kutazama orodha ya kurasa zisizofuatiliwa',
 'right-mergehistory'         => 'Kuunganisha historia ya kurasa zingine',
@@ -1987,6 +1991,9 @@ ukurasa huu una mhariri mmoja tu.',
 'revertpage'       => 'Masahihisho aliyefanya [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]]) yalirejeshwa hadi sahihisho la mwisho na [[User:$1|$1]]',
 'rollback-success' => 'Masahihisho aliyeyafanya $1 yalirejeshwa hadi kufika sahihisho la mwisho aliyefanya $2.',
 
+# Edit tokens
+'sessionfailure-title' => 'Kushindikana cha kipindi',
+
 # Protect
 'protectlogpage'              => 'Kumbukumbu ya ulindaji',
 'protectedarticle'            => 'aliulinda "[[$1]]"',
@@ -2158,8 +2165,19 @@ huenda ikawa mtu mwingine ameurudisha tayari.',
 'proxyblocksuccess'          => 'Tayari.',
 
 # Developer tools
-'lockbtn'   => 'Funga hifadhidata',
-'unlockbtn' => 'Fungua hifadhidata',
+'lockdb'              => 'Kufunga hifadhidata',
+'unlockdb'            => 'Kufungua hifadhidata',
+'lockconfirm'         => 'Ndiyo, kwa kweli nataka kufunga hifadhidata.',
+'unlockconfirm'       => 'Ndiyo, kwa kweli nataka kufungua hifadhidata.',
+'lockbtn'             => 'Funga hifadhidata',
+'unlockbtn'           => 'Fungua hifadhidata',
+'locknoconfirm'       => 'Hujaweka alama katika sanduku la kuitika kitendo.',
+'lockdbsuccesssub'    => 'Kufunga hifadhidata kumefaulu',
+'unlockdbsuccesssub'  => 'Kufungua hifadhidata kumefaulu',
+'lockdbsuccesstext'   => 'Hifadhidata imefungwa.<br />
+Kumbuka [[Special:UnlockDB|kuifungua tena]] baada ya kumaliza kuitengeneza.',
+'unlockdbsuccesstext' => 'Hifadhidata imefunguliwa.',
+'databasenotlocked'   => 'Hifadhidata haijafunguliwa.',
 
 # Move page
 'move-page'                    => 'Hamisha $1',
@@ -2464,25 +2482,27 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 * focallength',
 
 # EXIF tags
-'exif-imagewidth'              => 'Upana',
-'exif-imagelength'             => 'Urefu',
-'exif-imagedescription'        => 'Jina la picha',
-'exif-artist'                  => 'Mwandishi',
-'exif-copyright'               => 'Mwenye hatimiliki',
-'exif-componentsconfiguration' => 'Maana ya kila kijenzi',
-'exif-makernote'               => 'Maelezo ya mtengenezaji',
-'exif-usercomment'             => 'Maoni ya mtumiaji',
-'exif-relatedsoundfile'        => 'Faili la sauti linalohusika',
-'exif-lightsource'             => 'Mwanga',
-'exif-gpslatituderef'          => 'Latitudo kwenda kaskazini au kusini',
-'exif-gpslatitude'             => 'Latitudo',
-'exif-gpslongituderef'         => 'Longitudo kwenda mashariki au magharibi',
-'exif-gpslongitude'            => 'Longitudo',
-'exif-gpsaltitude'             => 'Mwinuko',
-'exif-gpsdestlatitude'         => 'Latitudo ya kikomo',
-'exif-gpsdestlongitude'        => 'Longitudo ya kikomo',
-'exif-gpsdestdistance'         => 'Mbali wa kikomo',
-'exif-gpsdatestamp'            => 'Tarehe ya GPS',
+'exif-imagewidth'                  => 'Upana',
+'exif-imagelength'                 => 'Urefu',
+'exif-jpeginterchangeformatlength' => 'Idadi ya baiti za data ya JPEG',
+'exif-datetime'                    => 'Tarehe na saa ya kubadilisha faili',
+'exif-imagedescription'            => 'Jina la picha',
+'exif-artist'                      => 'Mwandishi',
+'exif-copyright'                   => 'Mwenye hatimiliki',
+'exif-componentsconfiguration'     => 'Maana ya kila kijenzi',
+'exif-makernote'                   => 'Maelezo ya mtengenezaji',
+'exif-usercomment'                 => 'Maoni ya mtumiaji',
+'exif-relatedsoundfile'            => 'Faili la sauti linalohusika',
+'exif-lightsource'                 => 'Mwanga',
+'exif-gpslatituderef'              => 'Latitudo kwenda kaskazini au kusini',
+'exif-gpslatitude'                 => 'Latitudo',
+'exif-gpslongituderef'             => 'Longitudo kwenda mashariki au magharibi',
+'exif-gpslongitude'                => 'Longitudo',
+'exif-gpsaltitude'                 => 'Mwinuko',
+'exif-gpsdestlatitude'             => 'Latitudo ya kikomo',
+'exif-gpsdestlongitude'            => 'Longitudo ya kikomo',
+'exif-gpsdestdistance'             => 'Mbali wa kikomo',
+'exif-gpsdatestamp'                => 'Tarehe ya GPS',
 
 'exif-unknowndate' => 'Tarehe haijulikani',
 
