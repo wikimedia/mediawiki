@@ -85,10 +85,11 @@ class ImageGallery
 	/**
 	 * Set how many images will be displayed per row.
 	 *
-	 * @param $num Integer > 0; invalid numbers will be rejected
+	 * @param $num Integer >= 0; If perrow=0 the gallery layout will adapt to screensize
+	 * invalid numbers will be rejected
 	 */
 	public function setPerRow( $num ) {
-		if ($num > 0) {
+		if ($num >= 0) {
 			$this->mPerRow = (int)$num;
 		}
 	}
@@ -198,7 +199,7 @@ class ImageGallery
 
 	/**
 	 * Set arbitrary attributes to go on the HTML gallery output element.
-	 * Should be suitable for a &lt;table&gt; element.
+	 * Should be suitable for a <ul> element.
 	 *
 	 * Note -- if taking from user input, you should probably run through
 	 * Sanitizer::validateAttributes() first.
@@ -224,15 +225,19 @@ class ImageGallery
 
 		$sk = $this->getSkin();
 
+		if ( $this->mPerRow > 0 ) {
+			$maxwidth = $this->mPerRow * ( $this->mWidths + 50 );
+			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;";
+		}
+
 		$attribs = Sanitizer::mergeAttributes(
 			array(
-				'class' => 'gallery',
-				'cellspacing' => '0',
-				'cellpadding' => '0' ),
+				'class' => 'gallery'),
 			$this->mAttribs );
-		$s = Xml::openElement( 'table', $attribs );
-		if( $this->mCaption )
-			$s .= "\n\t<caption>{$this->mCaption}</caption>";
+		$s = Xml::openElement( 'ul', $attribs );
+		if ( $this->mCaption ) {
+			$s .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
+		}
 
 		$params = array( 'width' => $this->mWidths, 'height' => $this->mHeights );
 		$i = 0;
@@ -325,25 +330,19 @@ class ImageGallery
 			# in version 4.8.6 generated crackpot html in its absence, see:
 			# http://bugzilla.wikimedia.org/show_bug.cgi?id=1765 -Ævar
 
-			if ( $i % $this->mPerRow == 0 ) {
-				$s .= "\n\t<tr>";
-			}
+			# Weird double wrapping in div needed due to FF2 bug
+			# Can be safely removed if FF2 falls completely out of existance
 			$s .=
-				"\n\t\t" . '<td><div class="gallerybox" style="width: '.($this->mWidths+35).'px;">'
+				"\n\t\t" . '<li class="gallerybox" style="width: ' . ( $this->mWidths + 35 ) . 'px">'
+					. '<div style="width: ' . ( $this->mWidths + 35 ) . 'px">'
 					. $thumbhtml
 					. "\n\t\t\t" . '<div class="gallerytext">' . "\n"
 						. $textlink . $text . $nb
 					. "\n\t\t\t</div>"
-				. "\n\t\t</div></td>";
-			if ( $i % $this->mPerRow == $this->mPerRow - 1 ) {
-				$s .= "\n\t</tr>";
-			}
+				. "\n\t\t</div></li>";
 			++$i;
 		}
-		if( $i % $this->mPerRow != 0 ) {
-			$s .= "\n\t</tr>";
-		}
-		$s .= "\n</table>";
+		$s .= "\n</ul>";
 
 		return $s;
 	}

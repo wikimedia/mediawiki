@@ -886,7 +886,7 @@ $wgThumbLimits = array(
  * Default parameters for the <gallery> tag
  */
 $wgGalleryOptions = array (
-	'imagesPerRow' => 4, // Default number of images per-row in the gallery
+	'imagesPerRow' => 0, // Default number of images per-row in the gallery. 0 -> Adapt to screensize
 	'imageWidth' => 120, // Width of the cells containing images in galleries (in "px")
 	'imageHeight' => 120, // Height of the cells containing images in galleries (in "px")
 	'captionLength' => 20, // Length of caption to truncate (in characters)
