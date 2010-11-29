@@ -2805,7 +2805,7 @@ class DBConnectionError extends DBError {
 	}
 
 	function searchForm() {
-		global $wgSitename, $wgServer, $wgLang, $wgInputEncoding;
+		global $wgSitename, $wgServer, $wgLang;
 
 		$usegoogle = "You can try searching via Google in the meantime.";
 		$outofdate = "Note that their indexes of our content may be out of date.";
@@ -2819,20 +2819,23 @@ class DBConnectionError extends DBError {
 
 		$search = htmlspecialchars( @$_REQUEST['search'] );
 
+		$server = htmlspecialchars( $wgServer );
+		$sitename = htmlspecialchars( $wgSitename );
+
 		$trygoogle = <<<EOT
 <div style="margin: 1.5em">$usegoogle<br />
 <small>$outofdate</small></div>
 <!-- SiteSearch Google -->
 <form method="get" action="http://www.google.com/search" id="googlesearch">
-	<input type="hidden" name="domains" value="$wgServer" />
+	<input type="hidden" name="domains" value="$server" />
 	<input type="hidden" name="num" value="50" />
-	<input type="hidden" name="ie" value="$wgInputEncoding" />
-	<input type="hidden" name="oe" value="$wgInputEncoding" />
+	<input type="hidden" name="ie" value="UTF-8" />
+	<input type="hidden" name="oe" value="UTF-8" />
 
 	<input type="text" name="q" size="31" maxlength="255" value="$search" />
 	<input type="submit" name="btnG" value="$googlesearch" />
   <div>
-	<input type="radio" name="sitesearch" id="gwiki" value="$wgServer" checked="checked" /><label for="gwiki">$wgSitename</label>
+	<input type="radio" name="sitesearch" id="gwiki" value="$server" checked="checked" /><label for="gwiki">$sitename</label>
 	<input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
   </div>
 </form>

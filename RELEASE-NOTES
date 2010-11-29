@@ -441,6 +441,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 25451) Improved datetime representation in 32 bit php >= 5.2.
 * Show "skin does not exist error" only when the skin is inputted in the wrong
   case.
+* (bug 26164) Potential html injection when the database server isn't available
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
