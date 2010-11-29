@@ -213,6 +213,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   [[MediaWiki:Longpage-hint]] (empty per default) can be used instead.
   Parameters: $1 shows the formatted textsize in Byte/KB/MB, $2 is the raw
   number of the textsize in Byte
+* (bug 3276) Give image <gallery>s fluid width
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

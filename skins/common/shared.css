@@ -786,31 +786,34 @@ table.mw_metadata td {
 }
 
 /* Galleries */
-table.gallery {
-	border: 1px solid #ccc;
-	margin: 2px;
-	padding: 2px;
-	background-color: white;
-}
-
-table.gallery tr {
-	vertical-align: top;
-}
-
-table.gallery td {
+/* These display attributes look nonsensical, but are needed to support IE and FF2 */
+li.gallerybox {
 	vertical-align: top;
 	background-color: #f9f9f9;
 	border: solid 2px white;
+	display: -moz-inline-box;
 }
-table.gallery caption {
-	font-weight: bold;
-}
-
-div.gallerybox {
+ul.gallery {
 	margin: 2px;
+	padding: 2px;
+	background-color: white;
+	display: block;
 }
 
-div.gallerybox div.thumb {
+ul.gallery, li.gallerybox {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}
+
+li.gallerycaption {
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	word-wrap: break-word;
+}
+
+li.gallerybox div.thumb {
 	text-align: center;
 	border: 1px solid #ccc;
 	margin: 2px;
