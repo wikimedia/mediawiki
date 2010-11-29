@@ -102,16 +102,16 @@ class ReassignEdits extends Maintenance {
 				# Reassign edits
 				$this->output( "\nReassigning current edits..." );
 				$dbw->update( 'revision', $this->userSpecification( $to, 'rev_user', 'rev_user_text' ),
-                                     $this->userConditions( $from, 'rev_user', 'rev_user_text' ), __METHOD__ );
+					$this->userConditions( $from, 'rev_user', 'rev_user_text' ), __METHOD__ );
 				$this->output( "done.\nReassigning deleted edits..." );
 				$dbw->update( 'archive', $this->userSpecification( $to, 'ar_user', 'ar_user_text' ),
-                              $this->userConditions( $from, 'ar_user', 'ar_user_text' ), __METHOD__ );
+					$this->userConditions( $from, 'ar_user', 'ar_user_text' ), __METHOD__ );
 				$this->output( "done.\n" );
 				# Update recent changes if required
 				if ( $rc ) {
 					$this->output( "Updating recent changes..." );
 					$dbw->update( 'recentchanges', $this->userSpecification( $to, 'rc_user', 'rc_user_text' ),
-                                  $this->userConditions( $from, 'rc_user', 'rc_user_text' ), __METHOD__ );
+						$this->userConditions( $from, 'rc_user', 'rc_user_text' ), __METHOD__ );
 					$this->output( "done.\n" );
 				}
 			}
