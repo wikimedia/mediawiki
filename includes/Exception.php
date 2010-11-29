@@ -236,13 +236,15 @@ class MWException extends Exception {
 			header( 'Pragma: nocache' );
 		}
 
-		$title = $this->getPageTitle();
+		$logo = htmlspecialchars( $wgLogo, ENT_QUOTES );
+		$title = htmlspecialchars( $this->getPageTitle() );
+
 		return "<html>
 		<head>
 		<title>$title</title>
 		</head>
 		<body>
-		<h1><img src='$wgLogo' style='float:left;margin-right:1em' alt=''/>$title</h1>
+		<h1><img src='$logo' style='float:left;margin-right:1em' alt=''/>$title</h1>
 		";
 	}
 
