@@ -31,9 +31,6 @@ class MWTidy {
 ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
 '<head><title>test</title></head><body>'.$text.'</body></html>';
 
-		# Tidy is known to clobber tabs; convert them to entities
-		$wrappedtext = str_replace( "\t", '&#9;', $wrappedtext );
-
 		if( $wgTidyInternal ) {
 			$correctedtext = self::execInternalTidy( $wrappedtext );
 		} else {
@@ -43,9 +40,6 @@ class MWTidy {
 			wfDebug( "Tidy error detected!\n" );
 			return $text . "\n<!-- Tidy found serious XHTML errors -->\n";
 		}
-
-		# Convert the tabs back from entities
-		$correctedtext = str_replace( '&#9;', "\t", $correctedtext );
 
 		return $correctedtext;
 	}
