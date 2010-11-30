@@ -174,9 +174,12 @@ class OracleInstaller extends DatabaseInstaller {
 		}
 		
 		if ( !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
-			global $_OracleDefTS, $_OracleTempTS;
-			$_OracleDefTS = $this->getVar( '_OracleDefTS' );
-			$_OracleTempTS = $this->getVar( '_OracleTempTS' );
+			/**
+			 * The variables $_OracleDefTS, $_OracleTempTS are used by maintenance/oracle/user.sql
+			 * Set here for fetching in DatabaseOracle::replaceVars()
+			 */
+			$GLOBALS['_OracleDefTS'] = $this->getVar( '_OracleDefTS' );
+			$GLOBALS['_OracleTempTS'] = $this->getVar( '_OracleTempTS' );
 			$error = $this->db->sourceFile( "$IP/maintenance/oracle/user.sql" );
 			if ( $error !== true || !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
 				$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $error );
