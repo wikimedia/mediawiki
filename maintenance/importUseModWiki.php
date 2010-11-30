@@ -60,7 +60,7 @@ function importPages()
 
 	$gt = '>';
 	echo <<<XML
-<?xml version="1.0" encoding="UTF-8" ?$gt
+<?xml version="1.0" encoding="UTF-8" ?>
 <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.1/"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.1/
