@@ -179,7 +179,7 @@ class LinkSearchPage extends QueryPage {
 	 */
 	function doQuery( $offset, $limit, $shownavigation=true ) {
 		global $wgOut;
-		list( $this->mMungedQuery, $clause ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
+		list( $this->mMungedQuery,  ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
 		if( $this->mMungedQuery === false ) {
 			$wgOut->addWikiMsg( 'linksearch-error' );
 		} else {

@@ -299,7 +299,6 @@ class ImagePage extends Article {
 
 		$this->loadFile();
 
-		$full_url  = $this->displayImg->getURL();
 		$sizeSel = intval( $wgUser->getOption( 'imagesize' ) );
 		if ( !isset( $wgImageLimits[$sizeSel] ) ) {
 			$sizeSel = User::getDefaultOption( 'imagesize' );

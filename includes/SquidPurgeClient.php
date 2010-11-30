@@ -265,7 +265,7 @@ class SquidPurgeClient {
 			$this->markDown();
 			return;
 		}
-		list( $all, $major, $minor, $status, $reason ) = $m;
+		list( , , , $status, $reason ) = $m;
 		$status = intval( $status );
 		if ( $status !== 200 && $status !== 404 ) {
 			$this->log( "unexpected status code: $status $reason" );
@@ -356,12 +356,12 @@ class SquidPurgeClientPool {
 			}
 
 			foreach ( $readSockets as $key => $socket ) {
-				list( $clientIndex, $i ) = explode( '/', $key );
+				list( $clientIndex, ) = explode( '/', $key );
 				$client = $this->clients[$clientIndex];
 				$client->doReads();
 			}
 			foreach ( $writeSockets as $key => $socket ) {
-				list( $clientIndex, $i ) = explode( '/', $key );
+				list( $clientIndex, ) = explode( '/', $key );
 				$client = $this->clients[$clientIndex];
 				$client->doWrites();
 			}

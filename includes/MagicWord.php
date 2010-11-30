@@ -720,7 +720,7 @@ class MagicWordArray {
 				continue;
 			}
 			if ( preg_match( $regex, $text, $m ) ) {
-				list( $id, $param ) = $this->parseMatch( $m );
+				list( $id, ) = $this->parseMatch( $m );
 				if ( strlen( $m[0] ) >= strlen( $text ) ) {
 					$text = '';
 				} else {

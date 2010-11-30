@@ -90,7 +90,6 @@ class DatabaseMysql extends DatabaseBase {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . mysql_error() . "\n" );
-			$success = false;
 		}
 
 		wfProfileOut("dbconnect-$server");

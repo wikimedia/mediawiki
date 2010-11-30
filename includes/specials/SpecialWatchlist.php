@@ -174,9 +174,7 @@ function wfSpecialWatchlist( $par ) {
 	# Possible where conditions
 	$conds = array();
 
-	if( $days <= 0 ) {
-		$andcutoff = '';
-	} else {
+	if( $days > 0 ) {
 		$conds[] = "rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
 	}
 

@@ -41,8 +41,6 @@ class FixSlaveDesync extends Maintenance {
 		if ( $this->hasArg() ) {
 			$this->desyncFixPage( $this->getArg() );
 		} else {
-			$dbw = wfGetDB( DB_MASTER );
-			$maxPage = $dbw->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
 			$corrupt = $this->findPageLatestCorruption();
 			foreach ( $corrupt as $id => $dummy ) {
 				$this->desyncFixPage( $id );

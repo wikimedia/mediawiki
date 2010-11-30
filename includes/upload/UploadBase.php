@@ -440,7 +440,6 @@ abstract class UploadBase {
 		$localFile = $this->getLocalFile();
 		$filename = $localFile->getName();
 		$n = strrpos( $filename, '.' );
-		$partname = $n ? substr( $filename, 0, $n ) : $filename;
 
 		/**
 		 * Check whether the resulting filename is different from the desired one,

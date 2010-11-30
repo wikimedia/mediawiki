@@ -303,7 +303,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 			return null;
 		}
 		$extension = $this->getExtension();
-		list( $thumbExt, $thumbMime ) = $this->handler->getThumbType( $extension, $this->getMimeType(), $params );
+		list( $thumbExt, ) = $this->handler->getThumbType( $extension, $this->getMimeType(), $params );
 		$thumbName = $this->getHandler()->makeParamString( $params ) . '-' . $urlName;
 		if ( $thumbExt != $extension ) {
 			$thumbName .= ".$thumbExt";
