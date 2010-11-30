@@ -174,9 +174,9 @@ class MessageCache {
 
 		fwrite($file,"<?php\n//$hash\n\n \$this->mCache = array(");
 
-		foreach ($array as $key => $message) {
+		foreach ( $array as $key => $message ) {
 			$key = $this->escapeForScript($key);
-			$messages = $this->escapeForScript($message);
+			$message = $this->escapeForScript($message);
 			fwrite($file, "'$key' => '$message',\n");
 		}
 
