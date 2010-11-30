@@ -19,9 +19,9 @@
 		/**
 		* Adds a row to the test-table
 		*
-		* @param String code	Code of the test to be executed
-		* @param String result	Expected result in 'var (vartype)' form
-		* @param String contain	Important part of the result, if result is different but does contain this it will not return ERROR but PARTIALLY
+		* @param code String	Code of the test to be executed
+		* @param result String	Expected result in 'var (vartype)' form
+		* @param contain String	Important part of the result, if result is different but does contain this it will not return ERROR but PARTIALLY
 		*/
 		'addTest' : function( code, result, contain ) {
 			if (!contain) {
