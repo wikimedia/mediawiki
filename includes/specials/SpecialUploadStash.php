@@ -142,8 +142,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @throws MWException
 	 * @return boolean success
 	 */
-	private function outputLocallyScaledThumb( $params, $flags ) {
-		wfDebug( "UploadStash: SCALING locally!\n" );
+	private function outputLocallyScaledThumb( $file, $params, $flags ) {
 
 		// n.b. this is stupid, we insist on re-transforming the file every time we are invoked. We rely
 		// on HTTP caching to ensure this doesn't happen.
