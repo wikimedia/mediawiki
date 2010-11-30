@@ -299,7 +299,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return String|null parameterized thumb name, like 120px-MyMovie.ogx.jpg, or null if no handler found
 	 */
 	function getParamThumbName( $urlName, $params ) {
-		wfDebug( __METHOD__ . " getting for $urlName, " . print_r( $params, 1 ) . " \n" );
 		if ( !$this->getHandler() ) {
 			return null;
 		}
