@@ -145,7 +145,7 @@ class CheckStorage {
 						$this->error( 'restore text', "Error: invalid URL \"{$row->old_text}\"", $row->old_id );
 						continue;
 					}
-					list( $proto, $path ) = $urlParts;
+					list( $proto, ) = $urlParts;
 					if ( $proto != 'DB' ) {
 						$this->error( 'restore text', "Error: invalid external protocol \"$proto\"", $row->old_id );
 						continue;

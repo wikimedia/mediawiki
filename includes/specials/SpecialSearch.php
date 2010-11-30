@@ -341,7 +341,6 @@ class SpecialSearch {
 	protected function setupPage( $term ) {
 		global $wgOut;
 		// Figure out the active search profile header
-		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
 		if( $this->searchAdvanced ) {
 			$this->active = 'advanced';
 		} else {

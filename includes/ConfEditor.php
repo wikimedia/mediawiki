@@ -176,7 +176,7 @@ class ConfEditor {
 				// Has it got a comma already?
 				if ( strpos( $lastEltPath, '@extra' ) === false && !$lastEltInfo['hasComma'] ) {
 					// No comma, insert one after the value region
-					list( $start, $end ) = $this->findValueRegion( $lastEltPath );
+					list( , $end ) = $this->findValueRegion( $lastEltPath );
 					$this->replaceSourceRegion( $end - 1, $end - 1, ',' );
 				}
 
@@ -184,7 +184,7 @@ class ConfEditor {
 				list( $start, $end ) = $this->findDeletionRegion( $lastEltPath );
 
 				if ( $key === null ) {
-					list( $indent, $arrowIndent ) = $this->getIndent( $start );
+					list( $indent, ) = $this->getIndent( $start );
 					$textToInsert = "$indent$value,";
 				} else {
 					list( $indent, $arrowIndent ) = 
@@ -202,12 +202,12 @@ class ConfEditor {
 				if ( $firstEltPath === false ) {
 					throw new MWException( "Can't find array element of \"$path\"" );
 				}
-				list( $start, $end ) = $this->findDeletionRegion( $firstEltPath );
+				list( $start, ) = $this->findDeletionRegion( $firstEltPath );
 				$info = $this->pathInfo[$firstEltPath];
 
 				// Make the text to insert
 				if ( $key === null ) {
-					list( $indent, $arrowIndent ) = $this->getIndent( $start );
+					list( $indent, ) = $this->getIndent( $start );
 					$textToInsert = "$indent$value,";
 				} else {
 					list( $indent, $arrowIndent ) = 

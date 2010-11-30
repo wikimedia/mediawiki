@@ -130,7 +130,6 @@ class SVGReader {
 		$keepReading = $this->reader->read();
 		while( $keepReading ) {
 			if( $this->reader->name == $name && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
-				$keepReading = false;
 				break;
 			} elseif( $this->reader->nodeType == XmlReader::TEXT ){
 				$this->metadata[$metafield] = $this->reader->value;
@@ -169,9 +168,8 @@ class SVGReader {
 		while( $keepReading ) {
 			if( $this->reader->name == $name && $this->reader->depth <= $exitDepth
 				&& $this->reader->nodeType == XmlReader::END_ELEMENT ) {
-				$keepReading = false;
 				break;
-			} elseif( $this->reader->nodeType == XmlReader::ELEMENT ){
+			} elseif ( $this->reader->nodeType == XmlReader::ELEMENT ) {
 				switch( $this->reader->name ) {
 					case 'animate':
 					case 'set':

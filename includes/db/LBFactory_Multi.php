@@ -99,7 +99,7 @@ class LBFactory_Multi extends LBFactory {
 	}
 
 	function newMainLB( $wiki = false ) {
-		list( $dbName, $prefix ) = $this->getDBNameAndPrefix( $wiki );
+		list( $dbName, ) = $this->getDBNameAndPrefix( $wiki );
 		$section = $this->getSectionForWiki( $wiki );
 		$groupLoads = array();
 		if ( isset( $this->groupLoadsByDB[$dbName] ) ) {

@@ -204,11 +204,9 @@ class RandomImageGenerator {
 
 		$command = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " . implode( " ", $args );
 		$retval = null;
-		$output = wfShellExec( $command, $retval );
+		wfShellExec( $command, $retval );
 		return ( $retval === 0 );
 	}
-
-		
 
 	/**
 	 * Generate a string of random colors for ImageMagick, like "rgb(12, 37, 98)"

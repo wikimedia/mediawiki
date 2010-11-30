@@ -293,8 +293,9 @@ class SiteConfiguration {
 
 		$ret = call_user_func_array( $this->siteParamsCallback, array( $this, $wiki ) );
 		# Validate the returned value
-		if( !is_array( $ret ) )
+		if( !is_array( $ret ) ) {
 			return $default;
+		}
 
 		foreach( $default as $name => $def ){
 			if( !isset( $ret[$name] ) || ( is_array( $default[$name] ) && !is_array( $ret[$name] ) ) )
