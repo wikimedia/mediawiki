@@ -139,13 +139,24 @@ $messages = array(
 'index-category'                 => "Empapula ezikkirizidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
 'noindex-category'               => "Empapula ezigaanidwa okuteekebwa ku nkalala z'enfo ezinoonyesebwa",
 
-'about'      => 'Okutangaaza',
-'newwindow'  => '(bijjira mu kadirisa kapya)',
-'cancel'     => 'Biveeko',
-'mypage'     => 'Enfo yange',
-'mytalk'     => 'Yogera nange',
-'navigation' => 'Endagiriro',
-'and'        => '&#32;ne',
+'mainpagetext'      => 'MediaWiki kati ewangidwa ku sisitemu yo',
+'mainpagedocfooter' => "Okuyiga ku nkozesa ya sofutiweya owa wiki, kebera [http://meta.wikimedia.org/wiki/Help:Contents Okulagirira Abakozesa].
+
+== Amagezi agakuyamba okutandika ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lukalala lw'eby'enteekateeka yo]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Ebiter'okubuuzibwa ku MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Wewandise ofunenga amawulire aga email ag'ebifa ku MediaWiki]",
+
+'about'         => 'Okutangaaza',
+'article'       => 'Lupapula lwa nsonga',
+'newwindow'     => '(bijjira mu kadirisa kapya)',
+'cancel'        => 'Biveeko',
+'moredotdotdot' => 'Era...',
+'mypage'        => 'Enfo yange',
+'mytalk'        => 'Yogera nange',
+'anontalk'      => "Yogera-nange ow'endagiriro ya IP eno",
+'navigation'    => 'Endagiriro',
+'and'           => '&#32;ne',
 
 # Cologne Blue skin
 'qbfind'         => 'Noonya',
