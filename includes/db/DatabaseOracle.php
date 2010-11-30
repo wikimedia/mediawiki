@@ -1348,7 +1348,7 @@ class DatabaseOracle extends DatabaseBase {
 		// Ordinary variables
 		foreach ( $varnames as $var ) {
 			if ( isset( $GLOBALS[$var] ) ) {
-				$val = addslashes( $GLOBALS[$var] ); // FIXME: safety check?
+				$val = $this->addQuotes( $GLOBALS[$var] ); // FIXME: safety check?
 				$ins = str_replace( '{$' . $var . '}', $val, $ins );
 				$ins = str_replace( '/*$' . $var . '*/`', '`' . $val, $ins );
 				$ins = str_replace( '/*$' . $var . '*/', $val, $ins );
