@@ -240,7 +240,7 @@ class MWMemcached {
 	/**
 	 * Memcache initializer
 	 *
-	 * @param $args Associative array of settings
+	 * @param $args Array Associative array of settings
 	 *
 	 * @return  mixed
 	 */

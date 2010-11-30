@@ -23,11 +23,13 @@ class CategoryPage extends Article {
 		$diff = $wgRequest->getVal( 'diff' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
-		if ( isset( $diff ) && $diffOnly )
+		if ( isset( $diff ) && $diffOnly ) {
 			return parent::view();
+		}
 
-		if ( !wfRunHooks( 'CategoryPageView', array( &$this ) ) )
+		if ( !wfRunHooks( 'CategoryPageView', array( &$this ) ) ) {
 			return;
+		}
 
 		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
 			$this->openShowCategory();

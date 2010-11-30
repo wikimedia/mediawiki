@@ -3207,7 +3207,7 @@ class User {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
-	 * @return \type{\arrayof{\string}} Array of internal group names
+	 * @return Array of internal group names
 	 */
 	static function getAllGroups() {
 		global $wgGroupPermissions, $wgRevokePermissions;
@@ -3219,7 +3219,7 @@ class User {
 
 	/**
 	 * Get a list of all available permissions.
-	 * @return \type{\arrayof{\string}} Array of permission names
+	 * @return Array of permission names
 	 */
 	static function getAllRights() {
 		if ( self::$mAllRights === false ) {

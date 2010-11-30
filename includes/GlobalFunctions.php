@@ -3206,7 +3206,7 @@ function wfFindFile( $title, $options = array() ) {
 /**
  * Get an object referring to a locally registered file.
  * Returns a valid placeholder object if the file does not exist.
- * @param $title Either a string or Title object
+ * @param $title Title|String
  * @return File, or null if passed an invalid Title
  */
 function wfLocalFile( $title ) {

@@ -18,8 +18,9 @@ class PageQueryPage extends QueryPage {
 		global $wgContLang;
 		$title = Title::makeTitleSafe( $row->namespace, $row->title );
 		$text = $row->title;
-		if ($title instanceof Title)
-			$text = $wgContLang->convert( $title->getPrefixedText() ); 
-		return $skin->link( $title, htmlspecialchars($text), array(), array(), array('known', 'noclasses') );
+		if ( $title instanceof Title ) {
+			$text = $wgContLang->convert( $title->getPrefixedText() );
+		}
+		return $skin->link( $title, htmlspecialchars( $text ), array(), array(), array('known', 'noclasses') );
 	}
 }
