@@ -89,7 +89,6 @@ window.wgUploadSetup = function() {
 /**
  * Iterate over all upload source fields and disable all except the selected one.
  * 
- * @param enabledId The id of the selected radio button 
  * @return emptiness
  */
 window.toggleUploadInputs = function() {
