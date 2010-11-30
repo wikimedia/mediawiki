@@ -66,24 +66,24 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 				   . 'use the URL of this page, with a slash and the key of the stashed file appended.';
 		} else {
 			try {
-				$file = $this->getStashFile( $subPage );
-				$size = $file->getSize();
-				if ( $size === 0 ) {
-					$code = 500;
-					$message = 'File is zero length';
-				} else if ( $size > self::MAX_SERVE_BYTES ) {
-					$code = 500;
-					$message = 'Cannot serve a file larger than ' . self::MAX_SERVE_BYTES . ' bytes';
+				if ( preg_match( '/^(\d+)px-(.*)$/', $subPage, $matches ) ) {
+					list( /* full match */, $width, $key ) = $matches;
+					return $this->outputThumbFromStash( $key, $width );
 				} else {
-					$this->outputFile( $file );
-					return true;
+					return $this->outputFileFromStash( $subPage );
 				}
 			} catch( UploadStashFileNotFoundException $e ) {
 				$code = 404; 
 				$message = $e->getMessage();
+			} catch( UploadStashZeroLengthFileException $e ) {
+				$code = 500;
+				$message = $e->getMessage();
 			} catch( UploadStashBadPathException $e ) {
 				$code = 500;
 				$message = $e->getMessage();
+			} catch( SpecialUploadStashTooLargeException $e ) {
+				$code = 500;
+				$message = 'Cannot serve a file larger than ' . self::MAX_SERVE_BYTES . ' bytes. ' . $e->getMessage();
 			} catch( Exception $e ) {
 				$code = 500;
 				$message = $e->getMessage();
@@ -93,66 +93,164 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		wfHttpError( $code, OutputPage::getStatusMessage( $code ), $message );
 		return false;
 	}
+	
+	/**
+	 * Get a file from stash and stream it out. Rely on parent to catch exceptions and transform them into HTTP
+	 * @param String: $key - key of this file in the stash, which probably looks like a filename with extension.
+	 * @throws ....?
+	 * @return boolean
+	 */
+	private function outputFileFromStash( $key ) {
+		$file = $this->stash->getFile( $key );
+		$this->outputLocalFile( $file );
+		return true;
+	}
 
 
 	/**
-	 * Convert the incoming url portion (subpage of Special page) into a stashed file,
-	 * if available.
-	 *
-	 * @param $subPage String
-	 * @return File object
-	 * @throws MWException, UploadStashFileNotFoundException, UploadStashBadPathException
+	 * Get a thumbnail for file, either generated locally or remotely, and stream it out
+	 * @param String $key: key for the file in the stash
+	 * @param int $width: width of desired thumbnail
+	 * @return ??
+ 	 */
+	private function outputThumbFromStash( $key, $width ) {
+		
+		// this global, if it exists, points to a "scaler", as you might find in the Wikimedia Foundation cluster. See outputRemoteScaledThumb()
+		global $wgUploadStashScalerBaseUrl;
+
+		// let exceptions propagate to caller.
+		$file = $this->stash->getFile( $key );
+
+		// OK, we're here and no exception was thrown,
+		// so the original file must exist.
+
+		// let's get ready to transform the original -- these are standard
+		$params = array( 'width' => $width );	
+		$flags = 0;
+
+		return $wgUploadStashScalerBaseUrl ? $this->outputRemoteScaledThumb( $file, $params, $flags )
+						   : $this->outputLocallyScaledThumb( $file, $params, $flags );
+
+	}
+
+
+	/**
+	 * Scale a file (probably with a locally installed imagemagick, or similar) and output it to STDOUT.
+ 	 * @param $file: File object
+	 * @param $params: scaling parameters ( e.g. array( width => '50' ) );
+ 	 * @param $flags: scaling flags ( see File:: constants )
+	 * @throws MWException
+	 * @return boolean success
 	 */
-	private function getStashFile( $subPage ) {
-		// due to an implementation quirk (and trying to be compatible with older method)
-		// the stash key doesn't have an extension
-		$key = $subPage;
-		$n = strrpos( $subPage, '.' );
-		if ( $n !== false ) {
-			$key = $n ? substr( $subPage, 0, $n ) : $subPage;
+	private function outputLocallyScaledThumb( $params, $flags ) {
+		wfDebug( "UploadStash: SCALING locally!\n" );
+
+		// n.b. this is stupid, we insist on re-transforming the file every time we are invoked. We rely
+		// on HTTP caching to ensure this doesn't happen.
+		
+		$flags |= File::RENDER_NOW;
+
+		$thumbnailImage = $file->transform( $params, $flags );
+		if ( !$thumbnailImage ) {
+			throw new MWException( 'Could not obtain thumbnail' );
 		}
 
-		try {
-			$file = $this->stash->getFile( $key );
-		} catch ( UploadStashFileNotFoundException $e ) {
-			// if we couldn't find it, and it looks like a thumbnail,
-			// and it looks like we have the original, go ahead and generate it
-			$matches = array();
-			if ( ! preg_match( '/^(\d+)px-(.*)$/', $key, $matches ) ) {
-				// that doesn't look like a thumbnail. re-raise exception
-				throw $e;
-			}
-
-			list( , $width, $origKey ) = $matches;
-
-			// do not trap exceptions, if key is in bad format, or file not found,
-			// let exceptions propagate to caller.
-			$origFile = $this->stash->getFile( $origKey );
-
-			// ok we're here so the original must exist. Generate the thumbnail.
-			// because the file is a UploadStashFile, this thumbnail will also be stashed,
-			// and a thumbnailFile will be created in the thumbnailImage composite object
-			$thumbnailImage = $origFile->transform( array( 'width' => $width ) );
-			if ( !$thumbnailImage ) {
-				throw new MWException( 'Could not obtain thumbnail' );
-			}
-			$file = $thumbnailImage->thumbnailFile;
+		// we should have just generated it locally
+		if ( ! $thumbnailImage->getPath() ) {
+			throw new UploadStashFileNotFoundException( "no local path for scaled item" );
 		}
 
-		return $file;
+		// now we should construct a File, so we can get mime and other such info in a standard way
+		// n.b. mimetype may be different from original (ogx original -> jpeg thumb)
+		$thumbFile = new UnregisteredLocalFile( false, $this->stash->repo, $thumbnailImage->getPath(), false );
+		if ( ! $thumbFile ) {
+			throw new UploadStashFileNotFoundException( "couldn't create local file object for thumbnail" );
+		}
+
+		return $this->outputLocalFile( $thumbFile );
+	
+	}
+	
+	/**
+	 * Scale a file with a remote "scaler", as exists on the Wikimedia Foundation cluster, and output it to STDOUT.
+	 * Note: unlike the usual thumbnail process, the web client never sees the cluster URL; we do the whole HTTP transaction to the scaler ourselves 
+	 *  and cat the results out.
+	 * Note: We rely on NFS to have propagated the file contents to the scaler. However, we do not rely on the thumbnail being created in NFS and then 
+	 *   propagated back to our filesystem. Instead we take the results of the HTTP request instead.  
+	 * Note: no caching is being done here, although we are instructing the client to cache it forever.
+ 	 * @param $file: File object
+	 * @param $params: scaling parameters ( e.g. array( width => '50' ) );
+ 	 * @param $flags: scaling flags ( see File:: constants )
+	 * @throws MWException
+	 * @return boolean success
+	 */
+	private function outputRemoteScaledThumb( $file, $params, $flags ) {
+		
+		// this global probably looks something like 'http://upload.wikimedia.org/wikipedia/test/thumb/temp'
+		// do not use trailing slash
+		global $wgUploadStashScalerBaseUrl;
+
+		$scalerThumbName = $file->getParamThumbName( $file->name, $params );
+		$scalerThumbUrl = $wgUploadStashScalerBaseUrl . '/' . $file->getRel() . '/' . $scalerThumbName;
+		// make a CURL call to the scaler to create a thumbnail
+		wfDebug( "UploadStash: calling " . $scalerThumbUrl . " with curl \n" );
+		$req = MWHttpRequest::factory( $thumbScalerUrl );
+		$status = $req->execute();
+		if ( ! $status->isOK() ) {
+			throw new MWException( "Fetching thumbnail failed" );
+		} 
+		$contentType = $req->getResponseHeader( "content-type" );
+		if ( ! $contentType ) {
+			throw new MWException( "Missing content-type header" );
+		}
+		return $this->outputFromContent( $req->getContent(), $contentType );
 	}
 
 	/**
 	 * Output HTTP response for file
-	 * Side effects, obviously, of echoing lots of stuff to stdout.
+	 * Side effect: writes HTTP response to STDOUT.
+	 * XXX could use wfStreamfile (in includes/Streamfile.php), but for consistency with outputContents() doing it this way.
+	 * XXX is mimeType really enough, or do we need encoding for full Content-Type header?
 	 *
-	 * @param $file File object
+	 * @param $file File object with a local path (e.g. UnregisteredLocalFile, LocalFile. Oddly these don't share an ancestor!)
 	 */
-	private function outputFile( $file ) {
-		header( 'Content-Type: ' . $file->getMimeType(), true );
-		header( 'Content-Transfer-Encoding: binary', true );
-		header( 'Expires: Sun, 17-Jan-2038 19:14:07 GMT', true );
-		header( 'Content-Length: ' . $file->getSize(), true ); 
+	private function outputLocalFile( $file ) {
+		if ( $file->getSize() > self::MAX_SERVE_BYTES ) {
+			throw new SpecialUploadStashTooLargeException();
+		} 
+		self::outputHeaders( $file->getMimeType(), $file->getSize() );
 		readfile( $file->getPath() );
 	}
+
+	/** 
+	 * Output HTTP response of raw content
+	 * Side effect: writes HTTP response to STDOUT.
+	 * @param String $content: content
+	 * @param String $mimeType: mime type
+	 */
+	private function outputContents( $content, $contentType ) {
+		$size = strlen( $content );
+		if ( $size > self::MAX_SERVE_BYTES ) {
+			throw new SpecialUploadStashTooLargeException();
+		}
+		self::outputHeaders( $contentType, $size );
+		print $content;	
+	}
+
+	/** 
+	 * Output headers for streaming
+	 * XXX unsure about encoding as binary; if we received from HTTP perhaps we should use that encoding, concatted with semicolon to mimeType as it usually is.
+	 * Side effect: preps PHP to write headers to STDOUT.
+	 * @param String $contentType : string suitable for content-type header
+	 * @param String $size: length in bytes
+	 */
+	private static function outputHeaders( $contentType, $size ) {
+		header( "Content-Type: $mimeType", true );
+		header( 'Content-Transfer-Encoding: binary', true );
+		header( 'Expires: Sun, 17-Jan-2038 19:14:07 GMT', true );
+		header( "Content-Length: $size", true ); 
+	}
+
 }
+
+class SpecialUploadStashTooLargeException extends MWException {};
