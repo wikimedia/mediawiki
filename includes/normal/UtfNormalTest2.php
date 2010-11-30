@@ -13,8 +13,13 @@ if( php_sapi_name() != 'cli' ) {
 
 // From http://unicode.org/Public/UNIDATA/NormalizationTest.txt
 $file = "NormalizationTest.txt";
-$sep = ';';
-$comment = "#";
+
+// Anything after this character is a comment
+define ( 'COMMENT', '#' );
+
+// Semicolons are used to separate the columns
+define ( 'SEPARATOR', ';' );
+
 $f = fopen($file, "r");
 
 /**
@@ -208,12 +213,10 @@ function unistr($c) {
 }
 
 function getRow( $f ) {
-	global $comment, $sep;
-
 	$row = fgets( $f );
 	if( $row === false ) return false;
 	$row = rtrim($row);
-	$pos = strpos( $row, $comment );
+	$pos = strpos( $row, COMMENT );
 	$pos2 = strpos( $row, ")" );
 	if( $pos === 0 ) return array($row);
 	$c = "";
@@ -225,8 +228,8 @@ function getRow( $f ) {
 	}
 
 	$ret = array();
-	foreach(explode( $sep, $row ) as $ent) {
-		if(trim($ent) !== "") {
+	foreach( explode( SEPARATOR, $row ) as $ent ) {
+		if( trim( $ent ) !== "" ) {
 			$ret[] = unistr($ent);
 		}
 	}
