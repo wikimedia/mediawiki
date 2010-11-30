@@ -12,14 +12,13 @@
  *
  */
 class UploadStash {
-	// Format of the key for files -- has to be suitable as a filename itself in some cases.
-	// This should encompass a sha1 content hash in hex (new style), or an integer (old style), 
-	// and also thumbnails with prepended strings like "120px-". 
-	// The file extension should not be part of the key.
-	const KEY_FORMAT_REGEX = '/^[\w-]+$/';
+
+	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
+	const KEY_FORMAT_REGEX = '/^[\w-]+\.\w+$/';
 
 	// repository that this uses to store temp files
-	protected $repo; 
+	// public because we sometimes need to get a LocalFile within the same repo.
+	public $repo; 
 	
 	// array of initialized objects obtained from session (lazily initialized upon getFile())
 	private $files = array();  
@@ -82,7 +81,9 @@ class UploadStash {
 			unset( $data['mTempPath'] );
 
 			$file = new UploadStashFile( $this, $this->repo, $path, $key, $data );
-			
+			if ( $file->getSize === 0 ) {
+				throw new UploadStashZeroLengthFileException( "File is zero length" );
+			}
 			$this->files[$key] = $file;
 
 		}
@@ -108,18 +109,31 @@ class UploadStash {
 		}
                 $fileProps = File::getPropsFromPath( $path );
 
+		// we will be initializing from some tmpnam files that don't have extensions.
+		// most of MediaWiki assumes all uploaded files have good extensions. So, we fix this.
+		$extension = self::getExtensionForPath( $path );
+		if ( ! preg_match( "/\\.\\Q$extension\\E$/", $path ) ) {
+			$pathWithGoodExtension = "$path.$extension";
+			if ( ! rename( $path, $pathWithGoodExtension ) ) {
+				throw new UploadStashFileException( "couldn't rename $path to have a better extension at $pathWithGoodExtension" );
+			}
+			$path = $pathWithGoodExtension;
+		} 
+
 		// If no key was supplied, use content hash. Also has the nice property of collapsing multiple identical files
 		// uploaded this session, which could happen if uploads had failed.
 		if ( is_null( $key ) ) {
-			$key = $fileProps['sha1'];
+			$key = $fileProps['sha1'] . "." . $extension;
 		}
 
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		} 
 
-		// if not already in a temporary area, put it there 
+
+		// if not already in a temporary area, put it there
 		$status = $this->repo->storeTemp( basename( $path ), $path );
+
 		if( ! $status->isOK() ) {
 			// It is a convention in MediaWiki to only return one error per API exception, even if multiple errors
 			// are available. We use reset() to pick the "first" thing that was wrong, preferring errors to warnings.
@@ -136,7 +150,7 @@ class UploadStash {
 			throw new UploadStashFileException( "error storing file in '$path': " . implode( '; ', $error ) );
 		}
 		$stashPath = $status->value;
-		 		
+
 		// required info we always store. Must trump any other application info in $data
 		// 'mTempPath', 'mFileSize', and 'mFileProps' are arbitrary names
 		// chosen for compatibility with UploadBase's way of doing this.
@@ -149,9 +163,40 @@ class UploadStash {
 
 		// now, merge required info and extra data into the session. (The extra data changes from application to application.
 		// UploadWizard wants different things than say FirefoggChunkedUpload.)
+		wfDebug( __METHOD__ . " storing under $key\n" );
 		$_SESSION[UploadBase::SESSION_KEYNAME][$key] = array_merge( $data, $requiredData );
 		
 		return $this->getFile( $key );
+	}
+
+	/**
+	 * Find or guess extension -- ensuring that our extension matches our mime type.
+	 * Since these files are constructed from php tempnames they may not start off 
+	 * with an extension.
+	 * XXX this is somewhat redundant with the checks that ApiUpload.php does with incoming 
+	 * uploads versus the desired filename. Maybe we can get that passed to us...
+	 */
+	public static function getExtensionForPath( $path ) { 	
+		// Does this have an extension?
+		$n = strrpos( $path, '.' );
+		$extension = null;
+		if ( $n !== false ) {
+			$extension = $n ? substr( $path, $n + 1 ) : '';
+		} else {
+			// If not, assume that it should be related to the mime type of the original file.
+			$magic = MimeMagic::singleton();
+			$mimeType = $magic->guessMimeType( $path );
+			$extensions = explode( ' ', MimeMagic::singleton()->getExtensionsForType( $mimeType ) );
+			if ( count( $extensions ) ) { 
+				$extension = $extensions[0];	
+			}
+		}
+
+		if ( is_null( $extension ) ) {
+			throw new UploadStashFileException( "extension is null" );
+		}
+
+		return File::normalizeExtension( $extension );
 	}
 
 }
@@ -198,13 +243,11 @@ class UploadStashFile extends UnregisteredLocalFile {
 			throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
 		}
 
+			
+
 		parent::__construct( false, $repo, $path, false );
 
-		// we will be initializing from some tmpnam files that don't have extensions.
-		// most of MediaWiki assumes all uploaded files have good extensions. So, we fix this.
 		$this->name = basename( $this->path );
-		$this->setExtension();
-
 	}
 
 	/**
@@ -217,40 +260,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 */
 	public function getDescriptionUrl() {
 		return $this->getUrl();
-	}
-
-	/**
-	 * Find or guess extension -- ensuring that our extension matches our mime type.
-	 * Since these files are constructed from php tempnames they may not start off 
-	 * with an extension.
-	 * This does not override getExtension() because things like getMimeType() already call getExtension(),
-	 * and that results in infinite recursion. So, we preemptively *set* the extension so getExtension() can find it.
-	 * For obvious reasons this should be called as early as possible, as part of initialization
-	 */
-	public function setExtension() { 	
-		// Does this have an extension?
-		$n = strrpos( $this->path, '.' );
-		$extension = null;
-		if ( $n !== false ) {
-			$extension = $n ? substr( $this->path, $n + 1 ) : '';
-		} else {
-			// If not, assume that it should be related to the mime type of the original file.
-			//
-			// This entire thing is backwards -- we *should* just create an extension based on 
-			// the mime type of the transformed file, *after* transformation.  But File.php demands 
-			// to know the name of the transformed file before creating it. 
-			$mimeType = $this->getMimeType();
-			$extensions = explode( ' ', MimeMagic::singleton()->getExtensionsForType( $mimeType ) );
-			if ( count( $extensions ) ) { 
-				$extension = $extensions[0];	
-			}
-		}
-
-		if ( is_null( $extension ) ) {
-			throw new UploadStashFileException( "extension is null" );
-		}
-
-		$this->extension = parent::normalizeExtension( $extension );
 	}
 
 	/**
@@ -276,12 +285,27 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return String: base name for URL, like '120px-12345.jpg', or null if there is no handler
 	 */
 	function thumbName( $params ) {
+		return $this->getParamThumbName( $this->getUrlName(), $params );
+	}
+
+
+	/**
+	 * Given the name of the original, i.e. Foo.jpg, and scaling parameters, returns filename with appropriate extension
+	 * This is abstracted from getThumbName because we also use it to calculate the thumbname the file should have on 
+	 * remote image scalers	
+	 *
+	 * @param String $urlName: A filename, like MyMovie.ogx
+	 * @param Array $parameters: scaling parameters, like array( 'width' => '120' );
+	 * @return String|null parameterized thumb name, like 120px-MyMovie.ogx.jpg, or null if no handler found
+	 */
+	function getParamThumbName( $urlName, $params ) {
+		wfDebug( __METHOD__ . " getting for $urlName, " . print_r( $params, 1 ) . " \n" );
 		if ( !$this->getHandler() ) {
 			return null;
 		}
 		$extension = $this->getExtension();
 		list( $thumbExt, $thumbMime ) = $this->handler->getThumbType( $extension, $this->getMimeType(), $params );
-		$thumbName = $this->getHandler()->makeParamString( $params ) . '-' . $this->getUrlName();
+		$thumbName = $this->getHandler()->makeParamString( $params ) . '-' . $urlName;
 		if ( $thumbExt != $extension ) {
 			$thumbName .= ".$thumbExt";
 		}
@@ -308,6 +332,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return String: URL to access thumbnail, or URL with partial path
 	 */
 	public function getThumbUrl( $thumbName = false ) { 
+		wfDebug( __METHOD__ . " getting for $thumbName \n" );
 		return $this->getSpecialUrl( $thumbName );
 	}
 
@@ -319,7 +344,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 */
 	public function getUrlName() { 
 		if ( ! $this->urlName ) {
-			$this->urlName = $this->sessionKey . '.' . $this->getExtension();
+			$this->urlName = $this->sessionKey;
 		}
 		return $this->urlName;
 	}
@@ -358,43 +383,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 	}
 
 	/**
-	 * Typically, transform() returns a ThumbnailImage, which you can think of as being the exact
-	 * equivalent of an HTML thumbnail on Wikipedia. So its URL is the full-size file, not the thumbnail's URL.
-	 *
-	 * Here we override transform() to stash the thumbnail file, and then 
-	 * provide a way to get at the stashed thumbnail file to extract properties such as its URL
-	 *
-	 * @param $params Array: parameters suitable for File::transform()
-	 * @param $flags Integer: bitmask, flags suitable for File::transform()
-	 * @return ThumbnailImage: with additional File thumbnailFile property
-	 */
-	public function transform( $params, $flags = 0 ) { 
-
-		// force it to get a thumbnail right away
-		$flags |= self::RENDER_NOW;
-
-		// returns a ThumbnailImage object containing the url and path. Note. NOT A FILE OBJECT.
-		$thumb = parent::transform( $params, $flags );
-		wfDebug( "UploadStash: generating thumbnail\n" );
-		wfDebug( print_r( $thumb, 1 ) );
-		$key = $this->thumbName($params);
-
-		// remove extension, so it's stored in the session under '120px-123456'
-		// this makes it uniform with the other session key for the original, '123456'
-		$n = strrpos( $key, '.' );	
-		if ( $n !== false ) {
-			$key = substr( $key, 0, $n );
-		}
-
-		// stash the thumbnail File, and provide our caller with a way to get at its properties
-		$stashedThumbFile = $this->sessionStash->stashFile( $thumb->getPath(), array(), $key );
-		$thumb->thumbnailFile = $stashedThumbFile;
-
-		return $thumb;	
-
-	}
-
-	/**
 	 * Remove the associated temporary file
 	 * @return Status: success
 	 */
@@ -409,4 +397,5 @@ class UploadStashFileNotFoundException extends MWException {};
 class UploadStashBadPathException extends MWException {};
 class UploadStashBadVersionException extends MWException {};
 class UploadStashFileException extends MWException {};
+class UploadStashZeroLengthFileException extends MWException {};
 
