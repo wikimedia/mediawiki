@@ -52,7 +52,7 @@ class FakeConverter {
 	function getParsedTitle() { return ''; }
 	function markNoConversion( $text, $noParse = false ) { return $text; }
 	function convertCategoryKey( $key ) { return $key; }
-	function convertLinkToAllVariants( $text ) { return autoConvertToAllVariants( $text ); }
+	function convertLinkToAllVariants( $text ) { return $this->autoConvertToAllVariants( $text ); }
 	function armourMath( $text ) { return $text; }
 }
 
