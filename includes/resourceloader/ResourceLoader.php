@@ -229,6 +229,7 @@ class ResourceLoader {
 			}
 
 			$this->moduleInfos[$name] = array( 'object' => $info );
+			$info->setName( $name );
 			$this->modules[$name] = $info;
 		} else {
 			// New calling convention
