@@ -270,7 +270,7 @@ $.suggestions = {
 	},
 	/**
 	 * Respond to keypress event
-	 * @param {Integer} key Code of key pressed
+	 * @param key Integer Code of key pressed
 	 */
 	keypress: function( e, context, key ) {
 		var wasVisible = context.data.$container.is( ':visible' );
