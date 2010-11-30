@@ -194,16 +194,22 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$scalerThumbUrl = $wgUploadStashScalerBaseUrl . '/' . $file->getRel() . '/' . $scalerThumbName;
 		// make a CURL call to the scaler to create a thumbnail
 		wfDebug( "UploadStash: calling " . $scalerThumbUrl . " with curl \n" );
-		$req = MWHttpRequest::factory( $thumbScalerUrl );
+		
+		$httpOptions = array( 
+			'method' => 'GET',
+			'timeout' => 'default'
+		);
+		$req = MWHttpRequest::factory( $scalerThumbUrl, $httpOptions );
 		$status = $req->execute();
 		if ( ! $status->isOK() ) {
-			throw new MWException( "Fetching thumbnail failed" );
-		} 
+			$errors = $status->getErrorsArray();	
+			throw new MWException( "Fetching thumbnail failed: " . join( ", ", $errors ) );
+		}
 		$contentType = $req->getResponseHeader( "content-type" );
 		if ( ! $contentType ) {
 			throw new MWException( "Missing content-type header" );
 		}
-		return $this->outputFromContent( $req->getContent(), $contentType );
+		return $this->outputContents( $req->getContent(), $contentType );
 	}
 
 	/**
@@ -245,7 +251,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @param String $size: length in bytes
 	 */
 	private static function outputHeaders( $contentType, $size ) {
-		header( "Content-Type: $mimeType", true );
+		header( "Content-Type: $contentType", true );
 		header( 'Content-Transfer-Encoding: binary', true );
 		header( 'Expires: Sun, 17-Jan-2038 19:14:07 GMT', true );
 		header( "Content-Length: $size", true ); 
