@@ -25,16 +25,16 @@
  * @desc Delete a cookie by passing null as value. Keep in mind that you have to use the same path and domain
  *       used when the cookie was set.
  *
- * @param String key The key of the cookie.
- * @param String value The value of the cookie.
- * @param Object options An object literal containing key/value pairs to provide optional cookie attributes.
- * @option Number|Date expires Either an integer specifying the expiration date from now on in days or a Date object.
+ * @param key String The key of the cookie.
+ * @param value String The value of the cookie.
+ * @param options Object An object literal containing key/value pairs to provide optional cookie attributes.
+ * @option expires Number|Date Either an integer specifying the expiration date from now on in days or a Date object.
  *                             If a negative value is specified (e.g. a date in the past), the cookie will be deleted.
  *                             If set to null or omitted, the cookie will be a session cookie and will not be retained
  *                             when the the browser exits.
- * @option String path The value of the path atribute of the cookie (default: path of page that created the cookie).
- * @option String domain The value of the domain attribute of the cookie (default: domain of page that created the cookie).
- * @option Boolean secure If true, the secure attribute of the cookie will be set and the cookie transmission will
+ * @option path String The value of the path atribute of the cookie (default: path of page that created the cookie).
+ * @option domain String The value of the domain attribute of the cookie (default: domain of page that created the cookie).
+ * @option secure Boolean If true, the secure attribute of the cookie will be set and the cookie transmission will
  *                        require a secure protocol (like HTTPS).
  * @type undefined
  *
@@ -49,7 +49,7 @@
  * @example $.cookie('the_cookie');
  * @desc Get the value of a cookie.
  *
- * @param String key The key of the cookie.
+ * @param key String The key of the cookie.
  * @return The value of the cookie.
  * @type String
  *

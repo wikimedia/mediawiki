@@ -88,8 +88,8 @@ window.mediaWiki = new ( function( $ ) {
 	 *
 	 * If called with no arguments, all values will be returned.
 	 *
-	 * @param {mixed} selection Key or array of keys to get values for
-	 * @param {mixed} fallback Value to use in case key(s) do not exist (optional)
+	 * @param selection mixed Key or array of keys to get values for
+	 * @param fallback mixed Value to use in case key(s) do not exist (optional)
 	 */
 	Map.prototype.get = function( selection, fallback ) {
 		if ( typeof selection === 'object' ) {
@@ -114,8 +114,8 @@ window.mediaWiki = new ( function( $ ) {
 	/**
 	 * Sets one or multiple key/value pairs.
 	 *
-	 * @param {mixed} selection Key or object of key/value pairs to set
-	 * @param {mixed} value Value to set (optional, only in use when key is a string)
+	 * @param selection mixed Key or object of key/value pairs to set
+	 * @param value mixed Value to set (optional, only in use when key is a string)
 	 */
 	Map.prototype.set = function( selection, value ) {
 		if ( typeof selection === 'object' ) {
@@ -130,8 +130,8 @@ window.mediaWiki = new ( function( $ ) {
 	/**
 	 * Checks if one or multiple keys exist.
 	 *
-	 * @param {mixed} key Key or array of keys to check
-	 * @return {boolean} Existence of key(s)
+	 * @param selection mixed Key or array of keys to check
+	 * @return boolean Existence of key(s)
 	 */
 	Map.prototype.exists = function( selection ) {
 		if ( typeof keys === 'object' ) {
@@ -159,7 +159,7 @@ window.mediaWiki = new ( function( $ ) {
 	/**
 	 * Appends parameters for replacement
 	 *
-	 * @param {mixed} args First in a list of variadic arguments to append as message parameters
+	 * @param parameters mixed First in a list of variadic arguments to append as message parameters
 	 */
 	Message.prototype.params = function( parameters ) {
 		for ( var i = 0; i < parameters.length; i++ ) {
@@ -258,8 +258,8 @@ window.mediaWiki = new ( function( $ ) {
 	/**
 	 * Gets a message object, similar to wfMessage()
 	 *
-	 * @param {string} key Key of message to get
-	 * @param {mixed} params First argument in a list of variadic arguments, each a parameter for $
+	 * @param key string Key of message to get
+	 * @param parameters mixed First argument in a list of variadic arguments, each a parameter for $
 	 * replacement
 	 */
 	this.message = function( key, parameters ) {

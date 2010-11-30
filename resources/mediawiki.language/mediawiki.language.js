@@ -38,9 +38,9 @@ mediaWiki.language = {
 	/**
 	 * Plural form transformations, needed for some languages.
 	 *
-	 * @param {integer} count Non-localized quantifier
-	 * @param {array} forms List of plural forms
-	 * @return {string} Correct form for quantifier in this language
+	 * @param count integer Non-localized quantifier
+	 * @param forms array List of plural forms
+	 * @return string Correct form for quantifier in this language
 	 */
 	'convertPlural': function( count, forms ){
 		if ( !forms || forms.length == 0 ) {
@@ -51,9 +51,9 @@ mediaWiki.language = {
 	/**
 	 * Pads an array to a specific length by copying the last one element.
 	 *
-	 * @param {array} forms Number of forms given to convertPlural
-	 * @param {integer} count Number of forms required
-	 * @return {array} Padded array of forms
+	 * @param forms array Number of forms given to convertPlural
+	 * @param count integer Number of forms required
+	 * @return array Padded array of forms
 	 */
 	'preConvertPlural': function( forms, count ) {
 		while ( forms.length < count ) {
