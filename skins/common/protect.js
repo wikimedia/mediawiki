@@ -263,7 +263,7 @@ window.ProtectionForm = {
 	/**
 	 * Apply a callback to each expiry input
 	 *
-	 * @param callable func Callback function
+	 * @param func callable Callback function
 	 */
 	'forEachExpiryInput': function(func) {
 		var inputs = this.getExpiryInputs();
@@ -291,7 +291,7 @@ window.ProtectionForm = {
 
 	/**
 	 * Apply a callback to each expiry selector list
-	 * @param callable func Callback function
+	 * @param func callable Callback function
 	 */
 	'forEachExpirySelector': function(func) {
 		var inputs = this.getExpirySelectors();
@@ -320,7 +320,7 @@ window.ProtectionForm = {
 	/**
 	 * Enable/disable protection selectors and expiry inputs
 	 *
-	 * @param boolean val Enable?
+	 * @param val boolean Enable?
 	 */
 	'enableUnchainedInputs': function(val) {
 		var first = true;

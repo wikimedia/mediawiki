@@ -259,7 +259,7 @@ window.tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/;
  * otherwise, all the nodes that will probably have accesskeys by
  * default are updated.
  *
- * @param Array nodeList -- list of elements to update
+ * @param nodeList Array list of elements to update
  */
 window.updateTooltipAccessKeys = function( nodeList ) {
 	if ( !nodeList ) {
@@ -311,13 +311,13 @@ window.updateTooltipAccessKeys = function( nodeList ) {
  * nextnode parameter; to add the link _after_ an existing item, pass
  * the node's nextSibling instead.
  *
- * @param String portlet -- id of the target portlet ("p-cactions", "p-personal", "p-navigation" or "p-tb")
- * @param String href -- link URL
- * @param String text -- link text (will be automatically lowercased by CSS for p-cactions in Monobook)
- * @param String id -- id of the new item, should be unique and preferably have the appropriate prefix ("ca-", "pt-", "n-" or "t-")
- * @param String tooltip -- text to show when hovering over the link, without accesskey suffix
- * @param String accesskey -- accesskey to activate this link (one character, try to avoid conflicts)
- * @param Node nextnode -- the DOM node before which the new item should be added, should be another item in the same list
+ * @param portlet String id of the target portlet ("p-cactions", "p-personal", "p-navigation" or "p-tb")
+ * @param href String link URL
+ * @param text String link text (will be automatically lowercased by CSS for p-cactions in Monobook)
+ * @param id String id of the new item, should be unique and preferably have the appropriate prefix ("ca-", "pt-", "n-" or "t-")
+ * @param tooltip String text to show when hovering over the link, without accesskey suffix
+ * @param accesskey String accesskey to activate this link (one character, try to avoid conflicts)
+ * @param nextnode Node the DOM node before which the new item should be added, should be another item in the same list
  *
  * @return Node -- the DOM node of the new item (an LI element) or null
  */
@@ -948,8 +948,8 @@ window.ts_alternate = function( table ) {
  * Add a cute little box at the top of the screen to inform the user of
  * something, replacing any preexisting message.
  *
- * @param String -or- Dom Object message HTML to be put inside the right div
- * @param String className   Used in adding a class; should be different for each
+ * @param message String -or- Dom Object  HTML to be put inside the right div
+ * @param className String   Used in adding a class; should be different for each
  *   call to allow CSS/JS to hide different boxes.  null = no class used.
  * @return Boolean       True on success, false on failure
  */
@@ -1052,9 +1052,9 @@ window.runOnloadHook = function() {
 /**
  * Add an event handler to an element
  *
- * @param Element element Element to add handler to
- * @param String attach Event to attach to
- * @param callable handler Event handler callback
+ * @param element Element to add handler to
+ * @param attach String Event to attach to
+ * @param handler callable Event handler callback
  */
 window.addHandler = function( element, attach, handler ) {
 	if( element.addEventListener ) {
@@ -1071,8 +1071,8 @@ window.hookEvent = function( hookName, hookFunct ) {
 /**
  * Add a click event handler to an element
  *
- * @param Element element Element to add handler to
- * @param callable handler Event handler callback
+ * @param element Element to add handler to
+ * @param handler callable Event handler callback
  */
 window.addClickHandler = function( element, handler ) {
 	addHandler( element, 'click', handler );
@@ -1081,9 +1081,9 @@ window.addClickHandler = function( element, handler ) {
 /**
  * Removes an event handler from an element
  *
- * @param Element element Element to remove handler from
- * @param String remove Event to remove
- * @param callable handler Event handler callback to remove
+ * @param element Element to remove handler from
+ * @param remove String Event to remove
+ * @param handler callable Event handler callback to remove
  */
 window.removeHandler = function( element, remove, handler ) {
 	if( window.removeEventListener ) {
