@@ -246,6 +246,7 @@ class SpecialUpload extends SpecialPage {
 			'hideignorewarning' => $hideIgnoreWarning,
 			'destwarningack' => (bool)$this->mDestWarningAck,
 
+			'description' => $this->mComment,
 			'texttop' => $this->uploadFormTextTop,
 			'textaftersummary' => $this->uploadFormTextAfterSummary,
 			'destfile' => $this->mDesiredDestName,
@@ -740,6 +741,7 @@ class UploadForm extends HTMLForm {
 	protected $mDestWarningAck;
 	protected $mDestFile;
 
+	protected $mComment;
 	protected $mTextTop;
 	protected $mTextAfterSummary;
 
@@ -753,6 +755,9 @@ class UploadForm extends HTMLForm {
 		$this->mHideIgnoreWarning = !empty( $options['hideignorewarning'] );
 		$this->mDestWarningAck = !empty( $options['destwarningack'] );
 		$this->mDestFile = isset( $options['destfile'] ) ? $options['destfile'] : '';
+
+		$this->mComment = isset( $options['description'] ) ?
+			$options['description'] : '';
 
 		$this->mTextTop = isset( $options['texttop'] )
 			? $options['texttop'] : '';
@@ -930,6 +935,7 @@ class UploadForm extends HTMLForm {
 				'label-message' => $this->mForReUpload
 					? 'filereuploadsummary'
 					: 'fileuploadsummary',
+				'default' => $this->mComment,
 				'cols' => intval( $wgUser->getOption( 'cols' ) ),
 				'rows' => 8,
 			)
