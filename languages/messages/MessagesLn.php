@@ -77,7 +77,7 @@ $messages = array(
 'dec'           => 'dɛs',
 
 # Categories related messages
-'category_header' => 'Bikakoli o molɔngɔ́ ya bilɔkɔ ya loléngé mɔ̌kɔ́ « $1 »',
+'category_header' => 'Nkásá o molɔngɔ́ ya bilɔkɔ ya loléngé mɔ̌kɔ́ « $1 »',
 'subcategories'   => 'Ndéngé-bǎna',
 'category-empty'  => "''Loléngé loye ezalí na ekakola tɛ̂, loléngé-mwǎna tɛ̂ tǒ nkásá mitímediá tɛ̂.''",
 
@@ -91,13 +91,14 @@ $messages = array(
 # Cologne Blue skin
 'qbfind'         => 'Koluka',
 'qbbrowse'       => 'Kolúka',
-'qbedit'         => 'kobalusa',
+'qbedit'         => 'Kokoma',
 'qbspecialpages' => 'Nkásá ya ndéngé isúsu',
 'faq'            => 'Mitúná Mizóngelaka (MM)',
 
 # Vector skin
 'vector-action-delete' => 'Kolímwisa',
-'vector-view-history'  => 'Emɔ́niselí mokóló',
+'vector-action-move'   => 'Kobóngola nkómbó',
+'vector-view-history'  => 'Komɔ́nisa mokóló',
 
 'errorpagetitle'   => 'Mbéba',
 'tagline'          => 'Artíclɛ ya {{SITENAME}}.',
@@ -111,9 +112,9 @@ $messages = array(
 'printableversion' => 'Mpɔ̂ na kofínela',
 'permalink'        => 'Ekangeli ya ntángo yɔ́nsɔ',
 'print'            => 'kobimisa nkomá',
-'edit'             => 'Kobimisela',
+'edit'             => 'Kokoma',
 'create'           => 'Kokela',
-'editthispage'     => 'Kobɔngisa lonkásá óyo',
+'editthispage'     => 'Kokoma lonkásá óyo',
 'create-this-page' => 'Kokela lokásá yango',
 'delete'           => 'Kolímwisa',
 'protect'          => 'Kobátela',
@@ -146,10 +147,10 @@ $messages = array(
 'retrievedfrom'      => 'Ezwámí úta « $1 »',
 'youhavenewmessages' => 'Nazweí $1 ($2).',
 'newmessageslink'    => 'nsango ya sika',
-'editsection'        => 'kobimisela',
+'editsection'        => 'kokoma',
 'editold'            => 'kokoma',
-'editlink'           => 'kobɔngisa',
-'editsectionhint'    => 'Kobimisela sɛksíɔ : $1',
+'editlink'           => 'kokoma',
+'editsectionhint'    => 'Kokoma sɛksíɔ : $1',
 'toc'                => 'Etápe',
 'showtoc'            => 'komɔ́nisa',
 'hidetoc'            => 'kobomba',
@@ -220,7 +221,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'savearticle'            => 'kobómbisa lonkásá',
 'preview'                => 'Botáli',
 'newarticle'             => '(Sika)',
-'editing'                => 'Kobimisela « $1 »',
+'editing'                => 'Kokoma « $1 »',
 'editingcomment'         => 'Kokoma « $1 » (ndimbola)',
 'yourtext'               => 'Nkomá na yɔ̌',
 'templatesused'          => '{{PLURAL:$1|Emekoli esálélí|Bimekoli bisálélí}} o lonkásá óyo :',
@@ -256,6 +257,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'search-section'      => '(sɛksió ya $1)',
 'search-suggest'      => 'Ómeka na lokomá : $1',
 'powersearch'         => 'Boluki',
+'powersearch-legend'  => 'Boluki bopúsání',
 
 # Preferences page
 'preferences'       => 'Malúli',
@@ -297,8 +299,8 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'recentchangeslinked-toolbox' => 'Bolandi ekangisi',
 
 # Upload
-'upload'    => 'Kokumbisa (elilingi)',
-'uploadbtn' => 'kokumbisa',
+'upload'    => 'Kotíya nkásá mɔ̌kɔ́',
+'uploadbtn' => 'Kotíya nkásá mɔ̌kɔ́',
 'savefile'  => 'kobómbisa kásá-kásá',
 
 # Special:ListFiles
@@ -376,7 +378,8 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'wlshowlast'        => 'Komɔ́nisa ngónga $1 ya nsúka, mikɔ́lɔ $2 mya nsúka tǒ $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'Bonɔ́ngi...',
+'watching'   => 'Kolanda...',
+'unwatching' => 'Kolanda tɛ́...',
 
 'created' => 'ekomákí',
 
@@ -448,6 +451,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'tooltip-n-portal'               => "etalí ''projet'' óyo",
 'tooltip-n-randompage'           => 'Tómbisa lonkásá na mbɛsɛ',
 'tooltip-n-help'                 => 'Lisálisi',
+'tooltip-t-upload'               => 'Kotíya nkásá ebelé',
 'tooltip-ca-nstab-template'      => 'Komɔ́nisela emekoli',
 'tooltip-ca-nstab-category'      => 'Komɔ́nisela lonkásá ya katégori',
 
@@ -477,7 +481,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Komɔ́nisela mbóngwana ya ntína',
-'watchlisttools-edit' => 'Komɔ́nisela mpé kobimisela nkásá nalandí',
+'watchlisttools-edit' => 'Komɔ́nisela mpé kobóngola nkásá nalandí',
 'watchlisttools-raw'  => 'Kobimisela nkásá nalandí (na pɛpɛ)',
 
 # Special:SpecialPages

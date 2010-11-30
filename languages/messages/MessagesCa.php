@@ -2515,7 +2515,7 @@ La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer
 'imagetypemismatch'            => 'La nova extensió de fitxer no coincideix amb el seu tipus',
 'imageinvalidfilename'         => 'El nom de fitxer indicat no és vàlid',
 'fix-double-redirects'         => "Actualitza també les redireccions que apuntin a l'article original",
-'move-leave-redirect'          => 'Deixar enrera una redirecció',
+'move-leave-redirect'          => 'Deixa enrere una redirecció',
 'protectedpagemovewarning'     => "'''AVÍS: Aquesta pàgina està bloquejada i només els usuaris que tenen drets d'administrador la poden reanomenar.
 A continuació es mostra la darrera entrada del registre com a referència:",
 'semiprotectedpagemovewarning' => "'''Nota:''' Aquesta pàgina està bloquejada i només els usuaris registrats la poden moure.
