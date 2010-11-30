@@ -259,6 +259,14 @@ $wgTmpDirectory     = false;
 $wgUploadBaseUrl    = "";
 
 /**
+ * To enable remote on-demand scaling, set this to the thumbnail base URL.
+ * Full thumbnail URL will be like $wgUploadStashScalerBaseUrl/e/e6/Foo.jpg/123px-Foo.jpg
+ * where 'e6' are the first two characters of the MD5 hash of the file name.
+ * If $wgUploadStashScalerBaseUrl is set to false, thumbs are rendered locally as needed.
+ */
+$wgUploadStashScalerBaseUrl = false;
+
+/**
  * To set 'pretty' URL paths for actions other than
  * plain page views, add to this array. For instance:
  *   'edit' => "$wgScriptPath/edit/$1"
