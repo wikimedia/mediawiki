@@ -65,8 +65,8 @@ $( document ).ready( function() {
 		var $link = $( this );
 		$link
 			.data( 'icon', $link.parents( 'li' ).hasClass( 'icon' ) )
-			.data( 'action', $link.attr( 'href' ).match( /[\?\&]action=unwatch/i ) ? 'unwatch' : 'watch' );
-		var title = $link.attr( 'href' ).match( /[\?\&]title=(.*?)&/i )[1];
+			.data( 'action', $link.attr( 'href' ).match( /[\?&]action=unwatch/i ) ? 'unwatch' : 'watch' );
+		var title = $link.attr( 'href' ).match( /[\?&]title=(.*?)&/i )[1];
 		$link.data( 'target', decodeURIComponent( title ).replace( /_/g, ' ' ) );
 	});
 
