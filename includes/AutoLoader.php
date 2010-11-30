@@ -688,6 +688,7 @@ $wgAutoloadLocalClasses = array(
 	'UploadStashBadPathException' => 'includes/upload/UploadStash.php',
 	'UploadStashBadVersionException' => 'includes/upload/UploadStash.php',
 	'UploadStashFileException' => 'includes/upload/UploadStash.php',
+	'UploadStashZeroLengthFileException' => 'includes/upload/UploadStash.php',
 
 	# languages
 	'Language' => 'languages/Language.php',
