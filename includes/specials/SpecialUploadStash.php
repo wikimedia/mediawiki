@@ -192,9 +192,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		$scalerThumbName = $file->getParamThumbName( $file->name, $params );
 		$scalerThumbUrl = $wgUploadStashScalerBaseUrl . '/' . $file->getRel() . '/' . $scalerThumbName;
-		// make a CURL call to the scaler to create a thumbnail
-		wfDebug( "UploadStash: calling " . $scalerThumbUrl . " with curl \n" );
 		
+		// make a curl call to the scaler to create a thumbnail
 		$httpOptions = array( 
 			'method' => 'GET',
 			'timeout' => 'default'
@@ -226,6 +225,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		} 
 		self::outputHeaders( $file->getMimeType(), $file->getSize() );
 		readfile( $file->getPath() );
+		return true;
 	}
 
 	/** 
@@ -241,6 +241,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		}
 		self::outputHeaders( $contentType, $size );
 		print $content;	
+		return true;
 	}
 
 	/** 
