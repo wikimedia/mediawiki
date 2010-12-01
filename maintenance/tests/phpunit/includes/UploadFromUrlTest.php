@@ -19,7 +19,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		ini_set( 'log_errors', 1 );
 		ini_set( 'error_reporting', 1 );
 		ini_set( 'display_errors', 1 );
-		
+
 		if ( wfLocalFile( 'UploadFromUrlTest.png' )->exists() ) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
 		}
@@ -28,7 +28,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 	protected function doApiRequest( $params, $unused = null ) {
 		$sessionId = session_id();
 		session_write_close();
-		
+
 		$req = new FauxRequest( $params, true, $_SESSION );
 		$module = new ApiMain( $req, true );
 		$module->execute();
@@ -77,7 +77,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 	 * @depends testLogin
 	 * @depends testClearQueue
 	 */
-	public function testSetupUrlDownload( $data ) {	
+	public function testSetupUrlDownload( $data ) {
 		$token = self::$user->editToken();
 		$exception = false;
 
@@ -142,7 +142,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		), $data );
 
 		$this->assertEquals( $data[0]['upload']['result'], 'Queued', 'Queued upload' );
-		
+
 		$job = Job::pop();
 		$this->assertThat( $job, $this->isInstanceOf( 'UploadFromUrlJob' ), 'Queued upload inserted' );
 	}
@@ -160,7 +160,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$this->assertEquals( $data[0]['upload']['result'], 'Success' );
 		$this->assertEquals( $data[0]['upload']['filename'], 'UploadFromUrlTest.png' );
 		$this->assertTrue( wfLocalFile( $data[0]['upload']['filename'] )->exists() );
-		
+
 		$this->deleteFile( 'UploadFromUrlTest.png' );
 
 		return $data;
@@ -177,11 +177,11 @@ class UploadFromUrlTest extends ApiTestSetup {
 
 
 		$data = $this->doAsyncUpload( $token );
-		
+
 		$this->assertEquals( $data[0]['upload']['result'], 'Warning' );
 		$this->assertTrue( isset( $data[0]['upload']['sessionkey'] ) );
-		
-		$data = $this->doApiRequest( array( 
+
+		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'sessionkey' => $data[0]['upload']['sessionkey'],
 			'filename' => 'UploadFromUrlTest.png',
@@ -191,7 +191,7 @@ class UploadFromUrlTest extends ApiTestSetup {
 		$this->assertEquals( $data[0]['upload']['result'], 'Success' );
 		$this->assertEquals( $data[0]['upload']['filename'], 'UploadFromUrlTest.png' );
 		$this->assertTrue( wfLocalFile( $data[0]['upload']['filename'] )->exists() );
-		
+
 		$this->deleteFile( 'UploadFromUrlTest.png' );
 
 		return $data;
@@ -224,18 +224,18 @@ class UploadFromUrlTest extends ApiTestSetup {
 
 		return $data;
 	}
-	
+
 	public function testLeaveMessage() {
 		$token = self::$user->editToken();
-		
+
 		$talk = self::$user->getTalkPage();
 		if ( $talk->exists() ) {
 			$a = new Article( $talk );
 			$a->doDeleteArticle( '' );
 		}
-		
+
 		$this->assertFalse( (bool)$talk->getArticleId( Title::GAID_FOR_UPDATE ), 'User talk does not exist' );
-		
+
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
@@ -245,19 +245,19 @@ class UploadFromUrlTest extends ApiTestSetup {
 			'leavemessage' => 1,
 			'ignorewarnings' => 1,
 		) );
-		
+
 		$job = Job::pop();
 		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
 		$job->run();
-		
-		$this->assertTrue( wfLocalFile( 'UploadFromUrlTest.png' )->exists() );		
+
+		$this->assertTrue( wfLocalFile( 'UploadFromUrlTest.png' )->exists() );
 		$this->assertTrue( (bool)$talk->getArticleId( Title::GAID_FOR_UPDATE ), 'User talk exists' );
-		
+
 		$this->deleteFile( 'UploadFromUrlTest.png' );
-		
+
 		$talkRev = Revision::newFromTitle( $talk );
 		$talkSize = $talkRev->getSize();
-		
+
 		$exception = false;
 		try {
 			$data = $this->doApiRequest( array(
@@ -273,27 +273,27 @@ class UploadFromUrlTest extends ApiTestSetup {
 			$this->assertEquals( 'Using leavemessage without ignorewarnings is not supported', $e->getMessage() );
 		}
 		$this->assertTrue( $exception );
-		
+
 		$job = Job::pop();
 		$this->assertFalse( $job );
-		
+
 		return;
 
 		/**
 		// Broken until using leavemessage with ignorewarnings is supported
 		$job->run();
-		
+
 		$this->assertFalse( wfLocalFile( 'UploadFromUrlTest.png' )->exists() );
-		
+
 		$talkRev = Revision::newFromTitle( $talk );
 		$this->assertTrue( $talkRev->getSize() > $talkSize, 'New message left' );
 		*/
 	}
-	
+
 	/**
-	 * Helper function to perform an async upload, execute the job and fetch 
+	 * Helper function to perform an async upload, execute the job and fetch
 	 * the status
-	 * 
+	 *
 	 * @return array The result of action=upload&statuskey=key
 	 */
 	private function doAsyncUpload( $token, $ignoreWarnings = false, $leaveMessage = false ) {
@@ -310,27 +310,27 @@ class UploadFromUrlTest extends ApiTestSetup {
 		if ( $leaveMessage ) {
 			$params['leavemessage'] = 1;
 		}
-		
+
 		$data = $this->doApiRequest( $params );
 		$this->assertEquals( $data[0]['upload']['result'], 'Queued' );
 		$this->assertTrue( isset( $data[0]['upload']['statuskey'] ) );
 		$statusKey = $data[0]['upload']['statuskey'];
-		
+
 		$job = Job::pop();
 		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
-		
- 		$status = $job->run();
+
+		$status = $job->run();
 		$this->assertTrue( $status );
-		
-		$data = $this->doApiRequest( array( 
+
+		$data = $this->doApiRequest( array(
 			'action' => 'upload',
 			'statuskey' => $statusKey,
 			'token' => $token,
 		) );
-		
+
 		return $data;
 	}
-	
+
 
 	/**
 	 *

@@ -115,7 +115,7 @@ class XmlTest extends PHPUnit_Framework_TestCase {
 		);
 		$this->assertEquals(
 			'<label for="id" class="nice">name</label>',
-			Xml::label( 'name', 'id', array( 
+			Xml::label( 'name', 'id', array(
 				'generated' => true,
 				'class' => 'nice',
 				'anotherattr' => 'value',

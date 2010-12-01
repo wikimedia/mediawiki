@@ -287,7 +287,7 @@ class SiteConfigurationTest extends PHPUnit_Framework_TestCase {
 			'get(): parameter replacement on an non-existing wiki'
 		);
 	}
-	
+
 	function testGetAll() {
 		$this->mConf->siteParamsCallback = 'getSiteParams';
 

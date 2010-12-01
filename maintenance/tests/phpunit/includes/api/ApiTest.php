@@ -98,7 +98,7 @@ class ApiTest extends ApiTestSetup {
 			"lgpassword" => "bad",
 			)
 		);
-		
+
 		$result = $ret[0];
 
 		$this->assertNotType( "bool", $result );

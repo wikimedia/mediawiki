@@ -41,7 +41,7 @@ class Selenium {
 			self::$_instance = $this;
 		} else {
 			throw new MWException( "Already have one Selenium instance." );
- 		}
+		}
 	}
 
 	public function start() {
@@ -62,7 +62,7 @@ class Selenium {
 	public function login() {
 		if ( strlen( $this->user ) == 0 ) {
 			return;
-		} 
+		}
 		$this->open( self::$url . '/index.php?title=Special:Userlogin' );
 		$this->type( 'wpName1', $this->user );
 		$this->type( 'wpPassword1', $this->pass );
@@ -133,7 +133,7 @@ class Selenium {
 	public function setVerbose( $verbose ) {
 		$this->verbose = $verbose;
 	}
-	
+
 	public function setAvailableBrowsers( $availableBrowsers ) {
 		$this->browsers = $availableBrowsers;
 	}
@@ -141,15 +141,15 @@ class Selenium {
 	public function setJUnitLogfile( $junitlogfile ) {
 		$this->junitlogfile = $junitlogfile;
 	}
-	
+
 	public function getJUnitLogfile( ) {
 		return $this->junitlogfile;
-	}	
-	
+	}
+
 	public function setRunAgainstGrid( $runagainstgrid ) {
 		$this->runagainstgrid = $runagainstgrid;
 	}
-	
+
 	public function setBrowser( $b ) {
 		if ($this->runagainstgrid) {
 			$this->browser = $b;
@@ -161,7 +161,7 @@ class Selenium {
 
 		$this->browser = $this->browsers[$b];
 	}
-	
+
 	public function getAvailableBrowsers() {
 		return $this->browsers;
 	}

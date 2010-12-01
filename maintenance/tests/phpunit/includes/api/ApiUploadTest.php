@@ -6,14 +6,14 @@
  */
 
 /**
- * n.b. Ensure that you can write to the images/ directory as the 
+ * n.b. Ensure that you can write to the images/ directory as the
  * user that will run tests.
  */
 
 // Note for reviewers: this intentionally duplicates functionality already in "ApiSetup" and so on.
 // This framework works better IMO and has less strangeness (such as test cases inheriting from "ApiSetup"...)
 // (and in the case of the other Upload tests, this flat out just actually works... )
-	
+
 // TODO: refactor into several files
 // TODO: port the other Upload tests, and other API tests to this framework
 
@@ -29,14 +29,14 @@ class ApiTestUser {
 	public $user;
 
 	function __construct( $username, $realname = 'Real Name', $email = 'sample@sample.com', $groups = array() ) {
-		$this->username = $username; 
-		$this->realname = $realname; 
+		$this->username = $username;
+		$this->realname = $realname;
 		$this->email = $email;
 		$this->groups = $groups;
 
-		// don't allow user to hardcode or select passwords -- people sometimes run tests 	
+		// don't allow user to hardcode or select passwords -- people sometimes run tests
 		// on live wikis. Sometimes we create sysop users in these tests. A sysop user with
-	 	// a known password would be a Bad Thing.
+		// a known password would be a Bad Thing.
 		$this->password = User::randomPassword();
 
 		$this->user = User::newFromName( $this->username );
@@ -48,17 +48,17 @@ class ApiTestUser {
 		// In core MediaWiki, there is no functionality to delete users, so this is the best we can do.
 		if ( !$this->user->getID() ) {
 			// create the user
-			$this->user = User::createNew( 
+			$this->user = User::createNew(
 				$this->username, array(
 					"email" => $this->email,
 					"real_name" => $this->realname
-				) 
+				)
 			);
 			if ( !$this->user ) {
 				throw new Exception( "error creating user" );
 			}
 		}
-		
+
 		// update the user to use the new random password and other details
 		$this->user->setPassword( $this->password );
 		$this->user->setEmail( $this->email );
@@ -73,7 +73,7 @@ class ApiTestUser {
 			}
 		}
 		$this->user->saveSettings();
-		
+
 	}
 
 }
@@ -90,17 +90,17 @@ abstract class ApiTestCase extends PHPUnit_Framework_TestCase {
 		$wgRequest = new FauxRequest( array() );
 
 		self::$users = array(
-			'sysop' => new ApiTestUser( 
-				'Apitestsysop', 
-				'Api Test Sysop', 
-				'api_test_sysop@sample.com', 
-				array( 'sysop' ) 	
+			'sysop' => new ApiTestUser(
+				'Apitestsysop',
+				'Api Test Sysop',
+				'api_test_sysop@sample.com',
+				array( 'sysop' )
 			),
-			'uploader' => new ApiTestUser( 
+			'uploader' => new ApiTestUser(
 				'Apitestuser',
 				'Api Test User',
 				'api_test_user@sample.com',
-				array() 		
+				array()
 			)
 		);
 
@@ -145,7 +145,7 @@ abstract class ApiTestCase extends PHPUnit_Framework_TestCase {
  */
 class ApiUploadTest extends ApiTestCase {
 	/**
-	 * Fixture -- run before every test 
+	 * Fixture -- run before every test
 	 */
 	public function setUp() {
 		global $wgEnableUploads, $wgEnableAPI;
@@ -158,12 +158,12 @@ class ApiUploadTest extends ApiTestCase {
 		ini_set( 'log_errors', 1 );
 		ini_set( 'error_reporting', 1 );
 		ini_set( 'display_errors', 1 );
-		
+
 		$this->clearFakeUploads();
 	}
 
 	/**
-	 * Fixture -- run after every test 
+	 * Fixture -- run after every test
 	 * Clean up temporary files etc.
 	 */
 	function tearDown() {
@@ -177,10 +177,10 @@ class ApiUploadTest extends ApiTestCase {
 	function testLogin() {
 		$user = self::$users['uploader'];
 
-		$params = array( 
-			'action' => 'login', 
-			'lgname' => $user->username, 
-			'lgpassword' => $user->password 
+		$params = array(
+			'action' => 'login',
+			'lgname' => $user->username,
+			'lgpassword' => $user->password
 		);
 		list( $result, , ) = $this->doApiRequest( $params );
 		$this->assertArrayHasKey( "login", $result );
@@ -192,8 +192,8 @@ class ApiUploadTest extends ApiTestCase {
 			'action' => 'login',
 			'lgtoken' => $token,
 			'lgname' => $user->username,
-			'lgpassword' => $user->password 
-		); 
+			'lgpassword' => $user->password
+		);
 		list( $result, , $session ) = $this->doApiRequest( $params );
 		$this->assertArrayHasKey( "login", $result );
 		$this->assertArrayHasKey( "result", $result['login'] );
@@ -207,7 +207,7 @@ class ApiUploadTest extends ApiTestCase {
 	/**
 	 * @depends testLogin
 	 */
-	public function testUploadRequiresToken( $session ) { 
+	public function testUploadRequiresToken( $session ) {
 		$exception = false;
 		try {
 			$this->doApiRequest( array(
@@ -222,8 +222,8 @@ class ApiUploadTest extends ApiTestCase {
 
 	/**
 	 * @depends testLogin
-	 */	
-	public function testUploadMissingParams( $session ) { 
+	 */
+	public function testUploadMissingParams( $session ) {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
 
@@ -244,7 +244,7 @@ class ApiUploadTest extends ApiTestCase {
 	/**
 	 * @depends testLogin
 	 */
-	public function testUpload( $session ) { 
+	public function testUpload( $session ) {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
 
@@ -261,7 +261,7 @@ class ApiUploadTest extends ApiTestCase {
 		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
 		$filePath = $filePaths[0];
 		$fileSize = filesize( $filePath );
-		$fileName = basename( $filePath ); 
+		$fileName = basename( $filePath );
 
 		$this->deleteFileByFileName( $fileName );
 		$this->deleteFileByContent( $filePath );
@@ -299,7 +299,7 @@ class ApiUploadTest extends ApiTestCase {
 	/**
 	 * @depends testLogin
 	 */
-	public function testUploadZeroLength( $session ) { 
+	public function testUploadZeroLength( $session ) {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
 
@@ -340,7 +340,7 @@ class ApiUploadTest extends ApiTestCase {
 	/**
 	 * @depends testLogin
 	 */
-	public function testUploadSameFileName( $session ) { 
+	public function testUploadSameFileName( $session ) {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
 
@@ -356,7 +356,7 @@ class ApiUploadTest extends ApiTestCase {
 
 		$filePaths = $randomImageGenerator->writeImages( 2, $extension, dirname( wfTempDir() ) );
 		// we'll reuse this filename
-		$fileName = basename( $filePaths[0] ); 
+		$fileName = basename( $filePaths[0] );
 
 		// clear any other files with the same name
 		$this->deleteFileByFileName( $fileName );
@@ -371,7 +371,7 @@ class ApiUploadTest extends ApiTestCase {
 		);
 
 		// first upload .... should succeed
-		
+
 		if (! $this->fakeUploadFile( 'file', $fileName, $mimeType, $filePaths[0] ) ) {
 			$this->markTestIncomplete( "Couldn't upload file!\n" );
 		}
@@ -386,7 +386,7 @@ class ApiUploadTest extends ApiTestCase {
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 		$this->assertFalse( $exception );
 
-		// second upload with the same name (but different content) 
+		// second upload with the same name (but different content)
 
 		if (! $this->fakeUploadFile( 'file', $fileName, $mimeType, $filePaths[1] ) ) {
 			$this->markTestIncomplete( "Couldn't upload file!\n" );
@@ -414,7 +414,7 @@ class ApiUploadTest extends ApiTestCase {
 	/**
 	 * @depends testLogin
 	 */
-	public function testUploadSameContent( $session ) { 
+	public function testUploadSameContent( $session ) {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
 
@@ -428,7 +428,7 @@ class ApiUploadTest extends ApiTestCase {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
-		$fileNames[0] = basename( $filePaths[0] ); 
+		$fileNames[0] = basename( $filePaths[0] );
 		$fileNames[1] = "SameContentAs" . $fileNames[0];
 
 		// clear any other files with the same name or content
@@ -437,7 +437,7 @@ class ApiUploadTest extends ApiTestCase {
 		$this->deleteFileByFileName( $fileNames[1] );
 
 		// first upload .... should succeed
-		
+
 		$params = array(
 			'action' => 'upload',
 			'filename' => $fileNames[0],
@@ -445,7 +445,7 @@ class ApiUploadTest extends ApiTestCase {
 			'comment' => 'dummy comment',
 			'text'	=> "This is the page text for " . $fileNames[0],
 		);
-		
+
 		if (! $this->fakeUploadFile( 'file', $fileNames[0], $mimeType, $filePaths[0] ) ) {
 			$this->markTestIncomplete( "Couldn't upload file!\n" );
 		}
@@ -461,12 +461,12 @@ class ApiUploadTest extends ApiTestCase {
 		$this->assertFalse( $exception );
 
 
-		// second upload with the same content (but different name) 
+		// second upload with the same content (but different name)
 
 		if (! $this->fakeUploadFile( 'file', $fileNames[1], $mimeType, $filePaths[0] ) ) {
 			$this->markTestIncomplete( "Couldn't upload file!\n" );
 		}
-	
+
 		$params = array(
 			'action' => 'upload',
 			'filename' => $fileNames[1],
@@ -497,7 +497,7 @@ class ApiUploadTest extends ApiTestCase {
 	/**
 	 * @depends testLogin
 	 */
-	public function testUploadStash( $session ) { 
+	public function testUploadStash( $session ) {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
 
@@ -514,7 +514,7 @@ class ApiUploadTest extends ApiTestCase {
 		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
 		$filePath = $filePaths[0];
 		$fileSize = filesize( $filePath );
-		$fileName = basename( $filePath ); 
+		$fileName = basename( $filePath );
 
 		$this->deleteFileByFileName( $fileName );
 		$this->deleteFileByContent( $filePath );
@@ -545,15 +545,15 @@ class ApiUploadTest extends ApiTestCase {
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 		$this->assertTrue( isset( $result['upload']['sessionkey'] ) );
 		$sessionkey = $result['upload']['sessionkey'];
-		
-		// it should be visible from Special:UploadStash 
+
+		// it should be visible from Special:UploadStash
 		// XXX ...but how to test this, with a fake WebRequest with the session?
 
 		// now we should try to release the file from stash
 		$params = array(
 			'action' => 'upload',
 			'sessionkey' => $sessionkey,
-			'filename' => $fileName,	
+			'filename' => $fileName,
 			'comment' => 'dummy comment',
 			'text'	=> "This is the page text for $fileName, altered",
 		);
@@ -581,7 +581,7 @@ class ApiUploadTest extends ApiTestCase {
 	 * @param $title Title: title to be removed
 	 */
 	public function deleteFileByTitle( $title ) {
-		if ( $title->exists() ) { 
+		if ( $title->exists() ) {
 			$file = wfFindFile( $title, array( 'ignoreRedirect' => true ) );
 			$noOldArchive = ""; // yes this really needs to be set this way
 			$comment = "removing for test";
@@ -593,14 +593,14 @@ class ApiUploadTest extends ApiTestCase {
 			$article = new Article( $title );
 			$article->doDeleteArticle( "removing for test" );
 
-			// see if it now doesn't exist; reload	
+			// see if it now doesn't exist; reload
 			$title = Title::newFromText( $fileName, NS_FILE );
 		}
 		return ! ( $title && $title instanceof Title && $title->exists() );
 	}
 
 	/**
-	 * Helper function -- remove files and associated articles with a particular filename 
+	 * Helper function -- remove files and associated articles with a particular filename
 	 * @param $fileName String: filename to be removed
 	 */
 	public function deleteFileByFileName( $fileName ) {
@@ -622,10 +622,10 @@ class ApiUploadTest extends ApiTestCase {
 		return $success;
 	}
 
-	/** 
+	/**
 	 * Fake an upload by dumping the file into temp space, and adding info to $_FILES.
 	 * (This is what PHP would normally do).
-	 * @param $fieldName String: name this would have in the upload form 
+	 * @param $fieldName String: name this would have in the upload form
 	 * @param $fileName String: name to title this
 	 * @param $type String: mime type
 	 * @param $filePath String: path where to find file contents
@@ -636,7 +636,7 @@ class ApiUploadTest extends ApiTestCase {
 			throw new Exception( "$filePath doesn't exist!" );
 		};
 
-		if ( !copy( $filePath, $tmpName ) ) { 
+		if ( !copy( $filePath, $tmpName ) ) {
 			throw new Exception( "couldn't copy $filePath to $tmpName" );
 		}
 
