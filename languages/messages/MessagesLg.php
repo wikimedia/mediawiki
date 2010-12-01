@@ -168,14 +168,19 @@ $messages = array(
 'faqpage'        => 'Project:Ebitera okubuuzibwa ku',
 
 # Vector skin
-'vector-action-delete'   => 'Gyawo olupapula luno',
-'vector-action-move'     => 'Simbuliza',
-'vector-action-protect'  => 'Ssiba',
-'vector-view-create'     => 'Lukolewo',
-'vector-view-edit'       => 'Kyusa',
-'vector-view-history'    => 'Ennanda ya fayiro eno',
-'vector-view-viewsource' => "Kebera obulambike obw'ennono obw'olupapula luno",
-'namespaces'             => 'Makuŋaanyizo',
+'vector-action-addsection' => 'Tandikawo emboozi endala',
+'vector-action-delete'     => 'Gyawo olupapula luno',
+'vector-action-move'       => 'Simbuliza',
+'vector-action-protect'    => 'Ssiba',
+'vector-action-undelete'   => 'Zawo',
+'vector-action-unprotect'  => 'Gyako ebikugizo',
+'vector-view-create'       => 'Lukolewo',
+'vector-view-edit'         => 'Kyusa',
+'vector-view-history'      => 'Ennanda ya fayiro eno',
+'vector-view-view'         => 'Soma',
+'vector-view-viewsource'   => "Kebera obulambike obw'ennono obw'olupapula luno",
+'actions'                  => "By'oyinza okukola",
+'namespaces'               => 'Makuŋaanyizo',
 
 'errorpagetitle'    => 'Kiremya',
 'returnto'          => 'Dda ku $1.',
@@ -263,13 +268,14 @@ $messages = array(
 'red-link-title'          => '$1 (olupapula olwogera ku kino terunakolebwawo)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Lupapula',
-'nstab-user'     => 'Enfo ya memba',
-'nstab-special'  => 'Olupapula olwawule',
-'nstab-project'  => 'Ekkuŋaanizo erya kawefube',
-'nstab-image'    => 'Fayiro',
-'nstab-template' => 'Lutiba',
-'nstab-category' => 'Ttuluba lya',
+'nstab-main'      => 'Lupapula',
+'nstab-user'      => 'Enfo ya memba',
+'nstab-special'   => 'Olupapula olwawule',
+'nstab-project'   => 'Ekkuŋaanizo erya kawefube',
+'nstab-image'     => 'Fayiro',
+'nstab-mediawiki' => 'Obubaka',
+'nstab-template'  => 'Lutiba',
+'nstab-category'  => 'Ttuluba lya',
 
 # General errors
 'missing-article'     => "Mu ggwanika ya data mubadde musuubidwamu bigambo ebikola olupapula \"\$1\" \$2, tebisangidwamu.

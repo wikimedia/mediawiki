@@ -3726,9 +3726,10 @@ Miniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch
  */
 $messages['he'] = array(
 	'config-desc' => 'תכנית ההתקנה של מדיה־ויקי',
+	'config-title' => 'התקנת מדיה־ויקי $1',
 	'config-information' => 'פרטים',
-	'config-show-help' => 'עזרה',
-	'config-hide-help' => 'הסתרת העזרה',
+	'config-localsettings-key' => 'מפתח השדרוג:',
+	'config-localsettings-badkey' => 'המפתח שסיפקת שגוי',
 	'config-your-language' => 'השפה שלך:',
 	'config-your-language-help' => 'נא לבחור את השפה שתשמש במהלך ההתקנה.',
 	'config-wiki-language' => 'שפת הוויקי:',
@@ -3770,6 +3771,8 @@ $1
 	'config-db-host' => 'מארח מסד הנתונים:',
 	'config-db-wiki-settings' => 'זיהוי ויקי זה',
 	'config-db-name' => 'שם מסד הנתונים:',
+	'config-db-username' => 'שם המשתמש במסד הנתונים:',
+	'config-db-password' => 'הססמה במסד הנתונים:',
 	'config-db-port' => 'פתחת מסד הנתונים:',
 	'config-header-mysql' => 'הגדרות MySQL',
 	'config-header-postgres' => 'הגדרות PostgreSQL',
@@ -4930,7 +4933,7 @@ Anda disarankan untuk menggunakan versi terbaru yang dapat diunduh dari [http://
 	'config-unicode-using-utf8' => 'Menggunakan utf8_normalize.so Brion Vibber untuk normalisasi Unicode.',
 	'config-unicode-using-intl' => 'Menggunakan [http://pecl.php.net/intl ekstensi PECL intl] untuk normalisasi Unicode.',
 	'config-unicode-pure-php-warning' => "'''Peringatan''': [http://pecl.php.net/intl Ekstensi intl PECL] untuk menangani normalisasi Unicode tidak tersedia, kembali menggunakan implementasi murni PHP yang lambat. 
- Jika Anda menjalankan situs berlalu lintas tinggi, Anda harus sedikit membaca [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalisasi Unicode].",
+Jika Anda menjalankan situs berlalu lintas tinggi, Anda harus sedikit membaca [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalisasi Unicode].",
 	'config-unicode-update-warning' => "'''Peringatan''': Versi terinstal dari pembungkus normalisasi Unicode menggunakan versi lama pustaka [http://site.icu-project.org/ proyek ICU].
 Anda harus [http://www.mediawiki.org/wiki/Unicode_normalization_considerations memutakhirkannya] jika Anda ingin menggunakan Unicode.",
 	'config-no-db' => 'Tidak dapat menemukan pengandar basis data yang sesuai!',

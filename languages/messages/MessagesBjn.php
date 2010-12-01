@@ -1299,6 +1299,12 @@ Tutungkaran dalam [[Special:Watchlist|daptar itihan Pian]] ditandai '''kandal'''
 'uploaddisabled'      => 'Pahunggahan dipajahakan.',
 'copyuploaddisabled'  => 'Hunggah lawan URL pajah.',
 'uploaddisabledtext'  => 'Hunggah barakas kada kawa.',
+'uploadvirus'         => 'Barakas baisi pirus!
+Ririncian: $1',
+'upload-source'       => 'Asal mula barakas',
+'sourcefilename'      => 'Ngaranbarakas asal mula:',
+'sourceurl'           => 'Asal mula URL:',
+'destfilename'        => 'Ngaranbarakas tujuan:',
 'watchthisupload'     => 'Itihi barakas ini',
 'upload-warning-subj' => 'Paringatan mahunggah',
 
