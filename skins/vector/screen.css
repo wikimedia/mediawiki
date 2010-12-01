@@ -367,6 +367,9 @@ div#mw-head h5 {
 	div#simpleSearch input {
 		color: black;
 	}
+	div#simpleSearch input:focus {
+		outline: none;
+	}
 	div#simpleSearch input.placeholder {
 		color: #999999;
 	}
