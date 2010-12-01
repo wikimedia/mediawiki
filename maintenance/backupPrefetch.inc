@@ -3,7 +3,7 @@
  * Helper class for the --prefetch option of dumpTextPass.php
  *
  * @file
- * @ingrouo Maintenance
+ * @ingroup Maintenance
  */
 
 /**
