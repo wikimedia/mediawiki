@@ -599,7 +599,7 @@ class IP {
 		// IPv6 loopback address
 		$m = array();
 		if ( preg_match( '/^0*' . RE_IPV6_GAP . '1$/', $addr, $m ) ) {
-	   		return '127.0.0.1';
+			return '127.0.0.1';
 		}
 		// IPv4-mapped and IPv4-compatible IPv6 addresses
 		if ( preg_match( '/^' . RE_IPV6_V4_PREFIX . '(' . RE_IP_ADD . ')$/i', $addr, $m ) ) {

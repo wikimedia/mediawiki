@@ -373,26 +373,26 @@ class VectorTemplate extends QuickTemplate {
 				}
 				$nav[$section][$key]['attributes'] =
 					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
-			 	if ( $nav[$section][$key]['class'] ) {
+				if ( $nav[$section][$key]['class'] ) {
 					$nav[$section][$key]['attributes'] .=
 						' class="' . htmlspecialchars( $link['class'] ) . '"';
 					unset( $nav[$section][$key]['class'] );
-			 	}
+				}
 				// We don't want to give the watch tab an accesskey if the page
 				// is being edited, because that conflicts with the accesskey on
 				// the watch checkbox.  We also don't want to give the edit tab
 				// an accesskey, because that's fairly superfluous and conflicts
 				// with an accesskey (Ctrl-E) often used for editing in Safari.
-			 	if (
+				if (
 					in_array( $action, array( 'edit', 'submit' ) ) &&
 					in_array( $key, array( 'edit', 'watch', 'unwatch' ) )
 				) {
-			 		$nav[$section][$key]['key'] =
+					$nav[$section][$key]['key'] =
 						$this->skin->tooltip( $xmlID );
-			 	} else {
-			 		$nav[$section][$key]['key'] =
+				} else {
+					$nav[$section][$key]['key'] =
 						$this->skin->tooltipAndAccesskey( $xmlID );
-			 	}
+				}
 			}
 		}
 		$this->data['namespace_urls'] = $nav['namespaces'];
@@ -434,7 +434,7 @@ class VectorTemplate extends QuickTemplate {
 		$footerlinksClasses = array(
 			'icons' => array( 'noprint' )
 		);
-		
+
 		// Reduce footer links down to only those which are being used
 		$validFooterLinks = array();
 		foreach( $footerlinks as $category => $links ) {

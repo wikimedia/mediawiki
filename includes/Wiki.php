@@ -50,11 +50,11 @@ class MediaWiki {
 	 */
 	function performRequestForTitle( &$title, &$article, &$output, &$user, $request ) {
 		wfProfileIn( __METHOD__ );
-		
+
 		$output->setTitle( $title );
-		
+
 		wfRunHooks( 'BeforeInitialize', array( &$title, &$article, &$output, &$user, $request, $this ) );
-		
+
 		if( !$this->preliminaryChecks( $title, $output, $request ) ) {
 			wfProfileOut( __METHOD__ );
 			return;
@@ -323,11 +323,11 @@ class MediaWiki {
 		{
 			// Give extensions a change to ignore/handle redirects as needed
 			$ignoreRedirect = $target = false;
-			
+
 			$dbr = wfGetDB( DB_SLAVE );
 			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );
 
-			wfRunHooks( 'InitializeArticleMaybeRedirect', 
+			wfRunHooks( 'InitializeArticleMaybeRedirect',
 				array(&$title,&$request,&$ignoreRedirect,&$target,&$article) );
 
 			// Follow redirects only for... redirects.

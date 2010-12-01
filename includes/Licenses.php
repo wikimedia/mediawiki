@@ -31,7 +31,7 @@ class Licenses extends HTMLFormField {
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
-		
+
 		$this->msg = empty( $params['licenses'] ) ? wfMsgForContent( 'licenses' ) : $params['licenses'];
 		$this->selected = null;
 
@@ -105,7 +105,7 @@ class Licenses extends HTMLFormField {
 	protected function outputOption( $text, $value, $attribs = null, $depth = 0 ) {
 		$attribs['value'] = $value;
 		if ( $value === $this->selected )
-			$attribs['selected'] = 'selected';		
+			$attribs['selected'] = 'selected';
 		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $text;
 		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
 	}
@@ -131,18 +131,18 @@ class Licenses extends HTMLFormField {
 	 */
 	public function getInputHTML( $value ) {
 		$this->selected = $value;
-		
+
 		$this->html = $this->outputOption( wfMsg( 'nolicense' ), '',
 			(bool)$this->selected ? null : array( 'selected' => 'selected' ) );
 		$this->makeHtml( $this->getLicenses() );
-		
+
 		$attribs = array(
 			'name' => $this->mName,
 			'id' => $this->mID
 		);
 		if ( !empty( $this->mParams['disabled'] ) )
 			$attibs['disabled'] = 'disabled';
-		
+
 		return Html::rawElement( 'select', $attribs, $this->html );
 	}
 }

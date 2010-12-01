@@ -556,7 +556,7 @@ class User {
 	 * either by batch processes or by user accounts which have
 	 * already been created.
 	 *
-	 * Additional blacklisting may be added here rather than in 
+	 * Additional blacklisting may be added here rather than in
 	 * isValidUserName() to avoid disrupting existing accounts.
 	 *
 	 * @param $name \string String to match
@@ -615,7 +615,7 @@ class User {
 				return 'passwordtooshort';
 			} elseif ( $lcPassword == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
-			} elseif ( in_array( $lcPassword, $wgWeakPasswords ) ) {			
+			} elseif ( in_array( $lcPassword, $wgWeakPasswords ) ) {
 				return 'password-too-weak';
 			} else {
 				//it seems weird returning true here, but this is because of the
@@ -658,7 +658,7 @@ class User {
 		[$rfc1034_ldh_str]+       # First domain part
 		(\\.[$rfc1034_ldh_str]+)+  # Following part prefixed with a dot
 		$                      # End of string
-		/ix" ; // case Insensitive, eXtended 
+		/ix" ; // case Insensitive, eXtended
 
 		return (bool) preg_match( $HTML5_email_regexp, $addr );
 	}
@@ -1762,11 +1762,11 @@ class User {
 			}
 
 			if( !$this->isValidPassword( $str ) ) {
- 				global $wgMinimalPasswordLength;
+				global $wgMinimalPasswordLength;
 				$valid = $this->getPasswordValidity( $str );
 				throw new PasswordError( wfMsgExt( $valid, array( 'parsemag' ),
 					$wgMinimalPasswordLength ) );
- 			}
+			}
 		}
 
 		if( !$wgAuth->setPassword( $this, $str ) ) {
@@ -2038,7 +2038,7 @@ class User {
 		global $wgMaxArticleSize; # Maximum article size, in Kb
 		$threshold = intval( $this->getOption( 'stubthreshold' ) );
 		if ( $threshold > $wgMaxArticleSize * 1024 ) {
-			# If they have set an impossible value, disable the preference 
+			# If they have set an impossible value, disable the preference
 			# so we can use the parser cache again.
 			$threshold = 0;
 		}
@@ -2248,7 +2248,7 @@ class User {
 			return $this->mSkin;
 		}
 	}
-	
+
 	// Creates a Skin object, for getSkin()
 	private function createSkinObject() {
 		wfProfileIn( __METHOD__ );
@@ -2267,7 +2267,7 @@ class User {
 
 		$skin = Skin::newFromKey( $userSkin );
 		wfProfileOut( __METHOD__ );
-		
+
 		return $skin;
 	}
 
@@ -2402,7 +2402,7 @@ class User {
 
 		// If an option is not set in $str, use the default value
 		$this->mOptions = self::getDefaultOptions();
-		
+
 		$a = explode( "\n", $str );
 		foreach ( $a as $s ) {
 			$m = array();
@@ -2514,8 +2514,8 @@ class User {
 				'user_newpassword' => $this->mNewpassword,
 				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_real_name' => $this->mRealName,
-		 		'user_email' => $this->mEmail,
-		 		'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
+				'user_email' => $this->mEmail,
+				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_options' => '',
 				'user_touched' => $dbw->timestamp( $this->mTouched ),
 				'user_token' => $this->mToken,
@@ -2672,7 +2672,7 @@ class User {
 		wfDeprecated( __METHOD__ );
 
 		// stubthreshold is only included below for completeness,
-		// since it disables the parser cache, its value will always 
+		// since it disables the parser cache, its value will always
 		// be 0 when this function is called by parsercache.
 
 		$confstr =        $this->getOption( 'math' );
