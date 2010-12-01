@@ -2706,6 +2706,8 @@ class Language {
 	 * If a language supports multiple variants, converts text
 	 * into an array of all possible variants of the text:
 	 *  'variant' => text in that variant
+	 *
+	 * @deprecated Use autoConvertToAllVariants()
 	 */
 	function convertLinkToAllVariants( $text ) {
 		return $this->mConverter->convertLinkToAllVariants( $text );
