@@ -73,7 +73,7 @@ $wgServer = $wgProto.'://' . $serverName;
 # If the port is a non-standard one, add it to the URL
 if(    isset( $_SERVER['SERVER_PORT'] )
 	&& !strpos( $serverName, ':' )
-    && (    ( $wgProto == 'http' && $_SERVER['SERVER_PORT'] != 80 )
+	&& (    ( $wgProto == 'http' && $_SERVER['SERVER_PORT'] != 80 )
 	 || ( $wgProto == 'https' && $_SERVER['SERVER_PORT'] != 443 ) ) ) {
 
 	$wgServer .= ":" . $_SERVER['SERVER_PORT'];
@@ -504,9 +504,9 @@ $wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/File:";
  * This is the list of preferred extensions for uploading files. Uploading files
  * with extensions not in this list will trigger a warning.
  *
- * WARNING: If you add any OpenOffice or Microsoft Office file formats here, 
- * such as odt or doc, and untrusted users are allowed to upload files, then 
- * your wiki will be vulnerable to cross-site request forgery (CSRF). 
+ * WARNING: If you add any OpenOffice or Microsoft Office file formats here,
+ * such as odt or doc, and untrusted users are allowed to upload files, then
+ * your wiki will be vulnerable to cross-site request forgery (CSRF).
  */
 $wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 
@@ -544,7 +544,7 @@ $wgMimeTypeBlacklist = array(
 	'application/x-opc+zip',
 );
 
-/** 
+/**
  * This is a flag to determine whether or not to check file extensions on upload.
  *
  * WARNING: setting this to false is insecure for public wikis.
@@ -555,7 +555,7 @@ $wgCheckFileExtensions = true;
  * If this is turned off, users may override the warning for files not covered
  * by $wgFileExtensions.
  *
- * WARNING: setting this to false is insecure for public wikis. 
+ * WARNING: setting this to false is insecure for public wikis.
  */
 $wgStrictFileExtensions = true;
 
@@ -2300,7 +2300,7 @@ $wgBetterDirectionality = false;
  */
 
 /**
- * Client-side resource modules. Extensions should add their module definitions 
+ * Client-side resource modules. Extensions should add their module definitions
  * here.
  *
  * Example:
@@ -2331,8 +2331,8 @@ $wgResourceLoaderMaxage = array(
 );
 
 /**
- * Whether to embed private modules inline with HTML output or to bypass 
- * caching and check the user parameter against $wgUser to prevent 
+ * Whether to embed private modules inline with HTML output or to bypass
+ * caching and check the user parameter against $wgUser to prevent
  * unauthorized access to private modules.
  */
 $wgResourceLoaderInlinePrivateModules = true;

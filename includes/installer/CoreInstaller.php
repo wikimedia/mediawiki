@@ -298,7 +298,7 @@ abstract class CoreInstaller extends Installer {
 	/**
 	 * Get an array of install steps. These could be a plain key like the defaults
 	 * in $installSteps, or could be an array with a name and a specific callback
-	 * There must be a config-install-$step message defined per step, which will 
+	 * There must be a config-install-$step message defined per step, which will
 	 * be shown on install.
 	 *
 	 * @param $installer DatabaseInstaller so we can make callbacks
@@ -315,7 +315,7 @@ abstract class CoreInstaller extends Installer {
 			array( 'name' => 'mainpage',  'callback' => array( $this, 'createMainpage' ) ),
 		);
 		if( count( $this->getVar( '_Extensions' ) ) ) {
-			array_unshift( $installSteps, 
+			array_unshift( $installSteps,
 				array( 'name' => 'extensions', 'callback' => array( $this, 'includeExtensions' ) )
 			);
 		}
@@ -374,9 +374,9 @@ abstract class CoreInstaller extends Installer {
 	protected function generateSecretKey() {
 		return $this->generateSecret( 'wgSecretKey' );
 	}
-	
+
 	/**
-	 * Generate a secret value for a variable using either 
+	 * Generate a secret value for a variable using either
 	 * /dev/urandom or mt_rand() Produce a warning in the later case.
 	 *
 	 * @return Status
@@ -411,7 +411,7 @@ abstract class CoreInstaller extends Installer {
 	}
 
 	/**
-	 * Generate a default $wgUpradeKey, Will warn if we had to use 
+	 * Generate a default $wgUpradeKey, Will warn if we had to use
 	 * mt_rand() instead of /dev/urandom
 	 *
 	 * @return Status
@@ -453,7 +453,7 @@ abstract class CoreInstaller extends Installer {
 
 	/**
 	 * Insert Main Page with default content.
-	 * 
+	 *
 	 * @return Status
 	 */
 	protected function createMainpage( DatabaseInstaller &$installer ) {
@@ -468,9 +468,9 @@ abstract class CoreInstaller extends Installer {
 								User::newFromName( 'MediaWiki Default' ) );
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
-			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() ); 
+			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
 		}
-		
+
 		return $status;
 	}
 
