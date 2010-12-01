@@ -131,7 +131,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( $conn->tableExists( $ctest, $schema ) ) {
 			$conn->doQuery( "DROP TABLE $safeschema.$ctest" );
 		}
-		$res = $this->doQuery( "CREATE TABLE $safeschema.$ctest(a int)" );
+		$res = $conn->doQuery( "CREATE TABLE $safeschema.$ctest(a int)" );
 		if ( !$res ) {
 			$status->fatal( 'config-install-pg-schema-failed',
 				$this->getVar( 'wgDBuser'), $schema );
@@ -141,8 +141,10 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	protected function commitChanges() {
+	function commitChanges() {
 		$this->db->query( 'COMMIT' );
+
+		return Status::newGood();
 	}
 
 	function getLocalSettings() {
