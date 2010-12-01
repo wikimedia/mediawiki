@@ -30,7 +30,7 @@ $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 if ( isset( $options['help'] ) ) {
-    echo <<<ENDS
+	echo <<<ENDS
 MediaWiki $wgVersion parser test suite
 Usage: php parserTests.php [options...]
 
@@ -39,7 +39,7 @@ Options:
   --quiet          Suppress notification of passed tests (shows only failed tests)
   --show-output    Show expected and actual output
   --color[=yes|no] Override terminal detection and force color output on or off
-                   use wgCommandLineDarkBg = true; if your term is dark 
+                   use wgCommandLineDarkBg = true; if your term is dark
   --regex          Only run tests whose descriptions which match given regex
   --file=<testfile> Run test cases from a custom file instead of parserTests.txt
   --record         Record tests in database
@@ -54,7 +54,7 @@ Options:
   --upload         Upload test results to remote wiki (per \$wgParserTestRemote)
 
 ENDS;
-    exit( 0 );
+	exit( 0 );
 }
 
 # Cases of weird db corruption were encountered when running tests on earlyish

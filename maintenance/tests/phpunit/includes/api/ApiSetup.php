@@ -36,7 +36,7 @@ abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
 			self::$user = new UserWrapper( 'User for MediaWiki automated tests', User::randomPassword() );
 			self::$sysopUser = new UserWrapper( 'Sysop for MediaWiki automated tests', User::randomPassword(), 'sysop' );
 		}
-		
+
 		$GLOBALS['wgUser'] = self::$sysopUser->user;
 	}
 }

@@ -2,7 +2,7 @@
 
 require("RandomImageGenerator.php");
 
-$getOptSpec = array( 
+$getOptSpec = array(
 	'dictionaryFile::',
 	'minWidth::',
 	'maxWidth::',

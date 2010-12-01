@@ -273,7 +273,7 @@ class TitlePermissionTest extends PHPUnit_Framework_TestCase {
 						'' => array( array( ), array( ), array( ), true ) );
 		global $wgUser;
 		$wgUser = self::$user;
-   		foreach ( array( "edit", "protect", "" ) as $action ) {
+		foreach ( array( "edit", "protect", "" ) as $action ) {
 			$this->setUserPerm( null );
 			$this->assertEquals( $check[$action][0],
 				self::$title->getUserPermissionsErrors( $action, self::$user, true ) );

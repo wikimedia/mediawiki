@@ -1,10 +1,10 @@
 <?php
-/* 
+/*
  * Tests for IP validity functions. Ported from /t/inc/IP.t by avar.
  */
 
 class IPTest extends PHPUnit_Framework_TestCase {
-	// not sure it should be tested with boolean false. hashar 20100924 
+	// not sure it should be tested with boolean false. hashar 20100924
 	public function testisIPAddress() {
 		$this->assertFalse( IP::isIPAddress( false ), 'Boolean false is not an IP' );
 		$this->assertFalse( IP::isIPAddress( true  ), 'Boolean true is not an IP' );
@@ -24,7 +24,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( IP::isIPAddress( '74.24.52.13/20', 'IPv4 range' ) );
 		$this->assertTrue( IP::isIPAddress( 'fc:100:a:d:1:e:ac:0/24' ), 'IPv6 range' );
 		$this->assertTrue( IP::isIPAddress( 'fc::100:a:d:1:e:ac/96' ), 'IPv6 range with "::"' );
-		
+
 		$validIPs = array( 'fc:100::', 'fc:100:a:d:1:e:ac::', 'fc::100', '::fc:100:a:d:1:e:ac',
 			'::fc', 'fc::100:a:d:1:e:ac', 'fc:100:a:d:1:e:ac:0', '124.24.52.13', '1.24.52.13' );
 		foreach ( $validIPs as $ip ) {
@@ -114,7 +114,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 
 	// tests isValid()
 	public function testInvalidIPs() {
-		// Out of range...	
+		// Out of range...
 		foreach ( range( 256, 999 ) as $i ) {
 			$a = sprintf( "%03d", $i );
 			$b = sprintf( "%02d", $i );
@@ -267,7 +267,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	 * representing the network mask and the bit mask.
 	 */
 	function testCIDRParsing() {
-		$this->assertFalseCIDR( '192.0.2.0' , "missing mask"    );	
+		$this->assertFalseCIDR( '192.0.2.0' , "missing mask"    );
 		$this->assertFalseCIDR( '192.0.2.0/', "missing bitmask" );
 
 		// Verify if statement
@@ -283,7 +283,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( array( 0, 0 ), IP::parseCIDR('255.255.255.255/0') );
 
 		// FIXME : add more tests.
-		
+
 		# This part test network shifting
 		$this->assertNet( '192.0.0.0'  , '192.0.0.2/24'   );
 		$this->assertNet( '192.168.5.0', '192.168.5.13/24');
@@ -293,6 +293,6 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		$this->assertNet( '10.0.0.4'   , '10.0.0.4/30'  );
 		$this->assertNet( '172.17.32.0', '172.17.35.48/21' );
 		$this->assertNet( '10.128.0.0' , '10.135.0.0/9' );
-		$this->assertNet( '134.0.0.0'  , '134.0.5.1/8'  ); 
+		$this->assertNet( '134.0.0.0'  , '134.0.5.1/8'  );
 	}
 }

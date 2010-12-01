@@ -34,8 +34,8 @@ class SeleniumServerManager {
 	private $SeleniumServerExecPath;
 
 	public function __construct( $startServer,
-				     $serverPort,
-				     $serverExecPath ) {
+					 $serverPort,
+					 $serverExecPath ) {
 		$this->OS = (string) PHP_OS;
 		if ( isset( $startServer ) )
 			$this->SeleniumStartServer = $startServer;
@@ -172,11 +172,11 @@ class SeleniumServerManager {
 
 				$commandSuffix = ' > /dev/null 2>&1'. ' & echo $!';
 				$portText = ' -port ' . $this->SeleniumServerPort;
-				$command = "java -jar " . 
+				$command = "java -jar " .
 					escapeshellarg($this->SeleniumServerExecPath) .
 					$portText . $commandSuffix;
-				exec($command ,$op); 
-				$pid = (int)$op[0]; 
+				exec($command ,$op);
+				$pid = (int)$op[0];
 				if ( $pid != "" )
 					$this->SeleniumServerPid = $pid;
 				else {
@@ -190,8 +190,8 @@ class SeleniumServerManager {
 
 				wfSuppressWarnings();
 				for ( $cnt = 1;
-				      $cnt <= $this->SeleniumServerStartTimeout;
-				      $cnt++ ) {
+					  $cnt <= $this->SeleniumServerStartTimeout;
+					  $cnt++ ) {
 					$fp = fsockopen ( 'localhost',
 						$this->SeleniumServerPort,
 						$errno, $errstr, 0 );
@@ -212,19 +212,19 @@ class SeleniumServerManager {
 			else return 'running';
 
 		}
-                // No Server execution path defined.
+				// No Server execution path defined.
 		return 'failed';
 	}
 
 	private function startServerOnWindows() {
-		// Unimplemented. 
+		// Unimplemented.
 		return 'failed';
 	}
 
 	private function stopServerOnUnix() {
 
 		if ( !empty( $this->SeleniumServerPid ) &&
-		     $this->SeleniumServerPid != 'NaN' ) {
+			 $this->SeleniumServerPid != 'NaN' ) {
 			exec( "kill -9 " . $this->SeleniumServerPid );
 			return 'stopped';
 		}
@@ -232,7 +232,7 @@ class SeleniumServerManager {
 	}
 
 	private function stopServerOnWindows() {
-		// Unimplemented. 
+		// Unimplemented.
 		return 'failed';
 
 	}

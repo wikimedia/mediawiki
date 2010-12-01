@@ -4,16 +4,16 @@ if ( !defined( 'SELENIUMTEST' ) ) {
 }
 
 class SeleniumConfig {
-	
+
 	/*
 	 * Retreives the Selenium configuration values from an ini file.
 	 * See sample config file in selenium_settings.ini.sample
-	 * 
+	 *
 	 */
 
-	public static function getSeleniumSettings ( &$seleniumSettings, 
-			&$seleniumBrowsers, 
-			&$seleniumTestSuites, 
+	public static function getSeleniumSettings ( &$seleniumSettings,
+			&$seleniumBrowsers,
+			&$seleniumTestSuites,
 			$seleniumConfigFile = null ) {
 		if ( strlen( $seleniumConfigFile ) == 0 ) {
 			global $wgSeleniumConfigFile;
@@ -23,7 +23,7 @@ class SeleniumConfig {
 		if ( strlen( $seleniumConfigFile ) == 0 || !file_exists( $seleniumConfigFile ) ) {
 			throw new MWException( "Unable to read local Selenium Settings from " . $seleniumConfigFile . "\n" );
 		}
-		
+
 		if ( !defined( 'PHP_VERSION_ID' ) ||
 			( PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION < 3 ) ) {
 			$configArray = self::parse_5_2_ini_file( $seleniumConfigFile );
@@ -38,7 +38,7 @@ class SeleniumConfig {
 			wfSuppressWarnings();
 			//we may need to change how this is set. But for now leave it in the ini file
 			$seleniumBrowsers = $configArray['SeleniumSettings']['browsers'];
-			
+
 			$seleniumSettings['host'] = $configArray['SeleniumSettings']['host'];
 			$seleniumSettings['port'] = $configArray['SeleniumSettings']['port'];
 			$seleniumSettings['wikiUrl'] = $configArray['SeleniumSettings']['wikiUrl'];
@@ -58,7 +58,7 @@ class SeleniumConfig {
 			$seleniumTestSuites = $configArray['SeleniumTests']['testSuite'];
 			wfRestoreWarnings();
 		}
-		return true;	
+		return true;
 	}
 
 	private static function parse_5_2_ini_file ( $ConfigFile ) {

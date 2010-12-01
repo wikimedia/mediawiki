@@ -8,7 +8,7 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 		unlink( $wgReadOnlyFile );
 		$wgContLang = $wgLang = Language::factory( 'en' );
 	}
-	
+
 	function tearDown() {
 		global $wgReadOnlyFile;
 		if ( file_exists( $wgReadOnlyFile ) ) {
@@ -16,7 +16,7 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 		}
 		$wgReadOnlyFile = $this->originals['wgReadOnlyFile'];
 	}
-	
+
 	function testRandom() {
 		# This could hypothetically fail, but it shouldn't ;)
 		$this->assertFalse(
@@ -32,25 +32,25 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 	function testReadOnlyEmpty() {
 		global $wgReadOnly;
 		$wgReadOnly = null;
-		
+
 		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
 	}
 
 	function testReadOnlySet() {
 		global $wgReadOnly, $wgReadOnlyFile;
-		
+
 		$f = fopen( $wgReadOnlyFile, "wt" );
 		fwrite( $f, 'Message' );
 		fclose( $f );
 		$wgReadOnly = null;
-		
+
 		$this->assertTrue( wfReadOnly() );
 		$this->assertTrue( wfReadOnly() );
 
 		unlink( $wgReadOnlyFile );
 		$wgReadOnly = null;
-		
+
 		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
 	}
@@ -195,53 +195,53 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 			'20010115T123456Z',
 			wfTimestamp( TS_ISO_8601_BASIC, '2001-01-15 12:34:56' ),
 			'TS_DB to TS_ISO_8601_BASIC' );
-		
+
 		# rfc2822 section 3.3
-		
+
 		$this->assertEquals(
 			'Mon, 15 Jan 2001 12:34:56 GMT',
 			wfTimestamp( TS_RFC2822, '20010115123456' ),
 			'TS_MW to TS_RFC2822' );
-		
+
 		$this->assertEquals(
 			'20010115123456',
 			wfTimestamp( TS_MW, 'Mon, 15 Jan 2001 12:34:56 GMT' ),
 			'TS_RFC2822 to TS_MW' );
-		
+
 		$this->assertEquals(
 			'20010115123456',
 			wfTimestamp( TS_MW, ' Mon, 15 Jan 2001 12:34:56 GMT' ),
 			'TS_RFC2822 with leading space to TS_MW' );
-		
+
 		$this->assertEquals(
 			'20010115123456',
 			wfTimestamp( TS_MW, '15 Jan 2001 12:34:56 GMT' ),
 			'TS_RFC2822 without optional day-of-week to TS_MW' );
-		
+
 		# FWS = ([*WSP CRLF] 1*WSP) / obs-FWS ; Folding white space
-        # obs-FWS = 1*WSP *(CRLF 1*WSP) ; Section 4.2
+		# obs-FWS = 1*WSP *(CRLF 1*WSP) ; Section 4.2
 		$this->assertEquals(
 			'20010115123456',
 			wfTimestamp( TS_MW, 'Mon, 15         Jan 2001 12:34:56 GMT' ),
 			'TS_RFC2822 to TS_MW' );
-		
+
 		# WSP = SP / HTAB ; rfc2234
 		$this->assertEquals(
 			'20010115123456',
 			wfTimestamp( TS_MW, "Mon, 15 Jan\x092001 12:34:56 GMT" ),
 			'TS_RFC2822 with HTAB to TS_MW' );
-		
+
 		$this->assertEquals(
 			'20010115123456',
 			wfTimestamp( TS_MW, "Mon, 15 Jan\x09 \x09  2001 12:34:56 GMT" ),
 			'TS_RFC2822 with HTAB and SP to TS_MW' );
-		
+
 		$this->assertEquals(
 			'19941106084937',
 			wfTimestamp( TS_MW, "Sun, 6 Nov 94 08:49:37 GMT" ),
 			'TS_RFC2822 with obsolete year to TS_MW' );
 	}
-	
+
 	/**
 	 * This test checks wfTimestamp() with values outside.
 	 * It needs PHP 64 bits or PHP > 5.1.
@@ -310,8 +310,8 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 			wfTimestamp( TS_RFC2822, '-62135596800'),
 			'Year 1');
 
-		/* It is not clear if we should generate a year 0 or not 
-		 * We are completely off RFC2822 requirement of year being 
+		/* It is not clear if we should generate a year 0 or not
+		 * We are completely off RFC2822 requirement of year being
 		 * 1900 or later.
 		 */
 		$this->assertEquals( 'Wed, 18 Oct 0000 00:00:00 GMT',
@@ -320,32 +320,32 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testHttpDate() {
-		# The Resource Loader uses wfTimestamp() to convert timestamps 
+		# The Resource Loader uses wfTimestamp() to convert timestamps
 		# from If-Modified-Since header.
 		# Thus it must be able to parse all rfc2616 date formats
 		# http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1
-		
+
 		$this->assertEquals(
 			'19941106084937',
 			wfTimestamp( TS_MW, 'Sun, 06 Nov 1994 08:49:37 GMT' ),
 			'RFC 822 date' );
-		
+
 		$this->assertEquals(
 			'19941106084937',
 			wfTimestamp( TS_MW, 'Sunday, 06-Nov-94 08:49:37 GMT' ),
 			'RFC 850 date' );
-		
+
 		$this->assertEquals(
 			'19941106084937',
 			wfTimestamp( TS_MW, 'Sun Nov  6 08:49:37 1994' ),
 			"ANSI C's asctime() format" );
-		
+
 		// See http://www.squid-cache.org/mail-archive/squid-users/200307/0122.html and r77171
 		$this->assertEquals(
 			'20101122141242',
 			wfTimestamp( TS_MW, 'Mon, 22 Nov 2010 14:12:42 GMT; length=52626' ),
 			"Netscape extension to HTTP/1.0" );
-			
+
 	}
 
 	function testBasename() {

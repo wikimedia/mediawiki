@@ -14,7 +14,7 @@ class SearchDbTest extends SearchEngineTest {
 		$this->db = wfGetDB( DB_MASTER );
 		if ( !$this->db  ) {
 			$this->markTestIncomplete( "Can't find a database to test with." );
- 		}
+		}
 
 		parent::setup();
 

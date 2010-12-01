@@ -75,7 +75,7 @@ class ApiWatchTest extends ApiTestSetup {
 			$this->assertArrayHasKey( 'protecttoken', $data[0]['query']['pages'][$key] );
 		}
 
-	    return $data;
+		return $data;
 	}
 
 	function testGetToken() {
@@ -161,7 +161,7 @@ class ApiWatchTest extends ApiTestSetup {
 		if ( !Title::newFromText( 'Main Page' )->exists() ) {
 			$this->markTestIncomplete( "The article [[Main Page]] does not exist" );
 		}
-		
+
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'prop' => 'revisions',
@@ -172,7 +172,7 @@ class ApiWatchTest extends ApiTestSetup {
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
-		
+
 		if ( isset( $data[0]['query']['pages'][$key]['missing'] ) ) {
 			$this->markTestIncomplete( "Target page (Main Page) doesn't exist" );
 		}
@@ -232,6 +232,6 @@ class ApiWatchTest extends ApiTestSetup {
 			'action' => 'query',
 			'list' => 'watchlist' ), $data );
 
-	    $this->markTestIncomplete( 'This test needs to verify the deleted article was added to the users watchlist' );
+		$this->markTestIncomplete( 'This test needs to verify the deleted article was added to the users watchlist' );
 	}
 }

@@ -65,7 +65,7 @@ class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
 			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42" )
 			);
 	}
-	
+
 	public function testTableName() {
 		// @todo Moar!
 		$db = new DatabaseSqliteStandalone( ':memory:' );
