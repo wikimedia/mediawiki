@@ -138,6 +138,10 @@ $messages = array(
 'category-file-count'            => "↓ {{PLURAL:$2|Sta categuréja l'à sol sta pàgina què|In sta categuréja u j sta {{PLURAL:$1|sta pàgina|$1 pàgin}} sora $2, ch'l'è e' tutel.}}",
 'category-file-count-limited'    => "↓ In sta categurèja-què {{PLURAL:$1|u j è la pàgina|agl'j è al pàgin}} a què sòta.",
 'listingcontinuesabbrev'         => 'inênz',
+'index-category'                 => '↓ Pàgina indicizëda',
+'noindex-category'               => '↓  Pàgina non indicizëda',
+
+'mainpagetext' => "↓ '''L'instalaziòn d'MediaWiki l'è andêda ben'''",
 
 'newwindow'  => "(la s'avèra int'una fnèstra nova)",
 'cancel'     => 'Làsa perdar',

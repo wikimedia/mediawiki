@@ -9,6 +9,7 @@
  *
  * @author Auwris
  * @author Break Through Pain
+ * @author Dark Eagle
  * @author Garas
  * @author Homo
  * @author Hugo.arg

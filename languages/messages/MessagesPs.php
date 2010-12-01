@@ -1091,6 +1091,7 @@ $1',
 'right-unwatchedpages'       => 'د ناکتلو مخونو يو لړليک کتل',
 'right-userrights'           => 'د کارن ټولې رښتې سمول',
 'right-userrights-interwiki' => 'په نورو ويکي ګانو د نورو کارنانو  کارن-رښتې سمول',
+'right-reset-passwords'      => 'د نورو کارنانو پټتوري بياامستل',
 'right-sendemail'            => 'نورو کارنانو ته برېښليک لېږل',
 
 # User rights log
