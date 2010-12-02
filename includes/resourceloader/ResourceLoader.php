@@ -347,12 +347,17 @@ class ResourceLoader {
 		}
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
+		// Some clients send "timestamp;length=123". Strip the part after the first ';'
+		// so we get a valid timestamp.
 		$ims = $context->getRequest()->getHeader( 'If-Modified-Since' );
-		if ( $ims !== false && $mtime <= wfTimestamp( TS_UNIX, $ims ) ) {
-			header( 'HTTP/1.0 304 Not Modified' );
-			header( 'Status: 304 Not Modified' );
-			wfProfileOut( __METHOD__ );
-			return;
+		if ( $ims !== false ) {
+			$imsTS = strtok( $ims, ';' );
+			if ( $mtime <= wfTimestamp( TS_UNIX, $imsTS ) ) {
+				header( 'HTTP/1.0 304 Not Modified' );
+				header( 'Status: 304 Not Modified' );
+				wfProfileOut( __METHOD__ );
+				return;
+			}
 		}
 		
 		// Generate a response
