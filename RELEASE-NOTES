@@ -543,6 +543,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 26125) prop=imageinfo&iiprop=size now returns the page count if the 
   file is a multi-page file
 * (bug 10268) Added linktodiffs parameter on action=feedwatchlist
+* (bug 9675) generateSitemap.php now takes an --urlpath parameter to allow
+  absolute URLs in the sitemap index (as required e.g. by Google)
 
 === Languages updated in 1.17 ===
 
