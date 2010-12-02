@@ -47,13 +47,15 @@ $messages = array(
 'nov'       => 'ное',
 'dec'       => 'деч',
 
-'mytalk' => 'Дискуцииле меле',
+'mytalk'     => 'Дискуцииле меле',
+'navigation' => 'Навигаре',
 
 'tagline'          => 'Де ла {{SITENAME}}',
 'help'             => 'Ажутор',
 'search'           => 'Каутэ',
 'searchbutton'     => 'Каутэ',
 'searcharticle'    => 'Дуче',
+'history_short'    => 'Историк',
 'printableversion' => 'Версиуне де типэрит',
 'permalink'        => 'Легэтурэ неынчетатэ',
 'edit'             => 'Editează - Едитязэ',
@@ -82,14 +84,18 @@ $messages = array(
 'toc'             => 'Таблэ де материй',
 'site-rss-feed'   => '$1 Агрегат RSS',
 'site-atom-feed'  => '$1 Агрегат Atom',
+'red-link-title'  => '$ 1 (паӂина ну егзистэ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'  => 'Паӂина утилизаторулуй',
-'nstab-image' => 'Фишиер',
+'nstab-main'    => 'Паӂинэ',
+'nstab-user'    => 'Паӂина утилизаторулуй',
+'nstab-special' => 'Сервичий',
+'nstab-image'   => 'Фишиер',
 
 # Login and logout pages
-'userlogin'  => 'Креазэ конт / Аутентификаре',
-'userlogout' => 'Ынкиде сесиуня',
+'nav-login-createaccount' => 'Креазэ конт / Аутентификаре',
+'userlogin'               => 'Креазэ конт / Аутентификаре',
+'userlogout'              => 'Ынкиде сесиуня',
 
 # Edit pages
 'summary'     => 'Резумат:',
@@ -105,7 +111,12 @@ $messages = array(
 'editundo' => 'десфаче',
 
 # Search results
-'powersearch' => 'Каутэ',
+'searchresults'             => 'Резултателе кэутэрий',
+'searchresults-title'       => 'Резултателе кэутэрий пентру «$1»',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 кувынт|$2 кувинте}})',
+'search-mwsuggest-enabled'  => 'ку суӂестий',
+'search-mwsuggest-disabled' => 'фэрэ суӂестий',
+'powersearch'               => 'Каутэ',
 
 # Preferences page
 'mypreferences' => 'Преферинцеле меле',
@@ -134,6 +145,7 @@ $messages = array(
 
 # Special:AllPages
 'alphaindexline' => '$1 пынэ ла $2',
+'allpagessubmit' => 'Дуче',
 
 # Watchlist
 'watchlist' => 'Паӂинь привите',
@@ -156,22 +168,26 @@ $messages = array(
 'thumbnail-more' => 'Екстинде',
 
 # Tooltip help for the actions
-'tooltip-pt-preferences'  => 'Преферинцеле меле',
-'tooltip-pt-login'        => 'Есте ынкуражат сэ се аутентификэ, дешь ачест лукру ну есте облигаториу.',
-'tooltip-pt-logout'       => 'Ынкиде сесиуня',
-'tooltip-ca-talk'         => 'Дискуцие деспре артикол',
-'tooltip-ca-edit'         => 'Поате едита ачастэ паӂинэ. Ле ругэм сэ превизуализязэ концинутул ынаинте де салваре.',
-'tooltip-search'          => 'Кэутаре ын {{SITENAME}}',
-'tooltip-n-mainpage'      => 'Визитязэ паӂина принчипалэ',
-'tooltip-n-portal'        => 'Деспре проект, че поате фачя думнявоастрэ, унде гэсеште солуций.',
-'tooltip-n-currentevents' => 'Гэсеште информаций деспре ынтымпларе курентэ',
-'tooltip-n-recentchanges' => 'Листа ултимелор скимбэрь реализате ын ачест вики.',
-'tooltip-n-randompage'    => 'Мерӂе спре о паӂинэ алятоаре',
-'tooltip-n-help'          => 'Локул ын каре гэсешть ажутор.',
-'tooltip-t-whatlinkshere' => 'Листа тутурор паӂинилор вики каре кондук спре ачастэ паӂинэ',
-'tooltip-t-upload'        => 'Тримите имаӂинь сау фишиере медия',
-'tooltip-t-specialpages'  => 'Листа тутурор паӂинилор де сервичиу',
-'tooltip-save'            => 'Салвязэ скимбэриле тале',
+'tooltip-pt-preferences'         => 'Преферинцеле меле',
+'tooltip-pt-login'               => 'Есте ынкуражат сэ се аутентификэ, дешь ачест лукру ну есте облигаториу.',
+'tooltip-pt-logout'              => 'Ынкиде сесиуня',
+'tooltip-ca-talk'                => 'Дискуцие деспре артикол',
+'tooltip-ca-edit'                => 'Поате едита ачастэ паӂинэ. Ле ругэм сэ превизуализязэ концинутул ынаинте де салваре.',
+'tooltip-search'                 => 'Кэутаре ын {{SITENAME}}',
+'tooltip-search-go'              => 'Ду-те ла паӂина ку ачест нуме ексакт дакэ егзистэ',
+'tooltip-search-fulltext'        => 'Каутэ паӂиниле пентру ачест текст',
+'tooltip-n-mainpage'             => 'Визитязэ паӂина принчипалэ',
+'tooltip-n-mainpage-description' => 'Визитязэ паӂина принчипалэ',
+'tooltip-n-portal'               => 'Деспре проект, че поате фачя думнявоастрэ, унде гэсеште солуций.',
+'tooltip-n-currentevents'        => 'Гэсеште информаций деспре ынтымпларе курентэ',
+'tooltip-n-recentchanges'        => 'Листа ултимелор скимбэрь реализате ын ачест вики.',
+'tooltip-n-randompage'           => 'Мерӂе спре о паӂинэ алятоаре',
+'tooltip-n-help'                 => 'Локул ын каре гэсешть ажутор.',
+'tooltip-t-whatlinkshere'        => 'Листа тутурор паӂинилор вики каре кондук спре ачастэ паӂинэ',
+'tooltip-t-upload'               => 'Тримите имаӂинь сау фишиере медия',
+'tooltip-t-specialpages'         => 'Листа тутурор паӂинилор де сервичиу',
+'tooltip-t-print'                => 'Версиуня де типэрит а ачестей паӂинь',
+'tooltip-save'                   => 'Салвязэ скимбэриле тале',
 
 # Special:SpecialPages
 'specialpages' => 'Сервичий',

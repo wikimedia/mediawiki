@@ -1636,6 +1636,10 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Tsy azo aleha',
+'img-auth-nopathinfo'   => "Tsy misy ny PATH_INFO.
+Tsy voaparametatra ny lohamilinao hampita io fampahalalàna io.
+Mety mifototra amin'ny CGI izy ka mety tsy mahazaka img_auth
+Vangio ny ttp://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'     => 'Ny lalana nangatahana dia tsy ny petra-drakitra nokaonfigiorena.',
 'img-auth-badtitle'     => "Tsy afaka mamorona lohateny azo ampiasaina avy amin'ny « $1 ».",
 'img-auth-nologinnWL'   => "Tsy mbola niditra ianao ary tsy ao amin'ny lisitra fotsy « $1 ».",
@@ -1736,6 +1740,9 @@ Tsindrio eo amin'ny lohan-tsanganana raha hanova ny laharam-pisehoana.",
 'filedelete-nofile-old'       => "Tsy nisy santiôna voatahirin'i '''$1''' miaraka amin'ny mahasamihafa naseho.",
 'filedelete-otherreason'      => 'Antony fanampiny :',
 'filedelete-reason-otherlist' => 'Antony hafa',
+'filedelete-reason-dropdown'  => '* Antom-pamafàna rakitra miasa matetika
+** Tsi-fanajana ny zom-pamorona
+** Rakitra efa misy',
 'filedelete-edit-reasonlist'  => 'Hanova ny antom-pamafàna',
 'filedelete-maintenance'      => 'Ny famafana sy ny famerenan-drakitra dia tsy alefa mandritra ny fikojakojana.',
 

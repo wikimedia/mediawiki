@@ -5410,7 +5410,7 @@ php.iniを確認し、<code>session.save_path</code>が適切なディレクト�
 	'config-page-releasenotes' => 'リリースノート',
 	'config-page-copying' => 'コピー',
 	'config-page-upgradedoc' => '更新',
-	'config-page-locked' => '不許可',
+	'config-page-locked' => '許可されていません',
 	'config-help-restart' => '入力された全て保存データを消去し、インストール作業を再起動しますか？',
 	'config-restart' => 'はい、再起動します',
 	'config-welcome' => '=== 環境の確認 ===
@@ -5515,6 +5515,9 @@ MediaWikiはアップロードされたファイルのセキュリティ上の�
 	'config-brokenlibxml' => 'このシステムで使われているPHPとlibxml2のバージョンのこの組み合わせにはバグがあります。具体的には、MediaWikiやその他のウェブアプリケーションでhiddenデータが破損する可能性があります。
 PHPを5.2.9かそれ以降のバージョンに、libxml2を2.7.3かそれ以降のバージョンにアップグレードしてください([http://bugs.php.net/bug.php?id=45996 PHPでのバグ情報])。
 インストールを終了します。',
+	'config-using531' => 'PHP$1は<code>__call()</code>の引数参照に関するバグのため、MediaWikiと互換性がありません。
+PHP5.3.2以降に更新するか、この([http://bugs.php.net/bug.php?id=50394 PHPに提出されたバグ])を修正するためにPHP5.3.0へ戻してください。
+インストールは中止されました。',
 	'config-db-type' => 'データベースの種類：',
 	'config-db-host' => 'データベースのホスト：',
 	'config-db-host-help' => 'データベースサーバーが異なったサーバー上にある場合、ホスト名またはIPアドレスをここに入力してください。
@@ -5805,7 +5808,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-extensions-help' => '上記のリストにある拡張子は<code>./extensions</code>ディレクトリ上で検出された。
 
 これらは更に多くの設定を要求しているかもしれない、しかし今あなたはそれらを有効にできる。',
-	'config-install-alreadydone' => "'''警告:''' あなたはすでにメディアウィキをインストールしていて、再びインストールし直そうとしています。
+	'config-install-alreadydone' => "'''警告:''' 既にMediaWikiがインストール済みで、再びインストールし直そうとしています。
 次のページへ進んでください。",
 	'config-install-step-done' => '実行',
 	'config-install-step-failed' => '失敗した',
@@ -5813,6 +5816,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-install-database' => 'データベースの構築',
 	'config-install-pg-schema-failed' => 'テーブルの作成に失敗した。
 ユーザ"$1"が図式"$2"に書き込みができるようにしてください。',
+	'config-install-pg-commit' => '変更を送信',
 	'config-install-user' => 'データベースユーザを作成する',
 	'config-install-user-failed' => 'ユーザー「$1」に許可を与えることに失敗しました。：$2',
 	'config-install-tables' => 'テーブルの作成',
@@ -5826,6 +5830,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-install-secretkey' => '秘密鍵を生成する',
 	'config-insecure-secret' => "'''警告：'''安全な<code>$1</code>を作成できません。
 手動でこれを変更することを考えてください。",
+	'config-install-upgradekey' => '既定の更新キーを生成',
 	'config-install-sysop' => '管理者のユーザーアカウントを作成する',
 	'config-install-mainpage' => '既定の接続でメインページを作成',
 	'config-install-mainpage-failed' => 'メインページを挿入できませんでした。',

@@ -1315,6 +1315,7 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'right-override-export-depth' => '5eko sakonerararteko loturiko orrialdeak barne esportatu',
 'right-sendemail'             => 'Beste erabiltzaileei e-posta bidali',
 'right-revisionmove'          => 'Berrikuspenak mugitu',
+'right-disableaccount'        => 'Kontuak ezgaitu',
 
 # User rights log
 'rightslog'      => 'Erabiltzaile eskubideen erregistroa',
@@ -1567,6 +1568,7 @@ Zutabe baten goi-buruaren egin klik sailkatzeko era aldatzeko.',
 'listfiles_search_for'  => 'Irudiaren izenagatik bilatu:',
 'imgfile'               => 'fitxategia',
 'listfiles'             => 'Fitxategien zerrenda',
+'listfiles_thumb'       => 'Iruditxoa',
 'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Izena',
 'listfiles_user'        => 'Erabiltzailea',
@@ -3133,6 +3135,7 @@ Halaber [[Special:Watchlist/edit|aldatzaile estandarra]] erabil dezakezu.',
 'version-hook-subscribedby'        => 'Hauen harpidetzarekin',
 'version-version'                  => '(Bertsioa $1)',
 'version-license'                  => 'Lizentzia',
+'version-poweredby-credits'        => "Wiki hau '''[http://www.mediawiki.org/ MediaWiki]'''k sustatzen du (copyright © 2001-$1 $2).",
 'version-poweredby-others'         => 'beste batzuk',
 'version-software'                 => 'Instalatutako softwarea',
 'version-software-product'         => 'Produktua',
@@ -3233,5 +3236,10 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'htmlform-submit'              => 'Bidali',
 'htmlform-reset'               => 'Aldaketak desegin',
 'htmlform-selectorother-other' => 'Beste bat',
+
+# Special:DisableAccount
+'disableaccount'        => 'Lankide-kontua ezgaitu',
+'disableaccount-user'   => 'Lankide izena:',
+'disableaccount-reason' => 'Arrazoia:',
 
 );

@@ -17,6 +17,7 @@
  * @author Mardetanha
  * @author Meisam
  * @author Meno25
+ * @author Mjbmr
  * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author Wayiran
  * @author ZxxZxxZ
@@ -1652,6 +1653,7 @@ $1",
 'right-override-export-depth' => 'برون‌ریزی صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵',
 'right-sendemail'             => 'ارسال پست الکترونیک به دیگر کاربران',
 'right-revisionmove'          => 'ادغام نسخه‌ها',
+'right-disableaccount'        => 'غیر فعال کردن حساب‌ها',
 
 # User rights log
 'rightslog'      => 'سیاههٔ اختیارات کاربر',
@@ -3717,5 +3719,18 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 با پشتیبانی از جستجو در متن کامل',
 'sqlite-no-fts'  => '$1 بدون پشتیبانی از جستجو در متن کامل',
+
+# Special:DisableAccount
+'disableaccount'             => 'غیر فعال کردن یک حساب کاربری',
+'disableaccount-user'        => 'نام کاربری:',
+'disableaccount-reason'      => 'دلیل:',
+'disableaccount-confirm'     => "غیر فعال کردن این حساب کاربری.
+این کاربر قادر به ورود به سامانه نخواهد بود، نمی‌تواند گذرواژه را تعویض کند و همچنین نمی‌تواند پست الکترونیکی دریافت کند. 
+اگر این کاربر در حال حاضر وارد سیستم شده باشد به سرعت از سیستم خارج می‌شود.
+''توجه داشته باشید که غیر فعال کردن یک حساب کاربری بدون دخالت مدیر سامانه قابل برگشت است.''",
+'disableaccount-mustconfirm' => 'شما باید تأیید کنید که مایل به غیر فعال کردن این حساب کاربری هستید.',
+'disableaccount-nosuchuser'  => 'حساب کاربری "$1" وجود ندارد.',
+'disableaccount-success'     => 'حساب کاربری "$1" برای همیشه غیر فعال شده است.',
+'disableaccount-logentry'    => 'حساب کاربری [[$1]] برای همیشه غیر فعال شده است',
 
 );
