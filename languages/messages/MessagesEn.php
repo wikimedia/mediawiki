@@ -4371,4 +4371,5 @@ If the user is currently logged in anywhere, they will be immediately logged out
 'disableaccount-mustconfirm' => 'You must confirm that you wish to disable this account.',
 'disableaccount-nosuchuser' => 'The user account "$1" does not exist.',
 'disableaccount-success' => 'The user account "$1" has been permanently disabled.',
+'disableaccount-logentry' => 'permanently disabled the user account [[$1]].',
 );

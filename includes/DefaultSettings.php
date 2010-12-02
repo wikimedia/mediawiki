@@ -4628,6 +4628,7 @@ $wgLogActions = array(
 	'protect/unprotect' => 'unprotectedarticle',
 	'protect/move_prot' => 'movedarticleprotection',
 	'rights/rights'     => 'rightslogentry',
+	'rights/disable'    => 'disableaccount-logentry',
 	'delete/delete'     => 'deletedarticle',
 	'delete/restore'    => 'undeletedarticle',
 	'delete/revision'   => 'revdelete-logentry',
