@@ -4364,6 +4364,7 @@ This site is experiencing technical difficulties.',
 # Special:DisableAccount
 'disableaccount' => 'Disable an user account',
 'disableaccount-user' => 'Username:',
+'disableaccount-reason' => 'Reason:',
 'disableaccount-confirm' => "Disable this user account.
 The user will not be able to log in, reset their password, or receive e-mail notifications.
 If the user is currently logged in anywhere, they will be immediately logged out.

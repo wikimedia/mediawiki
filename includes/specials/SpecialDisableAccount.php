@@ -15,7 +15,7 @@ class SpecialDisableAccount extends SpecialPage {
 			),
 			'comment' => array(
 				'type' => 'text',
-				'label-message' => 'movereason',
+				'label-message' => 'disableaccount-reason',
 			),
 			'confirm' => array(
 				'type' => 'toggle',
