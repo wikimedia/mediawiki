@@ -1520,6 +1520,7 @@ $1",
 'right-override-export-depth' => 'കണ്ണിവത്കരിക്കപ്പെട്ട താളുകളുടെ ആഴം 5 വരെയുള്ള താളുകൾ കയറ്റുമതി ചെയ്യുക',
 'right-sendemail'             => 'മറ്റുപയോക്താക്കൾക്ക് ഇമെയിൽ അയയ്ക്കുക',
 'right-revisionmove'          => 'നാൾപ്പതിപ്പുകൾ മാറ്റുക',
+'right-disableaccount'        => 'അംഗത്വങ്ങൾ പ്രവർത്തനരഹിതമാക്കൽ',
 
 # User rights log
 'rightslog'      => 'ഉപയോക്തൃ അവകാശ രേഖ',
@@ -3081,13 +3082,13 @@ $1',
 'exif-gpsdestdistance'             => 'ലക്ഷ്യം വച്ചതിലേയ്ക്കുള്ള ദൂരം',
 'exif-gpsprocessingmethod'         => 'ജി.പി.എസ്. പ്രക്രിയയുടെ പേര്',
 'exif-gpsareainformation'          => 'GPS പ്രദേശത്തിന്റെ പേര്‌',
-'exif-gpsdatestamp'                => 'GPS തീയ്യതി',
+'exif-gpsdatestamp'                => 'GPS തീയതി',
 'exif-gpsdifferential'             => 'ജി.പി.എസ്. വ്യത്യാസം ശരിയാക്കൽ',
 
 # EXIF attributes
 'exif-compression-1' => 'ചുരുക്കാത്തത്',
 
-'exif-unknowndate' => 'തീയ്യതി അജ്ഞാതം',
+'exif-unknowndate' => 'തീയതി അജ്ഞാതം',
 
 'exif-orientation-1' => 'സാധാരണം',
 'exif-orientation-2' => 'തിരശ്ചീനമാക്കി',
@@ -3497,5 +3498,13 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => 'പൂർണ്ണ-എഴുത്ത് തിരച്ചിൽ പിന്തുണയുള്ള $1',
 'sqlite-no-fts'  => 'പൂർണ്ണ-എഴുത്ത് തിരച്ചിൽ പിന്തുണയില്ലാത്ത $1',
+
+# Special:DisableAccount
+'disableaccount'             => 'ഉപയോക്തൃഅംഗത്വം പ്രവർത്തനരഹിതമാക്കുക',
+'disableaccount-user'        => 'ഉപയോക്തൃനാമം:',
+'disableaccount-reason'      => 'കാരണം:',
+'disableaccount-mustconfirm' => 'ഈ അംഗത്വം പ്രവർത്തനരഹിതമാക്കണം എന്നു സ്ഥിരീകരിക്കേണ്ടതുണ്ട്.',
+'disableaccount-nosuchuser'  => '"$1" എന്ന ഉപയോക്തൃ അംഗത്വം നിലവിലില്ല.',
+'disableaccount-success'     => '"$1" എന്ന ഉപയോക്തൃ അംഗത്വം സ്ഥിരമായി പ്രവർത്തനരഹിതമാക്കിയിരിക്കുന്നു.',
 
 );

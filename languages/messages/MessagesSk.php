@@ -1500,6 +1500,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
 'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
 'right-revisionmove'          => 'Presunúť revízie',
+'right-disableaccount'        => 'Zakázať účty',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',
@@ -3537,5 +3538,18 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou vyhľadávania v plnom texte',
 'sqlite-no-fts'  => '$1 bez podpory vyhľadávania v plnom texte',
+
+# Special:DisableAccount
+'disableaccount'             => 'Zakázať používateľský účet',
+'disableaccount-user'        => 'Používateľské meno:',
+'disableaccount-reason'      => 'Dôvod:',
+'disableaccount-confirm'     => "Zakázať tento používateľský účet.
+Používateľ sa nebude môcť prihlásiť, zmeniť svoje heslo ani dostávať upozornenia emailom.
+Ak je používateľ momentálne niekde prihlásený, bude okamžite odhlásený.
+''Pamätajte, že zakázanie používateľského účtu je nezvratné bez zásahu správcu.''",
+'disableaccount-mustconfirm' => 'Musíte potvrdiť, že chcete zakázať tento účet.',
+'disableaccount-nosuchuser'  => 'Používateľský účet „$1“ neexistuje.',
+'disableaccount-success'     => 'Používateľský účet „$1“ bol natrvalo zakázaný.',
+'disableaccount-logentry'    => 'natrvalo zakázaný používateľský účet [[$1]]',
 
 );

@@ -9,6 +9,7 @@
  *
  * @author Andria
  * @author Marzedu
+ * @author Node ue
  * @author לערי ריינהארט
  */
 
@@ -753,6 +754,7 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'gender-male'                 => 'Mascu',
 'gender-female'               => 'Fèmina',
 'email'                       => 'E-mail',
+'prefs-info'                  => 'Informatzione bàsica',
 'prefs-signature'             => 'Firma',
 'prefs-dateformat'            => 'Formadu data',
 'prefs-advancedediting'       => 'Sèberos avantzados',
@@ -915,6 +917,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'filehist'                  => 'Stòria de su file',
 'filehist-help'             => 'Carca unu grupu data/ora pro castiare su file comente si presentada in su tempus indicadu.',
 'filehist-deleteall'        => 'fùlia totu',
+'filehist-deleteone'        => 'cantzella',
 'filehist-revert'           => 'fùrria',
 'filehist-current'          => 'currente',
 'filehist-datetime'         => 'Data/Ora',
@@ -1158,6 +1161,7 @@ Is impostatziones atuales pro sa pàgina '''$1''':",
 'protect-expiring'            => 'iscadèntzia: $1 (UTC)',
 'protect-cascade'             => 'Ampara totu is pàginas inclùdias in custa (amparadura ricorsiva)',
 'protect-cantedit'            => 'Non podes cambiare is livellus de amparadura pro sa pàgina, pro ite non tenes su permissu de acontzare sa pàgina etotu.',
+'protect-othertime'           => 'Àteru perìodu:',
 'protect-expiry-options'      => '1 ora:1 hour,1 die:1 day,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite',
 'restriction-type'            => 'Permissu:',
 'restriction-level'           => 'Livellu de restritzioni:',

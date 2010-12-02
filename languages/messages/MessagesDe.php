@@ -1564,6 +1564,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
 'right-revisionmove'          => 'Versionen verschieben',
+'right-disableaccount'        => 'Benutzerkonto deaktivieren',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
@@ -3589,5 +3590,18 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',
 'sqlite-no-fts'  => 'Version $1 ohne Unterstützung für die Volltextsuche',
+
+# Special:DisableAccount
+'disableaccount'             => 'Ein Benutzerkonto deaktivieren',
+'disableaccount-user'        => 'Benutzername:',
+'disableaccount-reason'      => 'Grund:',
+'disableaccount-confirm'     => "Deaktivieren dieses Benutzerkontos.
+Der Benutzer wird nicht mehr in der Lage sein sich anzumelden, das Passwort zurückzusetzen oder E-Mail-Benachrichtigungen zu empfangen.
+Sofern der Benutzer momentan angemeldet ist, wird er umgehend abgemeldet.
+''Es ist zu beachten, das die Deaktivierung eines Benutzerkontos nicht mehr ohne das Eingreifen eines Systemadministrators rückgängig gemacht werden kann.''",
+'disableaccount-mustconfirm' => 'Die Deaktivierung dieses Benutzerkontos muss nun bestätigt werden.',
+'disableaccount-nosuchuser'  => 'Das Benutzerkonto „$1“ ist nicht vorhanden.',
+'disableaccount-success'     => 'Das Benutzerkonto „$1“ wurde dauerhaft deaktiviert.',
+'disableaccount-logentry'    => 'deaktivierte das Benutzerkonto [[$1]] dauerhaft.',
 
 );

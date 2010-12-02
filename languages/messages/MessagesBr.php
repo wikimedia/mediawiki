@@ -1381,6 +1381,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 'right-revisionmove'          => "Dilec'hiañ an adweladennoù",
+'right-disableaccount'        => 'Diweredekaat kontoù',
 
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',
@@ -3418,5 +3419,18 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 # SQLite database support
 'sqlite-has-fts' => '$1 gant enklask eus an destenn a-bezh embreget',
 'sqlite-no-fts'  => '$1 hep enklask eus an destenn a-bezh embreget',
+
+# Special:DisableAccount
+'disableaccount'             => 'Diweredekaat ur gont implijer',
+'disableaccount-user'        => 'Anv implijer :',
+'disableaccount-reason'      => 'Abeg :',
+'disableaccount-confirm'     => "Diweredekaat kont an implijer-mañ.
+Ne vo ket gouest an implijer da gevreañ na da adderaouekaat e c'her-tremen ken, n'hallo ket resev kemennadennoù dre bostel kennebeut.
+M'emañ kevreet bremañ an implijer un tu bennak e vo digevreet kerkent.
+\"Notit mat n'haller ket distreiñ war diwerekadur ur gont hep emell ur merour eus ar reizhiad.\"",
+'disableaccount-mustconfirm' => "Rankout a rit kadarnaat e fell deoc'h diweredekaat ar gont-mañ.",
+'disableaccount-nosuchuser'  => 'N\'eus ket eus ar gont implijer "$1".',
+'disableaccount-success'     => 'Diweredekaat eo bet ar gont implijer "$1" da vat.',
+'disableaccount-logentry'    => 'en/he deus diweredekaet ar gont implijer [[$1]]',
 
 );

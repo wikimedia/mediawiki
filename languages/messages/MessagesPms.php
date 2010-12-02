@@ -3306,4 +3306,7 @@ Ch'a bata 'l nòm dl'archivi sensa pa bute-ie 'l prefiss \"{{ns:file}}:\".",
 'sqlite-has-fts' => '$1 con arserca an test pien mantnùa',
 'sqlite-no-fts'  => '$1 sensa arserca an test pien mantnùa',
 
+# Special:DisableAccount
+'disableaccount-reason' => 'Rason:',
+
 );

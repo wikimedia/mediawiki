@@ -1559,6 +1559,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
 'right-revisionmove'          => 'Déplacer des révisions',
+'right-disableaccount'        => 'Désactiver des comptes',
 
 # User rights log
 'rightslog'      => 'Journal des modifications de droits d’utilisateurs',
@@ -3621,5 +3622,18 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 # SQLite database support
 'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',
 'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
+
+# Special:DisableAccount
+'disableaccount'             => 'Désactiver un compte utilisateur',
+'disableaccount-user'        => 'Nom d’utilisateur :',
+'disableaccount-reason'      => 'Motif :',
+'disableaccount-confirm'     => "Désactiver ce compte utilisateur.
+L’utilisateur ne pourra plus s’identifier, ni réinitialiser son mot de passe, ni recevoir des notifications par courrier électronique.
+Si l’utilisateur est actuellement identifié quelque part, il sera immédiatement déconnecté.
+''Notez que la désactivation d’un compte n’est pas réversible sans intervention d’un administrateur système.''",
+'disableaccount-mustconfirm' => 'Vous devez confirmer que vous souhaitez désactiver ce compte.',
+'disableaccount-nosuchuser'  => "Le compte utilisateur « $1 » n'existe pas.",
+'disableaccount-success'     => 'Le compte utilisateur « $1 » a été définitivement désactivé.',
+'disableaccount-logentry'    => 'a désactivé définitivement le compte utilisateur [[$1]]',
 
 );

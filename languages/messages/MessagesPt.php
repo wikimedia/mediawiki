@@ -1546,6 +1546,7 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar correio electrónico a outros utilizadores',
 'right-revisionmove'          => 'Mover revisões',
+'right-disableaccount'        => 'Desactivar contas',
 
 # User rights log
 'rightslog'      => 'Registo de privilégios de utilizador',
@@ -3597,5 +3598,18 @@ Introduza o nome do ficheiro sem o prefixo \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
+
+# Special:DisableAccount
+'disableaccount'             => 'Desactivar uma conta',
+'disableaccount-user'        => 'Nome de utilizador:',
+'disableaccount-reason'      => 'Motivo:',
+'disableaccount-confirm'     => "Desactivar esta conta.
+O utilizador ficará impossibilitado de se autenticar, de reiniciar a palavra-chave e de receber notificações por correio electrónico.
+Se neste momento o utilizador estiver autenticado algures, sairá de imediato.
+''Note que a desactivação de uma conta não pode ser revertida sem intervenção de um administrador.''",
+'disableaccount-mustconfirm' => 'Tem de confirmar que pretende desactivar esta conta.',
+'disableaccount-nosuchuser'  => 'A conta de utilizador "$1" não existe.',
+'disableaccount-success'     => 'A conta de utilizador "$1" foi desactivada permanentemente.',
+'disableaccount-logentry'    => 'desactivou permanentemente a conta [[$1]]',
 
 );

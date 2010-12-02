@@ -1474,6 +1474,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
 'right-revisionmove'          => 'Przenoszenie wersji',
+'right-disableaccount'        => 'Wyłączanie kont',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -3580,5 +3581,18 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
 'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
+
+# Special:DisableAccount
+'disableaccount'             => 'Wyłącz konto użytkownika',
+'disableaccount-user'        => 'Nazwa użytkownika',
+'disableaccount-reason'      => 'Powód',
+'disableaccount-confirm'     => "Wyłącz konto użytkownika.
+Użytkownik nie będzie mógł się zalogować, zresetować hasła oraz otrzymywać powiadomień e‐mailem. 
+Jeśli użytkownik jest obecnie gdziekolwiek zalogowany, zostanie natychmiast wylogowany. 
+''Zwróć uwagę, że cofnięcie tej operacji wymagać będzie interwencji administratora systemu.''",
+'disableaccount-mustconfirm' => 'Musisz potwierdzić, że chcesz wyłączyć to konto.',
+'disableaccount-nosuchuser'  => 'Brak konta użytkownika „$1”.',
+'disableaccount-success'     => 'Konto użytkownika „$1” zostało trwale wyłączone.',
+'disableaccount-logentry'    => 'trwale wyłączył konto użytkownika [[$1]]',
 
 );
