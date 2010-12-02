@@ -1950,6 +1950,7 @@ You can also choose to let others contact you through your user or talk page wit
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-sendemail'             => 'Send e-mail to other users',
 'right-revisionmove'          => 'Move revisions',
+'right-disableaccount'        => 'Disable accounts',
 
 # User rights log
 'rightslog'      => 'User rights log',
@@ -4360,17 +4361,16 @@ This site is experiencing technical difficulties.',
 'sqlite-has-fts' => '$1 with full-text search support',
 'sqlite-no-fts'  => '$1 without full-text search support',
 
-## Special:DisableAccount
-'disableaccount-desc' => 'Allows administrators to disable individual accounts.',
-'right-disableaccount' => 'Disable accounts',
-'disableaccount' => 'Disable a user account',
-'disableaccount-user' => 'User name:',
+# Special:DisableAccount
+'disableaccount' => 'Disable an user account',
+'disableaccount-user' => 'Username:',
 'disableaccount-confirm' => "Disable this user account.
-The user will not be able to log in, reset their password, or receive email notifications.
+The user will not be able to log in, reset their password, or receive e-mail notifications.
 If the user is currently logged in anywhere, they will be immediately logged out.
 ''Note that disabling an account is not reversible without system administrator intervention.''",
 'disableaccount-mustconfirm' => 'You must confirm that you wish to disable this account.',
 'disableaccount-nosuchuser' => 'The user account "$1" does not exist.',
 'disableaccount-success' => 'The user account "$1" has been permanently disabled.',
-'disableaccount-logentry' => 'permanently disabled the user account [[$1]].',
+'disableaccount-logentry' => 'permanently disabled the user account [[$1]]',
 );
+
