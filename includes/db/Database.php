@@ -1012,7 +1012,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * SELECT wrapper
 	 *
-	 * @param $table   Mixed:  Array or string, table name(s) (prefix auto-added)
+	 * @param $table   Mixed:  Array or string, table name(s) (prefix auto-added). Array keys are table aliases (optional)
 	 * @param $vars    Mixed:  Array or string, field name(s) to be retrieved
 	 * @param $conds   Mixed:  Array or string, condition(s) for WHERE
 	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
@@ -1035,7 +1035,7 @@ abstract class DatabaseBase implements DatabaseType {
 			if ( !empty( $join_conds ) || ( isset( $options['USE INDEX'] ) && is_array( @$options['USE INDEX'] ) ) ) {
 				$from = ' FROM ' . $this->tableNamesWithUseIndexOrJOIN( $table, @$options['USE INDEX'], $join_conds );
 			} else {
-				$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
+				$from = ' FROM ' . implode( ',', $this->tableNamesWithAlias( $table ) );
 			}
 		} elseif ( $table != '' ) {
 			if ( $table { 0 } == ' ' ) {
@@ -1576,6 +1576,35 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Get an aliased table name.
+	 * @param $name string Table name, see tableName()
+	 * @param $alias string Alias (optional)
+	 * @return string SQL name for aliased table. Will not alias a table to its own name
+	 */
+	public function tableNameWithAlias( $name, $alias ) {
+		if ( !$alias || $alias == $name ) {
+			return $this->tableName( $name );
+		} else {
+			return $this->tableName( $name ) . ' `' . $alias . '`';
+		}
+	}
+
+	/**
+	 * @param $tables array( [alias] => table )
+	 * @return array of strings, see tableNameWithAlias()
+	 */
+	public function tableNamesWithAlias( $tables ) {
+		$retval = array();
+		foreach ( $tables as $alias => $table ) {
+			if ( is_numeric( $alias ) ) {
+				$alias = $table;
+			}
+			$retval[] = $this->tableNameWithAlias( $table, $alias );
+		}
+		return $retval;
+	}
+
+	/**
 	 * @private
 	 */
 	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
@@ -1584,35 +1613,37 @@ abstract class DatabaseBase implements DatabaseType {
 		$use_index_safe = is_array( $use_index ) ? $use_index : array();
 		$join_conds_safe = is_array( $join_conds ) ? $join_conds : array();
 
-		foreach ( $tables as $table ) {
+		foreach ( $tables as $alias => $table ) {
+			if ( !is_string( $alias ) ) {
+				// No alias? Set it equal to the table name
+				$alias = $table;
+			}
 			// Is there a JOIN and INDEX clause for this table?
-			if ( isset( $join_conds_safe[$table] ) && isset( $use_index_safe[$table] ) ) {
-				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
-				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$table] ) );
-				$on = $this->makeList( (array)$join_conds_safe[$table][1], LIST_AND );
-
+			if ( isset( $join_conds_safe[$alias] ) && isset( $use_index_safe[$alias] ) ) {
+				$tableClause = $join_conds_safe[$alias][0] . ' ' . $this->tableNameWithAlias( $table, $alias );
+				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$alias] ) );
+				$on = $this->makeList( (array)$join_conds_safe[$alias][1], LIST_AND );
 				if ( $on != '' ) {
 					$tableClause .= ' ON (' . $on . ')';
 				}
 
 				$retJOIN[] = $tableClause;
 			// Is there an INDEX clause?
-			} else if ( isset( $use_index_safe[$table] ) ) {
-				$tableClause = $this->tableName( $table );
-				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$table] ) );
+			} else if ( isset( $use_index_safe[$alias] ) ) {
+				$tableClause = $this->tableNameWithAlias( $table, $alias );
+				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$alias] ) );
 				$ret[] = $tableClause;
 			// Is there a JOIN clause?
-			} else if ( isset( $join_conds_safe[$table] ) ) {
-				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
-				$on = $this->makeList( (array)$join_conds_safe[$table][1], LIST_AND );
-
+			} else if ( isset( $join_conds_safe[$alias] ) ) {
+				$tableClause = $join_conds_safe[$alias][0] . ' ' . $this->tableNameWithAlias( $table, $alias );
+				$on = $this->makeList( (array)$join_conds_safe[$alias][1], LIST_AND );
 				if ( $on != '' ) {
 					$tableClause .= ' ON (' . $on . ')';
 				}
 
 				$retJOIN[] = $tableClause;
 			} else {
-				$tableClause = $this->tableName( $table );
+				$tableClause = $this->tableNameWithAlias( $table, $alias );
 				$ret[] = $tableClause;
 			}
 		}
