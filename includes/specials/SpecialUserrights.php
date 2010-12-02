@@ -374,14 +374,13 @@ class UserrightsPage extends SpecialPage {
 	function switchForm() {
 		global $wgOut, $wgScript;
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
+			Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
 			Html::hidden( 'title',  $this->getTitle()->getPrefixedText() ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMsg( 'userrights-lookup-user' ) ) .
-			Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . ' ' .
+			Xml::fieldset( wfMsg( 'userrights-lookup-user' ) ) .
+			Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, str_replace( '_', ' ', $this->mTarget ) ) . ' ' .
 			Xml::submitButton( wfMsg( 'editusergroup' ) ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n"
+			Html::closeElement( 'fieldset' ) .
+			Html::closeElement( 'form' ) . "\n"
 		);
 	}
 
