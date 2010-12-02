@@ -118,17 +118,22 @@ class SpecialImport extends SpecialPage {
 				$importer->setTargetNamespace( $this->namespace );
 			}
 			$reporter = new ImportReporter( $importer, $isUpload, $this->interwiki , $this->logcomment);
+			$exception = false;
 
 			$reporter->open();
-			$result = $importer->doImport();
-			$resultCount = $reporter->close();
+			try {
+				$importer->doImport();
+			} catch ( MWException $e ) {
+				$exception = $e;
+			}
+			$result = $reporter->close();
 
-			if( WikiError::isError( $result ) ) {
+			if ( $exception ) {
 				# No source or XML parse error
-				$wgOut->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $result->getMessage() ) );
-			} elseif( WikiError::isError( $resultCount ) ) {
+				$wgOut->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $exception->getMessage() ) );
+			} elseif( !$result->isGood() ) {
 				# Zero revisions
-				$wgOut->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $resultCount->getMessage() ) );
+				$wgOut->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $result->getWikiText() ) );
 			} else {
 				# Success!
 				$wgOut->addWikiMsg( 'importsuccess' );
@@ -369,10 +374,10 @@ class ImportReporter {
 			$wgOut->addHTML( Xml::tags( 'li', null, $msg ) );
 		} elseif( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
 			$wgOut->addHTML( "</ul>\n" );
-			return new WikiErrorMsg( "importnopages" );
+			return Status::newFatal( 'importnopages' );
 		}
 		$wgOut->addHTML( "</ul>\n" );
 
-		return $this->mPageCount;
+		return Status::newGood( $this->mPageCount );
 	}
 }
