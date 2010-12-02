@@ -132,7 +132,7 @@ function getSvnRevision( $dir ) {
  * @param $svnstat String: path to the svnstat file
  * @param $input String: Path to analyze.
  * @param $exclude String: Additionals path regex to exlcude 
- *                 (LocalSettings.php, AdminSettings.php and .svn directories are always excluded)
+ *                 (LocalSettings.php, AdminSettings.php, .svn and .git directories are always excluded)
  */
 function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude ) {
 
