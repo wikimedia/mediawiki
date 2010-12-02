@@ -3231,6 +3231,7 @@ $wgMessageStructure = array(
 	'disableaccount' => array(
 		'disableaccount',
 		'disableaccount-user',
+		'disableaccount-reason',
 		'disableaccount-confirm',
 		'disableaccount-mustconfirm',
 		'disableaccount-confirm',
