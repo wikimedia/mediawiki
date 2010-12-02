@@ -13,6 +13,10 @@ class SpecialDisableAccount extends SpecialPage {
 				'validation-callback' => array( __CLASS__, 'validateUser' ),
 				'label-message' => 'disableaccount-user',
 			),
+			'comment' => array(
+				'type' => 'text',
+				'label-message' => 'movereason',
+			),
 			'confirm' => array(
 				'type' => 'toggle',
 				'validation-callback' => array( __CLASS__, 'checkConfirmation' ),
@@ -56,6 +60,10 @@ class SpecialDisableAccount extends SpecialPage {
 
 		$user->saveSettings();
 		$user->invalidateCache();
+
+		$logPage = new LogPage( 'rights' );
+
+		$logPage->addEntry( 'disable', $user->getUserPage(), $fields['comment'] );
 
 		global $wgOut;
 		$wgOut->addWikiMsg( 'disableaccount-success', $user->getName() );
