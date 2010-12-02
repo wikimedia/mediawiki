@@ -461,6 +461,7 @@ $specialPageAliases = array(
 	'RevisionMove'              => array( 'RevisionMove' ),
 	'ComparePages'              => array( 'ComparePages' ),
 	'Badtitle'                  => array( 'Badtitle' ),
+	'DisableAccount'            => array( 'DisableAccount' ),
 );
 
 /**
