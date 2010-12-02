@@ -418,7 +418,7 @@ class ResourceLoader {
 			}
 
 			// Messages
-			$messagesBlob = isset( $blobs[$name] ) ? $blobs[$name] : array();
+			$messagesBlob = isset( $blobs[$name] ) ? $blobs[$name] : '{}';
 
 			// Append output
 			switch ( $context->getOnly() ) {
