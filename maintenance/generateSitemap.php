@@ -140,7 +140,9 @@ class GenerateSitemap extends Maintenance {
 		$this->size_limit = pow( 2, 20 ) * 10;
 		$this->fspath = self::init_path( $this->getOption( 'fspath', getcwd() ) );
 		$this->urlpath = $this->getOption( 'urlpath', "" );
-		if ( $this->urlpath !== "" && substr( $this->urlpath, -1 ) !== '/' ) $this->urlpath .= '/';
+		if ( $this->urlpath !== "" && substr( $this->urlpath, -1 ) !== '/' ) {
+			$this->urlpath .= '/';
+		}
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
 		$this->dbr = wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
