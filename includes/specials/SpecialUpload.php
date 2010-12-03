@@ -486,21 +486,35 @@ class SpecialUpload extends SpecialPage {
 	 * Get the initial image page text based on a comment and optional file status information
 	 */
 	public static function getInitialPageText( $comment = '', $license = '', $copyStatus = '', $source = '' ) {
-		global $wgUseCopyrightUpload;
+		global $wgUseCopyrightUpload, $wgForceUIMsgAsContentMsg;
+		$wgForceUIMsgAsContentMsg = (array) $wgForceUIMsgAsContentMsg;
+
+		/* These messages are transcluded into the actual text of the description page.
+		 * Thus, forcing them as content messages makes the upload to produce an int: template
+		 * instead of hardcoding it there in the uploader language.
+		 */
+		foreach( array( 'license-header', 'filedesc', 'filestatus', 'filesource' ) as $msgName ) {
+			if ( in_array( $msgName, $wgForceUIMsgAsContentMsg ) ) {
+				$msg[$msgName] = "{{int:$msgName}}";
+			} else {
+				$msg[$msgName] = wfMsgForContent( $msgName );
+			}
+		}
+
 		if ( $wgUseCopyrightUpload ) {
 			$licensetxt = '';
 			if ( $license != '' ) {
-				$licensetxt = '== ' . wfMsgForContent( 'license-header' ) . " ==\n" . '{{' . $license . '}}' . "\n";
+				$licensetxt = '== ' . $msg[ 'license-header' ] . " ==\n" . '{{' . $license . '}}' . "\n";
 			}
-			$pageText = '== ' . wfMsgForContent( 'filedesc' ) . " ==\n" . $comment . "\n" .
-				'== ' . wfMsgForContent( 'filestatus' ) . " ==\n" . $copyStatus . "\n" .
+			$pageText = '== ' . $msg[ 'filedesc' ] . " ==\n" . $comment . "\n" .
+				'== ' . $msg[ 'filestatus' ] . " ==\n" . $copyStatus . "\n" .
 				"$licensetxt" .
-				'== ' . wfMsgForContent( 'filesource' ) . " ==\n" . $source;
+				'== ' . $msg[ 'filesource' ] . " ==\n" . $source;
 		} else {
 			if ( $license != '' ) {
-				$filedesc = $comment == '' ? '' : '== ' . wfMsgForContent( 'filedesc' ) . " ==\n" . $comment . "\n";
+				$filedesc = $comment == '' ? '' : '== ' . $msg[ 'filedesc' ] . " ==\n" . $comment . "\n";
 					$pageText = $filedesc .
-					'== ' . wfMsgForContent( 'license-header' ) . " ==\n" . '{{' . $license . '}}' . "\n";
+					'== ' . $msg[ 'license-header' ] . " ==\n" . '{{' . $license . '}}' . "\n";
 			} else {
 				$pageText = $comment;
 			}
