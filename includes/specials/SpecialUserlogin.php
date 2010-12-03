@@ -897,22 +897,6 @@ class LoginForm {
 	}
 
 	/** */
-	function userNotPrivilegedMessage( $errors ) {
-		global $wgOut;
-
-		$wgOut->setPageTitle( wfMsg( 'permissionserrors' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
-
-		$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $errors, 'createaccount' ) );
-		// Stuff that might want to be added at the end. For example, instruc-
-		// tions if blocked.
-		$wgOut->addWikiMsg( 'cantcreateaccount-nonblock-text' );
-
-		$wgOut->returnToMain( false );
-	}
-
-	/** */
 	function userBlockedMessage() {
 		global $wgOut, $wgUser;
 
