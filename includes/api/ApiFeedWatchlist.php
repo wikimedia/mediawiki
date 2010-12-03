@@ -143,7 +143,7 @@ class ApiFeedWatchlist extends ApiBase {
 	private function createFeedItem( $info ) {
 		$titleStr = $info['title'];
 		$title = Title::newFromText( $titleStr );
-		if ( $this->linkToDiffs and isset( $info['revid'] ) ) {
+		if ( $this->linkToDiffs && isset( $info['revid'] ) ) {
 			$titleUrl = $title->getFullURL( array( 'diff' => $info['revid'] ) );
 		} else {
 			$titleUrl = $title->getFullURL();
