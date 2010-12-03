@@ -1576,7 +1576,9 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Get an aliased table name.
+	 * Get an aliased table name
+	 * e.g. tableName AS newTableName
+	 *
 	 * @param $name string Table name, see tableName()
 	 * @param $alias string Alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
@@ -1590,6 +1592,8 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Gets an array of aliased table names
+	 *
 	 * @param $tables array( [alias] => table )
 	 * @return array of strings, see tableNameWithAlias()
 	 */
