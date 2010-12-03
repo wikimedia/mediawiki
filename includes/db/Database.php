@@ -1329,7 +1329,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Makes an encoded list of strings from an array
 	 * $mode:
 	 *        LIST_COMMA         - comma separated, no field names
-	 *        LIST_ANDLIST_AND           - ANDed WHERE clause (without the WHERE)
+	 *        LIST_AND           - ANDed WHERE clause (without the WHERE)
 	 *        LIST_OR            - ORed WHERE clause (without the WHERE)
 	 *        LIST_SET           - comma separated with field names, like a SET clause
 	 *        LIST_NAMES         - comma separated field names
