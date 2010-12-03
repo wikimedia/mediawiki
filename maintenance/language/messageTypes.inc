@@ -91,8 +91,6 @@ $wgIgnoredMessages = array(
 	'loginstart',
 	'loginend',
 	'loginlanguagelinks',
-	'pear-mail-error',
-	'php-mail-error',
 	'markaspatrolledlink',
 	'newarticletextanon',
 	'newsectionheaderdefaultlevel',
