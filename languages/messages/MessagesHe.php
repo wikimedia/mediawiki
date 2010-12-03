@@ -310,6 +310,7 @@ $specialPageAliases = array(
 	'RevisionMove'              => array( 'העברת_גרסאות' ),
 	'ComparePages'              => array( 'השוואת_דפים' ),
 	'Badtitle'                  => array( 'כותרת_שגויה' ),
+	'DisableAccount'            => array( 'ביטול_חשבון' ),
 );
 
 $namespaceNames = array(
@@ -1557,6 +1558,7 @@ $1",
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
 'right-revisionmove'          => 'העברת גרסאות',
+'right-disableaccount'        => 'ביטול חשבונות',
 
 # User rights log
 'rightslog'      => 'יומן תפקידים',
@@ -2440,6 +2442,7 @@ $1',
 'sp-contributions-newbies-title'       => 'תרומות של משתמשים חדשים',
 'sp-contributions-blocklog'            => 'יומן חסימות',
 'sp-contributions-deleted'             => 'תרומות משתמש מחוקות',
+'sp-contributions-uploads'             => 'העלאות',
 'sp-contributions-logs'                => 'יומנים',
 'sp-contributions-talk'                => 'שיחה',
 'sp-contributions-userrights'          => 'ניהול הרשאות משתמש',
@@ -3641,5 +3644,18 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 עם תמיכה בחיפוש בטקסט מלא',
 'sqlite-no-fts'  => '$1 ללא תמיכה בחיפוש בטקסט מלא',
+
+# Special:DisableAccount
+'disableaccount'             => 'ביטול חשבון משתמש',
+'disableaccount-user'        => 'שם משתמש:',
+'disableaccount-reason'      => 'סיבה:',
+'disableaccount-confirm'     => "ביטול חשבון משתמש זה.
+המשתמש לא יוכל להיכנס לחשבון, לאפס את הסיסמה, או לקבל הודעות בדואר אלקטרוני.
+אם המשתמש מחובר כעת לחשבון במקום כלשהו, הוא ייצא מהחשבון מיד.
+'''שימו לב שביטול חשבון הוא פעולה בלתי הפיכה ללא התערבות של מנהל מערכת.'''",
+'disableaccount-mustconfirm' => 'עליכם לאשר שאתם רוצים לבטל חשבון זה.',
+'disableaccount-nosuchuser'  => 'חשבון המשתמש "$1" אינו קיים.',
+'disableaccount-success'     => 'חשבון המשתמש "$1" בוטל.',
+'disableaccount-logentry'    => 'ביטל את חשבון המשתמש  [[$1]]',
 
 );
