@@ -4363,7 +4363,7 @@ This site is experiencing technical difficulties.',
 'sqlite-no-fts'  => '$1 without full-text search support',
 
 # Special:DisableAccount
-'disableaccount'             => 'Disable an user account',
+'disableaccount'             => 'Disable a user account',
 'disableaccount-user'        => 'Username:',
 'disableaccount-reason'      => 'Reason:',
 'disableaccount-confirm'     => "Disable this user account.
