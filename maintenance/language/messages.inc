@@ -634,7 +634,6 @@ $wgMessageStructure = array(
 	'cantcreateaccount' => array(
 		'cantcreateaccounttitle',
 		'cantcreateaccount-text',
-		'cantcreateaccount-nonblock-text',
 	),
 	'history' => array(
 		'viewpagelogs',
