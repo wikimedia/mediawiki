@@ -1328,7 +1328,7 @@ class Preferences {
 			$wgOut->redirect( $url );
 		}
 
-		return true;
+		return Status::newGood();
 	}
 
 	public static function loadOldSearchNs( $user ) {

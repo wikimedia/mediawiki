@@ -209,7 +209,9 @@ class HTMLForm {
 			$result = $this->trySubmit();
 		}
 
-		if ( $result === true ) {
+		if ( $result === true ||
+			( $result instanceof Status && $result->isGood() ) )
+		{
 			return $result;
 		}
 
@@ -460,7 +462,10 @@ class HTMLForm {
 	 * @return String
 	 */
 	function getErrors( $errors ) {
-		if ( is_array( $errors ) ) {
+		if ( $errors instanceof Status ) {
+			global $wgOut;
+			$errorstr = $wgOut->parse( $errors->getWikiText() );
+		} elseif ( is_array( $errors ) ) {
 			$errorstr = $this->formatErrors( $errors );
 		} else {
 			$errorstr = $errors;
