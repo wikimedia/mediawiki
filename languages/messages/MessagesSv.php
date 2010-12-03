@@ -1527,6 +1527,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-sendemail'             => 'Skicka e-post till andra användare',
 'right-revisionmove'          => 'Flytta versioner',
+'right-disableaccount'        => 'Inaktivera konton',
 
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',
@@ -2497,7 +2498,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'blocklistline'                   => '$1, $2 blockerade $3 ($4)',
 'infiniteblock'                   => 'för evigt',
 'expiringblock'                   => 'utgår den $1 kl $2',
-'anononlyblock'                   => 'endast för oinloggade',
+'anononlyblock'                   => 'endast oinloggade',
 'noautoblockblock'                => 'utan automatisk blockering',
 'createaccountblock'              => 'kontoregistrering blockerad',
 'emailblock'                      => 'e-post blockerad',
@@ -3555,5 +3556,18 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 # SQLite database support
 'sqlite-has-fts' => '$1 med stöd för fulltextsökning',
 'sqlite-no-fts'  => '$1 utan stöd för fulltextsökning',
+
+# Special:DisableAccount
+'disableaccount'             => 'Inaktivera ett användarkonto',
+'disableaccount-user'        => 'Användarnamn:',
+'disableaccount-reason'      => 'Orsak:',
+'disableaccount-confirm'     => "Inaktivera detta användarkonto.
+Användaren kommer inte att kunna logga in, återställa sitt lösenord, eller ta emot e-postmeddelanden.
+Om användaren är inloggad någonstans, kommer den att omedelbart loggas ut.
+''Observera att inaktivering av ett konto inte är reversibelt utan ingripande av en systemadministratör.''",
+'disableaccount-mustconfirm' => 'Du måste bekräfta att du vill inaktivera detta konto.',
+'disableaccount-nosuchuser'  => 'Användarkontot "$1" existerar inte.',
+'disableaccount-success'     => 'Användarkontot "$1" har inaktiverats permanent.',
+'disableaccount-logentry'    => 'inaktivera användarkontot [[$1]] permanent',
 
 );

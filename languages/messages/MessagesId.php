@@ -1506,6 +1506,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
 'right-revisionmove'          => 'Pindah revisi',
+'right-disableaccount'        => 'Menonaktifkan akun',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
@@ -3531,5 +3532,18 @@ Keterangan tampilan:
 # SQLite database support
 'sqlite-has-fts' => '$1 dengan dukungan pencarian teks lengkap',
 'sqlite-no-fts'  => '$1 tanpa dukungan pencarian teks lengkap',
+
+# Special:DisableAccount
+'disableaccount'             => 'Penonaktifan akun pengguna',
+'disableaccount-user'        => 'Nama pengguna:',
+'disableaccount-reason'      => 'Alasan:',
+'disableaccount-confirm'     => "Nonaktifkan akun pengguna ini.
+Pengguna tidak akan dapat masuk, menyetel ulang sandi mereka, atau menerima surel pemberitahuan.
+Jika pengguna saat ini sedang masuk di mana saja, mereka akan segera dikeluarkan.
+''Perhatikan bahwa penonaktifan akun tidak dapat dibatalkan tanpa campur tangan administrator sistem.''",
+'disableaccount-mustconfirm' => 'Anda harus mengonfirmasikan bahwa Anda ingin menonaktifkan akun ini.',
+'disableaccount-nosuchuser'  => 'Akun pengguna "$1" tidak ada.',
+'disableaccount-success'     => 'Akun pengguna "$1" telah dinonaktifkan secara permanen.',
+'disableaccount-logentry'    => 'menonaktifkan secara permanen akun pengguna [[$1]]',
 
 );

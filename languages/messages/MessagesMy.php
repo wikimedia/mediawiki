@@ -1665,6 +1665,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 'exif-gpsaltitude'         => 'အမြင့်',
 'exif-gpsdatestamp'        => 'ဂျီပီအက်စ်ရက်စွဲ',
 
+'exif-orientation-1' => 'ပုံမှန်',
+
 'exif-componentsconfiguration-0' => 'မတည်ရှိပါ',
 
 'exif-subjectdistance-value' => '$1 မီတာ',
@@ -1701,6 +1703,12 @@ HTML tags ကို စစ်ဆေးပါ။',
 
 'exif-subjectdistancerange-1' => 'မက်ကရို',
 
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-w' => 'အနောက်လောင်ဂျီကျု',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-m' => 'တစ်နာရီလျှင် ရှိသည့် မိုင်နှုန်း',
+
 # External editor support
 'edit-externally'      => 'ပြင်ပ application တစ်ခုခုကိုသုံး၍ ဤဖိုင်ကို ပြင်ရန်',
 'edit-externally-help' => '(နောက်ထပ်သတင်းအချက်အလက်များအတွက်[http://www.mediawiki.org/wiki/Manual:External_editors တပ်ဆင်မှု လမ်းညွှန်များ] ကို ကြည့်ရန်)',
@@ -1714,7 +1722,14 @@ HTML tags ကို စစ်ဆေးပါ။',
 'limitall'         => 'အားလုံး',
 
 # E-mail address confirmation
-'confirmemail' => 'အီးမေးကိုအတည်ပြုပါ',
+'confirmemail'      => 'အီးမေးကိုအတည်ပြုပါ',
+'confirmemail_send' => 'အတည်ပြုချက်ကုတ်ကို အီးမေးပို့ပေးရန်',
+
+# Delete conflict
+'recreate' => 'ပြန်လည်ဖန်တီးရန်',
+
+# action=purge
+'confirm_purge_button' => 'အိုကေ',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ပြီးခဲ့သော စာမျက်နှာ',
@@ -1731,10 +1746,14 @@ HTML tags ကို စစ်ဆေးပါ။',
 'table_pager_empty'        => 'မည်သည့်ရလဒ်မှ မရှိပါ',
 
 # Auto-summaries
-'autosumm-new' => 'စာလုံး "$1" လုံးႏွင့္ စာမ်က္ႏွာအသစ္ စလုပ္ရန္',
+'autosumm-blank' => 'စာမျက်နှာကို ဗလာလုပ်လိုက်သည်',
+'autosumm-new'   => 'စာလုံး "$1" လုံးႏွင့္ စာမ်က္ႏွာအသစ္ စလုပ္ရန္',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'ခေါင်းစဉ်များ -',
+'watchlistedit-normal-title'  => 'စောင့်ကြည့်စာရင်းကို တည်းဖြတ်ရန်',
+'watchlistedit-normal-legend' => 'စောင့်ကြည့်စာရင်းမှ ခေါင်းစဉ်များကို ဖျက်ရန်',
+'watchlistedit-normal-submit' => 'ခေါင်းစဉ်များကို ဖယ်ရှားရန်',
+'watchlistedit-raw-titles'    => 'ခေါင်းစဉ်များ -',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ကိုက်ညီသော အပြောင်းအလဲများကို ကြည့်ရန်',
@@ -1805,5 +1824,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 'htmlform-submit'              => 'ထည့်သွင်းရန်',
 'htmlform-reset'               => 'ပြောင်းလဲထားသည်များ မလုပ်တော့ရန်',
 'htmlform-selectorother-other' => 'အခြား',
+
+# Special:DisableAccount
+'disableaccount-user'   => 'အသုံးပြုသူအမည် -',
+'disableaccount-reason' => 'အကြောင်းပြချက် -',
 
 );

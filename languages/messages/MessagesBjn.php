@@ -1182,6 +1182,10 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-suppressionlog'       => 'Tiringi log paribadi',
 'right-block'                => 'Blukir pamuruk lain mambabak',
 'right-blockemail'           => 'Blukir saurang pamuruk mangirimi suril',
+'right-hideuser'             => 'Blukir sabuah ngaranpamuruk, sungkupakan ini matan umum',
+'right-ipblock-exempt'       => 'Liwati blukir IP, blukir-utumatis wan aria blukir',
+'right-proxyunbannable'      => 'Liwati utumatis blukir matan pruksi',
+'right-unblockself'          => 'Lapas blukirnya surang',
 'right-editinterface'        => 'Babak antarmuha pamuruk ini',
 'right-editusercssjs'        => 'Babak pamuruk lain babarakas CSS wan JavaScript',
 'right-editusercss'          => 'Babak pamruk lain babarakas CSS',
@@ -1194,10 +1198,12 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-reset-passwords'      => 'Risit katasunduk pamuruk lain',
 'right-sendemail'            => 'Mangirim suril ka papamuruk lain',
 'right-revisionmove'         => 'Pindahakan raralatan',
+'right-disableaccount'       => 'Kada-kawakan aakun',
 
 # User rights log
-'rightslog'  => 'Log parubahan hak masuk',
-'rightsnone' => '(kadada)',
+'rightslog'     => 'Log parubahan hak masuk',
+'rightslogtext' => 'Nangini adalah sabuah log paparubahan ka hahak pamuruk.',
+'rightsnone'    => '(kadada)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'               => 'baca tungkaran ini',

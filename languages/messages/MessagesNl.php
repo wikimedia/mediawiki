@@ -1598,6 +1598,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
 'right-revisionmove'          => 'Versies verplaatsen',
+'right-disableaccount'        => 'Gebruikers uitschakelen',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -3696,5 +3697,18 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
+
+# Special:DisableAccount
+'disableaccount'             => 'Een gebruiker uitschakelen',
+'disableaccount-user'        => 'Gebruikersnaam:',
+'disableaccount-reason'      => 'Reden:',
+'disableaccount-confirm'     => "Deze gebruiker uitschakelen.
+De gebruiker kan niet langer aanmelden, het wachtwoord opnieuw instellen of e-mails ontvangen.
+Als de gebruiker op dit moment is aangemeld, wordt deze per direct afgemeld.
+''Het uitschakelen van een gebruiker is niet terug te draaien zonder hulp van een systeembeheerder.''",
+'disableaccount-mustconfirm' => 'U moet bevestigen dat u deze gebruiker wilt uitschakelen.',
+'disableaccount-nosuchuser'  => 'De gebruiker "$1" bestaat niet.',
+'disableaccount-success'     => 'De gebruiker "$1" is permanent uitgeschakeld.',
+'disableaccount-logentry'    => 'heeft de gebruiker [[$1]] permanent uitgeschakeld',
 
 );

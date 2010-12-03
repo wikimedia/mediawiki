@@ -3778,4 +3778,10 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'sqlite-has-fts' => 'Shown on Special:Version, $1 is version',
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
 
+# Special:DisableAccount
+'disableaccount-user'     => '{{Identical|Username}}',
+'disableaccount-reason'   => '{{Identical|Reason}}',
+'disableaccount-logentry' => 'This message is used as a log entry. Parameters:
+* $1 is a user page',
+
 );

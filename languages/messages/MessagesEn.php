@@ -1410,8 +1410,8 @@ Please check the comparison below to verify that this is what you want to do, an
 'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])',
 
 # Account creation failure
-'cantcreateaccounttitle'          => 'Cannot create account',
-'cantcreateaccount-text'          => "Account creation from this IP address ('''$1''') has been blocked by [[User:$3|$3]].
+'cantcreateaccounttitle' => 'Cannot create account',
+'cantcreateaccount-text' => "Account creation from this IP address ('''$1''') has been blocked by [[User:$3|$3]].
 
 The reason given by $3 is ''$2''",
 
