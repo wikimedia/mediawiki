@@ -122,10 +122,22 @@ class Selenium {
 		$this->user = $user;
 	}
 
+        // Function to get username
+        public function getUser() {
+		return $this->user;
+	}
+        
+
 	public function setPass( $pass ) {
 		$this->pass = $pass;
 	}
 
+    //add function to get password    
+	public function getPass(  ) {
+		return $this->pass;
+	}
+       
+	
 	public function setHost( $host ) {
 		$this->host = $host;
 	}
