@@ -174,7 +174,7 @@
         html: false,
         live: false,
         offset: 0,
-        opacity: 0.8,
+        opacity: 1.0,
         title: 'title',
         trigger: 'hover'
     };
