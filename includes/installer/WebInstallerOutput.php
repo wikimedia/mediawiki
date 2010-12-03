@@ -92,10 +92,12 @@ class WebInstallerOutput {
 		$vectorCss = file_get_contents( $vectorCssFile );
 		$configCss = file_get_contents( $configCssFile );
 		wfRestoreWarnings();
-		$css = str_replace( 'images/', '../skins/vector/images/', $vectorCss ) . "\n" . str_replace( 'images/', '../skins/common/images/', $configCss );
-		if( !$css ) {
-			return "/** Your webserver cannot read $vectorCssFile or $configCssFile, please check file permissions */";
-		} elseif( $dir == 'rtl' ) {
+		if( !$vectorCss || !$configCss ) {
+			$css = "/** Your webserver cannot read $vectorCssFile or $configCssFile, please check file permissions */";
+		}
+
+		$css .= str_replace( 'images/', '../skins/vector/images/', $vectorCss ) . "\n" . str_replace( 'images/', '../skins/common/images/', $configCss );
+		if( $dir == 'rtl' ) {
 			$css = CSSJanus::transform( $css, true );
 		}
 		return $css;
