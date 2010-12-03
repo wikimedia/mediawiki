@@ -27,7 +27,6 @@
  *
  */
 
-require_once("maintenance/tests/selenium/suites/MediaWikiCommonFunction.php");
 
 class DeletePageAdminTestCase extends SeleniumTestCase {
 
