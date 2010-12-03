@@ -189,7 +189,7 @@ class ApiFeedWatchlist extends ApiBase {
 			'allrev'     => 'Include multiple revisions of the same page within given timeframe',
 			'wlowner'    => "The user whose watchlist you want (must be accompanied by {$this->getModulePrefix()}token if it's not you)",
 			'wltoken'    => 'Security token that requested user set in their preferences',
-			'linktodiffs'      => 'Link to change differences instead of article pages'
+			'linktodiffs'=> 'Link to change differences instead of article pages'
 		);
 	}
 
