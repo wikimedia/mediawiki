@@ -1402,6 +1402,7 @@ $1",
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-sendemail'             => '发电子邮件给其他用户',
 'right-revisionmove'          => '移动修订版本',
+'right-disableaccount'        => '禁用帐户',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -3409,5 +3410,16 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 # SQLite database support
 'sqlite-has-fts' => '带全文搜索的版本$1',
 'sqlite-no-fts'  => '不带全文搜索的版本$1',
+
+# Special:DisableAccount
+'disableaccount'             => '禁用用户帐户',
+'disableaccount-user'        => '用户名：',
+'disableaccount-reason'      => '理由：',
+'disableaccount-confirm'     => "禁用此用户帐户。该用户将无法登录、重置其密码或收到电子邮件通知。如果用户当前仍保持登录，其帐户将被强制退出。
+''注意：若无系统管理员的干预，被禁用的帐户不可重新启用。''",
+'disableaccount-mustconfirm' => '请确认您的确要禁用此帐户。',
+'disableaccount-nosuchuser'  => '用户帐户“$1”不存在。',
+'disableaccount-success'     => '用户帐户“$1”已被永久禁用。',
+'disableaccount-logentry'    => '永久禁用用户帐户[[$1]]',
 
 );

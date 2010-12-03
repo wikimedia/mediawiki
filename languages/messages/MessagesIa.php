@@ -1388,6 +1388,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
 'right-revisionmove'          => 'Displaciar versiones',
+'right-disableaccount'        => 'Disactivar contos',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',
@@ -3461,5 +3462,18 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 con supporto de recerca de texto integre',
 'sqlite-no-fts'  => '$1 sin supporto de recerca de texto integre',
+
+# Special:DisableAccount
+'disableaccount'             => 'Disactivar un conto de usator',
+'disableaccount-user'        => 'Nomine de usator:',
+'disableaccount-reason'      => 'Motivo:',
+'disableaccount-confirm'     => "Disactivar iste conto de usator.
+Le usator non potera aperir session, ni reinitialisar su contrasigno, ni reciper notificationes per e-mail.
+Si le usator es actualmente authenticate alicubi, su session essera immediatemente claudite.
+''Nota que le disactivation de un conto de usator non es reversibile sin intervention de un administrator del systema.''",
+'disableaccount-mustconfirm' => 'Tu debe confirmar que tu vole disactivar iste conto.',
+'disableaccount-nosuchuser'  => 'Le conto de usator "$1" non existe.',
+'disableaccount-success'     => 'Le conto de usator "$1" ha essite disactivate permanentemente.',
+'disableaccount-logentry'    => 'disactivava permanentemente le conto de usator [[$1]]',
 
 );

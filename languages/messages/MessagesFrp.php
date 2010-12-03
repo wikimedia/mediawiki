@@ -1562,6 +1562,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
 'right-revisionmove'          => 'Dèplaciér des vèrsions',
+'right-disableaccount'        => 'Dèsactivar des comptos',
 
 # User rights log
 'rightslog'      => 'Jornal des changements de statut d’utilisator',
@@ -3724,5 +3725,10 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 # SQLite database support
 'sqlite-has-fts' => '$1 avouéc rechèrche en tèxto complèt recognua',
 'sqlite-no-fts'  => '$1 sen rechèrche en tèxto complèt recognua',
+
+# Special:DisableAccount
+'disableaccount'        => 'Dèsactivar un compto utilisator',
+'disableaccount-user'   => 'Nom d’utilisator :',
+'disableaccount-reason' => 'Rêson :',
 
 );

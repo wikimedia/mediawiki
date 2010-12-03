@@ -1501,6 +1501,7 @@ Možete omogućiti drugima da Vas kontaktiraju na suradničkoj stranici ili stra
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 'right-revisionmove'          => 'Premjesti izmjene',
+'right-disableaccount'        => 'Onemogući račune',
 
 # User rights log
 'rightslog'      => 'Evidencija suradničkih prava',
@@ -1764,6 +1765,7 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'listfiles_search_for'  => 'Traži ime slike:',
 'imgfile'               => 'datoteka',
 'listfiles'             => 'Popis slika',
+'listfiles_thumb'       => 'Smanjeni pregled',
 'listfiles_date'        => 'Datum',
 'listfiles_name'        => 'Naziv slike',
 'listfiles_user'        => 'Suradnik',
@@ -2538,6 +2540,17 @@ To znači: 1. ako pogriješite, možete opet preimenovati stranicu na stari nasl
 
 '''Upozorenje!'''
 Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice. Molimo dobro razmislite prije nego što preimenujete stranicu.",
+'movepagetext-noredirectfixer' => "Pomoću donjeg obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime. 
+Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov. 
+Budite sigurni da ste provjerili [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|nevaljana preusmjeravanja]]. 
+Vi ste odgovorni za to da poveznice i dalje povezuju tamo gdje treba.
+
+Imajte na umu da će stranica'''neće''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena. 
+To znači da možete preimenovati stranicu natrag do mjesta gdje je preimenovan iz ako pogriješite, i ne možete prepisati postojeću stranicu. 
+
+ '''Upozorenje!''' 
+Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice; 
+budite sigurni da razumijete posljedice ove akcije prije nastavka.",
 'movepagetalktext'             => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica za razgovor neće se premjestiti ako:'''
 *premještate stranicu iz jednog prostora u drugi,
 *pod novim imenom već postoji stranica za razgovor s nekim sadržajem, ili
@@ -3468,5 +3481,18 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podrškom pretraživanja cijelog teksta',
 'sqlite-no-fts'  => '$1 bez podrške pretraživanja cijelog teksta',
+
+# Special:DisableAccount
+'disableaccount'             => 'Onemogući suradnički račun',
+'disableaccount-user'        => 'Suradničko ime:',
+'disableaccount-reason'      => 'Razlog:',
+'disableaccount-confirm'     => "Onemogućite ovaj suradnički račun. 
+Suradnik neće biti u mogućnosti prijaviti se, promijeniti svoju lozinku, niti primati e-mail obavijesti. 
+Ako je suradnik trenutno prijavljen negdje, odmah će biti odjavljen. 
+''Napominjemo da onemogućavanje računa nije reverzibilno bez intervencije administratora sustava.''",
+'disableaccount-mustconfirm' => 'Morate potvrditi da želite onemogućiti ovaj račun.',
+'disableaccount-nosuchuser'  => 'Suradnik "$1" ne postoji.',
+'disableaccount-success'     => 'Suradnički račun "$1" je trajno onemogućen.',
+'disableaccount-logentry'    => 'trajno onesposobljen suradnički račun [[$1]]',
 
 );

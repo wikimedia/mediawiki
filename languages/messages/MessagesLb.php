@@ -1377,6 +1377,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op Ärer Be
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
 'right-revisionmove'          => 'Versioune réckelen',
+'right-disableaccount'        => 'Benotzerkonten desaktivéieren',
 
 # User rights log
 'rightslog'      => 'Logbuch vun de Benotzerrechter',
@@ -3354,5 +3355,14 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 # SQLite database support
 'sqlite-has-fts' => "$1 ënnerstëtzt d'Volltextsich",
 'sqlite-no-fts'  => "$1 ënnerstëtzt d'Volltextsich net",
+
+# Special:DisableAccount
+'disableaccount'             => 'E Benotzerkont desaktivéieren',
+'disableaccount-user'        => 'Benotzernumm:',
+'disableaccount-reason'      => 'Grond:',
+'disableaccount-mustconfirm' => 'Dir musst confirméieren datt Dir dëse Kont desaktivéiere wëllt.',
+'disableaccount-nosuchuser'  => 'De Benotzerkont "$1" gëtt et net.',
+'disableaccount-success'     => 'De Benotzerkont "$1" gouf definitiv desaktivéiert.',
+'disableaccount-logentry'    => 'huet de Benotzer [[$1]] definitiv desaktivéiert',
 
 );

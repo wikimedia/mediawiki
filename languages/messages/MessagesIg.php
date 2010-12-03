@@ -478,6 +478,7 @@ Biko meríáríá ya.',
 'loginlanguagelabel'      => 'Asụsụ: $1',
 
 # JavaScript password checks
+'password-strength-bad'  => 'NJO',
 'password-strength-good' => 'Ómá',
 'password-retype'        => 'Detuari mkpurụ okwu ejị a gafẹ',
 
@@ -738,6 +739,7 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 'search-mwsuggest-enabled'       => 'ma okwu',
 'search-mwsuggest-disabled'      => 'adighi okwu',
 'search-relatedarticle'          => 'Nwanne',
+'searcheverything-enable'        => 'Chöwá na ímé áhàámá nílé',
 'searchrelated'                  => 'nke kọlu',
 'searchall'                      => 'nke níle',
 'nonefound'                      => "'''Mà kwá''': Náni áhàama ótù dìkàrì Í tuó ya na áká onwe.
@@ -752,10 +754,12 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'powersearch-togglenone'         => 'Efù',
 
 # Quickbar
-'qbsettings'            => 'Mkpọrọ-ȯsȯ-ọsọ',
-'qbsettings-none'       => 'Efù',
-'qbsettings-fixedleft'  => 'Gbado na áká èkpè',
-'qbsettings-fixedright' => 'Gbado na áká ìkengà',
+'qbsettings'               => 'Mkpọrọ-ȯsȯ-ọsọ',
+'qbsettings-none'          => 'Efù',
+'qbsettings-fixedleft'     => 'Gbado na áká èkpè',
+'qbsettings-fixedright'    => 'Gbado na áká ìkengà',
+'qbsettings-floatingleft'  => 'Ne fé na áká èkpè',
+'qbsettings-floatingright' => 'Ne fé na áká nrí',
 
 # Preferences page
 'preferences'               => 'Otu ha dosẹrẹ ihe',
@@ -768,6 +772,7 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'datedefault'               => 'Otú é shị na dose ihe efù',
 'prefs-datetime'            => 'Ubochi na ogẹ',
 'prefs-personal'            => "Nkówá ọ'bànifé",
+'prefs-rc'                  => 'Gbanwere mere ogẹ di nso',
 'prefs-watchlist'           => 'Ndétụnlé',
 'prefs-watchlist-days-max'  => 'Okè chi 7',
 'prefs-misc'                => 'Mcheta-ma-mchetaghim',
@@ -841,6 +846,7 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'group-bureaucrat-member'    => "ọdọzị'obodo",
 'group-suppress-member'      => 'aghọ',
 
+'grouppage-user'  => "{{ns:project}}:Ọ'bànifé",
 'grouppage-bot'   => '{{ns:project}}:Bot',
 'grouppage-sysop' => '{{ns:project}}:Ndi Íshí wiki',
 

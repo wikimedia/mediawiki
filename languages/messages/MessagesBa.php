@@ -1257,6 +1257,7 @@ $1",
 'right-override-export-depth' => '5-се тәрәнлеккә тиклем бәйле биттәре менән бергә биттәрҙе сығарыу',
 'right-sendemail'             => 'Башҡа ҡатнашыусыларға электрон почта аша хат ебәреү',
 'right-revisionmove'          => 'Биттәрҙең өлгөләрен күсереү',
+'right-disableaccount'        => 'Иҫәп яҙыуҙарын күрһәтмәҫкә',
 
 # User rights log
 'rightslog'      => 'Ҡулланыусының хоҡуҡтары көндәлеге',
@@ -3269,5 +3270,10 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 # SQLite database support
 'sqlite-has-fts' => '$1, тулы текст буйынса эҙләү мөмкинлеге менән',
 'sqlite-no-fts'  => '$1, тулы текст буйынса эҙләү мөмкинлекһеҙ',
+
+# Special:DisableAccount
+'disableaccount'        => 'Ҡатнашыусының күрһәтелмәгән иҫәп яҙыуҙары',
+'disableaccount-user'   => 'Ҡатнашыусы исеме',
+'disableaccount-reason' => 'Сәбәп:',
 
 );
