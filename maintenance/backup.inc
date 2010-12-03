@@ -230,7 +230,7 @@ class BackupDumper {
 		$field = ( $history == WikiExporter::CURRENT ) ? 'page_id' : 'rev_id';
 		
 		$dbr = wfGetDB( DB_SLAVE );
-		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', 'BackupDumper::dump' );
+		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', __METHOD__ );
 		$this->startTime = wfTime();
 	}
 
