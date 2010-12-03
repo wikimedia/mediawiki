@@ -227,6 +227,14 @@ class SpecialContributions extends SpecialPage {
 					)
 				);
 			}
+			# Uploads
+			$tools[] = $sk->linkKnown(
+				SpecialPage::getTitleFor( 'Listfiles' ),
+				wfMsgHtml( 'sp-contributions-uploads' ),
+				array(),
+				array( 'user' => $nt->getText() )
+			);
+			
 			# Other logs link
 			$tools[] = $sk->linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),

@@ -48,7 +48,7 @@ class ImageListPager extends TablePager {
 			$this->mDefaultDirection = false;
 		}
 		
-		$userName = $wgRequest->getText( 'username', $par );
+		$userName = $wgRequest->getText( 'user', $par );
 		if ( $userName ) {
 			$nt = Title::newFromText( $userName, NS_USER );
 			if ( !is_null( $nt ) ) {
@@ -204,10 +204,10 @@ class ImageListPager extends TablePager {
 								'id' => 'mw-ilsearch',
 			) );
 		}
-		$inputForm['username'] = Html::input( 'username', $this->mUserName, 'text', array(
+		$inputForm['username'] = Html::input( 'user', $this->mUserName, 'text', array(
 						'size' => '40',
 						'maxlength' => '255',
-						'id' => 'mw-listfiles-username',
+						'id' => 'mw-listfiles-user',
 		) );
 		$s = Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' ) ) .
 			Xml::fieldset( wfMsg( 'listfiles' ) ) .
