@@ -164,7 +164,7 @@ abstract class IndexPager implements Pager {
 	}
 
 	/**
-	 * Return the result wrapper.
+	 * @return ResultWrapper The result wrapper.
 	 */
 	function getResult() {
 		return $this->mResult;
