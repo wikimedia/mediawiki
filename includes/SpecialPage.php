@@ -191,7 +191,7 @@ class SpecialPage {
 		'Mycontributions'           => 'SpecialMycontributions',
 		'Mypage'                    => 'SpecialMypage',
 		'Mytalk'                    => 'SpecialMytalk',
-		'Myuploads'	                => 'SpecialMyuploads',
+		'Myuploads'                 => 'SpecialMyuploads',
 		'Revisiondelete'            => 'SpecialRevisionDelete',
 		'RevisionMove'              => 'SpecialRevisionMove',
 		'Specialpages'              => 'SpecialSpecialpages',
