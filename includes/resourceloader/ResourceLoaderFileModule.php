@@ -108,9 +108,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 		// Base path to prepend to all local paths in $options. Defaults to $IP
 	 * 		'localBasePath' => [base path],
 	 * 		// Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath
-	 *      'remoteBasePath' => [base path],
-	 *      // Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath
-	 *      'remoteExtPath' => [base path],
+	 * 		'remoteBasePath' => [base path],
+	 * 		// Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath
+	 * 		'remoteExtPath' => [base path],
 	 * 		// Scripts to always include
 	 * 		'scripts' => [file path string or array of file path strings],
 	 * 		// Scripts to include in specific language contexts
