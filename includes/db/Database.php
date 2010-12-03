@@ -1581,7 +1581,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $alias string Alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
 	 */
-	public function tableNameWithAlias( $name, $alias ) {
+	public function tableNameWithAlias( $name, $alias = false ) {
 		if ( !$alias || $alias == $name ) {
 			return $this->tableName( $name );
 		} else {
