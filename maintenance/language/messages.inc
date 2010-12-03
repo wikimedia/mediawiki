@@ -1948,6 +1948,7 @@ $wgMessageStructure = array(
 		'sp-contributions-newbies-title',
 		'sp-contributions-blocklog',
 		'sp-contributions-deleted',
+		'sp-contributions-uploads',
 		'sp-contributions-logs',
 		'sp-contributions-talk',
 		'sp-contributions-userrights',
