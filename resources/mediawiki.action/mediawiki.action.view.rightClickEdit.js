@@ -14,7 +14,7 @@ $( function() {
 		var href = $(this).find( '.editsection a' ).attr( 'href' );
 		// Check if target is the anchor link itself. If so, don't suppress the context menu; this
 		// way the reader can still do things like copy URL, open in new tab etc.
-		$target = $( e.target );
+		var $target = $( e.target );
 		if ( !$target.is( 'a' ) && !$target.parent().is( '.editsection' ) ){
 			window.location = href;
 			e.preventDefault();
