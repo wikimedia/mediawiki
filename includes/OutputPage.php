@@ -2374,11 +2374,12 @@ class OutputPage {
 				}
 				continue;
 			}
-			// Special handling for user and site groups; because users might change their stuff on-wiki like site or
-			// user pages, or user preferences; we need to find the highest timestamp of these user-changable modules so
-			// we can ensure cache misses on change
+			// Special handling for user and site groups; because users might change their stuff
+			// on-wiki like site or user pages, or user preferences; we need to find the highest
+			// timestamp of these user-changable modules so we can ensure cache misses on change
 			if ( $group === 'user' || $group === 'site' ) {
-				// Create a fake request based on the one we are about to make so modules return correct times
+				// Create a fake request based on the one we are about to make so modules return
+				// correct times
 				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 				// Get the maximum timestamp
 				$timestamp = 1;
@@ -2425,24 +2426,30 @@ class OutputPage {
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( $sk, 'startup', 'scripts', true );
 
-		// Configuration -- This could be merged together with the load and go, but makeGlobalVariablesScript returns a
-		// whole script tag -- grumble grumble...
+		// Configuration -- This could be merged together with the load and go, but
+		// makeGlobalVariablesScript returns a whole script tag -- grumble grumble...
 		$scripts .= Skin::makeGlobalVariablesScript( $sk->getSkinName() ) . "\n";
 
-		// Script and Messages "only"
-		
-		// Scripts
+		// Script and Messages "only" requests
 		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleScripts(), 'scripts' );
-
-		// Messages
 		$scripts .= $this->makeResourceLoaderLink( $sk, $this->getModuleMessages(), 'messages' );
 
-		// Modules - let the client calculate dependencies and batch requests as it likes
+		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		if ( $this->getModules() ) {
 			$modules = FormatJson::encode( $this->getModules() );
 			$scripts .= Html::inlineScript(
-				"if ( window.mediaWiki ) { mediaWiki.loader.load( {$modules} ); mediaWiki.loader.go(); }"
+				ResourceLoader::makeLoaderConditionalScript(
+					"mediaWiki.loader.load( {$modules} ); mediaWiki.loader.go();"
+				)
 			) . "\n";
+		}
+
+		// Legacy Scripts
+		$scripts .= "\n" . $this->mScripts;
+
+		// Add site JS if enabled
+		if ( $wgUseSiteJs ) {
+			$scripts .= $this->makeResourceLoaderLink( $sk, 'site', 'scripts' );
 		}
 
 		// Add user JS if enabled - trying to load user.options as a bundle if possible
@@ -2453,20 +2460,16 @@ class OutputPage {
 				# XXX: additional security check/prompt?
 				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
 			} else {
-				$scripts .= $this->makeResourceLoaderLink( $sk, array( 'user', 'user.options' ), 'scripts' );
+				$scripts .= $this->makeResourceLoaderLink(
+					$sk, array( 'user', 'user.options' ), 'scripts'
+				);
 				$userOptionsAdded = true;
 			}
 		}
 		if ( !$userOptionsAdded ) {
 			$scripts .= $this->makeResourceLoaderLink( $sk, 'user.options', 'scripts' );
 		}
-		$scripts .= "\n" . $this->mScripts;
-
-		// Add site JS if enabled
-		if ( $wgUseSiteJs ) {
-			$scripts .= $this->makeResourceLoaderLink( $sk, 'site', 'scripts' );
-		}
-
+		
 		return $scripts;
 	}
 
@@ -2584,8 +2587,14 @@ class OutputPage {
 				}
 			}
 		}
-
-		$tags[] = $this->makeResourceLoaderLink( $sk, $this->getModuleStyles(), 'styles' );
+		
+		// Add styles to tags, pushing user modules to the end
+		$styles = array( array(), array() );
+		foreach ( $this->getModuleStyles() as $module ) {
+			$styles[strpos( 'user', $module ) === 0 ? 1 : 0][] = $module;
+		}
+		$tags[] = $this->makeResourceLoaderLink( $sk, $styles[0], 'styles' );
+		$tags[] = $this->makeResourceLoaderLink( $sk, $styles[1], 'styles' );
 
 		return implode( "\n", $tags );
 	}
