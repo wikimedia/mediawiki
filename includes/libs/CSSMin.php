@@ -121,7 +121,7 @@ class CSSMin {
 					// this used to be how you get the mime-type of a file
 					$type = mime_content_type( $file );
 				} else {
-					// Worst-case scenario has happend,
+					// Worst-case scenario has happened,
 					// use the file extension to infer the mime-type
 					$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
 					if ( isset( self::$mimeTypes[$ext] ) ) {
