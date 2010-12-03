@@ -87,7 +87,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				break;
 			}
 			$entry = array( 'lang' => $row->ll_lang );
-			if ( !is_null( $params['url'] ) ) {
+			if ( $params['url'] ) {
 				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
 				if ( $title ) {
 					$entry['url'] = $title->getFullURL();
@@ -116,7 +116,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'continue' => null,
-			'url' => null,
+			'url' => false,
 		);
 	}
 
