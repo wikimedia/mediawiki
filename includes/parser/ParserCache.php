@@ -32,8 +32,7 @@ class ParserCache {
 	 */
 	function __construct( $memCached ) {
 		if ( !$memCached ) {
-			global $parserMemc;
-			$parserMemc = $memCached = wfGetParserCacheStorage();
+			throw MWException( "Tried to create a ParserCache with an invalid memcached" );
 		}
 		$this->mMemc = $memCached;
 	}
