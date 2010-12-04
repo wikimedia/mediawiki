@@ -411,6 +411,21 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'privacy', $this->privacyLink() );
 		$tpl->set( 'about', $this->aboutLink() );
 
+		$tpl->set( 'footerlinks', array(
+			'info' => array(
+				'lastmod',
+				'viewcount',
+				'numberofwatchingusers',
+				'credits',
+				'copyright',
+			),
+			'places' => array(
+				'privacy',
+				'about',
+				'disclaimer',
+			),
+		) );
+
 		if ( $wgDebugComments ) {
 			$tpl->setRef( 'debug', $out->mDebugtext );
 		} else {
