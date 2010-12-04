@@ -2036,7 +2036,7 @@ class Skin extends Linker {
 		}
 	}
 
-	function getCommonStylePath( $fame ) {
+	function getCommonStylePath( $name ) {
 		global $wgStylePath, $wgStyleVersion;
 		return "{$wgStylePath}/common/$name?$wgStyleVersion";
 	}
