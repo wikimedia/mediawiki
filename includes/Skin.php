@@ -2036,6 +2036,16 @@ class Skin extends Linker {
 		}
 	}
 
+	function getCommonStylePath( $fname ) {
+		global $wgStylePath, $wgStyleVersion;
+		return "{$wgStylePath}/common/$name?$wgStyleVersion";
+	}
+
+	function getSkinStylePath( $fname ) {
+		global $wgStylePath, $wgStyleVersion;
+		return "{$wgStylePath}/{$this->stylename}/$fname?$wgStyleVersion";
+	}
+
 	/* these are used extensively in SkinTemplate, but also some other places */
 	static function makeMainPageUrl( $urlaction = '' ) {
 		$title = Title::newMainPage();
