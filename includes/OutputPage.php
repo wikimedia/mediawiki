@@ -2436,11 +2436,10 @@ class OutputPage {
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		if ( $this->getModules() ) {
-			$modules = FormatJson::encode(  );
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mediaWiki.loader.load', $this->getModules() ) .
-					Xml::encodeJsCall( 'mediaWiki.loader.go' )
+					Xml::encodeJsCall( 'mediaWiki.loader.load', array( $this->getModules() ) ) .
+					Xml::encodeJsCall( 'mediaWiki.loader.go', array() )
 				)
 			) . "\n";
 		}
@@ -2588,15 +2587,16 @@ class OutputPage {
 				}
 			}
 		}
-		
-		// Add styles to tags, pushing user modules to the end
+
+		// Split the styles into two groups, not user (0) and user (1)
 		$styles = array( array(), array() );
-		foreach ( $this->getModuleStyles() as $module ) {
-			$styles[strpos( 'user', $module ) === 0 ? 1 : 0][] = $module;
+		$resourceLoader = $this->getResourceLoader();
+		foreach ( $this->getModuleStyles() as $name ) {
+			$styles[$resourceLoader->getModule( $name )->getGroup() === 'user' ? 1 : 0][] = $name;
 		}
+		// Add styles to tags, user modules last
 		$tags[] = $this->makeResourceLoaderLink( $sk, $styles[0], 'styles' );
 		$tags[] = $this->makeResourceLoaderLink( $sk, $styles[1], 'styles' );
-
 		return implode( "\n", $tags );
 	}
 
