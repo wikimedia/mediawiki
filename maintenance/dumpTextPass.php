@@ -214,18 +214,13 @@ class TextPassDumper extends BackupDumper {
 		$this->fetchCount++;
 		if ( isset( $this->prefetch ) ) {
 			$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
-			if ( $text === null ) {
-				// Entry missing from prefetch dump
-			} elseif ( $text === "" ) {
-				// Blank entries may indicate that the prior dump was broken.
-				// To be safe, reload it.
-			} else {
+			if ( $text !== null ) { // Entry missing from prefetch dump
 				$dbr = wfGetDB( DB_SLAVE );
-				$revID = intval($this->thisRev);
-				$revLength = $dbr->selectField( 'revision', 'rev_len', array('rev_id' => $revID ) );
+				$revID = intval( $this->thisRev );
+				$revLength = $dbr->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );
 				// if length of rev text in file doesn't match length in db, we reload
 				// this avoids carrying forward broken data from previous xml dumps
-				if( strlen($text) == $revLength ) {
+				if( strlen( $text ) == $revLength ) {
 					$this->prefetchCount++;
 					return $text;
 				}
