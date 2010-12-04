@@ -73,4 +73,4 @@ class MyContributionsTestCase extends SeleniumTestCase {
         $this->deletePage($newPage);
     }
 }
-?>
+
