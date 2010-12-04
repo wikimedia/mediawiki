@@ -127,7 +127,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		// If not, Postgres will happily and silently go to the next search_path item
 		$schema = $this->getVar( 'wgDBmwschema' );
 		$ctest = 'mediawiki_test_table';
-		$safeschema = $conn->quote_ident( $schema );
+		$safeschema = $conn->addIdentifierQuotes( $schema );
 		if ( $conn->tableExists( $ctest, $schema ) ) {
 			$conn->doQuery( "DROP TABLE $safeschema.$ctest" );
 		}
