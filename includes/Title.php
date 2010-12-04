@@ -1304,7 +1304,14 @@ class Title {
 
 	/**
 	 * Check various permission hooks
-	 * @see checkQuickPermissions for parameter information
+	 *
+	 * @param $action String the action to check
+	 * @param $user User user to check
+	 * @param $errors Array list of current errors
+	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
+	 * @param $short Boolean short circuit on first error
+	 *
+	 * @return Array list of errors
 	 */
 	private function checkPermissionHooks( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		// Use getUserPermissionsErrors instead
@@ -1327,7 +1334,14 @@ class Title {
 
 	/**
 	 * Check permissions on special pages & namespaces
-	 * @see checkQuickPermissions for parameter information
+	 *
+	 * @param $action String the action to check
+	 * @param $user User user to check
+	 * @param $errors Array list of current errors
+	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
+	 * @param $short Boolean short circuit on first error
+	 *
+	 * @return Array list of errors
 	 */
 	private function checkSpecialsAndNSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		# Only 'createaccount' and 'execute' can be performed on
@@ -1350,7 +1364,14 @@ class Title {
 
 	/**
 	 * Check CSS/JS sub-page permissions
-	 * @see checkQuickPermissions for parameter information
+	 *
+	 * @param $action String the action to check
+	 * @param $user User user to check
+	 * @param $errors Array list of current errors
+	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
+	 * @param $short Boolean short circuit on first error
+	 *
+	 * @return Array list of errors
 	 */
 	private function checkCSSandJSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		# Protect css/js subpages of user pages
@@ -1374,7 +1395,14 @@ class Title {
 	 * Check against page_restrictions table requirements on this
 	 * page. The user must possess all required rights for this
 	 * action.
-	 * @see checkQuickPermissions for parameter information
+	 *
+	 * @param $action String the action to check
+	 * @param $user User user to check
+	 * @param $errors Array list of current errors
+	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
+	 * @param $short Boolean short circuit on first error
+	 *
+	 * @return Array list of errors
 	 */
 	private function checkPageRestrictions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		foreach ( $this->getRestrictions( $action ) as $right ) {
@@ -1401,7 +1429,14 @@ class Title {
 
 	/**
 	 * Check restrictions on cascading pages.
-	 * @see checkQuickPermissions for parameter information
+	 * 
+	 * @param $action String the action to check
+	 * @param $user User user to check
+	 * @param $errors Array list of current errors
+	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
+	 * @param $short Boolean short circuit on first error
+	 *
+	 * @return Array list of errors
 	 */
 	private function checkCascadingSourcesRestrictions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		if ( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
@@ -1433,7 +1468,14 @@ class Title {
 
 	/**
 	 * Check action permissions not already checked in checkQuickPermissions
-	 * @see checkQuickPermissions for parameter information
+	 *
+	 * @param $action String the action to check
+	 * @param $user User user to check
+	 * @param $errors Array list of current errors
+	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
+	 * @param $short Boolean short circuit on first error
+	 *
+	 * @return Array list of errors
 	 */
 	private function checkActionPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		if ( $action == 'protect' ) {
@@ -1472,7 +1514,14 @@ class Title {
 
 	/**
 	 * Check that the user isn't blocked from editting.
-	 * @see checkQuickPermissions for parameter information
+	 *
+	 * @param $action String the action to check
+	 * @param $user User user to check
+	 * @param $errors Array list of current errors
+	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
+	 * @param $short Boolean short circuit on first error
+	 *
+	 * @return Array list of errors
 	 */
 	private function checkUserBlock( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		if( $short && count( $errors ) > 0 ) {
