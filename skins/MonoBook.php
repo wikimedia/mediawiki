@@ -70,6 +70,11 @@ class MonoBookTemplate extends QuickTemplate {
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
 
+		// Generate additional footer links
+		$footerlinks = $this->data["footerlinks"];
+		// fold footerlinks into a single array using a bit of trickery
+		$footerlinks = call_user_func_array('array_merge', array_values($footerlinks));
+
 		$this->html( 'headelement' );
 ?><div id="globalWrapper">
 <div id="column-content"><div id="content"<?php $this->html("specialpageattributes") ?>>
@@ -175,10 +180,6 @@ if($this->data['copyrightico']) { ?>
 <?php }
 
 		// Generate additional footer links
-		$footerlinks = array(
-			'lastmod', 'viewcount', 'numberofwatchingusers', 'credits', 'copyright',
-			'privacy', 'about', 'disclaimer', 'tagline',
-		);
 		$validFooterLinks = array();
 		foreach( $footerlinks as $aLink ) {
 			if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {

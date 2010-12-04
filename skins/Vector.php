@@ -412,25 +412,10 @@ class VectorTemplate extends QuickTemplate {
 		}
 
 		// Generate additional footer links
-		$footerlinks = array(
-			'info' => array(
-				'lastmod',
-				'viewcount',
-				'numberofwatchingusers',
-				'credits',
-				'copyright',
-				'tagline',
-			),
-			'places' => array(
-				'privacy',
-				'about',
-				'disclaimer',
-			),
-			'icons' => array(
-				'poweredbyico',
-				'copyrightico',
-			),
-		);
+		$footerlinks = $this->data["footerlinks"];
+		// footerlinks doesn't include icons for now, so we'll just append the default
+		$footerlinks["icons"] = array( 'poweredbyico', 'copyrightico', );
+		
 		$footerlinksClasses = array(
 			'icons' => array( 'noprint' )
 		);
