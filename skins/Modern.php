@@ -21,17 +21,6 @@ class SkinModern extends SkinTemplate {
 	var $skinname = 'modern', $stylename = 'modern',
 		$template = 'ModernTemplate', $useHeadElement = true;
 
-	/*
-	 * We don't like the default getPoweredBy, the icon clashes with the
-	 * skin L&F.
-	 */
-	function getPoweredBy() {
-		global $wgVersion;
-		$text = "<div class='mw_poweredby'>Powered by MediaWiki $wgVersion</div>";
-		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ) );
-		return $text;
-	}
-
 	function setupSkinUserCss( OutputPage $out ){
 		// Do not call parent::setupSkinUserCss(), we have our own print style
 		$out->addStyle( 'common/shared.css', 'screen' );
@@ -62,6 +51,18 @@ class ModernTemplate extends MonoBookTemplate {
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
+
+		// Generate additional footer links
+		$footerlinks = $this->data["footerlinks"];
+		// fold footerlinks into a single array using a bit of trickery
+		$footerlinks = call_user_func_array('array_merge', array_values($footerlinks));
+		// Generate additional footer icons
+		$footericons = $this->data["footericons"];
+		// Unset copyright.copyright since we don't need the icon and already output a copyright from footerlinks
+		unset($footericons["copyright"]["copyright"]);
+		if ( count($footericons["copyright"]) <= 0 ) {
+			unset($footericons["copyright"]);
+		}
 
 		$this->html( 'headelement' );
 ?>
@@ -182,10 +183,6 @@ class ModernTemplate extends MonoBookTemplate {
 	<div id="footer"<?php $this->html('userlangattributes') ?>>
 			<ul id="f-list">
 <?php
-		$footerlinks = array(
-			'lastmod', 'viewcount', 'numberofwatchingusers', 'credits', 'copyright',
-			'privacy', 'about', 'disclaimer', 'tagline',
-		);
 		foreach( $footerlinks as $aLink ) {
 			if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
 ?>				<li id="<?php echo$aLink?>"><?php $this->html($aLink) ?></li>
@@ -193,7 +190,25 @@ class ModernTemplate extends MonoBookTemplate {
 		}
 ?>
 			</ul>
-		<?php echo $this->html("poweredbyico"); ?>
+<?php
+		foreach ( $footericons as $blockName => $footerIcons ) { ?>
+			<div id="mw_<?php echo htmlspecialchars($blockName); ?>">
+<?php
+			foreach ( $footerIcons as $icon ) { 
+				if ( is_string($icon) ) {
+					$html = $icon;
+				} else {
+					$html = htmlspecialchars($icon["alt"]);
+					if ( $icon["url"] ) {
+						$html = Html::element( 'a', array( "href" => $icon["url"] ), $html );
+					}
+				}
+				echo "				$html\n";
+			} ?>
+			</div>
+<?php
+		}
+?>
 	</div>
 
 	<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>

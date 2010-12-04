@@ -425,6 +425,21 @@ class SkinTemplate extends Skin {
 				'disclaimer',
 			),
 		) );
+		
+		global $wgFooterIcons;
+		$tpl->set( 'footericons', $wgFooterIcons );
+		foreach ( $tpl->data["footericons"] as $footerIconsKey => &$footerIconsBlock ) {
+			if ( count($footerIconsBlock) > 0 ) {
+				foreach ( $footerIconsBlock as &$footerIcon ) {
+					if ( isset($footerIcon["src"]) ) {
+						if ( !isset($footerIcon["width"]) ) $footerIcon["width"] = 88;
+						if ( !isset($footerIcon["height"]) ) $footerIcon["height"] = 31;
+					}
+				}
+			} else {
+				unset($tpl->data["footericons"][$footerIconsKey]);
+			}
+		}
 
 		if ( $wgDebugComments ) {
 			$tpl->setRef( 'debug', $out->mDebugtext );
