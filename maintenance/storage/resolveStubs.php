@@ -28,11 +28,11 @@ function resolveStubs() {
 
 	for ( $b = 0; $b < $numBlocks; $b++ ) {
 		wfWaitForSlaves( 2 );
-		
+
 		printf( "%5.2f%%\n", $b / $numBlocks * 100 );
 		$start = intval( $maxID / $numBlocks ) * $b + 1;
 		$end = intval( $maxID / $numBlocks ) * ( $b + 1 );
-		
+
 		$res = $dbr->select( 'text', array( 'old_id', 'old_text', 'old_flags' ),
 			"old_id>=$start AND old_id<=$end " .
 			"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' " .
@@ -40,7 +40,7 @@ function resolveStubs() {
 			$fname );
 		foreach ( $res as $row ) {
 			resolveStub( $row->old_id, $row->old_text, $row->old_flags );
-		}		
+		}
 	}
 	print "100%\n";
 }

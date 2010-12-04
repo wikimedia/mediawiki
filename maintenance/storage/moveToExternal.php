@@ -48,12 +48,12 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 	for ( $block = 0; $block < $numBlocks; $block++ ) {
 		$blockStart = $block * $blockSize + $minID;
 		$blockEnd = $blockStart + $blockSize - 1;
-		
+
 		if ( !( $block % REPORTING_INTERVAL ) ) {
 			print "oldid=$blockStart, moved=$numMoved\n";
 			wfWaitForSlaves( 2 );
 		}
-		
+
 		$res = $dbr->select( 'text', array( 'old_id', 'old_flags', 'old_text' ),
 			array(
 				"old_id BETWEEN $blockStart AND $blockEnd",
@@ -68,7 +68,7 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 			} else {
 				$flags = "{$row->old_flags},external";
 			}
-			
+
 			if ( strpos( $flags, 'object' ) !== false ) {
 				$obj = unserialize( $text );
 				$className = strtolower( get_class( $obj ) );

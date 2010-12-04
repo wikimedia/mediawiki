@@ -131,14 +131,14 @@ function getSvnRevision( $dir ) {
  * @param $currentVersion String: Version number of the software
  * @param $svnstat String: path to the svnstat file
  * @param $input String: Path to analyze.
- * @param $exclude String: Additionals path regex to exlcude 
+ * @param $exclude String: Additionals path regex to exlcude
  *                 (LocalSettings.php, AdminSettings.php, .svn and .git directories are always excluded)
  */
 function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude ) {
 
 	$template = file_get_contents( $doxygenTemplate );
 
-	// Replace template placeholders by correct values.	
+	// Replace template placeholders by correct values.
 	$replacements = array(
 		'{{OUTPUT_DIRECTORY}}' => $outputDirectory,
 		'{{STRIP_FROM_PATH}}'  => $stripFromPath,

@@ -99,7 +99,7 @@ class PPFuzzTester {
 			$s .= $this->hairs[$hairIndex];
 		}
 		// Send through the UTF-8 normaliser
-		// This resolves a few differences between the old preprocessor and the 
+		// This resolves a few differences between the old preprocessor and the
 		// XML-based one, which doesn't like illegals and converts line endings.
 		// It's done by the MW UI, so it's a reasonably legitimate thing to do.
 		global $wgContLang;
@@ -140,7 +140,7 @@ class PPFuzzTest {
 
 	function templateHook( $title ) {
 		$titleText = $title->getPrefixedDBkey();
-		
+
 		if ( !isset( $this->templates[$titleText] ) ) {
 			$finalTitle = $title;
 			if ( count( $this->templates ) >= $this->parent->maxTemplates ) {
@@ -182,7 +182,7 @@ class PPFuzzTest {
 
 	function getReport() {
 		$s = "Title: " . $this->title->getPrefixedDBkey() . "\n" .
-//			"Output type: {$this->outputType}\n" . 
+//			"Output type: {$this->outputType}\n" .
 			"Entry point: {$this->entryPoint}\n" .
 			"User: " . ( $this->fancySig ? 'fancy' : 'no-fancy' ) . ' ' . var_export( $this->nickname, true ) . "\n" .
 			"Main text: " . var_export( $this->mainText, true ) . "\n";

@@ -38,7 +38,7 @@ class UpdateMediaWiki extends Maintenance {
 	private function compatChecks() {
 		$test = new PhpXmlBugTester();
 		if ( !$test->ok ) {
-			$this->error( 
+			$this->error(
 				"Your system has a combination of PHP and libxml2 versions which is buggy\n" .
 				"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
 				"Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later!\n" .

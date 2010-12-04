@@ -72,8 +72,8 @@ class SeleniumTester extends Maintenance {
 	protected function startServer() {
 		if ( $this->seleniumServerExecPath == '' ) {
 			die ( "The selenium server exec path is not set in " .
-			      "selenium_settings.ini. Cannot start server \n" .
-			      "as requested - terminating RunSeleniumTests\n" );
+				  "selenium_settings.ini. Cannot start server \n" .
+				  "as requested - terminating RunSeleniumTests\n" );
 		}
 		$this->serverManager = new SeleniumServerManager( 'true',
 			$this->selenium->getPort(),
@@ -117,21 +117,21 @@ class SeleniumTester extends Maintenance {
 			$jUnitListener = new PHPUnit_Util_Log_JUnit( $this->selenium->getJUnitLogFile(), true );
 			$result->addListener( $jUnitListener );
 		}
-		
+
 		foreach ( $seleniumTestSuites as $testSuiteName => $testSuiteFile ) {
 			require( $testSuiteFile );
- 			$suite = new $testSuiteName();
- 			$suite->setName( $testSuiteName );
+			$suite = new $testSuiteName();
+			$suite->setName( $testSuiteName );
 			$suite->addTests();
-			
+
 			try {
 				$suite->run( $result );
 			} catch ( Testing_Selenium_Exception $e ) {
-				$suite->tearDown(); 
+				$suite->tearDown();
 				throw new MWException( $e->getMessage() );
 			}
 		}
-		
+
 		if ( $this->selenium->getJUnitLogFile() ) {
 			$jUnitListener->flush();
 		}
@@ -139,7 +139,7 @@ class SeleniumTester extends Maintenance {
 
 	public function execute() {
 		global $wgServer, $wgScriptPath, $wgHooks;
-		
+
 		$seleniumSettings;
 		$seleniumBrowsers;
 		$seleniumTestSuites;
@@ -147,23 +147,23 @@ class SeleniumTester extends Maintenance {
 		$configFile = $this->getOption( 'seleniumConfig', '' );
 		if ( strlen( $configFile ) > 0 ) {
 			$this->output("Using Selenium Configuration file: " . $configFile . "\n");
-			SeleniumConfig::getSeleniumSettings( $seleniumSettings, 
+			SeleniumConfig::getSeleniumSettings( $seleniumSettings,
 				$seleniumBrowsers,
 				$seleniumTestSuites,
 				$configFile );
 		} else if ( !isset( $wgHooks['SeleniumSettings'] ) ) {
 			$this->output("No command line configuration file or configuration hook found.\n");
-			SeleniumConfig::getSeleniumSettings( $seleniumSettings, 
+			SeleniumConfig::getSeleniumSettings( $seleniumSettings,
 				$seleniumBrowsers,
 				$seleniumTestSuites
-										  			);
+													);
 		} else {
 			$this->output("Using 'SeleniumSettings' hook for configuration.\n");
-			wfRunHooks('SeleniumSettings', array( $seleniumSettings, 
+			wfRunHooks('SeleniumSettings', array( $seleniumSettings,
 				$seleniumBrowsers,
 				$seleniumTestSuites ) );
 		}
-		
+
 		// State for starting/stopping the Selenium server has nothing to do with the Selenium
 		// class. Keep this state local to SeleniumTester class. Using getOption() is clumsy, but
 		// the Maintenance class does not have a setOption()
@@ -186,7 +186,7 @@ class SeleniumTester extends Maintenance {
 		// Setup Selenium class
 		$this->selenium = new Selenium( );
 		$this->selenium->setAvailableBrowsers( $seleniumBrowsers );
-		$this->selenium->setRunAgainstGrid( $this->getOption( 'runAgainstGrid', $seleniumSettings['runAgainstGrid'] ) );		
+		$this->selenium->setRunAgainstGrid( $this->getOption( 'runAgainstGrid', $seleniumSettings['runAgainstGrid'] ) );
 		$this->selenium->setUrl( $this->getOption( 'wikiUrl', $seleniumSettings['wikiUrl'] ) );
 		$this->selenium->setBrowser( $this->getOption( 'testBrowser', $seleniumSettings['testBrowser'] ) );
 		$this->selenium->setPort( $this->getOption( 'port', $seleniumSettings['port'] ) );

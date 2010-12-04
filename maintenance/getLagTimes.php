@@ -31,7 +31,7 @@ class GetLagTimes extends Maintenance {
 
 		if ( $lb->getServerCount() == 1 ) {
 			$this->error( "This script dumps replication lag times, but you don't seem to have\n"
-		 				  . "a multi-host db server configuration." );
+						  . "a multi-host db server configuration." );
 		} else {
 			$lags = $lb->getLagTimes();
 			foreach ( $lags as $n => $lag ) {

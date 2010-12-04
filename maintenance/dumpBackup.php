@@ -84,12 +84,12 @@ Actions:
   --logs      Dump all log events.
   --stable    Stable versions of pages?
   --pagelist=<file>
-              Where <file> is a list of page titles to be dumped
+			  Where <file> is a list of page titles to be dumped
 
 Options:
   --quiet     Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
-              (Default: 100)
+			  (Default: 100)
   --server=h  Force reading from MySQL server h
   --start=n   Start from page_id or log_id n
   --end=n     Stop before page_id or log_id n (exclusive)
@@ -104,7 +104,7 @@ Options:
 Fancy stuff: (Works? Add examples please.)
   --plugin=<class>[:<file>]   Load a dump plugin class
   --output=<type>:<file>      Begin a filtered output stream;
-                              <type>s: file, gzip, bzip2, 7zip
+							  <type>s: file, gzip, bzip2, 7zip
   --filter=<type>[:<options>] Add a filter on an output branch
 
 ENDS

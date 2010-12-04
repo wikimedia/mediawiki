@@ -35,7 +35,7 @@ class RebuildMessages extends Maintenance {
 		} else {
 			$databases = array( $wgDBname );
 		}
-	
+
 		foreach ( $databases as $db ) {
 			$this->output( "Deleting message cache for {$db}... " );
 			$messageMemc->delete( "{$db}:messages" );

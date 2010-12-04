@@ -2,7 +2,7 @@
 /**
  * Simple script that try to find documented hook and hooks actually
  * in the code and show what's missing.
- * 
+ *
  * This script assumes that:
  * - hooks names in hooks.txt are at the beginning of a line and single quoted.
  * - hooks names in code are the first parameter of wfRunHooks.
@@ -78,17 +78,17 @@ class FindHooks extends Maintenance {
 			$potential = array_merge( $potential, $this->getHooksFromPath( $dir ) );
 			$bad = array_merge( $bad, $this->getBadHooksFromPath( $dir ) );
 		}
-	
+
 		$potential = array_unique( $potential );
 		$bad = array_unique( $bad );
 		$todo = array_diff( $potential, $documented );
 		$deprecated = array_diff( $documented, $potential );
-	
+
 		// let's show the results:
 		$this->printArray( 'Undocumented', $todo );
 		$this->printArray( 'Documented and not found', $deprecated );
 		$this->printArray( 'Unclear hook calls', $bad );
-	
+
 		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 )
 			$this->output( "Looks good!\n" );
 	}

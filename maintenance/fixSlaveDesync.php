@@ -29,7 +29,7 @@ class FixSlaveDesync extends Maintenance {
 	public function getDbType() {
 		return self::DB_ADMIN;
 	}
-	
+
 	public function execute() {
 		$this->slaveIndexes = array();
 		for ( $i = 1; $i < wfGetLB()->getServerCount(); $i++ ) {

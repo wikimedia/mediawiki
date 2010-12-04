@@ -64,7 +64,7 @@ class mcTest extends Maintenance {
 				}
 			}
 			$exectime = $this->microtime_float() - $time_start;
-	
+
 			$this->output( "set: $set   incr: $incr   get: $get time: $exectime", $server );
 		}
 	}

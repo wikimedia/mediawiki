@@ -68,11 +68,11 @@ class Orphans extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$page = $dbw->tableName( 'page' );
 		$revision = $dbw->tableName( 'revision' );
-	
+
 		if ( $fix ) {
 			$this->lockTables( $dbw );
 		}
-	
+
 		$this->output( "Checking for orphan revision table entries... (this may take a while on a large wiki)\n" );
 		$result = $dbw->query( "
 			SELECT *
@@ -104,14 +104,14 @@ class Orphans extends Maintenance {
 		} else {
 			$this->output( "No orphans! Yay!\n" );
 		}
-	
+
 		if ( $fix ) {
 			$dbw->unlockTables( __METHOD__ );
 		}
 	}
 
 	/**
-	 * @param $fix bool 
+	 * @param $fix bool
 	 * @todo DON'T USE THIS YET! It will remove entries which have children,
 	 *       but which aren't properly attached (eg if page_latest is bogus
 	 *       but valid revisions do exist)
@@ -151,7 +151,7 @@ class Orphans extends Maintenance {
 		} else {
 			$this->output( "No childless pages! Yay!\n" );
 		}
-	
+
 		if ( $fix ) {
 			$dbw->unlockTables( __METHOD__ );
 		}
@@ -165,11 +165,11 @@ class Orphans extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$page     = $dbw->tableName( 'page' );
 		$revision = $dbw->tableName( 'revision' );
-	
+
 		if ( $fix ) {
 			$dbw->lockTables( $dbw, 'text', __METHOD__ );
 		}
-	
+
 		$this->output( "\nChecking for pages whose page_latest links are incorrect... (this may take a while on a large wiki)\n" );
 		$result = $dbw->query( "
 			SELECT *
@@ -214,7 +214,7 @@ class Orphans extends Maintenance {
 				$this->output( "wtf\n" );
 			}
 		}
-	
+
 		if ( $found ) {
 			$this->output( "Found $found pages with incorrect latest revision.\n" );
 		} else {
@@ -223,7 +223,7 @@ class Orphans extends Maintenance {
 		if ( !$fix && $found > 0 ) {
 			$this->output( "Run again with --fix to remove these entries automatically.\n" );
 		}
-	
+
 		if ( $fix ) {
 			$dbw->unlockTables( __METHOD__ );
 		}

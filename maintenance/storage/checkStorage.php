@@ -164,7 +164,7 @@ class CheckStorage {
 
 			// Check external concat blobs for the right header
 			$this->checkExternalConcatBlobs( $externalConcatBlobs );
-			
+
 			// Check external normal blobs for existence
 			if ( count( $externalNormalBlobs ) ) {
 				if ( is_null( $this->dbStore ) ) {
@@ -346,7 +346,7 @@ class CheckStorage {
 		if ( is_null( $this->dbStore ) ) {
 			$this->dbStore = new ExternalStoreDB;
 		}
-		
+
 		foreach ( $externalConcatBlobs as $cluster => $oldIds ) {
 			$blobIds = array_keys( $oldIds );
 			$extDb =& $this->dbStore->getSlave( $cluster );
@@ -383,7 +383,7 @@ class CheckStorage {
 
 		$revFileName = "$wgTmpDirectory/broken-revlist-$wgDBname";
 		$filteredXmlFileName = "$wgTmpDirectory/filtered-$wgDBname.xml";
-		
+
 		// Write revision list
 		if ( !file_put_contents( $revFileName, implode( "\n", $revIds ) ) ) {
 			echo "Error writing revision list, can't restore text\n";
@@ -416,7 +416,7 @@ class CheckStorage {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr->ping();
 		$dbw->ping();
-		
+
 		$source = new ImportStreamSource( $file );
 		$importer = new WikiImporter( $source );
 		$importer->setRevisionCallback( array( &$this, 'importRevision' ) );
@@ -429,8 +429,8 @@ class CheckStorage {
 		$id = $revision->getID();
 		$text = $revision->getText();
 		if ( $text === '' ) {
-			// This is what happens if the revision was broken at the time the 
-			// dump was made. Unfortunately, it also happens if the revision was 
+			// This is what happens if the revision was broken at the time the
+			// dump was made. Unfortunately, it also happens if the revision was
 			// legitimately blank, so there's no way to tell the difference. To
 			// be safe, we'll skip it and leave it broken
 			$id = $id ? $id : '';

@@ -218,7 +218,7 @@ class BackupDumper {
 
 		$this->report( true );
 	}
-	
+
 	/**
 	 * Initialise starting time and maximum revision count.
 	 * We'll make ETA calculations based an progress, assuming relatively
@@ -228,7 +228,7 @@ class BackupDumper {
 	function initProgress( $history = WikiExporter::FULL ) {
 		$table = ( $history == WikiExporter::CURRENT ) ? 'page' : 'revision';
 		$field = ( $history == WikiExporter::CURRENT ) ? 'page_id' : 'rev_id';
-		
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', __METHOD__ );
 		$this->startTime = wfTime();
@@ -242,14 +242,14 @@ class BackupDumper {
 	function backupDb() {
 		$this->lb = wfGetLBFactory()->newMainLB();
 		$db = $this->lb->getConnection( DB_SLAVE, 'backup' );
-		
+
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
 		$db->setTimeout( 3600 * 24 );
-		
+
 		return $db;
 	}
-	
+
 	function __destruct() {
 		if ( isset( $this->lb ) ) {
 			$this->lb->closeAll();

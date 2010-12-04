@@ -41,7 +41,7 @@ class UpdateArticleCount extends Maintenance {
 		$this->namespaces = $wgContentNamespaces;
 		$this->output( "Counting articles..." );
 		$result = $this->count();
-	
+
 		if ( $result !== false ) {
 			$this->output( "found {$result}.\n" );
 			if ( $this->hasOption( 'update' ) ) {

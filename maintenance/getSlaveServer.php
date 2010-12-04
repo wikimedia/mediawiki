@@ -19,7 +19,7 @@
  *
  * @ingroup Maintenance
  */
- 
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class GetSlaveServer extends Maintenance {

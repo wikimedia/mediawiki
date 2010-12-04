@@ -60,13 +60,13 @@ class BackupReader {
 			call_user_func( $this->importCallback, $rev );
 		}
 	}
-	
+
 	function handleUpload( $revision ) {
 		if ( $this->uploads ) {
 			$this->uploadCount++;
 			// $this->report();
 			$this->progress( "upload: " . $revision->getFilename() );
-			
+
 			if ( !$this->dryRun ) {
 				// bluuuh hack
 				// call_user_func( $this->uploadCallback, $revision );
@@ -148,7 +148,7 @@ class BackupReader {
 			array( &$this, 'handleUpload' ) );
 		$this->logItemCallback = $importer->setLogItemCallback(
 			array( &$this, 'handleLogItem' ) );
-			
+
 		if ( $this->dryRun ) {
 			$importer->setPageOutCallback( null );
 		}

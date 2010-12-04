@@ -35,7 +35,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	public function execute() {
 
 		$this->output( "Remove unused accounts\n\n" );
-		
+
 		# Do an initial scan for inactive accounts and report the result
 		$this->output( "Checking for unused user accounts...\n" );
 		$del = array();
@@ -65,7 +65,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		}
 		$count = count( $del );
 		$this->output( "...found {$count}.\n" );
-	
+
 		# If required, go back and delete each marked account
 		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
 			$this->output( "\nDeleting inactive accounts..." );
@@ -80,7 +80,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		}
 		$this->output( "\n" );
 	}
-	
+
 	/**
 	 * Could the specified user account be deemed inactive?
 	 * (No edits, no deleted edits, no log entries, no current/old uploads)
@@ -94,14 +94,14 @@ class RemoveUnusedAccounts extends Maintenance {
 		$checks = array( 'revision' => 'rev', 'archive' => 'ar', 'logging' => 'log',
 						 'image' => 'img', 'oldimage' => 'oi' );
 		$count = 0;
-	
+
 		$dbo->begin();
 		foreach ( $checks as $table => $fprefix ) {
 			$conds = array( $fprefix . '_user' => $id );
 			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
 		}
 		$dbo->commit();
-	
+
 		return $count == 0;
 	}
 }

@@ -31,7 +31,7 @@ class ConvertUserOptions extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Convert user options from old to new system";
 	}
-	
+
 	public function execute() {
 		$this->output( "Beginning batch conversion of user options.\n" );
 		$id = 0;
@@ -45,9 +45,9 @@ class ConvertUserOptions extends Maintenance {
 					array( 'LIMIT' => 50, 'FOR UPDATE' ) );
 			$id = $this->convertOptionBatch( $res, $dbw );
 			$dbw->commit();
-	
+
 			wfWaitForSlaves( 1 );
-	
+
 			if ( $id )
 				$this->output( "--Converted to ID $id\n" );
 		}
@@ -58,13 +58,13 @@ class ConvertUserOptions extends Maintenance {
 		$id = null;
 		foreach ( $res as $row ) {
 			$this->mConversionCount++;
-	
+
 			$u = User::newFromRow( $row );
-	
+
 			$u->saveSettings();
 			$id = $row->user_id;
 		}
-	
+
 		return $id;
 	}
 }

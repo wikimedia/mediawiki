@@ -49,7 +49,7 @@ class DumpLinks extends Maintenance {
 			array( 'page_id=pl_from' ),
 			__METHOD__,
 			array( 'ORDER BY' => 'page_id' ) );
-	
+
 		$lastPage = null;
 		foreach ( $result as $row ) {
 			if ( $lastPage != $row->page_id ) {

@@ -34,19 +34,19 @@ class ReassignEdits extends Maintenance {
 		$this->addArg( 'from', 'Old user to take edits from' );
 		$this->addArg( 'to', 'New user to give edits to' );
 	}
-	
+
 	public function execute() {
 		if ( $this->hasArg( 0 ) && $this->hasArg( 1 ) ) {
 			# Set up the users involved
 			$from = $this->initialiseUser( $this->getArg( 0 ) );
 			$to   = $this->initialiseUser( $this->getArg( 1 ) );
-	
+
 			# If the target doesn't exist, and --force is not set, stop here
 			if ( $to->getId() || $this->hasOption( 'force' ) ) {
 				# Reassign the edits
 				$report = $this->hasOption( 'report' );
 				$this->doReassignEdits( $from, $to, !$this->hasOption( 'norc' ), $report );
-				# If reporting, and there were items, advise the user to run without --report	
+				# If reporting, and there were items, advise the user to run without --report
 				if ( $report ) {
 					$this->output( "Run the script again without --report to update.\n" );
 				}
@@ -93,10 +93,10 @@ class ReassignEdits extends Maintenance {
 		} else {
 			$rec = 0;
 		}
-	
+
 		$total = $cur + $del + $rec;
 		$this->output( "\nTotal entries to change: {$total}\n" );
-	
+
 		if ( !$report ) {
 			if ( $total ) {
 				# Reassign edits
@@ -116,11 +116,11 @@ class ReassignEdits extends Maintenance {
 				}
 			}
 		}
-	
+
 		$dbw->commit();
 		return (int)$total;
 	}
-	
+
 	/**
 	 * Return the most efficient set of user conditions
 	 * i.e. a user => id mapping, or a user_text => text mapping
@@ -133,7 +133,7 @@ class ReassignEdits extends Maintenance {
 	private function userConditions( &$user, $idfield, $utfield ) {
 		return $user->getId() ? array( $idfield => $user->getId() ) : array( $utfield => $user->getName() );
 	}
-	
+
 	/**
 	 * Return user specifications
 	 * i.e. user => id, user_text => text
@@ -146,7 +146,7 @@ class ReassignEdits extends Maintenance {
 	private function userSpecification( &$user, $idfield, $utfield ) {
 		return array( $idfield => $user->getId(), $utfield => $user->getName() );
 	}
-	
+
 	/**
 	 * Initialise the user object
 	 *

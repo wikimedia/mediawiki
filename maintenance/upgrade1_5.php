@@ -102,11 +102,11 @@ class FiveUpgrade extends Maintenance {
 	function newConnection() {
 		$lb = wfGetLBFactory()->newMainLB();
 		$db = $lb->getConnection( DB_MASTER );
-		
+
 		$this->loadBalancers[] = $lb;
 		return $db;
 	}
-	
+
 	/**
 	 * Commit transactions and close the connections when we're done...
 	 */
@@ -385,40 +385,40 @@ class FiveUpgrade extends Maintenance {
 
 		$this->log( "Creating page and revision tables..." );
 		$this->dbw->query( "CREATE TABLE $page (
-  			page_id int(8) unsigned NOT NULL auto_increment,
-  			page_namespace int NOT NULL,
-  			page_title varchar(255) binary NOT NULL,
-  			page_restrictions tinyblob NOT NULL default '',
-  			page_counter bigint(20) unsigned NOT NULL default '0',
-  			page_is_redirect tinyint(1) unsigned NOT NULL default '0',
-  			page_is_new tinyint(1) unsigned NOT NULL default '0',
-  			page_random real unsigned NOT NULL,
-  			page_touched char(14) binary NOT NULL default '',
-  			page_latest int(8) unsigned NOT NULL,
-  			page_len int(8) unsigned NOT NULL,
+			page_id int(8) unsigned NOT NULL auto_increment,
+			page_namespace int NOT NULL,
+			page_title varchar(255) binary NOT NULL,
+			page_restrictions tinyblob NOT NULL default '',
+			page_counter bigint(20) unsigned NOT NULL default '0',
+			page_is_redirect tinyint(1) unsigned NOT NULL default '0',
+			page_is_new tinyint(1) unsigned NOT NULL default '0',
+			page_random real unsigned NOT NULL,
+			page_touched char(14) binary NOT NULL default '',
+			page_latest int(8) unsigned NOT NULL,
+			page_len int(8) unsigned NOT NULL,
 
-  			PRIMARY KEY page_id (page_id),
-  			UNIQUE INDEX name_title (page_namespace,page_title),
-  			INDEX (page_random),
-  			INDEX (page_len)
+			PRIMARY KEY page_id (page_id),
+			UNIQUE INDEX name_title (page_namespace,page_title),
+			INDEX (page_random),
+			INDEX (page_len)
 			) TYPE=InnoDB", __METHOD__ );
 		$this->dbw->query( "CREATE TABLE $revision (
-  			rev_id int(8) unsigned NOT NULL auto_increment,
-  			rev_page int(8) unsigned NOT NULL,
-  			rev_text_id int(8) unsigned NOT NULL,
-  			rev_comment tinyblob NOT NULL default '',
-  			rev_user int(5) unsigned NOT NULL default '0',
-  			rev_user_text varchar(255) binary NOT NULL default '',
-  			rev_timestamp char(14) binary NOT NULL default '',
-  			rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
+			rev_id int(8) unsigned NOT NULL auto_increment,
+			rev_page int(8) unsigned NOT NULL,
+			rev_text_id int(8) unsigned NOT NULL,
+			rev_comment tinyblob NOT NULL default '',
+			rev_user int(5) unsigned NOT NULL default '0',
+			rev_user_text varchar(255) binary NOT NULL default '',
+			rev_timestamp char(14) binary NOT NULL default '',
+			rev_minor_edit tinyint(1) unsigned NOT NULL default '0',
 			rev_deleted tinyint(1) unsigned NOT NULL default '0',
 
-  			PRIMARY KEY rev_page_id (rev_page, rev_id),
-  			UNIQUE INDEX rev_id (rev_id),
-  			INDEX rev_timestamp (rev_timestamp),
-  			INDEX page_timestamp (rev_page,rev_timestamp),
-  			INDEX user_timestamp (rev_user,rev_timestamp),
-  			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
+			PRIMARY KEY rev_page_id (rev_page, rev_id),
+			UNIQUE INDEX rev_id (rev_id),
+			INDEX rev_timestamp (rev_timestamp),
+			INDEX page_timestamp (rev_page,rev_timestamp),
+			INDEX user_timestamp (rev_user,rev_timestamp),
+			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 			) TYPE=InnoDB", __METHOD__ );
 
 		$maxold = intval( $this->dbw->selectField( 'old', 'max(old_id)', '', __METHOD__ ) );
@@ -452,9 +452,9 @@ class FiveUpgrade extends Maintenance {
 		$result = $this->dbr->query(
 			"SELECT cur_id, cur_namespace, cur_title, $cur_text AS text, cur_comment,
 			cur_user, cur_user_text, cur_timestamp, cur_minor_edit, $cur_flags AS flags
-  			FROM $cur
-  			ORDER BY cur_id", __METHOD__ );
-  		$add = array();
+			FROM $cur
+			ORDER BY cur_id", __METHOD__ );
+		$add = array();
 		foreach ( $result as $row ) {
 			$add[] = array(
 				'old_namespace'  => $row->cur_namespace,
@@ -511,10 +511,10 @@ class FiveUpgrade extends Maintenance {
 		$this->setChunkScale( $chunksize, $maxcur, 'page', __METHOD__ );
 		$result = $this->dbr->query( "
 			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
-    				cur_random, cur_touched, rev_id, LENGTH(cur_text) AS len
-  			FROM $cur,$revision
-  			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}
-  			ORDER BY cur_id", __METHOD__ );
+					cur_random, cur_touched, rev_id, LENGTH(cur_text) AS len
+			FROM $cur,$revision
+			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}
+			ORDER BY cur_id", __METHOD__ );
 		$add = array();
 		foreach ( $result as $row ) {
 			$add[] = array(
@@ -1246,14 +1246,14 @@ END
 				$dbw->query( <<<END
 INSERT
   INTO $old
-      (old_namespace, old_title,      old_text,
-       old_comment,   old_user,       old_user_text,
-       old_timestamp, old_minor_edit, old_flags,
-       inverse_timestamp)
+	  (old_namespace, old_title,      old_text,
+	   old_comment,   old_user,       old_user_text,
+	   old_timestamp, old_minor_edit, old_flags,
+	   inverse_timestamp)
 SELECT cur_namespace, cur_title,      cur_text,
-       cur_comment,   cur_user,       cur_user_text,
-       cur_timestamp, cur_minor_edit, '',
-       inverse_timestamp
+	   cur_comment,   cur_user,       cur_user_text,
+	   cur_timestamp, cur_minor_edit, '',
+	   inverse_timestamp
   FROM $cur
  WHERE cur_namespace=$ns
    AND cur_title=$title

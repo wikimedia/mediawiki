@@ -61,8 +61,8 @@ class UpdateDoubleWidthSearch extends Maintenance {
 		$searchindex = $dbw->tableName( 'searchindex' );
 		$regexp = '[[:<:]]u8efbd([89][1-9a]|8[b-f]|90)[[:>:]]';
 		$sql = "SELECT si_page FROM $searchindex
-                 WHERE ( si_text RLIKE '$regexp' )
-                    OR ( si_title RLIKE '$regexp' )";
+				 WHERE ( si_text RLIKE '$regexp' )
+					OR ( si_title RLIKE '$regexp' )";
 		return $dbw->query( $sql, __METHOD__ );
 	}
 }

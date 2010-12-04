@@ -44,7 +44,7 @@ class UpdateRestrictions extends Maintenance {
 			$this->error( "Nothing to do.", true );
 		}
 		$end = $db->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
-	
+
 		# Do remaining chunk
 		$end += $this->mBatchSize - 1;
 		$blockStart = $start;

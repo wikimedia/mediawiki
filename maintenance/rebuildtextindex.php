@@ -27,7 +27,7 @@
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RebuildTextIndex extends Maintenance {
- 	const RTI_CHUNK_SIZE = 500;
+	const RTI_CHUNK_SIZE = 500;
 	private $db;
 
 	public function __construct() {
@@ -46,7 +46,7 @@ class RebuildTextIndex extends Maintenance {
 		if ( $wgDBtype == 'postgres' ) {
 			$this->error( "This script is not needed when using Postgres.\n", true );
 		}
-	
+
 		$this->db = wfGetDB( DB_MASTER );
 		if ( $this->db->getType() == 'sqlite' ) {
 			if ( !$this->db->getFulltextSearchModule() ) {
@@ -56,9 +56,9 @@ class RebuildTextIndex extends Maintenance {
 				$this->error( "Your database schema is not configured for full-text search support. Run update.php.\n" );
 			}
 		}
-		
+
 		$wgTitle = Title::newFromText( "Rebuild text index script" );
-	
+
 		if ( $this->db->getType() == 'mysql' ) {
 			$this->dropMysqlTextIndex();
 			$this->populateSearchIndex();
@@ -67,7 +67,7 @@ class RebuildTextIndex extends Maintenance {
 			$this->clearSearchIndex();
 			$this->populateSearchIndex();
 		}
-	
+
 		$this->output( "Done.\n" );
 	}
 
@@ -80,7 +80,7 @@ class RebuildTextIndex extends Maintenance {
 		$count = $s->count;
 		$this->output( "Rebuilding index fields for {$count} pages...\n" );
 		$n = 0;
-	
+
 		while ( $n < $count ) {
 			if ( $n ) {
 				$this->output( $n . "\n" );
@@ -92,7 +92,7 @@ class RebuildTextIndex extends Maintenance {
 				array( "page_id BETWEEN $n AND $end", 'page_latest = rev_id', 'rev_text_id = old_id' ),
 				__METHOD__
 				);
-	
+
 			foreach ( $res as $s ) {
 				$revtext = Revision::getRevisionText( $s );
 				$u = new SearchUpdate( $s->page_id, $s->page_title, $revtext );

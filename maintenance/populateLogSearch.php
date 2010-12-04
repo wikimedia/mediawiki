@@ -28,7 +28,7 @@ class PopulateLogSearch extends Maintenance {
 	const LOG_SEARCH_BATCH_SIZE = 100;
 
 	static $tableMap = array( 'rev' => 'revision', 'fa' => 'filearchive', 'oi' => 'oldimage', 'ar' => 'archive' );
-	
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Migrate log params to new table and index for searching";
@@ -45,12 +45,12 @@ class PopulateLogSearch extends Maintenance {
 			return true;
 		}
 		$end = $db->selectField( 'logging', 'MAX(log_id)', false, __FUNCTION__ );
-	
+
 		# Do remaining chunk
 		$end += self::LOG_SEARCH_BATCH_SIZE - 1;
 		$blockStart = $start;
 		$blockEnd = $start + self::LOG_SEARCH_BATCH_SIZE - 1;
-		
+
 		$delTypes = array( 'delete', 'suppress' ); // revisiondelete types
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing log_id from $blockStart to $blockEnd\n" );

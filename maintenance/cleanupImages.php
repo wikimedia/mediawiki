@@ -53,23 +53,23 @@ class ImageCleanup extends TableCleanup {
 			$this->killRow( $source );
 			return $this->progress( 1 );
 		}
-		
+
 		$cleaned = $source;
-		
+
 		// About half of old bad image names have percent-codes
 		$cleaned = rawurldecode( $cleaned );
 
 		// We also have some HTML entities there
 		$cleaned = Sanitizer::decodeCharReferences( $cleaned );
-		
+
 		// Some are old latin-1
 		$cleaned = $wgContLang->checkTitleEncoding( $cleaned );
-		
+
 		// Many of remainder look like non-normalized unicode
 		$cleaned = $wgContLang->normalize( $cleaned );
-		
+
 		$title = Title::makeTitleSafe( NS_FILE, $cleaned );
-		
+
 		if ( is_null( $title ) ) {
 			$this->output( "page $source ($cleaned) is illegal.\n" );
 			$safe = $this->buildSafeTitle( $cleaned );
@@ -100,7 +100,7 @@ class ImageCleanup extends TableCleanup {
 				__METHOD__ );
 		}
 	}
-	
+
 	private function filePath( $name ) {
 		if ( !isset( $this->repo ) ) {
 			$this->repo = RepoGroup::singleton()->getLocalRepo();
@@ -115,14 +115,14 @@ class ImageCleanup extends TableCleanup {
 	private function pageExists( $name, $db ) {
 		return $db->selectField( 'page', '1', array( 'page_namespace' => NS_FILE, 'page_title' => $name ), __METHOD__ );
 	}
-	
+
 	private function pokeFile( $orig, $new ) {
 		$path = $this->filePath( $orig );
 		if ( !file_exists( $path ) ) {
 			$this->output( "missing file: $path\n" );
 			return $this->killRow( $orig );
 		}
-		
+
 		$db = wfGetDB( DB_MASTER );
 
 		/*
@@ -135,17 +135,17 @@ class ImageCleanup extends TableCleanup {
 		$version = 0;
 		$final = $new;
 		$conflict = ( $this->imageExists( $final, $db ) ||
-			      ( $this->pageExists( $orig, $db ) && $this->pageExists( $final, $db ) ) );
-		
+				  ( $this->pageExists( $orig, $db ) && $this->pageExists( $final, $db ) ) );
+
 		while ( $conflict ) {
 			$this->output( "Rename conflicts with '$final'...\n" );
 			$version++;
 			$final = $this->appendTitle( $new, "_$version" );
 			$conflict = ( $this->imageExists( $final, $db ) || $this->pageExists( $final, $db ) );
 		}
-		
+
 		$finalPath = $this->filePath( $final );
-		
+
 		if ( $this->dryrun ) {
 			$this->output( "DRY RUN: would rename $path to $finalPath\n" );
 		} else {
@@ -192,13 +192,13 @@ class ImageCleanup extends TableCleanup {
 			"/([^$wgLegalTitleChars]|~)/",
 			array( $this, 'hexChar' ),
 			$name );
-		
+
 		$test = Title::makeTitleSafe( NS_FILE, $x );
 		if ( is_null( $test ) || $test->getDBkey() !== $x ) {
 			$this->error( "Unable to generate safe title from '$name', got '$x'" );
 			return false;
 		}
-		
+
 		return $x;
 	}
 }

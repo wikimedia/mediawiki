@@ -20,7 +20,7 @@
  *
  * @ingroup Maintenance
  */
- 
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class RenameDbPrefix extends Maintenance {
@@ -53,17 +53,17 @@ class RenameDbPrefix extends Maintenance {
 			preg_match( '/^[a-zA-Z]+_$/', $this->getOption( 'new' ), $m );
 			$new = isset( $m[0] ) ? $m[0] : false;
 		}
-	
+
 		if ( $old === false || $new === false ) {
 			$this->error( "Invalid prefix!", true );
 		}
 		if ( $old === $new ) {
 			$this->output( "Same prefix. Nothing to rename!\n", true );
 		}
-	
+
 		$this->output( "Renaming DB prefix for tables of $wgDBname from '$old' to '$new'\n" );
 		$count = 0;
-	
+
 		$dbw = wfGetDB( DB_MASTER );
 		$res = $dbw->query( "SHOW TABLES LIKE '" . $dbw->escapeLike( $old ) . "%'" );
 		foreach ( $res as $row ) {

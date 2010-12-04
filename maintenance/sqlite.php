@@ -42,12 +42,12 @@ class SqliteMaintenance extends Maintenance {
 
 	public function execute() {
 		global $wgDBtype;
-		
+
 		// Should work even if we use a non-SQLite database
 		if ( $this->hasOption( 'check-syntax' ) ) {
 			$this->checkSyntax();
 		}
-		
+
 		if ( $wgDBtype != 'sqlite' ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );
 			return;
@@ -124,7 +124,7 @@ class SqliteMaintenance extends Maintenance {
 		if ( $result === true ) {
 			$this->output( "SQL syntax check: no errors detected.\n" );
 		} else {
-			$this->error( "Error: $result\n" ); 
+			$this->error( "Error: $result\n" );
 		}
 	}
 }

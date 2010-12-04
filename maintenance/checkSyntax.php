@@ -20,7 +20,7 @@
  * @file
  * @ingroup Maintenance
  */
- 
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class CheckSyntax extends Maintenance {
@@ -78,7 +78,7 @@ class CheckSyntax extends Maintenance {
 			// Compat stuff, explodes on PHP 5.3
 			"includes/NamespaceCompat.php$",
 			);
-	
+
 		$this->mNoStyleCheckPaths = array(
 			// Third-party code we don't care about
 			"/activemq_stomp/",
@@ -133,7 +133,7 @@ class CheckSyntax extends Maintenance {
 
 		$this->output( 'Building file list...', 'listfiles' );
 
-		// Only check files in these directories. 
+		// Only check files in these directories.
 		// Don't just put $IP, because the recursive dir thingie goes into all subdirs
 		$dirs = array(
 			$IP . '/includes',
@@ -160,7 +160,7 @@ class CheckSyntax extends Maintenance {
 
 		$this->output( 'done.', 'listfiles' );
 	}
-	
+
 	/**
 	 * Returns true if $file is of a type we can check
 	 */

@@ -103,7 +103,7 @@ class NukeNS extends Maintenance {
 				__METHOD__
 			);
 		}
-	
+
 		if ( !$delete ) {
 			$this->output( "To update the database, run the script with the --delete option.\n" );
 		}

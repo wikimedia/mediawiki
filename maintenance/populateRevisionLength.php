@@ -53,11 +53,11 @@ class PopulateRevisionLength extends Maintenance {
 		while ( $blockStart <= $end ) {
 			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
 			$res = $db->select( 'revision',
-					    Revision::selectFields(),
-					    array( "rev_id >= $blockStart",
+						Revision::selectFields(),
+						array( "rev_id >= $blockStart",
 						   "rev_id <= $blockEnd",
 						   "rev_len IS NULL" ),
-					    __METHOD__ );
+						__METHOD__ );
 			# Go through and update rev_len from these rows.
 			foreach ( $res as $row ) {
 				$rev = new Revision( $row );
@@ -70,9 +70,9 @@ class PopulateRevisionLength extends Maintenance {
 				else {
 					# Update the row...
 					$db->update( 'revision',
-						     array( 'rev_len' => strlen( $text ) ),
-						     array( 'rev_id' => $row->rev_id ),
-						     __METHOD__ );
+							 array( 'rev_len' => strlen( $text ) ),
+							 array( 'rev_id' => $row->rev_id ),
+							 __METHOD__ );
 					$count++;
 				}
 			}

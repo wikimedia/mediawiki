@@ -53,7 +53,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 		}
 
 		global $wgContLang;
-	
+
 		$numBadLinks = $curRowsRead = 0; # counters etc
 		$totalTuplesInserted = 0; # total tuples INSERTed into links_temp
 
@@ -68,7 +68,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 
 		$overwriteLinksTable = !$this->hasOption( 'keep-links-table' );
 		$noKeys = $this->hasOption( 'noKeys' );
-		$this->logPerformance = $this->hasOption( 'logperformance' ); 
+		$this->logPerformance = $this->hasOption( 'logperformance' );
 		$perfLogFilename = $this->getArg( 'perfLogFilename', "convLinksPerf.txt" );
 
 		# --------------------------------------------------------------------
@@ -79,18 +79,18 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$this->output( "...have pagelinks; skipping old links table updates\n" );
 			return;
 		}
-	
+
 		$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );
 		if ( $dbw->fieldType( $res, 0 ) == "int" ) {
 			$this->output( "Schema already converted\n" );
 			return;
 		}
-	
+
 		$res = $dbw->query( "SELECT COUNT(*) AS count FROM $links" );
 		$row = $dbw->fetchObject( $res );
 		$numRows = $row->count;
 		$dbw->freeResult( $res );
-	
+
 		if ( $numRows == 0 ) {
 			$this->output( "Updating schema (no rows to convert)...\n" );
 			$this->createTempTable();
@@ -142,7 +142,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$this->output( "Processing $numRows rows from $links table...\n" );
 			$this->performanceLog( $fh, "Processing $numRows rows from $links table...\n" );
 			$this->performanceLog( $fh, "rows inserted vs seconds elapsed:\n" );
-	
+
 			for ( $rowOffset = $initialRowOffset; $rowOffset < $numRows; $rowOffset += $linksConvInsertInterval ) {
 				$sqlRead = "SELECT * FROM $links ";
 				$sqlRead = $dbw->limitResult( $sqlRead, $linksConvInsertInterval, $rowOffset );
@@ -152,7 +152,7 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 				} else {
 					$sqlWrite = array( "INSERT IGNORE INTO $links_temp (l_from,l_to) VALUES " );
 				}
-	
+
 				$tuplesAdded = 0; # no tuples added to INSERT yet
 				foreach ( $res as $row ) {
 					$fromTitle = $row->l_from;
@@ -195,12 +195,12 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 			$this->output( "Dropping backup links table if it exists..." );
 			$dbw->query( "DROP TABLE IF EXISTS $links_backup", DB_MASTER );
 			$this->output( " done.\n" );
-	
+
 			# Swap in the new table, and move old links table to links_backup
 			$this->output( "Swapping tables '$links' to '$links_backup'; '$links_temp' to '$links'..." );
 			$dbw->query( "RENAME TABLE links TO $links_backup, $links_temp TO $links", DB_MASTER );
 			$this->output( " done.\n\n" );
-	
+
 			$dbw->close();
 			$this->output( "Conversion complete. The old table remains at $links_backup;\n" );
 			$this->output( "delete at your leisure.\n" );

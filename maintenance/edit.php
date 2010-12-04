@@ -44,7 +44,7 @@ class EditCLI extends Maintenance {
 		$bot = $this->hasOption( 'b' );
 		$autoSummary = $this->hasOption( 'a' );
 		$noRC = $this->hasOption( 'no-rc' );
-		
+
 		$wgUser = User::newFromName( $userName );
 		if ( !$wgUser ) {
 			$this->error( "Invalid username", true );
@@ -52,17 +52,17 @@ class EditCLI extends Maintenance {
 		if ( $wgUser->isAnon() ) {
 			$wgUser->addToDatabase();
 		}
-	
+
 		$title = Title::newFromText( $this->getArg() );
 		if ( !$title ) {
 			$this->error( "Invalid title", true );
 		}
-	
+
 		$wgArticle = new Article( $title );
-	
+
 		# Read the text
 		$text = $this->getStdin( Maintenance::STDIN_ALL );
-		
+
 		# Do the edit
 		$this->output( "Saving... " );
 		$status = $wgArticle->doEdit( $text, $summary,

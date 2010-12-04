@@ -37,7 +37,7 @@ class RebuildLocalisationCache extends Maintenance {
 		$this->addOption( 'force', 'Rebuild all files, even ones not out of date' );
 		$this->addOption( 'threads', 'Fork more than one thread', false, true );
 	}
-	
+
 	public function memoryLimit() {
 		return '200M';
 	}

@@ -1,6 +1,6 @@
 <?php
 /**
- * @file 
+ * @file
  * @ingroup Maintenance
  * @author Simetrical
  */
@@ -37,7 +37,7 @@ TEXT;
 		$this->addOption( 'throttle', 'Wait this many milliseconds after each category.  Default: 0', false, true );
 		$this->addOption( 'force', 'Run regardless of whether the database says it\'s been run already' );
 	}
-	
+
 	public function execute() {
 		$begin = $this->getOption( 'begin', '' );
 		$maxSlaveLag = $this->getOption( 'max-slave-lag', 10 );
@@ -48,7 +48,7 @@ TEXT;
 
 	private function doPopulateCategory( $begin, $maxlag, $throttle, $force ) {
 		$dbw = wfGetDB( DB_MASTER );
-	
+
 		if ( !$force ) {
 			$row = $dbw->selectRow(
 				'updatelog',
@@ -63,7 +63,7 @@ TEXT;
 				return true;
 			}
 		}
-	
+
 		$maxlag = intval( $maxlag );
 		$throttle = intval( $throttle );
 		if ( $begin !== '' ) {
@@ -72,7 +72,7 @@ TEXT;
 			$where = null;
 		}
 		$i = 0;
-	
+
 		while ( true ) {
 			# Find which category to update
 			$row = $dbw->selectRow(
@@ -90,7 +90,7 @@ TEXT;
 			}
 			$name = $row->cl_to;
 			$where = 'cl_to > ' . $dbw->addQuotes( $name );
-	
+
 			# Use the row to update the category count
 			$cat = Category::newFromName( $name );
 			if ( !is_object( $cat ) ) {
@@ -98,7 +98,7 @@ TEXT;
 			} else {
 				$cat->refreshCounts();
 			}
-	
+
 			++$i;
 			if ( !( $i % self::REPORTING_INTERVAL ) ) {
 				$this->output( "$name\n" );
@@ -106,7 +106,7 @@ TEXT;
 			}
 			usleep( $throttle * 1000 );
 		}
-	
+
 		if ( $dbw->insert(
 				'updatelog',
 				array( 'ul_key' => 'populate category' ),

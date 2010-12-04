@@ -46,30 +46,30 @@ class DeleteOrphanedRevisions extends Maintenance {
 		$this->output( "Checking for orphaned revisions..." );
 		$sql = "SELECT rev_id FROM {$revision} LEFT JOIN {$page} ON rev_page = page_id WHERE page_namespace IS NULL";
 		$res = $dbw->query( $sql, 'deleteOrphanedRevisions' );
-	
+
 		# Stash 'em all up for deletion (if needed)
 		$revisions = array();
 		foreach ( $res as $row )
 			$revisions[] = $row->rev_id;
 		$count = count( $revisions );
 		$this->output( "found {$count}.\n" );
-	
+
 		# Nothing to do?
 		if ( $report || $count == 0 ) {
 			$dbw->commit();
 			exit( 0 );
 		}
-	
+
 		# Delete each revision
 		$this->output( "Deleting..." );
 		$this->deleteRevs( $revisions, $dbw );
 		$this->output( "done.\n" );
-	
+
 		# Close the transaction and call the script to purge unused text records
 		$dbw->commit();
 		$this->purgeRedundantText( true );
 	}
-	
+
 	/**
 	 * Delete one or more revisions from the database
 	 * Do this inside a transaction

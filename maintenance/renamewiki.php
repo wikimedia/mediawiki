@@ -32,7 +32,7 @@ class RenameWiki extends Maintenance {
 		$this->addArg( 'olddb', 'Old DB name' );
 		$this->addArg( 'newdb', 'New DB name' );
 	}
-	
+
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
@@ -64,13 +64,13 @@ class RenameWiki extends Maintenance {
 				if ( !preg_match( '!^DB://(.*)$!', $storeURL, $m ) ) {
 					continue;
 				}
-	
+
 				$cluster = $m[1];
-	
+
 				# Hack
 				$wgExternalServers[$cluster][0]['user'] = $wgDBuser;
 				$wgExternalServers[$cluster][0]['password'] = $wgDBpassword;
-	
+
 				$store = new ExternalStoreDB;
 				$extdb =& $store->getMaster( $cluster );
 				$extdb->query( "SET table_type=InnoDB" );

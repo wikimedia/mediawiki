@@ -39,7 +39,7 @@ class MwSql extends Maintenance {
 			$promptObject = new SqlPromptPrinter( "> " );
 			$promptCallback = $promptObject->cb();
 		}
-	
+
 		if ( !$file )
 			$this->error( "Unable to open input file", true );
 
@@ -69,7 +69,7 @@ class MwSql extends Maintenance {
 			$this->output( "Query OK, $affected row(s) affected\n" );
 		}
 	}
-	
+
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
