@@ -2436,10 +2436,11 @@ class OutputPage {
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		if ( $this->getModules() ) {
-			$modules = FormatJson::encode( $this->getModules() );
+			$modules = FormatJson::encode(  );
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					"mediaWiki.loader.load( {$modules} ); mediaWiki.loader.go();"
+					Xml::encodeJsCall( 'mediaWiki.loader.load', $this->getModules() ) .
+					Xml::encodeJsCall( 'mediaWiki.loader.go' )
 				)
 			) . "\n";
 		}
