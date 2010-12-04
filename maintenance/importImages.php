@@ -292,7 +292,7 @@ Options:
 --overwrite		Overwrite existing images with the same name (default is to skip them)
 --limit=<num>		Limit the number of images to process. Ignored or skipped images are not counted.
 --from=<name>		Ignore all files until the one with the given name. Useful for resuming
-                        aborted imports. <name> should be the file's canonical database form.
+						aborted imports. <name> should be the file's canonical database form.
 --skip-dupes		Skip images that were already uploaded under a different name (check SHA1)
 --sleep=<sec> 		Sleep between files. Useful mostly for debugging.
 --user=<username> 	Set username of uploader, default 'Maintenance script'
@@ -306,7 +306,7 @@ Options:
 --protect=<protect>     Specify the protect value (autoconfirmed,sysop)
 --unprotect             Unprotects all uploaded images
 --source-wiki-url   if specified, take User and Comment data for each imported file from this URL.
-                    For example, --source-wiki-url="http://en.wikipedia.org/"
+					For example, --source-wiki-url="http://en.wikipedia.org/"
 
 TEXT;
 	exit( 1 );

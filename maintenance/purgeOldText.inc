@@ -9,15 +9,15 @@
  */
 
 function PurgeRedundantText( $delete = false ) {
-	
+
 	# Data should come off the master, wrapped in a transaction
 	$dbw = wfGetDB( DB_MASTER );
 	$dbw->begin();
-	
+
 	$tbl_arc = $dbw->tableName( 'archive' );
 	$tbl_rev = $dbw->tableName( 'revision' );
 	$tbl_txt = $dbw->tableName( 'text' );
-	
+
 	# Get "active" text records from the revisions table
 	echo( "Searching for active text records in revisions table..." );
 	$res = $dbw->query( "SELECT DISTINCT rev_text_id FROM $tbl_rev" );
@@ -25,7 +25,7 @@ function PurgeRedundantText( $delete = false ) {
 		$cur[] = $row->rev_text_id;
 	}
 	echo( "done.\n" );
-	
+
 	# Get "active" text records from the archive table
 	echo( "Searching for active text records in archive table..." );
 	$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
@@ -33,7 +33,7 @@ function PurgeRedundantText( $delete = false ) {
 		$cur[] = $row->ar_text_id;
 	}
 	echo( "done.\n" );
-	
+
 	# Get the IDs of all text records not in these sets
 	echo( "Searching for inactive text records..." );
 	$set = implode( ', ', $cur );
@@ -43,11 +43,11 @@ function PurgeRedundantText( $delete = false ) {
 		$old[] = $row->old_id;
 	}
 	echo( "done.\n" );
-	
+
 	# Inform the user of what we're going to do
 	$count = count( $old );
 	echo( "$count inactive items found.\n" );
-	
+
 	# Delete as appropriate
 	if ( $delete && $count ) {
 		echo( "Deleting..." );
@@ -55,8 +55,8 @@ function PurgeRedundantText( $delete = false ) {
 		$dbw->query( "DELETE FROM $tbl_txt WHERE old_id IN ( $set )" );
 		echo( "done.\n" );
 	}
-	
+
 	# Done
 	$dbw->commit();
-	
+
 }

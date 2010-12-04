@@ -24,13 +24,13 @@
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class BenchmarkPurge extends Maintenance {
-	
+
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( "count", "How many URLs to feed to Squid for purging", false, true );
 		$this->mDescription = "Benchmark the Squid purge functions.";
 	}
-	
+
 	public function execute() {
 		global $wgUseSquid, $wgSquidServers;
 		if ( !$wgUseSquid ) {
@@ -49,8 +49,8 @@ class BenchmarkPurge extends Maintenance {
 			}
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Run a bunch of URLs through SquidUpdate::purge()
 	 * to benchmark Squid response times.
 	 * @param $urls array A bunch of URLs to purge
@@ -67,8 +67,8 @@ class BenchmarkPurge extends Maintenance {
 		return sprintf( "%4d titles in %6.2fms (%6.2fms each)",
 			count( $urls ), $pertrial * 1000.0, $pertitle * 1000.0 );
 	}
-	
-	/** 
+
+	/**
 	 * Get an array of randomUrl()'s.
 	 * @param $length int How many urls to add to the array
 	 */
@@ -79,18 +79,18 @@ class BenchmarkPurge extends Maintenance {
 		}
 		return $list;
 	}
-	
-	/** 
+
+	/**
 	 * Return a random URL of the wiki. Not necessarily an actual title in the
-	 * database, but at least a URL that looks like one. 
+	 * database, but at least a URL that looks like one.
 	 */
 	private function randomUrl() {
 		global $wgServer, $wgArticlePath;
 		return $wgServer . str_replace( '$1', $this->randomTitle(), $wgArticlePath );
 	}
-	
-	/** 
-	 * Create a random title string (not necessarily a Title object). 
+
+	/**
+	 * Create a random title string (not necessarily a Title object).
 	 * For use with randomUrl().
 	 */
 	private function randomTitle() {

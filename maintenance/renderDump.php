@@ -27,7 +27,7 @@
  * @file
  * @ingroup Maintenance
  */
- 
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class DumpRenderer extends Maintenance {
@@ -60,22 +60,22 @@ class DumpRenderer extends Maintenance {
 		$importer->setRevisionCallback(
 			array( &$this, 'handleRevision' ) );
 
-		$importer->doImport();		
-		
+		$importer->doImport();
+
 		$delta = wfTime() - $this->startTime;
 		$this->error( "Rendered {$this->count} pages in " . round($delta, 2) . " seconds " );
 		if ($delta > 0)
 			$this->error( round($this->count / $delta, 2) . " pages/sec" );
 		$this->error( "\n" );
 	}
-	
+
 	/**
 	 * Callback function for each revision, turn into HTML and save
 	 * @param $rev Revision
 	 */
 	public function handleRevision( $rev ) {
 		global $wgParserConf;
-		
+
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->error( "Got bogus revision with null title!" );

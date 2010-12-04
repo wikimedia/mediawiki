@@ -29,14 +29,14 @@ class CheckImages extends Maintenance {
 		$this->mDescription = "Check images to see if they exist, are readable, etc";
 		$this->setBatchSize( 1000 );
 	}
-	
+
 	public function execute() {
 		$start = '';
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$numImages = 0;
 		$numGood = 0;
-	
+
 		do {
 			$res = $dbr->select( 'image', '*', array( 'img_name > ' . $dbr->addQuotes( $start ) ),
 				__METHOD__, array( 'LIMIT' => $this->mBatchSize ) );
@@ -54,27 +54,27 @@ class CheckImages extends Maintenance {
 					$this->output( "{$row->img_name}: missing\n" );
 					continue;
 				}
-	
+
 				if ( $stat['mode'] & 040000 ) {
 					$this->output( "{$row->img_name}: is a directory\n" );
 					continue;
 				}
-	
+
 				if ( $stat['size'] == 0 && $row->img_size != 0 ) {
 					$this->output( "{$row->img_name}: truncated, was {$row->img_size}\n" );
 					continue;
 				}
-	
+
 				if ( $stat['size'] != $row->img_size ) {
 					$this->output( "{$row->img_name}: size mismatch DB={$row->img_size}, actual={$stat['size']}\n" );
 					continue;
 				}
-	
+
 				$numGood++;
 			}
-	
+
 		} while ( $res->numRows() );
-	
+
 		$this->output( "Good images: $numGood/$numImages\n" );
 	}
 }

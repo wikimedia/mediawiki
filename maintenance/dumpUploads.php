@@ -43,11 +43,11 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 		if ( $this->hasOption( 'local' ) ) {
 			$this->mAction = 'fetchLocal';
 		}
-		
+
 		if ( $this->hasOption( 'used' ) ) {
 			$this->mAction = 'fetchUsed';
 		}
-		
+
 		if ( $this->hasOption( 'shared' ) ) {
 			if ( $this->hasOption( 'used' ) ) {
 				// Include shared-repo files in the used check
@@ -72,13 +72,13 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 		$dbr = wfGetDB( DB_SLAVE );
 		$image = $dbr->tableName( 'image' );
 		$imagelinks = $dbr->tableName( 'imagelinks' );
-		
+
 		$sql = "SELECT DISTINCT il_to, img_name
 			FROM $imagelinks
 			LEFT OUTER JOIN $image
 			ON il_to=img_name";
 		$result = $dbr->query( $sql );
-		
+
 		foreach ( $result as $row ) {
 			$this->outputItem( $row->il_to, $shared );
 		}
@@ -95,12 +95,12 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 			array( 'img_name' ),
 			'',
 			__METHOD__ );
-		
+
 		foreach ( $result as $row ) {
 			$this->outputItem( $row->img_name, $shared );
 		}
 	}
-	
+
 	function outputItem( $name, $shared ) {
 		$file = wfFindFile( $name );
 		if ( $file && $this->filterItem( $file, $shared ) ) {

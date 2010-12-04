@@ -29,7 +29,7 @@ class PurgeOldText extends Maintenance {
 		$this->mDescription = "Purge old text records from the database";
 		$this->addOption( 'purge', 'Performs the deletion' );
 	}
-	
+
 	public function execute() {
 		$this->purgeRedundantText( $this->hasOption( 'purge' ) );
 	}

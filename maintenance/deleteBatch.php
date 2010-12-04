@@ -26,11 +26,11 @@
  *
  * @ingroup Maintenance
  */
- 
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class DeleteBatch extends Maintenance {
-	
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Deletes a batch of pages";
@@ -40,14 +40,14 @@ class DeleteBatch extends Maintenance {
 		$this->addArg( 'listfile', 'File with titles to delete, separated by newlines. ' .
 			'If not given, stdin will be used.', false );
 	}
-	
+
 	public function execute() {
 		global $wgUser;
 
 		# Change to current working directory
 		$oldCwd = getcwd();
 		chdir( $oldCwd );
-	
+
 		# Options processing
 		$user = $this->getOption( 'u', 'Delete page script' );
 		$reason = $this->getOption( 'r', '' );
@@ -80,8 +80,8 @@ class DeleteBatch extends Maintenance {
 				$this->output( "Skipping nonexistent page '$line'\n" );
 				continue;
 			}
-	
-	
+
+
 			$this->output( $page->getPrefixedText() );
 			$dbw->begin();
 			if ( $page->getNamespace() == NS_FILE ) {
@@ -100,7 +100,7 @@ class DeleteBatch extends Maintenance {
 			} else {
 				$this->output( " FAILED to delete article\n" );
 			}
-	
+
 			if ( $interval ) {
 				sleep( $interval );
 			}

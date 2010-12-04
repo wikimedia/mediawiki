@@ -39,7 +39,7 @@ class OrphanStats extends Maintenance {
 			$this->error( "blob_orphans doesn't seem to exist, need to run trackBlobs.php first", true );
 		}
 		$res = $dbr->select( 'blob_orphans', '*', false, __METHOD__ );
-		
+
 		$num = 0;
 		$totalSize = 0;
 		$hashes = array();
@@ -48,7 +48,7 @@ class OrphanStats extends Maintenance {
 		foreach ( $res as $boRow ) {
 			$extDB = $this->getDB( $boRow->bo_cluster );
 			$blobRow = $extDB->selectRow( 'blobs', '*', array( 'blob_id' => $boRow->bo_blob_id ), __METHOD__ );
-			
+
 			$num++;
 			$size = strlen( $blobRow->blob_text );
 			$totalSize += $size;

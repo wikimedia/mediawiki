@@ -14,7 +14,7 @@ class FixBug20757 extends Maintenance {
 		$this->addOption( 'dry-run', 'Report only' );
 		$this->addOption( 'start', 'old_id to start at', false, true );
 	}
-	
+
 	function execute() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$dbw = wfGetDB( DB_MASTER );
@@ -144,7 +144,7 @@ class FixBug20757 extends Maintenance {
 						print "$primaryId: unrecoverable: secondary row is missing\n";
 						++$numBad;
 					} elseif ( $this->isUnbrokenStub( $stub, $secondaryRow ) ) {
-						// Not broken yet, and not in the tracked clusters so it won't get 
+						// Not broken yet, and not in the tracked clusters so it won't get
 						// broken by the current RCT run.
 						++$numGood;
 					} elseif ( strpos( $secondaryRow->old_flags, 'external' ) !== false ) {
@@ -205,7 +205,7 @@ class FixBug20757 extends Maintenance {
 						__METHOD__
 					);
 
-					// Add a blob_tracking row so that the new reference can be recompressed 
+					// Add a blob_tracking row so that the new reference can be recompressed
 					// without needing to run trackBlobs.php again
 					$dbw->insert( 'blob_tracking',
 						array(

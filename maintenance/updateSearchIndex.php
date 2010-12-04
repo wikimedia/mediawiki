@@ -27,7 +27,7 @@
  * @file
  * @ingroup Maintenance
  */
- 
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UpdateSearchIndex extends Maintenance {
@@ -62,7 +62,7 @@ class UpdateSearchIndex extends Maintenance {
 			}
 		}
 		$lockTime = $this->getOption( 'l', 20 );
-		
+
 		$this->doUpdateSearchIndex( $start, $end, $lockTime );
 		if ( is_writable( dirname( realpath( $posFile ) ) ) ) {
 			$file = fopen( $posFile, 'w' );
@@ -76,7 +76,7 @@ class UpdateSearchIndex extends Maintenance {
 			$this->output( "*** Couldn't write to the $posFile!\n" );
 		}
 	}
-	
+
 	private function doUpdateSearchIndex( $start, $end, $maxLockTime ) {
 		global $wgDisableSearchUpdate;
 

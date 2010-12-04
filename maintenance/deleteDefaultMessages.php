@@ -1,6 +1,6 @@
 <?php
 /**
- * Deletes all pages in the MediaWiki namespace which were last edited by 
+ * Deletes all pages in the MediaWiki namespace which were last edited by
  * "MediaWiki default".
  *
  * This program is free software; you can redistribute it and/or modify
@@ -34,7 +34,7 @@ class DeleteDefaultMessages extends Maintenance {
 
 		$user = 'MediaWiki default';
 		$reason = 'No longer required';
-		
+
 		$this->output( "Checking existence of old default messages..." );
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( array( 'page', 'revision' ),

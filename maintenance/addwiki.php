@@ -147,7 +147,7 @@ class AddWiki extends Maintenance {
 		# print "Constructing interwiki SQL\n";
 		# Rebuild interwiki tables
 		# passthru( '/home/wikipedia/conf/interwiki/update' );
-		
+
 		$time = wfTimestamp( TS_RFC2822 );
 		// These arguments need to be escaped twice: once for echo and once for at
 		$escDbName = wfEscapeShellArg( wfEscapeShellArg( $dbName ) );
@@ -157,14 +157,14 @@ class AddWiki extends Maintenance {
 		$escLang = wfEscapeShellArg( wfEscapeShellArg( $lang ) );
 		$escDomain = wfEscapeShellArg( wfEscapeShellArg( $domain ) );
 		shell_exec( "echo notifyNewProjects $escDbName $escTime $escUcsite $escName $escLang $escDomain | at now + 15 minutes" );
-		
+
 		$this->output( "Script ended. You still have to:
 	* Add any required settings in InitialiseSettings.php
 	* Run sync-common-all
 	* Run /home/wikipedia/conf/interwiki/update
 	" );
 	}
-	
+
 	private function getFirstArticle( $ucsite, $name ) {
 		return <<<EOT
 ==This subdomain is reserved for the creation of a [[wikimedia:Our projects|$ucsite]] in '''[[w:en:{$name}|{$name}]]''' language==

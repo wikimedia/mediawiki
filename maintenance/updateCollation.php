@@ -25,7 +25,7 @@ TEXT;
 
 		#$this->addOption( 'force', 'Run on all rows, even if the collation is supposed to be up-to-date.' );
 	}
-	
+
 	public function execute() {
 		global $wgCategoryCollation, $wgContLang;
 

@@ -48,7 +48,7 @@ in the load balancer, usually indicating a replication environment.' );
 		// Autodetect mode...
 		$backgroundMode = wfGetLB()->getServerCount() > 1 ||
 			( $dbw instanceof DatabaseMysql && version_compare( $dbver, '4.1' ) < 0 );
-	
+
 		if ( $this->hasOption( 'background' ) ) {
 			$backgroundMode = true;
 		} elseif ( $this->hasOption( 'quick' ) ) {

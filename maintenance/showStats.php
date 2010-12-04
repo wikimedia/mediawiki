@@ -44,18 +44,18 @@ class ShowStats extends Maintenance {
 			'ss_admins' => 'Number of admins',
 			'ss_images' => 'Number of images',
 		);
-	
+
 		// Get cached stats from slave database
 		$dbr = wfGetDB( DB_SLAVE );
 		$stats = $dbr->selectRow( 'site_stats', '*', '', __METHOD__ );
-	
+
 		// Get maximum size for each column
 		$max_length_value = $max_length_desc = 0;
 		foreach ( $fields as $field => $desc ) {
 			$max_length_value = max( $max_length_value, strlen( $stats->$field ) );
 			$max_length_desc  = max( $max_length_desc , strlen( $desc ) ) ;
 		}
-	
+
 		// Show them
 		foreach ( $fields as $field => $desc ) {
 			$this->output( sprintf( "%-{$max_length_desc}s: %{$max_length_value}d\n", $desc, $stats->$field ) );

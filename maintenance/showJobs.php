@@ -23,7 +23,7 @@
  * @author Tim Starling
  * @author Ashar Voultoiz
  */
- 
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ShowJobs extends Maintenance {

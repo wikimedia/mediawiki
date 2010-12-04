@@ -7,7 +7,7 @@ require( dirname( __FILE__ ) . '/Maintenance.php' );
 
 global $optionsWithArgs;
 if ( !isset( $optionsWithArgs ) ) {
-    $optionsWithArgs = array();
+	$optionsWithArgs = array();
 }
 
 class CommandLineInc extends Maintenance {

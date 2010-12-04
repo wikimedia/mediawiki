@@ -60,7 +60,7 @@ class RebuildFileCache extends Maintenance {
 		$end += $this->mBatchSize - 1;
 		$blockStart = $start;
 		$blockEnd = $start + $this->mBatchSize - 1;
-	
+
 		$dbw = wfGetDB( DB_MASTER );
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
@@ -113,7 +113,7 @@ class RebuildFileCache extends Maintenance {
 			wfWaitForSlaves( 5 );
 		}
 		$this->output( "Done!\n" );
-	
+
 		// Remove these to be safe
 		if ( isset( $wgTitle ) )
 			unset( $wgTitle );

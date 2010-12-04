@@ -41,7 +41,7 @@ class CleanupRemovedModules extends Maintenance {
 		$moduleList = implode( ', ', array_map( array( $dbw, 'addQuotes' ), $moduleNames ) );
 		$limit = max( 1, intval( $this->getOption( 'batchsize', 500 ) ) );
 		$maxlag = intval( $this->getOption( 'max-slave-lag', 5 ) );
-		
+
 		$this->output( "Cleaning up module_deps table...\n" );
 		$i = 1;
 		do {
@@ -54,7 +54,7 @@ class CleanupRemovedModules extends Maintenance {
 			wfWaitForSlaves( $maxlag );
 		} while( $numRows > 0 );
 		$this->output( "done\n" );
-		
+
 		$this->output( "Cleaning up msg_resource table...\n" );
 		$i = 1;
 		do {
@@ -66,7 +66,7 @@ class CleanupRemovedModules extends Maintenance {
 			wfWaitForSlaves( $maxlag );
 		} while( $numRows > 0 );
 		$this->output( "done\n" );
-		
+
 		$this->output( "Cleaning up msg_resource_links table...\n" );
 		$i = 1;
 		do {

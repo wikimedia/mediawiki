@@ -55,7 +55,7 @@ class TrackBlobs {
 			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
 			__METHOD__
 		);
-		
+
 		if ( $exists ) {
 			echo "Integrity check failed: found HistoryBlobStub objects in your text table.\n" .
 				"This script could destroy these objects if it continued. Run resolveStubs.php\n" .
@@ -343,7 +343,7 @@ class TrackBlobs {
 			// Find actual blobs that weren't tracked by the previous passes
 			// This is a set-theoretic difference A \ B, or in bitwise terms, A & ~B
 			$orphans = gmp_and( $actualBlobs, gmp_com( $this->trackedBlobs[$cluster] ) );
-			
+
 			// Traverse the orphan list
 			$insertBatch = array();
 			$id = 0;

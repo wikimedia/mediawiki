@@ -36,7 +36,7 @@ class DumpRev extends Maintenance {
 		if ( !$row ) {
 			$this->error( "Row not found", true );
 		}
-	
+
 		$flags = explode( ',',  $row->old_flags );
 		$text = $row->old_text;
 		if ( in_array( 'external', $flags ) ) {
@@ -65,7 +65,7 @@ class DumpRev extends Maintenance {
 			$obj = unserialize( $text );
 			$text = $obj->getText();
 		}
-	
+
 		if ( is_object( $text ) ) {
 			$this->error( "Unexpectedly got object of type: " . get_class( $text ) );
 		} else {

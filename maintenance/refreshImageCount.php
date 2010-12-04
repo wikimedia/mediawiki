@@ -28,7 +28,7 @@ class RefreshImageCount extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Resets ss_image count, forcing slaves to pick it up.";
 	}
-	
+
 	public function execute() {
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -41,7 +41,7 @@ class RefreshImageCount extends Maintenance {
 		$dbw->update( 'site_stats',
 			array( 'ss_images' => null ),
 			array( 'ss_row_id' => 1 ) );
-	
+
 		// Now this update will be forced to go out
 		$dbw->update( 'site_stats',
 			array( 'ss_images' => $count ),

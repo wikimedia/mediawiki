@@ -37,9 +37,9 @@ class CreateAndPromote extends Maintenance {
 	public function execute() {
 		$username = $this->getArg( 0 );
 		$password = $this->getArg( 1 );
-		
+
 		$this->output( wfWikiID() . ": Creating and promoting User:{$username}..." );
-		
+
 		$user = User::newFromName( $username );
 		if ( !is_object( $user ) ) {
 			$this->error( "invalid username.", true );
@@ -57,16 +57,16 @@ class CreateAndPromote extends Maintenance {
 		# Insert the account into the database
 		$user->addToDatabase();
 		$user->saveSettings();
-	
+
 		# Promote user
 		$user->addGroup( 'sysop' );
 		if ( $this->hasOption( 'bureaucrat' ) )
 			$user->addGroup( 'bureaucrat' );
-	
+
 		# Increment site_stats.ss_users
 		$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
 		$ssu->doUpdate();
-	
+
 		$this->output( "done.\n" );
 	}
 }

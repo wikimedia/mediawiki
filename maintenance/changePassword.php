@@ -33,7 +33,7 @@ class ChangePassword extends Maintenance {
 		$this->addOption( "password", "The password to use", true, true );
 		$this->mDescription = "Change a user's password";
 	}
-	
+
 	public function execute() {
 		$user = User::newFromName( $this->getOption( 'user' ) );
 		if ( !$user->getId() ) {

@@ -665,7 +665,7 @@ abstract class Maintenance {
 			$this->output( "\n" . $this->mDescription . "\n" );
 		}
 		$output = "\nUsage: php " . basename( $this->mSelf );
-		
+
 		// ... append parameters ...
 		if ( $this->mParams ) {
 			$output .= " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]";

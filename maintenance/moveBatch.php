@@ -44,7 +44,7 @@ class MoveBatch extends Maintenance {
 		$this->addOption( 'i', "Interval to sleep between moves" );
 		$this->addArg( 'listfile', 'List of pages to move, newline delimited', false );
 	}
-	
+
 	public function execute() {
 		global $wgUser;
 
@@ -67,7 +67,7 @@ class MoveBatch extends Maintenance {
 			$this->error( "Unable to read file, exiting", true );
 		}
 		$wgUser = User::newFromName( $user );
-		
+
 		# Setup complete, now start
 		$dbw = wfGetDB( DB_MASTER );
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
@@ -86,8 +86,8 @@ class MoveBatch extends Maintenance {
 				$this->error( "Invalid title on line $linenum" );
 				continue;
 			}
-	
-	
+
+
 			$this->output( $source->getPrefixedText() . ' --> ' . $dest->getPrefixedText() );
 			$dbw->begin();
 			$err = $source->moveTo( $dest, false, $reason );
@@ -97,7 +97,7 @@ class MoveBatch extends Maintenance {
 			}
 			$dbw->commit();
 			$this->output( "\n" );
-	
+
 			if ( $interval ) {
 				sleep( $interval );
 			}

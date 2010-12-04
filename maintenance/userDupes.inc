@@ -185,7 +185,7 @@ class UserDupes {
 		$user = $this->db->tableName( 'user' );
 		$result = $this->db->query(
 			 "SELECT user_name,COUNT(*) AS n
-			    FROM $user
+				FROM $user
 			GROUP BY user_name
 			  HAVING n > 1", $fname );
 
@@ -215,7 +215,7 @@ class UserDupes {
 		$firstId  = $firstRow->user_id;
 		wfOut( "Record that will be used for '$name' is user_id=$firstId\n" );
 
-		foreach ( $result as $row ) {		
+		foreach ( $result as $row ) {
 			$dupeId = $row->user_id;
 			wfOut( "... dupe id $dupeId: " );
 			$edits = $this->editCount( $dupeId );

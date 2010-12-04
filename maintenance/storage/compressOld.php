@@ -39,9 +39,9 @@ $defaults = array(
 	'c' => 20,
 	's' => 0,
 	'b' => '',
-    'e' => '',
-    'extdb' => '',
-    'endid' => false,
+	'e' => '',
+	'extdb' => '',
+	'endid' => false,
 );
 
 $options = $options + $defaults;
@@ -58,8 +58,8 @@ if ( $options['extdb'] != '' ) {
 
 $success = true;
 if ( $options['t'] == 'concat' ) {
-    $success = compressWithConcat( $options['s'], $options['c'], $options['b'],
-        $options['e'], $options['extdb'], $options['endid'] );
+	$success = compressWithConcat( $options['s'], $options['c'], $options['b'],
+		$options['e'], $options['extdb'], $options['endid'] );
 } else {
 	compressOldPages( $options['s'], $options['extdb'] );
 }
