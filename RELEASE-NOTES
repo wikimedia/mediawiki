@@ -447,6 +447,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 26160) Upload description set by extensions are not propagated
 * (bug 9675) generateSitemap.php now takes an --urlpath parameter to allow
   absolute URLs in the sitemap index (as required e.g. by Google)
+* Partial workaround for bug 6220: at least make files on shared repositories
+  show up as (struck-out) bluelinks instead of redlinks on Special:WantedFiles
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.

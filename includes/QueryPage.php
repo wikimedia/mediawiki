@@ -581,6 +581,17 @@ abstract class WantedQueryPage extends QueryPage {
 	}
 	
 	/**
+	 * Should formatResult() always check page existence, even if
+	 * the results are fresh?  This is a (hopefully temporary)
+	 * kluge for Special:WantedFiles, which may contain false
+	 * positives for files that exist e.g. in a shared repo (bug
+	 * 6220).
+	 */
+	function forceExistenceCheck() {
+		return false;
+	}
+
+	/**
 	 * Format an individual result
 	 *
 	 * @param $skin Skin to use for UI elements
@@ -590,8 +601,8 @@ abstract class WantedQueryPage extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if( $title instanceof Title ) {
-			if( $this->isCached() ) {
-				$pageLink = $title->exists()
+			if( $this->isCached() || $this->forceExistenceCheck() ) {
+				$pageLink = $title->isKnown()
 					? '<del>' . $skin->link( $title ) . '</del>'
 					: $skin->link(
 						$title,
