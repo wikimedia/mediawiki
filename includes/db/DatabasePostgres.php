@@ -973,7 +973,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * Return the next in a sequence, save the value for retrieval via insertId()
 	 */
 	function nextSequenceValue( $seqName ) {
-		$safeseq = preg_replace( "/'/", "''", $seqName );
+		$safeseq = str_replace( "'", "''", $seqName );
 		$res = $this->query( "SELECT nextval('$safeseq')" );
 		$row = $this->fetchRow( $res );
 		$this->mInsertId = $row[0];
@@ -984,7 +984,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * Return the current value of a sequence. Assumes it has been nextval'ed in this session.
 	 */
 	function currentSequenceValue( $seqName ) {
-		$safeseq = preg_replace( "/'/", "''", $seqName );
+		$safeseq = str_replace( "'", "''", $seqName );
 		$res = $this->query( "SELECT currval('$safeseq')" );
 		$row = $this->fetchRow( $res );
 		$currval = $row[0];
@@ -1242,7 +1242,7 @@ SQL;
 	 * Query whether a given schema exists. Returns the name of the owner
 	 */
 	function schemaExists( $schema ) {
-		$eschema = preg_replace( "/'/", "''", $schema );
+		$eschema = str_replace( "'", "''", $schema );
 		$SQL = "SELECT rolname FROM pg_catalog.pg_namespace n, pg_catalog.pg_roles r "
 				."WHERE n.nspowner=r.oid AND n.nspname = '$eschema'";
 		$res = $this->query( $SQL );
@@ -1301,7 +1301,7 @@ SQL;
 	}
 
 	function quote_ident( $s ) {
-		return '"' . preg_replace( '/"/', '""', $s ) . '"';
+		return '"' . str_replace( '"', '""', $s ) . '"';
 	}
 
 	/**
