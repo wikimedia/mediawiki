@@ -299,4 +299,13 @@ class Status {
 		}
 		return false;
 	}
+
+	/**
+	 * Backward compatibility function for WikiError -> Status migration
+	 *
+	 * @return String
+	 */
+	public function getMessage() {
+		return $this->getWikiText();
+	}
 }

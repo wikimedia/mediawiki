@@ -1144,6 +1144,11 @@ Please wait before trying again.',
 * Nederlands|nl', # do not translate or duplicate this message to other languages
 'suspicious-userlogout'      => 'Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.',
 
+# E-mail sending
+'pear-mail-error'        => '$1', # do not translate or duplicate this message to other languages
+'php-mail-error'         => '$1', # do not translate or duplicate this message to other languages
+'php-mail-error-unknown' => "Unkown error in PHP's mail() function",
+
 # JavaScript password checks
 'password-strength'            => 'Estimated password strength: $1',
 'password-strength-bad'        => 'BAD',

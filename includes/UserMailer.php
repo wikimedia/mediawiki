@@ -90,9 +90,9 @@ class UserMailer {
 		# Based on the result return an error string,
 		if( PEAR::isError( $mailResult ) ) {
 			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
-			return new WikiError( $mailResult->getMessage() );
+			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
 		} else {
-			return true;
+			return Status::newGood();
 		}
 	}
 
@@ -108,7 +108,7 @@ class UserMailer {
 	 * @param $body String: email's text.
 	 * @param $replyto MailAddress: optional reply-to email (default: null).
 	 * @param $contentType String: optional custom Content-Type
-	 * @return mixed True on success, a WikiError object on failure.
+	 * @return Status object
 	 */
 	static function send( $to, $from, $subject, $body, $replyto=null, $contentType=null ) {
 		global $wgSMTP, $wgOutputEncoding, $wgEnotifImpersonal;
@@ -179,19 +179,20 @@ class UserMailer {
 			if( PEAR::isError( $mail_object ) ) {
 				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
 				wfRestoreWarnings();
-				return new WikiError( $mail_object->getMessage() );
+				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
 			}
 
 			wfDebug( "Sending mail via PEAR::Mail to $dest\n" );
 			$chunks = array_chunk( (array)$dest, $wgEnotifMaxRecips );
 			foreach ($chunks as $chunk) {
-				$e = self::sendWithPear($mail_object, $chunk, $headers, $body);
-				if( WikiError::isError( $e ) ) {
+				$status = self::sendWithPear($mail_object, $chunk, $headers, $body);
+				if( !$status->isOK() ) {
 					wfRestoreWarnings();
-					return $e;
+					return $status;
 				}
 			}
 			wfRestoreWarnings();
+			return Status::newGood();
 		} else	{
 			# In the following $headers = expression we removed "Reply-To: {$from}\r\n" , because it is treated differently
 			# (fifth parameter of the PHP mail function, see some lines below)
@@ -236,13 +237,13 @@ class UserMailer {
 
 			if ( self::$mErrorString ) {
 				wfDebug( "Error sending mail: " . self::$mErrorString . "\n" );
-				return new WikiError( self::$mErrorString );
+				return Status::newFatal( 'php-mail-error', self::$mErrorString );
 			} elseif (! $sent ) {
 				//mail function only tells if there's an error
 				wfDebug( "Error sending mail\n" );
-				return new WikiError( 'mail() failed' );
+				return Status::newFatal( 'php-mail-error-unknown' );
 			} else {
-				return true;
+				return Status::newGood();
 			}
 		}
 	}
