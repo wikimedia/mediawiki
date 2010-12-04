@@ -322,6 +322,13 @@ class DatabaseMysql extends DatabaseBase {
 		return $sQuoted;
 	}
 
+	/**
+	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
+	 */
+	public function addIdentifierQuotes( $s ) {
+		return "`" . $this->strencode( $s ) . "`";
+	}
+
 	function ping() {
 		$ping = mysql_ping( $this->mConn );
 		if ( $ping ) {

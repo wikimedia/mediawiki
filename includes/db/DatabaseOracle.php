@@ -1125,10 +1125,6 @@ class DatabaseOracle extends DatabaseBase {
 		return "'" . $this->strencode( $s ) . "'";
 	}
 
-	function addIdentifierQuotes( $s ) {
-		return '"' . str_replace( '"', '""', $s ) . '"';
-	}
-
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
 		global $wgContLang;
 

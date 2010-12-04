@@ -1300,10 +1300,6 @@ SQL;
 		return "'" . pg_escape_string( $this->mConn, $s ) . "'";
 	}
 
-	function addIdentifierQuotes( $s ) {
-		return '"' . str_replace( '"', '""', $s ) . '"';
-	}
-
 	/**
 	 * Postgres specific version of replaceVars.
 	 * Calls the parent version in Database.php
