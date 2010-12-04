@@ -2893,7 +2893,7 @@ class User {
 	 * mail to the user's given address.
 	 *
 	 * @param $changed Boolean: whether the adress changed
-	 * @return \types{\bool,\type{WikiError}} True on success, a WikiError object on failure.
+	 * @return Status object
 	 */
 	function sendConfirmationMail( $changed = false ) {
 		global $wgLang;
@@ -2923,7 +2923,7 @@ class User {
 	 * @param $body \string Message body
 	 * @param $from \string Optional From address; if unspecified, default $wgPasswordSender will be used
 	 * @param $replyto \string Reply-To address
-	 * @return \types{\bool,\type{WikiError}} True on success, a WikiError object on failure
+	 * @return Status object
 	 */
 	function sendMail( $subject, $body, $from = null, $replyto = null ) {
 		if( is_null( $from ) ) {

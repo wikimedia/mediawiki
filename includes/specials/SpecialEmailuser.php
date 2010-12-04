@@ -142,7 +142,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$wgOut->setPagetitle( wfMsg( 'emailpage' ) );
 		$result = $form->show();
 		
-		if( $result === true ){
+		if( $result === true || ( $result instanceof Status && $result->isGood() ) ){
 			$wgOut->setPagetitle( wfMsg( 'emailsent' ) );
 			$wgOut->addWikiMsg( 'emailsenttext' );
 			$wgOut->returnToMain( false, $this->mTargetObj->getUserPage() );
@@ -277,10 +277,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$replyTo = null;
 		}
 
-		$mailResult = UserMailer::send( $to, $mailFrom, $subject, $text, $replyTo );
+		$status = UserMailer::send( $to, $mailFrom, $subject, $text, $replyTo );
 
-		if( WikiError::isError( $mailResult ) && false ) {
-			return $mailResult->getMessage();
+		if( !$status->isGood() && false ) {
+			return $status;
 		} else {
 			// if the user requested a copy of this mail, do this now,
 			// unless they are emailing themselves, in which case one 
@@ -292,20 +292,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 					$subject
 				);
 				wfRunHooks( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text ) );
-				$ccResult = UserMailer::send( $from, $from, $cc_subject, $text );
-				if( WikiError::isError( $ccResult ) ) {
-					// At this stage, the user's CC mail has failed, but their
-					// original mail has succeeded. It's unlikely, but still, 
-					// what to do? We can either show them an error, or we can 
-					// say everything was fine, or we can say we sort of failed 
-					// AND sort of succeeded. Of these options, simply saying 
-					// there was an error is probably best.
-					return $ccResult->getMessage();
-				}
+				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $text );
+				$status->merge( $ccStatus );
 			}
 
 			wfRunHooks( 'EmailUserComplete', array( $to, $from, $subject, $text ) );
-			return true;
+			return $status;
 		}
 	}
 }

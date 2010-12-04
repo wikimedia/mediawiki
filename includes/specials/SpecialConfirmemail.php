@@ -81,11 +81,11 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	function showRequestForm() {
 		global $wgOut, $wgUser, $wgLang, $wgRequest;
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getText( 'token' ) ) ) {
-			$ok = $wgUser->sendConfirmationMail();
-			if ( WikiError::isError( $ok ) ) {
-				$wgOut->addWikiMsg( 'confirmemail_sendfailed', $ok->toString() );
-			} else {
+			$status = $wgUser->sendConfirmationMail();
+			if ( $status->isGood() ) {
 				$wgOut->addWikiMsg( 'confirmemail_sent' );
+			} else {
+				$wgOut->addWikiText( $status->getWikiText( 'confirmemail_sendfailed' ) );
 			}
 		} else {
 			if( $wgUser->isEmailConfirmed() ) {

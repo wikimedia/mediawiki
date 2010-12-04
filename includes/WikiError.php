@@ -60,7 +60,13 @@ class WikiError {
 	 * @return bool
 	 */
 	public static function isError( $object ) {
-		return $object instanceof WikiError;
+		if ( $object instanceof WikiError ) {
+			return true;
+		} elseif ( $object instanceof Status ) {
+			return !$object->isOK();
+		} else {
+			return false;
+		}
 	}
 }
 
