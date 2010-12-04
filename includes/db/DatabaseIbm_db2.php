@@ -647,10 +647,6 @@ EOF;
 		}
 	}
 
-	public function addIdentifierQuotes( $s ) {
-		return '"' . str_replace( '"', '""', $s ) . '"';
-	}
-
 	/**
 	 * Verifies that a DB2 column/field type is numeric
 	 *

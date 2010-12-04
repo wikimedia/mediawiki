@@ -997,10 +997,6 @@ class DatabaseMssql extends DatabaseBase {
 		}
 	}
 
-	function addIdentifierQuotes( $s ) {
-		return "'" . str_replace( "'", "''", $s ) . "'";
-	}
-
 	function selectDB( $db ) {
 		return ( $this->query( "SET DATABASE $db" ) !== false );
 	}

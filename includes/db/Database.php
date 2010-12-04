@@ -1695,12 +1695,13 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Quotes a string using `backticks` for things like database, table, and field
-	 * names, other databases which use something other than backticks can replace
-	 * this with something else
+	 * Quotes an identifier using `backticks` or "double quotes" depending on the database type.
+	 * MySQL uses `backticks` while basically everything else uses double quotes.
+	 * Since MySQL is the odd one out here the double quotes are our generic
+	 * and we implement backticks in DatabaseMysql.
 	 */ 	 
 	public function addIdentifierQuotes( $s ) {
-		return "`" . $this->strencode( $s ) . "`";
+		return '"' . str_replace( '"', '""', $s ) . '"';
 	}
 
 	/**
