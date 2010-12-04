@@ -2036,14 +2036,14 @@ class Skin extends Linker {
 		}
 	}
 
-	function getCommonStylePath( $fname ) {
+	function getCommonStylePath( $fame ) {
 		global $wgStylePath, $wgStyleVersion;
 		return "{$wgStylePath}/common/$name?$wgStyleVersion";
 	}
 
-	function getSkinStylePath( $fname ) {
+	function getSkinStylePath( $name ) {
 		global $wgStylePath, $wgStyleVersion;
-		return "{$wgStylePath}/{$this->stylename}/$fname?$wgStyleVersion";
+		return "{$wgStylePath}/{$this->stylename}/$name?$wgStyleVersion";
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */
