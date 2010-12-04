@@ -35,9 +35,19 @@ class WantedFilesPage extends WantedQueryPage {
 		return 'Wantedfiles';
 	}
 
+	/**
+	 * KLUGE: The results may contain false positives for files
+	 * that exist e.g. in a shared repo.  Setting this at least
+	 * keeps them from showing up as redlinks in the output, even
+	 * if it doesn't fix the real problem (bug 6220).
+	 */
+	function forceExistenceCheck() {
+		return true;
+	}
+
 	function getSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
-		list( $imagelinks, $page ) = $dbr->tableNamesN( 'imagelinks', 'page' );
+		list( $imagelinks, $image ) = $dbr->tableNamesN( 'imagelinks', 'image' );
 		$name = $dbr->addQuotes( $this->getName() );
 		return
 			"
@@ -47,8 +57,8 @@ class WantedFilesPage extends WantedQueryPage {
 				il_to as title,
 				COUNT(*) as value
 			FROM $imagelinks
-			LEFT JOIN $page ON il_to = page_title AND page_namespace = ". NS_FILE ."
-			WHERE page_title IS NULL
+			LEFT JOIN $image ON il_to = img_name
+			WHERE img_name IS NULL
 			GROUP BY il_to
 			";
 	}
