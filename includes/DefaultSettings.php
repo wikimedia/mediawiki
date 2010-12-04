@@ -2263,6 +2263,25 @@ $wgDisableOutputCompression = false;
 $wgExperimentalHtmlIds = true;
 
 /**
+ * Abstract list of footer icons for skins in place of old copyrightico and poweredbyico code
+ * You can add new icons to the built in copyright or poweredby, or you can create
+ * a new block. Though note that you may need to add some custom css to get good styling
+ * of new blocks in monobook. vector and modern should work without any special css.
+ */
+$wgFooterIcons = array(
+	"copyright" => array(
+		"copyright" => array(), // placeholder for the built in copyright icon
+	),
+	"poweredby" => array(
+		"mediawiki" => array(
+			"src" => null, // Defaults to "$wgStylePath/common/images/poweredby_mediawiki_88x31.png"
+			"url" => "http://www.mediawiki.org/",
+			"alt" => "Powered by MediaWiki",
+		)
+	),
+);
+
+/**
  * Search form behavior for Vector skin only
  * true = use an icon search button
  * false = use Go & Search buttons

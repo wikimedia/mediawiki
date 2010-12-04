@@ -413,13 +413,7 @@ class VectorTemplate extends QuickTemplate {
 
 		// Generate additional footer links
 		$footerlinks = $this->data["footerlinks"];
-		// footerlinks doesn't include icons for now, so we'll just append the default
-		$footerlinks["icons"] = array( 'poweredbyico', 'copyrightico', );
 		
-		$footerlinksClasses = array(
-			'icons' => array( 'noprint' )
-		);
-
 		// Reduce footer links down to only those which are being used
 		$validFooterLinks = array();
 		foreach( $footerlinks as $category => $links ) {
@@ -430,6 +424,24 @@ class VectorTemplate extends QuickTemplate {
 				}
 			}
 		}
+		
+		// Generate additional footer icons
+		$footericons = $this->data["footericons"];
+		// Unset any icons which don't have an image
+		foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+			foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
+				if ( !is_string($footerIcon) && !isset($footerIcon["src"]) ) {
+					unset($footerIconsBlock[$footerIconKey]);
+				}
+			}
+		}
+		// Redo removal of any empty blocks
+		foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+			if ( count($footerIconsBlock) <= 0 ) {
+				unset($footericons[$footerIconsKey]);
+			}
+		}
+		
 		// Reverse horizontally rendered navigation elements
 		if ( $wgLang->isRTL() ) {
 			$this->data['view_urls'] =
@@ -523,7 +535,7 @@ class VectorTemplate extends QuickTemplate {
 		<div id="footer"<?php $this->html('userlangattributes') ?>>
 			<?php foreach( $validFooterLinks as $category => $links ): ?>
 				<?php if ( count( $links ) > 0 ): ?>
-				<ul id="footer-<?php echo $category ?>"<?php if (isset($footerlinksClasses[$category])) echo ' class="' . implode(" ", $footerlinksClasses[$category]) . '"'; ?>>
+				<ul id="footer-<?php echo $category ?>">
 					<?php foreach( $links as $link ): ?>
 						<?php if( isset( $this->data[$link] ) && $this->data[$link] ): ?>
 						<li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
@@ -532,6 +544,31 @@ class VectorTemplate extends QuickTemplate {
 				</ul>
 				<?php endif; ?>
 			<?php endforeach; ?>
+<?php			if ( count( $footericons ) > 0 ): ?>
+				<ul id="footer-icons">
+<?php			foreach ( $footericons as $blockName => $footerIcons ): ?>
+					<li id="footer-<?php echo htmlspecialchars($blockName); ?>ico" class="noprint">
+<?php					foreach ( $footerIcons as $icon ):
+							if ( is_string($icon) ) {
+								$html = $icon;
+							} else {
+								$url = $icon["url"];
+								unset($icon["url"]);
+								if ( isset($icon["src"]) ) {
+									$html = Html::element( 'img', $icon ); // do this the lazy way, just pass icon data as an attribute array
+								} else {
+									$html = htmlspecialchars($icon["alt"]);
+								}
+								if ( $url ) {
+									$html = Html::rawElement( 'a', array( "href" => $url ), $html );
+								}
+							}
+							echo "						$html\n";
+						endforeach; ?>
+					</li>
+<?php			endforeach; ?>
+				</ul>
+			<?php endif; ?>
 			<div style="clear:both"></div>
 		</div>
 		<!-- /footer -->

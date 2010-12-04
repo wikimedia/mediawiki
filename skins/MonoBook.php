@@ -74,6 +74,22 @@ class MonoBookTemplate extends QuickTemplate {
 		$footerlinks = $this->data["footerlinks"];
 		// fold footerlinks into a single array using a bit of trickery
 		$footerlinks = call_user_func_array('array_merge', array_values($footerlinks));
+		// Generate additional footer icons
+		$footericons = $this->data["footericons"];
+		// Unset any icons which don't have an image
+		foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+			foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
+				if ( !is_string($footerIcon) && !isset($footerIcon["src"]) ) {
+					unset($footerIconsBlock[$footerIconKey]);
+				}
+			}
+		}
+		// Redo removal of any empty blocks
+		foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+			if ( count($footerIconsBlock) <= 0 ) {
+				unset($footericons[$footerIconsKey]);
+			}
+		}
 
 		$this->html( 'headelement' );
 ?><div id="globalWrapper">
@@ -171,12 +187,26 @@ class MonoBookTemplate extends QuickTemplate {
 </div><!-- end of the left (by default at least) column -->
 <div class="visualClear"></div>
 <div id="footer"<?php $this->html('userlangattributes') ?>>
-<?php
-if($this->data['poweredbyico']) { ?>
-	<div id="f-poweredbyico"><?php $this->html('poweredbyico') ?></div>
-<?php }
-if($this->data['copyrightico']) { ?>
-	<div id="f-copyrightico"><?php $this->html('copyrightico') ?></div>
+<?php foreach ( $footericons as $blockName => $footerIcons ) { ?>
+	<div id="f-<?php echo htmlspecialchars($blockName); ?>ico">
+<?php	foreach ( $footerIcons as $icon ) { 
+			if ( is_string($icon) ) {
+				$html = $icon;
+			} else {
+				$url = $icon["url"];
+				unset($icon["url"]);
+				if ( isset($icon["src"]) ) {
+					$html = Html::element( 'img', $icon ); // do this the lazy way, just pass icon data as an attribute array
+				} else {
+					$html = htmlspecialchars($icon["alt"]);
+				}
+				if ( $url ) {
+					$html = Html::rawElement( 'a', array( "href" => $url ), $html );
+				}
+			}
+			echo "		$html\n";
+		} ?>
+	</div>
 <?php }
 
 		// Generate additional footer links

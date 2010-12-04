@@ -63,6 +63,28 @@ if( isset( $wgFileStore['deleted']['directory'] ) ) {
 	$wgDeletedDirectory = $wgFileStore['deleted']['directory'];
 }
 
+if( isset($wgFooterIcons["copyright"]) &&
+  isset($wgFooterIcons["copyright"]["copyright"]) &&
+  $wgFooterIcons["copyright"]["copyright"] === array() ) {
+	if ( isset( $wgCopyrightIcon ) && $wgCopyrightIcon ) {
+		$wgFooterIcons["copyright"]["copyright"] = $wgCopyrightIcon;
+	} elseif ( $wgRightsIcon || $wgRightsText ) {
+		$wgFooterIcons["copyright"]["copyright"] = array(
+			"url" => $wgRightsUrl,
+			"src" => $wgRightsIcon,
+			"alt" => $wgRightsText,
+		);
+	} else {
+		unset($wgFooterIcons["copyright"]["copyright"]);
+	}
+}
+
+if( isset($wgFooterIcons["poweredby"]) &&
+  isset($wgFooterIcons["poweredby"]["mediawiki"]) &&
+  $wgFooterIcons["poweredby"]["mediawiki"]["src"] === null ) {
+	$wgFooterIcons["poweredby"]["mediawiki"]["src"] = "$wgStylePath/common/images/poweredby_mediawiki_88x31.png";
+}
+
 /**
  * Unconditional protection for NS_MEDIAWIKI since otherwise it's too easy for a
  * sysadmin to set $wgNamespaceProtection incorrectly and leave the wiki insecure.
