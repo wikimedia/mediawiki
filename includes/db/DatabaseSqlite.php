@@ -530,7 +530,7 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 	}
 
-	function quote_ident( $s ) {
+	function addIdentifierQuotes( $s ) {
 		return '"' . str_replace( '"', '""', $s ) . '"';
 	}
 

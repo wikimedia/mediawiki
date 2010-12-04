@@ -1125,7 +1125,7 @@ class DatabaseOracle extends DatabaseBase {
 		return "'" . $this->strencode( $s ) . "'";
 	}
 
-	function quote_ident( $s ) {
+	function addIdentifierQuotes( $s ) {
 		return '"' . str_replace( '"', '""', $s ) . '"';
 	}
 

@@ -1699,8 +1699,19 @@ abstract class DatabaseBase implements DatabaseType {
 	 * names, other databases which use something other than backticks can replace
 	 * this with something else
 	 */ 	 
-	function quote_ident( $s ) {
+	public function addIdentifierQuotes( $s ) {
 		return "`" . $this->strencode( $s ) . "`";
+	}
+
+	/**
+	 * Backwards compatibility, identifier quoting originated in DatabasePostgres
+	 * which used quote_ident which does not follow our naming conventions
+	 * was renamed to addIdentifierQuotes.
+	 * @deprecated use addIdentifierQuotes
+	 */
+	function quote_ident( $s ) {
+		wfDeprecated( __METHOD__ );
+		return $this->addIdentifierQuotes( $s );
 	}
 
 	/**
@@ -2516,7 +2527,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * 
 	 * '{$var}' should be used for text and is passed through the database's addQuotes method
 	 * `{$var}` should be used for identifiers (eg: table and database names), it is passed through
-	 *          the database's quote_ident method which can be overridden if the database
+	 *          the database's addIdentifierQuotes method which can be overridden if the database
 	 *          uses something other than backticks.
 	 * / *$var* / is just encoded, besides traditional dbprefix and tableoptions it's use should be avoided
 	 * 
@@ -2528,7 +2539,7 @@ abstract class DatabaseBase implements DatabaseType {
 		foreach ( $varnames as $var ) {
 			if ( isset( $GLOBALS[$var] ) ) {
 				$ins = str_replace( '\'{$' . $var . '}\'', $this->addQuotes( $GLOBALS[$var] ), $ins ); // replace '{$var}'
-				$ins = str_replace( '`{$' . $var . '}`', $this->quote_ident( $GLOBALS[$var] ), $ins ); // replace `{$var}`
+				$ins = str_replace( '`{$' . $var . '}`', $this->addIdentifierQuotes( $GLOBALS[$var] ), $ins ); // replace `{$var}`
 				$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $GLOBALS[$var] ) , $ins ); // replace /*$var*/
 			}
 		}
