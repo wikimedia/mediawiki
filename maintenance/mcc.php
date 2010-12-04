@@ -31,10 +31,7 @@ function mccShowHelp( $command ) {
 		$command = 'fullhelp';
 	}
 	if ( $command === 'fullhelp' ) {
-		$max_cmd_len = 0;
-		foreach( array_keys( $commandList ) as $cmd ) {
-			$max_cmd_len = max( $max_cmd_len, strlen($cmd) );
-		}
+		$max_cmd_len = max( array_map( 'strlen', array_keys( $commandList ) ) );
 		foreach ( $commandList as $cmd => $desc ) {
 			printf( "%-{$max_cmd_len}s: %s\n", $cmd, $desc );
 		}
