@@ -1126,7 +1126,7 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function quote_ident( $s ) {
-		return $s;
+		return '"' . str_replace( '"', '""', $s ) . '"';
 	}
 
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
@@ -1345,15 +1345,7 @@ class DatabaseOracle extends DatabaseBase {
 			$varnames[] = '_OracleTempTS';
 		}
 
-		// Ordinary variables
-		foreach ( $varnames as $var ) {
-			if ( isset( $GLOBALS[$var] ) ) {
-				$val = $this->addQuotes( $GLOBALS[$var] ); // FIXME: safety check?
-				$ins = str_replace( '{$' . $var . '}', $val, $ins );
-				$ins = str_replace( '/*$' . $var . '*/`', '`' . $val, $ins );
-				$ins = str_replace( '/*$' . $var . '*/', $val, $ins );
-			}
-		}
+		$ins = $this->replaceGlobalVars( $ins, $varnames );
 
 		return parent::replaceVars( $ins );
 	}

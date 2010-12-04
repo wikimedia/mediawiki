@@ -1695,6 +1695,15 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Quotes a string using `backticks` for things like database, table, and field
+	 * names, other databases which use something other than backticks can replace
+	 * this with something else
+	 */ 	 
+	function quote_ident( $s ) {
+		return "`" . $this->strencode( $s ) . "`";
+	}
+
+	/**
 	 * Escape string for safe LIKE usage.
 	 * WARNING: you should almost never use this function directly,
 	 * instead use buildLike() that escapes everything automatically
@@ -2501,6 +2510,32 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Database independent variable replacement, replaces a set of named variables
+	 * in a sql statement with the contents of their global variables.
+	 * Supports '{$var}' `{$var}` and / *$var* / (without the spaces) style variables
+	 * 
+	 * '{$var}' should be used for text and is passed through the database's addQuotes method
+	 * `{$var}` should be used for identifiers (eg: table and database names), it is passed through
+	 *          the database's quote_ident method which can be overridden if the database
+	 *          uses something other than backticks.
+	 * / *$var* / is just encoded, besides traditional dbprefix and tableoptions it's use should be avoided
+	 * 
+	 * @param $ins String: SQL statement to replace variables in
+	 * @param $varnames Array: Array of global variable names to replace
+	 * @return String The new SQL statement with variables replaced
+	 */
+	protected function replaceGlobalVars( $ins, $varnames ) {
+		foreach ( $varnames as $var ) {
+			if ( isset( $GLOBALS[$var] ) ) {
+				$ins = str_replace( '\'{$' . $var . '}\'', $this->addQuotes( $GLOBALS[$var] ), $ins ); // replace '{$var}'
+				$ins = str_replace( '`{$' . $var . '}`', $this->quote_ident( $GLOBALS[$var] ), $ins ); // replace `{$var}`
+				$ins = str_replace( '/*$' . $var . '*/', $this->strencode( $GLOBALS[$var] ) , $ins ); // replace /*$var*/
+			}
+		}
+		return $ins;
+	}
+
+	/**
 	 * Replace variables in sourced SQL
 	 */
 	protected function replaceVars( $ins ) {
@@ -2510,15 +2545,7 @@ abstract class DatabaseBase implements DatabaseType {
 			'wgDBadminuser', 'wgDBadminpassword', 'wgDBTableOptions',
 		);
 
-		// Ordinary variables
-		foreach ( $varnames as $var ) {
-			if ( isset( $GLOBALS[$var] ) ) {
-				$val = $this->addQuotes( $GLOBALS[$var] ); // FIXME: safety check?
-				$ins = str_replace( '{$' . $var . '}', $val, $ins );
-				$ins = str_replace( '/*$' . $var . '*/`', '`' . $val, $ins );
-				$ins = str_replace( '/*$' . $var . '*/', $val, $ins );
-			}
-		}
+		$ins = $this->replaceGlobalVars( $ins, $varnames );
 
 		// Table prefixes
 		$ins = preg_replace_callback( '!/\*(?:\$wgDBprefix|_)\*/([a-zA-Z_0-9]*)!',
