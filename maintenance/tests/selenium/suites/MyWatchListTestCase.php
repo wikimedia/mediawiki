@@ -70,4 +70,4 @@ class MyWatchListTestCase extends SeleniumTestCase {
         $this->deletePage( $newPage );
     }
 }
-?>
+

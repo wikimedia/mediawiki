@@ -111,4 +111,4 @@ Class CreateAccountTestCase extends SeleniumTestCase {
                 $this->getText( "Welcome,_".ucfirst( $this->userName )."!" ));
     }
 }
-?>
+

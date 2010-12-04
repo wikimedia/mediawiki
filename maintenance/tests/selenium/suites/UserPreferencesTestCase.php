@@ -176,4 +176,4 @@ class UserPreferencesTestCase extends SeleniumTestCase {
                 $this->getText("//div[@id='bodyContent']/div[4]/strong/p"));
     }
 }
-?>
+

@@ -78,4 +78,4 @@ class EmailPasswordTestCase extends SeleniumTestCase {
                 $this->getText( "//div[@id='bodyContent']/div[4]" ));
     }
 }
-?>
+

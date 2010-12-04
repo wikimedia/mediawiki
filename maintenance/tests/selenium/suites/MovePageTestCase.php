@@ -114,4 +114,4 @@ class MovePageTestCase extends SeleniumTestCase {
         $this->deletePage( $newPage );
     }
 }
-?>
+
