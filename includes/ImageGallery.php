@@ -257,11 +257,11 @@ class ImageGallery
 
 			if( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
+				$thumbhtml = "\n\t\t\t".'<div style="height: '.(30 + $this->mHeights).'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';
 			} elseif( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">' .
+				$thumbhtml = "\n\t\t\t".'<div style="height: '.(30 + $this->mHeights).'px;">' .
 					$sk->link(
 						$nt,
 						htmlspecialchars( $nt->getText() ),
@@ -272,10 +272,10 @@ class ImageGallery
 					'</div>';
 			} elseif( !( $thumb = $img->transform( $params ) ) ) {
 				# Error generating thumbnail.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
+				$thumbhtml = "\n\t\t\t".'<div style="height: '.(30 + $this->mHeights).'px;">'
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
-				$vpad = floor( ( 1.25*$this->mHeights - $thumb->height ) /2 ) - 2;
+				$vpad = floor(( 30 + $this->mHeights - $thumb->height ) /2);
 				
 				$imageParameters = array(
 					'desc-link' => true,
@@ -285,13 +285,15 @@ class ImageGallery
 				if ( $text == '' ) {
 					$imageParameters['alt'] = $nt->getText();
 				}
-
+				
+				# Set both fixed width and height. Otherwise we might have problems
+				# with the vertical centering of images where height<line-size
 				$thumbhtml = "\n\t\t\t".
-					'<div class="thumb" style="padding: ' . $vpad . 'px 0; width: ' .($this->mWidths+30).'px;">'
+					'<div class="thumb" style="width: ' .($this->mWidths+30).'px; height: ' .($this->mHeights+30).'px;">'
 					# Auto-margin centering for block-level elements. Needed now that we have video
 					# handlers since they may emit block-level elements as opposed to simple <img> tags.
 					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
-					. '<div style="margin-left: auto; margin-right: auto; width: ' .$this->mWidths.'px;">'
+					. '<div style="margin:'.$vpad.'px auto;">'
 					. $thumb->toHtml( $imageParameters ) . '</div></div>';
 
 				// Call parser transform hook
