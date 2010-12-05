@@ -443,9 +443,9 @@ class EmailNotification {
 	}
 
 	/**
-	 * @private
+	 * Generate the generic "this page has been changed" e-mail text.
 	 */
-	function composeCommonMailtext() {
+	private function composeCommonMailtext() {
 		global $wgPasswordSender, $wgPasswordSenderName, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 		global $wgEnotifImpersonal, $wgEnotifUseRealName;
