@@ -414,27 +414,27 @@ class ImportStreamSource {
 	static function newFromFile( $filename ) {
 		$file = @fopen( $filename, 'rt' );
 		if( !$file ) {
-			return new WikiErrorMsg( "importcantopen" );
+			return Status::newFatal( "importcantopen" );
 		}
-		return new ImportStreamSource( $file );
+		return Status::newGood( new ImportStreamSource( $file ) );
 	}
 
 	static function newFromUpload( $fieldname = "xmlimport" ) {
 		$upload =& $_FILES[$fieldname];
 
 		if( !isset( $upload ) || !$upload['name'] ) {
-			return new WikiErrorMsg( 'importnofile' );
+			return Status::newFatal( 'importnofile' );
 		}
 		if( !empty( $upload['error'] ) ) {
 			switch($upload['error']){
 				case 1: # The uploaded file exceeds the upload_max_filesize directive in php.ini.
-					return new WikiErrorMsg( 'importuploaderrorsize' );
+					return Status::newFatal( 'importuploaderrorsize' );
 				case 2: # The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
-					return new WikiErrorMsg( 'importuploaderrorsize' );
+					return Status::newFatal( 'importuploaderrorsize' );
 				case 3: # The uploaded file was only partially uploaded
-					return new WikiErrorMsg( 'importuploaderrorpartial' );
+					return Status::newFatal( 'importuploaderrorpartial' );
 				case 6: #Missing a temporary folder.
-					return new WikiErrorMsg( 'importuploaderrortemp' );
+					return Status::newFatal( 'importuploaderrortemp' );
 				# case else: # Currently impossible
 			}
 
@@ -443,7 +443,7 @@ class ImportStreamSource {
 		if( is_uploaded_file( $fname ) ) {
 			return ImportStreamSource::newFromFile( $fname );
 		} else {
-			return new WikiErrorMsg( 'importnofile' );
+			return Status::newFatal( 'importnofile' );
 		}
 	}
 
@@ -459,19 +459,19 @@ class ImportStreamSource {
 			fwrite( $file, $data );
 			fflush( $file );
 			fseek( $file, 0 );
-			return new ImportStreamSource( $file );
+			return Status::newGood( new ImportStreamSource( $file ) );
 		} else {
-			return new WikiErrorMsg( 'importcantopen' );
+			return Status::newFatal( 'importcantopen' );
 		}
 	}
 
 	public static function newFromInterwiki( $interwiki, $page, $history = false, $templates = false, $pageLinkDepth = 0 ) {
 		if( $page == '' ) {
-			return new WikiErrorMsg( 'import-noarticle' );
+			return Status::newFatal( 'import-noarticle' );
 		}
 		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
 		if( is_null( $link ) || $link->getInterwiki() == '' ) {
-			return new WikiErrorMsg( 'importbadinterwiki' );
+			return Status::newFatal( 'importbadinterwiki' );
 		} else {
 			$params = array();
 			if ( $history ) $params['history'] = 1;
