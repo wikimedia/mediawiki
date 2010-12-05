@@ -195,7 +195,7 @@ class ModernTemplate extends MonoBookTemplate {
 			<div id="mw_<?php echo htmlspecialchars($blockName); ?>">
 <?php
 			foreach ( $footerIcons as $icon ) { ?>
-				<?php echo $this->skin->makeFooterIcon( $icon, false ); ?>
+				<?php echo $this->skin->makeFooterIcon( $icon, 'withoutImage' ); ?>
 
 <?php
 			} ?>
