@@ -307,7 +307,7 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Get a MediaTransformError with error 'thumbnail_error'
 	 * 
-	 * @param $params array Paramter array as passed to the transform* functions
+	 * @param $params array Parameter array as passed to the transform* functions
 	 * @param $errMsg string Error message
 	 * @return MediaTransformError
 	 */
