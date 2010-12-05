@@ -839,6 +839,8 @@ abstract class Maintenance {
 		$wgWikiFarm = false;
 		if ( isset( $this->mOptions['conf'] ) ) {
 			$settingsFile = $this->mOptions['conf'];
+		} else if ( defined("MW_CONFIG_FILE") ) {
+			$settingsFile = MW_CONFIG_FILE;
 		} else {
 			$settingsFile = "$IP/LocalSettings.php";
 		}
