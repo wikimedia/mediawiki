@@ -130,7 +130,7 @@ class WikiExporter {
 	public function pageByName( $name ) {
 		$title = Title::newFromText( $name );
 		if( is_null( $title ) ) {
-			return new WikiError( "Can't export invalid title" );
+			throw new MWException( "Can't export invalid title" );
 		} else {
 			return $this->pageByTitle( $title );
 		}
@@ -251,12 +251,12 @@ class WikiExporter {
 				# One, and only one hook should set this, and return false
 				if( wfRunHooks( 'WikiExporter::dumpStableQuery', array(&$tables,&$opts,&$join) ) ) {
 					wfProfileOut( __METHOD__ );
-					return new WikiError( __METHOD__." given invalid history dump type." );
+					throw new MWException( __METHOD__." given invalid history dump type." );
 				}
 			} else {
 				# Uknown history specification parameter?
 				wfProfileOut( __METHOD__ );
-				return new WikiError( __METHOD__." given invalid history dump type." );
+				throw new MWException( __METHOD__." given invalid history dump type." );
 			}
 			# Query optimization hacks
 			if( $cond == '' ) {
