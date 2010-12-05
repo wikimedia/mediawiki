@@ -1669,7 +1669,7 @@ class Skin extends Linker {
 		return $s;
 	}
 
-	private function footerLink( $desc, $page ) {
+	public function footerLink( $desc, $page ) {
 		// if the link description has been set to "-" in the default language,
 		if ( wfMsgForContent( $desc )  == '-' ) {
 			// then it is disabled, for all languages.
