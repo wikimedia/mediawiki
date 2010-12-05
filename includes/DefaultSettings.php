@@ -1602,6 +1602,14 @@ $wgUseFileCache = false;
 $wgFileCacheDirectory = false;
 
 /**
+ * Depth of the subdirectory hierarchy to be created under
+ * $wgFileCacheDirectory.  The subdirectories will be named based on
+ * the MD5 hash of the title.  A value of 0 means all cache files will
+ * be put directly into the main file cache directory.
+ */
+$wgFileCacheDepth = 2;
+
+/**
  * Keep parsed pages in a cache (objectcache table or memcached)
  * to speed up output of the same page viewed by another user with the
  * same options.
