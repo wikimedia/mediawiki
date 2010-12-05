@@ -2036,14 +2036,28 @@ class Skin extends Linker {
 		}
 	}
 
+	/**
+	 * Return a fully resolved style path url to images or styles stored in the common folder.
+	 * This method returns a url resolved using the configured skin style path
+	 * and includes the style version inside of the url.
+	 * @param $name String: The name or path of the common file to return the full path for.
+	 * @return String The fully resolved style path url including styleversion
+	 */
 	function getCommonStylePath( $name ) {
 		global $wgStylePath, $wgStyleVersion;
-		return "{$wgStylePath}/common/$name?$wgStyleVersion";
+		return "{$wgStylePath}/common/$name?{$wgStyleVersion}";
 	}
 
+	/**
+	 * Return a fully resolved style path url to images or styles stored in the curent skins's folder.
+	 * This method returns a url resolved using the configured skin style path
+	 * and includes the style version inside of the url.
+	 * @param $name String: The name or path of the skin resource file to return the full path for.
+	 * @return String The fully resolved style path url including styleversion
+	 */
 	function getSkinStylePath( $name ) {
 		global $wgStylePath, $wgStyleVersion;
-		return "{$wgStylePath}/{$this->stylename}/$name?$wgStyleVersion";
+		return "{$wgStylePath}/{$this->stylename}/$name?{$wgStyleVersion}";
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */
