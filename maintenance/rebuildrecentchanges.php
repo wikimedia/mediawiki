@@ -137,10 +137,13 @@ class RebuildRecentchanges extends Maintenance {
 
 				$dbw->update( 'recentchanges',
 					array(
-						'rc_old_len' => $lastSize,
-						'rc_new_len' => $size,
+						'rc_last_oldid' => $lastOldId,
+						'rc_new'        => $new,
+						'rc_type'       => $new,
+						'rc_old_len'    => $lastSize,
+						'rc_new_len'    => $size,
 					), array(
-						'rc_cur_id' => $lastCurId,
+						'rc_cur_id'     => $lastCurId,
 						'rc_this_oldid' => $obj->rc_this_oldid,
 					),
 					__METHOD__
