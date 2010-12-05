@@ -980,7 +980,7 @@ class SkinTemplate extends Skin {
 		}
 
 		if( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
-			$rootUser = explode( '/', $this->mTitle->getText(), 1 );
+			$rootUser = strtok( $this->mTitle->getText(), '/' );
 			$id = User::idFromName( $rootUser );
 			$ip = User::isIP( $rootUser );
 		} else {
