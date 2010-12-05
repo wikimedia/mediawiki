@@ -2518,7 +2518,7 @@ class Article {
 		$id = $this->mTitle->getArticleID();
 
 		if ( $id <= 0 ) {
-			wfDebug( "updateRestrictions failed: $id <= 0\n" );
+			wfDebug( "updateRestrictions failed: article id $id <= 0\n" );
 			return false;
 		}
 
