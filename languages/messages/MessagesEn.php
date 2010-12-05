@@ -1147,7 +1147,7 @@ Please wait before trying again.',
 # E-mail sending
 'pear-mail-error'        => '$1', # do not translate or duplicate this message to other languages
 'php-mail-error'         => '$1', # do not translate or duplicate this message to other languages
-'php-mail-error-unknown' => "Unkown error in PHP's mail() function",
+'php-mail-error-unknown' => "Unknown error in PHP's mail() function",
 
 # JavaScript password checks
 'password-strength'            => 'Estimated password strength: $1',
