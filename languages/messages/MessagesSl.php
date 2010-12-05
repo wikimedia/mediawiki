@@ -670,6 +670,9 @@ Prosimo počakajte, preden poskusite znova.',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaša zahteva za odjavo je bila zavrnjena, saj kaže, da je bila poslana iz pokvarjenega brskalnika ali proxyja s predpomnilnikom.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Neznana napaka v funkciji PHP mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Ocenjena moč gesla: $1',
 'password-strength-bad'        => 'SLABO',
@@ -2319,6 +2322,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Uporabniški prispevki novih računov',
 'sp-contributions-blocklog'            => 'dnevnik blokiranja',
 'sp-contributions-deleted'             => 'izbrisani uporabnikovi prispevki',
+'sp-contributions-uploads'             => 'naložene datoteke',
 'sp-contributions-logs'                => 'dnevniki',
 'sp-contributions-talk'                => 'pogovor',
 'sp-contributions-userrights'          => 'upravljanje s pravicami uporabnikov',

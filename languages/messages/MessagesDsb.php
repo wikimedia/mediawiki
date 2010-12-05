@@ -622,6 +622,9 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'loginlanguagelabel'         => 'Rěc: $1',
 'suspicious-userlogout'      => 'Twójo póžedanje za wótzjawjenim jo se wótpokazało, dokulaž zda se, až jo se pósłało pśez wobškóźony wobglědowak abo pufrowański proksy',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Njeznata zmólka w PHP-funkciji mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Pówoblicona gronidłowa wjelikosć: $1',
 'password-strength-bad'        => 'ŠPATNA',
@@ -2208,6 +2211,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Wužywarske pśinoski nowych kontow',
 'sp-contributions-blocklog'            => 'Protokol blokěrowanjow',
 'sp-contributions-deleted'             => 'Wulašowane wužywarske pśinoski',
+'sp-contributions-uploads'             => 'nagraśa',
 'sp-contributions-logs'                => 'protokole',
 'sp-contributions-talk'                => 'diskusija',
 'sp-contributions-userrights'          => 'Zastojanje wužywarskich pšawow',

@@ -605,6 +605,9 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'loginlanguagelabel'         => 'Rěč: $1',
 'suspicious-userlogout'      => 'Twoje naprašowanje za wotzjewjenje bu wotpokazane, dokelž zda so, jako by so přez wobškodźeny wobhladowak abo pufrowacy proksy pósłało',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Njeznaty zmylk w PHP-funkciji mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Trochowana hesłowa sylnosć: $1',
 'password-strength-bad'        => 'ŠPATNA',
@@ -2191,6 +2194,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Wužiwarske přinoški za nowe konta',
 'sp-contributions-blocklog'            => 'protokol zablokowanjow',
 'sp-contributions-deleted'             => 'wušmórnjene wužiwarske přinoški',
+'sp-contributions-uploads'             => 'nahraća',
 'sp-contributions-logs'                => 'protokole',
 'sp-contributions-talk'                => 'diskusija',
 'sp-contributions-userrights'          => 'Zrjadowanje wužiwarskich prawow',

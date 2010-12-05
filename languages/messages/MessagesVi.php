@@ -753,6 +753,9 @@ Xin hãy đợi chốc lát rồi thử lại.',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
 'suspicious-userlogout'      => 'Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Lỗi không rõ trong hàm PHP mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Độ mạnh ước lượng của mật khẩu: $1',
 'password-strength-bad'        => 'DỞ',
@@ -2374,6 +2377,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Đóng góp của các thành viên mới',
 'sp-contributions-blocklog'            => 'Nhật trình cấm',
 'sp-contributions-deleted'             => 'đóng góp đã bị xóa của thành viên',
+'sp-contributions-uploads'             => 'tập tin tải lên',
 'sp-contributions-logs'                => 'nhật trình',
 'sp-contributions-talk'                => 'thảo luận',
 'sp-contributions-userrights'          => 'quản lý quyền thành viên',

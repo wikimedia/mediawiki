@@ -768,6 +768,9 @@ Lütfen tekrar denemeden önce bekleyin.',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
 
+# E-mail sending
+'php-mail-error-unknown' => "PHP's mail() fonksiyonunda bilinmeyen hata",
+
 # JavaScript password checks
 'password-strength'            => 'Tahmini şifre güçlüğü: $1',
 'password-strength-bad'        => 'KÖTÜ',
@@ -1501,6 +1504,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
 'right-revisionmove'          => 'Revizyonları taşı',
+'right-disableaccount'        => 'Hesapları devre dışı bırak',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
@@ -2389,6 +2393,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Yeni hesaplar için kullanıcı katkıları',
 'sp-contributions-blocklog'            => 'Engel kaydı',
 'sp-contributions-deleted'             => 'silinen kullanıcı katkıları',
+'sp-contributions-uploads'             => 'yüklenenler',
 'sp-contributions-logs'                => 'günlükler',
 'sp-contributions-talk'                => 'tartışma',
 'sp-contributions-userrights'          => 'kullanıcı hakları yönetimi',
@@ -3546,5 +3551,18 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 # SQLite database support
 'sqlite-has-fts' => '$1 tam-metin arama desteği ile',
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
+
+# Special:DisableAccount
+'disableaccount'             => 'Bir kullanıcı hesabını devre dışı bırak',
+'disableaccount-user'        => 'Kullanıcı adı:',
+'disableaccount-reason'      => 'Neden:',
+'disableaccount-confirm'     => "Bu kullanıcı hesabını devre dışı bırak.
+Kullanıcı giriş yapamayacak, parolasını sıfırlayamayacak, ya da e-posta bildirimlerini alamayacak.
+Eğer kullanıcı bir yerde giriş yapmış ise, hemen çıkış yapılacak.
+''Bir hesabın devre dışı bırakılmasının sistem yöneticisinin müdahalesi olmadan geri alınamayacağına dikkat edin.''",
+'disableaccount-mustconfirm' => 'Bu hesabı devre dışı bırakmak istediğinizi onaylamalısınız.',
+'disableaccount-nosuchuser'  => '"$1" kullanıcı hesabı mevcut değil.',
+'disableaccount-success'     => '"$1" kullanıcı hesabı kalıcı olarak devre dışı bırakıldı.',
+'disableaccount-logentry'    => ', [[$1]] kullanıcı hesabını kalıcı olarak devre dışı bıraktı',
 
 );

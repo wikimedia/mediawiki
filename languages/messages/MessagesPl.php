@@ -14,6 +14,7 @@
  * @author Holek
  * @author Jwitos
  * @author Lajsikonik
+ * @author Lampak
  * @author Leinad
  * @author Maikking
  * @author Marcin Łukasz Kiejzik
@@ -723,6 +724,9 @@ Odczekaj chwilę zanim ponowisz próbę.',
 'loginlanguagelabel'         => 'Język: $1',
 'suspicious-userlogout'      => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Wystąpił nieznany błąd w funkcji PHP mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Szacowane bezpieczeństwo hasła – $1',
 'password-strength-bad'        => 'ZŁE',
@@ -1349,7 +1353,7 @@ Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'email'                         => 'E‐mail',
 'prefs-help-realname'           => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
 Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
-'prefs-help-email'              => "Podanie adresu e‐mail nie jest obowiązkowe, lecz pozwoli innym użytkownikom skontaktować się z Tobą poprzez odpowiedni formularz (bez ujawniania Twojego adresu). Będziesz także mógł poprosić o przysłanie Ci nowego hasła. '''Twój adres nie zostanie nikomu udostępniony.'''",
+'prefs-help-email'              => 'Podanie adresu e‐mail nie jest obowiązkowe, lecz pozwoli innym użytkownikom skontaktować się z Tobą poprzez odpowiedni formularz (bez ujawniania Twojego adresu). Będziesz także mógł poprosić o przysłanie Ci nowego hasła.',
 'prefs-help-email-required'     => 'Wymagany jest adres e‐mail.',
 'prefs-info'                    => 'Podstawowe informacje',
 'prefs-i18n'                    => 'Międzynarodowość',
@@ -2370,6 +2374,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Wkład nowych użytkowników',
 'sp-contributions-blocklog'            => 'blokady',
 'sp-contributions-deleted'             => 'usunięty wkład użytkownika',
+'sp-contributions-uploads'             => 'przesłane pliki',
 'sp-contributions-logs'                => 'rejestry',
 'sp-contributions-talk'                => 'dyskusja',
 'sp-contributions-userrights'          => 'zarządzanie uprawnieniami użytkownika',

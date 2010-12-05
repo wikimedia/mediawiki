@@ -1312,6 +1312,7 @@ Ririncian: $1',
 'sourceurl'           => 'Asal mula URL:',
 'destfilename'        => 'Ngaranbarakas tujuan:',
 'watchthisupload'     => 'Itihi barakas ini',
+'upload-success-subj' => 'Kulihan mahunggah',
 'upload-warning-subj' => 'Paringatan mahunggah',
 
 'upload-misc-error'   => 'Tasalah buat nang kada dipinandui',

@@ -2538,6 +2538,7 @@ This message was something like "unlock move protection" in the past.',
 
 {{Identical|Block log}}',
 'sp-contributions-deleted'             => "This is a link anchor used in [[Special:Contributions]]/''name'', when user viewing the page has the right to delete pages, or to restore deleted pages.",
+'sp-contributions-uploads'             => '{{Identical|Upload}}',
 'sp-contributions-logs'                => "Appears as an action link in the header of the Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").",
 'sp-contributions-talk'                => "This is a link anchor used in the [[Special:Contributions]]/''usernamename'' pages.
 The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}}, e.g. like this:<br />
@@ -3781,7 +3782,7 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 # Special:DisableAccount
 'disableaccount-user'     => '{{Identical|Username}}',
 'disableaccount-reason'   => '{{Identical|Reason}}',
-'disableaccount-logentry' => 'This message is used as a log entry. Parameters:
+'disableaccount-logentry' => 'This message is used as a [[Special:Log|log entry]], appearing after the username of the person who did the action. Parameters:
 * $1 is a user page',
 
 );

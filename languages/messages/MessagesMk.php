@@ -757,6 +757,9 @@ $2',
 'loginlanguagelabel'         => 'Јазик: $1',
 'suspicious-userlogout'      => 'Вашето барање за одјава е одбиено бидејќи се чини дека е испратено од расипан прелистувач или кеширачки застапник (proxy).',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Непозната грешка во функцијата mail() на PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Проценета отпорност на лозинката: $1',
 'password-strength-bad'        => 'ЛОША',
@@ -2421,6 +2424,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Придонеси на нови корисници',
 'sp-contributions-blocklog'            => 'Дневник на блокирања',
 'sp-contributions-deleted'             => 'избришани кориснички придонеси',
+'sp-contributions-uploads'             => 'подигања',
 'sp-contributions-logs'                => 'дневници',
 'sp-contributions-talk'                => 'разговор',
 'sp-contributions-userrights'          => 'раководење со кориснички права',

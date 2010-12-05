@@ -832,6 +832,9 @@ Bitte warte, bevor du es erneut probierst.',
 'loginlanguagelabel'         => 'Sprache: $1',
 'suspicious-userlogout'      => 'Deine Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Unbekannter Fehler mit der Funktion mail() von PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Geschätzte Passwortstärke: $1',
 'password-strength-bad'        => 'SCHLECHT',
@@ -2441,6 +2444,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Benutzerbeiträge von neuen Benutzern',
 'sp-contributions-blocklog'            => 'Sperr-Logbuch',
 'sp-contributions-deleted'             => 'Gelöschte Beiträge',
+'sp-contributions-uploads'             => 'Hochgeladene Dateien',
 'sp-contributions-logs'                => 'Logbücher',
 'sp-contributions-talk'                => 'Diskussion',
 'sp-contributions-userrights'          => 'Benutzerrechteverwaltung',
