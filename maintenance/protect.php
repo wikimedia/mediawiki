@@ -28,10 +28,11 @@ class Protect extends Maintenance {
 		$this->addOption( 'semiprotect', 'Adds semi-protection' );
 		$this->addOption( 'u', 'Username to protect with', false, true );
 		$this->addOption( 'r', 'Reason for un/protection', false, true );
+		$this->addArg( 'title', 'Title to protect', true );
 	}
 
 	public function execute() {
-		global $wgUser, $wgTitle, $wgArticle;
+		global $wgUser;
 
 		$userName = $this->getOption( 'u', 'Maintenance script' );
 		$reason = $this->getOption( 'r', '' );
@@ -46,16 +47,16 @@ class Protect extends Maintenance {
 		$wgUser = User::newFromName( $userName );
 		$restrictions = array( 'edit' => $protection, 'move' => $protection );
 
-		$wgTitle = Title::newFromText( $this->getArg() );
-		if ( !$wgTitle ) {
+		$t = Title::newFromText( $this->getArg() );
+		if ( !$t ) {
 			$this->error( "Invalid title", true );
 		}
 
-		$wgArticle = new Article( $wgTitle );
+		$article = new Article( $t );
 
 		# un/protect the article
 		$this->output( "Updating protection status... " );
-		$success = $wgArticle->updateRestrictions( $restrictions, $reason );
+		$success = $article->updateRestrictions( $restrictions, $reason );
 		if ( $success ) {
 			$this->output( "done\n" );
 		} else {
