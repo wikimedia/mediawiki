@@ -65,16 +65,11 @@ class ApiImport extends ApiBase {
 			}
 			$source = ImportStreamSource::newFromUpload( 'xml' );
 		}
-		if ( $source instanceof WikiErrorMsg ) {
-			$this->dieUsageMsg( array_merge(
-				array( $source->getMessageKey() ),
-				$source->getMessageArgs() ) );
-		} elseif ( WikiError::isError( $source ) ) {
-			// This shouldn't happen
-			$this->dieUsageMsg( array( 'import-unknownerror', $source->getMessage() ) );
+		if ( !$source->isOK() ) {
+			$this->dieUsageMsg( $source->getErrorsArray() );
 		}
 
-		$importer = new WikiImporter( $source );
+		$importer = new WikiImporter( $source->value );
 		if ( isset( $params['namespace'] ) ) {
 			$importer->setTargetNamespace( $params['namespace'] );
 		}
