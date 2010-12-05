@@ -31,8 +31,6 @@ class RebuildRecentchanges extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle;
-		$wgTitle = Title::newFromText( "Rebuild recent changes script" );
 		$this->rebuildRecentChangesTablePass1();
 		$this->rebuildRecentChangesTablePass2();
 		$this->rebuildRecentChangesTablePass3();
@@ -137,10 +135,16 @@ class RebuildRecentchanges extends Maintenance {
 				$size = $dbw->selectField( 'revision', 'rev_len', array( 'rev_id' => $obj->rc_this_oldid ) );
 				$size = !is_null( $size ) ? intval( $size ) : 'NULL';
 
-				$sql3 = "UPDATE $recentchanges SET rc_last_oldid=$lastOldId,rc_new=$new,rc_type=$new," .
-					"rc_old_len=$lastSize,rc_new_len=$size " .
-					"WHERE rc_cur_id={$lastCurId} AND rc_this_oldid={$obj->rc_this_oldid}";
-				$dbw->query( $sql3 );
+				$dbw->update( 'recentchanges',
+					array(
+						'rc_old_len' => $lastSize,
+						'rc_new_len' => $size,
+					), array(
+						'rc_cur_id' => $lastCurId,
+						'rc_this_oldid' => $obj->rc_this_oldid,
+					),
+					__METHOD__
+				);
 
 				$lastOldId = intval( $obj->rc_this_oldid );
 				$lastSize = $size;
