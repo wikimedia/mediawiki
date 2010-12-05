@@ -89,6 +89,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Sysops now have the "suppressredirect" right by default
 * (bug 22463) $wgFooterIcons added to allow configuration of the icons shown in
   the footers of skins.
+* $wgFileCacheDepth can be used to set the depth of the subdirectory hierarchy
+  used for the file cache. Default value is 2, which matches former behavior 
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
