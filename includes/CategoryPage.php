@@ -102,7 +102,7 @@ class CategoryViewer {
 	 *
 	 * @return string HTML output
 	 */
-	private function getHTML() {
+	function getHTML() {
 		global $wgOut, $wgCategoryMagicGallery, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
@@ -418,7 +418,7 @@ class CategoryViewer {
 	 * @param $cutoff Int
 	 * @return String
 	 */
-	private function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
+	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
 		if ( count ( $articles ) > $cutoff ) {
 			return self::columnList( $articles, $articles_start_char );
 		} elseif ( count( $articles ) > 0 ) {
@@ -442,7 +442,7 @@ class CategoryViewer {
 	 * @param $articles_start_char Array
 	 * @return String
 	 */
-	private static function columnList( $articles, $articles_start_char ) {
+	static function columnList( $articles, $articles_start_char ) {
 		$columns = array_combine( $articles, $articles_start_char );
 		# Split into three columns
 		$columns = array_chunk( $columns, ceil( count( $columns ) / 3 ), true /* preserve keys */ );
@@ -493,7 +493,7 @@ class CategoryViewer {
 	 * @param $articles_start_char Array
 	 * @return String
 	 */
-	private static function shortList( $articles, $articles_start_char ) {
+	static function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
 		$r .= '<ul><li>' . $articles[0] . '</li>';
 		for ( $index = 1; $index < count( $articles ); $index++ )
