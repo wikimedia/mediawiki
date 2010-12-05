@@ -1632,7 +1632,7 @@ class Skin extends Linker {
 
 	/**
 	 * Renders a $wgFooterIcons icon acording to the method's arguments
-	 * @param $icon Array: The icon to build the html for
+	 * @param $icon Array: The icon to build the html for, see $wgFooterIcons for the format of this array
 	 * @param $withImage Boolean: Whether to use the icon's image or output a text-only footericon
 	 */
 	function makeFooterIcon( $icon, $withImage = 'withImage' ) {
