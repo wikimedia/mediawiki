@@ -43,8 +43,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 1
 	 * DOCUMENT ME!
 	 */
-	function rebuildRecentChangesTablePass1()
-	{
+	private function rebuildRecentChangesTablePass1() {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->delete( 'recentchanges', '*' );
