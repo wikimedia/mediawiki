@@ -87,6 +87,9 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 25728) Added $wgPasswordSenderName to allow customise the name associed
   with $wgPasswordSender
 * Sysops now have the "suppressredirect" right by default
+* Special wrapping setups can now define MW_CONFIG_FILE to load a config file
+  other than LocalSettings.php. This is like MW_CONFIG_CALLBACK but works in
+  some cases where MW_CONFIG_CALLBACK will not work.
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via

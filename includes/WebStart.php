@@ -103,17 +103,20 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	}
 	call_user_func( $callback );
 } else {
-	# LocalSettings.php is the per site customization file. If it does not exit
-	# the wiki installer need to be launched or the generated file moved from
+	if ( !defined('MW_CONFIG_FILE') )
+		define('MW_CONFIG_FILE', "$IP/LocalSettings.php");
+	
+	# LocalSettings.php is the per site customization file. If it does not exist
+	# the wiki installer needs to be launched or the generated file moved from
 	# ./config/ to ./
-	if( !file_exists( "$IP/LocalSettings.php" ) ) {
+	if( !file_exists( MW_CONFIG_FILE ) ) {
 		require_once( "$IP/includes/DefaultSettings.php" ); # used for printing the version
 		require_once( "$IP/includes/templates/NoLocalSettings.php" );
 		die();
 	}
 
 	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
-	require_once( "$IP/LocalSettings.php" );
+	require_once( MW_CONFIG_FILE );
 }
 
 if ( $wgEnableSelenium ) {
