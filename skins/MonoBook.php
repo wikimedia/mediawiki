@@ -189,23 +189,11 @@ class MonoBookTemplate extends QuickTemplate {
 <div id="footer"<?php $this->html('userlangattributes') ?>>
 <?php foreach ( $footericons as $blockName => $footerIcons ) { ?>
 	<div id="f-<?php echo htmlspecialchars($blockName); ?>ico">
-<?php	foreach ( $footerIcons as $icon ) { 
-			if ( is_string($icon) ) {
-				$html = $icon;
-			} else {
-				$url = $icon["url"];
-				unset($icon["url"]);
-				if ( isset($icon["src"]) ) {
-					$html = Html::element( 'img', $icon ); // do this the lazy way, just pass icon data as an attribute array
-				} else {
-					$html = htmlspecialchars($icon["alt"]);
-				}
-				if ( $url ) {
-					$html = Html::rawElement( 'a', array( "href" => $url ), $html );
-				}
-			}
-			echo "		$html\n";
-		} ?>
+<?php foreach ( $footerIcons as $icon ) { ?>
+		<?php echo $this->skin->makeFooterIcon( $icon ); ?>
+
+<?php }
+?>
 	</div>
 <?php }
 

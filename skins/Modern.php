@@ -194,16 +194,10 @@ class ModernTemplate extends MonoBookTemplate {
 		foreach ( $footericons as $blockName => $footerIcons ) { ?>
 			<div id="mw_<?php echo htmlspecialchars($blockName); ?>">
 <?php
-			foreach ( $footerIcons as $icon ) { 
-				if ( is_string($icon) ) {
-					$html = $icon;
-				} else {
-					$html = htmlspecialchars($icon["alt"]);
-					if ( $icon["url"] ) {
-						$html = Html::element( 'a', array( "href" => $icon["url"] ), $html );
-					}
-				}
-				echo "				$html\n";
+			foreach ( $footerIcons as $icon ) { ?>
+				<?php echo $this->skin->makeFooterIcon( $icon, false ); ?>
+
+<?php
 			} ?>
 			</div>
 <?php

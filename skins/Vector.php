@@ -545,26 +545,13 @@ class VectorTemplate extends QuickTemplate {
 				<?php endif; ?>
 			<?php endforeach; ?>
 <?php			if ( count( $footericons ) > 0 ): ?>
-				<ul id="footer-icons">
+				<ul id="footer-icons" class="noprint">
 <?php			foreach ( $footericons as $blockName => $footerIcons ): ?>
-					<li id="footer-<?php echo htmlspecialchars($blockName); ?>ico" class="noprint">
-<?php					foreach ( $footerIcons as $icon ):
-							if ( is_string($icon) ) {
-								$html = $icon;
-							} else {
-								$url = $icon["url"];
-								unset($icon["url"]);
-								if ( isset($icon["src"]) ) {
-									$html = Html::element( 'img', $icon ); // do this the lazy way, just pass icon data as an attribute array
-								} else {
-									$html = htmlspecialchars($icon["alt"]);
-								}
-								if ( $url ) {
-									$html = Html::rawElement( 'a', array( "href" => $url ), $html );
-								}
-							}
-							echo "						$html\n";
-						endforeach; ?>
+					<li id="footer-<?php echo htmlspecialchars($blockName); ?>ico">
+<?php				foreach ( $footerIcons as $icon ): ?>
+						<?php echo $this->skin->makeFooterIcon( $icon ); ?>
+
+<?php				endforeach; ?>
 					</li>
 <?php			endforeach; ?>
 				</ul>
