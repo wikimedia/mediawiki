@@ -1350,6 +1350,7 @@ $1",
 'right-override-export-depth' => '5 లింకుల లోతు వరకు ఉన్న పేజీలతో సహా, పేజీలను ఎగుమతి చెయ్యి',
 'right-sendemail'             => 'ఇతర వాడుకరులకు ఈ-మెయిలు పంపించగలగడం',
 'right-revisionmove'          => 'కూర్పులని తరలించగలగడం',
+'right-disableaccount'        => 'ఖాతాలని అచేతనం చెయ్యడం',
 
 # User rights log
 'rightslog'      => 'వాడుకరుల హక్కుల మార్పుల చిట్టా',
@@ -2203,6 +2204,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'sp-contributions-newbies-title'       => 'కొత్త ఖాతాల వాడుకరుల మార్పుచేర్పులు',
 'sp-contributions-blocklog'            => 'నిరోధాల చిట్టా',
 'sp-contributions-deleted'             => 'తొలగించబడిన వాడుకరి రచనలు',
+'sp-contributions-uploads'             => 'ఎక్కింపులు',
 'sp-contributions-logs'                => 'చిట్టాలు',
 'sp-contributions-talk'                => 'చర్చ',
 'sp-contributions-userrights'          => 'వాడుకరి హక్కుల నిర్వహణ',
@@ -3303,5 +3305,11 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటుతో',
 'sqlite-no-fts'  => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటు లేకుండా',
+
+# Special:DisableAccount
+'disableaccount-user'       => 'వాడుకరిపేరు:',
+'disableaccount-reason'     => 'కారణం:',
+'disableaccount-nosuchuser' => '"$1" అనే వాడుకరి ఖాతా లేనే లేదు.',
+'disableaccount-success'    => '"$1" అనే వాడుకరి ఖాతాని శాశ్వతంగా అచేతనం చేసారు.',
 
 );

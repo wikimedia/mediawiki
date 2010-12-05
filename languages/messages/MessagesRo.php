@@ -3514,4 +3514,9 @@ Introdu numele fișierului fără prefixul "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 cu suport de căutare în tot textul',
 'sqlite-no-fts'  => '$1 fără suport de căutare în tot textul',
 
+# Special:DisableAccount
+'disableaccount-user'       => 'Nume de utilizator:',
+'disableaccount-reason'     => 'Motiv:',
+'disableaccount-nosuchuser' => 'Contul de utilizator „$1” nu există.',
+
 );

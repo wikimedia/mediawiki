@@ -629,6 +629,9 @@ Per favor attende ante de probar lo novemente.',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'Le requesta de clauder le session ha essite refusate proque illo pare haber essite inviate per un navigator o proxy de cache defectuose.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Error incognite in le function mail() de PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Estimation del securitate del contrasigno: $1',
 'password-strength-bad'        => 'MAL',
@@ -2302,6 +2305,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contributiones de nove contos de usator',
 'sp-contributions-blocklog'            => 'Registro de blocadas',
 'sp-contributions-deleted'             => 'contributiones delite de usatores',
+'sp-contributions-uploads'             => 'incargamentos',
 'sp-contributions-logs'                => 'registros',
 'sp-contributions-talk'                => 'discussion',
 'sp-contributions-userrights'          => 'gestion de derectos de usator',

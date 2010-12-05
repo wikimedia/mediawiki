@@ -589,7 +589,7 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 Dibabit un anv all mar plij.",
 'loginerror'                 => 'Kudenn kevreañ',
 'createaccounterror'         => 'Dibosupl krouiñ ar gont : $1',
-'nocookiesnew'               => "krouet eo bet ar gont implijer met n'hoc'h ket kevreet. {{SITENAME}} a implij toupinoù evit ar c'hrevreañ met diweredekaet eo an toupinoù ganeoc'h. Trugarez da weredekaat anezho ha da gevreañ en-dro.",
+'nocookiesnew'               => "Krouet eo bet ar gont implijer met n'oc'h ket kevreet. {{SITENAME}} a implij toupinoù evit ar c'hevreañ met diweredekaet eo an toupinoù ganeoc'h. Trugarez da weredekaat anezho ha da gevreañ en-dro.",
 'nocookieslogin'             => "{{SITENAME}} a implij toupinoù evit kevreañ met diweredekaet eo an toupinoù ganeoc'h. Trugarez da weredekaat anezho ha da gevreañ en-dro.",
 'noname'                     => "N'hoc'h eus lakaet anv implijer ebet.",
 'loginsuccesstitle'          => "Kevreet oc'h.",
@@ -643,6 +643,9 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 Gortozit a-raok klask en-dro.",
 'loginlanguagelabel'         => 'Yezh : $1',
 'suspicious-userlogout'      => 'Distaolet eo bet ho koulenn digevreañ rak kaset e oa bet gant ur merdeer direizhet pe krubuilhadenn ur proksi, evit doare.',
+
+# E-mail sending
+'php-mail-error-unknown' => "Fazi dianav en arc'hwel postel () PHP",
 
 # JavaScript password checks
 'password-strength'            => 'Live surentez ar ger-tremen : $1',
@@ -2269,6 +2272,7 @@ $1',
 'sp-contributions-newbies-title'       => "Degasadennoù implijer evit ar c'hontoù nevez",
 'sp-contributions-blocklog'            => 'Roll ar stankadennoù',
 'sp-contributions-deleted'             => 'Degasadennoù diverket',
+'sp-contributions-uploads'             => 'Enporzhiadennoù',
 'sp-contributions-logs'                => 'marilhoù',
 'sp-contributions-talk'                => 'kaozeal',
 'sp-contributions-userrights'          => 'Merañ ar gwirioù',

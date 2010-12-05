@@ -1765,6 +1765,12 @@ $UNWATCHURL
 'protect-othertime'           => 'Башка вакыт:',
 'protect-othertime-op'        => 'башка вакыт',
 'protect-otherreason-op'      => 'Башка сәбәп',
+'protect-dropdown'            => '* Гади яклау сәбәпләре
+** вандаллык
+** зур спам
+** кирәксез үзгәртүләр саны
+** популяр бит',
+'protect-edit-reasonlist'     => 'Сәбәпләр исемлеген үзгәртү',
 'protect-expiry-options'      => '1 сәгать:1 hour,1 көн:1 day,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 ел:1 year,вакытсыз:infinite',
 'restriction-type'            => 'Рөхсәт:',
 'restriction-level'           => 'Мөмкинлек дәрәҗәсе:',

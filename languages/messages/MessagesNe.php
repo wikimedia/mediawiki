@@ -534,6 +534,9 @@ $2',
 'loginlanguagelabel'         => 'भाषा: $1',
 'suspicious-userlogout'      => 'तपाँईको निर्गमन अनुरोध अस्विकार गरिन्छ किनकी यो खराब ब्राउजर वा क्यासिङ प्रोक्सिले पठाएको जस्तो देखिन्छ।',
 
+# E-mail sending
+'php-mail-error-unknown' => 'PHP मेल() क्रियामा अज्ञात त्रुटि',
+
 # JavaScript password checks
 'password-strength'            => 'पासवर्डको अनुमानित बल: $1',
 'password-strength-bad'        => 'नराम्रो',

@@ -667,6 +667,9 @@ $2',
 'loginlanguagelabel'         => '語言: $1',
 'suspicious-userlogout'      => '您登出的要求已經被拒絕，因為它可能是由已損壞的瀏覽器或者快取代理傳送。',
 
+# E-mail sending
+'php-mail-error-unknown' => '在PHP的mail（）參數中的未知錯誤',
+
 # JavaScript password checks
 'password-strength'            => '預估密碼強度： $1',
 'password-strength-bad'        => '差',
@@ -1398,6 +1401,7 @@ $1",
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
 'right-revisionmove'          => '移動修訂版本',
+'right-disableaccount'        => '禁用帳戶',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',

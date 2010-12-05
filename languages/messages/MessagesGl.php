@@ -1454,6 +1454,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 'right-revisionmove'          => 'Mover revisións',
+'right-disableaccount'        => 'Desactivar contas',
 
 # User rights log
 'rightslog'      => 'Rexistro de dereitos de usuario',
@@ -2351,6 +2352,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contribucións dos usuarios novos',
 'sp-contributions-blocklog'            => 'rexistro de bloqueos',
 'sp-contributions-deleted'             => 'contribucións borradas do usuario',
+'sp-contributions-uploads'             => 'cargas',
 'sp-contributions-logs'                => 'rexistros',
 'sp-contributions-talk'                => 'conversa',
 'sp-contributions-userrights'          => 'xestión dos dereitos de usuario',
@@ -3496,5 +3498,18 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para procuras de texto completo',
 'sqlite-no-fts'  => '$1 sen soporte para procuras de texto completo',
+
+# Special:DisableAccount
+'disableaccount'             => 'Desactivar unha conta de usuario',
+'disableaccount-user'        => 'Nome de usuario:',
+'disableaccount-reason'      => 'Motivo:',
+'disableaccount-confirm'     => "Desactivar esta conta de usuario.
+O usuario non poderá acceder ao sistema, restablecer o contrasinal ou recibir notificacións por correo electrónico.
+Se o usuario está conectado, sairá ao anonimato inmediatamente.
+''Teña en conta que a desactivación dunha conta non é reversible sen a intervención dun administrador do sistema.''",
+'disableaccount-mustconfirm' => 'Ten que confirmar que quere desactivar esta conta.',
+'disableaccount-nosuchuser'  => 'A conta de usuario "$1" non existe.',
+'disableaccount-success'     => 'Esta conta de usuario, "$1", foi desactivada permanentemente.',
+'disableaccount-logentry'    => 'desactivou permanentemente a conta de usuario "[[$1]]"',
 
 );

@@ -2806,4 +2806,8 @@ Tovuti hii inapata matatatizo wakati huu.',
 'htmlform-reset'               => 'Tengua mabadiliko',
 'htmlform-selectorother-other' => 'Nyingine',
 
+# Special:DisableAccount
+'disableaccount-user'   => 'Jina la mtumiaji:',
+'disableaccount-reason' => 'Sababu:',
+
 );

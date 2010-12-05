@@ -780,6 +780,9 @@ Aguarde antes de tentar novamente, por favor.',
 'loginlanguagelabel'         => 'Língua: $1',
 'suspicious-userlogout'      => 'O seu pedido para sair foi negado porque parece ter sido enviado por um browser danificado ou por um proxy com cache.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Estimativa da segurança da palavra-chave: $1',
 'password-strength-bad'        => 'MÁ',
@@ -2444,6 +2447,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contribuições de contas novas',
 'sp-contributions-blocklog'            => 'registo de bloqueios',
 'sp-contributions-deleted'             => 'contribuições eliminadas',
+'sp-contributions-uploads'             => 'uploads',
 'sp-contributions-logs'                => 'registos',
 'sp-contributions-talk'                => 'discussão',
 'sp-contributions-userrights'          => 'gestão de privilégios de utilizador',

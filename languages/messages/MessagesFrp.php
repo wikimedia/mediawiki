@@ -2477,6 +2477,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contribucions d’utilisators permié los comptos novéls',
 'sp-contributions-blocklog'            => 'jornal des blocâjos',
 'sp-contributions-deleted'             => 'contribucions suprimâs',
+'sp-contributions-uploads'             => 'tèlèchargements',
 'sp-contributions-logs'                => 'jornals',
 'sp-contributions-talk'                => 'discutar',
 'sp-contributions-userrights'          => 'administrar los drêts d’utilisator',
@@ -3727,8 +3728,16 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'sqlite-no-fts'  => '$1 sen rechèrche en tèxto complèt recognua',
 
 # Special:DisableAccount
-'disableaccount'        => 'Dèsactivar un compto utilisator',
-'disableaccount-user'   => 'Nom d’utilisator :',
-'disableaccount-reason' => 'Rêson :',
+'disableaccount'             => 'Dèsactivar un compto utilisator',
+'disableaccount-user'        => 'Nom d’utilisator :',
+'disableaccount-reason'      => 'Rêson :',
+'disableaccount-confirm'     => "Dèsactivar cél compto utilisator.
+L’utilisator porrat pas més sè branchiér, ni tornar inicialisar son mot de pâssa, ni recêvre des notificacions per mèssageria èlèctronica.
+Se l’utilisator est orendrêt branchiê a quârqu’un sens, serat dèbranchiê d’abôrd.
+''Notâd que la dèsactivacion d’un compto est pas revèrsibla sen entèrvencion d’un administrator sistèmo.''",
+'disableaccount-mustconfirm' => 'Vos dête confirmar que vos souhètâd dèsactivar cél compto.',
+'disableaccount-nosuchuser'  => 'Lo compto utilisator « $1 » ègziste pas.',
+'disableaccount-success'     => 'Lo compto utilisator « $1 » at étâ dèsactivâ por de bon.',
+'disableaccount-logentry'    => 'at dèsactivâ por de bon lo compto utilisator [[$1]]',
 
 );

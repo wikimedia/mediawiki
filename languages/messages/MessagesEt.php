@@ -1495,6 +1495,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-override-export-depth' => 'Eksportida lehekülgi, kaasates viidatud leheküljed kuni viienda tasemeni',
 'right-sendemail'             => 'Saata teistele kasutajatele e-kirju',
 'right-revisionmove'          => 'Teisaldada redaktsioone',
+'right-disableaccount'        => 'Lukustada kontosid',
 
 # User rights log
 'rightslog'      => 'Kasutaja õiguste logi',
@@ -1775,6 +1776,7 @@ Tulba päisel klõpsamine muudab sortimist.',
 'listfiles_search_for'  => 'Nimeotsing:',
 'imgfile'               => 'fail',
 'listfiles'             => 'Piltide loend',
+'listfiles_thumb'       => 'Pisipilt',
 'listfiles_date'        => 'Kuupäev',
 'listfiles_name'        => 'Nimi',
 'listfiles_user'        => 'Kasutaja',
@@ -2377,6 +2379,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Uute kasutajate kaastöö',
 'sp-contributions-blocklog'            => 'blokeerimised',
 'sp-contributions-deleted'             => 'kustutatud kaastöö',
+'sp-contributions-uploads'             => 'üleslaadimised',
 'sp-contributions-logs'                => 'logid',
 'sp-contributions-talk'                => 'arutelu',
 'sp-contributions-userrights'          => 'kasutaja õiguste muutmine',
@@ -3449,5 +3452,18 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'htmlform-submit'              => 'Saada',
 'htmlform-reset'               => 'Tühista muudatused',
 'htmlform-selectorother-other' => 'Muu',
+
+# Special:DisableAccount
+'disableaccount'             => 'Kasutajakonto lukustamine',
+'disableaccount-user'        => 'Kasutajanimi:',
+'disableaccount-reason'      => 'Põhjus:',
+'disableaccount-confirm'     => "Lukusta see kasutajakonto.
+Edaspidi ei saa kasutaja sisse logida, oma parooli lähtestada ega e-kirjatsi teateid saada.
+Kui kasutaja on praegu kuskile sisse logitud, logitakse ta koheselt välja.
+''Pane tähele, et lukustatud konto uuesti kasutamiseks on tarvis süsteemiadministraatori sekkumist.''",
+'disableaccount-mustconfirm' => 'Pead kinnitama, et soovid seda kontot lukustada.',
+'disableaccount-nosuchuser'  => 'Kasutajakontot "$1" pole.',
+'disableaccount-success'     => 'Kasutajakonto "$1" on jäädavalt lukustatud.',
+'disableaccount-logentry'    => 'lukustas jäädavalt kasutajakonto [[$1]].',
 
 );

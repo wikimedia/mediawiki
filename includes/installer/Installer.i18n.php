@@ -1347,15 +1347,19 @@ Merkit talvoudenn ar chod <code>\$wgUpgradeKey</code> er vaezienn.",
 N'eo ket gouest ho meziant en em hizivaat evit ar poent
 Diweredekaet eo bet ar stalier evit abegoù surentez.",
 	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
+	'config-no-session' => "Kolle teo bet roadennoù ho talc'h !
+Gwiriit ar restr php.ini ha bezit sur emañ staliet <code>session.save_path</code> en ur c'havlec'h a zere.",
 	'config-your-language' => 'Ho yezh :',
 	'config-your-language-help' => 'Dibabit ur yezh da implijout e-pad an argerzh staliañ.',
 	'config-wiki-language' => 'Yezh ar wiki :',
 	'config-wiki-language-help' => 'Diuzañ ar yezh a vo implijet ar muiañ er wiki.',
+	'config-allow-requests' => "Asantiñ d'ar goulennoù diavaez war-zu MediaWiki.org",
 	'config-back' => '← Distreiñ',
 	'config-continue' => "Kenderc'hel →",
 	'config-page-language' => 'Yezh',
 	'config-page-welcome' => 'Degemer mat e MediaWiki !',
 	'config-page-dbconnect' => "Kevreañ d'an diaz roadennoù",
+	'config-page-upgrade' => 'Hizivaat ar staliadur a zo dioutañ',
 	'config-page-dbsettings' => 'Arventennoù an diaz roadennoù',
 	'config-page-name' => 'Anv',
 	'config-page-options' => 'Dibarzhioù',
@@ -1366,6 +1370,7 @@ Diweredekaet eo bet ar stalier evit abegoù surentez.",
 	'config-page-releasenotes' => 'Notennoù stumm',
 	'config-page-copying' => 'O eilañ',
 	'config-page-upgradedoc' => 'O hizivaat',
+	'config-page-locked' => "Aotre nac'het",
 	'config-restart' => "Ya, adloc'hañ anezhañ",
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Degemer]
 * [http://www.mediawiki.org/wiki/Help:Contents Pajenn-stur an implijer]
@@ -2478,6 +2483,15 @@ $messages['eu'] = array(
 	'config-email-settings' => 'E-posta hobespenak',
 	'config-logo' => 'Logo URL:',
 	'config-install-step-done' => 'egina',
+);
+
+/** Persian (فارسی)
+ * @author Mjbmr
+ */
+$messages['fa'] = array(
+	'config-your-language' => 'زبان شما:',
+	'config-wiki-language' => 'زبان ویکی:',
+	'config-page-language' => 'زبان',
 );
 
 /** Finnish (Suomi)
@@ -3918,6 +3932,10 @@ Instalacija bu přetorhnjena.",
 	'config-db-install-account' => 'Wužiwarske konto za instalaciju',
 	'config-db-username' => 'Wužiwarske mjeno datoweje banki:',
 	'config-db-password' => 'Hesło datoweje banki:',
+	'config-db-install-username' => 'Zapodaj wužiwarske mjeno, kotrež budźe so za zwisk z datowej banku za instalaciski proces wužiwać. 
+To njeje wužiwarske mjeno konta MediaWiki; to je wužiwarske mjeno za twoju datowu banku.',
+	'config-db-install-password' => 'Zapodaj hesło, kotrež budźe so za zwisk z datowej banku za instalaciski proces wužiwać.
+To njeje hesło konta MediaWiki; to je hesło za twoju datowu banku.',
 	'config-db-install-help' => 'Zapodaj wužiwarske mjeno a hesło, kotrejž měłoj so za zwisk z datowej banku za instalaciski proces wužiwać.',
 	'config-db-account-lock' => 'Samsne wužiwarske mjeno a hesło za normalnu operaciju wužiwać',
 	'config-db-wiki-account' => 'Wužiwarske konto za normalnu operaciju',
@@ -3982,6 +4000,8 @@ Zo by je na MediaWiki $1 aktualizował, klikń na '''Dale'''.",
 	'config-db-web-help' => 'wubjer wužiwarske mjeno a hesło, kotrejž webserwer budźe wužiwać, zo by z serwerom datoweje banki za wšědnu operaciju zwjazać',
 	'config-db-web-account-same' => 'Samsne konto kaž za instalaciju wužiwać',
 	'config-db-web-create' => 'Załož konto, jeli hišće njeeksistuje.',
+	'config-db-web-no-create-privs' => 'Konto, kotrež sy za instalaciju podał, nima dosć woprawnjenjow, zo by konto wutworiło.
+Konto, kotrež tu podawaće, dyrbi hižo eksistować.',
 	'config-mysql-engine' => 'Składowanska mašina:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -4048,6 +4068,8 @@ Móžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.',
 Idealnje tón njeměł z weba přistupny być.',
 	'config-logo' => 'URL loga:',
 	'config-instantcommons' => 'Instant commons zmóžnić',
+	'config-cc-error' => 'Pytanje za licencu Creative Commons njeje žadyn wuslědk přinjesło.
+Zapodaj licencne mjeno manuelnje.',
 	'config-cc-again' => 'Zaso wubrać...',
 	'config-cc-not-chosen' => 'Wubjer licencu Creative Commons a klikń na "dale".',
 	'config-advanced-settings' => 'Rozšěrjena konfiguraćija',
