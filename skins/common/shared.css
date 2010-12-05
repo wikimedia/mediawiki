@@ -823,6 +823,7 @@ div.gallerytext {
 	overflow: hidden;
 	font-size: 94%;
 	padding: 2px 4px;
+	word-wrap: break-word;
 }
 
 table.mw-enhanced-rc {
