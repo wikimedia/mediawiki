@@ -1631,6 +1631,29 @@ class Skin extends Linker {
 	}
 
 	/**
+	 * Renders a $wgFooterIcons icon acording to the method's arguments
+	 * @param $icon Array: The icon to build the html for
+	 * @param $useImg Boolean: Whether to use the icon's image or output a text-only footericon
+	 */
+	function makeFooterIcon( $icon, $useImg = true ) {
+		if ( is_string($icon) ) {
+			$html = $icon;
+		} else {
+			$url = $icon["url"];
+			unset($icon["url"]);
+			if ( isset($icon["src"]) && $useImg ) {
+				$html = Html::element( 'img', $icon ); // do this the lazy way, just pass icon data as an attribute array
+			} else {
+				$html = htmlspecialchars($icon["alt"]);
+			}
+			if ( $url ) {
+				$html = Html::rawElement( 'a', array( "href" => $url ), $html );
+			}
+		}
+		return $html;
+	}
+
+	/**
 	 * Gets the link to the wiki's main page.
 	 * @return string
 	 */
