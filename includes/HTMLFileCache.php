@@ -46,7 +46,7 @@ class HTMLFileCache {
 			$key = $this->mTitle->getPrefixedDbkey();
 			if ( $wgFileCacheDepth > 0 ) {
 				$hash = md5( $key );
-				for ( $i = 1; $i < $wgFileCacheDepth; $i++ ) {
+				for ( $i = 1; $i <= $wgFileCacheDepth; $i++ ) {
 					$subdir .= substr( $hash, 0, $i ) . '/';
 				}
 			}
