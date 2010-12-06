@@ -613,12 +613,21 @@ class WebInstaller extends CoreInstaller {
 		array_shift( $args );
 		$args = array_map( 'htmlspecialchars', $args );
 		$text = wfMsgReal( $msg, $args, false, false, false );
-		$html = htmlspecialchars( $text );
-		//$html = $this->parse( $text, true );
+		$html = $this->parse( $text, true );
+
 		return
-            "<span class=\"mw-help-field-hint\"\n" .
-      	    "     title=\"" . $html . "\"\n" .
-    	    "     original-title=\"" . $html . "\"></span>\n";
+			"<div class=\"config-help-wrapper\">\n" .
+			"<div class=\"config-help-message\">\n" .
+			 $html .
+			"</div>\n" .
+			"<div class=\"config-show-help\">\n" .
+			"<a href=\"#\">" .
+			wfMsgHtml( 'config-show-help' ) .
+			"</a></div>\n" .
+			"<div class=\"config-hide-help\">\n" .
+			"<a href=\"#\">" .
+			wfMsgHtml( 'config-hide-help' ) .
+			"</a></div>\n</div>\n";
 	}
 
 	/**
@@ -661,7 +670,7 @@ class WebInstaller extends CoreInstaller {
 	 * Label a control by wrapping a config-input div around it and putting a
 	 * label before it.
 	 */
-	public function label( $msg, $forId, $contents, $helpData = "" ) {
+	public function label( $msg, $forId, $contents ) {
 		if ( strval( $msg ) == '' ) {
 			$labelText = '&#160;';
 		} else {
@@ -675,16 +684,11 @@ class WebInstaller extends CoreInstaller {
 		}
 
 		return
-			"<div class=\"config-block\">\n" .
-		    "  <div class=\"config-block-label\">\n" .
+			"<div class=\"config-input\">\n" .
 			Xml::tags( 'label',
 				$attributes,
 				$labelText ) . "\n" .
-			    $helpData .
-			"  </div>\n" .
-		    "  <div class=\"config-block-elements\">\n" .
-			    $contents .
-			"  </div>\n" .
+			$contents .
 			"</div>\n";
 	}
 
@@ -698,7 +702,6 @@ class WebInstaller extends CoreInstaller {
 	 *      attribs:    Additional attributes for the input element (optional)
 	 *      controlName: The name for the input element (optional)
 	 *      value:      The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
 	 */
 	public function getTextBox( $params ) {
 		if ( !isset( $params['controlName'] ) ) {
@@ -712,9 +715,7 @@ class WebInstaller extends CoreInstaller {
 		if ( !isset( $params['attribs'] ) ) {
 			$params['attribs'] = array();
 		}
-		if ( !isset( $params['help'] ) ) {
-			$params['help'] = "";
-		}
+
 		return
 			$this->label(
 				$params['label'],
@@ -728,8 +729,7 @@ class WebInstaller extends CoreInstaller {
 						'class' => 'config-input-text',
 						'tabindex' => $this->nextTabIndex()
 					)
-				),
-				$params['help']
+				)
 			);
 	}
 
@@ -744,7 +744,6 @@ class WebInstaller extends CoreInstaller {
 	 *      attribs:    Additional attributes for the input element (optional)
 	 *      controlName: The name for the input element (optional)
 	 *      value:      The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
 	 */
 	public function getPasswordBox( $params ) {
 		if ( !isset( $params['value'] ) ) {
@@ -771,7 +770,6 @@ class WebInstaller extends CoreInstaller {
 	 *      attribs:    Additional attributes for the input element (optional)
 	 *      controlName: The name for the input element (optional)
 	 *      value:      The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
 	 */
 	public function getCheckBox( $params ) {
 		if ( !isset( $params['controlName'] ) ) {
@@ -785,9 +783,7 @@ class WebInstaller extends CoreInstaller {
 		if ( !isset( $params['attribs'] ) ) {
 			$params['attribs'] = array();
 		}
-		if ( !isset( $params['help'] ) ) {
-			$params['help'] = "";
-		}
+
 		if( isset( $params['rawtext'] ) ) {
 			$labelText = $params['rawtext'];
 		} else {
@@ -807,7 +803,6 @@ class WebInstaller extends CoreInstaller {
 			) .
 			$labelText . "\n" .
 			"</label>\n" .
-			$params['help'] .
 			"</div>\n";
 	}
 
@@ -824,7 +819,6 @@ class WebInstaller extends CoreInstaller {
 	 *      commonAttribs   Attribute array applied to all items
 	 *      controlName:    The name for the input element (optional)
 	 *      value:          The current value of the variable (optional)
-	 *      help:		The html for the help text (optional)
 	 */
 	public function getRadioSet( $params ) {
 		if ( !isset( $params['controlName']  ) ) {
@@ -838,12 +832,13 @@ class WebInstaller extends CoreInstaller {
 		if ( !isset( $params['label'] ) ) {
 			$label = '';
 		} else {
-			$label = $params['label'];
+			$label = $this->parse( wfMsgNoTrans( $params['label'] ) );
 		}
-		if ( !isset( $params['help'] ) ) {
-			$params['help'] = "";
-		}
-		$s = "<ul>\n";
+
+		$s = "<label class=\"config-label\">\n" .
+			$label .
+			"</label>\n" .
+			"<ul class=\"config-settings-block\">\n";
 		foreach ( $params['values'] as $value ) {
 			$itemAttribs = array();
 
@@ -871,8 +866,7 @@ class WebInstaller extends CoreInstaller {
 		}
 
 		$s .= "</ul>\n";
-
-		return $this->label( $label, $params['controlName'], $s, $params['help'] );
+		return $s;
 	}
 
 	/**
