@@ -6,23 +6,17 @@
 .config-section {
 	margin-top: 2em;
 }
-.config-block {
-	margin-top: 2em;
-	display: block;
 
-}
-.config-block-label {
-	display: block;
-	margin-bottom: .2em;
-}
-.config-block-label label, .config-label {
+.config-label {
+	clear: left;
 	font-weight: bold;
-	padding-right: .5em;
+	width: 10em;
+	float: left;
+	text-align: right;
+	padding-right: 1em;
 	padding-top: .2em;
 }
-.config-block-elements {
-	margin-left: 2em;
-}
+
 .config-block-elements li {
 	list-style: none;
 }
@@ -48,7 +42,7 @@
 .config-page {
 	padding: 0.5em 0.5em 0.5em 2em;
 	margin: 0.5em 0.5em 0.5em 0.5em;
-	background: #eee;
+	border: 1px solid #aaa;
 }
 
 .config-submit {
@@ -90,6 +84,29 @@
 
 .config-page-current {
 	font-weight: bold;
+}
+
+.config-help-wrapper {
+	clear: left;
+	margin: 0 0 2em 12em;
+	padding-top: 1em;
+}
+.config-show-help, .config-hide-help {
+	margin-left: 14em;
+}
+.config-hide-help { display: none; }
+.config-show-help a, .config-hide-help a {
+	background-image: url(images/help-22.png);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 26px;
+	padding-left: 26px;
+}
+
+.config-help-message {
+	font-size: 85%;
+	display: none;
 }
 
 .config-message {
@@ -142,7 +159,7 @@
 .config-cc-wrapper {
 	clear: left;
 	/* If you change this height, also change it in WebInstaller_Options::submitCC() */
-	height: 54em;
+	height: 54em; 
 }
 
 .config-plainlink a {

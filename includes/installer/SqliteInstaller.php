@@ -8,7 +8,7 @@
  
 /**
  * Class for setting up the MediaWiki database using SQLLite.
- *
+ * 
  * @ingroup Deployment
  * @since 1.17
  */
@@ -41,8 +41,10 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	public function getConnectForm() {
-		return $this->getTextBox( 'wgSQLiteDataDir', 'config-sqlite-dir', array(), $this->parent->getHelpBox( 'config-sqlite-dir-help' ) ) .
-			$this->getTextBox( 'wgDBname', 'config-db-name', array(), $this->parent->getHelpBox( 'config-sqlite-name-help' ) );
+		return $this->getTextBox( 'wgSQLiteDataDir', 'config-sqlite-dir' ) .
+			$this->parent->getHelpBox( 'config-sqlite-dir-help' ) .
+			$this->getTextBox( 'wgDBname', 'config-db-name' ) .
+			$this->parent->getHelpBox( 'config-sqlite-name-help' );
 	}
 
 	public function submitConnectForm() {

@@ -1,9 +1,19 @@
 (function( $ ) {
 	$( document ).ready( function() {
-
-		// Generate the tool tips
-		$( '.mw-help-field-hint' ).tipsy( { gravity : 'se', opacity: '0.9' } );
-
+		// Show/hide code for help text
+		$( '.config-show-help a' ).click( function() {
+			$(this).parent().siblings( '.config-help-message' ).show( 'slow' );
+			$(this).parent().siblings( '.config-hide-help' ).show();
+			$(this).parent().hide();
+			return false;
+		} );
+		$( '.config-hide-help a' ).click( function() {
+			$(this).parent().siblings( '.config-help-message' ).hide( 'slow' );
+			$(this).parent().siblings( '.config-show-help' ).show();
+			$(this).parent().hide();
+			return false;
+		} );
+		
 		// Show/hide code for DB-specific options
 		// FIXME: Do we want slow, fast, or even non-animated (instantaneous) showing/hiding here?
 		$( '.dbRadio' ).each( function() { $( '#' + $(this).attr( 'rel' ) ).hide(); } );
