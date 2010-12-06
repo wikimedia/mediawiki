@@ -9,7 +9,6 @@
  *   - enable the uploading user (and *ONLY* the uploading user) to access said files, and thumbnails of said files, via a URL.
  *     We accomplish this by making the session serve as a URL->file mapping, on the assumption that nobody else can access 
  *     the session, even the uploading user. See SpecialUploadStash, which implements a web interface to some files stored this way.
- *
  */
 class UploadStash {
 
@@ -22,6 +21,12 @@ class UploadStash {
 	
 	// array of initialized objects obtained from session (lazily initialized upon getFile())
 	private $files = array();  
+	
+	// Session ID
+	private $sessionID;
+	
+	// Cache to store stash metadata in
+	private $cache;
 
 	// TODO: Once UploadBase starts using this, switch to use these constants rather than UploadBase::SESSION*
 	// const SESSION_VERSION = 2;
@@ -41,14 +46,13 @@ class UploadStash {
 
 		$this->repo = $repo;
 
-		if ( ! isset( $_SESSION ) ) {
-			throw new UploadStashNotAvailableException( 'no session variable' );
+		if ( session_id() === '' ) {
+			// FIXME: Should we just start a session in this case?
+			// Anonymous uploading could be allowed
+			throw new UploadStashNotAvailableException( 'no session ID' );
 		}
-
-		if ( !isset( $_SESSION[UploadBase::SESSION_KEYNAME] ) ) {
-			$_SESSION[UploadBase::SESSION_KEYNAME] = array();
-		}
-		
+		$this->sessionID = '';
+		$this->cache = wfGetCache( CACHE_ANYTHING );
 	}
 
 	/**
@@ -64,30 +68,35 @@ class UploadStash {
 		if ( ! preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
 			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
 		} 
- 
+
 		if ( !isset( $this->files[$key] ) ) {
-			if ( !isset( $_SESSION[UploadBase::SESSION_KEYNAME][$key] ) ) {
+			$cacheKey = wfMemcKey( 'uploadstash', $this->sessionID, $key );
+			$data = $this->cache->get( $cacheKey );
+			if ( !$data ) {
 				throw new UploadStashFileNotFoundException( "key '$key' not found in stash" );
 			}
 
-			$data = $_SESSION[UploadBase::SESSION_KEYNAME][$key];
-			// guards against PHP class changing while session data doesn't
-			if ($data['version'] !== UploadBase::SESSION_VERSION ) {
-				throw new UploadStashBadVersionException( $data['version'] . " does not match current version " . UploadBase::SESSION_VERSION );
-			}
-		
-			// separate the stashData into the path, and then the rest of the data
-			$path = $data['mTempPath'];
-			unset( $data['mTempPath'] );
-
-			$file = new UploadStashFile( $this, $this->repo, $path, $key, $data );
-			if ( $file->getSize === 0 ) {
-				throw new UploadStashZeroLengthFileException( "File is zero length" );
-			}
-			$this->files[$key] = $file;
+			$this->files[$key] = $this->getFileFromData( $data );
 
 		}
 		return $this->files[$key];
+	}
+	
+	protected function getFileFromData( $data ) {
+		// guards against PHP class changing while session data doesn't
+		if ( $data['version'] !== UploadBase::SESSION_VERSION ) {
+			throw new UploadStashBadVersionException( $data['version'] . " does not match current version " . UploadBase::SESSION_VERSION );
+		}
+	
+		// separate the stashData into the path, and then the rest of the data
+		$path = $data['mTempPath'];
+		unset( $data['mTempPath'] );
+
+		$file = new UploadStashFile( $this, $this->repo, $path, $key, $data );
+		if ( $file->getSize() === 0 ) {
+			throw new UploadStashZeroLengthFileException( "File is zero length" );
+		}
+		return $file;
 	}
 
 	/**
@@ -163,10 +172,15 @@ class UploadStash {
 
 		// now, merge required info and extra data into the session. (The extra data changes from application to application.
 		// UploadWizard wants different things than say FirefoggChunkedUpload.)
-		wfDebug( __METHOD__ . " storing under $key\n" );
-		$_SESSION[UploadBase::SESSION_KEYNAME][$key] = array_merge( $data, $requiredData );
+		$finalData = array_merge( $data, $requiredData );
 		
-		return $this->getFile( $key );
+		global $wgUploadStashExpiry;
+		wfDebug( __METHOD__ . " storing under $key\n" );
+		$cacheKey = wfMemcKey( 'uploadstash', $this->sessionID, $key );
+		$this->cache->set( $cacheKey, array_merge( $data, $requiredData ), $wgUploadStashExpiry );
+		
+		$this->files[$key] = $this->getFileFromData( $data );
+		return $this->files[$key];
 	}
 
 	/**
