@@ -289,6 +289,9 @@ if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
 	else $wgHtml5Version = 'HTML+RDFa 1.0';
 }
 
+if ( $wgInvalidateCacheOnLocalSettingsChange ) {
+	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );
+}
 
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );

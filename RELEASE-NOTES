@@ -91,6 +91,11 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   the footers of skins.
 * $wgFileCacheDepth can be used to set the depth of the subdirectory hierarchy
   used for the file cache. Default value is 2, which matches former behavior 
+* It's no longer necessary for LocalSettings.php to include DefaultSettings.php.
+* It's no longer necessary to set $wgCacheEpoch to the file modification time
+  of LocalSettings.php, in LocalSettings.php itself. Instead, this is done 
+  automatically if $wgInvalidateCacheOnLocalSettingsChange is true (which is 
+  the default). 
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via

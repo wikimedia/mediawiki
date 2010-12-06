@@ -61,11 +61,10 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 // Some other requires
 require_once( "$IP/includes/AutoLoader.php" );
 require_once( "$IP/includes/Defines.php" );
+require_once( "$IP/includes/DefaultSettings.php" );
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
-	require_once( "$IP/includes/DefaultSettings.php" );
-
 	$callback = MW_CONFIG_CALLBACK;
 	# PHP 5.1 doesn't support "class::method" for call_user_func, so split it
 	if ( strpos( $callback, '::' ) !== false ) {

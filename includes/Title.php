@@ -2645,7 +2645,9 @@ class Title {
 					$this->mInterwiki = $wgContLang->lc( $p );
 
 					# Redundant interwiki prefix to the local wiki
-					if ( 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) {
+					if ( $wgLocalInterwiki !== false
+						&& 0 == strcasecmp( $this->mInterwiki, $wgLocalInterwiki ) ) 
+					{
 						if ( $dbkey == '' ) {
 							# Can't have an empty self-link
 							return false;

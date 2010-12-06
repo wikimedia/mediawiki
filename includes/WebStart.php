@@ -91,11 +91,11 @@ if ( !function_exists( 'version_compare' )
 
 # Start the autoloader, so that extensions can derive classes from core files
 require_once( "$IP/includes/AutoLoader.php" );
+# Load default settings
+require_once( "$IP/includes/DefaultSettings.php" );
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
-	require_once( "$IP/includes/DefaultSettings.php" );
-
 	$callback = MW_CONFIG_CALLBACK;
 	# PHP 5.1 doesn't support "class::method" for call_user_func, so split it
 	if ( strpos( $callback, '::' ) !== false ) {
@@ -110,7 +110,6 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# the wiki installer needs to be launched or the generated file moved from
 	# ./config/ to ./
 	if( !file_exists( MW_CONFIG_FILE ) ) {
-		require_once( "$IP/includes/DefaultSettings.php" ); # used for printing the version
 		require_once( "$IP/includes/templates/NoLocalSettings.php" );
 		die();
 	}

@@ -197,21 +197,11 @@ class LocalSettingsGenerator {
 # Further documentation for configuration settings may be found at:
 # http://www.mediawiki.org/wiki/Manual:Configuration_settings
 
-# If you customize your file layout, set \$IP to the directory that contains
-# the other MediaWiki files. It will be used as a base to locate files.
-if( defined( 'MW_INSTALL_PATH' ) ) {
-	\$IP = MW_INSTALL_PATH;
-} else {
-	\$IP = dirname( __FILE__ );
+# Protect against web entry
+if ( !defined( 'MEDIAWIKI' ) ) {
+	exit;
 }
 
-require_once( \"\$IP/includes/DefaultSettings.php\" );
-
-if ( \$wgCommandLineMode ) {
-	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
-		die( \"This script must be run from the command line\\n\" );
-	}
-}
 ## Uncomment this to disable output compression
 # \$wgDisableOutputCompression = true;
 
@@ -285,8 +275,6 @@ if ( \$wgCommandLineMode ) {
 ## be publically accessible from the web.
 #\$wgCacheDirectory = \"\$IP/cache\";
 
-\$wgLocalInterwiki   = strtolower( \$wgSitename );
-
 # Site language code, should be one of ./languages/Language(.*).php
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
@@ -312,10 +300,6 @@ if ( \$wgCommandLineMode ) {
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
 \$wgDiff3 = \"{$this->values['wgDiff3']}\";
-
-# When you make changes to this configuration file, this will make
-# sure that cached pages are cleared.
-\$wgCacheEpoch = max( \$wgCacheEpoch, gmdate( 'YmdHis', @filemtime( __FILE__ ) ) );
 
 # Enabled Extensions. Most extensions are enabled by including the base extension file here
 # but check specific extension documentation for more details
