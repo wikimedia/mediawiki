@@ -979,6 +979,7 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 
 	public  function execute() {
 		$text = $this->getFileContents();
+		$text = $this->formatTextFile( $text );
 		$this->parent->output->addWikiText( $text );
 		$this->startForm();
 		$this->endForm( false );
@@ -989,24 +990,21 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 	}
 
 	protected function formatTextFile( $text ) {
-		$text = str_replace( array( '<', '{{', '[[' ),
-			array( '&lt;', '&#123;&#123;', '&#91;&#91;' ), $text );
-		// replace numbering with [1], [2], etc with MW-style numbering
-		$text = preg_replace( "/\r?\n(\r?\n)?\\[\\d+\\]/m", "\\1#", $text );
+		// Use Unix line endings, escape some wikitext stuff
+		$text = str_replace( array( '<', '{{', '[[', "\r" ),
+			array( '&lt;', '&#123;&#123;', '&#91;&#91;', '' ), $text );
 		// join word-wrapped lines into one
 		do {
 			$prev = $text;
-			$text = preg_replace( "/\n([\\*#])([^\r\n]*?)\r?\n([^\r\n#\\*:]+)/", "\n\\1\\2 \\3", $text );
+			$text = preg_replace( "/\n([\\*#\t])([^\n]*?)\n([^\n#\\*:]+)/", "\n\\1\\2 \\3", $text );
 		} while ( $text != $prev );
+		// Replace tab indents with colons
+		$text = preg_replace( '/^\t\t/m', '::', $text );
+		$text = preg_replace( '/^\t/m', ':', $text );
 		// turn (bug nnnn) into links
 		$text = preg_replace_callback('/bug (\d+)/', array( $this, 'replaceBugLinks' ), $text );
 		// add links to manual to every global variable mentioned
 		$text = preg_replace_callback('/(\$wg[a-z0-9_]+)/i', array( $this, 'replaceConfigLinks' ), $text );
-		// special case for <pre> - formatted links
-		do {
-			$prev = $text;
-			$text = preg_replace( '/^([^\\s].*?)\r?\n[\\s]+(https?:\/\/)/m', "\\1\n:\\2", $text );
-		} while ( $text != $prev );
 		return $text;
 	}
 
@@ -1023,49 +1021,18 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 }
 
 class WebInstaller_Readme extends WebInstaller_Document {
-	
 	protected function getFileName() { return 'README'; }
-
-	public function getFileContents() {
-		return $this->formatTextFile( parent::getFileContents() );
-	}
-	
 }
 
 class WebInstaller_ReleaseNotes extends WebInstaller_Document {
-	
 	protected function getFileName() { return 'RELEASE-NOTES'; }
-
-	public function getFileContents() {
-		return $this->formatTextFile( parent::getFileContents() );
-	}
-	
 }
 
 class WebInstaller_UpgradeDoc extends WebInstaller_Document {
-	
 	protected function getFileName() { return 'UPGRADE'; }
-
-	public function getFileContents() {
-		return $this->formatTextFile( parent::getFileContents() );
-	}
-	
 }
 
 class WebInstaller_Copying extends WebInstaller_Document {
-	
 	protected function getFileName() { return 'COPYING'; }
-
-	public function getFileContents() {
-		$text = parent::getFileContents();
-		$text = str_replace( "\x0C", '', $text );
-		$text = preg_replace_callback( '/\n[ \t]+/m', array( 'WebInstaller_Copying', 'replaceLeadingSpaces' ), $text );
-		$text = '<tt>' . nl2br( $text ) . '</tt>';
-		return $text;
-	}
-
-	private static function replaceLeadingSpaces( $matches ) {
-		return "\n" . str_repeat( '&#160;', strlen( $matches[0] ) );
-	}
-	
 }
+
