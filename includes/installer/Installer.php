@@ -82,7 +82,6 @@ abstract class Installer {
 	 * @var array
 	 */
 	protected $envChecks = array(
-		'envCheckMediaWikiVersion',
 		'envCheckDB',
 		'envCheckRegisterGlobals',
 		'envCheckBrokenXML',
@@ -355,38 +354,6 @@ abstract class Installer {
 			if ( substr( $name, 0, 2 ) == 'wg' ) {
 				$GLOBALS[$name] = $value;
 			}
-		}
-	}
-
-	/**
-	 * Check if we're installing the latest version.
-	 */
-	protected function envCheckMediaWikiVersion() {
-		global $wgVersion;
-
-		if( !$this->getVar( '_ExternalHTTP' ) ) {
-			$this->showMessage( 'config-env-latest-disabled' );
-			return;
-		}
-
-		$repository = wfGetRepository();
-		$currentVersion = $repository->getLatestCoreVersion();
-
-		if ( $currentVersion === false ) {
-			# For when the request is successful but there's e.g. some silly man in
-			# the middle firewall blocking us, e.g. one of those annoying airport ones
-			$this->showMessage( 'config-env-latest-can-not-check', $repository->getLocation() );
-			return;
-		}
-
-		if( version_compare( $wgVersion, $currentVersion, '<' ) ) {
-			$this->showMessage( 'config-env-latest-old' );
-			// FIXME: this only works for the web installer!
-			$this->showHelpBox( 'config-env-latest-help', $wgVersion, $currentVersion );
-		} elseif( version_compare( $wgVersion, $currentVersion, '>' ) ) {
-			$this->showMessage( 'config-env-latest-new' );
-		} else {
-			$this->showMessage( 'config-env-latest-ok' );
 		}
 	}
 
