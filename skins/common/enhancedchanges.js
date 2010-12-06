@@ -37,4 +37,4 @@ window.toggleVisibility = function(idNumber) {
 		closearrow.className = 'mw-changeslist-hidden';
 		subentries.className = 'mw-changeslist-hidden';
 	}
-}
+};

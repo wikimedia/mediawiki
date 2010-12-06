@@ -16,7 +16,7 @@ window.considerChangingExpiryFocus = function() {
 	} else {
 		field.style.display = 'none';
 	}
-}
+};
 window.updateBlockOptions = function() {
 	if ( !document.getElementById ) {
 		return;
@@ -59,6 +59,6 @@ window.updateBlockOptions = function() {
 	if( watchuserRow ) {
 		watchuserRow.style.display = isIpRange && !isEmpty ? 'none' : '';
 	}
-}
+};
 
 addOnloadHook( considerChangingExpiryFocus );

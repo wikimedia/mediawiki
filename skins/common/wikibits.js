@@ -63,7 +63,7 @@ window.addOnloadHook = function( hookFunct ) {
 	} else {
 		hookFunct();  // bug in MSIE script loading
 	}
-}
+};
 
 window.importScript = function( page ) {
 	// TODO: might want to introduce a utility function to match wfUrlencode() in PHP
@@ -71,7 +71,7 @@ window.importScript = function( page ) {
 		encodeURIComponent(page.replace(/ /g,'_')).replace(/%2F/ig,'/').replace(/%3A/ig,':') +
 		'&action=raw&ctype=text/javascript';
 	return importScriptURI( uri );
-}
+};
 
 window.loadedScripts = {}; // included-scripts tracker
 window.importScriptURI = function( url ) {
@@ -84,11 +84,11 @@ window.importScriptURI = function( url ) {
 	s.setAttribute( 'type', 'text/javascript' );
 	document.getElementsByTagName('head')[0].appendChild( s );
 	return s;
-}
+};
 
 window.importStylesheet = function( page ) {
 	return importStylesheetURI( wgScript + '?action=raw&ctype=text/css&title=' + encodeURIComponent( page.replace(/ /g,'_') ) );
-}
+};
 
 window.importStylesheetURI = function( url, media ) {
 	var l = document.createElement( 'link' );
@@ -100,7 +100,7 @@ window.importStylesheetURI = function( url, media ) {
 	}
 	document.getElementsByTagName('head')[0].appendChild( l );
 	return l;
-}
+};
 
 window.appendCSS = function( text ) {
 	var s = document.createElement( 'style' );
@@ -113,7 +113,7 @@ window.appendCSS = function( text ) {
 	}
 	document.getElementsByTagName('head')[0].appendChild( s );
 	return s;
-}
+};
 
 // Special stylesheet links for Monobook only (see bug 14717)
 if ( typeof stylepath != 'undefined' && skin == 'monobook' ) {
@@ -170,7 +170,7 @@ window.showTocToggle = function() {
 			toggleToc();
 		}
 	}
-}
+};
 
 window.changeText = function( el, newText ) {
 	// Safari work around
@@ -179,7 +179,7 @@ window.changeText = function( el, newText ) {
 	} else if ( el.firstChild && el.firstChild.nodeValue ) {
 		el.firstChild.nodeValue = newText;
 	}
-}
+};
 
 window.killEvt = function( evt ) {
 	evt = evt || window.event || window.Event; // W3C, IE, Netscape
@@ -190,7 +190,7 @@ window.killEvt = function( evt ) {
 		evt.cancelBubble = true; // IE
 	}
 	return false; // Don't follow the link (IE)
-}
+};
 
 window.toggleToc = function() {
 	var tocmain = document.getElementById( 'toc' );
@@ -209,7 +209,7 @@ window.toggleToc = function() {
 		tocmain.className = 'toc tochidden';
 	}
 	return false;
-}
+};
 
 window.mwEditButtons = [];
 window.mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
@@ -220,7 +220,7 @@ window.escapeQuotes = function( text ) {
 	re = new RegExp( "\\n", "g" );
 	text = text.replace( re, "\\n" );
 	return escapeQuotesHTML( text );
-}
+};
 
 window.escapeQuotesHTML = function( text ) {
 	var re = new RegExp( '&', "g" );
@@ -232,7 +232,7 @@ window.escapeQuotesHTML = function( text ) {
 	re = new RegExp( '>', "g" );
 	text = text.replace( re, "&gt;" );
 	return text;
-}
+};
 
 /**
  * Set the accesskey prefix based on browser detection.
@@ -291,7 +291,7 @@ window.updateTooltipAccessKeys = function( nodeList ) {
 			element.setAttribute( 'title', tip );
 		}
 	}
-}
+};
 
 /**
  * Add a link to one of the portlet menus on the page, including:
@@ -384,7 +384,7 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 	}
 
 	return item;
-}
+};
 
 window.getInnerText = function( el ) {
 	if ( el.getAttribute( 'data-sort-value' ) !== null ) {
@@ -418,12 +418,12 @@ window.getInnerText = function( el ) {
 		}
 	}
 	return str;
-}
+};
 
 /* Dummy for deprecated function */
 window.ta = [];
 window.akeytt = function( doId ) {
-}
+};
 
 window.checkboxes = undefined;
 window.lastCheckbox = undefined;
@@ -433,7 +433,7 @@ window.setupCheckboxShiftClick = function() {
 	lastCheckbox = null;
 	var inputs = document.getElementsByTagName( 'input' );
 	addCheckboxClickHandlers( inputs );
-}
+};
 
 window.addCheckboxClickHandlers = function( inputs, start ) {
 	if ( !start ) {
@@ -461,7 +461,7 @@ window.addCheckboxClickHandlers = function( inputs, start ) {
 			addCheckboxClickHandlers( inputs, finish );
 		}, 200 );
 	}
-}
+};
 
 window.checkboxClickHandler = function( e ) {
 	if ( typeof e == 'undefined' ) {
@@ -488,7 +488,7 @@ window.checkboxClickHandler = function( e ) {
 	}
 	lastCheckbox = this.index;
 	return true;
-}
+};
 
 
 /*
@@ -539,7 +539,7 @@ window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
 		}
 	}
 	return ( arrReturnElements );
-}
+};
 
 window.redirectToFragment = function( fragment ) {
 	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
@@ -568,7 +568,7 @@ window.redirectToFragment = function( fragment ) {
 			});
 		}
 	}
-}
+};
 
 /*
  * Table sorting script based on one (c) 1997-2006 Stuart Langridge and Joost
@@ -601,7 +601,7 @@ window.sortables_init = function() {
 		}
 		ts_makeSortable( tables[ti] );
 	}
-}
+};
 
 window.ts_makeSortable = function( table ) {
 	var firstRow;
@@ -632,11 +632,11 @@ window.ts_makeSortable = function( table ) {
 	if ( ts_alternate_row_colors ) {
 		ts_alternate( table );
 	}
-}
+};
 
 window.ts_getInnerText = function( el ) {
 	return getInnerText( el );
-}
+};
 
 window.ts_resortTable = function( lnk ) {
 	// get the span

@@ -50,7 +50,7 @@ window.doLivePreview = function( e ) {
 
 			$( mw ).trigger( 'LivePreviewDone', [copyElements] );
 		} );
-}
+};
 
 // Shamelessly stolen from the jQuery form plugin, which is licensed under the GPL.
 // http://jquery.malsup.com/form/#download

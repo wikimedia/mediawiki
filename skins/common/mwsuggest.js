@@ -57,7 +57,7 @@ window.os_Timer = function( id, r, query ) {
 	this.id = id;
 	this.r = r;
 	this.query = query;
-}
+};
 
 /** Property class for single search box */
 window.os_Results = function( name, formname ) {
@@ -77,7 +77,7 @@ window.os_Results = function( name, formname ) {
 	this.containerTotal = 0; // total height of the container will all results
 	this.visible = false; // if container is visible
 	this.stayHidden = false; // don't try to show if lost focus
-}
+};
 
 /** Timer user to animate expansion/contraction of container width */
 window.os_AnimationTimer = function( r, target ) {
@@ -91,7 +91,7 @@ window.os_AnimationTimer = function( r, target ) {
 		this.inc = -os_animation_min_step;
 	}
 	this.target = target;
-}
+};
 
 /******************
  * Initialization
@@ -107,7 +107,7 @@ window.os_MWSuggestInit = function() {
 			os_initHandlers( id, form, element );
 		}
 	}
-}
+};
 
 /** Init Result objects and event handlers */
 window.os_initHandlers = function( name, formname, element ) {
@@ -157,7 +157,7 @@ window.os_initHandlers = function( name, formname, element ) {
 		} */
 	}
 
-}
+};
 
 window.os_hookEvent = function( element, hookName, hookFunct ) {
 	if ( element.addEventListener ) {
@@ -165,7 +165,7 @@ window.os_hookEvent = function( element, hookName, hookFunct ) {
 	} else if ( window.attachEvent ) {
 		element.attachEvent( 'on' + hookName, hookFunct );
 	}
-}
+};
 
 /********************
  *  Keyboard events
@@ -185,7 +185,7 @@ window.os_eventKeyup = function( e ) {
 	}
 	var query = targ.value;
 	os_fetchResults( r, query, os_search_timeout );
-}
+};
 
 /** catch arrows up/down and escape to hide the suggestions */
 window.os_processKey = function( r, keypressed, targ ) {
@@ -215,7 +215,7 @@ window.os_processKey = function( r, keypressed, targ ) {
 	} else if( r.query != document.getElementById( r.searchbox ).value ) {
 		// os_hideResults( r ); // don't show old suggestions
 	}
-}
+};
 
 /** When keys is held down use a timer to output regular events */
 window.os_eventKeypress = function( e ) {
@@ -229,7 +229,7 @@ window.os_eventKeypress = function( e ) {
 
 	os_keypressed_count++;
 	os_processKey( r, keypressed, targ );
-}
+};
 
 /** Catch the key code (Firefox bug) */
 window.os_eventKeydown = function( e ) {
@@ -246,7 +246,7 @@ window.os_eventKeydown = function( e ) {
 
 	os_cur_keypressed = ( e.keyCode == undefined ) ? e.which : e.keyCode;
 	os_keypressed_count = 0;
-}
+};
 
 
 /** When the form is submitted hide everything, cancel updates... */
@@ -272,7 +272,7 @@ window.os_eventOnsubmit = function( e ) {
 		}
 	}
 	return true;
-}
+};
 
 
 
@@ -289,7 +289,7 @@ window.os_hideResults = function( r ) {
 	}
 	r.visible = false;
 	r.selected = -1;
-}
+};
 
 window.os_decodeValue = function( value ) {
 	if ( decodeURIComponent ) {
@@ -299,7 +299,7 @@ window.os_decodeValue = function( value ) {
 		return unescape( value );
 	}
 	return null;
-}
+};
 
 window.os_encodeQuery = function( value ) {
 	if ( encodeURIComponent ) {
@@ -309,7 +309,7 @@ window.os_encodeQuery = function( value ) {
 		return escape( value );
 	}
 	return null;
-}
+};
 
 /** Handles data from XMLHttpRequest, and updates the suggest results */
 window.os_updateResults = function( r, query, text, cacheKey ) {
@@ -340,7 +340,7 @@ window.os_updateResults = function( r, query, text, cacheKey ) {
 			os_cache[cacheKey] = null;
 		}
 	}
-}
+};
 
 /**
  * Create and populate a <datalist>.
@@ -370,7 +370,7 @@ window.os_setupDatalist = function( r, results ) {
 		r.results[i] = title;
 		c.appendChild( opt );
 	}
-}
+};
 
 /** Fetch namespaces from checkboxes or hidden fields in the search form,
     if none defined use wgSearchNamespaces global */
@@ -395,7 +395,7 @@ window.os_getNamespaces = function( r ) {
 		namespaces = wgSearchNamespaces.join('|');
 	}
 	return namespaces;
-}
+};
 
 /** Update results if user hasn't already typed something else */
 window.os_updateIfRelevant = function( r, query, text, cacheKey ) {
@@ -404,7 +404,7 @@ window.os_updateIfRelevant = function( r, query, text, cacheKey ) {
 		os_updateResults( r, query, text, cacheKey );
 	}
 	r.query = query;
-}
+};
 
 /** Fetch results after some timeout */
 window.os_delayedFetch = function() {
@@ -441,7 +441,7 @@ window.os_delayedFetch = function() {
 			}
 		}
 	}
-}
+};
 
 /** Init timed update via os_delayedUpdate() */
 window.os_fetchResults = function( r, query, timeout ) {
@@ -466,7 +466,7 @@ window.os_fetchResults = function( r, query, timeout ) {
 		os_timer = new os_Timer( null, r, query );
 		os_delayedFetch(); // do it now!
 	}
-}
+};
 
 /** Find event target */
 window.os_getTarget = function( e ) {
@@ -480,7 +480,7 @@ window.os_getTarget = function( e ) {
 	} else {
 		return null;
 	}
-}
+};
 
 /** Check if x is a valid integer */
 window.os_isNumber = function( x ) {
@@ -494,12 +494,12 @@ window.os_isNumber = function( x ) {
 		}
 	}
 	return true;
-}
+};
 
 /** Call this to enable suggestions on input (id=inputId), on a form (name=formName) */
 window.os_enableSuggestionsOn = function( inputId, formName ) {
 	os_initHandlers( inputId, formName, document.getElementById( inputId ) );
-}
+};
 
 /** Call this to disable suggestios on input box (id=inputId) */
 window.os_disableSuggestionsOn = function( inputId ) {
@@ -519,7 +519,7 @@ window.os_disableSuggestionsOn = function( inputId ) {
 	if ( index >= 0 ) {
 		os_autoload_inputs[index] = os_autoload_forms[index] = '';
 	}
-}
+};
 
 /************************************************
  * Div-only functions (irrelevant for datalist)
@@ -542,7 +542,7 @@ window.os_eventBlur = function( e ) {
 		}
 		os_timer = null;
 	}
-}
+};
 
 /** Event: focus (catch only when stopped) */
 window.os_eventFocus = function( e ) {
@@ -552,7 +552,7 @@ window.os_eventFocus = function( e ) {
 		return; // not our event
 	}
 	r.stayHidden = false;
-}
+};
 
 /**
  * Create and populate a <div>, for non-<datalist>-supporting browsers.
@@ -573,7 +573,7 @@ window.os_setupDiv = function( r, results ) {
 	os_fitContainer( r );
 	os_trimResultText( r );
 	os_showResults( r );
-}
+};
 
 /** Create the result table to be placed in the container div */
 window.os_createResultTable = function( r, results ) {
@@ -589,7 +589,7 @@ window.os_createResultTable = function( r, results ) {
 	}
 	html += '</table>';
 	return html;
-}
+};
 
 /** Show results div */
 window.os_showResults = function( r ) {
@@ -607,7 +607,7 @@ window.os_showResults = function( r ) {
 		c.style.visibility = 'visible';
 		r.visible = true;
 	}
-}
+};
 
 window.os_operaWidthFix = function( x ) {
 	// For browsers that don't understand overflow-x, estimate scrollbar width
@@ -615,7 +615,7 @@ window.os_operaWidthFix = function( x ) {
 		return 30;
 	}
 	return 0;
-}
+};
 
 /** Brower-dependent functions to find window inner size, and scroll status */
 window.f_clientWidth = function() {
@@ -624,7 +624,7 @@ window.f_clientWidth = function() {
 		document.documentElement ? document.documentElement.clientWidth : 0,
 		document.body ? document.body.clientWidth : 0
 	);
-}
+};
 
 window.f_clientHeight = function() {
 	return f_filterResults(
@@ -632,7 +632,7 @@ window.f_clientHeight = function() {
 		document.documentElement ? document.documentElement.clientHeight : 0,
 		document.body ? document.body.clientHeight : 0
 	);
-}
+};
 
 window.f_scrollLeft = function() {
 	return f_filterResults(
@@ -640,7 +640,7 @@ window.f_scrollLeft = function() {
 		document.documentElement ? document.documentElement.scrollLeft : 0,
 		document.body ? document.body.scrollLeft : 0
 	);
-}
+};
 
 window.f_scrollTop = function() {
 	return f_filterResults(
@@ -648,7 +648,7 @@ window.f_scrollTop = function() {
 		document.documentElement ? document.documentElement.scrollTop : 0,
 		document.body ? document.body.scrollTop : 0
 	);
-}
+};
 
 window.f_filterResults = function( n_win, n_docel, n_body ) {
 	var n_result = n_win ? n_win : 0;
@@ -656,7 +656,7 @@ window.f_filterResults = function( n_win, n_docel, n_body ) {
 		n_result = n_docel;
 	}
 	return n_body && ( !n_result || ( n_result > n_body ) ) ? n_body : n_result;
-}
+};
 
 /** Get the height available for the results container */
 window.os_availableHeight = function( r ) {
@@ -666,7 +666,7 @@ window.os_availableHeight = function( r ) {
 		absTop = absTop.substring( 0, px );
 	}
 	return f_clientHeight() - ( absTop - f_scrollTop() );
-}
+};
 
 /** Get element absolute position {left,top} */
 window.os_getElementPosition = function( elemID ) {
@@ -683,33 +683,41 @@ window.os_getElementPosition = function( elemID ) {
 		offsetTop += document.body.topMargin;
 	}
 	return { left:offsetLeft, top:offsetTop };
-}
+};
 
 /** Create the container div that will hold the suggested titles */
-window.os_createContainer = function( r ) {
-	var c = document.createElement( 'div' );
-	var s = document.getElementById( r.searchbox );
-	var pos = os_getElementPosition( r.searchbox );
+window.os_createContainer = function(r) {
+	var c = document.createElement('div');
+	var s = document.getElementById(r.searchbox);
+	var pos = os_getElementPosition(r.searchbox);
 	var left = pos.left;
 	var top = pos.top + s.offsetHeight;
 	c.className = 'os-suggest';
-	c.setAttribute( 'id', r.container );
-	document.body.appendChild( c );
+	c.setAttribute('id', r.container);
+	document.body.appendChild(c);
 
 	// dynamically generated style params
 	// IE workaround, cannot explicitely set "style" attribute
-	c = document.getElementById( r.container );
+	c = document.getElementById(r.container);
 	c.style.top = top + 'px';
 	c.style.left = left + 'px';
 	c.style.width = s.offsetWidth + 'px';
 
 	// mouse event handlers
-	c.onmouseover = function( event ) { os_eventMouseover( r.searchbox, event ); };
-	c.onmousemove = function( event ) { os_eventMousemove( r.searchbox, event ); };
-	c.onmousedown = function( event ) { return os_eventMousedown( r.searchbox, event ); };
-	c.onmouseup = function( event ) { os_eventMouseup( r.searchbox, event ); };
+	c.onmouseover = function(event) {
+		os_eventMouseover(r.searchbox, event);
+	};
+	c.onmousemove = function(event) {
+		os_eventMousemove(r.searchbox, event);
+	};
+	c.onmousedown = function(event) {
+		return os_eventMousedown(r.searchbox, event);
+	};
+	c.onmouseup = function(event) {
+		os_eventMouseup(r.searchbox, event);
+	};
 	return c;
-}
+};
 
 /** change container height to fit to screen */
 window.os_fitContainer = function( r ) {
@@ -730,7 +738,7 @@ window.os_fitContainer = function( r ) {
 		c.style.height = r.containerTotal + 'px';
 		r.containerCount = r.resultCount;
 	}
-}
+};
 
 /** If some entries are longer than the box, replace text with "..." */
 window.os_trimResultText = function( r ) {
@@ -796,7 +804,7 @@ window.os_trimResultText = function( r ) {
 			document.getElementById( r.resultTable + i ).setAttribute( 'title', r.results[i] );
 		}
 	}
-}
+};
 
 /** Invoked on timer to animate change in container width */
 window.os_animateChangeWidth = function() {
@@ -820,7 +828,7 @@ window.os_animateChangeWidth = function() {
 			c.style.left = ( normL + normW + ( target - nw ) - os_animation_timer.target - 1 ) + 'px';
 		}
 	}
-}
+};
 
 /** Change the highlighted row (i.e. suggestion), from position cur to next */
 window.os_changeHighlight = function( r, cur, next, updateSearchBox ) {
@@ -868,7 +876,7 @@ window.os_changeHighlight = function( r, cur, next, updateSearchBox ) {
 	if( updateSearchBox ) {
 		os_updateSearchQuery( r, newText );
 	}
-}
+};
 
 window.os_HighlightClass = function() {
 	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
@@ -882,12 +890,12 @@ window.os_HighlightClass = function() {
 		}
 	}
 	return 'os-suggest-result-hl';
-}
+};
 
 window.os_updateSearchQuery = function( r, newText ) {
 	document.getElementById( r.searchbox ).value = newText;
 	r.query = newText;
-}
+};
 
 
 /********************
@@ -905,7 +913,7 @@ window.os_eventMouseover = function( srcId, e ) {
 	if( num >= 0 ) {
 		os_changeHighlight( r, r.selected, num, false );
 	}
-}
+};
 
 /* Get row where the event occured (from its id) */
 window.os_getNumberSuffix = function( id ) {
@@ -918,12 +926,12 @@ window.os_getNumberSuffix = function( id ) {
 	} else {
 		return -1;
 	}
-}
+};
 
 /** Save mouse move as last action */
 window.os_eventMousemove = function( srcId, e ) {
 	os_mouse_moved = true;
-}
+};
 
 /** Mouse button held down, register possible click */
 window.os_eventMousedown = function( srcId, e ) {
@@ -943,7 +951,7 @@ window.os_eventMousedown = function( srcId, e ) {
 	document.getElementById( r.searchbox ).focus();
 
 	return false; // prevents selection
-}
+};
 
 /** Mouse button released, check for click on some row */
 window.os_eventMouseup = function( srcId, e ) {
@@ -962,7 +970,7 @@ window.os_eventMouseup = function( srcId, e ) {
 	os_mouse_pressed = false;
 	// keep the focus on the search field
 	document.getElementById( r.searchbox ).focus();
-}
+};
 
 /** Toggle stuff seems to be dead code? */
 
@@ -978,7 +986,7 @@ window.os_createToggle = function( r, className ) {
 	link.appendChild( msg );
 	t.appendChild( link );
 	return t;
-}
+};
 
 /** Call when user clicks on some of the toggle links */
 window.os_toggle = function( inputId, formName ) {
@@ -995,6 +1003,6 @@ window.os_toggle = function( inputId, formName ) {
 	// change message
 	var link = document.getElementById( r.toggle ).firstChild;
 	link.replaceChild( document.createTextNode( msg ), link.firstChild );
-}
+};
 
 hookEvent( 'load', os_MWSuggestInit );

@@ -7,10 +7,10 @@ window.onNameChange = function() {
 		document.getElementById('wpPassword').disabled = false;
 		document.getElementById('wpComment').disabled = true;
 	}
-}
+};
 
 window.onNameChangeHook = function() {
 	document.getElementById( 'wpName' ).onblur = onNameChange;
-}
+};
 
 addOnloadHook( onNameChangeHook );

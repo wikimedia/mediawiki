@@ -36,7 +36,7 @@ window.bruteForceComplexity = function( pwd ) {
 	score += ( charClasses - 1 ) * 10;
 
 	return score;
-}
+};
 
 // Calculates a penalty to brute force score due to character repetition
 window.repetitionAdjustment = function( pwd ) {
@@ -49,7 +49,7 @@ window.repetitionAdjustment = function( pwd ) {
 	var ratio = pwd.length / unique.length - 0.4; // allow up to 40% repetition, reward for less, penalize for more
 	
 	return ratio * 10;
-}
+};
 
 // Checks how many simple sequences ("abc", "321") are there in the password
 window.sequenceScore = function( pwd ) {
@@ -76,7 +76,7 @@ window.sequenceScore = function( pwd ) {
 		}
 	}
 	return score;
-}
+};
 
 (function( $ ) {
 	function passwordChanged() {
