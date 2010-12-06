@@ -8,7 +8,7 @@
 
 /**
  * Base class for DBMS-specific installation helper classes.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
@@ -16,30 +16,30 @@ abstract class DatabaseInstaller {
 	
 	/**
 	 * The Installer object.
-	 * 
+	 *
 	 * TODO: naming this parent is confusing, 'installer' would be clearer.
-	 * 
+	 *
 	 * @var Installer
 	 */
 	public $parent;
 
 	/**
 	 * The database connection.
-	 * 
+	 *
 	 * @var DatabaseBase
 	 */
 	public $db;
 
 	/**
 	 * Internal variables for installation.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $internalDefaults = array();
 
 	/**
 	 * Array of MW configuration globals this class uses.
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $globalNames = array();
@@ -56,7 +56,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get HTML for a web form that configures this database. Configuration
-	 * at this time should be the minimum needed to connect and test 
+	 * at this time should be the minimum needed to connect and test
 	 * whether install or upgrade is required.
 	 *
 	 * If this is called, $this->parent can be assumed to be a WebInstaller.
@@ -65,7 +65,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Set variables based on the request array, assuming it was submitted
-	 * via the form returned by getConnectForm(). Validate the connection 
+	 * via the form returned by getConnectForm(). Validate the connection
 	 * settings by attempting to connect with them.
 	 *
 	 * If this is called, $this->parent can be assumed to be a WebInstaller.
@@ -77,7 +77,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get HTML for a web form that retrieves settings used for installation.
 	 * $this->parent can be assumed to be a WebInstaller.
-	 * If the DB type has no settings beyond those already configured with 
+	 * If the DB type has no settings beyond those already configured with
 	 * getConnectForm(), this should return false.
 	 */
 	public function getSettingsForm() {
@@ -87,7 +87,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Set variables based on the request array, assuming it was submitted via
 	 * the form return by getSettingsForm().
-	 * 
+	 *
 	 * @return Status
 	 */
 	public function submitSettingsForm() {
@@ -96,7 +96,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Connect to the database using the administrative user/password currently
-	 * defined in the session. On success, return the connection, on failure, 
+	 * defined in the session. On success, return the connection, on failure,
 	 *
 	 * This may be called multiple times, so the result should be cached.
 	 *
@@ -114,7 +114,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Create database tables from scratch.
-	 * 
+	 *
 	 * @return Status
 	 */
 	public function createTables() {
@@ -139,7 +139,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get the DBMS-specific options for LocalSettings.php generation.
-	 * 
+	 *
 	 * @return String
 	 */
 	public abstract function getLocalSettings();
@@ -188,19 +188,19 @@ abstract class DatabaseInstaller {
 	 */
 	public function getGlobalNames() {
 		return $this->globalNames;
-	}		
+	}
 
 	/**
 	 * Return any table options to be applied to all tables that don't
 	 * override them.
-	 * 
+	 *
 	 * @return Array
 	 */
 	public function getTableOptions() {
 		return array();
 	}
 
-	/** 
+	/**
 	 * Construct and initialise parent.
 	 * This is typically only called from Installer::getDBInstaller()
 	 */
@@ -211,7 +211,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Convenience function.
 	 * Check if a named extension is present.
-	 * 
+	 *
 	 * @see wfDl
 	 */
 	protected static function checkExtension( $name ) {
@@ -267,15 +267,19 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a labelled text box to configure a local variable.
 	 */
-	public function getTextBox( $var, $label, $attribs = array() ) {
+	public function getTextBox( $var, $label, $attribs = array(), $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
+		if ( !isset( $attribs ) ) {
+		    $attribs = array();
+		}
 		return $this->parent->getTextBox( array(
 			'var' => $var,
 			'label' => $label,
 			'attribs' => $attribs,
 			'controlName' => $name,
-			'value' => $value
+			'value' => $value,
+		    'help' => $helpData
 		) );
 	}
 
@@ -283,22 +287,26 @@ abstract class DatabaseInstaller {
 	 * Get a labelled password box to configure a local variable.
 	 * Implements password hiding.
 	 */
-	public function getPasswordBox( $var, $label, $attribs = array() ) {
+	public function getPasswordBox( $var, $label, $attribs = array(), $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
+		if ( !isset( $attribs ) ) {
+		    $attribs = array();
+		}
 		return $this->parent->getPasswordBox( array(
 			'var' => $var,
 			'label' => $label,
 			'attribs' => $attribs,
 			'controlName' => $name,
-			'value' => $value
+			'value' => $value,
+		    'help' => $helpData
 		) );
 	}
 
 	/**
 	 * Get a labelled checkbox to configure a local boolean variable.
 	 */
-	public function getCheckBox( $var, $label, $attribs = array() ) {
+	public function getCheckBox( $var, $label, $attribs = array(), $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
 		return $this->parent->getCheckBox( array(
@@ -307,6 +315,7 @@ abstract class DatabaseInstaller {
 			'attribs' => $attribs,
 			'controlName' => $name,
 			'value' => $value,
+		    'help' => $helpData
 		));
 	}
 
@@ -339,11 +348,11 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Determine whether an existing installation of MediaWiki is present in 
-	 * the configured administrative connection. Returns true if there is 
+	 * Determine whether an existing installation of MediaWiki is present in
+	 * the configured administrative connection. Returns true if there is
 	 * such a wiki, false if the database doesn't exist.
 	 *
-	 * Traditionally, this is done by testing for the existence of either 
+	 * Traditionally, this is done by testing for the existence of either
 	 * the revision table or the cur table.
 	 *
 	 * @return Boolean
@@ -367,9 +376,8 @@ abstract class DatabaseInstaller {
 		return
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMsg( 'config-db-install-account' ) ) .
-			$this->getTextBox( '_InstallUser', 'config-db-username' ) .
-			$this->getPasswordBox( '_InstallPassword', 'config-db-password' ) .
-			$this->parent->getHelpBox( 'config-db-install-help' ) .
+			$this->getTextBox( '_InstallUser', 'config-db-username', array(), $this->parent->getHelpBox( 'config-db-install-username' ) ) .
+			$this->getPasswordBox( '_InstallPassword', 'config-db-password', array(), $this->parent->getHelpBox( 'config-db-install-password' ) ) .
 			Html::closeElement( 'fieldset' );
 	}
 
@@ -389,7 +397,7 @@ abstract class DatabaseInstaller {
 	public function getWebUserBox( $noCreateMsg = false ) {
 		$s = Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
-			$this->getCheckBox( 
+			$this->getCheckBox(
 				'_SameAccount', 'config-db-web-account-same',
 				array( 'class' => 'hideShowRadio', 'rel' => 'dbOtherAccount' )
 			) .
@@ -408,7 +416,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Submit the form from getWebUserBox().
-	 * 
+	 *
 	 * @return Status
 	 */
 	public function submitWebUserBox() {
