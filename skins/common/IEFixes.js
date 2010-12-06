@@ -10,7 +10,7 @@ window.hookit = function() {
 		relativeforfloats();
 		fixalpha();
 	}
-}
+};
 
 if ( document.attachEvent ) {
 	document.attachEvent( 'onreadystatechange', window.hookit );
@@ -61,7 +61,7 @@ window.fixalpha = function( logoId ) {
 			linkFix.style.width = '100%';
 		}
 	}
-}
+};
 
 // fix ie6 disappering float bug
 window.relativeforfloats = function() {
@@ -72,7 +72,8 @@ window.relativeforfloats = function() {
 	}
 	setrelative( tables );
 	setrelative( divs );
-}
+};
+
 window.setrelative = function( nodes ) {
 	var i = 0;
 	while ( i < nodes.length ) {
@@ -84,7 +85,7 @@ window.setrelative = function( nodes ) {
 		}
 		i++;
 	}
-}
+};
 
 // Expand links for printing
 String.prototype.hasClass = function( classWanted ) {
@@ -95,7 +96,7 @@ String.prototype.hasClass = function( classWanted ) {
 		}
 	}
 	return false;
-}
+};
 
 window.expandedURLs = undefined;
 
@@ -117,7 +118,7 @@ window.onbeforeprint = function() {
 			}
 		}
 	}
-}
+};
 
 window.onafterprint = function() {
 	for ( var i = 0; i < expandedURLs.length; i++ ) {
@@ -125,4 +126,4 @@ window.onafterprint = function() {
 			expandedURLs[i].removeNode( true );
 		}
 	}
-}
+};

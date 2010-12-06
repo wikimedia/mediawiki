@@ -12,7 +12,7 @@ window.addButton = function( imageFile, speedTip, tagOpen, tagClose, sampleText,
 		'tagClose': tagClose,
 		'sampleText': sampleText
 	});
-}
+};
 
 // this function adds one toolbar button from a mwEditButtons/mwCustomEditButtons item
 window.mwInsertEditButton = function( parent, item ) {
@@ -39,7 +39,7 @@ window.mwInsertEditButton = function( parent, item ) {
 
 	parent.appendChild( image );
 	return true;
-}
+};
 
 // this function generates the actual toolbar buttons with localized text
 // we use it to avoid creating the toolbar where javascript is not enabled
@@ -73,7 +73,7 @@ window.mwSetupToolbar = function() {
 		mwInsertEditButton( toolbar, mwCustomEditButtons[i] );
 	}
 	return true;
-}
+};
 
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
@@ -160,7 +160,7 @@ window.insertTags = function( tagOpen, tagClose, sampleText ) {
 		}
 	}
 
-}
+};
 
 /**
  * Restore the edit box scroll state following a preview operation,
@@ -178,7 +178,7 @@ window.scrollEditBox = function() {
 			scrollTop.value = editBox.scrollTop;
 		} );
 	}
-}
+};
 hookEvent( 'load', scrollEditBox );
 hookEvent( 'load', mwSetupToolbar );
 hookEvent( 'load', function() {
@@ -262,7 +262,7 @@ addOnloadHook(function () {
 			e.returnValue = false; //IE
 			return false;
 		}
-	}
+	};
 
 	addHandler(summary, 'keypress', checkSummary);
 });

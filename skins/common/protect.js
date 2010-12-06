@@ -20,7 +20,7 @@ window.ProtectionForm = {
 		if( !box )
 			return false;
 		
-		var boxbody = box.getElementsByTagName('tbody')[0]
+		var boxbody = box.getElementsByTagName('tbody')[0];
 		var row = document.createElement( 'tr' );
 		boxbody.insertBefore( row, boxbody.firstChild.nextSibling );
 
@@ -348,4 +348,4 @@ window.ProtectionForm = {
 			}
 		});
 	}
-}
+};

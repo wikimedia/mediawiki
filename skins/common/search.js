@@ -20,7 +20,7 @@ window.mwSearchHeaderClick = function( obj ) {
 		prefix = '&search=';
 	}
 	obj.href = parts[0] + prefix + encodeURIComponent( searchterm ) + lastpart;
-}
+};
 
 window.mwToggleSearchCheckboxes = function( btn ) {
 	if( !document.getElementById ) {
@@ -47,4 +47,4 @@ window.mwToggleSearchCheckboxes = function( btn ) {
 			}
 		}
 	}
-}
+};

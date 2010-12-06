@@ -36,5 +36,5 @@ window.htmlforms = {
 			textbox.disabled = true;
 		}
 	}
-}
+};
 

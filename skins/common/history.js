@@ -7,7 +7,7 @@ window.historyRadios = function(parent) {
 		}
 	}
 	return radios;
-}
+};
 
 // check selection and tweak visibility/class onclick
 window.diffcheck = function() {
@@ -74,4 +74,4 @@ window.diffcheck = function() {
 		}
 	}
 	return true;
-}
+};

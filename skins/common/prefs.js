@@ -11,7 +11,7 @@ window.checkTimezone = function( tz, msg ) {
 		var junk = msg.split('$1');
 		document.write( junk[0] + 'UTC' + tzString + junk[1] );
 	}
-}
+};
 
 window.timezoneSetup = function() {
 	var tzSelect = document.getElementById( 'mw-input-timecorrection' );
@@ -23,7 +23,7 @@ window.timezoneSetup = function() {
 	}
 
 	updateTimezoneSelection( false );
-}
+};
 
 // in [-]HH:MM format...
 // won't yet work with non-even tzs
@@ -37,7 +37,7 @@ window.fetchTimezone = function() {
 	var tzString = ( ( tzRaw >= 0 ) ? '-' : '' ) + ( ( tzHour < 10 ) ? '0' : '' ) + tzHour +
 		':' + ( ( tzMin < 10 ) ? '0' : '' ) + tzMin;
 	return tzString;
-}
+};
 
 window.guessTimezone = function() {
 	var textbox = document.getElementById( 'mw-input-timecorrection-other' );
@@ -47,7 +47,7 @@ window.guessTimezone = function() {
 	textbox.value = fetchTimezone();
 	textbox.disabled = false; // The changed handler doesn't trip, obviously.
 	updateTimezoneSelection( true );
-}
+};
 
 window.updateTimezoneSelection = function( force_offset ) {
 	var selector = document.getElementById( 'mw-input-timecorrection' );
@@ -133,6 +133,6 @@ window.updateTimezoneSelection = function( force_offset ) {
 		}
 		textbox.value = hour + ':' + min;
 	}
-}
+};
 
 addOnloadHook( timezoneSetup );

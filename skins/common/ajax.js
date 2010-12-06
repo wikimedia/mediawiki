@@ -156,7 +156,7 @@ window.sajax_do_call = function(func_name, args, target) {
 		}
 
 		return;
-	}
+	};
 
 	sajax_debug( func_name + ' uri = ' + uri + ' / post = ' + post_data );
 	x.send( post_data );
