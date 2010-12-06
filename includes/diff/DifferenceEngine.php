@@ -468,10 +468,6 @@ CONTROL;
 			} else {
 				$wgOut->addWikiTextTidy( $this->mNewtext );
 			}
-		} else {
-			$article = new Article( $this->mTitle, 0 );
-			$pOutput = $article->getParserOutput();
-			$wgOut->addParserOutputNoText( $pOutput );	
 		}
 
 		if ( is_object( $this->mNewRev ) && !$this->mNewRev->isCurrent() ) {
