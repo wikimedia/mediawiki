@@ -64,6 +64,9 @@ return array(
 	'jquery.placeholder' => array(
 		'scripts' => 'resources/jquery/jquery.placeholder.js'
 	),
+	'jquery.localize' => array(
+		'scripts' => 'resources/jquery/jquery.localize.js'
+	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
 		'styles' => 'resources/jquery/jquery.suggestions.css',
