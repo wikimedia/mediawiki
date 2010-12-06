@@ -335,7 +335,7 @@ class WebInstaller extends CoreInstaller {
 	 * Get a hash of data identifying this MW installation.
 	 *
 	 * This is used by config/index.php to prevent multiple installations of MW
-	 * on the same cookie domain from interfering with each other. 
+	 * on the same cookie domain from interfering with each other.
 	 */
 	public function getFingerprint() {
 		// Get the base URL of the installation
@@ -633,11 +633,13 @@ class WebInstaller extends CoreInstaller {
 		$args = array_map( 'htmlspecialchars', $args );
 		$text = wfMsgReal( $msg, $args, false, false, false );
 		$html = htmlspecialchars( $text );
-		//$html = $this->parse( $text, true );
-		return
-            "<span class=\"mw-help-field-hint\"\n" .
-      	    "     title=\"" . $html . "\"\n" .
-    	    "     original-title=\"" . $html . "\"></span>\n";
+		$html = $this->parse( $text, true );
+		
+		
+		return "<div class=\"mw-help-field-container\">\n" .
+		         "<span class=\"mw-help-field-hint\">" . wfMsgReal( 'config-help' ) . "</span>\n" .
+		         "<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
+		       "</div>\n";
 	}
 
 	/**
@@ -816,7 +818,7 @@ class WebInstaller extends CoreInstaller {
 		return
 			"<div class=\"config-input-check\">\n" .
 			$params['help'] .
-		    "<label>\n" .
+			"<label>\n" .
 			Xml::check(
 				$params['controlName'],
 				$params['value'],
@@ -827,7 +829,6 @@ class WebInstaller extends CoreInstaller {
 			) .
 			$labelText . "\n" .
 			"</label>\n" .
-			$params['help'] .
 			"</div>\n";
 	}
 

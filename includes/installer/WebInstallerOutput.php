@@ -182,7 +182,6 @@ class WebInstallerOutput {
 	<?php echo Html::linkedStyle( $this->getCssUrl() ) . "\n"; ?>
 	<?php echo Html::inlineScript(  "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
-	<?php echo $this->getJQueryTipsy() . "\n"; ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ) . "\n"; ?>
 </head>
 
@@ -236,7 +235,6 @@ class WebInstallerOutput {
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo Html::linkedStyle( $this->getCssUrl() ) . "\n"; ?>
 	<?php echo $this->getJQuery(); ?>
-	<?php echo $this->getJQueryTipsy() . "\n"; ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ); ?>
 </head>
 
@@ -251,8 +249,5 @@ class WebInstallerOutput {
 
 	public function getJQuery() {
 		return Html::linkedScript( "../resources/jquery/jquery.js" );
-	}
-	public function getJQueryTipsy() {
-		return Html::linkedScript( "../resources/jquery/jquery.tipsy.js" );
 	}
 }
