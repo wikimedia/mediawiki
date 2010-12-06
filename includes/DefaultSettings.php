@@ -26,7 +26,6 @@ if( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }
 
-
 # Create a site configuration object. Not used for much in a default install
 if ( !defined( 'MW_PHP4' ) ) {
 	require_once( "$IP/includes/SiteConfiguration.php" );
@@ -140,7 +139,6 @@ $wgScript           = false;
  * Defaults to "{$wgScriptPath}/redirect{$wgScriptExtension}".
  */
 $wgRedirectScript   = false; ///< defaults to
-/**@}*/
 
 /**
  * The URL path to load.php.
@@ -148,6 +146,8 @@ $wgRedirectScript   = false; ///< defaults to
  * Defaults to "{$wgScriptPath}/load{$wgScriptExtension}".
  */
 $wgLoadScript           = false;
+
+/**@}*/
 
 /************************************************************************//**
  * @name   URLs and file paths
@@ -1665,6 +1665,17 @@ $wgUseETag = false;
  */
 $wgClockSkewFudge = 5;
 
+/**
+ * Invalidate various caches when LocalSettings.php changes. This is equivalent
+ * to setting $wgCacheEpoch to the modification time of LocalSettings.php, as
+ * was previously done in the default LocalSettings.php file.
+ *
+ * On high-traffic wikis, this should be set to false, to avoid the need to 
+ * check the file modification time, and to avoid the performance impact of
+ * unnecessary cache invalidations. 
+ */
+$wgInvalidateCacheOnLocalSettingsChange = true;
+
 /** @} */ # end of cache settings
 
 /************************************************************************//**
@@ -2486,8 +2497,15 @@ $wgNamespaceAliases = array();
  */
 $wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
 
-$wgLocalInterwiki   = 'w';
-$wgInterwikiExpiry = 10800; # Expiry time for cache of interwiki table
+/**
+ * The interwiki prefix of the current wiki, or false if it doesn't have one.
+ */
+$wgLocalInterwiki   = false;
+
+/**
+ * Expiry time for cache of interwiki table
+ */
+$wgInterwikiExpiry = 10800;
 
 /** Interwiki caching settings.
 	$wgInterwikiCache specifies path to constant database file

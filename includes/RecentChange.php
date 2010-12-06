@@ -674,7 +674,7 @@ class RecentChange {
 			$flag .= ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
 		}
 
-		if ( $wgRC2UDPInterwikiPrefix === true ) {
+		if ( $wgRC2UDPInterwikiPrefix === true && $wgLocalInterwiki !== false ) {
 			$prefix = $wgLocalInterwiki;
 		} elseif ( $wgRC2UDPInterwikiPrefix ) {
 			$prefix = $wgRC2UDPInterwikiPrefix;
