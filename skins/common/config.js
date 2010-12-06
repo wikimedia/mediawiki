@@ -1,18 +1,19 @@
 (function( $ ) {
 	$( document ).ready( function() {
-		// Show/hide code for help text
-		$( '.config-show-help a' ).click( function() {
-			$(this).parent().siblings( '.config-help-message' ).show( 'slow' );
-			$(this).parent().siblings( '.config-hide-help' ).show();
-			$(this).parent().hide();
-			return false;
-		} );
-		$( '.config-hide-help a' ).click( function() {
-			$(this).parent().siblings( '.config-help-message' ).hide( 'slow' );
-			$(this).parent().siblings( '.config-show-help' ).show();
-			$(this).parent().hide();
-			return false;
-		} );
+
+
+		// Set up the help system
+		$( '.mw-help-field-data' )
+			.hide()
+			.closest( '.mw-help-field-container' )
+				.find( '.mw-help-field-hint' )
+					.show()
+					.click( function() {
+						$(this)
+							.closest( '.mw-help-field-container' )
+								.find( '.mw-help-field-data' )
+									.slideToggle( 'fast' );
+					} );
 		
 		// Show/hide code for DB-specific options
 		// FIXME: Do we want slow, fast, or even non-animated (instantaneous) showing/hiding here?

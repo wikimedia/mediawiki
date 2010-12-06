@@ -917,3 +917,35 @@ ol:lang(bn) li {
 	list-style-type: -moz-bengali;
 	list-style-type: bengali;
 }
+
+/* tooltip styles */
+.mw-help-field-hint {
+	display: none;
+	padding: 0px;
+	padding-left: 15px;
+	margin-left: 2px;
+	margin-bottom: -8px;
+	background-image: url('images/help-question.gif');
+	background-position: left center;
+	background-repeat: no-repeat;
+	color: #0645ad;
+	text-decoration: underline;
+	cursor: pointer;
+	font-size: .8em;
+}
+.mw-help-field-hint:hover {
+	background-image: url('images/help-question-hover.gif');
+}
+.mw-help-field-data {
+	display: block;
+	background-color: #d6f3ff;
+	padding:5px 8px 4px 8px;
+	border: 1px solid #5dc9f4;
+	margin-left: 20px;
+}
+.tipsy { padding: 5px 5px 10px; font-size: 12px; position: absolute; z-index: 100000; overflow: visible; }
+.tipsy-inner { padding: 5px 8px 4px 8px; background-color: #d6f3ff; color: black; border: 1px solid #5dc9f4; max-width: 300px; text-align: left; }
+.tipsy-arrow { position: absolute; background: url( 'images/tipsy-arrow.gif' ) no-repeat top left; width: 13px; height: 13px; }
+.tipsy-se .tipsy-arrow { bottom: -2px; right: 10px; background-position: 0% 100%; }
+
+
