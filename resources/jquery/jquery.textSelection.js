@@ -173,7 +173,7 @@ encapsulateSelection: function( options ) {
 					if ( preRange.compareEndPoints( "StartToEnd", preRange ) == 0 ) {
 						preFinished = true;
 					} else {
-						preRange.moveEnd( "character", -1 )
+						preRange.moveEnd( "character", -1 );
 						if ( preRange.text == preText ) {
 							rawPreText += "\r\n";
 						} else {
