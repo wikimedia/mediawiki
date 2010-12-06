@@ -3169,6 +3169,7 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 'version-specialpages'             => 'Specialne strony',
 'version-parserhooks'              => 'Parserowe hoki',
 'version-variables'                => 'Wariable',
+'version-skins'                    => 'Šaty',
 'version-other'                    => 'Druhe',
 'version-mediahandlers'            => 'Předźěłaki medijow',
 'version-hooks'                    => 'Hoki',

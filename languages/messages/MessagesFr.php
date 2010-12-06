@@ -825,6 +825,9 @@ Veuillez attendre avant d’essayer à nouveau.',
 'loginlanguagelabel'         => 'Langue : $1',
 'suspicious-userlogout'      => 'Votre demande de déconnexion a été refusée car il semble qu’elle a été envoyée par un navigateur cassé ou la mise en cache d’un proxy.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Erreur inconnue dans la fonction mail() de PHP.',
+
 # JavaScript password checks
 'password-strength'            => 'Niveau de sécurité du mot de passe : $1',
 'password-strength-bad'        => 'faible',
@@ -1481,7 +1484,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'group-sysop'         => 'Administrateurs',
 'group-bureaucrat'    => 'Bureaucrates',
 'group-suppress'      => 'Superviseurs',
-'group-all'           => 'Tous',
+'group-all'           => '(tous)',
 
 'group-user-member'          => 'utilisateur',
 'group-autoconfirmed-member' => 'utilisateur enregistré',
@@ -1679,7 +1682,7 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',
 'filereuploadsummary'         => 'Modifications du fichier :',
-'filestatus'                  => 'Statut des droits d’auteur :',
+'filestatus'                  => 'Statut du droit d’auteur :',
 'filesource'                  => 'Source :',
 'uploadedfiles'               => 'Fichiers téléversés',
 'ignorewarning'               => 'Ignorer l’avertissement et sauvegarder le fichier.',

@@ -779,6 +779,9 @@ Molimo Vas da pričekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 'suspicious-userlogout'      => 'Vaš zahtjev za odjavu je odbijen jer to izgleda kao da je poslan preko pokvarenog preglednika ili keširanog posrednika (proxyja).',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Nepoznata pogreška u PHP-mail() funkciji',
+
 # JavaScript password checks
 'password-strength'            => 'Procijenjena snaga lozinke: $1',
 'password-strength-bad'        => 'LOŠA',
@@ -2363,6 +2366,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Doprinosi novih suradnika',
 'sp-contributions-blocklog'            => 'Evidencija blokiranja',
 'sp-contributions-deleted'             => 'obrisani suradnički doprinosi',
+'sp-contributions-uploads'             => "snimljene datoteke (''uploads'')",
 'sp-contributions-logs'                => 'evidencije',
 'sp-contributions-talk'                => 'razgovor',
 'sp-contributions-userrights'          => 'upravljanje suradničkim pravima',

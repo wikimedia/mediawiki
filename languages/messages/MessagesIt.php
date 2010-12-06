@@ -723,6 +723,9 @@ Riprovare più tardi.',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Errore sconosciuto nella funzione PHP mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Robustezza stimata della password: $1',
 'password-strength-bad'        => 'DEBOLE',
@@ -1437,6 +1440,7 @@ L'operazione non può essere annullata.",
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
 'right-revisionmove'          => 'Sposta le revisioni',
+'right-disableaccount'        => 'Disabilitare gli account',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',
@@ -3418,5 +3422,18 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 # SQLite database support
 'sqlite-has-fts' => '$1 con la possibilità di ricerca completa nel testo',
 'sqlite-no-fts'  => '$1 senza la possibilità di ricerca completa nel testo',
+
+# Special:DisableAccount
+'disableaccount'             => 'Disabilitare account utente',
+'disableaccount-user'        => 'Nome utente:',
+'disableaccount-reason'      => 'Motivo:',
+'disableaccount-confirm'     => "Disabilitare permanentemente questo account utente.
+L'utente non sarà in grado di accedere, reimpostare la password o ricevere notifiche via e-mail.
+Tutte le attuali connessioni dell'utente, saranno immediatamente terminate.
+''Si noti che la disattivazione di un account non è reversibile senza l'intervento dell'amministratore di sistema''.",
+'disableaccount-mustconfirm' => 'Devi confermare che vuoi disabilitare questo account.',
+'disableaccount-nosuchuser'  => 'L\'account utente "$1" non esiste.',
+'disableaccount-success'     => 'L\'account utente "$1" è stato disabilitato definitivamente.',
+'disableaccount-logentry'    => "ha disabilitato permanentemente l'account utente [[$1]]",
 
 );

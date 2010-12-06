@@ -762,6 +762,9 @@ $2',
 'loginlanguagelabel'         => 'Язык: $1',
 'suspicious-userlogout'      => 'Ваш запрос на завершение сеанса отклонён, так как он похож на запрос, отправленный некорректным браузером или кэширующим прокси.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Неизвестная ошибка в PHP-функции mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Оценка стойкости пароля: $1',
 'password-strength-bad'        => 'ПЛОХАЯ',
@@ -3464,6 +3467,7 @@ $1',
 'version-specialpages'             => 'Служебные страницы',
 'version-parserhooks'              => 'Перехватчики синтаксического анализатора',
 'version-variables'                => 'Переменные',
+'version-skins'                    => 'Темы оформления',
 'version-other'                    => 'Иное',
 'version-mediahandlers'            => 'Обработчики медиа',
 'version-hooks'                    => 'Перехватчики',
