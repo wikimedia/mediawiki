@@ -3734,11 +3734,6 @@ $wgDebugRawPage         = false;
 $wgDebugComments        = false;
 
 /**
- * Print debug output to the terminal when running command line scripts.
- */
-$wgDebugToCommandLine   = false;
-
-/**
  * Write SQL queries to the debug log
  */
 $wgDebugDumpSql         = false;

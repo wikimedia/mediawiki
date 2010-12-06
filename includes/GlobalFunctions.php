@@ -311,11 +311,6 @@ function wfDebug( $text, $logonly = false ) {
 	static $cache = array(); // Cache of unoutputted messages
 	$text = wfDebugTimer() . $text;
 
-	if( $wgDebugToCommandLine && $wgCommandLineMode ) {
-		print $text;
-		return;
-	}
-
 	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
 	if ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' && !$wgDebugRawPage ) {
 		return;
