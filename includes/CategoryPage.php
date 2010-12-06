@@ -102,7 +102,7 @@ class CategoryViewer {
 	 *
 	 * @return string HTML output
 	 */
-	function getHTML() {
+	public function getHTML() {
 		global $wgOut, $wgCategoryMagicGallery, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
@@ -417,6 +417,7 @@ class CategoryViewer {
 	 * @param $articles_start_char Array
 	 * @param $cutoff Int
 	 * @return String
+	 * @private
 	 */
 	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
 		if ( count ( $articles ) > $cutoff ) {
@@ -441,6 +442,7 @@ class CategoryViewer {
 	 * @param $articles Array
 	 * @param $articles_start_char Array
 	 * @return String
+	 * @private
 	 */
 	static function columnList( $articles, $articles_start_char ) {
 		$columns = array_combine( $articles, $articles_start_char );
@@ -492,6 +494,7 @@ class CategoryViewer {
 	 * @param $articles Array
 	 * @param $articles_start_char Array
 	 * @return String
+	 * @private
 	 */
 	static function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
