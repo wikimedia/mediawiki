@@ -322,14 +322,14 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function openSpawn() {
-		global $IP, $wgDBname;
+		global $IP;
 
 		$cmd = implode( " ",
 			array_map( 'wfEscapeShellArg',
 				array(
 					$this->php,
 					"$IP/maintenance/fetchText.php",
-					$wgDBname ) ) );
+					'--wiki', wfWikiID() ) ) );
 		$spec = array(
 			0 => array( "pipe", "r" ),
 			1 => array( "pipe", "w" ),
