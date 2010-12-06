@@ -379,7 +379,6 @@ wfProfileOut( $fname.'-User' );
 wfProfileIn( $fname.'-misc2' );
 
 $wgDeferredUpdateList = array();
-$wgPostCommitUpdateList = array();
 
 if ( $wgAjaxUploadDestCheck ) $wgAjaxExportList[] = 'SpecialUpload::ajaxGetExistsWarning';
 

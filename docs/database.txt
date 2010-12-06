@@ -146,9 +146,7 @@ to avoid long-lasting locks. By default, MediaWiki opens a transaction
 at the first query, and commits it before the output is sent. Locks will
 be held from the time when the query is done until the commit. So you
 can reduce lock time by doing as much processing as possible before you
-do your write queries. Update operations which do not require database
-access can be delayed until after the commit by adding an object to
-$wgPostCommitUpdateList.
+do your write queries.
 
 Often this approach is not good enough, and it becomes necessary to
 enclose small groups of queries in their own transaction. Use the

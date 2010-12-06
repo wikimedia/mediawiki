@@ -2862,15 +2862,11 @@ function wfMakeUrlIndex( $url ) {
  * TODO: This could be in Wiki.php if that class made any sense at all
  */
 function wfDoUpdates() {
-	global $wgPostCommitUpdateList, $wgDeferredUpdateList;
+	global $wgDeferredUpdateList;
 	foreach ( $wgDeferredUpdateList as $update ) {
 		$update->doUpdate();
 	}
-	foreach ( $wgPostCommitUpdateList as $update ) {
-		$update->doUpdate();
-	}
 	$wgDeferredUpdateList = array();
-	$wgPostCommitUpdateList = array();
 }
 
 /**

@@ -115,8 +115,5 @@ $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 $mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
 $mediaWiki->finalCleanup( $wgDeferredUpdateList, $wgOut );
 
-# Not sure when $wgPostCommitUpdateList gets set, so I keep this separate from finalCleanup
-$mediaWiki->doUpdates( $wgPostCommitUpdateList );
-
 $mediaWiki->restInPeace();
 

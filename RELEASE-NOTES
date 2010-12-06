@@ -96,6 +96,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   of LocalSettings.php, in LocalSettings.php itself. Instead, this is done 
   automatically if $wgInvalidateCacheOnLocalSettingsChange is true (which is 
   the default). 
+* (bug 26253) $wgPostCommitUpdateList has been removed
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
