@@ -33,7 +33,7 @@ window.sajax_debug = function(text) {
 	e.appendChild( m );
 
 	return true;
-}
+};
 
 /**
  * Compatibility wrapper for creating a new XMLHttpRequest object.
@@ -62,7 +62,7 @@ window.sajax_init_object = function() {
 	}
 
 	return A;
-}
+};
 
 /**
  * Perform an AJAX call to MediaWiki. Calls are handled by AjaxDispatcher.php
@@ -164,7 +164,7 @@ window.sajax_do_call = function(func_name, args, target) {
 	delete x;
 
 	return true;
-}
+};
 
 /**
  * @return boolean whether the browser supports XMLHttpRequest
@@ -174,4 +174,4 @@ window.wfSupportsAjax = function() {
 	var supportsAjax = request ? true : false;
 	delete request;
 	return supportsAjax;
-}
+};
