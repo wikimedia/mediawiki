@@ -458,6 +458,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   absolute URLs in the sitemap index (as required e.g. by Google)
 * Partial workaround for bug 6220: at least make files on shared repositories
   show up as (struck-out) bluelinks instead of redlinks on Special:WantedFiles
+* rebuildFileCache.php no longer creates inappropriate cache files for redirects
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
