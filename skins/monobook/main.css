@@ -1270,3 +1270,8 @@ div.mw-lag-warn-high {
 .no-text-transform {
 	text-transform: none;
 }
+
+/* Tooltips are outside of the normal body code, so this helps make the size of the text sensible */
+.tipsy {
+	font-size: 127%;
+}

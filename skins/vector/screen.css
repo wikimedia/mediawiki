@@ -1185,3 +1185,8 @@ p.mw-ipb-conveniencelinks, p.mw-protect-editreasons,
 p.mw-filedelete-editreasons, p.mw-delete-editreasons {
 	float: right;
 }
+
+/* Tooltips are outside of the normal body code, so this helps make the size of the text sensible */
+.tipsy {
+	font-size: 0.8em;
+}
