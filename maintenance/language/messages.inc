@@ -3127,6 +3127,7 @@ $wgMessageStructure = array(
 		'version-specialpages',
 		'version-parserhooks',
 		'version-variables',
+		'version-skins',
 		'version-other',
 		'version-mediahandlers',
 		'version-hooks',
