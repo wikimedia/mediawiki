@@ -100,10 +100,8 @@ if( $wgUseFileCache && isset( $wgTitle ) ) {
 
 # Setting global variables in mediaWiki
 $mediaWiki->setVal( 'action', $action );
-$mediaWiki->setVal( 'CommandLineMode', $wgCommandLineMode );
 $mediaWiki->setVal( 'DisabledActions', $wgDisabledActions );
 $mediaWiki->setVal( 'DisableHardRedirects', $wgDisableHardRedirects );
-$mediaWiki->setVal( 'DisableInternalSearch', $wgDisableInternalSearch );
 $mediaWiki->setVal( 'EnableCreativeCommonsRdf', $wgEnableCreativeCommonsRdf );
 $mediaWiki->setVal( 'EnableDublinCoreRdf', $wgEnableDublinCoreRdf );
 $mediaWiki->setVal( 'JobRunRate', $wgJobRunRate );
