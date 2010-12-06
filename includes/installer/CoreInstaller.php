@@ -494,6 +494,9 @@ abstract class CoreInstaller extends Installer {
 		// Allow multiple ob_flush() calls
 		$GLOBALS['wgDisableOutputCompression'] = true;
 
+		// Use a sensible cookie prefix (not my_wiki)
+		$GLOBALS['wgCookiePrefix'] = 'mw_installer';
+
 		// Some of the environment checks make shell requests, remove limits
 		$GLOBALS['wgMaxShellMemory'] = 0;
 	}
