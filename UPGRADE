@@ -1,3 +1,4 @@
+
 This file provides an overview of the MediaWiki upgrade process. For help with
 specific problems, check
 
@@ -118,9 +119,7 @@ Note that the large number of deletions may cause older edits to expire
 from the list on Special:Recentchanges, although the deletions themselves
 will be hidden by default. (Click "show bot edits" to list them.)
 
-
 See RELEASE-NOTES for more details about new and changed options.
-
 
 == Upgrading from 1.7 wikis ==
 
@@ -131,9 +130,6 @@ to set only specific items as recommended in DefaultSettings.php.
 == Upgrading from 1.6 wikis ==
 
 $wgLocalTZoffset was in hours, it is now using minutes.
-Link autonumbering got fixed (#5918) for protocols other than http.
- - 'irc://irc.server.tld/' render as a link with a chat icon
- - '[irc://irc.server.tld]' render as an autonumbered link: [1]
 
 == Upgrading from pre-1.5 wikis ==
 
@@ -259,19 +255,20 @@ to this:
 As well as new messages, the processing of some messages has changed.
 If you have customized them, please compare the new format using
 Special:Allmessages or the relevant LanguageXX.php files:
-  copyrightwarning
-  dberrortext
-  editingcomment  (was named commentedit)
-  editingsection  (was named sectionedit)
-  numauthors
-  numedits
-  numtalkauthors
-  numtalkedits
-  numwatchers
-  protectedarticle
-  searchresulttext
-  showhideminor
-  unprotectedarticle
+
+* copyrightwarning
+* dberrortext
+* editingcomment  (was named commentedit)
+* editingsection  (was named sectionedit)
+* numauthors
+* numedits
+* numtalkauthors
+* numtalkedits
+* numwatchers
+* protectedarticle
+* searchresulttext
+* showhideminor
+* unprotectedarticle
 
 Note that the 1.3 beta releases included a potential vulnerability if PHP
 is configured with register_globals on and the includes directory is
