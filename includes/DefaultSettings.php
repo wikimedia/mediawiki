@@ -959,11 +959,6 @@ $wgDjvuPostProcessor = 'pnmtojpeg';
  */
 $wgDjvuOutputExtension = 'jpg';
 
-/**
- * How long (in seconds) stashed uploads are kept in cache.
- */
-$wgUploadStashExpiry = 3600; // 1 hour
-
 /** @} */ # end of file uploads }
 
 /************************************************************************//**
