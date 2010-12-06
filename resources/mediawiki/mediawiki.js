@@ -910,7 +910,7 @@ window.mediaWiki = new ( function( $ ) {
 				return formatVersionNumber( registry[module].version );
 			}
 			return null;
-		}
+		};
 
 		/* Cache document ready status */
 
@@ -954,7 +954,7 @@ window.mediaWiki = new ( function( $ ) {
 		 */
 		this.Cdata = function( value ) {
 			this.value = value;
-		}
+		};
 
 		/**
 		 * Create an HTML element string, with safe escaping.

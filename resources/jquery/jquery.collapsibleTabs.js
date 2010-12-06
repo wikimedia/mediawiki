@@ -112,4 +112,4 @@
 			$.collapsibleTabs.handleResize();
 		}
 	};
-} )( jQuery )
+} )( jQuery );

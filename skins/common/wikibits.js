@@ -763,7 +763,7 @@ window.ts_resortTable = function( lnk ) {
 	if ( ts_alternate_row_colors ) {
 		ts_alternate( table );
 	}
-}
+};
 
 window.ts_initTransformTable = function() {
 	if ( typeof wgSeparatorTransformTable == 'undefined'
@@ -816,11 +816,11 @@ window.ts_initTransformTable = function() {
 			"[-+\u2212]?" + digitClass + "+%?" + // Generic localised
 		")$", "i"
 	);
-}
+};
 
 window.ts_toLowerCase = function( s ) {
 	return s.toLowerCase();
-}
+};
 
 window.ts_dateToSortKey = function( date ) {
 	// y2k notes: two digit years less than 50 are treated as 20XX, greater than 50 are treated as 19XX
@@ -885,7 +885,7 @@ window.ts_dateToSortKey = function( date ) {
 		}
 	}
 	return '00000000';
-}
+};
 
 window.ts_parseFloat = function( s ) {
 	if ( !s ) {
@@ -906,15 +906,15 @@ window.ts_parseFloat = function( s ) {
 	}
 	var num = parseFloat( s.replace(/[, ]/g, '').replace("\u2212", '-') );
 	return ( isNaN( num ) ? -Infinity : num );
-}
+};
 
 window.ts_currencyToSortKey = function( s ) {
 	return ts_parseFloat(s.replace(/[^-\u22120-9.,]/g,''));
-}
+};
 
 window.ts_sort_generic = function( a, b ) {
 	return a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : a[2] - b[2];
-}
+};
 
 window.ts_alternate = function( table ) {
 	// Take object table and get all it's tbodies.
@@ -937,7 +937,7 @@ window.ts_alternate = function( table ) {
 			tableRows[j].className = newClassName + ( j % 2 == 0 ? 'even' : 'odd' );
 		}
 	}
-}
+};
 
 /*
  * End of table sorting code
@@ -997,7 +997,7 @@ window.jsMsg = function( message, className ) {
 		messageDiv.innerHTML = message;
 	}
 	return true;
-}
+};
 
 /**
  * Inject a cute little progress spinner after the specified element
@@ -1015,7 +1015,7 @@ window.injectSpinner = function( element, id ) {
 	} else {
 		element.parentNode.appendChild( spinner );
 	}
-}
+};
 
 /**
  * Remove a progress spinner added with injectSpinner()
@@ -1027,7 +1027,7 @@ window.removeSpinner = function( id ) {
 	if( spinner ) {
 		spinner.parentNode.removeChild( spinner );
 	}
-}
+};
 
 window.runOnloadHook = function() {
 	// don't run anything below this for non-dom browsers
@@ -1047,7 +1047,7 @@ window.runOnloadHook = function() {
 	for ( var i = 0; i < onloadFuncts.length; i++ ) {
 		onloadFuncts[i]();
 	}
-}
+};
 
 /**
  * Add an event handler to an element
@@ -1062,11 +1062,11 @@ window.addHandler = function( element, attach, handler ) {
 	} else if( element.attachEvent ) {
 		element.attachEvent( 'on' + attach, handler );
 	}
-}
+};
 
 window.hookEvent = function( hookName, hookFunct ) {
 	addHandler( window, hookName, hookFunct );
-}
+};
 
 /**
  * Add a click event handler to an element
@@ -1076,7 +1076,7 @@ window.hookEvent = function( hookName, hookFunct ) {
  */
 window.addClickHandler = function( element, handler ) {
 	addHandler( element, 'click', handler );
-}
+};
 
 /**
  * Removes an event handler from an element
@@ -1091,7 +1091,7 @@ window.removeHandler = function( element, remove, handler ) {
 	} else if( window.detachEvent ) {
 		element.detachEvent( 'on' + remove, handler );
 	}
-}
+};
 // note: all skins should call runOnloadHook() at the end of html output,
 //      so the below should be redundant. It's there just in case.
 hookEvent( 'load', runOnloadHook );
