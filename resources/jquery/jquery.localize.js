@@ -36,21 +36,21 @@
 			.find( 'msg' )
 				.each( function() {
 					$(this)
-						.text( mediaWiki.msg.call( mw, options.prefix + $(this).attr( 'key' ) ) )
+						.text( mediaWiki.msg( options.prefix + $(this).attr( 'key' ) ) )
 						.replaceWith( $(this).html() );
 				} )
 				.end()
 			.find( '[title-msg]' )
 				.each( function() {
 					$(this)
-						.attr( 'title', mw.msg.call( mw, options.prefix + $(this).attr( 'title-msg' ) ) )
+						.attr( 'title', mw.msg( options.prefix + $(this).attr( 'title-msg' ) ) )
 						.removeAttr( 'title-msg' );
 				} )
 				.end()
 			.find( '[alt-msg]' )
 				.each( function() {
 					$(this)
-						.attr( 'alt', mw.msg.call( mw, options.prefix + $(this).attr( 'alt-msg' ) ) )
+						.attr( 'alt', mw.msg( options.prefix + $(this).attr( 'alt-msg' ) ) )
 						.removeAttr( 'alt-msg' );
 				} )
 				.end();
