@@ -332,6 +332,25 @@ class WebInstaller extends CoreInstaller {
 	}
 
 	/**
+	 * Get a hash of data identifying this MW installation.
+	 *
+	 * This is used by config/index.php to prevent multiple installations of MW
+	 * on the same cookie domain from interfering with each other. 
+	 */
+	public function getFingerprint() {
+		// Get the base URL of the installation
+		$url = $this->request->getFullRequestURL();
+		if ( preg_match( '!^(.*)/[^/]*/[^/]*$!', $url, $m ) ) {
+			$url = $m[1];
+		}
+		return md5( serialize( array(
+			'local path' => dirname( dirname( __FILE__ ) ),
+			'url' => $url,
+			'version' => $GLOBALS['wgVersion']
+		) ) );
+	}
+
+	/**
 	 * Show an error message in a box. Parameters are like wfMsg().
 	 */
 	public function showError( $msg /*...*/ ) {
