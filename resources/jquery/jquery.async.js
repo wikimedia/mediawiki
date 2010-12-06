@@ -44,7 +44,7 @@ $.whileAsync = function(opts)
 		}
 		
 	})();
-}
+};
 
 // opts.delay : (default 10) delay between async call in ms
 // opts.bulk : (default 500) delay during which the loop can continue synchronously without yielding the CPU
@@ -66,7 +66,7 @@ $.eachAsync = function(array, opts)
 			}
 		})
 	);
-}
+};
 
 $.fn.eachAsync = function(opts)
 {

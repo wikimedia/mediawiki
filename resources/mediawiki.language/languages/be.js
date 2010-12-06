@@ -17,4 +17,4 @@ mediaWiki.language.convertPlural = function convertPlural( count, forms ) {
 		default:
 			return forms[2];
 	}
-}
+};

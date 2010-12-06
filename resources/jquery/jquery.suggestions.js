@@ -134,7 +134,7 @@ $.suggestions = {
 							'bottom': 'auto',
 							'width': context.config.$region.outerWidth(),
 							'height': 'auto'
-						}
+						};
 						if ( context.config.positionFromLeft ) {
 							newCSS['left'] = context.config.$region.offset().left;
 							newCSS['right'] = 'auto';
@@ -405,7 +405,7 @@ $.fn.suggestions = function() {
 				'top': Math.round( context.data.$textbox.offset().top + context.data.$textbox.outerHeight() ),
 				'width': context.data.$textbox.outerWidth(),
 				'display': 'none'
-			}
+			};
 			if ( context.config.positionFromLeft ) {
 				newCSS['left'] = context.config.$region.offset().left;
 				newCSS['right'] = 'auto';
