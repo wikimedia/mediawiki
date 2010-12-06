@@ -80,13 +80,6 @@ You can install MediaWiki.</span>', // FIXME: take span out of message.
 	'config-env-bad'                  => 'The environment has been checked.
 You cannot install MediaWiki.',
 	'config-env-php'                  => 'PHP $1 is installed.',
-	'config-env-latest-disabled'      => 'External HTTP requests disabled, skipping version check',
-	'config-env-latest-ok'            => 'You are installing the latest version of MediaWiki.',
-	'config-env-latest-new'           => "'''Note:''' You are installing a development version of MediaWiki.",
-	'config-env-latest-can-not-check' => "'''Warning:''' The installer was unable to retrieve information about the latest MediaWiki release from [$1].",
-	'config-env-latest-old'           => "'''Warning:''' You are installing an outdated version of MediaWiki.",
-	'config-env-latest-help'          => 'You are installing version $1, but the latest version is $2.
-You are advised to use the latest release, which can be downloaded from [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8'       => 'Using Brion Vibber\'s utf8_normalize.so for Unicode normalization.',
 	'config-unicode-using-intl'       => 'Using the [http://pecl.php.net/intl intl PECL extension] for Unicode normalization.',
 	'config-unicode-pure-php-warning' => "'''Warning''': The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization, falling back to slow pure-PHP implementation.

@@ -305,11 +305,16 @@ function wfUrlencode( $s ) {
  */
 function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
-	global $wgDebugLogPrefix, $wgShowDebug;
+	global $wgDebugLogPrefix, $wgShowDebug, $wgCommandLineMode, $wgDebugToCommandLine;
 	static $recursion = 0;
 
 	static $cache = array(); // Cache of unoutputted messages
 	$text = wfDebugTimer() . $text;
+
+	if( $wgDebugToCommandLine && $wgCommandLineMode ) {
+		print $text;
+		return;
+	}
 
 	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
 	if ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' && !$wgDebugRawPage ) {
@@ -3581,24 +3586,4 @@ function wfArrayMap( $function, $input ) {
 		}
 	}
 	return $ret;
-}
-
-/**
- * Returns the PackageRepository object for interaction with the package repository.
- *
- * TODO: Make the repository type also configurable.
- *
- * @since 1.17
- *
- * @return PackageRepository
- */
-function wfGetRepository() {
-	global $wgRepositoryApiLocation;
-	static $repository = false;
-
-	if ( $repository === false ) {
-		$repository = new DistributionRepository( $wgRepositoryApiLocation );
-	}
-
-	return $repository;
 }
