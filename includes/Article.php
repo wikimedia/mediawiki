@@ -3920,7 +3920,7 @@ class Article {
 		$cacheable = false;
 
 		if ( HTMLFileCache::useFileCache() ) {
-			$cacheable = $this->getID() && !$this->mRedirectedFrom;
+			$cacheable = $this->getID() && !$this->mRedirectedFrom && !$this->mTitle->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
 				$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );
