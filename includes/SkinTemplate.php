@@ -1183,3 +1183,178 @@ abstract class QuickTemplate {
 		return ( $msg != '-' ) && ( $msg != '' ); # ????
 	}
 }
+
+/**
+ * New base template for a skin's template extended from QuickTemplate
+ * this class features helper methods that provide common ways of interacting
+ * with the data stored in the QuickTemplate
+ */
+abstract class BaseTemplate extends QuickTemplate {
+	
+	/**
+	 * Create an array of common toolbox items from the data in the quicktemplate
+	 * stored by SkinTemplate.
+	 * The resulting array is built acording to a format intended to be passed
+	 * through makeListItem to generate the html.
+	 */
+	function getToolbox() {
+		wfProfileIn( __METHOD__ );
+
+		$toolbox = array();
+		if ( $this->data['notspecialpage'] ) {
+			$toolbox["whatlinkshere"] = $this->data['nav_urls']['whatlinkshere'];
+			$toolbox["whatlinkshere"]["id"] = "t-whatlinkshere";
+			if ( $this->data['nav_urls']['recentchangeslinked'] ) {
+				$toolbox["recentchangeslinked"] = $this->data['nav_urls']['recentchangeslinked'];
+				$toolbox["recentchangeslinked"]["msg"] = "recentchangeslinked-toolbox";
+				$toolbox["recentchangeslinked"]["id"] = "t-recentchangeslinked";
+			}
+		}
+		if( isset( $this->data['nav_urls']['trackbacklink'] ) && $this->data['nav_urls']['trackbacklink'] ) {
+			$toolbox["trackbacklink"] = $this->data['nav_urls']['trackbacklink'];
+			$toolbox["trackbacklink"]["id"] = "t-trackbacklink";
+		}
+		if ( $this->data['feeds'] ) {
+			$toolbox["feeds"]["id"] = "feedlinks";
+			$toolbox["feeds"]["links"] = array();
+			foreach ( $this->data['feeds'] as $key => $feed ) {
+				$toolbox["feeds"]["links"][$key] = $feed;
+				$toolbox["feeds"]["links"][$key]["id"] = "feed-$key";
+				$toolbox["feeds"]["links"][$key]["rel"] = "alternate";
+				$toolbox["feeds"]["links"][$key]["type"] = "application/{$key}+xml";
+				$toolbox["feeds"]["links"][$key]["class"] = "feedlink";
+			}
+		}
+		foreach ( array('contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages') as $special ) {
+			if ( $this->data['nav_urls'][$special] ) {
+				$toolbox[$special] = $this->data['nav_urls'][$special];
+				$toolbox[$special]["id"] = "t-$special";
+			}
+		}
+		if ( !empty( $this->data['nav_urls']['print']['href'] ) ) {
+			$toolbox["print"] = $this->data['nav_urls']['print'];
+			$toolbox["print"]["rel"] = "alternate";
+			$toolbox["print"]["msg"] = "printableversion";
+		}
+		if ( !empty( $this->data['nav_urls']['permalink']['href'] ) ) {
+			$toolbox["permalink"] = $this->data['nav_urls']['permalink'];
+			$toolbox["permalink"]["id"] = "t-permalink";
+		} elseif ( $this->data['nav_urls']['permalink']['href'] === '' ) {
+			$toolbox["permalink"] = $this->data['nav_urls']['permalink'];
+			unset( $toolbox["permalink"]["href"] );
+			$toolbox["ispermalink"]["tooltiponly"] = true;
+			$toolbox["ispermalink"]["id"] = "t-ispermalink";
+			$toolbox["ispermalink"]["msg"] = "permalink";
+		}
+		wfRunHooks( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
+		wfProfileOut( __METHOD__ );
+		return $toolbox;
+	}
+
+	/**
+	 * Makes a link, usually used by makeListItem to generate a link for an item
+	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
+	 * 
+	 * $key is a string, usually a key from the list you are generating this link from
+	 * $item is an array containing some of a specific set of keys.
+	 * The text of the link will be generated either from the contents of the "text"
+	 * key in the $item array, if a "msg" key is present a message by that name will
+	 * be used, and if neither of those are set the $key will be used as a message name.
+	 * If a "href" key is not present makeLink will just output htmlescaped text.
+	 * The href, id, class, rel, and type keys are used as attributes for the link if present.
+	 * If an "id" or "single-id" (if you don't want the actual id to be output on the link)
+	 * is present it will be used to generate a tooltip and accesskey for the link.
+	 * If you don't want an accesskey set $item["tooltiponly"] = true;
+	 */
+	function makeLink($key, $item) {
+		if ( isset($item["text"]) ) {
+			$text = $item["text"];
+		} else {
+			$text = $this->translator->translate( isset($item["msg"]) ? $item["msg"] : $key );
+		}
+		
+		if ( !isset($item["href"]) ) {
+			return htmlspecialchars($text);
+		}
+		
+		$attrs = array();
+		foreach ( array("href", "id", "class", "rel", "type") as $attr ) {
+			if ( isset($item[$attr]) ) {
+				$attrs[$attr] = $item[$attr];
+			}
+		}
+		
+		if ( isset($item["id"]) ) {
+			$item["single-id"] = $item["id"];
+		}
+		if ( isset($item["single-id"]) ) {
+			if ( isset($item["tooltiponly"]) && $item["tooltiponly"] ) {
+				$attrs["title"] = $this->skin->titleAttrib($item["single-id"]);
+				if ( $attrs["title"] === false ) {
+					unset($attrs["title"]);
+				}
+			} else {
+				$attrs = array_merge($attrs, $this->skin->tooltipAndAccesskeyAttribs($item["single-id"]));
+			}
+		}
+		
+		return Html::element( "a", $attrs, $text );
+	}
+
+	/**
+	 * Generates a list item for a navigation, portlet, portal, sidebar... etc list
+	 * $key is a string, usually a key from the list you are generating this link from
+	 * $item is an array of list item data containing some of a specific set of keys.
+	 * The "id" and "class" keys will be used as attributes for the list item,
+	 * if "active" contains a value of true a "active" class will also be appended to class.
+	 * If you want something other than a <li> you can pass a tag name such as
+	 * "tag" => "span" in the $options array to change the tag used.
+	 * link/content data for the list item may come in one of two forms
+	 * A "links" key may be used, in which case it should contain an array with
+	 * a list of links to include inside the list item, see makeLink for the format
+	 * of individual links array items.
+	 * Otherwise the relevant keys from the list item $item array will be passed
+	 * to makeLink instead. Note however that "id" and "class" are used by the
+	 * list item directly so they will not be passed to makeLink
+	 * (however the link will still support a tooltip and accesskey from it)
+	 * If you need an id or class on a single link you should include a "links"
+	 * array with just one link item inside of it.
+	 */
+	function makeListItem($key, $item, $options = array()) {
+		if ( isset($item["links"]) ) {
+			$html = '';
+			foreach ( $item["links"] as $linkKey => $link ) {
+				$html .= $this->makeLink($linkKey, $link);
+			}
+		} else {
+			$link = array();
+			foreach ( array("text", "msg", "href", "rel", "type", "tooltiponly") as $k ) {
+				if ( isset($item[$k]) ) {
+					$link[$k] = $item[$k];
+				}
+			}
+			if ( isset($item["id"]) ) {
+				// The id goes on the <li> not on the <a> for single links
+				// but makeSidebarLink still needs to know what id to use when
+				// generating tooltips and accesskeys.
+				$link["single-id"] = $item["id"];
+			}
+			$html = $this->makeLink($key, $link);
+		}
+		
+		$attrs = array();
+		foreach ( array("id", "class") as $attr ) {
+			if ( isset($item[$attr]) ) {
+				$attrs[$attr] = $item[$attr];
+			}
+		}
+		if ( isset($item["active"]) && $item["active"] ) {
+			$attrs["class"] .= " active";
+			$attrs["class"] = trim($attrs["class"]);
+		}
+		return Html::rawElement( isset($options["tag"]) ? $options["tag"] : "li", $attrs, $html );
+	}
+
+	
+}
+

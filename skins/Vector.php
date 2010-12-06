@@ -339,7 +339,7 @@ class SkinVector extends SkinTemplate {
  * QuickTemplate class for Vector skin
  * @ingroup Skins
  */
-class VectorTemplate extends QuickTemplate {
+class VectorTemplate extends BaseTemplate {
 
 	/* Members */
 
@@ -592,36 +592,13 @@ class VectorTemplate extends QuickTemplate {
 	<h5<?php $this->html('userlangattributes') ?>><?php $this->msg( 'toolbox' ) ?></h5>
 	<div class="body">
 		<ul>
-		<?php if( $this->data['notspecialpage'] ): ?>
-			<li id="t-whatlinkshere"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['whatlinkshere']['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-whatlinkshere' ) ?>><?php $this->msg( 'whatlinkshere' ) ?></a></li>
-			<?php if( $this->data['nav_urls']['recentchangeslinked'] ): ?>
-			<li id="t-recentchangeslinked"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['recentchangeslinked']['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-recentchangeslinked' ) ?>><?php $this->msg( 'recentchangeslinked-toolbox' ) ?></a></li>
-			<?php endif; ?>
-		<?php endif; ?>
-		<?php if( isset( $this->data['nav_urls']['trackbacklink'] ) ): ?>
-		<li id="t-trackbacklink"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['trackbacklink']['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-trackbacklink' ) ?>><?php $this->msg( 'trackbacklink' ) ?></a></li>
-		<?php endif; ?>
-		<?php if( $this->data['feeds']): ?>
-		<li id="feedlinks">
-			<?php foreach( $this->data['feeds'] as $key => $feed ): ?>
-			<a id="<?php echo Sanitizer::escapeId( "feed-$key" ) ?>" href="<?php echo htmlspecialchars( $feed['href'] ) ?>" rel="alternate" type="application/<?php echo $key ?>+xml" class="feedlink"<?php echo $this->skin->tooltipAndAccesskey( 'feed-' . $key ) ?>><?php echo htmlspecialchars( $feed['text'] ) ?></a>
-			<?php endforeach; ?>
-		</li>
-		<?php endif; ?>
-		<?php foreach( array( 'contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages' ) as $special ): ?>
-			<?php if( $this->data['nav_urls'][$special]): ?>
-			<li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars( $this->data['nav_urls'][$special]['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-' . $special ) ?>><?php $this->msg( $special ) ?></a></li>
-			<?php endif; ?>
-		<?php endforeach; ?>
-		<?php if( !empty( $this->data['nav_urls']['print']['href'] ) ): ?>
-		<li id="t-print"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['print']['href'] ) ?>" rel="alternate"<?php echo $this->skin->tooltipAndAccesskey( 't-print' ) ?>><?php $this->msg( 'printableversion' ) ?></a></li>
-		<?php endif; ?>
-		<?php if (  !empty(  $this->data['nav_urls']['permalink']['href'] ) ): ?>
-		<li id="t-permalink"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['permalink']['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-permalink' ) ?>><?php $this->msg( 'permalink' ) ?></a></li>
-		<?php elseif ( $this->data['nav_urls']['permalink']['href'] === '' ): ?>
-		<li id="t-ispermalink"<?php echo $this->skin->tooltip( 't-ispermalink' ) ?>><?php $this->msg( 'permalink' ) ?></li>
-		<?php endif; ?>
-		<?php wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) ); ?>
+<?php
+		foreach ( $this->getToolbox() as $key => $tbitem ): ?>
+				<?php echo $this->makeListItem($key, $tbitem); ?>
+
+<?php
+		endforeach;
+		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) ); ?>
 		</ul>
 	</div>
 </div>
@@ -634,8 +611,9 @@ class VectorTemplate extends QuickTemplate {
 	<h5<?php $this->html('userlangattributes') ?>><?php $this->msg( 'otherlanguages' ) ?></h5>
 	<div class="body">
 		<ul>
-		<?php foreach ( $this->data['language_urls'] as $langlink ): ?>
-			<li class="<?php echo htmlspecialchars(  $langlink['class'] ) ?>"><a href="<?php echo htmlspecialchars( $langlink['href'] ) ?>" title="<?php echo htmlspecialchars( $langlink['title'] ) ?>"><?php echo $langlink['text'] ?></a></li>
+		<?php foreach ( $this->data['language_urls'] as $key => $langlink ): ?>
+			<?php echo $this->makeListItem($key, $langlink); ?>
+
 		<?php endforeach; ?>
 		</ul>
 	</div>
@@ -650,8 +628,9 @@ class VectorTemplate extends QuickTemplate {
 	<div class="body">
 		<?php if ( is_array( $content ) ): ?>
 		<ul>
-		<?php foreach( $content as $val ): ?>
-			<li id="<?php echo Sanitizer::escapeId( $val['id'] ) ?>"<?php if ( $val['active'] ): ?> class="active" <?php endif; ?>><a href="<?php echo htmlspecialchars( $val['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( $val['id'] ) ?>><?php echo htmlspecialchars( $val['text'] ) ?></a></li>
+		<?php foreach( $content as $key => $val ): ?>
+			<?php echo $this->makeListItem($key, $val); ?>
+
 		<?php endforeach; ?>
 		</ul>
 		<?php else: ?>
