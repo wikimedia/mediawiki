@@ -33,6 +33,7 @@ class WikiError {
 	 * @param $message string
 	 */
 	function __construct( $message ) {
+		wfDeprecated( __METHOD__ );
 		$this->mMessage = $message;
 	}
 
@@ -60,6 +61,7 @@ class WikiError {
 	 * @return bool
 	 */
 	public static function isError( $object ) {
+		wfDeprecated( __METHOD__ );
 		if ( $object instanceof WikiError ) {
 			return true;
 		} elseif ( $object instanceof Status ) {
@@ -80,6 +82,7 @@ class WikiErrorMsg extends WikiError {
 	 * @param ... parameters to pass to wfMsg()
 	 */
 	function __construct( $message/*, ... */ ) {
+		wfDeprecated( __METHOD__ );
 		$args = func_get_args();
 		array_shift( $args );
 		$this->mMessage = wfMsgReal( $message, $args, true );
@@ -109,6 +112,7 @@ class WikiXmlError extends WikiError {
 	 * @param $offset Int
 	 */
 	function __construct( $parser, $message = 'XML parsing error', $context = null, $offset = 0 ) {
+		wfDeprecated( __METHOD__ );
 		$this->mXmlError = xml_get_error_code( $parser );
 		$this->mColumn = xml_get_current_column_number( $parser );
 		$this->mLine = xml_get_current_line_number( $parser );
