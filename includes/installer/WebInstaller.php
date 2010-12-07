@@ -121,7 +121,7 @@ class WebInstaller extends CoreInstaller {
 		if( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) )
 			&& $this->request->getVal( 'localsettings' ) )
 		{
-			$this->request->response()->header( 'Content-type: text/plain' );
+			$this->request->response()->header( 'Content-type: application/x-httpd-php' );
 			$this->request->response()->header(
 				'Content-Disposition: attachment; filename="LocalSettings.php"'
 			);
