@@ -119,8 +119,7 @@ class ArchivedFile {
 				$conds,
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
-
-			if ( $dbr->numRows( $res ) == 0 ) {
+			if ( $res == false || $dbr->numRows( $res ) == 0 ) {
 			// this revision does not exist?
 				return;
 			}
