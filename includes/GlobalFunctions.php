@@ -2860,9 +2860,10 @@ function wfMakeUrlIndex( $url ) {
 /**
  * Do any deferred updates and clear the list
  *
- * @param $commit Boolean: commit after every update to prevent lock contention
+ * @param $commit String: set to 'commit' to commit after every update to
+ *                prevent lock contention
  */
-function wfDoUpdates( $commit = false ) {
+function wfDoUpdates( $commit = '' ) {
 	global $wgDeferredUpdateList;
 
 	wfProfileIn( __METHOD__ );
@@ -2873,14 +2874,15 @@ function wfDoUpdates( $commit = false ) {
 		return;
 	}
 
-	if ( $commit ) {
+	$doCommit = $commit == 'commit';
+	if ( $doCommit ) {
 		$dbw = wfGetDB( DB_MASTER );
 	}
 
 	foreach ( $wgDeferredUpdateList as $update ) {
 		$update->doUpdate();
 
-		if ( $commit && $dbw->trxLevel() ) {
+		if ( $doCommit && $dbw->trxLevel() ) {
 			$dbw->commit();
 		}
 	}
