@@ -142,8 +142,6 @@ abstract class Installer {
 	 * @return boolean
 	 */
 	public function doEnvironmentChecks() {
-		$this->showMessage( 'config-env-php', phpversion() );
-
 		$good = true;
 
 		foreach ( $this->envChecks as $check ) {
