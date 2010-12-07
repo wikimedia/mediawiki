@@ -88,6 +88,7 @@ class WebInstallerOutput {
 		$skinDir = dirname( dirname( dirname( __FILE__ ) ) ) . '/skins';
 		$vectorCssFile = "$skinDir/vector/screen.css";
 		$configCssFile = "$skinDir/common/config.css";
+		$css = '';
 		wfSuppressWarnings();
 		$vectorCss = file_get_contents( $vectorCssFile );
 		$configCss = file_get_contents( $configCssFile );
