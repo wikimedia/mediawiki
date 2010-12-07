@@ -111,7 +111,7 @@ $mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
 $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
 $mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
-$mediaWiki->finalCleanup( $wgDeferredUpdateList, $wgOut );
+$mediaWiki->finalCleanup( $wgOut );
 
 $mediaWiki->restInPeace();
 
