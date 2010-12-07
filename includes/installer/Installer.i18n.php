@@ -89,8 +89,6 @@ The following database types are supported: $1.
 If you are on shared hosting, ask your hosting provider to install a suitable database driver.
 If you compiled PHP yourself, reconfigure it with a database client enabled, for example using <code>./configure --with-mysql</code>.
 If you installed PHP from a Debian or Ubuntu package, then you also need install the php5-mysql module.',
-	'config-have-db'                  => 'Found database {{PLURAL:$2|driver|drivers}}: $1.',
-	'config-have-fts3'                => 'SQLite is compiled with the [http://sqlite.org/fts3.html FTS3 module], search features will be available on this backend.',
 	'config-no-fts3'                  => "'''Warning''': SQLite is compiled without the [http://sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
 	'config-register-globals'         => "'''Warning: PHP's <code>[http://php.net/register_globals register_globals]</code> option is enabled.'''
 '''Disable it if you can.'''
@@ -109,7 +107,6 @@ This option causes horrible bugs with MediaWiki.
 You cannot install or use MediaWiki unless this option is disabled.",
 	'config-safe-mode'                => "'''Warning:''' PHP's [http://www.php.net/features.safe-mode safe mode] is active.
 It may cause problems, particularly if using file uploads and <code>math</code> support.",
-	'config-xml-good'                 => 'Have XML / Latin1-UTF-8 conversion support.',
 	'config-xml-bad'                  => "PHP's XML module is missing.
 MediaWiki requires functions in this module and will not work in this configuration.
 If you're running Mandrake, install the php-xml package.",
@@ -117,9 +114,6 @@ If you're running Mandrake, install the php-xml package.",
 MediaWiki requires the Perl-compatible regular expression functions to work.',
 	'config-pcre-no-utf8'             => "'''Fatal''': PHP's PCRE module seems to be compiled without PCRE_UTF8 support.
 MediaWiki requires UTF-8 support to function correctly.",
-	'config-memory-none'              => 'PHP is configured with no <code>memory_limit</code>',
-	'config-memory-ok'                => "PHP's <code>memory_limit</code> is $1.
-OK.",
 	'config-memory-raised'            => "PHP's <code>memory_limit</code> is $1, raised to $2.",
 	'config-memory-bad'               => "'''Warning:''' PHP's <code>memory_limit</code> is $1.
 This is probably too low.
@@ -130,7 +124,6 @@ The installation may fail!",
 	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] is installed',
 	'config-no-cache'                 => "'''Warning:''' Could not find [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].
 Object caching is not enabled.",
-	'config-diff3-good'               => 'Found GNU diff3: <code>$1</code>.',
 	'config-diff3-bad'                => 'GNU diff3 not found.',
 	'config-imagemagick'              => 'Found ImageMagick: <code>$1</code>.
 Image thumbnailing will be enabled if you enable uploads.',
@@ -138,13 +131,8 @@ Image thumbnailing will be enabled if you enable uploads.',
 Image thumbnailing will be enabled if you enable uploads.',
 	'config-no-scaling'               => 'Could not find GD library or ImageMagick.
 Image thumbnailing will be disabled.',
-	'config-dir'                      => 'Installation directory: <code>$1</code>.',
-	'config-uri'                      => 'Script URI path: <code>$1</code>.',
 	'config-no-uri'                   => "'''Error:''' Could not determine the current URI.
 Installation aborted.",
-	'config-file-extension'           => 'Installing MediaWiki with <code>$1</code> file extensions.',
-	'config-shell-locale'             => 'Detected shell locale "$1"',
-	'config-uploads-safe'             => 'The default directory for uploads is safe from arbitrary scripts execution.',
 	'config-uploads-not-safe'         => "'''Warning:''' Your default directory for uploads <code>$1</code> is vulnerable to arbitrary scripts execution.
 Although MediaWiki checks all uploaded files for security threats, it is highly recommended to [http://www.mediawiki.org/wiki/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
 	'config-brokenlibxml'             => 'Your system has a combination of PHP and libxml2 versions which is buggy and can cause hidden data corruption in MediaWiki and other web applications.
