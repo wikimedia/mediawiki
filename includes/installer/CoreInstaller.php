@@ -49,6 +49,7 @@ abstract class CoreInstaller extends Installer {
 		'wgSecretKey',
 		'wgUseInstantCommons',
 		'wgUpgradeKey',
+		'wgDefaultSkin',
 	);
 
 	/**

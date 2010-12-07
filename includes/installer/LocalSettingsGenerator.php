@@ -45,7 +45,7 @@ class LocalSettingsGenerator {
 				'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
 				'wgRightsText', 'wgRightsCode', 'wgMainCacheType', 'wgEnableUploads',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
-				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey'
+				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
 			),
 			$db->getGlobalNames()
 		);
@@ -286,7 +286,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook', 'vector':
-\$wgDefaultSkin = 'vector';
+\$wgDefaultSkin = \"{$this->values['wgDefaultSkin']}\";
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
