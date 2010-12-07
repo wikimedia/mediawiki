@@ -426,7 +426,7 @@ class SkinTemplate extends Skin {
 				'disclaimer',
 			),
 		) );
-		
+
 		global $wgFooterIcons;
 		$tpl->set( 'footericons', $wgFooterIcons );
 		foreach ( $tpl->data['footericons'] as $footerIconsKey => &$footerIconsBlock ) {
@@ -1196,7 +1196,7 @@ abstract class QuickTemplate {
  * with the data stored in the QuickTemplate
  */
 abstract class BaseTemplate extends QuickTemplate {
-	
+
 	/**
 	 * Create an array of common toolbox items from the data in the quicktemplate
 	 * stored by SkinTemplate.
@@ -1260,7 +1260,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
-	 * 
+	 *
 	 * $key is a string, usually a key from the list you are generating this link from
 	 * $item is an array containing some of a specific set of keys.
 	 * The text of the link will be generated either from the contents of the "text"
@@ -1278,18 +1278,18 @@ abstract class BaseTemplate extends QuickTemplate {
 		} else {
 			$text = $this->translator->translate( isset( $item['msg'] ) ? $item['msg'] : $key );
 		}
-		
+
 		if ( !isset( $item['href'] ) ) {
 			return htmlspecialchars( $text );
 		}
-		
+
 		$attrs = array();
 		foreach ( array( 'href', 'id', 'class', 'rel', 'type' ) as $attr ) {
 			if ( isset( $item[$attr] ) ) {
 				$attrs[$attr] = $item[$attr];
 			}
 		}
-		
+
 		if ( isset( $item['id'] ) ) {
 			$item['single-id'] = $item['id'];
 		}
@@ -1306,7 +1306,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				);
 			}
 		}
-		
+
 		return Html::element( 'a', $attrs, $text );
 	}
 
@@ -1350,7 +1350,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 			$html = $this->makeLink( $key, $link  );
 		}
-		
+
 		$attrs = array();
 		foreach ( array( 'id', 'class' ) as $attr ) {
 			if ( isset( $item[$attr] ) ) {
@@ -1373,7 +1373,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		$realAttrs = array_merge( $realAttrs, $this->skin->tooltipAndAccesskeyAttribs( 'search' ), $attrs );
 		return Html::element( 'input', $realAttrs );
 	}
-	
+
 	function makeSearchButton( $mode, $attrs = array() ) {
 		switch( $mode ) {
 			case 'go':
@@ -1410,7 +1410,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				throw new MWException( 'Unknown mode passed to BaseTemplate::makeSearchButton' );
 		}
 	}
-	
+
 	/**
 	 * Returns an array of footerlinks trimmed down to only those footer links that
 	 * are valid.
@@ -1420,7 +1420,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 */
 	function getFooterLinks( $option = null ) {
 		$footerlinks = $this->data['footerlinks'];
-		
+
 		// Reduce footer links down to only those which are being used
 		$validFooterLinks = array();
 		foreach( $footerlinks as $category => $links ) {
@@ -1434,7 +1434,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				unset( $validFooterLinks[$category] );
 			}
 		}
-		
+
 		if ( $option == 'flat' ) {
 			// fold footerlinks into a single array using a bit of trickery
 			$validFooterLinks = call_user_func_array(
@@ -1442,10 +1442,10 @@ abstract class BaseTemplate extends QuickTemplate {
 				array_values( $validFooterLinks )
 			);
 		}
-		
+
 		return $validFooterLinks;
 	}
-	
+
 	/**
 	 * Returns an array of footer icons filtered down by options relevant to how
 	 * the skin wishes to display them.
@@ -1459,7 +1459,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	function getFooterIcons( $option = null ) {
 		// Generate additional footer icons
 		$footericons = $this->data['footericons'];
-		
+
 		if ( $option == 'icononly' ) {
 			// Unset any icons which don't have an image
 			foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
@@ -1482,10 +1482,10 @@ abstract class BaseTemplate extends QuickTemplate {
 				unset( $footericons['copyright'] );
 			}
 		}
-		
+
 		return $footericons;
 	}
-	
-	
+
+
 }
 
