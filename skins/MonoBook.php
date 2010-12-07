@@ -241,19 +241,15 @@ class MonoBookTemplate extends BaseTemplate {
 		<div id="searchBody" class="pBody">
 			<form action="<?php $this->text('wgScript') ?>" id="searchform">
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
-				<?php
-		echo Html::input( 'search',
-			isset( $this->data['search'] ) ? $this->data['search'] : '', 'search',
-			array(
-				'id' => 'searchInput',
-				'title' => $this->skin->titleAttrib( 'search' ),
-				'accesskey' => $this->skin->accesskey( 'search' )
-			) ); ?>
+				<?php echo $this->makeSearchInput(array( "id" => "searchInput" )); ?>
 
-				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> /><?php if ($wgUseTwoButtonsSearchForm) { ?>&#160;
-				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> /><?php } else { ?>
+				<?php echo $this->makeSearchButton("go", array( "id" => "searchGoButton", "class" => "searchButton" ));
+				if ($wgUseTwoButtonsSearchForm): ?>&#160;
+				<?php echo $this->makeSearchButton("fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ));
+				else: ?>
 
-				<div><a href="<?php $this->text('searchaction') ?>" rel="search"><?php $this->msg('powersearch-legend') ?></a></div><?php } ?>
+				<div><a href="<?php $this->text('searchaction') ?>" rel="search"><?php $this->msg('powersearch-legend') ?></a></div><?php
+				endif; ?>
 
 			</form>
 		</div>
