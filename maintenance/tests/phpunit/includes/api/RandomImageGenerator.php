@@ -200,7 +200,7 @@ class RandomImageGenerator {
 			$drawCommand = "fill $fill  circle $originX,$originY $perimeterX,$perimeterY";
 			$args[] = '-draw ' . wfEscapeShellArg( $drawCommand );
 		}
-		$args[] = $filename;
+		$args[] = wfEscapeShellArg( $filename );
 
 		$command = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " . implode( " ", $args );
 		$retval = null;
