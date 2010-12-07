@@ -35,8 +35,6 @@ Check your php.ini and make sure <code>session.save_path</code> is set to an app
 	'config-your-language-help'       => 'Select a language to use during the installation process.',
 	'config-wiki-language'            => 'Wiki language:',
 	'config-wiki-language-help'       => 'Select the language that the wiki will predominantly be written in.',
-	'config-allow-requests'           => 'Allow external requests to MediaWiki.org',
-	'config-allow-requests-help'      => 'If enabled, allow the installer to check MediaWiki.org to make sure you are installing the latest stable version',
 	'config-back'                     => '← Back',
 	'config-continue'                 => 'Continue →',
 	'config-page-language'            => 'Language',
@@ -423,13 +421,9 @@ Upload an image of the appropriate size, and enter the URL here.
 If you do not want a logo, leave this box blank.",
 	'config-instantcommons'           => 'Enable Instant Commons',
 	'config-instantcommons-help'      => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [http://commons.wikimedia.org/ Wikimedia Commons] site.
-In order to do this, MediaWiki requires access to the Internet. $1
+In order to do this, MediaWiki requires access to the Internet.
 
-For more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual].', // $1 is for indicating whether or not we should be able to use the feature
-	'config-instantcommons-good'      => 'The installer was able to detect internet connectivity during the environment checks.
-You can enable this feature if you want to.',
-	'config-instantcommons-bad'       => '\'\'Unfortunately, the installer was unable to detect internet connectivity during the environment checks, so you might be unable to use this feature.
-If your server is behind a proxy, you may need to do some [http://www.mediawiki.org/wiki/Manual:$wgHTTPProxy additional configuration].\'\'',
+For more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual].',
 	'config-cc-error'                 => 'The Creative Commons license chooser gave no result.
 Enter the license name manually.',
 	'config-cc-again'                 => 'Pick again...',
