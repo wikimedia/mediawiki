@@ -467,6 +467,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * rebuildFileCache.php no longer creates inappropriate cache files for redirects
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
 * (bug 18372) $wgFileExtensions will now override $wgFileBlacklist 
+* (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer treated
+  as wikitext on preview.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
