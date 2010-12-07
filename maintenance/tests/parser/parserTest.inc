@@ -149,9 +149,9 @@ class ParserTest {
 
 		$wgEnableParserCache = false;
 		$wgDeferredUpdateList = array();
-		$wgMemc = &wfGetMainCache();
-		$messageMemc = &wfGetMessageCacheStorage();
-		$parserMemc = &wfGetParserCacheStorage();
+		$wgMemc = wfGetMainCache();
+		$messageMemc = wfGetMessageCacheStorage();
+		$parserMemc = wfGetParserCacheStorage();
 
 		// $wgContLang = new StubContLang;
 		$wgUser = new User;
