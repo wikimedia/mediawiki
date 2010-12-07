@@ -637,7 +637,7 @@ class WebInstaller extends CoreInstaller {
 		
 		
 		return "<div class=\"mw-help-field-container\">\n" .
-		         "<span class=\"mw-help-field-hint\">" . wfMsgReal( 'config-help' ) . "</span>\n" .
+		         "<span class=\"mw-help-field-hint\">" . wfMsgHtml( 'config-help' ) . "</span>\n" .
 		         "<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
 		       "</div>\n";
 	}
