@@ -941,7 +941,8 @@ class WebInstaller_Complete extends WebInstallerPage {
 					$lsUrl,
 					$GLOBALS['wgServer'] .
 						$this->getVar( 'wgScriptPath' ) . '/index' .
-						$this->getVar( 'wgScriptExtension' )
+						$this->getVar( 'wgScriptExtension' ),
+					'<downloadlink/>'
 				), 'tick-32.png'
 			)
 		);

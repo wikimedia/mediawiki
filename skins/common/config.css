@@ -153,3 +153,7 @@
 #config-memcachewrapper {
 	display: none;
 }
+.config-download-link {
+	font-size: 1.8em;
+	margin-left: 2em;
+}

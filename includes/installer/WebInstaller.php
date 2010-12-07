@@ -99,6 +99,10 @@ class WebInstaller extends CoreInstaller {
 		parent::__construct();
 		$this->output = new WebInstallerOutput( $this );
 		$this->request = $request;
+
+		// Add parser hook for WebInstaller_Complete
+		global $wgParser;
+		$wgParser->setHook( 'downloadlink', array( $this, 'downloadLinkHook' ) );		
 	}
 
 	/**
@@ -956,4 +960,15 @@ class WebInstaller extends CoreInstaller {
 		return $url;
 	}
 
+	public function downloadLinkHook( $text, $attribs, $parser  ) {
+		$img = Html::element( 'img', array( 
+			'src' => '../skins/common/images/download-32.png',
+			'width' => '32',
+			'height' => '32',
+		) );
+		$anchor = Html::rawElement( 'a', 
+			array( 'href' => $this->getURL( array( 'localsettings' => 1 ) ) ),
+			$img . ' ' . wfMsgHtml( 'config-download-localsettings' ) );
+		return Html::rawElement( 'div', array( 'class' => 'config-download-link' ), $anchor );
+	}
 }
