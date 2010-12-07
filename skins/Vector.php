@@ -734,7 +734,7 @@ class VectorTemplate extends BaseTemplate {
 		<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
 		<?php if ( $wgVectorUseSimpleSearch && $wgUser->getOption( 'vector-simplesearch' ) ): ?>
 		<div id="simpleSearch">
-			<?php echo $this->makeSearchInput(array( "id" => "searchInput" )); ?>
+			<?php echo $this->makeSearchInput(array( "id" => "searchInput", "type" => "text" )); ?>
 			<?php echo $this->makeSearchButton("image", array( "id" => "searchButton",
 				"src" => $this->skin->getSkinStylePath('images/search-' . ( $this->data['rtl'] ? 'rtl' : 'ltr' ) . '.png') )); ?>
 		</div>
