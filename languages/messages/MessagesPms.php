@@ -522,6 +522,9 @@ Për piasì speta prima ëd prové torna.",
 'loginlanguagelabel'         => 'Lenga: $1',
 'suspicious-userlogout'      => "Soa arcesta ëd seurte dal sistema a l'é stàita arfudà përchè a smija com s'a fussa stàita mandà da 'n navigador scolegà o da l'archiviassion an local d'un proxy.",
 
+# E-mail sending
+'php-mail-error-unknown' => 'Eror pa conossù ant la funsion PHP mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Fòrsa stimà dla ciav: $1',
 'password-strength-bad'        => 'GRAMA',
@@ -659,7 +662,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'usercsspreview'                   => "'''Che a varda che lòn che a s-ciàira a l'é nomach na preuva ëd sò CSS.'''
 '''A l'é ancó nen stàit salvà!'''",
 'userjspreview'                    => "'''Che as visa che a l'é mach antramentr che as fa na preuva ëd sò Javascript, che a l'é ancó pa stàit salvà!'''",
-'userinvalidcssjstitle'            => "'''Avis:''' A-i é pa gnun-a pel \"\$1\". Che as visa che le pàgine .css e .js che un as fa daspërchiel a deuvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/monobook.css nopà che {{ns:user}}:Scaramacaj/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Avis:''' A-i é pa gnun-a pel \"\$1\". Che as visa che le pàgine .css e .js che un as fa daspërchiel a deuvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/vector.css nopà che {{ns:user}}:Scaramacaj/Vector.css.",
 'updated'                          => '(Agiornà)',
 'note'                             => "'''NÒTA:'''",
 'previewnote'                      => "'''Che a ten-a mach present che costa-sì a l'é nomach na PREUVA, e che soa version a l'é ancó pa stàita salvà!'''",
@@ -1266,6 +1269,7 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'right-override-export-depth' => 'Esporté le pàgine ancludend le pàgine colegà fin-a a na profondeur ëd 5',
 'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
 'right-revisionmove'          => 'Tramudé le revision',
+'right-disableaccount'        => 'Disabìlita cont',
 
 # User rights log
 'rightslog'      => "Argistr dij drit ëd j'utent",
@@ -1733,11 +1737,11 @@ Adess a l'é na ridiression a [[$2]].",
 'shortpages'              => 'Pàgine curte',
 'longpages'               => 'Pàgine longhe',
 'deadendpages'            => 'Pàgine che a men-o da gnun-a part',
-'deadendpagestext'        => "Le pàgine ambelessì sota a l'han pa d'anliure anvers a j'àutre pàgine ëd {{SITENAME}}.",
+'deadendpagestext'        => "Le pàgine ambelessì-sota a l'han pa d'anliure anvers a j'àutre pàgine ëd {{SITENAME}}.",
 'protectedpages'          => 'Pàgine sota protession',
 'protectedpages-indef'    => 'Mach protession anfinìe',
 'protectedpages-cascade'  => 'Mach protession a cascà',
-'protectedpagestext'      => "Ambelessì sota a-i é na lista ëd pàgine ch'a son protegiùe përchè as peulo nen modifichesse ò pura tramudesse",
+'protectedpagestext'      => "Ambelessì-sota a-i é na lista ëd pàgine ch'a son protegiùe përchè as peulo nen modifichesse ò pura tramudesse",
 'protectedpagesempty'     => 'Për adess a-i é pa gnun-a pàgina protegiùa',
 'protectedtitles'         => 'Tìtoj protegiù',
 'protectedtitlestext'     => 'Ij tìtoj ambelessì sota a peulo pa creesse',
@@ -2156,6 +2160,7 @@ $1",
 'sp-contributions-newbies-title'       => "Contribussion ëd j'utent për ij neuv cont",
 'sp-contributions-blocklog'            => "Fërma l'agiornament dij registr",
 'sp-contributions-deleted'             => "Modìfiche d'utent scancelà",
+'sp-contributions-uploads'             => 'cariagi',
 'sp-contributions-logs'                => 'registr',
 'sp-contributions-talk'                => 'discussion',
 'sp-contributions-userrights'          => 'gestion dij drit utent',
@@ -3184,6 +3189,7 @@ As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
 'version-specialpages'             => 'Pàgine speciaj',
 'version-parserhooks'              => 'Gancio dlë scompositor',
 'version-variables'                => 'Variàbij',
+'version-skins'                    => 'Pej',
 'version-other'                    => 'Àutr',
 'version-mediahandlers'            => 'Gestor multimojen',
 'version-hooks'                    => 'Gancio',
@@ -3307,6 +3313,16 @@ Ch'a bata 'l nòm dl'archivi sensa pa bute-ie 'l prefiss \"{{ns:file}}:\".",
 'sqlite-no-fts'  => '$1 sensa arserca an test pien mantnùa',
 
 # Special:DisableAccount
-'disableaccount-reason' => 'Rason:',
+'disableaccount'             => 'Disabìlita un cont utent',
+'disableaccount-user'        => 'Nòm utent:',
+'disableaccount-reason'      => 'Rason:',
+'disableaccount-confirm'     => "Disabìlita sto cont utent.
+L'utent a podrà pa pi intré, torna amposté soa ciav, o arseive notìfiche e-mail.
+Se l'utent a l'é al moment intrà an quaich manere, a sarà sùbit campà fòra.
+''Nòta che disabiité un cont a l'é pa riversìbil senta antërvent d'un aministrador ëd sistem.''",
+'disableaccount-mustconfirm' => "It deuve confirmé ch'it veule disabilité sto cont.",
+'disableaccount-nosuchuser'  => 'Ël cont utent "$1" a esist pa.',
+'disableaccount-success'     => 'Ël cont utent "$1" a l\'é stàit disabilità përmanentement.',
+'disableaccount-logentry'    => 'disabilità përmanentement ël cont utent [[$1]]',
 
 );

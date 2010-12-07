@@ -3453,6 +3453,7 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trang sửa đổi bình th
 'version-specialpages'             => 'Trang đặc biệt',
 'version-parserhooks'              => 'Hook trong bộ xử lý',
 'version-variables'                => 'Biến',
+'version-skins'                    => 'Hình dạng',
 'version-other'                    => 'Phần mở rộng khác',
 'version-mediahandlers'            => 'Bộ xử lý phương tiện',
 'version-hooks'                    => 'Các hook',

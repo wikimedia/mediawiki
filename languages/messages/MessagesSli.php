@@ -489,7 +489,7 @@ oder ei dann zugehieriga <span class="plainlinks">[{{fullurl:{{#special:Log}}|pa
 '''Beachte:''' Noach damm Speichern mußt du dennen Browser oaweisa, de neue Version zu loada: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview'                    => "== Vurschau Dennes Nutzer-JavaScript ==
 '''Beachte:''' Noach damm Speichern mußt du dennen Browser oaweisa, de neue Version zu loada: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userinvalidcssjstitle'            => "'''OCHTICHE:''' Skin „$1“ existiert ne. Bedenke, doß nutzerspezifische .css- und .js-Seyta miet a'm Kleenbuchstaba oafanga missa, olso beispielsweise ''{{ns:user}}:Mustermann/monobook.css'' oa Stalle vu ''{{ns:user}}:Mustermoan/Monobook.css''.",
+'userinvalidcssjstitle'            => "'''OCHTICHE:''' Skin „$1“ existiert ne. Bedenke, doß nutzerspezifische .css- und .js-Seyta miet a'm Kleenbuchstaba oafanga missa, olso beispielsweise ''{{ns:user}}:Mustermann/vector.css'' oa Stalle vu ''{{ns:user}}:Mustermoan/Vector.css''.",
 'previewnote'                      => "'''Dies ies oack eene Vorschau, de Seyte wurde noo nee gespeichert!'''",
 'previewconflict'                  => 'Diese Vurschau gitt dann Inhalt des obern Textfeldes wieder. Su werd de Seyte aussahn, wenn du jitz speicherst.',
 'session_fail_preview'             => "'''Denne Beoarbeetung konnte ne gespeichert waan, do Sitzungsdaten verlorn geganga sein.

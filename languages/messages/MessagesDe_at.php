@@ -17,7 +17,6 @@ $messages = array(
 # Dates
 'january'  => 'Jänner',
 'february' => 'Feber',
-'december' => 'Christmonat',
 'jan'      => 'Jän',
 
 );

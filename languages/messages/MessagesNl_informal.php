@@ -192,7 +192,7 @@ Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: je test nu je persoonlijke JavaScript.'''
 '''De pagina is niet opgeslagen!'''",
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\".
-Let op: je eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
+Let op: je eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 'previewnote'                      => "'''Let op: dit is een controlepagina; je tekst is niet opgeslagen!'''",
 'previewconflict'                  => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als je deze opslaat.',
 'session_fail_preview'             => "'''Je bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.

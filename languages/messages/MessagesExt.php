@@ -578,7 +578,7 @@ u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta]</span>.',
 'usercsspreview'                   => "'''Alcuerdati que solu estás previsoreandu el tu CSS d'usuáriu.'''
 '''Entovia nu está emburacau!'''",
 'userjspreview'                    => "'''Recuerda que solu estás prebandu/previsoreandu el tu JavaScript d´usuáriu, entovia nu está emburacau!'''",
-'userinvalidcssjstitle'            => "'''Avisu:''' Nu desisti el skin \"\$1\". Alcuerdati que las páhinas presonalizás .css i .js tienin el su entítulu en menúsculas, p.s. {{ns:user}}:Foo/monobook.css en lugal de {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Avisu:''' Nu desisti el skin \"\$1\". Alcuerdati que las páhinas presonalizás .css i .js tienin el su entítulu en menúsculas, p.s. {{ns:user}}:Foo/vector.css en lugal de {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Atualizau)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Agora solu estás previsoreandu; entovia nu están emburacaus los chambus!'''",

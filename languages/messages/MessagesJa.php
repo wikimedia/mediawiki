@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author Aotake
  * @author Broad-Sky
+ * @author Chatama
  * @author Chinneeb
  * @author Emk
  * @author Fievarsty
@@ -31,6 +32,7 @@
  * @author Mizusumashi
  * @author Muttley
  * @author Mzm5zbC3
+ * @author Ohgi
  * @author Suisui
  * @author Web comic
  * @author Whym
@@ -979,7 +981,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'userjspreview'                    => "'''利用者JavaScriptを試験、プレビューしています。'''
 '''まだ保存されていません！'''",
 'userinvalidcssjstitle'            => "'''警告：'''「$1」という外装はありません。
-.cssと.jsページを編集する際には、ページ名を小文字にすることを忘れないでください（例えば、{{ns:user}}:Hoge/Monobook.cssではなく{{ns:user}}:Hoge/monobook.cssとなります）。",
+.cssと.jsページを編集する際には、ページ名を小文字にすることを忘れないでください（例えば、{{ns:user}}:Hoge/Vector.cssではなく{{ns:user}}:Hoge/vector.cssとなります）。",
 'updated'                          => '（更新）',
 'note'                             => "'''お知らせ：'''",
 'previewnote'                      => "'''これはプレビューです。'''
@@ -1643,7 +1645,7 @@ HTMLタグを見直してください。',
 'action-revisionmove'         => '版の移動',
 
 # Recent changes
-'nchanges'                          => '$1変更',
+'nchanges'                          => '$1回の変更',
 'recentchanges'                     => '最近の更新',
 'recentchanges-legend'              => '最近の更新のオプション',
 'recentchangestext'                 => 'このページでそのウィキへの最近の更新を追跡。',
@@ -1990,11 +1992,11 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'unusedtemplateswlh'  => 'リンク元',
 
 # Random page
-'randompage'         => '無作為ページ',
+'randompage'         => 'ランダムページ',
 'randompage-nopages' => '次の{{PLURAL:$2|名前空間}}：$1には、ページがありません。',
 
 # Random redirect
-'randomredirect'         => '無作為抽出された転送',
+'randomredirect'         => 'ランダムな転送ページ',
 'randomredirect-nopages' => '「$1」名前空間には、転送がありません。',
 
 # Statistics
@@ -2187,7 +2189,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'newuserlogpagetext'          => '以下はアカウント作成の記録です。',
 'newuserlog-byemail'          => 'パスワードを電子メールで送信しました',
 'newuserlog-create-entry'     => '新規利用者アカウント',
-'newuserlog-create2-entry'    => 'が新規にアカウント $1 を作成しました',
+'newuserlog-create2-entry'    => 'が次のアカウントを新規に作成しました： $1',
 'newuserlog-autocreate-entry' => 'アカウントが自動的に作成されました',
 
 # Special:ListGroupRights
@@ -2448,8 +2450,8 @@ $2による最後の版へ変更されました。',
 'undeleterevdel'               => '表示されるページまたはファイルの版が部分的に削除された状態となる場合、復帰できません。
 このような場合、最新の削除版のチェックを外すか、その版を現す必要があります。',
 'undeletehistorynoadmin'       => 'このページは削除されています。
-削除された理由は、削除する前にこのペ時を編集していた利用者の詳細と共に、以下の概要に表示されています。
-これらの削除版の実際の本文は、管理者のみが閲覧できます。',
+以下に、削除前にこのページを編集していた利用者の詳細情報と共に、この削除の理由が示されています。
+削除された各版の本文は管理者のみが使用可能です。',
 'undelete-revision'            => '$3によるページ$1の$4$5の削除版：',
 'undeleterevision-missing'     => '不正な、あるいは存在しない版です。
 間違ったリンクを辿ったか、この版は既に復帰されたか、もしくは保存版から除去された可能性があります。',
@@ -2615,7 +2617,7 @@ $1のブロックの理由は「$2」です。',
 参考のため、ブロックの記録を以下に示します：',
 'blocklog-showsuppresslog'        => 'この利用者は以前にブロックされ、隠されたことがあります。
 参考のため、隠蔽記録を以下に示します：',
-'blocklogentry'                   => '有効期限$2で[[$1]]をブロックしました$3',
+'blocklogentry'                   => '[[$1]] を$2ブロックしました。ブロックの内容は$3です',
 'reblock-logentry'                => '有効期限を$2で[[$1]]のブロック設定を変更しました$3',
 'blocklogtext'                    => 'このページは利用者ブロックと解除の記録です。
 自動的にブロックされたIPアドレスは表示されていません。
@@ -3441,29 +3443,29 @@ Variants for Chinese language
 'confirmemail_loggedin'     => 'メールアドレスは確認されました。',
 'confirmemail_error'        => '確認情報を保存する際にエラーが発生しました。',
 'confirmemail_subject'      => '{{SITENAME}} メールアドレスの確認',
-'confirmemail_body'         => 'だれか（おそらく自分自身）が、IPアドレス$1から、
+'confirmemail_body'         => 'だれかが、IPアドレス$1から、
 このメールアドレスで{{SITENAME}}のアカウント「$2」を登録しました。
 
-このアカウントが本当に自分ものであるか確認して、
+このアカウントが本当に自分のものであるか確認して、
 {{SITENAME}}のメール機能を有効にするには、以下のURLをブラウザーで開いてください：
 
 $3
 
-もしアカウントの登録をした覚えが*ない*場合は、
+もしアカウントの登録をした覚えがない場合は、
 次のURLをブラウザーで開いて、メール確認を中止してください：
 
 $5
 
 この確認用コードは、$4に期限切れになります。',
-'confirmemail_body_changed' => 'だれか（おそらく自分自身）が、IPアドレス$1から
+'confirmemail_body_changed' => 'だれかが、IPアドレス$1から
 {{SITENAME}}でアカウント「$2」の電子メールアドレスをこのアドレスに変更しました。
 
-このアカウントが本当に自身のものであることを確認し、
-{{SITENAME}}のメール機能を再有効化にするには、以下のURLをブラウザーで開いてください：
+このアカウントが本当に自分のものであるならば、
+{{SITENAME}}のメール機能を再び有効化にするために、以下のURLをブラウザーで開いてください：
 
 $3
 
-もし自分のアカウントで*ない*場合は、
+もし自分のアカウントでない場合は、
 次のURLをブラウザーで開いて、電子メール確認を中止してください：
 
 $5
@@ -3724,7 +3726,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'tags-description-header' => '詳細な意味の説明',
 'tags-hitcount-header'    => 'タグが付与された変更',
 'tags-edit'               => '編集',
-'tags-hitcount'           => '$1変更',
+'tags-hitcount'           => '$1回の変更',
 
 # Special:ComparePages
 'comparepages'     => 'ページの比較',
