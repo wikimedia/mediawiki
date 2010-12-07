@@ -487,7 +487,7 @@ Si vos n' voloz nén scrire cisse pådje chal, clitchîz simplumint sol boton ''
 'userjsyoucanpreview'        => "'''Racsegne:''' eployîz l' boton «Vey divant» po sayî vosse novea JS divant del schaper.",
 'usercsspreview'             => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje di vosse stîle CSS d' uzeu, i n' a nén co stî schapé!'''",
 'userjspreview'              => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje/saye di vosse JavaScript d' uzeu, i n' a nén co stî schapé!'''",
-'userinvalidcssjstitle'      => "'''Asteme:''' I n' a pont d' pea lomêye «$1». Tuzez ki les pådjes .css eyet .js des uzeus eployèt des tite e ptitès letes, metans {{ns:user}}:Toto/monobook.css et nén {{ns:user}}:Toto/Monobook.css.",
+'userinvalidcssjstitle'      => "'''Asteme:''' I n' a pont d' pea lomêye «$1». Tuzez ki les pådjes .css eyet .js des uzeus eployèt des tite e ptitès letes, metans {{ns:user}}:Toto/vector.css et nén {{ns:user}}:Toto/Vector.css.",
 'updated'                    => '(Ramidré)',
 'previewnote'                => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje, li pådje n' est nén co schapêye!'''",
 'previewconflict'            => 'Ci prévoeyaedje ci mostere kimint kel tecse del boesse di tecse do dzeu sereut håyné si vos decidez di clitchî so «schaper».',

@@ -604,7 +604,7 @@ For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
 '''Dåt as nuch ai spiikerd!'''",
 'userjspreview'                    => "'''Påås aw dåt dü bloot din brüker JavaScript präiwest/forbekiikest.'''
 '''Dåt as nuch ai spiikerd!'''",
-'userinvalidcssjstitle'            => "''Woorschauing:''' Skin \"\$1\"jeeft dåt ai. Betånk, dåt brükerspetsiifische .css- än .js-side ma en latj bökstääw önjfånge mönje, ålsü biispelswise ''{{ns:user}}:Münsterkjarl/monobook.css'' önj stää foon ''{{ns:user}}:Münsterkjarl/Monobook.css''.",
+'userinvalidcssjstitle'            => "''Woorschauing:''' Skin \"\$1\"jeeft dåt ai. Betånk, dåt brükerspetsiifische .css- än .js-side ma en latj bökstääw önjfånge mönje, ålsü biispelswise ''{{ns:user}}:Münsterkjarl/vector.css'' önj stää foon ''{{ns:user}}:Münsterkjarl/Vector.css''.",
 'updated'                          => '(Änred)',
 'note'                             => "'''Påås aw:'''",
 'previewnote'                      => "'''Dåtheer as bloot en forlök, jü sid wörd nuch ai spikred!'''",

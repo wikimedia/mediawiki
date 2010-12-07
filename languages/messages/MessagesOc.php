@@ -890,7 +890,7 @@ La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d�
 'usercsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS !'''
 '''Es pas estada encara enregistrada !'''",
 'userjspreview'                    => "'''Remembratz-vos que sètz a visualizar o testar vòstre còde JavaScript e qu’es pas encara estat enregistrat !'''",
-'userinvalidcssjstitle'            => "'''Atencion :''' existís pas d'estil « $1 ». Remembratz-vos que las paginas personalas amb extensions .css e .js utilizan de títols en minusculas, per exemple, {{ns:user}}:Foo/monobook.css e non pas {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Atencion :''' existís pas d'estil « $1 ». Remembratz-vos que las paginas personalas amb extensions .css e .js utilizan de títols en minusculas, per exemple, {{ns:user}}:Foo/vector.css e non pas {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Mes a jorn)',
 'note'                             => "'''Nòta :'''",
 'previewnote'                      => "'''Atencion, aqueste tèxte es sonque una previsualizacion e es pas encara estat salvat !'''",

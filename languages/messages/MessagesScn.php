@@ -720,7 +720,7 @@ Siddu sî n’utenti anònimu e riteni ca li cummenti prisenti nta sta pàggina 
 'usercsspreview'                   => "'''Arricorda ca stai sulu visualizzannu n'antiprima dû tò CSS pirsunali.'''
 '''Nun hà ancora statu sarvatu!'''",
 'userjspreview'                    => "'''Arricorda ca stai sulu tistanno/vidennu 'n antiprima lu tò javascript pirsunali, nun hà statu ancora sarvatu!'''",
-'userinvalidcssjstitle'            => "'''Accura:''' Nun esisti arcuna skin cu nomu \"\$1\". S'arricorda ca li pàggini pi li .css e .js pirsunalizzati hannu la nizziali dû tìtulu minùscula, p'asempiu {{ns:user}}:Asempiu/monobook.js e nun {{ns:user}}:Asempiu/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Accura:''' Nun esisti arcuna skin cu nomu \"\$1\". S'arricorda ca li pàggini pi li .css e .js pirsunalizzati hannu la nizziali dû tìtulu minùscula, p'asempiu {{ns:user}}:Asempiu/vector.js e nun {{ns:user}}:Asempiu/Vector.css.",
 'updated'                          => '(Aggiurnatu)',
 'note'                             => "'''Accura:'''",
 'previewnote'                      => "'''Ricurdàtivi ca chista è sulu n'antiprima, e ca nun hà statu ancora sarvata!'''",

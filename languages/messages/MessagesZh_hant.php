@@ -803,7 +803,7 @@ $2',
 '''還沒有儲存﹗'''",
 'userjspreview'                    => "'''注意您只是在測試／預覽您的個人 JavaScript。'''
 '''還沒有儲存﹗'''",
-'userinvalidcssjstitle'            => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
+'userinvalidcssjstitle'            => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/vector.css 不同於 {{ns:user}}:Foo/Vector.css。",
 'updated'                          => '（已更新）',
 'note'                             => "'''注意:'''",
 'previewnote'                      => "'''請記住這只是預覽。'''內容還未保存！",

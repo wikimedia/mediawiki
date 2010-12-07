@@ -964,11 +964,15 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' auf dem Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
 'usercssyoucanpreview'             => "'''Tipp:''' Benutze den „{{int:showpreview}}“-Button, um dein neues CSS vor dem Speichern zu testen.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benutze den „{{int:showpreview}}“-Button, um dein neues JavaScript vor dem Speichern zu testen.",
-'usercsspreview'                   => "== Vorschau deines Benutzer-CSS ==
-'''Beachte:''' Nach dem Speichern musst du deinen Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userjspreview'                    => "== Vorschau deines Benutzer-JavaScript ==
-'''Beachte:''' Nach dem Speichern musst du deinen Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userinvalidcssjstitle'            => "'''Achtung:''' Die Benutzeroberfläche „$1“ existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/monobook.css'' an Stelle von ''{{ns:user}}:Mustermann/Monobook.css''.",
+'usercsspreview'                   => "'''Beachte, dass du nur eine Vorschau deines Benutzer-CSS betrachtest.'''
+'''Es wurde noch nicht gespeichert!'''",
+'userjspreview'                    => "'''Beachte, dass du nur eine Vorschau deines Benutzer-JavaScript betrachtest.'''
+'''Es wurde noch nicht gespeichert!'''",
+'globalcsspreview'                 => "'''Beachte, dass du nur eine Vorschau dieses globalen CSS betrachtest.'''
+'''Es wurde noch nicht gespeichert!'''",
+'globaljspreview'                  => "'''Beachte, dass du nur eine Vorschau dieses globalen JavaScript betrachtest.'''
+'''Es wurde noch nicht gespeichert!'''",
+'userinvalidcssjstitle'            => "'''Achtung:''' Die Benutzeroberfläche „$1“ existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/vector.css'' an Stelle von ''{{ns:user}}:Mustermann/Vector.css''.",
 'updated'                          => '(Geändert)',
 'note'                             => "'''Hinweis:'''",
 'previewnote'                      => "'''Dies ist nur eine Vorschau, die Seite wurde noch nicht gespeichert!'''",
@@ -2866,7 +2870,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'common.css'      => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',
 'standard.css'    => '/* Das folgende CSS wird für Benutzer der Klassik-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'nostalgia.css'   => '/* Das folgende CSS wird für Benutzer der Nostalgie-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'cologneblue.css' => '/* CSS an dieser Stelle wirkt sich auf den Kölnisch-Blau-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'cologneblue.css' => '/* Das folgende CSS wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'monobook.css'    => '/* Das folgende CSS wird für Benutzer der Monobook-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'myskin.css'      => '/* Das folgende CSS wird für Benutzer der MySkin-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'chick.css'       => '/* Das folgende CSS wird für Benutzer der Küken-Benutzeroberfläche geladen. Für allgemeingültige Benutzeroberflächen-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
@@ -2889,7 +2893,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'common.js'      => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
 'standard.js'    => '/* Das folgende JavaScript wird für Benutzer der Klassik-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'nostalgia.js'   => '/* Das folgende JavaScript wird für Benutzer der Nostalgie-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer geladen, die den Kölnisch-Blau-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer der Kölnisch-Blau-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'monobook.js'    => '/* Das folgende JavaScript wird für Benutzer der Monobook-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'myskin.js'      => '/* Das folgende JavaScript wird für Benutzer der Myskin-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'chick.js'       => '/* Das folgende JavaScript wird für Benutzer der Küken-Benutzeroberfläche geladen. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',

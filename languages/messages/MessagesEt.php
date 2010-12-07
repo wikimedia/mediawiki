@@ -888,7 +888,7 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'usercsspreview'                   => "'''Ära unusta, et seda versiooni sinu isiklikust stiililehest pole veel salvestatud!'''",
 'userjspreview'                    => "'''Ära unusta, et see versioon sinu isiklikust JavaScriptist on alles salvestamata!'''",
 'userinvalidcssjstitle'            => "'''Hoiatus:''' Kujundust nimega \"\$1\" ei ole.
-Ära unusta, et kasutaja isiklikud .css- ja .js-lehed kasutavad väiketähega algavaid nimesid, näiteks  {{ns:user}}:Juhan Julm/monobook.css ja mitte {{ns:user}}:Juhan Julm/Monobook.css.",
+Ära unusta, et kasutaja isiklikud .css- ja .js-lehed kasutavad väiketähega algavaid nimesid, näiteks  {{ns:user}}:Juhan Julm/vector.css ja mitte {{ns:user}}:Juhan Julm/Vector.css.",
 'updated'                          => '(Värskendatud)',
 'note'                             => "'''Meeldetuletus:'''",
 'previewnote'                      => "'''Ära unusta, et see on kõigest eelvaade!'''

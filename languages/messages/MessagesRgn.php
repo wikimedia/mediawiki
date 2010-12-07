@@ -143,6 +143,7 @@ $messages = array(
 
 'mainpagetext' => "↓ '''L'instalaziòn d'MediaWiki l'è andêda ben'''",
 
+'about'      => "↓ A prupòsit d'",
 'newwindow'  => "(la s'avèra int'una fnèstra nova)",
 'cancel'     => 'Làsa perdar',
 'mytalk'     => 'Al mi cunversaziòn',

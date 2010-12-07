@@ -667,7 +667,7 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'userjspreview'                    => "'''Arrecuerdete ca tu ste vide/teste sulamende in andeprime 'u JavaScript tue.'''
 '''Non g'à state angore reggistrete ninde!'''",
 'userinvalidcssjstitle'            => "'''Attenziò:''' Non ge stè 'nu skin \"\$1\".
-Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le titele cu le lettere piccenne, pe esembie {{ns:user}}:Foo/monobook.css è diverse da {{ns:user}}:Foo/Monobook.css.",
+Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le titele cu le lettere piccenne, pe esembie {{ns:user}}:Foo/vector.css è diverse da {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Cangiete)',
 'note'                             => "'''Vide Bbuene:'''",
 'previewnote'                      => "'''Queste è sole 'n'andeprime;
@@ -1284,6 +1284,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
 'right-revisionmove'          => 'Spuèste le revisiune',
+'right-disableaccount'        => 'Disabbilete le cunde utinde',
 
 # User rights log
 'rightslog'      => "Archivie de le diritte de l'utende",
@@ -2185,6 +2186,7 @@ $1",
 'sp-contributions-newbies-title'       => "Condrebbute de l'utinde pe le cunde utinde nuéve",
 'sp-contributions-blocklog'            => 'Archivije de le Bloccaminde',
 'sp-contributions-deleted'             => "condrebbute de l'utende scangellate",
+'sp-contributions-uploads'             => 'carecaminde',
 'sp-contributions-logs'                => 'archivije',
 'sp-contributions-talk'                => 'parle',
 'sp-contributions-userrights'          => 'Gestione de le deritte utende',
@@ -3310,5 +3312,9 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 # SQLite database support
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
+
+# Special:DisableAccount
+'disableaccount-user'   => "Nome de l'utende:",
+'disableaccount-reason' => 'Mutive:',
 
 );

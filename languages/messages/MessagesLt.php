@@ -796,7 +796,7 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'userjsyoucanpreview'              => "'''Patarimas:''' Naudokite „{{int:showpreview}}“ mygtuką, kad išmėgintumėte savo naująjį JS prieš išsaugant.",
 'usercsspreview'                   => "'''Nepamirškite, kad jūs tik peržiūrit savo naudotojo CSS, jis dar nebuvo išsaugotas!'''",
 'userjspreview'                    => "'''Nepamirškite, kad jūs tik testuojat/peržiūrit savo naudotojo JavaScript, jis dar nebuvo išsaugotas!'''",
-'userinvalidcssjstitle'            => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/monobook.css, o ne {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/vector.css, o ne {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Atnaujinta)',
 'note'                             => "'''Pastaba:'''",
 'previewnote'                      => "'''Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!'''",

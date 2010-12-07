@@ -845,7 +845,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'userjspreview'                    => "'''Lembre que só está probando/previsualizando o seu JavaScript de usuario.'''
 '''Este aínda non foi gardado!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' non hai ningún tema chamado \"\$1\".
-Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/monobook.css no canto de {{ns:user}}:Foo/Monobook.css.",
+Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/vector.css no canto de {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!'''",

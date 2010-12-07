@@ -635,7 +635,7 @@ $2',
 '''尚未儲焉。'''",
 'userjspreview'                    => "'''預覽JavaScript。'''
 '''尚未儲焉。'''",
-'userinvalidcssjstitle'            => "'''警：'''\"\$1\"無此面版。自製者，全名務小寫，如{{ns:user}}:Foo/monobook.css 而非{{ns:user}}:Foo/Monobook.css",
+'userinvalidcssjstitle'            => "'''警：'''\"\$1\"無此面版。自製者，全名務小寫，如{{ns:user}}:Foo/vector.css 而非{{ns:user}}:Foo/Vector.css",
 'updated'                          => '（新）',
 'note'                             => "'''註'''",
 'previewnote'                      => "'''此乃預覽，尚未儲焉。'''",

@@ -757,7 +757,7 @@ L'ultimo ełemento del rejistro de i blochi xè riportà de seguito par informas
 'usercsspreview'                   => "'''Sta qua la xe solo n'anteprima del proprio CSS personal.
 Le modifiche no le xe gnancora stà salvà!'''",
 'userjspreview'                    => "'''Sta qua la xe solo n'anteprima par proar el proprio JavaScript personal; le modifiche no le xe gnancora stà salvà!'''",
-'userinvalidcssjstitle'            => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/monobook.css e no {{ns:user}}:Esenpio/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/vector.css e no {{ns:user}}:Esenpio/Vector.css.",
 'updated'                          => '(Agiornà)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Sta qua la xe solo n'anteprima; i canbiamenti a la pagina NO i xe gnancora stà salvà!'''",

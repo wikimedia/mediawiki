@@ -680,7 +680,7 @@ Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik, <span 
 '''No nog pedakipon!'''",
 'userjspreview'                    => "'''Memolös, das anu te blufol/büologol eli JavaScript olik, no nog pedakipon!'''",
 'userinvalidcssjstitle'            => "'''Nuned:''' No dabinon fomät: \"\$1\".
-Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/monobook.css, no {{ns:user}}:Foo/Monobook.css.",
+Memolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/vector.css, no {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(peatimükon)',
 'note'                             => "'''Penet:'''",
 'previewnote'                      => "'''Is pajonon te büologed; votükams no nog pedakipons!'''",

@@ -834,7 +834,7 @@ Ny fampidirana faran'ny tatitr'asa ny fanakanam-pikambana dia naseho teo ambany 
 'userjspreview'                    => "
 '''Tadidio fa manandrana/mijery tsipalotra ny fivoakan'ny JavaScript-nao fotsiny ihany ianao fa tsy mbola voatahiry akory izy io!'''",
 'userinvalidcssjstitle'            => "'''Fampitandremana''' : Tsy misy skin « $1 ».
-Tadidio fa mampiasa soramadinika ny lohatenin'ny pejinao manan-tovana *.css sy *.js, ohatra {{ns:user}}:Foo/monobook.css fa tsy {{ns:user}}:Foo/Monobook.css.",
+Tadidio fa mampiasa soramadinika ny lohatenin'ny pejinao manan-tovana *.css sy *.js, ohatra {{ns:user}}:Foo/vector.css fa tsy {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Voaova)',
 'note'                             => "'''Fanamarihana:'''",
 'previewnote'                      => "'''Topi-maso ihany ity hitanao ity, tsy mbola voatahiry ny fanovana nataonao!'''",

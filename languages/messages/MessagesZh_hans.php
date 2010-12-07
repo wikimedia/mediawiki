@@ -808,7 +808,7 @@ $2',
 '''还没有保存！'''",
 'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript。'''
 '''还没有保存！'''",
-'userinvalidcssjstitle'            => "'''警告：''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
+'userinvalidcssjstitle'            => "'''警告：''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/vector.css 不同于 {{ns:user}}:Foo/Vector.css。",
 'updated'                          => '（已更新）',
 'note'                             => "'''注意：'''",
 'previewnote'                      => "'''请记住这只是预览。'''内容还未保存！",

@@ -775,7 +775,7 @@ Le ultime entrata del registro de blocadas es reproducite ci infra pro informati
 'userjspreview'                    => "'''Non oblida que isto es solmente un test/previsualisation de tu JavaScript personalisate.'''
 '''Illo non ha ancora essite salveguardate!'''",
 'userinvalidcssjstitle'            => "'''Attention:''' Le stilo \"\$1\" non existe.
-Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/monobook.css e non {{ns:user}}:Foo/Monobook.css.",
+Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/vector.css e non {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualisate)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Isto es solmente un previsualisation.'''

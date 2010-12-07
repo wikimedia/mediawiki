@@ -479,7 +479,7 @@ Tshiáng chhai kien-li̍p／piên-sip liá-ke vùn-tsông tshièn siên kiám-ts
 'userjsyoucanpreview'              => "'''Thì-sṳ:''' Chhai pó-chhùn chhièn chhiáng yung 'hién-sṳ yi-ko' on-néu lòi chhet-chhṳ ngì sîn-ke JS.",
 'usercsspreview'                   => "'''Chu-yi ngì chak-he chhai yi-liau ngì ke-ngìn CSS, hàn-mò tú-chhùn!'''",
 'userjspreview'                    => "'''Chu-yi ngì chak-he chhai chhet-chhṳ ／ yi-liau ngì ke-ngìn JavaScript, hàn-mò tú-chhùn!'''",
-'userinvalidcssjstitle'            => "'''Kín-ko:''' Put chhùn-chhai mien-pán \"\$1\". chu-yi chhṳ-thin ke .css lâu .js hong yeu sṳ́-yung séu-siá phêu-thì, yì-yi, {{ns:user}}:Foo/monobook.css put-thùng yî  {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Kín-ko:''' Put chhùn-chhai mien-pán \"\$1\". chu-yi chhṳ-thin ke .css lâu .js hong yeu sṳ́-yung séu-siá phêu-thì, yì-yi, {{ns:user}}:Foo/vector.css put-thùng yî  {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '（Yí-kîn kiên-sîn）',
 'note'                             => "'''Chu-yi:'''",
 'previewnote'                      => "'''Chhiáng ki-he̍t liá-ke chak-he yi-liau, nui-yùng hàn-mò pó-chhùn!'''",

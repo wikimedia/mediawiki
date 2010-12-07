@@ -642,7 +642,7 @@ Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:'
 Iske abhi save nai karaa gais hai!'''",
 'userjspreview'                    => "'''Yaad rakhna ki aap khali aapan JavaScript ke testing/previewing  karta hai, iske abhi save nai karaa gais hai!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' Koi skin \"\$1\" nai hai.
-Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/monobook.css aur{{ns:user}}:Foo/Monobook.css nai.",
+Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/vector.css aur{{ns:user}}:Foo/Vector.css nai.",
 'updated'                          => '(Update kar dewa gais hai)',
 'note'                             => "'''Dhyan rakkho:'''",
 'previewnote'                      => "'''Ii khali ek jhalak dekhae hai; badlao abhi save nai bhae hai!'''",

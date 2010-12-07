@@ -607,7 +607,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí]</span>.',
 'usercsspreview'                   => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
 '''¡Tovía nun ta guardáu!'''",
 'userjspreview'                    => "'''¡Recuerda que namái tas probando/previsualizando'l to JavaScript d'usuariu, entá nun se grabó!'''",
-'userinvalidcssjstitle'            => "'''Avisu:''' Nun hai piel \"\$1\". Recuerda que les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{ns:user}}:Foo/monobook.css en cuenta de {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Avisu:''' Nun hai piel \"\$1\". Recuerda que les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{ns:user}}:Foo/vector.css en cuenta de {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualizao)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''¡Alcuérdate de qu'esto ye sólo una previsualización y los cambeos entá nun se grabaron!'''",

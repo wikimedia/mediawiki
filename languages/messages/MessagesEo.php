@@ -908,7 +908,7 @@ La lasta protokolero estas jene montrata por via referenco:',
 'usercsspreview'                   => "'''Notu ke vi nur antaŭvidas vian uzanto-CSS.
 Ĝi ne jam estis konservita!'''",
 'userjspreview'                    => "'''Memoru ke vi nun nur provas kaj antaŭrigardas vian uzantan javaskripton, ĝi ne estas jam konservita'''",
-'userinvalidcssjstitle'            => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/monobook.css kontraŭe  al {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/vector.css kontraŭe  al {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Ŝanĝo registrita)',
 'note'                             => "'''Noto:'''",
 'previewnote'                      => "'''Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!'''",

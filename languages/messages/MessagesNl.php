@@ -826,6 +826,9 @@ Wacht even voordat u het opnieuw probeert.',
 'loginlanguagelabel'         => 'Taal: $1',
 'suspicious-userlogout'      => 'Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Geschatte wachtwoordsterkte: $1',
 'password-strength-bad'        => 'LAAG',
@@ -973,7 +976,7 @@ Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.'''
 '''De pagina is niet opgeslagen!'''",
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\".
-Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
+Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 'updated'                          => '(Bijgewerkt)',
 'note'                             => "'''Opmerking:'''",
 'previewnote'                      => "'''Let op: dit is een controlepagina; uw tekst is niet opgeslagen!'''",
@@ -3576,6 +3579,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'version-specialpages'             => "Speciale pagina's",
 'version-parserhooks'              => 'Parserhooks',
 'version-variables'                => 'Variabelen',
+'version-skins'                    => 'Vormgevingen',
 'version-other'                    => 'Overige',
 'version-mediahandlers'            => 'Mediaverwerkers',
 'version-hooks'                    => 'Hooks',

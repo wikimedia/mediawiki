@@ -749,7 +749,7 @@ $1',
 '''內容仍未儲存！'''",
 'userjspreview'                    => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript。'''
 '''佢嘅內容重未儲存！'''",
-'userinvalidcssjstitle'            => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
+'userinvalidcssjstitle'            => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/vector.css 而唔係 {{ns:user}}:Foo/Vector.css 。",
 'updated'                          => '(己更新)',
 'note'                             => "'''留意:'''",
 'previewnote'                      => "'''請記住呢個只係預覽。'''

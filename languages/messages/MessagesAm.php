@@ -563,7 +563,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'userjsyoucanpreview'              => "'''ምክር፦''' ሳይቆጠብ አዲስ JSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",
 'usercsspreview'                   => "'''ማስታወሻ፦ CSS-ዎን ለሙከራ ብቻ እያዩ ነው፤ ገና አልተቆጠበም!'''",
 'userjspreview'                    => "'''ማስታወሻ፦ JavaScriptዎን ለሙከራ ብቻ እያዩ ነው፤ ገና አልተቆጠበም!'''",
-'userinvalidcssjstitle'            => "'''ማስጠንቀቂያ፦''' «$1» የሚባል መልክ የለም። ልዩ .css እና .js ገጾች በትንንሽ እንግሊዝኛ ፊደል መጀመር እንዳለባቸው ያስታውሱ። ለምሳሌ፦  {{ns:user}}:Foo/monobook.css ልክ ነው እንጂ {{ns:user}}:Foo/Monobook.css አይደለም።",
+'userinvalidcssjstitle'            => "'''ማስጠንቀቂያ፦''' «$1» የሚባል መልክ የለም። ልዩ .css እና .js ገጾች በትንንሽ እንግሊዝኛ ፊደል መጀመር እንዳለባቸው ያስታውሱ። ለምሳሌ፦  {{ns:user}}:Foo/vector.css ልክ ነው እንጂ {{ns:user}}:Foo/Vector.css አይደለም።",
 'updated'                          => '(የታደሰ)',
 'note'                             => "'''ማሳሰቢያ፦'''",
 'previewnote'                      => "ማስታወቂያ፦ '''ይህ ለሙከራው ብቻ ነው የሚታየው -- ምንም ለውጦች ገና አልተላኩም!'''",

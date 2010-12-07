@@ -866,7 +866,7 @@ L-aħħar daħla fir-reġistru tal-imblokki hi mogħtiha hawn taħt għal refere
 'usercsspreview'                   => "'''Ftakar li inti qed turi dehra proviżorja tas-CSS personali. Il-modifiki li għamilt għadhom ma ġewx salvati!'''",
 'userjspreview'                    => "'''Ftakar li inti qiegħed biss tipprova/tara dehra proviżorja tal-JavaScript personali; il-modifiki li għamilt għad iridu jiġu salvati!'''",
 'userinvalidcssjstitle'            => "'''Twissija:''' M'hemm l-ebda skin bl-isem \"\$1\".
-Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu żgħira, eż. {{ns:user}}:Foo/monobook.css u mhux {{ns:user}}:Foo/Monobook.css.",
+Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu żgħira, eż. {{ns:user}}:Foo/vector.css u mhux {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Aġġornata)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Ftakar li din hija biss dehra proviżorja, u li għadha ma ġietx salvata!'''",

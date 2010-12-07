@@ -795,7 +795,7 @@ Loggen over den seneste blokering ses nedenfor:',
 'usercsspreview'                   => "'''Husk at dette kun er en forhåndsvisning af dit eget css.
 '''Det er ikke gemt endnu!'''",
 'userjspreview'                    => "'''Husk at du kun tester/forhåndsviser dit eget javascript, det er ikke gemt endnu!'''",
-'userinvalidcssjstitle'            => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/monobook.css'' og ikke ''{{ns:user}}:Hansen/Monobook.css''.",
+'userinvalidcssjstitle'            => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/vector.css'' og ikke ''{{ns:user}}:Hansen/Vector.css''.",
 'updated'                          => '(Opdateret)',
 'note'                             => "'''Bemærk:'''",
 'previewnote'                      => 'Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!',

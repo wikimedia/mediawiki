@@ -725,7 +725,7 @@ Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 '''Nid yw wedi'i gadw eto!'''",
 'userjspreview'                    => "'''Cofiwch -- dim ond rhagolwg o'ch JavaScript yw hwn; nid yw wedi'i gadw eto!'''",
 'userinvalidcssjstitle'            => "'''Rhybudd:''' Nid oes gwedd o'r enw \"\$1\".
-Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:user}}:Foo/monobook.css yn hytrach na {{ns:user}}:Foo/Monobook.css.",
+Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:user}}:Foo/vector.css yn hytrach na {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Diweddariad)',
 'note'                             => "'''Dalier sylw:'''",
 'previewnote'                      => "'''Cofiwch taw rhagolwg yw hwn; nid yw'r dudalen wedi ei chadw eto.'''",

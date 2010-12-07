@@ -594,7 +594,7 @@ $2',
 '''还弗曾保存！'''",
 'userjspreview'                    => "'''注意侬只是垃许测试／预览侬个 JavaScript。'''
 '''还弗曾保存！'''",
-'userinvalidcssjstitle'            => "'''警告：''' 弗存在皮肤\"\$1\"。注意自定义个 .css 搭 .js 页要使用小写标题，譬如，{{ns:user}}:Foo/monobook.css 弗同于 {{ns:user}}:Foo/Monobook.css。",
+'userinvalidcssjstitle'            => "'''警告：''' 弗存在皮肤\"\$1\"。注意自定义个 .css 搭 .js 页要使用小写标题，譬如，{{ns:user}}:Foo/vector.css 弗同于 {{ns:user}}:Foo/Vector.css。",
 'updated'                          => '（已更新）',
 'note'                             => "'''注意：'''",
 'previewnote'                      => "'''该个还只是预览；改动还朆保存！'''",

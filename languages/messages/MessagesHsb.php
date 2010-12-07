@@ -734,7 +734,7 @@ Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach
 'userjspreview'                    => "== Přehlad twojeho wosobinskeho JavaScript ==
 
 '''Kedźbu:''' Po składowanju dyrbiš pufrowak swojeho wobhladowaka wuprózdnić '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userinvalidcssjstitle'            => "'''Warnowanje:''' Skin z mjenom „$1” njeeksistuje. Prošu mysli na to, zo wosobinske strony .css a .js titul z małym pismikom wuwziwaja, na př. {{ns:user}}:Foo/monobook.css město {{ns:user}}:Foo/Monobook.css.",
+'userinvalidcssjstitle'            => "'''Warnowanje:''' Skin z mjenom „$1” njeeksistuje. Prošu mysli na to, zo wosobinske strony .css a .js titul z małym pismikom wuwziwaja, na př. {{ns:user}}:Foo/vector.css město {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Zaktualizowany)',
 'note'                             => "'''Kedźbu:'''",
 'previewnote'                      => "'''Kedźbu, to je jenož přehlad, změny hišće składowane njejsu!'''",

@@ -897,7 +897,7 @@ Eger siz tirkelgisiz qatıswşı bolsañız jäne sizge qatıssız mändemeler j
 'usercsspreview'                   => "'''Mınaw CSS mätinin tek qarap şığw ekenin umıtpañız, ol äli saqtalğan joq!'''",
 'userjspreview'                    => "'''Mınaw JavaScript qatıswşı bağdarlamasın tekserw/qarap şığw ekenin umıtpañız, ol äli saqtalğan joq!'''",
 'userinvalidcssjstitle'            => "'''Qulaqtandırw:''' Osı arada «$1» degen eş mäner joq.
-Qatıswşınıñ .css jäne .js faýl atawı kişi äripppen jazılw tïisti ekenin umıtpañız, mısalğa {{ns:user}}:Foo/monobook.css degendi {{ns:user}}:Foo/Monobook.css degenmen salıstırıp qarañız.",
+Qatıswşınıñ .css jäne .js faýl atawı kişi äripppen jazılw tïisti ekenin umıtpañız, mısalğa {{ns:user}}:Foo/vector.css degendi {{ns:user}}:Foo/Vector.css degenmen salıstırıp qarañız.",
 'updated'                          => '(Jañartılğan)',
 'note'                             => "'''Añğartpa:'''",
 'previewnote'                      => "'''Mınaw tek qarap şığw ekenin umıtpañız;

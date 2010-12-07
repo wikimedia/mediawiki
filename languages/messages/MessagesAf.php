@@ -821,7 +821,7 @@ Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 '''Dit is nog nie gestoor nie!'''",
 'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
 'userinvalidcssjstitle'            => "'''Waarskuwing:''' daar is nie 'n omslag \"\$1\" nie.
-Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns:user}}:Naam/monobook.css in plaas van {{ns:user}}:Naam/Monobook.css.",
+Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns:user}}:Naam/vector.css in plaas van {{ns:user}}:Naam/Vector.css.",
 'updated'                          => '(Gewysig)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!'''",

@@ -776,7 +776,7 @@ Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa iny
 'userjspreview'                    => "'''Tandaang pagsubok/paunang tingin mo pa lang ito ng iyong JavaScript.'''
 '''Hindi pa ito nasasagip!'''",
 'userinvalidcssjstitle'            => "'''Babala:''' Walang pabalat na \"\$1\".
-Tandaang gumagamit ang pinasadyang mga pahinang .css at .js ng mga pamagat na may maliliit na mga titik, halimbawa na ang {{ns:user}}:Foo/monobook.css na taliwas sa {{ns:user}}:Foo/Monobook.css.",
+Tandaang gumagamit ang pinasadyang mga pahinang .css at .js ng mga pamagat na may maliliit na mga titik, halimbawa na ang {{ns:user}}:Foo/vector.css na taliwas sa {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Naisapanahon na)',
 'note'                             => "'''Paunawa:'''",
 'previewnote'                      => "'''Isang lamang itong paunang tingin;
