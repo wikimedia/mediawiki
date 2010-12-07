@@ -476,7 +476,7 @@ It contains all your configuration.
 
 You will need to download it and put it in the base of your wiki installation (the same directory as index.php). The download should have started automatically.
 
-If the download was not offerred, or if you cancelled it, you can restart the download by clicking the link below:
+If the download was not offered, or if you cancelled it, you can restart the download by clicking the link below:
 
 $3
 
