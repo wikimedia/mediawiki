@@ -482,7 +482,7 @@ $3
 
 '''Note''': If you do not do this now, this generated configuration file will not be available to you later if you exit the installation without downloading it.
 
-When that has been done, you can '''[$2 enter your wiki]'''.", // $1 is the URL to LocalSettings download, $2 is link to wiki
+When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-download-localsettings' => 'Download LocalSettings.php',
     'config-help' => 'help',
 );
