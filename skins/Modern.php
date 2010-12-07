@@ -52,18 +52,6 @@ class ModernTemplate extends MonoBookTemplate {
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
 
-		// Generate additional footer links
-		$footerlinks = $this->data["footerlinks"];
-		// fold footerlinks into a single array using a bit of trickery
-		$footerlinks = call_user_func_array('array_merge', array_values($footerlinks));
-		// Generate additional footer icons
-		$footericons = $this->data["footericons"];
-		// Unset copyright.copyright since we don't need the icon and already output a copyright from footerlinks
-		unset($footericons["copyright"]["copyright"]);
-		if ( count($footericons["copyright"]) <= 0 ) {
-			unset($footericons["copyright"]);
-		}
-
 		$this->html( 'headelement' );
 ?>
 
@@ -183,7 +171,7 @@ class ModernTemplate extends MonoBookTemplate {
 	<div id="footer"<?php $this->html('userlangattributes') ?>>
 			<ul id="f-list">
 <?php
-		foreach( $footerlinks as $aLink ) {
+		foreach( $this->getFooterLinks("flat") as $aLink ) {
 			if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
 ?>				<li id="<?php echo$aLink?>"><?php $this->html($aLink) ?></li>
 <?php 		}
@@ -191,7 +179,7 @@ class ModernTemplate extends MonoBookTemplate {
 ?>
 			</ul>
 <?php
-		foreach ( $footericons as $blockName => $footerIcons ) { ?>
+		foreach ( $this->getFooterIcons("nocopyright") as $blockName => $footerIcons ) { ?>
 			<div id="mw_<?php echo htmlspecialchars($blockName); ?>">
 <?php
 			foreach ( $footerIcons as $icon ) { ?>

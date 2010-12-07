@@ -411,37 +411,6 @@ class VectorTemplate extends BaseTemplate {
 				$this->skin->tooltipAndAccesskey('pt-'.$key);
 		}
 
-		// Generate additional footer links
-		$footerlinks = $this->data["footerlinks"];
-		
-		// Reduce footer links down to only those which are being used
-		$validFooterLinks = array();
-		foreach( $footerlinks as $category => $links ) {
-			$validFooterLinks[$category] = array();
-			foreach( $links as $link ) {
-				if( isset( $this->data[$link] ) && $this->data[$link] ) {
-					$validFooterLinks[$category][] = $link;
-				}
-			}
-		}
-		
-		// Generate additional footer icons
-		$footericons = $this->data["footericons"];
-		// Unset any icons which don't have an image
-		foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
-			foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
-				if ( !is_string($footerIcon) && !isset($footerIcon["src"]) ) {
-					unset($footerIconsBlock[$footerIconKey]);
-				}
-			}
-		}
-		// Redo removal of any empty blocks
-		foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
-			if ( count($footerIconsBlock) <= 0 ) {
-				unset($footericons[$footerIconsKey]);
-			}
-		}
-		
 		// Reverse horizontally rendered navigation elements
 		if ( $wgLang->isRTL() ) {
 			$this->data['view_urls'] =
@@ -533,18 +502,15 @@ class VectorTemplate extends BaseTemplate {
 		<!-- /panel -->
 		<!-- footer -->
 		<div id="footer"<?php $this->html('userlangattributes') ?>>
-			<?php foreach( $validFooterLinks as $category => $links ): ?>
-				<?php if ( count( $links ) > 0 ): ?>
+			<?php foreach( $this->getFooterLinks() as $category => $links ): ?>
 				<ul id="footer-<?php echo $category ?>">
 					<?php foreach( $links as $link ): ?>
-						<?php if( isset( $this->data[$link] ) && $this->data[$link] ): ?>
 						<li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
-						<?php endif; ?>
 					<?php endforeach; ?>
 				</ul>
-				<?php endif; ?>
 			<?php endforeach; ?>
-<?php			if ( count( $footericons ) > 0 ): ?>
+			<?php $footericons = $this->getFooterIcons("icononly");
+			if ( count( $footericons ) > 0 ): ?>
 				<ul id="footer-icons" class="noprint">
 <?php			foreach ( $footericons as $blockName => $footerIcons ): ?>
 					<li id="footer-<?php echo htmlspecialchars($blockName); ?>ico">
