@@ -565,6 +565,8 @@ $wgMessageStructure = array(
 		'userjsyoucanpreview',
 		'usercsspreview',
 		'userjspreview',
+		'globalcsspreview',
+		'globaljspreview',
 		'userinvalidcssjstitle',
 		'updated',
 		'note',
