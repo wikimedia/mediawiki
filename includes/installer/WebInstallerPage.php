@@ -201,7 +201,6 @@ class WebInstaller_Language extends WebInstallerPage {
 				if ( isset( $languages[$contLang] ) ) {
 					$this->setVar( 'wgLanguageCode', $contLang );
 				}
-				$this->setVar( '_ExternalHTTP', $r->getBool( 'config__ExternalHTTP' ) );
 				return 'continue';
 			}
 		} elseif ( $this->parent->showSessionWarning ) {
@@ -222,14 +221,6 @@ class WebInstaller_Language extends WebInstallerPage {
 		$s = Html::hidden( 'LanguageRequestTime', time() ) .
 			$this->getLanguageSelector( 'UserLang', 'config-your-language', $userLang, $this->parent->getHelpBox( 'config-your-language-help' ) ) .
 			$this->getLanguageSelector( 'ContLang', 'config-wiki-language', $contLang, $this->parent->getHelpBox( 'config-wiki-language-help' ) ) .
-			$this->parent->getCheckBox(
-				array(
-					'var' => '_ExternalHTTP',
-					'label' => 'config-allow-requests',
-				    'help' => $this->parent->getHelpBox( 'config-allow-requests-help' )
-				)
-			);
-
 		$this->addHTML( $s );
 		$this->endForm();
 	}
@@ -724,13 +715,11 @@ class WebInstaller_Options extends WebInstallerPage {
 			    'help' => $this->parent->getHelpBox( 'config-logo-help' )
 			) )
 		);
-		$canUse = $this->getVar( '_ExternalHTTP' ) ?
-			'config-instantcommons-good' : 'config-instantcommons-bad';
 		$this->addHTML(
 			$this->parent->getCheckBox( array(
 				'var' => 'wgUseInstantCommons',
 				'label' => 'config-instantcommons',
-			    'help' => $this->parent->getHelpBox( 'config-instantcommons-help', wfMsgNoTrans( $canUse ) )
+			    'help' => $this->parent->getHelpBox( 'config-instantcommons-help' )
 			) ) .
 			$this->getFieldSetEnd()
 		);

@@ -83,7 +83,6 @@ abstract class CoreInstaller extends Installer {
 		'_CCDone' => false,
 		'_Extensions' => array(),
 		'_MemCachedServers' => '',
-		'_ExternalHTTP' => false,
 		'_LocalSettingsLocked' => true,
 		'_UpgradeKey' => '',
 	);
