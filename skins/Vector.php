@@ -587,62 +587,51 @@ class VectorTemplate extends BaseTemplate {
 				case 'SEARCH':
 					break;
 				case 'TOOLBOX':
-?>
-<div class="portal" id="p-tb">
-	<h5<?php $this->html('userlangattributes') ?>><?php $this->msg( 'toolbox' ) ?></h5>
-	<div class="body">
-		<ul>
-<?php
-		foreach ( $this->getToolbox() as $key => $tbitem ): ?>
-				<?php echo $this->makeListItem($key, $tbitem); ?>
-
-<?php
-		endforeach;
-		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) ); ?>
-		</ul>
-	</div>
-</div>
-<?php
+					$this->renderPortal( "tb", $this->getToolbox(), "toolbox", "SkinTemplateToolboxEnd" );
 					break;
 				case 'LANGUAGES':
 					if ( $this->data['language_urls'] ) {
-?>
-<div class="portal" id="p-lang">
-	<h5<?php $this->html('userlangattributes') ?>><?php $this->msg( 'otherlanguages' ) ?></h5>
-	<div class="body">
-		<ul>
-		<?php foreach ( $this->data['language_urls'] as $key => $langlink ): ?>
-			<?php echo $this->makeListItem($key, $langlink); ?>
-
-		<?php endforeach; ?>
-		</ul>
-	</div>
-</div>
-<?php
+						$this->renderPortal("lang", $this->data['language_urls'], "otherlanguages");
 					}
 					break;
 				default:
-?>
-<div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo $this->skin->tooltip( 'p-' . $name ) ?>>
-	<h5<?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $name ); if ( wfEmptyMsg( $name, $out ) ) echo htmlspecialchars( $name ); else echo htmlspecialchars( $out ); ?></h5>
-	<div class="body">
-		<?php if ( is_array( $content ) ): ?>
-		<ul>
-		<?php foreach( $content as $key => $val ): ?>
-			<?php echo $this->makeListItem($key, $val); ?>
-
-		<?php endforeach; ?>
-		</ul>
-		<?php else: ?>
-		<?php echo $content; /* Allow raw HTML block to be defined by extensions */ ?>
-		<?php endif; ?>
-	</div>
-</div>
-<?php
+					$this->renderPortal($name, $content);
 				break;
 			}
 			echo "\n<!-- /{$name} -->\n";
 		}
+	}
+
+	private function renderPortal($name, $content, $msg=null, $hook=null) {
+		if ( !isset($msg) ) {
+			$msg = $name;
+		}
+		?>
+<div class="portal" id='<?php echo Sanitizer::escapeId( "p-$name" ) ?>'<?php echo $this->skin->tooltip( 'p-' . $name ) ?>>
+	<h5<?php $this->html('userlangattributes') ?>><?php $out = wfMsg( $msg ); if ( wfEmptyMsg( $msg, $out ) ) echo htmlspecialchars( $msg ); else echo htmlspecialchars( $out ); ?></h5>
+	<div class="body">
+<?php
+		if ( is_array( $content ) ): ?>
+		<ul>
+<?php
+			foreach( $content as $key => $val ): ?>
+			<?php echo $this->makeListItem($key, $val); ?>
+
+<?php
+			endforeach;
+			if ( isset($hook) ) {
+				wfRunHooks( $hook, array( &$this ) );
+			}
+			?>
+		</ul>
+<?php
+		else: ?>
+		<?php echo $content; /* Allow raw HTML block to be defined by extensions */ ?>
+<?php
+		endif; ?>
+	</div>
+</div>
+<?php
 	}
 
 	/**
