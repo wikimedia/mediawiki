@@ -39,8 +39,8 @@ class SearchUpdate {
 		if( $wgDisableSearchUpdate || !$this->mId ) {
 			return false;
 		}
-		$fname = 'SearchUpdate::doUpdate';
-		wfProfileIn( $fname );
+
+		wfProfileIn( __METHOD__ );
 
 		$search = SearchEngine::create();
 		$lc = SearchEngine::legalSearchChars() . '&#;';
@@ -48,14 +48,14 @@ class SearchUpdate {
 		if( $this->mText === false ) {
 			$search->updateTitle($this->mId,
 				$search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) );
-			wfProfileOut( $fname );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
 		# Language-specific strip/conversion
 		$text = $wgContLang->normalizeForSearch( $this->mText );
 
-		wfProfileIn( $fname.'-regexps' );
+		wfProfileIn( __METHOD__ . '-regexps' );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
 			' ', $wgContLang->lc( " " . $text . " " ) ); # Strip HTML markup
 		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/sD",
@@ -102,7 +102,7 @@ class SearchUpdate {
 
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
-		wfProfileOut( "$fname-regexps" );
+		wfProfileOut( __METHOD__ . '-regexps' );
 
 		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
 
@@ -110,7 +110,7 @@ class SearchUpdate {
 		$search->update($this->mId, $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ),
 				$search->normalizeText( $text ) );
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 	}
 }
 
