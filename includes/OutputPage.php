@@ -2588,15 +2588,19 @@ class OutputPage {
 			}
 		}
 
-		// Split the styles into two groups, not user (0) and user (1)
-		$styles = array( array(), array() );
+		// Split the styles into three groups
+		$styles = array( 'other' => array(), 'user' => array(), 'site' => array() );
 		$resourceLoader = $this->getResourceLoader();
 		foreach ( $this->getModuleStyles() as $name ) {
-			$styles[$resourceLoader->getModule( $name )->getGroup() === 'user' ? 1 : 0][] = $name;
+			$group = $resourceLoader->getModule( $name )->getGroup();
+			// Modules in groups named "other" or anything different than "user" or "site" will
+			// be placed in the "other" group
+			$styles[isset( $style[$group] ) ? $group : 'other'][] = $name;
 		}
 		// Add styles to tags, user modules last
-		$tags[] = $this->makeResourceLoaderLink( $sk, $styles[0], 'styles' );
-		$tags[] = $this->makeResourceLoaderLink( $sk, $styles[1], 'styles' );
+		$tags[] = $this->makeResourceLoaderLink(
+			$sk, array_merge( $styles['other'], $styles['site'], $styles['user'] ), 'styles'
+		);
 		return implode( "\n", $tags );
 	}
 
