@@ -57,9 +57,6 @@ $title = $wgRequest->getVal( 'title' );
 
 # Set title from request parameters
 $wgTitle = $mediaWiki->checkInitialQueries( $title, $action );
-if( $wgTitle === null ) {
-	unset( $wgTitle );
-}
 
 wfProfileOut( 'main-misc-setup' );
 
@@ -74,7 +71,7 @@ if( $wgUseAjax && $action == 'ajax' ) {
 	exit;
 }
 
-if( $wgUseFileCache && isset( $wgTitle ) ) {
+if( $wgUseFileCache && $wgTitle !== null ) {
 	wfProfileIn( 'main-try-filecache' );
 	// Raw pages should handle cache control on their own,
 	// even when using file cache. This reduces hits from clients.
@@ -89,7 +86,6 @@ if( $wgUseFileCache && isset( $wgTitle ) ) {
 			# Do any stats increment/watchlist stuff
 			$wgArticle = MediaWiki::articleFromTitle( $wgTitle );
 			$wgArticle->viewUpdates();
-			# Tell $wgOut that output is taken care of
 			wfProfileOut( 'main-try-filecache' );
 			$mediaWiki->restInPeace();
 			exit;
@@ -114,4 +110,3 @@ $mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRe
 $mediaWiki->finalCleanup( $wgOut );
 
 $mediaWiki->restInPeace();
-
