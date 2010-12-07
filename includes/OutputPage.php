@@ -2231,8 +2231,8 @@ class OutputPage {
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
 		$ret .= implode( "\n", array(
-			$this->getHeadLinks( $sk ),
-			$this->buildCssLinks(),
+			$this->getHeadLinks(),
+			$this->buildCssLinks( $sk ),
 			$this->getHeadItems(),
 		) );
 		if ( $sk->usercss ) {
@@ -2517,7 +2517,7 @@ class OutputPage {
 	/**
 	 * @return string HTML tag links to be put in the header.
 	 */
-	public function getHeadLinks( Skin $sk ) {
+	public function getHeadLinks() {
 		global $wgFeed;
 
 		// Ideally this should happen earlier, somewhere. :P
@@ -2588,19 +2588,6 @@ class OutputPage {
 			}
 		}
 
-		// Split the styles into three groups
-		$styles = array( 'other' => array(), 'user' => array(), 'site' => array() );
-		$resourceLoader = $this->getResourceLoader();
-		foreach ( $this->getModuleStyles() as $name ) {
-			$group = $resourceLoader->getModule( $name )->getGroup();
-			// Modules in groups named "other" or anything different than "user" or "site" will
-			// be placed in the "other" group
-			$styles[isset( $style[$group] ) ? $group : 'other'][] = $name;
-		}
-		// Add styles to tags, user modules last
-		$tags[] = $this->makeResourceLoaderLink(
-			$sk, array_merge( $styles['other'], $styles['site'], $styles['user'] ), 'styles'
-		);
 		return implode( "\n", $tags );
 	}
 
@@ -2658,8 +2645,23 @@ class OutputPage {
 	 * Build a set of <link>s for the stylesheets specified in the $this->styles array.
 	 * These will be applied to various media & IE conditionals.
 	 */
-	public function buildCssLinks() {
-		return implode( "\n", $this->buildCssLinksArray() );
+	public function buildCssLinks( $sk ) {
+		// Split the styles into three groups
+		$styles = array( 'other' => array(), 'user' => array(), 'site' => array() );
+		$resourceLoader = $this->getResourceLoader();
+		foreach ( $this->getModuleStyles() as $name ) {
+			$group = $resourceLoader->getModule( $name )->getGroup();
+			// Modules in groups named "other" or anything different than "user" or "site" will
+			// be placed in the "other" group
+			$styles[isset( $style[$group] ) ? $group : 'other'][] = $name;
+		}
+		// Add tags created using legacy methods
+		$tags = $this->buildCssLinksArray();
+		// Add ResourceLoader module style tags
+		$tags[] = $this->makeResourceLoaderLink(
+			$sk, array_merge( $styles['other'], $styles['site'], $styles['user'] ), 'styles'
+		);
+		return implode( "\n", $tags );
 	}
 
 	public function buildCssLinksArray() {
