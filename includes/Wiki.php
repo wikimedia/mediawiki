@@ -7,9 +7,6 @@
 class MediaWiki {
 	var $params = array();
 
-	/** Constructor */
-	function __construct() {}
-
 	/**
 	 * Stores key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
