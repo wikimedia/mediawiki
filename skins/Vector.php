@@ -745,13 +745,14 @@ class VectorTemplate extends BaseTemplate {
 		<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
 		<?php if ( $wgVectorUseSimpleSearch && $wgUser->getOption( 'vector-simplesearch' ) ): ?>
 		<div id="simpleSearch">
-			<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
-			<button id="searchButton" type='submit' name='button' <?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?>><img src="<?php echo $this->skin->getSkinStylePath('images/search-' . ( $this->data['rtl'] ? 'rtl' : 'ltr' ) . '.png'); ?>" alt="<?php $this->msg( 'searchbutton' ) ?>" /></button>
+			<?php echo $this->makeSearchInput(array( "id" => "searchInput" )); ?>
+			<?php echo $this->makeSearchButton("image", array( "id" => "searchButton",
+				"src" => $this->skin->getSkinStylePath('images/search-' . ( $this->data['rtl'] ? 'rtl' : 'ltr' ) . '.png') )); ?>
 		</div>
 		<?php else: ?>
-		<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
-		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg( 'searcharticle' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />
-		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg( 'searchbutton' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
+		<?php echo $this->makeSearchInput(array( "id" => "searchInput" )); ?>
+		<?php echo $this->makeSearchButton("go", array( "id" => "searchGoButton", "class" => "searchButton" )); ?>
+		<?php echo $this->makeSearchButton("fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" )); ?>
 		<?php endif; ?>
 	</form>
 </div>

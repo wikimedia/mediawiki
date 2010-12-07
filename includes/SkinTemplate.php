@@ -1355,6 +1355,44 @@ abstract class BaseTemplate extends QuickTemplate {
 		return Html::rawElement( isset($options["tag"]) ? $options["tag"] : "li", $attrs, $html );
 	}
 
+	function makeSearchInput($attrs = array()) {
+		$realAttrs = array(
+			"type" => "search",
+			"name" => "search",
+			"value" => isset($this->data['search']) ? $this->data['search'] : '',
+		);
+		$realAttrs = array_merge($realAttrs, $this->skin->tooltipAndAccesskeyAttribs('search'), $attrs);
+		return Html::element( "input", $realAttrs );
+	}
+	
+	function makeSearchButton($mode, $attrs = array()) {
+		switch($mode) {
+		case "go":
+		case "fulltext":
+			$realAttrs = array(
+				"type" => "submit",
+				"name" => $mode,
+				"value" => $this->translator->translate( $mode == "go" ? "searcharticle" : "searchbutton" ),
+			);
+			$realAttrs = array_merge($realAttrs, $this->skin->tooltipAndAccesskeyAttribs("search-$mode"), $attrs);
+			return Html::element( "input", $realAttrs );
+		case "image":
+			$buttonAttrs = array(
+				"type" => "submit",
+				"name" => "button",
+			);
+			$buttonAttrs = array_merge($buttonAttrs, $this->skin->tooltipAndAccesskeyAttribs("search-fulltext"), $attrs);
+			unset($buttonAttrs["src"]);
+			unset($buttonAttrs["alt"]);
+			$imgAttrs = array(
+				"src" => $attrs["src"],
+				"alt" => isset($attrs["alt"]) ? $attrs["alt"] : $this->translator->translate( "searchbutton" ),
+			);
+			return Html::rawElement( "button", $buttonAttrs, Html::element( "img", $imgAttrs ) );
+		default:
+			throw new MWException("Unknown mode passed to BaseTemplate::makeSearchButton");
+		}
+	}
 	
 }
 
