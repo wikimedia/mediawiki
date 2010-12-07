@@ -553,8 +553,6 @@ $messages['qqq'] = array(
 * {{msg-mw|config-profile-no-anon}}
 * {{msg-mw|config-profile-fishbowl}}
 * {{msg-mw|config-profile-private}}',
-	'config-instantcommons-help' => 'Parameters:
-$1 is for indicating whether or not we should be able to use the feature.',
 	'config-cc-not-chosen' => 'Should we use "int:key" here (and to which key)?',
 	'config-extensions' => '{{Identical|Extension}}',
 	'config-install-step-done' => '{{Identical|Done}}',
