@@ -70,10 +70,6 @@ class MonoBookTemplate extends BaseTemplate {
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
 
-		// Generate additional footer links
-		$footerlinks = $this->data["footerlinks"];
-		// fold footerlinks into a single array using a bit of trickery
-		$footerlinks = call_user_func_array('array_merge', array_values($footerlinks));
 		// Generate additional footer icons
 		$footericons = $this->data["footericons"];
 		// Unset any icons which don't have an image
@@ -198,19 +194,14 @@ class MonoBookTemplate extends BaseTemplate {
 <?php }
 
 		// Generate additional footer links
-		$validFooterLinks = array();
-		foreach( $footerlinks as $aLink ) {
-			if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
-				$validFooterLinks[] = $aLink;
-			}
-		}
+		$validFooterLinks = $this->getFooterLinks("flat");
 		if ( count( $validFooterLinks ) > 0 ) {
 ?>	<ul id="f-list">
 <?php
-			foreach( $validFooterLinks as $aLink ) {
-				if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
-?>		<li id="<?php echo $aLink ?>"><?php $this->html($aLink) ?></li>
-<?php 			}
+			foreach( $validFooterLinks as $aLink ) { ?>
+		<li id="<?php echo $aLink ?>"><?php $this->html($aLink) ?></li>
+
+<?php
 			}
 ?>
 	</ul>

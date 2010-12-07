@@ -1394,5 +1394,78 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 	}
 	
+	/**
+	 * Returns an array of footerlinks trimmed down to only those footer links that
+	 * are valid.
+	 * If you pass "flat" as an option then the returned array will be a flat array
+	 * of footer icons instead of a key/value array of footerlinks arrays broken
+	 * up into categories.
+	 */
+	function getFooterLinks($option = null) {
+		$footerlinks = $this->data["footerlinks"];
+		
+		// Reduce footer links down to only those which are being used
+		$validFooterLinks = array();
+		foreach( $footerlinks as $category => $links ) {
+			$validFooterLinks[$category] = array();
+			foreach( $links as $link ) {
+				if( isset( $this->data[$link] ) && $this->data[$link] ) {
+					$validFooterLinks[$category][] = $link;
+				}
+			}
+			if ( count( $validFooterLinks[$category] ) <= 0 ) {
+				unset($validFooterLinks[$category]);
+			}
+		}
+		
+		if ( $option == "flat" ) {
+			// fold footerlinks into a single array using a bit of trickery
+			$validFooterLinks = call_user_func_array('array_merge', array_values($validFooterLinks));
+		}
+		
+		return $validFooterLinks;
+	}
+	
+	/**
+	 * Returns an array of footer icons filtered down by options relevant to how
+	 * the skin wishes to display them.
+	 * If you pass "icononly" as the option all footer icons which do not have an
+	 * image icon set will be filtered out.
+	 * If you pass "nocopyright" then MediaWiki's copyright icon will not be included
+	 * in the list of footer icons. This is mostly useful for skins which only
+	 * display the text from footericons instead of the images and don't want a
+	 * duplicate copyright statement because footerlinks already rendered one.
+	 */
+	function getFooterIcons($option = null) {
+		// Generate additional footer icons
+		$footericons = $this->data["footericons"];
+		
+		if ( $option == "icononly" ) {
+			// Unset any icons which don't have an image
+			foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+				foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
+					if ( !is_string($footerIcon) && !isset($footerIcon["src"]) ) {
+						unset($footerIconsBlock[$footerIconKey]);
+					}
+				}
+			}
+			// Redo removal of any empty blocks
+			foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+				if ( count($footerIconsBlock) <= 0 ) {
+					unset($footericons[$footerIconsKey]);
+				}
+			}
+		} else if ( $option == "nocopyright" ) {
+			$footericons = $this->data["footericons"];
+			unset($footericons["copyright"]["copyright"]);
+			if ( count($footericons["copyright"]) <= 0 ) {
+				unset($footericons["copyright"]);
+			}
+		}
+		
+		return $footericons;
+	}
+	
+	
 }
 
