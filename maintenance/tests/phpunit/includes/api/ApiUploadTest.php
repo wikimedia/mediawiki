@@ -258,13 +258,14 @@ class ApiUploadTest extends ApiTestCase {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
-		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
+		$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
 		$filePath = $filePaths[0];
 		$fileSize = filesize( $filePath );
 		$fileName = basename( $filePath );
 
 		$this->deleteFileByFileName( $fileName );
 		$this->deleteFileByContent( $filePath );
+
 
 		if (! $this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath ) ) {
 			$this->markTestIncomplete( "Couldn't upload file!\n" );
@@ -354,7 +355,7 @@ class ApiUploadTest extends ApiTestCase {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
-		$filePaths = $randomImageGenerator->writeImages( 2, $extension, dirname( wfTempDir() ) );
+		$filePaths = $randomImageGenerator->writeImages( 2, $extension, wfTempDir() );
 		// we'll reuse this filename
 		$fileName = basename( $filePaths[0] );
 
@@ -427,7 +428,7 @@ class ApiUploadTest extends ApiTestCase {
 		catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
-		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
+		$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
 		$fileNames[0] = basename( $filePaths[0] );
 		$fileNames[1] = "SameContentAs" . $fileNames[0];
 
@@ -511,7 +512,7 @@ class ApiUploadTest extends ApiTestCase {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
 
-		$filePaths = $randomImageGenerator->writeImages( 1, $extension, dirname( wfTempDir() ) );
+		$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
 		$filePath = $filePaths[0];
 		$fileSize = filesize( $filePath );
 		$fileName = basename( $filePath );
