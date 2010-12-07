@@ -1886,9 +1886,11 @@ HTML
 				$level = 'global';
 			}
 
+			# Used messages to make sure grep find them:
+			# usercsspreview, userjspreview, globalcsspreview, globaljspreview
 			if (preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
 				$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
-				$class = "mw-code mw-js";
+				$class = "mw-code mw-css";
 			} elseif (preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
 				$previewtext = "<div id='mw-{$level}jspreview'>\n" . wfMsg( "{$level}jspreview" ) . "\n</div>";
 				$class = "mw-code mw-js";
