@@ -153,9 +153,8 @@ class MediaWiki {
 		// the Read array in order for the user to see it. (We have to check here to
 		// catch special pages etc. We check again in Article::view())
 		if( !is_null( $title ) && !$title->userCanRead() ) {
-			global $wgDeferredUpdateList;
 			$output->loginToUse();
-			$this->finalCleanup( $wgDeferredUpdateList, $output );
+			$this->finalCleanup( $output );
 			$output->disable();
 			return false;
 		}
@@ -361,10 +360,9 @@ class MediaWiki {
 	 * Cleaning up request by doing:
 	 ** deferred updates, DB transaction, and the output
 	 *
-	 * @param $deferredUpdates array of updates to do
 	 * @param $output OutputPage
 	 */
-	function finalCleanup( &$deferredUpdates, &$output ) {
+	function finalCleanup( &$output ) {
 		wfProfileIn( __METHOD__ );
 		// Now commit any transactions, so that unreported errors after
 		// output() don't roll back the whole DB transaction
@@ -373,38 +371,10 @@ class MediaWiki {
 		// Output everything!
 		$output->output();
 		// Do any deferred jobs
-		$this->doUpdates( $deferredUpdates );
+		wfDoUpdates( true );
 		// Close the session so that jobs don't access the current session
 		session_write_close();
 		$this->doJobs();
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Deferred updates aren't really deferred anymore. It's important to report
-	 * errors to the user, and that means doing this before OutputPage::output().
-	 * Note that for page saves, the client will wait until the script exits
-	 * anyway before following the redirect.
-	 *
-	 * @param $updates array of objects that hold an update to do
-	 */
-	function doUpdates( &$updates ) {
-		wfProfileIn( __METHOD__ );
-		/* No need to get master connections in case of empty updates array */
-		if (!$updates) {
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-		foreach( $updates as $up ) {
-			$up->doUpdate();
-
-			// Commit after every update to prevent lock contention
-			if( $dbw->trxLevel() ) {
-				$dbw->commit();
-			}
-		}
 		wfProfileOut( __METHOD__ );
 	}
 

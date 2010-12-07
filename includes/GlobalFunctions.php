@@ -2859,14 +2859,34 @@ function wfMakeUrlIndex( $url ) {
 
 /**
  * Do any deferred updates and clear the list
- * TODO: This could be in Wiki.php if that class made any sense at all
+ *
+ * @param $commit Boolean: commit after every update to prevent lock contention
  */
-function wfDoUpdates() {
+function wfDoUpdates( $commit = false ) {
 	global $wgDeferredUpdateList;
+
+	wfProfileIn( __METHOD__ );
+
+	// No need to get master connections in case of empty updates array
+	if ( !count( $wgDeferredUpdateList ) ) {
+		wfProfileOut( __METHOD__ );
+		return;
+	}
+
+	if ( $commit ) {
+		$dbw = wfGetDB( DB_MASTER );
+	}
+
 	foreach ( $wgDeferredUpdateList as $update ) {
 		$update->doUpdate();
+
+		if ( $commit && $dbw->trxLevel() ) {
+			$dbw->commit();
+		}
 	}
+
 	$wgDeferredUpdateList = array();
+	wfProfileOut( __METHOD__ );
 }
 
 /**
