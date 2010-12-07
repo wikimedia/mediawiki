@@ -220,7 +220,7 @@ class WebInstaller_Language extends WebInstallerPage {
 		$this->startForm();
 		$s = Html::hidden( 'LanguageRequestTime', time() ) .
 			$this->getLanguageSelector( 'UserLang', 'config-your-language', $userLang, $this->parent->getHelpBox( 'config-your-language-help' ) ) .
-			$this->getLanguageSelector( 'ContLang', 'config-wiki-language', $contLang, $this->parent->getHelpBox( 'config-wiki-language-help' ) ) .
+			$this->getLanguageSelector( 'ContLang', 'config-wiki-language', $contLang, $this->parent->getHelpBox( 'config-wiki-language-help' ) );
 		$this->addHTML( $s );
 		$this->endForm();
 	}
