@@ -940,11 +940,16 @@ class WebInstaller_Install extends WebInstallerPage {
 class WebInstaller_Complete extends WebInstallerPage {
 	
 	public function execute() {
+		// Pop up a dialog box, to make it difficult for the user to forget 
+		// to download the file
+		$lsUrl = $GLOBALS['wgServer'] . $this->parent->getURL( array( 'localsettings' => 1 ) );
+		$this->parent->request->response()->header( "Refresh: 0;$lsUrl" );
+
 		$this->startForm();
 		$this->addHTML(
 			$this->parent->getInfoBox(
 				wfMsgNoTrans( 'config-install-done',
-					$GLOBALS['wgServer'] . $this->parent->getURL( array( 'localsettings' => 1 ) ),
+					$lsUrl,
 					$GLOBALS['wgServer'] .
 						$this->getVar( 'wgScriptPath' ) . '/index' .
 						$this->getVar( 'wgScriptExtension' )
