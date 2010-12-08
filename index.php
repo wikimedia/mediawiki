@@ -59,11 +59,8 @@ $wgTitle = $mediaWiki->checkInitialQueries( $title, $action );
 
 wfProfileOut( 'main-misc-setup' );
 
-#
 # Send Ajax requests to the Ajax dispatcher.
-#
 if( $wgUseAjax && $action == 'ajax' ) {
-	require_once( $IP . '/includes/AjaxDispatcher.php' );
 	$dispatcher = new AjaxDispatcher();
 	$dispatcher->performAction();
 	$mediaWiki->restInPeace();
