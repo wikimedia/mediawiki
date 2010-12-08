@@ -1703,21 +1703,6 @@ class OutputPage {
 	}
 
 	/**
-	 * @todo document
-	 */
-	public static function setEncodings() {
-		global $wgInputEncoding, $wgOutputEncoding;
-
-		$wgInputEncoding = strtolower( $wgInputEncoding );
-
-		if ( empty( $_SERVER['HTTP_ACCEPT_CHARSET'] ) ) {
-			$wgOutputEncoding = strtolower( $wgOutputEncoding );
-			return;
-		}
-		$wgOutputEncoding = $wgInputEncoding;
-	}
-
-	/**
 	 * @deprecated use wfReportTime() instead.
 	 *
 	 * @return String

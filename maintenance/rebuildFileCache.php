@@ -54,7 +54,6 @@ class RebuildFileCache extends Maintenance {
 		}
 
 		$_SERVER['HTTP_ACCEPT_ENCODING'] = 'bgzip'; // hack, no real client
-		OutputPage::setEncodings(); # Not really used yet
 
 		# Do remaining chunk
 		$end += $this->mBatchSize - 1;

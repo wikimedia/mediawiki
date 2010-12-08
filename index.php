@@ -44,7 +44,6 @@ require_once( "$preIP/includes/WebStart.php" );
 $mediaWiki = new MediaWiki();
 
 wfProfileIn( 'main-misc-setup' );
-OutputPage::setEncodings(); # Not really used yet
 
 $maxLag = $wgRequest->getVal( 'maxlag' );
 if( !is_null( $maxLag ) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
