@@ -289,11 +289,7 @@ window.toggleFilenameFiller = function() {
 	if(!document.getElementById) return;
 	var upfield = document.getElementById('wpUploadFile');
 	var destName = document.getElementById('wpDestFile').value;
-	if (destName=='' || destName==' ') {
-		wgUploadAutoFill = true;
-	} else {
-		wgUploadAutoFill = false;
-	}
+	wgUploadAutoFill = ( destName == '' || destName == ' ' );
 };
 
 window.wgUploadLicenseObj = {

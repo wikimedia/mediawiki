@@ -81,7 +81,7 @@ window.mediaWiki = new ( function( $ ) {
 	 */
 	function Map( global ) {
 		this.values = ( global === true ) ? window : {};
-	};
+	}
 
 	/**
 	 * Gets the value of a key, or a list of key/value pairs for an array of keys.
@@ -154,7 +154,7 @@ window.mediaWiki = new ( function( $ ) {
 		this.map = map;
 		this.key = key;
 		this.parameters = typeof parameters === 'undefined' ? [] : $.makeArray( parameters );
-	};
+	}
 
 	/**
 	 * Appends parameters for replacement
@@ -396,7 +396,7 @@ window.mediaWiki = new ( function( $ ) {
 				}
 			}
 			return true;
-		};
+		}
 
 		/**
 		 * Generates an ISO8601 "basic" string from a UNIX timestamp
@@ -472,7 +472,7 @@ window.mediaWiki = new ( function( $ ) {
 				return resolved;
 			}
 			throw new Error( 'Invalid module argument: ' + module );
-		};
+		}
 
 		/**
 		 * Narrows a list of module names down to those matching a specific

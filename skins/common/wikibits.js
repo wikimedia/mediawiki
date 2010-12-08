@@ -866,7 +866,7 @@ window.ts_dateToSortKey = function( date ) {
 		}
 		return date.substr( 7, 4 ) + month + date.substr( 0, 2 );
 	} else if ( date.length == 10 ) {
-		if ( ts_europeandate == false ) {
+		if ( !ts_europeandate ) {
 			return date.substr( 6, 4 ) + date.substr( 0, 2 ) + date.substr( 3, 2 );
 		} else {
 			return date.substr( 6, 4 ) + date.substr( 3, 2 ) + date.substr( 0, 2 );
@@ -878,7 +878,7 @@ window.ts_dateToSortKey = function( date ) {
 		} else {
 			yr = '19' + yr;
 		}
-		if ( ts_europeandate == true ) {
+		if ( ts_europeandate ) {
 			return yr + date.substr( 3, 2 ) + date.substr( 0, 2 );
 		} else {
 			return yr + date.substr( 0, 2 ) + date.substr( 3, 2 );

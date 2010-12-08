@@ -112,7 +112,7 @@ $( document ).ready( function() {
 				// update the link text with the new message
 				$link.text( mediaWiki.msg( otheraction ) );
 			}
-		};
+		}
 		return false;
 	});
 
