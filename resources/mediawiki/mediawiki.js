@@ -225,7 +225,62 @@ window.mediaWiki = new ( function( $ ) {
 	 * User object
 	 */
 	function User() {
+
+		/* Private Members */
+
+		var that = this;
+
+		/* Public Members */
+
 		this.options = new Map();
+
+		/* Public Methods */
+
+		/*
+		 * Generates a random user session ID (32 alpha-numeric characters).
+		 * 
+		 * This information would potentially be stored in a cookie to identify a user during a
+		 * session. It's uniqueness should not be depended on.
+		 * 
+		 * @return string random set of 32 alpha-numeric characters
+		 */
+		function generateSessionId() {
+			var id = '';
+			var seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+			for ( var i = 0, r; i < 32; i++ ) {
+				r = Math.floor( Math.random() * seed.length );
+				id += seed.substring( r, r + 1 );
+			}
+			return id;
+		}
+
+		/*
+		 * Gets the current user's name.
+		 * 
+		 * @return mixed user name string or null if users is anonymous
+		 */
+		this.name = function() {
+			return mediaWiki.config.get( 'wgUserName' );
+		};
+
+		/*
+		 * Gets the current user's name or a random session ID automatically generated and kept in
+		 * a cookie.
+		 * 
+		 * @return string user name or random session ID
+		 */
+		this.sessionId = function () {
+			var name = that.name();
+			if ( name ) {
+				return name;
+			}
+			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
+			if ( typeof sessionId == 'undefined' || sessionId == null ) {
+				sessionId = generateSessionId();
+				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': 30, 'path': '/' } );
+			}
+			return sessionId;
+		};
 	}
 
 	/* Public Members */
