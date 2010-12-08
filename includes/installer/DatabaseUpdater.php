@@ -118,7 +118,7 @@ abstract class DatabaseUpdater {
 	 *                Note that callback functions will recieve this object as
 	 *                first parameter.
 	 */
-	public function addExtensionUpdate( $update ) {
+	public function addExtensionUpdate( Array $update ) {
 		$this->extensionUpdates[] = $update;
 	}
 
@@ -331,7 +331,7 @@ abstract class DatabaseUpdater {
 	 * @param $patch String Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
-	function addIndex( $table, $index, $patch, $fullpath = false ) {
+	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "...$index key already set on $table table.\n" );
 		} else {
@@ -349,7 +349,7 @@ abstract class DatabaseUpdater {
 	 * @param $patch String Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
-	function dropField( $table, $field, $patch, $fullpath = false ) {
+	protected function dropField( $table, $field, $patch, $fullpath = false ) {
 		if ( $this->db->fieldExists( $table, $field ) ) {
 			$this->output( "Table $table contains $field field. Dropping... " );
 			$this->applyPatch( $patch, $fullpath );
@@ -367,7 +367,7 @@ abstract class DatabaseUpdater {
 	 * @param $patch String: Path to the patch file
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 */
-	function dropIndex( $table, $index, $patch, $fullpath = false ) {
+	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "Dropping $index from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
@@ -457,7 +457,7 @@ abstract class DatabaseUpdater {
 		$this->output( "Done populating log_search table.\n" );
 	}
 
-	function doUpdateTranscacheField() {
+	protected function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
 			$this->output( "...transcache tc_time already converted.\n" );
 			return;
