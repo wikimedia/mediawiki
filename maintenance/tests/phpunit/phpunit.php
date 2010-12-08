@@ -20,9 +20,6 @@ require_once( "$IP/maintenance/commandLine.inc" );
 // Assume UTC for testing purposes
 $wgLocaltimezone = 'UTC';
 
-// To prevent tests from failing with SQLite, we need to turn database caching off
-$wgCaches[CACHE_DB] = false;
-
 require_once( 'PHPUnit/Runner/Version.php' );
 if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
 	# PHPUnit 3.5.0 introduced a nice autoloader based on class name

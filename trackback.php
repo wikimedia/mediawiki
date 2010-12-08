@@ -38,7 +38,7 @@ XML;
 	public function __construct() {
 		global $wgUseTrackbacks, $wgRequest;
 
-		if( !$wgUseTrackbacks && false )
+		if( !$wgUseTrackbacks )
 			$this->XMLerror( "Trackbacks are disabled" );
 
 		$this->r = $wgRequest;

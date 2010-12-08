@@ -162,9 +162,10 @@ class CategoryViewer {
 	 */
 	function addSubcategoryObject( Category $cat, $sortkey, $pageLength ) {
 		// Subcategory; strip the 'Category' namespace from the link text.
+		$title = $cat->getTitle();
 		$this->children[] = $this->getSkin()->link(
-			$cat->getTitle(),
-			null,
+			$title,
+			$title->getText(),
 			array(),
 			array(),
 			array( 'known', 'noclasses' )

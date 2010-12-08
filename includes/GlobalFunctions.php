@@ -305,7 +305,7 @@ function wfUrlencode( $s ) {
  */
 function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
-	global $wgDebugLogPrefix, $wgShowDebug, $wgCommandLineMode, $wgDebugToCommandLine;
+	global $wgDebugLogPrefix, $wgShowDebug;
 	static $recursion = 0;
 
 	static $cache = array(); // Cache of unoutputted messages
