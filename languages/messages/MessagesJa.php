@@ -980,6 +980,10 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 '''まだ保存されていません！'''",
 'userjspreview'                    => "'''利用者JavaScriptを試験、プレビューしています。'''
 '''まだ保存されていません！'''",
+'globalcsspreview'                 => "'''全体に適用されるCSSをプレビューしています。'''
+'''まだ保存されていません！'''",
+'globaljspreview'                  => "'''全体に適用されるJavaScriptをプレビューしています。'''
+'''まだ保存されていません！'''",
 'userinvalidcssjstitle'            => "'''警告：'''「$1」という外装はありません。
 .cssと.jsページを編集する際には、ページ名を小文字にすることを忘れないでください（例えば、{{ns:user}}:Hoge/Vector.cssではなく{{ns:user}}:Hoge/vector.cssとなります）。",
 'updated'                          => '（更新）',
@@ -1992,11 +1996,11 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'unusedtemplateswlh'  => 'リンク元',
 
 # Random page
-'randompage'         => 'ランダムページ',
+'randompage'         => 'Random page',
 'randompage-nopages' => '次の{{PLURAL:$2|名前空間}}：$1には、ページがありません。',
 
 # Random redirect
-'randomredirect'         => 'ランダムな転送ページ',
+'randomredirect'         => 'Random redirect',
 'randomredirect-nopages' => '「$1」名前空間には、転送がありません。',
 
 # Statistics
@@ -2618,13 +2622,13 @@ $1のブロックの理由は「$2」です。',
 'blocklog-showsuppresslog'        => 'この利用者は以前にブロックされ、隠されたことがあります。
 参考のため、隠蔽記録を以下に示します：',
 'blocklogentry'                   => '[[$1]] を$2ブロックしました。ブロックの内容は$3です',
-'reblock-logentry'                => '有効期限を$2で[[$1]]のブロック設定を変更しました$3',
-'blocklogtext'                    => 'このページは利用者ブロックと解除の記録です。
+'reblock-logentry'                => '[[$1]]ブロック設定を$2に変更しました。ブロックの内容は$3です',
+'blocklogtext'                    => 'このページは利用者のブロックと解除の記録です。
 自動的にブロックされたIPアドレスは表示されていません。
-現時点で有効な追放とブロックの一覧は[[Special:IPBlockList|IPブロック一覧]]をご覧ください。',
+現時点で有効なブロックは[[Special:IPBlockList|ブロックの一覧]]をご覧ください。',
 'unblocklogentry'                 => '$1のブロックを解除しました',
 'block-log-flags-anononly'        => '匿名利用者のみ',
-'block-log-flags-nocreate'        => 'アカウント作成無効',
+'block-log-flags-nocreate'        => 'アカウント作成のブロック',
 'block-log-flags-noautoblock'     => '自動ブロック無効',
 'block-log-flags-noemail'         => 'メール送信のブロック',
 'block-log-flags-nousertalk'      => '自身のトークページの編集禁止',

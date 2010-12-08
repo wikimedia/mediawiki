@@ -772,6 +772,9 @@ Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Língua: $1',
 'suspicious-userlogout'      => 'Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Erro desconhecido na função mail() do PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Nível de segurança da senha: $1',
 'password-strength-bad'        => 'MÁ',
@@ -913,6 +916,10 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular.'''
 '''Ele ainda não foi salvo!'''",
 'userjspreview'                    => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
+'globalcsspreview'                 => "'''Lembre-se de que está apenas previsualizando este CSS global.'''
+'''Ele ainda não foi salvo!'''",
+'globaljspreview'                  => "'''Lembre-se de que está apenas previsualizando este código JavaScript global.'''
+'''Ele ainda não foi salvo!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/vector.css aposto a {{ns:user}}:Alguém/Vector.css.",
 'updated'                          => '(Atualizado)',
 'note'                             => "'''Nota:'''",
@@ -1519,6 +1526,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar email a outros usuários',
 'right-revisionmove'          => 'Mover revisões',
+'right-disableaccount'        => 'Desativar contas',
 
 # User rights log
 'rightslog'      => 'Registro de privilégios de usuário',
@@ -2399,6 +2407,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contribuições de contas novas',
 'sp-contributions-blocklog'            => 'Registro de bloqueios',
 'sp-contributions-deleted'             => 'contribuições eliminadas',
+'sp-contributions-uploads'             => 'carregamentos',
 'sp-contributions-logs'                => 'registros',
 'sp-contributions-talk'                => 'disc',
 'sp-contributions-userrights'          => 'gerenciamento de privilégios de usuários',
@@ -3400,6 +3409,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da maneira convencion
 'version-specialpages'             => 'Páginas especiais',
 'version-parserhooks'              => 'Hooks do analisador (parser)',
 'version-variables'                => 'Variáveis',
+'version-skins'                    => 'Temas',
 'version-other'                    => 'Diversos',
 'version-mediahandlers'            => 'Executores de média',
 'version-hooks'                    => 'Hooks',
@@ -3521,5 +3531,18 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
+
+# Special:DisableAccount
+'disableaccount'             => 'Desativar uma conta',
+'disableaccount-user'        => 'Nome de usuário:',
+'disableaccount-reason'      => 'Motivo:',
+'disableaccount-confirm'     => "Desativar esta conta.
+O usuário ficará impossibilitado de se autenticar, de reiniciar a palavra-chave e de receber notificações por e-mail.
+Se neste momento o usuário estiver autenticado em algum lugar, ele sairá de imediato.
+''Note que a desativação de uma conta não pode ser revertida sem intervenção de um administrador.''",
+'disableaccount-mustconfirm' => 'Você deve confirmar que pretende desativar esta conta.',
+'disableaccount-nosuchuser'  => 'A conta de usuário "$1" não existe.',
+'disableaccount-success'     => 'A conta de usuário "$1" foi desativada permanentemente.',
+'disableaccount-logentry'    => 'desativou permanentemente a conta [[$1]]',
 
 );
