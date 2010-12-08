@@ -154,8 +154,6 @@ window.sajax_do_call = function(func_name, args, target) {
 		} else {
 			alert( 'bad target for sajax_do_call: not a function or object: ' + target );
 		}
-
-		return;
 	};
 
 	sajax_debug( func_name + ' uri = ' + uri + ' / post = ' + post_data );

@@ -30,11 +30,7 @@ window.htmlforms = {
 		var id = select.id;
 		var textbox = document.getElementById( id + '-other' );
 
-		if ( select.value == 'other' ) {
-			textbox.disabled = false;
-		} else {
-			textbox.disabled = true;
-		}
+		textbox.disabled = ( select.value != 'other' );
 	}
 };
 
