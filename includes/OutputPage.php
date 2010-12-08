@@ -2443,7 +2443,7 @@ class OutputPage {
 			$action = $wgRequest->getVal( 'action', 'view' );
 			if( $this->mTitle && $this->mTitle->isJsSubpage() && $sk->userCanPreview( $action ) ) {
 				# XXX: additional security check/prompt?
-				$this->addInlineScript( $wgRequest->getText( 'wpTextbox1' ) );
+				$scripts .= Html::inlineScript( "\n" . $wgRequest->getText( 'wpTextbox1' ) . "\n" ) . "\n";
 			} else {
 				$scripts .= $this->makeResourceLoaderLink(
 					$sk, array( 'user', 'user.options' ), 'scripts'
