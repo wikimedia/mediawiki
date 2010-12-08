@@ -126,13 +126,12 @@ class AddWiki extends Maintenance {
 			}
 		}
 
-		global $wgTitle, $wgArticle;
-		$wgTitle = Title::newFromText( wfMsgWeirdKey( "mainpage/$lang" ) );
-		$this->output( "Writing main page to " . $wgTitle->getPrefixedDBkey() . "\n" );
-		$wgArticle = new Article( $wgTitle );
+		$title = Title::newFromText( wfMsgWeirdKey( "mainpage/$lang" ) );
+		$this->output( "Writing main page to " . $title->getPrefixedDBkey() . "\n" );
+		$article = new Article( $title );
 		$ucsite = ucfirst( $site );
 
-		$wgArticle->insertNewArticle( $this->getFirstArticle( $ucsite, $name ), '', false, false );
+		$article->doEdit( $this->getFirstArticle( $ucsite, $name ), '', EDIT_NEW | EDIT_AUTOSUMMARY );
 
 		$this->output( "Adding to dblists\n" );
 
