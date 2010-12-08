@@ -2152,6 +2152,7 @@ class Article {
 					'parent_id'  => $this->mLatest,
 					'user'       => $user->getId(),
 					'user_text'  => $user->getName(),
+					'timestamp'  => $now
 				) );
 
 				$dbw->begin();
@@ -2255,7 +2256,8 @@ class Article {
 				'text'       => $text,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
-				) );
+				'timestamp'  => $now
+			) );
 			$revisionId = $revision->insertOn( $dbw );
 
 			$this->mTitle->resetArticleID( $newid );
