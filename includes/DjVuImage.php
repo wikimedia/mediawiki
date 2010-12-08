@@ -266,16 +266,17 @@ class DjVuImage {
 					| # Or page can be empty ; in this case, djvutxt dumps ()
 					\(\s*()\)/sx
 EOR;
-				$txt = preg_replace_callback( $reg,
-				 	create_function('$matches', 'return \'<PAGE value="\'.htmlspecialchars($matches[1]).\'" />\';'),
-					$txt );
-
+				$txt = preg_replace_callback( $reg, array( $this, 'pageTextCallback' ), $txt );
 				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
 				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml );
 				$xml = $xml . $txt. '</mw-djvu>' ;
 			}
 		}
 		return $xml;
+	}
+
+	function pageTextCallback( $matches ) {
+		return '<PAGE value="' . htmlspecialchars( $matches[1] ) . '" />';
 	}
 
 	/**
