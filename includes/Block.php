@@ -815,7 +815,7 @@ class Block {
 			// IPv6
 			if ( IP::isIPv6( $range ) && $parts[1] >= 64 && $parts[1] <= 128 ) {
 				$bits = $parts[1];
-				$ipint = IP::toUnsigned6( $parts[0] );
+				$ipint = IP::toUnsigned( $parts[0] );
 				# Native 32 bit functions WON'T work here!!!
 				# Convert to a padded binary number
 				$network = wfBaseConvert( $ipint, 10, 2, 128 );
