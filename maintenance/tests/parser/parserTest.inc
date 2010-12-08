@@ -149,9 +149,9 @@ class ParserTest {
 
 		$wgEnableParserCache = false;
 		$wgDeferredUpdateList = array();
-		$wgMemc = wfGetMainCache();
-		$messageMemc = wfGetMessageCacheStorage();
-		$parserMemc = wfGetParserCacheStorage();
+		$wgMemc = &wfGetMainCache();
+		$messageMemc = &wfGetMessageCacheStorage();
+		$parserMemc = &wfGetParserCacheStorage();
 
 		// $wgContLang = new StubContLang;
 		$wgUser = new User;
@@ -343,7 +343,7 @@ class ParserTest {
 		try {
 			$this->setupDatabase();
 			$ok = true;
-			
+
 			foreach ( $filenames as $filename ) {
 				$tests = new TestFileIterator( $filename, $this );
 				$ok = $this->runTests( $tests ) && $ok;
