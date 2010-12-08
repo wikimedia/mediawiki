@@ -1,3 +1,29 @@
+// @TODO: find some better JS file for this
+// Note: borrows from IP.php
+window.isIPv4Address = function( address, allowBlock ) {
+	var RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])';
+	var RE_IP_ADD = '(?:' + RE_IP_BYTE + '\.){3}' + RE_IP_BYTE;
+	var block = allowBlock ? '(?:\/(?:3[0-2]|[12]?\\d))?' : '';
+	return address.search( new RegExp( '^' + RE_IP_ADD + block + '$' ) ) != -1;
+};
+
+// @TODO: find some better JS file for this
+// Note: borrows from IP.php
+window.isIPv6Address = function( address, allowBlock ) {
+	var RE_IPV6_ADD =
+	'(?:' + // starts with "::" (including "::")
+		':(?::|(?::' + '[0-9A-Fa-f]{1,4}' + '){1,7})' +
+	'|' + // ends with "::" (except "::")
+		'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){0,6}::' +
+	'|' + // contains no "::"
+		'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){7}' +
+	'|' + // contains one "::" in the middle
+		'[0-9A-Fa-f]{1,4}' + '(?::(:())?' + '[0-9A-Fa-f]{1,4}' + '(?!\1)){1,6}\2' +
+	')';
+	var block = allowBlock ? '(?:\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
+	return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) != -1;
+};
+
 window.considerChangingExpiryFocus = function() {
 	if ( !document.getElementById ) {
 		return;
@@ -17,6 +43,7 @@ window.considerChangingExpiryFocus = function() {
 		field.style.display = 'none';
 	}
 };
+
 window.updateBlockOptions = function() {
 	if ( !document.getElementById ) {
 		return;
@@ -27,17 +54,10 @@ window.updateBlockOptions = function() {
 		return;
 	}
 
-	var addy = target.value;
-	var isEmpty = addy.match(/^\s*$/);
+	var addy = target.value.replace( /(^\s*|\s*$)/, '' ); // trim
+	var isEmpty = (addy == ""); 
 
-	// @TODO: get some core JS IP functions
-	// Match the first IP in each list (ignore other garbage)
-	var isIpV4 = addy.match(/^(\d+\.\d+\.\d+\.\d+)(\/\d+)?$/);
-	// Regexp has 3 cases: (starts with '::',ends with '::',neither)
-	var isIpV6 = !addy.match(/::.*::/) // not ambiguous
-		&& addy.match(/^(:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(::?[0-9A-Fa-f]{1,4}){0,6}::|[0-9A-Fa-f]{1,4}(::?[0-9A-Fa-f]{1,4}){1,7})(\/\d+)?$/);
-
-	var isIp = ( isIpV4 || isIpV6 );
+	var isIp = isIPv4Address( addy, true ) || isIPv6Address( addy, true );
 	var isIpRange = isIp && addy.match(/\/\d+$/);
 
 	var anonymousRow = document.getElementById( 'wpAnonOnlyRow' );
@@ -61,4 +81,5 @@ window.updateBlockOptions = function() {
 	}
 };
 
+addOnloadHook( updateBlockOptions );
 addOnloadHook( considerChangingExpiryFocus );
