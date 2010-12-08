@@ -470,6 +470,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer treated
   as wikitext on preview.
 * (bug 25512) Subcategory list should not include category prefix for members.
+* (bug 22753) Output from update.php is more clear when things changed, entries
+  indicating nothing changed are now all prefixed by "..."
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
