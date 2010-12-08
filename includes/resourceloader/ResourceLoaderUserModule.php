@@ -28,9 +28,7 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	/* Protected Methods */
 
 	protected function getPages( ResourceLoaderContext $context ) {
-		global $wgAllowUserCss;
-		
-		if ( $context->getUser() && $wgAllowUserCss ) {
+		if ( $context->getUser() ) {
 			$username = $context->getUser();
 			return array(
 				"$username/common.js" => array( 'ns' => NS_USER, 'type' => 'script' ),
