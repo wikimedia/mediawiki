@@ -686,36 +686,28 @@ window.os_getElementPosition = function( elemID ) {
 };
 
 /** Create the container div that will hold the suggested titles */
-window.os_createContainer = function(r) {
-	var c = document.createElement('div');
-	var s = document.getElementById(r.searchbox);
-	var pos = os_getElementPosition(r.searchbox);
+window.os_createContainer = function( r ) {
+	var c = document.createElement( 'div' );
+	var s = document.getElementById( r.searchbox );
+	var pos = os_getElementPosition( r.searchbox );
 	var left = pos.left;
 	var top = pos.top + s.offsetHeight;
 	c.className = 'os-suggest';
-	c.setAttribute('id', r.container);
-	document.body.appendChild(c);
+	c.setAttribute( 'id', r.container );
+	document.body.appendChild( c );
 
 	// dynamically generated style params
 	// IE workaround, cannot explicitely set "style" attribute
-	c = document.getElementById(r.container);
+	c = document.getElementById( r.container );
 	c.style.top = top + 'px';
 	c.style.left = left + 'px';
 	c.style.width = s.offsetWidth + 'px';
 
 	// mouse event handlers
-	c.onmouseover = function(event) {
-		os_eventMouseover(r.searchbox, event);
-	};
-	c.onmousemove = function(event) {
-		os_eventMousemove(r.searchbox, event);
-	};
-	c.onmousedown = function(event) {
-		return os_eventMousedown(r.searchbox, event);
-	};
-	c.onmouseup = function(event) {
-		os_eventMouseup(r.searchbox, event);
-	};
+	c.onmouseover = function( event ) { os_eventMouseover( r.searchbox, event ); };
+	c.onmousemove = function( event ) { os_eventMousemove( r.searchbox, event ); };
+	c.onmousedown = function( event ) { return os_eventMousedown( r.searchbox, event ); };
+	c.onmouseup = function( event ) { os_eventMouseup( r.searchbox, event ); };
 	return c;
 };
 
