@@ -7,7 +7,7 @@
  * Handle ajax requests and send them to the proper handler.
  */
 
-if ( !( defined( 'MEDIAWIKI' ) && $wgUseAjax ) ) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }
 
