@@ -56,17 +56,17 @@
                 
                 if (gravity.length == 2) {
                     if (gravity.charAt(1) == 'w') {
-                    	if ( this.options.center ) {
-                    		tp.left = pos.left + pos.width / 2 - 15;
-                    	} else {
+                        if (this.options.center) {
+                            tp.left = pos.left + pos.width / 2 - 15;
+                        } else {
                             tp.left = pos.left;
-                    	}
+                        }
                     } else {
-                    	if ( this.options.center ) {
-                    		tp.left = pos.left + pos.width / 2 - actualWidth + 15;
-                    	} else {
-                    		tp.left = pos.left + pos.width;
-                    	}
+                        if (this.options.center) {
+                            tp.left = pos.left + pos.width / 2 - actualWidth + 15;
+                        } else {
+                            tp.left = pos.left + pos.width;
+                        }
                     }
                 }
                 
