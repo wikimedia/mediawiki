@@ -29,7 +29,35 @@ input.ui-button { padding: .4em 1em; }
 /* workarounds */
 button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
 
-
-
-
+body button.ui-button {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 0.2em 0.6em 0.15em !important;
+	margin: 0.5em 0 0.5em 0.4em !important;
+	border: 1px solid #a6a6a6 !important;
+	background: #f2f2f2 url(images/button-off.png) repeat-x scroll 50% 100% !important;
+	cursor: pointer;
+	font-size: 1em;
+	line-height: 1.4em;
+	width: auto;
+	overflow: visible;
+}
+body button.ui-button:hover {
+	border-color: #6e7273;
+	background: #e1e1e1 url(images/button-over.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button:active,
+body button.ui-button:focus {
+	border-color: #707271;
+	background: #bfbfbf url(images/button-down.png) repeat-x scroll 50% 100% !important;
+}
+body button.ui-button.disabled {
+	color: #7f7f7f;
+	border-color: #cccccc;
+	background: #f2f2f2 url(images/button-disabled.png) repeat-x scroll 50% 100% !important;	
+}
+/* Disables the annoying dashed border Firefox puts on active buttons */
+body  button.ui-button::-moz-focus-inner { 
+	border: 0; 
+}
 
