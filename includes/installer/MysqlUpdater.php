@@ -617,13 +617,17 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @see bug 3946
 	 */
 	protected function doPageRandomUpdate() {
-		$this->output( "Setting page_random to a random value on rows where it equals 0..." );
+		
 
 		$page = $this->db->tableName( 'page' );
 		$this->db->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", __METHOD__ );
 		$rows = $this->db->affectedRows();
 
-		$this->output( "changed $rows rows\n" );
+		if( $rows ) {
+			$this->output( "Set page_random to a random value on $row rows where it was set to 0\n" );
+		} else {
+			$this->output( "...no page_random rows needed to be set\n" );
+		}
 	}
 
 	protected function doTemplatelinksUpdate() {
