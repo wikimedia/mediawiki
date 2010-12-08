@@ -33,19 +33,19 @@ class UploadFromUrl extends UploadBase {
 
 	/**
 	 * Entry point for API upload
-	 * 
+	 *
 	 * @param $name string
 	 * @param $url string
-	 * @param $async mixed Whether the download should be performed 
+	 * @param $async mixed Whether the download should be performed
 	 * asynchronous. False for synchronous, async or async-leavemessage for
 	 * asynchronous download.
 	 */
 	public function initialize( $name, $url, $async = false ) {
 		global $wgAllowAsyncCopyUploads;
-		
+
 		$this->mUrl = $url;
 		$this->mAsync = $wgAllowAsyncCopyUploads ? $async : false;
-		
+
 		$tempPath = $this->mAsync ? null : $this->makeTemporaryFile();
 		# File size and removeTempFile will be filled in later
 		$this->initializePathInfo( $name, $tempPath, 0, false );
@@ -77,13 +77,13 @@ class UploadFromUrl extends UploadBase {
 			&& Http::isValidURI( $url )
 			&& $wgUser->isAllowed( 'upload_by_url' );
 	}
-	
+
 
 	public function fetchFile() {
 		if ( !Http::isValidURI( $this->mUrl ) ) {
 			return Status::newFatal( 'http-invalid-url' );
 		}
-		
+
 		if ( !$this->mAsync ) {
 			return $this->reallyFetchFile();
 		}
@@ -91,7 +91,7 @@ class UploadFromUrl extends UploadBase {
 	}
 	/**
 	 * Create a new temporary file in the URL subdirectory of wfTempDir().
-	 * 
+	 *
 	 * @return string Path to the file
 	 */
 	protected function makeTemporaryFile() {
@@ -99,8 +99,8 @@ class UploadFromUrl extends UploadBase {
 	}
 	/**
 	 * Save the result of a HTTP request to the temporary file
-	 * 
-	 * @param $req MWHttpRequest 
+	 *
+	 * @param $req MWHttpRequest
 	 * @return Status
 	 */
 	private function saveTempFile( $req ) {
@@ -137,7 +137,7 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * Wrapper around the parent function in order to defer verifying the 
+	 * Wrapper around the parent function in order to defer verifying the
 	 * upload until the file really has been fetched.
 	 */
 	public function verifyUpload() {
@@ -158,7 +158,7 @@ class UploadFromUrl extends UploadBase {
 		}
 		return parent::checkWarnings();
 	}
-	
+
 	/**
 	 * Wrapper around the parent function in order to defer checking protection
 	 * until we are sure that the file can actually be uploaded
@@ -169,7 +169,7 @@ class UploadFromUrl extends UploadBase {
 		}
 		return parent::verifyPermissions( $user );
 	}
-	
+
 	/**
 	 * Wrapper around the parent function in order to defer uploading to the
 	 * job queue for asynchronous uploads
@@ -177,18 +177,18 @@ class UploadFromUrl extends UploadBase {
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		if ( $this->mAsync ) {
 			$sessionKey = $this->insertJob( $comment, $pageText, $watch, $user );
-			
+
 			$status = new Status;
 			$status->error( 'async', $sessionKey );
 			return $status;
 		}
-		
+
 		return parent::performUpload( $comment, $pageText, $watch, $user );
 	}
 
-	
+
 	protected function insertJob( $comment, $pageText, $watch, $user ) {
-		$sessionKey = $this->getSessionKey();
+		$sessionKey = $this->stashSession();
 		$job = new UploadFromUrlJob( $this->getTitle(), array(
 			'url' => $this->mUrl,
 			'comment' => $comment,
@@ -204,6 +204,6 @@ class UploadFromUrl extends UploadBase {
 		$job->insert();
 		return $sessionKey;
 	}
-	
+
 
 }
