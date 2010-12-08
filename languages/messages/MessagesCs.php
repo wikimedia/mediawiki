@@ -822,6 +822,9 @@ Počkejte chvíli, než to zkusíte znovu.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 'suspicious-userlogout'      => 'Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Neznámá chyba v PHP funkci mail()',
+
 # JavaScript password checks
 'password-strength'            => 'Odhad síly hesla: $1',
 'password-strength-bad'        => 'ŠPATNÉ',
@@ -952,6 +955,10 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
 '''Zatím nebylo uloženo!'''",
 'userjspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho uživatelského JavaScriptu, dosud nebyl uložen!'''",
+'globalcsspreview'                 => "'''Pamatujte, že si prohlížíte jen náhled vašeho globálního CSS.'''
+'''Zatím nebylo uloženo!'''",
+'globaljspreview'                  => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho globálního JavaScriptu.'''
+'''Dosud nebyl uložen!'''",
 'userinvalidcssjstitle'            => "'''Varování:''' Vzhled „$1“ neexistuje. Nezapomeňte, že uživatelské .css a .js soubory používají malá písmena, např. {{ns:user}}:{{BASEPAGENAME}}/vector.css, nikoli {{ns:user}}:{{BASEPAGENAME}}/Vector.css.",
 'updated'                          => '(Změna uložena)',
 'note'                             => "'''Poznámka:'''&nbsp;",
@@ -1550,6 +1557,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
 'right-revisionmove'          => 'Přesouvání verzí',
+'right-disableaccount'        => 'Deaktivování účtů',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',
@@ -2412,6 +2420,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Příspěvky nových uživatelů',
 'sp-contributions-blocklog'            => 'kniha zablokování',
 'sp-contributions-deleted'             => 'smazané editace uživatele',
+'sp-contributions-uploads'             => 'načtené soubory',
 'sp-contributions-logs'                => 'protokolovací záznamy',
 'sp-contributions-talk'                => 'diskuse',
 'sp-contributions-userrights'          => 'správa uživatelských práv',
@@ -3473,6 +3482,7 @@ Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve
 'version-specialpages'             => 'Speciální stránky',
 'version-parserhooks'              => 'Přípojné body parseru',
 'version-variables'                => 'Proměnné',
+'version-skins'                    => 'Vzhledy',
 'version-other'                    => 'Jiné',
 'version-mediahandlers'            => 'Obsluha médií',
 'version-hooks'                    => 'Přípojné body',
@@ -3593,5 +3603,18 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',
 'sqlite-no-fts'  => '$1 bez podpory plnotextového vyhledávání',
+
+# Special:DisableAccount
+'disableaccount'             => 'Deaktivace uživatelského účtu',
+'disableaccount-user'        => 'Uživatelské jméno:',
+'disableaccount-reason'      => 'Důvod:',
+'disableaccount-confirm'     => "Deaktivovat tento uživatelský účet.
+Uživatel se nebude moci přihlásit, požádat o nové heslo, ani dostávat e-mailové notifikace.
+Pokud je uživatel kdekoli přihlášen, bude okamžitě odhlášen.
+''Uvědomte si, že deaktivaci účtu nelze vrátit zpět bez pomoci systémového administrátora.''",
+'disableaccount-mustconfirm' => 'Musíte potvrdit, že si přejete deaktivovat tento účet.',
+'disableaccount-nosuchuser'  => 'Uživatelský účet „$1“ neexistuje.',
+'disableaccount-success'     => 'Uživatelský účet „$1“ byl natrvalo deaktivován.',
+'disableaccount-logentry'    => 'natrvalo deaktivoval uživatelský účet [[$1]]',
 
 );

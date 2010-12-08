@@ -543,7 +543,8 @@ $messages['qqq'] = array(
 * $2 is a link to the wiki.
 * $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.',
 	'config-download-localsettings' => 'The link text used in the download link in config-install-done.',
-	'config-help' => 'This is used in help boxes.',
+	'config-help' => 'This is used in help boxes.
+{{Identical|Help}}',
 );
 
 /** Magyar (magázó) (Magyar (magázó))
@@ -1256,6 +1257,8 @@ chmod a+w $3</pre>',
 '''Заўвага''': калі Вы гэтага ня зробіце зараз, то створаны файл ня будзе даступны Вам потым, калі Вы выйдзеце з праграмы ўсталяваньня  без яго загрузкі.
 
 Калі Вы гэта зробіце, Вы можаце '''[$2 ўвайсьці ў Вашую вікі]'''.",
+	'config-download-localsettings' => 'Загрузіць LocalSettings.php',
+	'config-help' => 'дапамога',
 );
 
 /** Breton (Brezhoneg)
@@ -3933,6 +3936,8 @@ Móžeš to manuelnje činić.",
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
 	'config-install-mainpage' => 'Hłowna strona so ze standardnym wobsahom wutworja',
 	'config-install-mainpage-failed' => 'Powěsć njeda so zasunyć.',
+	'config-download-localsettings' => 'LocalSettings.php sćahnyć',
+	'config-help' => 'pomoc',
 );
 
 /** Hungarian (Magyar)
@@ -4659,6 +4664,8 @@ Tu debe [$1 discargar] lo e poner lo in le base de tu installation wiki (le mesm
 '''Nota''': Si tu non face isto ora, iste file de configuration generate non essera disponibile a te plus tarde si tu exi le installation sin discargar lo.
 
 Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
+	'config-download-localsettings' => 'Discargar LocalSettings.php',
+	'config-help' => 'adjuta',
 );
 
 /** Indonesian (Bahasa Indonesia)
