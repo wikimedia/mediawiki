@@ -2381,6 +2381,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Uzulaj kontribuoj de novaj kontoj',
 'sp-contributions-blocklog'            => 'Protokolo de forbaroj',
 'sp-contributions-deleted'             => 'forigitaj kontribuoj de uzantoj',
+'sp-contributions-uploads'             => 'alŝutoj',
 'sp-contributions-logs'                => 'protokoloj',
 'sp-contributions-talk'                => 'diskuto',
 'sp-contributions-userrights'          => 'administri rajtojn de uzantoj',
@@ -3360,6 +3361,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|redakti norme]].',
 'version-specialpages'             => 'Specialaj paĝoj',
 'version-parserhooks'              => 'Sintaksaj hokoj',
 'version-variables'                => 'Variabloj',
+'version-skins'                    => 'Etosoj',
 'version-other'                    => 'Alia',
 'version-mediahandlers'            => 'Mediaj traktiloj',
 'version-hooks'                    => 'Hokoj',
@@ -3481,5 +3483,10 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 # SQLite database support
 'sqlite-has-fts' => '$1 kun tut-teksta subteno',
 'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
+
+# Special:DisableAccount
+'disableaccount-user'       => 'Salutnomo:',
+'disableaccount-reason'     => 'Kialo:',
+'disableaccount-nosuchuser' => 'La salutnomo "$1" ne ekzistas.',
 
 );

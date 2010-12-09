@@ -510,7 +510,6 @@ $messages['qqq'] = array(
 	'config-page-options' => '{{Identical|Options}}',
 	'config-page-install' => '{{Identical|Install}}',
 	'config-page-copying' => 'This is a link to the full GPL text',
-	'config-page-locked' => '{{Identical|Permission denied}}',
 	'config-restart' => 'Button text to confirm the installation procedure has to be restarted.',
 	'config-no-db-help' => 'Parameters:
 * $1 is comma separated list of supported database types by MediaWiki.',
@@ -823,9 +822,6 @@ $messages['be-tarask'] = array(
 Калі ласка, пазначце значэньне <code>\$wgUpgradeKey</code> у полі.",
 	'config-localsettings-key' => 'Ключ паляпшэньня:',
 	'config-localsettings-badkey' => 'Пададзены Вамі ключ зьяўляецца няслушным',
-	'config-localsettings-noupgrade' => "'''Памылка''': знойдзены файл <code>LocalSettings.php</code>.
-Немагчыма абнавіць існуючую ўстаноўку.
-Дзеля бясьпекі працэс ўсталяваньня быў перарваны.",
 	'config-session-error' => 'Памылка стварэньня сэсіі: $1',
 	'config-session-expired' => 'Скончыўся тэрмін дзеяньня зьвестак сэсіі.
 Сэсія мае абмежаваны тэрмін у $1.
@@ -854,7 +850,6 @@ $messages['be-tarask'] = array(
 	'config-page-releasenotes' => 'Заўвагі да выпуску',
 	'config-page-copying' => 'Капіяваньне',
 	'config-page-upgradedoc' => 'Абнаўленьне',
-	'config-page-locked' => 'Доступ забаронены',
 	'config-help-restart' => 'Ці жадаеце выдаліць усе ўведзеныя зьвесткі і пачаць працэс усталяваньня зноў?',
 	'config-restart' => 'Так, пачаць зноў',
 	'config-welcome' => '== Праверка асяродзьдзя ==
@@ -1283,9 +1278,6 @@ gouest eo ho meziant d'en em hizivaat
 Merkit talvoudenn ar chod <code>\$wgUpgradeKey</code> er vaezienn.",
 	'config-localsettings-key' => "Alc'hwez hizivaat :",
 	'config-localsettings-badkey' => "Direizh eo an alc'hwez merket ganeoc'h",
-	'config-localsettings-noupgrade' => "'''Fazi''': Kavet ez eus bet ur restr <code>LocalSettings.php</code>.
-N'eo ket gouest ho meziant en em hizivaat evit ar poent
-Diweredekaet eo bet ar stalier evit abegoù surentez.",
 	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
 	'config-no-session' => "Kolle teo bet roadennoù ho talc'h !
 Gwiriit ar restr php.ini ha bezit sur emañ staliet <code>session.save_path</code> en ur c'havlec'h a zere.",
@@ -1309,7 +1301,6 @@ Gwiriit ar restr php.ini ha bezit sur emañ staliet <code>session.save_path</cod
 	'config-page-releasenotes' => 'Notennoù stumm',
 	'config-page-copying' => 'O eilañ',
 	'config-page-upgradedoc' => 'O hizivaat',
-	'config-page-locked' => "Aotre nac'het",
 	'config-restart' => "Ya, adloc'hañ anezhañ",
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Degemer]
 * [http://www.mediawiki.org/wiki/Help:Contents Pajenn-stur an implijer]
@@ -1415,9 +1406,9 @@ $messages['bs'] = array(
 	'config-desc' => 'Instalacija za MediaWiki',
 	'config-title' => 'MediaWiki $1 instalacija',
 	'config-information' => 'Informacija',
-	'config-localsettings-upgrade' => "'''Upozorenje''': Otkrivena je datoteka <code>LocalSettings.php</code>.
-Vaš softver je moguće unaprijediti.
-Molimo upišite vrijednost od <code>\$wgUpgradeKey</code> u okvir.",
+	'config-localsettings-upgrade' => 'Otkrivena je datoteka <code>LocalSettings.php</code>.
+Da biste unaprijedili vaš softver, molimo vas upišite vrijednost od <code>$wgUpgradeKey</code> u okvir ispod.
+Naći ćete ga u LocalSettings.php.',
 	'config-localsettings-key' => 'Ključ za nadgradnju:',
 	'config-session-error' => 'Greška pri pokretanju sesije: $1',
 	'config-no-session' => 'Vaši podaci sesije su izgubljeni!
@@ -1443,7 +1434,6 @@ Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> pos
 	'config-page-releasenotes' => 'Bilješke izdanja',
 	'config-page-copying' => 'Kopiram',
 	'config-page-upgradedoc' => 'Nadograđujem',
-	'config-page-locked' => 'Pristup onemogućen',
 	'config-help-restart' => 'Da li želite očistiti sve spremljene podatke koje ste unijeli i da započnete ponovo proces instalacije?',
 	'config-restart' => 'Da, pokreni ponovo',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Početna strana]
@@ -1452,23 +1442,19 @@ Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> pos
 * [http://www.mediawiki.org/wiki/Manual:FAQ NPP]',
 	'config-env-good' => '<span class="success-message">Okruženje je provjereno.
 Možete instalirati MediaWiki.</span>',
-	'config-env-php' => 'PHP $1 je instaliran.',
-	'config-env-latest-ok' => 'Instalirate posljednju verziju MediaWiki.',
-	'config-env-latest-new' => "'''Napomena:''' Instalirate razvojnu veziju MediaWiki.",
-	'config-env-latest-can-not-check' => "'''Upozorenje:''' Instalacija ne može pronaći podatke o posljednjem izdanju MediaWiki sa [$1].",
 	'config-no-db' => 'Nije mogao biti pronađen podgodan drajver za bazu podataka!',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je instaliran',
 	'config-apc' => '[http://www.php.net/apc APC] je instaliran',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] je instaliran',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] je instaliran',
-	'config-diff3-good' => 'Pronađen GNU diff3: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 nije pronađen.',
-	'config-uri' => 'Putanja URI skripte: <code>$1</code>.',
 	'config-db-name' => 'Naziv baze podataka:',
+	'config-db-name-oracle' => 'Šema baze podataka:',
 	'config-header-mysql' => 'Postavke MySQL',
 	'config-header-postgres' => 'Postavke PostgreSQL',
 	'config-header-sqlite' => 'Postavke SQLite',
 	'config-header-oracle' => 'Postavke Oracle',
+	'config-invalid-db-type' => 'Nevaljana vrsta baze podataka',
 	'config-upgrade-done' => "Nadogradnja završena.
 
 Sada možete [$1 početi koristiti vašu wiki].
@@ -1504,14 +1490,21 @@ $messages['de'] = array(
 	'config-desc' => 'Das MediaWiki-Installationsprogramm',
 	'config-title' => 'Installation von MediaWiki $1',
 	'config-information' => 'Information',
-	'config-localsettings-upgrade' => "'''Warnung:''' Die Datei <code>LocalSettings.php</code> wurde gefunden.
-Die vorhandene Installation kann aktualisiert werden.
-Bitte den Wert des Parameters <code>\$wgUpgradeKey</code> im Feld angeben.",
+	'config-localsettings-upgrade' => 'Eine Datei <code>LocalSettings.php</code> wurde gefunden.
+Um die vorhandene Installation aktualisieren zu können, muss der Wert des Parameters <code>$wgUpgradeKey</code> im folgenden Eingabefeld angeben werden.
+Der Parameterwert befindet sich in der Datei LocalSettings.php.',
 	'config-localsettings-key' => 'Aktualisierungsschlüssel:',
 	'config-localsettings-badkey' => 'Der angegebene Aktualisierungsschlüssel ist falsch.',
-	'config-localsettings-noupgrade' => "'''Fehler''': Die Datei <code>LocalSettings.php</code> wurde gefunden.
-Die vorhandene Installation kann momentan nicht aktualisiert werden.
-Das Installationsprogramm wurde aus Sicherheitsgründen deaktiviert.",
+	'config-upgrade-key-missing' => 'Eine MediaWiki-Installation wurde gefunden.
+Um die vorhandene Installation aktualisieren zu können, muss der unten angegebene Code am Ende in die Datei LocalSettings.php eingefügt werden:
+
+$1',
+	'config-localsettings-incomplete' => 'Die vorhandene Datei LocalSettings.php scheint unvollständig zu sein.
+Die Variable <code>$1</code> wurde nicht definiert.
+Die Datei LocalSettings.php muss entsprechend geändert werden, so dass sie definiert ist. Klicke danach auf „Weiter“.',
+	'config-localsettings-connection-error' => 'Beim Verbindungsversuch zur Datenbank ist, unter Verwendung der in den Dateien LocalSettings.php oder AdminSettings.php hinterlegten Einstellungen, ein Fehler aufgetreten. Diese Einstellungen müssen korrigiert werden. Danach kann ein erneuter Versuch unternommen werden.
+
+$1',
 	'config-session-error' => 'Fehler beim Starten der Sitzung: $1',
 	'config-session-expired' => 'Die Sitzungsdaten scheinen abgelaufen zu sein.
 Sitzungen sind für einen Zeitraum von $1 konfiguriert.
@@ -1540,7 +1533,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-page-releasenotes' => 'Release-Notes (en)',
 	'config-page-copying' => 'Kopie der Lizenz',
 	'config-page-upgradedoc' => 'Aktualisiere',
-	'config-page-locked' => 'Zugriff verweigert',
+	'config-page-existingwiki' => 'Vorhandenes Wiki',
 	'config-help-restart' => 'Sollen alle angegebenen Daten gelöscht und der Installationsvorgang erneut gestartet werden?',
 	'config-restart' => 'Ja, erneut starten',
 	'config-welcome' => '=== Prüfung der Installationsumgebung ===
@@ -1892,7 +1885,7 @@ Sofern kein Logo benötigt wird, kann dieses Datenfeld leer bleiben.',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons InstantCommons] ist eine Funktion, die es Wikis ermöglicht, Bild-, Klang- und andere Mediendateien zu nutzen, die auf der Website [http://commons.wikimedia.org/ Wikimedia Commons] verfügbar sind.
 Um diese Funktion zu nutzen, muss MediaWiki eine Verbindung ins Internet herstellen können. 
 
-Weitere Informationen zu dieser Funktion, einschließlich der Anleitung, wie sie für das Wiki eingerichtet werden kann, gibt es auf folgender [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Webseite].',
+Weitere Informationen zu dieser Funktion, einschließlich der Anleitung, wie andere Wikis als Wikimedia Commons eingerichtet werden können, gibt es im [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbuch].',
 	'config-cc-error' => 'Der Creativ-Commons-Lizenzassistent konnte keine Lizenz ermitteln.
 Die Lizenz ist daher jetzt manuell einzugeben.',
 	'config-cc-again' => 'Erneut auswählen…',
@@ -1987,9 +1980,6 @@ $messages['es'] = array(
 	'config-information' => 'Información',
 	'config-localsettings-upgrade' => "'''Atención''': Se ha encontrado un fichero de configuración <code>LocalSettings.php</code>.
 Para actualizar MediaWiki mueva <code>LocalSettings.php</code> a un lugar seguro y ejecute de nuevo el instalador.",
-	'config-localsettings-noupgrade' => "'''Error''': Se ha detectado un fichero de configuración <code>LocalSettings.php</code>.
-No se puede actualizar MediaWiki en este momento.
-El instalador ha sido deshabilitado por motivos de seguridad.",
 	'config-session-error' => 'Error comenzando sesión: $1',
 	'config-session-expired' => 'Tus datos de sesión parecen haber expirado.
 Las sesiones están configuradas por una duración de $1.
@@ -2041,13 +2031,6 @@ En conjunto con este programa debe haber recibido <doclink href=Copying>una copi
 Puedes instalar MediaWiki.</span>',
 	'config-env-bad' => 'El entorno ha sido comprobado.
 No puedes instalar MediaWiki.',
-	'config-env-php' => 'PHP $1 está instalado.',
-	'config-env-latest-ok' => 'Estás instalando la última versión de MediaWiki',
-	'config-env-latest-new' => "'''Nota:''' Estás instalando una versión en desarrollo de MediaWiki.",
-	'config-env-latest-can-not-check' => "'''Aviso:''' El instalador no ha podido recuperar información sobre la última versión de MediaWiki de [$1].",
-	'config-env-latest-old' => "'''Advertencia:''' Estás instalando una versión antigua de MediaWiki.",
-	'config-env-latest-help' => 'Estás instalando la versión $1, pero la versión más reciente es la $2.
-Te aconsejamos que instales la versión más reciente, que podrás descargar en [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando la [http://pecl.php.net/intl extensión intl PECL] para la normalización Unicode.',
 	'config-unicode-pure-php-warning' => "'''Advertencia''': La [http://*pecl.*php.*net/*intl extensión intl PECL] no está disponible para efectuar la normalización Unicode.
@@ -2061,8 +2044,6 @@ Estos son los tipos de base de datos compatibles: $1.
 Si tu web está en un alojamiento compartido, solicita a tu proveedor la instalación de un controlador de base de datos ocmpatible.
 Si has compilado tú mismo(a) el PHP, reconfigúralo con un cliente de base de datos habilitado, por ejemplo mediante <code>./configure --with-mysql</code>.
 Si instalaste el PHP a partir de un paquete Debian o Ubuntu, entonces necesitarás instalar también el módulo php5-mysql.',
-	'config-have-db' => '{{PLURAL:$2|Controlador de base de datos encontrado|Controladores de base de datos encontrados}}: $1.',
-	'config-have-fts3' => 'SQLite está compilado con el [http://sqlite.org/fts3.html módulo FTS3]. Las funcionalidades de búsqueda estarán disponibles en esta instalación.',
 	'config-no-fts3' => "'''Advertencia''': SQLite está compilado sin el [http://sqlite.org/fts3.html módulo FTS3]. Las funcionalidades de búsqueda no estarán disponibles en esta instalación.",
 	'config-register-globals' => "'''Advertencia: La opción de <code>[http://php.net/register_globals register_globals]</code> de PHP está habilitada.'''
 '''Desactívela si puede.'''
@@ -2081,15 +2062,11 @@ Esta opción causa problemas significativos en MediaWiki.
 No se puede instalar o usar MediaWiki a menos que esta opción sea desactivada.",
 	'config-safe-mode' => "'''Advertencia:''' El [http://www.php.net/features.safe-mode modo seguro] de PHP está activado.
 Este modo puede causar problemas, especialmente en la carga de archivosy en compatibilidad con <code>math</code>.",
-	'config-xml-good' => 'Tiene compatibilidad con conversión XML / Latin1-UTF-8.',
 	'config-xml-bad' => 'Falta el módulo XML de PHP.
 MediaWiki necesita funciones en este módulo y no funcionará con esta configuración.
 Si está ejecutando Mandrake, instale el paquete php-xml.',
 	'config-pcre' => 'Parece faltar el módulo de compatibilidad PCRE.
 MediaWiki necesita que las funciones de expresiones regulares compatibles con Perl estén funcionando.',
-	'config-memory-none' => 'El PHP está configurado sin <code>memory_limit</code>',
-	'config-memory-ok' => 'La configuración <code>memory_limit</code> de PHP es $1.
-OK.',
 	'config-memory-raised' => 'el parámetro <code>memory_limit</code> de PHP es $1, aumentada a $2.',
 	'config-memory-bad' => "'''Advertencia:''' El parámetro <code>memory_limit</code> de PHP es $1.
 Probablemente este valor es demasiado bajo.
@@ -2100,7 +2077,6 @@ Probablemente este valor es demasiado bajo.
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado',
 	'config-no-cache' => "'''Advertencia:''' No pudo encontrarse [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
 El caché de objetos no está habilitado.",
-	'config-diff3-good' => 'Se ha encontrado diff3 GNU: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 no se encuentra.',
 	'config-imagemagick' => 'ImageMagick encontrado: <code>$1</code>.
 La miniaturización de imágenes se habilitará si habilitas las cargas.',
@@ -2108,13 +2084,8 @@ La miniaturización de imágenes se habilitará si habilitas las cargas.',
 La miniaturización de imágenes se habilitará si habilitas las subidas.',
 	'config-no-scaling' => 'No se ha encontrado ninguma biblioteca GD o ImageMagik.
 Se inhabilitará la miniaturización de imágenes.',
-	'config-dir' => 'Directorio de instalación: <code>$1</code>.',
-	'config-uri' => 'Ruta del Script URI: <code>$1</code>.',
 	'config-no-uri' => "'''Error:''' No se pudo determinar el URI actual.
 Instalación abortada.",
-	'config-file-extension' => 'Instalando MediaWiki con las extensiones de archivo <code>$1</code>.',
-	'config-shell-locale' => 'Detectada la localización de caparazón "$1"',
-	'config-uploads-safe' => 'El directorio predeterminado para los archivos subidos está a salvo de la ejecución de scripts arbitrarios.',
 	'config-db-type' => 'Tipo de base de datos',
 	'config-db-host' => 'Servidor de la base de datos:',
 	'config-db-wiki-settings' => 'Identifique este wiki',
@@ -2143,9 +2114,9 @@ Altéralos sólo si tienes la seguridad de que necesitas alterarlos.',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-support-info' => 'MediaWiki es compatible con los siguientes sistemas de bases de datos:
+	'config-support-info' => 'MediaWiki es compatible con los siguientes sistemas de bases de datos: 
 
- $1
+ $1 
 
  Si no encuentras en el listado el sistema de base de datos que estás intentando utilizar, sigue las instrucciones vinculadas arriba para habilitar la compatibilidad.',
 	'config-support-mysql' => '* $1 es la plataforma primaria de MediaWiki y la mejor compatibilizada ([http://www.php.net/manual/es/mysql.installation.php cómo compilar PHP con compatibilidad MySQL])',
@@ -2174,7 +2145,7 @@ No uses espacios o guiones.
 Este nombre será usado como nombre del archivo de datos de SQLite.',
 	'config-sqlite-mkdir-error' => 'Error al crear el directorio de datos "$1".
 Comprueba la ubicación e inténtalo de nuevo.',
-	'config-sqlite-dir-unwritable' => 'No se puede escribir en el directorio "$1".
+	'config-sqlite-dir-unwritable' => 'No se puede escribir en el directorio "$1". 
 Modifica los permisos para que el servidor web pueda escribir en él y vuelve a intentarlo.',
 	'config-sqlite-connection-error' => '$1.
 
@@ -2191,7 +2162,7 @@ Para actualizarlas a MediaWiki $1, haz clic en '''Continuar'''.",
 	'config-db-web-help' => 'Elige el usuario y contraseña que el servidor Web usará para conectarse al servidor de la base de datos durante el fincionamiento normal del wiki.',
 	'config-db-web-account-same' => 'Utilizar la misma cuenta que en la instalación',
 	'config-db-web-create' => 'Crear la cuenta si no existe',
-	'config-db-web-no-create-privs' => 'La cuenta que has especificado para la instalación no tiene privilegios suficientes para crear una cuenta.
+	'config-db-web-no-create-privs' => 'La cuenta que has especificado para la instalación no tiene privilegios suficientes para crear una cuenta. 
 La cuenta que especifiques aquí debe existir.',
 	'config-mysql-engine' => 'Motor de almacenamiento:',
 	'config-mysql-innodb' => 'InnoDB',
@@ -2271,21 +2242,17 @@ Muchos servidores de correo electrónico exigen que por lo menos la parte del no
 	'config-upload-settings' => 'Cargas de imágenes y archivos',
 	'config-upload-enable' => 'Habilitar la subida de archivos',
 	'config-upload-deleted' => '*Directório para los archivos eliminados:',
-	'config-upload-deleted-help' => 'Elige un directorio en el que guardar los archivos eliminados.
+	'config-upload-deleted-help' => 'Elige un directorio en el que guardar los archivos eliminados. 
  Lo ideal es que esto no deba ser accesible desde la red.',
 	'config-logo' => 'URL del logo :',
 	'config-instantcommons' => 'Habilitar Instant Commons',
-	'config-instantcommons-good' => 'El instalado pudo detectar la conectividad a Internet durante las verificaciones de entorno.
-Puedes activar esta función si lo deseas.',
-	'config-instantcommons-bad' => "''Desafortunadamente, el programa de instalación no pudo detectar la conectividad a Internet durante las comprobaciones de entorno, así que es posible que no puedas utilizar esta funcionalidad.
- Si el servidor está detrás de un proxy, puede que tengas que hacer [http://www.mediawiki.org/wiki/Manual:\$wgHTTPProxy configuraciones adicionales].''",
-	'config-cc-error' => 'El selector de licencia de Creative Commons no dio resultado.
+	'config-cc-error' => 'El selector de licencia de Creative Commons no dio resultado. 
 Escribe el nombre de la licencia manualmente.',
 	'config-cc-again' => 'Elegir otra vez...',
 	'config-cc-not-chosen' => 'Elige la licencia Creative Commons que desees y haz clic en "continuar".',
 	'config-advanced-settings' => 'Configuración avanzada',
 	'config-cache-options' => 'Configuración de la caché de objetos:',
-	'config-cache-help' => 'El almacenamiento en caché de objetos se utiliza para mejorar la velocidad de MediaWiki mediante el almacenamiento en caché los datos usados más frecuentemente.
+	'config-cache-help' => 'El almacenamiento en caché de objetos se utiliza para mejorar la velocidad de MediaWiki mediante el almacenamiento en caché los datos usados más frecuentemente. 
 A los sitios medianos y grandes se les recomienda que permitirlo. También es beneficioso para los sitios pequeños.',
 	'config-cache-none' => 'Sin almacenamiento en caché (no es removida ninguna funcionalidad, pero la velocidad de operación puede verse afectada en los wikis grandes)',
 	'config-cache-accel' => 'Almacenamiento en caché de objetos PHP (APC, eAccelerator, XCache o WinCache)',
@@ -2308,7 +2275,7 @@ Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
 	'config-install-user' => 'Creando el usuario de la base de datos',
 	'config-install-user-failed' => 'La concesión de permisos para el usuario "$1" ha fallado: $2',
 	'config-install-tables' => 'Creando tablas',
-	'config-install-tables-exist' => "'''Advertencia''': Al parecer, las tablas MediaWiki ya existen.
+	'config-install-tables-exist' => "'''Advertencia''': Al parecer, las tablas MediaWiki ya existen. 
  No se creará tablas.",
 	'config-install-tables-failed' => "'''Error''': La creación de las tablas falló con el siguiente error: $1",
 	'config-install-interwiki' => 'Llenando la tabla interwiki predeterminada',
@@ -2419,9 +2386,6 @@ $messages['fi'] = array(
 	'config-localsettings-upgrade' => "'''Varoitus''': <code>LocalSettings.php</code> -tiedosto on tunnistettu.
 Voit päivittää ohjelmiston.
 Siirrä <code>LocalSettings.php</code> johonkin turvalliseen paikkaan ja aja sitten asennus uudelleen.",
-	'config-localsettings-noupgrade' => "'''Virhe''': <code>LocalSettings.php</code> -tiedosto on havaittu.
-Ohjelmistoasi ei voida päivittää tällä hetkellä.
-Asennusohjelma on poistettu käytöstä turvallisuussyistä.",
 	'config-session-error' => 'Istunnon aloittaminen epäonnistui: $1',
 	'config-session-expired' => 'Istuntotietosi näyttävät olevan vanhentuneita.
 Istuntojen elinajaksi on määritelty $1.
@@ -2460,13 +2424,6 @@ Sinun pitäisi antaa näiden tarkistusten tulokset, jos tarvitset apua asennukse
 Voit asentaa MediaWikin.</span>',
 	'config-env-bad' => 'Asennusympäristö on tarkastettu.
 Et voi asentaa MediaWikiä.',
-	'config-env-php' => 'PHP $1 on asennettu.',
-	'config-env-latest-ok' => 'Olet asentamassa MediaWikin viimeisintä versiota.',
-	'config-env-latest-new' => "'''Huomautus:''' Olet asentamassa MediaWikin kehitysversiota.",
-	'config-env-latest-can-not-check' => "'''Varoitus:''' Asennus ei voinut hakea tietoja viimeisimmästä MediaWiki-julkaisusta lähteestä [$1].",
-	'config-env-latest-old' => "'''Varoitus:''' Olet asentamassa vanhentunut versiota MediaWikistä.",
-	'config-env-latest-help' => 'Olet asentamassa versiota $1, mutta viimeisin versio on $2.
-Sinun kannattaisi käyttää viimeisintä versiota, joka voidaan ladata osoitteesta [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-no-db' => 'Sopivaa tietokanta-ajuria ei löytynyt!',
 	'config-no-db-help' => 'Sinun pitää asentaa tietokanta-ajuri PHP:lle.
 Seuraavat tietokantatyypit on tuettu: $1.
@@ -2478,14 +2435,10 @@ Jos olet asentanut PHP:n Debian tai Ubuntu-paketista, sinun pitää asentaa myö
 Se voi aiheuttaa ongelmia erityisesti tiedostojen tallentamisen ja matemaattisten kaavojen kanssa.",
 	'config-pcre' => 'PCRE-tukimoduuli puuttuu.
 MediaWiki vaatii toimiakseen Perl-yhteensopivat säännölliset lausekkeet.',
-	'config-memory-none' => 'PHP-asetusta <code>memory_limit</code> ei ole asetettu.',
-	'config-memory-ok' => 'PHP:n <code>memory_limit</code>-asetuksen arvo on $1.
-OK.',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] on asennettu',
 	'config-apc' => '[http://www.php.net/apc APC] on asennettu.',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] on asennettu',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] on asennettu',
-	'config-diff3-good' => 'GNU diff3 löytyi: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3:a ei löytynyt.',
 	'config-db-type' => 'Tietokannan tyyppi',
 	'config-db-host' => 'Tietokantapalvelin',
@@ -2560,9 +2513,6 @@ Votre logiciel est capable de se mettre à jour.
 Veuillez saisir la valeur de <code>\$wgUpgradeKey</code> dans le champ.",
 	'config-localsettings-key' => 'Clé de mise à jour :',
 	'config-localsettings-badkey' => 'La clé que vous avez fourni est incorrecte',
-	'config-localsettings-noupgrade' => "'''Erreur''': Un fichier <code>LocalSettings.php</code> a été détecté.
-Votre logiciel ne peut pas se mettre à jour actuellement.
-Le programme d’installation a été désactivé pour des raisons de sécurité.",
 	'config-session-error' => 'Erreur lors du démarrage de la session : $1',
 	'config-session-expired' => "↓Les données de votre session semblent avoir expiré.
 Les sessions sont configurées pour une durée de $1.
@@ -2591,7 +2541,6 @@ Vérifiez votre fichier php.ini et assurez-vous que <code>session.save_path</cod
 	'config-page-releasenotes' => 'Notes de version',
 	'config-page-copying' => 'Copie',
 	'config-page-upgradedoc' => 'Mise à jour',
-	'config-page-locked' => 'Permission refusée',
 	'config-help-restart' => "Voulez-vous effacer toutes les données enregistrées que vous avez entrées et relancer le processus d'installation ?",
 	'config-restart' => 'Oui, le relancer',
 	'config-welcome' => "=== Vérifications liées à l’environnement ===
@@ -3016,9 +2965,6 @@ O seu software está listo para a actualización.
 Introduza o valor de <code>\$wgUpgradeKey</code> na caixa.",
 	'config-localsettings-key' => 'Clave de actualización:',
 	'config-localsettings-badkey' => 'A clave dada é incorrecta',
-	'config-localsettings-noupgrade' => "'''Erro:''' Detectouse un ficheiro <code>LocalSettings.php</code>.
-O seu software non está listo para a actualización nestes intres.
-O instalador foi desactivado por motivos de seguridade.",
 	'config-session-error' => 'Erro ao iniciar a sesión: $1',
 	'config-session-expired' => 'Semella que os seus datos da sesión caducaron.
 As sesións están configuradas para unha duración de $1.
@@ -3047,7 +2993,6 @@ Comprobe o seu php.ini e asegúrese de que en <code>session.save_path</code> est
 	'config-page-releasenotes' => 'Notas de lanzamento',
 	'config-page-copying' => 'Copiar',
 	'config-page-upgradedoc' => 'Actualizar',
-	'config-page-locked' => 'Permisos rexeitados',
 	'config-help-restart' => 'Quere eliminar todos os datos gardados e reiniciar o proceso de instalación?',
 	'config-restart' => 'Si, reiniciala',
 	'config-welcome' => '=== Comprobación do entorno ===
@@ -3473,9 +3418,6 @@ Dyy Software cha aktualisiert wäre.
 Bitte dr Wärt vum Parameter <code>\$wgUpgradeKey</code> im Fäld aagee.",
 	'config-localsettings-key' => 'Aktualisierigsschlissel:',
 	'config-localsettings-badkey' => 'Dr Aktualisierigsschlissel, wu du aagee hesch, isch falsch.',
-	'config-localsettings-noupgrade' => "'''Fähler''': D Datei <code>LocalSettings.php</code> isch it gfunde wore.
-Dyy Software cha zurzyt nit aktualisiert wäre.
-S Inschtallationsprogramm sich us Sicherheitsgrind deaktiviert wore.",
 	'config-session-error' => 'Fähler bim Starte vu dr Sitzig: $1',
 	'config-session-expired' => 'D Sitzigsdate sin schyns abgloffe.
 Sitzige sin fir e Zytruum vu $1 konfiguriert.
@@ -3488,8 +3430,6 @@ D Datei <code>php.ini</code> mueß prieft wäre un s mueß derby sichergstellt w
 	'config-your-language-help' => 'Bitte d Sproch uuswehle, wu bim Inschtallationsvorgang soll brucht wäre.',
 	'config-wiki-language' => 'Wikisproch:',
 	'config-wiki-language-help' => 'Bitte d Sproch uuswehle, wu s Wiki in dr Hauptsach din gschribe wird.',
-	'config-allow-requests' => 'Extärni Zuegriff uf „MediaWiki.org“ zueloo',
-	'config-allow-requests-help' => 'Wänn aktiviert, cha s Inschtallationsprogramm uf „MediaWiki.org“ iberpriefe, eb tatsächli di aktuäll Version inschtalliert wird.',
 	'config-back' => '← Zruck',
 	'config-continue' => 'Wyter →',
 	'config-page-language' => 'Sproch',
@@ -3506,7 +3446,6 @@ D Datei <code>php.ini</code> mueß prieft wäre un s mueß derby sichergstellt w
 	'config-page-releasenotes' => 'Hiiwys fir d Vereffentlichung',
 	'config-page-copying' => 'Am Kopiere',
 	'config-page-upgradedoc' => 'Am Aktualisiere',
-	'config-page-locked' => 'Zuegriff verweigeret',
 	'config-help-restart' => 'Witt alli Date, wu Du yygee hesch, lesche un d Inschtallation nomol aafange?',
 	'config-restart' => 'Jo, nomol aafange',
 	'config-welcome' => '=== Priefig vu dr Inschtallationsumgäbig ===
@@ -3529,14 +3468,6 @@ E <doclink href=Copying>Kopi vu dr GNU General Public-Lizänz</doclink> sott zä
 Du chasch MediaWiki inschtalliere.</span>',
 	'config-env-bad' => 'D Inschtallationsumgäbigisch prieft wore.
 Du chasch MediaWiki nit inschtalliere.',
-	'config-env-php' => 'PHP $1 isch inschtalliert.',
-	'config-env-latest-disabled' => 'Extärni HTTP-Aafroge sin nit zuegloo. Versionsiberpriefig wird ibergumpt',
-	'config-env-latest-ok' => 'Du bisch am Inschtalliere vu dr nejschte Programmversion vu MediaWiki.',
-	'config-env-latest-new' => "'''Hiiwys:''' Du bisch am Inschtalliere vun ere Entwickligsversion vu MediaWiki.",
-	'config-env-latest-can-not-check' => "'''Hiiwyys:''' S Inschtallationsprogramm het kei Informatione vu [$1] chenne abruefe zue dr nejschte Programmversion vu MediaWiki.",
-	'config-env-latest-old' => "'''Warnig:''' Du bisch am Ischtlaiiere vun ere veraltete Programmversion vu MediaWiki.",
-	'config-env-latest-help' => 'Du bisch am Ischtlaiiere vu dr Version $1, di nejscht Version isch aber $2.
-S wird empfohle die nejscht Version z verwände, wu vu [http://www.mediawiki.org/wiki/Download/de mediawiki.org] cha abeglade wäre.',
 	'config-unicode-using-utf8' => 'Fir d Unicode-Normalisierig wird em Brion Vibber syy utf8_normalize.so yygsetzt.',
 	'config-unicode-using-intl' => 'For d Unicode-Normalisierig wird d [http://pecl.php.net/intl PECL-Erwyterig intl] yygsetzt.',
 	'config-unicode-pure-php-warning' => "'''Warnig:''' D [http://pecl.php.net/intl PECL-Erwyterig intl] isch fir d Unicode-Normalisierig nit verfiegbar. Wäge däm wird di langsam pure-PHP-Implementierig brucht.
@@ -3550,8 +3481,6 @@ Die Datebanksyschtem wäre unterstitzt: $1
 Wänn Du ne gmeinschaftli gnutzte Server fir s Hosting bruchsch, muesch dr Hoster froge go ne adäquate Datebanktryyber inschtalliere.
 Wänn Du PHP sälber kumpiliert hesch, muesch s nej konfiguriere, dr Datebankclient mueß aktiviert wäre. Doderzue chasch zem Byschpel <code>./configure --with-mysql</code> uusfiere.
 Wänn Du PHP iber d Paketverwaltig vun ere Debian- oder Ubuntu-Inschtallation inschtalliert hesch, muesch s „php5-mysql“-Paket nooinschtalliere.',
-	'config-have-db' => '{{PLURAL:$2|Datebanktryyber|Datebanktryyber}} gfunde: $1.',
-	'config-have-fts3' => 'SQLite isch zämme mit em [http://sqlite.org/fts3.html FTS3-Modul] kumpiliert wore, ass d Suechfunktione z Verfiegig stehn.',
 	'config-no-fts3' => "'''Warnig:''' SQLite isch ohni s [http://sqlite.org/fts3.html FTS3-Modul] kumpiliert wore, s stehn kei Suechfunktione z Verfiegig.",
 	'config-register-globals' => "'''Warnig: Dr Parameter <code>[http://php.net/register_globals register_globals]</code> vu PHP isch aktiviert.'''
 '''Är sott deaktiviert wäre, wänn des megli isch.'''
@@ -3570,7 +3499,6 @@ Die Yystellig fiert zue große Fähler bi MediaWiki.
 MediaWiki cha nit inschtalliert wäre, solang dää Parameter nit deaktiviert woren isch.",
 	'config-safe-mode' => "'''Warnig:''' D Funktion <code>[http://www.php.net/features.safe-mode Safe Mode]</code> vu PHP isch aktiviert.
 Des cha zue Probläm fiere, vor allem wänn s Uffelade vu Dateie soll megli syy bzw. dr Uuszeichner <code>math</code> soll brucht wäre.",
-	'config-xml-good' => 'D XML/Latin1-UTF-8 Umwandlig isch verfiegbar.',
 	'config-xml-bad' => 'S XML-Modul vu PHP fählt.
 MediaWiki brucht Funktione, wu au des Modul z Verfiegig stellt, un funktioniert in däre Konfiguration nit.
 Wänn Mandriva brucht wird, mueß no s „php-xml“-Paket inschtalliert wäre.',
@@ -3578,9 +3506,6 @@ Wänn Mandriva brucht wird, mueß no s „php-xml“-Paket inschtalliert wäre.'
 MediaWiki brucht aber perl-kompatibli reguläri Uusdruck zum lauffähig syy.',
 	'config-pcre-no-utf8' => "'''Fatale Fähler: S PHP-Modul PCRE isch schyns ohni PCRE_UTF8-Unterstitzig kompiliert wore.'''
 MediaWiki brucht d UTF-8-Unterstitzi zum fählerfrej lauffähig syy.",
-	'config-memory-none' => 'PHP isch ohni dr Parameter <code>memory_limit</code> konfiguriert wore',
-	'config-memory-ok' => 'Dr PHP-Parameter <code>memory_limit</code> het dr Wärt $1.
-In Ornig.',
 	'config-memory-raised' => 'Dr PHP-Parameter <code>memory_limit</code> lyt bi $1 un isch uf $2 uffegsetzt wore.',
 	'config-memory-bad' => "'''Warnig:''' Dr PHP-Parameter <code>memory_limit</code> lyt bi $1.
 Dää Wärt isch wahrschyns z nider.
@@ -3591,7 +3516,6 @@ Dr Inschtallationsvorgang chennt wäge däm fählschlaa!",
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] isch inschtalliert',
 	'config-no-cache' => "'''Warnig:''' [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] hän nit chenne gfunde wäre.
 S Objäktcaching isch wäge däm nit aktiviert.",
-	'config-diff3-good' => 'GNU diff3 isch gfunde wore: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 isch nit gfunde wore.',
 	'config-imagemagick' => 'ImageMagick isch gfunde wore: <code>$1</code>.
 Miniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch.',
@@ -3698,14 +3622,11 @@ $messages['hsb'] = array(
 	'config-desc' => 'Instalaciski program za MediaWiki',
 	'config-title' => 'Instalacija MediaWiki $1',
 	'config-information' => 'Informacije',
-	'config-localsettings-upgrade' => "'''Warnowanje''': Dataja <code>LocalSettings.php</code> je so wotkryła.
-Twoja softwara da so aktualizować.
-Prošu zapodaj hódnotu za <code>\$wgUpgradeKey</code> do pola.",
+	'config-localsettings-upgrade' => 'Dataja <code>LocalSettings.php</code> je so wotkryła.
+Zo by tutu instalaciju aktualizował, zapodaj prošu hódnotu za parameter <code>$wgUpgradeKey</code> do slědowaceho pola.
+Namakaš tón parameter w dataji LocalSettings.php.',
 	'config-localsettings-key' => 'Aktualizaciski kluč:',
 	'config-localsettings-badkey' => 'Kluč, kotryž sy podał, je wopak',
-	'config-localsettings-noupgrade' => "'''Zmylk''': Dataja <code>LocalSettings.php</code> je so namakała.
-Twoja softwara njeda so tuchwilu aktualizować.
-Instalaciski program je so z přičinow wěstosće znjemónił.",
 	'config-session-error' => 'Zmylk při startowanju posedźenja: $1',
 	'config-session-expired' => 'Zda so, zo twoje posedźenske daty su spadnjene.
 Posedźenja su za čas žiwjenja $1 skonfigurowane.
@@ -3734,7 +3655,7 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 	'config-page-releasenotes' => 'Wersijowe informacije',
 	'config-page-copying' => 'Kopěrowanje',
 	'config-page-upgradedoc' => 'Aktualizowanje',
-	'config-page-locked' => 'Dowolnosć zapowědźena',
+	'config-page-existingwiki' => 'Eksistowacy wiki',
 	'config-help-restart' => 'Chceš wšě składowane daty hašeć, kotrež sy zapodał a instalaciski proces znowa startować?',
 	'config-restart' => 'Haj, znowa startować',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki Startowa strona MediaWiki]
@@ -3959,9 +3880,6 @@ $messages['hu'] = array(
 	'config-localsettings-upgrade' => "'''Figyelmeztetés''': már létezik a <code>LocalSettings.php</code> fájl.
 A szoftver frissíthető.
 Add meg a <code>\$wgUpgradeKey</code>-ben található kulcsot a beviteli mezőben",
-	'config-localsettings-noupgrade' => "'''Hiba''': már létezik a <code>LocalSettings.php</code> fájl.
-A szoftver jelenleg nem frissíthető.
-A telepítő le van tiltva biztonsági okok miatt.",
 	'config-session-error' => 'Nem sikerült elindítani a munkamenetet: $1',
 	'config-session-expired' => 'Úgy tűnik, hogy a munkamenetadatok lejártak.
 A munkamenetek élettartama a következőre van beállítva: $1.
@@ -4224,14 +4142,21 @@ $messages['ia'] = array(
 	'config-desc' => 'Le installator de MediaWiki',
 	'config-title' => 'Installation de MediaWiki $1',
 	'config-information' => 'Information',
-	'config-localsettings-upgrade' => "'''Attention''': Un file <code>LocalSettings.php</code> ha essite detegite.
-Es possibile actualisar le software.
-Per favor completa le valor de <code>\$wgUpgradeKey</code> in le quadro.",
+	'config-localsettings-upgrade' => 'Un file <code>LocalSettings.php</code> ha essite detegite.
+Pro actualisar iste installation, per favor entra le valor de <code>$wgUpgradeKey</code> in le quadro hic infra.
+Iste se trova in LocalSettings.php.',
 	'config-localsettings-key' => 'Clave de actualisation:',
 	'config-localsettings-badkey' => 'Le clave que tu forniva es incorrecte',
-	'config-localsettings-noupgrade' => "'''Error''': Un file <code>LocalSettings.php</code> ha essite detegite.
-Non es possibile actualisar tu software a iste momento.
-Le installator ha essite disactivate pro motivos de securitate.",
+	'config-upgrade-key-missing' => 'Un installation existente de MediaWiki ha essite detegite.
+Pro actualisar iste installation, per favor adjunge le sequente linea al fin de tu LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'Le file LocalSettings.php existente pare esser incomplete.
+Le variabile $1 non es definite.
+Per favor cambia LocalSettings.php de sorta que iste variabile es definite, e clicca "Continuar".',
+	'config-localsettings-connection-error' => 'Un error esseva incontrate durante le connexion al base de datos usante le configurationes specificate in LocalSettings.php o AdminSettings.php. Per favor repara iste configurationes e tenta lo de novo.
+
+$1',
 	'config-session-error' => 'Error al comenciamento del session: $1',
 	'config-session-expired' => 'Le datos de tu session pare haber expirate.
 Le sessiones es configurate pro un duration de $1.
@@ -4260,7 +4185,7 @@ Verifica tu php.ini e assecura te que un directorio appropriate es definite in <
 	'config-page-releasenotes' => 'Notas del version',
 	'config-page-copying' => 'Copiar',
 	'config-page-upgradedoc' => 'Actualisar',
-	'config-page-locked' => 'Permission refusate',
+	'config-page-existingwiki' => 'Wiki existente',
 	'config-help-restart' => 'Vole tu rader tote le datos salveguardate que tu ha entrate e reinitiar le processo de installation?',
 	'config-restart' => 'Si, reinitia lo',
 	'config-welcome' => '=== Verificationes del ambiente ===
@@ -4689,9 +4614,6 @@ Perangkat lunak ini dapat memutakhirkannya.
 Masukkan <code>\$wgUpgradeKey</code> dalam kotak yang tersedia.",
 	'config-localsettings-key' => 'Kunci pemutakhiran:',
 	'config-localsettings-badkey' => 'Kunci yang Anda berikan tidak benar',
-	'config-localsettings-noupgrade' => "'''Kesalahan''': Berkas <code>LocalSettings.php</code> telah ada.
-Perangkat lunak tidak bisa memutakhirkannya saat ini.
-Penginstal telah dinonaktifkan demi alasan keamanan.",
 	'config-session-error' => 'Kesalahan sesi mulai: $1',
 	'config-session-expired' => 'Data sesi tampaknya telah kedaluwarsa.
 Sesi dikonfigurasi untuk berlaku selama $1.
@@ -4720,7 +4642,6 @@ Cek php.ini Anda dan pastikan bahwa <code>session.save_path</code> diatur ke dir
 	'config-page-releasenotes' => 'Catatan pelepasan',
 	'config-page-copying' => 'Menyalin',
 	'config-page-upgradedoc' => 'Memerbarui',
-	'config-page-locked' => 'Izin ditolak',
 	'config-help-restart' => 'Apakah Anda ingin menghapus semua data tersimpan yang telah Anda masukkan dan mengulang proses instalasi?',
 	'config-restart' => 'Ya, nyalakan ulang',
 	'config-welcome' => '=== Pengecekan lingkungan ===
@@ -5175,9 +5096,6 @@ $messages['ja'] = array(
 ボックス中の<code>\$wgUpgradeKey</code>の値を入力してください。",
 	'config-localsettings-key' => 'アップグレードキー：',
 	'config-localsettings-badkey' => '与えられたキーが間違っています',
-	'config-localsettings-noupgrade' => "'''エラー'''：<code>LocalSettings.php</code>ファイルが検出されました。
-現在、ソフトウェアを更新できません。
-セキュリティ上の理由で、インストーラーは無効になっています。",
 	'config-session-error' => 'セッションの開始エラー：$1',
 	'config-session-expired' => 'セッションの有効期限が切れたようです。
 セッションの有効期間は$1に設定されています。
@@ -5206,7 +5124,6 @@ php.iniを確認し、<code>session.save_path</code>が適切なディレクト�
 	'config-page-releasenotes' => 'リリースノート',
 	'config-page-copying' => 'コピー',
 	'config-page-upgradedoc' => '更新',
-	'config-page-locked' => '許可されていません',
 	'config-help-restart' => '入力された全て保存データを消去し、インストール作業を再起動しますか？',
 	'config-restart' => 'はい、再起動します',
 	'config-welcome' => '=== 環境の確認 ===
@@ -5650,9 +5567,6 @@ $messages['ksh'] = array(
 	'config-localsettings-upgrade' => "'''Opjepaß''': De Dattei <code>LocalSettings.php</code> es ald doh.
 Di Projramme, di ald doh sin, künne op der neuste Shtand jebraat wääde.
 Donn de <code>LocalSettings.php</code> aan enem seshere Plaz aflääje, un dann dat Projramm för et Opsäze norr_ens aanschmiiße.",
-	'config-localsettings-noupgrade' => "'''Fähler''': De Dattei <code>LocalSettings.php</code> es ald doh.
-Di Projramme, di ald doh sin, künne ävver nit op der neue Shtand jebraat wääde.
-Dat Projramm för et Opsäze es zor Sesherheit afjeschalldt.",
 	'config-session-error' => 'Ene Fähler es opjetrodde beim Aanmelde för en Sezung: $1',
 	'config-session-expired' => 'De Daate för Ding Setzung sinn wall övverholld of afjeloufe.
 De Setzungunge sin esu enjeshtallt, nit mieh wi $1 ze doore.
@@ -5694,14 +5608,6 @@ Do sullts aanjävve, wat erus kohm, wann de Hölp bem Opsäze bruchs.',
 Do kanns MediaWiki opsäze.</span>',
 	'config-env-bad' => 'De Ömjävung es jeprööf.
 Do kanns MediaWiki nit opsäze.',
-	'config-env-php' => 'PHP $1 es doh.',
-	'config-env-latest-ok' => 'Do kriß de neuste Version vun Mediawiki opjesaz.',
-	'config-env-latest-new' => "'''Opjepaß:''' Do kriß de Änwecklungsversion vun Mediawiki opjesaz.",
-	'config-env-latest-can-not-check' => "'''Opjepaß:''' Mer kunnte kein Enfommazjuhne vun [$1] krijje övver de neuste Version vun Mediawiki.",
-	'config-env-latest-old' => "'''Opjepaß:''' Mer sin en övverhollte Version vun Mediawiki aam opsäze!",
-	'config-env-latest-help' => 'Mer donn jraad de Version $1 opsäze, ävver de neuste Version es $2.
-Mer dääte vörschlonn, de neuste Versoin ze nämme, wann müjjelisch.
-Di kam_mer vun [http://www.mediawiki.org/wiki/Download/de mediawiki.org] erunger laade.',
 	'config-unicode-using-utf8' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer däm <i lang="en">Brion Vibber</i> sing Projramm <code lang="en">utf8_normalize.so</code> nämme.',
 	'config-unicode-using-intl' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] nämme.',
 	'config-unicode-pure-php-warning' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] för et <i lang="en">Unicode</i>-Nommaliseere nit fenge.
@@ -5715,8 +5621,7 @@ Mer künne met heh dä Daatebangke ömjonn: $1.
 Wann De nit om eijene Rääshner bes, moß De Dinge <i lang="en">provider</i> bedde, dat hä Der ene zopaß Driiver enresht.
 Wann de PHP sellver övversaz häs, donn ene Zohjang för en Daatebangk enbenge, för e Beishpell met: <code  lang="en">./configure --with-mysql</code> op ene <i lang="en">command shell</i>.
 Wann De PHP uss enem <i lang="en">Debian</i> udder <i lang="en">Ubuntu</i> Pakätt enjeresht häs, moß De dann och noch et <code lang="en">php5-mysql</code> op Dinge Räschner bränge.',
-	'config-have-db' => '{{PLURAL:$2|Ei Daatebangk-Driiverprojamm|$2 Daatebangk-Driiverprojamme|Kei Daatebangk-Driiverprojamm}} jevonge: $1.',
-	'config-register-globals' => "'''Opjepaß:''' dem PHP singe Schallder <code lang=\"en\">[http://php.net/register_globals register_globals]</code> es enjeschalldt.
+	'config-register-globals' => "'''Opjepaß:''' dem PHP singe Schallder <code lang=\"en\">[http://php.net/register_globals register_globals]</code> es enjeschalldt. 
 '''Donn dä ußmaache, wann De kann.'''
 MediaWiki löp och esu, dä künnt ävver Sesherheitslöcke opmaache, di mer noch nit jefonge un eruß jemaat hät.",
 	'config-magic-quotes-runtime' => "'''Dä!''' Dem PHP singe Schallder <code lang=\"en\">[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]</code> es enjeschalldt.
@@ -5735,9 +5640,6 @@ Dat heiß, mer moß en affschallde, söns jeiht nix.",
 Dat sorresch för schräcklejje Fähler em MediaWiki.
 Dat kam_mer domet nit ennreeshte un och nit loufe lohße.
 Dat heiß, mer moß en affschallde, söns jeiht nix.",
-	'config-memory-none' => 'PHP es ohne dä Parameeter <code lang="en">memory_limit</code> ennjeresht.',
-	'config-memory-ok' => 'Dem PHP singe Parameeter <code lang="en">memory_limit</code> es $1.
-Joot esu.',
 	'config-memory-raised' => 'Dem PHP singe Parameeter <code lang="en">memory_limit</code> es $1.
 Op $2 erop jesaz.',
 	'config-memory-bad' => "'''Opjepaß:''' Dem PHP singe Parameeter <code lang=\"en\">memory_limit</code> es \$1.
@@ -5749,9 +5651,7 @@ Et Enreeschte kunnt doh draan kappott jon!",
 	'config-wincache' => 'Dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> es ennjeresht.',
 	'config-no-cache' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä <code lang="en">[http://eaccelerator.sourceforge.net eAccelerator]</code>, dä <code lang="en">[http://www.php.net/apc APC]</code>, dä <code lang="en">[http://trac.lighttpd.net/xcache/ XCache]</code> un dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> nit fenge.
 Et <i lang="en">object caching</i> es nit müjjelesh un ußjeschalldt.',
-	'config-diff3-good' => 'Han <i lang="en">GNU</i> <code lang="en">diff3</code> jefonge: <code lang="en">$1</code>',
 	'config-diff3-bad' => 'Han <i lang="en">GNU</i> <code lang="en">diff3</code> nit jefonge.',
-	'config-shell-locale' => 'Mer han de <i lang="en">locale</i> „$1“ för de <i lang="en">shell</i> jefonge',
 	'config-db-type' => 'Zoot Daatebangk:',
 	'config-db-host' => 'Dä Name vun däm Rääschner met dä Daatebangk:',
 	'config-db-host-help' => 'If your Zoot Daatebangk: server is on different server, enter the host name or IP address here.
@@ -5824,15 +5724,11 @@ $messages['lb'] = array(
 Setzt w.e.g. de Wäert vum <code\$wgUpgradeKey</code> an d'Këscht.",
 	'config-localsettings-key' => 'Aktualisatiounsschlëssel:',
 	'config-localsettings-badkey' => 'De Schlëssel deen Dir aginn hutt ass net korrekt',
-	'config-localsettings-noupgrade' => "'''Feeler''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
-Är Software kann elo net aktualiséiert ginn.
-Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
 	'config-session-error' => 'Feeler beim Starte vun der Sessioun: $1',
 	'config-your-language' => 'Är Sprooch',
 	'config-your-language-help' => 'Sicht déi Sprooch eraus déi Dir während der Installatioun benotze wëllt',
 	'config-wiki-language' => 'Sprooch vun der Wiki:',
 	'config-wiki-language-help' => "Sicht d'Sprooch eraus an där d'Wiki haaptsächlech geschriwwe gëtt.",
-	'config-allow-requests' => 'Extern Ufroen op MediaWiki.org erlaben',
 	'config-back' => '← Zréck',
 	'config-continue' => 'Weider →',
 	'config-page-language' => 'Sprooch',
@@ -5849,7 +5745,6 @@ Den Installatiounsprogramm gouf aus Sécherheetsgrënn ausgeschalt.",
 	'config-page-releasenotes' => 'Informatiounen zur Versioun',
 	'config-page-copying' => 'Kopéieren',
 	'config-page-upgradedoc' => 'Aktualiséieren',
-	'config-page-locked' => 'Erlaabnis refuséiert',
 	'config-help-restart' => 'Wëllt dir all gespäichert Donnéeë läschen déi dir bis elo aginn hutt an den Installatiounsprozess nei starten?',
 	'config-restart' => 'Jo, neistarten',
 	'config-welcome' => "=== Iwwerpréifung vum Installatiounsenvironnement ===
@@ -5863,27 +5758,14 @@ Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Insta
 Dir kënnt MediaWiki installéieren.</span>',
 	'config-env-bad' => 'Den Environnement gouf iwwerpréift.
 Dir kënnt MediWiki net installéieren.',
-	'config-env-php' => 'PHP $1 ass installéiert.',
-	'config-env-latest-ok' => 'Dir installéiert déi rezenst Versioun vu MediaWiki.',
-	'config-env-latest-new' => "'''Hiweis:''' Dir installéiert eng Entwécklungsversioun vu MediaWiki.",
-	'config-env-latest-can-not-check' => "'''Opgepasst:''' Den Installatiounsprogramm konnt keng Informatioun iwwer déi leschte Versioun vu MediaWiki op [$1] ofrufen.",
-	'config-env-latest-old' => "'''Warnung:''' Dir installéiert eng vereelste Versioun vu MediaWiki.",
-	'config-env-latest-help' => "Dir installéiert d'Versioun $1, awer déi lescht Versioun ass $2.
-Et gëtt geroden déi lescht Release ze benotzen, déi Dir vun [http://www.mediawiki.org/wiki/Download mediawiki.org] erofluede kënnt.",
 	'config-no-db' => 'Et konnt kee passenden Datebank-Driver fonnt ginn!',
-	'config-memory-none' => 'PHP ass ouni <code>memory_limit</code> configuréiert.',
-	'config-memory-ok' => 'De PHP-Parameter <code>memory_limit</code> huet de Wäert $1.
-OK.',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] ass installéiert',
 	'config-apc' => '[http://www.php.net/apc APC] ass installéiert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] ass installéiert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ass installéiert',
-	'config-diff3-good' => 'GNU diff3 gouf fonnt: <code>$1</code>.',
 	'config-diff3-bad' => 'GNU diff3 gouf net fonnt.',
-	'config-dir' => 'Installationsrepertoire: <code>$1</code>.',
 	'config-no-uri' => "'''Feeler:''' Déi aktuell URI konnt net festgestallt ginn.
 Installatioun ofgebrach.",
-	'config-file-extension' => 'MediaWiki mat <code>$1</code> Fichiers-Erweiderungen installéieren',
 	'config-db-type' => 'Datebanktyp:',
 	'config-db-wiki-settings' => 'Dës Wiki identifizéieren',
 	'config-db-name' => 'Numm vun der Datebank:',
@@ -5994,14 +5876,21 @@ $messages['mk'] = array(
 	'config-desc' => 'Инсталатор на МедијаВики',
 	'config-title' => 'Инсталатор на МедијаВики $1',
 	'config-information' => 'Информации',
-	'config-localsettings-upgrade' => "'''Предупредување''': Востановена е податотека <code>LocalSettings.php</code>.
-Вашиот програм може да се надградува.
-Во полето пополнете ја вредноста на <code>\$wgUpgradeKey</code>.",
+	'config-localsettings-upgrade' => 'Востановена е податотека <code>LocalSettings.php</code>.
+За да ја надградите инсталцијава, внесете ја вредноста на <code>$wgUpgradeKey</code> во полето подолу.
+Тоа е го најдете во LocalSettings.php.',
 	'config-localsettings-key' => 'Надградбен клуч:',
 	'config-localsettings-badkey' => 'Клучот што го наведовте е погрешен',
-	'config-localsettings-noupgrade' => "'''Грешка''': Востановена е податотека <code>LocalSettings.php</code>.
-Вашиот програм засега не може да се надгради.
-Инсталаторот е оневозможен од безбедносни причини.",
+	'config-upgrade-key-missing' => 'Востановена е постоечка инсталација на МедијаВики.
+За да ја надградите, вметнете го следниов ред на дното од вашата страница LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'Постоечката страница LocalSettings.php е нецелосна.
+Не е поставена променливата $1.
+Изменете ја страницата LocalSettings.php така што ќе ѝ зададете вредност на променливата, па стиснете на „Продолжи“.',
+	'config-localsettings-connection-error' => 'Се појави грешка при поврзувањето со базата користејќи ги поставките назначени во LocalSettings.php или AdminSettings.php. Исправете ги овие поставки и обидете се повторно.
+
+$1',
 	'config-session-error' => 'Грешка при започнување на сесијата: $1',
 	'config-session-expired' => 'Вашите сесиски податоци истекоа.
 Поставките на сесиите траат $1.
@@ -6030,7 +5919,7 @@ $messages['mk'] = array(
 	'config-page-releasenotes' => 'Белешки за изданието',
 	'config-page-copying' => 'Копирање',
 	'config-page-upgradedoc' => 'Надградба',
-	'config-page-locked' => 'Дозволата е одбиена',
+	'config-page-existingwiki' => 'Постоечко вики',
 	'config-help-restart' => 'Дали сакате да ги исчистите сите зачувани податоци што ги внесовте и да ја започнете инсталацијата одново?',
 	'config-restart' => 'Да, почни одново',
 	'config-welcome' => '=== Environmental checks ===
@@ -6478,7 +6367,6 @@ $messages['ml'] = array(
 	'config-page-releasenotes' => 'പ്രകാശന കുറിപ്പുകൾ',
 	'config-page-copying' => 'പകർത്തൽ',
 	'config-page-upgradedoc' => 'അപ്‌ഗ്രേഡിങ്',
-	'config-page-locked' => 'അനുമതി നിഷേധിച്ചിരിക്കുന്നു',
 	'config-help-restart' => 'ഇതുവരെ ഉൾപ്പെടുത്തിയ എല്ലാവിവരങ്ങളും ഒഴിവാക്കാനും ഇൻസ്റ്റലേഷൻ പ്രക്രിയ നിർത്തി-വീണ്ടുമാരംഭിക്കാനും താങ്കളാഗ്രഹിക്കുന്നുണ്ടോ?',
 	'config-restart' => 'അതെ, പുനർപ്രവർത്തിപ്പിക്കുക',
 	'config-sidebar' => '* [http://www.mediawiki.org മീഡിയവിക്കി പ്രധാനതാൾ]
@@ -6630,9 +6518,6 @@ Uw software kan bijgewerkt worden.
 Voor de waarde van <code>\$wgUpgradeKey</code> in in het vakje.",
 	'config-localsettings-key' => 'Upgradesleutel:',
 	'config-localsettings-badkey' => 'De sleutel die u hebt opgegeven is onjuist',
-	'config-localsettings-noupgrade' => "'''Fout''': er is een bestaand bestand <code>LocalSettings.php</code> aangetroffen.
-Uw software kan op dit moment niet bijgewerkt worden.
-Om veiligheidsredenen is het installatieprogramma uitgeschakeld.",
 	'config-session-error' => 'Fout bij het begin van de sessie: $1',
 	'config-session-expired' => 'Uw sessiegegevens zijn verlopen.
 Sessies zijn ingesteld om een levensduur van $1 te hebben.
@@ -6661,7 +6546,6 @@ Controleer uw php.ini en zorg dat er een juiste map is ingesteld voor <code>sess
 	'config-page-releasenotes' => 'Release notes',
 	'config-page-copying' => 'Kopiëren',
 	'config-page-upgradedoc' => 'Bijwerken',
-	'config-page-locked' => 'Toestemming geweigerd',
 	'config-help-restart' => 'Wilt u alle opgeslagen gegevens die u hebt ingevoerd wissen en het installatieproces opnieuw starten?',
 	'config-restart' => 'Ja, opnieuw starten',
 	'config-welcome' => '=== Controle ongeving ===
@@ -7141,9 +7025,6 @@ $messages['no'] = array(
 	'config-localsettings-upgrade' => "'''Advarsel''': En <code>LocalSettings.php</code>-fil har blitt oppdaget.
 Programvaren kan oppgraderes.
 Flytt <code>LocalSettings.php</code> til et trygt sted og kjør installasjonsprogrammet på nytt.",
-	'config-localsettings-noupgrade' => "'''Feil''': En <code>LocalSettings.php</code> fil har blitt oppdaget. 
-Programvaren kan ikke oppgraderes nå.
-Installasjonsprogrammet har blitt deaktivert av sikkerhetsmessige grunner.",
 	'config-session-error' => 'Feil under oppstart av økt: $1',
 	'config-session-expired' => 'Dine øktdata ser ut til å ha utløpt.
 Økter er konfigurert for en levetid på $1.
@@ -7535,9 +7416,6 @@ Oprogramowanie może zostać zaktualizowane.
 Wstaw wartość <code>\$wgUpgradeKey</code> w poniższe pole.",
 	'config-localsettings-key' => 'Klucz aktualizacji',
 	'config-localsettings-badkey' => 'Podany klucz jest nieprawidłowy',
-	'config-localsettings-noupgrade' => "'''Błąd!''' Wykryto, że plik <code>LocalSettings.php</code> istnieje.
-Oprogramowanie w tym momencie nie może zostać zaktualizowane.
-Instalator został wyłączony ze względów bezpieczeństwa.",
 	'config-session-error' => 'Błąd uruchomienia sesji – $1',
 	'config-session-expired' => 'Wygląda na to, że Twoja sesja wygasła.
 Czas życia sesji został skonfigurowany na $1.
@@ -7550,8 +7428,6 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-your-language-help' => 'Wybierz język używany podczas procesu instalacji.',
 	'config-wiki-language' => 'Język wiki',
 	'config-wiki-language-help' => 'Wybierz język, w którym będzie tworzona większość treści wiki',
-	'config-allow-requests' => 'Zezwalaj na zewnętrzne żądania do MediaWiki.org',
-	'config-allow-requests-help' => 'Włączenie umożliwia instalatorowi sprawdzanie na MediaWiki.org czy instalowana wersja jest ostatnią stabilną',
 	'config-back' => '← Wstecz',
 	'config-continue' => 'Dalej →',
 	'config-page-language' => 'Język',
@@ -7568,20 +7444,19 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-page-releasenotes' => 'Informacje o wersji',
 	'config-page-copying' => 'Kopiowanie',
 	'config-page-upgradedoc' => 'Uaktualnienie',
-	'config-page-locked' => 'Dostęp zabroniony',
 	'config-help-restart' => 'Czy chcesz usunąć wszystkie zapisane dane, które podałeś i uruchomić ponownie proces instalacji?',
 	'config-restart' => 'Tak, zacznij od nowa',
 	'config-welcome' => '=== Sprawdzenie środowiska instalacji ===
-Wykonywane są podstawowe testy sprawdzające czy to środowisko jest odpowiednie dla instalacji MediaWiki.
+Wykonywane są podstawowe testy sprawdzające czy to środowisko jest odpowiednie dla instalacji MediaWiki. 
 Jeśli potrzebujesz pomocy podczas instalacji załącz wyniki tych testów.',
 	'config-copyright' => "=== Prawa autorskie i warunki użytkowania ===
 
 $1
 
-To oprogramowanie jest wolne; możesz je rozprowadzać dalej i modyfikować zgodnie z warunkami licencji GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 tej licencji lub (według Twojego wyboru) którejś z późniejszych jej wersji.
+To oprogramowanie jest wolne; możesz je rozprowadzać dalej i modyfikować zgodnie z warunkami licencji GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 tej licencji lub (według Twojego wyboru) którejś z późniejszych jej wersji. 
 
 Niniejsze oprogramowanie jest rozpowszechniane w nadziei, że będzie użyteczne, ale '''bez żadnej gwarancji'''; nawet bez domniemanej gwarancji '''handlowej''' lub '''przydatności do określonego celu'''.
-Zobacz treść licencji GNU General Public License, aby uzyskać więcej szczegółów.
+Zobacz treść licencji GNU General Public License, aby uzyskać więcej szczegółów. 
 
 Razem z oprogramowaniem powinieneś otrzymać <doclink href=Copying>kopię licencji GNU General Public License</doclink>. Jeśli jej nie otrzymałeś, napisz do Free Software Foundation, Inc, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. lub [http://www.gnu.org/copyleft/gpl.html przeczytaj ją online].",
 	'config-sidebar' => '* [http://www.mediawiki.org Strona domowa MediaWiki]
@@ -7592,14 +7467,6 @@ Razem z oprogramowaniem powinieneś otrzymać <doclink href=Copying>kopię licen
 Możesz teraz zainstalować MediaWiki.</span>',
 	'config-env-bad' => 'Środowisko oprogramowania zostało sprawdzone.
 Nie możesz zainstalować MediaWiki.',
-	'config-env-php' => 'Zainstalowane jest PHP w wersji $1.',
-	'config-env-latest-disabled' => 'Zewnętrzne odwołania HTTP zostały wyłączone, pomijam sprawdzenie aktualności wersji',
-	'config-env-latest-ok' => 'Instalujesz najnowszą wersję oprogramowania MediaWiki.',
-	'config-env-latest-new' => "'''Uwaga!''' Instalujesz roboczą wersję oprogramowania MediaWiki.",
-	'config-env-latest-can-not-check' => "'''Uwaga –''' instalator nie może pobrać informacji o najnowszej wersji MediaWiki z [$1].",
-	'config-env-latest-old' => "'''Uwaga!''' Instalujesz nieaktualną wersję MediaWiki.",
-	'config-env-latest-help' => 'Instalujesz wersję $1, a najnowsza wersja to $2.
-Zaleca się pobranie najnowszej wersji z [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'Korzystanie z normalizacji Unicode utf8_normalize.so napisanej przez Brion Vibbera.',
 	'config-unicode-using-intl' => 'Korzystanie z [http://pecl.php.net/intl rozszerzenia intl PECL] do normalizacji Unicode.',
 	'config-unicode-pure-php-warning' => "'''Uwaga!''' [http://pecl.php.net/intl Rozszerzenie intl PECL] do obsługi normalizacji Unicode nie jest dostępne. Użyta zostanie mało wydajna zwykła implementacja w PHP.
@@ -7608,14 +7475,12 @@ Jeśli prowadzisz stronę o dużym natężeniu ruchu, powinieneś zapoznać się
 Powinieneś [http://www.mediawiki.org/wiki/Unicode_normalization_considerations zrobić aktualizację] jeśli chcesz korzystać w pełni z Unicode.",
 	'config-no-db' => 'Nie można odnaleźć właściwego sterownika bazy danych!',
 	'config-no-db-help' => 'Należy zainstalować sterownik bazy danych dla PHP.
-Obsługiwane są następujące typy baz danych: $1.
+Obsługiwane są następujące typy baz danych: $1. 
 
-Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych.
+Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych. 
 Jeśli skompilowałeś PHP samodzielnie, skonfiguruj je ponownie z włączonym klientem bazy danych, na przykład za pomocą polecenia
-<code>./configure --with-mysql</code>.
+<code>./configure --with-mysql</code>. 
 Jeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować moduł php5-mysql.',
-	'config-have-db' => 'Odnaleziono {{PLURAL:$2|sterownik bazy danych|sterowniki bazy danych:}} $1.',
-	'config-have-fts3' => 'SQLite został skompilowany z [http://sqlite.org/fts3.html modułem FTS3] – funkcje wyszukiwania będą dostępne.',
 	'config-no-fts3' => "'''Uwaga''' – SQLite został skompilowany bez [http://sqlite.org/fts3.html modułu FTS3] – funkcje wyszukiwania nie będą dostępne.",
 	'config-register-globals' => "'''Uwaga –  w konfiguracji PHP włączona jest opcja <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Jeśli możesz, wyłącz ją.'''
@@ -7634,7 +7499,6 @@ Ta opcja powoduje okropne błędy podczas korzystania z MediaWiki.
 Zainstalować lub korzystać z MediaWiki można wyłącznie wtedy, gdy ta opcja jest wyłączona.",
 	'config-safe-mode' => "'''Ostrzeżenie''' – uaktywniono [http://www.php.net/features.safe-mode tryb awaryjny] PHP.
 Opcja ta może powodować problemy, szczególnie w przypadku korzystania z przesyłania plików i używania znacznika <code>math</code>.",
-	'config-xml-good' => 'Wsparcie dla konwersji XML / Latin1‐UTF‐8.',
 	'config-xml-bad' => 'Brak modułu XML dla PHP.
 MediaWiki wymaga funkcji z tego modułu i nie może działać w tej konfiguracji.
 Jeśli korzystasz z Mandrake, zainstaluj pakiet php-xml.',
@@ -7642,11 +7506,8 @@ Jeśli korzystasz z Mandrake, zainstaluj pakiet php-xml.',
 MediaWiki do pracy wymaga funkcji obsługi wyrażeń regularnych kompatybilnej z Perlem.',
 	'config-pcre-no-utf8' => "'''Błąd krytyczny''' – wydaje się, że moduł PCRE w PHP został skompilowany bez wsparcia dla UTF‐8.
 MediaWiki wymaga wsparcia dla UTF‐8 do prawidłowego działania.",
-	'config-memory-none' => 'PHP jest skonfigurowany bez <code>memory_limit</code>',
-	'config-memory-ok' => 'PHP <code>memory_limit</code> jest ustawione na $1.
-OK.',
 	'config-memory-raised' => 'PHP <code>memory_limit</code> było ustawione na $1, zostanie zwiększone do $2.',
-	'config-memory-bad' => "'''Uwaga:''' PHP <code>memory_limit</code> jest ustawione na $1.
+	'config-memory-bad' => "'''Uwaga:''' PHP <code>memory_limit</code> jest ustawione na $1. 
 To jest prawdopodobnie zbyt mało.
 Instalacja może się nie udać!",
 	'config-xcache' => '[Http://trac.lighttpd.net/xcache/ XCache] jest zainstalowany',
@@ -7655,7 +7516,6 @@ Instalacja może się nie udać!",
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] jest zainstalowany',
 	'config-no-cache' => "'''Uwaga:''' Nie można odnaleźć [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].
 Buforowanie obiektów nie będzie możliwe.",
-	'config-diff3-good' => 'Znaleziono GNU diff3 – <code>$1</code>.',
 	'config-diff3-bad' => 'Nie znaleziono GNU diff3.',
 	'config-imagemagick' => 'Odnaleziono ImageMagick <code>$1</code>.
 Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
@@ -7663,13 +7523,8 @@ Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
 Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
 	'config-no-scaling' => 'Nie można odnaleźć biblioteki GD lub ImageMagick.
 Tworzenie miniatur grafik będzie wyłączone.',
-	'config-dir' => 'Katalog instalacji <code>$1</code>.',
-	'config-uri' => 'Ścieżka URI skryptu <code>$1</code>.',
 	'config-no-uri' => "'''Błąd.''' Nie można określić aktualnego URI.
 Instalacja została przerwana.",
-	'config-file-extension' => 'Instalowanie MediaWiki z rozszerzeniem pliku <code>$1</code>.',
-	'config-shell-locale' => 'Wykryto lokalizację ustawioną w powłoce na „$1”',
-	'config-uploads-safe' => 'Domyślny katalog dla przesyłanych plików jest zabezpieczony przed samowolnym wykonywaniem skryptów.',
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
 	'config-db-host-oracle' => 'TNS bazy danych',
@@ -7715,7 +7570,7 @@ Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i krop
 Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
 	'config-invalid-db-prefix' => 'Nieprawidłowy prefiks bazy danych „$1”.
 Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
-	'config-connection-error' => '$1.
+	'config-connection-error' => '$1. 
 
 Sprawdź adres serwera, nazwę użytkownika i hasło, a następnie spróbuj ponownie.',
 	'config-invalid-schema' => 'Nieprawidłowy schemat dla MediaWiki „$1”.
@@ -7726,17 +7581,17 @@ Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
 	'config-sqlite-name-help' => 'Wybierz nazwę, która będzie identyfikować Twoją wiki.
 Nie wolno używać spacji ani myślników.
 Zostanie ona użyta jako nazwa pliku danych SQLite.',
-	'config-sqlite-mkdir-error' => 'Błąd podczas tworzenia katalogu dla danych „$1”.
+	'config-sqlite-mkdir-error' => 'Błąd podczas tworzenia katalogu dla danych „$1”. 
 Sprawdź lokalizację i spróbuj ponownie.',
 	'config-sqlite-dir-unwritable' => 'Nie można zapisać do katalogu „$1”.
 Zmień uprawnienia dostępu do katalogu tak, aby serwer WWW mógł pisać do niego, a następnie spróbuj ponownie.',
-	'config-sqlite-connection-error' => '$1.
+	'config-sqlite-connection-error' => '$1. 
 
 Sprawdź katalog danych oraz nazwę bazy danych, a następnie spróbuj ponownie.',
 	'config-sqlite-readonly' => 'Plik <code>$1</code> nie jest zapisywalny.',
 	'config-sqlite-cant-create-db' => 'Nie można utworzyć pliku bazy danych <code>$1</code>.',
 	'config-sqlite-fts3-downgrade' => 'Brak wsparcia FTS3 dla PHP. Tabele zostały cofnięte',
-	'config-can-upgrade' => "W bazie danych są już tabele MediaWiki.
+	'config-can-upgrade' => "W bazie danych są już tabele MediaWiki. 
 Aby uaktualnić je do MediaWiki $1, kliknij '''Dalej'''.",
 	'config-regenerate' => 'Ponowne generowanie LocalSettings.php →',
 	'config-show-table-status' => 'Zapytanie „SHOW TABLE STATUS” nie powiodło się!',
@@ -7745,7 +7600,7 @@ Aby uaktualnić je do MediaWiki $1, kliknij '''Dalej'''.",
 	'config-db-web-help' => 'Wybierz nazwę użytkownika i hasło, z których korzystać będzie serwer WWW do łączenia się z serwerem baz danych, podczas zwykłej pracy z wiki.',
 	'config-db-web-account-same' => 'Użyj tego samego konta, co dla instalacji',
 	'config-db-web-create' => 'Utwórz konto, jeśli jeszcze nie istnieje',
-	'config-db-web-no-create-privs' => 'Konto podane do wykonania instalacji nie ma wystarczających uprawnień, aby utworzyć nowe konto.
+	'config-db-web-no-create-privs' => 'Konto podane do wykonania instalacji nie ma wystarczających uprawnień, aby utworzyć nowe konto. 
 Konto, które wskazałeś tutaj musi już istnieć.',
 	'config-mysql-engine' => 'Silnik przechowywania',
 	'config-mysql-innodb' => 'InnoDB',
@@ -7767,7 +7622,7 @@ Podaj inną przestrzeń nazw projektu.',
 	'config-admin-name' => 'Administrator',
 	'config-admin-password' => 'Hasło',
 	'config-admin-password-confirm' => 'Hasło powtórnie',
-	'config-admin-help' => 'Wprowadź preferowaną nazwę użytkownika, na przykład „Jan Kowalski”.
+	'config-admin-help' => 'Wprowadź preferowaną nazwę użytkownika, na przykład „Jan Kowalski”. 
 Tej nazwy będziesz używać do logowania się do wiki.',
 	'config-admin-name-blank' => 'Wpisz nazwę użytkownika, który będzie administratorem.',
 	'config-admin-name-invalid' => 'Podana nazwa użytkownika „<nowiki>$1</nowiki>” jest nieprawidłowa.
@@ -7816,8 +7671,6 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 Najlepiej, aby nie był on dostępny z internetu.',
 	'config-logo' => 'Adres URL logo',
 	'config-instantcommons' => 'Włącz Instant Commons',
-	'config-instantcommons-good' => 'Instalator wykrył połączenie z Internetem podczas sprawdzania środowiska.
-Można włączyć tę funkcję, jeśli chcesz.',
 	'config-cc-error' => 'Wybieranie licencji Creative Commons nie dało wyniku.
 Wpisz nazwę licencji ręcznie.',
 	'config-cc-again' => 'Wybierz jeszcze raz...',
@@ -7828,7 +7681,7 @@ Wpisz nazwę licencji ręcznie.',
 	'config-cache-accel' => 'Buforowania obiektów PHP (APC, eAccelerator, XCache lub WinCache)',
 	'config-cache-memcached' => 'Użyj Memcached (wymaga dodatkowej instalacji i konfiguracji)',
 	'config-memcached-servers' => 'Serwery Memcached:',
-	'config-memcached-help' => 'Lista adresów IP do wykorzystania przez Memcached.
+	'config-memcached-help' => 'Lista adresów IP do wykorzystania przez Memcached. 
 Adresy powinny być rozdzielone przecinkami i określać również wykorzystywany port (na przykład: 127.0.0.1:11211, 192.168.1.25:11211).',
 	'config-extensions' => 'Rozszerzenia',
 	'config-install-alreadydone' => "'''Uwaga''' – wydaje się, że MediaWiki jest już zainstalowane, a obecnie próbujesz zainstalować je ponownie.
@@ -7843,12 +7696,12 @@ Upewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.',
 	'config-install-user' => 'Tworzenie użytkownika bazy danych',
 	'config-install-user-failed' => 'Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2',
 	'config-install-tables' => 'Tworzenie tabel',
-	'config-install-tables-exist' => "'''Uwaga''' – wygląda na to, że tabele MediaWiki już istnieją.
+	'config-install-tables-exist' => "'''Uwaga''' – wygląda na to, że tabele MediaWiki już istnieją. 
 Pomijam tworzenie tabel.",
 	'config-install-tables-failed' => "'''Błąd''' – tworzenie tabeli nie powiodło się z powodu błędu – $1",
 	'config-install-interwiki' => 'Wypełnianie tabeli domyślnymi interwiki',
 	'config-install-interwiki-sql' => 'Nie można odnaleźć pliku <code>interwiki.sql</code>.',
-	'config-install-interwiki-exists' => "'''Uwaga''' – wygląda na to, że tabela interwiki ma już jakieś wpisy.
+	'config-install-interwiki-exists' => "'''Uwaga''' – wygląda na to, że tabela interwiki ma już jakieś wpisy. 
 Tworzenie domyślnej listy pominięto.",
 	'config-install-secretkey' => 'Generowanie tajnego klucza',
 	'config-insecure-secret' => "'''Uwaga''' – nie można utworzyć bezpiecznego <code>$1</code>.
@@ -7870,9 +7723,6 @@ $messages['pms'] = array(
 Sò programa a peul esse agiornà.
 Për piasì, ch'a ansërissa ël valor ëd <code>\$wgUpgradeKey</code> ant la forma.",
 	'config-localsettings-key' => "Ciav d'agiornament:",
-	'config-localsettings-noupgrade' => "'''Eror''': A l'é stàit trovà n'archivi <code>LocalSettings.php</code>.
-Sò programa a peul pa esse agiornà al moment.
-L'instalador a l'é stàit disabilità për dle rason ëd sicurëssa.",
 	'config-session-error' => 'Eror an fasend parte la session: $1',
 	'config-session-expired' => "Ij sò dat ëd session a smijo scadù.
 Le session a son configurà për na durà ëd $1.
@@ -8319,9 +8169,6 @@ $messages['pt'] = array(
 Insira o valor de <code>\$wgUpgradeKey</code> na caixa, por favor.",
 	'config-localsettings-key' => 'Chave de actualização:',
 	'config-localsettings-badkey' => 'A chave que forneceu está incorreta',
-	'config-localsettings-noupgrade' => "'''Erro''': Foi detectada a existência de um ficheiro <code>LocalSettings.php</code>.
-Não é possível actualizar o seu software nesta altura.
-Por razões de segurança, o instalador foi desactivado.",
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
 	'config-session-expired' => 'Os seus dados de sessão parecem ter expirado.
 As sessões estão configuradas para uma duração de $1.
@@ -8350,7 +8197,6 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-page-releasenotes' => 'Notas de lançamento',
 	'config-page-copying' => 'A copiar',
 	'config-page-upgradedoc' => 'A actualizar',
-	'config-page-locked' => 'Permissão negada',
 	'config-help-restart' => 'Deseja limpar todos os dados gravados que introduziu e reiniciar o processo de instalação?',
 	'config-restart' => 'Sim, reiniciar',
 	'config-welcome' => '=== Verificações do ambiente ===
@@ -8777,9 +8623,6 @@ $messages['pt-br'] = array(
 É possível atualizar o seu software.
 Mova o <code>LocalSettings.php</code> para um lugar seguro e execute o instalador novamente, por favor.",
 	'config-localsettings-key' => 'Chave de atualização:',
-	'config-localsettings-noupgrade' => "'''Erro''': Foi detetada a existência de um arquivo <code>LocalSettings.php</code>.
-Não é possível atualizar o seu software neste momento.
-Por razões de segurança, o instalador foi desativado.",
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
 	'config-session-expired' => 'Os seus dados de sessão parecem ter expirado.
 As sessões estão configuradas para uma duração de $1.
@@ -8831,13 +8674,6 @@ Em conjunto com este programa você deve ter recebido <doclink href=Copying>uma 
 Você pode instalar o MediaWiki.</span>',
 	'config-env-bad' => 'O ambiente foi verificado.
 Você não pode instalar o MediaWiki.',
-	'config-env-php' => 'O PHP $1 está instalado.',
-	'config-env-latest-ok' => 'Você está instalando a versão mais recente do MediaWiki.',
-	'config-env-latest-new' => "'''Nota:''' Você está instalando uma versão em desenvolvimento do MediaWiki.",
-	'config-env-latest-can-not-check' => "'''Aviso:''' O instalador não conseguiu obter informações sobre a versão mais recente do MediaWiki de [$1].",
-	'config-env-latest-old' => "'''Aviso:''' Você está instalando uma versão desatualizada do Mediawiki.",
-	'config-env-latest-help' => 'Você está instalando a versão $1, mas a versão mais recente é a $2.
-Aconselhamos que você instale a versão mais recente, que pode ser descarregada a partir da [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, de Brian Viper, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode.
@@ -8894,14 +8730,21 @@ $messages['ru'] = array(
 	'config-desc' => 'Инсталлятор MediaWiki',
 	'config-title' => 'Установка MediaWiki $1',
 	'config-information' => 'Информация',
-	'config-localsettings-upgrade' => "'''Внимание'''. Обнаружен файл <code>LocalSettings.php</code>. 
-Ваше программное обеспечение возможно обновить. 
-Пожалуйста, заполните значение <code>\$wgUpgradeKey</code> в данном поле.",
+	'config-localsettings-upgrade' => 'Обнаружен файл <code>LocalSettings.php</code>. 
+Для обновления этой установки, пожалуйста, введите значение <code>$wgUpgradeKey</code>.
+Его можно найти в файле LocalSettings.php.',
 	'config-localsettings-key' => 'Ключ обновления:',
 	'config-localsettings-badkey' => 'Вы указали неправильный ключ',
-	'config-localsettings-noupgrade' => "'''Ошибка''': обнаружен файл <code>LocalSettings.php</code>. 
-В его присутствии MediaWiki нельзя обновить.
-Программа установки приостановлена по соображениям безопасности.",
+	'config-upgrade-key-missing' => 'Обнаружена существующая установка MediaWiki.
+Для обновления этой установки, пожалуйста, добавьте следующую строку в конец вашего файла LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'Похоже, что существующий файл LocalSettings.php не является полными.
+Не установлена переменная $1.
+Пожалуйста, измените LocalSettings.php так, чтобы значение этой переменной было задано, затем нажмите «Продолжить».',
+	'config-localsettings-connection-error' => 'Произошла ошибка при подключении к базе данных с помощью настроек, указанных в LocalSettings.php или AdminSettings.php. Пожалуйста, исправьте эти настройки и повторите попытку.
+
+$1',
 	'config-session-error' => 'Ошибка при запуске сессии: $1',
 	'config-session-expired' => 'Ваша сессия истекла. 
 Сессии настроены на длительность $1. 
@@ -8930,7 +8773,7 @@ $messages['ru'] = array(
 	'config-page-releasenotes' => 'Информация о версии',
 	'config-page-copying' => 'Копирование',
 	'config-page-upgradedoc' => 'Обновление',
-	'config-page-locked' => 'Доступ запрещён',
+	'config-page-existingwiki' => 'Существующая вики',
 	'config-help-restart' => 'Вы хотите удалить все сохранённые данные, которые вы ввели, и запустить процесс установки заново?',
 	'config-restart' => 'Да, начать заново',
 	'config-welcome' => '=== Проверка окружения ===
@@ -9675,8 +9518,8 @@ $messages['uk'] = array(
 	'config-desc' => 'Інсталятор MediaWiki',
 	'config-title' => 'Встановлення MediaWiki $1',
 	'config-information' => 'Інформація',
-	'config-localsettings-upgrade' => "'''Увага''': було виявлено файл <code>LocalSettings.php</code>.
-Ваше програмне забезпечення може бути оновлено.
+	'config-localsettings-upgrade' => "'''Увага''': було виявлено файл <code>LocalSettings.php</code>. 
+Ваше програмне забезпечення може бути оновлено. 
 Будь-ласка, перемістіть файл <code>LocalSettings.php</code> в іншу безпечну директорію, а потім знову запустіть програму установки.",
 	'config-session-error' => 'Помилка початку сесії: $1',
 	'config-your-language' => 'Ваша мова:',
@@ -9711,19 +9554,11 @@ $messages['uk'] = array(
 	'config-env-good' => '<span class="success-message">Перевірку середовища успішно завершено.
 Ви можете встановити MediaWiki.</span>',
 	'config-env-bad' => 'Було проведено перевірку середовища. Ви не можете встановити MediaWiki.',
-	'config-env-php' => 'Встановлено версію PHP: $1.',
-	'config-env-latest-ok' => 'Ви встановлюєте останню версію MediaWiki.',
-	'config-env-latest-new' => "'''Увага:''' Ви встановлюєте версію MediaWiki, яка ще знаходиться у розробці.",
-	'config-env-latest-can-not-check' => "'''Увага:''' Програмі встановлення не вдалося отримати інформацію про останню версію MediaWiki починаючи від [$1].",
-	'config-env-latest-old' => "'''Увага:''' Ви встановлюєте застарілу версію MediaWiki.",
-	'config-env-latest-help' => 'Ви встановлюєте версію $1, але остання версія: $2.
-Рекомендуємо використовувати останню версію MediaWiki, яка може бути завантажена з сайту: [http://www.mediawiki.org/wiki/Download mediawiki.org]',
 	'config-unicode-using-utf8' => 'Використовувати utf8_normalize.so Брайона Віббера для нормалізації Юнікоду.',
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
-	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду.
+	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду. 
 Якщо ваш сайт має високий трафік, вам варто почитати про [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормалізацію Юнікоду].",
 	'config-no-db' => 'Не вдалося знайти відповідний драйвер бази даних!',
-	'config-have-db' => 'Знайдено {{PLURAL:$2|драйвер бази|драйвери баз}} даних: $1.',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] встановлено',
 	'config-apc' => '[http://www.php.net/apc APC] встановлено',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] встановлено',
@@ -9737,7 +9572,7 @@ $messages['uk'] = array(
 	'config-invalid-db-type' => 'Невірний тип бази даних',
 	'config-invalid-db-name' => 'Неприпустима назва бази даних "$1".
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
-	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1".
+	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1". 
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
 	'config-sqlite-cant-create-db' => 'Не вдалося створити файл бази даних <code>$1</code>.',
 	'config-db-web-create' => 'Створити обліковий запис, якщо його ще не існує',

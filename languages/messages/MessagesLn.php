@@ -142,6 +142,8 @@ $messages = array(
 'mainpage'             => 'Lonkásá ya libosó',
 'mainpage-description' => 'Lokásá ya libosó',
 'portal'               => 'Bísó na bísó',
+'privacy'              => 'Politíki ya viplívɛ',
+'privacypage'          => 'Project:Politíki ya viplívɛ',
 
 'ok'                 => 'Nandimi',
 'retrievedfrom'      => 'Ezwámí úta « $1 »',
@@ -248,6 +250,8 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'editundo'      => 'kozóngela',
 
 # Search results
+'searchresults'       => 'Bozwi bwa boluki',
+'searchresults-title' => 'Bozwi bwa boluka bwa «$1»',
 'prevn'               => '{{PLURAL:$1|$1}} ya libosó',
 'nextn'               => 'bolɛngɛli {{PLURAL:$1|$1}}',
 'viewprevnext'        => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
@@ -434,10 +438,10 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Lonkásá na ngáí',
-'tooltip-pt-mytalk'              => 'Lokásá ntembe la ngáí',
+'tooltip-pt-mytalk'              => 'Lokásá ntembe lwa ngáí',
 'tooltip-pt-preferences'         => 'Malúli ma ngáí',
 'tooltip-pt-watchlist'           => 'Nkásá nalandí mpɔ̂ na mbóngwana',
-'tooltip-pt-mycontris'           => 'Nkásá nakomí',
+'tooltip-pt-mycontris'           => 'Molɔngɔ́ mwa nkásá nakomí',
 'tooltip-pt-logout'              => 'Ombémbóí',
 'tooltip-ca-move'                => 'Kobóngola nkómbó ya lonkásá óyo',
 'tooltip-ca-watch'               => 'Kobakisa na nkásá olandaka',
@@ -456,7 +460,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'tooltip-ca-nstab-category'      => 'Komɔ́nisela lonkásá ya katégori',
 
 # Browsing diffs
-'previousdiff' => '← diff ya libosó',
+'previousdiff' => '← Bobóngoli bwa libosó',
 
 # Special:NewFiles
 'ilsubmit' => 'Boluki',
