@@ -314,6 +314,43 @@
 
 				return $item.get( 0 );
 			}
+		},
+
+		/**
+		 * Add a little box at the top of the screen to inform the user of
+		 * something, replacing any previous message.
+		 *
+		 * @param message	mixed	DOM-element or HTML to be put inside the message box
+		 * @param className	string	Used in adding a class; should be different for each
+		 *   call to allow CSS/JS to hide different boxes.  null = no class used.
+		 * @return Boolean       True on success, false on failure
+		 */
+		'jsMessage' : function( message, className ) {
+			// We special-case skin structures provided by the software.  Skins that
+			// choose to abandon or significantly modify our formatting can just define
+			// an mw-js-message div to start with.
+			var $messageDiv = $( '#mw-js-message' );
+			if ( !$messageDiv.length ) {
+				$messageDiv = $( '<div id="mw-js-message">' );
+				if ( mw.util.$content.parent().length ) { 
+					mw.util.$content.parent().prepend( $messageDiv );
+				} else {
+					return false;
+				}
+			}
+			
+			$messageDiv.show();
+			if ( className ) {
+				$messageDiv.attr( 'class', 'mw-js-message-' + className );
+			}
+			
+			if ( typeof message === 'object' ) {
+				$messageDiv.empty();
+				$messageDiv.append( message ); // Append new content
+			} else {
+				$messageDiv.html( message );
+			}
+			return true;
 		}
 
 	};
