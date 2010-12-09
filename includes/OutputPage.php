@@ -1627,7 +1627,7 @@ class OutputPage {
 			wfRunHooks( 'AjaxAddScript', array( &$this ) );
 
 			if( $wgAjaxWatch && $wgUser->isLoggedIn() ) {
-				$this->addModules( 'mediawiki.legacy.ajaxwatch' );
+				$this->addModules( 'mediawiki.action.watch.ajax' );
 			}
 
 			if ( $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {
