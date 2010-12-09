@@ -73,6 +73,8 @@ class SkinVector extends SkinTemplate {
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
 
+		$userCanRead = $this->mTitle->quickUserCan( 'read' );
+
 		// Checks if page is some kind of content
 		if( $this->iscontent ) {
 			// Gets page objects for the related namespaces
@@ -93,16 +95,16 @@ class SkinVector extends SkinTemplate {
 
 			// Adds namespace links
 			$links['namespaces'][$subjectId] = $this->tabAction(
-				$subjectPage, 'nstab-' . $subjectId, !$isTalk, '', true
+				$subjectPage, 'nstab-' . $subjectId, !$isTalk, '', $userCanRead
 			);
 			$links['namespaces'][$subjectId]['context'] = 'subject';
 			$links['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, 'talk', $isTalk, '', true
+				$talkPage, 'talk', $isTalk, '', $userCanRead
 			);
 			$links['namespaces'][$talkId]['context'] = 'talk';
 
 			// Adds view view link
-			if ( $this->mTitle->exists() ) {
+			if ( $this->mTitle->exists() && $userCanRead ) {
 				$links['views']['view'] = $this->tabAction(
 					$isTalk ? $talkPage : $subjectPage,
 						'vector-view-view', ( $action == 'view' ), '', true
@@ -155,7 +157,7 @@ class SkinVector extends SkinTemplate {
 					}
 				}
 			// Checks if the page has some kind of viewable content
-			} elseif ( $this->mTitle->hasSourceText() ) {
+			} elseif ( $this->mTitle->hasSourceText() && $userCanRead ) {
 				// Adds view source view link
 				$links['views']['viewsource'] = array(
 					'class' => ( $action == 'edit' ) ? 'selected' : false,
@@ -169,7 +171,7 @@ class SkinVector extends SkinTemplate {
 			wfProfileIn( __METHOD__ . '-live' );
 
 			// Checks if the page exists
-			if ( $this->mTitle->exists() ) {
+			if ( $this->mTitle->exists() && $userCanRead ) {
 				// Adds history view link
 				$links['views']['history'] = array(
 					'class' => 'collapsible ' . ( ( $action == 'history' ) ? 'selected' : false ),

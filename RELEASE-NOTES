@@ -474,6 +474,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 25512) Subcategory list should not include category prefix for members.
 * (bug 22753) Output from update.php is more clear when things changed, entries
   indicating nothing changed are now all prefixed by "..."
+* Page existence is now not revealed (in the colour of the tabs) to users who cannot
+  read the page in question.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
