@@ -778,7 +778,7 @@ Le ultime entrata del registro de blocadas es reproducite ci infra pro informati
 '''Le modificationes non ha ancora essite salveguardate!'''",
 'globaljspreview'                  => "'''Non oblida que isto es solmente un previsualisation del codice JavaScript global.'''
 '''Le modificationes non ha ancora essite salveguardate!'''",
-'userinvalidcssjstitle'            => "'''Attention:''' Le stilo \"\$1\" non existe.
+'userinvalidcssjstitle'            => "'''Attention:''' Le apparentia \"\$1\" non existe.
 Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/vector.css e non {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualisate)',
 'note'                             => "'''Nota:'''",

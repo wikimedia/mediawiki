@@ -3489,6 +3489,7 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
 'version-version'                  => '(Version $1)',
+'version-svn-revision'             => '(Version $2)',
 'version-license'                  => 'Lizenz',
 'version-poweredby-credits'        => "Diese Website nutzt '''[http://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others'         => 'andere',
@@ -3592,7 +3593,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'htmlform-int-toolow'          => 'Der angegebene Wert ist unter dem Minimum von $1',
 'htmlform-int-toohigh'         => 'Der angegebene Wert ist über dem Maximum von $1',
 'htmlform-required'            => 'Dieser Wert wird benötigt',
-'htmlform-submit'              => 'Übertragen',
+'htmlform-submit'              => 'Speichern',
 'htmlform-reset'               => 'Änderungen rückgängig machen',
 'htmlform-selectorother-other' => 'Andere',
 
@@ -3611,6 +3612,6 @@ Sofern der Benutzer momentan angemeldet ist, wird er umgehend abgemeldet.
 'disableaccount-mustconfirm' => 'Die Deaktivierung dieses Benutzerkontos muss nun bestätigt werden.',
 'disableaccount-nosuchuser'  => 'Das Benutzerkonto „$1“ ist nicht vorhanden.',
 'disableaccount-success'     => 'Das Benutzerkonto „$1“ wurde dauerhaft deaktiviert.',
-'disableaccount-logentry'    => 'deaktivierte das Benutzerkonto [[$1]] dauerhaft.',
+'disableaccount-logentry'    => 'deaktivierte das Benutzerkonto [[$1]] dauerhaft',
 
 );

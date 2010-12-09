@@ -19,6 +19,7 @@
  * @author Silvonen
  * @author Str4nd
  * @author Tarmo
+ * @author Tofu II
  * @author ZeiP
  * @author לערי ריינהארט
  */
@@ -3294,6 +3295,7 @@ Voit myös muokata listaa [[Special:Watchlist/edit|tavalliseen tapaan]].',
 'version-specialpages'             => 'Toimintosivut',
 'version-parserhooks'              => 'Jäsenninkytkökset',
 'version-variables'                => 'Muuttujat',
+'version-skins'                    => 'Teemat',
 'version-other'                    => 'Muut',
 'version-mediahandlers'            => 'Median käsittelijät',
 'version-hooks'                    => 'Kytköspisteet',

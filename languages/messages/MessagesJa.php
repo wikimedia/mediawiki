@@ -9,6 +9,7 @@
  *
  * @author Alexsh
  * @author Aotake
+ * @author Aphaia
  * @author Broad-Sky
  * @author Chatama
  * @author Chinneeb
@@ -2193,7 +2194,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'newuserlogpagetext'          => '以下はアカウント作成の記録です。',
 'newuserlog-byemail'          => 'パスワードを電子メールで送信しました',
 'newuserlog-create-entry'     => '新規利用者アカウント',
-'newuserlog-create2-entry'    => 'が次のアカウントを新規に作成しました： $1',
+'newuserlog-create2-entry'    => 'が新規にアカウント $1 を作成しました',
 'newuserlog-autocreate-entry' => 'アカウントが自動的に作成されました',
 
 # Special:ListGroupRights
@@ -3643,7 +3644,7 @@ $1',
 'version-specialpages'             => '特別ページ',
 'version-parserhooks'              => '構文解析フック',
 'version-variables'                => '変数',
-'version-skins'                    => '外装',
+'version-skins'                    => 'スキン',
 'version-other'                    => 'その他',
 'version-mediahandlers'            => 'メディアハンドラー',
 'version-hooks'                    => 'フック',
