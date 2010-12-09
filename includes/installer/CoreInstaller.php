@@ -84,8 +84,8 @@ abstract class CoreInstaller extends Installer {
 		'_CCDone' => false,
 		'_Extensions' => array(),
 		'_MemCachedServers' => '',
-		'_LocalSettingsLocked' => true,
-		'_UpgradeKey' => '',
+		'_UpgradeKeySupplied' => false,
+		'_ExistingDBSettings' => false,
 	);
 
 	/**
@@ -381,7 +381,7 @@ abstract class CoreInstaller extends Installer {
 	 *
 	 * @return Status
 	 */
-	protected function generateSecret( $secretName ) {
+	protected function generateSecret( $secretName, $length = 64 ) {
 		if ( wfIsWindows() ) {
 			$file = null;
 		} else {
@@ -393,12 +393,12 @@ abstract class CoreInstaller extends Installer {
 		$status = Status::newGood();
 
 		if ( $file ) {
-			$secretKey = bin2hex( fread( $file, 32 ) );
+			$secretKey = bin2hex( fread( $file, $length / 2 ) );
 			fclose( $file );
 		} else {
 			$secretKey = '';
 
-			for ( $i=0; $i<8; $i++ ) {
+			for ( $i = 0; $i < $length / 8; $i++ ) {
 				$secretKey .= dechex( mt_rand( 0, 0x7fffffff ) );
 			}
 
@@ -411,13 +411,15 @@ abstract class CoreInstaller extends Installer {
 	}
 
 	/**
-	 * Generate a default $wgUpradeKey, Will warn if we had to use
+	 * Generate a default $wgUpgradeKey. Will warn if we had to use
 	 * mt_rand() instead of /dev/urandom
 	 *
 	 * @return Status
 	 */
-	protected function generateUpgradeKey() {
-		return $this->generateSecret( 'wgUpgradeKey' );
+	public function generateUpgradeKey() {
+		if ( strval( $this->getVar( 'wgUpgradeKey' ) ) === '' ) {
+			return $this->generateSecret( 'wgUpgradeKey', 16 );
+		}
 	}
 
 	/**

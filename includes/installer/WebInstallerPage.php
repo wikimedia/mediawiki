@@ -116,56 +116,6 @@ abstract class WebInstallerPage {
 	}
 }
 
-class WebInstaller_Locked extends WebInstallerPage {
-	// The status of Installer::getLocalSettingsStatus()
-	private $status;
-
-	public function setLocalSettingsStatus( Status $s ) {
-		$this->status = $s;
-	}
-
-	protected function getId() {
-		return 0;
-	}
-
-	public function execute() {
-		$r = $this->parent->request;
-		if( !$r->wasPosted() || !$this->status->isOK() ) {
-			$this->display();
-			return 'output';
-		} else {
-			$key = $r->getText( 'config_wpUpgradeKey' );
-			if( !$key || $key !== $this->getVar( '_UpgradeKey' ) ) {
-				$this->parent->showError( 'config-localsettings-badkey' );
-				$this->display();
-				return 'output';
-			} else {
-				$this->setVar( '_LocalSettingsLocked', false );
-				return 'continue';
-			}
-		}
-	}
-
-	/**
-	 * Display stuff to the end user
-	 */
-	private function display() {
-		$this->startForm();
-		$this->parent->showStatusBox( $this->status );
-		$continue = false;
-		if( $this->status->isOK() && !$this->status->isGood() ) {
-			$this->addHTML( "<br />" .
-				$this->parent->getTextBox( array(
-					'var' => 'wpUpgradeKey',
-					'label' => 'config-localsettings-key',
-				) )
-			);
-			$continue = 'continue';
-		}
-		$this->endForm( $continue );
-	}
-}
-
 class WebInstaller_Language extends WebInstallerPage {
 	
 	public function execute() {
@@ -245,6 +195,146 @@ class WebInstaller_Language extends WebInstallerPage {
 	
 }
 
+class WebInstaller_ExistingWiki extends WebInstallerPage {
+	public function execute() {
+		// If there is no LocalSettings.php, continue to the installer welcome page
+		$vars = $this->parent->getExistingLocalSettings();
+		if ( !$vars ) {
+			return 'skip';
+		}
+
+		// Check if the upgrade key supplied to the user has appeared in LocalSettings.php
+		if ( $vars['wgUpgradeKey'] !== false
+			&& $this->getVar( '_UpgradeKeySupplied' )
+			&& $this->getVar( 'wgUpgradeKey' ) === $vars['wgUpgradeKey'] ) 
+		{
+			// It's there, so the user is authorized
+			$status = $this->handleExistingUpgrade( $vars );
+			if ( $status->isOK() ) {
+				return 'skip';
+			} else {
+				$this->startForm();
+				$this->parent->showStatusBox( $status );
+				$this->endForm( 'continue' );
+				return 'output';
+			}
+			return $this->handleExistingUpgrade( $vars );
+		}
+
+		// If there is no $wgUpgradeKey, tell the user to add one to LocalSettings.php
+		if ( $vars['wgUpgradeKey'] === false ) {
+			if ( $this->getVar( 'wgUpgradeKey', false ) === false ) {
+				$this->parent->generateUpgradeKey();
+				$this->setVar( '_UpgradeKeySupplied', true );
+			}
+			$this->startForm();
+			$this->addHTML( $this->parent->getInfoBox( 
+				wfMsgNoTrans( 'config-upgrade-key-missing', 
+					"<pre>\$wgUpgradeKey = '" . $this->getVar( 'wgUpgradeKey' ) . "';</pre>" )
+			) );
+			$this->endForm( 'continue' );
+			return 'output';
+		}
+
+		// If there is an upgrade key, but it wasn't supplied, prompt the user to enter it
+			
+		$r = $this->parent->request;
+		if ( $r->wasPosted() ) {
+			$key = $r->getText( 'config_wgUpgradeKey' );
+			if( !$key || $key !== $vars['wgUpgradeKey'] ) {
+				$this->parent->showError( 'config-localsettings-badkey' );
+				$this->showKeyForm();
+				return 'output';
+			}
+			// Key was OK
+			$status = $this->handleExistingUpgrade( $vars );
+			if ( $status->isOK() ) {
+				return 'continue';
+			} else {
+				$this->parent->showStatusBox( $status );
+				$this->showKeyForm();
+				return 'output';
+			}
+		} else {
+			$this->showKeyForm();
+			return 'output';
+		}
+	}
+
+	/**
+	 * Show the "enter key" form
+	 */
+	protected function showKeyForm() {
+		$this->startForm();
+		$this->addHTML( 
+			$this->parent->getInfoBox( wfMsgNoTrans( 'config-localsettings-upgrade' ) ).
+			'<br />' .
+			$this->parent->getTextBox( array(
+				'var' => 'wgUpgradeKey',
+				'label' => 'config-localsettings-key',
+				'attribs' => array( 'autocomplete' => 'off' ),
+			) )
+		);
+		$this->endForm( 'continue' );
+	}
+
+	protected function importVariables( $names, $vars ) {
+		$status = Status::newGood();
+		foreach ( $names as $name ) {
+			if ( !isset( $vars[$name] ) ) {
+				$status->fatal( 'config-localsettings-incomplete', $name );
+			}
+			$this->setVar( $name, $vars[$name] );
+		}
+		return $status;
+	}
+
+	/**
+	 * Initiate an upgrade of the existing database
+	 * @param $vars Variables from LocalSettings.php and AdminSettings.php
+	 * @return Status
+	 */
+	protected function handleExistingUpgrade( $vars ) {
+		// Check $wgDBtype
+		if ( !isset( $vars['wgDBtype'] ) || !in_array( $vars['wgDBtype'], Installer::getDBTypes() ) ) {
+			return Status::newFatal( 'config-localsettings-connection-error', '' );
+		}
+
+		// Set the relevant variables from LocalSettings.php
+		$requiredVars = array( 'wgDBtype', 'wgDBuser', 'wgDBpassword' );
+		$status = $this->importVariables( $requiredVars , $vars );
+		$installer = $this->parent->getDBInstaller();
+		$status->merge( $this->importVariables( $installer->getGlobalNames(), $vars ) );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		if ( isset( $vars['wgDBadminuser'] ) ) {
+			$this->setVar( '_InstallUser', $vars['wgDBadminuser'] );
+		} else {
+			$this->setVar( '_InstallUser', $vars['wgDBuser'] );
+		}
+		if ( isset( $vars['wgDBadminpassword'] ) ) {
+			$this->setVar( '_InstallPassword', $vars['wgDBadminpassword'] );
+		} else {
+			$this->setVar( '_InstallPassword', $vars['wgDBpassword'] );
+		}
+
+		// Test the database connection
+		$status = $installer->getConnection();
+		if ( !$status->isOK() ) {
+			// Adjust the error message to explain things correctly
+			$status->replaceMessage( 'config-connection-error', 
+				'config-localsettings-connection-error' );
+			return $status;
+		}
+
+		// All good
+		$this->setVar( '_ExistingDBSettings', true );
+		return $status;
+	}
+}
+
 class WebInstaller_Welcome extends WebInstallerPage {
 	
 	public function execute() {
@@ -268,6 +358,10 @@ class WebInstaller_Welcome extends WebInstallerPage {
 class WebInstaller_DBConnect extends WebInstallerPage {
 	
 	public function execute() {
+		if ( $this->getVar( '_ExistingDBSettings' ) ) {
+			return 'skip';
+		}
+
 		$r = $this->parent->request;
 		if ( $r->wasPosted() ) {
 			$status = $this->submit();
