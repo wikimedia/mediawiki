@@ -320,37 +320,46 @@
 		 * Add a little box at the top of the screen to inform the user of
 		 * something, replacing any previous message.
 		 *
-		 * @param message	mixed	DOM-element or HTML to be put inside the message box
+		 * @param message	mixed	The DOM-element or HTML-string to be put inside the message box]
+		 *							Calling with no arguments, with an empty string or null will hide the message 
 		 * @param className	string	Used in adding a class; should be different for each
 		 *   call to allow CSS/JS to hide different boxes.  null = no class used.
 		 * @return Boolean       True on success, false on failure
 		 */
 		'jsMessage' : function( message, className ) {
-			// We special-case skin structures provided by the software.  Skins that
-			// choose to abandon or significantly modify our formatting can just define
-			// an mw-js-message div to start with.
-			var $messageDiv = $( '#mw-js-message' );
-			if ( !$messageDiv.length ) {
-				$messageDiv = $( '<div id="mw-js-message">' );
-				if ( mw.util.$content.parent().length ) { 
-					mw.util.$content.parent().prepend( $messageDiv );
-				} else {
-					return false;
-				}
-			}
+		
+			if ( !arguments.length || message === '' || message === null ) {
 			
-			$messageDiv.show();
-			if ( className ) {
-				$messageDiv.attr( 'class', 'mw-js-message-' + className );
-			}
+				$( '#mw-js-message' ).empty().hide();
+				return true; // Emptying and hiding message is intended behaviour, return true	
 			
-			if ( typeof message === 'object' ) {
-				$messageDiv.empty();
-				$messageDiv.append( message ); // Append new content
 			} else {
-				$messageDiv.html( message );
+				// We special-case skin structures provided by the software.  Skins that
+				// choose to abandon or significantly modify our formatting can just define
+				// an mw-js-message div to start with.
+				var $messageDiv = $( '#mw-js-message' );
+				if ( !$messageDiv.length ) {
+					$messageDiv = $( '<div id="mw-js-message">' );
+					if ( mw.util.$content.parent().length ) { 
+						mw.util.$content.parent().prepend( $messageDiv );
+					} else {
+						return false;
+					}
+				}
+				
+				$messageDiv.show();
+				if ( className ) {
+					$messageDiv.attr( 'class', 'mw-js-message-' + className );
+				}
+				
+				if ( typeof message === 'object' ) {
+					$messageDiv.empty();
+					$messageDiv.append( message ); // Append new content
+				} else {
+					$messageDiv.html( message );
+				}
+				return true;
 			}
-			return true;
 		}
 
 	};
