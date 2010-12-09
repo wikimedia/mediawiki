@@ -728,6 +728,7 @@ class SkinTemplate extends Skin {
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
 		$content_actions = array();
+		$userCanRead = $this->mTitle->quickUserCan( 'read' );
 
 		$prevent_active_tabs = false;
 		wfRunHooks( 'SkinTemplatePreventOtherActiveTabs', array( &$this, &$prevent_active_tabs ) );
@@ -741,7 +742,7 @@ class SkinTemplate extends Skin {
 				$subjpage,
 				$nskey,
 				!$this->mTitle->isTalkPage() && !$prevent_active_tabs,
-				'', true
+				'', $userCanRead
 			);
 
 			$content_actions['talk'] = $this->tabAction(
@@ -749,7 +750,7 @@ class SkinTemplate extends Skin {
 				'talk',
 				$this->mTitle->isTalkPage() && !$prevent_active_tabs,
 				'',
-				true
+				$userCanRead
 			);
 
 			wfProfileIn( __METHOD__ . '-edit' );
@@ -774,7 +775,7 @@ class SkinTemplate extends Skin {
 						);
 					}
 				}
-			} elseif ( $this->mTitle->hasSourceText() ) {
+			} elseif ( $this->mTitle->hasSourceText() && $userCanRead ) {
 				$content_actions['viewsource'] = array(
 					'class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg( 'viewsource' ),
@@ -784,7 +785,7 @@ class SkinTemplate extends Skin {
 			wfProfileOut( __METHOD__ . '-edit' );
 
 			wfProfileIn( __METHOD__ . '-live' );
-			if ( $this->mTitle->exists() ) {
+			if ( $this->mTitle->exists() && $userCanRead ) {
 
 				$content_actions['history'] = array(
 					'class' => ($action == 'history') ? 'selected' : false,
