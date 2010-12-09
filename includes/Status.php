@@ -301,6 +301,23 @@ class Status {
 	}
 
 	/**
+	 * If the specified source message exists, replace it with the specified 
+	 * destination message, but keep the same parameters as in the original error.
+	 *
+	 * Return true if the replacement was done, false otherwise.
+	 */
+	function replaceMessage( $source, $dest ) {
+		$replaced = false;
+		foreach ( $this->errors as $index => $error ) {
+			if ( $error['message'] === $source ) {
+				$this->errors[$index]['message'] = $dest;
+				$replaced = true;
+			}
+		}
+		return $replaced;
+	}
+
+	/**
 	 * Backward compatibility function for WikiError -> Status migration
 	 *
 	 * @return String

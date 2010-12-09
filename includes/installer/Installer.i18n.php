@@ -15,14 +15,22 @@ $messages['en'] = array(
 	'config-desc'                     => 'The installer for MediaWiki',
 	'config-title'                    => 'MediaWiki $1 installation',
 	'config-information'              => 'Information',
-	'config-localsettings-upgrade'    => "'''Warning''': A <code>LocalSettings.php</code> file has been detected.
-Your software is able to upgrade.
-Please fill in the value of <code>\$wgUpgradeKey</code> in the box.",
+	'config-localsettings-upgrade'    => "A <code>LocalSettings.php</code> file has been detected.
+To upgrade this installation, please enter the value of <code>\$wgUpgradeKey</code> in the box below. 
+You will find it in LocalSettings.php.",
 	'config-localsettings-key'        => 'Upgrade key:',
-	'config-localsettings-badkey'     => 'The key you provided is incorrect',
-	'config-localsettings-noupgrade'  => "'''Error''': A <code>LocalSettings.php</code> file has been detected.
-Your software is not able to upgrade at this time.
-The installer has been disabled for security reasons.",
+	'config-localsettings-badkey'     => 'The key you provided is incorrect.',
+	'config-upgrade-key-missing'      => 'An existing installation of MediaWiki has been detected.
+To upgrade this installation, please put the following line at the bottom of your LocalSettings.php:
+
+$1
+',
+	'config-localsettings-incomplete' => 'The existing LocalSettings.php appears to be incomplete.
+The $1 variable is not set.
+Please change LocalSettings.php so that this variable is set, and click "Continue".',
+	'config-localsettings-connection-error' => 'An error was encountered when connecting to the database using the settings specified in LocalSettings.php or AdminSettings.php. Please fix these settings and try again.
+
+$1',
 	'config-session-error'            => 'Error starting session: $1',
 	'config-session-expired'          => 'Your session data seems to have expired.
 Sessions are configured for a lifetime of $1.
@@ -51,7 +59,7 @@ Check your php.ini and make sure <code>session.save_path</code> is set to an app
 	'config-page-releasenotes'        => 'Release notes',
 	'config-page-copying'             => 'Copying',
 	'config-page-upgradedoc'          => 'Upgrading',
-	'config-page-locked'              => 'Permission denied',
+	'config-page-existingwiki'        => 'Existing wiki',
 	'config-help-restart'             => 'Do you want to clear all saved data that you have entered and restart the installation process?',
 	'config-restart'                  => 'Yes, restart it',
 	'config-welcome'                  => "=== Environmental checks ===

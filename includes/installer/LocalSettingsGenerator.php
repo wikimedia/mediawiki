@@ -282,7 +282,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-#\$wgUpgradeKey = \"{$this->values['wgUpgradeKey']}\";
+\$wgUpgradeKey = \"{$this->values['wgUpgradeKey']}\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook', 'vector':

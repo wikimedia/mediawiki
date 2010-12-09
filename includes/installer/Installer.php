@@ -213,33 +213,30 @@ abstract class Installer {
 	}
 
 	/**
-	 * Determine if LocalSettings exists. If it does, return an appropriate
-	 * status for whether upgrading is enabled or not.
+	 * Determine if LocalSettings.php exists. If it does, return its variables, 
+	 * merged with those from AdminSettings.php, as an array.
 	 *
-	 * @return Status
+	 * @return Array
 	 */
-	public function getLocalSettingsStatus() {
+	public function getExistingLocalSettings() {
 		global $IP;
 
-		$status = Status::newGood();
-
 		wfSuppressWarnings();
-		$ls = file_exists( "$IP/LocalSettings.php" );
+		$_lsExists = file_exists( "$IP/LocalSettings.php" );
 		wfRestoreWarnings();
 
-		if( $ls ) {
+		if( $_lsExists ) {
 			require( "$IP/includes/DefaultSettings.php" );
-			require_once( "$IP/LocalSettings.php" );
-			$vars = get_defined_vars();
-			if( isset( $vars['wgUpgradeKey'] ) && $vars['wgUpgradeKey'] ) {
-				$status->warning( 'config-localsettings-upgrade' );
-				$this->setVar( '_UpgradeKey', $vars['wgUpgradeKey' ] );
-			} else {
-				$status->fatal( 'config-localsettings-noupgrade' );
+			require( "$IP/LocalSettings.php" );
+			if ( file_exists( "$IP/AdminSettings.php" ) ) {
+				require( "$IP/AdminSettings.php" );
 			}
+			$vars = get_defined_vars();
+			unset( $vars['_lsExists'] );
+			return $vars;
+		} else {
+			return false;
 		}
-
-		return $status;
 	}
 
 	/**

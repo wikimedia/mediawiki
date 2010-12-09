@@ -5233,6 +5233,10 @@ $wgEnableSelenium = false;
 $wgSeleniumTestConfigs = array();
 $wgSeleniumConfigFile = null;
 
+/**
+ * Set this to a random string to allow web-based upgrades
+ */
+$wgUpgradeKey = false;
 
 
 /**
