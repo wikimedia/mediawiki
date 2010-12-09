@@ -4132,8 +4132,7 @@ $wgReadOnly             = null;
 $wgReadOnlyFile         = false;
 
 /**
- * If this is set to some string, this opens up config/index.php for upgrades
- * when needed. You will need to provide this key to use it
+ * Set this to a random string to allow web-based upgrades
  */
 $wgUpgradeKey = false;
 
@@ -5232,12 +5231,6 @@ $wgUploadMaintenance = false;
 $wgEnableSelenium = false;
 $wgSeleniumTestConfigs = array();
 $wgSeleniumConfigFile = null;
-
-/**
- * Set this to a random string to allow web-based upgrades
- */
-$wgUpgradeKey = false;
-
 
 /**
  * For really cool vim folding this needs to be at the end:
