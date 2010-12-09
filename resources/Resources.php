@@ -341,8 +341,8 @@ return array(
 	'mediawiki.action.view.rightClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.rightClickEdit.js',
 	),
-	'mediawiki.action.watch' => array(
-		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.js',
+	'mediawiki.action.watch.ajax' => array(
+		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.special.preferences' => array(
