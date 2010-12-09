@@ -267,6 +267,7 @@ class UserMailer {
 
 	/**
 	 * Converts a string into quoted-printable format
+	 * @since 1.17
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {
 		# Probably incomplete; see RFC 2045
@@ -654,18 +655,24 @@ class EmailNotification {
 /**@{
  * Backwards compatibility functions
  *
- * @deprecated Use UserMailer methods; will be removed in 1.19
+ * @deprecated Use UserMailer method deprecated in 1.18, remove in 1.19.
  */
 function wfRFC822Phrase( $s ) {
 	wfDeprecated( __FUNCTION__ );
 	return UserMailer::rfc822Phrase( $s );
 }
 
+/**
+ * @deprecated Use UserMailer method deprecated in 1.18, remove in 1.19.
+ */
 function userMailer( $to, $from, $subject, $body, $replyto = null ) {
 	wfDeprecated( __FUNCTION__ );
 	return UserMailer::send( $to, $from, $subject, $body, $replyto );
 }
 
+/**
+ * @deprecated Use UserMailer method deprecated in 1.18, remove in 1.19.
+ */
 function wfQuotedPrintable( $string, $charset = '' ) {
 	wfDeprecated( __FUNCTION__ );
 	return UserMailer::quotedPrintable( $string, $charset );
