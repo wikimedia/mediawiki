@@ -26,15 +26,16 @@ wgAjaxWatch.setLinkText = function( $link, action ) {
 	}
 };
 
-wgAjaxWatch.processResult = function( response ) {
+wgAjaxWatch.processResult = function( response, $link ) {
 	response = response.watch;
-	var $link = $( this );
+
+	console.log( $link.get() );
 	// To ensure we set the same status for all watch links with the
 	// same target we trigger a custom event on *all* watch links.
 	if( response.watched !== undefined ) {
-		wgAjaxWatch.$links.trigger( 'mw-ajaxwatch', [response.title, 'watch'] );
+		wgAjaxWatch.$links.trigger( 'mw-ajaxwatch', [response.title, 'watch', $link] );
 	} else if ( response.unwatched !== undefined ) {
-		wgAjaxWatch.$links.trigger( 'mw-ajaxwatch', [response.title, 'unwatch'] );
+		wgAjaxWatch.$links.trigger( 'mw-ajaxwatch', [response.title, 'unwatch', $link] );
 	} else {
 		// Either we got an error code or it just plain broke.
 		window.location.href = $link.attr( 'href' );
@@ -56,18 +57,19 @@ $( document ).ready( function() {
 	var $links = $( '.mw-watchlink a, a.mw-watchlink' );
 	// BC with older skins
 	$links = $links
-		.add( $( '#ca-watch a, #ca-unwatch a, a#mw-unwatch-link1' ) )
-		.add( $( 'a#mw-unwatch-link2, a#mw-watch-link2, a#mw-watch-link1' ) );
+		.add( '#ca-watch a, #ca-unwatch a, a#mw-unwatch-link1, ' +
+			'a#mw-unwatch-link2, a#mw-watch-link2, a#mw-watch-link1' );
 	// allowing people to add inline animated links is a little scary
 	$links = $links.filter( ':not( #bodyContent *, #content * )' );
 
 	$links.each( function() {
 		var $link = $( this );
+		var link = this;
 		$link
-			.data( 'icon', $link.parents( 'li' ).hasClass( 'icon' ) )
-			.data( 'action', $link.attr( 'href' ).match( /[\?&]action=unwatch/i ) ? 'unwatch' : 'watch' );
-		var title = $link.attr( 'href' ).match( /[\?&]title=(.*?)&/i )[1];
-		$link.data( 'target', decodeURIComponent( title ).replace( /_/g, ' ' ) );
+			.data( 'icon', $link.closest( 'li' ).hasClass( 'icon' ) )
+			.data( 'action', mw.util.getParamValue( 'action', link.href ) == 'unwatch' ? 'unwatch' : 'watch' );
+		var title = mw.util.getParamValue( 'title', link.href );
+		$link.data( 'target', title.replace( /_/g, ' ' ) );
 	});
 
 	$links.click( function( event ) {
@@ -82,13 +84,13 @@ $( document ).ready( function() {
 		}
 
 		wgAjaxWatch.setLinkText( $link, $link.data( 'action' ) + 'ing' );
-		$.get( wgScriptPath
+		$.getJSON( wgScriptPath
 				+ '/api' + wgScriptExtension + '?action=watch&format=json&title='
 				+ encodeURIComponent( $link.data( 'target' ) )
 				+ ( $link.data( 'action' ) == 'unwatch' ? '&unwatch' : '' ),
-			{},
-			wgAjaxWatch.processResult,
-			'json'
+			function( data, textStatus, xhr ) {
+				wgAjaxWatch.processResult( data, $link );
+			}
 		);
 
 		return false;
@@ -96,8 +98,7 @@ $( document ).ready( function() {
 
 	// When a request returns, a custom event 'mw-ajaxwatch' is triggered
 	// on *all* watch links, so they can be updated if necessary
-	$links.bind( 'mw-ajaxwatch', function( event, target, action ) {
-		var $link = $( this );
+	$links.bind( 'mw-ajaxwatch', function( event, target, action, $link ) {
 		var foo = $link.data( 'target' );
 		if( $link.data( 'target' ) == target ) {
 			var otheraction = action == 'watch'
@@ -106,13 +107,15 @@ $( document ).ready( function() {
 
 			$link.data( 'action', otheraction );
 			wgAjaxWatch.setLinkText( $link, otheraction );
-			$link.attr( 'href', $link.attr( 'href' ).replace( '/&action=' + action + '/', '&action=' + otheraction ) );
+			$link.attr( 'href', $link.attr( 'href' ).replace( '&action=' + action , '&action=' + otheraction ) );
 			if( $link.parents( 'li' ).attr( 'id' ) == 'ca-' + action ) {
 				$link.parents( 'li' ).attr( 'id', 'ca-' + otheraction );
 				// update the link text with the new message
 				$link.text( mediaWiki.msg( otheraction ) );
 			}
 		}
+
+		console.log( $link.get() );
 		return false;
 	});
 
