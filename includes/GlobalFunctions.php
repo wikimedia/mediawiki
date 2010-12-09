@@ -225,15 +225,6 @@ function wfArrayDiff2_cmp( $a, $b ) {
 }
 
 /**
- * Seed Mersenne Twister
- * No-op for compatibility; only necessary in PHP < 4.2.0
- * @deprecated. Remove in 1.18
- */
-function wfSeedRandom() {
-	wfDeprecated(__FUNCTION__);
-}
-
-/**
  * Get a random decimal value between 0 and 1, in a way
  * not likely to give duplicate values for any realistic
  * number of articles.
@@ -2216,7 +2207,7 @@ function wfGetSiteNotice() {
 
 /**
  * BC wrapper for MimeMagic::singleton()
- * @deprecated No longer needed as of 1.17 (r68836).
+ * @deprecated No longer needed as of 1.17 (r68836). Remove in 1.19.
  */
 function &wfGetMimeMagic() {
 	wfDeprecated( __FUNCTION__ );
@@ -3268,9 +3259,10 @@ function wfBoolToStr( $value ) {
 
 /**
  * Load an extension messages file
- * @deprecated in 1.16 (warnings in 1.18, removed in ?)
+ * @deprecated in 1.16, warnings in 1.18, remove in 1.20
  */
 function wfLoadExtensionMessages( $extensionName, $langcode = false ) {
+	wfDeprecated( __FUNCTION__ );
 }
 
 /**
