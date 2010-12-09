@@ -82,7 +82,10 @@ if( $wgUseFileCache && $wgTitle !== null ) {
 			# Do any stats increment/watchlist stuff
 			$wgArticle = MediaWiki::articleFromTitle( $wgTitle );
 			$wgArticle->viewUpdates();
+			# Tell $wgOut that output is taken care of
+			$wgOut->disable();
 			wfProfileOut( 'main-try-filecache' );
+			$mediaWiki->finalCleanup( $wgOut );
 			$mediaWiki->restInPeace();
 			exit;
 		}
@@ -96,7 +99,6 @@ $mediaWiki->setVal( 'DisabledActions', $wgDisabledActions );
 $mediaWiki->setVal( 'DisableHardRedirects', $wgDisableHardRedirects );
 $mediaWiki->setVal( 'EnableCreativeCommonsRdf', $wgEnableCreativeCommonsRdf );
 $mediaWiki->setVal( 'EnableDublinCoreRdf', $wgEnableDublinCoreRdf );
-$mediaWiki->setVal( 'JobRunRate', $wgJobRunRate );
 $mediaWiki->setVal( 'Server', $wgServer );
 $mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
 $mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
@@ -104,5 +106,4 @@ $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
 $mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
 $mediaWiki->finalCleanup( $wgOut );
-
 $mediaWiki->restInPeace();
