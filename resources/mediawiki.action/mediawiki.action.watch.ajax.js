@@ -1,7 +1,6 @@
 /**
  * Animate watch/unwatch links to use asynchronous API requests to
  * watch pages, rather than clicking on links. Requires jQuery.
- * Uses jsMsg() from wikibits.js.
  */
 
 if ( typeof wgAjaxWatch === 'undefined' || !wgAjaxWatch ) {
@@ -37,16 +36,16 @@ wgAjaxWatch.processResult = function( response, $link ) {
 		wgAjaxWatch.$links.trigger( 'mw-ajaxwatch', [response.title, 'unwatch', $link] );
 	} else {
 		// Either we got an error code or it just plain broke.
-		window.location.href = $link.attr( 'href' );
+		window.location.href = $link[0].href;
 		return;
 	}
 
-	jsMsg( response.message, 'watch' );
+	mw.util.jsMessage( response.message, 'watch' );
 
 	// Bug 12395 - update the watch checkbox on edit pages when the
 	// page is watched or unwatched via the tab.
 	if( response.watched !== undefined ) {
-		$( '#wpWatchthis' ).attr( 'checked', '1' );
+		$( '#wpWatchthis' ).attr( 'checked', 'checked' );
 	} else {
 		$( '#wpWatchthis' ).removeAttr( 'checked' );
 	}
@@ -74,7 +73,7 @@ $( document ).ready( function() {
 	$links.click( function( event ) {
 		var $link = $( this );
 
-		if( wgAjaxWatch.supported === false || !wgEnableWriteAPI || !wfSupportsAjax() ) {
+		if( wgAjaxWatch.supported === false || !mw.config.get( 'wgEnableWriteAPI' ) || !wfSupportsAjax() ) {
 			// Lazy initialization so we don't toss up
 			// ActiveX warnings on initial page load
 			// for IE 6 users with security settings.
@@ -83,8 +82,8 @@ $( document ).ready( function() {
 		}
 
 		wgAjaxWatch.setLinkText( $link, $link.data( 'action' ) + 'ing' );
-		$.getJSON( wgScriptPath
-				+ '/api' + wgScriptExtension + '?action=watch&format=json&title='
+		$.getJSON( mw.config.get( 'wgScriptPath' )
+				+ '/api' + mw.config.get( 'wgScriptExtension' ) + '?action=watch&format=json&title='
 				+ encodeURIComponent( $link.data( 'target' ) )
 				+ ( $link.data( 'action' ) == 'unwatch' ? '&unwatch' : '' ),
 			function( data, textStatus, xhr ) {
@@ -107,8 +106,8 @@ $( document ).ready( function() {
 			$link.data( 'action', otheraction );
 			wgAjaxWatch.setLinkText( $link, otheraction );
 			$link.attr( 'href', $link.attr( 'href' ).replace( '&action=' + action , '&action=' + otheraction ) );
-			if( $link.parents( 'li' ).attr( 'id' ) == 'ca-' + action ) {
-				$link.parents( 'li' ).attr( 'id', 'ca-' + otheraction );
+			if( $link.closest( 'li' ).attr( 'id' ) == 'ca-' + action ) {
+				$link.closest( 'li' ).attr( 'id', 'ca-' + otheraction );
 				// update the link text with the new message
 				$link.text( mediaWiki.msg( otheraction ) );
 			}
