@@ -29,7 +29,6 @@ wgAjaxWatch.setLinkText = function( $link, action ) {
 wgAjaxWatch.processResult = function( response, $link ) {
 	response = response.watch;
 
-	console.log( $link.get() );
 	// To ensure we set the same status for all watch links with the
 	// same target we trigger a custom event on *all* watch links.
 	if( response.watched !== undefined ) {
@@ -115,7 +114,6 @@ $( document ).ready( function() {
 			}
 		}
 
-		console.log( $link.get() );
 		return false;
 	});
 
