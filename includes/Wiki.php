@@ -379,19 +379,19 @@ class MediaWiki {
 	 * Do a job from the job queue
 	 */
 	function doJobs() {
-		$jobRunRate = $this->getVal( 'JobRunRate' );
+		global $wgJobRunRate;
 
-		if( $jobRunRate <= 0 || wfReadOnly() ) {
+		if( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
 		}
-		if( $jobRunRate < 1 ) {
+		if( $wgJobRunRate < 1 ) {
 			$max = mt_getrandmax();
-			if( mt_rand( 0, $max ) > $max * $jobRunRate ) {
+			if( mt_rand( 0, $max ) > $max * $wgJobRunRate ) {
 				return;
 			}
 			$n = 1;
 		} else {
-			$n = intval( $jobRunRate );
+			$n = intval( $wgJobRunRate );
 		}
 
 		while ( $n-- && false != ( $job = Job::pop() ) ) {
