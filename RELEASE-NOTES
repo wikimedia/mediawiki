@@ -231,6 +231,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Special wrapping setups can now define MW_CONFIG_FILE to load a config file
   other than LocalSettings.php. This is like MW_CONFIG_CALLBACK but works in
   some cases where MW_CONFIG_CALLBACK will not work.
+* Added a special page, disabled by default, that allows users with the
+  'disableaccount' privilege to permanently deactivate user accounts.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
