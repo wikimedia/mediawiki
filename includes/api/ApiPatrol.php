@@ -59,6 +59,10 @@ class ApiPatrol extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 
+	public function mustBePosted() {
+		return true;
+	}
+
 	public function isWriteMode() {
 		return true;
 	}
@@ -95,8 +99,7 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getTokenSalt() {
-		$params = $this->extractRequestParams();
-		return $params['rcid'];
+		return 'patrol';
 	}
 
 	protected function getExamples() {
