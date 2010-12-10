@@ -409,6 +409,10 @@ class ResourceLoader {
 	public function makeModuleResponse( ResourceLoaderContext $context, 
 		array $modules, $missing = array() ) 
 	{
+		if ( $modules === array() && $missing === array() ) {
+			return '/* No modules requested. Max made me put this here */';
+		}
+		
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
 			$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
