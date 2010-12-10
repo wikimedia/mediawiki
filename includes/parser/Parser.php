@@ -89,10 +89,20 @@ class Parser {
 	const MARKER_SUFFIX = "-QINU\x7f";
 
 	# Persistent:
-	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables;
-	var $mSubstWords, $mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex;
-	var $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols, $mDefaultStripList;
-	var $mVarCache, $mConf, $mFunctionTagHooks;
+	var $mTagHooks = array();
+	var $mTransparentTagHooks = array();
+	var $mFunctionHooks = array();
+	var $mFunctionSynonyms = array( 0 => array(), 1 => array() );
+	var $mFunctionTagHooks = array();
+	var $mStripList  = array();
+	var $mDefaultStripList  = array();
+	var $mVarCache = array();
+	var $mImageParams = array();
+	var $mImageParamsMagicArray = array();
+	var $mMarkerIndex = 0;
+	var $mFirstCall = true;
+	var $mVariables, $mSubstWords; # Initialised by initialiseVariables()
+	var $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols; # Initialised in constructor
 
 
 	# Cleared with clearState():
@@ -124,16 +134,9 @@ class Parser {
 	 */
 	function __construct( $conf = array() ) {
 		$this->mConf = $conf;
-		$this->mTagHooks = array();
-		$this->mTransparentTagHooks = array();
-		$this->mFunctionHooks = array();
-		$this->mFunctionTagHooks = array();
-		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
-		$this->mDefaultStripList = $this->mStripList = array();
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
 			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/S';
-		$this->mVarCache = array();
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} elseif ( extension_loaded( 'domxml' ) ) {
@@ -145,8 +148,6 @@ class Parser {
 		} else {
 			$this->mPreprocessorClass = 'Preprocessor_Hash';
 		}
-		$this->mMarkerIndex = 0;
-		$this->mFirstCall = true;
 	}
 
 	/**
