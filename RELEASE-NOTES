@@ -476,6 +476,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   indicating nothing changed are now all prefixed by "..."
 * Page existence is now not revealed (in the colour of the tabs) to users who cannot
   read the page in question.
+* (bug 19006) {{REVISIONUSER}} no longer acts like {{CURRENTUSER}} in some cases
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
