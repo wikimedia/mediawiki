@@ -670,11 +670,4 @@ function userMailer( $to, $from, $subject, $body, $replyto = null ) {
 	return UserMailer::send( $to, $from, $subject, $body, $replyto );
 }
 
-/**
- * @deprecated Use UserMailer method deprecated in 1.18, remove in 1.19.
- */
-function wfQuotedPrintable( $string, $charset = '' ) {
-	wfDeprecated( __FUNCTION__ );
-	return UserMailer::quotedPrintable( $string, $charset );
-}
 /**@}*/
