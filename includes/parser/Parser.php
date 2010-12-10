@@ -103,6 +103,7 @@ class Parser {
 	var $mTplExpandCache; # empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
 	var $mExpensiveFunctionCount; # number of expensive parser function calls
+	var $mUser; # User object; only used when doing pre-save transform
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -110,8 +111,10 @@ class Parser {
 	var $mTitle;        # Title context, used for self-link rendering and similar things
 	var $mOutputType;   # Output type, one of the OT_xxx constants
 	var $ot;            # Shortcut alias, see setOutputType()
+	var $mRevisionObject; # The revision object of the specified revision ID
 	var $mRevisionId;   # ID to display in {{REVISIONID}} tags
 	var $mRevisionTimestamp; # The timestamp of the specified revision ID
+	var $mRevisionUser; # Userto display in {{REVISIONUSER}} tag
 	var $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
 
 	/**
@@ -197,8 +200,10 @@ class Parser {
 		$this->mInPre = false;
 		$this->mLinkHolders = new LinkHolderArray( $this );
 		$this->mLinkID = 0;
-		$this->mRevisionTimestamp = $this->mRevisionId = null;
+		$this->mRevisionObject = $this->mRevisionTimestamp =
+			$this->mRevisionId = $this->mRevisionUser = null;
 		$this->mVarCache = array();
+		$this->mUser = null;
 
 		/**
 		 * Prefix for temporary replacement strings for the multipass parser.
@@ -271,10 +276,14 @@ class Parser {
 		$this->setTitle( $title ); # Page title has to be set for the pre-processor
 
 		$oldRevisionId = $this->mRevisionId;
+		$oldRevisionObject = $this->mRevisionObject;
 		$oldRevisionTimestamp = $this->mRevisionTimestamp;
+		$oldRevisionUser = $this->mRevisionUser;
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
+			$this->mRevisionObject = null;
 			$this->mRevisionTimestamp = null;
+			$this->mRevisionUser = null;
 		}
 		$this->setOutputType( self::OT_HTML );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
@@ -422,7 +431,9 @@ class Parser {
 		$this->mOutput->setText( $text );
 
 		$this->mRevisionId = $oldRevisionId;
+		$this->mRevisionObject = $oldRevisionObject;
 		$this->mRevisionTimestamp = $oldRevisionTimestamp;
+		$this->mRevisionUser = $oldRevisionUser;
 		wfProfileOut( $fname );
 		wfProfileOut( __METHOD__ );
 
@@ -496,6 +507,16 @@ class Parser {
 	 */
 	static private function getRandomString() {
 		return dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
+	}
+
+	/**
+	 * Set the current user.
+	 * Should only be used when doing pre-save transform.
+	 *
+	 * @param $user Mixed: User object or null (to reset)
+	 */
+	function setUser( $user ) {
+		$this->mUser = $user;
 	}
 
 	/**
@@ -619,6 +640,18 @@ class Parser {
 		} else {
 			return $this->mOptions->getInterfaceMessage() ? $wgLang : $wgContLang;
 		}
+	}
+
+	/**
+	 * Get a User object either from $this->mUser, if set, or from the
+	 * ParserOptions object otherwise
+	 *
+	 * @return User object
+	 */
+	function getUser() {
+		if( !is_null( $this->mUser ) )
+			return $this->mUser;
+		return $this->mOptions->getUser();
 	}
 
 	/**
@@ -1842,7 +1875,7 @@ class Parser {
 
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( __METHOD__."-category" );
-					$s = rtrim( $s . "\n" ); # bug 87
+					$s = preg_replace( "/(\s*\n)+\s*$/D", '', $s ); # bug 87
 
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
@@ -1858,7 +1891,7 @@ class Parser {
 					 * Strip the whitespace Category links produce, see bug 87
 					 * @todo We might want to use trim($tmp, "\n") here.
 					 */
-					$s .= trim( $prefix . $trail, "\n" ) == '' ? '': $prefix . $trail;
+					$s .= trim( $prefix . $trail, "\n" ) == '' ? '' : $prefix . $trail;
 
 					wfProfileOut( __METHOD__."-category" );
 					continue;
@@ -3995,6 +4028,7 @@ class Parser {
 		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setTitle( $title );
+		$this->setUser( $user );
 		$this->setOutputType( self::OT_WIKI );
 
 		if ( $clearState ) {
@@ -4007,6 +4041,9 @@ class Parser {
 		$text = str_replace( array_keys( $pairs ), array_values( $pairs ), $text );
 		$text = $this->pstPass2( $text, $user );
 		$text = $this->mStripState->unstripBoth( $text );
+
+		$this->setUser( null ); #Reset
+
 		return $text;
 	}
 
@@ -4941,30 +4978,42 @@ class Parser {
 	}
 
 	/**
+	 * Get the revision object for $this->mRevisionId
+	 *
+	 * @return either a Revision object or null
+	 */
+	protected function getRevisionObject() {
+		if ( !is_null( $this->mRevisionObject ) )
+			return $this->mRevisionObject;
+		if ( is_null( $this->mRevisionId ) )
+			return null;
+
+		$this->mRevisionObject = Revision::newFromId( $this->mRevisionId );
+		return $this->mRevisionObject;
+	}
+
+	/**
 	 * Get the timestamp associated with the current revision, adjusted for
 	 * the default server-local timestamp
 	 */
 	function getRevisionTimestamp() {
 		if ( is_null( $this->mRevisionTimestamp ) ) {
 			wfProfileIn( __METHOD__ );
-			global $wgContLang;
-			$dbr = wfGetDB( DB_SLAVE );
-			$timestamp = $dbr->selectField( 'revision', 'rev_timestamp',
-					array( 'rev_id' => $this->mRevisionId ), __METHOD__ );
 
-			# Normalize timestamp to internal MW format for timezone processing.
-			# This has the added side-effect of replacing a null value with
-			# the current time, which gives us more sensible behavior for
-			# previews.
-			$timestamp = wfTimestamp( TS_MW, $timestamp );
+			$revObject = $this->getRevisionObject();
+			$timestamp = $revObject ? $revObject->getTimestamp() : false;
 
-			# The cryptic '' timezone parameter tells to use the site-default
-			# timezone offset instead of the user settings.
-			#
-			# Since this value will be saved into the parser cache, served
-			# to other users, and potentially even used inside links and such,
-			# it needs to be consistent for all visitors.
-			$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp, '' );
+			if( $timestamp !== false ) {
+				global $wgContLang;
+
+				# The cryptic '' timezone parameter tells to use the site-default
+				# timezone offset instead of the user settings.
+				#
+				# Since this value will be saved into the parser cache, served
+				# to other users, and potentially even used inside links and such,
+				# it needs to be consistent for all visitors.
+				$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp, '' );
+			}
 
 			wfProfileOut( __METHOD__ );
 		}
@@ -4977,16 +5026,18 @@ class Parser {
 	 * @return String: user name
 	 */
 	function getRevisionUser() {
-		# if this template is subst: the revision id will be blank,
-		# so just use the current user's name
-		if ( $this->mRevisionId ) {
-			$revision = Revision::newFromId( $this->mRevisionId );
-			$revuser = $revision->getUserText();
-		} else {
-			global $wgUser;
-			$revuser = $wgUser->getName();
+		if( is_null( $this->mRevisionUser ) ) {
+			$revObject = $this->getRevisionObject();
+
+			# if this template is subst: the revision id will be blank,
+			# so just use the current user's name
+			if( $revObject ) {
+				$this->mRevisionUser = $revObject->getUserText();
+			} elseif( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
+				$this->mRevisionUser = $this->getUser()->getName();
+			}
 		}
-		return $revuser;
+		return $this->mRevisionUser;
 	}
 
 	/**
