@@ -297,7 +297,6 @@ function wfUrlencode( $s ) {
 function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
 	global $wgDebugLogPrefix, $wgShowDebug;
-	static $recursion = 0;
 
 	static $cache = array(); // Cache of unoutputted messages
 	$text = wfDebugTimer() . $text;
@@ -310,21 +309,11 @@ function wfDebug( $text, $logonly = false ) {
 	if ( ( $wgDebugComments || $wgShowDebug ) && !$logonly ) {
 		$cache[] = $text;
 
-		if ( !isset( $wgOut ) ) {
-			return;
+		if ( isset( $wgOut ) && StubObject::isRealObject( $wgOut ) ) {
+			// add the message and any cached messages to the output
+			array_map( array( $wgOut, 'debug' ), $cache );
+			$cache = array();
 		}
-		if ( !StubObject::isRealObject( $wgOut ) ) {
-			if ( $recursion ) {
-				return;
-			}
-			$recursion++;
-			$wgOut->_unstub();
-			$recursion--;
-		}
-
-		// add the message and possible cached ones to the output
-		array_map( array( $wgOut, 'debug' ), $cache );
-		$cache = array();
 	}
 	if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
 		# Strip unprintables; they can switch terminal modes when binary data
