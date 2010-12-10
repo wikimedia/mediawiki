@@ -73,7 +73,7 @@ class SkinVector extends SkinTemplate {
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
 
-		$userCanRead = $this->mTitle->quickUserCan( 'read' );
+		$userCanRead = $this->mTitle->userCanRead();
 
 		// Checks if page is some kind of content
 		if( $this->iscontent ) {
