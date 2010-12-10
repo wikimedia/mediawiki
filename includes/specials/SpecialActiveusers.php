@@ -165,7 +165,7 @@ class SpecialActiveUsers extends SpecialPage {
 	 * Constructor
 	 */
 	public function __construct() {
-		SpecialPage::SpecialPage( 'Activeusers' );
+		parent::__construct( 'Activeusers' );
 	}
 
 	/**
