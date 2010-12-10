@@ -723,13 +723,16 @@ class ParserTest {
 	 * the db will be visible to later tests in the run.
 	 */
 	public function setupDatabase() {
-		global $wgDBprefix, $wgDBtype;
+		global $wgDBprefix;
 
 		if ( $this->databaseSetupDone ) {
 			return;
 		}
 
-		if ( $wgDBprefix === 'parsertest_' || ( $wgDBtype == 'oracle' && $wgDBprefix === 'pt_' ) ) {
+		$db = wfGetDB( DB_MASTER );
+		$dbType = $db->getType();
+
+		if ( $wgDBprefix === 'parsertest_' || ( $dbType == 'oracle' && $wgDBprefix === 'pt_' ) ) {
 			throw new MWException( 'setupDatabase should be called before setupGlobals' );
 		}
 
@@ -745,9 +748,7 @@ class ParserTest {
 			$this->useTemporaryTables = false;
 		}
 
-		$temporary = $this->useTemporaryTables || $wgDBtype == 'postgres';
-
-		$db = wfGetDB( DB_MASTER );
+		$temporary = $this->useTemporaryTables || $dbType == 'postgres';
 		$tables = $this->listTables();
 
 		foreach ( $tables as $tbl ) {
@@ -756,12 +757,12 @@ class ParserTest {
 			# fix back and forth so tableName() works right.
 			$this->changePrefix( $this->oldTablePrefix );
 			$oldTableName = $db->tableName( $tbl );
-			$this->changePrefix( $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_' );
+			$this->changePrefix( $dbType != 'oracle' ? 'parsertest_' : 'pt_' );
 			$newTableName = $db->tableName( $tbl );
 
-			if ( $wgDBtype == 'mysql' ) {
+			if ( $dbType == 'mysql' ) {
 				$db->query( "DROP TABLE IF EXISTS $newTableName" );
-			} elseif ( in_array( $wgDBtype, array( 'postgres', 'oracle' ) ) ) {
+			} elseif ( in_array( $dbType, array( 'postgres', 'oracle' ) ) ) {
 				/* DROPs wouldn't work due to Foreign Key Constraints (bug 14990, r58669)
 				 * Use "DROP TABLE IF EXISTS $newTableName CASCADE" for postgres? That
 				 * syntax would also work for mysql.
@@ -774,12 +775,12 @@ class ParserTest {
 			$db->duplicateTableStructure( $oldTableName, $newTableName, $temporary );
 		}
 
-		if ( $wgDBtype == 'oracle' )
+		if ( $dbType == 'oracle' )
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 
-		$this->changePrefix( $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_' );
+		$this->changePrefix( $dbType != 'oracle' ? 'parsertest_' : 'pt_' );
 
-		if ( $wgDBtype == 'oracle' ) {
+		if ( $dbType == 'oracle' ) {
 			# Insert 0 user to prevent FK violations
 
 			# Anonymous user
@@ -882,8 +883,6 @@ class ParserTest {
 	}
 
 	public function teardownDatabase() {
-		global $wgDBtype;
-
 		if ( !$this->databaseSetupDone ) {
 			$this->teardownGlobals();
 			return;
@@ -903,11 +902,11 @@ class ParserTest {
 		$db = wfGetDB( DB_MASTER );
 
 		foreach ( $tables as $table ) {
-			$sql = $wgDBtype == 'oracle' ? "DROP TABLE pt_$table DROP CONSTRAINTS" : "DROP TABLE `parsertest_$table`";
+			$sql = $db->getType() == 'oracle' ? "DROP TABLE pt_$table DROP CONSTRAINTS" : "DROP TABLE `parsertest_$table`";
 			$db->query( $sql );
 		}
 
-		if ( $wgDBtype == 'oracle' )
+		if ( $db->getType() == 'oracle' )
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 
 		$this->teardownGlobals();

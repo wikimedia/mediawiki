@@ -302,7 +302,6 @@ class DbTestRecorder extends DbTestPreviewer  {
 	 * and all that fun stuff
 	 */
 	function start() {
-		global $wgDBtype;
 		$this->db->begin();
 
 		if ( ! $this->db->tableExists( 'testrun' )
@@ -324,7 +323,7 @@ class DbTestRecorder extends DbTestPreviewer  {
 				'tr_uname'       => php_uname()
 			),
 			__METHOD__ );
-			if ( $wgDBtype === 'postgres' ) {
+			if ( $this->db->getType() === 'postgres' ) {
 				$this->curRun = $this->db->currentSequenceValue( 'testrun_id_seq' );
 			} else {
 				$this->curRun = $this->db->insertId();

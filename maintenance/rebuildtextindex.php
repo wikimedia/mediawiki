@@ -40,10 +40,11 @@ class RebuildTextIndex extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgTitle, $wgDBtype;
+		global $wgTitle;
 
 		// Shouldn't be needed for Postgres
-		if ( $wgDBtype == 'postgres' ) {
+		$this->db = wfGetDB( DB_MASTER );
+		if ( $this->db->getType() == 'postgres' ) {
 			$this->error( "This script is not needed when using Postgres.\n", true );
 		}
 
