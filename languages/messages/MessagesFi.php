@@ -3415,4 +3415,7 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'sqlite-has-fts' => '$1, jossa on tuki kokotekstihaulle',
 'sqlite-no-fts'  => '$1, jossa ei ole tukea kokotekstihaulle',
 
+# Special:DisableAccount
+'disableaccount' => 'Poista käyttäjätunnus',
+
 );

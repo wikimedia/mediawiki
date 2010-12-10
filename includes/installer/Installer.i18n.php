@@ -820,11 +820,21 @@ $messages['be-tarask'] = array(
 	'config-desc' => 'Праграма ўсталяваньня MediaWiki',
 	'config-title' => 'Усталяваньне MediaWiki $1',
 	'config-information' => 'Інфармацыя',
-	'config-localsettings-upgrade' => "'''Папярэджаньне''': знойдзены файл <code>LocalSettings.php</code>.
-Магчыма абнавіць існуючую ўстаноўку.
-Калі ласка, пазначце значэньне <code>\$wgUpgradeKey</code> у полі.",
+	'config-localsettings-upgrade' => 'Выяўлены файл <code>LocalSettings.php</code>.
+Каб абнавіць гэтае усталяваньне, калі ласка, увядзіце значэньне <code>$wgUpgradeKey</code> у полі ніжэй.
+Яго можна знайсьці ў LocalSettings.php.',
 	'config-localsettings-key' => 'Ключ паляпшэньня:',
 	'config-localsettings-badkey' => 'Пададзены Вамі ключ зьяўляецца няслушным',
+	'config-upgrade-key-missing' => 'Выяўленае існуючае ўсталяваньне MediaWiki.
+Каб абнавіць гэтае ўсталяваньне, калі ласка, устаўце наступны радок у канец Вашага LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'Выглядае, што існуючы LocalSettings.php зьяўляецца няпоўным.
+Не ўстаноўленая пераменная $1.
+Калі ласка, зьмяніце LocalSettings.php так, каб была ўстаноўленая гэтая пераменная, і націсьніце «Працягваць».',
+	'config-localsettings-connection-error' => 'Адбылася памылка падчас злучэньня з базай зьвестак з выкарыстаньнем ўстановак пазначаных у LocalSettings.php ці AdminSettings.php. Калі ласка, выпраўце гэтыя ўстаноўкі і паспрабуйце зноў.
+
+$1',
 	'config-session-error' => 'Памылка стварэньня сэсіі: $1',
 	'config-session-expired' => 'Скончыўся тэрмін дзеяньня зьвестак сэсіі.
 Сэсія мае абмежаваны тэрмін у $1.
@@ -853,6 +863,7 @@ $messages['be-tarask'] = array(
 	'config-page-releasenotes' => 'Заўвагі да выпуску',
 	'config-page-copying' => 'Капіяваньне',
 	'config-page-upgradedoc' => 'Абнаўленьне',
+	'config-page-existingwiki' => 'Існуючая вікі',
 	'config-help-restart' => 'Ці жадаеце выдаліць усе ўведзеныя зьвесткі і пачаць працэс усталяваньня зноў?',
 	'config-restart' => 'Так, пачаць зноў',
 	'config-welcome' => '== Праверка асяродзьдзя ==
@@ -1494,12 +1505,12 @@ $messages['de'] = array(
 	'config-title' => 'Installation von MediaWiki $1',
 	'config-information' => 'Information',
 	'config-localsettings-upgrade' => 'Eine Datei <code>LocalSettings.php</code> wurde gefunden.
-Um die vorhandene Installation aktualisieren zu können, muss der Wert des Parameters <code>$wgUpgradeKey</code> im folgenden Eingabefeld angeben werden.
+Um die vorhandene Installation aktualisieren zu können, muss der Wert des Parameters <code>$wgUpgradeKey</code> im folgenden Eingabefeld angegeben werden.
 Der Parameterwert befindet sich in der Datei LocalSettings.php.',
 	'config-localsettings-key' => 'Aktualisierungsschlüssel:',
 	'config-localsettings-badkey' => 'Der angegebene Aktualisierungsschlüssel ist falsch.',
 	'config-upgrade-key-missing' => 'Eine MediaWiki-Installation wurde gefunden.
-Um die vorhandene Installation aktualisieren zu können, muss der unten angegebene Code am Ende in die Datei LocalSettings.php eingefügt werden:
+Um die vorhandene Installation aktualisieren zu können, muss die unten angegebene Codezeile in die Datei LocalSettings.php an deren Ende eingefügt werden:
 
 $1',
 	'config-localsettings-incomplete' => 'Die vorhandene Datei LocalSettings.php scheint unvollständig zu sein.
@@ -1757,6 +1768,9 @@ Das Wiki kann nun [$1 genutzt werden].
 
 Sofern die Datei <code>LocalSettings.php</code> neu erzeugt werden soll, bitte auf die Schaltfläche unten klicken.
 Dies wird '''nicht empfohlen''', es sei denn, es treten Probleme mit dem Wiki auf.",
+	'config-upgrade-done-no-regenerate' => 'Die Aktualisierung ist abgeschlossen.
+
+Das Wiki kann nun [$1 genutzt werden].',
 	'config-regenerate' => 'LocalSettings.php neu erstellen →',
 	'config-show-table-status' => 'Die Abfrage SHOW TABLE STATUS ist gescheitert!',
 	'config-unknown-collation' => "'''Warnung:''' Die Datenbank nutzt eine unbekannte Kollation.",
@@ -2511,11 +2525,22 @@ $messages['fr'] = array(
 	'config-desc' => 'Le programme d’installation de MediaWiki',
 	'config-title' => 'Installation de MediaWiki $1',
 	'config-information' => 'Informations',
-	'config-localsettings-upgrade' => "'''Attention''' : Un fichier <code>LocalSettings.php</code> a été détecté.
-Votre logiciel est capable de se mettre à jour.
-Veuillez saisir la valeur de <code>\$wgUpgradeKey</code> dans le champ.",
+	'config-localsettings-upgrade' => 'Un fichier <code>LocalSettings.php</code> a été détecté.
+Pour mettre à jour cette installation, veuillez saisir la valeur de <code>$wgUpgradeKey</code> dans le champ ci-dessous.
+Vous la trouverez dans LocalSettings.php.',
 	'config-localsettings-key' => 'Clé de mise à jour :',
 	'config-localsettings-badkey' => 'La clé que vous avez fourni est incorrecte',
+	'config-upgrade-key-missing' => 'Une installation existante de MediaWiki a été détectée.
+
+Pour mettre à jour cette installation, veuillez ajouter la ligne suivante à la fin de votre fichier LocalSettings.php
+
+$1',
+	'config-localsettings-incomplete' => 'Le fichier LocalSettings.php existant semble être incomplet.
+La variable $1 n’est pas définie.
+Veuillez modifier LocalSettings.php de sorte que cette variable soit définie, puis cliquer sur « Continuer ».',
+	'config-localsettings-connection-error' => 'Une erreur est survenue lors de la connexion à la base de données en utilisant la configuration spécifiée dans LocalSettings.php ou AdminSettings.php. Veuillez corriger cette configuration puis réessayer.
+
+$1',
 	'config-session-error' => 'Erreur lors du démarrage de la session : $1',
 	'config-session-expired' => "↓Les données de votre session semblent avoir expiré.
 Les sessions sont configurées pour une durée de $1.
@@ -2544,6 +2569,7 @@ Vérifiez votre fichier php.ini et assurez-vous que <code>session.save_path</cod
 	'config-page-releasenotes' => 'Notes de version',
 	'config-page-copying' => 'Copie',
 	'config-page-upgradedoc' => 'Mise à jour',
+	'config-page-existingwiki' => 'Wiki existant',
 	'config-help-restart' => "Voulez-vous effacer toutes les données enregistrées que vous avez entrées et relancer le processus d'installation ?",
 	'config-restart' => 'Oui, le relancer',
 	'config-welcome' => "=== Vérifications liées à l’environnement ===
@@ -2764,6 +2790,9 @@ Vous pouvez maintenant [$1 commencer à utiliser votre wiki].
 
 Si vous souhaitez régénérer votre fichier <code>LocalSettings.php</code>, cliquez sur le bouton ci-dessous. 
 Ce '''n'est pas recommandé''' sauf si vous rencontrez des problèmes avec votre wiki.",
+	'config-upgrade-done-no-regenerate' => 'Mise à jour terminée.
+
+Vous pouvez maintenant [$1 commencer à utiliser votre wiki].',
 	'config-regenerate' => 'Regénérer LocalSettings.php →',
 	'config-show-table-status' => 'Échec de la requête SHOW TABLE STATUS !',
 	'config-unknown-collation' => "'''Attention:''' La base de données effectue un classement alphabétique (''collation'') inconnu.",
@@ -4151,7 +4180,7 @@ Iste se trova in LocalSettings.php.',
 	'config-localsettings-key' => 'Clave de actualisation:',
 	'config-localsettings-badkey' => 'Le clave que tu forniva es incorrecte',
 	'config-upgrade-key-missing' => 'Un installation existente de MediaWiki ha essite detegite.
-Pro actualisar iste installation, per favor adjunge le sequente linea al fin de tu LocalSettings.php:
+Pro actualisar iste installation, es necessari adjunger le sequente linea al fin del file LocalSettings.php:
 
 $1',
 	'config-localsettings-incomplete' => 'Le file LocalSettings.php existente pare esser incomplete.
@@ -4411,6 +4440,9 @@ Tu pote ora [$1 comenciar a usar tu wiki].
 
 Si tu vole regenerar tu file <code>LocalSettings.php</code>, clicca super le button hic infra.
 Isto '''non es recommendate''' si tu non ha problemas con tu wiki.",
+	'config-upgrade-done-no-regenerate' => 'Actualisation complete.
+
+Tu pote ora [$1 comenciar a usar tu wiki].',
 	'config-regenerate' => 'Regenerar LocalSettings.php →',
 	'config-show-table-status' => 'Le consulta SHOW TABLE STATUS falleva!',
 	'config-unknown-collation' => "'''Aviso:''' Le base de datos usa un collation non recognoscite.",
@@ -4612,11 +4644,21 @@ $messages['id'] = array(
 	'config-desc' => 'Penginstal untuk MediaWiki',
 	'config-title' => 'Instalasi MediaWiki $1',
 	'config-information' => 'Informasi',
-	'config-localsettings-upgrade' => "'''Peringatan''': Berkas <code>LocalSettings.php</code> telah ada.
-Perangkat lunak ini dapat memutakhirkannya.
-Masukkan <code>\$wgUpgradeKey</code> dalam kotak yang tersedia.",
+	'config-localsettings-upgrade' => 'Berkas <code>LocalSettings.php</code> sudah ada.
+Untuk memutakhirkan instalasi ini, masukkan nilai <code>$wgUpgradeKey</code> dalam kotak yang tersedia di bawah ini.
+Anda dapat menemukan nilai tersebut dalam LocalSettings.php.',
 	'config-localsettings-key' => 'Kunci pemutakhiran:',
 	'config-localsettings-badkey' => 'Kunci yang Anda berikan tidak benar',
+	'config-upgrade-key-missing' => 'Suatu instalasi MediaWiki telah terdeteksi.
+Untuk memutakhirkan instalasi ini, silakan masukkan baris berikut di bagian bawah LocalSettings.php Anda:
+
+$1',
+	'config-localsettings-incomplete' => 'LocalSettings.php yang ada tampaknya tidak lengkap.
+Variabel $1 tidak diatur.
+Silakan ubah LocalSettings.php untuk mengatur variabel ini dan klik "Lanjutkan".',
+	'config-localsettings-connection-error' => 'Timbul galat saat menghubungkan ke basis data dengan menggunakan setelan yang ditentukan di LocalSettings.php atau AdminSettings.php. Harap perbaiki setelan ini dan coba lagi.
+
+$1',
 	'config-session-error' => 'Kesalahan sesi mulai: $1',
 	'config-session-expired' => 'Data sesi tampaknya telah kedaluwarsa.
 Sesi dikonfigurasi untuk berlaku selama $1.
@@ -4645,6 +4687,7 @@ Cek php.ini Anda dan pastikan bahwa <code>session.save_path</code> diatur ke dir
 	'config-page-releasenotes' => 'Catatan pelepasan',
 	'config-page-copying' => 'Menyalin',
 	'config-page-upgradedoc' => 'Memerbarui',
+	'config-page-existingwiki' => 'Wiki yang ada',
 	'config-help-restart' => 'Apakah Anda ingin menghapus semua data tersimpan yang telah Anda masukkan dan mengulang proses instalasi?',
 	'config-restart' => 'Ya, nyalakan ulang',
 	'config-welcome' => '=== Pengecekan lingkungan ===
@@ -5056,6 +5099,8 @@ Anda perlu [$1 mengunduhnya] dan meletakkannya di basis instalasi wiki (direktor
 '''Catatan''': Jika Anda tidak melakukannya sekarang, berkas konfigurasi yang dihasilkan ini tidak akan tersedia lagi setelah Anda keluar instalasi tanpa mengunduhnya.
 
 Setelah melakukannya, Anda dapat '''[$2 memasuki wiki Anda]'''.",
+	'config-download-localsettings' => 'Unduh LocalSettings.php',
+	'config-help' => 'bantuan',
 );
 
 /** Igbo (Igbo)
@@ -6144,6 +6189,9 @@ chmod a+w $3</pre>',
 
 Ако сакате да ја пресоздадете вашата податотека <code>LocalSettings.php</code>, тогаш кликнете на копчето подолу.
 Ова '''не се препорачува''' освен во случај на проблеми со викито.",
+	'config-upgrade-done-no-regenerate' => 'Надградбата заврши.
+
+Сега можете да [$1 почнете да го користите викито].',
 	'config-regenerate' => 'Пресоздај LocalSettings.php →',
 	'config-show-table-status' => 'Барањето SHOW TABLE STATUS не успеа!',
 	'config-unknown-collation' => "'''Предупредување:''' Базата корисни непрепознаена упатна споредба.",
@@ -6516,9 +6564,9 @@ $messages['nl'] = array(
 	'config-desc' => 'Het installatieprogramma voor MediaWiki',
 	'config-title' => 'Installatie MediaWiki $1',
 	'config-information' => 'Informatie',
-	'config-localsettings-upgrade' => "'''Waarschuwing''': er is een bestaand instellingenbestand <code>LocalSettings.php</code> gevonden.
-Uw software kan bijgewerkt worden.
-Voor de waarde van <code>\$wgUpgradeKey</code> in in het vakje.",
+	'config-localsettings-upgrade' => 'Er is een bestaand instellingenbestand <code>LocalSettings.php</code> gevonden.
+Voer de waarde van <code>$wgUpgradeKey</code> in in onderstaande invoerveld om deze installatie bij te werken.
+De instelling is terug te vinden in LocalSettings.php.',
 	'config-localsettings-key' => 'Upgradesleutel:',
 	'config-localsettings-badkey' => 'De sleutel die u hebt opgegeven is onjuist',
 	'config-session-error' => 'Fout bij het begin van de sessie: $1',
@@ -7414,11 +7462,22 @@ $messages['pl'] = array(
 	'config-desc' => 'Instalator MediaWiki',
 	'config-title' => 'Instalacja MediaWiki $1',
 	'config-information' => 'Informacja',
-	'config-localsettings-upgrade' => "'''Uwaga!''' Wykryto, że plik <code>LocalSettings.php</code> istnieje.
-Oprogramowanie może zostać zaktualizowane.
-Wstaw wartość <code>\$wgUpgradeKey</code> w poniższe pole.",
+	'config-localsettings-upgrade' => 'Plik <code>LocalSettings.php</code> istnieje.
+Aby oprogramowanie zostało zaktualizowane musisz wstawić wartość <code>$wgUpgradeKey</code> w poniższe pole.
+Odnajdziesz ją w LocalSettings.php.',
 	'config-localsettings-key' => 'Klucz aktualizacji',
 	'config-localsettings-badkey' => 'Podany klucz jest nieprawidłowy',
+	'config-upgrade-key-missing' => 'Wykryto zainstalowane wcześniej MediaWiki.
+Jeśli chcesz je zaktualizować dodaj na koniec pliku LocalSettings.php poniższą linię tekstu.
+
+$1',
+	'config-localsettings-incomplete' => 'Istniejący plik LocalSettings.php wygląda na niekompletny.
+Brak wartości zmiennej $1.
+Zmień plik LocalSettings.php, tak by zawierał deklarację wartości tej zmiennej, a następnie kliknij „Dalej”.',
+	'config-localsettings-connection-error' => 'Wystąpił błąd podczas łączenia z bazą danych z wykorzystaniem danych z LocalSettings.php lub AdminSettings.php.
+Popraw ustawienia i spróbuj ponownie.
+
+$1',
 	'config-session-error' => 'Błąd uruchomienia sesji – $1',
 	'config-session-expired' => 'Wygląda na to, że Twoja sesja wygasła.
 Czas życia sesji został skonfigurowany na $1.
@@ -7447,6 +7506,7 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-page-releasenotes' => 'Informacje o wersji',
 	'config-page-copying' => 'Kopiowanie',
 	'config-page-upgradedoc' => 'Uaktualnienie',
+	'config-page-existingwiki' => 'Istniejąca wiki',
 	'config-help-restart' => 'Czy chcesz usunąć wszystkie zapisane dane, które podałeś i uruchomić ponownie proces instalacji?',
 	'config-restart' => 'Tak, zacznij od nowa',
 	'config-welcome' => '=== Sprawdzenie środowiska instalacji ===
@@ -7528,6 +7588,14 @@ Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
 Tworzenie miniatur grafik będzie wyłączone.',
 	'config-no-uri' => "'''Błąd.''' Nie można określić aktualnego URI.
 Instalacja została przerwana.",
+	'config-uploads-not-safe' => "'''Uwaga''' – domyślny katalog do którego zapisywane są przesyłane pliki <code>$1</code> jest podatny na wykonanie dowolnego skryptu.
+Chociaż MediaWiki sprawdza wszystkie przesłane pliki pod kątem bezpieczeństwa, zaleca się jednak, aby [http://www.mediawiki.org/wiki/Manual:Security#Upload_security zamknąć tę lukę w zabezpieczeniach] przed włączeniem przesyłania plików.",
+	'config-brokenlibxml' => 'Twój system jest kombinacją wersji PHP i libxml2, które zawierają błędy mogące powodować ukryte uszkodzenia danych w MediaWiki i innych aplikacjach sieci web.
+Wykonaj aktualizację PHP do wersji 5.2.9 lub późniejszej oraz libxml2 do wersji 2.7.3 lub późniejszej ([http://bugs.php.net/bug.php?id=45996 błąd w PHP]).
+Instalacja została przerwana.',
+	'config-using531' => 'PHP $1 nie współpracuje poprawnie z MediaWiki z powodu błędu dotyczącego referencyjnych argumentów funkcji <code>__call()</code>.
+Uaktualnij do PHP 5.3.2 lub nowszego. Możesz również cofnąć wersję do PHP 5.3.0 aby naprawić ten błąd ([http://bugs.php.net/bug.php?id=50394 błąd w PHP]).
+Instalacja została przerwana.',
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
 	'config-db-host-oracle' => 'TNS bazy danych',
@@ -7539,6 +7607,8 @@ Instalacja została przerwana.",
 	'config-db-password' => 'Hasło bazy danych',
 	'config-db-install-username' => 'Wprowadź nazwę użytkownika, który będzie używany do łączenia się z bazą danych podczas procesu instalacji.
 Nie jest to nazwa konta MediaWiki, a użytkownika bazy danych.',
+	'config-db-install-password' => 'Wprowadź hasło, które będzie wykorzystywane do łączenia się z bazą danych w procesie instalacji.
+To nie jest hasło konta MediaWiki, lecz hasło do bazy danych.',
 	'config-db-install-help' => 'Podaj nazwę użytkownika i jego hasło, które zostaną użyte do połączenia z bazą danych w czasie procesu instalacji.',
 	'config-db-account-lock' => 'Użyj tej samej nazwy użytkownika i hasła w czasie normalnej pracy.',
 	'config-db-wiki-account' => 'Konto użytkownika do normalnej pracy',
@@ -7556,6 +7626,11 @@ Zmień je wyłącznie jeśli jesteś pewien, że powinieneś.',
 	'config-sqlite-dir' => 'Katalog danych SQLite',
 	'config-oracle-def-ts' => 'Domyślna przestrzeń tabel',
 	'config-oracle-temp-ts' => 'Przestrzeń tabel tymczasowych',
+	'config-support-info' => 'MediaWiki może współpracować z następującymi systemami baz danych:
+
+$1
+
+Jeśli system baz danych, z którego chcesz skorzystać nie jest wymieniony, postępuj zgodnie z instrukcjami aby móc z niego skorzystać.',
 	'config-support-mysql' => '* $1 jest domyślną bazą danych dla MediaWiki i jest najlepiej wspierane ([http://www.php.net/manual/en/mysql.installation.php jak skompilować PHP ze wsparciem dla MySQL])',
 	'config-support-postgres' => '* $1 jest popularnym systemem baz danych z otwartym kodem; jest alternatywą dla MySQL ([http://www.php.net/manual/en/pgsql.installation.php jak skompilować PHP ze wsparciem dla PostgreSQL])',
 	'config-support-sqlite' => '* $1 jest lekkim systemem bazy danych, który jest bardzo dobrze wspierany. ([http://www.php.net/manual/en/pdo.installation.php Jak skompilować PHP ze wsparciem dla SQLite], korzystając z PDO)',
@@ -7709,9 +7784,12 @@ Tworzenie domyślnej listy pominięto.",
 	'config-install-secretkey' => 'Generowanie tajnego klucza',
 	'config-insecure-secret' => "'''Uwaga''' – nie można utworzyć bezpiecznego <code>$1</code>.
 Rozważ ręczne jego ustawienie.",
+	'config-install-upgradekey' => 'Generowanie domyślne klucza aktualizacji',
 	'config-install-sysop' => 'Tworzenie konta administratora',
 	'config-install-mainpage' => 'Tworzenie strony głównej z domyślną zawartością',
 	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej.',
+	'config-download-localsettings' => 'Pobierz LocalSettings.php',
+	'config-help' => 'pomoc',
 );
 
 /** Piedmontese (Piemontèis)
@@ -8738,8 +8816,8 @@ $messages['ru'] = array(
 Его можно найти в файле LocalSettings.php.',
 	'config-localsettings-key' => 'Ключ обновления:',
 	'config-localsettings-badkey' => 'Вы указали неправильный ключ',
-	'config-upgrade-key-missing' => 'Обнаружена существующая установка MediaWiki.
-Для обновления этой установки, пожалуйста, добавьте следующую строку в конец вашего файла LocalSettings.php:
+	'config-upgrade-key-missing' => 'Обнаружена существующая установленная копия MediaWiki.
+Чтобы обновить обнаруженную установку, пожалуйста, добавьте следующую строку в конец вашего файла LocalSettings.php:
 
 $1',
 	'config-localsettings-incomplete' => 'Похоже, что существующий файл LocalSettings.php не является полными.
@@ -8774,7 +8852,7 @@ $1',
 	'config-page-restart' => 'Начать установку заново',
 	'config-page-readme' => 'Прочти меня',
 	'config-page-releasenotes' => 'Информация о версии',
-	'config-page-copying' => 'Копирование',
+	'config-page-copying' => 'Лицензия',
 	'config-page-upgradedoc' => 'Обновление',
 	'config-page-existingwiki' => 'Существующая вики',
 	'config-help-restart' => 'Вы хотите удалить все сохранённые данные, которые вы ввели, и запустить процесс установки заново?',
@@ -9000,6 +9078,9 @@ chmod a+w $3</pre>',
 
 Если вы хотите повторно создать файл <code>LocalSettings.php</code>, нажмите на кнопку ниже. 
 Это действие '''не рекомендуется''', если у вас не возникло проблем при установке.",
+	'config-upgrade-done-no-regenerate' => 'Обновление завершено.
+
+Теперь вы можете [$1 начать работу с вики].',
 	'config-regenerate' => 'Создать LocalSettings.php заново →',
 	'config-show-table-status' => 'Запрос «SHOW TABLE STATUS» не выполнен!',
 	'config-unknown-collation' => "'''Внимание:''' База данных использует нераспознанные правила сортировки.",

@@ -399,6 +399,7 @@ $messages = array(
 'jumpto'            => 'Тёкадемс тей:',
 'jumptonavigation'  => 'Новигациясь-лездамось',
 'jumptosearch'      => 'вешнэме',
+'pool-errorunknown' => 'Апак содань ильведькс',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ланга',
@@ -485,6 +486,8 @@ $messages = array(
 'missingarticle-diff'  => '(Мейсэ явовить: $1, $2)',
 'internalerror'        => 'Потмонь ильведькс',
 'internalerror_info'   => 'Потмонь ильведькс: $1',
+'fileappenderrorread'  => '"$1" файлась эзь ловново поладомо шкастонзо.',
+'fileappenderror'      => '"$1" файлась эзь поладово "$2" файлантень.',
 'filecopyerror'        => '"$1" файлась эзь ванстово од "$2" файлакс.',
 'filerenameerror'      => 'Файлантень а маштови "$1" максомс од лем "$2".',
 'filedeleteerror'      => '"$1" файлась шукшпряв эзь ливтеве.',
@@ -515,7 +518,7 @@ $messages = array(
 Совамотаркат теезь.
 Иля стувто полавтнемс эсеть [[Special:Preferences|{{SITENAME}} ладсематнень]].',
 'yourname'                   => 'Теицянь лем:',
-'yourpassword'               => 'Совамо валот:',
+'yourpassword'               => 'Салава валот:',
 'yourpasswordagain'          => 'Омбоцеде сёрмадык кирдицянь леметь:',
 'remembermypassword'         => 'Ледстемс монь совамо валонть те арсемашинасонть (сех кувать $1 {{PLURAL:$1|чи|чить}})',
 'yourdomainname'             => 'Эсеть доменэть:',
@@ -534,7 +537,7 @@ $messages = array(
 'gotaccountlink'             => 'Совамс',
 'createaccountmail'          => 'е-сёрмасо',
 'createaccountreason'        => 'Тувталось:',
-'badretype'                  => 'Сёрмадыть совамо валот кавксть, сынь аволь вейкеть.',
+'badretype'                  => 'Сёрмадыть салава валот кавксть: сынь аволь вейкеть.',
 'userexists'                 => 'Те лемесь уш саезь. Арсека эсеть лия, инеськеть.',
 'loginerror'                 => 'Совамсто ильведькс',
 'createaccounterror'         => 'Совамо тарка эзь теевть: $1',
@@ -552,6 +555,8 @@ $messages = array(
 'wrongpassword'              => 'Аволь истя сёрмадык совамо валот. Варчыка одов.',
 'wrongpasswordempty'         => 'Салавань валот кадовсь апак сёрмадо. Сёрмадыка одов.',
 'passwordtooshort'           => 'Совамо валонть кувалмозо  {{PLURAL:$1|улезэ 1 тешкс| улезт $1 тешкст}}, аволь седе аламо.',
+'password-name-match'        => 'Салава валонтень эряви явовомс теицянь леметь эйстэ.',
+'password-too-weak'          => 'Максозь салава валонть виезэ а саты, секскак тевс а нолдави.',
 'mailmypassword'             => 'Кучт е-сёрмасо од совамо вал',
 'passwordremindertitle'      => '{{SITENAME}} туртов акуватень од совамо вал',
 'passwordremindertext'       => 'Кие-бути (кода неяви тон IP-тешксстэнть $1) вешсь,<br />
@@ -579,6 +584,8 @@ $messages = array(
 'password-strength-mediocre'   => 'берякшке',
 'password-strength-acceptable' => 'маштови',
 'password-strength-good'       => 'вадря',
+'password-retype'              => 'Тезэнь сёрмадык одов салава валонть',
+'password-retype-mismatch'     => 'Салава валтнэ а вейкеть',
 
 # Password reset dialog
 'resetpass'                 => 'Полавтомс совамо валот',

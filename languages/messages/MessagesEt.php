@@ -2570,11 +2570,10 @@ See tähendab, et kogemata ei saa üle kirjutada juba olemasolevat lehekülge, k
 Tegu võib olla väga loetava lehekülje jaoks tõsise ja ootamatu muudatusega;
 enne jätkamist teadvusta palun tagajärgi.",
 'movepagetalktext'             => "Koos artiklileheküljega teisaldatakse automaatselt ka arutelulehekülg, '''välja arvatud juhtudel, kui:'''
-*liigutate lehekülge ühest nimeruumist teise,
-*uue nime all on juba olemas mittetühi arutelulehekülg või
-*jätate alumise kastikese märgistamata.
+*uue pealkirja all on juba arutelulehekülg, mis pole tühi;
+*jätad alloleva märkeruudu valimata.
 
-Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta omal käel uue aruteluleheküljega.",
+Neil juhtudel saad lehekülje soovi korral käsitsi teisaldada või liita.",
 'movearticle'                  => 'Teisalda lehekülg',
 'moveuserpage-warning'         => "'''Hoiatus:''' Oled teisaldamas kasutajalehekülge. Pane tähele, et teisaldatakse ainult lehekülg ja kasutajat '''ei''' nimetata ümber.",
 'movenologin'                  => 'Te ei ole sisse loginud',
