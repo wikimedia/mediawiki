@@ -803,7 +803,7 @@ ul.gallery {
 ul.gallery, li.gallerybox {
 	display: inline-block;
 	zoom: 1;
-	display: inline;
+	*display: inline;
 }
 
 li.gallerycaption {
