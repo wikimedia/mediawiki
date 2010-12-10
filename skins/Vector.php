@@ -115,8 +115,8 @@ class SkinVector extends SkinTemplate {
 
 			// Checks if user can...
 			if (
-				// edit the current page
-				$this->mTitle->quickUserCan( 'edit' ) &&
+				// read and edit the current page
+				$userCanRead && $this->mTitle->quickUserCan( 'edit' ) &&
 				(
 					// if it exists
 					$this->mTitle->exists() ||
