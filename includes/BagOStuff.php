@@ -240,14 +240,12 @@ class SqlBagOStuff extends BagOStuff {
 	var $lastExpireAll = 0;
 
 	protected function getDB() {
-		global $wgDBtype;
-
 		if ( !isset( $this->db ) ) {
 			/* We must keep a separate connection to MySQL in order to avoid deadlocks
 			 * However, SQLite has an opposite behaviour.
 			 * @todo Investigate behaviour for other databases
 			 */
-			if ( $wgDBtype == 'sqlite' ) {
+			if ( wfGetDB( DB_MASTER )->getType() == 'sqlite' ) {
 				$this->db = wfGetDB( DB_MASTER );
 			} else {
 				$this->lb = wfGetLBFactory()->newMainLB();
