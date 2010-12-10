@@ -105,9 +105,8 @@ class LinkHolderArray {
 	 * Get the stub threshold
 	 */
 	function getStubThreshold() {
-		global $wgUser;
 		if ( !isset( $this->stubThreshold ) ) {
-			$this->stubThreshold = $wgUser->getStubThreshold();
+			$this->stubThreshold = $this->parent->getUser()->getStubThreshold();
 		}
 		return $this->stubThreshold;
 	}

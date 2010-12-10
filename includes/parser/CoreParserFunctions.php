@@ -244,13 +244,12 @@ class CoreParserFunctions {
 		if ( is_object( $title ) && $title->getNamespace() == NS_USER )
 			$user = $title->getText();
 
-		// check parameter, or use $wgUser if in interface message
+		// check parameter, or use the ParserOptions if in interface message
 		$user = User::newFromName( $user );
 		if ( $user ) {
 			$gender = $user->getOption( 'gender' );
 		} elseif ( $parser->getOptions()->getInterfaceMessage() ) {
-			global $wgUser;
-			$gender = $wgUser->getOption( 'gender' );
+			$gender = $parser->getOptions()->getUser()->getOption( 'gender' );
 		}
 		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
 		wfProfileOut( __METHOD__ );

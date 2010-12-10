@@ -40,7 +40,7 @@ class ParserOptions {
 	var $mThumbSize;                 # Thumb size preferred by the user.
 	var $mCleanSignatures;           #
 
-	var $mUser;                      # Stored user object, just used to initialise the skin
+	var $mUser;                      # Stored user object
 	var $mIsPreview;                 # Parsing the page for a "preview" operation
 	var $mIsSectionPreview;          # Parsing the page for a "preview" operation on a single section
 	var $mIsPrintable;               # Parsing the printable version of the page
@@ -80,6 +80,7 @@ class ParserOptions {
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
 	function getIsPrintable()                   { $this->accessedOptions['printable'] = true;
 	                                              return $this->mIsPrintable; }
+	function getUser()                          { return $this->mUser; }
 
 	function getSkin( $title = null ) {
 		if ( !isset( $this->mSkin ) ) {
