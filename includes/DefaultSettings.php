@@ -4132,7 +4132,13 @@ $wgReadOnly             = null;
 $wgReadOnlyFile         = false;
 
 /**
- * Set this to a random string to allow web-based upgrades
+ * When you run the web-based upgrade utility, it will tell you what to set 
+ * this to in order to authorize the upgrade process. It will subsequently be
+ * used as a password, to authorize further upgrades.
+ *
+ * For security, do not set this to a guessable string. Use the value supplied 
+ * by the install/upgrade process. To cause the upgrader to generate a new key, 
+ * delete the old key from LocalSettings.php.
  */
 $wgUpgradeKey = false;
 

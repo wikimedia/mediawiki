@@ -324,6 +324,19 @@ abstract class Installer {
 		return $html;
 	}
 
+	public function getParserOptions() {
+		return $this->parserOptions;
+	}
+
+	public function disableLinkPopups() {
+		$this->parserOptions->setExternalLinkTarget( false );
+	}
+
+	public function restoreLinkPopups() {
+		global $wgExternalLinkTarget;
+		$this->parserOptions->setExternalLinkTarget( $wgExternalLinkTarget );
+	}	
+
 	/**
 	 * TODO: document
 	 *

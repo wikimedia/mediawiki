@@ -284,6 +284,9 @@ You can now [$1 start using your wiki].
 
 If you want to regenerate your <code>LocalSettings.php</code> file, click the button below.
 This is '''not recommended''' unless you are having problems with your wiki.",
+	'config-upgrade-done-no-regenerate' => "Upgrade complete.
+
+You can now [$1 start using your wiki].",
 	'config-regenerate'               => 'Regenerate LocalSettings.php →',
 	'config-show-table-status'        => 'SHOW TABLE STATUS query failed!',
 	'config-unknown-collation'        => "'''Warning:''' Database is using unrecognised collation.",
