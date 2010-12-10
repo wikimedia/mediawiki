@@ -40,12 +40,8 @@ abstract class DatabaseUpdater {
 	 * @param $db DatabaseBase object to perform updates on
 	 * @param $shared bool Whether to perform updates on shared tables
 	 * @param $maintenance Maintenance Maintenance object which created us
-	 *
-	 * @todo FIXME: Make $wgDatabase go away.
 	 */
 	protected function __construct( DatabaseBase &$db, $shared, Maintenance $maintenance = null ) {
-		global $wgDatabase;
-		$wgDatabase = $db;
 		$this->db = $db;
 		$this->shared = $shared;
 		if ( $maintenance ) {
