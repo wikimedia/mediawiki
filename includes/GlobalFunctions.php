@@ -1985,7 +1985,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		$strtime = $ts;
 	} else {
 		# Bogus value; fall back to the epoch...
-		wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
+		wfDebug("wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n");
 		
 		return false;
 	}
