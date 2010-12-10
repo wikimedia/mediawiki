@@ -1074,7 +1074,6 @@ class User {
 		global $wgProxyWhitelist, $wgUser;
 
 		if ( -1 != $this->mBlockedby ) {
-			wfDebug( "User::getBlockedStatus: already loaded.\n" );
 			return;
 		}
 
@@ -1338,7 +1337,6 @@ class User {
 	 * @return \bool True if blocked, false otherwise
 	 */
 	function isBlocked( $bFromSlave = true ) { // hacked from false due to horrible probs on site
-		wfDebug( "User::isBlocked: enter\n" );
 		$this->getBlockedStatus( $bFromSlave );
 		return $this->mBlockedby !== 0;
 	}
@@ -1353,9 +1351,7 @@ class User {
 	function isBlockedFrom( $title, $bFromSlave = false ) {
 		global $wgBlockAllowsUTEdit;
 		wfProfileIn( __METHOD__ );
-		wfDebug( __METHOD__ . ": enter\n" );
 
-		wfDebug( __METHOD__ . ": asking isBlocked()\n" );
 		$blocked = $this->isBlocked( $bFromSlave );
 		$allowUsertalk = ( $wgBlockAllowsUTEdit ? $this->mAllowUsertalk : false );
 		# If a user's name is suppressed, they cannot make edits anywhere
