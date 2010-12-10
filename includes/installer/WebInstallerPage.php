@@ -49,7 +49,7 @@ abstract class WebInstallerPage {
 		);
 	}
 
-	public function endForm( $continue = 'continue' ) {
+	public function endForm( $continue = 'continue', $back = 'back' ) {
 		$s = "<div class=\"config-submit\">\n";
 		$id = $this->getId();
 		
@@ -63,10 +63,10 @@ abstract class WebInstallerPage {
 				array( 'name' => "enter-$continue", 'style' => 'visibility:hidden;overflow:hidden;width:1px;margin:0' ) ) . "\n";
 		}
 		
-		if ( $id !== 0 ) {
-			$s .= Xml::submitButton( wfMsg( 'config-back' ),
+		if ( $back ) {
+			$s .= Xml::submitButton( wfMsg( "config-$back" ),
 				array(
-					'name' => 'submit-back',
+					'name' => "submit-$back",
 					'tabindex' => $this->parent->nextTabIndex()
 				) ) . "\n";
 		}
@@ -172,7 +172,7 @@ class WebInstaller_Language extends WebInstallerPage {
 			$this->getLanguageSelector( 'UserLang', 'config-your-language', $userLang, $this->parent->getHelpBox( 'config-your-language-help' ) ) .
 			$this->getLanguageSelector( 'ContLang', 'config-wiki-language', $contLang, $this->parent->getHelpBox( 'config-wiki-language-help' ) );
 		$this->addHTML( $s );
-		$this->endForm();
+		$this->endForm( 'continue', false );
 	}
 
 	/**
@@ -435,7 +435,10 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 	
 	public function execute() {
 		if ( $this->getVar( '_UpgradeDone' ) ) {
-			if ( $this->parent->request->wasPosted() ) {
+			// Allow regeneration of LocalSettings.php, unless we are working 
+			// from a pre-existing LocalSettings.php file and we want to avoid
+			// leaking its contents
+			if ( $this->parent->request->wasPosted() && !$this->getVar( '_ExistingDBSettings' ) ) {
 				// Done message acknowledged
 				return 'continue';
 			} else {
@@ -483,16 +486,24 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 
 	public function showDoneMessage() {
 		$this->startForm();
+		$regenerate = !$this->getVar( '_ExistingDBSettings' );
+		if ( $regenerate ) {
+			$msg = 'config-upgrade-done';
+		} else {
+			$msg = 'config-upgrade-done-no-regenerate';
+		}
+		$this->parent->disableLinkPopups();
 		$this->addHTML(
 			$this->parent->getInfoBox(
-				wfMsgNoTrans( 'config-upgrade-done',
+				wfMsgNoTrans( $msg,
 					$GLOBALS['wgServer'] .
 						$this->getVar( 'wgScriptPath' ) . '/index' .
 						$this->getVar( 'wgScriptExtension' )
 				), 'tick-32.png'
 			)
 		);
-		$this->endForm( 'regenerate' );
+		$this->parent->restoreLinkPopups();
+		$this->endForm( $regenerate ? 'regenerate' : false, false );
 	}
 	
 }
@@ -1029,6 +1040,7 @@ class WebInstaller_Complete extends WebInstallerPage {
 		$this->parent->request->response()->header( "Refresh: 0;$lsUrl" );
 
 		$this->startForm();
+		$this->parent->disableLinkPopups();
 		$this->addHTML(
 			$this->parent->getInfoBox(
 				wfMsgNoTrans( 'config-install-done',
@@ -1040,7 +1052,8 @@ class WebInstaller_Complete extends WebInstallerPage {
 				), 'tick-32.png'
 			)
 		);
-		$this->endForm( false );
+		$this->parent->restoreLinkPopups();
+		$this->endForm( false, false );
 	}
 }
 
