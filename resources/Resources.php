@@ -14,13 +14,6 @@ return array(
 	'skins.vector' => array(
 		'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) )
 	),
-	'skins.monobook' => array(
-		'styles' => array(
-			'skins/monobook/main.css' => array( 'media' => 'screen' ),
-			// Honor $wgHandheldStyle. This is kind of evil
-			//$GLOBALS['wgHandheldStyle'] => array( 'media' => 'handheld' )
-		)
-	),
 
 	/* jQuery */
 
