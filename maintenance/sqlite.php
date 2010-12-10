@@ -41,19 +41,17 @@ class SqliteMaintenance extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgDBtype;
-
 		// Should work even if we use a non-SQLite database
 		if ( $this->hasOption( 'check-syntax' ) ) {
 			$this->checkSyntax();
 		}
 
-		if ( $wgDBtype != 'sqlite' ) {
+		$this->db = wfGetDB( DB_MASTER );
+
+		if ( $this->db->getType() != 'sqlite' ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );
 			return;
 		}
-
-		$this->db = wfGetDB( DB_MASTER );
 
 		if ( $this->hasOption( 'vacuum' ) ) {
 			$this->vacuum();

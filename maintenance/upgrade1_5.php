@@ -125,12 +125,10 @@ class FiveUpgrade extends Maintenance {
 	 * @access private
 	 */
 	function streamConnection() {
-		global $wgDBtype;
-
 		$timeout = 3600 * 24;
 		$db = $this->newConnection();
 		$db->bufferResults( false );
-		if ( $wgDBtype == 'mysql' ) {
+		if ( $db->getType() == 'mysql' ) {
 			$db->query( "SET net_read_timeout=$timeout" );
 			$db->query( "SET net_write_timeout=$timeout" );
 		}
