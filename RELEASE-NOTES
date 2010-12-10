@@ -33,6 +33,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Page existence is now not revealed (in the colour of the tabs) to users who
   cannot read the page in question.
 * (bug 19006) {{REVISIONUSER}} no longer acts like {{CURRENTUSER}} in some cases
+* (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
 
 === API changes in 1.18 ===
 
