@@ -24,33 +24,44 @@
  */
 
 /**
- * Entry point
- *
- * @param $par String: (default '')
- */
-function wfSpecialSearch( $par = '' ) {
-	global $wgRequest, $wgUser;
-	// Strip underscores from title parameter; most of the time we'll want
-	// text form here. But don't strip underscores from actual text params!
-	$titleParam = str_replace( '_', ' ', $par );
-	// Fetch the search term
-	$search = str_replace( "\n", " ", $wgRequest->getText( 'search', $titleParam ) );
-	$searchPage = new SpecialSearch( $wgRequest, $wgUser );
-	if( $wgRequest->getVal( 'fulltext' )
-		|| !is_null( $wgRequest->getVal( 'offset' ))
-		|| !is_null( $wgRequest->getVal( 'searchx' )) )
-	{
-		$searchPage->showResults( $search );
-	} else {
-		$searchPage->goResult( $search );
-	}
-}
-
-/**
  * implements Special:Search - Run text & title search and display the output
  * @ingroup SpecialPage
  */
-class SpecialSearch {
+class SpecialSearch extends SpecialPage {
+
+	public function __construct() {
+		parent::__construct( 'Search' );
+	}
+
+	/**
+	 * Entry point
+	 *
+	 * @param $par String or null
+	 */
+	public function execute( $par ) {
+		global $wgRequest, $wgUser;
+
+		$this->setHeaders();
+		$this->outputHeader();
+
+		// Strip underscores from title parameter; most of the time we'll want
+		// text form here. But don't strip underscores from actual text params!
+		$titleParam = str_replace( '_', ' ', $par );
+
+		// Fetch the search term
+		$search = str_replace( "\n", " ", $wgRequest->getText( 'search', $titleParam ) );
+
+		$this->load( $wgRequest, $wgUser );
+
+		if ( $wgRequest->getVal( 'fulltext' )
+			|| !is_null( $wgRequest->getVal( 'offset' ) )
+			|| !is_null( $wgRequest->getVal( 'searchx' ) ) )
+		{
+			$this->showResults( $search );
+		} else {
+			$this->goResult( $search );
+		}
+	}
 
 	/**
 	 * Set up basic search parameters from the request and user settings.
@@ -59,7 +70,7 @@ class SpecialSearch {
 	 * @param $request WebRequest
 	 * @param $user User
 	 */
-	public function __construct( &$request, &$user ) {
+	public function load( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
 		$this->mPrefix = $request->getVal('prefix', '');
 		# Extract requested namespaces
@@ -358,8 +369,6 @@ class SpecialSearch {
 			$wgOut->setPageTitle( wfMsg( 'searchresults') );
 			$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'searchresults-title', $term ) ) );
 		}
-		$wgOut->setArticleRelated( false );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		// add javascript specific to special:search
 		$wgOut->addModules( 'mediawiki.legacy.search' );
 		$wgOut->addModules( 'mediawiki.special.search' );

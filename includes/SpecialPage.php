@@ -224,7 +224,7 @@ class SpecialPage {
 		}
 
 		if( !$wgDisableInternalSearch ) {
-			self::$mList['Search'] = array( 'SpecialPage', 'Search' );
+			self::$mList['Search'] = 'SpecialSearch';
 		}
 
 		if( $wgEmailAuthentication ) {
