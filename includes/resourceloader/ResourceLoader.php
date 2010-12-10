@@ -287,6 +287,15 @@ class ResourceLoader {
 	 */
 	public function respond( ResourceLoaderContext $context ) {
 		global $wgResourceLoaderMaxage, $wgCacheEpoch;
+		
+		// Buffer output to catch warnings. Normally we'd use ob_clean() on the
+		// top-level output buffer to clear warnings, but that breaks when ob_gzhandler
+		// is used: ob_clean() will clear the GZIP header in that case and it won't come
+		// back for subsequent output, resulting in invalid GZIP. So we have to wrap
+		// the whole thing in our own output buffer to be sure the active buffer
+		// doesn't use ob_gzhandler.
+		// See http://bugs.php.net/bug.php?id=36514
+		ob_start();
 
 		wfProfileIn( __METHOD__ );
 
@@ -353,6 +362,19 @@ class ResourceLoader {
 		if ( $ims !== false ) {
 			$imsTS = strtok( $ims, ';' );
 			if ( $mtime <= wfTimestamp( TS_UNIX, $imsTS ) ) {
+				// There's another bug in ob_gzhandler (see also the comment at
+				// the top of this function) that causes it to gzip even empty
+				// responses, meaning it's impossible to produce a truly empty
+				// response (because the gzip header is always there). This is
+				// a problem because 304 responses have to be completely empty
+				// per the HTTP spec, and Firefox behaves buggily when they're not.
+				// See also http://bugs.php.net/bug.php?id=51579
+				// To work around this, we tear down all output buffering before
+				// sending the 304.
+				while ( ob_get_level() > 0 ) {
+					ob_end_clean();
+				}
+				
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
 				wfProfileOut( __METHOD__ );
@@ -363,13 +385,14 @@ class ResourceLoader {
 		// Generate a response
 		$response = $this->makeModuleResponse( $context, $modules, $missing );
 
-		// Tack on PHP warnings as a comment in debug mode
+		// Capture any PHP warnings from the output buffer and append them to the
+		// response in a comment if we're in debug mode.
 		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
 			$response .= "/*\n$warnings\n*/";
 		}
 
-		// Clear any warnings from the buffer
-		ob_clean();
+		// Remove the output buffer and output the response
+		ob_end_clean();
 		echo $response;
 
 		wfProfileOut( __METHOD__ );
