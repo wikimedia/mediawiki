@@ -49,6 +49,11 @@ class ParserTest {
 	private $databaseSetupDone = false;
 
 	/**
+	 * Our connection to the database
+	 */
+	private $db;
+
+	/**
 	 * string $oldTablePrefix Original table prefix
 	 */
 	private $oldTablePrefix;
@@ -64,7 +69,7 @@ class ParserTest {
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
 	 */
-	public function ParserTest( $options = array() ) {
+	public function __construct( $options = array() ) {
 		# Only colorize output if stdout is a terminal.
 		$this->color = !wfIsWindows() && posix_isatty( 1 );
 
@@ -584,8 +589,6 @@ class ParserTest {
 	 * Ideally this should replace the global configuration entirely.
 	 */
 	private function setupGlobals( $opts = '', $config = '' ) {
-		global $wgDBtype;
-
 		# Find out values for some special options.
 		$lang =
 			self::getOptionValue( 'language', $opts, 'en' );
@@ -615,7 +618,7 @@ class ParserTest {
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
 			'wgLanguageCode' => $lang,
-			'wgDBprefix' => $wgDBtype != 'oracle' ? 'parsertest_' : 'pt_',
+			'wgDBprefix' => $this->db->getType() != 'oracle' ? 'parsertest_' : 'pt_',
 			'wgRawHtml' => isset( $opts['rawhtml'] ),
 			'wgLang' => null,
 			'wgContLang' => null,
@@ -695,8 +698,6 @@ class ParserTest {
 	 * Some of these probably aren't necessary.
 	 */
 	private function listTables() {
-		global $wgDBtype;
-
 		$tables = array( 'user', 'user_properties', 'page', 'page_restrictions',
 			'protected_titles', 'revision', 'text', 'pagelinks', 'imagelinks',
 			'categorylinks', 'templatelinks', 'externallinks', 'langlinks', 'iwlinks',
@@ -706,7 +707,7 @@ class ParserTest {
 			'archive', 'user_groups', 'page_props', 'category', 'msg_resource', 'msg_resource_links'
 		);
 
-		if ( in_array( $wgDBtype, array( 'mysql', 'sqlite', 'oracle' ) ) )
+		if ( in_array( $this->db->getType(), array( 'mysql', 'sqlite', 'oracle' ) ) )
 			array_push( $tables, 'searchindex' );
 
 		// Allow extensions to add to the list of tables to duplicate;
@@ -729,8 +730,8 @@ class ParserTest {
 			return;
 		}
 
-		$db = wfGetDB( DB_MASTER );
-		$dbType = $db->getType();
+		$this->db = wfGetDB( DB_MASTER );
+		$dbType = $this->db->getType();
 
 		if ( $wgDBprefix === 'parsertest_' || ( $dbType == 'oracle' && $wgDBprefix === 'pt_' ) ) {
 			throw new MWException( 'setupDatabase should be called before setupGlobals' );
@@ -756,27 +757,27 @@ class ParserTest {
 			# works correctly across DB engines, we need to change the pre-
 			# fix back and forth so tableName() works right.
 			$this->changePrefix( $this->oldTablePrefix );
-			$oldTableName = $db->tableName( $tbl );
+			$oldTableName = $this->db->tableName( $tbl );
 			$this->changePrefix( $dbType != 'oracle' ? 'parsertest_' : 'pt_' );
-			$newTableName = $db->tableName( $tbl );
+			$newTableName = $this->db->tableName( $tbl );
 
 			if ( $dbType == 'mysql' ) {
-				$db->query( "DROP TABLE IF EXISTS $newTableName" );
+				$this->db->query( "DROP TABLE IF EXISTS $newTableName" );
 			} elseif ( in_array( $dbType, array( 'postgres', 'oracle' ) ) ) {
 				/* DROPs wouldn't work due to Foreign Key Constraints (bug 14990, r58669)
 				 * Use "DROP TABLE IF EXISTS $newTableName CASCADE" for postgres? That
 				 * syntax would also work for mysql.
 				 */
-			} elseif ( $db->tableExists( $tbl ) ) {
-				$db->query( "DROP TABLE $newTableName" );
+			} elseif ( $this->db->tableExists( $tbl ) ) {
+				$this->db->query( "DROP TABLE $newTableName" );
 			}
 
 			# Create new table
-			$db->duplicateTableStructure( $oldTableName, $newTableName, $temporary );
+			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $temporary );
 		}
 
 		if ( $dbType == 'oracle' )
-			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 
 		$this->changePrefix( $dbType != 'oracle' ? 'parsertest_' : 'pt_' );
 
@@ -784,14 +785,14 @@ class ParserTest {
 			# Insert 0 user to prevent FK violations
 
 			# Anonymous user
-			$db->insert( 'user', array(
+			$this->db->insert( 'user', array(
 				'user_id'         => 0,
 				'user_name'       => 'Anonymous' ) );
 		}
 
 		# Hack: insert a few Wikipedia in-project interwiki prefixes,
 		# for testing inter-language links
-		$db->insert( 'interwiki', array(
+		$this->db->insert( 'interwiki', array(
 			array( 'iw_prefix' => 'wikipedia',
 				   'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
 				   'iw_api'    => '',
@@ -826,7 +827,7 @@ class ParserTest {
 
 
 		# Update certain things in site_stats
-		$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
+		$this->db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
@@ -848,7 +849,7 @@ class ParserTest {
 			'metadata'    => serialize( array() ),
 			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
 			'fileExists'  => true
-			), $db->timestamp( '20010115123500' ), $user );
+			), $this->db->timestamp( '20010115123500' ), $user );
 
 		# This image will be blacklisted in [[MediaWiki:Bad image list]]
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
@@ -862,7 +863,7 @@ class ParserTest {
 			'metadata'    => serialize( array() ),
 			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
 			'fileExists'  => true
-			), $db->timestamp( '20010115123500' ), $user );
+			), $this->db->timestamp( '20010115123500' ), $user );
 	}
 
 	/**
@@ -899,15 +900,14 @@ class ParserTest {
 		}
 
 		$tables = $this->listTables();
-		$db = wfGetDB( DB_MASTER );
 
 		foreach ( $tables as $table ) {
-			$sql = $db->getType() == 'oracle' ? "DROP TABLE pt_$table DROP CONSTRAINTS" : "DROP TABLE `parsertest_$table`";
-			$db->query( $sql );
+			$sql = $this->db->getType() == 'oracle' ? "DROP TABLE pt_$table DROP CONSTRAINTS" : "DROP TABLE `parsertest_$table`";
+			$this->db->query( $sql );
 		}
 
-		if ( $db->getType() == 'oracle' )
-			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+		if ( $this->db->getType() == 'oracle' )
+			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 
 		$this->teardownGlobals();
 	}
