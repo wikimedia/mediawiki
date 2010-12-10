@@ -11,6 +11,7 @@
  * @author Bombola
  * @author Dbl2010
  * @author Don Alessandro
+ * @author Emperyan
  * @author Erkan Yilmaz
  * @author Fryed-peach
  * @author Hanberke
@@ -1905,7 +1906,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'statistics-views-peredit'     => 'Değişiklik başına görüntüleme',
 'statistics-users'             => 'Kayıtlı [[Special:ListUsers|kullanıcılar]]',
 'statistics-users-active'      => 'Aktif kullanıcılar',
-'statistics-users-active-desc' => 'Son {{PLURAL:$1|1 günde|$1 günde}} çalışma yapan kullanıcılar',
+'statistics-users-active-desc' => 'Son {{PLURAL:$1|gün|$1 günde}} çalışma yapan kullanıcılar',
 'statistics-mostpopular'       => 'En popüler maddeler',
 
 'disambiguations'      => 'Anlam ayrım sayfaları',

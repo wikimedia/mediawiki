@@ -293,6 +293,7 @@ Kebera ku [[Special:Version|lukalala lw'empandika za MediaWiki]].",
 'viewdeleted'             => 'Oyagala okulaba $1?',
 'restorelink'             => '{{PLURAL:$1|oluwandika olwagyibwawo olumu|empandika ezagyibwawo $1}}',
 'feedlinks'               => 'Mukutu gwa mawulire:',
+'feed-invalid'            => "Ekika ky'omukutu gw'amawulire tekimanyidwa.",
 'feed-unavailable'        => 'Tekisobose okufunayo mikutu gya mawulire',
 'site-rss-feed'           => "Mukutu ogw'amawulire ogw'ekika kya RSS ogw'oku $1",
 'site-atom-feed'          => "Mukutu ogw'amawulire ogw'ekika kya Atom ogw'oku $1",
@@ -309,9 +310,36 @@ Kebera ku [[Special:Version|lukalala lw'empandika za MediaWiki]].",
 'nstab-image'     => 'Fayiro',
 'nstab-mediawiki' => 'Obubaka',
 'nstab-template'  => 'Lutiba',
+'nstab-help'      => 'Buyambi',
 'nstab-category'  => 'Ttuluba lya',
 
+# Main script and global functions
+'nosuchaction'      => 'Ekikolwa ekyo tekisoboka',
+'nosuchactiontext'  => "Ekikolwa ekikongojedwa mu URL tekisoboka.<br />
+Oyinza okuba nga URL wagiwandise bubi, oba yo URL y'eyinza okuba nga ya nsobi.<br />
+Kiyinza ate okuba nti sofutiweya {{SITENAME}} gy'ekozesa erimu ebitali bituufu.",
+'nosuchspecialpage' => 'Olwo olupapula olwawule teruliwo',
+'nospecialpagetext' => '<strong>Onoonyezza olupapula olwawule olutaliwo.</strong>
+
+Ku lupapula "[[Special:SpecialPages|{{int:specialpages}}]]" kuliko olukalala lw\'empapula enjawule.',
+
 # General errors
+'error'               => 'Kiremya',
+'databaseerror'       => 'Waliwo kiremya ku ggwanika lya data',
+'dberrortext'         => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
+Ayinza okuba nga azze lwa nsobi mu sofutiweya wa lyo.<br />
+Ekiragiro ekinoonyeza mu ggwanika lya data ekisembye okuyisibwa kiri:<br />
+<blockquote><tt>$1</tt></blockquote>
+ekisangibwa mu mukolo gwa puloguramu "<tt>$2</tt>".<br />
+Obubaka obuvudde mu ggwanika lya data obufa ku kiremya buli "<tt>$3: $4</tt>".',
+'dberrortextcl'       => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
+Ekiragiro ekinoonyeza mu ggwanika lya data ekisembye okuyisibwa kiri:<br />
+"$1" <br />
+ekisangibwa mu mukolo gwa mu puloguramu "$2".<br />
+Obubaka obuvudde mu ggwanika lya data obufa ku kiremya buli "$3: $4"',
+'laggedslavemode'     => "'''Kulabula:''' Olupapula luyinza obutabaamu ebyakalukyusibwamu.",
+'readonly'            => 'Eggwanika lya data terikkiriza kulikyusamu',
+'enterlockreason'     => "Wandikawo ensonga esibizza eggwanika lya data, nga olaga ddi lw'olisuubira okusumululwa",
 'missing-article'     => "Mu ggwanika ya data mubadde musuubidwamu bigambo ebikola olupapula \"\$1\" \$2, tebisangidwamu.
 
 Kino kitera okubawo singa likoda y'enjawulo mu mpandika z'olupapula eba nsobu oba singa enyunzi egguka
