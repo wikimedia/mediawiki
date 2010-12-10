@@ -728,7 +728,7 @@ class SkinTemplate extends Skin {
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
 		$content_actions = array();
-		$userCanRead = $this->mTitle->quickUserCan( 'read' );
+		$userCanRead = $this->mTitle->userCanRead();
 
 		$prevent_active_tabs = false;
 		wfRunHooks( 'SkinTemplatePreventOtherActiveTabs', array( &$this, &$prevent_active_tabs ) );
