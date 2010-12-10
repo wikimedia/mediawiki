@@ -649,8 +649,9 @@ class Parser {
 	 * @return User object
 	 */
 	function getUser() {
-		if( !is_null( $this->mUser ) )
+		if ( !is_null( $this->mUser ) ) {
 			return $this->mUser;
+		}
 		return $this->mOptions->getUser();
 	}
 
@@ -1875,7 +1876,7 @@ class Parser {
 
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( __METHOD__."-category" );
-					$s = preg_replace( "/(\s*\n)+\s*$/D", '', $s ); # bug 87
+					$s = rtrim( $s . "\n" ); # bug 87
 
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
@@ -4983,10 +4984,12 @@ class Parser {
 	 * @return either a Revision object or null
 	 */
 	protected function getRevisionObject() {
-		if ( !is_null( $this->mRevisionObject ) )
+		if ( !is_null( $this->mRevisionObject ) ) {
 			return $this->mRevisionObject;
-		if ( is_null( $this->mRevisionId ) )
+		}
+		if ( is_null( $this->mRevisionId ) ) {
 			return null;
+		}
 
 		$this->mRevisionObject = Revision::newFromId( $this->mRevisionId );
 		return $this->mRevisionObject;
