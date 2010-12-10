@@ -644,23 +644,22 @@ class MessageCache {
 				return false;
 			} elseif( $entry === '!TOO BIG' ) {
 				// Fall through and try invididual message cache below
+			}
+		} else {
+			// XXX: This is not cached in process cache, should it?
+			$message = false;
+			wfRunHooks('MessagesPreLoad', array( $title, &$message ) );
+			if ( $message !== false ) {
+				return $message;
+			}
 
-			} else {
-				// XXX: This is not cached in process cache, should it?
-				$message = false;
-				wfRunHooks('MessagesPreLoad', array( $title, &$message ) );
-				if ( $message !== false ) {
-					return $message;
-				}
-
-				/* If message cache is in normal mode, it is guaranteed
-				 * (except bugs) that there is always entry (or placeholder)
-				 * in the cache if message exists. Thus we can do minor
-				 * performance improvement and return false early.
-				 */
-				if ( !$wgAdaptiveMessageCache ) {
-					return false;
-				}
+			/* If message cache is in normal mode, it is guaranteed
+			 * (except bugs) that there is always entry (or placeholder)
+			 * in the cache if message exists. Thus we can do minor
+			 * performance improvement and return false early.
+			 */
+			if ( !$wgAdaptiveMessageCache ) {
+				return false;
 			}
 		}
 
