@@ -380,7 +380,8 @@ $article: the article (object) being deleted
 $output: the OutputPage object ($wgOut)
 &$reason: the reason (string) the article is being deleted
 
-'ArticleContentOnDiff': before showing the article below a diff
+'ArticleContentOnDiff': before showing the article content below a diff.
+Use this to change the content in this area or how it is loaded.
  $diffEngine: the DifferenceEngine
  $output: the OutputPage object ($wgOut)
 
