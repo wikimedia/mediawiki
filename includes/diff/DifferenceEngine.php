@@ -62,7 +62,7 @@ class DifferenceEngine {
 			$this->mTitle = $titleObj;
 		} else {
 			global $wgTitle;
-			$this->mTitle = $wgTitle;
+			$this->mTitle = $wgTitle; // @TODO: get rid of this
 		}
 		wfDebug( "DifferenceEngine old '$old' new '$new' rcid '$rcid'\n" );
 
@@ -425,57 +425,48 @@ CONTROL;
 	function renderNewRevision() {
 		global $wgOut, $wgUser;
 		wfProfileIn( __METHOD__ );
-
+		# Add "current version as of X" title
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
-		if ( !wfRunHooks( 'ArticleContentOnDiff', array( $this, $wgOut ) ) ) {
-			return;
-		}
-		
-		# Add deleted rev tag if needed
-		if ( !$this->mNewRev->userCan( Revision::DELETED_TEXT ) ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
-		} else if ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
-		}
-
-		$pCache = true;
-		if ( !$this->mNewRev->isCurrent() ) {
-			$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
-			$pCache = false;
-		}
-
-		$this->loadNewText();
-		if ( is_object( $this->mNewRev ) ) {
-			$wgOut->setRevisionId( $this->mNewRev->getId() );
-		}
-
-		if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
-			// Stolen from Article::view --AG 2007-10-11
-			// Give hooks a chance to customise the output
-			if ( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mTitle, $wgOut ) ) ) {
-				// Wrap the whole lot in a <pre> and don't parse
-				$m = array();
-				preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
-				$wgOut->addHTML( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
-				$wgOut->addHTML( htmlspecialchars( $this->mNewtext ) );
-				$wgOut->addHTML( "\n</pre>\n" );
+		# Page content may be handled by a hooked call instead...
+		if ( wfRunHooks( 'ArticleContentOnDiff', array( $this, $wgOut ) ) ) {
+			# Use the current version parser cache if applicable
+			$pCache = true;
+			if ( !$this->mNewRev->isCurrent() ) {
+				$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
+				$pCache = false;
 			}
-		} elseif ( $pCache ) {
-			$article = new Article( $this->mTitle, 0 );
-			$pOutput = ParserCache::singleton()->get( $article, $wgOut->parserOptions() );
-			if( $pOutput ) {
-				$wgOut->addParserOutput( $pOutput );
+
+			$this->loadNewText();
+			$wgOut->setRevisionId( $this->mNewRev->getId() );
+	
+			if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
+				// Stolen from Article::view --AG 2007-10-11
+				// Give hooks a chance to customise the output
+				// @TODO: standardize this crap into one function
+				if ( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mTitle, $wgOut ) ) ) {
+					// Wrap the whole lot in a <pre> and don't parse
+					$m = array();
+					preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
+					$wgOut->addHTML( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
+					$wgOut->addHTML( htmlspecialchars( $this->mNewtext ) );
+					$wgOut->addHTML( "\n</pre>\n" );
+				}
+			} elseif ( $pCache ) {
+				$article = new Article( $this->mTitle, 0 );
+				$pOutput = ParserCache::singleton()->get( $article, $wgOut->parserOptions() );
+				if( $pOutput ) {
+					$wgOut->addParserOutput( $pOutput );
+				} else {
+					$article->doViewParse();
+				} 
 			} else {
-				$article->doViewParse();
-			} 
-		} else {
-			$wgOut->addWikiTextTidy( $this->mNewtext );
-		}	
+				$wgOut->addWikiTextTidy( $this->mNewtext );
+			}
 
-		if ( is_object( $this->mNewRev ) && !$this->mNewRev->isCurrent() ) {
-			$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
+			if ( !$this->mNewRev->isCurrent() ) {
+				$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
+			}
 		}
-
 		# Add redundant patrol link on bottom...
 		if ( $this->mRcidMarkPatrolled && $this->mTitle->quickUserCan( 'patrol' ) ) {
 			$sk = $wgUser->getSkin();
@@ -486,9 +477,9 @@ CONTROL;
 					wfMsgHtml( 'markaspatrolleddiff' ),
 					array(),
 					array(
-						'action' => 'markpatrolled',
-						'rcid' => $this->mRcidMarkPatrolled,
-						'token' => $token,
+						'action'	=> 'markpatrolled',
+						'rcid'		=> $this->mRcidMarkPatrolled,
+						'token' 	=> $token,
 					)
 				) . ']</div>'
 			 );
