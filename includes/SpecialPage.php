@@ -133,7 +133,7 @@ class SpecialPage {
 		'Listbots'                  => array( 'SpecialRedirectToSpecial', 'Listbots', 'Listusers', 'bot' ),
 		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
-		'DisableAccount' 	    => 'SpecialDisableAccount',
+		'DisableAccount'            => 'SpecialDisableAccount',
 
 		# Recent changes and logs
 		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
@@ -150,7 +150,7 @@ class SpecialPage {
 		'MIMEsearch'                => array( 'SpecialPage', 'MIMEsearch' ),
 		'FileDuplicateSearch'       => array( 'SpecialPage', 'FileDuplicateSearch' ),
 		'Upload'                    => 'SpecialUpload',
-		'UploadStash'        => 'SpecialUploadStash',
+		'UploadStash'               => 'SpecialUploadStash',
 
 		# Wiki data and tools
 		'Statistics'                => 'SpecialStatistics',
