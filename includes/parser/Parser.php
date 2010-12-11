@@ -344,7 +344,7 @@ class Parser {
 				|| $wgDisableTitleConversion
 				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
 				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
-				|| $this->mOutput->getDisplayTitle() !== false ) ) 
+				|| $this->mOutput->getDisplayTitle() !== false ) )
 		{
 			$convruletitle = $wgContLang->getConvRuleTitle();
 			if ( $convruletitle ) {
@@ -542,9 +542,9 @@ class Parser {
 	 * Set the context title
 	 */
 	function setTitle( $t ) {
- 		if ( !$t || $t instanceof FakeTitle ) {
- 			$t = Title::newFromText( 'NO TITLE' );
- 		}
+		if ( !$t || $t instanceof FakeTitle ) {
+			$t = Title::newFromText( 'NO TITLE' );
+		}
 
 		if ( strval( $t->getFragment() ) !== '' ) {
 			# Strip the fragment to avoid various odd effects
@@ -822,7 +822,7 @@ class Parser {
 	 */
 	function doTableStuff( $text ) {
 		wfProfileIn( __METHOD__ );
-		
+
 		$lines = StringUtils::explode( "\n", $text );
 		$out = '';
 		$td_history = array(); # Is currently a td tag open?
@@ -835,7 +835,7 @@ class Parser {
 		foreach ( $lines as $outLine ) {
 			$line = trim( $outLine );
 
-			if ( $line === '' ) { # empty line, go to next line			
+			if ( $line === '' ) { # empty line, go to next line
 				$out .= $outLine."\n";
 				continue;
 			}
@@ -1094,10 +1094,10 @@ class Parser {
 				(\\b(?:$prots)$urlChar+) |  # m[3]: Free external links" . '
 				(?:RFC|PMID)\s+([0-9]+) |   # m[4]: RFC or PMID, capture number
 				ISBN\s+(\b                  # m[5]: ISBN, capture number
-				    (?: 97[89] [\ \-]? )?   # optional 13-digit ISBN prefix
-				    (?: [0-9]  [\ \-]? ){9} # 9 digits with opt. delimiters
-				    [0-9Xx]                 # check digit
-				    \b)
+					(?: 97[89] [\ \-]? )?   # optional 13-digit ISBN prefix
+					(?: [0-9]  [\ \-]? ){9} # 9 digits with opt. delimiters
+					[0-9Xx]                 # check digit
+					\b)
 			)!x', array( &$this, 'magicLinkCallback' ), $text );
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -1397,7 +1397,7 @@ class Parser {
 	/**
 	 * Replace external links (REL)
 	 *
- 	 * Note: this is all very hackish and the order of execution matters a lot.
+	 * Note: this is all very hackish and the order of execution matters a lot.
 	 * Make sure to run maintenance/parserTests.php if you change this code.
 	 *
 	 * @private
@@ -1574,7 +1574,7 @@ class Parser {
 			$imagematch = false;
 		}
 		if ( $this->mOptions->getAllowExternalImages()
-		     || ( $imagesexception && $imagematch ) ) {
+			 || ( $imagesexception && $imagematch ) ) {
 			if ( preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
 				$text = $sk->makeExternalImage( $url );
@@ -1634,7 +1634,7 @@ class Parser {
 		$sk = $this->mOptions->getSkin( $this->mTitle );
 		$holders = new LinkHolderArray( $this );
 
-	 	# split the entire text string on occurences of [[
+		# split the entire text string on occurences of [[
 		$a = StringUtils::explode( '[[', ' ' . $s );
 		# get the first element (all text up to first [[), and remove the space we added
 		$s = $a->current();
@@ -3440,9 +3440,9 @@ class Parser {
 		$text = $frame->getArgument( $argName );
 		if (  $text === false && $parts->getLength() > 0
 		  && (
-		    $this->ot['html']
-		    || $this->ot['pre']
-		    || ( $this->ot['wiki'] && $frame->isTemplate() )
+			$this->ot['html']
+			|| $this->ot['pre']
+			|| ( $this->ot['wiki'] && $frame->isTemplate() )
 		  )
 		) {
 			# No match in frame, use the supplied default
@@ -3633,7 +3633,7 @@ class Parser {
 			$this->mOutput->setIndexPolicy( 'index' );
 			$this->addTrackingCategory( 'index-category' );
 		}
-		
+
 		# Cache all double underscores in the database
 		foreach ( $this->mDoubleUnderscores as $key => $val ) {
 			$this->mOutput->setProperty( $key, '' );
@@ -3687,7 +3687,7 @@ class Parser {
 		global $wgMaxTocLevel, $wgContLang, $wgHtml5, $wgExperimentalHtmlIds;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
-		
+
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
 			$showEditLink = 0;
@@ -3878,8 +3878,8 @@ class Parser {
 					'noninitial' );
 			}
 
-			# HTML names must be case-insensitively unique (bug 10721). 
-			# This does not apply to Unicode characters per 
+			# HTML names must be case-insensitively unique (bug 10721).
+			# This does not apply to Unicode characters per
 			# http://dev.w3.org/html5/spec/infrastructure.html#case-sensitivity-and-string-comparison
 			# FIXME: We may be changing them depending on the current locale.
 			$arrayKey = strtolower( $safeHeadline );
@@ -4725,9 +4725,9 @@ class Parser {
 
 		# Will the image be presented in a frame, with the caption below?
 		$imageIsFramed = isset( $params['frame']['frame'] ) ||
-		                 isset( $params['frame']['framed'] ) ||
-		                 isset( $params['frame']['thumbnail'] ) ||
-		                 isset( $params['frame']['manualthumb'] );
+						 isset( $params['frame']['framed'] ) ||
+						 isset( $params['frame']['thumbnail'] ) ||
+						 isset( $params['frame']['manualthumb'] );
 
 		# In the old days, [[Image:Foo|text...]] would set alt text.  Later it
 		# came to also set the caption, ordinary text after the image -- which
