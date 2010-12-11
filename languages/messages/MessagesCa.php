@@ -790,8 +790,8 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o 
 'blocked-notice-logextract'        => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
-'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per probar el vostre nou CSS abans de desar-lo.",
-'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per probar el vostre nou JavaScript abans de desar-lo.",
+'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
+'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview'                   => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''
 '''Encara no s'ha desat!'''",
 'userjspreview'                    => "'''Recordeu que només estau provant/previsualitzant el vostre JavaScript, encara no ho heu desat!'''",

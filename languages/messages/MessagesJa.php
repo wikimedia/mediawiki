@@ -39,6 +39,7 @@
  * @author Whym
  * @author Yanajin66
  * @author לערי ריינהארט
+ * @author 欅
  * @author 青子守歌
  */
 
@@ -621,7 +622,7 @@ $1',
 'toc'                     => '目次',
 'showtoc'                 => '表示',
 'hidetoc'                 => '非表示',
-'thisisdeleted'           => '$1を閲覧または復元しますか？',
+'thisisdeleted'           => '$1を閲覧または復帰しますか？',
 'viewdeleted'             => '$1を表示しますか？',
 'restorelink'             => '削除された$1編集',
 'feedlinks'               => 'フィード：',
@@ -2326,7 +2327,7 @@ $NEWPAGE
 'exblank'                => '白紙ページ',
 'delete-confirm'         => '「$1」の削除',
 'delete-legend'          => '削除',
-'historywarning'         => "'''警告：'''削除しようとしているページには。約$1版の履歴があります：",
+'historywarning'         => "'''警告：'''削除しようとしているページには、約$1版の履歴があります：",
 'confirmdeletetext'      => 'ページをすべての履歴とともに削除しようとしています。
 本当にこの操作を行いたいか、操作の結果を理解しているか、およびこの操作が[[{{MediaWiki:Policy-url}}|方針]]に従っているかどうか、確認をしてください。',
 'actioncomplete'         => '完了しました',
@@ -2499,20 +2500,20 @@ $1',
 'blanknamespace' => '（標準）',
 
 # Contributions
-'contributions'       => '利用者の投稿',
-'contributions-title' => '利用者の投稿：$1',
-'mycontris'           => '自分の投稿',
+'contributions'       => '利用者の投稿記録',
+'contributions-title' => '利用者の投稿記録：$1',
+'mycontris'           => '自分の投稿記録',
 'contribsub2'         => '利用者:$1（$2）',
 'nocontribs'          => 'これらの条件に一致する変更は見つかりませんでした。',
 'uctop'               => '（最新）',
 'month'               => 'これ以前の月：',
 'year'                => 'これ以前の年：',
 
-'sp-contributions-newbies'             => '新しいアカウントの投稿のみ表示',
+'sp-contributions-newbies'             => '新しいアカウントの投稿のみを表示',
 'sp-contributions-newbies-sub'         => '新しいアカウントのみ',
-'sp-contributions-newbies-title'       => '新しいアカウントの利用者投稿',
+'sp-contributions-newbies-title'       => '新しいアカウント利用者の投稿記録',
 'sp-contributions-blocklog'            => 'ブロック記録',
-'sp-contributions-deleted'             => '利用者の削除された投稿',
+'sp-contributions-deleted'             => '利用者の削除された投稿記録',
 'sp-contributions-uploads'             => 'アップロード',
 'sp-contributions-logs'                => '記録',
 'sp-contributions-talk'                => 'トーク',
@@ -3505,7 +3506,7 @@ $1',
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
-'word-separator'  => '、',
+'word-separator'  => '',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr;前ページ',
