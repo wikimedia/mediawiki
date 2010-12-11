@@ -1883,11 +1883,11 @@ HTML
 		if ( $this->isCssJsSubpage || $this->mTitle->isCssOrJsPage() ) {
 			$level = 'user';
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$level = 'global';
+				$level = 'site';
 			}
 
 			# Used messages to make sure grep find them:
-			# usercsspreview, userjspreview, globalcsspreview, globaljspreview
+			# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
 			if (preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
 				$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
 				$class = "mw-code mw-css";
