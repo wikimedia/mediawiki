@@ -225,18 +225,17 @@ abstract class Installer {
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );
 		wfRestoreWarnings();
 
-		if( $_lsExists ) {
-			require( "$IP/includes/DefaultSettings.php" );
-			require( "$IP/LocalSettings.php" );
-			if ( file_exists( "$IP/AdminSettings.php" ) ) {
-				require( "$IP/AdminSettings.php" );
-			}
-			$vars = get_defined_vars();
-			unset( $vars['_lsExists'] );
-			return $vars;
-		} else {
+		if( !$_lsExists ) {
 			return false;
 		}
+		unset($_lsExists);
+
+		require( "$IP/includes/DefaultSettings.php" );
+		require( "$IP/LocalSettings.php" );
+		if ( file_exists( "$IP/AdminSettings.php" ) ) {
+			require( "$IP/AdminSettings.php" );
+		}
+		return get_defined_vars();
 	}
 
 	/**
