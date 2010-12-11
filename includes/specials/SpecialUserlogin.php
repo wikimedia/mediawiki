@@ -43,54 +43,54 @@ class LoginForm extends SpecialPage {
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
 
-	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
+	var $mUsername, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
-	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS, $mRequest;
+	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
 
 	private $mExtUser = null;
 
 	public function __construct( $request = null ) {
+		parent::__construct( 'Userlogin' );
+
 		if ( $request === null ) {
 			global $wgRequest;
-			$this->mRequest = $wgRequest;
+			$this->load( $wgRequest );
 		} else {
-			$this->mRequest = $request;
+			$this->load( $request );
 		}
-
-		parent::__construct( 'Userlogin' );
 	}
 
 	/**
 	 * Loader
 	 *
-	 * @param $par String: subpage parameter
+	 * @param $request WebRequest object
 	 */
-	function load( $par ) {
+	function load( $request ) {
 		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;
 
-		$this->mType = ( $par == 'signup' ) ? $par : $this->mRequest->getText( 'type' ); # Check for [[Special:Userlogin/signup]]
-		$this->mName = $this->mRequest->getText( 'wpName' );
-		$this->mPassword = $this->mRequest->getText( 'wpPassword' );
-		$this->mRetype = $this->mRequest->getText( 'wpRetype' );
-		$this->mDomain = $this->mRequest->getText( 'wpDomain' );
-		$this->mReason = $this->mRequest->getText( 'wpReason' );
-		$this->mReturnTo = $this->mRequest->getVal( 'returnto' );
-		$this->mReturnToQuery = $this->mRequest->getVal( 'returntoquery' );
-		$this->mCookieCheck = $this->mRequest->getVal( 'wpCookieCheck' );
-		$this->mPosted = $this->mRequest->wasPosted();
-		$this->mCreateaccount = $this->mRequest->getCheck( 'wpCreateaccount' );
-		$this->mCreateaccountMail = $this->mRequest->getCheck( 'wpCreateaccountMail' )
+		$this->mType = $request->getText( 'type' );
+		$this->mUsername = $request->getText( 'wpName' );
+		$this->mPassword = $request->getText( 'wpPassword' );
+		$this->mRetype = $request->getText( 'wpRetype' );
+		$this->mDomain = $request->getText( 'wpDomain' );
+		$this->mReason = $request->getText( 'wpReason' );
+		$this->mReturnTo = $request->getVal( 'returnto' );
+		$this->mReturnToQuery = $request->getVal( 'returntoquery' );
+		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
+		$this->mPosted = $request->wasPosted();
+		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' );
+		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
 		                            && $wgEnableEmail;
-		$this->mMailmypassword = $this->mRequest->getCheck( 'wpMailmypassword' )
+		$this->mMailmypassword = $request->getCheck( 'wpMailmypassword' )
 		                         && $wgEnableEmail;
-		$this->mLoginattempt = $this->mRequest->getCheck( 'wpLoginattempt' );
-		$this->mAction = $this->mRequest->getVal( 'action' );
-		$this->mRemember = $this->mRequest->getCheck( 'wpRemember' );
-		$this->mStickHTTPS = $this->mRequest->getCheck( 'wpStickHTTPS' );
-		$this->mLanguage = $this->mRequest->getText( 'uselang' );
-		$this->mSkipCookieCheck = $this->mRequest->getCheck( 'wpSkipCookieCheck' );
-		$this->mToken = ( $this->mType == 'signup' ) ? $this->mRequest->getVal( 'wpCreateaccountToken' ) : $this->mRequest->getVal( 'wpLoginToken' );
+		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
+		$this->mAction = $request->getVal( 'action' );
+		$this->mRemember = $request->getCheck( 'wpRemember' );
+		$this->mStickHTTPS = $request->getCheck( 'wpStickHTTPS' );
+		$this->mLanguage = $request->getText( 'uselang' );
+		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
+		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
 
 		if ( $wgRedirectOnLogin ) {
 			$this->mReturnTo = $wgRedirectOnLogin;
@@ -98,12 +98,12 @@ class LoginForm extends SpecialPage {
 		}
 
 		if( $wgEnableEmail ) {
-			$this->mEmail = $this->mRequest->getText( 'wpEmail' );
+			$this->mEmail = $request->getText( 'wpEmail' );
 		} else {
 			$this->mEmail = '';
 		}
 		if( !in_array( 'realname', $wgHiddenPrefs ) ) {
-		    $this->mRealName = $this->mRequest->getText( 'wpRealName' );
+		    $this->mRealName = $request->getText( 'wpRealName' );
 		} else {
 		    $this->mRealName = '';
 		}
@@ -126,7 +126,9 @@ class LoginForm extends SpecialPage {
 			wfSetupSession();
 		}
 
-		$this->load( $par );
+		if ( $par == 'signup' ) { # Check for [[Special:Userlogin/signup]]
+			$this->mType = 'signup';
+		}
 
 		if ( !is_null( $this->mCookieCheck ) ) {
 			$this->onCookieRedirectCheck( $this->mCookieCheck );
@@ -152,7 +154,7 @@ class LoginForm extends SpecialPage {
 		global $wgOut;
 
 		if ( $this->mEmail == '' ) {
-			$this->mainLoginForm( wfMsgExt( 'noemail', array( 'parsemag', 'escape' ), $this->mName ) );
+			$this->mainLoginForm( wfMsgExt( 'noemail', array( 'parsemag', 'escape' ), $this->mUsername ) );
 			return;
 		}
 
@@ -258,7 +260,7 @@ class LoginForm extends SpecialPage {
 		// create a local account and login as any domain user). We only need
 		// to check this for domains that aren't local.
 		if( 'local' != $this->mDomain && $this->mDomain != '' ) {
-			if( !$wgAuth->canCreateAccounts() && ( !$wgAuth->userExists( $this->mName ) || !$wgAuth->authenticate( $this->mName, $this->mPassword ) ) ) {
+			if( !$wgAuth->canCreateAccounts() && ( !$wgAuth->userExists( $this->mUsername ) || !$wgAuth->authenticate( $this->mUsername, $this->mPassword ) ) ) {
 				$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
 				return false;
 			}
@@ -304,7 +306,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Now create a dummy user ($u) and check if it is valid
-		$name = trim( $this->mName );
+		$name = trim( $this->mUsername );
 		$u = User::newFromName( $name, 'creatable' );
 		if ( !is_object( $u ) ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
@@ -433,7 +435,7 @@ class LoginForm extends SpecialPage {
 	public function authenticateUserData() {
 		global $wgUser, $wgAuth, $wgMemc;
 
-		if ( $this->mName == '' ) {
+		if ( $this->mUsername == '' ) {
 			return self::NO_NAME;
 		}
 
@@ -456,7 +458,7 @@ class LoginForm extends SpecialPage {
 
 		$throttleCount = 0;
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
-			$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mName ) );
+			$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mUsername ) );
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 
@@ -481,16 +483,16 @@ class LoginForm extends SpecialPage {
 		// creates the user in the database. Until we load $wgUser, checking
 		// for user existence using User::newFromName($name)->getId() below
 		// will effectively be using stale data.
-		if ( $wgUser->getName() === $this->mName ) {
-			wfDebug( __METHOD__ . ": already logged in as {$this->mName}\n" );
+		if ( $wgUser->getName() === $this->mUsername ) {
+			wfDebug( __METHOD__ . ": already logged in as {$this->mUsername}\n" );
 			return self::SUCCESS;
 		}
 
-		$this->mExtUser = ExternalUser::newFromName( $this->mName );
+		$this->mExtUser = ExternalUser::newFromName( $this->mUsername );
 
 		# TODO: Allow some magic here for invalid external names, e.g., let the
 		# user choose a different wiki name.
-		$u = User::newFromName( $this->mName );
+		$u = User::newFromName( $this->mUsername );
 		if( !( $u instanceof User ) || !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
 		}
@@ -639,7 +641,7 @@ class LoginForm extends SpecialPage {
 				self::clearLoginToken();
 
 				// Reset the throttle
-				$key = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mName ) );
+				$key = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mUsername ) );
 				global $wgMemc;
 				$wgMemc->delete( $key );
 
@@ -671,9 +673,9 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::NOT_EXISTS:
 				if( $wgUser->isAllowed( 'createaccount' ) ) {
-					$this->mainLoginForm( wfMsgWikiHtml( 'nosuchuser', htmlspecialchars( $this->mName ) ) );
+					$this->mainLoginForm( wfMsgWikiHtml( 'nosuchuser', htmlspecialchars( $this->mUsername ) ) );
 				} else {
-					$this->mainLoginForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->mName ) ) );
+					$this->mainLoginForm( wfMsg( 'nosuchusershort', htmlspecialchars( $this->mUsername ) ) );
 				}
 				break;
 			case self::WRONG_PASS:
@@ -693,7 +695,7 @@ class LoginForm extends SpecialPage {
 				break;
 			case self::USER_BLOCKED:
 				$this->mainLoginForm( wfMsgExt( 'login-userblocked',
-					array( 'parsemag', 'escape' ), $this->mName ) );
+					array( 'parsemag', 'escape' ), $this->mUsername ) );
 				break;
 			default:
 				throw new MWException( 'Unhandled case value' );
@@ -732,7 +734,7 @@ class LoginForm extends SpecialPage {
 
 		# Check for hooks
 		$error = null;
-		if ( !wfRunHooks( 'UserLoginMailPassword', array( $this->mName, &$error ) ) ) {
+		if ( !wfRunHooks( 'UserLoginMailPassword', array( $this->mUsername, &$error ) ) ) {
 			$this->mainLoginForm( $error );
 			return;
 		}
@@ -756,11 +758,11 @@ class LoginForm extends SpecialPage {
 			return;
 		}
 
-		if ( $this->mName == '' ) {
+		if ( $this->mUsername == '' ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
 		}
-		$u = User::newFromName( $this->mName );
+		$u = User::newFromName( $this->mUsername );
 		if( !$u instanceof User ) {
 			$this->mainLoginForm( wfMsg( 'noname' ) );
 			return;
@@ -946,11 +948,11 @@ class LoginForm extends SpecialPage {
 			}
 		}
 
-		if ( $this->mName == '' ) {
+		if ( $this->mUsername == '' ) {
 			if ( $wgUser->isLoggedIn() ) {
-				$this->mName = $wgUser->getName();
+				$this->mUsername = $wgUser->getName();
 			} else {
-				$this->mName = $wgRequest->getCookie( 'UserName' );
+				$this->mUsername = $wgRequest->getCookie( 'UserName' );
 			}
 		}
 
@@ -997,7 +999,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		$template->set( 'header', '' );
-		$template->set( 'name', $this->mName );
+		$template->set( 'name', $this->mUsername );
 		$template->set( 'password', $this->mPassword );
 		$template->set( 'retype', $this->mRetype );
 		$template->set( 'email', $this->mEmail );
