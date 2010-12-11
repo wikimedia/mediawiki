@@ -116,7 +116,7 @@ class SpecialPage {
 		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),
 
 		# Login/create account
-		'Userlogin'                 => array( 'SpecialPage', 'Userlogin' ),
+		'Userlogin'                 => 'LoginForm',
 		'CreateAccount'             => array( 'SpecialRedirectToSpecial', 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) ),
 
 		# Users and rights

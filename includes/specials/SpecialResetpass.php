@@ -81,7 +81,7 @@ class SpecialResetpass extends SpecialPage {
 						$data['wpRemember'] = 1;
 					}
 					$login = new LoginForm( new FauxRequest( $data, true ) );
-					$login->execute();
+					$login->execute( null );
 				}
 				$this->doReturnTo();
 			} catch( PasswordError $e ) {
