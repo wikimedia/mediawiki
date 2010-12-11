@@ -305,11 +305,11 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Сокриј уредувања на најавени корисници во списокот на набљудувања',
 'tog-watchlisthideanons'      => 'Сокриј уредувања од анонимни корисници во списокот на набљудувања',
 'tog-watchlisthidepatrolled'  => 'Сокриј патролирани уредувања од мојот список на набљудувања',
-'tog-nolangconversion'        => 'Оневозможи различни конверзии',
+'tog-nolangconversion'        => 'Оневозможи претворање на јазични варијанти',
 'tog-ccmeonemails'            => 'Испраќај ми копии од е-пораките што ги праќам до други корисници',
 'tog-diffonly'                => 'Не ја покажувај содржината на страницата под разликите',
 'tog-showhiddencats'          => 'Прикажи скриени категории',
-'tog-noconvertlink'           => 'Оневозможи конверзија на наслов на врска',
+'tog-noconvertlink'           => 'Оневозможи претворање на наслов на врска',
 'tog-norollbackdiff'          => 'Изостави разлика по употребата на враќање',
 
 'underline-always'  => 'Секогаш',
@@ -773,7 +773,7 @@ $2',
 'resetpass'                 => 'Промена на лозинка',
 'resetpass_announce'        => 'Најавени сте со привремена лозинка пратена по е-пошта.
 За да го завршите пријавувањето, мора да поставите нова лозинка овде:',
-'resetpass_text'            => '<!-- Додадете текст тука -->',
+'resetpass_text'            => '<!-- Тука внесете текст -->',
 'resetpass_header'          => 'Промена на корисничка лозинка',
 'oldpassword'               => 'Стара лозинка:',
 'newpassword'               => 'Нова лозинка:',
@@ -3026,9 +3026,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3',
-'seconds-abbrev' => 's',
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'h',
+'seconds-abbrev' => 'с',
+'minutes-abbrev' => 'м',
+'hours-abbrev'   => 'ч',
 
 # Bad image list
 'bad_image_list' => 'Форматот е следниот:
@@ -3230,8 +3230,8 @@ Variants for Chinese language
 'exif-planarconfiguration-1' => 'формат „chunky“',
 'exif-planarconfiguration-2' => 'формат „planar“',
 
-'exif-xyresolution-i' => '$1 dpi',
-'exif-xyresolution-c' => '$1 dpc',
+'exif-xyresolution-i' => '$1 точки на инч',
+'exif-xyresolution-c' => '$1 точки на сантиметар',
 
 'exif-colorspace-1'      => 'sRGB',
 'exif-colorspace-ffff.h' => 'FFFF.H',
@@ -3456,7 +3456,7 @@ $1',
 Потврдете дека навистина сакате повторно да ја создадете оваа страница.",
 'recreate'            => 'Повторно создај',
 
-'unit-pixel' => 'px',
+'unit-pixel' => 'п',
 
 # action=purge
 'confirm_purge_button' => 'OK',
@@ -3488,10 +3488,10 @@ $1',
 'autosumm-new'     => 'Создадена страница со: $1',
 
 # Size units
-'size-bytes'     => '$1 B',
+'size-bytes'     => '$1 Б',
 'size-kilobytes' => '$1 КБ',
 'size-megabytes' => '$1 МБ',
-'size-gigabytes' => '$1 GB',
+'size-gigabytes' => '$1 ГБ',
 
 # Live preview
 'livepreview-loading' => 'Се вчитува…',
@@ -3610,6 +3610,7 @@ $1',
 'version-hook-name'                => 'Име на кука',
 'version-hook-subscribedby'        => 'Претплатено од',
 'version-version'                  => '(Верзија $1)',
+'version-svn-revision'             => '(рев. $2)',
 'version-license'                  => 'Лиценца',
 'version-poweredby-credits'        => "Ова вики работи на '''[http://www.mediawiki.org/ МедијаВики]''', авторски права © 2001-$1 $2.",
 'version-poweredby-others'         => 'други',

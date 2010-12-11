@@ -3416,6 +3416,6 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'sqlite-no-fts'  => '$1, jossa ei ole tukea kokotekstihaulle',
 
 # Special:DisableAccount
-'disableaccount' => 'Poista käyttäjätunnus',
+'disableaccount' => 'Käyttäjätunnuksen poistaminen käytöstä',
 
 );

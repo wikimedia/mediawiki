@@ -1287,9 +1287,9 @@ $messages['br'] = array(
 	'config-desc' => 'Poellad staliañ MediaWIki',
 	'config-title' => 'Staliadur MediaWiki $1',
 	'config-information' => 'Titouroù',
-	'config-localsettings-upgrade' => "'''Diwallit''': Kavet ez eus bet ur restr <code>LocalSettings.php</code>.
-gouest eo ho meziant d'en em hizivaat
-Merkit talvoudenn ar chod <code>\$wgUpgradeKey</code> er vaezienn.",
+	'config-localsettings-upgrade' => 'Kavet ez eus bet ur restr <code>LocalSettings.php</code>.
+Evit hizivaat ar staliadur-se, merkit an talvoud <code>$wgUpgradeKey</code> er voest dindan.
+E gavout a rit e LocalSettings.php.',
 	'config-localsettings-key' => "Alc'hwez hizivaat :",
 	'config-localsettings-badkey' => "Direizh eo an alc'hwez merket ganeoc'h",
 	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
@@ -4910,6 +4910,9 @@ Anda sekarang dapat [$1 mulai menggunakan wiki Anda].
 
 Jika Anda ingin membuat ulang berkas <code>LocalSettings.php</code>, klik tombol di bawah ini.
 Tindakan ini '''tidak dianjurkan''' kecuali jika Anda mengalami masalah dengan wiki Anda.",
+	'config-upgrade-done-no-regenerate' => 'Pemutakhiran selesai.
+
+Anda sekarang dapat [$1 mulai menggunakan wiki Anda].',
 	'config-regenerate' => 'Regenerasi LocalSettings.php →',
 	'config-show-table-status' => 'Kueri SHOW TABLE STATUS gagal!',
 	'config-unknown-collation' => "'''Peringatan:''' basis data menggunakan kolasi yang tidak dikenal.",
@@ -7598,7 +7601,13 @@ Uaktualnij do PHP 5.3.2 lub nowszego. Możesz również cofnąć wersję do PHP 
 Instalacja została przerwana.',
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
+	'config-db-host-help' => 'Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
+
+Jeśli korzystasz ze współdzielonego hostingu, operator serwera powinien podać Ci prawidłową nazwę serwera w swojej dokumentacji.
+
+Jeśli instalujesz oprogramowanie na serwerze Windowsowym i korzystasz z MySQL, użycie „localhost” może nie zadziałać jako nazwa hosta. Jeśli wystąpi ten problem użyj „127.0.0.1” jako lokalnego adresu IP.',
 	'config-db-host-oracle' => 'TNS bazy danych',
+	'config-db-host-oracle-help' => 'Wprowadź prawidłową [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nazwę połączenia lokalnego]. Plik „tnsnames.ora” musi być widoczny dla instalatora.<br />Jeśli używasz biblioteki klienckiej 10g lub nowszej możesz również skorzystać z metody nazw [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm łatwego łączenia].',
 	'config-db-wiki-settings' => 'Zidentyfikuj tę wiki',
 	'config-db-name' => 'Nazwa bazy danych',
 	'config-db-name-oracle' => 'Schemat bazy danych',
