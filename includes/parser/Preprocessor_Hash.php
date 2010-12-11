@@ -5,7 +5,7 @@
  * @file
  * @ingroup Parser
  */
- 
+
 /**
  * Differences from DOM schema:
  *   * attribute nodes are children
@@ -14,7 +14,7 @@
  */
 class Preprocessor_Hash implements Preprocessor {
 	var $parser;
-	
+
 	const CACHE_VERSION = 1;
 
 	function __construct( $parser ) {
@@ -80,11 +80,11 @@ class Preprocessor_Hash implements Preprocessor {
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
-	
-	
+
+
 		// Check cache.
 		global $wgMemc, $wgPreprocessorCacheThreshold;
-		
+
 		$cacheable = strlen( $text ) > $wgPreprocessorCacheThreshold;
 		if ( $cacheable ) {
 			wfProfileIn( __METHOD__.'-cacheable' );
@@ -348,8 +348,8 @@ class Preprocessor_Hash implements Preprocessor {
 				} else {
 					$attrEnd = $tagEndPos;
 					// Find closing tag
-					if ( preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i", 
-							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 ) ) 
+					if ( preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
+							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 ) )
 					{
 						$inner = substr( $text, $tagEndPos + 1, $matches[0][1] - $tagEndPos - 1 );
 						$i = $matches[0][1] + strlen( $matches[0][0] );
@@ -676,7 +676,7 @@ class Preprocessor_Hash implements Preprocessor {
 		$rootNode = new PPNode_Hash_Tree( 'root' );
 		$rootNode->firstChild = $stack->rootAccum->firstNode;
 		$rootNode->lastChild = $stack->rootAccum->lastNode;
-		
+
 		// Cache
 		if ($cacheable) {
 			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );
@@ -685,7 +685,7 @@ class Preprocessor_Hash implements Preprocessor {
 			wfProfileOut( __METHOD__.'-cacheable' );
 			wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
 		}
-		
+
 		wfProfileOut( __METHOD__ );
 		return $rootNode;
 	}
@@ -1266,7 +1266,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		}
 		return $arguments;
 	}
-	
+
 	function getNumberedArguments() {
 		$arguments = array();
 		foreach ( array_keys($this->numberedArgs) as $key ) {
@@ -1274,7 +1274,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		}
 		return $arguments;
 	}
-	
+
 	function getNamedArguments() {
 		$arguments = array();
 		foreach ( array_keys($this->namedArgs) as $key ) {
