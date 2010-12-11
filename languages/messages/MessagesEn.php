@@ -1300,9 +1300,9 @@ The latest block log entry is provided below for reference:',
 '''It has not yet been saved!'''",
 'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript.'''
 '''It has not yet been saved!'''",
-'globalcsspreview'                 => "'''Remember that you are only previewing this global CSS.'''
+'sitecsspreview'                   => "'''Remember that you are only previewing this global CSS.'''
 '''It has not yet been saved!'''",
-'globaljspreview'                  => "'''Remember that you are only previewing this global JavaScript code.'''
+'sitejspreview'                    => "'''Remember that you are only previewing this global JavaScript code.'''
 '''It has not yet been saved!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' There is no skin \"\$1\".
 Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css as opposed to {{ns:user}}:Foo/Vector.css.",
