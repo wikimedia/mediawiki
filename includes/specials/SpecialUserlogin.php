@@ -22,24 +22,11 @@
  */
 
 /**
- * Constructor
- */
-function wfSpecialUserlogin( $par = '' ) {
-	global $wgRequest;
-	if( session_id() == '' ) {
-		wfSetupSession();
-	}
-
-	$form = new LoginForm( $wgRequest, $par );
-	$form->execute();
-}
-
-/**
  * Implements Special:UserLogin
  *
  * @ingroup SpecialPage
  */
-class LoginForm {
+class LoginForm extends SpecialPage {
 
 	const SUCCESS = 0;
 	const NO_NAME = 1;
@@ -59,40 +46,51 @@ class LoginForm {
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
-	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
+	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS, $mRequest;
 
 	private $mExtUser = null;
 
+	public function __construct( $request = null ) {
+		if ( $request === null ) {
+			global $wgRequest;
+			$this->mRequest = $wgRequest;
+		} else {
+			$this->mRequest = $request;
+		}
+
+		parent::__construct( 'Userlogin' );
+	}
+
 	/**
-	 * Constructor
-	 * @param $request WebRequest: a WebRequest object passed by reference
+	 * Loader
+	 *
 	 * @param $par String: subpage parameter
 	 */
-	function __construct( &$request, $par = '' ) {
+	function load( $par ) {
 		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;
 
-		$this->mType = ( $par == 'signup' ) ? $par : $request->getText( 'type' ); # Check for [[Special:Userlogin/signup]]
-		$this->mName = $request->getText( 'wpName' );
-		$this->mPassword = $request->getText( 'wpPassword' );
-		$this->mRetype = $request->getText( 'wpRetype' );
-		$this->mDomain = $request->getText( 'wpDomain' );
-		$this->mReason = $request->getText( 'wpReason' );
-		$this->mReturnTo = $request->getVal( 'returnto' );
-		$this->mReturnToQuery = $request->getVal( 'returntoquery' );
-		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
-		$this->mPosted = $request->wasPosted();
-		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' );
-		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
+		$this->mType = ( $par == 'signup' ) ? $par : $this->mRequest->getText( 'type' ); # Check for [[Special:Userlogin/signup]]
+		$this->mName = $this->mRequest->getText( 'wpName' );
+		$this->mPassword = $this->mRequest->getText( 'wpPassword' );
+		$this->mRetype = $this->mRequest->getText( 'wpRetype' );
+		$this->mDomain = $this->mRequest->getText( 'wpDomain' );
+		$this->mReason = $this->mRequest->getText( 'wpReason' );
+		$this->mReturnTo = $this->mRequest->getVal( 'returnto' );
+		$this->mReturnToQuery = $this->mRequest->getVal( 'returntoquery' );
+		$this->mCookieCheck = $this->mRequest->getVal( 'wpCookieCheck' );
+		$this->mPosted = $this->mRequest->wasPosted();
+		$this->mCreateaccount = $this->mRequest->getCheck( 'wpCreateaccount' );
+		$this->mCreateaccountMail = $this->mRequest->getCheck( 'wpCreateaccountMail' )
 		                            && $wgEnableEmail;
-		$this->mMailmypassword = $request->getCheck( 'wpMailmypassword' )
+		$this->mMailmypassword = $this->mRequest->getCheck( 'wpMailmypassword' )
 		                         && $wgEnableEmail;
-		$this->mLoginattempt = $request->getCheck( 'wpLoginattempt' );
-		$this->mAction = $request->getVal( 'action' );
-		$this->mRemember = $request->getCheck( 'wpRemember' );
-		$this->mStickHTTPS = $request->getCheck( 'wpStickHTTPS' );
-		$this->mLanguage = $request->getText( 'uselang' );
-		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
-		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
+		$this->mLoginattempt = $this->mRequest->getCheck( 'wpLoginattempt' );
+		$this->mAction = $this->mRequest->getVal( 'action' );
+		$this->mRemember = $this->mRequest->getCheck( 'wpRemember' );
+		$this->mStickHTTPS = $this->mRequest->getCheck( 'wpStickHTTPS' );
+		$this->mLanguage = $this->mRequest->getText( 'uselang' );
+		$this->mSkipCookieCheck = $this->mRequest->getCheck( 'wpSkipCookieCheck' );
+		$this->mToken = ( $this->mType == 'signup' ) ? $this->mRequest->getVal( 'wpCreateaccountToken' ) : $this->mRequest->getVal( 'wpLoginToken' );
 
 		if ( $wgRedirectOnLogin ) {
 			$this->mReturnTo = $wgRedirectOnLogin;
@@ -100,12 +98,12 @@ class LoginForm {
 		}
 
 		if( $wgEnableEmail ) {
-			$this->mEmail = $request->getText( 'wpEmail' );
+			$this->mEmail = $this->mRequest->getText( 'wpEmail' );
 		} else {
 			$this->mEmail = '';
 		}
 		if( !in_array( 'realname', $wgHiddenPrefs ) ) {
-		    $this->mRealName = $request->getText( 'wpRealName' );
+		    $this->mRealName = $this->mRequest->getText( 'wpRealName' );
 		} else {
 		    $this->mRealName = '';
 		}
@@ -123,7 +121,13 @@ class LoginForm {
 		}
 	}
 
-	function execute() {
+	public function execute( $par ) {
+		if ( session_id() == '' ) {
+			wfSetupSession();
+		}
+
+		$this->load( $par );
+
 		if ( !is_null( $this->mCookieCheck ) ) {
 			$this->onCookieRedirectCheck( $this->mCookieCheck );
 			return;
@@ -167,8 +171,6 @@ class LoginForm {
 		$u->addNewUserLogEntry( true, $this->mReason );
 
 		$wgOut->setPageTitle( wfMsg( 'accmailtitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
 
 		if( !$result->isGood() ) {
 			$this->mainLoginForm( wfMsg( 'mailerror', $result->getWikiText() ) );
@@ -227,8 +229,6 @@ class LoginForm {
 			# Confirm that the account was created
 			$self = SpecialPage::getTitleFor( 'Userlogin' );
 			$wgOut->setPageTitle( wfMsgHtml( 'accountcreated' ) );
-			$wgOut->setArticleRelated( false );
-			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->addHTML( wfMsgWikiHtml( 'accountcreatedtext', $u->getName() ) );
 			$wgOut->returnToMain( false, $self );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
@@ -884,8 +884,6 @@ class LoginForm {
 		global $wgOut, $wgUser;
 
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
 		$wgOut->addWikiMsg( $msgname, $wgUser->getName() );
 		$wgOut->addHTML( $injected_html );
 
@@ -909,8 +907,6 @@ class LoginForm {
 		# out.
 
 		$wgOut->setPageTitle( wfMsg( 'cantcreateaccounttitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
 
 		$ip = wfGetIP();
 		$blocker = User::whoIs( $wgUser->mBlock->mBy );
@@ -1057,8 +1053,6 @@ class LoginForm {
 			$wgOut->setPageTitle( wfMsg( 'userloginnocreate' ) );
 		}
 
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
 		$wgOut->disallowUserJs(); // just in case...
 		$wgOut->addTemplate( $template );
 	}
