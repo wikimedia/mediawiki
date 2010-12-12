@@ -28,7 +28,7 @@
 				contain = result;
 			}
 			this.addedTests.push([code, result, contain]);
-			this.$table.append('<tr><td>' + mw.html.escape(code).replace(/  /g, '&nbsp;&nbsp;') + '</td><td>' + mw.html.escape(result).replace(/  /g, '&nbsp;&nbsp;') + '<td></td></td><td>?</td></tr>');
+			this.$table.append('<tr><td>' + mw.html.escape(code).replace(/  /g, '&nbsp;&nbsp;') + '</td><td>' + mw.html.escape(result).replace(/  /g, '&nbsp;&nbsp;') + '</td><td></td><td>?</td></tr>');
 		},
 
 		/* Initialisation */
@@ -140,7 +140,7 @@
 								doesreturn = eval(exec);
 								doesreturn = doesreturn + ' (' + typeof doesreturn + ')';
 								$thisrow = $testrows.eq(i + 1);
-								$thisrow.find('> td').eq(2).text(doesreturn);
+								$thisrow.find('> td').eq(2).html( mw.html.escape(doesreturn).replace(/  /g, '&nbsp;&nbsp;') );
 
 								if (doesreturn.indexOf(shouldcontain) !== -1) {
 									if (doesreturn == shouldreturn){
