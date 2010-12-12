@@ -9,6 +9,7 @@
  *
  * @author Andrijko Z.
  * @author Cuman
+ * @author Emperyan
  */
 
 $fallback = 'tr';
@@ -637,7 +638,18 @@ Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' b
 'randomredirect' => 'Razgele yönnendirmäk',
 
 # Statistics
-'statistics' => 'Statistikalar',
+'statistics'                   => 'İstatistikalar',
+'statistics-header-pages'      => 'Sayfa istatistikaları',
+'statistics-header-edits'      => 'Diişmäkleri istatistikaları',
+'statistics-header-users'      => 'Kullanıcı istatistikaları',
+'statistics-articles'          => 'Yazılar',
+'statistics-pages'             => 'Yapraklar',
+'statistics-pages-desc'        => 'Vikipediyadaki hepsi sayfalar, dartışma sayfaları, uur sayfaları',
+'statistics-files'             => 'Üklenmiş dosyeler',
+'statistics-edits'             => '{{SITENAME}} kurulmaa beeri yapmaa sayfa diişmäkleri',
+'statistics-users'             => 'Registratlı [[Special:ListUsers|kullanıcılar]]',
+'statistics-users-active'      => 'Aktivli kullanıcılar',
+'statistics-users-active-desc' => 'Bitki {{PLURAL:$1|gün|$1 günde}} çalışmaa yapmaa kullanıcılar',
 
 'disambiguations' => 'Maana aydınnatmak yaprakları',
 

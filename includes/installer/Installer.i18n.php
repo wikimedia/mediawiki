@@ -5770,8 +5770,8 @@ $messages['lb'] = array(
 	'config-title' => 'MediaWiki $1 Installatioun',
 	'config-information' => 'Informatioun',
 	'config-localsettings-upgrade' => "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
-Är Software kann aktualiséiert ginn.
-Setzt w.e.g. de Wäert vum <code\$wgUpgradeKey</code> an d'Këscht.",
+Är Software kann aktualiséiert ginn, setzt w.e.g. de Wäert vum <code\$wgUpgradeKey</code> an d'Këscht.
+Dir fannt en am LocalSettings.php.",
 	'config-localsettings-key' => 'Aktualisatiounsschlëssel:',
 	'config-localsettings-badkey' => 'De Schlëssel deen Dir aginn hutt ass net korrekt',
 	'config-session-error' => 'Feeler beim Starte vun der Sessioun: $1',
@@ -5795,6 +5795,7 @@ Setzt w.e.g. de Wäert vum <code\$wgUpgradeKey</code> an d'Këscht.",
 	'config-page-releasenotes' => 'Informatiounen zur Versioun',
 	'config-page-copying' => 'Kopéieren',
 	'config-page-upgradedoc' => 'Aktualiséieren',
+	'config-page-existingwiki' => 'Wiki déi et gëtt',
 	'config-help-restart' => 'Wëllt dir all gespäichert Donnéeë läschen déi dir bis elo aginn hutt an den Installatiounsprozess nei starten?',
 	'config-restart' => 'Jo, neistarten',
 	'config-welcome' => "=== Iwwerpréifung vum Installatiounsenvironnement ===
@@ -7487,7 +7488,6 @@ Możesz go wydłużyć zmieniając <code>session.gc_maxlifetime</code> w pliku p
 Uruchom ponownie proces instalacji.',
 	'config-no-session' => 'Dane sesji zostały utracone.
 Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuje na odpowiedni katalog.',
-	'config-session-path-bad' => 'Wartość <code>session.save_path</code> (<code>$1</code>) jest nieprawidłowa lub brak możliwości zapisu do tego katalogu,',
 	'config-your-language' => 'Język',
 	'config-your-language-help' => 'Wybierz język używany podczas procesu instalacji.',
 	'config-wiki-language' => 'Język wiki',
@@ -8248,16 +8248,27 @@ $messages['ps'] = array(
 /** Portuguese (Português)
  * @author Crazymadlover
  * @author Hamilton Abreu
+ * @author Waldir
  */
 $messages['pt'] = array(
 	'config-desc' => 'O instalador do MediaWiki',
 	'config-title' => 'Instalação MediaWiki $1',
 	'config-information' => 'Informação',
-	'config-localsettings-upgrade' => "'''Aviso''': Foi detectada a existência de um ficheiro <code>LocalSettings.php</code>.
-É possível actualizar o seu software.
-Insira o valor de <code>\$wgUpgradeKey</code> na caixa, por favor.",
+	'config-localsettings-upgrade' => 'Foi detectado um ficheiro <code>LocalSettings.php</code>.
+Para actualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.
+Você irá encontrá-lo em LocalSettings.php.',
 	'config-localsettings-key' => 'Chave de actualização:',
 	'config-localsettings-badkey' => 'A chave que forneceu está incorreta',
+	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
+Para atualizar esta instalação, por favor coloque a seguinte linha no final do seu LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'O ficheiro LocalSettings.php existente parece estar incompleto.
+A variável $1 não está definida.
+Por favor defina esta variável em LocalSettings.php e clique em "Continuar".',
+	'config-localsettings-connection-error' => 'Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no LocalSettings.php ou AdminSettings.php. Por favor corrija essas configurações e tente novamente. 
+
+ $1',
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
 	'config-session-expired' => 'Os seus dados de sessão parecem ter expirado.
 As sessões estão configuradas para uma duração de $1.
@@ -8265,7 +8276,6 @@ Pode aumentar esta duração configurando <code>session.gc_maxlifetime</code> no
 Reinicie o processo de instalação.',
 	'config-no-session' => 'Os seus dados de sessão foram perdidos!
 Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um directório apropriado.',
-	'config-session-path-bad' => 'O directório em <code>session.save_path</code> (<code>$1</code>) parece ser inválido ou não permite acesso de escrita.',
 	'config-your-language' => 'A sua língua:',
 	'config-your-language-help' => 'Seleccione a língua que será usada durante o processo de instalação.',
 	'config-wiki-language' => 'Língua da wiki:',
@@ -8286,6 +8296,7 @@ Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code>
 	'config-page-releasenotes' => 'Notas de lançamento',
 	'config-page-copying' => 'A copiar',
 	'config-page-upgradedoc' => 'A actualizar',
+	'config-page-existingwiki' => 'Wiki existente',
 	'config-help-restart' => 'Deseja limpar todos os dados gravados que introduziu e reiniciar o processo de instalação?',
 	'config-restart' => 'Sim, reiniciar',
 	'config-welcome' => '=== Verificações do ambiente ===
@@ -8508,6 +8519,9 @@ Agora pode [$1 começar a usar a sua wiki].
 
 Se quiser regenerar o seu ficheiro <code>LocalSettings.php</code>, clique o botão abaixo.
 Esta operação '''não é recomendada''' a menos que esteja a ter problemas com a sua wiki.",
+	'config-upgrade-done-no-regenerate' => 'Atualização completa.
+
+Você pode agora [$1 começar a utilizar a sua wiki].',
 	'config-regenerate' => 'Regenerar o LocalSettings.php →',
 	'config-show-table-status' => 'A consulta SHOW TABLE STATUS falhou!',
 	'config-unknown-collation' => "'''Aviso:''' A base de dados está a utilizar uma colação ''(collation)'' desconhecida.",

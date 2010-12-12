@@ -908,10 +908,6 @@ Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
 'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
 Pratayang ini belum disimpan!'''",
 'userjspreview'                    => "'''Ingatlah bahwa yang Anda lihat hanyalah pratayang JavaScript Anda, dan bahwa pratayang tersebut belum disimpan!'''",
-'globalcsspreview'                 => "'''Ingatlah bahwa Anda hanya menampilkan pratayang dari CSS global ini.'''
-'''Perubahan belum disimpan!'''",
-'globaljspreview'                  => "'''Ingatlah bahwa Anda hanya menampilkan pratayang dari kode JavaScript global ini.'''
-'''Perubahan belum disimpan!'''",
 'userinvalidcssjstitle'            => "'''Peringatan:''' Kulit \"\$1\" tidak ditemukan. Harap diingat bahwa halaman .css dan .js menggunakan huruf kecil, contoh {{ns:user}}:Foo/vector.css dan bukannya {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Diperbarui)',
 'note'                             => "'''Catatan:'''",

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Asiri wiki
+ * @author Budhajeewa
  * @author Calcey
  * @author Chandana
  * @author Jiro Ono
@@ -349,20 +350,21 @@ $messages = array(
 'faqpage'        => 'Project:නිති-විමසන-පැන',
 
 # Vector skin
-'vector-action-addsection' => 'මාතෘකාව එක්කරන්න',
-'vector-action-delete'     => 'මකාදමන්න',
-'vector-action-move'       => 'ගෙනයන්න',
-'vector-action-protect'    => 'ආරක්ෂා කරන්න',
-'vector-action-undelete'   => 'මකාදැමීම අවලංගු කරන්න',
-'vector-action-unprotect'  => 'ආරක්ෂා‍ නොකරන්න',
-'vector-view-create'       => 'තනන්න',
-'vector-view-edit'         => 'සංස්කරණය කරන්න',
-'vector-view-history'      => 'ඉතිහාසය නරඹන්න',
-'vector-view-view'         => 'කියවන්න',
-'vector-view-viewsource'   => 'මූලාශ්‍රය නරඹන්න',
-'actions'                  => 'කාර්යයන්',
-'namespaces'               => 'නාමඅවකාශයන්',
-'variants'                 => 'ප්‍රභේද්‍යයන්',
+'vector-action-addsection'       => 'මාතෘකාව එක්කරන්න',
+'vector-action-delete'           => 'මකාදමන්න',
+'vector-action-move'             => 'ගෙනයන්න',
+'vector-action-protect'          => 'ආරක්ෂා කරන්න',
+'vector-action-undelete'         => 'මකාදැමීම අවලංගු කරන්න',
+'vector-action-unprotect'        => 'ආරක්ෂා‍ නොකරන්න',
+'vector-simplesearch-preference' => 'වැඩිදියුණුකළ සෙවුම් යෝජනා සක්‍රීය කරන්න ("Vector" තීමය සඳහා පමණි)',
+'vector-view-create'             => 'තනන්න',
+'vector-view-edit'               => 'සංස්කරණය කරන්න',
+'vector-view-history'            => 'ඉතිහාසය නරඹන්න',
+'vector-view-view'               => 'කියවන්න',
+'vector-view-viewsource'         => 'මූලාශ්‍රය නරඹන්න',
+'actions'                        => 'කාර්යයන්',
+'namespaces'                     => 'නාමඅවකාශයන්',
+'variants'                       => 'ප්‍රභේද්‍යයන්',
 
 'errorpagetitle'    => 'දෝෂය',
 'returnto'          => '$1 ට නැවත යන්න.',
