@@ -793,17 +793,18 @@ li.gallerybox {
 	border: solid 2px white;
 	display: -moz-inline-box;
 }
-ul.gallery {
-	margin: 2px;
-	padding: 2px;
-	background-color: white;
-	display: block;
-}
 
 ul.gallery, li.gallerybox {
 	display: inline-block;
 	zoom: 1;
 	*display: inline;
+}
+
+ul.gallery {
+	margin: 2px;
+	padding: 2px;
+	background-color: white;
+	display: block;
 }
 
 li.gallerycaption {
