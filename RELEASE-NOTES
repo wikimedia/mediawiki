@@ -34,6 +34,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   cannot read the page in question.
 * (bug 19006) {{REVISIONUSER}} no longer acts like {{CURRENTUSER}} in some cases
 * (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
+* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
 
 === API changes in 1.18 ===
 
