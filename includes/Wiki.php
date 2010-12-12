@@ -49,6 +49,9 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$output->setTitle( $title );
+		if( $request->getVal( 'printable' ) === 'yes' ) {
+			$output->setPrintable();
+		}
 
 		wfRunHooks( 'BeforeInitialize', array( &$title, &$article, &$output, &$user, $request, $this ) );
 
@@ -101,10 +104,7 @@ class MediaWiki {
 	 * @return Title object to be $wgTitle
 	 */
 	function checkInitialQueries( $title, $action ) {
-		global $wgOut, $wgRequest, $wgContLang;
-		if( $wgRequest->getVal( 'printable' ) === 'yes' ) {
-			$wgOut->setPrintable();
-		}
+		global $wgRequest, $wgContLang;
 
 		$curid = $wgRequest->getInt( 'curid' );
 		if( $wgRequest->getCheck( 'search' ) ) {
