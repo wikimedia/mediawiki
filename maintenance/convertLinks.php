@@ -193,12 +193,12 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 		if ( $overwriteLinksTable ) {
 			# Check for existing links_backup, and delete it if it exists.
 			$this->output( "Dropping backup links table if it exists..." );
-			$dbw->query( "DROP TABLE IF EXISTS $links_backup", DB_MASTER );
+			$dbw->query( "DROP TABLE IF EXISTS $links_backup", __METHOD__ );
 			$this->output( " done.\n" );
 
 			# Swap in the new table, and move old links table to links_backup
 			$this->output( "Swapping tables '$links' to '$links_backup'; '$links_temp' to '$links'..." );
-			$dbw->query( "RENAME TABLE links TO $links_backup, $links_temp TO $links", DB_MASTER );
+			$dbw->query( "RENAME TABLE links TO $links_backup, $links_temp TO $links", __METHOD__ );
 			$this->output( " done.\n\n" );
 
 			$dbw->close();
