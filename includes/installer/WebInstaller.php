@@ -277,22 +277,6 @@ class WebInstaller extends CoreInstaller {
 	 * Start the PHP session. This may be called before execute() to start the PHP session.
 	 */
 	public function startSession() {
-		$sessPath = $this->getSessionSavePath();
-
-		if( $sessPath != '' ) {
-			if( strval( ini_get( 'open_basedir' ) ) != '' ) {
-				// we need to skip the following check when open_basedir is on.
-				// The session path probably *wont* be writable by the current
-				// user, and telling them to change it is bad. Bug 23021.
-			} elseif( !is_dir( $sessPath ) || !is_writeable( $sessPath ) ) {
-				$this->showError( 'config-session-path-bad', $sessPath );
-				return false;
-			}
-		} else {
-			// If the path is unset it'll default to some system bit, which *probably* is ok...
-			// not sure how to actually get what will be used.
-		}
-
 		if( wfIniGetBool( 'session.auto_start' ) || session_id() ) {
 			// Done already
 			return true;
@@ -309,23 +293,6 @@ class WebInstaller extends CoreInstaller {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Get the value of session.save_path
-	 *
-	 * Per http://www.php.net/manual/en/session.configuration.php#ini.session.save-path,
-	 * this may have an initial integer value to indicate the depth of session
-	 * storage (eg /tmp/a/b/c). Explode on ; and check and see if this part is
-	 * there or not. Should also allow paths with semicolons in them (if you
-	 * really wanted your session files stored in /tmp/some;dir) which PHP
-	 * supposedly supports.
-	 *
-	 * @return String
-	 */
-	private function getSessionSavePath() {
-		$parts = explode( ';', ini_get( 'session.save_path' ), 2 );
-		return count( $parts ) == 1 ? $parts[0] : $parts[1];
 	}
 
 	/**

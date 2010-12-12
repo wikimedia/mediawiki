@@ -38,7 +38,6 @@ You can increase this by setting <code>session.gc_maxlifetime</code> in php.ini.
 Restart the installation process.',
 	'config-no-session'               => 'Your session data was lost!
 Check your php.ini and make sure <code>session.save_path</code> is set to an appropriate directory.',
-	'config-session-path-bad'         => 'Your <code>session.save_path</code> (<code>$1</code>) seems to be invalid or unwritable.',
 	'config-your-language'            => 'Your language:',
 	'config-your-language-help'       => 'Select a language to use during the installation process.',
 	'config-wiki-language'            => 'Wiki language:',
