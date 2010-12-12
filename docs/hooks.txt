@@ -1607,8 +1607,7 @@ $opts: FormOptions for this request
 &$query_options: array of options for the database request
 &$select: String '*' or array of columns to select
 
-'SpecialSearchGomatch': called when user clicked the "Go" button and the target
-exists
+'SpecialSearchGo': called when user clicked the "Go"
 &$title: title object generated from the text entered by the user
 
 'SpecialSearchNogomatch': called when user clicked the "Go" button but the
