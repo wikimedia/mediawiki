@@ -733,6 +733,9 @@ $1',
 'loginlanguagelabel'         => 'Мова: $1',
 'suspicious-userlogout'      => 'Ваш запит на завершення сеанса відхилений, оскільки він схожий на запит, відправлений зіпсованим веб-оглядачем або кешуючим проксі-сервером.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Невідома помилка в PHP-mail() функції',
+
 # JavaScript password checks
 'password-strength'            => 'Оцінка стійкості пароля: $1',
 'password-strength-bad'        => 'НЕЗАДОВІЛЬНО',
@@ -3386,6 +3389,7 @@ $1',
 'version-specialpages'             => 'Спеціальні сторінки',
 'version-parserhooks'              => 'Перехоплювачі синтаксичного аналізатора',
 'version-variables'                => 'Змінні',
+'version-skins'                    => 'Оформлення',
 'version-other'                    => 'Інше',
 'version-mediahandlers'            => 'Обробники медіа',
 'version-hooks'                    => 'Перехоплювачі',
@@ -3506,5 +3510,9 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 з підтримкою повнотекстового пошуку',
 'sqlite-no-fts'  => '$1 без підтримки повнотекстового пошуку',
+
+# Special:DisableAccount
+'disableaccount-user'   => "Ім'я користувача:",
+'disableaccount-reason' => 'Причина:',
 
 );

@@ -789,10 +789,6 @@ Regjistri i bllokuar hyrjen e fundit është më poshtë, për referencë:',
 'userjsyoucanpreview'              => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
 'usercsspreview'                   => "'''Vini re! Kjo është vetëm një parapamje e faqes suaj CSS. Akoma nuk është ruajtur!'''",
 'userjspreview'                    => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj JavaScript, ajo nuk është ruajtur akoma!'''",
-'globalcsspreview'                 => "'''Vini re! Kjo është vetëm një parapamje e faqes suaj CSS.'''
-''' Akoma nuk është ruajtur!'''",
-'globaljspreview'                  => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj JavaScript.''' 
-'''Nuk është ruajtur akoma!'''",
 'userinvalidcssjstitle'            => "'''Kujdes:''' Nuk ka pamje të quajtur \"\$1\". Vini re se faqet .css dhe .js përdorin titull me gërma të vogla, p.sh. {{ns:user}}:Foo/vector.css, jo {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(E ndryshuar)',
 'note'                             => "'''Shënim:'''",

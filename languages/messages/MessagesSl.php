@@ -807,10 +807,6 @@ Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 '''Ni še bil shranjen!'''",
 'userjspreview'                    => "'''Ne pozabite, da svoj uporabniški JavaScript le preizkušate/predogledujete.'''
 '''Ni še bil shranjen!'''",
-'globalcsspreview'                 => "'''Ne pozabite, da ta globalni CSS samo preizkušate.'''
-'''Ni še bil shranjen!'''",
-'globaljspreview'                  => "'''Ne pozabite, da kodo tega globalnega JavaScripta samo preizkušate.'''
-'''Ni še bila shranjena!'''",
 'userinvalidcssjstitle'            => "'''Opozorilo:''' Koža »$1« ne obstaja.
 Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr. {{ns:user}}:Blabla/vector.css namesto {{ns:user}}:Blabla/Vector.css.",
 'updated'                          => '(Posodobljeno)',

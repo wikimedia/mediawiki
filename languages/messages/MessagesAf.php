@@ -823,10 +823,6 @@ Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
 '''Dit is nog nie gestoor nie!'''",
 'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
-'globalcsspreview'                 => "'''Onthou dat u na 'n voorskou van die globale CSS-kode kyk.'''
-'''Dit is nog nie gestoor nie!'''",
-'globaljspreview'                  => "'''Onthou dat u na 'n voorskou van die globale JavaScript-kode kyk.'''
-'''Dit is nog nie gestoor nie!'''",
 'userinvalidcssjstitle'            => "'''Waarskuwing:''' daar is nie 'n omslag \"\$1\" nie.
 Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns:user}}:Naam/vector.css in plaas van {{ns:user}}:Naam/Vector.css.",
 'updated'                          => '(Gewysig)',

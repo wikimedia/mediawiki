@@ -11,6 +11,7 @@
  * @author Chhorran
  * @author Kiensvay
  * @author Lovekhmer
+ * @author Sovichet
  * @author T-Rithy
  * @author Thearith
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
@@ -492,6 +493,7 @@ $messages = array(
 សូមរង់ចាំមួយភ្លែតសិនរួចសាកល្បងចូលមកកាន់ទំព័រនេះឡើងវិញ។
 
 $1',
+'pool-errorunknown' => 'កំហុសមិនស្គាល់',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'អំពី{{SITENAME}}',

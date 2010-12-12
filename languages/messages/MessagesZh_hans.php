@@ -678,6 +678,9 @@ $2',
 'loginlanguagelabel'         => '语言：$1',
 'suspicious-userlogout'      => '您登出的要求已经被拒绝，因为它可能是由已损坏的浏览器或者缓存代理传送。',
 
+# E-mail sending
+'php-mail-error-unknown' => '在 PHP 的 mail () 函数中的未知错误',
+
 # JavaScript password checks
 'password-strength'            => '预估密码强度： $1',
 'password-strength-bad'        => '差',
@@ -808,9 +811,9 @@ $2',
 '''还没有保存！'''",
 'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript。'''
 '''还没有保存！'''",
-'globalcsspreview'                 => '‘’‘记住你现在只是预览此全球 CSS。‘’‘
+'sitecsspreview'                   => '‘’‘记住你现在只是预览此全球 CSS。‘’‘
 ’‘’还没有保存！‘’‘',
-'globaljspreview'                  => '‘’‘记住你现在只是预览此全球 JS 代码。‘’‘
+'sitejspreview'                    => '‘’‘记住你现在只是预览此全球 JS 代码。‘’‘
 ’‘’还没有保存！‘’‘�',
 'userinvalidcssjstitle'            => "'''警告：''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/vector.css 不同于 {{ns:user}}:Foo/Vector.css。",
 'updated'                          => '（已更新）',

@@ -975,10 +975,6 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 '''Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.'''
 '''De pagina is niet opgeslagen!'''",
-'globalcsspreview'                 => "'''Dit is alleen een voorvertoning van de globale CSS.'''
-'''Deze is nog niet opgeslagen!'''",
-'globaljspreview'                  => "'''Dit is alleen een voorvertoning van de globale JavaScriptcode.'''
-'''Deze is nog niet opgeslagen!'''",
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\".
 Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 'updated'                          => '(Bijgewerkt)',

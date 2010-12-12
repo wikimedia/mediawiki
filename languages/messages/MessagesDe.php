@@ -968,10 +968,6 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 '''Es wurde noch nicht gespeichert!'''",
 'userjspreview'                    => "'''Beachte, dass du nur eine Vorschau deines Benutzer-JavaScript betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
-'globalcsspreview'                 => "'''Beachte, dass du nur eine Vorschau dieses globalen CSS betrachtest.'''
-'''Es wurde noch nicht gespeichert!'''",
-'globaljspreview'                  => "'''Beachte, dass du nur eine Vorschau dieses globalen JavaScript betrachtest.'''
-'''Es wurde noch nicht gespeichert!'''",
 'userinvalidcssjstitle'            => "'''Achtung:''' Die Benutzeroberfläche „$1“ existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/vector.css'' an Stelle von ''{{ns:user}}:Mustermann/Vector.css''.",
 'updated'                          => '(Geändert)',
 'note'                             => "'''Hinweis:'''",
