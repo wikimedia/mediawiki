@@ -16,32 +16,32 @@
  * The constructor input is an associative array of $fieldname => $info,
  * where $info is an Associative Array with any of the following:
  *
- *	 'class'	-- the subclass of HTMLFormField that will be used
- *				   to create the object.  *NOT* the CSS class!
- *	 'type'	    -- roughly translates into the <select> type attribute.
- *				   if 'class' is not specified, this is used as a map
- *				   through HTMLForm::$typeMappings to get the class name.
- *	 'default'  -- default value when the form is displayed
- *	 'id'	    -- HTML id attribute
- *   	 'cssclass' -- CSS class
- *	 'options'  -- varies according to the specific object.
- *	 'label-message' -- message key for a message to use as the label.
- *				   can be an array of msg key and then parameters to
- *				   the message.
- *	 'label'	-- alternatively, a raw text message. Overridden by
- *				   label-message
- *	 'help-message'  -- message key for a message to use as a help text.
- *				   can be an array of msg key and then parameters to
- *				   the message.
- *	 'required' -- passed through to the object, indicating that it
- *				   is a required field.
- *	 'size'	    -- the length of text fields
- *	 'filter-callback -- a function name to give you the chance to
- *				   massage the inputted value before it's processed.
- *				   @see HTMLForm::filter()
- *	 'validation-callback' -- a function name to give you the chance
- *				   to impose extra validation on the field input.
- *				   @see HTMLForm::validate()
+ *	'class'               -- the subclass of HTMLFormField that will be used
+ *	                         to create the object.  *NOT* the CSS class!
+ *	'type'                -- roughly translates into the <select> type attribute.
+ *	                         if 'class' is not specified, this is used as a map
+ *	                         through HTMLForm::$typeMappings to get the class name.
+ *	'default'             -- default value when the form is displayed
+ *	'id'                  -- HTML id attribute
+ *	'cssclass'            -- CSS class
+ *	'options'             -- varies according to the specific object.
+ *	'label-message'       -- message key for a message to use as the label.
+ *	                         can be an array of msg key and then parameters to
+ *	                         the message.
+ *	'label'               -- alternatively, a raw text message. Overridden by
+ *	                         label-message
+ *	'help-message'        -- message key for a message to use as a help text.
+ *	                         can be an array of msg key and then parameters to
+ *	                         the message.
+ *	'required'            -- passed through to the object, indicating that it
+ *	                         is a required field.
+ *	'size'                -- the length of text fields
+ *	'filter-callback      -- a function name to give you the chance to
+ *	                         massage the inputted value before it's processed.
+ *	                         @see HTMLForm::filter()
+ *	'validation-callback' -- a function name to give you the chance
+ *	                         to impose extra validation on the field input.
+ *	                         @see HTMLForm::validate()
  *
  * TODO: Document 'section' / 'subsection' stuff
  */
@@ -187,10 +187,10 @@ class HTMLForm {
 	 * The here's-one-I-made-earlier option: do the submission if
 	 * posted, or display the form with or without funky valiation
 	 * errors
-	 * @return Bool whether submission was successful.
+	 * @return Bool or Status whether submission was successful.
 	 */
 	function show() {
-		// Check if we have the info we need
+		# Check if we have the info we need
 		if ( ! $this->mTitle ) {
 			throw new MWException( "You must call setTitle() on an HTMLForm" );
 		}
@@ -209,9 +209,7 @@ class HTMLForm {
 			$result = $this->trySubmit();
 		}
 
-		if ( $result === true ||
-			( $result instanceof Status && $result->isGood() ) )
-		{
+		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ){
 			return $result;
 		}
 
@@ -708,6 +706,10 @@ abstract class HTMLFormField {
 			return call_user_func( $this->mValidationCallback, $value, $alldata );
 		}
 
+		if ( isset( $this->mParams['required'] ) && $value === '' ) {
+			return wfMsgExt( 'htmlform-required', 'parseinline' );
+		}
+
 		return true;
 	}
 
@@ -1001,20 +1003,6 @@ class HTMLTextField extends HTMLFormField {
 
 		return Html::element( 'input', $attribs );
 	}
-
-	public function validate( $value, $alldata ) {
-		$p = parent::validate( $value, $alldata );
-
-		if ( $p !== true ) {
-			return $p;
-		}
-
-		if ( isset( $this->mParams['required'] ) && $value === '' ) {
-			return wfMsgExt( 'htmlform-required', 'parseinline' );
-		}
-
-		return true;
-	}
 }
 class HTMLTextAreaField extends HTMLFormField {
 	function getCols() {
@@ -1054,20 +1042,6 @@ class HTMLTextAreaField extends HTMLFormField {
 
 		return Html::element( 'textarea', $attribs, $value );
 	}
-
-	public function validate( $value, $alldata ) {
-		$p = parent::validate( $value, $alldata );
-
-		if ( $p !== true ) {
-			return $p;
-		}
-
-		if ( isset( $this->mParams['required'] ) && $value === '' ) {
-			return wfMsgExt( 'htmlform-required', 'parseinline' );
-		}
-
-		return true;
-	}
 }
 
 /**
@@ -1086,8 +1060,12 @@ class HTMLFloatField extends HTMLTextField {
 		if ( $p !== true ) {
 			return $p;
 		}
+		
+		$value = trim( $value );
 
-		if ( floatval( $value ) != $value ) {
+		# http://dev.w3.org/html5/spec/common-microsyntaxes.html#real-numbers
+		# with the addition that a leading '+' sign is ok. 
+		if ( !preg_match( '/^(\+|\-)?\d+(\.\d+)?(E(\+|\-)?\d+)?$/i', $value ) ) {
 			return wfMsgExt( 'htmlform-float-invalid', 'parse' );
 		}
 
@@ -1124,8 +1102,13 @@ class HTMLIntField extends HTMLFloatField {
 			return $p;
 		}
 
-		if ( $value !== ''
-			&& ( !is_numeric( $value ) || round( $value ) != $value )
+		# http://dev.w3.org/html5/spec/common-microsyntaxes.html#signed-integers
+		# with the addition that a leading '+' sign is ok. Note that leading zeros 
+		# are fine, and will be left in the input, which is useful for things like 
+		# phone numbers when you know that they are integers (the HTML5 type=tel
+		# input does not require its value to be numeric).  If you want a tidier
+		# value to, eg, save in the DB, clean it up with intval().
+		if ( !preg_match( '/^(\+|\-)?\d*$/', trim( $value ) )
 		) {
 			return wfMsgExt( 'htmlform-int-invalid', 'parse' );
 		}
@@ -1346,11 +1329,13 @@ class HTMLMultiSelectField extends HTMLFormField {
 				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
-				$thisAttribs = array( 'id' => $this->mID . "-$info", 'value' => $info );
+				$thisAttribs = array( 'id' => "{$this->mID}-$info", 'value' => $info );
 
-				$checkbox = Xml::check( $this->mName . '[]', in_array( $info, $value, true ),
-								$attribs + $thisAttribs );
-				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => $this->mID . "-$info" ), $label );
+				$checkbox = Xml::check( 
+					$this->mName . '[]', 
+					in_array( $info, $value, true ),
+					$attribs + $thisAttribs );
+				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => "{$this->mID}-$info" ), $label );
 
 				$html .= $checkbox . '<br />';
 			}
@@ -1490,6 +1475,10 @@ class HTMLHiddenField extends HTMLFormField {
 		# forcing the 'wp' prefix on hidden field names
 		# is undesirable
 		$this->mName = substr( $this->mName, 2 );
+		
+		# Per HTML5 spec, hidden fields cannot be 'required'
+		# http://dev.w3.org/html5/spec/states-of-the-type-attribute.html#hidden-state
+		unset( $this->mParams['required'] );
 	}
 
 	public function getTableRow( $value ) {
@@ -1534,6 +1523,13 @@ class HTMLSubmitField extends HTMLFormField {
 
 	protected function needsLabel() {
 		return false;
+	}
+	
+	/**
+	 * Button cannot be invalid
+	 */
+	public function validate( $value, $alldata ){
+		return true;
 	}
 }
 
