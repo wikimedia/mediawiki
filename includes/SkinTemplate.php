@@ -344,8 +344,8 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'newtalk', $newtalks );
 		$tpl->setRef( 'skin', $this );
 		$tpl->set( 'logo', $this->logoText() );
-		if ( $out->isArticle() and ( !isset( $oldid ) or isset( $diff ) ) and
-			$wgArticle and 0 != $wgArticle->getID() ){
+		if ( $out->isArticle() && ( !isset( $oldid ) || isset( $diff ) ) &&
+			$wgArticle && 0 != $wgArticle->getID() ){
 			if ( !$wgDisableCounters ) {
 				$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
 				if ( $viewcount ) {
