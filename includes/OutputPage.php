@@ -1803,9 +1803,7 @@ class OutputPage {
 		$this->mRedirect = '';
 		$this->mBodytext = '';
 
-		array_unshift( $params, 'parse' );
-		array_unshift( $params, $msg );
-		$this->addHTML( call_user_func_array( 'wfMsgExt', $params ) );
+		$this->addWikiMsgArray( $msg, $params );
 
 		$this->returnToMain();
 	}
