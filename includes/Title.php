@@ -3749,7 +3749,7 @@ class Title {
 	public function countRevisionsBetween( $old, $new ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		return (int)$dbr->selectField( 'revision', 'count(*)',
-			'rev_page' => intval( $this->getArticleId() ) .
+			'rev_page = ' . intval( $this->getArticleId() ) .
 			' AND rev_id > ' . intval( $old ) .
 			' AND rev_id < ' . intval( $new ),
 			__METHOD__
@@ -3770,7 +3770,7 @@ class Title {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$res = $db->select( 'revision', 'DISTINCT rev_user_text',
 			array(
-				'rev_page' => $this->getArticleID(),
+				'rev_page = ' . $this->getArticleID(),
 				'rev_id > ' . (int)$fromRevId,
 				'rev_id < ' . (int)$toRevId
 			), __METHOD__,
