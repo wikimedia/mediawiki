@@ -102,7 +102,12 @@ class SpecialSearch extends SpecialPage {
 		}
 		# If there's an exact or very near match, jump right there.
 		$t = SearchEngine::getNearMatch( $term );
-		wfRunHooks( 'SpecialSearchGo', array( &$t ) );
+		
+		if ( !wfRunHooks( 'SpecialSearchGo', array( &$t, &$term ) ) ) {
+			# Hook requested termination
+			return;
+		}
+		
 		if( !is_null( $t ) ) {
 			$wgOut->redirect( $t->getFullURL() );
 			return;
