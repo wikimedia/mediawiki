@@ -6609,38 +6609,38 @@ image4    |300px| centre
 !! result
 <ul class="gallery">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 152px;">Image1.png</div>
+			<div style="height: 150px;">Image1.png</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 152px;">Image2.gif</div>
+			<div style="height: 150px;">Image2.gif</div>
 			<div class="gallerytext">
 <p>||||
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 152px;">Image3</div>
+			<div style="height: 150px;">Image3</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 152px;">Image4</div>
+			<div style="height: 150px;">Image4</div>
 			<div class="gallerytext">
 <p>300px| centre
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 152px;">Image5.svg</div>
+			<div style="height: 150px;">Image5.svg</div>
 			<div class="gallerytext">
 <p><a href="http://///////" class="external free" rel="nofollow">http://///////</a>
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 152px;">* image6</div>
+			<div style="height: 150px;">* image6</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
@@ -6661,26 +6661,26 @@ image:foobar.jpg
 <ul class="gallery" style="max-width: 220px;_width: 220px;">
 	<li class='gallerycaption'>Foo <a href="/wiki/Main_Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
-			<div style="height: 52px;">Nonexistant.jpg</div>
+			<div style="height: 70px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 <p>caption
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
-			<div style="height: 52px;">Nonexistant.jpg</div>
+			<div style="height: 70px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
-			<div class="thumb" style="padding: 19px 0; width: 90px;"><div style="margin-left: auto; margin-right: auto; width: 60px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
+			<div class="thumb" style="width: 90px; height: 70px;"><div style="margin:31px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
 			<div class="gallerytext">
 <p>some <b>caption</b> <a href="/wiki/Main_Page">Main Page</a>
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 95px"><div style="width: 95px">
-			<div class="thumb" style="padding: 19px 0; width: 90px;"><div style="margin-left: auto; margin-right: auto; width: 60px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
+			<div class="thumb" style="width: 90px; height: 70px;"><div style="margin:31px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="60" height="7" /></a></div></div>
 			<div class="gallerytext">
 			</div>
 		</div></li>
@@ -6700,7 +6700,7 @@ File:Foobar.jpg
 !! result
 <ul class="gallery">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 152px;">Nonexistant.jpg</div>
+			<div style="height: 150px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Nonexistant.jpg" title="File:Nonexistant.jpg">Nonexistant.jpg</a><br />
 caption
@@ -6708,14 +6708,14 @@ caption
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div style="height: 152px;">Nonexistant.jpg</div>
+			<div style="height: 150px;">Nonexistant.jpg</div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Nonexistant.jpg" title="File:Nonexistant.jpg">Nonexistant.jpg</a><br />
 </p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="padding: 66px 0; width: 150px;"><div style="margin-left: auto; margin-right: auto; width: 120px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="thumb" style="width: 150px; height: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">Foobar.jpg</a><br />
 some <b>caption</b> <a href="/wiki/Main_Page">Main Page</a>
@@ -6723,7 +6723,7 @@ some <b>caption</b> <a href="/wiki/Main_Page">Main Page</a>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="padding: 66px 0; width: 150px;"><div style="margin-left: auto; margin-right: auto; width: 120px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="thumb" style="width: 150px; height: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg">Foobar.jpg</a><br />
 </p>
