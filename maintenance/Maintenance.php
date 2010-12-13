@@ -102,10 +102,16 @@ abstract class Maintenance {
 	protected static $mCoreScripts = null;
 
 	/**
-	 * Default constructor. Children should call this if implementing
+	 * Default constructor. Children should call this *first* if implementing
 	 * their own constructors
 	 */
 	public function __construct() {
+		// Setup $IP, using MW_INSTALL_PATH if it exists
+		global $IP;
+		$IP = strval( getenv( 'MW_INSTALL_PATH' ) ) !== ''
+			? getenv( 'MW_INSTALL_PATH' )
+			: realpath( dirname( __FILE__ ) . '/..' );
+
 		$this->addDefaultParams();
 		register_shutdown_function( array( $this, 'outputChanneled' ), false );
 	}
@@ -415,7 +421,7 @@ abstract class Maintenance {
 	 * Do some sanity checking and basic setup
 	 */
 	public function setup() {
-		global $IP, $wgCommandLineMode, $wgRequestTime;
+		global $wgCommandLineMode, $wgRequestTime;
 
 		# Abort if called from a web server
 		if ( isset( $_SERVER ) && isset( $_SERVER['REQUEST_METHOD'] ) ) {
@@ -458,11 +464,6 @@ abstract class Maintenance {
 
 		# Define us as being in MediaWiki
 		define( 'MEDIAWIKI', true );
-
-		# Setup $IP, using MW_INSTALL_PATH if it exists
-		$IP = strval( getenv( 'MW_INSTALL_PATH' ) ) !== ''
-			? getenv( 'MW_INSTALL_PATH' )
-			: realpath( dirname( __FILE__ ) . '/..' );
 
 		$wgCommandLineMode = true;
 		# Turn off output buffering if it's on
