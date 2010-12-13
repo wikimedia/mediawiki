@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Akaniji
  * @author Alexsh
  * @author Aotake
  * @author Aphaia
@@ -981,6 +982,10 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'usercsspreview'                   => "'''利用者CSSをプレビューしています。'''
 '''まだ保存されていません！'''",
 'userjspreview'                    => "'''利用者JavaScriptを試験、プレビューしています。'''
+'''まだ保存されていません！'''",
+'sitecsspreview'                   => "'''全体に適用されるCSSをプレビューしています。'''
+'''まだ保存されていません！'''",
+'sitejspreview'                    => "'''全体に適用されるJavaScriptをプレビューしています。'''
 '''まだ保存されていません！'''",
 'userinvalidcssjstitle'            => "'''警告：'''「$1」という外装はありません。
 .cssと.jsページを編集する際には、ページ名を小文字にすることを忘れないでください（例えば、{{ns:user}}:Hoge/Vector.cssではなく{{ns:user}}:Hoge/vector.cssとなります）。",

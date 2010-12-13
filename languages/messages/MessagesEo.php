@@ -773,6 +773,9 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel'         => 'Lingvo: $1',
 'suspicious-userlogout'      => 'Via peto por elsaluti estis malpermesita ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiganta proksima servilo.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Taksita pasvorta forteco: $1',
 'password-strength-bad'        => 'MALBONA',
@@ -1513,6 +1516,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
 'right-revisionmove'          => 'Movi reviziojn',
+'right-disableaccount'        => 'Malŝalti kontojn',
 
 # User rights log
 'rightslog'      => 'Protokolo de uzanto-rajtoj',
@@ -3485,8 +3489,12 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
 
 # Special:DisableAccount
-'disableaccount-user'       => 'Salutnomo:',
-'disableaccount-reason'     => 'Kialo:',
-'disableaccount-nosuchuser' => 'La salutnomo "$1" ne ekzistas.',
+'disableaccount'             => 'Malŝalti konton de uzanto',
+'disableaccount-user'        => 'Salutnomo:',
+'disableaccount-reason'      => 'Kialo:',
+'disableaccount-mustconfirm' => 'Vi devas konfirmi ke vi volas malŝalti ĉi tiun konton.',
+'disableaccount-nosuchuser'  => 'La salutnomo "$1" ne ekzistas.',
+'disableaccount-success'     => 'La konto de uzanto "$1" estis ĉiame malŝaltis.',
+'disableaccount-logentry'    => 'ĉiame malŝaltis paĝon de uzanto [[$1]]',
 
 );

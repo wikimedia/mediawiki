@@ -777,6 +777,9 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 'loginlanguagelabel'         => 'Nyelv: $1',
 'suspicious-userlogout'      => 'A kijelentkezési kérésed vissza lett utasítva, mert úgy tűnik, hogy egy hibás böngésző vagy gyorsítótárazó proxy küldte.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Ismeretlen hiba a PHP mail() függvényében',
+
 # JavaScript password checks
 'password-strength'            => 'Becsült jelszóerősség: $1',
 'password-strength-bad'        => 'GYENGE',

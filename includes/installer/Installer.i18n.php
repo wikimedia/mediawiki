@@ -841,7 +841,6 @@ $1',
 Перазапусьціце праграму ўсталяваньня.',
 	'config-no-session' => 'Зьвесткі сэсіі згубленыя!
 Праверце php.ini і ўпэўніцеся, што ўстаноўлены слушны шлях у <code>session.save_path</code>.',
-	'config-session-path-bad' => 'Шлях у <code>session.save_path</code> (<code>$1</code>) няслушны ці даступны толькі для чытаньня.',
 	'config-your-language' => 'Вашая мова:',
 	'config-your-language-help' => 'Выберыце мову для выкарыстаньня падчас усталяваньня.',
 	'config-wiki-language' => 'Мова вікі:',
@@ -1085,6 +1084,9 @@ chmod a+w $3</pre>',
 
 Калі Вы жадаеце рэгенэраваць <code>LocalSettings.php</code>, націсьніце кнопку ніжэй.
 Гэтае дзеяньне '''не рэкамэндуецца''', калі Вы ня маеце праблемаў у працы вікі.",
+	'config-upgrade-done-no-regenerate' => 'Абнаўленьне скончанае.
+
+Цяпер Вы можаце [$1 пачаць працу з вікі].',
 	'config-regenerate' => 'Рэгенэраваць LocalSettings.php →',
 	'config-show-table-status' => "Запыт 'SHOW TABLE STATUS' не атрымаўся!",
 	'config-unknown-collation' => "'''Папярэджаньне:''' база зьвестак выкарыстоўвае нераспазнанае супастаўленьне.",
@@ -1291,6 +1293,10 @@ Evit hizivaat ar staliadur-se, merkit an talvoud <code>$wgUpgradeKey</code> er v
 E gavout a rit e LocalSettings.php.',
 	'config-localsettings-key' => "Alc'hwez hizivaat :",
 	'config-localsettings-badkey' => "Direizh eo an alc'hwez merket ganeoc'h",
+	'config-upgrade-key-missing' => 'Kavet ez eus bet ur staliadur kent eus MediaWiki.
+Evit hizivaat ar staliadur-se, ouzhpennit al linenn da-heul e traoñ ho restr LocalSettings.php:
+
+$1',
 	'config-session-error' => "Fazi e-ser loc'hañ an dalc'h : $1",
 	'config-no-session' => "Kolle teo bet roadennoù ho talc'h !
 Gwiriit ar restr php.ini ha bezit sur emañ staliet <code>session.save_path</code> en ur c'havlec'h a zere.",
@@ -6572,6 +6578,16 @@ Voer de waarde van <code>$wgUpgradeKey</code> in in onderstaande invoerveld om d
 De instelling is terug te vinden in LocalSettings.php.',
 	'config-localsettings-key' => 'Upgradesleutel:',
 	'config-localsettings-badkey' => 'De sleutel die u hebt opgegeven is onjuist',
+	'config-upgrade-key-missing' => 'Er is een bestaande installatie van MediaWiki aangetroffen.
+Plaats de volgende regel onderaan uw LocalSettings.php om deze installatie bij te werken:
+
+$1',
+	'config-localsettings-incomplete' => 'De bestaande inhoud van LocalSettings.php lijkt incompleet.
+De variabele $1 is niet ingesteld.
+Wijzig LocalSettings.php zodat deze variabele is ingesteld en klik op "Doorgaan".',
+	'config-localsettings-connection-error' => 'Er is een fout opgetreden tijdens het verbinden van de database met de instellingen uit LocalSettings.php of AdminSettings.php. Los het probleem met de instellingen op en probeer het daarna opnieuw.
+
+$1',
 	'config-session-error' => 'Fout bij het begin van de sessie: $1',
 	'config-session-expired' => 'Uw sessiegegevens zijn verlopen.
 Sessies zijn ingesteld om een levensduur van $1 te hebben.
@@ -6579,7 +6595,6 @@ U kunt deze wijzigen via de instelling <code>session.gc_maxlifetime</code> in ph
 Begin het installatieproces opnieuw.',
 	'config-no-session' => 'Uw sessiegegevens zijn verloren gegaan.
 Controleer uw php.ini en zorg dat er een juiste map is ingesteld voor <code>session.save_path</code>.',
-	'config-session-path-bad' => 'Uw <code>session.save_path</code> (<code>$1</code>) lijkt onjuist of er kan niet in geschreven worden.',
 	'config-your-language' => 'Uw taal:',
 	'config-your-language-help' => 'Selecteer een taal om tijdens het installatieproces te gebruiken.',
 	'config-wiki-language' => 'Wikitaal:',
@@ -6600,6 +6615,7 @@ Controleer uw php.ini en zorg dat er een juiste map is ingesteld voor <code>sess
 	'config-page-releasenotes' => 'Release notes',
 	'config-page-copying' => 'Kopiëren',
 	'config-page-upgradedoc' => 'Bijwerken',
+	'config-page-existingwiki' => 'Bestaande wiki',
 	'config-help-restart' => 'Wilt u alle opgeslagen gegevens die u hebt ingevoerd wissen en het installatieproces opnieuw starten?',
 	'config-restart' => 'Ja, opnieuw starten',
 	'config-welcome' => '=== Controle ongeving ===
@@ -6824,6 +6840,9 @@ Uw kunt [$1 uw wiki nu gebruiken].
 
 Als u uw <code>LocalSettings.php</code> opnieuw wilt aanmaken, klik dan op de knop hieronder.
 Dit is '''niet aan te raden''' tenzij u problemen hebt met uw wiki.",
+	'config-upgrade-done-no-regenerate' => 'Het bijwerken is afgerond.
+
+U kunt u [$1 uw wiki gebruiken].',
 	'config-regenerate' => 'LocalSettings.php opnieuw aanmaken →',
 	'config-show-table-status' => 'Het uitvoeren van SHOW TABLE STATUS is mislukt!',
 	'config-unknown-collation' => "'''Waarschuwing:''' de database gebruikt een collatie die niet wordt herkend.",
@@ -7015,6 +7034,8 @@ U moet [$1 het bestand downloaden] en in de hoofdmap van uw wiki-installatie pla
 '''Let op''': als u dit niet nu doet, dan het is bestand als u later de installatieprocedure afsluit zonder het bestand te downloaden niet meer beschikbaar.
 
 Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]'''.",
+	'config-download-localsettings' => 'LocalSettings.php downloaden',
+	'config-help' => 'hulp',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
@@ -8256,16 +8277,16 @@ $messages['pt'] = array(
 	'config-information' => 'Informação',
 	'config-localsettings-upgrade' => 'Foi detectado um ficheiro <code>LocalSettings.php</code>.
 Para actualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.
-Você irá encontrá-lo em LocalSettings.php.',
+Encontra este valor no LocalSettings.php.',
 	'config-localsettings-key' => 'Chave de actualização:',
-	'config-localsettings-badkey' => 'A chave que forneceu está incorreta',
+	'config-localsettings-badkey' => 'A chave que forneceu está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
-Para atualizar esta instalação, por favor coloque a seguinte linha no final do seu LocalSettings.php:
+Para actualizar esta instalação, por favor coloque a seguinte linha no final do seu LocalSettings.php:
 
 $1',
 	'config-localsettings-incomplete' => 'O ficheiro LocalSettings.php existente parece estar incompleto.
 A variável $1 não está definida.
-Por favor defina esta variável em LocalSettings.php e clique em "Continuar".',
+Por favor defina esta variável no LocalSettings.php e clique "Continuar".',
 	'config-localsettings-connection-error' => 'Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no LocalSettings.php ou AdminSettings.php. Por favor corrija essas configurações e tente novamente. 
 
  $1',
@@ -8519,9 +8540,9 @@ Agora pode [$1 começar a usar a sua wiki].
 
 Se quiser regenerar o seu ficheiro <code>LocalSettings.php</code>, clique o botão abaixo.
 Esta operação '''não é recomendada''' a menos que esteja a ter problemas com a sua wiki.",
-	'config-upgrade-done-no-regenerate' => 'Atualização completa.
+	'config-upgrade-done-no-regenerate' => 'Actualização terminada.
 
-Você pode agora [$1 começar a utilizar a sua wiki].',
+Agora pode [$1 começar a usar a sua wiki].',
 	'config-regenerate' => 'Regenerar o LocalSettings.php →',
 	'config-show-table-status' => 'A consulta SHOW TABLE STATUS falhou!',
 	'config-unknown-collation' => "'''Aviso:''' A base de dados está a utilizar uma colação ''(collation)'' desconhecida.",
@@ -8706,7 +8727,12 @@ Terminou a instalação do MediaWiki.
 O instalador gerou um ficheiro <code>LocalSettings.php</code>.
 Este ficheiro contém todas as configurações.
 
-Precisa de fazer o [$1 download] do ficheiro e colocá-lo no directório de raiz da sua instalação (o mesmo directório onde está o ficheiro index.php).
+Precisa de fazer o download do ficheiro e colocá-lo no directório de raiz da sua instalação (o mesmo directório onde está o ficheiro index.php). Este download deverá ter sido iniciado automaticamente.
+
+Se o download não foi iniciado, ou se o cancelou, pode recomeçá-lo clicando o link abaixo:
+
+$3
+
 '''Nota''': Se não fizer isto agora, o ficheiro que foi gerado deixará de estar disponível quando sair do processo de instalação.
 
 Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author *Surak*
  * @author Als-Holder
  * @author ChrisiPK
  * @author Church of emacs
@@ -967,6 +968,10 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'usercsspreview'                   => "'''Beachte, dass du nur eine Vorschau deines Benutzer-CSS betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
 'userjspreview'                    => "'''Beachte, dass du nur eine Vorschau deines Benutzer-JavaScript betrachtest.'''
+'''Es wurde noch nicht gespeichert!'''",
+'sitecsspreview'                   => "'''Beachte, dass du nur eine Vorschau dieses globalen CSS betrachtest.'''
+'''Es wurde noch nicht gespeichert!'''",
+'sitejspreview'                    => "'''Beachte, dass du nur eine Vorschau dieses globalen JavaScript betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
 'userinvalidcssjstitle'            => "'''Achtung:''' Die Benutzeroberfläche „$1“ existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/vector.css'' an Stelle von ''{{ns:user}}:Mustermann/Vector.css''.",
 'updated'                          => '(Geändert)',
@@ -2065,7 +2070,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'booksources-go'            => 'Suchen',
 'booksources-text'          => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.',
 'booksources-invalid-isbn'  => 'Vermutlich ist die ISBN ungültig.
-Bitte prüfe, ob korrekt von der Quelle übertragen wurde.',
+Bitte prüfe, ob sie korrekt von der Quelle übertragen wurde.',
 
 # Special:Log
 'specialloguserlabel'  => 'Benutzer:',

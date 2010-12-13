@@ -43,13 +43,18 @@ $messages = array(
 'tog-shownumberswatching'     => '↓ Ml uṭṭun n Midn lli swurn ɣ tasna yad',
 'tog-oldsig'                  => '↓ Asmmaql (Tiẓṛi) n ukrraj n ufus lli illan:',
 'tog-fancysig'                => '↓ Skr akrrag n ufus s taɣarast  n  wikitext (bla azday utumatik)',
+'tog-externaleditor'          => 'Swwur s yan umẓṛg u uṭṛiṣ n brra ( i imskarn lli bahra ḥrcnin, ira mayad riglaj iẓlin ɣ urdinatur)',
+'tog-externaldiff'            => 'Skr s yan umsnaḥya abrrani ( i midn lli bahra ḥrcnin, mayad ira riglaj ɣ urdinatur)',
+'tog-showjumplinks'           => 'Srɣ izdayn « Amuddu » d « acnubc » niḍ « Asiǧl » ɣ uflla n tasna',
+'tog-uselivepreview'          => 'Skr s umẓri amaynu izrbn (ira JavaScript) (Arm)',
+'tog-forceeditsummary'        => 'Ayyit tini iɣ ur iwiɣ imsmun n imbdln',
 'tog-watchlisthideown'        => 'hbo ghayli bdlgh gh omdfor inu',
 'tog-watchlisthidebots'       => 'hba ghayli bdln robotat gh omdfor inu',
-'tog-watchlisthideminor'      => 'hbo ibdln mziynin gh omdfor inu',
-'tog-watchlisthideliu'        => 'hbo ibdln n wili tsjlnin gh omdfr ino',
-'tog-watchlisthideanons'      => 'hbo ibdl n wili orisjilnin gh omdfor ino',
-'tog-watchlisthidepatrolled'  => 'hbo ibdln lityozranin gh omdfor ino',
-'tog-ccmeonemails'            => 'sifd yi noskha n tibratin liyid safdn wiyad',
+'tog-watchlisthideminor'      => 'Ḥbu ibdln mzinin ɣ umdfur inu',
+'tog-watchlisthideliu'        => 'Ḥbu ibdln n wili skrn midn llin iqqiydn ɣu umdfr inu.',
+'tog-watchlisthideanons'      => 'Ḥbu ibdl n midn lli urittuyssanin ɣ umdfr inu',
+'tog-watchlisthidepatrolled'  => 'Ḥbu ibdln lli nssugga  ɣu umuɣ n umdfr',
+'tog-ccmeonemails'            => 'Azn n yyi tunɣit n tbratin liyid uzn wiyaḍ',
 'tog-showhiddencats'          => 'sbaynd tsnifat ihbanin',
 'tog-norollbackdiff'          => 'hiyd lfarq baad lqiyam bstirjaa',
 
@@ -113,13 +118,13 @@ $messages = array(
 'aug'           => 'ɣuct',
 'sep'           => 'cutanbir',
 'oct'           => 'kṭuber',
-'nov'           => 'Nuwanber',
-'dec'           => 'Dujanbir',
+'nov'           => 'Nuw',
+'dec'           => 'Duj',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|taggayt|taggayin}}',
-'category_header'                => 'tisniwin  ɣ taggayt "$1"',
-'subcategories'                  => 'imggrad-mzin',
+'category_header'                => 'Tisniwin ɣ taggayt "$1"',
+'subcategories'                  => 'Du-taggayin',
 'category-media-header'          => 'Asdaw multimedya ɣ taggayt "$1"',
 'hidden-categories'              => '{{PLURAL:$1|taggayt iḥban|taggayin ḥbanin}}',
 'hidden-category-category'       => 'Taggayyin ḥbanin',
@@ -385,6 +390,7 @@ lcont nek  tuyskar .
 'createaccounterror'      => '$1 ur as tufit at kcmt',
 'loginsuccesstitle'       => 'tkchmt mzyan',
 'mailmypassword'          => 'sifd yi awal ihdan yadni',
+'mailerror'               => 'Gar azn n tbrat : $1',
 'loginlanguagelabel'      => 'tutlayt: $1',
 
 # JavaScript password checks
@@ -492,6 +498,10 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'hiddencategories'                 => '↓ {{PLURAL:$1|Taggayt iḥban|Taggayin ḥbanin}} lli ɣtlla tasba yad :',
 'permissionserrorstext-withaction' => '↓ Urak ittuyskar  {{IGGUT:||e|(e)}} s $2, bac {{PLURAL:$1|s wacku yad|iwackutn ad}} :',
 'log-fulllog'                      => 'sbaynd sijil ikmln',
+'edit-already-exists'              => 'Tasnayad tlla yadlli. ur as tufit ast daɣ tskrt.',
+
+# Parser/template warnings
+'parser-template-loop-warning' => 'Tamuḍimt ikrknnin ttyufa ɣid : [[$1]]',
 
 # History pages
 'viewpagelogs'           => '↓ Ẓr timhlin lli ittuskarn ɣ tasna yad',

@@ -705,6 +705,9 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'loginlanguagelabel'         => 'Språk: $1',
 'suspicious-userlogout'      => 'Din forespørsel om å logge ut ble nektet fordi den så ut til å ha bli sendt av en ødelagt nettleser eller en mellomtjener.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Ukjent feil i PHPs mail()-funksjon',
+
 # JavaScript password checks
 'password-strength'            => 'Passordstyrke: $1',
 'password-strength-bad'        => 'DÅRLIG',
@@ -842,6 +845,10 @@ Siste blokkeringsloggelement kan sees nedenfor.',
 'userjsyoucanpreview'              => "'''Tips:''' Bruk '{{int:showpreview}}'-knappen for å teste ditt nye JS før du lagrer.",
 'usercsspreview'                   => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
 'userjspreview'                    => "'''Husk at dette bare er en test eller forhåndsvisning av ditt bruker-JavaScript, og det ikke er lagret!'''",
+'sitecsspreview'                   => "'''Husk at du bare forhåndsviser denne globale CSS.'''
+'''Den har ikke blitt lagret ennå!'''",
+'sitejspreview'                    => "'''Husk at du bare forhåndsviser denne globale JavaScript-koden.'''
+'''Den har ikke blitt lagret ennå!'''",
 'userinvalidcssjstitle'            => "'''Advarsel:''' Det finnes ikke noe utseende ved navn «$1». Husk at .css- og .js-sider bruker titler i små bokstaver, for eksempel {{ns:user}}:Eksempel/vector.css, ikke {{ns:user}}:Eksempel/Vector.css",
 'updated'                          => '(Oppdatert)',
 'note'                             => "'''Merk:'''",
@@ -1438,6 +1445,7 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
 'right-sendemail'             => 'Send e-post til andre brukere',
 'right-revisionmove'          => 'Flytte revisjoner',
+'right-disableaccount'        => 'Deaktivere kontoer',
 
 # User rights log
 'rightslog'      => 'Brukerrettighetslogg',
@@ -2306,6 +2314,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Bidrag av nye kontoer',
 'sp-contributions-blocklog'            => 'blokkeringslogg',
 'sp-contributions-deleted'             => 'slettede brukerbidrag',
+'sp-contributions-uploads'             => 'opplastinger',
 'sp-contributions-logs'                => 'logger',
 'sp-contributions-talk'                => 'diskusjon',
 'sp-contributions-userrights'          => 'brukerrettighetskontroll',
