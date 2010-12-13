@@ -97,6 +97,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   automatically if $wgInvalidateCacheOnLocalSettingsChange is true (which is 
   the default). 
 * (bug 26253) $wgPostCommitUpdateList has been removed
+* The PHPUnit test suite has been removed from this release due to serious issues
+  which should be resolved by the 1.18 release
 
 === New features in 1.17 ===
 * (bug 10183) Users can now add personal styles and scripts to all skins via
