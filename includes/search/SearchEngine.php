@@ -92,8 +92,6 @@ class SearchEngine {
 	public static function getNearMatch( $searchterm ) {
 		$title = self::getNearMatchInternal( $searchterm );
 
-		wfRunHooks( 'SpecialSearchGomatch', array( &$title ) );
-
 		wfRunHooks( 'SearchGetNearMatchComplete', array( $searchterm, &$title ) );
 		return $title;
 	}
