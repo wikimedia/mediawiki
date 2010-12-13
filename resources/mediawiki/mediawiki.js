@@ -274,6 +274,7 @@ window.mediaWiki = new ( function( $ ) {
 			if ( name ) {
 				return name;
 			}
+			mediaWiki.loader.load( 'jquery.cookie' );
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
 			if ( typeof sessionId == 'undefined' || sessionId == null ) {
 				sessionId = generateSessionId();

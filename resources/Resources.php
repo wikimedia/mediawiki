@@ -326,7 +326,6 @@ return array(
 	'mediawiki' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.js',
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
-		'dependencies' => array( 'jquery.cookie' ),
 		'debugRaw' => false
 	),
 	'mediawiki.util' => array(
