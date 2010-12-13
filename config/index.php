@@ -8,8 +8,8 @@
 define( 'MW_CONFIG_CALLBACK', 'CoreInstaller::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
-chdir( ".." );
-require( './includes/WebStart.php' );
+chdir( dirname( dirname( __FILE__ ) ) );
+require( dirname( dirname( __FILE__ ) ) . '/includes/WebStart.php' );
 
 wfInstallerMain();
 
