@@ -1142,16 +1142,23 @@ class Title {
 	}
 
 	/**
-	 * Determines if $wgUser is unable to edit this page because it has been protected
+	 * Determines if $user is unable to edit this page because it has been protected
 	 * by $wgNamespaceProtection.
 	 *
+	 * @param $user User object, $wgUser will be used if not passed
 	 * @return \type{\bool}
 	 */
-	public function isNamespaceProtected() {
-		global $wgNamespaceProtection, $wgUser;
+	public function isNamespaceProtected( User $user = null ) {
+		global $wgNamespaceProtection;
+
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+
 		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
 			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
-				if ( $right != '' && !$wgUser->isAllowed( $right ) ) {
+				if ( $right != '' && !$user->isAllowed( $right ) ) {
 					return true;
 				}
 			}
@@ -1352,7 +1359,7 @@ class Title {
 		}
 
 		# Check $wgNamespaceProtection for restricted namespaces
-		if ( $this->isNamespaceProtected() ) {
+		if ( $this->isNamespaceProtected( $user ) ) {
 			$ns = $this->mNamespace == NS_MAIN ?
 				wfMsg( 'nstab-main' ) : $this->getNsText();
 			$errors[] = $this->mNamespace == NS_MEDIAWIKI ?
