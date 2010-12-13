@@ -77,7 +77,7 @@ class RevisionDeleter {
 		$msgFunc = $forContent ? "wfMsgForContent" : "wfMsg";
 		
 		$changes = self::getChanges( $nbitfield, $obitfield );
-		array_walk($changes, 'RevisionDeleter::expandMessageArray', $forContent);
+		array_walk( $changes, array( __CLASS__, 'expandMessageArray' ), $forContent );
 		
 		$changesText = array();
 		
@@ -98,8 +98,8 @@ class RevisionDeleter {
 	}
 	
 	private static function expandMessageArray(& $msg, $key, $forContent) {
-		if ( is_array ($msg) ) {
-			array_walk($msg, 'RevisionDeleter::expandMessageArray', $forContent);
+		if ( is_array ( $msg ) ) {
+			array_walk( $msg, array( __CLASS__, 'expandMessageArray' ), $forContent );
 		} else {
 			if ( $forContent ) {
 				$msg = wfMsgForContent($msg);
