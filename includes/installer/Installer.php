@@ -570,7 +570,7 @@ abstract class Installer {
 		$names = array( "gdiff3", "diff3", "diff3.exe" );
 		$versionInfo = array( '$1 --version 2>&1', 'GNU diffutils' );
 
-		$diff3 = $this->locateExecutableInDefaultPaths( $names, $versionInfo );
+		$diff3 = self::locateExecutableInDefaultPaths( $names, $versionInfo );
 
 		if ( $diff3 ) {
 			$this->setVar( 'wgDiff3', $diff3 );
@@ -585,7 +585,7 @@ abstract class Installer {
 	 */
 	protected function envCheckGraphics() {
 		$names = array( wfIsWindows() ? 'convert.exe' : 'convert' );
-		$convert = $this->locateExecutableInDefaultPaths( $names, array( '$1 -version', 'ImageMagick' ) );
+		$convert = self::locateExecutableInDefaultPaths( $names, array( '$1 -version', 'ImageMagick' ) );
 
 		if ( $convert ) {
 			$this->setVar( 'wgImageMagickConvertCommand', $convert );
