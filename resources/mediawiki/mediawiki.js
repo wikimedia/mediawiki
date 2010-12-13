@@ -292,11 +292,16 @@ window.mediaWiki = new ( function( $ ) {
 	this.log = function() { };
 
 	/*
+	 * Make the Map-class publicly available
+	 */
+	this.Map = Map;
+
+	/*
 	 * List of configuration values
 	 *
 	 * In legacy mode the values this object wraps will be in the global space
 	 */
-	this.config = new Map( LEGACY_GLOBALS );
+	this.config = new this.Map( LEGACY_GLOBALS );
 
 	/*
 	 * Information about the current user
@@ -306,7 +311,7 @@ window.mediaWiki = new ( function( $ ) {
 	/*
 	 * Localization system
 	 */
-	this.messages = new Map();
+	this.messages = new this.Map();
 
 	/* Public Methods */
 
