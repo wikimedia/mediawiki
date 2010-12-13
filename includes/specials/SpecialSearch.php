@@ -91,8 +91,13 @@ class SpecialSearch {
 		}
 		# If there's an exact or very near match, jump right there.
 		$t = SearchEngine::getNearMatch( $term );
+		
+		if ( !wfRunHooks( 'SpecialSearchGo', array( &$t, &$term ) ) ) {
+			# Hook requested termination
+			return;
+		}
+		
 		if( !is_null( $t ) ) {
-			wfRunHooks( 'SpecialSearchGomatch', array( &$t ) );
 			$wgOut->redirect( $t->getFullURL() );
 			return;
 		}
