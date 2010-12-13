@@ -1609,6 +1609,7 @@ $opts: FormOptions for this request
 
 'SpecialSearchGo': called when user clicked the "Go"
 &$title: title object generated from the text entered by the user
+&$term: the search term entered by the user
 
 'SpecialSearchNogomatch': called when user clicked the "Go" button but the
 target doesn't exist
