@@ -863,9 +863,11 @@ class WinCacheBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function set( $key, $value, $expire = 0 ) {
-		wincache_ucache_set( $key, serialize( $value ), $expire );
+		$result = wincache_ucache_set( $key, serialize( $value ), $expire );
 
-		return true;
+		/* wincache_ucache_set returns an empty array on success if $value
+		   was an array, bool otherwise */
+		return ( is_array( $value ) && $result === array() ) || $result;
 	}
 
 	/**
@@ -885,6 +887,10 @@ class WinCacheBagOStuff extends BagOStuff {
 		$info = wincache_ucache_info();
 		$list = $info['ucache_entries'];
 		$keys = array();
+
+		if ( is_null( $list ) ) {
+			return array();
+		}
 
 		foreach ( $list as $entry ) {
 			$keys[] = $entry['key_name'];
