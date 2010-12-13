@@ -14,6 +14,7 @@
  * @author Kaustubh
  * @author Mahitgar
  * @author Sankalpdravid
+ * @author Shreewiki
  * @author V.narsikar
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
@@ -466,6 +467,7 @@ $messages = array(
 'vector-view-viewsource'   => 'स्रोत पहा',
 'actions'                  => '↓ क्रिया',
 'namespaces'               => 'नामविश्वे',
+'variants'                 => 'अस्थिर',
 
 'errorpagetitle'    => 'चुक',
 'returnto'          => '$1 कडे परत चला.',
@@ -1182,6 +1184,9 @@ $3ने ''$2'' कारण दिले आहे.",
 'badsig'                    => 'अयोग्य कच्ची सही;HTML खूणा तपासा.',
 'badsiglength'              => 'टोपणनाव खूप लांब आहे.
 टोपणनाव $1 {{PLURAL:$1|अक्षरापेक्षा|अक्षरांपेक्षा}} कमी लांबीचे हवे.',
+'yourgender'                => 'लिंग',
+'gender-male'               => 'पुरुष',
+'gender-female'             => 'स्त्री',
 'email'                     => 'विपत्र(ई-मेल)',
 'prefs-help-realname'       => 'तुमचे खरे नाव (वैकल्पिक): हे नाव दिल्यास आपले योगदान या नावाखाली नोंदले व दाखवले जाईल.',
 'prefs-help-email'          => 'विरोप(ईमेल)(वैकल्पिक):इतरांना सदस्य किंवा सदस्य_चर्चा पानातून, तुमची ओळख देण्याची आवश्यकता न ठेवता , तुमच्याशी संपर्क सुविधा पुरवते.',
@@ -1675,12 +1680,17 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'newuserlog-autocreate-entry' => 'खाते आपोआप तयार झाले',
 
 # Special:ListGroupRights
-'listgrouprights'          => 'सदस्य गट अधिकार',
-'listgrouprights-summary'  => 'खाली या विकिवर दिलेली सदस्य गटांची यादी त्यांच्या अधिकारांसकट दर्शविलेली आहे. प्रत्येकाच्या अधिकारांची अधिक माहिती [[{{MediaWiki:Listgrouprights-helppage}}|इथे]] दिलेली आहे.',
-'listgrouprights-group'    => 'गट',
-'listgrouprights-rights'   => 'अधिकार',
-'listgrouprights-helppage' => 'Help:गट अधिकार',
-'listgrouprights-members'  => '(सदस्यांची यादी)',
+'listgrouprights'                      => 'सदस्य गट अधिकार',
+'listgrouprights-summary'              => 'खाली या विकिवर दिलेली सदस्य गटांची यादी त्यांच्या अधिकारांसकट दर्शविलेली आहे. प्रत्येकाच्या अधिकारांची अधिक माहिती [[{{MediaWiki:Listgrouprights-helppage}}|इथे]] दिलेली आहे.',
+'listgrouprights-group'                => 'गट',
+'listgrouprights-rights'               => 'अधिकार',
+'listgrouprights-helppage'             => 'Help:गट अधिकार',
+'listgrouprights-members'              => '(सदस्यांची यादी)',
+'listgrouprights-removegroup-all'      => 'सर्व समूह काढून टाका',
+'listgrouprights-addgroup-self'        => 'स्वतःच्या खात्यात मिळवा',
+'listgrouprights-removegroup-self'     => 'स्वतःच्या खात्यातून काढून टाका',
+'listgrouprights-addgroup-self-all'    => 'सर्व समूह स्वतःच्या खात्यात मिळवा',
+'listgrouprights-removegroup-self-all' => 'सर्व समूह स्वतःच्या खात्यातून काढून टाका',
 
 # E-mail user
 'mailnologin'     => 'पाठविण्याचा पत्ता नाही',
@@ -1692,7 +1702,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'defemailsubject' => '{{SITENAME}} विपत्र',
 'noemailtitle'    => 'विपत्र पत्ता नाही',
 'noemailtext'     => 'या सदस्याने शाबीत विपत्र पत्ता नमुद केलेला नाही, किंवा ’इतर सद्स्यांकडून विपत्र येऊ नये’ सोय निवडली आहे.',
-'emailfrom'       => 'कडून',
+'email-legend'    => 'ईमेल अन्य सदस्याला पाठवा',
+'emailfrom'       => 'प्रेषक',
 'emailto'         => 'प्रति',
 'emailsubject'    => 'विषय',
 'emailmessage'    => 'संदेश:',
@@ -1784,6 +1795,7 @@ $NEWPAGE
 'confirmdeletetext'      => 'तुम्ही एक लेख त्याच्या सर्व इतिहासासोबत वगळण्याच्या तयारीत आहात.
 कृपया तुम्ही करत असलेली कृती ही मीडियाविकीच्या [[{{MediaWiki:Policy-url}}|नीतीनुसार]] आहे ह्याची खात्री करा. तसेच तुम्ही करीत असलेल्या कृतीचे परीणाम कृती करण्यापूर्वी जाणून घ्या.',
 'actioncomplete'         => 'काम पूर्ण',
+'actionfailed'           => 'कृती अयशस्वी झाली',
 'deletedtext'            => '"<nowiki>$1</nowiki>" हा लेख वगळला. अलीकडे वगळलेले लेख पाहण्यासाठी $2 पहा.',
 'deletedarticle'         => '"[[$1]]" लेख वगळला.',
 'suppressedarticle'      => '"[[$1]]" ला दाबले (सप्रेस)',
@@ -1813,7 +1825,7 @@ $NEWPAGE
 'alreadyrolled'    => 'Cannot rollback last edit of by [[User:$2|$2]] ([[User talk:$2|Talk]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येतनाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादीत केले आहे.
 
 शेवटचे संपादन [[User:$3|$3]] ([[User talk:$3|Talk]])-चे होते.',
-'editcomment'      => "बदलासोबतची नोंद होती : \"''\$1''\".",
+'editcomment'      => 'टिप्पणी बदला',
 'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.',
 'rollback-success' => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
 
@@ -1845,8 +1857,10 @@ $NEWPAGE
 'protect-level-sysop'         => 'केवळ प्रचालकांसाठी',
 'protect-summary-cascade'     => 'शिडी',
 'protect-expiring'            => '$1 (UTC) ला संपेल',
+'protect-expiry-indefinite'   => 'अनंत',
 'protect-cascade'             => 'या पानात असलेली पाने सुरक्षित करा (सुरक्षा शिडी)',
 'protect-cantedit'            => 'तुम्ही या पानाची सुरक्षा पातळी बदलू शकत नाही कारण तुम्हाला तसे करण्याची परवानगी नाही.',
+'protect-otherreason-op'      => 'दुसरे कारण',
 'protect-expiry-options'      => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite',
 'restriction-type'            => 'परवानगी:',
 'restriction-level'           => 'सुरक्षापातळी:',
@@ -1884,6 +1898,7 @@ $NEWPAGE
 'undeletebtn'                  => 'वगळण्याची क्रिया रद्द करा',
 'undeletelink'                 => 'पहा/पुनर्स्थापित करा',
 'undeletereset'                => 'पूर्ववत',
+'undeleteinvert'               => 'निवड उलट करा',
 'undeletecomment'              => 'प्रतिक्रीया:',
 'undeletedarticle'             => '"[[$1]]" पुनर्स्थापित',
 'undeletedrevisions'           => '{{PLURAL:$1|1 आवर्तन|$1 आवर्तने}} पुनर्स्थापित',
@@ -2082,6 +2097,8 @@ $1',
 'movenologin'             => 'प्रवेश केलेला नाही',
 'movenologintext'         => 'पान स्थानांतरित करण्यासाठी तुम्हाला [[Special:UserLogin|प्रवेश]] करावा लागेल.',
 'movenotallowed'          => '{{SITENAME}}वरील पाने स्थानांतरीत करण्याची आपल्यापाशी परवानगी नाही.',
+'movenotallowedfile'      => 'तुम्हाला दस्तावैज स्थानांतरीत करण्याची परवानगी नाही.',
+'cant-move-user-page'     => 'तुम्हाला सदस्याचे दस्तावैज स्थानांतरीत करण्याची परवानगी नाही.',
 'newtitle'                => 'नवीन शीर्षकाकडे:',
 'move-watch'              => 'या पानावर लक्ष ठेवा',
 'movepagebtn'             => 'स्थानांतरण करा',

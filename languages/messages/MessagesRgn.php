@@ -143,11 +143,14 @@ $messages = array(
 
 'mainpagetext' => "↓ '''L'instalaziòn d'MediaWiki l'è andêda ben'''",
 
-'about'      => "↓ A prupòsit d'",
-'newwindow'  => "(la s'avèra int'una fnèstra nova)",
-'cancel'     => 'Làsa perdar',
-'mytalk'     => 'Al mi cunversaziòn',
-'navigation' => 'Navgaziòn',
+'about'         => "↓ A prupòsit d'",
+'article'       => '↓ Artècual',
+'newwindow'     => "(la s'avèra int'una fnèstra nova)",
+'cancel'        => 'Làsa perdar',
+'moredotdotdot' => '↓  Ad piò…',
+'mypage'        => '↓ La mi pàgina',
+'mytalk'        => 'Al mi cunversaziòn',
+'navigation'    => 'Navgaziòn',
 
 # Cologne Blue skin
 'qbfind' => 'Tróva',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author *Surak*
  * @author Ahonc
  * @author Aleator
  * @author AlexSm
@@ -2125,6 +2126,7 @@ The title is {{msg-mw|nopagetitle}}.',
 'booksources-go'            => 'Name of button in [[Special:BookSources]]
 
 {{Identical|Go}}',
+'booksources-invalid-isbn'  => 'This message is displayed after an invalid ISBN is entered on Special:Booksources.',
 
 # Special:Log
 'specialloguserlabel'  => 'Used in [[Special:Log]].

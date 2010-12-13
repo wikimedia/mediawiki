@@ -2352,6 +2352,7 @@ $1',
 'sp-contributions-newbies-title'       => 'නව ගිණුම් වලට අදාල පරිශීලක දායකත්ව',
 'sp-contributions-blocklog'            => 'වාරණ සටහන',
 'sp-contributions-deleted'             => 'මකාදැමූ පරිශීලක දායකත්වයන්',
+'sp-contributions-uploads'             => 'උඩුගත කිරීම්',
 'sp-contributions-logs'                => 'සටහන්',
 'sp-contributions-talk'                => 'සාකච්ඡාව',
 'sp-contributions-userrights'          => 'පරිශීලක හිමිකම් කළමනාකරණය',
@@ -3636,5 +3637,10 @@ $1',
 'htmlform-submit'              => 'යොමුකරන්න',
 'htmlform-reset'               => 'වෙනස්කිරීම් අහෝසිකරන්න',
 'htmlform-selectorother-other' => 'වෙනත්',
+
+# Special:DisableAccount
+'disableaccount-user'       => 'පරිශීලක නාමය:',
+'disableaccount-reason'     => 'හේතුව:',
+'disableaccount-nosuchuser' => '"$1"  පරිශීලක ගිණුම නොපවතියි.',
 
 );
