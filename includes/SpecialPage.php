@@ -732,7 +732,7 @@ class SpecialPage {
 	 * Use PHP's magic __call handler to get calls to the old PHP4 constructor
 	 * because PHP E_STRICT yells at you for having __construct() and SpecialPage()
 	 *
-	 * @param $name String Name of called method
+	 * @param $fName String Name of called method
 	 * @param $a Array Arguments to the method
 	 * @deprecated Call isn't deprecated, but SpecialPage::SpecialPage() is
 	 */
