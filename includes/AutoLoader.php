@@ -788,16 +788,6 @@ class AutoLoader {
 		return true;
 	}
 
-	static function loadAllExtensions() {
-		global $wgAutoloadClasses;
-
-		foreach ( $wgAutoloadClasses as $class => $file ) {
-			if ( !( class_exists( $class, false ) || interface_exists( $class, false ) ) ) {
-				require( $file );
-			}
-		}
-	}
-
 	/**
 	 * Force a class to be run through the autoloader, helpful for things like
 	 * Sanitizer that have define()s outside of their class definition. Of course
