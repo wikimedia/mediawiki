@@ -342,8 +342,9 @@ window.mediaWiki = new ( function( $ ) {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
 			if ( typeof sessionId == 'undefined' || sessionId == null ) {
 				sessionId = generateSessionId();
-				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': 30, 'path': '/' } );
 			}
+			// Set cookie if not set, or renew it if already set
+			$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': 30, 'path': '/' } );
 			return sessionId;
 		};
 	}
