@@ -698,45 +698,49 @@ $wgAutoloadLocalClasses = array(
 	'LanguageConverter' => 'languages/LanguageConverter.php',
 
 	# maintenance
-	'AnsiTermColorer' => 'maintenance/tests/testHelpers.inc',
 	'ConvertLinks' => 'maintenance/convertLinks.php',
-	'DbTestPreviewer' => 'maintenance/tests/testHelpers.inc',
-	'DbTestRecorder' => 'maintenance/tests/testHelpers.inc',
 	'DeleteArchivedFilesImplementation' => 'maintenance/deleteArchivedFiles.inc',
 	'DeleteArchivedRevisionsImplementation' => 'maintenance/deleteArchivedRevisions.inc',
 	'DeleteDefaultMessages' => 'maintenance/deleteDefaultMessages.php',
-	'DummyTermColorer' => 'maintenance/tests/testHelpers.inc',
-	'ParserTest' => 'maintenance/tests/parser/parserTest.inc',
-	'ParserTestParserHook' => 'maintenance/tests/parser/parserTestsParserHook.php',
-	'ParserTestStaticParserHook' => 'maintenance/tests/parser/parserTestsStaticParserHook.php',
 	'PopulateCategory' => 'maintenance/populateCategory.php',
 	'PopulateLogSearch' => 'maintenance/populateLogSearch.php',
 	'PopulateParentId' => 'maintenance/populateParentId.php',
 	'PopulateRevisionLength' => 'maintenance/populateRevisionLength.php',
-	'RemoteTestRecorder' => 'maintenance/tests/testHelpers.inc',
 	'SevenZipStream' => 'maintenance/7zip.inc',
 	'Sqlite' => 'maintenance/sqlite.inc',
-	'TestFileIterator' => 'maintenance/tests/testHelpers.inc',
-	'TestRecorder' => 'maintenance/tests/testHelpers.inc',
 	'UpdateCollation' => 'maintenance/updateCollation.php',
 	'UpdateRestrictions' => 'maintenance/updateRestrictions.php',
 	'UserDupes' => 'maintenance/userDupes.inc',
-
-	# maintenance/tests/selenium
-	'Selenium' => 'maintenance/tests/selenium/Selenium.php',
-	'SeleniumLoader' => 'maintenance/tests/selenium/SeleniumLoader.php',
-	'SeleniumTestCase' => 'maintenance/tests/selenium/SeleniumTestCase.php',
-	'SeleniumTestConsoleLogger' => 'maintenance/tests/selenium/SeleniumTestConsoleLogger.php',
-	'SeleniumTestHTMLLogger' => 'maintenance/tests/selenium/SeleniumTestHTMLLogger.php',
-	'SeleniumTestListener' => 'maintenance/tests/selenium/SeleniumTestListener.php',
-	'SeleniumTestSuite' => 'maintenance/tests/selenium/SeleniumTestSuite.php',
-	'SeleniumConfig' => 'maintenance/tests/selenium/SeleniumConfig.php',
 
 	# maintenance/language
 	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'statsOutput' => 'maintenance/language/StatOutputs.php',
 	'textStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'wikiStatsOutput' => 'maintenance/language/StatOutputs.php',
+
+	# tests
+	'AnsiTermColorer' => 'tests/testHelpers.inc',
+	'DbTestPreviewer' => 'maintenance/tests/testHelpers.inc',
+	'DbTestRecorder' => 'maintenance/tests/testHelpers.inc',
+	'DummyTermColorer' => 'maintenance/tests/testHelpers.inc',
+	'RemoteTestRecorder' => 'maintenance/tests/testHelpers.inc',
+	'TestFileIterator' => 'maintenance/tests/testHelpers.inc',
+	'TestRecorder' => 'maintenance/tests/testHelpers.inc',
+
+	# tests/parser
+	'ParserTest' => 'tests/parser/parserTest.inc',
+	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
+	'ParserTestStaticParserHook' => 'tests/parser/parserTestsStaticParserHook.php',
+
+	# tests/selenium
+	'Selenium' => 'tests/selenium/Selenium.php',
+	'SeleniumLoader' => 'tests/selenium/SeleniumLoader.php',
+	'SeleniumTestCase' => 'tests/selenium/SeleniumTestCase.php',
+	'SeleniumTestConsoleLogger' => 'tests/selenium/SeleniumTestConsoleLogger.php',
+	'SeleniumTestHTMLLogger' => 'tests/selenium/SeleniumTestHTMLLogger.php',
+	'SeleniumTestListener' => 'tests/selenium/SeleniumTestListener.php',
+	'SeleniumTestSuite' => 'tests/selenium/SeleniumTestSuite.php',
+	'SeleniumConfig' => 'tests/selenium/SeleniumConfig.php',
 );
 
 class AutoLoader {

@@ -3870,8 +3870,8 @@ $wgUseTrackbacks = false;
  * Use full paths.
  */
 $wgParserTestFiles = array(
-	"$IP/maintenance/tests/parser/parserTests.txt",
-	"$IP/maintenance/tests/parser/extraParserTests.txt"
+	"$IP/tests/parser/parserTests.txt",
+	"$IP/tests/parser/extraParserTests.txt"
 );
 
 /**
