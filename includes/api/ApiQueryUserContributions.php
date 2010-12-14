@@ -426,8 +426,8 @@ class ApiQueryContributions extends ApiQueryBase {
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => array(
 				'Include additional pieces of information',
-				' ids            - Adds the page id and revision id',
-				' title          - Adds the title and namespace id of the page',
+				' ids            - Adds the page ID and revision ID',
+				' title          - Adds the title and namespace ID of the page',
 				' timestamp      - Adds the timestamp of the edit',
 				' comment        - Adds the comment of the edit',
 				' parsedcomment  - Adds the parsed comment of the edit',

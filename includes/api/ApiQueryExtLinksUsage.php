@@ -197,8 +197,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		return array(
 			'prop' => array(
 				'What pieces of information to include',
-				' ids    - Adds the id of page',
-				' title  - Adds the title and namespace id of the page',
+				' ids    - Adds the ID of page',
+				' title  - Adds the title and namespace ID of the page',
 				' url    - Adds the URL used in the page',
 			),
 			'offset' => 'Used for paging. Use the value returned for "continue"',

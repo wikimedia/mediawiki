@@ -272,7 +272,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			'limit' => 'The maximum amount of blocks to list',
 			'prop' => array(
 				'Which properties to get',
-				' id         - Adds the id of the block',
+				' id         - Adds the ID of the block',
 				' user       - Adds the username of the blocked user',
 				' by         - Adds the username of the blocking admin',
 				' timestamp  - Adds the timestamp of when the block was given',
