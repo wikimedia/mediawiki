@@ -7,13 +7,13 @@ class MediaWikExtraTestSuite extends SeleniumTestSuite {
     }
     public function addTests() {
         $testFiles = array(
-                'maintenance/tests/selenium/suites/MyContributionsTestCase.php',
-                'maintenance/tests/selenium/suites/MyWatchListTestCase.php',
-                'maintenance/tests/selenium/suites/UserPreferencesTestCase.php',
-                'maintenance/tests/selenium/suites/MovePageTestCase.php',
-                'maintenance/tests/selenium/suites/PageSearchTestCase.php',
-                'maintenance/tests/selenium/suites/EmailPasswordTestCase.php',
-                'maintenance/tests/selenium/suites/CreateAccountTestCase.php'
+                'tests/selenium/suites/MyContributionsTestCase.php',
+                'tests/selenium/suites/MyWatchListTestCase.php',
+                'tests/selenium/suites/UserPreferencesTestCase.php',
+                'tests/selenium/suites/MovePageTestCase.php',
+                'tests/selenium/suites/PageSearchTestCase.php',
+                'tests/selenium/suites/EmailPasswordTestCase.php',
+                'tests/selenium/suites/CreateAccountTestCase.php'
         );
         parent::addTestFiles( $testFiles );
     }

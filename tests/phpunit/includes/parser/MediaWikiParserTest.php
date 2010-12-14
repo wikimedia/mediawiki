@@ -20,7 +20,7 @@ class MediaWikiParserTest extends MediaWikiTestSetup {
 
 		$tester = new self;
 
-		$iter = new TestFileIterator( "$IP/maintenance/tests/parser/parserTests.txt", $tester );
+		$iter = new TestFileIterator( "$IP/tests/parser/parserTests.txt", $tester );
 		$tester->count = 0;
 
 		foreach ( $iter as $test ) {
