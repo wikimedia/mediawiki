@@ -335,7 +335,6 @@ window.mediaWiki = new ( function( $ ) {
 			if ( name ) {
 				return name;
 			}
-			mediaWiki.loader.load( 'jquery.cookie' );
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
 			if ( typeof sessionId == 'undefined' || sessionId == null ) {
 				sessionId = generateSessionId();
@@ -1142,6 +1141,9 @@ if ( typeof startUp === 'function' ) {
 	startUp();
 	delete startUp;
 }
+
+// Add jQuery Cookie to initial payload (used in mediaWiki.user)
+mediaWiki.loader.load( 'jquery.cookie' );
 
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;
