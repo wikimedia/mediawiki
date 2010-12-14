@@ -225,7 +225,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
 			'prop' => array(
 				'What image information to get:',
-				' sha1         - Adds sha1 hash for the image',
+				' sha1         - Adds SHA-1 hash for the image',
 				' timestamp    - Adds timestamp for the uploaded version',
 				' user         - Adds user for uploaded the image version',
 				' size         - Adds the size of the image in bytes',

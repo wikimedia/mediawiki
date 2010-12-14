@@ -264,8 +264,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'title' => 'Which category to enumerate (required). Must include Category: prefix',
 			'prop' => array(
 				'What pieces of information to include',
-				' ids        - Adds the page id',
-				' title      - Adds the title and namespace id of the page',
+				' ids        - Adds the page ID',
+				' title      - Adds the title and namespace ID of the page',
 				' sortkey    - Adds the sortkey used for the category',
 				' timestamp  - Adds the timestamp of when the page was included',
 			),
