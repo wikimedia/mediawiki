@@ -229,7 +229,6 @@ class HttpTest extends PHPUnit_Framework_TestCase {
 		$this->runHTTPGets();
 	}
 
-	/* ./phase3/maintenance/parserTests.inc:1618:		return Http::post( $url, array( 'postData' => wfArrayToCGI( $data ) ) ); */
 	function runHTTPPosts( $proxy = null ) {
 		$opt = array();
 
