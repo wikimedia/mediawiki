@@ -82,10 +82,18 @@ $( document ).ready( function() {
 		}
 
 		wgAjaxWatch.setLinkText( $link, $link.data( 'action' ) + 'ing' );
+		
+		var reqData = {
+			'action': 'watch',
+			'format': 'json',
+			'title': $link.data( 'target' )
+		};
+		if ( $link.data( 'action' ) == 'unwatch' ) {
+			reqData['unwatch'] = '';
+		}
 		$.getJSON( mw.config.get( 'wgScriptPath' )
-				+ '/api' + mw.config.get( 'wgScriptExtension' ) + '?action=watch&format=json&title='
-				+ encodeURIComponent( $link.data( 'target' ) )
-				+ ( $link.data( 'action' ) == 'unwatch' ? '&unwatch' : '' ),
+				+ '/api' + mw.config.get( 'wgScriptExtension' ),
+			reqData,
 			function( data, textStatus, xhr ) {
 				wgAjaxWatch.processResult( data, $link );
 			}
