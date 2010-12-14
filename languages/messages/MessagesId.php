@@ -908,6 +908,10 @@ Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
 'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
 Pratayang ini belum disimpan!'''",
 'userjspreview'                    => "'''Ingatlah bahwa yang Anda lihat hanyalah pratayang JavaScript Anda, dan bahwa pratayang tersebut belum disimpan!'''",
+'sitecsspreview'                   => "'''Ingatlah bahwa Anda hanya menampilkan pratayang dari CSS global ini.'''
+'''Perubahan belum disimpan!'''",
+'sitejspreview'                    => "'''Ingatlah bahwa Anda hanya menampilkan pratayang dari kode JavaScript global ini.'''
+'''Perubahan belum disimpan!'''",
 'userinvalidcssjstitle'            => "'''Peringatan:''' Kulit \"\$1\" tidak ditemukan. Harap diingat bahwa halaman .css dan .js menggunakan huruf kecil, contoh {{ns:user}}:Foo/vector.css dan bukannya {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Diperbarui)',
 'note'                             => "'''Catatan:'''",
@@ -1170,7 +1174,7 @@ Lihat [[Special:IPBlockList|daftar IP yang diblokir]] untuk daftar terkininya.',
 'revmove-norevisions-title'    => 'Revisi target tak sah',
 'revmove-norevisions'          => 'Anda belum menetapkan satu atau lebih revisi tujuan untuk menjalankan fungsi atau revisi yang diberikan tidak ada.',
 'revmove-nullmove-title'       => 'Judul tidak sah',
-'revmove-nullmove'             => 'Halaman sumber dan tujuan sama. Silahkan tekan "kembali" dan masukan nama halaman yang berbeda dari "[[$1]]".',
+'revmove-nullmove'             => 'Halaman sumber dan tujuan sama. Silahkan tekan "kembali" dan masukan nama halaman yang berbeda dari "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|satu revisi dari [[$2]] telah|$1 revisi dari [[$2]] telah}} dipindahkan ke halaman yang ada [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|satu revisi dari [[$2]] telah|$1 revisi dari [[$2]] telah}} dipindahkan ke halaman baru yang dibuat [[$3]].',
 

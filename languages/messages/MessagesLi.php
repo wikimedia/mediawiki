@@ -1019,7 +1019,7 @@ Klik "Trök" en probeer t opnuuj.',
 'revmove-norevisions'          => 'De hes gein versies aangegaeve om dees handeling op oet te veuren of de aangegaeve versie besteit nit.',
 'revmove-nullmove-title'       => 'Óngeljige pazjenatitel',
 'revmove-nullmove'             => 'De bronpagina en doelpagina zeen tzelfde.
-Klik "Trök" en gaef n anger pagina dan "[[$1]]" op.',
+Klik "Trök" en gaef n anger pagina dan "$1" op.',
 'revmove-success-existing'     => "{{PLURAL:$1|'n Versie van [[$2]] is|$1 versies van [[$2]] zeen}} verplaats nao de aldao [[$3]].",
 'revmove-success-created'      => "{{PLURAL:$1|'n Versie van [[$2]] is|$1 versies van [[$2]] zeen}} verplaats nao [[$3]].",
 

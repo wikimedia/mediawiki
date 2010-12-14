@@ -823,6 +823,10 @@ Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
 '''Dit is nog nie gestoor nie!'''",
 'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
+'sitecsspreview'                   => "'''Onthou dat u na 'n voorskou van die globale CSS-kode kyk.'''
+'''Dit is nog nie gestoor nie!'''",
+'sitejspreview'                    => "'''Onthou dat u na 'n voorskou van die globale JavaScript-kode kyk.'''
+'''Dit is nog nie gestoor nie!'''",
 'userinvalidcssjstitle'            => "'''Waarskuwing:''' daar is nie 'n omslag \"\$1\" nie.
 Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns:user}}:Naam/vector.css in plaas van {{ns:user}}:Naam/Vector.css.",
 'updated'                          => '(Gewysig)',
@@ -1089,7 +1093,7 @@ Kyk na die [[Special:IPBlockList|IP-blokkeerlys]] om die huidige blokkades te si
 'revmove-norevisions-title'    => 'Ongeldige teiken-weergawe',
 'revmove-norevisions'          => 'U het nie een of meer teiken-weergawes gespesifiseer om die funksie te kan uitvoer nie; of die gespesifiseerde weergawe bestaan nie.',
 'revmove-nullmove-title'       => 'Ongeldige titel',
-'revmove-nullmove'             => 'Die bron- en teiken-bladsye is identies. Kliek op "terug" en verskaf \'n bladsynaam (nie "[[$1]]" nie).',
+'revmove-nullmove'             => 'Die bron- en teiken-bladsye is identies. Kliek op "terug" en verskaf \'n bladsynaam (nie "$1" nie).',
 'revmove-success-existing'     => '{{PLURAL:$1|Een weergawe van [[$2]] is|$1 weergawes van [[$2]] is}} na die bestaande bladsy [[$3]] geskuif.',
 'revmove-success-created'      => '{{PLURAL:$1|Een weergawe van [[$2]] is|$1 weergawes van [[$2]] is}} na die nuutgeskepte bladsy [[$3]] verskuif.',
 

@@ -1171,7 +1171,7 @@ Klik op "Weerumme" en prebeer \'t opniej.',
 'revmove-norevisions'          => 'Je hemmen gien versies an-egeven um disse haandeling op uut te voeren of de an-egeven versie besteet neet.',
 'revmove-nullmove-title'       => 'Ongeldige paginanaam',
 'revmove-nullmove'             => 'De bronpagina en doelpagina bin \'tzelfde.
-Klik op "Weerumme" en geef een aandere pagina dan "[[$1]]" op.',
+Klik op "Weerumme" en geef een aandere pagina dan "$1" op.',
 'revmove-success-existing'     => '{{PLURAL:$1|Ene versie van [[$2]] is|$1 versies van [[$2]] bin}} verplaos naor de bestaonde pagina [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Ene versie van[[$2]] is|$1 versies van [[$2]] bin}} verplaos naor de nieje pagina [[$3]].',
 

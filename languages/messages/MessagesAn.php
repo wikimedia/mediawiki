@@ -980,7 +980,7 @@ No tien acceso a ell.',
 'revmove-norevisions-title'    => 'A versión de destino no ye conforme',
 'revmove-norevisions'          => 'No ha especificato una u más version a on aplicar ista función u bien as versions especificatas no existen.',
 'revmove-nullmove-title'       => 'Títol no conforme',
-'revmove-nullmove'             => "As pachinas d'orichen y destín son a mesma. Torne enta zaga y escriba una pachina diferent de «[[$1]]».",
+'revmove-nullmove'             => "As pachinas d'orichen y destín son a mesma. Torne enta zaga y escriba una pachina diferent de «$1».",
 'revmove-success-existing'     => "S'ha tresladato {{PLURAL:$1|una versión de [[$2]]|$1 versions de [[$2]]}} t'a pachina existent [[$3]].",
 'revmove-success-created'      => "S'ha tresladato {{PLURAL:$1|una versión de [[$2]]|$1 versions de [[$2]]}} t'a pachina recient creyata [[$3]].",
 

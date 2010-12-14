@@ -1063,7 +1063,7 @@ Grįžkite į ankstesnį puslapį ir bandykite dar kartą.',
 'revmove-norevisions'          => 'Nenurodėte nė vienos versijos arba nurodyta versija neegzistuoja.',
 'revmove-nullmove-title'       => 'Blogas pavadinimas',
 'revmove-nullmove'             => 'Puslapis, į kurį perkeliamas keitimas, negali būti tokio paties pavadinimo, kaip šaltinio puslapis.
-Grįžkite į ankstesnį puslapį ir pasirinkite kitą pavadinimą iš "[[$1]]".',
+Grįžkite į ankstesnį puslapį ir pasirinkite kitą pavadinimą iš "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] keitimas buvo perkeltas|$1 [[$2]] keitimai buvo perkelti}} į egzistuojantį puslapį [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Vienas [[$2]] keitimas buvo|$1 [[$2]] keitimai buvo}} perkelti į naujai sukurtą puslapį [[$3]].',
 

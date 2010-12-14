@@ -955,6 +955,10 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
 '''Zatím nebylo uloženo!'''",
 'userjspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho uživatelského JavaScriptu, dosud nebyl uložen!'''",
+'sitecsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho globálního CSS.'''
+'''Zatím nebylo uloženo!'''",
+'sitejspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho globálního JavaScriptu.'''
+'''Dosud nebyl uložen!'''",
 'userinvalidcssjstitle'            => "'''Varování:''' Vzhled „$1“ neexistuje. Nezapomeňte, že uživatelské .css a .js soubory používají malá písmena, např. {{ns:user}}:{{BASEPAGENAME}}/vector.css, nikoli {{ns:user}}:{{BASEPAGENAME}}/Vector.css.",
 'updated'                          => '(Změna uložena)',
 'note'                             => "'''Poznámka:'''&nbsp;",
@@ -1216,7 +1220,7 @@ Prohlédněte si protokolovací záznamy.',
 'revmove-norevisions-title'    => 'Neplatná cílová revize',
 'revmove-norevisions'          => 'Neuvedli jste jednu nebo více cílových revizí nebo uvedená revize neexistuje.',
 'revmove-nullmove-title'       => 'Chybný název',
-'revmove-nullmove'             => 'Zdrojová stránka je stejná jako cílová. Stiskněte prosím tlačítko „zpět“ a zadejte jiný název stránky než „[[$1]]“.',
+'revmove-nullmove'             => 'Zdrojová stránka je stejná jako cílová. Stiskněte prosím tlačítko „zpět“ a zadejte jiný název stránky než „$1“.',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do existující stránky [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna revize ze stránky [[$2]] byla přesunuta|$1 revize ze stránky [[$2]] byly přesunuty|$1 revizí ze stránky [[$2]] bylo přesunuto}} do nově vytvořené stránky [[$3]].',
 

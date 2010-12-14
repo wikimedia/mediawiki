@@ -1172,7 +1172,7 @@ Pozrite sa prosím do záznamov.',
 'revmove-norevisions-title'    => 'Neplatná cieľová revízia',
 'revmove-norevisions'          => 'Buď ste neuviedli jednu alebo viac cieľových revízií alebo uvedená revízia neexistuje.',
 'revmove-nullmove-title'       => 'Chybný názov',
-'revmove-nullmove'             => 'Zdrojová a cieľová stránka sú zhodné. Prosím, stlačte „Späť“ a zadajte iný názov stránky ako „[[$1]]“.',
+'revmove-nullmove'             => 'Zdrojová a cieľová stránka sú zhodné. Prosím, stlačte „Späť“ a zadajte iný názov stránky ako „$1“.',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do existujúcej stránky [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna revízia z[[$2]] bola|$1 revízie z [[$2]] boli|$1 revízií z [[$2]] bolo}} presunutých do novo vytvorenej stránky [[$3]].',
 

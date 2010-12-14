@@ -907,7 +907,7 @@ Bulik pulang ka tungkaran tadahulu wan cubai pulang.',
 'revmove-norevisions'          => 'Pian balum manatapakan asa atawa labih ralatan tujuan gasan manjalanakan kagunaan atawa ralatan nang dibariakan kadada.',
 'revmove-nullmove-title'       => 'Judul buruk',
 'revmove-nullmove'             => 'Tungkaran dituju kada kawa sama lawan tungkangkaran asal mula.
-Babulik ka tungkaran sabalumnya wan pilihi sabuah ngaran matan "[[$1]]".',
+Babulik ka tungkaran sabalumnya wan pilihi sabuah ngaran matan "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|sabuah ralatan matan[[$2]] sudah|$1 raralatan matan [[$2]] sudah}} dipindahakan ka tungkaran nang ada [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|sabuah ralatan matan[[$2]] sudah|$1 raralatan matan [[$2]] sudah}} dipindahakan ka tungkaran nang hanyar diulah [[$3]].',
 

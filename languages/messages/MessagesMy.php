@@ -976,7 +976,11 @@ HTML tags ကို စစ်ဆေးပါ။',
 'img-auth-streaming'    => '"$1" ကို စထရင်းမင်း ဆွဲနေသည်။',
 
 # HTTP errors
-'http-invalid-url' => 'တရားမဝင်သော URL လင့် - $1',
+'http-invalid-url'      => 'တရားမဝင်သော URL လင့် - $1',
+'http-host-unreachable' => 'URL လင့်သို့ သွားမရပါ။',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'URL လင့်သို့ သွားမရပါ',
 
 'license'            => 'လိုင်စင်သတ်မှတ်ခြင်း -',
 'license-header'     => 'လိုင်စင်သတ်မှတ်ခြင်း',
@@ -1081,7 +1085,8 @@ HTML tags ကို စစ်ဆေးပါ။',
 'statistics-users-active'  => 'လက်ရှိလုပ်ကိုင်နေသော အသုံးပြုသူများ',
 'statistics-mostpopular'   => 'အများဆုံးကြည့်သော စာမျက်နှာများ',
 
-'doubleredirects' => 'နှစ်ဆင့်ပြန် ပြန်ညွှန်းများ',
+'doubleredirects'            => 'နှစ်ဆင့်ပြန် ပြန်ညွှန်းများ',
+'double-redirect-fixed-move' => '[[$1]] ကို ရွှေ့ပြောင်းပြီးဖြစ်သည်။ ယခုအခါ [[$2]] သို့ ပြန်ညွှန်းထားသည်။',
 
 'brokenredirects'        => 'ကျိုးပျက်နေသော ပြန်ညွှန်းများ',
 'brokenredirectstext'    => 'အောက်ပါ ပြန်ညွှန်းများသည် မရှိသောစာမျက်နှာများသို့ လင့်ထားသည် -',
@@ -1095,6 +1100,7 @@ HTML tags ကို စစ်ဆေးပါ။',
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|ဘိုက်|ဘိုက်}}',
 'nmembers'                => 'အဖွဲ့ဝင် $1 {{PLURAL:$1|ခု|ခု}}',
+'specialpage-empty'       => 'ဤသတင်းပို့ချက်အတွက် ရလဒ်မရှိပါ။',
 'uncategorizedpages'      => 'အမျိုးအစား ခွဲမထားသော စာမျက်နှာများ',
 'uncategorizedcategories' => 'အမျိုးအစားခွဲမထားသော ကဏ္ဍများ',
 'uncategorizedimages'     => 'အမျိုးအစား ခွဲမထားသော ဖိုင်များ',
@@ -1163,10 +1169,11 @@ HTML tags ကို စစ်ဆေးပါ။',
 'sp-deletedcontributions-contribs' => 'ပံ့ပိုးထားမှုများ',
 
 # Special:LinkSearch
-'linksearch'     => 'ပြင်ပ လင့်များ',
-'linksearch-pat' => 'ရှာသည့်ပုံစံ -',
-'linksearch-ns'  => 'အမည်ညွှန်း -',
-'linksearch-ok'  => 'ရှာ​ဖွေ​ရန်​',
+'linksearch'      => 'ပြင်ပ လင့်များ',
+'linksearch-pat'  => 'ရှာသည့်ပုံစံ -',
+'linksearch-ns'   => 'အမည်ညွှန်း -',
+'linksearch-ok'   => 'ရှာ​ဖွေ​ရန်​',
+'linksearch-line' => '$1 သည် $2 မှ လင့်ချိတ်ထားသည်',
 
 # Special:ListUsers
 'listusersfrom'      => 'ဤမှစသော အသုံးပြုသူများကို ပြရန် -',
@@ -1517,6 +1524,9 @@ HTML tags ကို စစ်ဆေးပါ။',
 'importnotext'            => 'ဗလာဖြစ်နေသည် သို့မဟုတ် ဘာစာသားမှ မရှိပါ',
 'importsuccess'           => 'ထည့်သွင်းခြင်း ပြီးဆုံးပါပြီ။',
 'import-noarticle'        => 'မည်သည့်စာမျက်နှာမှ ထည့်သွင်းခြင်းမရှိပါ။',
+
+# Import log
+'importlogpage' => 'ထည့်သွင်းသည့် မှတ်တမ်း',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'ကိုယ်ပိုင်စာမျက်နှာ',

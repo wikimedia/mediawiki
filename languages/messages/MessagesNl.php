@@ -975,6 +975,10 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 '''Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.'''
 '''De pagina is niet opgeslagen!'''",
+'sitecsspreview'                   => "'''Dit is alleen een voorvertoning van de globale CSS.'''
+'''Deze is nog niet opgeslagen!'''",
+'sitejspreview'                    => "'''Dit is alleen een voorvertoning van de globale JavaScriptcode.'''
+'''Deze is nog niet opgeslagen!'''",
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\".
 Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 'updated'                          => '(Bijgewerkt)',
@@ -1255,7 +1259,7 @@ Klik "Terug" en probeer het opnieuw.',
 'revmove-norevisions'          => 'U hebt geen versies aangegeven om deze handeling op uit te voeren of de aangegeven versie bestaat niet.',
 'revmove-nullmove-title'       => 'Ongeldige paginanaam',
 'revmove-nullmove'             => 'De bronpagina en doelpagina zijn hetzelfde.
-Klik "Terug" en geef een andere pagina dan "[[$1]]" op.',
+Klik "Terug" en geef een andere pagina dan "$1" op.',
 'revmove-success-existing'     => '{{PLURAL:$1|Een versie van[[$2]] is|$1 versies van [[$2]] zijn}} verplaatst naar de bestaande pagina [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Een versie van[[$2]] is|$1 versies van [[$2]] zijn}} verplaatst naar de nieuwe pagina [[$3]].',
 

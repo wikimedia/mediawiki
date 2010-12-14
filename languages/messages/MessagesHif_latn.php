@@ -912,7 +912,7 @@ Abhi ke laabu rukawat ke suchi ke khatir [[Special:IPBlockList|IP block list]] k
 'revmove-norevisions'          => 'Ii chij kare ke khatir aap ek nai to jaada balao ke manzil ke naam nai dia hae, nai to dewa gais naam waala badlao nai hae.',
 'revmove-nullmove-title'       => 'Kharaab naam',
 'revmove-nullmove'             => 'Manzil waala panna, pahile waala panna ke rakam nai hoe ke chaahi.
-Pahile waala panna pe jaae ke "[[$1]]" me se duusra naam ke chuno.',
+Pahile waala panna pe jaae ke "$1" me se duusra naam ke chuno.',
 'revmove-success-existing'     => ' {{PLURAL:$1|[[$2]] me se ek badlao ke|[[$2]] me se $1 badlao ke}} abhi ke panna,  [[$3]], me kar dewa gais hae.',
 'revmove-success-created'      => ' {{PLURAL:$1|[[$2]] me se ek badlao ke|[[$2]] me se $1 badlao ke}} nawaa panna,  [[$3]], me kar dewa gais hae.',
 

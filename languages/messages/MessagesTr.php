@@ -1166,7 +1166,7 @@ Lütfen günlükleri kontrol edin.',
 'revmove-norevisions-title'    => 'Geçersiz hedef revizyonu',
 'revmove-norevisions'          => 'Bu işlevi yerine getirmek için bir ya da daha fazla hedef sürümünü belirlemediniz ya da belirtilen sürüm bulunmamaktadır.',
 'revmove-nullmove-title'       => 'Kötü başlık',
-'revmove-nullmove'             => 'Kaynak ve hedef sayfaları aynıdır. Lütfen "geri" gidip "[[$1]]" dan başka bir sayfa ismi giriniz.',
+'revmove-nullmove'             => 'Kaynak ve hedef sayfaları aynıdır. Lütfen "geri" gidip "$1" dan başka bir sayfa ismi giriniz.',
 'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] den bir sürüm|$1 sürüm [[$2]] den}}varolan [[$3]] sayfasına taşındı.',
 'revmove-success-created'      => '{{PLURAL:$1|[[$2]] den bir sürüm|$1 sürüm [[$2]] den}}yeni yaratılan [[$3]] sayfasına taşındı.',
 

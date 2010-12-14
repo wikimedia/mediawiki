@@ -1016,7 +1016,7 @@ No ti gà acesso su de ela.',
 'revmove-norevisions'          => 'No te ghè indicà nissuna revision su cui eseguir sta funsion o la revision indicà no la esiste.',
 'revmove-nullmove-title'       => 'Titolo mia valido',
 'revmove-nullmove'             => 'La pagine de partensa e quela de arivo le xe la stessa.
-Torna indrio e metighe un nome pagina difarente da "[[$1]]".',
+Torna indrio e metighe un nome pagina difarente da "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Una revision de [[$2]] la xe stà spostà|$1 revision de [[$2]] le xe stà spostà}} ne la pagina esistente [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Una revision de [[$2]] la xe stà spostà|$1 revisioni de [[$2]] le xe stà spostà}} ne la nova pagina creà [[$3]].',
 

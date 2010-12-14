@@ -965,6 +965,10 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'usercsspreview'                   => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''
 '''Elle n’a pas encore été enregistrée !'''",
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
+'sitecsspreview'                   => "'''Rappelez-vous que vous êtes seulement en train de prévisualiser cette feuille CSS globale.'''
+'''Elle n’a pas encore été enregistrée !'''",
+'sitejspreview'                    => "'''Rappelez-vous que vous êtes seulement en train de prévisualiser ce code Javascript global.'''
+'''Il n’a pas encore été enregistré !'''",
 'userinvalidcssjstitle'            => "'''Attention :''' il n’existe pas d’habillage « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/vector.css et non {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Mis à jour)',
 'note'                             => "'''Note :'''",
@@ -1224,7 +1228,7 @@ Voir la [[Special:IPBlockList|liste des adresses IP et utilisateurs bloqués]] p
 'revmove-norevisions-title'    => 'Révision cible invalide',
 'revmove-norevisions'          => 'Vous n’avez pas spécifié un ou plusieurs révisions cibles pour effectuer cette fonctionnalité ou la révision spécifiée n’existe pas.',
 'revmove-nullmove-title'       => 'Mauvais titre',
-'revmove-nullmove'             => 'Les pages source et cible sont identiques. Veuillez cliquer sur « précédent » et entrez un nom de page différent de « [[$1]] ».',
+'revmove-nullmove'             => 'Les pages source et cible sont identiques. Veuillez cliquer sur « précédent » et entrez un nom de page différent de « $1 ».',
 'revmove-success-existing'     => '{{PLURAL:$1|Une révision de [[$2]] a été déplacée|$1 révisions de [[$2]] ont été déplacées}} vers la page existante [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Une révision de [[$2]] a été déplacée|$1 révisions de [[$2]] ont été déplacées}} vers la page [[$3]] nouvellement créée.',
 

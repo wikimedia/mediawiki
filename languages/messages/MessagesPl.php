@@ -871,6 +871,10 @@ Ostatni wpis rejestru blokad jest pokazany poniżej.',
 'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
 'userjspreview'                    => "'''Pamiętaj, że to tylko podgląd Twojego kodu JavaScript – nic jeszcze nie zostało zapisane!'''",
+'sitecsspreview'                   => "'''Pamiętaj, że to tylko podgląd globalnego arkusza stylów CSS.'''
+'''Zmiany nie zostały jeszcze zapisane!'''",
+'sitejspreview'                    => "'''Pamiętaj, że to tylko podgląd globalnego kodu JavaScript.'''
+'''Zmiany nie zostały jeszcze zapisane!'''",
 'userinvalidcssjstitle'            => "'''Uwaga:''' Brak skórki o nazwie „$1”.
 Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą literą, np. {{ns:user}}:Foo/vector.css, w przeciwieństwie do nieprawidłowego {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Zmodyfikowano)',
@@ -1137,7 +1141,7 @@ Zobacz [[Special:IPBlockList|rejestr blokowania adresów IP]], jeśli chcesz spr
 'revmove-norevisions-title'    => 'Nieprawidłowa wersja docelowa',
 'revmove-norevisions'          => 'Nie określono jednej lub kilku wersji, na których ma zostać wykonana funkcja, lub wybrana wersja nie istnieje.',
 'revmove-nullmove-title'       => 'Zły tytuł',
-'revmove-nullmove'             => 'Strona źródłowa i docelowa są takie same. Naciśnij „wstecz“ i wpisz nazwę strony różną od „[[$1]]“.',
+'revmove-nullmove'             => 'Strona źródłowa i docelowa są takie same. Naciśnij „wstecz“ i wpisz nazwę strony różną od „$1“.',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna wersja [[$2]] została przeniesiona|$1 wersje [[$2]] zostały przeniesione|$1 wersji [[$2]] zostało przeniesionych}} do historii edycji istniejącej strony [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna wersja [[$2]] została przeniesiona|$1 wersje [[$2]] zostały przeniesione|$1 wersji [[$2]] zostało przeniesionych}} do historii edycji nowo utworzonej strony [[$3]].',
 
