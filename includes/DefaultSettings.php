@@ -3871,7 +3871,7 @@ $wgUseTrackbacks = false;
  */
 $wgParserTestFiles = array(
 	"$IP/maintenance/tests/parser/parserTests.txt",
-	"$IP/maintenance/tests/parser/ExtraParserTests.txt"
+	"$IP/maintenance/tests/parser/extraParserTests.txt"
 );
 
 /**
