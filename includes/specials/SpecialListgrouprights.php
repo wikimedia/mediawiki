@@ -60,12 +60,23 @@ class SpecialListGroupRights extends SpecialPage {
 				'</tr>'
 		);
 
-		$allGroups = array_unique( array_merge( array_keys( $wgGroupPermissions ),
-				array_keys( $wgRevokePermissions ) ) );
+		$allGroups = array_unique( array_merge( 
+			array_keys( $wgGroupPermissions ),
+			array_keys( $wgRevokePermissions ),
+			array_keys( $wgAddGroups ),
+			array_keys( $wgRemoveGroups ),
+			array_keys( $wgGroupsAddToSelf ),
+			array_keys( $wgGroupsRemoveFromSelf )
+		) );
+		asort( $allGroups );
+				
 		foreach ( $allGroups as $group ) {
-			$permissions = isset( $wgGroupPermissions[$group] ) ? 
-					$wgGroupPermissions[$group] : array();
-			$groupname = ( $group == '*' ) ? 'all' : $group; // Replace * with a more descriptive groupname
+			$permissions = isset( $wgGroupPermissions[$group] ) 
+				? $wgGroupPermissions[$group] 
+				: array();
+			$groupname = ( $group == '*' ) // Replace * with a more descriptive groupname
+				? 'all' 
+				: $group; 
 
 			$msg = wfMsg( 'group-' . $groupname );
 			if ( wfEmptyMsg( 'group-' . $groupname, $msg ) || $msg == '' ) {
