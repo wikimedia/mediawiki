@@ -1442,8 +1442,12 @@ function wfEscapeShellArg( ) {
 		}
 
 		if ( wfIsWindows() ) {
-			// Escaping for an MSVC-style command line parser
-			// Ref: http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
+			// Escaping for an MSVC-style command line parser and CMD.EXE
+			// Refs: 
+			//  * http://web.archive.org/web/20020708081031/http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
+			//  * http://technet.microsoft.com/en-us/library/cc723564.aspx
+			//  * Bug #13518
+			//  * CR r63214
 			// Double the backslashes before any double quotes. Escape the double quotes.
 			$tokens = preg_split( '/(\\\\*")/', $arg, -1, PREG_SPLIT_DELIM_CAPTURE );
 			$arg = '';
