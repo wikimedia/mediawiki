@@ -1002,7 +1002,6 @@ class Article {
 					# Run the parse, protected by a pool counter
 					wfDebug( __METHOD__ . ": doing uncached parse\n" );
 
-					$this->checkTouched();
 					$key = $parserCache->getKey( $this, $parserOptions );
 					$poolArticleView = new PoolWorkArticleView( $this, $key, $useParserCache, $parserOptions );
 
