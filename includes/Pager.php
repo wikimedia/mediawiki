@@ -1047,20 +1047,26 @@ abstract class TablePager extends IndexPager {
 	function getLimitForm() {
 		global $wgScript;
 
+		return Xml::openElement(
+			'form',
+			array(
+				'method' => 'get',
+				'action' => $wgScript
+			) ) . "\n" . $this->getLimitDropdown() . "</form>\n";
+	}
+
+	/**
+	 * Gets a limit selection dropdown
+	 *
+	 * @return string
+	 */
+	function getLimitDropdown() {
 		# Make the select with some explanatory text
 		$msgSubmit = wfMsgHtml( 'table_pager_limit_submit' );
-		return
-			Xml::openElement(
-				'form',
-				array(
-					'method' => 'get',
-					'action' => $wgScript
-				)
-			) . "\n" .
-			wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() ) .
+
+		return wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() ) .
 			"\n<input type=\"submit\" value=\"$msgSubmit\"/>\n" .
-			$this->getHiddenFields( array( 'limit' ) ) .
-			"</form>\n";
+			$this->getHiddenFields( array( 'limit' ) );
 	}
 
 	/**
