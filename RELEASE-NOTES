@@ -37,6 +37,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
 
 === API changes in 1.18 ===
+* (bug 26339) Throw warning when truncating an overlarge API result
 
 === Languages updated in 1.18 ===
 

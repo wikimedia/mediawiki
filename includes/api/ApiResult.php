@@ -257,6 +257,9 @@ class ApiResult extends ApiBase {
 		if ( $this->mCheckingSize ) {
 			$newsize = $this->mSize + self::size( $value );
 			if ( $newsize > $wgAPIMaxResultSize ) {
+				$this->setWarning(
+					"This result was truncated because it would otherwise be larger than the " .
+							"limit of {$wgAPIMaxResultSize} bytes" );
 				return false;
 			}
 			$this->mSize = $newsize;
