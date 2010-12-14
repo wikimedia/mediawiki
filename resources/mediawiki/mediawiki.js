@@ -328,6 +328,10 @@ window.mediaWiki = new ( function( $ ) {
 		 * Gets the current user's name or a random session ID automatically generated and kept in
 		 * a cookie.
 		 * 
+		 * Do not use this method before the first call to mediaWiki.loader.go(), it depends on
+		 * jquery.cookie, which is added to the first payload just after mediaWiki is defined, but
+		 * won't be loaded until the first call to go().
+		 * 
 		 * @return string user name or random session ID
 		 */
 		this.sessionId = function () {
