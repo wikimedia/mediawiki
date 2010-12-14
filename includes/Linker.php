@@ -712,8 +712,8 @@ class Linker {
 
 				wfProfileOut( __METHOD__ );
 				return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
-								htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
-								htmlspecialchars( $prefix . $text . $inside, ENT_NOQUOTES ) . '</a>' . $trail;
+					htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
+					htmlspecialchars( $prefix . $text . $inside, ENT_NOQUOTES ) . '</a>' . $trail;
 			} else {
 				wfProfileOut( __METHOD__ );
 				return $this->linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;

@@ -1829,9 +1829,10 @@ class Parser {
 				$text = $link;
 			} else {
 				# Bug 4598 madness. Handle the quotes only if they come from the alternate part
-				# [[Lista d''e paise d''o munno]] -> <a href="">Lista d''e paise d''o munno</a>
-				# [[Criticism of Harry Potter|Criticism of ''Harry Potter'']] -> <a href="Criticism of Harry Potter">Criticism of <i>Harry Potter</i></a>
-				$text = $this->doQuotes($text);
+				# [[Lista d''e paise d''o munno]] -> <a href="...">Lista d''e paise d''o munno</a>
+				# [[Criticism of Harry Potter|Criticism of ''Harry Potter'']] 
+				#    -> <a href="Criticism of Harry Potter">Criticism of <i>Harry Potter</i></a>
+				$text = $this->doQuotes( $text );
 			}
 
 			# Link not escaped by : , create the various objects
