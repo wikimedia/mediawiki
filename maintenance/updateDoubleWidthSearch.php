@@ -43,8 +43,7 @@ class UpdateDoubleWidthSearch extends Maintenance {
 
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $dbw->getType() !== 'mysql' ) {
-			$this->output( "This change is only needed on MySQL, quitting.\n" );
-			exit( 1 );
+			$this->error( "This change is only needed on MySQL, quitting.\n", true );
 		}
 
 		$res = $this->findRows( $dbw );
