@@ -907,6 +907,10 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
 '''Ovaj pregled još uvijek nije sačuvan!'''",
 'userjspreview'                    => "'''Zapamtite ovo je samo izgled vaše JavaScript-e, još uvijek nije sačuvan!'''",
+'sitecsspreview'                   => "'''Zapamtite ovo je samo izgled ovog globalnog CSS-a.'''
+'''Još uvijek nije sačuvan!'''",
+'sitejspreview'                    => "'''Zapamtite ovo je samo izgled ovog globalnog koda JavaScripte.'''
+'''Još uvijek nije sačuvan!'''",
 'userinvalidcssjstitle'            => "'''Upozorenje:''' Ne postoji interfejs pod imenom \"\$1\".
 Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Osvježeno)',
@@ -1178,7 +1182,7 @@ Molimo provjerite zapise.',
 'revmove-norevisions-title'    => 'Nevaljana ciljna revizija',
 'revmove-norevisions'          => 'Niste odredili jednu ili više ciljnih revizija radi izvršenja ove funkcije ili navedena revizija ne postoji.',
 'revmove-nullmove-title'       => 'Loš naslov',
-'revmove-nullmove'             => 'Izvorna i ciljna stranica su iste. Molimo pritisnite "nazad" i unesite drugo ime stranice koje nije isto kao "[[$1]]".',
+'revmove-nullmove'             => 'Izvorna i ciljna stranica su iste. Molimo pritisnite "nazad" i unesite drugo ime stranice koje nije isto kao "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} postojeće stranice [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna revizija iz [[$2]] je premještena|$1 su premještene iz [[$2]]|$1 je premješteno iz [[$2]]}} na novonapravljenu stranicu [[$3]].',
 

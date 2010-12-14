@@ -1053,7 +1053,7 @@ Vend tilbage til forrige side og prøv igen.',
 'revmove-norevisions'          => 'Du har ikke angivet en eller flere målversioner for at udføre denne funktion eller den angivne version eksisterer ikke.',
 'revmove-nullmove-title'       => 'Forkert titel',
 'revmove-nullmove'             => 'Slutsiden kan ikke være identisk med startsiden.
-Vend tilbage til forrige side og vælg et andet navn fra "[[$1]]".',
+Vend tilbage til forrige side og vælg et andet navn fra "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|En version fra [[$2]] er|$1 versioner fra [[$2]] er}} blevet flyttet til den eksisterende side [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|En version fra [[$2]] er|$1 versioner fra [[$2]] er}} blevet flyttet til den nyligt oprettede side [[$3]].',
 

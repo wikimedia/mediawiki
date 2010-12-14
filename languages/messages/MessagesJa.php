@@ -1262,7 +1262,7 @@ $1",
 'revmove-norevisions'          => '指定した版が存在しないか、この機能を利用するために1つ以上の版を指定していません。',
 'revmove-nullmove-title'       => '不正なページ名',
 'revmove-nullmove'             => '移動元と移動先のページが同一のものです。
-ページを戻り、「[[$1]]」とは違う名前を選択してください。',
+ページを戻り、「$1」とは違う名前を選択してください。',
 'revmove-success-existing'     => '{{PLURAL:$1|$1版が、[[$2]]から}}既存のページ[[$3]]へ移動されました。',
 'revmove-success-created'      => '{{PLURAL:$1|$1版が、[[$2]]から}}新規作成されたページ[[$3]]へ移動されました。',
 
@@ -1692,10 +1692,10 @@ HTMLタグを見直してください。',
 'recentchangeslinked-toolbox'  => '関連する変更',
 'recentchangeslinked-title'    => '「$1」と関連する変更',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に変更はありませんでした。',
-'recentchangeslinked-summary'  => "これは、指定されたページへリンクしている（もしくは、指定されたカテゴリに含まれている）ページに最近加えられた変更の一覧です。
+'recentchangeslinked-summary'  => "これは、指定したページからリンクされている（もしくは、指定したカテゴリに含まれている）ページに最近加えられた変更の一覧です。
 [[Special:Watchlist|自分のウォッチリスト]]にあるページは'''太字'''で表示されています。",
 'recentchangeslinked-page'     => 'ページ名：',
-'recentchangeslinked-to'       => '代わりに、指定されたページにリンクされているページの変更を表示',
+'recentchangeslinked-to'       => '代わりに、指定したページへのリンク元での変更を表示',
 
 # Upload
 'upload'                      => 'ファイルをアップロード',

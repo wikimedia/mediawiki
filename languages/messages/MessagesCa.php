@@ -1060,7 +1060,7 @@ Si us plau, verifica els registres.",
 'revmove-norevisions-title'    => 'Revisió especificada no vàlida',
 'revmove-norevisions'          => 'No heu especificat una o més revisions on aplicar aquesta funció o bé les revisions especificades no existeixen.',
 'revmove-nullmove-title'       => 'Títol inadequat',
-'revmove-nullmove'             => "Les pàgines d'origen i de destinació són idèntiques. Torneu enrere i escriviu una pàgina diferent de «[[$1]]».",
+'revmove-nullmove'             => "Les pàgines d'origen i de destinació són idèntiques. Torneu enrere i escriviu una pàgina diferent de «$1».",
 'revmove-success-existing'     => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la pàgina existent [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Una revisió de [[$2]] ha estat traslladada|$1 revisions de [[$2]] han estat traslladades}} a la nova pàgina [[$3]].',
 

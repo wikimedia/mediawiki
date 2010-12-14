@@ -1009,7 +1009,7 @@ Pšosym pśeglědaj protokole.',
 'revmove-norevisions-title'    => 'Njepłaśiwa celowa wersija',
 'revmove-norevisions'          => 'Njejsy jadnu celowu wersiju abo wěcej celowych wersijow pódał, aby toś tu funkciju wuwjadł abo pódana wersija njeeksistěrujo.',
 'revmove-nullmove-title'       => 'Njepłaśiwy titel',
-'revmove-nullmove'             => 'Žrědłowy a celowy bok stej identeskejl. Pšosym klikni na "slědk" a zapódaj druge mě boka  ako "[[$1]]".',
+'revmove-nullmove'             => 'Žrědłowy a celowy bok stej identeskejl. Pšosym klikni na "slědk" a zapódaj druge mě boka  ako "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Jadna wersija jo se wót [[$2]]|$1 wersiji stej se wót [[$2]]|$1 wersije su se wót [[$2]]|$1 wersijow jo se wót [[$2]]}} k eksistěrujucemu bokoju  [[$3]] {{PLURAL:$1|pśesunuła|pśesunułej|pśesunuli|pśesunuło}}.',
 'revmove-success-created'      => '{{PLURAL:$1|Jadna wersija jo se wót [[$2]]|$1 wersiji stej se wót [[$2]]|$1 wersije su se wót [[$2]]|$1 wersijow jo se wót [[$2]]}} k rowno napóranemu bokoju  [[$3]] {{PLURAL:$1|pśesunuła|pśesunułej|pśesunuli|pśesunuło}}.',
 

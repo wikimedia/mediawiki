@@ -863,7 +863,7 @@ $1",
 'revmove-norevisions-title'    => '無效之標審',
 'revmove-norevisions'          => '爾未定一或多之審作此或無存也。',
 'revmove-nullmove-title'       => '壞題',
-'revmove-nullmove'             => '標源之題不可同也。返「[[$1]]」試他名之。',
+'revmove-nullmove'             => '標源之題不可同也。返「$1」試他名之。',
 'revmove-success-existing'     => '由[[$2]]中遷現頁[[$3]]有審{{PLURAL:$1|一|$1}}。',
 'revmove-success-created'      => '由[[$2]]中遷新頁[[$3]]有審{{PLURAL:$1|一|$1}}。',
 

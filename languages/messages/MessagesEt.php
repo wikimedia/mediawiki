@@ -1153,7 +1153,7 @@ Mine eelmisele leheküljele tagasi ja proovi uuesti.',
 'revmove-norevisions'          => 'Selle toimingu sooritamiseks pole ühtegi sihtredaktsiooni määratud või määratud redaktsiooni pole olemas.',
 'revmove-nullmove-title'       => 'Halb pealkiri',
 'revmove-nullmove'             => 'Lähte- ja sihtlehekülg ei saa olla samad.
-Mine eelmisele leheküljele tagasi ja vali pealkirjast "[[$1]]" erinev pealkiri.',
+Mine eelmisele leheküljele tagasi ja vali pealkirjast "$1" erinev pealkiri.',
 'revmove-success-existing'     => '{{PLURAL:$1|Üks redaktsioon|$1 redaktsiooni}} leheküljelt [[$2]] on teisaldatud olemasolevale leheküljele [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Üks redaktsioon|$1 redaktsiooni}} leheküljelt [[$2]] on teisaldatud vastloodud leheküljele [[$3]].',
 
@@ -1581,8 +1581,8 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'recentchangeslinked-title'    => 'Leheküljega "$1" seotud muudatused',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Antud ajavahemiku jooksul ei ole lingitud lehekülgedel muudatusi tehtud.',
-'recentchangeslinked-summary'  => "See on viimaste muudatuste nimekiri lehekülgedel, kuhu lähevad lingid antud leheküljelt (või antud kategooria liikmetele).
-Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on esiletoodud '''rasvasena'''.",
+'recentchangeslinked-summary'  => "Siin on loetletud määratud leheküljelt viidatud (või määratud kategooria) lehekülgedel tehtud viimased muudatused.
+Sinu [[Special:Watchlist|jälgimisloendi]] leheküljed on  '''rasvaselt''' esile toodud.",
 'recentchangeslinked-page'     => 'Lehekülje nimi:',
 'recentchangeslinked-to'       => 'Näita hoopis muudatusi lehekülgedel, mis sellele lehele lingivad',
 

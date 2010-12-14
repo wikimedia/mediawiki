@@ -1166,7 +1166,7 @@ Vezi [[Special:IPBlockList|adresele IP blocate]] pentru o listă a interzicerilo
 'revmove-norevisions-title'    => 'Versiune invalidă',
 'revmove-norevisions'          => 'Nu ați specificat una sau mai multe versiuni pentru a efectua operația sau versiunea specificată nu există.',
 'revmove-nullmove-title'       => 'Titlu incorect',
-'revmove-nullmove'             => 'Destinația și sursa sînt identice. Apăsați „înapoi” și alegeți un nume de pagină diferit de „[[$1]]”.',
+'revmove-nullmove'             => 'Destinația și sursa sînt identice. Apăsați „înapoi” și alegeți un nume de pagină diferit de „$1”.',
 'revmove-success-existing'     => '{{PLURAL:$1|S-a mutat o versiune|S-au mutat $1 versiuni}} de la [[$2]] la pagina existentă [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|S-a mutat o versiune|S-au mutat $1 versiuni}} de la [[$2]] la pagina nou creată [[$3]].',
 

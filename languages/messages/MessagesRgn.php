@@ -150,7 +150,9 @@ $messages = array(
 'moredotdotdot' => '↓  Ad piò…',
 'mypage'        => '↓ La mi pàgina',
 'mytalk'        => 'Al mi cunversaziòn',
+'anontalk'      => "↓ Ciacarédi par 'st'indirèzz IP",
 'navigation'    => 'Navgaziòn',
+'and'           => '↓ &#32;e',
 
 # Cologne Blue skin
 'qbfind' => 'Tróva',

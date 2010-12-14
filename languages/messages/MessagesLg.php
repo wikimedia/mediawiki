@@ -324,37 +324,52 @@ Kiyinza ate okuba nti sofutiweya {{SITENAME}} gy'ekozesa erimu ebitali bituufu."
 Ku lupapula "[[Special:SpecialPages|{{int:specialpages}}]]" kuliko olukalala lw\'empapula enjawule.',
 
 # General errors
-'error'               => 'Kiremya',
-'databaseerror'       => 'Waliwo kiremya ku ggwanika lya data',
-'dberrortext'         => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
+'error'                => 'Kiremya',
+'databaseerror'        => 'Waliwo kiremya ku ggwanika lya data',
+'dberrortext'          => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
 Ayinza okuba nga azze lwa nsobi mu sofutiweya wa lyo.<br />
 Ekiragiro ekinoonyeza mu ggwanika lya data ekisembye okuyisibwa kiri:<br />
 <blockquote><tt>$1</tt></blockquote>
 ekisangibwa mu mukolo gwa puloguramu "<tt>$2</tt>".<br />
 Obubaka obuvudde mu ggwanika lya data obufa ku kiremya buli "<tt>$3: $4</tt>".',
-'dberrortextcl'       => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
+'dberrortextcl'        => 'Waliwo kiremya avudde ku mpandika y\'ekiragiro ekinoonyeza mu ggwanika lya data.<br />
 Ekiragiro ekinoonyeza mu ggwanika lya data ekisembye okuyisibwa kiri:<br />
 "$1" <br />
 ekisangibwa mu mukolo gwa mu puloguramu "$2".<br />
 Obubaka obuvudde mu ggwanika lya data obufa ku kiremya buli "$3: $4"',
-'laggedslavemode'     => "'''Kulabula:''' Olupapula luyinza obutabaamu ebyakalukyusibwamu.",
-'readonly'            => 'Eggwanika lya data terikkiriza kulikyusamu',
-'enterlockreason'     => "Wandikawo ensonga esibizza eggwanika lya data, nga olaga ddi lw'olisuubira okusumululwa",
-'missing-article'     => "Mu ggwanika ya data mubadde musuubidwamu bigambo ebikola olupapula \"\$1\" \$2, tebisangidwamu.
+'laggedslavemode'      => "'''Kulabula:''' Olupapula luyinza obutabaamu ebyakalukyusibwamu.",
+'readonly'             => 'Eggwanika lya data terikkiriza kulikyusamu',
+'enterlockreason'      => "Wandikawo ensonga esibizza eggwanika lya data, nga olaga ddi lw'olisuubira okusumululwa",
+'readonlytext'         => "Eggwanika lya data lino ku ssaawa eno terikkiriza okulikyusamu. Kino kitera okubawo nga balikolako, balyoke balisumulule.<br />
+<br />
+Kuno kwe kunnyonyola kw'omuteesiteesi eyalisibye: $1",
+'missing-article'      => "Mu ggwanika ya data mubadde musuubidwamu bigambo ebikola olupapula \"\$1\" \$2, tebisangidwamu.
 
 Kino kitera okubawo singa likoda y'enjawulo mu mpandika z'olupapula eba nsobu oba singa enyunzi egguka
 ku nnanda yalwo eba nga egyidwawo.
 
 Ebyo bwe biba nga ssi bye bikireesewo, oyinz'okuba nga ozudde nsobi mu sofutiweya ono.
 Ensobi eno gimanyise [[Special:ListUsers/sysop|omuteesiteesi]], nga omulaga n'endagiriro (URL) kw'ogisanze.",
-'missingarticle-rev'  => '(olukyusa#: $1)',
-'missingarticle-diff' => '(Enjawulo wakati wa: $1, $2)',
-'badtitletext'        => "Onoonyezza erinnya ly'olupapula eritakkirizibwa, oba ery'olupapula olwereere, oba ery'oluli ku wiki endala nga teruyungidwa ku eno obulungi.
+'missingarticle-rev'   => '(olukyusa#: $1)',
+'missingarticle-diff'  => '(Enjawulo wakati wa: $1, $2)',
+'readonly_lag'         => "Okukukkiriza enkyukakyuka mu ggwanika lya data lino kuyimirizidwamu, kompyuta eziriko amawanika ga data amazibizi zisobole okugakwataganya n'eggwanika lya data ery'ennono",
+'internalerror'        => "Puloguramu ey'oku wiki efunye kirimya munda mwayo",
+'internalerror_info'   => "Puloguramu ey'oku wiki efunye kirimya munda mwayo: $1",
+'fileappenderrorread'  => '"$1" nnemedwa okugisoma ndyoke ngiwayireko ebipya.',
+'fileappenderror'      => '"$2" nnemedwa okugiwayirako "$1".',
+'filecopyerror'        => 'Nnemedwa okuteeka kkopi ya fayiro "$1" mu "$2".',
+'filerenameerror'      => 'Fayiro "$1" nnemedwa okugikyusa erinnya lifuuke "$2".',
+'filedeleteerror'      => 'Nnemedwa okugyawo fayiro "$1".',
+'directorycreateerror' => 'Nnemedwa okukolawo etterekero "$1".',
+'filenotfound'         => 'Fayiro "$1" embuze.',
+'fileexistserror'      => 'Nnemedwa okuwandika fayiro "$1": Yakolebwawo dda',
+'unexpected'           => 'Waliwo ekivaamu ekitasuubirwa: "$1"="$2".',
+'badtitletext'         => "Onoonyezza erinnya ly'olupapula eritakkirizibwa, oba ery'olupapula olwereere, oba ery'oluli ku wiki endala nga teruyungidwa ku eno obulungi.
 
 Erinnya eryo liyinza ate okubaamu ennukuta oba obubonero ebitakkirizibwa mu mannya ga mpapula.",
-'viewsource'          => "Kebera obulambike obw'ennono obw'olupapula luno",
-'viewsourcefor'       => 'obwa $1',
-'editinginterface'    => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo.
+'viewsource'           => "Kebera obulambike obw'ennono obw'olupapula luno",
+'viewsourcefor'        => 'obwa $1',
+'editinginterface'     => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo.
 Enkyukakyuka z'okola wano zigyakubaako kye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
 
 # Login and logout pages

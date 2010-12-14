@@ -931,7 +931,7 @@ Häzirki wagtda bar bolan blokirlemelriň sanawy üçin [[Special:IPBlockList|IP
 'revmove-norevisions-title'    => 'Nädogry niýetlenilýän wersiýa',
 'revmove-norevisions'          => 'Bu funksiýany ýerine ýetirmek üçin bir ýa-da birnäçe niýetlenilýän wersiýa görkezmediňiz ýa-da görkezilen wersiýa ýok.',
 'revmove-nullmove-title'       => 'Gelşiksiz at',
-'revmove-nullmove'             => 'Niýetlenilýän sahypa bilen çeşme sahypa birmeňzeş bolup bilmeýär. Yza dolanyp, "[[$1]]" arkaly başga bir sahypa adyny saýlaň.',
+'revmove-nullmove'             => 'Niýetlenilýän sahypa bilen çeşme sahypa birmeňzeş bolup bilmeýär. Yza dolanyp, "$1" arkaly başga bir sahypa adyny saýlaň.',
 'revmove-success-existing'     => '{{PLURAL:$1|[[$2]] sahypasyndan bir wersiýa|[[$2]] sahypasyndan $1 sany wersiýa}} bar bolan [[$3]] sahypasyna geçirildi.',
 'revmove-success-created'      => '{{PLURAL:$1|[[$2]] sahypasyndan bir wersiýa|[[$2]] sahypasyndan $1 sany wersiýa}} täze döredilen [[$3]] sahypasyna geçirildi.',
 

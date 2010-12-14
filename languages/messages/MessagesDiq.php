@@ -621,7 +621,8 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'userjsyoucanpreview'              => "'''Yardim:''' Ser \"{{int:showpreview}}\" sima eskeni CSSe newe test bikeri.",
 'usercsspreview'                   => "'''şıma tena verqaydê dosyayê CSS vineni.''' '''Dosyayê Karberi CSS hema qayd nebiyo!'''",
 'userjspreview'                    => "'''şıma tena test keni ya ziverqayn seyr keni - karberê JavaScript'i hema qayd nebiyo.'''",
-'userinvalidcssjstitle'            => "''Hişyari:''' \"\$1\" no name de yew tema çino. tema- nameyê ey.css u .js ney dosyayi gani pê herfa hurdiye bınusiye , yani {{ns:user}}:bıngeh/'''M'''ector.css ney, {{ns:user}}:bıngeh/'''v'''ector.css.",
+'userinvalidcssjstitle'            => "↓ '''Teme:''' Mewzuyê \"\$1\" çıniyo.
+Dosyanê be namey .css u .js'i de herfa werdiye bıgurêne, mesela herında {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
 'updated'                          => '(Rocaniye biyo)',
 'note'                             => "'''Not:'''",
 'previewnote'                      => "'''Teme! ena teyna verqeyda.'''
@@ -880,7 +881,7 @@ rocaneyan kontrol bıkere.',
 'revmove-norevisions'          => 'Seba kerdişê ena fonksiyon, ti hama yew ya zi yew ra zafyer revizyonê hedefi belli nikerd ya zi revizyonê ke belli biyo ey cini yo.',
 'revmove-nullmove-title'       => 'Sernameo xırabın',
 'revmove-nullmove'             => 'Peleyê hedefi u peleyê cimeyi eyni name nigene.
-Eka peyser şo pele verini u reyna "[[$1]]" ra yew nameya newe biwecine.',
+Eka peyser şo pele verini u reyna "$1" ra yew nameya newe biwecine.',
 'revmove-success-existing'     => '{{PLURAL:$1|Yew revizyon [[$2]] ra|$1 revizyonan from [[$2]] ra}} pele [[$3]] rê berda.',
 'revmove-success-created'      => '{{PLURAL:$1|Yew revizyon [[$2]] ra|$1 revizyonan from [[$2]] ra}} pele [[$3]] ke newe a biya o rê berda.',
 

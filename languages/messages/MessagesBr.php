@@ -784,6 +784,10 @@ Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'usercsspreview'                   => "'''Dalc'hit soñj n'emaoc'h ken nemet o rakwelet ho follenn CSS deoc'h.'''
 '''N'eo ket bet enrollet evit c'hoazh!'''",
 'userjspreview'                    => "'''Dalc'hit soñj emaoc'h o rakwelet pe o testiñ ho kod javascript deoc'h ha n'eo ket bet enrollet c'hoazh!'''",
+'sitecsspreview'                   => "'''Dalc'hit soñj n'emaoc'h ken nemet o rakwelet ar follenn CSS hollek-mañ.'''
+'''N'eo ket bet enrollet evit c'hoazh!'''",
+'sitejspreview'                    => "'''Dalc'hit soñj n'emaoc'h ken nemet o rakwelet ar c'hod JavaScript hollek-mañ.'''
+'''N'eo ket bet enrollet evit c'hoazh!'''",
 'userinvalidcssjstitle'            => "'''Diwallit:''' N'eus tamm gwiskadur \"\$1\" ebet. Ho pez soñj e vez implijet lizherennoù bihan goude an anv implijer hag ar veskell / gant ar pajennoù personel dezho un astenn .css ha .js; da skouer eo mat ar follenn stil {{ns:user}}:Foo/vector.css ha faziek an hini {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Hizivaet)',
 'note'                             => "'''Notenn :'''",
@@ -1046,7 +1050,7 @@ Distroit d'ar bajenn a-raok ha klaskit en-dro.",
 'revmove-norevisions'          => "N'hoc'h eus ket resisaet adweladenn dal pe adweladennoù tal ebet evit seveniñ an arc'hwel-mañ pe neuze n'eus ket eus an adweladenn merket",
 'revmove-nullmove-title'       => 'Titl fall',
 'revmove-nullmove'             => 'N\'hall ket ar bajenn dal bezañ heñvel ouzh ar bajenn gein.
-Distroit d\'ar bajenn a-raok ha dibabit un anv disheñvel diouzh "[[$1]]".',
+Distroit d\'ar bajenn a-raok ha dibabit un anv disheñvel diouzh "$1".',
 'revmove-success-existing'     => "{{PLURAL:$1|Un|$1}} adweladenn eus [[$2]] a zo bet dilec'hiet davet ar bajenn ez eus outi dija [[$3]].",
 'revmove-success-created'      => "{{PLURAL:$1|Un|$1}} adweladenn eus [[$2]] a zo bet dilec'hiet davet ar bajenn [[$3]] bet krouet nevez zo.",
 

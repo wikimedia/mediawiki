@@ -916,6 +916,10 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular.'''
 '''Ele ainda não foi salvo!'''",
 'userjspreview'                    => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
+'sitecsspreview'                   => "'''Lembre-se de que está apenas previsualizando este CSS global.'''
+'''Ele ainda não foi salvo!'''",
+'sitejspreview'                    => "'''Lembre-se de que você está apenas previsualizando este código JavaScript global.'''
+'''Ele ainda não foi salvo!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/vector.css aposto a {{ns:user}}:Alguém/Vector.css.",
 'updated'                          => '(Atualizado)',
 'note'                             => "'''Nota:'''",
@@ -1183,7 +1187,7 @@ Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e
 'revmove-norevisions-title'    => 'A revisão especificada é inválida',
 'revmove-norevisions'          => 'Você não especificou uma ou mais revisões sobre as quais deve ser executada esta operação, ou a revisão que especificou não existe.',
 'revmove-nullmove-title'       => 'Título incorreto',
-'revmove-nullmove'             => 'As páginas de origem e destino são idênticas. Clique "voltar" e introduza um nome de página diferente de "[[$1]]".',
+'revmove-nullmove'             => 'As páginas de origem e destino são idênticas. Clique "voltar" e introduza um nome de página diferente de "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página existente [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Uma revisão de [[$2]] foi movida|$1 revisões de [[$2]] foram movidas}} para a página recém-criada [[$3]].',
 

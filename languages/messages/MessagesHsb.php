@@ -734,6 +734,10 @@ Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach
 'userjspreview'                    => "== Přehlad twojeho wosobinskeho JavaScript ==
 
 '''Kedźbu:''' Po składowanju dyrbiš pufrowak swojeho wobhladowaka wuprózdnić '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'sitecsspreview'                   => "'''Wobkedźbujće, zo sej jenož přehlad tutoho globalneho CSS wobhladuješ.'''
+'''Wón hišće składowany njeje!'''",
+'sitejspreview'                    => "'''Wobkedźbujće, zo sej jenož přehlad tutoho globalneho JavaScriptoweho koda wobhladuješ.'''
+'''Wón hišće składowany njeje!'''",
 'userinvalidcssjstitle'            => "'''Warnowanje:''' Skin z mjenom „$1” njeeksistuje. Prošu mysli na to, zo wosobinske strony .css a .js titul z małym pismikom wuwziwaja, na př. {{ns:user}}:Foo/vector.css město {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Zaktualizowany)',
 'note'                             => "'''Kedźbu:'''",
@@ -990,7 +994,7 @@ Prošu přepruwuj protokole.',
 'revmove-norevisions-title'    => 'Njepłaćiwa cilowa wersija',
 'revmove-norevisions'          => 'Njejsy jednu wersiju abo wjace wersijow podał, zo by tutu funkciju wuwjedł, abo podata wersija njeeksistuje.',
 'revmove-nullmove-title'       => 'Njepłaćiwy titul',
-'revmove-nullmove'             => 'Žórłowa a cilowa strona stej identiskej. Prošu klikń na  "wróćo" a zapodaj druhe mjeno strony hač "[[$1]]".',
+'revmove-nullmove'             => 'Žórłowa a cilowa strona stej identiskej. Prošu klikń na  "wróćo" a zapodaj druhe mjeno strony hač "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Jedna wersija je so wot [[$2]]|$1 wersiji stej so wot [[$2]]|$1 wersije su so wot [[$2]]|$1 wersijow je so wot [[$2]]}} do eksistowaceje strony [[$3]] {{PLURAL:$1|přesunyła|přesunyłoj|přesunyli|přesunyło}}.',
 'revmove-success-created'      => '{{PLURAL:$1|Jedna wersija je so wot [[$2]]|$1 wersiji stej so wot [[$2]]|$1 wersije su so wot [[$2]]|$1 wersijow je so wot [[$2]]}} do runje wutworjeneje strony [[$3]] {{PLURAL:$1|přesunyła|přesunyłoj|přesunyli|přesunyło}}.',
 

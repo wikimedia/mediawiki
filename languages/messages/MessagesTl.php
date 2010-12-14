@@ -1046,7 +1046,7 @@ Tingnan ang [[Special:IPBlockList|talaan ng hinarang na/hinadlangang IP]] para s
 'revmove-norevisions-title'    => 'Hindi tanggap na puntiryang pagbabago',
 'revmove-norevisions'          => 'Hindi ka tumukoy ng isa o higit pang puntiryang mga pagbabago upang magampanan ang tungkuling ito o hindi umiiral ang tinukoy na pagbabago.',
 'revmove-nullmove-title'       => 'Masamang pamagat',
-'revmove-nullmove'             => 'Magakawangis ang pahinang pinagmulan at puntirya.  Pakipindot ang "bumalik" at maglagay ng isang pahinang naiiba sa "[[$1]]".',
+'revmove-nullmove'             => 'Magakawangis ang pahinang pinagmulan at puntirya.  Pakipindot ang "bumalik" at maglagay ng isang pahinang naiiba sa "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Isang pagbabago mula sa [[$2]] ang|$1 mga pagbabago mula sa [[$2]] ang}} inilipat papunta sa umiiral na pahinang [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Isang pagbabago mula sa [[$2]] ang|$1 mga pagbabago mula sa [[$2]] ang}} nailipat papunta sa bagong-likhang pahinang [[$3]].',
 

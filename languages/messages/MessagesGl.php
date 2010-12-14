@@ -1114,7 +1114,7 @@ Vexa a [[Special:IPBlockList|lista de enderezos IP bloqueados]] para comprobar a
 'revmove-norevisions-title'    => 'A revisión especificada é incorrecta',
 'revmove-norevisions'          => 'Non especificou unha ou máis revisións sobre as que levar a cabo esta operación; ou poida tamén que a revisión especificada non exista.',
 'revmove-nullmove-title'       => 'Título incorrecto',
-'revmove-nullmove'             => 'As páxinas de orixe e destino son idénticas. Volva atrás e introduza un nome de páxina diferente de "[[$1]]".',
+'revmove-nullmove'             => 'As páxinas de orixe e destino son idénticas. Volva atrás e introduza un nome de páxina diferente de "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|Moveuse unha revisión de "[[$2]]"|Movéronse $1 revisións de "[[$2]]"}} á páxina "[[$3]]".',
 'revmove-success-created'      => '{{PLURAL:$1|Moveuse unha revisión de "[[$2]]"|Movéronse $1 revisións de "[[$2]]"}} á nova páxina "[[$3]]", creada hai uns intres.',
 

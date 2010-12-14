@@ -789,6 +789,10 @@ Regjistri i bllokuar hyrjen e fundit është më poshtë, për referencë:',
 'userjsyoucanpreview'              => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
 'usercsspreview'                   => "'''Vini re! Kjo është vetëm një parapamje e faqes suaj CSS. Akoma nuk është ruajtur!'''",
 'userjspreview'                    => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj JavaScript, ajo nuk është ruajtur akoma!'''",
+'sitecsspreview'                   => "'''Vini re! Kjo është vetëm një parapamje e faqes suaj CSS.'''
+''' Akoma nuk është ruajtur!'''",
+'sitejspreview'                    => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj JavaScript.''' 
+'''Nuk është ruajtur akoma!'''",
 'userinvalidcssjstitle'            => "'''Kujdes:''' Nuk ka pamje të quajtur \"\$1\". Vini re se faqet .css dhe .js përdorin titull me gërma të vogla, p.sh. {{ns:user}}:Foo/vector.css, jo {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(E ndryshuar)',
 'note'                             => "'''Shënim:'''",
@@ -1044,7 +1048,7 @@ Kthehuni mbrapa tek faqja e mëparshme dhe të provoni përsëri.',
 'revmove-norevisions'          => 'Nuk keni dhënë një ose më shumë versione të synuara për të performuar këtë funksion ose versioni i specifikuar nuk ekziston.',
 'revmove-nullmove-title'       => 'Titull i pasaktë',
 'revmove-nullmove'             => 'Faqja objektive nuk mund të jetë njëlloj si burimi i faqes.
-Shkoni prapa tek faqja e mëparshme dhe zgjidhni një emër të ndryshëm nga "[[$1]]"',
+Shkoni prapa tek faqja e mëparshme dhe zgjidhni një emër të ndryshëm nga "$1"',
 'revmove-success-existing'     => '{{PLURAL:$1|Një version nga [[$2]] është|$1 versione nga [[$2]] janë}} lëvizur nga faqja ekzistuese [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|Një version nga [[$2]] është|$1 versione nga [[$2]] janë}} lëvizur tek faqja e re e krijuar [[$3]].',
 
