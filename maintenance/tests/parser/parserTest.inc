@@ -1176,7 +1176,7 @@ class ParserTest {
 		}
 
 		$art = new Article( $title );
-		$art->insertNewArticle( $text, '', false, false );
+		$art->doEdit( $text, '', EDIT_NEW );
 
 		$wgCapitalLinks = $oldCapitalLinks;
 	}
