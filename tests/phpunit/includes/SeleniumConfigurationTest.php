@@ -29,7 +29,7 @@ jUnitLogFile	=
 runAgainstGrid	= false
 
 [SeleniumTests]
-testSuite[SimpleSeleniumTestSuite] = "maintenance/tests/selenium/SimpleSeleniumTestSuite.php"
+testSuite[SimpleSeleniumTestSuite] = "tests/selenium/SimpleSeleniumTestSuite.php"
 testSuite[TestSuiteName] = "testSuitePath"
 ';
 	/*
@@ -59,7 +59,7 @@ testSuite[TestSuiteName] = "testSuitePath"
 	 * Array of expected testSuites from $testConfig0
 	 */
 	private $testSuites0 = array(
-		'SimpleSeleniumTestSuite' 	=> 'maintenance/tests/selenium/SimpleSeleniumTestSuite.php',
+		'SimpleSeleniumTestSuite' 	=> 'tests/selenium/SimpleSeleniumTestSuite.php',
 		'TestSuiteName' 			=> 'testSuitePath'
 	);
 

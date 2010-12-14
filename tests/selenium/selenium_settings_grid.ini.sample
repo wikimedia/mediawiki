@@ -11,4 +11,4 @@ runAgainstGrid	= true
 
 [testSuite]
 
-SimpleSeleniumTestSuite	= "maintenance/tests/selenium/suites/SimpleSeleniumTestSuite.php"
+SimpleSeleniumTestSuite	= "tests/selenium/suites/SimpleSeleniumTestSuite.php"

@@ -7,10 +7,10 @@ class MediaWikiEditorTestSuite extends SeleniumTestSuite {
     }
     public function addTests() {
         $testFiles = array(
-                'maintenance/tests/selenium/suites/AddNewPageTestCase.php',
-                'maintenance/tests/selenium/suites/AddContentToNewPageTestCase.php',
-                'maintenance/tests/selenium/suites/PreviewPageTestCase.php',
-                'maintenance/tests/selenium/suites/SavePageTestCase.php',
+                'tests/selenium/suites/AddNewPageTestCase.php',
+                'tests/selenium/suites/AddContentToNewPageTestCase.php',
+                'tests/selenium/suites/PreviewPageTestCase.php',
+                'tests/selenium/suites/SavePageTestCase.php',
         );
         parent::addTestFiles( $testFiles );
     }

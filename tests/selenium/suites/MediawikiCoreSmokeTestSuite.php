@@ -10,7 +10,7 @@ class MediawikiCoreSmokeTestSuite extends SeleniumTestSuite
 	} 
 	public function addTests() {
 		$testFiles = array(
-			'maintenance/tests/selenium/suites/MediawikiCoreSmokeTestCase.php'
+			'tests/selenium/suites/MediawikiCoreSmokeTestCase.php'
 		);
 		parent::addTestFiles( $testFiles );
 	}
