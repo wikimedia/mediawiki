@@ -1589,7 +1589,7 @@ Go back to the previous page and try again.',
 'revmove-norevisions'          => 'You have not specified one or more target revisions to perform this function or the specified revision does not exist.',
 'revmove-nullmove-title'       => 'Bad title',
 'revmove-nullmove'             => 'The target page cannot be the same as the source page.
-Go back to the previous page and choose a different name from "[[$1]]".',
+Go back to the previous page and choose a different name from "$1".',
 'revmove-success-existing'     => '{{PLURAL:$1|One revision from [[$2]] has|$1 revisions from [[$2]] have}} been moved to the existing page [[$3]].',
 'revmove-success-created'      => '{{PLURAL:$1|One revision from [[$2]] has|$1 revisions from [[$2]] have}} been moved to the newly created page [[$3]].',
 
