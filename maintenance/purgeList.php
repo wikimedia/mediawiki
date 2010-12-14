@@ -26,7 +26,7 @@ class PurgeList extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Send purge requests for listed pages to squid";
-		$this->addOption( 'purge', 'Whether to update page touched.' , false, false );
+		$this->addOption( 'purge', 'Whether to update page_touched.' , false, false );
 	}
 
 	public function execute() {
