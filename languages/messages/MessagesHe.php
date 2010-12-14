@@ -293,6 +293,7 @@ $specialPageAliases = array(
 	'Mypage'                    => array( 'הדף_שלי', 'דף_המשתמש_שלי' ),
 	'Mytalk'                    => array( 'השיחה_שלי', 'דף_השיחה_שלי' ),
 	'Mycontributions'           => array( 'התרומות_שלי' ),
+	'Myuploads'                 => array( 'ההעלאות_שלי' ),
 	'Listadmins'                => array( 'רשימת_מפעילים' ),
 	'Listbots'                  => array( 'רשימת_בוטים' ),
 	'Popularpages'              => array( 'הדפים_הנצפים_ביותר', 'דפים_פופולריים' ),
@@ -813,6 +814,9 @@ $2',
 'loginlanguagelabel'         => 'שפה: $1',
 'suspicious-userlogout'      => 'בקשתכם לצאת מהחשבון נדחתה כיוון שנראה שהיא נשלחה על ידי דפדפן שבור או שרת פרוקסי עם זיכרון מטמון.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'שגיאה לא ידועה בפונקציה mail() של PHP',
+
 # JavaScript password checks
 'password-strength'            => 'חוזק סיסמה מוערך: $1',
 'password-strength-bad'        => 'רע',
@@ -952,7 +956,12 @@ $2',
 '''הוא טרם נשמר!'''",
 'userjspreview'                    => "'''זכרו שזו רק בדיקה/תצוגה מקדימה של סקריפט ה־JavaScript שלכם.'''
 '''הוא טרם נשמר!'''",
-'userinvalidcssjstitle'            => "'''אזהרה''': העיצוב \"\$1\" אינו קיים. זכרו שדפי CSS ו־JavaScript מותאמים אישית משתמשים בכותרת עם אותיות קטנות – למשל, {{ns:user}}:דוגמה/vector.css ולא {{ns:user}}:דוגמה/Vector.css. כמו כן, יש להקפיד על שימוש ב־/ ולא ב־\\.",
+'sitecsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גליון ה־CSS הכללי הזה.'''
+'''הוא טרם נשמר!'''",
+'sitejspreview'                    => "'''זכרו שזו רק תצוגה מקדימה של קוד ה־JavaScript הכללי הזה.'''
+'''הוא טרם נשמר!'''",
+'userinvalidcssjstitle'            => "'''אזהרה''': העיצוב \"\$1\" אינו קיים.
+דפי .css ו־.js מותאמים אישית משתמשים בכותרת עם אותיות קטנות – למשל, {{ns:user}}:דוגמה/vector.css ולא {{ns:user}}:דוגמה/Vector.css.",
 'updated'                          => '(מעודכן)',
 'note'                             => "'''הערה:'''",
 'previewnote'                      => "'''זכרו שזו רק תצוגה מקדימה.'''
@@ -3523,6 +3532,7 @@ $1',
 'version-specialpages'             => 'דפים מיוחדים',
 'version-parserhooks'              => 'הרחבות מפענח',
 'version-variables'                => 'משתנים',
+'version-skins'                    => 'עיצובים',
 'version-other'                    => 'אחר',
 'version-mediahandlers'            => 'מציגי מדיה',
 'version-hooks'                    => 'מבני Hook',
