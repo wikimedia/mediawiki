@@ -1070,11 +1070,7 @@ abstract class Maintenance {
 	public static function readconsole( $prompt = '> ' ) {
 		static $isatty = null;
 		if ( is_null( $isatty ) ) {
-			if ( posix_isatty( 0 /*STDIN*/ ) ) {
-				$isatty = true;
-			} else {
-				$isatty = false;
-			}
+			$isatty = posix_isatty( 0 /*STDIN*/ );
 		}
 
 		if ( $isatty && function_exists( 'readline' ) ) {
