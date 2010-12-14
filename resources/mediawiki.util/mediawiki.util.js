@@ -346,7 +346,6 @@
 					}
 				}
 				
-				$messageDiv.show();
 				if ( className ) {
 					$messageDiv.attr( 'class', 'mw-js-message-' + className );
 				}
@@ -357,6 +356,8 @@
 				} else {
 					$messageDiv.html( message );
 				}
+
+				$messageDiv.slideDown();
 				return true;
 			}
 		}

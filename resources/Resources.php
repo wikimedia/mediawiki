@@ -342,7 +342,7 @@ return array(
 	),
 	'mediawiki.action.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
-		'dependencies' => array( 'mediawiki.util', 'mediawiki.legacy.ajax' ),
+		'dependencies' => array( 'mediawiki.util' ),
 	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',

@@ -73,7 +73,7 @@ $( document ).ready( function() {
 	$links.click( function( event ) {
 		var $link = $( this );
 
-		if( wgAjaxWatch.supported === false || !mw.config.get( 'wgEnableWriteAPI' ) || !wfSupportsAjax() ) {
+		if( wgAjaxWatch.supported === false || !mw.config.get( 'wgEnableWriteAPI' ) ) {
 			// Lazy initialization so we don't toss up
 			// ActiveX warnings on initial page load
 			// for IE 6 users with security settings.
