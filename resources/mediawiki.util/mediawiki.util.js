@@ -4,7 +4,7 @@
 
 (function ($, mw) {
 
-	mediaWiki.util = {
+	mw.util = {
 
 		/* Initialisation */
 		'initialised' : false,
@@ -363,6 +363,6 @@
 
 	};
 
-	mediaWiki.util.init();
+	mw.util.init();
 
 })(jQuery, mediaWiki);
