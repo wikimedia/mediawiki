@@ -28,7 +28,7 @@ interface DatabaseType {
 	 *
 	 * @return string
 	 */
-	public function getType();
+	function getType();
 
 	/**
 	 * Open a connection to the database. Usually aborts on failure
@@ -40,7 +40,7 @@ interface DatabaseType {
 	 * @return bool
 	 * @throws DBConnectionError
 	 */
-	public function open( $server, $user, $password, $dbName );
+	function open( $server, $user, $password, $dbName );
 
 	/**
 	 * The DBMS-dependent part of query()
@@ -50,7 +50,7 @@ interface DatabaseType {
 	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure
 	 * @private
 	 */
-	/*private*/ function doQuery( $sql );
+	function doQuery( $sql );
 
 	/**
 	 * Fetch the next row from the given result object, in object form.
@@ -61,7 +61,7 @@ interface DatabaseType {
 	 * @return Row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
-	public function fetchObject( $res );
+	function fetchObject( $res );
 
 	/**
 	 * Fetch the next row from the given result object, in associative array
@@ -71,7 +71,7 @@ interface DatabaseType {
 	 * @return Row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
-	public function fetchRow( $res );
+	function fetchRow( $res );
 
 	/**
 	 * Get the number of rows in a result object
@@ -79,7 +79,7 @@ interface DatabaseType {
 	 * @param $res Mixed: A SQL result
 	 * @return int
 	 */
-	public function numRows( $res );
+	function numRows( $res );
 
 	/**
 	 * Get the number of fields in a result object
@@ -88,7 +88,7 @@ interface DatabaseType {
 	 * @param $res Mixed: A SQL result
 	 * @return int
 	 */
-	public function numFields( $res );
+	function numFields( $res );
 
 	/**
 	 * Get a field name in a result object
@@ -98,7 +98,7 @@ interface DatabaseType {
 	 * @param $n Integer
 	 * @return string
 	 */
-	public function fieldName( $res, $n );
+	function fieldName( $res, $n );
 
 	/**
 	 * Get the inserted value of an auto-increment row
@@ -112,7 +112,7 @@ interface DatabaseType {
 	 *
 	 * @return int
 	 */
-	public function insertId();
+	function insertId();
 
 	/**
 	 * Change the position of the cursor in a result object
@@ -121,7 +121,7 @@ interface DatabaseType {
 	 * @param $res Mixed: A SQL result
 	 * @param $row Mixed: Either MySQL row or ResultWrapper
 	 */
-	public function dataSeek( $res, $row );
+	function dataSeek( $res, $row );
 
 	/**
 	 * Get the last error number
@@ -129,7 +129,7 @@ interface DatabaseType {
 	 *
 	 * @return int
 	 */
-	public function lastErrno();
+	function lastErrno();
 
 	/**
 	 * Get a description of the last error
@@ -137,7 +137,7 @@ interface DatabaseType {
 	 *
 	 * @return string
 	 */
-	public function lastError();
+	function lastError();
 
 	/**
 	 * mysql_fetch_field() wrapper
@@ -146,7 +146,7 @@ interface DatabaseType {
 	 * @param $table string: table name
 	 * @param $field string: field name
 	 */
-	public function fieldInfo( $table, $field );
+	function fieldInfo( $table, $field );
 
 	/**
 	 * Get information about an index into an object
@@ -163,7 +163,7 @@ interface DatabaseType {
 	 *
 	 * @return int
 	 */
-	public function affectedRows();
+	function affectedRows();
 
 	/**
 	 * Wrapper for addslashes()
@@ -171,7 +171,7 @@ interface DatabaseType {
 	 * @param $s string: to be slashed.
 	 * @return string: slashed string.
 	 */
-	public function strencode( $s );
+	function strencode( $s );
 
 	/**
 	 * Returns a wikitext link to the DB's website, e.g.,
@@ -181,7 +181,7 @@ interface DatabaseType {
 	 *
 	 * @return string: wikitext of a link to the server software's web site
 	 */
-	public static function getSoftwareLink();
+	static function getSoftwareLink();
 
 	/**
 	 * A string describing the current software version, like from
@@ -189,7 +189,7 @@ interface DatabaseType {
 	 *
 	 * @return string: Version information from the database server.
 	 */
-	public function getServerVersion();
+	function getServerVersion();
 
 	/**
 	 * A string describing the current software version, and possibly
@@ -198,7 +198,7 @@ interface DatabaseType {
 	 *
 	 * @return string: Version information from the database server
 	 */
-	public function getServerInfo();
+	function getServerInfo();
 }
 
 /**
