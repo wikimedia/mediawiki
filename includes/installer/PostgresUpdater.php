@@ -685,8 +685,8 @@ END;
 		# This is create or replace, so harmless to call if not needed
 		$this->applyPatch( 'patch-ts2pagetitle.sql' );
 
-		# # If the server is 8.3 or higher, rewrite the tsearch2 triggers
-		# # in case they have the old 'default' versions
+		# If the server is 8.3 or higher, rewrite the tsearch2 triggers
+		# in case they have the old 'default' versions
 		# Gather version numbers in case we need them
 		if ( $this->db->getServerVersion() >= 8.3 ) {
 			$this->applyPatch( 'patch-tsearch2funcs.sql' );
