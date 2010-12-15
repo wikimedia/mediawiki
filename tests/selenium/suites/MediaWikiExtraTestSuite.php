@@ -1,6 +1,6 @@
 <?php
 
-class MediaWikExtraTestSuite extends SeleniumTestSuite {
+class MediaWikiExtraTestSuite extends SeleniumTestSuite {
     public function setUp() {
         $this->setLoginBeforeTests( true );
         parent::setUp();
