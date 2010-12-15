@@ -92,6 +92,7 @@ class HTMLForm {
 	protected $mSubmitText;
 	protected $mSubmitTooltip;
 	protected $mTitle;
+	protected $mMethod = 'post';
 
 	protected $mUseMultipart = false;
 	protected $mHiddenFields = array();
@@ -375,7 +376,7 @@ class HTMLForm {
 		# Attributes
 		$attribs = array(
 			'action'  => $this->getTitle()->getFullURL(),
-			'method'  => 'post',
+			'method'  => $this->mMethod,
 			'class'   => 'visualClear',
 			'enctype' => $encType,
 		);
@@ -585,6 +586,14 @@ class HTMLForm {
 	 */
 	function getTitle() {
 		return $this->mTitle;
+	}
+	
+	/**
+	 * Set the method used to submit the form
+	 * @param $method String
+	 */
+	public function setMethod( $method='post' ){
+		$this->mMethod = $method;
 	}
 
 	/**
