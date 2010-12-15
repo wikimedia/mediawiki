@@ -1078,7 +1078,7 @@ class HTMLFloatField extends HTMLTextField {
 
 		# http://dev.w3.org/html5/spec/common-microsyntaxes.html#real-numbers
 		# with the addition that a leading '+' sign is ok. 
-		if ( !preg_match( '/^(\+|\-)?\d+(\.\d+)?(E(\+|\-)?\d+)?$/i', $value ) ) {
+		if ( !preg_match( '/^((\+|\-)?\d+(\.\d+)?(E(\+|\-)?\d+)?)?$/i', $value ) ) {
 			return wfMsgExt( 'htmlform-float-invalid', 'parse' );
 		}
 
@@ -1121,7 +1121,7 @@ class HTMLIntField extends HTMLFloatField {
 		# phone numbers when you know that they are integers (the HTML5 type=tel
 		# input does not require its value to be numeric).  If you want a tidier
 		# value to, eg, save in the DB, clean it up with intval().
-		if ( !preg_match( '/^(\+|\-)?\d*$/', trim( $value ) )
+		if ( !preg_match( '/^((\+|\-)?\d+)?$/', trim( $value ) )
 		) {
 			return wfMsgExt( 'htmlform-int-invalid', 'parse' );
 		}
