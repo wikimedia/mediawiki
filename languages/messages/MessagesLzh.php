@@ -519,6 +519,9 @@ $2',
 'loginlanguagelabel'         => '語：$1',
 'suspicious-userlogout'      => '爾欲無離也，可由壞瀏覽器或快枝代理呈送之。',
 
+# E-mail sending
+'php-mail-error-unknown' => '於 PHP mail() 參數現錯',
+
 # JavaScript password checks
 'password-strength'            => '預之符節強度：$1',
 'password-strength-bad'        => '壞',
@@ -631,10 +634,14 @@ $2',
 '''Internet Explorer:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。",
 'usercssyoucanpreview'             => "'''訣：'''CSS應先「{{int:showpreview}}」而後存。",
 'userjsyoucanpreview'              => "'''訣：'''JavaScript應先「{{int:showpreview}}」而後存。",
-'usercsspreview'                   => "'''預覽CSS。'''
-'''尚未儲焉。'''",
-'userjspreview'                    => "'''預覽JavaScript。'''
-'''尚未儲焉。'''",
+'usercsspreview'                   => "'''預覽簿CSS。'''
+'''尚未儲焉！'''",
+'userjspreview'                    => "'''預覽簿JavaScript。'''
+'''尚未儲焉！'''",
+'sitecsspreview'                   => "'''預覽此CSS。'''
+'''尚未儲焉！'''",
+'sitejspreview'                    => "'''預覽此JavaScript。'''
+'''尚未儲焉！'''",
 'userinvalidcssjstitle'            => "'''警：'''\"\$1\"無此面版。自製者，全名務小寫，如{{ns:user}}:Foo/vector.css 而非{{ns:user}}:Foo/Vector.css",
 'updated'                          => '（新）',
 'note'                             => "'''註'''",
@@ -650,7 +657,7 @@ $2',
 'editingcomment'                   => '贊$1',
 'editconflict'                     => '纂沖$1',
 'explainconflict'                  => "子纂與他人沖，上者時也，下者子也，望子合之。
-註，'''惟'''上文儲焉",
+註，'''{{int:savearticle}}'''上文儲焉",
 'yourtext'                         => '子也',
 'storedversion'                    => '時也',
 'nonunicodebrowser'                => "'''警示：覽器不識萬國碼，以十六進位數代之，以保纂可也。'''",
@@ -1194,6 +1201,7 @@ $1",
 'right-override-export-depth' => '出有五層深之頁',
 'right-sendemail'             => '擬書傳予他簿',
 'right-revisionmove'          => '遷審',
+'right-disableaccount'        => '停簿',
 
 # User rights log
 'rightslog'  => '職權志',
@@ -1376,6 +1384,15 @@ $1',
 'upload-unknown-size'       => '未知之積',
 'upload-http-error'         => '發一HTTP之錯：$1',
 
+# Special:UploadStash
+'uploadstash'		   => '貢貯',
+'uploadstash-summary'      => '此頁乃已貢物（正貢）但未發wiki之地也。非貢之本人乃無視也。',
+'uploadstash-clear'        => '清貯',
+'uploadstash-nofiles'      => '爾無貯貢也。',
+'uploadstash-badtoken'     => '此動作無行也，或爾之幣已過。再試之。',
+'uploadstash-errclear'	   => '清貢無功也。',
+'uploadstash-refresh'	   => '重載貢表',
+
 # img_auth script messages
 'img-auth-accessdenied' => '無通',
 'img-auth-nopathinfo'   => 'PATH_INFO失之。
@@ -1537,6 +1554,7 @@ $1',
 'statistics-edits'             => '自{{SITENAME}}設之頁纂數',
 'statistics-edits-average'     => '每頁均纂數',
 'statistics-views-total'       => '閱總',
+'statistics-views-total-desc'  => '不包無存之頁與奇頁之閱數',
 'statistics-views-peredit'     => '每纂閱數',
 'statistics-users'             => '註[[Special:ListUsers|簿]]',
 'statistics-users-active'      => '活簿',
@@ -1572,6 +1590,7 @@ $1',
 'nrevisions'              => '$1審',
 'nviews'                  => '$1閱',
 'nimagelinks'             => '用以頁有$1',
+'ntransclusions'          => '用以頁有$1',
 'lonelypages'             => '孤寡',
 'lonelypagestext'         => '頁下無鏈或含',
 'uncategorizedpages'      => '欲訂',
@@ -1983,6 +2002,7 @@ $1',
 'sp-contributions-newbies-title'       => '新進之功績',
 'sp-contributions-blocklog'            => '誌禁',
 'sp-contributions-deleted'             => '已刪之積',
+'sp-contributions-uploads'             => '貢',
 'sp-contributions-logs'                => '誌',
 'sp-contributions-talk'                => '議',
 'sp-contributions-userrights'          => '秉治權任',
@@ -2141,8 +2161,15 @@ $1已被禁矣。爾是否改此置？',
 
 囑之者，新題若非空、渡、缺誌，則舊'''不遷'''焉。存頁勿覆，而誤遷可悔也。
 
-<b>警示</b>
+'''警示！'''
 膾炙遷焉，禍生不測；戒慎行之。",
+'movepagetext-noredirectfixer' => "函下遷頁，誌隨新往、舊題作渡、取佐欲移。欲查[[Special:DoubleRedirects|防窮]]、[[Special:BrokenRedirects|斷渡]]之。
+
+囑之者，新題若非空、渡、缺誌，則舊'''不遷'''焉。存頁勿覆，而誤遷可悔也。
+
+'''警示！'''
+膾炙遷焉，禍生不測；戒慎行之。",
+
 'movearticle'                  => '遷文：',
 'moveuserpage-warning'         => "'''警：'''爾將遷頁齋。注之遷齋後之簿名乃為''無''變也。",
 'movenologin'                  => '未登簿',
@@ -2713,6 +2740,7 @@ $1',
 'version-specialpages'             => '奇頁',
 'version-parserhooks'              => '語鈎',
 'version-variables'                => '變數',
+'version-skins'                    => '皮',
 'version-other'                    => '他',
 'version-mediahandlers'            => '媒處',
 'version-hooks'                    => '鈎',
@@ -2815,5 +2843,18 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 # SQLite database support
 'sqlite-has-fts' => '$1 含全文之尋',
 'sqlite-no-fts'  => '$1 不含全文之尋',
+
+# Special:DisableAccount
+'disableaccount'             => '停簿',
+'disableaccount-user'        => '簿名：',
+'disableaccount-reason'      => '因：',
+'disableaccount-confirm'     => "停此簿。
+此簿無登、重設符節，或收知電。
+若用之，乃立去。
+''意停簿無系秩之介無回也。''",
+'disableaccount-mustconfirm' => '爾須確乃認停爾之簿也。',
+'disableaccount-nosuchuser'  => '「$1」之簿無存也。',
+'disableaccount-success'     => '「$1」之簿已久停簿。',
+'disableaccount-logentry'    => '久停之簿[[$1]]',
 
 );

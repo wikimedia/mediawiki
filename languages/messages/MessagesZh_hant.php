@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -668,7 +668,7 @@ $2',
 'suspicious-userlogout'      => '您登出的要求已經被拒絕，因為它可能是由已損壞的瀏覽器或者快取代理傳送。',
 
 # E-mail sending
-'php-mail-error-unknown' => '在PHP的mail（）參數中的未知錯誤',
+'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',
 
 # JavaScript password checks
 'password-strength'            => '預估密碼強度： $1',
@@ -799,10 +799,14 @@ $2',
 '''Internet Explorer''': 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
 'usercssyoucanpreview'             => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 CSS 。",
 'userjsyoucanpreview'              => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 JavaScript 。",
-'usercsspreview'                   => "'''注意您只是在預覽您的個人 CSS。'''
+'usercsspreview'                   => "'''記住您只是在預覽您的個人 CSS。'''
 '''還沒有儲存﹗'''",
-'userjspreview'                    => "'''注意您只是在測試／預覽您的個人 JavaScript。'''
+'userjspreview'                    => "'''記住您只是在測試／預覽您的個人 JavaScript。'''
 '''還沒有儲存﹗'''",
+'sitecsspreview'                   => "'''記住你現在只是預覽此 CSS。'''
+'''還沒有儲存！'''",
+'sitejspreview'                    => "'''記住你現在只是預覽此 JavaScript 代碼。'''
+'''還沒有儲存！'''",
 'userinvalidcssjstitle'            => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/vector.css 不同於 {{ns:user}}:Foo/Vector.css。",
 'updated'                          => '（已更新）',
 'note'                             => "'''注意:'''",
@@ -822,11 +826,11 @@ $2',
 'editingsection'                   => '正在編輯$1（段落）',
 'editingcomment'                   => '正在編輯$1（新段落）',
 'editconflict'                     => '編輯衝突：$1',
-'explainconflict'                  => '有人在{{GENDER:|你|妳|你}}開始編輯後更改了頁面。
+'explainconflict'                  => "有人在{{GENDER:|你|妳|你}}開始編輯後更改了頁面。
 上面的文字框內顯示的是目前本頁的內容。
 {{GENDER:|你|妳|你}}所做的修改顯示在下面的文字框中。
 {{GENDER:|你|妳|你}}應當將{{GENDER:|你|妳|你}}所做的修改加入現有的內容中。
-<b>只有</b>在上面文字框中的內容會在{{GENDER:|你|妳|你}}點擊"保存頁面"後被保存。',
+'''只有'''在上面文字框中的內容會在{{GENDER:|你|妳|你}}點擊「{{int:savearticle}}」後被保存。",
 'yourtext'                         => '您的文字',
 'storedversion'                    => '已保存修訂版本',
 'nonunicodebrowser'                => "'''警告: 您的瀏覽器不兼容Unicode編碼。'''這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。",
@@ -1401,7 +1405,7 @@ $1",
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
 'right-revisionmove'          => '移動修訂版本',
-'right-disableaccount'        => '禁用帳戶',
+'right-disableaccount'        => '禁用賬戶',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1616,6 +1620,15 @@ $1',
 'upload-unknown-size'       => '未知的大小',
 'upload-http-error'         => '已發生一個HTTP錯誤：$1',
 
+# Special:UploadStash
+'uploadstash'		   => '上傳貯藏',
+'uploadstash-summary'      => '這個頁面提供已經上傳（或者上傳中）但未發佈到wiki之檔案存取。這些檔案除了上傳的用戶之外不會被其他人可見。',
+'uploadstash-clear'        => '清除貯藏檔案',
+'uploadstash-nofiles'      => '{{GENDER:|你|妳|你}}沒有已貯藏的檔案。',
+'uploadstash-badtoken'     => '進行這個動作不成功，或者{{GENDER:|你|妳|你}}的編輯資訊已經過期。請再試。',
+'uploadstash-errclear'	   => '清除檔案不成功。',
+'uploadstash-refresh'	   => '更新檔案清單',
+
 # img_auth script messages
 'img-auth-accessdenied' => '拒絕存取',
 'img-auth-nopathinfo'   => 'PATH_INFO遺失。
@@ -1779,7 +1792,7 @@ $1',
 'statistics-edits'             => '自從{{SITENAME}}設定的頁面編輯數',
 'statistics-edits-average'     => '每一頁面的平均編輯數',
 'statistics-views-total'       => '檢視總數',
-'statistics-views-total-desc'  => '不包含未存在頁面的觀點與特殊頁面在內',
+'statistics-views-total-desc'  => '不存在頁面和特殊頁面的查看數未計入',
 'statistics-views-peredit'     => '每次編輯檢視數',
 'statistics-users'             => '已註冊[[Special:ListUsers|用戶]]',
 'statistics-users-active'      => '活躍用戶',
@@ -1822,7 +1835,7 @@ Template:消除歧義',
 'nrevisions'              => '$1個修訂',
 'nviews'                  => '$1次瀏覽',
 'nimagelinks'             => '用於$1個頁面中',
-'ntransclusions'          => '用於$1個{{PLURAL:$1|頁面|頁面}}中',
+'ntransclusions'          => '用於$1個頁面中',
 'specialpage-empty'       => '這個報告的結果為空。',
 'lonelypages'             => '孤立頁面',
 'lonelypagestext'         => '以下頁面尚未被{{SITENAME}}中的其它頁面連結或被之包含。',
@@ -2264,6 +2277,7 @@ $1',
 'sp-contributions-newbies-title'       => '新手的用戶貢獻',
 'sp-contributions-blocklog'            => '封禁記錄',
 'sp-contributions-deleted'             => '已刪除的用戶貢獻',
+'sp-contributions-uploads'             => '上載',
 'sp-contributions-logs'                => '日誌',
 'sp-contributions-talk'                => '對話',
 'sp-contributions-userrights'          => '用戶權限管理',
@@ -2440,9 +2454,22 @@ $1已經被封鎖。您是否想更改這個設定？',
 這意味著您再必要時可以在移動到新頁面後再移回老的頁面，
 同時您也無法覆蓋現有頁面。
 
-<b>警告！</b>
+'''警告！'''
 對一個經常被訪問的頁面而言這可能是一個重大與唐突的更改；
-請在行動前先了結其所可能帶來的後果。",
+請在行動前先了解其所可能帶來的後果。",
+'movepagetext-noredirectfixer' => "用下面的表單來重命名一個頁面，並將其修訂歷史同時移動到新頁面。
+老的頁面將成為新頁面的重定向頁。
+請檢查[[Special:DoubleRedirects|雙重重定向]]或[[Special:BrokenRedirects|損壞重定向]]連結。
+您應當負責確定所有連結依然會鏈到指定的頁面。
+
+注意如果新頁面已經有內容的話，頁面將'''不會'''被移動，
+除非新頁面無內容或是重定向頁，而且沒有修訂歷史。
+這意味著您再必要時可以在移動到新頁面後再移回老的頁面，
+同時您也無法覆蓋現有頁面。
+
+'''警告！'''
+對一個經常被訪問的頁面而言這可能是一個重大與唐突的更改；
+請在行動前先確定您了解其所可能帶來的後果。",
 'movepagetalktext'             => "有關的對話頁（如果有的話）將被自動與該頁面一起移動，'''除非'''：
 *您將頁面移動到不同的名字空間；
 *新頁面已經有一個包含內容的對話頁，或者
@@ -3288,6 +3315,7 @@ $1',
 'version-specialpages'             => '特殊頁面',
 'version-parserhooks'              => '語法鈎',
 'version-variables'                => '變數',
+'version-skins'                    => '面板',
 'version-other'                    => '其它',
 'version-mediahandlers'            => '媒體處理器',
 'version-hooks'                    => '鈎',
@@ -3409,5 +3437,18 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 # SQLite database support
 'sqlite-has-fts' => '帶全文搜尋的版本$1',
 'sqlite-no-fts'  => '不帶全文搜尋的版本$1',
+
+# Special:DisableAccount
+'disableaccount'             => '禁用用戶賬戶',
+'disableaccount-user'        => '用戶名：',
+'disableaccount-reason'      => '理由：',
+'disableaccount-confirm'     => "禁用此用戶賬戶。
+該使用者將無法登入、重設其密碼或收到電子郵件通知。如果用戶目前仍保持登錄，其賬戶將被強制登出。
+''留意若無系統管理員的干預，被禁用的賬戶不可重新啟用。''",
+'disableaccount-mustconfirm' => '請確認您的確要禁用此賬戶。',
+'disableaccount-nosuchuser'  => '用戶賬戶「$1」不存在。',
+'disableaccount-success'     => '用戶賬戶「$1」已被永久禁用。',
+'disableaccount-logentry'    => '永久禁用用戶賬戶[[$1]]',
+
 
 );
