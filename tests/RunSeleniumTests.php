@@ -26,7 +26,8 @@
 
 define( 'SELENIUMTEST', true );
 
-require_once( dirname( __FILE__ ) . '/../maintenance/commandLine.inc' );
+//require_once( dirname( __FILE__ ) . '/../maintenance/commandLine.inc' );
+require( dirname( __FILE__ ) . '/../maintenance/Maintenance.php' );
 require_once( 'PHPUnit/Framework.php' );
 require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
 include_once( 'PHPUnit/Util/Log/JUnit.php' );
@@ -167,8 +168,8 @@ class SeleniumTester extends Maintenance {
 		// State for starting/stopping the Selenium server has nothing to do with the Selenium
 		// class. Keep this state local to SeleniumTester class. Using getOption() is clumsy, but
 		// the Maintenance class does not have a setOption()
-		if ( isset( $seleniumSettings['startserver'] ) ) $this->getOption( 'startserver', true );
-		if ( isset( $seleniumSettings['stopserver'] ) ) $this->getOption( 'stopserver', true );
+		if ( ! isset( $seleniumSettings['startserver'] ) ) $this->getOption( 'startserver', true );
+		if ( ! isset( $seleniumSettings['stopserver'] ) ) $this->getOption( 'stopserver', true );
 		if ( !isset( $seleniumSettings['seleniumserverexecpath'] ) ) $seleniumSettings['seleniumserverexecpath'] = '';
 		$this->seleniumServerExecPath = $seleniumSettings['seleniumserverexecpath'];
 
