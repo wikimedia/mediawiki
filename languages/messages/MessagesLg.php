@@ -364,13 +364,34 @@ Ensobi eno gimanyise [[Special:ListUsers/sysop|omuteesiteesi]], nga omulaga n'en
 'filenotfound'         => 'Fayiro "$1" embuze.',
 'fileexistserror'      => 'Nnemedwa okuwandika fayiro "$1": Yakolebwawo dda',
 'unexpected'           => 'Waliwo ekivaamu ekitasuubirwa: "$1"="$2".',
-'badtitletext'         => "Onoonyezza erinnya ly'olupapula eritakkirizibwa, oba ery'olupapula olwereere, oba ery'oluli ku wiki endala nga teruyungidwa ku eno obulungi.
-
+'formerror'            => 'Kiremya: nnemedwa okusindika foomu',
+'badarticleerror'      => 'Ku lupapula luno ekikolwa ekyo tekisoboka.',
+'cannotdelete'         => 'Tekisobose okugyawo olupapula oba fayiro "$1".<br />
+Kisoboka nti waliwo eyakwesoose.',
+'badtitle'             => 'Buzibu ku linnya lya lupapula',
+'badtitletext'         => "Onoonyezza erinnya ly'olupapula eritakkirizibwa, oba ery'olupapula olwereere, oba ery'oluli ku wiki endala nga teruyungidwa ku eno obulungi.<br />
 Erinnya eryo liyinza ate okubaamu ennukuta oba obubonero ebitakkirizibwa mu mannya ga mpapula.",
+'perfcached'           => "Data eddako wano eva mu ggwanika zzibizi era eyinz'obutatuukana n'eyennono.",
+'perfcachedts'         => "Data eddako wano eva mu ggwanika zzibizi, yasemba okutuukanizibwa n'ey'ennono ku saawa $3, nga $2.",
+'querypage-no-updates' => 'Ku ssaawa eno olupapula luno terukkiriza kukyusibwamu.<br />
+Data eruliko ejjakugira nga tekyuka.',
+'wrong_wfQuery_params' => 'wfQuery() kirimu paramita ensobu zino<br />
+Mukolo: $1<br />
+Ekiragiro ekinoonyeza mu ggwanika lya data: $2',
 'viewsource'           => "Kebera obulambike obw'ennono obw'olupapula luno",
 'viewsourcefor'        => 'obwa $1',
+'actionthrottled'      => 'Ekikolwa kigaanidwa',
+'actionthrottledtext'  => "Okulwanyisa abasindika obubaka kiyaaye, twateekawo ekkomo ery'emirundi omuntu gy'ayinza okukola ekikolwa ekyo.<br />
+Gwe olituuseeko.<br />
+Lindako eddakiika entonotono oly'oke oddemu okugezako ekikolwa.",
+'protectedpagetext'    => 'Olupapula luno luliko ekikugizo ekirugaana okukyusibwako.',
+'viewsourcetext'       => "Obulambe obw'ekiwandike eky'ennono eky'olupapula luno osobola okubukebera n'okubugyamu koppi:",
+'protectedinterface'   => "Olupapula luno nnono y'ebigambo eby'oku bitundu bya sofutiweya abagikozesa bye balaba.<br />
+Luliko ebikugizo ebirugaana okwonooebwa.",
 'editinginterface'     => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo.
 Enkyukakyuka z'okola wano zigyakubaako kye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
+'cascadeprotected'     => 'Olupapula luno lulandideko ekikugizo ekirugaana okukyusibwako ekisibuka ku {{PLURAL:$1|lunnaalwo luno olulukozesa|zinnalwo zino ezirukozesa}}:<br />
+$2',
 
 # Login and logout pages
 'logouttext'                 => "'''Kati ovuddemu.'''

@@ -2214,15 +2214,6 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-unknown-size'       => 'Unknown size',
 'upload-http-error'         => 'An HTTP error occured: $1',
 
-# Special:UploadStash
-'uploadstash'		   => 'Upload stash',
-'uploadstash-summary'      => 'This page provides access to files which are uploaded (or in the process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.',
-'uploadstash-clear'        => 'Clear stashed files',
-'uploadstash-nofiles'      => 'You have no stashed files.',
-'uploadstash-badtoken'     => 'Performing of that action was unsuccessful, perhaps because your editing credentials expired. Try again.',
-'uploadstash-errclear'	   => 'Clearing the files was unsuccessful.',
-'uploadstash-refresh'	   => 'Refresh the list of files',
-
 # img_auth script messages
 'img-auth-accessdenied' => 'Access denied',
 'img-auth-nopathinfo'   => 'Missing PATH_INFO.
@@ -4393,5 +4384,14 @@ If the user is currently logged in anywhere, they will be immediately logged out
 'disableaccount-nosuchuser'  => 'The user account "$1" does not exist.',
 'disableaccount-success'     => 'The user account "$1" has been permanently disabled.',
 'disableaccount-logentry'    => 'permanently disabled the user account [[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => 'Upload stash',
+'uploadstash-summary'  => 'This page provides access to files which are uploaded (or in the process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.',
+'uploadstash-clear'    => 'Clear stashed files',
+'uploadstash-nofiles'  => 'You have no stashed files.',
+'uploadstash-badtoken' => 'Performing of that action was unsuccessful, perhaps because your editing credentials expired. Try again.',
+'uploadstash-errclear' => 'Clearing the files was unsuccessful.',
+'uploadstash-refresh'  => 'Refresh the list of files',
 
 );

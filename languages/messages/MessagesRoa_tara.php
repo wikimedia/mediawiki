@@ -520,6 +520,9 @@ Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel'         => 'Lénga: $1',
 'suspicious-userlogout'      => "'A richiesta toje de assè ha state bloccate purcè pare ca ha state mannate da 'nu browser scuasciate o da 'a cache de 'nu proxy.",
 
+# E-mail sending
+'php-mail-error-unknown' => "Errore scanusciute jndr'à funzione PHP mail()",
+
 # JavaScript password checks
 'password-strength'            => "Lunghezze d'a passuord stimate: $1",
 'password-strength-bad'        => 'SCKEFUSE',
@@ -3191,6 +3194,7 @@ Tu puè pure [[Special:Watchlist/edit|ausà 'u cangiatore standàrd]].",
 'version-specialpages'             => 'Pàggene speciele',
 'version-parserhooks'              => 'Hook analizzature',
 'version-variables'                => 'Variabbele',
+'version-skins'                    => 'Skin',
 'version-other'                    => 'Otre',
 'version-mediahandlers'            => 'Gestore de le Media',
 'version-hooks'                    => 'Hook',
@@ -3314,7 +3318,12 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
 
 # Special:DisableAccount
-'disableaccount-user'   => "Nome de l'utende:",
-'disableaccount-reason' => 'Mutive:',
+'disableaccount'             => "Disabbilete 'nu cunde utende",
+'disableaccount-user'        => "Nome de l'utende:",
+'disableaccount-reason'      => 'Mutive:',
+'disableaccount-mustconfirm' => 'Tu a confermà ce vuè ccu disabbilete stu cunde utende.',
+'disableaccount-nosuchuser'  => '\'U cunde utende "$1" non g\'esiste.',
+'disableaccount-success'     => '\'U cunde utende "$1" ha state disabbilitate pe sembre.',
+'disableaccount-logentry'    => "disabbilete pe sembre 'u cunde utende [[$1]]",
 
 );

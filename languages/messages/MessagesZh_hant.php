@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1619,15 +1619,6 @@ $1',
 'upload-too-many-redirects' => '在網址中有太多重新定向',
 'upload-unknown-size'       => '未知的大小',
 'upload-http-error'         => '已發生一個HTTP錯誤：$1',
-
-# Special:UploadStash
-'uploadstash'		   => '上傳貯藏',
-'uploadstash-summary'      => '這個頁面提供已經上傳（或者上傳中）但未發佈到wiki之檔案存取。這些檔案除了上傳的用戶之外不會被其他人可見。',
-'uploadstash-clear'        => '清除貯藏檔案',
-'uploadstash-nofiles'      => '{{GENDER:|你|妳|你}}沒有已貯藏的檔案。',
-'uploadstash-badtoken'     => '進行這個動作不成功，或者{{GENDER:|你|妳|你}}的編輯資訊已經過期。請再試。',
-'uploadstash-errclear'	   => '清除檔案不成功。',
-'uploadstash-refresh'	   => '更新檔案清單',
 
 # img_auth script messages
 'img-auth-accessdenied' => '拒絕存取',
@@ -3450,5 +3441,13 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'disableaccount-success'     => '用戶賬戶「$1」已被永久禁用。',
 'disableaccount-logentry'    => '永久禁用用戶賬戶[[$1]]',
 
+# Special:UploadStash
+'uploadstash'          => '上傳貯藏',
+'uploadstash-summary'  => '這個頁面提供已經上傳（或者上傳中）但未發佈到wiki之檔案存取。這些檔案除了上傳的用戶之外不會被其他人可見。',
+'uploadstash-clear'    => '清除貯藏檔案',
+'uploadstash-nofiles'  => '{{GENDER:|你|妳|你}}沒有已貯藏的檔案。',
+'uploadstash-badtoken' => '進行這個動作不成功，或者{{GENDER:|你|妳|你}}的編輯資訊已經過期。請再試。',
+'uploadstash-errclear' => '清除檔案不成功。',
+'uploadstash-refresh'  => '更新檔案清單',
 
 );

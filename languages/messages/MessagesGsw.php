@@ -739,9 +739,9 @@ As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
 '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview'                    => "== Vorschau vu Dyynem Benutzer-Javascript. ==
 '''Gib acht:''' Noch em Spychere muesch Dyy Browser aawyse di nej Version z lade: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'sitecsspreview'                   => "'''Obacht: Du luegsch nume ne Vorschau vu däm global CSS aa.'''
+'sitecsspreview'                   => "'''Obacht: Du luegsch nume ne Vorschau vu däm CSS aa.'''
 '''S isch nonig gspycheret wore!'''",
-'sitejspreview'                    => "'''Obacht: Du luegsch nume ne Vorschau vu däm global JavaScript aa.'''
+'sitejspreview'                    => "'''Obacht: Du luegsch nume ne Vorschau vu däm JavaScript aa.'''
 '''S isch nonig gspycheret wore!'''",
 'userinvalidcssjstitle'            => "'''Achtig:''' D Skin „$1“ git s nid. Dänk dra, ass benutzerspezifischi .css- und .js-Syte mit eme Chleibuechstabe mien aafange, also z B. ''{{ns:user}}:Mustermann/vector.css'' statt ''{{ns:user}}:Mustermann/Vector.css''.",
 'updated'                          => '(Gänderet)',
@@ -3287,5 +3287,14 @@ Wänn dr Benutzer grad aagmäldet isch, wird er sofort abgmäldet.
 'disableaccount-nosuchuser'  => 'Dr Benutzer „$1“ git s nit.',
 'disableaccount-success'     => 'S Benutzerkonto „$1“ isch fir immer deaktiviert wore.',
 'disableaccount-logentry'    => 'het s Benutzerkonto [[$1]] fir immer deaktiviert',
+
+# Special:UploadStash
+'uploadstash'          => 'Vorabspycherig binm Uffelade',
+'uploadstash-summary'  => 'Die Syte macht dr Zuegriff uf Dateie megli, wu uffeglade wore sin (oder grad uffeglade wäre), wu aber nonig uf em Wiki publiziert wore sin. Die Dateie cha no niemer aaluege, ußer däjenig, wu si uffelade duet.',
+'uploadstash-clear'    => 'Di vorab gspycherete Dateie uuseneh',
+'uploadstash-nofiles'  => 'S git keini vorab gspycherete Dateie.',
+'uploadstash-badtoken' => 'S Uuseneh vu dr vorab gspycherete Dateien isch fählgschlaa, villicht wel d Sitzigsdaten abglofe sin. Bitte versuech s nomol.',
+'uploadstash-errclear' => 'S Uuseneh vu dr vorab gspycherete Dateie isch fählgschlaa.',
+'uploadstash-refresh'  => 'Lischt vu dr Dateie aktualisiere',
 
 );

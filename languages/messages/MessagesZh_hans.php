@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1624,15 +1624,6 @@ $1',
 'upload-too-many-redirects' => '在网址中有太多重新定向',
 'upload-unknown-size'       => '未知大小',
 'upload-http-error'         => '发生HTTP错误：$1',
-
-# Special:UploadStash
-'uploadstash'		   => '文件贮藏',
-'uploadstash-summary'      => '这个页面提供已经上传（或者上传中）但未发布到wiki之文件存取。这些文件除了上传的用户之外不会被其他人可见。',
-'uploadstash-clear'        => '清除贮藏文件',
-'uploadstash-nofiles'      => '你没有已贮藏的文件。',
-'uploadstash-badtoken'     => '进行这个动作不成功，或者你的编辑信息已经过期。请再试。',
-'uploadstash-errclear'	   => '清除文件不成功。',
-'uploadstash-refresh'	   => '更新文件清单',
 
 # img_auth script messages
 'img-auth-accessdenied' => '拒绝访问',
@@ -3442,5 +3433,14 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'disableaccount-nosuchuser'  => '用户账户“$1”不存在。',
 'disableaccount-success'     => '用户账户“$1”已被永久禁用。',
 'disableaccount-logentry'    => '永久禁用用户账户[[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => '文件贮藏',
+'uploadstash-summary'  => '这个页面提供已经上传（或者上传中）但未发布到wiki之文件存取。这些文件除了上传的用户之外不会被其他人可见。',
+'uploadstash-clear'    => '清除贮藏文件',
+'uploadstash-nofiles'  => '你没有已贮藏的文件。',
+'uploadstash-badtoken' => '进行这个动作不成功，或者你的编辑信息已经过期。请再试。',
+'uploadstash-errclear' => '清除文件不成功。',
+'uploadstash-refresh'  => '更新文件清单',
 
 );

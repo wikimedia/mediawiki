@@ -3406,4 +3406,8 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'disableaccount-success'     => 'El compte d\'usuari/a "$1" ha estat permanentment deshabilitat.',
 'disableaccount-logentry'    => "permanentment deshabilitat el compte d'usuari/a  [[$1]]",
 
+# Special:UploadStash
+'uploadstash-errclear' => "L'esborrament dels arxius no va tenir èxit.",
+'uploadstash-refresh'  => 'Actualitzar la llista de fitxers.',
+
 );

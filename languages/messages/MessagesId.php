@@ -908,9 +908,9 @@ Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
 'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
 Pratayang ini belum disimpan!'''",
 'userjspreview'                    => "'''Ingatlah bahwa yang Anda lihat hanyalah pratayang JavaScript Anda, dan bahwa pratayang tersebut belum disimpan!'''",
-'sitecsspreview'                   => "'''Ingatlah bahwa Anda hanya menampilkan pratayang dari CSS global ini.'''
+'sitecsspreview'                   => "'''Ingatlah bahwa Anda hanya menampilkan pratayang dari CSS ini.'''
 '''Perubahan belum disimpan!'''",
-'sitejspreview'                    => "'''Ingatlah bahwa Anda hanya menampilkan pratayang dari kode JavaScript global ini.'''
+'sitejspreview'                    => "'''Ingatlah bahwa Anda hanya menampilkan pratayang dari kode JavaScript ini.'''
 '''Perubahan belum disimpan!'''",
 'userinvalidcssjstitle'            => "'''Peringatan:''' Kulit \"\$1\" tidak ditemukan. Harap diingat bahwa halaman .css dan .js menggunakan huruf kecil, contoh {{ns:user}}:Foo/vector.css dan bukannya {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Diperbarui)',
@@ -3554,5 +3554,14 @@ Jika pengguna saat ini sedang masuk di mana saja, mereka akan segera dikeluarkan
 'disableaccount-nosuchuser'  => 'Akun pengguna "$1" tidak ada.',
 'disableaccount-success'     => 'Akun pengguna "$1" telah dinonaktifkan secara permanen.',
 'disableaccount-logentry'    => 'menonaktifkan secara permanen akun pengguna [[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => 'Simpanan unggahan',
+'uploadstash-summary'  => 'Halaman ini memberikan akses terhadap berkas yang diunggah (atau dalam proses pengunggahan), namun belum diterbitkan ke wiki. Berkas-berkas ini tidak dapat dilihat oleh siapa pun kecuali pengunggahnya.',
+'uploadstash-clear'    => 'Hapus berkas simpanan',
+'uploadstash-nofiles'  => 'Anda tidak memiliki berkas simpanan.',
+'uploadstash-badtoken' => 'Pelaksanaan tindakan tersebut gagal. Mungkin karena hak penyuntingan Anda telah kedaluwarsa. Coba lagi.',
+'uploadstash-errclear' => 'Penghapusan berkas gagal.',
+'uploadstash-refresh'  => 'Segarkan daftar berkas.',
 
 );

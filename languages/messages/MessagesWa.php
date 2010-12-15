@@ -615,6 +615,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'prevn'                    => '$1 di dvant',
 'nextn'                    => '{{PLURAL:$1|$1}} shuvants',
 'viewprevnext'             => 'Vey ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-exists'        => "'''Gn a ddja ene pådje lomêye « [[:$1]] » so ç' wiki ci'''",
 'searchhelp-url'           => 'Help:Aidance',
 'search-redirect'          => '(ridjiblé di $1)',
 'search-interwiki-caption' => 'So les ôtes pordjets Wiki',

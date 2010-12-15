@@ -724,9 +724,9 @@ Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 'usercsspreview'                   => "'''Cofiwch - dim ond rhagolwg o'ch CSS defnyddiwr yw hwn.'''
 '''Nid yw wedi'i gadw eto!'''",
 'userjspreview'                    => "'''Cofiwch -- dim ond rhagolwg o'ch JavaScript yw hwn; nid yw wedi'i gadw eto!'''",
-'sitecsspreview'                   => "'''Cofiwch - dim ond rhagolwg o'ch CSS wici-gyfan yw hwn.'''
+'sitecsspreview'                   => "'''Cofiwch - dim ond rhagolwg o'ch CSS yw hwn.'''
 '''Nid yw wedi'i gadw eto!'''",
-'sitejspreview'                    => "'''Cofiwch - dim ond rhagolwg o'ch JavaScript wici-gyfan yw hwn.'''
+'sitejspreview'                    => "'''Cofiwch - dim ond rhagolwg o'ch côd JavaScript yw hwn.'''
 '''Nid yw wedi'i rhoi ar gadw eto!'''",
 'userinvalidcssjstitle'            => "'''Rhybudd:''' Nid oes gwedd o'r enw \"\$1\".
 Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:user}}:Foo/vector.css yn hytrach na {{ns:user}}:Foo/Vector.css.",

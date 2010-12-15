@@ -1384,15 +1384,6 @@ $1',
 'upload-unknown-size'       => '未知之積',
 'upload-http-error'         => '發一HTTP之錯：$1',
 
-# Special:UploadStash
-'uploadstash'		   => '貢貯',
-'uploadstash-summary'      => '此頁乃已貢物（正貢）但未發wiki之地也。非貢之本人乃無視也。',
-'uploadstash-clear'        => '清貯',
-'uploadstash-nofiles'      => '爾無貯貢也。',
-'uploadstash-badtoken'     => '此動作無行也，或爾之幣已過。再試之。',
-'uploadstash-errclear'	   => '清貢無功也。',
-'uploadstash-refresh'	   => '重載貢表',
-
 # img_auth script messages
 'img-auth-accessdenied' => '無通',
 'img-auth-nopathinfo'   => 'PATH_INFO失之。
@@ -2169,7 +2160,6 @@ $1已被禁矣。爾是否改此置？',
 
 '''警示！'''
 膾炙遷焉，禍生不測；戒慎行之。",
-
 'movearticle'                  => '遷文：',
 'moveuserpage-warning'         => "'''警：'''爾將遷頁齋。注之遷齋後之簿名乃為''無''變也。",
 'movenologin'                  => '未登簿',
@@ -2856,5 +2846,14 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 'disableaccount-nosuchuser'  => '「$1」之簿無存也。',
 'disableaccount-success'     => '「$1」之簿已久停簿。',
 'disableaccount-logentry'    => '久停之簿[[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => '貢貯',
+'uploadstash-summary'  => '此頁乃已貢物（正貢）但未發wiki之地也。非貢之本人乃無視也。',
+'uploadstash-clear'    => '清貯',
+'uploadstash-nofiles'  => '爾無貯貢也。',
+'uploadstash-badtoken' => '此動作無行也，或爾之幣已過。再試之。',
+'uploadstash-errclear' => '清貢無功也。',
+'uploadstash-refresh'  => '重載貢表',
 
 );
