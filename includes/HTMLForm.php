@@ -42,10 +42,10 @@
  *	'validation-callback' -- a function name to give you the chance
  *	                         to impose extra validation on the field input.
  *	                         @see HTMLForm::validate()
- *  'name'                -- By default, the 'name' attribute of the input field
- *                           is "wp{$fieldname}".  If you want a different name
- *                           (eg one without the "wp" prefix), specify it here and
- *                           it will be used without modification.
+ *	'name'                -- By default, the 'name' attribute of the input field
+ *	                         is "wp{$fieldname}".  If you want a different name
+ *	                         (eg one without the "wp" prefix), specify it here and
+ *	                         it will be used without modification.
  *
  * TODO: Document 'section' / 'subsection' stuff
  */
@@ -211,7 +211,7 @@ class HTMLForm {
 		$editToken = $wgRequest->getVal( 'wpEditToken' );
 
 		$result = false;
-		if ( $wgUser->matchEditToken( $editToken ) ) {
+		if ( $this->getMethod() != 'post' || $wgUser->matchEditToken( $editToken ) ) {
 			$result = $this->trySubmit();
 		}
 		return $result;
@@ -397,8 +397,11 @@ class HTMLForm {
 		global $wgUser;
 
 		$html = '';
-		$html .= Html::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
-		$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
+		
+		if( $this->getMethod() == 'post' ){
+			$html .= Html::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
+			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
+		}
 
 		foreach ( $this->mHiddenFields as $data ) {
 			list( $value, $attribs ) = $data;
