@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Cantonese (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1569,15 +1569,6 @@ $1',
 'upload-too-many-redirects' => '個URL有太多跳轉',
 'upload-unknown-size'       => '未知嘅大細',
 'upload-http-error'         => '一個HTTP錯誤發生咗: $1',
-
-# Special:UploadStash
-'uploadstash'		   => '上載貯藏',
-'uploadstash-summary'      => '呢一版提供已經上載咗（或者上載緊）但係重未發佈到wiki嘅檔案存取。呢啲檔案除咗係上載佢哋嘅用戶之外其他人都會睇唔到。',
-'uploadstash-clear'        => '清除貯藏檔案',
-'uploadstash-nofiles'      => '你冇貯藏咗嘅檔案。',
-'uploadstash-badtoken'     => '進行呢個動作唔成功，或者你嘅編輯資訊已經過咗期。再試吓喇。',
-'uploadstash-errclear'	   => '清除檔案唔成功。',
-'uploadstash-refresh'	   => '更新檔案清單',
 
 # img_auth script messages
 'img-auth-accessdenied' => '拒絕通行',
@@ -3384,5 +3375,14 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 'disableaccount-nosuchuser'  => '用戶戶口 "$1" 唔存在。',
 'disableaccount-success'     => '用戶戶口 "$1" 已經永久停用咗。',
 'disableaccount-logentry'    => '永久停用咗用戶戶口[[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => '上載貯藏',
+'uploadstash-summary'  => '呢一版提供已經上載咗（或者上載緊）但係重未發佈到wiki嘅檔案存取。呢啲檔案除咗係上載佢哋嘅用戶之外其他人都會睇唔到。',
+'uploadstash-clear'    => '清除貯藏檔案',
+'uploadstash-nofiles'  => '你冇貯藏咗嘅檔案。',
+'uploadstash-badtoken' => '進行呢個動作唔成功，或者你嘅編輯資訊已經過咗期。再試吓喇。',
+'uploadstash-errclear' => '清除檔案唔成功。',
+'uploadstash-refresh'  => '更新檔案清單',
 
 );

@@ -518,7 +518,12 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'template-semiprotected'           => 'Azin-ugdal',
 'hiddencategories'                 => '↓ {{PLURAL:$1|Taggayt iḥban|Taggayin ḥbanin}} lli ɣtlla tasba yad :',
 'permissionserrorstext-withaction' => '↓ Urak ittuyskar  {{IGGUT:||e|(e)}} s $2, bac {{PLURAL:$1|s wacku yad|iwackutn ad}} :',
-'log-fulllog'                      => 'sbaynd sijil ikmln',
+'log-fulllog'                      => 'Zṛ anɣmas izun (usmmid)',
+'edit-hook-aborted'                => 'Imbddln ur ttuyskarnin.. Ur ittuyssan maɣ',
+'edit-gone-missing'                => 'Ur iga as f was tasnayad
+Ḥaqqan is iḥiyd kra n yan',
+'edit-conflict'                    => 'Maɣn ɣid imbddln',
+'edit-no-change'                   => 'Ambdeln nk nxxln acku ur ibudl walu ɣ uṭṛiṣ.',
 'edit-already-exists'              => 'Tasnayad tlla yadlli. ur as tufit ast daɣ tskrt.',
 
 # Parser/template warnings
@@ -768,10 +773,15 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'right-revisionmove' => '↓ Smmati imẓran daɣ',
 
 # User rights log
-'rightslog' => '↓ Anɣmas n imbddlnn izrfan n umsqdac',
+'rightslog'  => '↓ Anɣmas n imbddlnn izrfan n umsqdac',
+'rightsnone' => '(ḥtta yan)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => '↓ Ẓrig tasna yad.',
+'action-read'          => 'Ssɣr tasna yad',
+'action-edit'          => '↓ Ẓrig tasna yad.',
+'action-createpage'    => 'Snufl tasna yad. (gttin)',
+'action-createtalk'    => 'Snufl Tisniwin ad. (xlqtnt)',
+'action-createaccount' => 'snulf amiḍan ad n usqdac',
 
 # Recent changes
 'nchanges'                          => '↓ $1 imbddln {{PLURAL:$1||s}}',

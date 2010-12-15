@@ -677,6 +677,10 @@ The latest block log entry is provided below for reference:',
 '''अहिले सम्म संग्रह गरिएको छैन!'''",
 'userjspreview'                    => "'''याद राख्नुहोस तपाईँले आफ्नो प्रयोगकर्ता JavaScript को पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
 '''अहिले सम्म संग्रह गरिएको छैन!'''",
+'sitecsspreview'                   => "'''याद राख्नुहोस तपाईँले केवल वैश्विक CSSको पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
+'''अहिले सम्म संग्रह गरिएको छैन!'''",
+'sitejspreview'                    => "'''याद राख्नुहोस तपाईँले केवल वैश्विक जावास्क्रिप्ट कोडको पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
+'''अहिले सम्म संग्रह गरिएको छैन!'''",
 'userinvalidcssjstitle'            => "'''चेतावनी:'''  \"\$1\" स्कीन छैन ।
 Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css as opposed to {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(अध्यावधिक)',

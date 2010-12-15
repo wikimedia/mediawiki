@@ -802,11 +802,11 @@ Dëst geschitt heiandsdo wann Dir en anonyme Proxy-Service um Internet notzt.",
 'editingsection'                   => 'Ännere vu(n) $1 (Abschnitt)',
 'editingcomment'                   => 'Ännere vu(n) $1 (neien Abschnitt)',
 'editconflict'                     => 'Ännerungskonflikt: $1',
-'explainconflict'                  => "Een anere Benotzer huet un dëser Säit geschafft, während Dir amgaange waart, se ze änneren.
-Dat ieweschtt Textfeld weist Iech den aktuellen Text.
+'explainconflict'                  => "En anere Benotzer huet un dëser Säit geschafft, während Dir amgaange waart, se z'änneren.
+Dat iewescht Textfeld weist Iech den aktuellen Text.
 Är Ännerunge gesitt Dir am ënneschten Textfeld.
 Dir musst Är Ännerungen an dat iewescht Textfeld androen.
-'''Nëmmen''' den Text aus dem ieweschtten Textfeld gëtt gehale wann Dir op \"{{int:savearticle}}\" klickt.",
+'''Nëmmen''' den Text aus dem ieweschten Textfeld gëtt gehale wann Dir op \"{{int:savearticle}}\" klickt.",
 'yourtext'                         => 'Ären Text',
 'storedversion'                    => 'Gespäichert Versioun',
 'nonunicodebrowser'                => "'''OPGEPASST:''' Äre Browser ass net Unicode kompatibel. Ännert dat w.e.g. éier Dir eng Säit ännert.",
@@ -1547,7 +1547,7 @@ Wielt w.e.g. en aneren Numm.",
 'fileexists-thumbnail-yes'    => "Beim Fichier schéngt et sech ëm e klengt Bild ''(Miniatur)'' ze handelen. [[$1|thumb]]
 Kuckt de Fichier '''<tt>[[:$1]]</tt>''' w.e.g. no.
 Wann et sech ëm d'Bild an der Originalgréisst handelt, da brauch kee separat Bild als Minitaur eropgelueden ze ginn.",
-'file-thumbnail-no'           => "Den Numm vum Fichier fänkt mat '''<tt>$1</tt>''' unn.
+'file-thumbnail-no'           => "Den Numm vum Fichier fänkt mat '''<tt>$1</tt>''' un.
 Da deit drop hin datt et eng Minitaur ''(thumbnail)'' ass.
 Wann Dir dat Bild a méi enger grousser Opléisung hutt, da luet dëst erop, soss ännert den Numm vum Fichier w.e.g.",
 'fileexists-forbidden'        => 'Et gëtt schonn e Fichier mat dësem Numm an dee kann net iwwerschriwwe ginn.
@@ -1555,7 +1555,7 @@ Wann Dir de Fichier nach ëmmer eropluede wëllt, da gitt w.e.g. zréck a benotz
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn an dem gedeelte Repertoire.
 Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet dëse Fichier ënner engem aneren Numm erop. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dëse Fichier schéngt een Doublon vun {{PLURAL:$1|dësem Fichier|dëse Fichieren}} ze sinn:',
-'file-deleted-duplicate'      => 'En identesche Fichier ([[$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läsche no, Ier Dir en nach emol eropluet.',
+'file-deleted-duplicate'      => 'En identesche Fichier ([[$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läschen no, Ier Dir en nach emol eropluet.',
 'uploadwarning'               => 'Opgepasst',
 'uploadwarning-text'          => "Ännert d'Beschreiwung hei ënnedrënner w.e.g. a versicht et nach eng Kéier.",
 'savefile'                    => 'Fichier späicheren',
@@ -2509,8 +2509,7 @@ Sicht Iech w.e.g. en aneren Numm.',
 
 # Export
 'export'            => 'Säiten exportéieren',
-'exporttext'        => "Dir kënnt den Text exportéieren an den Historique ännere vun enger bestëmmter Säit, oder engem Set vu Säiten, an XML agepakt.
-Dat dann an eng aner Wiki mat MediaWiki Software impotéiert gi mat Hellef vun der [[Special:Import|Import-Säit]].
+'exporttext'        => "Dir kënnt den Text an den Historique vun enger bestëmmter Säit, oder engem Set vu Säiten, an XML agepakt, exportéieren, déi dann an eng aner Wiki mat MediaWiki Software importéiert gi mat Hëllef vun der [[Special:Import|Import-Säit]].
 
 Fir eng Säit z'exportéieren, gitt den Titel an d'Textkëscht heidrënner an, een Titel pro Linn, a wielt aus op Dir nëmmen déi aktuell Versioun oder all Versioune mam ganzen Historique exportéiere wëllt.
 
@@ -3266,7 +3265,7 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'filepath'         => 'Pad bei de Fichier',
 'filepath-page'    => 'Fichier:',
 'filepath-submit'  => 'Lass',
-'filepath-summary' => 'Op dëser Spezialsäit kënnt Dir de komplette Pad vun der aktueller Versioun vun engem engem Fichier direkt offroen. Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikatioun gestart.
+'filepath-summary' => 'Op dëser Spezialsäit kënnt Dir de komplette Pad vun der aktueller Versioun vun engem Fichier direkt offroen. Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikatioun gestart.
 
 D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 
@@ -3306,13 +3305,13 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 
 # External image whitelist
 'external_image_whitelist' => "#Dës Zeil genee esou loosse wéi se ass<pre>
-#Schreiwt hei ënnendrënner Fragmenter vu regulären Ausdréck (just den Deel zwëschen den // aginn)
+#Schreift hei ënnendrënner Fragmenter vu regulären Ausdréck (just den Deel zwëschen den // aginn)
 #Dës gi mat den URLe vu Biller aus externe Quelle verglach
-#Wann d'Resultat positiv gëtt d'Bilde gewisen, soss gëtt d'Bild just als Link gewisen
+#Wann d'Resultat positiv ass, gëtt d'Bild gewisen, soss gëtt d'Bild just als Link gewisen
 #Zeilen, déi mat engem # ufänken, ginn als Bemierkung behandelt
-#Et gëtt en Ënnerscheed tëschent groussen a klenge Buchstawe gemaach
+#Et gëtt en Ënnerscheed tëschent groussen a klenge Buschtawe gemaach
 
-#All regulär Ausdréck ënnen un dëser Zeil androen. Dës Zeil genee esou loosse wéi se ass</pre>",
+#All regulär Ausdréck ënner dëser Zeil androen. Dës Zeil genee esou loosse wéi se ass</pre>",
 
 # Special:Tags
 'tags'                    => 'Valabel Ännerungsmarkéierungen',

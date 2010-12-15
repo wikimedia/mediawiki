@@ -969,9 +969,9 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 '''Es wurde noch nicht gespeichert!'''",
 'userjspreview'                    => "'''Beachte, dass du nur eine Vorschau deines Benutzer-JavaScript betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
-'sitecsspreview'                   => "'''Beachte, dass du nur eine Vorschau dieses globalen CSS betrachtest.'''
+'sitecsspreview'                   => "'''Beachte, dass du nur eine Vorschau dieses CSS betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
-'sitejspreview'                    => "'''Beachte, dass du nur eine Vorschau dieses globalen JavaScript betrachtest.'''
+'sitejspreview'                    => "'''Beachte, dass du nur eine Vorschau dieses JavaScript betrachtest.'''
 '''Es wurde noch nicht gespeichert!'''",
 'userinvalidcssjstitle'            => "'''Achtung:''' Die Benutzeroberfläche „$1“ existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/vector.css'' an Stelle von ''{{ns:user}}:Mustermann/Vector.css''.",
 'updated'                          => '(Geändert)',
@@ -3614,5 +3614,14 @@ Sofern der Benutzer momentan angemeldet ist, wird er umgehend abgemeldet.
 'disableaccount-nosuchuser'  => 'Das Benutzerkonto „$1“ ist nicht vorhanden.',
 'disableaccount-success'     => 'Das Benutzerkonto „$1“ wurde dauerhaft deaktiviert.',
 'disableaccount-logentry'    => 'deaktivierte das Benutzerkonto [[$1]] dauerhaft',
+
+# Special:UploadStash
+'uploadstash'          => 'Vorabspeicherung beim Hochladen',
+'uploadstash-summary'  => 'Diese Seite ermöglicht den Zugriff auf Dateien, die hochgeladen wurden, bzw. gerade hochgeladen werden, aber noch nicht auf dem Wiki publiziert wurden. Diese Dateien sind, der hochladende Benutzer ausgenommen, noch nicht öffentlich einsehbar.',
+'uploadstash-clear'    => 'Die vorab gespeicherten Dateien entfernen',
+'uploadstash-nofiles'  => 'Es sind keine vorab gespeicherten Dateien vorhanden.',
+'uploadstash-badtoken' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos, vielleicht weil die Sitzungsdaten abgelaufen sind. Bitte es erneut versuchen.',
+'uploadstash-errclear' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos.',
+'uploadstash-refresh'  => 'Liste der Dateien aktualisieren',
 
 );

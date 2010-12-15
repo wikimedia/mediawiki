@@ -749,9 +749,9 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 '''Haijahifadhiwa bado!'''",
 'userjspreview'                    => "'''Kumbuka kwamba unajaribu/kuhakiki mandhari ya ukurasa wako wa JavaScript tu.'''
 '''Haijahifadhiwa bado!'''",
-'sitecsspreview'                   => "'''Kumbuka kwamba unahakiki tu mandhari ya CSS ya akaunti yako ya jumla.'''
+'sitecsspreview'                   => "'''Kumbuka kwamba unahakiki tu mandhari ya CSS hii.'''
 '''Haijahifadhiwa bado!'''",
-'sitejspreview'                    => "'''Kumbuka kwamba unahakiki tu mandhari ya JavaScript ya akaunti yako ya jumla.'''
+'sitejspreview'                    => "'''Kumbuka kwamba unahakiki tu mandhari ya JavaScript hii.'''
 '''Haijahifadhiwa bado!'''",
 'userinvalidcssjstitle'            => "'''Onyo:''' Hakuna umbo \"\$1\".
 Kumbuka kwamba desturi ya kurasa za .css na .js hutumia herufi ndogo, yaani, {{ns:user}}:Foo/vector.css na si {{ns:user}}:Foo/Vector.css.",

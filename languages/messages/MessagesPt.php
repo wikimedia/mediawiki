@@ -931,9 +931,9 @@ Para referência, o último registo de bloqueio é apresentado abaixo:',
 Este ainda não foi gravado!'''",
 'userjspreview'                    => "'''Lembre-se que está apenas a testar ou antever o seu JavaScript particular.'''
 Este ainda não foi gravado!",
-'sitecsspreview'                   => "'''Lembre-se de que está apenas a antever este CSS global.'''
+'sitecsspreview'                   => "'''Lembre-se de que está apenas a antever este CSS.'''
 '''Ele ainda não foi gravado!'''",
-'sitejspreview'                    => "'''Lembre-se de que está apenas a antever este código JavaScript global.'''
+'sitejspreview'                    => "'''Lembre-se de que está apenas a antever este código JavaScript.'''
 '''Ele ainda não foi gravado!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js têm um título em minúsculas, exemplo: {{ns:user}}:Alguém/vector.css em vez de {{ns:user}}:Alguém/Vector.css.",
 'updated'                          => '(Actualizado)',
@@ -3620,5 +3620,14 @@ Se neste momento o utilizador estiver autenticado algures, sairá de imediato.
 'disableaccount-nosuchuser'  => 'A conta de utilizador "$1" não existe.',
 'disableaccount-success'     => 'A conta de utilizador "$1" foi desactivada permanentemente.',
 'disableaccount-logentry'    => 'desactivou permanentemente a conta [[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => 'Ficheiros escondidos',
+'uploadstash-summary'  => 'Esta página dá acesso aos ficheiros enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes ficheiros não são visíveis para ninguém, excepto para o utilizador que os enviou.',
+'uploadstash-clear'    => 'Apagar os ficheiros escondidos',
+'uploadstash-nofiles'  => 'Não tem ficheiros escondidos.',
+'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
+'uploadstash-errclear' => 'Não foi possível apagar os ficheiros.',
+'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
 
 );

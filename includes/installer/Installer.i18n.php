@@ -1279,6 +1279,13 @@ chmod a+w $3</pre>',
 	'config-help' => 'дапамога',
 );
 
+/** Bulgarian (Български)
+ * @author DCLXVI
+ */
+$messages['bg'] = array(
+	'config-help' => 'помощ',
+);
+
 /** Breton (Brezhoneg)
  * @author Fulup
  * @author Gwendal

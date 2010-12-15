@@ -955,9 +955,9 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
 '''Zatím nebylo uloženo!'''",
 'userjspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho uživatelského JavaScriptu, dosud nebyl uložen!'''",
-'sitecsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho globálního CSS.'''
+'sitecsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled tohoto CSS.'''
 '''Zatím nebylo uloženo!'''",
-'sitejspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho globálního JavaScriptu.'''
+'sitejspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled tohoto JavaScriptu.'''
 '''Dosud nebyl uložen!'''",
 'userinvalidcssjstitle'            => "'''Varování:''' Vzhled „$1“ neexistuje. Nezapomeňte, že uživatelské .css a .js soubory používají malá písmena, např. {{ns:user}}:{{BASEPAGENAME}}/vector.css, nikoli {{ns:user}}:{{BASEPAGENAME}}/Vector.css.",
 'updated'                          => '(Změna uložena)',
