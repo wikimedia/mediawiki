@@ -14,14 +14,14 @@ interface HistoryBlob
 	 *
 	 * @return String: the key for getItem()
 	 */
-	public function addItem( $text );
+	function addItem( $text );
 
 	/**
 	 * Get item by key, or false if the key is not present
 	 *
 	 * @return String or false
 	 */
-	public function getItem( $key );
+	function getItem( $key );
 
 	/**
 	 * Set the "default text"
@@ -31,7 +31,7 @@ interface HistoryBlob
 	 *
 	 * Default text is not required for two-part external storage URLs.
 	 */
-	public function setText( $text );
+	function setText( $text );
 
 	/**
 	 * Get default text. This is called from Revision::getRevisionText()
