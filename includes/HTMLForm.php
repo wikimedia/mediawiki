@@ -595,6 +595,10 @@ class HTMLForm {
 	public function setMethod( $method='post' ){
 		$this->mMethod = $method;
 	}
+	
+	public function getMethod(){
+		return $this->mMethod;
+	}
 
 	/**
 	 * TODO: Document
@@ -850,7 +854,7 @@ abstract class HTMLFormField {
 			$verticalLabel = true;
 		}
 
-		if ( $errors === true || !$wgRequest->wasPosted() ) {
+		if ( $errors === true || ( !$wgRequest->wasPosted() && ( $this->mParent->getMethod() == 'post' ) ) ) {
 			$errors = '';
 		} else {
 			$errors = Html::rawElement( 'span', array( 'class' => 'error' ), $errors );
