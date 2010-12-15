@@ -2288,15 +2288,14 @@ $wgExperimentalHtmlIds = true;
  * of new blocks in monobook. vector and modern should work without any special css.
  * 
  * $wgFooterIcons itself is a key/value array.
- * The key os the name of a block that the icons will be wrapped in.
- * The final id varries by skin; Monobook and Vector will turn poweredby into f-poweredbyico
- * while Modern turns it into mw_poweredby.
- * The value is a key/value array of icons. The key may or may not be used by the
- * skin but it can be used to find the icon and unset it or change the icon if needed.
- * This is useful for disabling icons that are set by extensions.
- * The value should be either a string or an array.
- * If it is a string it will be output directly, however some skins may choose to ignore it.
- * An array is the preferred format for the icon, the following keys are used:
+ * The key is the name of a block that the icons will be wrapped in. The final id varies 
+ * by skin; Monobook and Vector will turn poweredby into f-poweredbyico while Modern 
+ * turns it into mw_poweredby.  The value is a key/value array of icons. The key may or 
+ * may not be used by the skin but it can be used to find the icon and unset it or 
+ * change the icon if needed. This is useful for disabling icons that are set by extensions.
+ * The value should be either a string or an array. If it is a string it will be output 
+ * directly, however some skins may choose to ignore it. An array is the preferred format 
+ * for the icon, the following keys are used:
  *   src: An absolute url to the image to use for the icon, this is recommended
  *        but not required, however some skins will ignore icons without an image
  *   url: The url to use in the <a> arround the text or icon, if not set an <a> will not be outputted
@@ -4132,8 +4131,13 @@ $wgReadOnly             = null;
 $wgReadOnlyFile         = false;
 
 /**
- * If this is set to some string, this opens up config/index.php for upgrades
- * when needed. You will need to provide this key to use it
+ * When you run the web-based upgrade utility, it will tell you what to set 
+ * this to in order to authorize the upgrade process. It will subsequently be
+ * used as a password, to authorize further upgrades.
+ *
+ * For security, do not set this to a guessable string. Use the value supplied 
+ * by the install/upgrade process. To cause the upgrader to generate a new key, 
+ * delete the old key from LocalSettings.php.
  */
 $wgUpgradeKey = false;
 
@@ -5232,8 +5236,6 @@ $wgUploadMaintenance = false;
 $wgEnableSelenium = false;
 $wgSeleniumTestConfigs = array();
 $wgSeleniumConfigFile = null;
-
-
 
 /**
  * For really cool vim folding this needs to be at the end:

@@ -34,6 +34,9 @@
  * in the URL.
  */
 
+// So extensions (and other code) can check whether they're running in API mode
+define( 'MW_API', true );
+
 // Initialise common code
 require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 
@@ -98,9 +101,6 @@ if ( $wgCrossSiteAJAXdomains && isset( $_SERVER['HTTP_ORIGIN'] ) ) {
 		}
 	}
 }
-
-// So extensions can check whether they're running in API mode
-define( 'MW_API', true );
 
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary

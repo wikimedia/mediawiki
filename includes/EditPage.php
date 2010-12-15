@@ -1223,7 +1223,7 @@ class EditPage {
 		if ( $this->showHeader() === false )
 			return;
 
-		$action = htmlspecialchars($this->getActionURL($wgTitle));
+		$action = htmlspecialchars( $this->getActionURL( $wgTitle ) );
 
 		if ( $wgUser->getOption( 'showtoolbar' ) and !$this->isCssJsSubpage ) {
 			# prepare toolbar for edit buttons
@@ -1878,17 +1878,30 @@ HTML
 		}
 
 		# don't parse user css/js, show message about preview
-		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
+		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
 
-		if ( $this->isCssJsSubpage ) {
-			if (preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
-				$previewtext = "<div id='mw-usercsspreview'>\n" . wfMsg( 'usercsspreview' ) . "\n</div>";
-			} else if (preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
-				$previewtext = "<div id='mw-userjspreview'>\n" . wfMsg( 'userjspreview' ) . "\n</div>";
+		if ( $this->isCssJsSubpage || $this->mTitle->isCssOrJsPage() ) {
+			$level = 'user';
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+				$level = 'site';
 			}
+
+			# Used messages to make sure grep find them:
+			# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
+			if (preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
+				$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
+				$class = "mw-code mw-css";
+			} elseif (preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
+				$previewtext = "<div id='mw-{$level}jspreview'>\n" . wfMsg( "{$level}jspreview" ) . "\n</div>";
+				$class = "mw-code mw-js";
+			} else {
+				throw new MWException( 'A CSS/JS (sub)page but which is not css nor js!' );
+			}
+
 			$parserOptions->setTidy( true );
 			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
 			$previewHTML = $parserOutput->mText;
+			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n";
 		} else {
 			$rt = Title::newFromRedirectArray( $this->textbox1 );
 			if ( $rt ) {
@@ -2342,7 +2355,9 @@ HTML
 			);
 			$checkboxes['minor'] =
 				Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
-				"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" . $skin->titleAttrib( 'minoredit', 'withaccess' ) . ">{$minorLabel}</label>";
+				"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
+				Xml::expandAttributes( array( 'title' => $skin->titleAttrib( 'minoredit', 'withaccess' ) ) ) .
+				">{$minorLabel}</label>";
 		}
 
 		$watchLabel = wfMsgExt( 'watchthis', array( 'parseinline' ) );
@@ -2355,7 +2370,9 @@ HTML
 			);
 			$checkboxes['watch'] =
 				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
-				"&#160;<label for='wpWatchthis' id='mw-editpage-watch'" . $skin->titleAttrib( 'watch', 'withaccess' ) . ">{$watchLabel}</label>";
+				"&#160;<label for='wpWatchthis' id='mw-editpage-watch'" .
+				Xml::expandAttributes( array( 'title' => $skin->titleAttrib( 'watch', 'withaccess' ) ) ) .
+				">{$watchLabel}</label>";
 		}
 		wfRunHooks( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
 		return $checkboxes;

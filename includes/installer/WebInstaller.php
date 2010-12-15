@@ -47,6 +47,7 @@ class WebInstaller extends CoreInstaller {
 	 */
 	public $pageSequence = array(
 		'Language',
+		'ExistingWiki',
 		'Welcome',
 		'DBConnect',
 		'Upgrade',
@@ -175,15 +176,7 @@ class WebInstaller extends CoreInstaller {
 		# Get the page name.
 		$pageName = $this->request->getVal( 'page' );
 
-		# Check LocalSettings status
-		$localSettings = $this->getLocalSettingsStatus();
-
-		if( !$localSettings->isGood() && $this->getVar( '_LocalSettingsLocked' ) ) {
-			$pageName = 'Locked';
-			$pageId = false;
-			$page = $this->getPageByName( $pageName );
-			$page->setLocalSettingsStatus( $localSettings );
-		} elseif ( in_array( $pageName, $this->otherPages ) ) {
+		if ( in_array( $pageName, $this->otherPages ) ) {
 			# Out of sequence
 			$pageId = false;
 			$page = $this->getPageByName( $pageName );
@@ -620,7 +613,7 @@ class WebInstaller extends CoreInstaller {
 				) . "\n" .
 				"</div>\n" .
 				"<div class=\"config-info-right\">\n" .
-					$this->parse( $text ) . "\n" .
+					$this->parse( $text, true ) . "\n" .
 				"</div>\n" .
 				"<div style=\"clear: left;\"></div>\n" .
 			"</div>\n";

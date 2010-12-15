@@ -233,6 +233,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Special wrapping setups can now define MW_CONFIG_FILE to load a config file
   other than LocalSettings.php. This is like MW_CONFIG_CALLBACK but works in
   some cases where MW_CONFIG_CALLBACK will not work.
+* (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
@@ -469,6 +470,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * rebuildFileCache.php no longer creates inappropriate cache files for redirects
 * (bug 18372) $wgFileExtensions will now override $wgFileBlacklist 
 * (bug 25512) Subcategory list should not include category prefix for members.
+* (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer treated
+  as wikitext on preview.
 
 === API changes in 1.17 ===
 * (bug 22738) Allow filtering by action type on query=logevent.
