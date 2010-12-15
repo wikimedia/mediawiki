@@ -32,7 +32,8 @@ class MediaWikiEditorConfig {
     public static function getSettings(&$includeFiles, &$globalConfigs) {
         $includes = array(
                 //files that needed to be included would go here
-                'tests/selenium/suites/MediaWikiCommonFunction.php'
+                //commenting out because this does not exist
+                //'tests/selenium/suites/MediaWikiCommonFunction.php'
         );
         $configs = array(
                 'wgPageLoadTime' => "600000"
