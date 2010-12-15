@@ -57,7 +57,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'id' => 'mw-emailuser-recipient',
 			),
 			'Target' => array(
-				'name' => 'wpTarget',
 				'type' => 'hidden',
 				'default' => $this->mTargetObj->getName(),
 			),
