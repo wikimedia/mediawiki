@@ -3247,6 +3247,15 @@ $wgMessageStructure = array(
 		'disableaccount-success',
 		'disableaccount-logentry',
 	),
+	'uploadstash' => array(
+		'uploadstash',
+		'uploadstash-summary',
+		'uploadstash-clear',
+		'uploadstash-nofiles',
+		'uploadstash-badtoken',
+		'uploadstash-errclear',
+		'uploadstash-refresh',
+	),
 );
 
 /** Comments for each block */
@@ -3307,6 +3316,7 @@ XHTML id names.",
 	'recentchangeslinked' => 'Recent changes linked',
 	'upload'              => 'Upload',
 	'upload-errors'       => '',
+	'uploadstash'         => 'Special:UploadStash',
 	'img-auth'            => 'img_auth script messages',
 	'http-errors'         => 'HTTP errors',
 	'upload-curl-errors'  => 'Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>',

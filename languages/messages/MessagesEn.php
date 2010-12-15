@@ -2216,11 +2216,11 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 
 # Special:UploadStash
 'uploadstash'		   => 'Upload stash',
-'uploadstash-summary'      => 'This page provides access to files which are uploaded (or in the process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them. See the documentation for the upload API.',
+'uploadstash-summary'      => 'This page provides access to files which are uploaded (or in the process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.',
 'uploadstash-clear'        => 'Clear stashed files',
 'uploadstash-nofiles'      => 'You have no stashed files.',
-'uploadstash-badtoken'     => 'We could not perform that action, perhaps because your editing credentials expired. Try again.',
-'uploadstash-errclear'	   => 'We could not clear the files.',
+'uploadstash-badtoken'     => 'Performing of that action was unsuccessful, perhaps because your editing credentials expired. Try again.',
+'uploadstash-errclear'	   => 'Clearing the files was unsuccessful.',
 'uploadstash-refresh'	   => 'Refresh the list of files',
 
 # img_auth script messages
