@@ -53,7 +53,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	public $mMaxCount = 100;
 
 	/** Constructor */
-	public function ConcatenatedGzipHistoryBlob() {
+	public function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {
 			throw new MWException( "Need zlib support to read or write this kind of history object (ConcatenatedGzipHistoryBlob)\n" );
 		}
