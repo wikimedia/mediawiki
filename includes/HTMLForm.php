@@ -184,23 +184,26 @@ class HTMLForm {
 	}
 
 	/**
-	 * The here's-one-I-made-earlier option: do the submission if
-	 * posted, or display the form with or without funky valiation
-	 * errors
-	 * @return Bool or Status whether submission was successful.
+	 * Prepare form for submission
 	 */
-	function show() {
+	function prepareForm() {
 		# Check if we have the info we need
 		if ( ! $this->mTitle ) {
 			throw new MWException( "You must call setTitle() on an HTMLForm" );
 		}
 
+		// FIXME shouldn't this be closer to displayForm() ?
 		self::addJS();
 
 		# Load data from the request.
 		$this->loadData();
+	}
 
-		# Try a submission
+	/**
+	 * Try submitting, with edit token check first
+	 * @return Status|boolean 
+	 */
+	function tryAuthorizedSubmit() {
 		global $wgUser, $wgRequest;
 		$editToken = $wgRequest->getVal( 'wpEditToken' );
 
@@ -208,12 +211,23 @@ class HTMLForm {
 		if ( $wgUser->matchEditToken( $editToken ) ) {
 			$result = $this->trySubmit();
 		}
+		return $result;
+	}
 
+	/**
+	 * The here's-one-I-made-earlier option: do the submission if
+	 * posted, or display the form with or without funky valiation
+	 * errors
+	 * @return Bool or Status whether submission was successful.
+	 */
+	function show() {
+		$this->prepareForm();
+
+		$result = $this->tryAuthorizedSubmit();
 		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ){
 			return $result;
 		}
 
-		# Display form.
 		$this->displayForm( $result );
 		return false;
 	}
@@ -527,7 +541,6 @@ class HTMLForm {
 	public function setSubmitTooltip( $name ) {
 		$this->mSubmitTooltip = $name;
 	}
-
 
 	/**
 	 * Set the id for the submit button.
