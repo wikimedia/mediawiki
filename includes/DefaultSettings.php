@@ -1043,6 +1043,7 @@ $wgSMTP				= false;
 
 /**
  * Additional email parameters, will be passed as the last argument to mail() call.
+ * If using safe_mode this has no effect
  */
 $wgAdditionalMailParams = null;
 
