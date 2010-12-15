@@ -20,6 +20,12 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	// UploadStash
 	private $stash;
 
+	// is the edit request authorized? boolean
+	private $isEditAuthorized;
+
+	// did the user request us to clear the stash? boolean
+	private $requestedClear;
+
 	// Since we are directly writing the file to STDOUT, 
 	// we should not be reading in really big files and serving them out.
 	//
@@ -30,18 +36,21 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	// uploading.
 	const MAX_SERVE_BYTES = 262144; // 256K
 
-	public function __construct( ) {
+	public function __construct( $request = null ) {
+		global $wgRequest;
+
 		parent::__construct( 'UploadStash', 'upload' );
 		try {
 			$this->stash = new UploadStash( );
-		} catch (UploadStashNotAvailableException $e) {
+		} catch ( UploadStashNotAvailableException $e ) {
 			return null;
 		}
+
+		$this->loadRequest( is_null( $request ) ? $wgRequest : $request );
 	}
 
 	/**
-	 * If file available in stash, cats it out to the client as a simple HTTP response.
-	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
+	 * Execute page -- can output a file directly or show a listing of them.
 	 *
 	 * @param $subPage String: subpage, e.g. in http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
 	 * @return Boolean: success
@@ -54,56 +63,62 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			return;
 		}
 
+		if ( !isset( $subPage ) || $subPage === '' ) {
+			return $this->showUploads();
+		}
+
+		return $this->showUpload( $subPage );
+	}
+
+
+	/**
+	 * If file available in stash, cats it out to the client as a simple HTTP response.
+	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
+	 *
+	 * @param $key String: the key of a particular requested file
+	 */
+	public function showUpload( $key ) {
+		global $wgOut;
+
 		// prevent callers from doing standard HTML output -- we'll take it from here
 		$wgOut->disable();
 
-		if ( !isset( $subPage ) || $subPage === '' ) {
-			// the user probably visited the page just to see what would happen, so explain it a bit.
-			$code = '400';
-			$message = "Missing key\n\n" 
-				   . 'This page provides access to temporarily stashed files for the user that '
-				   . 'uploaded those files. See the upload API documentation. To access a stashed file, '
-				   . 'use the URL of this page, with a slash and the key of the stashed file appended.';
-		} else {
-			try {
-				if ( preg_match( '/^(\d+)px-(.*)$/', $subPage, $matches ) ) {
-					list( /* full match */, $width, $key ) = $matches;
-					return $this->outputThumbFromStash( $key, $width );
-				} else {
-					return $this->outputFileFromStash( $subPage );
-				}
-			} catch( UploadStashFileNotFoundException $e ) {
-				$code = 404; 
-				$message = $e->getMessage();
-			} catch( UploadStashZeroLengthFileException $e ) {
-				$code = 500;
-				$message = $e->getMessage();
-			} catch( UploadStashBadPathException $e ) {
-				$code = 500;
-				$message = $e->getMessage();
-			} catch( SpecialUploadStashTooLargeException $e ) {
-				$code = 500;
-				$message = 'Cannot serve a file larger than ' . self::MAX_SERVE_BYTES . ' bytes. ' . $e->getMessage();
-			} catch( Exception $e ) {
-				$code = 500;
-				$message = $e->getMessage();
+		try {
+			if ( preg_match( '/^(\d+)px-(.*)$/', $key, $matches ) ) {
+				list( /* full match */, $width, $key ) = $matches;
+				return $this->outputThumbFromStash( $key, $width );
+			} else {
+				return $this->outputFileFromStash( $key );
 			}
+		} catch( UploadStashFileNotFoundException $e ) {
+			$code = 404; 
+			$message = $e->getMessage();
+		} catch( UploadStashZeroLengthFileException $e ) {
+			$code = 500;
+			$message = $e->getMessage();
+		} catch( UploadStashBadPathException $e ) {
+			$code = 500;
+			$message = $e->getMessage();
+		} catch( SpecialUploadStashTooLargeException $e ) {
+			$code = 500;
+			$message = 'Cannot serve a file larger than ' . self::MAX_SERVE_BYTES . ' bytes. ' . $e->getMessage();
+		} catch( Exception $e ) {
+			$code = 500;
+			$message = $e->getMessage();
 		}
 
 		wfHttpError( $code, OutputPage::getStatusMessage( $code ), $message );
 		return false;
 	}
-	
+		
 	/**
 	 * Get a file from stash and stream it out. Rely on parent to catch exceptions and transform them into HTTP
 	 * @param String: $key - key of this file in the stash, which probably looks like a filename with extension.
-	 * @throws ....?
 	 * @return boolean
 	 */
 	private function outputFileFromStash( $key ) {
 		$file = $this->stash->getFile( $key );
-		$this->outputLocalFile( $file );
-		return true;
+		return $this->outputLocalFile( $file );
 	}
 
 
@@ -111,11 +126,13 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Get a thumbnail for file, either generated locally or remotely, and stream it out
 	 * @param String $key: key for the file in the stash
 	 * @param int $width: width of desired thumbnail
-	 * @return ??
+	 * @return boolean success 
  	 */
 	private function outputThumbFromStash( $key, $width ) {
 		
 		// this global, if it exists, points to a "scaler", as you might find in the Wikimedia Foundation cluster. See outputRemoteScaledThumb()
+		// this is part of our horrible NFS-based system, we create a file on a mount point here, but fetch the scaled file from somewhere else that
+		// happens to share it over NFS
 		global $wgUploadStashScalerBaseUrl;
 
 		// let exceptions propagate to caller.
@@ -222,7 +239,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		if ( $file->getSize() > self::MAX_SERVE_BYTES ) {
 			throw new SpecialUploadStashTooLargeException();
 		} 
-		self::outputHeaders( $file->getMimeType(), $file->getSize() );
+		self::outputFileHeaders( $file->getMimeType(), $file->getSize() );
 		readfile( $file->getPath() );
 		return true;
 	}
@@ -238,7 +255,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		if ( $size > self::MAX_SERVE_BYTES ) {
 			throw new SpecialUploadStashTooLargeException();
 		}
-		self::outputHeaders( $contentType, $size );
+		self::outputFileHeaders( $contentType, $size );
 		print $content;	
 		return true;
 	}
@@ -250,13 +267,102 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @param String $contentType : string suitable for content-type header
 	 * @param String $size: length in bytes
 	 */
-	private static function outputHeaders( $contentType, $size ) {
+	private static function outputFileHeaders( $contentType, $size ) {
 		header( "Content-Type: $contentType", true );
 		header( 'Content-Transfer-Encoding: binary', true );
 		header( 'Expires: Sun, 17-Jan-2038 19:14:07 GMT', true );
 		header( "Content-Length: $size", true ); 
 	}
 
+
+	/**
+	 * Initialize authorization & actions to take, from the request
+	 * @param $request: WebRequest
+	 */
+	private function loadRequest( $request ) {
+                global $wgUser;
+		if ( $request->wasPosted() ) {
+
+			$token = $request->getVal( 'wpEditToken' );
+			$this->isEditAuthorized = $wgUser->matchEditToken( $token );
+
+			$this->requestedClear = $request->getBool( 'clear' );
+
+		}
+	}
+
+	/**
+	 * Static callback for the HTMLForm in showUploads, to process 
+	 * Note the stash has to be recreated since this is being called in a static context.
+	 * This works, because there really is only one stash per logged-in user, despite appearances.
+	 *
+	 * @return Status
+	 */ 
+	public static function tryClearStashedUploads( $formData ) {
+		wfDebug( __METHOD__ . " form data : " . print_r( $formData, 1 ) );
+		if ( isset( $formData['clear'] ) and $formData['clear'] ) {
+			$stash = new UploadStash();
+			wfDebug( "stash has: " . print_r( $stash->listFiles(), 1 ) );
+			if ( ! $stash->clear() ) {
+				return Status::newFatal( 'uploadstash-errclear' );
+			}
+		}
+		return Status::newGood();
+	}
+
+	/**
+	 * Default action when we don't have a subpage -- just show links to the uploads we have,
+	 * Also show a button to clear stashed files
+	 * @param Status : $status - the result of processRequest
+	 */ 
+	private function showUploads( $status = null ) {
+		global $wgOut;
+		if ( $status === null ) {
+			$status = Status::newGood();
+		}
+
+		// sets the title, etc.
+		$this->setHeaders();
+		$this->outputHeader();
+
+
+		// create the form, which will also be used to execute a callback to process incoming form data
+		// this design is extremely dubious, but supposedly HTMLForm is our standard now?
+
+		$form = new HTMLForm( array( 'clear' => array( 'class' => 'HTMLHiddenField', 'default' => true ) ), 'clearStashedUploads' );
+		$form->setSubmitCallback( array( __CLASS__, 'tryClearStashedUploads' ) ); 
+		$form->setTitle( $this->getTitle() );
+		$form->addHiddenField( 'clear', true, array( 'type' => 'boolean' ) );
+		$form->setSubmitText( wfMsg( 'uploadstash-clear' ) );
+
+                $form->prepareForm();                                                
+                $formResult = $form->tryAuthorizedSubmit();
+                                                                    
+
+		// show the files + form, if there are any, or just say there are none
+		$refreshHtml = Html::element( 'a', array( 'href' => $this->getTitle()->getLocalURL() ), wfMsg( 'uploadstash-refresh' ) );
+		$files = $this->stash->listFiles();
+		if ( count( $files ) ) {
+			sort( $files );
+			$fileListItemsHtml = '';
+			foreach ( $files as $file ) {
+				$fileListItemsHtml .= Html::rawElement( 'li', array(),
+					Html::element( 'a', array( 'href' => $this->getTitle( $file )->getLocalURL() ), $file )
+				);
+			}
+			$wgOut->addHtml( Html::rawElement( 'ul', array(), $fileListItemsHtml ) );
+                	$form->displayForm( $formResult );
+			$wgOut->addHtml( Html::rawElement( 'p', array(), $refreshHtml ) );
+		} else {
+			$wgOut->addHtml( Html::rawElement( 'p', array(), 
+				Html::element( 'span', array(), wfMsg( 'uploadstash-nofiles' ) )
+				. ' ' 
+				. $refreshHtml
+			) );
+		}
+	
+		return true;
+	}
 }
 
 class SpecialUploadStashTooLargeException extends MWException {};
