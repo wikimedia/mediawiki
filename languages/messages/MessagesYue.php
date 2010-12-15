@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -616,6 +616,9 @@ $1',
 'loginlanguagelabel'         => '語言：$1',
 'suspicious-userlogout'      => '你去登出嘅要求已經拒絕咗，因為佢可能由壞咗嘅瀏覽器或者快取代理傳送。',
 
+# E-mail sending
+'php-mail-error-unknown' => '響 PHP 嘅 mail() 參數度出現咗未知嘅錯誤',
+
 # JavaScript password checks
 'password-strength'            => '預計嘅密碼強度：$1',
 'password-strength-bad'        => '壞',
@@ -745,9 +748,13 @@ $1',
 '''Internet Explorer:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣。",
 'usercssyoucanpreview'             => "'''提示：'''響儲存前，用「{{int:showpreview}}」個掣嚟測試你嘅新CSS。",
 'userjsyoucanpreview'              => "'''提示：'''響儲存前，用「{{int:showpreview}}」個掣嚟測試你嘅新JavaScript。",
-'usercsspreview'                   => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表。'''
-'''內容仍未儲存！'''",
-'userjspreview'                    => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript。'''
+'usercsspreview'                   => "'''記住你而家只係預覽緊你嘅用戶CSS樣式表。'''
+'''佢嘅內容重未儲存！'''",
+'userjspreview'                    => "'''記住你而家只係測試／預覽緊你定義嘅JavaScript。'''
+'''佢嘅內容重未儲存！'''",
+'sitecsspreview'                   => "'''記住你而家只係預覽呢段 CSS。'''
+'''佢嘅內容重未儲存！'''",
+'sitejspreview'                    => "'''記住你而家只係預覽呢段 JavaScript 代碼。'''
 '''佢嘅內容重未儲存！'''",
 'userinvalidcssjstitle'            => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/vector.css 而唔係 {{ns:user}}:Foo/Vector.css 。",
 'updated'                          => '(己更新)',
@@ -772,7 +779,7 @@ $1',
 喺上面嗰個空間而家現存嘅頁面文字。
 你嘅更改會喺下面嘅文字空間顯示。
 你需要合併你嘅更改到原有嘅文字。
-喺你撳「儲存頁面」之後，'''只有'''喺上面嘅文字區會被儲存。",
+喺你撳「{{int:savearticle}}」之後，'''只有'''喺上面嘅文字區會被儲存。",
 'yourtext'                         => '你嘅文字',
 'storedversion'                    => '已經儲存咗嘅修訂',
 'nonunicodebrowser'                => "'''警告：你嘅瀏覽器係唔係用緊 Unicode 。'''而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。",
@@ -1349,6 +1356,7 @@ $1",
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-sendemail'             => '寄電郵畀其他用戶',
 'right-revisionmove'          => '搬修訂',
+'right-disableaccount'        => '停用戶口',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1562,6 +1570,15 @@ $1',
 'upload-unknown-size'       => '未知嘅大細',
 'upload-http-error'         => '一個HTTP錯誤發生咗: $1',
 
+# Special:UploadStash
+'uploadstash'		   => '上載貯藏',
+'uploadstash-summary'      => '呢一版提供已經上載咗（或者上載緊）但係重未發佈到wiki嘅檔案存取。呢啲檔案除咗係上載佢哋嘅用戶之外其他人都會睇唔到。',
+'uploadstash-clear'        => '清除貯藏檔案',
+'uploadstash-nofiles'      => '你冇貯藏咗嘅檔案。',
+'uploadstash-badtoken'     => '進行呢個動作唔成功，或者你嘅編輯資訊已經過咗期。再試吓喇。',
+'uploadstash-errclear'	   => '清除檔案唔成功。',
+'uploadstash-refresh'	   => '更新檔案清單',
+
 # img_auth script messages
 'img-auth-accessdenied' => '拒絕通行',
 'img-auth-nopathinfo'   => 'PATH_INFO唔見咗。
@@ -1724,6 +1741,7 @@ $1',
 'statistics-edits'             => '自從{{SITENAME}}設定後嘅頁編輯數',
 'statistics-edits-average'     => '每一版平均編輯數',
 'statistics-views-total'       => '查看總數',
+'statistics-views-total-desc'  => '唔包唔存在頁面同特別頁嘅查看數',
 'statistics-views-peredit'     => '每次編輯查看數',
 'statistics-users'             => '註冊咗嘅[[Special:ListUsers|用戶]]',
 'statistics-users-active'      => '活躍用戶',
@@ -1761,6 +1779,7 @@ Template:搞清楚',
 'nrevisions'              => '$1 次修訂',
 'nviews'                  => '$1 次瀏覽',
 'nimagelinks'             => '用響$1版',
+'ntransclusions'          => '用響$1版',
 'specialpage-empty'       => '呢個報告嘅結果係空嘅。',
 'lonelypages'             => '孤立咗嘅頁面',
 'lonelypagestext'         => '以下嘅面頁係響{{SITENAME}}度未有連結到或包含到其它頁面。',
@@ -2195,6 +2214,7 @@ $1',
 'sp-contributions-newbies-title'       => '新戶口嘅用戶貢獻',
 'sp-contributions-blocklog'            => '封鎖日誌',
 'sp-contributions-deleted'             => '已經刪除咗嘅用戶貢獻',
+'sp-contributions-uploads'             => '上載',
 'sp-contributions-logs'                => '日誌',
 'sp-contributions-talk'                => '傾偈',
 'sp-contributions-userrights'          => '用戶權限管理',
@@ -2363,6 +2383,15 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 舊標題會變做跳轉。
 你可以自動噉更新指到原先標題嘅跳轉。
 如果你揀咗唔去做嘅話，請務必要檢查吓有冇[[Special:DoubleRedirects|雙重跳轉]]或者[[Special:BrokenRedirects|死跳轉]]（嘅情況發生）。
+你有責任確保啲連結依然指去佢哋應該指去嘅地方。
+
+注意如果已經有一個同個新名同名嘅頁，噉呢個頁係搬'''唔到'''嘅，除非嗰個同名嘅頁係空嘅或者佢係一個跳轉頁，兼且要之前冇編輯過（冇編輯歷史）先得。噉即係講萬一你搞錯咗，你可以將呢個頁改返去佢改之前噉，你唔可以覆蓋一個現有嘅頁。
+
+'''警告！'''
+噉樣對於一個好多人經過嘅頁面嚟講可能係一個好大嘅同埋出人意表嘅修改；請你喺行動之前確認你清楚噉做嘅後果。",
+'movepagetext-noredirectfixer' => "用下面個表改版名，搬埋佢嘅歷史。
+舊標題會變做跳轉。
+請肯定檢查清楚[[Special:DoubleRedirects|雙重]]或者[[Special:BrokenRedirects|死跳轉]]。
 你有責任確保啲連結依然指去佢哋應該指去嘅地方。
 
 注意如果已經有一個同個新名同名嘅頁，噉呢個頁係搬'''唔到'''嘅，除非嗰個同名嘅頁係空嘅或者佢係一個跳轉頁，兼且要之前冇編輯過（冇編輯歷史）先得。噉即係講萬一你搞錯咗，你可以將呢個頁改返去佢改之前噉，你唔可以覆蓋一個現有嘅頁。
@@ -3220,6 +3249,7 @@ $1',
 'version-specialpages'             => '特別頁',
 'version-parserhooks'              => '語法鈎',
 'version-variables'                => '變數',
+'version-skins'                    => '畫面',
 'version-other'                    => '其它',
 'version-mediahandlers'            => '媒體處理器',
 'version-hooks'                    => '鈎',
@@ -3341,5 +3371,18 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 # SQLite database support
 'sqlite-has-fts' => '$1 有全文搜尋支援',
 'sqlite-no-fts'  => '$1 冇全文搜尋支援',
+
+# Special:DisableAccount
+'disableaccount'             => '停用一個用戶戶口',
+'disableaccount-user'        => '用戶名：',
+'disableaccount-reason'      => '原因：',
+'disableaccount-confirm'     => "停用呢個用戶戶口。
+呢位用戶唔可以再登入、重設佢嘅密碼，又或者收到電郵通知。
+如果呢位用戶而家係響任何地方緊入緊嘅，佢嘅就將會即刻登出。
+''留意停用一個戶口響無系統管理員嘅介入之下係唔可以番轉頭嘅。''",
+'disableaccount-mustconfirm' => '你一定要確認你想去停用呢個戶口。',
+'disableaccount-nosuchuser'  => '用戶戶口 "$1" 唔存在。',
+'disableaccount-success'     => '用戶戶口 "$1" 已經永久停用咗。',
+'disableaccount-logentry'    => '永久停用咗用戶戶口[[$1]]',
 
 );
