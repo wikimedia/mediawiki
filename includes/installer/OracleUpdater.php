@@ -93,7 +93,7 @@ class OracleUpdater extends DatabaseUpdater {
 	public function doUpdates( $purge = true ) {
 		parent::doUpdates();
 		
-		$this->db->doQuery( 'BEGIN fill_wiki_info; END;' );
+		$this->db->query( 'BEGIN fill_wiki_info; END;' );
 	}
 
 }
