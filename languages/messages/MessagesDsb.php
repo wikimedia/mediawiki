@@ -3323,4 +3323,8 @@ Jolic wužywaŕ jo tuchylu hynźi pśizjawjony, buźo se ned wótzjawiś.
 'disableaccount-success'     => 'Wužywarske konto "$1" jo se na pśecej znjemóžniło.',
 'disableaccount-logentry'    => 'jo wužywarske konto [[$1]] na pśecej znjemóžnił',
 
+# Special:UploadStash
+'uploadstash-errclear' => 'Wótpóranje datajow jo se njeraźiło.',
+'uploadstash-refresh'  => 'Lisćinu datajow aktualizěrowaś',
+
 );

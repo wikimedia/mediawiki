@@ -496,6 +496,7 @@ $messages = array(
 'wrongpasswordempty'         => 'দিয়া গুপ্তশব্দতো খালী; অনুগ্রহ কৰি আকৌ এবাৰ চেষ্টা কৰক। ।',
 'passwordtooshort'           => "গুপ্তশব্দ কমেও {{PLURAL:$1|১ তা|$1 তা}} আখৰ হ'ব লাগিব ।",
 'password-name-match'        => "আপুনাৰ গুপ্তশব্দ আৰু আপুনাৰ সদস্যনাম বেলেগ হ'ব লাগিব",
+'password-too-weak'          => 'আপুনি দাখিল কৰা গুপ্তশব্দ অতি দুৰ্বল আৰু সেয়ে ব্যবহাৰ উপযোগী নহয়',
 'mailmypassword'             => 'ই-মেইলত গুপ্তশব্দ পঠাওক',
 'passwordremindertitle'      => '{{SITENAME}} ৰ কাৰণে নতুন অস্থায়ী গুপ্তশব্দ',
 'passwordremindertext'       => 'কোনোবাই (হয়তো আপুনি, $1 আই-পি ঠিকনাৰ পৰা)
@@ -530,9 +531,12 @@ $messages = array(
 
 যদি এ্য়া ভুলতে হৈছে, তেনেহলে আপুনি এই বার্তাটো অবজ্ঞা কৰিব পাৰে ।',
 'usernamehasherror'          => 'সদস্যনামত হেচ আখৰ থাকিব নোৱাৰে',
+'login-throttled'            => 'আপুনি সাম্প্ৰতিক অজস্ৰবাৰ লগইন প্ৰয়াস কৰিছে ।
+অনুগ্ৰহ কৰি কিছু সময় অপেক্ষা কৰি আকৌ প্ৰয়াস কৰক ।',
 'loginlanguagelabel'         => 'ভাষা: $1',
 
 # JavaScript password checks
+'password-strength'            => 'গুপ্তশব্দৰ শক্তি অনুমান: $1',
 'password-strength-bad'        => 'অতিকৈ দুৰ্বল',
 'password-strength-mediocre'   => 'দুৰ্বল',
 'password-strength-acceptable' => 'গ্ৰহণযোগ্য',
@@ -590,7 +594,7 @@ $messages = array(
 আপুনি আৰু এবাৰ সংৰক্ষণৰ বাবে ক্লীক কৰিলে সাৰাংশৰ অবিহনে সংৰক্ষিত হব।",
 'missingcommenttext'               => 'অনুগ্রহ কৰি তলত মন্তব্য এটা দিয়্ক।',
 'missingcommentheader'             => "'''স্মাৰক:''' আপুনি এই মন্তব্যটোত শিৰোণামা দিয়া নাই।
-যদি আকৌ এবাৰ সংৰক্ষিত কৰে, তেনেহলে শিৰোণামা অবিহনে সংৰক্ষিত হব।",
+যদি আকৌ এবাৰ যদি \"{{int:savearticle}}\" টিপে, তেনেহলে সম্পাদনা শিৰোণামা অবিহনে সংৰক্ষিত হব।",
 'summary-preview'                  => 'সাৰাংশৰ খচৰা:',
 'subject-preview'                  => 'বিষয়/শিৰোণামাৰ খচৰা:',
 'blockedtitle'                     => 'সদস্যজনক অবৰোধ কৰা হৈছে',
@@ -792,7 +796,12 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'notextmatches'                  => 'এটাও লিখনীৰ পাঠ্য মিলা নাই',
 'prevn'                          => 'পূর্ববর্ত্তী {{PLURAL:$1|$1}}টা',
 'nextn'                          => 'পৰবর্ত্তী {{PLURAL:$1|$1}}টা',
+'prevn-title'                    => 'আগৰ $1 {{PLURAL:$1|ফলাফল|ফলাফলবোৰ}}',
+'nextn-title'                    => 'পিছৰ $1 {{PLURAL:$1|ফলাফল|ফলাফলবোৰ}}',
+'shown-title'                    => 'প্ৰতি পৃষ্ঠায় $1 {{PLURAL:$1|ফলাফল|ফলাফল}} দেখুৱাওক',
 'viewprevnext'                   => '($1 {{int:pipe-separator}} $2) ($3) চাওক।',
+'searchmenu-legend'              => 'সন্ধান বিকল্পসমুহ',
+'searchmenu-exists'              => 'এই ৱিকিত "[[:$1]]" নামৰ পৃষ্ঠা এখন আছে ।',
 'searchmenu-new'                 => "'''এই ৱিকিত \"[[:\$1]]\" পৃষ্ঠাখন সৃষ্টি কৰক!'''",
 'searchhelp-url'                 => 'Help:সুচী',
 'searchprofile-articles'         => 'সূচিপত্ৰসমূহ',
@@ -802,6 +811,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'searchprofile-articles-tooltip' => '$1-ট অনুসন্ধান কৰক',
 'searchprofile-project-tooltip'  => '$1-ত অনুসন্ধান',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 শব্দ|$2 শব্দসমূহ}})',
+'search-result-score'            => 'যথাৰ্থতা: $1%',
 'search-redirect'                => '(পুনৰ্নিদেশনা $1)',
 'search-section'                 => '(অনুচ্ছেদ $1)',
 'search-suggest'                 => 'আপুনি $1 বুজাব খুজিছে নেকি?',
@@ -878,6 +888,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'savedprefs'                  => 'আপোনাৰ পচন্দসমুহ সংৰক্ষিত কৰা হল।',
 'timezonelegend'              => 'সময় স্থান',
 'localtime'                   => 'স্থানীয় সময়:',
+'timezoneuseserverdefault'    => 'চাৰ্ভাৰ ডিফ’ল্ট ব্যবহাৰ কৰক',
 'timezoneuseoffset'           => 'অন্য (অফচেট ধাৰ্য কৰক)',
 'timezoneoffset'              => 'অফচেট¹:',
 'servertime'                  => 'চার্ভাৰৰ সময়:',
@@ -941,8 +952,15 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'userrights-reason'        => 'কাৰণ:',
 
 # Groups
-'group'       => 'গোট:',
-'group-sysop' => 'এডমিনিষ্ট্ৰেটৰসকল',
+'group'            => 'গোট:',
+'group-user'       => 'সদস্যসকল',
+'group-sysop'      => 'এডমিনিষ্ট্ৰেটৰসকল',
+'group-bureaucrat' => 'ব্যুৰোক্ৰেটসকল',
+'group-all'        => '(সকলো)',
+
+'group-user-member'  => 'সদস্য',
+'group-bot-member'   => 'বট',
+'group-sysop-member' => 'এডমিনিষ্ট্ৰেটৰ',
 
 'grouppage-sysop' => '{{ns:project}}:প্রবন্ধক',
 
@@ -999,6 +1017,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'upload'              => "ফাইল আপল'ড",
 'uploadbtn'           => 'ফাইল আপলোড কৰক',
 'uploadlogpage'       => 'আপলোড সুচী',
+'filesource'          => 'উৎস:',
 'uploadwarning'       => 'আপলোড সতৰ্কবাণী',
 'savefile'            => 'সংৰক্ষণ',
 'uploadedimage'       => '"[[$1]]" আপলোড কৰা হ’ল',
@@ -1227,7 +1246,9 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'blockip'                  => 'সদস্য বাৰণ কৰক',
 'ipbreason'                => 'কাৰণ:',
 'ipbreasonotherlist'       => 'অন্য কাৰণ',
+'ipbanononly'              => 'কেৱল বেনামী সদস্যক হেঙাৰ দিয়ক',
 'ipboptions'               => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite',
+'ipbotheroption'           => 'অন্যান্য',
 'ipblocklist'              => 'বাৰণ কৰা আই-পি ঠিকনা আৰু সদস্যৰ তালিকা',
 'blocklink'                => 'সদস্য বাতিল কৰক',
 'unblocklink'              => 'বাধা উঠাই লওঁক',
@@ -1239,7 +1260,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'block-log-flags-nocreate' => 'একাউন্ট সৃষ্টি নিষ্ক্ৰিয় কৰা হৈছে',
 
 # Move page
-'movepagetext'    => "তলৰ ফৰ্ম ব্যবহাৰ কৰিলে এই পৃষ্ঠাৰ শিৰোনামা সলনি হ'ব, লগতে সমগ্ৰ ইতিহাস নতুন শিৰোনামালৈ স্থানান্তৰ কৰা হ'ব ।
+'movepagetext'              => "তলৰ ফৰ্ম ব্যবহাৰ কৰিলে এই পৃষ্ঠাৰ শিৰোনামা সলনি হ'ব, লগতে সমগ্ৰ ইতিহাস নতুন শিৰোনামালৈ স্থানান্তৰ কৰা হ'ব ।
 পুৰণা শিৰোনামাটো নতুন শিৰোনামালৈ এটা পুনৰ্নিৰ্দেশনা হৈ ৰ'ব ।
 সমগ্ৰ পুনৰ্নিৰ্দেশনাসমূহ যি পুৰণা শিৰোনামালৈ পোনায়, আপুনি  স্বয়ংক্ৰিয় ভাবে আপডেট কৰিব পাৰিব ।
 যদি এই কৰিব নিবিচাৰে তেনেহলে  [[Special:DoubleRedirects|দুনা পুনৰ্নিৰ্দেশনসমূহ]] বা [[Special:BrokenRedirects|ভঙা পুনৰ্নিৰ্দেশনসমূহ]] চয়ন কৰে যেন ।
@@ -1251,29 +1272,38 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 '''সাৱধান!'''
 জনপ্রীয় পৃষ্ঠা এখনৰ বাবে এয়া এক ডাঙৰ আৰু অনাপেক্ষিত সাল-সলনি হব পাৰে;
 এই কাৰ্য্যৰ পৰিণাম ভালদৰে বিবেচনা কৰি লই যেন।",
-'movearticle'     => 'পৃস্থা স্থানান্তৰ কৰক',
-'newtitle'        => 'নতুন শিৰোণামালৈ:',
-'move-watch'      => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
-'movepagebtn'     => 'পৃষ্ঠাটো স্থানান্তৰ কৰক',
-'pagemovedsub'    => 'স্থানান্তৰ সফল হল',
-'movepage-moved'  => "'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''",
-'articleexists'   => 'সেই নামৰ পৃষ্ঠা এটা আগৰ পৰাই আছে, বা সেই নামতো অযোগ্য।
+'movearticle'               => 'পৃস্থা স্থানান্তৰ কৰক',
+'newtitle'                  => 'নতুন শিৰোণামালৈ:',
+'move-watch'                => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
+'movepagebtn'               => 'পৃষ্ঠাটো স্থানান্তৰ কৰক',
+'pagemovedsub'              => 'স্থানান্তৰ সফল হল',
+'movepage-moved'            => "'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''",
+'movepage-moved-redirect'   => 'এটি পুনৰ্নিদেশনা সৃষ্টি কৰা হৈছে',
+'movepage-moved-noredirect' => 'পুনৰ্নিদেশনা সৃষ্টি কৰা দমন কৰা হৈছে',
+'articleexists'             => 'সেই নামৰ পৃষ্ঠা এটা আগৰ পৰাই আছে, বা সেই নামতো অযোগ্য।
 বেলেগ নাম এটা বাছি লওক।',
-'talkexists'      => "'''পৃষ্ঠাটো স্থানান্তৰ কৰা হৈছে, কিন্তু ইয়াৰ লগত জৰিত বার্তা পৃষ্ঠাটো স্থানান্তৰ কৰা নহল, কাৰণ নতুন ঠাইত বার্তা পৃষ্ঠা এটা আগৰ পৰাই আছে।
+'talkexists'                => "'''পৃষ্ঠাটো স্থানান্তৰ কৰা হৈছে, কিন্তু ইয়াৰ লগত জৰিত বার্তা পৃষ্ঠাটো স্থানান্তৰ কৰা নহল, কাৰণ নতুন ঠাইত বার্তা পৃষ্ঠা এটা আগৰ পৰাই আছে।
 অনুগ্রহ কৰি আপুনি নিজে স্থানান্তৰ কৰক ।'''",
-'movedto'         => 'লৈ স্থানান্তৰ কৰা হল',
-'movetalk'        => 'সংলগ্ন বার্তা পৃষ্ঠা স্থানান্তৰ কৰক',
-'1movedto2'       => '[[$1]]ক [[$2]] লৈ স্থানান্তৰিত কৰা হল',
-'1movedto2_redir' => "[[$1]]-ক [[$2]]-লৈ পুনৰ্নিৰ্দেশনাৰ সহায়েৰে স্থানান্তৰ কৰা হ'ল",
-'movelogpage'     => 'স্থানান্তৰন সুচী',
-'movereason'      => 'কাৰণ:',
-'revertmove'      => 'আগৰ অৱ্স্থালৈ ঘুৰি যাওক',
+'movedto'                   => 'লৈ স্থানান্তৰ কৰা হল',
+'movetalk'                  => 'সংলগ্ন বার্তা পৃষ্ঠা স্থানান্তৰ কৰক',
+'1movedto2'                 => '[[$1]]ক [[$2]] লৈ স্থানান্তৰিত কৰা হল',
+'1movedto2_redir'           => "[[$1]]-ক [[$2]]-লৈ পুনৰ্নিৰ্দেশনাৰ সহায়েৰে স্থানান্তৰ কৰা হ'ল",
+'movelogpage'               => 'স্থানান্তৰন সুচী',
+'movereason'                => 'কাৰণ:',
+'revertmove'                => 'আগৰ অৱ্স্থালৈ ঘুৰি যাওক',
 
 # Export
-'export' => 'পৃষ্ঠা নিষ্কাষন',
+'export'            => 'পৃষ্ঠা নিষ্কাষন',
+'export-submit'     => 'ৰপ্তানি কৰক',
+'export-addcattext' => 'এই শ্ৰেণীকেইতাৰ পৰা পৃষ্ঠা যোগ কৰক:',
+'export-addcat'     => 'যোগ কৰক',
+'export-addnstext'  => 'এই নামস্থানৰ পৰা পৃষ্ঠা যোগ কৰক',
+'export-addns'      => 'যোগ কৰক',
+'export-download'   => 'ফাইল হিচাবে সংৰক্ষণ কৰক',
 
 # Namespace 8 related
 'allmessages'                   => 'ব্যৱস্থাৰ বতৰা',
+'allmessagesname'               => 'নাম',
 'allmessages-filter-unmodified' => 'অপৰিবৰ্তিত',
 'allmessages-filter-all'        => 'সকলো',
 'allmessages-filter-modified'   => 'পৰিবৰ্তিত',
@@ -1285,10 +1315,12 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'thumbnail_error' => 'থাম্বনেইল বনাব অসুবিধা হৈছে: $1',
 
 # Special:Import
-'import'                  => 'পৃষ্ঠা আমদানি কৰক',
-'import-interwiki-submit' => 'আমদানি',
-'import-upload-filename'  => 'ফাইলনাম:',
-'import-comment'          => 'মন্তব্য:',
+'import'                     => 'পৃষ্ঠা আমদানি কৰক',
+'import-interwiki-templates' => 'সকলো সাঁচ অন্তৰ্ভুক্ত কৰক',
+'import-interwiki-submit'    => 'আমদানি',
+'import-upload-filename'     => 'ফাইলনাম:',
+'import-comment'             => 'মন্তব্য:',
+'importnotext'               => 'খালী বা পাঠ বিহীন',
 
 # Import log
 'importlogpage' => 'আমদানী সুচী',
@@ -1427,18 +1459,22 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 
 # Auto-summaries
 'autosumm-blank' => "পৃষ্ঠাখন খালি কৰা হ'ল",
+'autosumm-new'   => '"$1" দি পৃষ্ঠা সৃষ্টি কৰা হ\'ল',
 
 # Live preview
 'livepreview-loading' => 'লোডিং…',
 'livepreview-ready'   => 'লোডিং… প্ৰস্তুত!',
 
 # Watchlist editor
-'watchlistedit-numitems'     => 'কথাবতৰা পৃষ্ঠাসমূহ বাদ দি, আপুনাৰ অনুসৰণ-তালিকাত {{PLURAL:$1|১-খন|$1-খন}} ঘাই পৃষ্ঠা আছে ।',
-'watchlistedit-noitems'      => 'আপুনাৰ অনুসৰণ-তালিকাত এখনো ঘাই পৃষ্ঠা নাই ।',
-'watchlistedit-normal-title' => 'অনুসৰণ-তালিকা সম্পাদন কৰক',
-'watchlistedit-raw-title'    => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
-'watchlistedit-raw-legend'   => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
-'watchlistedit-raw-titles'   => 'শীৰ্ষক:',
+'watchlistedit-numitems'      => 'কথাবতৰা পৃষ্ঠাসমূহ বাদ দি, আপুনাৰ অনুসৰণ-তালিকাত {{PLURAL:$1|১-খন|$1-খন}} ঘাই পৃষ্ঠা আছে ।',
+'watchlistedit-noitems'       => 'আপুনাৰ লক্ষ্য-তালিকাত এখনো ঘাই পৃষ্ঠা নাই ।',
+'watchlistedit-normal-title'  => 'লক্ষ্য-তালিকা সম্পাদন কৰক',
+'watchlistedit-normal-submit' => 'শিৰোনামা আঁতৰাৱক',
+'watchlistedit-raw-title'     => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
+'watchlistedit-raw-legend'    => 'অশোধিত অনুসৰণ-তালিকা সম্পাদন কৰক',
+'watchlistedit-raw-titles'    => 'শীৰ্ষক:',
+'watchlistedit-raw-submit'    => 'লক্ষ্য-তালিকা আপডেট কৰক',
+'watchlistedit-raw-done'      => "আপুনাৰ লক্ষ্য-তালিকা আপডেট কৰা হ'ল",
 
 # Watchlist editing tools
 'watchlisttools-view' => 'সংগতি থকা সাল-সলনিবোৰ চাওক',
@@ -1449,13 +1485,16 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'version'                  => 'সংস্কৰণ',
 'version-specialpages'     => 'বিশেষ পৃষ্ঠাসমূহ',
 'version-other'            => 'অন্য',
+'version-version'          => '(সংস্কৰণ $1)',
 'version-license'          => 'লাইচেঞ্চ',
+'version-poweredby-others' => 'অন্য',
 'version-software-product' => 'পণ্য',
+'version-software-version' => 'সংস্কৰণ',
 
 # Special:FilePath
 'filepath'        => 'ফাইল পথ',
 'filepath-page'   => 'ফাইল:',
-'filepath-submit' => 'পথ',
+'filepath-submit' => 'যাওঁক',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'প্ৰতিলিপি পৃষ্ঠাসমূহ অনুসন্ধান কৰক',
@@ -1477,6 +1516,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'specialpages-group-pagetools'   => 'পৃষ্ঠা সা-সঁজুলি',
 'specialpages-group-wiki'        => 'ৱিকি তথ্য আৰু সা-সঁজুলি',
 'specialpages-group-redirects'   => 'পুনৰ্নিৰ্দেশ কৰা বিশেষ পৃষ্ঠাসমূহ',
+'specialpages-group-spam'        => 'স্পেম সা-সঁজুলি',
 
 # Special:BlankPage
 'blankpage'              => 'খালী পৃষ্ঠা',
@@ -1485,15 +1525,28 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 # Special:Tags
 'tag-filter-submit' => 'সংশোধন',
 'tags-title'        => 'টেগসমূহ',
+'tags-tag'          => 'টেগ নাম',
 'tags-edit'         => 'সম্পাদনা',
 
 # Special:ComparePages
-'comparepages' => 'পৃষ্ঠা তুলনা কৰক',
+'comparepages'     => 'পৃষ্ঠা তুলনা কৰক',
+'compare-selector' => 'পৃষ্ঠা পুনৰীক্ষন তুলনা কৰক',
+'compare-page1'    => 'পৃষ্ঠা ১',
+'compare-page2'    => 'পৃষ্ঠা ২',
+'compare-rev1'     => 'পুনৰীক্ষন ১',
+'compare-rev2'     => 'পুনৰীক্ষন ২',
+'compare-submit'   => 'তুলনা কৰক',
 
 # Database error messages
 'dberr-header' => 'এই ৱিকিট কেতবোৰ জেং লাগিছে',
 
 # HTML forms
+'htmlform-select-badoption'    => 'আপুনি ধায্য কৰা মান উপযুক্ত বিকল্প নহয়',
+'htmlform-int-invalid'         => 'অপুনি ধায্য কৰা মান ইন্টেজাৰ (integer) নহয়',
+'htmlform-float-invalid'       => 'অপুনি ধায্য কৰা মান সংখ্যা নহয়',
+'htmlform-int-toolow'          => 'আপুনি ধায্য কৰা মান ন্যূনতম $1 তকৈ তলত',
+'htmlform-int-toohigh'         => 'আপুনি ধায্য কৰা মান অধিকতম $1 তকৈ ওপৰত',
+'htmlform-required'            => 'এই মান আৱশ্যক',
 'htmlform-submit'              => 'দাখিল কৰক',
 'htmlform-reset'               => 'সাল-সলনি পণ্ড কৰক',
 'htmlform-selectorother-other' => 'অন্য',

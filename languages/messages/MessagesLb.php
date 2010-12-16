@@ -3373,4 +3373,11 @@ Wann e Benotzer elo iergendwou ageloggt ass da gëtt hien direkt ausgeloggt.
 'disableaccount-success'     => 'De Benotzerkont "$1" gouf definitiv desaktivéiert.',
 'disableaccount-logentry'    => 'huet de Benotzer [[$1]] definitiv desaktivéiert',
 
+# Special:UploadStash
+'uploadstash'          => 'Um Server späichere virum Eroplueden',
+'uploadstash-clear'    => 'Um Server gespäichert Fichieren déi nach net eropgeluede si läschen',
+'uploadstash-nofiles'  => 'Dir hutt keng gespäichert Fichieren déi Dir nach net eropgelueden hutt.',
+'uploadstash-errclear' => "D'Läsche vun de Fichieren huet net fonctionnéiert.",
+'uploadstash-refresh'  => 'Lëscht vun de Fichieren aktualiséieren',
+
 );

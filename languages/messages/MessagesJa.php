@@ -36,6 +36,7 @@
  * @author Mzm5zbC3
  * @author Ohgi
  * @author Suisui
+ * @author W.CC
  * @author Web comic
  * @author Whym
  * @author Yanajin66
@@ -2918,7 +2919,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-n-portal'                => 'このプロジェクトについて、できること、情報を入手する場所',
 'tooltip-n-currentevents'         => '最近の出来事の背景情報を見つける',
 'tooltip-n-recentchanges'         => 'ウィキにおける最近の更新の一覧',
-'tooltip-n-randompage'            => '無作為抽出されたページの読み込み',
+'tooltip-n-randompage'            => '無作為に抽出されたページの読み込み',
 'tooltip-n-help'                  => '情報を得る場所です',
 'tooltip-t-whatlinkshere'         => 'ここにリンクしている全ウィキのページの一覧',
 'tooltip-t-recentchangeslinked'   => 'ここにリンクしている全ウィキのページの最近の変更',
@@ -3087,7 +3088,7 @@ $1',
 'file-info'            => '（ファイルサイズ：$1、MIMEタイプ：$2）',
 'file-info-size'       => '（$1×$2ピクセル、ファイルサイズ：$3、MIMEタイプ：$4）',
 'file-nohires'         => '<small>高解像度版はありません。</small>',
-'svg-long-desc'        => '（SVGファイル、名義上$1×$2ピクセル、ファイルサイズ：$3）',
+'svg-long-desc'        => '（SVGファイル、$1×$2ピクセル、ファイルサイズ：$3）',
 'show-big-image'       => '完全解像度',
 'show-big-image-thumb' => '<small>このプレビューのサイズ：$1×$2ピクセル</small>',
 'file-info-gif-looped' => 'ループします',
