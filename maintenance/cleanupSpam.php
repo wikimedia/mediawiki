@@ -123,7 +123,6 @@ class CleanupSpam extends Maintenance {
 				$article->doEdit( $rev->getText(), wfMsg( 'spam_reverting', $domain ), EDIT_UPDATE );
 			}
 			$dbw->commit();
-			wfDoUpdates();
 		}
 	}
 }
