@@ -111,7 +111,6 @@ class ResourceLoader {
 	 * Available filters are:
 	 *  - minify-js \see JSMin::minify
 	 *  - minify-css \see CSSMin::minify
-	 *  - flip-css \see CSSJanus::transform
 	 * 
 	 * If $data is empty, only contains whitespace or the filter was unknown, 
 	 * $data is returned unmodified.
@@ -126,7 +125,7 @@ class ResourceLoader {
 		// For empty/whitespace-only data or for unknown filters, don't perform 
 		// any caching or processing
 		if ( trim( $data ) === '' 
-			|| !in_array( $filter, array( 'minify-js', 'minify-css', 'flip-css' ) ) ) 
+			|| !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) 
 		{
 			wfProfileOut( __METHOD__ );
 			return $data;
@@ -150,9 +149,6 @@ class ResourceLoader {
 					break;
 				case 'minify-css':
 					$result = CSSMin::minify( $data );
-					break;
-				case 'flip-css':
-					$result = CSSJanus::transform( $data, true, false );
 					break;
 			}
 		} catch ( Exception $exception ) {
@@ -436,12 +432,6 @@ class ResourceLoader {
 			$styles = array();
 			if ( $context->shouldIncludeStyles() ) {
 				$styles = $module->getStyles( $context );
-				// Flip CSS on a per-module basis
-				if ( $styles && $module->getFlip( $context ) ) {
-					foreach ( $styles as $media => $style ) {
-						$styles[$media] = $this->filter( 'flip-css', $style );
-					}
-				}
 			}
 
 			// Messages

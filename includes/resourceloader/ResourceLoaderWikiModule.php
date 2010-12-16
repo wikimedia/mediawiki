@@ -86,6 +86,9 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( !$style ) {
 				continue;
 			}
+			if ( $this->getFlip( $context ) ) {
+				$style = CSSJanus::transform( $style, true, false );
+			}
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = '';
 			}
