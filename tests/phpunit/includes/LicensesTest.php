@@ -8,7 +8,15 @@ class LicensesTest extends PHPUnit_Framework_TestCase {
 ** GFDL|Debian disagrees
 ";
 
-		$lc = new Licenses( array( 'licenses' => $str ) );
+		$lc = new Licenses( array(
+			'fieldname' => 'FooField',
+			'type' => 'select',
+			'section' => 'description',
+			'id' => 'wpLicense',
+			'label-message' => 'license',
+			'name' => 'AnotherName', 
+			'licenses' => $str,		
+		) );
 		$this->assertThat( $lc, $this->isInstanceOf( 'Licenses' ) );
 	}
 }
