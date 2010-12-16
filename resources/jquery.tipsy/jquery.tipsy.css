@@ -2,6 +2,7 @@
 	padding: 5px;
 	position: absolute;
 	z-index: 100000;
+	cursor: default;
 }
 .tipsy-inner {
 	padding: 5px 8px 4px 8px;
