@@ -13,7 +13,7 @@ class LicensesTest extends PHPUnit_Framework_TestCase {
 			'type' => 'select',
 			'section' => 'description',
 			'id' => 'wpLicense',
-			'label-message' => 'license',
+			'label' => 'A label text', # Note can't test label-message because $wgOut is not defined
 			'name' => 'AnotherName', 
 			'licenses' => $str,		
 		) );
