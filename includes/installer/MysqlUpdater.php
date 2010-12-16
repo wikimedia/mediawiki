@@ -8,12 +8,12 @@
 
 /**
  * Mysql update list and mysql-specific update functions.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
 class MysqlUpdater extends DatabaseUpdater {
-	
+
 	protected function getCoreUpdateList() {
 		return array(
 			// 1.2
@@ -617,8 +617,6 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @see bug 3946
 	 */
 	protected function doPageRandomUpdate() {
-		
-
 		$page = $this->db->tableName( 'page' );
 		$this->db->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", __METHOD__ );
 		$rows = $this->db->affectedRows();
@@ -693,7 +691,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( "...page_restrictions table already exists.\n" );
 			return;
 		}
-	
+
 		$this->output( "Creating page_restrictions table..." );
 		$this->applyPatch( 'patch-page_restrictions.sql' );
 		$this->applyPatch( 'patch-page_restrictions_sortkey.sql' );

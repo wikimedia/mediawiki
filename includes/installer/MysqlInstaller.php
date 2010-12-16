@@ -13,7 +13,7 @@
  * @since 1.17
  */
 class MysqlInstaller extends DatabaseInstaller {
-	
+
 	protected $globalNames = array(
 		'wgDBserver',
 		'wgDBname',

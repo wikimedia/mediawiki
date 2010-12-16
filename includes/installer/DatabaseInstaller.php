@@ -13,7 +13,7 @@
  * @since 1.17
  */
 abstract class DatabaseInstaller {
-	
+
 	/**
 	 * The Installer object.
 	 *
@@ -103,7 +103,7 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public abstract function getConnection();
-	
+
 	/**
 	 * Create the database and return a Status object indicating success or
 	 * failure.
@@ -143,7 +143,7 @@ abstract class DatabaseInstaller {
 	 * @return String
 	 */
 	public abstract function getLocalSettings();
-	
+
 	/**
 	 * Perform database upgrades
 	 *
@@ -166,21 +166,21 @@ abstract class DatabaseInstaller {
 		ob_end_flush();
 		return $ret;
 	}
-	
+
 	/**
 	 * Allow DB installers a chance to make last-minute changes before installation
 	 * occurs. This happens before setupDatabase() or createTables() is called, but
 	 * long after the constructor. Helpful for things like modifying setup steps :)
 	 */
 	public function preInstall() {
-	
+
 	}
 
 	/**
 	 * Allow DB installers a chance to make checks before upgrade.
 	 */
 	public function preUpgrade() {
-	
+
 	}
 
 	/**
@@ -227,7 +227,7 @@ abstract class DatabaseInstaller {
 	public function getReadableName() {
 		return wfMsg( 'config-type-' . $this->getName() );
 	}
-	
+
 	/**
 	 * Get a name=>value map of MW configuration globals that overrides.
 	 * DefaultSettings.php
@@ -423,12 +423,12 @@ abstract class DatabaseInstaller {
 		$this->setVarsFromRequest(
 			array( 'wgDBuser', 'wgDBpassword', '_SameAccount', '_CreateDBAccount' )
 		);
-		
+
 		if ( $this->getVar( '_SameAccount' ) ) {
 			$this->setVar( 'wgDBuser', $this->getVar( '_InstallUser' ) );
 			$this->setVar( 'wgDBpassword', $this->getVar( '_InstallPassword' ) );
 		}
-		
+
 		return Status::newGood();
 	}
 
