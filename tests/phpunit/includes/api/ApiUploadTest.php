@@ -18,7 +18,7 @@
 // TODO: port the other Upload tests, and other API tests to this framework
 
 require_once( dirname( __FILE__ ) . '/RandomImageGenerator.php' );
-require_once( dirname( __FILE__ ) . '/../../../../../includes/User.php' );
+require_once( dirname( __FILE__ ) . '/../../../../includes/User.php' );
 
 /* Wraps the user object, so we can also retain full access to properties like password if we log in via the API */
 class ApiTestUser {
