@@ -5,15 +5,15 @@
  * @file
  * @ingroup Deployment
  */
- 
+
 /**
  * Class for handling updates to Sqlite databases.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
 class SqliteUpdater extends DatabaseUpdater {
-	
+
 	protected function getCoreUpdateList() {
 		return array(
 			// 1.14

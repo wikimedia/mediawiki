@@ -103,7 +103,7 @@ class WebInstaller extends CoreInstaller {
 
 		// Add parser hook for WebInstaller_Complete
 		global $wgParser;
-		$wgParser->setHook( 'downloadlink', array( $this, 'downloadLinkHook' ) );		
+		$wgParser->setHook( 'downloadlink', array( $this, 'downloadLinkHook' ) );
 	}
 
 	/**
@@ -598,8 +598,7 @@ class WebInstaller extends CoreInstaller {
 		$text = wfMsgReal( $msg, $args, false, false, false );
 		$html = htmlspecialchars( $text );
 		$html = $this->parse( $text, true );
-		
-		
+
 		return "<div class=\"mw-help-field-container\">\n" .
 		         "<span class=\"mw-help-field-hint\">" . wfMsgHtml( 'config-help' ) . "</span>\n" .
 		         "<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
@@ -921,12 +920,12 @@ class WebInstaller extends CoreInstaller {
 	}
 
 	public function downloadLinkHook( $text, $attribs, $parser  ) {
-		$img = Html::element( 'img', array( 
+		$img = Html::element( 'img', array(
 			'src' => '../skins/common/images/download-32.png',
 			'width' => '32',
 			'height' => '32',
 		) );
-		$anchor = Html::rawElement( 'a', 
+		$anchor = Html::rawElement( 'a',
 			array( 'href' => $this->getURL( array( 'localsettings' => 1 ) ) ),
 			$img . ' ' . wfMsgHtml( 'config-download-localsettings' ) );
 		return Html::rawElement( 'div', array( 'class' => 'config-download-link' ), $anchor );

@@ -334,7 +334,7 @@ abstract class Installer {
 	public function restoreLinkPopups() {
 		global $wgExternalLinkTarget;
 		$this->parserOptions->setExternalLinkTarget( $wgExternalLinkTarget );
-	}	
+	}
 
 	/**
 	 * TODO: document
@@ -349,7 +349,7 @@ abstract class Installer {
 		if( $status->isOK() ) {
 			LBFactory::enableBackend();
 		}
-		
+
 		return $status;
 	}
 

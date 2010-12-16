@@ -5,7 +5,7 @@
  * @file
  * @ingroup Deployment
  */
- 
+
 /**
  * Class for setting up the MediaWiki database using SQLLite.
  *
@@ -13,7 +13,7 @@
  * @since 1.17
  */
 class SqliteInstaller extends DatabaseInstaller {
-	
+
 	protected $globalNames = array(
 		'wgDBname',
 		'wgSQLiteDataDir',
