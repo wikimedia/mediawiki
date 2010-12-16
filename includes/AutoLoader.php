@@ -720,12 +720,12 @@ $wgAutoloadLocalClasses = array(
 
 	# tests
 	'AnsiTermColorer' => 'tests/testHelpers.inc',
-	'DbTestPreviewer' => 'maintenance/tests/testHelpers.inc',
-	'DbTestRecorder' => 'maintenance/tests/testHelpers.inc',
-	'DummyTermColorer' => 'maintenance/tests/testHelpers.inc',
-	'RemoteTestRecorder' => 'maintenance/tests/testHelpers.inc',
-	'TestFileIterator' => 'maintenance/tests/testHelpers.inc',
-	'TestRecorder' => 'maintenance/tests/testHelpers.inc',
+	'DbTestPreviewer' => 'tests/testHelpers.inc',
+	'DbTestRecorder' => 'tests/testHelpers.inc',
+	'DummyTermColorer' => 'tests/testHelpers.inc',
+	'RemoteTestRecorder' => 'tests/testHelpers.inc',
+	'TestFileIterator' => 'tests/testHelpers.inc',
+	'TestRecorder' => 'tests/testHelpers.inc',
 
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
