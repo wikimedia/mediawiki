@@ -39,6 +39,7 @@
 	margin: 0;
 	line-height: 1.5em;
 	padding: 0.01em 0.25em;
+	text-align: left;
 }
 .suggestions-result-current {
 	background-color: #4C59A6;
@@ -49,10 +50,12 @@
 .suggestions-special .special-label {
 	font-size: 0.8em;
 	color: gray;
+	text-align: left;
 }
 .suggestions-special .special-query {
 	color: black;
 	font-style: italic;
+	text-align: left;
 }
 .suggestions-special .special-hover {
 	background-color: silver;
