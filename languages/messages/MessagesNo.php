@@ -845,9 +845,9 @@ Siste blokkeringsloggelement kan sees nedenfor.',
 'userjsyoucanpreview'              => "'''Tips:''' Bruk '{{int:showpreview}}'-knappen for å teste ditt nye JS før du lagrer.",
 'usercsspreview'                   => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
 'userjspreview'                    => "'''Husk at dette bare er en test eller forhåndsvisning av ditt bruker-JavaScript, og det ikke er lagret!'''",
-'sitecsspreview'                   => "'''Husk at du bare forhåndsviser denne globale CSS.'''
+'sitecsspreview'                   => "'''Husk at du bare forhåndsviser denne CSS.'''
 '''Den har ikke blitt lagret ennå!'''",
-'sitejspreview'                    => "'''Husk at du bare forhåndsviser denne globale JavaScript-koden.'''
+'sitejspreview'                    => "'''Husk at du bare forhåndsviser denne JavaScript-koden.'''
 '''Den har ikke blitt lagret ennå!'''",
 'userinvalidcssjstitle'            => "'''Advarsel:''' Det finnes ikke noe utseende ved navn «$1». Husk at .css- og .js-sider bruker titler i små bokstaver, for eksempel {{ns:user}}:Eksempel/vector.css, ikke {{ns:user}}:Eksempel/Vector.css",
 'updated'                          => '(Oppdatert)',
@@ -3356,6 +3356,7 @@ Du kan også [[Special:Watchlist/edit|bruke standardverktøyet]].',
 'version-specialpages'             => 'Spesialsider',
 'version-parserhooks'              => 'Parsertillegg',
 'version-variables'                => 'Variabler',
+'version-skins'                    => 'Drakter',
 'version-other'                    => 'Annet',
 'version-mediahandlers'            => 'Mediahåndterere',
 'version-hooks'                    => 'Haker',
@@ -3475,5 +3476,27 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 # SQLite database support
 'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
 'sqlite-no-fts'  => '$1 uten støtte for fulltekstsøk',
+
+# Special:DisableAccount
+'disableaccount'             => 'Deaktiver en brukerkonto',
+'disableaccount-user'        => 'Brukernavn:',
+'disableaccount-reason'      => 'Årsak:',
+'disableaccount-confirm'     => "Deaktiver denne brukerkontoen.
+Brukeren vil ikke kunne logge inn, tilbakestille sitt passord eller motta e-postvarsler.
+Om denne brukeren er pålogget et sted vil den umiddelbart bli logget ut.
+''Merk at å deaktivere en konto ikke er reversibelt uten inngripen fra en systemadministrator.''",
+'disableaccount-mustconfirm' => 'Du må bekrefte at du vil deaktivere denne kontoen.',
+'disableaccount-nosuchuser'  => 'Brukerkontoen «$1» finnes ikke.',
+'disableaccount-success'     => 'Brukerkontoen «$1» har blitt permanent deaktivert.',
+'disableaccount-logentry'    => 'deaktiverte brukerkontoen [[$1]] permanent',
+
+# Special:UploadStash
+'uploadstash'          => 'Last opp stash',
+'uploadstash-summary'  => 'Denne siden gir tilgang til filer som har blitt lastet opp (eller er i ferd med å bli lastet opp) men som ennå ikke er publisert til wikien. Disse filene er ikke synlige for andre enn brukeren som lastet dem opp.',
+'uploadstash-clear'    => 'Fjern stashede filer',
+'uploadstash-nofiles'  => 'Du har ingen stashede filer.',
+'uploadstash-badtoken' => 'Utføringen av den handlingen var mislykket, kanskje fordi dine redigeringsrettigheter har utløpt. Prøv igjen.',
+'uploadstash-errclear' => 'Fjerning av filene var mislykket.',
+'uploadstash-refresh'  => 'Oppdater listen over filer',
 
 );

@@ -823,9 +823,9 @@ Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
 '''Dit is nog nie gestoor nie!'''",
 'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
-'sitecsspreview'                   => "'''Onthou dat u na 'n voorskou van die globale CSS-kode kyk.'''
+'sitecsspreview'                   => "'''Onthou dat u na 'n voorskou van die CSS-kode kyk.'''
 '''Dit is nog nie gestoor nie!'''",
-'sitejspreview'                    => "'''Onthou dat u na 'n voorskou van die globale JavaScript-kode kyk.'''
+'sitejspreview'                    => "'''Onthou dat u na 'n voorskou van die JavaScript-kode kyk.'''
 '''Dit is nog nie gestoor nie!'''",
 'userinvalidcssjstitle'            => "'''Waarskuwing:''' daar is nie 'n omslag \"\$1\" nie.
 Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns:user}}:Naam/vector.css in plaas van {{ns:user}}:Naam/Vector.css.",
@@ -3454,5 +3454,8 @@ Verskaf die lêernaam sonder die "{{ns:file}}:" voorvoegsel.',
 'disableaccount-nosuchuser'  => 'Die gebruiker "$1" bestaan nie.',
 'disableaccount-success'     => 'Die gebruiker "$1" is permanent gedeaktiveer.',
 'disableaccount-logentry'    => 'het die gebruiker [[$1]] permanent gedeaktiveer',
+
+# Special:UploadStash
+'uploadstash-refresh' => 'Verfris die lys van lêers',
 
 );

@@ -807,9 +807,9 @@ Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 '''Ni še bil shranjen!'''",
 'userjspreview'                    => "'''Ne pozabite, da svoj uporabniški JavaScript le preizkušate/predogledujete.'''
 '''Ni še bil shranjen!'''",
-'sitecsspreview'                   => "'''Ne pozabite, da ta globalni CSS samo preizkušate.'''
+'sitecsspreview'                   => "'''Ne pozabite, da ta CSS samo preizkušate.'''
 '''Ni še bil shranjen!'''",
-'sitejspreview'                    => "'''Ne pozabite, da kodo tega globalnega JavaScripta samo preizkušate.'''
+'sitejspreview'                    => "'''Ne pozabite, da kodo tega JavaScripta samo preizkušate.'''
 '''Ni še bila shranjena!'''",
 'userinvalidcssjstitle'            => "'''Opozorilo:''' Koža »$1« ne obstaja.
 Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr. {{ns:user}}:Blabla/vector.css namesto {{ns:user}}:Blabla/Vector.css.",
@@ -3469,5 +3469,14 @@ Uporabnik se ne bo mogel prijaviti, ponastaviti svojega gesla ali prejemati e-po
 'disableaccount-nosuchuser'  => 'Uporabniški račun »$1« ne obstaja.',
 'disableaccount-success'     => 'Uporabniški račun »$1« je trajno onemogočen.',
 'disableaccount-logentry'    => 'je trajno onemogočil(-a) uporabniški račun [[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => 'Skrite naložene datoteke',
+'uploadstash-summary'  => 'Ta stran omogoča dostop do datotek, ki so naložene (oziroma v postopku nalaganja), vendar še niso objavljene na wikiju. Te datoteke so vidne samo uporabniku, ki jih je naložil, in nikomur drugemu.',
+'uploadstash-clear'    => 'Počisti skrite datoteke',
+'uploadstash-nofiles'  => 'Nimate skritih datotek.',
+'uploadstash-badtoken' => 'Izvedba dejanja ni bila uspešna, morda zaradi izteklih poverilnic za urejanje. Poskusite znova.',
+'uploadstash-errclear' => 'Čiščenje datotek ni bilo uspešno.',
+'uploadstash-refresh'  => 'Osveži seznam datotek',
 
 );
