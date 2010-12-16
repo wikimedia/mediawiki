@@ -388,6 +388,7 @@ div#mw-head h5 {
 		font-size: 13px;
 		width: 14em;
 		background-color: transparent;
+		direction: ltr;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#simpleSearch button#searchButton {
