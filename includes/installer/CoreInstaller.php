@@ -489,7 +489,7 @@ abstract class CoreInstaller extends Installer {
 		// Don't break forms
 		$GLOBALS['wgExternalLinkTarget'] = '_blank';
 
-		// Extended debugging. Maybe disable before release?
+		// Extended debugging
 		$GLOBALS['wgShowSQLErrors'] = true;
 		$GLOBALS['wgShowDBErrorBacktrace'] = true;
 
