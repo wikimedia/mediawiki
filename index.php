@@ -50,14 +50,12 @@ if( !is_null( $maxLag ) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
 	exit;
 }
 
-# Query string fields
-$action = $wgRequest->getVal( 'action', 'view' );
-$title = $wgRequest->getVal( 'title' );
-
 # Set title from request parameters
-$wgTitle = $mediaWiki->checkInitialQueries( $title, $action );
+$wgTitle = $mediaWiki->checkInitialQueries( $wgRequest );
 
 wfProfileOut( 'main-misc-setup' );
+
+$action = $wgRequest->getVal( 'action' );
 
 # Send Ajax requests to the Ajax dispatcher.
 if( $wgUseAjax && $action == 'ajax' ) {
@@ -94,8 +92,6 @@ if( $wgUseFileCache && $wgTitle !== null ) {
 }
 
 # Setting global variables in mediaWiki
-$mediaWiki->setVal( 'action', $action );
-$mediaWiki->setVal( 'DisabledActions', $wgDisabledActions );
 $mediaWiki->setVal( 'DisableHardRedirects', $wgDisableHardRedirects );
 $mediaWiki->setVal( 'EnableCreativeCommonsRdf', $wgEnableCreativeCommonsRdf );
 $mediaWiki->setVal( 'EnableDublinCoreRdf', $wgEnableDublinCoreRdf );
