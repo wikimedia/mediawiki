@@ -1069,36 +1069,6 @@ class DatabaseOracle extends DatabaseBase {
 		return true;
 	}
 
-	function setup_database() {
-		$res = $this->sourceFile( "../maintenance/oracle/tables.sql" );
-		if ( $res === true ) {
-			print " done.</li>\n";
-		} else {
-			print " <b>FAILED</b></li>\n";
-			dieout( htmlspecialchars( $res ) );
-		}
-
-		// Avoid the non-standard "REPLACE INTO" syntax
-		echo "<li>Populating interwiki table</li>\n";
-		$f = fopen( "../maintenance/interwiki.sql", 'r' );
-		if ( !$f ) {
-			dieout( "Could not find the interwiki.sql file" );
-		}
-
-		// do it like the postgres :D
-		$SQL = "INSERT INTO " . $this->tableName( 'interwiki' ) . " (iw_prefix,iw_url,iw_local) VALUES ";
-		while ( !feof( $f ) ) {
-			$line = fgets( $f, 1024 );
-			$matches = array();
-			if ( !preg_match( '/^\s*(\(.+?),(\d)\)/', $line, $matches ) ) {
-				continue;
-			}
-			$this->query( "$SQL $matches[1],$matches[2])" );
-		}
-
-		echo "<li>Table interwiki successfully populated</li>\n";
-	}
-
 	function selectDB( $db ) {
 		if ( $db == null || $db == $this->mUser ) { return true; }
 		$sql = 'ALTER SESSION SET CURRENT_SCHEMA=' . strtoupper($db);
