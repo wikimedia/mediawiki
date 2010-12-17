@@ -2422,7 +2422,7 @@ class Title {
 	 * Uses link cache, adding it if necessary
 	 *
 	 * @param $flags \type{\int} a bit field; may be Title::GAID_FOR_UPDATE to select for update
-	 * @return \type{\bool}
+	 * @return \type{\int}
 	 */
 	public function getLength( $flags = 0 ) {
 		if ( $this->mLength != -1 ) {
