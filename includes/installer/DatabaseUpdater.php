@@ -91,8 +91,7 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Output some text. Right now this is a wrapper for wfOut, but hopefully
-	 * that function can go away some day :)
+	 * Output some text. If we're running from web, escape the text first.
 	 *
 	 * @param $str String: Text to output
 	 */
@@ -100,7 +99,12 @@ abstract class DatabaseUpdater {
 		if ( $this->maintenance->isQuiet() ) {
 			return;
 		}
-		wfOut( $str );
+		global $wgCommandLineMode;
+		if( !$wgCommandLineMode ) {
+			$str = htmlspecialchars( $str );
+		}
+		echo $str;
+		flush();
 	}
 
 	/**

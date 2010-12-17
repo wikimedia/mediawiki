@@ -3374,8 +3374,8 @@ function wfWaitForSlaves( $maxLag, $wiki = false ) {
 }
 
 /**
- * Output some plain text in command-line mode or in the installer (updaters.inc).
- * Do not use it in any other context, its behaviour is subject to change.
+ * Used to be used for outputting text in the installer/updater
+ * @deprecated Warnings in 1.19, removal in 1.20
  */
 function wfOut( $s ) {
 	global $wgCommandLineMode;
