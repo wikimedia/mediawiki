@@ -2414,12 +2414,8 @@ abstract class DatabaseBase implements DatabaseType {
 			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback, $fname );
 		}
 		catch ( MWException $e ) {
-			if ( defined( "MEDIAWIKI_INSTALL" ) ) {
-				$error = $e->getMessage();
-			} else {
-				fclose( $fp );
-				throw $e;
-			}
+			fclose( $fp );
+			throw $e;
 		}
 
 		fclose( $fp );
