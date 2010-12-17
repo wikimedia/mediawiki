@@ -416,10 +416,6 @@ return array(
 		'scripts' => 'skins/common/block.js',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
-	'mediawiki.legacy.changepassword' => array(
-		'scripts' => 'skins/common/changepassword.js',
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'skins/common/commonPrint.css' => array( 'media' => 'print' ) ),
 	),
