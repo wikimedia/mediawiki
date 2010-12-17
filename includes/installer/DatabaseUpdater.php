@@ -96,7 +96,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param $str String: Text to output
 	 */
-	protected function output( $str ) {
+	public function output( $str ) {
 		if ( $this->maintenance->isQuiet() ) {
 			return;
 		}

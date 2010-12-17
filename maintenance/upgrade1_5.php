@@ -632,9 +632,13 @@ CREATE TABLE $pagelinks (
 		$this->log( 'Done with links.' );
 	}
 
+	function userDupeCallback( $str ) {
+		echo $str;
+	}
+
 	function upgradeUser() {
 		// Apply unique index, if necessary:
-		$duper = new UserDupes( $this->dbw );
+		$duper = new UserDupes( $this->dbw, array( $this, 'userDupeCallback' ) );
 		if ( $duper->hasUniqueIndex() ) {
 			$this->log( "Already have unique user_name index." );
 		} else {

@@ -518,7 +518,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUserUniqueUpdate() {
-		$duper = new UserDupes( $this->db );
+		$duper = new UserDupes( $this->db, array( $this, 'output' ) );
 		if ( $duper->hasUniqueIndex() ) {
 			$this->output( "...already have unique user_name index.\n" );
 			return;
