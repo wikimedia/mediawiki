@@ -251,7 +251,7 @@
 	'pcd' => 'Picard',	# Picard
 	'pdc' => 'Deitsch',	# Pennsylvania German
 	'pdt' => 'Plautdietsch',	# Plautdietsch/Mennonite Low German
-	'pfl' => 'Pfälzisch',	# Palatinate German
+	'pfl' => 'Pälzisch',	# Palatinate German
 	'pi' => 'पािऴ',	# Pali
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pl' => 'Polski',		# Polish
