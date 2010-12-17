@@ -2398,13 +2398,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 * 		using $filename
 	 */
 	function sourceFile( $filename, $lineCallback = false, $resultCallback = false, $fname = false ) {
+		wfSuppressWarnings();
 		$fp = fopen( $filename, 'r' );
+		wfRestoreWarnings();
 
 		if ( false === $fp ) {
-			if ( !defined( "MEDIAWIKI_INSTALL" ) )
-				throw new MWException( "Could not open \"{$filename}\".\n" );
-			else
-				return "Could not open \"{$filename}\".\n";
+			throw new MWException( "Could not open \"{$filename}\".\n" );
 		}
 
 		if ( !$fname ) {
