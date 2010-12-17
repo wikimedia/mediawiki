@@ -3309,6 +3309,11 @@ Jeli wužiwar je tuchwilu druhdźe přizjewjeny, budźe so hnydom wotzjewjeć.
 'disableaccount-logentry'    => 'je wužiwarske konto [[$1]] na přeco znjemóžnił',
 
 # Special:UploadStash
+'uploadstash'          => 'Schowanje nahratych datajow',
+'uploadstash-summary'  => 'Tuta strona zmóžnja přistup k datajam, kotrež su nahrate (abo so nahrawaja), ale hišće njejsu do wikija wozjejwene. Tute dataje  za nikoho widźomne njejsu, jenož za wužiwarja, kiž je je nahrał.',
+'uploadstash-clear'    => 'Schowane nahrate dataje zhašeć',
+'uploadstash-nofiles'  => 'Nimaš žane schowane nahrate dataje.',
+'uploadstash-badtoken' => 'Wuwjedźenje teje akcije je so njeporadźiło, snano dokelž twoje wobdźěłowanske daty su spadnjene. Spytaj hišće raz.',
 'uploadstash-errclear' => 'Wotstronjenje datajow je so njeporadźiło.',
 'uploadstash-refresh'  => 'Lisćinu datajow aktualizować',
 

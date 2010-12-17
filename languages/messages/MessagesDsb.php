@@ -755,6 +755,10 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 'usercsspreview'                   => "'''Źiwaj na to, až wobglědujoš se jano pśeglěd swójogo wužywarskego CSS. Njejo se hyšći składował!'''",
 'userjspreview'                    => "== Pśeglěd Wašogo wužywarskego JavaScripta ==
 '''Glědaj:''' Pó składowanju musyš swójomu browseroju kazaś, aby nowu wersiju pokazał: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'sitecsspreview'                   => "'''Źiwaj na to, až wobglědujoš se jano pśeglěd toś ten CSS.'''
+'''Njejo se hyšći składował!'''",
+'sitejspreview'                    => "'''Źiwaj na to, až wobglědujoš se jano pśeglěd toś togo koda JavaScript.'''
+'''Njejo se hyšći składował!'''",
 'userinvalidcssjstitle'            => "'''Warnowanje:''' Njeeksistěrujo šat „$1“. Pšosym mysli na to, až wužywaju .css- a .js-boki mały pismik, na pś. ''{{ns:user}}:Pśikładowa/vector.css'' město ''{{ns:user}}:Pśikładowa/Vector.css''.",
 'updated'                          => '(Zaktualizěrowane)',
 'note'                             => "'''Pokazka:'''",
@@ -3324,6 +3328,11 @@ Jolic wužywaŕ jo tuchylu hynźi pśizjawjony, buźo se ned wótzjawiś.
 'disableaccount-logentry'    => 'jo wužywarske konto [[$1]] na pśecej znjemóžnił',
 
 # Special:UploadStash
+'uploadstash'          => 'Schowanje nagratych datajow',
+'uploadstash-summary'  => 'Toś ten bok zmóžnja dostup do datajow, kótarež su nagrate (abo so nagrawaju), ale hyšći njejsu do wikija wózjawjone. Toś te dataje njejsu widobne za nikogo, mimo až za wužywarja, kótaryž jo je nagrał.',
+'uploadstash-clear'    => 'Schowane nagrate dataje wulašowaś',
+'uploadstash-nofiles'  => 'Njamaš schowane nagrate dataje.',
+'uploadstash-badtoken' => 'Wuwjeźenje teje akcije jo se njeraźiło, snaź dokulaž twóje wobźěłowańske daty su spadnjone. Wopytaj hyšći raz.',
 'uploadstash-errclear' => 'Wótpóranje datajow jo se njeraźiło.',
 'uploadstash-refresh'  => 'Lisćinu datajow aktualizěrowaś',
 

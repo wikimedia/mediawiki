@@ -412,18 +412,23 @@ Ussaɣ n isqdacn ḥiln hlli.
 'login-userblocked'       => 'Asqdac ad ur as yufi ad ikcm. Tazdayt ɣ ifalan uras ttuyskar',
 'mailmypassword'          => 'sifd yi awal ihdan yadni',
 'mailerror'               => 'Gar azn n tbrat : $1',
-'loginlanguagelabel'      => 'tutlayt: $1',
+'emailconfirmlink'        => 'Als i tasna nk n tbratin izd nit nttat ayan.',
+'loginlanguagelabel'      => 'Tutlayt: $1',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Kra ur igadda tasɣnt btbratin() n PHP.',
 
 # JavaScript password checks
-'password-strength-bad'        => 'ortslih',
-'password-strength-mediocre'   => 'trmi',
-'password-strength-acceptable' => 'mqbola',
-'password-strength-good'       => 'tfolki',
-'password-retype'              => 'Зawd ara awal iḥdan:',
-'password-retype-mismatch'     => 'iwaliwn hdanin ordochkin',
+'password-strength'            => 'Aswir n taɣllist n taguri n uzray : $1',
+'password-strength-bad'        => 'afssas (iḍεaf)',
+'password-strength-mediocre'   => 'iεif',
+'password-strength-acceptable' => 'izri (ittuqbal)',
+'password-strength-good'       => 'ifulki',
+'password-retype'              => 'Als i tirra n taguri n uzray:',
+'password-retype-mismatch'     => 'Tiguriwin n uzray ur gant iɣid.',
 
 # Password reset dialog
-'resetpass'                 => 'bdl awal ihdan',
+'resetpass'                 => 'bddl taguri n uzray',
 'resetpass_announce'        => 'Tkcmt {{GENDER:||e|(e)}} s yat tangalt lli kin ilkmt s tbrat emeil . tangaltad ur tgi abla tin yat twalt. Bac ad tkmlt tqqiyyidank kcm tangalt tamaynut nk ɣid:',
 'resetpass_header'          => 'Sbadl taguri n tangalt n umiḍal (compte)',
 'oldpassword'               => 'Awal iḥḍan aqbur',
@@ -474,7 +479,7 @@ Han irwas is yad tsbadlt awal n uzri niɣd is ḍalbt yan yaḍn n yat tklit.',
 'missingsummary'                   => "'''Adakt nskti :''' ur ta tfit awal imun n imbddln nk.
 Iɣ tklikkit tiklit yaḍn f tjrrayt « {{int:savearticle}} », aẓṛig rad ittuyskar blla tsnt",
 'missingcommenttext'               => 'Σafak skjm awnnit (aɣfawal) nk ɣ uflla.',
-'summary-preview'                  => 'lmoayan n lmolkhass:',
+'summary-preview'                  => 'Tiẓṛi  n tagḍwit:',
 'blockedtitle'                     => 'lmostkhdim ad itbloka',
 'blockednoreason'                  => 'ta yan sabab oritfki',
 'blockedoriginalsource'            => "Tangalt taɣbalut '''$1'''  ar ttuymmal ɣ uzddar.",
