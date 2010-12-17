@@ -984,9 +984,9 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 '''まだ保存されていません！'''",
 'userjspreview'                    => "'''利用者JavaScriptを試験、プレビューしています。'''
 '''まだ保存されていません！'''",
-'sitecsspreview'                   => "'''全体に適用されるCSSをプレビューしています。'''
+'sitecsspreview'                   => "'''ここでは、CSSをプレビューしているだけに過ぎません。'''
 '''まだ保存されていません！'''",
-'sitejspreview'                    => "'''全体に適用されるJavaScriptをプレビューしています。'''
+'sitejspreview'                    => "'''ここでは、JavaScriptをプレビューしているだけに過ぎません。'''
 '''まだ保存されていません！'''",
 'userinvalidcssjstitle'            => "'''警告：'''「$1」という外装はありません。
 .cssと.jsページを編集する際には、ページ名を小文字にすることを忘れないでください（例えば、{{ns:user}}:Hoge/Vector.cssではなく{{ns:user}}:Hoge/vector.cssとなります）。",
@@ -2368,7 +2368,7 @@ $NEWPAGE
 
 このページの最後の編集は[[User:$3|$3]]（[[User talk:$3|トーク]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）によるものです。',
 'editcomment'       => "編集内容の要約：「''$1''」",
-'revertpage'        => '[[Special:Contributions/$2|$2]]（[[User talk:$2|トーク]]）による編集を[[User:$1|$1]]による最新版へ差し戻しました',
+'revertpage'        => '[[Special:Contributions/$2|$2]]（[[User talk:$2|トーク]]）による編集を[[User:$1|$1]]による直前の版へ差し戻しました',
 'revertpage-nouser' => '（利用者名削除）による編集を[[User:$1|$1]]による最新版へ差し戻しました',
 'rollback-success'  => '$1による編集を差し戻しました。
 $2による最後の版へ変更されました。',
@@ -3783,5 +3783,13 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'disableaccount-nosuchuser'  => '利用者アカウント「$1」は存在しません。',
 'disableaccount-success'     => '利用者アカウント「$1」は、永久に無効化されています。',
 'disableaccount-logentry'    => '利用者アカウント[[$1]]を永久に無効化',
+
+# Special:UploadStash
+'uploadstash-summary'  => 'このページでは、アップロードされた、もしくはアップロード中の、ウィキ上でまだ公開されていないファイルへアクセスを提供します。これらのファイルをアップロードした利用者が閲覧することは可能ですが、それ以外の利用者は閲覧できません。',
+'uploadstash-clear'    => '未公開ファイルを消去',
+'uploadstash-nofiles'  => '未公開ファイルはありません。',
+'uploadstash-badtoken' => '実行することができませんでした。これは、編集するための認証が無効になったためである可能性があります。再度お試しください。',
+'uploadstash-errclear' => 'ファイルの消去に失敗しました。',
+'uploadstash-refresh'  => 'ファイルの一覧を更新',
 
 );

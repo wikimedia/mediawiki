@@ -912,6 +912,10 @@ Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 'userjsyoucanpreview'              => "'''Savjet:''' Rabite dugme \"{{int:showpreview}}\" za testiranje svog novog JavaScripta prije snimanja.",
 'usercsspreview'                   => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS. Još nije snimljen!'''",
 'userjspreview'                    => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički JavaScript, i da još nije snimljen!'''",
+'sitecsspreview'                   => "'''Ne zaboravite ovo je samo pregled ovog CSS-a.'''
+'''Još uvijek nije sačuvan!'''",
+'sitejspreview'                    => "'''Ne zaboravite ovo je samo pregled JavaScript kôda.'''
+'''Još uvijek nije sačuvan!'''",
 'userinvalidcssjstitle'            => "'''Upozorenje:''' Nema sučelja pod imenom \"\$1\". Ne zaboravite da imena stranica s .css and .js kodom počinju malim slovom, npr. {{ns:user}}:Mate/vector.css, a ne {{ns:user}}:Mate/Vector.css.",
 'updated'                          => '(Ažurirano)',
 'note'                             => "'''Napomena:'''",
@@ -3365,6 +3369,7 @@ Također možete koristiti [[Special:Watchlist/edit|standardni editor]].',
 'version-specialpages'             => 'Posebne stranice',
 'version-parserhooks'              => 'Kuke parsera',
 'version-variables'                => 'Varijable',
+'version-skins'                    => 'Izgledi',
 'version-other'                    => 'Ostalo',
 'version-mediahandlers'            => 'Rukovatelji medijima',
 'version-hooks'                    => 'Kuke',
@@ -3498,5 +3503,14 @@ Ako je suradnik trenutno prijavljen negdje, odmah će biti odjavljen.
 'disableaccount-nosuchuser'  => 'Suradnik "$1" ne postoji.',
 'disableaccount-success'     => 'Suradnički račun "$1" je trajno onemogućen.',
 'disableaccount-logentry'    => 'trajno onesposobljen suradnički račun [[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => 'Snimi niz datoteka',
+'uploadstash-summary'  => 'Ova stranica pruža pristup datotekama koje su snimljene na wiki (ili u procesu snimanja), ali još nisu objavljeni na wiki. Ove datoteke nisu vidljive nikome, osim suradniku koji ih je snimio.',
+'uploadstash-clear'    => 'Očisti niz datoteka',
+'uploadstash-nofiles'  => 'Nemate neobjavljenih datoteka',
+'uploadstash-badtoken' => 'Obavljanje akcije je bilo neuspješano, možda jer je vaša prijava istekla. Pokušajte ponovno.',
+'uploadstash-errclear' => 'Brisanje neobjavljenih datoteka nije uspjelo.',
+'uploadstash-refresh'  => 'Osvježi popis datoteka',
 
 );

@@ -890,8 +890,10 @@ hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'usercsspreview'                   => "'''Hãy nhớ rằng bạn chỉ đang xem thử trang CSS cá nhân của bạn.
 Nó chưa được lưu!'''",
 'userjspreview'                    => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử trang JavaScript, nó chưa được lưu!'''",
-'sitecsspreview'                   => "'''Nhớ rằng bạn chỉ đang xem thử trang CSS toàn cầu, nó chưa được lưu!'''",
-'sitejspreview'                    => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử trang JavaScript toàn cầu, nó chưa được lưu!'''",
+'sitecsspreview'                   => "'''Nhớ rằng bạn chỉ đang xem thử bản CSS này.'''
+'''Nó chưa được lưu!'''",
+'sitejspreview'                    => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử bản JavaScript này.
+'''Nó chưa được lưu!'''",
 'userinvalidcssjstitle'            => "'''Cảnh báo:''' Không có skin “$1”. Hãy nhớ rằng các trang .css và .js tùy chỉnh sử dụng tiêu đề chữ thường, như {{ns:user}}:Ví&nbsp;dụ/vector.css chứ không phải {{ns:user}}:Ví&nbsp;dụ/Vector.css.",
 'updated'                          => '(Cập nhật)',
 'note'                             => "'''Ghi chú:'''",
@@ -3594,5 +3596,11 @@ Nếu người dùng đã dăng nhập vào bất cứ wiki nào trong hệ th�
 'disableaccount-nosuchuser'  => 'Tài khoản người dùng “$1” không tồn tại.',
 'disableaccount-success'     => 'Tài khoản người dùng “$1” đã bị vô hiệu hóa vĩnh viễn.',
 'disableaccount-logentry'    => 'đã vô hiệu hóa vĩnh viễn tài khoản của người dùng [[$1]]',
+
+# Special:UploadStash
+'uploadstash-summary'  => 'Đây là các tập tin mà bạn đã hoặc đang tải lên nhưng chưa xuất bản tại wiki. Chỉ bạn có thể xem các tập tin này.',
+'uploadstash-badtoken' => 'Tác vụ bị thất bại, có lẽ vì thông tin đăng nhập của bạn đã hết hạn. Hãy thử lại.',
+'uploadstash-errclear' => 'Việc dọn sạch các tập tin bị thất bại.',
+'uploadstash-refresh'  => 'Làm mới danh sách tập tin',
 
 );

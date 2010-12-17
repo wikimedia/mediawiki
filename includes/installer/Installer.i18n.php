@@ -1538,7 +1538,6 @@ Dieser kann durch Anhebung des Parameters <code>session.gc_maxlifetime</code> in
 Den Installationsvorgang erneut starten.',
 	'config-no-session' => 'Die Sitzungsdaten sind verloren gegangen!
 Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt werden, dass der Parameter <code>session.save_path</code> auf das richtige Verzeichnis verweist.',
-	'config-session-path-bad' => 'Der Parameter <code>session.save_path</code> (<code>$1</code>) scheint ungültig zu sein oder das Verzeichnis ist nicht beschreibbar.',
 	'config-your-language' => 'Sprache:',
 	'config-your-language-help' => 'Bitte die Sprache auswählen, die während des Installationsvorgangs verwendet werden soll.',
 	'config-wiki-language' => 'Sprache des Wikis:',
@@ -1556,7 +1555,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-page-complete' => 'Fertig!',
 	'config-page-restart' => 'Installationsvorgang erneut starten',
 	'config-page-readme' => 'Lies mich',
-	'config-page-releasenotes' => 'Release-Notes (en)',
+	'config-page-releasenotes' => 'Versionsinfos (en)',
 	'config-page-copying' => 'Kopie der Lizenz',
 	'config-page-upgradedoc' => 'Aktualisiere',
 	'config-page-existingwiki' => 'Vorhandenes Wiki',
@@ -5146,6 +5145,7 @@ $messages['it'] = array(
 /** Japanese (日本語)
  * @author Aphaia
  * @author Iwai.masaharu
+ * @author Ohgi
  * @author Whym
  * @author Yanajin66
  * @author 青子守歌
@@ -5166,7 +5166,6 @@ php.iniの<code>session.gc_maxlifetime</code>を設定することで、この�
 インストール作業を再起動させてください。',
 	'config-no-session' => 'セッションのデータが損失しました！
 php.iniを確認し、<code>session.save_path</code>が適切なディレクトリに設定されていることを確かめて下さい。',
-	'config-session-path-bad' => '<code>session.save_path</code>（<code>$1</code>）が、無効または書き込み不可となっています。',
 	'config-your-language' => 'あなたの言語：',
 	'config-your-language-help' => 'インストール作業中に利用する言語を選んで下さい。',
 	'config-wiki-language' => 'ウィキの言語：',
@@ -5589,13 +5588,18 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-install-done' => "'''おめでとうございます！''' 
 MediaWikiのインストールに成功しました。
 
-インストール機能は<code>LocalSettings.php</code>ファイルを生成しました。
+<code>LocalSettings.php</code>ファイルが生成されました。
 すべての設定がそのファイルに含まれています。
 
-それを[$1 ダウンロード]し、ウィキをインストールした基準ディレクトリー（index.phpと同じディレクトリー）に置く必要があります。
+それをダウンロードし、ウィキをインストールした基準ディレクトリー（index.phpと同じディレクトリー）に置く必要があります。ダウンロードは自動的に開始しているはずです。
+
+ダウンロードが開始していない場合、またダウンロードをキャンセルした場合は、以下のリンクからダウンロードを再開することができます：
+
+$3
+
 '''注意''': もし、これを今しなければ、つまり、このファイルをダウンロードせずインストールを終了した場合、この生成された設定ファイルは利用されません。
 
-それを完了すれば、'''[$2 ウィキのに入る]'''ことができます。",
+それを完了すれば、'''[$2 ウィキに入る]'''ことができます。",
 );
 
 /** Khmer (ភាសាខ្មែរ)

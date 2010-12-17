@@ -975,9 +975,9 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 '''Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.'''
 '''De pagina is niet opgeslagen!'''",
-'sitecsspreview'                   => "'''Dit is alleen een voorvertoning van de globale CSS.'''
+'sitecsspreview'                   => "'''Dit is alleen een voorvertoning van de CSS.'''
 '''Deze is nog niet opgeslagen!'''",
-'sitejspreview'                    => "'''Dit is alleen een voorvertoning van de globale JavaScriptcode.'''
+'sitejspreview'                    => "'''Dit is alleen een voorvertoning van de JavaScriptcode.'''
 '''Deze is nog niet opgeslagen!'''",
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\".
 Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
@@ -3719,5 +3719,14 @@ Als de gebruiker op dit moment is aangemeld, wordt deze per direct afgemeld.
 'disableaccount-nosuchuser'  => 'De gebruiker "$1" bestaat niet.',
 'disableaccount-success'     => 'De gebruiker "$1" is permanent uitgeschakeld.',
 'disableaccount-logentry'    => 'heeft de gebruiker [[$1]] permanent uitgeschakeld',
+
+# Special:UploadStash
+'uploadstash'          => 'Verborgen uploads',
+'uploadstash-summary'  => 'Deze pagina biedt toegang tot bestanden die geüpload zijn of nog geüpload worden maar nog niet beschikbaar gemaakt zijn in de wiki. Deze bestanden zijn alleen zichtbaar voor de gebruiker die ze uploadt.',
+'uploadstash-clear'    => 'Verborgen bestanden weggooien',
+'uploadstash-nofiles'  => 'Er zijn geen verborgen bestanden.',
+'uploadstash-badtoken' => 'Het uitvoeren van de handeling is mislukt. Dit komt mogelijk doordat uw bewerkingsreferenties zijn verlopen. Probeer het opnieuw.',
+'uploadstash-errclear' => 'Het verwijderen van de bestanden is mislukt.',
+'uploadstash-refresh'  => 'Lijst met bestanden bijwerken',
 
 );

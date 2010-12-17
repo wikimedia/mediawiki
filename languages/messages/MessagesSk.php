@@ -900,9 +900,9 @@ Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'userjsyoucanpreview'              => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'usercsspreview'                   => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
 'userjspreview'                    => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
-'sitecsspreview'                   => "'''Nezabudnite, že toto je iba náhľad tohto globálneho CSS.'''
+'sitecsspreview'                   => "'''Nezabudnite, že toto je iba náhľad tohto CSS.'''
 '''Zatiaľ nebolo uložené!'''",
-'sitejspreview'                    => "'''Nezabudnite, že toto je iba náhľad tohto globálneho JavaScriptu.'''
+'sitejspreview'                    => "'''Nezabudnite, že toto je iba náhľad tohto JavaScriptu.'''
 '''Zatiaľ nebol uložený!'''",
 'userinvalidcssjstitle'            => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/vector.css a nie {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Aktualizovaný)',
@@ -3560,5 +3560,14 @@ Ak je používateľ momentálne niekde prihlásený, bude okamžite odhlásený.
 'disableaccount-nosuchuser'  => 'Používateľský účet „$1“ neexistuje.',
 'disableaccount-success'     => 'Používateľský účet „$1“ bol natrvalo zakázaný.',
 'disableaccount-logentry'    => 'natrvalo zakázaný používateľský účet [[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => 'Skrýša nahraných súborov',
+'uploadstash-summary'  => 'Táto stránka poskytuje prístup k súborom nahraným (alebo práve nahrávaným), ktoré zatiaľ nie sú zverejnené na wiki. Tieto súbory nevidí nikto iný okrem používateľa, ktorý ich nahral.',
+'uploadstash-clear'    => 'Vymazať skrýšu nahraných súborov',
+'uploadstash-nofiles'  => 'Nemáte žiadne súbory v skrýši nahraných súborov.',
+'uploadstash-badtoken' => 'Vykonanie operácie sa nepodarilo, možno preto, že platnosť vašich prihlasovacích údajov vypršala. Skúste to znova.',
+'uploadstash-errclear' => 'Vymazanie súborov bolo neúspešné.',
+'uploadstash-refresh'  => 'Obnoviť zoznam súborov',
 
 );
