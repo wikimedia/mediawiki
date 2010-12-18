@@ -20,7 +20,7 @@ class ParserOptions {
 	var $mEnableImageWhitelist;      # If not or it doesn't match, should we check an on-wiki whitelist?
 	var $mSkin = null;               # Reference to the preferred skin
 	var $mDateFormat = null;         # Date format index
-	var $mEditSection = false;       # Create "edit section" links
+	var $mEditSection = true;        # Create "edit section" links
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
 	var $mTidy = false;              # Ask for tidy cleanup
 	var $mInterfaceMessage = false;  # Which lang to call for PLURAL and GRAMMAR
