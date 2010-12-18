@@ -921,6 +921,10 @@ A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
 'userjsyoucanpreview'              => "'''Tipp:''' mentés előtt használd az „{{int:showpreview}}” gombot az új JavaScipted teszteléséhez.",
 'usercsspreview'                   => "'''Ne felejtsd el, hogy ez csak a felhasználói CSS-ed előnézete és még nincs elmentve!'''",
 'userjspreview'                    => "'''Ne felejtsd el, hogy még csak teszteled a felhasználói JavaScriptedet, és még nincs elmentve!'''",
+'sitecsspreview'                   => "'''Ne feledd, hogy csak a CSS előnézetét látod.'''
+'''Még nincs elmentve!'''",
+'sitejspreview'                    => "'''Ne feledd, hogy a JavaScript-kódnak csak az előnézetét látod.'''
+'''Még nincs elmentve!'''",
 'userinvalidcssjstitle'            => "'''Figyelem:''' Nincs „$1” nevű felület. A felületekhez tartozó .css/.js oldalak kisbetűvel kezdődnek, például ''{{ns:user}}:Gipsz Jakab/vector.css'' és nem ''{{ns:user}}:Gipsz Jakab/Vector.css''.",
 'updated'                          => '(frissítve)',
 'note'                             => "'''Megjegyzés:'''",
@@ -2404,6 +2408,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Új szerkesztők közreműködései',
 'sp-contributions-blocklog'            => 'Blokkolási napló',
 'sp-contributions-deleted'             => 'törölt szerkesztések',
+'sp-contributions-uploads'             => 'feltöltések',
 'sp-contributions-logs'                => 'naplók',
 'sp-contributions-talk'                => 'vitalap',
 'sp-contributions-userrights'          => 'szerkesztői jogok beállítása',
@@ -3405,6 +3410,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-specialpages'             => 'Speciális lapok',
 'version-parserhooks'              => 'Értelmező hookok',
 'version-variables'                => 'Változók',
+'version-skins'                    => 'Felületek',
 'version-other'                    => 'Egyéb',
 'version-mediahandlers'            => 'Médiafájl-kezelők',
 'version-hooks'                    => 'Hookok',
@@ -3527,8 +3533,17 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'sqlite-no-fts'  => '$1 teljes szöveges keresés támogatása nélkül',
 
 # Special:DisableAccount
-'disableaccount'        => 'Felhasználói fiók letiltása',
-'disableaccount-user'   => 'Felhasználónév:',
-'disableaccount-reason' => 'Ok:',
+'disableaccount'             => 'Felhasználói fiók letiltása',
+'disableaccount-user'        => 'Felhasználónév:',
+'disableaccount-reason'      => 'Ok:',
+'disableaccount-mustconfirm' => 'Meg kell erősítened, hogy biztosan le szeretnéd tiltani ezt a fiókot.',
+'disableaccount-nosuchuser'  => 'Nem létezik „$1” nevű felhasználói fiók.',
+'disableaccount-success'     => '„$1” felhasználói fiókja véglegesen le lett tiltva.',
+'disableaccount-logentry'    => 'véglegesen letiltotta [[$1]] felhasználói fiókját',
+
+# Special:UploadStash
+'uploadstash-summary'  => 'Ezen a lapon lehet hozzáférni azokhoz a fájlokhoz, melyek fel lettek töltve (vagy épp feltöltés alatt vannak), de még nem lettek közzétéve a wikin. Az ilyen fájlok csak a feltöltőik számára láthatóak.',
+'uploadstash-errclear' => 'A fájlok törlése nem sikerült.',
+'uploadstash-refresh'  => 'Fájlok listájának frissítése',
 
 );

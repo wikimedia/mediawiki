@@ -2625,7 +2625,7 @@ $1のブロックの理由は「$2」です。',
 参考のため、ブロックの記録を以下に示します：',
 'blocklog-showsuppresslog'        => 'この利用者は以前にブロックされ、隠されたことがあります。
 参考のため、隠蔽記録を以下に示します：',
-'blocklogentry'                   => '[[$1]] を$2ブロックしました。ブロックの内容は$3です',
+'blocklogentry'                   => '[[$1]] を$2ブロックしました。ブロックの詳細$3',
 'reblock-logentry'                => '[[$1]]ブロック設定を$2に変更しました。ブロックの内容は$3です',
 'blocklogtext'                    => 'このページは利用者のブロックと解除の記録です。
 自動的にブロックされたIPアドレスは表示されていません。
@@ -2917,7 +2917,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-n-mainpage'              => 'メインページに移動',
 'tooltip-n-mainpage-description'  => 'メインページに移動する',
 'tooltip-n-portal'                => 'このプロジェクトについて、できること、情報を入手する場所',
-'tooltip-n-currentevents'         => '最近の出来事の背景情報を見つける',
+'tooltip-n-currentevents'         => '最近の出来事について予備知識を得る',
 'tooltip-n-recentchanges'         => 'ウィキにおける最近の更新の一覧',
 'tooltip-n-randompage'            => '無作為に抽出されたページの読み込み',
 'tooltip-n-help'                  => '情報を得る場所です',

@@ -353,7 +353,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'variants'                       => 'Različice',
 
 'errorpagetitle'    => 'Napaka',
-'returnto'          => 'Vrnitev na $1.',
+'returnto'          => 'Vrnite se na $1.',
 'tagline'           => 'Iz {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'help'              => 'Pomoč',
 'search'            => 'Iskanje',
@@ -734,7 +734,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'showlivepreview'                  => 'Predogled v živo',
 'showdiff'                         => 'Prikaži spremembe',
 'anoneditwarning'                  => "'''Opozorilo''': niste prijavljeni. V zgodovino strani se bo zapisal vaš IP-naslov.",
-'anonpreviewwarning'               => 'Niste prijavljeni. Ob spremembi strani se bo vaš IP naslov zapisal v zgodovini urejanja te strani.',
+'anonpreviewwarning'               => 'Niste prijavljeni. Ob spremembi strani se bo vaš IP-naslov zapisal v zgodovini urejanja te strani.',
 'missingsummary'                   => "'''Opozorilo:''' Niste napisali povzetka urejanja. Ob ponovnem kliku gumba ''Shrani'' se bo vaše urejanje shranilo brez njega.",
 'missingcommenttext'               => 'Prosimo, vpišite v spodnje polje komentar.',
 'missingcommentheader'             => "'''Opozorilo:''' Niste vnesli zadeve/naslova za ta komentar.
