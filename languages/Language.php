@@ -2665,7 +2665,7 @@ class Language {
 	}
 
 	/**
-	 * Get the list of variants supported by this langauge
+	 * Get the list of variants supported by this language
 	 * see sample implementation in LanguageZh.php
 	 *
 	 * @return array an array of language codes
