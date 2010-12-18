@@ -999,7 +999,7 @@ Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizo
 # Merge log
 'mergelog'           => 'Kumbukumbu za kuunganisha',
 'pagemerge-logentry' => 'aliunganisha [[$1]] ndani wa [[$2]] (mapitio hadi $3)',
-'revertmerge'        => 'Usiunganishe',
+'revertmerge'        => 'Rejesha muungano',
 'mergelogpagetext'   => 'Hapo chini yanaorodheshwa matukio ya hivi karibuni ya kuunganisha historia za kurasa mbili.',
 
 # Diffs
@@ -1601,6 +1601,7 @@ Maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] linaonyeshwa hapa.',
 'filerevert-defaultcomment' => 'Ilirejeshwa hadi sahihisho lile la $2, $1',
 'filerevert-submit'         => 'Rejesha',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' limerudishwa hadi [$4 pitio la saa $3, tarehe $2].",
+'filerevert-badversion'     => 'Katika wiki hii hakuna mtindo wa awali wa faili hili lenye stempu ya saa iliyotajwa.',
 
 # File deletion
 'filedelete'                  => 'Futa $1',
@@ -1913,6 +1914,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'unwatching' => 'Umeacha kufuatilia...',
 
 'enotif_mailer'                => 'Huduma ya taarifa ya barua pepe kutoka kwa {{SITENAME}}',
+'enotif_reset'                 => 'Weka alama ya kutembelewa kwenye kurasa zote',
 'enotif_newpagetext'           => 'Ukurasa huu ni mpya.',
 'enotif_impersonal_salutation' => 'Kwa mtumiaji wa {{SITENAME}}',
 'changed'                      => 'alibadilisha',
@@ -1985,15 +1987,16 @@ Ukiufuta labda itavuruga uendeshaji wa hifadhidata ya {{SITENAME}};
 endelea kwa uangalifu.',
 
 # Rollback
-'rollback'         => 'Rejesha masahihisho',
-'rollback_short'   => 'Rejesha',
-'rollbacklink'     => 'rejesha',
-'rollbackfailed'   => 'Haikufaulu kurejesha',
-'cantrollback'     => 'Haiwezekana kujesha sahihisho;
+'rollback'          => 'Rejesha masahihisho',
+'rollback_short'    => 'Rejesha',
+'rollbacklink'      => 'rejesha',
+'rollbackfailed'    => 'Haikufaulu kurejesha',
+'cantrollback'      => 'Haiwezekana kujesha sahihisho;
 ukurasa huu una mhariri mmoja tu.',
-'editcomment'      => "Muhtasari wa kuhariri ilikuwa: \"''\$1''\".",
-'revertpage'       => 'Masahihisho aliyefanya [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]]) yalirejeshwa hadi sahihisho la mwisho na [[User:$1|$1]]',
-'rollback-success' => 'Masahihisho aliyeyafanya $1 yalirejeshwa hadi kufika sahihisho la mwisho aliyefanya $2.',
+'editcomment'       => "Muhtasari wa kuhariri ilikuwa: \"''\$1''\".",
+'revertpage'        => 'Masahihisho aliyefanya [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]]) yalirejeshwa hadi sahihisho la mwisho na [[User:$1|$1]]',
+'revertpage-nouser' => 'alirudisha masahihisho ya mtumiaji (jina lake limefichwa) hadi pitio la mwisho lililotengenezwa na [[User:$1|$1]]',
+'rollback-success'  => 'Masahihisho aliyeyafanya $1 yalirejeshwa hadi kufika sahihisho la mwisho aliyefanya $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Kushindikana cha kipindi',
@@ -2151,6 +2154,7 @@ huenda ikawa mtu mwingine ameurudisha tayari.',
 'ipballowusertalk'           => 'Ruhusu mtumiaji huyu kuhariri ukurasa wake mwenyewe wa majadiliano wakati kazuiliwa',
 'badipaddress'               => 'Anwani batili ya IP',
 'blockipsuccesssub'          => 'Kulifaulu kumzuia',
+'ipb-edit-dropdown'          => 'Hariri sababu za kuzuia',
 'ipblocklist'                => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
 'ipblocklist-username'       => 'Jina la mtumiaji au anwani ya IP:',
 'ipblocklist-submit'         => 'Tafuta',
@@ -2492,18 +2496,27 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-jpeginterchangeformatlength' => 'Idadi ya baiti za data ya JPEG',
 'exif-datetime'                    => 'Tarehe na saa ya kubadilisha faili',
 'exif-imagedescription'            => 'Jina la picha',
+'exif-make'                        => 'Mtengenezaji wa kamera',
+'exif-model'                       => 'Aina ya<!--Mtindo wa--> kamera',
+'exif-software'                    => 'Bidhaa pepe inayotumika',
 'exif-artist'                      => 'Mwandishi',
 'exif-copyright'                   => 'Mwenye hatimiliki',
+'exif-exifversion'                 => 'Mtindo wa Exif',
 'exif-componentsconfiguration'     => 'Maana ya kila kijenzi',
 'exif-makernote'                   => 'Maelezo ya mtengenezaji',
 'exif-usercomment'                 => 'Maoni ya mtumiaji',
 'exif-relatedsoundfile'            => 'Faili la sauti linalohusika',
 'exif-lightsource'                 => 'Mwanga',
+'exif-flash'                       => 'Taa ya picha',
+'exif-flashenergy'                 => 'Nguvu ya taa ya picha',
 'exif-gpslatituderef'              => 'Latitudo kwenda kaskazini au kusini',
 'exif-gpslatitude'                 => 'Latitudo',
 'exif-gpslongituderef'             => 'Longitudo kwenda mashariki au magharibi',
 'exif-gpslongitude'                => 'Longitudo',
+'exif-gpsaltituderef'              => 'Rejeo ya mwinuko',
 'exif-gpsaltitude'                 => 'Mwinuko',
+'exif-gpsspeedref'                 => 'Kizio cha kupima mwendo',
+'exif-gpsspeed'                    => 'Mwendo wa sanduku la GPS',
 'exif-gpsdestlatitude'             => 'Latitudo ya kikomo',
 'exif-gpsdestlongitude'            => 'Longitudo ya kikomo',
 'exif-gpsdestdistance'             => 'Mbali wa kikomo',
@@ -2512,6 +2525,12 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'exif-unknowndate' => 'Tarehe haijulikani',
 
 'exif-orientation-1' => 'Kawaida',
+
+'exif-componentsconfiguration-0' => 'haipo',
+
+'exif-exposureprogram-1' => 'Kwa mikono',
+
+'exif-subjectdistance-value' => 'mita $1',
 
 'exif-meteringmode-0'   => 'Haijulikani',
 'exif-meteringmode-1'   => 'Wastani',

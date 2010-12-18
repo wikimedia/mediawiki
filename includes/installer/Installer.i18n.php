@@ -3015,7 +3015,6 @@ Pode incrementar isto fixando <code>session.gc_maxlifetime</code> en php.ini.
 Reinicie o proceso de instalación.',
 	'config-no-session' => 'Perdéronse os datos da súa sesión!
 Comprobe o seu php.ini e asegúrese de que en <code>session.save_path</code> está definido un directorio correcto.',
-	'config-session-path-bad' => 'O seu <code>session.save_path</code> (<code>$1</code>) semella incorrecto ou non se pode escribir nel.',
 	'config-your-language' => 'A súa lingua:',
 	'config-your-language-help' => 'Seleccione a lingua que se empregará durante o proceso de instalación.',
 	'config-wiki-language' => 'Lingua do wiki:',
@@ -3447,6 +3446,8 @@ Terá que [$1 descargalo] e poñelo na base da instalación do seu wiki (no mesm
 '''Nota:''' Se non fai iso agora, este ficheiro de configuración xerado non estará dispoñible máis adiante se sae da instalación sen descargalo.
 
 Cando faga todo isto, xa poderá  '''[$2 entrar no seu wiki]'''.",
+	'config-download-localsettings' => 'Descargar o LocalSettings.php',
+	'config-help' => 'axuda',
 );
 
 /** Swiss German (Alemannisch)
