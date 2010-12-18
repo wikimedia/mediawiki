@@ -2511,7 +2511,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
 			 * Note however that the quote isn't listed there, but is needed, and the parentheses
 			 * are listed there but doesn't appear to need it.
 			 */
-			$envcmd .= "set $k=" . preg_replace( '/([&|()<>^"])/', '^\\1', $v ) . ' && ';
+			$envcmd .= "set $k=" . preg_replace( '/([&|()<>^"])/', '^\\1', $v ) . '&& ';
 		} else {
 			/* Assume this is a POSIX shell, thus required to accept variable assignments before the command
 			 * http://www.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html#tag_02_09_01
