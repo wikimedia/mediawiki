@@ -264,7 +264,7 @@ class SpecialUpload extends SpecialPage {
 
 		# Give a notice if the user is uploading a file that has been deleted or moved
 		# Note that this is independent from the message 'filewasdeleted' that requires JS
-		$desiredTitleObj = Title::newFromText( $this->mDesiredDestName, NS_FILE );
+		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
 			LogEventsList::showLogExtract( $delNotice, array( 'delete', 'move' ), 
