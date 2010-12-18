@@ -1499,17 +1499,23 @@ class Linker {
 		$title = $rev->getTitle();
 		$query = array(
 			'action' => 'rollback',
-			'from' => $rev->getUserText()
+			'from' => $rev->getUserText(),
+			'token' => Token::prepare(
+				Token::PERSISTENT,
+				array( $title->getPrefixedText(), $rev->getUserText() )
+			),
 		);
 		if ( $wgRequest->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
 			$query['hidediff'] = '1'; // bug 15999
 		}
-		$query['token'] = $wgUser->editToken( array( $title->getPrefixedText(),
-			$rev->getUserText() ) );
-		return $this->link( $title, wfMsgHtml( 'rollbacklink' ),
+		return $this->link( 
+			$title, 
+			wfMsgHtml( 'rollbacklink' ),
 			array( 'title' => wfMsg( 'tooltip-rollback' ) ),
-			$query,	array( 'known', 'noclasses' ) );
+			$query,	
+			array( 'known', 'noclasses' ) 
+		);
 	}
 
 	/**

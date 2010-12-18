@@ -238,6 +238,7 @@ $wgAutoloadLocalClasses = array(
 	'TitleArray' => 'includes/TitleArray.php',
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
 	'TitleListDependency' => 'includes/CacheDependency.php',
+	'Token' => 'includes/Token.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',

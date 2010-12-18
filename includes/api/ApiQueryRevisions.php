@@ -78,8 +78,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ( !$wgUser->isAllowed( 'rollback' ) ) {
 			return false;
 		}
-		return $wgUser->editToken( array( $title->getPrefixedText(),
-						$rev->getUserText() ) );
+		return Token::prepare( 
+			Token::PERSISTENT, 
+			array( $title->getPrefixedText(), $rev->getUserText() ) 
+		);
 	}
 
 	public function execute() {
