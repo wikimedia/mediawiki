@@ -18,32 +18,34 @@ class ParserOptions {
 	var $mAllowExternalImages;       # Allow external images inline
 	var $mAllowExternalImagesFrom;   # If not, any exception?
 	var $mEnableImageWhitelist;      # If not or it doesn't match, should we check an on-wiki whitelist?
-	var $mSkin;                      # Reference to the preferred skin
-	var $mDateFormat;                # Date format index
-	var $mEditSection;               # Create "edit section" links
-	var $mNumberHeadings;            # Automatically number headings
+	var $mSkin = null;               # Reference to the preferred skin
+	var $mDateFormat = null;         # Date format index
+	var $mEditSection = false;       # Create "edit section" links
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
-	var $mTidy;                      # Ask for tidy cleanup
-	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
-	var $mTargetLanguage;            # Overrides above setting with arbitrary language
+	var $mTidy = false;              # Ask for tidy cleanup
+	var $mInterfaceMessage = false;  # Which lang to call for PLURAL and GRAMMAR
+	var $mTargetLanguage = null;     # Overrides above setting with arbitrary language
 	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
 	var $mMaxPPNodeCount;            # Maximum number of nodes touched by PPFrame::expand()
 	var $mMaxPPExpandDepth;          # Maximum recursion depth in PPFrame::expand()
 	var $mMaxTemplateDepth;          # Maximum recursion depth for templates within templates
-	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
-	var $mTemplateCallback;          # Callback for template fetching
-	var $mEnableLimitReport;         # Enable limit report in an HTML comment on output
+	var $mRemoveComments = true;     # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
+	var $mTemplateCallback =         # Callback for template fetching
+		array( 'Parser', 'statelessFetchTemplate' );
+	var $mEnableLimitReport = false; # Enable limit report in an HTML comment on output
 	var $mTimestamp;                 # Timestamp used for {{CURRENTDAY}} etc.
 	var $mExternalLinkTarget;        # Target attribute for external links
-	var $mMath;                      # User math preference (as integer)
-	var $mUserLang;                  # Language code of the User language.
-	var $mThumbSize;                 # Thumb size preferred by the user.
 	var $mCleanSignatures;           #
 
+	var $mNumberHeadings;            # Automatically number headings
+	var $mMath;                      # User math preference (as integer)
+	var $mThumbSize;                 # Thumb size preferred by the user.
+	var $mUserLang;                  # Language code of the User language.
+
 	var $mUser;                      # Stored user object
-	var $mIsPreview;                 # Parsing the page for a "preview" operation
-	var $mIsSectionPreview;          # Parsing the page for a "preview" operation on a single section
-	var $mIsPrintable;               # Parsing the printable version of the page
+	var $mIsPreview = false;         # Parsing the page for a "preview" operation
+	var $mIsSectionPreview = false;  # Parsing the page for a "preview" operation on a single section
+	var $mIsPrintable = false;       # Parsing the printable version of the page
 
 	var $mExtraKey = '';             # Extra key that should be present in the caching key.
 
@@ -192,30 +194,18 @@ class ParserOptions {
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
 		$this->mEnableImageWhitelist = $wgEnableImageWhitelist;
-		$this->mSkin = null; # Deferred
-		$this->mDateFormat = null; # Deferred
-		$this->mEditSection = true;
-		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mAllowSpecialInclusion = $wgAllowSpecialInclusion;
-		$this->mTidy = false;
-		$this->mInterfaceMessage = false;
-		$this->mTargetLanguage = null; // default depends on InterfaceMessage setting
 		$this->mMaxIncludeSize = $wgMaxArticleSize * 1024;
 		$this->mMaxPPNodeCount = $wgMaxPPNodeCount;
 		$this->mMaxPPExpandDepth = $wgMaxPPExpandDepth;
 		$this->mMaxTemplateDepth = $wgMaxTemplateDepth;
-		$this->mRemoveComments = true;
-		$this->mTemplateCallback = array( 'Parser', 'statelessFetchTemplate' );
-		$this->mEnableLimitReport = false;
 		$this->mCleanSignatures = $wgCleanSignatures;
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
-		$this->mMath = $user->getOption( 'math' );
-		$this->mUserLang = $wgLang->getCode();
-		$this->mThumbSize = $user->getOption( 'thumbsize' );
 
-		$this->mIsPreview = false;
-		$this->mIsSectionPreview = false;
-		$this->mIsPrintable = false;
+		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
+		$this->mMath = $user->getOption( 'math' );
+		$this->mThumbSize = $user->getOption( 'thumbsize' );
+		$this->mUserLang = $wgLang->getCode();
 
 		wfProfileOut( __METHOD__ );
 	}
