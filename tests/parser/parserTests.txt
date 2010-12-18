@@ -3362,6 +3362,28 @@ Image with link parameter, URL target
 !! end
 
 !! test
+Image with link parameter, wgExternalLinkTarget
+!! input
+[[Image:foobar.jpg|link=http://example.com/]]
+!! config
+wgExternalLinkTarget='foobar'
+!! result
+<p><a href="http://example.com/" target="foobar"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! end
+
+!! test
+Image with link parameter, wgExternalLinkTarget, unnamed parameter
+!! input
+[[Image:foobar.jpg|link=http://example.com/|Title]]
+!! config
+wgExternalLinkTarget='foobar'
+!! result
+<p><a href="http://example.com/" title="Title" target="foobar"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! end
+
+!! test
 Image with empty link parameter
 !! input
 [[Image:foobar.jpg|link=]]
