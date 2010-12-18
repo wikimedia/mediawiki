@@ -1,7 +1,5 @@
 <?php
 /**
- * Deal with importing all those nasssty globals and things
- *
  * Copyright © 2003 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
