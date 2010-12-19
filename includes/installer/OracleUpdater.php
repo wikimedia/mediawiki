@@ -8,17 +8,17 @@
 
 /**
  * Class for handling updates to Oracle databases.
- * 
+ *
  * @ingroup Deployment
  * @since 1.17
  */
 class OracleUpdater extends DatabaseUpdater {
-	
+
 	protected function __construct( DatabaseBase &$db, $shared ) {
 		define( 'MEDIAWIKI_INSTALL', true );
 		parent::__construct(  $db, $shared );
 	}
-	
+
 	protected function getCoreUpdateList() {
 		return array(
 			// 1.16
@@ -92,7 +92,7 @@ class OracleUpdater extends DatabaseUpdater {
 	 */
 	public function doUpdates( $purge = true ) {
 		parent::doUpdates();
-		
+
 		$this->db->query( 'BEGIN fill_wiki_info; END;' );
 	}
 

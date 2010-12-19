@@ -75,7 +75,7 @@ class HTMLCacheUpdate
 			$this->invalidateTitles( $titleArray );
 		} else {
 			# Partitioning was excessively inaccurate. Divide the job further.
-			# This can occur when a large number of links are added in a short 
+			# This can occur when a large number of links are added in a short
 			# period of time, say by updating a heavily-used template.
 			$this->insertJobsFromTitles( $titleArray );
 		}
@@ -95,7 +95,7 @@ class HTMLCacheUpdate
 		$numTitles = 0;
 		foreach ( $titleArray as $title ) {
 			$id = $title->getArticleID();
-			# $numTitles is now the number of titles in the current job not 
+			# $numTitles is now the number of titles in the current job not
 			# including the current ID
 			if ( $numTitles >= $this->mRowsPerJob ) {
 				# Add a job up to but not including the current ID
@@ -121,7 +121,7 @@ class HTMLCacheUpdate
 
 		if ( count( $jobs ) < 2 ) {
 			# I don't think this is possible at present, but handling this case
-			# makes the code a bit more robust against future code updates and 
+			# makes the code a bit more robust against future code updates and
 			# avoids a potential infinite loop of repartitioning
 			wfDebug( __METHOD__.": repartitioning failed!\n" );
 			$this->invalidateTitles( $titleArray );
@@ -205,7 +205,7 @@ class HTMLCacheUpdate
 /**
  * Job wrapper for HTMLCacheUpdate. Gets run whenever a related
  * job gets called from the queue.
- * 
+ *
  * @ingroup JobQueue
  */
 class HTMLCacheUpdateJob extends Job {

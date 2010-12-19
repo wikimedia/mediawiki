@@ -271,7 +271,7 @@ abstract class DatabaseInstaller {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
 		if ( !isset( $attribs ) ) {
-		    $attribs = array();
+			$attribs = array();
 		}
 		return $this->parent->getTextBox( array(
 			'var' => $var,
@@ -279,7 +279,7 @@ abstract class DatabaseInstaller {
 			'attribs' => $attribs,
 			'controlName' => $name,
 			'value' => $value,
-		    'help' => $helpData
+			'help' => $helpData
 		) );
 	}
 
@@ -291,7 +291,7 @@ abstract class DatabaseInstaller {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
 		if ( !isset( $attribs ) ) {
-		    $attribs = array();
+			$attribs = array();
 		}
 		return $this->parent->getPasswordBox( array(
 			'var' => $var,
@@ -299,7 +299,7 @@ abstract class DatabaseInstaller {
 			'attribs' => $attribs,
 			'controlName' => $name,
 			'value' => $value,
-		    'help' => $helpData
+			'help' => $helpData
 		) );
 	}
 
@@ -315,7 +315,7 @@ abstract class DatabaseInstaller {
 			'attribs' => $attribs,
 			'controlName' => $name,
 			'value' => $value,
-		    'help' => $helpData
+			'help' => $helpData
 		));
 	}
 

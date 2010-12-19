@@ -507,10 +507,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			$likeprefix = str_replace( '_', '\\_', $prefix );
 
 			$sql = "UPDATE $pagelinks
-			           SET pl_namespace=$ns,
-			               pl_title=TRIM(LEADING '$prefix:' FROM pl_title)
-			         WHERE pl_namespace=0
-			           AND pl_title LIKE '$likeprefix:%'";
+					   SET pl_namespace=$ns,
+						   pl_title=TRIM(LEADING '$prefix:' FROM pl_title)
+					 WHERE pl_namespace=0
+					   AND pl_title LIKE '$likeprefix:%'";
 
 			$this->db->query( $sql, __METHOD__ );
 			$this->output( "ok\n" );

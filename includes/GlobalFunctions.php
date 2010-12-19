@@ -1443,7 +1443,7 @@ function wfEscapeShellArg( ) {
 
 		if ( wfIsWindows() ) {
 			// Escaping for an MSVC-style command line parser and CMD.EXE
-			// Refs: 
+			// Refs:
 			//  * http://web.archive.org/web/20020708081031/http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
 			//  * http://technet.microsoft.com/en-us/library/cc723564.aspx
 			//  * Bug #13518
@@ -1979,7 +1979,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 							'\d\d?[ \t\r\n]*[A-Z][a-z]{2}[ \t\r\n]*\d{2}(?:\d{2})?' .  # dd Mon yyyy
 							'[ \t\r\n]*\d\d[ \t\r\n]*:[ \t\r\n]*\d\d[ \t\r\n]*:[ \t\r\n]*\d\d/S', $ts ) ) { # hh:mm:ss
 		# TS_RFC2822, accepting a trailing comment. See http://www.squid-cache.org/mail-archive/squid-users/200307/0122.html / r77171
-		# The regex is a superset of rfc2822 for readability 
+		# The regex is a superset of rfc2822 for readability
 		$strtime = strtok( $ts, ';' );
 	} elseif ( preg_match( '/^[A-Z][a-z]{5,8}, \d\d-[A-Z][a-z]{2}-\d{2} \d\d:\d\d:\d\d/', $ts ) ) {
 		# TS_RFC850
@@ -1990,7 +1990,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	} else {
 		# Bogus value; fall back to the epoch...
 		wfDebug("wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n");
-		
+
 		return false;
 	}
 
@@ -2025,12 +2025,12 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		} else {
 			return false;
 		}
-		
+
 		if ( !$d ) {
 			wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
 			return false;
 		}
-		
+
 		$output = $d->format( $formats[$outputtype] );
 	} else {
 		if ( count( $da ) ) {
