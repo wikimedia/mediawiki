@@ -600,9 +600,9 @@ class WebInstaller extends CoreInstaller {
 		$html = $this->parse( $text, true );
 
 		return "<div class=\"mw-help-field-container\">\n" .
-		         "<span class=\"mw-help-field-hint\">" . wfMsgHtml( 'config-help' ) . "</span>\n" .
-		         "<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
-		       "</div>\n";
+			   "<span class=\"mw-help-field-hint\">" . wfMsgHtml( 'config-help' ) . "</span>\n" .
+			   "<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
+			   "</div>\n";
 	}
 
 	/**
@@ -660,14 +660,14 @@ class WebInstaller extends CoreInstaller {
 
 		return
 			"<div class=\"config-block\">\n" .
-		    "  <div class=\"config-block-label\">\n" .
+			"  <div class=\"config-block-label\">\n" .
 			Xml::tags( 'label',
 				$attributes,
 				$labelText ) . "\n" .
-			    $helpData .
+				$helpData .
 			"  </div>\n" .
-		    "  <div class=\"config-block-elements\">\n" .
-			    $contents .
+			"  <div class=\"config-block-elements\">\n" .
+				$contents .
 			"  </div>\n" .
 			"</div>\n";
 	}

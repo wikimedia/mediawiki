@@ -213,7 +213,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Determine if LocalSettings.php exists. If it does, return its variables, 
+	 * Determine if LocalSettings.php exists. If it does, return its variables,
 	 * merged with those from AdminSettings.php, as an array.
 	 *
 	 * @return Array

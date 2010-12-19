@@ -435,7 +435,7 @@ class WebInstaller_Upgrade extends WebInstallerPage {
 
 	public function execute() {
 		if ( $this->getVar( '_UpgradeDone' ) ) {
-			// Allow regeneration of LocalSettings.php, unless we are working 
+			// Allow regeneration of LocalSettings.php, unless we are working
 			// from a pre-existing LocalSettings.php file and we want to avoid
 			// leaking its contents
 			if ( $this->parent->request->wasPosted() && !$this->getVar( '_ExistingDBSettings' ) ) {
@@ -595,12 +595,12 @@ class WebInstaller_Name extends WebInstallerPage {
 			$this->parent->getTextBox( array(
 				'var' => '_AdminEmail',
 				'label' => 'config-admin-email',
-			    'help' => $this->parent->getHelpBox( 'config-admin-email-help' )
+				'help' => $this->parent->getHelpBox( 'config-admin-email-help' )
 			) ) .
 			$this->parent->getCheckBox( array(
 				'var' => '_Subscribe',
 				'label' => 'config-subscribe',
-			    'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
+				'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
 			) ) .
 			$this->getFieldSetEnd() .
 			$this->parent->getInfoBox( wfMsg( 'config-almost-done' ) ) .
@@ -782,17 +782,17 @@ class WebInstaller_Options extends WebInstallerPage {
 		);
 
 		$extensions = $this->parent->findExtensions();
-		
+
 		if( $extensions ) {
 			$extHtml = $this->getFieldSetStart( 'config-extensions' );
-			
+
 			foreach( $extensions as $ext ) {
 				$extHtml .= $this->parent->getCheckBox( array(
 					'var' => "ext-$ext",
 					'rawtext' => $ext,
 				) );
 			}
-			
+
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
 			$this->getFieldSetEnd();
 			$this->addHTML( $extHtml );
@@ -805,26 +805,26 @@ class WebInstaller_Options extends WebInstallerPage {
 				'var' => 'wgEnableUploads',
 				'label' => 'config-upload-enable',
 				'attribs' => array( 'class' => 'showHideRadio', 'rel' => 'uploadwrapper' ),
-			    'help' => $this->parent->getHelpBox( 'config-upload-help' )
+				'help' => $this->parent->getHelpBox( 'config-upload-help' )
 			) ) .
 			'<div id="uploadwrapper" style="display: none;">' .
 			$this->parent->getTextBox( array(
 				'var' => 'wgDeletedDirectory',
 				'label' => 'config-upload-deleted',
-			    'help' => $this->parent->getHelpBox( 'config-upload-deleted-help' )
+				'help' => $this->parent->getHelpBox( 'config-upload-deleted-help' )
 			) ) .
 			'</div>' .
 			$this->parent->getTextBox( array(
 				'var' => 'wgLogo',
 				'label' => 'config-logo',
-			    'help' => $this->parent->getHelpBox( 'config-logo-help' )
+				'help' => $this->parent->getHelpBox( 'config-logo-help' )
 			) )
 		);
 		$this->addHTML(
 			$this->parent->getCheckBox( array(
 				'var' => 'wgUseInstantCommons',
 				'label' => 'config-instantcommons',
-			    'help' => $this->parent->getHelpBox( 'config-instantcommons-help' )
+				'help' => $this->parent->getHelpBox( 'config-instantcommons-help' )
 			) ) .
 			$this->getFieldSetEnd()
 		);
@@ -1034,7 +1034,7 @@ class WebInstaller_Install extends WebInstallerPage {
 class WebInstaller_Complete extends WebInstallerPage {
 
 	public function execute() {
-		// Pop up a dialog box, to make it difficult for the user to forget 
+		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file
 		$lsUrl = $GLOBALS['wgServer'] . $this->parent->getURL( array( 'localsettings' => 1 ) );
 		$this->parent->request->response()->header( "Refresh: 0;$lsUrl" );

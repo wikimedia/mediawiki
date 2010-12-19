@@ -211,8 +211,8 @@ class WebInstallerOutput {
 <div id="mw-panel">
 	<div class="portal" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
-	    href="http://www.mediawiki.org/"
-	    title="Main Page"></a>
+		href="http://www.mediawiki.org/"
+		title="Main Page"></a>
 	</div>
 	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
 	<div class="portal"><div class="body">

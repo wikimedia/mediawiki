@@ -262,7 +262,7 @@ class Language {
 				$this->namespaceNames[NS_PROJECT_TALK] =
 					$this->fixVariableInNamespace( $talk );
 			}
-			
+
 			# Sometimes a language will be localised but not actually exist on this wiki.
 			foreach( $this->namespaceNames as $key => $text ) {
 				if ( !isset( $validNamespaces[$key] ) ) {
@@ -1367,7 +1367,7 @@ class Language {
 		return $s;
 	}
 
- 	/**
+	/**
 	 * Hebrew Gematria number formatting up to 9999
 	 */
 	static function hebrewNumeral( $num ) {
@@ -1765,7 +1765,7 @@ class Language {
 		}
 
 		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-                '[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
 		if ( $isutf8 ) {
 			return $s;
 		}
@@ -2332,8 +2332,8 @@ class Language {
 			# We got the first byte only of a multibyte char; remove it.
 			$string = substr( $string, 0, -1 );
 		} elseif ( $char >= 0x80 &&
-		      preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
-		                  '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) )
+			  preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
+						  '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) )
 		{
 			# We chopped in the middle of a character; remove it
 			$string = $m[1];
