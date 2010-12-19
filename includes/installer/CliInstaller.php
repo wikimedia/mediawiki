@@ -32,6 +32,10 @@ class CliInstaller extends CoreInstaller {
 		'dbts2schema' => 'wgDBts2schema',
 		'dbpath' => 'wgSQLiteDataDir',
 		'scriptpath' => 'wgScriptPath',
+		'wikiroot' => 'wgScriptPath',
+		'upgrade' => 'cliUpgrade', /* As long as it isn't $confItems
+									* in LocalSettingsGenerator, we
+									* should be fine. */
 	);
 
 	/**
@@ -81,6 +85,15 @@ class CliInstaller extends CoreInstaller {
 	 * Main entry point.
 	 */
 	public function execute() {
+		global $cliUpgrade;
+
+		$vars = $this->getExistingLocalSettings();
+		if( $vars && ( !isset( $cliUpgrade ) || $cliUpgrade !== "yes" )  ) {
+			$this->showStatusMessage(
+				Status::newFatal( "config-localsettings-cli-upgrade" )
+			);
+		}
+
 		$this->performInstallation(
 			array( $this, 'startStage' ),
 			array( $this, 'endStage' )
@@ -103,32 +116,37 @@ class CliInstaller extends CoreInstaller {
 	}
 
 	public function endStage( $step, $status ) {
-		$warnings = $status->getWarningsArray();
-
-		if ( !$status->isOk() ) {
-			$this->showStatusMessage( $status );
-			echo "\n";
-			exit;
-		} elseif ( count( $warnings ) !== 0 ) {
-			foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
-				$this->showMessage( $w . wfMsg( 'ellipsis' ) .
-					wfMsg( 'word-separator' ) );
-			}
-		}
-
+		$this->showStatusMessage( $status );
 		$this->showMessage( wfMsg( 'config-install-step-done' ) . "\n" );
 	}
 
 	public function showMessage( $msg /*, ... */ ) {
 		$params = func_get_args();
 		array_shift( $params );
-		$text = wfMsgExt( $msg, array( 'parseinline' ), $params );
+
+		/* parseinline has the nasty side-effect of putting encoded
+		 * angle brackets, around the message, so the substr removes
+		 * them. */
+		$text = substr( wfMsgExt( $msg, array( 'parseinline' ), $params ), 4, -4 );
 		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
 		echo html_entity_decode( strip_tags( $text ), ENT_QUOTES ) . "\n";
 		flush();
 	}
 
 	public function showStatusMessage( Status $status ) {
-		$this->showMessage( $status->getWikiText() );
+		$warnings = array_merge( $status->getWarningsArray(),
+			$status->getErrorsArray() );
+
+		if ( count( $warnings ) !== 0 ) {
+			foreach ( $status->getWikiTextArray( $warnings ) as $w ) {
+				$this->showMessage( $w . wfMsg( 'ellipsis' ) .
+					wfMsg( 'word-separator' ) );
+			}
+		}
+
+		if ( !$status->isOk() ) {
+			echo "\n";
+			exit;
+		}
 	}
 }
