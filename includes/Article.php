@@ -3332,7 +3332,7 @@ class Article {
 		$rollbackErrors = $this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser );
 		$errors = array_merge( $editErrors, wfArrayDiff2( $rollbackErrors, $editErrors ) );
 
-		$t = new Token( Token::PERSISTENT, array( $this->mTitle->getPrefixedText(), $fromP ) );
+		$t = new Token( array( $this->mTitle->getPrefixedText(), $fromP ) );
 		if ( !$t->match( $token ) ) {
 			$errors[] = array( 'sessionfailure' );
 		}

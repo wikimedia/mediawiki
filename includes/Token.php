@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2003 Brion Vibber <brion@pobox.com>
+ * Copyright © 2010
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -102,7 +102,7 @@ class Token {
 	 * @param $request WebRequest most of the time you'll want to get/store
 	 *     the tokens in $wgRequest, which is the default.
 	 */
-	public function __construct( $salt, $type = self::ANONYMOUS, WebRequest $request = null ){
+	public function __construct( $salt, $type = self::PERSISTENT, WebRequest $request = null ){
 		global $wgRequest;
 		$this->type = $type;
 	
@@ -181,7 +181,7 @@ class Token {
 	 * @param $type Token class constant identifier
 	 * @return String token string to store in HTML
 	 */
-	public static function prepare( $salt, $type = self::ANONYMOUS ){
+	public static function prepare( $salt, $type = self::PERSISTENT ){
 		$t = new Token( $salt, $type );
 		return $t->set( false );
 	}
