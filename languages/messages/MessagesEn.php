@@ -1070,9 +1070,12 @@ Please choose a different name.',
 {{SITENAME}} uses cookies to log in users.
 You have cookies disabled.
 Please enable them, then log in with your new username and password.',
+'nocookiesfornew'            => 'The user account wasn\'t created, as we couldn\'t confirm its source.
+Ensure you have cookies enabled, reload this page and try again.',
 'nocookieslogin'             => '{{SITENAME}} uses cookies to log in users.
 You have cookies disabled.
 Please enable them and try again.',
+'nocookiesforlogin'          => '{{int:nocookieslogin}}',
 'noname'                     => 'You have not specified a valid username.',
 'loginsuccesstitle'          => 'Login successful',
 'loginsuccess'               => "'''You are now logged in to {{SITENAME}} as \"\$1\".'''",
