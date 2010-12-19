@@ -221,6 +221,7 @@ class SpecialVersion extends SpecialPage {
 				'parserhook' => wfMsg( 'version-parserhooks' ),
 				'variable' => wfMsg( 'version-variables' ),
 				'media' => wfMsg( 'version-mediahandlers' ),
+				'antispam' => wfMsg( 'version-antispam' ),
 				'skin' => wfMsg( 'version-skins' ),
 				'other' => wfMsg( 'version-other' ),
 			);
