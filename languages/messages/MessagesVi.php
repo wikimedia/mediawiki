@@ -694,7 +694,7 @@ Tài khoản của bạn đã mở.
 'userlogout'                 => 'Đăng xuất',
 'notloggedin'                => 'Chưa đăng nhập',
 'nologin'                    => "Bạn chưa có tài khoản ở đây? '''$1'''.",
-'nologinlink'                => 'Mở một tài khoản',
+'nologinlink'                => 'Mở tài khoản mới',
 'createaccount'              => 'Mở tài khoản',
 'gotaccount'                 => "Đã mở tài khoản rồi? '''$1'''.",
 'gotaccountlink'             => 'Đăng nhập',
@@ -3598,7 +3598,10 @@ Nếu người dùng đã dăng nhập vào bất cứ wiki nào trong hệ th�
 'disableaccount-logentry'    => 'đã vô hiệu hóa vĩnh viễn tài khoản của người dùng [[$1]]',
 
 # Special:UploadStash
+'uploadstash'          => 'Hàng đợi tải lên',
 'uploadstash-summary'  => 'Đây là các tập tin mà bạn đã hoặc đang tải lên nhưng chưa xuất bản tại wiki. Chỉ bạn có thể xem các tập tin này.',
+'uploadstash-clear'    => 'Xóa các tập tin đợi tải lên',
+'uploadstash-nofiles'  => 'Bạn không có tập tin trong hàng đợi tải lên.',
 'uploadstash-badtoken' => 'Tác vụ bị thất bại, có lẽ vì thông tin đăng nhập của bạn đã hết hạn. Hãy thử lại.',
 'uploadstash-errclear' => 'Việc dọn sạch các tập tin bị thất bại.',
 'uploadstash-refresh'  => 'Làm mới danh sách tập tin',

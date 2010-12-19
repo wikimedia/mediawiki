@@ -708,7 +708,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'notloggedin'                => 'Não autenticado',
 'nologin'                    => 'Não possui uma conta? $1.',
 'nologinlink'                => 'Criar uma conta',
-'createaccount'              => 'Criar nova conta',
+'createaccount'              => 'Criar conta',
 'gotaccount'                 => "Já possui uma conta? '''$1'''.",
 'gotaccountlink'             => 'Autenticar-se',
 'createaccountmail'          => 'por e-mail',
@@ -913,12 +913,12 @@ O registro de bloqueio mais recente é fornecido abaixo, para referência:',
 '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
 'usercssyoucanpreview'             => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo CSS antes de salvar.",
 'userjsyoucanpreview'              => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo JavaScript antes de salvar.",
-'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular.'''
+'usercsspreview'                   => "'''Lembre-se de que você está apenas previsualizando o seu CSS particular.'''
 '''Ele ainda não foi salvo!'''",
 'userjspreview'                    => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
-'sitecsspreview'                   => "'''Lembre-se de que está apenas previsualizando este CSS global.'''
+'sitecsspreview'                   => "'''Lembre-se de que você está apenas previsualizando este CSS.'''
 '''Ele ainda não foi salvo!'''",
-'sitejspreview'                    => "'''Lembre-se de que você está apenas previsualizando este código JavaScript global.'''
+'sitejspreview'                    => "''Lembre-se de que você está apenas previsualizando este código JavaScript.'''
 '''Ele ainda não foi salvo!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/vector.css aposto a {{ns:user}}:Alguém/Vector.css.",
 'updated'                          => '(Atualizado)',
@@ -3409,6 +3409,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da maneira convencion
 'version-specialpages'             => 'Páginas especiais',
 'version-parserhooks'              => 'Hooks do analisador (parser)',
 'version-variables'                => 'Variáveis',
+'version-antispam'                 => 'Antispam',
 'version-skins'                    => 'Temas',
 'version-other'                    => 'Diversos',
 'version-mediahandlers'            => 'Executores de média',
@@ -3544,5 +3545,14 @@ Se neste momento o usuário estiver autenticado em algum lugar, ele sairá de im
 'disableaccount-nosuchuser'  => 'A conta de usuário "$1" não existe.',
 'disableaccount-success'     => 'A conta de usuário "$1" foi desativada permanentemente.',
 'disableaccount-logentry'    => 'desativou permanentemente a conta [[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => 'Arquivos escondidos',
+'uploadstash-summary'  => 'Esta página dá acesso aos arquivos enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes arquivos não são visíveis para ninguém, exceto para o usuário que os enviou.',
+'uploadstash-clear'    => 'Apagar os arquivos escondidos',
+'uploadstash-nofiles'  => 'Você não tem nenhum arquivo escondido.',
+'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
+'uploadstash-errclear' => 'Não foi possível apagar os arquivos.',
+'uploadstash-refresh'  => 'Atualizar a lista de arquivos',
 
 );

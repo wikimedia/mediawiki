@@ -2282,7 +2282,7 @@ $1',
 'sp-contributions-submit'              => '搜尋',
 
 # What links here
-'whatlinkshere'            => '鏈入頁面',
+'whatlinkshere'            => '連入頁面',
 'whatlinkshere-title'      => '鏈接到「$1」的頁面',
 'whatlinkshere-page'       => '頁面:',
 'linkshere'                => '以下頁面連結到[[:$1]]：',
@@ -3350,7 +3350,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'fileduplicatesearch-result-n' => '檔案 "$1" 有$2項完全相同的重覆。',
 
 # Special:SpecialPages
-'specialpages'                   => '所有特殊頁面',
+'specialpages'                   => '特殊頁面',
 'specialpages-note'              => '----
 * 標準特殊頁面。
 * <strong class="mw-specialpagerestricted">有限制的特殊頁面。</strong>',

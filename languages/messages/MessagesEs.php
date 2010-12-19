@@ -797,6 +797,9 @@ Puedes ignorar este mensaje si esta cuenta fue creada erróneamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 'suspicious-userlogout'      => 'Su solicitud de desconexión ha sido denegada debido a que parece que ésta ha sido envidada desde un navegador defectuoso o un proxy caché.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Error desconocido en la función mail() de PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Dificultad estimada de la contraseña: $1',
 'password-strength-bad'        => 'MALA',
@@ -938,6 +941,10 @@ La última entrada del registro de bloqueos es provista debajo para mayor refere
 'usercsspreview'                   => "'''Recuerda que sólo está previsualizando tu CSS de usuario.'''
 '''¡Aún no se ha grabado!'''",
 'userjspreview'                    => "'''¡Recuerde que sólo estás previsualizando tu javascript de usuario y aún no se ha grabado!'''",
+'sitecsspreview'                   => "'''Recuerda que sólo estás previsualizando este CSS'''
+'''¡Aún no se ha grabado!'''",
+'sitejspreview'                    => "''' Recordar que sólo estás previsualizando este código JavaScript.'' '
+'' ¡Aún no se ha guardado!'' '",
 'userinvalidcssjstitle'            => "'''Aviso:''' No existe la máscara \"\$1\". Recuerda que las páginas personalizadas ''.css'' y ''.js'' tienen un título en minúsculas. Por ejemplo, {{ns:user}}:Ejemplo/vector.css en vez de {{ns:user}}:Ejemplo/Vector.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
@@ -1541,6 +1548,7 @@ También puede permitir a otros usuarios que te contacten a través de tu págin
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
 'right-revisionmove'          => 'Mover revisiones',
+'right-disableaccount'        => 'Deshabilitar cuentas',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',
@@ -2412,6 +2420,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contribuciones de usuarios nuevos',
 'sp-contributions-blocklog'            => 'registro de bloqueos',
 'sp-contributions-deleted'             => 'contribuciones de usuario borradas',
+'sp-contributions-uploads'             => 'subidas',
 'sp-contributions-logs'                => 'registros',
 'sp-contributions-talk'                => 'discusión',
 'sp-contributions-userrights'          => 'administración de derechos de usuarios',
@@ -3419,6 +3428,7 @@ También puedes [[Special:Watchlist/edit|usar el editor estándar]].',
 'version-specialpages'             => 'Páginas especiales',
 'version-parserhooks'              => 'Extensiones del analizador sintáctico',
 'version-variables'                => 'Variables',
+'version-skins'                    => 'Pieles',
 'version-other'                    => 'Otro',
 'version-mediahandlers'            => 'Manejadores multimedia',
 'version-hooks'                    => 'Extensiones',
@@ -3540,5 +3550,27 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para búsqueda de texto completo',
 'sqlite-no-fts'  => '$1 sin soporte para búsqueda de texto completo',
+
+# Special:DisableAccount
+'disableaccount'             => 'Deshabilitar una cuenta de usuario',
+'disableaccount-user'        => 'Nombre de usuario:',
+'disableaccount-reason'      => 'Razón:',
+'disableaccount-confirm'     => "Deshabilitar esta cuenta de usuario.
+El usuario no podrá iniciar sesión, restablecer su contraseña o recibir notificaciones por correo electrónico.
+Si el usuario está conectado, será desconectado de inmediato.
+'' Tenga en cuenta que la desactivación de una cuenta no es reversible sin intervención del administrador de sistema ''.",
+'disableaccount-mustconfirm' => 'Tienes que confirmar que quieres desactivar esta cuenta.',
+'disableaccount-nosuchuser'  => 'La cuenta de usuario «$1» no existe.',
+'disableaccount-success'     => 'La cuenta de usuario «$1» ha sido deshabilitada definitivamente.',
+'disableaccount-logentry'    => 'desactivada permanentemente la cuenta «[[$1]]»',
+
+# Special:UploadStash
+'uploadstash'          => 'Ficheros escondidos',
+'uploadstash-summary'  => 'Esta página da acceso a los ficheros enviados (o que están en el proceso de envío) pero que aún no han sido publicados en la wiki. Estos ficheros no son visibles para nadie, excepto para el usuario que los envió.',
+'uploadstash-clear'    => 'Borrar los ficheros escondidos',
+'uploadstash-nofiles'  => 'No tienes archivos escondidos.',
+'uploadstash-badtoken' => 'No fue posible ejecutar esa operación, tal vez porque sus credenciales de edición expiraron. Reinténtelo.',
+'uploadstash-errclear' => 'El borrado de los archivos no tuvo éxito.',
+'uploadstash-refresh'  => 'Actualizar la lista de archivos',
 
 );

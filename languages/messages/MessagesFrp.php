@@ -796,6 +796,9 @@ Volyéd atendre devant que tornar èprovar.',
 'loginlanguagelabel'         => 'Lengoua : $1',
 'suspicious-userlogout'      => "Voutra demanda de dèbranchement at étâ refusâ perce que semble qu’el at étâ mandâ per un navigator câsso ou ben la misa en cache d’un sèrvor mandatèro (''proxy'').",
 
+# E-mail sending
+'php-mail-error-unknown' => 'Èrror encognua dens la fonccion mail() de PHP.',
+
 # JavaScript password checks
 'password-strength'            => 'Nivél de sècuritât du mot de pâssa : $1',
 'password-strength-bad'        => 'FÊBLO',
@@ -937,9 +940,13 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 '''Internet Explorer / Opera :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Actualisar'' ou ben prèssâd ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye CSS novèla devant que la sôvar.",
 'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye JS novèla devant que la sôvar.",
-'usercsspreview'                   => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye CSS.'''
+'usercsspreview'                   => "'''Rapelâd-vos que vos éte solament aprés prèvisualisar voutra prôpra fôlye CSS.'''
 '''El at p’oncor étâ sôvâ !'''",
-'userjspreview'                    => "'''Rapelâd-vos que vos éte aprés èprovar ou ben prèvisualisar voutron code JavaScript.'''
+'userjspreview'                    => "'''Rapelâd-vos que vos éte solament aprés èprovar ou ben prèvisualisar voutron code JavaScript.'''
+'''Il at p’oncor étâ sôvâ !'''",
+'sitecsspreview'                   => "'''Rapelâd-vos que vos éte solament aprés prèvisualisar cela fôlye CSS.'''
+'''El at p’oncor étâ sôvâ !'''",
+'sitejspreview'                    => "'''Rapelâd-vos que vos éte solament aprés èprovar ou ben prèvisualisar cél code JavaScript.'''
 '''Il at p’oncor étâ sôvâ !'''",
 'userinvalidcssjstitle'            => "'''Atencion :''' ègziste gins d’habelyâjo « $1 ».
 Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres, per ègzemplo {{ns:user}}:Foo/vector.css et pas {{ns:user}}:Foo/Vector.css.",
@@ -3604,6 +3611,8 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 'version-specialpages'             => 'Pâges spèciâles',
 'version-parserhooks'              => 'Grèfons du parsor',
 'version-variables'                => 'Variâbles',
+'version-antispam'                 => 'Anti-spame',
+'version-skins'                    => 'Habelyâjos',
 'version-other'                    => 'De totes sôrtes',
 'version-mediahandlers'            => 'Maneyors de fichiérs multimèdia',
 'version-hooks'                    => 'Grèfons',

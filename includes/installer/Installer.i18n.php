@@ -1285,6 +1285,23 @@ chmod a+w $3</pre>',
  * @author DCLXVI
  */
 $messages['bg'] = array(
+	'config-desc' => 'Инсталатор на MediaWiki',
+	'config-information' => 'Информация',
+	'config-localsettings-key' => 'Ключ за надграждане:',
+	'config-localsettings-badkey' => 'Предоставеният ключ е неправилен.',
+	'config-session-error' => 'Грешка при създаване на сесия: $1',
+	'config-back' => '← Връщане',
+	'config-continue' => 'Продължаване →',
+	'config-page-language' => 'Език',
+	'config-page-name' => 'Име',
+	'config-page-install' => 'Инсталиране',
+	'config-admin-password-mismatch' => 'Двете въведени пароли не съвпадат.',
+	'config-license-pd' => 'Обществено достояние',
+	'config-upload-enable' => 'Позволяне качването на файлове',
+	'config-upload-deleted' => 'Директория за изтритите файлове:',
+	'config-logo' => 'Адрес на логото:',
+	'config-install-tables' => 'Създаване на таблиците',
+	'config-download-localsettings' => 'Изтегляне на LocalSettings.php',
 	'config-help' => 'помощ',
 );
 
@@ -3391,7 +3408,7 @@ Cargue unha imaxe do tamaño axeitado e introduza o URL aquí.
 Se non quere un logo, deixe esta caixa en branco.',
 	'config-instantcommons' => 'Activar Instant Commons',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons InstantCommons] é unha característica que permite aos wikis usar imaxes, sons e outros ficheiros multimedia atopados no sitio da [http://commons.wikimedia.org/wiki/Portada_galega Wikimedia Commons].
-Para facer isto, MediaWiki necesita acceso á internet.
+Para facer isto, MediaWiki necesita acceso á internet. 
 
 Para obter máis información sobre esta característica, incluíndo as instrucións sobre como configuralo para outros wikis que non sexan a Wikimedia Commons, consulte [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos o manual].',
 	'config-cc-error' => 'A escolla da licenza Creative Commons non deu resultados.
@@ -8292,6 +8309,8 @@ $messages['pt'] = array(
 	'config-localsettings-upgrade' => 'Foi detectado um ficheiro <code>LocalSettings.php</code>.
 Para actualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.
 Encontra este valor no LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'Foi detectada a existência de um ficheiro LocalSettings.php.
+Para actualizar esta instalação, use a opção --upgrade=yes, por favor.',
 	'config-localsettings-key' => 'Chave de actualização:',
 	'config-localsettings-badkey' => 'A chave que forneceu está incorreta.',
 	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
@@ -8301,7 +8320,7 @@ $1',
 	'config-localsettings-incomplete' => 'O ficheiro LocalSettings.php existente parece estar incompleto.
 A variável $1 não está definida.
 Por favor defina esta variável no LocalSettings.php e clique "Continuar".',
-	'config-localsettings-connection-error' => 'Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no LocalSettings.php ou AdminSettings.php. Por favor corrija essas configurações e tente novamente.
+	'config-localsettings-connection-error' => 'Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no LocalSettings.php ou AdminSettings.php. Por favor corrija essas configurações e tente novamente. 
 
  $1',
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
@@ -8688,7 +8707,7 @@ Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa i
 Se não pretende usar um logótipo, deixe este campo em branco.',
 	'config-instantcommons' => 'Activar a funcionalidade Instant Commons',
 	'config-instantcommons-help' => 'O [http://www.mediawiki.org/wiki/InstantCommons Instant Commons] é uma funcionalidade que permite que as wikis usem imagens, áudio e outros ficheiros multimédia disponíveis no site [http://commons.wikimedia.org/ Wikimedia Commons].
-Para poder usá-los, o MediaWiki necessita de acesso à internet.
+Para poder usá-los, o MediaWiki necessita de acesso à internet. 
 
 Para mais informações sobre esta funcionalidade, incluindo instruções sobre como configurá-la para usar outras wikis em vez da Wikimedia Commons, consulte o [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Manual Técnico].',
 	'config-cc-error' => 'O auxiliar de escolha de licenças da Creative Commons não produziu resultados.

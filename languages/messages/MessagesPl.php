@@ -3470,6 +3470,7 @@ Możesz także użyć [[Special:Watchlist/edit|standardowego edytora obserwowany
 'version-specialpages'             => 'Strony specjalne',
 'version-parserhooks'              => 'Haki analizatora składni (ang. parser hooks)',
 'version-variables'                => 'Zmienne',
+'version-antispam'                 => 'Antyspam',
 'version-skins'                    => 'Skórki',
 'version-other'                    => 'Pozostałe',
 'version-mediahandlers'            => 'Wtyczki obsługi mediów',

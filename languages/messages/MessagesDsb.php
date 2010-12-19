@@ -3197,6 +3197,7 @@ Móžoš teke [[Special:Watchlist/edit|standardny wobźěłowański bok wužywa�
 'version-specialpages'             => 'Specialne boki',
 'version-parserhooks'              => 'Parserowe kokule',
 'version-variables'                => 'Wariable',
+'version-antispam'                 => 'Antispam',
 'version-skins'                    => 'Suknje',
 'version-other'                    => 'Druge',
 'version-mediahandlers'            => 'Pśeźěłaki medijow',

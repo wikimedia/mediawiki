@@ -500,6 +500,9 @@ Thora deri baad fir se kosis karna.',
 'loginlanguagelabel'         => 'Bhasa: $1',
 'suspicious-userlogout'      => 'Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'PHP ke mail() function me koi anjaan kharaabi hae',
+
 # JavaScript password checks
 'password-strength'            => 'Password ke lambai pe anumaan: $1',
 'password-strength-bad'        => 'KHARAAB',
@@ -641,6 +644,10 @@ Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:'
 'usercsspreview'                   => "'''Yaad rakhna ki aap khali aapan CSS ke jhalak dekhta hai.
 Iske abhi save nai karaa gais hai!'''",
 'userjspreview'                    => "'''Yaad rakhna ki aap khali aapan JavaScript ke testing/previewing  karta hai, iske abhi save nai karaa gais hai!'''",
+'sitecsspreview'                   => " '''Yaad rakhna ki aap ii CSS ke khaali preview kartaa hae.'''
+'''Iske abhi talak bachawa nai gais hae!'''",
+'sitejspreview'                    => " '''Yaad rakhna ki aap ii JavaScript code ke khaali preview kartaa hae.'''
+'''Iske abhi talak bachawa nai gais hae!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' Koi skin \"\$1\" nai hai.
 Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/vector.css aur{{ns:user}}:Foo/Vector.css nai.",
 'updated'                          => '(Update kar dewa gais hai)',
@@ -1254,6 +1261,7 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-sendemail'             => 'Duusra sadasya ke lage e-mail bhejo',
 'right-revisionmove'          => 'Badlao ke naam badlo',
+'right-disableaccount'        => 'Sab account ke band karo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',
@@ -1644,6 +1652,7 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'statistics-edits'             => '{{SITENAME}} ke suruu hoe se panna ke badlao',
 'statistics-edits-average'     => 'Average badlao per panna',
 'statistics-views-total'       => 'Views kul jorr',
+'statistics-views-total-desc'  => 'Jon pana abhi banawa nai gais hae aur khaas panna ke include nai karaa gais hae',
 'statistics-views-peredit'     => 'Views per badlao',
 'statistics-users'             => 'Registered [[Special:ListUsers|sadasya]]',
 'statistics-users-active'      => 'Active sadasya',
@@ -2143,6 +2152,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Nawaa account ke sadasya ke yogdaan',
 'sp-contributions-blocklog'            => 'Suchi roko',
 'sp-contributions-deleted'             => 'Mitawa gais adasya ke yogdaan',
+'sp-contributions-uploads'             => 'upload karaa gais file',
 'sp-contributions-logs'                => 'logs',
 'sp-contributions-talk'                => 'baat',
 'sp-contributions-userrights'          => 'sadasya ke adhikaar ke manage karo',
@@ -2769,6 +2779,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-lightsource'                 => 'Ujala ke soti',
 'exif-flash'                       => 'Chamak',
 'exif-focallength'                 => 'Lens ke focal length',
+'exif-subjectarea'                 => 'Vishay ke jagha',
 'exif-flashenergy'                 => 'Chamak ke taagat',
 'exif-focalplanexresolution'       => 'Focal plane X resolution',
 'exif-gpsaltitude'                 => 'Uunchai',
@@ -2906,5 +2917,10 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # HTML forms
 'htmlform-reset'               => 'Badlao ke pahile jaise karo',
 'htmlform-selectorother-other' => 'Duusra',
+
+# Special:DisableAccount
+'disableaccount-user'       => 'Sadasya ke naam:',
+'disableaccount-reason'     => 'Kaaran',
+'disableaccount-nosuchuser' => 'Sadasya account "$1" nai hae.',
 
 );

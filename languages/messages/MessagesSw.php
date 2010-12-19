@@ -1435,7 +1435,8 @@ faili hili lina $2.',
 'emptyfile'                   => 'Faili ulilolipakia linaonekana kuwa tupu.
 Hii huenda ikawa jina lake limeandikwa vibaya.
 Tafadhali uhakikishe kwamba ni kweli unataka kupakia faili hili.',
-'fileexists'                  => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.",
+'fileexists'                  => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>$1</tt>''' ikiwa una mashaka kuhusu kulibadilisha.
+[[$1|thumb]]",
 'filepageexists'              => "Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili kwa sasa.
 Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
 Kufanya muhtasari wako uonekana pale, utahitajika uhariri ukurasa kwa mikono.
