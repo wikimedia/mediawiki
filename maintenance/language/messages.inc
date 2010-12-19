@@ -436,6 +436,8 @@ $wgMessageStructure = array(
 		'createaccounterror',
 		'nocookiesnew',
 		'nocookieslogin',
+		'nocookiesfornew',
+		'nocookiesforlogin',
 		'noname',
 		'loginsuccesstitle',
 		'loginsuccess',

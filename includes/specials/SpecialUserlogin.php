@@ -274,7 +274,7 @@ class LoginForm extends SpecialPage {
 		# Request forgery checks.
 		if ( !self::getCreateaccountToken() ) {
 			self::setCreateaccountToken();
-			$this->mainLoginForm( wfMsgExt( 'nocookiesnew', array( 'parseinline' ) ) );
+			$this->mainLoginForm( wfMsgExt( 'nocookiesfornew', array( 'parseinline' ) ) );
 			return false;
 		}
 
@@ -659,7 +659,7 @@ class LoginForm extends SpecialPage {
 				break;
 
 			case self::NEED_TOKEN:
-				$this->mainLoginForm( wfMsgExt( 'nocookieslogin', array( 'parseinline' ) ) );
+				$this->mainLoginForm( wfMsgExt( 'nocookiesforlogin', array( 'parseinline' ) ) );
 				break;
 			case self::WRONG_TOKEN:
 				$this->mainLoginForm( wfMsg( 'sessionfailure' ) );
