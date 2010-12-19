@@ -18,6 +18,8 @@ $messages['en'] = array(
 	'config-localsettings-upgrade'    => "A <code>LocalSettings.php</code> file has been detected.
 To upgrade this installation, please enter the value of <code>\$wgUpgradeKey</code> in the box below.
 You will find it in LocalSettings.php.",
+	'config-localsettings-cli-upgrade'    => 'A LocalSettings.php file has been detected.
+To upgrade this installation, please give the --upgrade=yes option.',
 	'config-localsettings-key'        => 'Upgrade key:',
 	'config-localsettings-badkey'     => 'The key you provided is incorrect.',
 	'config-upgrade-key-missing'      => 'An existing installation of MediaWiki has been detected.
