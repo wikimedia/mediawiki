@@ -3479,6 +3479,7 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 'version-specialpages'             => 'Spezialseiten',
 'version-parserhooks'              => 'Parser-Hooks',
 'version-variables'                => 'Variablen',
+'version-antispam'                 => 'Antispam',
 'version-skins'                    => 'Benutzeroberflächen',
 'version-other'                    => 'Anderes',
 'version-mediahandlers'            => 'Medien-Handler',

@@ -653,6 +653,9 @@ Vent venligst før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
 'suspicious-userlogout'      => 'Din anmodning om at logge ud blev nægtet, fordi det ser ud som den blev sendt af en ødelagt browser eller caching proxy.',
 
+# E-mail sending
+'php-mail-error-unknown' => "Ukendt fejl i PHP's mail()-funtion",
+
 # JavaScript password checks
 'password-strength'            => 'Anslået passwordstyrke: $1',
 'password-strength-bad'        => 'DÅRLIG',
@@ -795,6 +798,10 @@ Loggen over den seneste blokering ses nedenfor:',
 'usercsspreview'                   => "'''Husk at dette kun er en forhåndsvisning af dit eget css.
 '''Det er ikke gemt endnu!'''",
 'userjspreview'                    => "'''Husk at du kun tester/forhåndsviser dit eget javascript, det er ikke gemt endnu!'''",
+'sitecsspreview'                   => "'''Husk, at dette kun er en forhåndsvisning af denne CSS.'''
+'''Det er endnu ikke gemt!'''",
+'sitejspreview'                    => "'''Husk, at du kun ser en forhåndsvisning af denne JavaScriptkode.'''
+'''Det er endnu ikke gemt!'''",
 'userinvalidcssjstitle'            => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/vector.css'' og ikke ''{{ns:user}}:Hansen/Vector.css''.",
 'updated'                          => '(Opdateret)',
 'note'                             => "'''Bemærk:'''",
@@ -1393,6 +1400,7 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
 'right-revisionmove'          => 'Flyt revisioner',
+'right-disableaccount'        => 'Deaktivere konti',
 
 # User rights log
 'rightslog'      => 'Rettighedslog',
@@ -2251,6 +2259,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Brugerbidrag fra nye konti',
 'sp-contributions-blocklog'            => 'blokeringslog',
 'sp-contributions-deleted'             => 'slettede brugerbidrag',
+'sp-contributions-uploads'             => 'uploads',
 'sp-contributions-logs'                => 'loglister',
 'sp-contributions-talk'                => 'diskussion',
 'sp-contributions-userrights'          => 'håndtering af brugerrettigheder',
@@ -3229,6 +3238,7 @@ Du kan også [[Special:Watchlist/edit|bruge standard editoren]].',
 'version-specialpages'             => 'Specialsider',
 'version-parserhooks'              => 'Oversætter-funktioner',
 'version-variables'                => 'Variabler',
+'version-skins'                    => 'Udseender',
 'version-other'                    => 'Andet',
 'version-mediahandlers'            => 'Specialhåndtering af mediefiler',
 'version-hooks'                    => 'Funktionstilføjelser',
@@ -3351,5 +3361,21 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 # SQLite database support
 'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
 'sqlite-no-fts'  => '$1 uden fuld-tekst søgnings support',
+
+# Special:DisableAccount
+'disableaccount'             => 'Deaktivere en brugerkonto',
+'disableaccount-user'        => 'Brugernavn:',
+'disableaccount-reason'      => 'Begrundelse:',
+'disableaccount-confirm'     => "Deaktiver denne brugerkonto.
+Denne bruger vil ikke være i stand til at logge ind, nulstille sit password eller modtage emailnotifikationer.
+Hvis brugeren er logget ind et sted, vil vedkommende blive logget ud øjeblikkeligt.
+''Bemærk at deaktivering af en konto ikke kan fortrydes uden systemadministrators indgriben.''",
+'disableaccount-mustconfirm' => 'Du skal bekræfte, at du ønsker at deaktivere denne konto.',
+'disableaccount-nosuchuser'  => 'Brugerkontoen "$1" findes ikke.',
+'disableaccount-success'     => 'Brugerkontoen "$1" er blevet permanent deaktiveret.',
+'disableaccount-logentry'    => 'deaktiverede brugerkontoen [[$1]] permanent',
+
+# Special:UploadStash
+'uploadstash-summary' => 'Denne side giver adgang til filer, de er uploadet (eller er i gang med at blive det), men som endnu ikke er offentliggjort på wikien. Disse filer er kun synlige for brugeren, der har uploadet dem.',
 
 );

@@ -3343,7 +3343,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'fileduplicatesearch-result-n' => '文件“$1”有$2项完全相同的重复副本。',
 
 # Special:SpecialPages
-'specialpages'                   => '所有特殊页面',
+'specialpages'                   => '特殊页面',
 'specialpages-note'              => '----
 * 标准特殊页面。
 * <strong class="mw-specialpagerestricted">有限制的特殊页面。</strong>',

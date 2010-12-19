@@ -778,8 +778,12 @@ Déi lescht Entrée am Logbuch vun de Späre steet als Referenz hei ënnendrënn
 'usercssyoucanpreview'             => "'''Tipp:''' Benotzt de \"{{int:showpreview}}\"-Knäppchen, fir Ären neien CSS virum Späicheren ze testen.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benotzt de ''{{int:showpreview}}''-Knäppchen, fir Ären neie JavaScript virum Späicheren ze testen.",
 'usercsspreview'                   => "'''Bedenkt: Dir kuckt just är Benotzer CSS.
-Si gouf nach net gepäichert!'''",
+Si gouf nach net gespäichert!'''",
 'userjspreview'                    => "'''Denkt drun datt Dir äre Javascript nëmmen test, nach ass näischt gespäichert!'''",
+'sitecsspreview'                   => "'''Denkt drun datt Dir dësen CSS just kuckt.
+E gouf nach net gespäichert!'''",
+'sitejspreview'                    => "'''Denkt drun datt Dir dëse JavaScript-Code just kuckt.
+E gouf nach net gespäichert!'''",
 'userinvalidcssjstitle'            => "'''Opgepasst:''' Et gëtt keen Ausgesinn (skin) \"\$1\".
 Denkt drun datt eegen .css an .js Säiten e kleng geschriwwenen Titel benotzen, z. Bsp. {{ns:user}}:Foo/vector.css am Géigesaz zu {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Geännert)',
@@ -3238,6 +3242,7 @@ Dir kënnt och [[Special:Watchlist/edit|de Standard Editeur benotzen]].",
 'version-specialpages'             => 'Spezialsäiten',
 'version-parserhooks'              => 'Parser-Erweiderungen',
 'version-variables'                => 'Variabelen',
+'version-antispam'                 => 'Antispam',
 'version-skins'                    => 'Skins/Layout',
 'version-other'                    => 'Aner',
 'version-mediahandlers'            => 'Medien-Ënnerstëtzung',

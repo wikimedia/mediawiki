@@ -901,8 +901,12 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'qbsettings-none' => 'Niinj',
 
 # Preferences page
-'preferences'   => 'Önjstalinge',
-'mypreferences' => 'Önjstalinge',
+'preferences'         => 'Önjstalinge',
+'mypreferences'       => 'Önjstalinge',
+'allowemail'          => 'E-Mail foon oudere brükere tulätje',
+'prefs-searchoptions' => 'Säkmöölikhäide',
+'prefs-namespaces'    => 'Noomerüme',
+'defaultns'           => 'Ouers säk önj jüheer noomerüme:',
 
 # Groups
 'group-user'       => 'Brükere',
@@ -924,7 +928,14 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'rightslog' => 'Ruchte-logbök',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'jüdeer sid beårbe',
+'action-read'          => 'jüdeer sid leese',
+'action-edit'          => 'jüdeer sid beårbe',
+'action-createpage'    => 'side mååge',
+'action-createtalk'    => 'diskusjoonside mååge',
+'action-createaccount' => 'jüdeer brükerkonto mååge',
+'action-move'          => 'jüdeer sid ferschüwe',
+'action-move-subpages' => 'jüdeer sid än unerside ferschüwe',
+'action-movefile'      => 'jüdeer sid ferschüwe',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|änring|änringe}}',
@@ -959,7 +970,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 # Upload
 'upload'                     => 'Huuchsiinje',
 'uploadnologin'              => 'Ai önjmälded',
-'uploadnologintext'          => 'Dü möist [[Special:UserLogin|önjmälded weese]], am dootäie huuchleese tu koonen.',
+'uploadnologintext'          => 'Dü möist [[Special:UserLogin|önjmälded weese]], am dat dü dootäie huuchsiinje koost.',
 'upload_directory_missing'   => 'Dåt aplees-fertiiknis ($1) breecht än köö ai foon di wäbsärwer mååged wårde.',
 'upload_directory_read_only' => 'Dåt aplees-fertiiknis ($1) koon ai foon e wäbsärver beschraawen wårde.',
 'uploaderror'                => 'Aplees-fäägel',
@@ -969,10 +980,14 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 # File description page
 'filehist'                  => 'Dååtäifärsjoone',
 'filehist-help'             => 'Klik aw en tidpunkt, am jüdeer färsjoon önjiinjtunaamen.',
+'filehist-deleteall'        => 'åle färsjoone strike',
+'filehist-deleteone'        => 'jüdeer färsjoon strike',
+'filehist-revert'           => 'tubääg seete',
 'filehist-current'          => 'aktuäl',
 'filehist-datetime'         => 'Färsjoon foon e',
 'filehist-thumb'            => 'Forlökbil',
 'filehist-thumbtext'        => 'Forlökbil for Färsjoon foon $2, am e klook $3',
+'filehist-nothumb'          => 'Niinj forlökbil deer',
 'filehist-user'             => 'brüker',
 'filehist-dimensions'       => 'Mätje',
 'filehist-comment'          => 'Komentoor',
@@ -980,6 +995,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'linkstoimage'              => '{{PLURAL:$1|Jü füliend sid ferwånt|Da füliende $1 side ferwiinje}} jüdeer dååtäi:',
 'sharedupload'              => 'Jüdeer dååtäi ståmt üt $1 än mötj foon ouder prujäkte brükt wårde.',
 'uploadnewversion-linktext' => 'En nai färsjoon foon jüdeer dåtäi huuchsiinje',
+'shared-repo-from'          => 'foon $1',
 
 # Random page
 'randompage' => 'Tufåli sid',
