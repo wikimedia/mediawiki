@@ -49,7 +49,6 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'dbuser', 'The user to use for normal operations (wikiuser)', false, true );
 		$this->addOption( 'dbpass', 'The pasword for the DB user for normal operations', false, true );
 		$this->addOption( 'confpath', "Path to write LocalSettings.php to, default $IP", false, true );
-		$this->addOption( 'wikiroot', "The URL to use for the wiki root (/wiki)", false, true );
 		/* $this->addOption( 'dbschema', 'The schema for the MediaWiki DB in pg (mediawiki)', false, true ); */
 		/* $this->addOption( 'dbtsearch2schema', 'The schema for the tsearch2 DB in pg (public)', false, true ); */
 		/* $this->addOption( 'namespace', 'The project namespace (same as the name)', false, true ); */

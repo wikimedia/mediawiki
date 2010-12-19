@@ -32,7 +32,6 @@ class CliInstaller extends CoreInstaller {
 		'dbts2schema' => 'wgDBts2schema',
 		'dbpath' => 'wgSQLiteDataDir',
 		'scriptpath' => 'wgScriptPath',
-		'wikiroot' => 'wgScriptPath',
 		'upgrade' => 'cliUpgrade', /* As long as it isn't $confItems
 									* in LocalSettingsGenerator, we
 									* should be fine. */
