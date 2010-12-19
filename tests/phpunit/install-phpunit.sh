@@ -1,5 +1,12 @@
 #!/bin/sh
 
+has_binary () {
+    if [ -z `which $1` ]; then
+        return 1
+    fi
+    return 0
+}
+
 if [ `id -u` -ne 0 ]; then
     echo '*** ERROR' Must be root to run
     exit 1
