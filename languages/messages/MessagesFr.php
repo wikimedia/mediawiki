@@ -771,6 +771,8 @@ Veuillez en choisir un autre.',
 'createaccounterror'         => 'Impossible de créer le compte : $1',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
+'nocookiesfornew'            => "Le compte utilisateur n'a pas été créé, car nous n'avons pas pu identifier son origine.
+Vérifiez que vous avez activé les cookies, rechargez la page et rééssayez.",
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle'          => 'Connexion réussie',
 'loginsuccess'               => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
@@ -965,9 +967,9 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'usercsspreview'                   => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''
 '''Elle n’a pas encore été enregistrée !'''",
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
-'sitecsspreview'                   => "'''Rappelez-vous que vous êtes seulement en train de prévisualiser cette feuille CSS globale.'''
+'sitecsspreview'                   => "'''Souvenez-vous que vous êtes seulement en train de prévisualiser cette feuille de style.'''
 '''Elle n’a pas encore été enregistrée !'''",
-'sitejspreview'                    => "'''Rappelez-vous que vous êtes seulement en train de prévisualiser ce code Javascript global.'''
+'sitejspreview'                    => "'''Souvenez-vous que vous êtes seulement en train de prévisualiser ce code Javascript.'''
 '''Il n’a pas encore été enregistré !'''",
 'userinvalidcssjstitle'            => "'''Attention :''' il n’existe pas d’habillage « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/vector.css et non {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Mis à jour)',
@@ -3509,6 +3511,7 @@ Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
 'version-specialpages'             => 'Pages spéciales',
 'version-parserhooks'              => 'Greffons du parseur',
 'version-variables'                => 'Variables',
+'version-antispam'                 => 'Prévention du pourriel',
 'version-skins'                    => 'Habillages',
 'version-other'                    => 'Divers',
 'version-mediahandlers'            => 'Manipulateurs de médias',
@@ -3644,5 +3647,14 @@ Si l’utilisateur est actuellement identifié quelque part, il sera immédiatem
 'disableaccount-nosuchuser'  => "Le compte utilisateur « $1 » n'existe pas.",
 'disableaccount-success'     => 'Le compte utilisateur « $1 » a été définitivement désactivé.',
 'disableaccount-logentry'    => 'a désactivé définitivement le compte utilisateur [[$1]]',
+
+# Special:UploadStash
+'uploadstash'          => "Cache d'import",
+'uploadstash-summary'  => "Cette page donne accès aux fichiers qui sont importés (ou en cours d'importation), mais ne sont pas encore publiés dans le wiki. Ces fichiers ne sont pas encore, sauf pour l'utilisateur qui les a importés.",
+'uploadstash-clear'    => 'Effacer les fichiers en cache',
+'uploadstash-nofiles'  => "Vous n'avez pas de fichiers en cache d'import.",
+'uploadstash-badtoken' => "L'exécution de cette action a échoué, peut-être parce que vos informations d'identification ont expiré. Réessayez.",
+'uploadstash-errclear' => "L'effacement des fichiers a échoué.",
+'uploadstash-refresh'  => 'Actualiser la liste des fichiers',
 
 );

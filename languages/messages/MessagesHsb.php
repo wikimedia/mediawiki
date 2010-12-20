@@ -560,6 +560,8 @@ Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|
 'createaccounterror'         => 'Wužiwarske konto njeda so załožić: $1',
 'nocookiesnew'               => 'Wužiwarske konto bu wutworjene, njejsy pak přizjewjeny. {{SITENAME}} wužiwa placki (cookies), zo bychu so wužiwarjo přizjewili. Sy placki znjemóžnił. Prošu zmóžń je a přizjew so potom ze swojim nowym wužiwarskim mjenom a hesłom.',
 'nocookieslogin'             => '{{SITENAME}} wužiwa placki (cookies) za přizjewjenje wužiwarjow wužiwa. Sy placki znjemóžnił. Prošu zmóžń je a spytaj hišće raz.',
+'nocookiesfornew'            => 'Wužiwarske konto njeje so załožiło, dokelž njemóžachmy jeho žórło wobkrućić.
+Přeswědč so, zo placki su zmóžnjene, ačitaj tutu stronu znowa a spytaj hišće raz.',
 'noname'                     => 'Njejsy płaćiwe wužiwarske mjeno podał.',
 'loginsuccesstitle'          => 'Přizjewjenje wuspěšne',
 'loginsuccess'               => "'''Sy nětko jako \"\$1\" w {{GRAMMAR:lokatiw|{{SITENAME}}}} {{GENDER:|přizjewjeny|přizjewjena|přizjewjene}}.'''",
@@ -3173,7 +3175,7 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 'version-specialpages'             => 'Specialne strony',
 'version-parserhooks'              => 'Parserowe hoki',
 'version-variables'                => 'Wariable',
-'version-antispam'                 => 'Antispam',
+'version-antispam'                 => 'Škit přećiwo spamej',
 'version-skins'                    => 'Šaty',
 'version-other'                    => 'Druhe',
 'version-mediahandlers'            => 'Předźěłaki medijow',

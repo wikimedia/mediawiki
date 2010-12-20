@@ -654,8 +654,8 @@ $1 is a filename, I think.',
 'createaccounterror'         => 'Parameters:
 * $1 is an error message',
 'nocookiesnew'               => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
-'nocookiesfornew'            => "This message is displayed when the user tried to create a new account, but it failed the CSRF check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
 'nocookieslogin'             => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
+'nocookiesfornew'            => "This message is displayed when the user tried to create a new account, but it failed the CSRF check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
 'nocookiesforlogin'          => "This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies). Defaults to nocookieslogin",
 'loginsuccesstitle'          => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
 'loginsuccess'               => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
@@ -2393,26 +2393,27 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 {{Identical|Edit delete reasons}}',
 
 # Rollback
-'rollback'         => '{{Identical|Rollback}}',
-'rollback_short'   => '{{Identical|Rollback}}',
-'rollbacklink'     => '{{Identical|Rollback}}',
-'rollbackfailed'   => '{{Identical|Rollback}}',
-'cantrollback'     => '{{Identical|Revert}}
+'rollback'          => '{{Identical|Rollback}}',
+'rollback_short'    => '{{Identical|Rollback}}',
+'rollbacklink'      => '{{Identical|Rollback}}',
+'rollbackfailed'    => '{{Identical|Rollback}}',
+'cantrollback'      => '{{Identical|Revert}}
 {{Identical|Rollback}}',
-'alreadyrolled'    => "Appear when there's rollback and/or edit collision.
+'alreadyrolled'     => "Appear when there's rollback and/or edit collision.
 * $1: the page to be rollbacked
 * $2: the editor to be rollbacked of that page
 * $3: the editor that cause collision
 
 {{Identical|Rollback}}",
-'editcomment'      => 'Only shown if there is an edit comment',
-'revertpage'       => '{{Identical|Revert}}
+'editcomment'       => 'Only shown if there is an edit comment',
+'revertpage'        => '{{Identical|Revert}}
 Additionally available:
 * $3: revid of the revision reverted to,
 * $4: timestamp of the revision reverted to,
 * $5: revid of the revision reverted from,
 * $6: timestamp of the revision reverted from',
-'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
+'revertpage-nouser' => 'This is a confirmation message a user sees after reverting.',
+'rollback-success'  => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
 {{Identical|Revert}}
 {{Identical|Rollback}}',
 

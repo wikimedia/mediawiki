@@ -575,6 +575,8 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'createaccounterror'         => 'Wužywarske konto njejo se napóraś dało: $1',
 'nocookiesnew'               => 'Wužywarske konto jo se južo wutwóriło, ale wužywaŕ njejo pśizjawjony. {{SITENAME}} wužywa cookije za pśizjawjenja. Jo notne, cookije zmóžniś a se wótnowotki pśizjawiś.',
 'nocookieslogin'             => '{{SITENAME}} wužywa cookije za pśizjawjenja. Jo notne, cookije zmóžniś a se wótnowotki pśizjawiś.',
+'nocookiesfornew'            => 'Wužywarske konto njejo se załožyło, dokulaž njejsmy mógli jogo žrědło wobkšuśiś.
+Pśeswědč se, až cookije su zmóžnjone, zacytaj toś ten bok a wopytaj hyšći raz.',
 'noname'                     => 'Njejsy žedno płaśece wužywarske mě zapódał.',
 'loginsuccesstitle'          => 'Pśizjawjenje wuspěšne',
 'loginsuccess'               => "'''Sy něnto ako „$1” w {{GRAMMAR:lokatiw|{{SITENAME}}}} pśizjawjony.'''",
@@ -3197,7 +3199,7 @@ Móžoš teke [[Special:Watchlist/edit|standardny wobźěłowański bok wužywa�
 'version-specialpages'             => 'Specialne boki',
 'version-parserhooks'              => 'Parserowe kokule',
 'version-variables'                => 'Wariable',
-'version-antispam'                 => 'Antispam',
+'version-antispam'                 => 'Šćit pśeśiwo spamoju',
 'version-skins'                    => 'Suknje',
 'version-other'                    => 'Druge',
 'version-mediahandlers'            => 'Pśeźěłaki medijow',

@@ -769,6 +769,8 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createaccounterror'         => 'Nepodařilo se vytvořit uživatelský účet: $1',
 'nocookiesnew'               => 'Uživatelský účet byl vytvořen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a přihlaste se znovu s vaším novým uživatelským jménem a heslem.',
 'nocookieslogin'             => '{{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a zkuste znovu.',
+'nocookiesfornew'            => 'Uživatelský účet nebyl založen, neboť jsme nebyli schopni potvrdit jeho původ.
+Ujistěte se, že máte povoleny cookies, obnovte tuto stránku a zkuste to znovu.',
 'noname'                     => 'Musíte uvést jméno svého účtu.',
 'loginsuccesstitle'          => 'Přihlášení uspělo',
 'loginsuccess'               => 'Nyní jste přihlášen na {{grammar:6sg|{{SITENAME}}}} jako uživatel „$1“.',
@@ -3482,6 +3484,7 @@ Seznam editovaných stránek můžete také [[Special:Watchlist/edit|editovat ve
 'version-specialpages'             => 'Speciální stránky',
 'version-parserhooks'              => 'Přípojné body parseru',
 'version-variables'                => 'Proměnné',
+'version-antispam'                 => 'Ochrana proti spamu',
 'version-skins'                    => 'Vzhledy',
 'version-other'                    => 'Jiné',
 'version-mediahandlers'            => 'Obsluha médií',

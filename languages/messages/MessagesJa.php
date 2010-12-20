@@ -36,6 +36,7 @@
  * @author Mzm5zbC3
  * @author Ohgi
  * @author Suisui
+ * @author Vigorous action
  * @author W.CC
  * @author Web comic
  * @author Whym
@@ -779,6 +780,8 @@ $2',
 'nocookieslogin'             => '{{SITENAME}}ではログインにクッキーを使用します。
 クッキーが無効になっているようです。
 クッキーを有効にして、もう一度試してください。',
+'nocookiesfornew'            => '発信元を確認できなかったため、アカウントは作成されませんでした。
+クッキーが有効になっていることを確認の上、このページをリロードしてもう一度お試しください。',
 'noname'                     => '利用者名を正しく指定していません。',
 'loginsuccesstitle'          => 'ログイン成功',
 'loginsuccess'               => "'''{{SITENAME}}に「$1」としてログインしました。'''",
@@ -2165,7 +2168,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 # Special:DeletedContributions
 'deletedcontributions'             => '利用者の削除された投稿',
 'deletedcontributions-title'       => '利用者の削除された投稿',
-'sp-deletedcontributions-contribs' => '投稿',
+'sp-deletedcontributions-contribs' => '投稿記録',
 
 # Special:LinkSearch
 'linksearch'       => '外部リンク',
@@ -2617,7 +2620,7 @@ $1',
 'blocklink'                       => 'ブロック',
 'unblocklink'                     => 'ブロックを解除',
 'change-blocklink'                => 'ブロックを変更',
-'contribslink'                    => '投稿',
+'contribslink'                    => '投稿記録',
 'autoblocker'                     => '使用中のIPアドレスが「[[User:$1|$1]]」に使用されたため、自動ブロックされています。
 $1のブロックの理由は「$2」です。',
 'blocklogpage'                    => 'ブロック記録',
@@ -3647,7 +3650,7 @@ $1',
 'version-specialpages'             => '特別ページ',
 'version-parserhooks'              => '構文解析フック',
 'version-variables'                => '変数',
-'version-antispam'                 => 'SPAM防止',
+'version-antispam'                 => 'スパム対策',
 'version-skins'                    => 'スキン',
 'version-other'                    => 'その他',
 'version-mediahandlers'            => 'メディアハンドラー',

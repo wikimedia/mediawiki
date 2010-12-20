@@ -3389,6 +3389,7 @@ $1',
 'version-specialpages'             => 'Спеціальні сторінки',
 'version-parserhooks'              => 'Перехоплювачі синтаксичного аналізатора',
 'version-variables'                => 'Змінні',
+'version-antispam'                 => 'Захист від спаму',
 'version-skins'                    => 'Оформлення',
 'version-other'                    => 'Інше',
 'version-mediahandlers'            => 'Обробники медіа',
@@ -3514,5 +3515,8 @@ $1',
 # Special:DisableAccount
 'disableaccount-user'   => "Ім'я користувача:",
 'disableaccount-reason' => 'Причина:',
+
+# Special:UploadStash
+'uploadstash-refresh' => 'Оновити список файлів',
 
 );
