@@ -8,6 +8,7 @@
  * @file
  *
  * @author 2Q
+ * @author Andrijko Z.
  * @author Trần Nguyễn Minh Huy
  */
 
@@ -160,7 +161,7 @@ Kui tšüsümüssessä ebõõ rootšittu tšültši, võib õlla õlõttõ löü
 # Login and logout pages
 'yourname'                => 'Tšäüttijänimi:',
 'yourpassword'            => 'Salasõna',
-'remembermypassword'      => 'Mäleht minuu (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Mäleht minuu (enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'login'                   => 'Tširjut süäme',
 'nav-login-createaccount' => 'Tširjut süäme vai registriiroit tšäüttijässi',
 'userlogin'               => 'Tširjut süäme',
@@ -203,7 +204,7 @@ Kui tšüsümüssessä ebõõ rootšittu tšültši, võib õlla õlõttõ löü
 'summary-preview'                  => 'Turvotuhsõ prestavleńńa',
 'newarticle'                       => '(Uusi)',
 'newarticletext'                   => 'Sitä tšültšiä veel ebõõ.
-Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että taho loovva tšültšiä, menka takaz Web-brauzeraa "back"-napuukaa.',
+Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että taho loovva [[{{MediaWiki:Helppage}}|tšültšiä]], menka takaz Web-brauzeraa "back"-napuukaa.',
 'noarticletext'                    => '{{GRAMMAR:inessive|{{SITENAME}}}} ebõõ sene nimissä tšültšiä.
 * Võid [[Special:Search/{{PAGENAME}}|ettsiä tšüľľee nimellä]] muilta tšüľľeltä.
 * Võid tširjuttõma uuvvõõ tšüľľee <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.',
@@ -211,8 +212,8 @@ Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että tah
 'editing'                          => 'Muutun $1',
 'editingsection'                   => 'Muuttõmizõll on õsa tšüľľess $1',
 'copyrightwarning'                 => "Kõik {{SITENAME}}'lle formittu saatšid katsotaa julkaistussi $2 -litsentsi mukka ($1). Kui että taho, jot Teďďee tširjutussa muutõtaa armõttomassi ja svobodno tšävvää uuvvõllõõ, elä tširjuttõga.<br />Toož, Te luppattõ, jot tširjutittä Teďďee teksti ize, vai kopiiroizitta slobodnoissa tšüľľessä.<br />'''ELÄ TŠÄÜTTEGA TETŠEJÄÕIKUSÕKAA OĎĎÕLTUIT MAŤERIIT ILMA LUPPA!'''",
-'templatesused'                    => 'Sell tšüľľell tšäütetüd šabloonid:',
-'templatesusedpreview'             => 'Šabloonid sellä prestavleńńalla:',
+'templatesused'                    => 'Sell tšüľľell {{PLURAL:$1|tšäütetüd šabloonid}}:',
+'templatesusedpreview'             => '{{PLURAL:$1|Šabloonid}} sellä prestavleńńalla:',
 'template-protected'               => '(oďďõttu)',
 'template-semiprotected'           => '(varjõttu anonüümeilt ja uusilt tšäüttijilt)',
 'hiddencategories'                 => 'Kase tšültši kuulub {{PLURAL:$1|vahtiaavaa salautõttuu gruppaa|vahtiaavii salautõttuisõõ gruppoisõõ}}:',
@@ -255,7 +256,7 @@ Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että tah
 'searchsubtitleinvalid'     => "Ettsizittä: '''$1'''",
 'notitlematches'            => 'Eb löütännü miltäiss tšültšiä sene ettsüsõnaaka',
 'notextmatches'             => 'Ettsisõnaa eb löütünnü tšüľľee tekstiissä',
-'prevn'                     => 'entiiss $1',
+'prevn'                     => '{{PLURAL:$1|edellinen|$1 entiiss}}',
 'nextn'                     => '{{PLURAL:$1|$1}} vahtiaava →',
 'viewprevnext'              => 'Näüt ($1 {{int:pipe-separator}} $2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',

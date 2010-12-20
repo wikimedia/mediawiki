@@ -668,6 +668,8 @@ Masz obecnie w przeglądarce wyłączoną obsługę ciasteczek.
 'nocookieslogin'             => '{{SITENAME}} wykorzystuje ciasteczka do przechowywania informacji o zalogowaniu się przez użytkownika.
 Masz obecnie w przeglądarce wyłączoną obsługę ciasteczek.
 Spróbuj ponownie po ich odblokowaniu.',
+'nocookiesfornew'            => 'Konto użytkownika nie zostało utworzone, ponieważ nie można było potwierdzić jego źródła.
+Upewnij się, że masz włączoną obsługę ciasteczek, przeładuj stronę i spróbuj ponownie.',
 'noname'                     => 'To nie jest poprawna nazwa użytkownika.',
 'loginsuccesstitle'          => 'Zalogowano pomyślnie',
 'loginsuccess'               => "'''{{GENDER:|Zalogowałeś się|Zalogowałaś się|Zalogowano}} do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
@@ -3470,7 +3472,7 @@ Możesz także użyć [[Special:Watchlist/edit|standardowego edytora obserwowany
 'version-specialpages'             => 'Strony specjalne',
 'version-parserhooks'              => 'Haki analizatora składni (ang. parser hooks)',
 'version-variables'                => 'Zmienne',
-'version-antispam'                 => 'Antyspam',
+'version-antispam'                 => 'Ochrona przed spamem',
 'version-skins'                    => 'Skórki',
 'version-other'                    => 'Pozostałe',
 'version-mediahandlers'            => 'Wtyczki obsługi mediów',

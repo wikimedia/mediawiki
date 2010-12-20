@@ -568,7 +568,7 @@ $2',
 'loginreqlink'                     => '登录',
 'loginreqpagetext'                 => '侬必须$1再好查看其它页面。',
 'accmailtitle'                     => '密码已发送哉。',
-'accmailtext'                      => " 已经为[[User talk:$1|$1]] 产生只随机密码，并且已经发送到$2。
+'accmailtext'                      => "已经为[[User talk:$1|$1]] 产生只随机密码，并且已经发送到$2。
 
 登录之后，侬可以垃拉 ''[[Special:ChangePassword|箇只页面]]''更改密码。",
 'newarticle'                       => '（新）',

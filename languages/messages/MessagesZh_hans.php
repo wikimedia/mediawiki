@@ -15,6 +15,7 @@
  * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
+ * @author Hercule
  * @author Horacewai2
  * @author Hydra
  * @author Jding2010
@@ -449,7 +450,7 @@ $messages = array(
 请在再次尝试访问本页面之前稍等片刻。
 
 $1',
-'pool-timeout'      => '等待锁死时超时',
+'pool-timeout'      => '等待锁超时',
 'pool-queuefull'    => '请求池已满',
 'pool-errorunknown' => '未知错误',
 

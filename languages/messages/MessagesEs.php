@@ -32,6 +32,7 @@
  * @author Dvortygirl
  * @author Fibonacci
  * @author Fluence
+ * @author Hercule
  * @author Icvav
  * @author Imre
  * @author Jatrobat
@@ -3428,6 +3429,7 @@ También puedes [[Special:Watchlist/edit|usar el editor estándar]].',
 'version-specialpages'             => 'Páginas especiales',
 'version-parserhooks'              => 'Extensiones del analizador sintáctico',
 'version-variables'                => 'Variables',
+'version-antispam'                 => 'Prevención de spam',
 'version-skins'                    => 'Pieles',
 'version-other'                    => 'Otro',
 'version-mediahandlers'            => 'Manejadores multimedia',
