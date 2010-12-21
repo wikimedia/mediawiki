@@ -749,7 +749,8 @@ class SpecialPage {
 			$includable = isset( $a[5] ) ? $a[5] : false;
 			$this->init( $name, $restriction, $listed, $function, $file, $includable );
 		} else {
-			throw new MWException( "Call to undefined method SpecialPage::$fName" );
+			$className = get_class( $this );
+			throw new MWException( "Call to undefined method $className::$fName" );
 		}
 	}
 
