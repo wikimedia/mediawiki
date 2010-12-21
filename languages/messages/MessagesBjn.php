@@ -447,6 +447,8 @@ Muhun kawa'akan nangitu, hanyar babuat log awan ngaran pamuruk hanyar wan katasu
 'nocookieslogin'             => "{{SITENAME}} mamuruk ''cookies'' hagan pamuruk babuat log.
 ''Cookies'' Pian lagi kada kawa.
 Muhun kawa'akan nang itu wan cubai pulang.",
+'nocookiesfornew'            => 'Akun pamuruk kada taulah, sualnya kami kada kawa mamastiakan asal mula.
+Yakinakan Pian sudah mangkawa-akan cookies (wawadai), muat pulang tungkaran ini wan cubai ja lagi.',
 'noname'                     => 'Ngaran pamuruk nang Pian ajuakan kada sah.',
 'loginsuccesstitle'          => 'Kulihan babuat log',
 'loginsuccess'               => "'''Pian parhatan ini babuat log dalam {{SITENAME}} sawagai \"\$1\".'''",
@@ -498,6 +500,9 @@ Pian kawa kada mahual pasan ini, amun paulahan akun ini adalah kasalahan.',
 Muhun hadangi dahulu sapandang hanyar cubai pulang.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 'suspicious-userlogout'      => 'Parmintaan Pian hagan kaluar log kada ditarima karana nangkaya dikirim matan panjalajah web rakai atawa tatangkap proxy.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Kasalahan kada dipinandui dalam pungsi surat () PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Manangguhi kakuatan katasunduk: $1',
@@ -637,6 +642,10 @@ Log blukir pahabisannya tasadia di bawah ini gasan rujukan:',
 '''Nangini baluman tasimpan pulang!'''",
 'userjspreview'                    => "'''Ingatakan bahwasa Pian tis/manilik pamuruk JavaScript Pian.'''
 '''Nangini baluman tasimpan pulang!'''",
+'sitecsspreview'                   => "'''Ingatakan bahwasa Pian manilik CSS ini haja.'''
+'''Nangini lagi baluman tasimpan!'''",
+'sitejspreview'                    => "'''Ingatakan bahwasa Pian manilik JavaScript code ini haja.'''
+'''Nangini lagi baluman tasimpan!'''",
 'userinvalidcssjstitle'            => "'''Paringatan:''' Kadada kulit \"\$1\".
 Inatakan bahwasa saragam  tungkaran-tungkaran .css wan .js mamuruk aksara halus, cuntuh {{ns:user}}:Foo/vector.css sawagai tandingan {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Dihanyarakan)',
@@ -1315,6 +1324,9 @@ Ririncian: $1',
 'destfilename'        => 'Ngaranbarakas tujuan:',
 'watchthisupload'     => 'Itihi barakas ini',
 'upload-success-subj' => 'Kulihan mahunggah',
+'upload-failure-subj' => 'Hunggah bamasalah',
+'upload-failure-msg'  => 'Ada sabauah masalah tadi tu pas Pian hunggah matan [$2]:
+$1',
 'upload-warning-subj' => 'Paringatan mahunggah',
 
 'upload-misc-error'   => 'Tasalah buat nang kada dipinandui',

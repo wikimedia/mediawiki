@@ -1895,10 +1895,10 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 
 # Statistics
 'statistics'                   => 'Statistici',
-'statistics-header-pages'      => 'Statisticile paginii',
-'statistics-header-edits'      => 'Editează statisticile',
+'statistics-header-pages'      => 'Statistici pagini',
+'statistics-header-edits'      => 'Statistici modificări',
 'statistics-header-views'      => 'Vizualizează statisticile',
-'statistics-header-users'      => 'Statistici legate de utilizatori',
+'statistics-header-users'      => 'Statistici utilizatori',
 'statistics-header-hooks'      => 'Alte statistici',
 'statistics-articles'          => 'Articole',
 'statistics-pages'             => 'Pagini',

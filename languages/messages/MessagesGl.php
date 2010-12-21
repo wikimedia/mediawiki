@@ -644,6 +644,8 @@ Por favor, habilíteas e logo acceda ao sistema co seu novo nome de usuario e co
 'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios.
 Vostede ten as cookies deshabilitadas.
 Por favor, habilíteas e inténteo de novo.',
+'nocookiesfornew'            => 'Non se creou a conta de usuario porque non puidemos confirmar a súa orixe.
+Asegúrese de que ten as cookies habilitadas, volva cargar a páxina e inténteo de novo.',
 'noname'                     => 'Non especificou un nome de usuario válido.',
 'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
@@ -702,6 +704,9 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 Por favor, agarde antes de probar outra vez.',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => 'Rexeitouse a súa petición de saír do sistema porque semella que a enviou un navegador roto ou a caché dun proxy.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Erro descoñecido na función mail() do PHP',
 
 # JavaScript password checks
 'password-strength'            => 'Fortaleza estimada do contrasinal: $1',
@@ -844,6 +849,10 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 '''Este aínda non foi gardado!'''",
 'userjspreview'                    => "'''Lembre que só está probando/previsualizando o seu JavaScript de usuario.'''
 '''Este aínda non foi gardado!'''",
+'sitecsspreview'                   => "'''Lembre que só está vendo a vista previa deste CSS.'''
+'''Este aínda non foi gardado!'''",
+'sitejspreview'                    => "'''Lembre que só está vendo a vista previa deste código JavaScript.'''
+'''Este aínda non foi gardado!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' non hai ningún tema chamado \"\$1\".
 Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/vector.css no canto de {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualizado)',
@@ -920,8 +929,8 @@ Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por 
 'moveddeleted-notice'              => 'Esta páxina foi borrada.
 A continuación pódese ver o rexistro de borrados e traslados desta páxina, por se quere consultalos.',
 'log-fulllog'                      => 'Ver o rexistro completo',
-'edit-hook-aborted'                => "A edición foi abortada polo ''hook''.
-Este non deu ningunha explicación.",
+'edit-hook-aborted'                => 'A edición foi abortada polo asociador.
+Este non deu ningunha explicación.',
 'edit-gone-missing'                => 'Non se pode actualizar a páxina.
 Semella que foi borrada.',
 'edit-conflict'                    => 'Conflito de edición.',
@@ -3377,15 +3386,16 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'version-specialpages'             => 'Páxinas especiais',
 'version-parserhooks'              => 'Asociadores analíticos',
 'version-variables'                => 'Variábeis',
+'version-antispam'                 => 'Prevención contra spam',
 'version-skins'                    => 'Aparencias',
 'version-other'                    => 'Outros',
 'version-mediahandlers'            => 'Executadores de multimedia',
 'version-hooks'                    => 'Asociadores',
 'version-extension-functions'      => 'Funcións das extensións',
-'version-parser-extensiontags'     => 'Etiquetas das extensións do analizador (parser)',
+'version-parser-extensiontags'     => 'Etiquetas das extensións do analizador',
 'version-parser-function-hooks'    => 'Asociadores da función do analizador',
 'version-skin-extension-functions' => 'Funcións da extensión da aparencia',
-'version-hook-name'                => 'Nome do hook',
+'version-hook-name'                => 'Nome do asociador',
 'version-hook-subscribedby'        => 'Subscrito por',
 'version-version'                  => '(Versión $1)',
 'version-license'                  => 'Licenza',
@@ -3512,5 +3522,14 @@ Se o usuario está conectado, sairá ao anonimato inmediatamente.
 'disableaccount-nosuchuser'  => 'A conta de usuario "$1" non existe.',
 'disableaccount-success'     => 'Esta conta de usuario, "$1", foi desactivada permanentemente.',
 'disableaccount-logentry'    => 'desactivou permanentemente a conta de usuario "[[$1]]"',
+
+# Special:UploadStash
+'uploadstash'          => 'Ficheiros agochados',
+'uploadstash-summary'  => 'Esta páxina proporciona acceso a ficheiros que xa están cargados (ou en proceso de carga), pero que aínda non están publicados no wiki. Estes ficheiros non son visibles para ninguén, agás para o usuario que os cargou.',
+'uploadstash-clear'    => 'Borrar os ficheros agochados',
+'uploadstash-nofiles'  => 'Non ten ningún ficheiro agochado.',
+'uploadstash-badtoken' => 'A acción non se puido completar, seica porque caducou a información de acceso. Inténteo de novo.',
+'uploadstash-errclear' => 'Fallou o borrado de ficheiros.',
+'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
 
 );
