@@ -212,7 +212,9 @@ if ( count( $args ) > 0 ) {
 			} else {
 				$archive = $image->publish( $file );
 				if ( !$archive->isGood() ) {
-					echo( "failed.\n" );
+					echo( "failed. (" .
+						$archive->getWikiText() .
+						")\n" );
 					$failed++;
 					continue;
 				}
@@ -258,7 +260,7 @@ if ( count( $args ) > 0 ) {
 				}
 
 			} else {
-				echo( "failed.\n" );
+				echo( "failed. (at recordUpload stage)\n" );
 				$svar = 'failed';
 			}
 
