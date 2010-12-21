@@ -330,7 +330,6 @@ class AllmessagesTablePager extends TablePager {
 				return $title . ' (' . $talk . ')';
 
 			case 'am_default' :
-				return Sanitizer::escapeHtmlAllowEntities( $value, ENT_QUOTES );
 			case 'am_actual' :
 				return Sanitizer::escapeHtmlAllowEntities( $value, ENT_QUOTES );
 		}
