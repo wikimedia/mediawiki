@@ -164,7 +164,7 @@ class IPBlockForm extends SpecialPage {
 		# Show other blocks from extensions, i.e. GlockBlocking and TorBlock
 		if( count( $otherBlockedMsgs ) ) {
 			$wgOut->addHTML(
-				Html::rawElement( 'h2', array(), wfMsgExt( 'ipb-otherblocks-header', 'parseinline',  count( $otherBlockedMsgs ) ) ) . "\n"
+				Html::rawElement( 'h2', array(), wfMsgExt( 'ipb-otherblocks-header', 'parseinline', count( $otherBlockedMsgs ) ) ) . "\n"
 			);
 			$list = '';
 			foreach( $otherBlockedMsgs as $link ) {

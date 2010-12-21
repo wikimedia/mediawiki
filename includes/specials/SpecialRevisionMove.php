@@ -340,7 +340,7 @@ class SpecialRevisionMove extends UnlistedSpecialPage {
 	protected function queryLatestTimestamp( &$dbw, $articleId, $conds = array() ) {
 		$timestampNewRow = $dbw->selectRow(
 			'revision',
-			'max(rev_timestamp) as maxtime',
+			'max(rev_timestamp) AS maxtime',
 			array_merge( array( 'rev_page' => $articleId ), $conds ),
 			__METHOD__
 		);
