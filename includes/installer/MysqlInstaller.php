@@ -140,8 +140,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		# Determine existing default character set
 		if ( $conn->tableExists( "revision" ) ) {
-			$revision = $conn->escapeLike( $this->getVar( 'wgDBprefix' ) . 'revision' );
-			$res = $conn->query( "SHOW TABLE STATUS LIKE '$revision'", __METHOD__ );
+			$revision = $conn->buildLike( $this->getVar( 'wgDBprefix' ) . 'revision' );
+			$res = $conn->query( "SHOW TABLE STATUS $revision", __METHOD__ );
 			$row = $conn->fetchObject( $res );
 			if ( !$row ) {
 				$this->parent->showMessage( 'config-show-table-status' );
