@@ -726,6 +726,8 @@ Active-os e autentique-se com o seu nome de utilizador e a sua palavra-chave, po
 'nocookieslogin'             => "A {{SITENAME}} utiliza ''cookies'' para autenticar os utilizadores.
 Os ''cookies'' estão desactivados no seu browser.
 Active-os e tente novamente, por favor.",
+'nocookiesfornew'            => 'A conta de utilizador não foi criada, porque não foi possível confirmar a sua origem.
+Certifique-se de que tem os cookies activados, recarregue esta página e tente novamente.',
 'noname'                     => 'Não especificou um nome de utilizador válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",

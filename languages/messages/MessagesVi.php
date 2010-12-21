@@ -707,6 +707,8 @@ Hãy chọn một tên khác.',
 'createaccounterror'         => 'Không thể mở tài khoản: $1',
 'nocookiesnew'               => 'Tài khoản đã mở, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy kích hoạt nó, rồi đăng nhập lại với tên người dùng và mật khẩu mới.',
 'nocookieslogin'             => '{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.',
+'nocookiesfornew'            => 'Không thể mở tài khoản vì không thể xác nhận nguồn yêu cầu nó.
+Hãy chắc chắn bạn đã bật lên cookie, làm mới trang này, và thử lại.',
 'noname'                     => 'Chưa nhập tên.',
 'loginsuccesstitle'          => 'Đăng nhập thành công',
 'loginsuccess'               => "'''Bạn đã đăng nhập vào {{SITENAME}} với tên “$1”.'''",

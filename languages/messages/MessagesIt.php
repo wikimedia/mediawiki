@@ -855,8 +855,8 @@ L'ultimo elemento del registro dei blocchi è riportato di seguito per informazi
 'userjsyoucanpreview'              => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo JavaScript prima di salvarlo.",
 'usercsspreview'                   => "'''Questa è solo un'anteprima del proprio CSS personale. Le modifiche non sono ancora state salvate!'''",
 'userjspreview'                    => "'''Questa è solo un'anteprima per provare il proprio JavaScript personale; le modifiche non sono ancora state salvate!'''",
-'sitecsspreview'                   => "'''Questa è solo un'anteprima del CSS globale. Le modifiche non sono ancora state salvate!'''",
-'sitejspreview'                    => "'''Questa è solo un'anteprima per provare il JavaScript globale; le modifiche non sono ancora state salvate!'''",
+'sitecsspreview'                   => "Questa è solo un'anteprima del CSS. Le modifiche non sono ancora state salvate!'''",
+'sitejspreview'                    => "Questa è solo un'anteprima per provare il JavaScript; le modifiche non sono ancora state salvate!'''",
 'userinvalidcssjstitle'            => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/vector.css e non {{ns:user}}:Esempio/Vector.css.",
 'updated'                          => '(Aggiornato)',
 'note'                             => "'''NOTA:'''",
@@ -3438,5 +3438,8 @@ Tutte le attuali connessioni dell'utente, saranno immediatamente terminate.
 'disableaccount-nosuchuser'  => 'L\'account utente "$1" non esiste.',
 'disableaccount-success'     => 'L\'account utente "$1" è stato disabilitato definitivamente.',
 'disableaccount-logentry'    => "ha disabilitato permanentemente l'account utente [[$1]]",
+
+# Special:UploadStash
+'uploadstash-refresh' => "Aggiorna l'elenco dei file",
 
 );

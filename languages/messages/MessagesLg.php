@@ -392,20 +392,34 @@ Luliko ebikugizo ebirugaana okwonooebwa.",
 Enkyukakyuka z'okola wano zigyakubaako kye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
 'cascadeprotected'     => 'Olupapula luno lulandideko ekikugizo ekirugaana okukyusibwako ekisibuka ku {{PLURAL:$1|lunnaalwo luno olulukozesa|zinnalwo zino ezirukozesa}}:<br />
 $2',
+'namespaceprotected'   => "Tolina buyinza bwa kukyusa ku mpapula ez'omu kkuŋaanizo erya '''$1'''.",
+'customcssjsprotected' => 'Tolina buyinza bwa kukyusa ku lupapula luno, kubanga lufuga enteekateeka eza memba omulala.',
+'ns-specialprotected'  => 'Empapula enjawule tezikukkiriza kuzikyusaako.',
+'titleprotected'       => '[[User:$1|$1]] ataddewo ekikugizo ekigaana okukozesa omutwe guno.<br />
+Ensonga gy\'awadde eri nti "\'\'$2\'\'".',
+
+# Virus scanner
+'virus-badscanner'     => "Kiremya mu nteekateeka: ekinoonya vayirasi kino tekimanyidwa: ''$1''",
+'virus-unknownscanner' => 'ekinoonya vayirasi ekitamanyidwa:',
 
 # Login and logout pages
 'logouttext'                 => "'''Kati ovuddemu.'''
 
 Osobola okusigala nga okozesa {{SITENAME}} nga at'eyanjudde, ate osobola [[Special:UserLogin|n'okuddamu okuyingira]] nga bw'obadde oba nga okozesezza ery'obwa memba eddala.
 Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde - okutuusa lw'okunkumula eggwanika ezzibizi erya kalambula-neti yo.",
+'welcomecreation'            => "== $1 tukwanirizza! == <br />
+Akawunti yo ekoledwa.<br />
+Tewerabira kwetereereza [[Special:Preferences|enteekateeka yo ey'oku {{SITENAME}}]].",
 'yourname'                   => "Ery'obwa memba",
 'yourpassword'               => 'Ekigambo ekikuumi',
 'yourpasswordagain'          => 'Ddamu ekigambo ekikuumi',
 'remembermypassword'         => 'Tereka ekigambo kyange ekikuumi ku kompyuta eno (okumala {{PLURAL:$1|olunaku|ennaku ezitasukka mu}} $1)',
+'securelogin-stick-https'    => "Sigala ku mukutu gwa kika kya HTTPS ng'omaze okuyingira",
 'login'                      => 'Yingira',
 'nav-login-createaccount'    => 'Yingira / kolawo akawunti',
 'loginprompt'                => 'Okuyingira {{SITENAME}}, kalambula-neti yo erina okukkirizako kuki.',
 'userlogin'                  => 'Yingira / kolawo akawunti',
+'userloginnocreate'          => 'Yingira',
 'logout'                     => 'Vaamu',
 'userlogout'                 => 'Vaamu',
 'nologin'                    => "Akawunti wafuna? '''$1'''.",
