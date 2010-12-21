@@ -1,35 +1,53 @@
 == MediaWiki PHPUnit Tests ==
 
-Some quickie unit tests done with the PHPUnit testing framework. To run the
-test suite, run 'make test' in this (maintenance/tests/phpunit) directory.
+The unit tests for MediaWiki are implemented using the PHPUnit testing
+framework and require PHPUnit to run.
+
 
 === WARNING ===
 
-The current versions of some of these tests are DESTRUCTIVE AND WILL ALTER
-YOUR WIKI'S CONTENTS. DO NOT RUN ON A PRODUCTION SYSTEM OR ONE WHERE YOU
-NEED TO RETAIN YOUR DATA.
+Some of the unit tests are DESTRUCTIVE and WILL ALTER YOUR WIKI'S CONTENTS.
 
-=== Installation ===
+DO NOT RUN THESE TESTS ON A PRODUCTION SYSTEM OR ON ANY SYSTEM WHERE YOU NEED
+TO RETAIN YOUR DATA.
 
-PHPUnit is no longer maintained by PEAR. To get the current version of
-PHPUnit, first uninstall any old version of PHPUnit or PHPUnit2 from PEAR, 
-then install the current version from phpunit.de like this:
 
- pear channel-discover pear.phpunit.de
- pear install phpunit/PHPUnit
+== Installation ==
 
-You also may wish to install this via your normal package mechanism:
+If PHPUnit is not installed, follow the installation instructions in the
+PHPUnit Manual at:
 
- aptitude install phpunit
+  http://www.phpunit.de/manual/current/en/installation.html
+
 - or -
- yum install phpunit
 
-=== Notes ===
+On Unix-like operating systems, run:
 
-* Label currently broken tests in the group Broken and they will not be run
-by phpunit.  You can add them to the group by putting the following comment at
-the top of the file:
- /**
-  * @group Broken
-  */
-* Need to fix some broken tests
+  make install
+
+
+== Running tests ==
+
+The tests are run from your operating system's command line.
+
+Ensure that you are in the tests/phpunit directory of your MediaWiki
+installation.
+
+
+On Unix-like operating systems, the tests runs are controlled with a makefile.
+Run command:
+
+  make help
+
+for a full list of options for running tests.
+
+
+On Windows-family operating systems, run the 'run-tests.bat' batch file.
+
+
+=== Writing tests ===
+
+A guide to writing unit tests for MediaWiki can be found at:
+
+	http://mediawiki.org/wiki/wiki/Unit_Testing
+

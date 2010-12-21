@@ -17,6 +17,8 @@ if ( has_binary phpunit ); then
 else if ( has_binary pear ); then
     echo Installing phpunit with pear
     pear channel-discover pear.phpunit.de
+    pear channel-discover components.ez.no
+    pear channel-discover pear.symfony-project.com
     pear install phpunit/PHPUnit
 else if ( has_binary apt-get ); then
     echo Installing phpunit with apt-get
