@@ -21,27 +21,27 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 
 		/* Test a valid title */
 		$this->assertUploadTitleAndCode( 'ValidTitle.jpg',
-			'ValidTitle.jpg', UploadTestHandler::OK,
+			'ValidTitle.jpg', UploadBase::OK,
 			'upload valid title' );
 
 		/* A title with a slash */
 		$this->assertUploadTitleAndCode( 'A/B.jpg',
-			'B.jpg', UploadTestHandler::OK,
+			'B.jpg', UploadBase::OK,
 			'upload title with slash' );
 
 		/* A title with illegal char */
 		$this->assertUploadTitleAndCode( 'A:B.jpg',
-			'A-B.jpg', UploadTestHandler::OK,
+			'A-B.jpg', UploadBase::OK,
 			'upload title with colon' );
 
 		/* A title without extension */
 		$this->assertUploadTitleAndCode( 'A',
-			null, UploadTestHandler::FILETYPE_MISSING,
+			null, UploadBase::FILETYPE_MISSING,
 			'upload title without extension' );
 
 		/* A title with no basename */
 		$this->assertUploadTitleAndCode( '.jpg',
-			null, UploadTestHandler::MIN_LENGTH_PARTNAME,
+			null, UploadBase::MIN_LENGTH_PARTNAME,
 			'upload title without basename' );
 
 	}
@@ -56,7 +56,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 			"$msg code" );
 
 		/* If we expect a valid title, check the title itself. */
-		if ( $code == UploadTestHandler::OK ) {
+		if ( $code == UploadBase::OK ) {
 			$this->assertEquals( $dstFilename,
 				$this->upload->getTitle()->getText(),
 				"$msg text" );
@@ -70,7 +70,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 		/* Setup with zero file size */
 		$this->upload->initializePathInfo( '', '', 0 );
 		$result = $this->upload->verifyUpload();
-		$this->assertEquals( UploadTestHandler::EMPTY_FILE,
+		$this->assertEquals( UploadBase::EMPTY_FILE,
 			$result['status'],
 			'upload empty file' );
 	}
