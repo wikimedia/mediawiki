@@ -342,6 +342,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function reallyDoQuery( $limit, $offset = false ) {
 		$fname = get_class( $this ) . "::reallyDoQuery";
+		$dbr = wfGetDB( DB_SLAVE );
 		$query = $this->getQueryInfo();
 		$order = $this->getOrderFields();
 		if ( $this->sortDescending() ) {
@@ -365,7 +366,6 @@ abstract class QueryPage extends SpecialPage {
 				$options['OFFSET'] = intval( $offset );
 			}
 
-			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( $tables, $fields, $conds, $fname,
 					$options, $join_conds
 			);
