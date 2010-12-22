@@ -270,10 +270,14 @@ abstract class QueryPage extends SpecialPage {
 	 * @param $ignoreErrors Boolean: whether to ignore database errors
 	 */
 	function recache( $limit, $ignoreErrors = true ) {
+		if ( !$this->isCacheable() ) {
+			return 0;
+		}
+		
 		$fname = get_class( $this ) . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), __METHOD__, 'vslow' ) );
-		if ( !$dbw || !$dbr || !$this->isCacheable() ) {
+		if ( !$dbw || !$dbr ) {
 			return false;
 		}
 
