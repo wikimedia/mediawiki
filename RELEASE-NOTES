@@ -25,6 +25,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
   'disableaccount' privilege to permanently deactivate user accounts.
+* (bug 8130) Query pages should limit to content namespaces, not just main namespace 
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
@@ -36,12 +37,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   cannot read the page in question.
 * (bug 19006) {{REVISIONUSER}} no longer acts like {{CURRENTUSER}} in some cases
 * (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
-* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
+* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as
+  "Permitted file types" on the upload form
 * (bug 26379) importImages.php gives more descriptive error message on failure.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
 * (bug 14869) Add API module for accessing QueryPage-based special pages
+* (bug 14020) API for Special:Unwatchedpages
 
 === Languages updated in 1.18 ===
 
