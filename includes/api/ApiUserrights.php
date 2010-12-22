@@ -1,7 +1,7 @@
 <?php
 
 /**
- * API for MediaWiki 1.8+
+ *
  *
  * Created on Mar 24, 2009
  *
