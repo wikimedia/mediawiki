@@ -83,11 +83,15 @@ class UpdateSpecialPages extends Maintenance {
 				$this->output( "No such special page: $special\n" );
 				exit;
 			}
-			if ( !class_exists( $class ) ) {
-				$file = $specialObj->getFile();
-				require_once( $file );
+			if ( $specialObj instanceof QueryPage ) {
+				$queryPage = $specialObj;
+			} else {
+				if ( !class_exists( $class ) ) {
+					$file = $specialObj->getFile();
+					require_once( $file );
+				}
+				$queryPage = new $class;
 			}
-			$queryPage = new $class;
 
 			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) == $queryPage->getName() ) {
 				$this->output( sprintf( '%-30s ',  $special ) );
