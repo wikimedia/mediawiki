@@ -43,20 +43,6 @@ abstract class ImageQueryPage extends QueryPage {
 	function formatResult( $skin, $result ) { }
 
 	/**
-	 * Prepare an image object given a result row
-	 *
-	 * @param $row Object: result row
-	 * @return Image
-	 */
-	private function prepareImage( $row ) {
-		$namespace = isset( $row->namespace ) ? $row->namespace : NS_FILE;
-		$title = Title::makeTitleSafe( $namespace, $row->title );
-		return ( $title instanceof Title && $title->getNamespace() == NS_FILE )
-			? wfFindFile( $title )
-			: null;
-	}
-
-	/**
 	 * Get additional HTML to be shown in a results' cell
 	 *
 	 * @param $row Object: result row
