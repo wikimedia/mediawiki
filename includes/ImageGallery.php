@@ -144,7 +144,7 @@ class ImageGallery
 	 * Add an image to the gallery.
 	 *
 	 * @param $title Title object of the image that is added to the gallery
-	 * @param $html  String: additional HTML text to be shown. The name and size of the image are always shown.
+	 * @param $html String: additional HTML text to be shown. The name and size of the image are always shown.
 	 */
 	function add( $title, $html='' ) {
 		if ( $title instanceof File ) {
@@ -276,7 +276,7 @@ class ImageGallery
 					. htmlspecialchars( $img->getLastError() ) . '</div>';
 			} else {
 				$vpad = floor(( 30 + $this->mHeights - $thumb->height ) /2);
-				
+
 				$imageParameters = array(
 					'desc-link' => true,
 					'desc-query' => $descQuery
@@ -285,7 +285,7 @@ class ImageGallery
 				if ( $text == '' ) {
 					$imageParameters['alt'] = $nt->getText();
 				}
-				
+
 				# Set both fixed width and height. Otherwise we might have problems
 				# with the vertical centering of images where height<line-size
 				$thumbhtml = "\n\t\t\t".
