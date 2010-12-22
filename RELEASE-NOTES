@@ -45,6 +45,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26339) Throw warning when truncating an overlarge API result
 * (bug 14869) Add API module for accessing QueryPage-based special pages
 * (bug 14020) API for Special:Unwatchedpages
+* (bug 24287) Wrap/similar on api help output
 
 === Languages updated in 1.18 ===
 

@@ -336,7 +336,9 @@ abstract class ApiBase {
 								$choices[] =  $t;
 							}
 						}
-						$desc .= $paramPrefix . $nothingPrompt . $prompt . implode( ', ', $choices );
+                                                $desc .= $paramPrefix . $nothingPrompt . $prompt;
+                                                $choicesstring = implode( ', ', $choices );
+                                                $desc .= wordwrap( $choicesstring, 100, "\n                       " );
 					} else {
 						switch ( $type ) {
 							case 'namespace':
