@@ -109,8 +109,7 @@ abstract class QueryPage extends SpecialPage {
 	 *    join_conds => JOIN conditions
 	 *
 	 * Note that the query itself should return the following three columns:
-	 * 'namespace', 'title', and 'value'
-	 * *in that order*. 'value' is used for sorting.
+	 * 'namespace', 'title', and 'value'. 'value' is used for sorting.
 	 *
 	 * These may be stored in the querycache table for expensive queries,
 	 * and that cached data will be returned sometimes, so the presence of
