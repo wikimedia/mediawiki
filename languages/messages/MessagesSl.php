@@ -1929,6 +1929,7 @@ Prosimo, upoštevajte, da se lahko druge spletne strani povezujejo na datoteko z
 'pager-newer-n'           => '{{PLURAL:$1|novejši|novejša|novejši|novejših}} $1',
 'pager-older-n'           => '{{PLURAL:$1|starejši|starejša|starejši|starejših}} $1',
 'suppress'                => 'Nadzor',
+'querypage-disabled'      => 'Ta posebna stran je onemogočena iz zmogljivostnih razlogov.',
 
 # Book sources
 'booksources'               => 'Viri knjig',

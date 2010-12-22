@@ -2260,6 +2260,8 @@ Chagua jina lengine.',
 'revertmove'                   => 'rejesha',
 'delete_and_move'              => 'Kufuta na kuhamisha',
 'delete_and_move_confirm'      => 'Ndiyo, ukurasa ufutwe',
+'immobile-source-namespace'    => 'Kurasa haziwezi kuhamisha ndani ya eneo la wiki la "$1"',
+'immobile-target-namespace'    => 'Kurasa haziwezi kuhamishwa zifike eneo la wiki la "$1"',
 'immobile-target-namespace-iw' => 'Kiungo kinachoelekea wiki nyingine hakiwezi kuwa ukurasa wa mwishilio wa kuhamisha ukurasa.',
 'immobile-source-page'         => 'Ukurasa huu hauwezi kuhamishwa.',
 'immobile-target-page'         => 'Kuhamisha katika jina hilo la mwishilio haiwezikani.',
@@ -2444,6 +2446,7 @@ Tafadhali jaribu tena.',
 
 # Patrol log
 'patrol-log-auto' => '(kwa kujiendesha)',
+'patrol-log-diff' => 'pitio la $1',
 
 # Image deletion
 'deletedrevision'                 => 'Pitio la awali lililofutwa $1',

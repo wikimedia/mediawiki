@@ -743,6 +743,7 @@ Mümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/del
 'powersearch-togglelabel'   => 'Yoxla:',
 'powersearch-toggleall'     => 'Hamısı',
 'powersearch-togglenone'    => 'Heç biri',
+'search-external'           => 'Xarici axtarış',
 
 # Quickbar
 'qbsettings-none' => 'Heç biri',

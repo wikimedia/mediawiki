@@ -2065,6 +2065,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'pager-newer-n'           => '{{PLURAL:$1|nächster|nächste $1}}',
 'pager-older-n'           => '{{PLURAL:$1|vorheriger|vorherige $1}}',
 'suppress'                => 'Oversight',
+'querypage-disabled'      => 'Diese Spezialseite wurde aus Gründen der Leistungserhaltung deaktiviert.',
 
 # Book sources
 'booksources'               => 'ISBN-Suche',
