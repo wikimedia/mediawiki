@@ -28,7 +28,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
 	require_once( 'ApiQueryBase.php' );
 }
-0
+
 /**
  * Query module to get the results of a QueryPage-based special page
  *
