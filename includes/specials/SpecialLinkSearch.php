@@ -171,7 +171,7 @@ class LinkSearchPage extends QueryPage {
 	/**
 	 * Override to check query validity.
 	 */
-	function doQuery( $offset, $limit ) {
+	function doQuery( $offset, $limit = false ) {
 		global $wgOut;
 		list( $this->mMungedQuery,  ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
 		if( $this->mMungedQuery === false ) {
