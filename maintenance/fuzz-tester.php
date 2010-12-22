@@ -1489,7 +1489,7 @@ class specialBlockmeTest extends pageTest {
 
 		// sometimes we specify "ip", and sometimes we don't.
 		if ( wikiFuzz::randnum( 1 ) == 0 ) {
-			$this->params["ip"] = wikiFuzz::chooseInput( array( "10.12.41.213", wikiFuzz::randnum( -10, 8134 ), wikiFuzz::makeFuzz( 2 ) ) );
+			$this->params["ip"] = wikiFuzz::chooseInput( array( "10.12.41.213", wikiFuzz::randnum( 8134, -10 ), wikiFuzz::makeFuzz( 2 ) ) );
 		}
 	}
 }
