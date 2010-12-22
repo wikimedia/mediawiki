@@ -28,16 +28,17 @@ abstract class ImageQueryPage extends QueryPage {
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
 			for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
-				$image = $this->prepareImage( $row );
-				if( $image ) {
-					$gallery->add( $image->getTitle(), $this->getCellHtml( $row ) );
+				$namespace = isset( $row->namespace ) ? $row->namespace : NS_FILE;
+				$title = Title::makeTitleSafe( $namespace, $row->title );
+				if ( $title instanceof Title && $title->getNamespace() == NS_FILE ) {
+				        $gallery->add( $title, $this->getCellHtml( $row ) );
 				}
 			}
 
 			$out->addHTML( $gallery->toHtml() );
 		}
 	}
-	
+
 	// Gotta override this since it's abstract
 	function formatResult( $skin, $result ) { }
 
