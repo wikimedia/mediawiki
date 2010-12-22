@@ -42,6 +42,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 		return array (
 			'tables' => array ( 'categorylinks' ),
 			'fields' => array ( 'cl_to AS title',
+					NS_CATEGORY . ' AS namespace',
 					'COUNT(*) AS value' ),
 			'options' => array ( 'GROUP BY' => 'cl_to' )
 		);
