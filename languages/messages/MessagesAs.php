@@ -99,7 +99,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'সংযোগ সমূহ অধোৰেখিত কৰক:',
 'tog-highlightbroken'         => 'ভঙা সংযোগসমূহ <a href="" class="new">এনেকৈ</a> (বা এনেকৈ<a href="" class="internal">?</a>) দেখুৱাওক ।',
-'tog-justify'                 => 'লেখা বিলাকৰ দুয়োকাষ সমান কৰা হওক',
+'tog-justify'                 => 'দফাৰ সীমা সমান কৰাক',
 'tog-hideminor'               => 'সাম্প্ৰতিক সাল-সলনিত অগুৰুত্বপূৰ্ণ সম্পাদনা নেদেখুৱাব',
 'tog-hidepatrolled'           => 'সাম্প্ৰতিক সাল-সলনিত তহলদাৰী সম্পাদনা নেদেখুৱাব',
 'tog-newpageshidepatrolled'   => 'নতুন পৃষ্ঠা তালিকাত তহলদাৰী পৃষ্ঠাসমূহ নেদেখুৱাব',
@@ -139,7 +139,7 @@ $messages = array(
 'tog-watchlisthidepatrolled'  => 'পৰীক্ষিত সম্পাদনাসমূহ আঁতৰাই অনুসৰণ-তালিকা দেখোৱাওক',
 'tog-ccmeonemails'            => 'মই অন্য সদস্যলৈ পঠোৱা ই-মেইলৰ প্ৰতিলিপী এটা মোলৈও পঠাব',
 'tog-diffonly'                => 'তফাৎৰ তলত পৃষ্ঠাৰ বিষয়বস্তু নেদেখোৱাব',
-'tog-showhiddencats'          => 'গোপন শ্ৰেণী সমূহ দেখুৱাওক',
+'tog-showhiddencats'          => 'নিহিত শ্ৰেণী সমূহ দেখুৱাওক',
 
 'underline-always'  => 'সদায়',
 'underline-never'   => 'কেতিয়াও নহয়',
@@ -210,8 +210,8 @@ $messages = array(
 'subcategories'                  => 'অপবিভাগ',
 'category-media-header'          => '"$1" শ্ৰেণীৰ মেডিয়া',
 'category-empty'                 => "''এই শ্ৰেণীত বৰ্তমান কোনো লিখনী বা মাধ্যম নাই''",
-'hidden-categories'              => '{{PLURAL:$1|গোপন শ্ৰেণী|গোপন শ্ৰেণী}}',
-'hidden-category-category'       => 'গোপন শ্ৰেণী সমূহ',
+'hidden-categories'              => '{{PLURAL:$1|নিহিত শ্ৰেণী|নিহিত শ্ৰেণীসমূহ}}',
+'hidden-category-category'       => 'নিহিত শ্ৰেণী সমূহ',
 'category-subcat-count'          => '{{PLURAL:$2|এই শ্ৰেণীত নিম্নলিখিত উপশ্ৰেণী আছে । এই শ্ৰেণীত নিম্নলিখিত {{PLURAL:$1|উপশ্ৰেণীটো|$1 উপশ্ৰেণীসমূহ}} আছে, মুঠতে $2  তা উপশ্ৰেণী।}}',
 'category-subcat-count-limited'  => 'এই শ্ৰেণীত নিম্নলিখিত {{PLURAL:$1|উপশ্ৰেণী আছে|$1 উপশ্ৰেণী আছে}}.',
 'category-article-count'         => '{{PLURAL:$2|এই শ্ৰেণীটোত কেবল তলত দিয়া লিখনীটোহে আছে । এই শ্ৰেণীটোত তলৰ  {{PLURAL:$1|এটা লিখনী আছে|$1 টা লিখনী আছে}}, মুঠ লিখনী $2 টা।}}',
@@ -222,7 +222,13 @@ $messages = array(
 'index-category'                 => 'সূচীকৃত পৃষ্ঠাসমূহ',
 'noindex-category'               => 'অসূচীকৃত পৃষ্ঠাসমূহ',
 
-'mainpagetext' => "'''মেডিয়াৱিকি সফলভাবে ইন্সটল কৰা হ'ল ।'''",
+'mainpagetext'      => "'''মেডিয়াৱিকি সফলভাবে ইন্সটল কৰা হ'ল ।'''",
+'mainpagedocfooter' => "ৱিকি চ'ফটৱেৰ কেনেকৈ ব্যৱহাৰ কৰিব [http://meta.wikimedia.org/wiki/Help:Contents সদস্যৰ সহায়িকা] চাওঁক ।
+
+== আৰম্ভণি কৰিবলৈ ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'         => 'বিষয়ে',
 'article'       => 'লিখনী',
@@ -978,6 +984,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'action-read'       => 'এই পৃষ্ঠা পঢ়ক',
 'action-edit'       => 'এই পৃষ্ঠা সম্পাদনা কৰক',
 'action-createpage' => 'পৃষ্ঠা সৃষ্টি কৰক',
+'action-createtalk' => 'আলোচনা পৃষ্ঠা সৃষ্টি কৰক',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|সাল-সলনি|সাল-সলনি}}',
@@ -1017,6 +1024,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 # Upload
 'upload'              => "ফাইল আপল'ড",
 'uploadbtn'           => 'ফাইল আপলোড কৰক',
+'uploadnologin'       => 'প্ৰৱেশ কৰা নাই',
 'uploadlogpage'       => 'আপলোড সুচী',
 'filesource'          => 'উৎস:',
 'uploadwarning'       => 'আপলোড সতৰ্কবাণী',
@@ -1132,9 +1140,10 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 # Watchlist
 'watchlist'         => 'মই অনুসৰণ কৰা পৃষ্ঠাবিলাকৰ তালিকা',
 'mywatchlist'       => 'মই চকু ৰখা পৃষ্ঠাবোৰৰ তালিকা',
+'watchnologin'      => 'প্ৰৱেশ কৰা নাই',
 'addedwatch'        => 'লক্ষ্য তালিকাত অন্তৰ্ভুক্তি কৰা হল',
-'addedwatchtext'    => 'আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]]  "<nowiki>$1</nowiki>" অন্তৰ্ভুক্তি কৰা হল ।
-ভৱিশ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সম্প্ৰতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাটো শকট আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে ।',
+'addedwatchtext'    => 'আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] "[[:$1]]" অন্তৰ্ভুক্তি কৰা হ\'ল ।
+ভৱিশ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সাম্প্ৰতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাটো শকট আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে ।',
 'removedwatch'      => 'লক্ষ্য-তালিকাৰ পৰা আতৰোৱা হল',
 'removedwatchtext'  => '"[[:$1]]" পৃষ্ঠাখন [[Special:Watchlist|আপোনাৰ লক্ষ্য-তালিকা]]ৰ পৰা আতৰোৱা হৈছে ।',
 'watch'             => 'চকু ৰাখক',
@@ -1274,6 +1283,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 জনপ্ৰীয় পৃষ্ঠা এখনৰ বাবে এয়া এক ডাঙৰ আৰু অনাপেক্ষিত সাল-সলনি হব পাৰে;
 এই কাৰ্য্যৰ পৰিণাম ভালদৰে বিবেচনা কৰি লই যেন।",
 'movearticle'               => 'পৃস্থা স্থানান্তৰ কৰক',
+'movenologin'               => 'প্ৰৱেশ কৰা নাই',
 'newtitle'                  => 'নতুন শিৰোণামালৈ:',
 'move-watch'                => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
 'movepagebtn'               => 'পৃষ্ঠাটো স্থানান্তৰ কৰক',
@@ -1381,7 +1391,8 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 'tooltip-watch'                   => 'এই পৃষ্ঠাটো আপোনাৰ অনুসৰণতালিকাভুক্ত কৰক',
 
 # Info page
-'numedits' => 'সম্পাদনাৰ সংখ্যা (পৃষ্ঠা): $1',
+'numedits'     => 'সম্পাদনাৰ সংখ্যা (পৃষ্ঠা): $1',
+'numtalkedits' => 'সম্পাদনাৰ সংখ্যা (আলোচনা পৃষ্ঠা): $1',
 
 # Math errors
 'math_failure'          => 'পাৰ্চ কৰিব অসমৰ্থ',
@@ -1510,6 +1521,7 @@ $1ৰ দ্বাৰ এই অবৰোধ কৰা হৈছে ।
 * <strong class="mw-specialpagerestricted">সীমাবদ্ধ বিশেষ পৃষ্ঠাসমূহ।</strong>',
 'specialpages-group-maintenance' => 'তত্বাৱধানৰ কাৰ্যবিবৰণীসমূহ',
 'specialpages-group-other'       => 'অন্যান্য বিশেষ পৃষ্ঠাসমূহ',
+'specialpages-group-login'       => 'প্ৰৱেশ/সদস্যভুক্তি',
 'specialpages-group-changes'     => 'সাম্প্ৰতিক সালসলনি আৰু লগসমূহ',
 'specialpages-group-users'       => 'সদস্যবৃন্দ আৰু অধিকাৰসমূহ',
 'specialpages-group-highuse'     => 'অধিক ব্যবহৃত পৃষ্ঠাসমূহ',

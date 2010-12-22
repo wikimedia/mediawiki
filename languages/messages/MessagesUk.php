@@ -3513,8 +3513,9 @@ $1',
 'sqlite-no-fts'  => '$1 без підтримки повнотекстового пошуку',
 
 # Special:DisableAccount
-'disableaccount-user'   => "Ім'я користувача:",
-'disableaccount-reason' => 'Причина:',
+'disableaccount-user'       => "Ім'я користувача:",
+'disableaccount-reason'     => 'Причина:',
+'disableaccount-nosuchuser' => 'Облікового запису користувача "$1" не існує.',
 
 # Special:UploadStash
 'uploadstash-refresh' => 'Оновити список файлів',

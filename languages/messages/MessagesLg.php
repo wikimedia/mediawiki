@@ -400,6 +400,7 @@ Ensonga gy\'awadde eri nti "\'\'$2\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Kiremya mu nteekateeka: ekinoonya vayirasi kino tekimanyidwa: ''$1''",
+'virus-scanfailed'     => 'okunoonya vayirasi kulemye (obubaka buli $1)',
 'virus-unknownscanner' => 'ekinoonya vayirasi ekitamanyidwa:',
 
 # Login and logout pages
@@ -415,6 +416,8 @@ Tewerabira kwetereereza [[Special:Preferences|enteekateeka yo ey'oku {{SITENAME}
 'yourpasswordagain'          => 'Ddamu ekigambo ekikuumi',
 'remembermypassword'         => 'Tereka ekigambo kyange ekikuumi ku kompyuta eno (okumala {{PLURAL:$1|olunaku|ennaku ezitasukka mu}} $1)',
 'securelogin-stick-https'    => "Sigala ku mukutu gwa kika kya HTTPS ng'omaze okuyingira",
+'yourdomainname'             => 'Linnya lya twale lya kayungirizi lyo:',
+'externaldberror'            => "Waliwo kiremya mu ggwanika lya data ekozesebwa okukakasa bamemba oba tokkirizibwa okukyusa ku akawunti yo ey'awalala.",
 'login'                      => 'Yingira',
 'nav-login-createaccount'    => 'Yingira / kolawo akawunti',
 'loginprompt'                => 'Okuyingira {{SITENAME}}, kalambula-neti yo erina okukkirizako kuki.',
@@ -422,11 +425,23 @@ Tewerabira kwetereereza [[Special:Preferences|enteekateeka yo ey'oku {{SITENAME}
 'userloginnocreate'          => 'Yingira',
 'logout'                     => 'Vaamu',
 'userlogout'                 => 'Vaamu',
+'notloggedin'                => 'Tonnayingira',
 'nologin'                    => "Akawunti wafuna? '''$1'''.",
 'nologinlink'                => 'Funa akawunti',
 'createaccount'              => 'Kolawo akawunti',
 'gotaccount'                 => "Akawunti wafuna? '''$1'''.",
 'gotaccountlink'             => 'Yingira',
+'createaccountmail'          => 'Akawunti gikole ne E-mail',
+'createaccountreason'        => 'Ekikukozesezawo akawunti:',
+'badretype'                  => "Ebigambo ebikuumi by'owandise tebifaanagana.",
+'userexists'                 => "Ery'obwa memba ly'owandise wali omulala alirina.<br />
+Londa eddala.",
+'loginerror'                 => 'Okuyingira kuzzeko kiremya:',
+'createaccounterror'         => 'Nemedwa okukolawo akawunti: $1',
+'nocookiesnew'               => "Akawunti w'eri, naye sisitemu tekuyingizza.<br />
+Okuyingira {{SITENAME}} nga memba kyesigamizidwa ku bujjukiza.<br />
+Kalambulanetti yo kakano etegekedwa butakkiriza obujjukiza obwo.<br />
+Okusobola okuyingira, kyusa entegeka ya yo ebukkirize eryoke okozese ery'obwa memba n'ekigambo ekikuumi byo.",
 'loginsuccesstitle'          => 'Oyingidde',
 'loginsuccess'               => "'''Kati oyingidde mu {{SITENAME}} nga okozesa erinnya \"\$1\".'''",
 'mailmypassword'             => 'Nsindikira ekigambo ekikuumi ekipya',

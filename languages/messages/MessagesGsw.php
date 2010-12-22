@@ -1812,6 +1812,7 @@ Bitte gib Acht, ass anderi Netzsyte die Datei mit ere diräkte URL chenne vergle
 'pager-newer-n'           => '{{PLURAL:$1|nächschte|nächschte $1}}',
 'pager-older-n'           => '{{PLURAL:$1|vorige|vorige $1}}',
 'suppress'                => 'Oversight',
+'querypage-disabled'      => 'Die Spezialsyte isch deaktiviert wore us Leischtigserhaltigs-Grind.',
 
 # Book sources
 'booksources'               => 'ISBN-Suech',
@@ -2453,7 +2454,7 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'export-addnstext'  => 'Syte us em Namensruum zuefiege:',
 'export-addns'      => 'Zuefiege',
 'export-download'   => 'Als XML-Datei spychere',
-'export-templates'  => 'Vorlage mit ybinde',
+'export-templates'  => 'Vorlage mit yybinde',
 'export-pagelinks'  => 'Vergleichti Syten automatisch mit exportiere bis zuen ere Rekursionstiefi vu:',
 
 # Namespace 8 related

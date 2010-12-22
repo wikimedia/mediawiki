@@ -2098,7 +2098,7 @@ Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’
 'allpages-bad-ns'   => '{{SITENAME}} n’a pas d’espace de noms « $1 ».',
 
 # Special:Categories
-'categories'                    => 'Catégories',
+'categories'                    => 'Liste des catégories',
 'categoriespagetext'            => '{{PLURAL:$1|La catégorie suivante est utilisée|Les catégories suivantes sont utilisées}} par des pages ou fichiers.
 [[Special:UnusedCategories|Les catégories inutilisées]] ne sont pas affichées ici.
 Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
