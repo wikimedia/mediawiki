@@ -31,10 +31,10 @@
  */
 class WantedFilesPage extends WantedQueryPage {
 
-	function getName() {
-		return 'Wantedfiles';
+	function __construct( $name = 'Wantedfiles' ) {
+		parent::__construct( $name );
 	}
-
+	
 	/**
 	 * KLUGE: The results may contain false positives for files
 	 * that exist e.g. in a shared repo.  Setting this at least
@@ -45,32 +45,19 @@ class WantedFilesPage extends WantedQueryPage {
 		return true;
 	}
 
-	function getSQL() {
-		$dbr = wfGetDB( DB_SLAVE );
-		list( $imagelinks, $image ) = $dbr->tableNamesN( 'imagelinks', 'image' );
-		$name = $dbr->addQuotes( $this->getName() );
-		return
-			"
-			SELECT
-				$name as type,
-				" . NS_FILE . " as namespace,
-				il_to as title,
-				COUNT(*) as value
-			FROM $imagelinks
-			LEFT JOIN $image ON il_to = img_name
-			WHERE img_name IS NULL
-			GROUP BY il_to
-			";
+	function getQueryInfo() {
+		return array (
+			'tables' => array ( 'imagelinks', 'image' ),
+			'fields' => array ( "'" . NS_FILE . "' AS namespace",
+					'il_to AS title',
+					'COUNT(*) AS value' ),
+			'conds' => array ( 'img_name IS NULL' ),
+			'options' => array ( 'GROUP BY' => 'il_to' ),
+			'join_conds' => array ( 'image' => 
+				array ( 'LEFT JOIN',
+					array ( 'il_to = img_name' ) 
+				) 
+			)
+		);
 	}
-}
-
-/**
- * constructor
- */
-function wfSpecialWantedFiles() {
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$wpp = new WantedFilesPage();
-
-	$wpp->doQuery( $offset, $limit );
 }

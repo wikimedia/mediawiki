@@ -26,11 +26,12 @@
  *
  * @ingroup SpecialPage
  */
+// FIXME: Make $requestedNamespace selectable, unify all subclasses into one
 class UncategorizedPagesPage extends PageQueryPage {
-	var $requestedNamespace = NS_MAIN;
+	protected $requestedNamespace = false;
 
-	function getName() {
-		return "Uncategorizedpages";
+	function __construct( $name = 'Uncategorizedpages' ) {
+		parent::__construct( $name );
 	}
 
 	function sortDescending() {
@@ -42,32 +43,27 @@ class UncategorizedPagesPage extends PageQueryPage {
 	}
 	function isSyndicated() { return false; }
 
-	function getSQL() {
-		$dbr = wfGetDB( DB_SLAVE );
-		list( $page, $categorylinks ) = $dbr->tableNamesN( 'page', 'categorylinks' );
-		$name = $dbr->addQuotes( $this->getName() );
-
-		return
-			"
-			SELECT
-				$name as type,
-				page_namespace AS namespace,
-				page_title AS title,
-				page_title AS value
-			FROM $page
-			LEFT JOIN $categorylinks ON page_id=cl_from
-			WHERE cl_from IS NULL AND page_namespace={$this->requestedNamespace} AND page_is_redirect=0
-			";
+	function getQueryInfo() {
+		return array (
+			'tables' => array ( 'page', 'categorylinks' ),
+			'fields' => array ( 'page_namespace AS namespace',
+					'page_title AS title',
+					'page_title AS value' ),
+			// default for page_namespace is all content namespaces (if requestedNamespace is false)
+			// otherwise, page_namespace is requestedNamespace
+			'conds' => array ( 'cl_from IS NULL',
+					'page_namespace' => ( $this->requestedNamespace!==false ? $this->requestedNamespace : MWNamespace::getContentNamespaces() ),
+					'page_is_redirect' => 0 ),
+			'join_conds' => array ( 'categorylinks' => array (
+					'LEFT JOIN', 'cl_from = page_id' ) )
+		);
 	}
-}
-
-/**
- * constructor
- */
-function wfSpecialUncategorizedpages() {
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$lpp = new UncategorizedPagesPage();
-
-	return $lpp->doQuery( $offset, $limit );
+	
+	function getOrderFields() {
+		// For some crazy reason ordering by a constant
+		// causes a filesort
+		if( $this->requestedNamespace === false && count( MWNamespace::getContentNamespaces() ) > 1 )
+			return array( 'page_namespace', 'page_title' );
+		return array( 'page_title' );
+	}
 }

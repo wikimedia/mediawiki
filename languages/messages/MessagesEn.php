@@ -2520,6 +2520,7 @@ Please note that other web sites may link to a file with a direct URL, and so ma
 'pager-newer-n'                   => '{{PLURAL:$1|newer 1|newer $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|older 1|older $1}}',
 'suppress'                        => 'Oversight',
+'querypage-disabled'              => 'This special page is disabled for performance reasons.',
 
 # Book sources
 'booksources'               => 'Book sources',

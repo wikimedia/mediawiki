@@ -27,22 +27,8 @@
  * @ingroup SpecialPage
  */
 class UncategorizedCategoriesPage extends UncategorizedPagesPage {
-	function __construct() {
+	function __construct( $name = 'Uncategorizedcategories' ) {
+		parent::__construct( $name );
 		$this->requestedNamespace = NS_CATEGORY;
 	}
-
-	function getName() {
-		return "Uncategorizedcategories";
-	}
-}
-
-/**
- * constructor
- */
-function wfSpecialUncategorizedcategories() {
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$lpp = new UncategorizedCategoriesPage();
-
-	return $lpp->doQuery( $offset, $limit );
 }

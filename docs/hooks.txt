@@ -1900,10 +1900,10 @@ $user: User object
 &$timestamp: new timestamp, change this to override local email
 authentification timestamp
 
-'WantedPages::getSQL': called in WantedPagesPage::getSQL(), can be used to
-alter the SQL query which gets the list of wanted pages
+'WantedPages::getQueryInfo': called in WantedPagesPage::getQueryInfo(), can be
+used to alter the SQL query which gets the list of wanted pages
 &$wantedPages: WantedPagesPage object
-&$sql: raw SQL query used to get the list of wanted pages
+&$query: query array, see QueryPage::getQueryInfo() for format documentation
 
 'WatchArticle': before a watch is added to an article
 $user: user that will watch

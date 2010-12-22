@@ -28,8 +28,8 @@
  */
 class AncientPagesPage extends QueryPage {
 
-	function getName() {
-		return "Ancientpages";
+	function __construct( $name = 'Ancientpages' ) {
+		parent::__construct( $name );
 	}
 
 	function isExpensive() {
@@ -38,20 +38,20 @@ class AncientPagesPage extends QueryPage {
 
 	function isSyndicated() { return false; }
 
-	function getSQL() {
-		$db = wfGetDB( DB_SLAVE );
-		$page = $db->tableName( 'page' );
-		$revision = $db->tableName( 'revision' );
-		$epoch = $db->unixTimestamp( 'rev_timestamp' );
+	function getQueryInfo() {
+		return array(
+			'tables' => array( 'page', 'revision' ),
+			'fields' => array( 'page_namespace AS namespace',
+					'page_title AS title',
+					'rev_timestamp AS value' ),
+			'conds' => array( 'page_namespace' => MWNamespace::getContentNamespaces(),
+					'page_is_redirect' => 0,
+					'page_latest=rev_id' )
+		);
+	}
 
-		return
-			"SELECT 'Ancientpages' as type,
-					page_namespace as namespace,
-			        page_title as title,
-			        $epoch as value
-			FROM $page, $revision
-			WHERE page_namespace=".NS_MAIN." AND page_is_redirect=0
-			  AND page_latest=rev_id";
+	function usesTimestamps() {
+		return true;
 	}
 
 	function sortDescending() {
@@ -67,14 +67,6 @@ class AncientPagesPage extends QueryPage {
 			$title,
 			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) )
 		);
-		return wfSpecialList($link, htmlspecialchars($d) );
+		return wfSpecialList( $link, htmlspecialchars($d) );
 	}
-}
-
-function wfSpecialAncientpages() {
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$app = new AncientPagesPage();
-
-	$app->doQuery( $offset, $limit );
 }

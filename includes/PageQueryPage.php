@@ -5,7 +5,7 @@
  *
  * @ingroup SpecialPage
  */
-class PageQueryPage extends QueryPage {
+abstract class PageQueryPage extends QueryPage {
 
 	/**
 	 * Format the result as a simple link to the page

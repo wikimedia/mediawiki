@@ -477,8 +477,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		$info = array(
 			'tables' => array( 'recentchanges', 'page' ),
-			'fields' => 'rc_namespace,rc_title, rc_cur_id, rc_user,rc_user_text,rc_comment,
-				rc_timestamp,rc_patrolled,rc_id,page_len as length, page_latest as rev_id, ts_tags',
+			'fields' => array( 'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text', 'rc_comment',
+				'rc_timestamp', 'rc_patrolled', 'rc_id', 'page_len AS length', 'page_latest AS rev_id', 'ts_tags'),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => array('recentchanges' => $rcIndexes) ),
 			'join_conds' => array(

@@ -101,7 +101,7 @@ class ImageListPager extends TablePager {
 		$tables = array( 'image' );
 		$fields = array_keys( $this->getFieldNames() );
 		$fields[] = 'img_user';
-		$fields[array_search('thumb', $fields)] = 'img_name as thumb';
+		$fields[array_search('thumb', $fields)] = 'img_name AS thumb';
 		$options = $join_conds = array();
 
 		# Depends on $wgMiserMode
@@ -111,7 +111,7 @@ class ImageListPager extends TablePager {
 			# Need to rewrite this one
 			foreach ( $fields as &$field ) {
 				if ( $field == 'count' ) {
-					$field = 'COUNT(oi_archive_name) as count';
+					$field = 'COUNT(oi_archive_name) AS count';
 				}
 			}
 			unset( $field );
