@@ -136,7 +136,7 @@ class LinkCache {
 		wfProfileIn( __METHOD__ );
 
 		$key = $nt->getPrefixedDBkey();
-		if ( $this->isBadLink( $key ) ) {
+		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
 			wfProfileOut( __METHOD__ );
 			return 0;
 		}
