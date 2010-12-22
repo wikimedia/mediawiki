@@ -38,8 +38,14 @@ class LinkSearchPage extends QueryPage {
 		parent::__construct( $name );
 	}
 	
+	function isCacheable() {
+		return false;
+	}
+	
 	function execute( $par ) {
 		global $wgOut, $wgRequest, $wgUrlProtocols, $wgMiserMode, $wgLang, $wgScript;
+		$this->setHeaders();
+		
 		$target = $wgRequest->getVal( 'target', $par );
 		$namespace = $wgRequest->getIntorNull( 'namespace', null );
 
