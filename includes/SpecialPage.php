@@ -84,36 +84,36 @@ class SpecialPage {
 	 */
 	static public $mList = array(
 		# Maintenance Reports
-		'BrokenRedirects'           => array( 'BrokenRedirectsPage' ),
-		'Deadendpages'              => array( 'DeadendpagesPage' ),
-		'DoubleRedirects'           => array( 'DoubleRedirectsPage' ),
-		'Longpages'                 => array( 'LongpagesPage' ),
-		'Ancientpages'              => array( 'AncientpagesPage' ),
-		'Lonelypages'               => array( 'LonelypagesPage' ),
-		'Fewestrevisions'           => array( 'FewestrevisionsPage' ),
-		'Withoutinterwiki'          => array( 'WithoutinterwikiPage' ),
+		'BrokenRedirects'           => 'BrokenRedirectsPage',
+		'Deadendpages'              => 'DeadendpagesPage',
+		'DoubleRedirects'           => 'DoubleRedirectsPage',
+		'Longpages'                 => 'LongpagesPage',
+		'Ancientpages'              => 'AncientpagesPage',
+		'Lonelypages'               => 'LonelypagesPage',
+		'Fewestrevisions'           => 'FewestrevisionsPage',
+		'Withoutinterwiki'          => 'WithoutinterwikiPage',
 		'Protectedpages'            => 'SpecialProtectedpages',
 		'Protectedtitles'           => 'SpecialProtectedtitles',
-		'Shortpages'                => array( 'ShortpagesPage' ),
-		'Uncategorizedcategories'   => array( 'UncategorizedcategoriesPage' ),
-		'Uncategorizedimages'       => array( 'UncategorizedimagesPage' ),
-		'Uncategorizedpages'        => array( 'UncategorizedpagesPage' ),
-		'Uncategorizedtemplates'    => array( 'UncategorizedtemplatesPage' ),
-		'Unusedcategories'          => array( 'UnusedcategoriesPage' ),
-		'Unusedimages'              => array( 'UnusedimagesPage' ),
-		'Unusedtemplates'           => array( 'UnusedtemplatesPage' ),
-		'Unwatchedpages'            => array( 'UnwatchedpagesPage' ),
-		'Wantedcategories'          => array( 'WantedcategoriesPage' ),
-		'Wantedfiles'               => array( 'WantedfilesPage' ),
-		'Wantedpages'               => array( 'WantedpagesPage' ),
-		'Wantedtemplates'           => array( 'WantedtemplatesPage' ),
+		'Shortpages'                => 'ShortpagesPage',
+		'Uncategorizedcategories'   => 'UncategorizedcategoriesPage',
+		'Uncategorizedimages'       => 'UncategorizedimagesPage',
+		'Uncategorizedpages'        => 'UncategorizedpagesPage',
+		'Uncategorizedtemplates'    => 'UncategorizedtemplatesPage',
+		'Unusedcategories'          => 'UnusedcategoriesPage',
+		'Unusedimages'              => 'UnusedimagesPage',
+		'Unusedtemplates'           => 'UnusedtemplatesPage',
+		'Unwatchedpages'            => 'UnwatchedpagesPage',
+		'Wantedcategories'          => 'WantedcategoriesPage',
+		'Wantedfiles'               => 'WantedfilesPage',
+		'Wantedpages'               => 'WantedpagesPage',
+		'Wantedtemplates'           => 'WantedtemplatesPage',
 
 		# List of pages
 		'Allpages'                  => 'SpecialAllpages',
 		'Prefixindex'               => 'SpecialPrefixindex',
 		'Categories'                => 'SpecialCategories',
-		'Disambiguations'           => array( 'DisambiguationsPage' ),
-		'Listredirects'             => array( 'ListredirectsPage' ),
+		'Disambiguations'           => 'DisambiguationsPage',
+		'Listredirects'             => 'ListredirectsPage',
 
 		# Login/create account
 		'Userlogin'                 => 'LoginForm',
@@ -160,17 +160,17 @@ class SpecialPage {
 		'Unlockdb'                  => 'SpecialUnlockdb',
 
 		# Redirecting special pages
-		'LinkSearch'                => array( 'LinkSearchPage' ),
+		'LinkSearch'                => 'LinkSearchPage',
 		'Randompage'                => 'Randompage',
 		'Randomredirect'            => 'SpecialRandomredirect',
 
 		# High use pages
-		'Mostlinkedcategories'      => array( 'MostlinkedCategoriesPage' ),
-		'Mostimages'                => array( 'MostimagesPage' ),
-		'Mostlinked'                => array( 'MostlinkedPage' ),
-		'Mostlinkedtemplates'       => array( 'MostlinkedTemplatesPage' ),
-		'Mostcategories'            => array( 'MostcategoriesPage' ),
-		'Mostrevisions'             => array( 'MostrevisionsPage' ),
+		'Mostlinkedcategories'      => 'MostlinkedCategoriesPage',
+		'Mostimages'                => 'MostimagesPage',
+		'Mostlinked'                => 'MostlinkedPage',
+		'Mostlinkedtemplates'       => 'MostlinkedTemplatesPage',
+		'Mostcategories'            => 'MostcategoriesPage',
+		'Mostrevisions'             => 'MostrevisionsPage',
 
 		# Page tools
 		'ComparePages'              => 'SpecialComparePages',
@@ -220,7 +220,7 @@ class SpecialPage {
 		self::$mListInitialised = true;
 
 		if( !$wgDisableCounters ) {
-			self::$mList['Popularpages'] = array( 'PopularpagesPage' );
+			self::$mList['Popularpages'] = 'PopularpagesPage';
 		}
 
 		if( !$wgDisableInternalSearch ) {
