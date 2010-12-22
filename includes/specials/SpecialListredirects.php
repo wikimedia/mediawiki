@@ -30,17 +30,33 @@
  */
 class ListredirectsPage extends QueryPage {
 
-	function getName() { return( 'Listredirects' ); }
-	function isExpensive() { return( true ); }
-	function isSyndicated() { return( false ); }
-	function sortDescending() { return( false ); }
+	function __construct( $name = 'Listredirects' ) {
+		parent::__construct( $name );
+	}
+	
+	function isExpensive() { return true; }
+	function isSyndicated() { return false; }
+	function sortDescending() { return false; }
 
-	function getSQL() {
-		$dbr = wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
-		$sql = "SELECT 'Listredirects' AS type, page_title AS title, page_namespace AS namespace, 
-			0 AS value FROM $page WHERE page_is_redirect = 1";
-		return( $sql );
+	function getQueryInfo() {
+		return array(
+			'tables' => array( 'p1' => 'page', 'redirect', 'p2' => 'page' ),
+			'fields' => array( 'p1.page_namespace AS namespace',
+					'p1.page_title AS title',
+					'rd_namespace',
+					'rd_title',
+					'p2.page_id AS redirid' ),
+			'conds' => array( 'p1.page_is_redirect' => 1 ),
+			'join_conds' => array( 'redirect' => array(
+					'LEFT JOIN', 'rd_from=p1.page_id' ),
+				'p2' => array( 'LEFT JOIN', array(
+					'p2.page_namespace=rd_namespace',
+					'p2.page_title=rd_title' ) ) )
+		);
+	}
+
+	function getOrderFields() {
+		return array ( 'p1.page_namespace', 'p1.page_title' );
 	}
 
 	function formatResult( $skin, $result ) {
@@ -71,10 +87,4 @@ class ListredirectsPage extends QueryPage {
 			return "<del>$rd_link</del>";
 		}
 	}
-}
-
-function wfSpecialListredirects() {
-	list( $limit, $offset ) = wfCheckLimits();
-	$lrp = new ListredirectsPage();
-	$lrp->doQuery( $offset, $limit );
 }

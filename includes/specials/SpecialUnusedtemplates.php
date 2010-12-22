@@ -31,24 +31,29 @@
  */
 class UnusedtemplatesPage extends QueryPage {
 
-	function getName() { return( 'Unusedtemplates' ); }
+	function __construct( $name = 'Unusedtemplates' ) {
+		parent::__construct( $name );
+	}
+	
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 	function sortDescending() { return false; }
 
-	function getSQL() {
-		$dbr = wfGetDB( DB_SLAVE );
-		list( $page, $templatelinks) = $dbr->tableNamesN( 'page', 'templatelinks' );
-		$sql = "SELECT 'Unusedtemplates' AS type, page_title AS title,
-			page_namespace AS namespace, 0 AS value
-			FROM $page
-			LEFT JOIN $templatelinks
-			ON page_namespace = tl_namespace AND page_title = tl_title
-			WHERE page_namespace = 10 AND tl_from IS NULL
-			AND page_is_redirect = 0";
-		return $sql;
+	function getQueryInfo() {
+		return array (
+			'tables' => array ( 'page', 'templatelinks' ),
+			'fields' => array ( 'page_namespace AS namespace',
+					'page_title AS title',
+					'page_title AS value' ),
+			'conds' => array ( 'page_namespace' => NS_TEMPLATE,
+					'tl_from IS NULL',
+					'page_is_redirect' => 0 ),
+			'join_conds' => array ( 'templatelinks' => array (
+				'LEFT JOIN', array ( 'tl_title = page_title',
+					'tl_namespace = page_namespace' ) ) )
+		);
 	}
-
+	
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_TEMPLATE, $result->title );
 		$pageLink = $skin->linkKnown(
@@ -72,8 +77,3 @@ class UnusedtemplatesPage extends QueryPage {
 
 }
 
-function wfSpecialUnusedtemplates() {
-	list( $limit, $offset ) = wfCheckLimits();
-	$utp = new UnusedtemplatesPage();
-	$utp->doQuery( $offset, $limit );
-}

@@ -28,8 +28,8 @@
  */
 class PopularPagesPage extends QueryPage {
 
-	function getName() {
-		return "Popularpages";
+	function __construct( $name = 'Popularpages' ) {
+		parent::__construct( $name );
 	}
 
 	function isExpensive() {
@@ -38,29 +38,14 @@ class PopularPagesPage extends QueryPage {
 	}
 	function isSyndicated() { return false; }
 
-	function getSQL() {
-		$dbr = wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
-
-		$query =
-			"SELECT 'Popularpages' as type,
-			        page_namespace as namespace,
-			        page_title as title,
-			        page_counter as value
-			FROM $page ";
-		$where =
-			"WHERE page_is_redirect=0 AND page_namespace";
-
-		global $wgContentNamespaces;
-		if( empty( $wgContentNamespaces ) ) {
-			$where .= '='.NS_MAIN;
-		} else if( count( $wgContentNamespaces ) > 1 ) {
-			$where .= ' in (' . implode( ', ', $wgContentNamespaces ) . ')';
-		} else {
-			$where .= '='.$wgContentNamespaces[0];
-		}
-
-		return $query . $where;
+	function getQueryInfo() {
+		return array (
+			'tables' => array( 'page' ),
+			'fields' => array( 'page_namespace AS namespace',
+					'page_title AS title',
+					'page_counter AS value'),
+			'conds' => array( 'page_is_redirect' => 0,
+					'page_namespace' => MWNamespace::getContentNamespaces() ) );
 	}
 
 	function formatResult( $skin, $result ) {
@@ -77,15 +62,4 @@ class PopularPagesPage extends QueryPage {
 		);
 		return wfSpecialList($link, $nv);
 	}
-}
-
-/**
- * Constructor
- */
-function wfSpecialPopularpages() {
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$ppp = new PopularPagesPage();
-
-	return $ppp->doQuery( $offset, $limit );
 }

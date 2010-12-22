@@ -31,24 +31,20 @@
  */
 class MostlinkedCategoriesPage extends QueryPage {
 
-	function getName() { return 'Mostlinkedcategories'; }
+	function __construct( $name = 'Mostlinkedcategories' ) {
+		parent::__construct( $name );
+	}
+	
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 
-	function getSQL() {
-		$dbr = wfGetDB( DB_SLAVE );
-		$categorylinks = $dbr->tableName( 'categorylinks' );
-		$name = $dbr->addQuotes( $this->getName() );
-		return
-			"
-			SELECT
-				$name as type,
-				" . NS_CATEGORY . " as namespace,
-				cl_to as title,
-				COUNT(*) as value
-			FROM $categorylinks
-			GROUP BY cl_to
-			";
+	function getQueryInfo() {
+		return array (
+			'tables' => array ( 'categorylinks' ),
+			'fields' => array ( 'cl_to AS title',
+					'COUNT(*) AS value' ),
+			'options' => array ( 'GROUP BY' => 'cl_to' )
+		);
 	}
 
 	function sortDescending() { return true; }
@@ -59,37 +55,27 @@ class MostlinkedCategoriesPage extends QueryPage {
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
 		foreach ( $res as $row ) {
-			$batch->add( $row->namespace, $row->title );
+			$batch->add( NS_CATEGORY, $row->title );
 		}
 		$batch->execute();
 
 		// Back to start for display
-		if ( $db->numRows( $res ) > 0 )
+		if ( $db->numRows( $res ) > 0 ) {
 			// If there are no rows we get an error seeking.
 			$db->dataSeek( $res, 0 );
+		}
 	}
 
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 
-		$nt = Title::makeTitle( $result->namespace, $result->title );
+		$nt = Title::makeTitle( NS_CATEGORY, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
 
 		$plink = $skin->link( $nt, htmlspecialchars( $text ) );
 
-		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
+		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $result->value ) );
-		return wfSpecialList($plink, $nlinks);
+		return wfSpecialList( $plink, $nlinks );
 	}
-}
-
-/**
- * constructor
- */
-function wfSpecialMostlinkedCategories() {
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$wpp = new MostlinkedCategoriesPage();
-
-	$wpp->doQuery( $offset, $limit );
 }

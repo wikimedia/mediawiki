@@ -7,7 +7,7 @@
  * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
-class ImageQueryPage extends QueryPage {
+abstract class ImageQueryPage extends QueryPage {
 
 	/**
 	 * Format and output report results using the given information plus
@@ -37,6 +37,9 @@ class ImageQueryPage extends QueryPage {
 			$out->addHTML( $gallery->toHtml() );
 		}
 	}
+	
+	// Gotta override this since it's abstract
+	function formatResult( $skin, $result ) { }
 
 	/**
 	 * Prepare an image object given a result row

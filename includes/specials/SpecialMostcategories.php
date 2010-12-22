@@ -31,26 +31,25 @@
  */
 class MostcategoriesPage extends QueryPage {
 
-	function getName() { return 'Mostcategories'; }
+	function __construct( $name = 'Mostcategories' ) {
+		parent::__construct( $name );
+	}
+	
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 
-	function getSQL() {
-		$dbr = wfGetDB( DB_SLAVE );
-		list( $categorylinks, $page) = $dbr->tableNamesN( 'categorylinks', 'page' );
-		return
-			"
-			SELECT
-			 	'Mostcategories' as type,
-				page_namespace as namespace,
-				page_title as title,
-				COUNT(*) as value
-			FROM $categorylinks
-			LEFT JOIN $page ON cl_from = page_id
-			WHERE page_namespace = " . NS_MAIN . "
-			GROUP BY page_namespace, page_title
-			HAVING COUNT(*) > 1
-			";
+	function getQueryInfo() {
+		return array (
+			'tables' => array ( 'categorylinks', 'page' ),
+			'fields' => array ( 'page_namespace AS namespace',
+					'page_title AS title',
+					'COUNT(*) AS value' ),
+			'conds' => array ( 'page_namespace' => MWNamespace::getContentNamespaces() ),
+			'options' => array ( 'HAVING' => 'COUNT(*) > 1',
+				'GROUP BY' => 'page_namespace, page_title' ),
+			'join_conds' => array ( 'page' => array ( 'LEFT JOIN',
+					'page_id = cl_from' ) )
+		);
 	}
 
 	function formatResult( $skin, $result ) {
@@ -61,15 +60,4 @@ class MostcategoriesPage extends QueryPage {
 		$link = $skin->link( $title );
 		return wfSpecialList( $link, $count );
 	}
-}
-
-/**
- * constructor
- */
-function wfSpecialMostcategories() {
-	list( $limit, $offset ) = wfCheckLimits();
-
-	$wpp = new MostcategoriesPage();
-
-	$wpp->doQuery( $offset, $limit );
 }

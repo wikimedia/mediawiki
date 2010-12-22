@@ -84,36 +84,36 @@ class SpecialPage {
 	 */
 	static public $mList = array(
 		# Maintenance Reports
-		'BrokenRedirects'           => array( 'SpecialPage', 'BrokenRedirects' ),
-		'Deadendpages'              => array( 'SpecialPage', 'Deadendpages' ),
-		'DoubleRedirects'           => array( 'SpecialPage', 'DoubleRedirects' ),
-		'Longpages'                 => array( 'SpecialPage', 'Longpages' ),
-		'Ancientpages'              => array( 'SpecialPage', 'Ancientpages' ),
-		'Lonelypages'               => array( 'SpecialPage', 'Lonelypages' ),
-		'Fewestrevisions'           => array( 'SpecialPage', 'Fewestrevisions' ),
-		'Withoutinterwiki'          => array( 'SpecialPage', 'Withoutinterwiki' ),
+		'BrokenRedirects'           => array( 'BrokenRedirectsPage' ),
+		'Deadendpages'              => array( 'DeadendpagesPage' ),
+		'DoubleRedirects'           => array( 'DoubleRedirectsPage' ),
+		'Longpages'                 => array( 'LongpagesPage' ),
+		'Ancientpages'              => array( 'AncientpagesPage' ),
+		'Lonelypages'               => array( 'LonelypagesPage' ),
+		'Fewestrevisions'           => array( 'FewestrevisionsPage' ),
+		'Withoutinterwiki'          => array( 'WithoutinterwikiPage' ),
 		'Protectedpages'            => 'SpecialProtectedpages',
 		'Protectedtitles'           => 'SpecialProtectedtitles',
-		'Shortpages'                => array( 'SpecialPage', 'Shortpages' ),
-		'Uncategorizedcategories'   => array( 'SpecialPage', 'Uncategorizedcategories' ),
-		'Uncategorizedimages'       => array( 'SpecialPage', 'Uncategorizedimages' ),
-		'Uncategorizedpages'        => array( 'SpecialPage', 'Uncategorizedpages' ),
-		'Uncategorizedtemplates'    => array( 'SpecialPage', 'Uncategorizedtemplates' ),
-		'Unusedcategories'          => array( 'SpecialPage', 'Unusedcategories' ),
-		'Unusedimages'              => array( 'SpecialPage', 'Unusedimages' ),
-		'Unusedtemplates'           => array( 'SpecialPage', 'Unusedtemplates' ),
-		'Unwatchedpages'            => array( 'SpecialPage', 'Unwatchedpages', 'unwatchedpages' ),
-		'Wantedcategories'          => array( 'SpecialPage', 'Wantedcategories' ),
-		'Wantedfiles'               => array( 'SpecialPage', 'Wantedfiles' ),
-		'Wantedpages'               => array( 'IncludableSpecialPage', 'Wantedpages' ),
-		'Wantedtemplates'           => array( 'SpecialPage', 'Wantedtemplates' ),
+		'Shortpages'                => array( 'ShortpagesPage' ),
+		'Uncategorizedcategories'   => array( 'UncategorizedcategoriesPage' ),
+		'Uncategorizedimages'       => array( 'UncategorizedimagesPage' ),
+		'Uncategorizedpages'        => array( 'UncategorizedpagesPage' ),
+		'Uncategorizedtemplates'    => array( 'UncategorizedtemplatesPage' ),
+		'Unusedcategories'          => array( 'UnusedcategoriesPage' ),
+		'Unusedimages'              => array( 'UnusedimagesPage' ),
+		'Unusedtemplates'           => array( 'UnusedtemplatesPage' ),
+		'Unwatchedpages'            => array( 'UnwatchedpagesPage' ),
+		'Wantedcategories'          => array( 'WantedcategoriesPage' ),
+		'Wantedfiles'               => array( 'WantedfilesPage' ),
+		'Wantedpages'               => array( 'WantedpagesPage' ),
+		'Wantedtemplates'           => array( 'WantedtemplatesPage' ),
 
 		# List of pages
 		'Allpages'                  => 'SpecialAllpages',
 		'Prefixindex'               => 'SpecialPrefixindex',
 		'Categories'                => 'SpecialCategories',
-		'Disambiguations'           => array( 'SpecialPage', 'Disambiguations' ),
-		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),
+		'Disambiguations'           => array( 'DisambiguationsPage' ),
+		'Listredirects'             => array( 'ListredirectsPage' ),
 
 		# Login/create account
 		'Userlogin'                 => 'LoginForm',
@@ -147,8 +147,8 @@ class SpecialPage {
 		# Media reports and uploads
 		'Listfiles'                 => array( 'SpecialPage', 'Listfiles' ),
 		'Filepath'                  => 'SpecialFilepath',
-		'MIMEsearch'                => array( 'SpecialPage', 'MIMEsearch' ),
-		'FileDuplicateSearch'       => array( 'SpecialPage', 'FileDuplicateSearch' ),
+		'MIMEsearch'                => 'MIMEsearchPage',
+		'FileDuplicateSearch'       => 'FileDuplicateSearchPage',
 		'Upload'                    => 'SpecialUpload',
 		'UploadStash'               => 'SpecialUploadStash',
 
@@ -160,17 +160,17 @@ class SpecialPage {
 		'Unlockdb'                  => 'SpecialUnlockdb',
 
 		# Redirecting special pages
-		'LinkSearch'                => array( 'SpecialPage', 'LinkSearch' ),
+		'LinkSearch'                => array( 'LinkSearchPage' ),
 		'Randompage'                => 'Randompage',
 		'Randomredirect'            => 'SpecialRandomredirect',
 
 		# High use pages
-		'Mostlinkedcategories'      => array( 'SpecialPage', 'Mostlinkedcategories' ),
-		'Mostimages'                => array( 'SpecialPage', 'Mostimages' ),
-		'Mostlinked'                => array( 'SpecialPage', 'Mostlinked' ),
-		'Mostlinkedtemplates'       => array( 'SpecialPage', 'Mostlinkedtemplates' ),
-		'Mostcategories'            => array( 'SpecialPage', 'Mostcategories' ),
-		'Mostrevisions'             => array( 'SpecialPage', 'Mostrevisions' ),
+		'Mostlinkedcategories'      => array( 'MostlinkedCategoriesPage' ),
+		'Mostimages'                => array( 'MostimagesPage' ),
+		'Mostlinked'                => array( 'MostlinkedPage' ),
+		'Mostlinkedtemplates'       => array( 'MostlinkedTemplatesPage' ),
+		'Mostcategories'            => array( 'MostcategoriesPage' ),
+		'Mostrevisions'             => array( 'MostrevisionsPage' ),
 
 		# Page tools
 		'ComparePages'              => 'SpecialComparePages',
@@ -220,7 +220,7 @@ class SpecialPage {
 		self::$mListInitialised = true;
 
 		if( !$wgDisableCounters ) {
-			self::$mList['Popularpages'] = array( 'SpecialPage', 'Popularpages' );
+			self::$mList['Popularpages'] = array( 'PopularpagesPage' );
 		}
 
 		if( !$wgDisableInternalSearch ) {
