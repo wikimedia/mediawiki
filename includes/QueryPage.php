@@ -414,6 +414,12 @@ abstract class QueryPage extends SpecialPage {
 		);
 		return $dbr->resultObject( $res );
 	}
+	
+	public function getCachedTimestamp() {
+		$dbr = wfGetDB( DB_SLAVE );
+		$fname = get_class( $this ) . '::getCachedTimestamp';
+		return $dbr->selectField( 'querycache_info', 'qci_timestamp', array( 'qci_type' => $this->getName() ), $fname );
+	}
 
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
@@ -429,8 +435,6 @@ abstract class QueryPage extends SpecialPage {
 
 		if ( $this->limit == 0 && $this->offset == 0 )
 			list( $this->limit, $this->offset ) = wfCheckLimits();
-		$sname = $this->getName();
-		$fname = get_class( $this ) . '::doQuery';
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$this->setHeaders();
@@ -452,15 +456,14 @@ abstract class QueryPage extends SpecialPage {
 			if ( !$this->listoutput ) {
 
 				# Fetch the timestamp of this update
-				$tRes = $dbr->select( 'querycache_info', array( 'qci_timestamp' ), array( 'qci_type' => $sname ), $fname );
-				$tRow = $dbr->fetchObject( $tRes );
+				$ts = $this->getCachedTimestamp();
 
-				if ( $tRow ) {
-					$updated = $wgLang->timeanddate( $tRow->qci_timestamp, true, true );
-					$updateddate = $wgLang->date( $tRow->qci_timestamp, true, true );
-					$updatedtime = $wgLang->time( $tRow->qci_timestamp, true, true );
-					$wgOut->addMeta( 'Data-Cache-Time', $tRow->qci_timestamp );
-					$wgOut->addInlineScript( "var dataCacheTime = '{$tRow->qci_timestamp}';" );
+				if ( $ts ) {
+					$updated = $wgLang->timeanddate( $ts, true, true );
+					$updateddate = $wgLang->date( $ts, true, true );
+					$updatedtime = $wgLang->time( $ts, true, true );
+					$wgOut->addMeta( 'Data-Cache-Time', $ts );
+					$wgOut->addInlineScript( "var dataCacheTime = '$ts';" );
 					$wgOut->addWikiMsg( 'perfcachedts', $updated, $updateddate, $updatedtime );
 				} else {
 					$wgOut->addWikiMsg( 'perfcached' );
