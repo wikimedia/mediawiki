@@ -785,7 +785,7 @@ class ApiMain extends ApiBase {
 	protected function getCredits() {
 		return array(
 			'API developers:',
-			'    Roan Kattouw <Firstname>.<Lastname>@home.nl (lead developer Sep 2007-present)',
+			'    Roan Kattouw <Firstname>.<Lastname>@gmail.com (lead developer Sep 2007-present)',
 			'    Victor Vasiliev - vasilvv at gee mail dot com',
 			'    Bryan Tong Minh - bryan . tongminh @ gmail . com',
 			'    Sam Reed - sam @ reedyboy . net',
