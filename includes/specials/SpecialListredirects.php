@@ -45,6 +45,8 @@ class ListredirectsPage extends QueryPage {
 					'p1.page_title AS title',
 					'rd_namespace',
 					'rd_title',
+					'rd_fragment',
+					'rd_interwiki',
 					'p2.page_id AS redirid' ),
 			'conds' => array( 'p1.page_is_redirect' => 1 ),
 			'join_conds' => array( 'redirect' => array(
@@ -57,6 +59,37 @@ class ListredirectsPage extends QueryPage {
 
 	function getOrderFields() {
 		return array ( 'p1.page_namespace', 'p1.page_title' );
+	}
+	
+	/**
+	 * Cache page existence for performance
+	 */
+	function preprocessResults( $db, $res ) {
+		$batch = new LinkBatch;
+		foreach ( $res as $row ) {
+			$batch->add( $row->namespace, $row->title );
+			$batch->addObj( $this->getRedirectTarget( $row ) );
+		}
+		$batch->execute();
+
+		// Back to start for display
+		if ( $db->numRows( $res ) > 0 ) {
+			// If there are no rows we get an error seeking.
+			$db->dataSeek( $res, 0 );
+		}
+	}
+	
+	protected function getRedirectTarget( $row ) {
+		if ( isset( $row->rd_title ) ) {
+			return Title::makeTitle( $row->rd_namespace,
+				$row->rd_title, $row->rd_fragment,
+				$row->rd_interwiki
+			);
+		} else {
+			$title = Title::makeTitle( $row->namespace, $row->title );
+			$article = new Article( $title );
+			return $article->getRedirectTarget();
+		}
 	}
 
 	function formatResult( $skin, $result ) {
@@ -72,17 +105,12 @@ class ListredirectsPage extends QueryPage {
 		);
 
 		# Find out where the redirect leads
-		$revision = Revision::newFromTitle( $rd_title );
-		if( $revision ) {
+		$target = $this->getRedirectTarget( $result );
+		if( $target ) {
 			# Make a link to the destination page
-			$target = Title::newFromRedirect( $revision->getText() );
-			if( $target ) {
-				$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();
-				$targetLink = $skin->link( $target );
-				return "$rd_link $arr $targetLink";
-			} else {
-				return "<del>$rd_link</del>";
-			}
+			$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();
+			$targetLink = $skin->link( $target );
+			return "$rd_link $arr $targetLink";
 		} else {
 			return "<del>$rd_link</del>";
 		}
