@@ -323,7 +323,7 @@ class FiveUpgrade extends Maintenance {
 	/**
 	 * Helper function for copyTable array_filter
 	 */
-	static private function notUpgradeNull($x) {
+	static private function notUpgradeNull( $x ) {
 		return $x !== MW_UPGRADE_NULL;
 	}
 
