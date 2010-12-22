@@ -1046,18 +1046,18 @@ class prefixindexTest extends pageTest {
 
 		$this->params = array (
 				"title"         => "Special:Prefixindex",
-				"namespace"     => wikiFuzz::randnum( -10, 101 ),
+				"namespace"     => wikiFuzz::randnum( 101, -10 ),
 				"Go"            => wikiFuzz::makeFuzz( 2 )
 				);
 
 		// sometimes we want 'prefix', sometimes we want 'from', and sometimes we want nothing.
 		if ( wikiFuzz::randnum( 3 ) == 0 ) {
 			$this->params["prefix"] = wikiFuzz::chooseInput( array( "-1", "-----'--------0", "+++--+1",
-												 wikiFuzz::randnum( -10, 8134 ), wikiFuzz::makeFuzz( 2 ) ) );
+												 wikiFuzz::randnum( 8134, -10 ), wikiFuzz::makeFuzz( 2 ) ) );
 		}
 		if ( wikiFuzz::randnum( 3 ) == 0 ) {
 			$this->params["from"]   = wikiFuzz::chooseInput( array( "-1", "-----'--------0", "+++--+1",
-												wikiFuzz::randnum( -10, 8134 ), wikiFuzz::makeFuzz( 2 ) ) );
+												wikiFuzz::randnum( 8134, -10 ), wikiFuzz::makeFuzz( 2 ) ) );
 		}
 	}
 }
@@ -2192,7 +2192,7 @@ class GeSHi_Test extends pageTest {
 		return "<source lang=\"" . $this->getLang() . "\" "
 			   . ( wikiFuzz::randnum( 2 ) == 0 ? "line " : "" )
 			   . ( wikiFuzz::randnum( 2 ) == 0 ? "strict " : "" )
-			   . "start=" . wikiFuzz::chooseInput( array( wikiFuzz::randnum( -6000, 6000 ), wikiFuzz::makeFuzz( 2 ) ) )
+			   . "start=" . wikiFuzz::chooseInput( array( wikiFuzz::randnum( 6000, -6000 ), wikiFuzz::makeFuzz( 2 ) ) )
 			   . ">"
 			   . wikiFuzz::makeFuzz( 2 )
 			   . "</source>";
