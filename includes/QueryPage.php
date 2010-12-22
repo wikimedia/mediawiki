@@ -88,7 +88,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Wheter to show prev/next links
 	 */
-	var $shownavigation = true;
+	protected $shownavigation = true;
 
 	/**
 	 * A mutator for $this->listoutput;
