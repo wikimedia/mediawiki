@@ -168,7 +168,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array(
-
+			'api.php?action=query&list=querypages&qppage=Ancientpages'
 		);
 	}
 
