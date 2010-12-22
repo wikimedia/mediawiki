@@ -2352,7 +2352,7 @@ function saveTestAsPHP( pageTest $test, $filename ) {
 		. "\$result=curl_exec(\$ch);\n"
 		. "curl_close (\$ch);\n"
 		. "print \$result;\n"
-		. "?>\n";
+		. "\n";
 	saveFile( $str, $filename );
 }
 
