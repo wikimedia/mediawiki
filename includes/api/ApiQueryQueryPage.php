@@ -2,7 +2,7 @@
 /**
  *
  *
- * Created on Sep 10, 2007
+ * Created on Dec 22, 2010
  *
  * Copyright © 2010 Roan Kattouw <Firstname>.<Lastname>@gmail.com
  *
@@ -78,7 +78,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				$r['cached'] = '';
 				$ts = $qp->getCachedTimestamp();
 				if ( $ts ) {
-					$r['cachedTimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
+					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
 				}
 			}
 		}
