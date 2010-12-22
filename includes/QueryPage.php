@@ -85,6 +85,8 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	protected $numRows;
 
+	protected $cachedTimestamp = null;
+
 	/**
 	 * Wheter to show prev/next links
 	 */
@@ -416,9 +418,13 @@ abstract class QueryPage extends SpecialPage {
 	}
 	
 	public function getCachedTimestamp() {
-		$dbr = wfGetDB( DB_SLAVE );
-		$fname = get_class( $this ) . '::getCachedTimestamp';
-		return $dbr->selectField( 'querycache_info', 'qci_timestamp', array( 'qci_type' => $this->getName() ), $fname );
+		if ( !is_null( $this->cachedTimestamp ) ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$fname = get_class( $this ) . '::getCachedTimestamp';
+			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
+				array( 'qci_type' => $this->getName() ), $fname );
+		}
+		return $this->cachedTimestamp;
 	}
 
 	/**
