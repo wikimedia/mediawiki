@@ -68,7 +68,9 @@ class SpecialExport extends SpecialPage {
 					 * during the export in a single query.
 					 */
 					$catpages = $this->getPagesFromCategory( $t );
-					if ( $catpages ) $page .= "\n" . implode( "\n", $catpages );
+					if ( $catpages ) {
+						$page .= "\n" . implode( "\n", $catpages );
+					}
 				}
 			}
 		}
@@ -81,7 +83,9 @@ class SpecialExport extends SpecialPage {
 				 * Same implementation as above, so same @todo
 				 */
 				$nspages = $this->getPagesFromNamespace( $nsindex );
-				if ( $nspages ) $page .= "\n" . implode( "\n", $nspages );
+				if ( $nspages ) {
+					$page .= "\n" . implode( "\n", $nspages );
+				}
 			}
 		}
 		else if( $wgRequest->wasPosted() && $par == '' ) {
@@ -118,7 +122,9 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 
-			if( $page != '' ) $this->doExport = true;
+			if( $page != '' ) {
+				$this->doExport = true;
+			}
 		} else {
 			// Default to current-only for GET requests.
 			$page = $wgRequest->getText( 'pages', $par );
@@ -130,7 +136,9 @@ class SpecialExport extends SpecialPage {
 				$history = WikiExporter::CURRENT;
 			}
 
-			if( $page != '' ) $this->doExport = true;
+			if( $page != '' ) {
+				$this->doExport = true;
+			}
 		}
 
 		if( !$wgExportAllowHistory ) {
@@ -139,7 +147,9 @@ class SpecialExport extends SpecialPage {
 		}
 
 		$list_authors = $wgRequest->getCheck( 'listauthors' );
-		if ( !$this->curonly || !$wgExportAllowListContributors ) $list_authors = false ;
+		if ( !$this->curonly || !$wgExportAllowListContributors ) {
+			$list_authors = false ;
+		}
 
 		if ( $this->doExport ) {
 			$wgOut->disable();
@@ -286,8 +296,12 @@ class SpecialExport extends SpecialPage {
 			 }*/
 			#Bug 8824: Only export pages the user can read
 			$title = Title::newFromText( $page );
-			if( is_null( $title ) ) continue; #TODO: perhaps output an <error> tag or something.
-			if( !$title->userCanRead() ) continue; #TODO: perhaps output an <error> tag or something.
+			if( is_null( $title ) ) {
+				continue; #TODO: perhaps output an <error> tag or something.
+			}
+			if( !$title->userCanRead() ) {
+				continue; #TODO: perhaps output an <error> tag or something.
+			}
 
 			$exporter->pageByTitle( $title );
 		}
@@ -394,7 +408,7 @@ class SpecialExport extends SpecialPage {
 
 	/** Expand a list of pages to include pages linked to from that page. */
 	private function getPageLinks( $inputPages, $pageSet, $depth ) {
-		for(; $depth > 0; --$depth ) {
+		for( ; $depth > 0; --$depth ) {
 			$pageSet = $this->getLinks(
 				$inputPages, $pageSet, 'pagelinks',
 			  	array( 'pl_namespace AS namespace', 'pl_title AS title' ),
