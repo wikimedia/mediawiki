@@ -2510,7 +2510,7 @@ function dbErrorLogged() {
 	if ( !isset( $filesize ) ) {
 		// create log if it does not exist
 		if ( !file_exists( DB_ERROR_LOG_FILE ) ) {
-			saveFile( "", DB_ERROR_LOG_FILE );
+			saveFile( DB_ERROR_LOG_FILE, '' );
 		}
 		$filesize = filesize( DB_ERROR_LOG_FILE );
 		return false;
