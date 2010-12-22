@@ -27,7 +27,7 @@ class FixSlaveDesync extends Maintenance {
 	}
 
 	public function getDbType() {
-		return self::DB_ADMIN;
+		return Maintenance::DB_ADMIN;
 	}
 
 	public function execute() {
