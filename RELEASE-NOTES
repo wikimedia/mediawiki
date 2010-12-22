@@ -41,6 +41,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
+* (bug 14869) Add API module for accessing QueryPage-based special pages
 
 === Languages updated in 1.18 ===
 
