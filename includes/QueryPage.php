@@ -100,15 +100,6 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Return title object representing this page
-	 *
-	 * @return Title
-	 */
-	function getTitle() {
-		return SpecialPage::getTitleFor( $this->getName() );
-	}
-
-	/**
 	 * Subclasses return an SQL query here, formatted as an array with the
 	 * following keys:
 	 *    tables => Table(s) for passing to Database::select()
