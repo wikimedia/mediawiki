@@ -159,6 +159,7 @@ abstract class QueryPage extends SpecialPage {
 	 *       or TS_UNIX (querycache) format, so be sure to always run them
 	 *       through wfTimestamp()
 	 * @return bool
+	 * @since 1.18
 	 */
 	function usesTimestamps() {
 		return false;
@@ -190,6 +191,7 @@ abstract class QueryPage extends SpecialPage {
 	 * will be disabled in miser mode and will not have their results written
 	 * to the querycache table.
 	 * @return Boolean
+	 * @since 1.18
 	 */
 	public function isCacheable() {
 		return true;
@@ -332,6 +334,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @param $limit mixed Numerical limit or false for no limit
 	 * @param $offset mixed Numerical offset or false for no offset
 	 * @return ResultWrapper
+	 * @since 1.18
 	 */
 	function reallyDoQuery( $limit, $offset = false ) {
 		$fname = get_class( $this ) . "::reallyDoQuery";
@@ -372,6 +375,9 @@ abstract class QueryPage extends SpecialPage {
 		return $dbr->resultObject( $res );
 	}
 
+	/**
+	 * Parameters and order changed in 1.18
+	 */
 	function doQuery( $limit, $offset = false ) {
 		if ( $this->isCached() && $this->isCacheable() ) {
 			return $this->fetchFromCache( $limit, $offset );
@@ -385,6 +391,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @param $limit mixed Numerical limit or false for no limit
 	 * @param $offset mixed Numerical offset or false for no offset
 	 * @return ResultWrapper
+	 * @since 1.18
 	 */
 	function fetchFromCache( $limit, $offset = false ) {
 		$dbr = wfGetDB( DB_SLAVE );
