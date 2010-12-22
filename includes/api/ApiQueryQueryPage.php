@@ -28,7 +28,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
 	require_once( 'ApiQueryBase.php' );
 }
-
+0
 /**
  * Query module to get the results of a QueryPage-based special page
  *
@@ -36,15 +36,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	private $qpMap;
-	
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'qp' );
-		
 		// We need to do this to make sure $wgQueryPages is set up
 		// This SUCKS
 		global $IP;
 		require_once( "$IP/includes/QueryPage.php" );
-		
+
 		// Build mapping from special page names to QueryPage classes
 		global $wgQueryPages;
 		$this->qpMap = array();
@@ -52,11 +51,11 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			$this->qpMap[$page[1]] = $page[0];
 		}
 	}
-	
+
 	public function execute() {
 		$this->run();
 	}
-	
+
 	public function executeGenerator( $resultPageSet ) {
 		$this->run( $resultPageSet );
 	}
@@ -65,12 +64,12 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		global $wgUser;
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
-		
+
 		$qp = new $this->qpMap[$params['page']]();
 		if ( !$qp->userCanExecute( $wgUser ) ) {
 			$this->dieUsageMsg( array( 'specialpage-cantexecute' ) );
 		}
-		
+
 		$r = array( 'name' => $params['page'] );
 		if ( $qp->isCached() ) {
 			if ( !$qp->isCacheable() ) {
@@ -84,7 +83,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			}
 		}
 		$result->addValue( array( 'query' ), $this->getModuleName(), $r );
-		
+
 		$res = $qp->doQuery( $params['limit'] + 1, $params['offset'] );
 		$count = 0;
 		$titles = array();
@@ -94,7 +93,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				$this->setContinueEnumParameter( 'offset', $params['offset'] + $params['limit'] );
 				break;
 			}
-			
+
 			$title = Title::makeTitle( $row->namespace, $row->title );
 			if ( is_null( $resultPageSet ) ) {
 				$data = array( 'value' => $row->value );
@@ -102,13 +101,13 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 					$data['timestamp'] = wfTimestamp( TS_ISO_8601, $row->value );
 				}
 				self::addTitleInfo( $data, $title );
-				
+
 				foreach ( $row as $field => $value ) {
 					if ( !in_array( $field, array( 'namespace', 'title', 'value', 'qc_type' ) ) ) {
 						$data['databaseResult'][$field] = $value;
 					}
 				}
-				
+
 				$fit = $result->addValue( array( 'query', $this->getModuleName(), 'results' ), null, $data );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'offset', $params['offset'] + $count - 1 );
@@ -124,7 +123,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			$resultPageSet->populateFromTitles( $titles );
 		}
 	}
-	
+
 	public function getCacheMode( $params ) {
 		$qp = new $this->qpMap[$params['page']]();
 		if ( $qp->getRestriction() != '' ) {
@@ -149,10 +148,10 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			),
 		);
 	}
-	
+
 	public function getParamDescription() {
 		return array(
-			'page' => 'The name of the special page',
+			'page' => 'The name of the special page. Note, this is case sensitive',
 			'offset' => 'When more results are available, use this to continue',
 			'limit' => 'Number of results to return',
 		);
@@ -169,7 +168,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 	protected function getExamples() {
 		return array(
-			
+
 		);
 	}
 
