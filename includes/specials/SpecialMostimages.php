@@ -34,7 +34,7 @@ class MostimagesPage extends ImageQueryPage {
 	function __construct( $name = 'Mostimages' ) {
 		parent::__construct( $name );
 	}
-	
+
 	function isExpensive() { return true; }
 	function isSyndicated() { return false; }
 
