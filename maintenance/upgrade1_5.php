@@ -320,6 +320,12 @@ class FiveUpgrade extends Maintenance {
 		$this->dbw->insert( $this->chunkTable, $chunk, $this->chunkFunction, $this->chunkOptions );
 	}
 
+	/**
+	 * Helper function for copyTable array_filter
+	 */
+	static private function notUpgradeNull($x) {
+		return $x !== MW_UPGRADE_NULL;
+	}
 
 	/**
 	 * Copy and transcode a table to table_temp.
@@ -349,8 +355,7 @@ class FiveUpgrade extends Maintenance {
 		$this->setChunkScale( 100, $numRecords, $name_temp, __METHOD__ );
 
 		// Pull all records from the second, streaming database connection.
-		$sourceFields = array_keys( array_filter( $fields,
-			create_function( '$x', 'return $x !== MW_UPGRADE_NULL;' ) ) );
+		$sourceFields = array_keys( array_filter( $fields, 'FiveUpgrade::notUpgradeNull' ) );
 		$result = $this->dbr->select( $name,
 			$sourceFields,
 			'',

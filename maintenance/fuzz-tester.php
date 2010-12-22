@@ -816,7 +816,14 @@ class wikiFuzz {
 		}
 	}
 
-
+	/**
+	 * Returns the matched character slash-escaped as in a C string
+	 * Helper for makeTitleSafe callback
+	 */
+	static private function stringEscape($matches) {
+		return sprintf( "\\x%02x", ord( $matches[1] ) );
+	}
+	
 	/**
 	 ** Strips out the stuff that Mediawiki balks at in a page's title.
 	 **        Implementation copied/pasted from cleanupTable.inc & cleanupImages.php
@@ -824,13 +831,7 @@ class wikiFuzz {
 	static public function makeTitleSafe( $str ) {
 		$legalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF";
 		return preg_replace_callback(
-				"/([^$legalTitleChars])/",
-				create_function(
-					// single quotes are essential here,
-					// or alternative escape all $ as \$
-					'$matches',
-					'return sprintf( "\\x%02x", ord( $matches[1] ) );'
-					),
+				"/([^$legalTitleChars])/", 'wikiFuzz::stringEscape',
 				$str );
 	}
 
