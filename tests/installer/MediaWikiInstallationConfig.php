@@ -37,8 +37,8 @@
 define('DB_NAME_PREFIX', "database_name_d" );
 
 // Directory name  should be change
-//define('DIRECTORY_NAME', "installertesting");
-define('DIRECTORY_NAME', "nadee");
+define('DIRECTORY_NAME', "installertesting");
+
 
 // Port should be change
 define ('PORT', "8080");
