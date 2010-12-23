@@ -847,8 +847,8 @@ abstract class ApiBase {
 	 * Prints usage info on failure.
 	 * @param $paramName string Parameter name
 	 * @param $value int Parameter value
-	 * @param $min int Minimum value
-	 * @param $max int Maximum value for users
+	 * @param $min int|null Minimum value
+	 * @param $max int|null Maximum value for users
 	 * @param $botMax int Maximum value for sysops/bots
 	 * @param $enforceLimits Boolean Whether to enforce (die) if value is outside limits
 	 */
