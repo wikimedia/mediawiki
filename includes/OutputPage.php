@@ -2577,7 +2577,7 @@ class OutputPage {
 			$group = $resourceLoader->getModule( $name )->getGroup();
 			// Modules in groups named "other" or anything different than "user" or "site" will
 			// be placed in the "other" group
-			$styles[isset( $style[$group] ) ? $group : 'other'][] = $name;
+			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
 		}
 		// Add styles to tags, user modules last
 		$tags[] = $this->makeResourceLoaderLink(
