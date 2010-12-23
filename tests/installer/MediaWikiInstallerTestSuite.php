@@ -42,6 +42,9 @@ require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiMySQLiteDat
 require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiUpgradeExistingDatabaseTestCase.php');
 require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiDifferntDatabasePrefixTestCase.php');
 require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiDifferentDatabaseAccountTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiOnAlreadyInstalledTestCase.php');
+
+
 
 
 $suite = new PHPUnit_Framework_TestSuite('ArrayTest');
