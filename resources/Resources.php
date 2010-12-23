@@ -45,7 +45,8 @@ return array(
 		'scripts' => 'resources/jquery/jquery.async.js'
 	),
 	'jquery.autoEllipsis' => array(
-		'scripts' => 'resources/jquery/jquery.autoEllipsis.js'
+		'scripts' => 'resources/jquery/jquery.autoEllipsis.js',
+		'dependencies' => 'jquery.highlightText',
 	),
 	'jquery.checkboxShiftClick' => array(
 		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js'
