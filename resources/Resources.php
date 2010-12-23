@@ -78,10 +78,6 @@ return array(
 	'jquery.localize' => array(
 		'scripts' => 'resources/jquery/jquery.localize.js'
 	),
-	'jquery.makeCollapsible' => array(
-		'scripts' => 'resources/jquery/jquery.makeCollapsible.js',
-		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
-	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
 		'styles' => 'resources/jquery/jquery.suggestions.css',
