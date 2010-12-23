@@ -33,41 +33,24 @@ class MyWatchListTestCase extends SeleniumTestCase {
     // Verify user watchlist
     public function testMyWatchlist() {
 
-        $newPage = "mypage";
-        $displayName = "Mypage";
-        $wikiText = "watch page";
-
-        $this->open( $this->getUrl().'/index.php?title=Main_Page' );
-
-        $this->type( "searchInput", $newPage );
-        $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( "30000" );
-        $this->click( "link=".$displayName );
-        $this->waitForPageToLoad( "600000" );
-
-        $this->click( "wpWatchthis" );
-        $this->type( "wpTextbox1",$wikiText );
-        $this->click( "wpSave" );
-        $this->waitForPageToLoad( "30000" );
-
+        $pageName = $this->createNewTestPage( "MyWatchListTest", true );
         // Verify link 'My Watchlist' available
-        $this->assertTrue( $this->isElementPresent( "link=My watchlist" ) );
+        $this->assertTrue( $this->isElementPresent( "link=Watchlist" ) );
 
-        $this->click( "link=My watchlist" );
-        $this->waitForPageToLoad( "30000" );
+        $this->click( "link=Watchlist" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify newly added page to the watchlist is available
-        $watchList = $this->getText( "//*[@id='bodyContent']" );
-        $this->assertContains( $displayName, $watchList );
+        $this->assertEquals( $pageName, $this->getText( "link=".$pageName ));
 
-        $this->type( "searchInput", $newPage );
-        $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( "30000" );
-        $this->click("link=Edit");
-        $this->waitForPageToLoad( "30000" );
+        $this->click( "link=".$pageName );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->click( LINK_EDIT );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->click( "wpWatchthis" );
-        $this->click( "wpSave" );
-        $this->deletePage( $newPage );
+        $this->click( BUTTON_SAVE );
+        $this->assertFalse( $this->isElementPresent( "link=".$pageName ) );
+        //todo watch using the dropdown menu
     }
 }
 
