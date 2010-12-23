@@ -123,7 +123,12 @@ class ApiMain extends ApiBase {
 		)
 	);
 
-	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
+	/**
+	 * @var ApiFormatBase
+	 */
+	private $mPrinter;
+
+	private $mModules, $mModuleNames, $mFormats, $mFormatNames;
 	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest;
 	private $mInternalMode, $mSquidMaxage, $mModule;
 
