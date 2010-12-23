@@ -100,7 +100,7 @@ $messages = array(
 'subcategories'  => 'རིགས་ཕལ་བ།',
 
 'about'      => 'ཨཱབོཨུཏ་',
-'newwindow'  => '(སྒེའུ་ཁུང་གསར་བར་ཕྱེས་ཞིག',
+'newwindow'  => '(སྒེའུ་ཁུང་གསར་བར་ཕྱེ་བ།)',
 'cancel'     => 'དོར་བ།',
 'mytalk'     => 'ངའི་གླེང་མོལ།',
 'navigation' => 'ལམ་སྟོན།',
@@ -115,13 +115,16 @@ $messages = array(
 'searchbutton'     => 'འཚོལ་བ།',
 'go'               => 'སོང་།',
 'searcharticle'    => 'སོང་།',
+'history'          => 'ཤོག་ངོས་ལོ་རྒྱུས།',
 'history_short'    => 'རྗེས་ཐོ།',
 'printableversion' => 'དཔར་ཐུབ་པ།',
 'permalink'        => 'རྟག་བརྟན་གྱི་དྲ་འབྲེལ།',
 'edit'             => 'རྩོམ་སྒྲིག',
+'create'           => 'བཟོ་སྐྲུན།',
 'delete'           => 'གསུབ་པ།',
 'protect'          => 'སྲུང་བ།',
 'protect_change'   => 'སྒྱུར་བཅོས།',
+'newpage'          => 'ཤོག་ངོས་གསར་བ།',
 'talkpagelinktext' => 'གླེང་མོལ།',
 'personaltools'    => 'སྒེར་ཀྱི་ལག་ཆ།',
 'talk'             => 'གྲོས་བསྡུར།',
@@ -153,6 +156,7 @@ $messages = array(
 'editsection'     => 'རྩོམ་སྒྲིག་ཚན་པ།',
 'editold'         => 'རྩོམ་སྒྲིག',
 'editlink'        => 'བཟོ་བཅོས།',
+'viewsourcelink'  => 'འབྱུང་ཁོངས་ལ་ལྟ་བ།',
 'editsectionhint' => 'རྩོམ་སྒྲིག་ཚན་པ།$1',
 'showtoc'         => 'སྟོན།',
 'hidetoc'         => 'སྦས་ཤིག',
@@ -173,7 +177,7 @@ $messages = array(
 'yourname'                => 'དྲ་མིང་།',
 'yourpassword'            => 'ལམ་ཡིག',
 'yourpasswordagain'       => 'ལམ་ཡིག་ཡང་གཏག་བྱོས།',
-'remembermypassword'      => 'ངའི་དྲ་མིང་འདིར་གསོག་པ། (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'ངའི་དྲ་མིང་འདིར་དྲན་པར་མཛོད།(ཡ་མཐའ་ཉིན $1 {{PLURAL:$1}})',
 'login'                   => 'ནང་འཛུལ།',
 'nav-login-createaccount' => 'ནང་འཛུལ། / ཐོ་འགོད།',
 'userlogin'               => 'ནང་འཛུལ། / ཐོ་འགོད།',
@@ -184,6 +188,17 @@ $messages = array(
 'createaccount'           => 'ཐོ་འགོད།',
 'gotaccountlink'          => 'ནང་འཛུལ།',
 
+# Edit page toolbar
+'bold_sample'     => 'ཡིག་གཟུགས་སྦོམ་པོ།',
+'bold_tip'        => 'ཡིག་གཟུགས་སྦོམ་པོ།',
+'italic_sample'   => 'ཡིག་གཟུགས་གསེགས་མ།',
+'italic_tip'      => 'ཡིག་གཟུགས་གསེག་མ།',
+'link_sample'     => 'མཚམས་སྦྱོར་ཁ་ཡིག',
+'extlink_sample'  => 'Http://www.example.com མཚམས་སྦྱོར་ཁ་བྱང་།',
+'headline_sample' => 'འགོ་བརྗོད་ཡིག་གཟུགས།',
+'nowiki_sample'   => 'སྒྲིག་ཆས་མེད་པའི་ཡི་གེ་འདྲེན་པ།',
+'nowiki_tip'      => 'ཝེ་ཁེའི་སྒྲིག་ཆས་འདོར་བ།',
+
 # Edit pages
 'summary'            => 'བསྡུས་དོན།:',
 'subject'            => 'འགོ་བརྗོད།',
@@ -193,7 +208,8 @@ $messages = array(
 'showpreview'        => 'སྔ་མ་སྟོན་ཅིག',
 'showdiff'           => 'བཟོས་བཅོས་སྟོན།',
 'loginreqlink'       => 'ནང་འཛུལ།',
-'newarticle'         => '(ཎེཝ་)',
+'newarticle'         => '(གསར་བ)',
+'editing'            => '$1རྩོམ་སྒྲིག་བྱེད་བཞིན་པ།',
 'template-protected' => 'སྲུང་སྐྱོབ་འོག་ཡོད་པ།',
 
 # History pages
@@ -219,12 +235,14 @@ $messages = array(
 'searchresults'             => 'རྙེད་དོན།',
 'searchresults-title'       => '$1བཙལ་འབྲས།',
 'searchsubtitle'            => 'ཁྱེད་ཀྱིས་\'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all pages that link to "$1"]])བཙལ་འདུག',
-'notitlematches'            => 'ཤོག་ངོས་འགོ་བརྗོད་འདྲ་འཚུངས་མི་འདུག',
+'notitlematches'            => 'ཤོག་ངོས་འགོ་བརྗོད་འདྲ་མཚུངས་མི་འདུག',
 'nextn'                     => 'རྗེས་མ་$1',
 'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3)ལ་ལྟ་བ།',
 'search-result-size'        => 'རྙེད་དོན།',
 'search-section'            => '（ཚན་པ $1)',
 'search-suggest'            => '$1 ལ་ཟེར་བ་ཡིན་ནམ།',
+'search-interwiki-default'  => '$1ལས་རྙེད་པ།',
+'search-interwiki-more'     => '（དེ་ལས་མང་བ།）',
 'search-mwsuggest-enabled'  => 'བསླབ་བྱ་ཡོད།',
 'search-mwsuggest-disabled' => 'བསླབ་བྱ་མེད།',
 'powersearch'               => 'ཞིབ་འཚོལ།',
@@ -240,13 +258,21 @@ $messages = array(
 'username'          => 'དྲ་མིང་།:',
 'email'             => 'དྲ་འཕྲིན།',
 
+# Groups
+'group-sysop' => 'ལྟ་སྐྱོང་བ།',
+
+'grouppage-sysop' => '{{ns:project}}:ལྟ་སྐྱོང་བ།',
+
 # Recent changes
-'recentchanges'   => 'ཉེ་བའི་བཟོ་བཅོས།',
-'diff'            => 'མི་འདྲ་ས།',
-'hist'            => 'རྗེས་ཐོ།',
-'show'            => 'སྟོན་ཅིག',
-'minoreditletter' => 'ཉུང།',
-'newpageletter'   => 'ཤོག་གསར།',
+'recentchanges'    => 'ཉེ་བའི་བཟོ་བཅོས།',
+'rcshowhidemine'   => '$1ངའི་རྩོམ་སྒྲིག',
+'diff'             => 'མི་འདྲ་ས།',
+'hist'             => 'རྗེས་ཐོ།',
+'hide'             => 'སྦས་བ།',
+'show'             => 'སྟོན་ཅིག',
+'minoreditletter'  => 'ཉུང།',
+'newpageletter'    => 'ཤོག་གསར།',
+'rc-enhanced-hide' => 'ཞིབ་ཕྲ་སྦས་བ།',
 
 # Recent changes linked
 'recentchangeslinked'         => 'འབྲེལ་བའི་བཟོ་བཅོས།',
@@ -283,7 +309,11 @@ $messages = array(
 
 # Special:AllPages
 'allpages'       => 'དྲ་ངོས་ཡོངས།',
+'alphaindexline' => '$1ནས$2བར།',
 'allpagessubmit' => 'སོང་།',
+
+# Special:ListGroupRights
+'listgrouprights-members' => 'ཁོངས་མིའི་རེའུ་མིག',
 
 # E-mail user
 'emailuser'    => 'བཀོལ་མི་འདིར་དྲ་འཕྲིན་སྐུར་བ།',
@@ -291,12 +321,17 @@ $messages = array(
 
 # Watchlist
 'watchlist'     => 'ངའི་མཉམ་འཇོག་ཐོ།',
+'mywatchlist'   => 'ངའི་མཉམ་འཇོག',
 'watchnologin'  => 'ནང་འཛུལ་བྱས་མེད།',
 'watch'         => 'མཉམ་འཇོག',
 'watchthispage' => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'མཉམ་འཇོག་ཏུ་འཇུག་བཞིན་པ་་་',
+'unwatching' => 'མཉམ་འཇོག་ལས་འདོར་བཞིན་པ་་་',
+
 # Delete
-'deletedarticle' => '"[[$1]]"གསུབས་ཟིན།',
+'deletedarticle' => '"[[$1]]"བསུབས་ཟིན།',
 
 # Restrictions (nouns)
 'restriction-edit' => 'རྩོམ་སྒྲིག',
@@ -342,8 +377,10 @@ $messages = array(
 'tooltip-pt-logout'              => 'ཕྱིར་འབུད།',
 'tooltip-ca-talk'                => 'གྲོས་མོལ།',
 'tooltip-ca-edit'                => 'ཁྱེད་ཀྱིས་དྲ་ངོས་འདི་རྩོམ་སྒྲིག་བྱེད་ཆོག ཉར་ཚགས་མ་བྱས་པའི་སྔོན་དུ་ཐེབ་གཅུ་སྒང་མ་སྤྱོད་རོགས།',
+'tooltip-ca-viewsource'          => 'ཤོག་ངོས་འདི་སྲུང་སྐྱོབ་འོག་ཡོད། ཁྱེད་ཀྱིས་འདིའི་འབྱུང་ཁོངས་ལྟ་ཆོག',
 'tooltip-ca-history'             => 'བཟོ་བཅོས་སྔ་མ།',
 'tooltip-ca-move'                => 'ཤོག་ངོས་འདི་སྤོར་བ།',
+'tooltip-ca-unwatch'             => 'མཉམ་འཇོག་ཐོ་ལས་འདོར་བ།',
 'tooltip-search'                 => 'ལག་ཆ་འཚོལ།',
 'tooltip-search-go'              => 'སོང་།',
 'tooltip-search-fulltext'        => 'ཚིག་འདི་འཚོལ།',
@@ -370,6 +407,7 @@ $messages = array(
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'ཡོངས་རྫོགས།',
+'monthsall'     => 'ཡོངས་རྫོགས།',
 
 # Multipage image navigation
 'imgmultigo' => 'སོང་།!',

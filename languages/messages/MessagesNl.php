@@ -761,6 +761,8 @@ Schakel die in en meld daarna aan met uw nieuwe gebruikersnaam en wachtwoord.',
 'nocookieslogin'             => '{{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.
 Cookies zijn uitgeschakeld in uw browser.
 Schakel deze optie aan en probeer het opnieuw.',
+'nocookiesfornew'            => 'De gebruiker is niet gemaakt omdat de bron niet bevestigd kon worden.
+Zorg ervoor dat u cookies hebt ingeschakeld, herlaad deze pagina en probeer het opnieuw.',
 'noname'                     => 'U hebt geen geldige gebruikersnaam opgegeven.',
 'loginsuccesstitle'          => 'Aanmelden geslaagd',
 'loginsuccess'               => "'''U bent nu aangemeld bij {{SITENAME}} als \"\$1\".'''",
@@ -2120,6 +2122,7 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'pager-newer-n'           => '{{PLURAL:$1|1 nieuwere|$1 nieuwere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 oudere|$1 oudere}}',
 'suppress'                => 'Toezicht',
+'querypage-disabled'      => 'Deze speciale pagina is uitgeschakeld om performanceredenen.',
 
 # Book sources
 'booksources'               => 'Boekinformatie',
@@ -3583,6 +3586,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'version-specialpages'             => "Speciale pagina's",
 'version-parserhooks'              => 'Parserhooks',
 'version-variables'                => 'Variabelen',
+'version-antispam'                 => 'Spampreventie',
 'version-skins'                    => 'Vormgevingen',
 'version-other'                    => 'Overige',
 'version-mediahandlers'            => 'Mediaverwerkers',

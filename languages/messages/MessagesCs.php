@@ -2042,6 +2042,7 @@ Uvědomte si, že jiné webové stránky mohou na soubor odkazovat pomocí pří
 'pager-newer-n'           => '{{PLURAL:$1|1 novější|$1 novější|$1 novějších}}',
 'pager-older-n'           => '{{PLURAL:$1|1 starší|$1 starší|$1 starších}}',
 'suppress'                => 'Dozor',
+'querypage-disabled'      => 'Tato speciální stránka je z výkonnostních důvodů vypnuta.',
 
 # Book sources
 'booksources'               => 'Zdroje knih',

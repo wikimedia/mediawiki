@@ -3045,7 +3045,7 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'شما نمی‌توانید به تغییرات انجام شده توسط خودتان برچسب گشت بزنید.',
 
 # Patrol log
-'patrol-log-page'      => 'سیاههٔ گشت',
+'patrol-log-page'      => 'سیاههٔ نگهبانی',
 'patrol-log-header'    => 'این سیاهه‌ای از ویرایش‌های گشت‌خورده است.',
 'patrol-log-line'      => 'به $1 از $2 برچسب گشت زد $3',
 'patrol-log-auto'      => '(خودکار)',

@@ -1818,6 +1818,7 @@ Prošu wobkedźbuj, zo druhe websydła móža na dataju z direktnym URL wotkazow
 'pager-newer-n'           => '{{PLURAL:$1|nowši 1|nowšej $1|nowše $1|nowšich $1}}',
 'pager-older-n'           => '{{PLURAL:$1|starši 1|staršej $1|starše $1|staršich $1}}',
 'suppress'                => 'Dohladowanje',
+'querypage-disabled'      => 'Tuta specialna strona je z wukonowych přičinow znjemóžnjena.',
 
 # Book sources
 'booksources'               => 'Pytanje po ISBN',

@@ -1861,6 +1861,7 @@ Denkt w.e.g. drunn datt aner Internetsäiten dëse Fichier mat enger direkter UR
 'pager-newer-n'           => '{{PLURAL:$1|nächsten|nächst $1}}',
 'pager-older-n'           => '{{PLURAL:$1|vireg|vireg $1}}',
 'suppress'                => 'Iwwersiicht',
+'querypage-disabled'      => 'Dës Spezialsäit ass aus Performance-Grënn ausgeschalt.',
 
 # Book sources
 'booksources'               => 'Bicherreferenzen',

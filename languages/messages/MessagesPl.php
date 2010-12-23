@@ -1983,6 +1983,7 @@ Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich a
 'pager-newer-n'           => '{{PLURAL:$1|1 nowszy|$1 nowsze|$1 nowszych}}',
 'pager-older-n'           => '{{PLURAL:$1|1 starszy|$1 starsze|$1 starszych}}',
 'suppress'                => 'Rewizor',
+'querypage-disabled'      => 'Ta strona specjalna została wyłączona ze względu na ograniczenia wydajności.',
 
 # Book sources
 'booksources'               => 'Książki',

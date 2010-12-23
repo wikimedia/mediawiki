@@ -1833,6 +1833,7 @@ Pšosym glědaj na to, až druge websedła móžu k drugej dataji z direktnym UR
 'pager-newer-n'           => '{{PLURAL:$1|nowšy 1|nowšej $1|nowše $1|nowšych $1}}',
 'pager-older-n'           => '{{PLURAL:$1|staršy 1|staršej $1|starše $1|staršych $1}}',
 'suppress'                => 'Doglědowanje',
+'querypage-disabled'      => 'Toś ten specialny bok jo z wugbaśowych pśicynow znjemóžnjony.',
 
 # Book sources
 'booksources'               => 'Pytanje pó ISBN',
