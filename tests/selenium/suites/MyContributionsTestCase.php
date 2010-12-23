@@ -32,45 +32,32 @@ class MyContributionsTestCase extends SeleniumTestCase {
     // Verify user contributions
     public function testRecentChangesAvailability() {
 
-        $newPage = "mypage999";
-        $displayName = "Mypage999";
-
-        $this->open( $this->getUrl() .
-                '/index.php?title=Main_Page&action=edit' );
-
-        $this->type( "searchInput", $newPage);
-        $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( "60000" );
-        $this->click( "link=".$displayName );
-        $this->waitForPageToLoad( "600000" );
-        $this->type( "wpTextbox1", $newPage." text" );
-        $this->click( "wpSave" );
-        $this->waitForPageToLoad( "60000" );
-
+        $newPage = $this->createNewTestPage( "MyContributionsTest" );
+        
         // Verify My contributions Link available
-        $this->assertTrue($this->isElementPresent( "link=My contributions" ));
+        $this->assertTrue($this->isElementPresent( "link=Contributions" ));
 
-        $this->click( "link=My contributions" );
-        $this->waitForPageToLoad( "30000" );
+        
+        $this->click( "link=Contributions" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify recent page adding available on My Contributions list
-        $this->assertEquals( $displayName, $this->getText( "link=".$displayName ));
+        $this->assertEquals( $newPage, $this->getText( "link=".$newPage ));
 
-        $this->type( "searchInput", $newPage );
-        $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( "30000" );
-
-        $this->click( "link=Edit" );
-        $this->waitForPageToLoad( "30000" );
-        $this->type( "wpTextbox1", $newPage." text changed" );
-        $this->click( "wpSave" );
-        $this->waitForPageToLoad( "30000" );
-        $this->click( "link=My contributions" );
-        $this->waitForPageToLoad( "30000" );
+        $this->type( INPUT_SEARCH_BOX, $newPage );
+        $this->click( BUTTON_SEARCH );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        
+        $this->click( LINK_EDIT );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->type( TEXT_EDITOR, $newPage . " text changed" );
+        $this->click( BUTTON_SAVE );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->click( "link=Contributions" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify recent page changes available on My Contributions
-        $this->assertTrue($this->isTextPresent($displayName." ‎ (top)"));
-        $this->deletePage($newPage);
+        $this->assertTrue( $this->isTextPresent( $newPage ) );
     }
 }
 
