@@ -811,9 +811,9 @@ class EnhancedChangesList extends ChangesList {
 
 		$tl = "<span class='collapsible-expander'>"
 			. "<span class='mw-rc-openarrow'>"
-			. "<a href='#' title='$expandTitle'>{$this->arrow( 'd', '-', wfMsg( 'rc-enhanced-hide' ) )}</a>"
+			. "<a href='#' title='$expandTitle'>{$this->sideArrow()}</a>"
 			. "</span><span class='mw-rc-closearrow'>"
-			. "<a href='#' title='$closeTitle'>{$this->arrow( 'd', '-', wfMsg( 'rc-enhanced-hide' ) )}</a>"
+			. "<a href='#' title='$closeTitle'>{$this->downArrow()}</a>"
 			. "</span></span>";
 		$r .= "<td>$tl</td>";
 
@@ -1014,6 +1014,34 @@ class EnhancedChangesList extends ChangesList {
 	}
 
 	/**
+	 * Generate HTML for a right- or left-facing arrow,
+	 * depending on language direction.
+	 * @return String: HTML <img> tag
+	 */
+	protected function sideArrow() {
+		global $wgContLang;
+		$dir = $wgContLang->isRTL() ? 'l' : 'r';
+		return $this->arrow( $dir, '+', wfMsg( 'rc-enhanced-expand' ) );
+	}
+
+	/**
+	 * Generate HTML for a down-facing arrow
+	 * depending on language direction.
+	 * @return String: HTML <img> tag
+	 */
+	protected function downArrow() {
+		return $this->arrow( 'd', '-', wfMsg( 'rc-enhanced-hide' ) );
+	}
+
+	/**
+	 * Generate HTML for a spacer image
+	 * @return String: HTML <img> tag
+	 */
+	protected function spacerArrow() {
+		return $this->arrow( '', codepointToUtf8( 0xa0 ) ); // non-breaking space
+	}
+
+	/**
 	 * Enhanced RC ungrouped line.
 	 * @return String: a HTML formated line (generated using $r)
 	 */
@@ -1038,7 +1066,7 @@ class EnhancedChangesList extends ChangesList {
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
-		$r .= '<td class="mw-enhanced-rc">' . $this->arrow( '', codepointToUtf8( 0xa0 ) );
+		$r .= '<td class="mw-enhanced-rc">' . $this->spacerArrow();
 		# Flag and Timestamp
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&#160;&#160;&#160;&#160;'; // 4 flags -> 4 spaces
