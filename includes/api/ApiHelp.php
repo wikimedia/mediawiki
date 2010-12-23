@@ -93,6 +93,11 @@ class ApiHelp extends ApiBase {
 		$result->addValue( null, $this->getModuleName(), $r );
 	}
 
+	/**
+	 * @param  $module ApiBase
+	 * @param  $type String What type of request is this? e.g. action, query, list, prop, meta, format
+	 * @return string
+	 */
 	private function buildModuleHelp( $module, $type ) {
 		$msg = ApiMain::makeHelpMsgHeader( $module, $type );
 
