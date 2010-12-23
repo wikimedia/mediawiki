@@ -867,6 +867,12 @@ class ApiMain extends ApiBase {
 		return $msg;
 	}
 
+	/**
+	 * @static
+	 * @param  $module ApiBase
+	 * @param  $paramName String What type of request is this? e.g. action, query, list, prop, meta, format
+	 * @return string
+	 */
 	public static function makeHelpMsgHeader( $module, $paramName ) {
 		$modulePrefix = $module->getModulePrefix();
 		if ( strval( $modulePrefix ) !== '' ) {
