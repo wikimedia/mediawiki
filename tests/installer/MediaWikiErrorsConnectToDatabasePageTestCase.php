@@ -28,7 +28,7 @@
  */
 
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 09 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -38,21 +38,22 @@ require_once 'MediaWikiInstallationCommonFunction.php';
 
 class MediaWikiErrorsConnectToDatabasePageTestCase extends MediaWikiInstallationCommonFunction {
 
-    function setUp(){
+    function setUp() {
         parent::setUp();
     }
 
     // Verify warning messages for the 'Connet to database' page
-    public function testErrorsConnectToDatabasePage(){
+    public function testErrorsConnectToDatabasePage() {
 
         parent::navigateConnetToDatabasePage();
 
         // Verify warning mesage for invalid database host
         $this->type( "mysql_wgDBserver", INVALID_DB_HOST );
         parent::clickContinueButton();
-        $this->assertEquals( "DB connection error: php_network_getaddresses: getaddrinfo failed: No such host is known. (".INVALID_DB_HOST.").Check the host, username and password below and try again.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
-
+        $this->assertEquals( "DB connection error: php_network_getaddresses: getaddrinfo failed: No such host is known. (".INVALID_DB_HOST.").",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[1]" ));
+        $this->assertEquals( "Check the host, username and password below and try again.",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[2]" ));
         // Verify warning message for the blank database host
         $this->type( "mysql_wgDBserver", "" );
         parent::clickContinueButton();
@@ -65,8 +66,8 @@ class MediaWikiErrorsConnectToDatabasePageTestCase extends MediaWikiInstallation
         // Verify warning message for the invalid database name
         $this->type( "mysql_wgDBname", INVALID_DB_NAME );
         parent::clickContinueButton();
-        $this->assertEquals( "Invalid database name \"".INVALID_DB_NAME."\".Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+        $this->assertEquals( "Invalid database name \"".INVALID_DB_NAME."\". Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p" ));
 
         // Verify warning message for the blank database name
         $this->type( "mysql_wgDBname", "");
@@ -80,7 +81,7 @@ class MediaWikiErrorsConnectToDatabasePageTestCase extends MediaWikiInstallation
         // Verify warning message for the invalid databaase prefix
         $this->type( "mysql_wgDBprefix", INVALID_DB_PREFIX );
         parent::clickContinueButton();
-        $this->assertEquals( "Invalid database prefix \"".INVALID_DB_PREFIX."\".Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).",
+        $this->assertEquals( "Invalid database prefix \"".INVALID_DB_PREFIX."\". Use only ASCII letters (a-z, A-Z), numbers (0-9) and underscores (_).",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
 
         // Valid Database prefix
@@ -89,15 +90,18 @@ class MediaWikiErrorsConnectToDatabasePageTestCase extends MediaWikiInstallation
         // Verify warning message for the invalid database user name
         $this->type( "mysql__InstallUser", INVALID_DB_USER_NAME );
         parent::clickContinueButton();
-        $this->assertEquals( "DB connection error: Access denied for user '".INVALID_DB_USER_NAME."'@'localhost' (using password: NO) (localhost).Check the host, username and password below and try again.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+        $this->assertEquals( "DB connection error: Access denied for user '".INVALID_DB_USER_NAME."'@'localhost' (using password: NO) (localhost).",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[1]" ));
+        $this->assertEquals( "Check the host, username and password below and try again.",
+                $this->getText("//div[@id='bodyContent']/div/div/div[2]/div[2]/p[2]"));
 
-
-        // Verify warning message for the invalid database user name
+        // Verify warning message for the blank database user name
         $this->type( "mysql__InstallUser", "" );
         parent::clickContinueButton();
-        $this->assertEquals( "DB connection error: Access denied for user 'SYSTEM'@'localhost' (using password: NO) (localhost).Check the host, username and password below and try again.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+        $this->assertEquals( "DB connection error: Access denied for user 'SYSTEM'@'localhost' (using password: NO) (localhost).",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[1]" ));
+        $this->assertEquals( "Check the host, username and password below and try again.",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[2]" ));
 
         // Valid Database username
         $this->type( "mysql__InstallUser",  VALID_DB_USER_NAME );
@@ -105,15 +109,20 @@ class MediaWikiErrorsConnectToDatabasePageTestCase extends MediaWikiInstallation
         // Verify warning message for the invalid password
         $this->type( "mysql__InstallPassword", INVALID_DB_PASSWORD );
         parent::clickContinueButton();
-        $this->assertEquals( "DB connection error: Access denied for user 'root'@'localhost' (using password: YES) (localhost).Check the host, username and password below and try again.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+
+        $this->assertEquals( "DB connection error: Access denied for user 'root'@'localhost' (using password: YES) (localhost).",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[1]" ));
+        $this->assertEquals( "Check the host, username and password below and try again.",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[2]" ));
 
         // Verify warning message for the invalid username and password
         $this->type( "mysql__InstallUser", INVALID_DB_USER_NAME );
         $this->type( "mysql__InstallPassword", INVALID_DB_PASSWORD );
         parent::clickContinueButton();
-        $this->assertEquals( "DB connection error: Access denied for user '".INVALID_DB_USER_NAME."'@'localhost' (using password: YES) (localhost).Check the host, username and password below and try again.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+        $this->assertEquals( "DB connection error: Access denied for user '".INVALID_DB_USER_NAME."'@'localhost' (using password: YES) (localhost).",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[1]" ));
+        $this->assertEquals( "Check the host, username and password below and try again.",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]/p[2]" ));
 
         // Valid username and valid password
         $this->type( "mysql__InstallUser", VALID_DB_USER_NAME );

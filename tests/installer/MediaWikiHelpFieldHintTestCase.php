@@ -33,17 +33,17 @@
  * Version        : MediaWiki 1.18alpha
 */
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction {
 
-    function setUp(){
+    function setUp() {
         parent::setUp();
     }
 
 
     // Verify help field availability for the fields
-    public function testMySQLConnectToDatabaseFieldHint(){
+    public function testMySQLConnectToDatabaseFieldHint() {
 
         parent::navigateConnetToDatabasePage();
 
@@ -75,7 +75,7 @@ class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction
     }
 
 
-    public function testSQLiteConnectToDatabaseFieldHint(){
+    public function testSQLiteConnectToDatabaseFieldHint() {
 
         parent::navigateConnetToDatabasePage();
         $this->click( "DBType_sqlite" );
@@ -91,7 +91,7 @@ class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction
     }
 
 
-    public function testDatabaseSettingsFieldHint(){
+    public function testDatabaseSettingsFieldHint() {
 
         $databaseName = DB_NAME_PREFIX."_db_field";
         parent::navigateDatabaseSettingsPage($databaseName);
@@ -109,7 +109,7 @@ class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction
     }
 
 
-    public function testNameFieldHint(){
+    public function testNameFieldHint() {
 
         $databaseName = DB_NAME_PREFIX."_name_field";
         parent::navigateNamePage( $databaseName );

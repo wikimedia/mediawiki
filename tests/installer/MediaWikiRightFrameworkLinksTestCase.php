@@ -28,7 +28,7 @@
  */
 
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 14, 15, 16, 17 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -40,15 +40,15 @@ require_once 'MediaWikiInstallationCommonFunction.php';
 */
 
 
-class MediaWikiRightFrameworkLinksTestCase extends MediaWikiInstallationCommonFunction{
+class MediaWikiRightFrameworkLinksTestCase extends MediaWikiInstallationCommonFunction {
 
-    function setUp(){
+    function setUp() {
         parent::setUp();
     }
 
-    public function testLinksAvailability(){
-        
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+    public function testLinksAvailability() {
+
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
 
         // Verify 'Read me' link availability
         $this->assertTrue($this->isElementPresent( "link=Read me" ));
@@ -60,9 +60,9 @@ class MediaWikiRightFrameworkLinksTestCase extends MediaWikiInstallationCommonFu
         $this->assertTrue($this->isElementPresent( "link=Copying" ));
     }
 
-    public function testPageNavigation(){
+    public function testPageNavigation() {
 
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
 
         // Navigate to the 'Read me' page
         $this->click( "link=Read me" );

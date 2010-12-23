@@ -27,7 +27,7 @@
  *
  */
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 18 - 27 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -40,12 +40,11 @@ require_once 'MediaWikiInstallationCommonFunction.php';
 class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction {
 
     function setUp() {
-        $this->setBrowser("*chrome");
-        $this->setBrowserUrl("http://localhost:".PORT."/".DIRECTORY_NAME."/");
+        parent::setUp();
     }
 
- 
-    public function testInitialPageUI(){
+
+    public function testInitialPageUI() {
 
         parent::navigateInitialpage();
 
@@ -66,7 +65,7 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
     }
 
 
-    public function testlanguagePageUI(){
+    public function testlanguagePageUI() {
 
         parent::navigateLanguagePage();
 
@@ -89,7 +88,7 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
     }
 
 
-    public function testWelcometoMediaWikiUI(){
+    public function testWelcometoMediaWikiUI() {
 
         parent::navigateWelcometoMediaWikiPage();
 
@@ -103,7 +102,7 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
     }
 
 
-    public function testConnectToDatabaseUI(){
+    public function testConnectToDatabaseUI() {
 
         parent::navigateConnetToDatabasePage();
 
@@ -159,7 +158,7 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
 
 
 
-    public function testDatabaseSettingsUI(){
+    public function testDatabaseSettingsUI() {
 
         $databaseName = DB_NAME_PREFIX."_db_settings_UI";
         parent::navigateDatabaseSettingsPage( $databaseName );
@@ -245,7 +244,7 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
         $this->assertEquals( "on", $this->getValue( "mysql__MysqlCharset_binary" ));
     }
 
-    public function testNamePageUI(){
+    public function testNamePageUI() {
 
         $databaseName = DB_NAME_PREFIX."_name_UI";
         parent::navigateNamePage($databaseName);
@@ -330,7 +329,7 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
         $this->assertTrue( $this->isElementPresent( "link=release announcements mailing list" ));
 
         // Message displayed
-        $this->assertEquals( "You are almost done!You can now skip the remaining configuration and install the wiki right now.",
+        $this->assertEquals( "You are almost done! You can now skip the remaining configuration and install the wiki right now.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[4]/div[2]" ));
 
         // 'Ask me more questions.' radio button available
@@ -352,8 +351,8 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
     }
 
 
-    
-    public function testOptionPageUI(){
+
+    public function testOptionPageUI() {
 
         $databaseName = DB_NAME_PREFIX."_options_UI";
         parent::navigateOptionsPage($databaseName);
@@ -405,34 +404,40 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
 
 
 
-    public function testInstallPageUI(){
+    public function testInstallPageUI() {
 
         $databaseName = DB_NAME_PREFIX."_install_UI";
         parent::navigateInstallPage( $databaseName );
 
         // Verify installation done messages display
-        $this->assertEquals( "Install", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
-        $this->assertEquals( "Setting up database... done", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[1]" ));
-        $this->assertEquals( "Creating database user... done", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[2]" ));
-        $this->assertEquals( "Creating tables... done", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[3]" ));
-        $this->assertEquals( "Populating default interwiki table... done", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[4]" ));
-        $this->assertEquals( "Generating secret key... done", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[5]" ));
-        $this->assertEquals( "Generating default upgrade key... done", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[6]" ));
-        $this->assertEquals( "Creating administrator user account... done", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[7]" ));
-        $this->assertEquals( "Creating main page with default content... done", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[8]" ));
+        $this->assertEquals( "Setting up database... done",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[1]" ));
+        $this->assertEquals( "Creating tables... done",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[2]" ));
+        $this->assertEquals( "Creating database user... done",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[3]" ));
+        $this->assertEquals( "Populating default interwiki table... done",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[4]" ));
+        $this->assertEquals( "Generating secret key... done",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[5]" ));
+        $this->assertEquals( "Generating default upgrade key... done",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[6]" ));
+        $this->assertEquals( "Creating administrator user account... done",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[7]" ));
+        $this->assertEquals( "Creating main page with default content... done",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[8]" ));
     }
 
 
 
-    public function testCompletePageUI(){
+    public function testCompletePageUI() {
 
         $databaseName = DB_NAME_PREFIX."_complete_UI";
         parent::navigateCompletePage( $databaseName );
 
         // 'Congratulations!' text display
-        $this->assertEquals( "Congratulations!",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/b" ));
-
+        $this->assertEquals("Congratulations!",
+                $this->getText("//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/p[1]/b"));
         // 'LocalSettings.php' generated message display
         $this->assertEquals( "The installer has generated a LocalSettings.php file. It contains all your configuration.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/p[2]" ));
@@ -446,12 +451,12 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
 
 
 
-    public function testRestartInstallation(){
-        
+    public function testRestartInstallation() {
+
         parent::navigateConnetToDatabasePage();
         $this->click( "link=Restart installation" );
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
-        
+
         // Restart installation' label should be available.
         $this->assertEquals( "Restart installation", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
 
@@ -467,7 +472,7 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
 
 
 
-    public function testMediaWikiLogoAvailability(){
+    public function testMediaWikiLogoAvailability() {
 
         $databaseName = DB_NAME_PREFIX."_mediawiki_logo";
         parent::navigateInitialpage();
@@ -506,17 +511,29 @@ class MediaWikiUserInterfaceTestCase extends MediaWikiInstallationCommonFunction
     }
 
 
-    public function testRightFramework(){
+    public function testRightFramework() {
 
         parent::navigateLanguagePage();
-        $this->assertEquals( "Language", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[1]/span" ));
-        $this->assertEquals( "Welcome to MediaWiki!", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[2]/span" ));
-        $this->assertEquals( "Connect to database", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[3]/span" ));
-        $this->assertEquals( "Upgrade existing installation", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[4]" ));
-        $this->assertEquals( "Database settings", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[5]/span" ));
-        $this->assertEquals( "Name", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[6]/span" ));
-        $this->assertEquals( "Options", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[7]/span" ));
-        $this->assertEquals( "Install", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[8]/span" ));
-        $this->assertEquals( "Complete!", $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[9]/span" ));
+        // Verfy right framework texts display
+        $this->assertEquals( "Language",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[1]" ));
+        $this->assertEquals( "Existing wiki",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[2]" ));
+        $this->assertEquals( "Welcome to MediaWiki!",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[3]" ));
+        $this->assertEquals( "Connect to database",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[4]" ));
+        $this->assertEquals( "Upgrade existing installation",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[5]" ));
+        $this->assertEquals( "Database settings",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[6]" ));
+        $this->assertEquals( "Name",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[7]" ));
+        $this->assertEquals( "Options",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[8]" ));
+        $this->assertEquals( "Install",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[9]" ));
+        $this->assertEquals( "Complete!",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[1]/ul[1]/li[10]/span" ));
     }
 }

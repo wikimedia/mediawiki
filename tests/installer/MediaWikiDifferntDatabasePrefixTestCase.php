@@ -27,7 +27,7 @@
  *
  */
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 02 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -38,16 +38,16 @@ require_once 'MediaWikiInstallationCommonFunction.php';
 
 class MediaWikiDifferntDatabasePrefixTestCase extends MediaWikiInstallationCommonFunction {
 
-    function setUp(){
+    function setUp() {
         parent::setUp();
     }
 
     // Install Mediawiki using 'MySQL' database type.
-    public function testDifferentDatabasePrefix(){
+    public function testDifferentDatabasePrefix() {
 
         $databaseName = DB_NAME_PREFIX."_db_prefix";
         parent::navigateInstallPage( $databaseName );
-        
+
         // To 'Options' page
         parent::clickBackButton();
 
@@ -84,9 +84,11 @@ class MediaWikiDifferntDatabasePrefixTestCase extends MediaWikiInstallationCommo
         // Verify already installed warning message
         $this->assertEquals( "Install",
                 $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
-        $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again.Please proceed to the next page.",
+        $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]" ));
+
         parent::clickContinueButton();
+        parent::completePageSuccessfull();
         $this->chooseCancelOnNextConfirmation();
         parent::restartInstallation();
     }

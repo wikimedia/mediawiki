@@ -33,7 +33,7 @@
  * Version        : MediaWiki 1.18alpha
 */
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunction {
 
@@ -42,7 +42,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
     }
 
     // Verify warning message for the 'Name' page
-    public function testErrorsNamePage(){
+    public function testErrorsNamePage() {
 
         $databaseName  = DB_NAME_PREFIX."_error_name";
 
@@ -73,7 +73,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->click( "config__NamespaceType_other" );
         $this->type( "config_wgMetaNamespace", INVALID_NAMESPACE );
         parent::clickContinueButton();
-        $this->assertEquals( "The specified namespace \"\" is invalid.Specify a different project namespace.",
+        $this->assertEquals( "The specified namespace \"\" is invalid. Specify a different project namespace.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
 
 
@@ -82,7 +82,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->click( "config__NamespaceType_other" );
         $this->type( "config_wgMetaNamespace" , "" );
         parent::clickContinueButton();
-        $this->assertEquals( "The specified namespace \"\" is invalid.Specify a different project namespace.",
+        $this->assertEquals( "The specified namespace \"\" is invalid. Specify a different project namespace.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
 
 
@@ -103,7 +103,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->assertEquals( "Enter an administrator username.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
 
-
+        $this->type( "config_wgSitename", VALID_WIKI_NAME );
         // Verify warning message for blank 'Password'
         $this->type( "config__AdminName", VALID_YOUR_NAME );
         $this->type( "config__AdminPassword", " " );
