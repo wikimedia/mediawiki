@@ -1073,7 +1073,7 @@ Please enable them, then log in with your new username and password.',
 'nocookieslogin'             => '{{SITENAME}} uses cookies to log in users.
 You have cookies disabled.
 Please enable them and try again.',
-'nocookiesfornew'            => "The user account wasn't created, as we couldn't confirm its source.
+'nocookiesfornew'            => "The user account was not created, as we could not confirm its source.
 Ensure you have cookies enabled, reload this page and try again.",
 'nocookiesforlogin'          => '{{int:nocookieslogin}}', # only translate this message to other languages if you have to change it
 'noname'                     => 'You have not specified a valid username.',
