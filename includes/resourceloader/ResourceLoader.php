@@ -66,7 +66,7 @@ class ResourceLoader {
 			), __METHOD__
 		);
 
-		// Set modules' dependecies		
+		// Set modules' dependencies
 		$modulesWithDeps = array();
 		foreach ( $res as $row ) {
 			$this->getModule( $row->md_module )->setFileDependencies( $skin,
@@ -117,7 +117,7 @@ class ResourceLoader {
 	 * 
 	 * @param $filter String: Name of filter to run
 	 * @param $data String: Text to filter, such as JavaScript or CSS text
-	 * @return String: Filtered data
+	 * @return String: Filtered data, or a comment containing an error message
 	 */
 	protected function filter( $filter, $data ) {
 		wfProfileIn( __METHOD__ );
@@ -151,13 +151,13 @@ class ResourceLoader {
 					$result = CSSMin::minify( $data );
 					break;
 			}
-		} catch ( Exception $exception ) {
-			throw new MWException( 'ResourceLoader filter error. ' . 
-				'Exception was thrown: ' . $exception->getMessage() );
-		}
 
-		// Save filtered text to Memcached
-		$cache->set( $key, $result );
+			// Save filtered text to Memcached
+			$cache->set( $key, $result );
+		} catch ( Exception $exception ) {
+			// Return exception as a comment
+			$result = "/*\n{$exception->__toString()}\n*/";
+		}
 
 		wfProfileOut( __METHOD__ );
 		
@@ -294,6 +294,7 @@ class ResourceLoader {
 		ob_start();
 
 		wfProfileIn( __METHOD__ );
+		$response = '';
 
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
@@ -320,7 +321,12 @@ class ResourceLoader {
 		}
 
 		// Preload information needed to the mtime calculation below
-		$this->preloadModuleInfo( array_keys( $modules ), $context );
+		try {
+			$this->preloadModuleInfo( array_keys( $modules ), $context );
+		} catch( Exception $e ) {
+			// Add exception to the output as a comment
+			$response .= "/*\n{$e->__toString()}\n*/";
+		}
 
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
 
@@ -328,12 +334,17 @@ class ResourceLoader {
 		// the last modified time
 		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $modules as $module ) {
-			// Bypass squid cache if the request includes any private modules
-			if ( $module->getGroup() === 'private' ) {
-				$smaxage = 0;
+			try {
+				// Bypass squid cache if the request includes any private modules
+				if ( $module->getGroup() === 'private' ) {
+					$smaxage = 0;
+				}
+				// Calculate maximum modified time
+				$mtime = max( $mtime, $module->getModifiedTime( $context ) );
+			} catch ( Exception $e ) {
+				// Add exception to the output as a comment
+				$response .= "/*\n{$e->__toString()}\n*/";
 			}
-			// Calculate maximum modified time
-			$mtime = max( $mtime, $module->getModifiedTime( $context ) );
 		}
 
 		wfProfileOut( __METHOD__.'-getModifiedTime' );
@@ -379,7 +390,7 @@ class ResourceLoader {
 		}
 		
 		// Generate a response
-		$response = $this->makeModuleResponse( $context, $modules, $missing );
+		$response .= $this->makeModuleResponse( $context, $modules, $missing );
 
 		// Capture any PHP warnings from the output buffer and append them to the
 		// response in a comment if we're in debug mode.
@@ -405,62 +416,73 @@ class ResourceLoader {
 	public function makeModuleResponse( ResourceLoaderContext $context, 
 		array $modules, $missing = array() ) 
 	{
+		$out = '';
 		if ( $modules === array() && $missing === array() ) {
 			return '/* No modules requested. Max made me put this here */';
 		}
 		
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
-			$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
+			//try {
+				$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
+			//} catch ( Exception $e ) {
+				// Add exception to the output as a comment
+			//	$out .= "/*\n{$e->__toString()}\n*/";
+			//}
 		} else {
 			$blobs = array();
 		}
 
 		// Generate output
-		$out = '';
 		foreach ( $modules as $name => $module ) {
-
 			wfProfileIn( __METHOD__ . '-' . $name );
+			try {
+				// Scripts
+				$scripts = '';
+				if ( $context->shouldIncludeScripts() ) {
+					$scripts .= $module->getScript( $context ) . "\n";
+				}
 
-			// Scripts
-			$scripts = '';
-			if ( $context->shouldIncludeScripts() ) {
-				$scripts .= $module->getScript( $context ) . "\n";
-			}
+				// Styles
+				$styles = array();
+				if ( $context->shouldIncludeStyles() ) {
+					$styles = $module->getStyles( $context );
+				}
 
-			// Styles
-			$styles = array();
-			if ( $context->shouldIncludeStyles() ) {
-				$styles = $module->getStyles( $context );
-			}
+				// Messages
+				$messagesBlob = isset( $blobs[$name] ) ? $blobs[$name] : '{}';
 
-			// Messages
-			$messagesBlob = isset( $blobs[$name] ) ? $blobs[$name] : '{}';
-
-			// Append output
-			switch ( $context->getOnly() ) {
-				case 'scripts':
-					$out .= $scripts;
-					break;
-				case 'styles':
-					$out .= self::makeCombinedStyles( $styles );
-					break;
-				case 'messages':
-					$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
-					break;
-				default:
-					// Minify CSS before embedding in mediaWiki.loader.implement call 
-					// (unless in debug mode)
-					if ( !$context->getDebug() ) {
-						foreach ( $styles as $media => $style ) {
-							$styles[$media] = $this->filter( 'minify-css', $style );
+				// Append output
+				switch ( $context->getOnly() ) {
+					case 'scripts':
+						$out .= $scripts;
+						break;
+					case 'styles':
+						$out .= self::makeCombinedStyles( $styles );
+						break;
+					case 'messages':
+						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
+						break;
+					default:
+						// Minify CSS before embedding in mediaWiki.loader.implement call
+						// (unless in debug mode)
+						if ( !$context->getDebug() ) {
+							foreach ( $styles as $media => $style ) {
+								$styles[$media] = $this->filter( 'minify-css', $style );
+							}
 						}
-					}
-					$out .= self::makeLoaderImplementScript( $name, $scripts, $styles, 
-						new XmlJsCode( $messagesBlob ) );
-					break;
-			}
+						$out .= self::makeLoaderImplementScript( $name, $scripts, $styles,
+							new XmlJsCode( $messagesBlob ) );
+						break;
+				}
+			} catch ( Exception $e ) {
+				// Add exception to the output as a comment
+				$out .= "/*\n{$e->__toString()}\n*/";
 
+				// Register module as missing
+				$missing[] = $name;
+				unset( $modules[$name] );
+			}
 			wfProfileOut( __METHOD__ . '-' . $name );
 		}
 
