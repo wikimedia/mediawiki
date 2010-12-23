@@ -476,10 +476,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/libs
 	'IEContentAnalyzer' => 'includes/libs/IEContentAnalyzer.php',
 	'Spyc' => 'includes/libs/spyc.php',
-	'sfFinder' => 'includes/libs/sfFinder.php',
-	'sfGlobToRegex' => 'includes/libs/sfFinder.php',
-	'sfNumberCompare' => 'includes/libs/sfFinder.php',
-	
+
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
 	'BitmapHandler_ClientOnly' => 'includes/media/Bitmap_ClientOnly.php',

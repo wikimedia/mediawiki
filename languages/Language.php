@@ -476,14 +476,14 @@ class Language {
 
 		global $IP;
 		$names = array();
-		
-		foreach( sfFinder::type('file')->maxdepth(0)->in( "$IP/languages/messages" ) as $file ) {
+		$dir = opendir( "$IP/languages/messages" );
+		while ( false !== ( $file = readdir( $dir ) ) ) {
 			$code = self::getCodeFromFileName( $file, 'Messages' );
 			if ( $code && isset( $allNames[$code] ) ) {
 				$names[$code] = $allNames[$code];
 			}
 		}
-		
+		closedir( $dir );
 		return $names;
 	}
 
