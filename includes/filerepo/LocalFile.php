@@ -599,9 +599,19 @@ class LocalFile extends File {
 		$dir = $this->getThumbPath();
 
 		if ( is_dir( $dir ) ) {
-			$files = array_map( 'basename', sfFinder::type('file')->maxdepth(0)->discard('.*')->in($dir) );
+			$handle = opendir( $dir );
+
+			if ( $handle ) {
+				while ( false !== ( $file = readdir( $handle ) ) ) {
+					if ( $file { 0 } != '.' ) {
+						$files[] = $file;
+					}
+				}
+
+				closedir( $handle );
+			}
 		}
-		
+
 		return $files;
 	}
 
