@@ -25,7 +25,7 @@
  *
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfFinder.class.php 30528 2010-08-04 16:25:14Z fabien $
  */
 class sfFinder
 {
