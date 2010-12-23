@@ -113,7 +113,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			'name' => 'pg-commit',
 			'callback' => array( $this, 'commitChanges' ),
 		);
-		$this->parent->addInstallStepFollowing( 'interwiki', $callback );
+		$this->parent->addInstallStep( $callback, 'interwiki' );
 	}
 
 	function setupDatabase() {
