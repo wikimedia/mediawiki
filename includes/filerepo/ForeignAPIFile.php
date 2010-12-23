@@ -168,16 +168,9 @@ class ForeignAPIFile extends File {
 		$files = array();
 		$dir = $this->getThumbPath( $this->getName() );
 		if ( is_dir( $dir ) ) {
-			$handle = opendir( $dir );
-			if ( $handle ) {
-				while ( false !== ( $file = readdir($handle) ) ) {
-					if ( $file{0} != '.'  ) {
-						$files[] = $file;
-					}
-				}
-				closedir( $handle );
-			}
+			$files = array_map( 'basename', sfFinder::type('file')->maxdepth(0)->discard('.*')->in($dir) );
 		}
+		
 		return $files;
 	}
 	
