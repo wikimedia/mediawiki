@@ -43,7 +43,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class ApiQuery extends ApiBase {
 
 	private $mPropModuleNames, $mListModuleNames, $mMetaModuleNames;
+
+	/**
+	 * @var ApiPageSet 
+	 */
 	private $mPageSet;
+
 	private $params, $redirects, $convertTitles;
 
 	private $mQueryPropModules = array(
