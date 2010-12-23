@@ -40,7 +40,7 @@ $('.collapsible').each( function(){
 				return false;
 			});
 	} else {
-		$expander = $j('<div class="collapsible-expander">')
+		var $expander = $j('<div class="collapsible-expander">')
 			.text( '[' + mediaWiki.msg( 'hide' ) + ']' )
 			.click(function(e, rmClass){
 				rmClass = !(rmClass == false);
@@ -55,9 +55,8 @@ $('.collapsible').each( function(){
 							: mediaWiki.msg( 'hide' )) + 
 						']'
 					);
-				return true;
-			})
-			.before('[').after(']');
+				return false;
+			});
 		if( $x.is('div.collapsible')){
 			$x.prepend($expander);
 		} else {
@@ -82,7 +81,7 @@ $('table.collapsible').live( 'mw-toggle-collapse', function(e, rmClass){
 	if( rmClass ){
 		$('table.collapsible',$(this)).andSelf().toggleClass('collapsed');
 	}
-	return true;
+	return false;
 });
 
 $('div.collapsible').live( 'mw-toggle-collapse', function(e, rmClass){
@@ -93,7 +92,16 @@ $('div.collapsible').live( 'mw-toggle-collapse', function(e, rmClass){
 	if( rmClass ){
 		$('div.collapsible',$(this)).andSelf().toggleClass('collapsed');
 	}
-	return true;
+	return false;
 });
 
-$('.collapsible.collapsed .collapsible-expander').trigger( 'click', [false] );
+/**
+ * Here we want to collapse .collapsible-expander buttons whose closest
+ * div.collapsible parent wants to be collapsed on first view
+ */
+$('.collapsible-expander').filter(function(){
+	return $(this).closest('.collapsible').is('.collapsible.collapsed')
+}).trigger( 'click', [false] );
+
+
+
