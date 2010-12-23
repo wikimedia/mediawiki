@@ -620,13 +620,13 @@ window.ts_makeSortable = function( table ) {
 	for ( var i = 0; i < firstRow.cells.length; i++ ) {
 		var cell = firstRow.cells[i];
 		if ( (' ' + cell.className + ' ').indexOf(' unsortable ') == -1 ) {
-			cell.innerHTML += '<a href="#" class="sortheader" '
+			$(cell).append ( '<a href="#" class="sortheader" '
 				+ 'onclick="ts_resortTable(this);return false;">'
 				+ '<span class="sortarrow">'
 				+ '<img src="'
 				+ ts_image_path
 				+ ts_image_none
-				+ '" alt="&darr;"/></span></a>';
+				+ '" alt="&darr;"/></span></a>');
 		}
 	}
 	if ( ts_alternate_row_colors ) {
@@ -1041,7 +1041,8 @@ window.runOnloadHook = function() {
 
 	updateTooltipAccessKeys( null );
 	setupCheckboxShiftClick();
-	sortables_init();
+
+	jQuery( document ).ready( sortables_init );
 
 	// Run any added-on functions
 	for ( var i = 0; i < onloadFuncts.length; i++ ) {

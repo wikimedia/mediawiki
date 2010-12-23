@@ -78,6 +78,10 @@ return array(
 	'jquery.localize' => array(
 		'scripts' => 'resources/jquery/jquery.localize.js'
 	),
+	'jquery.makeCollapsible' => array(
+		'scripts' => 'resources/jquery/jquery.makeCollapsible.js',
+		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
+	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
 		'styles' => 'resources/jquery/jquery.suggestions.css',
@@ -345,7 +349,7 @@ return array(
 	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
-		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client', 'jquery.placeholder' ),
+		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client', 'jquery.placeholder', 'jquery.makeCollapsible' ),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
 	'mediawiki.action.history' => array(
