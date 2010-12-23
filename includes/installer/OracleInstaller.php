@@ -152,7 +152,7 @@ class OracleInstaller extends DatabaseInstaller {
 				'callback' => array( $this, 'setupUser' ),
 			)
 		);
-		$this->parent->addInstallStepFollowing( "database", $callback );
+		$this->parent->addInstallStep( $callback, 'database' );
 	}
 
 
