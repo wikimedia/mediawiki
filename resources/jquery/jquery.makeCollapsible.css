@@ -1,0 +1,12 @@
+/* See also jQuery.makeCollapsible.js */
+.kr-collapsible-toggle {
+	float:right;
+}
+/* list-items go as wide as their parent element, don't float them inside list items */
+li .kr-collapsible-toggle {
+	float:none;
+}
+/* the added list item should have no list-style */
+.kr-collapsibile-toggle-li {
+	list-style:none;
+}
