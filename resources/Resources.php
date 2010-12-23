@@ -81,6 +81,7 @@ return array(
 	'jquery.makeCollapsible' => array(
 		'scripts' => 'resources/jquery/jquery.makeCollapsible.js',
 		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
+		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
 	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
