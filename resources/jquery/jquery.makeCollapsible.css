@@ -2,6 +2,14 @@
 .kr-collapsible-toggle {
 	float:right;
 }
+.kr-collapsible-toggle-hide,
+.kr-collapsible-toggle-hide a {
+	cursor:n-resize;
+}
+.kr-collapsible-toggle-show,
+.kr-collapsible-toggle-show a {
+	cursor:s-resize;
+}
 /* list-items go as wide as their parent element, don't float them inside list items */
 li .kr-collapsible-toggle {
 	float:none;
