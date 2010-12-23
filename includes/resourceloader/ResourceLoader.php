@@ -51,7 +51,7 @@ class ResourceLoader {
 	 * @param $modules Array: List of module names to preload information for
 	 * @param $context ResourceLoaderContext: Context to load the information within
 	 */
-	protected function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
+	public function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
 		if ( !count( $modules ) ) {
 			return; // or else Database*::select() will explode, plus it's cheaper!
 		}
@@ -82,14 +82,12 @@ class ResourceLoader {
 		
 		// Get message blob mtimes. Only do this for modules with messages
 		$modulesWithMessages = array();
-		$modulesWithoutMessages = array();
 		foreach ( $modules as $name ) {
 			if ( count( $this->getModule( $name )->getMessages() ) ) {
 				$modulesWithMessages[] = $name;
-			} else {
-				$modulesWithoutMessages[] = $name;
 			}
 		}
+		$modulesWithoutMessages = array_flip( $modules ); // Will be trimmed down by the loop below
 		if ( count( $modulesWithMessages ) ) {
 			$res = $dbr->select( 'msg_resource', array( 'mr_resource', 'mr_timestamp' ), array(
 					'mr_resource' => $modulesWithMessages,
@@ -98,9 +96,10 @@ class ResourceLoader {
 			);
 			foreach ( $res as $row ) {
 				$this->getModule( $row->mr_resource )->setMsgBlobMtime( $lang, $row->mr_timestamp );
+				unset( $modulesWithoutMessages[$row->mr_resource] );
 			}
-		}
-		foreach ( $modulesWithoutMessages as $name ) {
+		} 
+		foreach ( array_keys( $modulesWithoutMessages ) as $name ) {
 			$this->getModule( $name )->setMsgBlobMtime( $lang, 0 );
 		}
 	}
