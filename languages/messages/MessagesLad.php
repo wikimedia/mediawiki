@@ -173,7 +173,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Echar liña dêbbaxo de los linkes:',
+'tog-underline'               => 'Suliña los linkes:',
 'tog-highlightbroken'         => '<a href="" class="new">Este modo</a> amostrar los linkes de los artícůlos vazíos, (si no se ven: ansina<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Arrimar los paraggrafos de dos vandas',
 'tog-hideminor'               => 'Esconder ēddisyones chiquiticas en la hoja de los trocamientos freskos',

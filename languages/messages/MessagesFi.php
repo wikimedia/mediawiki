@@ -1944,6 +1944,7 @@ Huomaa, että muut verkkosivut saattavat viitata tiedostoon suoran URL:n avulla,
 'pager-newer-n'           => '← {{PLURAL:$1|1 uudempi|$1 uudempaa}}',
 'pager-older-n'           => '{{PLURAL:$1|1 vanhempi|$1 vanhempaa}} →',
 'suppress'                => 'Häivytys',
+'querypage-disabled'      => 'Tämä toimintosivu on poistettu käytöstä suorituskykysyistä.',
 
 # Book sources
 'booksources'               => 'Kirjalähteet',

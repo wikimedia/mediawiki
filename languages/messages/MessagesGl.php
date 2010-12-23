@@ -1965,6 +1965,7 @@ Por favor, teña en conta que outras páxinas web poden ligar cara a un ficheiro
 'pager-newer-n'           => '{{PLURAL:$1|unha posterior|$1 posteriores}}',
 'pager-older-n'           => '{{PLURAL:$1|unha anterior|$1 anteriores}}',
 'suppress'                => 'Supervisor',
+'querypage-disabled'      => 'Esta páxina especial está desactivada por razóns de rendemento.',
 
 # Book sources
 'booksources'               => 'Fontes bibliográficas',

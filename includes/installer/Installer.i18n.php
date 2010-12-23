@@ -1288,10 +1288,14 @@ chmod a+w $3</pre>',
  */
 $messages['bg'] = array(
 	'config-desc' => 'Инсталатор на MediaWiki',
-	'config-title' => 'Инсталация на MediaWiki $1',
+	'config-title' => 'Инсталиране на MediaWiki $1',
 	'config-information' => 'Информация',
 	'config-localsettings-key' => 'Ключ за надграждане:',
 	'config-localsettings-badkey' => 'Предоставеният ключ е неправилен.',
+	'config-upgrade-key-missing' => 'Беше открита съществуваща инсталация на МедияУики.
+За надграждане на съществуващата инсталация, необходимо е да се постави следният ред в края на файла LocalSettings.php:
+
+$1',
 	'config-session-error' => 'Грешка при създаване на сесия: $1',
 	'config-your-language' => 'Вашият език:',
 	'config-your-language-help' => 'Избиране на език за използване по време на инсталацията.',
@@ -1302,13 +1306,30 @@ $messages['bg'] = array(
 	'config-page-language' => 'Език',
 	'config-page-welcome' => 'Добре дошли в МедияУики!',
 	'config-page-dbconnect' => 'Свързване с базата от данни',
+	'config-page-upgrade' => 'Надграждане на съществуваща инсталация',
+	'config-page-dbsettings' => 'Настройки на базата от данни',
 	'config-page-name' => 'Име',
+	'config-page-options' => 'Настройки',
 	'config-page-install' => 'Инсталиране',
+	'config-page-complete' => 'Готово!',
 	'config-page-restart' => 'Рестартиране на инсталацията',
 	'config-page-upgradedoc' => 'Надграждане',
 	'config-page-existingwiki' => 'Съществуващо уики',
 	'config-restart' => 'Да, започване отначало',
+	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за Unicode-нормализация.',
+	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за Unicode-нормализация.',
+	'config-no-db' => 'Не може да бъде открит подходящ драйвер за база от данни!',
+	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] е инсталиран',
+	'config-apc' => '[http://www.php.net/apc APC] е инсталиран',
+	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] е инсталиран',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
+	'config-diff3-bad' => 'GNU diff3 не е намерен.',
 	'config-db-type' => 'Тип на базата от данни:',
+	'config-db-name' => 'Име на базата от данни:',
+	'config-db-install-account' => 'Потребителска сметка за инсталацията',
+	'config-db-username' => 'Потребителско име за базата от данни:',
+	'config-db-password' => 'Парола за базата от данни:',
+	'config-db-prefix' => 'Представка за таблиците в базата от данни:',
 	'config-support-info' => 'МедияУики поддържа следните системи за бази от данни:
 
 $1
@@ -1321,9 +1342,12 @@ $1
 	'config-header-oracle' => 'Настройки за Oracle',
 	'config-admin-password-mismatch' => 'Двете въведени пароли не съвпадат.',
 	'config-license-pd' => 'Обществено достояние',
+	'config-email-settings' => 'Настройки за е-поща',
 	'config-upload-enable' => 'Позволяне качването на файлове',
 	'config-upload-deleted' => 'Директория за изтритите файлове:',
 	'config-logo' => 'Адрес на логото:',
+	'config-cache-memcached' => 'Използване на Memcached (изисква допълнителни настройки и конфигуриране)',
+	'config-memcached-servers' => 'Memcached сървъри:',
 	'config-install-tables' => 'Създаване на таблиците',
 	'config-download-localsettings' => 'Изтегляне на LocalSettings.php',
 	'config-help' => 'помощ',
@@ -3517,7 +3541,6 @@ Dää cha dur Aalupfe vum Parameter <code>session.gc_maxlifetime</code> in dr Da
 Dr Inschtallationsvorgang nomol starte.',
 	'config-no-session' => 'Dyyni Sitzigsdate sin verlore gange!
 D Datei <code>php.ini</code> mueß prieft wäre un s mueß derby sichergstellt wäre, ass dr Parameter <code>session.save_path</code> uf s richtig Verzeichnis verwyyst.',
-	'config-session-path-bad' => 'Dyy <code>session.save_path</code> (<code>$1</code>) isch schyns nit giltig oder nit bschryybbar.',
 	'config-your-language' => 'Dyy Sproch:',
 	'config-your-language-help' => 'Bitte d Sproch uuswehle, wu bim Inschtallationsvorgang soll brucht wäre.',
 	'config-wiki-language' => 'Wikisproch:',
@@ -3611,6 +3634,7 @@ S Objäktcaching isch wäge däm nit aktiviert.",
 	'config-diff3-bad' => 'GNU diff3 isch nit gfunde wore.',
 	'config-imagemagick' => 'ImageMagick isch gfunde wore: <code>$1</code>.
 Miniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch.',
+	'config-help' => 'Hilf',
 );
 
 /** Hebrew (עברית)

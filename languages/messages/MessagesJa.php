@@ -35,6 +35,7 @@
  * @author Muttley
  * @author Mzm5zbC3
  * @author Ohgi
+ * @author Penn Station
  * @author Suisui
  * @author Vigorous action
  * @author W.CC
@@ -781,7 +782,7 @@ $2',
 クッキーが無効になっているようです。
 クッキーを有効にして、もう一度試してください。',
 'nocookiesfornew'            => '発信元を確認できなかったため、アカウントは作成されませんでした。
-クッキーが有効になっていることを確認の上、このページをリロードしてもう一度お試しください。',
+クッキーが有効になっていることを確認の上、このページをリロードしてもう一度行ってください。',
 'noname'                     => '利用者名を正しく指定していません。',
 'loginsuccesstitle'          => 'ログイン成功',
 'loginsuccess'               => "'''{{SITENAME}}に「$1」としてログインしました。'''",
@@ -2120,6 +2121,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'pager-newer-n'           => '以後の$1件',
 'pager-older-n'           => '以前の$1件',
 'suppress'                => '秘匿する',
+'querypage-disabled'      => 'パフォーマンスに悪影響を与えるおそれがあるため、この特別ページは無効になっています。',
 
 # Book sources
 'booksources'               => '書籍情報源',
@@ -3092,7 +3094,7 @@ $1',
 'file-info-size'       => '（$1×$2ピクセル、ファイルサイズ：$3、MIMEタイプ：$4）',
 'file-nohires'         => '<small>高解像度版はありません。</small>',
 'svg-long-desc'        => '（SVGファイル、$1×$2ピクセル、ファイルサイズ：$3）',
-'show-big-image'       => '高解像度での画像',
+'show-big-image'       => '最高解像度での画像',
 'show-big-image-thumb' => '<small>このプレビューのサイズ：$1×$2ピクセル</small>',
 'file-info-gif-looped' => 'ループします',
 'file-info-gif-frames' => '$1フレーム',
