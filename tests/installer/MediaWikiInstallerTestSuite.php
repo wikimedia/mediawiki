@@ -30,18 +30,19 @@
 require_once 'PHPUnit/Framework.php';
 require_once 'PHPUnit/Framework/TestSuite.php';
 
-require_once 'MediaWikiUserInterfaceTestCase.php';
-require_once 'MediaWikiButtonsAvailabilityTestCase.php';
-require_once 'MediaWikiHelpFieldHintTestCase.php';
-require_once 'MediaWikiRightFrameworkLinksTestCase.php';
-require_once 'MediaWikiRestartInstallationTestCase.php';
-require_once 'MediaWikiErrorsConnectToDatabasePageTestCase.php';
-require_once 'MediaWikiErrorsNamepageTestCase.php';
-require_once 'MediaWikiMySQLDataBaseTestCase.php';
-require_once 'MediaWikiMySQLiteDataBaseTestCase.php';
-require_once 'MediaWikiUpgradeExistingDatabaseTestCase.php';
-require_once 'MediaWikiDifferntDatabasePrefixTestCase.php';
-require_once 'MediaWikiDifferentDatabaseAccountTestCase.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiUserInterfaceTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiButtonsAvailabilityTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiHelpFieldHintTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiRightFrameworkLinksTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiRestartInstallationTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiErrorsConnectToDatabasePageTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiErrorsNamepageTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiMySQLDataBaseTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiMySQLiteDataBaseTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiUpgradeExistingDatabaseTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiDifferntDatabasePrefixTestCase.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiDifferentDatabaseAccountTestCase.php');
+
 
 $suite = new PHPUnit_Framework_TestSuite('ArrayTest');
 $result = new PHPUnit_Framework_TestResult;

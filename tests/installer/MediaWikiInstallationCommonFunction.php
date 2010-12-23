@@ -27,38 +27,41 @@
  */
 
 require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
-include 'MediaWikiInstallationConfig.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationConfig.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationMessage.php');
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationVariables.php');
+
 
 class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTestCase {
 
     function setUp() {
-        $this->setBrowser("*chrome");
-        $this->setBrowserUrl("http://localhost:".PORT."/".DIRECTORY_NAME."/");
+        $this->setBrowser( TEST_BROWSER );
+        $this->setBrowserUrl("http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/");
     }
 
-    
-    public function navigateInitialpage(){
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/" );
+
+    public function navigateInitialpage() {
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/" );
     }
 
 
     // Navigate to the 'Language' page
-    public function navigateLanguagePage(){
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+    public function navigateLanguagePage() {
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
     }
 
 
     // Navigate to the 'Welcome to MediaWiki' page
-    public function navigateWelcometoMediaWikiPage(){
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+    public function navigateWelcometoMediaWikiPage() {
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
         $this->click( "submit-continue ");
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
     }
 
 
     // Navigate yo 'Connect to Database' page
-    public function navigateConnetToDatabasePage(){
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+    public function navigateConnetToDatabasePage() {
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
 
         // 'Welcome to MediaWiki!' page
         $this->click( "submit-continue" );
@@ -71,9 +74,9 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 
 
     // Navigate to the 'Database Settings' page
-    public function navigateDatabaseSettingsPage( $databaseName ){
+    public function navigateDatabaseSettingsPage( $databaseName ) {
 
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
 
         // 'Welcome to MediaWiki!' page
         $this->click("submit-continue");
@@ -90,8 +93,8 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 
 
     // Navigate to the 'Name' page
-    public function navigateNamePage( $databaseName ){
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+    public function navigateNamePage( $databaseName ) {
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
 
         // 'Welcome to MediaWiki!' page
         $this->click( "submit-continue" );
@@ -112,10 +115,9 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 
 
     // Navigate 'Options' page
-    public function navigateOptionsPage( $databaseName ){
+    public function navigateOptionsPage( $databaseName ) {
 
-        $upgradeExisting = false;
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
 
         // 'Welcome to MediaWiki!' page
         $this->click( "submit-continue" );
@@ -146,9 +148,9 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 
 
     // Navigate 'Install' page
-    public function navigateInstallPage( $databaseName ){
-        
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+    public function navigateInstallPage( $databaseName ) {
+
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
 
         // 'Welcome to MediaWiki!' page
         $this->click( "submit-continue" );
@@ -183,8 +185,8 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 
 
     // Navigate to 'Complete' page
-    public function navigateCompletePage( $databaseName ){
-        $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
+    public function navigateCompletePage( $databaseName ) {
+        $this->open( "http://".HOST_NAME.":".PORT."/".DIRECTORY_NAME."/config/index.php" );
 
         // 'Welcome to MediaWiki!' page
         $this->click( "submit-continue" );
@@ -224,7 +226,7 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 
 
     // Complete the Name page fields
-    public function completeNamePage(){
+    public function completeNamePage() {
         $this->type( "config_wgSitename", NAME_OF_WIKI );
         $this->type( "config__AdminName", ADMIN_USER_NAME);
         $this->type( "config__AdminPassword", ADMIN_PASSWORD );
@@ -236,21 +238,21 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 
 
     // Clicking on the 'Continue' button in any MediaWiki page
-    public function clickContinueButton(){
+    public function clickContinueButton() {
         $this->click( "submit-continue" );
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
     }
 
 
     // Clicking on the 'Back' button in any MediaWiki page
-    public function clickBackButton(){
+    public function clickBackButton() {
         $this->click( "submit-back" );
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
     }
 
 
     // Restarting the installation
-    public function restartInstallation(){
+    public function restartInstallation() {
         $this->click( "link=Restart installation" );
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
         $this->click( "submit-restart" );
@@ -259,13 +261,23 @@ class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTes
 
 
     // Verify 'MediaWiki' logo available in the initial screen
-    public function mediaWikiLogoPresentInitialScreen(){
-        $this->assertTrue($this->isElementPresent("//img[@alt='The MediaWiki logo']"));
+    public function mediaWikiLogoPresentInitialScreen() {
+        $this->assertTrue( $this->isElementPresent( "//img[@alt='The MediaWiki logo']" ));
     }
 
 
     // Verify 'MediaWiki' logo available
-    public function mediaWikiLogoPresent(){
-        $this->assertTrue($this->isElementPresent("//div[@id='p-logo']/a"));
+    public function mediaWikiLogoPresent() {
+        $this->assertTrue( $this->isElementPresent( "//div[@id='p-logo']/a" ));
+    }
+
+
+    public function completePageSuccessfull() {
+        $this->assertEquals( "Complete!",
+                $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
+
+        // 'Congratulations!' text should be available in the 'Complete!' page.
+        $this->assertEquals( "Congratulations!",
+                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/p[1]/b" ));
     }
 }

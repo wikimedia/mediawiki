@@ -28,7 +28,7 @@
  */
 
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 05 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -39,19 +39,19 @@ require_once 'MediaWikiInstallationCommonFunction.php';
 
 class MediaWikiUpgradeExistingDatabaseTestCase extends MediaWikiInstallationCommonFunction {
 
-    function setUp(){
+    function setUp() {
         parent::setUp();
     }
 
     // Install Mediawiki using 'MySQL' database type.
-    public function testUpgradeExistingDatabase(){
+    public function testUpgradeExistingDatabase() {
 
         $databaseName = DB_NAME_PREFIX."_upgrade_existing";
         parent::navigateInstallPage( $databaseName );
 
         $this->open( "http://localhost:".PORT."/".DIRECTORY_NAME."/config/index.php" );
         $this->assertEquals( "Install", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
-        $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again.Please proceed to the next page.",
+        $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]" ));
 
         // 'Optionis' page
@@ -72,7 +72,7 @@ class MediaWikiUpgradeExistingDatabaseTestCase extends MediaWikiInstallationComm
         $this->assertEquals( "Upgrade existing installation", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
 
         // Warning message displayed.
-        $this->assertEquals( "There are MediaWiki tables in this database.To upgrade them to MediaWiki 1.18alpha, click Continue.",
+        $this->assertEquals( "There are MediaWiki tables in this database. To upgrade them to MediaWiki 1.18alpha, click Continue.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]" ));
 
         parent::clickContinueButton();
@@ -80,8 +80,10 @@ class MediaWikiUpgradeExistingDatabaseTestCase extends MediaWikiInstallationComm
                 $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
 
         // 'Upgrade complete.' text display
-        $this->assertEquals( "Upgrade complete.You can now start using your wiki. \nIf you want to regenerate your LocalSettings.php file, click the button below. This is not recommended unless you are having problems with your wiki.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[4]/form/div[1]/div[2]"));
+        $this->assertEquals("Upgrade complete.",
+                $this->getText("//div[@id='bodyContent']/div/div/div[4]/form/div[1]/div[2]/p[1]"));
+        $this->assertEquals("You can now start using your wiki.",
+                $this->getText("//div[@id='bodyContent']/div/div/div[4]/form/div[1]/div[2]/p[2]"));
 
         $this->assertTrue($this->isElementPresent( "submit-regenerate" ));
         $this->click( "submit-regenerate" );
@@ -99,14 +101,12 @@ class MediaWikiUpgradeExistingDatabaseTestCase extends MediaWikiInstallationComm
         parent::clickContinueButton();
 
         // Install page
-        $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again.Please proceed to the next page.",
+        $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
                 $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]" ));
         parent::clickContinueButton();
 
         // complete
-        $this->assertEquals( "Complete!", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
-        $this->assertEquals( "Congratulations!",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/b" ));
+        parent::completePageSuccessfull();
         $this->chooseCancelOnNextConfirmation();
         parent::restartInstallation();
     }

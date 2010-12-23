@@ -28,7 +28,7 @@
  */
 
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 04 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -38,13 +38,13 @@ require_once 'MediaWikiInstallationCommonFunction.php';
 
 class MediaWikiDifferentDatabaseAccountTestCase extends MediaWikiInstallationCommonFunction {
 
-    function setUp(){
+    function setUp() {
         parent::setUp();
     }
 
 
     // Install Mediawiki using 'MySQL' database type.
-    public function testDifferentDatabaseAccount(){
+    public function testDifferentDatabaseAccount() {
 
         $databaseName = DB_NAME_PREFIX."_dif_accounts";
 
@@ -71,14 +71,12 @@ class MediaWikiDifferentDatabaseAccountTestCase extends MediaWikiInstallationCom
         parent::clickContinueButton();
 
         // 'Install' page
-        $this->assertEquals( "Creating database user... done",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/ul/li[2]" ));
+        $this->assertEquals("Creating database user... done",
+                $this->getText("//div[@id='bodyContent']/div/div/div[2]/form/ul/li[3]"));
         parent::clickContinueButton();
 
         // 'Complete' page
-        $this->assertEquals( "Complete!", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
-        $this->assertEquals( "Congratulations!",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/b" ));
+        parent::completePageSuccessfull();
         $this->chooseCancelOnNextConfirmation();
     }
 }

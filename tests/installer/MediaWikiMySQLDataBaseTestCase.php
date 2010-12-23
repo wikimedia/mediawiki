@@ -28,7 +28,7 @@
  */
 
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 01 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -38,12 +38,12 @@ require_once 'MediaWikiInstallationCommonFunction.php';
 
 class MediaWikiMySQLDataBaseTestCase extends MediaWikiInstallationCommonFunction {
 
-    function setUp(){
+    function setUp() {
         parent::setUp();
     }
 
     // Verify  MediaWiki installation using 'MySQL' database type
-    public function testMySQLDatabaseSuccess(){
+    public function testMySQLDatabaseSuccess() {
 
         $databaseName = DB_NAME_PREFIX."_sql_db";
 
@@ -72,12 +72,7 @@ class MediaWikiMySQLDataBaseTestCase extends MediaWikiInstallationCommonFunction
         parent::clickContinueButton();
 
         // 'Complete' page
-        $this->assertEquals( "Complete!",
-                $this->getText("//div[@id='bodyContent']/div/div/h2" ));
-
-        // 'Congratulations!' text should be available in the 'Complete!' page.
-        $this->assertEquals( "Congratulations!",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/b" ));
+        parent::completePageSuccessfull();
         parent::restartInstallation();
     }
 }

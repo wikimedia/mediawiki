@@ -29,7 +29,7 @@
 
 
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 11, 12 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -82,7 +82,7 @@ class MediaWikiRestartInstallationTestCase extends MediaWikiInstallationCommonFu
 
 
     // Verify cancelling restart
-    public function testCancelRestartInstallation(){
+    public function testCancelRestartInstallation() {
 
         $dbNameBeforeRestart  = DB_NAME_PREFIX."_cancel_restart";
 
@@ -103,7 +103,8 @@ class MediaWikiRestartInstallationTestCase extends MediaWikiInstallationCommonFu
         parent::clickBackButton();
 
         // Navigates to the previous page
-        $this->assertEquals( "Database settings", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));;
+        $this->assertEquals( "Database settings", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
+        ;
 
         // 'Connect to database' page
         parent::clickBackButton();

@@ -28,7 +28,7 @@
  */
 
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 06 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -52,7 +52,7 @@ class MediaWikiMySQLiteDataBaseTestCase extends MediaWikiInstallationCommonFunct
 
         // Select 'SQLite' database type
         $this->assertEquals( "SQLite settings", $this->getText( "//div[@id='DB_wrapper_sqlite']/h3" ));
-        
+
         // Change database name
         $defaultDbName = $this->getText( "sqlite_wgDBname" );
         $this->type( "sqlite_wgDBname", " ");
@@ -73,12 +73,7 @@ class MediaWikiMySQLiteDataBaseTestCase extends MediaWikiInstallationCommonFunct
         parent::clickContinueButton();
 
         // 'Complete' page
-        $this->assertEquals( "Complete!",
-                $this->getText("//div[@id='bodyContent']/div/div/h2" ));
-
-        // 'Congratulations!' text should be available in the 'Complete!' page.
-        $this->assertEquals( "Congratulations!",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/b" ));
+        parent::completePageSuccessfull();
         parent::restartInstallation();
     }
 }

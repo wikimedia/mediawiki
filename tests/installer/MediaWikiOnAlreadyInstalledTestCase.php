@@ -28,7 +28,7 @@
  */
 
 
-require_once 'MediaWikiInstallationCommonFunction.php';
+require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
 
 
 /*
@@ -64,10 +64,7 @@ class MediaWikiOnAlreadyInstalledTestCase extends MediaWikiInstallationCommonFun
 
         // Complete page
         parent::clickContinueButton();
-
-        // Clicking in the 'Continue' button should display the 'Complete' page with 'Congratulations!' text.
-        $this->assertEquals( "Complete!", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
-        $this->assertEquals( "Congratulations!", $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]/b" ));
+        parent::completePageSuccessfull();
         $this->chooseCancelOnNextConfirmation();
         parent::restartInstallation();
     }
