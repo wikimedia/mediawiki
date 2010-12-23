@@ -23,7 +23,7 @@ $.highlightText = {
 			// TODO - need to be smarter about the character matching here. 
 			// non latin characters can make regex think a new word has begun. 
 			// look for an occurence of our pattern and store the starting position 
-			var pos = node.data.search( new RegExp( "\\b" + RegExp.escape( pat ), "i" ) );
+			var pos = node.data.search( new RegExp( "\\b" + $.escapeRE( pat ), "i" ) );
 			if ( pos >= 0 ) {
 				// create the span wrapper for the matched text
 				var spannode = document.createElement( 'span' );
