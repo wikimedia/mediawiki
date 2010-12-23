@@ -1,0 +1,24 @@
+/**
+ * 'show'/'hide' buttons created dynamically
+ * by the CollapsibleTables javascript
+ */
+.collapsible-expander {           
+    float: right;
+    font-weight: normal;
+    text-align: right;
+    width: auto;
+}
+
+/**
+ * Note that IE<7 sees the second selector here as 
+ * just ".collapsible-expander", and doesn't accept 
+ * the multiple classes.  Fortunately these two cursors
+ * are generally the same, a pair of up-and-down arrows.
+ */
+ .collapsible-expander {
+	cursor: n-resize;
+}
+.show.collapsible-expander {
+	cursor: s-resize;
+}
+
