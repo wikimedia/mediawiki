@@ -538,8 +538,9 @@ class WebInstaller extends CoreInstaller {
 	 */
 	private function endPageWrapper() {
 		$this->output->addHTMLNoFlush(
-			"</div>\n" .
-			"<br style=\"clear:both\"/>\n" .
+					"<div class=\"visualClear\"></div>\n" .
+				"</div>\n" .
+				"<div class=\"visualClear\"></div>\n" .
 			"</div>" );
 	}
 
