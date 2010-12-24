@@ -121,7 +121,7 @@
 		 * Append a new style block to the head
 		 *
 		 * @param text String CSS to be appended
-		 * @return the CSS stylesheet
+		 * @return CSSStyleSheet object
 		 */
 		'addCSS' : function( text ) {
 			var s = document.createElement( 'style' );
@@ -139,8 +139,8 @@
 		/**
 		 * Hide/show the table of contents element
 		 *
-		 * @param text String CSS to be appended
-		 * @return the CSS stylesheet
+		 * @param $toggleLink jQuery object of the toggle link
+		 * @return String boolean visibility of the toc (true means it's visible)
 		 */
 		'toggleToc' : function( $toggleLink ) {
 			var $tocList = $( '#toc ul:first' ),
@@ -152,6 +152,7 @@
 					expires: 30,
 					path: '/'
 				} );
+				return true;
 			} else {
 				$tocList.slideUp( 'fast' );
 				$toggleLink.text( mw.msg( 'showtoc' ) );
@@ -159,6 +160,7 @@
 					expires: 30,
 					path: '/'
 				} );
+				return false;
 			}
 		},
 
