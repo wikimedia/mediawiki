@@ -350,7 +350,7 @@ return array(
 	),
 	'mediawiki.util' => array(
 		'scripts' => 'resources/mediawiki.util/mediawiki.util.js',
-		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client', 'jquery.placeholder', 'jquery.makeCollapsible' ),
+		'dependencies' => array( 'jquery.checkboxShiftClick', 'jquery.client', 'jquery.cookie', 'jquery.placeholder', 'jquery.makeCollapsible' ),
 		'debugScripts' => 'resources/mediawiki.util/mediawiki.util.test.js',
 	),
 	'mediawiki.action.history' => array(

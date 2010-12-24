@@ -136,42 +136,6 @@ if ( 'wgBreakFrames' in window && window.wgBreakFrames ) {
 	}
 }
 
-window.showTocToggle = function() {
-	if ( document.createTextNode ) {
-		// Uses DOM calls to avoid document.write + XHTML issues
-
-		var linkHolder = document.getElementById( 'toctitle' );
-		var existingLink = document.getElementById( 'togglelink' );
-		if ( !linkHolder || existingLink ) {
-			// Don't add the toggle link twice
-			return;
-		}
-
-		var outerSpan = document.createElement( 'span' );
-		outerSpan.className = 'toctoggle';
-
-		var toggleLink = document.createElement( 'a' );
-		toggleLink.id = 'togglelink';
-		toggleLink.className = 'internal';
-		toggleLink.href = '#';
-		addClickHandler( toggleLink, function( evt ) { toggleToc(); return killEvt( evt ); } );
-		
-		toggleLink.appendChild( document.createTextNode( mediaWiki.msg( 'hidetoc' ) ) );
-
-		outerSpan.appendChild( document.createTextNode( '[' ) );
-		outerSpan.appendChild( toggleLink );
-		outerSpan.appendChild( document.createTextNode( ']' ) );
-
-		linkHolder.appendChild( document.createTextNode( ' ' ) );
-		linkHolder.appendChild( outerSpan );
-
-		var cookiePos = document.cookie.indexOf( "hidetoc=" );
-		if ( cookiePos > -1 && document.cookie.charAt( cookiePos + 8 ) == 1 ) {
-			toggleToc();
-		}
-	}
-};
-
 window.changeText = function( el, newText ) {
 	// Safari work around
 	if ( el.innerText ) {
@@ -190,25 +154,6 @@ window.killEvt = function( evt ) {
 		evt.cancelBubble = true; // IE
 	}
 	return false; // Don't follow the link (IE)
-};
-
-window.toggleToc = function() {
-	var tocmain = document.getElementById( 'toc' );
-	var toc = document.getElementById('toc').getElementsByTagName('ul')[0];
-	var toggleLink = document.getElementById( 'togglelink' );
-
-	if ( toc && toggleLink && toc.style.display == 'none' ) {
-		changeText( toggleLink, mediaWiki.msg( 'hidetoc' ) );
-		toc.style.display = 'block';
-		document.cookie = "hidetoc=0";
-		tocmain.className = 'toc';
-	} else {
-		changeText( toggleLink, mediaWiki.msg( 'showtoc' ) );
-		toc.style.display = 'none';
-		document.cookie = "hidetoc=1";
-		tocmain.className = 'toc tochidden';
-	}
-	return false;
 };
 
 window.mwEditButtons = [];
@@ -1100,5 +1045,3 @@ hookEvent( 'load', runOnloadHook );
 if ( ie6_bugs ) {
 	importScriptURI( stylepath + '/common/IEFixes.js' );
 }
-
-showTocToggle();

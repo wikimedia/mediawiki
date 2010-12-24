@@ -15,10 +15,10 @@
 				// Any initialisation after the DOM is ready
 				$(function () {
 
-					// Shortcut
+					// Shortcut to client profile return
 					var profile = $.client.profile();
 
-					// Set tooltipAccessKeyPrefix
+					/* Set tooltipAccessKeyPrefix */
 
 					// Opera on any platform
 					if ( profile.name == 'opera' ) {
@@ -49,21 +49,40 @@
 						mw.util.tooltipAccessKeyPrefix = 'alt-shift-';
 					}
 
-					// Enable CheckboxShiftClick
+					/* Enable CheckboxShiftClick */
 					$( 'input[type=checkbox]:not(.noshiftselect)' ).checkboxShiftClick();
 
-					// Emulate placeholder if not supported by browser
+					/* Emulate placeholder if not supported by browser */
 					if ( !( 'placeholder' in document.createElement( 'input' ) ) ) {
 						$( 'input[placeholder]' ).placeholder();
 					}
 
-					// Fill $content var
+					/* Fill $content var */
 					if ( $( '#bodyContent' ).length ) {
 						mw.util.$content = $( '#bodyContent' );
 					} else if ( $( '#article' ).length ) {
 						mw.util.$content = $( '#article' );
 					} else {
 						mw.util.$content = $( '#content' );
+					}
+
+					/* Table of Contents toggle */
+					var $tocContainer = $( '#toc' ),
+						$tocTitle = $( '#toctitle' ),
+						$tocToggleLink = $( '#togglelink' );
+					// Only add it if there is a TOC and there is no toggle added already
+					if ( $tocContainer.size() && $tocTitle.size() && !$tocToggleLink.size() ) {
+						var hideTocCookie = $.cookie( 'mw_hidetoc' ),
+							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink">' ).text( mw.msg( 'hidetoc' ) ).click( function(e){
+								e.preventDefault();
+								mw.util.toggleToc( $(this) );
+							} );
+						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
+						
+						if ( hideTocCookie == '1' ) {
+							// Cookie says user want toc hidden
+							$tocToggleLink.click();
+						}
 					}
 				} );
 
@@ -115,6 +134,32 @@
 			}
 			document.getElementsByTagName("head")[0].appendChild( s );
 			return s.sheet || s;
+		},
+
+		/**
+		 * Hide/show the table of contents element
+		 *
+		 * @param text String CSS to be appended
+		 * @return the CSS stylesheet
+		 */
+		'toggleToc' : function( $toggleLink ) {
+			var $tocList = $( '#toc ul:first' ),
+
+			if ( $tocList.is( ':hidden' ) ) {
+				$tocList.slideDown( 'fast' );
+				$toggleLink.text( mw.msg( 'hidetoc' ) );
+				$.cookie( 'mw_hidetoc', null, {
+					expires: 30,
+					path: '/'
+				} );
+			} else {
+				$tocList.slideUp( 'fast' );
+				$toggleLink.text( mw.msg( 'showtoc' ) );
+				$.cookie( 'mw_hidetoc', '1', {
+					expires: 30,
+					path: '/'
+				} );
+			}
 		},
 
 		/**
