@@ -26,7 +26,8 @@ class ImportUseModWikipedia extends Maintenance {
 		//'TheMostRemarkableFormulaInTheWorld' => 985368221,
 		'TheRecorder' => 985368220,
 		'GladstoneOregon' => 985368219,
-		#'UnitedStatesConstitution/AmendmentTwo' => 
+		'PacificBeach' => '?',
+		'AaRiver' => '?',
 	);
 
 	var $replacements = array();
