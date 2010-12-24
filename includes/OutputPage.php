@@ -2579,9 +2579,18 @@ class OutputPage {
 			// be placed in the "other" group
 			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
 		}
-		// Add styles to tags, user modules last
+
+		// We want site and user styles to override dynamically added styles from modules, but we want
+		// dynamically added styles to override statically added styles from other modules. So the order
+		// has to be other, dynamic, site, user
+		// Add statically added styles for other modules
+		$tags[] = $this->makeResourceLoaderLink( $sk, $styles['other'], 'styles' );
+		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
+		// We use a <meta> tag with a made-up name for this because that's valid HTML
+		$tags[] = Html::element( 'meta', array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ) );
+		// Add site and user styles
 		$tags[] = $this->makeResourceLoaderLink(
-			$sk, array_merge( $styles['other'], $styles['site'], $styles['user'] ), 'styles'
+			$sk, array_merge( $styles['site'], $styles['user'] ), 'styles'
 		);
 		return implode( "\n", $tags );
 	}
