@@ -70,12 +70,12 @@
 					$( '.mw-collapsible' ).makeCollapsible();
 
 					/* Table of Contents toggle */
-					var $tocContainer = $( '#toc' ),
+					var	$tocContainer = $( '#toc' ),
 						$tocTitle = $( '#toctitle' ),
 						$tocToggleLink = $( '#togglelink' );
 					// Only add it if there is a TOC and there is no toggle added already
 					if ( $tocContainer.size() && $tocTitle.size() && !$tocToggleLink.size() ) {
-						var hideTocCookie = $.cookie( 'mw_hidetoc' ),
+						var	hideTocCookie = $.cookie( 'mw_hidetoc' );
 							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink">' ).text( mw.msg( 'hidetoc' ) ).click( function(e){
 								e.preventDefault();
 								mw.util.toggleToc( $(this) );
@@ -146,7 +146,7 @@
 		 * @return String boolean visibility of the toc (true means it's visible)
 		 */
 		'toggleToc' : function( $toggleLink ) {
-			var $tocList = $( '#toc ul:first' ),
+			var $tocList = $( '#toc ul:first' );
 
 			if ( $tocList.is( ':hidden' ) ) {
 				$tocList.slideDown( 'fast' );
