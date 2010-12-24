@@ -120,7 +120,7 @@ $.fn.makeCollapsible = function() {
 				if ( $firstItem.attr( 'value' ) == '' ) {
 					$firstItem.attr( 'value', '1' );
 				}
-				$that.prepend( $toggleLink.wrap( '<li class="mw-collapsibile-toggle-li">' ).parent() );
+				$that.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li">' ).parent() );
 			} else {
 				$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
 					e.preventDefault();
