@@ -1,20 +1,20 @@
 /* See also jquery.makeCollapsible.js */
-.kr-collapsible-toggle {
+.mw-collapsible-toggle {
 	float:right;
 }
-.kr-collapsible-toggle-expanded,
-.kr-collapsible-toggle-expanded a {
+.mw-collapsible-toggle-expanded,
+.mw-collapsible-toggle-expanded a {
 	cursor:n-resize;
 }
-.kr-collapsible-toggle-collapsed,
-.kr-collapsible-toggle-collapsed a {
+.mw-collapsible-toggle-collapsed,
+.mw-collapsible-toggle-collapsed a {
 	cursor:s-resize;
 }
 /* list-items go as wide as their parent element, don't float them inside list items */
-li .kr-collapsible-toggle {
+li .mw-collapsible-toggle {
 	float:none;
 }
 /* the added list item should have no list-style */
-.kr-collapsibile-toggle-li {
+.mw-collapsibile-toggle-li {
 	list-style:none;
 }

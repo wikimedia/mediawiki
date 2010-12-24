@@ -4,13 +4,11 @@
  * This will enable collapsible-functionality on all passed elements.
  * Will prevent binding twice to the same element.
  * Initial state is expanded by default, this can be overriden by adding class
- * "kr-collapsed" to the "kr-collapsible" element.
- * Elements made collapsible have class "kr-made-collapsible".
- * Except for tables and lists, the inner content is wrapped in "kr-collapsible-content".
+ * "mw-collapsed" to the "mw-collapsible" element.
+ * Elements made collapsible have class "mw-made-collapsible".
+ * Except for tables and lists, the inner content is wrapped in "mw-collapsible-content".
  *
  * @author Krinkle <krinklemail@gmail.com>
- *
- * @TODO: Remove old "kr-" prefix
  *
  * Dual license:
  * @license CC-BY 3.0 <http://creativecommons.org/licenses/by/3.0>
@@ -21,18 +19,18 @@ $.fn.makeCollapsible = function() {
 
 	return this.each(function() {
 
-		var	$that = $(this).addClass( 'kr-collapsible' ), // in case $( '#myAJAXelement' ).makeCollapsible() was called
+		var	$that = $(this).addClass( 'mw-collapsible' ), // in case $( '#myAJAXelement' ).makeCollapsible() was called
 			that = this,
 			collapsetext = $(this).attr( 'data-collapsetext' ),
 			expandtext = $(this).attr( 'data-expandtext' ),
 			toggleFunction = function( that ) {
 				var	$that = $(that),
-					$collapsible = $that.closest( '.kr-collapsible.kr-made-collapsible' ).toggleClass( 'kr-collapsed' );
+					$collapsible = $that.closest( '.mw-collapsible.mw-made-collapsible' ).toggleClass( 'mw-collapsed' );
 				
 				// It's expanded right now
-				if ( $that.hasClass( 'kr-collapsible-toggle-expanded' ) ) {
+				if ( $that.hasClass( 'mw-collapsible-toggle-expanded' ) ) {
 					// Change link to "Show"
-					$that.removeClass( 'kr-collapsible-toggle-expanded' ).addClass( 'kr-collapsible-toggle-collapsed' );
+					$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
 					if ( $that.find( '> a' ).size() ) {
 						$that.find( '> a' ).text( expandtext );
 					} else {
@@ -50,13 +48,13 @@ $.fn.makeCollapsible = function() {
 						$collapsible.find( '> li' ).not( $that.parent() ).stop( true, true ).slideUp();
 	
 					} else { // <div>, <p> etc.
-						$collapsible.find( '> .kr-collapsible-content' ).slideUp();
+						$collapsible.find( '> .mw-collapsible-content' ).slideUp();
 					}
 
 				// It's collapsed right now
 				} else {
 					// Change link to "Hide"
-					$that.removeClass( 'kr-collapsible-toggle-collapsed' ).addClass( 'kr-collapsible-toggle-expanded' );
+					$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
 					if ( $that.find( '> a' ).size() ) {
 						$that.find( '> a' ).text( collapsetext );
 					} else {
@@ -70,7 +68,7 @@ $.fn.makeCollapsible = function() {
 						$collapsible.find( '> li' ).not( $that.parent() ).stop( true, true ).slideDown();
 	
 					} else { // <div>, <p> etc.
-						$collapsible.find( '> .kr-collapsible-content' ).slideDown();
+						$collapsible.find( '> .mw-collapsible-content' ).slideDown();
 					}
 				}
 				return;
@@ -85,23 +83,23 @@ $.fn.makeCollapsible = function() {
 		}
 
 		// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
-		var $toggleLink = $( '<a href="#">' ).text( collapsetext ).wrap( '<span class="kr-collapsible-toggle kr-collapsible-toggle-expanded">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).click( function(e){
+		var $toggleLink = $( '<a href="#">' ).text( collapsetext ).wrap( '<span class="mw-collapsible-toggle mw-collapsible-toggle-expanded">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).click( function(e){
 			e.preventDefault();
 			toggleFunction( this );
 		} );
 
 		// Skip if it has been enabled already.
-		if ( $that.hasClass( 'kr-made-collapsible' ) ) {
+		if ( $that.hasClass( 'mw-made-collapsible' ) ) {
 			return;
 		} else {
-			$that.addClass( 'kr-made-collapsible' );
+			$that.addClass( 'mw-made-collapsible' );
 		}
 
 		// Elements are treated differently
 		if ( $that.is( 'table' ) ) {
 			// The toggle-link will be in the last cell (td or th) of the first row
 			var	$lastCell = $( 'tr:first th, tr:first td', that ).eq(-1),
-				$toggle = $lastCell.find( '> .kr-collapsible-toggle' );
+				$toggle = $lastCell.find( '> .mw-collapsible-toggle' );
 
 			if ( !$toggle.size() ) {
 				$lastCell.prepend( $toggleLink );
@@ -115,14 +113,14 @@ $.fn.makeCollapsible = function() {
 		} else if ( $that.is( 'ul' ) || $that.is( 'ol' ) ) {
 			// The toggle-link will be in the first list-item
 			var	$firstItem = $( 'li:first', $that),
-				$toggle = $firstItem.find( '> .kr-collapsible-toggle' );
+				$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 
 			if ( !$toggle.size() ) {
 				// Make sure the numeral order doesn't get messed up, reset to 1 unless value-attribute is already used
 				if ( $firstItem.attr( 'value' ) == '' ) {
 					$firstItem.attr( 'value', '1' );
 				}
-				$that.prepend( $toggleLink.wrap( '<li class="kr-collapsibile-toggle-li">' ).parent() );
+				$that.prepend( $toggleLink.wrap( '<li class="mw-collapsibile-toggle-li">' ).parent() );
 			} else {
 				$toggleLink = $toggle.unbind( 'click' ).click( function( e ){
 					e.preventDefault();
@@ -133,12 +131,12 @@ $.fn.makeCollapsible = function() {
 		} else { // <div>, <p> etc.
 			// Is there an content-wrapper already made ?
 			// If a direct child with the class does not exists, create the wrap.
-			if ( !$that.find( '> .kr-collapsible-content' ).size() ) {
-				$that.wrapInner( '<div class="kr-collapsible-content">' );
+			if ( !$that.find( '> .mw-collapsible-content' ).size() ) {
+				$that.wrapInner( '<div class="mw-collapsible-content">' );
 			}
 
 			// The toggle-link will be the first child of the element
-			var $toggle = $that.find( '> .kr-collapsible-toggle' );
+			var $toggle = $that.find( '> .mw-collapsible-toggle' );
 
 			if ( !$toggle.size() ) {
 				$that.prepend( $toggleLink );
@@ -152,11 +150,8 @@ $.fn.makeCollapsible = function() {
 		}
 		console.log( $toggleLink.get(0) );
 		// Initial state
-		if ( $that.hasClass( 'kr-collapsed' ) ) {
+		if ( $that.hasClass( 'mw-collapsed' ) ) {
 			$toggleLink.click();
 		}
 	} );
 };
-$( function(){
-	$( '.kr-collapsible' ).makeCollapsible();
-} );

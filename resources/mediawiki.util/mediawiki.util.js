@@ -65,6 +65,9 @@
 					} else {
 						mw.util.$content = $( '#content' );
 					}
+					
+					/* Enable makeCollapse */
+					$( '.mw-collapsible' ).makeCollapsible();
 
 					/* Table of Contents toggle */
 					var $tocContainer = $( '#toc' ),
