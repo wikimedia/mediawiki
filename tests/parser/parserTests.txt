@@ -8142,6 +8142,16 @@ title=[[Main Page]]
 !! end
 
 !! test
+percent-encoding and + signs in comments (Bug 26410)
+!! options
+comment
+!!input
+[[ABC%33D% ++]] [[ABC%33D% ++|+%20]]
+!! result
+<a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">ABC3D% ++</a> <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">+%20</a>
+!! end
+
+!! test
 Bad images - basic functionality
 !! input
 [[File:Bad.jpg]]
@@ -8327,6 +8337,20 @@ HTML5 data attributes
 
 !! end
 
+!! test
+percent-encoding and + signs in internal links (Bug 26410)
+!! input
+[[User:+%]] [[Page+title%]]
+[[%+]] [[%+|%20]] [[%+ ]] [[%+r]]
+[[%]] [[+]] [[image:%+abc%39|foo|[[bar]]]]
+[[%33%45]] [[%33%45+]]
+!! result
+<p><a href="/index.php?title=User:%2B%25&amp;action=edit&amp;redlink=1" class="new" title="User:+% (page does not exist)">User:+%</a> <a href="/index.php?title=Page%2Btitle%25&amp;action=edit&amp;redlink=1" class="new" title="Page+title% (page does not exist)">Page+title%</a>
+<a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+</a> <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%20</a> <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+ </a> <a href="/index.php?title=%25%2Br&amp;action=edit&amp;redlink=1" class="new" title="%+r (page does not exist)">%+r</a>
+<a href="/index.php?title=%25&amp;action=edit&amp;redlink=1" class="new" title="% (page does not exist)">%</a> <a href="/index.php?title=%2B&amp;action=edit&amp;redlink=1" class="new" title="+ (page does not exist)">+</a> <a href="/index.php?title=Special:Upload&amp;wpDestFile=%25%2Babc9" class="new" title="File:%+abc9">bar</a>
+<a href="/index.php?title=3E&amp;action=edit&amp;redlink=1" class="new" title="3E (page does not exist)">3E</a> <a href="/index.php?title=3E%2B&amp;action=edit&amp;redlink=1" class="new" title="3E+ (page does not exist)">3E+</a>
+</p>
+!! end
 
 TODO:
 more images
