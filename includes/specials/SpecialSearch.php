@@ -290,6 +290,7 @@ class SpecialSearch extends SpecialPage {
 			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
 		} 
 
+		$wgOut->parserOptions()->setEditSection( false );
 		if( $titleMatches ) {
 			if( $numTitleMatches > 0 ) {
 				$wgOut->wrapWikiMsg( "==$1==\n", 'titlematches' );
