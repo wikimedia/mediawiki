@@ -147,22 +147,28 @@
 		 */
 		'toggleToc' : function( $toggleLink ) {
 			var $tocList = $( '#toc ul:first' );
-
-			if ( $tocList.is( ':hidden' ) ) {
-				$tocList.slideDown( 'fast' );
-				$toggleLink.text( mw.msg( 'hidetoc' ) );
-				$.cookie( 'mw_hidetoc', null, {
-					expires: 30,
-					path: '/'
-				} );
-				return true;
+			
+			// This function shouldn't be called if there's no TOC,
+			// but just in case...
+			if ( $tocList.size() ) {
+				if ( $tocList.is( ':hidden' ) ) {
+					$tocList.slideDown( 'fast' );
+					$toggleLink.text( mw.msg( 'hidetoc' ) );
+					$.cookie( 'mw_hidetoc', null, {
+						expires: 30,
+						path: '/'
+					} );
+					return true;
+				} else {
+					$tocList.slideUp( 'fast' );
+					$toggleLink.text( mw.msg( 'showtoc' ) );
+					$.cookie( 'mw_hidetoc', '1', {
+						expires: 30,
+						path: '/'
+					} );
+					return false;
+				}
 			} else {
-				$tocList.slideUp( 'fast' );
-				$toggleLink.text( mw.msg( 'showtoc' ) );
-				$.cookie( 'mw_hidetoc', '1', {
-					expires: 30,
-					path: '/'
-				} );
 				return false;
 			}
 		},
