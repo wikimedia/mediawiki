@@ -317,6 +317,8 @@ $wgMessageStructure = array(
 		'toc',
 		'showtoc',
 		'hidetoc',
+		'collapsible-collapse',
+		'collapsible-expand',
 		'thisisdeleted',
 		'viewdeleted',
 		'restorelink',
