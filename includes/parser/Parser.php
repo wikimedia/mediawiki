@@ -1726,14 +1726,14 @@ class Parser {
 				# fix up urlencoded title texts
 				if ( strpos( $m[1], '%' ) !== false ) {
 					# Should anchors '#' also be rejected?
-					$m[1] = str_replace( array('<', '>'), array('&lt;', '&gt;'), urldecode( $m[1] ) );
+					$m[1] = str_replace( array('<', '>'), array('&lt;', '&gt;'), rawurldecode( $m[1] ) );
 				}
 				$trail = $m[3];
 			} elseif ( preg_match( $e1_img, $line, $m ) ) { # Invalid, but might be an image with a link in its caption
 				$might_be_img = true;
 				$text = $m[2];
 				if ( strpos( $m[1], '%' ) !== false ) {
-					$m[1] = urldecode( $m[1] );
+					$m[1] = rawurldecode( $m[1] );
 				}
 				$trail = "";
 			} else { # Invalid form; output directly
@@ -4507,7 +4507,7 @@ class Parser {
 			}
 
 			if ( strpos( $matches[0], '%' ) !== false ) {
-				$matches[1] = urldecode( $matches[1] );
+				$matches[1] = rawurldecode( $matches[1] );
 			}
 			$tp = Title::newFromText( $matches[1] );
 			$nt =& $tp;
