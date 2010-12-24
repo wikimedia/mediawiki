@@ -83,7 +83,7 @@ $.fn.makeCollapsible = function() {
 		}
 
 		// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
-		var $toggleLink = $( '<a href="#">' ).text( collapsetext ).wrap( '<span class="mw-collapsible-toggle mw-collapsible-toggle-expanded">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).click( function(e){
+		var $toggleLink = $( '<a href="#">' ).text( collapsetext ).wrap( '<span class="mw-collapsible-toggle mw-collapsible-toggle-expanded">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).bind( 'click.mw-collapse', function(e){
 			e.preventDefault();
 			toggleFunction( this );
 		} );
@@ -104,7 +104,7 @@ $.fn.makeCollapsible = function() {
 			if ( !$toggle.size() ) {
 				$lastCell.prepend( $toggleLink );
 			} else {
-				$toggleLink = $toggle.unbind( 'click' ).click( function( e ){
+				$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
 					e.preventDefault();
 					toggleFunction( this );
 				} );
@@ -122,7 +122,7 @@ $.fn.makeCollapsible = function() {
 				}
 				$that.prepend( $toggleLink.wrap( '<li class="mw-collapsibile-toggle-li">' ).parent() );
 			} else {
-				$toggleLink = $toggle.unbind( 'click' ).click( function( e ){
+				$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
 					e.preventDefault();
 					toggleFunction( this );
 				} );
@@ -141,7 +141,7 @@ $.fn.makeCollapsible = function() {
 			if ( !$toggle.size() ) {
 				$that.prepend( $toggleLink );
 			} else {
-				$toggleLink = $toggle.unbind( 'click' ).click( function( e ){
+				$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
 					e.preventDefault();
 					toggleFunction( this );
 				} );
