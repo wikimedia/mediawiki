@@ -43,13 +43,13 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 		$f = fopen( $wgReadOnlyFile, "wt" );
 		fwrite( $f, 'Message' );
 		fclose( $f );
-		$wgReadOnly = null;
+		$wgReadOnly = null; # Check on $wgReadOnlyFile
 
 		$this->assertTrue( wfReadOnly() );
-		$this->assertTrue( wfReadOnly() );
+		$this->assertTrue( wfReadOnly() ); # Check cached
 
 		unlink( $wgReadOnlyFile );
-		$wgReadOnly = null;
+		$wgReadOnly = null; # Clean cache
 
 		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
