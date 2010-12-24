@@ -148,7 +148,6 @@ $.fn.makeCollapsible = function() {
 			}
 
 		}
-		console.log( $toggleLink.get(0) );
 		// Initial state
 		if ( $that.hasClass( 'mw-collapsed' ) ) {
 			$toggleLink.click();
