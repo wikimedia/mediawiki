@@ -411,9 +411,7 @@ class Title {
 				// and URL-decode links
 				if ( strpos( $m[1], '%' ) !== false ) {
 					// Match behavior of inline link parsing here;
-					// don't interpret + as " " most of the time!
-					// It might be safe to just use rawurldecode instead, though.
-					$m[1] = urldecode( ltrim( $m[1], ':' ) );
+					$m[1] = rawurldecode( ltrim( $m[1], ':' ) );
 				}
 				$title = Title::newFromText( $m[1] );
 				// If the title is a redirect to bad special pages or is invalid, return null

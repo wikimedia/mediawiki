@@ -40,6 +40,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as
   "Permitted file types" on the upload form
 * (bug 26379) importImages.php gives more descriptive error message on failure.
+* (Bug 26410) + signs are no longer treated as spaces in internal links if 
+  link has a % sign in it.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
