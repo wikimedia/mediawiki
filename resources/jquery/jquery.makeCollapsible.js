@@ -76,10 +76,10 @@ $.fn.makeCollapsible = function() {
 
 		// Use custom text or default ?
 		if( !collapsetext || collapsetext == '' ){
-			collapsetext = mw.msg( 'collapsible-collapse' );
+			collapsetext = mw.msg( 'collapsible-collapse', 'Collapse' );
 		}
 		if ( !expandtext || expandtext == '' ){
-			expandtext = mw.msg( 'collapsible-expand' );
+			expandtext = mw.msg( 'collapsible-expand', 'Expand' );
 		}
 
 		// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
