@@ -35,7 +35,7 @@
 			if ( !$log.length ) {
 				$log = $( '<div id="mw-log-console"></div>' )
 					.css( {
-						'position': 'absolute',
+						'position': 'fixed',
 						'overflow': 'auto',
 						'z-index': 500,
 						'bottom': '0px',
