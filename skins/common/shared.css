@@ -129,12 +129,6 @@ input#wpSummary {
 }
 
 /**
- * Thumbnails
- */
-/* Transparent instead of white thumb-containers (prevent white around thumbs on non-white backgrounds/templates) */
-div.thumb { border-color: transparent; }
-
-/**
  * Image captions
  */
 body.rtl .thumbcaption { text-align: right; }

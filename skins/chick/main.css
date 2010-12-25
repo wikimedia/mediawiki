@@ -279,7 +279,8 @@ div.floatleft p { font-style: italic; }
 /* thumbnails */
 div.thumb {
 	margin-bottom: 0.5em;
-	border-style: solid; border-color: white;
+	border-style: solid;
+	border-color: transparent;
 	width: auto;
 }
 div.thumbinner {
