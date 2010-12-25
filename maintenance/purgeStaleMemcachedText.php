@@ -11,6 +11,8 @@ function purgeStaleMemcachedText() {
 		array( 'ORDER BY' => 'rc_timestamp DESC' ) );
 	$latestReplicatedTextId -= 100; # A bit of paranoia
 
+	echo "Going to purge text entries from $latestReplicatedTextId to $maxTextId\n";
+
 	for ( $i = $latestReplicatedTextId; $i < $maxTextId; $i++ ) {
 		$key = wfMemcKey( 'revisiontext', 'textid', $i++ );
 		$wgMemc->delete( $key );
