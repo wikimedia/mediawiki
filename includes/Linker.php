@@ -1634,10 +1634,12 @@ class Linker {
 	public function titleAttrib( $name, $options = null ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( wfEmptyMsg( "tooltip-$name" ) ) {
+		$message = wfMessage( "tooltip-$name" );
+
+		if ( !$message->exists() ) {
 			$tooltip = false;
 		} else {
-			$tooltip = wfMsg( "tooltip-$name" );
+			$tooltip = $message->text();
 			# Compatibility: formerly some tooltips had [alt-.] hardcoded
 			$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
 			# Message equal to '-' means suppress it.
