@@ -15,7 +15,18 @@ function purgeStaleMemcachedText() {
 
 	for ( $i = $latestReplicatedTextId; $i < $maxTextId; $i++ ) {
 		$key = wfMemcKey( 'revisiontext', 'textid', $i );
-		$wgMemc->delete( $key );
+		
+		while (1) {
+			if (! $wgMemc->delete( $key ) ) {
+				echo "Memcache delete for $key returned false\n";
+			}
+			if ( $wgMemc->get( $key ) ) {
+				echo "There's still content in $key!\n";
+			} else {
+				break;
+			}
+		}
+		
 	}
 }
 
