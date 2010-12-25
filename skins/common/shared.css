@@ -129,6 +129,12 @@ input#wpSummary {
 }
 
 /**
+ * Thumbnails
+ */
+/* Transparent instead of white thumb-containers (prevent white around thumbs on non-white backgrounds/templates) */
+div.thumb { border-color: transparent; }
+
+/**
  * Image captions
  */
 body.rtl .thumbcaption { text-align: right; }
@@ -939,5 +945,3 @@ ol:lang(bn) li {
 .tipsy-inner { padding: 5px 8px 4px 8px; background-color: #d6f3ff; color: black; border: 1px solid #5dc9f4; max-width: 300px; text-align: left; }
 .tipsy-arrow { position: absolute; background: url( 'images/tipsy-arrow.gif' ) no-repeat top left; width: 13px; height: 13px; }
 .tipsy-se .tipsy-arrow { bottom: -2px; right: 10px; background-position: 0% 100%; }
-
-
