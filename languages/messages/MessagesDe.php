@@ -635,6 +635,8 @@ Siehe die [[Special:Version|Versionsseite]]',
 'toc'                     => 'Inhaltsverzeichnis',
 'showtoc'                 => 'Anzeigen',
 'hidetoc'                 => 'Verbergen',
+'collapsible-collapse'    => 'Einklappen',
+'collapsible-expand'      => 'Ausklappen',
 'thisisdeleted'           => '$1 ansehen oder wiederherstellen?',
 'viewdeleted'             => '$1 anzeigen?',
 'restorelink'             => '$1 {{PLURAL:$1|gelöschte Version|gelöschte Versionen}}',
@@ -1809,6 +1811,15 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'upload-too-many-redirects' => 'Die URL beinhaltete zu viele Weiterleitungen',
 'upload-unknown-size'       => 'Unbekannte Größe',
 'upload-http-error'         => 'Ein HTTP-Fehler ist aufgetreten: $1',
+
+# Special:UploadStash
+'uploadstash'          => 'Vorabspeicherung beim Hochladen',
+'uploadstash-summary'  => 'Diese Seite ermöglicht den Zugriff auf Dateien, die hochgeladen wurden, bzw. gerade hochgeladen werden, aber noch nicht auf dem Wiki publiziert wurden. Diese Dateien sind, der hochladende Benutzer ausgenommen, noch nicht öffentlich einsehbar.',
+'uploadstash-clear'    => 'Die vorab gespeicherten Dateien entfernen',
+'uploadstash-nofiles'  => 'Es sind keine vorab gespeicherten Dateien vorhanden.',
+'uploadstash-badtoken' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos, vielleicht weil die Sitzungsdaten abgelaufen sind. Bitte erneut versuchen.',
+'uploadstash-errclear' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos.',
+'uploadstash-refresh'  => 'Liste der Dateien aktualisieren',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Zugriff verweigert',
@@ -3618,14 +3629,5 @@ Sofern der Benutzer momentan angemeldet ist, wird er umgehend abgemeldet.
 'disableaccount-nosuchuser'  => 'Das Benutzerkonto „$1“ ist nicht vorhanden.',
 'disableaccount-success'     => 'Das Benutzerkonto „$1“ wurde dauerhaft deaktiviert.',
 'disableaccount-logentry'    => 'deaktivierte das Benutzerkonto [[$1]] dauerhaft',
-
-# Special:UploadStash
-'uploadstash'          => 'Vorabspeicherung beim Hochladen',
-'uploadstash-summary'  => 'Diese Seite ermöglicht den Zugriff auf Dateien, die hochgeladen wurden, bzw. gerade hochgeladen werden, aber noch nicht auf dem Wiki publiziert wurden. Diese Dateien sind, der hochladende Benutzer ausgenommen, noch nicht öffentlich einsehbar.',
-'uploadstash-clear'    => 'Die vorab gespeicherten Dateien entfernen',
-'uploadstash-nofiles'  => 'Es sind keine vorab gespeicherten Dateien vorhanden.',
-'uploadstash-badtoken' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos, vielleicht weil die Sitzungsdaten abgelaufen sind. Bitte erneut versuchen.',
-'uploadstash-errclear' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos.',
-'uploadstash-refresh'  => 'Liste der Dateien aktualisieren',
 
 );

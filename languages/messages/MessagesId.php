@@ -1732,6 +1732,15 @@ Silakan hubungi salah seorang [[Special:ListUsers/sysop|pengurus]].',
 'upload-unknown-size'       => 'Ukuran tidak diketahui',
 'upload-http-error'         => 'Kesalahan HTTP terjadi: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Simpanan unggahan',
+'uploadstash-summary'  => 'Halaman ini memberikan akses terhadap berkas yang diunggah (atau dalam proses pengunggahan), namun belum diterbitkan ke wiki. Berkas-berkas ini tidak dapat dilihat oleh siapa pun kecuali pengunggahnya.',
+'uploadstash-clear'    => 'Hapus berkas simpanan',
+'uploadstash-nofiles'  => 'Anda tidak memiliki berkas simpanan.',
+'uploadstash-badtoken' => 'Pelaksanaan tindakan tersebut gagal. Mungkin karena hak penyuntingan Anda telah kedaluwarsa. Coba lagi.',
+'uploadstash-errclear' => 'Penghapusan berkas gagal.',
+'uploadstash-refresh'  => 'Segarkan daftar berkas.',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Akses ditolak',
 'img-auth-nopathinfo'   => 'PATH_INFO hilang.
@@ -1989,6 +1998,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 'pager-newer-n'           => '{{PLURAL:$1|1 lebih baru|$1 lebih baru}}',
 'pager-older-n'           => '{{PLURAL:$1|1 lebih lama|$1 lebih lama}}',
 'suppress'                => 'Pengawas',
+'querypage-disabled'      => 'Halaman istimewa ini dinonaktifkan demi alasan kinerja.',
 
 # Book sources
 'booksources'               => 'Sumber buku',
@@ -3557,14 +3567,5 @@ Jika pengguna saat ini sedang masuk di mana saja, mereka akan segera dikeluarkan
 'disableaccount-nosuchuser'  => 'Akun pengguna "$1" tidak ada.',
 'disableaccount-success'     => 'Akun pengguna "$1" telah dinonaktifkan secara permanen.',
 'disableaccount-logentry'    => 'menonaktifkan secara permanen akun pengguna [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Simpanan unggahan',
-'uploadstash-summary'  => 'Halaman ini memberikan akses terhadap berkas yang diunggah (atau dalam proses pengunggahan), namun belum diterbitkan ke wiki. Berkas-berkas ini tidak dapat dilihat oleh siapa pun kecuali pengunggahnya.',
-'uploadstash-clear'    => 'Hapus berkas simpanan',
-'uploadstash-nofiles'  => 'Anda tidak memiliki berkas simpanan.',
-'uploadstash-badtoken' => 'Pelaksanaan tindakan tersebut gagal. Mungkin karena hak penyuntingan Anda telah kedaluwarsa. Coba lagi.',
-'uploadstash-errclear' => 'Penghapusan berkas gagal.',
-'uploadstash-refresh'  => 'Segarkan daftar berkas.',
 
 );

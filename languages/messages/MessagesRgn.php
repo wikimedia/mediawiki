@@ -163,6 +163,7 @@ $messages = array(
 'qbmyoptions'    => '↓ Al mi pàgin',
 'qbspecialpages' => '↓ Pàgin particulèri',
 'faq'            => '↓ Question frequenti',
+'faqpage'        => '↓ Prugèt:Question frequenti',
 
 'errorpagetitle'   => "Oci! T'ê fat una capèla",
 'returnto'         => 'Torna indrì a $1.',

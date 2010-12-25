@@ -1314,7 +1314,12 @@ $1',
 	'config-page-restart' => 'Рестартиране на инсталацията',
 	'config-page-upgradedoc' => 'Надграждане',
 	'config-page-existingwiki' => 'Съществуващо уики',
+	'config-help-restart' => 'Необходимо е потвърждение за изтриване на всички въведени и съхранени данни и започване отначало на процеса по инсталация.',
 	'config-restart' => 'Да, започване отначало',
+	'config-sidebar' => '* [http://www.mediawiki.org Сайт на MediaWiki]
+* [http://www.mediawiki.org/wiki/Help:Contents Наръчник на потребителя]
+* [http://www.mediawiki.org/wiki/Manual:Contents Наръчник на администратора]
+* [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ]',
 	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за Unicode-нормализация.',
 	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за Unicode-нормализация.',
 	'config-no-db' => 'Не може да бъде открит подходящ драйвер за база от данни!',
@@ -1322,12 +1327,20 @@ $1',
 	'config-apc' => '[http://www.php.net/apc APC] е инсталиран',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] е инсталиран',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
+	'config-no-cache' => "'''Предупреждение:''' Не бяха открити [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC] [http://trac.lighttpd.net/xcache/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
+Обектното кеширане не е включено.",
 	'config-diff3-bad' => 'GNU diff3 не е намерен.',
+	'config-no-uri' => "'''Грешка:''' Не може да се определи текущия адрес. 
+Инсталация беше прекратена.",
 	'config-db-type' => 'Тип на базата от данни:',
 	'config-db-name' => 'Име на базата от данни:',
 	'config-db-install-account' => 'Потребителска сметка за инсталацията',
 	'config-db-username' => 'Потребителско име за базата от данни:',
 	'config-db-password' => 'Парола за базата от данни:',
+	'config-db-install-username' => 'Въвежда се потребителско име, което ще се използва за свързване с базата от данни по време на процеса по инсталация.
+Това не е потребителско име за сметка в МедияУики; това е потребителско име за базата от данни.',
+	'config-db-wiki-help' => 'Въвежда се потребителско име и парола, които ще се използват при нормалното функциониране на уикито.
+Ако сметката не съществува и използваната при инсталацията сметка има необходимите права, тази потребителска сметка ще бъде създадена с минималните необходими права за работа с уикито.',
 	'config-db-prefix' => 'Представка за таблиците в базата от данни:',
 	'config-support-info' => 'МедияУики поддържа следните системи за бази от данни:
 
@@ -1339,15 +1352,29 @@ $1
 	'config-header-postgres' => 'Настройки за PostgreSQL',
 	'config-header-sqlite' => 'Настройки за SQLite',
 	'config-header-oracle' => 'Настройки за Oracle',
+	'config-db-web-create' => 'Създаване на сметката ако все още не съществува',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-admin-password' => 'Парола:',
+	'config-admin-password-confirm' => 'Парола (повторно):',
+	'config-admin-password-same' => 'Паролата не трябва да е същата като потребителското име.',
 	'config-admin-password-mismatch' => 'Двете въведени пароли не съвпадат.',
+	'config-admin-error-user' => 'Възникна вътрешна грешка при създаване на администратор с името "<nowiki>$1</nowiki>".',
+	'config-admin-error-password' => 'Възникна вътрешна грешка при задаване на парола за администратора "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-subscribe' => 'Абониране за [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce пощенския списък за нови версии].',
+	'config-license' => 'Авторски права и лиценз:',
 	'config-license-pd' => 'Обществено достояние',
 	'config-email-settings' => 'Настройки за е-поща',
+	'config-upload-settings' => 'Картинки и качване на файлове',
 	'config-upload-enable' => 'Позволяне качването на файлове',
 	'config-upload-deleted' => 'Директория за изтритите файлове:',
 	'config-logo' => 'Адрес на логото:',
 	'config-cache-memcached' => 'Използване на Memcached (изисква допълнителни настройки и конфигуриране)',
 	'config-memcached-servers' => 'Memcached сървъри:',
+	'config-extensions' => 'Разширения',
 	'config-install-tables' => 'Създаване на таблиците',
+	'config-install-interwiki-sql' => 'Файлът <code>interwiki.sql</code> не можа да бъде открит.',
 	'config-download-localsettings' => 'Изтегляне на LocalSettings.php',
 	'config-help' => 'помощ',
 );
@@ -4264,6 +4291,8 @@ $messages['ia'] = array(
 	'config-localsettings-upgrade' => 'Un file <code>LocalSettings.php</code> ha essite detegite.
 Pro actualisar iste installation, per favor entra le valor de <code>$wgUpgradeKey</code> in le quadro hic infra.
 Iste se trova in LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'Un file LocalSettings.php file ha essite detegite.
+Pro actualisar iste installation, per favor da le option --upgrade=yes.',
 	'config-localsettings-key' => 'Clave de actualisation:',
 	'config-localsettings-badkey' => 'Le clave que tu forniva es incorrecte',
 	'config-upgrade-key-missing' => 'Un installation existente de MediaWiki ha essite detegite.
@@ -4283,7 +4312,6 @@ Tu pote augmentar isto per definir <code>session.gc_maxlifetime</code> in php.in
 Reinitia le processo de installation.',
 	'config-no-session' => 'Le datos de tu session es perdite!
 Verifica tu php.ini e assecura te que un directorio appropriate es definite in <code>session.save_path</code>.',
-	'config-session-path-bad' => 'Le configuration <code>session.save_path</code> (<code>$1</code>) pare esser invalide o non permitte accesso de scriptura.',
 	'config-your-language' => 'Tu lingua:',
 	'config-your-language-help' => 'Selige un lingua a usar durante le processo de installation.',
 	'config-wiki-language' => 'Lingua del wiki:',
@@ -4662,7 +4690,7 @@ Incarga un imagine con le dimensiones appropriate, e entra le URL hic.
 Si tu non vole un logotypo, lassa iste quadro vacue.',
 	'config-instantcommons' => 'Activar "Instant Commons"',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] es un function que permitte a wikis de usar imagines, sonos e altere multimedia trovate in le sito [http://commons.wikimedia.org/ Wikimedia Commons].
-Pro poter facer isto, MediaWiki require accesso a Internet.
+Pro poter facer isto, MediaWiki require accesso a Internet. 
 
 Pro plus information super iste function, includente instructiones super como configurar lo pro wikis altere que Wikimedia Commons, consulta [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos le manual].',
 	'config-cc-error' => 'Le selector de licentia Creative Commons non dava un resultato.

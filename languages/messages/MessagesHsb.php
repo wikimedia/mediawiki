@@ -1569,6 +1569,15 @@ $1',
 'upload-unknown-size'       => 'Njeznata wulkosć',
 'upload-http-error'         => 'HTTP-zmylk je wustupił: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Schowanje nahratych datajow',
+'uploadstash-summary'  => 'Tuta strona zmóžnja přistup k datajam, kotrež su nahrate (abo so nahrawaja), ale hišće njejsu do wikija wozjejwene. Tute dataje  za nikoho widźomne njejsu, jenož za wužiwarja, kiž je je nahrał.',
+'uploadstash-clear'    => 'Schowane nahrate dataje zhašeć',
+'uploadstash-nofiles'  => 'Nimaš žane schowane nahrate dataje.',
+'uploadstash-badtoken' => 'Wuwjedźenje teje akcije je so njeporadźiło, snano dokelž twoje wobdźěłowanske daty su spadnjene. Spytaj hišće raz.',
+'uploadstash-errclear' => 'Wotstronjenje datajow je so njeporadźiło.',
+'uploadstash-refresh'  => 'Lisćinu datajow aktualizować',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Přistup wotpokazany',
 'img-auth-nopathinfo'   => 'PATH_INFO faluje.
@@ -3311,14 +3320,5 @@ Jeli wužiwar je tuchwilu druhdźe přizjewjeny, budźe so hnydom wotzjewjeć.
 'disableaccount-nosuchuser'  => 'Wužiwarske konto "$1" njeeksistuje.',
 'disableaccount-success'     => 'Wužiwarske konto "$1" bu na přeco znjemóžnjene.',
 'disableaccount-logentry'    => 'je wužiwarske konto [[$1]] na přeco znjemóžnił',
-
-# Special:UploadStash
-'uploadstash'          => 'Schowanje nahratych datajow',
-'uploadstash-summary'  => 'Tuta strona zmóžnja přistup k datajam, kotrež su nahrate (abo so nahrawaja), ale hišće njejsu do wikija wozjejwene. Tute dataje  za nikoho widźomne njejsu, jenož za wužiwarja, kiž je je nahrał.',
-'uploadstash-clear'    => 'Schowane nahrate dataje zhašeć',
-'uploadstash-nofiles'  => 'Nimaš žane schowane nahrate dataje.',
-'uploadstash-badtoken' => 'Wuwjedźenje teje akcije je so njeporadźiło, snano dokelž twoje wobdźěłowanske daty su spadnjene. Spytaj hišće raz.',
-'uploadstash-errclear' => 'Wotstronjenje datajow je so njeporadźiło.',
-'uploadstash-refresh'  => 'Lisćinu datajow aktualizować',
 
 );

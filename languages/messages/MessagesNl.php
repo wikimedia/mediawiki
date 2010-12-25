@@ -604,6 +604,8 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'toc'                     => 'Inhoud',
 'showtoc'                 => 'bekijken',
 'hidetoc'                 => 'verbergen',
+'collapsible-collapse'    => 'Inklappen',
+'collapsible-expand'      => 'Uitklappen',
 'thisisdeleted'           => '$1 bekijken of terugplaatsen?',
 'viewdeleted'             => '$1 bekijken?',
 'restorelink'             => '$1 verwijderde {{PLURAL:$1|versie|versies}}',
@@ -1856,6 +1858,15 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'upload-too-many-redirects' => 'De URL bevatte te veel doorverwijzingen',
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => 'Er is een HTTP-fout opgetreden: $1',
+
+# Special:UploadStash
+'uploadstash'          => 'Verborgen uploads',
+'uploadstash-summary'  => 'Deze pagina biedt toegang tot bestanden die geüpload zijn of nog geüpload worden maar nog niet beschikbaar gemaakt zijn in de wiki. Deze bestanden zijn alleen zichtbaar voor de gebruiker die ze uploadt.',
+'uploadstash-clear'    => 'Verborgen bestanden weggooien',
+'uploadstash-nofiles'  => 'Er zijn geen verborgen bestanden.',
+'uploadstash-badtoken' => 'Het uitvoeren van de handeling is mislukt. Dit komt mogelijk doordat uw bewerkingsreferenties zijn verlopen. Probeer het opnieuw.',
+'uploadstash-errclear' => 'Het verwijderen van de bestanden is mislukt.',
+'uploadstash-refresh'  => 'Lijst met bestanden bijwerken',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Toegang geweigerd',
@@ -3723,14 +3734,5 @@ Als de gebruiker op dit moment is aangemeld, wordt deze per direct afgemeld.
 'disableaccount-nosuchuser'  => 'De gebruiker "$1" bestaat niet.',
 'disableaccount-success'     => 'De gebruiker "$1" is permanent uitgeschakeld.',
 'disableaccount-logentry'    => 'heeft de gebruiker [[$1]] permanent uitgeschakeld',
-
-# Special:UploadStash
-'uploadstash'          => 'Verborgen uploads',
-'uploadstash-summary'  => 'Deze pagina biedt toegang tot bestanden die geüpload zijn of nog geüpload worden maar nog niet beschikbaar gemaakt zijn in de wiki. Deze bestanden zijn alleen zichtbaar voor de gebruiker die ze uploadt.',
-'uploadstash-clear'    => 'Verborgen bestanden weggooien',
-'uploadstash-nofiles'  => 'Er zijn geen verborgen bestanden.',
-'uploadstash-badtoken' => 'Het uitvoeren van de handeling is mislukt. Dit komt mogelijk doordat uw bewerkingsreferenties zijn verlopen. Probeer het opnieuw.',
-'uploadstash-errclear' => 'Het verwijderen van de bestanden is mislukt.',
-'uploadstash-refresh'  => 'Lijst met bestanden bijwerken',
 
 );

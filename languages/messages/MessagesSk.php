@@ -1743,6 +1743,15 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'upload-unknown-size'       => 'Neznáma veľkosť',
 'upload-http-error'         => 'Vyskytla sa chyba HTTP: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Skrýša nahraných súborov',
+'uploadstash-summary'  => 'Táto stránka poskytuje prístup k súborom nahraným (alebo práve nahrávaným), ktoré zatiaľ nie sú zverejnené na wiki. Tieto súbory nevidí nikto iný okrem používateľa, ktorý ich nahral.',
+'uploadstash-clear'    => 'Vymazať skrýšu nahraných súborov',
+'uploadstash-nofiles'  => 'Nemáte žiadne súbory v skrýši nahraných súborov.',
+'uploadstash-badtoken' => 'Vykonanie operácie sa nepodarilo, možno preto, že platnosť vašich prihlasovacích údajov vypršala. Skúste to znova.',
+'uploadstash-errclear' => 'Vymazanie súborov bolo neúspešné.',
+'uploadstash-refresh'  => 'Obnoviť zoznam súborov',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Prístup zamietnutý',
 'img-auth-nopathinfo'   => 'Chýba PATH_INFO.
@@ -3560,14 +3569,5 @@ Ak je používateľ momentálne niekde prihlásený, bude okamžite odhlásený.
 'disableaccount-nosuchuser'  => 'Používateľský účet „$1“ neexistuje.',
 'disableaccount-success'     => 'Používateľský účet „$1“ bol natrvalo zakázaný.',
 'disableaccount-logentry'    => 'natrvalo zakázaný používateľský účet [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Skrýša nahraných súborov',
-'uploadstash-summary'  => 'Táto stránka poskytuje prístup k súborom nahraným (alebo práve nahrávaným), ktoré zatiaľ nie sú zverejnené na wiki. Tieto súbory nevidí nikto iný okrem používateľa, ktorý ich nahral.',
-'uploadstash-clear'    => 'Vymazať skrýšu nahraných súborov',
-'uploadstash-nofiles'  => 'Nemáte žiadne súbory v skrýši nahraných súborov.',
-'uploadstash-badtoken' => 'Vykonanie operácie sa nepodarilo, možno preto, že platnosť vašich prihlasovacích údajov vypršala. Skúste to znova.',
-'uploadstash-errclear' => 'Vymazanie súborov bolo neúspešné.',
-'uploadstash-refresh'  => 'Obnoviť zoznam súborov',
 
 );

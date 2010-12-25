@@ -441,6 +441,8 @@ $1",
 'toc'                     => 'Inhaltsverzeechnes',
 'showtoc'                 => 'weisen',
 'hidetoc'                 => 'verstoppen',
+'collapsible-collapse'    => 'Zesummeklappen',
+'collapsible-expand'      => 'Opklappen',
 'thisisdeleted'           => '$1 kucken oder zrécksetzen?',
 'viewdeleted'             => 'Weis $1?',
 'restorelink'             => '$1 geläscht {{PLURAL:$1|Versioun|Versiounen}}',
@@ -1607,6 +1609,13 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'upload-too-many-redirects' => "Et waren zevill Viruleedungen fir d'URL do",
 'upload-unknown-size'       => 'Onbekannte Gréisst',
 'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
+
+# Special:UploadStash
+'uploadstash'          => 'Um Server späichere virum Eroplueden',
+'uploadstash-clear'    => 'Um Server gespäichert Fichieren déi nach net eropgeluede si läschen',
+'uploadstash-nofiles'  => 'Dir hutt keng gespäichert Fichieren déi Dir nach net eropgelueden hutt.',
+'uploadstash-errclear' => "D'Läsche vun de Fichieren huet net fonctionnéiert.",
+'uploadstash-refresh'  => 'Lëscht vun de Fichieren aktualiséieren',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Zougang refuséiert',
@@ -3378,12 +3387,5 @@ Wann e Benotzer elo iergendwou ageloggt ass da gëtt hien direkt ausgeloggt.
 'disableaccount-nosuchuser'  => 'De Benotzerkont "$1" gëtt et net.',
 'disableaccount-success'     => 'De Benotzerkont "$1" gouf definitiv desaktivéiert.',
 'disableaccount-logentry'    => 'huet de Benotzer [[$1]] definitiv desaktivéiert',
-
-# Special:UploadStash
-'uploadstash'          => 'Um Server späichere virum Eroplueden',
-'uploadstash-clear'    => 'Um Server gespäichert Fichieren déi nach net eropgeluede si läschen',
-'uploadstash-nofiles'  => 'Dir hutt keng gespäichert Fichieren déi Dir nach net eropgelueden hutt.',
-'uploadstash-errclear' => "D'Läsche vun de Fichieren huet net fonctionnéiert.",
-'uploadstash-refresh'  => 'Lëscht vun de Fichieren aktualiséieren',
 
 );

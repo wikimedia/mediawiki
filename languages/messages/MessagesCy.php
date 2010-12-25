@@ -396,6 +396,8 @@ $1',
 'toc'                     => 'Cynnwys',
 'showtoc'                 => 'dangos',
 'hidetoc'                 => 'cuddio',
+'collapsible-collapse'    => 'Crebachu',
+'collapsible-expand'      => 'Ehangu',
 'thisisdeleted'           => 'Ydych chi am ddangos, neu ddad-ddileu $1?',
 'viewdeleted'             => 'Gweld $1?',
 'restorelink'             => "$1 {{PLURAL:$1|golygiad sydd wedi'i ddileu|golygiad sydd wedi'i ddileu|olygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu}}",
@@ -1556,6 +1558,15 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'upload-unknown-size'       => 'Maint anhysbys',
 'upload-http-error'         => 'Digwyddodd gwall HTTP: $1',
 
+# Special:UploadStash
+'uploadstash'          => "Uwchlwytho i'r celc",
+'uploadstash-summary'  => "O'r dudalen hon gallwch gyrchu'r ffeiliau sydd wedi cael eu huwchlwytho (neu wrthi'n cael eu huwchlwytho) ond nad ydynt wedi eu cyhoeddi ar y wici eto. Nid oes neb yn gallu gweld y ffeiliau heblaw am y defnyddiwr a'u huwchlwythodd.",
+'uploadstash-clear'    => "Clirio'r celc ffeiliau",
+'uploadstash-nofiles'  => 'Nid oes unrhyw ffeiliau mewn celc gennych.',
+'uploadstash-badtoken' => 'Ni lwyddodd y weithred, efallai oherwydd bod eich cymwysterau golygu wedi dod i ben. Ceisiwch eto.',
+'uploadstash-errclear' => "Ni lwyddwyd i glirio'r ffeiliau.",
+'uploadstash-refresh'  => 'Adnewyddu rhestr y ffeiliau',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Ni chaniatawyd mynediad',
 'img-auth-nopathinfo'   => "PATH_INFO yn eisiau.
@@ -1814,6 +1825,7 @@ Sylwch y gall gwefannau eraill gysylltu â ffeil drwy URL uniongyrchol. Gan hynn
 'pager-newer-n'           => '{{PLURAL:$1|y $1 mwy diweddar|yr 1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar|y $1 mwy diweddar}}.',
 'pager-older-n'           => '{{PLURAL:$1|y $1 cynharach|yr $1 cynharach|y $1 cynharach|y $1 cynharach|y $1 cynharach|y $1 cynharach}}',
 'suppress'                => 'Goruchwylio',
+'querypage-disabled'      => 'Analluogwyd y dudalen arbennig hon er mwyn osgoi iddi andwyo perfformiad y wefan.',
 
 # Book sources
 'booksources'               => 'Ffynonellau llyfrau',
@@ -3197,7 +3209,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio\'r rhestr arferol]].',
 'version-specialpages'             => 'Tudalennau arbennig',
 'version-parserhooks'              => 'Bachau dosrannydd',
 'version-variables'                => 'Newidynnau',
-'version-antispam'                 => 'Gwrth-sbam',
+'version-antispam'                 => 'Atal sbam',
 'version-skins'                    => 'Gweddau',
 'version-other'                    => 'Arall',
 'version-mediahandlers'            => 'Trinyddion cyfryngau',
@@ -3333,14 +3345,5 @@ Os yw'r defnyddiwr wedi mewngofnodi rhywle ar hyn o bryd, bydd yn cael ei allgof
 'disableaccount-nosuchuser'  => 'Nid oes cyfrif defnyddiwr o\'r enw "$1" ar gael.',
 'disableaccount-success'     => 'Analluogwyd cyfrif y defnyddiwr "$1" yn barhaol.',
 'disableaccount-logentry'    => 'wedi analluogi cyfrif y defnyddiwr [[$1]] yn barhaol',
-
-# Special:UploadStash
-'uploadstash'          => "Uwchlwytho i'r celc",
-'uploadstash-summary'  => "O'r dudalen hon gallwch gyrchu'r ffeiliau sydd wedi cael eu huwchlwytho (neu wrthi'n cael eu huwchlwytho) ond nad ydynt wedi eu cyhoeddi ar y wici eto. Nid oes neb yn gallu gweld y ffeiliau heblaw am y defnyddiwr a'u huwchlwythodd.",
-'uploadstash-clear'    => "Clirio'r celc ffeiliau",
-'uploadstash-nofiles'  => 'Nid oes unrhyw ffeiliau mewn celc gennych.',
-'uploadstash-badtoken' => 'Ni lwyddodd y weithred, efallai oherwydd bod eich cymwysterau golygu wedi dod i ben. Ceisiwch eto.',
-'uploadstash-errclear' => "Ni lwyddwyd i glirio'r ffeiliau.",
-'uploadstash-refresh'  => 'Adnewyddu rhestr y ffeiliau',
 
 );

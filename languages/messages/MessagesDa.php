@@ -1618,6 +1618,9 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'upload-unknown-size'       => 'Ukendt størrelse',
 'upload-http-error'         => 'Der opstod en HTTP-fejl: $1',
 
+# Special:UploadStash
+'uploadstash-summary' => 'Denne side giver adgang til filer, de er uploadet (eller er i gang med at blive det), men som endnu ikke er offentliggjort på wikien. Disse filer er kun synlige for brugeren, der har uploadet dem.',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Adgang nægtet',
 'img-auth-nopathinfo'   => 'PATH_INFO mangler.
@@ -3374,8 +3377,5 @@ Hvis brugeren er logget ind et sted, vil vedkommende blive logget ud øjeblikkel
 'disableaccount-nosuchuser'  => 'Brugerkontoen "$1" findes ikke.',
 'disableaccount-success'     => 'Brugerkontoen "$1" er blevet permanent deaktiveret.',
 'disableaccount-logentry'    => 'deaktiverede brugerkontoen [[$1]] permanent',
-
-# Special:UploadStash
-'uploadstash-summary' => 'Denne side giver adgang til filer, de er uploadet (eller er i gang med at blive det), men som endnu ikke er offentliggjort på wikien. Disse filer er kun synlige for brugeren, der har uploadet dem.',
 
 );

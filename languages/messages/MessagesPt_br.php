@@ -1759,6 +1759,15 @@ Por gentileza, entre em contato com um [[Special:ListUsers/sysop|administrador]]
 'upload-unknown-size'       => 'Tamanho desconhecido',
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Arquivos escondidos',
+'uploadstash-summary'  => 'Esta página dá acesso aos arquivos enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes arquivos não são visíveis para ninguém, exceto para o usuário que os enviou.',
+'uploadstash-clear'    => 'Apagar os arquivos escondidos',
+'uploadstash-nofiles'  => 'Você não tem nenhum arquivo escondido.',
+'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
+'uploadstash-errclear' => 'Não foi possível apagar os arquivos.',
+'uploadstash-refresh'  => 'Atualizar a lista de arquivos',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
 'img-auth-nopathinfo'   => 'Falta PATH_INFO
@@ -3545,14 +3554,5 @@ Se neste momento o usuário estiver autenticado em algum lugar, ele sairá de im
 'disableaccount-nosuchuser'  => 'A conta de usuário "$1" não existe.',
 'disableaccount-success'     => 'A conta de usuário "$1" foi desativada permanentemente.',
 'disableaccount-logentry'    => 'desativou permanentemente a conta [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Arquivos escondidos',
-'uploadstash-summary'  => 'Esta página dá acesso aos arquivos enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes arquivos não são visíveis para ninguém, exceto para o usuário que os enviou.',
-'uploadstash-clear'    => 'Apagar os arquivos escondidos',
-'uploadstash-nofiles'  => 'Você não tem nenhum arquivo escondido.',
-'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
-'uploadstash-errclear' => 'Não foi possível apagar os arquivos.',
-'uploadstash-refresh'  => 'Atualizar a lista de arquivos',
 
 );

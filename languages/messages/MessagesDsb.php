@@ -1581,6 +1581,15 @@ $1',
 'upload-unknown-size'       => 'Njeznata wjelikosć',
 'upload-http-error'         => 'HTTP-zmólka nastata: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Schowanje nagratych datajow',
+'uploadstash-summary'  => 'Toś ten bok zmóžnja dostup do datajow, kótarež su nagrate (abo so nagrawaju), ale hyšći njejsu do wikija wózjawjone. Toś te dataje njejsu widobne za nikogo, mimo až za wužywarja, kótaryž jo je nagrał.',
+'uploadstash-clear'    => 'Schowane nagrate dataje wulašowaś',
+'uploadstash-nofiles'  => 'Njamaš schowane nagrate dataje.',
+'uploadstash-badtoken' => 'Wuwjeźenje teje akcije jo se njeraźiło, snaź dokulaž twóje wobźěłowańske daty su spadnjone. Wopytaj hyšći raz.',
+'uploadstash-errclear' => 'Wótpóranje datajow jo se njeraźiło.',
+'uploadstash-refresh'  => 'Lisćinu datajow aktualizěrowaś',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Pśistup zawobarany',
 'img-auth-nopathinfo'   => 'PATH_INFO felujo.
@@ -3330,14 +3339,5 @@ Jolic wužywaŕ jo tuchylu hynźi pśizjawjony, buźo se ned wótzjawiś.
 'disableaccount-nosuchuser'  => 'Wužywaŕ konto "$1" njeeksistěrujo.',
 'disableaccount-success'     => 'Wužywarske konto "$1" jo se na pśecej znjemóžniło.',
 'disableaccount-logentry'    => 'jo wužywarske konto [[$1]] na pśecej znjemóžnił',
-
-# Special:UploadStash
-'uploadstash'          => 'Schowanje nagratych datajow',
-'uploadstash-summary'  => 'Toś ten bok zmóžnja dostup do datajow, kótarež su nagrate (abo so nagrawaju), ale hyšći njejsu do wikija wózjawjone. Toś te dataje njejsu widobne za nikogo, mimo až za wužywarja, kótaryž jo je nagrał.',
-'uploadstash-clear'    => 'Schowane nagrate dataje wulašowaś',
-'uploadstash-nofiles'  => 'Njamaš schowane nagrate dataje.',
-'uploadstash-badtoken' => 'Wuwjeźenje teje akcije jo se njeraźiło, snaź dokulaž twóje wobźěłowańske daty su spadnjone. Wopytaj hyšći raz.',
-'uploadstash-errclear' => 'Wótpóranje datajow jo se njeraźiło.',
-'uploadstash-refresh'  => 'Lisćinu datajow aktualizěrowaś',
 
 );

@@ -1561,6 +1561,15 @@ Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
 'upload-unknown-size'       => 'Nit bekannti Greßi',
 'upload-http-error'         => 'E HTTP-Fähler isch ufträtte: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Vorabspycherig binm Uffelade',
+'uploadstash-summary'  => 'Die Syte macht dr Zuegriff uf Dateie megli, wu uffeglade wore sin (oder grad uffeglade wäre), wu aber nonig uf em Wiki publiziert wore sin. Die Dateie cha no niemer aaluege, ußer däjenig, wu si uffelade duet.',
+'uploadstash-clear'    => 'Di vorab gspycherete Dateie uuseneh',
+'uploadstash-nofiles'  => 'S git keini vorab gspycherete Dateie.',
+'uploadstash-badtoken' => 'S Uuseneh vu dr vorab gspycherete Dateien isch fählgschlaa, villicht wel d Sitzigsdaten abglofe sin. Bitte versuech s nomol.',
+'uploadstash-errclear' => 'S Uuseneh vu dr vorab gspycherete Dateie isch fählgschlaa.',
+'uploadstash-refresh'  => 'Lischt vu dr Dateie aktualisiere',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Zuegriff verweigeret',
 'img-auth-nopathinfo'   => 'PATH_INFO fählt.
@@ -3291,14 +3300,5 @@ Wänn dr Benutzer grad aagmäldet isch, wird er sofort abgmäldet.
 'disableaccount-nosuchuser'  => 'Dr Benutzer „$1“ git s nit.',
 'disableaccount-success'     => 'S Benutzerkonto „$1“ isch fir immer deaktiviert wore.',
 'disableaccount-logentry'    => 'het s Benutzerkonto [[$1]] fir immer deaktiviert',
-
-# Special:UploadStash
-'uploadstash'          => 'Vorabspycherig binm Uffelade',
-'uploadstash-summary'  => 'Die Syte macht dr Zuegriff uf Dateie megli, wu uffeglade wore sin (oder grad uffeglade wäre), wu aber nonig uf em Wiki publiziert wore sin. Die Dateie cha no niemer aaluege, ußer däjenig, wu si uffelade duet.',
-'uploadstash-clear'    => 'Di vorab gspycherete Dateie uuseneh',
-'uploadstash-nofiles'  => 'S git keini vorab gspycherete Dateie.',
-'uploadstash-badtoken' => 'S Uuseneh vu dr vorab gspycherete Dateien isch fählgschlaa, villicht wel d Sitzigsdaten abglofe sin. Bitte versuech s nomol.',
-'uploadstash-errclear' => 'S Uuseneh vu dr vorab gspycherete Dateie isch fählgschlaa.',
-'uploadstash-refresh'  => 'Lischt vu dr Dateie aktualisiere',
 
 );

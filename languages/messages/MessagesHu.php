@@ -1757,6 +1757,11 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'upload-unknown-size'       => 'Ismeretlen méretű',
 'upload-http-error'         => 'HTTP-hiba történt: $1',
 
+# Special:UploadStash
+'uploadstash-summary'  => 'Ezen a lapon lehet hozzáférni azokhoz a fájlokhoz, melyek fel lettek töltve (vagy épp feltöltés alatt vannak), de még nem lettek közzétéve a wikin. Az ilyen fájlok csak a feltöltőik számára láthatóak.',
+'uploadstash-errclear' => 'A fájlok törlése nem sikerült.',
+'uploadstash-refresh'  => 'Fájlok listájának frissítése',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Hozzáférés megtagadva',
 'img-auth-nopathinfo'   => 'Hiányzó PATH_INFO.
@@ -3540,10 +3545,5 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'disableaccount-nosuchuser'  => 'Nem létezik „$1” nevű felhasználói fiók.',
 'disableaccount-success'     => '„$1” felhasználói fiókja véglegesen le lett tiltva.',
 'disableaccount-logentry'    => 'véglegesen letiltotta [[$1]] felhasználói fiókját',
-
-# Special:UploadStash
-'uploadstash-summary'  => 'Ezen a lapon lehet hozzáférni azokhoz a fájlokhoz, melyek fel lettek töltve (vagy épp feltöltés alatt vannak), de még nem lettek közzétéve a wikin. Az ilyen fájlok csak a feltöltőik számára láthatóak.',
-'uploadstash-errclear' => 'A fájlok törlése nem sikerült.',
-'uploadstash-refresh'  => 'Fájlok listájának frissítése',
 
 );

@@ -39,6 +39,7 @@
  * @author Huji
  * @author IAlex
  * @author INkubusse
+ * @author Iniquity
  * @author Iwan Novirion
  * @author Jon Harald Søby
  * @author Karduelis
@@ -497,8 +498,8 @@ The format is: "{{int:youhavenewmessagesmulti| [[MediaWiki:Newmessageslink/{{SUB
 'hidetoc'                 => 'This is the link used to hide the table of contents
 
 {{Identical|Hide}}',
-'collapsible-collapse'    => 'This is the link used to collapse a collapsible element',
-'collapsible-expand'      => 'This is the link used to expand a collapsible element',
+'collapsible-collapse'    => 'Данная ссылка сворачивает сворачиваемый элемент',
+'collapsible-expand'      => 'Данная ссылка разворачивает сворачиваемый элемент',
 'thisisdeleted'           => 'Message shown on a deleted page when the user has the undelete right. $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|viewdeleted}}.',
 'viewdeleted'             => 'Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right). $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|thisisdeleted}}.',
 'restorelink'             => "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see

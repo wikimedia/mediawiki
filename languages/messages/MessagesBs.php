@@ -1762,6 +1762,15 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'upload-unknown-size'       => 'Nepoznata veličina',
 'upload-http-error'         => 'Desila se HTTP greška: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Postavi sakrivene datoteke',
+'uploadstash-summary'  => 'Ova stranica daje pristup datotekama koje su postavljene (ili su u postupku postavljanja) ali još nisu objavljene na wiki. Ove datoteke nisu vidljive nikom osim korisniku koji ih je postavio.',
+'uploadstash-clear'    => 'Očisti sakrivene datoteke',
+'uploadstash-nofiles'  => 'Nemate sakrivenih datoteka.',
+'uploadstash-badtoken' => 'Izvršavanje ove akcije je bilo neuspješno, možda zato što su vaša uređivačka odobrenja istekla. Pokušajte ponovo.',
+'uploadstash-errclear' => 'Brisanje sakrivenih datoteka je bilo neuspješno.',
+'uploadstash-refresh'  => 'Osvježi spisak datoteka',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Pristup onemogućen',
 'img-auth-nopathinfo'   => 'Nedostaje PATH_INFO.
@@ -3659,14 +3668,5 @@ Ako je korisnik negdje u međuvremenu prijavljen, bit će automatski odmah odjav
 'disableaccount-nosuchuser'  => 'Korisnički račun "$1" ne postoji.',
 'disableaccount-success'     => 'Korisnički račun "$1" je trajno onemogućen.',
 'disableaccount-logentry'    => 'zauvijek je onemogućen korisnički račun [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Postavi sakrivene datoteke',
-'uploadstash-summary'  => 'Ova stranica daje pristup datotekama koje su postavljene (ili su u postupku postavljanja) ali još nisu objavljene na wiki. Ove datoteke nisu vidljive nikom osim korisniku koji ih je postavio.',
-'uploadstash-clear'    => 'Očisti sakrivene datoteke',
-'uploadstash-nofiles'  => 'Nemate sakrivenih datoteka.',
-'uploadstash-badtoken' => 'Izvršavanje ove akcije je bilo neuspješno, možda zato što su vaša uređivačka odobrenja istekla. Pokušajte ponovo.',
-'uploadstash-errclear' => 'Brisanje sakrivenih datoteka je bilo neuspješno.',
-'uploadstash-refresh'  => 'Osvježi spisak datoteka',
 
 );

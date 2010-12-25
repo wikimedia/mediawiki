@@ -512,6 +512,8 @@ $1',
 'toc'                     => 'Innhold',
 'showtoc'                 => 'vis',
 'hidetoc'                 => 'skjul',
+'collapsible-collapse'    => 'Legg sammen',
+'collapsible-expand'      => 'Utvid',
 'thisisdeleted'           => 'Se eller gjenopprett $1?',
 'viewdeleted'             => 'Vis $1?',
 'restorelink'             => '{{PLURAL:$1|én slettet revisjon|$1 slettede revisjoner}}',
@@ -643,7 +645,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'notloggedin'                => 'Ikke logget inn',
 'nologin'                    => "Er du ikke registrert? '''$1'''.",
 'nologinlink'                => 'Opprett en konto',
-'createaccount'              => 'Opprett ny konto',
+'createaccount'              => 'Opprett konto',
 'gotaccount'                 => "Har du allerede et brukernavn? '''$1'''.",
 'gotaccountlink'             => 'Logg inn',
 'createaccountmail'          => 'per e-post',
@@ -1679,6 +1681,15 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'upload-unknown-size'       => 'Ukjent størrelse',
 'upload-http-error'         => 'En HTTP-feil oppstod: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Last opp stash',
+'uploadstash-summary'  => 'Denne siden gir tilgang til filer som har blitt lastet opp (eller er i ferd med å bli lastet opp) men som ennå ikke er publisert til wikien. Disse filene er ikke synlige for andre enn brukeren som lastet dem opp.',
+'uploadstash-clear'    => 'Fjern stashede filer',
+'uploadstash-nofiles'  => 'Du har ingen stashede filer.',
+'uploadstash-badtoken' => 'Utføringen av den handlingen var mislykket, kanskje fordi dine redigeringsrettigheter har utløpt. Prøv igjen.',
+'uploadstash-errclear' => 'Fjerning av filene var mislykket.',
+'uploadstash-refresh'  => 'Oppdater listen over filer',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Ingen tilgang',
 'img-auth-nopathinfo'   => 'PATH_INFO mangler.
@@ -1933,6 +1944,7 @@ Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen li
 'pager-newer-n'           => '{{PLURAL:$1|1 nyere|$1 nyere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 eldre|$1 eldre}}',
 'suppress'                => 'Sidefjerning',
+'querypage-disabled'      => 'Denne spesialsiden er deaktivert av ytelsesårsaker.',
 
 # Book sources
 'booksources'               => 'Bokkilder',
@@ -3492,14 +3504,5 @@ Om denne brukeren er pålogget et sted vil den umiddelbart bli logget ut.
 'disableaccount-nosuchuser'  => 'Brukerkontoen «$1» finnes ikke.',
 'disableaccount-success'     => 'Brukerkontoen «$1» har blitt permanent deaktivert.',
 'disableaccount-logentry'    => 'deaktiverte brukerkontoen [[$1]] permanent',
-
-# Special:UploadStash
-'uploadstash'          => 'Last opp stash',
-'uploadstash-summary'  => 'Denne siden gir tilgang til filer som har blitt lastet opp (eller er i ferd med å bli lastet opp) men som ennå ikke er publisert til wikien. Disse filene er ikke synlige for andre enn brukeren som lastet dem opp.',
-'uploadstash-clear'    => 'Fjern stashede filer',
-'uploadstash-nofiles'  => 'Du har ingen stashede filer.',
-'uploadstash-badtoken' => 'Utføringen av den handlingen var mislykket, kanskje fordi dine redigeringsrettigheter har utløpt. Prøv igjen.',
-'uploadstash-errclear' => 'Fjerning av filene var mislykket.',
-'uploadstash-refresh'  => 'Oppdater listen over filer',
 
 );

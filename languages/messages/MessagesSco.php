@@ -689,6 +689,9 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'mergehistory-from'   => 'Soorce page:',
 'mergehistory-reason' => 'Raeson:',
 
+# Merge log
+'revertmerge' => 'Unmerge',
+
 # Diffs
 'difference'              => '(Difference atween revisions)',
 'lineno'                  => 'Line $1:',
@@ -697,6 +700,7 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 
 # Search results
 'searchresults'             => 'Rake results',
+'searchresults-title'       => 'Rake affcome for "$1"',
 'searchresulttext'          => 'For mair information aboot rakin {{SITENAME}}, see [[{{MediaWiki:Helppage}}|Rakin {{SITENAME}}]].',
 'searchsubtitle'            => "Ye raked for '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Ye raked for '''$1'''",
@@ -708,7 +712,10 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'viewprevnext'              => 'View ($1 {{int:pipe-separator}} $2) ($3)',
 'searchhelp-url'            => 'Help:Contents',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 word|$2 words}})',
+'search-redirect'           => '(redirect $1)',
 'search-section'            => '(section $1)',
+'search-suggest'            => 'Did ye mean: $1',
+'search-interwiki-more'     => '(more)',
 'search-mwsuggest-enabled'  => 'wi suggestions',
 'search-mwsuggest-disabled' => 'nae propone',
 'searchall'                 => 'aw',
@@ -716,6 +723,7 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'showingresultsnum'         => "Shawin ablo {{PLURAL:$3|'''1''' result|'''$3''' results}} stertin wi #'''$2'''.",
 'nonefound'                 => "'''Mynd''': unsuccessfu rakes is afttimes caused bi rakin for common words like \"hae\" an \"frae\", that isna indexed, or bi specifeein mair nor ae rake term (juist pages haudin aa the rake terms will kythe in the result).",
 'powersearch'               => 'Rake',
+'powersearch-redir'         => 'Leet redirects',
 'powersearch-field'         => 'Rake for',
 'powersearch-toggleall'     => 'Aw',
 'searchdisabled'            => 'Rakin throu {{SITENAME}} is disabled for performance raesons. Ye can rake via Google juist nou. Mynd that thair indexes o {{SITENAME}} content micht be oot o date.',
@@ -812,6 +820,7 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 watchin {{PLURAL:$1|uiser|uisers}}]',
 'rc_categories_any'                 => 'Ony',
+'rc-enhanced-hide'                  => 'Hod details',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Relatit chynges',
@@ -870,8 +879,12 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'filehist'            => 'File history',
 'filehist-deleteone'  => 'delete',
 'filehist-revert'     => 'revert',
+'filehist-current'    => 'current',
+'filehist-datetime'   => 'Date/Time',
+'filehist-thumb'      => 'Thumbnail',
 'filehist-user'       => 'Uiser',
 'filehist-dimensions' => 'Dimensions',
+'filehist-comment'    => 'Comment',
 'imagelinks'          => 'File airtins',
 'linkstoimage'        => 'The follaein $1 pages airts tae this image:',
 'nolinkstoimage'      => "The'r nae pages airts tae this eimage.",
@@ -1026,6 +1039,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'iteminvalidname'   => "Trouble wi eitem '$1', invalid name...",
 'wlnote'            => "Ablo is the lest $1 {{PLURAL:$1|chynge|chynges}} in the lest {{PLURAL:$2|hour|'''$2''' hours}}.",
 'wlshowlast'        => 'Shaw lest $1 hours $2 days $3',
+'watchlist-options' => 'Watchleet options',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Watchin...',
@@ -1252,12 +1266,17 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'tooltip-pt-mycontris'            => 'Leet o yer contreibutions',
 'tooltip-pt-login'                => "It's a guid idea tae log i, but ye dinna hae tae.",
 'tooltip-pt-logout'               => 'Log oot',
+'tooltip-ca-protect'              => 'Fend this page',
+'tooltip-ca-delete'               => 'Delete this page',
 'tooltip-ca-move'                 => 'Flit this page',
+'tooltip-ca-watch'                => 'Add this page tae yer watchleet',
 'tooltip-search'                  => 'Rake {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Gang tae the Main Page',
+'tooltip-n-recentchanges'         => 'The leet o recent chynges in the wiki',
 'tooltip-t-contributions'         => "View this uiser's contreibutions",
 'tooltip-t-upload'                => 'Uplaid files',
 'tooltip-t-specialpages'          => 'Leet o byordinar pages',
+'tooltip-ca-nstab-user'           => 'View the uiser page',
 'tooltip-minoredit'               => 'Mairk this as a smaa edit',
 'tooltip-save'                    => 'Hain yer chynges',
 'tooltip-preview'                 => 'Scance ower yer chynges, please uise this afore hainin!',
@@ -1407,6 +1426,10 @@ Please confirm that ye really want tae recreate this airticle.",
 'autosumm-blank'   => 'Dichtin aa content frae page',
 'autosumm-replace' => "Replacin page wi '$1'",
 'autoredircomment' => 'Reguidin tae [[$1]]',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'View an edit watchleet',
+'watchlisttools-raw'  => 'Edit raw watchleet',
 
 # Special:FilePath
 'filepath-page' => 'File:',

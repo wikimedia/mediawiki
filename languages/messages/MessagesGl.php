@@ -1705,6 +1705,15 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-unknown-size'       => 'Tamaño descoñecido',
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Ficheiros agochados',
+'uploadstash-summary'  => 'Esta páxina proporciona acceso a ficheiros que xa están cargados (ou en proceso de carga), pero que aínda non están publicados no wiki. Estes ficheiros non son visibles para ninguén, agás para o usuario que os cargou.',
+'uploadstash-clear'    => 'Borrar os ficheros agochados',
+'uploadstash-nofiles'  => 'Non ten ningún ficheiro agochado.',
+'uploadstash-badtoken' => 'A acción non se puido completar, seica porque caducou a información de acceso. Inténteo de novo.',
+'uploadstash-errclear' => 'Fallou o borrado de ficheiros.',
+'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Acceso rexeitado',
 'img-auth-nopathinfo'   => 'Falta a PATH_INFO.
@@ -3523,14 +3532,5 @@ Se o usuario está conectado, sairá ao anonimato inmediatamente.
 'disableaccount-nosuchuser'  => 'A conta de usuario "$1" non existe.',
 'disableaccount-success'     => 'Esta conta de usuario, "$1", foi desactivada permanentemente.',
 'disableaccount-logentry'    => 'desactivou permanentemente a conta de usuario "[[$1]]"',
-
-# Special:UploadStash
-'uploadstash'          => 'Ficheiros agochados',
-'uploadstash-summary'  => 'Esta páxina proporciona acceso a ficheiros que xa están cargados (ou en proceso de carga), pero que aínda non están publicados no wiki. Estes ficheiros non son visibles para ninguén, agás para o usuario que os cargou.',
-'uploadstash-clear'    => 'Borrar os ficheros agochados',
-'uploadstash-nofiles'  => 'Non ten ningún ficheiro agochado.',
-'uploadstash-badtoken' => 'A acción non se puido completar, seica porque caducou a información de acceso. Inténteo de novo.',
-'uploadstash-errclear' => 'Fallou o borrado de ficheiros.',
-'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
 
 );
