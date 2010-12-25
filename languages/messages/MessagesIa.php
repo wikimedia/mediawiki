@@ -415,6 +415,8 @@ $1',
 'toc'                     => 'Contento',
 'showtoc'                 => 'revelar',
 'hidetoc'                 => 'celar',
+'collapsible-collapse'    => 'Plicar',
+'collapsible-expand'      => 'Displicar',
 'thisisdeleted'           => 'Vider o restaurar $1?',
 'viewdeleted'             => 'Vider $1?',
 'restorelink'             => '{{PLURAL:$1|un modification|$1 modificationes}} delite',
@@ -570,6 +572,8 @@ Per favor activa lo, postea aperi un session con tu nove nomine de usator e cont
 'nocookieslogin'             => "{{SITENAME}} usa ''cookies'' pro mantener le sessiones del usatores.
 Tu ha disactivate le functionalitate del ''cookies''.
 Per favor activa lo e reprova.",
+'nocookiesfornew'            => 'Le conto de usator non esseva create, proque nos non poteva confirmar su origine.
+Verifica que tu ha activate le "cookies", recarga iste pagina e reproba.',
 'noname'                     => 'Tu non specificava un nomine de usator valide.',
 'loginsuccesstitle'          => 'Session aperite con successo',
 'loginsuccess'               => "'''Tu es ora authenticate in {{SITENAME}} como \"\$1\".'''",
@@ -1637,6 +1641,15 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'upload-unknown-size'       => 'Dimension incognite',
 'upload-http-error'         => 'Un error HTTP occurreva: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Pila de files incargate',
+'uploadstash-summary'  => 'Iste pagina forni accesso al files que ha essite incargate (o que es in le processo de incargamento) ma non es ancora publicate in le wiki. Iste files es solmente visibile pro le usator qui los incargava.',
+'uploadstash-clear'    => 'Rader le pila de files incargate',
+'uploadstash-nofiles'  => 'Il non ha files in le pila.',
+'uploadstash-badtoken' => 'Le execution de iste action non succedeva, forsan proque le datos del session expirava. Tenta lo de novo.',
+'uploadstash-errclear' => 'Le radimento del files non succedeva.',
+'uploadstash-refresh'  => 'Refrescar le lista de files',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Accesso refusate',
 'img-auth-nopathinfo'   => 'PATH_INFO mancante.
@@ -1899,6 +1912,7 @@ executar iste function.',
 'pager-newer-n'           => '{{PLURAL:$1|1 plus recente|$1 plus recente}}',
 'pager-older-n'           => '{{PLURAL:$1|1 minus recente|$1 minus recente}}',
 'suppress'                => 'Supervisor',
+'querypage-disabled'      => 'Iste pagina special es disactivate pro evitar de supercargar le systema.',
 
 # Book sources
 'booksources'               => 'Fontes de libros',
@@ -3349,6 +3363,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'version-specialpages'             => 'Paginas special',
 'version-parserhooks'              => 'Uncinos del analysator syntactic',
 'version-variables'                => 'Variabiles',
+'version-antispam'                 => 'Prevention de spam',
 'version-skins'                    => 'Apparentias',
 'version-other'                    => 'Altere',
 'version-mediahandlers'            => 'Executores de media',
@@ -3484,14 +3499,5 @@ Si le usator es actualmente authenticate alicubi, su session essera immediatemen
 'disableaccount-nosuchuser'  => 'Le conto de usator "$1" non existe.',
 'disableaccount-success'     => 'Le conto de usator "$1" ha essite disactivate permanentemente.',
 'disableaccount-logentry'    => 'disactivava permanentemente le conto de usator [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Pila de files incargate',
-'uploadstash-summary'  => 'Iste pagina forni accesso al files que ha essite incargate (o que es in le processo de incargamento) ma non es ancora publicate in le wiki. Iste files es solmente visibile pro le usator qui los incargava.',
-'uploadstash-clear'    => 'Rader le pila de files incargate',
-'uploadstash-nofiles'  => 'Il non ha files in le pila.',
-'uploadstash-badtoken' => 'Le execution de iste action non succedeva, forsan proque le datos del session expirava. Tenta lo de novo.',
-'uploadstash-errclear' => 'Le radimento del files non succedeva.',
-'uploadstash-refresh'  => 'Refrescar le lista de files',
 
 );

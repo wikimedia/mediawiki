@@ -1674,6 +1674,9 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => "'n HTTP-fout het voorgekom: $1",
 
+# Special:UploadStash
+'uploadstash-refresh' => 'Verfris die lys van lêers',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Toegang geweier',
 'img-auth-nopathinfo'   => 'PATH_INFO word vermis.
@@ -3454,8 +3457,5 @@ Verskaf die lêernaam sonder die "{{ns:file}}:" voorvoegsel.',
 'disableaccount-nosuchuser'  => 'Die gebruiker "$1" bestaan nie.',
 'disableaccount-success'     => 'Die gebruiker "$1" is permanent gedeaktiveer.',
 'disableaccount-logentry'    => 'het die gebruiker [[$1]] permanent gedeaktiveer',
-
-# Special:UploadStash
-'uploadstash-refresh' => 'Verfris die lys van lêers',
 
 );

@@ -1482,6 +1482,7 @@ $1",
 'right-override-export-depth' => "експорт сторінок, включаючи пов'язані сторінки з глибиною до 5",
 'right-sendemail'             => 'відправляти пошту іншим користувачам',
 'right-revisionmove'          => 'Перенесення версій',
+'right-disableaccount'        => 'Вимкнення облікових записів',
 
 # User rights log
 'rightslog'      => 'Журнал прав користувача',
@@ -1721,6 +1722,9 @@ $1',
 'upload-too-many-redirects' => 'URL містить надто багато перенаправлень',
 'upload-unknown-size'       => 'Невідомий розмір',
 'upload-http-error'         => 'Відбулася помилка HTTP: $1',
+
+# Special:UploadStash
+'uploadstash-refresh' => 'Оновити список файлів',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Відмовлено в доступі',
@@ -3517,8 +3521,5 @@ $1',
 'disableaccount-user'       => "Ім'я користувача:",
 'disableaccount-reason'     => 'Причина:',
 'disableaccount-nosuchuser' => 'Облікового запису користувача "$1" не існує.',
-
-# Special:UploadStash
-'uploadstash-refresh' => 'Оновити список файлів',
 
 );

@@ -626,6 +626,8 @@ $1',
 'toc'                     => '目次',
 'showtoc'                 => '表示',
 'hidetoc'                 => '非表示',
+'collapsible-collapse'    => '折り畳む',
+'collapsible-expand'      => '展開する',
 'thisisdeleted'           => '$1を閲覧または復帰しますか？',
 'viewdeleted'             => '$1を表示しますか？',
 'restorelink'             => '削除された$1編集',
@@ -1859,6 +1861,14 @@ $1',
 'upload-unknown-size'       => 'サイズ不明',
 'upload-http-error'         => 'HTTPエラー発生：$1',
 
+# Special:UploadStash
+'uploadstash-summary'  => 'このページでは、アップロードされた、もしくはアップロード中の、ウィキ上でまだ公開されていないファイルへアクセスを提供します。これらのファイルをアップロードした利用者が閲覧することは可能ですが、それ以外の利用者は閲覧できません。',
+'uploadstash-clear'    => '未公開ファイルを消去',
+'uploadstash-nofiles'  => '未公開ファイルはありません。',
+'uploadstash-badtoken' => '実行することができませんでした。これは、編集するための認証が無効になったためである可能性があります。再度お試しください。',
+'uploadstash-errclear' => 'ファイルの消去に失敗しました。',
+'uploadstash-refresh'  => 'ファイルの一覧を更新',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'アクセスが拒否されました',
 'img-auth-nopathinfo'   => 'PATH_INFOが見つかりません。
@@ -2004,11 +2014,11 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'unusedtemplateswlh'  => 'リンク元',
 
 # Random page
-'randompage'         => 'Random page',
+'randompage'         => 'おまかせ表示',
 'randompage-nopages' => '次の{{PLURAL:$2|名前空間}}：$1には、ページがありません。',
 
 # Random redirect
-'randomredirect'         => 'Random redirect',
+'randomredirect'         => 'おまかせリダイレクト',
 'randomredirect-nopages' => '「$1」名前空間には、転送がありません。',
 
 # Statistics
@@ -3094,7 +3104,7 @@ $1',
 'file-info-size'       => '（$1×$2ピクセル、ファイルサイズ：$3、MIMEタイプ：$4）',
 'file-nohires'         => '<small>高解像度版はありません。</small>',
 'svg-long-desc'        => '（SVGファイル、$1×$2ピクセル、ファイルサイズ：$3）',
-'show-big-image'       => '最高解像度での画像',
+'show-big-image'       => '高解像度での画像',
 'show-big-image-thumb' => '<small>このプレビューのサイズ：$1×$2ピクセル</small>',
 'file-info-gif-looped' => 'ループします',
 'file-info-gif-frames' => '$1フレーム',
@@ -3789,13 +3799,5 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'disableaccount-nosuchuser'  => '利用者アカウント「$1」は存在しません。',
 'disableaccount-success'     => '利用者アカウント「$1」は、永久に無効化されています。',
 'disableaccount-logentry'    => '利用者アカウント[[$1]]を永久に無効化',
-
-# Special:UploadStash
-'uploadstash-summary'  => 'このページでは、アップロードされた、もしくはアップロード中の、ウィキ上でまだ公開されていないファイルへアクセスを提供します。これらのファイルをアップロードした利用者が閲覧することは可能ですが、それ以外の利用者は閲覧できません。',
-'uploadstash-clear'    => '未公開ファイルを消去',
-'uploadstash-nofiles'  => '未公開ファイルはありません。',
-'uploadstash-badtoken' => '実行することができませんでした。これは、編集するための認証が無効になったためである可能性があります。再度お試しください。',
-'uploadstash-errclear' => 'ファイルの消去に失敗しました。',
-'uploadstash-refresh'  => 'ファイルの一覧を更新',
 
 );

@@ -2798,7 +2798,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'markaspatrolleddiff'                 => 'Merkitse tarkastetuksi',
 'markaspatrolledtext'                 => 'Merkitse muokkaus tarkastetuksi',
 'markedaspatrolled'                   => 'Tarkastettu',
-'markedaspatrolledtext'               => 'Valittu versio sivusta [[:$1]] on tarkastettu.',
+'markedaspatrolledtext'               => 'Valittu versio sivusta [[:$1]] on merkitty tarkastetuksi.',
 'rcpatroldisabled'                    => 'Tuoreiden muutosten tarkastustoiminto ei ole käytössä',
 'rcpatroldisabledtext'                => 'Tuoreiden muutosten tarkastustoiminto ei ole käytössä.',
 'markedaspatrollederror'              => 'Muutoksen merkitseminen tarkastetuksi epäonnistui.',

@@ -1612,6 +1612,10 @@ $1',
 'upload-unknown-size'       => 'Mida desconeguda',
 'upload-http-error'         => 'Ha ocorregut un error HTTP: $1',
 
+# Special:UploadStash
+'uploadstash-errclear' => "L'esborrament dels arxius no va tenir èxit.",
+'uploadstash-refresh'  => 'Actualitzar la llista de fitxers.',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Accés denegat',
 'img-auth-nopathinfo'   => 'Falta PATH_INFO.
@@ -3405,9 +3409,5 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'disableaccount-nosuchuser'  => 'El compte d\'usuari/a "$1" no existeix.',
 'disableaccount-success'     => 'El compte d\'usuari/a "$1" ha estat permanentment deshabilitat.',
 'disableaccount-logentry'    => "permanentment deshabilitat el compte d'usuari/a  [[$1]]",
-
-# Special:UploadStash
-'uploadstash-errclear' => "L'esborrament dels arxius no va tenir èxit.",
-'uploadstash-refresh'  => 'Actualitzar la llista de fitxers.',
 
 );

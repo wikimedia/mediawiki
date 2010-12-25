@@ -1804,6 +1804,15 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-unknown-size'       => 'Taille inconnue',
 'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
 
+# Special:UploadStash
+'uploadstash'          => "Cache d'import",
+'uploadstash-summary'  => "Cette page donne accès aux fichiers qui sont importés (ou en cours d'importation), mais ne sont pas encore publiés dans le wiki. Ces fichiers ne sont pas encore visibles, sauf pour l'utilisateur qui les a importés.",
+'uploadstash-clear'    => 'Effacer les fichiers en cache',
+'uploadstash-nofiles'  => "Vous n'avez pas de fichiers en cache d'import.",
+'uploadstash-badtoken' => "L'exécution de cette action a échoué, peut-être parce que vos informations d'identification ont expiré. Réessayez.",
+'uploadstash-errclear' => "L'effacement des fichiers a échoué.",
+'uploadstash-refresh'  => 'Actualiser la liste des fichiers',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Accès refusé',
 'img-auth-nopathinfo'   => 'PATH_INFO manquant.
@@ -3647,14 +3656,5 @@ Si l’utilisateur est actuellement identifié quelque part, il sera immédiatem
 'disableaccount-nosuchuser'  => "Le compte utilisateur « $1 » n'existe pas.",
 'disableaccount-success'     => 'Le compte utilisateur « $1 » a été définitivement désactivé.',
 'disableaccount-logentry'    => 'a désactivé définitivement le compte utilisateur [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => "Cache d'import",
-'uploadstash-summary'  => "Cette page donne accès aux fichiers qui sont importés (ou en cours d'importation), mais ne sont pas encore publiés dans le wiki. Ces fichiers ne sont pas encore, sauf pour l'utilisateur qui les a importés.",
-'uploadstash-clear'    => 'Effacer les fichiers en cache',
-'uploadstash-nofiles'  => "Vous n'avez pas de fichiers en cache d'import.",
-'uploadstash-badtoken' => "L'exécution de cette action a échoué, peut-être parce que vos informations d'identification ont expiré. Réessayez.",
-'uploadstash-errclear' => "L'effacement des fichiers a échoué.",
-'uploadstash-refresh'  => 'Actualiser la liste des fichiers',
 
 );

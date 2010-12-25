@@ -18,6 +18,7 @@
  * @author Meisam
  * @author Meno25
  * @author Mjbmr
+ * @author Mormegil
  * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author Wayiran
  * @author ZxxZxxZ
@@ -1887,6 +1888,15 @@ $1',
 'upload-unknown-size'       => 'اندازهٔ نامشخص',
 'upload-http-error'         => 'یک خطای اچ‌تی‌تی‌پی رخ داد: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'انبار بارگذاری',
+'uploadstash-summary'  => 'این صفحه دسترسی به پرونده‌هایی که بارگذاری شده‌اند (یا در حال بارگذاری هستند) اما هنوز در ویکی منتشر نشده‌اند را فراهم می‌کند. این پرونده‌ها توسط هیچ کاربری به جز کسی که آن‌ها را بارگذاری کرده قابل دیدن نیستند.',
+'uploadstash-clear'    => 'پاک کردن پرونده‌های انبارشده',
+'uploadstash-nofiles'  => 'شما هیچ پروندهٔ انبارشده‌ای ندارید.',
+'uploadstash-badtoken' => 'انجام این اقدام ناموفق بود، احتمالاً به این دلیل که اعتبار ویرایش شما به اتمام رسیده است. دوباره امتحان کنید.',
+'uploadstash-errclear' => 'پاک کردن پرونده‌ها ناموفق بود.',
+'uploadstash-refresh'  => 'تازه کردن فهرست پرونده‌ها',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'منع دسترسی',
 'img-auth-nopathinfo'   => 'PATH_INFO موجود نیست.
@@ -2402,7 +2412,7 @@ $NEWPAGE
 
 آخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) انجام شده‌است.',
 'editcomment'       => "خلاصهٔ ویرایش این بود: «''$1''».",
-'revertpage'        => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود',
+'revertpage'        => 'ویرایش [[Special:Contributions/$2|$2]] ([[User talk:$2|بحث]]) به آخرین تغییری که [[User:$1|$1]] انجام داده بود واگردانده شد',
 'revertpage-nouser' => 'ویرایش‌های انجام شده توسط (نام کاربری حذف شده) به آخرین ویرایش توسط [[User:$1|$1]] واگردانی شد.',
 'rollback-success'  => 'ویرایش‌های $1 واگردانی شد؛ صفحه به ویرایش $2 برگردانده شد.',
 
@@ -3075,7 +3085,7 @@ $1',
 'widthheight'          => '$1 در $2',
 'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحه|صفحه}}',
 'file-info'            => 'اندازهٔ پرونده: $1، نوع  MIME $2',
-'file-info-size'       => '(<span dir=ltr>$1 X $2</span> پیکسل، اندازهٔ پرونده: $3، نوع MIME پرونده: $4)',
+'file-info-size'       => '(<span dir=ltr>$1 × $2</span> پیکسل، اندازهٔ پرونده: $3، نوع MIME پرونده: $4)',
 'file-nohires'         => '<small>تفکیک‌پذیری بالاتری در دسترس نیست.</small>',
 'svg-long-desc'        => '(پرونده SVG، با ابعاد $1 × $2 پیکسل، اندازه پرونده: $3)',
 'show-big-image'       => 'تصویر با تفکیک‌پذیری بالاتر',
@@ -3742,14 +3752,5 @@ $1',
 'disableaccount-nosuchuser'  => 'حساب کاربری "$1" وجود ندارد.',
 'disableaccount-success'     => 'حساب کاربری "$1" برای همیشه غیر فعال شده است.',
 'disableaccount-logentry'    => 'حساب کاربری [[$1]] برای همیشه غیر فعال شده است',
-
-# Special:UploadStash
-'uploadstash'          => 'انبار بارگذاری',
-'uploadstash-summary'  => 'این صفحه دسترسی به پرونده‌هایی که بارگذاری شده‌اند (یا در حال بارگذاری هستند) اما هنوز در ویکی منتشر نشده‌اند را فراهم می‌کند. این پرونده‌ها توسط هیچ کاربری به جز کسی که آن‌ها را بارگذاری کرده قابل دیدن نیستند.',
-'uploadstash-clear'    => 'پاک کردن پرونده‌های انبارشده',
-'uploadstash-nofiles'  => 'شما هیچ پروندهٔ انبارشده‌ای ندارید.',
-'uploadstash-badtoken' => 'انجام این اقدام ناموفق بود، احتمالاً به این دلیل که اعتبار ویرایش شما به اتمام رسیده است. دوباره امتحان کنید.',
-'uploadstash-errclear' => 'پاک کردن پرونده‌ها ناموفق بود.',
-'uploadstash-refresh'  => 'تازه کردن فهرست پرونده‌ها',
 
 );

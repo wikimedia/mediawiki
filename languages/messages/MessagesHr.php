@@ -1726,6 +1726,15 @@ Ukoliko se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].
 'upload-unknown-size'       => 'Nepoznata veličina',
 'upload-http-error'         => 'HTTP pogreška: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Snimi niz datoteka',
+'uploadstash-summary'  => 'Ova stranica pruža pristup datotekama koje su snimljene na wiki (ili u procesu snimanja), ali još nisu objavljeni na wiki. Ove datoteke nisu vidljive nikome, osim suradniku koji ih je snimio.',
+'uploadstash-clear'    => 'Očisti niz datoteka',
+'uploadstash-nofiles'  => 'Nemate neobjavljenih datoteka',
+'uploadstash-badtoken' => 'Obavljanje akcije je bilo neuspješano, možda jer je vaša prijava istekla. Pokušajte ponovno.',
+'uploadstash-errclear' => 'Brisanje neobjavljenih datoteka nije uspjelo.',
+'uploadstash-refresh'  => 'Osvježi popis datoteka',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Pristup onemogućen',
 'img-auth-nopathinfo'   => 'Nedostaje PATH_INFO.
@@ -3507,14 +3516,5 @@ Ako je suradnik trenutno prijavljen negdje, odmah će biti odjavljen.
 'disableaccount-nosuchuser'  => 'Suradnik "$1" ne postoji.',
 'disableaccount-success'     => 'Suradnički račun "$1" je trajno onemogućen.',
 'disableaccount-logentry'    => 'trajno onesposobljen suradnički račun [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Snimi niz datoteka',
-'uploadstash-summary'  => 'Ova stranica pruža pristup datotekama koje su snimljene na wiki (ili u procesu snimanja), ali još nisu objavljeni na wiki. Ove datoteke nisu vidljive nikome, osim suradniku koji ih je snimio.',
-'uploadstash-clear'    => 'Očisti niz datoteka',
-'uploadstash-nofiles'  => 'Nemate neobjavljenih datoteka',
-'uploadstash-badtoken' => 'Obavljanje akcije je bilo neuspješano, možda jer je vaša prijava istekla. Pokušajte ponovno.',
-'uploadstash-errclear' => 'Brisanje neobjavljenih datoteka nije uspjelo.',
-'uploadstash-refresh'  => 'Osvježi popis datoteka',
 
 );

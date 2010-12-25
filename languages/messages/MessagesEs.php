@@ -1768,6 +1768,15 @@ $1',
 'upload-unknown-size'       => 'Tamaño desconocido',
 'upload-http-error'         => 'Ha ocurrido un error HTTP: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Ficheros escondidos',
+'uploadstash-summary'  => 'Esta página da acceso a los ficheros enviados (o que están en el proceso de envío) pero que aún no han sido publicados en la wiki. Estos ficheros no son visibles para nadie, excepto para el usuario que los envió.',
+'uploadstash-clear'    => 'Borrar los ficheros escondidos',
+'uploadstash-nofiles'  => 'No tienes archivos escondidos.',
+'uploadstash-badtoken' => 'No fue posible ejecutar esa operación, tal vez porque sus credenciales de edición expiraron. Reinténtelo.',
+'uploadstash-errclear' => 'El borrado de los archivos no tuvo éxito.',
+'uploadstash-refresh'  => 'Actualizar la lista de archivos',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Acceso denegado',
 'img-auth-nopathinfo'   => 'Falta PATH_INFO.
@@ -3565,14 +3574,5 @@ Si el usuario está conectado, será desconectado de inmediato.
 'disableaccount-nosuchuser'  => 'La cuenta de usuario «$1» no existe.',
 'disableaccount-success'     => 'La cuenta de usuario «$1» ha sido deshabilitada definitivamente.',
 'disableaccount-logentry'    => 'desactivada permanentemente la cuenta «[[$1]]»',
-
-# Special:UploadStash
-'uploadstash'          => 'Ficheros escondidos',
-'uploadstash-summary'  => 'Esta página da acceso a los ficheros enviados (o que están en el proceso de envío) pero que aún no han sido publicados en la wiki. Estos ficheros no son visibles para nadie, excepto para el usuario que los envió.',
-'uploadstash-clear'    => 'Borrar los ficheros escondidos',
-'uploadstash-nofiles'  => 'No tienes archivos escondidos.',
-'uploadstash-badtoken' => 'No fue posible ejecutar esa operación, tal vez porque sus credenciales de edición expiraron. Reinténtelo.',
-'uploadstash-errclear' => 'El borrado de los archivos no tuvo éxito.',
-'uploadstash-refresh'  => 'Actualizar la lista de archivos',
 
 );

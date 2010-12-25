@@ -574,6 +574,8 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'toc'                     => 'Índice',
 'showtoc'                 => 'mostrar',
 'hidetoc'                 => 'esconder',
+'collapsible-collapse'    => 'Ocultar',
+'collapsible-expand'      => 'Expandir',
 'thisisdeleted'           => 'Ver ou restaurar $1?',
 'viewdeleted'             => 'Ver $1?',
 'restorelink'             => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
@@ -1798,6 +1800,15 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'upload-too-many-redirects' => 'A URL continha demasiados redireccionamentos',
 'upload-unknown-size'       => 'Tamanho desconhecido',
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
+
+# Special:UploadStash
+'uploadstash'          => 'Ficheiros escondidos',
+'uploadstash-summary'  => 'Esta página dá acesso aos ficheiros enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes ficheiros não são visíveis para ninguém, excepto para o utilizador que os enviou.',
+'uploadstash-clear'    => 'Apagar os ficheiros escondidos',
+'uploadstash-nofiles'  => 'Não tem ficheiros escondidos.',
+'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
+'uploadstash-errclear' => 'Não foi possível apagar os ficheiros.',
+'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
@@ -3624,14 +3635,5 @@ Se neste momento o utilizador estiver autenticado algures, sairá de imediato.
 'disableaccount-nosuchuser'  => 'A conta de utilizador "$1" não existe.',
 'disableaccount-success'     => 'A conta de utilizador "$1" foi desactivada permanentemente.',
 'disableaccount-logentry'    => 'desactivou permanentemente a conta [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Ficheiros escondidos',
-'uploadstash-summary'  => 'Esta página dá acesso aos ficheiros enviados (ou que estão no processo de envio) mas que ainda não foram publicados na wiki. Estes ficheiros não são visíveis para ninguém, excepto para o utilizador que os enviou.',
-'uploadstash-clear'    => 'Apagar os ficheiros escondidos',
-'uploadstash-nofiles'  => 'Não tem ficheiros escondidos.',
-'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
-'uploadstash-errclear' => 'Não foi possível apagar os ficheiros.',
-'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
 
 );

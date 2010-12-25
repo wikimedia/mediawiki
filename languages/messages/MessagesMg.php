@@ -1912,7 +1912,7 @@ Azonao ferana ny fahitana ny tao amin'ny alàlan'ny fisafidianana karazana tatit
 
 # Special:Categories
 'categories'                    => 'Sokajy',
-'categoriespagetext'            => "{{PLURAL:}}Ampiasain'ny rakitra na pejy ireo sokajy manaraka ireo.
+'categoriespagetext'            => "{{PLURAL:$1}}Ampiasain'ny rakitra na pejy ireo sokajy manaraka ireo.
 Tsy hiseho eto ny [[Special:UnusedCategories|sokajy tsy miasa]].
 Vangio koa ny [[Special:WantedCategories|sokajy ilaina]].",
 'categoriesfrom'                => "Haneho ny sokajy manomboka amin'ny :",

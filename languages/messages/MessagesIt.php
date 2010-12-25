@@ -1666,6 +1666,9 @@ $1',
 'upload-unknown-size'       => 'Dimensione sconosciuta',
 'upload-http-error'         => 'Si è verificato un errore HTTP: $1',
 
+# Special:UploadStash
+'uploadstash-refresh' => "Aggiorna l'elenco dei file",
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Accesso negato',
 'img-auth-nopathinfo'   => 'PATH_INFO mancante.
@@ -3438,8 +3441,5 @@ Tutte le attuali connessioni dell'utente, saranno immediatamente terminate.
 'disableaccount-nosuchuser'  => 'L\'account utente "$1" non esiste.',
 'disableaccount-success'     => 'L\'account utente "$1" è stato disabilitato definitivamente.',
 'disableaccount-logentry'    => "ha disabilitato permanentemente l'account utente [[$1]]",
-
-# Special:UploadStash
-'uploadstash-refresh' => "Aggiorna l'elenco dei file",
 
 );

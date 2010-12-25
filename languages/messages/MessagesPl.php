@@ -517,6 +517,8 @@ $1',
 'toc'                     => 'Spis treści',
 'showtoc'                 => 'pokaż',
 'hidetoc'                 => 'ukryj',
+'collapsible-collapse'    => 'Zwiń',
+'collapsible-expand'      => 'Rozwiń',
 'thisisdeleted'           => 'Pokazać lub odtworzyć $1?',
 'viewdeleted'             => 'Zobacz $1',
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
@@ -1723,6 +1725,15 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'upload-too-many-redirects' => 'URL zawiera zbyt wiele przekierowań',
 'upload-unknown-size'       => 'Nieznany rozmiar',
 'upload-http-error'         => 'Wystąpił błąd protokołu HTTP – $1',
+
+# Special:UploadStash
+'uploadstash'          => 'Ukryte przesyłanie',
+'uploadstash-summary'  => 'Ta strona umożliwia dostęp do przesłanych lub właśnie przesyłanych plików, ale jeszcze nie opublikowanych na wiki. Pliki widzi wyłącznie użytkownik, które je przesłał.',
+'uploadstash-clear'    => 'Wyczyść ukryte pliki',
+'uploadstash-nofiles'  => 'Nie masz żadnych ukrytych plików.',
+'uploadstash-badtoken' => 'Operacja nie powiodła się. Możliwą przyczyną jest, że Twoje upoważnienie do edytowania wygasło. Spróbuj ponownie.',
+'uploadstash-errclear' => 'Czyszczenie plików nie powiodło się.',
+'uploadstash-refresh'  => 'Odśwież listę plików',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Odmowa dostępu',
@@ -3609,14 +3620,5 @@ Jeśli użytkownik jest obecnie gdziekolwiek zalogowany, zostanie natychmiast wy
 'disableaccount-nosuchuser'  => 'Brak konta użytkownika „$1”.',
 'disableaccount-success'     => 'Konto użytkownika „$1” zostało trwale wyłączone.',
 'disableaccount-logentry'    => 'trwale wyłączył konto użytkownika [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Ukryte przesyłanie',
-'uploadstash-summary'  => 'Ta strona umożliwia dostęp do przesłanych lub właśnie przesyłanych plików, ale jeszcze nie opublikowanych na wiki. Pliki widzi wyłącznie użytkownik, które je przesłał.',
-'uploadstash-clear'    => 'Wyczyść ukryte pliki',
-'uploadstash-nofiles'  => 'Nie masz żadnych ukrytych plików.',
-'uploadstash-badtoken' => 'Operacja nie powiodła się. Możliwą przyczyną jest, że Twoje upoważnienie do edytowania wygasło. Spróbuj ponownie.',
-'uploadstash-errclear' => 'Czyszczenie plików nie powiodło się.',
-'uploadstash-refresh'  => 'Odśwież listę plików',
 
 );

@@ -564,6 +564,8 @@ $1',
 'toc'                     => 'Mục lục',
 'showtoc'                 => 'hiện',
 'hidetoc'                 => 'ẩn',
+'collapsible-collapse'    => 'Thu gọn',
+'collapsible-expand'      => 'Mở rộng',
 'thisisdeleted'           => 'Xem hay phục hồi $1 ?',
 'viewdeleted'             => 'Xem $1?',
 'restorelink'             => '{{PLURAL:$1|một|$1}} sửa đổi đã xóa',
@@ -1734,6 +1736,15 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'upload-unknown-size'       => 'Không rõ kích thước',
 'upload-http-error'         => 'Xảy ra lỗi HTTP: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Hàng đợi tải lên',
+'uploadstash-summary'  => 'Đây là các tập tin mà bạn đã hoặc đang tải lên nhưng chưa xuất bản tại wiki. Chỉ bạn có thể xem các tập tin này.',
+'uploadstash-clear'    => 'Xóa các tập tin đợi tải lên',
+'uploadstash-nofiles'  => 'Bạn không có tập tin trong hàng đợi tải lên.',
+'uploadstash-badtoken' => 'Tác vụ bị thất bại, có lẽ vì thông tin đăng nhập của bạn đã hết hạn. Hãy thử lại.',
+'uploadstash-errclear' => 'Việc dọn sạch các tập tin bị thất bại.',
+'uploadstash-refresh'  => 'Làm mới danh sách tập tin',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Không cho phép truy cập',
 'img-auth-nopathinfo'   => 'Thiếu PATH_INFO.
@@ -1990,6 +2001,7 @@ Xin lưu ý là các trang Web bên ngoài có thể liên kết đến một t�
 'pager-newer-n'           => '{{PLURAL:$1|1|$1}} mới hơn',
 'pager-older-n'           => '{{PLURAL:$1|1|$1}} cũ hơn',
 'suppress'                => 'Giám sát viên',
+'querypage-disabled'      => 'Trang đặc biệt này bị tắt vì lý do hiệu suất.',
 
 # Book sources
 'booksources'               => 'Nguồn sách',
@@ -3599,14 +3611,5 @@ Nếu người dùng đã dăng nhập vào bất cứ wiki nào trong hệ th�
 'disableaccount-nosuchuser'  => 'Tài khoản người dùng “$1” không tồn tại.',
 'disableaccount-success'     => 'Tài khoản người dùng “$1” đã bị vô hiệu hóa vĩnh viễn.',
 'disableaccount-logentry'    => 'đã vô hiệu hóa vĩnh viễn tài khoản của người dùng [[$1]]',
-
-# Special:UploadStash
-'uploadstash'          => 'Hàng đợi tải lên',
-'uploadstash-summary'  => 'Đây là các tập tin mà bạn đã hoặc đang tải lên nhưng chưa xuất bản tại wiki. Chỉ bạn có thể xem các tập tin này.',
-'uploadstash-clear'    => 'Xóa các tập tin đợi tải lên',
-'uploadstash-nofiles'  => 'Bạn không có tập tin trong hàng đợi tải lên.',
-'uploadstash-badtoken' => 'Tác vụ bị thất bại, có lẽ vì thông tin đăng nhập của bạn đã hết hạn. Hãy thử lại.',
-'uploadstash-errclear' => 'Việc dọn sạch các tập tin bị thất bại.',
-'uploadstash-refresh'  => 'Làm mới danh sách tập tin',
 
 );

@@ -1623,6 +1623,10 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload-unknown-size'       => 'Ment dianav',
 'upload-http-error'         => 'Ur fazi HTTP zo bet : $1',
 
+# Special:UploadStash
+'uploadstash-errclear' => "N'eus ket bet gallet riñsañ ar restroù.",
+'uploadstash-refresh'  => 'Freskaat roll ar restroù',
+
 # img_auth script messages
 'img-auth-accessdenied' => "Moned nac'het",
 'img-auth-nopathinfo'   => "Mankout a ra ar PATH_INFO.
@@ -3441,9 +3445,5 @@ M'emañ kevreet bremañ an implijer un tu bennak e vo digevreet kerkent.
 'disableaccount-nosuchuser'  => 'N\'eus ket eus ar gont implijer "$1".',
 'disableaccount-success'     => 'Diweredekaat eo bet ar gont implijer "$1" da vat.',
 'disableaccount-logentry'    => 'en/he deus diweredekaet ar gont implijer [[$1]]',
-
-# Special:UploadStash
-'uploadstash-errclear' => "N'eus ket bet gallet riñsañ ar restroù.",
-'uploadstash-refresh'  => 'Freskaat roll ar restroù',
 
 );
