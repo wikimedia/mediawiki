@@ -1337,6 +1337,16 @@ $wgMessageStructure = array(
 		'upload-http-error',
 	),
 
+	'uploadstash' => array(
+		'uploadstash',
+		'uploadstash-summary',
+		'uploadstash-clear',
+		'uploadstash-nofiles',
+		'uploadstash-badtoken',
+		'uploadstash-errclear',
+		'uploadstash-refresh',
+	),
+
 	'img-auth' => array(
 		'img-auth-accessdenied',
 		'img-auth-desc',
@@ -3267,15 +3277,6 @@ $wgMessageStructure = array(
 		'disableaccount-nosuchuser',
 		'disableaccount-success',
 		'disableaccount-logentry',
-	),
-	'uploadstash' => array(
-		'uploadstash',
-		'uploadstash-summary',
-		'uploadstash-clear',
-		'uploadstash-nofiles',
-		'uploadstash-badtoken',
-		'uploadstash-errclear',
-		'uploadstash-refresh',
 	),
 );
 
