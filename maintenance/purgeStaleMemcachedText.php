@@ -14,7 +14,7 @@ function purgeStaleMemcachedText() {
 	echo "Going to purge text entries from $latestReplicatedTextId to $maxTextId in $wgDBname\n";
 
 	for ( $i = $latestReplicatedTextId; $i < $maxTextId; $i++ ) {
-		$key = wfMemcKey( 'revisiontext', 'textid', $i++ );
+		$key = wfMemcKey( 'revisiontext', 'textid', $i );
 		$wgMemc->delete( $key );
 	}
 }
