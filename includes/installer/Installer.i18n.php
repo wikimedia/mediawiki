@@ -25,8 +25,7 @@ To upgrade this installation, please give the --upgrade=yes option.',
 	'config-upgrade-key-missing'      => 'An existing installation of MediaWiki has been detected.
 To upgrade this installation, please put the following line at the bottom of your LocalSettings.php:
 
-$1
-',
+$1',
 	'config-localsettings-incomplete' => 'The existing LocalSettings.php appears to be incomplete.
 The $1 variable is not set.
 Please change LocalSettings.php so that this variable is set, and click "Continue".',
