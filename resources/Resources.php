@@ -10,16 +10,6 @@ return array(
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
 
 	/* Skins */
-	
-	'skins.common' => array(
-		'scripts' => 'resources/skins.common/skins.common.js',
-		'styles' => array( 
-			'resources/skins.common/skins.common.css',
-			'resources/skins.common/skins.common.print.css' => array( 'media' => 'print' )
-		),
-		'messages' => array( 'hide', 'show' ),
-		'dependencies' => array( 'jquery.effects.fade' ),
-	),
 
 	'skins.vector' => array(
 		'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) )
@@ -308,10 +298,6 @@ return array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.explode.js',
 		'dependencies' => 'jquery.effects.core',
 	),
-	'jquery.effects.fade' => array(
-		'scripts' => 'resources/jquery.effects/jquery.effects.fade.js',
-		'dependencies' => 'jquery.effects.core',
-	),
 	'jquery.effects.fold' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.fold.js',
 		'dependencies' => 'jquery.effects.core',
@@ -367,9 +353,6 @@ return array(
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
-	),
-	'mediawiki.special.changeslist' => array(
-		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
 	),
 	'mediawiki.special.search' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
@@ -454,6 +437,10 @@ return array(
 	),
 	'mediawiki.legacy.edit' => array(
 		'scripts' => 'skins/common/edit.js',
+		'dependencies' => 'mediawiki.legacy.wikibits',
+	),
+	'mediawiki.legacy.enhancedchanges' => array(
+		'scripts' => 'skins/common/enhancedchanges.js',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.history' => array(

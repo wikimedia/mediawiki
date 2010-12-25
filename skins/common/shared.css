@@ -831,6 +831,18 @@ div.gallerytext {
 	word-wrap: break-word;
 }
 
+table.mw-enhanced-rc {
+	background: none;
+	border:0;
+	border-spacing:0;
+}
+td.mw-enhanced-rc {
+	white-space:nowrap;
+	padding:0;
+	vertical-align:top;
+	font-family:monospace
+}
+
 #mw-addcategory-prompt {
 	display: inline;
 	margin-left: 1em;
