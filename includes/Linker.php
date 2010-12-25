@@ -1674,10 +1674,16 @@ class Linker {
 	public function accesskey( $name ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( wfEmptyMsg( "accesskey-$name" ) ) {
+		if ( isset( $this->accesskeycache[$name] ) ) {
+			return $this->accesskeycache[$name];
+		}
+
+		$message = wfMessage( "accesskey-$name" );
+
+		if ( !$message->exists() ) {
 			$accesskey = false;
 		} else {
-			$accesskey = wfMsg( "accesskey-$name" );
+			$accesskey = $message->plain();
 			if ( $accesskey === '' || $accesskey === '-' ) {
 				# FIXME: Per standard MW behavior, a value of '-' means to suppress the
 				# attribute, but this is broken for accesskey: that might be a useful
@@ -1687,7 +1693,7 @@ class Linker {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $accesskey;
+		return $this->accesskeycache[$name] = $accesskey;
 	}
 
 	/**
