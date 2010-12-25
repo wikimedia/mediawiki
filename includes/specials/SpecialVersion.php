@@ -418,13 +418,10 @@ class SpecialVersion extends SpecialPage {
 				$descriptionMsgKey = $descriptionMsg[0]; // Get the message key
 				array_shift( $descriptionMsg ); // Shift out the message key to get the parameters only
 				array_map( "htmlspecialchars", $descriptionMsg ); // For sanity
-				$msg = wfMsg( $descriptionMsgKey, $descriptionMsg );
+				$description = wfMsg( $descriptionMsgKey, $descriptionMsg );
 			} else {
-				$msg = wfMsg( $descriptionMsg );
+				$description = wfMsg( $descriptionMsg );
 			}
- 			if ( !wfEmptyMsg( $descriptionMsg, $msg ) && $msg != '' ) {
- 				$description = $msg;
- 			}
 		}
 
 		if ( $svnText !== false ) {
