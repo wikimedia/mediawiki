@@ -602,22 +602,25 @@ class User {
 	 * @return mixed: true on success, string of error message on failure
 	 */
 	function getPasswordValidity( $password ) {
-		global $wgMinimalPasswordLength, $wgWeakPasswords, $wgContLang;
+		global $wgMinimalPasswordLength, $wgContLang;
+		
+		static $blockedLogins = array(
+			'Useruser' => 'Passpass', 'Useruser1' => 'Passpass1', # r75589
+			'Apitestsysop' => 'testpass', 'Apitestuser' => 'testpass' # r75605
+		);
 
 		$result = false; //init $result to false for the internal checks
 
 		if( !wfRunHooks( 'isValidPassword', array( $password, &$result, $this ) ) )
 			return $result;
 
-		$lcPassword = $wgContLang->lc( $password );
-
 		if ( $result === false ) {
 			if( strlen( $password ) < $wgMinimalPasswordLength ) {
 				return 'passwordtooshort';
-			} elseif ( $lcPassword == $wgContLang->lc( $this->mName ) ) {
+			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
 				return 'password-name-match';
-			} elseif ( in_array( $lcPassword, $wgWeakPasswords ) ) {
-				return 'password-too-weak';
+			} elseif ( isset( $blockedLogins[ $this->getName() ] ) && $password == $blockedLogins[ $this->getName() ] ) {
+				return 'password-login-forbidden';
 			} else {
 				//it seems weird returning true here, but this is because of the
 				//initialization of $result to false above. If the hook is never run or it
@@ -2777,6 +2780,15 @@ class User {
 	function checkPassword( $password ) {
 		global $wgAuth;
 		$this->load();
+
+		// Even though we stop people from creating passwords that
+		// are shorter than this, doesn't mean people wont be able
+		// to. Certain authentication plugins do NOT want to save
+		// domain passwords in a mysql database, so we should
+		// check this (in case $wgAuth->strict() is false).
+		if( !$this->isValidPassword( $password ) ) {
+			return false;
+		}
 
 		if( $wgAuth->authenticate( $this->getName(), $password ) ) {
 			return true;

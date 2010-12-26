@@ -1094,7 +1094,7 @@ Please try again.',
 Please try again.',
 'passwordtooshort'           => 'Passwords must be at least {{PLURAL:$1|1 character|$1 characters}}.',
 'password-name-match'        => 'Your password must be different from your username.',
-'password-too-weak'          => 'The provided password is too weak and cannot be used.',
+'password-login-forbidden'   => 'The use of these username and password has been forbidden.',
 'mailmypassword'             => 'E-mail new password',
 'passwordremindertitle'      => 'New temporary password for {{SITENAME}}',
 'passwordremindertext'       => 'Someone (probably you, from IP address $1) requested a new
