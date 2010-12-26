@@ -4460,7 +4460,10 @@ $wgParserOutputHooks = array();
 
 /**
  * List of valid skin names.
- * The key should be the name in all lower case, the value should be a display name.
+ * The key should be the name in all lower case, the value should be a properly
+ * cased name for the skin. This value will be prefixed with "Skin" to create the
+ * class name of the skin to load, and if the skin's class cannot be found through
+ * the autoloader it will be used to load a .php file by that name in the skins directory.
  * The default skins will be added later, by Skin::getSkinNames(). Use
  * Skin::getSkinNames() as an accessor if you wish to have access to the full list.
  */

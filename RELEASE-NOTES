@@ -23,6 +23,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   WantedPages::getQueryInfo . This may break older extensions.
 * $wgUseCombinedLoginLink controls whether to output a combined login / create account
   link in the personal bar, or to output separate login and create account links
+* Skin names are no longer created based on a ucfirst version of the key in $wgValidSkinNames but now
+  the value. This means for $wgValidSkinNames["monobook"] = "MonoBook"; the skin
+  loader will no longer try loading SkinMonobook and will instead load SkinMonoBook.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
