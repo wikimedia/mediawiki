@@ -41,7 +41,7 @@ class Skin extends Linker {
 		global $wgValidSkinNames;
 		static $skinsInitialised = false;
 
-		if ( !$skinsInitialised ) {
+		if ( !$skinsInitialised || !count( $wgValidSkinNames ) ) {
 			# Get a list of available skins
 			# Build using the regular expression '^(.*).php$'
 			# Array keys are all lower case, array value keep the case used by filename
