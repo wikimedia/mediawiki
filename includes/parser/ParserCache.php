@@ -170,7 +170,7 @@ class ParserCache {
 			$now = wfTimestampNow();
 
 			$optionsKey = new CacheTime;
-			$optionsKey->mUsedOptions = $popts->usedOptions();
+			$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
 			$optionsKey->updateCacheExpiry( $expire );
 
 			$optionsKey->setCacheTime( $now );

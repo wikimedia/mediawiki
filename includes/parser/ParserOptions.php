@@ -49,16 +49,16 @@ class ParserOptions {
 
 	var $mExtraKey = '';             # Extra key that should be present in the caching key.
 
-	protected $accessedOptions;
+	protected $onAccessCallback = null;
 
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
 	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
-	function getEditSection()                   { $this->accessedOptions['editsection'] = true;
+	function getEditSection()                   { $this->optionUsed('editsection');
 												  return $this->mEditSection; }
-	function getNumberHeadings()                { $this->accessedOptions['numberheadings'] = true;
+	function getNumberHeadings()                { $this->optionUsed('numberheadings');
 												  return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
 	function getTidy()                          { return $this->mTidy; }
@@ -73,14 +73,14 @@ class ParserOptions {
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
-	function getMath()                          { $this->accessedOptions['math'] = true;
+	function getMath()                          { $this->optionUsed('math');
 												  return $this->mMath; }
-	function getThumbSize()                     { $this->accessedOptions['thumbsize'] = true;
+	function getThumbSize()                     { $this->optionUsed('thumbsize');
 												  return $this->mThumbSize; }
 
 	function getIsPreview()                     { return $this->mIsPreview; }
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
-	function getIsPrintable()                   { $this->accessedOptions['printable'] = true;
+	function getIsPrintable()                   { $this->optionUsed('printable');
 												  return $this->mIsPrintable; }
 	function getUser()                          { return $this->mUser; }
 
@@ -92,7 +92,7 @@ class ParserOptions {
 	}
 
 	function getDateFormat() {
-		$this->accessedOptions['dateformat'] = true;
+		$this->optionUsed('dateformat');
 		if ( !isset( $this->mDateFormat ) ) {
 			$this->mDateFormat = $this->mUser->getDatePreference();
 		}
@@ -112,7 +112,7 @@ class ParserOptions {
 	 * producing inconsistent tables (Bug 14404).
 	 */
 	function getUserLang() {
-		$this->accessedOptions['userlang'] = true;
+		$this->optionUsed('userlang');
 		return $this->mUserLang;
 	}
 
@@ -211,17 +211,20 @@ class ParserOptions {
 	}
 
 	/**
-	 * Returns the options from this ParserOptions which have been used.
+	 * Registers a callback for tracking which ParserOptions which are used.
+	 * This is a private API with the parser.
 	 */
-	public function usedOptions() {
-		return array_keys( $this->accessedOptions );
+	function registerWatcher( $callback ) {
+		$this->onAccessCallback = $callback;
 	}
 
 	/**
-	 * Resets the memory of options usage.
+	 * Called when an option is accessed.
 	 */
-	public function resetUsage() {
-		$this->accessedOptions = array();
+	protected function optionUsed( $optionName ) {
+		if ( $this->onAccessCallback ) {
+			call_user_func( $this->onAccessCallback, $optionName );
+		}
 	}
 
 	/**
