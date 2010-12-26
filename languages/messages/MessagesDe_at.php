@@ -17,9 +17,11 @@ $fallback = 'de';
 
 $messages = array(
 # Dates
-'january'       => 'Jänner',
-'february'      => 'Feber',
-'january-gen'   => 'Jänners',
-'february-gen'  => 'Febers',
-'jan'           => 'Jän',
+'january'      => 'Jänner',
+'february'     => 'Feber',
+'december'     => 'Dezember',
+'january-gen'  => 'Jänners',
+'february-gen' => 'Febers',
+'jan'          => 'Jän',
+
 );

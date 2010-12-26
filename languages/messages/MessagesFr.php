@@ -624,6 +624,8 @@ $1',
 'toc'                     => 'Sommaire',
 'showtoc'                 => 'afficher',
 'hidetoc'                 => 'masquer',
+'collapsible-collapse'    => 'Replier',
+'collapsible-expand'      => 'Développer',
 'thisisdeleted'           => 'Désirez-vous afficher ou restaurer $1 ?',
 'viewdeleted'             => 'Voir $1 ?',
 'restorelink'             => '{{PLURAL:$1|la modification effacée|les $1 modifications effacées}}',
@@ -2070,6 +2072,7 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 'pager-newer-n'           => '{{PLURAL:$1|plus récente|$1 plus récentes}}',
 'pager-older-n'           => '{{PLURAL:$1|plus ancienne|$1 plus anciennes}}',
 'suppress'                => 'Superviser',
+'querypage-disabled'      => 'Cette page spéciale est désactivée pour des raisons de performances.',
 
 # Book sources
 'booksources'               => 'Ouvrages de référence',
