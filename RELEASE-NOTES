@@ -21,6 +21,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
   WantedPages::getQueryInfo . This may break older extensions.
+* $wgUseCombinedLoginLink controls whether to output a combined login / create account
+  link in the personal bar, or to output separate login and create account links
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
