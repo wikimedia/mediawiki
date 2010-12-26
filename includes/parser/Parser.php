@@ -22,7 +22,7 @@
  *     produces altered wiki markup.
  * preprocess()
  *     removes HTML comments and expands templates
- * cleanSig()
+ * cleanSig() / cleanSigInSig()
  *     Cleans a signature before saving it to preferences
  * extractSections()
  *     Extracts sections from an article for section editing
@@ -192,6 +192,7 @@ class Parser {
 			$this->firstCallInit();
 		}
 		$this->mOutput = new ParserOutput;
+		$this->mOptions->registerWatcher( array( $this->mOutput, 'recordOption' ) );
 		$this->mAutonumber = 0;
 		$this->mLastSection = '';
 		$this->mDTopen = false;
@@ -268,12 +269,11 @@ class Parser {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
 
+		$this->mOptions = $options;
 		if ( $clearState ) {
 			$this->clearState();
 		}
 
-		$options->resetUsage();
-		$this->mOptions = $options;
 		$this->setTitle( $title ); # Page title has to be set for the pre-processor
 
 		$oldRevisionId = $this->mRevisionId;
@@ -465,10 +465,9 @@ class Parser {
 	 */
 	function preprocess( $text, $title, $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
+		$this->mOptions = $options;
 		$this->clearState();
 		$this->setOutputType( self::OT_PREPROCESS );
-		$options->resetUsage();
-		$this->mOptions = $options;
 		$this->setTitle( $title );
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
@@ -489,10 +488,9 @@ class Parser {
 	 */
 	public function getPreloadText( $text, $title, $options ) {
 		# Parser (re)initialisation
+		$this->mOptions = $options;
 		$this->clearState();
 		$this->setOutputType( self::OT_PLAIN );
-		$options->resetUsage();
-		$this->mOptions = $options;
 		$this->setTitle( $title );
 
 		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
@@ -4029,7 +4027,6 @@ class Parser {
 	 * @return String: the altered wiki markup
 	 */
 	public function preSaveTransform( $text, Title $title, $user, $options, $clearState = true ) {
-		$options->resetUsage();
 		$this->mOptions = $options;
 		$this->setTitle( $title );
 		$this->setUser( $user );
@@ -4211,9 +4208,9 @@ class Parser {
 	function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
 			global $wgTitle;
+			$this->mOptions = new ParserOptions;
 			$this->clearState();
 			$this->setTitle( $wgTitle );
-			$this->mOptions = new ParserOptions;
 			$this->setOutputType = self::OT_PREPROCESS;
 		}
 
@@ -4861,9 +4858,9 @@ class Parser {
 	 */
 	private function extractSections( $text, $section, $mode, $newText='' ) {
 		global $wgTitle;
+		$this->mOptions = new ParserOptions;
 		$this->clearState();
 		$this->setTitle( $wgTitle ); # not generally used but removes an ugly failure mode
-		$this->mOptions = new ParserOptions;
 		$this->setOutputType( self::OT_PLAIN );
 		$outText = '';
 		$frame = $this->getPreprocessor()->newFrame();
@@ -5143,13 +5140,13 @@ class Parser {
 	 * strip/replaceVariables/unstrip for preprocessor regression testing
 	 */
 	function testSrvus( $text, $title, $options, $outputType = self::OT_HTML ) {
+		$this->mOptions = $options;
 		$this->clearState();
 		if ( !$title instanceof Title ) {
 			$title = Title::newFromText( $title );
 		}
 		$this->mTitle = $title;
 		$options->resetUsage();
-		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );

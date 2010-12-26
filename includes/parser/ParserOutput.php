@@ -123,6 +123,7 @@ class ParserOutput extends CacheTime
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '';	              # HTML of the TOC
 	private $mIndexPolicy = '';	      # 'index' or 'noindex'?  Any other value will result in no change.
+	private $mAccessedOptions = null; # List of ParserOptions (stored in the keys)
 
 	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -327,4 +328,25 @@ class ParserOutput extends CacheTime
 		}
 		return $this->mProperties;
 	}
+	
+	
+	/**
+	 * Returns the options from its ParserOptions which have been taken 
+	 * into account to produce this output or false if not available.
+	 * @return mixed Array/false
+	 */
+	 public function getUsedOptions() {
+		if ( !isset( $this->mAccessedOptions ) ) {
+			return false;
+		}
+		return array_keys( $this->mAccessedOptions );
+	 }
+	 
+	 /**
+	  * Callback passed by the Parser to the ParserOptions to keep track of which options are used.
+	  * @access private
+	  */
+	 function recordOption( $option ) {
+		 $this->mAccessedOptions[$option] = true;
+	 }
 }
