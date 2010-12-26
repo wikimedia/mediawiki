@@ -142,7 +142,7 @@ class Skin extends Linker {
 
 		$skinNames = Skin::getSkinNames();
 		$skinName = $skinNames[$key];
-		$className = 'Skin' . ucfirst( $key );
+		$className = "Skin{$skinName}";
 
 		# Grab the skin class and initialise it.
 		if ( !class_exists( $className ) ) {
