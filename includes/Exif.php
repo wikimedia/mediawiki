@@ -295,9 +295,13 @@ class Exif {
 		$this->makeFlatExifTags();
 
 		$this->debugFile( $this->basename, __FUNCTION__, true );
-		wfSuppressWarnings();
-		$data = exif_read_data( $this->file );
-		wfRestoreWarnings();
+		if( function_exists( 'exif_read_data' ) ) {
+			wfSuppressWarnings();
+			$data = exif_read_data( $this->file );
+			wfRestoreWarnings();
+		} else {
+			throw new MWException( "Internal error: exif_read_data not present. \$wgShowEXIF may be incorrectly set or not checked by an extension." );
+		}
 		/**
 		 * exif_read_data() will return false on invalid input, such as
 		 * when somebody uploads a file called something.jpeg
