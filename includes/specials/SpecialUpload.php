@@ -1082,8 +1082,12 @@ class UploadForm extends HTMLForm {
 
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );
 
-		// For <charinsert> support
-		$wgOut->addModules( array( 'mediawiki.legacy.edit', 'mediawiki.legacy.upload' ) );
+		
+		$wgOut->addModules( array(
+			'mediawiki.legacy.edit', // For <charinsert> support
+			'mediawiki.legacy.upload', // Old form stuff...
+			'mediawiki.special.upload', // Newer extras for thumbnail preview.
+		) );
 	}
 
 	/**

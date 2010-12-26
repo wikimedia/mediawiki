@@ -360,6 +360,11 @@ return array(
 	'mediawiki.special.search' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
 	),
+	'mediawiki.special.upload' => array(
+		// @todo: merge in remainder of mediawiki.legacy.upload
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.upload.js',
+		'messages' => array( 'widthheight', 'size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes' ),
+	),
 	'mediawiki.language' => array(
 		'scripts' => 'resources/mediawiki.language/mediawiki.language.js',
 		'languageScripts' => array(
