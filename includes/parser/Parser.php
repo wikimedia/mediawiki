@@ -24,8 +24,10 @@
  *     removes HTML comments and expands templates
  * cleanSig() / cleanSigInSig()
  *     Cleans a signature before saving it to preferences
- * extractSections()
- *     Extracts sections from an article for section editing
+ * getSection()
+ *     Return the content of a section from an article for section editing
+ * replaceSection()
+ *     Replaces a section by number inside an article
  * getPreloadText()
  *     Removes <noinclude> sections, and <includeonly> tags.
  *
@@ -4026,7 +4028,7 @@ class Parser {
 	 * @param $clearState Boolean: whether to clear the parser state first
 	 * @return String: the altered wiki markup
 	 */
-	public function preSaveTransform( $text, Title $title, $user, $options, $clearState = true ) {
+	public function preSaveTransform( $text, Title $title, User $user, ParserOptions $options, $clearState = true ) {
 		$this->mOptions = $options;
 		$this->setTitle( $title );
 		$this->setUser( $user );
@@ -4965,6 +4967,15 @@ class Parser {
 		return $this->extractSections( $text, $section, "get", $deftext );
 	}
 
+	/**
+	 * This function returns $oldtext after the content of the section 
+	 * specified by $section has been replaced with $text.
+	 * 
+	 * @param $text String: former text of the article
+	 * @param $section Numeric: section identifier
+	 * @param $text String: replacing text
+	 * #return String: modified text
+	 */
 	public function replaceSection( $oldtext, $section, $text ) {
 		return $this->extractSections( $oldtext, $section, "replace", $text );
 	}
