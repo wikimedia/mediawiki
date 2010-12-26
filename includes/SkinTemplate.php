@@ -541,6 +541,19 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Output a boolean indiciating if buildPersonalUrls should output separate
+	 * login and create account links or output a combined link
+	 * By default we simply return a global config setting that affects most skins
+	 * This is setup as a method so that like with $wgLogo and getLogo() a skin
+	 * can override this setting and always output one or the other if it has
+	 * a reason it can't output one of the two modes.
+	 */
+	function useCombinedLoginLink() {
+		global $wgUseCombinedLoginLink;
+		return $wgUseCombinedLoginLink;
+	}
+
+	/**
 	 * build array of urls for personal toolbar
 	 * @return array
 	 * @private
@@ -618,23 +631,38 @@ class SkinTemplate extends Skin {
 			);
 		} else {
 			global $wgUser;
-			$loginlink = $wgUser->isAllowed( 'createaccount' )
+			$useCombinedLoginLink = $this->useCombinedLoginLink();
+			$loginlink = $wgUser->isAllowed( 'createaccount' ) && $useCombinedLoginLink
 				? 'nav-login-createaccount'
 				: 'login';
+			$is_signup = $wgRequest->getText('type') == "signup";
 
 			# anonlogin & login are the same
 			$login_url = array(
 				'text' => wfMsg( $loginlink ),
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-				'active' => $title->isSpecial( 'Userlogin' )
+				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == "nav-login-createaccount" || !$is_signup )
 			);
+			if ( $wgUser->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
+				$createaccount_url = array(
+					'text' => wfMsg( 'createaccount' ),
+					'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
+					'active' => $title->isSpecial( 'Userlogin' ) && $is_signup
+				);
+			}
 			global $wgProto, $wgSecureLogin;
 			if( $wgProto === 'http' && $wgSecureLogin ) {
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
 				$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL() );
 				$login_url['href']  = $https_url;
 				$login_url['class'] = 'link-https';  # FIXME class depends on skin
+				if ( isset($createaccount_url) ) {
+					$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL("type=signup") );
+					$createaccount_url['href']  = $https_url;
+					$createaccount_url['class'] = 'link-https';  # FIXME class depends on skin
+				}
 			}
+			
 
 			if( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
@@ -653,6 +681,9 @@ class SkinTemplate extends Skin {
 					'active' => ( $pageurl == $href )
 				);
 				$personal_urls['anonlogin'] = $login_url;
+				if ( isset($createaccount_url) ) {
+					$personal_urls['createaccount'] = $createaccount_url;
+				}
 			} else {
 				$personal_urls['login'] = $login_url;
 			}
@@ -1256,6 +1287,32 @@ abstract class BaseTemplate extends QuickTemplate {
 		wfRunHooks( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
 		wfProfileOut( __METHOD__ );
 		return $toolbox;
+	}
+
+	/**
+	 * Create an array of personal tools items from the data in the quicktemplate
+	 * stored by SkinTemplate.
+	 * The resulting array is built acording to a format intended to be passed
+	 * through makeListItem to generate the html.
+	 * This is in reality the same list as already stored in personal_urls
+	 * however it is reformatted so that you can just pass the individual items
+	 * to makeListItem instead of hardcoding the element creation boilerplate.
+	 */
+	function getPersonalTools() {
+		$personal_tools = array();
+		foreach( $this->data['personal_urls'] as $key => $ptool ) {
+			# The class on a personal_urls item is meant to go on the <a> instead
+			# of the <li> so we have to use a single item "links" array instead
+			# of using most of the personal_url's keys directly
+			$personal_tools[$key] = array();
+			$personal_tools[$key]["links"][] = array();
+			$personal_tools[$key]["links"][0]["single-id"] = $personal_tools[$key]["id"] = "pt-$key";
+			$personal_tools[$key]["active"] = $ptool["active"];
+			foreach ( array("href", "class", "text") as $k ) {
+				$personal_tools[$key]["links"][0][$k] = $ptool[$k];
+			}
+		}
+		return $personal_tools;
 	}
 
 	/**

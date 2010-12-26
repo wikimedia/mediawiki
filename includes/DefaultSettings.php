@@ -2321,6 +2321,13 @@ $wgFooterIcons = array(
 );
 
 /**
+ * Login / create account link behavior when it's possible for anonymous users to create an account
+ * true = use a combined login / create account link
+ * false = split login and create account into two separate links
+ */
+$wgUseCombinedLoginLink = true;
+
+/**
  * Search form behavior for Vector skin only
  * true = use an icon search button
  * false = use Go & Search buttons
