@@ -24,7 +24,7 @@ class Block {
 	const EB_RANGE_ONLY = 4;
 
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
-		$timestamp = '' , $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
+		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
 		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byName = false )
 	{
 		$this->mId = 0;
