@@ -591,6 +591,8 @@ Dibabit un anv all mar plij.",
 'createaccounterror'         => 'Dibosupl krouiñ ar gont : $1',
 'nocookiesnew'               => "Krouet eo bet ar gont implijer met n'oc'h ket kevreet. {{SITENAME}} a implij toupinoù evit ar c'hevreañ met diweredekaet eo an toupinoù ganeoc'h. Trugarez da weredekaat anezho ha da gevreañ en-dro.",
 'nocookieslogin'             => "{{SITENAME}} a implij toupinoù evit kevreañ met diweredekaet eo an toupinoù ganeoc'h. Trugarez da weredekaat anezho ha da gevreañ en-dro.",
+'nocookiesfornew'            => "N'eo ket bet krouet ar gont implijer peogwir n'eus ket bet gallet gwiriañ an orin anezhi.
+Gwiriit eo bet gweredekaet an toupinoù, adkargit ar bajenn ha klaskit en-dro.",
 'noname'                     => "N'hoc'h eus lakaet anv implijer ebet.",
 'loginsuccesstitle'          => "Kevreet oc'h.",
 'loginsuccess'               => "'''Kevreet oc'h bremañ ouzh {{SITENAME}} evel \"\$1\".'''",
@@ -1624,6 +1626,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload-http-error'         => 'Ur fazi HTTP zo bet : $1',
 
 # Special:UploadStash
+'uploadstash'          => 'Krubuilh enporzhiañ',
 'uploadstash-errclear' => "N'eus ket bet gallet riñsañ ar restroù.",
 'uploadstash-refresh'  => 'Freskaat roll ar restroù',
 
@@ -3311,6 +3314,7 @@ Gallout a rit [[Special:Watchlist/edit|implijout an aozer boutin ivez]].',
 'version-specialpages'             => 'Pajennoù dibar',
 'version-parserhooks'              => 'Galvoù dielfennañ',
 'version-variables'                => 'Argemmoù',
+'version-antispam'                 => 'Mirout ouzh ar strob',
 'version-skins'                    => 'Gwiskadurioù',
 'version-other'                    => 'Diseurt',
 'version-mediahandlers'            => 'Merer danvez liesvedia',

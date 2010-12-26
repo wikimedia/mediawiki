@@ -1156,7 +1156,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'showingresultsnum'                => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1''' de '''$3'''|Resultats '''$1 - $2''' de '''$3'''}} per '''$4'''",
 'nonefound'                        => "'''Nota''': Només se cerca en alguns espais de noms per defecte. Proveu d'afegir el prefix ''all:'' a la vostra consulta per a cercar a tot el contingut (incloent-hi les pàgines de discussió, les plantilles, etc.), o feu servir l'espai de noms on vulgueu cercar com a prefix.",
-'search-nonefound'                 => 'La búsqueda no ha produit cap resultat.',
+'search-nonefound'                 => 'La cerca no ha donat cap resultat.',
 'powersearch'                      => 'Cerca avançada',
 'powersearch-legend'               => 'Cerca avançada',
 'powersearch-ns'                   => 'Cerca als espais de noms:',

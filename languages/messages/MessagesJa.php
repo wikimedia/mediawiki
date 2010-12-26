@@ -1694,8 +1694,8 @@ HTMLタグを見直してください。',
 'rc-enhanced-hide'                  => '詳細を非表示',
 
 # Recent changes linked
-'recentchangeslinked'          => '関連する変更',
-'recentchangeslinked-feed'     => '関連する変更',
+'recentchangeslinked'          => '関連ページの更新状況',
+'recentchangeslinked-feed'     => '関連ページの更新状況',
 'recentchangeslinked-toolbox'  => '関連ページの更新状況',
 'recentchangeslinked-title'    => '「$1」と関連する変更',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に変更はありませんでした。',
