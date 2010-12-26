@@ -62,6 +62,9 @@ return array(
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/jquery/jquery.highlightText.js'
 	),
+	'jquery.hoverIntent' => array(
+		'scripts' => 'resources/jquery/jquery.hoverIntent.js'
+	),
 	'jquery.placeholder' => array(
 		'scripts' => 'resources/jquery/jquery.placeholder.js'
 	),
