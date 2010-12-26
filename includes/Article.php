@@ -1499,7 +1499,7 @@ class Article {
 	public function tryDirtyCache() {
 		global $wgOut;
 		$parserCache = ParserCache::singleton();
-		$options = clone $this->getParserOptions();
+		$options = $this->getParserOptions();
 
 		if ( $wgOut->isPrintable() ) {
 			$options->setIsPrintable( true );
@@ -3597,7 +3597,7 @@ class Article {
 		$edit->revid = $revid;
 		$edit->newText = $text;
 		$edit->pst = $this->preSaveTransform( $text );
-		$edit->popts = clone $this->getParserOptions();
+		$edit->popts = $this->getParserOptions();
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getContent();
 
@@ -4405,7 +4405,7 @@ class Article {
 		global $wgParser, $wgEnableParserCache, $wgUseFileCache;
 
 		if ( !$parserOptions ) {
-			$parserOptions = clone $this->getParserOptions();
+			$parserOptions = $this->getParserOptions();
 		}
 
 		$time = - wfTime();
