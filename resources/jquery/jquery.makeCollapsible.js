@@ -162,7 +162,7 @@ $.fn.makeCollapsible = function() {
 		// (ie. outside the container or deeper inside the tree)
 		// Then: Locate the custom toggle link(s) and bind them
 		if ( $that.attr( 'id' ).indexOf( 'mw-customcollapsible-' ) === 0 ) {
-			// @FIXME: Incomplete
+
 			var thatId = $that.attr( 'id' ),
 				$customTogglers = $( '.' + thatId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
 			mw.log( 'Found custom collapsible: #' + thatId );
@@ -186,13 +186,13 @@ $.fn.makeCollapsible = function() {
 
 			// Elements are treated differently
 			if ( $that.is( 'table' ) ) {
-				// The toggle-link will be in the last cell (td or th) of the first row
-				var	$lastCell = $( 'tr:first th, tr:first td', that ).eq(-1),
-					$toggle = $lastCell.find( '> .mw-collapsible-toggle' );
+				// The toggle-link will be in one the the cells (td or th) of the first row
+				var	$firstRowCells = $( 'tr:first th, tr:first td', that ),
+					$toggle = $firstRowCells.find( '> .mw-collapsible-toggle' );
 	
-				// If theres no toggle link, add it
+				// If theres no toggle link, add it to the last cell
 				if ( !$toggle.size() ) {
-					$lastCell.prepend( $toggleLink );
+					$firstRowCells.eq(-1).prepend( $toggleLink );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
 						toggleLinkDefault( this, e );
