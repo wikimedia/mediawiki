@@ -410,8 +410,6 @@ div.floatleft p { font-style: italic; }
 /* thumbnails */
 div.thumb {
 	margin-bottom: .5em;
-	border-style: solid;
-	border-color: transparent;
 	width: auto;
 }
 div.thumbinner {
@@ -446,14 +444,13 @@ div.magnify a, div.magnify img {
 div.tright {
 	clear: right;
 	float: right;
-	border-width: .5em 0 .8em 1.4em;
+	margin: .5em 0 1.3em 1.4em;
 }
 /* @noflip */
 div.tleft {
 	float: left;
 	clear: left;
-	margin-right: .5em;
-	border-width: .5em 1.4em .8em 0;
+	margin: .5em 1.9em 1.3em 0;
 }
 img.thumbborder {
 	border: 1px solid #dddddd;
