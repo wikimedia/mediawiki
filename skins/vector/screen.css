@@ -699,6 +699,7 @@ h6 {
 	background: none;
 	font-weight: normal;
 	margin: 0;
+	overflow: hidden;
 	padding-top: .5em;
 	padding-bottom: .17em;
 	border-bottom: 1px solid #aaa;
