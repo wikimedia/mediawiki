@@ -28,7 +28,7 @@
  */
 
 
-require_once( str_replace('//','/',dirname(__FILE__).'/') .'MediaWikiInstallationCommonFunction.php');
+require_once (dirname(__FILE__).'/'.'MediaWikiInstallationCommonFunction.php');
 
 
 /*
