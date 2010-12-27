@@ -357,6 +357,10 @@ return array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
 	),
+	'mediawiki.special.changeslist' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
+		'dependencies' => array( 'jquery.makeCollapsible' ),
+	),
 	'mediawiki.special.search' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.search.js',
 	),
@@ -445,10 +449,6 @@ return array(
 	),
 	'mediawiki.legacy.edit' => array(
 		'scripts' => 'skins/common/edit.js',
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
-	'mediawiki.legacy.enhancedchanges' => array(
-		'scripts' => 'skins/common/enhancedchanges.js',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.history' => array(
