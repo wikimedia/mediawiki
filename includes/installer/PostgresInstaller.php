@@ -166,4 +166,26 @@ class PostgresInstaller extends DatabaseInstaller {
 		$wgDBuser = $this->getVar( '_InstallUser' );
 		$wgDBpassword = $this->getVar( '_InstallPassword' );
 	}
+
+	private function setupPLpgSQL() {
+		$rows = $this->numRows( 
+			$this->db->query( "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'" )
+		);
+		if ( $rows < 1 ) {
+			// plpgsql is not installed, but if we have a pg_pltemplate table, we should be able to create it
+			$SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
+				"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
+			$rows = $this->numRows( $this->db->query( $SQL ) );
+			global $wgDBname;
+			if ( $rows >= 1 ) {
+				$result = $this->db->query( 'CREATE LANGUAGE plpgsql' );
+				if ( !$result ) {
+					return Status::newFatal( 'pg-no-plpgsql', $wgDBname );
+				}
+			} else {
+				return Status::newFatal( 'pg-no-plpgsql', $wgDBname );
+			}
+		}
+		return Status::newGood();
+	}
 }

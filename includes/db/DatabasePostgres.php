@@ -537,36 +537,6 @@ class DatabasePostgres extends DatabaseBase {
 		}
 	}
 
-	function setup_plpgsql() {
-		print '<li>Checking for PL/pgSQL ...';
-		$SQL = "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'";
-		$rows = $this->numRows( $this->doQuery( $SQL ) );
-		if ( $rows < 1 ) {
-			// plpgsql is not installed, but if we have a pg_pltemplate table, we should be able to create it
-			print 'not installed. Attempting to install PL/pgSQL ...';
-			$SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
-				"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
-			$rows = $this->numRows( $this->doQuery( $SQL ) );
-			global $wgDBname;
-			if ( $rows >= 1 ) {
-				$olde = error_reporting( 0 );
-				error_reporting( $olde - E_WARNING );
-				$result = $this->doQuery( 'CREATE LANGUAGE plpgsql' );
-				error_reporting( $olde );
-				if ( !$result ) {
-					print '<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>' .
-						htmlspecialchars( $wgDBname ) . '</tt></li>';
-					dieout( );
-				}
-			} else {
-				print '<b>FAILED</b>. You need to install the language PL/pgSQL in the database <tt>' .
-					htmlspecialchars( $wgDBname ) . '</tt></li>';
-				dieout( );
-			}
-		}
-		print "OK</li>\n";
-	}
-
 	/**
 	 * Closes a database connection, if it is open
 	 * Returns success, true if already closed
