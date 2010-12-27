@@ -124,8 +124,8 @@ class ChangesList {
 		# Inconsistent naming, bleh
 		$map = array(
 			'newpage' => 'newpage',
-			'minor' => 'minor',
-			'bot' => 'bot',
+			'minor' => 'minoredit',
+			'bot' => 'botedit',
 			'unpatrolled' => 'unpatrolled',
 		);
 		$flag = $map[$flag];
