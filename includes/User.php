@@ -2820,7 +2820,9 @@ class User {
 	function checkTemporaryPassword( $plaintext ) {
 		global $wgNewPasswordExpiry;
 		if( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
-			$this->load();
+			if ( is_null( $this->mNewpassTime ) ) {
+				return true;
+			}
 			$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgNewPasswordExpiry;
 			return ( time() < $expiry );
 		} else {
