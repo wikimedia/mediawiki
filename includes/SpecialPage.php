@@ -192,6 +192,7 @@ class SpecialPage {
 		'Mypage'                    => 'SpecialMypage',
 		'Mytalk'                    => 'SpecialMytalk',
 		'Myuploads'                 => 'SpecialMyuploads',
+		'PermanentLink'             => 'SpecialPermanentLink',
 		'Revisiondelete'            => 'SpecialRevisionDelete',
 		'RevisionMove'              => 'SpecialRevisionMove',
 		'Specialpages'              => 'SpecialSpecialpages',
@@ -541,9 +542,15 @@ class SpecialPage {
 		# Check for redirect
 		if ( !$including ) {
 			$redirect = $page->getRedirect( $par );
-			if ( $redirect ) {
-				$query = $page->getRedirectQuery();
+			$query = $page->getRedirectQuery();
+			if ( $redirect instanceof Title ) {
 				$url = $redirect->getFullUrl( $query );
+				$wgOut->redirect( $url );
+				wfProfileOut( __METHOD__ );
+				return $redirect;
+			} elseif( $redirect === true ) {
+				global $wgScript;
+				$url = $wgScript . '?' . wfArrayToCGI( $query );
 				$wgOut->redirect( $url );
 				wfProfileOut( __METHOD__ );
 				return $redirect;
@@ -929,16 +936,20 @@ class SpecialPage {
 	function getRedirectQuery() {
 		global $wgRequest;
 		$params = array();
+
 		foreach( $this->mAllowedRedirectParams as $arg ) {
-			if( ( $val = $wgRequest->getVal( $arg, null ) ) !== null )
-				$params[] = $arg . '=' . $val;
+			if( $wgRequest->getVal( $arg, null ) !== null ){
+				$params[$arg] = $wgRequest->getVal( $arg );
+			}
 		}
-		
+
 		foreach( $this->mAddedRedirectParams as $arg => $val ) {
-			$params[] = $arg . '=' . $val;
+			$params[$arg] = $val;
 		}
-		
-		return count( $params ) ? implode( '&', $params ) : false;
+
+		return count( $params )
+			? $params
+			: false;
 	}
 }
 
@@ -988,7 +999,8 @@ class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	}
 }
 
-/** SpecialMypage, SpecialMytalk and SpecialMycontributions special pages
+/**
+ * SpecialMypage, SpecialMytalk and SpecialMycontributions special pages
  * are used to get user independant links pointing to the user page, talk
  * page and list of contributions.
  * This can let us cache a single copy of any generated content for all
@@ -1062,9 +1074,25 @@ class SpecialMyuploads extends UnlistedSpecialPage {
 		parent::__construct( 'Myuploads' );
 		$this->mAllowedRedirectParams = array( 'limit' );
 	}
-	
+
 	function getRedirect( $subpage ) {
 		global $wgUser;
 		return SpecialPage::getTitleFor( 'Listfiles', $wgUser->getName() );
+	}
+}
+
+/**
+ * Redirect to Special:Listfiles?user=$wgUser
+ */
+class SpecialPermanentLink extends UnlistedSpecialPage {
+	function __construct() {
+		parent::__construct( 'PermanentLink' );
+		$this->mAllowedRedirectParams = array();
+	}
+
+	function getRedirect( $subpage ) {
+		$subpage = intval( $subpage );
+		$this->mAddedRedirectParams['oldid'] = $subpage;
+		return true;
 	}
 }
