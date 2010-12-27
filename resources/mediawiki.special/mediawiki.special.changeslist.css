@@ -1,0 +1,48 @@
+/**
+ * Styling for Special:Watchlist and Special:RecentChanges
+ */
+
+table.mw-enhanced-rc {
+	background: none;
+	border:0;
+	border-spacing:0;
+}
+
+table.mw-enhanced-rc th, table.mw-enhanced-rc td {
+	padding:0;
+	vertical-align:top;
+}
+
+td.mw-enhanced-rc {
+	white-space:nowrap;
+	font-family:monospace;
+}
+
+.mw-enhanced-rc-time {
+	font-family: monospace;
+}
+
+table.mw-enhanced-rc td.mw-enhanced-rc-nested {
+	padding-left: 1em;
+}
+
+/* Show/hide arrows in enhanced changeslist */
+.mw-enhanced-rc .collapsible-expander {
+	float: none;
+}
+
+/* If JS is disabled, the arrow is still needed
+   for spacing, but ideally shouldn't be shown    */
+.mw-enhanced-rc .mw-rc-openarrow {
+	visibility: hidden;
+}
+
+.mw-enhanced-rc.mw-made-collapsible .mw-rc-openarrow,
+.mw-enhanced-rc .mw-rc-closearrow {
+	visibility: visible;
+	display: none;
+}
+.mw-enhanced-rc.mw-made-collapsible .mw-collapsible-toggle-collapsed .mw-rc-openarrow,
+.mw-enhanced-rc.mw-made-collapsible .mw-collapsible-toggle-expanded .mw-rc-closearrow {
+	display: inline;
+}
