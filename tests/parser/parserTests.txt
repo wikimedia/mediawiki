@@ -6765,6 +6765,24 @@ HTML Hex character encoding (spells the word "JavaScript")
 !! end
 
 !! test
+HTML Hex character encoding bogus encoding (bug 26437 regression check)
+!! input
+&#xsee;&#XSEE;
+!! result
+<p>&amp;#xsee;&amp;#XSEE;
+</p>
+!! end
+
+!! test
+HTML Hex character encoding mixed case
+!! input
+&#xEE;&#Xee;
+!! result
+<p>&#xee;&#xee;
+</p>
+!! end
+
+!! test
 __FORCETOC__ override
 !! input 
 __NEWSECTIONLINK__
