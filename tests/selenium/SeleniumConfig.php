@@ -87,7 +87,6 @@ class SeleniumConfig {
 				$configArray[$header] = array_merge_recursive( $configArray[$header], self::parse_ini_line( $line ) );
 			}
 		}
-		var_dump($configArray);
 		return $configArray;
 	}
 
