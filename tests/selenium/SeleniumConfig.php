@@ -61,28 +61,54 @@ class SeleniumConfig {
 		return true;
 	}
 
-	private static function parse_5_2_ini_file ( $ConfigFile ) {
-
-		$configArray = parse_ini_file( $ConfigFile, true );
-		if ( $configArray === false ) return false;
-
-		// PHP 5.2 ini files have [browsers] and [testSuite] sections
-		// to get around lack of support for array keys. It then
-		// inserts the section arrays into the appropriate places in
-		// the SeleniumSettings and SeleniumTests arrays.
-
-		if ( isset( $configArray['browsers'] ) ) {
-			$configArray['SeleniumSettings']['browsers'] = $configArray['browsers'];
-			unset ( $configArray['browsers'] );
+	/**
+	 * PHP 5.2 parse_ini_file() doesn't have support for array keys.
+	 * This function parses simple ini files with such syntax using just
+	 * 5.2 functions.
+	 */
+	private static function parse_5_2_ini_file( $ConfigFile ) {
+		$file = fopen( $ConfigFile, "rt" );
+		if ( !$file ) {
+			return false;
 		}
-
-		if ( isset( $configArray['testSuite'] ) ) {
-			$configArray['SeleniumTests']['testSuite'] = $configArray['testSuite'];
-			unset ( $configArray['testSuite'] );
+		$header = '';
+		
+		$configArray = array();
+		
+		while ( ( $line = fgets( $file ) ) !== false ) {
+			$line = strtok( $line, "\r\n" );
+			
+			if ( !$line || $line[0] == ';' ) continue;
+			
+			if ( $line[0] == '[' && substr( $line, -1 ) == ']' ) {
+				$header = substr( $line, 1, -1 );
+				$configArray[$header] = array();
+			} else {
+				$configArray[$header] = array_merge_recursive( $configArray[$header], self::parse_ini_line( $line ) );
+			}
 		}
-
+		var_dump($configArray);
 		return $configArray;
-
 	}
 
+	private static function parse_ini_line( $iniLine ) {
+		static $specialValues = array( 'false' => false, 'true' => true, 'null' => null );
+		list( $key, $value ) = explode( '=', $iniLine, 2 );
+		$key = trim( $key );
+		$value = trim( $value );
+		
+		if ( isset( $specialValues[$value] ) ) {
+			$value = $specialValues[$value];
+		} else {
+			$value = trim( $value, '"' );
+		}
+		
+		/* Support one-level arrays */
+		if ( preg_match( '/^([A-Za-z]+)\[([A-Za-z]+)\]/', $key, $m ) ) {
+			$key = $m[1];
+			$value = array( $m[2] => $value );
+		}
+		
+		return array( $key => $value );
+	}
 }
