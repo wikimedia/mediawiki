@@ -1082,7 +1082,7 @@ class SpecialMyuploads extends UnlistedSpecialPage {
 }
 
 /**
- * Redirect to Special:Listfiles?user=$wgUser
+ * Redirect from Special:PermanentLink/### to index.php?oldid=###
  */
 class SpecialPermanentLink extends UnlistedSpecialPage {
 	function __construct() {
