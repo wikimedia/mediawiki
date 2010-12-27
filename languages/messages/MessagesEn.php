@@ -445,6 +445,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MyTalk' ),
 	'Mycontributions'           => array( 'MyContributions' ),
 	'Myuploads'                 => array( 'MyUploads' ),
+	'PermanentLink'             => array( 'PermanentLink' ),
 	'Listadmins'                => array( 'ListAdmins' ),
 	'Listbots'                  => array( 'ListBots' ),
 	'Popularpages'              => array( 'PopularPages' ),
