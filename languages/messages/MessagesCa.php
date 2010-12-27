@@ -621,7 +621,6 @@ Reviseu-ne l'ortografia (recordeu que es distingeixen les majúscules i minúscu
 'wrongpasswordempty'         => "La contrasenya que s'ha introduït estava en blanc. Torneu-ho a provar.",
 'passwordtooshort'           => "La contrasenya ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}}.",
 'password-name-match'        => "La contrasenya ha de ser diferent al vostre nom d'usuari.",
-'password-too-weak'          => "La clau d'accés que heu proporcionat no és gaire segura i no es pot fer servir-la.",
 'mailmypassword'             => "Envia'm una nova contrasenya per correu electrònic",
 'passwordremindertitle'      => 'Nova contrasenya temporal per al projecte {{SITENAME}}',
 'passwordremindertext'       => "Algú (vós mateix segurament, des de l'adreça l'IP $1) ha soŀlicitat que us enviéssim una nova contrasenya per a iniciar la sessió al projecte {{SITENAME}} ($4).
@@ -1257,7 +1256,7 @@ No es podrà desfer el canvi.',
 'prefs-memberingroups'          => 'Membre dels {{PLURAL:$1|grup|grups}}:',
 'prefs-registration'            => 'Hora de registre:',
 'yourrealname'                  => 'Nom real *',
-'yourlanguage'                  => 'Llengua:',
+'yourlanguage'                  => 'Idioma:',
 'yourvariant'                   => 'Variant lingüística:',
 'yournick'                      => 'Signatura:',
 'prefs-help-signature'          => "Els comentaris a les pàgines d'usuari s'han de signar amb \"<nowiki>~~~~</nowiki>\", que serà convertit en la vostra signatura i la data i l'hora.",
@@ -2566,7 +2565,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'allmessages-filter-all'        => 'Tots',
 'allmessages-filter-modified'   => 'Modificat',
 'allmessages-prefix'            => 'Filtra per prefix:',
-'allmessages-language'          => 'Llengua:',
+'allmessages-language'          => 'Idioma:',
 'allmessages-filter-submit'     => 'Vés-hi',
 
 # Thumbnails

@@ -487,7 +487,6 @@ $2',
 'wrongpasswordempty'         => '缺符節，惠補之。',
 'passwordtooshort'           => '符節莫逾$1字。',
 'password-name-match'        => '符節與簿名異也。',
-'password-too-weak'          => '符節弱乃無用也。',
 'mailmypassword'             => '遣吾符節',
 'passwordremindertitle'      => '新臨符節自{{SITENAME}}',
 'passwordremindertext'       => '$1求遣{{SITENAME}}（$4）："$2"之臨符節為"$3"。日到有$5。

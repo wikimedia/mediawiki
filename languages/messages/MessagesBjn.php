@@ -465,7 +465,6 @@ Muhun cubai pulang.',
 Muhun cubai pulang.',
 'passwordtooshort'           => 'Kata sunduk musti paling sadikit {{PLURAL:$1|1 karaktir|$1 karaktir}}.',
 'password-name-match'        => 'Kata sunduk Pian musri aabida lawan ngaran pamuruk Pian.',
-'password-too-weak'          => 'Katasunduk nang disadiakan talalu lamah wan kada kawa dipuruk',
 'mailmypassword'             => 'Kirimi kata sunduk hanyar',
 'passwordremindertitle'      => 'Kata sunduk samantara gasan {{SITENAME}}',
 'passwordremindertext'       => 'Ada urang (pinanya Pian, matan alamat IP $1) maminta sabuah katasunduk hanyar gasan {{SITENAME}} ($4). sabuah katasunduk samantara gasan pamuruk "$2" sudah diulah wan disetel ka "$3". Amun bujur Pian nang maminta, Pian parlu babuat log wan mamilih katasunduk hanyar wayah ini jua. Katasunduk samantara Pian akan kadaluarsa dalam {{PLURAL:$5|satu hari|$5 hahari}}.

@@ -1,5 +1,5 @@
 <?php
-/** Cornish (Kernewek)
+/** Cornish (Kernowek)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -446,7 +446,7 @@ po [{{fullurl:{{FULLPAGENAME}}|action=edit}} chanjya an folen-ma]</span>.',
 'search-interwiki-caption'       => 'Towlow whor',
 'search-interwiki-default'       => '$1 sewyansow:',
 'search-interwiki-more'          => '(moy)',
-'search-mwsuggest-enabled'       => 'gen profyansow',
+'search-mwsuggest-enabled'       => 'gans profyansow',
 'search-mwsuggest-disabled'      => 'profyansow vyth',
 'searchall'                      => 'oll',
 'nonefound'                      => "'''Noten''': Nyns yw saw radn a'n spasys-hanow whilys yn sqwir.
@@ -692,6 +692,7 @@ Yth yw folednow eus war agas [[Special:Watchlist|rol golyas]] yn '''tew'''.",
 'watchlist'         => 'Ow rol golyas',
 'mywatchlist'       => 'Ow rol golyas',
 'addedwatch'        => 'Keworrys dhe rol golyas',
+'removedwatch'      => 'Dileys dhort an rol golyas',
 'watch'             => 'Golya',
 'watchthispage'     => 'Golya an folen-ma',
 'unwatch'           => 'Diswolya',
@@ -851,13 +852,13 @@ Why a ell gweles hy fennfenten.',
 'tooltip-ca-watch'                => "Keworra an folen-ma dhe'gas rol golyas",
 'tooltip-ca-unwatch'              => 'Dilea an folen-ma dhort agas rol golyas',
 'tooltip-search'                  => 'Whila yn {{SITENAME}}',
-'tooltip-search-go'               => 'Ke dhe folen gen an keth hanow-ma, mars eus',
-'tooltip-search-fulltext'         => "Whila an text-ma e'n folednow",
+'tooltip-search-go'               => 'Mos dhe folen gans an keth hanow-ma, mars eus',
+'tooltip-search-fulltext'         => "Whilas an text-ma y'n folednow",
 'tooltip-n-mainpage'              => 'Disqwedhes an pennfolen',
 'tooltip-n-mainpage-description'  => 'Godriga an pennfolen',
-'tooltip-n-portal'                => "A-dro dhe'n ragdres, an pyth a ellowgh gwul, ple cavos taclow",
+'tooltip-n-portal'                => "A-dro dhe'n ragdres, an pyth a ellowgh whi gwul, ple cavos taclow",
 'tooltip-n-currentevents'         => 'Cavos derivadow kylva war darvosow a-lebmyn',
-'tooltip-n-recentchanges'         => "Rol an chanjyow a-dhiwedhes e'n wiki",
+'tooltip-n-recentchanges'         => "Rol an chanjyow a-dhiwedhes y'n wiki",
 'tooltip-n-randompage'            => 'Carga folen dre jons',
 'tooltip-n-help'                  => 'Gweres',
 'tooltip-t-whatlinkshere'         => 'Rol a bub folednow wiki ow kevredna bys obma',
@@ -919,6 +920,9 @@ Why a ell gweles hy fennfenten.',
 
 'exif-contrast-1' => 'Medhel',
 'exif-contrast-2' => 'Cales',
+
+# External editor support
+'edit-externally' => 'Chanjya an restren-ma dre towlen a-ves',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'oll',
