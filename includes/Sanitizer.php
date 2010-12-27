@@ -31,8 +31,7 @@
 define( 'MW_CHAR_REFS_REGEX',
 	'/&([A-Za-z0-9\x80-\xff]+);
 	 |&\#([0-9]+);
-	 |&\#x([0-9A-Za-z]+);
-	 |&\#X([0-9A-Za-z]+);
+	 |&\#[xX]([0-9A-Fa-f]+);
 	 |(&)/x' );
 
 /**
@@ -1127,8 +1126,6 @@ class Sanitizer {
 			$ret = Sanitizer::decCharReference( $matches[2] );
 		} elseif( $matches[3] != ''  ) {
 			$ret = Sanitizer::hexCharReference( $matches[3] );
-		} elseif( $matches[4] != '' ) {
-			$ret = Sanitizer::hexCharReference( $matches[4] );
 		}
 		if( is_null( $ret ) ) {
 			return htmlspecialchars( $matches[0] );
@@ -1238,8 +1235,6 @@ class Sanitizer {
 			return  Sanitizer::decodeChar( intval( $matches[2] ) );
 		} elseif( $matches[3] != ''  ) {
 			return  Sanitizer::decodeChar( hexdec( $matches[3] ) );
-		} elseif( $matches[4] != '' ) {
-			return  Sanitizer::decodeChar( hexdec( $matches[4] ) );
 		}
 		# Last case should be an ampersand by itself
 		return $matches[0];
