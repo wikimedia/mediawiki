@@ -76,7 +76,10 @@ CREATE TABLE /*_*/user (
   user_newpassword tinyblob NOT NULL,
 
   -- Timestamp of the last time when a new password was
-  -- sent, for throttling purposes
+  -- sent, for throttling and expiring purposes
+  -- Emailed passwords will expire $wgNewPasswordExpiry
+  -- (a week) after being set. If user_newpass_time is NULL
+  -- (eg. created by mail) it doesn't expire.
   user_newpass_time binary(14),
 
   -- Note: email should be restricted, not public info.
