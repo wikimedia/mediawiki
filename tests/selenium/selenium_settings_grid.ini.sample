@@ -9,6 +9,6 @@ testBrowser		= "Safari on OS X Snow Leopard"
 jUnitLogFile	=
 runAgainstGrid	= true
 
-[testSuite]
+[SeleniumTests]
 
-SimpleSeleniumTestSuite	= "tests/selenium/suites/SimpleSeleniumTestSuite.php"
+testSuite[SimpleSeleniumTestSuite]	= "tests/selenium/suites/SimpleSeleniumTestSuite.php"
