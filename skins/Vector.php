@@ -401,17 +401,6 @@ class VectorTemplate extends BaseTemplate {
 		$this->data['view_urls'] = $nav['views'];
 		$this->data['action_urls'] = $nav['actions'];
 		$this->data['variant_urls'] = $nav['variants'];
-		// Build additional attributes for personal_urls
-		foreach ( $this->data['personal_urls'] as $key => $item) {
-			$this->data['personal_urls'][$key]['attributes'] =
-				' id="' . Sanitizer::escapeId( "pt-$key" ) . '"';
-			if ( isset( $item['active'] ) && $item['active'] ) {
-				$this->data['personal_urls'][$key]['attributes'] .=
-					' class="active"';
-			}
-			$this->data['personal_urls'][$key]['key'] =
-				$this->skin->tooltipAndAccesskey('pt-'.$key);
-		}
 
 		// Reverse horizontally rendered navigation elements
 		if ( $wgLang->isRTL() ) {
@@ -687,9 +676,10 @@ class VectorTemplate extends BaseTemplate {
 <div id="p-personal" class="<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('personaltools') ?></h5>
 	<ul<?php $this->html('userlangattributes') ?>>
-		<?php foreach($this->data['personal_urls'] as $item): ?>
-			<li <?php echo $item['attributes'] ?>><a href="<?php echo htmlspecialchars($item['href']) ?>"<?php echo $item['key'] ?><?php if(!empty($item['class'])): ?> class="<?php echo htmlspecialchars($item['class']) ?>"<?php endif; ?>><?php echo htmlspecialchars($item['text']) ?></a></li>
-		<?php endforeach; ?>
+<?php			foreach($this->getPersonalTools() as $key => $item) { ?>
+		<?php echo $this->makeListItem($key, $item); ?>
+
+<?php			} ?>
 	</ul>
 </div>
 <?php
