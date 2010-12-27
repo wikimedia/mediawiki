@@ -127,6 +127,8 @@ class ChangesList {
 			'minor' => 'minoredit',
 			'bot' => 'botedit',
 			'unpatrolled' => 'unpatrolled',
+			'minoredit' => 'minoredit',
+			'botedit' => 'botedit',
 		);
 		$flag = $map[$flag];
 
@@ -514,9 +516,9 @@ class OldChangesList extends ChangesList {
 			$s .= $this->recentChangesFlags( 
 				array(
 					'newpage' => $rc->mAttribs['rc_new'],
-					'minoredit' => $rc->mAttribs['rc_minor'],
+					'minor' => $rc->mAttribs['rc_minor'],
 					'unpatrolled' => $unpatrolled, 
-					'botedit' => $rc->mAttribs['rc_bot']
+					'bot' => $rc->mAttribs['rc_bot']
 				),
 				''
 			);
@@ -830,9 +832,9 @@ class EnhancedChangesList extends ChangesList {
 		# Main line
 		$r .= '<td class="mw-enhanced-rc">' . $this->recentChangesFlags( array(
 			'newpage' => $isnew,
-			'minoredit' => false,
+			'minor' => false,
 			'unpatrolled' => $unpatrolled, 
-			'botedit' => $bot ,
+			'bot' => $bot ,
 		) );
 
 		# Timestamp
@@ -934,9 +936,9 @@ class EnhancedChangesList extends ChangesList {
 			$r .= '<tr><td></td><td class="mw-enhanced-rc">';
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $rcObj->mAttribs['rc_new'],
-				'minoredit' => $rcObj->mAttribs['rc_minor'],
+				'minor' => $rcObj->mAttribs['rc_minor'],
 				'unpatrolled' => $rcObj->unpatrolled, 
-				'botedit' => $rcObj->mAttribs['rc_bot'],
+				'bot' => $rcObj->mAttribs['rc_bot'],
 			) );
 			$r .= '&#160;</td><td class="mw-enhanced-rc-nested"><span class="mw-enhanced-rc-time">';
 
@@ -1077,9 +1079,9 @@ class EnhancedChangesList extends ChangesList {
 		} else {
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $type == RC_NEW,
-				'minoredit' => $rcObj->mAttribs['rc_minor'],
+				'mino' => $rcObj->mAttribs['rc_minor'],
 				'unpatrolled' => $rcObj->unpatrolled, 
-				'botedit' => $rcObj->mAttribs['rc_bot'],
+				'bot' => $rcObj->mAttribs['rc_bot'],
 			) );
 		}
 		$r .= '&#160;'.$rcObj->timestamp.'&#160;</td><td>';
