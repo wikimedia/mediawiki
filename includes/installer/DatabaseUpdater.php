@@ -26,6 +26,11 @@ abstract class DatabaseUpdater {
 
 	protected $extensionUpdates = array();
 
+	/**
+	 * Handle to the database subclass
+	 *
+	 * @var DatabaseBase
+	 */
 	protected $db;
 
 	protected $shared = false;
