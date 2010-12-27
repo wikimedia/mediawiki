@@ -8,6 +8,8 @@ userPassword	= "wikipass"
 testBrowser		= "Safari on OS X Snow Leopard"
 jUnitLogFile	=
 runAgainstGrid	= true
+startserver = false
+stopserver = false
 
 [SeleniumTests]
 
