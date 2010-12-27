@@ -35,21 +35,21 @@ class ExtraParserTest extends PHPUnit_Framework_TestCase {
 	
 	/* Test the parser entry points */
 	function testParse() {
-		$title = Title::newFromText( __METHOD__ );
+		$title = Title::newFromText( __FUNCTION__ );
 		$parserOutput = $this->parser->parse( "Test\n{{Foo}}\n{{Bar}}" , $title, $this->options );
 		$this->assertEquals( "<p>Test\nContent of <i>Template:Foo</i>\nContent of <i>Template:Bar</i>\n</p>", $parserOutput->getText() );
 	}
 	
 	function testPreSaveTransform() {
 		global $wgUser;
-		$title = Title::newFromText( __METHOD__ );
+		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->preSaveTransform( "Test\r\n{{subst:Foo}}\n{{Bar}}", $title, $wgUser, $this->options );
 		
 		$this->assertEquals( "Test\nContent of ''Template:Foo''\n{{Bar}}", $outputText );
 	}
 	
 	function testPreprocess() {
-		$title = Title::newFromText( __METHOD__ );
+		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->preprocess( "Test\n{{Foo}}\n{{Bar}}" , $title, $this->options );
 		
 		$this->assertEquals( "Test\nContent of ''Template:Foo''\nContent of ''Template:Bar''", $outputText );
@@ -59,7 +59,7 @@ class ExtraParserTest extends PHPUnit_Framework_TestCase {
 	 * cleanSig() makes all templates substs and removes tildes
 	 */
 	function testCleanSig() {
-		$title = Title::newFromText( __METHOD__ );
+		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
 		
 		$this->assertEquals( "{{SUBST:Foo}} ", $outputText );
@@ -69,7 +69,7 @@ class ExtraParserTest extends PHPUnit_Framework_TestCase {
 	 * cleanSigInSig() just removes tildes
 	 */
 	function testCleanSigInSig() {
-		$title = Title::newFromText( __METHOD__ );
+		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSigInSig( "{{Foo}} ~~~~" );
 		
 		$this->assertEquals( "{{Foo}} ", $outputText );
@@ -93,7 +93,7 @@ class ExtraParserTest extends PHPUnit_Framework_TestCase {
 	 * Templates and comments are not affected, but noinclude/onlyinclude is.
 	 */
 	function testGetPreloadText() {
-		$title = Title::newFromText( __METHOD__ );
+		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->getPreloadText( "{{Foo}}<noinclude> censored</noinclude> information <!-- is very secret -->", $title, $this->options );
 		
 		$this->assertEquals( "{{Foo}} information <!-- is very secret -->", $outputText );
