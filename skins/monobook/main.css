@@ -120,6 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 	background: none;
 	font-weight: normal;
 	margin: 0;
+	overflow: hidden;
 	padding-top: .5em;
 	padding-bottom: .17em;
 	border-bottom: 1px solid #aaa;
@@ -450,7 +451,7 @@ div.tright {
 div.tleft {
 	float: left;
 	clear: left;
-	margin: .5em 1.9em 1.3em 0;
+	margin: .5em 1.4em 1.3em 0;
 }
 img.thumbborder {
 	border: 1px solid #dddddd;

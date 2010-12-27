@@ -333,6 +333,10 @@ h1, h2 {
 	border-bottom: solid 1px #003366;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	overflow: hidden;
+}
+
 #preftoc {
 	width: 100%;
 	margin: 0 0 0 0;
@@ -525,7 +529,7 @@ div.tright {
 div.tleft {
 	float: left;
 	clear: left;
-	margin: .5em 1.9em .8em 0;
+	margin: .5em 1.4em .8em 0;
 }
 img.thumbborder {
 	border: 1px solid #dddddd;
