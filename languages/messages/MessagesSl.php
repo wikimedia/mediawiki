@@ -628,7 +628,7 @@ Preverite črkovanje.',
 'wrongpasswordempty'         => 'Vpisali ste prazno geslo. Prosimo, poskusite znova.',
 'passwordtooshort'           => 'Geslo mora imeti najmanj $1 {{PLURAL:$1|znak|znaka|znake|znakov|znakov}}.',
 'password-name-match'        => 'Vaše geslo se mora razlikovati od vašega uporabniškega imena.',
-'password-too-weak'          => 'Navedeno geslo je prešibko in ga ni mogoče uporabiti.',
+'password-login-forbidden'   => 'Uporaba tega uporabniškega imena in gesla je prepovedana.',
 'mailmypassword'             => 'Pošlji mi novo geslo',
 'passwordremindertitle'      => 'Novo začasno geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}}',
 'passwordremindertext'       => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval novo

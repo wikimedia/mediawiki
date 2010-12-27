@@ -788,7 +788,7 @@ Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compt
 'wrongpasswordempty'         => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
 'passwordtooshort'           => 'Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
 'password-name-match'        => 'Votre mot de passe doit être différent de votre nom d’utilisateur.',
-'password-too-weak'          => 'Le mot de passe fourni est trop faible et ne peut pas être utilisé.',
+'password-login-forbidden'   => "L'utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
 'mailmypassword'             => 'Recevoir un nouveau mot de passe par courriel',
 'passwordremindertitle'      => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
 'passwordremindertext'       => 'Quelqu’un (probablement vous, ayant l’adresse IP $1) a demandé un nouveau mot de
@@ -935,7 +935,7 @@ Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'whitelistedittitle'               => 'Connexion nécessaire pour modifier le contenu',
 'whitelistedittext'                => 'Vous devez être $1 pour avoir la permission de modifier le contenu.',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse de courriel avant de modifier les pages.
-Veuillez entrer et valider votre adresse de courriel dans vos [[Special:Preferences|préférences utilisateur]].',
+Veuillez entrer et valider votre adresse de courriel dans vos [[Special:Preferences|préférences]].',
 'nosuchsectiontitle'               => 'Impossible de trouver la section',
 'nosuchsectiontext'                => 'Vous avez essayé de modifier une section qui n’existe pas.
 Elle a peut-être été déplacée ou supprimée depuis que vous avez lu cette page.',
@@ -3359,16 +3359,16 @@ si vous venez de créer votre compte, veuillez attendre quelques minutes que le 
 'confirmemail_send'         => 'Envoyer un code de confirmation',
 'confirmemail_sent'         => 'Courriel de confirmation envoyé',
 'confirmemail_oncreate'     => 'Un code de confirmation a été envoyé à votre adresse de courriel.
-Ce code n’est pas requis pour vous identifier sur ce wiki, mais vous devrez le fournir pour activer toute fonctionnalité basée sur les courriels.',
+Ce code n’est pas requis pour vous identifier sur ce wiki, mais vous devrez le fournir pour activer toute fonction de messagerie.',
 'confirmemail_sendfailed'   => '{{SITENAME}} n’a pas pu vous envoyer le courriel de confirmation.
 Veuillez vérifiez que votre adresse de courriel ne comprend aucun caractère incorrect.
 
 Le programme d’envoi de courriel a retourné l’indication suivante : $1',
 'confirmemail_invalid'      => 'Code de confirmation incorrect.
 Celui-ci a peut-être expiré.',
-'confirmemail_needlogin'    => 'Vous devez $1 pour confirmer votre adresse de courriel.',
+'confirmemail_needlogin'    => 'Vous devez vous $1 pour confirmer votre adresse de courriel.',
 'confirmemail_success'      => 'Votre adresse de courriel a été confirmée.
-Vous pouvez maintenant vous [[Special:UserLogin|identifier]] et profiter du wiki.',
+Vous pouvez maintenant vous [[Special:UserLogin|{{MediaWiki:Loginreqlink}}]] et profiter du wiki.',
 'confirmemail_loggedin'     => 'Votre adresse de courriel est maintenant confirmée.',
 'confirmemail_error'        => 'Un problème est survenu lors de l’enregistrement de votre confirmation.',
 'confirmemail_subject'      => 'Confirmation d’adresse de courriel pour {{SITENAME}}',

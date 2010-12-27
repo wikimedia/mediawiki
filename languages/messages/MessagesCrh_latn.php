@@ -536,7 +536,6 @@ Doğru yazğanıñıznı teşkeriñiz ya da [[Special:UserLogin/signup|yañı qu
 Lütfen, tekrar etiñiz.',
 'passwordtooshort'           => 'Paroliñizde eñ az {{PLURAL:$1|1|$1}} işaret olmalı.',
 'password-name-match'        => 'Paroliñiz qullanıcı adıñızdan farqlı olmalı.',
-'password-too-weak'          => 'Kirsetilgen parol pek zayıf olğanından sebep qullanılıp olamaz.',
 'mailmypassword'             => 'Yañı parol yiber',
 'passwordremindertitle'      => '{{grammar:genitive|{{SITENAME}}}} qullanıcınıñ parol hatırlatuvı',
 'passwordremindertext'       => 'Birev (belki de bu sizsiñiz, $1 IP adresinden) {{SITENAME}} saytı içün ($4) yañı qullanıcı parolini istedi.

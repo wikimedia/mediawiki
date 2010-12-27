@@ -558,7 +558,6 @@ Comprebe si ha escrito bien o nombre u [[Special:UserLogin/signup|creye una nuev
 'wrongpasswordempty'         => 'No ha escrito garra contrasenya. Prebe unatra vegada.',
 'passwordtooshort'           => 'As contrasenyas han de tener a lo menos {{PLURAL:$1|1 carácter|$1 carácters}}.',
 'password-name-match'        => "A contrasenya ha d'estar diferent d'o suyo nombre d'usuario.",
-'password-too-weak'          => "A contrasenya d'acceso que ha proporcionau no ye guaire segura y no se puede fer servir.",
 'mailmypassword'             => 'Ninviar una nueva contrasenya por correu electronico',
 'passwordremindertitle'      => 'Nueva contrasenya temporal de {{SITENAME}}',
 'passwordremindertext'       => 'Bell un (probablement vusté mesmo, dende l\'adreza IP $1) demandó una nueva contrasenya ta la suya cuenta en {{SITENAME}} ($4). S\'ha creyato una nueva contrasenya temporal ta l\'usuario "$2", que ye "$3".

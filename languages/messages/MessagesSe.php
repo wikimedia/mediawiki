@@ -302,7 +302,6 @@ Du geavaheaddjidovddaldat lea dál anus.
 'wrongpasswordempty'         => 'It čállán suollemassáni. Iska ođđasit.',
 'passwordtooshort'           => 'Suollemassátni, man evttohit, ii dohke. Suollemassátni ferte leat unnimusta $1 mearka guhkki ja eará go geavaheaddjidovddaldagat.',
 'password-name-match'        => 'Suollemassátni ferte leat eará go geavaheaddjidovddaldat.',
-'password-too-weak'          => 'Suollemassátni, man čállet, lea heitot iige sáhte geavahuvvot.',
 'mailmypassword'             => 'Sádde ođđa suollemassáni e-poasta bokte',
 'passwordremindertitle'      => 'Suollemassátnimuituhus {{GRAMMAR:elative|{{SITENAME}}}}',
 'passwordremindertext'       => 'Muhtun IP-čujuhusas $1 bivddii {{GRAMMAR:partitive|{{SITENAME}}}} ($4) sáddet ođđa suollemassáni. Suollemassátni geavaheaddjái $2 lea dál $3. Čálligoađe sisa ja molsso suollemassáni.',

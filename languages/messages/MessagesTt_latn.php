@@ -535,7 +535,6 @@ Yazılışığıznı tikşeregez yäki [[Special:UserLogin/signup|yaña xisap ya
 'wrongpasswordempty'         => 'Sersüz yulı buş bulırğa tieş tügel.',
 'passwordtooshort'           => 'Sezsüz $1 {{PLURAL:$1|simvoldan}} torırğa tieş.',
 'password-name-match'        => 'Kertelgän sersüz qullanuçı isemennän ayırılırğa tieş.',
-'password-too-weak'          => 'Kürsätelgän sersüz bik ciñel häm qullanuğa yaramıy.',
 'mailmypassword'             => 'Elektron poçtağa yaña sersüz cibärü',
 'passwordremindertitle'      => '{{SITENAME}} qullanuçısına waqıtlı sersüz tapşıru',
 'passwordremindertext'       => 'Kemder (bälki, sezder, IP adresı: $1) {{SITENAME}} ($4) öçen yaña sersüz sorattı. $2 öçen yaña sersüz: $3. Ägär bu sez bulsağız, sistemağa keregez häm sersüzne almaştırığız. Yaña sersüz $5 {{PLURAL:$5|kön}} ğämäldä bulaçaq.
