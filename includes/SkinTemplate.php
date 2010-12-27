@@ -1290,6 +1290,33 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * Create an array of personal tools items from the data in the quicktemplate
+	 * stored by SkinTemplate.
+	 * The resulting array is built acording to a format intended to be passed
+	 * through makeListItem to generate the html.
+	 * This is in reality the same list as already stored in personal_urls
+	 * however it is reformatted so that you can just pass the individual items
+	 * to makeListItem instead of hardcoding the element creation boilerplate.
+	 */
+	function getPersonalTools() {
+		$personal_tools = array();
+		foreach( $this->data['personal_urls'] as $key => $ptool ) {
+			# The class on a personal_urls item is meant to go on the <a> instead
+			# of the <li> so we have to use a single item "links" array instead
+			# of using most of the personal_url's keys directly
+			$personal_tools[$key] = array();
+			$personal_tools[$key]["links"][] = array();
+			$personal_tools[$key]["links"][0]["single-id"] = $personal_tools[$key]["id"] = "pt-$key";
+			$personal_tools[$key]["active"] = $ptool["active"];
+			foreach ( array("href", "class", "text") as $k ) {
+				if ( isset($ptool[$k]) )
+					$personal_tools[$key]["links"][0][$k] = $ptool[$k];
+			}
+		}
+		return $personal_tools;
+	}
+
+	/**
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
 	 *
@@ -1380,7 +1407,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				// generating tooltips and accesskeys.
 				$link['single-id'] = $item['id'];
 			}
-			$html = $this->makeLink( $key, $link  );
+			$html = $this->makeLink( $key, $link );
 		}
 
 		$attrs = array();
@@ -1390,6 +1417,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 		}
 		if ( isset( $item['active'] ) && $item['active'] ) {
+			if ( !isset( $attrs['class'] ) ) {
+				$attrs['class'] = '';
+			}
 			$attrs['class'] .= ' active';
 			$attrs['class'] = trim( $attrs['class'] );
 		}
