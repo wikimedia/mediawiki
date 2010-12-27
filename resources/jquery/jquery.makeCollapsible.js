@@ -90,13 +90,14 @@ $.fn.makeCollapsible = function() {
 					}
 				}
 			},
+			// Toggles collapsible and togglelink class and updates text label
 			toggleLinkDefault = function( that, e ) {
 				var	$that = $(that),
 					$collapsible = $that.closest( '.mw-collapsible.mw-made-collapsible' ).toggleClass( 'mw-collapsed' );
 				e.preventDefault();
 				
 				// It's expanded right now
-				if ( $that.hasClass( 'mw-collapsible-toggle-expanded' ) ) {
+				if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
 					// Change link to "Show"
 					$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
 					if ( $that.find( '> a' ).size() ) {
@@ -121,6 +122,29 @@ $.fn.makeCollapsible = function() {
 				}
 				return;
 			},
+			// Toggles collapsible and togglelink class
+			toggleLinkPremade = function( that, e ) {
+				var	$that = $(that),
+					$collapsible = $that.closest( '.mw-collapsible.mw-made-collapsible' ).toggleClass( 'mw-collapsed' );
+				e.preventDefault();
+				
+				// It's expanded right now
+				if ( !$that.hasClass( 'mw-collapsible-toggle-collapsed' ) ) {
+					// Change toggle to collapsed
+					$that.removeClass( 'mw-collapsible-toggle-expanded' ).addClass( 'mw-collapsible-toggle-collapsed' );
+					// Collapse element
+					toggleElement( $collapsible, 'collapse', $that );
+
+				// It's collapsed right now
+				} else {
+					// Change toggle to expanded
+					$that.removeClass( 'mw-collapsible-toggle-collapsed' ).addClass( 'mw-collapsible-toggle-expanded' );
+					// Expand element
+					toggleElement( $collapsible, 'expand', $that );
+				}
+				return;
+			},
+			// Toggles customcollapsible
 			toggleLinkCustom = function( that, e ) {
 				var	$that = $(that),
 					classes = that.className.split(' ');
@@ -147,7 +171,7 @@ $.fn.makeCollapsible = function() {
 		}
 
 		// Create toggle link with a space around the brackets (&nbsp;[text]&nbsp;)
-		var $toggleLink = $( '<a href="#">' ).text( collapsetext ).wrap( '<span class="mw-collapsible-toggle mw-collapsible-toggle-expanded">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).bind( 'click.mw-collapse', function(e){
+		var $toggleLink = $( '<a href="#">' ).text( collapsetext ).wrap( '<span class="mw-collapsible-toggle">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ).bind( 'click.mw-collapse', function(e){
 			toggleLinkDefault( this, e );
 		} );
 
@@ -195,7 +219,7 @@ $.fn.makeCollapsible = function() {
 					$firstRowCells.eq(-1).prepend( $toggleLink );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
-						toggleLinkDefault( this, e );
+						toggleLinkPremade( this, e );
 					} );
 				}
 				
@@ -214,7 +238,7 @@ $.fn.makeCollapsible = function() {
 					$that.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li">' ).parent() );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
-						toggleLinkDefault( this, e );
+						toggleLinkPremade( this, e );
 					} );
 				}
 	
@@ -232,7 +256,7 @@ $.fn.makeCollapsible = function() {
 					$that.prepend( $toggleLink );
 				} else {
 					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function( e ){
-						toggleLinkDefault( this, e );
+						toggleLinkPremade( this, e );
 					} );
 				}
 			}
