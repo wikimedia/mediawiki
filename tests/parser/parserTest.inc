@@ -659,6 +659,7 @@ class ParserTest {
 			'wgHtml5' => true,
 			'wgWellFormedXml' => true,
 			'wgAllowMicrodataAttributes' => true,
+			'wgAdaptiveMessageCache' => true
 		);
 
 		if ( $config ) {
