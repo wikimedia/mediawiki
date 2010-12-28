@@ -530,6 +530,29 @@ class DatabaseMysql extends DatabaseBase {
 		}
 		$this->query( $query, $fname );
 	}
+	
+	/**
+	 * List all tables on the database
+	 *
+	 * @param $prefix Only show tables with this prefix, e.g. mw_
+	 * @param $fname String: calling function name
+	 */
+	function listTables( $prefix = null, $fname = 'DatabaseMysql::listTables' ) {
+		$result = $this->query( "SHOW TABLES", $fname);
+		
+		$endArray = array();
+		
+		foreach( $result as $table ) {	
+			$vars = get_object_vars($table);
+			$table = array_pop( $vars );
+			
+			if( strpos( $table, $prefix ) === 0 || is_null( $prefix ) ) {
+				$endArray[] = $table;
+			}
+		}
+		
+		return $endArray;
+	}
 
 	public function dropTable( $tableName, $fName = 'DatabaseMysql::dropTable' ) {
 		if( !$this->tableExists( $tableName ) ) {
