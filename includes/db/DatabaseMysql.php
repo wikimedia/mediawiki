@@ -531,6 +531,13 @@ class DatabaseMysql extends DatabaseBase {
 		$this->query( $query, $fname );
 	}
 
+	public function dropTable( $tableName, $fName = 'DatabaseMysql::dropTable' ) {
+		if( !$this->tableExists( $tableName ) ) {
+			return false;
+		}
+		return $this->query( "DROP TABLE IF EXISTS " . $this->tableName( $tableName ), $fName );
+	}
+
 }
 
 /**

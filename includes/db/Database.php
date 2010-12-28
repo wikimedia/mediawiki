@@ -2640,6 +2640,20 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Delete a table
+	 */
+	public function dropTable( $tableName, $method = 'DatabaseBase::dropTable' ) {
+		if( !$this->tableExists( $tableName, $method ) ) {
+			return false;
+		}
+		$sql = "DROP TABLE " . $this->tableName( $tableName );
+		if( $this->cascadingDeletes() ) {
+			$sql .= " CASCADE";
+		}
+		return $this->query( $sql );
+	}
+
+	/**
 	 * Get search engine class. All subclasses of this need to implement this
 	 * if they wish to use searching.
 	 *
