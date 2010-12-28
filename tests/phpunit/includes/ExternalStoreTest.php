@@ -3,7 +3,7 @@
  * External Store tests
  */
 
-class ExternalStoreTest extends PHPUnit_Framework_TestCase {
+class ExternalStoreTest extends MediaWikiTestCase {
 	private $saved_wgExternalStores;
 
 	function setUp() {

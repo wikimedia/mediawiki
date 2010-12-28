@@ -16,13 +16,13 @@ class PHPUnitParserTest extends ParserTest {
 	}
 }
 
-class ParserUnitTest extends PHPUnit_Framework_TestCase {
+class ParserUnitTest extends MediaWikiTestCase {
 	private $test = "";
-	private $suite;
 
 	public function __construct( $suite, $test = null ) {
-		$this->suite = $suite;
+		parent::__construct();
 		$this->test = $test;
+		$this->suite = $suite;
 	}
 
 	function count() { return 1; }

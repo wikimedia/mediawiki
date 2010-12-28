@@ -1,6 +1,6 @@
 <?php
 
-class RevisionTest extends PHPUnit_Framework_TestCase {
+class RevisionTest extends MediaWikiTestCase {
 	var $saveGlobals = array();
 
 	function setUp() {

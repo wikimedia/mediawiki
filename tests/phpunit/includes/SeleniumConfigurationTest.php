@@ -1,6 +1,6 @@
 <?php
 
-class SeleniumConfigurationTest extends PHPUnit_Framework_TestCase {
+class SeleniumConfigurationTest extends MediaWikiTestCase {
 
 	/*
 	 * The file where the test temporarity stores the selenium config.

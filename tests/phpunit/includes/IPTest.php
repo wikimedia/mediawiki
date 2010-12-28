@@ -3,7 +3,7 @@
  * Tests for IP validity functions. Ported from /t/inc/IP.t by avar.
  */
 
-class IPTest extends PHPUnit_Framework_TestCase {
+class IPTest extends MediaWikiTestCase {
 	// not sure it should be tested with boolean false. hashar 20100924
 	public function testisIPAddress() {
 		$this->assertFalse( IP::isIPAddress( false ), 'Boolean false is not an IP' );

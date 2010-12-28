@@ -1,6 +1,6 @@
 <?php
 
-class TitleTest extends PHPUnit_Framework_TestCase {
+class TitleTest extends MediaWikiTestCase {
 
 	function testLegalChars() {
 		$titlechars = Title::legalChars();

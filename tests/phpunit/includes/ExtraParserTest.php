@@ -3,7 +3,7 @@
 /**
  * Parser-related tests that don't suit for parserTests.txt
  */
-class ExtraParserTest extends PHPUnit_Framework_TestCase {
+class ExtraParserTest extends MediaWikiTestCase {
 
 	function setUp() {
 		global $wgMemc;

@@ -18,7 +18,7 @@ class MockSearch extends SearchEngine {
 /**
  * @group Search
  */
-class SearchUpdateTest extends PHPUnit_Framework_TestCase {
+class SearchUpdateTest extends MediaWikiTestCase {
 	static $searchType;
 
 	function update( $text, $title = 'Test', $id = 1 ) {

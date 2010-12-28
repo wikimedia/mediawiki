@@ -9,7 +9,7 @@ class MockCookie extends Cookie {
 /**
  * @group Broken
  */
-class HttpTest extends PHPUnit_Framework_TestCase {
+class HttpTest extends MediaWikiTestCase {
 	static $content;
 	static $headers;
 	static $has_curl;

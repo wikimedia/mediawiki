@@ -1,6 +1,6 @@
 <?php
 
-class ImageFunctionsTest extends PHPUnit_Framework_TestCase {
+class ImageFunctionsTest extends MediaWikiTestCase {
 	function testFitBoxWidth() {
 		$vals = array(
 			array(

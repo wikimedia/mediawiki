@@ -1,6 +1,6 @@
 <?php
 
-class ResourceLoaderFileModuleTest extends PHPUnit_Framework_TestCase {
+class ResourceLoaderFileModuleTest extends MediaWikiTestCase {
 	/* Provider Methods */
 
 	public function provide() {

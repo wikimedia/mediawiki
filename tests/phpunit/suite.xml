@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit bootstrap="./bootstrap.php"
-         colors="false"
+         colors="true"
          backupGlobals="false"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         stopOnFailure="false"
-         strict="true">
+         stopOnFailure="true"
+         strict="true"
+		 verbose="true">
 	<testsuites>
 		<testsuite name="includes">
 			<directory>./includes</directory>

@@ -1,6 +1,6 @@
 <?php
 
-class SanitizerTest extends PHPUnit_Framework_TestCase {
+class SanitizerTest extends MediaWikiTestCase {
 
 	function setUp() {
 		AutoLoader::loadClass( 'Sanitizer' );

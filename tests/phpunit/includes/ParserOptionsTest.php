@@ -1,6 +1,6 @@
 <?php
 
-class ParserOptionsTest extends PHPUnit_Framework_TestCase {
+class ParserOptionsTest extends MediaWikiTestCase {
 
 	private $popts;
 	private $pcache;

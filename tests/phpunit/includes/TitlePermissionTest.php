@@ -4,7 +4,7 @@
  * @group Database
  * @group Destructive
  */
-class TitlePermissionTest extends PHPUnit_Framework_TestCase {
+class TitlePermissionTest extends MediaWikiTestCase {
 	static $title;
 	static $user;
 	static $anonUser;

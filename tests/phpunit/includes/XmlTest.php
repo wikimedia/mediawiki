@@ -1,6 +1,6 @@
 <?php
 
-class XmlTest extends PHPUnit_Framework_TestCase {
+class XmlTest extends MediaWikiTestCase {
 
 	public function testExpandAttributes() {
 		$this->assertNull( Xml::expandAttributes(null),
@@ -175,5 +175,5 @@ class XmlTest extends PHPUnit_Framework_TestCase {
 }
 
 // TODO
-class XmlSelectTest extends PHPUnit_Framework_TestCase {
+class XmlSelectTest extends MediaWikiTestCase {
 }

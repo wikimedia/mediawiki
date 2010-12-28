@@ -1,6 +1,6 @@
 <?php
 
-class TimeAdjustTest extends PHPUnit_Framework_TestCase {
+class TimeAdjustTest extends MediaWikiTestCase {
 	static $offset;
 
 	public function setUp() {
