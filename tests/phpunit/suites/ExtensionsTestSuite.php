@@ -26,7 +26,7 @@ class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
  * Needed to avoid warnings like 'No tests found in class "ExtensionsTestSuite".'
  * when no extensions with tests are used.
  */
-class DummyExtensionsTest extends MediaWikiTestCase {
+class DummyExtensionsTest extends PHPUnit_Framework_TestCase {
 	public function testNothing() {
 		
 	}
