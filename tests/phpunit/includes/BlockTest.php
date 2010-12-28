@@ -2,7 +2,7 @@
 
 class BlockTest extends MediaWikiTestCase {
 	
-	private $block;
+	private $block, $madeAt;
 	
 	function setUp() {
 		global $wgContLang;
@@ -13,15 +13,19 @@ class BlockTest extends MediaWikiTestCase {
 	}
 	
 	function addDBData() {
+		
 		$user = User::newFromName( 'UTBlockee' );
-		$user->addToDatabase();
-		$user->setPassword( 'UTBlockeePassword' );
+		if( $user->getID() == 0 ) {
+			$user->addToDatabase();
+			$user->setPassword( 'UTBlockeePassword' );
 			
-		$user->saveSettings();
+			$user->saveSettings();
+		}
 		
 		$this->block = new Block( 'UTBlockee', 1, 0,
-			'Parce que', wfTimestampNow()
+			'Parce que'
 		);
+		$this->madeAt = wfTimestamp( TS_MW );
 
 		$this->block->insert();
 	}
@@ -31,6 +35,15 @@ class BlockTest extends MediaWikiTestCase {
 		$this->assertTrue( $this->block->equals( Block::newFromDB('UTBlockee') ), "newFromDB() returns the same block as the one that was made");
 		
 		$this->assertTrue( $this->block->equals( Block::newFromID( 1 ) ), "newFromID() returns the same block as the one that was made");
+		
+	}
+	
+	/**
+	 * per bug 26425
+	 */
+	function testBug26425BlockTimestampDefaultsToTime() {
+		
+		$this->assertEquals( $this->madeAt, $this->block->mTimestamp, "If no timestamp is specified, the block is recorded as time()");
 		
 	}
 
