@@ -70,7 +70,7 @@ class ApiTest extends ApiTestSetup {
 
 		libxml_use_internal_errors( true );
 		$sxe = simplexml_load_string( $resp );
-		$this->assertNotType( "bool", $sxe );
+		$this->assertNotInternalType( "bool", $sxe );
 		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
 	}
 
@@ -101,7 +101,7 @@ class ApiTest extends ApiTestSetup {
 
 		$result = $ret[0];
 
-		$this->assertNotType( "bool", $result );
+		$this->assertNotInternalType( "bool", $result );
 		$a = $result["login"]["result"];
 		$this->assertEquals( "NeedToken", $a );
 
@@ -117,7 +117,7 @@ class ApiTest extends ApiTestSetup {
 
 		$result = $ret[0];
 
-		$this->assertNotType( "bool", $result );
+		$this->assertNotInternalType( "bool", $result );
 		$a = $result["login"]["result"];
 
 		$this->assertEquals( "WrongPass", $a );
@@ -140,8 +140,8 @@ class ApiTest extends ApiTestSetup {
 		);
 
 		$result = $ret[0];
-		$this->assertNotType( "bool", $result );
-		$this->assertNotType( "null", $result["login"] );
+		$this->assertNotInternalType( "bool", $result );
+		$this->assertNotInternalType( "null", $result["login"] );
 
 		$a = $result["login"]["result"];
 		$this->assertEquals( "NeedToken", $a );
@@ -157,7 +157,7 @@ class ApiTest extends ApiTestSetup {
 
 		$result = $ret[0];
 
-		$this->assertNotType( "bool", $result );
+		$this->assertNotInternalType( "bool", $result );
 		$a = $result["login"]["result"];
 
 		$this->assertEquals( "Success", $a );
@@ -180,9 +180,9 @@ class ApiTest extends ApiTestSetup {
 
 		libxml_use_internal_errors( true );
 		$sxe = simplexml_load_string( $req->getContent() );
-		$this->assertNotType( "bool", $sxe );
+		$this->assertNotInternalType( "bool", $sxe );
 		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
-		$this->assertNotType( "null", $sxe->login[0] );
+		$this->assertNotInternalType( "null", $sxe->login[0] );
 
 		$a = $sxe->login[0]->attributes()->result[0];
 		$this->assertEquals( ' result="NeedToken"', $a->asXML() );
@@ -220,7 +220,7 @@ class ApiTest extends ApiTestSetup {
 		$req->execute();
 		libxml_use_internal_errors( true );
 		$sxe = simplexml_load_string( $req->getContent() );
-		$this->assertNotType( "bool", $sxe );
+		$this->assertNotInternalType( "bool", $sxe );
 		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
 		$a = $sxe->query[0]->pages[0]->page[0]->attributes();
 	}

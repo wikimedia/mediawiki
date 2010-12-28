@@ -63,7 +63,7 @@ class GlobalTest extends PHPUnit_Framework_TestCase {
 
 	function testTime() {
 		$start = wfTime();
-		$this->assertType( 'float', $start );
+		$this->assertInternalType( 'float', $start );
 		$end = wfTime();
 		$this->assertTrue( $end > $start, "Time is running backwards!" );
 	}
