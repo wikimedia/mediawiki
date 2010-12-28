@@ -21,8 +21,8 @@ class MessageTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testKey() {
-		$this->assertType( 'Message', wfMessage( 'mainpage' ) );
-		$this->assertType( 'Message', wfMessage( 'i-dont-exist-evar' ) );
+		$this->assertInstanceOf( 'Message', wfMessage( 'mainpage' ) );
+		$this->assertInstanceOf( 'Message', wfMessage( 'i-dont-exist-evar' ) );
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->text() );
 		$this->assertEquals( '&lt;i-dont-exist-evar&gt;', wfMessage( 'i-dont-exist-evar' )->text() );
 	}
