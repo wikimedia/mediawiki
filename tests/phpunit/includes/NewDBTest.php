@@ -1,6 +1,6 @@
 <?php
 
-class NewDBTest extends MediaWikiTestSetup {
+class NewDBTest extends MediaWikiTestCase {
 
 	function setUp() {
 	}
