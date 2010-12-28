@@ -72,7 +72,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 	
-	function needsDB() { return false; }
+	function needsDB() { return true; }
 	
 	function addDBData() {}
 	
