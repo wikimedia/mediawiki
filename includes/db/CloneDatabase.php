@@ -94,7 +94,7 @@ class CloneDatabase {
 			$this->changePrefix( $this->newTablePrefix );
 			$newTableName = $this->db->tableName( $tbl );
 
-			if( $this->dropCurrentTables ) {
+			if( $this->dropCurrentTables && !in_array( $this->db->getType(), array( 'postgres') ) ) {
 				$this->db->dropTable( $newTableName, __METHOD__ );
 			}
 
