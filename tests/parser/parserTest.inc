@@ -751,35 +751,14 @@ class ParserTest {
 
 		$temporary = $this->useTemporaryTables || $dbType == 'postgres';
 		$tables = $this->listTables();
+		$prefix = $dbType != 'oracle' ? 'parsertest_' : 'pt_';
 
-		foreach ( $tables as $tbl ) {
-			# Clean up from previous aborted run.  So that table escaping
-			# works correctly across DB engines, we need to change the pre-
-			# fix back and forth so tableName() works right.
-			$this->changePrefix( $this->oldTablePrefix );
-			$oldTableName = $this->db->tableName( $tbl );
-			$this->changePrefix( $dbType != 'oracle' ? 'parsertest_' : 'pt_' );
-			$newTableName = $this->db->tableName( $tbl );
-
-			if ( $dbType == 'mysql' ) {
-				$this->db->query( "DROP TABLE IF EXISTS $newTableName" );
-			} elseif ( in_array( $dbType, array( 'postgres', 'oracle' ) ) ) {
-				/* DROPs wouldn't work due to Foreign Key Constraints (bug 14990, r58669)
-				 * Use "DROP TABLE IF EXISTS $newTableName CASCADE" for postgres? That
-				 * syntax would also work for mysql.
-				 */
-			} elseif ( $this->db->tableExists( $tbl ) ) {
-				$this->db->query( "DROP TABLE $newTableName" );
-			}
-
-			# Create new table
-			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $temporary );
-		}
+		$this->dbClone = new CloneDatabase( $this->db, $this->listTables(), $prefix );
+		$this->dbClone->useTemporaryTables( $temporary );
+		$this->dbClone->cloneTableStructure();
 
 		if ( $dbType == 'oracle' )
 			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
-
-		$this->changePrefix( $dbType != 'oracle' ? 'parsertest_' : 'pt_' );
 
 		if ( $dbType == 'oracle' ) {
 			# Insert 0 user to prevent FK violations
@@ -866,23 +845,6 @@ class ParserTest {
 			), $this->db->timestamp( '20010115123500' ), $user );
 	}
 
-	/**
-	 * Change the table prefix on all open DB connections/
-	 */
-	protected function changePrefix( $prefix ) {
-		global $wgDBprefix;
-		wfGetLBFactory()->forEachLB( array( $this, 'changeLBPrefix' ), array( $prefix ) );
-		$wgDBprefix = $prefix;
-	}
-
-	public function changeLBPrefix( $lb, $prefix ) {
-		$lb->forEachOpenConnection( array( $this, 'changeDBPrefix' ), array( $prefix ) );
-	}
-
-	public function changeDBPrefix( $db, $prefix ) {
-		$db->tablePrefix( $prefix );
-	}
-
 	public function teardownDatabase() {
 		if ( !$this->databaseSetupDone ) {
 			$this->teardownGlobals();
@@ -890,7 +852,7 @@ class ParserTest {
 		}
 		$this->teardownUploadDir( $this->uploadDir );
 
-		$this->changePrefix( $this->oldTablePrefix );
+		$this->db->tablePrefix( $this->oldTablePrefix );
 		$this->databaseSetupDone = false;
 
 		if ( $this->useTemporaryTables ) {
