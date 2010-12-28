@@ -3,7 +3,7 @@
 require_once( dirname( __FILE__ ) . '/ParserHelpers.php' );
 require_once( dirname(dirname(dirname( __FILE__ ))) . '/bootstrap.php' );
 
-class MediaWikiParserTest extends MediaWikiTestSetup {
+class MediaWikiParserTest extends MediaWikiTestCase {
 	public $count;		// Number of tests in the suite.
 	public $backend;	// ParserTestSuiteBackend instance
 	public $articles = array();	// Array of test articles defined by the tests
