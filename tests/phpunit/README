@@ -49,5 +49,5 @@ On Windows-family operating systems, run the 'run-tests.bat' batch file.
 
 A guide to writing unit tests for MediaWiki can be found at:
 
-	http://mediawiki.org/wiki/wiki/Unit_Testing
+	http://mediawiki.org/wiki/Unit_Testing
 
