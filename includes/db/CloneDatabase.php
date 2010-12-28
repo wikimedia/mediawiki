@@ -78,7 +78,7 @@ class CloneDatabase {
 	 * @param $u Bool Use temporary tables when cloning the structure
 	 */
 	public function useTemporaryTables( $u = true ) {
-		$this->useTemporaryTables = false;
+		$this->useTemporaryTables = $u;
 	}
 
 	/**
