@@ -546,7 +546,7 @@ class DatabaseMysql extends DatabaseBase {
 			$vars = get_object_vars($table);
 			$table = array_pop( $vars );
 			
-			if( strpos( $table, $prefix ) === 0 || is_null( $prefix ) ) {
+			if( empty( $prefix ) || strpos( $table, $prefix ) === 0 ) {
 				$endArray[] = $table;
 			}
 		}
