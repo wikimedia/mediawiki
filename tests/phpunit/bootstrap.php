@@ -42,7 +42,7 @@ $wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
 
 /* Classes */
 
-abstract class MediaWikiTestSetup extends PHPUnit_Framework_TestCase {
+abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $suite;
 	public $regex = '';
 	public $runDisabled = false;

@@ -8,7 +8,7 @@ require_once dirname(dirname(dirname(__FILE__))). '/bootstrap.php';
  * @group Stub
  * @group Destructive
  */
-class SearchEngineTest extends MediaWikiTestSetup {
+class SearchEngineTest extends MediaWikiTestCase {
 	var $db, $search, $pageList;
 
 	/*
