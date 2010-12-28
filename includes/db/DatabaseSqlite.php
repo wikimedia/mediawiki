@@ -608,6 +608,34 @@ class DatabaseSqlite extends DatabaseBase {
 		$sql = preg_replace( '/\b' . preg_quote( $oldName ) . '\b/', $newName, $sql, 1 );
 		return $this->query( $sql, $fname );
 	}
+	
+	
+	/**
+	 * List all tables on the database
+	 *
+	 * @param $prefix Only show tables with this prefix, e.g. mw_
+	 * @param $fname String: calling function name
+	 */
+	function listTables( $prefix = null, $fname = 'DatabaseSqlite::listTables' ) {
+		$result = $this->select(
+			'sqlite_master',
+			'name',
+			"type='TABLE'"
+		);
+		
+		$endArray = array();
+		
+		foreach( $result as $table ) {	
+			$vars = get_object_vars($table);
+			$table = array_pop( $vars );
+			
+			if( strpos( $table, $prefix ) === 0 || is_null( $prefix ) ) {
+				$endArray[] = $table;
+			}
+		}
+		
+		return $endArray;
+	}
 
 } // end DatabaseSqlite class
 

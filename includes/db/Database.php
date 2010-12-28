@@ -2288,6 +2288,16 @@ abstract class DatabaseBase implements DatabaseType {
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseBase::duplicateTableStructure' ) {
 		throw new MWException( 'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
 	}
+	
+	/**
+	 * List all tables on the database
+	 *
+	 * @param $prefix Only show tables with this prefix, e.g. mw_
+	 * @param $fname String: calling function name
+	 */
+	function listTables( $prefix = null, $fname = 'DatabaseBase::listTables' ) {
+		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
+	}
 
 	/**
 	 * Return MW-style timestamp used for MySQL schema
