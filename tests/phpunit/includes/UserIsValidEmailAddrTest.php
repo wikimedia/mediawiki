@@ -1,6 +1,6 @@
 <?php
 
-class UserIsValidEmailAddrTest extends PHPUnit_Framework_TestCase {
+class UserIsValidEmailAddrTest extends MediaWikiTestCase {
 
 	private function checkEmail( $addr, $expected = true, $msg = '') {
 		$this->assertEquals(

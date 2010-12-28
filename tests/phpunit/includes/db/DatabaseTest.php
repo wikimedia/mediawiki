@@ -3,7 +3,7 @@
 /**
  * @group Database
  */
-class DatabaseTest extends PHPUnit_Framework_TestCase {
+class DatabaseTest extends MediaWikiTestCase {
 	var $db;
 
 	function setUp() {

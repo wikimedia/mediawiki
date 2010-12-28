@@ -1,6 +1,6 @@
 <?php
 
-abstract class ApiTestSetup extends PHPUnit_Framework_TestCase {
+abstract class ApiTestSetup extends MediaWikiTestCase {
 	protected static $user;
 	protected static $sysopUser;
 	protected static $apiUrl;

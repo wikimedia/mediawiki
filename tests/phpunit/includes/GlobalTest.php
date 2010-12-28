@@ -1,6 +1,6 @@
 <?php
 
-class GlobalTest extends PHPUnit_Framework_TestCase {
+class GlobalTest extends MediaWikiTestCase {
 	function setUp() {
 		global $wgReadOnlyFile, $wgContLang, $wgLang;
 		$this->originals['wgReadOnlyFile'] = $wgReadOnlyFile;

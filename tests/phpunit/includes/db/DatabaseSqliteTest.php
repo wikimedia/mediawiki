@@ -20,7 +20,7 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 /**
  * @group sqlite
  */
-class DatabaseSqliteTest extends PHPUnit_Framework_TestCase {
+class DatabaseSqliteTest extends MediaWikiTestCase {
 	var $db;
 
 	public function setUp() {

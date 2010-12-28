@@ -4,7 +4,7 @@
  * Test the CDB reader/writer
  */
 
-class CdbTest extends PHPUnit_Framework_TestCase {
+class CdbTest extends MediaWikiTestCase {
 
 	public function setUp() {
 		if ( !CdbReader::haveExtension() ) {

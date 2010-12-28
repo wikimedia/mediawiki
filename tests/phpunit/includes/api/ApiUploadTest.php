@@ -78,7 +78,7 @@ class ApiTestUser {
 
 }
 
-abstract class ApiTestCase extends PHPUnit_Framework_TestCase {
+abstract class ApiTestCase extends MediaWikiTestCase {
 	public static $users;
 
 	function setUp() {

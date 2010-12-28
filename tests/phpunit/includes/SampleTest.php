@@ -1,6 +1,6 @@
 <?php
 
-class TestSample extends PHPUnit_Framework_TestCase {
+class TestSample extends MediaWikiTestCase {
 
 	/**
 	 * Anything that needs to happen before your tests should go here.

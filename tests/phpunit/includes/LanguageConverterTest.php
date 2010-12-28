@@ -1,6 +1,6 @@
 <?php
 
-class LanguageConverterTest extends PHPUnit_Framework_TestCase {
+class LanguageConverterTest extends MediaWikiTestCase {
 	protected $lang = null;
 	protected $lc = null;
 

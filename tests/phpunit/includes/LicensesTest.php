@@ -1,6 +1,6 @@
 <?php
 
-class LicensesTest extends PHPUnit_Framework_TestCase {
+class LicensesTest extends MediaWikiTestCase {
 
 	function testLicenses() {
 		$str = "

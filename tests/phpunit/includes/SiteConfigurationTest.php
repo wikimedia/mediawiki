@@ -22,7 +22,7 @@ function getSiteParams( $conf, $wiki ) {
 	);
 }
 
-class SiteConfigurationTest extends PHPUnit_Framework_TestCase {
+class SiteConfigurationTest extends MediaWikiTestCase {
 	var $mConf;
 
 	function setUp() {
