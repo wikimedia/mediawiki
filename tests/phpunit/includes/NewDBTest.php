@@ -19,8 +19,6 @@ class NewDBTest extends MediaWikiTestCase {
 							User::newFromName( 'UTSysop' ) );
 	}
 	
-	function needsDB() { return true; }
-
 	function testBootstrapCreation() {
 		
 		$article = new Article( Title::newFromText("UTPage") );
