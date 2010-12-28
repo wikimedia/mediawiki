@@ -366,7 +366,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$create ) {
 			// Test the web account
 			try {
-				new Database(
+				new DatabaseMysql(
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( 'wgDBuser' ),
 					$this->getVar( 'wgDBpassword' ),
@@ -399,7 +399,7 @@ class MysqlInstaller extends DatabaseInstaller {
 			'name' => 'user',
 			'callback' => array( $this, 'setupUser' ),
 		);
-		$this->parent->addInstallStepFollowing( "tables", $callback );
+		$this->parent->addInstallStep( $callback, 'tables' );
 	}
 
 	public function setupDatabase() {

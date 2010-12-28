@@ -189,13 +189,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		if ( isset( $this->modifiedTime[$hash] ) ) {
 			return $this->modifiedTime[$hash];
 		}
-		$this->modifiedTime[$hash] = filemtime( "$IP/resources/startup.js" );
 
-		// ATTENTION!: Because of the line above, this is not going to cause 
+		// Call preloadModuleInfo() on ALL modules as we're about
+		// to call getModifiedTime() on all of them
+		$loader = $context->getResourceLoader();
+		$loader->preloadModuleInfo( $loader->getModuleNames(), $context );
+
+		$this->modifiedTime[$hash] = filemtime( "$IP/resources/startup.js" );
+		// ATTENTION!: Because of the line above, this is not going to cause
 		// infinite recursion - think carefully before making changes to this 
 		// code!
 		$time = wfTimestamp( TS_UNIX, $wgCacheEpoch );
-		$loader = $context->getResourceLoader();
 		foreach ( $loader->getModuleNames() as $name ) {
 			$module = $loader->getModule( $name );
 			$time = max( $time, $module->getModifiedTime( $context ) );

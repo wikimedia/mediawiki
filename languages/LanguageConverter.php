@@ -983,11 +983,10 @@ class LanguageConverter {
 	 * Wrap math into rawoutput -{R| math }- syntax.
 	 */
 	public function armourMath( $text ) {
-		// we need to convert '-{' and '}-' to '-&#123;' and '&#125;-'
-		// to avoid a unwanted '}-' appeared after the math-image.
+		// convert '-{' and '}-' to '-&#123;' and '&#125;-' to prevent
+		// any unwanted markup appearing in the math image tag.
 		$text = strtr( $text, array( '-{' => '-&#123;', '}-' => '&#125;-' ) );
-		$ret = "-{R|$text}-";
-		return $ret;
+		return $text;
 	}
 
 	/**

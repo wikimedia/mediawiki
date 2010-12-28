@@ -66,7 +66,7 @@ class ParserCache {
 	function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article,
 			$popts->optionsHash( ParserOptions::legacyOptions() ) ) .
-				"--" . $article->mTouched . '"';
+				"--" . $article->getTouched() . '"';
 	}
 
 	/**
@@ -81,8 +81,6 @@ class ParserCache {
 	 * Used to provide a unique id for the PoolCounter.
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
-	 *
-	 * Precondition: $article->checkTouched() has been called.
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
 		global $wgCacheEpoch;
@@ -95,10 +93,10 @@ class ParserCache {
 		// Determine the options which affect this article
 		$optionsKey = $this->mMemc->get( $this->getOptionsKey( $article ) );
 		if ( $optionsKey != false ) {
-			if ( !$useOutdated && $optionsKey->expired( $article->mTouched ) ) {
+			if ( !$useOutdated && $optionsKey->expired( $article->getTouched() ) ) {
 				wfIncrStats( "pcache_miss_expired" );
 				$cacheTime = $optionsKey->getCacheTime();
-				wfDebug( "Parser options key expired, touched {$article->mTouched}, epoch $wgCacheEpoch, cached $cacheTime\n" );
+				wfDebug( "Parser options key expired, touched " . $article->getTouched() . ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
 			}
 
@@ -128,8 +126,7 @@ class ParserCache {
 			return false;
 		}
 
-		// Having called checkTouched() ensures this will be loaded
-		$touched = $article->mTouched;
+		$touched = $article->getTouched();
 
 		$parserOutputKey = $this->getKey( $article, $popts, $useOutdated );
 		if ( $parserOutputKey === false ) {
@@ -171,7 +168,7 @@ class ParserCache {
 			$now = wfTimestampNow();
 
 			$optionsKey = new CacheTime;
-			$optionsKey->mUsedOptions = $popts->usedOptions();
+			$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
 			$optionsKey->updateCacheExpiry( $expire );
 
 			$optionsKey->setCacheTime( $now );

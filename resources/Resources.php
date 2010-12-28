@@ -28,7 +28,8 @@ return array(
 		'scripts' => 'resources/jquery/jquery.async.js'
 	),
 	'jquery.autoEllipsis' => array(
-		'scripts' => 'resources/jquery/jquery.autoEllipsis.js'
+		'scripts' => 'resources/jquery/jquery.autoEllipsis.js',
+		'dependencies' => 'jquery.highlightText',
 	),
 	'jquery.checkboxShiftClick' => array(
 		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js'
@@ -407,10 +408,6 @@ return array(
 	),
 	'mediawiki.legacy.block' => array(
 		'scripts' => 'skins/common/block.js',
-		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
-	'mediawiki.legacy.changepassword' => array(
-		'scripts' => 'skins/common/changepassword.js',
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
 	'mediawiki.legacy.commonPrint' => array(

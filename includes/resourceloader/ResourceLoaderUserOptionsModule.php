@@ -100,7 +100,11 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 			if ( $options['editfont'] !== 'default' ) {
 				$rules[] = "textarea { font-family: {$options['editfont']}; }\n";
 			}
-			return array( 'all' => implode( "\n", $rules ) );
+			$style = implode( "\n", $rules );
+			if ( $this->getFlip( $context ) ) {
+				$style = CSSJanus::transform( $style, true, false );
+			}
+			return array( 'all' => $style );
 		}
 		return array();
 	}

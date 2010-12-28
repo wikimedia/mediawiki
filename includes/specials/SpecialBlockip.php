@@ -362,8 +362,7 @@ class IPBlockForm extends SpecialPage {
 			Html::hidden( 'wpEditToken', $wgUser->editToken() ) .
 			( $alreadyBlocked ? Html::hidden( 'wpChangeBlock', 1 ) : "" ) .
 			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) .
-			Xml::tags( 'script', array( 'type' => 'text/javascript' ), 'updateBlockOptions()' ) . "\n"
+			Xml::closeElement( 'form' )
 		);
 
 		$wgOut->addHTML( $this->getConvenienceLinks() );

@@ -247,9 +247,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		// Merge general styles and skin specific styles, retaining media type collation
-		$styles = $this->readStyleFiles( $this->styles );
+		$styles = $this->readStyleFiles( $this->styles, $this->getFlip( $context ) );
 		$skinStyles = $this->readStyleFiles( 
-			self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ) );
+			self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ),
+			$this->getFlip( $context )
+		);
 		
 		foreach ( $skinStyles as $media => $style ) {
 			if ( isset( $styles[$media] ) ) {
@@ -456,14 +458,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return Array: List of concatenated and remapped CSS data from $styles, 
 	 *     keyed by media type
 	 */
-	protected function readStyleFiles( array $styles ) {
+	protected function readStyleFiles( array $styles, $flip ) {
 		if ( empty( $styles ) ) {
 			return array();
 		}
 		$styles = self::collateFilePathListByOption( $styles, 'media', 'all' );
 		foreach ( $styles as $media => $files ) {
 			$styles[$media] = implode(
-				"\n", array_map( array( $this, 'readStyleFile' ), array_unique( $files ) )
+				"\n",
+				array_map(
+					array( $this, 'readStyleFile' ),
+					array_unique( $files ),
+					array( $flip )
+				)
 			);
 		}
 		return $styles;
@@ -477,11 +484,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param $path String: File path of script file to read
 	 * @return String: CSS data in script file
 	 */
-	protected function readStyleFile( $path ) {	
+	protected function readStyleFile( $path, $flip ) {	
 		$localPath = $this->getLocalPath( $path );
 		$style = file_get_contents( $localPath );
 		if ( $style === false ) {
 			throw new MWException( __METHOD__.": style file not found: \"$localPath\"" );
+		}
+		if ( $flip ) {
+			$style = CSSJanus::transform( $style, true, false );
 		}
 		$dir = $this->getLocalPath( dirname( $path ) );
 		$remoteDir = $this->getRemotePath( dirname( $path ) );
