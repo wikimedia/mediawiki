@@ -81,8 +81,6 @@ class ParserCache {
 	 * Used to provide a unique id for the PoolCounter.
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
-	 *
-	 * Precondition: $article->checkTouched() has been called.
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
 		global $wgCacheEpoch;
