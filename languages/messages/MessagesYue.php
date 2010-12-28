@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -424,6 +424,8 @@ $1',
 'toc'                     => '目錄',
 'showtoc'                 => '展開',
 'hidetoc'                 => '收埋',
+'collapsible-collapse'    => '摺埋',
+'collapsible-expand'      => '展開',
 'thisisdeleted'           => '睇下定係還原 $1 ？',
 'viewdeleted'             => '去睇$1？',
 'restorelink'             => '$1 次已刪除嘅編輯',
@@ -566,6 +568,8 @@ $1',
 'createaccounterror'         => '開唔到戶口：$1',
 'nocookiesnew'               => '已經開咗戶口，但你未登入。 {{SITENAME}} 要用 cookies 嚟登入。你已經熄咗佢。請你開咗再試。',
 'nocookieslogin'             => '{{SITENAME}} 登入要開 cookies。熄咗佢。請你開咗再試。',
+'nocookiesfornew'            => '呢位用戶嘅戶開未開，我哋唔能夠確認佢嘅來源。
+請肯定你已經開咗 cookies，重新載入再試。',
 'noname'                     => '你未指定一個有效嘅用戶名。',
 'loginsuccesstitle'          => '登入成功',
 'loginsuccess'               => "'''「$1」登入咗{{SITENAME}}。'''",
@@ -579,6 +583,7 @@ $1',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
 'passwordtooshort'           => '你嘅密碼最少要有$1個半形字元。',
 'password-name-match'        => '你嘅密碼一定要同你嘅用戶名唔一樣。',
+'password-login-forbidden'   => '呢啲用戶名同密碼嘅利用係被禁止嘅。',
 'mailmypassword'             => '寄個新密碼',
 'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
@@ -1833,6 +1838,7 @@ Template:搞清楚',
 'pager-newer-n'           => '新$1次',
 'pager-older-n'           => '舊$1次',
 'suppress'                => '監督',
+'querypage-disabled'      => '呢個特別版基於效能嘅原因停用咗。',
 
 # Book sources
 'booksources'               => '書籍來源',
@@ -3248,6 +3254,7 @@ $1',
 'version-specialpages'             => '特別頁',
 'version-parserhooks'              => '語法鈎',
 'version-variables'                => '變數',
+'version-antispam'                 => '垃圾防止',
 'version-skins'                    => '畫面',
 'version-other'                    => '其它',
 'version-mediahandlers'            => '媒體處理器',

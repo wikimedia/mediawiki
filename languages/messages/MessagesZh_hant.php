@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -474,6 +474,8 @@ $1',
 'toc'                     => '目錄',
 'showtoc'                 => '顯示',
 'hidetoc'                 => '隱藏',
+'collapsible-collapse'    => '摺叠',
+'collapsible-expand'      => '展開',
 'thisisdeleted'           => '檢視或恢復$1?',
 'viewdeleted'             => '檢視$1',
 'restorelink'             => '$1個被刪除的版本',
@@ -617,6 +619,8 @@ $2',
 'createaccounterror'         => '無法建立賬戶：$1',
 'nocookiesnew'               => '已成功創建新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
+'nocookiesfornew'            => '這位用戶的賬戶未建立，我們不能確認它的來源。
+請肯定您已經開啟 cookies，重新載入後再試。',
 'noname'                     => '{{GENDER:|你|妳|你}}沒有輸入一個有效的用戶名。',
 'loginsuccesstitle'          => '登入成功',
 'loginsuccess'               => '{{GENDER:|你|妳|你}}正在以"$1"的身份在{{SITENAME}}登入。',
@@ -630,6 +634,7 @@ $2',
 'wrongpasswordempty'         => '沒有輸入密碼！請重試。',
 'passwordtooshort'           => '您的密碼不能少於$1個字元。',
 'password-name-match'        => '您的密碼必須跟您的用戶名不相同。',
+'password-login-forbidden'   => '這些用戶名稱及密碼的使用是被禁止的。',
 'mailmypassword'             => '將新密碼寄給我',
 'passwordremindertitle'      => '{{SITENAME}}的新臨時密碼',
 'passwordremindertext'       => '有人（可能是您，來自IP位址$1）已請求{{SITENAME}}的新密碼 （$4）。
@@ -1889,6 +1894,7 @@ Template:消除歧義',
 'pager-newer-n'           => '新$1次',
 'pager-older-n'           => '舊$1次',
 'suppress'                => '監督',
+'querypage-disabled'      => '此特殊頁面基於效能的原因已經被停用。',
 
 # Book sources
 'booksources'               => '網路書源',
@@ -3314,6 +3320,7 @@ $1',
 'version-specialpages'             => '特殊頁面',
 'version-parserhooks'              => '語法鈎',
 'version-variables'                => '變數',
+'version-antispam'                 => '垃圾防止',
 'version-skins'                    => '面板',
 'version-other'                    => '其它',
 'version-mediahandlers'            => '媒體處理器',
