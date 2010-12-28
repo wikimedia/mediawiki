@@ -2642,15 +2642,15 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Delete a table
 	 */
-	public function dropTable( $tableName, $method = 'DatabaseBase::dropTable' ) {
-		if( !$this->tableExists( $tableName, $method ) ) {
+	public function dropTable( $tableName, $fName = 'DatabaseBase::dropTable' ) {
+		if( !$this->tableExists( $tableName ) ) {
 			return false;
 		}
 		$sql = "DROP TABLE " . $this->tableName( $tableName );
 		if( $this->cascadingDeletes() ) {
 			$sql .= " CASCADE";
 		}
-		return $this->query( $sql );
+		return $this->query( $sql, $fName );
 	}
 
 	/**
