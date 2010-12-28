@@ -95,21 +95,26 @@ class CloneDatabase {
 			$newTableName = $this->db->tableName( $tbl );
 
 			if( $this->dropCurrentTables ) {
-				if ( $this->db->getType() == 'mysql' && $this->db->tableExists( $tbl ) ) {
-					$this->db->query( "DROP TABLE IF EXISTS $newTableName" );
-				} elseif ( in_array( $this->db->getType(), array( 'postgres', 'oracle' ) ) ) {
-					/* DROPs wouldn't work due to Foreign Key Constraints (bug 14990, r58669)
-					 * Use "DROP TABLE IF EXISTS $newTableName CASCADE" for postgres? That
-					 * syntax would also work for mysql.
-					 */
-				} elseif ( $this->db->tableExists( $tbl ) ) {
-					$this->db->query( "DROP TABLE $newTableName" );
-				}
+				$this->db->dropTable( $newTableName, __METHOD__ );
 			}
 
 			# Create new table
 			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $this->useTemporaryTables );
 		}
+	}
+
+	/**
+	 * Change the prefix back to the original.
+	 * @param $dropTables bool Optionally drop the tables we created
+	 */
+	public function destroy( $dropTables = false ) {
+		if( $dropTables ) {
+			$this->changePrefix( $this->newTablePrefix );
+			foreach( $this->tablesToClone as $tbl ) {
+				$this->db->dropTable( $tbl );
+			}
+		}
+		$this->changePrefix( $this->oldTablePrefix );
 	}
 
 	/**

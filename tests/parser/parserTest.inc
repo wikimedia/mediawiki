@@ -54,6 +54,12 @@ class ParserTest {
 	private $db;
 
 	/**
+	 * Database clone helper
+	 * @var CloneDatabase
+	 */
+	private $dbClone;
+
+	/**
 	 * string $oldTablePrefix Original table prefix
 	 */
 	private $oldTablePrefix;
@@ -852,7 +858,7 @@ class ParserTest {
 		}
 		$this->teardownUploadDir( $this->uploadDir );
 
-		$this->db->tablePrefix( $this->oldTablePrefix );
+		$this->dbClone->destroy();
 		$this->databaseSetupDone = false;
 
 		if ( $this->useTemporaryTables ) {
