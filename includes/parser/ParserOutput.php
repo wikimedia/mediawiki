@@ -100,8 +100,7 @@ class CacheTime {
 	}		
 }
  
-class ParserOutput extends CacheTime
-{
+class ParserOutput extends CacheTime {
 	var $mText,                       # The output text
 		$mLanguageLinks,              # List of the full text of language links, in the order they appear
 		$mCategories,                 # Map of category names to sort keys
@@ -149,7 +148,6 @@ class ParserOutput extends CacheTime
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getHeadItems()              { return $this->mHeadItems; }
 	function getModules()                { return $this->mModules; }
-	function getSubtitle()               { return $this->mSubtitle; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
 	function getIndexPolicy()            { return $this->mIndexPolicy; }
@@ -293,7 +291,7 @@ class ParserOutput extends CacheTime
 	 * @return String
 	 */
 	public function getDisplayTitle() {
-		$t = $this->getTitleText( );
+		$t = $this->getTitleText();
 		if( $t === '' ) {
 			return false;
 		}
