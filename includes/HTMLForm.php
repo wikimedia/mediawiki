@@ -42,6 +42,10 @@
  *	'validation-callback' -- a function name to give you the chance
  *	                         to impose extra validation on the field input.
  *	                         @see HTMLForm::validate()
+ *	'name'                -- By default, the 'name' attribute of the input field
+ *	                         is "wp{$fieldname}".  If you want a different name
+ *	                         (eg one without the "wp" prefix), specify it here and
+ *	                         it will be used without modification.
  *
  * TODO: Document 'section' / 'subsection' stuff
  */
@@ -116,15 +120,11 @@ class HTMLForm {
 				? $info['section']
 				: '';
 
-			$info['name'] = isset( $info['name'] )
-				? $info['name']
-				: $fieldname;
-
 			if ( isset( $info['type'] ) && $info['type'] == 'file' ) {
 				$this->mUseMultipart = true;
 			}
 
-			$field = self::loadInputFromParameters( $info );
+			$field = self::loadInputFromParameters( $fieldname, $info );
 			$field->mParent = $this;
 
 			$setSection =& $loadedDescriptor;
@@ -166,7 +166,7 @@ class HTMLForm {
 	 * @param $descriptor input Descriptor, as described above
 	 * @return HTMLFormField subclass
 	 */
-	static function loadInputFromParameters( $descriptor ) {
+	static function loadInputFromParameters( $fieldname, $descriptor ) {
 		if ( isset( $descriptor['class'] ) ) {
 			$class = $descriptor['class'];
 		} elseif ( isset( $descriptor['type'] ) ) {
@@ -177,6 +177,8 @@ class HTMLForm {
 		if ( !$class ) {
 			throw new MWException( "Descriptor with no class: " . print_r( $descriptor, true ) );
 		}
+		
+		$descriptor['fieldname'] = $fieldname;
 
 		$obj = new $class( $descriptor );
 
@@ -205,7 +207,7 @@ class HTMLForm {
 		$editToken = $wgRequest->getVal( 'wpEditToken' );
 
 		$result = false;
-		if ( $wgUser->matchEditToken( $editToken ) ) {
+		if ( $this->getMethod() != 'post' || $wgUser->matchEditToken( $editToken ) ) {
 			$result = $this->trySubmit();
 		}
 
@@ -304,7 +306,7 @@ class HTMLForm {
 
 	/**
 	 * Add a hidden field to the output
-	 * @param $name String field name
+	 * @param $name String field name.  This will be used exactly as entered
 	 * @param $value String field value
 	 * @param $attribs Array
 	 */
@@ -380,8 +382,11 @@ class HTMLForm {
 		global $wgUser;
 
 		$html = '';
-		$html .= Html::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
-		$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
+		
+		if( $this->getMethod() == 'post' ){
+			$html .= Html::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
+			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
+		}
 
 		foreach ( $this->mHiddenFields as $data ) {
 			list( $value, $attribs ) = $data;
@@ -768,17 +773,17 @@ abstract class HTMLFormField {
 			$this->mLabel = $params['label'];
 		}
 
+		$this->mName = "wp{$params['fieldname']}";
 		if ( isset( $params['name'] ) ) {
-			$name = $params['name'];
-			$validName = Sanitizer::escapeId( $name );
-
-			if ( $name != $validName ) {
-				throw new MWException( "Invalid name '$name' passed to " . __METHOD__ );
-			}
-
-			$this->mName = 'wp' . $name;
-			$this->mID = 'mw-input-' . $name;
+			$this->mName = $params['name'];
 		}
+		
+		$validName = Sanitizer::escapeId( $this->mName );
+		if ( $this->mName != $validName && !isset( $params['nodata'] ) ) {
+			throw new MWException( "Invalid name '{$this->mName}' passed to " . __METHOD__ );
+		}
+		
+		$this->mID = "mw-input-{$this->mName}";
 
 		if ( isset( $params['default'] ) ) {
 			$this->mDefault = $params['default'];
@@ -1191,13 +1196,18 @@ class HTMLSelectField extends HTMLFormField {
 		# If one of the options' 'name' is int(0), it is automatically selected.
 		# because PHP sucks and things int(0) == 'some string'.
 		# Working around this by forcing all of them to strings.
-		$options = array_map( 'strval', $this->mParams['options'] );
+		foreach( $this->mParams['options'] as $key => &$opt ){
+			if( is_int( $opt ) ){
+				$opt = strval( $opt );
+			}
+		}
+		unset( $opt ); # PHP keeps $opt around as a reference, which is a bit scary
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
 
-		$select->addOptions( $options );
+		$select->addOptions( $this->mParams['options'] );
 
 		return $select->getHTML();
 	}
@@ -1472,9 +1482,6 @@ class HTMLInfoField extends HTMLFormField {
 class HTMLHiddenField extends HTMLFormField {
 	public function __construct( $params ) {
 		parent::__construct( $params );
-		# forcing the 'wp' prefix on hidden field names
-		# is undesirable
-		$this->mName = substr( $this->mName, 2 );
 		
 		# Per HTML5 spec, hidden fields cannot be 'required'
 		# http://dev.w3.org/html5/spec/states-of-the-type-attribute.html#hidden-state

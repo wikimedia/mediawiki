@@ -329,7 +329,13 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// create the form, which will also be used to execute a callback to process incoming form data
 		// this design is extremely dubious, but supposedly HTMLForm is our standard now?
 
-		$form = new HTMLForm( array( 'clear' => array( 'class' => 'HTMLHiddenField', 'default' => true ) ), 'clearStashedUploads' );
+		$form = new HTMLForm( array( 
+			'Clear' => array( 
+				'type' => 'hidden', 
+				'default' => true,
+				'name' => 'clear',
+			) 
+		), 'clearStashedUploads' );
 		$form->setSubmitCallback( array( __CLASS__, 'tryClearStashedUploads' ) ); 
 		$form->setTitle( $this->getTitle() );
 		$form->addHiddenField( 'clear', true, array( 'type' => 'boolean' ) );
