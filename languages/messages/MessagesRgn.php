@@ -165,6 +165,14 @@ $messages = array(
 'faq'            => '↓ Question frequenti',
 'faqpage'        => '↓ Prugèt:Question frequenti',
 
+# Vector skin
+'vector-action-addsection' => '↓ Zonta una cjacarèda',
+'vector-action-delete'     => '↓ Scanzèla',
+'vector-action-move'       => '↓ Chèmbia nòm',
+'vector-action-protect'    => '↓ Metti-j una pruteziò',
+'vector-action-undelete'   => '↓ Armett a post',
+'vector-action-unprotect'  => '↓ Sbloca',
+
 'errorpagetitle'   => "Oci! T'ê fat una capèla",
 'returnto'         => 'Torna indrì a $1.',
 'tagline'          => 'Da {{SITENAME}}',

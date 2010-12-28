@@ -801,6 +801,7 @@ $2',
 もう一度やり直してください。',
 'passwordtooshort'           => 'パスワードは{{PLURAL:$1|$1文字}}以上でなければなりません。',
 'password-name-match'        => 'パスワードは利用者名と異なる必要があります。',
+'password-login-forbidden'   => 'このような利用者名とパスワードを使用することは禁止されています。',
 'mailmypassword'             => '新しいパスワードを電子メールで送る',
 'passwordremindertitle'      => '{{SITENAME}}の仮パスワード通知',
 'passwordremindertext'       => '誰か（おそらく自身、IPアドレス$1から）が{{SITENAME}}（$4）のログイン用パスワードの再発行を申請しました。
@@ -2207,7 +2208,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'activeusers-noresult'   => '利用者が見つかりませんでした。',
 
 # Special:Log/newusers
-'newuserlogpage'              => '利用者作成記録',
+'newuserlogpage'              => 'アカウント作成記録',
 'newuserlogpagetext'          => '以下はアカウント作成の記録です。',
 'newuserlog-byemail'          => 'パスワードを電子メールで送信しました',
 'newuserlog-create-entry'     => '新規利用者アカウント',
@@ -2512,7 +2513,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => '名前空間：',
-'invert'         => '選択を反転',
+'invert'         => '選択したものを除く',
 'blanknamespace' => '（標準）',
 
 # Contributions

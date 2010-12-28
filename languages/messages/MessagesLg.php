@@ -289,6 +289,8 @@ Kebera ku [[Special:Version|lukalala lw'empandika za MediaWiki]].",
 'toc'                     => 'Ebirimu',
 'showtoc'                 => 'ndaga endagiriro',
 'hidetoc'                 => 'kisa endagiriro',
+'collapsible-collapse'    => 'Funza',
+'collapsible-expand'      => 'Birage mu bujjuvu',
 'thisisdeleted'           => 'Oyagala okulaba oba okuzzawo $1?',
 'viewdeleted'             => 'Oyagala okulaba $1?',
 'restorelink'             => '{{PLURAL:$1|oluwandika olwagyibwawo olumu|empandika ezagyibwawo $1}}',
@@ -442,9 +444,40 @@ Londa eddala.",
 Okuyingira {{SITENAME}} nga memba kyesigamizidwa ku bujjukiza.<br />
 Kalambulanetti yo kakano etegekedwa butakkiriza obujjukiza obwo.<br />
 Okusobola okuyingira, kyusa entegeka ya yo ebukkirize eryoke okozese ery'obwa memba n'ekigambo ekikuumi byo.",
+'nocookieslogin'             => 'Okuyingira {{SITENAME}} nga memba kyesigamizidwa ku bujjukiza.<br />
+Kalambulanetti yo kakano etegekedwa butakkiriza obujjukiza obwo.<br />
+Okusobola okuyingira, kyusa entegeka ya yo ebukkirize eryoke oddemu okugeza okuyingira.',
+'nocookiesfornew'            => "Akawunti ey'obwa memba tekoledwawo, kubanga tetusobodde okutegeera w'oyimye okugikola.<br />
+Kalambulanetti yo gitegeke ekkirize obujjukiza, ddamu owange olupapula luno oryoke oddemu okugeza okukolawo akawunti.",
+'noname'                     => "Towandise linnya ly'obwa memba eriyinz'okukkirizibwa.",
 'loginsuccesstitle'          => 'Oyingidde',
 'loginsuccess'               => "'''Kati oyingidde mu {{SITENAME}} nga okozesa erinnya \"\$1\".'''",
+'nosuchuser'                 => "Tewali memba akozesa lya \"\$1\".<br />
+Ery'obwa memba bw'okyusa obunene bw'ennukuta z'oliwandisa obeera owandise eddala.<br />
+Kebera bw'oliwandise, oba [[Special:UserLogin/signup|kolawo akawunti empya]].",
+'nosuchusershort'            => 'Tewali memba akozesa lya "<nowiki>$1</nowiki>".<br />
+Kebera bw\'oliwandise.',
+'nouserspecified'            => "Kyetaagisa owandikewo erinnya ly'obwa memba.",
+'login-userblocked'          => 'Memba ono agaanidwa. Takkirizibwa kuyingira.',
+'wrongpassword'              => "Ekigambo ekikuumi ky'oyingizza ssi kituufu.<br />
+Ddamu ogezeeko.",
+'wrongpasswordempty'         => 'Tewawandise kigambo kikuumi.<br />
+Ddamu ogezeeko.',
+'passwordtooshort'           => 'Ekigambo ekikuumi kiteekwa okubaamu {{PLURAL:$1|akabonero wakiri kamu|obubonero obutakka wansi wa $1}}.',
+'password-name-match'        => "Tokkirizibwa kukozesa linnya lyo ery'obwa memba ng'ekigambo ekikuumi.",
+'password-login-forbidden'   => "Ebigambo bino tebikkirizibwa kukozesebwa ng'amannya g'obwa memba oba bigambo bikuumi.",
 'mailmypassword'             => 'Nsindikira ekigambo ekikuumi ekipya',
+'passwordremindertitle'      => "Ekigambo ekikuumi eky'oku {{SITENAME}} ekipya. Kya kiseerabuseera.",
+'passwordremindertext'       => 'Waliwo eyayimidde ku ndagiriro eya IP $1 (tusuubiri nti ye ggwe) n\'asaba ekigambo ekikuumi eky\'oku {{SITENAME}} ($4) ekipya.<br />
+Memba "$2" tumukoleddewo ekigambo ekikuumi eky\'ekiseerabuseera, "$3". Kino bwe kiba nga kye kyewagenderedde,<br />
+wetaaga kugenda kati oyingire akawunti yo okyuse ekigambo ekikuumi okolewo ekya ddala.<br />
+Ekigambo eky\'ekiseerabuseera kijjakuleker\'awo okukola mu {{PLURAL:$5|lunaku lumu|nnaku $5}}.',
+'noemail'                    => 'Tetulina ndagiriro eya E-mail eya memba "$1".',
+'noemailcreate'              => 'Wetaaga kuwayo ndagiriro eya E-mail ekola',
+'passwordsent'               => 'Ekigambo ekikuumi ekipya tukisindise ku E-mail eyatuwebwa nga eya "$1".<br />
+Bw\'omala okukifuna nga oryoka oddamu okuyingira.',
+'blocked-mailpassword'       => "Okulwanyisa nkozesa mbi, tetukkiriza okukyusa eby'oku {{SITENAME}} okuva ku ndagiriro eya IP kw'oyimye.<br />
+Kino kitwaliramu n'obutakkiriza okufuna ebigambo bikuumi ebipya.",
 'acct_creation_throttle_hit' => "Ku lunaku olumu luno, abajja ku wiki eno nga basinzidde ku ndagiriro eya IP gy'oliko baakakolawo {{PLURAL:$1|akawunti 1|akawunti $1}}. Tekikkirizibwa kukolawo zisingawo obungi mu budde obwo.<br />
 Olw'ensonga eno, ku ssaawa eno, abasinzira ku ndagiriro gy'oliko tebasobola kukolawo akawunti.",
 'accountcreated'             => 'Akawunti ekoleddwa',
