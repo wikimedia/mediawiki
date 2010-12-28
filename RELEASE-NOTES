@@ -474,6 +474,9 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   as wikitext on preview.
 * Page existence is now not revealed (in the colour of the tabs) to users who cannot
   read the page in question.
+* (bug 14404) The articles are now always saved with the default options. Articles 
+  with {{int:X}} will have consistent table links no matter the preferences of the 
+  last saving user.
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
