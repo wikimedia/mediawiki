@@ -2862,7 +2862,9 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
 
-Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitettava arveluttavaan tiedostoon. Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa saa käyttää.',
+Vain *-merkillä alkavat rivit otetaan huomioon.
+Rivin ensimmäisen linkin on osoitettava tiedostoon.
+Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa saa käyttää.',
 
 # Metadata
 'metadata'          => 'Sisältökuvaukset',

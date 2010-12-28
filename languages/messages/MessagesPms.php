@@ -322,6 +322,8 @@ $1",
 'toc'                     => 'Contnù',
 'showtoc'                 => 'smon',
 'hidetoc'                 => 'stërma',
+'collapsible-collapse'    => 'Sëré',
+'collapsible-expand'      => 'Deurbe',
 'thisisdeleted'           => 'Veul-lo vardé ò ripristiné $1?',
 'viewdeleted'             => 'Veul-lo vardé $1?',
 'restorelink'             => '{{PLURAL:$1|na modìfica scancelà|$1 modìfiche scancelà}}',
@@ -468,6 +470,8 @@ Për piasì, sern në stranòm diferent.",
 {{SITENAME}} a deuvra ij cookies për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij cookies abilità.
 Për piasì, che as j'abìlita e peuj che a preuva torna a rintré con sò stranòm e soa ciav.",
 'nocookieslogin'             => "{{SITENAME}} a deuvra ij cookies për fé rintré la gent ant sò sistema. Belavans chiel a l'ha pa ij cookies abilità. Për piasì, che a j'abìlita e peuj che a preuva torna.",
+'nocookiesfornew'            => "Ël cont utent a l'é pa stàit creà, antlora i podoma pa confirmé soa sorziss.
+Sigurte d'avèj ij cookie abilità, torna carié la pàgina e preuva torna.",
 'noname'                     => "Lë stranòm che a l'ha batù as peul pa dovresse, as peul nen creésse un cont Utent con ës nòm-sì.",
 'loginsuccesstitle'          => "Compliment! A l'é pen-a rintrà ant ël sistema. A-i é pa staje gnun eror.",
 'loginsuccess'               => 'A l\'ha avù ël përmess ëd conession al servent ëd {{SITENAME}} con lë stranòm utent ëd "$1".',
@@ -481,6 +485,7 @@ Controla ël nòm che it l\'has batù, o [[Special:UserLogin/signup|fà un neuv 
 'wrongpasswordempty'         => "A l'ha butà na ciav veujda. Për piasì, che a preuva torna.",
 'passwordtooshort'           => 'Le ciav a devo avèj almanch {{PLURAL:$1|1 caràter|$1 caràter}}.',
 'password-name-match'        => 'Toa ciav a deuv esse diferenta da tò stranòm.',
+'password-login-forbidden'   => "L'usagi dë sto nòm utent e ciav a son ëstàit vietà.",
 'mailmypassword'             => 'Mandme na neuva ciav për pòsta eletrònica',
 'passwordremindertitle'      => 'Servissi për visé la paròla ciav ëd {{SITENAME}}',
 'passwordremindertext'       => "Cheidun (a l'é belfé che a sia stàit pròpe chiel, da 'nt l'adrëssa IP \$1) a l'ha ciamà che i-j mandèisso
@@ -661,6 +666,10 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'usercsspreview'                   => "'''Che a varda che lòn che a s-ciàira a l'é nomach na preuva ëd sò CSS.'''
 '''A l'é ancó nen stàit salvà!'''",
 'userjspreview'                    => "'''Che as visa che a l'é mach antramentr che as fa na preuva ëd sò Javascript, che a l'é ancó pa stàit salvà!'''",
+'sitecsspreview'                   => "'''Che a varda che a l'é mach an mente ch'a preuva sto CSS.'''
+'''A l'é ancó pa stàit salvà!'''",
+'sitejspreview'                    => "'''Che a varda che a l'é mach an mente ch'a preuva sto còdes JavaScript.'''
+'''A l'é ancó pa stàit salvà!'''",
 'userinvalidcssjstitle'            => "'''Avis:''' A-i é pa gnun-a pel \"\$1\". Che as visa che le pàgine .css e .js che un as fa daspërchiel a deuvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/vector.css nopà che {{ns:user}}:Scaramacaj/Vector.css.",
 'updated'                          => '(Agiornà)',
 'note'                             => "'''NÒTA:'''",
@@ -1507,6 +1516,15 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'upload-unknown-size'       => 'Dimension pa conossùa',
 'upload-http-error'         => "A l'é staje n'eror HTTP: $1.",
 
+# Special:UploadStash
+'uploadstash'          => 'Carié artorn',
+'uploadstash-summary'  => "Sta pàgina a dà acess a file ch'a son carià (o an mente ch'as cario) ma a non pa anco' publicà sla wiki. Sti file a son pa visìbij a gnun an gavand l'utent ch'a l'ha cariaje.",
+'uploadstash-clear'    => 'Polida file artornà',
+'uploadstash-nofiles'  => "It l'has pa dij file artornà.",
+'uploadstash-badtoken' => "L'esecussion dë st'assion a l'é pa andàita bin, miraco përchè toe credensiaj ëd modìfica a son scadùe. Preuva torna.",
+'uploadstash-errclear' => "polidé ij file a l'é pa andàit bin.",
+'uploadstash-refresh'  => 'Agiorna la lista ëd file',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Acess negà',
 'img-auth-nopathinfo'   => "PATH_INFO mancant.
@@ -1765,6 +1783,7 @@ Për piasì nòta che àutri sit an sl'aragnà a peulo coleghesse a n'archivi co
 'pager-newer-n'           => '{{PLURAL:$1|1|$1}} pì neuv',
 'pager-older-n'           => '{{PLURAL:$1|1|$1}} pì vej',
 'suppress'                => 'Oversight',
+'querypage-disabled'      => "Sta pàgina special a l'é disabilità për rason ëd prestassion.",
 
 # Book sources
 'booksources'               => 'Andoa trové dij lìber',
@@ -3188,6 +3207,7 @@ As peul ëdcò [[Special:Watchlist/edit|dovré l'editor sòlit]].",
 'version-specialpages'             => 'Pàgine speciaj',
 'version-parserhooks'              => 'Gancio dlë scompositor',
 'version-variables'                => 'Variàbij',
+'version-antispam'                 => 'Prevension dlë spam',
 'version-skins'                    => 'Pej',
 'version-other'                    => 'Àutr',
 'version-mediahandlers'            => 'Gestor multimojen',

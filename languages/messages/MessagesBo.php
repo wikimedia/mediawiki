@@ -192,7 +192,7 @@ $messages = array(
 'hidetoc'             => 'སྦས།',
 'site-rss-feed'       => '$1 ཡི་RSS འབྱུང་ཁུངས།',
 'site-atom-feed'      => '$1 ཡི་Atom འབྱུང་ཁུངས།',
-'red-link-title'      => '$1(དྲ་ངོས་འདི་མི་འདུག))',
+'red-link-title'      => '$1 ( ཤོག་ངོས་མ་གྲུབ། )',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'རྩོམ་ཡིག',
@@ -252,7 +252,7 @@ $messages = array(
 'histlast'         => 'ཕྱི་ཤོས།',
 
 # Revision deletion
-'rev-delundel'   => 'སྟོན་པ། / སྦས་བ།',
+'rev-delundel'   => 'སྟོན། / སྦས།',
 'revdel-restore' => 'བཅོས་སུ་རུང་བ།',
 
 # Merge log
@@ -306,8 +306,8 @@ $messages = array(
 'rcshowhidemine'     => '$1ངའི་རྩོམ་སྒྲིག',
 'diff'               => 'མི་འདྲ་ས།',
 'hist'               => 'ཡིད་འཛིན་དྲན་ཐོ།',
-'hide'               => 'སྦས་བ།',
-'show'               => 'སྟོན་ཅིག',
+'hide'               => 'སྦས།',
+'show'               => 'སྟོན།',
 'minoreditletter'    => 'ཆུང་སྒྲིག',
 'newpageletter'      => 'ཤོག་གསར།',
 'rc-enhanced-expand' => 'ཞིབ་ཕྲ་སྟོན།( requires JavaScript )',
@@ -317,7 +317,7 @@ $messages = array(
 'recentchangeslinked'         => 'འབྲེལ་བའི་བཟོ་བཅོས།',
 'recentchangeslinked-feed'    => 'འབྲེལ་བའི་བཟོ་བཅོས།',
 'recentchangeslinked-toolbox' => 'འབྲེལ་བའི་བཟོ་བཅོས།',
-'recentchangeslinked-summary' => "འདི་ནི་དམིགས་གསལ་ཤོག་ངོས་སམ་དམིགས་གསལ་རྣམ་གྲངས་ཀྱི་ཁོངས་མི་དང་སྦྲེལ་ཡོད་པའི་ཉེ་བའི་བཟོ་བཅོས་རེད།[[Special:Watchlist|yourwatchlist]] ནང་གི་ཤོག་ངོས་རྣམས་'''ཡིག་གཟུགས་སྦོམ་པོ་'''ཡིན།",
+'recentchangeslinked-summary' => "འདི་ནི་དམིགས་གསལ་ཤོག་ངོས་༼ཡང་ན་དམིགས་གསལ་རྣམ་གྲངས་ཀྱི་ཁོངས་མི་༽དང་འབྲེལ་བའི་ཉེ་བའི་བཟོ་བཅོས་རེད།[[Special:Watchlist|yourwatchlist]] ནང་གི་ཤོག་ངོས་རྣམས་'''ཡིག་གཟུགས་སྦོམ་པོ་'''ཡིན།",
 
 # Upload
 'upload'            => 'ཡིག་ཆ་ཡར་འཇོག',
@@ -487,6 +487,6 @@ $messages = array(
 'table_pager_limit_submit' => 'སོང་།',
 
 # Special:SpecialPages
-'specialpages' => 'ཤོག་ངོས་དམིགས་གསལ།',
+'specialpages' => 'དམིགས་གསལ་ཤོག་ངོས།',
 
 );

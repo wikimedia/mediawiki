@@ -1325,7 +1325,7 @@ $1',
 * [http://www.mediawiki.org/wiki/Manual:Contents Наръчник на администратора]
 * [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ]',
 	'config-env-good' => '<span class="success-message">Средата беше проверена.
-Възможно е инсталирането на МедияУики.</span>',
+Инсталирането на МедияУики е възможно.</span>',
 	'config-env-bad' => 'Средата беше проверена.
 Не е възможна инсталация на МедияУики.',
 	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за Unicode-нормализация.',
@@ -1352,6 +1352,10 @@ $1',
 	'config-db-wiki-help' => 'Въвежда се потребителско име и парола, които ще се използват при нормалното функциониране на уикито.
 Ако сметката не съществува и използваната при инсталацията сметка има необходимите права, тази потребителска сметка ще бъде създадена с минималните необходими права за работа с уикито.',
 	'config-db-prefix' => 'Представка за таблиците в базата от данни:',
+	'config-db-prefix-help' => 'Ако е необходимо да се сподели базата от данни между няколко уикита или между МедияУики и друго уеб приложение, може да се добави представка пред имената на таблиците, за да се избегнат конфликти.
+Не се използват интервали и тирета.
+
+Това поле обикновено се оставя празно.',
 	'config-mysql-old' => 'Изисква се MySQL $1 или по-нова версия, наличната версия е $2.',
 	'config-db-schema' => 'Схема за МедияУики',
 	'config-db-ts2-schema' => 'Схема за tsearch2',
@@ -1365,6 +1369,8 @@ $1
 	'config-header-postgres' => 'Настройки за PostgreSQL',
 	'config-header-sqlite' => 'Настройки за SQLite',
 	'config-header-oracle' => 'Настройки за Oracle',
+	'config-invalid-db-type' => 'Невалиден тип база от данни',
+	'config-db-web-account' => 'Сметка за уеб достъп до базата от данни',
 	'config-db-web-create' => 'Създаване на сметката ако все още не съществува',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -1377,6 +1383,8 @@ $1
 	'config-admin-error-password' => 'Възникна вътрешна грешка при задаване на парола за администратора "<nowiki>$1</nowiki>": <pre>$2</pre>',
 	'config-subscribe' => 'Абониране за [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce пощенския списък за нови версии].',
 	'config-license' => 'Авторски права и лиценз:',
+	'config-license-gfdl-old' => 'Лиценз за свободна документация на GNU 1.2',
+	'config-license-gfdl-current' => 'Лиценз за свободна документация на GNU 1.3 или по-нов',
 	'config-license-pd' => 'Обществено достояние',
 	'config-email-settings' => 'Настройки за е-поща',
 	'config-upload-settings' => 'Картинки и качване на файлове',
@@ -2049,6 +2057,7 @@ Es muss daher mit den nächsten Seite weitergemacht werden.",
 	'config-install-pg-schema-failed' => 'Das Erstellen der Datentabellen ist gescheitert.
 Es muss sichergestellt sein, dass der Benutzer „$1“ kann, um in das Datenschema zu „$2“ zu schreiben.',
 	'config-install-pg-commit' => 'Änderungen anwenden',
+	'config-pg-no-plpgsql' => 'Für Datenbank $1 muss die Datenbanksprache PL/pgSQL installiert werden',
 	'config-install-user' => 'Datenbankbenutzer wird erstellt',
 	'config-install-user-failed' => 'Gewährung der Berechtigung für „$1“ ist gescheitert: $2',
 	'config-install-tables' => 'Datentabellen werden erstellt',
@@ -6512,6 +6521,7 @@ chmod a+w $3</pre>',
 	'config-install-pg-schema-failed' => 'Создавањето натабелите не успеа.
 Проверете дали корисникот „$1“ може да запишува во шемата „$2“.',
 	'config-install-pg-commit' => 'Спроведување на промени',
+	'config-pg-no-plpgsql' => 'Ќе треба да го инсталирате јазикот PL/pgSQL во базата $1',
 	'config-install-user' => 'Создавам корисник за базата',
 	'config-install-user-failed' => 'Доделувањето на дозвола на корисникот „$1“ не успеа: $2',
 	'config-install-tables' => 'Создавам табели',
@@ -7158,6 +7168,7 @@ Ga alstublieft door naar de volgende pagina.",
 	'config-install-pg-schema-failed' => 'Het aanmaken van de tabellen is mislukt.
 Zorg dat de gebruiker "$1" in het schema "$2" mag schrijven.',
 	'config-install-pg-commit' => 'Wijzigingen worden doorgevoerd',
+	'config-pg-no-plpgsql' => 'U moet de taal PL/pgSQL installeren in de database $1',
 	'config-install-user' => 'Databasegebruiker aan het aanmaken',
 	'config-install-user-failed' => 'Het geven van rechten aan gebruiker "$1" is mislukt: $2',
 	'config-install-tables' => 'Tabellen aanmaken',
