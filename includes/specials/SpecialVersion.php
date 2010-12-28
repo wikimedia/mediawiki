@@ -88,18 +88,20 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Get the "Mediawiki is copyright 2001-20xx by lots of cool guys" text
+	 * Get the "MediaWiki is copyright 2001-20xx by lots of cool guys" text
 	 *
 	 * @return String
 	 */
 	public static function getCopyrightAndAuthorList() {
 		global $wgLang;
 
-		$authorList = array( 'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
+		$authorList = array(
+			'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
 			'Tim Starling', 'Erik Möller', 'Gabriel Wicke', 'Ævar Arnfjörð Bjarmason',
 			'Niklas Laxström', 'Domas Mituzas', 'Rob Church', 'Yuri Astrakhan',
 			'Aryeh Gregor', 'Aaron Schulz', 'Andrew Garrett', 'Raimond Spekking',
 			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
+			'Roan Kattouw',
 			wfMsg( 'version-poweredby-others' )
 		);
 
@@ -182,7 +184,7 @@ class SpecialVersion extends SpecialPage {
 		
 		$info = self::getSvnInfo( $IP );
 		
-		if ( isset(  $info['checkout-rev'] ) ) {
+		if ( isset( $info['checkout-rev'] ) ) {
 			$linkText = wfMsg(
 				'version-svn-revision',
 				isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
