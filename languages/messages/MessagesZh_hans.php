@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -496,6 +496,8 @@ $1',
 'toc'                     => '目录',
 'showtoc'                 => '显示',
 'hidetoc'                 => '隐藏',
+'collapsible-collapse'    => '折叠',
+'collapsible-expand'      => '展开',
 'thisisdeleted'           => '查看或恢复$1？',
 'viewdeleted'             => '查看$1？',
 'restorelink'             => '$1个被删除的版本',
@@ -632,6 +634,8 @@ $2',
 'createaccounterror'         => '无法建立账户：$1',
 'nocookiesnew'               => '已成功创建新账户！侦测到您已关闭Cookies，请开启它并登录。',
 'nocookieslogin'             => '本站利用Cookies进行用户登录，侦测到您已关闭Cookies，请开启它并重新登录。',
+'nocookiesfornew'            => '这位用户的账户未建立，我们不能确认它的来源。
+请肯定您已经开启 cookies，重载后再试。',
 'noname'                     => '你没有输入有效的用户名。',
 'loginsuccesstitle'          => '登录成功',
 'loginsuccess'               => "'''你现在以“$1”的身份登录到{{SITENAME}}。'''",
@@ -643,6 +647,7 @@ $2',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
 'passwordtooshort'           => '您的密码至少需要$1个字符。',
 'password-name-match'        => '您的密码必须和您的用户名不相同。',
+'password-login-forbidden'   => '这些用户名称及密码的使用是被禁止的。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
 'passwordremindertext'       => '有人（可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。
@@ -1888,6 +1893,7 @@ Template:消除歧義',
 'pager-newer-n'           => '新$1次',
 'pager-older-n'           => '旧$1次',
 'suppress'                => '监督',
+'querypage-disabled'      => '此特殊页面基于效能的原因已经被停用。',
 
 # Book sources
 'booksources'               => '网络书源',
@@ -3308,6 +3314,7 @@ $1',
 'version-specialpages'             => '特殊页面',
 'version-parserhooks'              => '解析器钩',
 'version-variables'                => '变量',
+'version-antispam'                 => '垃圾防止',
 'version-skins'                    => '皮肤',
 'version-other'                    => '其他',
 'version-mediahandlers'            => '媒体处理器',
