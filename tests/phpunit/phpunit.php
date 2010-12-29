@@ -40,5 +40,6 @@ $additionalMWCLIArgs = array(
 );
 
 require_once( "$IP/tests/phpunit/MediaWikiPHPUnitCommand.php" );
+require_once( "$IP/tests/phpunit/MediaWikiTestCase.php" );
 MediaWikiPHPUnitCommand::main();
 
