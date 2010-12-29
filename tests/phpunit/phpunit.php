@@ -35,10 +35,6 @@ if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
 	require_once( 'PHPUnit/TextUI/Command.php' );
 }
 
-$additionalMWCLIArgs = array(
-	'verbose' => false,
-);
-
 require_once( "$IP/tests/phpunit/MediaWikiPHPUnitCommand.php" );
 require_once( "$IP/tests/phpunit/MediaWikiTestCase.php" );
 MediaWikiPHPUnitCommand::main();
