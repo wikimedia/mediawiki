@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class NewDBTest extends MediaWikiTestCase {
 
 	function setUp() {

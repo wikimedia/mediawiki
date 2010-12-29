@@ -60,21 +60,27 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
         $this->data = $data;
         $this->dataName = $dataName;
-		
+	}
+	
+	function run( PHPUnit_Framework_TestResult $result = NULL ) {
 		if( $this->needsDB() && !is_object( $this->dbClone ) ) {
 			$this->initDB();
 			$this->addCoreDBData();
 			$this->addDBData();
 		}
+		parent::run( $result );
 	}
-	
+
 	function __destruct() {
-		if( $this->needsDB() && is_object( $this->dbClone ) && $this->dbClone instanceof CloneDatabase ) {
+		if( is_object( $this->dbClone ) && $this->dbClone instanceof CloneDatabase ) {
 			$this->destroyDB();
 		}
 	}
 	
-	function needsDB() { return true; }
+	function needsDB() {
+		$rc = new ReflectionClass( $this );
+		return strpos( '@group Database', $rc->getDocComment() ) !== false;
+	}
 	
 	function addDBData() {}
 	

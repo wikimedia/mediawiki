@@ -2,6 +2,7 @@
 
 /**
  * These tests should work regardless of $wgCapitalLinks
+ * @group Database
  */
 
 class LocalFileTest extends MediaWikiTestCase {
