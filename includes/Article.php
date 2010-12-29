@@ -1478,7 +1478,7 @@ class Article {
 		$parserOptions->setIsPrintable( $wgOut->isPrintable() );
 
 		# Don't show section-edit links on old revisions... this way lies madness.
-		if ( !$this->isCurrent() || $wgOut->isPrintable() ) {
+		if ( !$this->isCurrent() || $wgOut->isPrintable() || !$this->mTitle->quickUserCan( 'edit' ) ) {
 			$parserOptions->setEditSection( false );
 		}
 
