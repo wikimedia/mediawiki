@@ -47,6 +47,10 @@ class ApiQueryPageProps extends ApiQueryBase {
 		
 		# Only operate on existing pages
 		$pages = $this->getPageSet()->getGoodTitles();
+		if ( !count( $pages ) ) {
+			# Nothing to do
+			return;
+		}
 		
 		$this->addTables( 'page_props' );
 		$this->addFields( array( 'pp_page', 'pp_propname', 'pp_value' ) );
