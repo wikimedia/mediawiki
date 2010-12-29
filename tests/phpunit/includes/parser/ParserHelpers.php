@@ -2,17 +2,28 @@
 
 class PHPUnitParserTest extends ParserTest {
 	function showTesting( $desc ) {
+		global $additionalMWCLIArgs;
+		if( $additionalMWCLIArgs['verbose'] ) parent::showTesting( $desc );
+		//var_dump($options);
 		/* Do nothing since we don't want to show info during PHPUnit testing. */
 	}
 
 	public function showSuccess( $desc ) {
-		PHPUnit_Framework_Assert::assertTrue( true, $desc );
+		global $additionalMWCLIArgs;
+		
+		if( $additionalMWCLIArgs['verbose'] ) parent::showSuccess( $desc );
 		return true;
 	}
 
 	public function showFailure( $desc, $expected, $got ) {
-		PHPUnit_Framework_Assert::assertEquals( $expected, $got, $desc );
+		global $additionalMWCLIArgs;
+		
+		if( $additionalMWCLIArgs['verbose'] ) parent::showFailure( $desc, $expected, $got );
 		return false;
+	}
+	
+	public function setupRecorder( $options ) {
+		$this->recorder = new PHPUnitTestRecorder( $this );
 	}
 }
 
