@@ -4,7 +4,7 @@
  * @group Database
  * @group Destructive
  */
-class ArticleTablesTest extends PHPUnit_Framework_TestCase {
+class ArticleTablesTest extends MediaWikiTestCase {
 	
 	function testbug14404() {
 		global $wgUser, $wgContLang, $wgLang;
@@ -16,7 +16,7 @@ class ArticleTablesTest extends PHPUnit_Framework_TestCase {
 		$wgContLang = Language::factory( 'es' );
 		
 		$wgLang = Language::factory( 'fr' );
-		$status = $article->doEdit( '{{:{{int:history}}}}', 'Test code for bug 14404', EDIT_NEW | EDIT_UPDATE );
+		$status = $article->doEdit( '{{:{{int:history}}}}', 'Test code for bug 14404', 0 );
 		$templates1 = $article->getUsedTemplates();
 
 		$wgLang = Language::factory( 'de' );		
