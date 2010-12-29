@@ -660,7 +660,8 @@ $1 is a filename, I think.',
 'nocookiesnew'               => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 'nocookieslogin'             => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'nocookiesfornew'            => "This message is displayed when the user tried to create a new account, but it failed the cross-site request forgery (CSRF) check. It could be blocking an attack, but most likely, the browser isn't  accepting cookies.",
-'nocookiesforlogin'          => "This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies). Defaults to nocookieslogin",
+'nocookiesforlogin'          => "{{optional}}
+This message is displayed when someone tried to login and the CSRF failed (most likely, the browser doesn't accept cookies). Defaults to nocookieslogin",
 'loginsuccesstitle'          => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
 'loginsuccess'               => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
 
@@ -1525,7 +1526,7 @@ See also
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}',
 'right-deletedhistory'        => '{{doc-right|deletedhistory}}',
-'right-deletedtext'           => '{{doc-right|deletedcontent}}',
+'right-deletedtext'           => '{{doc-right|deletedtext}}',
 'right-browsearchive'         => '{{doc-right|browsearchive}}',
 'right-undelete'              => '{{doc-right|undelete}}',
 'right-suppressrevision'      => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
@@ -1585,6 +1586,7 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 'right-sendemail'             => '{{doc-right}}',
 'right-revisionmove'          => '{{doc-right|revisionmove}}',
+'right-disableaccount'        => '{{doc-right|disableaccount}}',
 
 # User rights log
 'rightslog'      => 'In [[Special:Log]]',
@@ -2418,7 +2420,8 @@ Additionally available:
 * $4: timestamp of the revision reverted to,
 * $5: revid of the revision reverted from,
 * $6: timestamp of the revision reverted from',
-'revertpage-nouser' => 'This is a confirmation message a user sees after reverting.',
+'revertpage-nouser' => 'This is a confirmation message a user sees after reverting, when the username of the version is hidden with RevisionDelete.
+In other cases the message {{msg-mw|revertpage}} is used.',
 'rollback-success'  => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
 {{Identical|Revert}}
 {{Identical|Rollback}}',
@@ -3087,6 +3090,7 @@ For example of message in use see [[:File:Mouse10.gif]].',
 * $2 is a time (example: ''12:15'')",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '{{optional}}',
 'seconds-abbrev' => '{{optional}}',
 'minutes-abbrev' => '{{optional}}',
 'hours-abbrev'   => 'Abbreviation for "hours"',
@@ -3140,23 +3144,36 @@ Variant option for wikis with variants conversion enabled.',
 Variant option for wikis with variants conversion enabled.',
 
 # Variants for Serbian language
-'variantname-sr-ec' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-sr-el' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-sr'    => 'Varient Option for wikis with variants conversion enabled.',
+'variantname-sr-ec' => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-sr-el' => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-sr'    => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
 
 # Variants for Kazakh language
-'variantname-kk-kz'   => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-kk-tr'   => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-kk-cn'   => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-kk-cyrl' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-kk-latn' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-kk-arab' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-kk'      => 'Varient Option for wikis with variants conversion enabled.',
+'variantname-kk-kz'   => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-kk-tr'   => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-kk-cn'   => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-kk-cyrl' => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-kk-latn' => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-kk-arab' => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-kk'      => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
 
 # Variants for Kurdish language
-'variantname-ku-arab' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-ku-latn' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-ku'      => 'Varient Option for wikis with variants conversion enabled.',
+'variantname-ku-arab' => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-ku-latn' => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
+'variantname-ku'      => '{{optional}}
+Varient Option for wikis with variants conversion enabled.',
 
 # Variants for Tajiki language
 'variantname-tg-cyrl' => '{{optional}}',
@@ -3250,7 +3267,8 @@ This tag shows the detail of the fraction of a second (1/100s) at which the file
 'exif-fnumber'                     => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 The [http://en.wikipedia.org/wiki/F_number F number] is the relative aperture of the camera.',
-'exif-fnumber-format'              => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-fnumber-format'              => "{{optional}}
+Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 *$1 is a number
 *f is the abbreviation used in English for 'f-number'.",
@@ -3286,7 +3304,8 @@ See this [http://en.wikipedia.org/wiki/Flash_(photography) Wikipedia article] fo
 'exif-focallength'                 => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 See this [http://en.wikipedia.org/wiki/Focal_length_(photography) Wikipedia article] for an explanation of the term.',
-'exif-focallength-format'          => "Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+'exif-focallength-format'          => "{{optional}}
+Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
 
 *$1 is a number
 *mm is the abbreviation used in English for the unit of measurement of length 'millimetre'.",
@@ -3332,6 +3351,7 @@ See also Wikipedia on [http://en.wikipedia.org/wiki/Focal_length#In_photography 
 'exif-compression-6' => '{{optional}}',
 
 'exif-photometricinterpretation-2' => '{{optional}}',
+'exif-photometricinterpretation-6' => '{{optional}}',
 
 'exif-orientation-1' => '{{Identical|Normal}}
 0th row: top; 0th column: left',
@@ -3350,6 +3370,9 @@ CW is an abbreviation for clockwise',
 'exif-orientation-8' => '0th row: left; 0th column: bottom
 
 CCW is an abbreviation for counter-clockwise.',
+
+'exif-colorspace-1'      => '{{optional}}',
+'exif-colorspace-ffff.h' => '{{optional}}',
 
 'exif-componentsconfiguration-1' => '{{optional}}',
 'exif-componentsconfiguration-2' => '{{optional}}',
@@ -3374,6 +3397,7 @@ CCW is an abbreviation for counter-clockwise.',
 
 'exif-lightsource-0'  => '{{Identical|Unknown}}',
 'exif-lightsource-4'  => '{{Identical|Flash}}',
+'exif-lightsource-20' => '{{optional}}',
 'exif-lightsource-21' => '{{optional}}',
 'exif-lightsource-22' => '{{optional}}',
 'exif-lightsource-23' => '{{optional}}',
@@ -3555,10 +3579,14 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 'autosumm-new'     => 'The auto summary when creating a new page. $1 are the first X number of characters of the new page.',
 
 # Size units
-'size-bytes'     => 'Size (of a page, typically) in bytes.',
-'size-kilobytes' => 'Size (of a page, typically) in kibibytes (1 kibibyte = 1024 bytes).',
-'size-megabytes' => 'Size (of a file, typically) in mebibytes (1 mebibyte = 1024×1024 bytes).',
-'size-gigabytes' => 'Size (of a file, typically) in gibibytes (1 gibibyte = 1024×1024×1024 bytes).',
+'size-bytes'     => '{{optional}}
+Size (of a page, typically) in bytes.',
+'size-kilobytes' => '{{optional}}
+Size (of a page, typically) in kibibytes (1 kibibyte = 1024 bytes).',
+'size-megabytes' => '{{optional}}
+Size (of a file, typically) in mebibytes (1 mebibyte = 1024×1024 bytes).',
+'size-gigabytes' => '{{optional}}
+Size (of a file, typically) in gibibytes (1 gibibyte = 1024×1024×1024 bytes).',
 
 # Live preview
 'livepreview-loading' => '{{Identical|Loading}}',
@@ -3593,62 +3621,114 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 {{Identical|Edit raw watchlist}}',
 
 # Iranian month names
-'iranian-calendar-m1'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m2'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m3'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m4'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m5'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m6'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m7'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m8'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m9'  => 'Name of month in Iranian calender.',
-'iranian-calendar-m10' => 'Name of month in Iranian calender.',
-'iranian-calendar-m11' => 'Name of month in Iranian calender.',
-'iranian-calendar-m12' => 'Name of month in Iranian calender.',
+'iranian-calendar-m1'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m2'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m3'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m4'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m5'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m6'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m7'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m8'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m9'  => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m10' => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m11' => '{{optional}}
+Name of month in Iranian calender.',
+'iranian-calendar-m12' => '{{optional}}
+Name of month in Iranian calender.',
 
 # Hijri month names
-'hijri-calendar-m1'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m2'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m3'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m4'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m5'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m6'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m7'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m8'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m9'  => 'Name of month in Islamic calender.',
-'hijri-calendar-m10' => 'Name of month in Islamic calender.',
-'hijri-calendar-m11' => 'Name of month in Islamic calender.',
-'hijri-calendar-m12' => 'Name of month in Islamic calender.',
+'hijri-calendar-m1'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m2'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m3'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m4'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m5'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m6'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m7'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m8'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m9'  => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m10' => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m11' => '{{optional}}
+Name of month in Islamic calender.',
+'hijri-calendar-m12' => '{{optional}}
+Name of month in Islamic calender.',
 
 # Hebrew month names
-'hebrew-calendar-m1'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m2'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m3'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m4'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m5'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m6'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m6a'     => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m6b'     => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m7'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m8'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m9'      => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m10'     => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m11'     => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m12'     => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m1-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m2-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m3-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m4-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m5-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m6-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m6a-gen' => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m6b-gen' => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m7-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m8-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m9-gen'  => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m10-gen' => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m11-gen' => 'Name of month in Hebrew calender.',
-'hebrew-calendar-m12-gen' => 'Name of month in Hebrew calender.',
+'hebrew-calendar-m1'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m2'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m3'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m4'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m5'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m6'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m6a'     => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m6b'     => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m7'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m8'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m9'      => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m10'     => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m11'     => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m12'     => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m1-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m2-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m3-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m4-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m5-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m6-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m6a-gen' => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m6b-gen' => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m7-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m8-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m9-gen'  => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m10-gen' => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m11-gen' => '{{optional}}
+Name of month in Hebrew calender.',
+'hebrew-calendar-m12-gen' => '{{optional}}
+Name of month in Hebrew calender.',
 
 # Signatures
 'timezone-utc' => '{{optional}}',

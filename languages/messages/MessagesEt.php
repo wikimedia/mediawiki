@@ -685,7 +685,7 @@ Sinu konto on loodud.
 'userloginnocreate'          => 'Sisselogimine',
 'logout'                     => 'Logi välja',
 'userlogout'                 => 'Logi välja',
-'notloggedin'                => 'Te pole sisse loginud',
+'notloggedin'                => 'Sisse logimata',
 'nologin'                    => "Sul pole kontot? '''$1'''.",
 'nologinlink'                => 'Registreeru siin',
 'createaccount'              => 'Loo uus konto',
@@ -1278,7 +1278,7 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'preferences'                   => 'Eelistused',
 'mypreferences'                 => 'Eelistused',
 'prefs-edits'                   => 'Redigeerimiste arv:',
-'prefsnologin'                  => 'Te ei ole sisse loginud',
+'prefsnologin'                  => 'Sisse logimata',
 'prefsnologintext'              => 'Oma eelistuste määramiseks pead olema <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sisse logitud]</span>.',
 'changepassword'                => 'Muuda parool',
 'prefs-skin'                    => 'Kujundus',
@@ -1648,8 +1648,7 @@ Eelistatud {{PLURAL:\$3|failitüüp on|failitüübid on}} \$2.",
 'emptyfile'                   => 'Fail, mille Te üles laadisite, paistab olevat tühi.
 See võib olla tingitud vigasest failinimest.
 Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
-'fileexists'                  => "Sellise nimega fail on juba olemas.
-Palun kontrollige '''<tt>[[:$1]]</tt>''', kui te ei ole kindel, kas tahate seda muuta.
+'fileexists'                  => "Sellise nimega fail on juba olemas. Palun vaata lehekülge '''<tt>[[:$1]]</tt>''', kui sa pole kindel, kas soovid seda muuta.
 [[$1|thumb]]",
 'filepageexists'              => "Selle faili kirjelduslehekülg '''<tt>[[:$1]]</tt>''' on juba loodud, aga selle nimega faili hetkel pole.
 Sinu sisestatud kokkuvõtet ei kuvata kirjeldusleheküljel.
@@ -2275,7 +2274,7 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'protect-expiring'            => 'aegub $1 (UTC)',
 'protect-expiry-indefinite'   => 'määramatu',
 'protect-cascade'             => 'Kaitse lehekülgi, mis on lülitatud käesoleva lehekülje koosseisu (kaskaadkaitse)',
-'protect-cantedit'            => 'Te ei saa muuta selle lehekülje kaitstuse taset, sest Teile pole selleks luba antud.',
+'protect-cantedit'            => 'Sa ei saa lehekülje kaitsetaset muuta, sest sul puudub lehekülje redigeerimise õigus.',
 'protect-othertime'           => 'Muu aeg:',
 'protect-othertime-op'        => 'muu aeg',
 'protect-existing-expiry'     => 'Kehtiv aegumisaeg: $2 kell $3',
@@ -2575,7 +2574,7 @@ enne jätkamist teadvusta palun tagajärgi.",
 Neil juhtudel saad lehekülje soovi korral käsitsi teisaldada või liita.",
 'movearticle'                  => 'Teisalda lehekülg',
 'moveuserpage-warning'         => "'''Hoiatus:''' Oled teisaldamas kasutajalehekülge. Pane tähele, et teisaldatakse ainult lehekülg ja kasutajat '''ei''' nimetata ümber.",
-'movenologin'                  => 'Te ei ole sisse loginud',
+'movenologin'                  => 'Sisse logimata',
 'movenologintext'              => 'Lehekülje teisaldamiseks pead registreeruma ja [[Special:UserLogin|sisse logima]].',
 'movenotallowed'               => 'Sul ei ole lehekülgede teisaldamise õigust.',
 'movenotallowedfile'           => 'Sul ei ole failide teisaldamise õigust.',

@@ -124,7 +124,7 @@ $messages = array(
 'tog-editsection'             => 'Dälön redakami dilädas me yüms: [redakön]',
 'tog-editsectiononrightclick' => 'Dälön redakami diläda me klik mugaknopa detik su dilädatiäds (JavaScript)',
 'tog-showtoc'                 => 'Jonön ninädalisedi (su pads labü diläds plu 3)',
-'tog-rememberpassword'        => 'Dakipolös nunädamanünis obik in nünöm at (muiko {{PLURAL:$1|del|dels}} $1)',
+'tog-rememberpassword'        => 'Dakipolös nunädamanünis obik in bevüresodatävöm at (muiko {{PLURAL:$1|del|dels}} $1)',
 'tog-watchcreations'          => 'Läükön padis fa ob pejafölis lä galädalised obik',
 'tog-watchdefault'            => 'Läükön padis fa ob peredakölis la galädalised obik',
 'tog-watchmoves'              => 'Läükön padis fa ob petopätükölis lä galädalised obik',
@@ -2804,6 +2804,7 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 'version'                   => 'Fomam',
 'version-extensions'        => 'Veitükumams pestitöl',
 'version-specialpages'      => 'Pads patik',
+'version-skins'             => 'Fomäts',
 'version-other'             => 'Votik',
 'version-hooks'             => 'Huköms',
 'version-hook-name'         => 'Hukömanem',
@@ -2866,6 +2867,8 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'comparepages'   => 'Leigodön padis',
 'compare-page1'  => 'Pad 1',
 'compare-page2'  => 'Pad 2',
+'compare-rev1'   => 'Revid 1',
+'compare-rev2'   => 'Revid 2',
 'compare-submit' => 'Leigodolöd',
 
 # Database error messages
@@ -2879,5 +2882,10 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'htmlform-submit'              => 'Sedön',
 'htmlform-reset'               => 'Sädunön votükamis',
 'htmlform-selectorother-other' => 'Votik',
+
+# Special:DisableAccount
+'disableaccount-user'       => 'Gebananem:',
+'disableaccount-reason'     => 'Kod:',
+'disableaccount-nosuchuser' => 'Gebanakal: "$1" no dabinon.',
 
 );
