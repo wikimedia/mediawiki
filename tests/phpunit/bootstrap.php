@@ -43,7 +43,7 @@ $wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
 /* Classes */
 
 abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
-	protected $suite;
+	public $suite;
 	public $regex = '';
 	public $runDisabled = false;
 	
@@ -53,11 +53,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $oldTablePrefix;
 	protected $useTemporaryTables = true;
 
-	function __construct( PHPUnit_Framework_TestSuite $suite = null ) {
-		if ( null !== $suite ) {
-			$this->suite = $suite;
-		}
-		parent::__construct();
+	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
+        if ($name !== null) {
+            $this->setName($name);
+        }
+
+        $this->data = $data;
+        $this->dataName = $dataName;
 		
 		if( $this->needsDB() && !is_object( $this->dbClone ) ) {
 			$this->initDB();
@@ -80,6 +82,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		
 		//Make sysop user
 		$user = User::newFromName( 'UTSysop' );
+		
 		if ( $user->idForName() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTSysopPassword' );
@@ -140,7 +143,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		if ( $dbType == 'oracle' ) {
 			# Insert 0 user to prevent FK violations
-
+			
 			# Anonymous user
 			$this->db->insert( 'user', array(
 				'user_id'         => 0,
@@ -149,7 +152,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		
 	}
 	
-	private function destroyDB() {
+	protected function destroyDB() {
 		if ( !self::$databaseSetupDone ) {
 			return;
 		}

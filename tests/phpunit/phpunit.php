@@ -14,6 +14,8 @@ $IP = dirname( dirname( dirname( __FILE__ ) ) );
 // Set a flag which can be used to detect when other scripts have been entered through this entry point or not
 define( 'MW_PHPUNIT_TEST', true );
 
+$options = array( 'quiet' );
+
 // Start up MediaWiki in command-line mode
 require_once( "$IP/maintenance/commandLine.inc" );
 
@@ -28,4 +30,11 @@ if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
 	# Keep the old pre PHPUnit 3.5.0 behaviour for compatibility
 	require_once( 'PHPUnit/TextUI/Command.php' );
 }
-PHPUnit_TextUI_Command::main();
+
+$additionalMWCLIArgs = array(
+	'verbose' => false,
+);
+
+require_once( "$IP/tests/phpunit/MediaWikiPHPUnitCommand.php" );
+MediaWikiPHPUnitCommand::main();
+
