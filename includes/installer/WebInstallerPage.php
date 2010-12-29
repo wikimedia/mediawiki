@@ -218,7 +218,6 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 				$this->endForm( 'continue' );
 				return 'output';
 			}
-			//return $this->handleExistingUpgrade( $vars );
 		}
 
 		// If there is no $wgUpgradeKey, tell the user to add one to LocalSettings.php
