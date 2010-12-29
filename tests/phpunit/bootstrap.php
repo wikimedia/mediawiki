@@ -79,7 +79,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	
 	function needsDB() {
 		$rc = new ReflectionClass( $this );
-		return strpos( '@group Database', $rc->getDocComment() ) !== false;
+		return strpos( $rc->getDocComment(), '@group Database' ) !== false;
 	}
 	
 	function addDBData() {}
