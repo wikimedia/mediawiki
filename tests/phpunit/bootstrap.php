@@ -29,12 +29,13 @@ EOF;
 }
 
 global $wgLocalisationCacheConf, $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
-global $wgMessageCache, $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry;
+global $wgMessageCache, $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgMemc;
 $wgLocalisationCacheConf['storeClass'] =  'LCStore_Null';
 $wgMainCacheType = CACHE_NONE;
 $wgMessageCacheType = CACHE_NONE;
 $wgParserCacheType = CACHE_NONE;
 $wgUseDatabaseMessages = false; # Set for future resets
+$wgMemc = new FakeMemCachedClient;
 
 # The message cache was already created in Setup.php
 $wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
