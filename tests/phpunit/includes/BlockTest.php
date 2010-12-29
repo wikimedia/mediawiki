@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class BlockTest extends MediaWikiTestCase {
 	
 	private $block, $madeAt;
