@@ -2,22 +2,20 @@
 
 class PHPUnitParserTest extends ParserTest {
 	function showTesting( $desc ) {
-		global $additionalMWCLIArgs;
-		if( $additionalMWCLIArgs['verbose'] ) parent::showTesting( $desc );
+		if( MediaWikiPHPUnitCommand::$additionalArgs['verbose'] ) parent::showTesting( $desc );
 		/* Do nothing since we don't want to show info during PHPUnit testing. */
 	}
 
 	public function showSuccess( $desc ) {
 		global $additionalMWCLIArgs;
 		PHPUnit_Framework_Assert::assertTrue( true, $desc );
-		if( $additionalMWCLIArgs['verbose'] ) parent::showSuccess( $desc );
+		if( MediaWikiPHPUnitCommand::$additionalArgs['verbose'] ) parent::showSuccess( $desc );
 		return true;
 	}
 
 	public function showFailure( $desc, $expected, $got ) {
-		global $additionalMWCLIArgs;
 		PHPUnit_Framework_Assert::assertEquals( $expected, $got, $desc );
-		if( $additionalMWCLIArgs['verbose'] ) parent::showFailure( $desc, $expected, $got );
+		if( MediaWikiPHPUnitCommand::$additionalArgs['verbose'] ) parent::showFailure( $desc, $expected, $got );
 		return false;
 	}
 	

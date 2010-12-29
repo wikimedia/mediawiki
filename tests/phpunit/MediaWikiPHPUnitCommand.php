@@ -1,6 +1,7 @@
 <?php
 
 class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
+	static $additionalArgs = array( 'verbose' => false );
 
 	public function __construct() {
 		$this->longOptions['verbose'] = 'verboseHandler';
@@ -12,8 +13,7 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
     }
 
 	protected function verboseHandler($value) {
-		global $additionalMWCLIArgs;
-		$additionalMWCLIArgs['verbose'] = true;
+		self::$additionalArgs['verbose'] = true;
 	}
 
 }
