@@ -68,8 +68,8 @@
 			<!-- Behavior when $wgCapitalLinks = false -->
 			<enumeration value="case-sensitive" />
 			
-			<!-- Cannot have two titles differing only by case. -->
-			<!-- Not yet implemented as of MediaWiki 1.5 -->
+			<!-- Cannot have non-case senstitive titles eg [[FOO]] == [[Foo]] -->
+			<!-- Not yet implemented as of MediaWiki 1.18 -->
 			<enumeration value="case-insensitive" />
 		</restriction>
 	</simpleType>
@@ -91,7 +91,6 @@
 		<simpleContent>
 			<extension base="string">
 				<attribute name="key" type="integer" />
-				<attribute name="case" type="mw:CaseType" />
 			</extension>
 		</simpleContent>
 	</complexType>
