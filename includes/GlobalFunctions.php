@@ -1948,7 +1948,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	$da = array();
 	$strtime = '';
 
-	if ( $ts == 0 ) { // This intentionally catches $ts === '' too, so DON'T change this to ===
+	if ( $ts == 0 ) { // This intentionally catches $ts === '' and $ts === null too, so DON'T change this to ===
 		$uts = time();
 		$strtime = "@$uts";
 	} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/D', $ts, $da ) ) {
