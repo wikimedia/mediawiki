@@ -14,13 +14,17 @@ $IP = dirname( dirname( dirname( __FILE__ ) ) );
 // Set a flag which can be used to detect when other scripts have been entered through this entry point or not
 define( 'MW_PHPUNIT_TEST', true );
 
-$options = array( 'quiet' );
-
 // Start up MediaWiki in command-line mode
 require_once( "$IP/maintenance/commandLine.inc" );
 
 // Assume UTC for testing purposes
 $wgLocaltimezone = 'UTC';
+
+if( !in_array( '--configuration', $_SERVER['argv'] ) ) {
+	//Hack to eliminate the need to use the Makefile (which sucks ATM)
+	$_SERVER['argv'][] = '--configuration';
+	$_SERVER['argv'][] = $IP . '/tests/phpunit/suite.xml';
+}
 
 require_once( 'PHPUnit/Runner/Version.php' );
 if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
