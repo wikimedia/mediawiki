@@ -324,44 +324,44 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendUserGroups( $property, $numberInGroup ) {
 		global $wgGroupPermissions, $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
-		
+
 		$data = array();
 		foreach ( $wgGroupPermissions as $group => $permissions ) {
 			$arr = array(
 				'name' => $group,
 				'rights' => array_keys( $permissions, true ),
 			);
-			
+
 			if ( $numberInGroup ) {
 				global $wgAutopromote;
-			
+
 				if ( $group == 'user' ) {
 					$arr['number'] = SiteStats::users();
-					
+
 				// '*' and autopromote groups have no size
 				} elseif ( $group !== '*' && !isset( $wgAutopromote[$group] ) ) {
 					$arr['number'] = SiteStats::numberInGroup( $group );
 				}
 			}
-			
+
 			$groupArr = array(
 				'add' => $wgAddGroups,
 				'remove' => $wgRemoveGroups,
 				'add-self' => $wgGroupsAddToSelf,
 				'remove-self' => $wgGroupsRemoveFromSelf
 			);
-			
-			foreach( $groupArr as $type => $rights ) {
-				if( isset( $rights[$group] ) ) {
+
+			foreach ( $groupArr as $type => $rights ) {
+				if ( isset( $rights[$group] ) ) {
 					$arr[$type] = $rights[$group];
 					$this->getResult()->setIndexedTagName( $arr[$type], 'group' );
 				}
 			}
-			
+
 			$this->getResult()->setIndexedTagName( $arr['rights'], 'permission' );
 			$data[] = $arr;
 		}
-		
+
 		$this->getResult()->setIndexedTagName( $data, 'group' );
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}

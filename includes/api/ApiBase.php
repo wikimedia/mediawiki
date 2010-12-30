@@ -373,7 +373,7 @@ abstract class ApiBase {
 							$isArray = is_array( $paramSettings[self::PARAM_TYPE] );
 
 							if ( !$isArray
-									|| $isArray && count( $paramSettings[self::PARAM_TYPE] ) > self::LIMIT_SML1) {
+									|| $isArray && count( $paramSettings[self::PARAM_TYPE] ) > self::LIMIT_SML1 ) {
 								$desc .= $paramPrefix . "Maximum number of values " .
 									self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
 							}

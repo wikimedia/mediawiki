@@ -285,7 +285,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				if ( $this->fld_userid ) {
 					$vals['userid'] = $row->user_id;
 				}
-				
+
 				if ( !$row->log_user ) {
 					$vals['anon'] = '';
 				}
