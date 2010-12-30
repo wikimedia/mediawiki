@@ -661,7 +661,7 @@ window.mediaWiki = new ( function( $ ) {
 			}
 			// Execute script
 			try {
-				registry[module].script();
+				registry[module].script( jQuery, mediaWiki );
 				registry[module].state = 'ready';
 				// Run jobs who's dependencies have just been met
 				for ( var j = 0; j < jobs.length; j++ ) {

@@ -533,7 +533,7 @@ class ResourceLoader {
 			'mediaWiki.loader.implement', 
 			array(
 				$name,
-				new XmlJsCode( "function() {{$scripts}}" ),
+				new XmlJsCode( "function( $, mw ) {{$scripts}}" ),
 				(object)$styles,
 				(object)$messages
 			) );
