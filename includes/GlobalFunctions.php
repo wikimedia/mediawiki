@@ -1948,7 +1948,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	$da = array();
 	$strtime = '';
 
-	if ( $ts == 0 ) { // This intentionally catches $ts === '' and $ts === null too, so DON'T change this to ===
+	if ( !$ts ) { // We want to catch 0, '', null... but not date strings starting with a letter.
 		$uts = time();
 		$strtime = "@$uts";
 	} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/D', $ts, $da ) ) {
@@ -1988,7 +1988,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 		# asctime
 		$strtime = $ts;
 	} else {
-		# Bogus value; fall back to the epoch...
+		# Bogus value...
 		wfDebug("wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n");
 
 		return false;

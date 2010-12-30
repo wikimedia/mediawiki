@@ -348,6 +348,27 @@ class GlobalTest extends MediaWikiTestCase {
 
 	}
 
+	function testTimestampParameter() {
+		// There are a number of assumptions in our codebase where wfTimestamp() should give 
+		// the current date but it is not given a 0 there. See r71751 CR
+
+		$now = wfTimestamp( TS_UNIX );
+		// We check that wfTimestamp doesn't return false (error) and use a LessThan assert 
+		// for the cases where the test is run in a second boundary.
+		
+		$zero = wfTimestamp( TS_UNIX, 0 );
+		$this->assertNotEquals( false, $zero );
+		$this->assertLessThan( 5, $zero - $now );
+
+		$empty = wfTimestamp( TS_UNIX, '' );
+		$this->assertNotEquals( false, $empty );
+		$this->assertLessThan( 5, $empty - $now );
+
+		$null = wfTimestamp( TS_UNIX, null );
+		$this->assertNotEquals( false, $null );
+		$this->assertLessThan( 5, $null - $now );
+	}
+
 	function testBasename() {
 		$sets = array(
 			'' => '',
