@@ -33,7 +33,7 @@
  * Version        : MediaWiki 1.18alpha
 */
 
-require_once (dirname(__FILE__).'/'.'MediaWikiInstallationCommonFunction.php');
+require_once ( dirname( __FILE__ ) . '/MediaWikiInstallationCommonFunction.php' );
 
 class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction {
 

@@ -27,9 +27,9 @@
  */
 
 require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
-require_once (dirname(__FILE__).'/' .'MediaWikiInstallationConfig.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiInstallationMessage.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiInstallationVariables.php');
+require_once ( dirname( __FILE__ ) . '/MediaWikiInstallationConfig.php' );
+require_once ( dirname(__FILE__) . '/MediaWikiInstallationMessage.php' );
+require_once ( dirname(__FILE__) . '/MediaWikiInstallationVariables.php');
 
 
 class MediaWikiInstallationCommonFunction extends PHPUnit_Extensions_SeleniumTestCase {

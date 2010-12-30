@@ -30,19 +30,19 @@
 require_once 'PHPUnit/Framework.php';
 require_once 'PHPUnit/Framework/TestSuite.php';
 
-require_once (dirname(__FILE__).'/' .'MediaWikiUserInterfaceTestCase.php');
-require_once (dirname(__FILE__).'/'.'MediaWikiButtonsAvailabilityTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiHelpFieldHintTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiRightFrameworkLinksTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiRestartInstallationTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiErrorsConnectToDatabasePageTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiErrorsNamepageTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiMySQLDataBaseTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiMySQLiteDataBaseTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiUpgradeExistingDatabaseTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiDifferntDatabasePrefixTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiDifferentDatabaseAccountTestCase.php');
-require_once (dirname(__FILE__).'/' .'MediaWikiOnAlreadyInstalledTestCase.php');
+require_once ( dirname( __FILE__ ) . '/MediaWikiUserInterfaceTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiButtonsAvailabilityTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiHelpFieldHintTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiRightFrameworkLinksTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiRestartInstallationTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiErrorsConnectToDatabasePageTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiErrorsNamepageTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiMySQLDataBaseTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiMySQLiteDataBaseTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiUpgradeExistingDatabaseTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiDifferntDatabasePrefixTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiDifferentDatabaseAccountTestCase.php' );
+require_once ( dirname( __FILE__ ) . '/MediaWikiOnAlreadyInstalledTestCase.php' );
 
 
 

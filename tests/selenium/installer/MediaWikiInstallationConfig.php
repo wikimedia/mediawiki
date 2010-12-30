@@ -36,7 +36,7 @@
 */
 define('DB_NAME_PREFIX', "database_name" );
 define('DIRECTORY_NAME', "mediawiki" );
-define ('PORT', "8080" );
+define( 'PORT', "8080" );
 define( 'HOST_NAME', "localhost" );
 
 /*
