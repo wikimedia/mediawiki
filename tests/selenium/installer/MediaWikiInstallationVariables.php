@@ -31,6 +31,9 @@
 // Common variables
 define('PAGE_LOAD_TIME', "80000" );
 
+// Common links
+define( 'LINK_FORM', "//div[@id='bodyContent']/div/div/div[2]/form/" );
+define( 'LINK_RIGHT_FRAMEWORK', "//div[@id='bodyContent']/div/div/div[1]/ul[1]/");
 
 // 'Name' page input values
 define( 'NAME_OF_WIKI', "Site Name" );
