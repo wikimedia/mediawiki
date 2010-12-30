@@ -27,6 +27,8 @@
  *
  */
 
+require_once dirname( dirname( __FILE__ ) ) . '/SeleniumTestConstants.php';
+
 class MyContributionsTestCase extends SeleniumTestCase {
 
     // Verify user contributions
