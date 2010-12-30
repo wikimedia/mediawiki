@@ -14,8 +14,8 @@ window.checkTimezone = function( tz, msg ) {
 };
 
 window.timezoneSetup = function() {
-	var tzSelect = document.getElementById( 'mw-input-timecorrection' );
-	var tzTextbox = document.getElementById( 'mw-input-timecorrection-other' );
+	var tzSelect = document.getElementById( 'mw-input-wptimecorrection' );
+	var tzTextbox = document.getElementById( 'mw-input-wptimecorrection-other' );
 
 	if ( tzSelect && tzTextbox ) {
 		addHandler( tzSelect, 'change', function( e ) { updateTimezoneSelection( false ); } );
@@ -40,8 +40,8 @@ window.fetchTimezone = function() {
 };
 
 window.guessTimezone = function() {
-	var textbox = document.getElementById( 'mw-input-timecorrection-other' );
-	var selector = document.getElementById( 'mw-input-timecorrection' );
+	var textbox = document.getElementById( 'mw-input-wptimecorrection-other' );
+	var selector = document.getElementById( 'mw-input-wptimecorrection' );
 
 	selector.value = 'other';
 	textbox.value = fetchTimezone();
@@ -50,13 +50,13 @@ window.guessTimezone = function() {
 };
 
 window.updateTimezoneSelection = function( force_offset ) {
-	var selector = document.getElementById( 'mw-input-timecorrection' );
+	var selector = document.getElementById( 'mw-input-wptimecorrection' );
 
 	if ( selector.value == 'guess' ) {
 		return guessTimezone();
 	}
 
-	var textbox = document.getElementById( 'mw-input-timecorrection-other' );
+	var textbox = document.getElementById( 'mw-input-wptimecorrection-other' );
 	var localtimeHolder = document.getElementById( 'wpLocalTime' );
 	var servertime = document.getElementsByName( 'wpServerTime' )[0].value;
 	var minDiff = 0;
