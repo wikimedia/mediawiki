@@ -808,7 +808,7 @@ class DatabaseOracle extends DatabaseBase {
 	# Returns the size of a text field, or -1 for "unlimited"
 	function textFieldSize( $table, $field ) {
 		$fieldInfoData = $this->fieldInfo( $table, $field);
-		if ( $fieldInfoData->type == 'varchar' ) {
+		if ( $fieldInfoData->type() == 'varchar' ) {
 			$size = $row->size - 4;
 		} else {
 			$size = $row->size;
@@ -928,6 +928,7 @@ class DatabaseOracle extends DatabaseBase {
 	 *
 	 * @param $table Array
 	 * @param $field String
+	 * @return ORAField
 	 */
 	private function fieldInfoMulti( $table, $field ) {
 		$field = strtoupper( $field );
@@ -975,6 +976,12 @@ class DatabaseOracle extends DatabaseBase {
 		return $fieldInfoTemp;
 	}
 
+	/**
+	 * @throws DBUnexpectedError
+	 * @param  $table
+	 * @param  $field
+	 * @return ORAField
+	 */
 	function fieldInfo( $table, $field ) {
 		if ( is_array( $table ) ) {
 			throw new DBUnexpectedError( $this, 'DatabaseOracle::fieldInfo called with table array!' );
