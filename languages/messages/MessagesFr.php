@@ -1941,7 +1941,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'mimesearch-summary' => "Cette page vous permet de lister les fichiers accessibles par ce wiki en fonction de leur type de contenu MIME.
 Entrée : ''typedecontenu''/''sous-type'', par exemple <tt>image/jpeg</tt>.",
 'mimetype'           => 'Type MIME :',
-'download'           => 'Télécharger',
+'download'           => 'télécharger',
 
 # Unwatched pages
 'unwatchedpages' => 'Pages ne faisant partie d’aucune liste de suivi',
@@ -2290,7 +2290,7 @@ Retour et assistance :
 'confirmdeletetext'      => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'         => 'Action effectuée',
 'actionfailed'           => 'L’action a échoué',
-'deletedtext'            => '« <nowiki>$1</nowiki> » a été supprimé.
+'deletedtext'            => '« <nowiki>$1</nowiki> » a été supprimée.
 Voir $2 pour une liste des suppressions récentes.',
 'deletedarticle'         => 'a supprimé « [[$1]] »',
 'suppressedarticle'      => 'a supprimé « [[$1]] »',
@@ -2701,12 +2701,12 @@ Veuillez en choisir un autre.',
 'movenosubpage'                => 'Cette page n’a aucune sous-page.',
 'movereason'                   => 'Motif :',
 'revertmove'                   => 'rétablir',
-'delete_and_move'              => 'Supprimer et déplacer',
-'delete_and_move_text'         => '== Suppression nécessaire ==
+'delete_and_move'              => 'Supprimer et renommer',
+'delete_and_move_text'         => '== Suppression requise ==
 La page de destination « [[:$1]] » existe déjà.
-Êtes-vous certain de vouloir la supprimer pour permettre ce déplacement ?',
+Êtes-vous certain{{GENDER:||e|}} de vouloir la supprimer pour permettre ce renommage ?',
 'delete_and_move_confirm'      => 'Oui, supprimer la page de destination',
-'delete_and_move_reason'       => 'Page supprimée pour permettre un déplacement',
+'delete_and_move_reason'       => 'Page supprimée pour permettre le renommage',
 'selfmove'                     => 'Les titres d’origine et de destination sont les mêmes ;
 impossible de renommer une page sur elle-même.',
 'immobile-source-namespace'    => 'Vous ne pouvez pas renommer les pages dans l’espace de noms « $1 »',
@@ -3003,7 +3003,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'log-show-hide-patrol' => '$1 l’historique des versions patrouillées',
 
 # Image deletion
-'deletedrevision'                 => 'Suppression de l’ancienne version $1',
+'deletedrevision'                 => 'Ancienne version $1 supprimée',
 'filedeleteerror-short'           => 'Erreur lors de la suppression du fichier : $1',
 'filedeleteerror-long'            => 'Des erreurs ont été rencontrées lors de la suppression du fichier :
 
@@ -3422,7 +3422,7 @@ $1',
 'trackbackdeleteok' => 'Le rétrolien a été supprimé avec succès.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Attention''' : cette page a été supprimée après que vous ayez commencé à la modifier !",
+'deletedwhileediting' => "'''Attention''' : cette page a été supprimée après que vous avez commencé à la modifier !",
 'confirmrecreate'     => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer, pour le motif suivant :
 : ''$2''
 Veuillez confirmer que vous désirez réellement recréer cette page.",

@@ -528,6 +528,7 @@ $1',
 'toc'                     => 'Indice',
 'showtoc'                 => 'mostra',
 'hidetoc'                 => 'nascondi',
+'collapsible-expand'      => 'Espandi',
 'thisisdeleted'           => 'Vedi o ripristina $1?',
 'viewdeleted'             => 'Vedi $1?',
 'restorelink'             => '{{PLURAL:$1|una modifica cancellata|$1 modifiche cancellate}}',
@@ -685,6 +686,7 @@ Scegliere un nome utente diverso.',
 'wrongpasswordempty'         => 'Non è stata inserita alcuna password. Riprovare.',
 'passwordtooshort'           => 'Le password devono contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.',
 'password-name-match'        => 'La password deve essere diversa dal nome utente.',
+'password-login-forbidden'   => "L'uso di questo nome utente e password è stato proibito.",
 'mailmypassword'             => 'Invia una nuova password al mio indirizzo e-mail',
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
@@ -1666,6 +1668,7 @@ $1',
 'upload-http-error'         => 'Si è verificato un errore HTTP: $1',
 
 # Special:UploadStash
+'uploadstash-summary' => "Questa pagina consente l'accesso ai file che sono stati caricati (o sono in fase di caricamento) ma che non sono stati ancora pubblicati sul wiki. Questi file sono visibili solo all'utente che li ha caricati.",
 'uploadstash-refresh' => "Aggiorna l'elenco dei file",
 
 # img_auth script messages
@@ -1923,6 +1926,7 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 'pager-newer-n'           => '{{PLURAL:$1|1 più recente|$1 più recenti}}',
 'pager-older-n'           => '{{PLURAL:$1|1 meno recente|$1 meno recenti}}',
 'suppress'                => 'Oversight',
+'querypage-disabled'      => 'Questa pagina speciale è disattivata per motivi di prestazioni.',
 
 # Book sources
 'booksources'               => 'Fonti librarie',

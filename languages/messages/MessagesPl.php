@@ -10,6 +10,7 @@
  * @author Beau
  * @author Derbeth
  * @author Equadus
+ * @author Fizykaa
  * @author Herr Kriss
  * @author Holek
  * @author Jwitos
@@ -686,6 +687,7 @@ Sprawdź poprawność pisowni.',
 'wrongpasswordempty'         => 'Wprowadzone hasło jest puste. Spróbuj ponownie.',
 'passwordtooshort'           => 'Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'password-name-match'        => 'Hasło musi być inne niż nazwa użytkownika.',
+'password-login-forbidden'   => 'Wykorzystanie tej nazwy użytkownika lub hasła zostało zabronione.',
 'mailmypassword'             => 'Wyślij mi nowe hasło poprzez e‐mail',
 'passwordremindertitle'      => 'Nowe tymczasowe hasło do {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'passwordremindertext'       => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1)
