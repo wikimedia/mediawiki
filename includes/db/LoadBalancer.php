@@ -625,6 +625,7 @@ class LoadBalancer {
 		$user = $server['user'];
 		$password = $server['password'];
 		$flags = $server['flags'];
+		$dbname = $server['dbname'];
 
 		if ( $dbNameOverride !== false ) {
 			$dbname = $dbNameOverride;
