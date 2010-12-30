@@ -1287,10 +1287,11 @@ function wfTime() {
 /**
  * Sets dest to source and returns the original value of dest
  * If source is NULL, it just returns the value, it doesn't set the variable
+ * If force is true, it will set the value even if source is NULL
  */
-function wfSetVar( &$dest, $source ) {
+function wfSetVar( &$dest, $source, $force = false ) {
 	$temp = $dest;
-	if ( !is_null( $source ) ) {
+	if ( !is_null( $source ) || $force ) {
 		$dest = $source;
 	}
 	return $temp;

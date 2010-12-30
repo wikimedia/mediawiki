@@ -629,8 +629,11 @@ class DatabaseSqlite extends DatabaseBase {
 			$vars = get_object_vars($table);
 			$table = array_pop( $vars );
 			
-			if( empty( $prefix ) || strpos( $table, $prefix ) === 0 ) {
-				$endArray[] = $table;
+			if( !$prefix || strpos( $table, $prefix ) === 0 ) {
+				if ( strpos( $table, 'sqlite_' ) !== 0 ) {
+					$endArray[] = $table;
+				}
+				
 			}
 		}
 		
