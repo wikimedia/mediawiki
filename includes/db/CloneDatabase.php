@@ -130,7 +130,7 @@ class CloneDatabase {
 	}
 
 	/**
-	 * @param  $lb
+	 * @param  $lb LoadBalancer
 	 * @param  $prefix
 	 * @return void
 	 */
