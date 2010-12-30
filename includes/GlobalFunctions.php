@@ -3153,7 +3153,7 @@ function wfGetLB( $wiki = false ) {
 
 /**
  * Get the load balancer factory object
- * @return LoadBalaner
+ * @return LBFactory
  */
 function &wfGetLBFactory() {
 	return LBFactory::singleton();
