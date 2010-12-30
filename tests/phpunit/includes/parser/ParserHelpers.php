@@ -7,7 +7,6 @@ class PHPUnitParserTest extends ParserTest {
 	}
 
 	public function showSuccess( $desc ) {
-		global $additionalMWCLIArgs;
 		PHPUnit_Framework_Assert::assertTrue( true, $desc );
 		if( MediaWikiPHPUnitCommand::$additionalArgs['verbose'] ) parent::showSuccess( $desc );
 		return true;
