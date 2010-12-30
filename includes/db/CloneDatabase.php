@@ -85,12 +85,16 @@ class CloneDatabase {
 	 * Clone the table structure
 	 */
 	public function cloneTableStructure() {
+	
+		sort($this->tablesToClone);
+		
 		foreach( $this->tablesToClone as $tbl ) {
 			# Clean up from previous aborted run.  So that table escaping
 			# works correctly across DB engines, we need to change the pre-
 			# fix back and forth so tableName() works right.
 			$this->changePrefix( $this->oldTablePrefix );
 			$oldTableName = $this->db->tableName( $tbl );
+			
 			$this->changePrefix( $this->newTablePrefix );
 			$newTableName = $this->db->tableName( $tbl );
 
@@ -99,7 +103,9 @@ class CloneDatabase {
 			}
 
 			# Create new table
+			wfDebug( "Duplicating $oldTableName to $newTableName\n", __METHOD__ );
 			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $this->useTemporaryTables );
+			
 		}
 	}
 

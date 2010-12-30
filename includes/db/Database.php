@@ -288,7 +288,7 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	function tablePrefix( $prefix = null ) {
-		return wfSetVar( $this->mTablePrefix, $prefix );
+		return wfSetVar( $this->mTablePrefix, $prefix, true );
 	}
 
 	/**

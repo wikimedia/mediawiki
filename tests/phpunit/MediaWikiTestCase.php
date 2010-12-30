@@ -12,24 +12,33 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $useTemporaryTables = true;
 
 	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
-        if ($name !== null) {
-            $this->setName($name);
-        }
+		if ($name !== null) {
+			$this->setName($name);
+		}
 
-        $this->data = $data;
-        $this->dataName = $dataName;
+		$this->data = $data;
+		$this->dataName = $dataName;
 	}
 	
 	function run( PHPUnit_Framework_TestResult $result = NULL ) {
-		if( $this->needsDB() && !is_object( $this->dbClone ) ) {
+		
+		if( $this->needsDB() ) {
+			
+			$this->destroyDBCheck();
+			
 			$this->initDB();
 			$this->addCoreDBData();
 			$this->addDBData();
 		}
+		
 		parent::run( $result );
 	}
-
+	
 	function __destruct() {
+		$this->destroyDBCheck();
+	}
+
+	function destroyDBCheck() {
 		if( is_object( $this->dbClone ) && $this->dbClone instanceof CloneDatabase ) {
 			$this->destroyDB();
 		}
@@ -110,8 +119,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			
 			# Anonymous user
 			$this->db->insert( 'user', array(
-				'user_id'         => 0,
-				'user_name'       => 'Anonymous' ) );
+				'user_id' 		=> 0,
+				'user_name'   	=> 'Anonymous' ) );
 		}
 		
 	}
