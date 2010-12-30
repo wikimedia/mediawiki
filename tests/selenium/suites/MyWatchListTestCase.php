@@ -27,6 +27,7 @@
  *
  */
 
+require_once dirname( dirname( __FILE__ ) ) . '/SeleniumTestConstants.php';
 
 class MyWatchListTestCase extends SeleniumTestCase {
 

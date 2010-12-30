@@ -104,7 +104,6 @@ class MediaWikiRestartInstallationTestCase extends MediaWikiInstallationCommonFu
 
         // Navigates to the previous page
         $this->assertEquals( "Database settings", $this->getText( LINK_DIV."h2" ));
-        ;
 
         // 'Connect to database' page
         parent::clickBackButton();
