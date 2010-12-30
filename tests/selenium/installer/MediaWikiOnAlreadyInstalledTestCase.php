@@ -56,11 +56,11 @@ class MediaWikiOnAlreadyInstalledTestCase extends MediaWikiInstallationCommonFun
         parent::clickContinueButton();
 
         // 'Install' page should display after the 'Option' page
-        $this->assertEquals( "Install", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
+        $this->assertEquals( "Install", $this->getText( LINK_DIV."h2" ));
 
         // Verify warning text displayed
         $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[2]" ));
+                $this->getText( LINK_FORM."div[1]/div[2]" ));
 
         // Complete page
         parent::clickContinueButton();

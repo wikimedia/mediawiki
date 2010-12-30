@@ -72,7 +72,7 @@ class MediaWikiDifferentDatabaseAccountTestCase extends MediaWikiInstallationCom
 
         // 'Install' page
         $this->assertEquals("Creating database user... done",
-                $this->getText("//div[@id='bodyContent']/div/div/div[2]/form/ul/li[3]"));
+                $this->getText( LINK_FORM."ul/li[3]"));
         parent::clickContinueButton();
 
         // 'Complete' page

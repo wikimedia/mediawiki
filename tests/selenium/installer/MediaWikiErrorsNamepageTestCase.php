@@ -51,11 +51,11 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         // Verify warning message for all blank fields
         parent::clickContinueButton();
         $this->assertEquals( "Enter a site name.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+                $this->getText( LINK_DIV."div[2]/div[2]" ));
         $this->assertEquals( "Enter an administrator username.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[3]/div[2]" ));
+                $this->getText( LINK_DIV."div[3]/div[2]" ));
         $this->assertEquals( "Enter a password for the administrator account.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[4]/div[2]" ));
+                $this->getText( LINK_DIV."div[4]/div[2]" ));
 
         // Verify warning message for the blank 'Site name'
         $this->type( "config__AdminName", VALID_YOUR_NAME );
@@ -63,7 +63,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->type( "config__AdminPassword2", VALID_PASSWORD_AGAIN );
         parent::clickContinueButton();
         $this->assertEquals( "Enter a site name.",
-                $this->getText(" //div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+                $this->getText( LINK_DIV."div[2]/div[2]" ));
 
         // Input valid 'Site name'
         $this->type( "config_wgSitename", VALID_WIKI_NAME );
@@ -74,7 +74,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->type( "config_wgMetaNamespace", INVALID_NAMESPACE );
         parent::clickContinueButton();
         $this->assertEquals( "The specified namespace \"\" is invalid. Specify a different project namespace.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+                $this->getText( LINK_DIV."div[2]/div[2]" ));
 
 
         // Verify warning message for the blank 'Project namespace'
@@ -83,7 +83,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->type( "config_wgMetaNamespace" , "" );
         parent::clickContinueButton();
         $this->assertEquals( "The specified namespace \"\" is invalid. Specify a different project namespace.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+                $this->getText( LINK_DIV."div[2]/div[2]" ));
 
 
         // Valid 'Project namespace'
@@ -101,7 +101,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->type( "config__AdminName", " " );
         parent::clickContinueButton();
         $this->assertEquals( "Enter an administrator username.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+                $this->getText( LINK_DIV."div[2]/div[2]" ));
 
         $this->type( "config_wgSitename", VALID_WIKI_NAME );
         // Verify warning message for blank 'Password'
@@ -109,7 +109,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->type( "config__AdminPassword", " " );
         parent::clickContinueButton();
         $this->assertEquals( "Enter a password for the administrator account.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+                $this->getText( LINK_DIV."div[2]/div[2]" ));
 
 
         // Verify warning message for the blank 'Password again'
@@ -118,7 +118,7 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->type( "config__AdminPassword2", " " );
         parent::clickContinueButton();
         $this->assertEquals( "The two passwords you entered do not match.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+                $this->getText( LINK_DIV."div[2]/div[2]" ));
 
 
         // Verify warning message for the different'Password' and 'Password again'
@@ -127,6 +127,6 @@ class MediaWikiErrorsNamepageTestCase extends MediaWikiInstallationCommonFunctio
         $this->type( "config__AdminPassword2", INVALID_PASSWORD_AGAIN );
         parent::clickContinueButton();
         $this->assertEquals( "The two passwords you entered do not match.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/div[2]" ));
+                $this->getText( LINK_DIV."div[2]/div[2]" ));
     }
 }
