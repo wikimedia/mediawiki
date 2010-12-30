@@ -169,7 +169,7 @@ class ApiFormatXmlRsd extends ApiFormatXml {
 		parent::__construct( $main, $format );
 		$this->setRootElement( 'rsd' );
 	}
-	
+
 	public function getMimeType() {
 		return 'application/rsd+xml';
 	}

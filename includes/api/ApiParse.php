@@ -93,7 +93,7 @@ class ApiParse extends ApiBase {
 
 				$wgTitle = $titleObj;
 
-				//If for some reason the "oldid" is actually the current revision, it may be cached
+				// If for some reason the "oldid" is actually the current revision, it may be cached
 				if ( $titleObj->getLatestRevID() === $oldid ) {
 					$p_result = false;
 					$pcache = ParserCache::singleton();

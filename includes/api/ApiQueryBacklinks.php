@@ -248,9 +248,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 					// We need to keep the parent page of this redir in
 					if ( $this->hasNS ) {
-						$parentID = $this->pageMap[$row->{$this->bl_ns}][$row->{$this->bl_title}];
+						$parentID = $this->pageMap[$row-> { $this->bl_ns } ][$row-> { $this->bl_title } ];
 					} else {
-						$parentID = $this->pageMap[NS_IMAGE][$row->{$this->bl_title}];
+						$parentID = $this->pageMap[NS_IMAGE][$row-> { $this->bl_title } ];
 					}
 					$this->continueStr = $this->getContinueRedirStr( $parentID, $row->page_id );
 					break;

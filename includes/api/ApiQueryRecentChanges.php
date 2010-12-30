@@ -84,7 +84,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		if ( is_null( $cachedPatrolToken ) ) {
 			$cachedPatrolToken = $wgUser->editToken( 'patrol' );
 		}
-		
+
 		return $cachedPatrolToken;
 	}
 

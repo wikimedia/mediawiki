@@ -83,8 +83,8 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			if ( $skip && $message === $params['from'] ) {
 				$skip = false;
 			}
-			
-			if( $useto && $message > $params['to'] ) {
+
+			if ( $useto && $message > $params['to'] ) {
 				break;
 			}
 

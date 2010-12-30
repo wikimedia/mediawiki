@@ -45,7 +45,7 @@ class ApiQuery extends ApiBase {
 	private $mPropModuleNames, $mListModuleNames, $mMetaModuleNames;
 
 	/**
-	 * @var ApiPageSet 
+	 * @var ApiPageSet
 	 */
 	private $mPageSet;
 
@@ -471,7 +471,7 @@ class ApiQuery extends ApiBase {
 	private function doExport( $pageSet, $result )	{
 		$exportTitles = array();
 		$titles = $pageSet->getGoodTitles();
-		if( count( $titles ) ) {
+		if ( count( $titles ) ) {
 			foreach ( $titles as $title ) {
 				if ( $title->userCanRead() ) {
 					$exportTitles[] = $title;

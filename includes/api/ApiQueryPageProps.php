@@ -44,54 +44,54 @@ class ApiQueryPageProps extends ApiQueryBase {
 
 	public function execute() {
 		$this->params = $this->extractRequestParams();
-		
+
 		# Only operate on existing pages
 		$pages = $this->getPageSet()->getGoodTitles();
 		if ( !count( $pages ) ) {
 			# Nothing to do
 			return;
 		}
-		
+
 		$this->addTables( 'page_props' );
 		$this->addFields( array( 'pp_page', 'pp_propname', 'pp_value' ) );
 		$this->addWhereFld( 'pp_page',  array_keys( $pages ) );
-		
+
 		if ( $this->params['continue'] ) {
 			$this->addWhere( 'pp_page >=' . intval( $this->params['continue'] ) );
 		}
-		
+
 		# Force a sort order to ensure that properties are grouped by page
 		$this->addOption( 'ORDER BY', 'pp_page' );
-		
+
 		$res = $this->select( __METHOD__ );
 		$currentPage = 0; # Id of the page currently processed
 		$props = array();
 		$result = $this->getResult();
-		
+
 		foreach ( $res as $row ) {
 			if ( $currentPage != $row->pp_page ) {
-				# Different page than previous row, so add the properties to 
+				# Different page than previous row, so add the properties to
 				# the result and save the new page id
-				
+
 				if ( $currentPage ) {
 					if ( !$this->addPageProps( $result, $currentPage, $props ) ) {
 						# addPageProps() indicated that the result did not fit
 						# so stop adding data. Reset props so that it doesn't
 						# get added again after loop exit
-						
+
 						$props = array();
 						break;
 					}
-					
+
 					$props = array();
 				}
-				
+
 				$currentPage = $row->pp_page;
 			}
-			
+
 			$props[$row->pp_propname] = $row->pp_value;
 		}
-		
+
 		if ( count( $props ) ) {
 			# Add any remaining properties to the results
 			$this->addPageProps( $result, $currentPage, $props );
@@ -99,7 +99,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	/**
-	 * Add page properties to an ApiResult, adding a continue 
+	 * Add page properties to an ApiResult, adding a continue
 	 * parameter if it doesn't fit.
 	 *
 	 * @param $result ApiResult
@@ -109,7 +109,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	 */
 	private function addPageProps( $result, $page, $props ) {
 		$fit = $result->addValue( array( 'query', 'pages' ), $page, $props );
-		
+
 		if ( !$fit ) {
 			$this->setContinueEnumParameter( 'continue', $page );
 		}
@@ -120,7 +120,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 		return 'public';
 	}
 
-	public function getAllowedParams() {		
+	public function getAllowedParams() {
 		return array( 'continue' => null );
 	}
 

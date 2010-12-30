@@ -236,7 +236,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 
 			if ( $this->fld_userid ) {
-				$vals['user'] = $row->rc_user;	
+				$vals['user'] = $row->rc_user;
 			}
 
 			if ( !$row->rc_user ) {
