@@ -46,20 +46,6 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 		$resourceLoader->register( $name, $module );
 		$this->assertEquals( $module, $resourceLoader->getModule( $name ) );
 	}
-
-	/**
-	 * Allthough ResourceLoader::register uses type hinting to prevent arbitrary information being passed through as a
-	 * ResourceLoaderModule object, null can still get through.
-	 *
-	 * @depends testCreatingNewResourceLoaderCallsRegistrationHook
-	 * @covers ResourceLoader::register
-	 * @covers ResourceLoader::getModule
-	 * @expectedException MWException
-	 */
-	public function testRegisteringNullModuleThrowsAnException( ResourceLoader $resourceLoader ) {
-		$this->markTestIncomplete( "Broken by r77011" );
-		$resourceLoader->register( 'TEST.nullModule', null );
-	}
 }
 
 /* Stubs */
