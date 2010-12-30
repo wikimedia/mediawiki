@@ -2881,7 +2881,8 @@ class Language {
 			throw new MWException(
 				"Utf8Case.ser is missing, please run \"make\" in the serialized directory\n" );
 		}
-		extract( $arr );
+		$wikiUpperChars = $arr['wikiUpperChars'];
+		$wikiLowerChars = $arr['wikiLowerChars'];
 		wfProfileOut( __METHOD__ );
 		return array( $wikiUpperChars, $wikiLowerChars );
 	}
