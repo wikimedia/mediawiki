@@ -841,8 +841,8 @@ Tadidio fa mampiasa soramadinika ny lohatenin'ny pejinao manan-tovana *.css sy *
 'previewconflict'                  => "
 Ity topi-maso ity no mifanaraka amin'ny lahatsoratra ao amin'ny faritra eo ambony,
 ary toy izao no ho fisehon'ny pejy raha misafidy ny hitahiry azy ianao.",
-'session_fail_preview'             => "'''Tsy afaka tahirizina ny fanovanao noho ny haverezana ny fampahalalàna momban'ny fidiranao tato. Andramo fanindroany azafady.
-Raha mbola tsy mandeha ilay ity, [[Special:UserLogout|mivoaha]] amin'ny kaontinao ianao ary miverena miditra.'''",
+'session_fail_preview'             => "'''Tsy afaka tahirizina ny fanovanao noho ny haverezan'ny fampahalalàna mikasikan'ny fidiranao. Andramo fanindroany azafady.
+Raha mbola tsy mandeha foana dia [[Special:UserLogout|mivoaha]] amin'ny kaontinao ary miverena miditra.'''",
 'session_fail_preview_html'        => "'''Tsy afaka tehirizinay ny fanovanao noho ny haverezan'ny fampahalalàna momba ny session-nao.
 
 '''Satria nalefan'i {{SITENAME}} HTML tsotra, nasitrika ny topi-paso mba tsy hisy fanafihana atao amin'ny Javascript.

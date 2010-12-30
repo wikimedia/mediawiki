@@ -274,7 +274,9 @@ $messages = array(
 'toc'                     => 'Synsys',
 'showtoc'                 => 'disqwedhes',
 'hidetoc'                 => 'cudha',
+'thisisdeleted'           => 'Gweles po restorya $1?',
 'viewdeleted'             => 'Gweles $1?',
+'feedlinks'               => 'Feed:',
 'site-rss-feed'           => '$1 RSS feed',
 'site-atom-feed'          => '$1 Atom feed',
 'page-rss-feed'           => '"$1" feed RSS',
@@ -295,8 +297,13 @@ $messages = array(
 
 # General errors
 'error'               => 'Gwall',
+'databaseerror'       => 'Gwall database',
 'missingarticle-rev'  => '(amendyans#: $1)',
 'missingarticle-diff' => '(Dyffrans: $1, $2)',
+'internalerror'       => 'Gwall a-bervedh',
+'internalerror_info'  => 'Gwall a-bervedh:',
+'filecopyerror'       => 'Ny alje\'ma copia an restren "$1" war-tu "$2".',
+'filerenameerror'     => 'Ny alje\'ma dashenwel an restren "$1" dhe "$2".',
 'badtitle'            => 'Titel drog',
 'viewsource'          => 'Gweles fenten',
 'viewsourcefor'       => 'rag $1',
@@ -311,6 +318,7 @@ $messages = array(
 'nav-login-createaccount' => 'Omgelmy / Formya acont nowyth',
 'loginprompt'             => 'Why a res galosegy cookies rag omgelmy orth {{SITENAME}}.',
 'userlogin'               => 'Omgelmy / formya acont nowyth',
+'userloginnocreate'       => 'Omgelmy',
 'logout'                  => 'Digelmy',
 'userlogout'              => 'Digelmy',
 'notloggedin'             => 'Digelmys',
@@ -320,7 +328,10 @@ $messages = array(
 'gotaccount'              => "Eus acont genowgh seulabres? '''$1'''.",
 'gotaccountlink'          => 'Omgelmy',
 'createaccountmail'       => 'der e-bost',
+'loginerror'              => 'Gwall omgelmy',
+'createaccounterror'      => "Ny alje'ma formya an acont: $1",
 'mailmypassword'          => 'E-bostya ger-tremena nowyth',
+'accountcreated'          => 'Formys yw an acont',
 'loginlanguagelabel'      => 'Yeth: $1',
 
 # Password reset dialog
@@ -329,6 +340,7 @@ $messages = array(
 'oldpassword'               => 'Ger-tremena coth:',
 'newpassword'               => 'Ger-tremena nowyth:',
 'resetpass-submit-loggedin' => 'Chanjya an ger-tremena',
+'resetpass-submit-cancel'   => 'Hedhy',
 
 # Edit page toolbar
 'bold_sample'     => 'Text tew',
@@ -360,11 +372,13 @@ $messages = array(
 Agas trigva IP a vedh recordys yn istory chanjyow an folen-ma.",
 'summary-preview'                  => "Ragweles a'n derivas cot:",
 'loginreqlink'                     => 'omgelmy',
+'accmailtitle'                     => 'Danonys yw an ger-tremena.',
 'newarticle'                       => '(Nowyth)',
 'noarticletext'                    => 'Nyns eus text war an folen-ma a-lebmyn.
 Why a ell [[Special:Search/{{PAGENAME}}|whila titel an folen-ma]] yn folednow erel,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} whila y\'n covnotednow kelmys],
 po [{{fullurl:{{FULLPAGENAME}}|action=edit}} chanjya an folen-ma]</span>.',
+'updated'                          => '(Nowedhys)',
 'note'                             => "'''Noten:'''",
 'previewnote'                      => "'''Gwrewgh remembra, nyns yw hebma ma's ragwel.''' Nyns yw agas chanjyow gwithys whath!",
 'editing'                          => 'ow chanjya $1',
@@ -378,9 +392,13 @@ po [{{fullurl:{{FULLPAGENAME}}|action=edit}} chanjya an folen-ma]</span>.',
 'template-semiprotected'           => '(hanter-difresys)',
 'hiddencategories'                 => 'Esel a {{PLURAL:$1|1 class covys|$1 class covys}} yw an folen-ma:',
 'permissionserrorstext-withaction' => 'Nyns eus cubmyes dhewgh dhe $2, rag an {{PLURAL:$1|cheson|chesonys}} a-sew:',
+'log-fulllog'                      => 'Gweles an govnoten dien',
 
 # "Undo" feature
 'undo-summary' => 'Diswras amendyans $1 gans [[Special:Contributions/$2|$2]] ([[User talk:$2|kescows]])',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Ny ellam formya an acont',
 
 # History pages
 'viewpagelogs'           => 'Gweles covnotednow an folen-ma',
