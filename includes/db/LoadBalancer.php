@@ -616,10 +616,16 @@ class LoadBalancer {
 	 */
 	function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		if( !is_array( $server ) ) {
-			throw new MWException( 'You must update your load-balancing configuration. See DefaultSettings.php entry for $wgDBservers.' );
+			throw new MWException( 'You must update your load-balancing configuration. ' .
+			                       'See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
-		extract( $server );
+		$type = $server['type'];
+		$host = $server['host'];
+		$user = $server['user'];
+		$password = $server['password'];
+		$flags = $server['flags'];
+
 		if ( $dbNameOverride !== false ) {
 			$dbname = $dbNameOverride;
 		}
