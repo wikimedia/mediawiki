@@ -57,7 +57,7 @@ class MediaWikiRestartInstallationTestCase extends MediaWikiInstallationCommonFu
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
 
         // 'Restart Installation' page displayed
-        $this->assertEquals( "Restart installation", $this->getText("//div[@id='bodyContent']/div/div/h2"));
+        $this->assertEquals( "Restart installation", $this->getText( LINK_DIV."h2"));
 
         // Restart warning message displayed
         $this->assertTrue($this->isTextPresent( "exact:Do you want to clear all saved data that you have entered and restart the installation process?" ));
@@ -67,7 +67,7 @@ class MediaWikiRestartInstallationTestCase extends MediaWikiInstallationCommonFu
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
 
         // Navigate to the initial installation page(Language).
-        $this->assertEquals(  "Language", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
+        $this->assertEquals(  "Language", $this->getText( LINK_DIV."h2" ));
 
         // 'Welcome to MediaWiki!' page
         parent::clickContinueButton();
@@ -94,7 +94,7 @@ class MediaWikiRestartInstallationTestCase extends MediaWikiInstallationCommonFu
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
 
         // 'Restart Installation' page displayed
-        $this->assertEquals( "Restart installation", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
+        $this->assertEquals( "Restart installation", $this->getText( LINK_DIV."h2" ));
 
         // Restart warning message displayed
         $this->assertTrue( $this->isTextPresent( "Do you want to clear all saved data that you have entered and restart the installation process?"));
@@ -103,7 +103,7 @@ class MediaWikiRestartInstallationTestCase extends MediaWikiInstallationCommonFu
         parent::clickBackButton();
 
         // Navigates to the previous page
-        $this->assertEquals( "Database settings", $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
+        $this->assertEquals( "Database settings", $this->getText( LINK_DIV."h2" ));
         ;
 
         // 'Connect to database' page

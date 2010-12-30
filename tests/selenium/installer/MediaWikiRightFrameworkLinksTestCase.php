@@ -67,27 +67,27 @@ class MediaWikiRightFrameworkLinksTestCase extends MediaWikiInstallationCommonFu
         // Navigate to the 'Read me' page
         $this->click( "link=Read me" );
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
-        $this->assertEquals( "Read me", $this->getText( "//div[@id='bodyContent']/div/div/h2[1]" ));
+        $this->assertEquals( "Read me", $this->getText( LINK_DIV."h2[1]" ));
         $this->assertTrue($this->isElementPresent( "submit-back" ));
         parent::clickBackButton();
 
         // Navigate to the 'Release notes' page
         $this->click( "link=Release notes" );
         $this->waitForPageToLoad( PAGE_LOAD_TIME);
-        $this->assertEquals( "Release notes", $this->getText( "//div[@id='bodyContent']/div/div/h2[1]" ));
+        $this->assertEquals( "Release notes", $this->getText( LINK_DIV."h2[1]" ));
         $this->assertTrue( $this->isElementPresent( "submit-back" ));
         parent::clickBackButton();
 
         // Navigate to the 'Copying' page
         $this->click( "link=Copying" );
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
-        $this->assertEquals( "Copying", $this->getText( "//div[@id='bodyContent']/div/div/h2[1]" ));
+        $this->assertEquals( "Copying", $this->getText( LINK_DIV."h2[1]" ));
         $this->assertTrue($this->isElementPresent( "submit-back" ));
         parent::clickBackButton();
 
         // Navigate to the 'Upgrading' page
         $this->click( "link=Upgrading" );
         $this->waitForPageToLoad( PAGE_LOAD_TIME );
-        $this->assertEquals( "Upgrading", $this->getText( "//div[@id='bodyContent']/div/div/h2[1]" ));
+        $this->assertEquals( "Upgrading", $this->getText( LINK_DIV."h2[1]" ));
     }
 }

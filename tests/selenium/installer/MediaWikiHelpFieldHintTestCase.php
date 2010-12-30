@@ -97,14 +97,14 @@ class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction
         parent::navigateDatabaseSettingsPage($databaseName);
 
         // Verify help field for 'Search engine'
-        $this->click( "//div[@id='bodyContent']/div/div/div[2]/form/div[2]/span[1]" );
+        $this->click( LINK_FORM."div[2]/span[1]" );
         $this->assertEquals( SEARCH_ENGINE_HELP,
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[2]/span[2]" ));
+                $this->getText( LINK_FORM."div[2]/span[2]" ));
 
         // Verify help field for 'Database character set'
-        $this->click( "//div[@id='bodyContent']/div/div/div[2]/form/div[4]/span[1]" );
+        $this->click( LINK_FORM."div[4]/span[1]" );
         $this->assertEquals( DATABASE_CHARACTER_SET_HELP,
-                $this->getText("//div[@id='bodyContent']/div/div/div[2]/form/div[4]/span[2]"));
+                $this->getText( LINK_FORM."div[4]/span[2]"));
         parent::restartInstallation();
     }
 
@@ -115,29 +115,29 @@ class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction
         parent::navigateNamePage( $databaseName );
 
         // Verify help field for 'Name of Wiki'
-        $this->click( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[1]/div/span[1]" );
+        $this->click( LINK_FORM."div[1]/div[1]/div/span[1]" );
         $this->assertEquals( NAME_OF_WIKI_HELP,
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]/div[1]/div/span[2]/p" ));
+                $this->getText( LINK_FORM."div[1]/div[1]/div/span[2]/p" ));
 
         // Verify help field for 'Project namespace'
-        $this->click( "//div[@id='bodyContent']/div/div/div[2]/form/div[2]/div[1]/div/span[1]" );
+        $this->click( LINK_FORM."div[2]/div[1]/div/span[1]" );
         $this->assertEquals( PROJECT_NAMESPACE_HELP,
-                $this->getText("//div[@id='bodyContent']/div/div/div[2]/form/div[2]/div[1]/div/span[2]/p"));
+                $this->getText( LINK_FORM."div[2]/div[1]/div/span[2]/p"));
 
         // Verify help field for 'Your Name'
-        $this->click( "//div[@id='bodyContent']/div/div/div[2]/form/fieldset/div[1]/div[1]/div/span[1]" );
+        $this->click( LINK_FORM."fieldset/div[1]/div[1]/div/span[1]" );
         $this->assertEquals( USER_NAME_HELP,
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/fieldset/div[1]/div[1]/div/span[2]/p" ));
+                $this->getText( LINK_FORM."fieldset/div[1]/div[1]/div/span[2]/p" ));
 
         // Verify help field for 'E mail address'
-        $this->click( "//div[@id='bodyContent']/div/div/div[2]/form/fieldset/div[4]/div[1]/div/span[1]" );
+        $this->click( LINK_FORM."fieldset/div[4]/div[1]/div/span[1]" );
         $this->assertEquals( EMAIL_ADDRESS_HELP,
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/fieldset/div[4]/div[1]/div/span[2]/p" ));
+                $this->getText( LINK_FORM."fieldset/div[4]/div[1]/div/span[2]/p" ));
 
         // Verify help field for 'Subscribe to the release announcements mailing list'
-        $this->click( "//div[@id='bodyContent']/div/div/div[2]/form/fieldset/div[5]/div/span[1]" );
+        $this->click( LINK_FORM."fieldset/div[5]/div/span[1]" );
         $this->assertEquals( SUBSCRIBE_MAILING_LIST_HELP,
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/fieldset/div[5]/div/span[2]/p" ));
+                $this->getText( LINK_FORM."fieldset/div[5]/div/span[2]/p" ));
         parent::restartInstallation();
     }
 }

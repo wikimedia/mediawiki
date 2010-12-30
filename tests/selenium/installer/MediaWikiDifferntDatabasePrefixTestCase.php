@@ -65,7 +65,7 @@ class MediaWikiDifferntDatabasePrefixTestCase extends MediaWikiInstallationCommo
 
         // Verify upgrade existing message
         $this->assertEquals( "Upgrade existing installation",
-                $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
+                $this->getText( LINK_DIV."h2" ));
 
         // To 'Connect to database' page
         parent::clickBackButton();
@@ -83,9 +83,9 @@ class MediaWikiDifferntDatabasePrefixTestCase extends MediaWikiInstallationCommo
 
         // Verify already installed warning message
         $this->assertEquals( "Install",
-                $this->getText( "//div[@id='bodyContent']/div/div/h2" ));
+                $this->getText( LINK_DIV."h2" ));
         $this->assertEquals( "Warning: You seem to have already installed MediaWiki and are trying to install it again. Please proceed to the next page.",
-                $this->getText( "//div[@id='bodyContent']/div/div/div[2]/form/div[1]" ));
+                $this->getText( LINK_FORM."div[1]" ));
 
         parent::clickContinueButton();
         parent::completePageSuccessfull();
