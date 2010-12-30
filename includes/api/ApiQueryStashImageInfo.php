@@ -38,13 +38,13 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		$prop = array_flip( $params['prop'] );
 
 		$scale = $this->getScale( $params );
-		
+
 		$result = $this->getResult();
-		
+
 		try {
 			$stash = new UploadStash();
-		
-			foreach ( $params['sessionkey'] as $sessionkey ) {	
+
+			foreach ( $params['sessionkey'] as $sessionkey ) {
 				$file = $stash->getFile( $sessionkey );
 				$imageInfo = self::getInfo( $file, $prop, $result, $scale );
 				$result->addValue( array( 'query', $this->getModuleName() ), null, $imageInfo );
@@ -57,8 +57,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			$this->dieUsage( "File not found: " . $e->getMessage(), "invalidsessiondata" );
 		} catch ( UploadStashBadPathException $e ) {
 			$this->dieUsage( "Bad path: " . $e->getMessage(), "invalidsessiondata" );
-		}	
-
+		}
 	}
 
 	/**
@@ -81,7 +80,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	public function getAllowedParams() {
 		return array(
-			'sessionkey' => array( 
+			'sessionkey' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_REQUIRED => true,
 				ApiBase::PARAM_DFLT => null
@@ -117,7 +116,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 				' dimensions   - Alias for size',
 				' sha1         - Adds sha1 hash for the image',
 				' mime         - Adds MIME of the image',
-				' thumbmime    - Adss MIME of the image thumbnail (requires url)',
+				' thumbmime    - Adds MIME of the image thumbnail (requires url)',
 				' metadata     - Lists EXIF metadata for the version of the image',
 				' bitdepth     - Adds the bit depth of the version',
 			),
