@@ -63,7 +63,7 @@ class CloneDatabase {
 	 * @param $newTablePrefix String Prefix to assign to the tables
 	 * @param $oldTablePrefix String Prefix on current tables, if not $wgDBprefix
 	 */
-	public function __construct( DatabaseBase $db, Array $tablesToClone, 
+	public function __construct( DatabaseBase $db, array $tablesToClone,
 		$newTablePrefix = 'parsertest', $oldTablePrefix = '', $dropCurrentTables = true )
 	{
 		$this->db = $db;
@@ -119,6 +119,9 @@ class CloneDatabase {
 
 	/**
 	 * Change the table prefix on all open DB connections/
+	 *
+	 * @param  $prefix
+	 * @return void
 	 */
 	protected function changePrefix( $prefix ) {
 		global $wgDBprefix;
@@ -126,10 +129,20 @@ class CloneDatabase {
 		$wgDBprefix = $prefix;
 	}
 
+	/**
+	 * @param  $lb
+	 * @param  $prefix
+	 * @return void
+	 */
 	public function changeLBPrefix( $lb, $prefix ) {
 		$lb->forEachOpenConnection( array( $this, 'changeDBPrefix' ), array( $prefix ) );
 	}
 
+	/**
+	 * @param  $db DatabaseBase
+	 * @param  $prefix
+	 * @return void
+	 */
 	public function changeDBPrefix( $db, $prefix ) {
 		$db->tablePrefix( $prefix );
 	}
