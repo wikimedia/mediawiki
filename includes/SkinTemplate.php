@@ -1307,7 +1307,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			$personal_tools[$key] = array();
 			$personal_tools[$key]["links"][] = array();
 			$personal_tools[$key]["links"][0]["single-id"] = $personal_tools[$key]["id"] = "pt-$key";
-			$personal_tools[$key]["active"] = $ptool["active"];
+			if ( isset($ptool["active"]) ) {
+				$personal_tools[$key]["active"] = $ptool["active"];
+			}
 			foreach ( array("href", "class", "text") as $k ) {
 				if ( isset($ptool[$k]) )
 					$personal_tools[$key]["links"][0][$k] = $ptool[$k];
