@@ -179,10 +179,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	/**
-	 * From parameters, construct a 'scale' array 
-	 * @param $params Array: 
+	 * From parameters, construct a 'scale' array
+	 * @param $params Array:
 	 * @return Array or Null: key-val array of 'width' and 'height', or null
-	 */	
+	 */
 	public function getScale( $params ) {
 		$p = $this->getModulePrefix();
 		if ( $params['urlheight'] != -1 && $params['urlwidth'] == -1 ) {
@@ -230,7 +230,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['size'] = intval( $file->getSize() );
 			$vals['width'] = intval( $file->getWidth() );
 			$vals['height'] = intval( $file->getHeight() );
-			
+
 			$pageCount = $file->pageCount();
 			if ( $pageCount !== false ) {
 				$vals['pagecount'] = $pageCount;
@@ -266,10 +266,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 		if ( isset( $prop['parsedcomment'] ) ) {
 			global $wgUser;
-			$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( 
+			$vals['parsedcomment'] = $wgUser->getSkin()->formatComment(
 					$file->getDescription(), $file->getTitle() );
 		}
-		
+
 		if ( isset( $prop['sha1'] ) ) {
 			$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
 		}
@@ -380,7 +380,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 
 	/**
-	 * Return the API documentation for the parameters. 
+	 * Return the API documentation for the parameters.
 	 * @return {Array} parameter documentation.
 	 */
 	public function getParamDescription() {
@@ -398,7 +398,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				' dimensions    - Alias for size',
 				' sha1          - Adds SHA-1 hash for the image',
 				' mime          - Adds MIME type of the image',
-				' thumbmime     - Adss MIME type of the image thumbnail (requires url)',
+				' thumbmime     - Adds MIME type of the image thumbnail (requires url)',
 				' metadata      - Lists EXIF metadata for the version of the image',
 				' archivename   - Adds the file name of the archive version for non-latest versions',
 				' bitdepth      - Adds the bit depth of the version',
