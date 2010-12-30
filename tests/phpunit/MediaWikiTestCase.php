@@ -165,11 +165,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 	
+	static private function unprefixTable( $tableName ) {
+		global $wgDBprefix;
+		return substr( $tableName, strlen( $wgDBprefix ) );
+	}
+
 	protected function listTables() {
 		global $wgDBprefix;
 		
 		$tables = $this->db->listTables( $wgDBprefix, __METHOD__ );
-		$tables = array_map( create_function( '$table', 'global $wgDBprefix; return substr( $table, strlen( $wgDBprefix ) );' ), $tables );
+		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
 		return $tables;
 		
 	}
