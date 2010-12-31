@@ -96,7 +96,7 @@ class CloneDatabase {
 			
 			self::changePrefix( $this->newTablePrefix );
 			$newTableName = $this->db->tableName( $tbl );
-
+			
 			if( $this->dropCurrentTables && !in_array( $this->db->getType(), array( 'postgres' ) ) ) {
 				$this->db->dropTable( $tbl, __METHOD__ );
 				wfDebug( "Dropping {$this->newTablePrefix}{$oldTableName}\n", __METHOD__ );
