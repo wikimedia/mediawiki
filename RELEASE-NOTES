@@ -31,6 +31,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added a special page, disabled by default, that allows users with the
   'disableaccount' privilege to permanently deactivate user accounts.
 * (bug 8130) Query pages should limit to content namespaces, not just main namespace 
+* Search suggestions (other than in the Vector skin) will now use the HTML5
+  datalist feature where supported, currently only Firefox 4.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
