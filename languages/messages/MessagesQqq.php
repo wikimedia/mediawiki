@@ -350,6 +350,9 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'printableversion'  => 'Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].',
 'permalink'         => 'Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]',
 'print'             => '{{Identical|Print}}',
+'view'              => 'The default text of the "View" or "Read" (Vector) views tab which represents the basic view for the page. Should be in the infinitive mood.
+
+{{Identical|View}}',
 'edit'              => 'The text of the tab going to the edit form. When the page is protected, you will see "[[MediaWiki:Viewsource/{{SUBPAGENAME}}|{{int:viewsource}}]]". Should be in the infinitive mood.
 
 {{Identical|Edit}}',
@@ -364,6 +367,7 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 {{Identical|Delete}}',
 'deletethispage'    => '{{Identical|Delete this page}}',
 'undelete_short'    => "It is tab label. It's really can be named ''nstab-undelete''.",
+'viewdeleted_short' => "Tab label for the undelete button when the user has permission to view the deleted history but not undelete.",
 'protect'           => 'Name of protect tab displayed for admins
 
 {{Identical|Protect}}',
