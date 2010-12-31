@@ -49,7 +49,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 	
 	function __destruct() {
-		$this->destroyDB();
+		if( $this->needsDB() ) {
+			$this->destroyDB();
+		}
 	}
 	
 	function needsDB() {
@@ -121,7 +123,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			//return;
 			//Temporary tables seem to be broken ATM, delete anyway
 		}
-
+		
 		if( $this->db->getType() == 'oracle' ) {
 			$tables = $this->db->listTables( 'ut_', __METHOD__ );
 		}
