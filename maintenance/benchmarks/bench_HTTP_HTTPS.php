@@ -26,7 +26,8 @@ require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
 class bench_HTTP_HTTPS extends Benchmarker {
 
 	public function __construct() {
-		parent::__construct();	
+		parent::__construct();
+		$this->mDescription = "Benchmark HTTP request vs HTTPS request.";
 	}
 
 	public function execute() {
