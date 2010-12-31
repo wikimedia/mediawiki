@@ -41,40 +41,40 @@ class DeletePageAdminTestCase extends SeleniumTestCase {
 
         $this->type( "searchInput", $newPage );
         $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( "30000" );
-        $this->click( "link=".$displayName );
-        $this->waitForPageToLoad( "60000" );
-        $this->type( "wpTextbox1", $newPage." text" );
-        $this->click( "wpSave" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->click( LINK_START.$displayName );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->type( TEXT_EDITOR, $newPage." text" );
+        $this->click( BUTTON_SAVE );
 
         $this->open( $this->getUrl() .
                 '/index.php?title=Main_Page&action=edit' );
-        $this->click( "link=Log out" );
-        $this->waitForPageToLoad( "30000" );
-        $this->click( "link=Log in / create account" );
-        $this->waitForPageToLoad( "30000" );
+        $this->click( LINK_START."Log out" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->click( LINK_START."Log in / create account" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         $this->type( "wpName1", $this->selenium->getUser() );
         $this->type( "wpPassword1", $this->selenium->getPass() );
         $this->click( "wpLoginAttempt" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->type( "searchInput", "new" );
         $this->click( "searchGoButton");
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify  'Delete' link displayed
-        $source = $this->gettext( "link=Delete" );
+        $source = $this->gettext( LINK_START."Delete" );
         $correct = strstr ( $source, "Delete" );
         $this->assertEquals($correct, true );
 
-        $this->click( "link=Delete" );
-        $this->waitForPageToLoad( "30000" );
+        $this->click( LINK_START."Delete" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify 'Delete' button available
         $this->assertTrue($this->isElementPresent( "wpConfirmB" ));
 
         $this->click( "wpConfirmB" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify  'Action complete' text displayed
         $source = $this->gettext( "firstHeading" );

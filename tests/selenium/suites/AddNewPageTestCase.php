@@ -38,7 +38,7 @@ class AddNewPageTestCase extends SeleniumTestCase {
                 '/index.php?title=Main_Page&action=edit' );
         $this->type( "searchInput", $newPage );
         $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( "600000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify 'Search results' text available
         $source = $this->gettext( "firstHeading" );
@@ -50,12 +50,12 @@ class AddNewPageTestCase extends SeleniumTestCase {
         $correct = strstr ( $source, "Create the page \"New\" on this wiki!" );
         $this->assertEquals( $correct, true );
 
-        $this->click( "link=".$displayName );
-        $this->waitForPageToLoad( "600000" );
+        $this->click( LINK_START.$displayName );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
-        $this->assertTrue($this->isElementPresent( "link=Create" ));
+        $this->assertTrue($this->isElementPresent( LINK_START."Create" ));
         $this->type( "wpTextbox1", "add new test page" );
-        $this->click( "wpSave" );
+        $this->click( BUTTON_SAVE );
 
         // Verify new page added
         $source = $this->gettext( "firstHeading" );
