@@ -17,6 +17,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$this->data = $data;
 		$this->dataName = $dataName;
+		
+		$this->backupGlobals = false;
+        $this->backupStaticAttributes = false;
 	}
 	
 	function run( PHPUnit_Framework_TestResult $result = NULL ) {
