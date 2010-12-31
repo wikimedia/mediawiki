@@ -1499,7 +1499,10 @@ $nav_urls: array of tabs
 [See http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/examples/Content_action.php
 for an example]
 
-'SkinTemplateNavigation': Alter the structured navigation links in SkinTemplates
+Alter the structured navigation links in SkinTemplates, there are three of these hooks called in different spots.
+'SkinTemplateNavigation': Called on content pages before variants have been added
+'SkinTemplateNavigation::SpecialPage': Called on special pages before variands have been added
+'SkinTemplateNavigation::Universal': Called on both content and special pages after variants have been added
 &$sktemplate: SkinTemplate object
 &$links: Structured navigation links
 This is used to alter the navigation for skins which use buildNavigationUrls such as Vector.
