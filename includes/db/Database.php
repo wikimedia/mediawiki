@@ -2045,16 +2045,6 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Convert a field to an unix timestamp
-	 *
-	 * @param $field String: field name
-	 * @return String: SQL statement
-	 */
-	public function unixTimestamp( $field ) {
-		return "EXTRACT(epoch FROM $field)";
-	}
-
-	/**
 	 * Determines if the last failure was due to a deadlock
 	 * STUB
 	 */

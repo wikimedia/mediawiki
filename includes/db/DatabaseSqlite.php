@@ -431,10 +431,6 @@ class DatabaseSqlite extends DatabaseBase {
 		return implode( $glue, $sqls );
 	}
 
-	public function unixTimestamp( $field ) {
-		return $field;
-	}
-
 	function wasDeadlock() {
 		return $this->lastErrno() == 5; // SQLITE_BUSY
 	}
