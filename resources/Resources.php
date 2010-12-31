@@ -470,7 +470,7 @@ return array(
 	),
 	'mediawiki.legacy.mwsuggest' => array(
 		'scripts' => 'skins/common/mwsuggest.js',
-		'dependencies' => 'mediawiki.legacy.wikibits',
+		'dependencies' => array( 'mediawiki.legacy.wikibits', 'jquery.client' ),
 		'messages' => array( 'search-mwsuggest-enabled', 'search-mwsuggest-disabled' ),
 	),
 	'mediawiki.legacy.password' => array(
