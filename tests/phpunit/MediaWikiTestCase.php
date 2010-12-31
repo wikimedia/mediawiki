@@ -25,17 +25,27 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	function run( PHPUnit_Framework_TestResult $result = NULL ) {
 		
 		if( $this->needsDB() ) {
+		
+			global $wgDBprefix;
 			
 			$this->db = wfGetDB( DB_MASTER );
+			$this->oldTablePrefix = $wgDBprefix;
 			
 			$this->destroyDB();
 			
 			$this->initDB();
 			$this->addCoreDBData();
 			$this->addDBData();
+			
+			parent::run( $result );
+		
+			$this->destroyDB();
+		}
+		else {
+			parent::run( $result );
+		
 		}
 		
-		parent::run( $result );
 	}
 	
 	function __destruct() {
@@ -82,15 +92,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			throw new MWException( 'Cannot run unit tests, the database prefix is already "unittest_"' );
 		}
 
-		$this->oldTablePrefix = $wgDBprefix;
-
 		$tables = $this->listTables();
 		
 		$prefix = $dbType != 'oracle' ? 'unittest_' : 'ut_';
-
+		
 		$this->dbClone = new CloneDatabase( $this->db, $tables, $prefix );
 		$this->dbClone->cloneTableStructure();
-
+		
 		if ( $dbType == 'oracle' )
 			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 
