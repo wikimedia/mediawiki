@@ -375,7 +375,7 @@ abstract class QueryPage extends SpecialPage {
 			$sql = $this->getSQL();
 			$sql .= ' ORDER BY ' . implode( ', ', $order );
 			$sql = $dbr->limitResult( $sql, $limit, $offset );
-			$res = $dbr->query( $sql );
+			$res = $dbr->query( $sql, $fname );
 		}
 		return $dbr->resultObject( $res );
 	}
