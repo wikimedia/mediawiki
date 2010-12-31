@@ -839,10 +839,6 @@ class DatabaseOracle extends DatabaseBase {
 		return 'SELECT * ' . ( $all ? '':'/* UNION_UNIQUE */ ' ) . 'FROM (' . implode( $glue, $sqls ) . ')' ;
 	}
 
-	public function unixTimestamp( $field ) {
-		return "((trunc($field) - to_date('19700101','YYYYMMDD')) * 86400)";
-	}
-
 	function wasDeadlock() {
 		return $this->lastErrno() == 'OCI-00060';
 	}
