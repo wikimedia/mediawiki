@@ -132,6 +132,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			//Temporary tables seem to be broken ATM, delete anyway
 		}
 		
+		if( is_null( $this->db ) ) {
+			return;
+		}
+		
 		if( $this->db->getType() == 'oracle' ) {
 			$tables = $this->db->listTables( 'ut_', __METHOD__ );
 		}

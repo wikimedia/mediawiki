@@ -79,7 +79,7 @@ class ApiTest extends ApiTestSetup {
 	 */
 	function testApiLoginNoName() {
 		$data = $this->doApiRequest( array( 'action' => 'login',
-			'lgname' => '', 'lgpassword' => self::$user->password,
+			'lgname' => '', 'lgpassword' => $this->user->password,
 		) );
 		$this->assertEquals( 'NoName', $data[0]['login']['result'] );
 	}
@@ -87,7 +87,7 @@ class ApiTest extends ApiTestSetup {
 	function testApiLoginBadPass() {
 		global $wgServer;
 
-		$user = self::$user;
+		$user = $this->user;
 
 		if ( !isset( $wgServer ) ) {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
@@ -130,7 +130,7 @@ class ApiTest extends ApiTestSetup {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 
-		$user = self::$user;
+		$user = $this->user;
 
 		$ret = $this->doApiRequest( array(
 			"action" => "login",
@@ -174,8 +174,8 @@ class ApiTest extends ApiTestSetup {
 		$req = MWHttpRequest::factory( self::$apiUrl . "?action=login&format=xml",
 			array( "method" => "POST",
 				"postData" => array(
-				"lgname" => self::$user->userName,
-				"lgpassword" => self::$user->password ) ) );
+				"lgname" => $this->user->userName,
+				"lgpassword" => $this->user->password ) ) );
 		$req->execute();
 
 		libxml_use_internal_errors( true );
@@ -190,8 +190,8 @@ class ApiTest extends ApiTestSetup {
 
 		$req->setData( array(
 			"lgtoken" => $token,
-			"lgname" => self::$user->userName,
-			"lgpassword" => self::$user->password ) );
+			"lgname" => $this->user->userName,
+			"lgpassword" => $this->user->password ) );
 		$req->execute();
 
 		$cj = $req->getCookieJar();
@@ -199,7 +199,7 @@ class ApiTest extends ApiTestSetup {
 		$this->assertNotEquals( false, $serverName );
 		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
 		$this->assertNotEquals( '', $serializedCookie );
-		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . self::$user->userName . '; .*Token=/', $serializedCookie );
+		$this->assertRegexp( '/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . $this->user->userName . '; .*Token=/', $serializedCookie );
 
 		return $cj;
 	}
