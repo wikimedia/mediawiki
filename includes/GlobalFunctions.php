@@ -596,6 +596,26 @@ function wfMessage( $key /*...*/) {
 }
 
 /**
+ * This function accepts multiple message keys and returns a message instance
+ * for the first message which is non-empty. If all messages are empty then an
+ * instance of the first message key is returned.
+ * Varargs: message keys
+ * @return \type{Message}
+ * @since 1.18
+ */
+function wfMessageFallback( /*...*/ ) {
+	$keys = func_get_args();
+	$first = $keys[0];
+	foreach ( $keys as $key ) {
+		if ( wfEmptyMsg( $key ) ) {
+			continue;
+		}
+		return wfMessage( $key );
+	}
+	return wfMessage( $first );
+}
+
+/**
  * Get a message from anywhere, for the current user language.
  *
  * Use wfMsgForContent() instead if the message should NOT

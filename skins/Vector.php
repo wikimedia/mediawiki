@@ -50,296 +50,6 @@ class SkinVector extends SkinTemplate {
 		parent::setupSkinUserCss( $out );
 		$out->addModuleStyles( 'skins.vector' );
 	}
-
-	/**
-	 * Builds a structured array of links used for tabs and menus
-	 * @return array
-	 * @private
-	 */
-	function buildNavigationUrls() {
-		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle;
-		global $wgDisableLangConversion, $wgVectorUseIconWatch;
-
-		wfProfileIn( __METHOD__ );
-
-		$links = array(
-			'namespaces' => array(),
-			'views' => array(),
-			'actions' => array(),
-			'variants' => array()
-		);
-
-		// Detects parameters
-		$action = $wgRequest->getVal( 'action', 'view' );
-		$section = $wgRequest->getVal( 'section' );
-
-		$userCanRead = $this->mTitle->userCanRead();
-
-		// Checks if page is some kind of content
-		if( $this->iscontent ) {
-			// Gets page objects for the related namespaces
-			$subjectPage = $this->mTitle->getSubjectPage();
-			$talkPage = $this->mTitle->getTalkPage();
-
-			// Determines if this is a talk page
-			$isTalk = $this->mTitle->isTalkPage();
-
-			// Generates XML IDs from namespace names
-			$subjectId = $this->mTitle->getNamespaceKey( '' );
-
-			if ( $subjectId == 'main' ) {
-				$talkId = 'talk';
-			} else {
-				$talkId = "{$subjectId}_talk";
-			}
-
-			// Adds namespace links
-			$links['namespaces'][$subjectId] = $this->tabAction(
-				$subjectPage, 'nstab-' . $subjectId, !$isTalk, '', $userCanRead
-			);
-			$links['namespaces'][$subjectId]['context'] = 'subject';
-			$links['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, 'talk', $isTalk, '', $userCanRead
-			);
-			$links['namespaces'][$talkId]['context'] = 'talk';
-
-			// Adds view view link
-			if ( $this->mTitle->exists() && $userCanRead ) {
-				$links['views']['view'] = $this->tabAction(
-					$isTalk ? $talkPage : $subjectPage,
-						'vector-view-view', ( $action == 'view' ), '', true
-				);
-			}
-
-			wfProfileIn( __METHOD__ . '-edit' );
-
-			// Checks if user can...
-			if (
-				// read and edit the current page
-				$userCanRead && $this->mTitle->quickUserCan( 'edit' ) &&
-				(
-					// if it exists
-					$this->mTitle->exists() ||
-					// or they can create one here
-					$this->mTitle->quickUserCan( 'create' )
-				)
-			) {
-				// Builds CSS class for talk page links
-				$isTalkClass = $isTalk ? ' istalk' : '';
-
-				// Determines if we're in edit mode
-				$selected = (
-					( $action == 'edit' || $action == 'submit' ) &&
-					( $section != 'new' )
-				);
-				$links['views']['edit'] = array(
-					'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
-					'text' => $this->mTitle->exists()
-						? wfMsg( 'vector-view-edit' )
-						: wfMsg( 'vector-view-create' ),
-					'href' =>
-						$this->mTitle->getLocalURL( $this->editUrlOptions() )
-				);
-				// Checks if this is a current rev of talk page and we should show a new
-				// section link
-				if ( ( $isTalk && $wgArticle && $wgArticle->isCurrent() ) || ( $wgOut->showNewSectionLink() ) ) {
-					// Checks if we should ever show a new section link
-					if ( !$wgOut->forceHideNewSectionLink() ) {
-						// Adds new section link
-						//$links['actions']['addsection']
-						$links['views']['addsection'] = array(
-							'class' => 'collapsible ' . ( $section == 'new' ? 'selected' : false ),
-							'text' => wfMsg( 'vector-action-addsection' ),
-							'href' => $this->mTitle->getLocalURL(
-								'action=edit&section=new'
-							)
-						);
-					}
-				}
-			// Checks if the page has some kind of viewable content
-			} elseif ( $this->mTitle->hasSourceText() && $userCanRead ) {
-				// Adds view source view link
-				$links['views']['viewsource'] = array(
-					'class' => ( $action == 'edit' ) ? 'selected' : false,
-					'text' => wfMsg( 'vector-view-viewsource' ),
-					'href' =>
-						$this->mTitle->getLocalURL( $this->editUrlOptions() )
-				);
-			}
-			wfProfileOut( __METHOD__ . '-edit' );
-
-			wfProfileIn( __METHOD__ . '-live' );
-
-			// Checks if the page exists
-			if ( $this->mTitle->exists() && $userCanRead ) {
-				// Adds history view link
-				$links['views']['history'] = array(
-					'class' => 'collapsible ' . ( ( $action == 'history' ) ? 'selected' : false ),
-					'text' => wfMsg( 'vector-view-history' ),
-					'href' => $this->mTitle->getLocalURL( 'action=history' ),
-					'rel' => 'archives',
-				);
-
-				if( $wgUser->isAllowed( 'delete' ) ) {
-					$links['actions']['delete'] = array(
-						'class' => ( $action == 'delete' ) ? 'selected' : false,
-						'text' => wfMsg( 'vector-action-delete' ),
-						'href' => $this->mTitle->getLocalURL( 'action=delete' )
-					);
-				}
-				if ( $this->mTitle->quickUserCan( 'move' ) ) {
-					$moveTitle = SpecialPage::getTitleFor(
-						'Movepage', $this->thispage
-					);
-					$links['actions']['move'] = array(
-						'class' => $this->mTitle->isSpecial( 'Movepage' ) ?
-										'selected' : false,
-						'text' => wfMsg( 'vector-action-move' ),
-						'href' => $moveTitle->getLocalURL()
-					);
-				}
-
-				if (
-					$this->mTitle->getNamespace() !== NS_MEDIAWIKI &&
-					$wgUser->isAllowed( 'protect' )
-				) {
-					if ( !$this->mTitle->isProtected() ) {
-						$links['actions']['protect'] = array(
-							'class' => ( $action == 'protect' ) ?
-											'selected' : false,
-							'text' => wfMsg( 'vector-action-protect' ),
-							'href' =>
-								$this->mTitle->getLocalURL( 'action=protect' )
-						);
-
-					} else {
-						$links['actions']['unprotect'] = array(
-							'class' => ( $action == 'unprotect' ) ?
-											'selected' : false,
-							'text' => wfMsg( 'vector-action-unprotect' ),
-							'href' =>
-								$this->mTitle->getLocalURL( 'action=unprotect' )
-						);
-					}
-				}
-			} else {
-				// article doesn't exist or is deleted
-				if (
-					$wgUser->isAllowed( 'deletedhistory' ) &&
-					$wgUser->isAllowed( 'undelete' )
-				) {
-					$n = $this->mTitle->isDeleted();
-					if( $n ) {
-						$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
-						$links['actions']['undelete'] = array(
-							'class' => false,
-							'text' => wfMsgExt(
-								'vector-action-undelete',
-								array( 'parsemag' ),
-								$wgLang->formatNum( $n )
-							),
-							'href' => $undelTitle->getLocalURL(
-								'target=' . urlencode( $this->thispage )
-							)
-						);
-					}
-				}
-
-				if (
-					$this->mTitle->getNamespace() !== NS_MEDIAWIKI &&
-					$wgUser->isAllowed( 'protect' )
-				) {
-					if ( !$this->mTitle->getRestrictions( 'create' ) ) {
-						$links['actions']['protect'] = array(
-							'class' => ( $action == 'protect' ) ?
-											'selected' : false,
-							'text' => wfMsg( 'vector-action-protect' ),
-							'href' =>
-								$this->mTitle->getLocalURL( 'action=protect' )
-						);
-
-					} else {
-						$links['actions']['unprotect'] = array(
-							'class' => ( $action == 'unprotect' ) ?
-											'selected' : false,
-							'text' => wfMsg( 'vector-action-unprotect' ),
-							'href' =>
-								$this->mTitle->getLocalURL( 'action=unprotect' )
-						);
-					}
-				}
-			}
-			wfProfileOut( __METHOD__ . '-live' );
-			/**
-			 * The following actions use messages which, if made particular to
-			 * the Vector skin, would break the Ajax code which makes this
-			 * action happen entirely inline. Skin::makeGlobalVariablesScript
-			 * defines a set of messages in a javascript object - and these
-			 * messages are assumed to be global for all skins. Without making
-			 * a change to that procedure these messages will have to remain as
-			 * the global versions.
-			 */
-			// Checks if the user is logged in
-			if ( $this->loggedin ) {
-				if ( $wgVectorUseIconWatch ) {
-					$class = 'icon';
-					$place = 'views';
-				} else {
-					$class = '';
-					$place = 'actions';
-				}
-				$mode = $this->mTitle->userIsWatching() ? 'unwatch' : 'watch';
-				$links[$place][$mode] = array(
-					'class' => $class . ( ( $action == 'watch' || $action == 'unwatch' ) ? ' selected' : false ),
-					'text' => wfMsg( $mode ), // uses 'watch' or 'unwatch' message
-					'href' => $this->mTitle->getLocalURL( 'action=' . $mode )
-				);
-			}
-			// This is instead of SkinTemplateTabs - which uses a flat array
-			wfRunHooks( 'SkinTemplateNavigation', array( &$this, &$links ) );
-
-		// If it's not content, it's got to be a special page
-		} else {
-			$links['namespaces']['special'] = array(
-				'class' => 'selected',
-				'text' => wfMsg( 'nstab-special' ),
-				'href' => $wgRequest->getRequestURL()
-			);
-			// Equiv to SkinTemplateBuildContentActionUrlsAfterSpecialPage
-			wfRunHooks( 'SkinTemplateNavigation::SpecialPage', array( &$this, &$links ) );
-		}
-
-		// Gets list of language variants
-		$variants = $wgContLang->getVariants();
-		// Checks that language conversion is enabled and variants exist
-		if( !$wgDisableLangConversion && count( $variants ) > 1 ) {
-			// Gets preferred variant
-			$preferred = $wgContLang->getPreferredVariant();
-			// Loops over each variant
-			foreach( $variants as $code ) {
-				// Gets variant name from language code
-				$varname = $wgContLang->getVariantname( $code );
-				// Checks if the variant is marked as disabled
-				if( $varname == 'disable' ) {
-					// Skips this variant
-					continue;
-				}
-				// Appends variant link
-				$links['variants'][] = array(
-					'class' => ( $code == $preferred ) ? 'selected' : false,
-					'text' => $varname,
-					'href' => $this->mTitle->getLocalURL( '', $code )
-				);
-			}
-		}
-
-		// Equiv to SkinTemplateContentActions
-		wfRunHooks( 'SkinTemplateNavigation::Universal', array( &$this,  &$links ) );
-
-		wfProfileOut( __METHOD__ );
-
-		return $links;
-	}
 }
 
 /**
@@ -361,39 +71,38 @@ class VectorTemplate extends BaseTemplate {
 	 * Outputs the entire contents of the XHTML page
 	 */
 	public function execute() {
-		global $wgRequest, $wgLang;
+		global $wgRequest, $wgLang, $wgVectorUseIconWatch;
 
 		$this->skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
 
 		// Build additional attributes for navigation urls
-		$nav = $this->skin->buildNavigationUrls();
+		//$nav = $this->skin->buildNavigationUrls();
+		$nav = $this->data['content_navigation'];
+		
+		if ( $wgVectorUseIconWatch ) {
+			$mode = $this->skin->mTitle->userIsWatching() ? 'unwatch' : 'watch';
+			$nav['views'][$mode] = $nav['actions'][$mode];
+			$nav['views'][$mode]['class'] = rtrim('icon ' . $nav['views'][$mode]['class'], ' ');
+			$nav['views'][$mode]['primary'] = true;
+			unset($nav['actions'][$mode]);
+		}
+		
 		foreach ( $nav as $section => $links ) {
 			foreach ( $links as $key => $link ) {
-				$xmlID = $key;
-				if ( isset( $link['context'] ) && $link['context'] == 'subject' ) {
-					$xmlID = 'ca-nstab-' . $xmlID;
-				} else if ( isset( $link['context'] ) && $link['context'] == 'talk' ) {
-					$xmlID = 'ca-talk';
-				} else {
-					$xmlID = 'ca-' . $xmlID;
+				if ( $section == "views" && !(isset($link["primary"]) && $link["primary"]) ) {
+					$link['class'] = rtrim('collapsible ' . $link['class'], ' ');
 				}
+				
+				$xmlID = isset($link["id"]) ? $link["id"] : 'ca-' . $xmlID;
 				$nav[$section][$key]['attributes'] =
 					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
-				if ( $nav[$section][$key]['class'] ) {
+				if ( $link['class'] ) {
 					$nav[$section][$key]['attributes'] .=
 						' class="' . htmlspecialchars( $link['class'] ) . '"';
 					unset( $nav[$section][$key]['class'] );
 				}
-				// We don't want to give the watch tab an accesskey if the page
-				// is being edited, because that conflicts with the accesskey on
-				// the watch checkbox.  We also don't want to give the edit tab
-				// an accesskey, because that's fairly superfluous and conflicts
-				// with an accesskey (Ctrl-E) often used for editing in Safari.
-				if (
-					in_array( $action, array( 'edit', 'submit' ) ) &&
-					in_array( $key, array( 'edit', 'watch', 'unwatch' ) )
-				) {
+				if ( isset($link['tooltiponly']) && $link['tooltiponly'] ) {
 					$nav[$section][$key]['key'] =
 						$this->skin->tooltip( $xmlID );
 				} else {
