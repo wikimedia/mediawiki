@@ -9,6 +9,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $dbClone;
 	protected $oldTablePrefix;
 	protected $useTemporaryTables = true;
+	
+	protected $supportedDBs = array(
+		'mysql',
+		'sqlite'
+	);
 
 	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
 		if ($name !== null) {
@@ -29,6 +34,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			global $wgDBprefix;
 			
 			$this->db = wfGetDB( DB_MASTER );
+			
+			$this->checkDbIsSupported();
+			
 			$this->oldTablePrefix = $wgDBprefix;
 			
 			$this->destroyDB();
@@ -173,6 +181,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$tables = array_map( array( __CLASS__, 'unprefixTable' ), $tables );
 		return $tables;
 		
+	}
+	
+	protected function checkDbIsSupported() {
+		if( !in_array( $this->db->getType(), $this->supportedDBs ) ) {
+			throw new MWException( $this->db->getType() . " is not currently supported for unit testing." );
+		}
 	}
 }
 
