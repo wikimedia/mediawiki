@@ -20,6 +20,7 @@ class LanguageKsh extends Language {
 			'wikia' => 'f',
 			'translatewiki.net' => 'n',
 		);
+
 	/**
 	 * Convert from the nominative form of a noun to other cases.
 	 * Invoked with {{GRAMMAR:case|word}} inside messages.
@@ -61,110 +62,84 @@ class LanguageKsh extends Language {
 	 * Contents of the leftmost table column can be copied and pasted as
 	 * "case" values.
 	 *
+	 * @param $word String
+	 * @param $case String
 	 */
-	function convertGrammar( $word, $case )
-	{
-		$lord = strtolower($word);
+	function convertGrammar( $word, $case ) {
+		$lord = strtolower( $word );
 		$gender = 'm'; // Nuutnaarel // default
-		if ( preg_match ( '/wiki$/', $lord ) )
-		{
+		if ( preg_match ( '/wiki$/', $lord ) ) {
 			$gender = 'n';	// Dat xyz-wiki
 		}
-		if ( isset( self::$familygender[$lord] ) )
-		{
-			$gender = (self::$familygender[$lord]);
+		if ( isset( self::$familygender[$lord] ) ) {
+			$gender = self::$familygender[$lord];
 		}
-		$case = (' '.strtolower($case));
-		if ( preg_match( '/ [is]/', $case ) )
-		{
+		$case = ' ' . strtolower( $case );
+		if ( preg_match( '/ [is]/', $case ) ) {
 			# däm WikiMaatplaz singe, dä Wikipeedija iere, däm Wikiwööterbooch singe
 			# dem/em WikiMaatplaz singe, de Wikipeedija iere, dem/em Wikiwööterbooch singe
 			# däm WikiMaatplaz sing, dä Wikipeedija ier, däm Wikiwööterbooch sing
 			# dem/em WikiMaatplaz sing, de Wikipeedija ier, dem/em Wikiwööterbooch sing
 			$word = ( preg_match( '/ b/', $case )
-					? ($gender=='f'
-						? 'dä'
-						: 'däm'
-					  )
-					: ($gender=='f'
-						? 'de'
-						: 'dem'
-					  )
-				).
-				' '.$word.' '.
-				( $gender=='f'
-					? 'ier'
-					: 'sing'
-				).
-				( preg_match( '/ m/', $case )
-					? 'e'
-					: ''
+						? ( $gender=='f' ? 'dä' : 'däm' )
+						: ( $gender=='f' ? 'de' : 'dem' )
+					) . ' ' . $word . ' ' .
+					( $gender=='f' ? 'ier' : 'sing' ) .
+					( preg_match( '/ m/', $case ) ? 'e' : ''
 				);
-		}
-		elseif ( preg_match( '/ e/', $case ) )
-		{
+		} elseif ( preg_match( '/ e/', $case ) ) {
 			# en dämm WikiMaatPlaz, en dä Wikipeedija, en dämm Wikiwööterbooch
 			# em WikiMaatplaz, en de Wikipeedija, em Wikiwööterbooch
-			if ( preg_match( '/ b/', $case ) )
-			{
-				$word = ('en '.($gender=='f'?'dä':'däm').' '.$word);
+			if ( preg_match( '/ b/', $case ) ) {
+				$word = 'en '.( $gender == 'f' ? 'dä' : 'däm' ) . ' ' . $word;
+			} else {
+				$word = ( $gender == 'f' ? 'en de' : 'em' ) . ' ' . $word;
 			}
-			else
-			{
-				$word = (($gender=='f'?'en de':'em').' '.$word);
-			}
-		}
-		elseif ( preg_match( '/ [fv]/', $case ) || preg_match( '/ [2jg]/', $case ) )
-		{
+		} elseif ( preg_match( '/ [fv]/', $case ) || preg_match( '/ [2jg]/', $case ) ) {
 			# vun däm WikiMaatplaz, vun dä Wikipeedija, vun däm Wikiwööterbooch
 			# vum WikiMaatplaz, vun de Wikipeedija, vum Wikiwööterbooch
-			if ( preg_match( '/ b/', $case ) )
-			{
-				$word = ('vun '.($gender=='f'?'dä':'däm').' '.$word);
+			if ( preg_match( '/ b/', $case ) ) {
+				$word = 'vun ' . ( $gender == 'f' ? 'dä' : 'däm' ) . ' ' . $word;
+			} else {
+				$word = ( $gender== 'f' ? 'vun de' : 'vum' ) . ' ' . $word;
 			}
-			else
-			{
-				$word = (($gender=='f'?'vun de':'vum').' '.$word);
-			}
-		}
-		elseif ( preg_match( '/ [3d]/', $case ) )
-		{
+		} elseif ( preg_match( '/ [3d]/', $case ) ) {
 			# dämm WikiMaatPlaz, dä Wikipeedija, dämm Wikiwööterbooch
 			# dem/em WikiMaatplaz, de Wikipeedija, dem/em Wikiwööterbooch
-			if ( preg_match( '/ b/', $case ) )
-			{
-				$word = (($gender=='f'?'dää':'dämm').' '.$word);
+			if ( preg_match( '/ b/', $case ) ) {
+				$word = ( $gender == 'f' ? 'dää' : 'dämm' ) .' ' . $word;
+			} else {
+				$word = ( $gender == 'f' ? 'de' : 'dem' ) . ' ' . $word;
 			}
-			else
-			{
-				$word = (($gender=='f'?'de':'dem').' '.$word);
-			}
-		}
-		else
-		{
+		} else {
 			# dä WikiMaatPlaz, di Wikipeedija, dat Wikiwööterbooch
 			# der WikiMaatplaz, de Wikipeedija, et Wikiwööterbooch
-			if ( preg_match( '/ b/', $case ) )
-			{
-				switch ( $gender )
-				{
-					case 'm' : $lord = 'dä' ;	break ;
-					case 'f' : $lord = 'di' ;	break ;
-					default  : $lord = 'dat' ;	break ;
+			if ( preg_match( '/ b/', $case ) ) {
+				switch ( $gender ) {
+					case 'm':
+						$lord = 'dä';
+						break ;
+					case 'f':
+						$lord = 'di';
+						break;
+					default:
+						$lord = 'dat';
+				}
+			} else {
+				switch ( $gender ) {
+					case 'm':
+						$lord = 'der';
+						break;
+					case 'f':
+						$lord = 'de';
+						break;
+					default:
+						$lord = 'et';
 				}
 			}
-			else
-			{
-				switch ( $gender )
-				{
-					case 'm' : $lord = 'der' ;	break ;
-					case 'f' : $lord = 'de' ;	break ;
-					default  : $lord = 'et' ;	break ;
-				}
-			}
-			$word = ($lord.' '.$word);
+			$word = $lord.' '.$word;
 		}
-		return($word);
+		return $word;
 	}
 
 	/**
