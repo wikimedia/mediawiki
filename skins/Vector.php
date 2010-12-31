@@ -73,6 +73,8 @@ class SkinVector extends SkinTemplate {
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
 
+		$userCanRead = $this->mTitle->userCanRead();
+
 		// Checks if page is some kind of content
 		if( $this->iscontent ) {
 			// Gets page objects for the related namespaces
@@ -93,16 +95,16 @@ class SkinVector extends SkinTemplate {
 
 			// Adds namespace links
 			$links['namespaces'][$subjectId] = $this->tabAction(
-				$subjectPage, 'nstab-' . $subjectId, !$isTalk, '', true
+				$subjectPage, 'nstab-' . $subjectId, !$isTalk, '', $userCanRead
 			);
 			$links['namespaces'][$subjectId]['context'] = 'subject';
 			$links['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, 'talk', $isTalk, '', true
+				$talkPage, 'talk', $isTalk, '', $userCanRead
 			);
 			$links['namespaces'][$talkId]['context'] = 'talk';
 
 			// Adds view view link
-			if ( $this->mTitle->exists() ) {
+			if ( $this->mTitle->exists() && $userCanRead ) {
 				$links['views']['view'] = $this->tabAction(
 					$isTalk ? $talkPage : $subjectPage,
 						'vector-view-view', ( $action == 'view' ), '', true
@@ -113,8 +115,8 @@ class SkinVector extends SkinTemplate {
 
 			// Checks if user can...
 			if (
-				// edit the current page
-				$this->mTitle->quickUserCan( 'edit' ) &&
+				// read and edit the current page
+				$userCanRead && $this->mTitle->quickUserCan( 'edit' ) &&
 				(
 					// if it exists
 					$this->mTitle->exists() ||
@@ -155,7 +157,7 @@ class SkinVector extends SkinTemplate {
 					}
 				}
 			// Checks if the page has some kind of viewable content
-			} elseif ( $this->mTitle->hasSourceText() ) {
+			} elseif ( $this->mTitle->hasSourceText() && $userCanRead ) {
 				// Adds view source view link
 				$links['views']['viewsource'] = array(
 					'class' => ( $action == 'edit' ) ? 'selected' : false,
@@ -169,7 +171,7 @@ class SkinVector extends SkinTemplate {
 			wfProfileIn( __METHOD__ . '-live' );
 
 			// Checks if the page exists
-			if ( $this->mTitle->exists() ) {
+			if ( $this->mTitle->exists() && $userCanRead ) {
 				// Adds history view link
 				$links['views']['history'] = array(
 					'class' => 'collapsible ' . ( ( $action == 'history' ) ? 'selected' : false ),
@@ -766,8 +768,13 @@ class VectorTemplate extends QuickTemplate {
 		<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
 		<?php if ( $wgVectorUseSimpleSearch && $wgUser->getOption( 'vector-simplesearch' ) ): ?>
 		<div id="simpleSearch">
+			<?php if ( $this->data['rtl'] ): ?>
+			<button id="searchButton" type='submit' name='button' <?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?>><img src="<?php echo $this->skin->getSkinStylePath('images/search-rtl.png'); ?>" alt="<?php $this->msg( 'searchbutton' ) ?>" /></button>
+			<?php endif; ?>
 			<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
-			<button id="searchButton" type='submit' name='button' <?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?>><img src="<?php echo $this->skin->getSkinStylePath('images/search-' . ( $this->data['rtl'] ? 'rtl' : 'ltr' ) . '.png'); ?>" alt="<?php $this->msg( 'searchbutton' ) ?>" /></button>
+			<?php if ( !$this->data['rtl'] ): ?>
+			<button id="searchButton" type='submit' name='button' <?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?>><img src="<?php echo $this->skin->getSkinStylePath('images/search-ltr.png'); ?>" alt="<?php $this->msg( 'searchbutton' ) ?>" /></button>
+			<?php endif; ?>
 		</div>
 		<?php else: ?>
 		<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
