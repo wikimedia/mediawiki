@@ -706,6 +706,9 @@ $2',
 'loginlanguagelabel'         => 'Език: $1',
 'suspicious-userlogout'      => 'Заявката ви за излизане от системата беше отхвърлена, тъй като изглежда е била изпратена погрешка от браузъра или кеширащото прокси.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Неизвестна грешка в mail() функцията на PHP',
+
 # JavaScript password checks
 'password-strength'            => 'Оценка на сигурността на паролата: $1',
 'password-strength-bad'        => 'ЛОША',
@@ -2288,6 +2291,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Потребителски приноси за нови сметки',
 'sp-contributions-blocklog'            => 'Дневник на блокиранията',
 'sp-contributions-deleted'             => 'изтрити приноси на потребител',
+'sp-contributions-uploads'             => 'качвания',
 'sp-contributions-logs'                => 'дневници',
 'sp-contributions-talk'                => 'беседа',
 'sp-contributions-userrights'          => 'управление на потребителските права',

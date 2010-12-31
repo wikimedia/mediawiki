@@ -737,11 +737,7 @@ Nếu bạn không phải là người yêu cầu gửi mật khẩu, hoặc n�
 'eauthentsent'               => 'Thư xác nhận đã được gửi. Trước khi dùng chức năng nhận thư, bạn cần thực hiện hướng dẫn trong thư xác nhận, để đảm bảo tài khoản thuộc về bạn.',
 'throttled-mailpassword'     => 'Mật khẩu đã được gửi đến cho bạn trong vòng {{PLURAL:$1|$1 giờ|$1 giờ}} đồng hồ trở lại. Để tránh lạm dụng, chỉ có thể gửi mật khẩu $1 giờ đồng hồ một lần.',
 'mailerror'                  => 'Lỗi gửi thư : $1',
-'acct_creation_throttle_hit' => 'Ai đó cùng [[địa chỉ IP]] với bạn đã mở $1 tài khoản ở đây trong vòng 24 giờ. Vì quy định hạn chế số tài khoản mở trên một địa chỉ IP nên bạn hiện không thể mở thêm được nữa dùng địa chỉ IP này.
-
-==Bạn có sửa đổi dùng AOL hay proxy dùng chung?==
-
-Nếu bạn đang sửa đổi dùng kết nối [[AOL|America Online]], hoặc bạn đến từ Trung Đông, châu Phi, Úc, New Zealand, hoặc đang sử dụng mạng ở dịch vụ net, trong nhà trường, thư viện, hay công ty, bạn có thể đang dùng chung một địa chỉ IP với người khác. Vì thế, bạn có thể gặp cảnh báo này dù trước đây chưa bao giờ mở tài khoản. Mời bạn thử mở lại trong vòng vài giờ nữa.',
+'acct_creation_throttle_hit' => 'Ai đó cùng [[địa chỉ IP]] với bạn đã mở {{PLURAL:$1|một tài khoản|$1 tài khoản}} ở đây trong vòng 24 giờ. Vì quy định hạn chế số tài khoản mở trên một địa chỉ IP nên bạn hiện không thể mở thêm được nữa dùng địa chỉ IP này.',
 'emailauthenticated'         => 'Địa chỉ thư điện tử của bạn được xác nhận vào lúc $3 $2.',
 'emailnotauthenticated'      => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Chức năng thư điện tử chưa bật.',
 'noemailprefs'               => 'Hãy ghi một địa chỉ thư điện tử trong tùy chọn cá nhân để có thể sử dụng tính năng này.',

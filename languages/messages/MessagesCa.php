@@ -1098,7 +1098,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'difference-multipage'     => '(Diferència entre pàgines)',
 'lineno'                   => 'Línia $1:',
 'compareselectedversions'  => 'Compara les versions seleccionades',
-'showhideselectedversions' => 'Mostrar/ocultar les versions seleccionades',
+'showhideselectedversions' => 'Mostra/oculta les versions seleccionades',
 'editundo'                 => 'desfés',
 'diff-multi'               => '({{PLURAL:$1|Hi ha una revisió intermèdia |Hi ha $1 revisions intermèdies}} sense mostrar fetes per {{PLURAL:$2|un usuari|$2 usuaris}})',
 'diff-multi-manyusers'     => "({{PLURAL:$1|Hi ha una revisió intermèdia|Hi ha $1 revisions intermèdies}} sense mostrar fetes per més {{PLURAL:$2|d'un usuari|de $2 usuaris}})",

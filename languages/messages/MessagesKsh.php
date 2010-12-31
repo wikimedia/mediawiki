@@ -9,6 +9,7 @@
  *
  * @author Caesius noh en Idee vum Manes
  * @author Purodha
+ * @author Reedy
  */
 
 /**
@@ -3608,7 +3609,7 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 # Special:SpecialPages
 'specialpages'                   => '{{int:nstab-special}}e',
 'specialpages-note'              => "<h4 class='mw-specialpagesgroup'>Lejänd (Äklierong):</h4><table style='width:100%;' class='mw-specialpages-table'><tr><td valign='top'><ul><li> {{int:nstab-special}}e för jede Metmaacher
-</li><li class='mw-specialpages-page mw-specialpagerestricted'>{{int:nstab-special}}e för Metmaacher met besönder Räächte
+</li><li class='mw-specialpagerestricted'>{{int:nstab-special}}e för Metmaacher met besönder Räächte
 </li></ul></td></tr></table>",
 'specialpages-group-maintenance' => 'Waadungsleste',
 'specialpages-group-other'       => 'Ander {{int:nstab-special}}e',
