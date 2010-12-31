@@ -45,15 +45,16 @@ you have the DBA extension for PHP installed, this will improve performance
 further.
 
 == Changes since 1.16.0 ==
+
 * (bug 24981) Allow extensions to access SpecialUpload variables again
-* (bug 24724) list=allusers is out by 1 (shows total users - 1)
-* (bug 24166) API error when using rvprop=tags
-* For wikis setup in French language, Special:Téléchargement works again 
-  as an alias for Special:Upload
+* (bug 24724) list=allusers was out by 1 (shows total users - 1)
+* (bug 24166) Fixed API error when using rvprop=tags
+* For wikis using French as a content language, Special:Téléchargement works 
+  again as an alias for Special:Upload.
 * (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16.0)
-* (bug 25248) API: paraminfo errors with certain modules
-* Installer now handles situations when safe_mode is active or exec()
-  and similar functions are disabled better.
+* (bug 25248) Fixed paraminfo errors in certain API modules.
+* The installer now has improved handling for situations where safe_mode is 
+  active or exec() and similar functions are disabled.
 * (bug 19593) Specifying --server in now works for all maintenance scripts.
 * Fixed $wgLicenseTerms register globals.
 
