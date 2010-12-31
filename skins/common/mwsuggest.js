@@ -43,14 +43,16 @@ window.os_animation_timer = null;
 /**
  * <datalist> is a new HTML5 element that allows you to manually supply
  * suggestion lists and have them rendered according to the right platform
- * conventions.  However, the only shipping browser as of early 2010 is Opera,
- * and that has a fatal problem: the suggestion lags behind what the user types
- * by one keypress.  (Reported as DSK-276870 to Opera's secret bug tracker.)
- * The code here otherwise seems to work, though, so this can be flipped on
- * (maybe with a UA check) when some browser has a better implementation.
+ * conventions.  Opera as of version 11 has a fatal problem: the suggestion
+ * lags behind what the user types by one keypress.  (Reported as DSK-276870 to
+ * Opera's secret bug tracker.)  However, Firefox 4 supports it without
+ * problems, so Opera is just blacklisted here.  Ideally we wouldn't blacklist
+ * future versions, in case they fix it, but the fallback isn't bad at all and
+ * the failure if they don't fix it is very annoying, so in this case we'll
+ * blacklist future versions too.
  */
-// var os_use_datalist = 'list' in document.createElement( 'input' );
-window.os_use_datalist = false;
+window.os_use_datalist = 'list' in document.createElement( 'input' )
+	&& $.client.profile.name != 'opera';
 
 /** Timeout timer class that will fetch the results */
 window.os_Timer = function( id, r, query ) {
