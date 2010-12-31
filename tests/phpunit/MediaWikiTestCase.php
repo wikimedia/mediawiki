@@ -144,9 +144,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 		
 		foreach ( $tables as $table ) {
-			if( $this->db->tableExists( "`$table`" ) ) {
+			try {
 				$sql = $this->db->getType() == 'oracle' ? "DROP TABLE $table DROP CONSTRAINTS" : "DROP TABLE `$table`";
 				$this->db->query( $sql, __METHOD__ );
+			} catch( Exception $e ) {
 			}
 		}
 		
