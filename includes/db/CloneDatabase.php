@@ -91,14 +91,15 @@ class CloneDatabase {
 			# works correctly across DB engines, we need to change the pre-
 			# fix back and forth so tableName() works right.
 			
-			$this->changePrefix( $this->oldTablePrefix );
+			self::changePrefix( $this->oldTablePrefix );
 			$oldTableName = $this->db->tableName( $tbl );
 			
-			$this->changePrefix( $this->newTablePrefix );
+			self::changePrefix( $this->newTablePrefix );
 			$newTableName = $this->db->tableName( $tbl );
 
 			if( $this->dropCurrentTables && !in_array( $this->db->getType(), array( 'postgres' ) ) ) {
 				$this->db->dropTable( $tbl, __METHOD__ );
+				wfDebug( "Dropping {$this->newTablePrefix}{$oldTableName}\n", __METHOD__ );
 				//Dropping the oldTable because the prefix was changed
 			}
 
@@ -116,12 +117,12 @@ class CloneDatabase {
 	 */
 	public function destroy( $dropTables = false ) {
 		if( $dropTables ) {
-			$this->changePrefix( $this->newTablePrefix );
+			self::changePrefix( $this->newTablePrefix );
 			foreach( $this->tablesToClone as $tbl ) {
 				$this->db->dropTable( $tbl );
 			}
 		}
-		$this->changePrefix( $this->oldTablePrefix );
+		self::changePrefix( $this->oldTablePrefix );
 	}
 
 	/**
@@ -130,9 +131,9 @@ class CloneDatabase {
 	 * @param  $prefix
 	 * @return void
 	 */
-	protected function changePrefix( $prefix ) {
+	public static function changePrefix( $prefix ) {
 		global $wgDBprefix;
-		wfGetLBFactory()->forEachLB( array( $this, 'changeLBPrefix' ), array( $prefix ) );
+		wfGetLBFactory()->forEachLB( array( 'CloneDatabase', 'changeLBPrefix' ), array( $prefix ) );
 		$wgDBprefix = $prefix;
 	}
 
@@ -141,8 +142,8 @@ class CloneDatabase {
 	 * @param  $prefix
 	 * @return void
 	 */
-	public function changeLBPrefix( $lb, $prefix ) {
-		$lb->forEachOpenConnection( array( $this, 'changeDBPrefix' ), array( $prefix ) );
+	public static function changeLBPrefix( $lb, $prefix ) {
+		$lb->forEachOpenConnection( array( 'CloneDatabase', 'changeDBPrefix' ), array( $prefix ) );
 	}
 
 	/**
@@ -150,7 +151,7 @@ class CloneDatabase {
 	 * @param  $prefix
 	 * @return void
 	 */
-	public function changeDBPrefix( $db, $prefix ) {
+	public static function changeDBPrefix( $db, $prefix ) {
 		$db->tablePrefix( $prefix );
 	}
 }
