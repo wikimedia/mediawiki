@@ -1488,24 +1488,14 @@ subPageSubtitle() generates.
 If true is returned, $subpages will be ignored and the rest of
 subPageSubtitle() will run.
 
-'SkinTemplateBuildContentActionUrlsAfterSpecialPage': after the single tab
-when showing a special page
-$sktemplate: SkinTemplate object
-$content_actions: array of tabs
-
 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink': after creating the
 "permanent link" tab
 $sktemplate: SkinTemplate object
 $nav_urls: array of tabs
 
-'SkinTemplateContentActions': Alter the "content action" links in SkinTemplates
-&$content_actions: Content actions
-[See http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/examples/Content_action.php
-for an example]
-
 Alter the structured navigation links in SkinTemplates, there are three of these hooks called in different spots.
-'SkinTemplateNavigation': Called on content pages before variants have been added
-'SkinTemplateNavigation::SpecialPage': Called on special pages before variands have been added
+'SkinTemplateNavigation': Called on content pages after the tabs have been added but before before variants have been added
+'SkinTemplateNavigation::SpecialPage': Called on special pages after the special tab is added but before variants have been added
 'SkinTemplateNavigation::Universal': Called on both content and special pages after variants have been added
 &$sktemplate: SkinTemplate object
 &$links: Structured navigation links
@@ -1535,10 +1525,6 @@ $checkEdit: Whether or not the action=edit query should be added if appropriate.
 &$query: Query string to add to link.
 &$text: Link text.
 &$result: Complete assoc. array if you want to return true.
-
-'SkinTemplateTabs': called when finished to build the actions tabs
-$sktemplate: SkinTemplate object
-$content_actions: array of tabs
 
 'SkinTemplateToolboxEnd': Called by SkinTemplate skins after toolbox links have
 been rendered (useful for adding more)
