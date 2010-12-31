@@ -117,6 +117,7 @@ class LinkSearchPage extends QueryPage {
 		if ($rv === false) {
 			// LinkFilter doesn't handle wildcard in IP, so we'll have to munge here.
 			if (preg_match('/^(:?[0-9]{1,3}\.)+\*\s*$|^(:?[0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]*\*\s*$/', $query)) {
+				$dbr = wfGetDB( DB_SLAVE );
 				$rv = array( $prot . rtrim($query, " \t*"), $dbr->anyString() );
 				$field = 'el_to';
 			}
