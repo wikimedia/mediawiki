@@ -1,8 +1,8 @@
 <?php
 
 abstract class ApiTestSetup extends MediaWikiTestCase {
-	protected static $user;
-	protected static $sysopUser;
+	protected $user;
+	protected $sysopUser;
 	protected static $apiUrl;
 
 	function setUp() {
@@ -14,7 +14,7 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 		$wgContLang = Language::factory( 'en' );
 		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 		$wgRequest = new FauxRequest( array() );
-		self::setupUser();
+		$this->setupUser();
 	}
 
 	protected function doApiRequest( $params, $data = null ) {
@@ -31,13 +31,13 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 		return $data;
 	}
 
-	static function setupUser() {
-		if ( self::$user == null || self::$sysopUser == null ) {
-			self::$user = new UserWrapper( 'User for MediaWiki automated tests', User::randomPassword() );
-			self::$sysopUser = new UserWrapper( 'Sysop for MediaWiki automated tests', User::randomPassword(), 'sysop' );
+	function setupUser() {
+		if ( $this->user == null || $this->sysopUser == null ) {
+			$this->user = new UserWrapper( 'User for MediaWiki automated tests', User::randomPassword() );
+			$this->sysopUser = new UserWrapper( 'Sysop for MediaWiki automated tests', User::randomPassword(), 'sysop' );
 		}
 
-		$GLOBALS['wgUser'] = self::$sysopUser->user;
+		$GLOBALS['wgUser'] = $this->sysopUser->user;
 	}
 }
 
