@@ -114,13 +114,13 @@ class LinkSearchPage extends QueryPage {
 	/**
 	 * Return an appropriately formatted LIKE query and the clause
 	 */
-	static function mungeQuery( $query , $prot ) {
+	static function mungeQuery( $query, $prot, $dbr ) {
 		$field = 'el_index';
-		$rv = LinkFilter::makeLike( $query , $prot );
+		$rv = LinkFilter::makeLikeArray( $query , $prot );
 		if ( $rv === false ) {
 			// LinkFilter doesn't handle wildcard in IP, so we'll have to munge here.
 			if (preg_match('/^(:?[0-9]{1,3}\.)+\*\s*$|^(:?[0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]*\*\s*$/', $query)) {
-				$rv = $prot . rtrim($query, " \t*") . '%';
+				$rv = array( $prot . rtrim( $query, " \t*" ), $dbr->anyString() );
 				$field = 'el_to';
 			}
 		}
@@ -143,20 +143,20 @@ class LinkSearchPage extends QueryPage {
 		// strip everything past first wildcard, so that
 		// index-based-only lookup would be done
 		list( $this->mMungedQuery, $clause ) = self::mungeQuery(
-				$this->mQuery, $this->mProt );
+				$this->mQuery, $this->mProt, $dbr );
 		if( $this->mMungedQuery === false )
 			// Invalid query; return no results
 			return array( 'tables' => 'page', 'fields' => 'page_id', 'conds' => '0=1' );
 		
-		$stripped = substr( $this->mMungedQuery, 0, strpos( $this->mMungedQuery, '%' ) + 1 );
-		$encSearch = $dbr->addQuotes( $stripped );
+		$stripped = LinkFilter::keepOneWildcard( $this->mMungedQuery );
+		$like = $dbr->buildLike( $stripped );
 		$retval = array (
 			'tables' => array ( 'page', 'externallinks' ),
 			'fields' => array ( 'page_namespace AS namespace',
 					'page_title AS title',
 					'el_index AS value', 'el_to AS url' ),
 			'conds' => array ( 'page_id = el_from',
-					"$clause LIKE $encSearch" ),
+					"$clause $like" ),
 			'options' => array( 'USE INDEX' => $clause )
 		);
 		if ( isset( $this->mNs ) && !$wgMiserMode ) {
