@@ -37,7 +37,7 @@ Class CreateAccountTestCase extends SeleniumTestCase {
     public function testMainPageLink() {
 
         $this->click( "link=Log out" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         $this->open( $this->getUrl().'/index.php?title=Main_Page' );
         $this->assertTrue($this->isElementPresent( "link=Log in / create account" ));
@@ -47,13 +47,13 @@ Class CreateAccountTestCase extends SeleniumTestCase {
     public function testCreateAccountPageLink() {
 
         $this->click( "link=Log out" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         $this->open( $this->getUrl().'/index.php?title=Main_Page' );
 
         // click Log in / create account link to open Log in / create account' page
         $this->click( "link=Log in / create account" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->assertTrue($this->isElementPresent( "link=Create an account" ));
     }
 
@@ -61,27 +61,27 @@ Class CreateAccountTestCase extends SeleniumTestCase {
     public function testCreateAccount() {
 
         $this->click( "link=Log out" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         $this->open( $this->getUrl().'/index.php?title=Main_Page' );
 
         $this->click( "link=Log in / create account" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         $this->click( "link=Create an account" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify for blank user name
         $this->type( "wpName2", "" );
         $this->click( "wpCreateaccount" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->assertEquals( "Login error\n You have not specified a valid user name.",
                 $this->getText( "//div[@id='bodyContent']/div[4]" ));
 
         // Verify for invalid user name
         $this->type( "wpName2", "@" );
         $this->click("wpCreateaccount" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->assertEquals( "Login error\n You have not specified a valid user name.",
                 $this->getText( "//div[@id='bodyContent']/div[4]" ));
 
@@ -89,14 +89,14 @@ Class CreateAccountTestCase extends SeleniumTestCase {
         $this->type( "wpName2", $this->userName);
         $this->type( "wpPassword2", "" );
         $this->click( "wpCreateaccount" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->assertEquals( "Login error\n Passwords must be at least 1 character.",
                 $this->getText("//div[@id='bodyContent']/div[4]" ));
 
         $this->type( "wpName2", $this->userName );
         $this->type( "wpPassword2", $this->password );
         $this->click( "wpCreateaccount" );
-        $this->waitForPageToLoad( "30000" );
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->assertEquals( "Login error\n The passwords you entered do not match.",
                 $this->getText( "//div[@id='bodyContent']/div[4]" ));
 
@@ -104,7 +104,7 @@ Class CreateAccountTestCase extends SeleniumTestCase {
         $this->type( "wpPassword2", $this->password );
         $this->type( "wpRetype", $this->password );
         $this->click( "wpCreateaccount" );
-        $this->waitForPageToLoad( "30000 ");
+        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify successful account creation for valid combination of 'Username', 'Password', 'Retype password'
         $this->assertEquals( "Welcome, ".ucfirst( $this->userName )."!",

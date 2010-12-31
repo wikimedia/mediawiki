@@ -36,7 +36,7 @@ class PreviewPageTestCase extends SeleniumTestCase {
         $this->open( $this->getUrl() .
                 '/index.php?title=Main_Page&action=edit' );
         $this->getNewPage( $newPage );
-        $this->type( "wpTextbox1", $wikiText."" );
+        $this->type( TEXT_EDITOR, $wikiText."" );
         $this->assertTrue($this->isElementPresent( "//*[@id='wpPreview']" ));
 
         $this->click( "wpPreview" );

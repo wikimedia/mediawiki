@@ -37,11 +37,11 @@ class SavePageTestCase extends SeleniumTestCase {
         $this->open( $this->getUrl() .
                 '/index.php?title=Main_Page&action=edit' );
         $this->getNewPage($newPage);
-        $this->type("wpTextbox1", $wikiText);
+        $this->type( TEXT_EDITOR, $wikiText );
 
         // verify 'Save' button available
-        $this->assertTrue($this->isElementPresent( "wpSave" ));
-        $this->click( "wpSave" );
+        $this->assertTrue($this->isElementPresent( BUTTON_SAVE ));
+        $this->click( BUTTON_SAVE );
 
         // Verify saved page available
         $source = $this->gettext( "firstHeading" );

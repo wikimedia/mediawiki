@@ -36,21 +36,21 @@ class MyWatchListTestCase extends SeleniumTestCase {
 
         $pageName = $this->createNewTestPage( "MyWatchListTest", true );
         // Verify link 'My Watchlist' available
-        $this->assertTrue( $this->isElementPresent( "link=Watchlist" ) );
+        $this->assertTrue( $this->isElementPresent( LINK_START."Watchlist" ) );
 
-        $this->click( "link=Watchlist" );
+        $this->click( LINK_START."Watchlist" );
         $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
 
         // Verify newly added page to the watchlist is available
-        $this->assertEquals( $pageName, $this->getText( "link=".$pageName ));
+        $this->assertEquals( $pageName, $this->getText( LINK_START.$pageName ));
 
-        $this->click( "link=".$pageName );
+        $this->click( LINK_START.$pageName );
         $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->click( LINK_EDIT );
         $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
         $this->click( "wpWatchthis" );
         $this->click( BUTTON_SAVE );
-        $this->assertFalse( $this->isElementPresent( "link=".$pageName ) );
+        $this->assertFalse( $this->isElementPresent( LINK_START.$pageName ) );
         //todo watch using the dropdown menu
     }
 }
