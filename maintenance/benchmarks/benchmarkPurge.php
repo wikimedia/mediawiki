@@ -21,13 +21,12 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
 
-class BenchmarkPurge extends Maintenance {
+class BenchmarkPurge extends Benchmarker {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( "count", "How many URLs to feed to Squid for purging", false, true );
 		$this->mDescription = "Benchmark the Squid purge functions.";
 	}
 
