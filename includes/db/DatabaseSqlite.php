@@ -595,6 +595,7 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseSqlite::duplicateTableStructure' ) {
+	
 		$res = $this->query( "SELECT sql FROM sqlite_master WHERE tbl_name='$oldName' AND type='table'", $fname );
 		$obj = $this->fetchObject( $res );
 		if ( !$obj ) {

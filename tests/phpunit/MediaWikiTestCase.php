@@ -5,7 +5,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public $regex = '';
 	public $runDisabled = false;
 	
-	protected static $databaseSetupDone = false;
 	protected $db;
 	protected $dbClone;
 	protected $oldTablePrefix;
@@ -24,7 +23,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		
 		if( $this->needsDB() ) {
 			
-			$this->destroyDBCheck();
+			$this->db = wfGetDB( DB_MASTER );
+			
+			$this->destroyDB();
 			
 			$this->initDB();
 			$this->addCoreDBData();
@@ -35,13 +36,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 	
 	function __destruct() {
-		$this->destroyDBCheck();
-	}
-
-	function destroyDBCheck() {
-		if( is_object( $this->dbClone ) && $this->dbClone instanceof CloneDatabase ) {
-			$this->destroyDB();
-		}
+		$this->destroyDB();
 	}
 	
 	function needsDB() {
@@ -78,37 +73,19 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private function initDB() {
 		global $wgDBprefix;
 
-		if ( self::$databaseSetupDone ) {
-			return;
-		}
-
-		$this->db = wfGetDB( DB_MASTER );
 		$dbType = $this->db->getType();
 		
 		if ( $wgDBprefix === 'unittest_' || ( $dbType == 'oracle' && $wgDBprefix === 'ut_' ) ) {
 			throw new MWException( 'Cannot run unit tests, the database prefix is already "unittest_"' );
 		}
 
-		self::$databaseSetupDone = true;
 		$this->oldTablePrefix = $wgDBprefix;
 
-		# SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
-		# It seems to have been fixed since (r55079?).
-		# If it fails, $wgCaches[CACHE_DB] = new HashBagOStuff(); should work around it.
-
-		# CREATE TEMPORARY TABLE breaks if there is more than one server
-		if ( wfGetLB()->getServerCount() != 1 ) {
-			$this->useTemporaryTables = false;
-		}
-
-		$temporary = $this->useTemporaryTables || $dbType == 'postgres';
-		
 		$tables = $this->listTables();
 		
 		$prefix = $dbType != 'oracle' ? 'unittest_' : 'ut_';
 
 		$this->dbClone = new CloneDatabase( $this->db, $tables, $prefix );
-		$this->dbClone->useTemporaryTables( $temporary );
 		$this->dbClone->cloneTableStructure();
 
 		if ( $dbType == 'oracle' )
@@ -126,13 +103,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 	
 	protected function destroyDB() {
-		if ( !self::$databaseSetupDone ) {
-			return;
-		}
+		global $wgDBprefix;
 		
-		$this->dbClone->destroy();
-		self::$databaseSetupDone = false;
-
 		if ( $this->useTemporaryTables ) {
 			# Don't need to do anything
 			//return;
@@ -147,14 +119,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 		
 		foreach ( $tables as $table ) {
-			$sql = $this->db->getType() == 'oracle' ? "DROP TABLE $table DROP CONSTRAINTS" : "DROP TABLE `$table`";
-			$this->db->query( $sql );
+			if( $this->db->tableExists( "`$table`" ) ) {
+				$sql = $this->db->getType() == 'oracle' ? "DROP TABLE $table DROP CONSTRAINTS" : "DROP TABLE `$table`";
+				$this->db->query( $sql, __METHOD__ );
+			}
 		}
-
+		
 		if ( $this->db->getType() == 'oracle' )
-			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
+			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;', __METHOD__ );
 		
-		
+		CloneDatabase::changePrefix( $this->oldTablePrefix );
 	}
 
 	function __call( $func, $args ) {
