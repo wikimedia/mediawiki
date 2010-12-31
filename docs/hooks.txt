@@ -992,6 +992,10 @@ Use to define aliases of special pages names depending of the language
 $specialPageAliases: associative array of magic words synonyms
 $lang: laguage code (string)
 
+'LanguageGetTranslatedLanguageNames': Provide translated language names.
+&$names: array of language code => language name
+$code language of the preferred translations
+
 'LinkBegin': Used when generating internal and interwiki links in
 Linker::link(), before processing starts.  Return false to skip default proces-
 sing and return $ret.  See documentation for Linker::link() for details on the

@@ -488,6 +488,25 @@ class Language {
 	}
 
 	/**
+	 * Get translated language names. This is done on best effort and
+	 * by default this is exactly the same as Language::getLanguageNames.
+	 * The CLDR extension provides translated names.
+	 * @param $code String Language code.
+	 * @return Array language code => language name
+	 * @since 1.18.0
+	 */
+	public static function getTranslatedLanguageNames( $code ) {
+		$names = array();
+		wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $code ) );
+
+		foreach ( self::getLanguageNames() as $code => $name ) {
+			if ( !isset( $names[$code] ) ) $names[$code] = $name;
+		}
+
+		return $names;
+	}
+
+	/**
 	 * Get a message from the MediaWiki namespace.
 	 *
 	 * @param $msg String: message name
