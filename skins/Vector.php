@@ -305,6 +305,8 @@ class SkinVector extends SkinTemplate {
 				'text' => wfMsg( 'nstab-special' ),
 				'href' => $wgRequest->getRequestURL()
 			);
+			// Equiv to SkinTemplateBuildContentActionUrlsAfterSpecialPage
+			wfRunHooks( 'SkinTemplateNavigation::SpecialPage', array( &$this, &$links ) );
 		}
 
 		// Gets list of language variants
@@ -330,6 +332,9 @@ class SkinVector extends SkinTemplate {
 				);
 			}
 		}
+
+		// Equiv to SkinTemplateContentActions
+		wfRunHooks( 'SkinTemplateNavigation::Universal', array( &$this,  &$links ) );
 
 		wfProfileOut( __METHOD__ );
 
