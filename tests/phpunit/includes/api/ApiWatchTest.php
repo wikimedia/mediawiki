@@ -15,8 +15,8 @@ class ApiWatchTest extends ApiTestSetup {
 	function testLogin() {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
-			'lgname' => self::$sysopUser->userName,
-			'lgpassword' => self::$sysopUser->password ) );
+			'lgname' => $this->sysopUser->userName,
+			'lgpassword' => $this->sysopUser->password ) );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -26,8 +26,8 @@ class ApiWatchTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'login',
 			"lgtoken" => $token,
-			"lgname" => self::$sysopUser->userName,
-			"lgpassword" => self::$sysopUser->password ), $data );
+			"lgname" => $this->sysopUser->userName,
+			"lgpassword" => $this->sysopUser->password ), $data );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
@@ -38,7 +38,7 @@ class ApiWatchTest extends ApiTestSetup {
 	}
 
 	function testGettingToken() {
-		foreach ( array( self::$user, self::$sysopUser ) as $user ) {
+		foreach ( array( $this->user, $this->sysopUser ) as $user ) {
 			$this->getUserTokens( $user );
 		}
 	}
@@ -79,7 +79,7 @@ class ApiWatchTest extends ApiTestSetup {
 	}
 
 	function testGetToken() {
-		return $this->getUserTokens( self::$sysopUser );
+		return $this->getUserTokens( $this->sysopUser );
 	}
 
 	/**
