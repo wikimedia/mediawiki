@@ -302,9 +302,12 @@ class NewParserTest extends MediaWikiTestCase {
 			
 			foreach ( $iter as $t ) {
 				
-				$result = $this->doRunTest( $t['test'], $t['input'], $t['result'], $t['options'], $t['config'] );
-			
-				//$this->recorder->record( $t['test'], $result );
+				try {
+					$result = $this->doRunTest( $t['test'], $t['input'], $t['result'], $t['options'], $t['config'] );
+				} catch( Exception $e ) {
+					$this->assertTrue( false, $t['test'] . ' (failed: ' . $e->getMessage() . ')' );
+				}
+				
 			}
 		
 		}
