@@ -19,6 +19,24 @@ class NewParserTest extends MediaWikiTestCase {
 	function setUp() {
 		global $wgContLang;
 		$wgContLang = Language::factory( 'en' );
+		
+		
+		
+		//Setup CLI arguments
+		if ( $this->getCliArg( 'regex=' ) ) {
+			if ( $this->getCliArg( 'record' ) ) {
+				echo "Warning: --record cannot be used with --regex, disabling --record\n";
+				$this->setCliArg( 'record', false );
+			}
+			$this->regex = $this->getCliArg( 'regex=' );
+		} else {
+			# Matches anything
+			$this->regex = '';
+		}
+		
+		$this->keepUploads = $this->getCliArg( 'keep-uploads' );
+				
+				
 				
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgDeferredUpdateList,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
@@ -66,6 +84,7 @@ class NewParserTest extends MediaWikiTestCase {
 		if ( $wgStyleDirectory === false ) {
 			$wgStyleDirectory   = "$IP/skins";
 		}
+		
 	}
 	
 	/**
@@ -273,12 +292,15 @@ class NewParserTest extends MediaWikiTestCase {
 
 	public function testParserTests() {
 		
-		//global $IP;
-		//$wgParserTestFiles = array( "$IP/tests/parser/testparserTests.txt" );
-		
 		global $wgParserTestFiles;
 		
-		foreach( $wgParserTestFiles as $file ) {
+		$files = $wgParserTestFiles;
+		
+		if( $this->getCliArg( 'file=' ) ) {
+			$files = array( $this->getCliArg( 'file=' ) );
+		}
+		
+		foreach( $files as $file ) {
 			
 			$iter = new ParserTestFileIterator( $file, $this );
 			
