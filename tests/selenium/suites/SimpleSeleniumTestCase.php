@@ -1,7 +1,7 @@
 <?php
 /* 
  * This test case is part of the SimpleSeleniumTestSuite.
- * Configuration for these tests are dosumented as part of SimpleSeleniumTestSuite.php
+ * Configuration for these tests are documented as part of SimpleSeleniumTestSuite.php
  */
 class SimpleSeleniumTestCase extends SeleniumTestCase {
 	public function testBasic() {
