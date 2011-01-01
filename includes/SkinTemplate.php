@@ -1716,6 +1716,21 @@ abstract class BaseTemplate extends QuickTemplate {
 		return $footericons;
 	}
 
+	/**
+	 * Output the basic end-page trail including bottomscripts, reporttime, and
+	 * debug stuff. This should be called right before outputting the closing
+	 * body and html tags.
+	 */
+	function printTrail() { ?>
+<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
+<?php $this->html('reporttime') ?>
+<?php if ( $this->data['debug'] ): ?>
+<!-- Debug output:
+<?php $this->text( 'debug' ); ?>
+
+-->
+<?php endif;
+	}
 
 }
 
