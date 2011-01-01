@@ -27,6 +27,8 @@ class Skin extends Linker {
 	protected $skinname = 'standard';
 	// @todo Fixme: should be protected :-\
 	var $mTitle = null;
+	protected $mRelevantTitle = null;
+	protected $mRelevantUser = null;
 
 	/** Constructor, call parent constructor */
 	function __construct() {
@@ -363,6 +365,66 @@ class Skin extends Linker {
 	/** Get the title */
 	public function getTitle() {
 		return $this->mTitle;
+	}
+
+	/**
+	 * Set the "relevant" title
+	 * @see self::getRelevantTitle()
+	 * @param $t Title object to use
+	 */
+	public function setRelevantTitle( $t ) {
+		$this->mRelevantTitle = $t;
+	}
+
+	/**
+	 * Return the "relevant" title.
+	 * A "relevant" title is not necessarily the actual title of the page.
+	 * Special pages like Special:MovePage use set the page they are acting on
+	 * as their "relevant" title, this allows the skin system to display things
+	 * such as content tabs which belong to to that page instead of displaying
+	 * a basic special page tab which has almost no meaning.
+	 */
+	public function getRelevantTitle() {
+		if ( isset($this->mRelevantTitle) ) {
+			return $this->mRelevantTitle;
+		}
+		return $this->mTitle;
+	}
+
+	/**
+	 * Set the "relevant" user
+	 * @see self::getRelevantUser()
+	 * @param $u User object to use
+	 */
+	public function setRelevantUser( $u ) {
+		$this->mRelevantUser = $u;
+	}
+
+	/**
+	 * Return the "relevant" user.
+	 * A "relevant" user is similar to a relevant title. Special pages like
+	 * Special:Contributions mark the user which they are relevant to so that
+	 * things like the toolbox can display the information they usually are only
+	 * able to display on a user's userpage and talkpage.
+	 */
+	public function getRelevantUser() {
+		if ( isset($this->mRelevantUser) ) {
+			return $this->mRelevantUser;
+		}
+		$title = $this->getRelevantTitle();
+		if( $title->getNamespace() == NS_USER || $title->getNamespace() == NS_USER_TALK ) {
+			$rootUser = strtok( $title->getText(), '/' );
+			if ( User::isIP( $rootUser ) ) {
+				$this->mRelevantUser = User::newFromName( $rootUser, false );
+			} else {
+				$user = User::newFromName( $rootUser );
+				if ( $user->isLoggedIn() ) {
+					$this->mRelevantUser = $user;
+				}
+			}
+			return $this->mRelevantUser;
+		}
+		return null;
 	}
 
 	/**

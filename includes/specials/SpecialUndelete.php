@@ -649,6 +649,7 @@ class UndeleteForm extends SpecialPage {
 		}
 		if ( $this->mTarget !== '' ) {
 			$this->mTargetObj = Title::newFromURL( $this->mTarget );
+			$wgUser->getSkin()->setRelevantTitle( $this->mTargetObj );
 		} else {
 			$this->mTargetObj = null;
 		}

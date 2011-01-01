@@ -109,6 +109,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$wgOut->setPagetitle( wfMsg( 'move-page', $this->oldTitle->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsg( 'move-page-backlink', $oldTitleLink ) );
+		$skin->setRelevantTitle( $this->oldTitle );
 
 		$newTitle = $this->newTitle;
 

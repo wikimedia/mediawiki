@@ -106,6 +106,11 @@ class SpecialLog extends SpecialPage {
 		# Set title and add header
 		$loglist->showHeader( $pager->getType() );
 
+		# Set relevant user
+		if ( $pager->getUser() ) {
+			$wgUser->getSkin()->setRelevantUser( User::newFromName( $pager->getUser() ) );
+		}
+
 		# Show form options
 		$loglist->showOptions( $pager->getType(), $pager->getUser(), $pager->getPage(), $pager->getPattern(),
 			$pager->getYear(), $pager->getMonth(), $pager->getFilterParams(), $opts->getValue( 'tagfilter' ) );
