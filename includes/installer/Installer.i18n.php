@@ -1347,6 +1347,8 @@ $1
 Не е възможна инсталация на МедияУики.',
 	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за Unicode-нормализация.',
 	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за Unicode-нормализация.',
+	'config-unicode-pure-php-warning' => "'''Предупреждение''': [http://pecl.php.net/intl Разширението intl PECL] не е налично за справяне с нормализацията на Unicode, превключване към по-бавното изпълнение на чист PHP.
+Ако сайтът е с голям трафик, препоръчително е запознаването с [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормализацията на Unicode].",
 	'config-no-db' => 'Не може да бъде открит подходящ драйвер за база от данни!',
 	'config-no-fts3' => "'''Предупреждение''': SQLite е компилирана без [http://sqlite.org/fts3.html модула FTS3], затова възможностите за търсене няма да са достъпни.",
 	'config-register-globals' => "'''Предупреждение: Настройката на PHP <code>[http://php.net/register_globals register_globals]</code> е включена.'''
@@ -1372,6 +1374,8 @@ $1
 Преоразмеряването на картинки ще бъде изключено.',
 	'config-no-uri' => "'''Грешка:''' Не може да се определи текущия адрес. 
 Инсталация беше прекратена.",
+	'config-uploads-not-safe' => "'''Предупреждение:''' Папката по подразбиране за качване <code>$1</code> е уязвима от изпълнение на зловредни скриптове.
+Въпреки че МедияУики извършва проверка за заплахи в сигурността на всички качени файлове, силно препоръчително е да се [http://www.mediawiki.org/wiki/Manual:Security#Upload_security затвори тази уязвимост в сигурността] преди разрешаване за качване на файлове.",
 	'config-db-type' => 'Тип на базата от данни:',
 	'config-db-host' => 'Хост на базата от данни:',
 	'config-db-host-help' => 'Ако базата от данни е на друг сървър, в кутията се въвежда името на хоста или IP адреса.
@@ -1381,11 +1385,17 @@ $1
 Ако инсталацията протича на Windows-сървър и се използва MySQL, използването на "localhost" може да е неприемливо. В такива случаи се използва "127.0.0.1" за локален IP адрес.',
 	'config-db-wiki-settings' => 'Идентифициране на това уики',
 	'config-db-name' => 'Име на базата от данни:',
+	'config-db-name-help' => 'Избира се име, което да идентифицира уикито.
+То не трябва да съдържа интервали или тирета.
+
+Ако се използва споделен хостинг, доставчикът на услугата би трябвало да е предоставил или име на базата от данни, която да бъде използвана, или да позволява създаването на бази от данни чрез контролния панел.',
 	'config-db-install-account' => 'Потребителска сметка за инсталацията',
 	'config-db-username' => 'Потребителско име за базата от данни:',
 	'config-db-password' => 'Парола за базата от данни:',
 	'config-db-install-username' => 'Въвежда се потребителско име, което ще се използва за свързване с базата от данни по време на процеса по инсталация.
 Това не е потребителско име за сметка в МедияУики; това е потребителско име за базата от данни.',
+	'config-db-install-password' => 'Въвежда се парола, която ще бъде използвана за свързване с базата от данни по време на инсталационния процес.
+Това не е парола за сметка в МедияУики; това е парола за базата от данни.',
 	'config-db-install-help' => 'Въвеждат се потребителско име и парола, които ще бъдат използвани за свързване с базата от данни по време на инсталационния процес.',
 	'config-db-wiki-help' => 'Въвежда се потребителско име и парола, които ще се използват при нормалното функциониране на уикито.
 Ако сметката не съществува и използваната при инсталацията сметка има необходимите права, тази потребителска сметка ще бъде създадена с минималните необходими права за работа с уикито.',
@@ -1403,7 +1413,10 @@ $1
 $1
 
 Ако не виждате желаната за използване система в списъка по-долу, следвайте инструкциите за активиране на поддръжка по-горе.',
+	'config-support-mysql' => '* $1 е най-фобре поддържата система за база от данни, най-добре поддържана от МедияУики ([http://www.php.net/manual/en/mysql.installation.php Как се компилира PHP с поддръжка на MySQL])',
 	'config-support-postgres' => '* $1 е популярна система за бази от данни с отворен изходен код, която е алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php как се компилира PHP с поддръжка на PostgreSQL])',
+	'config-support-sqlite' => '* $1 е лека система за база от данни, която е много добре поддържана. ([http://www.php.net/manual/en/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)',
+	'config-support-oracle' => '* $1 ш комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
 	'config-header-mysql' => 'Настройки за MySQL',
 	'config-header-postgres' => 'Настройки за PostgreSQL',
 	'config-header-sqlite' => 'Настройки за SQLite',
@@ -6019,6 +6032,7 @@ Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Insta
 Dir kënnt MediaWiki installéieren.</span>',
 	'config-env-bad' => 'Den Environnement gouf iwwerpréift.
 Dir kënnt MediWiki net installéieren.',
+	'config-unicode-using-utf8' => "Fir d'Unicode-Normalisatioun gëtt dem Brion Vibber säin <code>utf8_normalize.so</code> benotzt.",
 	'config-no-db' => 'Et konnt kee passenden Datebank-Driver fonnt ginn!',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] ass installéiert',
 	'config-apc' => '[http://www.php.net/apc APC] ass installéiert',

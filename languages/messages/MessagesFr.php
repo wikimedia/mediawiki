@@ -33,6 +33,7 @@
  * @author Klutzy
  * @author Korg
  * @author Korrigan
+ * @author Krinkle
  * @author Kropotkine 113
  * @author Litlok
  * @author Louperivois
@@ -534,6 +535,7 @@ $messages = array(
 'printableversion'  => 'Version imprimable',
 'permalink'         => 'Lien historique',
 'print'             => 'Imprimer',
+'view'              => 'Lire',
 'edit'              => 'Modifier',
 'create'            => 'Créer',
 'editthispage'      => 'Modifier cette page',
@@ -541,6 +543,7 @@ $messages = array(
 'delete'            => 'Supprimer',
 'deletethispage'    => 'Supprimer cette page',
 'undelete_short'    => 'Restaurer $1 modification{{PLURAL:$1||s}}',
+'viewdeleted_short' => 'Voir {{PLURAL:$1|une modification supprimée|$1 modifications supprimées}}',
 'protect'           => 'Protéger',
 'protect_change'    => 'modifier',
 'protectthispage'   => 'Protéger cette page',

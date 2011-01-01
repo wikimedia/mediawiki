@@ -554,6 +554,8 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 'toc'                     => 'Sisukord',
 'showtoc'                 => 'näita',
 'hidetoc'                 => 'peida',
+'collapsible-collapse'    => 'Peida',
+'collapsible-expand'      => 'Näita',
 'thisisdeleted'           => 'Vaata $1 või taasta?',
 'viewdeleted'             => 'Vaata $1?',
 'restorelink'             => '{{PLURAL:$1|üht|$1}} kustutatud versiooni',
@@ -714,6 +716,7 @@ Kontrollige kirjapilti või [[Special:UserLogin/signup|looge uus kasutajakonto]]
 'passwordtooshort'           => 'Parool on liiga lühike.
 See peab koosnema vähemalt {{PLURAL:$1|ühest|$1}} tähemärgist.',
 'password-name-match'        => 'Parool peab kasutajanimest erinema.',
+'password-login-forbidden'   => 'Selle kasutajanime ja parooli kasutamine on keelatud.',
 'mailmypassword'             => 'Saada e-posti teel uus parool',
 'passwordremindertitle'      => '{{SITENAME}} – ajutine parool',
 'passwordremindertext'       => 'Keegi IP-aadressiga $1, tõenäoliselt sa ise, palus, et talle saadetaks {{GRAMMAR:elative|{{SITENAME}}}} uus parool ($4). Kasutaja "$2" ajutiseks paroolis seati "$3". Kui soovid tõepoolest uut parooli, pead sisse logima ja uue parooli valima. Ajutine parool aegub {{PLURAL:$5|ühe päeva|$5 päeva}} pärast.

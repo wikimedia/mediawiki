@@ -351,6 +351,7 @@ $messages = array(
 'printableversion'  => 'Printversioun',
 'permalink'         => 'Zitéierfäege Link',
 'print'             => 'Drécken',
+'view'              => 'Weisen',
 'edit'              => 'Änneren',
 'create'            => 'Uleeën',
 'editthispage'      => 'Dës Säit änneren',
@@ -358,6 +359,7 @@ $messages = array(
 'delete'            => 'Läschen',
 'deletethispage'    => 'Dës Säit läschen',
 'undelete_short'    => '$1 {{PLURAL:$1|Versioun|Versioune}} restauréieren',
+'viewdeleted_short' => '{{PLURAL:$1|Eng geläschte Versioun|$1 geläschte Versioune}} weisen',
 'protect'           => 'Spären',
 'protect_change'    => 'änneren',
 'protectthispage'   => 'Dës Säit schützen',
@@ -1614,6 +1616,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 
 # Special:UploadStash
 'uploadstash'          => 'Um Server späichere virum Eroplueden',
+'uploadstash-summary'  => 'Op dëser Säit huet en Zougrëff op Fichieren déi eropgeluede sinn (oder am Gaang sinn eropgelueden ze ginn) déi awer nach net op der Wiki publizéiert sinn. Dës Fichier kënnen eenzeg an eleng vun deem Benotzer deen se eropgelueden huet gesi ginn.',
 'uploadstash-clear'    => 'Um Server gespäichert Fichieren déi nach net eropgeluede si läschen',
 'uploadstash-nofiles'  => 'Dir hutt keng gespäichert Fichieren déi Dir nach net eropgelueden hutt.',
 'uploadstash-errclear' => "D'Läsche vun de Fichieren huet net fonctionnéiert.",

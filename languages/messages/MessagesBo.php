@@ -111,7 +111,7 @@ $messages = array(
 'moredotdotdot' => 'དེ་ལས་མང་བ་་་',
 'mypage'        => 'ངའི་ཤོག་ངོས།',
 'mytalk'        => 'ངའི་གླེང་མོལ།',
-'navigation'    => 'ལམ་སྟོན།',
+'navigation'    => 'ཕྱོགས་ཁྲིད།',
 
 # Cologne Blue skin
 'qbfind'         => 'འཚོལ་བ།',
@@ -151,14 +151,14 @@ $messages = array(
 'talkpagelinktext' => 'གླེང་མོལ།',
 'personaltools'    => 'སྒེར་ཀྱི་ལག་ཆ།',
 'talk'             => 'གྲོས་བསྡུར།',
-'views'            => 'སྣང་ཚུལ།',
-'toolbox'          => 'ལག་ཆའི་སྒམ།',
+'views'            => 'ལྟ་སྒོ།',
+'toolbox'          => 'ལག་ཆའི་སྒྲོམ།',
 'categorypage'     => 'སྡེ་ཚན་ཤོག་ངོས་སྟོན་ཅིག',
 'otherlanguages'   => 'སྐད་རིགས་གཞན།',
 'redirectedfrom'   => '$1 ནས་ཁ་ཕྱོགས་བསྐྱར་དུ་བཟོས་པ།',
 'lastmodifiedat'   => 'དྲ་ངོས་འདི་ཡི་བཟོ་བཅོས་མཐའ་མ་$1$2སྟེང་རེད།',
 'jumpto'           => 'གནས་སྤོ།',
-'jumptonavigation' => 'ལམ་སྟོན།',
+'jumptonavigation' => 'ཕྱོགས་ཁྲིད།',
 'jumptosearch'     => 'འཚོལ།',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -192,7 +192,7 @@ $messages = array(
 'hidetoc'             => 'སྦས།',
 'site-rss-feed'       => '$1 ཡི་RSS འབྱུང་ཁུངས།',
 'site-atom-feed'      => '$1 ཡི་Atom འབྱུང་ཁུངས།',
-'red-link-title'      => '$1 ( ཤོག་ངོས་མ་གྲུབ། )',
+'red-link-title'      => '$1 ( ཤོག་ངོས་མེད་པ།)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'རྩོམ་ཡིག',
@@ -228,7 +228,7 @@ $messages = array(
 'extlink_tip'     => 'ཕྱི་ཕྱོགས་དྲ་འབྲེལ།（ remember http:// prefix )',
 'headline_sample' => 'འགོ་བརྗོད་ཡིག་གཟུགས།',
 'nowiki_sample'   => 'སྒྲིག་ཆས་མེད་པའི་ཡི་གེ་འདྲེན་པ།',
-'nowiki_tip'      => 'ཝེ་ཁེའི་སྒྲིག་ཆས་འདོར་བ།',
+'nowiki_tip'      => 'ཝེ་ཁེའི་རྣམ་གཞག་གཞིར་བཞག་མི་བྱེད་པ།',
 
 # Edit pages
 'summary'            => 'བསྡུས་དོན།:',
@@ -260,7 +260,7 @@ $messages = array(
 
 # Diffs
 'lineno'   => 'ཐིག་ཕྲེང་$1:',
-'editundo' => 'བསུབས་པ་ཕྱིར་ལེན།',
+'editundo' => 'ཕྱིར་འཐེན།',
 
 # Search results
 'searchresults'             => 'རྙེད་དོན།',
@@ -329,7 +329,7 @@ $messages = array(
 
 # File description page
 'filehist'            => 'རྩོམ་ཡིག་དྲན་ཐོ།',
-'filehist-help'       => 'ཟླ་ཚེས་དུས་ཚོད་མནན་ཏེ་སྐབས་དེའི་རྩོམ་ཡིག་ལ་ལྟ་བ།',
+'filehist-help'       => 'ཟླ་ཚེས་དུས་ཚོད་གནུན་ཏེ་རྩོམ་ཡིག་ལ་ལྟ་བ།',
 'filehist-current'    => 'ད་ལྟ།',
 'filehist-datetime'   => 'ཚེས་གྲངས། / དུས་ཚོད།',
 'filehist-thumb'      => 'བསྡུས་དོན།',
