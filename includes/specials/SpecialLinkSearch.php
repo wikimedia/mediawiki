@@ -43,7 +43,7 @@ class LinkSearchPage extends QueryPage {
 	}
 	
 	function execute( $par ) {
-		global $wgOut, $wgRequest, $wgUrlProtocols, $wgMiserMode, $wgLang, $wgScript;
+		global $wgOut, $wgRequest, $wgUrlProtocols, $wgMiserMode, $wgLang;
 		$this->setHeaders();
 		
 		$target = $wgRequest->getVal( 'target', $par );
