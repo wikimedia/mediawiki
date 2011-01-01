@@ -1599,7 +1599,7 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|ቀጥል|ቀጥል $1}}',
 'whatlinkshere-links'      => '← ወዲህም የሚያያዝ',
 'whatlinkshere-hideredirs' => 'መምሪያ መንገዶች $1',
-'whatlinkshere-hidetrans'  => '$1 ሰነዱን(ዶክመንት) ከሌላ ሰነድ ጋር ባማጣቀስ አያይዝ',
+'whatlinkshere-hidetrans'  => 'የተሰካ መለጠፊያ $1',
 'whatlinkshere-hidelinks'  => 'መያያዣዎች $1',
 'whatlinkshere-filters'    => 'መለያዎች',
 

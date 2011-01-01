@@ -356,6 +356,7 @@ $messages = array(
 'printableversion'  => 'Stumm da voullañ',
 'permalink'         => "Chomlec'h ar stumm-mañ",
 'print'             => 'Moullañ',
+'view'              => 'Gwelet',
 'edit'              => 'Kemmañ',
 'create'            => 'Krouiñ',
 'editthispage'      => 'Kemmañ ar bajenn-mañ',
@@ -363,6 +364,7 @@ $messages = array(
 'delete'            => 'Diverkañ',
 'deletethispage'    => 'Diverkañ ar bajenn-mañ',
 'undelete_short'    => "Diziverkañ {{PLURAL:$1|ur c'hemm|$1 kemm}}",
+'viewdeleted_short' => "Gwelet {{PLURAL:$1|ur c'hemm diverket|$1 kemm diverket}}",
 'protect'           => 'Gwareziñ',
 'protect_change'    => 'kemmañ',
 'protectthispage'   => 'Gwareziñ ar bajenn-mañ',
@@ -390,7 +392,7 @@ $messages = array(
 'redirectedfrom'    => '(Adkaset eus $1)',
 'redirectpagesub'   => 'Pajenn adkas',
 'lastmodifiedat'    => "Kemmoù diwezhañ degaset d'ar bajenn-mañ, d'an $1 da $2.",
-'viewcount'         => 'Sellet euz eus bet {{PLURAL:$1|$1 wech|$1 (g)wech}} ouzh ar bajenn-mañ.',
+'viewcount'         => 'Sellet ez eus bet {{PLURAL:$1|$1 wezh|$1 gwezh}} ouzh ar bajenn-mañ.',
 'protectedpage'     => 'Pajenn warezet',
 'jumpto'            => 'Mont da :',
 'jumptonavigation'  => 'merdeiñ',
@@ -446,6 +448,7 @@ $1',
 'toc'                     => 'Taolenn',
 'showtoc'                 => 'diskouez',
 'hidetoc'                 => 'kuzhat',
+'collapsible-collapse'    => 'Pakañ',
 'thisisdeleted'           => 'Diskouez pe diziverkañ $1 ?',
 'viewdeleted'             => 'Gwelet $1?',
 'restorelink'             => "{{PLURAL:$1|ur c'hemm diverket|$1 kemm diverket}}",
@@ -606,6 +609,7 @@ Gwiriit eo bet skrivet mat an anv ganeoc\'h pe [[Special:UserLogin/signup|krouit
 'wrongpasswordempty'         => 'Ger-tremen ebet. Lakait unan mar plij.',
 'passwordtooshort'           => '{{PLURAL:$1|1 arouezenn|$1 arouezenn}} hir a rank bezañ ar gerioù-tremen da nebeutañ.',
 'password-name-match'        => "Rankout a ra ho ker-tremen bezañ disheñvel diouzh hoc'h anv implijer.",
+'password-login-forbidden'   => 'Berzet eo ober gant an anv-implijer hag ar ger-tremen-mañ.',
 'mailmypassword'             => 'Kasit din ur ger-tremen nevez',
 'passwordremindertitle'      => 'Ho ker-tremen berrbad nevez evit {{SITENAME}}',
 'passwordremindertext'       => "Unan bennak (c'hwi moarvat gant ar chomlec'h IP \$1)
@@ -1626,6 +1630,10 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 
 # Special:UploadStash
 'uploadstash'          => 'Krubuilh enporzhiañ',
+'uploadstash-summary'  => "Reiñ ar bajenn-mañ tu da vont war ar restroù enporzhiet (pe o vezañ enporzhiet) ha n'int ket bet embannet war ar wiki-mañ evit c'hoazh. Den n'hall gwelet ar restroù-se evit ar mare, nemet an hini en deus enporzhiet anezho.",
+'uploadstash-clear'    => 'Diverkañ ar restroù krubuilhet',
+'uploadstash-nofiles'  => "N'eus bet krubuilhet restr ebet.",
+'uploadstash-badtoken' => "N'haller ket kas an ober-mañ da benn vat, marteze a-walc'h abalamour m'eo aet d'o zermen an titouroù kred ho poa roet. Klaskit en-dro.",
 'uploadstash-errclear' => "N'eus ket bet gallet riñsañ ar restroù.",
 'uploadstash-refresh'  => 'Freskaat roll ar restroù',
 
@@ -1886,6 +1894,7 @@ Na zisoñjit ket e c'hall lec'hiennoù all kaout ul liamm eeun war-du ur restr b
 'pager-newer-n'           => "{{PLURAL:$1|1 nevesoc'h|$1 nevesoc'h}}",
 'pager-older-n'           => "{{PLURAL:$1|1 koshoc'h|$1 koshoc'h}}",
 'suppress'                => 'Dindan evezh',
+'querypage-disabled'      => "Diweredekaet eo bet ar bajenn dibar-mañ evit aesaat d'ar reizhiad un tammig.",
 
 # Book sources
 'booksources'               => 'Oberennoù dave',

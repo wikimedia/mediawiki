@@ -513,6 +513,7 @@ $messages = array(
 'printableversion'  => 'Printervriendelijke versie',
 'permalink'         => 'Permanente verwijzing',
 'print'             => 'Afdrukken',
+'view'              => 'Lezen',
 'edit'              => 'Bewerken',
 'create'            => 'Aanmaken',
 'editthispage'      => 'Deze pagina bewerken',
