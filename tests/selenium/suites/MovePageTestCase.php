@@ -39,18 +39,18 @@ class MovePageTestCase extends SeleniumTestCase {
                 '/index.php?title=Main_Page&action=edit' );
         $this->type( "searchInput", $newPage );
         $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
         $this->click( "link=".$displayName );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
-        $this->type( TEXT_EDITOR, $newPage." text" );
-        $this->click( BUTTON_SAVE );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+        $this->type( SeleniumTestConstants::TEXT_EDITOR, $newPage." text" );
+        $this->click( SeleniumTestConstants::BUTTON_SAVE );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify link 'Move' available
         $this->assertTrue($this->isElementPresent( "link=Move" ));
 
         $this->click( "link=Move" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify correct page name displayed under 'Move Page' field
         $this->assertEquals($displayName,
@@ -64,7 +64,7 @@ class MovePageTestCase extends SeleniumTestCase {
 
         $this->type( "wpNewTitle", $displayName );
         $this->click( "wpMove" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify warning message for the same source and destination titles
         $this->assertEquals( "Source and destination titles are the same; cannot move a page over itself.",
@@ -73,7 +73,7 @@ class MovePageTestCase extends SeleniumTestCase {
         // Verify warning message for the blank title
         $this->type( "wpNewTitle", "" );
         $this->click( "wpMove" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify warning message for the blank title
         $this->assertEquals( "The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title. It may contain one or more characters which cannot be used in titles.",
@@ -82,13 +82,13 @@ class MovePageTestCase extends SeleniumTestCase {
         //  Verify warning messages for the invalid titles
         $this->type( "wpNewTitle", "# < > [ ] | { }" );
         $this->click( "wpMove" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
         $this->assertEquals( "The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title. It may contain one or more characters which cannot be used in titles.",
                 $this->getText( "//div[@id='bodyContent']/p[4]/strong" ));
 
         $this->type( "wpNewTitle", $displayName."move" );
         $this->click( "wpMove" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify move success message displayed correctly
         $this->assertEquals( "\"".$displayName."\" has been moved to \"".$displayName."move"."\"",
@@ -96,14 +96,14 @@ class MovePageTestCase extends SeleniumTestCase {
 
         $this->type( "searchInput", $newPage."move" );
         $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify search using new page name
         $this->assertEquals( $displayName."move", $this->getText( "firstHeading" ));
 
         $this->type( "searchInput", $newPage );
         $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify search using old page name
         $redirectPageName = $this->getText( "//*[@id='contentSub']" );

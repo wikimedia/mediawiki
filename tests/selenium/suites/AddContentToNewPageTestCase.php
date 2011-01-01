@@ -40,7 +40,7 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
         $this->clearWikiEditor();
         $this->click( "//*[@id='mw-editbutton-bold']" );
         $this->clickShowPreviewBtn();
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify bold text displayed on mediawiki preview
         $this->assertTrue($this->isElementPresent( "//div[@id='wikiPreview']/p/b" ));
@@ -56,7 +56,7 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
         $this->clearWikiEditor();
         $this->click( "//*[@id='mw-editbutton-italic']" );
         $this->clickShowPreviewBtn();
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify italic text displayed on mediawiki preview
         $this->assertTrue($this->isElementPresent("//div[@id='wikiPreview']/p/i"));
@@ -71,15 +71,15 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
         $this->clearWikiEditor();
         $this->click( "//*[@id='mw-editbutton-link']" );
         $this->clickShowPreviewBtn();
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify internal link displayed on mediawiki preview
         $source = $this->getText( "//*[@id='wikiPreview']/p/a" );
         $correct = strstr( $source, "Link title" );
         $this->assertEquals( $correct, true );
 
-        $this->click( LINK_START."Link title" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->click( SeleniumTestConstants::LINK_START."Link title" );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify internal link open as a new page - editing mode
         $source = $this->getText( "firstHeading" );
@@ -94,17 +94,17 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
         $this->loadWikiEditor();
         $this->clearWikiEditor();
         $this->click( "//*[@id='mw-editbutton-extlink']" );
-        $this->type( TEXT_EDITOR, "[http://www.google.com Google]" );
+        $this->type( SeleniumTestConstants::TEXT_EDITOR, "[http://www.google.com Google]" );
         $this->clickShowPreviewBtn();
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify external links displayed on mediawiki preview
         $source = $this->getText( "//*[@id='wikiPreview']/p/a" );
         $correct = strstr( $source, "Google" );
         $this->assertEquals( $correct, true );
 
-        $this->click( LINK_START."Google" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->click( SeleniumTestConstants::LINK_START."Google" );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify external link opens
         $source = $this->getTitle();
@@ -122,7 +122,7 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
         $this->clearWikiEditor();
         $this->click( "mw-editbutton-headline" );
         $this->clickShowPreviewBtn();
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
         $this->assertTrue($this->isElementPresent( "//div[@id='wikiPreview']/h2" ));
 
         // Verify level 2 headline displayed on mediawiki preview
@@ -139,7 +139,7 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
         $this->clearWikiEditor();
         $this->click( "//*[@id='mw-editbutton-nowiki']" );
         $this->clickShowPreviewBtn();
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify ignore wiki format text displayed on mediawiki preview
         $source = $this->getText( "//div[@id='wikiPreview']/p" );
@@ -155,7 +155,7 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
         $this->clearWikiEditor();
         $this->click( "mw-editbutton-signature" );
         $this->clickShowPreviewBtn();
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify signature displayed on mediawiki preview
         $source = $this->getText( "//*[@id='wikiPreview']/p/a" );
@@ -173,7 +173,7 @@ class AddContentToNewPageTestCase extends SeleniumTestCase {
         $this->click( "mw-editbutton-hr" );
 
         $this->clickShowPreviewBtn();
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify horizontal line displayed on mediawiki preview
         $this->assertTrue( $this->isElementPresent( "//div[@id='wikiPreview']/hr" ));
