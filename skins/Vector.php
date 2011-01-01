@@ -82,10 +82,12 @@ class VectorTemplate extends BaseTemplate {
 		
 		if ( $wgVectorUseIconWatch ) {
 			$mode = $this->skin->mTitle->userIsWatching() ? 'unwatch' : 'watch';
-			$nav['views'][$mode] = $nav['actions'][$mode];
-			$nav['views'][$mode]['class'] = rtrim('icon ' . $nav['views'][$mode]['class'], ' ');
-			$nav['views'][$mode]['primary'] = true;
-			unset($nav['actions'][$mode]);
+			if ( isset($nav['actions'][$mode]) ) {
+				$nav['views'][$mode] = $nav['actions'][$mode];
+				$nav['views'][$mode]['class'] = rtrim('icon ' . $nav['views'][$mode]['class'], ' ');
+				$nav['views'][$mode]['primary'] = true;
+				unset($nav['actions'][$mode]);
+			}
 		}
 		
 		foreach ( $nav as $section => $links ) {
