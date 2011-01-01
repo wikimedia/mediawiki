@@ -59,8 +59,6 @@ class NewParserTest extends MediaWikiTestCase {
 			'transformVia404' => false,
 		);
 		
-		var_dump(2);
-
 		$tmpGlobals['wgEnableParserCache'] = false;
 		$tmpGlobals['wgDeferredUpdateList'] = array();
 		$tmpGlobals['wgMemc'] = &wfGetMainCache();
