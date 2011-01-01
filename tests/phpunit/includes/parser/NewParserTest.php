@@ -24,10 +24,6 @@ class NewParserTest extends MediaWikiTestCase {
 		
 		//Setup CLI arguments
 		if ( $this->getCliArg( 'regex=' ) ) {
-			if ( $this->getCliArg( 'record' ) ) {
-				echo "Warning: --record cannot be used with --regex, disabling --record\n";
-				$this->setCliArg( 'record', false );
-			}
 			$this->regex = $this->getCliArg( 'regex=' );
 		} else {
 			# Matches anything
