@@ -117,6 +117,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
 
+		if ( isset( $this->prop['realname'] ) ) {
+			$vals['realname'] = $wgUser->getRealName();
+		}
+
 		if ( isset( $this->prop['email'] ) ) {
 			$vals['email'] = $wgUser->getEmail();
 			$auth = $wgUser->getEmailAuthenticationTimestamp();
@@ -189,6 +193,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'editcount',
 					'ratelimits',
 					'email',
+					'realname',
 					'acceptlang',
 				)
 			)
@@ -207,6 +212,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  options          - Lists all preferences the current user has set',
 				'  editcount        - Adds the current user\'s edit count',
 				'  ratelimits       - Lists all rate limits applying to the current user',
+				'  realname         - Adds the user\'s real name',
 				'  email            - Adds the user\'s email address and email authentication date',
 				'  acceptlang       - Echoes the Accept-Language header sent by the client in a structured format',
 			)
