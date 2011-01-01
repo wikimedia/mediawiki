@@ -11,8 +11,6 @@ class ParserTestFileIterator implements Iterator {
 	protected $eof;
 
 	function __construct( $file, $parserTest ) {
-		global $IP;
-
 		$this->file = $file;
 		$this->fh = fopen( $this->file, "rt" );
 
