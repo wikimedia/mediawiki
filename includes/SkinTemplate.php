@@ -810,7 +810,7 @@ class SkinTemplate extends Skin {
 		wfRunHooks( 'SkinTemplatePreventOtherActiveTabs', array( &$this, &$preventActiveTabs ) );
 
 		// Checks if page is some kind of content
-		if( $this->mTitle->getNamespace() != NS_SPECIAL ) {
+		if( $title->getNamespace() != NS_SPECIAL ) {
 			// Gets page objects for the related namespaces
 			$subjectPage = $title->getSubjectPage();
 			$talkPage = $title->getTalkPage();
