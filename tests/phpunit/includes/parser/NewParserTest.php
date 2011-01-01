@@ -16,6 +16,11 @@ class NewParserTest extends MediaWikiTestCase {
 	public $hooks = array();
 	public $functionHooks = array();
 	
+	//Fuzz test
+	public $maxFuzzTestLength = 300;
+	public $fuzzSeed = 0;
+	public $memoryLimit = 50;
+	
 	function setUp() {
 		global $wgContLang;
 		$wgContLang = Language::factory( 'en' );
@@ -311,8 +316,141 @@ class NewParserTest extends MediaWikiTestCase {
 			}
 		
 		}
-		
 			
+	}
+	
+	/**
+	 * Run a fuzz test series
+	 * Draw input from a set of test files
+	 */
+	function testFuzzTests() {
+		
+		global $wgParserTestFiles;
+		
+		$files = $wgParserTestFiles;
+		
+		if( $this->getCliArg( 'file=' ) ) {
+			$files = array( $this->getCliArg( 'file=' ) );
+		}
+		
+		$dict = $this->getFuzzInput( $files );
+		$dictSize = strlen( $dict );
+		$logMaxLength = log( $this->maxFuzzTestLength );
+		
+		ini_set( 'memory_limit', $this->memoryLimit * 1048576 );
+
+		$user = new User;
+		$opts = ParserOptions::newFromUser( $user );
+		$title = Title::makeTitle( NS_MAIN, 'Parser_test' );
+
+		$id = 1;
+		
+		while ( true ) {
+			
+			// Generate test input
+			mt_srand( ++$this->fuzzSeed );
+			$totalLength = mt_rand( 1, $this->maxFuzzTestLength );
+			$input = '';
+
+			while ( strlen( $input ) < $totalLength ) {
+				$logHairLength = mt_rand( 0, 1000000 ) / 1000000 * $logMaxLength;
+				$hairLength = min( intval( exp( $logHairLength ) ), $dictSize );
+				$offset = mt_rand( 0, $dictSize - $hairLength );
+				$input .= substr( $dict, $offset, $hairLength );
+			}
+
+			$this->setupGlobals();
+			$parser = $this->getParser();
+
+			// Run the test
+			try {
+				$parser->parse( $input, $title, $opts );
+				$this->assertTrue( true, "Test $id, fuzz seed {$this->fuzzSeed}" );
+			} catch ( Exception $exception ) {
+				
+				ob_start();
+				var_dump( $input );
+				$input_dump = ob_get_contents();
+				ob_end_clean();
+				
+				$this->assertTrue( false, "Test $id, fuzz seed {$this->fuzzSeed}. \n\nInput: $input_dump\n\nError: {$exception->getMessage()}\n\nBacktrace: {$exception->getTraceAsString()}" );
+			}
+
+			$this->teardownGlobals();
+			$parser->__destruct();
+
+			if ( $id % 100 == 0 ) {
+				$usage = intval( memory_get_usage( true ) / $this->memoryLimit / 1048576 * 100 );
+				//echo "{$this->fuzzSeed}: $numSuccess/$numTotal (mem: $usage%)\n";
+				if ( $usage > 90 ) {
+					$ret = "Out of memory:\n";
+					$memStats = $this->getMemoryBreakdown();
+
+					foreach ( $memStats as $name => $usage ) {
+						$ret .= "$name: $usage\n";
+					}
+					
+					throw new MWException( $ret );
+					return;
+				}
+			}
+			
+			$id++;
+			
+		}
+	}
+	
+	/**
+	 * Get an input dictionary from a set of parser test files
+	 */
+	function getFuzzInput( $filenames ) {
+		$dict = '';
+
+		foreach ( $filenames as $filename ) {
+			$contents = file_get_contents( $filename );
+			preg_match_all( '/!!\s*input\n(.*?)\n!!\s*result/s', $contents, $matches );
+
+			foreach ( $matches[1] as $match ) {
+				$dict .= $match . "\n";
+			}
+		}
+
+		return $dict;
+	}
+	
+	/**
+	 * Get a memory usage breakdown
+	 */
+	function getMemoryBreakdown() {
+		$memStats = array();
+
+		foreach ( $GLOBALS as $name => $value ) {
+			$memStats['$' . $name] = strlen( serialize( $value ) );
+		}
+
+		$classes = get_declared_classes();
+
+		foreach ( $classes as $class ) {
+			$rc = new ReflectionClass( $class );
+			$props = $rc->getStaticProperties();
+			$memStats[$class] = strlen( serialize( $props ) );
+			$methods = $rc->getMethods();
+
+			foreach ( $methods as $method ) {
+				$memStats[$class] += strlen( serialize( $method->getStaticVariables() ) );
+			}
+		}
+
+		$functions = get_defined_functions();
+
+		foreach ( $functions['user'] as $function ) {
+			$rf = new ReflectionFunction( $function );
+			$memStats["$function()"] = strlen( serialize( $rf->getStaticVariables() ) );
+		}
+
+		asort( $memStats );
+
+		return $memStats;
 	}
 	
 	
