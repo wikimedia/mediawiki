@@ -21,6 +21,10 @@ class NewParserTest extends MediaWikiTestCase {
 	public $fuzzSeed = 0;
 	public $memoryLimit = 50;
 	
+	
+	
+	//PHPUnit + MediaWikiTestCase functions
+	
 	function setUp() {
 		global $wgContLang;
 		$wgContLang = Language::factory( 'en' );
@@ -87,6 +91,94 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 		
 	}
+	
+	public function tearDown() {
+	}
+	
+	function addDBData() {
+		# Hack: insert a few Wikipedia in-project interwiki prefixes,
+		# for testing inter-language links
+		$this->db->insert( 'interwiki', array(
+			array( 'iw_prefix' => 'wikipedia',
+				   'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
+				   'iw_api'    => '',
+				   'iw_wikiid' => '',
+				   'iw_local'  => 0 ),
+			array( 'iw_prefix' => 'meatball',
+				   'iw_url'    => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
+				   'iw_api'    => '',
+				   'iw_wikiid' => '',
+				   'iw_local'  => 0 ),
+			array( 'iw_prefix' => 'zh',
+				   'iw_url'    => 'http://zh.wikipedia.org/wiki/$1',
+				   'iw_api'    => '',
+				   'iw_wikiid' => '',
+				   'iw_local'  => 1 ),
+			array( 'iw_prefix' => 'es',
+				   'iw_url'    => 'http://es.wikipedia.org/wiki/$1',
+				   'iw_api'    => '',
+				   'iw_wikiid' => '',
+				   'iw_local'  => 1 ),
+			array( 'iw_prefix' => 'fr',
+				   'iw_url'    => 'http://fr.wikipedia.org/wiki/$1',
+				   'iw_api'    => '',
+				   'iw_wikiid' => '',
+				   'iw_local'  => 1 ),
+			array( 'iw_prefix' => 'ru',
+				   'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
+				   'iw_api'    => '',
+				   'iw_wikiid' => '',
+				   'iw_local'  => 1 ),
+			) );
+
+
+		# Update certain things in site_stats
+		$this->db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
+
+		# Reinitialise the LocalisationCache to match the database state
+		Language::getLocalisationCache()->unloadAll();
+
+		# Make a new message cache
+		global $wgMessageCache, $wgMemc;
+		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
+
+		$this->uploadDir = $this->setupUploadDir();
+		
+		$user = User::newFromId( 0 );
+		
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
+		$image->recordUpload2( '', 'Upload of some lame file', 'Some lame file', array(
+			'size'        => 12345,
+			'width'       => 1941,
+			'height'      => 220,
+			'bits'        => 24,
+			'media_type'  => MEDIATYPE_BITMAP,
+			'mime'        => 'image/jpeg',
+			'metadata'    => serialize( array() ),
+			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
+			'fileExists'  => true
+			), $this->db->timestamp( '20010115123500' ), $user );
+
+		# This image will be blacklisted in [[MediaWiki:Bad image list]]
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
+		$image->recordUpload2( '', 'zomgnotcensored', 'Borderline image', array(
+			'size'        => 12345,
+			'width'       => 320,
+			'height'      => 240,
+			'bits'        => 24,
+			'media_type'  => MEDIATYPE_BITMAP,
+			'mime'        => 'image/jpeg',
+			'metadata'    => serialize( array() ),
+			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
+			'fileExists'  => true
+			), $this->db->timestamp( '20010115123500' ), $user );
+
+	}
+	
+	
+	
+	
+	//ParserTest setup/teardown functions
 	
 	/**
 	 * Set up the global variables for a consistent environment for each test.
@@ -211,85 +303,44 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 	}
 	
-	function addDBData() {
-		# Hack: insert a few Wikipedia in-project interwiki prefixes,
-		# for testing inter-language links
-		$this->db->insert( 'interwiki', array(
-			array( 'iw_prefix' => 'wikipedia',
-				   'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
-				   'iw_api'    => '',
-				   'iw_wikiid' => '',
-				   'iw_local'  => 0 ),
-			array( 'iw_prefix' => 'meatball',
-				   'iw_url'    => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
-				   'iw_api'    => '',
-				   'iw_wikiid' => '',
-				   'iw_local'  => 0 ),
-			array( 'iw_prefix' => 'zh',
-				   'iw_url'    => 'http://zh.wikipedia.org/wiki/$1',
-				   'iw_api'    => '',
-				   'iw_wikiid' => '',
-				   'iw_local'  => 1 ),
-			array( 'iw_prefix' => 'es',
-				   'iw_url'    => 'http://es.wikipedia.org/wiki/$1',
-				   'iw_api'    => '',
-				   'iw_wikiid' => '',
-				   'iw_local'  => 1 ),
-			array( 'iw_prefix' => 'fr',
-				   'iw_url'    => 'http://fr.wikipedia.org/wiki/$1',
-				   'iw_api'    => '',
-				   'iw_wikiid' => '',
-				   'iw_local'  => 1 ),
-			array( 'iw_prefix' => 'ru',
-				   'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
-				   'iw_api'    => '',
-				   'iw_wikiid' => '',
-				   'iw_local'  => 1 ),
-			) );
+	/**
+	 * Create a dummy uploads directory which will contain a couple
+	 * of files in order to pass existence tests.
+	 *
+	 * @return String: the directory
+	 */
+	protected function setupUploadDir() {
+		global $IP;
 
+		if ( $this->keepUploads ) {
+			$dir = wfTempDir() . '/mwParser-images';
 
-		# Update certain things in site_stats
-		$this->db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
+			if ( is_dir( $dir ) ) {
+				return $dir;
+			}
+		} else {
+			$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
+		}
 
-		# Reinitialise the LocalisationCache to match the database state
-		Language::getLocalisationCache()->unloadAll();
+		// wfDebug( "Creating upload directory $dir\n" );
+		if ( file_exists( $dir ) ) {
+			wfDebug( "Already exists!\n" );
+			return $dir;
+		}
 
-		# Make a new message cache
-		global $wgMessageCache, $wgMemc;
-		$wgMessageCache = new MessageCache( $wgMemc, true, 3600 );
+		wfMkdirParents( $dir . '/3/3a' );
+		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
+		wfMkdirParents( $dir . '/0/09' );
+		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
 
-		$this->uploadDir = $this->setupUploadDir();
-		
-		$user = User::newFromId( 0 );
-		
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
-		$image->recordUpload2( '', 'Upload of some lame file', 'Some lame file', array(
-			'size'        => 12345,
-			'width'       => 1941,
-			'height'      => 220,
-			'bits'        => 24,
-			'media_type'  => MEDIATYPE_BITMAP,
-			'mime'        => 'image/jpeg',
-			'metadata'    => serialize( array() ),
-			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
-			'fileExists'  => true
-			), $this->db->timestamp( '20010115123500' ), $user );
-
-		# This image will be blacklisted in [[MediaWiki:Bad image list]]
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
-		$image->recordUpload2( '', 'zomgnotcensored', 'Borderline image', array(
-			'size'        => 12345,
-			'width'       => 320,
-			'height'      => 240,
-			'bits'        => 24,
-			'media_type'  => MEDIATYPE_BITMAP,
-			'mime'        => 'image/jpeg',
-			'metadata'    => serialize( array() ),
-			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
-			'fileExists'  => true
-			), $this->db->timestamp( '20010115123500' ), $user );
-
+		return $dir;
 	}
+	
+	
+	
+	
+	
+	//Actual test suites
 
 	public function testParserTests() {
 		
@@ -308,8 +359,84 @@ class NewParserTest extends MediaWikiTestCase {
 			foreach ( $iter as $t ) {
 				
 				try {
-					$result = $this->doRunTest( $t['test'], $t['input'], $t['result'], $t['options'], $t['config'] );
-				} catch( Exception $e ) {
+					
+					$desc = $t['test'];
+					$input = $t['input'];
+					$result = $t['result'];
+					$opts = $t['options'];
+					$config = $t['config'];
+					
+					
+					$opts = $this->parseOptions( $opts );
+					$this->setupGlobals( $opts, $config );
+			
+					$user = new User();
+					$options = ParserOptions::newFromUser( $user );
+			
+					if ( isset( $opts['title'] ) ) {
+						$titleText = $opts['title'];
+					}
+					else {
+						$titleText = 'Parser test';
+					}
+			
+					$local = isset( $opts['local'] );
+					$preprocessor = isset( $opts['preprocessor'] ) ? $opts['preprocessor'] : null;
+					$parser = $this->getParser( $preprocessor );
+					$title = Title::newFromText( $titleText );
+			
+					if ( isset( $opts['pst'] ) ) {
+						$out = $parser->preSaveTransform( $input, $title, $user, $options );
+					} elseif ( isset( $opts['msg'] ) ) {
+						$out = $parser->transformMsg( $input, $options );
+					} elseif ( isset( $opts['section'] ) ) {
+						$section = $opts['section'];
+						$out = $parser->getSection( $input, $section );
+					} elseif ( isset( $opts['replace'] ) ) {
+						$section = $opts['replace'][0];
+						$replace = $opts['replace'][1];
+						$out = $parser->replaceSection( $input, $section, $replace );
+					} elseif ( isset( $opts['comment'] ) ) {
+						$linker = $user->getSkin();
+						$out = $linker->formatComment( $input, $title, $local );
+					} elseif ( isset( $opts['preload'] ) ) {
+						$out = $parser->getpreloadText( $input, $title, $options );
+					} else {
+						$output = $parser->parse( $input, $title, $options, true, true, 1337 );
+						$out = $output->getText();
+			
+						if ( isset( $opts['showtitle'] ) ) {
+							if ( $output->getTitleText() ) {
+								$title = $output->getTitleText();
+							}
+			
+							$out = "$title\n$out";
+						}
+			
+						if ( isset( $opts['ill'] ) ) {
+							$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
+						} elseif ( isset( $opts['cat'] ) ) {
+							global $wgOut;
+			
+							$wgOut->addCategoryLinks( $output->getCategories() );
+							$cats = $wgOut->getCategoryLinks();
+			
+							if ( isset( $cats['normal'] ) ) {
+								$out = $this->tidy( implode( ' ', $cats['normal'] ) );
+							} else {
+								$out = '';
+							}
+						}
+			
+						$result = $this->tidy( $result );
+					}
+			
+					$this->teardownGlobals();
+					
+					$this->assertEquals( $result, $out, $desc );
+				
+				}
+				catch( Exception $e ) {
 					$this->assertTrue( false, $t['test'] . ' (failed: ' . $e->getMessage() . ')' );
 				}
 				
@@ -400,6 +527,14 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 	}
 	
+	
+	
+	
+	
+	
+	
+	//Various getter functions
+	
 	/**
 	 * Get an input dictionary from a set of parser test files
 	 */
@@ -453,90 +588,6 @@ class NewParserTest extends MediaWikiTestCase {
 		return $memStats;
 	}
 	
-	
-	/**
-	 * Run a given wikitext input through a freshly-constructed wiki parser,
-	 * and compare the output against the expected results.
-	 * Prints status and explanatory messages to stdout.
-	 *
-	 * @param $desc String: test's description
-	 * @param $input String: wikitext to try rendering
-	 * @param $result String: result to output
-	 * @param $opts Array: test's options
-	 * @param $config String: overrides for global variables, one per line
-	 * @return Boolean
-	 */
-	protected function doRunTest( $desc, $input, $result, $opts, $config ) {
-		
-		$opts = $this->parseOptions( $opts );
-		$this->setupGlobals( $opts, $config );
-
-		$user = new User();
-		$options = ParserOptions::newFromUser( $user );
-
-		if ( isset( $opts['title'] ) ) {
-			$titleText = $opts['title'];
-		}
-		else {
-			$titleText = 'Parser test';
-		}
-
-		$local = isset( $opts['local'] );
-		$preprocessor = isset( $opts['preprocessor'] ) ? $opts['preprocessor'] : null;
-		$parser = $this->getParser( $preprocessor );
-		$title = Title::newFromText( $titleText );
-
-		if ( isset( $opts['pst'] ) ) {
-			$out = $parser->preSaveTransform( $input, $title, $user, $options );
-		} elseif ( isset( $opts['msg'] ) ) {
-			$out = $parser->transformMsg( $input, $options );
-		} elseif ( isset( $opts['section'] ) ) {
-			$section = $opts['section'];
-			$out = $parser->getSection( $input, $section );
-		} elseif ( isset( $opts['replace'] ) ) {
-			$section = $opts['replace'][0];
-			$replace = $opts['replace'][1];
-			$out = $parser->replaceSection( $input, $section, $replace );
-		} elseif ( isset( $opts['comment'] ) ) {
-			$linker = $user->getSkin();
-			$out = $linker->formatComment( $input, $title, $local );
-		} elseif ( isset( $opts['preload'] ) ) {
-			$out = $parser->getpreloadText( $input, $title, $options );
-		} else {
-			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
-			$out = $output->getText();
-
-			if ( isset( $opts['showtitle'] ) ) {
-				if ( $output->getTitleText() ) {
-					$title = $output->getTitleText();
-				}
-
-				$out = "$title\n$out";
-			}
-
-			if ( isset( $opts['ill'] ) ) {
-				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
-			} elseif ( isset( $opts['cat'] ) ) {
-				global $wgOut;
-
-				$wgOut->addCategoryLinks( $output->getCategories() );
-				$cats = $wgOut->getCategoryLinks();
-
-				if ( isset( $cats['normal'] ) ) {
-					$out = $this->tidy( implode( ' ', $cats['normal'] ) );
-				} else {
-					$out = '';
-				}
-			}
-
-			$result = $this->tidy( $result );
-		}
-
-		$this->teardownGlobals();
-		
-		$this->assertEquals( $result, $out, $desc );
-	}
-	
 	/**
 	 * Get a Parser object
 	 */
@@ -559,58 +610,14 @@ class NewParserTest extends MediaWikiTestCase {
 
 		return $parser;
 	}
-
-	/*
-	 * Run the "tidy" command on text if the $wgUseTidy
-	 * global is true
-	 *
-	 * @param $text String: the text to tidy
-	 * @return String
-	 * @static
-	 */
-	protected function tidy( $text ) {
-		global $wgUseTidy;
-
-		if ( $wgUseTidy ) {
-			$text = MWTidy::tidy( $text );
-		}
-
-		return $text;
-	}
 	
 	
-	/**
-	 * Create a dummy uploads directory which will contain a couple
-	 * of files in order to pass existence tests.
-	 *
-	 * @return String: the directory
-	 */
-	protected function setupUploadDir() {
-		global $IP;
-
-		if ( $this->keepUploads ) {
-			$dir = wfTempDir() . '/mwParser-images';
-
-			if ( is_dir( $dir ) ) {
-				return $dir;
-			}
-		} else {
-			$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
-		}
-
-		// wfDebug( "Creating upload directory $dir\n" );
-		if ( file_exists( $dir ) ) {
-			wfDebug( "Already exists!\n" );
-			return $dir;
-		}
-
-		wfMkdirParents( $dir . '/3/3a' );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
-		wfMkdirParents( $dir . '/0/09' );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
-
-		return $dir;
-	}
+	
+	
+	
+	
+	
+	//Various action functions
 	
 	/**
 	 * Insert a temporary test article
@@ -630,32 +637,20 @@ class NewParserTest extends MediaWikiTestCase {
 		$title = Title::newFromText( $name );
 
 		if ( is_null( $title ) ) {
-			wfDie( "invalid title ('$name' => '$title') at line $line\n" );
+			throw new MWException( "invalid title ('$name' => '$title') at line $line\n" );
 		}
 
 		$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $aid != 0 ) {
 			debug_print_backtrace();
-			wfDie( "duplicate article '$name' at line $line\n" );
+			throw new MWException( "duplicate article '$name' at line $line\n" );
 		}
 
 		$art = new Article( $title );
 		$art->doEdit( $text, '', EDIT_NEW );
 
 		$wgCapitalLinks = $oldCapitalLinks;
-	}
-	
-	/**
-	 * Remove last character if it is a newline
-	 */
-	public function removeEndingNewline( $s ) {
-		if ( substr( $s, -1 ) === "\n" ) {
-			return substr( $s, 0, -1 );
-		}
-		else {
-			return $s;
-		}
 	}
 	
 	/**
@@ -680,6 +675,49 @@ class NewParserTest extends MediaWikiTestCase {
 
 		return true;
 	}
+	
+	
+	
+	
+	
+	//Various "cleanup" functions
+	
+	/*
+	 * Run the "tidy" command on text if the $wgUseTidy
+	 * global is true
+	 *
+	 * @param $text String: the text to tidy
+	 * @return String
+	 * @static
+	 */
+	protected function tidy( $text ) {
+		global $wgUseTidy;
+
+		if ( $wgUseTidy ) {
+			$text = MWTidy::tidy( $text );
+		}
+
+		return $text;
+	}
+	
+	/**
+	 * Remove last character if it is a newline
+	 */
+	public function removeEndingNewline( $s ) {
+		if ( substr( $s, -1 ) === "\n" ) {
+			return substr( $s, 0, -1 );
+		}
+		else {
+			return $s;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	//Test options parser functions
 	
 	protected function parseOptions( $instring ) {
 		$opts = array();
