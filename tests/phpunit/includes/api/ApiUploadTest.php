@@ -17,9 +17,6 @@
 // TODO: refactor into several files
 // TODO: port the other Upload tests, and other API tests to this framework
 
-require_once( dirname( __FILE__ ) . '/RandomImageGenerator.php' );
-require_once( dirname( __FILE__ ) . '/../../../../includes/User.php' );
-
 /* Wraps the user object, so we can also retain full access to properties like password if we log in via the API */
 class ApiTestUser {
 	public $username;
@@ -130,7 +127,7 @@ abstract class ApiTestCase extends MediaWikiTestCase {
 			// add edit token to fake session
 			$session['wsEditToken'] = $session['wsToken'];
 			// add token to request parameters
-			$params['token'] = md5( $session['wsToken'] ) . EDIT_TOKEN_SUFFIX;
+			$params['token'] = md5( $session['wsToken'] ) . User::EDIT_TOKEN_SUFFIX;
 			return $this->doApiRequest( $params, $session );
 		} else {
 			throw new Exception( "request data not in right format" );

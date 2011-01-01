@@ -1,7 +1,5 @@
 <?php
 
-require_once( dirname( __FILE__ ) . '/ApiSetup.php' );
-
 class MockApi extends ApiBase {
 	public function execute() { }
 	public function getVersion() { }
