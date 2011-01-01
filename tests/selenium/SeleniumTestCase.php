@@ -31,24 +31,24 @@ class SeleniumTestCase extends PHPUnit_Framework_TestCase { // PHPUnit_Extension
 
 	/**
 	 * Create a test fixture page if one does not exist
-	 * @param $pageName The fixture page name. If none is supplied, it uses WIKI_INTERNAL_LINK
+	 * @param $pageName The fixture page name. If none is supplied, it uses SeleniumTestConstants::WIKI_INTERNAL_LINK
 	 */
 	function createTestPageIfMissing( $pageName = null ) {
 		if ( $pageName == null ) {
-			$pageName = WIKI_INTERNAL_LINK;		
+			$pageName = SeleniumTestConstants::WIKI_INTERNAL_LINK;		
 		}
-		$this->type( INPUT_SEARCH_BOX, $pageName  );
-		$this->click( BUTTON_SEARCH );
-		$this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
-		$this->click( LINK_START . $pageName );
-		$this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+		$this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, $pageName  );
+		$this->click( SeleniumTestConstants::BUTTON_SEARCH );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->click( SeleniumTestConstants::LINK_START . $pageName );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 		$location =  $this->getLocation() . "\n";
 		if ( strpos( $location, '&redlink=1') !== false  ) {
-			$this->type( TEXT_EDITOR,  "Test fixture page. No real content here" );
-			$this->click( BUTTON_SAVE );
-			$this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+			$this->type( SeleniumTestConstants::TEXT_EDITOR,  "Test fixture page. No real content here" );
+			$this->click( SeleniumTestConstants::BUTTON_SAVE );
+			$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 			$this->assertTrue( $this->isTextPresent( $pageName ),
-			$this->getText( TEXT_PAGE_HEADING ) );
+			$this->getText( SeleniumTestConstants::TEXT_PAGE_HEADING ) );
 		}
 	}
 	
@@ -59,21 +59,21 @@ class SeleniumTestCase extends PHPUnit_Framework_TestCase { // PHPUnit_Extension
 	 */
 	function createNewTestPage( $pagePrefix, $watchThis = false ) {
 		$pageName = $pagePrefix . date("Ymd-His");
-		$this->type( INPUT_SEARCH_BOX, $pageName  );
-		$this->click( BUTTON_SEARCH );
-		$this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
-		$this->click( LINK_START . $pageName );
-		$this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+		$this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, $pageName  );
+		$this->click( SeleniumTestConstants::BUTTON_SEARCH );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+		$this->click( SeleniumTestConstants::LINK_START . $pageName );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 		$location =  $this->getLocation() . "\n";
 		$this->assertContains( '&redlink=1', $location ).
-		$this->type( TEXT_EDITOR,  "Test fixture page. No real content here" );
+		$this->type( SeleniumTestConstants::TEXT_EDITOR,  "Test fixture page. No real content here" );
 		if ( $watchThis ) {
 			$this->click( "wpWatchthis" );
 		}
-		$this->click( BUTTON_SAVE );
-		$this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+		$this->click( SeleniumTestConstants::BUTTON_SAVE );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 		$this->assertTrue( $this->isTextPresent( $pageName ),
-		$this->getText( TEXT_PAGE_HEADING ) );
+		$this->getText( SeleniumTestConstants::TEXT_PAGE_HEADING ) );
 		return $pageName;
 	}
 

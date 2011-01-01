@@ -41,22 +41,22 @@ class MyContributionsTestCase extends SeleniumTestCase {
 
         
         $this->click( "link=Contributions" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify recent page adding available on My Contributions list
         $this->assertEquals( $newPage, $this->getText( "link=".$newPage ));
 
-        $this->type( INPUT_SEARCH_BOX, $newPage );
-        $this->click( BUTTON_SEARCH );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, $newPage );
+        $this->click( SeleniumTestConstants::BUTTON_SEARCH );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
         
-        $this->click( LINK_EDIT );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
-        $this->type( TEXT_EDITOR, $newPage . " text changed" );
-        $this->click( BUTTON_SAVE );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->click( SeleniumTestConstants::LINK_EDIT );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
+        $this->type( SeleniumTestConstants::TEXT_EDITOR, $newPage . " text changed" );
+        $this->click( SeleniumTestConstants::BUTTON_SAVE );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
         $this->click( "link=Contributions" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify recent page changes available on My Contributions
         $this->assertTrue( $this->isTextPresent( $newPage ) );

@@ -34,9 +34,9 @@ class PageSearchTestCase extends SeleniumTestCase {
 
         $this->open( $this->getUrl() .
                 '/index.php?title=Main_Page&action=edit' );
-        $this->type( INPUT_SEARCH_BOX, "calcey qa" );
+        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "calcey qa" );
         $this->click( "searchGoButton" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify  no page matched with the entered search text
         $source = $this->gettext( "//div[@id='bodyContent']/div[4]/p/b" );
@@ -44,11 +44,11 @@ class PageSearchTestCase extends SeleniumTestCase {
         $this->assertEquals( $correct, true );
 
         $this->click( "link=Calcey qa" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->type( TEXT_EDITOR , "Calcey QA team" );
+        $this->type( SeleniumTestConstants::TEXT_EDITOR , "Calcey QA team" );
         $this->click( "wpSave" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
     }
 
@@ -57,9 +57,9 @@ class PageSearchTestCase extends SeleniumTestCase {
 
         $this->open( $this->getUrl() .
                 '/index.php?title=Main_Page&action=edit' );
-        $this->type( INPUT_SEARCH_BOX, "Calcey web" );
-        $this->click( BUTTON_SEARCH );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey web" );
+        $this->click( SeleniumTestConstants::BUTTON_SEARCH );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify  no page is available as the search text
         $source = $this->gettext( "//div[@id='bodyContent']/div[4]/p[2]/b" );
@@ -67,16 +67,16 @@ class PageSearchTestCase extends SeleniumTestCase {
         $this->assertEquals( $correct, true );
 
         $this->click( "link=Calcey web" );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
-        $this->type( TEXT_EDITOR, "Calcey web team" );
-        $this->click( BUTTON_SAVE );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->type( SeleniumTestConstants::TEXT_EDITOR, "Calcey web team" );
+        $this->click( SeleniumTestConstants::BUTTON_SAVE );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify saved page is opened  when the exact page name is given
-        $this->type( INPUT_SEARCH_BOX, "Calcey web" );
-        $this->click( BUTTON_SEARCH );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey web" );
+        $this->click( SeleniumTestConstants::BUTTON_SEARCH );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         // Verify exact page matched with the entered search text using 'Search' button
         $source = $this->getText( "//*[@id='bodyContent']/div[4]/p/b" );
@@ -84,9 +84,9 @@ class PageSearchTestCase extends SeleniumTestCase {
         $this->assertEquals( $correct, true );
 
         // Verify resutls available when partial page name is entered as the search text
-        $this->type( INPUT_SEARCH_BOX, "Calcey" );
-        $this->click( BUTTON_SEARCH );
-        $this->waitForPageToLoad( WIKI_TEST_WAIT_TIME );
+        $this->type( SeleniumTestConstants::INPUT_SEARCH_BOX, "Calcey" );
+        $this->click( SeleniumTestConstants::BUTTON_SEARCH );
+        $this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
         //  Verify text avaialble in the search result under the page titles
         if($this->isElementPresent( "Page_title_matches" )) {
