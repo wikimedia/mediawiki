@@ -4517,6 +4517,7 @@ class Article {
 	 * @since 1.16 (r52326) for LiquidThreads
 	 *
 	 * @param $oldid mixed integer Revision ID or null
+	 * @return ParserOutput
 	 */
 	public function getParserOutput( $oldid = null ) {
 		global $wgEnableParserCache, $wgUser;
