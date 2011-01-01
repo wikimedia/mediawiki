@@ -189,13 +189,7 @@ class ModernTemplate extends MonoBookTemplate {
 ?>
 	</div>
 
-	<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
-<?php $this->html('reporttime') ?>
-<?php if ( $this->data['debug'] ): ?>
-<!-- Debug output:
-<?php $this->text( 'debug' ); ?>
--->
-<?php endif; ?>
+	<?php $this->printTrail(); ?>
 </body></html>
 <?php
 	wfRestoreWarnings();
