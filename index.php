@@ -13,7 +13,7 @@
  *
  * ----------
  *
- * Copyright (C) 2001-2010 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
+ * Copyright (C) 2001-2011 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
  * Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
  * Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor,
  * Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber
