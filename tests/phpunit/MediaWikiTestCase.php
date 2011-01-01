@@ -125,7 +125,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 	
 	protected function destroyDB() {
-		global $wgDBprefix;
 		
 		if ( $this->useTemporaryTables ) {
 			# Don't need to do anything
