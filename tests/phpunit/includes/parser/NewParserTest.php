@@ -1,7 +1,5 @@
 <?php
 
-require_once( dirname( __FILE__ ) . '/NewParserHelpers.php' );
-
 /**
  * @group Database
  */
@@ -12,6 +10,8 @@ class NewParserTest extends MediaWikiTestCase {
 	public $runDisabled = false;
 	public $regex = '';
 	public $showProgress = true;
+	public $savedInitialGlobals = array();
+	public $savedWeirdGlobals = array();
 	public $savedGlobals = array();
 	public $hooks = array();
 	public $functionHooks = array();
@@ -26,7 +26,7 @@ class NewParserTest extends MediaWikiTestCase {
 	//PHPUnit + MediaWikiTestCase functions
 	
 	function setUp() {
-		global $wgContLang;
+		global $wgContLang, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgNamespaceProtection, $wgNamespaceAliases;
 		$wgContLang = Language::factory( 'en' );
 		
 		
@@ -41,22 +41,15 @@ class NewParserTest extends MediaWikiTestCase {
 		
 		$this->keepUploads = $this->getCliArg( 'keep-uploads' );
 				
-				
-				
-		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgDeferredUpdateList,
-			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-			$wgMessageCache, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $parserMemc,
-			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
-			$wgThumbnailScriptPath, $wgScriptPath,
-			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
-
-		$wgScript = '/index.php';
-		$wgScriptPath = '/';
-		$wgArticlePath = '/wiki/$1';
-		$wgStyleSheetPath = '/skins';
-		$wgStylePath = '/skins';
-		$wgThumbnailScriptPath = false;
-		$wgLocalFileRepo = array(
+		$tmpGlobals = array();
+		
+		$tmpGlobals['wgScript'] = '/index.php';
+		$tmpGlobals['wgScriptPath'] = '/';
+		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
+		$tmpGlobals['wgStyleSheetPath'] = '/skins';
+		$tmpGlobals['wgStylePath'] = '/skins';
+		$tmpGlobals['wgThumbnailScriptPath'] = false;
+		$tmpGlobals['wgLocalFileRepo'] = array(
 			'class' => 'LocalRepo',
 			'name' => 'local',
 			'directory' => wfTempDir() . '/test-repo',
@@ -65,34 +58,59 @@ class NewParserTest extends MediaWikiTestCase {
 			'hashLevels' => 2,
 			'transformVia404' => false,
 		);
+		
+		var_dump(2);
+
+		$tmpGlobals['wgEnableParserCache'] = false;
+		$tmpGlobals['wgDeferredUpdateList'] = array();
+		$tmpGlobals['wgMemc'] = &wfGetMainCache();
+		$messageMemc = &wfGetMessageCacheStorage();
+		$tmpGlobals['parserMemc'] = &wfGetParserCacheStorage();
+
+		// $tmpGlobals['wgContLang'] = new StubContLang;
+		$tmpGlobals['wgUser'] = new User;
+		$tmpGlobals['wgLang'] = new StubUserLang;
+		$tmpGlobals['wgOut'] = new StubObject( 'wgOut', 'OutputPage' );
+		$tmpGlobals['wgParser'] = new StubObject( 'wgParser', $GLOBALS['wgParserConf']['class'], array( $GLOBALS['wgParserConf'] ) );
+		$tmpGlobals['wgRequest'] = new WebRequest;
+
+		$tmpGlobals['wgMessageCache'] = new StubObject( 'wgMessageCache', 'MessageCache',
+										  array( $messageMemc, $wgUseDatabaseMessages,
+												 $wgMsgCacheExpiry ) );
+		if ( $GLOBALS['wgStyleDirectory'] === false ) {
+			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";
+		}
+		
+		
+		foreach ( $tmpGlobals as $var => $val ) {
+			if ( array_key_exists( $var, $GLOBALS ) ) {
+				$this->savedInitialGlobals[$var] = $GLOBALS[$var];
+			}
+
+			$GLOBALS[$var] = $val;
+		}
+		
+		$this->savedWeirdGlobals['mw_namespace_protection'] = $wgNamespaceProtection[NS_MEDIAWIKI];
+		$this->savedWeirdGlobals['image_alias'] = $wgNamespaceAliases['Image'];
+		$this->savedWeirdGlobals['image_talk_alias'] = $wgNamespaceAliases['Image_talk'];
+		
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
-
-
-		$wgEnableParserCache = false;
-		$wgDeferredUpdateList = array();
-		$wgMemc = &wfGetMainCache();
-		$messageMemc = &wfGetMessageCacheStorage();
-		$parserMemc = &wfGetParserCacheStorage();
-
-		// $wgContLang = new StubContLang;
-		$wgUser = new User;
-		$wgLang = new StubUserLang;
-		$wgOut = new StubObject( 'wgOut', 'OutputPage' );
-		$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
-		$wgRequest = new WebRequest;
-
-		$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
-										  array( $messageMemc, $wgUseDatabaseMessages,
-												 $wgMsgCacheExpiry ) );
-		if ( $wgStyleDirectory === false ) {
-			$wgStyleDirectory   = "$IP/skins";
-		}
 		
 	}
 	
 	public function tearDown() {
+	
+		foreach ( $this->savedInitialGlobals as $var => $val ) {
+			$GLOBALS[$var] = $val;
+		}
+		
+		global $wgNamespaceProtection, $wgNamespaceAliases;
+		
+		$wgNamespaceProtection[NS_MEDIAWIKI] = $this->savedWeirdGlobals['mw_namespace_protection'];
+		$wgNamespaceAliases['Image'] = $this->savedWeirdGlobals['image_alias'];
+		$wgNamespaceAliases['Image_talk'] = $this->savedWeirdGlobals['image_talk_alias'];
 	}
 	
 	function addDBData() {
