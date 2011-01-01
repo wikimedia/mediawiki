@@ -107,7 +107,5 @@ class ViewCountUpdate {
 
 		ignore_user_abort( $old_user_abort );
 		wfProfileOut( __METHOD__ . '-collect' );
-		throw new MWException( 'test' );
 	}
-
 }
