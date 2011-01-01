@@ -3573,9 +3573,8 @@ class Article {
 
 		# Don't update page view counters on views from bot users (bug 14044)
 		if ( !$wgDisableCounters && !$wgUser->isAllowed( 'bot' ) && $this->getID() ) {
-			Article::incViewCount( $this->getID() );
-			$u = new SiteStatsUpdate( 1, 0, 0 );
-			array_push( $wgDeferredUpdateList, $u );
+			$wgDeferredUpdateList[] = new ViewCountUpdate( $this->getID() );
+			$wgDeferredUpdateList[] = new SiteStatsUpdate( 1, 0, 0 );
 		}
 
 		# Update newtalk / watchlist notification status
@@ -3996,73 +3995,6 @@ class Article {
 		wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, false, $wgUser ) );
 
 		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Used to increment the view counter
-	 *
-	 * @param $id Integer: article id
-	 */
-	public static function incViewCount( $id ) {
-		$id = intval( $id );
-
-		global $wgHitcounterUpdateFreq;
-
-		$dbw = wfGetDB( DB_MASTER );
-		$pageTable = $dbw->tableName( 'page' );
-		$hitcounterTable = $dbw->tableName( 'hitcounter' );
-		$acchitsTable = $dbw->tableName( 'acchits' );
-		$dbType = $dbw->getType();
-
-		if ( $wgHitcounterUpdateFreq <= 1 || $dbType == 'sqlite' ) {
-			$dbw->query( "UPDATE $pageTable SET page_counter = page_counter + 1 WHERE page_id = $id" );
-
-			return;
-		}
-
-		# Not important enough to warrant an error page in case of failure
-		$oldignore = $dbw->ignoreErrors( true );
-
-		$dbw->query( "INSERT INTO $hitcounterTable (hc_id) VALUES ({$id})" );
-
-		$checkfreq = intval( $wgHitcounterUpdateFreq / 25 + 1 );
-		if ( ( rand() % $checkfreq != 0 ) or ( $dbw->lastErrno() != 0 ) ) {
-			# Most of the time (or on SQL errors), skip row count check
-			$dbw->ignoreErrors( $oldignore );
-
-			return;
-		}
-
-		$res = $dbw->query( "SELECT COUNT(*) as n FROM $hitcounterTable" );
-		$row = $dbw->fetchObject( $res );
-		$rown = intval( $row->n );
-
-		if ( $rown >= $wgHitcounterUpdateFreq ) {
-			wfProfileIn( 'Article::incViewCount-collect' );
-			$old_user_abort = ignore_user_abort( true );
-
-			$dbw->lockTables( array(), array( 'hitcounter' ), __METHOD__, false );
-			$tabletype = $dbType == 'mysql' ? "ENGINE=HEAP " : '';
-			$dbw->query( "CREATE TEMPORARY TABLE $acchitsTable $tabletype AS " .
-				"SELECT hc_id,COUNT(*) AS hc_n FROM $hitcounterTable " .
-				'GROUP BY hc_id', __METHOD__ );
-			$dbw->delete( 'hitcounter', '*', __METHOD__ );
-			$dbw->unlockTables( __METHOD__ );
-
-			if ( $dbType == 'mysql' ) {
-				$dbw->query( "UPDATE $pageTable,$acchitsTable SET page_counter=page_counter + hc_n " .
-					'WHERE page_id = hc_id', __METHOD__ );
-			} else {
-				$dbw->query( "UPDATE $pageTable SET page_counter=page_counter + hc_n " .
-					"FROM $acchitsTable WHERE page_id = hc_id", __METHOD__ );
-			}
-			$dbw->query( "DROP TABLE $acchitsTable", __METHOD__ );
-
-			ignore_user_abort( $old_user_abort );
-			wfProfileOut( 'Article::incViewCount-collect' );
-		}
-
-		$dbw->ignoreErrors( $oldignore );
 	}
 
 	/**#@+
