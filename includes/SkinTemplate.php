@@ -789,6 +789,9 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ );
 		
+		$title = $this->getRelevantTitle(); // Display tabs for the relevant title rather than always the title itself
+		$onPage = $title->equals($this->mTitle);
+		
 		$content_navigation = array(
 			'namespaces' => array(),
 			'views' => array(),
@@ -800,23 +803,23 @@ class SkinTemplate extends Skin {
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
 
-		$userCanRead = $this->mTitle->userCanRead();
+		$userCanRead = $title->userCanRead();
 		$skname = $this->skinname;
 
 		$preventActiveTabs = false;
 		wfRunHooks( 'SkinTemplatePreventOtherActiveTabs', array( &$this, &$preventActiveTabs ) );
 
 		// Checks if page is some kind of content
-		if( $this->iscontent ) {
+		if( $this->mTitle->getNamespace() != NS_SPECIAL ) {
 			// Gets page objects for the related namespaces
-			$subjectPage = $this->mTitle->getSubjectPage();
-			$talkPage = $this->mTitle->getTalkPage();
+			$subjectPage = $title->getSubjectPage();
+			$talkPage = $title->getTalkPage();
 
 			// Determines if this is a talk page
-			$isTalk = $this->mTitle->isTalkPage();
+			$isTalk = $title->isTalkPage();
 
 			// Generates XML IDs from namespace names
-			$subjectId = $this->mTitle->getNamespaceKey( '' );
+			$subjectId = $title->getNamespaceKey( '' );
 
 			if ( $subjectId == 'main' ) {
 				$talkId = 'talk';
@@ -835,11 +838,11 @@ class SkinTemplate extends Skin {
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
 			// Adds view view link
-			if ( $this->mTitle->exists() && $userCanRead ) {
+			if ( $title->exists() && $userCanRead ) {
 				$content_navigation['views']['view'] = $this->tabAction(
 					$isTalk ? $talkPage : $subjectPage,
 					!wfEmptyMsg( "$skname-view-view" ) ? "$skname-view-view" : 'view',
-					( $action == 'view' ), '', true
+					( $onPage && $action == 'view' ), '', true
 				);
 				$content_navigation['views']['view']['redundant'] = true; // signal to hide this from simple content_actions
 			}
@@ -849,12 +852,12 @@ class SkinTemplate extends Skin {
 			// Checks if user can...
 			if (
 				// read and edit the current page
-				$userCanRead && $this->mTitle->quickUserCan( 'edit' ) &&
+				$userCanRead && $title->quickUserCan( 'edit' ) &&
 				(
 					// if it exists
-					$this->mTitle->exists() ||
+					$title->exists() ||
 					// or they can create one here
-					$this->mTitle->quickUserCan( 'create' )
+					$title->quickUserCan( 'create' )
 				)
 			) {
 				// Builds CSS class for talk page links
@@ -862,15 +865,16 @@ class SkinTemplate extends Skin {
 
 				// Determines if we're in edit mode
 				$selected = (
+					$onPage &&
 					( $action == 'edit' || $action == 'submit' ) &&
 					( $section != 'new' )
 				);
-				$msgKey = $this->mTitle->exists() || ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !wfEmptyMsg( $this->mTitle->getText() ) ) ?
+				$msgKey = $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && !wfEmptyMsg( $title->getText() ) ) ?
 					"edit" : "create";
 				$content_navigation['views']['edit'] = array(
 					'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
 					'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->plain(),
-					'href' => $this->mTitle->getLocalURL( $this->editUrlOptions() ),
+					'href' => $title->getLocalURL( $this->editUrlOptions() ),
 					'primary' => true, // don't collapse this in vector
 				);
 				// Checks if this is a current rev of talk page and we should show a new
@@ -883,17 +887,17 @@ class SkinTemplate extends Skin {
 						$content_navigation['views']['addsection'] = array(
 							'class' => $section == 'new' ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->plain(),
-							'href' => $this->mTitle->getLocalURL( 'action=edit&section=new' )
+							'href' => $title->getLocalURL( 'action=edit&section=new' )
 						);
 					}
 				}
 			// Checks if the page has some kind of viewable content
-			} elseif ( $this->mTitle->hasSourceText() && $userCanRead ) {
+			} elseif ( $title->hasSourceText() && $userCanRead ) {
 				// Adds view source view link
 				$content_navigation['views']['viewsource'] = array(
-					'class' => ( $action == 'edit' ) ? 'selected' : false,
+					'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
 					'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )->plain(),
-					'href' => $this->mTitle->getLocalURL( $this->editUrlOptions() ),
+					'href' => $title->getLocalURL( $this->editUrlOptions() ),
 					'primary' => true, // don't collapse this in vector
 				);
 			}
@@ -902,24 +906,24 @@ class SkinTemplate extends Skin {
 			wfProfileIn( __METHOD__ . '-live' );
 
 			// Checks if the page exists
-			if ( $this->mTitle->exists() && $userCanRead ) {
+			if ( $title->exists() && $userCanRead ) {
 				// Adds history view link
 				$content_navigation['views']['history'] = array(
-					'class' => ( $action == 'history' ) ? 'selected' : false,
+					'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
 					'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->plain(),
-					'href' => $this->mTitle->getLocalURL( 'action=history' ),
+					'href' => $title->getLocalURL( 'action=history' ),
 					'rel' => 'archives',
 				);
 
 				if( $wgUser->isAllowed( 'delete' ) ) {
 					$content_navigation['actions']['delete'] = array(
-						'class' => ( $action == 'delete' ) ? 'selected' : false,
+						'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->plain(),
-						'href' => $this->mTitle->getLocalURL( 'action=delete' )
+						'href' => $title->getLocalURL( 'action=delete' )
 					);
 				}
-				if ( $this->mTitle->quickUserCan( 'move' ) ) {
-					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $this->thispage );
+				if ( $title->quickUserCan( 'move' ) ) {
+					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 					$content_navigation['actions']['move'] = array(
 						'class' => $this->mTitle->isSpecial( 'Movepage' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-move", 'move' )->plain(),
@@ -927,37 +931,37 @@ class SkinTemplate extends Skin {
 					);
 				}
 
-				if ( $this->mTitle->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
-					$mode = !$this->mTitle->isProtected() ? 'protect' : 'unprotect';
+				if ( $title->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
+					$mode = !$title->isProtected() ? 'protect' : 'unprotect';
 					$content_navigation['actions'][$mode] = array(
-						'class' => ( $action == $mode ) ? 'selected' : false,
+						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->plain(),
-						'href' => $this->mTitle->getLocalURL( "action=$mode" )
+						'href' => $title->getLocalURL( "action=$mode" )
 					);
 				}
 			} else {
 				// article doesn't exist or is deleted
 				if ( $wgUser->isAllowed( 'deletedhistory' ) ) {
-					$n = $this->mTitle->isDeleted();
+					$n = $title->isDeleted();
 					if( $n ) {
 						$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
 						// If the user can't undelete but can view deleted history show them a "View .. deleted" tab instead
 						$msgKey = $wgUser->isAllowed( 'undelete' ) ? 'undelete' : 'viewdeleted';
 						$content_navigation['actions']['undelete'] = array(
-							'class' => false,
+							'class' => $this->mTitle->isSpecial( 'Undelete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
 								->params( $wgLang->formatNum( $n ) )->text(),
-							'href' => $undelTitle->getLocalURL( array( 'target' => $this->thispage ) )
+							'href' => $undelTitle->getLocalURL( array( 'target' => $title->getPrefixedDBkey() ) )
 						);
 					}
 				}
 
-				if ( $this->mTitle->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
-					$mode = !$this->mTitle->getRestrictions( 'create' ) ? 'protect' : 'unprotect';
+				if ( $title->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
+					$mode = !$title->getRestrictions( 'create' ) ? 'protect' : 'unprotect';
 					$content_navigation['actions'][$mode] = array(
-						'class' => ( $action == $mode ) ? 'selected' : false,
+						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->plain(),
-						'href' => $this->mTitle->getLocalURL( "action=$mode" )
+						'href' => $title->getLocalURL( "action=$mode" )
 					);
 				}
 			}
@@ -974,11 +978,11 @@ class SkinTemplate extends Skin {
 				 * a change to that procedure these messages will have to remain as
 				 * the global versions.
 				 */
-				$mode = $this->mTitle->userIsWatching() ? 'unwatch' : 'watch';
+				$mode = $title->userIsWatching() ? 'unwatch' : 'watch';
 				$content_navigation['actions'][$mode] = array(
-					'class' => ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,
+					'class' => $onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,
 					'text' => wfMsg( $mode ), // uses 'watch' or 'unwatch' message
-					'href' => $this->mTitle->getLocalURL( 'action=' . $mode )
+					'href' => $title->getLocalURL( 'action=' . $mode )
 				);
 			}
 			
@@ -1014,7 +1018,7 @@ class SkinTemplate extends Skin {
 				$content_navigation['variants'][] = array(
 					'class' => ( $code == $preferred ) ? 'selected' : false,
 					'text' => $varname,
-					'href' => $this->mTitle->getLocalURL( '', $code )
+					'href' => $title->getLocalURL( '', $code )
 				);
 			}
 		}
@@ -1179,10 +1183,10 @@ class SkinTemplate extends Skin {
 				);
 		}
 
-		if( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
-			$rootUser = strtok( $this->mTitle->getText(), '/' );
-			$id = User::idFromName( $rootUser );
-			$ip = User::isIP( $rootUser );
+		if ( $user = $this->getRelevantUser() ) {
+			$id = $user->getID();
+			$ip = $user->isAnon();
+			$rootUser = $user->getName();
 		} else {
 			$id = 0;
 			$ip = false;

@@ -123,6 +123,9 @@ class IPBlockForm extends SpecialPage {
 
 		$titleObj = SpecialPage::getTitleFor( 'Blockip' );
 		$user = User::newFromName( $this->BlockAddress );
+		if ( is_object( $user ) || User::isIP( $this->BlockAddress ) ) {
+			$wgUser->getSkin()->setRelevantUser( is_object($user) ? $user : User::newFromName( $this->BlockAddress, false ) );
+		}
 
 		$alreadyBlocked = false;
 		$otherBlockedMsgs = array();
