@@ -95,22 +95,10 @@ class ApiParse extends ApiBase {
 
 				// If for some reason the "oldid" is actually the current revision, it may be cached
 				if ( $titleObj->getLatestRevID() === intval( $oldid ) )  {
-					$p_result = false;
-					$pcache = ParserCache::singleton();
-
 					$articleObj = new Article( $titleObj );
+					$wgTitle = $titleObj;
 
-					if ( $wgEnableParserCache ) {
-						$p_result = $pcache->get( $articleObj, $popts );
-					}
-					if ( !$p_result ) {
-						$text = $rev->getText( Revision::FOR_THIS_USER );
-						$p_result = $wgParser->parse( $text, $titleObj, $popts );
-
-						if ( $wgEnableParserCache ) {
-							$pcache->save( $p_result, $articleObj, $popts );
-						}
-					}
+					$p_result = $articleObj->getParserOutput();
 				} else {
 					$text = $rev->getText( Revision::FOR_THIS_USER );
 
@@ -166,18 +154,7 @@ class ApiParse extends ApiBase {
 					$p_result = $wgParser->parse( $text, $titleObj, $popts );
 				} else {
 					// Try the parser cache first
-					$p_result = false;
-					$pcache = ParserCache::singleton();
-					if ( $wgEnableParserCache ) {
-						$p_result = $pcache->get( $articleObj, $popts );
-					}
-					if ( !$p_result ) {
-						$p_result = $wgParser->parse( $articleObj->getContent(), $titleObj, $popts );
-
-						if ( $wgEnableParserCache ) {
-							$pcache->save( $p_result, $articleObj, $popts );
-						}
-					}
+					$p_result = $articleObj->getParserOutput();
 				}
 			}
 		} else {
