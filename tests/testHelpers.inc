@@ -527,7 +527,8 @@ class TestFileIterator implements Iterator {
 
 					if ( $this->parserTest ) {
 						$this->parserTest->addArticle( ParserTest::chomp( $data['article'] ), $data['text'], $this->lineNum );
-					} else {wfDie("JAJA");
+					} else {
+						wfDie("Cannot add an article without a parserTest instance");
 						ParserTest::addArticle( $data['article'], $data['text'], $this->lineNum );
 					}
 					$data = array();

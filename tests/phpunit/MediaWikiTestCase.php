@@ -107,6 +107,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$prefix = $dbType != 'oracle' ? 'unittest_' : 'ut_';
 		
 		$this->dbClone = new CloneDatabase( $this->db, $tables, $prefix );
+		$this->dbClone->useTemporaryTables( false ); //reported problems with temp tables, disabling until fixed
 		$this->dbClone->cloneTableStructure();
 		
 		if ( $dbType == 'oracle' )
