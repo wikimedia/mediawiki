@@ -17,7 +17,7 @@ class SimpleSeleniumTestSuite extends SeleniumTestSuite
 	} 
 	public function addTests() {
 		$testFiles = array(
-			'tests/selenium/suites/SimpleSeleniumTestCase.php'
+			'selenium/suites/SimpleSeleniumTestCase.php'
 		);
 		parent::addTestFiles( $testFiles );
 	}
