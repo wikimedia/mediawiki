@@ -1273,9 +1273,9 @@ function wfNumLink( $offset, $limit, $title, $query = '' ) {
  *
  * @return bool Whereas client accept gzip compression
  */
-function wfClientAcceptsGzip() {
+function wfClientAcceptsGzip( $force = false ) {
 	static $result = null;
-	if ( $result === null ) {
+	if ( $result === null || $force ) {
 		$result = false;
 		if( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
 			# FIXME: we may want to blacklist some broken browsers
@@ -2426,10 +2426,14 @@ function wfEmptyMsg( $key ) {
  *
  * @param $needle String
  * @param $str String
+ * @param $insensitive Boolean
  * @return Boolean
  */
-function in_string( $needle, $str ) {
-	return strpos( $str, $needle ) !== false;
+function in_string( $needle, $str, $insensitive = false ) {
+	$func = 'strpos';
+	if( $insensitive ) $func = 'stripos';
+	
+	return $func( $str, $needle ) !== false;
 }
 
 function wfSpecialList( $page, $details ) {
