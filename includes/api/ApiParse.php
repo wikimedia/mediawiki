@@ -282,7 +282,7 @@ class ApiParse extends ApiBase {
 	 * @param  $articleObj Article
 	 * @param  $titleObj Title
 	 * @param  $pageId Int
-	 * @param $pots ParserOptions
+	 * @param  $popts ParserOptions
 	 * @return ParserOutput
 	 */
 	private function getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageId = null ) {
