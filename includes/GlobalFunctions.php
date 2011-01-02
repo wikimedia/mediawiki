@@ -120,7 +120,7 @@ function fallback_mb_substr_split_unicode( $str, $splitPos ) {
 
 if ( !function_exists( 'mb_substr' ) ) {
 	function mb_substr( $str, $start, $count='end' ) {
-		return fallback_mb_substr( $str, $start, $count )
+		return fallback_mb_substr( $str, $start, $count );
 	}
 
 	function mb_substr_split_unicode( $str, $splitPos ) {
