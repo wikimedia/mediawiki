@@ -510,12 +510,19 @@ class GlobalTest extends MediaWikiTestCase {
 			$this->assertTrue( false, 'MockOutputPage was not called.' );
 		}
 		
+		$wgOut = $old_wgOut;
+		$wgShowDebug = $old_wgShowDebug;		
 		unlink( $wgDebugLogFile );
 		
 		
-		$wgOut = $old_wgOut;
-		$wgShowDebug = $old_wgShowDebug;
-
+		
+		wfDebugMem();
+		$this->assertGreaterThan( 5000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
+		unlink( $wgDebugLogFile );
+		
+		wfDebugMem(true);
+		$this->assertGreaterThan( 5000000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
+		unlink( $wgDebugLogFile );
 		
 		
 		
