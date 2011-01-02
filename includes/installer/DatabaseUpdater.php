@@ -89,7 +89,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Get a database connection to run updates
 	 *
-	 * @return DatabasBase object
+	 * @return DatabaseBase object
 	 */
 	public function getDB() {
 		return $this->db;
