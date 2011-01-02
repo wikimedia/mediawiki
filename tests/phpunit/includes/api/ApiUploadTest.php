@@ -139,6 +139,8 @@ abstract class ApiTestCase extends MediaWikiTestCase {
 /**
  * @group Database
  * @group Destructive
+ *
+ * This is pretty sucky... needs to be prettified.
  */
 class ApiUploadTest extends ApiTestCase {
 	/**
