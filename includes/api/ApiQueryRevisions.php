@@ -482,8 +482,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$articleObj = new Article( $title );
 
 				$p_result = $articleObj->getParserOutput();
-				$pcache = ParserCache::singleton();
-
 				$text = $p_result->getText();
 			}
 			ApiResult::setContent( $vals, $text );
