@@ -96,12 +96,8 @@ require_once( "$IP/includes/DefaultSettings.php" );
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
-	$callback = MW_CONFIG_CALLBACK;
-	# PHP 5.1 doesn't support "class::method" for call_user_func, so split it
-	if ( strpos( $callback, '::' ) !== false ) {
-		$callback = explode( '::', $callback, 2);
-	}
-	call_user_func( $callback );
+	MWFunction::call( MW_CONFIG_CALLBACK );
+	
 } else {
 	if ( !defined('MW_CONFIG_FILE') )
 		define('MW_CONFIG_FILE', "$IP/LocalSettings.php");
