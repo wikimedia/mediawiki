@@ -52,7 +52,7 @@ window.os_animation_timer = null;
  * blacklist future versions too.
  */
 window.os_use_datalist = 'list' in document.createElement( 'input' )
-	&& $.client.profile.name != 'opera';
+	&& $.client.profile().name != 'opera';
 
 /** Timeout timer class that will fetch the results */
 window.os_Timer = function( id, r, query ) {
