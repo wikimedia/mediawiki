@@ -467,24 +467,56 @@ class GlobalTest extends MediaWikiTestCase {
 	
 	
 	function testDebugFunctionTest() {
-		global $wgDebugLogFile;
+	
+		global $wgDebugLogFile, $wgOut, $wgShowDebug;
 		
 		$old_log_file = $wgDebugLogFile;
-		
 		$wgDebugLogFile = tempnam( wfTempDir(), 'mw-' );
+		
 		
 		
 		wfDebug( "This is a normal string" );
 		$this->assertEquals( "This is a normal string", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
 		
+		
 		wfDebug( "This is nöt an ASCII string" );
 		$this->assertEquals( "This is nöt an ASCII string", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
 		
+		
 		wfDebug( "\00305This has böth UTF and control chars\003" );
 		$this->assertEquals( " 05This has böth UTF and control chars ", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
+		
+		
+		
+		$old_wgOut = $wgOut;
+		$old_wgShowDebug = $wgShowDebug;
+		
+		$wgOut = new StubObject( 'wgOut', 'MockOutputPage' );
+		$wgOut->doNothing(); //just to unstub it
+		
+		$wgShowDebug = true;
+		
+		$message = "\00305This has böth UTF and control chars\003";
+		
+		wfDebug( $message );
+		
+		if( $wgOut->message == "JAJA is a stupid error message. Anyway, here's your message: $message" ) {
+			$this->assertTrue( true, 'MockOutputPage called, set the proper message.' );
+		}
+		else {
+			$this->assertTrue( false, 'MockOutputPage was not called.' );
+		}
+		
+		unlink( $wgDebugLogFile );
+		
+		
+		$wgOut = $old_wgOut;
+		$wgShowDebug = $old_wgShowDebug;
+
+		
 		
 		
 		$wgDebugLogFile = $old_log_file;
@@ -494,4 +526,15 @@ class GlobalTest extends MediaWikiTestCase {
 	/* TODO: many more! */
 }
 
+
+class MockOutputPage {
+	
+	public $message;
+	
+	function debug( $message ) {
+		$this->message = "JAJA is a stupid error message. Anyway, here's your message: $message";
+	}
+	
+	function doNothing() {}
+}
 
