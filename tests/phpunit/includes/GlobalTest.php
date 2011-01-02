@@ -529,6 +529,84 @@ class GlobalTest extends MediaWikiTestCase {
 		$wgDebugLogFile = $old_log_file;
 		
 	}
+	
+	function testClientAcceptsGzipTest() {
+		
+		$settings = array(
+			'gzip' => true,
+			'bzip' => false,
+			'*' => false,
+			'compress, gzip' => true,
+			'gzip;q=1.0' => true,
+			'foozip' => false,
+			'foo*zip' => false,
+			'gzip;q=abcde' => true, //is this REALLY valid?
+			'gzip;q=12345678.9' => true,
+			' gzip' => true,
+		);
+		
+		if( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) $old_server_setting = $_SERVER['HTTP_ACCEPT_ENCODING'];
+		
+		foreach ( $settings as $encoding => $expect ) {
+			$_SERVER['HTTP_ACCEPT_ENCODING'] = $encoding;
+			
+			$this->assertEquals( $expect, wfClientAcceptsGzip( true ),
+				"'$encoding' => " . wfBoolToStr( $expect ) );
+		}
+		
+		if( isset( $old_server_setting ) ) $_SERVER['HTTP_ACCEPT_ENCODING'] = $old_server_setting;
+
+	}
+	
+	
+	
+	function testSwapVarsTest() {
+	
+
+		$var1 = 1;
+		$var2 = 2;
+
+		$this->assertEquals( $var1, 1, 'var1 is set originally' );
+		$this->assertEquals( $var2, 2, 'var1 is set originally' );
+
+		swap( $var1, $var2 );
+
+		$this->assertEquals( $var1, 2, 'var1 is swapped' );
+		$this->assertEquals( $var2, 1, 'var2 is swapped' );
+
+	}
+
+
+	function testWfPercentTest() {
+
+		$pcts = array(
+			array( 6/7, '0.86%', 2, false ),
+			array( 3/3, '1%' ),
+			array( 22/7, '3.14286%', 5 ),
+			array( 3/6, '0.5%' ),
+			array( 1/3, '0%', 0 ),
+			array( 10/3, '0%', -1 ),
+			array( 3/4/5, '0.1%', 1 ),
+			array( 6/7*8, '6.8571428571%', 10 ),
+		);
+		
+		foreach( $pcts as $pct ) {
+			if( !isset( $pct[2] ) ) $pct[2] = 2;
+			if( !isset( $pct[3] ) ) $pct[3] = true;
+			
+			$this->assertEquals( wfPercent( $pct[0], $pct[2], $pct[3] ), $pct[1], $pct[1] );
+		}
+
+	}
+
+
+	function testInStringTest() {
+	
+		$this->assertTrue( in_string( 'foo', 'foobar' ), 'foo is in foobar' );
+		$this->assertFalse( in_string( 'Bar', 'foobar' ), 'Case-sensitive by default' );
+		$this->assertTrue( in_string( 'Foo', 'foobar', true ), 'Case-insensitive when asked' );
+	
+	}
 
 	/* TODO: many more! */
 }
