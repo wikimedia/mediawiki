@@ -58,6 +58,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14020) API for Special:Unwatchedpages
 * (bug 24287) Wrap API Help output at 100 characters
 * Add a realname uiprop option to query=userinfo so a user's realname can be extracted
+* Add a &watchuser option to ApiBlock
 
 === Languages updated in 1.18 ===
 
