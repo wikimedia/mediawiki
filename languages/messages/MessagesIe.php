@@ -9,6 +9,7 @@
  *
  * @author Jmb
  * @author Malafaya
+ * @author Reedy
  * @author Remember the dot
  * @author Valodnieks
  * @author לערי ריינהארט
@@ -246,7 +247,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'rclistfrom'        => 'Monstrar li nov modificationes desde $1.',
 'rcshowhideminor'   => '$1 modificationes minori',
 'rcshowhidemine'    => '$1 mi redactiones',
-'rclinks'           => 'Monstrar li $1 ultim modificationes fat durante li $2 ultim dies<br/ >$3.',
+'rclinks'           => 'Monstrar li $1 ultim modificationes fat durante li $2 ultim dies<br />$3.',
 'diff'              => 'dif',
 'hist'              => 'hist',
 'hide'              => 'Celar',

@@ -10,6 +10,7 @@
  * @author Assele
  * @author Comp1089
  * @author Haqmar
+ * @author Reedy
  * @author Timming
  * @author Рустам Нурыев
  */
@@ -639,7 +640,7 @@ $2',
 'noarticletext'                    => "Хәҙерге ваҡытта был биттә текст юҡ.
 Һеҙ [[Special:Search/{{PAGENAME}}|был исемде башҡа биттәрҙә эҙләй]],
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тап килгән журнал яҙмаларын таба]
-йәки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бындай исемле яңы бит яһай]''' алаһығыҙ.",
+йәки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} бындай исемле яңы бит яһай]'''</span> алаһығыҙ.",
 'noarticletext-nopermission'       => 'Хәҙерге ваҡытта был биттә текст юҡ.
 Һеҙ башҡа мәҡәләләрҙә [[Special:Search/{{PAGENAME}}|был исемде]] йәки
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналдағы яҙмаларҙы] эҙләй алаһығыҙ.</span>',

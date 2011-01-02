@@ -10,6 +10,7 @@
  * @author Consta
  * @author Crazymadlover
  * @author Omnipaedista
+ * @author Reedy
  * @author Sinopeus
  * @author Urhixidur
  * @author ZaDiak
@@ -498,7 +499,7 @@ $messages = array(
 'noarticletext'                    => "Αβούτεν η σελίδαν 'κ εχ' κείμενον απές ακόμαν.
 [[Special:Search/{{PAGENAME}}|Εύρον αβούτον τον τίτλον]] σ' αλλέα τοι σελίδας,
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} εύρον την σελίδαν σα σχετικά αρχεία],
-ή [{{fullurl:{{FULLPAGENAME}}|action=edit}} άλλαξον αβούτεν την σελίδαν].",
+ή [{{fullurl:{{FULLPAGENAME}}|action=edit}} άλλαξον αβούτεν την σελίδαν]</span>.",
 'updated'                          => '(Ενήμερον)',
 'note'                             => "'''Σημείωμαν:'''",
 'previewnote'                      => "'''Ατό πα πρώτον τέρεμαν εν και μόνον.

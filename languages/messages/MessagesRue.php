@@ -8,6 +8,7 @@
  * @file
  *
  * @author Gazeb
+ * @author Reedy
  * @author Tkalyn
  */
 
@@ -620,7 +621,7 @@ $2',
 або [{{fullurl:{{FULLPAGENAME}}|action=edit}} вытворити сторінку з таков назвов]</span>.',
 'noarticletext-nopermission'       => 'Теперь на тїй сторінцї не є текст.
 Можете [[Special:Search/{{PAGENAME}}|глядати тоту назву]] в іншых сторінках,
-або <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} глядати в лоґах].',
+або <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} глядати в лоґах]</span>.',
 'userpage-userdoesnotexist'        => 'Хосновательске конто під назвов  "$1" не є реґістроване. Сконтролюйте ці хочете вытворити/едітовати тоту сторінку.',
 'userpage-userdoesnotexist-view'   => 'Хосновательске конто „$1 не є реґістроване.',
 'blocked-notice-logextract'        => 'Тот хоснователь є теперь блокованый.

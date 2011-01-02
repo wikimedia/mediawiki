@@ -1293,12 +1293,17 @@ $messages['bg'] = array(
 	'config-localsettings-upgrade' => 'Беше открит файл <code>LocalSettings.php</code>.
 За надграждане на съществуващата инсталация, необходимо е в кутията по-долу да се въведе стойността на <code>$wgUpgradeKey</code>.
 Тази информация е налична в LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'Беше открит файл LocalSettings.php.
+За надграждане на наличната инсталация, необходимо е да се въведе ключ --upgrade=yes.',
 	'config-localsettings-key' => 'Ключ за надграждане:',
 	'config-localsettings-badkey' => 'Предоставеният ключ е неправилен.',
 	'config-upgrade-key-missing' => 'Беше открита съществуваща инсталация на МедияУики.
 За надграждане на съществуващата инсталация, необходимо е да се постави следният ред в края на файла LocalSettings.php:
 
 $1',
+	'config-localsettings-incomplete' => 'Съществуващият файл LocalSettings.php изглежда непълен.
+Променливата $1 не е зададена.
+Необходимо е да се редактира файлът LocalSettings.php и да се зададе променливата, след което да се натисне "Продължаване".',
 	'config-localsettings-connection-error' => 'Възникна грешка при свързване с базата от данни чрез данните, посочени в LocalSettings.php или AdminSettings.php. Необходимо е да се коригират тези настройки преди повторен опит за свързване.
 
 $1',
@@ -1422,16 +1427,27 @@ $1
 	'config-header-sqlite' => 'Настройки за SQLite',
 	'config-header-oracle' => 'Настройки за Oracle',
 	'config-invalid-db-type' => 'Невалиден тип база от данни',
+	'config-postgres-old' => 'Изисква се PostgreSQL $1 или по-нова версия, наличната версия е $2.',
 	'config-sqlite-name-help' => 'Избира се име, което да идентифицира уикито.
 Не се използват интервали или тирета.
 Това име ще се използва за име на файла за данни на SQLite.',
+	'config-sqlite-cant-create-db' => 'Файлът за базата от данни <code>$1</code> не може да бъде създаден.',
+	'config-unknown-collation' => "'''Предупреждение:''' Базата от данни използва неразпозната колация.",
 	'config-db-web-account' => 'Сметка за уеб достъп до базата от данни',
 	'config-db-web-help' => 'Избиране на потребителско име и парола, които уеб сървърът ще използва да се свързва с базата от данни при обичайната работа на уикито.',
 	'config-db-web-account-same' => 'Използване на същата сметка като при инсталацията.',
 	'config-db-web-create' => 'Създаване на сметката ако все още не съществува',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "'''InnoDB''' почти винаги е най-добрата възможност заради навременната си поддръжка.
+
+'''MyISAM''' може да е по-бърза при инсталации с един потребител или само за четене.
+Базите от данни MyISAM се повреждат по-често от InnoDB.",
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "В '''бинарен режим''' МедияУики съхранява текстовете в UTF-8 в бинарни полета в базата от данни.
+Това е по-ефективно от UTF-8 режима на MySQL и позволява използването на пълния набор от символи в Уникод.
+
+В '''UTF-8 режим''' MySQL ще знае в кой набор от символи са данните от уикито и ще може да ги показва и променя по подходящ начин, но няма да позволява складиране на символи извън [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основния многоезичен набор].",
 	'config-admin-password' => 'Парола:',
 	'config-admin-password-confirm' => 'Парола (повторно):',
 	'config-admin-password-same' => 'Паролата не трябва да е същата като потребителското име.',
@@ -1447,6 +1463,8 @@ $1
 	'config-upload-settings' => 'Картинки и качване на файлове',
 	'config-upload-enable' => 'Позволяне качването на файлове',
 	'config-upload-deleted' => 'Директория за изтритите файлове:',
+	'config-upload-deleted-help' => 'Избиране на директория, в която ще се складират изтритите файлове.
+В най-добрия случай тя не трябва да е достъпна през уеб.',
 	'config-logo' => 'Адрес на логото:',
 	'config-cache-accel' => 'PHP обектно кеширане (APC, eAccelerator, XCache или WinCache)',
 	'config-cache-memcached' => 'Използване на Memcached (изисква допълнителни настройки и конфигуриране)',
@@ -4957,7 +4975,7 @@ Jika Anda menggunakan Mandrake, instal paket php-xml.',
 MediaWiki memerlukan fungsi persamaan reguler kompatibel Perl untuk bekerja.',
 	'config-pcre-no-utf8' => "'''Fatal''': Modul PCRE PHP tampaknya dikompilasi tanpa dukungan PCRE_UTF8.
 MediaWiki memerlukan dukungan UTF-8 untuk berfungsi dengan benar.",
-	'config-memory-raised' => '<code>memory_limit</code> PHP adalah $1, dinaikkan ke $2.',
+	'config-memory-raised' => '<code>memory_limit</codde> PHP adalah $1, dinaikkan ke $2.',
 	'config-memory-bad' => "'''Peringatan:''' <code>memory_limit</code> PHP adalah $1.
 Ini terlalu rendah.
 Instalasi terancam gagal!",
@@ -5283,6 +5301,7 @@ Lanjutkan ke halaman berikutnya.",
 	'config-install-pg-schema-failed' => 'Pembuatan tabel gagal. 
 Pastikan bahwa pengguna "$1" dapat menulis ke skema "$2".',
 	'config-install-pg-commit' => 'Melakukan perubahan',
+	'config-pg-no-plpgsql' => 'Anda perlu menginstal bahasa PL/pgSQL pada basis data $1',
 	'config-install-user' => 'Membuat pengguna basis data',
 	'config-install-user-failed' => 'Memberikan izin untuk pengguna "$1" gagal: $2',
 	'config-install-tables' => 'Membuat tabel',
@@ -5847,7 +5866,6 @@ Dat kanns De verlängere, endämm dat De de <code lang="en">session.gc_maxlifeti
 Don dat Projramm för et Opsäze norr_ens aanschmiiße.',
 	'config-no-session' => 'De Daate för Ding Setzung sinn verschött jejange.
 Donn en dä Dattei <code>php.ini</code> nohloore, ov dä <code lang="en">session.save_path</code> op e zopaß Verzeijschneß zeisch.',
-	'config-session-path-bad' => 'De Dattei uß däm <code lang="en">session.save_path</code>, dat es <code>$1</code>, schingk onjöltesch udder kappott ze sin, udder mer künne nit dren schriive.',
 	'config-your-language' => 'Ding Shprooch:',
 	'config-your-language-help' => 'Donn heh di Shprooch ußsöhke, di dat Enshtallzjuhnsprojramm kalle sull.',
 	'config-wiki-language' => 'Dem Wiki sing Shprooch:',

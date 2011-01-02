@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alfredie
+ * @author Reedy
  * @author Sahran
  */
 
@@ -669,7 +670,7 @@ $2',
 ئەگەر سىز ئاتسىز ئىشلەتكۈچى بولسىڭىز ھەمدە بۇ بەتتىكى مۇنازىرە سىز بىلەن مۇناسىۋەتلىك بولسا،  [[Special:UserLogin/signup|ھېسابات قۇر]] ياكى [[Special:UserLogin|تىزىمغا كىر]]  ئارقىلىق كەلگۈسىدىكى باشقا ئاتسىز ئىشلەتكۈچى بىلەن ئارىلىشىپ كېتىشنىڭ ئالدىنى ئېلىڭ.''",
 'noarticletext'                    => 'بۇ بەتتە ھازىرچە مەزمۇن يوق.
  سىز باشقا بەتتە [[Special:Search/{{PAGENAME}}|بۇ بەتنىڭ ماۋزۇسىنى ئىزدىيەلەيسىز]] ياكى
-<span class=\\"plainlinks\\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،],
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} بۇ بەتنى تەھرىرلىيەلەيسىز]</span>',
 'noarticletext-nopermission'       => 'بۇ بەتتە ھازىرچە مەزمۇن يوق.
  سىز باشقا بەتتە [[Special:Search/{{PAGENAME}}|بۇ بەتنىڭ ماۋزۇسىنى ئىزدىيەلەيسىز]] ياكى <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}] مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،</span>',
@@ -1113,7 +1114,7 @@ $1",
 'resultsperpage'                => 'ھەر بەتتىكى ئۇلانما سانى:',
 'contextlines'                  => 'ھەر ئۇلانمىدىكى قۇر سانى:',
 'contextchars'                  => 'ھەر قۇردىكى ھەرپ سانى:',
-'stub-threshold'                => '<a href=\\"#\\" class=\\"stub\\">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :',
+'stub-threshold'                => '<a href="#" class="stub">قىسقا بەت ئۇلانمىسى</a> فورمات چەك قىممىتى (بايت) :',
 'stub-threshold-disabled'       => 'چەكلەنگەن',
 'recentchangesdays'             => 'يېقىنقى ئۆزگەرتىشنىڭ كۆرۈنىدىغان كۈن سانى:',
 'recentchangesdays-max'         => 'ئەڭ چوڭ $1 {{PLURAL:$1|كۈن|كۈن}}',
@@ -3227,7 +3228,7 @@ $1',
 'specialpages'                   => 'ئالاھىدە بەتلەر',
 'specialpages-note'              => '----
 * نورمال ئالاھىدە بەت.
-* <strong class=\\"mw-specialpagerestricted\\">چەكلىمىلىك ئالاھىدە بەتلەر.</strong>',
+* <strong class="mw-specialpagerestricted">چەكلىمىلىك ئالاھىدە بەتلەر.</strong>',
 'specialpages-group-maintenance' => 'ئاسراش دوكلاتى',
 'specialpages-group-other'       => 'باشقا ئالاھىدە بەتلەر',
 'specialpages-group-login'       => 'تىزىمغا كىر / قۇر',

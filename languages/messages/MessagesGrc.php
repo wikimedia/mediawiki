@@ -14,6 +14,7 @@
  * @author Neachili
  * @author Nychus
  * @author Omnipaedista
+ * @author Reedy
  * @author SPQRobin
  * @author Yannos
  * @author ZaDiak
@@ -584,7 +585,7 @@ $2',
 Δύνασαι ποιῆσαι τὴν δέλτον, τυπῶν ἐν τῷ κυτίῳ κατωτέρω (ἴδε [[{{MediaWiki:Helppage}}|δέλτον βοηθείας]] διά πλείονας πληροφορίας).
 Εἰ ὧδε εἶ ἐσφαλμένως, πίεσον τὸ κομβίον τοῦ πλοηγητηρίου σου ὀνόματι '''ὀπίσω (back)'''.",
 'noarticletext'                    => 'Οὐδὲν ἐν τῇδε τῇ δέλτῳ γεγραμμένον, ἀλλὰ ἔξεστί σοι [[Special:Search/{{PAGENAME}}|δέλτον τινὰ οὕτως ὀνόματι ζητήσειν]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ζητήσειν τοὺς σχετικοὺς καταλόγους],
-ἢ [{{fullurl:{{FULLPAGENAME}}|action=edit}} τήνδε τὴν δέλτον μεταγράψειν].',
+ἢ [{{fullurl:{{FULLPAGENAME}}|action=edit}} τήνδε τὴν δέλτον μεταγράψειν]</span>.',
 'clearyourcache'                   => "'''Ἐπισημείωσις - Μετὰ τὸ καταγράφειν, ἐνδεχομένως δεῖ σε παρακάμψειν τὴν λανθάνουσαν μνήμην τοῦ πλοηγητηρίου σου πρὸ τοῦ ὁρᾶν τὰς μεταβολάς.'''
 '''Mozilla / Firefox / Safari:''' ἐρητυειν τὸ''Shift'' ἐνῷ θλίβεις τὸ ''Reload'', ἢ πίεσον εἴ τε ''Ctrl-F5'' ἢ ''Ctrl-R'' (''Command-R'' ἐν Macintosh);
 '''Konqueror: '''θλίψον τὸ ''Reload'' ἢ πίεσον ''F5'';

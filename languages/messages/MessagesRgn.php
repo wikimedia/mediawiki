@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Reedy
  * @author Sentruper
  */
 
@@ -307,7 +308,7 @@ Par piasé, fa raport a un [[Special:ListUsers/sysop|aministrador]] cun la nota 
 S't'vu fèla te, tàca scrivar int'e' spazi a què sotta (guèrda la [[{{MediaWiki:Helppage}}|pàgina d'servezi]] s't'vu saven piò).
 S'cì arìv a que par sbaj, sciàza e butòn \"Indrì\" e t'ci a post.",
 'noarticletext'                    => "In 'ste mumént un gn'è gnito in sta pàgina: l'è vuta.
-Magari t'pù provè a [[Special:Search/{{PAGENAME}}|zirchè ste nòm]] in t'j ètar pàgin, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} zirchè i regèstr relativ], o [{{fullurl:{{FULLPAGENAME}}|action=edit}} scrivj indentar adès].",
+Magari t'pù provè a [[Special:Search/{{PAGENAME}}|zirchè ste nòm]] in t'j ètar pàgin, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} zirchè i regèstr relativ], o [{{fullurl:{{FULLPAGENAME}}|action=edit}} scrivj indentar adès]</span>.",
 'previewnote'                      => "'''Òci! Lezz prèma cus t'e' fat; e' tu scrètt U N' è stè ancora registrè!'''",
 'editing'                          => 'Cambiamént de $1',
 'editingsection'                   => 'Mudèfiga $1 (seziòn)',

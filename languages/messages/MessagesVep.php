@@ -2018,7 +2018,6 @@ Algat unohtagoi [[Special:UnlockDB|heitta luklostand]] teiden holituzradon jäl'
 
 # Move page
 'move-page'                 => 'Udesnimitada $1',
-'move-page-backlink'        => '← $1',
 'move-page-legend'          => "Udesnimitada lehtpol'",
 'movepagetext'              => "Alemba anttud formad kävutaden sab nimitada lehtpolen udes; siloi kaclendnimikirjuteses se mugažo linneb uden nimenke.
 Vanhemb nimi linneb kosketuseks udembale nimele.

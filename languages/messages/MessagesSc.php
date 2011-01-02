@@ -1306,7 +1306,6 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 
 # Move page
 'move-page'               => 'Movimentu de $1',
-'move-page-backlink'      => '← $1',
 'move-page-legend'        => 'Movimentu pàgina',
 'movepagetext'            => "Cun custu mòdellu podes renumenare una pàgina, movende totu sa stòria sua a sa pàgina noa.
 Su tìtulu bèciu at a diventare una pàgina de reindiritzamentu a su tìtulu nou.

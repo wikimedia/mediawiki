@@ -9,6 +9,7 @@
  *
  * @author Dark Eagle
  * @author Jureits
+ * @author Reedy
  */
 
 $fallback = 'lv';
@@ -256,7 +257,7 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'newarticletext'                   => "Tu ite tyki caur saitis nu, pagaidam vēļ nauzraksteitys, lopys.
 Kab radeitu lopu, suoc raksteit teksta lūgā apaškā (par teksta formatiešonu i seikuokai informaceja verīs [[{{MediaWiki:Helppage}}|paleigu]]).
 Ka Tu ite tyki deļ klaidys, vīnkuorši daspīd '''back''' pūgu puorlyukprogramā.",
-'noarticletext'                    => 'Itymā lopā nav nikaida teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt cytuos lopuos piec ituos lopys nūsaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saisteitūs registru īrokstūs] voi ari [{{fullurl:{{FULLPAGENAME}}|action=edit}} suokt taiseit itū lopu].',
+'noarticletext'                    => 'Itymā lopā nav nikaida teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt cytuos lopuos piec ituos lopys nūsaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saisteitūs registru īrokstūs] voi ari [{{fullurl:{{FULLPAGENAME}}|action=edit}} suokt taiseit itū lopu]</span>.',
 'previewnote'                      => "'''Itei ir tikai apsavieršona!'''
 Jiusu izmanis vēļ nav saglobuotys!",
 'editing'                          => 'Pataiseit $1',

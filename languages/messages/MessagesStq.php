@@ -11,6 +11,7 @@
  * @author Mucalexx
  * @author Purodha
  * @author Pyt
+ * @author Reedy
  * @author Urhixidur
  */
 
@@ -672,7 +673,7 @@ Föige jädden dien Annerengen in dät buppere Textfäild ien.
 '''Bloot''' die Inhoold fon dät buppere Textfäild wäd spiekerd, wan du ap \"{{int:savearticle}}\" klikst.",
 'yourtext'                         => 'Dien Text',
 'storedversion'                    => 'Spiekerde Version',
-'nonunicodebrowser'                => "<strong style=\"color: #330000; background: #f0e000;\">Oachtenge: Dien Browser kon Unicode-Teekene nit gjucht feroarbaidje. Benutse jädden n uur Browser uum Artikkele tou beoarbaidjen.'''",
+'nonunicodebrowser'                => "'''Oachtenge: Dien Browser kon Unicode-Teekene nit gjucht feroarbaidje. Benutse jädden n uur Browser uum Artikkele tou beoarbaidjen.'''",
 'editingold'                       => "'''OACHTENGE: Jie beoarbaidje ne oolde Version fon disse Artikkel. Wan Jie spiekerje, wäide alle näiere Versione uurschrieuwen.'''",
 'yourdiff'                         => 'Unnerscheede',
 'copyrightwarning'                 => "'''Kopier neen Websieden, do nit dien oaine sunt, benuts neen uurhääbergjuchtelk schutsede Wierke sunner Ferlof fon dän Copyright-Inhääber!'''<br />

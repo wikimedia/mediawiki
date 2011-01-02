@@ -12,6 +12,7 @@
  * @author Indiver
  * @author Lkhatiwada
  * @author RajeshPandey
+ * @author Reedy
  * @author ne.wikipedia.org sysops
  * @author सरोज कुमार ढकाल
  */
@@ -1992,7 +1993,7 @@ $1को बन्देजको कारण : "$2" हो',
 'thumbnail-more'           => 'ठूलो बनाउने',
 'filemissing'              => 'हराइरहेको %s फाइल',
 'thumbnail_error'          => 'डाटावेस सिर्जना गर्दा त्रुटि: %s',
-'thumbnail_invalid_params' => "नोड <parameters> हराइरहेछ: '%s'",
+'thumbnail_invalid_params' => "नोड parameters हराइरहेछ: '%s'",
 'thumbnail_dest_directory' => '%s सिर्जना गर्दै ... डाइरेक्टरी सिर्जना गर्न असफल',
 'thumbnail_image-type'     => "अनुक्रमणिका फाइल प्रकार '%s' समर्थित छैन",
 'thumbnail_image-missing'  => 'डाटाबेस फाइलमा डाटाबेसको नाम प्रयोग गर्नका लागि',

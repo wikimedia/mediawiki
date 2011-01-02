@@ -17,6 +17,7 @@
  * @author Kiranmayee
  * @author Kumar
  * @author Purodha
+ * @author Reedy
  * @author Shrish
  * @author Shyam
  * @author Shyam123.ckp
@@ -1055,7 +1056,7 @@ $1",
 'mypreferences'                 => 'मेरी वरीयताएँ',
 'prefs-edits'                   => 'संपादनोंकी संख्या:',
 'prefsnologin'                  => 'लॉग इन नहीं किया हैं',
-'prefsnologintext'              => 'वरीयताएँ बदलने के लिए आपको <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} सत्रारंभ] करना होगा।',
+'prefsnologintext'              => 'वरीयताएँ बदलने के लिए आपको <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} सत्रारंभ]</span> करना होगा।',
 'changepassword'                => 'कूटशब्द बदलें',
 'prefs-skin'                    => 'त्वचा',
 'skin-preview'                  => 'झलक',

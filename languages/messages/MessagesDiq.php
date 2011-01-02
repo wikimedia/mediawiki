@@ -11,6 +11,7 @@
  * @author Aspar
  * @author Belekvor
  * @author Mirzali
+ * @author Reedy
  * @author Xoser
  */
 
@@ -1765,7 +1766,7 @@ qaydeyê destek biyayeyi: <tt>$1</tt>',
 'listgrouprights-summary'              => 'wikiya cêrın a ke tede grubê karberi nişane biyê, listeya heqê cıresayişê inan o.
 qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed]] belka esto.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">heq o ke diyayo</span>
-* <span class="listgrouprights-revoked">heq o ke tepiya geriyayo/span>',
+* <span class="listgrouprights-revoked">heq o ke tepiya geriyayo</span>',
 'listgrouprights-group'                => 'Grup',
 'listgrouprights-rights'               => 'Heqqî',
 'listgrouprights-helppage'             => 'Help:Heqqanê gruban',

@@ -11,6 +11,7 @@
  * @author Lokal Profil
  * @author PhiLiP
  * @author Philip <philip.npc@gmail.com>
+ * @author Reedy
  * @author Symane
  * @author Urhixidur
  * @author Vipuser
@@ -560,7 +561,7 @@ $2',
 'newarticletext'                   => '倷连到𠮶页面伓存在。要新开个只页面，倷能到下底𠮶方框编写内容（细节请望[[Help:说明|说明]]）。要系倷伓系特试来到个首，按吖浏览器𠮶“返回”即可。',
 'anontalkpagetext'                 => "---- ''个系匿名用户𠮶讨论页，话伓定佢哈冇开只帐户。别人单用得正IP地址同佢联系。个只IP地址可能有好几只用户共用。如果倷系匿名用户，觉得个页𠮶内容同倷冇关，欢迎去[[Special:UserLogin|开只新帐户或登入]]，省得同别𠮶匿名用户扤混来。''",
 'noarticletext'                    => '眼下个页哈冇内容，倷可以到别𠮶页面[[Special:Search/{{PAGENAME}}|寻吖个页𠮶标题]]，
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 寻吖有关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编写个页]。',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 寻吖有关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编写个页]</span>。',
 'clearyourcache'                   => "'''注意:''' 保存之后, 倷要清吥浏览器𠮶缓存才眵得正改𠮶内容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''（或按吖''Ctrl-Shift-R''，到苹果Mac上按''Cmd-Shift-R''）；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 单只要按 ''刷新''；'''Opera:''' 用户要到 ''工具-设置'' 完全𠮶清除缓存。",
 'usercssyoucanpreview'             => "'''提示:''' 存到前请用'望吖起'来测吖倷𠮶新CSS 。",
 'userjsyoucanpreview'              => "'''提示:''' 存到前请用'望吖起'来测吖倷𠮶新JS 。",

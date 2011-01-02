@@ -15,6 +15,7 @@
  * @author Manie
  * @author Naudefj
  * @author Purodha
+ * @author Reedy
  * @author SPQRobin
  * @author Spacebirdy
  */
@@ -1217,7 +1218,7 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'mypreferences'                 => 'My voorkeure',
 'prefs-edits'                   => 'Aantal wysigings:',
 'prefsnologin'                  => 'Nie ingeteken nie',
-'prefsnologintext'              => 'U moet <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aanteken] om voorkeure te kan verander.',
+'prefsnologintext'              => 'U moet <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aanteken]</span> om voorkeure te kan verander.',
 'changepassword'                => 'Verander wagwoord',
 'prefs-skin'                    => 'Omslag',
 'skin-preview'                  => 'Voorskou',

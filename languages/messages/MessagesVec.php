@@ -12,6 +12,7 @@
  * @author Nick1915
  * @author Omnipaedista
  * @author OrbiliusMagister
+ * @author Reedy
  * @author Urhixidur
  * @author Vajotwo
  * @author לערי ריינהארט
@@ -1137,7 +1138,7 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'mypreferences'                 => 'prefarense',
 'prefs-edits'                   => 'Nùmaro de modifiche:',
 'prefsnologin'                  => 'No te ghè eseguìo el login',
-'prefsnologintext'              => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} login] par poder personalixare le to preferense.',
+'prefsnologintext'              => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} login]</span> par poder personalixare le to preferense.',
 'changepassword'                => 'Cànbia ła password',
 'prefs-skin'                    => 'Aspeto grafico',
 'skin-preview'                  => 'Anteprima',

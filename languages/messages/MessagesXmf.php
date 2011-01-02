@@ -12,6 +12,7 @@
  * @author Dato deutschland
  * @author Lika2672
  * @author Malafaya
+ * @author Reedy
  * @author გიორგიმელა
  */
 
@@ -276,7 +277,7 @@ $messages = array(
 ხასილაშ დარცხუაფალო გემიშეჸონით ინფორმაცია თუდონ ოჭკორიეშა.
 (ძირ.[[{{MediaWiki:Helppage}}|მოხვარაშ ხასილა]] გეძინელ ინფორმაციაშო).
 თე ხასილას ჩილათირო მოხვადით და, დირთით უკახალე თქვან ბრაუზერიშ ხენწყუალათ.',
-'noarticletext'                    => 'ასე თე ხასილას ტექსტ ვარე, [[Special:Search/{{PAGENAME}}|მიგორეთ თე ხასილაშ სახელ]] შხვა ხასილებს ვარა <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} დოჭარით თენა ხასილა].',
+'noarticletext'                    => 'ასე თე ხასილას ტექსტ ვარე, [[Special:Search/{{PAGENAME}}|მიგორეთ თე ხასილაშ სახელ]] შხვა ხასილებს ვარა <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} დოჭარით თენა ხასილა]</span>.',
 'previewnote'                      => "''' ენა ხვალე ნიმუშიე; თირაფეფ დიო ვა ჩუალე!'''",
 'editing'                          => 'რედაქტირაფა - $1',
 'editingsection'                   => 'რედაქტირაფა - $1 (სექცია)',

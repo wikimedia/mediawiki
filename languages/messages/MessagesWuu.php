@@ -9,6 +9,7 @@
  *
  * @author Hercule
  * @author O
+ * @author Reedy
  * @author Wu-chinese.com
  */
 
@@ -1323,7 +1324,7 @@ $1",
 'protectexpiry'               => '到期：',
 'protect_expiry_invalid'      => '到期辰光无效。',
 'protect_expiry_old'          => '到期辰光已经过去哉。',
-'protect-text'                => '侬好垃拉此地浏览搭仔修改页面<strong><nowiki>$1</nowiki>< /strong>个保护级别。',
+'protect-text'                => '侬好垃拉此地浏览搭仔修改页面<strong><nowiki>$1</nowiki></strong>个保护级别。',
 'protect-locked-access'       => '侬个账户权限弗好修改保护级别。
 下底是<strong>$1</strong>箇歇个保护级别：',
 'protect-cascadeon'           => '下底个{{PLURAL:$1|一只|多只}}页面包含 本页面个同时，启动了连锁保护，因此本页面目前也拨保护拉许，弗好编辑。侬可以设置本页面个保护级别，但箇个并弗会对连锁保护有所影响。',
