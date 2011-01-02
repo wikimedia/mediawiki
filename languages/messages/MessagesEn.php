@@ -3135,7 +3135,6 @@ To lock or unlock the database, this needs to be writable by the web server.',
 
 # Move page
 'move-page'                    => 'Move $1',
-'move-page-backlink'           => '← $1', # only translate this message to other languages if you have to change it
 'move-page-legend'             => 'Move page',
 'movepagetext'                 => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.

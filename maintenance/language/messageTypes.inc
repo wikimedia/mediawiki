@@ -293,7 +293,6 @@ $wgOptionalMessages = array(
 	'filerevert-backlink',
 	'filedelete-backlink',
 	'delete-backlink',
-	'move-page-backlink',
 	'protect-backlink',
 	'pagetitle',
 	'filename-prefix-blacklist',
