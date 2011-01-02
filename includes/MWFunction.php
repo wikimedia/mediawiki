@@ -23,7 +23,7 @@ class MWFunction {
 	protected static function cleanCallback( $callback ) {
 		
 		if( is_string( $callback ) ) {
-			if ( in_string( '::', $callback ) ) {
+			if ( strpos( $callback, '::' ) !== false ) {
 				//PHP 5.1 cannot use call_user_func( 'Class::Method' )
 				//It can only handle only call_user_func( array( 'Class', 'Method' ) )
 				$callback = explode( '::', $callback, 2);
