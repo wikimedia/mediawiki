@@ -464,6 +464,32 @@ class GlobalTest extends MediaWikiTestCase {
 		}
 		
 	}
+	
+	
+	function testDebugFunctionTest() {
+		global $wgDebugLogFile;
+		
+		$old_log_file = $wgDebugLogFile;
+		
+		$wgDebugLogFile = tempnam( wfTempDir(), 'mw-' );
+		
+		
+		wfDebug( "This is a normal string" );
+		$this->assertEquals( "This is a normal string", file_get_contents( $wgDebugLogFile ) );
+		unlink( $wgDebugLogFile );
+		
+		wfDebug( "This is nöt an ASCII string" );
+		$this->assertEquals( "This is nöt an ASCII string", file_get_contents( $wgDebugLogFile ) );
+		unlink( $wgDebugLogFile );
+		
+		wfDebug( "\00305This has böth UTF and control chars\003" );
+		$this->assertEquals( " 05This has böth UTF and control chars ", file_get_contents( $wgDebugLogFile ) );
+		unlink( $wgDebugLogFile );
+		
+		
+		$wgDebugLogFile = $old_log_file;
+		
+	}
 
 	/* TODO: many more! */
 }
