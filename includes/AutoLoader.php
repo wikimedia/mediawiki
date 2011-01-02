@@ -86,6 +86,7 @@ $wgAutoloadLocalClasses = array(
 	'FatalError' => 'includes/Exception.php',
 	'FakeTitle' => 'includes/FakeTitle.php',
 	'FakeMemCachedClient' => 'includes/ObjectCache.php',
+	'Fallback' => 'includes/Fallback.php',
 	'FauxRequest' => 'includes/WebRequest.php',
 	'FauxResponse' => 'includes/WebResponse.php',
 	'FeedItem' => 'includes/Feed.php',
