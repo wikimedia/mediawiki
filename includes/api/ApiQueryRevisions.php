@@ -479,25 +479,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
 			}
 			if ( $this->parseContent ) {
-				global $wgEnableParserCache;
-
-				$popts = new ParserOptions();
-				$popts->setTidy( true );
-
 				$articleObj = new Article( $title );
 
-				$p_result = false;
+				$p_result = $articleObj->getParserOutput();
 				$pcache = ParserCache::singleton();
-				if ( $wgEnableParserCache ) {
-					$p_result = $pcache->get( $articleObj, $popts );
-				}
-				if ( !$p_result ) {
-					$p_result = $wgParser->parse( $text, $title, $popts );
-
-					if ( $wgEnableParserCache ) {
-						$pcache->save( $p_result, $articleObj, $popts );
-					}
-				}
 
 				$text = $p_result->getText();
 			}
