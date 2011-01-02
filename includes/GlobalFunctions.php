@@ -42,7 +42,7 @@ function fallback_iconv( $from, $to, $string ) {
 
 if( !function_exists( 'iconv' ) ) {
 	function iconv( $from, $to, $string ) {
-		return fallback_iconv( $from, $to, $string )
+		return fallback_iconv( $from, $to, $string );
 	}
 }
 
