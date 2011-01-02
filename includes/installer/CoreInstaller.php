@@ -259,7 +259,7 @@ abstract class CoreInstaller extends Installer {
 	 * Overridden by WebInstaller to provide lastPage parameters.
 	 */
 	protected function getDocUrl( $page ) {
-		return "{$_SERVER['PHP_SELF']}?page=" . urlencode( $attribs['href'] );
+		return "{$_SERVER['PHP_SELF']}?page=" . urlencode( $page );
 	}
 
 	/**
