@@ -10,82 +10,17 @@ class ApiWatchTest extends ApiTestSetup {
 
 	function setUp() {
 		parent::setUp();
+		$this->doLogin();
+	}
+	
+	function getTokens() {
+		return $this->getTokenList( $this->sysopUser );
 	}
 
-	function testLogin() {
-		$data = $this->doApiRequest( array(
-			'action' => 'login',
-			'lgname' => $this->sysopUser->userName,
-			'lgpassword' => $this->sysopUser->password ) );
-
-		$this->assertArrayHasKey( "login", $data[0] );
-		$this->assertArrayHasKey( "result", $data[0]['login'] );
-		$this->assertEquals( "NeedToken", $data[0]['login']['result'] );
-		$token = $data[0]['login']['token'];
-
-		$data = $this->doApiRequest( array(
-			'action' => 'login',
-			"lgtoken" => $token,
-			"lgname" => $this->sysopUser->userName,
-			"lgpassword" => $this->sysopUser->password ), $data );
-
-		$this->assertArrayHasKey( "login", $data[0] );
-		$this->assertArrayHasKey( "result", $data[0]['login'] );
-		$this->assertEquals( "Success", $data[0]['login']['result'] );
-		$this->assertArrayHasKey( 'lgtoken', $data[0]['login'] );
-
-		return $data;
-	}
-
-	function testGettingToken() {
-		foreach ( array( $this->user, $this->sysopUser ) as $user ) {
-			$this->getUserTokens( $user );
-		}
-	}
-
-	function getUserTokens( $user ) {
-		$GLOBALS['wgUser'] = $user->user;
-		$data = $this->doApiRequest( array(
-			'action' => 'query',
-			'titles' => 'Main Page',
-			'intoken' => 'edit|delete|protect|move|block|unblock',
-			'prop' => 'info' ) );
-
-		$this->assertArrayHasKey( 'query', $data[0] );
-		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$keys = array_keys( $data[0]['query']['pages'] );
-		$key = array_pop( $keys );
-
-		$rights = $user->user->getRights();
-
-		$this->assertArrayHasKey( $key, $data[0]['query']['pages'] );
-		$this->assertArrayHasKey( 'edittoken', $data[0]['query']['pages'][$key] );
-		$this->assertArrayHasKey( 'movetoken', $data[0]['query']['pages'][$key] );
-
-		if ( isset( $rights['delete'] ) ) {
-			$this->assertArrayHasKey( 'deletetoken', $data[0]['query']['pages'][$key] );
-		}
-
-		if ( isset( $rights['block'] ) ) {
-			$this->assertArrayHasKey( 'blocktoken', $data[0]['query']['pages'][$key] );
-			$this->assertArrayHasKey( 'unblocktoken', $data[0]['query']['pages'][$key] );
-		}
-
-		if ( isset( $rights['protect'] ) ) {
-			$this->assertArrayHasKey( 'protecttoken', $data[0]['query']['pages'][$key] );
-		}
-
-		return $data;
-	}
-
-	function testGetToken() {
-		return $this->getUserTokens( $this->sysopUser );
-	}
-
-	/**
-	 * @depends testGetToken
-	 */
-	function testWatchEdit( $data ) {
+	function testWatchEdit() {
+		
+		$data = $this->getTokens();
+		
 		$this->markTestIncomplete( "Broken" );
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
@@ -93,7 +28,7 @@ class ApiWatchTest extends ApiTestSetup {
 
 		$data = $this->doApiRequest( array(
 			'action' => 'edit',
-			'title' => 'Main Page',
+			'title' => 'UTPage',
 			'text' => 'new text',
 			'token' => $pageinfo['edittoken'],
 			'watchlist' => 'watch' ), $data );
@@ -107,7 +42,8 @@ class ApiWatchTest extends ApiTestSetup {
 	/**
 	 * @depends testWatchEdit
 	 */
-	function testWatchClear( $data ) {
+	function testWatchClear() {
+	
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'list' => 'watchlist' ), $data );
@@ -132,10 +68,11 @@ class ApiWatchTest extends ApiTestSetup {
 		return $data;
 	}
 
-	/**
-	 * @depends testGetToken
-	 */
-	function testWatchProtect( $data ) {
+	
+	function testWatchProtect() {
+		
+		$data = $this->getTokens();
+		
 		$this->markTestIncomplete( "Broken" );
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
@@ -144,7 +81,7 @@ class ApiWatchTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'protect',
 			'token' => $pageinfo['protecttoken'],
-			'title' => 'Main Page',
+			'title' => 'UTPage',
 			'protections' => 'edit=sysop',
 			'watchlist' => 'unwatch' ), $data );
 
@@ -154,18 +91,19 @@ class ApiWatchTest extends ApiTestSetup {
 		$this->assertArrayHasKey( 'edit', $data[0]['protect']['protections'][0] );
 	}
 
-	/**
-	 * @depends testGetToken
-	 */
-	function testGetRollbackToken( $data ) {
-		if ( !Title::newFromText( 'Main Page' )->exists() ) {
-			$this->markTestIncomplete( "The article [[Main Page]] does not exist" );
+	
+	function testGetRollbackToken() {
+		
+		$data = $this->getTokens();
+		
+		if ( !Title::newFromText( 'UTPage' )->exists() ) {
+			$this->markTestIncomplete( "The article [[UTPage]] does not exist" );
 		}
 
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'prop' => 'revisions',
-			'titles' => 'Main Page',
+			'titles' => 'UTPage',
 			'rvtoken' => 'rollback' ), $data );
 
 		$this->assertArrayHasKey( 'query', $data[0] );
@@ -174,7 +112,7 @@ class ApiWatchTest extends ApiTestSetup {
 		$key = array_pop( $keys );
 
 		if ( isset( $data[0]['query']['pages'][$key]['missing'] ) ) {
-			$this->markTestIncomplete( "Target page (Main Page) doesn't exist" );
+			$this->markTestIncomplete( "Target page (UTPage) doesn't exist" );
 		}
 
 		$this->assertArrayHasKey( 'pageid', $data[0]['query']['pages'][$key] );
@@ -196,13 +134,13 @@ class ApiWatchTest extends ApiTestSetup {
 		try {
 			$data = $this->doApiRequest( array(
 				'action' => 'rollback',
-				'title' => 'Main Page',
+				'title' => 'UTPage',
 				'user' => $pageinfo['user'],
 				'token' => $pageinfo['rollbacktoken'],
 				'watchlist' => 'watch' ), $data );
 		} catch( UsageException $ue ) {
 			if( $ue->getCodeString() == 'onlyauthor' ) {
-				$this->markTestIncomplete( "Only one author to 'Main Page', cannot test rollback" );
+				$this->markTestIncomplete( "Only one author to 'UTPage', cannot test rollback" );
 			} else {
 				$this->fail( "Received error " . $ue->getCodeString() );
 			}
@@ -212,10 +150,11 @@ class ApiWatchTest extends ApiTestSetup {
 		$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
 	}
 
-	/**
-	 * @depends testGetToken
-	 */
-	function testWatchDelete( $data ) {
+	
+	function testWatchDelete() {
+		
+		$data = $this->getTokens();
+		
 		$this->markTestIncomplete( "Broken" );
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
@@ -224,7 +163,7 @@ class ApiWatchTest extends ApiTestSetup {
 		$data = $this->doApiRequest( array(
 			'action' => 'delete',
 			'token' => $pageinfo['deletetoken'],
-			'title' => 'Main Page' ), $data );
+			'title' => 'UTPage' ), $data );
 		$this->assertArrayHasKey( 'delete', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['delete'] );
 

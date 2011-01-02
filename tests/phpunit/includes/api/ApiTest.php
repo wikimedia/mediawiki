@@ -58,6 +58,7 @@ class ApiTest extends ApiTestSetup {
 	 * @expectedException UsageException
 	 */
 	function testApi() {
+	
 		$api = new ApiMain(
 			new FauxRequest( array( 'action' => 'help', 'format' => 'xml' ) )
 		);
@@ -221,5 +222,67 @@ class ApiTest extends ApiTestSetup {
 		$this->assertNotInternalType( "bool", $sxe );
 		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
 		$a = $sxe->query[0]->pages[0]->page[0]->attributes();
+	}
+	
+	function testRunLogin() {
+		$data = $this->doApiRequest( array(
+			'action' => 'login',
+			'lgname' => $this->sysopUser->userName,
+			'lgpassword' => $this->sysopUser->password ) );
+
+		$this->assertArrayHasKey( "login", $data[0] );
+		$this->assertArrayHasKey( "result", $data[0]['login'] );
+		$this->assertEquals( "NeedToken", $data[0]['login']['result'] );
+		$token = $data[0]['login']['token'];
+
+		$data = $this->doApiRequest( array(
+			'action' => 'login',
+			"lgtoken" => $token,
+			"lgname" => $this->sysopUser->userName,
+			"lgpassword" => $this->sysopUser->password ), $data );
+
+		$this->assertArrayHasKey( "login", $data[0] );
+		$this->assertArrayHasKey( "result", $data[0]['login'] );
+		$this->assertEquals( "Success", $data[0]['login']['result'] );
+		$this->assertArrayHasKey( 'lgtoken', $data[0]['login'] );
+		
+		return $data;
+	}
+	
+	function testGettingToken() {
+		foreach ( array( $this->user, $this->sysopUser ) as $user ) {
+			$this->runTokenTest( $user );
+		}
+	}
+
+	function runTokenTest( $user ) {
+		
+		$data = $this->getTokenList( $user );
+
+		$this->assertArrayHasKey( 'query', $data[0] );
+		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
+		$keys = array_keys( $data[0]['query']['pages'] );
+		$key = array_pop( $keys );
+
+		$rights = $user->user->getRights();
+
+		$this->assertArrayHasKey( $key, $data[0]['query']['pages'] );
+		$this->assertArrayHasKey( 'edittoken', $data[0]['query']['pages'][$key] );
+		$this->assertArrayHasKey( 'movetoken', $data[0]['query']['pages'][$key] );
+
+		if ( isset( $rights['delete'] ) ) {
+			$this->assertArrayHasKey( 'deletetoken', $data[0]['query']['pages'][$key] );
+		}
+
+		if ( isset( $rights['block'] ) ) {
+			$this->assertArrayHasKey( 'blocktoken', $data[0]['query']['pages'][$key] );
+			$this->assertArrayHasKey( 'unblocktoken', $data[0]['query']['pages'][$key] );
+		}
+
+		if ( isset( $rights['protect'] ) ) {
+			$this->assertArrayHasKey( 'protecttoken', $data[0]['query']['pages'][$key] );
+		}
+
+		return $data;
 	}
 }
