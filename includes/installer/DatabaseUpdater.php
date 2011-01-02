@@ -76,6 +76,14 @@ abstract class DatabaseUpdater {
 		$wgExtModifiedFields = array(); // table, index, dir
 	}
 
+	/**
+	 * @static
+	 * @throws MWException
+	 * @param DatabaseBase $db
+	 * @param bool $shared
+	 * @param null $maintenance
+	 * @return
+	 */
 	public static function newForDB( &$db, $shared = false, $maintenance = null ) {
 		$type = $db->getType();
 		if( in_array( $type, Installer::getDBTypes() ) ) {
