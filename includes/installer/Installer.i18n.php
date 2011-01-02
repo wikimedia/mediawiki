@@ -4957,7 +4957,7 @@ Jika Anda menggunakan Mandrake, instal paket php-xml.',
 MediaWiki memerlukan fungsi persamaan reguler kompatibel Perl untuk bekerja.',
 	'config-pcre-no-utf8' => "'''Fatal''': Modul PCRE PHP tampaknya dikompilasi tanpa dukungan PCRE_UTF8.
 MediaWiki memerlukan dukungan UTF-8 untuk berfungsi dengan benar.",
-	'config-memory-raised' => '<code>memory_limit</codde> PHP adalah $1, dinaikkan ke $2.',
+	'config-memory-raised' => '<code>memory_limit</code> PHP adalah $1, dinaikkan ke $2.',
 	'config-memory-bad' => "'''Peringatan:''' <code>memory_limit</code> PHP adalah $1.
 Ini terlalu rendah.
 Instalasi terancam gagal!",
@@ -5952,15 +5952,15 @@ Wann De nit op Dingem eije Rääschner bes, künnt et sin, dat Dinge Provaider D
 	'config-db-ts2-schema' => 'Daateschema för <code lang="en">tsearch2</code>',
 	'config-db-schema-help' => 'För jewöhnlesch sin bovven de Schemas en Odenong.
 Donn bloß jät draan ändere, wann dat nüüdesch es.',
-	'config-sqlite-dir' => '<i lang="en">SQLite<i> sing Daateverzeishnes:',
+	'config-sqlite-dir' => '<i lang="en">SQLite</i> sing Daateverzeishnes:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-header-mysql' => 'Enshtällunge för <i lang="en">MySQL<i>',
-	'config-header-postgres' => 'Enshtällunge för <i lang="en">PostgreSQL<i>',
+	'config-header-mysql' => 'Enshtällunge för <i lang="en">MySQL</i>',
+	'config-header-postgres' => 'Enshtällunge för <i lang="en">PostgreSQL</i>',
 	'config-header-sqlite' => 'Enshtällunge för <i lang="en">SQLite</i>',
-	'config-header-oracle' => 'Enshtällunge för <i lang="en">Oracle<i>',
+	'config-header-oracle' => 'Enshtällunge för <i lang="en">Oracle</i>',
 	'config-invalid-db-type' => 'Dat es en onjöltijje Zoot Daatebangk.',
 	'config-missing-db-name' => 'Do moß jät enjävve för dä Name vun dä Daatebangk.',
 	'config-sqlite-name-help' => 'Kies een naam die uw wiki identificeert.
@@ -5993,7 +5993,7 @@ $messages['lb'] = array(
 	'config-title' => 'MediaWiki $1 Installatioun',
 	'config-information' => 'Informatioun',
 	'config-localsettings-upgrade' => "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.
-Är Software kann aktualiséiert ginn, setzt w.e.g. de Wäert vum <code\$wgUpgradeKey</code> an d'Këscht.
+Är Software kann aktualiséiert ginn, setzt w.e.g. de Wäert vum <code>$wgUpgradeKey</code> an d'Këscht.
 Dir fannt en am LocalSettings.php.",
 	'config-localsettings-key' => 'Aktualisatiounsschlëssel:',
 	'config-localsettings-badkey' => 'De Schlëssel deen Dir aginn hutt ass net korrekt',
@@ -9166,7 +9166,7 @@ MediaWiki распространяется в надежде, что она бу
 Если вы скомпилировали PHP сами, сконфигурируйте его снова с включенным клиентом базы данных, например, с помощью <code>./configure --with-mysql</code>. 
 Если вы установили PHP из пакетов Debian или Ubuntu, то вам также необходимо установить модуль php5-mysql.',
 	'config-no-fts3' => "'''Внимание''': SQLite собран без модуля [http://sqlite.org/fts3.html FTS3] — поиск не будет работать для этой базы данных.",
-	'config-register-globals' => "'''Внимание: PHP-опция <code>[http://php.net/register_globals register_globals] включена.'''
+	'config-register-globals' => "'''Внимание: PHP-опция <code>[http://php.net/register_globals register_globals]</code> включена.'''
 '''Отключите её, если это возможно.'''
 MediaWiki будет работать, но это снизит безопасность сервера и увеличит риск проникновения извне.",
 	'config-magic-quotes-runtime' => "'''Проблема: включена опция PHP [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]!'''
