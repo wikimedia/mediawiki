@@ -311,6 +311,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( wfTimestamp( TS_DB ) );
 			$this->output( "......<b>Found duplicate entries</b>\n" );
 			$this->output( sprintf( "<b>      %-60s %3s %5s</b>\n", 'Title', 'NS', 'Count' ) );
+			$duplicate = array();
 			foreach ( $rows as $row ) {
 				if ( ! isset( $duplicate[$row->cur_namespace] ) ) {
 					$duplicate[$row->cur_namespace] = array();
@@ -622,7 +623,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$rows = $this->db->affectedRows();
 
 		if( $rows ) {
-			$this->output( "Set page_random to a random value on $row rows where it was set to 0\n" );
+			$this->output( "Set page_random to a random value on $rows rows where it was set to 0\n" );
 		} else {
 			$this->output( "...no page_random rows needed to be set\n" );
 		}
