@@ -10,6 +10,7 @@
  * @author Albert Fazlî
  * @author Don Alessandro
  * @author KhayR
+ * @author Reedy
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -688,7 +689,7 @@ Anı tanu öçen IP adresı faydalanıla.
 'noarticletext'                    => "Xäzerge waqıtta bu bittä tekst yuq.
 Sez [[Special:Search/{{PAGENAME}}|bu isem kergän başqa mäqälälärne]],
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} köndäleklärdäge yazmalarnı] taba
-yäki '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} şuşındıy isemle yaña bit tözi]''' alasız.",
+yäki '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} şuşındıy isemle yaña bit tözi]'''</span> alasız.",
 'noarticletext-nopermission'       => 'Xäzerge waqıtta bu bittä tekst yuq.
 Sez [[Special:Search/{{PAGENAME}}|bu isem kergän başqa mäqälälärne]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} köndäleklärdäge yazmalarnı] taba alasız.</span>',

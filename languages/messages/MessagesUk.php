@@ -436,6 +436,7 @@ $messages = array(
 'printableversion'  => 'Версія до друку',
 'permalink'         => 'Постійне посилання',
 'print'             => 'Друк',
+'view'              => 'Перегляд',
 'edit'              => 'Редагувати',
 'create'            => 'Створити',
 'editthispage'      => 'Редагувати цю сторінку',
@@ -443,6 +444,7 @@ $messages = array(
 'delete'            => 'Вилучити',
 'deletethispage'    => 'Вилучити цю сторінку',
 'undelete_short'    => 'Відновити $1 {{PLURAL:$1|редагування|редагування|редагувань}}',
+'viewdeleted_short' => 'Переглянути {{PLURAL:$1|одне вилучене редагування|$1 вилучених редагування|$1 вилучених редагувань}}',
 'protect'           => 'Захистити',
 'protect_change'    => 'змінити',
 'protectthispage'   => 'Захистити цю сторінку',
@@ -462,7 +464,7 @@ $messages = array(
 'projectpage'       => 'Переглянути сторінку проекту',
 'imagepage'         => 'Переглянути сторінку файлу',
 'mediawikipage'     => 'Переглянути сторінку повідомлення',
-'templatepage'      => 'Переглянути сторінку шаблона',
+'templatepage'      => 'Переглянути сторінку шаблону',
 'viewhelppage'      => 'Отримати довідку',
 'categorypage'      => 'Переглянути сторінку категорії',
 'viewtalkpage'      => 'Переглянути обговорення',
@@ -973,11 +975,11 @@ $1',
 'post-expand-template-inclusion-warning'  => 'Увага: розмір шаблонів для включення занадто великий.
 Деякі шаблони не будуть включені.',
 'post-expand-template-inclusion-category' => 'Сторінки з перевищеним розміром включених шаблонів',
-'post-expand-template-argument-warning'   => "'''Увага:''' Ця сторінка містить принаймні один аргумент шаблона, який має надто великий розмір для розгортання.
+'post-expand-template-argument-warning'   => "'''Увага:''' Ця сторінка містить принаймні один аргумент шаблону, який має надто великий розмір для розгортання.
 Такі аргументи були опущені.",
 'post-expand-template-argument-category'  => 'Сторінки, які містять пропущені аргументи шаблонів',
 'parser-template-loop-warning'            => 'Виявлена петля у шаблонах: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Перевищене обмеження глибини рекурсії шаблона ($1)',
+'parser-template-recursion-depth-warning' => 'Перевищене обмеження глибини рекурсії шаблону ($1)',
 'language-converter-depth-warning'        => 'Перевищене обмеження глибини мовного конвертора ($1)',
 
 # "Undo" feature
@@ -2792,7 +2794,7 @@ IP-адреси, що блокуються автоматично тут не в
 'tooltip-ca-nstab-project'        => 'Сторінка проекту',
 'tooltip-ca-nstab-image'          => 'Сторінка зображення',
 'tooltip-ca-nstab-mediawiki'      => 'Сторінка повідомлення MediaWiki',
-'tooltip-ca-nstab-template'       => 'Сторінка шаблона',
+'tooltip-ca-nstab-template'       => 'Сторінка шаблону',
 'tooltip-ca-nstab-help'           => 'Сторінка довідки',
 'tooltip-ca-nstab-category'       => 'Сторінка категорії',
 'tooltip-minoredit'               => 'Позначити це редагування як незначне',
@@ -3309,7 +3311,7 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[«Interwiki transcluding» вимкнено]',
-'scarytranscludefailed'   => '[Помилка звертання до шаблона $1]',
+'scarytranscludefailed'   => '[Помилка звертання до шаблону $1]',
 'scarytranscludetoolong'  => '[URL дуже довгий]',
 
 # Trackbacks

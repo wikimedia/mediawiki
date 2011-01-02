@@ -10,6 +10,7 @@
  * @author Chaim Shel
  * @author Jiddisch
  * @author Joystick
+ * @author Reedy
  * @author Teak
  * @author Yidel
  * @author ווארצגאנג
@@ -771,7 +772,7 @@ $2',
 'noarticletext'                    => 'דערווייל איז נישט פאַרהאן קיין שום טעקסט אין דעם בלאט.
 איר קענט [[Special:Search/{{PAGENAME}}|זוכן דעם בלאט טיטל]] אין אנדערע בלעטער,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} זוכן די רעלעוואנטע לאגביכער],
-אדער [{{fullurl:{{FULLPAGENAME}}|action=edit}} רעדאַקטירן דעם בלאט].',
+אדער [{{fullurl:{{FULLPAGENAME}}|action=edit}} רעדאַקטירן דעם בלאט]</span>.',
 'noarticletext-nopermission'       => 'דערווײַל איז נישט פאַראַן קיין שום טעקסט אין דעם בלאַט.
 איר קענט [[Special:Search/{{PAGENAME}}| זוכן דעם בלאט טיטל]] אין אנדערע בלעטער,
 אדער <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} נאָכזוכן די רעלעוואנטע לאגביכער]</span>.',

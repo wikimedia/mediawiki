@@ -2421,7 +2421,6 @@ Para ikandado o tanggalin ang kandado ng kalipunan ng dato, kailangan nitong mag
 
 # Move page
 'move-page'                    => 'Ilipat ang $1',
-'move-page-backlink'           => '← $1',
 'move-page-legend'             => 'Ilipat ang pahina',
 'movepagetext'                 => "Mapapalitan ang pangalan ng isang pahina kapag ginamit mo ang pormularyong nasa ibaba, malilipat ang lahat ng kasaysayan nito patungo sa bagong pangalan.
 Magiging isang pahina ng panuto/panturo patungo sa bagong pamagat ang dati/lumang pangalan.

@@ -231,6 +231,7 @@ $messages = array(
 'delete'            => 'Stizzar',
 'deletethispage'    => 'Stizzar questa pagina',
 'undelete_short'    => 'Revocar {{PLURAL:$1|ina modificaziun|$1 modificaziuns}}',
+'viewdeleted_short' => 'Guardar {{PLURAL:$1|ina modificaziun stizzada|$1 modificaziuns stizzadas}}',
 'protect'           => 'proteger',
 'protect_change'    => 'midar',
 'protectthispage'   => 'Proteger questa pagina',
@@ -854,6 +855,10 @@ Sco administratur pos ti la vesair; detagls pon vegnir chattads en il [{{fullurl
 'revdelete-reasonotherlist'   => 'Auter motiv',
 'revdelete-edit-reasonlist'   => 'Modifitgar ils motivs per stizzar',
 'revdelete-offender'          => 'Autur da la versiun:',
+
+# Revision move
+'revisionmoveselectedversions' => 'Spustar las versiuns selecziunadas',
+'revmove-reasonfield'          => 'Motiv:',
 
 # History merging
 'mergehistory'                     => 'Unir la cronologia da paginas',

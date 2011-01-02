@@ -2754,9 +2754,6 @@ Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking o
 
 # Move page
 'move-page'                    => 'Header of the special page to move pages. $1 is the name of the page to be moved.',
-'move-page-backlink'           => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
-
-Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page to be moved.',
 'move-page-legend'             => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
 
 {{Identical|Move page}}',
@@ -2767,7 +2764,7 @@ Special pages mentioned: {{msg-mw|Doubleredirects}}, {{msg-mw|Brokenredirects}}
 See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 'movepagetext-noredirectfixer' => 'A variant of {{msg-mw|Movepagetext|notext=1}} displayed when the automatic redirect fixer is not enabled.',
 'movepagetalktext'             => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
-'movearticle'                  => 'The text before the name of the page that you are moving.
+'movearticle'                  => 'The text before the name of the page that you are moving. Can be translated as "Page that is going to be moved"
 
 {{Identical|Move page}}',
 'movenologin'                  => '{{Identical|Not logged in}}',

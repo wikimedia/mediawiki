@@ -507,7 +507,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'filehist-thumb'     => 'Бичии чурук',
 'filehist-user'      => 'Ажыглакчы',
 'filehist-filesize'  => 'Файл хемчээли',
-'filehist-comment'   => 'Комментарий',
+'filehist-comment'   => 'Тайылбыр',
 'imagelinks'         => 'Файлдың xолбаалары',
 
 # File reversion
@@ -802,7 +802,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'limitall'         => 'шупту',
 
 # Multipage image navigation
-'imgmultipageprev' => '← бүрүнгү арын',
+'imgmultipageprev' => '← мурнунда арын',
 'imgmultipagenext' => 'соонда арын →',
 'imgmultigo'       => 'Go!',
 

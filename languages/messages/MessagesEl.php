@@ -23,6 +23,7 @@
  * @author MF-Warburg
  * @author Malafaya
  * @author Omnipaedista
+ * @author Reedy
  * @author Remember the dot
  * @author Sinopeus
  * @author Urhixidur
@@ -935,7 +936,7 @@ $2',
 'anontalkpagetext'                 => "----''Αυτή η σελίδα συζήτησης προορίζεται για ανώνυμο χρήστη που δεν έχει δημιουργήσει ακόμα λογαριασμό ή που δεν τον χρησιμοποιεί. Έτσι για την ταυτοποίηση ενός ανώνυμου χρήστη χρησιμοποιείται η διεύθυνση IP του. Είναι όμως πιθανόν η διεύθυνση αυτή να είναι κοινή για πολλούς διαφορετικούς χρήστες.  Αν είστε ανώνυμος χρήστης και νομίζετε ότι άσχετα σχόλια απευθύνθηκαν σε σας, παρακαλούμε να [[Special:UserLogin/signup|δημιουργήσετε ένα λογαριασμό]] ή να  [[Special:UserLogin|συνδεθείτε]] για να αποφεύγεται η μελλοντική σύγχυση με άλλους ανώνυμους χρήστες.''",
 'noarticletext'                    => 'Δεν υπάρχει προς το παρόν κείμενο σε αυτή τη σελίδα. Μπορείτε να [[Special:Search/{{PAGENAME}}|αναζητήσετε αυτόν τον τίτλο σελίδας]] σε άλλες σελίδες,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} να αναζητήσετε τα σχετικά ιστορικά],
-ή να [{{fullurl:{{FULLPAGENAME}}|action=edit}} επεξεργαστείτε τη σελίδα αυτή].',
+ή να [{{fullurl:{{FULLPAGENAME}}|action=edit}} επεξεργαστείτε τη σελίδα αυτή]</span>.',
 'noarticletext-nopermission'       => 'Δεν υπάρχει κείμενο σε αυτή τη σελίδα αυτή τη στιγμή.
 Μπορείτε να [[Special:Search/{{PAGENAME}}|αναζητήσετε αυτόν τον τίτλο]] σε άλλες σελίδες,
 ή <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} να αναζητήσετε τα σχετικά αρχεία]</span>.',

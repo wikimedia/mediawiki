@@ -8,6 +8,7 @@
  * @file
  *
  * @author MF-Warburg
+ * @author Reedy
  */
 
 $namespaceNames = array(
@@ -334,7 +335,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'whitelistedittext'      => 'Ó tenke $1 ba edita pájina sira.',
 'loginreqpagetext'       => 'Ó tenke $1 ba haree pájina seluk.',
 'newarticle'             => '(Foun)',
-'noarticletext'          => "Iha momentu lá'os testu iha pájina ne'e, bele [[Special:Search/{{PAGENAME}}|buka naran pájina nian]] iha pájina seluk, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs], ka [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita pájina ne'e].",
+'noarticletext'          => "Iha momentu lá'os testu iha pájina ne'e, bele [[Special:Search/{{PAGENAME}}|buka naran pájina nian]] iha pájina seluk, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs], ka [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita pájina ne'e]</span>.",
 'editing'                => 'Edita $1',
 'editingsection'         => 'Edita $1 (seksaun)',
 'editingcomment'         => 'Edita $1 (seksaun foun)',

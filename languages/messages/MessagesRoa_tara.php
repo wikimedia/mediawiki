@@ -2362,7 +2362,6 @@ Pe bloccà o sbloccà 'u database quiste abbesogne de essere scritte da 'nu web 
 
 # Move page
 'move-page'                    => 'Spuèste $1',
-'move-page-backlink'           => '← $1',
 'move-page-legend'             => "Spuèste 'a pàgene",
 'movepagetext'                 => "Ausanne 'u form aqquà sotte ste cange 'u nome d'a pàgene, spustanne tutte a storia soje sus a 'u nome néve.
 U' vecchie titele devènde 'nu ridirezionamende sus 'a pàgena nove.
