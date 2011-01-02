@@ -47,7 +47,7 @@ class ApiRollback extends ApiBase {
 		$titleObj = $this->getTitle();
 		$articleObj = new Article( $titleObj );
 		$summary = ( isset( $params['summary'] ) ? $params['summary'] : '' );
-		$details = null;
+		$details = array();
 		$retval = $articleObj->doRollback( $this->getUser(), $summary, $params['token'], $params['markbot'], $details );
 
 		if ( $retval ) {
