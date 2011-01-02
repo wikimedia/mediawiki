@@ -191,7 +191,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( "...$table table has correct $field encoding.\n" );
 		} else {
 			$this->output( "Fixing $field encoding on $table table... " );
-			$this->db->applyPatch( $patchFile );
+			$this->applyPatch( $patchFile );
 			$this->output( "ok\n" );
 		}
 	}
