@@ -6,7 +6,7 @@
  * @file
  * @ingroup Maintenance
  * Copyright (C) 2010 Nadeesha Weerasinghe <nadeesha@calcey.com>
- * http://www.calcey.com/ 
+ * http://www.calcey.com/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
  */
 
 
-require_once ( dirname( __FILE__ ) . '/MediaWikiInstallationCommonFunction.php' );
+require_once (dirname(__FILE__).'/'.'MediaWikiInstallationCommonFunction.php');
 
 /*
  * Test Case ID   : 30 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
@@ -99,21 +99,4 @@ class MediaWikiButtonsAvailabilityTestCase extends MediaWikiInstallationCommonFu
         $this->assertTrue( $this->isElementPresent( "submit-back" ));
         $this->assertTrue( $this->isElementPresent( "submit-continue" ));
     }
-
-
-    // Verify only 'Back' button available on 'Complete' page
-    public function testOnlyBackButtonAvailability() {
-
-        // Verify only 'Back' button available
-        $databaseName = DB_NAME_PREFIX."_back";
-        parent::navigateCompletePage( $databaseName );
-
-        // Only 'Back' button available
-        $this->assertTrue( $this->isElementPresent( "submit-back" ));
-
-        // 'Continue' button is not available
-        $this->assertElementNotPresent( "submit-continue" );
-        parent::restartInstallation();
-    }
 }
-
