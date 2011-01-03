@@ -30,6 +30,9 @@ class MWFunction {
 			}
 		}
 		
+		// Run autoloader (workaround for call_user_func_array bug: http://bugs.php.net/bug.php?id=51329)
+		is_callable( $callback );
+		
 		return $callback;
 	}
 	
