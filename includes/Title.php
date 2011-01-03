@@ -3100,17 +3100,14 @@ class Title {
 
 		$pageid = $this->getArticleID();
 		$protected = $this->isProtected();
-		if ( $nt->exists() ) {
-			$err = $this->moveOverExistingRedirect( $nt, $reason, $createRedirect );
-			$pageCountChange = ( $createRedirect ? 0 : -1 );
-		} else { # Target didn't exist, do normal move.
-			$err = $this->moveToNewTitle( $nt, $reason, $createRedirect );
-			$pageCountChange = ( $createRedirect ? 1 : 0 );
-		}
+		$pageCountChange = ( $createRedirect ? 1 : 0 ) - ( $nt->exists() ? 1 : 0 );
 
+		// Do the actual move
+		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
 		if ( is_array( $err ) ) {
 			return $err;
 		}
+
 		$redirid = $this->getArticleID();
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
@@ -3210,19 +3207,23 @@ class Title {
 	}
 
 	/**
-	 * Move page to a title which is at present a redirect to the
-	 * source page
+	 * Move page to a title which is either a redirect to the
+	 * source page or nonexistent
 	 *
-	 * @param $nt \type{Title} the page to move to, which should currently
-	 *  be a redirect
+	 * @param $nt \type{Title} the page to move to, which should
+	 * be a redirect or nonexistent
 	 * @param $reason \type{\string} The reason for the move
-	 * @param $createRedirect \type{\bool} Whether to leave a redirect at the old title.
-	 *  Ignored if the user doesn't have the suppressredirect right
+	 * @param $createRedirect \type{\bool} Whether to leave a
+	 * redirect at the old title.  Ignored if the user doesn't
+	 * have the suppressredirect right
 	 */
-	private function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUseSquid, $wgUser, $wgContLang;
+	private function moveToInternal( &$nt, $reason = '', $createRedirect = true ) {
+		global $wgUser, $wgContLang;
 
-		$comment = wfMsgForContent( '1movedto2_redir', $this->getPrefixedText(), $nt->getPrefixedText() );
+		$moveOverRedirect = $nt->exists();
+
+		$commentMsg = ( $moveOverRedirect ? '1movedto2_redir' : '1movedto2' );
+		$comment = wfMsgForContent( $commentMsg, $this->getPrefixedText(), $nt->getPrefixedText() );
 
 		if ( $reason ) {
 			$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
@@ -3230,44 +3231,49 @@ class Title {
 		# Truncate for whole multibyte characters. +5 bytes for ellipsis
 		$comment = $wgContLang->truncate( $comment, 250 );
 
-		$now = wfTimestampNow();
-		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$latest = $this->getLatestRevID();
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		$rcts = $dbw->timestamp( $nt->getEarliestRevTime() );
-		$newns = $nt->getNamespace();
-		$newdbk = $nt->getDBkey();
+		if ( $moveOverRedirect ) {
+			$rcts = $dbw->timestamp( $nt->getEarliestRevTime() );
 
-		# Delete the old redirect. We don't save it to history since
-		# by definition if we've got here it's rather uninteresting.
-		# We have to remove it so that the next step doesn't trigger
-		# a conflict on the unique namespace+title index...
-		$dbw->delete( 'page', array( 'page_id' => $newid ), __METHOD__ );
-		if ( !$dbw->cascadingDeletes() ) {
-			$dbw->delete( 'revision', array( 'rev_page' => $newid ), __METHOD__ );
-			global $wgUseTrackbacks;
-			if ( $wgUseTrackbacks ) {
-				$dbw->delete( 'trackbacks', array( 'tb_page' => $newid ), __METHOD__ );
+			$newid = $nt->getArticleID();
+			$newns = $nt->getNamespace();
+			$newdbk = $nt->getDBkey();
+
+			# Delete the old redirect. We don't save it to history since
+			# by definition if we've got here it's rather uninteresting.
+			# We have to remove it so that the next step doesn't trigger
+			# a conflict on the unique namespace+title index...
+			$dbw->delete( 'page', array( 'page_id' => $newid ), __METHOD__ );
+			if ( !$dbw->cascadingDeletes() ) {
+				$dbw->delete( 'revision', array( 'rev_page' => $newid ), __METHOD__ );
+				global $wgUseTrackbacks;
+				if ( $wgUseTrackbacks ) {
+					$dbw->delete( 'trackbacks', array( 'tb_page' => $newid ), __METHOD__ );
+				}
+				$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
+				$dbw->delete( 'imagelinks', array( 'il_from' => $newid ), __METHOD__ );
+				$dbw->delete( 'categorylinks', array( 'cl_from' => $newid ), __METHOD__ );
+				$dbw->delete( 'templatelinks', array( 'tl_from' => $newid ), __METHOD__ );
+				$dbw->delete( 'externallinks', array( 'el_from' => $newid ), __METHOD__ );
+				$dbw->delete( 'langlinks', array( 'll_from' => $newid ), __METHOD__ );
+				$dbw->delete( 'redirect', array( 'rd_from' => $newid ), __METHOD__ );
 			}
-			$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
-			$dbw->delete( 'imagelinks', array( 'il_from' => $newid ), __METHOD__ );
-			$dbw->delete( 'categorylinks', array( 'cl_from' => $newid ), __METHOD__ );
-			$dbw->delete( 'templatelinks', array( 'tl_from' => $newid ), __METHOD__ );
-			$dbw->delete( 'externallinks', array( 'el_from' => $newid ), __METHOD__ );
-			$dbw->delete( 'langlinks', array( 'll_from' => $newid ), __METHOD__ );
-			$dbw->delete( 'redirect', array( 'rd_from' => $newid ), __METHOD__ );
+			// If the target page was recently created, it may have an entry in recentchanges still
+			$dbw->delete( 'recentchanges',
+				array( 'rc_timestamp' => $rcts, 'rc_namespace' => $newns, 'rc_title' => $newdbk, 'rc_new' => 1 ),
+				__METHOD__
+			);
 		}
-		// If the redirect was recently created, it may have an entry in recentchanges still
-		$dbw->delete( 'recentchanges',
-			array( 'rc_timestamp' => $rcts, 'rc_namespace' => $newns, 'rc_title' => $newdbk, 'rc_new' => 1 ),
-			__METHOD__
-		);
 
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
+		if ( !is_object( $nullRevision ) ) {
+			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
+		}
 		$nullRevId = $nullRevision->insertOn( $dbw );
 
 		$article = new Article( $this );
@@ -3276,7 +3282,7 @@ class Title {
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array(
-				'page_touched'   => $dbw->timestamp( $now ),
+				'page_touched'   => $dbw->timestamp(),
 				'page_namespace' => $nt->getNamespace(),
 				'page_title'     => $nt->getDBkey(),
 				'page_latest'    => $nullRevId,
@@ -3318,103 +3324,17 @@ class Title {
 
 		# Log the move
 		$log = new LogPage( 'move' );
-		$log->addEntry( 'move_redir', $this, $reason, array( 1 => $nt->getPrefixedText(), 2 => $redirectSuppressed ) );
+		$logType = ( $moveOverRedirect ? 'move_redir' : 'move' );
+		$log->addEntry( $logType, $this, $reason, array( 1 => $nt->getPrefixedText(), 2 => $redirectSuppressed ) );
 
-		# Purge squid
-		if ( $wgUseSquid ) {
-			$urls = array_merge( $nt->getSquidURLs(), $this->getSquidURLs() );
-			$u = new SquidUpdate( $urls );
-			$u->doUpdate();
-		}
-
-	}
-
-	/**
-	 * Move page to non-existing title.
-	 *
-	 * @param $nt \type{Title} the new Title
-	 * @param $reason \type{\string} The reason for the move
-	 * @param $createRedirect \type{\bool} Whether to create a redirect from the old title to the new title
-	 *  Ignored if the user doesn't have the suppressredirect right
-	 */
-	private function moveToNewTitle( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUser, $wgContLang;
-
-		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
-		if ( $reason ) {
-			$comment .= wfMsgExt( 'colon-separator',
-				array( 'escapenoentities', 'content' ) );
-			$comment .= $reason;
-		}
-		# Truncate for whole multibyte characters. +5 bytes for ellipsis
-		$comment = $wgContLang->truncate( $comment, 250 );
-
-		$oldid = $this->getArticleID();
-		$latest = $this->getLatestRevId();
-
-		$dbw = wfGetDB( DB_MASTER );
-		$now = $dbw->timestamp();
-
-		# Save a null revision in the page's history notifying of the move
-		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
-		if ( !is_object( $nullRevision ) ) {
-			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
-		}
-		$nullRevId = $nullRevision->insertOn( $dbw );
-
-		$article = new Article( $this );
-		wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $wgUser ) );
-
-		# Rename page entry
-		$dbw->update( 'page',
-			/* SET */ array(
-				'page_touched'   => $now,
-				'page_namespace' => $nt->getNamespace(),
-				'page_title'     => $nt->getDBkey(),
-				'page_latest'    => $nullRevId,
-			),
-			/* WHERE */ array( 'page_id' => $oldid ),
-			__METHOD__
-		);
-		$nt->resetArticleID( $oldid );
-
-		if ( $createRedirect || !$wgUser->isAllowed( 'suppressredirect' ) ) {
-			# Insert redirect
-			$mwRedir = MagicWord::get( 'redirect' );
-			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-			$redirectArticle = new Article( $this );
-			$newid = $redirectArticle->insertOn( $dbw );
-			$redirectRevision = new Revision( array(
-				'page'    => $newid,
-				'comment' => $comment,
-				'text'    => $redirectText ) );
-			$redirectRevision->insertOn( $dbw );
-			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
-
-			wfRunHooks( 'NewRevisionFromEditComplete', array( $redirectArticle, $redirectRevision, false, $wgUser ) );
-
-			# Record the just-created redirect's linking to the page
-			$dbw->insert( 'pagelinks',
-				array(
-					'pl_from'      => $newid,
-					'pl_namespace' => $nt->getNamespace(),
-					'pl_title'     => $nt->getDBkey() ),
-				__METHOD__ );
-			$redirectSuppressed = false;
+		# Purge caches for old and new titles
+		if ( $moveOverRedirect ) {
+			# A simple purge is enough when moving over a redirect
+			$nt->purgeSquid();
 		} else {
-			$this->resetArticleID( 0 );
-			$redirectSuppressed = true;
+			# Purge caches as per article creation, including any pages that link to this title
+			Article::onArticleCreate( $nt );
 		}
-
-		# Log the move
-		$log = new LogPage( 'move' );
-		$log->addEntry( 'move', $this, $reason, array( 1 => $nt->getPrefixedText(), 2 => $redirectSuppressed ) );
-
-		# Purge caches as per article creation
-		Article::onArticleCreate( $nt );
-
-		# Purge old title from squid
-		# The new title, and links to the new title, are purged in Article::onArticleCreate()
 		$this->purgeSquid();
 	}
 
