@@ -3696,6 +3696,12 @@ class Parser {
 		} else {
 			$showEditLink = $this->mOptions->getEditSection();
 		}
+		if ( $showEditLink ) {
+			$editLinkAsToken = $this->mOptions->getEditSectionTokens();
+			if ( $editLinkAsToken ) {
+				$this->mOutput->setEditSectionTokens( "{$this->mUniqPrefix}-editsection-", self::MARKER_SUFFIX );
+			}
+		}
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
@@ -3949,12 +3955,28 @@ class Parser {
 
 			# give headline the correct <h#> tag
 			if ( $showEditLink && $sectionIndex !== false ) {
-				if ( $isTemplate ) {
-					# Put a T flag in the section identifier, to indicate to extractSections()
-					# that sections inside <includeonly> should be counted.
-					$editlink = $sk->doEditSectionLink( Title::newFromText( $titleText ), "T-$sectionIndex", null, $this->mOptions->getUserLang() );
+				if ( $editLinkAsToken ) {
+					// Output edit section links as markers with styles that can be customized by skins
+					if ( $isTemplate ) {
+						# Put a T flag in the section identifier, to indicate to extractSections()
+						# that sections inside <includeonly> should be counted.
+						$editlinkArgs = array( $titleText, "T-$sectionIndex", null );
+					} else {
+						$editlinkArgs = array( $this->mTitle->getPrefixedText(), $sectionIndex, $headlineHint );
+					}
+					// We use nearly the same structure as uniqPrefix and the marker stuffix (besides there being nothing random)
+					// However the this is output into the parser output itself not replaced early, so we hardcode this in case
+					// the constants change in a different version of MediaWiki, which would break this code.
+					$editlink = "{$this->mUniqPrefix}-editsection-" . serialize($editlinkArgs) . self::MARKER_SUFFIX;
 				} else {
-					$editlink = $sk->doEditSectionLink( $this->mTitle, $sectionIndex, $headlineHint, $this->mOptions->getUserLang() );
+					// Output edit section links directly as markup like we used to
+					if ( $isTemplate ) {
+						# Put a T flag in the section identifier, to indicate to extractSections()
+						# that sections inside <includeonly> should be counted.
+						$editlink = $sk->doEditSectionLink( Title::newFromText( $titleText ), "T-$sectionIndex", null, $this->mOptions->getUserLang() );
+					} else {
+						$editlink = $sk->doEditSectionLink( $this->mTitle, $sectionIndex, $headlineHint, $this->mOptions->getUserLang() );
+					}
 				}
 			} else {
 				$editlink = '';

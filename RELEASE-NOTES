@@ -26,6 +26,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Skin names are no longer created based on a ucfirst version of the key in $wgValidSkinNames but now
   the value. This means for $wgValidSkinNames["monobook"] = "MonoBook"; the skin
   loader will no longer try loading SkinMonobook and will instead load SkinMonoBook.
+* The parser now attempts to output markers for editsection tokens and defer the rendering
+  of them so skin and language specific markup does not need to be saved inside the parser cache
+  note that this changes the cache key making all old entries in the parser cache invalid you
+  can set $wgUseEditSectionTokens to false to disable this and keep your old parser cache entries.
+  Note that this feature should reduce parser cache fragmentation when enabled.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
