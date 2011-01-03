@@ -136,7 +136,7 @@ class ApiParse extends ApiBase {
 						$to = $page;
 					}
 					$titleObj = Title::newFromText( $to );
-					if ( !$titleObj ) {
+					if ( !$titleObj || !$titleObj->exists() ) {
 						$this->dieUsage( "The page you specified doesn't exist", 'missingtitle' );
 					}
 				}
