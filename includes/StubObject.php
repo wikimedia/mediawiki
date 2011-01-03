@@ -62,7 +62,7 @@ class StubObject {
 	 * Create a new object to replace this stub object.
 	 */
 	function _newObject() {
-		return wfCreateObject( $this->mClass, $this->mParams );
+		return MWFunction::newObj( $this->mClass, $this->mParams );
 	}
 
 	/**

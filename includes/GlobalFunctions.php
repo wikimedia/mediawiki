@@ -2842,27 +2842,10 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
  * Create an object with a given name and an array of construct parameters
  * @param $name String
  * @param $p Array: parameters
+ * @deprecated
  */
 function wfCreateObject( $name, $p ) {
-	$p = array_values( $p );
-	switch ( count( $p ) ) {
-		case 0:
-			return new $name;
-		case 1:
-			return new $name( $p[0] );
-		case 2:
-			return new $name( $p[0], $p[1] );
-		case 3:
-			return new $name( $p[0], $p[1], $p[2] );
-		case 4:
-			return new $name( $p[0], $p[1], $p[2], $p[3] );
-		case 5:
-			return new $name( $p[0], $p[1], $p[2], $p[3], $p[4] );
-		case 6:
-			return new $name( $p[0], $p[1], $p[2], $p[3], $p[4], $p[5] );
-		default:
-			throw new MWException( 'Too many arguments to construtor in wfCreateObject' );
-	}
+	return MWFunction::newObj( $name, $p );
 }
 
 function wfHttpOnlySafe() {

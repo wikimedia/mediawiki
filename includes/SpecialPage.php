@@ -407,7 +407,7 @@ class SpecialPage {
 				self::$mList[$name] = new $className;
 			} elseif ( is_array( $rec ) ) {
 				$className = array_shift( $rec );
-				self::$mList[$name] = wfCreateObject( $className, $rec );
+				self::$mList[$name] = MWFunction::newObj( $className, $rec );
 			}
 			return self::$mList[$name];
 		} else {
