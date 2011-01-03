@@ -81,9 +81,13 @@ class MediaWikiUpgradeExistingDatabaseTestCase extends MediaWikiInstallationComm
 
         // 'Upgrade complete.' text display
         $this->assertEquals("Upgrade complete.",
-                $this->getText( LINK_FORM."div[1]/div[2]/p[1]"));
-        $this->assertEquals("You can now start using your wiki.",
-                $this->getText( LINK_FORM."div[1]/div[2]/p[2]"));
+                 $this->getText( "[@id='bodyContent']/div/div[1]/div[4]/form/div[1]/div[2]/p[1]" ));
+   
+        $this->assertEquals("You can now Folder/index.php start using your wiki.",
+                $this->getText( "[@id='bodyContent']/div/div[1]/div[4]/form/div[1]/div[2]/p[2]" ));
+
+          $this->assertEquals( "Folder/index.php start using your wiki",
+                  $this->getText( "link=Folder/index.php start using your wiki" ));
 
         $this->assertTrue($this->isElementPresent( "submit-regenerate" ));
         $this->click( "submit-regenerate" );
