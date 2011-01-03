@@ -273,7 +273,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				'What pieces of information to include',
 				'  blockinfo    - Tags if the user is blocked, by whom, and for what reason',
 				'  groups       - Lists all the groups the user(s) belongs to',
-				'  rights       - Lists all the rights the user(s) has',
+				//'  rights       - Lists all the rights the user(s) has',
 				'  editcount    - Adds the user\'s edit count',
 				'  registration - Adds the user\'s registration timestamp',
 				'  emailable    - Tags if the user can and wants to receive e-mail through [[Special:Emailuser]]',
