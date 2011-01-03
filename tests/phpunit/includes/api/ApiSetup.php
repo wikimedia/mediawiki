@@ -17,7 +17,7 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 		$this->setupUser();
 	}
 
-	protected function doApiRequest( $params, $data = null ) {
+	protected function doApiRequest( $params, $data = null, $appendModule = false ) {
 		$_SESSION = isset( $data[2] ) ? $data[2] : array();
 
 		$req = new FauxRequest( $params, true, $_SESSION );
@@ -27,6 +27,8 @@ abstract class ApiTestSetup extends MediaWikiTestCase {
 		$data[0] = $module->getResultData();
 		$data[1] = $req;
 		$data[2] = $_SESSION;
+		
+		if( $appendModule ) $data[3] = $module;
 
 		return $data;
 	}
