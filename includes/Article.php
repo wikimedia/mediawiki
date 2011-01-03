@@ -667,18 +667,14 @@ class Article {
 	 */
 	public function isRedirect( $text = false ) {
 		if ( $text === false ) {
-			if ( $this->mDataLoaded ) {
-				return $this->mIsRedirect;
+			if ( !$this->mDataLoaded ) {
+				$this->loadPageData();
 			}
 
-			// Apparently loadPageData was never called
-			$this->loadContent();
-			$titleObj = Title::newFromRedirectRecurse( $this->fetchContent() );
+			return (bool)$this->mIsRedirect;
 		} else {
-			$titleObj = Title::newFromRedirect( $text );
+			return Title::newFromRedirect( $text ) !== null;
 		}
-
-		return $titleObj !== null;
 	}
 
 	/**
