@@ -3960,14 +3960,14 @@ class Parser {
 					if ( $isTemplate ) {
 						# Put a T flag in the section identifier, to indicate to extractSections()
 						# that sections inside <includeonly> should be counted.
-						$editlinkArgs = array( $titleText, "T-$sectionIndex", null );
+						$editlinkArgs = array( $titleText, "T-$sectionIndex"/*, null */ );
 					} else {
 						$editlinkArgs = array( $this->mTitle->getPrefixedText(), $sectionIndex, $headlineHint );
 					}
 					// We use nearly the same structure as uniqPrefix and the marker stuffix (besides there being nothing random)
 					// However the this is output into the parser output itself not replaced early, so we hardcode this in case
 					// the constants change in a different version of MediaWiki, which would break this code.
-					$editlink = "{$this->mUniqPrefix}-editsection-" . serialize($editlinkArgs) . self::MARKER_SUFFIX;
+					$editlink = "{$this->mUniqPrefix}-editsection-" . implode('|', array_map('urlencode', $editlinkArgs)) . self::MARKER_SUFFIX;
 				} else {
 					// Output edit section links directly as markup like we used to
 					if ( $isTemplate ) {
