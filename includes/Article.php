@@ -468,8 +468,8 @@ class Article {
 	 */
 	public function loadPageData( $data = 'fromdb' ) {
 		if ( $data === 'fromdb' ) {
-			$dbr = wfGetDB( DB_MASTER );
-			$data = $this->pageDataFromId( $dbr, $this->getId() );
+			$dbr = wfGetDB( DB_SLAVE );
+			$data = $this->pageDataFromTitle( $dbr, $this->mTitle );
 		}
 
 		$lc = LinkCache::singleton();
@@ -506,8 +506,6 @@ class Article {
 			return $this->mContent;
 		}
 
-		$dbr = wfGetDB( DB_MASTER );
-
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
 		$t = $this->mTitle->getPrefixedText();
@@ -521,28 +519,29 @@ class Article {
 				return false;
 			}
 
-			$data = $this->pageDataFromId( $dbr, $revision->getPage() );
-
-			if ( !$data ) {
-				wfDebug( __METHOD__ . " failed to get page data linked to revision id $oldid\n" );
-				return false;
-			}
-
-			$this->mTitle = Title::makeTitle( $data->page_namespace, $data->page_title );
-			$this->loadPageData( $data );
-		} else {
-			if ( !$this->mDataLoaded ) {
-				$data = $this->pageDataFromTitle( $dbr, $this->mTitle );
+			if ( !$this->mDataLoaded || $this->getID() != $revision->getPage() ) {
+				$data = $this->pageDataFromId( wfGetDB( DB_SLAVE ), $revision->getPage() );
 
 				if ( !$data ) {
-					wfDebug( __METHOD__ . " failed to find page data for title " . $this->mTitle->getPrefixedText() . "\n" );
+					wfDebug( __METHOD__ . " failed to get page data linked to revision id $oldid\n" );
 					return false;
 				}
 
+				$this->mTitle = Title::makeTitle( $data->page_namespace, $data->page_title );
 				$this->loadPageData( $data );
 			}
+		} else {
+			if ( !$this->mDataLoaded ) {
+				$this->loadPageData();
+			}
+
+			if ( $this->mLatest === false ) {
+				wfDebug( __METHOD__ . " failed to find page data for title " . $this->mTitle->getPrefixedText() . "\n" );
+				return false;
+			}
+
 			$revision = Revision::newFromId( $this->mLatest );
-			if (  $revision === null ) {
+			if ( $revision === null ) {
 				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id {$this->mLatest}\n" );
 				return false;
 			}

@@ -349,9 +349,6 @@ class MediaWiki {
 			// Give extensions a change to ignore/handle redirects as needed
 			$ignoreRedirect = $target = false;
 
-			$dbr = wfGetDB( DB_SLAVE );
-			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );
-
 			wfRunHooks( 'InitializeArticleMaybeRedirect',
 				array(&$title,&$request,&$ignoreRedirect,&$target,&$article) );
 
@@ -370,7 +367,7 @@ class MediaWiki {
 				if( is_object($target) ) {
 					// Rewrite environment to redirected article
 					$rarticle = self::articleFromTitle( $target );
-					$rarticle->loadPageData( $rarticle->pageDataFromTitle( $dbr, $target ) );
+					$rarticle->loadPageData();
 					if( $rarticle->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
 						$rarticle->setRedirectedFrom( $title );
 						$article = $rarticle;
