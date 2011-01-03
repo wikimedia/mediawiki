@@ -26,10 +26,8 @@ class NewParserTest extends MediaWikiTestCase {
 	//PHPUnit + MediaWikiTestCase functions
 	
 	function setUp() {
-		global $wgContLang, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgNamespaceProtection, $wgNamespaceAliases;
+		global $wgContLang, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgNamespaceProtection, $wgNamespaceAliases, $IP;
 		$wgContLang = Language::factory( 'en' );
-		
-		
 		
 		//Setup CLI arguments
 		if ( $this->getCliArg( 'regex=' ) ) {
@@ -536,7 +534,6 @@ class NewParserTest extends MediaWikiTestCase {
 					}
 					
 					throw new MWException( $ret );
-					return;
 				}
 			}
 			
