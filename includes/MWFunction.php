@@ -30,6 +30,14 @@ class MWFunction {
 			}
 		}
 		
+		$callback = (array) $callback;
+		
+		if( count( $callback ) == 2 && $callback[0] == 'self' || $callback[0] == 'parent' ) {
+			
+			throw new MWException( 'MWFunction cannot call self::method() or parent::method()' );
+			
+		}
+		
 		// Run autoloader (workaround for call_user_func_array bug: http://bugs.php.net/bug.php?id=51329)
 		is_callable( $callback );
 		
