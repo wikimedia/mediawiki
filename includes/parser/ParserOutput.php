@@ -119,6 +119,7 @@ class ParserOutput extends CacheTime {
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections = array(),         # Table of contents
+		$mEditSectionTokens = false,  # prefix/suffix markers if edit sections were output as tokens
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '';	              # HTML of the TOC
 	private $mIndexPolicy = '';	      # 'index' or 'noindex'?  Any other value will result in no change.
@@ -134,13 +135,34 @@ class ParserOutput extends CacheTime {
 		$this->mTitleText = $titletext;
 	}
 
-	function getText()                   { return $this->mText; }
+	function getText() {
+		if ( $this->mEditSectionTokens ) {
+			$editSectionTokens = $this->mEditSectionTokens;
+			return preg_replace_callback( "#{$editSectionTokens[0]}(.*?){$editSectionTokens[1]}#", array( &$this, 'replaceEditSectionLinksCallback' ), $this->mText );
+		}
+		return $this->mText;
+	}
+	
+	/**
+	 * callback used by getText to replace editsection tokens
+	 * @private
+	 */
+	function replaceEditSectionLinksCallback( $m ) {
+		global $wgUser, $wgLang;
+		$args = unserialize($m[1]);
+		$args[0] = Title::newFromText( $args[0] );
+		$args[] = $wgLang->getCode();
+		$skin = $wgUser->getSkin();
+		return call_user_func_array( array( $skin, 'doEditSectionLink' ), $args );
+	}
+
 	function &getLanguageLinks()         { return $this->mLanguageLinks; }
 	function getInterwikiLinks()         { return $this->mInterwikiLinks; }
 	function getCategoryLinks()          { return array_keys( $this->mCategories ); }
 	function &getCategories()            { return $this->mCategories; }
 	function getTitleText()              { return $this->mTitleText; }
 	function getSections()               { return $this->mSections; }
+	function getEditSectionTokens()      { return $this->mEditSectionTokens; }
 	function &getLinks()                 { return $this->mLinks; }
 	function &getTemplates()             { return $this->mTemplates; }
 	function &getImages()                { return $this->mImages; }
@@ -159,6 +181,7 @@ class ParserOutput extends CacheTime {
 
 	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
 	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
+	function setEditSectionTokens( $p, $s ) { return wfSetVar( $this->mEditSectionTokens, array( $p, $s ) ); }
 	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
 	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
 

@@ -2825,6 +2825,18 @@ $wgEnableScaryTranscluding = false;
  */
 $wgTranscludeCacheExpiry = 3600;
 
+/**
+ * Output edit section links as tokens in the parser output for articles instead
+ * of directly as markup.
+ * This feature changes the default parser cache key so it's presented with a
+ * configuration option so that large installations with a large number of already
+ * existing parser cache keys can retain them.
+ * The purpose of this feature is to allow skins to customize the editsection
+ * links, however it has the side effect of also removing the most common use of
+ * the getUserLang parser option which causes cache fragmentation by user lang.
+ */
+$wgUseEditSectionTokens = true;
+
 /** @} */ # end of parser settings }
 
 /************************************************************************//**

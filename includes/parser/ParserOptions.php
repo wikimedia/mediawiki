@@ -21,6 +21,7 @@ class ParserOptions {
 	var $mSkin = null;               # Reference to the preferred skin
 	var $mDateFormat = null;         # Date format index
 	var $mEditSection = true;        # Create "edit section" links
+	var $mEditSectionTokens = false; # Output replaceable tokens for editsections instead of markup
 	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
 	var $mTidy = false;              # Ask for tidy cleanup
 	var $mInterfaceMessage = false;  # Which lang to call for PLURAL and GRAMMAR
@@ -58,6 +59,8 @@ class ParserOptions {
 	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
 	function getEditSection()                   { $this->optionUsed('editsection');
 												  return $this->mEditSection; }
+	function getEditSectionTokens()             { $this->optionUsed('editsectiontokens');
+												  return $this->mEditSectionTokens; }
 	function getNumberHeadings()                { $this->optionUsed('numberheadings');
 												  return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
@@ -123,6 +126,7 @@ class ParserOptions {
 	function setEnableImageWhitelist( $x )      { return wfSetVar( $this->mEnableImageWhitelist, $x ); }
 	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
+	function setEditSectionTokens( $x )         { return wfSetVar( $this->mEditSectionTokens, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
 	function setAllowSpecialInclusion( $x )     { return wfSetVar( $this->mAllowSpecialInclusion, $x ); }
 	function setTidy( $x )                      { return wfSetVar( $this->mTidy, $x); }
@@ -171,7 +175,7 @@ class ParserOptions {
 	function initialiseFromUser( $userInput ) {
 		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion, $wgMaxArticleSize;
-		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures;
+		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures, $wgUseEditSectionTokens;
 		global $wgExternalLinkTarget, $wgLang;
 
 		wfProfileIn( __METHOD__ );
@@ -201,6 +205,7 @@ class ParserOptions {
 		$this->mMaxTemplateDepth = $wgMaxTemplateDepth;
 		$this->mCleanSignatures = $wgCleanSignatures;
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
+		$this->mEditSectionTokens = $wgUseEditSectionTokens;
 
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mMath = $user->getOption( 'math' );
@@ -307,6 +312,8 @@ class ParserOptions {
 
 		if ( !$this->mEditSection && in_array( 'editsection', $forOptions ) )
 			$confstr .= '!edit=0';
+		if ( $this->mEditSectionTokens && in_array( 'editsectiontokens', $forOptions ) )
+			$confstr .= '!estok=1';
 		if (  $this->mIsPrintable && in_array( 'printable', $forOptions ) )
 			$confstr .= '!printable=1';
 
