@@ -825,7 +825,7 @@ Azonao atao ny [[Special:Search/{{PAGENAME}}|Mikaroka momba ny lohatenin'io pejy
 'userpage-userdoesnotexist'        => 'Mbola tsy nisoratra anarana ato i « $1 ». Marino raha tena hamorona ity pejy ity ianao.',
 'userpage-userdoesnotexist-view'   => 'Tsy nisoratra anarana ato i « $1 ».',
 'blocked-notice-logextract'        => "Ankehitriny ity mpikambana ity dia voasakana.
-Ny fampidirana faran'ny tatitr'asa ny fanakanam-pikambana dia naseho teo ambany ho an'ny fampahalalàna :",
+Ny fampidirana faran'ny laogin'ny fanakanam-pikambana dia naseho teo ambany ho an'ny fampahalalàna :",
 'clearyourcache'                   => "'''Fanamarihana:''' Aorian'ny fanovana, dia mila mamafa ny cache ianao vao mahita ny fiovana.
 '''Mozilla / Firefox / Safari:''' Tsindrio ny ''Shift'' rehefa manindry ''Reload'', na tsindrio ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ho an'ny Apple Mac); '''IE:''' tsindrio ''Ctrl'' rehefa manindry ''Refresh'', na tsindrio ''Ctrl-F5''; '''Konqueror:''': tsindrio fotsiny ny bokotra ''Reload'' na ''F5''; ny mpampiasa '''Opera''' angamba dia tokony hamafa ny cache-ny ao amin'ny ''Tools&rarr;Preferences''.",
 'usercssyoucanpreview'             => "'''Fika:''' Ampiasao ny bokotra 'Tsipalotra' mialoha ny hitehirizanao ny CSS-nao vaovao.",
@@ -981,7 +981,7 @@ Mitadiava amin'ny '''[[Special:Search|fiasàna fitadiavina]]''' mba hitady ny pe
 'rev-deleted-text-permission' => "'''Voafafa''' ny santiônan'ity pejy ity.
 Mety misy ny antsipirihany angamba ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME}}}} laogy momban'ny famafàna pejy].",
 'rev-deleted-text-unhide'     => "Ity santiônan'ity pejy ity dia '''voafafa'''.
-Hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana] ny antsipirihany.
+Hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana] ny antsipirihany.
 Noho ianao mpandrindra mbola afaka [$1 mijery ilay santiôna] ianao raha tianao.",
 'rev-suppressed-text-unhide'  => "Ity santiônam-pejy ity dia efa '''voafafa'''.
 Azo jerena ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana] ny antsipirihany.
@@ -1001,7 +1001,7 @@ Ny antsipirihany dia mety hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|pag
 Noho ianao mpandrindra,  [$1 azonao jerena foana ilay diff] raha tianao.",
 'rev-deleted-diff-view'       => "Nisy '''voafafa''' ny iraika amin'ny reviziôna an'ity diff ity.
 Ny antsipirihany dia mety hita ao amin'ny
-Noho ianao mpandrindra,  azonao jerena foana ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana]. raha tianao.",
+Noho ianao mpandrindra, azonao jerena foana ny mijery ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana] raha tianao.",
 'rev-delundel'                => 'jereo/asitriho',
 'rev-showdeleted'             => 'aseho',
 'revisiondelete'              => 'Hamafa/hamerina revision',
@@ -1245,7 +1245,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'recentchangesdays'             => "Isa ny andro ho ampiseho eo amin'ny fanovàna farany",
 'recentchangesdays-max'         => '($1 andro{{PLURAL:$1||}} fara-faha betsany)',
 'recentchangescount'            => "Isan'ny fanovana haseho (tsipalotra) :",
-'prefs-help-recentchangescount' => "Misy ny fanovana farany, ny tantaram-pejy ary ny tatitr'asa.",
+'prefs-help-recentchangescount' => 'Misy ny fanovana farany, ny tantaram-pejy ary ny laogy',
 'prefs-help-watchlist-token'    => "Ny famenoana ity fampidiran-teny ity amina soramiafina iray dia hamoaka topaka RSS ho an'ny pejy arahinao.
 Afaka mamaky ny lisitry ny pejy arahinao izay olona mahalala io soramiafina io, mifidiana sanda sarotra hita ianao noho izany.
 Ity misy soramiafina navoaka amin'ny fomba kisendra afaka ampiasainao :
@@ -1889,7 +1889,7 @@ wiki ity aza izy.</p>",
 'log'                  => 'Tatitr’asa',
 'all-logs-page'        => 'Ny tatitr’asa',
 'alllogstext'          => "Seho nakambana an'ny laogy rehetra izay azonao jerena eto amin'ny {{SITENAME}}.
-Azonao ferana ny fahitana ny tao amin'ny alàlan'ny fisafidianana karazana tatitr'asa iray, anaram-pikambana iray na pejy iray (manasamihafa ny sorabaventy sy soramadinika).",
+Azonao ferana ny fahitana ny tao amin'ny alàlan'ny fisafidianana karazana laogy iray, anaram-pikambana iray na pejy iray (manasamihafa ny sorabaventy sy soramadinika).",
 'logempty'             => 'Tsy nahitana.',
 'log-title-wildcard'   => "Hitady amin'ny lohateny manomboka amin'io soratra io",
 
@@ -2348,10 +2348,10 @@ mihatra amin'ny adiresy IP na solonanarana iray.",
 'contribslink'                    => "fandraisan'anjara",
 'autoblocker'                     => "Voasakana satria ny adiresy IP-nao dia vao avy nampiasain'i \"[[User:\$1|\$1]]\". Ny anton'ny fanakanana dia: \"'''\$2'''\"",
 'blocklogpage'                    => "Tantaran'ny sakana",
-'blocklog-showlog'                => "Efa voasakana ity mpikambana ity taloha.
-Eo ambany ny tatitr'asa momban'ny fanakanana.",
-'blocklog-showsuppresslog'        => "Efa voasakana sy voasitrika ity mpikambana ity.
-Eo ambany ny tatitr'asa momban'ny famafana.",
+'blocklog-showlog'                => 'Efa voasakana ity mpikambana ity taloha.
+Eo ambany ny laogim-panakanana.',
+'blocklog-showsuppresslog'        => 'Efa voasakana sy voasitrika ity mpikambana ity.
+Eo ambany ny laogim-pamafana.',
 'blocklogentry'                   => 'voasakana i "[[$1]]" mandritra ny $2 ; antony : $3',
 'reblock-logentry'                => "nanova ny parametatry ny sakan'i [[$1]], ary tapitra amin'ny $2. Ny antony dia ''$3''",
 'blocklogtext'                    => "Eto no ahitana ny tantaran'ny hetsika momba ny fisakanana sy ny fanafoanana fisakanana mpandray anjara.
@@ -2550,9 +2550,9 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 # Special:Import
 'import'                     => 'Hampidi-pejy',
 'importinterwiki'            => 'fampidirana interwiki',
-'import-interwiki-text'      => "Safidio ny wiki loharano ary ny lohatenin'ilay pejy tianao ampidirina eto.
+'import-interwiki-text'      => "Safidio wiki loharano iray ary ny lohatenin'ilay pejy ho ampidirina eto.
 Ho voatazona ao amin'ny tantara ny datin'ny santiôna sy ny anaran'ny mpandray anjara.
-Ho voasoratra ao amin'ny [[Special:Log/import|tatitr'asa momban'ny fampidirana]] ny tao rehetra mikasika ny fampidirana pejy interwiki",
+Ho voasoratra ao amin'ny [[Special:Log/import|laogim-pampidirana]] ny tao rehetra mikasika ny fampidirana pejy interwiki",
 'import-interwiki-source'    => 'Wiki sy pejy fango :',
 'import-interwiki-history'   => "Handika ny santiônan'ny tantaran'ity pejy ity",
 'import-interwiki-templates' => 'Ataovy ao ny endrika rehetra',
@@ -2729,12 +2729,12 @@ Amporisihina ho an'ny navigateur moderna",
 'markedaspatrollederror-noautopatrol' => 'Tsy azonao marihana ho voamarina ny fanovanao.',
 
 # Patrol log
-'patrol-log-page'      => "Tatitr'asa momban'ny fanovana voamarina",
-'patrol-log-header'    => "Ity dia tatitr'asa momban'ny fanovana voamarina.",
+'patrol-log-page'      => "Laogin'ny fanovana voamarina",
+'patrol-log-header'    => "Ity dia laogy mikasikan'ny fanovana voamarina.",
 'patrol-log-line'      => "nanamarika ny $1 an'i $2 ho voamarina $3",
 'patrol-log-auto'      => '(mandeha ho azy)',
 'patrol-log-diff'      => 'fanovana faha $1',
-'log-show-hide-patrol' => "$1 tatitr'asa momban'ny santiôna voamarina",
+'log-show-hide-patrol' => "$1 ny laogy mikasikan'ny santiôna voamarina",
 
 # Image deletion
 'deletedrevision'                 => "Fanovana an'i $1 taloha voafafa.",
@@ -3042,11 +3042,11 @@ Ampidiro ny anaran-drakitra tsy misy ny tovona « {{ns:file}}: »",
 'specialpages'                   => 'Pejy manokana',
 'specialpages-note'              => '* Pejy manokana tsotra
 * <strong class="mw-specialpagerestricted">Pejy manokana voafetra.</strong>',
-'specialpages-group-maintenance' => "Tatitr'asa momban'ny fikojakojana",
+'specialpages-group-maintenance' => 'laogy hikojakojana',
 'specialpages-group-other'       => 'Pejy manokana hafa',
 'specialpages-group-login'       => 'Hiditra / hisoratra anarana',
-'specialpages-group-changes'     => "Fanovana farany sy tatitr'asa",
-'specialpages-group-media'       => "Tatitr'asa sy fampidirana rakitra media.",
+'specialpages-group-changes'     => 'Fanovana farany sy laogy',
+'specialpages-group-media'       => 'Laogy sy fampidirana rakitra media.',
 'specialpages-group-users'       => 'Mpikambana sy satany',
 'specialpages-group-highuse'     => 'Pejy ampiasaina mafy',
 'specialpages-group-pages'       => 'Lisitra ny pejy',

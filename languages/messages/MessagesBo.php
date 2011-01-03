@@ -107,7 +107,7 @@ $messages = array(
 
 'about'         => 'ཨཱབོཨུཏ་',
 'newwindow'     => '(སྒེའུ་ཁུང་གསར་བར་ཕྱེ་བ།)',
-'cancel'        => 'དོར་བ།',
+'cancel'        => 'རྩིས་མེད།',
 'moredotdotdot' => 'དེ་ལས་མང་བ་་་',
 'mypage'        => 'ངའི་ཤོག་ངོས།',
 'mytalk'        => 'ངའི་གླེང་མོལ།',
@@ -125,6 +125,8 @@ $messages = array(
 'vector-view-edit' => 'རྩོམ་སྒྲིག',
 'vector-view-view' => 'ཀློག་པ།',
 
+'errorpagetitle'   => 'ནོར་འཁྲུལ།',
+'returnto'         => '$1 ལ་བསྐྱར་ལོག་བྱེད་པ།',
 'tagline'          => '{{SITENAME}}འབྲེལ་
 
 འབྱུང་ཁུངས་{{SITENAME}}',
@@ -133,8 +135,8 @@ $messages = array(
 'searchbutton'     => 'འཚོལ་བ།',
 'go'               => 'སོང་།',
 'searcharticle'    => 'འཚོལ།',
-'history'          => 'ཤོག་ངོས་དྲན་ཐོ།',
-'history_short'    => 'ཡིད་འཛིན་ཐོ་ཡིག།',
+'history'          => 'ཤོག་ངོས་ལོ་རྒྱུས།',
+'history_short'    => 'ལོ་རྒྱུས།',
 'printableversion' => 'དཔར་ཐུབ་པ།',
 'permalink'        => 'རྟག་བརྟན་གྱི་དྲ་འབྲེལ།',
 'print'            => 'དཔར་བ།',
@@ -165,7 +167,7 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}}-ངེད་ཀྱི་སྐོར།',
 'aboutpage'            => 'Project:དྲ་བའི་སྐོར།',
 'copyright'            => 'དྲ་བའི་ནང་དོན་$1སྟེང་དུ་ཡོད།',
-'copyrightpage'        => '{{ns:project}} པར་དབང་།',
+'copyrightpage'        => '{{ns:project}}:པར་དབང་།',
 'currentevents'        => 'ད་ལྟའི་བྱ་བ།',
 'currentevents-url'    => 'Project:ད་ལྟའི་བྱ་བ།',
 'disclaimers'          => 'དགག་བྱ།',
@@ -187,7 +189,7 @@ $messages = array(
 'editlink'            => 'བཟོ་བཅོས།',
 'viewsourcelink'      => 'འབྱུང་ཁོངས་ལ་ལྟ་བ།',
 'editsectionhint'     => 'རྩོམ་སྒྲིག་སྡེ་ཚན།$1',
-'toc'                 => 'ཟུར་བཀོད།',
+'toc'                 => 'ཟུར་འཆན།',
 'showtoc'             => 'སྟོན།',
 'hidetoc'             => 'སྦས།',
 'site-rss-feed'       => '$1 ཡི་RSS འབྱུང་ཁུངས།',
@@ -196,9 +198,11 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'རྩོམ་ཡིག',
+'nstab-user'      => 'སྤྱོད་མིའི་ཤོག་ངོས།',
 'nstab-special'   => 'དམིཊ་གསལ་དྲ་ངོས།',
 'nstab-image'     => 'ཡིག་ཆ།',
 'nstab-mediawiki' => 'སྐད་ཆ།',
+'nstab-category'  => 'དཀར་ཆག',
 
 # General errors
 'viewsource' => 'འབྱུང་ཁོངས་ལ་ལྟ་བ།',
@@ -224,18 +228,24 @@ $messages = array(
 'italic_sample'   => 'ཡིག་གཟུགས་གསེག་མ།',
 'italic_tip'      => 'ཡིག་གཟུགས་གསེག་མ།',
 'link_sample'     => 'མཚམས་སྦྱོར་ཁ་ཡིག',
+'link_tip'        => 'ཕྱི་རོལ་མཐུད་སྦྲེལ།',
 'extlink_sample'  => 'Http://www.example.com སྦྲེལ་མཐུད་ཁ་བྱང་།',
-'extlink_tip'     => 'ཕྱི་ཕྱོགས་དྲ་འབྲེལ།（ remember http:// prefix )',
+'extlink_tip'     => 'ཕྱི་ཕྱོགས་དྲ་འབྲེལ།',
 'headline_sample' => 'འགོ་བརྗོད་ཡིག་གཟུགས།',
-'nowiki_sample'   => 'སྒྲིག་ཆས་མེད་པའི་ཡི་གེ་འདྲེན་པ།',
+'headline_tip'    => 'རིམ་པ། ༢ འགོ་ཕྲེང་།',
+'nowiki_sample'   => 'རྣམ་བཞག་མེད་པའི་ཡི་གེ་འདྲེན་པ།',
 'nowiki_tip'      => 'ཝེ་ཁེའི་རྣམ་གཞག་གཞིར་བཞག་མི་བྱེད་པ།',
+'media_tip'       => 'ཡིག་ཆ་འཐུད་སྦྲེལ།',
+'sig_tip'         => 'མིང་རྟགས་མཉམ་དུ་ཟླ་ཚེས་ཐེལ་ཙེ།',
+'hr_tip'          => 'ཐད་ཐིག ༼ཆུད་ཟོས་མེད་པར།༽',
 
 # Edit pages
 'summary'            => 'བསྡུས་དོན།:',
 'subject'            => 'འགོ་བརྗོད།',
 'minoredit'          => 'འདི་ནི་རྩོམ་སྒྲིག་ཕལ་བ་ཞིག་ཡིན།',
 'watchthis'          => 'དྲ་ངོས་འདི་ལ་གཟིགས།',
-'savearticle'        => 'དྲ་ངོས་ཉར་བ།',
+'savearticle'        => 'ཤོག་ངོས་ཉར་བ།',
+'preview'            => 'སྔ་མ།',
 'showpreview'        => 'སྔ་མ་སྟོན་ཅིག',
 'showdiff'           => 'བཟོས་བཅོས་སྟོན།',
 'loginreqlink'       => 'ནང་འཛུལ།',
@@ -256,17 +266,18 @@ $messages = array(
 'revdel-restore' => 'བཅོས་སུ་རུང་བ།',
 
 # Merge log
-'revertmerge' => 'སྦྱར་ཟིན་དགར་བ།',
+'revertmerge' => 'སོ་སོར་ཕྱེ་བ།',
 
 # Diffs
 'lineno'   => 'ཐིག་ཕྲེང་$1:',
 'editundo' => 'ཕྱིར་འཐེན།',
 
 # Search results
-'searchresults'             => 'རྙེད་དོན།',
+'searchresults'             => 'བཙལ་བའི་རྙེད་དོན།',
 'searchresults-title'       => '$1བཙལ་འབྲས།',
 'searchresulttext'          => '{{SITENAME}}སྐོར་ཀྱི་གནས་ཚུལ་རྒྱས་པར་[[{{MediaWiki:Helppage}}||{{int:help}} ལ་ལྟ་རོགས།',
 'searchsubtitle'            => 'ཁྱེད་ཀྱིས་\'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all pages that link to "$1"]])བཙལ་འདུག',
+'searchsubtitleinvalid'     => "ཁྱེད་ཀྱིས་'''$1'''བཙལ་བྱུང་།",
 'notitlematches'            => 'འགོ་བརྗོད་འདྲ་མཚུངས་མི་འདུག',
 'notextmatches'             => 'ཤོག་ངོས་ཡིག་འབྲུ་མཚུངས་པ་མི་འདུག',
 'prevn'                     => 'སྔོན་མ་{{PLURAL:$1|$1}}',
@@ -279,8 +290,8 @@ $messages = array(
 'search-interwiki-caption'  => 'སྲིང་མོའི་ལས་འཆར།',
 'search-interwiki-default'  => '$1ལས་རྙེད་པ།',
 'search-interwiki-more'     => '（དེ་ལས་མང་བ།）',
-'search-mwsuggest-enabled'  => 'གདམ་ང་དང་བཅས།',
-'search-mwsuggest-disabled' => 'གདམ་ང་མི་དགོས།',
+'search-mwsuggest-enabled'  => 'གྲོས་འཆར་དང་བཅས།',
+'search-mwsuggest-disabled' => 'གྲོས་འཆར་མི་དགོས།',
 'powersearch'               => 'ཞིབ་ཏུ་འཚོལ་བ།',
 'powersearch-legend'        => 'ཞིབ་ཏུ་འཚོལ་བ།',
 'powersearch-ns'            => 'མིང་གནས་ནང་འཚོལ་བ།',
@@ -299,13 +310,17 @@ $messages = array(
 # Groups
 'group-sysop' => 'ལྟ་སྐྱོང་བ།',
 
-'grouppage-sysop' => '{{ns:project}}:ལྟ་སྐྱོང་བ།',
+'grouppage-sysop' => '{{ns:project}}:དོ་དམ་པ།',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'ཤོག་ངོས་འདིར་རྩོམ་སྒྲིག',
 
 # Recent changes
 'recentchanges'      => 'ཉེ་བའི་བཟོ་བཅོས།',
+'rcshowhideminor'    => '$1 རྩོམ་སྒྲིག་ཕལ་བ།',
 'rcshowhidemine'     => '$1ངའི་རྩོམ་སྒྲིག',
 'diff'               => 'མི་འདྲ་ས།',
-'hist'               => 'ཡིད་འཛིན་དྲན་ཐོ།',
+'hist'               => 'ལོ་རྒྱུས།',
 'hide'               => 'སྦས།',
 'show'               => 'སྟོན།',
 'minoreditletter'    => 'ཆུང་སྒྲིག',
@@ -318,17 +333,19 @@ $messages = array(
 'recentchangeslinked-feed'    => 'འབྲེལ་བའི་བཟོ་བཅོས།',
 'recentchangeslinked-toolbox' => 'འབྲེལ་བའི་བཟོ་བཅོས།',
 'recentchangeslinked-summary' => "འདི་ནི་དམིགས་གསལ་ཤོག་ངོས་༼ཡང་ན་དམིགས་གསལ་རྣམ་གྲངས་ཀྱི་ཁོངས་མི་༽དང་འབྲེལ་བའི་ཉེ་བའི་བཟོ་བཅོས་རེད།[[Special:Watchlist|yourwatchlist]] ནང་གི་ཤོག་ངོས་རྣམས་'''ཡིག་གཟུགས་སྦོམ་པོ་'''ཡིན།",
+'recentchangeslinked-page'    => 'ཤོག་ངོས་མིང་།',
 
 # Upload
-'upload'            => 'ཡིག་ཆ་ཡར་འཇོག',
+'upload'            => 'ཡིག་ཆ་ཡར་འཇུག',
 'uploadbtn'         => 'ཡར་འཇོག',
 'uploadnologin'     => 'ནང་འཛུལ་བྱས་མེད།',
 'filedesc'          => 'བསྡུས་དོན།',
 'fileuploadsummary' => 'བསྡུས་དོན།:',
+'uploadedimage'     => '"[[$1]]"ཡར་འཇུག་བྱས་ཟིན།',
 'watchthisupload'   => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
 
 # File description page
-'filehist'            => 'རྩོམ་ཡིག་དྲན་ཐོ།',
+'filehist'            => 'ཡིག་ཆའི་ལོ་རྒྱུས།',
 'filehist-help'       => 'ཟླ་ཚེས་དུས་ཚོད་གནུན་ཏེ་རྩོམ་ཡིག་ལ་ལྟ་བ།',
 'filehist-current'    => 'ད་ལྟ།',
 'filehist-datetime'   => 'ཚེས་གྲངས། / དུས་ཚོད།',
@@ -348,17 +365,20 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'            => 'བྷེ་གྲངས་$1',
+'newpages'          => 'ཤོག་ངོས་གསར་བ།',
 'newpages-username' => 'དྲ་མིང་།:',
 'move'              => 'སྤོར་བ།',
 'pager-newer-n'     => '{{PLURAL：$1|གསར་བ་1|གསར་བ་$1}}',
 'pager-older-n'     => '{{PLURAL：$1|རྙིང་པ་1|རྙིང་པ་$1}}',
 
 # Book sources
-'booksources-go' => 'སོང་།',
+'booksources-search-legend' => 'དེབ་ཀྱི་འབྱུང་ཁུངས་འཚོལ་བ།',
+'booksources-go'            => 'སོང་།',
 
 # Special:AllPages
 'allpages'       => 'དྲ་ངོས་ཡོངས།',
 'alphaindexline' => '$1 ནས་ $2 བར།',
+'allarticles'    => 'ཤོག་ངོས་ཆ་ཚང་།',
 'allpagessubmit' => 'སོང་།',
 
 # Special:ListGroupRights
@@ -369,22 +389,27 @@ $messages = array(
 'emailmessage' => 'སྐད་ཆ།',
 
 # Watchlist
-'watchlist'     => 'ངའི་མཉམ་འཇོག་ཐོ།',
-'mywatchlist'   => 'ངའི་མཉམ་འཇོག',
-'watchnologin'  => 'ནང་འཛུལ་བྱས་མེད།',
-'watch'         => 'ལྟ་ཐོ།',
-'watchthispage' => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
-'unwatch'       => 'མ་བལྟས་པ།',
+'watchlist'         => 'ངའི་མཉམ་འཇོག་ཐོ།',
+'mywatchlist'       => 'ངའི་ལྟ་ཐོ།',
+'watchnologin'      => 'ནང་འཛུལ་བྱས་མེད།',
+'watch'             => 'ལྟ་ཐོ།',
+'watchthispage'     => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
+'unwatch'           => 'མ་བལྟས་པ།',
+'watchlist-options' => 'ལྟ་ཐོའི་འདེམས་ཚན།',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'མཉམ་འཇོག་ཐོ་རུ་འཇུག་བཞིན་པ་་་',
-'unwatching' => 'མཉམ་འཇོག་ཐོ་ལས་འདོར་བཞིན་པ་་་',
+'unwatching' => 'ལྟ་ཐོ་ལས་འདོར་བཞིན་པ་་་',
 
 # Delete
-'deletedarticle' => '"[[$1]]"བསུབས་ཟིན།',
+'deletepage'            => 'ཤོག་ངོས་དོར་བ།',
+'deletedarticle'        => '"[[$1]]"བསུབས་ཟིན།',
+'deletecomment'         => 'རྒྱུ་མཚན།',
+'deleteotherreason'     => 'རྒྱུ་མཚན་གཞན་པའམ་འཕར་མ།',
+'deletereasonotherlist' => 'རྒྱུ་མཚན་གཞན།',
 
 # Rollback
-'rollbacklink' => 'རྒྱབ་ལ་སྣུར་བ།',
+'rollbacklink' => 'རྒྱབ་འགྲིལ་གཏོང་བ།',
 
 # Protect
 'protectedarticle' => 'སྲུང་སྐྱོབ་བྱས་ཟིན།"[[$1]]"',
@@ -405,26 +430,35 @@ $messages = array(
 'contributions' => 'བཀོལ་མིའི་བྱས་རྗེས།',
 'mycontris'     => 'ངའི་བྱས་རྗེས།',
 
+'sp-contributions-submit' => 'འཚོལ་བ།',
+
 # What links here
 'whatlinkshere'           => 'གང་དང་སྦྲེལ་བ།',
 'whatlinkshere-page'      => 'ཤོག་ངོས།',
+'isimage'                 => 'བརྙན་རིས་མཐུད་སྦྲེལ།',
+'whatlinkshere-links'     => '← མཐུད་སྦྲེད།',
 'whatlinkshere-hidelinks' => '$1 དྲ་འབྲེལ།',
 
 # Block/unblock
+'blockip'            => 'སྤྱོད་མི་འགོག་པ།',
 'ipbreason'          => 'རྒྱུ་མཚན།',
 'ipblocklist-submit' => 'འཚོལ།',
 'blocklink'          => 'འགོག་པ།',
 'unblocklink'        => 'བཀག་པ་ཕྱེ་བ།',
-'change-blocklink'   => 'བཀག་ཟིན་བསྒྱུར་བ།',
+'change-blocklink'   => 'བཀག་ཟིན་གློད་པ།',
 'contribslink'       => 'བྱས་རྗེས།',
 
 # Move page
 'movearticle' => 'སྤོར་ངོས།',
 'movenologin' => 'ནང་འཛུལ་བྱས་མེད།',
 'move-watch'  => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
+'movepagebtn' => 'ཤོག་ངོས་སྤོ་བ།',
 '1movedto2'   => '[[$1]][[$2]]ལ་སྤོར་ཟིན།',
 'movereason'  => 'རྒྱུ་མཚན།',
 'revertmove'  => 'ཕྱིར་ལོག',
+
+# Export
+'export' => 'ཤོག་ངོས་ཕྱི་འདྲེན།',
 
 # Namespace 8 related
 'allmessages' => 'མ་ལག་གི་སྐད་ཆ།',
@@ -441,12 +475,14 @@ $messages = array(
 'tooltip-pt-login'               => 'ནང་འཛུལ།',
 'tooltip-pt-logout'              => 'ཕྱིར་འབུད།',
 'tooltip-ca-talk'                => 'གྲོས་མོལ།',
-'tooltip-ca-edit'                => 'ཁྱེད་ཀྱིས་དྲ་ངོས་འདི་རྩོམ་སྒྲིག་བྱེད་ཆོག ཉར་ཚགས་མ་བྱས་པའི་སྔོན་དུ་ཐེབ་གཅུ་སྒང་མ་སྤྱོད་རོགས།',
+'tooltip-ca-edit'                => 'ཁྱེད་ཀྱིས་དྲ་ངོས་འདི་རྩོམ་སྒྲིག་བྱེད་ཆོག ཉར་ཚགས་བྱེད་པའི་སྔོན་དུ་མཐེབ་གཅུས་སྔོན་མ་སྤྱོད་རོགས།',
 'tooltip-ca-viewsource'          => 'ཤོག་ངོས་འདི་སྲུང་སྐྱོབ་འོག་ཡོད། ཁྱེད་ཀྱིས་འདིའི་འབྱུང་ཁོངས་ལྟ་ཆོག',
 'tooltip-ca-history'             => 'བཟོ་བཅོས་སྔ་མ།',
+'tooltip-ca-protect'             => 'ཤོག་ངོས་འདི་སྲུངས་ཤིག',
+'tooltip-ca-delete'              => 'ཤོག་ངོས་འདི་དོར་ཅིག',
 'tooltip-ca-move'                => 'ཤོག་ངོས་འདི་སྤོར་བ།',
 'tooltip-ca-watch'               => 'ལྟ་ཐོ་རུ་འཇུག་པ།',
-'tooltip-ca-unwatch'             => 'མཉམ་འཇོག་ཐོ་ལས་འདོར་བ།',
+'tooltip-ca-unwatch'             => 'ཤོག་ངོས་འདི་ལྟ་ཐོ་ལས་འདོར་བ།',
 'tooltip-search'                 => 'ལག་ཆ་འཚོལ།',
 'tooltip-search-go'              => 'མིང་ཇི་བཞིན་པའི་ཤོག་ངོས་སྟེང་དུ་སྐྱོད་པ།',
 'tooltip-search-fulltext'        => 'ཚིག་འདི་འཚོལ།',
@@ -456,27 +492,35 @@ $messages = array(
 'tooltip-n-portal'               => 'ལས་འཆར་སྐོར་དང་ཁྱེད་ཀྱིས་ཅི་ཞིག་བྱེད་ནུས་པ། གང་དུ་འཚོལ་དགོས་པའི་སྐོར།',
 'tooltip-n-currentevents'        => 'ཉེ་བའི་ལས་དོན་གྱི་རྒྱབ་ལྗོངས་གནས་ཚུལ་འཚོལ་བ།',
 'tooltip-n-recentchanges'        => 'ཝེ་ཁེ་སྟེང་གི་ཉེ་བའི་བཟོ་བཅོས་ཀྱི་ཐོ་གཞུང་།',
-'tooltip-n-randompage'           => 'རང་འགུལ་དྲ་ངོས།',
+'tooltip-n-randompage'           => 'རང་མོས་ཤོག་ངོས་ཤིག་ལེན་པ།',
 'tooltip-n-help'                 => 'གང་དུ་འཚོལ་དགོས་པའི་གནས།',
 'tooltip-t-whatlinkshere'        => 'འདིར་འབྲེལ་བའི་ཝེ་ཁེ་དྲ་ངོས་ཡོངས་རྫོགས།',
 'tooltip-t-recentchangeslinked'  => 'ངོས་འདི་དང་འབྲེལ་བའི་ཉེ་བའི་བཟོ་བཅོས།',
 'tooltip-t-contributions'        => 'བཀོལ་མི་འདིའི་བྱས་རྗེས་སྟོན།',
+'tooltip-t-emailuser'            => 'སྤྱོད་མི་འདིར་དྲ་འཕྲིན་སྐུར་བ།',
 'tooltip-t-upload'               => 'ཡིག་ཆ་ཡར་འཇུག',
 'tooltip-t-specialpages'         => 'དམིཊ་གསལ་ཤོག་ངོས་ཀྱི་ཐོ་གཞུང་།',
 'tooltip-t-print'                => 'དཔར་ཐུབ་པའི་མི་འདྲ་ཆོས།',
 'tooltip-t-permalink'            => 'རྟག་བརྟན་གྱི་དྲ་བར་འཇུག་པ།',
 'tooltip-ca-nstab-main'          => 'དྲ་ངོས་ནང་དོན་ལ་ལྟ་བ།',
+'tooltip-ca-nstab-user'          => 'སྤྱོད་མིའི་ཤོག་ངོས་ལ་ལྟ་བ།',
 'tooltip-ca-nstab-special'       => 'དྲ་ངོས་འདི་དམིགས་གསལ་བ་ཡིན་པས་བཟོ་བཅོས་རྒྱག་མི་ཆོག',
 'tooltip-ca-nstab-image'         => 'ཡིག་ཆར་ལྟ་བ།',
 'tooltip-ca-nstab-category'      => 'རྣམ་གྲངས་ཤོག་ངོས་སྟོན།',
+'tooltip-minoredit'              => 'རྩོམ་སྒྲིག་ཕལ་བར་རྟགས་རྒྱག་པ།',
 'tooltip-save'                   => 'བཟོ་བཅོས་ཉར་ཚགས་བྱོས།',
 'tooltip-preview'                => 'ཉར་ཚགས་ཀྱི་སྔོན་དུ་བཟོ་བཅོས་ལ་བསྐྱར་ཞིབ་གནང་རོགས།',
 'tooltip-diff'                   => 'གང་ལ་བཟོ་བཅོས་བྱས་པའི་ཡིག་འབྲུ་སྟོན་པ།',
+
+# Browsing diffs
+'previousdiff' => '← རྩོམ་སྒྲིག་རྙིང་བ།',
+'nextdiff'     => 'རྩོམ་སྒྲིག་གསར་གྲས། →',
 
 # Special:NewFiles
 'ilsubmit' => 'འཚོལ།',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'ཚང་མ།',
 'namespacesall' => 'ཡོངས་རྫོགས།',
 'monthsall'     => 'ཡོངས་རྫོགས།',
 
@@ -485,6 +529,9 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'སོང་།',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'ལྟ་ཐོར་ལྟ་བ་དང་བསྒྱུར་བཅོས་བྱེད་པ།',
 
 # Special:SpecialPages
 'specialpages' => 'དམིགས་གསལ་ཤོག་ངོས།',

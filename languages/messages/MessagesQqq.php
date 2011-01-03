@@ -72,6 +72,7 @@
  * @author Prima klasy4na
  * @author Prometheus.pyrphoros
  * @author Purodha
+ * @author Rancher
  * @author Raymond
  * @author Ryan Schmidt
  * @author SPQRobin
@@ -2542,7 +2543,7 @@ This message was something like "unlock move protection" in the past.',
 'undelete-show-file-submit'  => '{{Identical|Yes}}',
 
 # Namespace form on various pages
-'namespace'      => '{{Identical|Namespace}}',
+'namespace'      => 'This message is located at [[Special:Contributions]].',
 'invert'         => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]]
 
 {{Identical|Invert selection}}',
