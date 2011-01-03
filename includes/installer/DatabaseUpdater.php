@@ -128,11 +128,21 @@ abstract class DatabaseUpdater {
 	 *                first item is the callback function, it also can be a
 	 *                simple string with the name of a function in this class,
 	 *                following elements are parameters to the function.
-	 *                Note that callback functions will recieve this object as
+	 *                Note that callback functions will receive this object as
 	 *                first parameter.
 	 */
 	public function addExtensionUpdate( Array $update ) {
 		$this->extensionUpdates[] = $update;
+	}
+
+	/**
+	 * Convenience wrapper for addExtensionUpdate() when adding a new table (which
+	 * is the most common usage of updaters in an extension)
+	 * @param $tableName String Name of table to create
+	 * @param $sqlPath String Full path to the schema file
+	 */
+	public function addExtensionTable( $tableName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'addTable', $tableName, $sqlPath, true );
 	}
 
 	/**
