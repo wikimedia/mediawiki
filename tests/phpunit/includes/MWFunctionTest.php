@@ -50,6 +50,22 @@ class MWFunctionTest extends MediaWikiTestCase {
 		
 	}
 	
+	/**
+	 * @expectedException MWException
+	 */
+	function testCallingParentFails() {
+		
+		MWFunction::call( 'parent::foo' );
+	}
+	
+	/**
+	 * @expectedException MWException
+	 */
+	function testCallingSelfFails() {
+		
+		MWFunction::call( 'self::foo' );
+	}
+	
 	public static function someMethod() {
 		return func_get_args();
 	}
