@@ -7,6 +7,8 @@ require_once( dirname(dirname(dirname( __FILE__ ))) . '/bootstrap.php' );
  * @group Parser
  * @group Destructive
  * @group Database
+ * @group Broken
+ * It's not really broken, but superseded
  */
 class MediaWikiParserTest extends MediaWikiTestCase {
 	public $count;		// Number of tests in the suite.

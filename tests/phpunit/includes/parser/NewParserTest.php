@@ -468,6 +468,8 @@ class NewParserTest extends MediaWikiTestCase {
 	 */
 	function testFuzzTests() {
 		
+		$this->markTestIncomplete( 'Breaks tesla due to memory restrictions' );
+		
 		global $wgParserTestFiles;
 		
 		$files = $wgParserTestFiles;
