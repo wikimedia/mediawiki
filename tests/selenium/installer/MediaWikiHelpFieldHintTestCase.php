@@ -134,10 +134,6 @@ class MediaWikiHelpFieldHintTestCase extends MediaWikiInstallationCommonFunction
         $this->assertEquals( EMAIL_ADDRESS_HELP,
                 $this->getText( LINK_FORM."fieldset/div[4]/div[1]/div/span[2]/p" ));
 
-        // Verify help field for 'Subscribe to the release announcements mailing list'
-        $this->click( LINK_FORM."fieldset/div[5]/div/span[1]" );
-        $this->assertEquals( SUBSCRIBE_MAILING_LIST_HELP,
-                $this->getText( LINK_FORM."fieldset/div[5]/div/span[2]/p" ));
         parent::restartInstallation();
     }
 }
