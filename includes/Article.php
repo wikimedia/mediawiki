@@ -401,9 +401,7 @@ class Article {
 
 		wfProfileIn( __METHOD__ );
 
-		$oldid = $this->getOldID();
-		$this->mOldId = $oldid;
-		$this->fetchContent( $oldid );
+		$this->fetchContent( $this->getOldID() );
 
 		wfProfileOut( __METHOD__ );
 	}
