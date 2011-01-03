@@ -251,6 +251,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Dokiman sa|$1 dokiman sa yo}} nan kategori kouran.',
 'listingcontinuesabbrev'         => '(kontinye)',
 'index-category'                 => 'Paj endèkse yo',
+'noindex-category'               => 'Paj ki pa endèkse yo',
 
 'mainpagetext'      => "'''MedyaWiki byen enstale l.'''",
 'mainpagedocfooter' => 'Konsilte [http://meta.wikimedia.org/wiki/Help:Konteni Gid Itilizatè] pou enfòmasyon sou kijan pou w itilize logisyèl wiki a.
@@ -294,7 +295,11 @@ $messages = array(
 'vector-view-create'             => 'Kreye',
 'vector-view-edit'               => 'Modifye',
 'vector-view-history'            => 'Gade istorik',
+'vector-view-view'               => 'Li',
 'vector-view-viewsource'         => 'Wè kòd tèks sa a',
+'actions'                        => 'Aksyon yo',
+'namespaces'                     => 'Espas non yo',
+'variants'                       => 'Varyant yo',
 
 'errorpagetitle'    => 'Erè',
 'returnto'          => 'Ritounen nan paj $1.',
@@ -311,6 +316,7 @@ $messages = array(
 'printableversion'  => 'Vèsyon ou kapab enprime',
 'permalink'         => 'Lyen pou tout tan',
 'print'             => 'Enprime',
+'view'              => 'Gade',
 'edit'              => 'Modifye',
 'create'            => 'Kreye',
 'editthispage'      => 'Modifye paj sa a',
@@ -318,6 +324,7 @@ $messages = array(
 'delete'            => 'Efase',
 'deletethispage'    => 'Efase paj sa',
 'undelete_short'    => 'Restore {{PLURAL:$1|Yon modifikasyon| $1 modifikasyon yo}}',
+'viewdeleted_short' => 'Gade {{PLURAL:$1|yon modifikasyon ki te efase|$1 modifikasyon yo ki te efase}}',
 'protect'           => 'Pwoteje',
 'protect_change'    => 'Chanje pwoteksyon paj sa',
 'protectthispage'   => 'Pwoteje paj sa',
@@ -350,6 +357,14 @@ $messages = array(
 'jumpto'            => 'Ale nan:',
 'jumptonavigation'  => 'Navigasyon',
 'jumptosearch'      => 'Fouye',
+'view-pool-error'   => 'Padone nou, men sèvè yo genyen trop travay kounye a.
+Genyen trop itilizatè k ap eseye gade paj sa.
+Tanpri tann yon tikras tan anvan ou eseye gade paj sa ankò.
+
+$1',
+'pool-timeout'      => 'Tan ekoule pou defè seri a',
+'pool-queuefull'    => 'Fil pou travay la plen',
+'pool-errorunknown' => 'Erè nou pa konnen',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Apwopo {{SITENAME}}',
@@ -393,6 +408,8 @@ $messages = array(
 'toc'                     => 'Kontni yo',
 'showtoc'                 => 'montre',
 'hidetoc'                 => 'kache',
+'collapsible-collapse'    => 'Plye',
+'collapsible-expand'      => 'Deplye',
 'thisisdeleted'           => 'Ou vle wè oubyen restore $1 ?',
 'viewdeleted'             => 'Wè $1 ?',
 'restorelink'             => '{{PLURAL:$1|yon revizion efase|$1 revizion efase yo}}',
@@ -458,6 +475,8 @@ Souple, kontakte yon [[Special:ListUsers/sysop|administratè]], epi ba li lyen a
 'readonly_lag'         => 'Bazdone a bloke otomatikman pandan lòt sèvè segondè yo ap travay pou bay lanmen nan sèvè prensipal la.',
 'internalerror'        => 'Erè nan sistèm la.',
 'internalerror_info'   => 'Erè nan sistèm la : $1',
+'fileappenderrorread'  => 'Pa kapab li $1 pandan n ap ajoute sou do.',
+'fileappenderror'      => 'Pa kapab ajoute « $1 » sou do « $2 ».',
 'filecopyerror'        => 'Nou pa kapab kopye fichye  « $1 » nan « $2 ».',
 'filerenameerror'      => 'Nou pa kapab bay lòt non « $2 » pou fichye « $1 ».',
 'filedeleteerror'      => 'Nou pa kapab efase fichye « $1 ».',
@@ -511,6 +530,7 @@ Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou
 'yourpassword'               => 'Mopas ou an :',
 'yourpasswordagain'          => 'Mete mopas ou an ankò :',
 'remembermypassword'         => 'Sonje mopas mwen an nan òdinatè mwen an (pou yon maximum de $1 {{PLURAL:$1|jou|jou}})',
+'securelogin-stick-https'    => 'Kontinye itilize HTTPS toujou apre koneksyon',
 'yourdomainname'             => 'Domèn ou an',
 'externaldberror'            => 'Li sanble ke yon erè pwodui ak bazdone a pou idantifikasyon ki pa nan sistèm an, oubyen ou pa otorize pou mete a jou kont ou genyen nan lòt sistèm yo.',
 'login'                      => 'Konekte ou',
@@ -527,11 +547,15 @@ Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou
 'gotaccount'                 => "Ou deja genyen yon kont ? '''$1'''.",
 'gotaccountlink'             => 'Idantifye ou',
 'createaccountmail'          => 'pa imèl',
+'createaccountreason'        => 'Rezon:',
 'badretype'                  => 'Mopas ou bay yo pa parèy ditou.',
 'userexists'                 => 'Non itilizatè ou bay an deja itilize pa yon lòt moun. Chwazi yon lòt souple.',
 'loginerror'                 => 'Erè nan idantifikasyon ou an',
+'createaccounterror'         => 'Pa kapab kreye kont: $1',
 'nocookiesnew'               => "Kont itilizatè a kreye, men ou pa konekte. {{SITENAME}} ap itilize koukiz (''cookies'') pou konekte l.Li sanble ou dezaktive fonksyon sa. Tanpri, aktive fonksyon sa epi rekonekte ou ak menm non epi mopas ou yo.",
 'nocookieslogin'             => "{{SITENAME}} ap itilize koukiz (''cookies'') pou li kapab konekte kò l. Men li sanble ou dezaktive l; tanpri, aktive fonksyon sa epi rekonekte w.",
+'nocookiesfornew'            => 'Kont itilizatè pa t kreye poutèt nou pa kapab konnen sous li.
+Asire w koukiz (cookies) yo aktive nan navigatè w, chaje paj la ankò epi eseye ankò.',
 'noname'                     => 'Ou pa bay sistèm an yon non itilizatè ki bon.',
 'loginsuccesstitle'          => 'Ou byen konekte nan sistèm la',
 'loginsuccess'               => 'Ou konekte kounye a nan {{SITENAME}} ak idantifyan sa a « $1 ».',
@@ -540,16 +564,20 @@ Majiskil ak miniskil chanje non itilizatè.
 Byen gade ke ou te byen ekri non ou, oubyen [[Special:UserLogin/signup|kreye yon nouvo kont]].',
 'nosuchusershort'            => 'Pa genyen itilizatè ak non « <nowiki>$1</nowiki> » sa a. Byen gade lòtograf ou an.',
 'nouserspecified'            => 'Ou dwe mete non itilizatè ou an.',
+'login-userblocked'          => 'Itilizatè sa bloke.  Li pa gendwa konekte.',
 'wrongpassword'              => 'Mopas an pa korèk. Eseye ankò.',
 'wrongpasswordempty'         => 'Ou pa antre mopas ou an. Eseye ankò.',
 'passwordtooshort'           => 'Mopas ou an twò kout. Li dwe genyen omwens $1 karaktè.',
+'password-name-match'        => 'Mopas ou dwe diferan ak non itilizatè ou.',
+'password-login-forbidden'   => 'Nou pa gendwa pran non itilizatè ak mopas sa yo.',
 'mailmypassword'             => 'Voye mwen yon nouvo mopas pa imèl',
 'passwordremindertitle'      => 'Nouvo mopas tanporè, li pap dire (yon kout tan) pou pajwèb sa a {{SITENAME}}',
 'passwordremindertext'       => 'Kèk moun (ou menm oubyen yon moun ki genyen adrès IP sa a $1) mande pou nou voye w yon nouvo mopas pou {{SITENAME}} ($4).
-Mopas tanporè itilizatè "$2" kounye a se "$3". Si se sa ou te vle, nou konseye ou konekte ou epi modifye mopas sa a rapidman, si posib kounye a.  Mopas tanporè sa a pral ekspire nan $5 jou.
+Mopas tanporè itilizatè "$2" kounye a se "$3". Si se sa ou te vle, nou konseye ou konekte ou epi modifye mopas sa a rapidman, si posib kounye a.  Mopas tanporè sa a pral ekspire nan {{PLURAL $5|jou|jou}}.
 
 Si se pa ou menm ki mande modifye mopas ou an oubyen si ou konnen mopas ou an e ke ou pa ta vle modifye li, pa konsidere mesaj sa a epi kontinye ak mopas ou a.',
 'noemail'                    => 'Pa genyen pyès adrès imèl ki anrejistre pou itilizatè sa a « $1 ».',
+'noemailcreate'              => 'Ou bezwen bay yon adrès imèl ki valab',
 'passwordsent'               => 'Yon nouvo mopas voye ba imèl sa a pou itilizatè « $1 ». Souple, konekte ou lè ou resevwa mesaj an.',
 'blocked-mailpassword'       => 'Adrès IP ou an bloke pou edisyon, fonksyon rapèl mopas dezaktive toutbon pou anpeche move itilizasyon ki kapab fèt ak li.',
 'eauthentsent'               => 'Nou voye yon imèl pou konfimasyon nan adrès imèl an.
@@ -568,17 +596,29 @@ Anvan yon lòt imèl voye, swiv komand ki nan mesaj imèl an epi konfime ke kont
 'createaccount-text'         => 'Yon moun kreye yon kont pou adrès imèl ou an sou paj sa {{SITENAME}} ($4), non l se « $2 », mopas an se « $3 ». Ou ta dwe ouvè yon sesyon pou chanje kounye a mopas ou.
 
 Pa pòte atansyon pou mesaj sa si kont sa kreye pa erè.',
+'usernamehasherror'          => 'Non itilizatè pa gendwa genyen karaktè achaj ladan l',
 'login-throttled'            => 'Ou fè twòp tantativ pou konekte w ak mopas ou an. Tanpri, tann yon ti moman anvan ou eseye ankò.',
 'loginlanguagelabel'         => 'Lang : $1',
+'suspicious-userlogout'      => 'Demand ou te fè pou dekonekte w te refize paske sanble li te voye pa yon navigatè ki fè erè oubyen li soti nan yon proksi pou kach.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Erè nou pa konnen nan fonksyon mail() PHP a.',
 
 # JavaScript password checks
-'password-strength-bad'  => 'MOVE',
-'password-strength-good' => 'bon',
+'password-strength'            => 'Fòs mopas la: $1',
+'password-strength-bad'        => 'MOVE',
+'password-strength-mediocre'   => 'pa bon menm',
+'password-strength-acceptable' => 'akseptab',
+'password-strength-good'       => 'bon',
+'password-retype'              => 'Mete mopas ou an ankò :',
+'password-retype-mismatch'     => 'Mopas yo pa koresponn',
 
 # Password reset dialog
 'resetpass'                 => 'Chanje mopas ou an',
 'resetpass_announce'        => 'Ou konekte ou ak yon mopas ki valab yon moman; mopas sa te voye pa imèl. Pou ou kapab fini anrejistreman an, ou dwe mete yon nouvo mopas la :',
 'resetpass_header'          => 'Chanje mopas kont ou an',
+'oldpassword'               => 'Ansyen mopas:',
+'newpassword'               => 'Nouvo mopas:',
 'retypenew'                 => 'Konfime nouvo mopas an :',
 'resetpass_submit'          => 'Chanje mopas epitou konekte',
 'resetpass_success'         => 'Nou chanje mopas ou an avèk siksè ! Nap konekte ou kounye a...',
@@ -621,11 +661,12 @@ Gendwa ou te deja modifye li oubyen ou te mande yon nouvo mopas tanporè.',
 'showlivepreview'                  => 'Gade pou wè (Kout je rapid)',
 'showdiff'                         => 'Montre chanjman yo',
 'anoneditwarning'                  => "'''Pòte atansyon :''' ou pa konekte nan sistèm nan. Adrès IP ou a ap anrejistre nan istorik paj sa a.",
+'anonpreviewwarning'               => "''Ou pa konekte.  Anrejistre ap kenbe adrès IP ou a nan istorik paj sa a.''",
 'missingsummary'                   => "'''Souple :''' ou poko bay rezime modifikasyon ou fè an
 Si ou klike sou \"{{int:savearticle}}\" ankò, piblikasyon sa ap fèt san li bay lòt avètisman.",
 'missingcommenttext'               => 'Souple, ekri komantè ou an pli ba nan paj sa.',
 'missingcommentheader'             => "'''Pòte atansyon :''' ou pa bay komantè ou an yon sijè/tit .
-Si ou klike sou \"{{int:savearticle}}\", edisyon ou an pap genyen yon tit.",
+Si ou klike sou \"{{int:savearticle}}\", modifikasyon ou an pap genyen yon tit.",
 'summary-preview'                  => 'Kout je nan rezime an anvan li anrejistre:',
 'subject-preview'                  => 'Yon kout je sou sijè/tit sa:',
 'blockedtitle'                     => 'itilizatè a bloke.',

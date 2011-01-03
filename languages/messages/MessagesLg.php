@@ -198,6 +198,7 @@ $messages = array(
 'printableversion'  => 'Entereeza eyanguya okukubisa',
 'permalink'         => 'Kolawo enyunzi egguka ku lupapula luno nga bwe lufaanana ku ssaawa eno',
 'print'             => 'Kubisa',
+'view'              => 'Lukebere',
 'edit'              => 'Kyusa',
 'create'            => 'Kolawo',
 'editthispage'      => 'Olupapula luno lukyusemu',
@@ -205,6 +206,7 @@ $messages = array(
 'delete'            => 'Gyawo olupapula luno',
 'deletethispage'    => 'Olupapula luno lugyewo',
 'undelete_short'    => 'Julula {{PLURAL:$1|enkyukakyuka emu|enkyukakyuka $1}}',
+'viewdeleted_short' => 'Kebera {{PLURAL:$1|oluwandika olwagyibwawo olumu|empandika ezagyibwawo $1}}',
 'protect'           => 'Ssiba',
 'protect_change'    => 'lusibe/lusumulule',
 'protectthispage'   => 'Siba olupapula luno',
@@ -478,8 +480,15 @@ Ekigambo eky\'ekiseerabuseera kijjakuleker\'awo okukola mu {{PLURAL:$5|lunaku lu
 Bw\'omala okukifuna nga oryoka oddamu okuyingira.',
 'blocked-mailpassword'       => "Okulwanyisa nkozesa mbi, tetukkiriza okukyusa eby'oku {{SITENAME}} okuva ku ndagiriro eya IP kw'oyimye.<br />
 Kino kitwaliramu n'obutakkiriza okufuna ebigambo bikuumi ebipya.",
+'eauthentsent'               => "Tukusindikidde E-mail ku ndagiriro gy'ova kutuwa, osobole okugitukakasiza.<br />
+Soma E-mail eyo ogoberore ebiragiro ebigirimu otukakasize nti endagiriro empya ddala yiyo,<br />
+tulyoke tusobole okwongera okugikuwererezangako obubaka.",
+'throttled-mailpassword'     => "Nyini akawunti eno twakamusindikira okujjukiza ekyama kye {{PLURAL:$1|, n'essaawa tennayita|mu ssaawa $1 ezaakayita}}.<br />
+Olw'okulwanyisa enkozesa mbi, essaawa {{PLURAL:$1|emu e|$1 zi}}mala okuyitawo tulyoke tukkirize okukiddamu n'ate.",
+'mailerror'                  => 'Okusindika E-mail kuzzemu kiremya: $1',
 'acct_creation_throttle_hit' => "Ku lunaku olumu luno, abajja ku wiki eno nga basinzidde ku ndagiriro eya IP gy'oliko baakakolawo {{PLURAL:$1|akawunti 1|akawunti $1}}. Tekikkirizibwa kukolawo zisingawo obungi mu budde obwo.<br />
 Olw'ensonga eno, ku ssaawa eno, abasinzira ku ndagiriro gy'oliko tebasobola kukolawo akawunti.",
+'emailauthenticated'         => 'Endagiriro yo eya E-mail twagikakasa ku ssaawa $3, nga $2.',
 'accountcreated'             => 'Akawunti ekoleddwa',
 'accountcreatedtext'         => "Akawunti ey'obwa memba eya $1 ekoleddwa.",
 'loginlanguagelabel'         => 'Lulimi: $1',
