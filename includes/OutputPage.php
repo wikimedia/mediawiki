@@ -1614,7 +1614,6 @@ class OutputPage {
 		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgUseAjax, $wgAjaxWatch;
 		global $wgEnableMWSuggest, $wgUniversalEditButton;
-		global $wgArticle;
 
 		if( $this->mDoNothing ) {
 			return;
@@ -1675,7 +1674,7 @@ class OutputPage {
 		}
 
 		if( $wgUniversalEditButton ) {
-			if( isset( $wgArticle ) && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )
+			if( $this->isArticleRelated() && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )
 				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create' ) ) ) {
 				// Original UniversalEditButton
 				$msg = wfMsg( 'edit' );
