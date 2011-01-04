@@ -71,6 +71,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26559) list=allusers auprop=rights does not match list=users usprop=rights
 * (bug 26560) On allusers if limit < total number of users, last user gets duplicate
 * (bug 25135) add "normalized" to action=parse
+* (bug 26460) Add support for listing category members by category pageid
 
 === Languages updated in 1.18 ===
 

@@ -55,10 +55,22 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
-		$categoryTitle = Title::newFromText( $params['title'] );
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
 
-		if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY ) {
-			$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
+		if ( isset( $params['title'] ) ) {
+			$categoryTitle = Title::newFromText( $params['title'] );
+
+			if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY ) {
+				$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
+			}
+		} elseif( isset( $params['pageid'] ) ) {
+			$categoryTitle = Title::newFromID( $params['pageid'] );
+
+			if ( !$categoryTitle ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
+			} elseif ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
+				$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
+			}
 		}
 
 		$prop = array_flip( $params['prop'] );
@@ -208,7 +220,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'ids|title',
@@ -261,7 +275,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		global $wgMiserMode;
 		$p = $this->getModulePrefix();
 		$desc = array(
-			'title' => 'Which category to enumerate (required). Must include Category: prefix',
+			'title' => 'Which category to enumerate (required). Must include Category: prefix. Cannot be used together with cmpageid',
+			'pageid' => 'Page ID of the category to enumerate. Cannot be used together with cmtitle',
 			'prop' => array(
 				'What pieces of information to include',
 				' ids        - Adds the page ID',
@@ -298,6 +313,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			array( 'code' => 'notitle', 'info' => 'The cmtitle parameter is required' ),
 			array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
 			array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
+			array( 'nosuchpageid', 'pageid' ),
 		) );
 	}
 
