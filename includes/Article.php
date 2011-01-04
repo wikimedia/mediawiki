@@ -2110,7 +2110,7 @@ class Article {
 			$summary = $this->getAutosummary( $oldtext, $text, $flags );
 		}
 
-		$editInfo = $this->prepareTextForEdit( $text );
+		$editInfo = $this->prepareTextForEdit( $text, null, $user );
 		$text = $editInfo->pst;
 		$newsize = strlen( $text );
 
@@ -2223,7 +2223,7 @@ class Article {
 			# as a template. Partly deferred.
 			Article::onArticleEdit( $this->mTitle );
 			# Update links tables, site stats, etc.
-			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
+			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed, $user );
 		} else {
 			# Create new article
 			$status->value['new'] = true;
@@ -2287,7 +2287,7 @@ class Article {
 			$dbw->commit();
 
 			# Update links, etc.
-			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, true );
+			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, true, $user );
 
 			# Clear caches
 			Article::onArticleCreate( $this->mTitle );
@@ -3584,7 +3584,7 @@ class Article {
 	 * Prepare text which is about to be saved.
 	 * Returns a stdclass with source, pst and output members
 	 */
-	public function prepareTextForEdit( $text, $revid = null ) {
+	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
 		if ( $this->mPreparedEdit && $this->mPreparedEdit->newText == $text && $this->mPreparedEdit->revid == $revid ) {
 			// Already prepared
 			return $this->mPreparedEdit;
@@ -3595,7 +3595,7 @@ class Article {
 		$edit = (object)array();
 		$edit->revid = $revid;
 		$edit->newText = $text;
-		$edit->pst = $this->preSaveTransform( $text );
+		$edit->pst = $this->preSaveTransform( $text, $user );
 		$edit->popts = $this->getParserOptions( true );
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getContent();
@@ -3618,8 +3618,9 @@ class Article {
 	 * @param $timestamp_of_pagechange Timestamp associated with the page change
 	 * @param $newid Integer: rev_id value of the new revision
 	 * @param $changed Boolean: Whether or not the content actually changed
+	 * @param $user User object: User doing the edit
 	 */
-	public function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid, $changed = true ) {
+	public function editUpdates( $text, $summary, $minoredit, $timestamp_of_pagechange, $newid, $changed = true, User $user = null ) {
 		global $wgDeferredUpdateList, $wgMessageCache, $wgUser, $wgEnableParserCache;
 
 		wfProfileIn( __METHOD__ );
@@ -3628,7 +3629,7 @@ class Article {
 		# Be careful not to double-PST: $text is usually already PST-ed once
 		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
 			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
-			$editInfo = $this->prepareTextForEdit( $text, $newid );
+			$editInfo = $this->prepareTextForEdit( $text, $newid, $user );
 		} else {
 			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
 			$editInfo = $this->mPreparedEdit;
@@ -3870,13 +3871,20 @@ class Article {
 	 * so we can do things like signatures and links-in-context.
 	 *
 	 * @param $text String article contents
+	 * @param $user User object: user doing the edit, $wgUser will be used if
+	 *              null is given
 	 * @return string article contents with altered wikitext markup (signatures
 	 * 	converted, {{subst:}}, templates, etc.)
 	 */
-	public function preSaveTransform( $text ) {
-		global $wgParser, $wgUser;
+	public function preSaveTransform( $text, User $user = null ) {
+		global $wgParser;
 
-		return $wgParser->preSaveTransform( $text, $this->mTitle, $wgUser, ParserOptions::newFromUser( $wgUser ) );
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+
+		return $wgParser->preSaveTransform( $text, $this->mTitle, $user, ParserOptions::newFromUser( $user ) );
 	}
 
 	/* Caching functions */
