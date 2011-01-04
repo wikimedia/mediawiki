@@ -2927,8 +2927,8 @@ EOT;
 		return $trygoogle;
 	}
 
-	function fileCachedPage() {
-		global $wgTitle, $title, $wgLang, $wgOut;
+	private function fileCachedPage() {
+		global $wgTitle, $wgLang, $wgOut;
 
 		if ( $wgOut->isDisabled() ) {
 			return; // Done already?
@@ -2937,13 +2937,11 @@ EOT;
 		$mainpage = 'Main Page';
 
 		if ( $wgLang instanceof Language ) {
-			$mainpage    = htmlspecialchars( $wgLang->getMessage( 'mainpage' ) );
+			$mainpage = htmlspecialchars( $wgLang->getMessage( 'mainpage' ) );
 		}
 
 		if ( $wgTitle ) {
 			$t =& $wgTitle;
-		} elseif ( $title ) {
-			$t = Title::newFromURL( $title );
 		} else {
 			$t = Title::newFromText( $mainpage );
 		}
