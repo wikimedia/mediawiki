@@ -45,6 +45,7 @@ class LinkSearchPage extends QueryPage {
 	function execute( $par ) {
 		global $wgOut, $wgRequest, $wgUrlProtocols, $wgMiserMode, $wgLang;
 		$this->setHeaders();
+		$wgOut->allowClickjacking();
 		
 		$target = $wgRequest->getVal( 'target', $par );
 		$namespace = $wgRequest->getIntorNull( 'namespace', null );

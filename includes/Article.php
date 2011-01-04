@@ -886,6 +886,9 @@ class Article {
 			return;
 		}
 
+		# Allow frames by default
+		$wgOut->allowClickjacking();
+
 		if ( !$wgUseETag && !$this->mTitle->quickUserCan( 'edit' ) ) {
 			$parserOptions->setEditSection( false );
 		}
@@ -1304,6 +1307,7 @@ class Article {
 
 		$sk = $wgUser->getSkin();
 		$token = $wgUser->editToken( $rcid );
+		$wgOut->preventClickjacking();
 
 		$wgOut->addHTML(
 			"<div class='patrollink'>" .
@@ -1583,6 +1587,8 @@ class Article {
 		if ( !$dbr->numRows( $tbs ) ) {
 			return;
 		}
+
+		$wgOut->preventClickjacking();
 
 		$tbtext = "";
 		foreach ( $tbs as $o ) {

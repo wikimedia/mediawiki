@@ -39,10 +39,11 @@ class SpecialSearch extends SpecialPage {
 	 * @param $par String or null
 	 */
 	public function execute( $par ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgOut;
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->allowClickjacking();
 
 		// Strip underscores from title parameter; most of the time we'll want
 		// text form here. But don't strip underscores from actual text params!

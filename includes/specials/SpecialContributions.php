@@ -143,6 +143,7 @@ class SpecialContributions extends SpecialPage {
 					'<p>' . $pager->getNavigationBar() . '</p>'
 				);
 			}
+			$wgOut->preventClickjacking( $pager->getPreventClickjacking() );
 
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
@@ -485,6 +486,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	public $mDefaultDirection = true;
 	var $messages, $target;
 	var $namespace = '', $mDb;
+	var $preventClickjacking = false;
 
 	function __construct( $options ) {
 		parent::__construct();
@@ -633,6 +635,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			if( !$row->page_is_new && $page->quickUserCan( 'rollback' )
 				&& $page->quickUserCan( 'edit' ) )
 			{
+				$this->preventClickjacking();
 				$topmarktext .= ' '.$sk->generateRollback( $rev );
 			}
 		}
@@ -753,4 +756,11 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 	}
 
+	protected function preventClickjacking() {
+		$this->preventClickjacking = true;
+	}
+
+	public function getPreventClickjacking() {
+		return $this->preventClickjacking;
+	}
 }

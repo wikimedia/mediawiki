@@ -115,6 +115,8 @@ class DifferenceEngine {
 		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
 		wfProfileIn( __METHOD__ );
 
+		# Allow frames except in certain special cases
+		$wgOut->allowClickjacking();
 
 		# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
@@ -206,6 +208,7 @@ CONTROL;
 		// Check if page is editable
 		$editable = $this->mNewRev->getTitle()->userCan( 'edit' );
 		if ( $editable && $this->mNewRev->isCurrent() && $wgUser->isAllowed( 'rollback' ) ) {
+			$wgOut->preventClickjacking();
 			$rollback = '&#160;&#160;&#160;' . $sk->generateRollback( $this->mNewRev );
 		} else {
 			$rollback = '';
@@ -243,6 +246,7 @@ CONTROL;
 			}
 			// Build the link
 			if ( $rcid ) {
+				$wgOut->preventClickjacking();
 				$token = $wgUser->editToken( $rcid );
 				$patrol = ' <span class="patrollink">[' . $sk->link(
 					$this->mTitle,
@@ -471,6 +475,7 @@ CONTROL;
 		if ( $this->mRcidMarkPatrolled && $this->mTitle->quickUserCan( 'patrol' ) ) {
 			$sk = $wgUser->getSkin();
 			$token = $wgUser->editToken( $this->mRcidMarkPatrolled );
+			$wgOut->preventClickjacking();
 			$wgOut->addHTML(
 				"<div class='patrollink'>[" . $sk->link(
 					$this->mTitle,
