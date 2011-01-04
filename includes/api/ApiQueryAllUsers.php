@@ -50,6 +50,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$fld_blockinfo = isset( $prop['blockinfo'] );
 			$fld_editcount = isset( $prop['editcount'] );
 			$fld_groups = isset( $prop['groups'] );
+			$fld_rights = isset( $prop['rights'] );
 			$fld_registration = isset( $prop['registration'] );
 		} else {
 			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration = false;
@@ -83,7 +84,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere( 'u1.user_editcount > 0' );
 		}
 
-		if ( $fld_groups ) {
+		if ( $fld_groups || $fld_rights ) {
 			// Show the groups the given users belong to
 			// request more than needed to avoid not getting all rows that belong to one user
 			$groupCount = count( User::getAllGroups() );
@@ -188,6 +189,15 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$lastUserData['groups'][] = $row->ug_group2;
 				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
 			}
+
+		    if ( $fld_rights && !is_null( $row->ug_group2 ) ) {
+				if ( !isset( $lastUserData['rights'] ) ) {
+					$lastUserData['rights'] = User::getGroupPermissions( User::getImplicitGroups() );
+			    }
+
+		        $lastUserData['rights'] = array_merge( $lastUserData['rights'], User::getGroupPermissions( array( $row->ug_group2 ) ) );
+		        $result->setIndexedTagName( $lastUserData['rights'], 'r' );
+		    }
 		}
 
 		if ( is_array( $lastUserData ) ) {
@@ -244,6 +254,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				'What pieces of information to include.',
 				' blockinfo     - Adds the information about a current block on the user',
 				' groups        - Lists groups that the user is in. This uses more server resources and may return fewer results than the limit',
+				' rights        - Lists groups that the user has',
 				' editcount     - Adds the edit count of the user',
 				' registration  - Adds the timestamp of when the user registered',
 				),

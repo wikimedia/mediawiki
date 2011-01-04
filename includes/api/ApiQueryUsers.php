@@ -144,6 +144,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 					$data[$name]['groups'][] = $row->ug_group;
 				}
 
+				if ( isset( $this->prop['rights'] ) && !isset( $data[$name]['rights'] ) ) {
+					// User::getRights() may return duplicate values, strip them
+					$data[$name]['rights'] = array_values( array_unique( $user->getRights() ) );
+					$result->setIndexedTagName( $data[$name]['rights'], 'r' );	// even if empty
+				}
+
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->blocker_name ) ) {
 					$data[$name]['blockedby'] = $row->blocker_name;
 					$data[$name]['blockreason'] = $row->ipb_reason;
@@ -251,6 +257,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				ApiBase::PARAM_TYPE => array(
 					'blockinfo',
 					'groups',
+					'rights',
 					'editcount',
 					'registration',
 					'emailable',
@@ -273,7 +280,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				'What pieces of information to include',
 				'  blockinfo    - Tags if the user is blocked, by whom, and for what reason',
 				'  groups       - Lists all the groups the user(s) belongs to',
-				//'  rights       - Lists all the rights the user(s) has',
+				'  rights       - Lists all the rights the user(s) has',
 				'  editcount    - Adds the user\'s edit count',
 				'  registration - Adds the user\'s registration timestamp',
 				'  emailable    - Tags if the user can and wants to receive e-mail through [[Special:Emailuser]]',
