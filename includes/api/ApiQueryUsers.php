@@ -126,6 +126,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 			$data = array();
 			$res = $this->select( __METHOD__ );
+
+			$result = $this->getResult();
+
 			foreach ( $res as $row ) {
 				$user = User::newFromRow( $row );
 				$name = $user->getName();
@@ -140,14 +143,23 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				}
 
 				if ( isset( $this->prop['groups'] ) && !is_null( $row->ug_group ) ) {
+					if ( !isset( $data[$u]['groups'] ) ) {
+						$data[$u]['groups'] = ApiQueryUsers::getAutoGroups( User::newFromName( $u ) );
+					}
+
 					// This row contains only one group, others will be added from other rows
 					$data[$name]['groups'][] = $row->ug_group;
+					$result->setIndexedTagName( $data[$u]['groups'], 'g' );
 				}
 
-				if ( isset( $this->prop['rights'] ) && !isset( $data[$name]['rights'] ) ) {
-					// User::getRights() may return duplicate values, strip them
-					$data[$name]['rights'] = array_values( array_unique( $user->getRights() ) );
-					$result->setIndexedTagName( $data[$name]['rights'], 'r' );	// even if empty
+				if ( isset( $this->prop['rights'] ) && !is_null( $row->ug_group ) ) {
+					if ( !isset( $data[$name]['rights'] ) ) {
+						$data[$name]['rights'] = User::getGroupPermissions( User::getImplicitGroups() );
+					}
+
+					$data[$name]['rights'] = array_unique( array_merge( $data[$name]['rights'],
+						User::getGroupPermissions( array( $row->ug_group ) ) ) );
+					$result->setIndexedTagName( $data[$name]['rights'], 'r' );
 				}
 
 				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->blocker_name ) ) {
@@ -206,15 +218,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 				} else {
 					$data[$u]['missing'] = '';
 				}
-			} else {
-				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) ) {
-					$autolist = ApiQueryUsers::getAutoGroups( User::newFromName( $u ) );
-
-					$data[$u]['groups'] = array_merge( $autolist, $data[$u]['groups'] );
-
-					$this->getResult()->setIndexedTagName( $data[$u]['groups'], 'g' );
-				}
 			}
+
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 					null, $data[$u] );
 			if ( !$fit ) {
