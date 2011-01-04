@@ -413,7 +413,7 @@ class Skin extends Linker {
 			'wgUserGroups' => $wgUser->isAnon() ? null : $wgUser->getEffectiveGroups(),
 			'wgUserLanguage' => $wgLang->getCode(),
 			'wgContentLanguage' => $wgContLang->getCode(),
-			'wgBreakFrames' => $wgBreakFrames,
+			'wgBreakFrames' => $wgOut->getFrameOptions() == 'DENY',
 			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
 			'wgVersion' => $wgVersion,
 			'wgEnableAPI' => $wgEnableAPI,

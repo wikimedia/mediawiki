@@ -311,6 +311,9 @@ class HTMLForm {
 			$this->displayErrors( $submitResult );
 		}
 
+		# For good measure (it is the default)
+		$wgOut->preventClickjacking();
+
 		$html = ''
 			. $this->mHeader
 			. $this->getBody()

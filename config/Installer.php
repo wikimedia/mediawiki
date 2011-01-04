@@ -25,6 +25,7 @@ if( !defined( 'MEDIAWIKI_INSTALL' ) ) {
 
 error_reporting( E_ALL | E_STRICT );
 header( "Content-type: text/html; charset=utf-8" );
+header( 'X-Frame-Options: DENY' );
 @ini_set( "display_errors", true );
 
 # In case of errors, let output be clean.

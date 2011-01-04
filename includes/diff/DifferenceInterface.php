@@ -112,6 +112,8 @@ class DifferenceEngine {
 		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
 		wfProfileIn( __METHOD__ );
 
+		# Allow frames except in certain special cases
+		$wgOut->allowClickjacking();
 
 		# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
@@ -199,6 +201,7 @@ CONTROL;
 		// Check if page is editable
 		$editable = $this->mNewRev->getTitle()->userCan( 'edit' );
 		if ( $editable && $this->mNewRev->isCurrent() && $wgUser->isAllowed( 'rollback' ) ) {
+			$wgOut->preventClickjacking();
 			$rollback = '&nbsp;&nbsp;&nbsp;' . $sk->generateRollback( $this->mNewRev );
 		} else {
 			$rollback = '';

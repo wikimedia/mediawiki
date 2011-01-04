@@ -12,6 +12,7 @@ function wfSpecialCategories( $par=null ) {
 	} else {
 		$from = $par;
 	}
+	$wgOut->allowClickjacking();
 	$cap = new CategoryPager( $from );
 	$cap->doQuery();
 	$wgOut->addHTML(

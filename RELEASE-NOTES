@@ -57,6 +57,9 @@ further.
   active or exec() and similar functions are disabled.
 * (bug 19593) Specifying --server in now works for all maintenance scripts.
 * Fixed $wgLicenseTerms register globals.
+* (bug 26561) Fixed clickjacking vulnerabilities by introducing support for 
+  X-Frame-Options. The header value can be configured using $wgBreakFrames and
+  $wgEditPageFrameOptions.
 
 == Changes since 1.16 beta 3 ==
 

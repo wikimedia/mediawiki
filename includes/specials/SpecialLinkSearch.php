@@ -44,8 +44,10 @@ function wfSpecialLinkSearch( $par ) {
 		$protocol = '';
 	}
 
-	$self = Title::makeTitle( NS_SPECIAL, 'Linksearch' );
+	$wgOut->allowClickjacking();
 
+	$self = Title::makeTitle( NS_SPECIAL, 'Linksearch' );
+	
 	$wgOut->addWikiMsg( 'linksearch-text', '<nowiki>' . $wgLang->commaList( $wgUrlProtocols ) . '</nowiki>' );
 	$s =	Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
 		Xml::hidden( 'title', $self->getPrefixedDbKey() ) .

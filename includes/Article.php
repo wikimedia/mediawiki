@@ -792,6 +792,9 @@ class Article {
 			return;
 		}
 
+		# Allow frames by default
+		$wgOut->allowClickjacking();
+
 		# Should the parser cache be used?
 		$useParserCache = $this->useParserCache( $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
@@ -1451,6 +1454,8 @@ class Article {
 			array( 'tb_page' => $this->getID() )
 		);
 		if ( !$dbr->numRows( $tbs ) ) return;
+
+		$wgOut->preventClickjacking();
 
 		$tbtext = "";
 		while ( $o = $dbr->fetchObject( $tbs ) ) {

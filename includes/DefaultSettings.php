@@ -3986,10 +3986,31 @@ $wgParserTestFiles = array(
 $wgParserTestRemote = false;
 
 /**
- * Break out of framesets. This can be used to prevent external sites from
- * framing your site with ads.
+ * Break out of framesets. This can be used to prevent clickjacking attacks,
+ * or to prevent external sites from framing your site with ads.
  */
 $wgBreakFrames = false;
+
+/**
+ * The X-Frame-Options header to send on pages sensitive to clickjacking 
+ * attacks, such as edit pages. This prevents those pages from being displayed
+ * in a frame or iframe. The options are:
+ *
+ *   - 'DENY': Do not allow framing. This is recommended for most wikis.
+ *
+ *   - 'SAMEORIGIN': Allow framing by pages on the same domain. This can be used
+ *         to allow framing within a trusted domain. This is insecure if there
+ *         is a page on the same domain which allows framing of arbitrary URLs.
+ *
+ *   - false: Allow all framing. This opens up the wiki to XSS attacks and thus 
+ *         full compromise of local user accounts. Private wikis behind a 
+ *         corporate firewall are especially vulnerable. This is not 
+ *         recommended.
+ *
+ * For extra safety, set $wgBreakFrames = true, to prevent framing on all pages,
+ * not just edit pages.
+ */
+$wgEditPageFrameOptions = 'DENY';
 
 /**
  * Set this to an array of special page names to prevent

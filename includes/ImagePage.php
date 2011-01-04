@@ -600,6 +600,7 @@ EOT
 		$this->loadFile();
 		$pager = new ImageHistoryPseudoPager( $this );
 		$wgOut->addHTML( $pager->getBody() );
+		$wgOut->preventClickjacking( $pager->getPreventClickjacking() );
 
 		$this->img->resetHistory(); // free db resources
 
@@ -803,6 +804,7 @@ EOT
 class ImageHistoryList {
 
 	protected $imagePage, $img, $skin, $title, $repo, $showThumb;
+	protected $preventClickjacking = false;
 
 	public function __construct( $imagePage ) {
 		global $wgUser, $wgShowArchiveThumbnails;
@@ -929,6 +931,7 @@ class ImageHistoryList {
 			# Don't link to unviewable files
 			$row .= '<span class="history-deleted">' . $wgLang->timeAndDate( $timestamp, true ) . '</span>';
 		} elseif( $file->isDeleted(File::DELETED_FILE) ) {
+			$this->preventClickjacking();
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			# Make a link to review the image
 			$url = $this->skin->link(
@@ -1015,9 +1018,19 @@ class ImageHistoryList {
 			return wfMsgHtml( 'filehist-nothumb' );
 		}
 	}
+
+	protected function preventClickjacking( $enable = true ) {
+		$this->preventClickjacking = $enable;
+	}
+
+	public function getPreventClickjacking() {
+		return $this->preventClickjacking;
+	}
 }
 
 class ImageHistoryPseudoPager extends ReverseChronologicalPager {
+	protected $preventClickjacking = false;
+
 	function __construct( $imagePage ) {
 		parent::__construct();
 		$this->mImagePage = $imagePage;
@@ -1058,6 +1071,10 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 				$s .= $list->imageHistoryLine( !$file->isOld(), $file );
 			}
 			$s .= $list->endImageHistoryList($navLink);
+
+			if ( $list->getPreventClickjacking() ) {
+				$this->preventClickjacking();
+			}
 		}
 		return $s;
 	}
@@ -1140,4 +1157,13 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		}
 		$this->mQueryDone = true;
 	}
+	
+	protected function preventClickjacking( $enable = true ) {
+		$this->preventClickjacking = $enable;
+	}
+
+	public function getPreventClickjacking() {
+		return $this->preventClickjacking;
+	}
+
 }

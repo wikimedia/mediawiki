@@ -364,6 +364,7 @@ class SpecialSearch {
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		// add javascript specific to special:search
 		$wgOut->addScriptFile( 'search.js' );
+		$wgOut->allowClickjacking();
 	}
 
 	/**

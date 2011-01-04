@@ -166,6 +166,7 @@ class HistoryPage {
 			$pager->getBody() .
 			$pager->getNavigationBar()
 		);
+		$wgOut->preventClickjacking( $pager->getPreventClickjacking() );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -301,6 +302,7 @@ class HistoryPage {
 class HistoryPager extends ReverseChronologicalPager {
 	public $lastRow = false, $counter, $historyPage, $title, $buttons, $conds;
 	protected $oldIdChecked;
+	protected $preventClickjacking = false;
 
 	function __construct( $historyPage, $year='', $month='', $tagFilter = '', $conds = array() ) {
 		parent::__construct();
@@ -382,6 +384,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$this->buttons = '<div>';
 		if( $wgUser->isAllowed('deleterevision') ) {
+			$this->preventClickjacking();
 			$float = $wgContLang->alignEnd();
 			# Note bug #20966, <button> is non-standard in IE<8
 			$this->buttons .= Xml::element( 'button',
@@ -488,6 +491,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$del = '';
 		// User can delete revisions...
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			$this->preventClickjacking();
 			// If revision was hidden from sysops, disable the checkbox
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
@@ -534,6 +538,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		# Rollback and undo links
 		if( !is_null( $next ) && is_object( $next ) ) {
 			if( $latest && $this->title->userCan( 'rollback' ) && $this->title->userCan( 'edit' ) ) {
+				$this->preventClickjacking();
 				$tools[] = '<span class="mw-rollback-link">'.
 					$this->getSkin()->buildRollbackLink( $rev ).'</span>';
 			}
@@ -720,6 +725,20 @@ class HistoryPager extends ReverseChronologicalPager {
 		} else {
 			return '';
 		}
+	}
+
+	/**
+	 * This is called if a write operation is possible from the generated HTML
+	 */
+	function preventClickjacking( $enable = true ) {
+		$this->preventClickjacking = $enable;
+	}
+
+	/**
+	 * Get the "prevent clickjacking" flag
+	 */
+	function getPreventClickjacking() {
+		return $this->preventClickjacking;
 	}
 }
 
