@@ -112,6 +112,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		} else {
 			$sqlLimit = $limit + 1;
 		}
+
 		if ( $fld_blockinfo ) {
 			$this->addTables( 'ipblocks' );
 			$this->addTables( 'user', 'u2' );
