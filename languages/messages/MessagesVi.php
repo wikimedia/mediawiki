@@ -1838,6 +1838,7 @@ Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiể
 'uploadnewversion-linktext' => 'Tải lên phiên bản mới',
 'shared-repo-from'          => 'tại $1',
 'shared-repo'               => 'kho lưu trữ dùng chung',
+'filepage.css'              => '/* Mã CSS tại đây sẽ ảnh hướng đến trang miêu tả tập tin, cũng như các wiki khách bên ngoài dựa trên wiki này */',
 
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
@@ -2980,6 +2981,40 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 
 Chỉ có những mục được liệt kê (những dòng bắt đầu bằng *) mới được tính tới. Liên kết đầu tiên tại một dòng phải là liên kết đến tập tin phản cảm.
 Các liên kết sau đó trên cùng một dòng được xem là các ngoại lệ, có nghĩa là các trang mà tại đó có thể dùng được tập tin.',
+
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => 'Giản thể',
+'variantname-zh-hant' => 'Phồn thể',
+'variantname-zh-cn'   => 'Giản thể Hoa Lục',
+'variantname-zh-tw'   => 'Phồn thể Đài Loan',
+'variantname-zh-hk'   => 'Phồn thể Hồng Kông',
+'variantname-zh-mo'   => 'Phồn thể Ma Cao',
+'variantname-zh-sg'   => 'Giản thể Singapore',
+'variantname-zh-my'   => 'Giản thể Mã Lai',
+'variantname-zh'      => 'Không chuyển tự',
+
+# Variants for Gan language
+'variantname-gan-hans' => 'Giản thể',
+'variantname-gan-hant' => 'Phồn thể',
+'variantname-gan'      => 'Cám nguyên văn',
+
+# Variants for Kazakh language
+'variantname-kk-cyrl' => 'Kirin',
+'variantname-kk-latn' => 'Latinh',
+'variantname-kk-arab' => 'Ả Rập',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'Ả Rập',
+'variantname-ku-latn' => 'Latinh',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'Kirin',
+'variantname-tg-latn' => 'Latinh',
 
 # Metadata
 'metadata'          => 'Đặc tính hình',

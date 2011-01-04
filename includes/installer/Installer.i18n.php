@@ -1360,8 +1360,22 @@ $1
 	'config-register-globals' => "'''Предупреждение: Настройката на PHP <code>[http://php.net/register_globals register_globals]</code> е включена.'''
 '''При възможност е препоръчително тя да бъде изключена.'''
 МедияУики ще работи, но сървърът е изложен на евентуални пропуски в сигурността.",
+	'config-magic-quotes-runtime' => "'''Фатално: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] е активирана!'''
+Това може да повреди непредвидимо въвеждането на данните.
+Инсталацията на МедияУики е невъзможна докато тази настройка не бъде изключена.",
+	'config-magic-quotes-sybase' => "'''Фатално: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] е активирана!'''
+Това може да повреди непредвидимо въвеждането на данните.
+Инсталацията на МедияУики е невъзможна докато тази настройка не бъде изключена.",
+	'config-mbstring' => "'''Фатално: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] е активирана!'''
+Това може да повреди непредвидимо въвеждането на данните.
+Инсталацията на МедияУики е невъзможна докато тази настройка не бъде изключена.",
+	'config-ze1' => "'''Фатално: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] е активирана!'''
+Тази настройка причинява ужасни грешки в МедияУики.
+Невъзможно е инсталирането и използването на МедияУики докато тази настройка не бъде изключена.",
 	'config-safe-mode' => "'''Предупреждение:''' PHP работи в [http://www.php.net/features.safe-mode безопасен режим].
 Това може да създаде проблеми, особено ако качването на файлове е разрешено, както и при поддръжката на <code>math</code>.",
+	'config-pcre-no-utf8' => "'''Фатално''': Модулът PCRE на PHP изглежда е компилиран без поддръжка на PCRE_UTF8.
+За да функционира правилно, МедияУики изисква поддръжка на UTF-8.",
 	'config-memory-bad' => "'''Предупреждение:''' <code>memory_limit</code> на PHP е $1.
 Стойността вероятно е твърде ниска.
 Възможно е инсталацията да се провали!",
@@ -1403,6 +1417,7 @@ $1
 	'config-db-install-password' => 'Въвежда се парола, която ще бъде използвана за свързване с базата от данни по време на инсталационния процес.
 Това не е парола за сметка в МедияУики; това е парола за базата от данни.',
 	'config-db-install-help' => 'Въвеждат се потребителско име и парола, които ще бъдат използвани за свързване с базата от данни по време на инсталационния процес.',
+	'config-db-account-lock' => 'Използване на същото потребителско име и парола по време на нормална работа',
 	'config-db-wiki-help' => 'Въвежда се потребителско име и парола, които ще се използват при нормалното функциониране на уикито.
 Ако сметката не съществува и използваната при инсталацията сметка има необходимите права, тази потребителска сметка ще бъде създадена с минималните необходими права за работа с уикито.',
 	'config-db-prefix' => 'Представка за таблиците в базата от данни:',
@@ -1413,7 +1428,19 @@ $1
 	'config-mysql-old' => 'Изисква се MySQL $1 или по-нова версия, наличната версия е $2.',
 	'config-db-schema' => 'Схема за МедияУики',
 	'config-db-ts2-schema' => 'Схема за tsearch2',
+	'config-db-schema-help' => 'Схемите по-горе обикновено са правилни.
+Промени се извършват ако наистина е необходимо.',
 	'config-sqlite-dir' => 'Директория за данни на SQLite:',
+	'config-sqlite-dir-help' => "SQLite съхранява всички данни в един файл.
+
+По време на инсталацията уеб сървърът трябва да има права за писане в посочената директория.
+
+Тя '''не трябва''' да е достъпна през уеб, затова не е там, където са PHP файловете.
+
+Инсталаторът ще съхрани заедно с нея файл <code>.htaccess</code>, но ако този метод пропадне, някой може да придобие даостъп до суровите данни от базата от данни.
+Това включва сурови данни за потребителите (адреси за е-поща, хеширани пароли), както и изтрити версии на страници и друга чувствителна и с ограничен достъп информация от и за уикито.
+
+Базата от данни е препоръчително да се разположи на друго място, например в <code>/var/lib/mediawiki/yourwiki</code>.",
 	'config-support-info' => 'МедияУики поддържа следните системи за бази от данни:
 
 $1
@@ -1428,16 +1455,25 @@ $1
 	'config-header-sqlite' => 'Настройки за SQLite',
 	'config-header-oracle' => 'Настройки за Oracle',
 	'config-invalid-db-type' => 'Невалиден тип база от данни',
+	'config-missing-db-name' => 'Необходимо е да се въведе стойност за "Име на базата от данни"',
+	'config-connection-error' => '$1.
+
+Необходимо е да се проверят хостът, потребителското име и паролата, след което да се опита отново.',
 	'config-postgres-old' => 'Изисква се PostgreSQL $1 или по-нова версия, наличната версия е $2.',
 	'config-sqlite-name-help' => 'Избира се име, което да идентифицира уикито.
 Не се използват интервали или тирета.
 Това име ще се използва за име на файла за данни на SQLite.',
+	'config-sqlite-readonly' => 'Файлът <code>$1</code> няма права за писане.',
 	'config-sqlite-cant-create-db' => 'Файлът за базата от данни <code>$1</code> не може да бъде създаден.',
+	'config-regenerate' => 'Създаване на LocalSettings.php →',
+	'config-show-table-status' => 'Заявката SHOW TABLE STATUS не сполучи!',
 	'config-unknown-collation' => "'''Предупреждение:''' Базата от данни използва неразпозната колация.",
 	'config-db-web-account' => 'Сметка за уеб достъп до базата от данни',
 	'config-db-web-help' => 'Избиране на потребителско име и парола, които уеб сървърът ще използва да се свързва с базата от данни при обичайната работа на уикито.',
 	'config-db-web-account-same' => 'Използване на същата сметка като при инсталацията.',
 	'config-db-web-create' => 'Създаване на сметката ако все още не съществува',
+	'config-db-web-no-create-privs' => 'Посочената сметка за инсталацията не разполага с достатъчно права за създаване на нова сметка.
+Необходимо е посочената сметка вече да съществува.',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-engine-help' => "'''InnoDB''' почти винаги е най-добрата възможност заради навременната си поддръжка.
@@ -1453,21 +1489,61 @@ $1
 В '''UTF-8 режим''' MySQL ще знае в кой набор от символи са данните от уикито и ще може да ги показва и променя по подходящ начин, но няма да позволява складиране на символи извън [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Основния многоезичен набор].",
 	'config-site-name' => 'Име на уикито:',
 	'config-site-name-help' => 'Това име ще се показва в заглавната лента на браузъра и на различни други места.',
+	'config-site-name-blank' => 'Необходимо е да се въведе име на уикито.',
 	'config-project-namespace' => 'Именно пространство на проекта:',
-	'config-ns-other' => 'Другот (уточняване)',
+	'config-ns-generic' => 'Проект',
+	'config-ns-site-name' => 'Същото като името на уикито: $1',
+	'config-ns-other' => 'Друго (уточняване)',
+	'config-ns-other-default' => 'МоетоУики',
+	'config-project-namespace-help' => 'Следвайки примера на Уикипедия, много уикита съхраняват страниците си с правила в "\'\'\'именно пространство на проекта\'\'\'", отделно от основното съдържание.
+Всички заглавия на страниците в това именно пространство започват с определена представка, която може да бъде зададена тук.
+Обикновено представката произлиза от името на уикито, но не може да съдържа символи като "#" или ":".',
+	'config-ns-invalid' => 'Посоченото именно пространство "<nowiki>$1</nowiki>" е невалидно.
+Необходимо е да бъде посочено друго.',
 	'config-admin-box' => 'Администраторска сметка',
+	'config-admin-name' => 'Потребителско име:',
 	'config-admin-password' => 'Парола:',
 	'config-admin-password-confirm' => 'Парола (повторно):',
+	'config-admin-help' => 'Въвежда се предпочитаното потребителско име, например "Иванчо Иванчев".
+Това ще е потребителското име, което администраторът ще използва за влизане в уикито.',
+	'config-admin-name-blank' => 'Необходимо е да бъде въведено потребителско име на администратора.',
+	'config-admin-name-invalid' => 'Посоченото потребителско име "<nowiki>$1</nowiki>" е невалидно.
+Необходимо е да се посочи друго.',
+	'config-admin-password-blank' => 'Неовходимо е да се въведе парола за администраторската сметка.',
 	'config-admin-password-same' => 'Паролата не трябва да е същата като потребителското име.',
 	'config-admin-password-mismatch' => 'Двете въведени пароли не съвпадат.',
 	'config-admin-email' => 'Адрес за електронна поща:',
 	'config-admin-error-user' => 'Възникна вътрешна грешка при създаване на администратор с името "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Възникна вътрешна грешка при задаване на парола за администратора "<nowiki>$1</nowiki>": <pre>$2</pre>',
 	'config-subscribe' => 'Абониране за [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce пощенския списък за нови версии].',
+	'config-almost-done' => 'Инсталацията е почти готова!
+Възможно е пропускане на оставащата конфигурация и моментално инсталиране на уикито.',
+	'config-optional-continue' => 'Задаване на допълнителни въпроси.',
+	'config-optional-skip' => 'Достатъчно, инсталиране на уикито.',
+	'config-profile-wiki' => 'Традиционно уики',
+	'config-profile-no-anon' => 'Необходимо е създаване на сметка',
+	'config-profile-fishbowl' => 'Само одобрени редактори',
+	'config-profile-private' => 'Затворено уики',
+	'config-profile-help' => "Уикитата функционират най-добре, когато позволяват на възможно най-много хора да ги редактират.
+В МедияУики лесно се преглеждат последните промени и се възстановяват пораженип от недобронамерени потребители.
+
+Въпреки това мнозина смятат МедияУики за полезен софтуер по различни начини и често е трудно да се убедят всички от предимствата на уики модела.
+Затова се предоставя възможност за избор.
+
+'''{{int:config-profile-wiki}}''' позволява на всички потребители да редактират, дори и без регистрация.
+Уикитата от типа '''{{int:config-profile-no-anon}}''' позволяват достъп до страниците и редактирането им само след създаване на потребителска сметка.
+
+Уики, което е '''{{int:config-profile-fishbowl}}''' позволява на всички да преглеждат страниците, но само предварително одобрени редактори могат да редактират съдържанието.
+В '''{{int:config-profile-private}}''' само предварително одобрени потребители могат да четат и редактират съдържанието.
+
+Детайлно обяснение на конфигурациите на потребителските права е достъпно след инсталацията в [http://www.mediawiki.org/wiki/Manual:User_rights Наръчника за потребителски права].",
 	'config-license' => 'Авторски права и лиценз:',
+	'config-license-cc-by-sa' => 'Криейтив Комънс Признание-Споделяне на споделеното (съвместим с Уикипедия)',
+	'config-license-cc-by-nc-sa' => 'Криейтив Комънс Признание-Некомерсиално-Споделяне на споделеното',
 	'config-license-gfdl-old' => 'Лиценз за свободна документация на GNU 1.2',
 	'config-license-gfdl-current' => 'Лиценз за свободна документация на GNU 1.3 или по-нов',
 	'config-license-pd' => 'Обществено достояние',
+	'config-license-cc-choose' => 'Избиране на друг лиценз от Криейтив Комънс',
 	'config-email-settings' => 'Настройки за е-поща',
 	'config-upload-settings' => 'Картинки и качване на файлове',
 	'config-upload-enable' => 'Позволяне качването на файлове',
@@ -1475,6 +1551,7 @@ $1
 	'config-upload-deleted-help' => 'Избиране на директория, в която ще се складират изтритите файлове.
 В най-добрия случай тя не трябва да е достъпна през уеб.',
 	'config-logo' => 'Адрес на логото:',
+	'config-cache-options' => 'настройки за обектното кеширане:',
 	'config-cache-accel' => 'PHP обектно кеширане (APC, eAccelerator, XCache или WinCache)',
 	'config-cache-memcached' => 'Използване на Memcached (изисква допълнителни настройки и конфигуриране)',
 	'config-memcached-servers' => 'Memcached сървъри:',
@@ -9001,6 +9078,7 @@ Depois de terminar o passo anterior, pode '''[$2 entrar na wiki]'''.",
 
 /** Brazilian Portuguese (Português do Brasil)
  * @author Giro720
+ * @author Gustavo
  * @author Marcionunes
  */
 $messages['pt-br'] = array(
@@ -9010,7 +9088,14 @@ $messages['pt-br'] = array(
 	'config-localsettings-upgrade' => "'''Aviso''': Foi detetada a existência de um arquivo <code>LocalSettings.php</code>.
 É possível atualizar o seu software.
 Mova o <code>LocalSettings.php</code> para um lugar seguro e execute o instalador novamente, por favor.",
+	'config-localsettings-cli-upgrade' => 'Foi detectado um arquivo LocalSettings.php.
+Para atualizar esta instalação, por favor, use: --upgrade=yes.',
 	'config-localsettings-key' => 'Chave de atualização:',
+	'config-localsettings-badkey' => 'A senha inserida está incorreta.',
+	'config-upgrade-key-missing' => 'Foi detectada uma instalação existente do MediaWiki.
+Para atualizar esta instalação, por favor, coloque a seguinte linha na parte inferior do seu LocalSettings.php:
+
+$ 1',
 	'config-session-error' => 'Erro ao iniciar a sessão: $1',
 	'config-session-expired' => 'Os seus dados de sessão parecem ter expirado.
 As sessões estão configuradas para uma duração de $1.
@@ -9018,7 +9103,6 @@ Você pode aumentar esta duração configurando <code>session.gc_maxlifetime</co
 Reinicie o processo de instalação.',
 	'config-no-session' => 'Os seus dados de sessão foram perdidos!
 Verifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.',
-	'config-session-path-bad' => 'O seu <code>session.save_path</code> (<code>$1</code>) parece ser inválido ou estar sem acesso de escrita.',
 	'config-your-language' => 'A sua língua:',
 	'config-your-language-help' => 'Selecione a língua que será usada durante o processo de instalação.',
 	'config-wiki-language' => 'Língua da wiki:',
@@ -9066,6 +9150,17 @@ Você não pode instalar o MediaWiki.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode.
 Se o seu site tem um alto volume de tráfego, devia informar-se um pouco sobre a [http://www.mediawiki.org/wiki/Unicode_normalization_considerations normalização Unicode].",
+	'config-no-db' => 'Não foi possível encontrar um driver de banco de dados adequado!',
+	'config-no-db-help' => 'Você precisa instalar um driver de banco de dados para PHP.
+Os seguintes tipos de banco de dados são suportados: $1.
+
+Se você estiver em hospedagem compartilhada, pergunte ao seu provedor de hospedagem para instalar um driver de banco de dados apropriado.
+Se você compilou o PHP você mesmo, reconfigurá-lo com um cliente de banco de dados habilitado, por exemplo, usando <code>./configure --with-mysql</code>.
+Se você instalou o PHP de um Debian ou Ubuntu package, então você também precisa instalar o módulo php5-mysql.',
+	'config-no-fts3' => "' ' 'Aviso' ' ': O SQLite foi compilado sem o módulo [http://sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
+	'config-register-globals' => "' ' 'Aviso: A opção <code>[http://php.net/register_globals register_globals]</code> do PHP está ativada.'''
+' ' 'Desative-a, se puder.'''
+O MediaWiki funcionará mesmo assim, mas o seu servidor ficará exposto a potenciais vulnerabilidades de segurança.",
 	'config-logo-help' => 'O tema padrão do MediaWiki inclui espaço para um logotipo de 135x160 pixels no canto superior esquerdo.
 Faça o upload de uma imagem com estas dimensões e introduza aqui a URL dessa imagem.
 

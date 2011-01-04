@@ -482,6 +482,7 @@ $messages = array(
 'printableversion'  => '인쇄용 문서',
 'permalink'         => '고유링크',
 'print'             => '인쇄',
+'view'              => '보기',
 'edit'              => '편집',
 'create'            => '생성',
 'editthispage'      => '이 문서 편집하기',
@@ -489,6 +490,7 @@ $messages = array(
 'delete'            => '삭제',
 'deletethispage'    => '이 문서 삭제하기',
 'undelete_short'    => '편집 $1개 되살리기',
+'viewdeleted_short' => '삭제된 편집 $1개 보기',
 'protect'           => '보호',
 'protect_change'    => '보호 수준 변경',
 'protectthispage'   => '이 문서 보호하기',
@@ -572,6 +574,8 @@ $1',
 'toc'                     => '목차',
 'showtoc'                 => '보이기',
 'hidetoc'                 => '숨기기',
+'collapsible-collapse'    => '접기',
+'collapsible-expand'      => '펼치기',
 'thisisdeleted'           => '$1을 보거나 되살리겠습니까?',
 'viewdeleted'             => '$1을 보겠습니까?',
 'restorelink'             => '삭제된 편집 $1 개',
@@ -714,6 +718,8 @@ $2',
 'createaccounterror'         => '계정을 생성하지 못했습니다: $1',
 'nocookiesnew'               => '사용자 계정을 만들었지만, 아직 로그인하지 않았습니다. {{SITENAME}}에서는 로그인 정보를 저장하기 위해 쿠키를 사용합니다. 지금 사용하는 웹 브라우저는 쿠키를 사용하지 않도록 설정되어 있습니다. 로그인하기 전에 웹 브라우저에서 쿠키를 사용하도록 설정해주세요.',
 'nocookieslogin'             => '{{SITENAME}}에서는 로그인을 위해 쿠키를 사용합니다. 당신의 웹 브라우저에서 쿠키가 비활성되어 있습니다. 쿠키 사용을 활성화한 다음 로그인해 주세요.',
+'nocookiesfornew'            => '요청의 출처를 확인할 수 없기 때문에 사용자 계정이 생성되지 않았습니다.
+쿠키를 허용한 것을 확인한 후에 다시 시도해 보십시오.',
 'noname'                     => '사용자 이름이 올바르지 않습니다.',
 'loginsuccesstitle'          => '로그인 성공',
 'loginsuccess'               => "'''{{SITENAME}}에 ‘$1’ 계정으로 로그인했습니다.'''",
@@ -728,6 +734,7 @@ $2',
 다시 시도해 주세요.',
 'passwordtooshort'           => '암호는 적어도 $1자보다 길어야 합니다.',
 'password-name-match'        => '암호는 반드시 사용자 이름과 달라야 합니다.',
+'password-login-forbidden'   => '이 계정명과 비밀번호의 사용이 금지되어 있습니다.',
 'mailmypassword'             => '새 암호를 이메일로 보내기',
 'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 임시 암호',
 'passwordremindertext'       => 'IP 주소 $1에서 당신에게 {{SITENAME}} ($4)의 새 암호를 보내달라고 요청했습니다.
@@ -761,6 +768,9 @@ $2',
 잠시 후에 다시 시도해주세요.',
 'loginlanguagelabel'         => '언어: $1',
 'suspicious-userlogout'      => '브라우저의 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'PHP의 mail() 함수에서 알 수 없는 오류가 발생했습니다.',
 
 # JavaScript password checks
 'password-strength'            => '예상 비밀 번호 강도: $1',
@@ -888,9 +898,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'userjsyoucanpreview'              => "'''안내''': JS 문서를 저장하기 전에 ‘{{int:showpreview}}’ 기능을 통해 작동을 확인해주세요.",
 'usercsspreview'                   => "'''이것은 사용자 CSS의 미리 보기이며, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userjspreview'                    => "'''이것은 자바스크립트 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
-'sitecsspreview'                   => "'''이것은 모두에게 적용되는 CSS의 미리 보기입니다.'''
+'sitecsspreview'                   => "'''이것은 이 CSS의 미리 보기일 뿐입니다.'''
 '''아직 저장하지 않았다는 것을 주의해 주세요!'''",
-'sitejspreview'                    => "'''이것은 모두에게 적용되는 자바스크립트의 미리 보기입니다.'''
+'sitejspreview'                    => "'''이것은 이 자바스크립트 코드의 미리 보기일 뿐입니다.'''
 '''아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userinvalidcssjstitle'            => "'''경고''': ‘$1’ 스킨은 없습니다.
 .css와 .js 문서의 제목은 {{ns:user}}:Foo/vector.css 처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Vector.css 와 같이 대문자로 쓸 경우 작동하지 않습니다.",
@@ -1492,6 +1502,7 @@ $1",
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
 'right-revisionmove'          => '특정 판 옮기기',
+'right-disableaccount'        => '계정을 비활성화하기',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',
@@ -3366,6 +3377,8 @@ $1',
 'version-specialpages'             => '특수 문서',
 'version-parserhooks'              => '파서 훅',
 'version-variables'                => '변수',
+'version-antispam'                 => '스팸 방지',
+'version-skins'                    => '스킨',
 'version-other'                    => '기타',
 'version-mediahandlers'            => '미디어 핸들러',
 'version-hooks'                    => '훅',
@@ -3487,5 +3500,18 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 (본문 전체 검색)',
 'sqlite-no-fts'  => '$1 (본문은 검색에서 제외)',
+
+# Special:DisableAccount
+'disableaccount'             => '계정을 비활성화하기',
+'disableaccount-user'        => '계정 이름:',
+'disableaccount-reason'      => '이유:',
+'disableaccount-confirm'     => "사용자 계정을 비활성화합니다.
+이 사용자는 로그인하거나 비밀번호를 바꿀 수 없고 이메일 알림을 받을 수 없습니다.
+만약 이 사용자가 로그인되어 있다면, 즉시 로그아웃될 것이니다.
+'''계정을 비활성화하는 것은 시스템 관리자의 도움 없이는 되돌릴 수 없습니다.'''",
+'disableaccount-mustconfirm' => '이 계정을 비활성화할 것인지 반드시 확인하여야 합니다.',
+'disableaccount-nosuchuser'  => '계정 "$1"이 존재하지 않습니다.',
+'disableaccount-success'     => '계정 "$1"이 영구히 비활성화되었습니다.',
+'disableaccount-logentry'    => '사용자 계정 [[$1]]을 영구히 비활성화함',
 
 );
