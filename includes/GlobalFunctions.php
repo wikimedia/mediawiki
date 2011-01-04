@@ -23,37 +23,37 @@ require_once dirname( __FILE__ ) . '/normal/UtfNormalUtil.php';
 
 if( !function_exists( 'iconv' ) ) {
 	function iconv( $from, $to, $string ) {
-		return Fallback::fallback_iconv( $from, $to, $string );
+		return Fallback::iconv( $from, $to, $string );
 	}
 }
 
 if ( !function_exists( 'mb_substr' ) ) {
 	function mb_substr( $str, $start, $count='end' ) {
-		return Fallback::fallback_mb_substr( $str, $start, $count );
+		return Fallback::mb_substr( $str, $start, $count );
 	}
 
 	function mb_substr_split_unicode( $str, $splitPos ) {
-		return Fallback::fallback_mb_substr_split_unicode( $str, $splitPos );
+		return Fallback::mb_substr_split_unicode( $str, $splitPos );
 	}
 }
 
 if ( !function_exists( 'mb_strlen' ) ) {
 	function mb_strlen( $str, $enc = '' ) {
-		return Fallback::fallback_mb_strlen( $str, $enc );
+		return Fallback::mb_strlen( $str, $enc );
 	}
 }
 
 if( !function_exists( 'mb_strpos' ) ) {
 	
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
-		return Fallback::fallback_mb_strpos( $haystack, $needle, $offset, $encoding );
+		return Fallback::mb_strpos( $haystack, $needle, $offset, $encoding );
 	}
 	
 }
 
 if( !function_exists( 'mb_strrpos' ) ) {
 	function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
-		return Fallback::fallback_mb_strrpos( $haystack, $needle, $offset, $encoding );
+		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
 }
 

@@ -23,7 +23,7 @@
  */
 class Fallback {
 	
-	public static function fallback_iconv( $from, $to, $string ) {
+	public static function iconv( $from, $to, $string ) {
 		if ( substr( $to, -8 ) == '//IGNORE' ) {
 			$to = substr( $to, 0, strlen( $to ) - 8 );
 		}
@@ -49,21 +49,21 @@ class Fallback {
 	 * can be up to 100x slower than native if the text is heavily
 	 * multibyte and we have to slog through a few hundred kb.
 	 */
-	public static function fallback_mb_substr( $str, $start, $count='end' ) {
+	public static function mb_substr( $str, $start, $count='end' ) {
 		if( $start != 0 ) {
-			$split = self::fallback_mb_substr_split_unicode( $str, intval( $start ) );
+			$split = self::mb_substr_split_unicode( $str, intval( $start ) );
 			$str = substr( $str, $split );
 		}
 	
 		if( $count !== 'end' ) {
-			$split = self::fallback_mb_substr_split_unicode( $str, intval( $count ) );
+			$split = self::mb_substr_split_unicode( $str, intval( $count ) );
 			$str = substr( $str, 0, $split );
 		}
 	
 		return $str;
 	}
 	
-	public static function fallback_mb_substr_split_unicode( $str, $splitPos ) {
+	public static function mb_substr_split_unicode( $str, $splitPos ) {
 		if( $splitPos == 0 ) {
 			return 0;
 		}
@@ -114,7 +114,7 @@ class Fallback {
 	 * @param string $enc optional encoding; ignored
 	 * @return int
 	 */
-	public static function fallback_mb_strlen( $str, $enc = '' ) {
+	public static function mb_strlen( $str, $enc = '' ) {
 		$counts = count_chars( $str );
 		$total = 0;
 	
@@ -139,7 +139,7 @@ class Fallback {
 	 * @param $encoding String: optional encoding; ignored
 	 * @return int
 	 */
-	public static function fallback_mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
+	public static function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		$needle = preg_quote( $needle, '/' );
 	
 		$ar = array();
@@ -160,7 +160,7 @@ class Fallback {
 	 * @param $encoding String: optional encoding; ignored
 	 * @return int
 	 */
-	public static function fallback_mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
+	public static function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		$needle = preg_quote( $needle, '/' );
 	
 		$ar = array();
