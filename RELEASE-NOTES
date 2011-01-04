@@ -69,6 +69,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25767) Add userrights properties to allusers and users query lists
 * (bug 26558) list=allusers auprop=groups does not list groups a user is automatically a member of
 * (bug 26559) list=allusers auprop=rights does not match list=users usprop=rights
+* (bug 26560) On allusers if limit < total number of users, last user gets duplicate
 
 === Languages updated in 1.18 ===
 
