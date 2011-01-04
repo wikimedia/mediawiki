@@ -24,13 +24,25 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+$IP = dirname( dirname( __FILE__ ) );
+
 define( 'SELENIUMTEST', true );
 
 //require_once( dirname( __FILE__ ) . '/../maintenance/commandLine.inc' );
 require( dirname( __FILE__ ) . '/../maintenance/Maintenance.php' );
-require_once( 'PHPUnit/Framework.php' );
+
+require_once( 'PHPUnit/Runner/Version.php' );
+if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
+	# PHPUnit 3.5.0 introduced a nice autoloader based on class name
+	require_once( 'PHPUnit/Autoload.php' );
+} else {
+	# Keep the old pre PHPUnit 3.5.0 behaviour for compatibility
+	require_once( 'PHPUnit/TextUI/Command.php' );
+}
+
 require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
 include_once( 'PHPUnit/Util/Log/JUnit.php' );
+
 require_once( dirname( __FILE__ ) . "/selenium/SeleniumServerManager.php" );
 
 class SeleniumTester extends Maintenance {
