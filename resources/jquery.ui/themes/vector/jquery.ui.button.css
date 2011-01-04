@@ -35,6 +35,7 @@ body button.ui-button {
 	padding: 0.2em 0.6em 0.15em !important;
 	margin: 0.5em 0 0.5em 0.4em !important;
 	border: 1px solid #a6a6a6 !important;
+	/* @embed */
 	background: #f2f2f2 url(images/button-off.png) repeat-x scroll 50% 100% !important;
 	cursor: pointer;
 	font-size: 1em;
@@ -44,16 +45,19 @@ body button.ui-button {
 }
 body button.ui-button:hover {
 	border-color: #6e7273;
+	/* @embed */
 	background: #e1e1e1 url(images/button-over.png) repeat-x scroll 50% 100% !important;
 }
 body button.ui-button:active,
 body button.ui-button:focus {
 	border-color: #707271;
+	/* @embed */
 	background: #bfbfbf url(images/button-down.png) repeat-x scroll 50% 100% !important;
 }
 body button.ui-button.disabled {
 	color: #7f7f7f;
 	border-color: #cccccc;
+	/* @embed */
 	background: #f2f2f2 url(images/button-disabled.png) repeat-x scroll 50% 100% !important;	
 }
 /* Disables the annoying dashed border Firefox puts on active buttons */
