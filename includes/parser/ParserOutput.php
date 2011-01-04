@@ -137,8 +137,7 @@ class ParserOutput extends CacheTime {
 
 	function getText() {
 		if ( $this->mEditSectionTokens ) {
-			$editSectionTokens = $this->mEditSectionTokens;
-			return preg_replace_callback( "#{$editSectionTokens[0]}(.*?){$editSectionTokens[1]}#", array( &$this, 'replaceEditSectionLinksCallback' ), $this->mText );
+			return preg_replace_callback( '#<editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</editsection>))#', array( &$this, 'replaceEditSectionLinksCallback' ), $this->mText );
 		}
 		return $this->mText;
 	}
@@ -149,7 +148,11 @@ class ParserOutput extends CacheTime {
 	 */
 	function replaceEditSectionLinksCallback( $m ) {
 		global $wgUser, $wgLang;
-		$args = array_map('urldecode', explode('|', $m[1], 3));
+		$args = array(
+			htmlspecialchars_decode($m[1]),
+			htmlspecialchars_decode($m[2]),
+			$m[4] ? $m[3] : null,
+		);
 		$args[0] = Title::newFromText( $args[0] );
 		if ( !is_object($args[0]) ) {
 			throw new MWException("Bad parser output text.");
@@ -184,7 +187,7 @@ class ParserOutput extends CacheTime {
 
 	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
 	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
-	function setEditSectionTokens( $p, $s ) { return wfSetVar( $this->mEditSectionTokens, array( $p, $s ) ); }
+	function setEditSectionTokens( $t )  { return wfSetVar( $this->mEditSectionTokens, $t ); }
 	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
 	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
 

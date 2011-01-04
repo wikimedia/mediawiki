@@ -3699,7 +3699,7 @@ class Parser {
 		if ( $showEditLink ) {
 			$editLinkAsToken = $this->mOptions->getEditSectionTokens();
 			if ( $editLinkAsToken ) {
-				$this->mOutput->setEditSectionTokens( "{$this->mUniqPrefix}-editsection-", self::MARKER_SUFFIX );
+				$this->mOutput->setEditSectionTokens( true );
 			}
 		}
 
@@ -3964,10 +3964,20 @@ class Parser {
 					} else {
 						$editlinkArgs = array( $this->mTitle->getPrefixedText(), $sectionIndex, $headlineHint );
 					}
-					// We use nearly the same structure as uniqPrefix and the marker stuffix (besides there being nothing random)
-					// However the this is output into the parser output itself not replaced early, so we hardcode this in case
-					// the constants change in a different version of MediaWiki, which would break this code.
-					$editlink = "{$this->mUniqPrefix}-editsection-" . implode('|', array_map('urlencode', $editlinkArgs)) . self::MARKER_SUFFIX;
+					// We use a bit of pesudo-xml for editsection markers. The language converter is run later on
+					// Using a UNIQ style marker leads to the converter screwing up the tokens when it converts stuff
+					// And trying to insert strip tags fails too. At this point all real inputted tags have already been escaped
+					// so we don't have to worry about a user trying to input one of these markers directly.
+					// We use a page and section attribute to stop the language converter from converting these important bits
+					// of data, but put the headline hint inside a content block because the language converter is supposed to
+					// be able to convert that piece of data.
+					$editlink = '<editsection page="' . htmlspecialchars($editlinkArgs[0]);
+					$editlink .= '" section="' . htmlspecialchars($editlinkArgs[1]) .'"';
+					if ( isset($editlinkArgs[2]) ) {
+						$editlink .= '>' . $editlinkArgs[2] . '</editsection>';
+					} else {
+						$editlink .= '/>';
+					}
 				} else {
 					// Output edit section links directly as markup like we used to
 					if ( $isTemplate ) {
