@@ -37,7 +37,7 @@ class ForeignDBRepo extends LocalRepo {
 		if ( !isset( $this->dbConn ) ) {
 			$class = 'Database' . ucfirst( $this->dbType );
 			$this->dbConn = new $class( $this->dbServer, $this->dbUser,
-				$this->dbPassword, $this->dbName, false, $this->dbFlags,
+				$this->dbPassword, $this->dbName, $this->dbFlags,
 				$this->tablePrefix );
 		}
 		return $this->dbConn;
