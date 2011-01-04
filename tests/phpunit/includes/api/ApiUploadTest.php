@@ -105,7 +105,7 @@ abstract class ApiTestCase extends MediaWikiTestCase {
 
 	}
 
-	protected function doApiRequest( $params, $session = null ) {
+	protected function doApiRequest( $params, $session = null, $appendModule = false ) {
 		$_SESSION = isset( $session ) ? $session : array();
 
 		$request = new FauxRequest( $params, true, $_SESSION );
