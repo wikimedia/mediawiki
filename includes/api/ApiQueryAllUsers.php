@@ -249,6 +249,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array(
 					'blockinfo',
 					'groups',
+					'rights',
 					'editcount',
 					'registration'
 				)
