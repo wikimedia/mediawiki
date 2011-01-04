@@ -71,6 +71,21 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere( 'u1.user_name' . $db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
 		}
 
+		if ( !is_null( $params['rights'] ) ) {
+			$groups = array();
+			foreach( $params['rights'] as $r ) {
+				$groups = array_merge( $groups, User::getGroupsWithPermission( $r ) );
+			}
+
+		    $groups = array_diff( array_unique( $groups ), User::getImplicitGroups() );
+
+		    if ( is_null( $params['group'] ) ) {
+				$params['group'] = $groups;
+		    } else {
+				$params['group'] = array_unique( array_merge( $params['group'], $groups ) );
+		    }
+		}
+
 		if ( !is_null( $params['group'] ) ) {
 			$useIndex = false;
 			// Filter only users that belong to a given group
@@ -222,7 +237,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'to' => null,
 			'prefix' => null,
 			'group' => array(
-				ApiBase::PARAM_TYPE => User::getAllGroups()
+				ApiBase::PARAM_TYPE => User::getAllGroups(),
+				ApiBase::PARAM_ISMULTI => true,
+			),
+			'rights' => array(
+				ApiBase::PARAM_TYPE => User::getAllRights(),
+				ApiBase::PARAM_ISMULTI => true,
 			),
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -249,12 +269,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'from' => 'The user name to start enumerating from',
 			'to' => 'The user name to stop enumerating at',
 			'prefix' => 'Search for all users that begin with this value',
-			'group' => 'Limit users to a given group name',
+			'group' => 'Limit users to given group name(s)',
+			'rights' => 'Limit users to given right(s)',
 			'prop' => array(
 				'What pieces of information to include.',
 				' blockinfo     - Adds the information about a current block on the user',
 				' groups        - Lists groups that the user is in. This uses more server resources and may return fewer results than the limit',
-				' rights        - Lists groups that the user has',
+				' rights        - Lists rights that the user has',
 				' editcount     - Adds the edit count of the user',
 				' registration  - Adds the timestamp of when the user registered',
 				),
