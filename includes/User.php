@@ -3131,14 +3131,18 @@ class User {
 	 *                                non-existent/anonymous user accounts.
 	 */
 	public function getFirstEditTimestamp() {
-		if( $this->getId() == 0 ) return false; // anons
+		if( $this->getId() == 0 ) {
+			return false; // anons
+		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$time = $dbr->selectField( 'revision', 'rev_timestamp',
 			array( 'rev_user' => $this->getId() ),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_timestamp ASC' )
 		);
-		if( !$time ) return false; // no edits
+		if( !$time ) {
+			return false; // no edits
+		}
 		return wfTimestamp( TS_MW, $time );
 	}
 
