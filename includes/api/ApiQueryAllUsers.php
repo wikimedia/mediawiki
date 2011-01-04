@@ -77,13 +77,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$groups = array_merge( $groups, User::getGroupsWithPermission( $r ) );
 			}
 
-		    $groups = array_diff( array_unique( $groups ), User::getImplicitGroups() );
+			$groups = array_diff( array_unique( $groups ), User::getImplicitGroups() );
 
-		    if ( is_null( $params['group'] ) ) {
+			if ( is_null( $params['group'] ) ) {
 				$params['group'] = $groups;
-		    } else {
+			} else {
 				$params['group'] = array_unique( array_merge( $params['group'], $groups ) );
-		    }
+			}
 		}
 
 		if ( !is_null( $params['group'] ) ) {
@@ -205,14 +205,14 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
 			}
 
-		    if ( $fld_rights && !is_null( $row->ug_group2 ) ) {
+			if ( $fld_rights && !is_null( $row->ug_group2 ) ) {
 				if ( !isset( $lastUserData['rights'] ) ) {
 					$lastUserData['rights'] = User::getGroupPermissions( User::getImplicitGroups() );
-			    }
+				}
 
-		        $lastUserData['rights'] = array_merge( $lastUserData['rights'], User::getGroupPermissions( array( $row->ug_group2 ) ) );
-		        $result->setIndexedTagName( $lastUserData['rights'], 'r' );
-		    }
+				$lastUserData['rights'] = array_merge( $lastUserData['rights'], User::getGroupPermissions( array( $row->ug_group2 ) ) );
+				$result->setIndexedTagName( $lastUserData['rights'], 'r' );
+			}
 		}
 
 		if ( is_array( $lastUserData ) ) {
