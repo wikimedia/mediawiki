@@ -718,14 +718,22 @@ Si se paske ou fè yon erè ke ou rive nan paj sa a, klike anlè bouton '''fè b
 'anontalkpagetext'                 => "---- ''Ou nan paj diskisyon yon itilizatè anonim, ki pa gen non, ki poko kreye yon kont oubyen ki pa itilize pyès kont nan sistèm sa. Pou rezon sa, nou dwe itilize adrès IP l pou nou kapab lokalize l, sitye l, montre kote l rete, idantifye l. Yon adrès IP kapab pataje ant plizyè moun, plizyè itilizatè. Si ou se yon itilizatè anonim e si ou wè ke ou resevwa komantè ki pa t pou ou, ou mèt [[Special:UserLogin/signup|kreye yon kont]] oubyen [[Special:UserLogin|konekte ou]] pou ou kapab anpeche konfizyon ak kontribitè anonim yo.''",
 'noarticletext'                    => 'Poko genyen tèks nan paj sa a.
 Ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj yo, oubyen <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chache jounal modifikasyon yo ki an relasyon ak paj sa] oubyen tou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye paj sa]</span>.',
+'noarticletext-nopermission'       => 'Poko genyen tèks nan paj sa a.
+Ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] nan lòt paj yo, oubyen <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chache jounal modifikasyon yo ki an relasyon ak paj sa].',
 'userpage-userdoesnotexist'        => 'Kont itilizatè « $1 » sa pa anrejistre. Verifye toutbon ke ou vle kreye paj sa.',
 'userpage-userdoesnotexist-view'   => 'Itilizatè "$1" pa ekziste.',
+'blocked-notice-logextract'        => 'Itilizatè sa a bloke kounye a.
+Dènye jounal pou blokaj yo parèt anba kòm referans:',
 'clearyourcache'                   => "'''Note bagay sa:''' apre ou pibliye paj sa, ou gendwa oblije fòse chajman, rafrechi paj nan kach navigatè entènèt ou an pou ou kapab wè chanjman yo : '''Mozilla / Firefox / Konqueror / Safari :''' kenbe touch ''lèt kapital'' toutpandan w ap klike sou bouton ''Rafrechi/Aktyalize'' oubyen swa ou peze ''Maj-Ctrl-F5'', swa ou peze ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sou sistèm Apple Mac) ; '''Internet Explorer / Opera :''' kenbe touch ''Ctrl'' toutpandan w ap klike sou bouton ''Rafrechi/Aktyalize'', oubyen peze ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Bagay ki ap sèvi w :''' Itilize bouton « {{int:showpreview}} » pou teste nouvo fèy CSS anvan ou anrejistre l.",
 'userjsyoucanpreview'              => "'''Bagay ki ap sèvi w :''' Itilize bouton « {{int:showpreview}} » pou teste nouvo fèy JavaScript anvan ou anrejistre l.",
 'usercsspreview'                   => "'''Sonje ke w ap voye yon kout je sou sa w ekri nan fèy CSS pa ou sa.'''
 ''Li poko anrejistre !'''",
 'userjspreview'                    => "'''Sonje ke ou ap voye kout je sou fèy JavaScript ou ekri a, li poko anrejistre !'''",
+'sitecsspreview'                   => "'''Sonje ke w ap voye yon kout je sou sa w ekri nan fèy CSS sa a.'''
+'''Li poko anrejistre !'''",
+'sitejspreview'                    => "'''Sonje ke w ap voye yon kout je sou kòd JavaScript sa a.'''
+'''Li poko anrejistre !'''",
 'userinvalidcssjstitle'            => "'''Pòte atansyon :''' estil \"\$1\" pa egziste. Paj pèsonalize ak ekstansyon .css epi .js yo ap itilize tit/sijè nan lèt miniskil, pa egzanp {{ns:user}}:Foo/vector.css se pa {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Li gen dènye vèsyon sou li)',
 'note'                             => "'''Nòt :'''",
@@ -749,14 +757,29 @@ Ou dwe fè modifikasyon ou yo nan tèks ki te deja anrejistre a ki anlè.
 Se tèks ki nan pati anlè a sèlman k ap anrejistre toutbon lè ou klike sou « {{int:savearticle}} ».',
 'yourtext'                         => 'Tèks ou an',
 'storedversion'                    => 'Vèsyon ki anrejistre',
+'nonunicodebrowser'                => "'''Atansyon: Navigatè ou an pa ka mache ak Unicode lan.'''
+Nou fè yon jan pou pèmèt ou fè modifikasyon nan paj yo: karaktè ki pa nan ASCII yo pral ekri ak kòd ekzadesimal.",
 'editingold'                       => "'''Avètisman : Ou ap edite yon vye vèsyon paj sa a.''' 
 Si ou anrejistre li, tout chanjman yo depi vèsyon sa a pral pèdi.",
 'yourdiff'                         => 'Diferans',
 'copyrightwarning'                 => "Tanpri sonje tout piblikasyon ki fèt nan {{SITENAME}} piblye anba kontra $2 an (wè $1 pou konnen plis). Si ou pa vle sa ou ekri pataje oubyen modifye, ou pa dwe soumèt yo isit.<br />
 W ap pwomèt tou ke sa w ap ekri a se ou menm menm ki ekri li oubyen ke ou kopye li de yon sous ki nan domèn piblik, ou byen you sous ki lib. '''PA ITILIZE TRAVAY KI ANBA DWA DOTÈ SI OTÈ PA T BAY OTORIZASYON LI TOUTBON !'''",
+'copyrightwarning2'                => "Tanpri, konnen ke tout kontribisyon yo nan {{SITENAME}} kapab modifye, change oubyen retire pa lòt itilizatè yo.
+Si ou pa vle pou sa ou ekri pataje oubyen modifye, ou pa dwe soumèt li isit.<br />
+W ap pwomèt tou ke sa w ap ekri a se ou menm menm ki ekri li oubyen ke ou kopye li de yon sous ki nan domèn piblik, ou byen you sous ki lib (gade $1 pou konnen pi plis).
+'''PA ITILIZE TRAVAY KI ANBA DWA DOTÈ SI OTÈ PA T BAY OTORIZASYON LI TOUTBON !'''",
 'longpageerror'                    => "'''ERÈ : Tèks ou anrejistre a ap fè $1 Ko, tay sa a depase kapasite limit nou kapab aksepte kounye a: $2 Ko. Nou pa kapab anrejistre tèks sa. Eseye ritounen nan paj ou te ye anvan pou kopye modifikasyon ou yo.'''",
+'readonlywarning'                  => "'''Atansyon: Bazdone a bare pou fè travay sou li, kidonk ou pap kapab anrejistre modifikasyon ou yo kounye a.'''
+Petèt ou ta renmen kopye-kole teks sa a nan yon fichye teks epi anrejistre l pou pita.
+
+Administratè ki te bare bazdone a te bay rezon sa a: $1",
 'protectedpagewarning'             => "'''Pote atansyon : paj sa a pwoteje. Se sèl itilizatè yo ki genyen estati administratè ki kapab modifye l.'''
 Dènye jounal la parèt anba kòm referans.",
+'semiprotectedpagewarning'         => "'''Note:'' Paj sa a pwoteje e se sèlman itilizatè ki anrejistre ki gendwa modifye li.
+Dènye ekriti nan jounal parèt pi ba kòm referans:",
+'cascadeprotectedwarning'          => "'''Atansyon:''' Paj sa pwoteje e se sèlman administratè yo ki gendwa modifye l, paske li nan {{PLURAL:$1|paj|paj yo}} ki gen pwoteksyon kaskad aktive sou {{PLURAL:$1|li|yo}}.",
+'titleprotectedwarning'            => "'''Atansyon: Paj sa pwoteje e ou bezwen [[Special:ListGroupRights|dwa espesyal]] pou kreye li.'''
+Dènye ekriti nan jounal la parèt pi bas kòm referans:",
 'templatesused'                    => '{{PLURAL:$1|Modèl|Modèl yo}} ki itilize nan paj sa a :',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèl|Modèl yo}} ki itilize nan kout je sa a (previzyalizasyon):',
 'templatesusedsection'             => '{{PLURAL:$1|Modèl|Modèl yo}} ki itilize nan seksyon sa :',
@@ -766,6 +789,8 @@ Dènye jounal la parèt anba kòm referans.",
 'nocreatetitle'                    => 'Kreyasyon paj yo limite',
 'nocreatetext'                     => '{{SITENAME}} anpeche kreyasyon nouvo paj sou li. Ou mèt ritounen nan navigatè ou epi modifye yon paj ki deja egziste oubyen [[Special:UserLogin|konekte ou oubyen kreye yon kont]].',
 'nocreate-loggedin'                => 'Ou pa gen pèmisyon pou ou kapab kreye nouvo paj nan wiki sa.',
+'sectioneditnotsupported-title'    => 'Modifikasyon seksyon pa kapab fèt',
+'sectioneditnotsupported-text'     => 'Modifikasyon seksyon pa kapab fèt nan paj sa a.',
 'permissionserrors'                => 'Erè nan pèmisyon yo',
 'permissionserrorstext'            => 'Ou pa gen otorizasyon pou fè operasyon ke ou mande a pou {{PLURAL:$1|rezon sa|rezon sa yo}} :',
 'permissionserrorstext-withaction' => 'Ou pa otorize pou $2, pou {{PLURAL:$1|rezon sa|rezon sa yo}} :',
@@ -774,6 +799,7 @@ Dènye jounal la parèt anba kòm referans.",
 Mande ou byen si ou ap byen fè kreye li ankò.  Gade jounal paj sa a pou konnen poukisa efasman sa te fèt anba:",
 'moveddeleted-notice'              => 'Paj sa efase.
 Jounal pou efasman oubyen deplasman pou paj sa parèt anba pou sèvi referans.',
+'log-fulllog'                      => 'Gade tout jounal la',
 'edit-no-change'                   => 'Modifikasyon ou pa t fèt paske ou pa t fè okenn chanjman nan tèks la.',
 
 # Parser/template warnings

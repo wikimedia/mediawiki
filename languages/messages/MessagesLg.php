@@ -489,9 +489,26 @@ Olw'okulwanyisa enkozesa mbi, essaawa {{PLURAL:$1|emu e|$1 zi}}mala okuyitawo tu
 'acct_creation_throttle_hit' => "Ku lunaku olumu luno, abajja ku wiki eno nga basinzidde ku ndagiriro eya IP gy'oliko baakakolawo {{PLURAL:$1|akawunti 1|akawunti $1}}. Tekikkirizibwa kukolawo zisingawo obungi mu budde obwo.<br />
 Olw'ensonga eno, ku ssaawa eno, abasinzira ku ndagiriro gy'oliko tebasobola kukolawo akawunti.",
 'emailauthenticated'         => 'Endagiriro yo eya E-mail twagikakasa ku ssaawa $3, nga $2.',
+'emailnotauthenticated'      => "Endagiriro yo eya E-mail tennakakasibwa.<br />
+Bw'en'emala okukakasibwa nga by'olonze ku bya E-mail wano bitandika okukola.",
+'noemailprefs'               => "By'olondako wano byetaaga owandikewo endagiriro yo eya E-mail biryoke bikole.",
+'emailconfirmlink'           => 'Tukakasize endagiriro yo eya E-mail',
+'invalidemailaddress'        => "Empandika ey'endagiriro eya E-mail gy'otaddewo yandibaamu ensobi.<br />
+Gigolole oba lekawo nga w'ereere.",
 'accountcreated'             => 'Akawunti ekoleddwa',
 'accountcreatedtext'         => "Akawunti ey'obwa memba eya $1 ekoleddwa.",
+'createaccount-title'        => "Okukolawo akawunti ey'oku {{SITENAME}}",
+'createaccount-text'         => 'Waliwo eyakozewo akawunti ey\'oku {{SITENAME}} ($4) nga akozesa endagiriro eyiyo eya E-mail.<br />
+Erina erinnya ly\'obwa memba "$2", ate ekyama kiri "$3".<br />
+Wandigenze kakati n\'oyingira akawunti eyo okyuse ekyama.<br />
+<br />
+Akawunti eno bw\'obanga togyetaaga, gireke tunaagigyawo.',
+'usernamehasherror'          => "Ery'obwa memba terikkirizibwa kubaamu akabonero ak'obusazesaze (#)",
+'login-throttled'            => "Ogezeza okuyingira mu sisitemu emilundi egiyitiridde obungi kaseera kano.<br />
+Sooka olindeko akaseera okuddamu n'ate.",
 'loginlanguagelabel'         => 'Lulimi: $1',
+'suspicious-userlogout'      => "Sisitemu ezize ekiragiro kyo eky'okugivaamu kubanga kirabise nga ekivudde mu kalambulanetti enfu<br />
+oba mu puloguramu etereka n'eddamu okuyisa ebiragiro ebivudde awalala.",
 
 # Password reset dialog
 'resetpass'                 => 'Kyusa ekigambo ekikuumi',

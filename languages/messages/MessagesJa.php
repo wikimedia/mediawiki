@@ -1352,7 +1352,7 @@ $1",
 'search-result-size'               => '$1（$2単語）',
 'search-result-category-size'      => '$1件（$2下位カテゴリ、$3ファイル）',
 'search-result-score'              => '関連度：$1%',
-'search-redirect'                  => '（$1への転送）',
+'search-redirect'                  => '（$1を転送）',
 'search-section'                   => '（$1の節）',
 'search-suggest'                   => 'もしかして：$1',
 'search-interwiki-caption'         => '姉妹プロジェクト',
@@ -1671,8 +1671,8 @@ HTMLタグを見直してください。',
 'recentchanges-label-bot'           => 'この編集はボットによって行われました',
 'recentchanges-label-unpatrolled'   => 'この編集はまだ巡回されていません',
 'rcnote'                            => "以下は、$4$5までの{{PLURAL:$2|1日|直前'''$2'''日間}}になされた'''$1'''件の変更です。",
-'rcnotefrom'                        => "以下は、'''$2'''以降の変更です（最大'''$1'''件が表示）。",
-'rclistfrom'                        => '$1を始点にして新しい変更を表示する',
+'rcnotefrom'                        => "以下は、'''$2'''以降の更新です（最大'''$1'''件）。",
+'rclistfrom'                        => '$1以降の更新を表示する',
 'rcshowhideminor'                   => '細部の編集を$1',
 'rcshowhidebots'                    => 'ボットの編集を$1',
 'rcshowhideliu'                     => 'ログイン利用者の編集を$1',
@@ -3692,8 +3692,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'filepath'         => 'ファイルパス',
 'filepath-page'    => 'ファイル：',
 'filepath-submit'  => '取得',
-'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。
-画像は完全解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。
+'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。
 
 ファイル名は接頭辞「{{ns:file}}:」を付けずに入力してください。',
 

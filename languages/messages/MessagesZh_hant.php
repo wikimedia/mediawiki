@@ -1123,7 +1123,7 @@ $1",
 'searchresults'                    => '搜尋結果',
 'searchresults-title'              => '對"$1"的搜尋結果',
 'searchresulttext'                 => '有關搜索{{SITENAME}}的更多詳情,參見[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'                   => '查詢\'\'\'[[:$1]]\'\'\'（[[Special:Prefixindex/$1|所有以 "$1" 開頭的頁面]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|所有鏈接到 "$1" 的頁面]]）',
+'searchsubtitle'                   => '查詢\'\'\'[[:$1]]\'\'\'（[[Special:Prefixindex/$1|所有以 "$1" 開頭的頁面]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|所有連結到 "$1" 的頁面]]）',
 'searchsubtitleinvalid'            => '查詢"$1"',
 'toomanymatches'                   => '過多的匹配已回應，請嘗試一個不同的查詢',
 'titlematches'                     => '頁面題目相符',
@@ -1773,7 +1773,7 @@ $1',
 
 # Unused templates
 'unusedtemplates'     => '未使用的模板',
-'unusedtemplatestext' => '本頁面列出{{ns:template}}名字空間下所有未被其他頁面使用的頁面。請在刪除這些模板前檢查其他鏈入該模板的頁面。',
+'unusedtemplatestext' => '本頁面列出{{ns:template}}名字空間下所有未被其他頁面使用的頁面。請在刪除這些模板前檢查其他連入該模板的頁面。',
 'unusedtemplateswlh'  => '其他連結',
 
 # Random page
@@ -1813,10 +1813,10 @@ Template:消歧义
 Template:消除歧义
 Template:消歧義
 Template:消除歧義',
-'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
+'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的連結，但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
 
 'doubleredirects'            => '雙重重定向頁面',
-'doubleredirectstext'        => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。
+'doubleredirectstext'        => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的連結，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。
 <del>已劃去</del>的為已經解決之項目。',
 'double-redirect-fixed-move' => '[[$1]]已經完成移動，它現在重新定向到[[$2]]。',
 'double-redirect-fixer'      => '重新定向修正器',
@@ -1827,7 +1827,7 @@ Template:消除歧義',
 'brokenredirects-delete' => '刪除',
 
 'withoutinterwiki'         => '未有語言連結的頁面',
-'withoutinterwiki-summary' => '以下的頁面是未有語言鏈接到其它語言版本。',
+'withoutinterwiki-summary' => '以下的頁面是未有語言連結到其它語言版本。',
 'withoutinterwiki-legend'  => '前綴',
 'withoutinterwiki-submit'  => '顯示',
 
@@ -1866,7 +1866,7 @@ Template:消除歧義',
 'prefixindex'             => '所有頁面之前綴',
 'shortpages'              => '短頁面',
 'longpages'               => '長頁面',
-'deadendpages'            => '斷鏈頁面',
+'deadendpages'            => '斷連頁面',
 'deadendpagestext'        => '以下頁面沒有連結到{{SITENAME}}中的其它頁面。',
 'protectedpages'          => '已保護頁面',
 'protectedpages-indef'    => '只有無期之保護頁面',
@@ -1887,7 +1887,7 @@ Template:消除歧義',
 'move'                    => '移動',
 'movethispage'            => '移動本頁',
 'unusedimagestext'        => '下列檔案未有嵌入任何頁面但它仍然存在。
-請注意其它網站可能直接透過 URL 鏈接此檔案，所以這裡列出的圖片有可能依然被使用。',
+請注意其它網站可能直接透過 URL 連結此檔案，所以這裡列出的圖片有可能依然被使用。',
 'unusedcategoriestext'    => '雖然沒有被其它頁面或者分類所採用，但列表中的分類頁依然存在。',
 'notargettitle'           => '無目標',
 'notargettext'            => '您還沒有指定一個目標頁面或用戶以進行此項操作。',
@@ -2303,7 +2303,7 @@ $1',
 'whatlinkshere-page'       => '頁面:',
 'linkshere'                => '以下頁面連結到[[:$1]]：',
 'nolinkshere'              => '沒有頁面連結到[[:$1]]。',
-'nolinkshere-ns'           => '在所選的名字空間內沒有頁面鏈接到[[:$1]]。',
+'nolinkshere-ns'           => '在所選的名字空間內沒有頁面連結到[[:$1]]。',
 'isredirect'               => '重定向頁',
 'istemplate'               => '包含',
 'isimage'                  => '檔案連結',
@@ -2467,7 +2467,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'movepagetext-noredirectfixer' => "用下面的表單來重命名一個頁面，並將其修訂歷史同時移動到新頁面。
 老的頁面將成為新頁面的重定向頁。
 請檢查[[Special:DoubleRedirects|雙重重定向]]或[[Special:BrokenRedirects|損壞重定向]]連結。
-您應當負責確定所有連結依然會鏈到指定的頁面。
+您應當負責確定所有連結依然會連到指定的頁面。
 
 注意如果新頁面已經有內容的話，頁面將'''不會'''被移動，
 除非新頁面無內容或是重定向頁，而且沒有修訂歷史。
@@ -2758,7 +2758,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 # Spam protection
 'spamprotectiontitle' => '垃圾過濾器',
 'spamprotectiontext'  => '您要保存的文字被垃圾過濾器阻止。
-這可能是由於一個鏈往匹配黑名單的外部站點的鏈接引起的。',
+這可能是由於一個連往匹配黑名單的外部站點的連結引起的。',
 'spamprotectionmatch' => '觸發了我們的垃圾過濾器的文本如下：$1',
 'spambot_username'    => 'MediaWiki 廣告清除',
 'spam_reverting'      => '恢復到不包含連結至$1的最近修訂版本',
