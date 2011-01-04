@@ -35,6 +35,7 @@ class SpecialCategories extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->allowClickjacking();
 
 		$from = $wgRequest->getText( 'from', $par );
 

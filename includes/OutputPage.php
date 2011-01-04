@@ -48,6 +48,7 @@ class OutputPage {
 	var $mPageTitleActionText = '';
 	var $mParseWarnings = array();
 	var $mSquidMaxage = 0;
+	var $mPreventClickjacking = true;
 	var $mRevisionId = null;
 	protected $mTitle = null;
 
@@ -1443,6 +1444,41 @@ class OutputPage {
 	}
 
 	/**
+	 * Set a flag which will cause an X-Frame-Options header appropriate for 
+	 * edit pages to be sent. The header value is controlled by 
+	 * $wgEditPageFrameOptions.
+	 *
+	 * This is the default for special pages. If you display a CSRF-protected 
+	 * form on an ordinary view page, then you need to call this function.
+	 */
+	public function preventClickjacking( $enable = true ) {
+		$this->mPreventClickjacking = $enable;
+	}
+
+	/**
+	 * Turn off frame-breaking. Alias for $this->preventClickjacking(false).
+	 * This can be called from pages which do not contain any CSRF-protected
+	 * HTML form.
+	 */
+	public function allowClickjacking() {
+		$this->mPreventClickjacking = false;
+	}
+
+	/**
+	 * Get the X-Frame-Options header value (without the name part), or false 
+	 * if there isn't one. This is used by Skin to determine whether to enable 
+	 * JavaScript frame-breaking, for clients that don't support X-Frame-Options.
+	 */
+	public function getFrameOptions() {
+		global $wgBreakFrames, $wgEditPageFrameOptions;
+		if ( $wgBreakFrames ) {
+			return 'DENY';
+		} elseif ( $this->mPreventClickjacking && $wgEditPageFrameOptions ) {
+			return $wgEditPageFrameOptions;
+		}
+	}
+
+	/**
 	 * Send cache control HTTP headers
 	 */
 	public function sendCacheControl() {
@@ -1664,6 +1700,12 @@ class OutputPage {
 
 		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		$wgRequest->response()->header( 'Content-language: ' . $wgLanguageCode );
+
+		// Prevent framing, if requested
+		$frameOptions = $this->getFrameOptions();
+		if ( $frameOptions ) {
+			$wgRequest->response()->header( "X-Frame-Options: $frameOptions" );
+		}
 
 		if ( $this->mArticleBodyOnly ) {
 			$this->out( $this->mBodytext );

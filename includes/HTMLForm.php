@@ -342,6 +342,9 @@ class HTMLForm {
 	function displayForm( $submitResult ) {
 		global $wgOut;
 
+		# For good measure (it is the default)
+		$wgOut->preventClickjacking();
+
 		$html = ''
 			. $this->getErrors( $submitResult )
 			. $this->mHeader
