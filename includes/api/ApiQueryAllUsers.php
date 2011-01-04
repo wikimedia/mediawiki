@@ -201,6 +201,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			// Add user's group info
 			if ( $fld_groups && !is_null( $row->ug_group2 ) ) {
+				if ( !isset( $lastUserData['groups'] ) ) {
+					$lastUserData['groups'] = ApiQueryUsers::getAutoGroups( User::newFromName( $lastUser ) );
+				}
+
 				$lastUserData['groups'][] = $row->ug_group2;
 				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
 			}
