@@ -210,7 +210,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					$lastUserData['rights'] = User::getGroupPermissions( User::getImplicitGroups() );
 				}
 
-				$lastUserData['rights'] = array_merge( $lastUserData['rights'], User::getGroupPermissions( array( $row->ug_group2 ) ) );
+				$lastUserData['rights'] = array_unique( array_merge( $lastUserData['rights'],
+					User::getGroupPermissions( array( $row->ug_group2 ) ) ) );
 				$result->setIndexedTagName( $lastUserData['rights'], 'r' );
 			}
 		}
