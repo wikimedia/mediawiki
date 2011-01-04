@@ -44,8 +44,6 @@
 
 /* states and images */
 .ui-icon { width: 16px; height: 16px; /* @embed */ background-image: url(images/ui-icons_72a7cf_256x240.png); }
-.ui-widget-content .ui-icon { /* @embed */ background-image: url(images/ui-icons_72a7cf_256x240.png); }
-.ui-widget-header .ui-icon { /* @embed */ background-image: url(images/ui-icons_72a7cf_256x240.png); }
 .ui-state-default .ui-icon { /* @embed */ background-image: url(images/ui-icons_3d80b3_256x240.png); }
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon { /* @embed */ background-image: url(images/ui-icons_2694e8_256x240.png); }
 .ui-state-active .ui-icon { /* @embed */ background-image: url(images/ui-icons_666666_256x240.png); }
