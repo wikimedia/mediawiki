@@ -3697,10 +3697,7 @@ class Parser {
 			$showEditLink = $this->mOptions->getEditSection();
 		}
 		if ( $showEditLink ) {
-			$editLinkAsToken = $this->mOptions->getEditSectionTokens();
-			if ( $editLinkAsToken ) {
-				$this->mOutput->setEditSectionTokens( true );
-			}
+			$this->mOutput->setEditSectionTokens( true );
 		}
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
@@ -3955,38 +3952,27 @@ class Parser {
 
 			# give headline the correct <h#> tag
 			if ( $showEditLink && $sectionIndex !== false ) {
-				if ( $editLinkAsToken ) {
-					// Output edit section links as markers with styles that can be customized by skins
-					if ( $isTemplate ) {
-						# Put a T flag in the section identifier, to indicate to extractSections()
-						# that sections inside <includeonly> should be counted.
-						$editlinkArgs = array( $titleText, "T-$sectionIndex"/*, null */ );
-					} else {
-						$editlinkArgs = array( $this->mTitle->getPrefixedText(), $sectionIndex, $headlineHint );
-					}
-					// We use a bit of pesudo-xml for editsection markers. The language converter is run later on
-					// Using a UNIQ style marker leads to the converter screwing up the tokens when it converts stuff
-					// And trying to insert strip tags fails too. At this point all real inputted tags have already been escaped
-					// so we don't have to worry about a user trying to input one of these markers directly.
-					// We use a page and section attribute to stop the language converter from converting these important bits
-					// of data, but put the headline hint inside a content block because the language converter is supposed to
-					// be able to convert that piece of data.
-					$editlink = '<editsection page="' . htmlspecialchars($editlinkArgs[0]);
-					$editlink .= '" section="' . htmlspecialchars($editlinkArgs[1]) .'"';
-					if ( isset($editlinkArgs[2]) ) {
-						$editlink .= '>' . $editlinkArgs[2] . '</editsection>';
-					} else {
-						$editlink .= '/>';
-					}
+				// Output edit section links as markers with styles that can be customized by skins
+				if ( $isTemplate ) {
+					# Put a T flag in the section identifier, to indicate to extractSections()
+					# that sections inside <includeonly> should be counted.
+					$editlinkArgs = array( $titleText, "T-$sectionIndex"/*, null */ );
 				} else {
-					// Output edit section links directly as markup like we used to
-					if ( $isTemplate ) {
-						# Put a T flag in the section identifier, to indicate to extractSections()
-						# that sections inside <includeonly> should be counted.
-						$editlink = $sk->doEditSectionLink( Title::newFromText( $titleText ), "T-$sectionIndex", null, $this->mOptions->getUserLang() );
-					} else {
-						$editlink = $sk->doEditSectionLink( $this->mTitle, $sectionIndex, $headlineHint, $this->mOptions->getUserLang() );
-					}
+					$editlinkArgs = array( $this->mTitle->getPrefixedText(), $sectionIndex, $headlineHint );
+				}
+				// We use a bit of pesudo-xml for editsection markers. The language converter is run later on
+				// Using a UNIQ style marker leads to the converter screwing up the tokens when it converts stuff
+				// And trying to insert strip tags fails too. At this point all real inputted tags have already been escaped
+				// so we don't have to worry about a user trying to input one of these markers directly.
+				// We use a page and section attribute to stop the language converter from converting these important bits
+				// of data, but put the headline hint inside a content block because the language converter is supposed to
+				// be able to convert that piece of data.
+				$editlink = '<editsection page="' . htmlspecialchars($editlinkArgs[0]);
+				$editlink .= '" section="' . htmlspecialchars($editlinkArgs[1]) .'"';
+				if ( isset($editlinkArgs[2]) ) {
+					$editlink .= '>' . $editlinkArgs[2] . '</editsection>';
+				} else {
+					$editlink .= '/>';
 				}
 			} else {
 				$editlink = '';
