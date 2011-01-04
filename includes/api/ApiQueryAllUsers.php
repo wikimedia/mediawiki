@@ -160,6 +160,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				if ( is_array( $lastUserData ) ) {
 					$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 							null, $lastUserData );
+
+					$lastUserData = null;
+
 					if ( !$fit ) {
 						$this->setContinueEnumParameter( 'from',
 								$this->keyToTitle( $lastUserData['name'] ) );
