@@ -151,7 +151,7 @@ class ParserOutput extends CacheTime {
 		$args = array(
 			htmlspecialchars_decode($m[1]),
 			htmlspecialchars_decode($m[2]),
-			$m[4] ? $m[3] : null,
+			isset($m[4]) ? $m[3] : null,
 		);
 		$args[0] = Title::newFromText( $args[0] );
 		if ( !is_object($args[0]) ) {
