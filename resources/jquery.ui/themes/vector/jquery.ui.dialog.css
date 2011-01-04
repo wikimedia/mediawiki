@@ -27,7 +27,7 @@ body .ui-dialog .ui-widget-header {
 }
 /* FIXME: Should just update the icon sprite if we're keeping this X */
 body .ui-dialog .ui-icon-closethick {
-	background: url(images/close-x.png) no-repeat 50% 50% !important;
+	background: url(images/close.png) no-repeat 50% 50% !important;
 }
 body .ui-dialog .ui-dialog-buttonpane {
 	margin-top: 0 !important;
