@@ -229,6 +229,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 	/**
 	* Gets all the groups that a user is automatically a member of
+	* @param $user User
 	* @return array
 	*/
 	public static function getAutoGroups( $user ) {

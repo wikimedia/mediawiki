@@ -67,6 +67,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26541) Generator-ise ApiQueryRecentChanges
 * action=parse now correctly returns an error for nonexistent pages
 * (bug 25767) Add userrights properties to allusers and users query lists
+* (bug 26558) list=allusers auprop=groups does not list groups a user is automatically a member of
 
 === Languages updated in 1.18 ===
 
