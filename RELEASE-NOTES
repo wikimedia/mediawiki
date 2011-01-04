@@ -1,10 +1,10 @@
 = MediaWiki release notes =
 
-== MediaWiki 1.16.0 ==
+== MediaWiki 1.16.1 ==
 
-2010-07-28
+2011-01-04
 
-This is a stable release of the MediaWiki 1.16 branch.
+This is a security and maintenance release of the MediaWiki 1.16 branch.
 
 === Summary of selected changes in 1.16 ===
 
