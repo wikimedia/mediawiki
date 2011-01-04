@@ -23,10 +23,12 @@ body .ui-dialog .ui-dialog-titlebar {
 	padding: 0.9em 1.4em 0.6em !important;
 }
 body .ui-dialog .ui-widget-header {
+	/* @embed */
 	background: #f0f0f0 url(images/titlebar-fade.png) repeat-x scroll 50% 100% !important;
 }
 /* FIXME: Should just update the icon sprite if we're keeping this X */
 body .ui-dialog .ui-icon-closethick {
+	/* @embed */
 	background: url(images/close.png) no-repeat 50% 50% !important;
 }
 body .ui-dialog .ui-dialog-buttonpane {

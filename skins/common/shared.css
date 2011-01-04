@@ -581,6 +581,7 @@ td.mw-revdel-checkbox, th.mw-revdel-checkbox {
 
 /* feed links */
 a.feedlink {
+	/* @embed */
 	background: url("images/feed-icon.png") center left no-repeat;
 	padding-left: 16px;
 }
@@ -843,6 +844,7 @@ div.gallerytext {
 
 .mw-remove-category {
 	padding: 8px;
+	/* @embed */
 	background-image: url(images/remove.png);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -850,12 +852,14 @@ div.gallerytext {
 
 .mw-ajax-addcategory {
 	padding-left: 20px;
+	/* @embed */
 	background-image: url(images/add.png);
 	background-position: left center;
 	background-repeat: no-repeat;
 }
 
 .mw-ajax-loader {
+	/* @embed */
 	background-image: url(images/ajax-loader.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -867,6 +871,7 @@ div.gallerytext {
 .mw-small-spinner {
 	padding: 10px !important;
 	margin-right: 0.6em;
+	/* @embed */
 	background-image: url(images/spinner.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -905,6 +910,7 @@ ol:lang(bn) li {
 	padding-left: 15px;
 	margin-left: 2px;
 	margin-bottom: -8px;
+	/* @embed */
 	background-image: url('images/help-question.gif');
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -914,6 +920,7 @@ ol:lang(bn) li {
 	font-size: .8em;
 }
 .mw-help-field-hint:hover {
+	/* @embed */
 	background-image: url('images/help-question-hover.gif');
 }
 .mw-help-field-data {
@@ -925,5 +932,5 @@ ol:lang(bn) li {
 }
 .tipsy { padding: 5px 5px 10px; font-size: 12px; position: absolute; z-index: 100000; overflow: visible; }
 .tipsy-inner { padding: 5px 8px 4px 8px; background-color: #d6f3ff; color: black; border: 1px solid #5dc9f4; max-width: 300px; text-align: left; }
-.tipsy-arrow { position: absolute; background: url( 'images/tipsy-arrow.gif' ) no-repeat top left; width: 13px; height: 13px; }
+.tipsy-arrow { position: absolute; /* @embed */ background: url( 'images/tipsy-arrow.gif' ) no-repeat top left; width: 13px; height: 13px; }
 .tipsy-se .tipsy-arrow { bottom: -2px; right: 10px; background-position: 0% 100%; }
