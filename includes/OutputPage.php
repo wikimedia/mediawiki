@@ -957,6 +957,9 @@ class OutputPage {
 		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		$wgRequest->response()->header( 'Content-language: '.$wgContLanguageCode );
 
+		# To prevent clickjacking, do not allow this page to be inside a frame.
+		$wgRequest->response()->header( 'X-Frame-Options: DENY' );
+
 		if ($this->mArticleBodyOnly) {
 			$this->out($this->mBodytext);
 		} else {
