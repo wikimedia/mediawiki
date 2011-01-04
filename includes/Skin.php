@@ -1566,9 +1566,7 @@ class Skin extends Linker {
 		// Allow for site and per-namespace customization of copyright notice.
 		$forContent = true;
 
-		if ( isset( $wgArticle ) ) {
-			wfRunHooks( 'SkinCopyrightFooter', array( $wgArticle->getTitle(), $type, &$msg, &$link, &$forContent ) );
-		}
+		wfRunHooks( 'SkinCopyrightFooter', array( $this->mTitle, $type, &$msg, &$link, &$forContent ) );
 
 		if ( $forContent ) {
 			$out .= wfMsgForContent( $msg, $link );
