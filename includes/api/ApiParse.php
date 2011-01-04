@@ -176,6 +176,13 @@ class ApiParse extends ApiBase {
 		// Return result
 		$result = $this->getResult();
 		$result_array = array();
+
+		$result_array['title'] = $titleObj->getPrefixedText();
+
+		if ( !is_null( $oldid ) ) {
+			$result_array['revid'] = intval( $oldid );
+		}
+
 		if ( $params['redirects'] && !is_null( $redirValues ) ) {
 			$result_array['redirects'] = $redirValues;
 		}
@@ -252,10 +259,6 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['iwlinks'] ) ) {
 			$result_array['iwlinks'] = $this->formatIWLinks( $p_result->getInterwikiLinks() );
-		}
-
-		if ( !is_null( $oldid ) ) {
-			$result_array['revid'] = intval( $oldid );
 		}
 
 		$result_mapping = array(
