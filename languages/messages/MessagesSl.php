@@ -2824,8 +2824,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'math_unknown_function' => 'neznana funkcija',
 'math_lexing_error'     => 'slovarska napaka',
 'math_syntax_error'     => 'skladenjska napaka',
-'math_image_error'      => 'Pretvarjanje v PNG ni uspelo;
-preverite, ali so latex, dvips, gs, in convert pravilno nameščeni.',
+'math_image_error'      => 'Pretvarjanje v PNG ni uspelo; preverite, ali sta latex in dvips (ali dvips + gs + convert) pravilno nameščena.',
 'math_bad_tmpdir'       => 'Začasne mape za math ne morem ustvariti ali pisati vanjo.',
 'math_bad_output'       => 'Izhodne mape za math ne morem ustvariti ali pisati vanjo.',
 'math_notexvc'          => 'Manjka izvedbena datoteka texvc;

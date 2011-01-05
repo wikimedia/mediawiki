@@ -2846,8 +2846,8 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'math_unknown_function' => 'function incognite',
 'math_lexing_error'     => 'error lexic',
 'math_syntax_error'     => 'error de syntaxe',
-'math_image_error'      => "Le conversion in PNG ha fallite;
-verifica que le installation sia correcte del programmas ''latex, dvips, gs,'' e ''convert''.",
+'math_image_error'      => 'Le conversion in PNG ha fallite;
+verifica le installation del programmas \'\'latex" e "dvipng" (o "dvips" + "gs" + \'\'convert\'\').',
 'math_bad_tmpdir'       => 'Non pote scriber in o crear le directorio temporari "math".',
 'math_bad_output'       => 'Non pote scriber in o crear le directorio de output "math".',
 'math_notexvc'          => "Le executabile ''texvc'' manca;
