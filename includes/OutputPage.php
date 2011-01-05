@@ -1227,24 +1227,37 @@ class OutputPage {
 	 * @param $interface Boolean: use interface language ($wgLang instead of
 	 *                   $wgContLang) while parsing language sensitive magic
 	 *                   words like GRAMMAR and PLURAL
+	 * @param $language  Language object: target language object, will override
+	 *                   $interface
 	 * @return String: HTML
 	 */
-	public function parse( $text, $linestart = true, $interface = false ) {
+	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
 		global $wgParser;
+
 		if( is_null( $this->getTitle() ) ) {
 			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
 		}
+
 		$popts = $this->parserOptions();
 		if ( $interface ) {
 			$popts->setInterfaceMessage( true );
 		}
+		if ( $language !== null ) {
+			$oldLang = $popts->setTargetLanguage( $language );
+		}
+
 		$parserOutput = $wgParser->parse(
 			$text, $this->getTitle(), $popts,
 			$linestart, true, $this->mRevisionId
 		);
+
 		if ( $interface ) {
 			$popts->setInterfaceMessage( false );
 		}
+		if ( $language !== null ) {
+			$popts->setTargetLanguage( $oldLang );
+		}
+
 		return $parserOutput->getText();
 	}
 
