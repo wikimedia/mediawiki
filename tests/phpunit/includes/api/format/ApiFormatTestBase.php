@@ -11,9 +11,9 @@ abstract class ApiFormatTestBase extends ApiTestSetup {
 		$module = $data[3];
 		
 		$printer = $module->createPrinterByName( $format );
-		$printer->setUnescapeAmps(false);
+		$printer->setUnescapeAmps( false );
 
-		$printer->initPrinter(false);
+		$printer->initPrinter( false );
 
 		ob_start();
 		$printer->execute();
@@ -24,5 +24,8 @@ abstract class ApiFormatTestBase extends ApiTestSetup {
 		return $out;
 	}
 
+	function setupUser() {
+		/* Do not setup a user here */
+	}
 }
 
