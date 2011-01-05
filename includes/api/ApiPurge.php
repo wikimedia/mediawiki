@@ -49,6 +49,9 @@ class ApiPurge extends ApiBase {
 				!$this->getMain()->getRequest()->wasPosted() ) {
 			$this->dieUsageMsg( array( 'mustbeposted', $this->getModuleName() ) );
 		}
+
+		$forceLinkUpdate = $params['forcelinkupdate'];
+
 		$result = array();
 		foreach ( $params['titles'] as $t ) {
 			$r = array();
@@ -69,7 +72,7 @@ class ApiPurge extends ApiBase {
 			$article->doPurge(); // Directly purge and skip the UI part of purge().
 			$r['purged'] = '';
 			
-			if( $params['forcelinkupdate'] ) {
+			if( $forceLinkUpdate ) {
 				if ( !$wgUser->pingLimiter() ) {
 					global $wgParser, $wgEnableParserCache;
 					$popts = new ParserOptions();
@@ -85,6 +88,9 @@ class ApiPurge extends ApiBase {
 						$pcache = ParserCache::singleton();
 						$pcache->save( $p_result, $article, $popts );
 					}
+				} else {
+					$this->setWarning( $this->parseMsg( array( 'actionthrottledtext' ) ) );
+					$forceLinkUpdate = false;
 				}
 			}
 			
