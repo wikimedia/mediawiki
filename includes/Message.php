@@ -315,12 +315,8 @@ class Message {
 	 * @return Wikitext parsed into HTML
 	 */
 	protected function parseText( $string ) {
-		global $wgOut, $wgLang, $wgContLang;
-		if ( $this->language !== $wgLang && $this->language !== $wgContLang ) {
-			# FIXME: remove this limitation
-			throw new MWException( 'Can only parse in interface or content language' );
-		}
-		return $wgOut->parse( $string, /*linestart*/true, $this->interface );
+		global $wgOut;
+		return $wgOut->parse( $string, /*linestart*/true, $this->interface, $this->language );
 	}
 
 	/**

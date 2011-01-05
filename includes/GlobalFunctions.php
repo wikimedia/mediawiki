@@ -756,12 +756,15 @@ function wfMsgExt( $key, $options ) {
 	if( in_array( 'content', $options, true ) ) {
 		$forContent = true;
 		$langCode = true;
+		$langCodeObj = null;
 	} elseif( array_key_exists( 'language', $options ) ) {
 		$forContent = false;
 		$langCode = wfGetLangObj( $options['language'] );
+		$langCodeObj = $langCode;
 	} else {
 		$forContent = false;
 		$langCode = false;
+		$langCodeObj = null;
 	}
 
 	$string = wfMsgGetKey( $key, /*DB*/true, $langCode, /*Transform*/false );
@@ -771,9 +774,9 @@ function wfMsgExt( $key, $options ) {
 	}
 
 	if( in_array( 'parse', $options, true ) ) {
-		$string = $wgOut->parse( $string, true, !$forContent );
+		$string = $wgOut->parse( $string, true, !$forContent, $langCodeObj );
 	} elseif ( in_array( 'parseinline', $options, true ) ) {
-		$string = $wgOut->parse( $string, true, !$forContent );
+		$string = $wgOut->parse( $string, true, !$forContent, $langCodeObj );
 		$m = array();
 		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 			$string = $m[1];
@@ -782,8 +785,7 @@ function wfMsgExt( $key, $options ) {
 		global $wgMessageCache;
 		if ( isset( $wgMessageCache ) ) {
 			$string = $wgMessageCache->transform( $string,
-				!$forContent,
-				is_object( $langCode ) ? $langCode : null );
+				!$forContent, $langCodeObj );
 		}
 	}
 
