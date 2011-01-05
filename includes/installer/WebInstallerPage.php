@@ -596,16 +596,11 @@ class WebInstaller_Name extends WebInstallerPage {
 				'label' => 'config-admin-email',
 				'help' => $this->parent->getHelpBox( 'config-admin-email-help' )
 			) ) .
-			/**
-			 * Uncomment this feature once we've got some sort of API to mailman
-			 * to handle these subscriptions. Some dummy wrapper script on the
-			 * mailman box that shell's out to mailman/bin/add_members would do
-				$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( array(
 				'var' => '_Subscribe',
 				'label' => 'config-subscribe',
 				'help' => $this->parent->getHelpBox( 'config-subscribe-help' )
 			) ) .
-			 */
 			$this->getFieldSetEnd() .
 			$this->parent->getInfoBox( wfMsg( 'config-almost-done' ) ) .
 			$this->parent->getRadioSet( array(
@@ -708,6 +703,14 @@ class WebInstaller_Name extends WebInstallerPage {
 			$this->setVar( '_AdminPassword2', '' );
 			$retVal = false;
 		}
+
+		// Validate e-mail if provided
+		$email = $this->getVar( '_AdminEmail' );
+		if( $email && !User::isValidEmailAddr( $email ) ) {
+			$this->parent->showError( 'config-admin-error-bademail' );
+			$retVal = false;
+		}
+
 		return $retVal;
 	}
 
