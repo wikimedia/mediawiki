@@ -63,7 +63,8 @@ class ApiOpenSearch extends ApiBase {
 				$namespaces );
 			
 			// if the content language has variants, try to retrieve fallback results
-			if ( ( $fblimit = $limit - count( $srchres ) ) > 0 ) {
+			$fblimit = $limit - count( $srchres );
+			if ( $fblimit > 0 ) {
 				global $wgContLang;
 				$fbsearchs = $wgContLang->autoConvertToAllVariants( $search );
 				$fbsearchs = array_diff( array_unique( $fbsearchs ), ( array ) $search );
@@ -71,7 +72,8 @@ class ApiOpenSearch extends ApiBase {
 					$_srchres = PrefixSearch::titleSearch( $fbsearch, $fblimit,
 						$namespaces );
 					$srchres = array_merge( $srchres, $_srchres );
-					if ( ( $fblimit -= - count( $_srchres ) ) == 0 ) {
+					$fblimit -= - count( $_srchres );
+					if ( $fblimit == 0 ) {
 						break;
 					}
 				}
