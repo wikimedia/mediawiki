@@ -176,7 +176,7 @@ class SpecialPage {
 		'ComparePages'              => 'SpecialComparePages',
 		'Export'                    => 'SpecialExport',
 		'Import'                    => 'SpecialImport',
-		'Undelete'                  => 'UndeleteForm',
+		'Undelete'                  => 'SpecialUndelete',
 		'Whatlinkshere'             => 'SpecialWhatlinkshere',
 		'MergeHistory'              => 'SpecialMergeHistory',
 

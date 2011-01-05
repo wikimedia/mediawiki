@@ -561,7 +561,7 @@ class PageArchive {
  *
  * @ingroup SpecialPage
  */
-class UndeleteForm extends SpecialPage {
+class SpecialUndelete extends SpecialPage {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mTargetObj;
 	var $mTargetTimestamp, $mAllowed, $mCanView, $mComment, $mToken, $mRequest;
 
