@@ -980,7 +980,7 @@ class LanguageConverter {
 
 	/**
 	 * Armour rendered math against conversion.
-	 * Wrap math into rawoutput -{R| math }- syntax.
+	 * Escape special chars in parsed math text.(in most cases are img elements)
 	 */
 	public function armourMath( $text ) {
 		// convert '-{' and '}-' to '-&#123;' and '&#125;-' to prevent
