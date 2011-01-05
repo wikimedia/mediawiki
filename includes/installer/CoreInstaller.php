@@ -179,12 +179,25 @@ abstract class CoreInstaller extends Installer {
 	);
 
 	/**
+	 * URL to mediawiki-announce subscription
+	 */
+	protected $mediaWikiAnnounceUrl = 'https://lists.wikimedia.org/mailman/subscribe/mediawiki-announce';
+
+	/**
+	 * Supported language codes for Mailman
+	 */
+	protected $mediaWikiAnnounceLanguages = array(
+		'ca', 'cs', 'da', 'de', 'en', 'es', 'et', 'eu', 'fi', 'fr', 'hr', 'hu',
+		'it', 'ja', 'ko', 'lt', 'nl', 'no', 'pl', 'pt', 'pt-br', 'ro', 'ru',
+		'sl', 'sr', 'sv', 'tr', 'uk'
+	);
+
+	/**
 	 * TODO: document
 	 *
 	 * @param $status Status
 	 */
 	public abstract function showStatusMessage( Status $status );
-
 
 	/**
 	 * Constructor, always call this from child classes.
@@ -480,10 +493,39 @@ abstract class CoreInstaller extends Installer {
 
 			$user->addGroup( 'sysop' );
 			$user->addGroup( 'bureaucrat' );
+			if( $this->getVar( '_AdminEmail' ) ) {
+				$user->setEmail( $this->getVar( '_AdminEmail' ) );
+			}
 			$user->saveSettings();
 		}
+		$status = Status::newGood();
 
-		return Status::newGood();
+		if( $this->getVar( '_Subscribe' ) && $this->getVar( '_AdminEmail' ) ) {
+			$this->subscribeToMediaWikiAnnounce( $status );
+		}
+
+		return $status;
+	}
+
+	private function subscribeToMediaWikiAnnounce( Status $s ) {
+		$params = array( 
+			'email'    => $this->getVar( '_AdminEmail' ),
+			'language' => 'en',
+			'digest'   => 0
+		);
+
+		// Mailman doesn't support as many languages as we do, so check to make
+		// sure their selected language is available
+		$myLang = $this->getVar( '_UserLang' );
+		if( in_array( $myLang, $this->mediaWikiAnnounceLanguages ) ) {
+			$myLang = $myLang == 'pt-br' ? 'pt_BR' : $myLang; // rewrite to Mailman's pt_BR
+			$params['language'] = $myLang;
+		}
+
+		$res = Http::post( $this->mediaWikiAnnounceUrl, array( 'postData' => $params ) );
+		if( !$res ) {
+			$s->warning( 'config-install-subscribe-fail' );
+		}
 	}
 
 	/**
