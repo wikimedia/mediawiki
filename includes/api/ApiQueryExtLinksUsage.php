@@ -50,24 +50,15 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->run( $resultPageSet );
 	}
 
+	/**
+	 * @para $resultPageSet ApiPageSet
+	 * @return void
+	 */
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
-		$protocol = $params['protocol'];
 		$query = $params['query'];
-
-		// Find the right prefix
-		global $wgUrlProtocols;
-		if ( $protocol && !in_array( $protocol, $wgUrlProtocols ) ) {
-			foreach ( $wgUrlProtocols as $p ) {
-				if ( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
-					$protocol = $p;
-					break;
-				}
-			}
-		} else {
-			$protocol = null;
-		}
+		$protocol = self::getProtocolPrefix( $params['protocol'] );
 
 		$db = $this->getDB();
 		$this->addTables( array( 'page', 'externallinks' ) );	// must be in this order for 'USE INDEX'
@@ -193,6 +184,23 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
 		}
 	    return $protocols;
+	}
+
+	public static function getProtocolPrefix( $protocol ) {
+		// Find the right prefix
+		global $wgUrlProtocols;
+		if ( $protocol && !in_array( $protocol, $wgUrlProtocols ) ) {
+			foreach ( $wgUrlProtocols as $p ) {
+				if ( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
+					$protocol = $p;
+					break;
+				}
+			}
+
+			return $protocol;
+		} else {
+			return null;
+		}
 	}
 
 	public function getParamDescription() {

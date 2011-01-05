@@ -77,6 +77,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26460) Add support for listing category members by category pageid
 * (bug 26482) add a imimages param to prop=images
 * (bug 26498) allow LinksUpdate with API
+* (bug 26485) add a elextlinks param to prop=extlinks
 
 === Languages updated in 1.18 ===
 
