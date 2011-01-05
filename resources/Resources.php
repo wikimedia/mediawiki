@@ -47,8 +47,12 @@ return array(
 	'jquery.collapsibleTabs' => array(
 		'scripts' => 'resources/jquery/jquery.collapsibleTabs.js'
 	),
+	'jquery.colorUtil' => array(
+		'scripts' => 'resources/jquery/jquery.colorUtil.js'
+	),
 	'jquery.color' => array(
-		'scripts' => 'resources/jquery/jquery.color.js'
+		'scripts' => 'resources/jquery/jquery.color.js',
+		'dependencies' => 'jquery.colorUtil'
 	),
 	'jquery.cookie' => array(
 		'scripts' => 'resources/jquery/jquery.cookie.js'
