@@ -46,6 +46,11 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		}
 
 		$params = $this->extractRequestParams();
+		$db = $this->getDB();
+
+		$query = $params['query'];
+		$protocol = ApiQueryExtLinksUsage::getProtocolPrefix( $params['protocol'] );
+
 		$this->addFields( array(
 			'el_from',
 			'el_to'
@@ -53,6 +58,23 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+
+		//TODO: Refactor out,duplicated from ApiQueryExtLinksUsage
+		if ( !is_null( $query ) || $query != '' ) {
+			if ( is_null( $protocol ) ) {
+				$protocol = 'http://';
+			}
+
+			$likeQuery = LinkFilter::makeLikeArray( $query, $protocol );
+			if ( !$likeQuery ) {
+				$this->dieUsage( 'Invalid query', 'bad_query' );
+			}
+
+			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
+			$this->addWhere( 'el_index ' . $db->buildLike( $likeQuery ) );
+		} elseif ( !is_null( $protocol ) ) {
+			$this->addWhere( 'el_index ' . $db->buildLike( "$protocol", $db->anyString() ) );
+		}
 
 		// Don't order by el_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
@@ -98,18 +120,35 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'offset' => null,
+			'protocol' => array(
+				ApiBase::PARAM_TYPE => ApiQueryExtLinksUsage::prepareProtocols(),
+				ApiBase::PARAM_DFLT => '',
+			),
+			'query' => null,
 		);
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'limit' => 'How many links to return',
 			'offset' => 'When more results are available, use this to continue',
+			'protocol' => array(
+				"Protocol of the url. If empty and {$p}query set, the protocol is http.",
+				"Leave both this and {$p}query empty to list all external links"
+			),
+			'query' => 'Search string without protocol. Useful for checking whether a certain page contains a certain external url',
 		);
 	}
 
 	public function getDescription() {
 		return 'Returns all external urls (not interwikies) from the given page(s)';
+	}
+
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'bad_query', 'info' => 'Invalid query' ),
+		) );
 	}
 
 	protected function getExamples() {
