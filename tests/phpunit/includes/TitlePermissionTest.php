@@ -338,8 +338,6 @@ class TitlePermissionTest extends MediaWikiTestCase {
 		
 		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'ns-specialprotected' ) ),
 							 $this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
-		$this->assertEquals( array( array( 'badaccess-groups', "*, [[$prefix:Administrators|Administrators]]", 2 ) ),
-							 $this->title->getUserPermissionsErrors( 'createaccount', $this->user ) );
 		$this->assertEquals( array( array( 'badaccess-group0' ) ),
 							 $this->title->getUserPermissionsErrors( 'execute', $this->user ) );
 
