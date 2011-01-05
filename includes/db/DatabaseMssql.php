@@ -1040,6 +1040,14 @@ class DatabaseMssql extends DatabaseBase {
 		return "SearchMssql";
 	}
 
+	/**
+	 * Since MSSQL doesn't recognize the infinity keyword, set date manually.
+	 * @todo Remove magic date
+	 */
+	public function getInfinity() {
+		return '3000-01-31 00:00:00.000';
+	}
+
 } // end DatabaseMssql class
 
 /**

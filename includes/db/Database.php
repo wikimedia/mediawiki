@@ -2664,6 +2664,17 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Find out when 'infinity' is. Most DBMSes support this. This is a special
+	 * keyword for timestamps in PostgreSQL, and works with CHAR(14) as well
+	 * because "i" sorts after all numbers.
+	 *
+	 * @return String
+	 */
+	public function getInfinity() {
+		return 'infinity';
+	}
+
+	/**
 	 * Allow or deny "big selects" for this session only. This is done by setting
 	 * the sql_big_selects session variable.
 	 *
