@@ -4097,9 +4097,9 @@ class Parser {
 		# whatever crap the system uses, localised or not, so we cannot
 		# ship premade translations.
 		$key = 'timezone-' . strtolower( trim( $tzMsg ) );
-		$value = wfMsgForContent( $key );
-		if ( !wfEmptyMsg( $key, $value ) ) {
-			$tzMsg = $value;
+		$msg = wfMessage( $key )->inContentLanguage();
+		if ( $msg->exists() ) {
+			$tzMsg = $msg->text();
 		}
 
 		date_default_timezone_set( $oldtz );
