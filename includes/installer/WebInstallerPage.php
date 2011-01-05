@@ -344,11 +344,15 @@ class WebInstaller_Welcome extends WebInstallerPage {
 		}
 		$this->parent->output->addWikiText( wfMsgNoTrans( 'config-welcome' ) );
 		$status = $this->parent->doEnvironmentChecks();
-		if ( $status ) {
+		if ( $status->isGood() ) {
+			$this->parent->output->addHTML( '<span class="success-message">' .
+				wfMsgHtml( 'config-env-good' ) . '</span>' );
 			$this->parent->output->addWikiText( wfMsgNoTrans( 'config-copyright',
 				SpecialVersion::getCopyrightAndAuthorList() ) );
 			$this->startForm();
 			$this->endForm();
+		} else {
+			$this->parent->showStatusMessage( $status );
 		}
 	}
 

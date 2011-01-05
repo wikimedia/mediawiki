@@ -139,7 +139,7 @@ abstract class Installer {
 	 * Under the web subclass, it can already be assumed that PHP 5+ is in use
 	 * and that sessions are working.
 	 *
-	 * @return boolean
+	 * @return Status
 	 */
 	public function doEnvironmentChecks() {
 		$good = true;
@@ -153,13 +153,7 @@ abstract class Installer {
 
 		$this->setVar( '_Environment', $good );
 
-		if ( $good ) {
-			$this->showMessage( 'config-env-good' );
-		} else {
-			$this->showMessage( 'config-env-bad' );
-		}
-
-		return $good;
+		return $good ? Status::newGood() : Status::newFatal( 'config-env-bad' );
 	}
 
 	/**
