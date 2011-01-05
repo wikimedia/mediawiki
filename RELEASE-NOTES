@@ -73,6 +73,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 25135) add "normalized" to action=parse
 * (bug 26460) Add support for listing category members by category pageid
 * (bug 26482) add a imimages param to prop=images
+* (bug 26498) allow LinksUpdate with API
 
 === Languages updated in 1.18 ===
 
