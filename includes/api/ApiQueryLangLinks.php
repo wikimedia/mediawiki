@@ -46,6 +46,11 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		}
 
 		$params = $this->extractRequestParams();
+
+		if ( isset( $params['title'] ) && !isset( $params['lang'] ) ) {
+			$this->dieUsageMsg( array( 'missingparam', 'lang' ) );
+		}
+
 		$this->addFields( array(
 			'll_from',
 			'll_lang',
@@ -69,12 +74,23 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			);
 		}
 
-		// Don't order by ll_from if it's constant in the WHERE clause
-		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-			$this->addOption( 'ORDER BY', 'll_lang' );
+	    if ( isset( $params['lang'] ) ) {
+			$this->addWhereFld( 'll_lang', $params['lang'] );
+			if ( isset( $params['title'] ) ) {
+				$this->addWhereFld( 'll_title', $params['title'] );
+				$this->addOption( 'ORDER BY', 'll_from' );
+			} else {
+				$this->addOption( 'ORDER BY', 'll_title, ll_from' );
+			}
 		} else {
-			$this->addOption( 'ORDER BY', 'll_from, ll_lang' );
+			// Don't order by ll_from if it's constant in the WHERE clause
+			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
+				$this->addOption( 'ORDER BY', 'll_lang' );
+			} else {
+				$this->addOption( 'ORDER BY', 'll_from, ll_lang' );
+			}
 		}
+
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
 
@@ -117,6 +133,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			),
 			'continue' => null,
 			'url' => false,
+			'lang' => null,
+			'title' => null,
 		);
 	}
 
@@ -125,6 +143,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'limit' => 'How many langlinks to return',
 			'continue' => 'When more results are available, use this to continue',
 			'url' => 'Whether to get the full URL',
+			'lang' => 'Language code',
+			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
 		);
 	}
 
@@ -134,6 +154,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
+			array( 'missingparam', 'lang' ),
 			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}

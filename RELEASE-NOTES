@@ -79,6 +79,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26498) allow LinksUpdate with API
 * (bug 26485) add a elextlinks param to prop=extlinks
 * (bug 26483) add a iwtitles param to prop=iwlinks
+* (bug 26484) add a lltitles param to prop=langlinks
 
 === Languages updated in 1.18 ===
 
