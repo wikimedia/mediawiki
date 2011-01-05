@@ -60,6 +60,10 @@ class ApiQueryPageProps extends ApiQueryBase {
 			$this->addWhere( 'pp_page >=' . intval( $this->params['continue'] ) );
 		}
 
+		if ( $this->params['prop'] ) {
+			$this->addWhereFld( 'pp_propname', $this->params['prop'] );
+		}
+
 		# Force a sort order to ensure that properties are grouped by page
 		$this->addOption( 'ORDER BY', 'pp_page' );
 
@@ -121,11 +125,17 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array( 'continue' => null );
+		return array(
+			'continue' => null,
+			'prop' => null,
+		);
 	}
 
 	public function getParamDescription() {
-		return array( 'continue' => 'When more results are available, use this to continue' );
+		return array(
+			'continue' => 'When more results are available, use this to continue',
+			'prop' => 'Page prop to look on the page for. Useful for checking whether a certain page uses a certain page prop.'
+		);
 	}
 
 	public function getDescription() {

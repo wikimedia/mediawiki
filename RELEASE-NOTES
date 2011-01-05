@@ -80,6 +80,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26485) add a elextlinks param to prop=extlinks
 * (bug 26483) add a iwtitles param to prop=iwlinks
 * (bug 26484) add a lltitles param to prop=langlinks
+* (bug 26480) add a pppageprops param to prop=pageprops
 
 === Languages updated in 1.18 ===
 
