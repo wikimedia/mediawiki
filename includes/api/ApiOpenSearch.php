@@ -72,7 +72,7 @@ class ApiOpenSearch extends ApiBase {
 					$_srchres = PrefixSearch::titleSearch( $fbsearch, $fblimit,
 						$namespaces );
 					$srchres = array_merge( $srchres, $_srchres );
-					$fblimit -= - count( $_srchres );
+					$fblimit -= count( $_srchres );
 					if ( $fblimit == 0 ) {
 						break;
 					}
