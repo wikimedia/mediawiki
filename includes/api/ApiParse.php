@@ -65,7 +65,7 @@ class ApiParse extends ApiBase {
 
 		// The parser needs $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
-		global $wgParser, $wgUser, $wgTitle, $wgEnableParserCache, $wgLang;
+		global $wgParser, $wgUser, $wgTitle, $wgLang;
 
 		// Currently unnecessary, code to act as a safeguard against any change in current behaviour of uselang breaks
 		$oldLang = null;
