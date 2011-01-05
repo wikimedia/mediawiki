@@ -2198,7 +2198,7 @@ $1',
 'enotif_lastvisited'           => 'См. $1 для просмотра всех изменений, произошедших с вашего последнего посещения.',
 'enotif_lastdiff'              => 'См. $1 для ознакомления с изменением.',
 'enotif_anon_editor'           => 'анонимный участник $1',
-'enotif_body'                  => 'Уважаесый(ая) $WATCHINGUSERNAME,
+'enotif_body'                  => 'Уважаемый(ая) $WATCHINGUSERNAME,
 
 $PAGEEDITDATE страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR, см. $PAGETITLE_URL для просмотра текущей версии.
 
@@ -2909,7 +2909,7 @@ The wiki server can't provide data in a format your client can read.",
 'math_unknown_function' => 'неизвестная функция',
 'math_lexing_error'     => 'лексическая ошибка',
 'math_syntax_error'     => 'синтаксическая ошибка',
-'math_image_error'      => 'Преобразование в PNG прошло с ошибкой; проверьте правильность установки latex, dvips, gs и convert',
+'math_image_error'      => 'Преобразование в PNG прошло с ошибкой — проверьте правильность установки latex и dvips (или dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Не удаётся создать или записать во временный каталог математики',
 'math_bad_output'       => 'Не удаётся создать или записать в выходной каталог математики',
 'math_notexvc'          => 'Выполняемый файл texvc не найден; См. math/README — справку по настройке.',

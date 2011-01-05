@@ -2878,7 +2878,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'math_unknown_function' => 'fungsi yang tidak diketahui',
 'math_lexing_error'     => 'kesalahan lexing',
 'math_syntax_error'     => 'kesalahan sintaks',
-'math_image_error'      => 'Konversi PNG gagal; periksa apakah latex, dvips, gs, dan convert terinstal dengan benar',
+'math_image_error'      => 'Konversi PNG gagal; periksa apakah latex dan dvips (atau dvips + gs + convert) terinstal dengan benar',
 'math_bad_tmpdir'       => 'Tidak dapat menulisi atau membuat direktori sementara math',
 'math_bad_output'       => 'Tidak dapat menulisi atau membuat direktori keluaran math',
 'math_notexvc'          => 'Executable texvc hilang; silakan lihat math/README untuk cara konfigurasi.',
