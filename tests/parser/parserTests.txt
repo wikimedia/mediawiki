@@ -595,6 +595,25 @@ Definition lists: self-closed tag
 
 !! end
 
+!! test
+Bug 11748: Literal closing tags
+!! options
+disabled
+!! input
+<dl>
+<dt>test 1</dt>
+<dd>test test test test test</dd>
+<dt>test 2</dt>
+<dd>test test test test test</dd>
+</dl>
+!! result
+<dl>
+<dt>test 1</dt>
+<dd>test test test test test</dd>
+<dt>test 2</dt>
+<dd>test test test test test</dd>
+</dl>
+!! end
 
 ###
 ### External links
