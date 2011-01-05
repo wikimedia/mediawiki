@@ -3344,8 +3344,10 @@ $wgGroupsRemoveFromSelf = array();
  * Set of available actions that can be restricted via action=protect
  * You probably shouldn't change this.
  * Translated through restriction-* messages.
+ * Title::getRestrictionTypes() will remove restrictions that are not 
+ * applicable to a specific title (upload currently)
  */
-$wgRestrictionTypes = array( 'edit', 'move' );
+$wgRestrictionTypes = array( 'edit', 'move', 'upload' );
 
 /**
  * Rights which can be required for each protection level (via action=protect)

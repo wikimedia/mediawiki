@@ -504,7 +504,7 @@ class Skin extends Linker {
 			'wgCategories' => $wgOut->getCategories(),
 			'wgBreakFrames' => $wgOut->getFrameOptions() == 'DENY',
 		);
-		foreach ( $wgRestrictionTypes as $type ) {
+		foreach ( $wgTitle->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
 		}
 		if ( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {

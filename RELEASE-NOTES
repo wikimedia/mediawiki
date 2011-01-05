@@ -56,6 +56,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   link has a % sign in it.
 * (bug 26412) Search results headers no longer show a bogus edit link.
 * (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
+* (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected 
+  pages to be queried via the API and Special:ProtectedPages, and allowing 
+  disabling upload protection by removing it from $wgRestrictionTypes.
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
