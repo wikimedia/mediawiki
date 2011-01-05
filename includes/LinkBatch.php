@@ -32,6 +32,10 @@ class LinkBatch {
 		$this->caller = $caller;
 	}
 
+	/**
+	 * @param  $title Title
+	 * @return void
+	 */
 	public function addObj( $title ) {
 		if ( is_object( $title ) ) {
 			$this->add( $title->getNamespace(), $title->getDBkey() );

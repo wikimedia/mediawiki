@@ -84,6 +84,19 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
+		if ( !is_null( $params['images'] ) ) {
+			$images = array();
+			foreach ( $params['images'] as $img ) {
+				$title = Title::newFromText( $img );
+				if ( !$title || $title->getNamespace() != NS_FILE ) {
+					$this->setWarning( "``$img'' is not a file" );
+				} else {
+					$images[] = $title->getDBkey();
+				}
+			}
+			$this->addWhereFld( 'il_to', $images );
+		}
+
 		$res = $this->select( __METHOD__ );
 
 		if ( is_null( $resultPageSet ) ) {
@@ -136,6 +149,9 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'continue' => null,
+			'images' => array(
+				ApiBase::PARAM_ISMULTI => true,
+			)
 		);
 	}
 
@@ -143,6 +159,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		return array(
 			'limit' => 'How many images to return',
 			'continue' => 'When more results are available, use this to continue',
+			'images' => 'Only list these images. Useful for checking whether a certain page has a certain Image.',
 		);
 	}
 
