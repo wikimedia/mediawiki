@@ -4119,7 +4119,7 @@ class Title {
 		
 		$types = $this->exists() ? $wgRestrictionTypes : array( 'create' );
 
-		if ( $this->getNamespace() != NS_FILE && in_array( 'upload', $types ) ) {
+		if ( $this->getNamespace() != NS_FILE ) {
 			$types = array_diff( $types, array( 'upload' ) );
 		}
 		
