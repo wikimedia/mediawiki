@@ -26,7 +26,7 @@ class NewParserTest extends MediaWikiTestCase {
 	//PHPUnit + MediaWikiTestCase functions
 	
 	function setUp() {
-		global $wgContLang, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgNamespaceProtection, $wgNamespaceAliases, $IP;
+		global $wgContLang, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgNamespaceProtection, $wgNamespaceAliases, $IP, $messageMemc;
 		$wgContLang = Language::factory( 'en' );
 		
 		//Setup CLI arguments
