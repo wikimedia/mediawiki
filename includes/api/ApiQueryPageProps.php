@@ -43,14 +43,14 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$this->params = $this->extractRequestParams();
-
 		# Only operate on existing pages
 		$pages = $this->getPageSet()->getGoodTitles();
 		if ( !count( $pages ) ) {
 			# Nothing to do
 			return;
 		}
+
+		$this->params = $this->extractRequestParams();
 
 		$this->addTables( 'page_props' );
 		$this->addFields( array( 'pp_page', 'pp_propname', 'pp_value' ) );
@@ -125,17 +125,11 @@ class ApiQueryPageProps extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
-		return  array( 'continue' => 'When more results are available, use this to continue' );
+		return array( 'continue' => 'When more results are available, use this to continue' );
 	}
 
 	public function getDescription() {
 		return 'Get various properties defined in the page content';
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
-		) );
 	}
 
 	protected function getExamples() {
