@@ -154,12 +154,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgUrlProtocols;
-		$protocols = array( '' );
-		foreach ( $wgUrlProtocols as $p ) {
-			$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
-		}
-
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -174,7 +168,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'protocol' => array(
-				ApiBase::PARAM_TYPE => $protocols,
+				ApiBase::PARAM_TYPE => self::prepareProtocols(),
 				ApiBase::PARAM_DFLT => '',
 			),
 			'query' => null,
@@ -190,6 +184,15 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			)
 		);
+	}
+
+	public static function prepareProtocols() {
+		global $wgUrlProtocols;
+		$protocols = array( '' );
+		foreach ( $wgUrlProtocols as $p ) {
+			$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
+		}
+	    return $protocols;
 	}
 
 	public function getParamDescription() {
