@@ -61,6 +61,21 @@ class ApiOpenSearch extends ApiBase {
 
 			$srchres = PrefixSearch::titleSearch( $search, $limit,
 				$namespaces );
+			
+			// if the content language has variants, try to retrieve fallback results
+			if ( ( $fblimit = $limit - count( $srchres ) ) > 0 ) {
+				global $wgContLang;
+				$fbsearchs = $wgContLang->autoConvertToAllVariants( $search );
+				$fbsearchs = array_diff( array_unique( $fbsearchs ), ( array ) $search );
+				foreach ( $fbsearchs as $fbsearch ) {
+					$_srchres = PrefixSearch::titleSearch( $fbsearch, $fblimit,
+						$namespaces );
+					$srchres = array_merge( $srchres, $_srchres );
+					if ( ( $fblimit -= - count( $_srchres ) ) == 0 ) {
+						break;
+					}
+				}
+			}
 		}
 		// Set top level elements
 		$result = $this->getResult();
