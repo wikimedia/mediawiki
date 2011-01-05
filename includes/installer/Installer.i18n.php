@@ -79,8 +79,8 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 * [http://www.mediawiki.org/wiki/Help:Contents User's Guide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administrator's Guide]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]",
-	'config-env-good'                 => '<span class="success-message">The environment has been checked.
-You can install MediaWiki.</span>', // FIXME: take span out of message.
+	'config-env-good'                 => 'The environment has been checked.
+You can install MediaWiki.',
 	'config-env-bad'                  => 'The environment has been checked.
 You cannot install MediaWiki.',
 	'config-unicode-using-utf8'       => 'Using Brion Vibber\'s utf8_normalize.so for Unicode normalization.',
@@ -670,10 +670,10 @@ Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geld
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:Contents Administrateurshandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:FAQ Algemene vrae] (Engelstalig)',
-	'config-env-good' => '<span class="success-message">Die omgewing is gekontroleer.
-U kan MediaWiki installeer.</span>',
+	'config-env-good' => 'Die omgewing is gekontroleer.
+U kan MediaWiki installeer.',
 	'config-env-bad' => 'Die omgewing is gekontroleer.
-U kan nie MediaWiki installeer nie.</span>',
+U kan nie MediaWiki installeer nie.',
 	'config-no-db' => "Kon nie 'n geskikte databasisdrywer vind nie!",
 	'config-memory-raised' => 'PHP se <code>memory_limit</code> is $1, en is verhoog tot $2.',
 	'config-memory-bad' => "'''Waarskuwing:''' PHP se <code>memory_limit</code> is $1.
@@ -887,8 +887,8 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 * [http://www.mediawiki.org/wiki/Help:Contents Дапамога карыстальнікам]
 * [http://www.mediawiki.org/wiki/Manual:Contents Дапамога адміністратарам]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">Асяродзьдзе было праверанае.
-Вы можаце ўсталёўваць MediaWiki.</span>',
+	'config-env-good' => 'Асяродзьдзе было праверанае.
+Вы можаце ўсталёўваць MediaWiki.',
 	'config-env-bad' => 'Асяродзьдзе было праверанае.
 Усталяваньне MediaWiki немагчымае.',
 	'config-unicode-using-utf8' => 'Выкарыстоўваецца бібліятэка Unicode-нармалізацыі Браяна Вібэра',
@@ -1349,8 +1349,8 @@ $1
 * [http://www.mediawiki.org/wiki/Help:Contents Наръчник на потребителя]
 * [http://www.mediawiki.org/wiki/Manual:Contents Наръчник на администратора]
 * [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ]',
-	'config-env-good' => '<span class="success-message">Средата беше проверена.
-Инсталирането на МедияУики е възможно.</span>',
+	'config-env-good' => 'Средата беше проверена.
+Инсталирането на МедияУики е възможно.',
 	'config-env-bad' => 'Средата беше проверена.
 Не е възможна инсталация на МедияУики.',
 	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за Unicode-нормализация.',
@@ -1748,8 +1748,8 @@ Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> pos
 * [http://www.mediawiki.org/wiki/Help:Contents Vodič za korisnike]
 * [http://www.mediawiki.org/wiki/Manual:Contents Vodič za administratore]
 * [http://www.mediawiki.org/wiki/Manual:FAQ NPP]',
-	'config-env-good' => '<span class="success-message">Okruženje je provjereno.
-Možete instalirati MediaWiki.</span>',
+	'config-env-good' => 'Okruženje je provjereno.
+Možete instalirati MediaWiki.',
 	'config-no-db' => 'Nije mogao biti pronađen podgodan drajver za bazu podataka!',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je instaliran',
 	'config-apc' => '[http://www.php.net/apc APC] je instaliran',
@@ -1861,8 +1861,8 @@ Eine <doclink href=Copying>Kopie der GNU General Public License</doclink> sollte
 * [http://www.mediawiki.org/wiki/Help:Contents Nutzeranleitung]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorenanleitung]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Häufig gestellte Fragen]',
-	'config-env-good' => '<span class="success-message">Die Installationsumgebung wurde geprüft.
-MediaWiki kann installiert werden.</span>',
+	'config-env-good' => 'Die Installationsumgebung wurde geprüft.
+MediaWiki kann installiert werden.',
 	'config-env-bad' => 'Die Installationsumgebung wurde geprüft.
 MediaWiki kann nicht installiert werden.',
 	'config-unicode-using-utf8' => 'Zur Unicode-Normalisierung wird Brion Vibbers <code>utf8_normalize.so</code> eingesetzt.',
@@ -2340,8 +2340,8 @@ En conjunto con este programa debe haber recibido <doclink href=Copying>una copi
 * [http://www.mediawiki.org/wiki/Help:Contents Guía del usuario]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guía del administrador]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes]',
-	'config-env-good' => '<span class="success-message">El entorno ha sido comprobado.
-Puedes instalar MediaWiki.</span>',
+	'config-env-good' => 'El entorno ha sido comprobado.
+Puedes instalar MediaWiki.',
 	'config-env-bad' => 'El entorno ha sido comprobado.
 No puedes instalar MediaWiki.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.',
@@ -2734,8 +2734,8 @@ Sinun pitäisi antaa näiden tarkistusten tulokset, jos tarvitset apua asennukse
 * [http://www.mediawiki.org/wiki/Help:Contents Käyttöopas]
 * [http://www.mediawiki.org/wiki/Manual:Contents Hallintaopas]
 * [http://www.mediawiki.org/wiki/Manual:FAQ UKK]',
-	'config-env-good' => '<span class="success-message">Asennusympäristö on tarkastettu.
-Voit asentaa MediaWikin.</span>',
+	'config-env-good' => 'Asennusympäristö on tarkastettu.
+Voit asentaa MediaWikin.',
 	'config-env-bad' => 'Asennusympäristö on tarkastettu.
 Et voi asentaa MediaWikiä.',
 	'config-no-db' => 'Sopivaa tietokanta-ajuria ei löytynyt!',
@@ -2888,8 +2888,8 @@ Vous devriez avoir reçu <doclink href=Copying>une copie de la Licence Publique 
 * [http://www.mediawiki.org/wiki/Help:Contents Guide de l’utilisateur]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guide de l’administrateur]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">L’environnement a été vérifié.
-Vous pouvez installer MediaWiki.</span>',
+	'config-env-good' => 'L’environnement a été vérifié.
+Vous pouvez installer MediaWiki.',
 	'config-env-bad' => 'L’environnement a été vérifié.
 vous ne pouvez pas installer MediaWiki.',
 	'config-unicode-using-utf8' => 'Utilisation de utf8_normalize.so par Brion Vibber pour la normalisation Unicode.',
@@ -3344,8 +3344,8 @@ Debería recibir <doclink href=Copying>unha copia da licenza pública xeral GNU<
 * [http://www.mediawiki.org/wiki/Help:Contents Guía de usuario]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guía de administrador]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas máis frecuentes]',
-	'config-env-good' => '<span class="success-message">Rematou a comprobación do entorno.
-Pode instalar MediaWiki.</span>',
+	'config-env-good' => 'Rematou a comprobación do entorno.
+Pode instalar MediaWiki.',
 	'config-env-bad' => 'Rematou a comprobación do entorno.
 Non pode instalar MediaWiki.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para a normalización Unicode.',
@@ -3797,8 +3797,8 @@ E <doclink href=Copying>Kopi vu dr GNU General Public-Lizänz</doclink> sott zä
 * [http://www.mediawiki.org/wiki/Help:Contents Nutzeraaleitig zue MediaWiki]
 * [http://www.mediawiki.org/wiki/Manual:Contents Adminischtratoreaaleitig zue MediaWiki]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Vilmol gstellti Froge zue MediaWiki]',
-	'config-env-good' => '<span class="success-message">D Inschtallationsumgäbig isch prieft wore.
-Du chasch MediaWiki inschtalliere.</span>',
+	'config-env-good' => 'D Inschtallationsumgäbig isch prieft wore.
+Du chasch MediaWiki inschtalliere.',
 	'config-env-bad' => 'D Inschtallationsumgäbigisch prieft wore.
 Du chasch MediaWiki nit inschtalliere.',
 	'config-unicode-using-utf8' => 'Fir d Unicode-Normalisierig wird em Brion Vibber syy utf8_normalize.so yygsetzt.',
@@ -4004,8 +4004,8 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 * [http://www.mediawiki.org/wiki/Help:Contents Nawod za wužiwarjow]
 * [http://www.mediawiki.org/wiki/Manual:Contents Nawod za administratorow]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Huste prašenja]',
-	'config-env-good' => '<span class="success-message">Wokolina je so skontrolowała.
-Móžeš MediaWiki instalować.</span>',
+	'config-env-good' => 'Wokolina je so skontrolowała.
+Móžeš MediaWiki instalować.',
 	'config-env-bad' => 'Wokolina je so skontrolowała.
 Njemóžeš MediaWiki instalować.',
 	'config-unicode-using-utf8' => 'Za normalizaciju Unicode so utf8_normalize.so Briona Vibbera wužiwa.',
@@ -4263,8 +4263,8 @@ Ha probléma merülne fel a telepítés során, meg kell adnod mások számára 
 * [http://www.mediawiki.org/wiki/Help:Contents Felhasználói kézikönyv]
 * [http://www.mediawiki.org/wiki/Manual:Contents Útmutató adminisztrátoroknak]
 * [http://www.mediawiki.org/wiki/Manual:FAQ GyIK]',
-	'config-env-good' => '<span class="success-message">A környezet ellenőrzése befejeződött.
-A MediaWiki telepíthető.</span>',
+	'config-env-good' => 'A környezet ellenőrzése befejeződött.
+A MediaWiki telepíthető.',
 	'config-env-bad' => 'A környezet ellenőrzése befejeződött.
 A MediaWiki nem telepíthető.',
 	'config-unicode-using-utf8' => 'A rendszer Unicode normalizálására Brion Vibber utf8_normalize.so könyvtárát használja.',
@@ -4552,8 +4552,8 @@ Vos deberea haber recipite <doclink href=Copying>un exemplar del Licentia Public
 * [http://www.mediawiki.org/wiki/Help:Contents Guida pro usatores]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida pro administratores]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">Le ambiente ha essite verificate.
-Tu pote installar MediaWiki.</span>',
+	'config-env-good' => 'Le ambiente ha essite verificate.
+Tu pote installar MediaWiki.',
 	'config-env-bad' => 'Le ambiente ha essite verificate.
 Tu non pote installar MediaWiki.',
 	'config-unicode-using-utf8' => 'utf8_normalize.so per Brion Vibber es usate pro le normalisation Unicode.',
@@ -5024,8 +5024,8 @@ Anda seharusnya telah menerima <doclink href=\"Copying\">salinan dari GNU Genera
 * [http://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna]
 * [http://www.mediawiki.org/wiki/Manual:Contents Panduan Pengurus]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Pertanyaan yang Sering Diajukan]',
-	'config-env-good' => '<span class="success-message">Kondisi telah diperiksa.
-Anda dapat menginstal MediaWiki.</span>',
+	'config-env-good' => 'Kondisi telah diperiksa.
+Anda dapat menginstal MediaWiki.',
 	'config-env-bad' => 'Kondisi telah diperiksa.
 Anda tidak dapat menginstal MediaWiki.',
 	'config-unicode-using-utf8' => 'Menggunakan utf8_normalize.so Brion Vibber untuk normalisasi Unicode.',
@@ -5515,8 +5515,8 @@ $1
 * [http://www.mediawiki.org/wiki/Help:Contents 利用者向け案内]
 * [http://www.mediawiki.org/wiki/Manual:Contents 管理人向け案内]
 * [http://www.mediawiki.org/wiki/Manual:FAQ よくある質問と回答]',
-	'config-env-good' => '<span class="success-message">環境は確認されました。
-MediaWikiをインストール出来ます。</span>',
+	'config-env-good' => '環境は確認されました。
+MediaWikiをインストール出来ます。',
 	'config-env-bad' => '環境が確認されました。
 MediaWikiをインストール出来ません。',
 	'config-unicode-using-utf8' => 'Unicode正規化に、Brion Vibberのutf8_normalize.soを利用。',
@@ -5986,8 +5986,8 @@ Do sullts aanjävve, wat erus kohm, wann de Hölp bem Opsäze bruchs.',
 * [http://www.mediawiki.org/wiki/Help:Contents Handbooch för Aanwender]
 * [http://www.mediawiki.org/wiki/Manual:Contents Handbooch för Administratore un Köbesse]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Wat öff jefrooch weed, un de Antwoote]',
-	'config-env-good' => '<span class="success-message">De Ömjävung es jeprööf.
-Do kanns MediaWiki opsäze.</span>',
+	'config-env-good' => 'De Ömjävung es jeprööf.
+Do kanns MediaWiki opsäze.',
 	'config-env-bad' => 'De Ömjävung es jeprööf.
 Do kanns MediaWiki nit opsäze.',
 	'config-unicode-using-utf8' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer däm <i lang="en">Brion Vibber</i> sing Projramm <code lang="en">utf8_normalize.so</code> nämme.',
@@ -6137,8 +6137,8 @@ Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Insta
 * [http://www.mediawiki.org/wiki/Help:Contents Benotzerguide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guide fir Administrateuren]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">Den Environement gouf nogekuckt.
-Dir kënnt MediaWiki installéieren.</span>',
+	'config-env-good' => 'Den Environement gouf nogekuckt.
+Dir kënnt MediaWiki installéieren.',
 	'config-env-bad' => 'Den Environnement gouf iwwerpréift.
 Dir kënnt MediWiki net installéieren.',
 	'config-unicode-using-utf8' => "Fir d'Unicode-Normalisatioun gëtt dem Brion Vibber säin <code>utf8_normalize.so</code> benotzt.",
@@ -6324,8 +6324,8 @@ $1
 * [http://www.mediawiki.org/wiki/Help:Contents Водич закорисници]
 * [http://www.mediawiki.org/wiki/Manual:Contents Водич за администратори]
 * [http://www.mediawiki.org/wiki/Manual:FAQ ЧПП]',
-	'config-env-good' => '<span class="success-message">Околината е проверена.
-Можете да го инсталирате МедијаВики.</span>',
+	'config-env-good' => 'Околината е проверена.
+Можете да го инсталирате МедијаВики.',
 	'config-env-bad' => 'Околината е проверена.
 Не можете да го инсталирате МедијаВики.',
 	'config-unicode-using-utf8' => 'Со utf8_normalize.so за уникодна нормализација од Брајон Вибер (Brion Vibber).',
@@ -6966,8 +6966,8 @@ Samen met dit programma hoort u een <doclink href=Copying>exemplaar van de GNU G
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:Contents Beheerdershandleiding] (Engelstalig)
 * [http://www.mediawiki.org/wiki/Manual:FAQ Veel gestelde vragen] (Engelstalig)',
-	'config-env-good' => '<span class="success-message">De omgeving is gecontroleerd.
-U kunt MediaWiki installeren.</span>',
+	'config-env-good' => 'De omgeving is gecontroleerd.
+U kunt MediaWiki installeren.',
 	'config-env-bad' => 'De omgeving is gecontroleerd.
 U kunt MediaWiki niet installeren.',
 	'config-unicode-using-utf8' => 'Voor Unicode-normalisatie wordt utf8_normalize.so van Brion Vibber gebruikt.',
@@ -7479,8 +7479,8 @@ Du skal ha mottatt <doclink href=Copying>en kopi av GNU General Public License</
 * [http://www.mediawiki.org/wiki/Help:Contents Brukerguide]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorguide]
 * [http://www.mediawiki.org/wiki/Manual:FAQ OSS]',
-	'config-env-good' => '<span class="success-message">Miljøet har blitt sjekket.
-Du kan installere MediaWiki.</span>',
+	'config-env-good' => 'Miljøet har blitt sjekket.
+Du kan installere MediaWiki.',
 	'config-env-bad' => 'Miljøet har blitt sjekket.
 Du kan installere MediaWiki.',
 	'config-unicode-using-utf8' => 'Bruker Brion Vibbers utf8_normalize.so for Unicode-normalisering.',
@@ -7883,8 +7883,8 @@ Razem z oprogramowaniem powinieneś otrzymać <doclink href=Copying>kopię licen
 * [http://www.mediawiki.org/wiki/Help:Contents Podręcznik użytkownika]
 * [http://www.mediawiki.org/wiki/Manual:Contents Podręcznik administratora]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Odpowiedzi na często zadawane pytania]',
-	'config-env-good' => '<span class="success-message">Środowisko oprogramowania zostało sprawdzone.
-Możesz teraz zainstalować MediaWiki.</span>',
+	'config-env-good' => 'Środowisko oprogramowania zostało sprawdzone.
+Możesz teraz zainstalować MediaWiki.',
 	'config-env-bad' => 'Środowisko oprogramowania zostało sprawdzone.
 Nie możesz zainstalować MediaWiki.',
 	'config-unicode-using-utf8' => 'Korzystanie z normalizacji Unicode utf8_normalize.so napisanej przez Brion Vibbera.',
@@ -8217,8 +8217,8 @@ A dovrìa avèj arseivù <doclink href=Copying>na còpia ëd la licensa pùblica
 * [http://www.mediawiki.org/wiki/Help:Contents Guida dl'Utent]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida dl'Aministrator]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Soens an ciamo]",
-	'config-env-good' => '<span class="success-message">L\'ambient a l\'é stàit controlà.
-It peule instalé MediaWiki.</span>',
+	'config-env-good' => 'L\'ambient a l\'é stàit controlà.
+It peule instalé MediaWiki.',
 	'config-env-bad' => "L'ambient a l'é stàit controlà.
 It peule pa instalé MediaWiki.",
 	'config-unicode-using-utf8' => 'As deuvra utf8_normalize.so ëd Brion Vibber për la normalisassion Unicode.',
@@ -8677,8 +8677,8 @@ Em conjunto com este programa deve ter recebido <doclink href=Copying>uma cópia
 * [http://www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
 * [http://www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">O ambiente foi verificado.
-Pode instalar o MediaWiki.</span>',
+	'config-env-good' => 'O ambiente foi verificado.
+Pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
 Não pode instalar o MediaWiki.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, por Brian Viper, para a normalização Unicode.',
@@ -9147,8 +9147,8 @@ Em conjunto com este programa você deve ter recebido <doclink href=Copying>uma 
 * [http://www.mediawiki.org/wiki/Help:Contents/pt Ajuda]
 * [http://www.mediawiki.org/wiki/Manual:Contents/pt Manual técnico]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]',
-	'config-env-good' => '<span class="success-message">O ambiente foi verificado.
-Você pode instalar o MediaWiki.</span>',
+	'config-env-good' => 'O ambiente foi verificado.
+Você pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
 Você não pode instalar o MediaWiki.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, de Brian Viper, para a normalização Unicode.',
@@ -9281,8 +9281,8 @@ MediaWiki распространяется в надежде, что она бу
 * [http://www.mediawiki.org/wiki/Help:Contents/ru Справка для пользователей]
 * [http://www.mediawiki.org/wiki/Manual:Contents/ru Справка для администраторов]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/ru FAQ]',
-	'config-env-good' => '<span class="success-message">Проверка внешней среды была успешно проведена.
-Вы можете установить MediaWiki.</span>',
+	'config-env-good' => 'Проверка внешней среды была успешно проведена.
+Вы можете установить MediaWiki.',
 	'config-env-bad' => 'Была проведена проверка внешней среды. 
 Вы не можете установить MediaWiki.',
 	'config-unicode-using-utf8' => 'Использовать Brion Vibber utf8_normalize.so для нормализации Юникода.',
@@ -9835,8 +9835,8 @@ Dapat nakatanggap ka ng <doclink href=Copying>isang sipi ng Pangkalahatang Pampu
 * [http://www.mediawiki.org/wiki/Help:Contents Gabay ng Tagagamit]
 * [http://www.mediawiki.org/wiki/Manual:Contents Gabay ng Tagapangasiwa]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Mga Malimit Itanong]',
-	'config-env-good' => '<span class="success-message">Nasuri na ang kapaligiran.
-Mailuluklok mo ang MediaWiki.</span>',
+	'config-env-good' => 'Nasuri na ang kapaligiran.
+Mailuluklok mo ang MediaWiki.',
 	'config-env-bad' => 'Nasuri na ang kapaligiran.
 Hindi mo mailuklok ang MediaWiki.',
 	'config-unicode-using-utf8' => 'Ginagamit ang utf8_normalize.so ni Brion Vibber para sa pagpapanormal ng Unikodigo.',
@@ -10044,8 +10044,8 @@ $messages['uk'] = array(
 * [http://www.mediawiki.org/wiki/Help:Contents/uk Керівництво користувача]
 * [http://www.mediawiki.org/wiki/Manual:Contents/uk Керівництво адміністратора]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/uk FAQ]',
-	'config-env-good' => '<span class="success-message">Перевірку середовища успішно завершено.
-Ви можете встановити MediaWiki.</span>',
+	'config-env-good' => 'Перевірку середовища успішно завершено.
+Ви можете встановити MediaWiki.',
 	'config-env-bad' => 'Було проведено перевірку середовища. Ви не можете встановити MediaWiki.',
 	'config-unicode-using-utf8' => 'Використовувати utf8_normalize.so Брайона Віббера для нормалізації Юнікоду.',
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
