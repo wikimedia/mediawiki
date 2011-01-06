@@ -191,7 +191,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( "...$table table has correct $field encoding.\n" );
 		} else {
 			$this->output( "Fixing $field encoding on $table table... " );
-			$this->db->applyPatch( $patchFile );
+			$this->applyPatch( $patchFile );
 			$this->output( "ok\n" );
 		}
 	}
@@ -311,6 +311,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output( wfTimestamp( TS_DB ) );
 			$this->output( "......<b>Found duplicate entries</b>\n" );
 			$this->output( sprintf( "<b>      %-60s %3s %5s</b>\n", 'Title', 'NS', 'Count' ) );
+			$duplicate = array();
 			foreach ( $rows as $row ) {
 				if ( ! isset( $duplicate[$row->cur_namespace] ) ) {
 					$duplicate[$row->cur_namespace] = array();
@@ -617,13 +618,17 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @see bug 3946
 	 */
 	protected function doPageRandomUpdate() {
-		$this->output( "Setting page_random to a random value on rows where it equals 0..." );
+		
 
 		$page = $this->db->tableName( 'page' );
 		$this->db->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", __METHOD__ );
 		$rows = $this->db->affectedRows();
 
-		$this->output( "changed $rows rows\n" );
+		if( $rows ) {
+			$this->output( "Set page_random to a random value on $rows rows where it was set to 0\n" );
+		} else {
+			$this->output( "...no page_random rows needed to be set\n" );
+		}
 	}
 
 	protected function doTemplatelinksUpdate() {

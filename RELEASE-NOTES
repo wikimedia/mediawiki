@@ -234,6 +234,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   other than LocalSettings.php. This is like MW_CONFIG_CALLBACK but works in
   some cases where MW_CONFIG_CALLBACK will not work.
 * (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
+* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
+* (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
@@ -477,6 +479,8 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 14404) The articles are now always saved with the default options. Articles 
   with {{int:X}} will have consistent table links no matter the preferences of the 
   last saving user.
+* (bug 22753) Output from update.php is more clear when things changed, entries
+  indicating nothing changed are now all prefixed by "..."
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST

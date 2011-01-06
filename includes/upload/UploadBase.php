@@ -568,10 +568,9 @@ abstract class UploadBase {
 		if ( $this->mFinalExtension == '' ) {
 			$this->mTitleError = self::FILETYPE_MISSING;
 			return $this->mTitle = null;
-		} elseif ( ( $this->checkFileExtensionList( $ext, $wgFileBlacklist )
-				&& !$this->checkFileExtensionList( $ext, $wgFileExtensions ) ) ||
-					( $wgCheckFileExtensions && $wgStrictFileExtensions &&
-						!$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) ) {
+		} elseif ( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
+				( $wgCheckFileExtensions && $wgStrictFileExtensions &&
+					!$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) ) {
 			$this->mTitleError = self::FILETYPE_BADTYPE;
 			return $this->mTitle = null;
 		}
