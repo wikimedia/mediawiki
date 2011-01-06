@@ -77,7 +77,9 @@ class ApiParse extends ApiBase {
 		$popts = new ParserOptions();
 		$popts->setTidy( true );
 		$popts->enableLimitReport( !$params['disablepp'] );
+
 		$redirValues = null;
+
 		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
 
 			if ( !is_null( $oldid ) ) {
@@ -98,9 +100,9 @@ class ApiParse extends ApiBase {
 				if ( $titleObj->getLatestRevID() === intval( $oldid ) )  {
 					$articleObj = new Article( $titleObj, 0 );
 
-					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $articleObj->get, $popts, $pageid ) ;
+					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid ) ;
 
-				} else {
+				} else { // This is an old revision, so get the text differently
 					$text = $rev->getText( Revision::FOR_THIS_USER );
 
 					$wgTitle = $titleObj;
@@ -121,6 +123,7 @@ class ApiParse extends ApiBase {
 						$this->dieUsageMsg( array( 'nosuchpageid', $pageid ) );
 					}
 				} else { // $page
+
 					if ( $params['redirects'] ) {
 						$req = new FauxRequest( array(
 							'action' => 'query',
@@ -150,10 +153,10 @@ class ApiParse extends ApiBase {
 					$oldid = $articleObj->getRevIdFetched();
 				}
 
-				$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $text, $popts, $pageid ) ;
+				$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid ) ;
 			}
 
-		} else { // Not $oldid, $pageid, $page
+		} else { // Not $oldid, $pageid, $page. Hence based on $text
 
 			$titleObj = Title::newFromText( $title );
 			if ( !$titleObj ) {
@@ -289,16 +292,15 @@ class ApiParse extends ApiBase {
 	/**
 	 * @param  $articleObj Article
 	 * @param  $titleObj Title
-	 * @param  $pageId Int
-	 * @param $text String
 	 * @param  $popts ParserOptions
+	 * @param  $pageId Int
 	 * @return ParserOutput
 	 */
-	private function getParsedSectionOrText( $articleObj, $titleObj, $text, $popts, $pageId = null ) {
-		global $wgParser;
-
+	private function getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageId = null ) {
 		if ( $this->section !== false ) {
-			$text = $this->getSectionText( $text, !is_null ( $pageId )
+			global $wgParser;
+
+			$text = $this->getSectionText( $articleObj->getRawText(), !is_null ( $pageId )
 					? 'page id ' . $pageId : $titleObj->getText() );
 
 			return $wgParser->parse( $text, $titleObj, $popts );
