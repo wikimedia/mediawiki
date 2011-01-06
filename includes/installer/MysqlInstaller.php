@@ -76,10 +76,10 @@ class MysqlInstaller extends DatabaseInstaller {
 		$status = Status::newGood();
 		if ( !strlen( $newValues['wgDBname'] ) ) {
 			$status->fatal( 'config-missing-db-name' );
-		} elseif ( !preg_match( '/^[a-zA-Z0-9_]+$/', $newValues['wgDBname'] ) ) {
+		} elseif ( !preg_match( '/^[a-z0-9_-]+$/i', $newValues['wgDBname'] ) ) {
 			$status->fatal( 'config-invalid-db-name', $newValues['wgDBname'] );
 		}
-		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBprefix'] ) ) {
+		if ( !preg_match( '/^[a-z0-9_-]*$/i', $newValues['wgDBprefix'] ) ) {
 			$status->fatal( 'config-invalid-db-prefix', $newValues['wgDBprefix'] );
 		}
 		if ( !$status->isOK() ) {
