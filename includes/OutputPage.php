@@ -1001,14 +1001,6 @@ class OutputPage {
 	}
 
 	/**
-	 * @deprecated use parserOptions() instead
-	 */
-	public function setParserOptions( $options ) {
-		wfDeprecated( __METHOD__ );
-		return $this->parserOptions( $options );
-	}
-
-	/**
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
 	 * @param $options either the ParserOption to use or null to only get the
@@ -1116,43 +1108,6 @@ class OutputPage {
 		$this->addParserOutput( $parserOutput );
 
 		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Add wikitext to the buffer, assuming that this is the primary text for a page view
-	 * Saves the text into the parser cache if possible.
-	 *
-	 * @param $text String: wikitext
-	 * @param $article Article object
-	 * @param $cache Boolean
-	 * @deprecated Use Article::outputWikitext
-	 */
-	public function addPrimaryWikiText( $text, $article, $cache = true ) {
-		global $wgParser;
-
-		wfDeprecated( __METHOD__ );
-
-		$popts = $this->parserOptions();
-		$popts->setTidy( true );
-		$parserOutput = $wgParser->parse(
-			$text, $article->mTitle,
-			$popts, true, true, $this->mRevisionId
-		);
-		$popts->setTidy( false );
-		if ( $cache && $article && $parserOutput->isCacheable() ) {
-			$parserCache = ParserCache::singleton();
-			$parserCache->save( $parserOutput, $article, $popts );
-		}
-
-		$this->addParserOutput( $parserOutput );
-	}
-
-	/**
-	 * @deprecated use addWikiTextTidy()
-	 */
-	public function addSecondaryWikiText( $text, $linestart = true ) {
-		wfDeprecated( __METHOD__ );
-		$this->addWikiTextTitleTidy( $text, $this->getTitle(), $linestart );
 	}
 
 	/**
@@ -1280,24 +1235,6 @@ class OutputPage {
 		}
 
 		return $parsed;
-	}
-
-	/**
-	 * @deprecated
-	 *
-	 * @param $article Article
-	 * @return Boolean: true if successful, else false.
-	 */
-	public function tryParserCache( &$article ) {
-		wfDeprecated( __METHOD__ );
-		$parserOutput = ParserCache::singleton()->get( $article, $article->getParserOptions() );
-
-		if ( $parserOutput !== false ) {
-			$this->addParserOutput( $parserOutput );
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	/**
@@ -1756,17 +1693,6 @@ class OutputPage {
 	}
 
 	/**
-	 * @deprecated use wfReportTime() instead.
-	 *
-	 * @return String
-	 */
-	public function reportTime() {
-		wfDeprecated( __METHOD__ );
-		$time = wfReportTime();
-		return $time;
-	}
-
-	/**
 	 * Produce a "user is blocked" page.
 	 *
 	 * @param $return Boolean: whether to have a "return to $wgTitle" message or not.
@@ -2099,53 +2025,6 @@ class OutputPage {
 		}
 		$this->addScript( Html::inlineScript( 'var passwordSecurity=' . FormatJson::encode( $data ) ) );
 		$this->addModules( 'mediawiki.legacy.password' );
-	}
-
-	/** @deprecated */
-	public function errorpage( $title, $msg ) {
-		wfDeprecated( __METHOD__ );
-		throw new ErrorPageError( $title, $msg );
-	}
-
-	/** @deprecated */
-	public function databaseError( $fname, $sql, $error, $errno ) {
-		throw new MWException( "OutputPage::databaseError is obsolete\n" );
-	}
-
-	/** @deprecated */
-	public function fatalError( $message ) {
-		wfDeprecated( __METHOD__ );
-		throw new FatalError( $message );
-	}
-
-	/** @deprecated */
-	public function unexpectedValueError( $name, $val ) {
-		wfDeprecated( __METHOD__ );
-		throw new FatalError( wfMsg( 'unexpected', $name, $val ) );
-	}
-
-	/** @deprecated */
-	public function fileCopyError( $old, $new ) {
-		wfDeprecated( __METHOD__ );
-		throw new FatalError( wfMsg( 'filecopyerror', $old, $new ) );
-	}
-
-	/** @deprecated */
-	public function fileRenameError( $old, $new ) {
-		wfDeprecated( __METHOD__ );
-		throw new FatalError( wfMsg( 'filerenameerror', $old, $new ) );
-	}
-
-	/** @deprecated */
-	public function fileDeleteError( $name ) {
-		wfDeprecated( __METHOD__ );
-		throw new FatalError( wfMsg( 'filedeleteerror', $name ) );
-	}
-
-	/** @deprecated */
-	public function fileNotFoundError( $name ) {
-		wfDeprecated( __METHOD__ );
-		throw new FatalError( wfMsg( 'filenotfound', $name ) );
 	}
 
 	public function showFatalError( $message ) {
@@ -2917,7 +2796,7 @@ class OutputPage {
 	 * @param $modules Array: list of jQuery modules which should be loaded
 	 * @return Array: the list of modules which were not loaded.
 	 * @since 1.16
-	 * @deprecated No longer needed as of 1.17
+	 * @deprecated @since 1.17
 	 */
 	public function includeJQuery( $modules = array() ) {
 		return array();
