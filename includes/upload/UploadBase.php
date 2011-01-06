@@ -78,20 +78,12 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Returns an array of permissions that is required to upload a file
-	 * 
-	 * @return array
-	 */
-	public static function getRequiredPermissions() {
-		return array( 'upload', 'edit' );
-	}
-	/**
 	 * Returns true if the user can use this upload module or else a string
 	 * identifying the missing permission.
 	 * Can be overriden by subclasses.
 	 */
 	public static function isAllowed( $user ) {
-		foreach ( self::getRequiredPermissions() as $permission ) {
+		foreach ( array( 'upload', 'edit' ) as $permission ) {
 			if ( !$user->isAllowed( $permission ) ) {
 				return $permission;
 			}

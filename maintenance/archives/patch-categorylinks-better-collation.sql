@@ -4,6 +4,10 @@
 -- Bugs 164, 1211, 23682.  This is the second version of this patch; the
 -- changes are also incorporated into patch-categorylinks-better-collation2.sql,
 -- for the benefit of trunk users who applied the original.
+--
+-- Due to bug 25254, the length limit of 255 bytes for cl_sortkey_prefix
+-- is also enforced in php. If you change the length of that field, make
+-- sure to also change the check in LinksUpdate.php.
 ALTER TABLE /*$wgDBprefix*/categorylinks
 	CHANGE COLUMN cl_sortkey cl_sortkey varbinary(230) NOT NULL default '',
 	ADD COLUMN cl_sortkey_prefix varchar(255) binary NOT NULL default '',

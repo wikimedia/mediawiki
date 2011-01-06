@@ -4191,14 +4191,15 @@ class Title {
 	 */
 	public function getRestrictionTypes() {
 		global $wgRestrictionTypes;
+		
 		$types = $this->exists() ? $wgRestrictionTypes : array( 'create' );
 
-		if ( $this->getNamespace() == NS_FILE ) {
-			$types[] = 'upload';
+		if ( $this->getNamespace() != NS_FILE ) {
+			$types = array_diff( $types, array( 'upload' ) );
 		}
-
+		
 		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
-
+		
 		return $types;
 	}
 

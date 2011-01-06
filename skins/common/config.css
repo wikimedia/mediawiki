@@ -95,6 +95,7 @@
 .config-message {
 	display: list-item;
 	line-height: 1.5em;
+	/* @embed */
 	list-style-image: url(images/bullet.gif);
 	list-style-type: square;
 }

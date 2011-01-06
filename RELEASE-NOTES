@@ -236,6 +236,9 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
 * (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
 * (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
+* (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected 
+  pages to be queried via the API and Special:ProtectedPages, and allowing 
+  disabling upload protection by removing it from $wgRestrictionTypes.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive

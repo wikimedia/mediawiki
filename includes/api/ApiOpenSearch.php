@@ -52,20 +52,39 @@ class ApiOpenSearch extends ApiBase {
 
 		// MWSuggest or similar hit
 		if ( $suggest && !$wgEnableOpenSearchSuggest ) {
-			$srchres = array();
+			$searches = array();
 		} else {
-			// Open search results may be stored for a very long
-			// time
+			// Open search results may be stored for a very long time
 			$this->getMain()->setCacheMaxAge( $wgSearchSuggestCacheExpiry );
 			$this->getMain()->setCacheMode( 'public' );
 
-			$srchres = PrefixSearch::titleSearch( $search, $limit,
+			$searches = PrefixSearch::titleSearch( $search, $limit,
 				$namespaces );
+			
+			// if the content language has variants, try to retrieve fallback results
+			$fallbackLimit = $limit - count( $searches );
+			if ( $fallbackLimit > 0 ) {
+				global $wgContLang;
+
+				$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
+				$fallbackSearches = array_diff( array_unique( $fallbackSearches ), array( $search ) );
+
+				foreach ( $fallbackSearches as $fbs ) {
+					$fallbackSearchResult = PrefixSearch::titleSearch( $fbs, $fallbackLimit,
+						$namespaces );
+					$searches = array_merge( $searches, $fallbackSearchResult );
+					$fallbackLimit -= count( $fallbackSearchResult );
+
+					if ( $fallbackLimit == 0 ) {
+						break;
+					}
+				}
+			}
 		}
 		// Set top level elements
 		$result = $this->getResult();
 		$result->addValue( null, 0, $search );
-		$result->addValue( null, 1, $srchres );
+		$result->addValue( null, 1, $searches );
 	}
 
 	public function getAllowedParams() {

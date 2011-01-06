@@ -441,7 +441,7 @@ class Skin extends Linker {
 			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
 			'wgCategories' => $wgOut->getCategories(),
 		);
-		foreach ( $wgRestrictionTypes as $type ) {
+		foreach ( $wgTitle->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );
 		}
 		if ( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ) {
