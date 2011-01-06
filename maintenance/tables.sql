@@ -419,7 +419,7 @@ CREATE TABLE /*_*/archive (
 
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timestamp);
-CREATE INDEX /*i*/ar_page_revid ON /*_*/archive (ar_namespace, ar_title, ar_rev_id);
+CREATE INDEX /*i*/ar_page_revid ON /*_*/archive (ar_rev_id);
 
 
 --
