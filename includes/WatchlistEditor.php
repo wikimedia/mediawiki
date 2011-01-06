@@ -207,15 +207,15 @@ class WatchlistEditor {
 	private function getWatchlistInfo( $user ) {
 		$titles = array();
 		$dbr = wfGetDB( DB_MASTER );
-		$uid = intval( $user->getId() );
-		list( $watchlist, $page ) = $dbr->tableNamesN( 'watchlist', 'page' );
-		$sql = "SELECT wl_namespace, wl_title, page_id, page_len, page_is_redirect, page_latest
-			FROM {$watchlist} LEFT JOIN {$page} ON ( wl_namespace = page_namespace
-			AND wl_title = page_title ) WHERE wl_user = {$uid}";
-		if ( ! $dbr->implicitOrderby() ) {
-			$sql .= " ORDER BY wl_title";
-		}
-		$res = $dbr->query( $sql, __METHOD__ );
+
+		$res = $dbr->select( array( 'watchlist', 'page' ),
+		                     array( 'wl_namespace', 'wl_title', 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
+							 array( 'wl_user' => $user->getId() ),
+							 __METHOD__,
+							 $dbr->implicitOrderby() ? array( ) : array( 'ORDER BY' => 'wl_title' ),
+							 array( 'page' => array( 'LEFT JOIN', 'wl_namespace = page_namespace AND wl_title = page_title' ) )
+							);
+
 		if( $res && $dbr->numRows( $res ) > 0 ) {
 			$cache = LinkCache::singleton();
 			foreach ( $res as $row ) {			
