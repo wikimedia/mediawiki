@@ -332,7 +332,7 @@ class Linker {
 	 * @param $trail String
 	 * @param $prefix String
 	 * @return string HTML of link
-	 * @deprecated
+	 * @deprecated @since 1.17
 	 */
 	function makeSizeLinkObj( $size, $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
@@ -1732,16 +1732,7 @@ class Linker {
 	/* Deprecated methods */
 
 	/**
-	 * @deprecated
-	 */
-	function postParseLinkColour( $s = null ) {
-		wfDeprecated( __METHOD__ );
-		return null;
-	}
-
-
-	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * This function is a shortcut to makeLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeLinkObj for further documentation.
@@ -1768,7 +1759,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * This function is a shortcut to makeKnownLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeKnownLinkObj for further documentation.
@@ -1793,7 +1784,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * This function is a shortcut to makeBrokenLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeBrokenLinkObj for further documentation.
@@ -1816,7 +1807,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * This function is a shortcut to makeStubLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeStubLinkObj for further documentation.
@@ -1840,7 +1831,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * Make a link for a title which may or may not be in the database. If you need to
 	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
@@ -1871,7 +1862,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because
 	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
@@ -1907,7 +1898,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * Make a red link to the edit page of a given title.
 	 *
@@ -1935,7 +1926,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * Make a brown link to a short article.
 	 *
@@ -1952,7 +1943,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
+	 * @deprecated @since 1.16 Use link()
 	 *
 	 * Make a coloured link.
 	 *
@@ -1980,7 +1971,7 @@ class Linker {
 
 	/**
 	 * Creates the HTML source for images
-	 * @deprecated use makeImageLink2
+	 * @deprecated @since 1.16 use makeImageLink2
 	 *
 	 * @param $title Title object
 	 * @param $label String: label text
@@ -2024,36 +2015,6 @@ class Linker {
 	}
 
 	/**
-	 * Used to generate section edit links that point to "other" pages
-	 * (sections that are really part of included pages).
-	 *
-	 * @deprecated use Linker::doEditSectionLink()
-	 * @param $title Title string.
-	 * @param $section Integer: section number.
-	 */
-	public function editSectionLinkForOther( $title, $section ) {
-		wfDeprecated( __METHOD__ );
-		$title = Title::newFromText( $title );
-		return $this->doEditSectionLink( $title, $section );
-	}
-
-	/**
-	 * @deprecated use Linker::doEditSectionLink()
-	 * @param $nt Title object.
-	 * @param $section Integer: section number.
-	 * @param $hint Link String: title, or default if omitted or empty
-	 */
-	public function editSectionLink( Title $nt, $section, $hint = '' ) {
-		wfDeprecated( __METHOD__ );
-		if ( $hint === '' ) {
-			# No way to pass an actual empty $hint here!  The new interface al-
-			# lows this, so we have to do this for compatibility.
-			$hint = null;
-		}
-		return $this->doEditSectionLink( $nt, $section, $hint );
-	}
-
-	/**
 	 * Returns the attributes for the tooltip and access key.
 	 */
 	public function tooltipAndAccesskeyAttribs( $name ) {
@@ -2075,14 +2036,19 @@ class Linker {
 		}
 		return $attribs;
 	}
+
 	/**
-	 * @deprecated Returns raw bits of HTML, use titleAttrib() and accesskey()
+	 * @deprecated @since 1.14
+	 * Returns raw bits of HTML, use titleAttrib() and accesskey()
 	 */
 	public function tooltipAndAccesskey( $name ) {
 		return Xml::expandAttributes( $this->tooltipAndAccesskeyAttribs( $name ) );
 	}
 
-	/** @deprecated Returns raw bits of HTML, use titleAttrib() */
+	/**
+	 * @deprecated @since 1.14
+	 * Returns raw bits of HTML, use titleAttrib()
+	 */
 	public function tooltip( $name, $options = null ) {
 		global $wgEnableTooltipsAndAccesskeys;
 		if ( !$wgEnableTooltipsAndAccesskeys )
