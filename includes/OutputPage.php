@@ -23,7 +23,7 @@ class OutputPage {
 	var $mLastModified = '', $mETag = false;
 	var $mCategoryLinks = array(), $mCategories = array(), $mLanguageLinks = array();
 
-	var $mScripts = '', $mLinkColours, $mPageLinkTitle = '', $mHeadItems = array();
+	var $mScripts = '', $mInlineStyles = '', $mLinkColours, $mPageLinkTitle = '', $mHeadItems = array();
 	var $mModules = array(), $mModuleScripts = array(), $mModuleStyles = array(), $mModuleMessages = array();
 	var $mResourceLoader;
 	var $mInlineMsg = array();
@@ -2268,12 +2268,9 @@ class OutputPage {
 
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks( $sk ),
-			$this->buildCssLinks(),
-			$this->getHeadItems(),
+			$this->buildCssLinks( $sk ),
+			$this->getHeadItems()
 		) );
-		if ( $sk->usercss ) {
-			$ret .= Html::inlineStyle( $sk->usercss );
-		}
 
 		if ( $wgUseTrackbacks && $this->isArticleRelated() ) {
 			$ret .= $this->getTitle()->trackbackRDF();
@@ -2623,29 +2620,6 @@ class OutputPage {
 				}
 			}
 		}
-
-		// Split the styles into three groups
-		$styles = array( 'other' => array(), 'user' => array(), 'site' => array() );
-		$resourceLoader = $this->getResourceLoader();
-		foreach ( $this->getModuleStyles() as $name ) {
-			$group = $resourceLoader->getModule( $name )->getGroup();
-			// Modules in groups named "other" or anything different than "user" or "site" will
-			// be placed in the "other" group
-			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
-		}
-
-		// We want site and user styles to override dynamically added styles from modules, but we want
-		// dynamically added styles to override statically added styles from other modules. So the order
-		// has to be other, dynamic, site, user
-		// Add statically added styles for other modules
-		$tags[] = $this->makeResourceLoaderLink( $sk, $styles['other'], 'styles' );
-		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
-		// We use a <meta> tag with a made-up name for this because that's valid HTML
-		$tags[] = Html::element( 'meta', array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ) );
-		// Add site and user styles
-		$tags[] = $this->makeResourceLoaderLink(
-			$sk, array_merge( $styles['site'], $styles['user'] ), 'styles'
-		);
 		return implode( "\n", $tags );
 	}
 
@@ -2696,15 +2670,42 @@ class OutputPage {
 	 * @param $style_css Mixed: inline CSS
 	 */
 	public function addInlineStyle( $style_css ){
-		$this->mScripts .= Html::inlineStyle( $style_css );
+		$this->mInlineStyles .= Html::inlineStyle( $style_css );
 	}
 
 	/**
 	 * Build a set of <link>s for the stylesheets specified in the $this->styles array.
 	 * These will be applied to various media & IE conditionals.
+	 * @param $sk Skin object
 	 */
-	public function buildCssLinks() {
-		return implode( "\n", $this->buildCssLinksArray() );
+	public function buildCssLinks( $sk ) {
+		$ret = '';
+		// Add ResourceLoader styles
+		// Split the styles into three groups
+		$styles = array( 'other' => array(), 'user' => array(), 'site' => array() );
+		$resourceLoader = $this->getResourceLoader();
+		foreach ( $this->getModuleStyles() as $name ) {
+			$group = $resourceLoader->getModule( $name )->getGroup();
+			// Modules in groups named "other" or anything different than "user" or "site" will
+			// be placed in the "other" group
+			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
+		}
+
+		// We want site and user styles to override dynamically added styles from modules, but we want
+		// dynamically added styles to override statically added styles from other modules. So the order
+		// has to be other, dynamic, site, user
+		// Add statically added styles for other modules
+		$ret .= $this->makeResourceLoaderLink( $sk, $styles['other'], 'styles' );
+		// Add normal styles added through addStyle()/addInlineStyle() here
+		$ret .= implode( "\n", $this->buildCssLinksArray() ) . $this->mInlineStyles;
+		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
+		// We use a <meta> tag with a made-up name for this because that's valid HTML
+		$ret .= Html::element( 'meta', array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ) );
+		// Add site and user styles
+		$ret .= $this->makeResourceLoaderLink(
+			$sk, array_merge( $styles['site'], $styles['user'] ), 'styles'
+		);
+		return $ret;
 	}
 
 	public function buildCssLinksArray() {
