@@ -95,7 +95,7 @@ class ApiParse extends ApiBase {
 
 				// If for some reason the "oldid" is actually the current revision, it may be cached
 				if ( $titleObj->getLatestRevID() === intval( $oldid ) )  {
-					$articleObj = new Article( $titleObj );
+					$articleObj = new Article( $titleObj, 0 );
 
 					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $text, $popts, $pageid ) ;
 
@@ -142,7 +142,7 @@ class ApiParse extends ApiBase {
 				}
 				$wgTitle = $titleObj;
 
-				$articleObj = new Article( $titleObj );
+				$articleObj = new Article( $titleObj, 0 );
 				if ( isset( $prop['revid'] ) ) {
 					$oldid = $articleObj->getRevIdFetched();
 				}
