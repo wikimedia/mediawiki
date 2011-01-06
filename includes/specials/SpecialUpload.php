@@ -815,11 +815,11 @@ class UploadForm extends HTMLForm {
 
 		if ( $this->mSessionKey ) {
 			return array(
-				'wpSessionKey' => array(
+				'SessionKey' => array(
 					'type' => 'hidden',
 					'default' => $this->mSessionKey,
 				),
-				'wpSourceType' => array(
+				'SourceType' => array(
 					'type' => 'hidden',
 					'default' => 'Stash',
 				),
