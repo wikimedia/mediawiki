@@ -11,6 +11,7 @@
  * @author Liangent
  * @author Meno25
  * @author Michaello
+ * @author Rancher
  * @author Red Baron
  * @author Reedy
  * @author Slaven Kosanovic
@@ -1171,7 +1172,7 @@ Pokušajte sa prefiksom '''sve:''' da pretražite ceo sadržaj (uključujući st
 'saveprefs'                   => 'Sačuvaj',
 'resetprefs'                  => 'Vrati',
 'restoreprefs'                => 'Vrati sva podrazumevana podešavanja',
-'prefs-editing'               => 'Veličine tekstualnog polja',
+'prefs-editing'               => 'Uređivanje',
 'prefs-edit-boxsize'          => 'Veličina prozora za pisanje izmene.',
 'rows'                        => 'Redova',
 'columns'                     => 'Kolona',

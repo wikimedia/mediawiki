@@ -328,6 +328,7 @@ $messages = array(
 'printableversion'  => 'ముద్రించుకోదగ్గ కూర్పు',
 'permalink'         => 'శాశ్వత లింకు',
 'print'             => 'ముద్రించు',
+'view'              => 'చూచుట',
 'edit'              => 'మార్చు',
 'create'            => 'సృష్టించు',
 'editthispage'      => 'ఈ పేజీని మార్చు',

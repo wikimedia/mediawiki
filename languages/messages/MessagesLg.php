@@ -510,14 +510,35 @@ Sooka olindeko akaseera okuddamu n'ate.",
 'suspicious-userlogout'      => "Sisitemu ezize ekiragiro kyo eky'okugivaamu kubanga kirabise nga ekivudde mu kalambulanetti enfu<br />
 oba mu puloguramu etereka n'eddamu okuyisa ebiragiro ebivudde awalala.",
 
+# E-mail sending
+'php-mail-error-unknown' => "Wazzewo kiremya atategeerese mu mukolo mail() ogw'omu PHP",
+
+# JavaScript password checks
+'password-strength'            => "Obugumu bw'ekyama kyo: $1",
+'password-strength-bad'        => 'KINAFU DDALA',
+'password-strength-mediocre'   => 'kisaamusaamu',
+'password-strength-acceptable' => 'bumalabumazi',
+'password-strength-good'       => 'kigumu',
+'password-retype'              => 'Ddamu wano okuwandika ekyama kyo',
+'password-retype-mismatch'     => "Ebyama by'owandise tebifaanagana",
+
 # Password reset dialog
 'resetpass'                 => 'Kyusa ekigambo ekikuumi',
+'resetpass_announce'        => "Weyambisa ekyama eky'ekiseerabuseera okuyingira.<br />
+Okuyingirira ddala, wetaaga okuwandika wano ekinaaba ekyama kyo ekya ddala:",
 'resetpass_header'          => "Kyusa ekigambo ekikuumi eky'oku akawunti eno",
 'oldpassword'               => 'Ekigambo ekikuumi ekikadde:',
 'newpassword'               => 'Ekigambo ekikuumi ekipya:',
 'retypenew'                 => 'Ddamu ekikagambo ekikuumi ekipya ekyo:',
+'resetpass_submit'          => 'Kaza ekyama oyingire',
+'resetpass_success'         => 'Ekigambo kyo ekikuumi kikyusidwa!<br />
+Kati oyingira...',
+'resetpass_forbidden'       => 'Tekikkirizibwa okukyusa ebigambo ebikuumi',
+'resetpass-no-info'         => 'Okukola ku lupapula luno obutereevu, wetaaga okuba nga oyingidde sisitemu.',
 'resetpass-submit-loggedin' => 'Kyusa ekigambo ekikuumi',
 'resetpass-submit-cancel'   => 'Bisazemu',
+'resetpass-wrong-oldpass'   => "Okozesezza ekyama eky'ekiseerabuseera oba ekyaddala ekitakola.<br />
+Oyinz'okuba nga wamaze okutegeka ekya ddala ekipya oba nga wakasabayo eky'ekiseerabuseera.",
 
 # Edit page toolbar
 'bold_sample'     => "Ennukuta z'owandika wano zonna ziba nziggumivu",

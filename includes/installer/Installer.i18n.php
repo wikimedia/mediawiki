@@ -644,7 +644,6 @@ $messages['af'] = array(
 	'config-session-error' => 'Fout met begin van sessie: $1',
 	'config-no-session' => "U sessiedata is verlore!
 Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geldige gids wys.",
-	'config-session-path-bad' => 'U <code>session.save_path</code> (<code>$1</code>) blyk ongeldig te wees of kan nie na geskryf word nie.',
 	'config-your-language' => 'U taal:',
 	'config-your-language-help' => "Kies 'n taal om tydens die installasieproses te gebruik.",
 	'config-wiki-language' => 'Wiki se taal:',
@@ -665,7 +664,6 @@ Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geld
 	'config-page-releasenotes' => 'Vrystellingsnotas',
 	'config-page-copying' => 'Besig met kopiëring',
 	'config-page-upgradedoc' => 'Besig met opgradering',
-	'config-page-locked' => 'Toestemming geweier',
 	'config-restart' => 'Ja, herbegin dit',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki tuisblad]
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
@@ -674,10 +672,11 @@ Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geld
 	'config-env-good' => 'Die omgewing is gekontroleer.
 U kan MediaWiki installeer.',
 	'config-env-bad' => 'Die omgewing is gekontroleer.
-U kan nie MediaWiki installeer nie.',
+U kan nie MediaWiki installeer nie.</span>',
+	'config-env-php' => 'PHP $1 is tans geïnstalleer.',
 	'config-no-db' => "Kon nie 'n geskikte databasisdrywer vind nie!",
 	'config-memory-raised' => 'PHP se <code>memory_limit</code> is $1, en is verhoog tot $2.',
-	'config-memory-bad' => "'''Waarskuwing:''' PHP se <code>memory_limit</code> is $1.
+	'config-memory-bad' => "'''Waarskuwing:''' PHP se <code>memory_limit</code> is $1. 
 Dit is waarskynlik te laag.
 Die installasie mag moontlik faal!",
 	'config-xcache' => '[Http://trac.lighttpd.net/xcache/ XCache] is geïnstalleer',
@@ -755,7 +754,7 @@ Maak seker dat die gebruiker "$1" na skema "$2" mag skryf.',
 	'config-install-user' => 'Besig om die databasisgebruiker te skep',
 	'config-install-user-failed' => 'Die toekenning van regte aan gebruiker "$1" het gefaal: $2',
 	'config-install-tables' => 'Skep tabelle',
-	'config-install-tables-exist' => "'''Waarskuwing''': Dit lyk of MediaWiki se tabelle reeds bestaan.
+	'config-install-tables-exist' => "'''Waarskuwing''': Dit lyk of MediaWiki se tabelle reeds bestaan. 
 Die skep van tabelle word oorgeslaan.",
 	'config-install-tables-failed' => "'''Fout''': die skep van 'n tabel het gefaal met die volgende fout: $1",
 	'config-install-interwiki' => 'Besig om data in die interwiki-tabel in te laai',
@@ -766,11 +765,11 @@ Die standaardlys word oorgeslaan.",
 	'config-insecure-secret' => "Waarskuwing: dit was nie moontlik om 'n <code>$1</code> te skep nie.
 Oorweeg om dit handmatig te wysig.",
 	'config-install-sysop' => "Skep 'n gebruiker vir die administrateur",
-	'config-install-done' => "'''Veels geluk!'''
-U het MediaWiki suksesvol geïnstalleer.
+	'config-install-done' => "'''Veels geluk!''' 
+U het MediaWiki suksesvol geïnstalleer. 
 
 Die installeerder het 'n <code>LocalSettings.php</code> lêer opgestel.
-Dit bevat al u instellings.
+Dit bevat al u instellings. 
 
 U sal dit moet [$1 aflaai] en dit in die hoofgids van u wiki-installasie plaas; in dieselfde gids as index.php.
 '''Let wel''': As u dit nie nou doen nie, sal die gegenereerde konfigurasielêer nie later meer beskikbaar wees nadat u die installasie afgesluit het nie.
@@ -892,6 +891,7 @@ You should have received <doclink href=Copying>a copy of the GNU General Public 
 Вы можаце ўсталёўваць MediaWiki.',
 	'config-env-bad' => 'Асяродзьдзе было праверанае.
 Усталяваньне MediaWiki немагчымае.',
+	'config-env-php' => 'Усталяваны PHP $1.',
 	'config-unicode-using-utf8' => 'Выкарыстоўваецца бібліятэка Unicode-нармалізацыі Браяна Вібэра',
 	'config-unicode-using-intl' => 'Выкарыстоўваецца [http://pecl.php.net/intl intl пашырэньне з PECL] для Unicode-нармалізацыі',
 	'config-unicode-pure-php-warning' => "'''Папярэджаньне''': [http://pecl.php.net/intl Пашырэньне intl з PECL] — ня слушнае для Unicode-нармалізацыі, цяпер выкарыстоўваецца марудная PHP-рэалізацыя.
@@ -1291,8 +1291,8 @@ chmod a+w $3</pre>',
  * @author DCLXVI
  */
 $messages['bg'] = array(
-	'config-desc' => 'Инсталатор на MediaWiki',
-	'config-title' => 'Инсталиране на MediaWiki $1',
+	'config-desc' => 'Инсталатор на МедияУики',
+	'config-title' => 'Инсталиране на МедияУики $1',
 	'config-information' => 'Информация',
 	'config-localsettings-upgrade' => 'Беше открит файл <code>LocalSettings.php</code>.
 За надграждане на съществуващата инсталация, необходимо е в кутията по-долу да се въведе стойността на <code>$wgUpgradeKey</code>.
@@ -1328,6 +1328,8 @@ $1',
 	'config-page-install' => 'Инсталиране',
 	'config-page-complete' => 'Готово!',
 	'config-page-restart' => 'Рестартиране на инсталацията',
+	'config-page-readme' => 'Информация за софтуера',
+	'config-page-releasenotes' => 'Бележки за версията',
 	'config-page-copying' => 'Лицензно споразумение',
 	'config-page-upgradedoc' => 'Надграждане',
 	'config-page-existingwiki' => 'Съществуващо уики',
@@ -1346,7 +1348,7 @@ $1
 За повече подробности се препоръчва преглеждането на Общия публичен лиценз на GNU.
 
 Към програмата трябва да е приложено <doclink href=Copying>копие на Общия публичен лиценз на GNU</doclink>; ако не, можете да пишете на Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. или да [http://www.gnu.org/copyleft/gpl.html го прочетете онлайн].",
-	'config-sidebar' => '* [http://www.mediawiki.org Сайт на MediaWiki]
+	'config-sidebar' => '* [http://www.mediawiki.org Сайт на МедияУики]
 * [http://www.mediawiki.org/wiki/Help:Contents Наръчник на потребителя]
 * [http://www.mediawiki.org/wiki/Manual:Contents Наръчник на администратора]
 * [http://www.mediawiki.org/wiki/Manual:FAQ ЧЗВ]',
@@ -1354,10 +1356,10 @@ $1
 Инсталирането на МедияУики е възможно.',
 	'config-env-bad' => 'Средата беше проверена.
 Не е възможна инсталация на МедияУики.',
-	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за Unicode-нормализация.',
-	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за Unicode-нормализация.',
-	'config-unicode-pure-php-warning' => "'''Предупреждение''': [http://pecl.php.net/intl Разширението intl PECL] не е налично за справяне с нормализацията на Unicode, превключване към по-бавното изпълнение на чист PHP.
-Ако сайтът е с голям трафик, препоръчително е запознаването с [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормализацията на Unicode].",
+	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за нормализация на Уникод.',
+	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за нормализация на Уникод.',
+	'config-unicode-pure-php-warning' => "'''Предупреждение''': [http://pecl.php.net/intl Разширението intl PECL] не е налично за справяне с нормализацията на Уникод, превключване към по-бавното изпълнение на чист PHP.
+Ако сайтът е с голям трафик, препоръчително е запознаването с [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормализацията на Уникод].",
 	'config-no-db' => 'Не може да бъде открит подходящ драйвер за база от данни!',
 	'config-no-fts3' => "'''Предупреждение''': SQLite е компилирана без [http://sqlite.org/fts3.html модула FTS3], затова възможностите за търсене няма да са достъпни.",
 	'config-register-globals' => "'''Предупреждение: Настройката на PHP <code>[http://php.net/register_globals register_globals]</code> е включена.'''
@@ -1377,6 +1379,9 @@ $1
 Невъзможно е инсталирането и използването на МедияУики докато тази настройка не бъде изключена.",
 	'config-safe-mode' => "'''Предупреждение:''' PHP работи в [http://www.php.net/features.safe-mode безопасен режим].
 Това може да създаде проблеми, особено ако качването на файлове е разрешено, както и при поддръжката на <code>math</code>.",
+	'config-xml-bad' => 'Липсва XML модулът на PHP.
+МедияУики се нуждае от някои функции от този модул и няма да работи при наличната конфигурация.
+При Mandrake, необходимо е да се инсталира пакетът php-xml.',
 	'config-pcre-no-utf8' => "'''Фатално''': Модулът PCRE на PHP изглежда е компилиран без поддръжка на PCRE_UTF8.
 За да функционира правилно, МедияУики изисква поддръжка на UTF-8.",
 	'config-memory-bad' => "'''Предупреждение:''' <code>memory_limit</code> на PHP е $1.
@@ -1428,6 +1433,8 @@ $1
 Не се използват интервали и тирета.
 
 Това поле обикновено се оставя празно.',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 двоично',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-mysql-old' => 'Изисква се MySQL $1 или по-нова версия, наличната версия е $2.',
 	'config-db-schema' => 'Схема за МедияУики',
 	'config-db-ts2-schema' => 'Схема за tsearch2',
@@ -1477,6 +1484,7 @@ $1
 	'config-db-web-create' => 'Създаване на сметката ако все още не съществува',
 	'config-db-web-no-create-privs' => 'Посочената сметка за инсталацията не разполага с достатъчно права за създаване на нова сметка.
 Необходимо е посочената сметка вече да съществува.',
+	'config-mysql-engine' => 'Хранилище на данни:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
 	'config-mysql-engine-help' => "'''InnoDB''' почти винаги е най-добрата възможност заради навременната си поддръжка.
@@ -1516,9 +1524,13 @@ $1
 	'config-admin-password-same' => 'Паролата не трябва да е същата като потребителското име.',
 	'config-admin-password-mismatch' => 'Двете въведени пароли не съвпадат.',
 	'config-admin-email' => 'Адрес за електронна поща:',
+	'config-admin-email-help' => 'Въвеждането на адрес за е-поща позволява получаване на е-писма от другите потребители на уикито, възстановяване на изгубена или забравена парола, оповестяване при промени в страниците от списъка за наблюдение.',
 	'config-admin-error-user' => 'Възникна вътрешна грешка при създаване на администратор с името "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Възникна вътрешна грешка при задаване на парола за администратора "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Въведен е невалиден адрес за електронна поща',
 	'config-subscribe' => 'Абониране за [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce пощенския списък за нови версии].',
+	'config-subscribe-help' => 'Това е пощенски списък с малко трафик, който се използва за съобщения при излизане на нови версии, както и за важни проблеми със сигурността.
+Абонирането е препоръчително, както и надграждането на инсталацията на МедияУики при излизането на нова версия.',
 	'config-almost-done' => 'Инсталацията е почти готова!
 Възможно е пропускане на оставащата конфигурация и моментално инсталиране на уикито.',
 	'config-optional-continue' => 'Задаване на допълнителни въпроси.',
@@ -1542,13 +1554,27 @@ $1
 
 Детайлно обяснение на конфигурациите на потребителските права е достъпно след инсталацията в [http://www.mediawiki.org/wiki/Manual:User_rights Наръчника за потребителски права].",
 	'config-license' => 'Авторски права и лиценз:',
+	'config-license-none' => 'Без лиценз',
 	'config-license-cc-by-sa' => 'Криейтив Комънс Признание-Споделяне на споделеното (съвместим с Уикипедия)',
 	'config-license-cc-by-nc-sa' => 'Криейтив Комънс Признание-Некомерсиално-Споделяне на споделеното',
 	'config-license-gfdl-old' => 'Лиценз за свободна документация на GNU 1.2',
 	'config-license-gfdl-current' => 'Лиценз за свободна документация на GNU 1.3 или по-нов',
 	'config-license-pd' => 'Обществено достояние',
 	'config-license-cc-choose' => 'Избиране на друг лиценз от Криейтив Комънс',
+	'config-license-help' => "Много публични уикита поставят всички приноси под [http://freedomdefined.org/Definition/Bg свободен лиценз].
+Това помага създаване на усещане за общност и насърчава дългосрочните приноси.
+Това не е необходимо за частни или корпоративни уикита.
+
+Ако е необходимо да се използват текстове от Уикипедия, както и Уикипедия да може да използва текстове от уикито, необходимо е да се избере лиценз '''Криейтив Комънс Признание-Споделяне на споделеното'''.
+
+Лицензът за свободна документация на GNU е старият лиценз на съдържанието на Уикипедия.
+Той все още е валиден лиценз, но някои негови условия правят по-сложни повторното използване и интерпретацията.",
 	'config-email-settings' => 'Настройки за е-поща',
+	'config-enable-email' => 'Разрешаване на изходящи е-писма',
+	'config-enable-email-help' => 'За да работят възможностите за използване на е-поща, необходимо е [http://www.php.net/manual/en/mail.configuration.php настройките за поща на PHP] да бъдат конфигурирани правилно.
+Ако няма да се използват услугите за е-поща в уикито, те могат да бъдат изключени тук.',
+	'config-email-user' => 'Позволяване на потребителите да си изпращат е-писма през уикито',
+	'config-email-sender' => 'Адрес за обратна връзка:',
 	'config-upload-settings' => 'Картинки и качване на файлове',
 	'config-upload-enable' => 'Позволяне качването на файлове',
 	'config-upload-deleted' => 'Директория за изтритите файлове:',
@@ -1722,7 +1748,6 @@ Naći ćete ga u LocalSettings.php.',
 	'config-session-error' => 'Greška pri pokretanju sesije: $1',
 	'config-no-session' => 'Vaši podaci sesije su izgubljeni!
 Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> postavljen na pravilni direktorijum.',
-	'config-session-path-bad' => 'Vaš <code>session.save_path</code> (<code>$1</code>) je nevaljan ili se u njega ne može pisati.',
 	'config-your-language' => 'Vaš jezik:',
 	'config-your-language-help' => 'Odaberite jezik koji ćete koristiti tokom procesa instalacije.',
 	'config-wiki-language' => 'Wiki jezik:',
@@ -1751,6 +1776,7 @@ Provjerite vaš php.ini i provjerite da li je <code>session.save_path</code> pos
 * [http://www.mediawiki.org/wiki/Manual:FAQ NPP]',
 	'config-env-good' => 'Okruženje je provjereno.
 Možete instalirati MediaWiki.',
+	'config-env-php' => 'PHP $1 je instaliran.',
 	'config-no-db' => 'Nije mogao biti pronađen podgodan drajver za bazu podataka!',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je instaliran',
 	'config-apc' => '[http://www.php.net/apc APC] je instaliran',
@@ -1866,6 +1892,7 @@ Eine <doclink href=Copying>Kopie der GNU General Public License</doclink> sollte
 MediaWiki kann installiert werden.',
 	'config-env-bad' => 'Die Installationsumgebung wurde geprüft.
 MediaWiki kann nicht installiert werden.',
+	'config-env-php' => 'PHP $1 ist installiert.',
 	'config-unicode-using-utf8' => 'Zur Unicode-Normalisierung wird Brion Vibbers <code>utf8_normalize.so</code> eingesetzt.',
 	'config-unicode-using-intl' => 'Zur  Unicode-Normalisierung wird die [http://pecl.php.net/intl PECL-Erweiterung intl] eingesetzt.',
 	'config-unicode-pure-php-warning' => "'''Warnung:''' Die [http://pecl.php.net/intl PECL-Erweiterung intl] ist für die Unicode-Normalisierung nicht verfügbar, so dass stattdessen die langsame pure-PHP-Implementierung genutzt wird.
@@ -2124,6 +2151,7 @@ Bitte einen abweichenden Benutzernamen angeben.',
 	'config-admin-email-help' => 'Bitte hier eine E-Mail-Adresse angeben, die den E-Mail-Empfang von anderen Benutzern des Wikis, das Zurücksetzen des Passwortes sowie Benachrichtigungen zu Änderungen an beobachteten Seiten ermöglicht.',
 	'config-admin-error-user' => 'Es ist beim Erstellen des Administrators mit dem Namen „<nowiki>$1</nowiki>“ ein interner Fehler aufgetreten.',
 	'config-admin-error-password' => 'Es ist beim Setzen des Passworts für den Administrator „$1“ ein interner Fehler aufgetreten: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Es wurde eine ungültige E-Mail-Adresse angegeben',
 	'config-subscribe' => 'Bitte die Mailingliste [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mitteilungen zu Versionsveröffentlichungen] abonnieren.',
 	'config-subscribe-help' => 'Es handelt sich hierbei um eine Mailingliste mit wenigen Aussendungen, die für Mitteilungen zu Versionsveröffentlichungen, einschließlich wichtiger Sicherheitsveröffentlichungen, genutzt wird.
 Diese Mailingliste sollte abonniert werden. Zudem sollte die MediaWiki-Installation stets aktualisiert werden, sobald eine neue Programmversion veröffentlicht wurde.',
@@ -2242,6 +2270,7 @@ Die Standardliste wird übersprungen.",
 Dies muss manuell nachgeholt werden.",
 	'config-install-upgradekey' => 'Der Standardaktualisierungsschlüssel wird generiert',
 	'config-install-sysop' => 'Administratorkonto wird erstellt',
+	'config-install-subscribe-fail' => 'Abonnierung von „mediawiki-announce“ ist gescheitert',
 	'config-install-mainpage' => 'Erstellung der Hauptseite mit Standardinhalten',
 	'config-install-mainpage-failed' => 'Die Hauptseite konnte nicht erstellt werden.',
 	'config-install-done' => "'''Herzlichen Glückwunsch!'''
@@ -2301,7 +2330,6 @@ Puedes incrementar esto configurando <code>session.gc_maxlifetime</code> en php.
 Reiniciar el proceso de instalación.',
 	'config-no-session' => 'Se han perdido los datos de sesión.
 Verifica tu php.ini y comprueba que <code>session.save_path</code> está establecido en un directorio apropiado.',
-	'config-session-path-bad' => 'Parece que tu <code>session.save_path</code> (<code>$1</code>) es incorrecta o no se tienen permisos de escritura.',
 	'config-your-language' => 'Tu idioma:',
 	'config-your-language-help' => 'Seleccionar un idioma a usar durante el proceso de instalación.',
 	'config-wiki-language' => 'Idioma del wiki:',
@@ -2345,6 +2373,7 @@ En conjunto con este programa debe haber recibido <doclink href=Copying>una copi
 Puedes instalar MediaWiki.',
 	'config-env-bad' => 'El entorno ha sido comprobado.
 No puedes instalar MediaWiki.',
+	'config-env-php' => 'PHP $1 está instalado.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando la [http://pecl.php.net/intl extensión intl PECL] para la normalización Unicode.',
 	'config-unicode-pure-php-warning' => "'''Advertencia''': La [http://*pecl.*php.*net/*intl extensión intl PECL] no está disponible para efectuar la normalización Unicode.
@@ -2428,9 +2457,9 @@ Altéralos sólo si tienes la seguridad de que necesitas alterarlos.',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
-	'config-support-info' => 'MediaWiki es compatible con los siguientes sistemas de bases de datos:
+	'config-support-info' => 'MediaWiki es compatible con los siguientes sistemas de bases de datos: 
 
- $1
+ $1 
 
  Si no encuentras en el listado el sistema de base de datos que estás intentando utilizar, sigue las instrucciones vinculadas arriba para habilitar la compatibilidad.',
 	'config-support-mysql' => '* $1 es la plataforma primaria de MediaWiki y la mejor compatibilizada ([http://www.php.net/manual/es/mysql.installation.php cómo compilar PHP con compatibilidad MySQL])',
@@ -2459,7 +2488,7 @@ No uses espacios o guiones.
 Este nombre será usado como nombre del archivo de datos de SQLite.',
 	'config-sqlite-mkdir-error' => 'Error al crear el directorio de datos "$1".
 Comprueba la ubicación e inténtalo de nuevo.',
-	'config-sqlite-dir-unwritable' => 'No se puede escribir en el directorio "$1".
+	'config-sqlite-dir-unwritable' => 'No se puede escribir en el directorio "$1". 
 Modifica los permisos para que el servidor web pueda escribir en él y vuelve a intentarlo.',
 	'config-sqlite-connection-error' => '$1.
 
@@ -2476,7 +2505,7 @@ Para actualizarlas a MediaWiki $1, haz clic en '''Continuar'''.",
 	'config-db-web-help' => 'Elige el usuario y contraseña que el servidor Web usará para conectarse al servidor de la base de datos durante el fincionamiento normal del wiki.',
 	'config-db-web-account-same' => 'Utilizar la misma cuenta que en la instalación',
 	'config-db-web-create' => 'Crear la cuenta si no existe',
-	'config-db-web-no-create-privs' => 'La cuenta que has especificado para la instalación no tiene privilegios suficientes para crear una cuenta.
+	'config-db-web-no-create-privs' => 'La cuenta que has especificado para la instalación no tiene privilegios suficientes para crear una cuenta. 
 La cuenta que especifiques aquí debe existir.',
 	'config-mysql-engine' => 'Motor de almacenamiento:',
 	'config-mysql-innodb' => 'InnoDB',
@@ -2556,17 +2585,17 @@ Muchos servidores de correo electrónico exigen que por lo menos la parte del no
 	'config-upload-settings' => 'Cargas de imágenes y archivos',
 	'config-upload-enable' => 'Habilitar la subida de archivos',
 	'config-upload-deleted' => '*Directório para los archivos eliminados:',
-	'config-upload-deleted-help' => 'Elige un directorio en el que guardar los archivos eliminados.
+	'config-upload-deleted-help' => 'Elige un directorio en el que guardar los archivos eliminados. 
  Lo ideal es que esto no deba ser accesible desde la red.',
 	'config-logo' => 'URL del logo :',
 	'config-instantcommons' => 'Habilitar Instant Commons',
-	'config-cc-error' => 'El selector de licencia de Creative Commons no dio resultado.
+	'config-cc-error' => 'El selector de licencia de Creative Commons no dio resultado. 
 Escribe el nombre de la licencia manualmente.',
 	'config-cc-again' => 'Elegir otra vez...',
 	'config-cc-not-chosen' => 'Elige la licencia Creative Commons que desees y haz clic en "continuar".',
 	'config-advanced-settings' => 'Configuración avanzada',
 	'config-cache-options' => 'Configuración de la caché de objetos:',
-	'config-cache-help' => 'El almacenamiento en caché de objetos se utiliza para mejorar la velocidad de MediaWiki mediante el almacenamiento en caché los datos usados más frecuentemente.
+	'config-cache-help' => 'El almacenamiento en caché de objetos se utiliza para mejorar la velocidad de MediaWiki mediante el almacenamiento en caché los datos usados más frecuentemente. 
 A los sitios medianos y grandes se les recomienda que permitirlo. También es beneficioso para los sitios pequeños.',
 	'config-cache-none' => 'Sin almacenamiento en caché (no es removida ninguna funcionalidad, pero la velocidad de operación puede verse afectada en los wikis grandes)',
 	'config-cache-accel' => 'Almacenamiento en caché de objetos PHP (APC, eAccelerator, XCache o WinCache)',
@@ -2589,7 +2618,7 @@ Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
 	'config-install-user' => 'Creando el usuario de la base de datos',
 	'config-install-user-failed' => 'La concesión de permisos para el usuario "$1" ha fallado: $2',
 	'config-install-tables' => 'Creando tablas',
-	'config-install-tables-exist' => "'''Advertencia''': Al parecer, las tablas MediaWiki ya existen.
+	'config-install-tables-exist' => "'''Advertencia''': Al parecer, las tablas MediaWiki ya existen. 
  No se creará tablas.",
 	'config-install-tables-failed' => "'''Error''': La creación de las tablas falló con el siguiente error: $1",
 	'config-install-interwiki' => 'Llenando la tabla interwiki predeterminada',
@@ -2739,6 +2768,7 @@ Sinun pitäisi antaa näiden tarkistusten tulokset, jos tarvitset apua asennukse
 Voit asentaa MediaWikin.',
 	'config-env-bad' => 'Asennusympäristö on tarkastettu.
 Et voi asentaa MediaWikiä.',
+	'config-env-php' => 'PHP $1 on asennettu.',
 	'config-no-db' => 'Sopivaa tietokanta-ajuria ei löytynyt!',
 	'config-no-db-help' => 'Sinun täytyy asentaa tietokanta-ajuri PHP:lle.
 Seuraavat tietokantatyypit on tuettu: $1.
@@ -2893,6 +2923,7 @@ Vous devriez avoir reçu <doclink href=Copying>une copie de la Licence Publique 
 Vous pouvez installer MediaWiki.',
 	'config-env-bad' => 'L’environnement a été vérifié.
 vous ne pouvez pas installer MediaWiki.',
+	'config-env-php' => 'PHP $1 est installé.',
 	'config-unicode-using-utf8' => 'Utilisation de utf8_normalize.so par Brion Vibber pour la normalisation Unicode.',
 	'config-unicode-using-intl' => "Utilisation de [http://pecl.php.net/intl l'extension PECL intl] pour la normalisation Unicode.",
 	'config-unicode-pure-php-warning' => "'''Attention''': L'[http://pecl.php.net/intl extension PECL intl] n'est pas disponible pour la normalisation d’Unicode, retour à la version lente implémentée en PHP.
@@ -3349,6 +3380,7 @@ Debería recibir <doclink href=Copying>unha copia da licenza pública xeral GNU<
 Pode instalar MediaWiki.',
 	'config-env-bad' => 'Rematou a comprobación do entorno.
 Non pode instalar MediaWiki.',
+	'config-env-php' => 'PHP $1 está instalado.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para a normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensión intl PECL] para a normalización Unicode.',
 	'config-unicode-pure-php-warning' => "'''Atención:''' A [http://pecl.php.net/intl extensión intl PECL] non está dispoñible para manexar a normalización Unicode; volvendo á implementación lenta de PHP puro.
@@ -3802,6 +3834,7 @@ E <doclink href=Copying>Kopi vu dr GNU General Public-Lizänz</doclink> sott zä
 Du chasch MediaWiki inschtalliere.',
 	'config-env-bad' => 'D Inschtallationsumgäbigisch prieft wore.
 Du chasch MediaWiki nit inschtalliere.',
+	'config-env-php' => 'PHP $1 isch inschtalliert.',
 	'config-unicode-using-utf8' => 'Fir d Unicode-Normalisierig wird em Brion Vibber syy utf8_normalize.so yygsetzt.',
 	'config-unicode-using-intl' => 'For d Unicode-Normalisierig wird d [http://pecl.php.net/intl PECL-Erwyterig intl] yygsetzt.',
 	'config-unicode-pure-php-warning' => "'''Warnig:''' D [http://pecl.php.net/intl PECL-Erwyterig intl] isch fir d Unicode-Normalisierig nit verfiegbar. Wäge däm wird di langsam pure-PHP-Implementierig brucht.
@@ -4009,6 +4042,7 @@ Skontroluj swój php.ini a zawěsć, zo <code>session.save_path</code> je na pra
 Móžeš MediaWiki instalować.',
 	'config-env-bad' => 'Wokolina je so skontrolowała.
 Njemóžeš MediaWiki instalować.',
+	'config-env-php' => 'PHP $1 je instalowany.',
 	'config-unicode-using-utf8' => 'Za normalizaciju Unicode so utf8_normalize.so Briona Vibbera wužiwa.',
 	'config-unicode-using-intl' => 'Za normalizaciju Unicode so [http://pecl.php.net/intl PECL-rozšěrjenje intl] wužiwa.',
 	'config-no-db' => 'Njeda so přihódny ćěrjak datoweje banki namakać!',
@@ -4234,7 +4268,6 @@ Az érték növelhető a php.ini <code>session.gc_maxlifetime</code> beállítá
 Indítsd újra a telepítési folyamatot.',
 	'config-no-session' => 'Elvesztek a munkamenetadatok!
 Ellenőrizd, hogy a php.ini-ben a <code>session.save_path</code> a megfelelő könyvtárra mutat-e.',
-	'config-session-path-bad' => 'A <code>session.save_path</code> könyvtár (<code>$1</code>) érvénytelen vagy nem írható.',
 	'config-your-language' => 'Nyelv:',
 	'config-your-language-help' => 'A telepítési folyamat során használandó nyelv.',
 	'config-wiki-language' => 'A wiki nyelve:',
@@ -4268,6 +4301,7 @@ Ha probléma merülne fel a telepítés során, meg kell adnod mások számára 
 A MediaWiki telepíthető.',
 	'config-env-bad' => 'A környezet ellenőrzése befejeződött.
 A MediaWiki nem telepíthető.',
+	'config-env-php' => 'A PHP verziója: $1',
 	'config-unicode-using-utf8' => 'A rendszer Unicode normalizálására Brion Vibber utf8_normalize.so könyvtárát használja.',
 	'config-unicode-using-intl' => 'A rendszer Unicode normalizálására az [http://pecl.php.net/intl intl PECL kiterjesztést] használja.',
 	'config-unicode-pure-php-warning' => "'''Figyelmeztetés''': Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz.
@@ -4444,7 +4478,7 @@ Ajánlott feliratkozni rá, és frissíteni a MediaWikit, ha új verzió jön ki
 	'config-logo' => 'A logó URL-címe:',
 	'config-instantcommons' => 'Instant Commons engedélyezése',
 	'config-instantcommons-help' => 'Az [http://www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [http://commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.
-A használatához a MediaWikinek internethozzáférésre van szüksége.
+A használatához a MediaWikinek internethozzáférésre van szüksége. 
 
 A funkcióról és hogy hogyan állítható be más wikik esetén [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhatsz további információkat.',
 	'config-cc-again' => 'Válassz újra…',
@@ -4557,6 +4591,7 @@ Vos deberea haber recipite <doclink href=Copying>un exemplar del Licentia Public
 Tu pote installar MediaWiki.',
 	'config-env-bad' => 'Le ambiente ha essite verificate.
 Tu non pote installar MediaWiki.',
+	'config-env-php' => 'PHP $1 es installate.',
 	'config-unicode-using-utf8' => 'utf8_normalize.so per Brion Vibber es usate pro le normalisation Unicode.',
 	'config-unicode-using-intl' => 'Le [http://pecl.php.net/intl extension PECL intl] es usate pro le normalisation Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': Le [http://pecl.php.net/intl extension PECL intl] non es disponibile pro exequer le normalisation Unicode; le systema recurre al implementation lente in PHP pur.
@@ -4815,6 +4850,7 @@ Specifica un altere nomine de usator.',
 	'config-admin-email-help' => 'Entra un adresse de e-mail hic pro permitter le reception de e-mail ab altere usatores del wiki, pro poter reinitialisar tu contrasigno, e pro reciper notification de cambios a paginas in tu observatorio.',
 	'config-admin-error-user' => 'Error interne durante le creation de un administrator con le nomine "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Error interne durante le definition de un contrasigno pro le administrator "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Tu ha entrate un adresse de e-mail invalide',
 	'config-subscribe' => 'Subscribe al [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de diffusion pro annuncios de nove versiones].',
 	'config-subscribe-help' => 'Isto es un lista de e-mail a basse volumine pro annuncios de nove versiones, includente importante annuncios de securitate.
 Tu deberea subscriber a illo e actualisar tu installation de MediaWiki quando nove versiones es editate.',
@@ -4824,7 +4860,7 @@ Tu pote ora saltar le configuration remanente e installar le wiki immediatemente
 	'config-optional-skip' => 'Isto me es jam tediose. Simplemente installa le wiki.',
 	'config-profile' => 'Profilo de derectos de usator:',
 	'config-profile-wiki' => 'Wiki traditional',
-	'config-profile-no-anon' => 'Creation de conto requirite',
+	'config-profile-no-anon' => 'Creation de conto obligatori',
 	'config-profile-fishbowl' => 'Modificatores autorisate solmente',
 	'config-profile-private' => 'Wiki private',
 	'config-profile-help' => "Le wikis functiona melio si tu permitte a tante personas como possibile de modificar los.
@@ -4937,6 +4973,7 @@ Le lista predefinite es saltate.",
 Considera cambiar lo manualmente.",
 	'config-install-upgradekey' => 'Generation del clave de actualisation predefinite',
 	'config-install-sysop' => 'Crea conto de usator pro administrator',
+	'config-install-subscribe-fail' => 'Impossibile subscriber a mediawiki-announce',
 	'config-install-mainpage' => 'Crea pagina principal con contento predefinite',
 	'config-install-mainpage-failed' => 'Non poteva inserer le pagina principal.',
 	'config-install-done' => "'''Felicitationes!'''
@@ -5029,6 +5066,7 @@ Anda seharusnya telah menerima <doclink href=\"Copying\">salinan dari GNU Genera
 Anda dapat menginstal MediaWiki.',
 	'config-env-bad' => 'Kondisi telah diperiksa.
 Anda tidak dapat menginstal MediaWiki.',
+	'config-env-php' => 'PHP $1 diinstal.',
 	'config-unicode-using-utf8' => 'Menggunakan utf8_normalize.so Brion Vibber untuk normalisasi Unicode.',
 	'config-unicode-using-intl' => 'Menggunakan [http://pecl.php.net/intl ekstensi PECL intl] untuk normalisasi Unicode.',
 	'config-unicode-pure-php-warning' => "'''Peringatan''': [http://pecl.php.net/intl Ekstensi intl PECL] untuk menangani normalisasi Unicode tidak tersedia, kembali menggunakan implementasi murni PHP yang lambat. 
@@ -5287,6 +5325,7 @@ Berikan nama pengguna lain.',
 	'config-admin-email-help' => 'Masukkan alamat surel untuk memungkinkan Anda menerima surel dari pengguna lain, menyetel ulang sandi, dan mendapat pemberitahuan tentang perubahan atas daftar pantauan Anda.',
 	'config-admin-error-user' => 'Kesalahan internal saat membuat admin dengan nama "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Kesalahan internal saat membuat sandi untuk admin "<nowiki>$1</nowiki>":<pre>$2</pre>',
+	'config-admin-error-bademail' => 'Anda memasukkan alamat surel yang tidak sah',
 	'config-subscribe' => 'Berlangganan ke [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce milis pengumuman rilis].',
 	'config-subscribe-help' => 'Ini adalah milis bervolume rendah yang digunakan untuk pengumuman rilis, termasuk pengumuman keamanan penting.
 Anda sebaiknya berlangganan dan memperbarui instalasi MediaWiki saat versi baru keluar.',
@@ -5409,6 +5448,7 @@ Mengabaikan daftar bawaan.",
 Pertimbangkan untuk mengubahnya secara manual.",
 	'config-install-upgradekey' => 'Membuat kunci pemutakhiran bawaan',
 	'config-install-sysop' => 'Membuat akun pengguna pengurus',
+	'config-install-subscribe-fail' => 'Tidak dapat berlangganan mediawiki-announce',
 	'config-install-mainpage' => 'Membuat halaman utama dengan konten bawaan',
 	'config-install-mainpage-failed' => 'Tidak dapat membuat halaman utama.',
 	'config-install-done' => "'''Selamat!'''
@@ -5520,6 +5560,7 @@ $1
 MediaWikiをインストール出来ます。',
 	'config-env-bad' => '環境が確認されました。
 MediaWikiをインストール出来ません。',
+	'config-env-php' => 'PHP $1がインストールされています。',
 	'config-unicode-using-utf8' => 'Unicode正規化に、Brion Vibberのutf8_normalize.soを利用。',
 	'config-unicode-using-intl' => 'Unicode正規化に[http://pecl.php.net/intl intl PECL 拡張機能]を利用。',
 	'config-unicode-pure-php-warning' => "'''警告'''：Unicode正規化の処理に [http://pecl.php.net/intl intl PECL 拡張機能]ではなく、ピュア PHP な実装を用いています。この処理は遅いです。
@@ -5991,6 +6032,7 @@ Do sullts aanjävve, wat erus kohm, wann de Hölp bem Opsäze bruchs.',
 Do kanns MediaWiki opsäze.',
 	'config-env-bad' => 'De Ömjävung es jeprööf.
 Do kanns MediaWiki nit opsäze.',
+	'config-env-php' => 'PHP $1 es doh.',
 	'config-unicode-using-utf8' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer däm <i lang="en">Brion Vibber</i> sing Projramm <code lang="en">utf8_normalize.so</code> nämme.',
 	'config-unicode-using-intl' => 'För et <i lang="en">Unicode</i>-Nommaliseere dom_mer dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] nämme.',
 	'config-unicode-pure-php-warning' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä [http://pecl.php.net/intl Zohsaz <code lang="en">intl</code> uss em <code lang="en">PECL</code>] för et <i lang="en">Unicode</i>-Nommaliseere nit fenge.
@@ -6142,6 +6184,7 @@ Dir sollt d'Resultater vun dëser Iwwerpréifung ugi wann Dir während der Insta
 Dir kënnt MediaWiki installéieren.',
 	'config-env-bad' => 'Den Environnement gouf iwwerpréift.
 Dir kënnt MediWiki net installéieren.',
+	'config-env-php' => 'PHP $1 ass installéiert.',
 	'config-unicode-using-utf8' => "Fir d'Unicode-Normalisatioun gëtt dem Brion Vibber säin <code>utf8_normalize.so</code> benotzt.",
 	'config-no-db' => 'Et konnt kee passenden Datebank-Driver fonnt ginn!',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] ass installéiert',
@@ -6329,6 +6372,7 @@ $1
 Можете да го инсталирате МедијаВики.',
 	'config-env-bad' => 'Околината е проверена.
 Не можете да го инсталирате МедијаВики.',
+	'config-env-php' => 'PHP $1 е инсталиран.',
 	'config-unicode-using-utf8' => 'Со utf8_normalize.so за уникодна нормализација од Брајон Вибер (Brion Vibber).',
 	'config-unicode-using-intl' => 'Со додатокот [http://pecl.php.net/intl intl PECL] за уникодна нормализација.',
 	'config-unicode-pure-php-warning' => "'''Предупредување''': Додатокот [http://pecl.php.net/intl intl PECL] не е достапен за врши уникодна нормализација, враќајќи се на бавна примена на чист PHP.
@@ -6586,6 +6630,7 @@ chmod a+w $3</pre>',
 	'config-admin-email-help' => 'Тука внесете е-поштанска адреса за да можете да добивате е-пошта оддруги корисници на викито, да ја менувате лозинката, и да бидете известувани за промени во страниците на вашиот список на набљудувања.',
 	'config-admin-error-user' => 'Се појави внатрешна грешка при создавањето на администраторот со име „<nowiki>$1</nowiki>“.',
 	'config-admin-error-password' => 'Се појави внатрешна грешка при задавање на лозинката за администраторот „<nowiki>$1</nowiki>“: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Внесовте неважечка е-поштенска адреса',
 	'config-subscribe' => 'Претплатете се на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce release поштенскиот список за известувања].',
 	'config-subscribe-help' => 'Ова е нископрометен поштенски список кој се користи за соопштувања во врска со изданија, вклучувајќи важни безбедносни соопштенија.
 Треба да се претплатите и да ја надградувате вашата инсталација на МедијаВики кога излегуваат нови верзии.',
@@ -6708,6 +6753,7 @@ chmod a+w $3</pre>',
 Ви препорачуваме да го смените рачно.",
 	'config-install-upgradekey' => 'Создавам стандарден клуч за надградување',
 	'config-install-sysop' => 'Создавање на администраторска корисничка сметка',
+	'config-install-subscribe-fail' => 'Не можам да ве претплатам на објавите на МедијаВики',
 	'config-install-mainpage' => 'Создавам главна страница со стандардна содржина',
 	'config-install-mainpage-failed' => 'Не можев да вметнам главна страница.',
 	'config-install-done' => "'''Честитаме!'''
@@ -6971,6 +7017,7 @@ Samen met dit programma hoort u een <doclink href=Copying>exemplaar van de GNU G
 U kunt MediaWiki installeren.',
 	'config-env-bad' => 'De omgeving is gecontroleerd.
 U kunt MediaWiki niet installeren.',
+	'config-env-php' => 'PHP $1 is op dit moment geïnstalleerd.',
 	'config-unicode-using-utf8' => 'Voor Unicode-normalisatie wordt utf8_normalize.so van Brion Vibber gebruikt.',
 	'config-unicode-using-intl' => 'Voor Unicode-normalisatie wordt de [http://pecl.php.net/intl PECL-extensie intl] gebruikt.',
 	'config-unicode-pure-php-warning' => "'''Waarschuwing''': De [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicode-normalisatie af te handelen en daarom wordt de langzame PHP-implementatie gebruikt.
@@ -7440,7 +7487,6 @@ Du kan øke dette ved å sette <code>session.gc_maxlifetime</code> i php.ini.
 Start installasjonsprosessen på nytt.',
 	'config-no-session' => 'Dine øktdata ble tapt!
 Sjekk din php.ini og sørg for at <code>session.save_path</code> er satt til en passende mappe.',
-	'config-session-path-bad' => 'Din <code>session.save_path</code> (<code>$1</code>) ser ut til å være ugyldig eller uskrivbar.',
 	'config-your-language' => 'Ditt språk:',
 	'config-your-language-help' => 'Velg et språk å bruke under installasjonsprosessen.',
 	'config-wiki-language' => 'Wikispråk:',
@@ -7484,6 +7530,7 @@ Du skal ha mottatt <doclink href=Copying>en kopi av GNU General Public License</
 Du kan installere MediaWiki.',
 	'config-env-bad' => 'Miljøet har blitt sjekket.
 Du kan installere MediaWiki.',
+	'config-env-php' => 'PHP $1 er innstallert.',
 	'config-unicode-using-utf8' => 'Bruker Brion Vibbers utf8_normalize.so for Unicode-normalisering.',
 	'config-unicode-using-intl' => 'Bruker [http://pecl.php.net/intl intl PECL-utvidelsen] for Unicode-normalisering.',
 	'config-unicode-pure-php-warning' => "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen.
@@ -7796,7 +7843,7 @@ Last opp et bilde i passende størrelse og skriv inn nettadressen her.
 Hvis du ikke ønsker en logo, la denne boksen være tom.',
 	'config-instantcommons' => 'Aktiver Instant Commons',
 	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [http://commons.wikimedia.org/ Wikimedia Commons].
-For å gjøre dette krever MediaWiki tilgang til internett.
+For å gjøre dette krever MediaWiki tilgang til internett. 
 
 For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos manualen].',
 	'config-cc-again' => 'Velg igjen...',
@@ -7888,6 +7935,7 @@ Razem z oprogramowaniem powinieneś otrzymać <doclink href=Copying>kopię licen
 Możesz teraz zainstalować MediaWiki.',
 	'config-env-bad' => 'Środowisko oprogramowania zostało sprawdzone.
 Nie możesz zainstalować MediaWiki.',
+	'config-env-php' => 'Zainstalowane jest PHP w wersji $1.',
 	'config-unicode-using-utf8' => 'Korzystanie z normalizacji Unicode utf8_normalize.so napisanej przez Brion Vibbera.',
 	'config-unicode-using-intl' => 'Korzystanie z [http://pecl.php.net/intl rozszerzenia intl PECL] do normalizacji Unicode.',
 	'config-unicode-pure-php-warning' => "'''Uwaga!''' [http://pecl.php.net/intl Rozszerzenie intl PECL] do obsługi normalizacji Unicode nie jest dostępne. Użyta zostanie mało wydajna zwykła implementacja w PHP.
@@ -8179,7 +8227,6 @@ A peul aumenté sòn an ampostand <code>session.gc_maxlifetime</code> an php.ini
 Ch'a anandia torna ël process d'instalassion.",
 	'config-no-session' => "Ij sò dat ëd session a son përdù!
 Ch'a contròla sò php.ini e ch'as sigura che <code>session.save_path</code> a sia ampostà ant ël dossié giust.",
-	'config-session-path-bad' => 'Tò <code>session.save_path</code> (<code>$1</code>) a smija esse pa bon o pa scrivìbil.',
 	'config-your-language' => 'Toa lenga:',
 	'config-your-language-help' => "Selessioné na lenga da dovré durant ël process d'instalassion.",
 	'config-wiki-language' => 'Lenga dla Wiki:',
@@ -8218,10 +8265,11 @@ A dovrìa avèj arseivù <doclink href=Copying>na còpia ëd la licensa pùblica
 * [http://www.mediawiki.org/wiki/Help:Contents Guida dl'Utent]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida dl'Aministrator]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Soens an ciamo]",
-	'config-env-good' => 'L\'ambient a l\'é stàit controlà.
-It peule instalé MediaWiki.',
+	'config-env-good' => "L'ambient a l'é stàit controlà.
+It peule instalé MediaWiki.",
 	'config-env-bad' => "L'ambient a l'é stàit controlà.
 It peule pa instalé MediaWiki.",
+	'config-env-php' => "PHP $1 a l'é instalà.",
 	'config-unicode-using-utf8' => 'As deuvra utf8_normalize.so ëd Brion Vibber për la normalisassion Unicode.',
 	'config-unicode-using-intl' => "As deuvra l'[http://pecl.php.net/intl estension intl PECL] për la normalisassion Unicode.",
 	'config-unicode-pure-php-warning' => "'''Avis:''' L'[http://pecl.php.net/intl estension intl PECL] a l'é pa disponìbil për gestì la normalisassion Unicode, da già che l'implementassion an PHP pur a faliss për lentëssa.
@@ -8534,7 +8582,7 @@ Ch'a dëscaria na figura ëd la dimension aproprià, e ch'a anserissa l'anliura 
 S'a veul gnun-e marche, ch'a lassa ës camp bianch.",
 	'config-instantcommons' => 'Abìlita Instant Commons',
 	'config-instantcommons-help' => "[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] a l'é na funsion ch'a përmët a le wiki ëd dovré dle figure, dij son e d'àutri mojen trovà an sël sit [http://commons.wikimedia.org/ Wikimedia Commons].
-Për dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà.
+Për dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà. 
 
 Për pi d'anformassion su sta funsion, comprèise j'istrussion ëd com ampostela për wiki diferente da Wikimedia Commons, ch'a consulta [http://mediawiki.org/wiki/Manual:\$wgForeignFileRepos ël manual].",
 	'config-cc-error' => "La selession ëd la licensa Creative Commons a l'ha dàit gnun arzultà.
@@ -8682,6 +8730,7 @@ Em conjunto com este programa deve ter recebido <doclink href=Copying>uma cópia
 Pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
 Não pode instalar o MediaWiki.',
+	'config-env-php' => 'O PHP $1 está instalado.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, por Brian Viper, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'A usar a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efectuar a normalização Unicode. Irá recorrer-se à implementação em PHP puro, que é mais lenta.
@@ -9152,6 +9201,7 @@ Em conjunto com este programa você deve ter recebido <doclink href=Copying>uma 
 Você pode instalar o MediaWiki.',
 	'config-env-bad' => 'O ambiente foi verificado.
 Você não pode instalar o MediaWiki.',
+	'config-env-php' => 'O PHP $1 está instalado.',
 	'config-unicode-using-utf8' => 'A usar o utf8_normalize.so, de Brian Viper, para a normalização Unicode.',
 	'config-unicode-using-intl' => 'Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.',
 	'config-unicode-pure-php-warning' => "'''Aviso''': A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode.
@@ -9286,6 +9336,7 @@ MediaWiki распространяется в надежде, что она бу
 Вы можете установить MediaWiki.',
 	'config-env-bad' => 'Была проведена проверка внешней среды. 
 Вы не можете установить MediaWiki.',
+	'config-env-php' => 'Установленная версия PHP: $1.',
 	'config-unicode-using-utf8' => 'Использовать Brion Vibber utf8_normalize.so для нормализации Юникода.',
 	'config-unicode-using-intl' => 'Будет использовано [http://pecl.php.net/intl расширение «intl» для PECL] для нормализации Юникода.',
 	'config-unicode-pure-php-warning' => "'''Внимание!''': [http://pecl.php.net/intl международное расширение PECL] недоступно для нормализации Юникода, будет использоваться медленная реализация на чистом PHP.
@@ -9796,7 +9847,6 @@ $messages['tl'] = array(
 	'config-session-error' => 'Kamalian sa pagsisimula ng sesyon: $1',
 	'config-no-session' => 'Nawala ang iyong datos ng sesyon!
 Suriin ang iyong php.ini at tiyakin na ang <code>session.save_path</code> ay nakatakda sa angkop na direktoryo.',
-	'config-session-path-bad' => 'Tila ang iyong <code>session.save_path</code> (<code>$1</code>) ay hindi tanggap o hindi maisusulat.',
 	'config-your-language' => 'Ang wika mo:',
 	'config-your-language-help' => 'Pumili ng isang wikang gagamitin habang isinasagawa ang pagtatalaga.',
 	'config-wiki-language' => 'Wika ng Wiki:',
@@ -9840,6 +9890,7 @@ Dapat nakatanggap ka ng <doclink href=Copying>isang sipi ng Pangkalahatang Pampu
 Mailuluklok mo ang MediaWiki.',
 	'config-env-bad' => 'Nasuri na ang kapaligiran.
 Hindi mo mailuklok ang MediaWiki.',
+	'config-env-php' => 'Naitalaga ang PHP na $1.',
 	'config-unicode-using-utf8' => 'Ginagamit ang utf8_normalize.so ni Brion Vibber para sa pagpapanormal ng Unikodigo.',
 	'config-unicode-using-intl' => 'Ginagamit ang [http://pecl.php.net/intl intl dugtong na PECL] para sa pagsasanormal ng Unikodigo.',
 	'config-no-db' => 'Hindi matagpuan ang isang angkop na drayber ng kalipunan ng datos!',
@@ -9890,7 +9941,7 @@ Baguhin lamang sila kung alam mong kailangan mo.',
 	'config-missing-db-name' => 'Dapat kang magpasok ng isang halaga para sa "pangalan ng Kalipunan ng Dao"',
 	'config-invalid-db-name' => 'Hindi tanggap na pangalan ng kalipunan ng dato na "$1".
 Gumamit lamang ng mga titik ng ASCII (a-z, A-Z), mga bilang (0-9) at mga salangguhit (_).',
-	'config-invalid-db-prefix' => 'Hindi tanggap na unlapi ng kalipunan ng dato na "$1".
+	'config-invalid-db-prefix' => 'Hindi tanggap na unlapi ng kalipunan ng dato na "$1". 
 Gamitin lamang ang mga titik na ASCII (a-z, A-Z), mga bilang (0-9) at mga salangguhit (_).',
 	'config-postgres-old' => 'Kailangan ang PostgreSQL $1 o mas bago, mayroon kang $2.',
 	'config-sqlite-readonly' => 'Ang talaksang <code>$1</code> ay hindi maisusulat.',
@@ -10012,8 +10063,8 @@ $messages['uk'] = array(
 	'config-desc' => 'Інсталятор MediaWiki',
 	'config-title' => 'Встановлення MediaWiki $1',
 	'config-information' => 'Інформація',
-	'config-localsettings-upgrade' => "'''Увага''': було виявлено файл <code>LocalSettings.php</code>.
-Ваше програмне забезпечення може бути оновлено.
+	'config-localsettings-upgrade' => "'''Увага''': було виявлено файл <code>LocalSettings.php</code>. 
+Ваше програмне забезпечення може бути оновлено. 
 Будь-ласка, перемістіть файл <code>LocalSettings.php</code> в іншу безпечну директорію, а потім знову запустіть програму установки.",
 	'config-session-error' => 'Помилка початку сесії: $1',
 	'config-your-language' => 'Ваша мова:',
@@ -10048,9 +10099,10 @@ $messages['uk'] = array(
 	'config-env-good' => 'Перевірку середовища успішно завершено.
 Ви можете встановити MediaWiki.',
 	'config-env-bad' => 'Було проведено перевірку середовища. Ви не можете встановити MediaWiki.',
+	'config-env-php' => 'Встановлено версію PHP: $1.',
 	'config-unicode-using-utf8' => 'Використовувати utf8_normalize.so Брайона Віббера для нормалізації Юнікоду.',
 	'config-unicode-using-intl' => 'Використовувати [http://pecl.php.net/intl міжнародне розширення PECL] для нормалізації Юнікоду.',
-	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду.
+	'config-unicode-pure-php-warning' => "'''Увага''': [http://pecl.php.net/intl міжнародне розширення PECL] не може провести нормалізацію Юнікоду. 
 Якщо ваш сайт має високий трафік, вам варто почитати про [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормалізацію Юнікоду].",
 	'config-no-db' => 'Не вдалося знайти відповідний драйвер бази даних!',
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] встановлено',
@@ -10066,7 +10118,7 @@ $messages['uk'] = array(
 	'config-invalid-db-type' => 'Невірний тип бази даних',
 	'config-invalid-db-name' => 'Неприпустима назва бази даних "$1".
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
-	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1".
+	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1". 
 Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
 	'config-sqlite-cant-create-db' => 'Не вдалося створити файл бази даних <code>$1</code>.',
 	'config-db-web-create' => 'Створити обліковий запис, якщо його ще не існує',

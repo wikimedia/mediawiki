@@ -983,13 +983,13 @@ Mety misy ny antsipirihany angamba ny [{{fullurl:{{#Special:Log}}/suppress|page=
 'rev-deleted-text-unhide'     => "Ity santiônan'ity pejy ity dia '''voafafa'''.
 Hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana] ny antsipirihany.
 Noho ianao mpandrindra mbola afaka [$1 mijery ilay santiôna] ianao raha tianao.",
-'rev-suppressed-text-unhide'  => "Ity santiônam-pejy ity dia efa '''voafafa'''.
-Azo jerena ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafana] ny antsipirihany.
+'rev-suppressed-text-unhide'  => "'''Nofafana''' ity santiônam-pejy ity.
+Azo jerena ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} laogim-pamafana] ny antsipirihany.
 Noho ianao mpandrindra, azonao [$1 jerena foana ilay santiôna] raha tianao.",
-'rev-deleted-text-view'       => "Ity santiônan'ny pejy ity dia '''voafafa'''.
-Noho ianao mpandrindra, azonao jerena ilay izy ; ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafàna pejy] ny antsipirihany.",
-'rev-suppressed-text-view'    => "Ity santiônan'ny pejy ity dia '''voafafa'''.
-Noho ianao mpandrindra, azonao jerena ilay izy ; ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tatitr'asa momban'ny famafàna pejy] ny antsipirihany.",
+'rev-deleted-text-view'       => "'''Nofafana''' ity santiônam-pejy ity.
+Noho ianao mpandrindra, dia azonao jerena ity santiôna voafafa ity ; misy antsipirihany ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana].",
+'rev-suppressed-text-view'    => "'''Nofafana''' ity santiônam-pejy ity.
+Noho ianao mpandrindra, azonao jerena ilay santiôna voafafa ; ny antsipirihany dia ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} laogim-pamafana].",
 'rev-deleted-no-diff'         => "Tsy afaka mijery anio diff io ianao satria misy santôna '''voafafa''' ao aminy.
 Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME}}}} laogy momban'ny famafàna pejy] ny antsipirihany.",
 'rev-suppressed-no-diff'      => "Tsy azo jerenao io diff io satria '''voafafa''' ny iraika amin'ny reviziônany.",
@@ -2216,8 +2216,8 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 efa nisy mpikambana iray hafa angamba no namerina ilay pejy.',
 'undeletedpage'              => "'''Voaverina ny pejy $1.'''
 
-Vakio ny [[Special:Log/delete|tatitr'asa momban'ny famafana]] ho an'ny lisitry ny famafana sy ny famerenana pejy.",
-'undelete-header'            => "Jereo ny [[Special:Log/delete|tatitr'asa mikasika ny famafàna]] rehefa hanalisitra ny pejy vao voafafa.",
+Vakio ny [[Special:Log/delete|laogim-pamafana]] ho an'ny lisitry ny famafana sy ny famerenana pejy.",
+'undelete-header'            => 'Jereo ny [[Special:Log/delete|laogim-pamafana]] rehefa hanalisitra ny pejy vao voafafa.',
 'undelete-search-box'        => 'Hitady pejy voafafa',
 'undelete-search-prefix'     => "Asehoy ny pejy manomboka amin'ny :",
 'undelete-search-submit'     => 'Fikarohana',
@@ -2255,8 +2255,8 @@ $1',
 'sp-contributions-logs'           => 'tatitr’asa',
 'sp-contributions-talk'           => 'Dinika',
 'sp-contributions-userrights'     => 'fitantanana ny satam-pikambana',
-'sp-contributions-blocked-notice' => "Ankehitriny ity mpikambana ity dia voasakana.
-Ny fampidirana faran'ny tatitr'asa ny fanakanam-pikambana dia naseho teo ambany ho an'ny fampahalalàna :",
+'sp-contributions-blocked-notice' => 'Ankehitriny ity mpikambana ity dia voasakana.
+Miseho eo ambany eo ny laogim-panakanam-pikambana mba hampahalala :',
 'sp-contributions-search'         => "Hikaroka fandraisan'anjara",
 'sp-contributions-username'       => 'Adiresy IP na anaram-pikambana :',
 'sp-contributions-submit'         => 'Hikaroka',

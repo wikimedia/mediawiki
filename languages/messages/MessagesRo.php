@@ -448,7 +448,7 @@ pe titlul secțiunii (JavaScript)',
 'qbbrowse'       => 'Răsfoiește',
 'qbedit'         => 'Modifică',
 'qbpageoptions'  => 'Opțiuni ale paginii',
-'qbpageinfo'     => 'Informații ale paginii',
+'qbpageinfo'     => 'Informaţii ale paginii',
 'qbmyoptions'    => 'Paginile mele',
 'qbspecialpages' => 'Pagini speciale',
 'faq'            => 'Întrebări frecvente',
@@ -494,6 +494,7 @@ pe titlul secțiunii (JavaScript)',
 'delete'            => 'Șterge',
 'deletethispage'    => 'Șterge pagina',
 'undelete_short'    => 'Recuperarea {{PLURAL:$1|unei editări|a $1 editări}}',
+'viewdeleted_short' => 'Vedeți {{PLURAL:$1|o modificare ștearsă|$1 (de) modificări șterse}}',
 'protect'           => 'Protejează',
 'protect_change'    => 'schimbă protecția',
 'protectthispage'   => 'Protejează pagina',
@@ -721,6 +722,8 @@ Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:P
 'createaccounterror'         => 'Nu pot crea contul: $1',
 'nocookiesnew'               => 'Contul a fost creat, dar dvs. nu sunteți autentificat(ă). {{SITENAME}} folosește cookie-uri pentru a reține utilizatorii autentificați. Browser-ul dvs. are modulele cookie dezactivate (disabled). Vă rugăm să le activați și să vă reautentificați folosind noul nume de utilizator și noua parolă.',
 'nocookieslogin'             => '{{SITENAME}} folosește module cookie pentru a autentifica utilizatorii. Browser-ul dvs. are cookie-urile dezactivate. Vă rugăm să le activați și să incercați din nou.',
+'nocookiesfornew'            => 'Contul de utilizator nu a fost creat, deoarece nu am putut confirma sursa.
+Asigurați-vă că aveți cookie-urile activate, reîncărcați pagina și încercați din nou.',
 'noname'                     => 'Numele de utilizator pe care l-ai specificat este invalid.',
 'loginsuccesstitle'          => 'Autentificare reușită',
 'loginsuccess'               => "'''Ați fost autentificat la {{SITENAME}} ca „$1”.'''",
@@ -734,6 +737,7 @@ Verifică dacă ai scris corect sau [[Special:UserLogin/signup|creează un nou c
 'wrongpasswordempty'         => 'Spațiul pentru introducerea parolei nu a fost completat. Vă rugăm să încercați din nou.',
 'passwordtooshort'           => 'Parola trebuie să aibă cel puțin {{PLURAL:$1|1 caracter|$1 caractere}}.',
 'password-name-match'        => 'Parola dumneavoastră trebuie să fie diferită de numele de utilizator.',
+'password-login-forbidden'   => 'Utilizarea acestui nume de utilizator și a acestei parole este interzisă.',
 'mailmypassword'             => 'Trimite-mi parola pe e-mail!',
 'passwordremindertitle'      => 'Noua parolă temporară la {{SITENAME}}',
 'passwordremindertext'       => 'Cineva (probabil dumneavoastră, de la adresa $1)
@@ -770,6 +774,9 @@ Ignorați acest mesaj dacă crearea contului s-a produs în urma unei greșeli.'
 Vă rugăm să așteptați până să mai încercați.',
 'loginlanguagelabel'         => 'Limba: $1',
 'suspicious-userlogout'      => 'Cererea dumneavoastră de a închide sesiunea a fost refuzată întrucât pare că a fost trimisă printr-o eroare a navigatorului sau de un proxy memorat în cache.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Eroare necunoscută în funcția PHP mail()',
 
 # JavaScript password checks
 'password-strength'            => 'Nivelul de securitate al parolei: $1',
@@ -903,6 +910,10 @@ Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referinț�
 'userjsyoucanpreview'              => "'''Sfat:''' Folosiți butonul „{{int:showpreview}}” pentru a testa noul JavaScript înainte de a-l salva.",
 'usercsspreview'                   => "'''Reține că urmărești doar o previzualizare a css-ului tău de utilizator, acesta nu este încă salvat!'''",
 'userjspreview'                    => "'''Reține că urmărești doar un test/o previzualizare a javascript-ului tău de utilizator, acesta nu este încă salvat!'''",
+'sitecsspreview'                   => "'''Țineți minte că doar previzualizați această foaie de stil.'''
+'''Ea nu a fost salvată încă!'''",
+'sitejspreview'                    => "'''Țineți minte că doar previzualizați acest cod JavaScript.'''
+'''El nu a fost salvat încă!'''",
 'userinvalidcssjstitle'            => '<b>Avertizare:</b> Nu există skin "$1". Amintește-ți că paginile .css and .js specifice utilizatorilor au titluri care încep cu literă mică, de exemplu {{ns:user}}:Foo/vector.css în comparație cu {{ns:user}}:Foo/Vector.css.',
 'updated'                          => '(Actualizat)',
 'note'                             => "'''Notă:'''",
@@ -1507,6 +1518,7 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-sendemail'             => 'Trimite e-mail altor utilizatori',
 'right-revisionmove'          => 'Mută versiuni',
+'right-disableaccount'        => 'Dezactivează conturi',
 
 # User rights log
 'rightslog'      => 'Jurnal permisiuni de utilizator',
@@ -1732,6 +1744,15 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'upload-unknown-size'       => 'Mărime necunoscută',
 'upload-http-error'         => 'A avut loc o eroare HTTP: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Fișiere trimise în așteptare',
+'uploadstash-summary'  => 'Această pagină oferă acces la fișierele care sunt încărcate (sau în curs de încărcare) dar nu sunt încă publicare pe wiki. Aceste fișiere nu sunt vizibile nimănui cu excepția celui care le-a încărcat.',
+'uploadstash-clear'    => 'Ștergeți fișierele în așteptare',
+'uploadstash-nofiles'  => 'Nu aveți fișiere pe lista de așteptare.',
+'uploadstash-badtoken' => 'Execuția acestei acțiuni nu a reușit, probabil deoarece informațiile dumneavoastră de identificare au expirat. Încercați din nou.',
+'uploadstash-errclear' => 'Golirea fișierelor nu a reușit.',
+'uploadstash-refresh'  => 'Reîmprospătează lista de fișiere',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Acces interzis',
 'img-auth-nopathinfo'   => 'PATH_INFO lipsește.
@@ -1909,6 +1930,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-edits'             => 'Editări de la instalarea {{SITENAME}}',
 'statistics-edits-average'     => 'Media editărilor pe pagină',
 'statistics-views-total'       => 'Număr de vizualizări',
+'statistics-views-total-desc'  => 'Vizualizările paginilor inexistente și a paginilor speciale nu sunt incluse',
 'statistics-views-peredit'     => 'Vizualizări pe editare',
 'statistics-users'             => '[[Special:ListUsers|Utilizatori]] înregistrați',
 'statistics-users-active'      => 'Utilizatori activi',
@@ -2003,6 +2025,7 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 'pager-newer-n'           => '{{PLURAL:$1|1 mai nou|$1 mai noi}}',
 'pager-older-n'           => '{{PLURAL:$1|1|$1}} mai vechi',
 'suppress'                => 'Oversight',
+'querypage-disabled'      => 'Această pagină specială este dezactivată din motive de performanță.',
 
 # Book sources
 'booksources'               => 'Surse de cărți',
@@ -2571,6 +2594,18 @@ Vă rugăm să rețineți că sunteți responsabil(ă) pentru a face legăturile
 
 Rețineți că pagina '''nu va fi mutată''' dacă există deja o pagină cu noul titlu, în afară de cazul că este complet goală sau este
 o redirecționare și în plus nu are nici o istorie de modificare.
+Cu alte cuvinte, veți putea muta înapoi o pagină pe care ați mutat-o greșit, dar nu veți putea suprascrie o pagină validă existentă prin mutarea alteia.
+
+'''ATENŢIE!'''
+Aceasta poate fi o schimbare drastică și neașteptată pentru o pagină populară;
+vă rugăm, să vă asigurați că înțelegeți toate consecințele înainte de a continua.",
+'movepagetext-noredirectfixer' => "Utilizând formularul de mai jos veți redenumi o pagină, mutând tot istoricul către noul nume.
+Vechiul titlu va deveni o pagină de redirecționare către noul titlu.
+Fiți sigur că ați verificat lista redirecționărilor [[Special:DoubleRedirects|duble]] sau [[Special:BrokenRedirects|moarte]].
+Vă rugăm să rețineți că sunteți responsabil(ă) pentru a face legăturile vechi să rămână valide.
+
+Rețineți că pagina '''nu va fi mutată''' dacă există deja o pagină cu noul titlu, în afară de cazul că este complet goală sau este
+o redirecționare și în plus nu are nicio istorie de modificare.
 Cu alte cuvinte, veți putea muta înapoi o pagină pe care ați mutat-o greșit, dar nu veți putea suprascrie o pagină validă existentă prin mutarea alteia.
 
 '''ATENŢIE!'''
@@ -3395,6 +3430,8 @@ Puteți folosi în schimb [[Special:Watchlist/edit|editorul standard]].',
 'version-specialpages'             => 'Pagini speciale',
 'version-parserhooks'              => 'Hook-uri parser',
 'version-variables'                => 'Variabile',
+'version-antispam'                 => 'Prevenirea spam-ului',
+'version-skins'                    => 'Aspect',
 'version-other'                    => 'Altele',
 'version-mediahandlers'            => 'Suport media',
 'version-hooks'                    => 'Hook-uri',
@@ -3518,8 +3555,13 @@ Introdu numele fișierului fără prefixul "{{ns:file}}:".',
 'sqlite-no-fts'  => '$1 fără suport de căutare în tot textul',
 
 # Special:DisableAccount
+'disableaccount'             => 'Dezactivare cont de utilizator',
 'disableaccount-user'        => 'Nume de utilizator:',
 'disableaccount-reason'      => 'Motiv:',
+'disableaccount-confirm'     => "Dezactivarea acestui cont de utilizator.
+Utilizatorul nu se va mai putea autentifica, nu-și va mai putea reseta parola sau primi notificări prin email.
+Dacă utilizatorul este autentificat în acest moment, sesiunea sa va fi încheiată imediat.
+''Rețineți că dezactivarea unui cont de utilizator nu este reversibilă fără intervenția unui administrator de sistem.''",
 'disableaccount-mustconfirm' => 'Trebuie să confirmați că doriți dezactivarea acestui cont.',
 'disableaccount-nosuchuser'  => 'Contul de utilizator „$1” nu există.',
 'disableaccount-success'     => 'Contul de utilizator „$1” a fost definitiv dezactivat.',

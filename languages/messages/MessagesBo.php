@@ -44,10 +44,13 @@ $messages = array(
 'tog-previewonfirst'        => 'ཐོག་མའི་རྩོམ་སྒྲིག་སྟེང་དུ་དཔེ་གཟུགས་སྟོན་པ།',
 'tog-enotifwatchlistpages'  => 'ངའི་ལྟ་ཐོའི་ཤོག་ངོས་ལ་བཟོ་བཅོས་བྱུང་ཚེ་གློག་འཕྲིན་གཏང་རོགས།',
 'tog-enotifusertalkpages'   => 'ངའི་སྤྱོད་མིའི་གླེང་མོལ་ལ་བཟོ་བཅོས་བྱུང་ཚེ་གློག་འཕྲིན་གཏང་རོགས།',
+'tog-enotifminoredits'      => 'རྩོམ་སྒྲིག་ཆུང་ཚགས་རིགས་ལའང་གློག་འཕྲིན་གཏོང་རོགས།',
+'tog-shownumberswatching'   => 'ཤོག་ངོས་ལ་ལྟ་བཞིན་པའི་སྤྱོད་མིའི་ཁ་གྲངས་སྟོན།',
 'tog-oldsig'                => 'ད་ཡོད་མིང་རྟགས་དཔེ་གཟུགས།',
 'tog-watchlisthideown'      => 'ངའི་རྩོམ་སྒྲིག་རྣམས་ལྟ་ཐོ་ལས་སྦས་རོགས།',
 'tog-watchlisthideminor'    => 'རྩོམ་སྒྲིག་ཕལ་བ་རྣམས་ལྟ་ཐོ་ལས་སྦས་རོགས།',
 'tog-watchlisthideliu'      => 'ཐོ་འཛུལ་སྤྱོད་མིའི་རྩོམ་སྒྲིག་རྣམས་ལྟ་ཐོ་ལས་སྦས་རོགས།',
+'tog-ccmeonemails'          => 'ངས་གཞན་ལ་བཏང་བའི་གློག་འཕྲིན་གྱི་འདྲ་བཤུས་སྐུར་རོགས།',
 'tog-showhiddencats'        => 'སྦས་བའི་དཀར་ཆག་སྟོན་རོགས།',
 
 'underline-always'  => 'ནམ་ཡང་།',
@@ -114,10 +117,11 @@ $messages = array(
 'dec'           => 'སྤྱི་ཟླ་བཅུ་གཉིས་པ།',
 
 # Categories related messages
-'pagecategories'    => '{{PLURAL:|སྡེ་ཚན་|སྡེ་ཚན་ $1}}',
-'category_header'   => 'རྣམ་གྲངས་"$1"ནང་གི་ཤོག་ངོས་རྣམས།',
-'subcategories'     => 'རིགས་ཕལ་བ།',
-'hidden-categories' => '{{PLURAL:$1|སྦས་བའི་སྡེ་ཚན།|སྦས་བའི་སྡེ་ཚན།}}',
+'pagecategories'           => '{{PLURAL:|སྡེ་ཚན་|སྡེ་ཚན་ $1}}',
+'category_header'          => 'རྣམ་གྲངས་"$1"ནང་གི་ཤོག་ངོས་རྣམས།',
+'subcategories'            => 'རིགས་ཕལ་བ།',
+'hidden-categories'        => '{{PLURAL:$1|སྦས་བའི་སྡེ་ཚན།|སྦས་བའི་སྡེ་ཚན།}}',
+'hidden-category-category' => 'སྦས་བའི་སྡེ་ཚན།',
 
 'about'         => 'ཨཱབོཨུཏ་',
 'newwindow'     => '(སྒེའུ་ཁུང་གསར་བར་ཕྱེ་བ།)',
@@ -140,17 +144,21 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'བརྗོད་གཞི་ཁ་སྣོན།',
 'vector-action-delete'     => 'སུབས།',
+'vector-action-move'       => 'ལེན་པ།',
+'vector-action-protect'    => 'སྲུང་སྐྱོབ།',
 'vector-action-undelete'   => 'བསུབས་པ་གསོ་བ།',
 'vector-action-unprotect'  => 'སྲུང་སྐྱོབ་གློད་པ།',
 'vector-view-create'       => 'གསར་བཟོ།',
 'vector-view-edit'         => 'རྩོམ་སྒྲིག',
+'vector-view-history'      => 'ལོ་རྒྱུས་ལ་ལྟ་བ།',
 'vector-view-view'         => 'ཀློག་པ།',
+'vector-view-viewsource'   => 'ཁུངས་ལ་ལྟ་བ།',
+'actions'                  => 'བྱ་འགུལ།',
+'namespaces'               => 'མིང་འགོད་ས།',
 
 'errorpagetitle'    => 'ནོར་འཁྲུལ།',
 'returnto'          => '$1 ལ་བསྐྱར་ལོག་བྱེད་པ།',
-'tagline'           => '{{SITENAME}}འབྲེལ་
-
-འབྱུང་ཁུངས་{{SITENAME}}',
+'tagline'           => 'ཡོང་ཁུངས་{{SITENAME}}',
 'help'              => 'རོགས་རམ།',
 'search'            => 'འཚོལ་བ།',
 'searchbutton'      => 'འཚོལ་བ།',
@@ -161,6 +169,7 @@ $messages = array(
 'printableversion'  => 'དཔར་ཐུབ་པ།',
 'permalink'         => 'རྟག་བརྟན་གྱི་དྲ་འབྲེལ།',
 'print'             => 'དཔར་བ།',
+'view'              => 'ལྟ་བ།',
 'edit'              => 'རྩོམ་སྒྲིག',
 'create'            => 'གསར་སྐྲུན།',
 'editthispage'      => 'ངོས་འདི་བཟོ་བཅོས་བྱེད་པ།',
@@ -168,17 +177,22 @@ $messages = array(
 'delete'            => 'སུབས།',
 'deletethispage'    => 'ཤོག་ངོས་འདི་འདོར་བ།',
 'undelete_short'    => '{{PLURAL:$1|one edit|$1edits}} མ་འདོར་ཞིག',
+'viewdeleted_short' => '{{བསུབས་པའི་རྩོམ་སྒྲིག PLURAL:$1|བསུབས་པའི་རྩོམ་སྒྲིག $1}}ལ་ལྟ་བ།',
 'protect'           => 'སྲུང་བ།',
 'protect_change'    => 'སྒྱུར་བཅོས།',
+'protectthispage'   => 'ཤོག་ངོས་འདི་སྲུང་བ།',
+'unprotectthispage' => 'ཤོག་ངོས་འདི་སྲུང་མི་དགོས།',
 'newpage'           => 'ཤོག་ངོས་གསར་བ།',
 'talkpage'          => 'ཤོག་ངོས་འདིར་གྲོས་སྡུར།',
 'talkpagelinktext'  => 'གླེང་མོལ།',
+'specialpage'       => 'དམིགས་གསལ་ཤོག་ངོས།',
 'personaltools'     => 'སྒེར་ཀྱི་ལག་ཆ།',
 'postcomment'       => 'སྡེ་ཚན་གསར་བ།',
 'talk'              => 'གྲོས་བསྡུར།',
 'views'             => 'མཐོང་རིས།',
 'toolbox'           => 'ལག་ཆའི་སྒྲོམ།',
 'userpage'          => 'སྤྱོད་མིའི་ཤོག་ངོས་ལ་ལྟ་བ།',
+'projectpage'       => 'ལས་འཆར་ཤོག་ངོས་ལ་ལྟ་བ།',
 'imagepage'         => 'ཡིག་ཆའི་ཤོག་ངོས་ལ་ལྟ་བ།',
 'mediawikipage'     => 'འཕྲིན་ཐུང་ཤོག་ངོས་ལ་ལྟ་བ།',
 'templatepage'      => 'དཔེ་པང་ཤོག་ངོས་ལ་ལྟ་བ།',
@@ -248,8 +262,18 @@ $messages = array(
 'nosuchaction' => 'བྱ་འགུལ་འདི་འདྲ་མེད།',
 
 # General errors
-'error'      => 'ནོར་འཁྲུལ།',
-'viewsource' => 'ཁོངས་ལ་ལྟ་བ།',
+'error'              => 'ནོར་འཁྲུལ།',
+'readonly'           => 'གཞི་གྲངས་མཛོད་ཟྭ་བརྒྱབ་པ།',
+'internalerror'      => 'ནང་ལོག་ནོར་སྐྱོན།',
+'internalerror_info' => 'ནང་ལོགས་ནོར་སྐྱོན། $1',
+'filecopyerror'      => '"$1" "$2"ལ་འདྲ་བཤུ་བྱེད་མ་ཐུབ།',
+'filedeleteerror'    => '"$1"ཟེར་བ་སུབ་མ་ཐུབ།',
+'filenotfound'       => '"$1"ཟེར་བའི་ཡིག་ཆ་མ་རྙེད་པ།',
+'badtitle'           => 'ཁ་བྱང་སྐྱོན་ཅན།',
+'viewsource'         => 'ཁོངས་ལ་ལྟ་བ།',
+
+# Virus scanner
+'virus-unknownscanner' => 'ངོས་མ་ཟིན་པའི་དྲ་འབུ།',
 
 # Login and logout pages
 'yourname'                => 'སྤྱོད་མིང་།',
@@ -271,7 +295,25 @@ $messages = array(
 'badretype'               => 'ལམ་ཡིག་གང་བཅུག་པ་ཐོ་ཐུག་མ་བྱུང་།',
 'userexists'              => 'མིང་འདི་བེད་སྤྱོད་བྱས་ཟིན་པས་མིང་གཞན་ཞིག་གདམ་རོགས།',
 'loginerror'              => 'ནང་འཛུལ་ནོར་སྐྱོན།',
+'nosuchusershort'         => 'སྤྱོད་མི་"<nowiki>$1</nowiki>"ཟེར་བ་མི་འདུག དག་ཆར་བསྐྱར་ཞིབ་བྱོས།',
+'login-userblocked'       => 'སྤྱོད་མི་འདི་བཀག་འགོག་བྱས་པས་ནང་འཛུལ་གྱི་ཆོག་མཆན་མེད།',
+'wrongpassword'           => 'ལམ་ཡིག་ནོར་འདུག བསྐྱར་དུ་ཚོད་ལྟ་བྱོས།',
+'wrongpasswordempty'      => 'ལམ་ཡིག་སྟོང་པ་རེད། བསྐྱར་དུ་ཚོད་ལྟ་བྱོས།',
 'mailmypassword'          => 'གློག་འཕྲིན་ལམ་ཡིག་གསར་བ།',
+'loginlanguagelabel'      => 'སྐད་རིགས། $1',
+
+# JavaScript password checks
+'password-strength-bad'        => 'སྙོམས་པ།',
+'password-strength-acceptable' => 'ངོས་ལེན་རུང་བ།',
+'password-strength-good'       => 'བཙན་པ།',
+
+# Password reset dialog
+'oldpassword'               => 'ལམ་ཡིག་རྙིང་བ།',
+'newpassword'               => 'ལམ་ཡིག་གསར་བ།',
+'retypenew'                 => 'ལམ་ཡིག་གསར་བ་བསྐྱར་འཇུག་བྱོས།',
+'resetpass-submit-loggedin' => 'ལམ་ཡིག་བརྗེ་བ།',
+'resetpass-submit-cancel'   => 'རྩིས་མེད་ཐོངས།',
+'resetpass-temp-password'   => 'གནས་སྐབས་ལམ་ཡིག',
 
 # Edit page toolbar
 'bold_sample'     => 'ཡིག་གཟུགས་སྦོམ་པོ།',
@@ -300,7 +342,10 @@ $messages = array(
 'showpreview'        => 'སྔ་མ་སྟོན་ཅིག',
 'showdiff'           => 'བཟོས་བཅོས་སྟོན།',
 'anoneditwarning'    => "'''གསལ་བརྡ།''' ཁྱེད་ཐོ་འཛུལ་བྱས་མི་འདུག ཁྱེད་ཀྱི་ IP ཁ་བྱང་ཤོག་ངོས་འདིའི་རྩོམ་སྒྲིག་ལོ་རྒྱུས་སུ་ཉར་ཚགས་བྱས་པར་འགྱུར།",
+'blockedtitle'       => 'སྤྱོད་མི་བཀག་ཟིན།',
+'loginreqtitle'      => 'ནང་འཛུལ་བྱ་དགོས།',
 'loginreqlink'       => 'ནང་འཛུལ།',
+'accmailtitle'       => 'ལམ་ཡིག་བཏང་ཟིན།',
 'newarticle'         => '(གསར་བ)',
 'previewnote'        => "'''འདི་ནི་སྔོན་ལྟ་ཙམ་ཡིན་པ་མ་བརྗེད།''' ཁྱེད་ཀྱི་བཟོ་བཅོས་ད་དུང་ཉར་ཚགས་བྱས་མི་འདུག",
 'editing'            => '$1རྩོམ་སྒྲིག་བྱེད་བཞིན་པ།',

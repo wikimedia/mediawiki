@@ -2682,7 +2682,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'math_unknown_function' => 'njeznata funkcija',
 'math_lexing_error'     => 'leksikalny zmylk',
 'math_syntax_error'     => 'syntaktiski zmylk',
-'math_image_error'      => 'Konwertowanje do PNG zwrěšćiło; kontroluj prawu instalaciju latex, dvips, gs a konwertuj',
+'math_image_error'      => 'Konwertowanje do PNG zwrěšćiło; kontroluj prawu instalaciju latex a dvipng (abo dvips + gs + konwertuj)',
 'math_bad_tmpdir'       => 'Njemóžno do nachwilneho matematiskeho zapisa pisać abo jón wutworić',
 'math_bad_output'       => 'Njemóžno do matematiskeho zapisa za wudaće pisać abo jón wutworić',
 'math_notexvc'          => 'Wuwjedźomny texvc pobrachuje; prošu hlej math/README za konfiguraciju.',
