@@ -175,6 +175,98 @@ if( $wgUseInstantCommons ) {
 	);
 }
 
+if ( $wgRCFilterByAge ) {
+	## Trim down $wgRCLinkDays so that it only lists links which are valid
+	## as determined by $wgRCMaxAge.
+	## Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
+	sort( $wgRCLinkDays );
+	for( $i = 0; $i < count( $wgRCLinkDays ); $i++ ) {
+		if( $wgRCLinkDays[$i] >= $wgRCMaxAge / ( 3600 * 24 ) ) {
+			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i + 1, false );
+			break;
+		}
+	}
+}
+
+if ( $wgSkipSkin ) {
+	$wgSkipSkins[] = $wgSkipSkin;
+}
+
+# Set default shared prefix
+if ( $wgSharedPrefix === false ) {
+	$wgSharedPrefix = $wgDBprefix;
+}
+
+if ( !$wgCookiePrefix ) {
+	if ( $wgSharedDB && $wgSharedPrefix && in_array( 'user', $wgSharedTables ) ) {
+		$wgCookiePrefix = $wgSharedDB . '_' . $wgSharedPrefix;
+	} elseif ( $wgSharedDB && in_array( 'user', $wgSharedTables ) ) {
+		$wgCookiePrefix = $wgSharedDB;
+	} elseif ( $wgDBprefix ) {
+		$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
+	} else {
+		$wgCookiePrefix = $wgDBname;
+	}
+}
+$wgCookiePrefix = strtr( $wgCookiePrefix, "=,; +.\"'\\[", "__________" );
+
+$wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
+
+if ( $wgMetaNamespace === false ) {
+	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
+}
+
+# These are now the same, always
+# To determine the user language, use $wgLang->getCode()
+$wgContLanguageCode = $wgLanguageCode;
+
+# Easy to forget to falsify $wgShowIPinHeader for static caches.
+# If file cache or squid cache is on, just disable this (DWIMD).
+if ( $wgUseFileCache || $wgUseSquid ) {
+	$wgShowIPinHeader = false;
+}
+
+# $wgAllowRealName and $wgAllowUserSkin were removed in 1.16
+# in favor of $wgHiddenPrefs, handle b/c here
+if ( !$wgAllowRealName ) {
+	$wgHiddenPrefs[] = 'realname';
+}
+
+if ( !$wgAllowUserSkin ) {
+	$wgHiddenPrefs[] = 'skin';
+}
+
+if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
+	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
+	if ( $wgMimeType == 'application/xhtml+xml' ) {
+		$wgHtml5Version = 'XHTML+RDFa 1.0';
+	} else {
+		$wgHtml5Version = 'HTML+RDFa 1.0';
+	}
+}
+
+# Blacklisted file extensions shouldn't appear on the "allowed" list
+$wgFileExtensions = array_diff ( $wgFileExtensions, $wgFileBlacklist );
+
+if ( $wgInvalidateCacheOnLocalSettingsChange ) {
+	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );
+}
+
+if ( $wgAjaxUploadDestCheck ) {
+	$wgAjaxExportList[] = 'SpecialUpload::ajaxGetExistsWarning';
+}
+
+if ( $wgNewUserLog ) {
+	# Add a new log type
+	$wgLogTypes[]                        = 'newusers';
+	$wgLogNames['newusers']              = 'newuserlogpage';
+	$wgLogHeaders['newusers']            = 'newuserlogpagetext';
+	$wgLogActions['newusers/newusers']   = 'newuserlogentry'; // For compatibility with older log entries
+	$wgLogActions['newusers/create']     = 'newuserlog-create-entry';
+	$wgLogActions['newusers/create2']    = 'newuserlog-create2-entry';
+	$wgLogActions['newusers/autocreate'] = 'newuserlog-autocreate-entry';
+}
+
 if ( !class_exists( 'AutoLoader' ) ) {
 	require_once( "$IP/includes/AutoLoader.php" );
 }
@@ -247,60 +339,6 @@ if ( $wgCommandLineMode ) {
 	}
 }
 
-if( $wgRCFilterByAge ) {
-	## Trim down $wgRCLinkDays so that it only lists links which are valid
-	## as determined by $wgRCMaxAge.
-	## Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
-	sort($wgRCLinkDays);
-	for( $i = 0; $i < count($wgRCLinkDays); $i++ ) {
-		if( $wgRCLinkDays[$i] >= $wgRCMaxAge / ( 3600 * 24 ) ) {
-			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i+1, false );
-			break;
-		}
-	}
-}
-
-if ( $wgSkipSkin ) {
-	$wgSkipSkins[] = $wgSkipSkin;
-}
-
-$wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
-
-if($wgMetaNamespace === FALSE) {
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
-}
-
-# These are now the same, always
-# To determine the user language, use $wgLang->getCode()
-$wgContLanguageCode = $wgLanguageCode;
-
-# Easy to forget to falsify $wgShowIPinHeader for static caches.
-# If file cache or squid cache is on, just disable this (DWIMD).
-if( $wgUseFileCache || $wgUseSquid ) $wgShowIPinHeader = false;
-
-# $wgAllowRealName and $wgAllowUserSkin were removed in 1.16
-# in favor of $wgHiddenPrefs, handle b/c here
-if( !$wgAllowRealName ) {
-	$wgHiddenPrefs[] = 'realname';
-}
-
-if( !$wgAllowUserSkin ) {
-	$wgHiddenPrefs[] = 'skin';
-}
-
-if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
-	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance
-	if ( $wgMimeType == 'application/xhtml+xml' ) $wgHtml5Version = 'XHTML+RDFa 1.0';
-	else $wgHtml5Version = 'HTML+RDFa 1.0';
-}
-
-if ( $wgInvalidateCacheOnLocalSettingsChange ) {
-	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );
-}
-
-# Blacklisted file extensions shouldn't appear on the "allowed" list
-$wgFileExtensions = array_diff ( $wgFileExtensions, $wgFileBlacklist );
-
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 
@@ -317,28 +355,12 @@ wfProfileOut( $fname.'-memcached' );
 ## Most of the config is out, some might want to run hooks here.
 wfRunHooks( 'SetupAfterCache' );
 
-wfProfileIn( $fname.'-SetupSession' );
-
-# Set default shared prefix
-if( $wgSharedPrefix === false ) $wgSharedPrefix = $wgDBprefix;
-
-if( !$wgCookiePrefix ) {
-	if ( $wgSharedDB && $wgSharedPrefix && in_array('user',$wgSharedTables) ) {
-		$wgCookiePrefix = $wgSharedDB . '_' . $wgSharedPrefix;
-	} elseif ( $wgSharedDB && in_array('user',$wgSharedTables) ) {
-		$wgCookiePrefix = $wgSharedDB;
-	} elseif ( $wgDBprefix ) {
-		$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
-	} else {
-		$wgCookiePrefix = $wgDBname;
-	}
-}
-$wgCookiePrefix = strtr($wgCookiePrefix, "=,; +.\"'\\[", "__________");
+wfProfileIn( $fname.'-session' );
 
 # If session.auto_start is there, we can't touch session name
-#
-if( !wfIniGetBool( 'session.auto_start' ) )
+if ( !wfIniGetBool( 'session.auto_start' ) ) {
 	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
+}
 
 if( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	if( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) {
@@ -351,7 +373,7 @@ if( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	}
 }
 
-wfProfileOut( $fname.'-SetupSession' );
+wfProfileOut( $fname.'-session' );
 wfProfileIn( $fname.'-globals' );
 
 $wgContLang = new StubContLang;
@@ -366,36 +388,26 @@ $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParser
 $wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
 	array( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry ) );
 
-wfProfileOut( $fname.'-globals' );
-wfProfileIn( $fname.'-User' );
-
-# Skin setup functions
-# Entries can be added to this variable during the inclusion
-# of the extension file. Skins can then perform any necessary initialisation.
-#
-foreach ( $wgSkinExtensionFunctions as $func ) {
-	call_user_func( $func );
-}
-
 if( !is_object( $wgAuth ) ) {
 	$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 }
 
-wfProfileOut( $fname.'-User' );
-
-wfProfileIn( $fname.'-misc2' );
-
-$wgDeferredUpdateList = array();
-
-if ( $wgAjaxUploadDestCheck ) $wgAjaxExportList[] = 'SpecialUpload::ajaxGetExistsWarning';
-
 # Placeholders in case of DB error
 $wgTitle = null;
 $wgArticle = null;
 
-wfProfileOut( $fname.'-misc2' );
+$wgDeferredUpdateList = array();
+
+wfProfileOut( $fname.'-globals' );
 wfProfileIn( $fname.'-extensions' );
+
+# Skin setup functions
+# Entries can be added to this variable during the inclusion
+# of the extension file. Skins can then perform any necessary initialisation.
+foreach ( $wgSkinExtensionFunctions as $func ) {
+	call_user_func( $func );
+}
 
 # Extension setup functions for extensions other than skins
 # Entries should be added to this variable during the inclusion
@@ -424,17 +436,6 @@ wfRunHooks( 'LogPageValidTypes', array( &$wgLogTypes ) );
 wfRunHooks( 'LogPageLogName', array( &$wgLogNames ) );
 wfRunHooks( 'LogPageLogHeader', array( &$wgLogHeaders ) );
 wfRunHooks( 'LogPageActionText', array( &$wgLogActions ) );
-
-if( !empty($wgNewUserLog) ) {
-	# Add a new log type
-	$wgLogTypes[]                        = 'newusers';
-	$wgLogNames['newusers']              = 'newuserlogpage';
-	$wgLogHeaders['newusers']            = 'newuserlogpagetext';
-	$wgLogActions['newusers/newusers']   = 'newuserlogentry'; // For compatibility with older log entries
-	$wgLogActions['newusers/create']     = 'newuserlog-create-entry';
-	$wgLogActions['newusers/create2']    = 'newuserlog-create2-entry';
-	$wgLogActions['newusers/autocreate'] = 'newuserlog-autocreate-entry';
-}
 
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
