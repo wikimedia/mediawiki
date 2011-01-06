@@ -441,6 +441,7 @@ class GenerateSitemap extends Maintenance {
 	 * Populate $this->limit
 	 */
 	function generateLimit( $namespace ) {
+		// bug 17961: make a title with the longest possible URL in this namespace
 		$title = Title::makeTitle( $namespace, str_repeat( "\xf0\xa8\xae\x81", 63 ) . "\xe5\x96\x83" );
 
 		$this->limit = array(
