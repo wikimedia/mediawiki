@@ -3022,7 +3022,7 @@ class Article {
 		wfRunHooks( 'ArticleConfirmDelete', array( $this, $wgOut, &$reason ) );
 
 		if ( $wgUser->isAllowed( 'suppressrevision' ) ) {
-			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\">
+			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
 						Xml::checkLabel( wfMsg( 'revdelete-suppress' ),
