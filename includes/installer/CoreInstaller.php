@@ -242,7 +242,7 @@ abstract class CoreInstaller extends Installer {
 		}
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
-		$this->parserOptions = new ParserOptions;
+		$this->parserOptions = new ParserOptions; // language will  be wrong :(
 		$this->parserOptions->setEditSection( false );
 	}
 
@@ -256,6 +256,14 @@ abstract class CoreInstaller extends Installer {
 	public function registerDocLink( Parser &$parser ) {
 		$parser->setHook( 'doclink', array( $this, 'docLink' ) );
 		return true;
+	}
+
+	/**
+	 * ParserOptions are constructed before we determined the language, so fix it
+	 */
+	public function setParserLanguage( $lang ) {
+		$this->parserOptions->setTargetLanguage( $lang );
+		$this->parserOptions->setUserLang( $lang );
 	}
 
 	/**

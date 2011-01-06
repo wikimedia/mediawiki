@@ -39,6 +39,8 @@ function wfInstallerMain() {
 	}
 	$wgLang = Language::factory( $langCode );
 
+	$installer->setParserLanguage( $wgLang->getCode() );
+
 	$wgMetaNamespace = $wgCanonicalNamespaceNames[NS_PROJECT];
 
 	$session = $installer->execute( $session );
