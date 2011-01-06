@@ -79,6 +79,7 @@ class ApiParse extends ApiBase {
 		$popts->enableLimitReport( !$params['disablepp'] );
 		$redirValues = null;
 		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
+
 			if ( !is_null( $oldid ) ) {
 				// Don't use the parser cache
 				$rev = Revision::newFromID( $oldid );
@@ -97,7 +98,7 @@ class ApiParse extends ApiBase {
 				if ( $titleObj->getLatestRevID() === intval( $oldid ) )  {
 					$articleObj = new Article( $titleObj, 0 );
 
-					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $text, $popts, $pageid ) ;
+					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $articleObj->get, $popts, $pageid ) ;
 
 				} else {
 					$text = $rev->getText( Revision::FOR_THIS_USER );
@@ -110,14 +111,16 @@ class ApiParse extends ApiBase {
 
 					$p_result = $wgParser->parse( $text, $titleObj, $popts );
 				}
-			} else {
+
+			} else { // Not $oldid
+
 				if ( !is_null ( $pageid ) ) {
 					$titleObj = Title::newFromID( $pageid );
 
 					if ( !$titleObj ) {
 						$this->dieUsageMsg( array( 'nosuchpageid', $pageid ) );
 					}
-				} else {
+				} else { // $page
 					if ( $params['redirects'] ) {
 						$req = new FauxRequest( array(
 							'action' => 'query',
@@ -149,7 +152,9 @@ class ApiParse extends ApiBase {
 
 				$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $text, $popts, $pageid ) ;
 			}
-		} else {
+
+		} else { // Not $oldid, $pageid, $page
+
 			$titleObj = Title::newFromText( $title );
 			if ( !$titleObj ) {
 				$titleObj = Title::newFromText( 'API' );
