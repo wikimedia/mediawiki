@@ -108,7 +108,7 @@ class SpecialVersion extends SpecialPage {
 			'Niklas Laxström', 'Domas Mituzas', 'Rob Church', 'Yuri Astrakhan',
 			'Aryeh Gregor', 'Aaron Schulz', 'Andrew Garrett', 'Raimond Spekking',
 			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
-			'Roan Kattouw',
+			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			wfMsg( 'version-poweredby-others' )
 		);
 
