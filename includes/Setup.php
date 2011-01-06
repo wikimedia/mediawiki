@@ -298,6 +298,9 @@ if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );
 }
 
+# Blacklisted file extensions shouldn't appear on the "allowed" list
+$wgFileExtensions = array_diff ( $wgFileExtensions, $wgFileBlacklist );
+
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 

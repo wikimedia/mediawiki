@@ -899,9 +899,6 @@ class UploadForm extends HTMLForm {
 		$wgFileExtensions, $wgFileBlacklist;
 
 		if( $wgCheckFileExtensions ) {
-			//don't show blacklisted types as permitted
-			$wgFileExtensions = array_diff ( $wgFileExtensions, $wgFileBlacklist );
-			
 			if( $wgStrictFileExtensions ) {
 				# Everything not permitted is banned
 				$extensionsList =
