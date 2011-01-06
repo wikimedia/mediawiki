@@ -219,7 +219,7 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
 			$tpl->set( 'html5version', $wgHtml5Version );
 			$tpl->set( 'headlinks', $out->getHeadLinks( $this ) );
-			$tpl->set( 'csslinks', $out->buildCssLinks() );
+			$tpl->set( 'csslinks', $out->buildCssLinks( $this ) );
 
 			if( $wgUseTrackbacks && $out->isArticleRelated() ) {
 				$tpl->set( 'trackbackhtml', $out->getTitle()->trackbackRDF() );
