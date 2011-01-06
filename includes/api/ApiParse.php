@@ -97,7 +97,7 @@ class ApiParse extends ApiBase {
 				if ( $titleObj->getLatestRevID() === intval( $oldid ) )  {
 					$articleObj = new Article( $titleObj );
 
-					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid ) ;
+					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $text, $popts, $pageid ) ;
 
 				} else {
 					$text = $rev->getText( Revision::FOR_THIS_USER );
@@ -147,7 +147,7 @@ class ApiParse extends ApiBase {
 					$oldid = $articleObj->getRevIdFetched();
 				}
 
-				$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid ) ;
+				$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $text, $popts, $pageid ) ;
 			}
 		} else {
 			$titleObj = Title::newFromText( $title );
@@ -285,10 +285,11 @@ class ApiParse extends ApiBase {
 	 * @param  $articleObj Article
 	 * @param  $titleObj Title
 	 * @param  $pageId Int
+	 * @param $text String
 	 * @param  $popts ParserOptions
 	 * @return ParserOutput
 	 */
-	private function getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageId = null ) {
+	private function getParsedSectionOrText( $articleObj, $titleObj, $text, $popts, $pageId = null ) {
 		global $wgParser;
 
 		if ( $this->section !== false ) {
