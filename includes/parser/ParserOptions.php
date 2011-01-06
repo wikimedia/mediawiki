@@ -314,8 +314,12 @@ class ParserOptions {
 		
 		$confstr .= $wgRenderHashAppend;
 
-		if ( !$this->mEditSection && in_array( 'editsection', $forOptions ) )
+		if ( !in_array( 'editsection', $forOptions ) ) {
+			$confstr .= '!*';
+		} elseif ( !$this->mEditSection ) {
 			$confstr .= '!edit=0';
+		}
+		
 		if (  $this->mIsPrintable && in_array( 'printable', $forOptions ) )
 			$confstr .= '!printable=1';
 		
