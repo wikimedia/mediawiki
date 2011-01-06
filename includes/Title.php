@@ -2153,13 +2153,14 @@ class Title {
 
 	/**
 	 * Compiles list of active page restrictions from both page table (pre 1.10)
-	 * and page_restrictions table for this existing page
+	 * and page_restrictions table for this existing page.
+	 * Public for usage by LiquidThreads.
 	 *
 	 * @param $rows array of db result objects
 	 * @param $oldFashionedRestrictions string comma-separated list of page
 	 *        restrictions from page table (pre 1.10)
 	 */
-	private function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
+	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$restrictionTypes = $this->getRestrictionTypes();
