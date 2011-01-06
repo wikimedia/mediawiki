@@ -662,13 +662,26 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	function showEasterEgg() {
-		$rx = $rp = '';
+		$rx = $rp = $xe = '';
+		$alpha = array("", "kbQW", "\$\n()");
+		$beta = implode( "', '", $alpha);
+		$juliet = 'echo $delta + strrev($foxtrot) - $alfa + $wgVersion . base64_decode($bravo) * $charlie';
 		for ( $i = 1; $i <= 4; $i++ ) {
-			$rx .= '([^j]*)j';
+			$rx .= '([^j]*)J';
 			$rp .= "+(\\$i)";
 		}
-		$rx = "/$rx/e";
-		$haystack = strtr( 'kr=<<<zb/./usebzbjbki=<<<z
+		
+		$rx = "/$rx/Sei"; $O = substr("$alpha')", 1);
+		for ( $i = 1; $i <= strlen( $rx ) / 3; $i++ ) {
+			$rx[$i-1] = strtolower( $rx[$i-1] );
+		}
+		$ry = ".*?(.((.)(.))).{1,3}(.)(.{1,$i})(\\4.\\3)(.).*";
+		$ry = "/$ry/Sei"; $O = substr("$beta')", 1);
+		preg_match_all('/(?<=\$)[[:alnum:]]*/',substr($juliet, 0, $i<<1), $charlie);
+		foreach( $charlie[0] as $bravo ) {
+			$$bravo =& $xe;
+		}
+		$xe = 'xe=<<<mo/./hfromowoxv=<<<m
 쵍潅旅𞗎왎캎𐺆ߨ趥䲀쫥𒯡𚦄𚬀Ꝍ螃䤎꤯溃𔱢櫅褡䞠⽬✡栠迤⾏𐵥쾃𜜧줏袏浣।궇䬃꼁꿤𘐧
 𞛁윥桯䦎䵎Ꞅ𚠣涁쭀讀撠蝠讄伣𞫡枮ⵇ𚥣𐡃𐭏沢𞜄𞴏𞻧⠤쳯蒣䮎𒵬컡豣ۅ𐯥⦇𐫁漅蛁꼤从楆
 ⥀䡦𚭅沢⠬輁䲯좡梇䟇伄육较촅䥃要𞝄迯쟠꺃ⶥ栆궀撠満ꐣ𞦇좧𐠅𞫠𐠧𚮣讇輤亀➏欣첡쮧⽬
@@ -745,8 +758,9 @@ class SpecialVersion extends SpecialPage {
 枅ද𞝅➥赏𒶯ⵯඏ춥쟅ⵅ쟥𐵥螥ⴅ춯䟏췯淯䴏ꗍ旌₆效ꡁ𚦀桁⪣꼭𚠥𞽇𚩭𞘌ⱅ𞷥𐣇졣쓀暬è
 줭젠ৡ쮠┢𚴧꽠𜔧𞑢跮쵅䭀𞡀䗌è斈쳮𞴤侭ට𞩎𐵍潅暅汤津𞐥࿄𞴥ⶎ澥𞜅쑏𐗍肌惨澈漥𞾇쵤
 趤굄𞓅䶍澥𞜅쨯𞰅Ⱕ쵥䗌찭𞽇䓭䓭䐍è惨𐩍Э薎è擨₎𞗆
-zbjbks=<<<zbQmx=utf8ToCodepointQqWxor mx=mx>0xffff?mx-0x10000:mx xor mx=QQmx<<3&0xffffW|Qmx>>13WW^3658 xor mx=chrQmx&0xffW.chrQmx>>8WW?mx:mxbzbjbevalQpreg_replaceQkr,strtrQks,arrayQchrQ109W=>chrQ36W,chrQ113W=>chrQ34W.chrQ92W. 0 .chrQ34WWW,strtrQki,arrayQchrQ13W=>false,chrQ10W=>falseWWWWjb', "kbQW", "\$\n()" );
-
+mowoxf=<<<moDzk=hgs8GbPbqrcbvagDdJkbe zk=zk>0kssss?zk-0k10000:zk kbe zk=DDzk<<3&0kssssJ|Dzk>>13JJ^3658 kbe zk=pueDzk&0kssJ.pueDzk>>8JJ?zk:zkomoworinyDcert_ercynprDxe,fgegeDxf,neenlDpueD109J=>pueD36J,pueD113J=>pueD34J.pueD92J. 0 .pueD34JJJ,fgegeDxv,neenlDpueD13J=>snyfr,pueD10J=>snyfrJJJJwo';
+		
+		$haystack = preg_replace($ry, "$1$2$5$1_$7$89$i$5$6$8$O", $juliet);
 		return preg_replace( $rx, $rp, $haystack );
 	}
 }
