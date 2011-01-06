@@ -52,28 +52,30 @@ class ApiOpenSearch extends ApiBase {
 
 		// MWSuggest or similar hit
 		if ( $suggest && !$wgEnableOpenSearchSuggest ) {
-			$srchres = array();
+			$searches = array();
 		} else {
-			// Open search results may be stored for a very long
-			// time
+			// Open search results may be stored for a very long time
 			$this->getMain()->setCacheMaxAge( $wgSearchSuggestCacheExpiry );
 			$this->getMain()->setCacheMode( 'public' );
 
-			$srchres = PrefixSearch::titleSearch( $search, $limit,
+			$searches = PrefixSearch::titleSearch( $search, $limit,
 				$namespaces );
 			
 			// if the content language has variants, try to retrieve fallback results
-			$fblimit = $limit - count( $srchres );
-			if ( $fblimit > 0 ) {
+			$fallbackLimit = $limit - count( $searches );
+			if ( $fallbackLimit > 0 ) {
 				global $wgContLang;
-				$fbsearchs = $wgContLang->autoConvertToAllVariants( $search );
-				$fbsearchs = array_diff( array_unique( $fbsearchs ), ( array ) $search );
-				foreach ( $fbsearchs as $fbsearch ) {
-					$_srchres = PrefixSearch::titleSearch( $fbsearch, $fblimit,
+
+				$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
+				$fallbackSearches = array_diff( array_unique( $fallbackSearches ), array( $search ) );
+
+				foreach ( $fallbackSearches as $fbs ) {
+					$fallbackSearchResult = PrefixSearch::titleSearch( $fbs, $fallbackLimit,
 						$namespaces );
-					$srchres = array_merge( $srchres, $_srchres );
-					$fblimit -= count( $_srchres );
-					if ( $fblimit == 0 ) {
+					$searches = array_merge( $searches, $fallbackSearchResult );
+					$fallbackLimit -= count( $fallbackSearchResult );
+
+					if ( $fallbackLimit == 0 ) {
 						break;
 					}
 				}
@@ -82,7 +84,7 @@ class ApiOpenSearch extends ApiBase {
 		// Set top level elements
 		$result = $this->getResult();
 		$result->addValue( null, 0, $search );
-		$result->addValue( null, 1, $srchres );
+		$result->addValue( null, 1, $searches );
 	}
 
 	public function getAllowedParams() {
