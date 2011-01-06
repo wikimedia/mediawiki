@@ -33,8 +33,10 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
+		global $wgOut;
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->allowClickjacking();
 
 		$groups = $this->getPageGroups();
 

@@ -440,6 +440,7 @@ class Skin extends Linker {
 			'wgUserGroups' => $wgUser->getEffectiveGroups(),
 			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
 			'wgCategories' => $wgOut->getCategories(),
+			'wgBreakFrames' => $wgOut->getFrameOptions() == 'DENY',
 		);
 		foreach ( $wgTitle->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $wgTitle->getRestrictions( $type );

@@ -53,6 +53,7 @@ class SpecialVersion extends SpecialPage {
 		
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->allowClickjacking();
 
 		$wgOut->addHTML( Xml::openElement( 'div',
 			array( 'dir' => $wgContLang->getDir() ) ) );

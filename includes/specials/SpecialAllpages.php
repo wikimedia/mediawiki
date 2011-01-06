@@ -62,6 +62,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$wgOut->allowClickjacking();
 
 		# GET values
 		$from = $wgRequest->getVal( 'from', null );

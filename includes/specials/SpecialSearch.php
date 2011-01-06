@@ -29,7 +29,9 @@
  * @param $par String: (default '')
  */
 function wfSpecialSearch( $par = '' ) {
-	global $wgRequest, $wgUser;
+	global $wgRequest, $wgUser, $wgOut;
+	$wgOut->allowClickjacking();
+
 	// Strip underscores from title parameter; most of the time we'll want
 	// text form here. But don't strip underscores from actual text params!
 	$titleParam = str_replace( '_', ' ', $par );
