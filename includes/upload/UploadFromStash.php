@@ -41,6 +41,8 @@ class UploadFromStash extends UploadBase {
 			$this->mSessionKey = $sessionKey;
 			$this->mVirtualTempPath = $sessionData['mTempPath'];
 			$this->mFileProps = $sessionData['mFileProps'];
+			$this->mSourceType = isset( $sessionData['mSourceType'] ) ?
+				$sessionData['mSourceType'] : null;
 	}
 
 	public function initializeFromRequest( &$request ) {
@@ -51,6 +53,10 @@ class UploadFromStash extends UploadBase {
 		if( !$desiredDestName )
 			$desiredDestName = $request->getText( 'wpUploadFile' );
 		return $this->initialize( $desiredDestName, $sessionKey, $sessionData[$sessionKey] );
+	}
+
+	public function getSourceType() { 
+		return $this->mSourceType; 
 	}
 
 	/**
