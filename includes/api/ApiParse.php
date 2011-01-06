@@ -105,7 +105,7 @@ class ApiParse extends ApiBase {
 					$wgTitle = $titleObj;
 
 					if ( $this->section !== false ) {
-						$text = $this->getSectionText( $text, 'r' . $rev );
+						$text = $this->getSectionText( $text, 'r' . $rev->getId() );
 					}
 
 					$p_result = $wgParser->parse( $text, $titleObj, $popts );
