@@ -671,7 +671,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$options = $nondefaults + $defaults;
 
 		$note = '';
-		if( !wfEmptyMsg( 'rclegend', wfMsg('rclegend') ) ) {
+		if( !wfEmptyMsg( 'rclegend' ) ) {
 			$note .= '<div class="mw-rclegend">' . wfMsgExt( 'rclegend', array('parseinline') ) . "</div>\n";
 		}
 		if( $options['from'] ) {
