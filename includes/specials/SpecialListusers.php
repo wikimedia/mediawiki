@@ -94,11 +94,8 @@ class UsersPager extends AlphabeticPager {
 			$conds[] = 'user_editcount > 0';
 		}
 
-		list ($user,$user_groups,$ipblocks) = $dbr->tableNamesN('user','user_groups','ipblocks');
-
 		$query = array(
-			'tables' => " $user $useIndex LEFT JOIN $user_groups ON user_id=ug_user
-				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_deleted=1 AND ipb_auto=0 ",
+			'tables' => array( 'user', 'user_groups', 'ipblocks'),
 			'fields' => array(
 				$this->creationSort ? 'MAX(user_name) AS user_name' : 'user_name',
 				$this->creationSort ? 'user_id' : 'MAX(user_id) AS user_id',
@@ -109,6 +106,10 @@ class UsersPager extends AlphabeticPager {
 				'MAX(ipb_deleted) AS ipb_deleted' // block/hide status
 			),
 			'options' => array('GROUP BY' => $this->creationSort ? 'user_id' : 'user_name'),
+			'join_conds' => array(
+				'user_groups' => array( 'LEFT JOIN', 'user_id=ug_user' ),
+				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user AND ipb_deleted=1 AND ipb_auto=0' ),
+			),
 			'conds' => $conds
 		);
 
