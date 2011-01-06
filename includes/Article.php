@@ -160,7 +160,7 @@ class Article {
 	 *
 	 * @param $text string article content containing redirect info
 	 * @return mixed false, Title of in-wiki target, or string with URL
-	 * @deprecated
+	 * @deprecated @since 1.17
 	 */
 	public function followRedirectText( $text ) {
 		// recurse through to only get the final target
@@ -1934,6 +1934,7 @@ class Article {
 	/**
 	 * This function is not deprecated until somebody fixes the core not to use
 	 * it. Nevertheless, use Article::doEdit() instead.
+	 * @deprecated @since 1.7
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC = false, $comment = false, $bot = false ) {
 		$flags = EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
@@ -1965,7 +1966,7 @@ class Article {
 	}
 
 	/**
-	 * @deprecated use Article::doEdit()
+	 * @deprecated @since 1.7 use Article::doEdit()
 	 */
 	function updateArticle( $text, $summary, $minor, $watchthis, $forceBot = false, $sectionanchor = '' ) {
 		$flags = EDIT_UPDATE | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
@@ -2309,14 +2310,6 @@ class Article {
 
 		wfProfileOut( __METHOD__ );
 		return $status;
-	}
-
-	/**
-	 * @deprecated wrapper for doRedirect
-	 */
-	public function showArticle( $text, $subtitle , $sectionanchor = '', $me2, $now, $summary, $oldid ) {
-		wfDeprecated( __METHOD__ );
-		$this->doRedirect( $this->isRedirect( $text ), $sectionanchor );
 	}
 
 	/**
@@ -4554,18 +4547,6 @@ class Article {
 		} else {
 			return $parserOutput;
 		}
-	}
-
-	// Deprecated methods
-	/**
-	 * Get the database which should be used for reads
-	 *
-	 * @return Database
-	 * @deprecated - just call wfGetDB( DB_MASTER ) instead
-	 */
-	function getDB() {
-		wfDeprecated( __METHOD__ );
-		return wfGetDB( DB_MASTER );
 	}
 
 }
