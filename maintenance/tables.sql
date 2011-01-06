@@ -502,6 +502,8 @@ CREATE TABLE /*_*/categorylinks (
   -- concatenated with a null followed by the page title before the sortkey
   -- conversion algorithm is run.  We store this so that we can update
   -- collations without reparsing all pages.
+  -- Note: If you change the length of this field, you also need to change
+  -- code in LinksUpdate.php. See bug 25254.
   cl_sortkey_prefix varchar(255) binary NOT NULL default '',
 
   -- This isn't really used at present. Provided for an optional
