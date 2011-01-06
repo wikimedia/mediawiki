@@ -589,7 +589,8 @@ abstract class CoreInstaller extends Installer {
 	/**
 	 * Add an installation step following the given step.
 	 *
-	 * @param $callback Array A valid callback array, with name and callback given
+	 * @param $callback Array A valid installation callback array, in this form:
+	 *    array( 'name' => 'some-unique-name', 'callback' => array( $obj, 'function' ) );
 	 * @param $findStep String the step to find. Omit to put the step at the beginning
 	 */
 	public function addInstallStep( $callback, $findStep = '' ) {
