@@ -67,6 +67,14 @@ class LinksUpdate {
 			$this->mInterlangs[$key] = $title;
 		}
 
+		foreach ( $this->mCategories as $cat => &$sortkey ) {
+			# If the sortkey is longer then 255 bytes,
+			# it truncated by DB, and then doesn't get
+			# matched when comparing existing vs current
+			# categories, causing bug 25254.
+			$sortkey = substr( $sortkey, 0, 255 );
+		}
+
 		$this->mRecursive = $recursive;
 
 		wfRunHooks( 'LinksUpdateConstructed', array( &$this ) );
@@ -687,11 +695,15 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getExistingCategories() {
-		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_sortkey' ),
+		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_sortkey_prefix' ),
 			array( 'cl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
 		foreach ( $res as $row ) {
-			$arr[$row->cl_to] = $row->cl_sortkey;
+			if ( $row->cl_sortkey_prefix !== '' ) {
+				$arr[$row->cl_to] = $row->cl_sortkey_prefix;
+			} else {
+				$arr[$row->cl_to] = $this->mTitle->getCategorySortkey();
+			}
 		}
 		return $arr;
 	}
