@@ -58,7 +58,7 @@ class Article {
 
 	/**
 	 * Constructor from an page id
-	 * @param $id The article ID to load
+	 * @param $id Int article ID to load
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
@@ -1175,7 +1175,7 @@ class Article {
 	 * merging of several policies using array_merge().
 	 * @param $policy Mixed, returns empty array on null/false/'', transparent
 	 *            to already-converted arrays, converts String.
-	 * @return associative Array: 'index' => <indexpolicy>, 'follow' => <followpolicy>
+	 * @return Array: 'index' => <indexpolicy>, 'follow' => <followpolicy>
 	 */
 	public static function formatRobotPolicy( $policy ) {
 		if ( is_array( $policy ) ) {
@@ -1525,7 +1525,7 @@ class Article {
 	/**
 	 * View redirect
 	 *
-	 * @param $target Title object or Array of destination(s) to redirect
+	 * @param $target Title|Array of destination(s) to redirect
 	 * @param $appendSubtitle Boolean [optional]
 	 * @param $forceKnown Boolean: should the image be shown as a bluelink regardless of existence?
 	 * @return string containing HMTL with redirect link
@@ -1813,7 +1813,7 @@ class Article {
 	 * Add row to the redirect table if this is a redirect, remove otherwise.
 	 *
 	 * @param $dbw Database
-	 * @param $redirectTitle a title object pointing to the redirect target,
+	 * @param $redirectTitle Title object pointing to the redirect target,
 	 *                       or NULL if this is not a redirect
 	 * @param $lastRevIsRedirect If given, will optimize adding and
 	 *                           removing rows in redirect table.
@@ -2050,7 +2050,7 @@ class Article {
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
 	 * @param $baseRevId the revision ID this edit was based off, if any
-	 * @param $user Optional user object, $wgUser will be used if not passed
+	 * @param $user User (optional), $wgUser will be used if not passed
 	 *
 	 * @return Status object. Possible errors:
 	 *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
@@ -3615,7 +3615,7 @@ class Article {
 	 * @param $text String: New text of the article
 	 * @param $summary String: Edit summary
 	 * @param $minoredit Boolean: Minor edit
-	 * @param $timestamp_of_pagechange Timestamp associated with the page change
+	 * @param $timestamp_of_pagechange String timestamp associated with the page change
 	 * @param $newid Integer: rev_id value of the new revision
 	 * @param $changed Boolean: Whether or not the content actually changed
 	 * @param $user User object: User doing the edit
@@ -4004,7 +4004,7 @@ class Article {
 		wfProfileOut( __METHOD__ );
 	}
 
-	/**#@+
+	/**
 	 * The onArticle*() functions are supposed to be a kind of hooks
 	 * which should be called whenever any of the specified actions
 	 * are done.
@@ -4013,7 +4013,7 @@ class Article {
 	 *
 	 * This is called on page move and undelete, as well as edit
 	 *
-	 * @param $title a title object
+	 * @param $title Title object
 	 */
 	public static function onArticleCreate( $title ) {
 		# Update existence markers on article/talk tabs...
@@ -4270,7 +4270,7 @@ class Article {
 	* Return an applicable autosummary if one exists for the given edit.
 	* @param $oldtext String: the previous text of the page.
 	* @param $newtext String: The submitted text of the page.
-	* @param $flags Bitmask: a bitmask of flags submitted for the edit.
+	* @param $flags Int bitmask: a bitmask of flags submitted for the edit.
 	* @return string An appropriate autosummary, or an empty string.
 	*/
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
