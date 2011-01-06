@@ -68,7 +68,13 @@ class CommandLineInstaller extends Maintenance {
 			new CliInstaller( $siteName, $adminName, $this->mOptions );
 
 		if ( $this->hasOption( 'env-checks' ) ) {
-			$installer->doEnvironmentChecks();
+			$status = $installer->doEnvironmentChecks();
+			if( $status->isGood() ) {
+				$installer->showMessage( 'config-env-good' );
+			} else {
+				$installer->showStatusMessage( $status );
+				return;
+			}
 		} else {
 			$installer->execute();
 			$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
