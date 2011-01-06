@@ -180,10 +180,10 @@ class PostgresInstaller extends DatabaseInstaller {
 			if ( $rows >= 1 ) {
 				$result = $this->db->query( 'CREATE LANGUAGE plpgsql' );
 				if ( !$result ) {
-					return Status::newFatal( 'pg-no-plpgsql', $wgDBname );
+					return Status::newFatal( 'config-pg-no-plpgsql', $wgDBname );
 				}
 			} else {
-				return Status::newFatal( 'pg-no-plpgsql', $wgDBname );
+				return Status::newFatal( 'config-pg-no-plpgsql', $wgDBname );
 			}
 		}
 		return Status::newGood();
