@@ -821,14 +821,6 @@ class User {
 	}
 
 	/**
-	 * @deprecated Use wfSetupSession().
-	 */
-	function SetupSession() {
-		wfDeprecated( __METHOD__ );
-		wfSetupSession();
-	}
-
-	/**
 	 * Load user data from the session or login cookie. If there are no valid
 	 * credentials, initialises the user as an anonymous user.
 	 * @return Bool True if the user is logged in, false otherwise.
@@ -2177,16 +2169,6 @@ class User {
 	}
 
 	/**
-	 * Get whether the user is a bot
-	 * @return Bool
-	 * @deprecated use isAllowed('bot')
-	 */
-	function isBot() {
-		wfDeprecated( __METHOD__ );
-		return $this->isAllowed( 'bot' );
-	}
-
-	/**
 	 * Check if user is allowed to access a feature / make an action
 	 * @param $action String action to be checked
 	 * @return Boolean: True if action is allowed, else false
@@ -2663,7 +2645,7 @@ class User {
 	 * which will give them a chance to modify this key based on their own
 	 * settings.
 	 *
-	 * @deprecated use the ParserOptions object to get the relevant options
+	 * @deprecated @since 1.17 use the ParserOptions object to get the relevant options
 	 * @return String Page rendering hash
 	 */
 	function getPageRenderingHash() {
