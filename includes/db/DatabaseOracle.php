@@ -311,9 +311,10 @@ class DatabaseOracle extends DatabaseBase {
 
 		// handle some oracle specifics
 		// remove AS column/table/subquery namings
-		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
+		if( !$this->getFlag( DBO_DDLMODE ) ) {
 			$sql = preg_replace( '/ as /i', ' ', $sql );
 		}
+
 		// Oracle has issues with UNION clause if the statement includes LOB fields
 		// So we do a UNION ALL and then filter the results array with array_unique
 		$union_unique = ( preg_match( '/\/\* UNION_UNIQUE \*\/ /', $sql ) != 0 );

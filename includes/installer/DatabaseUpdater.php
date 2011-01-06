@@ -48,6 +48,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function __construct( DatabaseBase &$db, $shared, Maintenance $maintenance = null ) {
 		$this->db = $db;
+		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
 		$this->shared = $shared;
 		if ( $maintenance ) {
 			$this->maintenance = $maintenance;
