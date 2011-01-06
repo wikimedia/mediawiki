@@ -246,7 +246,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public static function getExtensionTypeName( $type ) {
 		$types = self::getExtensionTypes();
-		return $types[$type];
+		return isset( $types[$type] ) ? $types[$type] : $types['other'];
 	}
 	
 	/**
