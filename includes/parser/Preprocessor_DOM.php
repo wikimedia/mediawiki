@@ -44,7 +44,7 @@ class Preprocessor_DOM implements Preprocessor {
 			if ( is_int( $k ) ) {
 				$xml .= "<part><name index=\"$k\"/><value>" . htmlspecialchars( $val ) ."</value></part>";
 			} else {
-				$xml .= "<part><name>" . htmlspecialchars( $k ) . "</name><value>" . htmlspecialchars( $val ) . "</value></part>";
+				$xml .= "<part><name>" . htmlspecialchars( $k ) . "</name>=<value>" . htmlspecialchars( $val ) . "</value></part>";
 			}
 		}
 
