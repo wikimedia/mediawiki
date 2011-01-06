@@ -31,6 +31,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   note that this changes the cache key making all old entries in the parser cache invalid you
   can set $wgUseEditSectionTokens to false to disable this and keep your old parser cache entries.
   Note that this feature should reduce parser cache fragmentation when enabled.
+* $wgMaxUploadSize may now be set to an array to specify the upload size limit 
+  per upload type.
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the

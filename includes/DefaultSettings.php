@@ -439,7 +439,19 @@ $wgAllowCopyUploads = false;
 $wgAllowAsyncCopyUploads = false;
 
 /**
- * Max size for uploads, in bytes. Applies to all uploads.
+ * Max size for uploads, in bytes. If not set to an array, applies to all 
+ * uploads. If set to an array, per upload type maximums can be set, using the
+ * file and url keys. If the * key is set this value will be used as maximum
+ * for non-specified types.
+ * 
+ * For example:
+ * 	$wgUploadSize = array(
+ * 		'*' => 250 * 1024,
+ * 		'url' => 500 * 1024,
+ * 	);
+ * Sets the maximum for all uploads to 250 kB except for upload-by-url, which
+ * will have a maximum of 500 kB.
+ * 
  */
 $wgMaxUploadSize = 1024*1024*100; # 100MB
 
