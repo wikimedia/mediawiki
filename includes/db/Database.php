@@ -540,6 +540,27 @@ abstract class DatabaseBase implements DatabaseType {
 		return new DatabaseMysql( $server, $user, $password, $dbName, $flags );
 	}
 
+	/**
+	 * Given a DB type, construct the name of the appropriate child class of
+	 * DatabaseBase. This is designed to replace all of the manual stuff like:
+	 *	$class = 'Database' . ucfirst( strtolower( $type ) );
+	 * as well as validate against the canonical list of DB types we have
+	 *
+	 * @param $dbType String A possible DB type
+	 * @return DatabaseBase subclass or null
+	 */
+	public final static function classFromType( $dbType ) {
+		$canonicalDBTypes = array(
+			'mysql', 'postgres', 'sqlite', 'oracle', 'mssql', 'ibm_db2'
+		);
+		$dbType = strtolower( $dbType );
+		if( in_array( $dbType, $canonicalDBTypes ) ) {
+			return 'Database' . ucfirst( $dbType );
+		} else {
+			return null;
+		}
+	}
+
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
