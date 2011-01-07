@@ -558,7 +558,18 @@ class ResourceLoader {
 	public static function makeCombinedStyles( array $styles ) {
 		$out = '';
 		foreach ( $styles as $media => $style ) {
-			$out .= "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "\n}\n";
+			// Transform the media type based on request params and config
+			// The way that this relies on $wgRequest to propagate request params is slightly evil
+			$media = OutputPage::transformCssMedia( $media );
+			
+			if ( $media === null ) {
+				// Skip
+			} else if ( $media === '' || $media == 'all' ) {
+				// Don't output invalid or frivolous @media statements
+				$out .= "$style\n";
+			} else {
+				$out .= "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "\n}\n";
+			}
 		}
 		return $out;
 	}
