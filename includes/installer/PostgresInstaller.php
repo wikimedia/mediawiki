@@ -25,6 +25,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	);
 
 	var $minimumVersion = '8.1';
+	private $ts2MaxVersion = '8.3'; // Doing ts2 is not necessary in PG > 8.3
 
 	function getName() {
 		return 'postgres';
@@ -99,7 +100,7 @@ class PostgresInstaller extends DatabaseInstaller {
 				$this->getVar( 'wgDBserver' ),
 				$this->getVar( '_InstallUser' ),
 				$this->getVar( '_InstallPassword' ),
-				$this->getVar( 'wgDBname' ) );
+				false );
 			$status->value = $this->db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
@@ -107,13 +108,50 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
+	protected function canCreateAccounts() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return false;
+		}
+		$conn = $status->value;
+
+		$superuser = $this->getVar( '_InstallUser' );
+
+		$rights = $conn->query( 'pg_catalog.pg_user',
+			'SELECT
+				CASE WHEN usesuper IS TRUE THEN
+				CASE WHEN usecreatedb IS TRUE THEN 3 ELSE 1 END
+				ELSE CASE WHEN usecreatedb IS TRUE THEN 2 ELSE 0 END
+				END AS rights',
+			array( 'usename' => $superuser ), __METHOD__
+		);
+
+		if( !$rights ) {
+			return false;
+		}
+
+		if( $rights != 1 && $rights != 3 ) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public function preInstall() {
-		# Add our user callback to installSteps, right before the tables are created.
-		$callback = array(
+		$commitCB = array(
 			'name' => 'pg-commit',
 			'callback' => array( $this, 'commitChanges' ),
 		);
-		$this->parent->addInstallStep( $callback, 'interwiki' );
+		$userCB = array(
+			'name' => 'user',
+			'callback' => array( $this, 'setupUser' ),
+		);
+		$ts2CB = array(
+			'name' => 'pg-ts2',
+			'callback' => array( $this, 'setupTs2' ),
+		);
+		$this->parent->addInstallStep( $commitCB, 'interwiki' );
+		$this->parent->addInstallStep( $userCB );
 	}
 
 	function setupDatabase() {
@@ -137,14 +175,63 @@ class PostgresInstaller extends DatabaseInstaller {
 				$this->getVar( 'wgDBuser'), $schema );
 		}
 		$conn->query( "DROP TABLE $safeschema.$ctest" );
-
+		
+		$dbName = $this->getVar( 'wgDBname' );
+		if( !$conn->selectDB( $dbName ) ) {
+			$safedb = $conn->addIdentifierQuotes( $dbName );
+			$safeuser = $conn->addQuotes( $this->getVar( 'wgDBuser' ) );
+			$conn->query( "CREATE DATABASE $safedb OWNER $safeuser", __METHOD__ );
+			$conn->selectDB( $dbName );
+		}
 		return $status;
+	}
+
+	/**
+	 * Ts2 isn't needed in newer versions of Postgres, so wrap it in a nice big
+	 * version check and skip it if we're new. Maybe we can bump $minimumVersion
+	 * one day and render this obsolete :)
+	 *
+	 * @return Status
+	 */
+	function setupTs2() {
+		if( version_compare( $this->db->getServerVersion(), $this->ts2MaxVersion, '<' ) ) {
+			if ( !$this->db->tableExists( 'pg_ts_cfg', $wgDBts2schema ) ) {
+				return Status::newFatal( 'config-install-pg-ts2-failed' );
+			}
+			$safeuser = $this->db->addQuotes( $this->getVar( 'wgDBuser' ) );
+			foreach ( array( 'cfg', 'cfgmap', 'dict', 'parser' ) as $table ) {
+				$sql = "GRANT SELECT ON pg_ts_$table TO $safeuser";
+				$this->db->query( $sql, __METHOD__ );
+			}
+		}
+		return Status::newGood();
 	}
 
 	function commitChanges() {
 		$this->db->query( 'COMMIT' );
-
 		return Status::newGood();
+	}
+
+	function setupUser() {
+		if ( !$this->getVar( '_CreateDBAccount' ) ) {
+			return Status::newGood();
+		}
+
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		$db = $this->getVar( 'wgDBname' );
+		$this->db->selectDB( $db );
+		$safeuser = $this->db->addQuotes( $this->getVar( 'wgDBuser' ) );
+		$safepass = $this->db->addQuotes( $this->getVar( 'wgDBpassword' ) );
+		$res = $this->db->query( "CREATE USER $safeuser NOCREATEDB PASSWORD $safepass", __METHOD__ );
+		if ( $res !== true ) {
+			$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ) );
+		}
+
+		return $status;
 	}
 
 	function getLocalSettings() {
