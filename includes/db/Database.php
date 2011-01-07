@@ -508,13 +508,6 @@ abstract class DatabaseBase implements DatabaseType {
 			}
 		}
 
-		/*
-		// Faster read-only access
-		if ( wfReadOnly() ) {
-			$this->mFlags |= DBO_PERSISTENT;
-			$this->mFlags &= ~DBO_TRX;
-		}*/
-
 		/** Get the default table prefix*/
 		if ( $tablePrefix == 'get from global' ) {
 			$this->mTablePrefix = $wgDBprefix;
