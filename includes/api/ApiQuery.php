@@ -599,8 +599,8 @@ class ApiQuery extends ApiBase {
 		$this->mPageSet = null;
 		$this->mAllowedGenerators = array(); // Will be repopulated
 
-		$querySeparator = str_repeat( '--- ', 8 );
-		$moduleSeparator = str_repeat( '*** ', 10 );
+		$querySeparator = str_repeat( '--- ', 12 );
+		$moduleSeparator = str_repeat( '*** ', 14 );
 		$msg .= "\n$querySeparator Query: Prop  $querySeparator\n\n";
 		$msg .= $this->makeHelpMsgHelper( $this->mQueryPropModules, 'prop' );
 		$msg .= "\n$querySeparator Query: List  $querySeparator\n\n";
