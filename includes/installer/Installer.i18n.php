@@ -511,8 +511,6 @@ $messages['qqq'] = array(
 * $1 is the error that was encountered with the session.',
 	'config-session-expired' => 'Parameters:
 * $1 is the configured session lifetime.',
-	'config-session-path-bad' => 'Parameters:
-* $1 is the configured <code>session.save_path</code>.',
 	'config-back' => '{{Identical|Back}}',
 	'config-continue' => '{{Identical|Continue}}',
 	'config-page-language' => '{{Identical|Language}}',
@@ -521,6 +519,8 @@ $messages['qqq'] = array(
 	'config-page-install' => '{{Identical|Install}}',
 	'config-page-copying' => 'This is a link to the full GPL text',
 	'config-restart' => 'Button text to confirm the installation procedure has to be restarted.',
+	'config-env-php' => 'Parameters:
+* $1 is the version of PHP that has been installed.',
 	'config-no-db-help' => 'Parameters:
 * $1 is comma separated list of supported database types by MediaWiki.',
 	'config-memory-raised' => 'Parameters:
@@ -555,6 +555,7 @@ $messages['qqq'] = array(
 	'config-install-tables' => 'Message indicates that the tables are being created',
 	'config-install-interwiki' => 'Message indicates that the interwikitables are being populated',
 	'config-install-sysop' => 'Message indicates that the administrator user account is being created',
+	'config-install-subscribe-fail' => '{{doc-important|"mediawiki-announce" is the name of a mailing list and should not be translated.}}',
 	'config-install-done' => 'Parameters:
 * $1 is the URL to LocalSettings download
 * $2 is a link to the wiki.
@@ -1359,6 +1360,7 @@ $1
 Инсталирането на МедияУики е възможно.',
 	'config-env-bad' => 'Средата беше проверена.
 Не е възможна инсталация на МедияУики.',
+	'config-env-php' => 'Инсталирана е версия на PHP $1.',
 	'config-unicode-using-utf8' => 'Използване на utf8_normalize.so от Brion Vibber за нормализация на Уникод.',
 	'config-unicode-using-intl' => 'Използване на разширението [http://pecl.php.net/intl intl PECL] за нормализация на Уникод.',
 	'config-unicode-pure-php-warning' => "'''Предупреждение''': [http://pecl.php.net/intl Разширението intl PECL] не е налично за справяне с нормализацията на Уникод, превключване към по-бавното изпълнение на чист PHP.
@@ -1420,6 +1422,7 @@ $1
 То не трябва да съдържа интервали или тирета.
 
 Ако се използва споделен хостинг, доставчикът на услугата би трябвало да е предоставил или име на базата от данни, която да бъде използвана, или да позволява създаването на бази от данни чрез контролния панел.',
+	'config-db-name-oracle' => 'Схема на базата от данни:',
 	'config-db-install-account' => 'Потребителска сметка за инсталацията',
 	'config-db-username' => 'Потребителско име за базата от данни:',
 	'config-db-password' => 'Парола за базата от данни:',
@@ -1429,6 +1432,7 @@ $1
 Това не е парола за сметка в МедияУики; това е парола за базата от данни.',
 	'config-db-install-help' => 'Въвеждат се потребителско име и парола, които ще бъдат използвани за свързване с базата от данни по време на инсталационния процес.',
 	'config-db-account-lock' => 'Използване на същото потребителско име и парола по време на нормална работа',
+	'config-db-wiki-account' => 'Потребителска сметка за нормална работа',
 	'config-db-wiki-help' => 'Въвежда се потребителско име и парола, които ще се използват при нормалното функциониране на уикито.
 Ако сметката не съществува и използваната при инсталацията сметка има необходимите права, тази потребителска сметка ще бъде създадена с минималните необходими права за работа с уикито.',
 	'config-db-prefix' => 'Представка за таблиците в базата от данни:',
@@ -1436,7 +1440,7 @@ $1
 Не се използват интервали и тирета.
 
 Това поле обикновено се оставя празно.',
-	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 двоично',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 бинарно',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-mysql-old' => 'Изисква се MySQL $1 или по-нова версия, наличната версия е $2.',
 	'config-db-schema' => 'Схема за МедияУики',
@@ -1469,15 +1473,23 @@ $1
 	'config-header-oracle' => 'Настройки за Oracle',
 	'config-invalid-db-type' => 'Невалиден тип база от данни',
 	'config-missing-db-name' => 'Необходимо е да се въведе стойност за "Име на базата от данни"',
+	'config-invalid-db-name' => 'Невалидно име на базата от данни "$1".
+Използват се само ASCII букви (a-z, A-Z), цифри (0-9), долни черти (_) и тирета (-).',
 	'config-connection-error' => '$1.
 
 Необходимо е да се проверят хостът, потребителското име и паролата, след което да се опита отново.',
+	'config-invalid-schema' => 'Невалидна схема за МедияУики "$1".
+Допустими са само ASCII букви (a-z, A-Z), цифри (0-9) и долни черти (_).',
+	'config-invalid-ts2schema' => 'Невалидна схема за TSearch2 "$1".
+Допустими са само ASCII букви (a-z, A-Z), цифри (0-9) и долни черти (_).',
 	'config-postgres-old' => 'Изисква се PostgreSQL $1 или по-нова версия, наличната версия е $2.',
 	'config-sqlite-name-help' => 'Избира се име, което да идентифицира уикито.
 Не се използват интервали или тирета.
 Това име ще се използва за име на файла за данни на SQLite.',
 	'config-sqlite-readonly' => 'Файлът <code>$1</code> няма права за писане.',
 	'config-sqlite-cant-create-db' => 'Файлът за базата от данни <code>$1</code> не може да бъде създаден.',
+	'config-can-upgrade' => "В базата от данни има таблици за МедияУики.
+За надграждането им за MediaWiki $1, натиска се '''Продължаване'''.",
 	'config-regenerate' => 'Създаване на LocalSettings.php →',
 	'config-show-table-status' => 'Заявката SHOW TABLE STATUS не сполучи!',
 	'config-unknown-collation' => "'''Предупреждение:''' Базата от данни използва неразпозната колация.",
@@ -1577,23 +1589,56 @@ $1
 	'config-enable-email-help' => 'За да работят възможностите за използване на е-поща, необходимо е [http://www.php.net/manual/en/mail.configuration.php настройките за поща на PHP] да бъдат конфигурирани правилно.
 Ако няма да се използват услугите за е-поща в уикито, те могат да бъдат изключени тук.',
 	'config-email-user' => 'Позволяване на потребителите да си изпращат е-писма през уикито',
+	'config-email-user-help' => 'Позволяване на потребителите да си изпращат е-писма ако са разрешили това в настройките си.',
+	'config-email-usertalk' => 'Оповестяване при промяна на потребителската беседа',
+	'config-email-usertalk-help' => 'Позволява на потребителите да получават оповестяване при промяна на беседата им, ако това е разрешено в настройките им.',
+	'config-email-watchlist' => 'Оповестяване за списъка за наблюдение',
+	'config-email-watchlist-help' => 'Позволява на потребителите да получават оповестяване за техните наблюдавани страници, ако това е разрешено в настройките им.',
+	'config-email-auth' => 'Потвърждаване на адреса за електронна поща',
+	'config-email-auth-help' => "Ако тази настройка е включена, потребителите трябва да потвърдят адреса си за е-поща чрез препратка, която им се изпраща при настройване или промяна.
+Само валидните адреси могат да получават е-писма от други потребители или да променят писмата за оповестяване.
+Настройването на това е '''препоръчително''' за публични уикита заради потенциални злоупотреби с възможностите за електронна поща.",
 	'config-email-sender' => 'Адрес за обратна връзка:',
+	'config-email-sender-help' => 'Въвежда се адрес за електронна поща, който ще се използва за обратен адрес при изходящи е-писма.
+Това е адресът, на който ще се получават върнатите и неполучени писма.
+Много е-пощенски сървъри изискват поне домейн името да е валидно.',
 	'config-upload-settings' => 'Картинки и качване на файлове',
 	'config-upload-enable' => 'Позволяне качването на файлове',
+	'config-upload-help' => 'Качването на файлове е възможно да доведе до пробели със сигурността на сървъра.
+Повече информация по темата има в [http://www.mediawiki.org/wiki/Manual:Security раздела за сигурност] в Наръчника.
+
+За позволяване качването на файлове, необходимо е уебсървърът да може да записва в поддиректорията на МедияУики <code>images</code>.
+След като това условие е изпълнено, функционалността може да бъде активирана.',
 	'config-upload-deleted' => 'Директория за изтритите файлове:',
 	'config-upload-deleted-help' => 'Избиране на директория, в която ще се складират изтритите файлове.
 В най-добрия случай тя не трябва да е достъпна през уеб.',
 	'config-logo' => 'Адрес на логото:',
+	'config-logo-help' => 'Обликът по подразбиране на МедияУики вклчва място с размери 135х160 пиксела за лого в горния ляв ъгъл.
+Ако има наличен файл с подходящ размер, неговият адрес може да бъде посочен тук.
+
+Ако не е необходимо лого, полето се оставя празно.',
+	'config-instantcommons' => 'Включване на Instant Commons',
+	'config-instantcommons-help' => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] е функционалност, която позволява на уикитата да използват картинки, звуци и друга медиа от сайта на Уикимедия [http://commons.wikimedia.org/ Общомедия].
+За да е възможно това, МедияУики изисква достъп до Интернет.
+
+Повече информация за тази функционалност, както и инструкции за настройване за други уикита, различни от Общомедия, е налична в [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos наръчника].',
 	'config-advanced-settings' => 'Разширена конфигурация',
 	'config-cache-options' => 'Настройки за обектното кеширане:',
+	'config-cache-help' => 'Обектното кеширане се използва за подобряване на скоростта на МедияУики чрез кеширане на често използваните данни.
+Силно препоръчително е на средните и големите сайтове да включат тази настройка, но малките също могат да се възползват от нея.',
 	'config-cache-none' => 'Без кеширане (не се премахва от функционалността, но това влияе на скоростта на по-големи уикита)',
 	'config-cache-accel' => 'PHP обектно кеширане (APC, eAccelerator, XCache или WinCache)',
 	'config-cache-memcached' => 'Използване на Memcached (изисква допълнителни настройки и конфигуриране)',
 	'config-memcached-servers' => 'Memcached сървъри:',
 	'config-extensions' => 'Разширения',
+	'config-install-step-done' => 'готово',
+	'config-install-step-failed' => 'неуспешно',
+	'config-install-database' => 'Създаване на базата от данни',
+	'config-pg-no-plpgsql' => 'Необходимо е да се инсталира езикът PL/pgSQL в базата от данни $1',
 	'config-install-tables' => 'Създаване на таблиците',
 	'config-install-interwiki-sql' => 'Файлът <code>interwiki.sql</code> не можа да бъде открит.',
 	'config-install-secretkey' => 'Генериране на таен ключ',
+	'config-install-subscribe-fail' => 'Невъзможно беше абонирането за mediawiki-announce',
 	'config-download-localsettings' => 'Изтегляне на LocalSettings.php',
 	'config-help' => 'помощ',
 );
@@ -2042,9 +2087,9 @@ Sofern nicht das Datenbanksystem angezeigt wird, das verwendet werden soll, gibt
 	'config-invalid-db-server-oracle' => 'Ungültiges Datenbank-TNS „$1“.
 Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) und Punkte (.) verwendet werden.',
 	'config-invalid-db-name' => 'Ungültiger Datenbankname „$1“.
-Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
+Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9), Unter- (_) sowie Bindestriche (-) verwendet werden.',
 	'config-invalid-db-prefix' => 'Ungültiger Datenbanktabellenpräfix „$1“.
-Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9) und Unterstriche (_) verwendet werden.',
+Es dürfen nur ASCII-codierte Buchstaben (a-z, A-Z), Zahlen (0-9), Unter- (_) sowie Bindestriche (-) verwendet werden.',
 	'config-connection-error' => '$1.
 
 Bitte unten angegebenen Servernamen, Benutzernamen sowie das Passwort überprüfen und es danach erneut versuchen.',
@@ -2258,6 +2303,9 @@ Es muss daher mit den nächsten Seite weitergemacht werden.",
 Es muss sichergestellt sein, dass der Benutzer „$1“ kann, um in das Datenschema zu „$2“ zu schreiben.',
 	'config-install-pg-commit' => 'Änderungen anwenden',
 	'config-pg-no-plpgsql' => 'Für Datenbank $1 muss die Datenbanksprache PL/pgSQL installiert werden',
+	'config-install-pg-ts2' => 'Suche nach tsearch2',
+	'config-install-pg-ts2-failed' => "'''Fehler:''' tsearch2 muss in der Datenbank $1 installiert sein.
+Bitte hierzu [$2 diese Anleitung] lesen oder bei #postgresql im irc.freenode.net nachfragen",
 	'config-install-user' => 'Datenbankbenutzer wird erstellt',
 	'config-install-user-failed' => 'Gewährung der Berechtigung für „$1“ ist gescheitert: $2',
 	'config-install-tables' => 'Datentabellen werden erstellt',
@@ -4743,9 +4791,9 @@ Si tu non vide hic infra le systema de base de datos que tu tenta usar, alora se
 	'config-invalid-db-server-oracle' => 'TNS de base de datos "$1" invalide.
 Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineamento (_) e punctos (.).',
 	'config-invalid-db-name' => 'Nomine de base de datos "$1" invalide.
-Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
+Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineamento (_) e tractos de union (-).',
 	'config-invalid-db-prefix' => 'Prefixo de base de datos "$1" invalide.
-Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9) e characteres de sublineamento (_).',
+Usa solmente litteras ASCII (a-z, A-Z), numeros (0-9), characteres de sublineamento (_) e tractos de union (-).',
 	'config-connection-error' => '$1.
 
 Verifica le servitor, nomine de usator e contrasigno hic infra e reproba.',
@@ -4961,6 +5009,9 @@ Per favor continua al proxime pagina.",
 Assecura te que le usator "$1" pote scriber in le schema "$2".',
 	'config-install-pg-commit' => 'Committer cambiamentos',
 	'config-pg-no-plpgsql' => 'Es necessari installar le linguage PL/pgSQL in le base de datos $1',
+	'config-install-pg-ts2' => 'Verifica le presentia de tsearch2',
+	'config-install-pg-ts2-failed' => "'''FALTA:''' tsearch2 debe esser installate in le base de datos $1.
+Per favor lege [$2 iste instructiones] o demanda adjuta in #postgresql sur irc.freenode.net",
 	'config-install-user' => 'Crea usator pro base de datos',
 	'config-install-user-failed' => 'Le concession de permission al usator "$1" falleva: $2',
 	'config-install-tables' => 'Crea tabellas',
@@ -6523,9 +6574,9 @@ $1
 	'config-invalid-db-server-oracle' => 'Неважечки TNS „$1“ за базата.
 Користете само знаци по ASCII - букви (a-z, A-Z), бројки (0-9), долни црти (_) и точки (.).',
 	'config-invalid-db-name' => 'Неважечко име на базата „$1“.
-Може да содржи само бројки, букви и долни црти.',
-	'config-invalid-db-prefix' => 'Неважечки префикс за база „$1“.
-Може да содржи само бројки, букви и долни црти.',
+Користете само ASCII-букви (a-z, A-Z), бројки (0-9), долни црти (_) и цртички (-).',
+	'config-invalid-db-prefix' => 'Неважечки префикс за базата „$1“.
+Користете само ASCII-букви (a-z, A-Z), бројки (0-9), долни црти (_) и цртички (-).',
 	'config-connection-error' => '$1.
 
 Проверете го долунаведениот домаќин, корисничко име и лозинка и обидете се повторно.',
@@ -7282,6 +7333,7 @@ Kies een andere gebruikersnaam.',
 	'config-admin-email-help' => "Voer hier een e-mailadres in om e-mail te kunnen ontvangen van andere gebruikers op de wiki, uw wachtwoord opnieuw in te kunnen stellen en op de hoogte te worden gehouden van wijzigingen van pagina's op uw volglijst.",
 	'config-admin-error-user' => 'Interne fout bij het aanmaken van een beheerder met de naam "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Interne fout bij het instellen van een wachtwoord voor de bejeerder "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'U hebt een ongeldig e-mailadres opgegeven',
 	'config-subscribe' => 'Abonneren op de [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce mailinglijst releaseaankondigen].',
 	'config-subscribe-help' => 'Dit is een mailinglijst met een laag volume voor aankondigingen van nieuwe versies, inclusief belangrijke aankondigingen met betrekking tot beveiliging.
 Abonneer uzelf erop en werk uw MediaWiki-installatie bij als er nieuwe versies uitkomen.',
@@ -7405,6 +7457,7 @@ De standaardlijst wordt overgeslagen.",
 Overweeg deze handmatig te wijzigen.',
 	'config-install-upgradekey' => 'De standaard upgradesleutel wordt aangemaakt',
 	'config-install-sysop' => 'Gebruiker voor beheerder aanmaken',
+	'config-install-subscribe-fail' => 'Het is niet mogelijk te abonneren op mediawiki-announce',
 	'config-install-mainpage' => 'Hoofdpagina aanmaken met standaard inhoud',
 	'config-install-mainpage-failed' => 'Het was niet mogelijk de hoofdpagina in te voegen.',
 	'config-install-done' => "'''Gefeliciteerd!'''
@@ -7425,16 +7478,11 @@ Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]
  * @author Nghtwlkr
  */
 $messages['nn'] = array(
-	'config-show-help' => 'Hjelp',
-	'config-hide-help' => 'Skjul hjelp',
 	'config-your-language' => 'Språket ditt:',
 	'config-wiki-language' => 'Wikispråk:',
 	'config-back' => '← Attende',
 	'config-continue' => 'Hald fram →',
 	'config-page-language' => 'Språk',
-	'config-memory-none' => 'PHP er konfigurert utan nokon <code>memory_limit</code>',
-	'config-memory-ok' => 'PHPs <code>memory_limit</code> er $1.
-OK.',
 	'config-memory-raised' => 'PHPs <code>memory_limit</code> er $1, auka til $2.',
 	'config-memory-bad' => "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.
 Dette er sannsynlegvis for lågt.
@@ -10120,9 +10168,9 @@ $messages['uk'] = array(
 	'config-db-port' => 'Порт бази даних:',
 	'config-invalid-db-type' => 'Невірний тип бази даних',
 	'config-invalid-db-name' => 'Неприпустима назва бази даних "$1".
-Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
+Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9), знаки підкреслення (_) і дефіси (-).',
 	'config-invalid-db-prefix' => 'Неприпустимий префікс бази даних "$1". 
-Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9) і знак підкреслення (_).',
+Використовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9), знаки підкреслення (_) і дефіси (-).',
 	'config-sqlite-cant-create-db' => 'Не вдалося створити файл бази даних <code>$1</code>.',
 	'config-db-web-create' => 'Створити обліковий запис, якщо його ще не існує',
 	'config-mysql-charset' => 'Кодування бази даних:',

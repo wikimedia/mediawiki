@@ -1545,7 +1545,7 @@ $1",
 
 Датотеку додајете на жељену страницу користећи следеће обрасце:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Слика.jpg]]</nowiki></tt>''' за коришћење целог издања датотеке
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Слика.png|200п|мини|лево|опис]]</nowiki></tt>''' за коришћење широке уоквирене слике на левој страни, величине 200 тачкица, заједно с описом.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Слика.png|200п|мини|лево|опис]]</nowiki></tt>''' за коришћење широке уоквирене слике на левој страни, величине 200 тачака, заједно с описом.
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Датотека.ogg]]</nowiki></tt>''' за директно повезивање до датотеке без приказивања",
 'upload-permitted'            => 'Дозвољене врсте датотека су: $1.',
 'upload-preferred'            => 'Пожељне врсте датотека су: $1.',
@@ -1646,7 +1646,7 @@ $1",
 'upload-http-error'         => 'Дошло је до HTTP грешке: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Приступ онемогућен',
+'img-auth-accessdenied' => 'Приступ је одбијен',
 'img-auth-nofile'       => 'Датотека „$1“ не постоји.',
 
 # HTTP errors
@@ -2193,7 +2193,7 @@ $UNWATCHURL
 'restriction-edit'   => 'Уреди',
 'restriction-move'   => 'Премештање',
 'restriction-create' => 'Направи',
-'restriction-upload' => 'Пошаљи фајл',
+'restriction-upload' => 'Отпреми',
 
 # Restriction levels
 'restriction-level-sysop'         => 'пуна заштита',
@@ -2779,9 +2779,9 @@ $1',
 'thumbsize'            => 'Величина умањеног приказа :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|страница|странице|страница}}',
 'file-info'            => '(величина: $1, MIME тип: $2)',
-'file-info-size'       => '($1×$2 тачкица, величина: $3, MIME тип: $4)',
+'file-info-size'       => '($1×$2 тачака, величина: $3, MIME тип: $4)',
 'file-nohires'         => '<small>Није доступна већа величина.</small>',
-'svg-long-desc'        => '(SVG датотека, номинално $1×$2 тачкица, величина: $3)',
+'svg-long-desc'        => '(SVG датотека, номинално $1×$2 тачака, величина: $3)',
 'show-big-image'       => 'Пуна величина',
 'show-big-image-thumb' => '<small>Величина овог приказа: $1 × $2 пиксела</small>',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|кадар|кадра|кадрова}}',
@@ -3270,7 +3270,7 @@ $1',
 'fileduplicatesearch-legend'   => 'Претрага дупликата',
 'fileduplicatesearch-filename' => 'Назив датотеке:',
 'fileduplicatesearch-submit'   => 'Претражи',
-'fileduplicatesearch-info'     => '$1×$2 тачкица<br />Величина: $3<br />MIME тип: $4',
+'fileduplicatesearch-info'     => '$1×$2 тачака<br />Величина: $3<br />MIME тип: $4',
 'fileduplicatesearch-result-1' => 'Датотека „$1“ нема идентичних дупликата.',
 'fileduplicatesearch-result-n' => 'Датотека „$1“ има {{PLURAL:$2|идентичан дупликат|$2 идентична дупликата|$2 идентичних дупликата}}.',
 

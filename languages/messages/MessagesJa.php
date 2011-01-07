@@ -979,8 +979,8 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'userpage-userdoesnotexist'        => '「$1」という名前のアカウントは登録されていません。
 このページを編集することが適切かどうか確認してください。',
 'userpage-userdoesnotexist-view'   => '利用者アカウント「$1」は登録されていません。',
-'blocked-notice-logextract'        => 'このIPアドレスは現在ブロックされています。
-参考のために最近のブロック記録項目を以下に表示します：',
+'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
+参考のために最新のブロック記録を以下に表示します。',
 'clearyourcache'                   => "'''注意：'''保存した後、変更を確認するには、ブラウザのキャッシュをクリアする必要があります。'''
 '''Mozilla/Firefox/Safari：'''''Shift''を押しながら''再読み込み''をクリック、または ''Ctrl-F5''か''Ctrl-R''を押してください（Macintoshでは''Command-R''）。
 '''Konqueror：'''''再読み込み''をクリック、または''F5''を押してください。

@@ -425,12 +425,12 @@ pe titlul secțiunii (JavaScript)',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "'''Programul Wiki a fost instalat cu succes.'''",
-'mainpagedocfooter' => 'Consultă [http://meta.wikimedia.org/wiki/Help:Contents Ghidul utilizatorului (en)] pentru informații despre utilizarea programului wiki.
+'mainpagedocfooter' => 'Consultați [http://meta.wikimedia.org/wiki/Help:Contents Ghidul utilizatorului (en)] pentru informații despre utilizarea software-ului wiki.
 
 == Primii pași ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista parametrilor configurabili (en)]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Întrebări frecvente despre MediaWiki (en)]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Listă discuții MediaWiki (en)]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discuții a MediaWiki (en)]',
 
 'about'         => 'Despre',
 'article'       => 'Articol',
@@ -448,7 +448,7 @@ pe titlul secțiunii (JavaScript)',
 'qbbrowse'       => 'Răsfoiește',
 'qbedit'         => 'Modifică',
 'qbpageoptions'  => 'Opțiuni ale paginii',
-'qbpageinfo'     => 'Informaţii ale paginii',
+'qbpageinfo'     => 'Informații ale paginii',
 'qbmyoptions'    => 'Paginile mele',
 'qbspecialpages' => 'Pagini speciale',
 'faq'            => 'Întrebări frecvente',
@@ -910,9 +910,9 @@ Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referinț�
 'userjsyoucanpreview'              => "'''Sfat:''' Folosiți butonul „{{int:showpreview}}” pentru a testa noul JavaScript înainte de a-l salva.",
 'usercsspreview'                   => "'''Reține că urmărești doar o previzualizare a css-ului tău de utilizator, acesta nu este încă salvat!'''",
 'userjspreview'                    => "'''Reține că urmărești doar un test/o previzualizare a javascript-ului tău de utilizator, acesta nu este încă salvat!'''",
-'sitecsspreview'                   => "'''Țineți minte că doar previzualizați această foaie de stil.'''
+'sitecsspreview'                   => "'''Rețineți că doar previzualizați această foaie de stil.'''
 '''Ea nu a fost salvată încă!'''",
-'sitejspreview'                    => "'''Țineți minte că doar previzualizați acest cod JavaScript.'''
+'sitejspreview'                    => "'''Rețineți că doar previzualizați acest cod JavaScript.'''
 '''El nu a fost salvat încă!'''",
 'userinvalidcssjstitle'            => '<b>Avertizare:</b> Nu există skin "$1". Amintește-ți că paginile .css and .js specifice utilizatorilor au titluri care încep cu literă mică, de exemplu {{ns:user}}:Foo/vector.css în comparație cu {{ns:user}}:Foo/Vector.css.',
 'updated'                          => '(Actualizat)',
@@ -1096,34 +1096,33 @@ funcție, revizia specificată nu există, sau ești pe cale să ascunzi revizia
 'revdelete-nologid-title'     => 'Intrare în jurnal invalidă',
 'revdelete-nologid-text'      => 'Ori nu nu ai specificat o țintă pentru jurnal pentru a efectua această funcție sau intrarea specificată nu există.',
 'revdelete-no-file'           => 'Fișierul specificat nu există.',
-'revdelete-show-file-confirm' => 'Ești sigur că dorești să vezi o revizie ștearsă a fișierului "<nowiki>$1</nowiki>" din $2 la $3?',
+'revdelete-show-file-confirm' => 'Sigur doriți să vedeți versiunea ștearsă a fișierului „<nowiki>$1</nowiki>” din $2 ora $3?',
 'revdelete-show-file-submit'  => 'Da',
-'revdelete-selected'          => "'''{{PLURAL:$2|Revizia aleasă|Reviziile alese}} pentru [[:$1]]:'''",
+'revdelete-selected'          => "'''{{PLURAL:$2|Versiunea aleasă|Versiunile alese}} pentru [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
-'revdelete-text'              => "'''Reviziile șterse vor apărea în istoricul paginii, dar conținutul lor nu va fi accesibil publicului.'''
-Alți administratori {{SITENAME}} vor putea accesa conținutul ascuns și îl pot recupera prin aceeași interfață, dacă nu este impusă altă restricție de către operatorii sitului.",
+'revdelete-text'              => "'''Versiunile șterse vor apărea în istoricul paginii, dar conținutul lor nu va fi accesibil publicului.''' Administratorii {{SITENAME}} pot accesa conținutul șters și îl pot recupera prin aceeași interfață, dacă nu este impusă altă restricție de către operatorii sitului.",
 'revdelete-confirm'           => 'Vă rugăm să confirmați că intenționați să faceți acest lucru, că înțelegeți consecințele și că faceți asta în conformitate cu [[{{MediaWiki:Policy-url}}|politica]].',
 'revdelete-suppress-text'     => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
 * Informații personale inadecvate
 *: ''adrese și numere de telefon personale, CNP, numere de securitate socială, etc.''",
-'revdelete-legend'            => 'Setează restricții pentru vizualizare',
-'revdelete-hide-text'         => 'Ascunde textul reviziei',
-'revdelete-hide-image'        => 'Ascunde conținutul fișierului',
-'revdelete-hide-name'         => 'Ascunde acțiunea și destinația',
-'revdelete-hide-comment'      => 'Ascunde descrierea modificării',
-'revdelete-hide-user'         => 'Ascunde numele de utilizator/IP-ul editorului',
+'revdelete-legend'            => 'Restricții de afișare',
+'revdelete-hide-text'         => 'Șterge textul versiunii',
+'revdelete-hide-image'        => 'Șterge conținutul fișierului',
+'revdelete-hide-name'         => 'Șterge operația și obiectul',
+'revdelete-hide-comment'      => 'Șterge descrierea modificării',
+'revdelete-hide-user'         => 'Șterge numele de utilizator sau adresa IP',
 'revdelete-hide-restricted'   => 'Ascunde informațiile față de administratori și față de alți utilizatori',
 'revdelete-radio-same'        => '(nu schimba)',
 'revdelete-radio-set'         => 'Da',
 'revdelete-radio-unset'       => 'Nu',
-'revdelete-suppress'          => 'Ascunde de asemenea reviziile față de administratori',
-'revdelete-unsuppress'        => 'Elimină restricțiile în reviziile restaurate',
-'revdelete-log'               => 'Motiv:',
-'revdelete-submit'            => 'Aplică {{PLURAL:$1|reviziei selectate|reviziilor selectate}}',
-'revdelete-logentry'          => 'vizibilitatea reviziei pentru [[$1]] a fost modificată',
+'revdelete-suppress'          => 'Ascunde versiunile și față de administratori',
+'revdelete-unsuppress'        => 'Anulează restricțiile la versiunile restaurate',
+'revdelete-log'               => 'Motivul ștergerii:',
+'revdelete-submit'            => 'Aplică {{PLURAL:$1|versiunii selectate|versiunilor selectate}}',
+'revdelete-logentry'          => 'a modificat vizibilitatea unor elemente din istoricul paginii [[$1]]',
 'logdelete-logentry'          => 'a fost modificată vizibilitatea evenimentului [[$1]]',
-'revdelete-success'           => "'''Vizibilitatea reviziilor a fost schimbată cu succes.'''",
-'revdelete-failure'           => "'''Vizibilitatea reviziei nu poate fi actualizată:'''
+'revdelete-success'           => "'''Vizibilitatea versiunilor a fost schimbată cu succes.'''",
+'revdelete-failure'           => "'''Nu s-a putut modifica vizibilitatea versiunii:'''
 $1",
 'logdelete-success'           => "'''Jurnalul vizibilității a fost configurat cu succes.'''",
 'logdelete-failure'           => "'''Vizibilitatea jurnalului nu poate fi definită:'''
@@ -1133,17 +1132,16 @@ $1",
 'revdel-restore-visible'      => 'versiuni vizibile',
 'pagehist'                    => 'Istoricul paginii',
 'deletedhist'                 => 'Istoric șters',
-'revdelete-content'           => 'conținut',
-'revdelete-summary'           => 'sumarul modificărilor',
-'revdelete-uname'             => 'nume de utilizator',
+'revdelete-content'           => 'textul versiunii',
+'revdelete-summary'           => 'descrierea modificărilor',
+'revdelete-uname'             => 'numele de utilizator',
 'revdelete-restricted'        => 'restricții aplicate administratorilor',
 'revdelete-unrestricted'      => 'restricții eliminate pentru administratori',
-'revdelete-hid'               => 'ascuns $1',
-'revdelete-unhid'             => 'arată $1',
-'revdelete-log-message'       => '$1 pentru $2 {{PLURAL:$2|versiune|versiuni}}',
+'revdelete-hid'               => 'a șters $1',
+'revdelete-unhid'             => 'a recuperat $1',
+'revdelete-log-message'       => '$1, pentru {{PLURAL:$2|o versiune|$2 versiuni}}',
 'logdelete-log-message'       => '$1 pentru $2 {{PLURAL:$2|eveniment|evenimente}}',
-'revdelete-hide-current'      => 'Eroare la ascunderea elementului datat $2, $1: reprezintă revizia curentă.
-Nu poate fi ascuns.',
+'revdelete-hide-current'      => 'Eroare la ștergerea elementului datat $2, $1: reprezintă versiunea curentă și nu poate fi ștearsă.',
 'revdelete-show-no-access'    => 'Eroare la afișarea elementului datat $2, $1: elementul a fost marcat ca "restricționat".
 Nu ai acces la acest element.',
 'revdelete-modify-no-access'  => 'Eroare la modificarea elementului datat $2, $1: acest element a fost marcat "restricționat".
@@ -1152,12 +1150,14 @@ Nu ai acces asupra lui.',
 'revdelete-no-change'         => "'''Atenție:''' elementul datat $2, $1 are deja aplicată vizibilitatea cerută.",
 'revdelete-concurrent-change' => 'Eroare la modificarea elementului datat $2, $1: statutul său a fost modificat de altcineva în timpul acestei modificări.',
 'revdelete-only-restricted'   => 'Eroare în timpul suprimării elementului datat $1, $2: nu puteți suprima elemente la vizualizarea de către administratori fără a marca una din celelalte opțiuni de suprimare.',
-'revdelete-reason-dropdown'   => '*Motive de ștergere
-** Violare drepturi de autor
-** Informații personale inadecvate',
-'revdelete-otherreason'       => 'Motiv diferit/adițional',
+'revdelete-reason-dropdown'   => '*Motive de ascundere
+** Violarea drepturilor de autor
+** Informații personale
+** Obscenități
+** Atacuri la persoană',
+'revdelete-otherreason'       => 'Motiv suplimentar, detalii',
 'revdelete-reasonotherlist'   => 'Alt motiv',
-'revdelete-edit-reasonlist'   => 'Modifică motivele ștergerii',
+'revdelete-edit-reasonlist'   => 'Modifică lista de motive',
 'revdelete-offender'          => 'Autorul reviziei:',
 
 # Suppression log
@@ -1746,9 +1746,9 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 
 # Special:UploadStash
 'uploadstash'          => 'Fișiere trimise în așteptare',
-'uploadstash-summary'  => 'Această pagină oferă acces la fișierele care sunt încărcate (sau în curs de încărcare) dar nu sunt încă publicare pe wiki. Aceste fișiere nu sunt vizibile nimănui cu excepția celui care le-a încărcat.',
-'uploadstash-clear'    => 'Ștergeți fișierele în așteptare',
-'uploadstash-nofiles'  => 'Nu aveți fișiere pe lista de așteptare.',
+'uploadstash-summary'  => 'Această pagină oferă acces la fișierele care sunt încărcate (sau în curs de încărcare) dar nu sunt încă publicate pe wiki. Aceste fișiere nu sunt vizibile nimănui cu excepția celui care le-a încărcat.',
+'uploadstash-clear'    => 'Șterge fișierele în așteptare',
+'uploadstash-nofiles'  => 'Nu aveți fișiere în lista de așteptare.',
 'uploadstash-badtoken' => 'Execuția acestei acțiuni nu a reușit, probabil deoarece informațiile dumneavoastră de identificare au expirat. Încercați din nou.',
 'uploadstash-errclear' => 'Golirea fișierelor nu a reușit.',
 'uploadstash-refresh'  => 'Reîmprospătează lista de fișiere',
@@ -2599,18 +2599,17 @@ Cu alte cuvinte, veți putea muta înapoi o pagină pe care ați mutat-o greșit
 '''ATENŢIE!'''
 Aceasta poate fi o schimbare drastică și neașteptată pentru o pagină populară;
 vă rugăm, să vă asigurați că înțelegeți toate consecințele înainte de a continua.",
-'movepagetext-noredirectfixer' => "Utilizând formularul de mai jos veți redenumi o pagină, mutând tot istoricul către noul nume.
+'movepagetext-noredirectfixer' => "Completând formularul de mai jos veți redenumi o pagină, mutând tot istoricul la noul nume.
 Vechiul titlu va deveni o pagină de redirecționare către noul titlu.
-Fiți sigur că ați verificat lista redirecționărilor [[Special:DoubleRedirects|duble]] sau [[Special:BrokenRedirects|moarte]].
-Vă rugăm să rețineți că sunteți responsabil(ă) pentru a face legăturile vechi să rămână valide.
+Fiți sigur că ați verificat lista redirecționărilor [[Special:DoubleRedirects|duble]] sau [[Special:BrokenRedirects|nefuncționale]].
+Vă rugăm să rețineți că aveți responsabilitatea de a verifica dacă nu cumva destinația inițială a vechilor legături s-a modificat.
 
-Rețineți că pagina '''nu va fi mutată''' dacă există deja o pagină cu noul titlu, în afară de cazul că este complet goală sau este
-o redirecționare și în plus nu are nicio istorie de modificare.
-Cu alte cuvinte, veți putea muta înapoi o pagină pe care ați mutat-o greșit, dar nu veți putea suprascrie o pagină validă existentă prin mutarea alteia.
+Nu uitați că pagina '''nu va fi redenumită''' dacă o pagină cu noul titlul există deja, cu excepția cazurilor în care aceasta este complet goală și nu are istoric de modificări sau este o pagină de redirecționare.
+Acest lucru înseamnă că veți putea redenumi la titlul inițial o pagină greșit redenumită, dar nu veți putea suprascrie o pagină existentă.
 
-'''ATENŢIE!'''
-Aceasta poate fi o schimbare drastică și neașteptată pentru o pagină populară;
-vă rugăm, să vă asigurați că înțelegeți toate consecințele înainte de a continua.",
+'''Atenție!'''
+Această acțiune poate determina o schimbare dramatică, neașteptată pentru o pagină cu trafic crescut;
+asigurați-vă că înțelegeți toate consecințele înainte de a continua.",
 'movepagetalktext'             => "Pagina asociată de discuții, dacă există, va fi mutată
 automat odată cu aceasta '''afară de cazul că''':
 * Mutați pagina în altă secțiune a {{SITENAME}}
@@ -3508,17 +3507,17 @@ Introdu numele fișierului fără prefixul "{{ns:file}}:".',
 #Pune toate fragmentele regex deasupra aceastei linii. Lasă această linie exact așa cum este</pre>',
 
 # Special:Tags
-'tags'                    => 'Taguri de modificare valide',
-'tag-filter'              => 'Filtrează [[Special:Tags|etichetele]]:',
+'tags'                    => 'Etichete valabile pentru marcarea modificărilor',
+'tag-filter'              => 'Filtru pentru [[Special:Tags|etichete]]:',
 'tag-filter-submit'       => 'Filtru',
 'tags-title'              => 'Etichete',
-'tags-intro'              => 'Această pagină afișează etichetele pe care software-ul le poate marca cu o editare, și semnificația lor.',
-'tags-tag'                => 'Nume de etichetă internă',
-'tags-display-header'     => 'Aspect în listele schimbărilor',
-'tags-description-header' => 'Descriere completă a sensului',
+'tags-intro'              => 'Această pagină afișează etichetele, inclusiv semnificația lor, pe care software-ul le poate folosi la marcarea modificărilor.',
+'tags-tag'                => 'Numele etichetei',
+'tags-display-header'     => 'Apariția în listele cu schimbări',
+'tags-description-header' => 'Descrierea completă a sensului',
 'tags-hitcount-header'    => 'Modificări etichetate',
 'tags-edit'               => 'modifică',
-'tags-hitcount'           => '$1 {{PLURAL:$1|schimbare|schimbări}}',
+'tags-hitcount'           => '$1 {{PLURAL:$1|modificare|modificări}}',
 
 # Special:ComparePages
 'comparepages'     => 'Comparație între pagini',
@@ -3559,7 +3558,7 @@ Introdu numele fișierului fără prefixul "{{ns:file}}:".',
 'disableaccount-user'        => 'Nume de utilizator:',
 'disableaccount-reason'      => 'Motiv:',
 'disableaccount-confirm'     => "Dezactivarea acestui cont de utilizator.
-Utilizatorul nu se va mai putea autentifica, nu-și va mai putea reseta parola sau primi notificări prin email.
+Utilizatorul nu se va mai putea autentifica, nu-și va mai putea reseta parola sau primi notificări prin e-mail.
 Dacă utilizatorul este autentificat în acest moment, sesiunea sa va fi încheiată imediat.
 ''Rețineți că dezactivarea unui cont de utilizator nu este reversibilă fără intervenția unui administrator de sistem.''",
 'disableaccount-mustconfirm' => 'Trebuie să confirmați că doriți dezactivarea acestui cont.',
