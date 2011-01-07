@@ -169,12 +169,10 @@ class ApiUpload extends ApiBase {
 
 		}
 
-
 		// The following modules all require the filename parameter to be set
 		if ( is_null( $this->mParams['filename'] ) ) {
 			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
 		}
-
 
 		if ( $this->mParams['sessionkey'] ) {
 			// Upload stashed in a previous request
@@ -187,7 +185,6 @@ class ApiUpload extends ApiBase {
 			$this->mUpload->initialize( $this->mParams['filename'],
 				$this->mParams['sessionkey'],
 				$sessionData[$this->mParams['sessionkey']] );
-
 
 		} elseif ( isset( $this->mParams['file'] ) ) {
 			$this->mUpload = new UploadFromFile();
