@@ -35,7 +35,6 @@ class CliInstaller extends CoreInstaller {
 		'upgrade' => 'cliUpgrade', /* As long as it isn't $confItems
 									* in LocalSettingsGenerator, we
 									* should be fine. */
-		'showexceptions' => 'wgShowExceptionDetails',
 	);
 
 	/**
