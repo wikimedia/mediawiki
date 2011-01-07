@@ -530,7 +530,7 @@ $1',
 'showtoc'                 => 'показати',
 'hidetoc'                 => 'сховати',
 'collapsible-collapse'    => 'згорнути',
-'collapsible-expand'      => 'розгорнути',
+'collapsible-expand'      => 'Розгорнути',
 'thisisdeleted'           => 'Переглянути чи відновити $1?',
 'viewdeleted'             => 'Переглянути $1?',
 'restorelink'             => '$1 {{PLURAL:$1|вилучене редагування|вилучених редагування|вилучених редагувань}}',
@@ -3425,11 +3425,11 @@ $1',
 'version-license'                  => 'Ліцензія',
 'version-poweredby-credits'        => "Ця Вікі працює на системі управління вмістом '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'         => 'інші',
-'version-license-info'             => 'MediaWiki є вільним програмним забезпеченням, ви можете його розповсюджувати та / або модифікувати його відповідно до умов GNU General Public License, яка опублікованя фондом вільного програмного забезпечення; або версії 2 Ліцензії, або (на Ваш розсуд) будь-якої наступної версії. 
+'version-license-info'             => 'MediaWiki є вільним програмним забезпеченням, ви можете розповсюджувати та/або модифікувати його відповідно до умов GNU General Public License, яка опублікованя фондом вільного програмного забезпечення; або версії 2 Ліцензії, або (на Ваш розсуд) будь-якої наступної версії. 
 
- MediaWiki поширюється в надії, що вона буде корисною, але БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ, навіть без неявної гарантії КОМЕРЦІЙНОЇ ПРИДАТНОСТІ чи для певної мети. Див GNU General Public License для більш докладної інформації. 
+MediaWiki поширюється в надії, що вона буде корисною, але БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ, навіть без неявної гарантії КОМЕРЦІЙНОЇ ПРИДАТНОСТІ чи ПРИДАТНОСТІ ДЛЯ ПЕВНОЇ МЕТИ. Дивіться GNU General Public License для більш докладної інформації. 
 
- Ви повинні були отримати [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разом з цією програмою, якщо немає, напишіть у Free Software Foundation, Inc 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, США або [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитайте її онлайн].',
+Ви повинні були отримати [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разом з цією програмою, якщо немає, напишіть у Free Software Foundation, Inc 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, США або [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитайте її онлайн].',
 'version-software'                 => 'Установлене програмне забезпечення',
 'version-software-product'         => 'Продукт',
 'version-software-version'         => 'Версія',

@@ -2981,7 +2981,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'math_unknown_function' => 'fonction inconnue',
 'math_lexing_error'     => 'erreur lexicale',
 'math_syntax_error'     => 'erreur de syntaxe',
-'math_image_error'      => 'La conversion en PNG a échoué ; vérifiez l’installation de LaTeX, dvips, gs et convert',
+'math_image_error'      => 'La conversion en PNG a échoué ; vérifiez l’installation de latex et dvipng (ou dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Impossible de créer ou d’écrire dans le répertoire math temporaire',
 'math_bad_output'       => 'Impossible de créer ou d’écrire dans le répertoire math de sortie',
 'math_notexvc'          => 'L’exécutable « texvc » est introuvable. Lisez math/README pour le configurer.',

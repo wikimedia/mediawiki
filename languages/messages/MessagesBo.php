@@ -358,14 +358,22 @@ $messages = array(
 'revisionasof'           => '$1 ལ་བཅོས་པ།',
 'previousrevision'       => ' ← བཟོ་བཅོས་སྔ་མ།',
 'cur'                    => 'ད་ལྟ།',
+'next'                   => 'རྗེས་མ།',
 'last'                   => 'མཐའ་མ།',
+'page_first'             => 'ཐོག་མ།',
+'page_last'              => 'མཐའ་མ།',
 'history-fieldset-title' => 'ལོ་རྒྱུས་བཤར་ལྟ།',
+'history-show-deleted'   => 'དོར་ཟིན་ཁོ་ན།',
 'histfirst'              => 'སྔ་ཤོས།',
 'histlast'               => 'ཕྱི་ཤོས།',
+'historyempty'           => '༼སྟོང་པ།༽',
 
 # Revision deletion
-'rev-delundel'   => 'སྟོན། / སྦས།',
-'revdel-restore' => 'བཅོས་སུ་རུང་བ།',
+'rev-delundel'               => 'སྟོན། / སྦས།',
+'rev-showdeleted'            => 'སྟོན།',
+'revdelete-show-file-submit' => 'ཡིན།',
+'revdelete-radio-set'        => 'ཡིན།',
+'revdel-restore'             => 'བཅོས་སུ་རུང་བ།',
 
 # Merge log
 'revertmerge' => 'སོ་སོར་ཕྱེ་བ།',
@@ -403,11 +411,20 @@ $messages = array(
 # Preferences page
 'mypreferences'     => 'ངའི་ལེགས་སྒྲིག',
 'prefsnologin'      => 'ནང་འཛུལ་བྱས་མེད།',
+'prefs-personal'    => 'སྤྱོད་མིའི་སྤྱི་ཁོག',
 'prefs-rc'          => 'ཉེ་བའི་བཟོ་བཅོས།',
+'prefs-watchlist'   => 'མཉམ་འཇོག་ཐོ།',
+'prefs-email'       => 'གློག་འཕྲིན་འདེམས་ཚན།',
 'searchresultshead' => 'འཚོལ།',
 'youremail'         => 'དྲ་འཕྲིན། *:',
 'username'          => 'དྲ་མིང་།:',
+'uid'               => 'ནང་འཛུལ་ཐོ་མིང་།',
+'yourrealname'      => 'དངོས་མིང་།',
+'yourgender'        => 'ཕོ་མོ།',
+'gender-male'       => 'ཕོ།',
 'email'             => 'དྲ་འཕྲིན།',
+'prefs-info'        => 'རྨང་གཞིའི་གནས་ཚུལ།',
+'prefs-signature'   => 'མིང་རྟགས།',
 
 # Groups
 'group-sysop' => 'དོ་དམ་པ།',
