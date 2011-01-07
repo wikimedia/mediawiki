@@ -256,6 +256,8 @@ class ApiDelete extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'missingparam', 'info' => 'One of the parameters title, pageid is required' ),
+			array( 'code' => 'invalidparammix', 'info' => 'The parameters title, pageid can not be used together' ),
 			array( 'invalidtitle', 'title' ),
 			array( 'nosuchpageid', 'pageid' ),
 			array( 'notanarticle' ),
