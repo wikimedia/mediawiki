@@ -55,7 +55,7 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 		$this->addOption( 'upgrade',
 			'Allow the upgrade to continue despite an existing LocalSettings.php', false, true );
-		$this->addOption( 'showexceptions', "Whether to set wgShowExceptionDetails", false, true );
+
 	}
 
 	public function execute() {
