@@ -259,7 +259,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $flags Integer: database behaviour flags (optional, unused)
 	 * @param $schema String
 	 */
-	public function DatabaseIbm_db2( $server = false, $user = false,
+	public function __construct( $server = false, $user = false,
 							$password = false,
 							$dbName = false, $flags = 0,
 							$schema = self::USE_GLOBAL )
