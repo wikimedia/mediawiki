@@ -329,18 +329,11 @@ class Parser {
 		}
 
 		/**
-		 * A page get its title converted except:
-		 * a) Language conversion is globally disabled
-		 * b) Title convert is globally disabled
-		 * c) The page is a redirect page
-		 * d) User request with a "linkconvert" set to "no"
-		 * e) A "nocontentconvert" magic word has been set
-		 * f) A "notitleconvert" magic word has been set
-		 * g) User sets "noconvertlink" in his/her preference
-		 *
-		 * Note that if a user tries to set a title in a conversion
-		 * rule but content conversion was not done, then the parser
-		 * won't pick it up.  This is probably expected behavior.
+		 * A converted title will be provided in the output object if title and
+		 * content conversion are enabled, the article text does not contain 
+		 * a conversion-suppressing double-underscore tag, and no 
+		 * {{DISPLAYTITLE:...}} is present. DISPLAYTITLE takes precedence over
+		 * automatic link conversion.
 		 */
 		if ( !( $wgDisableLangConversion
 				|| $wgDisableTitleConversion
