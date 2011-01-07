@@ -21,7 +21,13 @@ class ForeignAPIFile extends File {
 		$this->mInfo = $info;
 		$this->mExists = $exists;
 	}
-	
+
+	/**
+	 * @static
+	 * @param  $title Title
+	 * @param  $repo ForeignApiRepo
+	 * @return ForeignAPIFile|null
+	 */
 	static function newFromTitle( $title, $repo ) {
 		$data = $repo->fetchImageQuery( array(
                         'titles' => 'File:' . $title->getDBKey(),
@@ -30,11 +36,16 @@ class ForeignAPIFile extends File {
 
 		$info = $repo->getImageInfo( $data );
 
-		if( $data && $info) {
-			if( isset( $data['query']['redirects'][0] ) ) {
-				$newtitle = Title::newFromText( $data['query']['redirects'][0]['to']);
+		if( $info ) {
+			$lastRedirect = isset( $data['query']['redirects'] )
+				? count( $data['query']['redirects'] ) - 1
+				: -1;
+			if( $lastRedirect >= 0 ) {
+				$newtitle = Title::newFromText( $data['query']['redirects'][$lastRedirect]['to']);
 				$img = new ForeignAPIFile( $newtitle, $repo, $info, true );
-				if( $img ) $img->redirectedFrom( $title->getDBkey() );
+				if( $img ) {
+					$img->redirectedFrom( $title->getDBkey() );
+				}
 			} else {
 				$img = new ForeignAPIFile( $title, $repo, $info, true );
 			}

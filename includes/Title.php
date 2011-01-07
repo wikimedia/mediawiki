@@ -72,7 +72,7 @@ class Title {
 	var $mCascadeSources;             ///< Where are the cascading restrictions coming from on this page?
 	var $mRestrictionsLoaded = false; ///< Boolean for initialisation on demand
 	var $mPrefixedText;               ///< Text form including namespace/interwiki, initialised on demand
-	var $mTitleProtection;            ///< Cached value of getTitleProtection
+	var $mTitleProtection;            ///< Cached value for getTitleProtection (create protection)
 	# Don't change the following default, NS_MAIN is hardcoded in several
 	# places.  See bug 696.
 	var $mDefaultNamespace = NS_MAIN; // /< Namespace index when there is no namespace
@@ -1624,6 +1624,7 @@ class Title {
 
 	/**
 	 * Is this title subject to title protection?
+	 * Title protection is the one applied against creation of such title.
 	 *
 	 * @return \type{\mixed} An associative array representing any existent title
 	 *   protection, or false if there's none.
@@ -1649,10 +1650,6 @@ class Title {
 			$this->mTitleProtection = $dbr->fetchRow( $res );
 		}
 		return $this->mTitleProtection;
-	}
-
-	private function invalidateTitleProtectionCache() {
-		unset( $this->mTitleProtection );
 	}
 
 	/**
@@ -1688,8 +1685,7 @@ class Title {
 
 		# Update protection table
 		if ( $create_perm != '' ) {
-			$dbw->replace( 'protected_titles', array( array( 'pt_namespace', 'pt_title' ) ),
-				array(
+			$this->mTitleProtection = array(
 					'pt_namespace' => $namespace,
 					'pt_title' => $title,
 					'pt_create_perm' => $create_perm,
@@ -1697,13 +1693,14 @@ class Title {
 					'pt_expiry' => $encodedExpiry,
 					'pt_user' => $wgUser->getId(),
 					'pt_reason' => $reason,
-				), __METHOD__
-			);
+				);
+			$dbw->replace( 'protected_titles', array( array( 'pt_namespace', 'pt_title' ) ),
+				$this->mTitleProtection, __METHOD__	);
 		} else {
 			$dbw->delete( 'protected_titles', array( 'pt_namespace' => $namespace,
 				'pt_title' => $title ), __METHOD__ );
+			$this->mTitleProtection = false;
 		}
-		$this->invalidateTitleProtectionCache();
 
 		# Update the protection log
 		if ( $dbw->affectedRows() ) {
@@ -1731,7 +1728,7 @@ class Title {
 			array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
 			__METHOD__
 		);
-		$this->invalidateTitleProtectionCache();
+		$this->mTitleProtection = false;
 	}
 
 	/**
@@ -2105,7 +2102,6 @@ class Title {
 		}
 		if ( $purgeExpired ) {
 			Title::purgeExpiredRestrictions();
-			$this->invalidateTitleProtectionCache();
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -2152,7 +2148,8 @@ class Title {
 
 	/**
 	 * Compiles list of active page restrictions from both page table (pre 1.10)
-	 * and page_restrictions table
+	 * and page_restrictions table for this existing page.
+	 * Public for usage by LiquidThreads.
 	 *
 	 * @param $rows array of db result objects
 	 * @param $oldFashionedRestrictions string comma-separated list of page
@@ -2225,7 +2222,6 @@ class Title {
 
 			if ( $purgeExpired ) {
 				Title::purgeExpiredRestrictions();
-				$this->invalidateTitleProtectionCache();
 			}
 		}
 
@@ -2260,7 +2256,7 @@ class Title {
 						$this->mRestrictions['create'] = explode( ',', trim( $title_protection['pt_create_perm'] ) );
 					} else { // Get rid of the old restrictions
 						Title::purgeExpiredRestrictions();
-						$this->invalidateTitleProtectionCache();
+						$this->mTitleProtection = false;
 					}
 				} else {
 					$this->mRestrictionsExpiry['create'] = Block::decodeExpiry( '' );
