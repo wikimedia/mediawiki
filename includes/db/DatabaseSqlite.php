@@ -42,10 +42,6 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	function implicitGroupby()   { return false; }
 
-	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
-		return new DatabaseSqlite( $server, $user, $password, $dbName, $flags );
-	}
-
 	/** Open an SQLite database and return a resource handle to it
 	 *  NOTE: only $dbName is used, the other parameters are irrelevant for SQLite databases
 	 */

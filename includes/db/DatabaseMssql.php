@@ -49,10 +49,6 @@ class DatabaseMssql extends DatabaseBase {
 		return false;
 	}
 
-	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
-		return new DatabaseMssql( $server, $user, $password, $dbName, $flags );
-	}
-
 	/**
 	 * Usually aborts on failure
 	 */
