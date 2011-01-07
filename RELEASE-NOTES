@@ -41,6 +41,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Search suggestions (other than in the Vector skin) will now use the HTML5
   datalist feature where supported, currently only Firefox 4.
 * Special:Contribs now redirects to Special:Contributions
+* (bug 6672) Images are now autorotated according to their EXIF orientation. 
+  This only affects thumbnails; the source remains unrotated.
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
