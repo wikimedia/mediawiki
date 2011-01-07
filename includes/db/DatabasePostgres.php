@@ -144,10 +144,6 @@ class DatabasePostgres extends DatabaseBase {
 		return $this->numRows( $res );
 	}
 
-	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
-		return new DatabasePostgres( $server, $user, $password, $dbName, $flags );
-	}
-
 	/**
 	 * Usually aborts on failure
 	 */

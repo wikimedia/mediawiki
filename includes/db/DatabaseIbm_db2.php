@@ -429,23 +429,6 @@ ERROR;
 	}
 
 	/**
-	 * Returns a fresh instance of this class
-	 *
-	 * @param $server String: hostname of database server
-	 * @param $user String: username
-	 * @param $password String
-	 * @param $dbName String: database name on the server
-	 * @param $flags Integer: database behaviour flags (optional, unused)
-	 * @return DatabaseIbm_db2 object
-	 */
-	static function newFromParams( $server, $user, $password, $dbName,
-		$flags = 0 )
-	{
-		return new DatabaseIbm_db2( $server, $user, $password, $dbName,
-			$flags );
-	}
-
-	/**
 	 * Retrieves the most current database error
 	 * Forces a database rollback
 	 */
