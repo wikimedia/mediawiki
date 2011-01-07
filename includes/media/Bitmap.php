@@ -21,6 +21,17 @@ class BitmapHandler extends ImageHandler {
 		$mimeType = $image->getMimeType();
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
+		
+		if ( $this->canRotate() ) {
+			$rotation = $this->getRotation( $image );
+			if ( $rotation == 90 || $rotation == 270 ) {
+				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotation $rotation degrees\n" );
+				
+				$width = $params['width'];
+				$params['width'] = $params['height'];
+				$params['height'] = $width;
+			}
+		}
 
 		# Don't make an image bigger than the source
 		$params['physicalWidth'] = $params['width'];
@@ -55,8 +66,7 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-		global $wgUseImageMagick;
-		global $wgCustomConvertCommand, $wgUseImageResize;
+		global $wgCustomConvertCommand;
 
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
@@ -93,20 +103,7 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		# Determine scaler type
-		if ( !$dstPath ) {
-			# No output path available, client side scaling only
-			$scaler = 'client';
-		} elseif ( !$wgUseImageResize ) {
-			$scaler = 'client';
-		} elseif ( $wgUseImageMagick ) {
-			$scaler = 'im';
-		} elseif ( $wgCustomConvertCommand ) {
-			$scaler = 'custom';
-		} elseif ( function_exists( 'imagecreatetruecolor' ) ) {
-			$scaler = 'gd';
-		} else {
-			$scaler = 'client';
-		}
+		$scaler = $this->getScalerType( $dstPath );
 		wfDebug( __METHOD__ . ": scaler $scaler\n" );
 
 		if ( $scaler == 'client' ) {
@@ -153,6 +150,39 @@ class BitmapHandler extends ImageHandler {
 			return new ThumbnailImage( $image, $dstUrl, $scalerParams['clientWidth'],
 				$scalerParams['clientHeight'], $dstPath );
 		}
+	}
+	
+	/**
+	 * Returns which scaler type should be used. Creates parent directories 
+	 * for $dstPath and returns 'client' on error
+	 * 
+	 * @return string client,im,custom,gd
+	 */
+	protected function getScalerType( $dstPath, $checkDstPath = true ) {
+		global $wgUseImageResize, $wgUseImageMagick, $wgCustomConvertCommand;
+		
+		if ( !$dstPath && $checkDstPath ) {
+			# No output path available, client side scaling only
+			$scaler = 'client';
+		} elseif ( !$wgUseImageResize ) {
+			$scaler = 'client';
+		} elseif ( $wgUseImageMagick ) {
+			$scaler = 'im';
+		} elseif ( $wgCustomConvertCommand ) {
+			$scaler = 'custom';
+		} elseif ( function_exists( 'imagecreatetruecolor' ) ) {
+			$scaler = 'gd';
+		} else {
+			$scaler = 'client';
+		}
+		
+		if ( $scaler != 'client' ) {
+			if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
+				# Unable to create a path for the thumbnail
+				return 'client';
+			}
+		}
+		return $scaler;
 	}
 
 	/**
@@ -242,7 +272,7 @@ class BitmapHandler extends ImageHandler {
 			( $params['comment'] !== ''
 				? " -set comment " . wfEscapeShellArg( $this->escapeMagickProperty( $params['comment'] ) )
 				: '' ) .
-			" -depth 8 $sharpen" .
+			" -depth 8 $sharpen -auto-orient" .
 			" {$animation_post} " .
 			wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) ) . " 2>&1";
 
@@ -360,8 +390,16 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		$src_image = call_user_func( $loader, $params['srcPath'] );
-		$dst_image = imagecreatetruecolor( $params['physicalWidth'],
-			$params['physicalHeight'] );
+		$rotation = $this->getRotation( $image );
+		if ( $rotation == 90 || $rotation == 270 ) {
+			# We'll resize before rotation, so swap the dimensions again
+			$width = $params['physicalHeight'];
+			$height = $params['physicalWidth'];
+		} else {
+			$width = $params['physicalWidth'];
+			$height = $params['physicalHeight'];			
+		}
+		$dst_image = imagecreatetruecolor( $width, $height );
 
 		// Initialise the destination image to transparent instead of
 		// the default solid black, to support PNG and GIF transparency nicely
@@ -374,15 +412,21 @@ class BitmapHandler extends ImageHandler {
 			// It may just uglify them, and completely breaks transparency.
 			imagecopyresized( $dst_image, $src_image,
 				0, 0, 0, 0,
-				$params['physicalWidth'], $params['physicalHeight'],
+				$width, $height,
 				imagesx( $src_image ), imagesy( $src_image ) );
 		} else {
 			imagecopyresampled( $dst_image, $src_image,
 				0, 0, 0, 0,
-				$params['physicalWidth'], $params['physicalHeight'],
+				$width, $height,
 				imagesx( $src_image ), imagesy( $src_image ) );
 		}
-
+		
+		if ( $rotation % 360 != 0 && $rotation % 90 == 0 ) {
+			$rot_image = imagerotate( $dst_image, $rotation, 0 );
+			imagedestroy( $dst_image );
+			$dst_image = $rot_image;
+		}
+		
 		imagesavealpha( $dst_image, true );
 
 		call_user_func( $saveType, $dst_image, $params['dstPath'] );
@@ -601,5 +645,35 @@ class BitmapHandler extends ImageHandler {
 			);
 		}
 		return $result;
+	}
+	
+	public function getRotation( $file ) {
+		$data = $file->getMetadata();
+		if ( !$data ) {
+			return 0;
+		}
+		$data = unserialize( $data );
+		if ( isset( $data['Orientation'] ) ) {
+			# See http://sylvana.net/jpegcrop/exif_orientation.html
+			switch ( $data['Orientation'] ) {
+				case 8:
+					return 90;
+				case 3:
+					return 180;
+				case 6:
+					return 270;
+				default:
+					return 0;
+			}
+		}
+		return 0;
+	}
+	public function canRotate() {
+		$scaler = $this->getScalerType( null, false );
+		return $scaler == 'im' || $scaler == 'gd';
+	}
+	
+	public function mustRender( $file ) {
+		return $this->canRotate() && $this->getRotation( $file ) != 0;
 	}
 }

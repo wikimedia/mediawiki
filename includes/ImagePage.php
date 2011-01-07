@@ -368,10 +368,7 @@ class ImagePage extends Article {
 				$thumbnail = $this->displayImg->transform( $params );
 
 				$showLink = true;
-				$anchorclose = '';
-				if ( !$this->displayImg->mustRender() ) {
-					$anchorclose = "<br />" . $msgsmall;
-				}
+				$anchorclose = "<br />" . $msgsmall;
 
 				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
 				if ( $isMulti ) {
