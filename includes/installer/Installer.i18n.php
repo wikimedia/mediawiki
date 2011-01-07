@@ -454,7 +454,7 @@ Make sure that the user "$1" can write to the schema "$2".',
 	'config-pg-no-plpgsql'            => 'You need to install the language PL/pgSQL in the database $1',
 	'config-install-pg-ts2'           => 'Checking for tsearch2',
 	'config-install-pg-ts2-failed'    => "'''FAILED''' tsearch2 must be installed in the database $1
-Please read [http://www.devx.com/opensource/Article/21674/0/page/2 these instructions] or ask on #postgresql on irc.freenode.net</li>\n",
+Please read [$2 these instructions] or ask on #postgresql on irc.freenode.net</li>\n",
 	'config-install-user'             => 'Creating database user',
 	'config-install-user-failed'      => 'Granting permission to user "$1" failed: $2',
 	'config-install-tables'           => 'Creating tables',
