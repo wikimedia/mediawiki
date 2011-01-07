@@ -474,9 +474,7 @@ class ApiUpload extends ApiBase {
 			array( 'uploaddisabled' ),
 			array( 'invalid-session-key' ),
 			array( 'uploaddisabled' ),
-			array( 'badaccess-groups' ),
 			array( 'mustbeloggedin', 'upload' ),
-			array( 'badaccess-groups' ),
 			array( 'badaccess-groups' ),
 			array( 'code' => 'fetchfileerror', 'info' => '' ),
 			array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
@@ -486,6 +484,8 @@ class ApiUpload extends ApiBase {
 			array( 'code' => 'overwrite', 'info' => 'Overwriting an existing file is not allowed' ),
 			array( 'code' => 'stashfailed', 'info' => 'Stashing temporary file failed' ),
 			array( 'code' => 'internal-error', 'info' => 'An internal error occurred' ),
+			array( 'code' => 'missingparam', 'info' => 'One of the parameters sessionkey, file, url, statuskey is required' ),
+			array( 'code' => 'invalidparammix', 'info' => 'The parameters sessionkey, file, url, statuskey can not be used together' ),
 		) );
 	}
 
