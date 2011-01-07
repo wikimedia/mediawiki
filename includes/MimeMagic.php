@@ -10,6 +10,19 @@
  * This is used as a fallback to mime.types files.
  * An extensive list of well known mime types is provided by
  * the file mime.types in the includes directory.
+ * 
+ * This list concatenated with mime.types is used to create a mime <-> ext
+ * map. Each line contains a mime type followed by a space separated list of
+ * extensions. If multiple extensions for a single mime type exist or if 
+ * multiple mime types exist for a single extension then in most cases
+ * MediaWiki assumes that the first extension following the mime type is the
+ * canonical extension, and the first time a mime type appears for a certain
+ * extension is considered the canonical mime type.
+ * 
+ * (Note that appending $wgMimeTypeFile to the end of MM_WELL_KNOWN_MIME_TYPES
+ * sucks because you can't redefine canonical types. This could be fixed by 
+ * appending MM_WELL_KNOWN_MIME_TYPES behind $wgMimeTypeFile, but who knows
+ * what will break? In practice this probably isn't a problem anyway -- Bryan)
  */
 define('MM_WELL_KNOWN_MIME_TYPES',<<<END_STRING
 application/ogg ogx ogg ogm ogv oga spx
@@ -41,9 +54,12 @@ image/x-bmp bmp
 image/gif gif
 image/jpeg jpeg jpg jpe
 image/png png
-image/svg+xml image/svg svg
+image/svg+xml svg 
+image/svg svg
 image/tiff tiff tif
-image/vnd.djvu image/x.djvu image/x-djvu djvu
+image/vnd.djvu djvu
+image/x.djvu djvu
+image/x-djvu djvu
 image/x-portable-pixmap ppm
 image/x-xcf xcf
 text/plain txt
