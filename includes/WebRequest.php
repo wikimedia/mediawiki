@@ -526,13 +526,15 @@ class WebRequest {
 		global $wgTitle;
 		$basequery = '';
 		foreach( $_GET as $var => $val ) {
-			if ( $var == 'title' )
+			if ( $var == 'title' ) {
 				continue;
-			if ( is_array( $val ) )
+			}
+			if ( is_array( $val ) ) {
 				/* This will happen given a request like
 				 * http://en.wikipedia.org/w/index.php?title[]=Special:Userlogin&returnto[]=Main_Page
 				 */
 				continue;
+			}
 			$basequery .= '&' . urlencode( $var ) . '=' . urlencode( $val );
 		}
 		$basequery .= '&' . $query;
