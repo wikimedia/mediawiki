@@ -50,6 +50,7 @@ class ParserTest {
 
 	/**
 	 * Our connection to the database
+	 * @var DatabaseBase
 	 */
 	private $db;
 
