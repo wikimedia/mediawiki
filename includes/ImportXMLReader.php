@@ -576,10 +576,10 @@ class WikiImporter {
 		$revision->setComment( $uploadInfo['comment'] );
 
 		if ( isset( $uploadInfo['contributor']['ip'] ) ) {
-			$revision->setUserIP( $revisionInfo['contributor']['ip'] );
+			$revision->setUserIP( $uploadInfo['contributor']['ip'] );
 		}
 		if ( isset( $uploadInfo['contributor']['username'] ) ) {
-			$revision->setUserName( $revisionInfo['contributor']['username'] );
+			$revision->setUserName( $uploadInfo['contributor']['username'] );
 		}
 
 		return $this->uploadCallback( $revision );
