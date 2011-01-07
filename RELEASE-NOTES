@@ -40,6 +40,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8130) Query pages should limit to content namespaces, not just main namespace 
 * Search suggestions (other than in the Vector skin) will now use the HTML5
   datalist feature where supported, currently only Firefox 4.
+* Special:Contribs now redirects to Special:Contributions
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
