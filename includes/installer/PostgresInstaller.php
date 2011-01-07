@@ -196,7 +196,11 @@ class PostgresInstaller extends DatabaseInstaller {
 	function setupTs2() {
 		if( version_compare( $this->db->getServerVersion(), $this->ts2MaxVersion, '<' ) ) {
 			if ( !$this->db->tableExists( 'pg_ts_cfg', $wgDBts2schema ) ) {
-				return Status::newFatal( 'config-install-pg-ts2-failed' );
+				return Status::newFatal( 
+					'config-install-pg-ts2-failed',
+					$this->getVar( 'wgDBname' ),
+					'http://www.devx.com/opensource/Article/21674/0/page/2'
+				);
 			}
 			$safeuser = $this->db->addQuotes( $this->getVar( 'wgDBuser' ) );
 			foreach ( array( 'cfg', 'cfgmap', 'dict', 'parser' ) as $table ) {
