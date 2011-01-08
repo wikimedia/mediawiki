@@ -5062,7 +5062,6 @@ $wgAjaxExportList = array( 'wfAjaxGetFileUrl' );
 /**
  * Enable watching/unwatching pages using AJAX.
  * Requires $wgUseAjax to be true too.
- * Causes wfAjaxWatch to be added to $wgAjaxExportList
  */
 $wgAjaxWatch = true;
 
