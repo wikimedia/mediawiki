@@ -22,7 +22,7 @@ class MWException extends Exception {
 	function useOutputPage() {
 		return $this->useMessageCache() &&
 			!empty( $GLOBALS['wgFullyInitialised'] ) &&
-			( !empty( $GLOBALS['wgArticle'] ) || ( !empty( $GLOBALS['wgOut'] ) && !$GLOBALS['wgOut']->isArticle() ) ) &&
+			( !empty( $GLOBALS['wgArticle'] ) || ( !empty( $GLOBALS['wgOut'] ) && !$GLOBALS['wgOut']->isArticleRelated() ) ) &&
 			!empty( $GLOBALS['wgTitle'] );
 	}
 
