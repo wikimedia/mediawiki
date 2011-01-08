@@ -1386,6 +1386,15 @@ abstract class QuickTemplate {
 		$msg = $this->translator->translate( $str );
 		return ( $msg != '-' ) && ( $msg != '' ); # ????
 	}
+
+	/**
+	 * Get the Skin object related to this object
+	 *
+	 * @return Skin object
+	 */
+	public function getSkin() {
+		return $this->data['skin'];
+	}
 }
 
 /**
