@@ -26,6 +26,13 @@ $messages = array(
 'thursday'      => 'Catūrtdīne',
 'friday'        => 'Pīktdīne',
 'saturday'      => 'Sastdīne',
+'sun'           => 'Sv',
+'mon'           => 'Pr',
+'tue'           => 'Ūt',
+'wed'           => 'Tr',
+'thu'           => 'Ct',
+'fri'           => 'Pt',
+'sat'           => 'St',
 'january'       => 'Janvars / Jaunagods mieness',
 'february'      => 'Febraļs / Svacainis mieness',
 'march'         => 'Marts / Pavasara mieness',
@@ -95,6 +102,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection' => 'Dalikt padaļu',
 'vector-action-delete'     => 'Iztreit',
+'vector-action-move'       => 'Puorceļt',
 'vector-action-protect'    => 'Apsorguot',
 'vector-view-edit'         => 'Pataiseit',
 'variants'                 => 'Varianti',
@@ -143,7 +151,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ap {{grammar:akuzativs|{{SITENAME}}}}',
 'aboutpage'            => 'Project:Ap',
-'copyright'            => 'Saturs ir pīejams saisteibā ar $1.',
+'copyright'            => 'Turīņs ir daīmams pa $1.',
 'copyrightpage'        => '{{ns:project}}:Autortīseibys',
 'disclaimers'          => 'Daīšmu nūstatejumi',
 'disclaimerpage'       => 'Project:Dasaīšonu nūstateišona',
@@ -218,7 +226,8 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'loginlanguagelabel'      => 'Volūda: $1',
 
 # Password reset dialog
-'resetpass_text' => '<!-- Dalikt tekstu ite -->',
+'resetpass_text'          => '<!-- Dalikt tekstu ite -->',
+'resetpass-submit-cancel' => 'Atsaukt',
 
 # Edit page toolbar
 'bold_sample'     => 'Pamalnais roksts',
@@ -230,7 +239,7 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'extlink_sample'  => 'http://www.example.com saitys pasauka',
 'extlink_tip'     => 'Uorejuo saite (naaizmierst suokumā dalikt "http://")',
 'headline_sample' => 'Viersroksta teksts',
-'headline_tip'    => '2. leimiņa viersroksts',
+'headline_tip'    => '2 leidzīņa viersroksts',
 'math_sample'     => 'Formulu īrokst ite',
 'math_tip'        => 'Matematiska formula (LaTeX)',
 'nowiki_sample'   => 'Ite rokst naformatietu tekstu',
@@ -257,7 +266,10 @@ Par to var ziņuot [[Special:ListUsers/sysop|kaidam administratoram]], nūruodū
 'newarticletext'                   => "Tu ite tyki caur saitis nu, pagaidam vēļ nauzraksteitys, lopys.
 Kab radeitu lopu, suoc raksteit teksta lūgā apaškā (par teksta formatiešonu i seikuokai informaceja verīs [[{{MediaWiki:Helppage}}|paleigu]]).
 Ka Tu ite tyki deļ klaidys, vīnkuorši daspīd '''back''' pūgu puorlyukprogramā.",
-'noarticletext'                    => 'Itymā lopā nav nikaida teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt cytuos lopuos piec ituos lopys nūsaukuma]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} meklēt saisteitūs registru īrokstūs] voi ari [{{fullurl:{{FULLPAGENAME}}|action=edit}} suokt taiseit itū lopu]</span>.',
+'noarticletext'                    => "Pošulaik itymā puslopā navā nikaida teksta.
+Jius varat [[Special:Search/{{PAGENAME}}|atrast ituos pasaukys pīmini]] cytuos puslopuos,
+<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} atrast sasītūs īrokstus registrā]
+ci '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} sataiseit puslopu ar taidu pasauku]'''</span>.",
 'previewnote'                      => "'''Itei ir tikai apsavieršona!'''
 Jiusu izmanis vēļ nav saglobuotys!",
 'editing'                          => 'Pataiseit $1',
@@ -293,8 +305,18 @@ n = nasvareigs lobuojums.',
 'histlast'               => 'Jaunuokuos',
 
 # Revision deletion
-'rev-delundel'   => 'ruodeit/nūglobuot',
-'revdel-restore' => 'maineit radzameibu',
+'rev-delundel'               => 'ruodeit/nūglobuot',
+'revdelete-show-file-submit' => 'Nui',
+'revdelete-radio-set'        => 'Nui',
+'revdelete-radio-unset'      => 'Nā',
+'revdel-restore'             => 'maineit radzameibu',
+'pagehist'                   => 'Puslopys viesture',
+'revdelete-uname'            => 'slāgvuords',
+'revdelete-otherreason'      => 'Cyta/papyldoma īmesle:',
+'revdelete-reasonotherlist'  => 'Cyta īmesle',
+
+# History merging
+'mergehistory-reason' => 'Īmesle:',
 
 # Merge log
 'revertmerge' => 'Atceļt apvīnuošonu',
@@ -317,6 +339,7 @@ n = nasvareigs lobuojums.',
 'prevn'                     => 'īprīškejuos {{PLURAL:$1|$1}}',
 'nextn'                     => 'nuokamuos {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Apsavērt ($1 {{int:pipe-separator}} $2) ($3 vīnā lopā).',
+'searchhelp-url'            => 'Help:Turīņs',
 'searchprofile-articles'    => 'Rakstīņuos',
 'search-result-size'        => '$1 ({{PLURAL:$2|$2 vuords|$2 vuordi|$2 vuordi}})',
 'search-redirect'           => '(puoradresiešona nu $1)',
@@ -350,6 +373,7 @@ n = nasvareigs lobuojums.',
 'prefs-info'     => 'Pamatinformaceja',
 
 # Groups
+'group'       => 'Grupa:',
 'group-user'  => 'Lītuotuoji',
 'group-sysop' => 'Administratori',
 
@@ -357,6 +381,7 @@ n = nasvareigs lobuojums.',
 'group-sysop-member' => 'Administrators',
 
 'grouppage-user'  => '{{ns:project}}:Lītuotuoji',
+'grouppage-bot'   => '{{ns:project}}:Boti',
 'grouppage-sysop' => '{{ns:project}}:Administratori',
 
 # Rights
@@ -529,8 +554,8 @@ Kab apsavērtu pādejuo iztreitū sarokstu, verīs $2.',
 'dellogpage'            => 'Iztreišonys registris',
 'deletionlog'           => 'iztreišonys registru',
 'deletecomment'         => 'Īmesle:',
-'deleteotherreason'     => 'Cyts/papyldu pamats:',
-'deletereasonotherlist' => 'Cyts pamats',
+'deleteotherreason'     => 'Cyta/papyldoma īmesle:',
+'deletereasonotherlist' => 'Cyta īmesle',
 
 # Rollback
 'rollbacklink' => 'nūgrīzt',
@@ -599,11 +624,12 @@ Pašreizejī lopys '''$1''' īstatejumi ir:",
 'whatlinkshere-hideredirs' => '$1 puoradresiešonys',
 'whatlinkshere-hidetrans'  => '$1 transclusions ?',
 'whatlinkshere-hidelinks'  => '$1 saitys',
-'whatlinkshere-filters'    => 'Filtrys',
+'whatlinkshere-filters'    => 'Fiļtri',
 
 # Block/unblock
 'blockip'                  => 'Nūblokēt lītuotuoju',
 'ipboptions'               => '2 stuņdis:2 hours,1 dīna:1 day,3 dīnys:3 days,1 nedeļa:1 week,2 nedelis:2 weeks,1 mieness:1 month,3 mieneši:3 months,6 mieneši:6 months,1 gods:1 year,iz nanūsokamu laiku:infinite',
+'ipbotheroption'           => 'cyts',
 'ipb-blocklist-contribs'   => '$1 devīņs',
 'ipblocklist'              => 'Blokietais IP adress i lītuotuojvuords',
 'blocklink'                => 'nūblokēt',
@@ -616,7 +642,9 @@ Pašreizejī lopys '''$1''' īstatejumi ir:",
 'block-log-flags-nocreate' => 'Kontu radeišonys atslāga',
 
 # Move page
-'movepagetext'     => "Itamā lopā tu vari puorsaukt voi puorlikt lopu, kūpā ar tuos izmaiņu hronologeju puorlīkūt tū iz cytu nūsaukumu.
+'move-page'               => 'Puorceļt $1',
+'move-page-legend'        => 'Puorceļt puslopu',
+'movepagetext'            => "Itamā lopā tu vari puorsaukt voi puorlikt lopu, kūpā ar tuos izmaiņu hronologeju puorlīkūt tū iz cytu nūsaukumu.
 Īprīškejuo lopa klius par lopu, kas puoradresēs iz jaunū lopu.
 Ite var automatiskai izmaineit vysys puoradresacejis (redirektus) iz itū lopu (2. atzeime apakšā).
 Saitis puorejuos lopuos iz īprīškejū lopu nabyus maineitys. Ka gribi namaineit puoradresacejis automatiskai, puorbaud i izloboj, napīļaunūt [[Special:DoubleRedirects|dubultu puoradresaceji]] voi [[Special:BrokenRedirects|puoradresaceji iz naasūšu lopu]].
@@ -628,28 +656,30 @@ Tys zeimoj, ka tu vari puorlikt lopu atpakaļ, nu kurīnis tu jau nazkod esi tū
 '''BREIDYNUOJUMS!'''
 Popularom lopom tei var byut kruosa i nagaideita puormaiņa;
 pyrma tuoluok īsšonys apdūmoj, voi tu saprūt, kū eistyn dori.",
-'movepagetalktext' => "Saisteituo sarunu lopa, ka taida eksistej, tiks automatiski puorvītuota, '''izjemūt gadejumus, kod''':
+'movepagetalktext'        => "Saisteituo sarunu lopa, ka taida eksistej, tiks automatiski puorvītuota, '''izjemūt gadejumus, kod''':
 *tu puorlīc lopu iz cytu paleiglopu,
 *ar jaunū nūsaukumu jau eksistej sarunu lopa, voi ari
 *atzeimiesi zamuok atrūnamū lauceņu.
 
 Ka gribiesi, tod tev itei sarunu lopa byus juopuolīk voi juoapvīnoj pošam.",
-'movearticle'      => 'Puorceļt puslopu',
-'newtitle'         => 'Jauna pasauka:',
-'move-watch'       => 'Puorraudzeit itū lopu',
-'movepagebtn'      => 'Puorceļt puslopu',
-'pagemovedsub'     => 'Puorvītuošona nūtykuse veiksmeigai',
-'movepage-moved'   => '\'\'\'"$1" tyka puorvītuots iz "$2"\'\'\'',
-'articleexists'    => 'Lopa ar itaidu nūsaukumu jau ir voi ari tovs nūsaukums nav dereigs. Lyudzu, izavielejit cytu nūsaukumu.',
-'talkexists'       => "'''Itei lopa tyka puorvītuota veiksmeigai, bet tuos sarunu lopu navarieja puorvītuot, deļ tuo ka jaunuo nūsaukuma lopai jau ir diskuseju lopa. Lyudzu apvīnoj ituos sarunu lopys pats.'''",
-'movedto'          => 'puorvītuota iz',
-'movetalk'         => 'Puorceļt sasītū sprīžu.',
-'1movedto2'        => '"[[$1]]" puorsauču par "[[$2]]"',
-'1movedto2_redir'  => '[[$1]] tyka puorsauktys par [[$2]], lītojūt puoradresaceju',
-'movelogpage'      => 'Puorvītuošonys registrs',
-'movesubpage'      => '{{PLURAL:$1|Zampuslopa|Zampuslopys}}',
-'movereason'       => 'Īmesle:',
-'revertmove'       => 'atsaukt',
+'movearticle'             => 'Puorceļt puslopu',
+'newtitle'                => 'Jauna pasauka:',
+'move-watch'              => 'Puorraudzeit itū lopu',
+'movepagebtn'             => 'Puorceļt puslopu',
+'pagemovedsub'            => 'Puorvītuošona nūtykuse veiksmeigai',
+'movepage-moved'          => '\'\'\'"$1" tyka puorvītuots iz "$2"\'\'\'',
+'articleexists'           => 'Lopa ar itaidu nūsaukumu jau ir voi ari tovs nūsaukums nav dereigs. Lyudzu, izavielejit cytu nūsaukumu.',
+'talkexists'              => "'''Itei lopa tyka puorvītuota veiksmeigai, bet tuos sarunu lopu navarieja puorvītuot, deļ tuo ka jaunuo nūsaukuma lopai jau ir diskuseju lopa. Lyudzu apvīnoj ituos sarunu lopys pats.'''",
+'movedto'                 => 'puorvītuota iz',
+'movetalk'                => 'Puorceļt sasītū sprīžu.',
+'1movedto2'               => '"[[$1]]" puorsauču par "[[$2]]"',
+'1movedto2_redir'         => '[[$1]] tyka puorsauktys par [[$2]], lītojūt puoradresaceju',
+'movelogpage'             => 'Puorvītuošonys registrs',
+'movesubpage'             => '{{PLURAL:$1|Zampuslopa|Zampuslopys}}',
+'movereason'              => 'Īmesle:',
+'revertmove'              => 'atsaukt',
+'delete_and_move'         => 'Iztreit i puorceļt',
+'delete_and_move_confirm' => 'Nui, iztreit puslopu',
 
 # Export
 'export'            => 'Eksportēt lopu',
@@ -660,10 +690,16 @@ Ka gribiesi, tod tev itei sarunu lopa byus juopuolīk voi juoapvīnoj pošam.",
 
 # Namespace 8 related
 'allmessagesname'           => 'Pasauka',
+'allmessages-filter-all'    => 'Vysi',
+'allmessages-language'      => 'Volūda:',
 'allmessages-filter-submit' => 'Īt',
 
 # Thumbnails
 'thumbnail-more' => 'Palelynuot',
+
+# Special:Import
+'import-upload-filename' => 'Faila pasauka:',
+'import-comment'         => 'Komentars:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Tova lopa',
@@ -677,7 +713,7 @@ Ka gribiesi, tod tev itei sarunu lopa byus juopuolīk voi juoapvīnoj pošam.",
 'tooltip-ca-edit'                 => 'Jius varit izmaineit itū lopu. Lyudzam apsavērt, kai lopa izaver, pyrma tuos saglobuošnoys.',
 'tooltip-ca-addsection'           => 'Suokt jaunu sadali',
 'tooltip-ca-viewsource'           => 'Itei lopa ir aizsorguota. Tu vari apsavērt tuos suokuma kodu.',
-'tooltip-ca-history'              => 'Ituos lopys īprīškejī varianti',
+'tooltip-ca-history'              => 'Ituos puslopys pyrmuokuos versejis',
 'tooltip-ca-protect'              => 'Apsorguot itū puslopu',
 'tooltip-ca-delete'               => 'Iztreit itū puslopu',
 'tooltip-ca-move'                 => 'Puorceļt itū puslopu',
@@ -720,6 +756,9 @@ Ka gribiesi, tod tev itei sarunu lopa byus juopuolīk voi juoapvīnoj pošam.",
 'tooltip-undo'                    => '"Atgrīzt" atceļ ituos izmainis i attaisa lobuošonys formu prīškskatejuma veidā.
 Tys ļaun davīnuot pamatuojumu kūpsavylkumā.',
 
+# Attribution
+'others' => 'cyti',
+
 # Browsing diffs
 'previousdiff' => '← Vacuoka verseja',
 'nextdiff'     => 'Jaunuokuo verseja →',
@@ -730,6 +769,10 @@ Tys ļaun davīnuot pamatuojumu kūpsavylkumā.',
 'svg-long-desc'        => '(SVG fails, definātais lelums $1 × $2 pikseli, faila lelums: $3)',
 'show-big-image'       => 'Pylnā lelumā',
 'show-big-image-thumb' => '<small>Ituo pyrmsskota lelums: $1 × $2 pikseli</small>',
+
+# Special:NewFiles
+'newimages-legend' => 'Fiļtris',
+'ilsubmit'         => 'Meklēt',
 
 # Bad image list
 'bad_image_list' => 'Formats ir taids: tikai saroksta elementi (ryndys, suocūt ar *), ir skaitams par failu. Pyrmuo saite iz ryndys ir saite uz nalobu failu. Sevkurys vāluokys saitis tymā pošā ryndā tīk skaiteitys par izjāmumim, t.i., lopom, kur fails var atsarast ryndys vydā.',
@@ -754,9 +797,12 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 'edit-externally-help' => '(Verīs [http://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, kab dabuotu vaira informacejis).',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'vysys',
-'namespacesall' => 'vysys',
-'monthsall'     => 'vysi',
+'recentchangesall' => 'vysi',
+'imagelistall'     => 'vysi',
+'watchlistall2'    => 'vysys',
+'namespacesall'    => 'vysys',
+'monthsall'        => 'vysi',
+'limitall'         => 'vysys',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Apsavērt atbylstūšuos izmainis',
@@ -764,9 +810,24 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 'watchlisttools-raw'  => 'Maineit puorraugamūs rokstu listes kodu',
 
 # Special:Version
-'version-specialpages' => 'Specialuos puslopys',
+'version'                  => 'Verseja',
+'version-specialpages'     => 'Specialuos puslopys',
+'version-license'          => 'Liceņceja',
+'version-poweredby-others' => 'cyti',
+'version-software-product' => 'Produkts',
+'version-software-version' => 'Verseja',
+
+# Special:FilePath
+'filepath-page' => 'Fails:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Faila pasauka:',
 
 # Special:SpecialPages
 'specialpages' => 'Specialuos puslopys',
+
+# Special:DisableAccount
+'disableaccount-user'   => 'Slāgvuords:',
+'disableaccount-reason' => 'Īmesle:',
 
 );

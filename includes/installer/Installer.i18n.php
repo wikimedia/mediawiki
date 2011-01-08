@@ -645,6 +645,8 @@ $messages['af'] = array(
 	'config-desc' => 'Die Installasieprogram vir MediaWiki',
 	'config-title' => 'Installasie MediaWiki $1',
 	'config-information' => 'Inligting',
+	'config-localsettings-key' => 'Opgradeer-sleutel:',
+	'config-localsettings-badkey' => 'Die sleutel wat u verskaf het is verkeerd.',
 	'config-session-error' => 'Fout met begin van sessie: $1',
 	'config-no-session' => "U sessiedata is verlore!
 Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geldige gids wys.",
@@ -668,6 +670,7 @@ Kontroleer u php.ini en maak seker dat <code>session.save_path</code> na 'n geld
 	'config-page-releasenotes' => 'Vrystellingsnotas',
 	'config-page-copying' => 'Besig met kopiëring',
 	'config-page-upgradedoc' => 'Besig met opgradering',
+	'config-page-existingwiki' => 'Bestaande wiki',
 	'config-restart' => 'Ja, herbegin dit',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWiki tuisblad]
 * [http://www.mediawiki.org/wiki/Help:Contents Gebruikershandleiding] (Engelstalig)
@@ -735,6 +738,9 @@ U gebruik tans $2.',
 	'config-optional-continue' => 'Vra my meer vrae.',
 	'config-optional-skip' => 'Ek is reeds verveeld, installeer maar net die wiki.',
 	'config-profile-wiki' => 'Tradisionele wiki',
+	'config-profile-no-anon' => 'Skep van gebruiker is verpligtend',
+	'config-profile-fishbowl' => 'Slegs vir gemagtigde redaksie',
+	'config-profile-private' => 'Privaat wiki',
 	'config-license' => 'Kopiereg en lisensie:',
 	'config-license-none' => 'Geen lisensie in die onderskrif',
 	'config-license-pd' => 'Publieke Domein',
@@ -755,6 +761,9 @@ U gebruik tans $2.',
 	'config-install-database' => 'Stel die databasis op',
 	'config-install-pg-schema-failed' => 'Die skep van tabelle het gefaal.
 Maak seker dat die gebruiker "$1" na skema "$2" mag skryf.',
+	'config-install-pg-commit' => 'Wysigings word gestoor',
+	'config-pg-no-plpgsql' => 'U moet die taal PL/pgSQL in die database $1 installeer',
+	'config-install-pg-ts2' => 'Kontrole vir tsearch2',
 	'config-install-user' => 'Besig om die databasisgebruiker te skep',
 	'config-install-user-failed' => 'Die toekenning van regte aan gebruiker "$1" het gefaal: $2',
 	'config-install-tables' => 'Skep tabelle',
@@ -769,6 +778,8 @@ Die standaardlys word oorgeslaan.",
 	'config-insecure-secret' => "Waarskuwing: dit was nie moontlik om 'n <code>$1</code> te skep nie.
 Oorweeg om dit handmatig te wysig.",
 	'config-install-sysop' => "Skep 'n gebruiker vir die administrateur",
+	'config-install-mainpage' => 'Skep die hoofblad met standaard inhoud',
+	'config-install-mainpage-failed' => 'Kon nie die hoofblad laai nie.',
 	'config-install-done' => "'''Veels geluk!''' 
 U het MediaWiki suksesvol geïnstalleer. 
 
@@ -779,6 +790,8 @@ U sal dit moet [$1 aflaai] en dit in die hoofgids van u wiki-installasie plaas; 
 '''Let wel''': As u dit nie nou doen nie, sal die gegenereerde konfigurasielêer nie later meer beskikbaar wees nadat u die installasie afgesluit het nie.
 
 As dit gedoen is, kan u '''[u $2 wiki besoek]'''.",
+	'config-download-localsettings' => 'Laai LocalSettings.php af',
+	'config-help' => 'hulp',
 );
 
 /** Aragonese (Aragonés)
@@ -1442,7 +1455,9 @@ $1
 Това поле обикновено се оставя празно.',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 бинарно',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 с обратна съвестимост с UTF-8',
 	'config-mysql-old' => 'Изисква се MySQL $1 или по-нова версия, наличната версия е $2.',
+	'config-db-port' => 'Порт на базата от данни:',
 	'config-db-schema' => 'Схема за МедияУики',
 	'config-db-ts2-schema' => 'Схема за tsearch2',
 	'config-db-schema-help' => 'Схемите по-горе обикновено са правилни.
@@ -1633,12 +1648,40 @@ $1
 	'config-extensions' => 'Разширения',
 	'config-install-step-done' => 'готово',
 	'config-install-step-failed' => 'неуспешно',
+	'config-install-extensions' => 'Добавяне на разширенията',
 	'config-install-database' => 'Създаване на базата от данни',
 	'config-pg-no-plpgsql' => 'Необходимо е да се инсталира езикът PL/pgSQL в базата от данни $1',
+	'config-install-user' => 'Създаване на потребител за базата от данни',
 	'config-install-tables' => 'Създаване на таблиците',
+	'config-install-tables-exist' => "'''Предупреждение''': Таблиците за МедияУики изглежда вече съществуват.
+Пропускане на създаването им.",
+	'config-install-interwiki' => 'Попълване на таблицата с междууикитата по подразбиране',
 	'config-install-interwiki-sql' => 'Файлът <code>interwiki.sql</code> не можа да бъде открит.',
+	'config-install-interwiki-exists' => "'''Предупреждение''': Таблицата с междууикита изглежда вече съдържа данни.
+Пропускане на списъка по подразбиране.",
 	'config-install-secretkey' => 'Генериране на таен ключ',
+	'config-insecure-secret' => "'''Предупреждение:''' Беше невъзможно да се създаде таен <code>$1</code>.
+Препоръчително е да бъде променен ръчно.",
+	'config-install-upgradekey' => 'Създаване на ключ за надграждане по подразбиране',
+	'config-install-sysop' => 'Създаване на администраторска сметка',
 	'config-install-subscribe-fail' => 'Невъзможно беше абонирането за mediawiki-announce',
+	'config-install-mainpage' => 'Създаване на Началната страница със съдържание по подразбиране',
+	'config-install-mainpage-failed' => 'Вмъкването на Началната страница беше невъзможно.',
+	'config-install-done' => "'''Поздравления!'''
+Инсталирането на МедияУики приключи успешно.
+
+Инсталаторът създаде файл <code>LocalSettings.php</code>.
+Той съдържа всичката необходима основна конфигурация на уикито.
+
+Необходимо е той да бъде изтеглен и поставен в основната директория на уикито (директорията, в която е и index.php). Изтеглянето би трябвало да започне автоматично.
+
+Ако изтеглянето не започне автоматично или е било прекратено, файлът може да бъде изтеглен чрез щракване на препратката по-долу:
+
+$3
+
+'''Забележка''': Ако това не бъде извършено сега, генерираният конфигурационен файл няма да е достъпен на по-късен етап ако не бъде изтеглен сега или инсталацията приключи без изтеглянето му.
+
+Когато файлът вече е в основната директория, '''[$2 уикито ще е достъпно на този адрес]'''.",
 	'config-download-localsettings' => 'Изтегляне на LocalSettings.php',
 	'config-help' => 'помощ',
 );
@@ -5269,9 +5312,9 @@ Jika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah i
 	'config-invalid-db-server-oracle' => 'TNS basis data "$1" tidak sah.
 Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), garis bawah (_), dan titik (.).',
 	'config-invalid-db-name' => 'Nama basis data "$1" tidak sah.
-Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
+Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), garis bawah (_), dan tanda hubung (-).',
 	'config-invalid-db-prefix' => 'Prefiks basis data "$1" tidak sah.
-Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), dan garis bawah (_).',
+Gunakan hanya huruf ASCII (a-z, A-Z), angka (0-9), garis bawah (_), dan tanda hubung (-).',
 	'config-connection-error' => '$1.
 
 Periksa nama inang, pengguna, dan sandi di bawah ini dan coba lagi.',
@@ -5487,6 +5530,9 @@ Lanjutkan ke halaman berikutnya.",
 Pastikan bahwa pengguna "$1" dapat menulis ke skema "$2".',
 	'config-install-pg-commit' => 'Melakukan perubahan',
 	'config-pg-no-plpgsql' => 'Anda perlu menginstal bahasa PL/pgSQL pada basis data $1',
+	'config-install-pg-ts2' => 'Memeriksa tsearch2',
+	'config-install-pg-ts2-failed' => "'''GAGAL''' tsearch2 harus terinstal dalam database $1.
+Baca [$2 petunjuk ini] atau tanyakan melalui #postgresql pada irc.freenode.net",
 	'config-install-user' => 'Membuat pengguna basis data',
 	'config-install-user-failed' => 'Memberikan izin untuk pengguna "$1" gagal: $2',
 	'config-install-tables' => 'Membuat tabel',
@@ -6792,6 +6838,9 @@ chmod a+w $3</pre>',
 Проверете дали корисникот „$1“ може да запишува во шемата „$2“.',
 	'config-install-pg-commit' => 'Спроведување на промени',
 	'config-pg-no-plpgsql' => 'Ќе треба да го инсталирате јазикот PL/pgSQL во базата $1',
+	'config-install-pg-ts2' => 'Го барам tsearch2',
+	'config-install-pg-ts2-failed' => "'''НЕУСПЕШНО''' - tsearch2 мора да биде инсталиран во базата $1.
+Прочитајте ги [$2 овие напатствија] или побарајте помош на #postgresql на irc.freenode.net",
 	'config-install-user' => 'Создавам корисник за базата',
 	'config-install-user-failed' => 'Доделувањето на дозвола на корисникот „$1“ не успеа: $2',
 	'config-install-tables' => 'Создавам табели',
@@ -8112,9 +8161,9 @@ Jeśli system baz danych, z którego chcesz skorzystać nie jest wymieniony, pos
 	'config-invalid-db-server-oracle' => 'Nieprawidłowa baza danych TNS „$1”.
 Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i kropek (.).',
 	'config-invalid-db-name' => 'Nieprawidłowa nazwa bazy danych „$1”.
-Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
+Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) lub znaku odejmowania (-).',
 	'config-invalid-db-prefix' => 'Nieprawidłowy prefiks bazy danych „$1”.
-Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
+Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) lub znaku odejmowania (-).',
 	'config-connection-error' => '$1. 
 
 Sprawdź adres serwera, nazwę użytkownika i hasło, a następnie spróbuj ponownie.',
@@ -8138,6 +8187,9 @@ Sprawdź katalog danych oraz nazwę bazy danych, a następnie spróbuj ponownie.
 	'config-sqlite-fts3-downgrade' => 'Brak wsparcia FTS3 dla PHP. Tabele zostały cofnięte',
 	'config-can-upgrade' => "W bazie danych są już tabele MediaWiki. 
 Aby uaktualnić je do MediaWiki $1, kliknij '''Dalej'''.",
+	'config-upgrade-done-no-regenerate' => 'Aktualizacja zakończona. 
+
+Możesz wreszcie [$1 zacząć korzystać ze swojej wiki].',
 	'config-regenerate' => 'Ponowne generowanie LocalSettings.php →',
 	'config-show-table-status' => 'Zapytanie „SHOW TABLE STATUS” nie powiodło się!',
 	'config-unknown-collation' => "'''Uwaga''' – bazy danych używa nierozpoznanej metody porównywania.",
@@ -8179,6 +8231,7 @@ Podaj inną nazwę.',
 	'config-admin-email-help' => 'Wpisz adres e‐mail, aby mieć możliwość odbierania e‐maili od innych użytkowników na wiki, zresetowania hasła oraz otrzymywania powiadomień o zmianach na stronach z listy obserwowanych.',
 	'config-admin-error-user' => 'Błąd wewnętrzny podczas tworzenia konta administratora o nazwie „<nowiki>$1</nowiki>”.',
 	'config-admin-error-password' => 'Wewnętrzny błąd podczas ustawiania hasła dla administratora „<nowiki>$1</nowiki>”: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Wpisałeś nieprawidłowy adres e‐mail',
 	'config-subscribe' => 'Zapisz się na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce listę pocztową z ogłaszaniami o nowych wersjach].',
 	'config-subscribe-help' => 'Jest to lista o małej liczbie wiadomości, wykorzystywana do przesyłania informacji o udostępnieniu nowej wersji oraz istotnych sprawach dotyczących bezpieczeństwa.
 Powinieneś zapisać się na tę listę i aktualizować zainstalowane oprogramowanie MediaWiki gdy pojawia się nowa wersja.',
@@ -8238,6 +8291,8 @@ Przejdź do następnej strony.",
 	'config-install-pg-schema-failed' => 'Utworzenie tabel nie powiodło się.
 Upewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.',
 	'config-install-pg-commit' => 'Zatwierdzanie zmian',
+	'config-pg-no-plpgsql' => 'Musisz zainstalować język PL/pgSQL w bazie danych $1',
+	'config-install-pg-ts2' => 'Sprawdzanie tsearch2',
 	'config-install-user' => 'Tworzenie użytkownika bazy danych',
 	'config-install-user-failed' => 'Przyznanie uprawnień użytkownikowi „$1” nie powiodło się – $2',
 	'config-install-tables' => 'Tworzenie tabel',
@@ -8253,6 +8308,7 @@ Tworzenie domyślnej listy pominięto.",
 Rozważ ręczne jego ustawienie.",
 	'config-install-upgradekey' => 'Generowanie domyślne klucza aktualizacji',
 	'config-install-sysop' => 'Tworzenie konta administratora',
+	'config-install-subscribe-fail' => 'Nie można zapisać na listę „mediawiki-announce“',
 	'config-install-mainpage' => 'Tworzenie strony głównej z domyślną zawartością',
 	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej.',
 	'config-download-localsettings' => 'Pobierz LocalSettings.php',
@@ -9538,9 +9594,9 @@ $1
 	'config-invalid-db-server-oracle' => 'Неверное имя TNS базы данных «$1».
 Используйте только символы ASCII (a-z, A-Z), цифры (0-9), знаки подчёркивания (_) и точки (.).',
 	'config-invalid-db-name' => 'Неверное имя базы данных «$1».
-Используйте только ASCII-символы (a-z, A-Z), цифры (0-9) и знак подчёркивания (_).',
+Используйте только ASCII-символы (a-z, A-Z), цифры (0-9), знак подчёркивания (_) и дефис(-).',
 	'config-invalid-db-prefix' => 'Неверный префикс базы данных «$1».
-Используйте только ASCII-символы (a-z, A-Z), цифры(0-9) и знак подчёркивания(_).',
+Используйте только ASCII-символы (a-z, A-Z), цифры(0-9), знак подчёркивания(_) и дефис(-).',
 	'config-connection-error' => '$1.
 
 Проверьте хост, имя пользователя и пароль и попробуйте ещё раз.',

@@ -2861,6 +2861,7 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-orientation'                 => 'Kameraausriichtung',
 'exif-samplesperpixel'             => 'Zuel vun de Komponenten',
 'exif-planarconfiguration'         => 'Datenausriichtung',
+'exif-ycbcrsubsampling'            => 'Subsampling-Taux vun Y bis C',
 'exif-ycbcrpositioning'            => 'Y an C Positionéierung',
 'exif-xresolution'                 => 'Horizontal Opléisung',
 'exif-yresolution'                 => 'Vertikal Opléisung',

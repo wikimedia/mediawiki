@@ -2980,7 +2980,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 # EXIF tags
 'exif-imagewidth'                  => 'Larĝeco',
 'exif-imagelength'                 => 'Alteco',
-'exif-bitspersample'               => 'Bitokoj po komponanto',
+'exif-bitspersample'               => 'Bitokoj en komponanto',
 'exif-compression'                 => 'Densiga procedo',
 'exif-photometricinterpretation'   => 'Komponaĵo de rastrumeroj',
 'exif-orientation'                 => 'Orientiĝo',

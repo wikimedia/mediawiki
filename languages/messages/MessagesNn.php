@@ -2776,7 +2776,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'math_unknown_function' => 'ukjend funksjon',
 'math_lexing_error'     => 'lexerfeil',
 'math_syntax_error'     => 'syntaksfeil',
-'math_image_error'      => 'PNG-konverteringa var mislukka; sjekk at latex, dvips, gs, og convert er rett installerte',
+'math_image_error'      => 'PNG-konverteringa var mislukka; sjekk at latex og dvipng (eller dvips + gs + convert) er rett installerte',
 'math_bad_tmpdir'       => 'Kan ikkje skrive til eller laga mellombels mattemappe',
 'math_bad_output'       => 'Kan ikkje skrive til eller laga mattemappe',
 'math_notexvc'          => 'Manglar texvc-program; sjå math/README for konfigurasjon.',

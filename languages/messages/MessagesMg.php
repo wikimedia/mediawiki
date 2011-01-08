@@ -405,6 +405,7 @@ $messages = array(
 'printableversion'  => 'Ny votoatiny azo atonta printy',
 'permalink'         => 'Rohy maharitra',
 'print'             => 'Avoaka an-taratasy',
+'view'              => 'Hamaky',
 'edit'              => 'hanova',
 'create'            => 'Amboary',
 'editthispage'      => 'Hanova ity pejy ity',
@@ -1386,7 +1387,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'right-suppressionlog'        => 'Mijery ny tao tsy sarababem-bahoaka',
 'right-block'                 => 'Manakana ny mpikambana mba tsy hanova',
 'right-blockemail'            => 'Manakana ny mpikambana mba tsy handefa imailaka',
-'right-hideuser'              => "Manakana ny mpikambana amin'ny alàlan'ny fanitrihana ny anarana",
+'right-hideuser'              => "Manakana mpikambana iray amin'ny fanitrihana ny anarany amin'ny vahoaka",
 'right-ipblock-exempt'        => 'Tsy voakasiky ny fanakanana IP, ny fanakanana mandeha ho azy (aotômatika) ary ny fanakanana sampana IP',
 'right-proxyunbannable'       => "Tsy voakasiky ny fanakana mande hoazy avy amin'ny proxy",
 'right-unblockself'           => 'Miala hidy ho azy',
@@ -1417,7 +1418,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 
 # User rights log
 'rightslog'      => 'Tatitr’asa momban’ny fanovana satam-pikambana',
-'rightslogtext'  => "Ity ny laogy momban'ny fanovana ny zom-pikambana",
+'rightslogtext'  => "Ity ny laogy momban'ny fanovana ny zom-pikambana.",
 'rightslogentry' => "nanova ny fahefan'ny mpikambana « $1 », avy amin'ny $2 izy lasa $3",
 'rightsnone'     => '(tsy misy)',
 
@@ -1591,7 +1592,7 @@ Raha mbola te-hampiditra io rakitra io foana ianao, miverena any aoriana ary mam
 'uploadedimage'               => 'tonga ny rakitra"[[$1]]"',
 'overwroteimage'              => "nampiditra santiôna vaovao an'ny « [[$1]] »",
 'uploaddisabled'              => 'Miala tsiny! Tsy azo atao ny mandefa rakitra.',
-'copyuploaddisabled'          => "Tsy ampiasaina ny fandefasan-drakitra amin'ny alàlan'ny URL.",
+'copyuploaddisabled'          => "Tsy alefa ny fandefasan-drakitra amin'ny alalan'ny URL.",
 'uploadfromurl-queued'        => 'Ao am-piandrasana ny fandefasan-drakitrao.',
 'uploaddisabledtext'          => "Tsy afaka andefasana rakitra aloha eto amin'ity wiki ity.",
 'php-uploaddisabledtext'      => "Ny fampidiran-drakitra dia tsy ampiasaina amin'ny PHP.
@@ -1888,8 +1889,8 @@ wiki ity aza izy.</p>",
 'speciallogtitlelabel' => 'Lohateny:',
 'log'                  => 'Tatitr’asa',
 'all-logs-page'        => 'Ny tatitr’asa',
-'alllogstext'          => "Seho nakambana an'ny laogy rehetra izay azonao jerena eto amin'ny {{SITENAME}}.
-Azonao ferana ny fahitana ny tao amin'ny alàlan'ny fisafidianana karazana laogy iray, anaram-pikambana iray na pejy iray (manasamihafa ny sorabaventy sy soramadinika).",
+'alllogstext'          => "Seho nakambana ho an'ny laogy rehetra azo jerena eto amin'ny {{SITENAME}}.
+Azonao ferana ny fahitana ny tao amin'ny fisafidianana karazana laogy iray, anaram-pikambana iray na pejy iray (samihafa ny sorabaventy sy soramadinika).",
 'logempty'             => 'Tsy nahitana.',
 'log-title-wildcard'   => "Hitady amin'ny lohateny manomboka amin'io soratra io",
 
@@ -2100,6 +2101,10 @@ Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
 'deletecomment'          => 'Antony :',
 'deleteotherreason'      => 'antony hafa miampyy:',
 'deletereasonotherlist'  => 'antony',
+'deletereason-dropdown'  => "* Antom-pamafana matetika miasa
+** Hataka avy amin'ny tompony
+** Tsi-fanajana ny zom-pamorona
+** Fandotoana",
 'delete-edit-reasonlist' => 'Hanova ny antony amafana pejy',
 'delete-toobig'          => 'Ity pejy  ity dia manana tantaram-panovana be, mihoatra ny santiôna {{PLURAL:$1}} $1.
 Ny famafana ireo pejy ireto dia voafetra mba tsy hikorontana {{SITENAME}}.',
@@ -2684,7 +2689,7 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 'spamprotectiontitle' => "Sivana mpiaro amin'ny spam",
 'spamprotectiontext'  => "Voasakan'ny sivana mpiaro amin'ny spam ny pejy saika hotahirizinao. Mety ho anton'izany ny fisian'ny rohy mankany amin'ny sehatra ivelan'ity wiki ity.",
 'spamprotectionmatch' => "Izao teny izao: $1 ; no nanaitra ny sivana mpiaro amin'ny spam",
-'spambot_username'    => "Fanadiovana spam amin'ny alàlan'ny Mediawiki",
+'spambot_username'    => "Fanadiovana ny spam amin'i MediaWiki.",
 'spam_reverting'      => "Famerenana an'ilay santiôna farany tsy misy ny rohy mankany amin'ny $1",
 'spam_blanking'       => "Voafotsy ny santiôna misy ny rohy mankany amin'ny $1",
 

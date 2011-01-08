@@ -2830,7 +2830,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'math_unknown_function' => 'ukjent funksjon',
 'math_lexing_error'     => 'lexerfeil',
 'math_syntax_error'     => 'syntaksfeil',
-'math_image_error'      => 'PNG-konversjon mislyktes',
+'math_image_error'      => 'PNG-konversjon mislyktes; sjekk at latex og dvipng (eller dvips + gs + convert) er korrekt installert',
 'math_bad_tmpdir'       => 'Kan ikke skrive til eller opprette midlertidig mappe',
 'math_bad_output'       => 'Kan ikke skrive til eller opprette resultatmappe',
 'math_notexvc'          => 'Mangler kjørbar texvc;

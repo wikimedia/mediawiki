@@ -12,6 +12,7 @@
  * @author BRUTE
  * @author Dato deutschland
  * @author David1010
+ * @author Dawid Deutschland
  * @author Malafaya
  * @author Reedy
  * @author Sopho
@@ -316,6 +317,7 @@ $messages = array(
 'delete'            => 'წაშლა',
 'deletethispage'    => 'გვერდის წაშლა',
 'undelete_short'    => 'გააუქმე წაშლა {{PLURAL:$1|ერთი რედაქტირება|$1 რედაქტირება}}',
+'viewdeleted_short' => '{{PLURAL:$1|წაშლილი რედაქტირების|$1 წაშლილი რედაქტირებების}} ხილვა',
 'protect'           => 'დაბლოკე',
 'protect_change'    => 'შეცვლა',
 'protectthispage'   => 'დაბლოკე ეს გვერდი',
@@ -353,6 +355,7 @@ $messages = array(
 გთხოვთ დაელოდოთ და გაიმეროთ მოთხოვნა ცოტა მოგვიანებით გაიმეორეთ.
 
 $1',
+'pool-timeout'      => 'ბლოკირების ლოდინის დრო ამოიწურა',
 'pool-errorunknown' => 'უცნობი შეცდომა',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -521,6 +524,7 @@ $2',
 'yourpassword'               => 'პაროლი:',
 'yourpasswordagain'          => 'ხელმეორედ შეიყვანეთ პაროლი',
 'remembermypassword'         => 'დამიმახსოვრე ამ კომპიუტერზე (მაქსიმუმ $1 {{PLURAL:$1|დღე}})',
+'securelogin-stick-https'    => 'გააგრძელეთ კავშირი HTTPS-თან შესვლის შემდეგ',
 'yourdomainname'             => 'თქვენი დომენი',
 'externaldberror'            => 'საგარეო მონაცემთა ბაზაში აუტენტიფიკაციის შეცდომაა, ან თქვენ არ გაქვთ საკმარისი უფლებები საგარეო ანგარიშში ცვლილებების შესატანად.',
 'login'                      => 'შესვლა',
@@ -558,6 +562,7 @@ $2',
 'passwordtooshort'           => 'შეტანილი პაროლი ძალიან მოკლეა.
 იგი უნდა შეიცავდეს მინიმუმ $1 სიმბოლოს.',
 'password-name-match'        => 'შეტანილი პაროლი უნდა განსხვავდებოდეს მომხმარებლის სახელისგან.',
+'password-login-forbidden'   => 'ამ მომხმარებლის სახელისა და პაროლის გამოყენება აკრძალულია.',
 'mailmypassword'             => 'ახალი პაროლის გამოგზავნა',
 'passwordremindertitle'      => 'ახალი დროებითი პაროლი {{SITENAME}}-თვის',
 'passwordremindertext'       => "ვიღაცამ (შესაძლოა თქვენ, IP მისამართით $1) მოითხოვა
@@ -602,6 +607,7 @@ $1 საათში.',
 'suspicious-userlogout'      => 'თქვენი მოთხოვნა გასვლის შესახებ გაუქმებულია, რადგანაც იგი გავს ქეშირებადი პროქსის ან არაკორექტული ბრაუზერის მოთხოვნას.',
 
 # JavaScript password checks
+'password-strength'            => 'პაროლის საიმედოობის შეფასება: $1',
 'password-strength-bad'        => 'ცუდი',
 'password-strength-acceptable' => 'მისაღები',
 'password-strength-good'       => 'კარგი',
@@ -738,6 +744,10 @@ $1 საათში.',
 'userjsyoucanpreview'              => "'''რჩევა:''' შენახვამდე გამოიყენეთ ღილაკი \"{{int:showpreview}}\" თქვენი ახალი JS ტესტირებისთვის.",
 'usercsspreview'                   => "'''გახსოვდეთ, რომ თქვენ მხოლოდ წინასწარ გადახედვას უყურებთ თქვენს მომხმარებლის CSS-ს, ის ჯერ შენახული არ არის!'''",
 'userjspreview'                    => "'''გახსოვდეთ, რომ თქვენ მხოლოდ ტესტირებას უკეთებთ ან აკვირდებით წინასწარ ხედს თქვენი მომხმარებლის ჯავასკრიპტს - ის ჯერ არ არის დამახსოვრებული!'''",
+'sitecsspreview'                   => "'''გახსოვდეთ, რომ თქვენ ამ CSS-ის მხოლოდ წინასწარ გადახედვას უყურებთ.'''
+'''ის ჯერ არ არის დამახსოვრებული!'''",
+'sitejspreview'                    => "'''გახსოვდეთ, რომ თქვენ ამ JavaScript კოდის მხოლოდ წინასწარ გადახედვას უყურებთ.'''
+'''ის ჯერ არ არის დამახსოვრებული!'''",
 'userinvalidcssjstitle'            => "'''ყურადღება:''' გაფორმების თემა «$1» არ არის ნაპოვნი. გახსოვდეთ, რომ .css და .js გვერდებს უნდა ჰქონდეს მხოლოდ ზეხაზური სათაური, მაგ. «{{ns:user}}:ვიღაცა/vector.css», და არა «{{ns:user}}:ვიღაცა/Vector.css».",
 'updated'                          => '(განახლდა)',
 'note'                             => "'''შენიშვნა:'''",
@@ -987,6 +997,7 @@ $1",
 'suppressionlogtext' => 'ეს არის მომხმარებლების დაბლოკვის და განბლოკვის ჟურნალი. ავტომატურად დაბლოკილი IP მისამართები არაა ჩამოთვლილი. იხილეთ [[Special:IPBlockList|IP ბლოკირების სია]] მიმდინარე დაბლოკვებისთვის.',
 
 # Revision move
+'moverevlogentry'              => 'გადატანილია {{PLURAL:$3|ვერსია}} $1-დან $2-ში',
 'revisionmove'                 => 'ვერსიის გადატანა "$1"დან',
 'revmove-legend'               => 'მიზნობრივი გვერდის დაყენება და აღწერა',
 'revmove-submit'               => 'ვერსიების გადატანა არჩეულ გვერდზე',
@@ -2649,7 +2660,7 @@ $1',
 'math_unknown_function' => 'უცნობი ფუნქცია',
 'math_lexing_error'     => 'ლექსიკური შეცდომა',
 'math_syntax_error'     => 'სინტაქსი არასწორია',
-'math_image_error'      => 'გარდაქმნისას PNG-ში წარმოიშვა შეცდომა; შეამოწმეთ latex, dvips, gs და convert-ის სისწორე',
+'math_image_error'      => 'PNG-ში გარდაქმნისას წარმოიშვა შეცდომა; შეამოწმეთ latex, dvips, gs და convert-ის დაყენების სისწორე',
 'math_bad_tmpdir'       => 'შეუძლებელია ჩანაწერის შექმნა მათემატიკურ დროებით კატალოგში',
 'math_bad_output'       => 'შეუძლებელია შექმნა ან ჩაწერა მათემატიკურ გამსვლელ კატალოგში',
 'math_notexvc'          => 'შემსრულებელი ფაილი texvc არ არის ნაპოვნი; იხ.math/README ინფორმაციისთვის.',
@@ -3283,8 +3294,12 @@ $1',
 'htmlform-selectorother-other' => 'სხვა',
 
 # Special:DisableAccount
-'disableaccount-user'       => 'მომხმარებლის სახელი:',
-'disableaccount-reason'     => 'მიზეზი:',
-'disableaccount-nosuchuser' => 'მომხმარებელ "$1" ანგარიში არ არსებობს.',
+'disableaccount'             => 'მომხმარებლის ანგარიშის გამორთვა',
+'disableaccount-user'        => 'მომხმარებლის სახელი:',
+'disableaccount-reason'      => 'მიზეზი:',
+'disableaccount-mustconfirm' => 'თქვენ უნდა დაადასტუროთ, რომ გსურთ ამ ანგარიშის გამორთვა.',
+'disableaccount-nosuchuser'  => 'მომხმარებელ "$1" ანგარიში არ არსებობს.',
+'disableaccount-success'     => 'მომხმარებელ "$1" ანგარიში სამუდამოდ გამოირთო.',
+'disableaccount-logentry'    => 'სამუდამოდ გამორთო ანგარიში [[$1]]',
 
 );
