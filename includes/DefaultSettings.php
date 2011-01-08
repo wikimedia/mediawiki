@@ -3107,11 +3107,6 @@ $wgAllowPrefChange = array();
  * @since 1.17
  */
 $wgSecureLogin        = false;
-/**
- * Default for 'use secure login' checkbox
- * @since 1.17
- */
-$wgSecureLoginStickHTTPS = false;
 
 /** @} */ # end user accounts }
 

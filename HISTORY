@@ -67,7 +67,7 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   without having to move LocalSettings.php
 * The FailFunction "error handling" method has now been removed
 * $wgAdditionalMailParams added to allow setting extra options to mail() calls.
-* $wgSecureLogin & $wgSecureLoginStickHTTPS to optionaly login using HTTPS
+* $wgSecureLogin to optionaly login using HTTPS
 * (bug 25728) Added $wgPasswordSenderName to allow customise the name associed
   with $wgPasswordSender
 * Sysops now have the "suppressredirect" right by default
