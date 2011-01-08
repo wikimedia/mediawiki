@@ -176,7 +176,7 @@ class BitmapHandler extends ImageHandler {
 			$scaler = 'client';
 		}
 		
-		if ( $scaler != 'client' ) {
+		if ( $scaler != 'client' && $dstPath ) {
 			if ( !wfMkdirParents( dirname( $dstPath ) ) ) {
 				# Unable to create a path for the thumbnail
 				return 'client';
@@ -647,6 +647,13 @@ class BitmapHandler extends ImageHandler {
 		return $result;
 	}
 	
+	/**
+	 * Try to read out the orientation of the file and return the angle that 
+	 * the file needs to be rotated to be viewed
+	 * 
+	 * @param $file File
+	 * @return int 0, 90, 180 or 270
+	 */
 	public function getRotation( $file ) {
 		$data = $file->getMetadata();
 		if ( !$data ) {
@@ -668,11 +675,23 @@ class BitmapHandler extends ImageHandler {
 		}
 		return 0;
 	}
+	/**
+	 * Returns whether the current scaler supports rotation (im and gd do)
+	 * 
+	 * @return bool
+	 */
 	public function canRotate() {
 		$scaler = $this->getScalerType( null, false );
 		return $scaler == 'im' || $scaler == 'gd';
 	}
 	
+	/**
+	 * Rerurns whether the file needs to be rendered. Returns true if the 
+	 * file requires rotation and we are able to rotate it.
+	 * 
+	 * @param $file File
+	 * @return bool
+	 */
 	public function mustRender( $file ) {
 		return $this->canRotate() && $this->getRotation( $file ) != 0;
 	}
