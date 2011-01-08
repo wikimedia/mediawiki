@@ -78,7 +78,7 @@ window.mwSetupToolbar = function() {
 // apply tagOpen/tagClose to selection in textarea,
 // use sampleText instead of selection if there is none
 window.insertTags = function( tagOpen, tagClose, sampleText ) {
-	if ( typeof $ != 'undefined' && typeof $.fn.textSelection != 'undefined' &&
+	if ( typeof $ != 'undefined' && typeof $.fn.textSelection != 'undefined' && currentFocused &&
 			( currentFocused.nodeName.toLowerCase() == 'iframe' || currentFocused.id == 'wpTextbox1' ) ) {
 		$( '#wpTextbox1' ).textSelection(
 			'encapsulateSelection', { 'pre': tagOpen, 'peri': sampleText, 'post': tagClose }
