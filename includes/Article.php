@@ -551,10 +551,9 @@ class Article {
 		// We should instead work with the Revision object when we need it...
 		$this->mContent   = $revision->getText( Revision::FOR_THIS_USER ); // Loads if user is allowed
 
-		$this->mUser      = $revision->getUser();
-		$this->mUserText  = $revision->getUserText();
-		$this->mComment   = $revision->getComment();
-		$this->mTimestamp = wfTimestamp( TS_MW, $revision->getTimestamp() );
+		if ( $revision->getId() == $this->mLatest ) {
+			$this->setLastEdit( $revision );
+		}
 
 		$this->mRevIdFetched = $revision->getId();
 		$this->mContentLoaded = true;
@@ -705,15 +704,23 @@ class Article {
 			return;
 		}
 
-		$this->mLastRevision = Revision::loadFromPageId( wfGetDB( DB_MASTER ), $id );
-		if ( !is_null( $this->mLastRevision ) ) {
-			$this->mUser      = $this->mLastRevision->getUser();
-			$this->mUserText  = $this->mLastRevision->getUserText();
-			$this->mTimestamp = $this->mLastRevision->getTimestamp();
-			$this->mComment   = $this->mLastRevision->getComment();
-			$this->mMinorEdit = $this->mLastRevision->isMinor();
-			$this->mRevIdFetched = $this->mLastRevision->getId();
+		$revision = Revision::loadFromPageId( wfGetDB( DB_MASTER ), $id );
+		if ( !is_null( $revision ) ) {
+			$this->setLastEdit( $revision );
 		}
+	}
+
+	/**
+	 * Set the lastest revision
+	 */
+	protected function setLastEdit( Revision $revision ) {
+		$this->mLastRevision = $revision;
+		$this->mUser = $revision->getUser();
+		$this->mUserText = $revision->getUserText();
+		$this->mTimestamp = $revision->getTimestamp();
+		$this->mComment = $revision->getComment();
+		$this->mMinorEdit = $revision->isMinor();
+		$this->mRevIdFetched = $revision->getId();
 	}
 
 	/**
