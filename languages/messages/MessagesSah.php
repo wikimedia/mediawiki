@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Bert Jickty
  * @author HalanTul
  * @author Meno25

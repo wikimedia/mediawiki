@@ -741,6 +741,8 @@ Nen volyéd chouèsir un ôtro.',
 Los volyéd activar et pués vos tornar branchiér avouéc lo mémo nom et lo mémo mot de pâssa.",
 'nocookieslogin'             => "{{SITENAME}} utilise des tèmouens (''cookies'') por lo branchement mas vos los éd dèsactivâs.
 Los volyéd activar et pués vos tornar branchiér.",
+'nocookiesfornew'            => "Lo compto utilisator at pas étâ fêt, perce que nos ens pas possu confirmar sa sôrsa.
+Controlâd que vos éd activâ los tèmouens (''cookies''), rechargiéd la pâge et pués tornâd èprovar.",
 'noname'                     => 'Vos éd pas buchiê un nom d’utilisator valido.',
 'loginsuccesstitle'          => 'Branchement reussi.',
 'loginsuccess'               => "'''Ora, vos éte branchiê a {{SITENAME}} coment « $1 ».'''",
@@ -757,6 +759,7 @@ Volyéd tornar èprovar.',
 Volyéd tornar èprovar.',
 'passwordtooshort'           => 'Voutron mot de pâssa dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
 'password-name-match'        => 'Voutron mot de pâssa dêt étre difèrent de voutron nom d’utilisator.',
+'password-login-forbidden'   => 'L’usâjo de cél nom d’utilisator et de cél mot de pâssa at étâ dèfendu.',
 'mailmypassword'             => 'Recêvre un mot de pâssa novél per mèssageria èlèctronica',
 'passwordremindertitle'      => 'Mot de pâssa temporèro novél por {{SITENAME}}',
 'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un mot de pâssa
@@ -1821,6 +1824,15 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'upload-unknown-size'       => 'Talye encognua',
 'upload-http-error'         => 'Una èrror HTTP est arrevâ : $1',
 
+# Special:UploadStash
+'uploadstash'          => 'Cache d’importacion',
+'uploadstash-summary'  => 'Ceta pâge balye accès ux fichiérs que sont importâs (ou ben en cors d’importacion), mas sont p’oncor publeyês dens lo vouiqui. Celos fichiérs sont p’oncor visiblos, solament por l’utilisator que los at importâs.',
+'uploadstash-clear'    => 'Èfaciér los fichiérs en cache d’importacion',
+'uploadstash-nofiles'  => 'Vos avéd gins de fichiér en cache d’importacion.',
+'uploadstash-badtoken' => 'L’ègzécucion de cela accion at pas reussia, pôt-étre perce que voutres enformacions de branchement ont èxpirâs. Tornâd èprovar.',
+'uploadstash-errclear' => 'L’èfacement des fichiérs at pas reussi.',
+'uploadstash-refresh'  => 'Rafrèchir la lista des fichiérs',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Accès refusâ',
 'img-auth-nopathinfo'   => 'PATH_INFO manquent.
@@ -2083,6 +2095,7 @@ Volyéd notar que d’ôtros setos pôvont avêr un lim drêt de vers un fichié
 'pager-newer-n'           => '{{PLURAL:$1|ples novèla|$1 ples novèles}}',
 'pager-older-n'           => '{{PLURAL:$1|ples vielye|$1 ples vielyes}}',
 'suppress'                => 'Supèrvisar',
+'querypage-disabled'      => 'Ceta pâge spèciâla est dèsactivâ por des rêsons de capacitât.',
 
 # Book sources
 'booksources'               => 'Ôvres de refèrence',

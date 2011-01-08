@@ -2704,7 +2704,7 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'math_unknown_function' => 'ffwythiant anhysbys',
 'math_lexing_error'     => 'gwall lecsio',
 'math_syntax_error'     => 'gwall cystrawen',
-'math_image_error'      => "Trosiad PNG wedi methu; gwiriwch fod latex, dvips, a gs wedi'u sefydlu'n gywir cyn trosi.",
+'math_image_error'      => "Trosiad PNG wedi methu; gwiriwch fod latex a dvips (neu dvips + gs + convert) wedi'u gosod yn gywir cyn trosi.",
 'math_bad_tmpdir'       => 'Yn methu creu cyfeiriadur mathemateg dros dro, nac ysgrifennu iddo',
 'math_bad_output'       => 'Yn methu creu cyfeiriadur allbwn mathemateg nac ysgrifennu iddo',
 'math_notexvc'          => 'Rhaglen texvc yn eisiau; gwelwch math/README er mwyn ei chyflunio.',

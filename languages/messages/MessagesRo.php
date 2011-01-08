@@ -20,6 +20,7 @@
  * @author SCriBu
  * @author Silviubogan
  * @author Stelistcristi
+ * @author Strainu
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -716,7 +717,7 @@ Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:P
 'gotaccountlink'             => 'Autentificați-vă',
 'createaccountmail'          => 'după e-mail',
 'createaccountreason'        => 'Motiv:',
-'badretype'                  => 'Parolele pe care le-ai introdus diferă.',
+'badretype'                  => 'Parolele pe care le-ați introdus diferă.',
 'userexists'                 => 'Numele de utilizator pe care l-ați introdus există deja. Încercați cu un alt nume.',
 'loginerror'                 => 'Eroare de autentificare',
 'createaccounterror'         => 'Nu pot crea contul: $1',
@@ -1087,7 +1088,7 @@ Ca administrator puteți vedea în continuare acest diff; s-ar putea să existe 
 Ca administrator puteți vedea în continuare acest diff; s-ar putea să existe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-delundel'                => 'arată/ascunde',
 'rev-showdeleted'             => 'arată',
-'revisiondelete'              => 'Șterge/recuperează revizii',
+'revisiondelete'              => 'Șterge/recuperează versiuni',
 'revdelete-nooldid-title'     => 'Versiune invalidă',
 'revdelete-nooldid-text'      => 'Nu ai specificat revizie pentru a efectua această
 funcție, revizia specificată nu există, sau ești pe cale să ascunzi revizia curentă.',
@@ -1220,7 +1221,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'difference-multipage'     => '(Diferență între pagini)',
 'lineno'                   => 'Linia $1:',
 'compareselectedversions'  => 'Compară versiunile marcate',
-'showhideselectedversions' => 'Arată/ascunde reviziile marcate',
+'showhideselectedversions' => 'Șterge/recuperează versiunile marcate',
 'editundo'                 => 'anulează',
 'diff-multi'               => '({{PLURAL:$1|O revizie intermediară|$1 revizii intermediare}} efectuată de {{PLURAL:$2|un utilizator|$2 utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
 'diff-multi-manyusers'     => '({{PLURAL:$1|O versiune intermediară efectuată de|$1 (de) versiuni intermediare efectuate de peste}} $2 {{PLURAL:$2|utilizator|utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
@@ -2031,7 +2032,7 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 'booksources'               => 'Surse de cărți',
 'booksources-search-legend' => 'Caută surse pentru cărți',
 'booksources-go'            => 'Du-te',
-'booksources-text'          => 'Mai jos se află o listă de legături înspre alte situri care vând cărți noi sau vechi, și care pot oferi informații suplimentare despre cărțile pe care le căutați:',
+'booksources-text'          => 'Mai jos se află o listă de legături înspre alte situri care vând cărți noi sau vechi și care pot oferi informații suplimentare despre cărțile pe care le căutați:',
 'booksources-invalid-isbn'  => 'Codul ISBN oferit nu este valid; verificați dacă a fost copiat corect de la sursa originală.',
 
 # Special:Log
@@ -2634,7 +2635,7 @@ manual paginile de discuții, dacă dorești acest lucru.",
 'movepage-moved-redirect'      => 'O redirecționare a fost creată.',
 'movepage-moved-noredirect'    => 'Crearea redirecționărilor a fost suprimată.',
 'articleexists'                => 'O pagină cu același nume există deja, sau numele pe care l-ați ales este invalid. Sunteți rugat să alegeți un alt nume.',
-'cantmove-titleprotected'      => 'Nu poți muta o pagina în această locație, pentru că noul titlu a fost protejat la creare',
+'cantmove-titleprotected'      => 'Nu puteți muta o pagină la această locație, pentru că noul titlu a fost protejat la creare',
 'talkexists'                   => "'''Pagina în sine a fost mutată cu succes, dar pagina de discuții nu a putut fi mutată deoarece o alta deja există la noul titlu.
 Te rugăm să le unifici manual.'''",
 'movedto'                      => 'mutată la',
