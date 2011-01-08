@@ -107,7 +107,7 @@ $( function() {
 				$( '#mw-upload-thumbnail .fileinfo' ).text( info );
 			};
 			img.src = dataURL;
-		});
+		} );
 	}
 
 	/**
@@ -160,6 +160,6 @@ $( function() {
 					showPreview( file );
 				}
 			}
-		});
+		} );
 	}
-});
+} );
