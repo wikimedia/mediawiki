@@ -354,7 +354,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function schemaVersion() {
-		return "0.4";
+		return "0.5";
 	}
 
 	/**
@@ -511,12 +511,12 @@ class XmlDumpWriter {
 			// Raw text from the database may have invalid chars
 			$text = strval( Revision::getRevisionText( $row ) );
 			$out .= "      " . Xml::elementClean( 'text',
-				array( 'xml:space' => 'preserve' ),
+				array( 'xml:space' => 'preserve', 'bytes' => $row->rev_len ),
 				strval( $text ) ) . "\n";
 		} else {
 			// Stub output
 			$out .= "      " . Xml::element( 'text',
-				array( 'id' => $row->rev_text_id ),
+				array( 'id' => $row->rev_text_id, 'bytes' => $row->rev_len ),
 				"" ) . "\n";
 		}
 
