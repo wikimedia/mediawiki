@@ -19,7 +19,7 @@
 			// Check if we're already dealing with an array of colors
 			if ( color && color.constructor == Array && color.length == 3 ){
 				return color;
-				 }
+			}
 
 			// Look for rgb(num,num,num)
 			if (result = /rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(color)) {
