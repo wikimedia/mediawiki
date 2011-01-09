@@ -719,13 +719,11 @@ class Article {
 		$this->mTimestamp = $revision->getTimestamp();
 		$this->mComment = $revision->getComment();
 		$this->mMinorEdit = $revision->isMinor();
-		$this->mRevIdFetched = $revision->getId();
 	}
 
 	/**
 	 * @return string GMT timestamp of last article revision
-	 **/
-
+	 */
 	public function getTimestamp() {
 		// Check if the field has been filled by ParserCache::get()
 		if ( !$this->mTimestamp ) {
@@ -775,8 +773,11 @@ class Article {
 	 * @return int revision ID of last article revision
 	 */
 	public function getRevIdFetched() {
-		$this->loadLastEdit();
-		return $this->mRevIdFetched;
+		if ( $this->mRevIdFetched ) {
+			return $this->mRevIdFetched;
+		} else {
+			return $this->getLatest();
+		}
 	}
 
 	/**
