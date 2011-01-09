@@ -39,24 +39,50 @@ $( '#preferences' )
 		);
 	} );
 
+// User preference form validation
+$( '#mw-prefs-form' )
+	.submit( function () {
+		var isValid = wfValidateEmail( $('#mw-input-wpemailaddress').val() );
+		wfUpdateMailValidityLabel( isValid );
+		if(isValid == false ) {
+			$('#mw-input-wpemailaddress').focus();
+			return false;
+		}
+	}
+);
+
 // Lame tip to let user know if its email is valid. See bug 22449
 $( '#mw-input-wpemailaddress' )
-	.keyup( function () {
+	.blur( function () {
 		if( $( "#mw-emailaddress-validity" ).length == 0 ) {
 			$(this).after( '<label for="mw-input-wpemailaddress" id="mw-emailaddress-validity"></label>' );
 		}
 		var isValid = wfValidateEmail( $(this).val() );
-		var class_to_add    = isValid ? 'valid' : 'invalid';
-		var class_to_remove = isValid ? 'invalid' : 'valid';
-		$( '#mw-emailaddress-validity' )
-			.text(
-				isValid ?
-				mediaWiki.msg( 'email-address-validity-valid' )
-				: mediaWiki.msg( 'email-address-validity-invalid' )
-			)
-			.addClass( class_to_add )
-			.removeClass( class_to_remove );
+		wfUpdateMailValidityLabel( isValid );
 	} );
+
+/**
+ * Given an email validity status (true, false, null) update the label CSS class
+ */
+wfUpdateMailValidityLabel = function( isValid ) {
+	var class_to_add    = isValid ? 'valid' : 'invalid';
+	var class_to_remove = isValid ? 'invalid' : 'valid';
+
+	// We allow null address
+	if( isValid == null ) {
+		$( '#mw-emailaddress-validity' ).text( '' )
+		.removeClass( 'valid invalid');
+	} else {
+	$( '#mw-emailaddress-validity' )
+		.text(
+			isValid ?
+			mediaWiki.msg( 'email-address-validity-valid' )
+			: mediaWiki.msg( 'email-address-validity-invalid' )
+		)
+		.addClass( class_to_add )
+		.removeClass( class_to_remove );
+	}
+}
 
 /**
  *  Validate a string as representing a valid e-mail address
@@ -120,12 +146,12 @@ wfValidateEmail = function( mailtxt ) {
 		'[' + rfc1034_ldh_str + ']+'
 		+
 		// Second part and following are separated by a dot
-		'(\\.[' + rfc1034_ldh_str + ']+)+'
+		'(?:\\.[' + rfc1034_ldh_str + ']+)+'
 		+
 		// End of string
 		'$',
 		// RegExp is case insensitive
 		'i'
 		);
-	return mailtxt.match( HTML5_email_regexp );
+	return (null != mailtxt.match( HTML5_email_regexp ) );
 };
