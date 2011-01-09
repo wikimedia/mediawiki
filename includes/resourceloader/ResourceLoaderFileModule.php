@@ -493,8 +493,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $flip ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}
-		$dir = $this->getLocalPath( dirname( $path ) );
-		$remoteDir = $this->getRemotePath( dirname( $path ) );
+		$dirname = dirname( $path );
+		if ( $dirname == '.' ) {
+			// If $path doesn't have a directory component, don't prepend a dot
+			$dirname = '';
+		}
+		$dir = $this->getLocalPath( $dirname );
+		$remoteDir = $this->getRemotePath( $dirname );
 		// Get and register local file references
 		$this->localFileRefs = array_merge( 
 			$this->localFileRefs, 
