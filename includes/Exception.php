@@ -39,7 +39,7 @@ class MWException extends Exception {
 			}
 		}
 
-		return is_object( $wgLang );
+		return $wgLang instanceof Language;
 	}
 
 	/**
@@ -243,7 +243,7 @@ class MWException extends Exception {
 		$dir = 'ltr';
 		$code = 'en';
 
-		if ( $this->useMessageCache() ) {
+		if ( $wgLang instanceof Language ) {
 			$left = $wgLang->alignStart();
 			$right = $wgLang->alignEnd();
 			$dir = $wgLang->getDir();

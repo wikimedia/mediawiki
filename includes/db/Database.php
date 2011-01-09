@@ -2845,7 +2845,7 @@ class DBConnectionError extends DBError {
 
 		$header = "$wgSitename has a problem";
 
-		if ( is_object( $wgLang ) ) {
+		if ( $wgLang instanceof Language ) {
 			$header = htmlspecialchars( $wgLang->getMessage( 'dberr-header' ) );
 		}
 
@@ -2859,7 +2859,7 @@ class DBConnectionError extends DBError {
 		$again = 'Try waiting a few minutes and reloading.';
 		$info  = '(Can\'t contact the database server: $1)';
 
-		if ( is_object( $wgLang ) ) {
+		if ( $wgLang instanceof Language ) {
 			$sorry = htmlspecialchars( $wgLang->getMessage( 'dberr-problems' ) );
 			$again = htmlspecialchars( $wgLang->getMessage( 'dberr-again' ) );
 			$info  = htmlspecialchars( $wgLang->getMessage( 'dberr-info' ) );
@@ -2896,7 +2896,7 @@ class DBConnectionError extends DBError {
 					$cachederror = "This is a cached copy of the requested page, and may not be up to date. ";
 
 					# Localize it if possible...
-					if ( is_object( $wgLang ) ) {
+					if ( $wgLang instanceof Language ) {
 						$cachederror = htmlspecialchars( $wgLang->getMessage( 'dberr-cachederror' ) );
 					}
 
@@ -2921,7 +2921,7 @@ class DBConnectionError extends DBError {
 		$outofdate = "Note that their indexes of our content may be out of date.";
 		$googlesearch = "Search";
 
-		if ( is_object( $wgLang ) ) {
+		if ( $wgLang instanceof Language ) {
 			$usegoogle = htmlspecialchars( $wgLang->getMessage( 'dberr-usegoogle' ) );
 			$outofdate = htmlspecialchars( $wgLang->getMessage( 'dberr-outofdate' ) );
 			$googlesearch  = htmlspecialchars( $wgLang->getMessage( 'searchbutton' ) );
@@ -2963,7 +2963,7 @@ EOT;
 
 		$mainpage = 'Main Page';
 
-		if ( is_object( $wgLang ) ) {
+		if ( $wgLang instanceof Language ) {
 			$mainpage = htmlspecialchars( $wgLang->getMessage( 'mainpage' ) );
 		}
 
