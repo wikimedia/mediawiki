@@ -226,7 +226,7 @@ class MWException extends Exception {
 	 * $wgOut to output the exception.
 	 */
 	function htmlHeader() {
-		global $wgLogo, $wgOutputEncoding;
+		global $wgLogo, $wgOutputEncoding, $wgLang;
 
 		if ( !headers_sent() ) {
 			header( 'HTTP/1.0 500 Internal Server Error' );
@@ -236,23 +236,29 @@ class MWException extends Exception {
 			header( 'Pragma: nocache' );
 		}
 
-		$logo = htmlspecialchars( $wgLogo, ENT_QUOTES );
-		$title = htmlspecialchars( $this->getPageTitle() );
+		$title = Html::element( 'title', null, $this->getPageTitle() );
 
-		return "<html>
-		<head>
-		<title>$title</title>
-		</head>
-		<body>
-		<h1><img src='$logo' style='float:left;margin-right:1em' alt=''/>$title</h1>
-		";
+		$left = $wgLang->alignStart();
+		$right = $wgLang->alignEnd();
+		$header = Html::element( 'img', array(
+			'src' => $wgLogo,
+			'style' => "float: $left; margin-$right: 1em;",
+			'alt' => '' ), $this->getPageTitle() );
+
+		$attribs = array( 'dir' => $wgLang->getDir(), 'lang' => $wgLang->getCode() );
+
+		return
+			Html::htmlHeader( $attribs ) .
+			Html::rawElement( 'head', null, $title ) . "\n". 
+			Html::openElement( 'body' ) . "\n" .
+			Html::rawElement( 'h1', null, $header ) . "\n";
 	}
 
 	/**
 	 * print the end of the html page if not using $wgOut.
 	 */
 	function htmlFooter() {
-		return "</body></html>";
+		return Html::closeElement( 'body' ) . Html::closeElement( 'html' );
 	}
 
 	/**
