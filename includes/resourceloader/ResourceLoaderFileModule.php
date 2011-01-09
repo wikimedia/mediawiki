@@ -464,12 +464,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		$styles = self::collateFilePathListByOption( $styles, 'media', 'all' );
 		foreach ( $styles as $media => $files ) {
+			$uniqueFiles = array_unique( $files );
 			$styles[$media] = implode(
 				"\n",
 				array_map(
 					array( $this, 'readStyleFile' ),
-					array_unique( $files ),
-					array( $flip )
+					$uniqueFiles,
+					array_fill( 0, count( $uniqueFiles ), $flip )
 				)
 			);
 		}
