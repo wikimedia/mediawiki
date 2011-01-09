@@ -2874,6 +2874,8 @@ class DBConnectionError extends DBError {
 			$this->error = $this->db->getProperty( 'mServer' );
 		}
 
+		$this->error = Html::element( 'span', array( 'dir' => 'ltr' ), $this->error );
+
 		$noconnect = "<p><strong>$sorry</strong><br />$again</p><p><small>$info</small></p>";
 		$text = str_replace( '$1', $this->error, $noconnect );
 
