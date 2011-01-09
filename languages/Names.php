@@ -33,8 +33,8 @@
 	'bcc' => 'بلوچی مکرانی', # Southern Balochi
 	'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 	'be' => 'Беларуская',	#  Belarusian normative
-	'be-tarask' => 'Беларуская (тарашкевіца)',	# Belarusian in Taraskievica orthography
-	'be-x-old' => 'Беларуская (тарашкевіца)',	# Belarusian in Taraskievica orthography; compat link
+	'be-tarask' => "\xE2\x80\xAAБеларуская (тарашкевіца)\xE2\x80\xAC",	# Belarusian in Taraskievica orthography
+	'be-x-old' => "\xE2\x80\xAAБеларуская (тарашкевіца)\xE2\x80\xAC",	# Belarusian in Taraskievica orthography; compat link
 	'bg' => 'Български',	# Bulgarian
 	'bh' => 'भोजपुरी',	# Bhojpuri
 	'bi' => 'Bislama',		# Bislama
@@ -73,7 +73,7 @@
 	'de' => 'Deutsch',		# German ("Du")
 	'de-at' => 'Österreichisches Deutsch',		# Austrian German
 	'de-ch' => 'Schweizer Hochdeutsch',		# Swiss Standard German
-	'de-formal' => 'Deutsch (Sie-Form)',		# German - formal address ("Sie")
+	'de-formal' => "\xE2\x80\xAADeutsch (Sie-Form)\xE2\x80\xAC",		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
@@ -103,8 +103,8 @@
 	'ga' => 'Gaeilge',		# Irish
 	'gag' => 'Gagauz',		# Gagauz
 	'gan' => '贛語',		# Gan (multiple scripts - defaults to Traditional)
-	'gan-hans' => '赣语(简体)',	# Gan (Simplified Han)
-	'gan-hant' => '贛語(繁體)',	# Gan (Traditional Han)
+	'gan-hans' => "\xE2\x80\xAA赣语(简体)\xE2\x80\xAC",	# Gan (Simplified Han)
+	'gan-hant' => "\xE2\x80\xAA贛語(繁體)\xE2\x80\xAC",	# Gan (Traditional Han)
 	'gd' => 'Gàidhlig',	# Scots Gaelic
 	'gl' => 'Galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
@@ -232,7 +232,7 @@
 	'ng' => 'Oshiwambo',		# Ndonga
 	'niu' => 'Niuē',	# Niuean
 	'nl' => 'Nederlands',	# Dutch
-	'nl-informal' => 'Nederlands (informeel)',	# Dutch (informal address ("je"))
+	'nl-informal' => "\xE2\x80\xAANederlands (informeel)\xE2\x80\xAC",	# Dutch (informal address ("je"))
 	'nn' => "\xE2\x80\xAANorsk (nynorsk)\xE2\x80\xAC",	# Norwegian (Nynorsk)
 	'no' => "\xE2\x80\xAANorsk (bokmål)\xE2\x80\xAC",		# Norwegian
 	'nov' => 'Novial',		# Novial
@@ -302,8 +302,8 @@
 	'so' => 'Soomaaliga',	# Somali
 	'sq' => 'Shqip',		# Albanian
 	'sr' => 'Српски / Srpski',	# Serbian (multiple scripts - defaults to Cyrillic)
-	'sr-ec' => 'Српски (ћирилица)',	# Serbian Cyrillic ekavian
-	'sr-el' => 'Srpski (latinica)',	# Serbian Latin ekavian
+	'sr-ec' => "\xE2\x80\xAAСрпски (ћирилица)\xE2\x80\xAC",	# Serbian Cyrillic ekavian
+	'sr-el' => "\xE2\x80\xAASrpski (latinica)\xE2\x80\xAC",	# Serbian Latin ekavian
 	'srn' => 'Sranantongo',		# Sranan Tongo
 	'ss' => 'SiSwati',		# Swati
 	'st' => 'Sesotho',		# Southern Sotho

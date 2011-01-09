@@ -70,6 +70,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26187) Confirmrecreate no longer parses the edit summary
 * (bug 25506) Exception is thrown if OutputPage::parse is called inside a tag hook,
   which would reset parser state
+* (bug 26208) Mark directionality of some interlanguage links
 
 === API changes in 1.18 ===
 * (bug 26339) Throw warning when truncating an overlarge API result
