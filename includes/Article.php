@@ -711,7 +711,7 @@ class Article {
 	}
 
 	/**
-	 * Set the lastest revision
+	 * Set the latest revision
 	 */
 	protected function setLastEdit( Revision $revision ) {
 		$this->mLastRevision = $revision;
