@@ -40,16 +40,20 @@ $( '#preferences' )
 	} );
 
 // Lame tip to let user know if its email is valid. See bug 22449
-$( '#mw-input-emailaddress' )
+$( '#mw-input-wpemailaddress' )
 	.keyup( function () {
 		if( $( "#mw-emailaddress-validity" ).length == 0 ) {
-			$(this).after( '<label for="mw-input-emailaddress" id="mw-emailaddress-validity"></label>' );
+			$(this).after( '<label for="mw-input-wpemailaddress" id="mw-emailaddress-validity"></label>' );
 		}
 		var isValid = wfValidateEmail( $(this).val() );
 		var class_to_add    = isValid ? 'valid' : 'invalid';
 		var class_to_remove = isValid ? 'invalid' : 'valid';
 		$( '#mw-emailaddress-validity' )
-			.text( isValid ? 'Looks valid' : 'Valid address required!' )
+			.text(
+				isValid ?
+				mediaWiki.msg( 'email-address-validity-valid' )
+				: mediaWiki.msg( 'email-address-validity-invalid' )
+			)
 			.addClass( class_to_add )
 			.removeClass( class_to_remove );
 	} );
