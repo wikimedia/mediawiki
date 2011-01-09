@@ -2,7 +2,7 @@
 /**
  * MediaWiki parser test suite
  *
- * Copyright Â© 2004 Brion Vibber <brion@pobox.com>
+ * Copyright © 2004 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
