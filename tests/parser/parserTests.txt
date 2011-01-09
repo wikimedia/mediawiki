@@ -5,25 +5,25 @@
 # The syntax should be fairly self-explanatory.
 #
 # Currently supported test options:
-#	One of the following three:
+# One of the following three:
 #
-#	(default)	generate HTML output
-# 	pst 		apply pre-save transform
-#	msg 		apply message transform
+#  (default)  generate HTML output
+#  pst        apply pre-save transform
+#  msg        apply message transform
 #
-#	Plus any combination of these:
+# Plus any combination of these:
 #
-#	cat		add category links
-#	ill		add inter-language links
-#	subpage		enable subpages (disabled by default)
-#	noxml		don't check for XML well formdness
-#	title=[[XXX]]	run test using article title XXX
-# 	language=XXX	set content language to XXX for this test
-# 	variant=XXX  	set the variant of language for this test (eg zh-tw)
-#	disabled	do not run test
-#	showtitle	make the first line the title
-#   comment	run through Linker::formatComment() instead of main parser
-#   local	format section links in edit comment text as local links
+# cat           add category links
+# ill           add inter-language links
+# subpage       enable subpages (disabled by default)
+# noxml         don't check for XML well formdness
+# title=[[XXX]] run test using article title XXX
+# language=XXX  set content language to XXX for this test
+# variant=XXX   set the variant of language for this test (eg zh-tw)
+# disabled      do not run test
+# showtitle     make the first line the title
+# comment       run through Linker::formatComment() instead of main parser
+# local         format section links in edit comment text as local links
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
