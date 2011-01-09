@@ -1858,8 +1858,8 @@ You can also choose to let others contact you through your user or talk page wit
 'prefs-diffs'                   => 'Diffs',
 
 # User preference: email validation using JQuery
-'email-address-validity-valid'           => 'Looks valid',
-'email-address-validity-invalid'         => 'Valid address required!',
+'email-address-validity-valid'           => 'E-mail address appears valid',
+'email-address-validity-invalid'         => 'Enter a valid e-mail address',
 
 # User rights
 'userrights'                     => 'User rights management',
