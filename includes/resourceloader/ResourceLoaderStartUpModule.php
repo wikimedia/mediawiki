@@ -85,6 +85,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
 		}
 		
+		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
+		
 		return $vars;
 	}
 	

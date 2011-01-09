@@ -1115,7 +1115,9 @@ $magicWords: array of strings
 $variableIDs: array of strings
 
 'MakeGlobalVariablesScript': called right before Skin::makeVariablesScript
-is executed
+is executed. Ideally, this hook should only be used to add variables that
+depend on the current page/request; static configuration should be added
+through ResourceLoaderConfigVars instead.
 &$vars: variable (or multiple variables) to be added into the output
 	of Skin::makeVariablesScript
 
@@ -1376,8 +1378,14 @@ loader request or generating HTML output.
 &$obj: RawPage object
 &$text: The text that's going to be the output
 
-'RecentChange_save': called at the end of RecenChange::save()
+'RecentChange_save': called at the end of RecentChange::save()
 $recentChange: RecentChange object
+
+'ResourceLoaderConfigVars': called at the end of
+ResourceLoaderStartUpModule::getConfig(). Use this to export static
+configuration variables to JavaScript. Things that depend on the current
+page/request state must be added through MakeGlobalVariablesScript instead.
+&$vars: array( variable name => value )
 
 'RevisionInsertComplete': called after a revision is inserted into the DB
 &$revision: the Revision
