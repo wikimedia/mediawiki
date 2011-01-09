@@ -73,7 +73,8 @@ class GIFHandler extends BitmapHandler {
 		
 		if (!$metadata || $metadata['frameCount'] <=  1)
 			return $original;
-		
+
+		/* Preserve original image info string, but strip the last char ')' so we can add even more */
 		$info = array();
 		$info[] = substr( $original, 1, strlen( $original )-2 );
 		
