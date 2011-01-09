@@ -1187,6 +1187,13 @@ class OutputPage {
 	 * @return String: HTML
 	 */
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
+		// Check one for one common cause for parser state resetting
+		$callers = wfGetAllCallers( 10 );
+		if ( strpos( $callers, 'Parser::extensionSubstitution' ) !== false ) {
+			throw new MWException( "wfMsg* function with parsing cannot be used " .
+				"inside a tag hook. Should use parser->recursiveTagParse() instead" );
+		}
+
 		global $wgParser;
 
 		if( is_null( $this->getTitle() ) ) {
