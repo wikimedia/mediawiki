@@ -236,6 +236,9 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected 
   pages to be queried via the API and Special:ProtectedPages, and allowing 
   disabling upload protection by removing it from $wgRestrictionTypes.
+* The name attribute of HTMLForm fields can now be overridden by passing a 
+  'name' key in the descriptor array.  Hidden field names are now treated 
+  consistently with other fields and, by default, prefixed with 'wp'.
 
 === Bug fixes in 1.17 ===
 * (bug 17560) Half-broken deletion moved image files to deletion archive
