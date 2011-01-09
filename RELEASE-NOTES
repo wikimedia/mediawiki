@@ -233,9 +233,6 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Special wrapping setups can now define MW_CONFIG_FILE to load a config file
   other than LocalSettings.php. This is like MW_CONFIG_CALLBACK but works in
   some cases where MW_CONFIG_CALLBACK will not work.
-* (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
-* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
-* (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
 * (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected 
   pages to be queried via the API and Special:ProtectedPages, and allowing 
   disabling upload protection by removing it from $wgRestrictionTypes.
@@ -473,7 +470,6 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
 * Partial workaround for bug 6220: at least make files on shared repositories
   show up as (struck-out) bluelinks instead of redlinks on Special:WantedFiles
 * rebuildFileCache.php no longer creates inappropriate cache files for redirects
-* (bug 18372) $wgFileExtensions will now override $wgFileBlacklist 
 * (bug 25512) Subcategory list should not include category prefix for members.
 * (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer treated
   as wikitext on preview.
@@ -484,6 +480,9 @@ LocalSettings.php. The specific bugs are listed below in the general notes.
   last saving user.
 * (bug 22753) Output from update.php is more clear when things changed, entries
   indicating nothing changed are now all prefixed by "..."
+* (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions
+* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as "Permitted file types" on the upload form
+* (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater
 
 === API changes in 1.17 ===
 * BREAKING CHANGE: action=patrol now requires POST
