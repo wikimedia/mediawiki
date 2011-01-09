@@ -1280,7 +1280,7 @@ HTML
 			// TODO: can the checkLabel be moved outside of the div so that wrapWikiMsg could be used?
 			$wgOut->addHTML(
 				'<div class="mw-confirm-recreate">' .
-				wfMsgExt( 'confirmrecreate', 'parseinline', $username, "<nowiki>$comment</nowiki>"  ) ) .
+				wfMsgExt( 'confirmrecreate', 'parseinline', $username, "<nowiki>$comment</nowiki>" ) .
 				Xml::checkLabel( wfMsg( 'recreate' ), 'wpRecreate', 'wpRecreate', false,
 					array( 'title' => $sk->titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' )
 				) .
