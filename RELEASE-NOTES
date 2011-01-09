@@ -43,6 +43,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Contribs now redirects to Special:Contributions
 * (bug 6672) Images are now autorotated according to their EXIF orientation. 
   This only affects thumbnails; the source remains unrotated.
+* (bug 25708) Update case mappings and normalization to Unicode 6.0.0
 
 === Bug fixes in 1.18 ===
 * (bug 23119) WikiError class and subclasses are now marked as deprecated
