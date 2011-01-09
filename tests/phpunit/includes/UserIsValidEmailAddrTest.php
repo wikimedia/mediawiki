@@ -31,10 +31,10 @@ class UserIsValidEmailAddrTest extends MediaWikiTestCase {
 		$this->valid( 'user+@example.com' );
 	}
 	function testEmailWithWhiteSpacesBeforeOrAfterAreInvalids() {
-		$this->invalid( " user@host" );
-		$this->invalid( "user@host " );
-		$this->invalid( "\tuser@host" );
-		$this->invalid( "user@host\t" );
+		$this->invalid( " user@host.com" );
+		$this->invalid( "user@host.com " );
+		$this->invalid( "\tuser@host.com" );
+		$this->invalid( "user@host.com\t" );
 	}
 	function testEmailWithWhiteSpacesAreInvalids() {
 		$this->invalid( "User user@host" );
