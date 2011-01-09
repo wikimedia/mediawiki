@@ -14,14 +14,14 @@
 	per-namespace capitalization.
 
 	The canonical URL to the schema document is:
-	http://www.mediawiki.org/xml/export-0.4.xsd
+	http://www.mediawiki.org/xml/export-0.5.xsd
 	
 	Use the namespace:
-	http://www.mediawiki.org/xml/export-0.4/
+	http://www.mediawiki.org/xml/export-0.5/
 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:mw="http://www.mediawiki.org/xml/export-0.4/"
-        targetNamespace="http://www.mediawiki.org/xml/export-0.4/"
+        xmlns:mw="http://www.mediawiki.org/xml/export-0.5/"
+        targetNamespace="http://www.mediawiki.org/xml/export-0.5/"
         elementFormDefault="qualified">
 
 	<annotation>
@@ -165,6 +165,7 @@
 				<!-- However, "NMTOKEN" is strictest definition that is both compatible with existing -->
 				<!-- usage ([0-9]+) and with the "ID" type. -->
 				<attribute name="id" type="NMTOKEN"/>
+				<attribute name="bytes" use="optional" type="nonNegativeInteger"/>
 			</extension>
 		</simpleContent>
 	</complexType>
