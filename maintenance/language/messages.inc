@@ -1030,6 +1030,8 @@ $wgMessageStructure = array(
 		'prefs-displaysearchoptions',
 		'prefs-displaywatchlist',
 		'prefs-diffs',
+		'email-address-validity-valid',
+		'email-address-validity-invalid',
 	),
 	'userrights' => array(
 		'userrights',
