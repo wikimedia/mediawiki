@@ -119,7 +119,7 @@ class Article {
 	 */
 	public function insertRedirect() {
 		// recurse through to only get the final target
-		$retval = Title::newFromRedirectRecurse( $this->getContent() );
+		$retval = Title::newFromRedirectRecurse( $this->getRawText() );
 		if ( !$retval ) {
 			return null;
 		}
@@ -3598,7 +3598,7 @@ class Article {
 		$edit->pst = $this->preSaveTransform( $text, $user );
 		$edit->popts = $this->getParserOptions( true );
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
-		$edit->oldText = $this->getContent();
+		$edit->oldText = $this->getRawText();
 
 		$this->mPreparedEdit = $edit;
 
