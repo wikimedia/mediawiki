@@ -21,7 +21,6 @@ class Article {
 	var $mContent;                    // !<
 	var $mContentLoaded = false;      // !<
 	var $mCounter = -1;               // !< Not loaded
-	var $mCurID = -1;                 // !< Not loaded
 	var $mDataLoaded = false;         // !<
 	var $mForUpdate = false;          // !<
 	var $mGoodAdjustment = 0;         // !<
@@ -224,7 +223,7 @@ class Article {
 		$this->mDataLoaded    = false;
 		$this->mContentLoaded = false;
 
-		$this->mCurID = $this->mUser = $this->mCounter = -1; # Not loaded
+		$this->mUser = $this->mCounter = -1; # Not loaded
 		$this->mRedirectedFrom = null; # Title object if set
 		$this->mRedirectTarget = null; # Title object if set
 		$this->mUserText =
