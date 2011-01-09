@@ -91,6 +91,7 @@
 		<simpleContent>
 			<extension base="string">
 				<attribute name="key" type="integer" />
+				<attribute name="case" type="mw:CaseType" />
 			</extension>
 		</simpleContent>
 	</complexType>
@@ -160,6 +161,10 @@
 				<attribute ref="xml:space" use="optional" default="preserve" />
 				<!-- This allows deleted=deleted on non-empty elements, but XSD is not omnipotent -->
 				<attribute name="deleted" use="optional" type="mw:DeletedFlagType"/>	
+				<!-- This isn't a good idea; we should be using "ID" instead of "NMTOKEN" -->
+				<!-- However, "NMTOKEN" is strictest definition that is both compatible with existing -->
+				<!-- usage ([0-9]+) and with the "ID" type. -->
+				<attribute name="id" type="NMTOKEN"/>
 			</extension>
 		</simpleContent>
 	</complexType>
