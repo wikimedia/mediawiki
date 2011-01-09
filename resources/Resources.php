@@ -358,6 +358,7 @@ return array(
 		'dependencies' => 'mediawiki.util',
 	),
 	'mediawiki.special.preferences' => array(
+		'messages' => array( 'email-address-validity-valid', 'email-address-validity-invalid' ),
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
 	),

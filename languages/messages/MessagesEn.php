@@ -1857,6 +1857,10 @@ You can also choose to let others contact you through your user or talk page wit
 'prefs-displaywatchlist'        => 'Display options',
 'prefs-diffs'                   => 'Diffs',
 
+# User preference: email validation using JQuery
+'email-address-validity-valid'           => 'Looks valid',
+'email-address-validity-invalid'         => 'Valid address required!',
+
 # User rights
 'userrights'                     => 'User rights management',
 'userrights-summary'             => '', # do not translate or duplicate this message to other languages
