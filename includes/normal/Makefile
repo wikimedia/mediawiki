@@ -5,8 +5,8 @@
 ## when the data was generated from a previous version.
 #BASE=http://www.unicode.org/Public/UNIDATA
 
-# Explicitly using Unicode 5.1
-BASE=http://www.unicode.org/Public/5.1.0/ucd
+# Explicitly using Unicode 6.0
+BASE=http://www.unicode.org/Public/6.0.0/ucd
 
 # Can override to php-cli or php5 or whatevah
 PHP=php
