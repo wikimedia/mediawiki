@@ -238,14 +238,24 @@ class MWException extends Exception {
 
 		$title = Html::element( 'title', null, $this->getPageTitle() );
 
-		$left = $wgLang->alignStart();
-		$right = $wgLang->alignEnd();
+		$left = 'left';
+		$right = 'right';
+		$dir = 'ltr';
+		$code = 'en';
+
+		if ( $this->useMessageCache() ) {
+			$left = $wgLang->alignStart();
+			$right = $wgLang->alignEnd();
+			$dir = $wgLang->getDir();
+			$code = $wgLang->getCode();
+		}
+
 		$header = Html::element( 'img', array(
 			'src' => $wgLogo,
 			'style' => "float: $left; margin-$right: 1em;",
 			'alt' => '' ), $this->getPageTitle() );
 
-		$attribs = array( 'dir' => $wgLang->getDir(), 'lang' => $wgLang->getCode() );
+		$attribs = array( 'dir' => $dir, 'lang' => $code );
 
 		return
 			Html::htmlHeader( $attribs ) .
