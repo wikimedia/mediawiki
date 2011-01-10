@@ -5037,14 +5037,7 @@ $wgAPIMaxUncachedDiffs = 1;
 $wgAPIRequestLog = false;
 
 /**
- * Cache the API help text for up to an hour. Disable this during API
- * debugging and development
- */
-$wgAPICacheHelp = true;
-
-/**
- * Set the timeout for the API help text cache. Ignored if $wgAPICacheHelp
- * is false.
+ * Set the timeout for the API help text cache. If set to 0, caching disabled
  */
 $wgAPICacheHelpTimeout = 60*60;
 

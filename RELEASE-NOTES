@@ -33,6 +33,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Note that this feature should reduce parser cache fragmentation when enabled.
 * $wgMaxUploadSize may now be set to an array to specify the upload size limit 
   per upload type.
+* $wgAPICacheHelp added in 1.16 is now removed. To disable API help caching, set
+  $wgAPICacheHelpTimeout = 0;
 
 === New features in 1.18 ===
 * Added a special page, disabled by default, that allows users with the
@@ -93,6 +95,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 26483) add a iwtitles param to prop=iwlinks
 * (bug 26484) add a lltitles param to prop=langlinks
 * (bug 26480) add a pppageprops param to prop=pageprops
+* (bug 26650) Remove $wgAPICacheHelp in favour of $wgAPICacheHelpTimeout
 
 === Languages updated in 1.18 ===
 
