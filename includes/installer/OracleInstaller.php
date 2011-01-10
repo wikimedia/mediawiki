@@ -24,9 +24,10 @@ class OracleInstaller extends DatabaseInstaller {
 
 	protected $internalDefaults = array(
 		'_OracleDefTS' => 'USERS',
-		'_OracleTempTS' => 'TEMP',
-		'_OracleUseSysdba' => true
+		'_OracleTempTS' => 'TEMP'
 	);
+	
+	protected $useSysDBA = false;
 
 	public $minimumVersion = '9.0.1'; // 9iR1
 
@@ -92,6 +93,7 @@ class OracleInstaller extends DatabaseInstaller {
 		}
 
 		// Try to connect
+		$this->useSysDBA = true;
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
@@ -110,13 +112,13 @@ class OracleInstaller extends DatabaseInstaller {
 	public function getConnection() {
 		$status = Status::newGood();
 		try {
-			if ( $this->getVar( '_OracleUseSysdba' ) ) {
+			if ( $this->useSysDBA ) {
 				$this->db = new DatabaseOracle(
 					$this->getVar( 'wgDBserver' ),
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
 					$this->getVar( 'wgDBname' ),
-					DBO_SYSDBA,
+					DBO_SYSDBA | DBO_DDLMODE,
 					$this->getVar( 'wgDBprefix' )
 				);
 			} else {
@@ -147,17 +149,15 @@ class OracleInstaller extends DatabaseInstaller {
 	public function preInstall() {
 		# Add our user callback to installSteps, right before the tables are created.
 		$callback = array(
-			array(
-				'name' => 'user',
-				'callback' => array( $this, 'setupUser' ),
-			)
+			'name' => 'user',
+			'callback' => array( $this, 'setupUser' )
 		);
 		$this->parent->addInstallStep( $callback, 'database' );
 	}
 
 
 	public function setupDatabase() {
-		$this->parent->setVar( '_OracleUseSysdba', false );
+		$this->useSysDBA = false;
 		$status = Status::newGood();
 		return $status;
 	}
@@ -168,6 +168,8 @@ class OracleInstaller extends DatabaseInstaller {
 		if ( !$this->getVar( '_CreateDBAccount' ) ) {
 			return Status::newGood();
 		}
+
+		$this->useSysDBA = true;
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
@@ -180,6 +182,7 @@ class OracleInstaller extends DatabaseInstaller {
 			 */
 			$GLOBALS['_OracleDefTS'] = $this->getVar( '_OracleDefTS' );
 			$GLOBALS['_OracleTempTS'] = $this->getVar( '_OracleTempTS' );
+			$this->db->setFlag( DBO_DDLMODE );
 			$error = $this->db->sourceFile( "$IP/maintenance/oracle/user.sql" );
 			if ( $error !== true || !$this->db->selectDB( $this->getVar( 'wgDBuser' ) ) ) {
 				$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ), $error );
