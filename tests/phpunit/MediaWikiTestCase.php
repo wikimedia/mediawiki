@@ -18,7 +18,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	
 	protected $supportedDBs = array(
 		'mysql',
-		'sqlite'
+		'sqlite',
+		'oracle'
 	);
 
 	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
@@ -155,7 +156,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		
 		foreach ( $tables as $table ) {
 			try {
-				$sql = $this->db->getType() == 'oracle' ? "DROP TABLE $table DROP CONSTRAINTS" : "DROP TABLE `$table`";
+				$sql = $this->db->getType() == 'oracle' ? "DROP TABLE $table CASCADE CONSTRAINTS PURGE" : "DROP TABLE `$table`";
 				$this->db->query( $sql, __METHOD__ );
 			} catch( Exception $e ) {
 			}

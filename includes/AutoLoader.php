@@ -397,7 +397,6 @@ $wgAutoloadLocalClasses = array(
 	'LoadMonitor_MySQL' => 'includes/db/LoadMonitor.php',
 	'MySQLField' => 'includes/db/DatabaseMysql.php',
 	'MySQLMasterPos' => 'includes/db/DatabaseMysql.php',
-	'ORABlob' => 'includes/db/DatabaseOracle.php',
 	'ORAField' => 'includes/db/DatabaseOracle.php',
 	'ORAResult' => 'includes/db/DatabaseOracle.php',
 	'PostgresField' => 'includes/db/DatabasePostgres.php',
