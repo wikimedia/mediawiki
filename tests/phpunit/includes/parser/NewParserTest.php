@@ -541,13 +541,7 @@ class NewParserTest extends MediaWikiTestCase {
 			
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	//Various getter functions
 	
 	/**
