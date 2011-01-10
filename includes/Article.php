@@ -2211,7 +2211,7 @@ class Article {
 				$status->warning( 'edit-no-change' );
 				$revision = null;
 				// Keep the same revision ID, but do some updates on it
-				$revisionId = $this->getRevIdFetched();
+				$revisionId = $this->getLatest();
 				// Update page_touched, this is usually implicit in the page update
 				// Other cache updates are done in onArticleEdit()
 				$this->mTitle->invalidateCache();
