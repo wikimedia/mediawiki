@@ -551,13 +551,14 @@ class LanguageConverter {
 	public function convertTitle( $title ) {
 		$variant = $this->getPreferredVariant();
 		$index = $title->getNamespace();
-		if ( $index === NS_MAIN ) {
+		if ( $index === NS_MAIN || $index === NS_SPECIAL ) {
 			$text = '';
 		} else {
 			// first let's check if a message has given us a converted name
 			$nsConvKey = 'conversion-ns' . $index;
-			if ( !wfEmptyMsg( $nsConvKey ) ) {
-				$text = wfMsgForContentNoTrans( $nsConvKey );
+			$nsLocalText = wfMsgForContentNoTrans( $nsConvKey );
+			if ( !wfEmptyMsg( $nsConvKey, $nsLocalText ) ) {
+				$text = $nsLocalText;
 			} else {
 				// the message does not exist, try retrieve it from the current
 				// variant's namespace names.
