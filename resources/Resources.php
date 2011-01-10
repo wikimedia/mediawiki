@@ -12,14 +12,14 @@ return array(
 	/* Skins */
 
 	'skins.vector' => array(
-		'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) )
+		'styles' => array( 'skins/vector/screen.css' => array( 'media' => 'screen' ) ),
 	),
 	'skins.monobook' => array(
 		'styles' => array(
 			'skins/monobook/main.css' => array( 'media' => 'screen' ),
 			// Honor $wgHandheldStyle. This is kind of evil
-			//$GLOBALS['wgHandheldStyle'] => array( 'media' => 'handheld' )
-		)
+			//$GLOBALS['wgHandheldStyle'] => array( 'media' => 'handheld' ),
+		),
 	),
 
 	/* jQuery */
@@ -32,48 +32,48 @@ return array(
 	/* jQuery Plugins */
 
 	'jquery.async' => array(
-		'scripts' => 'resources/jquery/jquery.async.js'
+		'scripts' => 'resources/jquery/jquery.async.js',
 	),
 	'jquery.autoEllipsis' => array(
 		'scripts' => 'resources/jquery/jquery.autoEllipsis.js',
 		'dependencies' => 'jquery.highlightText',
 	),
 	'jquery.checkboxShiftClick' => array(
-		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js'
+		'scripts' => 'resources/jquery/jquery.checkboxShiftClick.js',
 	),
 	'jquery.client' => array(
 		'scripts' => 'resources/jquery/jquery.client.js',
 	),
 	'jquery.collapsibleTabs' => array(
-		'scripts' => 'resources/jquery/jquery.collapsibleTabs.js'
+		'scripts' => 'resources/jquery/jquery.collapsibleTabs.js',
 	),
 	'jquery.colorUtil' => array(
-		'scripts' => 'resources/jquery/jquery.colorUtil.js'
+		'scripts' => 'resources/jquery/jquery.colorUtil.js',
 	),
 	'jquery.color' => array(
 		'scripts' => 'resources/jquery/jquery.color.js',
-		'dependencies' => 'jquery.colorUtil'
+		'dependencies' => 'jquery.colorUtil',
 	),
 	'jquery.cookie' => array(
-		'scripts' => 'resources/jquery/jquery.cookie.js'
+		'scripts' => 'resources/jquery/jquery.cookie.js',
 	),
 	'jquery.delayedBind' => array(
-		'scripts' => 'resources/jquery/jquery.delayedBind.js'
+		'scripts' => 'resources/jquery/jquery.delayedBind.js',
 	),
 	'jquery.expandableField' => array(
-		'scripts' => 'resources/jquery/jquery.expandableField.js'
+		'scripts' => 'resources/jquery/jquery.expandableField.js',
 	),
 	'jquery.highlightText' => array(
-		'scripts' => 'resources/jquery/jquery.highlightText.js'
+		'scripts' => 'resources/jquery/jquery.highlightText.js',
 	),
 	'jquery.hoverIntent' => array(
-		'scripts' => 'resources/jquery/jquery.hoverIntent.js'
+		'scripts' => 'resources/jquery/jquery.hoverIntent.js',
 	),
 	'jquery.placeholder' => array(
-		'scripts' => 'resources/jquery/jquery.placeholder.js'
+		'scripts' => 'resources/jquery/jquery.placeholder.js',
 	),
 	'jquery.localize' => array(
-		'scripts' => 'resources/jquery/jquery.localize.js'
+		'scripts' => 'resources/jquery/jquery.localize.js',
 	),
 	'jquery.makeCollapsible' => array(
 		'scripts' => 'resources/jquery/jquery.makeCollapsible.js',
@@ -85,10 +85,10 @@ return array(
 		'styles' => 'resources/jquery/jquery.suggestions.css',
 	),
 	'jquery.tabIndex' => array(
-		'scripts' => 'resources/jquery/jquery.tabIndex.js'
+		'scripts' => 'resources/jquery/jquery.tabIndex.js',
 	),
 	'jquery.textSelection' => array(
-		'scripts' => 'resources/jquery/jquery.textSelection.js'
+		'scripts' => 'resources/jquery/jquery.textSelection.js',
 	),
 	'jquery.tipsy' => array(
 		'scripts' => 'resources/jquery.tipsy/jquery.tipsy.js',
@@ -130,7 +130,7 @@ return array(
 	'jquery.ui.droppable' => array(
 		'scripts' => 'resources/jquery.ui/jquery.ui.droppable.js',
 		'dependencies' => array(
-			'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget', 'jquery.ui.draggable'
+			'jquery.ui.core', 'jquery.ui.mouse', 'jquery.ui.widget', 'jquery.ui.draggable',
 		),
 	),
 	'jquery.ui.resizable' => array(
@@ -237,7 +237,7 @@ return array(
 			'vi' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-vi.js',
 			'zh-cn' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-zh-CN.js',
 			'zh-hk' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-zh-HK.js',
-			'zh-tw' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-zh-TW.js'
+			'zh-tw' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-zh-TW.js',
 		),
 	),
 	'jquery.ui.dialog' => array(
@@ -430,8 +430,7 @@ return array(
 	'mediawiki.legacy.ajax' => array(
 		'scripts' => 'skins/common/ajax.js',
 		'messages' => array(
-			'watch', 'unwatch', 'watching', 'unwatching', 'tooltip-ca-watch',
-			'tooltip-ca-unwatch'
+			'watch', 'unwatch', 'watching', 'unwatching', 'tooltip-ca-watch', 'tooltip-ca-unwatch',
 		),
 		'dependencies' => 'mediawiki.legacy.wikibits',
 	),
