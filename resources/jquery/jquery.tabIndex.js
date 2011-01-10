@@ -1,27 +1,28 @@
 /**
  * Finds the lowerst tabindex in use within a selection
  * 
- * @return Integer of lowest tabindex on the page
+ * @return number Lowest tabindex on the page
  */
-jQuery.fn.firstTabIndex = function() {
+$.fn.firstTabIndex = function() {
 	var minTabIndex = 0;
-	jQuery(this).find( '[tabindex]' ).each( function() {
-		var tabIndex = parseInt( jQuery(this).attr( 'tabindex' ) );
+	$(this).find( '[tabindex]' ).each( function() {
+		var tabIndex = parseInt( $(this).attr( 'tabindex' ) );
 		if ( tabIndex > minTabIndex ) {
 			minTabIndex = tabIndex;
 		}
 	} );
 	return minTabIndex;
 };
+
 /**
  * Finds the highest tabindex in use within a selection
  * 
- * @return Integer of highest tabindex on the page
+ * @return number Highest tabindex on the page
  */
-jQuery.fn.lastTabIndex = function() {
+$.fn.lastTabIndex = function() {
 	var maxTabIndex = 0;
-	jQuery(this).find( '[tabindex]' ).each( function() {
-		var tabIndex = parseInt( jQuery(this).attr( 'tabindex' ) );
+	$(this).find( '[tabindex]' ).each( function() {
+		var tabIndex = parseInt( $(this).attr( 'tabindex' ) );
 		if ( tabIndex > maxTabIndex ) {
 			maxTabIndex = tabIndex;
 		}

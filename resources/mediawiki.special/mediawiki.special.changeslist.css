@@ -4,18 +4,18 @@
 
 table.mw-enhanced-rc {
 	background: none;
-	border:0;
-	border-spacing:0;
+	border: 0;
+	border-spacing: 0;
 }
 
 table.mw-enhanced-rc th, table.mw-enhanced-rc td {
-	padding:0;
-	vertical-align:top;
+	padding: 0;
+	vertical-align: top;
 }
 
 td.mw-enhanced-rc {
-	white-space:nowrap;
-	font-family:monospace;
+	white-space: nowrap;
+	font-family: monospace;
 }
 
 .mw-enhanced-rc-time {
@@ -32,7 +32,7 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 }
 
 /* If JS is disabled, the arrow is still needed
-   for spacing, but ideally shouldn't be shown    */
+   for spacing, but ideally shouldn't be shown */
 .mw-enhanced-rc .mw-rc-openarrow {
 	visibility: hidden;
 }
