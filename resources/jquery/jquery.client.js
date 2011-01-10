@@ -1,7 +1,7 @@
-/*
+/**
  * User-agent detection
  */
-jQuery.client = new ( function() {
+$.client = new ( function() {
 
 	/* Private Members */
 
@@ -166,8 +166,8 @@ jQuery.client = new ( function() {
 	 * @return Boolean true if browser known or assumed to be supported, false if blacklisted
 	 */
 	this.test = function( map ) {
-		var profile = jQuery.client.profile();
-		var dir = jQuery( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
+		var profile = $.client.profile();
+		var dir = $( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
 		// Check over each browser condition to determine if we are running in a compatible client
 		if ( typeof map[dir] !== 'object' || map[dir][profile.name] !== 'object' ) {
 			// Unknown, so we assume it's working

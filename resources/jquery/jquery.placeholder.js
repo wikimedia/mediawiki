@@ -9,7 +9,7 @@
  * @license GPL v2
  */
 
-jQuery.fn.placeholder = function() {
+$.fn.placeholder = function() {
 
 	return this.each( function() {
 
@@ -19,7 +19,7 @@ jQuery.fn.placeholder = function() {
 		}
 
 		var placeholder = this.getAttribute('placeholder');
-		var $input = jQuery(this);
+		var $input = $(this);
 
 		// Show initially, if empty
 		if ( this.value === '' || this.value == placeholder ) {

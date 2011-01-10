@@ -1,7 +1,6 @@
 /**
  * These plugins provide extra functionality for interaction with textareas.
  */
-( function( $ ) {
 $.fn.textSelection = function( command, options ) {
 var fn = {
 /**
@@ -400,5 +399,3 @@ scrollToCaretPosition: function( options ) {
 	}
 	return retval;
 };
-
-} )( jQuery );
