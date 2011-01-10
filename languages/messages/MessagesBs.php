@@ -1421,6 +1421,10 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'prefs-displaywatchlist'        => 'Postavke izgleda',
 'prefs-diffs'                   => 'Razlike',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Izgleda valjano',
+'email-address-validity-invalid' => 'Neophodna valjana adresa!',
+
 # User rights
 'userrights'                   => 'Postavke korisničkih prava',
 'userrights-lookup-user'       => 'Menadžment korisničkih grupa',

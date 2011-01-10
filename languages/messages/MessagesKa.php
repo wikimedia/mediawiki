@@ -352,7 +352,7 @@ $messages = array(
 'jumptosearch'      => 'ძიება',
 'view-pool-error'   => 'უკაცრავად, მაგრამ სერვერები გადატვირთულია.
 შემოსულია ამ გვერდის სანახავად ძალიან ბევრი მოთხოვნა.
-გთხოვთ დაელოდოთ და გაიმეროთ მოთხოვნა ცოტა მოგვიანებით გაიმეორეთ.
+გთხოვთ დაელოდოთ და გაიმეროთ მოთხოვნა ცოტა მოგვიანებით.
 
 $1',
 'pool-timeout'      => 'ბლოკირების ლოდინის დრო ამოიწურა',
@@ -649,6 +649,7 @@ $1 საათში.',
 'nowiki_tip'      => 'ვიკის ფორმატირების იგნორირება',
 'image_sample'    => 'მაგალითი.jpg',
 'image_tip'       => 'ჩასმული სურათი',
+'media_sample'    => 'მაგალითი.ogg',
 'media_tip'       => 'ბმული ფაილზე',
 'sig_tip'         => 'თქვენი ხელმოწერა და დრო',
 'hr_tip'          => 'ჰორიზონტალური ხაზი (ნუ გამოიყენებთ ხშირად)',
@@ -1556,6 +1557,13 @@ $1',
 'upload-unknown-size'       => 'უცნობი ზომა',
 'upload-http-error'         => 'მოხდა HTTP შეცდომა: $1',
 
+# Special:UploadStash
+'uploadstash'          => 'ფარული ატვირთვა',
+'uploadstash-clear'    => 'დაფარული ფაილების გასუფთავება',
+'uploadstash-nofiles'  => 'თქვენ არ გაქვთ დაფარული ფაილები.',
+'uploadstash-errclear' => 'ფაილების გასუფთავება ვერ მოხერხდა.',
+'uploadstash-refresh'  => 'ფაილების სიის განახლება',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'მოქმედება აკრძალულია',
 'img-auth-nopathinfo'   => 'არ არის PATH_INFO.
@@ -1760,6 +1768,8 @@ $1',
 'nmembers'                => '$1 წევრი',
 'nrevisions'              => '$1 რედაქტირება',
 'nviews'                  => '$1 ჩვენება',
+'nimagelinks'             => 'გამოიყენება $1 {{PLURAL:$1|გვერდზე}}',
+'ntransclusions'          => 'გამოიყენება $1 {{PLURAL:$1|გვერდზე}}',
 'specialpage-empty'       => 'ეს გვერდი ცარიელია.',
 'lonelypages'             => 'ობოლი გვერდები',
 'lonelypagestext'         => 'შემდეგი გვერდები არ არის დაკავშირებული ან ბმული სხვა გვერდებიდან {{SITENAME}}-ში არ მისამართდება.',
@@ -2214,6 +2224,7 @@ $1',
 ქვემოთ მოყვანილია ამონაწერი წაშლათა ჟურნალიდან:',
 'sp-contributions-search'              => 'წვლილის ძიება',
 'sp-contributions-username'            => 'IP მისამართი ან მომხმარებლის სახელი:',
+'sp-contributions-toponly'             => 'აჩვენე მხოლოდ ბოლო ვერსიები',
 'sp-contributions-submit'              => 'ძიება',
 
 # What links here
@@ -2430,6 +2441,7 @@ $1',
 'immobile-source-page'         => 'ამ გვეერდის გადატანა შეუძლებელია.',
 'immobile-target-page'         => 'შეუძლებელია მოცემულ სახელზე გადატანა.',
 'imagenocrossnamespace'        => 'შეუძლებელია ფაილს მიეცეს სახელი სახელთა სხვა სივრციდან',
+'nonfile-cannot-move-to-file'  => 'შეუძლებელია არაფაილების გადატანა ფაილის სახელთა სივრცეში',
 'imagetypemismatch'            => 'ფაილს ახალი გაფართოება არ შეესაბამება მის ტიპს',
 'imageinvalidfilename'         => 'ფაილის საბოლოო სახელი შეცდომას შეიცავს',
 'fix-double-redirects'         => 'ძველ სათაურზე მიმთითებელი გადამისამართების ავტომატურად გასწორება',
@@ -2645,6 +2657,12 @@ $1',
 'numwatchers'    => 'დამკვირვებელთა რაოდენობა: $1',
 'numauthors'     => 'განსხვავებულ ავტორთა რაოდენობა (სტატია): $1',
 'numtalkauthors' => 'სხვადასხვა ავტორთა რაოდენობა (განხილვის გვერდი): $1',
+
+# Skin names
+'skinname-standard'  => 'კლასიკური',
+'skinname-nostalgia' => 'ნოსტალგია',
+'skinname-modern'    => 'თანამედროვე',
+'skinname-vector'    => 'ვექტორული',
 
 # Math options
 'mw_math_png'    => 'მუდამ გამოიყენე PNG',
@@ -3195,6 +3213,7 @@ $1',
 'version-hook-subscribedby'        => 'ჩაწერილია',
 'version-version'                  => '(ვერსია $1)',
 'version-license'                  => 'ლიცენზია',
+'version-poweredby-credits'        => "ეს ვიკი მუშაობს '''[http://www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
 'version-poweredby-others'         => 'სხვები',
 'version-software'                 => 'დაინსტალირებული პროგრამული უზრუნველყოფა',
 'version-software-product'         => 'პროდუქტი',
@@ -3292,6 +3311,10 @@ $1',
 'htmlform-submit'              => 'შენახვა',
 'htmlform-reset'               => 'ცვლილებების გაუქმება',
 'htmlform-selectorother-other' => 'სხვა',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 სრული ტექსტის ძიების მხარდაჭერით',
+'sqlite-no-fts'  => '$1 სრული ტექსტის ძიების მხარდაჭერის გარეშე',
 
 # Special:DisableAccount
 'disableaccount'             => 'მომხმარებლის ანგარიშის გამორთვა',

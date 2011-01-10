@@ -608,6 +608,10 @@ Ekya 'Memba ono musindikire e-mail' toosobole okukikozesa okugyako nga mu [[Spec
 <br />
 Kakano endagiriro eya 'IP' gy'oliko eri $3, yo ennamba eya natti gyebakusibye eri #$5.<br />
 Gw'ogenda okwogera naye ku natti mutegeeze ensonga zonna ezinnyonyodwa wano.",
+'blockednoreason'                  => 'tebawadde ensonga',
+'blockedoriginalsource'            => "Ensibuko ya '''$1''' eragidwa wano awaddako:",
+'blockededitsource'                => "Ebigambo ebya '''by'okyusizza''' ku '''$1''' biragidwa wano awaddako:",
+'whitelistedittitle'               => 'Okukyusa ku bino, wetaaga okuba nga oyingidde',
 'loginreqlink'                     => 'Yingira',
 'accmailtitle'                     => 'Ekigambo ekikuumi kisindikiddwa',
 'accmailtext'                      => "Ekigambo ekikuumi ekya akawunti empya [[User talk:$1|$1]] kisindikiddwa ku $2.

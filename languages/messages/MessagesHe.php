@@ -8,6 +8,7 @@
  * @file
  *
  * @author Agbad
+ * @author Amire80
  * @author Drorsnir
  * @author Ijon
  * @author Rotem Dan (July 2003)
@@ -1470,6 +1471,10 @@ $1",
 'prefs-displaysearchoptions'    => 'אפשרויות תצוגה',
 'prefs-displaywatchlist'        => 'אפשרויות תצוגה',
 'prefs-diffs'                   => 'הבדלים בין גרסאות',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'נראית תקינה',
+'email-address-validity-invalid' => 'יש להזין כתובת תקינה!',
 
 # User rights
 'userrights'                   => 'ניהול הרשאות משתמש',
@@ -2984,7 +2989,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'math_unknown_function' => 'פונקציה לא מוכרת',
 'math_lexing_error'     => 'שגיאת לקסינג',
 'math_syntax_error'     => 'שגיאת תחביר',
-'math_image_error'      => 'ההמרה ל־PNG נכשלה; אנא בדקו אם התקנתם נכון את latex, את dvips, את gs ואת convert.',
+'math_image_error'      => 'ההמרה ל־PNG נכשלה; אנא בדקו אם התקנתם נכון את latex ואת dvipng (או צירוף של dvips‏, gs ו־convert)',
 'math_bad_tmpdir'       => 'התוכנה לא הצליחה לכתוב או ליצור את הספרייה הזמנית של המתמטיקה',
 'math_bad_output'       => 'התוכנה לא הצליחה לכתוב או ליצור את ספריית הפלט של המתמטיקה',
 'math_notexvc'          => 'קובץ בר־ביצוע של texvc אינו זמין; אנא צפו בקובץ math/README למידע על ההגדרות.',

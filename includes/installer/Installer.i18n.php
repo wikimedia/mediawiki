@@ -831,7 +831,7 @@ $messages['be'] = array(
 	'config-show-help' => 'Дапамога',
 );
 
-/** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
+/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
  * @author Wizardist
@@ -1057,9 +1057,9 @@ $1
 	'config-invalid-db-server-oracle' => 'Няслушнае TNS базы зьвестак «$1».
 Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня(_) і кропкі (.).',
 	'config-invalid-db-name' => 'Няслушная назва базы зьвестак «$1».
-Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9) і сымбалі падкрэсьліваньня(_).',
+Назва можа ўтрымліваць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня(_) і працяжнікі (-).',
 	'config-invalid-db-prefix' => 'Няслушны прэфікс базы зьвестак «$1».
-Ён можа зьмяшчаць толькі ASCII-літары (a-z, A-Z), лічбы (0-9) і сымбалі падкрэсьліваньня (_).',
+Ён можа зьмяшчаць толькі ASCII-літары (a-z, A-Z), лічбы (0-9), сымбалі падкрэсьліваньня (_) і працяжнікі (-).',
 	'config-connection-error' => '$1.
 
 Праверце хост, імя карыстальніка і пароль ніжэй і паспрабуйце зноў.',
@@ -1167,6 +1167,7 @@ chmod a+w $3</pre>',
 	'config-admin-email-help' => 'Увядзіце тут адрас электроннай пошты, каб атрымліваць электронныя лісты ад іншых удзельнікаў вікі, скідваць Ваш пароль і атрымліваць абвешчаньні пра зьмены старонак, якія знаходзяцца ў Вашым сьпісе назіраньня.',
 	'config-admin-error-user' => 'Унутраная памылка падчас стварэньня рахунку адміністратара зь іменем «<nowiki>$1</nowiki>».',
 	'config-admin-error-password' => 'Унутраная памылка падчас устаноўкі паролю для адміністратара «<nowiki>$1</nowiki>»: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Вы ўвялі няслушны адрас электроннай пошты',
 	'config-subscribe' => 'Падпісацца на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce сьпіс распаўсюджаньня навінаў пра зьяўленьне новых вэрсіяў].',
 	'config-subscribe-help' => 'Гэта ня вельмі актыўны сьпіс распаўсюджаньня навінаў пра зьяўленьне новых вэрсіяў, які ўключаючы важныя навіны пра бясьпеку.
 Вам неабходна падпісацца на яго і абнавіць Вашае ўсталяваньне MediaWiki, калі зьявяцца новыя вэрсіі.',
@@ -1273,6 +1274,9 @@ chmod a+w $3</pre>',
 Упэўніцеся, што карыстальнік «$1» можа пісаць у схему «$2».',
 	'config-install-pg-commit' => 'Захаваньне зьменаў',
 	'config-pg-no-plpgsql' => 'Вам неабходна ўсталяваць падтрымку мовы PL/pgSQL у базе зьвестак $1',
+	'config-install-pg-ts2' => 'Праверка tsearch2',
+	'config-install-pg-ts2-failed' => "'''ПАМЫЛКА''' tsearch2 павінен быць усталяваны ў базе зьвестак $1.
+Калі ласка, прачытайце [$2 гэтыя інструкцыі] ці запытайце на #postgresql на irc.freenode.net",
 	'config-install-user' => 'Стварэньне карыстальніка базы зьвестак',
 	'config-install-user-failed' => 'Немагчыма даць правы удзельніку «$1»: $2',
 	'config-install-tables' => 'Стварэньне табліцаў',
@@ -3874,9 +3878,9 @@ $messages['gsw'] = array(
 	'config-desc' => 'S MediaWiki-Inschtallationsprogramm',
 	'config-title' => 'MediaWiki $1 inschtalliere',
 	'config-information' => 'Information',
-	'config-localsettings-upgrade' => "'''Warnig:''' D Datei <code>LocalSettings.php</code> isch gfunde wore.
-Dyy Software cha aktualisiert wäre.
-Bitte dr Wärt vum Parameter <code>\$wgUpgradeKey</code> im Fäld aagee.",
+	'config-localsettings-upgrade' => "'''Warnig:''' E Datei <code>LocalSettings.php</code> isch gfunde wore.
+Fir d Aktualisierig vu dr däre Inschtallation, gib bitte dr Wärt vum Parameter <code>\$wgUpgradeKey</code> im Fäld unten yy.
+Du findsch dr Wärt in dr Datei LocalSettings.php.",
 	'config-localsettings-key' => 'Aktualisierigsschlissel:',
 	'config-localsettings-badkey' => 'Dr Aktualisierigsschlissel, wu du aagee hesch, isch falsch.',
 	'config-session-error' => 'Fähler bim Starte vu dr Sitzig: $1',
@@ -4200,9 +4204,9 @@ Změń je jenož, jeli wěš, štož činiš.',
 	'config-invalid-db-server-oracle' => 'Njepłaćiwa datowa banka TNS "$1".
 Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9), podsmužki (_) a dypki (.).',
 	'config-invalid-db-name' => 'Njepłaćiwe mjeno "$1" datoweje banki.
-Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
+Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9),a podsmužki (_) a wjazawki (-).',
 	'config-invalid-db-prefix' => 'Njepłaćiwy prefiks "$1" datoweje banki.
-Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9) a podsmužki (_).',
+Wužij jenož pismiki ASCII (a-z, A-Z), ličby (0-9), podsmužki (_) a wjazawki (-).',
 	'config-connection-error' => '$1.
 
 Skontroluj serwer, wužiwarske a hesło a spytaj hišće raz.',
@@ -4269,6 +4273,7 @@ Podaj druhe wužiwarske mjeno.',
 	'config-admin-email' => 'E-mejlowa adresa:',
 	'config-admin-error-user' => 'Interny zmylk při wutworjenju administratora z mjenom "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Interny zmylk při nastajenju hesła za administratora "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Sy njepłaćiwu e-mejlowu adresu zapodał.',
 	'config-subscribe' => '[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rozesyłansku lisćinu wo připowědźenjach nowych wersijow ].abonować',
 	'config-almost-done' => 'Sy skoro hotowy!
 Móžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.',
@@ -4310,9 +4315,14 @@ Zapodaj licencne mjeno manuelnje.',
 	'config-cc-not-chosen' => 'Wubjer licencu Creative Commons a klikń na "dale".',
 	'config-advanced-settings' => 'Rozšěrjena konfiguraćija',
 	'config-cache-options' => 'Nastajenja za objektowe pufrowanje:',
+	'config-cache-none' => 'Žane pufrowanje (žana funkcionalnosć so njewotstronja, ale spěšnosć móže so na wjetšich wikijowych sydłach wobwliwować)',
 	'config-cache-accel' => 'Objektowe pufrowanje PHP (APC, eAccelerator, XCache abo WinCache)',
+	'config-cache-memcached' => 'Memcached wužiwać (wužaduje sej přidatnu instalaciju a konfiguraciju)',
 	'config-memcached-servers' => 'Serwery memcached:',
 	'config-extensions' => 'Rozšěrjenja',
+	'config-extensions-help' => 'Rozšěrjenja podate horjeka buchu w twojim zapisu <code>./extensions</code> namakane.
+
+To móže sej přidatnu konfiguraciju wužadać, ale móžeš je nětko zmóžnić.',
 	'config-install-alreadydone' => "'''Warnowanje:''' Zda so, zo sy hižo MediaWiki instalował a pospytuješ jón znowa instalować.
 Prošu pokročuj z přichodnej stronu.",
 	'config-install-step-done' => 'dokónčene',
@@ -4323,6 +4333,7 @@ Prošu pokročuj z přichodnej stronu.",
 Zawěsć, zo wužiwar "$1" móže do šemy "$2" pisać.',
 	'config-install-pg-commit' => 'Změny so wotesyłaja',
 	'config-pg-no-plpgsql' => 'Dyrbiš rěč PL/pgSQL w datowej bance $1 instalować',
+	'config-install-pg-ts2' => 'Pruwowanje za tsearch2',
 	'config-install-user' => 'Tworjenje wužiwarja datoweje banki',
 	'config-install-user-failed' => 'Prawo njeda so wužiwarjej "$1" dać: $2',
 	'config-install-tables' => 'Tworjenje tabelow',
@@ -4338,6 +4349,7 @@ Standardna lisćina sp přeskakuje.",
 Móžeš to manuelnje činić.",
 	'config-install-upgradekey' => 'Standardny aktualizacsiki kluč so wutworja',
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
+	'config-install-subscribe-fail' => 'Abonowanje "mediawiki-announce" njemóžno',
 	'config-install-mainpage' => 'Hłowna strona so ze standardnym wobsahom wutworja',
 	'config-install-mainpage-failed' => 'Powěsć njeda so zasunyć.',
 	'config-download-localsettings' => 'LocalSettings.php sćahnyć',
@@ -6295,8 +6307,10 @@ Dir kënnt MediWiki net installéieren.',
 	'config-no-uri' => "'''Feeler:''' Déi aktuell URI konnt net festgestallt ginn.
 Installatioun ofgebrach.",
 	'config-db-type' => 'Datebanktyp:',
+	'config-db-host-oracle' => 'Datebank-TNS:',
 	'config-db-wiki-settings' => 'Dës Wiki identifizéieren',
 	'config-db-name' => 'Numm vun der Datebank:',
+	'config-db-name-oracle' => 'Datebankschema:',
 	'config-db-install-account' => "Benotzerkont fir d'Installatioun",
 	'config-db-username' => 'Datebank-Benotzernumm:',
 	'config-db-password' => 'Passwuert vun der Datebank:',
@@ -6360,6 +6374,7 @@ Spezifizéiert en anere Benotzernumm.',
 	'config-admin-email' => 'E-Mailadress:',
 	'config-admin-error-user' => 'Interne Feeler beim uleeë vun engem Administrateur mam Numm "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Interne Feeler beim Setze vum Passwuert fir den Admin "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Dir hutt eng E-Mailadress aginn déi net valabel ass',
 	'config-subscribe' => "Sech op d'[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ukënnegunge vun neie Versiounen] abonnéieren.",
 	'config-almost-done' => "Dir sidd bal fäerdeg!
 Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki elo direkt installéieren.",
@@ -6371,6 +6386,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-profile-private' => 'Privat Wiki',
 	'config-license' => 'Copyright a Lizenz:',
 	'config-license-none' => 'Keng Lizenz ënnen op der Säit',
+	'config-license-pd' => 'Ëffentlechen Domaine',
 	'config-email-settings' => 'E-Mail-Astellungen',
 	'config-enable-email' => 'E-Mailen déi no bausse ginn aschalten',
 	'config-email-user' => 'Benotzer-op-Benotzer E-Mail aschalten',
@@ -6389,6 +6405,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-step-failed' => 'huet net fonctionnéiert',
 	'config-install-extensions' => 'Mat den Ereiderungen',
 	'config-install-database' => 'Datebank gëtt installéiert',
+	'config-pg-no-plpgsql' => "Fir d'Datebank $1 muss d'Datebanksprooch PL/pgSQL installéiert ginn",
 	'config-install-user' => 'Datebank Benotzer uleeën',
 	'config-install-tables' => 'Tabelle ginn ugeluecht',
 	'config-install-interwiki' => 'Standard Interwiki-Tabell gëtt ausgefëllt',
@@ -8986,9 +9003,9 @@ Se a plataforma que pretende usar não está listada abaixo, siga as instruçõe
 	'config-invalid-db-server-oracle' => 'O TNS da base de dados, "$1", é inválido.
 Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e pontos (.) dos caracteres ASCII.',
 	'config-invalid-db-name' => 'O nome da base de dados, "$1",  é inválido.
-Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.',
+Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e hífens (-) dos caracteres ASCII.',
 	'config-invalid-db-prefix' => 'O prefixo da base de dados, "$1",  é inválido.
-Use só letras (a-z, A-Z), algarismos (0-9) e sublinhados (_) dos caracteres ASCII.',
+Use só letras (a-z, A-Z), algarismos (0-9), sublinhados (_) e hífens (-) dos caracteres ASCII.',
 	'config-connection-error' => '$1.
 
 Verifique o servidor, o nome do utilizador e a palavra-chave abaixo e tente novamente.',
@@ -9095,6 +9112,7 @@ Introduza um nome de utilizador diferente.',
 	'config-admin-email-help' => 'Introduza aqui um correio electrónico que lhe permita receber mensagens de outros utilizadores da wiki, reiniciar a sua palavra-chave e receber notificações de alterações às suas páginas vigiadas.',
 	'config-admin-error-user' => 'Ocorreu um erro interno ao criar um administrador com o nome "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Ocorreu um erro interno ao definir uma palavra-chave para o administrador "<nowiki>$1</nowiki>": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Introduziu um correio electrónico inválido',
 	'config-subscribe' => 'Subscreva a [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de divulgação de anúncios de lançamento].',
 	'config-subscribe-help' => 'Esta é uma lista de divulgação de baixo volume para anúncios de lançamento de versões novas, incluindo anúncios de segurança importantes.
 Deve subscrevê-la e actualizar a sua instalação MediaWiki quando são lançadas versões novas.',
@@ -9202,6 +9220,9 @@ Passe para a próxima página, por favor.",
 Certifique-se de que o utilizador "$1" pode escrever no esquema \'\'(schema)\'\' "$2".',
 	'config-install-pg-commit' => 'A gravar as alterações',
 	'config-pg-no-plpgsql' => 'É preciso instalar a linguagem PL/pgSQL na base de dados $1',
+	'config-install-pg-ts2' => 'A verificar a presença de tsearch2',
+	'config-install-pg-ts2-failed' => "'''INSUCESSO''' tsearch2 tem de ser instalado na base de dados $1.
+Leia [$2 estas instruções] ou peça ajuda no canal #postgresql em irc.freenode.net, por favor.",
 	'config-install-user' => 'A criar o utilizador da base de dados',
 	'config-install-user-failed' => 'A atribuição das permissões ao utilizador "$1" falhou: $2',
 	'config-install-tables' => 'A criar as tabelas',
@@ -9217,6 +9238,7 @@ O preenchimento padrão desta tabela será saltado.",
 Considere alterá-la manualmente.",
 	'config-install-upgradekey' => 'A gerar a chave padrão de actualização',
 	'config-install-sysop' => 'A criar a conta de administrador',
+	'config-install-subscribe-fail' => 'Não foi possível subscrever a lista mediawiki-announce',
 	'config-install-mainpage' => 'A criar a página principal com o conteúdo padrão.',
 	'config-install-mainpage-failed' => 'Não foi possível inserir a página principal.',
 	'config-install-done' => "'''Parabéns!'''
@@ -9596,7 +9618,7 @@ $1
 	'config-invalid-db-name' => 'Неверное имя базы данных «$1».
 Используйте только ASCII-символы (a-z, A-Z), цифры (0-9), знак подчёркивания (_) и дефис(-).',
 	'config-invalid-db-prefix' => 'Неверный префикс базы данных «$1».
-Используйте только ASCII-символы (a-z, A-Z), цифры(0-9), знак подчёркивания(_) и дефис(-).',
+Используйте только буквы ASCII (a-z, A-Z), цифры (0-9), знак подчёркивания (_) и дефис (-).',
 	'config-connection-error' => '$1.
 
 Проверьте хост, имя пользователя и пароль и попробуйте ещё раз.',
@@ -9703,6 +9725,7 @@ chmod a+w $3</pre>',
 	'config-admin-email-help' => 'Введите адрес электронной почты, чтобы получать сообщения от других пользователей вики, иметь возможность восстановить пароль, а также получать уведомления об изменениях страниц из списка наблюдения.',
 	'config-admin-error-user' => 'Внутренняя ошибка при создании учётной записи администратора с именем «<nowiki>$1</nowiki>».',
 	'config-admin-error-password' => 'Внутренняя ошибка при установке пароля для учётной записи администратора «<nowiki>$1</nowiki>»: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Вы ввели неправильный адрес электронной почты',
 	'config-subscribe' => 'Подписаться на [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce рассылку новостей о появлении новых версий MediaWiki].',
 	'config-subscribe-help' => 'Это список рассылки с малым числом сообщений, используется для анонса новых выпусков и сообщений о проблемах с безопасностью.
 Вам следует подписаться на него и обновлять движок MediaWiki, по мере выхода новых версий.',
@@ -9808,6 +9831,9 @@ GNU Free Documentation License раньше была основной лицен
 Убедитесь в том, что пользователь «$1» может писать в схему «$2».',
 	'config-install-pg-commit' => 'Внесение изменений',
 	'config-pg-no-plpgsql' => 'Вам необходимо установить поддержку языка PL/pgSQL для базы данных $1',
+	'config-install-pg-ts2' => 'Проверка tsearch2',
+	'config-install-pg-ts2-failed' => "'''СБОЙ'''. В базе данных $1 должен быть установлен tsearch2.
+Пожалуйста, прочтите [$2 эту инструкцию] или обратитесь на канал #postgresql на irc.freenode.net",
 	'config-install-user' => 'Создание базы данных пользователей',
 	'config-install-user-failed' => 'Ошибка предоставления прав пользователю «$1»: $2',
 	'config-install-tables' => 'Создание таблиц',
@@ -9823,6 +9849,7 @@ GNU Free Documentation License раньше была основной лицен
 По возможности, смените его вручную.",
 	'config-install-upgradekey' => 'Создание ключа обновления по умолчанию',
 	'config-install-sysop' => 'Создание учётной записи администратора',
+	'config-install-subscribe-fail' => 'Не удаётся подписаться на mediawiki-announce',
 	'config-install-mainpage' => 'Создание главной страницы с содержимым по умолчанию',
 	'config-install-mainpage-failed' => 'Не удаётся вставить главную страницу.',
 	'config-install-done' => "'''Поздравляем!'''

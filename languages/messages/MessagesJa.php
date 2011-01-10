@@ -929,7 +929,7 @@ $2',
 
 このブロックについて、$1もしくは他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]に問い合わせることができます。
 ただし、[[Special:Preferences|個人設定]]で有効なメールアドレスが登録されていない場合、またはメール送信機能の使用がブロックされている場合、「この利用者にメールを送信」の機能は使えません。
-現在のIPアドレスは$3、このブロックIDは番号$5です。
+現在のIPアドレスは$3、このブロックIDは&#x23;$5です。
 問い合わせを行う際には、上記の情報を必ず書いてください。",
 'autoblockedtext'                  => "利用中のIPアドレスは、$1によって投稿をブロックされた利用者によって使用されたために自動的にブロックされています。
 理由は次の通りです。
@@ -944,7 +944,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 ただし、[[Special:Preferences|個人設定]]に正しいメールアドレスが登録されていない場合、またはメール送信がブロックされている場合、メール送信機能が使えないことに注意してください。
 
-現在利用中のIPアドレスは$3 、このブロックIDは$5番です。
+現在利用中のIPアドレスは$3 、このブロックIDは&#x23;$5です。
 問い合わせを行う際には、この情報を必ず書いてください。",
 'blockednoreason'                  => '理由が設定されていません',
 'blockedoriginalsource'            => "以下に'''$1'''のソースを示します：",
@@ -1506,6 +1506,10 @@ HTMLタグを見直してください。',
 'prefs-displaysearchoptions'    => '表示の設定',
 'prefs-displaywatchlist'        => '表示の設定',
 'prefs-diffs'                   => '差分',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => '有効なようです',
+'email-address-validity-invalid' => '有効なアドレスが必要です!',
 
 # User rights
 'userrights'                   => '利用者権限の管理',

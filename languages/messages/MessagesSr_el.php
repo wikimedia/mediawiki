@@ -1,5 +1,5 @@
 <?php
-/** Serbian Latin ekavian (Srpski (latinica))
+/**  ()
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -380,7 +380,7 @@ $messages = array(
 'vector-action-unprotect'  => 'Skini zaštitu',
 'vector-view-create'       => 'Napravi',
 'vector-view-edit'         => 'Izmeni',
-'vector-view-history'      => 'Istorija',
+'vector-view-history'      => 'Istorijat',
 'vector-view-view'         => 'Čitaj',
 'vector-view-viewsource'   => 'Izvornik',
 'actions'                  => 'Akcije',

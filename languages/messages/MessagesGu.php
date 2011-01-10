@@ -148,7 +148,7 @@ $messages = array(
 'tog-editsection'             => 'વિભાગોમાં [ફેરફાર કરો] કડી દ્વારા વિભાગીય ફેરફાર લાગુ કરો.',
 'tog-editsectiononrightclick' => 'વિભાગના મથાળાં ને રાઇટ ક્લિક દ્વારા ફેરફાર કરવાની રીત અપનાવો. (જાવાસ્ક્રિપ્ટ જરૂરી)',
 'tog-showtoc'                 => 'અનુક્રમણિકા દર્શાવો (૩થી વધુ પેટા-મથાળા વાળા લેખો માટે)',
-'tog-rememberpassword'        => 'આ કમ્પ્યૂટર પર મારી લોગ-ઇન વિગતો યાદ રાખો (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'આ કમ્પ્યૂટર પર મારી લોગ-ઇન વિગતો યાદ રાખો (મહત્તમ $1 {{PLURAL:$1|દિવસ|દિવસ}} માટે)',
 'tog-watchcreations'          => 'મેં લખેલા નવા લેખો મારી ધ્યાનસૂચિમાં ઉમેરો',
 'tog-watchdefault'            => 'હું ફેરફાર કરૂં તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
 'tog-watchmoves'              => 'હું જેનું નામ બદલું તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
@@ -156,7 +156,7 @@ $messages = array(
 'tog-minordefault'            => 'બધા નવા ફેરફારો નાના તરીકે માર્ક કરો.',
 'tog-previewontop'            => 'એડીટ બોક્સ પહેલાં પ્રિવ્યુ બતાવો.',
 'tog-previewonfirst'          => 'પ્રથમ ફેરફાર વખતે પ્રિવ્યુ બતાવો.',
-'tog-nocache'                 => 'કેશ ન કરો.',
+'tog-nocache'                 => 'બ્રાઉઝરનું પેજ કેશિંગ અક્રિય કરો',
 'tog-enotifwatchlistpages'    => 'મારી ધ્યાનસૂચિમાંનાં પાનામાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
 'tog-enotifusertalkpages'     => 'મારી ચર્ચાનાં પાનામાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
 'tog-enotifminoredits'        => 'પાનામાં નાનાં ફેરફાર થાય ત્યારે પણ મને ઇ-મેલ મોકલો',
@@ -674,8 +674,9 @@ Please log in again after you receive it.
 'whitelistedittext'                => 'ફેરફાર કરવા માટે તમારે $1 કરવાનું છે.',
 'confirmedittext'                  => 'પાનાંમાં ફેરફાર કરવા માટે તમારે તમારા ઇમેલની પુષ્ટિ કરવી પડશે.
 મહેરબાની કરી [[Special:Preferences|મારી પસંદ]]માં જઇને તમારું ઇમેલ આપવું પડશે અને પ્રમાણિત કરવું પડશે.',
-'nosuchsectiontitle'               => 'આવો કોઇ વિભાગ નથી',
-'nosuchsectiontext'                => 'તમે અસ્તિત્વ ન ધરાવતો વિભાગ સંપાદિત કરવાની કોશિશ કરી.',
+'nosuchsectiontitle'               => 'આવો વિભાગ મળ્યો નથી',
+'nosuchsectiontext'                => 'તમે અસ્તિત્વ ન ધરાવtaa વિભાગમાં ફેરફાર કરવાની કોશિશ કરી છે.
+શક્ય છે કે જ્યારે તમે પાનું જોતા હતા ત્યારે તેને દૂર કરવામાં કે ખસેડવામાં આવ્યો હોય.',
 'loginreqtitle'                    => 'પ્રવેશ (લોગ ઇન) જરૂરી',
 'loginreqlink'                     => 'લોગીન',
 'loginreqpagetext'                 => 'બીજા પાનાં જોવા માટે તમારે $1 કરવું પડશે.',
@@ -739,10 +740,16 @@ Please log in again after you receive it.
 'history-fieldset-title' => 'ઇતિહાસ ઉખેળો',
 'histfirst'              => 'સૌથી જુનું',
 'histlast'               => 'સૌથી નવું',
+'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'           => '(ખાલી)',
 
 # Revision feed
+'history-feed-title'          => 'પુનરાવર્તન ઇતિહાસ',
+'history-feed-description'    => 'વિકિમાં આ પાનાંનાં પુનરાવર્તનનો ઇતિહાસ',
 'history-feed-item-nocomment' => '$1, $2 સમયે',
+'history-feed-empty'          => 'આ પાનું અસ્તિત્વમાં નથી.
+શક્ય છે કે આ પાનું વિકિમાંથી દૂર કરવામાંાવ્યું હોય કે તેનું નામ બદલવામાં આવ્યું હોય.
+સંલગ્ન નવા પાનાંઓ માટે [[Special:Search|વિકિમાં શોધી જુઓ]].',
 
 # Revision deletion
 'rev-delundel'               => 'બતાવો/છુપાવો',
@@ -777,7 +784,7 @@ Please log in again after you receive it.
 'lineno'                  => 'લીટી $1:',
 'compareselectedversions' => 'પસંદ કરેલા સરખાવો',
 'editundo'                => 'રદ કરો',
-'diff-multi'              => '({{PLURAL:$1|વચગાળાનું એક પુનરાવર્તન|વચગાળાનાં $1 પુનરાવર્તનો}} દર્શાવેલ નથી.)',
+'diff-multi'              => '{{PLURAL:$2|એક સભ્યએ કરેલું|$2 સભ્યોએ કરેલા}} ({{PLURAL:$1|વચગાળાનું એક પુનરાવર્તન દર્શાવ્યં|વચગાળાનાં $1 પુનરાવર્તનો દર્શાવ્યાં}} નથી.)',
 
 # Search results
 'searchresults'             => 'પરિણામોમાં શોધો',
@@ -964,7 +971,7 @@ Please log in again after you receive it.
 'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'ફાઇલ હતી તેવી કરો',
 'filerevert-intro'          => "તમે '''[[Media:$1|$1]]''' ફાઇલ હતી તેવી મૂળ સ્થિતિ[$3, $2 વખતે હતું તેવું વર્ઝન $4]માં  લઇ જઇ રહ્યા છો.",
-'filerevert-comment'        => 'ટીપ્પણી:',
+'filerevert-comment'        => 'કારણ:',
 'filerevert-defaultcomment' => '$2, $1 વખતે જે પરીસ્થિતિ હતી તે પરીસ્થિતિમાં ફેરવી દીધું.',
 'filerevert-submit'         => 'હતુ તેવું પાછું કરો',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' ને  [$3, $2ના રોજ હતું તે વર્ઝન $4]માં પાછું લઇ જવામાં આવ્યું.",
@@ -1056,7 +1063,7 @@ Please log in again after you receive it.
 'specialloguserlabel'  => 'સભ્ય:',
 'speciallogtitlelabel' => 'શિર્ષક:',
 'log'                  => 'લૉગ',
-'all-logs-page'        => 'બધાં માહિતિ પત્રકો',
+'all-logs-page'        => 'બધાં જાહેર માહિતીપત્રકો',
 
 # Special:AllPages
 'allpages'       => 'બધા પાના',
@@ -1072,7 +1079,7 @@ Please log in again after you receive it.
 
 # Special:Categories
 'categories'         => 'શ્રેણીઓ',
-'categoriespagetext' => 'નીચેની શ્રેણીઓમાં પાના કે અન્ય સભ્યો છે.
+'categoriespagetext' => 'નીચેની {{PLURAL:$1|શ્રેણી|શ્રેણીઓ}}માં પાના કે અન્ય સભ્યો છે.
 [[Special:UnusedCategories|વણ વપરાયેલી શ્રેણીઓ]] અત્રે દર્શાવવામાં આવી નથી.
 [[Special:WantedCategories|ઈચ્છિત શ્રેણીઓ]] પણ જોઈ જુઓ.',
 
@@ -1125,7 +1132,7 @@ Please log in again after you receive it.
 'deletepage'            => 'પાનું હટાવો',
 'confirm'               => 'ખાતરી કરો',
 'exblank'               => 'પાનું ખાલી હતું',
-'historywarning'        => 'ચેતવણી: જે પાનું તમે હટાવવા જઇ રહ્યાં છો તેનો ઇતિહાસ છે:',
+'historywarning'        => "'''ચેતવણી:''' જે પાનું તમે હટાવવા જઇ રહ્યાં છો તેને આશરે $1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}નો ઇતિહાસ છે:",
 'confirmdeletetext'     => 'આપ આ પાનું તેના ઇતિહાસ (બધાજ પૂર્વ  ફેરફારો) સાથે હટાવી રહ્યાં છો.
 કૃપા કરી મંજૂરી આપો કે, આપ આમ કરવા ચાહો છો, આપ આના સરા-નરસા પરિણામોથી વાકેફ છો, અને આપ આ કૃત્ય [[{{MediaWiki:Policy-url}}|નીતિ]]ને અનુરૂપ જ કરી રહ્યાં છો.',
 'actioncomplete'        => 'કામ પૂરું થઈ ગયું',
@@ -1163,7 +1170,7 @@ Please log in again after you receive it.
 'protect-expiring'            => '$1 (UTC) એ સમાપ્ત થાય છે',
 'protect-cascade'             => 'આ પાનાંમાં સમાવિષ્ટ પેટા પાનાં પણ સુરક્ષિત કરો (કૅસ્કેડીંગ સુરક્ષા)',
 'protect-cantedit'            => 'આપ આ પાનાનાં સુરક્ષા સ્તરમાં ફેરફાર ના કરી શકો, કેમકે આપને અહિં ફેરફાર કરવાની પરવાનગી નથી.',
-'protect-expiry-options'      => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
+'protect-expiry-options'      => '૨ કલાક:2 hours,૧ દિવસ:1 day,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
 'restriction-type'            => 'પરવાનગી:',
 'restriction-level'           => 'નિયંત્રણ સ્તર:',
 
@@ -1285,6 +1292,9 @@ Please log in again after you receive it.
 # Thumbnails
 'thumbnail-more'  => 'વિસ્તૃત કરો',
 'thumbnail_error' => 'નાની છબી (થંબનેઇલ-thumbnail) બનાવવામાં ત્રુટિ: $1',
+
+# Special:Import
+'import-revision-count' => '$1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}',
 
 # Import log
 'importlogpage' => 'આયાત માહિતિ પત્રક',
@@ -1442,7 +1452,7 @@ Please log in again after you receive it.
 'table_pager_limit_submit' => 'જાઓ',
 
 # Auto-summaries
-'autosumm-new' => 'નવું પાનું : $1',
+'autosumm-new' => '$1થી શરૂ થતું નવું પાનું બાનવ્યું',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'બંધબેસતાં ફેરફારો નિહાળો',

@@ -229,7 +229,7 @@ $messages = array(
 
 'badaccess'        => 'İzin kusurluu',
 'badaccess-group0' => 'Bu işlemi yapmaa kuvediniz yok.',
-'badaccess-groups' => 'O işlem ani yapmaa neetlendiniz var nicä yapılsın sadä $1 gruppalarınnan birinin kullanıcıları tarafınnan.',
+'badaccess-groups' => 'O işlem ani yapmaa neetlendiniz var nicä yapılsın sadä {{PLURAL:$2|gruppa|gruppalarınnan}} birinin kullanıcıları tarafınnan: $1.',
 
 'versionrequired'     => 'MediaWiki-nin $1 versiyası läazım',
 'versionrequiredtext' => 'MediaWiki-nin $1 versiyası läazım bu sayfayı kullanmaa deyni. Bak [[Special:Version|versiya sayfası]].',
@@ -303,10 +303,10 @@ Yalvarêrız benneyiniz URL - i hem raport ediniz bunu bir [[Special:ListUsers/s
 
 # Login and logout pages
 'logouttext'                 => 'Sessiyayı kapattınız.
-Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki enidän sessiya açmaa (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.',
+Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki [[Special:UserLogin|enidän sessiya açmaa]] (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.',
 'welcomecreation'            => '== Hoş geldiniz $1! ==
 
-Esapınız açıldı. Unutmayın {{SITENAME}} seçimnerin diiştirmää.',
+Esapınız açıldı. Unutmayın [[Special:Preferences|{{SITENAME}} preferences]] seçimnerin diiştirmää.',
 'yourname'                   => 'Kullanıcı adınız',
 'yourpassword'               => 'Parol',
 'yourpasswordagain'          => 'Parolu enidän yaz',
@@ -352,7 +352,7 @@ Herliim istemeersiniz parolu diiştirmää, yaki vaz geçtiniz neçin ki parolu 
 O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk ki o adres sizin, başka e-mail gönderilmeycek.',
 'mailerror'                  => 'E-mail göndermäk yannışı: $1',
 'acct_creation_throttle_hit' => '$1 kullanıcı esap açtınız. Taa çok yok nicä açasınız.',
-'emailauthenticated'         => 'E-mail adresiniz $1 datasında doorulandı.',
+'emailauthenticated'         => 'E-mail adresiniz $2 $3 datasında doorulandı.',
 'emailconfirmlink'           => 'E-mail adresinizi doorulayın',
 'accountcreated'             => 'Esap açıldı',
 'accountcreatedtext'         => '$1 için bir kullanıcı esapı açıldı.',
@@ -361,7 +361,7 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 
 # Password reset dialog
 'retypenew'           => 'Eni parolu tekrar girin',
-'resetpass_forbidden' => '{{SITENAME}} saytında parol yok nicä diiştirilsin',
+'resetpass_forbidden' => 'Saytında parol yok nicä diiştirilsin',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın tekst',
@@ -415,7 +415,7 @@ Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e
 'loginreqlink'                     => 'sessiya aç',
 'loginreqpagetext'                 => 'Lääzım $1 görmää übür sayfaları.',
 'accmailtitle'                     => 'Parol gönderildi.',
-'accmailtext'                      => "'$1' kullanıcısın parolu $2 adresine gönderildi.",
+'accmailtext'                      => '[[User talk:$1|$1]] kullanıcısın parolu $2 adresine gönderildi.',
 'newarticle'                       => '(Eni)',
 'newarticletext'                   => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
 'noarticletext'                    => 'Bu sayfa boş.
@@ -802,7 +802,7 @@ Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
 'protect-expiring'            => 'bitmää datası $1 (UTC)',
 'protect-cascade'             => 'Bu sayfaya girän sayfaları koru (kaskad korunmaa)',
 'protect-cantedit'            => 'Siz bu yazının korunmak düzeyin bilmärsiniz diiştirmää, neçin ki sizin onu düzmää izniniz yok.',
-'protect-expiry-options'      => '1 saat:1 hour,1 day:1 day,1 afta:1 week,1 ay:1 month,3 months:3 months,6 months,6 months,zamansız:infinite',
+'protect-expiry-options'      => '1 saat:1 hour,1 gün:1 day,1 afta:1 week,2 afta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,zamansız:infinite',
 'restriction-type'            => 'İzin:',
 'restriction-level'           => 'Yasaklama düzeyi:',
 

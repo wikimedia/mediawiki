@@ -1246,6 +1246,10 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'prefs-displaywatchlist'        => 'Zwobraznjowańske opcije',
 'prefs-diffs'                   => 'Rozdźěle',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Zda se, až e-mailowa adresa jo płaśiwa',
+'email-address-validity-invalid' => 'Zapódaj płaśiwu e-mailowu adresu',
+
 # User rights
 'userrights'                   => 'Zastojanje wužywarskich pšawow',
 'userrights-lookup-user'       => 'Wužywarske kupki zastojaś',

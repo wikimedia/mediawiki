@@ -2903,7 +2903,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'math_unknown_function' => 'ismeretlen függvény',
 'math_lexing_error'     => 'lexikai hiba',
 'math_syntax_error'     => 'formai hiba',
-'math_image_error'      => 'Sikertelen PNG-vé alakítás; ellenőrizd a latex, dvips, gs telepítését',
+'math_image_error'      => 'PNG-vé alakítás sikertelen; ellenőrizd, hogy a latex és dvipng (vagy dvips + gs + convert) helyesen van-e telepítve',
 'math_bad_tmpdir'       => 'Nem írható vagy nem hozható létre a matematikai ideiglenes könyvtár',
 'math_bad_output'       => 'Nem lehet létrehozni vagy írni a matematikai függvények kimeneti könyvtárába',
 'math_notexvc'          => 'HIányzó texvc végrehajtható fájl; a beállítást lásd a math/README fájlban.',

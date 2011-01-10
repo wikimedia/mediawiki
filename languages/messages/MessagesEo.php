@@ -1418,6 +1418,10 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'prefs-displaywatchlist'        => 'Montraj opcioj',
 'prefs-diffs'                   => 'Diferencoj',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Ŝajnas ke la retpoŝtadreso estas valida',
+'email-address-validity-invalid' => 'Tajpu validan retpoŝtadreson',
+
 # User rights
 'userrights'                   => 'Prizorgi rajtojn de uzantoj',
 'userrights-lookup-user'       => 'Administri grupojn de uzantoj',

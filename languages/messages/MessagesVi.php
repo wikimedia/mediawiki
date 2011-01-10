@@ -15,6 +15,7 @@
  * @author Neoneurone
  * @author Nguyễn Thanh Quang
  * @author Thaisk
+ * @author Thanhtai2009
  * @author Tmct
  * @author Trần Nguyễn Minh Huy
  * @author Trần Thế Trung
@@ -1393,6 +1394,10 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'prefs-displaysearchoptions'    => 'Tùy chọn hiển thị',
 'prefs-displaywatchlist'        => 'Tùy chọn hiển thị',
 'prefs-diffs'                   => 'Khác biệt',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Có vẻ hợp lệ',
+'email-address-validity-invalid' => 'Yêu cầu địa chỉ hợp lệ!',
 
 # User rights
 'userrights'                   => 'Quản lý quyền thành viên',

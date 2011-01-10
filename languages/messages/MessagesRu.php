@@ -1410,6 +1410,10 @@ $1",
 'prefs-displaywatchlist'        => 'Настройки отображения',
 'prefs-diffs'                   => 'Разница версий',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Выглядит корректно',
+'email-address-validity-invalid' => 'Требуется корректный адрес!',
+
 # User rights
 'userrights'                   => 'Управление правами участника',
 'userrights-lookup-user'       => 'Управление группами участников',

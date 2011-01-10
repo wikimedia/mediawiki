@@ -1472,6 +1472,10 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'prefs-displaywatchlist'        => 'Anzeigeoptionen',
 'prefs-diffs'                   => 'Versionsvergleich',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Gültige E-Mail-Adresse',
+'email-address-validity-invalid' => 'Eine gültige E-Mail-Adresse ist erforderlich.',
+
 # User rights
 'userrights'                   => 'Benutzerrechteverwaltung',
 'userrights-lookup-user'       => 'Gruppenzugehörigkeit verwalten',

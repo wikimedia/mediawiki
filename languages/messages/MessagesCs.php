@@ -2920,7 +2920,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [http:
 'math_unknown_function' => 'neznámá funkce',
 'math_lexing_error'     => 'chyba při lexingu',
 'math_syntax_error'     => 'syntaktická chyba',
-'math_image_error'      => 'Selhala konverze do PNG; zkontrolujte správnou instalaci latexu, dvips, gs a convertu',
+'math_image_error'      => 'Selhala konverze do PNG; zkontrolujte správnou instalaci latexu a dvipng (nebo dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Nelze zapsat nebo vytvořit dočasný adresář pro matematiku',
 'math_bad_output'       => 'Nelze zapsat nebo vytvořit adresář pro výstup matematiky',
 'math_notexvc'          => 'Chybí spustitelný texvc; podívejte se prosím do math/README na konfiguraci.',
