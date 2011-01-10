@@ -58,6 +58,7 @@ abstract class ResourceLoaderModule {
 
 	/**
 	 * Get whether CSS for this module should be flipped
+	 * @param $context ResourceLoaderContext
 	 */
 	public function getFlip( $context ) {
 		return $context->getDirection() === 'rtl';

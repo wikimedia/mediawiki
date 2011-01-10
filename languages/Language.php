@@ -132,6 +132,8 @@ class Language {
 
 	/**
 	 * Get a cached language object for a given language code
+	 * @param $code String
+	 * @return Language
 	 */
 	static function factory( $code ) {
 		if ( !isset( self::$mLangObjCache[$code] ) ) {
@@ -146,6 +148,8 @@ class Language {
 
 	/**
 	 * Create a language object for a given language code
+	 * @param $code String
+	 * @return Language
 	 */
 	protected static function newFromCode( $code ) {
 		global $IP;

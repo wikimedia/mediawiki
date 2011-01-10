@@ -109,6 +109,10 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		return array();
 	}
 
+	/**
+	 * @param  $context ResourceLoaderContext
+	 * @return bool
+	 */
 	public function getFlip( $context ) {
 		global $wgContLang;
 
