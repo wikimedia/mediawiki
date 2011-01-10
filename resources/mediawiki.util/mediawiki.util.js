@@ -1,19 +1,19 @@
-/*
+/**
  * Utilities
  */
 
-(function ($, mw) {
+(function($, mw) {
 
 	mw.util = {
 
 		/* Initialisation */
 		'initialised' : false,
-		'init' : function () {
+		'init' : function() {
 			if ( this.initialised === false ) {
 				this.initialised = true;
 
 				// Any initialisation after the DOM is ready
-				$(function () {
+				$(function() {
 
 					// Shortcut to client profile return
 					var profile = $.client.profile();
@@ -374,12 +374,12 @@
 		/**
 		 * Add a little box at the top of the screen to inform the user of
 		 * something, replacing any previous message.
+		 * Calling with no arguments, with an empty string or null will hide the message
 		 *
-		 * @param message	mixed	The DOM-element or HTML-string to be put inside the message box]
-		 *							Calling with no arguments, with an empty string or null will hide the message
-		 * @param className	string	Used in adding a class; should be different for each
-		 * call to allow CSS/JS to hide different boxes. null = no class used.
-		 * @return Boolean	   True on success, false on failure
+		 * @param message mixed The DOM-element or HTML-string to be put inside the message box.
+		 * @param className	string Used in adding a class; should be different for each call
+		 *                         to allow CSS/JS to hide different boxes. null = no class used.
+		 * @return boolean True on success, false on failure
 		 */
 		'jsMessage' : function( message, className ) {
 		
@@ -423,7 +423,7 @@
 		 * according to HTML5 specification. Please note the specification
 		 * does not validate a domain with one character.
 		 *
-		 * FIXME: should be moved to a JavaScript validation module.
+		 * FIXME: should be moved to or replaced by a JavaScript validation module.
 		 */
 		'validateEmail' : function( mailtxt ) {
 			if( mailtxt === '' ) {
@@ -475,7 +475,7 @@
 					// User part which is liberal :p
 					'[' + rfc5322_atext + '\\.' + ']' + '+'
 					+
-					// "at"
+					// 'at'
 					'@'
 					+
 					// Domain first part
