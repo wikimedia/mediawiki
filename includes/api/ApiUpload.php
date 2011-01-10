@@ -504,6 +504,6 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiUpload.php 51812 2009-06-12 23:45:20Z dale $';
+		return __CLASS__ . ': $Id$';
 	}
 }
