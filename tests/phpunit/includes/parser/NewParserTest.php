@@ -4,7 +4,7 @@
  * @group Database
  */
 class NewParserTest extends MediaWikiTestCase {
-	
+
 	public $uploadDir;
 	public $keepUploads = false;
 	public $runDisabled = false;
@@ -15,16 +15,14 @@ class NewParserTest extends MediaWikiTestCase {
 	public $savedGlobals = array();
 	public $hooks = array();
 	public $functionHooks = array();
-	
+
 	//Fuzz test
 	public $maxFuzzTestLength = 300;
 	public $fuzzSeed = 0;
 	public $memoryLimit = 50;
-	
-	
-	
+
 	//PHPUnit + MediaWikiTestCase functions
-	
+
 	function setUp() {
 		global $wgContLang, $wgUseDatabaseMessages, $wgMsgCacheExpiry, $wgNamespaceProtection, $wgNamespaceAliases, $IP, $messageMemc;
 		$wgContLang = Language::factory( 'en' );
@@ -619,13 +617,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		return $parser;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	//Various action functions
 	
 	/**
@@ -684,11 +676,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		return true;
 	}
-	
-	
-	
-	
-	
+
 	//Various "cleanup" functions
 	
 	/*
@@ -720,12 +708,7 @@ class NewParserTest extends MediaWikiTestCase {
 			return $s;
 		}
 	}
-	
-	
-	
-	
-	
-	
+
 	//Test options parser functions
 	
 	protected function parseOptions( $instring ) {
@@ -810,4 +793,3 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 	}
 }
-
