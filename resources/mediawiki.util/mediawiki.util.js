@@ -455,7 +455,7 @@
 						 "|" / "}" /
 						 "~"
 			*/
-			var	rfc5322_atext = "a-z0-9!#$%&'*+-/=?^_`{|}Ð~",
+			var	rfc5322_atext = "a-z0-9!#$%&'*+-/=?^_`{|}~",
 		
 			/**
 			 * Next define the RFC 1034 'ldh-str'
