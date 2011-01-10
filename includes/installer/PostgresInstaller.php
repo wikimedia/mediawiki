@@ -117,9 +117,8 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$superuser = $this->getVar( '_InstallUser' );
 
-		$rights = $conn->query( 'pg_catalog.pg_user',
-			'SELECT
-				CASE WHEN usesuper IS TRUE THEN
+		$rights = $conn->selectField( 'pg_catalog.pg_user',
+			'CASE WHEN usesuper IS TRUE THEN
 				CASE WHEN usecreatedb IS TRUE THEN 3 ELSE 1 END
 				ELSE CASE WHEN usecreatedb IS TRUE THEN 2 ELSE 0 END
 				END AS rights',
@@ -137,6 +136,52 @@ class PostgresInstaller extends DatabaseInstaller {
 		return true;
 	}
 
+	public function getSettingsForm() {
+		if ( $this->canCreateAccounts() ) {
+			$noCreateMsg = false;
+		} else {
+			$noCreateMsg = 'config-db-web-no-create-privs';
+		}
+		$s = $this->getWebUserBox( $noCreateMsg );
+
+		return $s;
+	}
+
+	public function submitSettingsForm() {
+		$status = $this->submitWebUserBox();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		// Validate the create checkbox
+		$canCreate = $this->canCreateAccounts();
+		if ( !$canCreate ) {
+			$this->setVar( '_CreateDBAccount', false );
+			$create = false;
+		} else {
+			$create = $this->getVar( '_CreateDBAccount' );
+		}
+
+		if ( !$create ) {
+			// Test the web account
+			try {
+				new DatabasePostgres(
+					$this->getVar( 'wgDBserver' ),
+					$this->getVar( 'wgDBuser' ),
+					$this->getVar( 'wgDBpassword' ),
+					false,
+					false,
+					0,
+					$this->getVar( 'wgDBprefix' )
+				);
+			} catch ( DBConnectionError $e ) {
+				return Status::newFatal( 'config-connection-error', $e->getMessage() );
+			}
+		}
+
+		return Status::newGood();
+	}
+
 	public function preInstall() {
 		$commitCB = array(
 			'name' => 'pg-commit',
@@ -152,6 +197,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		);
 		$this->parent->addInstallStep( $commitCB, 'interwiki' );
 		$this->parent->addInstallStep( $userCB );
+		$this->parent->addInstallStep( $ts2CB, 'setupDatabase' );
 	}
 
 	function setupDatabase() {
@@ -161,23 +207,23 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 		$conn = $status->value;
 
-		// Make sure that we can write to the correct schema
-		// If not, Postgres will happily and silently go to the next search_path item
-		$schema = $this->getVar( 'wgDBmwschema' );
-		$ctest = 'mediawiki_test_table';
-		$safeschema = $conn->addIdentifierQuotes( $schema );
-		if ( $conn->tableExists( $ctest, $schema ) ) {
-			$conn->query( "DROP TABLE $safeschema.$ctest" );
-		}
-		$res = $conn->query( "CREATE TABLE $safeschema.$ctest(a int)" );
-		if ( !$res ) {
-			$status->fatal( 'config-install-pg-schema-failed',
-				$this->getVar( 'wgDBuser'), $schema );
-		}
-		$conn->query( "DROP TABLE $safeschema.$ctest" );
-		
 		$dbName = $this->getVar( 'wgDBname' );
 		if( !$conn->selectDB( $dbName ) ) {
+			// Make sure that we can write to the correct schema
+			// If not, Postgres will happily and silently go to the next search_path item
+			$schema = $this->getVar( 'wgDBmwschema' );
+			$ctest = 'mediawiki_test_table';
+			$safeschema = $conn->addIdentifierQuotes( $schema );
+			if ( $conn->tableExists( $ctest, $schema ) ) {
+				$conn->query( "DROP TABLE $safeschema.$ctest" );
+			}
+			$res = $conn->query( "CREATE TABLE $safeschema.$ctest(a int)" );
+			if ( !$res ) {
+				$status->fatal( 'config-install-pg-schema-failed',
+					$this->getVar( 'wgDBuser'), $schema );
+			}
+			$conn->query( "DROP TABLE $safeschema.$ctest" );
+
 			$safedb = $conn->addIdentifierQuotes( $dbName );
 			$safeuser = $conn->addQuotes( $this->getVar( 'wgDBuser' ) );
 			$conn->query( "CREATE DATABASE $safedb OWNER $safeuser", __METHOD__ );
