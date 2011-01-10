@@ -482,6 +482,7 @@ $messages = array(
 'printableversion'  => 'Versão para impressão',
 'permalink'         => 'Link permanente',
 'print'             => 'Imprimir',
+'view'              => 'Ver',
 'edit'              => 'Editar',
 'create'            => 'Criar',
 'editthispage'      => 'Editar esta página',
@@ -489,6 +490,7 @@ $messages = array(
 'delete'            => 'Eliminar',
 'deletethispage'    => 'Eliminar esta página',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|uma edição|$1 edições}}',
+'viewdeleted_short' => 'Ver {{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'protect'           => 'Proteger',
 'protect_change'    => 'alterar',
 'protectthispage'   => 'Proteger esta página',
@@ -740,6 +742,7 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'wrongpasswordempty'         => 'A senha introduzida está em branco. Por favor, tente novamente.',
 'passwordtooshort'           => 'As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.',
 'password-name-match'        => 'A sua senha deve ser diferente do seu nome de usuário.',
+'password-login-forbidden'   => 'Foi proibido o uso deste nome de utilizador e palavra-chave.',
 'mailmypassword'             => 'Enviar uma nova senha por e-mail',
 'passwordremindertitle'      => 'Nova senha temporária em {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4). Foi criada uma senha temporária para o usuário "$2", sendo ela "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
@@ -1421,6 +1424,9 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'prefs-displaywatchlist'        => 'Opções de exibição',
 'prefs-diffs'                   => 'Diferenças',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid' => 'Parece válido',
+
 # User rights
 'userrights'                   => 'Gestão de privilégios de usuários',
 'userrights-lookup-user'       => 'Administrar grupos de usuários',
@@ -2026,6 +2032,7 @@ Por favor note que outros websites podem apontar para um arquivo através de um 
 'pager-newer-n'           => '{{PLURAL:$1|1 recente|$1 recentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 antiga|$1 antigas}}',
 'suppress'                => 'Visão geral',
+'querypage-disabled'      => 'Esta página especial está desativada para não prejudicar o desempenho.',
 
 # Book sources
 'booksources'               => 'Fontes de livros',
@@ -2907,7 +2914,8 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'math_unknown_function' => 'Função desconhecida',
 'math_lexing_error'     => 'Erro léxico',
 'math_syntax_error'     => 'Erro de sintaxe',
-'math_image_error'      => 'Falha na conversão para PNG. Verifique a instalação do latex, dvips, gs e convert',
+'math_image_error'      => 'Falha na conversão para PNG;
+verifique se o latex, dvips, gs e convert estão corretamente instalados',
 'math_bad_tmpdir'       => 'Ocorreram problemas na criação ou escrita no diretório temporário math',
 'math_bad_output'       => 'Ocorreram problemas na criação ou escrita no diretório de resultados math',
 'math_notexvc'          => 'O executável texvc não foi encontrado. Consulte math/README para instruções da configuração.',
@@ -3421,7 +3429,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da maneira convencion
 'version-specialpages'             => 'Páginas especiais',
 'version-parserhooks'              => 'Hooks do analisador (parser)',
 'version-variables'                => 'Variáveis',
-'version-antispam'                 => 'Antispam',
+'version-antispam'                 => 'Prevenção contra spam',
 'version-skins'                    => 'Temas',
 'version-other'                    => 'Diversos',
 'version-mediahandlers'            => 'Executores de média',

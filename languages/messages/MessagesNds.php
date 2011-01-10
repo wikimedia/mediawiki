@@ -263,6 +263,13 @@ $messages = array(
 'underline-never'   => 'Nienich',
 'underline-default' => 'so as in’n Nettkieker instellt',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Schrift för dat Änner-Finster:',
+'editfont-default'   => 'Webkieker-Standard',
+'editfont-monospace' => 'Schrift mit faste Breed',
+'editfont-sansserif' => 'Schrift ahn Serifen',
+'editfont-serif'     => 'Schrift mit Serifen',
+
 # Dates
 'sunday'        => 'Sünndag',
 'monday'        => 'Maandag',
@@ -388,6 +395,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'printableversion'  => 'Druckversion',
 'permalink'         => 'Duurlenk',
 'print'             => 'Drucken',
+'view'              => 'Lesen',
 'edit'              => 'Ännern',
 'create'            => 'Opstellen',
 'editthispage'      => 'Disse Siet ännern',
@@ -395,6 +403,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'delete'            => 'Wegsmieten',
 'deletethispage'    => 'Disse Siet wegsmieten',
 'undelete_short'    => '{{PLURAL:$1|ene Version|$1 Versionen}} wedderhalen',
+'viewdeleted_short' => '{{PLURAL:$1|Een wegdaan Version|$1 wegdaan Versionen}} ankieken',
 'protect'           => 'Schulen',
 'protect_change'    => 'ännern',
 'protectthispage'   => 'Siet schulen',
@@ -500,7 +509,9 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 Villicht hest du in de URL en Tippfehler oder büst en verkehrten Lenk nagahn.
 Dat kann aver ok op en Bug in de Software henwiesen, de op {{SITENAME}} bruukt warrt.',
 'nosuchspecialpage' => 'Disse Spezialsiet gifft dat nich',
-'nospecialpagetext' => 'Disse Spezialsiet warrt vun de MediaWiki-Software nich ünnerstütt',
+'nospecialpagetext' => '<strong>Disse Spezialsied gifft dat nich.</strong>
+
+En List vun de Spezialsieden gifft dat ünner [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Fehler',
@@ -642,8 +653,21 @@ In de E-Mail steiht, wat du doon musst.',
 'createaccount-text'         => 'Een hett för di op {{SITENAME}} ($4) en Brukerkonto "$2" nee opstellt. Dat automaatsch instellte Passwoort för "$2" is "$3". Du schullst di nu man anmellen un dat Passwoort ännern.
 
 Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för di. Kannst ehr eenfach ignoreren.',
-'login-throttled'            => 'Du hest to faken versöcht, di ünner dissen Brukernaam antomellen. Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
+'login-throttled'            => 'Du hest to faken versöcht, di ünner dissen Brukernaam antomellen.
+Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
 'loginlanguagelabel'         => 'Spraak: $1',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Unbekennten Fehler in PHP sien mail()-Funkschoon',
+
+# JavaScript password checks
+'password-strength'            => 'Estemeert Weert, wo good dat Passwoord is: $1',
+'password-strength-bad'        => 'SWACK',
+'password-strength-mediocre'   => 'middel',
+'password-strength-acceptable' => 'geiht',
+'password-strength-good'       => 'good',
+'password-retype'              => 'Passwoord noch wedder ingeven',
+'password-retype-mismatch'     => 'Passwöör sünd nich övereen',
 
 # Password reset dialog
 'resetpass'                 => 'Passwoord ännern',
@@ -657,6 +681,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'resetpass_forbidden'       => 'Passwöör köönt nich ännert warrn.',
 'resetpass-no-info'         => 'Du musst anmellt wesen, dat du disse Sied direkt opropen kannst.',
 'resetpass-submit-loggedin' => 'Passwoord ännern',
+'resetpass-submit-cancel'   => 'Afbreken',
 'resetpass-wrong-oldpass'   => 'Dat Passwoord (temporär oder aktuell) gellt nich.
 Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Passwoord anfeddert.',
 'resetpass-temp-password'   => 'Temporär Passwoord:',
@@ -694,9 +719,11 @@ Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Pas
 'showlivepreview'                  => 'Live-Vörschau',
 'showdiff'                         => 'Ünnerscheed wiesen',
 'anoneditwarning'                  => "'''Wohrschau:''' Du büst nich anmellt. Diene IP-Adress warrt in de Versionshistorie vun de Siet fasthollen.",
+'anonpreviewwarning'               => "''Du büst nich anmellt. Wenn du nu afspiekerst, dükert dien IP-Adress in de Versionsgeschicht op.''",
 'missingsummary'                   => "'''Wohrschau:''' Du hest keen Tosamenfaten angeven, wat du ännert hest. Wenn du nu Spiekern klickst, warrt de Siet ahn Tosamenfaten spiekert.",
 'missingcommenttext'               => 'Geev ünnen en Tosamenfaten in.',
-'missingcommentheader'             => "'''WOHRSCHAU:''' Du hest keen Överschrift in dat Feld „{{MediaWiki:Subject/nds}}“ ingeven. Wenn du noch wedder op „{{MediaWiki:Savearticle/nds}}“ klickst, denn warrt dien Ännern ahn Överschrift spiekert.",
+'missingcommentheader'             => "'''Wohrschau:''' Du hest keen Överschrift in dat Feld „{{int:Subject}}“ ingeven.
+Wenn du noch wedder op „{{int:Savearticle}}“ klickst, denn warrt dien Ännern ahn Överschrift spiekert.",
 'summary-preview'                  => 'Vörschau vun’t Tosamenfaten:',
 'subject-preview'                  => "Vörschau vun de Reeg ''Tosamenfaten'':",
 'blockedtitle'                     => 'Bruker is blockt',
@@ -734,7 +761,8 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 'whitelistedittext'                => 'Du musst di $1, dat du Sieden ännern kannst.',
 'confirmedittext'                  => 'Du musst dien E-Mail-Adress bestätigen, dat du wat ännern kannst. Stell dien E-Mail-Adress in de [[Special:Preferences|{{int:preferences}}]] in un bestätig ehr.',
 'nosuchsectiontitle'               => 'Dissen Afsnitt gifft dat nich',
-'nosuchsectiontext'                => 'Du hest versöcht den Afsnitt „$1“ to ännern, den dat nich gifft. Du kannst blot Afsneed ännern, de al dor sünd.',
+'nosuchsectiontext'                => 'Du hest versöcht en Afsnitt to ännern, den dat nich gifft.
+Villicht is he verschaven oder rutnahmen worrn, wieldes du de Sied ankeken hest.',
 'loginreqtitle'                    => 'Anmellen nödig',
 'loginreqlink'                     => 'anmellen',
 'loginreqpagetext'                 => 'Du musst di $1, dat du annere Sieden ankieken kannst.',
@@ -743,14 +771,22 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 
 Dat Passwoord för dit Brukerkonto kann na dat Anmellen ünner ''[[Special:ChangePassword|Passwoord ännern]]'' ännert warrn.",
 'newarticle'                       => '(Nee)',
-'newarticletext'                   => 'Hier den Text vun de ne’e Siet indregen. Jümmer in ganze Sätz schrieven un kene Texten vun Annern, de en Oorheverrecht ünnerliggt, hierher kopeern.',
+'newarticletext'                   => "Du büst op en Sied kamen, de dat noch nich gifft.
+Wenn du disse Sied opstellen wullt, schriev dien Text in dat Finster ünnen  (kiek op de [[{{MediaWiki:Helppage}}|Hülpsied]] för mehr Infos).
+Wenn du de Sied gornich ännern wullst, denn klick op den '''Trügg'''-Knoop in dien Webkieker.",
 'anontalkpagetext'                 => "---- ''Dit is de Diskuschoonssiet vun en nich anmellt Bruker, de noch keen Brukerkonto anleggt hett oder dat jüst nich bruukt.
 Wi mööt hier de numerische IP-Adress verwennen, üm den Bruker to identifizeern.
 So en Adress kann vun verscheden Brukern bruukt warrn.
 Wenn du en anonymen Bruker büst un meenst, dat disse Kommentaren nich an di richt sünd, denn [[Special:UserLogin/signup|legg di en Brukerkonto an]] oder [[Special:UserLogin|mell di an]], dat dat Problem nich mehr dor is.''",
 'noarticletext'                    => 'Dor is opstunns keen Text op disse Sied. Du kannst [[Special:Search/{{PAGENAME}}|na dissen Utdruck in annere Sieden söken]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} in de Logböker söken],
 oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Sied ännern]</span>.',
+'noarticletext-nopermission'       => 'Disse Sied hett opstunns keen Text.
+Du kannst in annere Sieden [[Special:Search/{{PAGENAME}}|na dissen Titel söken]]
+oder <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} in de Logböker söken]</span>.',
 'userpage-userdoesnotexist'        => 'Dat Brukerkonto „$1“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
+'userpage-userdoesnotexist-view'   => 'Dat Brukerkonto „$1“ gifft dat nich.',
+'blocked-notice-logextract'        => 'Disse Bruker is opstunns sperrt.
+De jüngste Indrag in dat Sperr-Logbook wart ünnen wiest:',
 'clearyourcache'                   => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssyoucanpreview'             => "'''Tipp:''' Bruuk den Vörschau-Knoop, üm dien nieg CSS vör dat Spiekern to testen.",
 'userjsyoucanpreview'              => "'''Tipp:''' Bruuk den Vörschau-Knoop, üm dien nieg JS vör dat Spiekern to testen.",

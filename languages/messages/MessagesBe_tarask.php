@@ -1,5 +1,5 @@
 <?php
-/** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
+/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1370,6 +1370,10 @@ $1",
 'prefs-displaysearchoptions'    => 'Устаноўкі паказу',
 'prefs-displaywatchlist'        => 'Устаноўкі паказу',
 'prefs-diffs'                   => 'Розьніцы вэрсіяў',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Выглядзіць слушна',
+'email-address-validity-invalid' => 'Неабходны слушны адрас!',
 
 # User rights
 'userrights'                   => 'Кіраваньне правамі ўдзельнікаў і ўдзельніц',

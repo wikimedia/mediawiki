@@ -1294,6 +1294,10 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-displaywatchlist'        => 'Optiones de presentation',
 'prefs-diffs'                   => 'Differentias',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Sembla valide',
+'email-address-validity-invalid' => 'Un adresse valide es obligatori!',
+
 # User rights
 'userrights'                   => 'Gestion de derectos de usator',
 'userrights-lookup-user'       => 'Gerer gruppos de usatores',

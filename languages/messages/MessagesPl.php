@@ -1382,6 +1382,10 @@ Umożliwi również innym użytkownikom skontaktowanie się z Tobą poprzez odpo
 'prefs-displaywatchlist'        => 'Opcje wyświetlania',
 'prefs-diffs'                   => 'Zmiany',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Wygląda na prawidłowy',
+'email-address-validity-invalid' => 'Wymagany jest prawidłowy adres!',
+
 # User rights
 'userrights'                   => 'Zarządzaj uprawnieniami użytkowników',
 'userrights-lookup-user'       => 'Zarządzaj grupami użytkownika',

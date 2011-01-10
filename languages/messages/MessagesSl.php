@@ -1319,6 +1319,10 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'prefs-displaywatchlist'        => 'Možnosti prikaza',
 'prefs-diffs'                   => 'Primerjave',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Izgleda veljaven',
+'email-address-validity-invalid' => 'Obvezen je veljaven naslov!',
+
 # User rights
 'userrights'                   => 'Upravljanje s pravicami uporabnikov',
 'userrights-lookup-user'       => 'Upravljanje z uporabniškimi skupinami',

@@ -1504,6 +1504,10 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'prefs-displaywatchlist'        => 'Weergaveopties',
 'prefs-diffs'                   => 'Verschillen',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Ziet er geldig uit',
+'email-address-validity-invalid' => 'Geldig adres verplicht!',
+
 # User rights
 'userrights'                   => 'Gebruikersrechtenbeheer',
 'userrights-lookup-user'       => 'Gebruikersgroepen beheren',

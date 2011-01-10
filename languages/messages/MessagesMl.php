@@ -1424,6 +1424,10 @@ $1",
 'prefs-displaywatchlist'        => 'പ്രദർശന ഐച്ഛികങ്ങൾ',
 'prefs-diffs'                   => 'വ്യത്യാസങ്ങൾ',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'സാധുതയുള്ളതെന്ന് തോന്നുന്നു',
+'email-address-validity-invalid' => 'സാധുതയുള്ള വിലാസം ആവശ്യമാണ്!',
+
 # User rights
 'userrights'                   => 'ഉപയോക്തൃ അവകാശ പരിപാലനം',
 'userrights-lookup-user'       => 'ഉപയോക്തൃസംഘങ്ങളെ പരിപാലിക്കുക',

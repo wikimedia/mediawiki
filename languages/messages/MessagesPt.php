@@ -1451,6 +1451,10 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'prefs-displaywatchlist'        => 'Opções de apresentação',
 'prefs-diffs'                   => 'Diferenças',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Parece válido',
+'email-address-validity-invalid' => 'Endereço válido necessário!',
+
 # User rights
 'userrights'                   => 'Privilégios dos utilizadores',
 'userrights-lookup-user'       => 'Gerir grupos do utilizador',

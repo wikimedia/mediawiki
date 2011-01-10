@@ -1415,6 +1415,10 @@ $1",
 'prefs-displaywatchlist'        => 'Нагодувања за приказ',
 'prefs-diffs'                   => 'Разлики',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Се чини исправно',
+'email-address-validity-invalid' => 'Се бара исправна адреса!',
+
 # User rights
 'userrights'                     => 'Раководење со кориснички права',
 'userrights-lookup-user'         => 'Раководење со кориснички групи',

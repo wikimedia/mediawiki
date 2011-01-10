@@ -495,6 +495,7 @@ $messages = array(
 'printableversion'  => 'Utskriftsvänlig version',
 'permalink'         => 'Permanent länk',
 'print'             => 'Skriv ut',
+'view'              => 'Visa',
 'edit'              => 'Redigera',
 'create'            => 'Skapa',
 'editthispage'      => 'Redigera denna sida',
@@ -502,6 +503,7 @@ $messages = array(
 'delete'            => 'radera',
 'deletethispage'    => 'Radera denna sida',
 'undelete_short'    => 'Återställ {{PLURAL:$1|en version|$1 versioner}}',
+'viewdeleted_short' => 'Visa {{PLURAL:$1|en raderad redigering|$1 raderade redigeringar}}',
 'protect'           => 'Skrivskydda',
 'protect_change'    => 'ändra',
 'protectthispage'   => 'Skrivskydda denna sida',
@@ -1429,6 +1431,10 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'prefs-displaysearchoptions'    => 'Visningalternativ',
 'prefs-displaywatchlist'        => 'Visningalternativ',
 'prefs-diffs'                   => 'Skillnader',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'Ser giltig ut',
+'email-address-validity-invalid' => 'Giltig adress krävs!',
 
 # User rights
 'userrights'                   => 'Hantering av användarrättigheter',

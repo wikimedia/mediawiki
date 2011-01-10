@@ -1170,6 +1170,10 @@ A peul ëdcò serne ëd lassé che j'àutri a lo contato an soa pàgina d'utent 
 'prefs-displaywatchlist'        => 'Opsion ëd visualisassion',
 'prefs-diffs'                   => 'Diferense',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'A smija bon',
+'email-address-validity-invalid' => "A l'é ciamà n'adrëssa bon-a!",
+
 # User rights
 'userrights'                     => "Gestion dij drit dj'utent",
 'userrights-lookup-user'         => "Gestion dle partìe d'utent",
@@ -2665,7 +2669,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'math_unknown_function' => 'funsion che as sa pa lòn che a la sia',
 'math_lexing_error'     => 'eror ëd léssich',
 'math_syntax_error'     => 'eror ëd sintassi',
-'math_image_error'      => 'Conversion a PNG falà; che a contròla che latex, dvips, gs, e convert a sio instalà giust',
+'math_image_error'      => "Conversion a PNG falà; che a contròla l'ùltima instalassion ëd latex e dvipng (o dvips + gs + convert)",
 'math_bad_tmpdir'       => "Ël sistema a-i la fa pa a creé la diretriss '''math temp''', ò pura a-i la fa nen a scriv-je andrinta",
 'math_bad_output'       => "Ël sistema a-i la fa pa a creé la diretriss '''math output''', ò pura a-i la fa nen a scriv-je andrinta",
 'math_notexvc'          => 'Pa gnun texvc executable; për piasì, che a contròla math/README për la configurassion.',

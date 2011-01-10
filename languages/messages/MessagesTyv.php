@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Krice from Tyvanet.com
  * @author Sborsody
  * @author friends at tyvawiki.org
