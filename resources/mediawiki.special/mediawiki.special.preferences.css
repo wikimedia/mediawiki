@@ -2,12 +2,12 @@
 	padding: 2px 1em;
 }
 body.ltr #mw-emailaddress-validity {
-	border-bottom-right-radius:0.8em;
-	border-top-right-radius:0.8em;
+	border-bottom-right-radius: 0.8em;
+	border-top-right-radius: 0.8em;
 }
 body.rtl #mw-emailaddress-validity {
-	border-bottom-left-radius:0.8em;
-	border-top-left-radius:0.8em;
+	border-bottom-left-radius: 0.8em;
+	border-top-left-radius: 0.8em;
 }
 #mw-emailaddress-validity.valid {
 	border: 1px solid #80FF80;
