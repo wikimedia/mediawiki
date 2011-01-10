@@ -36,7 +36,7 @@ class CSSMin {
 	 * which when base64 encoded will result in a 1/3 increase in size.
 	 */
 	const EMBED_SIZE_LIMIT = 24576;
-	const URL_REGEX = 'url\([\'"]?(?P<file>[^\?\)\:\'"]*)\??[^\)\'"]*[\'"]?\)';
+	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\:\'"]*)\??[^\)\'"]*[\'"]?\s*\)';
 	
 	/* Protected Static Members */
 	
