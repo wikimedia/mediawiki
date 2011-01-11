@@ -9,7 +9,7 @@ class SimpleSeleniumTestCase extends SeleniumTestCase {
 			'/index.php?title=Selenium&action=edit' );
 		$this->type( "wpTextbox1", "This is a basic test" );
 		$this->click( "wpPreview" );
-		$this->waitForPageToLoad( 10000 );
+		$this->waitForPageToLoad( SeleniumTestConstants::WIKI_TEST_WAIT_TIME );
 
 		// check result
 		$source = $this->getText( "//div[@id='wikiPreview']/p" );
@@ -22,9 +22,18 @@ class SimpleSeleniumTestCase extends SeleniumTestCase {
 	 * It depends on $wgDefaultSkin = 'chick'; being set
 	 */
 	public function testGlobalVariableForDefaultSkin() {
-		$this->open( $this->getUrl() . '/index.php?&action=purge' );
+		$this->open( $this->getUrl() . '/index.php' );
 		$bodyClass = $this->getAttribute( "//body/@class" );
 		$this-> assertContains('skin-chick', $bodyClass, 'Chick skin not set');
+	}
+	
+	/*
+	 * Just verify that the test db was loaded correctly 
+	 */
+	public function testDatabaseResourceLoadedCorrectly() {
+		$this->open( $this->getUrl() . '/index.php/TestResources?action=purge' );
+		$testString = $this->gettext( "//body//*[@id='firstHeading']" );
+		$this-> assertEquals('TestResources', $testString, 'Article that should be present in the test db was not found.');
 	}
 
 }

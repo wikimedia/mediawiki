@@ -22,6 +22,8 @@ abstract class SeleniumTestSuite extends PHPUnit_Framework_TestSuite {
 		$this->selenium = Selenium::getInstance();
 		$this->selenium->start();
 		$this->selenium->open( $this->selenium->getUrl() . '/index.php?setupTestSuite=' . $this->getName() );
+		//wait a little longer for the db operation
+		$this->selenium->waitForPageToLoad( 6000  );
 		if ( $this->loginBeforeTests ) {
 			$this->login();
 		}
