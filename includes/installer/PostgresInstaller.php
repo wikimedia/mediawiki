@@ -81,6 +81,12 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
+/*		//Make sure install user can create
+		$status->merge( $this->canCreateAccounts() );
+		if ( !$status->isOK() ) {
+			return $status;
+		} */
+
 		// Check version
 		$version = $this->db->getServerVersion();
 		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
@@ -92,7 +98,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
-	function getConnection() {
+	function getConnection($database = 'template1') {
 		$status = Status::newGood();
 
 		try {
@@ -100,7 +106,7 @@ class PostgresInstaller extends DatabaseInstaller {
 				$this->getVar( 'wgDBserver' ),
 				$this->getVar( '_InstallUser' ),
 				$this->getVar( '_InstallPassword' ),
-				false );
+				$database );
 			$status->value = $this->db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
@@ -187,20 +193,25 @@ class PostgresInstaller extends DatabaseInstaller {
 			'name' => 'pg-commit',
 			'callback' => array( $this, 'commitChanges' ),
 		);
-		$userCB = array(
+/*		$userCB = array(
 			'name' => 'user',
 			'callback' => array( $this, 'setupUser' ),
-		);
+		); */
 		$ts2CB = array(
 			'name' => 'pg-ts2',
 			'callback' => array( $this, 'setupTs2' ),
 		);
 		$this->parent->addInstallStep( $commitCB, 'interwiki' );
-		$this->parent->addInstallStep( $userCB );
+//		$this->parent->addInstallStep( $userCB );
 		$this->parent->addInstallStep( $ts2CB, 'setupDatabase' );
 	}
 
 	function setupDatabase() {
+		$status = $this->setupUser();
+		if (!$status->isOK() ) {
+			return $status;
+		}
+
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
 			return $status;
@@ -208,26 +219,49 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 
 		$dbName = $this->getVar( 'wgDBname' );
-		if( !$conn->selectDB( $dbName ) ) {
-			// Make sure that we can write to the correct schema
-			// If not, Postgres will happily and silently go to the next search_path item
+        $SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $conn->addQuotes( $wgDBname );
+        $rows = $conn->numRows( $conn->doQuery( $SQL ) );
+		if( !$rows ) {
 			$schema = $this->getVar( 'wgDBmwschema' );
-			$ctest = 'mediawiki_test_table';
+			$user = $this->getVar( 'wgDBuser' );
+
 			$safeschema = $conn->addIdentifierQuotes( $schema );
-			if ( $conn->tableExists( $ctest, $schema ) ) {
-				$conn->query( "DROP TABLE $safeschema.$ctest" );
-			}
-			$res = $conn->query( "CREATE TABLE $safeschema.$ctest(a int)" );
-			if ( !$res ) {
-				$status->fatal( 'config-install-pg-schema-failed',
-					$this->getVar( 'wgDBuser'), $schema );
-			}
-			$conn->query( "DROP TABLE $safeschema.$ctest" );
+			$safeuser = $conn->addIdentifierQuotes( $user );
 
 			$safedb = $conn->addIdentifierQuotes( $dbName );
-			$safeuser = $conn->addQuotes( $this->getVar( 'wgDBuser' ) );
+
 			$conn->query( "CREATE DATABASE $safedb OWNER $safeuser", __METHOD__ );
-			$conn->selectDB( $dbName );
+
+			$conn = new DatabasePostgres(
+                    $this->getVar( 'wgDBserver' ),
+                    $this->getVar( 'wgDBuser' ),
+                    $this->getVar( 'wgDBpassword' ),
+                    $dbName,
+                    false,
+                    0,
+                    $this->getVar( 'wgDBprefix' )
+                );
+
+			$result = $conn->schemaExists( $schema );
+			if( !$result ) {
+				$result = $conn->doQuery( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
+				if( !$result ) {
+					$status->fatal( 'config-install-pg-schema-failed', $user, $schema );
+				}
+			} else {
+				$safeschema2 = $conn->addQuotes( $schema );
+				 $SQL = "SELECT 'GRANT ALL ON '||pg_catalog.quote_ident(relname)||' TO $safeuser;'\n".
+                    "FROM pg_catalog.pg_class p, pg_catalog.pg_namespace n\n".
+                    "WHERE relnamespace = n.oid AND n.nspname = $safeschema2\n".
+                    "AND p.relkind IN ('r','S','v')\n";
+                $SQL .= "UNION\n";
+                $SQL .= "SELECT 'GRANT ALL ON FUNCTION '||pg_catalog.quote_ident(proname)||'('||\n".
+                    "pg_catalog.oidvectortypes(p.proargtypes)||') TO $safeuser;'\n".
+                    "FROM pg_catalog.pg_proc p, pg_catalog.pg_namespace n\n".
+                    "WHERE p.pronamespace = n.oid AND n.nspname = $safeschema2";
+                $res = $conn->doQuery( $SQL );
+				$conn->doQuery( "SET search_path = $safeschema" );
+			}
 		}
 		return $status;
 	}
@@ -274,9 +308,11 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$db = $this->getVar( 'wgDBname' );
 		$this->db->selectDB( $db );
-		$safeuser = $this->db->addQuotes( $this->getVar( 'wgDBuser' ) );
+		$safeuser = $this->db->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		$safepass = $this->db->addQuotes( $this->getVar( 'wgDBpassword' ) );
 		$res = $this->db->query( "CREATE USER $safeuser NOCREATEDB PASSWORD $safepass", __METHOD__ );
+		return $status;
+
 		if ( $res !== true ) {
 			$status->fatal( 'config-install-user-failed', $this->getVar( 'wgDBuser' ) );
 		}
