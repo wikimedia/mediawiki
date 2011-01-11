@@ -5263,6 +5263,8 @@ $wgUploadMaintenance = false;
 $wgEnableSelenium = false;
 $wgSeleniumTestConfigs = array();
 $wgSeleniumConfigFile = null;
+$wgDBtestuser = ''; //db user that has permission to create and drop the test databases only
+$wgDBtestpassword = '';
 
 /**
  * For really cool vim folding this needs to be at the end:
