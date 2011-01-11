@@ -199,5 +199,5 @@ $( document ).ready( function() {
 		.addClass( 'client-' + profile.name )
 		.addClass( 'client-' + profile.name + '-' + profile.versionBase )
 		.addClass( 'client-' + profile.layout )
-		.addClass( 'client-' + profile.platform )
+		.addClass( 'client-' + profile.platform );
 } );
