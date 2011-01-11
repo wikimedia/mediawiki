@@ -214,7 +214,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 
 		$dbName = $this->getVar( 'wgDBname' );
-        $SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $conn->addQuotes( $wgDBname );
+        $SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $conn->addQuotes( $dbName );
         $rows = $conn->numRows( $conn->doQuery( $SQL ) );
 		if( !$rows ) {
 			$schema = $this->getVar( 'wgDBmwschema' );
