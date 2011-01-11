@@ -1183,6 +1183,7 @@ if ( typeof startUp === 'function' ) {
 
 // Add jQuery Cookie to initial payload (used in mediaWiki.user)
 mediaWiki.loader.load( 'jquery.cookie' );
+mediaWiki.loader.load( 'jquery.client' );
 
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;
