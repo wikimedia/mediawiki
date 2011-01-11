@@ -245,7 +245,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'titleprefixeddbkey', $this->mTitle->getPrefixedDBKey() );
 		$tpl->set( 'titletext', $this->mTitle->getText() );
 		$tpl->set( 'articleid', $this->mTitle->getArticleId() );
-		$tpl->set( 'currevisionid', isset( $wgArticle ) ? $wgArticle->getLatest() : 0 );
+		$tpl->set( 'currevisionid', $this->mTitle->getLatestRevID() );
 
 		$tpl->set( 'isarticle', $out->isArticle() );
 
@@ -345,7 +345,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'skin', $this );
 		$tpl->set( 'logo', $this->logoText() );
 		if ( $out->isArticle() && ( !isset( $oldid ) || isset( $diff ) ) &&
-			$wgArticle && 0 != $wgArticle->getID() ){
+			$this->mTitle->exists() ){
 			if ( !$wgDisableCounters ) {
 				$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
 				if ( $viewcount ) {
@@ -784,7 +784,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildContentNavigationUrls() {
-		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle;
+		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest;
 		global $wgDisableLangConversion;
 
 		wfProfileIn( __METHOD__ );
@@ -879,7 +879,7 @@ class SkinTemplate extends Skin {
 				);
 				// Checks if this is a current rev of talk page and we should show a new
 				// section link
-				if ( ( $isTalk && $wgArticle && $wgArticle->isCurrent() ) || ( $wgOut->showNewSectionLink() ) ) {
+				if ( ( $isTalk && $this->isRevisionCurrent() ) || ( $wgOut->showNewSectionLink() ) ) {
 					// Checks if we should ever show a new section link
 					if ( !$wgOut->forceHideNewSectionLink() ) {
 						// Adds new section link

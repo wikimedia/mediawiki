@@ -355,6 +355,15 @@ class Skin extends Linker {
 	}
 
 	/**
+	 * Whether the revision displayed is the latest revision of the page
+	 *
+	 * @return Boolean
+	 */
+	public function isRevisionCurrent() {
+		return $this->mRevisionId == 0 || $this->mRevisionId != $this->mTitle->getLatestRevID();
+	}
+
+	/**
 	 * Set the title
 	 * @param $t Title object to use
 	 */
@@ -484,7 +493,7 @@ class Skin extends Linker {
 	 * You will only be adding bloat to the page and causing page caches to have to be purged on configuration changes.
 	 */
 	static function makeGlobalVariablesScript( $skinName ) {
-		global $wgTitle, $wgUser, $wgRequest, $wgArticle, $wgOut, $wgUseAjax, $wgEnableMWSuggest;
+		global $wgTitle, $wgUser, $wgRequest, $wgOut, $wgUseAjax, $wgEnableMWSuggest;
 		
 		$ns = $wgTitle->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $wgTitle->getNsText();
@@ -500,7 +509,7 @@ class Skin extends Linker {
 			'wgIsArticle' => $wgOut->isArticle(),
 			'wgUserName' => $wgUser->isAnon() ? null : $wgUser->getName(),
 			'wgUserGroups' => $wgUser->getEffectiveGroups(),
-			'wgCurRevisionId' => isset( $wgArticle ) ? $wgArticle->getLatest() : 0,
+			'wgCurRevisionId' => $wgTitle->getLatestRevID(),
 			'wgCategories' => $wgOut->getCategories(),
 			'wgBreakFrames' => $wgOut->getFrameOptions() == 'DENY',
 		);
@@ -1473,22 +1482,11 @@ class Skin extends Linker {
 		global $wgOut, $wgLang, $wgArticle, $wgRequest, $wgUser;
 		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax, $wgPageShowWatchingUsers;
 
-		$oldid = $wgRequest->getVal( 'oldid' );
-		$diff = $wgRequest->getVal( 'diff' );
-
-		if ( !$wgOut->isArticle() ) {
+		if ( !is_null( $wgRequest->getVal( 'oldid' ) ) || !is_null( $wgRequest->getVal( 'diff' ) ) ) {
 			return '';
 		}
 
-		if ( !$wgArticle instanceof Article ) {
-			return '';
-		}
-
-		if ( isset( $oldid ) || isset( $diff ) ) {
-			return '';
-		}
-
-		if ( 0 == $wgArticle->getID() ) {
+		if ( !$wgOut->isArticle() || !$this->mTitle->exists() ) {
 			return '';
 		}
 
@@ -1530,13 +1528,12 @@ class Skin extends Linker {
 	}
 
 	function getCopyright( $type = 'detect' ) {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRequest, $wgArticle;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgRequest;
 
 		if ( $type == 'detect' ) {
 			$diff = $wgRequest->getVal( 'diff' );
-			$isCur = $wgArticle && $wgArticle->isCurrent();
 
-			if ( is_null( $diff ) && !$isCur && wfMsgForContent( 'history_copyright' ) !== '-' ) {
+			if ( is_null( $diff ) && !$this->isRevisionCurrent() && wfMsgForContent( 'history_copyright' ) !== '-' ) {
 				$type = 'history';
 			} else {
 				$type = 'normal';
@@ -1619,8 +1616,8 @@ class Skin extends Linker {
 	function lastModified() {
 		global $wgLang, $wgArticle;
 
-		if ( $this->mRevisionId && $this->mRevisionId != $wgArticle->getLatest() ) {
-			$timestamp = Revision::getTimestampFromId( $wgArticle->getTitle(), $this->mRevisionId );
+		if ( !$this->isRevisionCurrent() ) {
+			$timestamp = Revision::getTimestampFromId( $this->mTitle, $this->mRevisionId );
 		} else {
 			$timestamp = $wgArticle->getTimestamp();
 		}
@@ -1803,11 +1800,9 @@ class Skin extends Linker {
 	 * @private
 	 */
 	function editUrlOptions() {
-		global $wgArticle;
-
 		$options = array( 'action' => 'edit' );
 
-		if ( $this->mRevisionId && ! $wgArticle->isCurrent() ) {
+		if ( !$this->isRevisionCurrent() ) {
 			$options['oldid'] = intval( $this->mRevisionId );
 		}
 
