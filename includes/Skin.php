@@ -360,7 +360,7 @@ class Skin extends Linker {
 	 * @return Boolean
 	 */
 	public function isRevisionCurrent() {
-		return $this->mRevisionId == 0 || $this->mRevisionId != $this->mTitle->getLatestRevID();
+		return $this->mRevisionId == 0 || $this->mRevisionId == $this->mTitle->getLatestRevID();
 	}
 
 	/**
