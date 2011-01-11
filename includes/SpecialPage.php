@@ -505,7 +505,7 @@ class SpecialPage {
 
 	/**
 	 * Execute a special page path.
-	 * The path	may contain parameters, e.g. Special:Name/Params
+	 * The path may contain parameters, e.g. Special:Name/Params
 	 * Extracts the special page name and call the execute method, passing the parameters
 	 *
 	 * Returns a title object if the page is redirected, false if there was no such special
