@@ -201,9 +201,14 @@ class PostgresInstaller extends DatabaseInstaller {
 			'name' => 'pg-ts2',
 			'callback' => array( $this, 'setupTs2' ),
 		);
+		$plpgCB = array(
+			'name' => 'pg-plpgsql',
+			'callback' => array( $this, 'setupPLpgSQL' ),
+		);
 		$this->parent->addInstallStep( $commitCB, 'interwiki' );
 		$this->parent->addInstallStep( $userCB );
-		$this->parent->addInstallStep( $ts2CB, 'setupDatabase' );
+		$this->parent->addInstallStep( $ts2CB, 'database' );
+		$this->parent->addInstallStep( $plpgCB, 'database' );
 	}
 
 	function setupDatabase() {
@@ -269,6 +274,11 @@ class PostgresInstaller extends DatabaseInstaller {
 	 * @return Status
 	 */
 	function setupTs2() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
 		if( version_compare( $this->db->getServerVersion(), $this->ts2MaxVersion, '<' ) ) {
 			if ( !$this->db->tableExists( 'pg_ts_cfg', $wgDBts2schema ) ) {
 				return Status::newFatal( 
@@ -335,23 +345,28 @@ class PostgresInstaller extends DatabaseInstaller {
 		$wgDBpassword = $this->getVar( '_InstallPassword' );
 	}
 
-	private function setupPLpgSQL() {
-		$rows = $this->numRows( 
+	public function setupPLpgSQL() {
+		$status = $this->getConnection();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		$rows = $this->db->numRows(
 			$this->db->query( "SELECT 1 FROM pg_catalog.pg_language WHERE lanname = 'plpgsql'" )
 		);
 		if ( $rows < 1 ) {
 			// plpgsql is not installed, but if we have a pg_pltemplate table, we should be able to create it
 			$SQL = "SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (n.oid = c.relnamespace) ".
 				"WHERE relname = 'pg_pltemplate' AND nspname='pg_catalog'";
-			$rows = $this->numRows( $this->db->query( $SQL ) );
-			global $wgDBname;
+			$rows = $this->db->numRows( $this->db->query( $SQL ) );
+			$dbName = $this->getVar( 'wgDBname' );
 			if ( $rows >= 1 ) {
 				$result = $this->db->query( 'CREATE LANGUAGE plpgsql' );
 				if ( !$result ) {
-					return Status::newFatal( 'config-pg-no-plpgsql', $wgDBname );
+					return Status::newFatal( 'config-pg-no-plpgsql', $dbName );
 				}
 			} else {
-				return Status::newFatal( 'config-pg-no-plpgsql', $wgDBname );
+				return Status::newFatal( 'config-pg-no-plpgsql', $dbName );
 			}
 		}
 		return Status::newGood();
