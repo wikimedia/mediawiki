@@ -22,7 +22,6 @@
  * @author GoEThe
  * @author Hamilton Abreu
  * @author Helder.wiki
- * @author Heldergeovane
  * @author Jesielt
  * @author Jorge Morais
  * @author Leonardo.stabile

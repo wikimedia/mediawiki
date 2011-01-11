@@ -13,7 +13,6 @@
  * @author Giro720
  * @author Hamilton Abreu
  * @author Helder.wiki
- * @author Heldergeovane
  * @author Indech
  * @author Jens Liebenau
  * @author Jorge Morais
