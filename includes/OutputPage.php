@@ -233,7 +233,7 @@ class OutputPage {
 	 * @return Array of module names
 	 */
 	public function getModules() {
-		return array_unique( $this->mModules );
+		return array_values( array_unique( $this->mModules ) );
 	}
 
 	/**
@@ -252,7 +252,7 @@ class OutputPage {
 	 * @return array of module names
 	 */
 	public function getModuleScripts() {
-		return array_unique( $this->mModuleScripts );
+		return array_values( array_unique( $this->mModuleScripts ) );
 	}
 
 	/**
@@ -272,7 +272,7 @@ class OutputPage {
 	 * @return Array of module names
 	 */
 	public function getModuleStyles() {
-		return array_unique( $this->mModuleStyles );
+		return array_values( array_unique( $this->mModuleStyles ) );
 	}
 
 	/**
@@ -292,7 +292,7 @@ class OutputPage {
 	 * @return Array of module names
 	 */
 	public function getModuleMessages() {
-		return array_unique( $this->mModuleMessages );
+		return array_values( array_unique( $this->mModuleMessages ) );
 	}
 
 	/**
