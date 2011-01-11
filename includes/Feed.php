@@ -99,7 +99,7 @@ class FeedItem {
 	 * @param $uniqueId String: unique id for the item
 	 * @param $RSSisPermalink Boolean: set to true if the guid (unique id) is a permalink (RSS feeds only)
 	 */
-	public function setUniqueId($uniqueId, $RSSisPermalink = False) {
+	public function setUniqueId($uniqueId, $RSSisPermalink = false) {
 		$this->UniqueId = $uniqueId;
 		$this->RSSIsPermalink = $isPermalink;
 	}
