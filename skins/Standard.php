@@ -20,34 +20,28 @@ class SkinStandard extends Skin {
 	 *
 	 */
 	function setupSkinUserCss( OutputPage $out ){
-		if ( 3 == $this->qbSetting() ) { # Floating left
-			$out->addStyle( 'common/quickbar.css' );
-		} elseif ( 4 == $this->qbSetting() ) { # Floating right
-			$out->addStyle( 'common/quickbar-right.css' );
-		}
-		parent::setupSkinUserCss( $out );
-	}
-
-	/**
-	 *
-	 */
-	function reallyGenerateUserStylesheet() {
-		$s = parent::reallyGenerateUserStylesheet();
+		global $wgContLang;
 		$qb = $this->qbSetting();
-
 		if ( 2 == $qb ) { # Right
-			$s .= "#quickbar { position: absolute; top: 4px; right: 4px; " .
-				"border-left: 2px solid #000000; }\n" .
-				"#article, #mw-data-after-content { margin-left: 4px; margin-right: 152px; }\n";
+			$rules[] = "#quickbar { position: absolute; top: 4px; right: 4px; border-left: 2px solid #000000; }";
+			$rules[] = "#article, #mw-data-after-content { margin-left: 4px; margin-right: 152px; }";
 		} elseif ( 1 == $qb || 3 == $qb ) {
-			$s .= "#quickbar { position: absolute; top: 4px; left: 4px; " .
-				"border-right: 1px solid gray; }\n" .
-				"#article, #mw-data-after-content { margin-left: 152px; margin-right: 4px; }\n";
+			$rules[] = "#quickbar { position: absolute; top: 4px; left: 4px; border-right: 1px solid gray; }";
+			$rules[] = "#article, #mw-data-after-content { margin-left: 152px; margin-right: 4px; }";
+			if( 3 == $qb ) {
+				$rules[] = "#quickbar { position: fixed; padding: 4px; }";
+			}
 		} elseif ( 4 == $qb ) {
-			$s .= "#quickbar { border-right: 1px solid gray; }\n" .
-				"#article, #mw-data-after-content { margin-right: 152px; margin-left: 4px; }\n";
+			$rules[] = "#quickbar { position: fixed; right: 0px; top: 0px; padding: 4px;}";
+			$rules[] = "#quickbar { border-right: 1px solid gray; }";
+			$rules[] = "#article, #mw-data-after-content { margin-right: 152px; margin-left: 4px; }";
 		}
-		return $s;
+ 		$style = implode( "\n", $rules );
+ 		if ( $wgContLang->getDir() === 'rtl' ) {
+ 			$style = CSSJanus::transform( $style, true, false );
+		}
+		$out->addInlineStyle( $style );
+		parent::setupSkinUserCss( $out );
 	}
 
 	function doAfterContent() {
