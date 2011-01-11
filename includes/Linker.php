@@ -159,6 +159,7 @@ class Linker {
 	public function link( $target, $text = null, $customAttribs = array(), $query = array(), $options = array() ) {
 		wfProfileIn( __METHOD__ );
 		if ( !$target instanceof Title ) {
+			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->$text";
 		}
 		$options = (array)$options;
