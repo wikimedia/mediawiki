@@ -594,7 +594,7 @@ class SpecialSearch extends SpecialPage {
 			if( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if( $thumb ) {
-					$desc = wfMsgExt( 'file-info-wrapper', 'parseinline', $img->getShortDesc() );
+					$desc = wfMsgExt( 'parentheses', 'parseinline', $img->getShortDesc() );
 					wfProfileOut( __METHOD__ );
 					// Float doesn't seem to interact well with the bullets.
 					// Table messes up vertical alignment of the bullets.
