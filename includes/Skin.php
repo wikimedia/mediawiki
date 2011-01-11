@@ -453,7 +453,7 @@ class Skin extends Linker {
 		$out->out( $out->headElement( $this ) );
 
 		if ( $wgDebugComments ) {
-			$out->out( "<!-- Wiki debugging output:\n" .
+			$out->out( "<!-- Debug output:\n" .
 			  $out->mDebugtext . "-->\n" );
 		}
 
