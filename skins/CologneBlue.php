@@ -106,28 +106,33 @@ class SkinCologneBlue extends Skin {
 		return $s;
 	}
 
-	function reallyGenerateUserStylesheet() {
-		$s = parent::reallyGenerateUserStylesheet();
+	function setupSkinUserCss( OutputPage $out ){
+		global $wgContLang;
 		$qb = $this->qbSetting();
 
 		if ( 2 == $qb ) { # Right
-			$s .= "#quickbar { position: absolute; right: 4px; }\n" .
-				"#article { margin-left: 4px; margin-right: 148px; }\n";
+			$rules[] = "#quickbar { position: absolute; right: 4px; }";
+			$rules[] = "#article { margin-left: 4px; margin-right: 148px; }";
 		} elseif ( 1 == $qb ) {
-			$s .= "#quickbar { position: absolute; left: 4px; }\n" .
-				"#article { margin-left: 148px; margin-right: 4px; }\n";
+			$rules[] = "#quickbar { position: absolute; left: 4px; }";
+			$rules[] = "#article { margin-left: 148px; margin-right: 4px; }";
 		} elseif ( 3 == $qb ) { # Floating left
-			$s .= "#quickbar { position:absolute; left:4px } \n" .
-				"#topbar { margin-left: 148px }\n" .
-				"#article { margin-left:148px; margin-right: 4px; } \n" .
-				"body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;} \n"; # Hides from IE
+			$rules[] = "#quickbar { position:absolute; left:4px }";
+			$rules[] = "#topbar { margin-left: 148px }";
+			$rules[] = "#article { margin-left:148px; margin-right: 4px; }";
+			$rules[] = "body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;}"; # Hides from IE
 		} elseif ( 4 == $qb ) { # Floating right
-			$s .= "#quickbar { position: fixed; right: 4px; } \n" .
-				"#topbar { margin-right: 148px }\n" .
-				"#article { margin-right: 148px; margin-left: 4px; } \n" .
-				"body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto ;bottom:4px;} \n"; # Hides from IE
+			$rules[] = "#quickbar { position: fixed; right: 4px; }";
+			$rules[] = "#topbar { margin-right: 148px }";
+			$rules[] = "#article { margin-right: 148px; margin-left: 4px; }";
+			$rules[] = "body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto ;bottom:4px;}"; # Hides from IE
 		}
-		return $s;
+		$style = implode( "\n", $rules );
+ 		if ( $wgContLang->getDir() === 'rtl' ) {
+ 			$style = CSSJanus::transform( $style, true, false );
+		}
+		$out->addInlineStyle( $style );
+		parent::setupSkinUserCss( $out );
 	}
 
 	function sysLinks() {
