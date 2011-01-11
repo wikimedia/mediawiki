@@ -220,7 +220,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		$dbName = $this->getVar( 'wgDBname' );
         $SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $conn->addQuotes( $dbName );
-        $rows = $conn->numRows( $conn->doQuery( $SQL ) );
+        $rows = $conn->numRows( $conn->query( $SQL ) );
 		if( !$rows ) {
 			$schema = $this->getVar( 'wgDBmwschema' );
 			$user = $this->getVar( 'wgDBuser' );
@@ -244,7 +244,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 			$result = $conn->schemaExists( $schema );
 			if( !$result ) {
-				$result = $conn->doQuery( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
+				$result = $conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
 				if( !$result ) {
 					$status->fatal( 'config-install-pg-schema-failed', $user, $schema );
 				}
@@ -259,8 +259,8 @@ class PostgresInstaller extends DatabaseInstaller {
                     "pg_catalog.oidvectortypes(p.proargtypes)||') TO $safeuser;'\n".
                     "FROM pg_catalog.pg_proc p, pg_catalog.pg_namespace n\n".
                     "WHERE p.pronamespace = n.oid AND n.nspname = $safeschema2";
-                $res = $conn->doQuery( $SQL );
-				$conn->doQuery( "SET search_path = $safeschema" );
+                $res = $conn->query( $SQL );
+				$conn->query( "SET search_path = $safeschema" );
 			}
 		}
 		return $status;
